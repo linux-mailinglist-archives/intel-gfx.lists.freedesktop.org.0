@@ -1,43 +1,43 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BDC44284FE0
-	for <lists+intel-gfx@lfdr.de>; Tue,  6 Oct 2020 18:30:11 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 36D0C284FC0
+	for <lists+intel-gfx@lfdr.de>; Tue,  6 Oct 2020 18:22:30 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1475A6E21B;
-	Tue,  6 Oct 2020 16:30:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 72DCE6E49F;
+	Tue,  6 Oct 2020 16:22:27 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 68F1C6E21B;
- Tue,  6 Oct 2020 16:30:08 +0000 (UTC)
-IronPort-SDR: X2S7Xni4Czr8+Vnj2LGhBiRFbbE9pXIshv1On9yfcnrdb+ia0fGGNcvCwAPf/LMp8McS9ucics
- ImAIErkBH0xA==
-X-IronPort-AV: E=McAfee;i="6000,8403,9765"; a="151491155"
-X-IronPort-AV: E=Sophos;i="5.77,343,1596524400"; d="scan'208";a="151491155"
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0FC7A6E49F
+ for <intel-gfx@lists.freedesktop.org>; Tue,  6 Oct 2020 16:22:25 +0000 (UTC)
+IronPort-SDR: XC1Rt1nuy58ru75CTFKSP74bfISsaE+m3B4bPDxkdwAkbHrAdsBO5uCB+PhN9/OlUS1VTXLVeO
+ 0ICslrYC0HXg==
+X-IronPort-AV: E=McAfee;i="6000,8403,9765"; a="228698820"
+X-IronPort-AV: E=Sophos;i="5.77,343,1596524400"; d="scan'208";a="228698820"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Oct 2020 09:19:45 -0700
-IronPort-SDR: rykPb+F00eOIYzeQ87BYpQocUltM8yEEajjSDyj1Nm5O8tCPOAI6GlKp2JR9zlnMJJlExydZMi
- LOsAllcW2TdQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.77,343,1596524400"; d="scan'208";a="327619123"
-Received: from eliteleevi.tm.intel.com ([10.237.54.20])
- by orsmga002.jf.intel.com with ESMTP; 06 Oct 2020 09:19:40 -0700
-From: Kai Vehmanen <kai.vehmanen@linux.intel.com>
-To: tiwai@suse.de, alsa-devel@alsa-project.org,
- maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de,
- airlied@linux.ie, dri-devel@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, jani.nikula@intel.com
-Date: Tue,  6 Oct 2020 19:17:22 +0300
-Message-Id: <20201006161722.500256-1-kai.vehmanen@linux.intel.com>
-X-Mailer: git-send-email 2.28.0
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Oct 2020 09:20:53 -0700
+IronPort-SDR: T2z+3f7PhNYTi9WivgrwuE0SM5nHa8NtDh2Q9Xr/7UT0+cqBRHS2GMhQFPOzZBVr1LnYfDeiGy
+ FNlE+V7wYryg==
+X-IronPort-AV: E=Sophos;i="5.77,343,1596524400"; d="scan'208";a="315718927"
+Received: from ideak-desk.fi.intel.com ([10.237.68.141])
+ by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Oct 2020 09:20:50 -0700
+Date: Tue, 6 Oct 2020 19:20:46 +0300
+From: Imre Deak <imre.deak@intel.com>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>
+Message-ID: <20201006162046.GA1523425@ideak-desk.fi.intel.com>
+References: <20201006143349.5561-1-ville.syrjala@linux.intel.com>
+ <20201006143349.5561-16-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] ALSA: hda/i915 - fix list corruption with
- concurrent probes
+Content-Disposition: inline
+In-Reply-To: <20201006143349.5561-16-ville.syrjala@linux.intel.com>
+Subject: Re: [Intel-gfx] [PATCH 15/20] drm/i915: Don't enable hpd detection
+ logic from irq_postinstall()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,132 +50,158 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Reply-To: imre.deak@intel.com
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Takashi Iwai <tiwai@suse.de>
+On Tue, Oct 06, 2020 at 05:33:44PM +0300, Ville Syrjala wrote:
+> From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> =
 
-Current hdac_i915 uses a static completion instance to wait
-for i915 driver to complete the component bind.
+> No reason that I can see why we should enable the hpd detection logic
+> already during irq postinstall phase. We don't even do this on all
+> the platforms. We just need it before we actually enable the hotplug
+> interrupts in .hpd_irq_setup(), and in fact we already do it there as
+> well. Let's just eliminate the redundant early setup.
+> =
 
-This design is not safe if multiple HDA controllers are active and
-communicating with different i915 instances, and can lead to list
-corruption and failed audio driver probe.
+> Signed-off-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
 
-Fix the design by moving completion mechanism to common acomp
-code and remove the related code from hdac_i915.
+It's needed by LSPCON resume, which happens before initing HPD
+interrupts. I suppose that could be done later, after HPD interrupt init,
+I don't see now why it would need to be done at encoder->reset() time.
 
-Co-developed-by: Kai Vehmanen <kai.vehmanen@linux.intel.com>
-Signed-off-by: Kai Vehmanen <kai.vehmanen@linux.intel.com>
-Signed-off-by: Takashi Iwai <tiwai@suse.de>
----
- include/drm/drm_audio_component.h |  4 ++++
- sound/hda/hdac_component.c        |  3 +++
- sound/hda/hdac_i915.c             | 23 +++--------------------
- 3 files changed, 10 insertions(+), 20 deletions(-)
+> ---
+>  drivers/gpu/drm/i915/i915_irq.c | 38 +++------------------------------
+>  1 file changed, 3 insertions(+), 35 deletions(-)
+> =
 
-diff --git a/include/drm/drm_audio_component.h b/include/drm/drm_audio_component.h
-index a45f93487039..0d36bfd1a4cd 100644
---- a/include/drm/drm_audio_component.h
-+++ b/include/drm/drm_audio_component.h
-@@ -117,6 +117,10 @@ struct drm_audio_component {
- 	 * @audio_ops: Ops implemented by hda driver, called by DRM driver
- 	 */
- 	const struct drm_audio_component_audio_ops *audio_ops;
-+	/**
-+	 * @master_bind_complete: completion held during component master binding
-+	 */
-+	struct completion master_bind_complete;
- };
- 
- #endif /* _DRM_AUDIO_COMPONENT_H_ */
-diff --git a/sound/hda/hdac_component.c b/sound/hda/hdac_component.c
-index 89126c6fd216..bb37e7e0bd79 100644
---- a/sound/hda/hdac_component.c
-+++ b/sound/hda/hdac_component.c
-@@ -210,12 +210,14 @@ static int hdac_component_master_bind(struct device *dev)
- 			goto module_put;
- 	}
- 
-+	complete_all(&acomp->master_bind_complete);
- 	return 0;
- 
-  module_put:
- 	module_put(acomp->ops->owner);
- out_unbind:
- 	component_unbind_all(dev, acomp);
-+	complete_all(&acomp->master_bind_complete);
- 
- 	return ret;
- }
-@@ -296,6 +298,7 @@ int snd_hdac_acomp_init(struct hdac_bus *bus,
- 	if (!acomp)
- 		return -ENOMEM;
- 	acomp->audio_ops = aops;
-+	init_completion(&acomp->master_bind_complete);
- 	bus->audio_component = acomp;
- 	devres_add(dev, acomp);
- 
-diff --git a/sound/hda/hdac_i915.c b/sound/hda/hdac_i915.c
-index 5f0a1aa6ad84..454474ac5716 100644
---- a/sound/hda/hdac_i915.c
-+++ b/sound/hda/hdac_i915.c
-@@ -11,8 +11,6 @@
- #include <sound/hda_i915.h>
- #include <sound/hda_register.h>
- 
--static struct completion bind_complete;
--
- #define IS_HSW_CONTROLLER(pci) (((pci)->device == 0x0a0c) || \
- 				((pci)->device == 0x0c0c) || \
- 				((pci)->device == 0x0d0c) || \
-@@ -130,19 +128,6 @@ static bool i915_gfx_present(void)
- 	return pci_dev_present(ids);
- }
- 
--static int i915_master_bind(struct device *dev,
--			    struct drm_audio_component *acomp)
--{
--	complete_all(&bind_complete);
--	/* clear audio_ops here as it was needed only for completion call */
--	acomp->audio_ops = NULL;
--	return 0;
--}
--
--static const struct drm_audio_component_audio_ops i915_init_ops = {
--	.master_bind = i915_master_bind
--};
--
- /**
-  * snd_hdac_i915_init - Initialize i915 audio component
-  * @bus: HDA core bus
-@@ -163,9 +148,7 @@ int snd_hdac_i915_init(struct hdac_bus *bus)
- 	if (!i915_gfx_present())
- 		return -ENODEV;
- 
--	init_completion(&bind_complete);
--
--	err = snd_hdac_acomp_init(bus, &i915_init_ops,
-+	err = snd_hdac_acomp_init(bus, NULL,
- 				  i915_component_master_match,
- 				  sizeof(struct i915_audio_component) - sizeof(*acomp));
- 	if (err < 0)
-@@ -177,8 +160,8 @@ int snd_hdac_i915_init(struct hdac_bus *bus)
- 		if (!IS_ENABLED(CONFIG_MODULES) ||
- 		    !request_module("i915")) {
- 			/* 60s timeout */
--			wait_for_completion_timeout(&bind_complete,
--						   msecs_to_jiffies(60 * 1000));
-+			wait_for_completion_timeout(&acomp->master_bind_complete,
-+						    msecs_to_jiffies(60 * 1000));
- 		}
- 	}
- 	if (!acomp->ops) {
--- 
-2.28.0
+> diff --git a/drivers/gpu/drm/i915/i915_irq.c b/drivers/gpu/drm/i915/i915_=
+irq.c
+> index 0886369e3890..b1c56a29376c 100644
+> --- a/drivers/gpu/drm/i915/i915_irq.c
+> +++ b/drivers/gpu/drm/i915/i915_irq.c
+> @@ -3378,8 +3378,8 @@ static void ilk_hpd_irq_setup(struct drm_i915_priva=
+te *dev_priv)
+>  	ibx_hpd_irq_setup(dev_priv);
+>  }
+>  =
 
+> -static void __bxt_hpd_detection_setup(struct drm_i915_private *dev_priv,
+> -				      u32 enabled_irqs)
+> +static void bxt_hpd_detection_setup(struct drm_i915_private *dev_priv,
+> +				    u32 enabled_irqs)
+>  {
+>  	u32 hotplug;
+>  =
+
+> @@ -3410,11 +3410,6 @@ static void __bxt_hpd_detection_setup(struct drm_i=
+915_private *dev_priv,
+>  	I915_WRITE(PCH_PORT_HOTPLUG, hotplug);
+>  }
+>  =
+
+> -static void bxt_hpd_detection_setup(struct drm_i915_private *dev_priv)
+> -{
+> -	__bxt_hpd_detection_setup(dev_priv, BXT_DE_PORT_HOTPLUG_MASK);
+> -}
+> -
+>  static void bxt_hpd_irq_setup(struct drm_i915_private *dev_priv)
+>  {
+>  	u32 hotplug_irqs, enabled_irqs;
+> @@ -3424,7 +3419,7 @@ static void bxt_hpd_irq_setup(struct drm_i915_priva=
+te *dev_priv)
+>  =
+
+>  	bdw_update_port_irq(dev_priv, hotplug_irqs, enabled_irqs);
+>  =
+
+> -	__bxt_hpd_detection_setup(dev_priv, enabled_irqs);
+> +	bxt_hpd_detection_setup(dev_priv, enabled_irqs);
+>  }
+>  =
+
+>  static void ibx_irq_postinstall(struct drm_i915_private *dev_priv)
+> @@ -3443,12 +3438,6 @@ static void ibx_irq_postinstall(struct drm_i915_pr=
+ivate *dev_priv)
+>  =
+
+>  	gen3_assert_iir_is_zero(&dev_priv->uncore, SDEIIR);
+>  	I915_WRITE(SDEIMR, ~mask);
+> -
+> -	if (HAS_PCH_IBX(dev_priv) || HAS_PCH_CPT(dev_priv) ||
+> -	    HAS_PCH_LPT(dev_priv))
+> -		ibx_hpd_detection_setup(dev_priv);
+> -	else
+> -		spt_hpd_detection_setup(dev_priv);
+>  }
+>  =
+
+>  static void ilk_irq_postinstall(struct drm_i915_private *dev_priv)
+> @@ -3485,8 +3474,6 @@ static void ilk_irq_postinstall(struct drm_i915_pri=
+vate *dev_priv)
+>  =
+
+>  	gen5_gt_irq_postinstall(&dev_priv->gt);
+>  =
+
+> -	ilk_hpd_detection_setup(dev_priv);
+> -
+>  	ibx_irq_postinstall(dev_priv);
+>  =
+
+>  	if (IS_IRONLAKE_M(dev_priv)) {
+> @@ -3618,12 +3605,6 @@ static void gen8_de_irq_postinstall(struct drm_i91=
+5_private *dev_priv)
+>  =
+
+>  		GEN3_IRQ_INIT(uncore, GEN11_DE_HPD_, ~de_hpd_masked,
+>  			      de_hpd_enables);
+> -		gen11_tc_hpd_detection_setup(dev_priv);
+> -		gen11_tbt_hpd_detection_setup(dev_priv);
+> -	} else if (IS_GEN9_LP(dev_priv)) {
+> -		bxt_hpd_detection_setup(dev_priv);
+> -	} else if (IS_BROADWELL(dev_priv)) {
+> -		ilk_hpd_detection_setup(dev_priv);
+>  	}
+>  }
+>  =
+
+> @@ -3651,19 +3632,6 @@ static void icp_irq_postinstall(struct drm_i915_pr=
+ivate *dev_priv)
+>  =
+
+>  	gen3_assert_iir_is_zero(&dev_priv->uncore, SDEIIR);
+>  	I915_WRITE(SDEIMR, ~mask);
+> -
+> -	if (HAS_PCH_TGP(dev_priv)) {
+> -		icp_ddi_hpd_detection_setup(dev_priv, TGP_DDI_HPD_ENABLE_MASK);
+> -		icp_tc_hpd_detection_setup(dev_priv, TGP_TC_HPD_ENABLE_MASK);
+> -	} else if (HAS_PCH_JSP(dev_priv)) {
+> -		icp_ddi_hpd_detection_setup(dev_priv, TGP_DDI_HPD_ENABLE_MASK);
+> -	} else if (HAS_PCH_MCC(dev_priv)) {
+> -		icp_ddi_hpd_detection_setup(dev_priv, ICP_DDI_HPD_ENABLE_MASK);
+> -		icp_tc_hpd_detection_setup(dev_priv, ICP_TC_HPD_ENABLE(HPD_PORT_TC1));
+> -	} else {
+> -		icp_ddi_hpd_detection_setup(dev_priv, ICP_DDI_HPD_ENABLE_MASK);
+> -		icp_tc_hpd_detection_setup(dev_priv, ICP_TC_HPD_ENABLE_MASK);
+> -	}
+>  }
+>  =
+
+>  static void gen11_irq_postinstall(struct drm_i915_private *dev_priv)
+> -- =
+
+> 2.26.2
+> =
+
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
