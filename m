@@ -2,47 +2,44 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 18EE6284956
-	for <lists+intel-gfx@lfdr.de>; Tue,  6 Oct 2020 11:27:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 56FF928495B
+	for <lists+intel-gfx@lfdr.de>; Tue,  6 Oct 2020 11:29:13 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CF7456E40F;
-	Tue,  6 Oct 2020 09:27:10 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D97786E40F
- for <Intel-gfx@lists.freedesktop.org>; Tue,  6 Oct 2020 09:27:08 +0000 (UTC)
-IronPort-SDR: NrwFdMtniYX0B3dQsJc6oFvypblrFuTlemygCTUQi1gXMHOXu2E9FlBvu4jvB5a5WqRblYVqvY
- TaY47aqmBTYw==
-X-IronPort-AV: E=McAfee;i="6000,8403,9765"; a="226023993"
-X-IronPort-AV: E=Sophos;i="5.77,342,1596524400"; d="scan'208";a="226023993"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2D8CE6E418;
+	Tue,  6 Oct 2020 09:29:10 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B90326E418
+ for <intel-gfx@lists.freedesktop.org>; Tue,  6 Oct 2020 09:29:08 +0000 (UTC)
+IronPort-SDR: nlQI6MPERVNeeq7NiDnHDFaw+GsIAl30uK/Ysa2y1ylK88ceZ7opyURO6AnwwjrfuR9IkTHxne
+ BXxl7PJOnbcg==
+X-IronPort-AV: E=McAfee;i="6000,8403,9765"; a="181870370"
+X-IronPort-AV: E=Sophos;i="5.77,342,1596524400"; d="scan'208";a="181870370"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Oct 2020 02:27:08 -0700
-IronPort-SDR: 0AsXNS4L9ulU2X23KtyfCnk11mlFgyy5XcgqGtfG7p4TjeUqn5OC3QCa73IIydhFpDZX4DJGbq
- EhfIBrTL1d2w==
-X-IronPort-AV: E=Sophos;i="5.77,342,1596524400"; d="scan'208";a="460713837"
-Received: from gschnitm-mobl.ger.corp.intel.com (HELO [10.251.178.213])
- ([10.251.178.213])
- by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Oct 2020 02:27:07 -0700
-To: Chris Wilson <chris@chris-wilson.co.uk>, Intel-gfx@lists.freedesktop.org
-References: <20200910115900.407686-3-tvrtko.ursulin@linux.intel.com>
- <20200910145018.408983-1-tvrtko.ursulin@linux.intel.com>
- <160015978860.3890.1211829559641660544@build.alporthouse.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-Message-ID: <47c933d8-6c88-30d1-4ac7-ca3bd96cfde2@linux.intel.com>
-Date: Tue, 6 Oct 2020 10:27:03 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Oct 2020 02:29:03 -0700
+IronPort-SDR: qX5G2wPsvZq9XP/+RibTSlKF5+q/iIy/3CbB2ROcj73X/XWHvva4vpOELluP76KDhhGa5/2USH
+ ECr2ld+AJiNw==
+X-IronPort-AV: E=Sophos;i="5.77,342,1596524400"; d="scan'208";a="527264989"
+Received: from kchandar-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.252.50.35])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Oct 2020 02:29:00 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
+In-Reply-To: <20201001151640.14590-3-ville.syrjala@linux.intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20201001151640.14590-1-ville.syrjala@linux.intel.com>
+ <20201001151640.14590-3-ville.syrjala@linux.intel.com>
+Date: Tue, 06 Oct 2020 12:29:22 +0300
+Message-ID: <87o8lfk8i5.fsf@intel.com>
 MIME-Version: 1.0
-In-Reply-To: <160015978860.3890.1211829559641660544@build.alporthouse.com>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH v2] drm/i915: Fix DMA mapped scatterlist
- lookup
+Subject: Re: [Intel-gfx] [PATCH v2 3/6] drm/i915: Replace the VLV/CHV eDP
+ reboot notifier with the .shutdown() hook
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,275 +52,114 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-
-On 15/09/2020 09:49, Chris Wilson wrote:
-> Quoting Tvrtko Ursulin (2020-09-10 15:50:18)
->> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
->>
->> As the previous patch fixed the places where we walk the whole scatterlist
->> for DMA addresses, this patch fixes the random lookup functionality.
->>
->> To achieve this we have to add a second lookup iterator and add a
->> i915_gem_object_get_sg_dma helper, to be used analoguous to existing
->> i915_gem_object_get_sg_dma. Therefore two lookup caches are maintained per
->> object and they are flushed at the same point for simplicity. (Strictly
->> speaking the DMA cache should be flushed from i915_gem_gtt_finish_pages,
->> but today this conincides with unsetting of the pages in general.)
->>
->> Partial VMA view is then fixed to use the new DMA lookup and properly
->> query sg length.
->>
->> v2:
->>   * Checkpatch.
->>
->> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
->> Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
->> Cc: Chris Wilson <chris@chris-wilson.co.uk>
->> Cc: Matthew Auld <matthew.auld@intel.com>
->> Cc: Lu Baolu <baolu.lu@linux.intel.com>
->> Cc: Tom Murphy <murphyt7@tcd.ie>
->> Cc: Logan Gunthorpe <logang@deltatee.com>
->> ---
->>   drivers/gpu/drm/i915/gem/i915_gem_object.c    |  2 ++
->>   drivers/gpu/drm/i915/gem/i915_gem_object.h    | 20 +++++++++++++++++-
->>   .../gpu/drm/i915/gem/i915_gem_object_types.h  | 17 ++++++++-------
->>   drivers/gpu/drm/i915/gem/i915_gem_pages.c     | 21 ++++++++++++-------
->>   drivers/gpu/drm/i915/gt/intel_ggtt.c          |  4 ++--
->>   drivers/gpu/drm/i915/i915_scatterlist.h       |  5 +++++
->>   6 files changed, 51 insertions(+), 18 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object.c b/drivers/gpu/drm/i915/gem/i915_gem_object.c
->> index c8421fd9d2dc..ffeaf1b9b1bb 100644
->> --- a/drivers/gpu/drm/i915/gem/i915_gem_object.c
->> +++ b/drivers/gpu/drm/i915/gem/i915_gem_object.c
->> @@ -73,6 +73,8 @@ void i915_gem_object_init(struct drm_i915_gem_object *obj,
->>          obj->mm.madv = I915_MADV_WILLNEED;
->>          INIT_RADIX_TREE(&obj->mm.get_page.radix, GFP_KERNEL | __GFP_NOWARN);
->>          mutex_init(&obj->mm.get_page.lock);
->> +       INIT_RADIX_TREE(&obj->mm.get_dma_page.radix, GFP_KERNEL | __GFP_NOWARN);
->> +       mutex_init(&obj->mm.get_dma_page.lock);
->>   
->>          if (IS_ENABLED(CONFIG_LOCKDEP) && i915_gem_object_is_shrinkable(obj))
->>                  i915_gem_shrinker_taints_mutex(to_i915(obj->base.dev),
->> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object.h b/drivers/gpu/drm/i915/gem/i915_gem_object.h
->> index d46db8d8f38e..44c6910e2669 100644
->> --- a/drivers/gpu/drm/i915/gem/i915_gem_object.h
->> +++ b/drivers/gpu/drm/i915/gem/i915_gem_object.h
->> @@ -275,8 +275,26 @@ int i915_gem_object_set_tiling(struct drm_i915_gem_object *obj,
->>                                 unsigned int tiling, unsigned int stride);
->>   
->>   struct scatterlist *
->> +__i915_gem_object_get_sg(struct drm_i915_gem_object *obj,
->> +                        struct i915_gem_object_page_iter *iter,
->> +                        unsigned int n,
->> +                        unsigned int *offset);
->> +
->> +static inline struct scatterlist *
->>   i915_gem_object_get_sg(struct drm_i915_gem_object *obj,
->> -                      unsigned int n, unsigned int *offset);
->> +                      unsigned int n,
->> +                      unsigned int *offset)
->> +{
->> +       return __i915_gem_object_get_sg(obj, &obj->mm.get_page, n, offset);
->> +}
-> 
-> I wonder if get_sg_phys() is worth it to make it completely clear the
-> difference between it and get_sg_dma() (and .get_phys_page?) ?
-> 
->> +
->> +static inline struct scatterlist *
->> +i915_gem_object_get_sg_dma(struct drm_i915_gem_object *obj,
->> +                          unsigned int n,
->> +                          unsigned int *offset)
->> +{
->> +       return __i915_gem_object_get_sg(obj, &obj->mm.get_dma_page, n, offset);
->> +}
->>   
->>   struct page *
->>   i915_gem_object_get_page(struct drm_i915_gem_object *obj,
->> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object_types.h b/drivers/gpu/drm/i915/gem/i915_gem_object_types.h
->> index b5c15557cc87..fedfebf13344 100644
->> --- a/drivers/gpu/drm/i915/gem/i915_gem_object_types.h
->> +++ b/drivers/gpu/drm/i915/gem/i915_gem_object_types.h
->> @@ -80,6 +80,14 @@ struct i915_mmap_offset {
->>          struct rb_node offset;
->>   };
->>   
->> +struct i915_gem_object_page_iter {
->> +       struct scatterlist *sg_pos;
->> +       unsigned int sg_idx; /* in pages, but 32bit eek! */
->> +
->> +       struct radix_tree_root radix;
->> +       struct mutex lock; /* protects this cache */
->> +};
-> 
-> All alternatives to trying to avoid a second random lookup were
-> squashed, it really is two lists within one scatterlist and we do use
-> both page/dma lookups in non-trivial ways.
-> 
->> +
->>   struct drm_i915_gem_object {
->>          struct drm_gem_object base;
->>   
->> @@ -246,13 +254,8 @@ struct drm_i915_gem_object {
->>   
->>                  I915_SELFTEST_DECLARE(unsigned int page_mask);
->>   
->> -               struct i915_gem_object_page_iter {
->> -                       struct scatterlist *sg_pos;
->> -                       unsigned int sg_idx; /* in pages, but 32bit eek! */
->> -
->> -                       struct radix_tree_root radix;
->> -                       struct mutex lock; /* protects this cache */
->> -               } get_page;
->> +               struct i915_gem_object_page_iter get_page;
->> +               struct i915_gem_object_page_iter get_dma_page;
->>   
->>                  /**
->>                   * Element within i915->mm.unbound_list or i915->mm.bound_list,
->> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_pages.c b/drivers/gpu/drm/i915/gem/i915_gem_pages.c
->> index e8a083743e09..04a3c1233f80 100644
->> --- a/drivers/gpu/drm/i915/gem/i915_gem_pages.c
->> +++ b/drivers/gpu/drm/i915/gem/i915_gem_pages.c
->> @@ -33,6 +33,8 @@ void __i915_gem_object_set_pages(struct drm_i915_gem_object *obj,
->>   
->>          obj->mm.get_page.sg_pos = pages->sgl;
->>          obj->mm.get_page.sg_idx = 0;
->> +       obj->mm.get_dma_page.sg_pos = pages->sgl;
->> +       obj->mm.get_dma_page.sg_idx = 0;
->>   
->>          obj->mm.pages = pages;
->>   
->> @@ -155,6 +157,8 @@ static void __i915_gem_object_reset_page_iter(struct drm_i915_gem_object *obj)
->>          rcu_read_lock();
->>          radix_tree_for_each_slot(slot, &obj->mm.get_page.radix, &iter, 0)
->>                  radix_tree_delete(&obj->mm.get_page.radix, iter.index);
->> +       radix_tree_for_each_slot(slot, &obj->mm.get_dma_page.radix, &iter, 0)
->> +               radix_tree_delete(&obj->mm.get_dma_page.radix, iter.index);
->>          rcu_read_unlock();
->>   }
->>   
->> @@ -424,11 +428,12 @@ void __i915_gem_object_release_map(struct drm_i915_gem_object *obj)
->>   }
->>   
->>   struct scatterlist *
->> -i915_gem_object_get_sg(struct drm_i915_gem_object *obj,
->> -                      unsigned int n,
->> -                      unsigned int *offset)
->> +__i915_gem_object_get_sg(struct drm_i915_gem_object *obj,
->> +                        struct i915_gem_object_page_iter *iter,
->> +                        unsigned int n,
->> +                        unsigned int *offset)
->>   {
->> -       struct i915_gem_object_page_iter *iter = &obj->mm.get_page;
->> +       const bool dma = iter == &obj->mm.get_dma_page;
->>          struct scatterlist *sg;
->>          unsigned int idx, count;
->>   
->> @@ -457,7 +462,7 @@ i915_gem_object_get_sg(struct drm_i915_gem_object *obj,
->>   
->>          sg = iter->sg_pos;
->>          idx = iter->sg_idx;
->> -       count = __sg_page_count(sg);
->> +       count = dma ? __sg_dma_page_count(sg) : __sg_page_count(sg);
->>   
->>          while (idx + count <= n) {
->>                  void *entry;
->> @@ -485,7 +490,7 @@ i915_gem_object_get_sg(struct drm_i915_gem_object *obj,
->>   
->>                  idx += count;
->>                  sg = ____sg_next(sg);
->> -               count = __sg_page_count(sg);
->> +               count = dma ? __sg_dma_page_count(sg) : __sg_page_count(sg);
->>          }
->>   
->>   scan:
->> @@ -503,7 +508,7 @@ i915_gem_object_get_sg(struct drm_i915_gem_object *obj,
->>          while (idx + count <= n) {
->>                  idx += count;
->>                  sg = ____sg_next(sg);
->> -               count = __sg_page_count(sg);
->> +               count = dma ? __sg_dma_page_count(sg) : __sg_page_count(sg);
-> 
-> Hmm. So for a coalesced dma entry, we must therefore end up with some
-> entries where the sg_dma_length is 0.
-> 
-> We then insert multiple sg for the same idx into the radix tree, causing
-> it to return an error, -EEXIST. We eat such errors and so overwrite the
-> empty entry with the final sg that actually has a valid length.
-> 
-> Ok. Looks like get_sg already handles zero length elements and you
-> caught all 3 __sg_page_count().
-> 
->>          }
->>   
->>          *offset = n - idx;
->> @@ -570,7 +575,7 @@ i915_gem_object_get_dma_address_len(struct drm_i915_gem_object *obj,
->>          struct scatterlist *sg;
->>          unsigned int offset;
->>   
->> -       sg = i915_gem_object_get_sg(obj, n, &offset);
->> +       sg = i915_gem_object_get_sg_dma(obj, n, &offset);
->>   
->>          if (len)
->>                  *len = sg_dma_len(sg) - (offset << PAGE_SHIFT);
->> diff --git a/drivers/gpu/drm/i915/gt/intel_ggtt.c b/drivers/gpu/drm/i915/gt/intel_ggtt.c
->> index 81c05f551b9c..95e77d56c1ce 100644
->> --- a/drivers/gpu/drm/i915/gt/intel_ggtt.c
->> +++ b/drivers/gpu/drm/i915/gt/intel_ggtt.c
->> @@ -1383,7 +1383,7 @@ intel_partial_pages(const struct i915_ggtt_view *view,
->>          if (ret)
->>                  goto err_sg_alloc;
->>   
->> -       iter = i915_gem_object_get_sg(obj, view->partial.offset, &offset);
->> +       iter = i915_gem_object_get_sg_dma(obj, view->partial.offset, &offset);
->>          GEM_BUG_ON(!iter);
->>   
->>          sg = st->sgl;
->> @@ -1391,7 +1391,7 @@ intel_partial_pages(const struct i915_ggtt_view *view,
->>          do {
->>                  unsigned int len;
->>   
->> -               len = min(iter->length - (offset << PAGE_SHIFT),
->> +               len = min(sg_dma_len(iter) - (offset << PAGE_SHIFT),
->>                            count << PAGE_SHIFT);
->>                  sg_set_page(sg, NULL, len, 0);
->>                  sg_dma_address(sg) =
-> 
-> I didn't find any other users for get_sg() and this looks to catch all
-> the fixes required for using sg_dma.
-> 
->> diff --git a/drivers/gpu/drm/i915/i915_scatterlist.h b/drivers/gpu/drm/i915/i915_scatterlist.h
->> index 510856887628..102d8d7007b6 100644
->> --- a/drivers/gpu/drm/i915/i915_scatterlist.h
->> +++ b/drivers/gpu/drm/i915/i915_scatterlist.h
->> @@ -48,6 +48,11 @@ static inline int __sg_page_count(const struct scatterlist *sg)
->>          return sg->length >> PAGE_SHIFT;
->>   }
->>   
->> +static inline int __sg_dma_page_count(const struct scatterlist *sg)
->> +{
->> +       return sg_dma_len(sg) >> PAGE_SHIFT;
->> +}
-> 
-> Reviewed-by: Chris Wilson <chris@chris-wilson.co.uk>
-
-Thanks!
-
-> Do we need cc:stable?
-
-Probably not given how this oversight only gets exposed once the Intel 
-IOMMU dma-api refactoring work lands.
-
-Regards,
-
-Tvrtko
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+T24gVGh1LCAwMSBPY3QgMjAyMCwgVmlsbGUgU3lyamFsYSA8dmlsbGUuc3lyamFsYUBsaW51eC5p
+bnRlbC5jb20+IHdyb3RlOgo+IEZyb206IFZpbGxlIFN5cmrDpGzDpCA8dmlsbGUuc3lyamFsYUBs
+aW51eC5pbnRlbC5jb20+Cj4KPiBDdXJyZW50bHkgVkxWL0NIViB1c2UgYSByZWJvb3Qgbm90aWZp
+ZXIgdG8gbWFrZSBzdXJlIHRoZSBwYW5lbAo+IHBvd2VyIGN5Y2xlIGRlbGF5IGlzbid0IHZpb2xh
+dGVkIGFjcm9zcyBhIHN5c3RlbSByZWJvb3QuIFJlcGxhY2UKPiB0aGF0IHdpdGggdGhlIG5ldyBl
+bmNvZGVyIC5zaHV0ZG93bigpIGhvb2suCj4KPiBBbmQgbGV0J3MgYWxzbyBzdG9wIG92ZXJyaWRp
+bmcgdGhlIHBvd2VyIGN5Y2xlIGRlbGF5IHdpdGggdGhlCj4gbWF4IHZhbHVlLiBObyBpZGVhIHdo
+eSB0aGUgY3VycmVudCBjb2RlIGRvZXMgdGhhdC4gVGhlIGFscmVhZHkKPiBwcm9ncmFtbWVkIGRl
+bGF5IHNob3VsZCBiZSBjb3JyZWN0LgoKSSBraW5kIG9mIGhhdmUgYSBsaXR0bGUgdW5lYXN5IGZl
+ZWxpbmcgYWJvdXQgY29uZmxhdGluZyB0aGVzZSB0d28KY2hhbmdlcyB0b2dldGhlci4gSSB0aGlu
+ayBib3RoIGFyZSBvYmplY3RpdmVseSBnb29kIGNoYW5nZXMsIGp1c3Qgbm90Cm5lY2Vzc2FyaWx5
+IGF0IG9uY2UuCgpJU1RSIHNldHRpbmcgdGhlIG1heCBkZWxheSB3YXMsIHBlcmhhcHMsIHNvbWVo
+b3cgcmVsYXRlZCB0byB0aGUgaGFyZHdhcmUKbG9zaW5nIGl0cyBtYXJibGVzIGFmdGVyIHBvd2Vy
+IGlzIGN1dCwgZWZmZWN0aXZlbHkgbm90IGVuc3VyaW5nIGFueSBvZgp0aGUgZGVsYXlzIGF0IHBv
+d2VyLW9uLiBTbyBpdCdzIHBvc3NpYmxlIHdlIHNldCB0aGUgbWF4IGhlcmUgdG8gYWNjb3VudApm
+b3IgdGhhdC4gTWF5YmUuIDspCgpBbnl3YXksCgpSZXZpZXdlZC1ieTogSmFuaSBOaWt1bGEgPGph
+bmkubmlrdWxhQGludGVsLmNvbT4KCm9uIHRoZSB3aG9sZS4KCkknbSBsZWF2aW5nIGl0IHVwIHRv
+IHlvdSwgYnV0IHBlcnNvbmFsbHkgSSdkIGxlYW4gdG93YXJkcyBzd2l0Y2hpbmcKZWRwX25vdGlm
+eV9oYW5kbGVyKCkgdG8gdXNlIHdhaXRfcGFuZWxfcG93ZXJfY3ljbGUoaW50ZWxfZHApIGZpcnN0
+IGluIGEKc2VwYXJhdGUgcGF0Y2gsIHRvIGhlbHAgd2l0aCBwb3RlbnRpYWwgYmlzZWN0IHJlc3Vs
+dHMsIGFuZCB0aGVuIGRvaW5nCnRoZSByZXN0LgoKPgo+IFNpZ25lZC1vZmYtYnk6IFZpbGxlIFN5
+cmrDpGzDpCA8dmlsbGUuc3lyamFsYUBsaW51eC5pbnRlbC5jb20+Cj4gLS0tCj4gIC4uLi9kcm0v
+aTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXlfdHlwZXMuaCAgICB8ICAyIC0KPiAgZHJpdmVycy9n
+cHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kcC5jICAgICAgIHwgNTggKysrKystLS0tLS0tLS0t
+LS0tLQo+ICAyIGZpbGVzIGNoYW5nZWQsIDE0IGluc2VydGlvbnMoKyksIDQ2IGRlbGV0aW9ucygt
+KQo+Cj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlz
+cGxheV90eXBlcy5oIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5
+X3R5cGVzLmgKPiBpbmRleCA2ZjNlM2Q3NTYzODMuLjliOWVkMWEyZjQxMiAxMDA2NDQKPiAtLS0g
+YS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXlfdHlwZXMuaAo+ICsr
+KyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheV90eXBlcy5oCj4g
+QEAgLTEzMTksOCArMTMxOSw2IEBAIHN0cnVjdCBpbnRlbF9kcCB7Cj4gIAl1bnNpZ25lZCBsb25n
+IGxhc3RfYmFja2xpZ2h0X29mZjsKPiAgCWt0aW1lX3QgcGFuZWxfcG93ZXJfb2ZmX3RpbWU7Cj4g
+IAo+IC0Jc3RydWN0IG5vdGlmaWVyX2Jsb2NrIGVkcF9ub3RpZmllcjsKPiAtCj4gIAkvKgo+ICAJ
+ICogUGlwZSB3aG9zZSBwb3dlciBzZXF1ZW5jZXIgaXMgY3VycmVudGx5IGxvY2tlZCBpbnRvCj4g
+IAkgKiB0aGlzIHBvcnQuIE9ubHkgcmVsZXZhbnQgb24gVkxWL0NIVi4KPiBkaWZmIC0tZ2l0IGEv
+ZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kcC5jIGIvZHJpdmVycy9ncHUvZHJt
+L2k5MTUvZGlzcGxheS9pbnRlbF9kcC5jCj4gaW5kZXggNzBlMGI4NTQ0MmY5Li5lMGYyZTkyMzY3
+ODUgMTAwNjQ0Cj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kcC5j
+Cj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kcC5jCj4gQEAgLTI4
+LDcgKzI4LDYgQEAKPiAgI2luY2x1ZGUgPGxpbnV4L2V4cG9ydC5oPgo+ICAjaW5jbHVkZSA8bGlu
+dXgvaTJjLmg+Cj4gICNpbmNsdWRlIDxsaW51eC9ub3RpZmllci5oPgo+IC0jaW5jbHVkZSA8bGlu
+dXgvcmVib290Lmg+Cj4gICNpbmNsdWRlIDxsaW51eC9zbGFiLmg+Cj4gICNpbmNsdWRlIDxsaW51
+eC90eXBlcy5oPgo+ICAKPiBAQCAtMTE5MSw0MSArMTE5MCw2IEBAIF9wcF9zdGF0X3JlZyhzdHJ1
+Y3QgaW50ZWxfZHAgKmludGVsX2RwKQo+ICAJcmV0dXJuIHJlZ3MucHBfc3RhdDsKPiAgfQo+ICAK
+PiAtLyogUmVib290IG5vdGlmaWVyIGhhbmRsZXIgdG8gc2h1dGRvd24gcGFuZWwgcG93ZXIgdG8g
+Z3VhcmFudGVlIFQxMiB0aW1pbmcKPiAtICAgVGhpcyBmdW5jdGlvbiBvbmx5IGFwcGxpY2FibGUg
+d2hlbiBwYW5lbCBQTSBzdGF0ZSBpcyBub3QgdG8gYmUgdHJhY2tlZCAqLwo+IC1zdGF0aWMgaW50
+IGVkcF9ub3RpZnlfaGFuZGxlcihzdHJ1Y3Qgbm90aWZpZXJfYmxvY2sgKnRoaXMsIHVuc2lnbmVk
+IGxvbmcgY29kZSwKPiAtCQkJICAgICAgdm9pZCAqdW51c2VkKQo+IC17Cj4gLQlzdHJ1Y3QgaW50
+ZWxfZHAgKmludGVsX2RwID0gY29udGFpbmVyX29mKHRoaXMsIHR5cGVvZigqIGludGVsX2RwKSwK
+PiAtCQkJCQkJIGVkcF9ub3RpZmllcik7Cj4gLQlzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqZGV2
+X3ByaXYgPSBkcF90b19pOTE1KGludGVsX2RwKTsKPiAtCWludGVsX3dha2VyZWZfdCB3YWtlcmVm
+Owo+IC0KPiAtCWlmICghaW50ZWxfZHBfaXNfZWRwKGludGVsX2RwKSB8fCBjb2RlICE9IFNZU19S
+RVNUQVJUKQo+IC0JCXJldHVybiAwOwo+IC0KPiAtCXdpdGhfcHBzX2xvY2soaW50ZWxfZHAsIHdh
+a2VyZWYpIHsKPiAtCQlpZiAoSVNfVkFMTEVZVklFVyhkZXZfcHJpdikgfHwgSVNfQ0hFUlJZVklF
+VyhkZXZfcHJpdikpIHsKPiAtCQkJZW51bSBwaXBlIHBpcGUgPSB2bHZfcG93ZXJfc2VxdWVuY2Vy
+X3BpcGUoaW50ZWxfZHApOwo+IC0JCQlpOTE1X3JlZ190IHBwX2N0cmxfcmVnLCBwcF9kaXZfcmVn
+Owo+IC0JCQl1MzIgcHBfZGl2Owo+IC0KPiAtCQkJcHBfY3RybF9yZWcgPSBQUF9DT05UUk9MKHBp
+cGUpOwo+IC0JCQlwcF9kaXZfcmVnICA9IFBQX0RJVklTT1IocGlwZSk7Cj4gLQkJCXBwX2RpdiA9
+IGludGVsX2RlX3JlYWQoZGV2X3ByaXYsIHBwX2Rpdl9yZWcpOwo+IC0JCQlwcF9kaXYgJj0gUFBf
+UkVGRVJFTkNFX0RJVklERVJfTUFTSzsKPiAtCj4gLQkJCS8qIDB4MUYgd3JpdGUgdG8gUFBfRElW
+X1JFRyBzZXRzIG1heCBjeWNsZSBkZWxheSAqLwo+IC0JCQlpbnRlbF9kZV93cml0ZShkZXZfcHJp
+diwgcHBfZGl2X3JlZywgcHBfZGl2IHwgMHgxRik7Cj4gLQkJCWludGVsX2RlX3dyaXRlKGRldl9w
+cml2LCBwcF9jdHJsX3JlZywKPiAtCQkJCSAgICAgICBQQU5FTF9VTkxPQ0tfUkVHUyk7Cj4gLQkJ
+CW1zbGVlcChpbnRlbF9kcC0+cGFuZWxfcG93ZXJfY3ljbGVfZGVsYXkpOwo+IC0JCX0KPiAtCX0K
+PiAtCj4gLQlyZXR1cm4gMDsKPiAtfQo+IC0KPiAgc3RhdGljIGJvb2wgZWRwX2hhdmVfcGFuZWxf
+cG93ZXIoc3RydWN0IGludGVsX2RwICppbnRlbF9kcCkKPiAgewo+ICAJc3RydWN0IGRybV9pOTE1
+X3ByaXZhdGUgKmRldl9wcml2ID0gZHBfdG9faTkxNShpbnRlbF9kcCk7Cj4gQEAgLTY2OTAsMTEg
+KzY2NTQsNiBAQCB2b2lkIGludGVsX2RwX2VuY29kZXJfZmx1c2hfd29yayhzdHJ1Y3QgZHJtX2Vu
+Y29kZXIgKmVuY29kZXIpCj4gIAkJICovCj4gIAkJd2l0aF9wcHNfbG9jayhpbnRlbF9kcCwgd2Fr
+ZXJlZikKPiAgCQkJZWRwX3BhbmVsX3ZkZF9vZmZfc3luYyhpbnRlbF9kcCk7Cj4gLQo+IC0JCWlm
+IChpbnRlbF9kcC0+ZWRwX25vdGlmaWVyLm5vdGlmaWVyX2NhbGwpIHsKPiAtCQkJdW5yZWdpc3Rl
+cl9yZWJvb3Rfbm90aWZpZXIoJmludGVsX2RwLT5lZHBfbm90aWZpZXIpOwo+IC0JCQlpbnRlbF9k
+cC0+ZWRwX25vdGlmaWVyLm5vdGlmaWVyX2NhbGwgPSBOVUxMOwo+IC0JCX0KPiAgCX0KPiAgCj4g
+IAlpbnRlbF9kcF9hdXhfZmluaShpbnRlbF9kcCk7Cj4gQEAgLTY3MjUsNiArNjY4NCwxOCBAQCB2
+b2lkIGludGVsX2RwX2VuY29kZXJfc3VzcGVuZChzdHJ1Y3QgaW50ZWxfZW5jb2RlciAqaW50ZWxf
+ZW5jb2RlcikKPiAgCQllZHBfcGFuZWxfdmRkX29mZl9zeW5jKGludGVsX2RwKTsKPiAgfQo+ICAK
+PiArc3RhdGljIHZvaWQgaW50ZWxfZHBfZW5jb2Rlcl9zaHV0ZG93bihzdHJ1Y3QgaW50ZWxfZW5j
+b2RlciAqaW50ZWxfZW5jb2RlcikKPiArewo+ICsJc3RydWN0IGludGVsX2RwICppbnRlbF9kcCA9
+IGVuY190b19pbnRlbF9kcChpbnRlbF9lbmNvZGVyKTsKPiArCWludGVsX3dha2VyZWZfdCB3YWtl
+cmVmOwo+ICsKPiArCWlmICghaW50ZWxfZHBfaXNfZWRwKGludGVsX2RwKSkKPiArCQlyZXR1cm47
+Cj4gKwo+ICsJd2l0aF9wcHNfbG9jayhpbnRlbF9kcCwgd2FrZXJlZikKPiArCQl3YWl0X3BhbmVs
+X3Bvd2VyX2N5Y2xlKGludGVsX2RwKTsKPiArfQo+ICsKPiAgc3RhdGljIHZvaWQgaW50ZWxfZWRw
+X3BhbmVsX3ZkZF9zYW5pdGl6ZShzdHJ1Y3QgaW50ZWxfZHAgKmludGVsX2RwKQo+ICB7Cj4gIAlz
+dHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqZGV2X3ByaXYgPSBkcF90b19pOTE1KGludGVsX2RwKTsK
+PiBAQCAtNzgzOCw5ICs3ODA5LDYgQEAgc3RhdGljIGJvb2wgaW50ZWxfZWRwX2luaXRfY29ubmVj
+dG9yKHN0cnVjdCBpbnRlbF9kcCAqaW50ZWxfZHAsCj4gIAltdXRleF91bmxvY2soJmRldi0+bW9k
+ZV9jb25maWcubXV0ZXgpOwo+ICAKPiAgCWlmIChJU19WQUxMRVlWSUVXKGRldl9wcml2KSB8fCBJ
+U19DSEVSUllWSUVXKGRldl9wcml2KSkgewo+IC0JCWludGVsX2RwLT5lZHBfbm90aWZpZXIubm90
+aWZpZXJfY2FsbCA9IGVkcF9ub3RpZnlfaGFuZGxlcjsKPiAtCQlyZWdpc3Rlcl9yZWJvb3Rfbm90
+aWZpZXIoJmludGVsX2RwLT5lZHBfbm90aWZpZXIpOwo+IC0KPiAgCQkvKgo+ICAJCSAqIEZpZ3Vy
+ZSBvdXQgdGhlIGN1cnJlbnQgcGlwZSBmb3IgdGhlIGluaXRpYWwgYmFja2xpZ2h0IHNldHVwLgo+
+ICAJCSAqIElmIHRoZSBjdXJyZW50IHBpcGUgaXNuJ3QgdmFsaWQsIHRyeSB0aGUgUFBTIHBpcGUs
+IGFuZCBpZiB0aGF0Cj4gQEAgLTgwNjEsNiArODAyOSw4IEBAIGJvb2wgaW50ZWxfZHBfaW5pdChz
+dHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqZGV2X3ByaXYsCj4gIAlpbnRlbF9lbmNvZGVyLT5nZXRf
+Y29uZmlnID0gaW50ZWxfZHBfZ2V0X2NvbmZpZzsKPiAgCWludGVsX2VuY29kZXItPnVwZGF0ZV9w
+aXBlID0gaW50ZWxfcGFuZWxfdXBkYXRlX2JhY2tsaWdodDsKPiAgCWludGVsX2VuY29kZXItPnN1
+c3BlbmQgPSBpbnRlbF9kcF9lbmNvZGVyX3N1c3BlbmQ7Cj4gKwlpZiAoSVNfVkFMTEVZVklFVyhk
+ZXZfcHJpdikgfHwgSVNfQ0hFUlJZVklFVyhkZXZfcHJpdikpCj4gKwkJaW50ZWxfZW5jb2Rlci0+
+c2h1dGRvd24gPSBpbnRlbF9kcF9lbmNvZGVyX3NodXRkb3duOwo+ICAJaWYgKElTX0NIRVJSWVZJ
+RVcoZGV2X3ByaXYpKSB7Cj4gIAkJaW50ZWxfZW5jb2Rlci0+cHJlX3BsbF9lbmFibGUgPSBjaHZf
+ZHBfcHJlX3BsbF9lbmFibGU7Cj4gIAkJaW50ZWxfZW5jb2Rlci0+cHJlX2VuYWJsZSA9IGNodl9w
+cmVfZW5hYmxlX2RwOwoKLS0gCkphbmkgTmlrdWxhLCBJbnRlbCBPcGVuIFNvdXJjZSBHcmFwaGlj
+cyBDZW50ZXIKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18K
+SW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0
+dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
