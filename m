@@ -2,31 +2,67 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C60672850CC
-	for <lists+intel-gfx@lfdr.de>; Tue,  6 Oct 2020 19:29:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id F0A09285125
+	for <lists+intel-gfx@lfdr.de>; Tue,  6 Oct 2020 19:47:01 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8BD9E89B30;
-	Tue,  6 Oct 2020 17:29:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 63CFA6E28A;
+	Tue,  6 Oct 2020 17:46:55 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id BD6768997E;
- Tue,  6 Oct 2020 17:29:15 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id B58F8AADCF;
- Tue,  6 Oct 2020 17:29:15 +0000 (UTC)
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 90DE26E135;
+ Tue,  6 Oct 2020 17:46:54 +0000 (UTC)
+IronPort-SDR: 8wE7IEVrsxuZ1vhqjRfl6M29UjJJcIBI0ycOEtoYkTbDQwxgMCzv5RvllAB8i7V/u9VskwmXFK
+ MOHSXufBgSJA==
+X-IronPort-AV: E=McAfee;i="6000,8403,9765"; a="226197937"
+X-IronPort-AV: E=Sophos;i="5.77,343,1596524400"; d="scan'208";a="226197937"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Oct 2020 10:46:46 -0700
+IronPort-SDR: PekJ/I/CYi2utSxnD70JWdu0aVCNSQFM7b3R22v+oAfo8KijM8P0NjkgcKzg5ScUffjf+iZyjL
+ 0VlA9d9NGUIQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.77,343,1596524400"; d="scan'208";a="342406022"
+Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
+ by fmsmga004.fm.intel.com with ESMTP; 06 Oct 2020 10:46:46 -0700
+Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
+ ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1713.5; Tue, 6 Oct 2020 10:46:45 -0700
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1713.5; Tue, 6 Oct 2020 10:46:45 -0700
+Received: from orsmsx610.amr.corp.intel.com ([10.22.229.23]) by
+ ORSMSX610.amr.corp.intel.com ([10.22.229.23]) with mapi id 15.01.1713.004;
+ Tue, 6 Oct 2020 10:46:45 -0700
+From: "Souza, Jose" <jose.souza@intel.com>
+To: "Ausmus, James" <james.ausmus@intel.com>, "Nikula, Jani"
+ <jani.nikula@intel.com>, "Vivi, Rodrigo" <rodrigo.vivi@intel.com>, "Roper,
+ Matthew D" <matthew.d.roper@intel.com>, "dri-devel@lists.freedesktop.org"
+ <dri-devel@lists.freedesktop.org>, "Pandey, Hariom"
+ <hariom.pandey@intel.com>, "intel-gfx@lists.freedesktop.org"
+ <intel-gfx@lists.freedesktop.org>, "K, SrinivasX" <srinivasx.k@intel.com>,
+ "Surendrakumar Upadhyay, TejaskumarX"
+ <tejaskumarx.surendrakumar.upadhyay@intel.com>
+Thread-Topic: [Intel-gfx] [PATCH] drm/i915/ehl: Remove require_force_probe
+ protection
+Thread-Index: AQHWm/Fk90H9Qy56XkSH4h+5RqsAv6mLT7oA
+Date: Tue, 6 Oct 2020 17:46:45 +0000
+Message-ID: <2f7809798dd0b59246d67c5044dafb1e518fc4c5.camel@intel.com>
+References: <20201006145632.117291-1-srinivasx.k@intel.com>
+In-Reply-To: <20201006145632.117291-1-srinivasx.k@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.1.200.100]
+Content-ID: <DF42D4F738564F45A500C43017F5FEFE@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?b?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-Date: Tue, 06 Oct 2020 17:29:15 -0000
-Message-ID: <160200535571.18759.10082692676033421964@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20201006143349.5561-1-ville.syrjala@linux.intel.com>
-In-Reply-To: <20201006143349.5561-1-ville.syrjala@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915=3A_Futher_cleanup_around_hpd_pins_and_port_identfiers_=28?=
- =?utf-8?q?rev3=29?=
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/ehl: Remove require_force_probe
+ protection
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,277 +75,34 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============1078555453=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============1078555453==
-Content-Type: multipart/alternative;
- boundary="===============5238815775031252307=="
-
---===============5238815775031252307==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-== Series Details ==
-
-Series: drm/i915: Futher cleanup around hpd pins and port identfiers (rev3)
-URL   : https://patchwork.freedesktop.org/series/82411/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_9104 -> Patchwork_18640
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18640/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_18640 that come from known issues:
-
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@i915_pm_rpm@basic-pci-d3-state:
-    - fi-bsw-kefka:       [DMESG-WARN][1] ([i915#1982]) -> [PASS][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9104/fi-bsw-kefka/igt@i915_pm_rpm@basic-pci-d3-state.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18640/fi-bsw-kefka/igt@i915_pm_rpm@basic-pci-d3-state.html
-
-  * igt@i915_pm_rpm@module-reload:
-    - fi-byt-j1900:       [DMESG-WARN][3] ([i915#1982]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9104/fi-byt-j1900/igt@i915_pm_rpm@module-reload.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18640/fi-byt-j1900/igt@i915_pm_rpm@module-reload.html
-
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy:
-    - fi-icl-u2:          [DMESG-WARN][5] ([i915#1982]) -> [PASS][6] +1 similar issue
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9104/fi-icl-u2/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18640/fi-icl-u2/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html
-
-  * igt@vgem_basic@unload:
-    - fi-skl-guc:         [DMESG-WARN][7] ([i915#2203]) -> [PASS][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9104/fi-skl-guc/igt@vgem_basic@unload.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18640/fi-skl-guc/igt@vgem_basic@unload.html
-
-  
-#### Warnings ####
-
-  * igt@gem_exec_suspend@basic-s0:
-    - fi-kbl-x1275:       [DMESG-WARN][9] ([i915#62] / [i915#92] / [i915#95]) -> [DMESG-WARN][10] ([i915#1982] / [i915#62] / [i915#92] / [i915#95])
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9104/fi-kbl-x1275/igt@gem_exec_suspend@basic-s0.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18640/fi-kbl-x1275/igt@gem_exec_suspend@basic-s0.html
-
-  * igt@kms_force_connector_basic@prune-stale-modes:
-    - fi-kbl-x1275:       [DMESG-WARN][11] ([i915#62] / [i915#92] / [i915#95]) -> [DMESG-WARN][12] ([i915#62] / [i915#92]) +7 similar issues
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9104/fi-kbl-x1275/igt@kms_force_connector_basic@prune-stale-modes.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18640/fi-kbl-x1275/igt@kms_force_connector_basic@prune-stale-modes.html
-
-  * igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-c:
-    - fi-kbl-x1275:       [DMESG-WARN][13] ([i915#62] / [i915#92]) -> [DMESG-WARN][14] ([i915#62] / [i915#92] / [i915#95]) +1 similar issue
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9104/fi-kbl-x1275/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-c.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18640/fi-kbl-x1275/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-c.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
-  [i915#2203]: https://gitlab.freedesktop.org/drm/intel/issues/2203
-  [i915#2411]: https://gitlab.freedesktop.org/drm/intel/issues/2411
-  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
-  [i915#92]: https://gitlab.freedesktop.org/drm/intel/issues/92
-  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
-
-
-Participating hosts (45 -> 38)
-------------------------------
-
-  Missing    (7): fi-ilk-m540 fi-hsw-4200u fi-tgl-u2 fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-byt-clapper 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_9104 -> Patchwork_18640
-
-  CI-20190529: 20190529
-  CI_DRM_9104: 9cca7a33b0ebfaa5e0e86098b38eb7508097936a @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5802: 0e4fbc60ca5ad6585e642d2ddf8313f3c738426e @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_18640: d239f4c5ab844c0c026616f66649fd9ab9ccde9d @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-d239f4c5ab84 drm/i915: Get rid of ibx_irq_pre_postinstall()
-54780a93e89d drm/i915: Use GEN3_IRQ_INIT() to init south interrupts in icp+
-6dc728777193 drm/i915: Enable hpd logic only for ports that are present
-ff428055fb0d drm/i915: Remove the per-plaform IIR HPD masking
-e17684d1f041 drm/i915: Rename 'tmp_mask'
-913dadb8c216 drm/i915: Don't enable hpd detection logic from irq_postinstall()
-2f1980b7acec drm/i915: Split gen11_hpd_detection_setup() into tc vs. tbt variants
-2cf3a3a5de78 drm/i915: Relocate intel_hpd_{enabled, hotplug}_irqs()
-58484246fe9e drm/i915: s/tc_port/hpd_pin/ in icp+ TC hotplug bits
-e280cadea053 drm/i915: s/tc_port/hpd_pin/ in GEN11_{TC, TBT}_HOTPLUG()
-a0f5f533ef42 drm/i915: s/port/hpd_pin/ for icp+ ddi hpd bits
-504b3a46f276 drm/i915: Introduce GEN8_DE_PORT_HOTPLUG()
-609d459a8656 drm/i915: Parametrize BXT_DE_PORT_HP_DDI with hpd_pin
-b5d260d99ea5 drm/i915: Use AUX_CH_USBCn for the RKL VBT AUX CH setup
-79ead29c1550 drm/i915: Pimp AUX CH names
-944768cafe11 drm/i915: Introduce AUX_CH_USBCn
-0fd1b45546eb drm/i915: Give DDI encoders even better names
-febabec5fc30 drm/i915: Add PORT_TCn aliases to enum port
-c825eca75000 drm/i915: s/PORT_TC/TC_PORT_TC/
-ac8d5caeb9e4 drm/i915: Sort the mess around ICP TC hotplugs regs
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18640/index.html
-
---===============5238815775031252307==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915: Futher cleanup around hpd pins and port identfiers (rev3)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/82411/">https://patchwork.freedesktop.org/series/82411/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18640/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18640/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_9104 -&gt; Patchwork_18640</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18640/index.html</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_18640 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@i915_pm_rpm@basic-pci-d3-state:</p>
-<ul>
-<li>fi-bsw-kefka:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9104/fi-bsw-kefka/igt@i915_pm_rpm@basic-pci-d3-state.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18640/fi-bsw-kefka/igt@i915_pm_rpm@basic-pci-d3-state.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_pm_rpm@module-reload:</p>
-<ul>
-<li>fi-byt-j1900:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9104/fi-byt-j1900/igt@i915_pm_rpm@module-reload.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18640/fi-byt-j1900/igt@i915_pm_rpm@module-reload.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy:</p>
-<ul>
-<li>fi-icl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9104/fi-icl-u2/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18640/fi-icl-u2/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html">PASS</a> +1 similar issue</li>
-</ul>
-</li>
-<li>
-<p>igt@vgem_basic@unload:</p>
-<ul>
-<li>fi-skl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9104/fi-skl-guc/igt@vgem_basic@unload.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2203">i915#2203</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18640/fi-skl-guc/igt@vgem_basic@unload.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h4>Warnings</h4>
-<ul>
-<li>
-<p>igt@gem_exec_suspend@basic-s0:</p>
-<ul>
-<li>fi-kbl-x1275:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9104/fi-kbl-x1275/igt@gem_exec_suspend@basic-s0.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/62">i915#62</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/92">i915#92</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/95">i915#95</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18640/fi-kbl-x1275/igt@gem_exec_suspend@basic-s0.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/62">i915#62</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/92">i915#92</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/95">i915#95</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_force_connector_basic@prune-stale-modes:</p>
-<ul>
-<li>fi-kbl-x1275:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9104/fi-kbl-x1275/igt@kms_force_connector_basic@prune-stale-modes.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/62">i915#62</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/92">i915#92</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/95">i915#95</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18640/fi-kbl-x1275/igt@kms_force_connector_basic@prune-stale-modes.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/62">i915#62</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/92">i915#92</a>) +7 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-c:</p>
-<ul>
-<li>fi-kbl-x1275:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9104/fi-kbl-x1275/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-c.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/62">i915#62</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/92">i915#92</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18640/fi-kbl-x1275/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-c.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/62">i915#62</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/92">i915#92</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/95">i915#95</a>) +1 similar issue</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Participating hosts (45 -&gt; 38)</h2>
-<p>Missing    (7): fi-ilk-m540 fi-hsw-4200u fi-tgl-u2 fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-byt-clapper </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_9104 -&gt; Patchwork_18640</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_9104: 9cca7a33b0ebfaa5e0e86098b38eb7508097936a @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_5802: 0e4fbc60ca5ad6585e642d2ddf8313f3c738426e @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
-  Patchwork_18640: d239f4c5ab844c0c026616f66649fd9ab9ccde9d @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>d239f4c5ab84 drm/i915: Get rid of ibx_irq_pre_postinstall()<br />
-54780a93e89d drm/i915: Use GEN3_IRQ_INIT() to init south interrupts in icp+<br />
-6dc728777193 drm/i915: Enable hpd logic only for ports that are present<br />
-ff428055fb0d drm/i915: Remove the per-plaform IIR HPD masking<br />
-e17684d1f041 drm/i915: Rename 'tmp_mask'<br />
-913dadb8c216 drm/i915: Don't enable hpd detection logic from irq_postinstall()<br />
-2f1980b7acec drm/i915: Split gen11_hpd_detection_setup() into tc vs. tbt variants<br />
-2cf3a3a5de78 drm/i915: Relocate intel_hpd_{enabled, hotplug}<em>irqs()<br />
-58484246fe9e drm/i915: s/tc_port/hpd_pin/ in icp+ TC hotplug bits<br />
-e280cadea053 drm/i915: s/tc_port/hpd_pin/ in GEN11</em>{TC, TBT}_HOTPLUG()<br />
-a0f5f533ef42 drm/i915: s/port/hpd_pin/ for icp+ ddi hpd bits<br />
-504b3a46f276 drm/i915: Introduce GEN8_DE_PORT_HOTPLUG()<br />
-609d459a8656 drm/i915: Parametrize BXT_DE_PORT_HP_DDI with hpd_pin<br />
-b5d260d99ea5 drm/i915: Use AUX_CH_USBCn for the RKL VBT AUX CH setup<br />
-79ead29c1550 drm/i915: Pimp AUX CH names<br />
-944768cafe11 drm/i915: Introduce AUX_CH_USBCn<br />
-0fd1b45546eb drm/i915: Give DDI encoders even better names<br />
-febabec5fc30 drm/i915: Add PORT_TCn aliases to enum port<br />
-c825eca75000 drm/i915: s/PORT_TC/TC_PORT_TC/<br />
-ac8d5caeb9e4 drm/i915: Sort the mess around ICP TC hotplugs regs</p>
-
-</body>
-</html>
-
---===============5238815775031252307==--
-
---===============1078555453==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============1078555453==--
+K1JvZHJpZ28gYW5kIEphbmkNCg0KT24gVHVlLCAyMDIwLTEwLTA2IGF0IDE0OjU2ICswMDAwLCBL
+YW1hdGkgU3Jpbml2YXMgd3JvdGU6DQo+IFJlbW92aW5nIGZvcmNlIHByb2JlIHByb3RlY3Rpb24g
+ZnJvbSBFSEwgcGxhdGZvcm0uIERpZA0KPiBub3Qgb2JzZXJ2ZSB3YXJuaW5ncywgZXJyb3JzLCBm
+bGlja2VyaW5nIG9yIGFueSB2aXN1YWwNCj4gZGVmZWN0cyB3aGlsZSBkb2luZyBvcmRpbmFyeSB0
+YXNrcyBsaWtlIGJyb3dzaW5nIGFuZA0KPiBlZGl0aW5nIGRvY3VtZW50cyBpbiBhIHR3byBtb25p
+dG9yIHNldHVwLg0KDQpPbmUgb2YgdGhlIHJlcXVpcmVtZW50cyB3YXMgYWxzbyB0byBoYXZlIENJ
+IEJBVCBhbGwgZ3JlZW4gYW5kIHNoYXJkcyBhcyBncmVlbiBpcyBwb3NzaWJsZSBidXQgRUhMIGRv
+bid0IHNob3cgdXAgaW4gQ0kgcmVzdWx0cywgd2UgYWN0dWFsbHkgaGF2ZSBvbmUNCnNpbmdsZSBF
+SEwgbWFjaGluZSBpbiBDSSBidXQgSSBndWVzcyBpdCBpcyBub3QgYWJsZSB0byBydW4gYWxsIHRl
+c3RzIHRoYXQgc2hhcmRzIGRvOg0KaHR0cHM6Ly9pbnRlbC1nZngtY2kuMDEub3JnL3RyZWUvZHJt
+LXRpcC9DSV9EUk1fOTA5Ny9maWxlbGlzdC5odG1sDQoNCj4gDQo+IFNpZ25lZC1vZmYtYnk6IEth
+bWF0aSBTcmluaXZhcyA8c3Jpbml2YXN4LmtAaW50ZWwuY29tPg0KPiAtLS0NCj4gwqBkcml2ZXJz
+L2dwdS9kcm0vaTkxNS9pOTE1X3BjaS5jIHwgMSAtDQo+IMKgMSBmaWxlIGNoYW5nZWQsIDEgZGVs
+ZXRpb24oLSkNCj4gDQo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X3Bj
+aS5jIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9wY2kuYw0KPiBpbmRleCAzNjZkZGZjOGRm
+NmIuLmFhOWMxN2E2ODUxYyAxMDA2NDQNCj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkx
+NV9wY2kuYw0KPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X3BjaS5jDQo+IEBAIC04
+NDEsNyArODQxLDYgQEAgc3RhdGljIGNvbnN0IHN0cnVjdCBpbnRlbF9kZXZpY2VfaW5mbyBpY2xf
+aW5mbyA9IHsNCj4gwqBzdGF0aWMgY29uc3Qgc3RydWN0IGludGVsX2RldmljZV9pbmZvIGVobF9p
+bmZvID0gew0KPiDCoAlHRU4xMV9GRUFUVVJFUywNCj4gwqAJUExBVEZPUk0oSU5URUxfRUxLSEFS
+VExBS0UpLA0KPiAtCS5yZXF1aXJlX2ZvcmNlX3Byb2JlID0gMSwNCj4gwqAJLnBsYXRmb3JtX2Vu
+Z2luZV9tYXNrID0gQklUKFJDUzApIHwgQklUKEJDUzApIHwgQklUKFZDUzApIHwgQklUKFZFQ1Mw
+KSwNCj4gwqAJLnBwZ3R0X3NpemUgPSAzNiwNCj4gwqB9Ow0KDQpfX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVs
+LWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcv
+bWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
