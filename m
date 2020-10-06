@@ -1,47 +1,43 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A5FDD2848E5
-	for <lists+intel-gfx@lfdr.de>; Tue,  6 Oct 2020 10:59:47 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0F9852848EA
+	for <lists+intel-gfx@lfdr.de>; Tue,  6 Oct 2020 11:00:18 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0767689C3F;
-	Tue,  6 Oct 2020 08:59:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5BA0C89CA1;
+	Tue,  6 Oct 2020 09:00:16 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CAF368913B
- for <intel-gfx@lists.freedesktop.org>; Tue,  6 Oct 2020 08:59:44 +0000 (UTC)
-IronPort-SDR: 67SSCfcfLFbyifVMHPxYdAJ2Tw/lRB/9CGYAtv6wyGlFM11fi5mkiBHwL/z1bLQyBAGi8pBq93
- K3yoUAg+nkNA==
-X-IronPort-AV: E=McAfee;i="6000,8403,9765"; a="164557798"
-X-IronPort-AV: E=Sophos;i="5.77,342,1596524400"; d="scan'208";a="164557798"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Oct 2020 01:59:44 -0700
-IronPort-SDR: 5uKiJbA9iRcoYS0vovxWKDTwRqX5qhU+757O82hVsxc8eiH+7urDiUI2iSqM153Mj6F6H4jMCO
- B6DTLH0EqdDg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.77,342,1596524400"; d="scan'208";a="387800066"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by orsmga001.jf.intel.com with SMTP; 06 Oct 2020 01:59:42 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 06 Oct 2020 11:59:41 +0300
-Date: Tue, 6 Oct 2020 11:59:41 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Imre Deak <imre.deak@intel.com>
-Message-ID: <20201006085941.GS6112@intel.com>
-References: <20201003001846.1271151-2-imre.deak@intel.com>
- <20201006013555.1488262-1-imre.deak@intel.com>
+Received: from ozlabs.org (bilbo.ozlabs.org [IPv6:2401:3900:2:1::2])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D402D89D42;
+ Tue,  6 Oct 2020 09:00:14 +0000 (UTC)
+Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest
+ SHA256) (No client certificate requested)
+ by mail.ozlabs.org (Postfix) with ESMTPSA id 4C5BHm6nJYz9sT6;
+ Tue,  6 Oct 2020 20:00:04 +1100 (AEDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=canb.auug.org.au;
+ s=201702; t=1601974812;
+ bh=8CfOUIbMt8fnTJfPAaJni1imQZSSTLb8IdHxm/8lC9A=;
+ h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+ b=EM5mBZ22SlHV3CHVixJkaN3v3ud9mmjXLADtHfAOEvwKw7p7+DCFrTjSJQKktY2Iz
+ 3v2N7Ldue/9u51p2lZ0RLyOpxeM2Gro17oot2pnj25rtDOk+pzC/ulC8TixhZZkCwG
+ AS5UWYwHwwZ5ZBODbSL69s+T4HKqb+KnhoJQf3wVXBSdRsy0Gj7ArgfU0Omj8WJ8SQ
+ Zkf+PeKurTftZGSJVbXz3axeeU3mILyI+qcQLrd9r8pGaV99ypbeQVE9jUJ7lIr9V3
+ zAn2bUdsK8gA5hVi9I9lanz2WAJm8Cs/+5dkFJqWK44J0OfxmUwBMQSCMwIJSgkPSs
+ m4jwhgVhidXPg==
+Date: Tue, 6 Oct 2020 20:00:03 +1100
+From: Stephen Rothwell <sfr@canb.auug.org.au>
+To: Dave Airlie <airlied@linux.ie>, Greg KH <greg@kroah.com>, Arnd Bergmann
+ <arnd@arndb.de>
+Message-ID: <20201006200003.1be00223@canb.auug.org.au>
+In-Reply-To: <20200910141854.1d4b1b10@canb.auug.org.au>
+References: <20200910141854.1d4b1b10@canb.auug.org.au>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20201006013555.1488262-1-imre.deak@intel.com>
-X-Patchwork-Hint: comment
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH v3 1/5] drm/i915/skl: Work around incorrect
- BIOS WRPLL PDIV programming
+Subject: Re: [Intel-gfx] linux-next: manual merge of the extcon tree with
+ the drm-misc tree
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,133 +50,116 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Cc: Daniel Vetter <daniel.vetter@ffwll.ch>,
+ Intel Graphics <intel-gfx@lists.freedesktop.org>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+ DRI <dri-devel@lists.freedesktop.org>, Chanwoo Choi <cw00.choi@samsung.com>,
+ Linux Next Mailing List <linux-next@vger.kernel.org>,
+ Krzysztof Kozlowski <krzk@kernel.org>,
+ Laurentiu Palcu <laurentiu.palcu@nxp.com>,
+ Lucas Stach <l.stach@pengutronix.de>
+Content-Type: multipart/mixed; boundary="===============0824345911=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Oct 06, 2020 at 04:35:55AM +0300, Imre Deak wrote:
-> The BIOS of at least one ASUS-Z170M system with an SKL I have programs
-> the 101b WRPLL PDIV divider value, which is the encoding for PDIV=3D7 with
-> bit#0 incorrectly set.
-> =
+--===============0824345911==
+Content-Type: multipart/signed; boundary="Sig_/HrwGoabrIGrrkf8jEjgNMeZ";
+ protocol="application/pgp-signature"; micalg=pgp-sha256
 
-> This happens with the
-> =
+--Sig_/HrwGoabrIGrrkf8jEjgNMeZ
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: quoted-printable
 
-> "3840x2160": 30 262750 3840 3888 3920 4000 2160 2163 2168 2191 0x48 0x9
-> =
+Hi all,
 
-> HDMI mode (scaled from a 1024x768 src fb) set by BIOS and the
-> =
+On Thu, 10 Sep 2020 14:18:54 +1000 Stephen Rothwell <sfr@canb.auug.org.au> =
+wrote:
+>
+> Today's linux-next merge of the extcon tree got a conflict in:
+>=20
+>   MAINTAINERS
+>=20
+> between commit:
+>=20
+>   f61249dddecc ("MAINTAINERS: Add entry for i.MX 8MQ DCSS driver")
+>=20
+> from the drm-misc tree and commit:
+>=20
+>   d0e3c25150dd ("MAINTAINERS: Add entry for NXP PTN5150A CC driver")
+>=20
+> from the extcon tree.
+>=20
+> I fixed it up (see below) and can carry the fix as necessary. This
+> is now fixed as far as linux-next is concerned, but any non trivial
+> conflicts should be mentioned to your upstream maintainer when your tree
+> is submitted for merging.  You may also want to consider cooperating
+> with the maintainer of the conflicting tree to minimise any particularly
+> complex conflicts.
+>=20
+> --=20
+> Cheers,
+> Stephen Rothwell
+>=20
+> diff --cc MAINTAINERS
+> index 623c53ab5bd5,da94c9b12f1b..000000000000
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@@ -12496,14 -12430,13 +12496,21 @@@ F:	drivers/iio/gyro/fxas21002c_core.
+>   F:	drivers/iio/gyro/fxas21002c_i2c.c
+>   F:	drivers/iio/gyro/fxas21002c_spi.c
+>  =20
+>  +NXP i.MX 8MQ DCSS DRIVER
+>  +M:	Laurentiu Palcu <laurentiu.palcu@oss.nxp.com>
+>  +R:	Lucas Stach <l.stach@pengutronix.de>
+>  +L:	dri-devel@lists.freedesktop.org
+>  +S:	Maintained
+>  +F:	Documentation/devicetree/bindings/display/imx/nxp,imx8mq-dcss.yaml
+>  +F:	drivers/gpu/drm/imx/dcss/
+>  +
+> + NXP PTN5150A CC LOGIC AND EXTCON DRIVER
+> + M:	Krzysztof Kozlowski <krzk@kernel.org>
+> + L:	linux-kernel@vger.kernel.org
+> + S:	Maintained
+> + F:	Documentation/devicetree/bindings/extcon/extcon-ptn5150.yaml
+> + F:	drivers/extcon/extcon-ptn5150.c
+> +=20
+>   NXP SGTL5000 DRIVER
+>   M:	Fabio Estevam <festevam@gmail.com>
+>   L:	alsa-devel@alsa-project.org (moderated for non-subscribers)
 
-> ref_clock=3D24000, dco_integer=3D383, dco_fraction=3D5802, pdiv=3D7, qdiv=
-=3D1, kdiv=3D1
-> =
+This is now a conflict between the char-misc tree and the drm tree.
 
-> WRPLL parameters (assuming PDIV=3D7 was the intended setting). This
-> corresponds to 262749 PLL frequency/port clock.
-> =
+--=20
+Cheers,
+Stephen Rothwell
 
-> Later the driver sets the same mode for which it calculates the same
-> dco_int/dco_frac/div WRPLL parameters (with the correct PDIV=3D7 encoding=
-).
-> =
+--Sig_/HrwGoabrIGrrkf8jEjgNMeZ
+Content-Type: application/pgp-signature
+Content-Description: OpenPGP digital signature
 
-> Based on the above, let's assume that PDIV=3D7 was intended and the HW
-> just ignores bit#0 in the PDIV register field for this setting, treating
-> 100b and 101b encodings the same way.
-> =
+-----BEGIN PGP SIGNATURE-----
 
-> While at it add the MISSING_CASE() for the p0,p2 divider decodings.
-> =
+iQEzBAEBCAAdFiEENIC96giZ81tWdLgKAVBC80lX0GwFAl98MhMACgkQAVBC80lX
+0GxtOQf/Qsg+ZvC10zGeMGUucLd6WO1c+qikncq8KpWaOiPfL+qcfJylSpDAwF26
+soTu4wodcX1Mmz5jtKURs9tF4p25YmHN5C49v+1WVLlSznSS7a1qa5SUz4KIfyNz
+PftRDbswJPE5V4L/G1TGreoK8dcsfF6/zjlBkAvHGxugfwn+1xAloWwzUIH53hiK
+RIBPF1QLF9tpRyHNlSF0nGHFrjAyW98hhqapLze1Tgv95bb1w9Tuw/2HS+FODY54
+BDE8irKOz+qBNoQ4rqsVumQQpQyB6nZnIeP6aLGH3rKey1zUCx9VJuck+OGuUCZw
+arSyIx4vrOy5irLITAtJPU8nZXWeiw==
+=EzTU
+-----END PGP SIGNATURE-----
 
-> v2: (Ville)
-> - Add a define for the incorrect divider value.
-> - Emit only a debug message when detecting the incorrect divider value.
-> - Use fallthrough from the incorrect divider value case.
-> - Add the MISSING_CASE()s.
-> =
+--Sig_/HrwGoabrIGrrkf8jEjgNMeZ--
 
-> v3: Return 0 freq for incorrect divider values. (Ville)
-> =
+--===============0824345911==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
-> Cc: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> Signed-off-by: Imre Deak <imre.deak@intel.com>
-
-Reviewed-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-
-> ---
->  drivers/gpu/drm/i915/display/intel_dpll_mgr.c | 13 +++++++++++++
->  drivers/gpu/drm/i915/i915_reg.h               |  1 +
->  2 files changed, 14 insertions(+)
-> =
-
-> diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c b/drivers/gpu/=
-drm/i915/display/intel_dpll_mgr.c
-> index e08684e34078..fff4e154b391 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-> @@ -1602,9 +1602,19 @@ static int skl_ddi_wrpll_get_freq(struct drm_i915_=
-private *i915,
->  	case DPLL_CFGCR2_PDIV_3:
->  		p0 =3D 3;
->  		break;
-> +	case DPLL_CFGCR2_PDIV_7_INVALID:
-> +		/*
-> +		 * Incorrect ASUS-Z170M BIOS setting, the HW seems to ignore bit#0,
-> +		 * handling it the same way as PDIV_7.
-> +		 */
-> +		drm_dbg_kms(&i915->drm, "Invalid WRPLL PDIV divider value, fixing it.\=
-n");
-> +		fallthrough;
->  	case DPLL_CFGCR2_PDIV_7:
->  		p0 =3D 7;
->  		break;
-> +	default:
-> +		MISSING_CASE(p0);
-> +		return 0;
->  	}
->  =
-
->  	switch (p2) {
-> @@ -1620,6 +1630,9 @@ static int skl_ddi_wrpll_get_freq(struct drm_i915_p=
-rivate *i915,
->  	case DPLL_CFGCR2_KDIV_1:
->  		p2 =3D 1;
->  		break;
-> +	default:
-> +		MISSING_CASE(p2);
-> +		return 0;
->  	}
->  =
-
->  	dco_freq =3D (pll_state->cfgcr1 & DPLL_CFGCR1_DCO_INTEGER_MASK) *
-> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_=
-reg.h
-> index 88c215cf97d4..d911583526db 100644
-> --- a/drivers/gpu/drm/i915/i915_reg.h
-> +++ b/drivers/gpu/drm/i915/i915_reg.h
-> @@ -10261,6 +10261,7 @@ enum skl_power_gate {
->  #define  DPLL_CFGCR2_PDIV_2 (1 << 2)
->  #define  DPLL_CFGCR2_PDIV_3 (2 << 2)
->  #define  DPLL_CFGCR2_PDIV_7 (4 << 2)
-> +#define  DPLL_CFGCR2_PDIV_7_INVALID	(5 << 2)
->  #define  DPLL_CFGCR2_CENTRAL_FREQ_MASK	(3)
->  =
-
->  #define DPLL_CFGCR1(id)	_MMIO_PIPE((id) - SKL_DPLL1, _DPLL1_CFGCR1, _DPL=
-L2_CFGCR1)
-> -- =
-
-> 2.25.1
-
--- =
-
-Ville Syrj=E4l=E4
-Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============0824345911==--
