@@ -2,42 +2,46 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 67052285165
-	for <lists+intel-gfx@lfdr.de>; Tue,  6 Oct 2020 20:13:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B271328519D
+	for <lists+intel-gfx@lfdr.de>; Tue,  6 Oct 2020 20:33:48 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8E9786E21D;
-	Tue,  6 Oct 2020 18:13:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4867789F6D;
+	Tue,  6 Oct 2020 18:33:46 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D53956E21D
- for <intel-gfx@lists.freedesktop.org>; Tue,  6 Oct 2020 18:13:19 +0000 (UTC)
-IronPort-SDR: K/E2jOS/WQCm7GtEdtIB4lyu2/vjJDcTZUHzUKGEZ9OAmpGV5Huxb+IOYS2keIfF4jJF8pvN5+
- 1hq9Ntg78MwA==
-X-IronPort-AV: E=McAfee;i="6000,8403,9765"; a="249324324"
-X-IronPort-AV: E=Sophos;i="5.77,343,1596524400"; d="scan'208";a="249324324"
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 14E3C89F6D
+ for <intel-gfx@lists.freedesktop.org>; Tue,  6 Oct 2020 18:33:45 +0000 (UTC)
+IronPort-SDR: V6pVDnBWQxu0nu714DyU5aXLGJocCtEOu8gewe4SqQEFiO2LaQMG/CCunzNk+ibVP9m95hV43p
+ bV38nE4x4b+Q==
+X-IronPort-AV: E=McAfee;i="6000,8403,9765"; a="161232817"
+X-IronPort-AV: E=Sophos;i="5.77,343,1596524400"; d="scan'208";a="161232817"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Oct 2020 11:13:11 -0700
-IronPort-SDR: n5SU4huVo7H6CKV5aseeG0XWn9kFOGwfQT+k8H+iqrphsuMa4qRBg+WVZ+BsHweTQGASc49flJ
- 3NubAn+QAtmw==
-X-IronPort-AV: E=Sophos;i="5.77,343,1596524400"; d="scan'208";a="527486238"
-Received: from kchandar-mobl.ger.corp.intel.com (HELO localhost)
- ([10.252.50.35])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Oct 2020 11:13:09 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-In-Reply-To: <20201006134340.GW6112@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Oct 2020 11:33:10 -0700
+IronPort-SDR: 8ojOjngqEa48bEh4FG/DFjI9V/x0QlWhQM4qmW5WpU/eFFssW4KuvUKAe6/LKWTv0pd+jVefHN
+ hnrjNhPa5UFg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.77,343,1596524400"; d="scan'208";a="327678847"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
+ by orsmga002.jf.intel.com with SMTP; 06 Oct 2020 11:33:07 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Tue, 06 Oct 2020 21:33:07 +0300
+Date: Tue, 6 Oct 2020 21:33:07 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>
+Message-ID: <20201006183307.GY6112@intel.com>
 References: <20201001151640.14590-1-ville.syrjala@linux.intel.com>
  <20201001151640.14590-3-ville.syrjala@linux.intel.com>
  <87o8lfk8i5.fsf@intel.com> <20201006134340.GW6112@intel.com>
-Date: Tue, 06 Oct 2020 21:13:32 +0300
-Message-ID: <87zh4zi5o3.fsf@intel.com>
+ <87zh4zi5o3.fsf@intel.com>
 MIME-Version: 1.0
+Content-Disposition: inline
+In-Reply-To: <87zh4zi5o3.fsf@intel.com>
+X-Patchwork-Hint: comment
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Subject: Re: [Intel-gfx] [PATCH v2 3/6] drm/i915: Replace the VLV/CHV eDP
  reboot notifier with the .shutdown() hook
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -53,133 +57,79 @@ List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gVHVlLCAwNiBPY3QgMjAyMCwgVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4
-LmludGVsLmNvbT4gd3JvdGU6Cj4gT24gVHVlLCBPY3QgMDYsIDIwMjAgYXQgMTI6Mjk6MjJQTSAr
-MDMwMCwgSmFuaSBOaWt1bGEgd3JvdGU6Cj4+IE9uIFRodSwgMDEgT2N0IDIwMjAsIFZpbGxlIFN5
-cmphbGEgPHZpbGxlLnN5cmphbGFAbGludXguaW50ZWwuY29tPiB3cm90ZToKPj4gPiBGcm9tOiBW
-aWxsZSBTeXJqw6Rsw6QgPHZpbGxlLnN5cmphbGFAbGludXguaW50ZWwuY29tPgo+PiA+Cj4+ID4g
-Q3VycmVudGx5IFZMVi9DSFYgdXNlIGEgcmVib290IG5vdGlmaWVyIHRvIG1ha2Ugc3VyZSB0aGUg
-cGFuZWwKPj4gPiBwb3dlciBjeWNsZSBkZWxheSBpc24ndCB2aW9sYXRlZCBhY3Jvc3MgYSBzeXN0
-ZW0gcmVib290LiBSZXBsYWNlCj4+ID4gdGhhdCB3aXRoIHRoZSBuZXcgZW5jb2RlciAuc2h1dGRv
-d24oKSBob29rLgo+PiA+Cj4+ID4gQW5kIGxldCdzIGFsc28gc3RvcCBvdmVycmlkaW5nIHRoZSBw
-b3dlciBjeWNsZSBkZWxheSB3aXRoIHRoZQo+PiA+IG1heCB2YWx1ZS4gTm8gaWRlYSB3aHkgdGhl
-IGN1cnJlbnQgY29kZSBkb2VzIHRoYXQuIFRoZSBhbHJlYWR5Cj4+ID4gcHJvZ3JhbW1lZCBkZWxh
-eSBzaG91bGQgYmUgY29ycmVjdC4KPj4gCj4+IEkga2luZCBvZiBoYXZlIGEgbGl0dGxlIHVuZWFz
-eSBmZWVsaW5nIGFib3V0IGNvbmZsYXRpbmcgdGhlc2UgdHdvCj4+IGNoYW5nZXMgdG9nZXRoZXIu
-IEkgdGhpbmsgYm90aCBhcmUgb2JqZWN0aXZlbHkgZ29vZCBjaGFuZ2VzLCBqdXN0IG5vdAo+PiBu
-ZWNlc3NhcmlseSBhdCBvbmNlLgo+PiAKPj4gSVNUUiBzZXR0aW5nIHRoZSBtYXggZGVsYXkgd2Fz
-LCBwZXJoYXBzLCBzb21laG93IHJlbGF0ZWQgdG8gdGhlIGhhcmR3YXJlCj4+IGxvc2luZyBpdHMg
-bWFyYmxlcyBhZnRlciBwb3dlciBpcyBjdXQsIGVmZmVjdGl2ZWx5IG5vdCBlbnN1cmluZyBhbnkg
-b2YKPj4gdGhlIGRlbGF5cyBhdCBwb3dlci1vbi4gU28gaXQncyBwb3NzaWJsZSB3ZSBzZXQgdGhl
-IG1heCBoZXJlIHRvIGFjY291bnQKPj4gZm9yIHRoYXQuIE1heWJlLiA7KQo+PiAKPj4gQW55d2F5
-LAo+PiAKPj4gUmV2aWV3ZWQtYnk6IEphbmkgTmlrdWxhIDxqYW5pLm5pa3VsYUBpbnRlbC5jb20+
-Cj4+IAo+PiBvbiB0aGUgd2hvbGUuCj4+IAo+PiBJJ20gbGVhdmluZyBpdCB1cCB0byB5b3UsIGJ1
-dCBwZXJzb25hbGx5IEknZCBsZWFuIHRvd2FyZHMgc3dpdGNoaW5nCj4+IGVkcF9ub3RpZnlfaGFu
-ZGxlcigpIHRvIHVzZSB3YWl0X3BhbmVsX3Bvd2VyX2N5Y2xlKGludGVsX2RwKSBmaXJzdCBpbiBh
-Cj4+IHNlcGFyYXRlIHBhdGNoLCB0byBoZWxwIHdpdGggcG90ZW50aWFsIGJpc2VjdCByZXN1bHRz
-LCBhbmQgdGhlbiBkb2luZwo+PiB0aGUgcmVzdC4KPgo+IEkgZG9uJ3QgdGhpbmsgaXQgd291bGQg
-YmUgcXVpdGUgdGhhdCBzaW1wbGUuIFdlJ2QgaGF2ZSB0byBhbHNvIHRvc3MKPiBpbiBzb21lIGNv
-bWJpbmF0aW9uIG9mIHBhbmVsX29mZigpIGFuZCB2ZGRfb2ZmX3N5bmMoKSBpbiB0aGVyZSwKPiBk
-ZXBlbmRpbmcgb24gd2hldGhlciB0aGUgcGFuZWwgcG93ZXIgaXMgY3VycmVudGx5IGVuYWJsZWQg
-b3Igbm90Lgo+IE90aGVyd2lzZSB0aGUgYm9va2tlZXBpbmcgbmVlZGVkIGJ5IHdhaXRfcGFuZWxf
-cG93ZXJfY3ljbGUoKSBpc24ndAo+IGdvaW5nIHRvIGJlIHVwIHRvIGRhdGUuCgpPaD8gU28gdGhl
-IGNhbGxzIHZpYSBlbmNvZGVyIGhvb2tzIGFjdHVhbGx5IGVuc3VyZSB0aGF0PwoKSW4gdGhhdCBj
-YXNlLCBwdXNoIGF3YXkhCgpCUiwKSmFuaS4KCgoKPgo+PiAKPj4gPgo+PiA+IFNpZ25lZC1vZmYt
-Ynk6IFZpbGxlIFN5cmrDpGzDpCA8dmlsbGUuc3lyamFsYUBsaW51eC5pbnRlbC5jb20+Cj4+ID4g
-LS0tCj4+ID4gIC4uLi9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXlfdHlwZXMuaCAgICB8
-ICAyIC0KPj4gPiAgZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kcC5jICAgICAg
-IHwgNTggKysrKystLS0tLS0tLS0tLS0tLQo+PiA+ICAyIGZpbGVzIGNoYW5nZWQsIDE0IGluc2Vy
-dGlvbnMoKyksIDQ2IGRlbGV0aW9ucygtKQo+PiA+Cj4+ID4gZGlmZiAtLWdpdCBhL2RyaXZlcnMv
-Z3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheV90eXBlcy5oIGIvZHJpdmVycy9ncHUv
-ZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5X3R5cGVzLmgKPj4gPiBpbmRleCA2ZjNlM2Q3
-NTYzODMuLjliOWVkMWEyZjQxMiAxMDA2NDQKPj4gPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkx
-NS9kaXNwbGF5L2ludGVsX2Rpc3BsYXlfdHlwZXMuaAo+PiA+ICsrKyBiL2RyaXZlcnMvZ3B1L2Ry
-bS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheV90eXBlcy5oCj4+ID4gQEAgLTEzMTksOCArMTMx
-OSw2IEBAIHN0cnVjdCBpbnRlbF9kcCB7Cj4+ID4gIAl1bnNpZ25lZCBsb25nIGxhc3RfYmFja2xp
-Z2h0X29mZjsKPj4gPiAgCWt0aW1lX3QgcGFuZWxfcG93ZXJfb2ZmX3RpbWU7Cj4+ID4gIAo+PiA+
-IC0Jc3RydWN0IG5vdGlmaWVyX2Jsb2NrIGVkcF9ub3RpZmllcjsKPj4gPiAtCj4+ID4gIAkvKgo+
-PiA+ICAJICogUGlwZSB3aG9zZSBwb3dlciBzZXF1ZW5jZXIgaXMgY3VycmVudGx5IGxvY2tlZCBp
-bnRvCj4+ID4gIAkgKiB0aGlzIHBvcnQuIE9ubHkgcmVsZXZhbnQgb24gVkxWL0NIVi4KPj4gPiBk
-aWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kcC5jIGIvZHJp
-dmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kcC5jCj4+ID4gaW5kZXggNzBlMGI4NTQ0
-MmY5Li5lMGYyZTkyMzY3ODUgMTAwNjQ0Cj4+ID4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUv
-ZGlzcGxheS9pbnRlbF9kcC5jCj4+ID4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxh
-eS9pbnRlbF9kcC5jCj4+ID4gQEAgLTI4LDcgKzI4LDYgQEAKPj4gPiAgI2luY2x1ZGUgPGxpbnV4
-L2V4cG9ydC5oPgo+PiA+ICAjaW5jbHVkZSA8bGludXgvaTJjLmg+Cj4+ID4gICNpbmNsdWRlIDxs
-aW51eC9ub3RpZmllci5oPgo+PiA+IC0jaW5jbHVkZSA8bGludXgvcmVib290Lmg+Cj4+ID4gICNp
-bmNsdWRlIDxsaW51eC9zbGFiLmg+Cj4+ID4gICNpbmNsdWRlIDxsaW51eC90eXBlcy5oPgo+PiA+
-ICAKPj4gPiBAQCAtMTE5MSw0MSArMTE5MCw2IEBAIF9wcF9zdGF0X3JlZyhzdHJ1Y3QgaW50ZWxf
-ZHAgKmludGVsX2RwKQo+PiA+ICAJcmV0dXJuIHJlZ3MucHBfc3RhdDsKPj4gPiAgfQo+PiA+ICAK
-Pj4gPiAtLyogUmVib290IG5vdGlmaWVyIGhhbmRsZXIgdG8gc2h1dGRvd24gcGFuZWwgcG93ZXIg
-dG8gZ3VhcmFudGVlIFQxMiB0aW1pbmcKPj4gPiAtICAgVGhpcyBmdW5jdGlvbiBvbmx5IGFwcGxp
-Y2FibGUgd2hlbiBwYW5lbCBQTSBzdGF0ZSBpcyBub3QgdG8gYmUgdHJhY2tlZCAqLwo+PiA+IC1z
-dGF0aWMgaW50IGVkcF9ub3RpZnlfaGFuZGxlcihzdHJ1Y3Qgbm90aWZpZXJfYmxvY2sgKnRoaXMs
-IHVuc2lnbmVkIGxvbmcgY29kZSwKPj4gPiAtCQkJICAgICAgdm9pZCAqdW51c2VkKQo+PiA+IC17
-Cj4+ID4gLQlzdHJ1Y3QgaW50ZWxfZHAgKmludGVsX2RwID0gY29udGFpbmVyX29mKHRoaXMsIHR5
-cGVvZigqIGludGVsX2RwKSwKPj4gPiAtCQkJCQkJIGVkcF9ub3RpZmllcik7Cj4+ID4gLQlzdHJ1
-Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqZGV2X3ByaXYgPSBkcF90b19pOTE1KGludGVsX2RwKTsKPj4g
-PiAtCWludGVsX3dha2VyZWZfdCB3YWtlcmVmOwo+PiA+IC0KPj4gPiAtCWlmICghaW50ZWxfZHBf
-aXNfZWRwKGludGVsX2RwKSB8fCBjb2RlICE9IFNZU19SRVNUQVJUKQo+PiA+IC0JCXJldHVybiAw
-Owo+PiA+IC0KPj4gPiAtCXdpdGhfcHBzX2xvY2soaW50ZWxfZHAsIHdha2VyZWYpIHsKPj4gPiAt
-CQlpZiAoSVNfVkFMTEVZVklFVyhkZXZfcHJpdikgfHwgSVNfQ0hFUlJZVklFVyhkZXZfcHJpdikp
-IHsKPj4gPiAtCQkJZW51bSBwaXBlIHBpcGUgPSB2bHZfcG93ZXJfc2VxdWVuY2VyX3BpcGUoaW50
-ZWxfZHApOwo+PiA+IC0JCQlpOTE1X3JlZ190IHBwX2N0cmxfcmVnLCBwcF9kaXZfcmVnOwo+PiA+
-IC0JCQl1MzIgcHBfZGl2Owo+PiA+IC0KPj4gPiAtCQkJcHBfY3RybF9yZWcgPSBQUF9DT05UUk9M
-KHBpcGUpOwo+PiA+IC0JCQlwcF9kaXZfcmVnICA9IFBQX0RJVklTT1IocGlwZSk7Cj4+ID4gLQkJ
-CXBwX2RpdiA9IGludGVsX2RlX3JlYWQoZGV2X3ByaXYsIHBwX2Rpdl9yZWcpOwo+PiA+IC0JCQlw
-cF9kaXYgJj0gUFBfUkVGRVJFTkNFX0RJVklERVJfTUFTSzsKPj4gPiAtCj4+ID4gLQkJCS8qIDB4
-MUYgd3JpdGUgdG8gUFBfRElWX1JFRyBzZXRzIG1heCBjeWNsZSBkZWxheSAqLwo+PiA+IC0JCQlp
-bnRlbF9kZV93cml0ZShkZXZfcHJpdiwgcHBfZGl2X3JlZywgcHBfZGl2IHwgMHgxRik7Cj4+ID4g
-LQkJCWludGVsX2RlX3dyaXRlKGRldl9wcml2LCBwcF9jdHJsX3JlZywKPj4gPiAtCQkJCSAgICAg
-ICBQQU5FTF9VTkxPQ0tfUkVHUyk7Cj4+ID4gLQkJCW1zbGVlcChpbnRlbF9kcC0+cGFuZWxfcG93
-ZXJfY3ljbGVfZGVsYXkpOwo+PiA+IC0JCX0KPj4gPiAtCX0KPj4gPiAtCj4+ID4gLQlyZXR1cm4g
-MDsKPj4gPiAtfQo+PiA+IC0KPj4gPiAgc3RhdGljIGJvb2wgZWRwX2hhdmVfcGFuZWxfcG93ZXIo
-c3RydWN0IGludGVsX2RwICppbnRlbF9kcCkKPj4gPiAgewo+PiA+ICAJc3RydWN0IGRybV9pOTE1
-X3ByaXZhdGUgKmRldl9wcml2ID0gZHBfdG9faTkxNShpbnRlbF9kcCk7Cj4+ID4gQEAgLTY2OTAs
-MTEgKzY2NTQsNiBAQCB2b2lkIGludGVsX2RwX2VuY29kZXJfZmx1c2hfd29yayhzdHJ1Y3QgZHJt
-X2VuY29kZXIgKmVuY29kZXIpCj4+ID4gIAkJICovCj4+ID4gIAkJd2l0aF9wcHNfbG9jayhpbnRl
-bF9kcCwgd2FrZXJlZikKPj4gPiAgCQkJZWRwX3BhbmVsX3ZkZF9vZmZfc3luYyhpbnRlbF9kcCk7
-Cj4+ID4gLQo+PiA+IC0JCWlmIChpbnRlbF9kcC0+ZWRwX25vdGlmaWVyLm5vdGlmaWVyX2NhbGwp
-IHsKPj4gPiAtCQkJdW5yZWdpc3Rlcl9yZWJvb3Rfbm90aWZpZXIoJmludGVsX2RwLT5lZHBfbm90
-aWZpZXIpOwo+PiA+IC0JCQlpbnRlbF9kcC0+ZWRwX25vdGlmaWVyLm5vdGlmaWVyX2NhbGwgPSBO
-VUxMOwo+PiA+IC0JCX0KPj4gPiAgCX0KPj4gPiAgCj4+ID4gIAlpbnRlbF9kcF9hdXhfZmluaShp
-bnRlbF9kcCk7Cj4+ID4gQEAgLTY3MjUsNiArNjY4NCwxOCBAQCB2b2lkIGludGVsX2RwX2VuY29k
-ZXJfc3VzcGVuZChzdHJ1Y3QgaW50ZWxfZW5jb2RlciAqaW50ZWxfZW5jb2RlcikKPj4gPiAgCQll
-ZHBfcGFuZWxfdmRkX29mZl9zeW5jKGludGVsX2RwKTsKPj4gPiAgfQo+PiA+ICAKPj4gPiArc3Rh
-dGljIHZvaWQgaW50ZWxfZHBfZW5jb2Rlcl9zaHV0ZG93bihzdHJ1Y3QgaW50ZWxfZW5jb2RlciAq
-aW50ZWxfZW5jb2RlcikKPj4gPiArewo+PiA+ICsJc3RydWN0IGludGVsX2RwICppbnRlbF9kcCA9
-IGVuY190b19pbnRlbF9kcChpbnRlbF9lbmNvZGVyKTsKPj4gPiArCWludGVsX3dha2VyZWZfdCB3
-YWtlcmVmOwo+PiA+ICsKPj4gPiArCWlmICghaW50ZWxfZHBfaXNfZWRwKGludGVsX2RwKSkKPj4g
-PiArCQlyZXR1cm47Cj4+ID4gKwo+PiA+ICsJd2l0aF9wcHNfbG9jayhpbnRlbF9kcCwgd2FrZXJl
-ZikKPj4gPiArCQl3YWl0X3BhbmVsX3Bvd2VyX2N5Y2xlKGludGVsX2RwKTsKPj4gPiArfQo+PiA+
-ICsKPj4gPiAgc3RhdGljIHZvaWQgaW50ZWxfZWRwX3BhbmVsX3ZkZF9zYW5pdGl6ZShzdHJ1Y3Qg
-aW50ZWxfZHAgKmludGVsX2RwKQo+PiA+ICB7Cj4+ID4gIAlzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0
-ZSAqZGV2X3ByaXYgPSBkcF90b19pOTE1KGludGVsX2RwKTsKPj4gPiBAQCAtNzgzOCw5ICs3ODA5
-LDYgQEAgc3RhdGljIGJvb2wgaW50ZWxfZWRwX2luaXRfY29ubmVjdG9yKHN0cnVjdCBpbnRlbF9k
-cCAqaW50ZWxfZHAsCj4+ID4gIAltdXRleF91bmxvY2soJmRldi0+bW9kZV9jb25maWcubXV0ZXgp
-Owo+PiA+ICAKPj4gPiAgCWlmIChJU19WQUxMRVlWSUVXKGRldl9wcml2KSB8fCBJU19DSEVSUllW
-SUVXKGRldl9wcml2KSkgewo+PiA+IC0JCWludGVsX2RwLT5lZHBfbm90aWZpZXIubm90aWZpZXJf
-Y2FsbCA9IGVkcF9ub3RpZnlfaGFuZGxlcjsKPj4gPiAtCQlyZWdpc3Rlcl9yZWJvb3Rfbm90aWZp
-ZXIoJmludGVsX2RwLT5lZHBfbm90aWZpZXIpOwo+PiA+IC0KPj4gPiAgCQkvKgo+PiA+ICAJCSAq
-IEZpZ3VyZSBvdXQgdGhlIGN1cnJlbnQgcGlwZSBmb3IgdGhlIGluaXRpYWwgYmFja2xpZ2h0IHNl
-dHVwLgo+PiA+ICAJCSAqIElmIHRoZSBjdXJyZW50IHBpcGUgaXNuJ3QgdmFsaWQsIHRyeSB0aGUg
-UFBTIHBpcGUsIGFuZCBpZiB0aGF0Cj4+ID4gQEAgLTgwNjEsNiArODAyOSw4IEBAIGJvb2wgaW50
-ZWxfZHBfaW5pdChzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqZGV2X3ByaXYsCj4+ID4gIAlpbnRl
-bF9lbmNvZGVyLT5nZXRfY29uZmlnID0gaW50ZWxfZHBfZ2V0X2NvbmZpZzsKPj4gPiAgCWludGVs
-X2VuY29kZXItPnVwZGF0ZV9waXBlID0gaW50ZWxfcGFuZWxfdXBkYXRlX2JhY2tsaWdodDsKPj4g
-PiAgCWludGVsX2VuY29kZXItPnN1c3BlbmQgPSBpbnRlbF9kcF9lbmNvZGVyX3N1c3BlbmQ7Cj4+
-ID4gKwlpZiAoSVNfVkFMTEVZVklFVyhkZXZfcHJpdikgfHwgSVNfQ0hFUlJZVklFVyhkZXZfcHJp
-dikpCj4+ID4gKwkJaW50ZWxfZW5jb2Rlci0+c2h1dGRvd24gPSBpbnRlbF9kcF9lbmNvZGVyX3No
-dXRkb3duOwo+PiA+ICAJaWYgKElTX0NIRVJSWVZJRVcoZGV2X3ByaXYpKSB7Cj4+ID4gIAkJaW50
-ZWxfZW5jb2Rlci0+cHJlX3BsbF9lbmFibGUgPSBjaHZfZHBfcHJlX3BsbF9lbmFibGU7Cj4+ID4g
-IAkJaW50ZWxfZW5jb2Rlci0+cHJlX2VuYWJsZSA9IGNodl9wcmVfZW5hYmxlX2RwOwo+PiAKPj4g
-LS0gCj4+IEphbmkgTmlrdWxhLCBJbnRlbCBPcGVuIFNvdXJjZSBHcmFwaGljcyBDZW50ZXIKCi0t
-IApKYW5pIE5pa3VsYSwgSW50ZWwgT3BlbiBTb3VyY2UgR3JhcGhpY3MgQ2VudGVyCl9fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5n
-IGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVk
-ZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
+On Tue, Oct 06, 2020 at 09:13:32PM +0300, Jani Nikula wrote:
+> On Tue, 06 Oct 2020, Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com> wr=
+ote:
+> > On Tue, Oct 06, 2020 at 12:29:22PM +0300, Jani Nikula wrote:
+> >> On Thu, 01 Oct 2020, Ville Syrjala <ville.syrjala@linux.intel.com> wro=
+te:
+> >> > From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> >> >
+> >> > Currently VLV/CHV use a reboot notifier to make sure the panel
+> >> > power cycle delay isn't violated across a system reboot. Replace
+> >> > that with the new encoder .shutdown() hook.
+> >> >
+> >> > And let's also stop overriding the power cycle delay with the
+> >> > max value. No idea why the current code does that. The already
+> >> > programmed delay should be correct.
+> >> =
+
+> >> I kind of have a little uneasy feeling about conflating these two
+> >> changes together. I think both are objectively good changes, just not
+> >> necessarily at once.
+> >> =
+
+> >> ISTR setting the max delay was, perhaps, somehow related to the hardwa=
+re
+> >> losing its marbles after power is cut, effectively not ensuring any of
+> >> the delays at power-on. So it's possible we set the max here to account
+> >> for that. Maybe. ;)
+> >> =
+
+> >> Anyway,
+> >> =
+
+> >> Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+> >> =
+
+> >> on the whole.
+> >> =
+
+> >> I'm leaving it up to you, but personally I'd lean towards switching
+> >> edp_notify_handler() to use wait_panel_power_cycle(intel_dp) first in a
+> >> separate patch, to help with potential bisect results, and then doing
+> >> the rest.
+> >
+> > I don't think it would be quite that simple. We'd have to also toss
+> > in some combination of panel_off() and vdd_off_sync() in there,
+> > depending on whether the panel power is currently enabled or not.
+> > Otherwise the bookkeeping needed by wait_panel_power_cycle() isn't
+> > going to be up to date.
+> =
+
+> Oh? So the calls via encoder hooks actually ensure that?
+
+1. drm_atomic_helper_shutdown()
+   -> panel_off() as needed via the normal crtc disable sequence
+2. mst suspend + interrupts off + cancel hpd stuff
+   -> hopefully nothing can re-enable vdd after this point
+3. encoder.suspend()
+   -> vdd_off_sync() to really turn vdd off if it's still lingering
+4. encoder.shutdown()
+   -> wait_panel_power_cycle()
+
+Hopefully it even works like that :P
+
+-- =
+
+Ville Syrj=E4l=E4
+Intel
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
