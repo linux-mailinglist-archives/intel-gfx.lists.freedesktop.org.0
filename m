@@ -1,42 +1,74 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 299C0284A62
-	for <lists+intel-gfx@lfdr.de>; Tue,  6 Oct 2020 12:36:38 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9BEAD284A6B
+	for <lists+intel-gfx@lfdr.de>; Tue,  6 Oct 2020 12:41:35 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 28A296E183;
-	Tue,  6 Oct 2020 10:36:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8D7266E455;
+	Tue,  6 Oct 2020 10:41:28 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AEA4E6E183
- for <intel-gfx@lists.freedesktop.org>; Tue,  6 Oct 2020 10:36:33 +0000 (UTC)
-IronPort-SDR: 9n/eXiJtQ6QxY/Uj5fBCLrriRViFB6h6ppfEH5JGkwI2KxyZoYLBBS0GDrje5HlcWtOuYjUOV8
- +IIeKXngUSDQ==
-X-IronPort-AV: E=McAfee;i="6000,8403,9765"; a="143831096"
-X-IronPort-AV: E=Sophos;i="5.77,342,1596524400"; d="scan'208";a="143831096"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Oct 2020 03:36:32 -0700
-IronPort-SDR: 35Kxq5dl5b+5RLY8zkj5CPQI5jG4/N3LhmMAObypdGSTC/REj6b+wFezVbkNWWkFima9DV8CPU
- 1oNCXd3+q2Wg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.77,342,1596524400"; d="scan'208";a="327503824"
-Received: from gaia.fi.intel.com ([10.237.72.192])
- by orsmga002.jf.intel.com with ESMTP; 06 Oct 2020 03:36:31 -0700
-Received: by gaia.fi.intel.com (Postfix, from userid 1000)
- id CAF205C1E61; Tue,  6 Oct 2020 13:35:04 +0300 (EEST)
-From: Mika Kuoppala <mika.kuoppala@linux.intel.com>
-To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
-In-Reply-To: <20200929112639.24223-1-chris@chris-wilson.co.uk>
-References: <20200929112639.24223-1-chris@chris-wilson.co.uk>
-Date: Tue, 06 Oct 2020 13:35:04 +0300
-Message-ID: <87lfgjfxrb.fsf@gaia.fi.intel.com>
+Received: from mail-wm1-x341.google.com (mail-wm1-x341.google.com
+ [IPv6:2a00:1450:4864:20::341])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 128B16E42E
+ for <intel-gfx@lists.freedesktop.org>; Tue,  6 Oct 2020 10:41:27 +0000 (UTC)
+Received: by mail-wm1-x341.google.com with SMTP id q5so1819972wmq.0
+ for <intel-gfx@lists.freedesktop.org>; Tue, 06 Oct 2020 03:41:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
+ h=date:from:to:cc:subject:message-id:mail-followup-to:references
+ :mime-version:content-disposition:in-reply-to;
+ bh=ppdxET2PA0gOKIN5kGGdI9KhczoNu7DgS5stoBevgQE=;
+ b=V9XsMoIGLC/zsM/kB8TOxJcs8Wrjs8fplUDZpxD92KTCEB9eoX1HguQq42evSkJ7AV
+ 0KeRvG+PIbroLnhtt9D9K1B1lDy7QPScKp3kzisQomTGD6k1N6er6Davt9ehntA0gMIu
+ DIViALks5h9F35p6DpaRdqeZ6gdNUqgwAoWT0=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id
+ :mail-followup-to:references:mime-version:content-disposition
+ :in-reply-to;
+ bh=ppdxET2PA0gOKIN5kGGdI9KhczoNu7DgS5stoBevgQE=;
+ b=Uxh9GGf1B2rNrtcK32p8bYl3H0T9oJFBC2gPW/acb3+lu+37mThNhEpU/b3vK4xQKL
+ AHXfoK/1FFljEnO3z87l7ik6ypRh3/hLTOh1ozarBnU2iT6CQyTPcbB6UN4DIcufomlT
+ UxboQ+FWwnsNTgltXtmq6JkywxVeczXqjQXowdMNyNgi6qclTXggcSMJKwXMG6kE9nsi
+ ujjE+NI3VxDf1BmrTExseJbS2e4Xwp3eE55Emf5kiy06T8+pmGlVTRzLxg/4O28wrGTd
+ nQRldLBhoQIwQMJeopOpoLNRpL0806ol9RvfHQZel7BoqDoYCb81axSY0usRJFD4ZtWv
+ QFCw==
+X-Gm-Message-State: AOAM533UdUddMmk6hk/3/ADpLFmiLgTWBUzBdp61ROHf+KXJG2r841km
+ FlQwHNEwi3duBQWFN4ggxdcZ4g==
+X-Google-Smtp-Source: ABdhPJxmO06kzG4QQ1I3HEy61YhwUV447sv+LJYvQUMAmYEWxdffDW/wKWdF9BfEUBoKO6E7SGa0Tg==
+X-Received: by 2002:a1c:5f54:: with SMTP id t81mr4261579wmb.142.1601980885754; 
+ Tue, 06 Oct 2020 03:41:25 -0700 (PDT)
+Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
+ by smtp.gmail.com with ESMTPSA id g83sm3384495wmf.15.2020.10.06.03.41.24
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 06 Oct 2020 03:41:24 -0700 (PDT)
+Date: Tue, 6 Oct 2020 12:41:22 +0200
+From: Daniel Vetter <daniel@ffwll.ch>
+To: Jason Gunthorpe <jgg@nvidia.com>
+Message-ID: <20201006104122.GA438822@phenom.ffwll.local>
+Mail-Followup-To: Jason Gunthorpe <jgg@nvidia.com>,
+ Leon Romanovsky <leon@kernel.org>,
+ Doug Ledford <dledford@redhat.com>,
+ Leon Romanovsky <leonro@nvidia.com>, Christoph Hellwig <hch@lst.de>,
+ David Airlie <airlied@linux.ie>, dri-devel@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ linux-kernel@vger.kernel.org, linux-rdma@vger.kernel.org,
+ Maor Gottlieb <maorg@nvidia.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Roland Scheidegger <sroland@vmware.com>,
+ Tvrtko Ursulin <tvrtko.ursulin@intel.com>,
+ VMware Graphics <linux-graphics-maintainer@vmware.com>
+References: <20201004154340.1080481-1-leon@kernel.org>
+ <20201005235650.GA89159@nvidia.com>
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/gt: Scrub HW state on remove
+Content-Disposition: inline
+In-Reply-To: <20201005235650.GA89159@nvidia.com>
+X-Operating-System: Linux phenom 5.7.0-1-amd64 
+Subject: Re: [Intel-gfx] [PATCH rdma-next v5 0/4] Dynamicaly allocate SG
+ table from the pages
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,78 +81,66 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Leon Romanovsky <leon@kernel.org>, David Airlie <airlied@linux.ie>,
+ Maor Gottlieb <maorg@nvidia.com>, intel-gfx@lists.freedesktop.org,
+ Roland Scheidegger <sroland@vmware.com>, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, linux-rdma@vger.kernel.org,
+ Doug Ledford <dledford@redhat.com>,
+ VMware Graphics <linux-graphics-maintainer@vmware.com>,
+ Leon Romanovsky <leonro@nvidia.com>, Christoph Hellwig <hch@lst.de>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Chris Wilson <chris@chris-wilson.co.uk> writes:
+On Mon, Oct 05, 2020 at 08:56:50PM -0300, Jason Gunthorpe wrote:
+> On Sun, Oct 04, 2020 at 06:43:36PM +0300, Leon Romanovsky wrote:
+> > This series extends __sg_alloc_table_from_pages to allow chaining of
+> > new pages to already initialized SG table.
+> > 
+> > This allows for the drivers to utilize the optimization of merging contiguous
+> > pages without a need to pre allocate all the pages and hold them in
+> > a very large temporary buffer prior to the call to SG table initialization.
+> > 
+> > The second patch changes the Infiniband driver to use the new API. It
+> > removes duplicate functionality from the code and benefits the
+> > optimization of allocating dynamic SG table from pages.
+> > 
+> > In huge pages system of 2MB page size, without this change, the SG table
+> > would contain x512 SG entries.
+> > E.g. for 100GB memory registration:
+> > 
+> >              Number of entries      Size
+> >     Before        26214400          600.0MB
+> >     After            51200            1.2MB
+> > 
+> > Thanks
+> > 
+> > Maor Gottlieb (2):
+> >   lib/scatterlist: Add support in dynamic allocation of SG table from
+> >     pages
+> >   RDMA/umem: Move to allocate SG table from pages
+> > 
+> > Tvrtko Ursulin (2):
+> >   tools/testing/scatterlist: Rejuvenate bit-rotten test
+> >   tools/testing/scatterlist: Show errors in human readable form
+> 
+> This looks OK, I'm going to send it into linux-next on the hmm tree
+> for awhile to see if anything gets broken. If there is more
+> remarks/tags/etc please continue
 
-> Currently we do a final scrub of the HW state upon release. However,
-> when rebinding the device, this is too late as the device may either
-> have been partially rebound or the device is no longer accessible. If
-> the device has been removed before release, the reset goes astray
-> leaving the device in an inconsistent state, unlikely to work without a
-> full PCI reset. Furthermore, if the device is partially rebound before
-> the HW scrubbing, there may be leftover HW state that should have been
-> scrubbed. Either way, we need to push the scrubbing earlier before the
-> removal, so into unregister. The danger is that on older machines,
-> reseting the GPU also impact the display engine and so the reset should
-> be after modesetting is disabled (and before reuse we need to recover
-> modesetting).
->
-> Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/2508
-> Testcase: igt/core_hotunplug
-> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+An idea that just crossed my mind: A pin_user_pages_sgt might be useful
+for both rdma and drm, since this would avoid the possible huge interim
+struct pages array for thp pages. Or anything else that could be coalesced
+down into a single sg entry.
 
-Reviewed-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
-
-> ---
->  drivers/gpu/drm/i915/gt/intel_gt.c | 11 ++++++-----
->  1 file changed, 6 insertions(+), 5 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/gt/intel_gt.c b/drivers/gpu/drm/i915/gt/intel_gt.c
-> index 39b428c5049c..44f1d51e5ae5 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_gt.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_gt.c
-> @@ -614,6 +614,8 @@ void intel_gt_driver_remove(struct intel_gt *gt)
->  
->  void intel_gt_driver_unregister(struct intel_gt *gt)
->  {
-> +	intel_wakeref_t wakeref;
-> +
->  	intel_rps_driver_unregister(&gt->rps);
->  
->  	/*
-> @@ -622,16 +624,15 @@ void intel_gt_driver_unregister(struct intel_gt *gt)
->  	 * resources.
->  	 */
->  	intel_gt_set_wedged(gt);
-> +
-> +	/* Scrub all HW state upon release */
-> +	with_intel_runtime_pm(gt->uncore->rpm, wakeref)
-> +		__intel_gt_reset(gt, ALL_ENGINES);
->  }
->  
->  void intel_gt_driver_release(struct intel_gt *gt)
->  {
->  	struct i915_address_space *vm;
-> -	intel_wakeref_t wakeref;
-> -
-> -	/* Scrub all HW state upon release */
-> -	with_intel_runtime_pm(gt->uncore->rpm, wakeref)
-> -		__intel_gt_reset(gt, ALL_ENGINES);
->  
->  	vm = fetch_and_zero(&gt->vm);
->  	if (vm) /* FIXME being called twice on error paths :( */
-> -- 
-> 2.20.1
->
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+Not sure it's worth it, but would at least give a slightly neater
+interface I think.
+-Daniel
+-- 
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
