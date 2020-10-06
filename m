@@ -2,43 +2,48 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6B98D2848F1
-	for <lists+intel-gfx@lfdr.de>; Tue,  6 Oct 2020 11:04:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A7B952848F5
+	for <lists+intel-gfx@lfdr.de>; Tue,  6 Oct 2020 11:06:21 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7600689890;
-	Tue,  6 Oct 2020 09:04:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 076EC89991;
+	Tue,  6 Oct 2020 09:06:20 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E205089890
- for <intel-gfx@lists.freedesktop.org>; Tue,  6 Oct 2020 09:04:32 +0000 (UTC)
-IronPort-SDR: h1w+B/wRTiyyExopfjaYs70z+tXty7c5GNxNmUQZzV7Hodhm1yMf1+58U0BjqPbXy9YrJLWpwg
- zDX1gWYh0cMg==
-X-IronPort-AV: E=McAfee;i="6000,8403,9765"; a="152184743"
-X-IronPort-AV: E=Sophos;i="5.77,342,1596524400"; d="scan'208";a="152184743"
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E0AF189991
+ for <intel-gfx@lists.freedesktop.org>; Tue,  6 Oct 2020 09:06:18 +0000 (UTC)
+IronPort-SDR: uB0nolVrMB1m5r3sTxYQaarvg4a63SL8UitjGrhaP+0SLJrvZkBwN7uMUzCGzVDPUgk4s6Qt9M
+ jHJfnvVRA87w==
+X-IronPort-AV: E=McAfee;i="6000,8403,9765"; a="151350731"
+X-IronPort-AV: E=Sophos;i="5.77,342,1596524400"; d="scan'208";a="151350731"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Oct 2020 02:04:31 -0700
-IronPort-SDR: gU8u+2lLPrmExv4z0mGE7AvmmQQZutcfcwjMDJfOiBIWXrFpmhYdV+59ZcjlCQjs5RZFszMcka
- MowxsMpExedA==
-X-IronPort-AV: E=Sophos;i="5.77,342,1596524400"; d="scan'208";a="518195614"
-Received: from kchandar-mobl.ger.corp.intel.com (HELO localhost)
- ([10.252.50.35])
- by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Oct 2020 02:04:30 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: =?utf-8?Q?Jos=C3=A9?= Roberto de Souza <jose.souza@intel.com>,
- intel-gfx@lists.freedesktop.org
-In-Reply-To: <20200929223419.146925-1-jose.souza@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20200929223419.146925-1-jose.souza@intel.com>
-Date: Tue, 06 Oct 2020 12:04:52 +0300
-Message-ID: <87wo03k9mz.fsf@intel.com>
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Oct 2020 02:06:18 -0700
+IronPort-SDR: xK3wqFL2EV5/K/mxS5Q2MVAoR46bBMT8VoAiF9Bn6Osgjk7NxBttzEOZ9NnwbcmqS7eJHZxfo7
+ EV6eg19oLN2Q==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.77,342,1596524400"; d="scan'208";a="315536988"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
+ by orsmga006.jf.intel.com with SMTP; 06 Oct 2020 02:06:16 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Tue, 06 Oct 2020 12:06:15 +0300
+Date: Tue, 6 Oct 2020 12:06:15 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: "Shankar, Uma" <uma.shankar@intel.com>
+Message-ID: <20201006090615.GT6112@intel.com>
+References: <20200914210047.11972-1-uma.shankar@intel.com>
+ <20200914210047.11972-4-uma.shankar@intel.com>
+ <20200929161417.GA6112@intel.com>
+ <8c528c8d789647c6b4fcdf121c1e88b2@intel.com>
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH v2 1/3] drm/i915/vbt: Fix backlight parsing
- for VBT 234+
+Content-Disposition: inline
+In-Reply-To: <8c528c8d789647c6b4fcdf121c1e88b2@intel.com>
+X-Patchwork-Hint: comment
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: Re: [Intel-gfx] [v6 03/11] drm/i915/display: Attach HDR property
+ for capable Gen9 devices
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,82 +56,101 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gVHVlLCAyOSBTZXAgMjAyMCwgSm9zw6kgUm9iZXJ0byBkZSBTb3V6YSA8am9zZS5zb3V6YUBp
-bnRlbC5jb20+IHdyb3RlOgo+IENoaWxkIG1pbl9icmlnaHRuZXNzIGlzIG9ic29sZXRlIGZyb20g
-VkJUIDIzNCssIGluc3RlYWQgdGhlIG5ldwo+IG1pbl9icmlnaHRuZXNzIGZpZWxkIGluIHRoZSBt
-YWluIHN0cnVjdHVyZSBzaG91bGQgYmUgdXNlZC4KPgo+IFRoaXMgbmV3IGZpZWxkIGlzIDE2IGJp
-dHMgd2lkZSwgc28gYmFja2xpZ2h0X3ByZWNpc2lvbl9iaXRzIGlzIG5lZWRlZAo+IHRvIGNoZWNr
-IGlmIHZhbHVlIG5lZWRzIHRvIGJlIHNjYWxlZCBkb3duIGJ1dCBpdCBpcyBvbmx5IGF2YWlsYWJs
-ZSBpbgo+IFZCVCAyMzYrIHNvIHdvcmtpbmcgYXJvdW5kIGl0IGJ5IHVzaW5nIHRoZSBhbHNvIG5l
-dyBiYWNrbGlnaHRfbGV2ZWwKPiBpbiB0aGUgbWFpbiBzdHJ1Y3QuCj4KPiB2MjoKPiAtIG1pc3Nl
-ZCB0aGF0IGJhY2tsaWdodF9kYXRhLT5sZXZlbCBpcyBhbHNvIG9ic29sZXRlCj4KPiBCU3BlYzog
-MjAxNDkKPiBTaWduZWQtb2ZmLWJ5OiBKb3PDqSBSb2JlcnRvIGRlIFNvdXphIDxqb3NlLnNvdXph
-QGludGVsLmNvbT4KPiAtLS0KPiAgZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9i
-aW9zLmMgICAgIHwgMzAgKysrKysrKysrKysrKysrKystLQo+ICBkcml2ZXJzL2dwdS9kcm0vaTkx
-NS9kaXNwbGF5L2ludGVsX3ZidF9kZWZzLmggfCAxMiArKysrKystLQo+ICAyIGZpbGVzIGNoYW5n
-ZWQsIDM4IGluc2VydGlvbnMoKyksIDQgZGVsZXRpb25zKC0pCj4KPiBkaWZmIC0tZ2l0IGEvZHJp
-dmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9iaW9zLmMgYi9kcml2ZXJzL2dwdS9kcm0v
-aTkxNS9kaXNwbGF5L2ludGVsX2Jpb3MuYwo+IGluZGV4IDQ3MTY0ODRhZjYyZC4uNThlNTY1N2E3
-N2JiIDEwMDY0NAo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfYmlv
-cy5jCj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9iaW9zLmMKPiBA
-QCAtNDI1LDYgKzQyNSw3IEBAIHBhcnNlX2xmcF9iYWNrbGlnaHQoc3RydWN0IGRybV9pOTE1X3By
-aXZhdGUgKmRldl9wcml2LAo+ICAJY29uc3Qgc3RydWN0IGJkYl9sZnBfYmFja2xpZ2h0X2RhdGEg
-KmJhY2tsaWdodF9kYXRhOwo+ICAJY29uc3Qgc3RydWN0IGxmcF9iYWNrbGlnaHRfZGF0YV9lbnRy
-eSAqZW50cnk7Cj4gIAlpbnQgcGFuZWxfdHlwZSA9IGRldl9wcml2LT52YnQucGFuZWxfdHlwZTsK
-PiArCXUxNiBsZXZlbDsKPiAgCj4gIAliYWNrbGlnaHRfZGF0YSA9IGZpbmRfc2VjdGlvbihiZGIs
-IEJEQl9MVkRTX0JBQ0tMSUdIVCk7Cj4gIAlpZiAoIWJhY2tsaWdodF9kYXRhKQo+IEBAIC00NTks
-MTQgKzQ2MCwzOSBAQCBwYXJzZV9sZnBfYmFja2xpZ2h0KHN0cnVjdCBkcm1faTkxNV9wcml2YXRl
-ICpkZXZfcHJpdiwKPiAgCj4gIAlkZXZfcHJpdi0+dmJ0LmJhY2tsaWdodC5wd21fZnJlcV9oeiA9
-IGVudHJ5LT5wd21fZnJlcV9oejsKPiAgCWRldl9wcml2LT52YnQuYmFja2xpZ2h0LmFjdGl2ZV9s
-b3dfcHdtID0gZW50cnktPmFjdGl2ZV9sb3dfcHdtOwo+IC0JZGV2X3ByaXYtPnZidC5iYWNrbGln
-aHQubWluX2JyaWdodG5lc3MgPSBlbnRyeS0+bWluX2JyaWdodG5lc3M7Cj4gKwo+ICsJaWYgKGJk
-Yi0+dmVyc2lvbiA+PSAyMzQpIHsKPiArCQlib29sIHNjYWxlID0gZmFsc2U7Cj4gKwkJdTE2IG1p
-bl9sZXZlbDsKPiArCj4gKwkJbGV2ZWwgPSBiYWNrbGlnaHRfZGF0YS0+YmFja2xpZ2h0X2xldmVs
-W3BhbmVsX3R5cGVdLmxldmVsOwo+ICsJCW1pbl9sZXZlbCA9IGJhY2tsaWdodF9kYXRhLT5iYWNr
-bGlnaHRfbWluX2xldmVsW3BhbmVsX3R5cGVdLmxldmVsOwo+ICsKPiArCQlpZiAoYmRiLT52ZXJz
-aW9uID49IDIzNikKPiArCQkJc2NhbGUgPSBiYWNrbGlnaHRfZGF0YS0+YmFja2xpZ2h0X3ByZWNp
-c2lvbl9iaXRzW3BhbmVsX3R5cGVdID09IDE2Owo+ICsJCWVsc2UKPiArCQkJc2NhbGUgPSBsZXZl
-bCA+IDI1NTsKPiArCj4gKwkJaWYgKHNjYWxlKQo+ICsJCQltaW5fbGV2ZWwgPSBtaW5fbGV2ZWwg
-LyAyNTU7Cj4gKwo+ICsJCWlmIChtaW5fbGV2ZWwgPiAyNTUpIHsKPiArCQkJZHJtX3dhcm4oJmRl
-dl9wcml2LT5kcm0sICJCYWNrbGlnaHQgbWluIGxldmVsID4gMjU1XG4iKTsKPiArCQkJbGV2ZWwg
-PSAyNTU7Cj4gKwkJfQo+ICsJCWRldl9wcml2LT52YnQuYmFja2xpZ2h0Lm1pbl9icmlnaHRuZXNz
-ID0gbWluX2xldmVsOwo+ICsJfSBlbHNlIHsKPiArCQlsZXZlbCA9IGJhY2tsaWdodF9kYXRhLT5s
-ZXZlbFtwYW5lbF90eXBlXTsKPiArCQlkZXZfcHJpdi0+dmJ0LmJhY2tsaWdodC5taW5fYnJpZ2h0
-bmVzcyA9IGVudHJ5LT5taW5fYnJpZ2h0bmVzczsKPiArCX0KPiArCj4gIAlkcm1fZGJnX2ttcygm
-ZGV2X3ByaXYtPmRybSwKPiAgCQkgICAgIlZCVCBiYWNrbGlnaHQgUFdNIG1vZHVsYXRpb24gZnJl
-cXVlbmN5ICV1IEh6LCAiCj4gIAkJICAgICJhY3RpdmUgJXMsIG1pbiBicmlnaHRuZXNzICV1LCBs
-ZXZlbCAldSwgY29udHJvbGxlciAldVxuIiwKPiAgCQkgICAgZGV2X3ByaXYtPnZidC5iYWNrbGln
-aHQucHdtX2ZyZXFfaHosCj4gIAkJICAgIGRldl9wcml2LT52YnQuYmFja2xpZ2h0LmFjdGl2ZV9s
-b3dfcHdtID8gImxvdyIgOiAiaGlnaCIsCj4gIAkJICAgIGRldl9wcml2LT52YnQuYmFja2xpZ2h0
-Lm1pbl9icmlnaHRuZXNzLAo+IC0JCSAgICBiYWNrbGlnaHRfZGF0YS0+bGV2ZWxbcGFuZWxfdHlw
-ZV0sCj4gKwkJICAgIGxldmVsLAo+ICAJCSAgICBkZXZfcHJpdi0+dmJ0LmJhY2tsaWdodC5jb250
-cm9sbGVyKTsKPiAgfQo+ICAKPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlz
-cGxheS9pbnRlbF92YnRfZGVmcy5oIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRl
-bF92YnRfZGVmcy5oCj4gaW5kZXggNTRiY2M2YTY5NDdjLi5iNDc0MmM0ZmRlOTcgMTAwNjQ0Cj4g
-LS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF92YnRfZGVmcy5oCj4gKysr
-IGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF92YnRfZGVmcy5oCj4gQEAgLTc4
-Miw3ICs3ODIsNyBAQCBzdHJ1Y3QgbGZwX2JhY2tsaWdodF9kYXRhX2VudHJ5IHsKPiAgCXU4IGFj
-dGl2ZV9sb3dfcHdtOjE7Cj4gIAl1OCBvYnNvbGV0ZTE6NTsKPiAgCXUxNiBwd21fZnJlcV9oejsK
-PiAtCXU4IG1pbl9icmlnaHRuZXNzOwo+ICsJdTggbWluX2JyaWdodG5lc3M7IC8qIE9ic29sZXRl
-IGZyb20gMjM0KyAqLwo+ICAJdTggb2Jzb2xldGUyOwo+ICAJdTggb2Jzb2xldGUzOwo+ICB9IF9f
-cGFja2VkOwo+IEBAIC03OTIsMTEgKzc5MiwxOSBAQCBzdHJ1Y3QgbGZwX2JhY2tsaWdodF9jb250
-cm9sX21ldGhvZCB7Cj4gIAl1OCBjb250cm9sbGVyOjQ7Cj4gIH0gX19wYWNrZWQ7Cj4gIAo+ICtz
-dHJ1Y3QgbGZwX2JhY2tsaWdodF9sZXZlbCB7Cj4gKwl1MzIgbGV2ZWwgOiAxNjsKPiArCXUzMiBy
-ZXNlcnZlZCA6IDE2OwoKVGhhdCBsb29rcyBsaWtlIHR3byB1MTYncyB0byBtZS4gOykKCkJSLApK
-YW5pLgoKCj4gK30gX19wYWNrZWQ7Cj4gKwo+ICBzdHJ1Y3QgYmRiX2xmcF9iYWNrbGlnaHRfZGF0
-YSB7Cj4gIAl1OCBlbnRyeV9zaXplOwo+ICAJc3RydWN0IGxmcF9iYWNrbGlnaHRfZGF0YV9lbnRy
-eSBkYXRhWzE2XTsKPiAtCXU4IGxldmVsWzE2XTsKPiArCXU4IGxldmVsWzE2XTsgLyogT2Jzb2xl
-dGUgZnJvbSAyMzQrICovCj4gIAlzdHJ1Y3QgbGZwX2JhY2tsaWdodF9jb250cm9sX21ldGhvZCBi
-YWNrbGlnaHRfY29udHJvbFsxNl07Cj4gKwlzdHJ1Y3QgbGZwX2JhY2tsaWdodF9sZXZlbCBiYWNr
-bGlnaHRfbGV2ZWxbMTZdOwkJLyogMjM0KyAqLwo+ICsJc3RydWN0IGxmcF9iYWNrbGlnaHRfbGV2
-ZWwgYmFja2xpZ2h0X21pbl9sZXZlbFsxNl07CS8qIDIzNCsgKi8KPiArCXU4IGJhY2tsaWdodF9w
-cmVjaXNpb25fYml0c1sxNl07CQkJCQkvKiAyMzYrICovCj4gIH0gX19wYWNrZWQ7Cj4gIAo+ICAv
-KgoKLS0gCkphbmkgTmlrdWxhLCBJbnRlbCBPcGVuIFNvdXJjZSBHcmFwaGljcyBDZW50ZXIKX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1h
-aWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMu
-ZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
+On Mon, Oct 05, 2020 at 09:32:22PM +0000, Shankar, Uma wrote:
+> =
+
+> =
+
+> > -----Original Message-----
+> > From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> > Sent: Tuesday, September 29, 2020 9:44 PM
+> > To: Shankar, Uma <uma.shankar@intel.com>
+> > Cc: intel-gfx@lists.freedesktop.org
+> > Subject: Re: [v6 03/11] drm/i915/display: Attach HDR property for capab=
+le Gen9
+> > devices
+> > =
+
+> > On Tue, Sep 15, 2020 at 02:30:39AM +0530, Uma Shankar wrote:
+> > > Attach HDR property for Gen9 devices with MCA LSPCON chips.
+> > >
+> > > v2: Cleaned HDR property attachment logic based on capability as per
+> > > Jani Nikula's suggestion.
+> > >
+> > > Signed-off-by: Uma Shankar <uma.shankar@intel.com>
+> > > ---
+> > >  drivers/gpu/drm/i915/display/intel_lspcon.c | 5 +++++
+> > >  1 file changed, 5 insertions(+)
+> > >
+> > > diff --git a/drivers/gpu/drm/i915/display/intel_lspcon.c
+> > > b/drivers/gpu/drm/i915/display/intel_lspcon.c
+> > > index 5e2d7ca1d20f..fd05210f4405 100644
+> > > --- a/drivers/gpu/drm/i915/display/intel_lspcon.c
+> > > +++ b/drivers/gpu/drm/i915/display/intel_lspcon.c
+> > > @@ -626,6 +626,11 @@ bool lspcon_init(struct intel_digital_port
+> > > *dig_port)
+> > >
+> > >  	lspcon_detect_hdr_capability(lspcon);
+> > >
+> > > +	if (lspcon->hdr_supported)
+> > > +		drm_object_attach_property(&connector->base,
+> > > +					   connector->dev-
+> > >mode_config.hdr_output_metadata_property,
+> > > +					   0);
+> > =
+
+> > Hmm. This hdr capability detection is going to cause us extra grief whe=
+n looking
+> > at Kai-Heng's patch to defer lspcon detection until hotplug time. Not q=
+uite sure
+> > what to do about that though.
+> =
+
+> Yeah Ville, saw your comments and with Kai's change merge, I am thinking =
+how to attach
+> this dynamically. =
+
+
+Not allowed. =
+
+
+> =
+
+> Can we just assume that Lspcon will support HDR as is the case in Gen9. W=
+e can just attach this
+> unconditionally at init if Lspcon is exposed from VBT. Will this be accep=
+table or Any better ideas ?
+
+I have no idea what these lspcon chips supports since -ENODOCS.
+
+The only idea I have is to attempt an early probe for this, and if it
+fails on some chips due to hpd not being asserted so be it.
+
+>  =
+
+> > > +
+> > >  	connector->ycbcr_420_allowed =3D true;
+> > >  	lspcon->active =3D true;
+> > >  	DRM_DEBUG_KMS("Success: LSPCON init\n");
+> > > --
+> > > 2.26.2
+> > =
+
+> > --
+> > Ville Syrj=E4l=E4
+> > Intel
+
+-- =
+
+Ville Syrj=E4l=E4
+Intel
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
