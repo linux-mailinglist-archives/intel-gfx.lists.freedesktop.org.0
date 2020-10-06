@@ -2,78 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7BF2A28506C
-	for <lists+intel-gfx@lfdr.de>; Tue,  6 Oct 2020 19:03:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 69FB928431F
+	for <lists+intel-gfx@lfdr.de>; Tue,  6 Oct 2020 02:01:39 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CB5026E4CA;
-	Tue,  6 Oct 2020 17:03:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 55E4A6E1B3;
+	Tue,  6 Oct 2020 00:01:36 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from nat-hk.nvidia.com (nat-hk.nvidia.com [203.18.50.4])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E1E346E1B7;
- Mon,  5 Oct 2020 23:57:00 +0000 (UTC)
-Received: from HKMAIL102.nvidia.com (Not Verified[10.18.92.77]) by
- nat-hk.nvidia.com (using TLS: TLSv1.2, AES256-SHA)
- id <B5f7bb2c80000>; Tue, 06 Oct 2020 07:56:56 +0800
-Received: from HKMAIL104.nvidia.com (10.18.16.13) by HKMAIL102.nvidia.com
- (10.18.16.11) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Mon, 5 Oct
- 2020 23:56:54 +0000
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com (104.47.70.107)
- by HKMAIL104.nvidia.com (10.18.16.13) with Microsoft SMTP Server (TLS) id
- 15.0.1473.3 via Frontend Transport; Mon, 5 Oct 2020 23:56:54 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=dipvrrvzmQtdftM3EV0BGWuO8jt44pKFHgZqNjLwaSAnYNHejDNtU95If8O/ycCi0TcG8FYGiMIa8E/dubdFbFecErYGZVIMoqjaVns6mO14qqT4NkGrZZQfx+xAHYyNUv7dJHu3jKGRCOZMu39F1zj4uMtaRWKT2iZ+xl1P0a7W+RwOQxsXhizkpK+IV09UAKWrasmkfjsJUkI8ccs/26uSji/LtUTWlv/gEFW3GfRgjY59QDcfIWXl7oqNI+5+cqZAdVXpbR8sT+egfJRNYb4ehAnkPJwfVmRXr94zdrP80z+Vkbh9yhw4mnEbQE26mjZhdE9b8Do6qDQDqKUWiw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=eC//KVXSEK8lQeTwFlktPVzROBgORX/GvC90m/bkQQc=;
- b=jR5TALhaA+6B5WJ+ZJO1fk8+deV4hrQMa98hXPB6rWUNRJC/plXORE7LLO/au1zXgbNTZsy1oyZOp/ywVdIDx1n9y9wP793/JTRJCotNmHeYRkm1FrxnORNtnEWoQFvN5c8hEVlA+waV5LFrM4SCpBMi3TmT3nwujr5v4/Zh8awuk5z3/DBjJ8NNk32n3F/PccjC7JPIHbjJnENtfeReUHsC3yy1gKbNeHbveeedRS1IdEiKIaOVGtdSixJ56VsMtP2W6AmBGGYmEUjlTlEOtjWEQSMcNQ2ktXkR1PueT4ItpYZcuwQqsnchPWnMLqFRkxpEa/EYv1VQlofdqER0Tw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-Received: from DM6PR12MB3834.namprd12.prod.outlook.com (2603:10b6:5:14a::12)
- by DM5PR1201MB0201.namprd12.prod.outlook.com (2603:10b6:4:5b::21) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3433.38; Mon, 5 Oct
- 2020 23:56:51 +0000
-Received: from DM6PR12MB3834.namprd12.prod.outlook.com
- ([fe80::cdbe:f274:ad65:9a78]) by DM6PR12MB3834.namprd12.prod.outlook.com
- ([fe80::cdbe:f274:ad65:9a78%7]) with mapi id 15.20.3433.044; Mon, 5 Oct 2020
- 23:56:51 +0000
-Date: Mon, 5 Oct 2020 20:56:50 -0300
-From: Jason Gunthorpe <jgg@nvidia.com>
-To: Leon Romanovsky <leon@kernel.org>
-Message-ID: <20201005235650.GA89159@nvidia.com>
-References: <20201004154340.1080481-1-leon@kernel.org>
-Content-Disposition: inline
-In-Reply-To: <20201004154340.1080481-1-leon@kernel.org>
-X-ClientProxiedBy: MN2PR08CA0025.namprd08.prod.outlook.com
- (2603:10b6:208:239::30) To DM6PR12MB3834.namprd12.prod.outlook.com
- (2603:10b6:5:14a::12)
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 5F72C6E1B3;
+ Tue,  6 Oct 2020 00:01:34 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 5752BA47E2;
+ Tue,  6 Oct 2020 00:01:34 +0000 (UTC)
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from mlx.ziepe.ca (156.34.48.30) by
- MN2PR08CA0025.namprd08.prod.outlook.com (2603:10b6:208:239::30) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3433.39 via Frontend
- Transport; Mon, 5 Oct 2020 23:56:51 +0000
-Received: from jgg by mlx with local (Exim 4.94)	(envelope-from
- <jgg@nvidia.com>)	id 1kPaLa-000NDN-DP; Mon, 05 Oct 2020 20:56:50 -0300
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
- t=1601942216; bh=eC//KVXSEK8lQeTwFlktPVzROBgORX/GvC90m/bkQQc=;
- h=ARC-Seal:ARC-Message-Signature:ARC-Authentication-Results:Date:
- From:To:CC:Subject:Message-ID:References:Content-Type:
- Content-Disposition:In-Reply-To:X-ClientProxiedBy:MIME-Version:
- X-MS-Exchange-MessageSentRepresentingType;
- b=k5CtK4UbOhkQN8n8jvbhpqmHp02fFysPyRIi6D8HbfXOgIm85IeTsS3fP2OWpiqpz
- bfGeMGKFMvNRWoo5ZcCn0wv20bBKSPopEpcE5yqeXgceYo5Ii/daTLCH/fh2uqTUgB
- m5bmcWKrJmUgXpU4heuEft2eocN7WhutKb7UN3Ju4gSjvltb8VZl3kzyC9AYJjcPvv
- OIeT84dOKm0JPZ+SGvokwaDcD9DaKd5E3mu8wd3b+fauUOjr7hHdyeigjXBHFpN1fb
- f+RqTF3d+t6Y41hdJ6balQGyPxwdQ23Ihz5dHT2Uy0wUEJUUlpUXXBDlUlJ59zVD1a
- JASor+OHDHM1A==
-X-Mailman-Approved-At: Tue, 06 Oct 2020 17:03:46 +0000
-Subject: Re: [Intel-gfx] [PATCH rdma-next v5 0/4] Dynamicaly allocate SG
- table from the pages
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Imre Deak" <imre.deak@intel.com>
+Date: Tue, 06 Oct 2020 00:01:34 -0000
+Message-ID: <160194249432.18759.5295899013452766808@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20201003001846.1271151-1-imre.deak@intel.com>
+In-Reply-To: <20201003001846.1271151-1-imre.deak@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
+ =?utf-8?q?drm/i915/tgl=3A_Fix_Combo_PHY_DPLL_fractional_divider_for_38=2E?=
+ =?utf-8?q?4MHz_ref_clock_=28rev6=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -86,54 +39,64 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: David Airlie <airlied@linux.ie>, Maor Gottlieb <maorg@nvidia.com>,
- intel-gfx@lists.freedesktop.org, Roland Scheidegger <sroland@vmware.com>,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- linux-rdma@vger.kernel.org, Doug Ledford <dledford@redhat.com>, VMware
- Graphics <linux-graphics-maintainer@vmware.com>,
- Leon Romanovsky <leonro@nvidia.com>, Christoph Hellwig <hch@lst.de>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Sun, Oct 04, 2020 at 06:43:36PM +0300, Leon Romanovsky wrote:
-> This series extends __sg_alloc_table_from_pages to allow chaining of
-> new pages to already initialized SG table.
-> 
-> This allows for the drivers to utilize the optimization of merging contiguous
-> pages without a need to pre allocate all the pages and hold them in
-> a very large temporary buffer prior to the call to SG table initialization.
-> 
-> The second patch changes the Infiniband driver to use the new API. It
-> removes duplicate functionality from the code and benefits the
-> optimization of allocating dynamic SG table from pages.
-> 
-> In huge pages system of 2MB page size, without this change, the SG table
-> would contain x512 SG entries.
-> E.g. for 100GB memory registration:
-> 
->              Number of entries      Size
->     Before        26214400          600.0MB
->     After            51200            1.2MB
-> 
-> Thanks
-> 
-> Maor Gottlieb (2):
->   lib/scatterlist: Add support in dynamic allocation of SG table from
->     pages
->   RDMA/umem: Move to allocate SG table from pages
-> 
-> Tvrtko Ursulin (2):
->   tools/testing/scatterlist: Rejuvenate bit-rotten test
->   tools/testing/scatterlist: Show errors in human readable form
+== Series Details ==
 
-This looks OK, I'm going to send it into linux-next on the hmm tree
-for awhile to see if anything gets broken. If there is more
-remarks/tags/etc please continue
+Series: drm/i915/tgl: Fix Combo PHY DPLL fractional divider for 38.4MHz ref clock (rev6)
+URL   : https://patchwork.freedesktop.org/series/82173/
+State : warning
 
-Thanks,
-Jason
+== Summary ==
+
+$ dim sparse --fast origin/drm-tip
+Sparse version: v0.6.2
+Fast mode used, each commit won't be checked separately.
+-
++drivers/gpu/drm/i915/gt/intel_reset.c:1312:5: warning: context imbalance in 'intel_gt_reset_trylock' - different lock contexts for basic block
++drivers/gpu/drm/i915/gvt/mmio.c:290:23: warning: memcpy with byte count of 279040
++drivers/gpu/drm/i915/i915_perf.c:1440:15: warning: memset with byte count of 16777216
++drivers/gpu/drm/i915/i915_perf.c:1494:15: warning: memset with byte count of 16777216
++./include/linux/seqlock.h:752:24: warning: trying to copy expression type 31
++./include/linux/seqlock.h:778:16: warning: trying to copy expression type 31
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_read16' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_read32' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_read64' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_read8' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_write16' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_write32' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_write8' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_read16' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_read32' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_read64' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_read8' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_write16' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_write32' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_write8' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_read16' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_read32' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_read64' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_read8' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_write16' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_write32' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_write8' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_read16' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_read32' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_read64' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_read8' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_write16' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_write32' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_write8' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen8_write16' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen8_write32' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen8_write8' - different lock contexts for basic block
+
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
