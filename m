@@ -2,53 +2,43 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 058CC285A44
-	for <lists+intel-gfx@lfdr.de>; Wed,  7 Oct 2020 10:15:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5FBB3285AAD
+	for <lists+intel-gfx@lfdr.de>; Wed,  7 Oct 2020 10:42:19 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 83B6B6E231;
-	Wed,  7 Oct 2020 08:15:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C68E16E23B;
+	Wed,  7 Oct 2020 08:42:17 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ot1-x344.google.com (mail-ot1-x344.google.com
- [IPv6:2607:f8b0:4864:20::344])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 393456E054
- for <intel-gfx@lists.freedesktop.org>; Wed,  7 Oct 2020 08:15:44 +0000 (UTC)
-Received: by mail-ot1-x344.google.com with SMTP id f37so1385990otf.12
- for <intel-gfx@lists.freedesktop.org>; Wed, 07 Oct 2020 01:15:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=pzPWUp2kZLxPkBgPS5CFIuIDZhRYDXybDPGOe+gkyjk=;
- b=Sk5u8ZJACW67ugyj/T0pqGfKZwFhZ6QzSMPb8GHncNSoFSXz5ceYEjUiMY2g1VWlur
- akMu3IMZ04idCFQMJIH1qTYbGm9PtJrZDJY7cTSUMyHD2kqt0HmBgZwTu+2zWdQFbvWW
- DnFXUIWNgYS5d6BaKP/BYCJ/koUmUcIdl08hI=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=pzPWUp2kZLxPkBgPS5CFIuIDZhRYDXybDPGOe+gkyjk=;
- b=CLKOD0pPnyUHmyMb5Vaxa0yJs1+/jxPULDt9EQ64y25o3/C5cUv5Zo+asuC8sSWZDP
- OEQz4aHrUOfiBHmXwJtGsZm3sKktCYUyYaKbXN2gwPh/cvVqeoZTzw/dAFIbCKnLr1Yx
- hRLKG1zV9IAJa7Of1/imF4JwWwGpOt+5lW3UE4LAuzQZFVSKFP3exEZoT3PAgPlJulG0
- jqaVJj8mk3BUqqIwVegMVNMHAHyix0CaRQDT+sN0IjDpG9O2h77sRwM/wgnWOYxQ2pG2
- 6ydZ/gTSr+JNawgzqoU8CXihVmE0w88kClT0xCQjiTwkXfQeAcphnjrh8u1M05iZJFhA
- yIPQ==
-X-Gm-Message-State: AOAM5329iuqh4PjBqEOIFwSH19pHPqodO5wK2wjqsh4VUIx+IXATnMxR
- td7U5JDytmCtYCtCasBYmWFD35VG3YDPdSu5Pmog4A==
-X-Google-Smtp-Source: ABdhPJy+YbYFDPa0+x1zr9PWGe0p0SDWhe7AMwlm685FYFp9ntA32GbX8DL6dp85EDg+Q3d+DRjums1alXx8QoNeihU=
-X-Received: by 2002:a05:6830:1e56:: with SMTP id
- e22mr1110002otj.303.1602058542439; 
- Wed, 07 Oct 2020 01:15:42 -0700 (PDT)
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3C8D96E23B
+ for <intel-gfx@lists.freedesktop.org>; Wed,  7 Oct 2020 08:42:16 +0000 (UTC)
+IronPort-SDR: d6tPWvWLShLmJ/kTl+Iu6ihpRoIBqtGfg29UUxHtY8cdt99Otc8CVsJHzgwZrmEI+QTXisxg3H
+ zqUtgpthw1PQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9766"; a="144780454"
+X-IronPort-AV: E=Sophos;i="5.77,346,1596524400"; d="scan'208";a="144780454"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Oct 2020 01:42:15 -0700
+IronPort-SDR: 12MK1rBvt+uEw6GkXgZmw1XKQgLUsyGg0pdqfKCJAawt36rPhHoABBZCNHZgf1NeeaTR2YpWtX
+ xvD7kCPu9jxg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.77,346,1596524400"; d="scan'208";a="311646083"
+Received: from gaia.fi.intel.com ([10.237.72.192])
+ by orsmga003.jf.intel.com with ESMTP; 07 Oct 2020 01:42:14 -0700
+Received: by gaia.fi.intel.com (Postfix, from userid 1000)
+ id 782C85C2038; Wed,  7 Oct 2020 11:40:47 +0300 (EEST)
+From: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
+In-Reply-To: <20201006094653.7558-1-chris@chris-wilson.co.uk>
+References: <20201002153256.28695-1-chris@chris-wilson.co.uk>
+ <20201006094653.7558-1-chris@chris-wilson.co.uk>
+Date: Wed, 07 Oct 2020 11:40:47 +0300
+Message-ID: <87ft6qfmy8.fsf@gaia.fi.intel.com>
 MIME-Version: 1.0
-References: <20201004154340.1080481-1-leon@kernel.org>
- <20201005235650.GA89159@nvidia.com>
- <20201006104122.GA438822@phenom.ffwll.local> <20201006114627.GE5177@ziepe.ca>
-In-Reply-To: <20201006114627.GE5177@ziepe.ca>
-From: Daniel Vetter <daniel@ffwll.ch>
-Date: Wed, 7 Oct 2020 10:15:31 +0200
-Message-ID: <CAKMK7uG5UOS5360_HjJyroLE8b+6wrhT291PaqjFbii+BT7+Hg@mail.gmail.com>
-To: Jason Gunthorpe <jgg@ziepe.ca>
-Subject: Re: [Intel-gfx] [PATCH rdma-next v5 0/4] Dynamicaly allocate SG
- table from the pages
+Subject: Re: [Intel-gfx] [PATCH v3] drm/i915/gt: Track the most recent pulse
+ for the heartbeat
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,100 +51,74 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Leon Romanovsky <leon@kernel.org>, David Airlie <airlied@linux.ie>,
- Maor Gottlieb <maorg@nvidia.com>, intel-gfx <intel-gfx@lists.freedesktop.org>,
- Roland Scheidegger <sroland@vmware.com>,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
- dri-devel <dri-devel@lists.freedesktop.org>,
- linux-rdma <linux-rdma@vger.kernel.org>, Doug Ledford <dledford@redhat.com>,
- VMware Graphics <linux-graphics-maintainer@vmware.com>,
- Leon Romanovsky <leonro@nvidia.com>, Christoph Hellwig <hch@lst.de>
+Cc: Chris Wilson <chris@chris-wilson.co.uk>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Oct 7, 2020 at 9:22 AM Jason Gunthorpe <jgg@ziepe.ca> wrote:
-> On Tue, Oct 06, 2020 at 12:41:22PM +0200, Daniel Vetter wrote:
-> > On Mon, Oct 05, 2020 at 08:56:50PM -0300, Jason Gunthorpe wrote:
-> > > On Sun, Oct 04, 2020 at 06:43:36PM +0300, Leon Romanovsky wrote:
-> > > > This series extends __sg_alloc_table_from_pages to allow chaining of
-> > > > new pages to already initialized SG table.
-> > > >
-> > > > This allows for the drivers to utilize the optimization of merging contiguous
-> > > > pages without a need to pre allocate all the pages and hold them in
-> > > > a very large temporary buffer prior to the call to SG table initialization.
-> > > >
-> > > > The second patch changes the Infiniband driver to use the new API. It
-> > > > removes duplicate functionality from the code and benefits the
-> > > > optimization of allocating dynamic SG table from pages.
-> > > >
-> > > > In huge pages system of 2MB page size, without this change, the SG table
-> > > > would contain x512 SG entries.
-> > > > E.g. for 100GB memory registration:
-> > > >
-> > > >              Number of entries      Size
-> > > >     Before        26214400          600.0MB
-> > > >     After            51200            1.2MB
-> > > >
-> > > > Thanks
-> > > >
-> > > > Maor Gottlieb (2):
-> > > >   lib/scatterlist: Add support in dynamic allocation of SG table from
-> > > >     pages
-> > > >   RDMA/umem: Move to allocate SG table from pages
-> > > >
-> > > > Tvrtko Ursulin (2):
-> > > >   tools/testing/scatterlist: Rejuvenate bit-rotten test
-> > > >   tools/testing/scatterlist: Show errors in human readable form
-> > >
-> > > This looks OK, I'm going to send it into linux-next on the hmm tree
-> > > for awhile to see if anything gets broken. If there is more
-> > > remarks/tags/etc please continue
-> >
-> > An idea that just crossed my mind: A pin_user_pages_sgt might be useful
-> > for both rdma and drm, since this would avoid the possible huge interim
-> > struct pages array for thp pages. Or anything else that could be coalesced
-> > down into a single sg entry.
-> >
-> > Not sure it's worth it, but would at least give a slightly neater
-> > interface I think.
+Chris Wilson <chris@chris-wilson.co.uk> writes:
+
+> Since we track the idle_pulse for flushing the barriers and avoid
+> re-emitting the pulse upon idling if no futher action is required, this
+> also impacts the heartbeat. Before emitting a fresh heartbeat, we look
+> at the engine idle status and assume that if the pulse was the last
+> request emitted along the heartbeat, the engine is idling and a
+> heartbeat pulse not required. This assumption fails, but we can reuse
+> the idle pulse as the heartbeat if we are yet to emit one, and so track
+> the status of that pulse for our engine health check.
 >
-> We've talked about it. Christoph wants to see this area move to a biovec
-> interface instead of sgl, but it might still be worthwhile to have an
-> interm step at least as an API consolidation.
+> This impacts tgl/rcs0 as we rely on the heartbeat for our healthcheck for
+> the normal preemption detection mechanism is disabled by default.
+>
+> Testcase: igt/gem_exec_schedule/preempt-hang/rcs0 #tgl
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 
-Hm but then we'd need a new struct for the mapped side of things
-(which would still be what you get from dma-buf). That would be quite
-a bit of work to roll out everywhere, and sgt isn't such a huge misfit
-for passing buffer object mappings and system memory backing storage
-around, and hence what we (very slowly) converging drivers/gpu towards
-over the past 10 years or so.
+Reviewed-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
 
-And moving the dma_map step out of dma-buf doesn't work, because some
-of the use-cases we have is for very special iommus which are managed
-by the gpu driver directly. Stuff that e.g. rotates/retiles/compresses
-on the fly, and is accessible by other (gfx related like video code,
-camera, ..) devices. Not something I expect to ever be relevant for
-rdma since this exist mostly on some small soc, but it's a thing.
-Without that dma-buf could hand out biovec for struct_page backed
-stuff, or some pfn_vec for the p2p stuff.
-
-Anyway was just an idea, I guess we'll have to live with some
-impedance mismatch since rolling out the one an only iovec structure
-which suits everyone is I think impossible :-)
-
-> Avoiding the page list would be complicated as we'd somehow have to
-> code share the page table iterator scheme.
-
-We're (slowly) getting towards thp for vram mappings and everything so
-I guess for drivers/gpu we might make that happen. But yeah it'd be
-not so pretty I think.
--Daniel
--- 
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
+> ---
+>  drivers/gpu/drm/i915/gt/intel_engine_heartbeat.c | 6 +++---
+>  1 file changed, 3 insertions(+), 3 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/gt/intel_engine_heartbeat.c b/drivers/gpu/drm/i915/gt/intel_engine_heartbeat.c
+> index 5067d0524d4b..9060385cd69e 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_engine_heartbeat.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_engine_heartbeat.c
+> @@ -41,6 +41,8 @@ static void idle_pulse(struct intel_engine_cs *engine, struct i915_request *rq)
+>  {
+>  	engine->wakeref_serial = READ_ONCE(engine->serial) + 1;
+>  	i915_request_add_active_barriers(rq);
+> +	if (!engine->heartbeat.systole && intel_engine_has_heartbeat(engine))
+> +		engine->heartbeat.systole = i915_request_get(rq);
+>  }
+>  
+>  static void show_heartbeat(const struct i915_request *rq,
+> @@ -144,8 +146,6 @@ static void heartbeat(struct work_struct *wrk)
+>  		goto unlock;
+>  
+>  	idle_pulse(engine, rq);
+> -	if (engine->i915->params.enable_hangcheck)
+> -		engine->heartbeat.systole = i915_request_get(rq);
+>  
+>  	__i915_request_commit(rq);
+>  	__i915_request_queue(rq, &attr);
+> @@ -153,7 +153,7 @@ static void heartbeat(struct work_struct *wrk)
+>  unlock:
+>  	mutex_unlock(&ce->timeline->mutex);
+>  out:
+> -	if (!next_heartbeat(engine))
+> +	if (!engine->i915->params.enable_hangcheck || !next_heartbeat(engine))
+>  		i915_request_put(fetch_and_zero(&engine->heartbeat.systole));
+>  	intel_engine_pm_put(engine);
+>  }
+> -- 
+> 2.20.1
+>
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
