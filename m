@@ -1,17 +1,17 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9B5812865D8
-	for <lists+intel-gfx@lfdr.de>; Wed,  7 Oct 2020 19:24:33 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 226172865D7
+	for <lists+intel-gfx@lfdr.de>; Wed,  7 Oct 2020 19:24:27 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0E03F6E987;
-	Wed,  7 Oct 2020 17:24:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7CB736E89E;
+	Wed,  7 Oct 2020 17:24:25 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 137876E987
- for <intel-gfx@lists.freedesktop.org>; Wed,  7 Oct 2020 17:24:14 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C17046E89E
+ for <intel-gfx@lists.freedesktop.org>; Wed,  7 Oct 2020 17:16:59 +0000 (UTC)
 IronPort-SDR: 551EvDGZGksBtrh+LlAMnpnlgTpglF3cxts+5Ft/Svz9lBokKZXWLSPzMfEx5ot97n/yZSrqln
  e2d9tVig4fcw==
 X-IronPort-AV: E=McAfee;i="6000,8403,9767"; a="164254694"
