@@ -2,78 +2,43 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3CC9F286AC1
-	for <lists+intel-gfx@lfdr.de>; Thu,  8 Oct 2020 00:15:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id AF7F5286ACC
+	for <lists+intel-gfx@lfdr.de>; Thu,  8 Oct 2020 00:22:47 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ECEF46E9BB;
-	Wed,  7 Oct 2020 22:15:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 42A486E9BD;
+	Wed,  7 Oct 2020 22:22:45 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [63.128.21.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E851E6E9B3
- for <intel-gfx@lists.freedesktop.org>; Wed,  7 Oct 2020 22:15:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1602108951;
- h=from:from:reply-to:reply-to:subject:subject:date:date:
- message-id:message-id:to:to:cc:mime-version:mime-version:
- content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=5M165D0YbDfVFP7K17ReWAM59eJIbbDlgmwxDwFdgew=;
- b=ITvIWSgXp/3DvbOF3Ycc5UVO0aPuKTUdf/JmwhXBe1GX+D6SqoMDDDDsJtS2ns5MX2gBen
- 9MJaHD0KrQcoyFnCWFccZFp6s2Ep76TMgcsLYC4p7mlnpeQTcztKVggsR6hTyW1FDnnJF0
- 6retAcupGFc+u5fdeOEBTZJVT+oOEcA=
-Received: from mail-qv1-f71.google.com (mail-qv1-f71.google.com
- [209.85.219.71]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-82-FcPb5RMeNkmeoKb36q2hNA-1; Wed, 07 Oct 2020 18:15:50 -0400
-X-MC-Unique: FcPb5RMeNkmeoKb36q2hNA-1
-Received: by mail-qv1-f71.google.com with SMTP id k14so2288397qvw.20
- for <intel-gfx@lists.freedesktop.org>; Wed, 07 Oct 2020 15:15:50 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:message-id:subject:from:reply-to:to:date
- :in-reply-to:references:organization:user-agent:mime-version
- :content-transfer-encoding;
- bh=5M165D0YbDfVFP7K17ReWAM59eJIbbDlgmwxDwFdgew=;
- b=NGbs7IGEw2c1MKAVnesjsNkbSE+nFSJMOrsgAMyqZWBeFl8yRYltj5uvyGg/bevBX4
- ylHh55TJQUzyBNL0yt+pHimr9Y8T6SOqqs6EB5jkWeRl/eQR4x12uNV89hKDjqF/Kaoz
- 90itP1RB2l/G7tfEPAND2ziZQd46CSEh3xCxwDBQb7nZkNrSS05+yfMJIhS7aUaFN66V
- CXXqf2cTJ0BAoLDoENr2HPFtSausaM4he30gJ8KHOtq6ZO0E75HR82auLvpQ+6CEdwhD
- kX/pFx0z9BSzK4ET2hVdycswILBWEdKY1GFdjm5TIsho0OImEqeE8TcbFQOLQX15WRbU
- T/cw==
-X-Gm-Message-State: AOAM5321f9JysveLgYJ86us7N5mz6X0TqaMGLyN+lfYzzZCg08uVPa0R
- oZTKyGQr8JP9sQCpY0JhTdbMej0uJvlrIf0+u8QMOoY9svmiZR9p1raW7VeOzh7d5+KxhKdeKcO
- S8o/Y+e/mTlvwBbv2t4xiwlgWQG1S
-X-Received: by 2002:a05:620a:98a:: with SMTP id
- x10mr5234026qkx.328.1602108949631; 
- Wed, 07 Oct 2020 15:15:49 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJyD1v+dq+H603HNgfDgH2J2HEiHAnKzj/tmcHyzWumAJ1MLgOncCS8Vnr+OaQG2Il9fDWmJqA==
-X-Received: by 2002:a05:620a:98a:: with SMTP id
- x10mr5233985qkx.328.1602108949155; 
- Wed, 07 Oct 2020 15:15:49 -0700 (PDT)
-Received: from Whitewolf.lyude.net
- (pool-108-49-102-102.bstnma.fios.verizon.net. [108.49.102.102])
- by smtp.gmail.com with ESMTPSA id t65sm2347344qkc.52.2020.10.07.15.15.48
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 07 Oct 2020 15:15:48 -0700 (PDT)
-Message-ID: <2991edbd9a251af62cfb707870466764388d57ee.camel@redhat.com>
-From: Lyude Paul <lyude@redhat.com>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>, 
- intel-gfx@lists.freedesktop.org
-Date: Wed, 07 Oct 2020 18:15:47 -0400
-In-Reply-To: <20201007192241.10241-1-ville.syrjala@linux.intel.com>
-References: <20201006185809.4655-1-ville.syrjala@linux.intel.com>
- <20201007192241.10241-1-ville.syrjala@linux.intel.com>
-Organization: Red Hat
-User-Agent: Evolution 3.36.5 (3.36.5-1.fc32)
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8D42D6E9BD
+ for <intel-gfx@lists.freedesktop.org>; Wed,  7 Oct 2020 22:22:43 +0000 (UTC)
+IronPort-SDR: hh6U2Dm+H4sW5pDDLDu+IVt5QsXxcvcWvLGlm6SQou4sOpGvrXhd+cZWhG/MYPzosGBnG+PHI2
+ 5seBB5IgVQUw==
+X-IronPort-AV: E=McAfee;i="6000,8403,9767"; a="165222639"
+X-IronPort-AV: E=Sophos;i="5.77,348,1596524400"; d="scan'208";a="165222639"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Oct 2020 15:22:42 -0700
+IronPort-SDR: XZsVqdBolxn/T5nnI5QG6EFvaQtMshNYRxTrHhH7eToXWbOK9K85f471e0jAhZaNODZoad/cCe
+ 5LwzBanKYQ0A==
+X-IronPort-AV: E=Sophos;i="5.77,348,1596524400"; d="scan'208";a="528195604"
+Received: from lewisjos-mobl3.amr.corp.intel.com (HELO ldmartin-desk1)
+ ([10.209.51.10])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Oct 2020 15:22:42 -0700
+Date: Wed, 7 Oct 2020 15:22:41 -0700
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>
+Message-ID: <20201007222241.q4w3mal7xju3sfil@ldmartin-desk1>
+X-Patchwork-Hint: ignore
+References: <20201006143349.5561-1-ville.syrjala@linux.intel.com>
+ <20201006143349.5561-3-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
-Authentication-Results: relay.mimecast.com;
- auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=lyude@redhat.com
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
-Subject: Re: [Intel-gfx] [PATCH v2 1/3] drm/i915: Reorder hpd init vs.
- display resume
+Content-Disposition: inline
+In-Reply-To: <20201006143349.5561-3-ville.syrjala@linux.intel.com>
+Subject: Re: [Intel-gfx] [PATCH 02/20] drm/i915: s/PORT_TC/TC_PORT_TC/
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -86,211 +51,380 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: lyude@redhat.com
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: intel-gfx@lists.freedesktop.org
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="iso-8859-1"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gV2VkLCAyMDIwLTEwLTA3IGF0IDIyOjIyICswMzAwLCBWaWxsZSBTeXJqYWxhIHdyb3RlOgo+
-IEZyb206IFZpbGxlIFN5cmrDpGzDpCA8dmlsbGUuc3lyamFsYUBsaW51eC5pbnRlbC5jb20+Cj4g
-Cj4gQ3VycmVudGx5IHdlIGNhbGwgLmhwZF9pcnFfc2V0dXAoKSBkaXJlY3RseSBqdXN0IGJlZm9y
-ZSBkaXNwbGF5Cj4gcmVzdW1lLCBhbmQgZm9sbG93IGl0IHdpdGggYW5vdGhlciBjYWxsIHZpYSBp
-bnRlbF9ocGRfaW5pdCgpCj4ganVzdCBhZnRlcndhcmRzLiBBc3N1bWluZyB0aGUgaHBkIHBpbnMg
-YXJlIG1hcmtlZCBhcyBlbmFibGVkCj4gZHVyaW5nIHRoZSBvcGVuLWNvZGVkIGNhbGwgdGhlc2Ug
-dHdvIHRoaW5ncyBkbyBleGFjdGx5IHRoZQo+IHNhbWUgdGhpbmcgKGllLiBlbmFibGUgSFBEIGlu
-dGVycnVwdHMpLiBXaGljaCBldmVuIG1ha2VzIHNlbnNlCj4gc2luY2Ugd2UgZGVmaW5pdGVseSBu
-ZWVkIHdvcmtpbmcgSFBEIGludGVycnVwdHMgZm9yIE1TVCBzaWRlYmFuZAo+IGR1cmluZyB0aGUg
-ZGlzcGxheSByZXN1bWUuCj4gCj4gU28gbGV0J3MgbnVrZSB0aGUgb3Blbi1jb2RlZCBjYWxsIGFu
-ZCBtb3ZlIHRoZSBpbnRlbF9ocGRfaW5pdCgpCj4gY2FsbCBlYXJsaWVyLiBIb3dldmVyIHdlIG5l
-ZWQgdG8gbGVhdmUgdGhlIHBvbGxfaW5pdF93b3JrIHN0dWZmCj4gYmVoaW5kIGFmdGVyIHRoZSBk
-aXNwbGF5IHJlc3VtZSBhcyB0aGF0IHdpbGwgdHJpZ2dlciBkaXNwbGF5Cj4gZGV0ZWN0aW9uIHdo
-aWxlIHdlJ3JlIHJlc3VtaW5nLiBXZSBkb24ndCB3YW50IHRoYXQgdHJhbXBsaW5nIG92ZXIKPiB0
-aGUgZGlzcGxheSByZXN1bWUgcHJvY2Vzcy4gVG8gbWFrZSB0aGlzIGEgYml0IG1vcmUgc3ltbWV0
-cmljCj4gd2UgdHVybiB0aGlzIGludG8gYSBpbnRlbF9ocGRfcG9sbF97ZW5hYmxlLGRpc2FibGV9
-KCkgcGFpci4KPiBTbyB3ZSBlbmQgdXAgd2l0aCB0aGUgZm9sbG93aW5nIHRyYW5zZm9ybWF0aW9u
-Ogo+IGludGVsX2hwZF9wb2xsX2luaXQoKSAtPiBpbnRlbF9ocGRfcG9sbF9lbmFibGUoKQo+IGxv
-bmUgaW50ZWxfaHBkX2luaXQoKSAtPiBpbnRlbF9ocGRfaW5pdCgpK2ludGVsX2hwZF9wb2xsX2Rp
-c2FibGUoKQo+IC5ocGRfaXJxX3NldHVwKCkrcmVzdW1lK2ludGVsX2hwZF9pbml0KCkgLT4KPiBp
-bnRlbF9ocGRfaW5pdCgpK3Jlc3VtZStpbnRlbF9ocGRfcG9sbF9kaXNhYmxlKCkKPiAKPiBJZiB3
-ZSByZWFsbHkgd291bGQgbGlrZSB0byBwcmV2ZW50IGFsbCAqbG9uZyogSFBEIHByb2Nlc3Npbmcg
-ZHVyaW5nCj4gZGlzcGxheSByZXN1bWUgd2UnZCBuZWVkIHNvbWUga2luZCBvZiBzb2Z0d2FyZSBt
-ZWNoYW5pc20gdG8gc2ltcGx5Cj4gaWdub3JlIGFsbCBsb25nIEhQRHMuIEN1cnJlbnRseSB3ZSBh
-cHBlYXIgdG8gaGF2ZSB0aGF0IGp1c3QgZm9yCj4gZmJkZXYgdmlhIGlmYmRldi0+aHBkX3N1c3Bl
-bmRlZC4gU2luY2Ugd2UgYXJlbid0IGV4cGxvZGluZyBsZWZ0IGFuZAo+IHJpZ2h0IGFsbCB0aGUg
-dGltZSBJIGd1ZXNzIHRoYXQncyBtb3N0bHkgc3VmZmljaWVudC4KPiAKPiBGb3IgYSBiaXQgb2Yg
-aGlzdG9yeSBvbiB0aGlzLCB3ZSBmaXJzdCBnb3QgYSBtZWNoYW5pc20gdG8gYmxvY2sKPiBob3Rw
-bHVnIHByb2Nlc3NpbmcgZHVyaW5nIHN1c3BlbmQgaW4gY29tbWl0IDE1MjM5MDk5ZDdhNyAoImRy
-bS9pOTE1Ogo+IGVuYWJsZSBpcnFzIGVhcmxpZXIgd2hlbiByZXN1bWluZyIpIG9uIGFjY291bnQg
-b2YgbW92aW5nIHRoZSBpcnEgZW5hYmxlCj4gZWFybGllci4gVGhpcyB0aGVuIGdvdCByZW1vdmVk
-IGluIGNvbW1pdCA1MGMzZGM5NzBhMDkgKCJkcm0vZmItaGVscGVyOgo+IEZpeCBocGQgdnMuIGlu
-aXRpYWwgY29uZmlnIHJhY2VzIikgYmVjYXVzZSB0aGUgZmRldiBpbml0aWFsIGNvbmZpZwo+IGdv
-dCBwdXNoZWQgdG8gYSBsYXRlciBwb2ludC4gVGhlIHNlY29uZCBhZC1ob2MgaHBkX2lycV9zZXR1
-cCgpIGZvcgo+IHJlc3VtZSB3YXMgYWRkZWQgaW4gY29tbWl0IDBlMzJiMzljZWVkNiAoImRybS9p
-OTE1OiBhZGQgRFAgMS4yIE1TVAo+IHN1cHBvcnQgKHYwLjcpIikgdG8gYmUgYWJsZSB0byBkbyBN
-U1Qgc2lkZWJhbmQgZHVyaW5nIHRoZSByZXN1bWUuCj4gQW5kIGZpbmFsbHkgd2UgZ290IGEgcGFy
-dGlhbCByZXN1cnJlY3Rpb24gb2YgdGhlIGhwZCBibG9ja2luZwo+IG1lY2hhbmlzbSBpbiBjb21t
-aXQgZThhOGZlZGQ1N2ZkICgiZHJtL2k5MTU6IEJsb2NrIGZiZGV2IEhQRAo+IHByb2Nlc3Npbmcg
-ZHVyaW5nIHN1c3BlbmQiKSwgYnV0IHRoaXMgdGltZSBpdCBvbmx5IHByZXZlbnQgZmJkZXYKPiBm
-cm9tIGhhbmRsaW5nIGhwZCB3aGlsZSByZXN1bWluZy4KPiAKPiB2MjogTGVhdmUgdGhlIHBvbGxf
-aW5pdF93b3JrIGJlaGluZAo+IAo+IENjOiBMeXVkZSBQYXVsIDxseXVkZUByZWRoYXQuY29tPgo+
-IFNpZ25lZC1vZmYtYnk6IFZpbGxlIFN5cmrDpGzDpCA8dmlsbGUuc3lyamFsYUBsaW51eC5pbnRl
-bC5jb20+Cj4gLS0tCj4gIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxh
-eS5jICB8ICA5ICsrLS0KPiAgLi4uL2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheV9wb3dl
-ci5jICAgIHwgIDMgKy0KPiAgZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9ob3Rw
-bHVnLmMgIHwgNDIgKysrKysrKysrKysrKystLS0tLQo+ICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9k
-aXNwbGF5L2ludGVsX2hvdHBsdWcuaCAgfCAgMyArLQo+ICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9p
-OTE1X2Rydi5jICAgICAgICAgICAgICAgfCAyMyArKysrLS0tLS0tCj4gIDUgZmlsZXMgY2hhbmdl
-ZCwgNDYgaW5zZXJ0aW9ucygrKSwgMzQgZGVsZXRpb25zKC0pCj4gCj4gZGlmZiAtLWdpdCBhL2Ry
-aXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheS5jCj4gYi9kcml2ZXJzL2dw
-dS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXkuYwo+IGluZGV4IDkwN2UxZDE1NTQ0My4u
-MGQ1NjA3YWU5N2M0IDEwMDY0NAo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkv
-aW50ZWxfZGlzcGxheS5jCj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRl
-bF9kaXNwbGF5LmMKPiBAQCAtNTAzNiwxOCArNTAzNiwxNSBAQCB2b2lkIGludGVsX2ZpbmlzaF9y
-ZXNldChzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZQo+ICpkZXZfcHJpdikKPiAgCQlpbnRlbF9wcHNf
-dW5sb2NrX3JlZ3Nfd2EoZGV2X3ByaXYpOwo+ICAJCWludGVsX21vZGVzZXRfaW5pdF9odyhkZXZf
-cHJpdik7Cj4gIAkJaW50ZWxfaW5pdF9jbG9ja19nYXRpbmcoZGV2X3ByaXYpOwo+IC0KPiAtCQlz
-cGluX2xvY2tfaXJxKCZkZXZfcHJpdi0+aXJxX2xvY2spOwo+IC0JCWlmIChkZXZfcHJpdi0+ZGlz
-cGxheS5ocGRfaXJxX3NldHVwKQo+IC0JCQlkZXZfcHJpdi0+ZGlzcGxheS5ocGRfaXJxX3NldHVw
-KGRldl9wcml2KTsKPiAtCQlzcGluX3VubG9ja19pcnEoJmRldl9wcml2LT5pcnFfbG9jayk7Cj4g
-KwkJaW50ZWxfaHBkX2luaXQoZGV2X3ByaXYpOwo+ICsJCWludGVsX2hwZF9wb2xsX2Rpc2FibGUo
-ZGV2X3ByaXYpOwo+ICAKPiAgCQlyZXQgPSBfX2ludGVsX2Rpc3BsYXlfcmVzdW1lKGRldiwgc3Rh
-dGUsIGN0eCk7Cj4gIAkJaWYgKHJldCkKPiAgCQkJZHJtX2VycigmZGV2X3ByaXYtPmRybSwKPiAg
-CQkJCSJSZXN0b3Jpbmcgb2xkIHN0YXRlIGZhaWxlZCB3aXRoICVpXG4iLCByZXQpOwo+ICAKPiAt
-CQlpbnRlbF9ocGRfaW5pdChkZXZfcHJpdik7Cj4gKwkJaW50ZWxfaHBkX3BvbGxfZGlzYWJsZShk
-ZXZfcHJpdik7CgpMb29rcyBsaWtlIHlvdSdyZSBjYWxsaW5nIGludGVsX2hwZF9wb2xsX2Rpc2Fi
-bGUoKSB0d2ljZSBoZXJlLCBpcyB0aGlzCmludGVudGlvbmFsPwoKPiAgCX0KPiAgCj4gIAlkcm1f
-YXRvbWljX3N0YXRlX3B1dChzdGF0ZSk7Cj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9p
-OTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheV9wb3dlci5jCj4gYi9kcml2ZXJzL2dwdS9kcm0vaTkx
-NS9kaXNwbGF5L2ludGVsX2Rpc3BsYXlfcG93ZXIuYwo+IGluZGV4IDcyNzdlNThiMDFmMS4uMjBk
-ZGM1NDI5OGNiIDEwMDY0NAo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50
-ZWxfZGlzcGxheV9wb3dlci5jCj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9p
-bnRlbF9kaXNwbGF5X3Bvd2VyLmMKPiBAQCAtMTQyNCw2ICsxNDI0LDcgQEAgc3RhdGljIHZvaWQg
-dmx2X2Rpc3BsYXlfcG93ZXJfd2VsbF9pbml0KHN0cnVjdAo+IGRybV9pOTE1X3ByaXZhdGUgKmRl
-dl9wcml2KQo+ICAJCXJldHVybjsKPiAgCj4gIAlpbnRlbF9ocGRfaW5pdChkZXZfcHJpdik7Cj4g
-KwlpbnRlbF9ocGRfcG9sbF9kaXNhYmxlKGRldl9wcml2KTsKPiAgCj4gIAkvKiBSZS1lbmFibGUg
-dGhlIEFEUEEsIGlmIHdlIGhhdmUgb25lICovCj4gIAlmb3JfZWFjaF9pbnRlbF9lbmNvZGVyKCZk
-ZXZfcHJpdi0+ZHJtLCBlbmNvZGVyKSB7Cj4gQEAgLTE0NDksNyArMTQ1MCw3IEBAIHN0YXRpYyB2
-b2lkIHZsdl9kaXNwbGF5X3Bvd2VyX3dlbGxfZGVpbml0KHN0cnVjdAo+IGRybV9pOTE1X3ByaXZh
-dGUgKmRldl9wcml2KQo+ICAKPiAgCS8qIFByZXZlbnQgdXMgZnJvbSByZS1lbmFibGluZyBwb2xs
-aW5nIG9uIGFjY2lkZW50IGluIGxhdGUgc3VzcGVuZCAqLwo+ICAJaWYgKCFkZXZfcHJpdi0+ZHJt
-LmRldi0+cG93ZXIuaXNfc3VzcGVuZGVkKQo+IC0JCWludGVsX2hwZF9wb2xsX2luaXQoZGV2X3By
-aXYpOwo+ICsJCWludGVsX2hwZF9wb2xsX2VuYWJsZShkZXZfcHJpdik7Cj4gIH0KPiAgCj4gIHN0
-YXRpYyB2b2lkIHZsdl9kaXNwbGF5X3Bvd2VyX3dlbGxfZW5hYmxlKHN0cnVjdCBkcm1faTkxNV9w
-cml2YXRlICpkZXZfcHJpdiwKPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlz
-cGxheS9pbnRlbF9ob3RwbHVnLmMKPiBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50
-ZWxfaG90cGx1Zy5jCj4gaW5kZXggNWM1OGMxZWQ2NDkzLi4zMGJkNGM4NmQxNDYgMTAwNjQ0Cj4g
-LS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9ob3RwbHVnLmMKPiArKysg
-Yi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2hvdHBsdWcuYwo+IEBAIC01ODQs
-NyArNTg0LDcgQEAgdm9pZCBpbnRlbF9ocGRfaXJxX2hhbmRsZXIoc3RydWN0IGRybV9pOTE1X3By
-aXZhdGUKPiAqZGV2X3ByaXYsCj4gICAqIFRoaXMgaXMgYSBzZXBhcmF0ZSBzdGVwIGZyb20gaW50
-ZXJydXB0IGVuYWJsaW5nIHRvIHNpbXBsaWZ5IHRoZSBsb2NraW5nCj4gcnVsZXMKPiAgICogaW4g
-dGhlIGRyaXZlciBsb2FkIGFuZCByZXN1bWUgY29kZS4KPiAgICoKPiAtICogQWxzbyBzZWU6IGlu
-dGVsX2hwZF9wb2xsX2luaXQoKSwgd2hpY2ggZW5hYmxlcyBjb25uZWN0b3IgcG9sbGluZwo+ICsg
-KiBBbHNvIHNlZTogaW50ZWxfaHBkX3BvbGxfZW5hYmxlKCkgYW5kIGludGVsX2hwZF9wb2xsX2Rp
-c2FibGUoKS4KPiAgICovCj4gIHZvaWQgaW50ZWxfaHBkX2luaXQoc3RydWN0IGRybV9pOTE1X3By
-aXZhdGUgKmRldl9wcml2KQo+ICB7Cj4gQEAgLTU5NSw5ICs1OTUsNiBAQCB2b2lkIGludGVsX2hw
-ZF9pbml0KHN0cnVjdCBkcm1faTkxNV9wcml2YXRlICpkZXZfcHJpdikKPiAgCQlkZXZfcHJpdi0+
-aG90cGx1Zy5zdGF0c1tpXS5zdGF0ZSA9IEhQRF9FTkFCTEVEOwo+ICAJfQo+ICAKPiAtCVdSSVRF
-X09OQ0UoZGV2X3ByaXYtPmhvdHBsdWcucG9sbF9lbmFibGVkLCBmYWxzZSk7Cj4gLQlzY2hlZHVs
-ZV93b3JrKCZkZXZfcHJpdi0+aG90cGx1Zy5wb2xsX2luaXRfd29yayk7Cj4gLQo+ICAJLyoKPiAg
-CSAqIEludGVycnVwdCBzZXR1cCBpcyBhbHJlYWR5IGd1YXJhbnRlZWQgdG8gYmUgc2luZ2xlLXRo
-cmVhZGVkLCB0aGlzIGlzCj4gIAkgKiBqdXN0IHRvIG1ha2UgdGhlIGFzc2VydF9zcGluX2xvY2tl
-ZCBjaGVja3MgaGFwcHkuCj4gQEAgLTY1NCwxMiArNjUxLDEyIEBAIHN0YXRpYyB2b2lkIGk5MTVf
-aHBkX3BvbGxfaW5pdF93b3JrKHN0cnVjdCB3b3JrX3N0cnVjdAo+ICp3b3JrKQo+ICB9Cj4gIAo+
-ICAvKioKPiAtICogaW50ZWxfaHBkX3BvbGxfaW5pdCAtIGVuYWJsZXMvZGlzYWJsZXMgcG9sbGlu
-ZyBmb3IgY29ubmVjdG9ycyB3aXRoIGhwZAo+ICsgKiBpbnRlbF9ocGRfcG9sbF9lbmFibGUgLSBl
-bmFibGUgcG9sbGluZyBmb3IgY29ubmVjdG9ycyB3aXRoIGhwZAo+ICAgKiBAZGV2X3ByaXY6IGk5
-MTUgZGV2aWNlIGluc3RhbmNlCj4gICAqCj4gLSAqIFRoaXMgZnVuY3Rpb24gZW5hYmxlcyBwb2xs
-aW5nIGZvciBhbGwgY29ubmVjdG9ycywgcmVnYXJkbGVzcyBvZiB3aGV0aGVyIG9yCj4gLSAqIG5v
-dCB0aGV5IHN1cHBvcnQgaG90cGx1ZyBkZXRlY3Rpb24uIFVuZGVyIGNlcnRhaW4gY29uZGl0aW9u
-cyBIUEQgbWF5IG5vdAo+IGJlCj4gLSAqIGZ1bmN0aW9uYWwuIE9uIG1vc3QgSW50ZWwgR1BVcywg
-dGhpcyBoYXBwZW5zIHdoZW4gd2UgZW50ZXIgcnVudGltZQo+IHN1c3BlbmQuCj4gKyAqIFRoaXMg
-ZnVuY3Rpb24gZW5hYmxlcyBwb2xsaW5nIGZvciBhbGwgY29ubmVjdG9ycyB3aGljaCBzdXBwb3J0
-IEhQRC4KPiArICogVW5kZXIgY2VydGFpbiBjb25kaXRpb25zIEhQRCBtYXkgbm90IGJlIGZ1bmN0
-aW9uYWwuIE9uIG1vc3QgSW50ZWwgR1BVcywKPiArICogdGhpcyBoYXBwZW5zIHdoZW4gd2UgZW50
-ZXIgcnVudGltZSBzdXNwZW5kLgo+ICAgKiBPbiBWYWxsZXl2aWV3IGFuZCBDaGVycnl2aWV3IHN5
-c3RlbXMsIHRoaXMgYWxzbyBoYXBwZW5zIHdoZW4gd2Ugc2h1dCBvZmYKPiBhbGwKPiAgICogb2Yg
-dGhlIHBvd2Vyd2VsbHMuCj4gICAqCj4gQEAgLTY2Nyw5ICs2NjQsOSBAQCBzdGF0aWMgdm9pZCBp
-OTE1X2hwZF9wb2xsX2luaXRfd29yayhzdHJ1Y3Qgd29ya19zdHJ1Y3QKPiAqd29yaykKPiAgICog
-ZGV2LT5tb2RlX2NvbmZpZy5tdXRleCwgd2UgZG8gdGhlIGFjdHVhbCBob3RwbHVnIGVuYWJsaW5n
-IGluIGEgc2VwZXJhdGUKPiAgICogd29ya2VyLgo+ICAgKgo+IC0gKiBBbHNvIHNlZTogaW50ZWxf
-aHBkX2luaXQoKSwgd2hpY2ggcmVzdG9yZXMgaHBkIGhhbmRsaW5nLgo+ICsgKiBBbHNvIHNlZTog
-aW50ZWxfaHBkX2luaXQoKSBhbmQgaW50ZWxfaHBkX3BvbGxfZGlzYWJsZSgpLgo+ICAgKi8KPiAt
-dm9pZCBpbnRlbF9ocGRfcG9sbF9pbml0KHN0cnVjdCBkcm1faTkxNV9wcml2YXRlICpkZXZfcHJp
-dikKPiArdm9pZCBpbnRlbF9ocGRfcG9sbF9lbmFibGUoc3RydWN0IGRybV9pOTE1X3ByaXZhdGUg
-KmRldl9wcml2KQo+ICB7Cj4gIAlXUklURV9PTkNFKGRldl9wcml2LT5ob3RwbHVnLnBvbGxfZW5h
-YmxlZCwgdHJ1ZSk7Cj4gIAo+IEBAIC02ODIsNiArNjc5LDMxIEBAIHZvaWQgaW50ZWxfaHBkX3Bv
-bGxfaW5pdChzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZQo+ICpkZXZfcHJpdikKPiAgCXNjaGVkdWxl
-X3dvcmsoJmRldl9wcml2LT5ob3RwbHVnLnBvbGxfaW5pdF93b3JrKTsKPiAgfQo+ICAKPiArLyoq
-Cj4gKyAqIGludGVsX2hwZF9wb2xsX2Rpc2FibGUgLSBkaXNhYmxlIHBvbGxpbmcgZm9yIGNvbm5l
-Y3RvcnMgd2l0aCBocGQKPiArICogQGRldl9wcml2OiBpOTE1IGRldmljZSBpbnN0YW5jZQo+ICsg
-Kgo+ICsgKiBUaGlzIGZ1bmN0aW9uIGRpc2FibGVzIHBvbGxpbmcgZm9yIGFsbCBjb25uZWN0b3Jz
-IHdoaWNoIHN1cHBvcnQgSFBELgo+ICsgKiBVbmRlciBjZXJ0YWluIGNvbmRpdGlvbnMgSFBEIG1h
-eSBub3QgYmUgZnVuY3Rpb25hbC4gT24gbW9zdCBJbnRlbCBHUFVzLAo+ICsgKiB0aGlzIGhhcHBl
-bnMgd2hlbiB3ZSBlbnRlciBydW50aW1lIHN1c3BlbmQuCj4gKyAqIE9uIFZhbGxleXZpZXcgYW5k
-IENoZXJyeXZpZXcgc3lzdGVtcywgdGhpcyBhbHNvIGhhcHBlbnMgd2hlbiB3ZSBzaHV0IG9mZgo+
-IGFsbAo+ICsgKiBvZiB0aGUgcG93ZXJ3ZWxscy4KPiArICoKPiArICogU2luY2UgdGhpcyBmdW5j
-dGlvbiBjYW4gZ2V0IGNhbGxlZCBpbiBjb250ZXh0cyB3aGVyZSB3ZSdyZSBhbHJlYWR5IGhvbGRp
-bmcKPiArICogZGV2LT5tb2RlX2NvbmZpZy5tdXRleCwgd2UgZG8gdGhlIGFjdHVhbCBob3RwbHVn
-IGVuYWJsaW5nIGluIGEgc2VwZXJhdGUKPiArICogd29ya2VyLgo+ICsgKgo+ICsgKiBBbHNvIHVz
-ZWQgZHVyaW5nIGRyaXZlciBpbml0IHRvIGluaXRpYWxpemUgY29ubmVjdG9yLT5wb2xsZWQKPiAr
-ICogYXBwcm9wcmlhdGVseSBmb3IgYWxsIGNvbm5lY3RvcnMuCj4gKyAqCj4gKyAqIEFsc28gc2Vl
-OiBpbnRlbF9ocGRfaW5pdCgpIGFuZCBpbnRlbF9ocGRfcG9sbF9lbmFibGUoKS4KPiArICovCj4g
-K3ZvaWQgaW50ZWxfaHBkX3BvbGxfZGlzYWJsZShzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqZGV2
-X3ByaXYpCj4gK3sKPiArCVdSSVRFX09OQ0UoZGV2X3ByaXYtPmhvdHBsdWcucG9sbF9lbmFibGVk
-LCBmYWxzZSk7Cj4gKwlzY2hlZHVsZV93b3JrKCZkZXZfcHJpdi0+aG90cGx1Zy5wb2xsX2luaXRf
-d29yayk7Cj4gK30KPiArCj4gIHZvaWQgaW50ZWxfaHBkX2luaXRfd29yayhzdHJ1Y3QgZHJtX2k5
-MTVfcHJpdmF0ZSAqZGV2X3ByaXYpCj4gIHsKPiAgCUlOSVRfREVMQVlFRF9XT1JLKCZkZXZfcHJp
-di0+aG90cGx1Zy5ob3RwbHVnX3dvcmssCj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9p
-OTE1L2Rpc3BsYXkvaW50ZWxfaG90cGx1Zy5oCj4gYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNw
-bGF5L2ludGVsX2hvdHBsdWcuaAo+IGluZGV4IGE3MDRkN2M5NGQxNi4uYjg3ZTk1ZDYwNmU2IDEw
-MDY0NAo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfaG90cGx1Zy5o
-Cj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9ob3RwbHVnLmgKPiBA
-QCAtMTQsNyArMTQsOCBAQCBzdHJ1Y3QgaW50ZWxfZGlnaXRhbF9wb3J0Owo+ICBzdHJ1Y3QgaW50
-ZWxfZW5jb2RlcjsKPiAgZW51bSBwb3J0Owo+ICAKPiAtdm9pZCBpbnRlbF9ocGRfcG9sbF9pbml0
-KHN0cnVjdCBkcm1faTkxNV9wcml2YXRlICpkZXZfcHJpdik7Cj4gK3ZvaWQgaW50ZWxfaHBkX3Bv
-bGxfZW5hYmxlKHN0cnVjdCBkcm1faTkxNV9wcml2YXRlICpkZXZfcHJpdik7Cj4gK3ZvaWQgaW50
-ZWxfaHBkX3BvbGxfZGlzYWJsZShzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqZGV2X3ByaXYpOwo+
-ICBlbnVtIGludGVsX2hvdHBsdWdfc3RhdGUgaW50ZWxfZW5jb2Rlcl9ob3RwbHVnKHN0cnVjdCBp
-bnRlbF9lbmNvZGVyICplbmNvZGVyLAo+ICAJCQkJCSAgICAgICBzdHJ1Y3QgaW50ZWxfY29ubmVj
-dG9yCj4gKmNvbm5lY3Rvcik7Cj4gIHZvaWQgaW50ZWxfaHBkX2lycV9oYW5kbGVyKHN0cnVjdCBk
-cm1faTkxNV9wcml2YXRlICpkZXZfcHJpdiwKPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJt
-L2k5MTUvaTkxNV9kcnYuYyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfZHJ2LmMKPiBpbmRl
-eCBlYmMxNTA2NmQxMDguLjNmYzdiOTk2ZmM0OCAxMDA2NDQKPiAtLS0gYS9kcml2ZXJzL2dwdS9k
-cm0vaTkxNS9pOTE1X2Rydi5jCj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9kcnYu
-Ywo+IEBAIC0xMjI2LDI2ICsxMjI2LDE1IEBAIHN0YXRpYyBpbnQgaTkxNV9kcm1fcmVzdW1lKHN0
-cnVjdCBkcm1fZGV2aWNlICpkZXYpCj4gIAo+ICAJaW50ZWxfbW9kZXNldF9pbml0X2h3KGRldl9w
-cml2KTsKPiAgCWludGVsX2luaXRfY2xvY2tfZ2F0aW5nKGRldl9wcml2KTsKPiArCWludGVsX2hw
-ZF9pbml0KGRldl9wcml2KTsKPiAgCj4gLQlzcGluX2xvY2tfaXJxKCZkZXZfcHJpdi0+aXJxX2xv
-Y2spOwo+IC0JaWYgKGRldl9wcml2LT5kaXNwbGF5LmhwZF9pcnFfc2V0dXApCj4gLQkJZGV2X3By
-aXYtPmRpc3BsYXkuaHBkX2lycV9zZXR1cChkZXZfcHJpdik7Cj4gLQlzcGluX3VubG9ja19pcnEo
-JmRldl9wcml2LT5pcnFfbG9jayk7Cj4gLQo+ICsJLyogTVNUIHNpZGViYW5kIHJlcXVpcmVzIEhQ
-RCBpbnRlcnJ1cHRzIGVuYWJsZWQgKi8KPiAgCWludGVsX2RwX21zdF9yZXN1bWUoZGV2X3ByaXYp
-Owo+IC0KPiAgCWludGVsX2Rpc3BsYXlfcmVzdW1lKGRldik7Cj4gIAo+ICsJaW50ZWxfaHBkX3Bv
-bGxfZGlzYWJsZShkZXZfcHJpdik7Cj4gIAlkcm1fa21zX2hlbHBlcl9wb2xsX2VuYWJsZShkZXYp
-Owo+ICAKPiAtCS8qCj4gLQkgKiAuLi4gYnV0IGFsc28gbmVlZCB0byBtYWtlIHN1cmUgdGhhdCBo
-b3RwbHVnIHByb2Nlc3NpbmcKPiAtCSAqIGRvZXNuJ3QgY2F1c2UgaGF2b2MuIExpa2UgaW4gdGhl
-IGRyaXZlciBsb2FkIGNvZGUgd2UgZG9uJ3QKPiAtCSAqIGJvdGhlciB3aXRoIHRoZSB0aW55IHJh
-Y2UgaGVyZSB3aGVyZSB3ZSBtaWdodCBsb3NlIGhvdHBsdWcKPiAtCSAqIG5vdGlmaWNhdGlvbnMu
-Cj4gLQkgKiAqLwo+IC0JaW50ZWxfaHBkX2luaXQoZGV2X3ByaXYpOwo+IC0KPiAgCWludGVsX29w
-cmVnaW9uX3Jlc3VtZShkZXZfcHJpdik7Cj4gIAo+ICAJaW50ZWxfZmJkZXZfc2V0X3N1c3BlbmQo
-ZGV2LCBGQklORk9fU1RBVEVfUlVOTklORywgZmFsc2UpOwo+IEBAIC0xNTU3LDcgKzE1NDYsNyBA
-QCBzdGF0aWMgaW50IGludGVsX3J1bnRpbWVfc3VzcGVuZChzdHJ1Y3QgZGV2aWNlICprZGV2KQo+
-ICAJYXNzZXJ0X2ZvcmNld2FrZXNfaW5hY3RpdmUoJmRldl9wcml2LT51bmNvcmUpOwo+ICAKPiAg
-CWlmICghSVNfVkFMTEVZVklFVyhkZXZfcHJpdikgJiYgIUlTX0NIRVJSWVZJRVcoZGV2X3ByaXYp
-KQo+IC0JCWludGVsX2hwZF9wb2xsX2luaXQoZGV2X3ByaXYpOwo+ICsJCWludGVsX2hwZF9wb2xs
-X2VuYWJsZShkZXZfcHJpdik7Cj4gIAo+ICAJZHJtX2RiZ19rbXMoJmRldl9wcml2LT5kcm0sICJE
-ZXZpY2Ugc3VzcGVuZGVkXG4iKTsKPiAgCXJldHVybiAwOwo+IEBAIC0xNjAyLDggKzE1OTEsMTAg
-QEAgc3RhdGljIGludCBpbnRlbF9ydW50aW1lX3Jlc3VtZShzdHJ1Y3QgZGV2aWNlICprZGV2KQo+
-ICAJICogcG93ZXIgd2VsbCwgc28gaHBkIGlzIHJlaW5pdGlhbGl6ZWQgZnJvbSB0aGVyZS4gRm9y
-Cj4gIAkgKiBldmVyeW9uZSBlbHNlIGRvIGl0IGhlcmUuCj4gIAkgKi8KPiAtCWlmICghSVNfVkFM
-TEVZVklFVyhkZXZfcHJpdikgJiYgIUlTX0NIRVJSWVZJRVcoZGV2X3ByaXYpKQo+ICsJaWYgKCFJ
-U19WQUxMRVlWSUVXKGRldl9wcml2KSAmJiAhSVNfQ0hFUlJZVklFVyhkZXZfcHJpdikpIHsKPiAg
-CQlpbnRlbF9ocGRfaW5pdChkZXZfcHJpdik7Cj4gKwkJaW50ZWxfaHBkX3BvbGxfZGlzYWJsZShk
-ZXZfcHJpdik7Cj4gKwl9Cj4gIAo+ICAJaW50ZWxfZW5hYmxlX2lwYyhkZXZfcHJpdik7Cj4gIAot
-LSAKU2luY2VyZWx5LAogICAgICBMeXVkZSBQYXVsIChzaGUvaGVyKQogICAgICBTb2Z0d2FyZSBF
-bmdpbmVlciBhdCBSZWQgSGF0CgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVz
-a3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9p
-bnRlbC1nZngK
+On Tue, Oct 06, 2020 at 05:33:31PM +0300, Ville Syrj=E4l=E4 wrote:
+>From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+>
+>Make the namespacing for enum tc_port better by adding
+>the TC_ to the actual enum values.
+
+I like having the constants with the same name as the enum but with
+capital letters, but then we have TC_PORT_TC<n> which doesn't sound great.
+
+Maybe TC_PORT_1, TC_PORT_2, TC_PORT_3, ...?
+
+When we added enum tc_port we didn't have enum phy. Maybe now we can
+actually remove tc_port.
+
+Lucas De Marchi
+
+>
+>Signed-off-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+>---
+> drivers/gpu/drm/i915/display/intel_display.c |  2 +-
+> drivers/gpu/drm/i915/display/intel_display.h | 14 ++--
+> drivers/gpu/drm/i915/display/intel_tc.c      |  2 +-
+> drivers/gpu/drm/i915/i915_irq.c              | 78 ++++++++++----------
+> drivers/gpu/drm/i915/i915_reg.h              | 60 +++++++--------
+> 5 files changed, 78 insertions(+), 78 deletions(-)
+>
+>diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/dr=
+m/i915/display/intel_display.c
+>index 907e1d155443..32d24c60ff96 100644
+>--- a/drivers/gpu/drm/i915/display/intel_display.c
+>+++ b/drivers/gpu/drm/i915/display/intel_display.c
+>@@ -7367,7 +7367,7 @@ enum phy intel_port_to_phy(struct drm_i915_private *=
+i915, enum port port)
+> enum tc_port intel_port_to_tc(struct drm_i915_private *dev_priv, enum por=
+t port)
+> {
+> 	if (!intel_phy_is_tc(dev_priv, intel_port_to_phy(dev_priv, port)))
+>-		return PORT_TC_NONE;
+>+		return TC_PORT_NONE;
+>
+> 	if (INTEL_GEN(dev_priv) >=3D 12)
+> 		return port - PORT_D;
+>diff --git a/drivers/gpu/drm/i915/display/intel_display.h b/drivers/gpu/dr=
+m/i915/display/intel_display.h
+>index d10b7c8cde3f..8c93253cbd95 100644
+>--- a/drivers/gpu/drm/i915/display/intel_display.h
+>+++ b/drivers/gpu/drm/i915/display/intel_display.h
+>@@ -243,14 +243,14 @@ static inline const char *port_identifier(enum port =
+port)
+> }
+>
+> enum tc_port {
+>-	PORT_TC_NONE =3D -1,
+>+	TC_PORT_NONE =3D -1,
+>
+>-	PORT_TC1 =3D 0,
+>-	PORT_TC2,
+>-	PORT_TC3,
+>-	PORT_TC4,
+>-	PORT_TC5,
+>-	PORT_TC6,
+>+	TC_PORT_TC1 =3D 0,
+>+	TC_PORT_TC2,
+>+	TC_PORT_TC3,
+>+	TC_PORT_TC4,
+>+	TC_PORT_TC5,
+>+	TC_PORT_TC6,
+>
+> 	I915_MAX_TC_PORTS
+> };
+>diff --git a/drivers/gpu/drm/i915/display/intel_tc.c b/drivers/gpu/drm/i91=
+5/display/intel_tc.c
+>index 8f67aef18b2d..1cb548d757e1 100644
+>--- a/drivers/gpu/drm/i915/display/intel_tc.c
+>+++ b/drivers/gpu/drm/i915/display/intel_tc.c
+>@@ -652,7 +652,7 @@ void intel_tc_port_init(struct intel_digital_port *dig=
+_port, bool is_legacy)
+> 	enum port port =3D dig_port->base.port;
+> 	enum tc_port tc_port =3D intel_port_to_tc(i915, port);
+>
+>-	if (drm_WARN_ON(&i915->drm, tc_port =3D=3D PORT_TC_NONE))
+>+	if (drm_WARN_ON(&i915->drm, tc_port =3D=3D TC_PORT_NONE))
+> 		return;
+>
+> 	snprintf(dig_port->tc_port_name, sizeof(dig_port->tc_port_name),
+>diff --git a/drivers/gpu/drm/i915/i915_irq.c b/drivers/gpu/drm/i915/i915_i=
+rq.c
+>index b753c77c9a77..d9438194c2f0 100644
+>--- a/drivers/gpu/drm/i915/i915_irq.c
+>+++ b/drivers/gpu/drm/i915/i915_irq.c
+>@@ -132,24 +132,24 @@ static const u32 hpd_bxt[HPD_NUM_PINS] =3D {
+> };
+>
+> static const u32 hpd_gen11[HPD_NUM_PINS] =3D {
+>-	[HPD_PORT_TC1] =3D GEN11_TC_HOTPLUG(PORT_TC1) | GEN11_TBT_HOTPLUG(PORT_T=
+C1),
+>-	[HPD_PORT_TC2] =3D GEN11_TC_HOTPLUG(PORT_TC2) | GEN11_TBT_HOTPLUG(PORT_T=
+C2),
+>-	[HPD_PORT_TC3] =3D GEN11_TC_HOTPLUG(PORT_TC3) | GEN11_TBT_HOTPLUG(PORT_T=
+C3),
+>-	[HPD_PORT_TC4] =3D GEN11_TC_HOTPLUG(PORT_TC4) | GEN11_TBT_HOTPLUG(PORT_T=
+C4),
+>-	[HPD_PORT_TC5] =3D GEN11_TC_HOTPLUG(PORT_TC5) | GEN11_TBT_HOTPLUG(PORT_T=
+C5),
+>-	[HPD_PORT_TC6] =3D GEN11_TC_HOTPLUG(PORT_TC6) | GEN11_TBT_HOTPLUG(PORT_T=
+C6),
+>+	[HPD_PORT_TC1] =3D GEN11_TC_HOTPLUG(TC_PORT_TC1) | GEN11_TBT_HOTPLUG(TC_=
+PORT_TC1),
+>+	[HPD_PORT_TC2] =3D GEN11_TC_HOTPLUG(TC_PORT_TC2) | GEN11_TBT_HOTPLUG(TC_=
+PORT_TC2),
+>+	[HPD_PORT_TC3] =3D GEN11_TC_HOTPLUG(TC_PORT_TC3) | GEN11_TBT_HOTPLUG(TC_=
+PORT_TC3),
+>+	[HPD_PORT_TC4] =3D GEN11_TC_HOTPLUG(TC_PORT_TC4) | GEN11_TBT_HOTPLUG(TC_=
+PORT_TC4),
+>+	[HPD_PORT_TC5] =3D GEN11_TC_HOTPLUG(TC_PORT_TC5) | GEN11_TBT_HOTPLUG(TC_=
+PORT_TC5),
+>+	[HPD_PORT_TC6] =3D GEN11_TC_HOTPLUG(TC_PORT_TC6) | GEN11_TBT_HOTPLUG(TC_=
+PORT_TC6),
+> };
+>
+> static const u32 hpd_icp[HPD_NUM_PINS] =3D {
+> 	[HPD_PORT_A] =3D SDE_DDI_HOTPLUG_ICP(PORT_A),
+> 	[HPD_PORT_B] =3D SDE_DDI_HOTPLUG_ICP(PORT_B),
+> 	[HPD_PORT_C] =3D SDE_DDI_HOTPLUG_ICP(PORT_C),
+>-	[HPD_PORT_TC1] =3D SDE_TC_HOTPLUG_ICP(PORT_TC1),
+>-	[HPD_PORT_TC2] =3D SDE_TC_HOTPLUG_ICP(PORT_TC2),
+>-	[HPD_PORT_TC3] =3D SDE_TC_HOTPLUG_ICP(PORT_TC3),
+>-	[HPD_PORT_TC4] =3D SDE_TC_HOTPLUG_ICP(PORT_TC4),
+>-	[HPD_PORT_TC5] =3D SDE_TC_HOTPLUG_ICP(PORT_TC5),
+>-	[HPD_PORT_TC6] =3D SDE_TC_HOTPLUG_ICP(PORT_TC6),
+>+	[HPD_PORT_TC1] =3D SDE_TC_HOTPLUG_ICP(TC_PORT_TC1),
+>+	[HPD_PORT_TC2] =3D SDE_TC_HOTPLUG_ICP(TC_PORT_TC2),
+>+	[HPD_PORT_TC3] =3D SDE_TC_HOTPLUG_ICP(TC_PORT_TC3),
+>+	[HPD_PORT_TC4] =3D SDE_TC_HOTPLUG_ICP(TC_PORT_TC4),
+>+	[HPD_PORT_TC5] =3D SDE_TC_HOTPLUG_ICP(TC_PORT_TC5),
+>+	[HPD_PORT_TC6] =3D SDE_TC_HOTPLUG_ICP(TC_PORT_TC6),
+> };
+>
+> static void intel_hpd_init_pins(struct drm_i915_private *dev_priv)
+>@@ -1035,17 +1035,17 @@ static bool gen11_port_hotplug_long_detect(enum hp=
+d_pin pin, u32 val)
+> {
+> 	switch (pin) {
+> 	case HPD_PORT_TC1:
+>-		return val & GEN11_HOTPLUG_CTL_LONG_DETECT(PORT_TC1);
+>+		return val & GEN11_HOTPLUG_CTL_LONG_DETECT(TC_PORT_TC1);
+> 	case HPD_PORT_TC2:
+>-		return val & GEN11_HOTPLUG_CTL_LONG_DETECT(PORT_TC2);
+>+		return val & GEN11_HOTPLUG_CTL_LONG_DETECT(TC_PORT_TC2);
+> 	case HPD_PORT_TC3:
+>-		return val & GEN11_HOTPLUG_CTL_LONG_DETECT(PORT_TC3);
+>+		return val & GEN11_HOTPLUG_CTL_LONG_DETECT(TC_PORT_TC3);
+> 	case HPD_PORT_TC4:
+>-		return val & GEN11_HOTPLUG_CTL_LONG_DETECT(PORT_TC4);
+>+		return val & GEN11_HOTPLUG_CTL_LONG_DETECT(TC_PORT_TC4);
+> 	case HPD_PORT_TC5:
+>-		return val & GEN11_HOTPLUG_CTL_LONG_DETECT(PORT_TC5);
+>+		return val & GEN11_HOTPLUG_CTL_LONG_DETECT(TC_PORT_TC5);
+> 	case HPD_PORT_TC6:
+>-		return val & GEN11_HOTPLUG_CTL_LONG_DETECT(PORT_TC6);
+>+		return val & GEN11_HOTPLUG_CTL_LONG_DETECT(TC_PORT_TC6);
+> 	default:
+> 		return false;
+> 	}
+>@@ -1083,17 +1083,17 @@ static bool icp_tc_port_hotplug_long_detect(enum h=
+pd_pin pin, u32 val)
+> {
+> 	switch (pin) {
+> 	case HPD_PORT_TC1:
+>-		return val & ICP_TC_HPD_LONG_DETECT(PORT_TC1);
+>+		return val & ICP_TC_HPD_LONG_DETECT(TC_PORT_TC1);
+> 	case HPD_PORT_TC2:
+>-		return val & ICP_TC_HPD_LONG_DETECT(PORT_TC2);
+>+		return val & ICP_TC_HPD_LONG_DETECT(TC_PORT_TC2);
+> 	case HPD_PORT_TC3:
+>-		return val & ICP_TC_HPD_LONG_DETECT(PORT_TC3);
+>+		return val & ICP_TC_HPD_LONG_DETECT(TC_PORT_TC3);
+> 	case HPD_PORT_TC4:
+>-		return val & ICP_TC_HPD_LONG_DETECT(PORT_TC4);
+>+		return val & ICP_TC_HPD_LONG_DETECT(TC_PORT_TC4);
+> 	case HPD_PORT_TC5:
+>-		return val & ICP_TC_HPD_LONG_DETECT(PORT_TC5);
+>+		return val & ICP_TC_HPD_LONG_DETECT(TC_PORT_TC5);
+> 	case HPD_PORT_TC6:
+>-		return val & ICP_TC_HPD_LONG_DETECT(PORT_TC6);
+>+		return val & ICP_TC_HPD_LONG_DETECT(TC_PORT_TC6);
+> 	default:
+> 		return false;
+> 	}
+>@@ -1872,7 +1872,7 @@ static void icp_irq_handler(struct drm_i915_private =
+*dev_priv, u32 pch_iir)
+> 		tc_hotplug_trigger =3D 0;
+> 	} else if (HAS_PCH_MCC(dev_priv)) {
+> 		ddi_hotplug_trigger =3D pch_iir & SDE_DDI_MASK_ICP;
+>-		tc_hotplug_trigger =3D pch_iir & SDE_TC_HOTPLUG_ICP(PORT_TC1);
+>+		tc_hotplug_trigger =3D pch_iir & SDE_TC_HOTPLUG_ICP(TC_PORT_TC1);
+> 	} else {
+> 		drm_WARN(&dev_priv->drm, !HAS_PCH_ICP(dev_priv),
+> 			 "Unrecognized PCH type 0x%x\n",
+>@@ -3238,7 +3238,7 @@ static void icp_hpd_irq_setup(struct drm_i915_privat=
+e *dev_priv,
+> static void mcc_hpd_irq_setup(struct drm_i915_private *dev_priv)
+> {
+> 	icp_hpd_irq_setup(dev_priv,
+>-			  ICP_DDI_HPD_ENABLE_MASK, ICP_TC_HPD_ENABLE(PORT_TC1));
+>+			  ICP_DDI_HPD_ENABLE_MASK, ICP_TC_HPD_ENABLE(TC_PORT_TC1));
+> }
+>
+> /*
+>@@ -3257,21 +3257,21 @@ static void gen11_hpd_detection_setup(struct drm_i=
+915_private *dev_priv)
+> 	u32 hotplug;
+>
+> 	hotplug =3D I915_READ(GEN11_TC_HOTPLUG_CTL);
+>-	hotplug |=3D GEN11_HOTPLUG_CTL_ENABLE(PORT_TC1) |
+>-		   GEN11_HOTPLUG_CTL_ENABLE(PORT_TC2) |
+>-		   GEN11_HOTPLUG_CTL_ENABLE(PORT_TC3) |
+>-		   GEN11_HOTPLUG_CTL_ENABLE(PORT_TC4) |
+>-		   GEN11_HOTPLUG_CTL_ENABLE(PORT_TC5) |
+>-		   GEN11_HOTPLUG_CTL_ENABLE(PORT_TC6);
+>+	hotplug |=3D GEN11_HOTPLUG_CTL_ENABLE(TC_PORT_TC1) |
+>+		   GEN11_HOTPLUG_CTL_ENABLE(TC_PORT_TC2) |
+>+		   GEN11_HOTPLUG_CTL_ENABLE(TC_PORT_TC3) |
+>+		   GEN11_HOTPLUG_CTL_ENABLE(TC_PORT_TC4) |
+>+		   GEN11_HOTPLUG_CTL_ENABLE(TC_PORT_TC5) |
+>+		   GEN11_HOTPLUG_CTL_ENABLE(TC_PORT_TC6);
+> 	I915_WRITE(GEN11_TC_HOTPLUG_CTL, hotplug);
+>
+> 	hotplug =3D I915_READ(GEN11_TBT_HOTPLUG_CTL);
+>-	hotplug |=3D GEN11_HOTPLUG_CTL_ENABLE(PORT_TC1) |
+>-		   GEN11_HOTPLUG_CTL_ENABLE(PORT_TC2) |
+>-		   GEN11_HOTPLUG_CTL_ENABLE(PORT_TC3) |
+>-		   GEN11_HOTPLUG_CTL_ENABLE(PORT_TC4) |
+>-		   GEN11_HOTPLUG_CTL_ENABLE(PORT_TC5) |
+>-		   GEN11_HOTPLUG_CTL_ENABLE(PORT_TC6);
+>+	hotplug |=3D GEN11_HOTPLUG_CTL_ENABLE(TC_PORT_TC1) |
+>+		   GEN11_HOTPLUG_CTL_ENABLE(TC_PORT_TC2) |
+>+		   GEN11_HOTPLUG_CTL_ENABLE(TC_PORT_TC3) |
+>+		   GEN11_HOTPLUG_CTL_ENABLE(TC_PORT_TC4) |
+>+		   GEN11_HOTPLUG_CTL_ENABLE(TC_PORT_TC5) |
+>+		   GEN11_HOTPLUG_CTL_ENABLE(TC_PORT_TC6);
+> 	I915_WRITE(GEN11_TBT_HOTPLUG_CTL, hotplug);
+> }
+>
+>@@ -3652,7 +3652,7 @@ static void icp_irq_postinstall(struct drm_i915_priv=
+ate *dev_priv)
+> 		icp_ddi_hpd_detection_setup(dev_priv, TGP_DDI_HPD_ENABLE_MASK);
+> 	} else if (HAS_PCH_MCC(dev_priv)) {
+> 		icp_ddi_hpd_detection_setup(dev_priv, ICP_DDI_HPD_ENABLE_MASK);
+>-		icp_tc_hpd_detection_setup(dev_priv, ICP_TC_HPD_ENABLE(PORT_TC1));
+>+		icp_tc_hpd_detection_setup(dev_priv, ICP_TC_HPD_ENABLE(TC_PORT_TC1));
+> 	} else {
+> 		icp_ddi_hpd_detection_setup(dev_priv, ICP_DDI_HPD_ENABLE_MASK);
+> 		icp_tc_hpd_detection_setup(dev_priv, ICP_TC_HPD_ENABLE_MASK);
+>diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_r=
+eg.h
+>index efe51a4ef719..2e378d9b21c5 100644
+>--- a/drivers/gpu/drm/i915/i915_reg.h
+>+++ b/drivers/gpu/drm/i915/i915_reg.h
+>@@ -7865,19 +7865,19 @@ enum {
+> #define GEN11_DE_HPD_IIR		_MMIO(0x44478)
+> #define GEN11_DE_HPD_IER		_MMIO(0x4447c)
+> #define  GEN11_TC_HOTPLUG(tc_port)		(1 << ((tc_port) + 16))
+>-#define  GEN11_DE_TC_HOTPLUG_MASK		(GEN11_TC_HOTPLUG(PORT_TC6) | \
+>-						 GEN11_TC_HOTPLUG(PORT_TC5) | \
+>-						 GEN11_TC_HOTPLUG(PORT_TC4) | \
+>-						 GEN11_TC_HOTPLUG(PORT_TC3) | \
+>-						 GEN11_TC_HOTPLUG(PORT_TC2) | \
+>-						 GEN11_TC_HOTPLUG(PORT_TC1))
+>+#define  GEN11_DE_TC_HOTPLUG_MASK		(GEN11_TC_HOTPLUG(TC_PORT_TC6) | \
+>+						 GEN11_TC_HOTPLUG(TC_PORT_TC5) | \
+>+						 GEN11_TC_HOTPLUG(TC_PORT_TC4) | \
+>+						 GEN11_TC_HOTPLUG(TC_PORT_TC3) | \
+>+						 GEN11_TC_HOTPLUG(TC_PORT_TC2) | \
+>+						 GEN11_TC_HOTPLUG(TC_PORT_TC1))
+> #define  GEN11_TBT_HOTPLUG(tc_port)		(1 << (tc_port))
+>-#define  GEN11_DE_TBT_HOTPLUG_MASK		(GEN11_TBT_HOTPLUG(PORT_TC6) | \
+>-						 GEN11_TBT_HOTPLUG(PORT_TC5) | \
+>-						 GEN11_TBT_HOTPLUG(PORT_TC4) | \
+>-						 GEN11_TBT_HOTPLUG(PORT_TC3) | \
+>-						 GEN11_TBT_HOTPLUG(PORT_TC2) | \
+>-						 GEN11_TBT_HOTPLUG(PORT_TC1))
+>+#define  GEN11_DE_TBT_HOTPLUG_MASK		(GEN11_TBT_HOTPLUG(TC_PORT_TC6) | \
+>+						 GEN11_TBT_HOTPLUG(TC_PORT_TC5) | \
+>+						 GEN11_TBT_HOTPLUG(TC_PORT_TC4) | \
+>+						 GEN11_TBT_HOTPLUG(TC_PORT_TC3) | \
+>+						 GEN11_TBT_HOTPLUG(TC_PORT_TC2) | \
+>+						 GEN11_TBT_HOTPLUG(TC_PORT_TC1))
+>
+> #define GEN11_TBT_HOTPLUG_CTL				_MMIO(0x44030)
+> #define GEN11_TC_HOTPLUG_CTL				_MMIO(0x44038)
+>@@ -8320,19 +8320,19 @@ enum {
+> #define SDE_DDI_HOTPLUG_ICP(port)	(1 << ((port) + 16))
+> #define SDE_DDI_MASK_ICP		(SDE_DDI_HOTPLUG_ICP(PORT_B) | \
+> 					 SDE_DDI_HOTPLUG_ICP(PORT_A))
+>-#define SDE_TC_MASK_ICP			(SDE_TC_HOTPLUG_ICP(PORT_TC4) | \
+>-					 SDE_TC_HOTPLUG_ICP(PORT_TC3) | \
+>-					 SDE_TC_HOTPLUG_ICP(PORT_TC2) | \
+>-					 SDE_TC_HOTPLUG_ICP(PORT_TC1))
+>+#define SDE_TC_MASK_ICP			(SDE_TC_HOTPLUG_ICP(TC_PORT_TC4) | \
+>+					 SDE_TC_HOTPLUG_ICP(TC_PORT_TC3) | \
+>+					 SDE_TC_HOTPLUG_ICP(TC_PORT_TC2) | \
+>+					 SDE_TC_HOTPLUG_ICP(TC_PORT_TC1))
+> #define SDE_DDI_MASK_TGP		(SDE_DDI_HOTPLUG_ICP(PORT_C) | \
+> 					 SDE_DDI_HOTPLUG_ICP(PORT_B) | \
+> 					 SDE_DDI_HOTPLUG_ICP(PORT_A))
+>-#define SDE_TC_MASK_TGP			(SDE_TC_HOTPLUG_ICP(PORT_TC6) | \
+>-					 SDE_TC_HOTPLUG_ICP(PORT_TC5) | \
+>-					 SDE_TC_HOTPLUG_ICP(PORT_TC4) | \
+>-					 SDE_TC_HOTPLUG_ICP(PORT_TC3) | \
+>-					 SDE_TC_HOTPLUG_ICP(PORT_TC2) | \
+>-					 SDE_TC_HOTPLUG_ICP(PORT_TC1))
+>+#define SDE_TC_MASK_TGP			(SDE_TC_HOTPLUG_ICP(TC_PORT_TC6) | \
+>+					 SDE_TC_HOTPLUG_ICP(TC_PORT_TC5) | \
+>+					 SDE_TC_HOTPLUG_ICP(TC_PORT_TC4) | \
+>+					 SDE_TC_HOTPLUG_ICP(TC_PORT_TC3) | \
+>+					 SDE_TC_HOTPLUG_ICP(TC_PORT_TC2) | \
+>+					 SDE_TC_HOTPLUG_ICP(TC_PORT_TC1))
+>
+> #define SDEISR  _MMIO(0xc4000)
+> #define SDEIMR  _MMIO(0xc4004)
+>@@ -8417,15 +8417,15 @@ enum {
+>
+> #define ICP_DDI_HPD_ENABLE_MASK		(SHOTPLUG_CTL_DDI_HPD_ENABLE(PORT_B) | \
+> 					 SHOTPLUG_CTL_DDI_HPD_ENABLE(PORT_A))
+>-#define ICP_TC_HPD_ENABLE_MASK		(ICP_TC_HPD_ENABLE(PORT_TC4) | \
+>-					 ICP_TC_HPD_ENABLE(PORT_TC3) | \
+>-					 ICP_TC_HPD_ENABLE(PORT_TC2) | \
+>-					 ICP_TC_HPD_ENABLE(PORT_TC1))
+>+#define ICP_TC_HPD_ENABLE_MASK		(ICP_TC_HPD_ENABLE(TC_PORT_TC4) | \
+>+					 ICP_TC_HPD_ENABLE(TC_PORT_TC3) | \
+>+					 ICP_TC_HPD_ENABLE(TC_PORT_TC2) | \
+>+					 ICP_TC_HPD_ENABLE(TC_PORT_TC1))
+> #define TGP_DDI_HPD_ENABLE_MASK		(SHOTPLUG_CTL_DDI_HPD_ENABLE(PORT_C) | \
+> 					 SHOTPLUG_CTL_DDI_HPD_ENABLE(PORT_B) | \
+> 					 SHOTPLUG_CTL_DDI_HPD_ENABLE(PORT_A))
+>-#define TGP_TC_HPD_ENABLE_MASK		(ICP_TC_HPD_ENABLE(PORT_TC6) | \
+>-					 ICP_TC_HPD_ENABLE(PORT_TC5) | \
+>+#define TGP_TC_HPD_ENABLE_MASK		(ICP_TC_HPD_ENABLE(TC_PORT_TC6) | \
+>+					 ICP_TC_HPD_ENABLE(TC_PORT_TC5) | \
+> 					 ICP_TC_HPD_ENABLE_MASK)
+>
+> #define _PCH_DPLL_A              0xc6014
+>@@ -10283,9 +10283,9 @@ enum skl_power_gate {
+> #define ICL_DPCLKA_CFGCR0			_MMIO(0x164280)
+> #define  ICL_DPCLKA_CFGCR0_DDI_CLK_OFF(phy)	(1 << _PICK(phy, 10, 11, 24))
+> #define  RKL_DPCLKA_CFGCR0_DDI_CLK_OFF(phy)	REG_BIT((phy) + 10)
+>-#define  ICL_DPCLKA_CFGCR0_TC_CLK_OFF(tc_port)	(1 << ((tc_port) < PORT_TC=
+4 ? \
+>+#define  ICL_DPCLKA_CFGCR0_TC_CLK_OFF(tc_port)	(1 << ((tc_port) < TC_PORT=
+_TC4 ? \
+> 						       (tc_port) + 12 : \
+>-						       (tc_port) - PORT_TC4 + 21))
+>+						       (tc_port) - TC_PORT_TC4 + 21))
+> #define  ICL_DPCLKA_CFGCR0_DDI_CLK_SEL_SHIFT(phy)	((phy) * 2)
+> #define  ICL_DPCLKA_CFGCR0_DDI_CLK_SEL_MASK(phy)	(3 << ICL_DPCLKA_CFGCR0_=
+DDI_CLK_SEL_SHIFT(phy))
+> #define  ICL_DPCLKA_CFGCR0_DDI_CLK_SEL(pll, phy)	((pll) << ICL_DPCLKA_CFG=
+CR0_DDI_CLK_SEL_SHIFT(phy))
+>-- =
+
+>2.26.2
+>
+>_______________________________________________
+>Intel-gfx mailing list
+>Intel-gfx@lists.freedesktop.org
+>https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
