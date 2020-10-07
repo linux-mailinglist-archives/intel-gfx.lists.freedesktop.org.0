@@ -2,82 +2,44 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 17696286A86
-	for <lists+intel-gfx@lfdr.de>; Wed,  7 Oct 2020 23:53:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 136A1286ABB
+	for <lists+intel-gfx@lfdr.de>; Thu,  8 Oct 2020 00:12:01 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A1F426E9BE;
-	Wed,  7 Oct 2020 21:53:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DA4DD6E9EB;
+	Wed,  7 Oct 2020 22:11:58 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [63.128.21.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AC99C6E9BE
- for <intel-gfx@lists.freedesktop.org>; Wed,  7 Oct 2020 21:53:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1602107605;
- h=from:from:reply-to:reply-to:subject:subject:date:date:
- message-id:message-id:to:to:cc:mime-version:mime-version:
- content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=BXDLJy3cpaM5bBZA0XOwM+ZPJVSdq/P/kp7oZvNnPnY=;
- b=X5640okfPXJTktdvl2NE0KeCy2nk2DO0qfWioBoW05db4KLD4ub3SSbdVOv9i0ycpx2avS
- 3t8NC87NpAI1h2ZlvIcM5UAzsSEcIRDjm3kpz7JtpYmVzk7m+jQi3wcgWqLdUmVnlhoGhy
- E0AOwk+dvptRPwDQ/DgBmU47BygRQaA=
-Received: from mail-qv1-f71.google.com (mail-qv1-f71.google.com
- [209.85.219.71]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-188-2UNSzMtrPn2GxYSPklM51g-1; Wed, 07 Oct 2020 17:53:23 -0400
-X-MC-Unique: 2UNSzMtrPn2GxYSPklM51g-1
-Received: by mail-qv1-f71.google.com with SMTP id t7so2290210qvz.5
- for <intel-gfx@lists.freedesktop.org>; Wed, 07 Oct 2020 14:53:23 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:message-id:subject:from:reply-to:to:date
- :in-reply-to:references:organization:user-agent:mime-version
- :content-transfer-encoding;
- bh=BXDLJy3cpaM5bBZA0XOwM+ZPJVSdq/P/kp7oZvNnPnY=;
- b=unPZXut6qdY61ah5PRwYp7X/13gVGCrd2aHjYxlt/YR5DA3XQVH+Kfk4/Wa0OCbGM0
- nLcxB+0naoQsT5IuKnOMyfs/b6L3VDowyhuYkiMf/Zs+fcg+L9jW595bcEfaHBVCMIa8
- EIdgEpWmdhOZogevMe/YZF8qL6F5G6nfA71Dox0xTfJwVyJVEo76n6G43bDVNlUCN/24
- 2fbdJZi9tNgUIPRC6SqfD1HTLC3oSSkPrszO9S5JdYEq8Cqi1Ni6nX+k5oVEYfPBYLw/
- 68xzhfpyHS3I3hAcEL8mAvexEPXsXz2DePKk6Zao97vHTo2bC4wxPuBOb3ud9OsGeEiV
- MT9A==
-X-Gm-Message-State: AOAM533O/djitnTLDvyUPm4GMg5eddDamGNWlE4kB48qMbCATZR1ugUe
- ACQsBtXq8iYNSJnxC3oiHr8bD6bR6+i1eA97uMH8qxQzZjYV+RobSTu7Zi6zVdU8cFoPkek5Dti
- 8O4TX3rBqiNRy756wDhqdupeIpLa7
-X-Received: by 2002:ac8:2f4f:: with SMTP id k15mr5437826qta.178.1602107603052; 
- Wed, 07 Oct 2020 14:53:23 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJztgHq1DT8+0EZ0EAp6o4jDXABu9jdnfkiN69e3Dl5kWLMjxM+WdfGkPc8Onrw+Fq1DP+x8Zg==
-X-Received: by 2002:ac8:2f4f:: with SMTP id k15mr5437813qta.178.1602107602829; 
- Wed, 07 Oct 2020 14:53:22 -0700 (PDT)
-Received: from Whitewolf.lyude.net
- (pool-108-49-102-102.bstnma.fios.verizon.net. [108.49.102.102])
- by smtp.gmail.com with ESMTPSA id g1sm2485892qtp.74.2020.10.07.14.53.21
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 07 Oct 2020 14:53:22 -0700 (PDT)
-Message-ID: <268f495fbb7e3042eb613398a8513a83d28d3fd9.camel@redhat.com>
-From: Lyude Paul <lyude@redhat.com>
-To: Satadru Pramanik <satadru@gmail.com>, Kai-Heng Feng
- <kai.heng.feng@canonical.com>, Jani Nikula <jani.nikula@linux.intel.com>, 
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi
- <rodrigo.vivi@intel.com>, David Airlie <airlied@linux.ie>, Daniel Vetter
- <daniel@ffwll.ch>, Ville =?ISO-8859-1?Q?Syrj=E4l=E4?=
- <ville.syrjala@linux.intel.com>, Juha-Pekka Heikkila
- <juhapekka.heikkila@gmail.com>, intel-gfx@lists.freedesktop.org, "open
- list:DRM DRIVERS" <dri-devel@lists.freedesktop.org>, open list
- <linux-kernel@vger.kernel.org>
-Date: Wed, 07 Oct 2020 17:53:21 -0400
-In-Reply-To: <20201007065915.13883-1-kai.heng.feng@canonical.com>
-References: <20201007065915.13883-1-kai.heng.feng@canonical.com>
-Organization: Red Hat
-User-Agent: Evolution 3.36.5 (3.36.5-1.fc32)
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 287AD6E9EB
+ for <intel-gfx@lists.freedesktop.org>; Wed,  7 Oct 2020 22:11:58 +0000 (UTC)
+IronPort-SDR: V11As+Pzt24U3GklX4GZy59H2nKWGhBswzvtWWP8hto6WBgwA4zDH1a81QiBuQZ/78AywB0x5f
+ fHafwV21vS1g==
+X-IronPort-AV: E=McAfee;i="6000,8403,9767"; a="144504535"
+X-IronPort-AV: E=Sophos;i="5.77,348,1596524400"; d="scan'208";a="144504535"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Oct 2020 15:11:57 -0700
+IronPort-SDR: u40de3MEC86drc8bGM5gNtelzpr8A1fnesU+Q96x8SKk2uyw6/LDnCfmXD6Xdrh7IJr/IHW3hH
+ Xs+Z6nhpghLQ==
+X-IronPort-AV: E=Sophos;i="5.77,348,1596524400"; d="scan'208";a="354218316"
+Received: from lewisjos-mobl3.amr.corp.intel.com (HELO ldmartin-desk1)
+ ([10.209.51.10])
+ by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Oct 2020 15:11:57 -0700
+Date: Wed, 7 Oct 2020 15:11:56 -0700
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>
+Message-ID: <20201007221156.rqchuc2k2cmpaumb@ldmartin-desk1>
+X-Patchwork-Hint: ignore
+References: <20201006143349.5561-1-ville.syrjala@linux.intel.com>
+ <20201006143349.5561-2-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
-Authentication-Results: relay.mimecast.com;
- auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=lyude@redhat.com
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
-Subject: Re: [Intel-gfx] [PATCH 1/2] drm/i915/dpcd_bl: Skip testing control
- capability with force DPCD quirk
+Content-Disposition: inline
+In-Reply-To: <20201006143349.5561-2-ville.syrjala@linux.intel.com>
+Subject: Re: [Intel-gfx] [PATCH 01/20] drm/i915: Sort the mess around ICP TC
+ hotplugs regs
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -90,76 +52,313 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: lyude@redhat.com
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: intel-gfx@lists.freedesktop.org
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="iso-8859-1"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi! I thought this patch rang a bell, we actually already had some discussion
-about this since there's a couple of other systems this was causing issues for.
-Unfortunately it never seems like that patch got sent out. Satadru?
+On Tue, Oct 06, 2020 at 05:33:30PM +0300, Ville Syrj=E4l=E4 wrote:
+>From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+>
+>Move the DSC stuff out from the middle of the ICP HPD register
+>definitions. The location seems to have been selected by a
+>dice roll.
+>
+>SHPD_FILTER_CNT addition also went astray due to the DSC
+>mess, so we also fix that vs. ICP_TC_HPD_{SHORT,LONG}_DETECT().
+>
+>Signed-off-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+>---
+> drivers/gpu/drm/i915/i915_reg.h | 215 ++++++++++++++++----------------
+> 1 file changed, 107 insertions(+), 108 deletions(-)
+>
+>diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_r=
+eg.h
+>index 6ad9ee4243a0..efe51a4ef719 100644
+>--- a/drivers/gpu/drm/i915/i915_reg.h
+>+++ b/drivers/gpu/drm/i915/i915_reg.h
+>@@ -4618,6 +4618,110 @@ enum {
+> #define  PSR2_MAN_TRK_CTL_SF_CONTINUOS_FULL_FRAME	REG_BIT(2)
+> #define  PSR2_MAN_TRK_CTL_SF_PARTIAL_FRAME_UPDATE	REG_BIT(1)
+>
+>+/* Icelake DSC Rate Control Range Parameter Registers */
+>+#define DSCA_RC_RANGE_PARAMETERS_0		_MMIO(0x6B240)
+>+#define DSCA_RC_RANGE_PARAMETERS_0_UDW		_MMIO(0x6B240 + 4)
+>+#define DSCC_RC_RANGE_PARAMETERS_0		_MMIO(0x6BA40)
+>+#define DSCC_RC_RANGE_PARAMETERS_0_UDW		_MMIO(0x6BA40 + 4)
+>+#define _ICL_DSC0_RC_RANGE_PARAMETERS_0_PB	(0x78208)
+>+#define _ICL_DSC0_RC_RANGE_PARAMETERS_0_UDW_PB	(0x78208 + 4)
+>+#define _ICL_DSC1_RC_RANGE_PARAMETERS_0_PB	(0x78308)
+>+#define _ICL_DSC1_RC_RANGE_PARAMETERS_0_UDW_PB	(0x78308 + 4)
+>+#define _ICL_DSC0_RC_RANGE_PARAMETERS_0_PC	(0x78408)
+>+#define _ICL_DSC0_RC_RANGE_PARAMETERS_0_UDW_PC	(0x78408 + 4)
+>+#define _ICL_DSC1_RC_RANGE_PARAMETERS_0_PC	(0x78508)
+>+#define _ICL_DSC1_RC_RANGE_PARAMETERS_0_UDW_PC	(0x78508 + 4)
+>+#define ICL_DSC0_RC_RANGE_PARAMETERS_0(pipe)		_MMIO_PIPE((pipe) - PIPE_B,=
+ \
+>+							_ICL_DSC0_RC_RANGE_PARAMETERS_0_PB, \
+>+							_ICL_DSC0_RC_RANGE_PARAMETERS_0_PC)
+>+#define ICL_DSC0_RC_RANGE_PARAMETERS_0_UDW(pipe)	_MMIO_PIPE((pipe) - PIPE=
+_B, \
+>+							_ICL_DSC0_RC_RANGE_PARAMETERS_0_UDW_PB, \
+>+							_ICL_DSC0_RC_RANGE_PARAMETERS_0_UDW_PC)
+>+#define ICL_DSC1_RC_RANGE_PARAMETERS_0(pipe)		_MMIO_PIPE((pipe) - PIPE_B,=
+ \
+>+							_ICL_DSC1_RC_RANGE_PARAMETERS_0_PB, \
+>+							_ICL_DSC1_RC_RANGE_PARAMETERS_0_PC)
+>+#define ICL_DSC1_RC_RANGE_PARAMETERS_0_UDW(pipe)	_MMIO_PIPE((pipe) - PIPE=
+_B, \
+>+							_ICL_DSC1_RC_RANGE_PARAMETERS_0_UDW_PB, \
+>+							_ICL_DSC1_RC_RANGE_PARAMETERS_0_UDW_PC)
+>+#define RC_BPG_OFFSET_SHIFT			10
+>+#define RC_MAX_QP_SHIFT				5
+>+#define RC_MIN_QP_SHIFT				0
+>+
+>+#define DSCA_RC_RANGE_PARAMETERS_1		_MMIO(0x6B248)
+>+#define DSCA_RC_RANGE_PARAMETERS_1_UDW		_MMIO(0x6B248 + 4)
+>+#define DSCC_RC_RANGE_PARAMETERS_1		_MMIO(0x6BA48)
+>+#define DSCC_RC_RANGE_PARAMETERS_1_UDW		_MMIO(0x6BA48 + 4)
+>+#define _ICL_DSC0_RC_RANGE_PARAMETERS_1_PB	(0x78210)
+>+#define _ICL_DSC0_RC_RANGE_PARAMETERS_1_UDW_PB	(0x78210 + 4)
+>+#define _ICL_DSC1_RC_RANGE_PARAMETERS_1_PB	(0x78310)
+>+#define _ICL_DSC1_RC_RANGE_PARAMETERS_1_UDW_PB	(0x78310 + 4)
+>+#define _ICL_DSC0_RC_RANGE_PARAMETERS_1_PC	(0x78410)
+>+#define _ICL_DSC0_RC_RANGE_PARAMETERS_1_UDW_PC	(0x78410 + 4)
+>+#define _ICL_DSC1_RC_RANGE_PARAMETERS_1_PC	(0x78510)
+>+#define _ICL_DSC1_RC_RANGE_PARAMETERS_1_UDW_PC	(0x78510 + 4)
+>+#define ICL_DSC0_RC_RANGE_PARAMETERS_1(pipe)		_MMIO_PIPE((pipe) - PIPE_B,=
+ \
+>+							_ICL_DSC0_RC_RANGE_PARAMETERS_1_PB, \
+>+							_ICL_DSC0_RC_RANGE_PARAMETERS_1_PC)
+>+#define ICL_DSC0_RC_RANGE_PARAMETERS_1_UDW(pipe)	_MMIO_PIPE((pipe) - PIPE=
+_B, \
+>+							_ICL_DSC0_RC_RANGE_PARAMETERS_1_UDW_PB, \
+>+							_ICL_DSC0_RC_RANGE_PARAMETERS_1_UDW_PC)
+>+#define ICL_DSC1_RC_RANGE_PARAMETERS_1(pipe)		_MMIO_PIPE((pipe) - PIPE_B,=
+ \
+>+							_ICL_DSC1_RC_RANGE_PARAMETERS_1_PB, \
+>+							_ICL_DSC1_RC_RANGE_PARAMETERS_1_PC)
+>+#define ICL_DSC1_RC_RANGE_PARAMETERS_1_UDW(pipe)	_MMIO_PIPE((pipe) - PIPE=
+_B, \
+>+							_ICL_DSC1_RC_RANGE_PARAMETERS_1_UDW_PB, \
+>+							_ICL_DSC1_RC_RANGE_PARAMETERS_1_UDW_PC)
+>+
+>+#define DSCA_RC_RANGE_PARAMETERS_2		_MMIO(0x6B250)
+>+#define DSCA_RC_RANGE_PARAMETERS_2_UDW		_MMIO(0x6B250 + 4)
+>+#define DSCC_RC_RANGE_PARAMETERS_2		_MMIO(0x6BA50)
+>+#define DSCC_RC_RANGE_PARAMETERS_2_UDW		_MMIO(0x6BA50 + 4)
+>+#define _ICL_DSC0_RC_RANGE_PARAMETERS_2_PB	(0x78218)
+>+#define _ICL_DSC0_RC_RANGE_PARAMETERS_2_UDW_PB	(0x78218 + 4)
+>+#define _ICL_DSC1_RC_RANGE_PARAMETERS_2_PB	(0x78318)
+>+#define _ICL_DSC1_RC_RANGE_PARAMETERS_2_UDW_PB	(0x78318 + 4)
+>+#define _ICL_DSC0_RC_RANGE_PARAMETERS_2_PC	(0x78418)
+>+#define _ICL_DSC0_RC_RANGE_PARAMETERS_2_UDW_PC	(0x78418 + 4)
+>+#define _ICL_DSC1_RC_RANGE_PARAMETERS_2_PC	(0x78518)
+>+#define _ICL_DSC1_RC_RANGE_PARAMETERS_2_UDW_PC	(0x78518 + 4)
+>+#define ICL_DSC0_RC_RANGE_PARAMETERS_2(pipe)		_MMIO_PIPE((pipe) - PIPE_B,=
+ \
+>+							_ICL_DSC0_RC_RANGE_PARAMETERS_2_PB, \
+>+							_ICL_DSC0_RC_RANGE_PARAMETERS_2_PC)
+>+#define ICL_DSC0_RC_RANGE_PARAMETERS_2_UDW(pipe)	_MMIO_PIPE((pipe) - PIPE=
+_B, \
+>+							_ICL_DSC0_RC_RANGE_PARAMETERS_2_UDW_PB, \
+>+							_ICL_DSC0_RC_RANGE_PARAMETERS_2_UDW_PC)
+>+#define ICL_DSC1_RC_RANGE_PARAMETERS_2(pipe)		_MMIO_PIPE((pipe) - PIPE_B,=
+ \
+>+							_ICL_DSC1_RC_RANGE_PARAMETERS_2_PB, \
+>+							_ICL_DSC1_RC_RANGE_PARAMETERS_2_PC)
+>+#define ICL_DSC1_RC_RANGE_PARAMETERS_2_UDW(pipe)	_MMIO_PIPE((pipe) - PIPE=
+_B, \
+>+							_ICL_DSC1_RC_RANGE_PARAMETERS_2_UDW_PB, \
+>+							_ICL_DSC1_RC_RANGE_PARAMETERS_2_UDW_PC)
+>+
+>+#define DSCA_RC_RANGE_PARAMETERS_3		_MMIO(0x6B258)
+>+#define DSCA_RC_RANGE_PARAMETERS_3_UDW		_MMIO(0x6B258 + 4)
+>+#define DSCC_RC_RANGE_PARAMETERS_3		_MMIO(0x6BA58)
+>+#define DSCC_RC_RANGE_PARAMETERS_3_UDW		_MMIO(0x6BA58 + 4)
+>+#define _ICL_DSC0_RC_RANGE_PARAMETERS_3_PB	(0x78220)
+>+#define _ICL_DSC0_RC_RANGE_PARAMETERS_3_UDW_PB	(0x78220 + 4)
+>+#define _ICL_DSC1_RC_RANGE_PARAMETERS_3_PB	(0x78320)
+>+#define _ICL_DSC1_RC_RANGE_PARAMETERS_3_UDW_PB	(0x78320 + 4)
+>+#define _ICL_DSC0_RC_RANGE_PARAMETERS_3_PC	(0x78420)
+>+#define _ICL_DSC0_RC_RANGE_PARAMETERS_3_UDW_PC	(0x78420 + 4)
+>+#define _ICL_DSC1_RC_RANGE_PARAMETERS_3_PC	(0x78520)
+>+#define _ICL_DSC1_RC_RANGE_PARAMETERS_3_UDW_PC	(0x78520 + 4)
+>+#define ICL_DSC0_RC_RANGE_PARAMETERS_3(pipe)		_MMIO_PIPE((pipe) - PIPE_B,=
+ \
+>+							_ICL_DSC0_RC_RANGE_PARAMETERS_3_PB, \
+>+							_ICL_DSC0_RC_RANGE_PARAMETERS_3_PC)
+>+#define ICL_DSC0_RC_RANGE_PARAMETERS_3_UDW(pipe)	_MMIO_PIPE((pipe) - PIPE=
+_B, \
+>+							_ICL_DSC0_RC_RANGE_PARAMETERS_3_UDW_PB, \
+>+							_ICL_DSC0_RC_RANGE_PARAMETERS_3_UDW_PC)
+>+#define ICL_DSC1_RC_RANGE_PARAMETERS_3(pipe)		_MMIO_PIPE((pipe) - PIPE_B,=
+ \
+>+							_ICL_DSC1_RC_RANGE_PARAMETERS_3_PB, \
+>+							_ICL_DSC1_RC_RANGE_PARAMETERS_3_PC)
+>+#define ICL_DSC1_RC_RANGE_PARAMETERS_3_UDW(pipe)	_MMIO_PIPE((pipe) - PIPE=
+_B, \
+>+							_ICL_DSC1_RC_RANGE_PARAMETERS_3_UDW_PB, \
+>+							_ICL_DSC1_RC_RANGE_PARAMETERS_3_UDW_PC)
+>+
+> /* VGA port control */
+> #define ADPA			_MMIO(0x61100)
+> #define PCH_ADPA                _MMIO(0xe1100)
+>@@ -8305,117 +8409,12 @@ enum {
+>
+> #define SHOTPLUG_CTL_TC				_MMIO(0xc4034)
+> #define   ICP_TC_HPD_ENABLE(tc_port)		(8 << (tc_port) * 4)
+>-
+>-#define SHPD_FILTER_CNT				_MMIO(0xc4038)
+>-#define   SHPD_FILTER_CNT_500_ADJ		0x001D9
+>-
+>-/* Icelake DSC Rate Control Range Parameter Registers */
+>-#define DSCA_RC_RANGE_PARAMETERS_0		_MMIO(0x6B240)
+>-#define DSCA_RC_RANGE_PARAMETERS_0_UDW		_MMIO(0x6B240 + 4)
+>-#define DSCC_RC_RANGE_PARAMETERS_0		_MMIO(0x6BA40)
+>-#define DSCC_RC_RANGE_PARAMETERS_0_UDW		_MMIO(0x6BA40 + 4)
+>-#define _ICL_DSC0_RC_RANGE_PARAMETERS_0_PB	(0x78208)
+>-#define _ICL_DSC0_RC_RANGE_PARAMETERS_0_UDW_PB	(0x78208 + 4)
+>-#define _ICL_DSC1_RC_RANGE_PARAMETERS_0_PB	(0x78308)
+>-#define _ICL_DSC1_RC_RANGE_PARAMETERS_0_UDW_PB	(0x78308 + 4)
+>-#define _ICL_DSC0_RC_RANGE_PARAMETERS_0_PC	(0x78408)
+>-#define _ICL_DSC0_RC_RANGE_PARAMETERS_0_UDW_PC	(0x78408 + 4)
+>-#define _ICL_DSC1_RC_RANGE_PARAMETERS_0_PC	(0x78508)
+>-#define _ICL_DSC1_RC_RANGE_PARAMETERS_0_UDW_PC	(0x78508 + 4)
+>-#define ICL_DSC0_RC_RANGE_PARAMETERS_0(pipe)		_MMIO_PIPE((pipe) - PIPE_B,=
+ \
+>-							_ICL_DSC0_RC_RANGE_PARAMETERS_0_PB, \
+>-							_ICL_DSC0_RC_RANGE_PARAMETERS_0_PC)
+>-#define ICL_DSC0_RC_RANGE_PARAMETERS_0_UDW(pipe)	_MMIO_PIPE((pipe) - PIPE=
+_B, \
+>-							_ICL_DSC0_RC_RANGE_PARAMETERS_0_UDW_PB, \
+>-							_ICL_DSC0_RC_RANGE_PARAMETERS_0_UDW_PC)
+>-#define ICL_DSC1_RC_RANGE_PARAMETERS_0(pipe)		_MMIO_PIPE((pipe) - PIPE_B,=
+ \
+>-							_ICL_DSC1_RC_RANGE_PARAMETERS_0_PB, \
+>-							_ICL_DSC1_RC_RANGE_PARAMETERS_0_PC)
+>-#define ICL_DSC1_RC_RANGE_PARAMETERS_0_UDW(pipe)	_MMIO_PIPE((pipe) - PIPE=
+_B, \
+>-							_ICL_DSC1_RC_RANGE_PARAMETERS_0_UDW_PB, \
+>-							_ICL_DSC1_RC_RANGE_PARAMETERS_0_UDW_PC)
+>-#define RC_BPG_OFFSET_SHIFT			10
+>-#define RC_MAX_QP_SHIFT				5
+>-#define RC_MIN_QP_SHIFT				0
+>-
+>-#define DSCA_RC_RANGE_PARAMETERS_1		_MMIO(0x6B248)
+>-#define DSCA_RC_RANGE_PARAMETERS_1_UDW		_MMIO(0x6B248 + 4)
+>-#define DSCC_RC_RANGE_PARAMETERS_1		_MMIO(0x6BA48)
+>-#define DSCC_RC_RANGE_PARAMETERS_1_UDW		_MMIO(0x6BA48 + 4)
+>-#define _ICL_DSC0_RC_RANGE_PARAMETERS_1_PB	(0x78210)
+>-#define _ICL_DSC0_RC_RANGE_PARAMETERS_1_UDW_PB	(0x78210 + 4)
+>-#define _ICL_DSC1_RC_RANGE_PARAMETERS_1_PB	(0x78310)
+>-#define _ICL_DSC1_RC_RANGE_PARAMETERS_1_UDW_PB	(0x78310 + 4)
+>-#define _ICL_DSC0_RC_RANGE_PARAMETERS_1_PC	(0x78410)
+>-#define _ICL_DSC0_RC_RANGE_PARAMETERS_1_UDW_PC	(0x78410 + 4)
+>-#define _ICL_DSC1_RC_RANGE_PARAMETERS_1_PC	(0x78510)
+>-#define _ICL_DSC1_RC_RANGE_PARAMETERS_1_UDW_PC	(0x78510 + 4)
+>-#define ICL_DSC0_RC_RANGE_PARAMETERS_1(pipe)		_MMIO_PIPE((pipe) - PIPE_B,=
+ \
+>-							_ICL_DSC0_RC_RANGE_PARAMETERS_1_PB, \
+>-							_ICL_DSC0_RC_RANGE_PARAMETERS_1_PC)
+>-#define ICL_DSC0_RC_RANGE_PARAMETERS_1_UDW(pipe)	_MMIO_PIPE((pipe) - PIPE=
+_B, \
+>-							_ICL_DSC0_RC_RANGE_PARAMETERS_1_UDW_PB, \
+>-							_ICL_DSC0_RC_RANGE_PARAMETERS_1_UDW_PC)
+>-#define ICL_DSC1_RC_RANGE_PARAMETERS_1(pipe)		_MMIO_PIPE((pipe) - PIPE_B,=
+ \
+>-							_ICL_DSC1_RC_RANGE_PARAMETERS_1_PB, \
+>-							_ICL_DSC1_RC_RANGE_PARAMETERS_1_PC)
+>-#define ICL_DSC1_RC_RANGE_PARAMETERS_1_UDW(pipe)	_MMIO_PIPE((pipe) - PIPE=
+_B, \
+>-							_ICL_DSC1_RC_RANGE_PARAMETERS_1_UDW_PB, \
+>-							_ICL_DSC1_RC_RANGE_PARAMETERS_1_UDW_PC)
+>-
+>-#define DSCA_RC_RANGE_PARAMETERS_2		_MMIO(0x6B250)
+>-#define DSCA_RC_RANGE_PARAMETERS_2_UDW		_MMIO(0x6B250 + 4)
+>-#define DSCC_RC_RANGE_PARAMETERS_2		_MMIO(0x6BA50)
+>-#define DSCC_RC_RANGE_PARAMETERS_2_UDW		_MMIO(0x6BA50 + 4)
+>-#define _ICL_DSC0_RC_RANGE_PARAMETERS_2_PB	(0x78218)
+>-#define _ICL_DSC0_RC_RANGE_PARAMETERS_2_UDW_PB	(0x78218 + 4)
+>-#define _ICL_DSC1_RC_RANGE_PARAMETERS_2_PB	(0x78318)
+>-#define _ICL_DSC1_RC_RANGE_PARAMETERS_2_UDW_PB	(0x78318 + 4)
+>-#define _ICL_DSC0_RC_RANGE_PARAMETERS_2_PC	(0x78418)
+>-#define _ICL_DSC0_RC_RANGE_PARAMETERS_2_UDW_PC	(0x78418 + 4)
+>-#define _ICL_DSC1_RC_RANGE_PARAMETERS_2_PC	(0x78518)
+>-#define _ICL_DSC1_RC_RANGE_PARAMETERS_2_UDW_PC	(0x78518 + 4)
+>-#define ICL_DSC0_RC_RANGE_PARAMETERS_2(pipe)		_MMIO_PIPE((pipe) - PIPE_B,=
+ \
+>-							_ICL_DSC0_RC_RANGE_PARAMETERS_2_PB, \
+>-							_ICL_DSC0_RC_RANGE_PARAMETERS_2_PC)
+>-#define ICL_DSC0_RC_RANGE_PARAMETERS_2_UDW(pipe)	_MMIO_PIPE((pipe) - PIPE=
+_B, \
+>-							_ICL_DSC0_RC_RANGE_PARAMETERS_2_UDW_PB, \
+>-							_ICL_DSC0_RC_RANGE_PARAMETERS_2_UDW_PC)
+>-#define ICL_DSC1_RC_RANGE_PARAMETERS_2(pipe)		_MMIO_PIPE((pipe) - PIPE_B,=
+ \
+>-							_ICL_DSC1_RC_RANGE_PARAMETERS_2_PB, \
+>-							_ICL_DSC1_RC_RANGE_PARAMETERS_2_PC)
+>-#define ICL_DSC1_RC_RANGE_PARAMETERS_2_UDW(pipe)	_MMIO_PIPE((pipe) - PIPE=
+_B, \
+>-							_ICL_DSC1_RC_RANGE_PARAMETERS_2_UDW_PB, \
+>-							_ICL_DSC1_RC_RANGE_PARAMETERS_2_UDW_PC)
+>-
+>-#define DSCA_RC_RANGE_PARAMETERS_3		_MMIO(0x6B258)
+>-#define DSCA_RC_RANGE_PARAMETERS_3_UDW		_MMIO(0x6B258 + 4)
+>-#define DSCC_RC_RANGE_PARAMETERS_3		_MMIO(0x6BA58)
+>-#define DSCC_RC_RANGE_PARAMETERS_3_UDW		_MMIO(0x6BA58 + 4)
+>-#define _ICL_DSC0_RC_RANGE_PARAMETERS_3_PB	(0x78220)
+>-#define _ICL_DSC0_RC_RANGE_PARAMETERS_3_UDW_PB	(0x78220 + 4)
+>-#define _ICL_DSC1_RC_RANGE_PARAMETERS_3_PB	(0x78320)
+>-#define _ICL_DSC1_RC_RANGE_PARAMETERS_3_UDW_PB	(0x78320 + 4)
+>-#define _ICL_DSC0_RC_RANGE_PARAMETERS_3_PC	(0x78420)
+>-#define _ICL_DSC0_RC_RANGE_PARAMETERS_3_UDW_PC	(0x78420 + 4)
+>-#define _ICL_DSC1_RC_RANGE_PARAMETERS_3_PC	(0x78520)
+>-#define _ICL_DSC1_RC_RANGE_PARAMETERS_3_UDW_PC	(0x78520 + 4)
+>-#define ICL_DSC0_RC_RANGE_PARAMETERS_3(pipe)		_MMIO_PIPE((pipe) - PIPE_B,=
+ \
+>-							_ICL_DSC0_RC_RANGE_PARAMETERS_3_PB, \
+>-							_ICL_DSC0_RC_RANGE_PARAMETERS_3_PC)
+>-#define ICL_DSC0_RC_RANGE_PARAMETERS_3_UDW(pipe)	_MMIO_PIPE((pipe) - PIPE=
+_B, \
+>-							_ICL_DSC0_RC_RANGE_PARAMETERS_3_UDW_PB, \
+>-							_ICL_DSC0_RC_RANGE_PARAMETERS_3_UDW_PC)
+>-#define ICL_DSC1_RC_RANGE_PARAMETERS_3(pipe)		_MMIO_PIPE((pipe) - PIPE_B,=
+ \
+>-							_ICL_DSC1_RC_RANGE_PARAMETERS_3_PB, \
+>-							_ICL_DSC1_RC_RANGE_PARAMETERS_3_PC)
+>-#define ICL_DSC1_RC_RANGE_PARAMETERS_3_UDW(pipe)	_MMIO_PIPE((pipe) - PIPE=
+_B, \
+>-							_ICL_DSC1_RC_RANGE_PARAMETERS_3_UDW_PB, \
+>-							_ICL_DSC1_RC_RANGE_PARAMETERS_3_UDW_PC)
+>-
+> #define   ICP_TC_HPD_LONG_DETECT(tc_port)	(2 << (tc_port) * 4)
+> #define   ICP_TC_HPD_SHORT_DETECT(tc_port)	(1 << (tc_port) * 4)
+>
+>+#define SHPD_FILTER_CNT				_MMIO(0xc4038)
+>+#define   SHPD_FILTER_CNT_500_ADJ		0x001D9
+>+
 
-(if I don't hear back from them soon, I'll just send out a patch for this
-myself)
+that is a weird choice git 2.26 made for the diff, but looks correct. With
+--color-moved (and not sure if the version made any difference, but mine
+is 2.28) I could check this is plain move.
 
-JFYI - the proper fix here is to just drop the
-DP_EDP_BACKLIGHT_BRIGHTNESS_PWM_PIN_CAP check from the code entirely. As long as
-the backlight supports AUX_SET_CAP, that should be enough for us to control it.
+Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
 
+Lucas De Marchi
 
-On Wed, 2020-10-07 at 14:58 +0800, Kai-Heng Feng wrote:
-> HP DreamColor panel needs to be controlled via AUX interface. However,
-> it has both DP_EDP_BACKLIGHT_BRIGHTNESS_AUX_SET_CAP and
-> DP_EDP_BACKLIGHT_BRIGHTNESS_PWM_PIN_CAP set, so it fails to pass
-> intel_dp_aux_display_control_capable() test.
-> 
-> Skip the test if the panel has force DPCD quirk.
-> 
-> Signed-off-by: Kai-Heng Feng <kai.heng.feng@canonical.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c | 10 ++++++----
->  1 file changed, 6 insertions(+), 4 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
-> b/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
-> index acbd7eb66cbe..acf2e1c65290 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
-> @@ -347,9 +347,13 @@ int intel_dp_aux_init_backlight_funcs(struct
-> intel_connector *intel_connector)
->  	struct intel_panel *panel = &intel_connector->panel;
->  	struct intel_dp *intel_dp = enc_to_intel_dp(intel_connector->encoder);
->  	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
-> +	bool force_dpcd;
-> +
-> +	force_dpcd = drm_dp_has_quirk(&intel_dp->desc, intel_dp->edid_quirks,
-> +				      DP_QUIRK_FORCE_DPCD_BACKLIGHT);
->  
->  	if (i915->params.enable_dpcd_backlight == 0 ||
-> -	    !intel_dp_aux_display_control_capable(intel_connector))
-> +	    (!force_dpcd &&
-> !intel_dp_aux_display_control_capable(intel_connector)))
->  		return -ENODEV;
->  
->  	/*
-> @@ -358,9 +362,7 @@ int intel_dp_aux_init_backlight_funcs(struct
-> intel_connector *intel_connector)
->  	 */
->  	if (i915->vbt.backlight.type !=
->  	    INTEL_BACKLIGHT_VESA_EDP_AUX_INTERFACE &&
-> -	    i915->params.enable_dpcd_backlight != 1 &&
-> -	    !drm_dp_has_quirk(&intel_dp->desc, intel_dp->edid_quirks,
-> -			      DP_QUIRK_FORCE_DPCD_BACKLIGHT)) {
-> +	    i915->params.enable_dpcd_backlight != 1 && !force_dpcd) {
->  		drm_info(&i915->drm,
->  			 "Panel advertises DPCD backlight support, but "
->  			 "VBT disagrees. If your backlight controls "
--- 
-Sincerely,
-      Lyude Paul (she/her)
-      Software Engineer at Red Hat
+> #define ICP_DDI_HPD_ENABLE_MASK		(SHOTPLUG_CTL_DDI_HPD_ENABLE(PORT_B) | \
+> 					 SHOTPLUG_CTL_DDI_HPD_ENABLE(PORT_A))
+> #define ICP_TC_HPD_ENABLE_MASK		(ICP_TC_HPD_ENABLE(PORT_TC4) | \
+>-- =
 
+>2.26.2
+>
+>_______________________________________________
+>Intel-gfx mailing list
+>Intel-gfx@lists.freedesktop.org
+>https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
