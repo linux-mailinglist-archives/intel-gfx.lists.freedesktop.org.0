@@ -2,46 +2,39 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 501AC286344
-	for <lists+intel-gfx@lfdr.de>; Wed,  7 Oct 2020 18:10:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7A188286573
+	for <lists+intel-gfx@lfdr.de>; Wed,  7 Oct 2020 19:09:57 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 97F5589257;
-	Wed,  7 Oct 2020 16:10:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B42426E081;
+	Wed,  7 Oct 2020 17:09:55 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5D43589243
- for <intel-gfx@lists.freedesktop.org>; Wed,  7 Oct 2020 16:10:10 +0000 (UTC)
-IronPort-SDR: HXlujHTVzxJjjk3Hf1rNnLiJN8WY5FBcRtKPhAM0vKG3uXCtpqoZcts2lkm0Du/GzjH/9RAE8b
- bu9eE/6iQjxw==
-X-IronPort-AV: E=McAfee;i="6000,8403,9767"; a="152767908"
-X-IronPort-AV: E=Sophos;i="5.77,347,1596524400"; d="scan'208";a="152767908"
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1DBEE6E081
+ for <intel-gfx@lists.freedesktop.org>; Wed,  7 Oct 2020 17:09:35 +0000 (UTC)
+IronPort-SDR: HLglBVW213euN8DKLjUQgN1ujs6leIL+XVD+YKKnbqY6P3DudKKgMOsWgF5XqtEhNmbGMLDkQo
+ IaccXHGZ6MvQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9767"; a="164254640"
+X-IronPort-AV: E=Sophos;i="5.77,347,1596524400"; d="scan'208";a="164254640"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Oct 2020 09:09:56 -0700
-IronPort-SDR: RpHZQ8w6EJRv9oSdEnt7cQnuGVpJ9VDD8HRVTOJ+OSXyatsXvgNSFjZ4Gt6YEDAiI1+tRhcuId
- nAUPCKzqEOKw==
-X-IronPort-AV: E=Sophos;i="5.77,347,1596524400"; d="scan'208";a="354958071"
-Received: from dgetzing-mobl.gar.corp.intel.com (HELO ldmartin-desk1)
- ([10.209.33.15])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Oct 2020 09:09:54 -0700
-Date: Wed, 7 Oct 2020 09:09:53 -0700
-From: Lucas De Marchi <lucas.demarchi@intel.com>
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Oct 2020 10:09:22 -0700
+IronPort-SDR: O5h9/4TvSNkh0F2b/cDqEXaE6lF6uQnDzLHlKmE+0UXMDGdFBZp01XBxIHLKXLILnObtMu85nK
+ 826z+aiBgO+Q==
+X-IronPort-AV: E=Sophos;i="5.77,347,1596524400"; d="scan'208";a="528056837"
+Received: from ideak-desk.fi.intel.com ([10.237.68.141])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Oct 2020 10:09:19 -0700
+From: Imre Deak <imre.deak@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Message-ID: <20201007160953.5vexf4pa3mtmxwtv@ldmartin-desk1>
-X-Patchwork-Hint: ignore
-References: <20201007002210.3678024-1-lucas.demarchi@intel.com>
- <160203206894.15198.9092371725169740954@emeril.freedesktop.org>
+Date: Wed,  7 Oct 2020 20:09:11 +0300
+Message-Id: <20201007170917.1764556-1-imre.deak@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <160203206894.15198.9092371725169740954@emeril.freedesktop.org>
-Subject: Re: [Intel-gfx] 
- =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
- =?utf-8?q?series_starting_with_=5BCI=2C1/8=5D_drm/i915/dg1=3A_add_more_PC?=
- =?utf-8?q?I_ids?=
+Subject: [Intel-gfx] [PATCH v3 0/6] rm/i915: Add support for LTTPR
+ non-transparent link training mode
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,121 +47,31 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Oct 07, 2020 at 12:54:28AM +0000, Patchwork wrote:
->== Series Details ==
->
->Series: series starting with [CI,1/8] drm/i915/dg1: add more PCI ids
->URL   : https://patchwork.freedesktop.org/series/82422/
->State : warning
->
->== Summary ==
->
->$ dim sparse --fast origin/drm-tip
->Sparse version: v0.6.2
->Fast mode used, each commit won't be checked separately.
->-
->+./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_read16' - different lock contexts for basic block
-
-something wrong with sparse in CI?
-
-
-$ ../maintainer-tools/dim sparse drm-tip/drm-tip
-Sparse version: v0.6.2
-Commit: drm/i915/dg1: add more PCI ids
-Okay!
-
-Commit: drm/i915/dg1: Initialize RAWCLK properly
-Okay!
-
-Commit: drm/i915/dg1: Define MOCS table for DG1
-Okay!
-
-Commit: drm/i915/dg1: Increase mmio size to 4MB
-Okay!
-
-Commit: drm/i915/dg1: gmbus pin mapping
-Okay!
-
-Commit: drm/i915/dg1: Don't program PHY_MISC for PHY-C and PHY-D
-Okay!
-
-Commit: drm/i915/dg1: Update comp master/slave relationships for PHYs
-Okay!
-
-Commit: drm/i915/dg1: provide port/phy mapping for vbt
-Okay!
-
-
-
-And also with tip of tree with sparse:
-
-$ ../maintainer-tools/dim sparse drm-tip/drm-tip
-Sparse version: v0.6.2-218-gc0e96d6d
-Commit: drm/i915/dg1: add more PCI ids
-Okay!
-
-Commit: drm/i915/dg1: Initialize RAWCLK properly
-Okay!
-
-Commit: drm/i915/dg1: Define MOCS table for DG1
-Okay!
-
-Commit: drm/i915/dg1: Increase mmio size to 4MB
-Okay!
-
-Commit: drm/i915/dg1: gmbus pin mapping
-Okay!
-
-Commit: drm/i915/dg1: Don't program PHY_MISC for PHY-C and PHY-D
-Okay!
-
-Commit: drm/i915/dg1: Update comp master/slave relationships for PHYs
-Okay!
-
-Commit: drm/i915/dg1: provide port/phy mapping for vbt
-Okay!
-
-
-Lucas De Marchi
-
->+./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_read32' - different lock contexts for basic block
->+./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_read64' - different lock contexts for basic block
->+./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_read8' - different lock contexts for basic block
->+./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_write16' - different lock contexts for basic block
->+./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_write32' - different lock contexts for basic block
->+./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_write8' - different lock contexts for basic block
->+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_read16' - different lock contexts for basic block
->+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_read32' - different lock contexts for basic block
->+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_read64' - different lock contexts for basic block
->+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_read8' - different lock contexts for basic block
->+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_write16' - different lock contexts for basic block
->+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_write32' - different lock contexts for basic block
->+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_write8' - different lock contexts for basic block
->+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_read16' - different lock contexts for basic block
->+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_read32' - different lock contexts for basic block
->+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_read64' - different lock contexts for basic block
->+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_read8' - different lock contexts for basic block
->+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_write16' - different lock contexts for basic block
->+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_write32' - different lock contexts for basic block
->+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_write8' - different lock contexts for basic block
->+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_read16' - different lock contexts for basic block
->+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_read32' - different lock contexts for basic block
->+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_read64' - different lock contexts for basic block
->+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_read8' - different lock contexts for basic block
->+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_write16' - different lock contexts for basic block
->+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_write32' - different lock contexts for basic block
->+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_write8' - different lock contexts for basic block
->+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen8_write16' - different lock contexts for basic block
->+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen8_write32' - different lock contexts for basic block
->+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen8_write8' - different lock contexts for basic block
->
->
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+VGhpcyBwYXRjaHNldCBpcyB2MyBvZiBbMV0sIHJlYmFzZWQgb24gZHJtLXRpcCwgZml4aW5nIGFu
+IGVEUCByZWxhdGVkCmNoZWNrIGluIHBhdGNoIDUgYW5kIGFkZHJlc3NpbmcgYSByZXZpZXcgY29t
+bWVudCBmcm9tIFZpbGxlIGluIHBhdGNoIDYuCgpbMV0gaHR0cHM6Ly9wYXRjaHdvcmsuZnJlZWRl
+c2t0b3Aub3JnL3Nlcmllcy84MTk2OC8KCkNjOiBWaWxsZSBTeXJqw6Rsw6QgPHZpbGxlLnN5cmph
+bGFAbGludXguaW50ZWwuY29tPgoKSW1yZSBEZWFrICg2KToKICBkcm0vaTkxNTogRml4IERQIGxp
+bmsgdHJhaW5pbmcgcGF0dGVybiBtYXNrCiAgZHJtL2k5MTU6IFNpbXBsaWZ5IHRoZSBsaW5rIHRy
+YWluaW5nIGZ1bmN0aW9ucwogIGRybS9pOTE1OiBGYWN0b3Igb3V0IGEgaGVscGVyIHRvIGRpc2Fi
+bGUgdGhlIERQQ0QgdHJhaW5pbmcgcGF0dGVybgogIGRybS9kcDogQWRkIExUVFBSIGhlbHBlcnMK
+ICBkcm0vaTkxNTogU3dpdGNoIHRvIExUVFBSIHRyYW5zcGFyZW50IG1vZGUgbGluayB0cmFpbmlu
+ZwogIGRybS9pOTE1OiBTd2l0Y2ggdG8gTFRUUFIgbm9uLXRyYW5zcGFyZW50IG1vZGUgbGluayB0
+cmFpbmluZwoKIGRyaXZlcnMvZ3B1L2RybS9kcm1fZHBfaGVscGVyLmMgICAgICAgICAgICAgICB8
+IDIzMiArKysrKysrLQogZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kZGkuYyAg
+ICAgIHwgICAzICstCiAuLi4vZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5X3R5cGVzLmgg
+ICAgfCAgIDIgKwogZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kcC5jICAgICAg
+IHwgIDQ3ICstCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RwLmggICAgICAg
+fCAgIDQgLQogLi4uL2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZHBfbGlua190cmFpbmluZy5jIHwg
+NTAyICsrKysrKysrKysrKysrKy0tLQogLi4uL2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZHBfbGlu
+a190cmFpbmluZy5oIHwgICA5ICsKIGluY2x1ZGUvZHJtL2RybV9kcF9oZWxwZXIuaCAgICAgICAg
+ICAgICAgICAgICB8ICA2MiArKysKIDggZmlsZXMgY2hhbmdlZCwgNzU1IGluc2VydGlvbnMoKyks
+IDEwNiBkZWxldGlvbnMoLSkKCi0tIAoyLjI1LjEKCl9fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxp
+c3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFu
+L2xpc3RpbmZvL2ludGVsLWdmeAo=
