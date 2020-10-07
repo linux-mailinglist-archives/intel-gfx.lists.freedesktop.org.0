@@ -1,44 +1,45 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D1334286B57
-	for <lists+intel-gfx@lfdr.de>; Thu,  8 Oct 2020 01:01:58 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id EDC12286B5F
+	for <lists+intel-gfx@lfdr.de>; Thu,  8 Oct 2020 01:11:51 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 393756E03D;
-	Wed,  7 Oct 2020 23:01:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1F7926E9AE;
+	Wed,  7 Oct 2020 23:11:49 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 22E4E6E03D
- for <intel-gfx@lists.freedesktop.org>; Wed,  7 Oct 2020 23:01:55 +0000 (UTC)
-IronPort-SDR: ZyZcHQxvY1lv7nbtorGFrKD7eaQPIaIFJrsRq6FGoU2krWgLLIVzzwsDLO+vwf9jcbHwtZsj/8
- JMo3BC6mM8kQ==
-X-IronPort-AV: E=McAfee;i="6000,8403,9767"; a="152091560"
-X-IronPort-AV: E=Sophos;i="5.77,348,1596524400"; d="scan'208";a="152091560"
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 35C3E6E9AE
+ for <intel-gfx@lists.freedesktop.org>; Wed,  7 Oct 2020 23:11:47 +0000 (UTC)
+IronPort-SDR: LghDcpbWYdsRpfYp1hOjRVO8+An/rA2OpFWny8aeDmj6TxBbuzDrF+KMXQc4fq2qsypII2o9R0
+ CaQ1YLnO2WdQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9767"; a="165234675"
+X-IronPort-AV: E=Sophos;i="5.77,348,1596524400"; d="scan'208";a="165234675"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Oct 2020 16:01:54 -0700
-IronPort-SDR: mB7s/AezM3FilqrNIO1VtZDRgXi0zcd4n2S9TKiaQlwxvOtV/CpIodxJKHE4VmQnfz96aFXf9J
- X3xIl2hH3+yw==
-X-IronPort-AV: E=Sophos;i="5.77,348,1596524400"; d="scan'208";a="297819977"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Oct 2020 16:11:46 -0700
+IronPort-SDR: Z68w+i1P6B7Kf9vOkaDNro11grCGuaZMcR6674gibhsfgwFusMGnxtfjZ6ZrtvuIDWL6JONSwL
+ O8mdpKrsNl6w==
+X-IronPort-AV: E=Sophos;i="5.77,348,1596524400"; d="scan'208";a="311973587"
 Received: from lewisjos-mobl3.amr.corp.intel.com (HELO ldmartin-desk1)
  ([10.209.51.10])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Oct 2020 16:01:53 -0700
-Date: Wed, 7 Oct 2020 16:01:36 -0700
+ by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Oct 2020 16:11:46 -0700
+Date: Wed, 7 Oct 2020 16:11:45 -0700
 From: Lucas De Marchi <lucas.demarchi@intel.com>
 To: Ville Syrjala <ville.syrjala@linux.intel.com>
-Message-ID: <20201007230136.uzssth4wvjxwmf5a@ldmartin-desk1>
+Message-ID: <20201007231145.ufu23osa6minqeyl@ldmartin-desk1>
 X-Patchwork-Hint: ignore
 References: <20201006143349.5561-1-ville.syrjala@linux.intel.com>
- <20201006143349.5561-7-ville.syrjala@linux.intel.com>
+ <20201006143349.5561-8-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20201006143349.5561-7-ville.syrjala@linux.intel.com>
-Subject: Re: [Intel-gfx] [PATCH 06/20] drm/i915: Pimp AUX CH names
+In-Reply-To: <20201006143349.5561-8-ville.syrjala@linux.intel.com>
+Subject: Re: [Intel-gfx] [PATCH 07/20] drm/i915: Use AUX_CH_USBCn for the
+ RKL VBT AUX CH setup
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,58 +58,49 @@ Content-Type: text/plain; charset="iso-8859-1"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Oct 06, 2020 at 05:33:35PM +0300, Ville Syrj=E4l=E4 wrote:
+On Tue, Oct 06, 2020 at 05:33:36PM +0300, Ville Syrj=E4l=E4 wrote:
 >From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
 >
->Let's make the AUX CH names match the spec (AUX A-F for pre-tgl,
->AUX A-C or AUX USBC1-6 for tgl+). And while at it let's include
->the full encoder name in the AUX CH name as well (as opposed to
->just using port_name() which wouldn't give us the right thing on
->tgl+).
+>As with the VBT DVO port, RKL uses PHY based mapping for the
+>VBT AUX CH. Adjust the code to use the new AUX_USBCn names
+>and add a comment to explain the situation.
 >
 >Signed-off-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+>---
+> drivers/gpu/drm/i915/display/intel_bios.c | 8 ++++++--
+> 1 file changed, 6 insertions(+), 2 deletions(-)
+>
+>diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/i=
+915/display/intel_bios.c
+>index 179029c3d3d5..77c86f51c36d 100644
+>--- a/drivers/gpu/drm/i915/display/intel_bios.c
+>+++ b/drivers/gpu/drm/i915/display/intel_bios.c
+>@@ -2636,10 +2636,14 @@ enum aux_ch intel_bios_port_aux_ch(struct drm_i915=
+_private *dev_priv,
+> 		aux_ch =3D AUX_CH_B;
+> 		break;
+> 	case DP_AUX_C:
+>-		aux_ch =3D IS_ROCKETLAKE(dev_priv) ? AUX_CH_D : AUX_CH_C;
+>+		/*
+>+		 * RKL VBT uses PHY based mapping. Combo PHYs A,B,C,D
+>+		 * map to DDI A,B,TC1,TC2 respectively.
 
+This will conflict with DG1 that was just merged and use the same
+mapping as RKL. Change here LGTM.
 
 Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
 
 Lucas De Marchi
 
->---
-> drivers/gpu/drm/i915/display/intel_dp.c | 13 ++++++++++---
-> 1 file changed, 10 insertions(+), 3 deletions(-)
->
->diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i91=
-5/display/intel_dp.c
->index a73c354c920e..299dc444a777 100644
->--- a/drivers/gpu/drm/i915/display/intel_dp.c
->+++ b/drivers/gpu/drm/i915/display/intel_dp.c
->@@ -1877,6 +1877,7 @@ intel_dp_aux_init(struct intel_dp *intel_dp)
-> 	struct drm_i915_private *dev_priv =3D dp_to_i915(intel_dp);
-> 	struct intel_digital_port *dig_port =3D dp_to_dig_port(intel_dp);
-> 	struct intel_encoder *encoder =3D &dig_port->base;
->+	enum aux_ch aux_ch =3D dig_port->aux_ch;
->
-> 	if (INTEL_GEN(dev_priv) >=3D 12) {
-> 		intel_dp->aux_ch_ctl_reg =3D tgl_aux_ctl_reg;
->@@ -1909,9 +1910,15 @@ intel_dp_aux_init(struct intel_dp *intel_dp)
-> 	drm_dp_aux_init(&intel_dp->aux);
->
-> 	/* Failure to allocate our preferred name is not critical */
->-	intel_dp->aux.name =3D kasprintf(GFP_KERNEL, "AUX %c/port %c",
->-				       aux_ch_name(dig_port->aux_ch),
->-				       port_name(encoder->port));
->+	if (INTEL_GEN(dev_priv) >=3D 12 && aux_ch >=3D AUX_CH_USBC1)
->+		intel_dp->aux.name =3D kasprintf(GFP_KERNEL, "AUX USBC%c/%s",
->+					       aux_ch - AUX_CH_USBC1 + '1',
->+					       encoder->base.name);
->+	else
->+		intel_dp->aux.name =3D kasprintf(GFP_KERNEL, "AUX %c/%s",
->+					       aux_ch_name(aux_ch),
->+					       encoder->base.name);
->+
-> 	intel_dp->aux.transfer =3D intel_dp_aux_transfer;
-> }
->
+>+		 */
+>+		aux_ch =3D IS_ROCKETLAKE(dev_priv) ? AUX_CH_USBC1 : AUX_CH_C;
+> 		break;
+> 	case DP_AUX_D:
+>-		aux_ch =3D IS_ROCKETLAKE(dev_priv) ? AUX_CH_E : AUX_CH_D;
+>+		aux_ch =3D IS_ROCKETLAKE(dev_priv) ? AUX_CH_USBC2 : AUX_CH_D;
+> 		break;
+> 	case DP_AUX_E:
+> 		aux_ch =3D AUX_CH_E;
 >-- =
 
 >2.26.2
