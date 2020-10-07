@@ -2,41 +2,41 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 68A1C28555F
-	for <lists+intel-gfx@lfdr.de>; Wed,  7 Oct 2020 02:22:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1B7DA285564
+	for <lists+intel-gfx@lfdr.de>; Wed,  7 Oct 2020 02:22:43 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2A4F16E83A;
-	Wed,  7 Oct 2020 00:22:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B61DC6E83C;
+	Wed,  7 Oct 2020 00:22:37 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 55F7E6E838
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5FAA26E83F
  for <intel-gfx@lists.freedesktop.org>; Wed,  7 Oct 2020 00:22:31 +0000 (UTC)
-IronPort-SDR: 02rRF27M7rdNLW6eVtt2JPDJr41w56CmDStjIoJQizgBMI0XhlBHeaClcL39fXUDEWkUJXXFP/
- 1x3+NKBKaaRg==
-X-IronPort-AV: E=McAfee;i="6000,8403,9766"; a="162142909"
-X-IronPort-AV: E=Sophos;i="5.77,344,1596524400"; d="scan'208";a="162142909"
+IronPort-SDR: SmLZpB8QLWYAC7A4X4n8xyu/gp+8xET9ZHRQTaAkuStpUzzm26fJAW7ngRL0uR379+GX2DJWLQ
+ c3b2BmXlZM7A==
+X-IronPort-AV: E=McAfee;i="6000,8403,9766"; a="162142910"
+X-IronPort-AV: E=Sophos;i="5.77,344,1596524400"; d="scan'208";a="162142910"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from orsmga005.jf.intel.com ([10.7.209.41])
  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  06 Oct 2020 17:22:28 -0700
-IronPort-SDR: 73SmRu+FKnt0ApMzH6Jtom7vMDqplOfv5hoptwErmbsai3XC01bkpp8WwyBXD+pordR0FEkIyN
- Y8O/I2JWblYw==
-X-IronPort-AV: E=Sophos;i="5.77,344,1596524400"; d="scan'208";a="527687764"
+IronPort-SDR: yfd6/DUFN5CdIwoGbNPkgc2mnDpvkoU9+CLQu3THMU19zS6oh8ytnuQ+79OhlPptbgf2SCEc5J
+ smVnjKhBTrhg==
+X-IronPort-AV: E=Sophos;i="5.77,344,1596524400"; d="scan'208";a="527687768"
 Received: from lucas-s2600cw.jf.intel.com ([10.165.21.202])
  by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  06 Oct 2020 17:22:27 -0700
 From: Lucas De Marchi <lucas.demarchi@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Tue,  6 Oct 2020 17:22:08 -0700
-Message-Id: <20201007002210.3678024-6-lucas.demarchi@intel.com>
+Date: Tue,  6 Oct 2020 17:22:09 -0700
+Message-Id: <20201007002210.3678024-7-lucas.demarchi@intel.com>
 X-Mailer: git-send-email 2.28.0
 In-Reply-To: <20201007002210.3678024-1-lucas.demarchi@intel.com>
 References: <20201007002210.3678024-1-lucas.demarchi@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [CI 6/8] drm/i915/dg1: Don't program PHY_MISC for PHY-C
- and PHY-D
+Subject: [Intel-gfx] [CI 7/8] drm/i915/dg1: Update comp master/slave
+ relationships for PHYs
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,36 +56,37 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Matt Roper <matthew.d.roper@intel.com>
 
-The only bit we use in PHY_MISC is DE_IO_COMP_PWR_DOWN, and the bspec
-details for that bit tell us that it need only be set for PHY-A and
-PHY-B.  It also turns out that there isn't even an instance of the
-PHY_MISC register for PHY-D on this platform.  Let's extend the EHL/RKL
-logic that conditionally skips PHY_MISC usage to DG1 as well.
+As with RKL, DG1's PHY C acts as a comp master for PHY D.
 
-Bspec: 50107
-Cc: Aditya Swarup <aditya.swarup@intel.com>
-Cc: Clinton Taylor <Clinton.A.Taylor@intel.com>
+Bspec: 49291
 Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
 Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
 Reviewed-by: Anusha Srivatsa <anusha.srivatsa@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_combo_phy.c | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/i915/display/intel_combo_phy.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_combo_phy.c b/drivers/gpu/drm/i915/display/intel_combo_phy.c
-index 157d8c8c605a..07c9fa2fb835 100644
+index 07c9fa2fb835..932265f1ac90 100644
 --- a/drivers/gpu/drm/i915/display/intel_combo_phy.c
 +++ b/drivers/gpu/drm/i915/display/intel_combo_phy.c
-@@ -189,7 +189,8 @@ static bool has_phy_misc(struct drm_i915_private *i915, enum phy phy)
- 	 * other combo PHY's.
+@@ -243,14 +243,14 @@ static bool phy_is_master(struct drm_i915_private *dev_priv, enum phy phy)
+ 	 *
+ 	 * ICL,TGL:
+ 	 *   A(master) -> B(slave), C(slave)
+-	 * RKL:
++	 * RKL,DG1:
+ 	 *   A(master) -> B(slave)
+ 	 *   C(master) -> D(slave)
+ 	 *
+ 	 * We must set the IREFGEN bit for any PHY acting as a master
+ 	 * to another PHY.
  	 */
- 	if (IS_ELKHARTLAKE(i915) ||
--	    IS_ROCKETLAKE(i915))
-+	    IS_ROCKETLAKE(i915) ||
-+	    IS_DG1(i915))
- 		return phy < PHY_C;
+-	if (IS_ROCKETLAKE(dev_priv) && phy == PHY_C)
++	if ((IS_DG1(dev_priv) || IS_ROCKETLAKE(dev_priv)) && phy == PHY_C)
+ 		return true;
  
- 	return true;
+ 	return phy == PHY_A;
 -- 
 2.28.0
 
