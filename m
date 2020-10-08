@@ -1,31 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4B779287EDD
-	for <lists+intel-gfx@lfdr.de>; Fri,  9 Oct 2020 00:56:03 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 08CDC287EF6
+	for <lists+intel-gfx@lfdr.de>; Fri,  9 Oct 2020 01:03:23 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 29E3C6EB73;
-	Thu,  8 Oct 2020 22:56:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B816B6EB72;
+	Thu,  8 Oct 2020 23:03:19 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 33BD56EB72;
- Thu,  8 Oct 2020 22:56:00 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 2C50BA0099;
- Thu,  8 Oct 2020 22:56:00 +0000 (UTC)
+Received: from fireflyinternet.com (unknown [77.68.26.236])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BFBF46E027;
+ Thu,  8 Oct 2020 23:03:17 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 22662658-1500050 
+ for multiple; Fri, 09 Oct 2020 00:03:04 +0100
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Fri,  9 Oct 2020 00:03:03 +0100
+Message-Id: <20201008230303.1560301-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.28.0
+In-Reply-To: <20201008221334.1478509-1-chris@chris-wilson.co.uk>
+References: <20201008221334.1478509-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Gustavo A. R. Silva" <gustavoars@kernel.org>
-Date: Thu, 08 Oct 2020 22:56:00 -0000
-Message-ID: <160219776015.11033.12740918857896876499@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20201008221842.GA9463@embeddedor>
-In-Reply-To: <20201008221842.GA9463@embeddedor>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciBk?=
- =?utf-8?q?rm/i915/display=3A_Use_fallthrough_pseudo-keyword?=
+Subject: [Intel-gfx] [PATCH i-g-t v3] prime_vgem: Check that we wrap the
+ vgem mmap with userptr
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,34 +39,93 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: igt-dev@lists.freedesktop.org, "Lahtinen,
+ Joonas" <joonas.lahtinen@intel.com>, "Kondapally,
+ Kalyan" <kalyan.kondapally@intel.com>, "Graunke,
+ Kenneth W" <kenneth.w.graunke@intel.com>,
+ Chris Wilson <chris@chris-wilson.co.uk>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+This came up in a discussion about importing virtio dma-buf, which are
+themselves plain shmemfs objects and so not only backed by struct pages,
+but wrappable by userptr. vgem share the same properties and so should
+serve as a useful proxy for testing.
 
-Series: drm/i915/display: Use fallthrough pseudo-keyword
-URL   : https://patchwork.freedesktop.org/series/82486/
-State : failure
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: "Graunke, Kenneth W" <kenneth.w.graunke@intel.com>,
+Cc: "Lahtinen, Joonas" <joonas.lahtinen@intel.com>
+Cc: "Kondapally, Kalyan" <kalyan.kondapally@intel.com>
+---
+ tests/intel-ci/fast-feedback.testlist |  1 +
+ tests/prime_vgem.c                    | 31 +++++++++++++++++++++++++++
+ 2 files changed, 32 insertions(+)
 
-== Summary ==
-
-Applying: drm/i915/display: Use fallthrough pseudo-keyword
-Using index info to reconstruct a base tree...
-M	drivers/gpu/drm/i915/display/intel_ddi.c
-Falling back to patching base and 3-way merge...
-Auto-merging drivers/gpu/drm/i915/display/intel_ddi.c
-CONFLICT (content): Merge conflict in drivers/gpu/drm/i915/display/intel_ddi.c
-error: Failed to merge in the changes.
-hint: Use 'git am --show-current-patch=diff' to see the failed patch
-Patch failed at 0001 drm/i915/display: Use fallthrough pseudo-keyword
-When you have resolved this problem, run "git am --continue".
-If you prefer to skip this patch, run "git am --skip" instead.
-To restore the original branch and stop patching, run "git am --abort".
-
+diff --git a/tests/intel-ci/fast-feedback.testlist b/tests/intel-ci/fast-feedback.testlist
+index aa2eb3295..982d25834 100644
+--- a/tests/intel-ci/fast-feedback.testlist
++++ b/tests/intel-ci/fast-feedback.testlist
+@@ -143,6 +143,7 @@ igt@prime_vgem@basic-fence-read
+ igt@prime_vgem@basic-gtt
+ igt@prime_vgem@basic-read
+ igt@prime_vgem@basic-write
++igt@prime_vgem@basic-userptr
+ igt@vgem_basic@setversion
+ igt@vgem_basic@create
+ igt@vgem_basic@debugfs
+diff --git a/tests/prime_vgem.c b/tests/prime_vgem.c
+index 38e2026aa..bc74d6844 100644
+--- a/tests/prime_vgem.c
++++ b/tests/prime_vgem.c
+@@ -287,6 +287,34 @@ static void test_write(int vgem, int i915)
+ 	munmap(ptr, scratch.size);
+ }
+ 
++static void test_userptr(int vgem, int i915)
++{
++	struct vgem_bo scratch;
++	struct drm_i915_gem_exec_object2 obj = {};
++	struct drm_i915_gem_execbuffer2 execbuf = {
++		.buffers_ptr = to_user_pointer(&obj),
++		.buffer_count = 1,
++	};
++	uint32_t *ptr;
++
++	scratch.width = 1024;
++	scratch.height = 1024;
++	scratch.bpp = 32;
++	vgem_create(vgem, &scratch);
++
++	ptr = vgem_mmap(vgem, &scratch, PROT_WRITE);
++	gem_close(vgem, scratch.handle);
++	*ptr = MI_BATCH_BUFFER_END;
++
++	gem_userptr(i915, ptr, scratch.size, 0, 0, &obj.handle);
++	gem_set_caching(i915, obj.handle, I915_CACHING_NONE); /* for exec */
++
++	gem_execbuf(i915, &execbuf);
++	gem_close(i915, obj.handle);
++
++	munmap(ptr, scratch.size);
++}
++
+ static void test_gtt(int vgem, int i915)
+ {
+ 	struct vgem_bo scratch;
+@@ -1038,6 +1066,9 @@ igt_main
+ 	igt_subtest("basic-write")
+ 		test_write(vgem, i915);
+ 
++	igt_subtest("basic-userptr")
++		test_userptr(vgem, i915);
++
+ 	igt_subtest("basic-gtt") {
+ 		gem_require_mappable_ggtt(i915);
+ 		test_gtt(vgem, i915);
+-- 
+2.28.0
 
 _______________________________________________
 Intel-gfx mailing list
