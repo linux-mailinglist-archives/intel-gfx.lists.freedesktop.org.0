@@ -2,42 +2,47 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4C3F0286DC9
-	for <lists+intel-gfx@lfdr.de>; Thu,  8 Oct 2020 06:42:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 12BE8287099
+	for <lists+intel-gfx@lfdr.de>; Thu,  8 Oct 2020 10:19:28 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B6DEE6EA20;
-	Thu,  8 Oct 2020 04:42:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 827B26E311;
+	Thu,  8 Oct 2020 08:19:26 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from ozlabs.org (bilbo.ozlabs.org [203.11.71.1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8FA6C6EA20;
- Thu,  8 Oct 2020 04:42:05 +0000 (UTC)
-Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest
- SHA256) (No client certificate requested)
- by mail.ozlabs.org (Postfix) with ESMTPSA id 4C6JT704d9z9sSn;
- Thu,  8 Oct 2020 15:42:02 +1100 (AEDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=canb.auug.org.au;
- s=201702; t=1602132123;
- bh=pHYkEo5SeRirjcFywD0/VFWBVXGBUKoWYC8gzAs94js=;
- h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
- b=lStlENq4mXKEVZeDOqjX0Z5iLfOQnVCkiRHTUd+8Gkb+Z+yKtn4O5XZx/JiOulu0l
- keppNe8cEdtxYgMkWVJW9t4qZAk7unVcqWOFKmG+woO+bF1Te2i4xkrtoGZPUALPKJ
- Gex8O3NqIVdWSH5FbksfQj8EGzpNOsio5pTk+KtdCnRFsFgqWNxdVWoMopCBockJwI
- 0FB39Zd0jB5xEYXOq1ZSgYau9AWdJTsOc1wwG/6QA78FLGZxQx5Lf+599uz9IwjqAn
- lupkr43pRjOSu+JUP6lo0L+AdTW/AGaeCBRq3BJ/cEDLEAvQjaV0E2RRhhQr51APdF
- WL6ue6avSnv/Q==
-Date: Thu, 8 Oct 2020 15:42:02 +1100
-From: Stephen Rothwell <sfr@canb.auug.org.au>
-To: Daniel Vetter <daniel.vetter@ffwll.ch>, Intel Graphics
- <intel-gfx@lists.freedesktop.org>, DRI <dri-devel@lists.freedesktop.org>
-Message-ID: <20201008154202.175fbec7@canb.auug.org.au>
-In-Reply-To: <20201008140903.12a411b8@canb.auug.org.au>
-References: <20201008140903.12a411b8@canb.auug.org.au>
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0D4566E311
+ for <intel-gfx@lists.freedesktop.org>; Thu,  8 Oct 2020 08:19:25 +0000 (UTC)
+IronPort-SDR: 8IMSROjU50SLb7Ld9K94MwRHAlZNCxiworXYF+7urTgUjKmhPwO9u6UhxL2pOoCIJJB7MRsfwR
+ d2meK1m61XYA==
+X-IronPort-AV: E=McAfee;i="6000,8403,9767"; a="182725204"
+X-IronPort-AV: E=Sophos;i="5.77,350,1596524400"; d="scan'208";a="182725204"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Oct 2020 01:19:24 -0700
+IronPort-SDR: 4fmmd+n6PKfEInuWYyQNVH+x+1XUhCLiHIc4Jdz7hyU/SJGvVXfc4vvYEIq8AvIbmSYR5eYpMi
+ j6Qar0hUS9MA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.77,350,1596524400"; d="scan'208";a="328500209"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
+ by orsmga002.jf.intel.com with SMTP; 08 Oct 2020 01:19:22 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Thu, 08 Oct 2020 11:19:21 +0300
+Date: Thu, 8 Oct 2020 11:19:21 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Lyude Paul <lyude@redhat.com>
+Message-ID: <20201008081921.GD6112@intel.com>
+References: <20201006185809.4655-1-ville.syrjala@linux.intel.com>
+ <20201007192241.10241-1-ville.syrjala@linux.intel.com>
+ <2991edbd9a251af62cfb707870466764388d57ee.camel@redhat.com>
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] linux-next: build failure after merge of the
- drm-misc tree
+Content-Disposition: inline
+In-Reply-To: <2991edbd9a251af62cfb707870466764388d57ee.camel@redhat.com>
+X-Patchwork-Hint: comment
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: Re: [Intel-gfx] [PATCH v2 1/3] drm/i915: Reorder hpd init vs.
+ display resume
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,172 +55,113 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Paul Cercueil <paul@crapouillou.net>,
- Linux Next Mailing List <linux-next@vger.kernel.org>,
- Sam Ravnborg <sam@ravnborg.org>,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Content-Type: multipart/mixed; boundary="===============0610168127=="
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0610168127==
-Content-Type: multipart/signed; boundary="Sig_/a.aVf6N/5DzCJgymDWQC_K+";
- protocol="application/pgp-signature"; micalg=pgp-sha256
+On Wed, Oct 07, 2020 at 06:15:47PM -0400, Lyude Paul wrote:
+> On Wed, 2020-10-07 at 22:22 +0300, Ville Syrjala wrote:
+> > From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> > =
 
---Sig_/a.aVf6N/5DzCJgymDWQC_K+
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: quoted-printable
+> > Currently we call .hpd_irq_setup() directly just before display
+> > resume, and follow it with another call via intel_hpd_init()
+> > just afterwards. Assuming the hpd pins are marked as enabled
+> > during the open-coded call these two things do exactly the
+> > same thing (ie. enable HPD interrupts). Which even makes sense
+> > since we definitely need working HPD interrupts for MST sideband
+> > during the display resume.
+> > =
 
-Hi all,
+> > So let's nuke the open-coded call and move the intel_hpd_init()
+> > call earlier. However we need to leave the poll_init_work stuff
+> > behind after the display resume as that will trigger display
+> > detection while we're resuming. We don't want that trampling over
+> > the display resume process. To make this a bit more symmetric
+> > we turn this into a intel_hpd_poll_{enable,disable}() pair.
+> > So we end up with the following transformation:
+> > intel_hpd_poll_init() -> intel_hpd_poll_enable()
+> > lone intel_hpd_init() -> intel_hpd_init()+intel_hpd_poll_disable()
+> > .hpd_irq_setup()+resume+intel_hpd_init() ->
+> > intel_hpd_init()+resume+intel_hpd_poll_disable()
+> > =
 
-On Thu, 8 Oct 2020 14:09:03 +1100 Stephen Rothwell <sfr@canb.auug.org.au> w=
-rote:
->
-> After merging the drm-misc tree, today's linux-next build (x86_64
-> allmodconfig) failed like this:
+> > If we really would like to prevent all *long* HPD processing during
+> > display resume we'd need some kind of software mechanism to simply
+> > ignore all long HPDs. Currently we appear to have that just for
+> > fbdev via ifbdev->hpd_suspended. Since we aren't exploding left and
+> > right all the time I guess that's mostly sufficient.
+> > =
 
-In file included from include/linux/clk.h:13,
-                 from drivers/gpu/drm/ingenic/ingenic-drm-drv.c:10:
-drivers/gpu/drm/ingenic/ingenic-drm-drv.c: In function 'ingenic_drm_update_=
-palette':
-drivers/gpu/drm/ingenic/ingenic-drm-drv.c:448:35: error: 'struct ingenic_dr=
-m' has no member named 'dma_hwdescs'; did you mean 'dma_hwdesc_f0'?
-  448 |  for (i =3D 0; i < ARRAY_SIZE(priv->dma_hwdescs->palette); i++) {
-      |                                   ^~~~~~~~~~~
-include/linux/kernel.h:47:33: note: in definition of macro 'ARRAY_SIZE'
-   47 | #define ARRAY_SIZE(arr) (sizeof(arr) / sizeof((arr)[0]) + __must_be=
-_array(arr))
-      |                                 ^~~
-drivers/gpu/drm/ingenic/ingenic-drm-drv.c:448:35: error: 'struct ingenic_dr=
-m' has no member named 'dma_hwdescs'; did you mean 'dma_hwdesc_f0'?
-  448 |  for (i =3D 0; i < ARRAY_SIZE(priv->dma_hwdescs->palette); i++) {
-      |                                   ^~~~~~~~~~~
-include/linux/kernel.h:47:48: note: in definition of macro 'ARRAY_SIZE'
-   47 | #define ARRAY_SIZE(arr) (sizeof(arr) / sizeof((arr)[0]) + __must_be=
-_array(arr))
-      |                                                ^~~
-In file included from include/linux/bits.h:22,
-                 from include/linux/bitops.h:5,
-                 from drivers/gpu/drm/ingenic/ingenic-drm.h:10,
-                 from drivers/gpu/drm/ingenic/ingenic-drm-drv.c:7:
-drivers/gpu/drm/ingenic/ingenic-drm-drv.c:448:35: error: 'struct ingenic_dr=
-m' has no member named 'dma_hwdescs'; did you mean 'dma_hwdesc_f0'?
-  448 |  for (i =3D 0; i < ARRAY_SIZE(priv->dma_hwdescs->palette); i++) {
-      |                                   ^~~~~~~~~~~
-include/linux/build_bug.h:16:62: note: in definition of macro 'BUILD_BUG_ON=
-_ZERO'
-   16 | #define BUILD_BUG_ON_ZERO(e) ((int)(sizeof(struct { int:(-!!(e)); }=
-)))
-      |                                                              ^
-include/linux/compiler.h:224:46: note: in expansion of macro '__same_type'
-  224 | #define __must_be_array(a) BUILD_BUG_ON_ZERO(__same_type((a), &(a)[=
-0]))
-      |                                              ^~~~~~~~~~~
-include/linux/kernel.h:47:59: note: in expansion of macro '__must_be_array'
-   47 | #define ARRAY_SIZE(arr) (sizeof(arr) / sizeof((arr)[0]) + __must_be=
-_array(arr))
-      |                                                           ^~~~~~~~~=
-~~~~~~
-drivers/gpu/drm/ingenic/ingenic-drm-drv.c:448:18: note: in expansion of mac=
-ro 'ARRAY_SIZE'
-  448 |  for (i =3D 0; i < ARRAY_SIZE(priv->dma_hwdescs->palette); i++) {
-      |                  ^~~~~~~~~~
-drivers/gpu/drm/ingenic/ingenic-drm-drv.c:448:35: error: 'struct ingenic_dr=
-m' has no member named 'dma_hwdescs'; did you mean 'dma_hwdesc_f0'?
-  448 |  for (i =3D 0; i < ARRAY_SIZE(priv->dma_hwdescs->palette); i++) {
-      |                                   ^~~~~~~~~~~
-include/linux/build_bug.h:16:62: note: in definition of macro 'BUILD_BUG_ON=
-_ZERO'
-   16 | #define BUILD_BUG_ON_ZERO(e) ((int)(sizeof(struct { int:(-!!(e)); }=
-)))
-      |                                                              ^
-include/linux/compiler.h:224:46: note: in expansion of macro '__same_type'
-  224 | #define __must_be_array(a) BUILD_BUG_ON_ZERO(__same_type((a), &(a)[=
-0]))
-      |                                              ^~~~~~~~~~~
-include/linux/kernel.h:47:59: note: in expansion of macro '__must_be_array'
-   47 | #define ARRAY_SIZE(arr) (sizeof(arr) / sizeof((arr)[0]) + __must_be=
-_array(arr))
-      |                                                           ^~~~~~~~~=
-~~~~~~
-drivers/gpu/drm/ingenic/ingenic-drm-drv.c:448:18: note: in expansion of mac=
-ro 'ARRAY_SIZE'
-  448 |  for (i =3D 0; i < ARRAY_SIZE(priv->dma_hwdescs->palette); i++) {
-      |                  ^~~~~~~~~~
-include/linux/build_bug.h:16:51: error: bit-field '<anonymous>' width not a=
-n integer constant
-   16 | #define BUILD_BUG_ON_ZERO(e) ((int)(sizeof(struct { int:(-!!(e)); }=
-)))
-      |                                                   ^
-include/linux/compiler.h:224:28: note: in expansion of macro 'BUILD_BUG_ON_=
-ZERO'
-  224 | #define __must_be_array(a) BUILD_BUG_ON_ZERO(__same_type((a), &(a)[=
-0]))
-      |                            ^~~~~~~~~~~~~~~~~
-include/linux/kernel.h:47:59: note: in expansion of macro '__must_be_array'
-   47 | #define ARRAY_SIZE(arr) (sizeof(arr) / sizeof((arr)[0]) + __must_be=
-_array(arr))
-      |                                                           ^~~~~~~~~=
-~~~~~~
-drivers/gpu/drm/ingenic/ingenic-drm-drv.c:448:18: note: in expansion of mac=
-ro 'ARRAY_SIZE'
-  448 |  for (i =3D 0; i < ARRAY_SIZE(priv->dma_hwdescs->palette); i++) {
-      |                  ^~~~~~~~~~
-drivers/gpu/drm/ingenic/ingenic-drm-drv.c:453:9: error: 'struct ingenic_drm=
-' has no member named 'dma_hwdescs'; did you mean 'dma_hwdesc_f0'?
-  453 |   priv->dma_hwdescs->palette[i] =3D color;
-      |         ^~~~~~~~~~~
-      |         dma_hwdesc_f0
-drivers/gpu/drm/ingenic/ingenic-drm-drv.c: In function 'ingenic_drm_plane_a=
-tomic_update':
-drivers/gpu/drm/ingenic/ingenic-drm-drv.c:467:3: error: 'crtc_state' undecl=
-ared (first use in this function); did you mean 'ctx_state'?
-  467 |   crtc_state =3D state->crtc->state;
-      |   ^~~~~~~~~~
-      |   ctx_state
-drivers/gpu/drm/ingenic/ingenic-drm-drv.c:467:3: note: each undeclared iden=
-tifier is reported only once for each function it appears in
-At top level:
-drivers/gpu/drm/ingenic/ingenic-drm-drv.c:443:13: warning: 'ingenic_drm_upd=
-ate_palette' defined but not used [-Wunused-function]
-  443 | static void ingenic_drm_update_palette(struct ingenic_drm *priv,
-      |             ^~~~~~~~~~~~~~~~~~~~~~~~~~
+> > For a bit of history on this, we first got a mechanism to block
+> > hotplug processing during suspend in commit 15239099d7a7 ("drm/i915:
+> > enable irqs earlier when resuming") on account of moving the irq enable
+> > earlier. This then got removed in commit 50c3dc970a09 ("drm/fb-helper:
+> > Fix hpd vs. initial config races") because the fdev initial config
+> > got pushed to a later point. The second ad-hoc hpd_irq_setup() for
+> > resume was added in commit 0e32b39ceed6 ("drm/i915: add DP 1.2 MST
+> > support (v0.7)") to be able to do MST sideband during the resume.
+> > And finally we got a partial resurrection of the hpd blocking
+> > mechanism in commit e8a8fedd57fd ("drm/i915: Block fbdev HPD
+> > processing during suspend"), but this time it only prevent fbdev
+> > from handling hpd while resuming.
+> > =
 
-> I noticed that the ingenic driver revert I had been waiting for appeared
-> in hte drm-misc tree, so I removed the BROKEN dependency for it, but it
-> produced the above errors, so I have marked it BROKEN again.
+> > v2: Leave the poll_init_work behind
+> > =
 
---=20
-Cheers,
-Stephen Rothwell
+> > Cc: Lyude Paul <lyude@redhat.com>
+> > Signed-off-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> > ---
+> >  drivers/gpu/drm/i915/display/intel_display.c  |  9 ++--
+> >  .../drm/i915/display/intel_display_power.c    |  3 +-
+> >  drivers/gpu/drm/i915/display/intel_hotplug.c  | 42 ++++++++++++++-----
+> >  drivers/gpu/drm/i915/display/intel_hotplug.h  |  3 +-
+> >  drivers/gpu/drm/i915/i915_drv.c               | 23 ++++------
+> >  5 files changed, 46 insertions(+), 34 deletions(-)
+> > =
 
---Sig_/a.aVf6N/5DzCJgymDWQC_K+
-Content-Type: application/pgp-signature
-Content-Description: OpenPGP digital signature
+> > diff --git a/drivers/gpu/drm/i915/display/intel_display.c
+> > b/drivers/gpu/drm/i915/display/intel_display.c
+> > index 907e1d155443..0d5607ae97c4 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_display.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> > @@ -5036,18 +5036,15 @@ void intel_finish_reset(struct drm_i915_private
+> > *dev_priv)
+> >  		intel_pps_unlock_regs_wa(dev_priv);
+> >  		intel_modeset_init_hw(dev_priv);
+> >  		intel_init_clock_gating(dev_priv);
+> > -
+> > -		spin_lock_irq(&dev_priv->irq_lock);
+> > -		if (dev_priv->display.hpd_irq_setup)
+> > -			dev_priv->display.hpd_irq_setup(dev_priv);
+> > -		spin_unlock_irq(&dev_priv->irq_lock);
+> > +		intel_hpd_init(dev_priv);
+> > +		intel_hpd_poll_disable(dev_priv);
+> >  =
 
------BEGIN PGP SIGNATURE-----
+> >  		ret =3D __intel_display_resume(dev, state, ctx);
+> >  		if (ret)
+> >  			drm_err(&dev_priv->drm,
+> >  				"Restoring old state failed with %i\n", ret);
+> >  =
 
-iQEzBAEBCAAdFiEENIC96giZ81tWdLgKAVBC80lX0GwFAl9+mJoACgkQAVBC80lX
-0Gy25AgAiwrgmtejusGdnGlqjti1mzozlFgjX4CgYtoX62Je6t343vPbuiQhTKLn
-7oSTXILrf2nRdP6YApgoErv/rHhiXQRJUURHEtYcVWQFrWXjmnRVDx4ceQ1z4emZ
-YWhTbPqz5qhB9acuq31DvJgb1mOPSFvbrSzWRXL+8Mwf+jtO/U0p2PiZrtgbbIFL
-CTWOQjyFy3VnWi6HQFVq5u1rE1wIVnbpWsFz64Tc82KTBOWtYS2YDG6H1HO97W+P
-mLDbRRGozMeygumNFaVe5hL6URzxhIyHecAt/kW2W2FYhYw/j5oeflUAlNCWm9u9
-uo+yDtwaMyCE7y0phreINjzxC5nS2Q==
-=jXm8
------END PGP SIGNATURE-----
+> > -		intel_hpd_init(dev_priv);
+> > +		intel_hpd_poll_disable(dev_priv);
+> =
 
---Sig_/a.aVf6N/5DzCJgymDWQC_K+--
+> Looks like you're calling intel_hpd_poll_disable() twice here, is this
+> intentional?
 
---===============0610168127==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+No, just a failure to follow my own rules. Thanks for spotting it.
 
+-- =
+
+Ville Syrj=E4l=E4
+Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============0610168127==--
