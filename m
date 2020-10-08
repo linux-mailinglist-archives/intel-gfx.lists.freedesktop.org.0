@@ -2,45 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6B52B2870F7
-	for <lists+intel-gfx@lfdr.de>; Thu,  8 Oct 2020 10:52:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3F323287159
+	for <lists+intel-gfx@lfdr.de>; Thu,  8 Oct 2020 11:22:10 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AB3E96E0C6;
-	Thu,  8 Oct 2020 08:52:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 47E486E0D5;
+	Thu,  8 Oct 2020 09:22:08 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 219DA6E0C6
- for <intel-gfx@lists.freedesktop.org>; Thu,  8 Oct 2020 08:52:32 +0000 (UTC)
-IronPort-SDR: m9JrAD+DSMsXulbZoa6lIGJEBxrkX4Y3OrPcrBKEECQBUb09kD5/7Mu8klP9SfLHpcZbJgI1JC
- v/G/7KC5kUJg==
-X-IronPort-AV: E=McAfee;i="6000,8403,9767"; a="152219920"
-X-IronPort-AV: E=Sophos;i="5.77,350,1596524400"; d="scan'208";a="152219920"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Oct 2020 01:52:31 -0700
-IronPort-SDR: vFCyAY4pB2bFbJ4mxEG3rnxFGAldc9vySFactdSexH7PDizKa1FJH+ukJfWGeWIG8RCeTxivru
- 76vrwWUD1ASw==
-X-IronPort-AV: E=Sophos;i="5.77,350,1596524400"; d="scan'208";a="528413013"
-Received: from lewisjos-mobl3.amr.corp.intel.com (HELO ldmartin-desk1)
- ([10.209.51.10])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Oct 2020 01:52:31 -0700
-Date: Thu, 8 Oct 2020 01:52:30 -0700
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-Message-ID: <20201008085230.76522yxdanfacp6l@ldmartin-desk1>
-X-Patchwork-Hint: ignore
-References: <20201006143349.5561-1-ville.syrjala@linux.intel.com>
- <20201006143349.5561-6-ville.syrjala@linux.intel.com>
- <20201007225111.zplmtcrjto3imijf@ldmartin-desk1>
- <20201008084028.GG6112@intel.com>
+Received: from mx2.suse.de (mx2.suse.de [195.135.220.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 289566E0F5;
+ Thu,  8 Oct 2020 09:22:07 +0000 (UTC)
+X-Virus-Scanned: by amavisd-new at test-mx.suse.de
+Received: from relay2.suse.de (unknown [195.135.221.27])
+ by mx2.suse.de (Postfix) with ESMTP id C403AAD32;
+ Thu,  8 Oct 2020 09:22:05 +0000 (UTC)
+To: Daniel Vetter <daniel.vetter@ffwll.ch>,
+ DRI Development <dri-devel@lists.freedesktop.org>
+References: <20201007133036.1541639-1-daniel.vetter@ffwll.ch>
+From: Thomas Zimmermann <tzimmermann@suse.de>
+Message-ID: <fedcb884-fdb0-8f32-34ce-e0a2d3238413@suse.de>
+Date: Thu, 8 Oct 2020 11:22:02 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.12.0
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20201008084028.GG6112@intel.com>
-Subject: Re: [Intel-gfx] [PATCH 05/20] drm/i915: Introduce AUX_CH_USBCn
+In-Reply-To: <20201007133036.1541639-1-daniel.vetter@ffwll.ch>
+Subject: Re: [Intel-gfx] [PATCH] drm/fb-helper: Add locking to sysrq handling
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,163 +39,171 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"; Format="flowed"
+Cc: David Airlie <airlied@linux.ie>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ Maxime Ripard <mripard@kernel.org>, Daniel Vetter <daniel.vetter@intel.com>
+Content-Type: multipart/mixed; boundary="===============0579719976=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Oct 08, 2020 at 11:40:28AM +0300, Ville Syrj=E4l=E4 wrote:
->On Wed, Oct 07, 2020 at 03:51:11PM -0700, Lucas De Marchi wrote:
->> On Tue, Oct 06, 2020 at 05:33:34PM +0300, Ville Syrj=E4l=E4 wrote:
->> >From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
->> >
->> >Just like with the DDIs tgl+ renamed the AUX CHs to reflect
->> >the type of the DDI. Let's add the aliasing enum values for
->> >the type-C AUX CHs.
->> >
->> >Signed-off-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
->> >---
->> > drivers/gpu/drm/i915/display/intel_display.h |  8 +++
->> > drivers/gpu/drm/i915/display/intel_dp.c      | 53 ++++++++++++++++++--
->> > 2 files changed, 58 insertions(+), 3 deletions(-)
->> >
->> >diff --git a/drivers/gpu/drm/i915/display/intel_display.h b/drivers/gpu=
-/drm/i915/display/intel_display.h
->> >index a39be3c9e0cf..cba876721ea0 100644
->> >--- a/drivers/gpu/drm/i915/display/intel_display.h
->> >+++ b/drivers/gpu/drm/i915/display/intel_display.h
->> >@@ -290,6 +290,14 @@ enum aux_ch {
->> > 	AUX_CH_G,
->> > 	AUX_CH_H,
->> > 	AUX_CH_I,
->> >+
->> >+	/* tgl+ */
->> >+	AUX_CH_USBC1 =3D AUX_CH_D,
->> >+	AUX_CH_USBC2,
->> >+	AUX_CH_USBC3,
->> >+	AUX_CH_USBC4,
->> >+	AUX_CH_USBC5,
->> >+	AUX_CH_USBC6,
->> > };
->> >
->> > #define aux_ch_name(a) ((a) + 'A')
->> >diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/=
-i915/display/intel_dp.c
->> >index 239016dcd544..a73c354c920e 100644
->> >--- a/drivers/gpu/drm/i915/display/intel_dp.c
->> >+++ b/drivers/gpu/drm/i915/display/intel_dp.c
->> >@@ -1792,7 +1792,6 @@ static i915_reg_t skl_aux_ctl_reg(struct intel_dp=
- *intel_dp)
->> > 	case AUX_CH_D:
->> > 	case AUX_CH_E:
->> > 	case AUX_CH_F:
->> >-	case AUX_CH_G:
->> > 		return DP_AUX_CH_CTL(aux_ch);
->> > 	default:
->> > 		MISSING_CASE(aux_ch);
->> >@@ -1813,7 +1812,52 @@ static i915_reg_t skl_aux_data_reg(struct intel_=
-dp *intel_dp, int index)
->> > 	case AUX_CH_D:
->> > 	case AUX_CH_E:
->> > 	case AUX_CH_F:
->> >-	case AUX_CH_G:
->> >+		return DP_AUX_CH_DATA(aux_ch, index);
->> >+	default:
->> >+		MISSING_CASE(aux_ch);
->> >+		return DP_AUX_CH_DATA(AUX_CH_A, index);
->> >+	}
->> >+}
->> >+
->> >+static i915_reg_t tgl_aux_ctl_reg(struct intel_dp *intel_dp)
->> >+{
->> >+	struct drm_i915_private *dev_priv =3D dp_to_i915(intel_dp);
->> >+	struct intel_digital_port *dig_port =3D dp_to_dig_port(intel_dp);
->> >+	enum aux_ch aux_ch =3D dig_port->aux_ch;
->> >+
->> >+	switch (aux_ch) {
->> >+	case AUX_CH_A:
->> >+	case AUX_CH_B:
->> >+	case AUX_CH_C:
->> >+	case AUX_CH_USBC1:
->> >+	case AUX_CH_USBC2:
->> >+	case AUX_CH_USBC3:
->> >+	case AUX_CH_USBC4:
->> >+	case AUX_CH_USBC5:
->> >+	case AUX_CH_USBC6:
->> >+		return DP_AUX_CH_CTL(aux_ch);
->> >+	default:
->> >+		MISSING_CASE(aux_ch);
->> >+		return DP_AUX_CH_CTL(AUX_CH_A);
->> >+	}
->> >+}
->> >+
->> >+static i915_reg_t tgl_aux_data_reg(struct intel_dp *intel_dp, int inde=
-x)
->> >+{
->> >+	struct drm_i915_private *dev_priv =3D dp_to_i915(intel_dp);
->> >+	struct intel_digital_port *dig_port =3D dp_to_dig_port(intel_dp);
->> >+	enum aux_ch aux_ch =3D dig_port->aux_ch;
->> >+
->> >+	switch (aux_ch) {
->> >+	case AUX_CH_A:
->> >+	case AUX_CH_B:
->> >+	case AUX_CH_C:
->> >+	case AUX_CH_USBC1:
->> >+	case AUX_CH_USBC2:
->> >+	case AUX_CH_USBC3:
->> >+	case AUX_CH_USBC4:
->> >+	case AUX_CH_USBC5:
->> >+	case AUX_CH_USBC6:
->> > 		return DP_AUX_CH_DATA(aux_ch, index);
->> > 	default:
->> > 		MISSING_CASE(aux_ch);
->> >@@ -1834,7 +1878,10 @@ intel_dp_aux_init(struct intel_dp *intel_dp)
->> > 	struct intel_digital_port *dig_port =3D dp_to_dig_port(intel_dp);
->> > 	struct intel_encoder *encoder =3D &dig_port->base;
->> >
->> >-	if (INTEL_GEN(dev_priv) >=3D 9) {
->> >+	if (INTEL_GEN(dev_priv) >=3D 12) {
->> >+		intel_dp->aux_ch_ctl_reg =3D tgl_aux_ctl_reg;
->>
->> why is this even a function pointer rather than just the reg? AFAICS it
->> only depends on dig_port->aux_ch that is initialized in intel_ddi_init()
->
->Just for consistency with .aux_ch_data_reg() I guess. Can't remember
->a more specific reason at least.
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--===============0579719976==
+Content-Type: multipart/signed; micalg=pgp-sha256;
+ protocol="application/pgp-signature";
+ boundary="jqaiaDDs6wvOiZGCkWrTkQrtES96fggdZ"
 
-even that may be overkill since all the users just use index to
-do `+ index * 4`
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--jqaiaDDs6wvOiZGCkWrTkQrtES96fggdZ
+Content-Type: multipart/mixed; boundary="VRXRAsUNmojeTScZe7nw1K6vsp0cRzO6Y";
+ protected-headers="v1"
+From: Thomas Zimmermann <tzimmermann@suse.de>
+To: Daniel Vetter <daniel.vetter@ffwll.ch>,
+ DRI Development <dri-devel@lists.freedesktop.org>
+Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ Daniel Vetter <daniel.vetter@intel.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, David Airlie <airlied@linux.ie>,
+ Daniel Vetter <daniel@ffwll.ch>
+Message-ID: <fedcb884-fdb0-8f32-34ce-e0a2d3238413@suse.de>
+Subject: Re: [PATCH] drm/fb-helper: Add locking to sysrq handling
+References: <20201007133036.1541639-1-daniel.vetter@ffwll.ch>
+In-Reply-To: <20201007133036.1541639-1-daniel.vetter@ffwll.ch>
 
-Lucas De Marchi
+--VRXRAsUNmojeTScZe7nw1K6vsp0cRzO6Y
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: quoted-printable
 
->
->>
->> but could be orthogonal to the change here.
->>
->>
->> Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
->>
->> Lucas De Marchi
->>
->> >+		intel_dp->aux_ch_data_reg =3D tgl_aux_data_reg;
->> >+	} else if (INTEL_GEN(dev_priv) >=3D 9) {
->> > 		intel_dp->aux_ch_ctl_reg =3D skl_aux_ctl_reg;
->> > 		intel_dp->aux_ch_data_reg =3D skl_aux_data_reg;
->> > 	} else if (HAS_PCH_SPLIT(dev_priv)) {
->> >--
->> >2.26.2
->> >
->> >_______________________________________________
->> >Intel-gfx mailing list
->> >Intel-gfx@lists.freedesktop.org
->> >https://lists.freedesktop.org/mailman/listinfo/intel-gfx
->
->-- =
+Hi
 
->Ville Syrj=E4l=E4
->Intel
+Am 07.10.20 um 15:30 schrieb Daniel Vetter:
+> We didn't take the kernel_fb_helper_lock mutex, which protects that
+> code. While at it, simplify the code
+> - inline the function (originally shared with kgdb I think)
+> - drop the error tracking and all the complications
+> - drop the pointless early out, it served nothing
+>=20
+> Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
+> Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+> Cc: Maxime Ripard <mripard@kernel.org>
+> Cc: Thomas Zimmermann <tzimmermann@suse.de>
+> Cc: David Airlie <airlied@linux.ie>
+> Cc: Daniel Vetter <daniel@ffwll.ch>
+> ---
+>  drivers/gpu/drm/drm_fb_helper.c | 26 +++++---------------------
+>  1 file changed, 5 insertions(+), 21 deletions(-)
+>=20
+> diff --git a/drivers/gpu/drm/drm_fb_helper.c b/drivers/gpu/drm/drm_fb_h=
+elper.c
+> index 8697554ccd41..c2f72bb6afb1 100644
+> --- a/drivers/gpu/drm/drm_fb_helper.c
+> +++ b/drivers/gpu/drm/drm_fb_helper.c
+> @@ -281,18 +281,12 @@ int drm_fb_helper_restore_fbdev_mode_unlocked(str=
+uct drm_fb_helper *fb_helper)
+>  EXPORT_SYMBOL(drm_fb_helper_restore_fbdev_mode_unlocked);
+> =20
+>  #ifdef CONFIG_MAGIC_SYSRQ
+> -/*
+> - * restore fbcon display for all kms driver's using this helper, used =
+for sysrq
+> - * and panic handling.
+> - */
+> -static bool drm_fb_helper_force_kernel_mode(void)
+> +/* emergency restore, don't bother with error reporting */
+> +static void drm_fb_helper_restore_work_fn(struct work_struct *ignored)=
+
+>  {
+> -	bool ret, error =3D false;
+>  	struct drm_fb_helper *helper;
+> =20
+> -	if (list_empty(&kernel_fb_helper_list))
+> -		return false;
+> -
+> +	mutex_lock(&kernel_fb_helper_lock);
+>  	list_for_each_entry(helper, &kernel_fb_helper_list, kernel_fb_list) {=
+
+>  		struct drm_device *dev =3D helper->dev;
+> =20
+> @@ -300,22 +294,12 @@ static bool drm_fb_helper_force_kernel_mode(void)=
+
+>  			continue;
+> =20
+>  		mutex_lock(&helper->lock);
+> -		ret =3D drm_client_modeset_commit_locked(&helper->client);
+> -		if (ret)
+> -			error =3D true;
+> +		drm_client_modeset_commit_locked(&helper->client);
+>  		mutex_unlock(&helper->lock);
+>  	}
+> -	return error;
+> +	mutex_unlock(&kernel_fb_helper_lock);
+>  }
+> =20
+> -static void drm_fb_helper_restore_work_fn(struct work_struct *ignored)=
+
+> -{
+> -	bool ret;
+> -
+> -	ret =3D drm_fb_helper_force_kernel_mode();
+> -	if (ret =3D=3D true)
+> -		DRM_ERROR("Failed to restore crtc configuration\n");
+
+Is there a specific reason for removing that warning? Even if it doesn't
+show up on screen, is it not helpful in the kernel's log?
+
+In any case, the rest looks good.
+
+Acked-by: Thomas Zimmermann <tzimmermann@suse.de>
+
+Best regards
+Thomas
+
+> -}
+>  static DECLARE_WORK(drm_fb_helper_restore_work, drm_fb_helper_restore_=
+work_fn);
+> =20
+>  static void drm_fb_helper_sysrq(int dummy1)
+>=20
+
+--=20
+Thomas Zimmermann
+Graphics Driver Developer
+SUSE Software Solutions Germany GmbH
+Maxfeldstr. 5, 90409 N=C3=BCrnberg, Germany
+(HRB 36809, AG N=C3=BCrnberg)
+Gesch=C3=A4ftsf=C3=BChrer: Felix Imend=C3=B6rffer
+
+
+--VRXRAsUNmojeTScZe7nw1K6vsp0cRzO6Y--
+
+--jqaiaDDs6wvOiZGCkWrTkQrtES96fggdZ
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: OpenPGP digital signature
+Content-Disposition: attachment; filename="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQFIBAEBCAAyFiEEchf7rIzpz2NEoWjlaA3BHVMLeiMFAl9+2joUHHR6aW1tZXJt
+YW5uQHN1c2UuZGUACgkQaA3BHVMLeiPd5wgAtqu76l4uWu20kZS3zv2Cb/nZhKLp
+AwVgtnIz55kFUunodlXvx7nse2EajWOOcN04xPGRwi2tSiMezJEiGkCmRkVZUyqW
+3wfuJJRe1lE7yK35BB2bLm2FNQXzUj4xK+UWoXx/hayf9Ug1QJLf8BwX9ZzS4wMb
+UCwZ2aNViLPba0vaCpWoLFAciVyXmu1Ccn6/uk+VoyfuSax892TBzKgphBbiizuE
+UdJ8fYW2bgKjOCT2QZZ9IzBPw/hNQaO3hQf+EKWycJlGRNajZq5y83lEBm0WJYST
+ZJHePJZf/R7OZ5p4OLTR1g2BZliYBLhfFw9XWLEjTrhmTe0O6lkt9tlwyg==
+=LArN
+-----END PGP SIGNATURE-----
+
+--jqaiaDDs6wvOiZGCkWrTkQrtES96fggdZ--
+
+--===============0579719976==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============0579719976==--
