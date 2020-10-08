@@ -1,42 +1,43 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7C5B4287536
-	for <lists+intel-gfx@lfdr.de>; Thu,  8 Oct 2020 15:23:54 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 33D98287550
+	for <lists+intel-gfx@lfdr.de>; Thu,  8 Oct 2020 15:39:01 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D9B9E6EA5F;
-	Thu,  8 Oct 2020 13:23:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8A4AD6E123;
+	Thu,  8 Oct 2020 13:38:58 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BF4EC6EA5F
- for <intel-gfx@lists.freedesktop.org>; Thu,  8 Oct 2020 13:23:51 +0000 (UTC)
-IronPort-SDR: jCPLgQEFYYCPNWo1o6aaC0kOmPJ/bkbTzb54LX5nY+vG47exZ1+eZfbo5VFPC+tm87bJdRgIcH
- Ui0uCQ3YV2iA==
-X-IronPort-AV: E=McAfee;i="6000,8403,9767"; a="165392554"
-X-IronPort-AV: E=Sophos;i="5.77,350,1596524400"; d="scan'208";a="165392554"
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A35F16E123
+ for <intel-gfx@lists.freedesktop.org>; Thu,  8 Oct 2020 13:38:57 +0000 (UTC)
+IronPort-SDR: HcoF44ITAmQREznPcDXeusPQiNU9wUnliIKUHKDtVm7ld4e8DX6GvkAwkvuhMH1P0m1eAAVig7
+ SPQFbqMo6uaA==
+X-IronPort-AV: E=McAfee;i="6000,8403,9767"; a="229519313"
+X-IronPort-AV: E=Sophos;i="5.77,350,1596524400"; d="scan'208";a="229519313"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Oct 2020 06:23:51 -0700
-IronPort-SDR: bnaruDKdyD1SRRHLzux5mNq9WfOo9fIkRL/LrEFPtEgvVXYTwL+Oi2/p83cIgLTXa2YIVXhWuZ
- y/5UX2USMKaQ==
-X-IronPort-AV: E=Sophos;i="5.77,350,1596524400"; d="scan'208";a="528492715"
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Oct 2020 06:38:56 -0700
+IronPort-SDR: /SH8VUloscHlm+wFsnTurW49MTCkLG5JLcEdIjzf1Fcxz603IkPo2swGtSrrogyY+WxQMzOMjA
+ jPthlxxRzhNA==
+X-IronPort-AV: E=Sophos;i="5.77,350,1596524400"; d="scan'208";a="519347488"
 Received: from ideak-desk.fi.intel.com ([10.237.68.141])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Oct 2020 06:23:49 -0700
-Date: Thu, 8 Oct 2020 16:23:46 +0300
+ by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Oct 2020 06:38:55 -0700
+Date: Thu, 8 Oct 2020 16:38:51 +0300
 From: Imre Deak <imre.deak@intel.com>
 To: Ville Syrjala <ville.syrjala@linux.intel.com>
-Message-ID: <20201008132346.GA1784305@ideak-desk.fi.intel.com>
+Message-ID: <20201008133851.GB1784305@ideak-desk.fi.intel.com>
 References: <20201008101608.8652-1-ville.syrjala@linux.intel.com>
+ <20201008101608.8652-2-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20201008101608.8652-1-ville.syrjala@linux.intel.com>
-Subject: Re: [Intel-gfx] [PATCH 1/3] drm/i915: Set all unused color plane
- offsets to ~0xfff again
+In-Reply-To: <20201008101608.8652-2-ville.syrjala@linux.intel.com>
+Subject: Re: [Intel-gfx] [PATCH 2/3] drm/i915: Skip aux plane stuff when
+ there is no aux plane
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,123 +51,134 @@ List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Reply-To: imre.deak@intel.com
-Cc: intel-gfx@lists.freedesktop.org, Lucas De Marchi <lucas.demarchi@intel.com>,
- Dhinakaran Pandiyan <dhinakaran.pandiyan@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Oct 08, 2020 at 01:16:06PM +0300, Ville Syrjala wrote:
+On Thu, Oct 08, 2020 at 01:16:07PM +0300, Ville Syrjala wrote:
 > From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
 > =
 
-> When the number of potential color planes grew to 4 we stopped
-> setting all unused color plane offsets to ~0xfff. The code
-> still tries to do this, but actually does nothing since the
-> loop limits are bogus.
+> when the hardware isn't going to use the aux plane there's no
+> real point in dealing with the relevant hardware restrictions.
+> So let's just skip all that when not necessary.
 > =
 
-> skl_check_main_surface() actually depends on this ~0xfff
-> behaviour as it will make sure to move the main surface
-> offset below the aux surface offset because the hardware
-> AUX_DIST must be a non-negative value [1], and for simplicity
-> it doesn't bother checking if the AUX plane is actually
-> needed or not. So currently it may end up shuffling the
-> main surface around based on some stale leftover AUX offset.
+> We can now also remove the offset=3D~0xfff behaviour for unused
+> color planes. Let's just zero out everyting so as to not leave
+> stale garbage behind to confuse people debugging the code.
 > =
 
-> The skl+ plane code also just blindly calculates the AUX_DIST
-> whether or not the AUX plane is actually needed by the hw or
-> not, and that too will now potentially use some stale AUX
-> surface offset in the calculation. Would seem nicer to
-> guarantee a consistent non-negative AUX_DIST always.
-> =
-
-> So bring back the original ~0xfff offset behaviour for
-> unused color planes. Though it doesn't seem super likely
-> that this inconsistency would cause any real issues.
-> =
-
-> Cc: Dhinakaran Pandiyan <dhinakaran.pandiyan@intel.com>
-> Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-> Cc: Imre Deak <imre.deak@intel.com>
-> Cc: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
-> Fixes: 2dfbf9d2873a ("drm/i915/tgl: Gen-12 display can decompress surface=
-s compressed by the media engine")
 > Signed-off-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-
-Arg. Yes skl_check_main_surface() adjusts now the address needlessly.
-The fix looks ok to me:
 
 Reviewed-by: Imre Deak <imre.deak@intel.com>
 
 > ---
->  drivers/gpu/drm/i915/display/intel_display.c | 17 +++++------------
->  1 file changed, 5 insertions(+), 12 deletions(-)
+>  drivers/gpu/drm/i915/display/intel_display.c | 14 +++++++++-----
+>  drivers/gpu/drm/i915/display/intel_sprite.c  |  6 +++---
+>  2 files changed, 12 insertions(+), 8 deletions(-)
 > =
 
 > diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/d=
 rm/i915/display/intel_display.c
-> index 907e1d155443..44fd7059838f 100644
+> index 44fd7059838f..34ba34f84b2a 100644
 > --- a/drivers/gpu/drm/i915/display/intel_display.c
 > +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> @@ -4104,8 +4104,7 @@ static int skl_check_ccs_aux_surface(struct intel_p=
-lane_state *plane_state)
->  int skl_check_plane_surface(struct intel_plane_state *plane_state)
+> @@ -2001,13 +2001,17 @@ static int ccs_to_main_plane(const struct drm_fra=
+mebuffer *fb, int ccs_plane)
+>  	return ccs_plane - fb->format->num_planes / 2;
+>  }
+>  =
+
+> -/* Return either the main plane's CCS or - if not a CCS FB - UV plane */
+>  int intel_main_to_aux_plane(const struct drm_framebuffer *fb, int main_p=
+lane)
 >  {
->  	const struct drm_framebuffer *fb =3D plane_state->hw.fb;
-> -	int ret;
-> -	bool needs_aux =3D false;
-> +	int ret, i;
->  =
-
->  	ret =3D intel_plane_compute_gtt(plane_state);
->  	if (ret)
-> @@ -4119,7 +4118,6 @@ int skl_check_plane_surface(struct intel_plane_stat=
-e *plane_state)
->  	 * it.
->  	 */
->  	if (is_ccs_modifier(fb->modifier)) {
-> -		needs_aux =3D true;
->  		ret =3D skl_check_ccs_aux_surface(plane_state);
->  		if (ret)
->  			return ret;
-> @@ -4127,20 +4125,15 @@ int skl_check_plane_surface(struct intel_plane_st=
-ate *plane_state)
->  =
-
->  	if (intel_format_info_is_yuv_semiplanar(fb->format,
->  						fb->modifier)) {
-> -		needs_aux =3D true;
->  		ret =3D skl_check_nv12_aux_surface(plane_state);
->  		if (ret)
->  			return ret;
->  	}
->  =
-
-> -	if (!needs_aux) {
-> -		int i;
+> +	struct drm_i915_private *i915 =3D to_i915(fb->dev);
+> +
+>  	if (is_ccs_modifier(fb->modifier))
+>  		return main_to_ccs_plane(fb, main_plane);
 > -
-> -		for (i =3D 1; i < fb->format->num_planes; i++) {
-> -			plane_state->color_plane[i].offset =3D ~0xfff;
-> -			plane_state->color_plane[i].x =3D 0;
-> -			plane_state->color_plane[i].y =3D 0;
-> -		}
-> +	for (i =3D fb->format->num_planes; i < ARRAY_SIZE(plane_state->color_pl=
-ane); i++) {
-> +		plane_state->color_plane[i].offset =3D ~0xfff;
-> +		plane_state->color_plane[i].x =3D 0;
-> +		plane_state->color_plane[i].y =3D 0;
+> -	return 1;
+> +	else if (INTEL_GEN(i915) < 11 &&
+> +		 intel_format_info_is_yuv_semiplanar(fb->format, fb->modifier))
+> +		return 1;
+> +	else
+> +		return 0;
+>  }
+>  =
+
+>  bool
+> @@ -3933,7 +3937,7 @@ static int skl_check_main_surface(struct intel_plan=
+e_state *plane_state)
+>  	 * main surface offset, and it must be non-negative. Make
+>  	 * sure that is what we will get.
+>  	 */
+> -	if (offset > aux_offset)
+> +	if (aux_plane && offset > aux_offset)
+>  		offset =3D intel_plane_adjust_aligned_offset(&x, &y, plane_state, 0,
+>  							   offset, aux_offset & ~(alignment - 1));
+>  =
+
+> @@ -4131,7 +4135,7 @@ int skl_check_plane_surface(struct intel_plane_stat=
+e *plane_state)
 >  	}
 >  =
 
->  	ret =3D skl_check_main_surface(plane_state);
+>  	for (i =3D fb->format->num_planes; i < ARRAY_SIZE(plane_state->color_pl=
+ane); i++) {
+> -		plane_state->color_plane[i].offset =3D ~0xfff;
+> +		plane_state->color_plane[i].offset =3D 0;
+>  		plane_state->color_plane[i].x =3D 0;
+>  		plane_state->color_plane[i].y =3D 0;
+>  	}
+> diff --git a/drivers/gpu/drm/i915/display/intel_sprite.c b/drivers/gpu/dr=
+m/i915/display/intel_sprite.c
+> index 2da11ab6343c..bf8c82a2b213 100644
+> --- a/drivers/gpu/drm/i915/display/intel_sprite.c
+> +++ b/drivers/gpu/drm/i915/display/intel_sprite.c
+> @@ -656,7 +656,6 @@ skl_program_plane(struct intel_plane *plane,
+>  	const struct drm_framebuffer *fb =3D plane_state->hw.fb;
+>  	int aux_plane =3D intel_main_to_aux_plane(fb, color_plane);
+>  	u32 aux_dist =3D plane_state->color_plane[aux_plane].offset - surf_addr;
+> -	u32 aux_stride =3D skl_plane_stride(plane_state, aux_plane);
+>  	int crtc_x =3D plane_state->uapi.dst.x1;
+>  	int crtc_y =3D plane_state->uapi.dst.y1;
+>  	u32 x =3D plane_state->color_plane[color_plane].x;
+> @@ -691,6 +690,9 @@ skl_program_plane(struct intel_plane *plane,
+>  		crtc_y =3D 0;
+>  	}
+>  =
+
+> +	if (INTEL_GEN(dev_priv) < 12 && aux_plane)
+> +		aux_dist |=3D skl_plane_stride(plane_state, aux_plane);
+> +
+>  	spin_lock_irqsave(&dev_priv->uncore.lock, irqflags);
+>  =
+
+>  	intel_de_write_fw(dev_priv, PLANE_STRIDE(pipe, plane_id), stride);
+> @@ -699,8 +701,6 @@ skl_program_plane(struct intel_plane *plane,
+>  	intel_de_write_fw(dev_priv, PLANE_SIZE(pipe, plane_id),
+>  			  (src_h << 16) | src_w);
+>  =
+
+> -	if (INTEL_GEN(dev_priv) < 12)
+> -		aux_dist |=3D aux_stride;
+>  	intel_de_write_fw(dev_priv, PLANE_AUX_DIST(pipe, plane_id), aux_dist);
+>  =
+
+>  	if (icl_is_hdr_plane(dev_priv, plane_id))
 > -- =
 
 > 2.26.2
 > =
 
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
