@@ -1,31 +1,51 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3F323287159
-	for <lists+intel-gfx@lfdr.de>; Thu,  8 Oct 2020 11:22:10 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id E0012287174
+	for <lists+intel-gfx@lfdr.de>; Thu,  8 Oct 2020 11:29:36 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 47E486E0D5;
-	Thu,  8 Oct 2020 09:22:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 255D56E41A;
+	Thu,  8 Oct 2020 09:29:31 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mx2.suse.de (mx2.suse.de [195.135.220.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 289566E0F5;
- Thu,  8 Oct 2020 09:22:07 +0000 (UTC)
-X-Virus-Scanned: by amavisd-new at test-mx.suse.de
-Received: from relay2.suse.de (unknown [195.135.221.27])
- by mx2.suse.de (Postfix) with ESMTP id C403AAD32;
- Thu,  8 Oct 2020 09:22:05 +0000 (UTC)
-To: Daniel Vetter <daniel.vetter@ffwll.ch>,
- DRI Development <dri-devel@lists.freedesktop.org>
-References: <20201007133036.1541639-1-daniel.vetter@ffwll.ch>
-From: Thomas Zimmermann <tzimmermann@suse.de>
-Message-ID: <fedcb884-fdb0-8f32-34ce-e0a2d3238413@suse.de>
-Date: Thu, 8 Oct 2020 11:22:02 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.12.0
+Received: from mail-oo1-xc42.google.com (mail-oo1-xc42.google.com
+ [IPv6:2607:f8b0:4864:20::c42])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CA2856E10B
+ for <intel-gfx@lists.freedesktop.org>; Thu,  8 Oct 2020 09:29:29 +0000 (UTC)
+Received: by mail-oo1-xc42.google.com with SMTP id w25so1311129oos.10
+ for <intel-gfx@lists.freedesktop.org>; Thu, 08 Oct 2020 02:29:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc:content-transfer-encoding;
+ bh=AZtrktLaTa1q52GDC60nZwLAsgFOHVK1n21yznBhVEs=;
+ b=XSud/uQRtgvqIb3IDA77ZF0DC24MDDdeNhk03TNRcSjpyNjtyKEESQu1OButw+1j3u
+ YxkVjIC3CogywNkjkDaDO8zVvcRzloXlvNuFG6mWbqSgT1gjE5WU5tSkB1x4+d6XUTaL
+ sQ+TZHsHUTR/F0302Q5kfVN/Rw27sbqeGGFP0=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc:content-transfer-encoding;
+ bh=AZtrktLaTa1q52GDC60nZwLAsgFOHVK1n21yznBhVEs=;
+ b=o6DZsgcHbeaGOG6rrCgByvviP3uiYbXvdzPtUbcqvBNCSNTQ0R52/Sxy3pXW7KUgct
+ YmKTOui/RQrPo7pU/Fuz6GwsY24MY90uOs47grHqnb8RRKd9doP4mfVVo96KoJuWzsSi
+ qgPCgiZUlReaWJxRHKsq6qzMkmn/OL3awZmGOY7vfXx8D2qpp4/WLd3yOnRFnTeAJhba
+ 6JxaCjUFP29MXnlC7uVTkJ3BWDiNhHKuITNCf3NRyX+IeFw+i2WLMQQtA8pJim0p/zgP
+ aVFZiNTWSZ/oEpJurLsDln8Whkm3sfmZEzJpXDgECkoMWqJCMnJIz/KsO6c3JjO3omhw
+ m9iw==
+X-Gm-Message-State: AOAM532R8T0kxoBf9gy9JIiZDowxo04vCUMQBDZUvHOz/qUXkAD9l6L3
+ MNBJlD5e51orXweL9W0p3vUSKt+kCN5o0uDOMBEVVg==
+X-Google-Smtp-Source: ABdhPJwtau5D0RqHwUtJyullad7BBq5a+Ft1kEgRRLm1pZsMZIrvJ9INwFIEmhfWZc0Q81FibbXqTHtWb0VLRv1cgUs=
+X-Received: by 2002:a4a:e1d7:: with SMTP id n23mr4828251oot.85.1602149369091; 
+ Thu, 08 Oct 2020 02:29:29 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <20201007133036.1541639-1-daniel.vetter@ffwll.ch>
+References: <20201007133036.1541639-1-daniel.vetter@ffwll.ch>
+ <fedcb884-fdb0-8f32-34ce-e0a2d3238413@suse.de>
+In-Reply-To: <fedcb884-fdb0-8f32-34ce-e0a2d3238413@suse.de>
+From: Daniel Vetter <daniel.vetter@ffwll.ch>
+Date: Thu, 8 Oct 2020 11:29:18 +0200
+Message-ID: <CAKMK7uGFqNiHU5tSC_db4dBNRybY1Wc-b-OYQXReK7efn-AN4g@mail.gmail.com>
+To: Thomas Zimmermann <tzimmermann@suse.de>
 Subject: Re: [Intel-gfx] [PATCH] drm/fb-helper: Add locking to sysrq handling
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -41,169 +61,82 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: David Airlie <airlied@linux.ie>,
  Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- Maxime Ripard <mripard@kernel.org>, Daniel Vetter <daniel.vetter@intel.com>
-Content-Type: multipart/mixed; boundary="===============0579719976=="
+ Maxime Ripard <mripard@kernel.org>,
+ DRI Development <dri-devel@lists.freedesktop.org>,
+ Daniel Vetter <daniel.vetter@intel.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---===============0579719976==
-Content-Type: multipart/signed; micalg=pgp-sha256;
- protocol="application/pgp-signature";
- boundary="jqaiaDDs6wvOiZGCkWrTkQrtES96fggdZ"
-
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---jqaiaDDs6wvOiZGCkWrTkQrtES96fggdZ
-Content-Type: multipart/mixed; boundary="VRXRAsUNmojeTScZe7nw1K6vsp0cRzO6Y";
- protected-headers="v1"
-From: Thomas Zimmermann <tzimmermann@suse.de>
-To: Daniel Vetter <daniel.vetter@ffwll.ch>,
- DRI Development <dri-devel@lists.freedesktop.org>
-Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- Daniel Vetter <daniel.vetter@intel.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, David Airlie <airlied@linux.ie>,
- Daniel Vetter <daniel@ffwll.ch>
-Message-ID: <fedcb884-fdb0-8f32-34ce-e0a2d3238413@suse.de>
-Subject: Re: [PATCH] drm/fb-helper: Add locking to sysrq handling
-References: <20201007133036.1541639-1-daniel.vetter@ffwll.ch>
-In-Reply-To: <20201007133036.1541639-1-daniel.vetter@ffwll.ch>
-
---VRXRAsUNmojeTScZe7nw1K6vsp0cRzO6Y
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: quoted-printable
-
-Hi
-
-Am 07.10.20 um 15:30 schrieb Daniel Vetter:
-> We didn't take the kernel_fb_helper_lock mutex, which protects that
-> code. While at it, simplify the code
-> - inline the function (originally shared with kgdb I think)
-> - drop the error tracking and all the complications
-> - drop the pointless early out, it served nothing
->=20
-> Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
-> Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-> Cc: Maxime Ripard <mripard@kernel.org>
-> Cc: Thomas Zimmermann <tzimmermann@suse.de>
-> Cc: David Airlie <airlied@linux.ie>
-> Cc: Daniel Vetter <daniel@ffwll.ch>
-> ---
->  drivers/gpu/drm/drm_fb_helper.c | 26 +++++---------------------
->  1 file changed, 5 insertions(+), 21 deletions(-)
->=20
-> diff --git a/drivers/gpu/drm/drm_fb_helper.c b/drivers/gpu/drm/drm_fb_h=
-elper.c
-> index 8697554ccd41..c2f72bb6afb1 100644
-> --- a/drivers/gpu/drm/drm_fb_helper.c
-> +++ b/drivers/gpu/drm/drm_fb_helper.c
-> @@ -281,18 +281,12 @@ int drm_fb_helper_restore_fbdev_mode_unlocked(str=
-uct drm_fb_helper *fb_helper)
->  EXPORT_SYMBOL(drm_fb_helper_restore_fbdev_mode_unlocked);
-> =20
->  #ifdef CONFIG_MAGIC_SYSRQ
-> -/*
-> - * restore fbcon display for all kms driver's using this helper, used =
-for sysrq
-> - * and panic handling.
-> - */
-> -static bool drm_fb_helper_force_kernel_mode(void)
-> +/* emergency restore, don't bother with error reporting */
-> +static void drm_fb_helper_restore_work_fn(struct work_struct *ignored)=
-
->  {
-> -	bool ret, error =3D false;
->  	struct drm_fb_helper *helper;
-> =20
-> -	if (list_empty(&kernel_fb_helper_list))
-> -		return false;
-> -
-> +	mutex_lock(&kernel_fb_helper_lock);
->  	list_for_each_entry(helper, &kernel_fb_helper_list, kernel_fb_list) {=
-
->  		struct drm_device *dev =3D helper->dev;
-> =20
-> @@ -300,22 +294,12 @@ static bool drm_fb_helper_force_kernel_mode(void)=
-
->  			continue;
-> =20
->  		mutex_lock(&helper->lock);
-> -		ret =3D drm_client_modeset_commit_locked(&helper->client);
-> -		if (ret)
-> -			error =3D true;
-> +		drm_client_modeset_commit_locked(&helper->client);
->  		mutex_unlock(&helper->lock);
->  	}
-> -	return error;
-> +	mutex_unlock(&kernel_fb_helper_lock);
->  }
-> =20
-> -static void drm_fb_helper_restore_work_fn(struct work_struct *ignored)=
-
-> -{
-> -	bool ret;
-> -
-> -	ret =3D drm_fb_helper_force_kernel_mode();
-> -	if (ret =3D=3D true)
-> -		DRM_ERROR("Failed to restore crtc configuration\n");
-
-Is there a specific reason for removing that warning? Even if it doesn't
-show up on screen, is it not helpful in the kernel's log?
-
-In any case, the rest looks good.
-
-Acked-by: Thomas Zimmermann <tzimmermann@suse.de>
-
-Best regards
-Thomas
-
-> -}
->  static DECLARE_WORK(drm_fb_helper_restore_work, drm_fb_helper_restore_=
-work_fn);
-> =20
->  static void drm_fb_helper_sysrq(int dummy1)
->=20
-
---=20
-Thomas Zimmermann
-Graphics Driver Developer
-SUSE Software Solutions Germany GmbH
-Maxfeldstr. 5, 90409 N=C3=BCrnberg, Germany
-(HRB 36809, AG N=C3=BCrnberg)
-Gesch=C3=A4ftsf=C3=BChrer: Felix Imend=C3=B6rffer
-
-
---VRXRAsUNmojeTScZe7nw1K6vsp0cRzO6Y--
-
---jqaiaDDs6wvOiZGCkWrTkQrtES96fggdZ
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: OpenPGP digital signature
-Content-Disposition: attachment; filename="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQFIBAEBCAAyFiEEchf7rIzpz2NEoWjlaA3BHVMLeiMFAl9+2joUHHR6aW1tZXJt
-YW5uQHN1c2UuZGUACgkQaA3BHVMLeiPd5wgAtqu76l4uWu20kZS3zv2Cb/nZhKLp
-AwVgtnIz55kFUunodlXvx7nse2EajWOOcN04xPGRwi2tSiMezJEiGkCmRkVZUyqW
-3wfuJJRe1lE7yK35BB2bLm2FNQXzUj4xK+UWoXx/hayf9Ug1QJLf8BwX9ZzS4wMb
-UCwZ2aNViLPba0vaCpWoLFAciVyXmu1Ccn6/uk+VoyfuSax892TBzKgphBbiizuE
-UdJ8fYW2bgKjOCT2QZZ9IzBPw/hNQaO3hQf+EKWycJlGRNajZq5y83lEBm0WJYST
-ZJHePJZf/R7OZ5p4OLTR1g2BZliYBLhfFw9XWLEjTrhmTe0O6lkt9tlwyg==
-=LArN
------END PGP SIGNATURE-----
-
---jqaiaDDs6wvOiZGCkWrTkQrtES96fggdZ--
-
---===============0579719976==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============0579719976==--
+T24gVGh1LCBPY3QgOCwgMjAyMCBhdCAxMToyMiBBTSBUaG9tYXMgWmltbWVybWFubiA8dHppbW1l
+cm1hbm5Ac3VzZS5kZT4gd3JvdGU6Cj4KPiBIaQo+Cj4gQW0gMDcuMTAuMjAgdW0gMTU6MzAgc2No
+cmllYiBEYW5pZWwgVmV0dGVyOgo+ID4gV2UgZGlkbid0IHRha2UgdGhlIGtlcm5lbF9mYl9oZWxw
+ZXJfbG9jayBtdXRleCwgd2hpY2ggcHJvdGVjdHMgdGhhdAo+ID4gY29kZS4gV2hpbGUgYXQgaXQs
+IHNpbXBsaWZ5IHRoZSBjb2RlCj4gPiAtIGlubGluZSB0aGUgZnVuY3Rpb24gKG9yaWdpbmFsbHkg
+c2hhcmVkIHdpdGgga2dkYiBJIHRoaW5rKQo+ID4gLSBkcm9wIHRoZSBlcnJvciB0cmFja2luZyBh
+bmQgYWxsIHRoZSBjb21wbGljYXRpb25zCj4gPiAtIGRyb3AgdGhlIHBvaW50bGVzcyBlYXJseSBv
+dXQsIGl0IHNlcnZlZCBub3RoaW5nCj4gPgo+ID4gU2lnbmVkLW9mZi1ieTogRGFuaWVsIFZldHRl
+ciA8ZGFuaWVsLnZldHRlckBpbnRlbC5jb20+Cj4gPiBDYzogTWFhcnRlbiBMYW5raG9yc3QgPG1h
+YXJ0ZW4ubGFua2hvcnN0QGxpbnV4LmludGVsLmNvbT4KPiA+IENjOiBNYXhpbWUgUmlwYXJkIDxt
+cmlwYXJkQGtlcm5lbC5vcmc+Cj4gPiBDYzogVGhvbWFzIFppbW1lcm1hbm4gPHR6aW1tZXJtYW5u
+QHN1c2UuZGU+Cj4gPiBDYzogRGF2aWQgQWlybGllIDxhaXJsaWVkQGxpbnV4LmllPgo+ID4gQ2M6
+IERhbmllbCBWZXR0ZXIgPGRhbmllbEBmZndsbC5jaD4KPiA+IC0tLQo+ID4gIGRyaXZlcnMvZ3B1
+L2RybS9kcm1fZmJfaGVscGVyLmMgfCAyNiArKysrKy0tLS0tLS0tLS0tLS0tLS0tLS0tLQo+ID4g
+IDEgZmlsZSBjaGFuZ2VkLCA1IGluc2VydGlvbnMoKyksIDIxIGRlbGV0aW9ucygtKQo+ID4KPiA+
+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vZHJtX2ZiX2hlbHBlci5jIGIvZHJpdmVycy9n
+cHUvZHJtL2RybV9mYl9oZWxwZXIuYwo+ID4gaW5kZXggODY5NzU1NGNjZDQxLi5jMmY3MmJiNmFm
+YjEgMTAwNjQ0Cj4gPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vZHJtX2ZiX2hlbHBlci5jCj4gPiAr
+KysgYi9kcml2ZXJzL2dwdS9kcm0vZHJtX2ZiX2hlbHBlci5jCj4gPiBAQCAtMjgxLDE4ICsyODEs
+MTIgQEAgaW50IGRybV9mYl9oZWxwZXJfcmVzdG9yZV9mYmRldl9tb2RlX3VubG9ja2VkKHN0cnVj
+dCBkcm1fZmJfaGVscGVyICpmYl9oZWxwZXIpCj4gPiAgRVhQT1JUX1NZTUJPTChkcm1fZmJfaGVs
+cGVyX3Jlc3RvcmVfZmJkZXZfbW9kZV91bmxvY2tlZCk7Cj4gPgo+ID4gICNpZmRlZiBDT05GSUdf
+TUFHSUNfU1lTUlEKPiA+IC0vKgo+ID4gLSAqIHJlc3RvcmUgZmJjb24gZGlzcGxheSBmb3IgYWxs
+IGttcyBkcml2ZXIncyB1c2luZyB0aGlzIGhlbHBlciwgdXNlZCBmb3Igc3lzcnEKPiA+IC0gKiBh
+bmQgcGFuaWMgaGFuZGxpbmcuCj4gPiAtICovCj4gPiAtc3RhdGljIGJvb2wgZHJtX2ZiX2hlbHBl
+cl9mb3JjZV9rZXJuZWxfbW9kZSh2b2lkKQo+ID4gKy8qIGVtZXJnZW5jeSByZXN0b3JlLCBkb24n
+dCBib3RoZXIgd2l0aCBlcnJvciByZXBvcnRpbmcgKi8KPiA+ICtzdGF0aWMgdm9pZCBkcm1fZmJf
+aGVscGVyX3Jlc3RvcmVfd29ya19mbihzdHJ1Y3Qgd29ya19zdHJ1Y3QgKmlnbm9yZWQpCj4gPiAg
+ewo+ID4gLSAgICAgYm9vbCByZXQsIGVycm9yID0gZmFsc2U7Cj4gPiAgICAgICBzdHJ1Y3QgZHJt
+X2ZiX2hlbHBlciAqaGVscGVyOwo+ID4KPiA+IC0gICAgIGlmIChsaXN0X2VtcHR5KCZrZXJuZWxf
+ZmJfaGVscGVyX2xpc3QpKQo+ID4gLSAgICAgICAgICAgICByZXR1cm4gZmFsc2U7Cj4gPiAtCj4g
+PiArICAgICBtdXRleF9sb2NrKCZrZXJuZWxfZmJfaGVscGVyX2xvY2spOwo+ID4gICAgICAgbGlz
+dF9mb3JfZWFjaF9lbnRyeShoZWxwZXIsICZrZXJuZWxfZmJfaGVscGVyX2xpc3QsIGtlcm5lbF9m
+Yl9saXN0KSB7Cj4gPiAgICAgICAgICAgICAgIHN0cnVjdCBkcm1fZGV2aWNlICpkZXYgPSBoZWxw
+ZXItPmRldjsKPiA+Cj4gPiBAQCAtMzAwLDIyICsyOTQsMTIgQEAgc3RhdGljIGJvb2wgZHJtX2Zi
+X2hlbHBlcl9mb3JjZV9rZXJuZWxfbW9kZSh2b2lkKQo+ID4gICAgICAgICAgICAgICAgICAgICAg
+IGNvbnRpbnVlOwo+ID4KPiA+ICAgICAgICAgICAgICAgbXV0ZXhfbG9jaygmaGVscGVyLT5sb2Nr
+KTsKPiA+IC0gICAgICAgICAgICAgcmV0ID0gZHJtX2NsaWVudF9tb2Rlc2V0X2NvbW1pdF9sb2Nr
+ZWQoJmhlbHBlci0+Y2xpZW50KTsKPiA+IC0gICAgICAgICAgICAgaWYgKHJldCkKPiA+IC0gICAg
+ICAgICAgICAgICAgICAgICBlcnJvciA9IHRydWU7Cj4gPiArICAgICAgICAgICAgIGRybV9jbGll
+bnRfbW9kZXNldF9jb21taXRfbG9ja2VkKCZoZWxwZXItPmNsaWVudCk7Cj4gPiAgICAgICAgICAg
+ICAgIG11dGV4X3VubG9jaygmaGVscGVyLT5sb2NrKTsKPiA+ICAgICAgIH0KPiA+IC0gICAgIHJl
+dHVybiBlcnJvcjsKPiA+ICsgICAgIG11dGV4X3VubG9jaygma2VybmVsX2ZiX2hlbHBlcl9sb2Nr
+KTsKPiA+ICB9Cj4gPgo+ID4gLXN0YXRpYyB2b2lkIGRybV9mYl9oZWxwZXJfcmVzdG9yZV93b3Jr
+X2ZuKHN0cnVjdCB3b3JrX3N0cnVjdCAqaWdub3JlZCkKPiA+IC17Cj4gPiAtICAgICBib29sIHJl
+dDsKPiA+IC0KPiA+IC0gICAgIHJldCA9IGRybV9mYl9oZWxwZXJfZm9yY2Vfa2VybmVsX21vZGUo
+KTsKPiA+IC0gICAgIGlmIChyZXQgPT0gdHJ1ZSkKPiA+IC0gICAgICAgICAgICAgRFJNX0VSUk9S
+KCJGYWlsZWQgdG8gcmVzdG9yZSBjcnRjIGNvbmZpZ3VyYXRpb25cbiIpOwo+Cj4gSXMgdGhlcmUg
+YSBzcGVjaWZpYyByZWFzb24gZm9yIHJlbW92aW5nIHRoYXQgd2FybmluZz8gRXZlbiBpZiBpdCBk
+b2Vzbid0Cj4gc2hvdyB1cCBvbiBzY3JlZW4sIGlzIGl0IG5vdCBoZWxwZnVsIGluIHRoZSBrZXJu
+ZWwncyBsb2c/CgpJIGp1c3QgZm91bmQgaXQgcmVhbGx5IHVuaGVscGZ1bCwgaWYgeW91J3JlIHRy
+eWluZyB0byBmb3JjZS1zaG93CmZiY29uLCB3aGF0J3MgdGhlIHBvaW50IGlmIGl0IGRvZXNuJ3Qg
+d29yayBvdXQ/IFRoZSB1c2VyIHdpbGwgbm90aWNlLgpBbHNvLCBpZiB3ZSdyZSByZWFsbHkgaW4g
+YSBkaXJlIHNpdHVhdGlvbiB3aGVyZSB5b3Ugd2FudCB0aGlzLCBpbiBteQpleHBlcmllbmNlIHRo
+ZXJlJ3MgYSBidW5jaCBvZiByYW5kb20gb3RoZXIgcmVhc29ucyB3aHkgdGhpcyBjYW4gZmFpbCwK
+bW9zdGx5IHdoZW4gdGhlIHdvcmsgd2UgaGF2ZSB0byBzY2hlZHVsZSBmb3IgbG9ja2luZyByZWFz
+b25zIG5ldmVyCnJ1bnMuIFNvIGl0J3MgYWxzbyB1bnJlbGlhYmxlLgoKPiBJbiBhbnkgY2FzZSwg
+dGhlIHJlc3QgbG9va3MgZ29vZC4KPgo+IEFja2VkLWJ5OiBUaG9tYXMgWmltbWVybWFubiA8dHpp
+bW1lcm1hbm5Ac3VzZS5kZT4KClRoYW5rcyBmb3IgdGFraW5nIGEgbG9vaywgSSdsbCBhcHBseSBp
+dC4KLURhbmllbAoKPgo+IEJlc3QgcmVnYXJkcwo+IFRob21hcwo+Cj4gPiAtfQo+ID4gIHN0YXRp
+YyBERUNMQVJFX1dPUksoZHJtX2ZiX2hlbHBlcl9yZXN0b3JlX3dvcmssIGRybV9mYl9oZWxwZXJf
+cmVzdG9yZV93b3JrX2ZuKTsKPiA+Cj4gPiAgc3RhdGljIHZvaWQgZHJtX2ZiX2hlbHBlcl9zeXNy
+cShpbnQgZHVtbXkxKQo+ID4KPgo+IC0tCj4gVGhvbWFzIFppbW1lcm1hbm4KPiBHcmFwaGljcyBE
+cml2ZXIgRGV2ZWxvcGVyCj4gU1VTRSBTb2Z0d2FyZSBTb2x1dGlvbnMgR2VybWFueSBHbWJICj4g
+TWF4ZmVsZHN0ci4gNSwgOTA0MDkgTsO8cm5iZXJnLCBHZXJtYW55Cj4gKEhSQiAzNjgwOSwgQUcg
+TsO8cm5iZXJnKQo+IEdlc2Now6RmdHNmw7xocmVyOiBGZWxpeCBJbWVuZMO2cmZmZXIKPgoKCi0t
+IApEYW5pZWwgVmV0dGVyClNvZnR3YXJlIEVuZ2luZWVyLCBJbnRlbCBDb3Jwb3JhdGlvbgpodHRw
+Oi8vYmxvZy5mZndsbC5jaApfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3Rv
+cC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRl
+bC1nZngK
