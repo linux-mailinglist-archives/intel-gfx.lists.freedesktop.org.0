@@ -1,29 +1,47 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 004182872D1
-	for <lists+intel-gfx@lfdr.de>; Thu,  8 Oct 2020 12:51:09 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 83BC72872DE
+	for <lists+intel-gfx@lfdr.de>; Thu,  8 Oct 2020 12:54:42 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F01106E110;
-	Thu,  8 Oct 2020 10:51:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DCF076E0AA;
+	Thu,  8 Oct 2020 10:54:39 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 886A66E110
- for <intel-gfx@lists.freedesktop.org>; Thu,  8 Oct 2020 10:51:05 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 22655800-1500050 
- for multiple; Thu, 08 Oct 2020 11:50:59 +0100
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Thu,  8 Oct 2020 11:50:59 +0100
-Message-Id: <20201008105059.3656-1-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.20.1
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 07E4B6E0AA
+ for <intel-gfx@lists.freedesktop.org>; Thu,  8 Oct 2020 10:54:37 +0000 (UTC)
+IronPort-SDR: L50JSAsV/MrnujgidwtmFk3iUscSP98JFCFOqiI5brNUtlJIS8VJcPPE/Gboi9BKKLNR2Ba4fS
+ UXNTBCVVH9RA==
+X-IronPort-AV: E=McAfee;i="6000,8403,9767"; a="145181889"
+X-IronPort-AV: E=Sophos;i="5.77,350,1596524400"; d="scan'208";a="145181889"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Oct 2020 03:54:37 -0700
+IronPort-SDR: 2r6CF8TYNRbaZAOaUpbfP8GK/tnSvxK8GeSRYqX7FirUWPjRIwC4E2hsgxLtYBErm5fyBGVHnq
+ 7K0cCsEd9hew==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.77,350,1596524400"; d="scan'208";a="388767301"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
+ by orsmga001.jf.intel.com with SMTP; 08 Oct 2020 03:54:35 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Thu, 08 Oct 2020 13:54:34 +0300
+Date: Thu, 8 Oct 2020 13:54:34 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Uma Shankar <uma.shankar@intel.com>
+Message-ID: <20201008105434.GL6112@intel.com>
+References: <20201006130654.331-1-uma.shankar@intel.com>
+ <20201006130654.331-2-uma.shankar@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915/gem: Poison stolen pages before use
+Content-Disposition: inline
+In-Reply-To: <20201006130654.331-2-uma.shankar@intel.com>
+X-Patchwork-Hint: comment
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: Re: [Intel-gfx] [v7 01/10] drm/i915/display: Add HDR Capability
+ detection for LSPCON
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,75 +54,128 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Chris Wilson <chris@chris-wilson.co.uk>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-When allocating objects from stolen, memset() the backing store to
-POISON_INUSE (0x5a) to help identify any uninitialised use of a stolen
-object.
+On Tue, Oct 06, 2020 at 06:36:45PM +0530, Uma Shankar wrote:
+> LSPCON firmware exposes HDR capability through LPCON_CAPABILITIES
+> DPCD register. LSPCON implementations capable of supporting
+> HDR set HDR_CAPABILITY bit in LSPCON_CAPABILITIES to 1. This patch
+> reads the same, detects the HDR capability and adds this to
+> intel_lspcon struct.
+> =
 
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
----
- drivers/gpu/drm/i915/gem/i915_gem_stolen.c | 33 ++++++++++++++++++++++
- 1 file changed, 33 insertions(+)
+> v2: Addressed Jani Nikula's review comment and fixed the HDR
+>     capability detection logic
+> =
 
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_stolen.c b/drivers/gpu/drm/i915/gem/i915_gem_stolen.c
-index 0be5e8683337..4c2869c0a802 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_stolen.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_stolen.c
-@@ -572,6 +572,38 @@ static const struct drm_i915_gem_object_ops i915_gem_object_stolen_ops = {
- 	.release = i915_gem_object_release_stolen,
- };
- 
-+static void dbg_poison(struct drm_i915_gem_object *obj)
-+{
-+#if IS_ENABLED(CONFIG_DRM_I915_DEBUG_GEM)
-+	struct drm_i915_private *i915 = to_i915(obj->base.dev);
-+	struct i915_ggtt *ggtt = &i915->ggtt;
-+	struct sgt_iter iter;
-+	dma_addr_t addr;
-+
-+	if (!drm_mm_node_allocated(&ggtt->error_capture))
-+		return;
-+
-+	mutex_lock(&ggtt->error_mutex);
-+	for_each_sgt_daddr(addr, iter, obj->mm.pages) {
-+		void __iomem *s;
-+
-+		ggtt->vm.insert_page(&ggtt->vm, addr,
-+				     ggtt->error_capture.start,
-+				     I915_CACHE_NONE, 0);
-+		mb();
-+
-+		s = io_mapping_map_wc(&ggtt->iomap,
-+				      ggtt->error_capture.start,
-+				      PAGE_SIZE);
-+		memset(s, POISON_INUSE, PAGE_SIZE);
-+		io_mapping_unmap(s);
-+	}
-+	mb();
-+	ggtt->vm.clear_range(&ggtt->vm, ggtt->error_capture.start, PAGE_SIZE);
-+	mutex_unlock(&ggtt->error_mutex);
-+#endif
-+}
-+
- static struct drm_i915_gem_object *
- __i915_gem_object_create_stolen(struct intel_memory_region *mem,
- 				struct drm_mm_node *stolen)
-@@ -598,6 +630,7 @@ __i915_gem_object_create_stolen(struct intel_memory_region *mem,
- 		goto cleanup;
- 
- 	i915_gem_object_init_memory_region(obj, mem, 0);
-+	dbg_poison(obj);
- 
- 	return obj;
- 
--- 
-2.20.1
+> Signed-off-by: Uma Shankar <uma.shankar@intel.com>
+> ---
+>  .../drm/i915/display/intel_display_types.h    |  1 +
+>  drivers/gpu/drm/i915/display/intel_lspcon.c   | 30 +++++++++++++++++++
+>  2 files changed, 31 insertions(+)
+> =
 
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers=
+/gpu/drm/i915/display/intel_display_types.h
+> index d5dc18cb8c39..fb8cfc0981d6 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+> @@ -1398,6 +1398,7 @@ struct intel_lspcon {
+>  	bool active;
+>  	enum drm_lspcon_mode mode;
+>  	enum lspcon_vendor vendor;
+> +	bool hdr_supported;
+>  };
+>  =
+
+>  struct intel_digital_port {
+> diff --git a/drivers/gpu/drm/i915/display/intel_lspcon.c b/drivers/gpu/dr=
+m/i915/display/intel_lspcon.c
+> index ee95fc353a56..f92962195698 100644
+> --- a/drivers/gpu/drm/i915/display/intel_lspcon.c
+> +++ b/drivers/gpu/drm/i915/display/intel_lspcon.c
+> @@ -35,6 +35,8 @@
+>  #define LSPCON_VENDOR_PARADE_OUI 0x001CF8
+>  #define LSPCON_VENDOR_MCA_OUI 0x0060AD
+>  =
+
+> +#define DPCD_MCA_LSPCON_HDR_STATUS	0x70003
+> +
+>  /* AUX addresses to write MCA AVI IF */
+>  #define LSPCON_MCA_AVI_IF_WRITE_OFFSET 0x5C0
+>  #define LSPCON_MCA_AVI_IF_CTRL 0x5DF
+> @@ -104,6 +106,32 @@ static bool lspcon_detect_vendor(struct intel_lspcon=
+ *lspcon)
+>  	return true;
+>  }
+>  =
+
+> +static void lspcon_detect_hdr_capability(struct intel_lspcon *lspcon)
+> +{
+> +	struct intel_digital_port *intel_dig_port =3D
+> +		container_of(lspcon, struct intel_digital_port, lspcon);
+
+s/intel_dig_port/dig_port/ to conform with
+commit 7801f3b792b0 ("drm/i915/display: prefer dig_port to reference intel_=
+digital_port")
+
+> +	struct drm_device *dev =3D intel_dig_port->base.base.dev;
+> +	struct intel_dp *dp =3D lspcon_to_intel_dp(lspcon);
+> +	u8 hdr_caps;
+> +	int ret;
+> +
+> +	/* Enable HDR for MCA based LSPCON devices */
+> +	if (lspcon->vendor =3D=3D LSPCON_VENDOR_MCA)
+> +		ret =3D drm_dp_dpcd_read(&dp->aux, DPCD_MCA_LSPCON_HDR_STATUS,
+> +				       &hdr_caps, 1);
+> +	else
+> +		return;
+> +
+> +	if (ret < 0) {
+> +		drm_dbg_kms(dev, "hdr capability detection failed\n");
+> +		lspcon->hdr_supported =3D false;
+> +		return;
+> +	} else if (hdr_caps & 0x1) {
+> +		drm_dbg_kms(dev, "lspcon capable of HDR\n");
+> +		lspcon->hdr_supported =3D true;
+> +	}
+> +}
+> +
+>  static enum drm_lspcon_mode lspcon_get_current_mode(struct intel_lspcon =
+*lspcon)
+>  {
+>  	enum drm_lspcon_mode current_mode;
+> @@ -554,6 +582,8 @@ static bool lspcon_init(struct intel_digital_port *di=
+g_port)
+>  		return false;
+>  	}
+>  =
+
+> +	lspcon_detect_hdr_capability(lspcon);
+> +
+
+This is now too late since we do this after registering the connector.
+Need to move this to the init stage, but lspcon detection requires hpd
+detection logic to be enabled, so once I get the hpd init order sorted
+we need to do this after intel_hpd_init() but before the connector
+is registered. Hmm, maybe we can actually do it from connector's
+.late_register() hook?
+
+>  	connector->ycbcr_420_allowed =3D true;
+>  	lspcon->active =3D true;
+>  	DRM_DEBUG_KMS("Success: LSPCON init\n");
+> -- =
+
+> 2.26.2
+
+-- =
+
+Ville Syrj=E4l=E4
+Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
