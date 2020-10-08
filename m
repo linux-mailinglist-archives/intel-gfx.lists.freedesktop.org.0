@@ -2,45 +2,42 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id DA3BC286D89
-	for <lists+intel-gfx@lfdr.de>; Thu,  8 Oct 2020 06:20:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4C3F0286DC9
+	for <lists+intel-gfx@lfdr.de>; Thu,  8 Oct 2020 06:42:10 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 44CD86EA00;
-	Thu,  8 Oct 2020 04:20:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B6DEE6EA20;
+	Thu,  8 Oct 2020 04:42:06 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AC6066EA00
- for <intel-gfx@lists.freedesktop.org>; Thu,  8 Oct 2020 04:20:27 +0000 (UTC)
-IronPort-SDR: xZgQ5+mtmAuYVn5qys7ENhWA/TMGFrRWTHyoyoGcWhgTQ5VB6TLFa4IX6+SC/HWuR5aetBjA/0
- EEEExEAIXHvw==
-X-IronPort-AV: E=McAfee;i="6000,8403,9767"; a="162624936"
-X-IronPort-AV: E=Sophos;i="5.77,349,1596524400"; d="scan'208";a="162624936"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Oct 2020 21:20:26 -0700
-IronPort-SDR: T7lS5dCUoYmWozKGTygFoduNps8aQ3fLsisk5S8Wn1JODy2PEKHAI54kMvTtyA7Wnjp+Uiapp7
- qfXNcNFJRSnQ==
-X-IronPort-AV: E=Sophos;i="5.77,349,1596524400"; d="scan'208";a="343230663"
-Received: from lewisjos-mobl3.amr.corp.intel.com (HELO ldmartin-desk1)
- ([10.209.51.10])
- by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Oct 2020 21:20:26 -0700
-Date: Wed, 7 Oct 2020 21:20:25 -0700
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: Matt Roper <matthew.d.roper@intel.com>
-Message-ID: <20201008042025.tiuaorml6wkhsfmz@ldmartin-desk1>
-X-Patchwork-Hint: ignore
-References: <20200930064234.85769-1-lucas.demarchi@intel.com>
- <20200930064234.85769-23-lucas.demarchi@intel.com>
- <20200930165007.GA2245633@mdroper-desk1.amr.corp.intel.com>
+Received: from ozlabs.org (bilbo.ozlabs.org [203.11.71.1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8FA6C6EA20;
+ Thu,  8 Oct 2020 04:42:05 +0000 (UTC)
+Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest
+ SHA256) (No client certificate requested)
+ by mail.ozlabs.org (Postfix) with ESMTPSA id 4C6JT704d9z9sSn;
+ Thu,  8 Oct 2020 15:42:02 +1100 (AEDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=canb.auug.org.au;
+ s=201702; t=1602132123;
+ bh=pHYkEo5SeRirjcFywD0/VFWBVXGBUKoWYC8gzAs94js=;
+ h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+ b=lStlENq4mXKEVZeDOqjX0Z5iLfOQnVCkiRHTUd+8Gkb+Z+yKtn4O5XZx/JiOulu0l
+ keppNe8cEdtxYgMkWVJW9t4qZAk7unVcqWOFKmG+woO+bF1Te2i4xkrtoGZPUALPKJ
+ Gex8O3NqIVdWSH5FbksfQj8EGzpNOsio5pTk+KtdCnRFsFgqWNxdVWoMopCBockJwI
+ 0FB39Zd0jB5xEYXOq1ZSgYau9AWdJTsOc1wwG/6QA78FLGZxQx5Lf+599uz9IwjqAn
+ lupkr43pRjOSu+JUP6lo0L+AdTW/AGaeCBRq3BJ/cEDLEAvQjaV0E2RRhhQr51APdF
+ WL6ue6avSnv/Q==
+Date: Thu, 8 Oct 2020 15:42:02 +1100
+From: Stephen Rothwell <sfr@canb.auug.org.au>
+To: Daniel Vetter <daniel.vetter@ffwll.ch>, Intel Graphics
+ <intel-gfx@lists.freedesktop.org>, DRI <dri-devel@lists.freedesktop.org>
+Message-ID: <20201008154202.175fbec7@canb.auug.org.au>
+In-Reply-To: <20201008140903.12a411b8@canb.auug.org.au>
+References: <20201008140903.12a411b8@canb.auug.org.au>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200930165007.GA2245633@mdroper-desk1.amr.corp.intel.com>
-Subject: Re: [Intel-gfx] [PATCH v6 22/24] drm/i915/dg1: DG1 does not support
- DC6
+Subject: Re: [Intel-gfx] linux-next: build failure after merge of the
+ drm-misc tree
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,82 +50,172 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Cc: Paul Cercueil <paul@crapouillou.net>,
+ Linux Next Mailing List <linux-next@vger.kernel.org>,
+ Sam Ravnborg <sam@ravnborg.org>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: multipart/mixed; boundary="===============0610168127=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Sep 30, 2020 at 09:50:07AM -0700, Matt Roper wrote:
->On Tue, Sep 29, 2020 at 11:42:32PM -0700, Lucas De Marchi wrote:
->> From: Anshuman Gupta <anshuman.gupta@intel.com>
->>
->> DC6 is not supported on DG1, so change the allowed DC mask for DG1.
->>
->> Cc: Uma Shankar <uma.shankar@intel.com>
->> Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
->
->Do we have a bspec reference for this?  I can't find anything specific
->about this from a casual skim of the pages I'd expect it to be mentioned
->on.
->
->If we have a reference added (or a note clarifying that we have offline
->confirmation from hardware architects),
->
->Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
+--===============0610168127==
+Content-Type: multipart/signed; boundary="Sig_/a.aVf6N/5DzCJgymDWQC_K+";
+ protocol="application/pgp-signature"; micalg=pgp-sha256
 
-I received confirmation from HW people that DG1 doesn't support DC6 and
-spec is going to be updated.
+--Sig_/a.aVf6N/5DzCJgymDWQC_K+
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: quoted-printable
 
-Lucas De Marchi
+Hi all,
 
+On Thu, 8 Oct 2020 14:09:03 +1100 Stephen Rothwell <sfr@canb.auug.org.au> w=
+rote:
 >
->
->At some point I think we should re-write this section of the code in
->general.  The magic numbers used here are annoying, and a driver
->modparam named 'enable_dc' really sounds like it should be a bitmask of
->the exact DCs supported (rather than defining a combination of 'up to'
->values + DC3CO and omitting DC9 completely).  But we don't need to do
->that in a DG1 enabling patch.
->
->
->Matt
->
->> ---
->>  drivers/gpu/drm/i915/display/intel_display_power.c | 5 ++++-
->>  1 file changed, 4 insertions(+), 1 deletion(-)
->>
->> diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
->> index 0827e68a9d89..7dfc697ccf78 100644
->> --- a/drivers/gpu/drm/i915/display/intel_display_power.c
->> +++ b/drivers/gpu/drm/i915/display/intel_display_power.c
->> @@ -4689,7 +4689,10 @@ static u32 get_allowed_dc_mask(const struct drm_i915_private *dev_priv,
->>  	int max_dc;
->>
->>  	if (INTEL_GEN(dev_priv) >= 12) {
->> -		max_dc = 4;
->> +		if (IS_DG1(dev_priv))
->> +			max_dc = 3;
->> +		else
->> +			max_dc = 4;
->>  		/*
->>  		 * DC9 has a separate HW flow from the rest of the DC states,
->>  		 * not depending on the DMC firmware. It's needed by system
->> --
->> 2.28.0
->>
->> _______________________________________________
->> Intel-gfx mailing list
->> Intel-gfx@lists.freedesktop.org
->> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
->
->-- 
->Matt Roper
->Graphics Software Engineer
->VTT-OSGC Platform Enablement
->Intel Corporation
->(916) 356-2795
+> After merging the drm-misc tree, today's linux-next build (x86_64
+> allmodconfig) failed like this:
+
+In file included from include/linux/clk.h:13,
+                 from drivers/gpu/drm/ingenic/ingenic-drm-drv.c:10:
+drivers/gpu/drm/ingenic/ingenic-drm-drv.c: In function 'ingenic_drm_update_=
+palette':
+drivers/gpu/drm/ingenic/ingenic-drm-drv.c:448:35: error: 'struct ingenic_dr=
+m' has no member named 'dma_hwdescs'; did you mean 'dma_hwdesc_f0'?
+  448 |  for (i =3D 0; i < ARRAY_SIZE(priv->dma_hwdescs->palette); i++) {
+      |                                   ^~~~~~~~~~~
+include/linux/kernel.h:47:33: note: in definition of macro 'ARRAY_SIZE'
+   47 | #define ARRAY_SIZE(arr) (sizeof(arr) / sizeof((arr)[0]) + __must_be=
+_array(arr))
+      |                                 ^~~
+drivers/gpu/drm/ingenic/ingenic-drm-drv.c:448:35: error: 'struct ingenic_dr=
+m' has no member named 'dma_hwdescs'; did you mean 'dma_hwdesc_f0'?
+  448 |  for (i =3D 0; i < ARRAY_SIZE(priv->dma_hwdescs->palette); i++) {
+      |                                   ^~~~~~~~~~~
+include/linux/kernel.h:47:48: note: in definition of macro 'ARRAY_SIZE'
+   47 | #define ARRAY_SIZE(arr) (sizeof(arr) / sizeof((arr)[0]) + __must_be=
+_array(arr))
+      |                                                ^~~
+In file included from include/linux/bits.h:22,
+                 from include/linux/bitops.h:5,
+                 from drivers/gpu/drm/ingenic/ingenic-drm.h:10,
+                 from drivers/gpu/drm/ingenic/ingenic-drm-drv.c:7:
+drivers/gpu/drm/ingenic/ingenic-drm-drv.c:448:35: error: 'struct ingenic_dr=
+m' has no member named 'dma_hwdescs'; did you mean 'dma_hwdesc_f0'?
+  448 |  for (i =3D 0; i < ARRAY_SIZE(priv->dma_hwdescs->palette); i++) {
+      |                                   ^~~~~~~~~~~
+include/linux/build_bug.h:16:62: note: in definition of macro 'BUILD_BUG_ON=
+_ZERO'
+   16 | #define BUILD_BUG_ON_ZERO(e) ((int)(sizeof(struct { int:(-!!(e)); }=
+)))
+      |                                                              ^
+include/linux/compiler.h:224:46: note: in expansion of macro '__same_type'
+  224 | #define __must_be_array(a) BUILD_BUG_ON_ZERO(__same_type((a), &(a)[=
+0]))
+      |                                              ^~~~~~~~~~~
+include/linux/kernel.h:47:59: note: in expansion of macro '__must_be_array'
+   47 | #define ARRAY_SIZE(arr) (sizeof(arr) / sizeof((arr)[0]) + __must_be=
+_array(arr))
+      |                                                           ^~~~~~~~~=
+~~~~~~
+drivers/gpu/drm/ingenic/ingenic-drm-drv.c:448:18: note: in expansion of mac=
+ro 'ARRAY_SIZE'
+  448 |  for (i =3D 0; i < ARRAY_SIZE(priv->dma_hwdescs->palette); i++) {
+      |                  ^~~~~~~~~~
+drivers/gpu/drm/ingenic/ingenic-drm-drv.c:448:35: error: 'struct ingenic_dr=
+m' has no member named 'dma_hwdescs'; did you mean 'dma_hwdesc_f0'?
+  448 |  for (i =3D 0; i < ARRAY_SIZE(priv->dma_hwdescs->palette); i++) {
+      |                                   ^~~~~~~~~~~
+include/linux/build_bug.h:16:62: note: in definition of macro 'BUILD_BUG_ON=
+_ZERO'
+   16 | #define BUILD_BUG_ON_ZERO(e) ((int)(sizeof(struct { int:(-!!(e)); }=
+)))
+      |                                                              ^
+include/linux/compiler.h:224:46: note: in expansion of macro '__same_type'
+  224 | #define __must_be_array(a) BUILD_BUG_ON_ZERO(__same_type((a), &(a)[=
+0]))
+      |                                              ^~~~~~~~~~~
+include/linux/kernel.h:47:59: note: in expansion of macro '__must_be_array'
+   47 | #define ARRAY_SIZE(arr) (sizeof(arr) / sizeof((arr)[0]) + __must_be=
+_array(arr))
+      |                                                           ^~~~~~~~~=
+~~~~~~
+drivers/gpu/drm/ingenic/ingenic-drm-drv.c:448:18: note: in expansion of mac=
+ro 'ARRAY_SIZE'
+  448 |  for (i =3D 0; i < ARRAY_SIZE(priv->dma_hwdescs->palette); i++) {
+      |                  ^~~~~~~~~~
+include/linux/build_bug.h:16:51: error: bit-field '<anonymous>' width not a=
+n integer constant
+   16 | #define BUILD_BUG_ON_ZERO(e) ((int)(sizeof(struct { int:(-!!(e)); }=
+)))
+      |                                                   ^
+include/linux/compiler.h:224:28: note: in expansion of macro 'BUILD_BUG_ON_=
+ZERO'
+  224 | #define __must_be_array(a) BUILD_BUG_ON_ZERO(__same_type((a), &(a)[=
+0]))
+      |                            ^~~~~~~~~~~~~~~~~
+include/linux/kernel.h:47:59: note: in expansion of macro '__must_be_array'
+   47 | #define ARRAY_SIZE(arr) (sizeof(arr) / sizeof((arr)[0]) + __must_be=
+_array(arr))
+      |                                                           ^~~~~~~~~=
+~~~~~~
+drivers/gpu/drm/ingenic/ingenic-drm-drv.c:448:18: note: in expansion of mac=
+ro 'ARRAY_SIZE'
+  448 |  for (i =3D 0; i < ARRAY_SIZE(priv->dma_hwdescs->palette); i++) {
+      |                  ^~~~~~~~~~
+drivers/gpu/drm/ingenic/ingenic-drm-drv.c:453:9: error: 'struct ingenic_drm=
+' has no member named 'dma_hwdescs'; did you mean 'dma_hwdesc_f0'?
+  453 |   priv->dma_hwdescs->palette[i] =3D color;
+      |         ^~~~~~~~~~~
+      |         dma_hwdesc_f0
+drivers/gpu/drm/ingenic/ingenic-drm-drv.c: In function 'ingenic_drm_plane_a=
+tomic_update':
+drivers/gpu/drm/ingenic/ingenic-drm-drv.c:467:3: error: 'crtc_state' undecl=
+ared (first use in this function); did you mean 'ctx_state'?
+  467 |   crtc_state =3D state->crtc->state;
+      |   ^~~~~~~~~~
+      |   ctx_state
+drivers/gpu/drm/ingenic/ingenic-drm-drv.c:467:3: note: each undeclared iden=
+tifier is reported only once for each function it appears in
+At top level:
+drivers/gpu/drm/ingenic/ingenic-drm-drv.c:443:13: warning: 'ingenic_drm_upd=
+ate_palette' defined but not used [-Wunused-function]
+  443 | static void ingenic_drm_update_palette(struct ingenic_drm *priv,
+      |             ^~~~~~~~~~~~~~~~~~~~~~~~~~
+
+> I noticed that the ingenic driver revert I had been waiting for appeared
+> in hte drm-misc tree, so I removed the BROKEN dependency for it, but it
+> produced the above errors, so I have marked it BROKEN again.
+
+--=20
+Cheers,
+Stephen Rothwell
+
+--Sig_/a.aVf6N/5DzCJgymDWQC_K+
+Content-Type: application/pgp-signature
+Content-Description: OpenPGP digital signature
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCAAdFiEENIC96giZ81tWdLgKAVBC80lX0GwFAl9+mJoACgkQAVBC80lX
+0Gy25AgAiwrgmtejusGdnGlqjti1mzozlFgjX4CgYtoX62Je6t343vPbuiQhTKLn
+7oSTXILrf2nRdP6YApgoErv/rHhiXQRJUURHEtYcVWQFrWXjmnRVDx4ceQ1z4emZ
+YWhTbPqz5qhB9acuq31DvJgb1mOPSFvbrSzWRXL+8Mwf+jtO/U0p2PiZrtgbbIFL
+CTWOQjyFy3VnWi6HQFVq5u1rE1wIVnbpWsFz64Tc82KTBOWtYS2YDG6H1HO97W+P
+mLDbRRGozMeygumNFaVe5hL6URzxhIyHecAt/kW2W2FYhYw/j5oeflUAlNCWm9u9
+uo+yDtwaMyCE7y0phreINjzxC5nS2Q==
+=jXm8
+-----END PGP SIGNATURE-----
+
+--Sig_/a.aVf6N/5DzCJgymDWQC_K+--
+
+--===============0610168127==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============0610168127==--
