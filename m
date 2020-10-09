@@ -1,52 +1,43 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 14330289BE7
-	for <lists+intel-gfx@lfdr.de>; Sat, 10 Oct 2020 00:47:13 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0BD84288F5A
+	for <lists+intel-gfx@lfdr.de>; Fri,  9 Oct 2020 19:02:48 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E984F6EE31;
-	Fri,  9 Oct 2020 22:47:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 360826ECF9;
+	Fri,  9 Oct 2020 17:02:45 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 549 seconds by postgrey-1.36 at gabe;
- Fri, 09 Oct 2020 17:10:37 UTC
-Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 88F2189F35;
- Fri,  9 Oct 2020 17:10:37 +0000 (UTC)
-Date: Fri, 09 Oct 2020 17:01:23 -0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
- s=2020; t=1602262884;
- h=from:from:sender:sender:reply-to:reply-to:subject:subject:date:date:
- message-id:message-id:to:to:cc:cc:mime-version:mime-version:
- content-type:content-type: content-transfer-encoding:content-transfer-encoding;
- bh=WbJZX8CBU2GPiP81hL+4+7Zc10QJkfzkiRQvY0QYQWQ=;
- b=IJRFxGwXLwci7KLVZGsXD3sLh8dxKbb5PnNSOgOPSzu9ZZPjaAKbAt9695t2rg4wGlX4FI
- mUebOPvL9Bhywat0cMF4vLpZux5WVFqGq2Qtv2UwxQWKJd3ip+sWdH+XzOxTeoBEvGBs9W
- Ft9K+f/9znI7EilbwaMuYaagya3kEIDnpMfJAtI8LVk1pUa+kcaB70UZ1QKaUOxv9KM8+M
- ghN/Q4fRWTM/QwtC2U3W6J9jU2wmDBrBZaCfvvzQKH+Npli0X3K4DUQR26KSgIPHCmfdka
- eg0LFbFy6WT64j2D73ZPtrX2DFW8gf6fen/KYzYy1Bo3mUIJb18T6nw+fyKGGg==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
- s=2020e; t=1602262884;
- h=from:from:sender:sender:reply-to:reply-to:subject:subject:date:date:
- message-id:message-id:to:to:cc:cc:mime-version:mime-version:
- content-type:content-type: content-transfer-encoding:content-transfer-encoding;
- bh=WbJZX8CBU2GPiP81hL+4+7Zc10QJkfzkiRQvY0QYQWQ=;
- b=Z4lAVIjH6eecq7IYbLsUTIDapGe+/OUNe5TlnHSRF/gwd/pWzqijWsnruR8NCoejfAvBU7
- cAgtupjt7qsq4LBQ==
-From: "tip-bot2 for Thomas Gleixner" <tip-bot2@linutronix.de>
-To: linux-tip-commits@vger.kernel.org
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 823B16ECF9;
+ Fri,  9 Oct 2020 17:02:44 +0000 (UTC)
+IronPort-SDR: iUeqS1j7iSGJ2mmz+ikzs3k1HTQVdV5wmE/2iH+y5wE8jF00nCqBr8CAHXZzILfloq1ClpV+bP
+ ZwfIqk8sZoAw==
+X-IronPort-AV: E=McAfee;i="6000,8403,9769"; a="165624640"
+X-IronPort-AV: E=Sophos;i="5.77,355,1596524400"; d="scan'208";a="165624640"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Oct 2020 10:02:43 -0700
+IronPort-SDR: N1dIIYPEpQ1ghZ2+nDDe6GGcpnHWd0xbneElVALRRZcxf1uHb+dCfrSa9tU8RSlr7Cmc+84qZr
+ iKHSwzPfNjYg==
+X-IronPort-AV: E=Sophos;i="5.77,355,1596524400"; d="scan'208";a="317098847"
+Received: from jkrzyszt-desk.igk.intel.com ([172.22.244.18])
+ by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Oct 2020 10:02:42 -0700
+From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+To: igt-dev@lists.freedesktop.org
+Date: Fri,  9 Oct 2020 19:02:25 +0200
+Message-Id: <20201009170225.10542-1-janusz.krzysztofik@linux.intel.com>
+X-Mailer: git-send-email 2.21.1
 MIME-Version: 1.0
-Message-ID: <160226288395.7002.10138923121624324637.tip-bot2@tip-bot2>
-Robot-ID: <tip-bot2.linutronix.de>
-Robot-Unsubscribe: Contact <mailto:tglx@linutronix.de> to get blacklisted from
- these emails
-Precedence: bulk
-X-Mailman-Approved-At: Fri, 09 Oct 2020 22:47:09 +0000
-Subject: [Intel-gfx] [tip: core/rcu] drm/i915: Cleanup PREEMPT_COUNT
- leftovers
+Subject: [Intel-gfx] [PATCH i-g-t] tests/core_hotunplug: Restore i915
+ debugfs health check
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
+Precedence: list
 List-Id: Intel graphics driver community testing & development
  <intel-gfx.lists.freedesktop.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/intel-gfx>,
@@ -56,70 +47,148 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: linux-kernel@vger.kernel.org
-Cc: x86 <x86@kernel.org>, "Paul E. McKenney" <paulmck@kernel.org>,
- David Airlie <airlied@linux.ie>, intel-gfx@lists.freedesktop.org,
- LKML <linux-kernel@vger.kernel.org>, dri-devel@lists.freedesktop.org,
- Thomas Gleixner <tglx@linutronix.de>
+Cc: intel-gfx@lists.freedesktop.org, Chris Wilson <chris@chris-wilson.co.uk>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The following commit has been merged into the core/rcu branch of tip:
+Removal of igt_fork_hang_detector() from local_i915_healthcheck() by
+commit 1fbd127bd4e1 ("core_hotplug: Teach the healthcheck how to check
+execution status") resulted in unintentional removal of an important
+though implicit test feature of detecting, reporting as failures and
+recovering from potential misses of debugfs subdirs of hot rebound i915
+devices.  As a consequence, unexpected failures or skips of other
+unrelated but subsequently run tests have been observed on CI.
 
-Commit-ID:     5d35c1c982ffaaccd1ec974e96e7a5244bbadaa1
-Gitweb:        https://git.kernel.org/tip/5d35c1c982ffaaccd1ec974e96e7a5244bbadaa1
-Author:        Thomas Gleixner <tglx@linutronix.de>
-AuthorDate:    Mon, 14 Sep 2020 19:35:03 +02:00
-Committer:     Paul E. McKenney <paulmck@kernel.org>
-CommitterDate: Thu, 01 Oct 2020 09:02:13 -07:00
+On the other hand, removal of the debugfs issue detection and subtest
+failures right after hot rebinding the driver enabled the better
+version of the i915 GPU health check fixed by the same commit to detect
+and report other issues potentially triggered by device late close.
 
-drm/i915: Cleanup PREEMPT_COUNT leftovers
+Restore the missing test feature by introducing an explicit i915 sysfs
+health check that verifies existence of device sysfs and debugfs areas.
+Also, split hotrebind/hotreplug scenarios into a pair of each, one that
+performs the health check right after hot rebind/replug and delegates
+the device late close step to a follow up recovery phase while the
+other one checks device health only after late closing it.
 
-CONFIG_PREEMPT_COUNT is now unconditionally enabled and will be
-removed. Cleanup the leftovers before doing so.
-
-Signed-off-by: Thomas Gleixner <tglx@linutronix.de>
-Reviewed-by: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: David Airlie <airlied@linux.ie>
-Cc: Daniel Vetter <daniel@ffwll.ch>
-Cc: intel-gfx@lists.freedesktop.org
-Cc: dri-devel@lists.freedesktop.org
-Signed-off-by: Paul E. McKenney <paulmck@kernel.org>
+Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+Cc: Chris Wilson <chris@chris-wilson.co.uk>
 ---
- drivers/gpu/drm/i915/Kconfig.debug | 1 -
- drivers/gpu/drm/i915/i915_utils.h  | 3 +--
- 2 files changed, 1 insertion(+), 3 deletions(-)
+ tests/core_hotunplug.c | 61 ++++++++++++++++++++++++++++++++++++++----
+ 1 file changed, 56 insertions(+), 5 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/Kconfig.debug b/drivers/gpu/drm/i915/Kconfig.debug
-index 1cb28c2..17d9b00 100644
---- a/drivers/gpu/drm/i915/Kconfig.debug
-+++ b/drivers/gpu/drm/i915/Kconfig.debug
-@@ -20,7 +20,6 @@ config DRM_I915_DEBUG
- 	bool "Enable additional driver debugging"
- 	depends on DRM_I915
- 	select DEBUG_FS
--	select PREEMPT_COUNT
- 	select I2C_CHARDEV
- 	select STACKDEPOT
- 	select DRM_DP_AUX_CHARDEV
-diff --git a/drivers/gpu/drm/i915/i915_utils.h b/drivers/gpu/drm/i915/i915_utils.h
-index 5477337..ecfed86 100644
---- a/drivers/gpu/drm/i915/i915_utils.h
-+++ b/drivers/gpu/drm/i915/i915_utils.h
-@@ -337,8 +337,7 @@ wait_remaining_ms_from_jiffies(unsigned long timestamp_jiffies, int to_wait_ms)
- 						   (Wmax))
- #define wait_for(COND, MS)		_wait_for((COND), (MS) * 1000, 10, 1000)
+diff --git a/tests/core_hotunplug.c b/tests/core_hotunplug.c
+index 70669c590..92c3440e7 100644
+--- a/tests/core_hotunplug.c
++++ b/tests/core_hotunplug.c
+@@ -250,6 +250,11 @@ static int local_i915_healthcheck(int i915, const char *prefix)
+ 	};
+ 	const struct intel_execution_engine2 *engine;
+ 	int fence = -1;
++	char path[200];
++
++	local_debug("%s%s\n", prefix, "running i915 sysfs healthcheck");
++	igt_assert(igt_sysfs_path(i915, path, sizeof(path)));
++	igt_assert(igt_debugfs_path(i915, path, sizeof(path)));
  
--/* If CONFIG_PREEMPT_COUNT is disabled, in_atomic() always reports false. */
--#if defined(CONFIG_DRM_I915_DEBUG) && defined(CONFIG_PREEMPT_COUNT)
-+#ifdef CONFIG_DRM_I915_DEBUG
- # define _WAIT_FOR_ATOMIC_CHECK(ATOMIC) WARN_ON_ONCE((ATOMIC) && !in_atomic())
- #else
- # define _WAIT_FOR_ATOMIC_CHECK(ATOMIC) do { } while (0)
+ 	local_debug("%s%s\n", prefix, "running i915 GPU healthcheck");
+ 	if (local_i915_is_wedged(i915))
+@@ -437,7 +442,7 @@ static void hotunplug_rescan(struct hotunplug *priv)
+ 	healthcheck(priv, false);
+ }
+ 
+-static void hotrebind_lateclose(struct hotunplug *priv)
++static void hotrebind(struct hotunplug *priv)
+ {
+ 	igt_assert_eq(priv->fd.drm, -1);
+ 	igt_assert_eq(priv->fd.drm_hc, -1);
+@@ -448,6 +453,30 @@ static void hotrebind_lateclose(struct hotunplug *priv)
+ 	driver_bind(priv, 0);
+ 
+ 	healthcheck(priv, false);
++}
++
++static void hotreplug(struct hotunplug *priv)
++{
++	igt_assert_eq(priv->fd.drm, -1);
++	igt_assert_eq(priv->fd.drm_hc, -1);
++	priv->fd.drm = local_drm_open_driver(false, "", " for hot replug");
++
++	device_unplug(priv, "hot ", 60);
++
++	bus_rescan(priv, 0);
++
++	healthcheck(priv, false);
++}
++
++static void hotrebind_lateclose(struct hotunplug *priv)
++{
++	igt_assert_eq(priv->fd.drm, -1);
++	igt_assert_eq(priv->fd.drm_hc, -1);
++	priv->fd.drm = local_drm_open_driver(false, "", " for hot rebind");
++
++	driver_unbind(priv, "hot ", 60);
++
++	driver_bind(priv, 0);
+ 
+ 	priv->fd.drm = close_device(priv->fd.drm, "late ", "unbound ");
+ 	igt_assert_eq(priv->fd.drm, -1);
+@@ -465,8 +494,6 @@ static void hotreplug_lateclose(struct hotunplug *priv)
+ 
+ 	bus_rescan(priv, 0);
+ 
+-	healthcheck(priv, false);
+-
+ 	priv->fd.drm = close_device(priv->fd.drm, "late ", "removed ");
+ 	igt_assert_eq(priv->fd.drm, -1);
+ 
+@@ -570,7 +597,31 @@ igt_main
+ 		post_healthcheck(&priv);
+ 
+ 	igt_subtest_group {
+-		igt_describe("Check if the driver hot unbound from a still open device can be cleanly rebound, then the old instance released");
++		igt_describe("Check if the driver can be cleanly rebound to a device with a still open hot unbound driver instance");
++		igt_subtest("hotrebind")
++			hotrebind(&priv);
++
++		igt_fixture
++			recover(&priv);
++	}
++
++	igt_fixture
++		post_healthcheck(&priv);
++
++	igt_subtest_group {
++		igt_describe("Check if a hot unplugged and still open device can be cleanly restored");
++		igt_subtest("hotreplug")
++			hotreplug(&priv);
++
++		igt_fixture
++			recover(&priv);
++	}
++
++	igt_fixture
++		post_healthcheck(&priv);
++
++	igt_subtest_group {
++		igt_describe("Check if a hot unbound driver instance still open after hot rebind can be cleanly released");
+ 		igt_subtest("hotrebind-lateclose")
+ 			hotrebind_lateclose(&priv);
+ 
+@@ -582,7 +633,7 @@ igt_main
+ 		post_healthcheck(&priv);
+ 
+ 	igt_subtest_group {
+-		igt_describe("Check if a still open while hot unplugged device can be cleanly restored, then the old instance released");
++		igt_describe("Check if an instance of a still open while hot replugged device can be cleanly released");
+ 		igt_subtest("hotreplug-lateclose")
+ 			hotreplug_lateclose(&priv);
+ 
+-- 
+2.21.1
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
