@@ -1,45 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 01EAF289480
-	for <lists+intel-gfx@lfdr.de>; Fri,  9 Oct 2020 21:54:15 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 17AC62899D8
+	for <lists+intel-gfx@lfdr.de>; Fri,  9 Oct 2020 22:40:11 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 48DAA6EE17;
-	Fri,  9 Oct 2020 19:54:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7C8706EDFD;
+	Fri,  9 Oct 2020 20:40:09 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B56C46EE13;
- Fri,  9 Oct 2020 19:54:10 +0000 (UTC)
-IronPort-SDR: 03KTjCNnoslYj08RJqpv8a09CTyvWOK8qFvMmzy4kq9WKlIZ7l0Li0+3ZE/q7GIzzaPpp8X0V9
- 6eZc2FoDADJQ==
-X-IronPort-AV: E=McAfee;i="6000,8403,9769"; a="162068282"
-X-IronPort-AV: E=Sophos;i="5.77,355,1596524400"; d="scan'208";a="162068282"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Oct 2020 12:54:10 -0700
-IronPort-SDR: LoljxrxdEbdUiebRGt6guGtjo6SPfpWGHMJuLgTgYB7BeDU8CJtiGau7DzbQyZ+Y5gpHVnCtT5
- urTwCEpflSRg==
-X-IronPort-AV: E=Sophos;i="5.77,355,1596524400"; d="scan'208";a="343972696"
-Received: from iweiny-desk2.sc.intel.com (HELO localhost) ([10.3.52.147])
- by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Oct 2020 12:54:09 -0700
-From: ira.weiny@intel.com
-To: Andrew Morton <akpm@linux-foundation.org>,
- Thomas Gleixner <tglx@linutronix.de>, Ingo Molnar <mingo@redhat.com>,
- Borislav Petkov <bp@alien8.de>, Andy Lutomirski <luto@kernel.org>,
- Peter Zijlstra <peterz@infradead.org>
-Date: Fri,  9 Oct 2020 12:50:33 -0700
-Message-Id: <20201009195033.3208459-59-ira.weiny@intel.com>
-X-Mailer: git-send-email 2.28.0.rc0.12.gb6a658bd00c9
-In-Reply-To: <20201009195033.3208459-1-ira.weiny@intel.com>
-References: <20201009195033.3208459-1-ira.weiny@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 4A2DD6EDFD;
+ Fri,  9 Oct 2020 20:40:08 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 39610A8835;
+ Fri,  9 Oct 2020 20:40:08 +0000 (UTC)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH RFC PKS/PMEM 58/58] [dax|pmem]: Enable stray
- access protection
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Matt Roper" <matthew.d.roper@intel.com>
+Date: Fri, 09 Oct 2020 20:40:08 -0000
+Message-ID: <160227600820.1827.17510191236031697349@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20201009194442.3668677-1-matthew.d.roper@intel.com>
+In-Reply-To: <20201009194442.3668677-1-matthew.d.roper@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_Gen12_forcewake_and_multicast_updates_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,85 +38,207 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-aio@kvack.org, linux-efi@vger.kernel.org, kvm@vger.kernel.org,
- linux-doc@vger.kernel.org, linux-mmc@vger.kernel.org,
- Dave Hansen <dave.hansen@linux.intel.com>, dri-devel@lists.freedesktop.org,
- linux-mm@kvack.org, target-devel@vger.kernel.org,
- linux-mtd@lists.infradead.org, linux-kselftest@vger.kernel.org,
- samba-technical@lists.samba.org, Ira Weiny <ira.weiny@intel.com>,
- ceph-devel@vger.kernel.org, drbd-dev@lists.linbit.com,
- devel@driverdev.osuosl.org, linux-cifs@vger.kernel.org,
- linux-nilfs@vger.kernel.org, linux-scsi@vger.kernel.org,
- linux-nvdimm@lists.01.org, linux-rdma@vger.kernel.org, x86@kernel.org,
- amd-gfx@lists.freedesktop.org, linux-afs@lists.infradead.org,
- cluster-devel@redhat.com, linux-cachefs@redhat.com,
- intel-wired-lan@lists.osuosl.org, xen-devel@lists.xenproject.org,
- linux-ext4@vger.kernel.org, Fenghua Yu <fenghua.yu@intel.com>,
- linux-um@lists.infradead.org, intel-gfx@lists.freedesktop.org,
- ecryptfs@vger.kernel.org, linux-erofs@lists.ozlabs.org,
- reiserfs-devel@vger.kernel.org, linux-block@vger.kernel.org,
- linux-bcache@vger.kernel.org, Dan Williams <dan.j.williams@intel.com>,
- io-uring@vger.kernel.org, linux-nfs@vger.kernel.org,
- linux-ntfs-dev@lists.sourceforge.net, netdev@vger.kernel.org,
- kexec@lists.infradead.org, linux-kernel@vger.kernel.org,
- linux-f2fs-devel@lists.sourceforge.net, linux-fsdevel@vger.kernel.org,
- bpf@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
- linux-btrfs@vger.kernel.org
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Ira Weiny <ira.weiny@intel.com>
+== Series Details ==
 
-Protecting against stray writes is particularly important for PMEM
-because, unlike writes to anonymous memory, writes to PMEM persists
-across a reboot.  Thus data corruption could result in permanent loss of
-data.
+Series: Gen12 forcewake and multicast updates (rev2)
+URL   : https://patchwork.freedesktop.org/series/82359/
+State : warning
 
-While stray writes are more serious than reads, protection is also
-enabled for reads.  This helps to detect bugs in code which would
-incorrectly access device memory and prevents a more serious machine
-checks should those bug reads from a poison page.
+== Summary ==
 
-Enable stray access protection by setting the flag in pgmap which
-requests it.  There is no option presented to the user.  If Zone Device
-Access Protection not be supported this flag will have no affect.
+$ dim checkpatch origin/drm-tip
+008bd21e710f drm/i915: Rename FORCEWAKE_BLITTER to FORCEWAKE_GT
+14beef5e5c93 drm/i915: Update gen12 forcewake table
+-:46: WARNING:BLOCK_COMMENT_STYLE: Block comments use * on subsequent lines
+#46: FILE: drivers/gpu/drm/i915/intel_uncore.c:1137:
++	GEN_FW_RANGE(0x0, 0x1fff, 0), /*
++		0x0   -  0xaff: reserved
 
-Signed-off-by: Ira Weiny <ira.weiny@intel.com>
----
- drivers/dax/device.c  | 2 ++
- drivers/nvdimm/pmem.c | 2 ++
- 2 files changed, 4 insertions(+)
+-:47: WARNING:BLOCK_COMMENT_STYLE: Block comments use a trailing */ on a separate line
+#47: FILE: drivers/gpu/drm/i915/intel_uncore.c:1138:
++		0xb00 - 0x1fff: always on */
 
-diff --git a/drivers/dax/device.c b/drivers/dax/device.c
-index 1e89513f3c59..e6fb35b4f0fb 100644
---- a/drivers/dax/device.c
-+++ b/drivers/dax/device.c
-@@ -430,6 +430,8 @@ int dev_dax_probe(struct device *dev)
- 	}
- 
- 	dev_dax->pgmap.type = MEMORY_DEVICE_GENERIC;
-+	dev_dax->pgmap.flags |= PGMAP_PROT_ENABLED;
-+
- 	addr = devm_memremap_pages(dev, &dev_dax->pgmap);
- 	if (IS_ERR(addr))
- 		return PTR_ERR(addr);
-diff --git a/drivers/nvdimm/pmem.c b/drivers/nvdimm/pmem.c
-index e4dc1ae990fc..9fcd8338e23f 100644
---- a/drivers/nvdimm/pmem.c
-+++ b/drivers/nvdimm/pmem.c
-@@ -426,6 +426,8 @@ static int pmem_attach_disk(struct device *dev,
- 		return -EBUSY;
- 	}
- 
-+	pmem->pgmap.flags |= PGMAP_PROT_ENABLED;
-+
- 	q = blk_alloc_queue(dev_to_node(dev));
- 	if (!q)
- 		return -ENOMEM;
--- 
-2.28.0.rc0.12.gb6a658bd00c9
+-:57: WARNING:BLOCK_COMMENT_STYLE: Block comments use * on subsequent lines
+#57: FILE: drivers/gpu/drm/i915/intel_uncore.c:1145:
++	GEN_FW_RANGE(0x4000, 0x51ff, FORCEWAKE_GT), /*
++		0x4000 - 0x48ff: gt
+
+-:58: WARNING:BLOCK_COMMENT_STYLE: Block comments use a trailing */ on a separate line
+#58: FILE: drivers/gpu/drm/i915/intel_uncore.c:1146:
++		0x4900 - 0x51ff: reserved */
+
+-:60: WARNING:BLOCK_COMMENT_STYLE: Block comments use * on subsequent lines
+#60: FILE: drivers/gpu/drm/i915/intel_uncore.c:1148:
++	GEN_FW_RANGE(0x5200, 0x7fff, FORCEWAKE_RENDER), /*
++		0x5200 - 0x53ff: render
+
+-:62: WARNING:BLOCK_COMMENT_STYLE: Block comments use a trailing */ on a separate line
+#62: FILE: drivers/gpu/drm/i915/intel_uncore.c:1150:
++		0x5500 - 0x7fff: render */
+
+-:67: WARNING:BLOCK_COMMENT_STYLE: Block comments use * on subsequent lines
+#67: FILE: drivers/gpu/drm/i915/intel_uncore.c:1154:
++	GEN_FW_RANGE(0x8160, 0x81ff, 0), /*
++		0x8160 - 0x817f: reserved
+
+-:68: WARNING:BLOCK_COMMENT_STYLE: Block comments use a trailing */ on a separate line
+#68: FILE: drivers/gpu/drm/i915/intel_uncore.c:1155:
++		0x8180 - 0x81ff: always on */
+
+-:76: WARNING:BLOCK_COMMENT_STYLE: Block comments use * on subsequent lines
+#76: FILE: drivers/gpu/drm/i915/intel_uncore.c:1159:
++	GEN_FW_RANGE(0x8500, 0x94cf, FORCEWAKE_GT), /*
++		0x8500 - 0x87ff: gt
+
+-:79: WARNING:BLOCK_COMMENT_STYLE: Block comments use a trailing */ on a separate line
+#79: FILE: drivers/gpu/drm/i915/intel_uncore.c:1162:
++		0x9480 - 0x94cf: reserved */
+
+-:82: WARNING:BLOCK_COMMENT_STYLE: Block comments use * on subsequent lines
+#82: FILE: drivers/gpu/drm/i915/intel_uncore.c:1165:
++	GEN_FW_RANGE(0x9560, 0x97ff, 0), /*
++		0x9560 - 0x95ff: always on
+
+-:83: WARNING:BLOCK_COMMENT_STYLE: Block comments use a trailing */ on a separate line
+#83: FILE: drivers/gpu/drm/i915/intel_uncore.c:1166:
++		0x9600 - 0x97ff: reserved */
+
+-:99: WARNING:BLOCK_COMMENT_STYLE: Block comments use * on subsequent lines
+#99: FILE: drivers/gpu/drm/i915/intel_uncore.c:1170:
++	GEN_FW_RANGE(0xb400, 0xcfff, FORCEWAKE_GT), /*
++		0xb400 - 0xbf7f: gt
+
+-:101: WARNING:BLOCK_COMMENT_STYLE: Block comments use a trailing */ on a separate line
+#101: FILE: drivers/gpu/drm/i915/intel_uncore.c:1172:
++		0xc000 - 0xcfff: gt */
+
+-:106: WARNING:BLOCK_COMMENT_STYLE: Block comments use * on subsequent lines
+#106: FILE: drivers/gpu/drm/i915/intel_uncore.c:1177:
++	GEN_FW_RANGE(0xdc00, 0xefff, FORCEWAKE_RENDER), /*
++		0xdc00 - 0xddff: render
+
+-:109: WARNING:BLOCK_COMMENT_STYLE: Block comments use a trailing */ on a separate line
+#109: FILE: drivers/gpu/drm/i915/intel_uncore.c:1180:
++		0xe900 - 0xefff: reserved */
+
+-:111: WARNING:BLOCK_COMMENT_STYLE: Block comments use * on subsequent lines
+#111: FILE: drivers/gpu/drm/i915/intel_uncore.c:1182:
++	GEN_FW_RANGE(0xf000, 0x147ff, FORCEWAKE_GT), /*
++		 0xf000 - 0xffff: gt
+
+-:112: WARNING:BLOCK_COMMENT_STYLE: Block comments use a trailing */ on a separate line
+#112: FILE: drivers/gpu/drm/i915/intel_uncore.c:1183:
++		0x10000 - 0x147ff: reserved */
+
+-:114: WARNING:BLOCK_COMMENT_STYLE: Block comments use * on subsequent lines
+#114: FILE: drivers/gpu/drm/i915/intel_uncore.c:1185:
++	GEN_FW_RANGE(0x14800, 0x1ffff, FORCEWAKE_RENDER), /*
++		0x14800 - 0x14fff: render
+
+-:117: WARNING:BLOCK_COMMENT_STYLE: Block comments use a trailing */ on a separate line
+#117: FILE: drivers/gpu/drm/i915/intel_uncore.c:1188:
++		0x1c000 - 0x1ffff: reserved */
+
+-:122: WARNING:BLOCK_COMMENT_STYLE: Block comments use * on subsequent lines
+#122: FILE: drivers/gpu/drm/i915/intel_uncore.c:1193:
++	GEN_FW_RANGE(0x24000, 0x2417f, 0), /*
++		0x24000 - 0x2407f: always on
+
+-:123: WARNING:BLOCK_COMMENT_STYLE: Block comments use a trailing */ on a separate line
+#123: FILE: drivers/gpu/drm/i915/intel_uncore.c:1194:
++		0x24080 - 0x2417f: reserved */
+
+-:125: WARNING:BLOCK_COMMENT_STYLE: Block comments use * on subsequent lines
+#125: FILE: drivers/gpu/drm/i915/intel_uncore.c:1196:
++	GEN_FW_RANGE(0x24180, 0x249ff, FORCEWAKE_GT), /*
++		0x24180 - 0x241ff: gt
+
+-:126: WARNING:BLOCK_COMMENT_STYLE: Block comments use a trailing */ on a separate line
+#126: FILE: drivers/gpu/drm/i915/intel_uncore.c:1197:
++		0x24200 - 0x249ff: reserved */
+
+-:128: WARNING:BLOCK_COMMENT_STYLE: Block comments use * on subsequent lines
+#128: FILE: drivers/gpu/drm/i915/intel_uncore.c:1199:
++	GEN_FW_RANGE(0x24a00, 0x251ff, FORCEWAKE_RENDER), /*
++		0x24a00 - 0x24a7f: render
+
+-:129: WARNING:BLOCK_COMMENT_STYLE: Block comments use a trailing */ on a separate line
+#129: FILE: drivers/gpu/drm/i915/intel_uncore.c:1200:
++		0x24a80 - 0x251ff: reserved */
+
+-:131: WARNING:BLOCK_COMMENT_STYLE: Block comments use * on subsequent lines
+#131: FILE: drivers/gpu/drm/i915/intel_uncore.c:1202:
++	GEN_FW_RANGE(0x25200, 0x255ff, FORCEWAKE_GT), /*
++		0x25200 - 0x252ff: gt
+
+-:132: WARNING:BLOCK_COMMENT_STYLE: Block comments use a trailing */ on a separate line
+#132: FILE: drivers/gpu/drm/i915/intel_uncore.c:1203:
++		0x25300 - 0x255ff: reserved */
+
+-:135: WARNING:BLOCK_COMMENT_STYLE: Block comments use * on subsequent lines
+#135: FILE: drivers/gpu/drm/i915/intel_uncore.c:1206:
++	GEN_FW_RANGE(0x25680, 0x259ff, FORCEWAKE_MEDIA_VDBOX2), /*
++		0x25680 - 0x256ff: VD2
+
+-:136: WARNING:BLOCK_COMMENT_STYLE: Block comments use a trailing */ on a separate line
+#136: FILE: drivers/gpu/drm/i915/intel_uncore.c:1207:
++		0x25700 - 0x259ff: reserved */
+
+-:139: WARNING:BLOCK_COMMENT_STYLE: Block comments use * on subsequent lines
+#139: FILE: drivers/gpu/drm/i915/intel_uncore.c:1210:
++	GEN_FW_RANGE(0x25a80, 0x2ffff, FORCEWAKE_MEDIA_VDBOX2), /*
++		0x25a80 - 0x25aff: VD2
+
+-:140: WARNING:BLOCK_COMMENT_STYLE: Block comments use a trailing */ on a separate line
+#140: FILE: drivers/gpu/drm/i915/intel_uncore.c:1211:
++		0x25b00 - 0x2ffff: reserved */
+
+-:151: WARNING:BLOCK_COMMENT_STYLE: Block comments use * on subsequent lines
+#151: FILE: drivers/gpu/drm/i915/intel_uncore.c:1215:
++	GEN_FW_RANGE(0x1c0000, 0x1c3fff, FORCEWAKE_MEDIA_VDBOX0), /*
++		0x1c0000 - 0x1c2bff: VD0
+
+-:155: WARNING:BLOCK_COMMENT_STYLE: Block comments use a trailing */ on a separate line
+#155: FILE: drivers/gpu/drm/i915/intel_uncore.c:1219:
++		0x1c3f00 - 0x1c3fff: VD0 */
+
+-:158: WARNING:BLOCK_COMMENT_STYLE: Block comments use * on subsequent lines
+#158: FILE: drivers/gpu/drm/i915/intel_uncore.c:1222:
++	GEN_FW_RANGE(0x1c8000, 0x1cbfff, FORCEWAKE_MEDIA_VEBOX0), /*
++		0x1c8000 - 0x1ca0ff: VE0
+
+-:160: WARNING:BLOCK_COMMENT_STYLE: Block comments use a trailing */ on a separate line
+#160: FILE: drivers/gpu/drm/i915/intel_uncore.c:1224:
++		0x1cbf00 - 0x1cbfff: VE0 */
+
+-:162: WARNING:BLOCK_COMMENT_STYLE: Block comments use * on subsequent lines
+#162: FILE: drivers/gpu/drm/i915/intel_uncore.c:1226:
++	GEN_FW_RANGE(0x1cc000, 0x1cffff, FORCEWAKE_MEDIA_VDBOX0), /*
++		0x1cc000 - 0x1ccfff: VD0
+
+-:163: WARNING:BLOCK_COMMENT_STYLE: Block comments use a trailing */ on a separate line
+#163: FILE: drivers/gpu/drm/i915/intel_uncore.c:1227:
++		0x1cd000 - 0x1cffff: reserved */
+
+-:165: WARNING:BLOCK_COMMENT_STYLE: Block comments use * on subsequent lines
+#165: FILE: drivers/gpu/drm/i915/intel_uncore.c:1229:
++	GEN_FW_RANGE(0x1d0000, 0x1d3fff, FORCEWAKE_MEDIA_VDBOX2), /*
++		0x1d0000 - 0x1d2bff: VD2
+
+-:169: WARNING:BLOCK_COMMENT_STYLE: Block comments use a trailing */ on a separate line
+#169: FILE: drivers/gpu/drm/i915/intel_uncore.c:1233:
++		0x1d3f00 - 0x1d3fff: VD2 */
+
+total: 0 errors, 40 warnings, 0 checks, 143 lines checked
+74565d868b44 drm/i915: Update gen12 multicast register ranges
+
 
 _______________________________________________
 Intel-gfx mailing list
