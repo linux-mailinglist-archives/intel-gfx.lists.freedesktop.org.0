@@ -2,124 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id DA539289090
-	for <lists+intel-gfx@lfdr.de>; Fri,  9 Oct 2020 20:08:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C21C728914C
+	for <lists+intel-gfx@lfdr.de>; Fri,  9 Oct 2020 20:41:51 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BB7A36ED76;
-	Fri,  9 Oct 2020 18:08:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AB4A96ECE3;
+	Fri,  9 Oct 2020 18:41:48 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5A8566ED53;
- Fri,  9 Oct 2020 18:08:37 +0000 (UTC)
-IronPort-SDR: d7SCUYYsX9c592HHxAyM3xy02scg15GrWkqXukRs25c9MliTjgFbR1A7NmH/ockukibZ5l7tOi
- lI0neB9LQ7Ng==
-X-IronPort-AV: E=McAfee;i="6000,8403,9769"; a="165582344"
-X-IronPort-AV: E=Sophos;i="5.77,355,1596524400"; d="scan'208";a="165582344"
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AA8FD6ECE3
+ for <intel-gfx@lists.freedesktop.org>; Fri,  9 Oct 2020 18:41:47 +0000 (UTC)
+IronPort-SDR: TZMxEaK8sRgTs2Dy50J7HSiPwYELmQ5b3Gu/ZvonLFcNMgsWw9VwNqXtHxSQWjlaNMfs7qDLO1
+ gKeFbDF48Utw==
+X-IronPort-AV: E=McAfee;i="6000,8403,9769"; a="144844243"
+X-IronPort-AV: E=Sophos;i="5.77,355,1596524400"; 
+ d="scan'208,217";a="144844243"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Oct 2020 11:08:36 -0700
-IronPort-SDR: fL4+9EY8tvGGIMASA5exM+I73Pb+hhz/OMDqtNEGb26an0j4bS3gMo+ZtzKQALgHwvlS/CqlG+
- burxblrSR2UQ==
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Oct 2020 11:41:47 -0700
+IronPort-SDR: +LKNdB/fJdhIcZbKXlQgvIbzNo7r0FmSqu9kzJgxrcWb3JXidR/YyDPajDitwQ/KWzcUbM9l/i
+ oWo06nNSN53Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.77,355,1596524400"; d="scan'208";a="312631607"
-Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
- by orsmga003.jf.intel.com with ESMTP; 09 Oct 2020 11:08:35 -0700
-Received: from fmsmsx609.amr.corp.intel.com (10.18.126.89) by
- fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="5.77,355,1596524400"; 
+ d="scan'208,217";a="328991074"
+Received: from fmsmsx604.amr.corp.intel.com ([10.18.126.84])
+ by orsmga002.jf.intel.com with ESMTP; 09 Oct 2020 11:41:46 -0700
+Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx604.amr.corp.intel.com (10.18.126.84) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1713.5; Fri, 9 Oct 2020 11:08:35 -0700
-Received: from fmsmsx603.amr.corp.intel.com (10.18.126.83) by
- fmsmsx609.amr.corp.intel.com (10.18.126.89) with Microsoft SMTP Server
+ 15.1.1713.5; Fri, 9 Oct 2020 11:41:45 -0700
+Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1713.5; Fri, 9 Oct 2020 11:08:35 -0700
-Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
- fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1713.5
- via Frontend Transport; Fri, 9 Oct 2020 11:08:35 -0700
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com (104.47.66.42) by
- edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.1713.5; Fri, 9 Oct 2020 11:08:34 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=WZV0eMcP7JZx5ILE67t0WDgzb05vZ3l9hUc4cRyXNTxOCQ5WhBgtP8jowHQ+EEfxkkxjyZD68TqXkNuaroprGBLrh685VfvDxQVS1/0CE6SZt4oF3D8H0Puk6wzUKzpvPWWvyoeWx4qO8e7RCT67ZKqiVPxShkOHc55KnusE2SQpf7fmkcvLXLwdI43RC9Z0uMuDCQlLsp0cCP1njqLCGf+81f/dZ7FKEN7xHsW6EO/xuTfsWzP5omM7o5x/7jG2IMg35ZQ8DfaurZ1NePbcY8okAX4ILocV5XXzKl9XcoHXpcxNTFBx9ZnIIeYdYbC2Yn4P3gNlB9rixJ09pYQuUw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=PC7sBsYn36pgHtL1D3kfCEE1oH/eeHFJRPiLwpvkwU0=;
- b=QAMWXoPUrKctWCwKZatvaR0rbX5SFOYaC/JlYpZbfYtK9l4wHcuIGpfVwrtIStO3LUDgMlnRpc0fTMhGd4xzMbHmkPoEglhjArCeAuvsuP3xVq4jJGvyFcIFQoAoOPHPeIC/ohyGHbuMJENHDIH5F/CyTWAbC90JaPPDEutF8IZjFwxKN82Mys3wcpslbUC6XP3X197WpVna5Nil9871OyPuJ4Fs+IEW3oScvenPJpsf445vUyRCG+SEyZxdxQiL4TNp5YO5B1Dml8sd2QXZKfTD1bmDXDCGYjnKlG3mVIEdeAGFtPIWQWDiXoOgefsOke1l2pr7LTRNfIuTMF25Cw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=intel.onmicrosoft.com; 
- s=selector2-intel-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=PC7sBsYn36pgHtL1D3kfCEE1oH/eeHFJRPiLwpvkwU0=;
- b=h01HRgy/KHiy3xxtvg2qQh7bxzzoAT6l89/JedwLt4VROk9wEHz+TdwikAD9cUnqAaq6zgkVTyRFCGugPbDQU0l/h3N0WngZJ+mYxZDrN7xaaPrWyKjZNrBnqZ7PsD2W30d7gy0KSUkA2Ek9WeGZmALGIh9CJ7Qqis/H+zkqdeA=
-Received: from BY5PR11MB4434.namprd11.prod.outlook.com (2603:10b6:a03:1c2::19)
- by BYAPR11MB3045.namprd11.prod.outlook.com (2603:10b6:a03:88::33)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3433.38; Fri, 9 Oct
- 2020 18:08:32 +0000
-Received: from BY5PR11MB4434.namprd11.prod.outlook.com
- ([fe80::d420:36b7:bc68:5c3c]) by BY5PR11MB4434.namprd11.prod.outlook.com
- ([fe80::d420:36b7:bc68:5c3c%3]) with mapi id 15.20.3433.046; Fri, 9 Oct 2020
- 18:08:32 +0000
-From: "Pandey, Hariom" <hariom.pandey@intel.com>
-To: "K, SrinivasX" <srinivasx.k@intel.com>
-Thread-Topic: [Intel-gfx] [PATCH] drm/i915/ehl: Remove require_force_probe
- protection
-Thread-Index: AQHWm/Dp6z1PH5QIPE+D2JT4cvgJtamK2W6AgAAAfICAAAIHAIAAAfcAgAQXZwCAAFXLAIAASytg
-Date: Fri, 9 Oct 2020 18:08:32 +0000
-Message-ID: <BY5PR11MB44341733BF4A7CCB79861322F6080@BY5PR11MB4434.namprd11.prod.outlook.com>
-References: <20201006145632.117291-1-srinivasx.k@intel.com>
- <2f7809798dd0b59246d67c5044dafb1e518fc4c5.camel@intel.com>
- <160200650945.2919.11750150118902885340@build.alporthouse.com>
- <3CDB63EE-D1CD-43E4-A977-4E966CD19313@intel.com>
- <c88bc0fbc4956395324674ca202b395326208888.camel@intel.com>
- <BYAPR11MB3014087624B8206C05362830F9080@BYAPR11MB3014.namprd11.prod.outlook.com>
- <B6C174E8-161A-43BD-AFDA-21C94F6D56E3@intel.com>
-In-Reply-To: <B6C174E8-161A-43BD-AFDA-21C94F6D56E3@intel.com>
+ 15.1.1713.5; Fri, 9 Oct 2020 11:41:45 -0700
+Received: from fmsmsx611.amr.corp.intel.com ([10.18.126.91]) by
+ fmsmsx611.amr.corp.intel.com ([10.18.126.91]) with mapi id 15.01.1713.004;
+ Fri, 9 Oct 2020 11:41:45 -0700
+From: "Srivatsa, Anusha" <anusha.srivatsa@intel.com>
+To: "linux-firmware@kernel.org" <linux-firmware@kernel.org>
+Thread-Topic: i915 Update : DG1 DMC
+Thread-Index: Adaea4W6Jtrfz8J7RqGJot9NVZc0zQ==
+Date: Fri, 9 Oct 2020 18:41:45 +0000
+Message-ID: <3997663f047e4ab68fca41e3c8a05671@intel.com>
 Accept-Language: en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-dlp-product: dlpe-windows
 dlp-version: 11.5.1.3
+dlp-product: dlpe-windows
 dlp-reaction: no-action
-authentication-results: intel.com; dkim=none (message not signed)
- header.d=none;intel.com; dmarc=none action=none header.from=intel.com;
-x-originating-ip: [182.70.152.231]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: b8cdfb5f-8dbd-4dc6-c749-08d86c7e5567
-x-ms-traffictypediagnostic: BYAPR11MB3045:
-x-ld-processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <BYAPR11MB3045B2734AA8670AB67A8A79F6080@BYAPR11MB3045.namprd11.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:10000;
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: SCMe9syB/wv4OWwZNtOPoUhW9iS8YxubXD8mR0jiXPg3YbRUzLmIpSRp3gpwpk/+YxTlhuPH0oR4V2AjGHUzjuKkRt1OTabMFJlBo6rx5s6VcHYY2qWgiE7cRUqIaqJ4fBkKfqXvpvgAQKR48hgG1KdwWGLxUKNQ6jGhAEEgvHoBb5opCgDBnqKNwJPjNvmEiJxWrxa5lJsrNWJeUhaIyXqlQzf/jcbl6TBk3LOMfn14LgysmnebtsOGa+VC6qpd80xxCSsIoUIhd0yPcXF1uZo5EA5Ehp0mjJNtFpTo9GBS8AmSPyeQmyZeQJesThcrFuT0kjMMHl3PysTho6xv3HrWQjAPAVIsjk/LkL3Jp4TuOfKyHtQytYzhVwVKlRNZ3rWHZLMthoSOwtvh9yBIXA==
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BY5PR11MB4434.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(4636009)(136003)(396003)(346002)(376002)(366004)(39860400002)(66476007)(66946007)(55016002)(66446008)(966005)(107886003)(4326008)(8676002)(76116006)(8936002)(86362001)(9686003)(52536014)(33656002)(53546011)(6862004)(7696005)(5660300002)(64756008)(2906002)(66556008)(186003)(6506007)(83080400001)(54906003)(26005)(6636002)(71200400001)(83380400001)(316002)(478600001);
- DIR:OUT; SFP:1102; 
-x-ms-exchange-antispam-messagedata: mQTL8M6SX47rCW9w8+XZsKE3aiw8TaANJ24U5CPRshwocXN6fPhk2ETbCDEBIaLnwJYslIxjSuvNidGpf4K79VFrHIguXNM2ErWwrzyx+T/OglbCfU2XpJr5CNDQmGVNVQhGZv1MPoQQLMEGun9OXDRoL7Ep1EbzkZramRYLuQvsFGWQ30JhVeCt4Yh0++Ys4V+KX5a6hoKsXkstG4uKOgx2gB1uTEF5oBv7fG5r13QXHJ18NXSGfxy6UEuYhgAuPin+vg5maXsPna6cMUtLYyvvrtIJXvXfJVy0oo6LHCjlgcHcEooJuUGOOiWr7Y4CxxFw3QaI6BFza/WSjwliBxQGJ6vovhqSjtMJ3z87EkzOIdw87a+0s/d8PcqH3m/RtaVqumiBq3xyoasl+a5iaasrI5COYChiemHCaGsx2d6gsiqZqPjhdvh0qKP5Kampt58pEj9171zLZtOc2Bp2GHV6o5iFsoxbqRR2QvxShhb6vH3cg6sWcHj12BByUzLTCMhPHEB7BQvc0IS8RaScWRABKoCQFMdd+eWB7h2sG/lM4g4fKh4AYfd9/eFyOPJfHBH5JH4DozoK6ga/1FAEzvd7GYPXiSMufMPnOWmPhMOlv9Ke4VUaBjEdx0+tqdmncFXAyQNGE0VPDuOzCzOu0g==
+x-originating-ip: [10.22.254.132]
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: BY5PR11MB4434.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: b8cdfb5f-8dbd-4dc6-c749-08d86c7e5567
-X-MS-Exchange-CrossTenant-originalarrivaltime: 09 Oct 2020 18:08:32.5629 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: QfT5GBYymCNCrFAKUi6oRlQjBTmknTq0WbMRwUWULMFeMYDnzyIrH6RsBARR6QRit2oxmypsgEHYfzvLzg7UPw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BYAPR11MB3045
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/ehl: Remove require_force_probe
- protection
+Subject: [Intel-gfx] i915 Update : DG1 DMC
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -132,94 +68,155 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Nikula, Jani" <jani.nikula@intel.com>,
+Cc: Kyle McMartin <kyle@mcmartin.ca>,
  "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "chris@chris-wilson.co.uk" <chris@chris-wilson.co.uk>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+ "'ben@decadent.org.uk'" <ben@decadent.org.uk>
+Content-Type: multipart/mixed; boundary="===============0525744542=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Srinivas,
+--===============0525744542==
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_3997663f047e4ab68fca41e3c8a05671intelcom_"
 
-Take Sunil's help who has recently validated RC6 on EHL DRM tip and found to be passing. If the WA were sporadically failing and if you confirm that RC6 is passing, this patch can be proceeded with. 
+--_000_3997663f047e4ab68fca41e3c8a05671intelcom_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-Thanks
-Hariom Pandey
+Hi Kyle, Ben,
 
------Original Message-----
-From: Vivi, Rodrigo <rodrigo.vivi@intel.com> 
-Sent: Friday, October 9, 2020 7:09 PM
-To: K, SrinivasX <srinivasx.k@intel.com>
-Cc: Souza, Jose <jose.souza@intel.com>; chris@chris-wilson.co.uk; Ausmus, James <james.ausmus@intel.com>; Nikula, Jani <jani.nikula@intel.com>; Pandey, Hariom <hariom.pandey@intel.com>; Roper, Matthew D <matthew.d.roper@intel.com>; intel-gfx@lists.freedesktop.org; dri-devel@lists.freedesktop.org; Surendrakumar Upadhyay, TejaskumarX <tejaskumarx.surendrakumar.upadhyay@intel.com>
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/ehl: Remove require_force_probe protection
+Please add the i915 updates to linux-firmware from branch dg1_dmc_v2_02
 
+The following changes since commit 58d41d0facca2478d3e45f6321224361519aee96=
+:
 
+  ice: Add comms package file for Intel E800 series driver (2020-10-05 08:0=
+9:03 -0400)
 
-> On Oct 9, 2020, at 1:31 AM, K, SrinivasX <srinivasx.k@intel.com> wrote:
-> 
-> Hi Rodrigo,
-> 
-> How do we get W/A and rc6 changes in, do you have any details?
+are available in the Git repository at: dg1_dmc_v2_02
 
-I told based on what I was seeing on https://intel-gfx-ci.01.org/tree/drm-tip/drmtip-alt.html?
-focusing on the issues that are exclusively for ehl and not happening on other platforms.
+  git://anongit.freedesktop.org/drm/drm-firmware dg1_dmc_v2_02
 
-It looks like workarounds are fine there now. so I'm not sure if it was sporadic thing that day.
+for you to fetch changes up to a140ef3eb3746aba2c897db16e02ffb5ffa9e7a2:
 
-for the rc6 there are a few testcases failing around it:
-https://intel-gfx-ci.01.org/tree/drm-tip/drmtip_675/fi-ehl-1/igt@i915_pm_rc6_residency@rc6-fence.html
-https://intel-gfx-ci.01.org/tree/drm-tip/drmtip_675/fi-ehl-1/igt@i915_pm_rc6_residency@rc6-idle.html
-https://intel-gfx-ci.01.org/tree/drm-tip/drmtip_675/fi-ehl-1/igt@i915_selftest@live@gt_pm.html#dmesg-warnings415
+  i915: Add DG1 DMC v2.02 (2020-10-08 12:13:33 -0700)
 
-> 
-> Thanks,
-> Srinivas
-> 
-> -----Original Message-----
-> From: Souza, Jose <jose.souza@intel.com>
-> Sent: 06 October 2020 23:33
-> To: Vivi, Rodrigo <rodrigo.vivi@intel.com>; chris@chris-wilson.co.uk
-> Cc: Ausmus, James <james.ausmus@intel.com>; Nikula, Jani 
-> <jani.nikula@intel.com>; Pandey, Hariom <hariom.pandey@intel.com>; 
-> Roper, Matthew D <matthew.d.roper@intel.com>; 
-> intel-gfx@lists.freedesktop.org; dri-devel@lists.freedesktop.org; K, 
-> SrinivasX <srinivasx.k@intel.com>; Surendrakumar Upadhyay, TejaskumarX 
-> <tejaskumarx.surendrakumar.upadhyay@intel.com>
-> Subject: Re: [Intel-gfx] [PATCH] drm/i915/ehl: Remove 
-> require_force_probe protection
-> 
-> On Tue, 2020-10-06 at 10:55 -0700, Vivi, Rodrigo wrote:
->> 
->>> On Oct 6, 2020, at 10:48 AM, Chris Wilson <chris@chris-wilson.co.uk> wrote:
->>> 
->>> Quoting Souza, Jose (2020-10-06 18:46:45)
->>>> +Rodrigo and Jani
->>>> 
->>>> On Tue, 2020-10-06 at 14:56 +0000, Kamati Srinivas wrote:
->>>>> Removing force probe protection from EHL platform. Did not observe 
->>>>> warnings, errors, flickering or any visual defects while doing 
->>>>> ordinary tasks like browsing and editing documents in a two 
->>>>> monitor setup.
->>>> 
->>>> One of the requirements was also to have CI BAT all green and 
->>>> shards as green is possible but EHL don't show up in CI results, we actually have one single EHL machine in CI but I guess it is not able to run all tests that shards do:
->>>> https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9097/filelist.html
->>> 
->>> https://intel-gfx-ci.01.org/tree/drm-tip/drmtip-alt.html
->> 
->> we are really close to that point. We just need to fix some w/a and
->> rc6 issues before applying this change.
->> 
->>> -Chris
->> 
-> 
-> Huum okay we have drm-tip results for EHL but if someone sends a patch that breaks EHL it will not be caught in pre-merge testing.
-> 
+----------------------------------------------------------------
+Anusha Srivatsa (1):
+      i915: Add DG1 DMC v2.02
 
+WHENCE                   |   2 ++
+i915/dg1_dmc_ver2_02.bin | Bin 0 -> 16624 bytes
+2 files changed, 2 insertions(+)
+create mode 100644 i915/dg1_dmc_ver2_02.bin
+
+Thanks,
+Anusha
+
+--_000_3997663f047e4ab68fca41e3c8a05671intelcom_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri",sans-serif;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal">Hi Kyle, Ben,<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Please add the i915 updates to linux-firmware from b=
+ranch <b>
+dg1_dmc_v2_02</b><o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">The following changes since commit 58d41d0facca2478d=
+3e45f6321224361519aee96:<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">&nbsp; ice: Add comms package file for Intel E800 se=
+ries driver (2020-10-05 08:09:03 -0400)<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">are available in the Git repository at: dg1_dmc_v2_0=
+2<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">&nbsp; git://anongit.freedesktop.org/drm/drm-firmwar=
+e dg1_dmc_v2_02<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">for you to fetch changes up to a140ef3eb3746aba2c897=
+db16e02ffb5ffa9e7a2:<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">&nbsp; i915: Add DG1 DMC v2.02 (2020-10-08 12:13:33 =
+-0700)<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">----------------------------------------------------=
+------------<o:p></o:p></p>
+<p class=3D"MsoNormal">Anusha Srivatsa (1):<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; i915: Add DG1 DMC v2.=
+02<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">WHENCE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |&nbsp;&nbsp=
+; 2 &#43;&#43;<o:p></o:p></p>
+<p class=3D"MsoNormal">i915/dg1_dmc_ver2_02.bin | Bin 0 -&gt; 16624 bytes<o=
+:p></o:p></p>
+<p class=3D"MsoNormal">2 files changed, 2 insertions(&#43;)<o:p></o:p></p>
+<p class=3D"MsoNormal">create mode 100644 i915/dg1_dmc_ver2_02.bin<o:p></o:=
+p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Thanks,<o:p></o:p></p>
+<p class=3D"MsoNormal">Anusha<o:p></o:p></p>
+</div>
+</body>
+</html>
+
+--_000_3997663f047e4ab68fca41e3c8a05671intelcom_--
+
+--===============0525744542==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============0525744542==--
