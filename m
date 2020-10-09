@@ -1,40 +1,83 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0BD84288F5A
-	for <lists+intel-gfx@lfdr.de>; Fri,  9 Oct 2020 19:02:48 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 981F7288FF1
+	for <lists+intel-gfx@lfdr.de>; Fri,  9 Oct 2020 19:26:40 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 360826ECF9;
-	Fri,  9 Oct 2020 17:02:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 547256ED6B;
+	Fri,  9 Oct 2020 17:26:38 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 823B16ECF9;
- Fri,  9 Oct 2020 17:02:44 +0000 (UTC)
-IronPort-SDR: iUeqS1j7iSGJ2mmz+ikzs3k1HTQVdV5wmE/2iH+y5wE8jF00nCqBr8CAHXZzILfloq1ClpV+bP
- ZwfIqk8sZoAw==
-X-IronPort-AV: E=McAfee;i="6000,8403,9769"; a="165624640"
-X-IronPort-AV: E=Sophos;i="5.77,355,1596524400"; d="scan'208";a="165624640"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Oct 2020 10:02:43 -0700
-IronPort-SDR: N1dIIYPEpQ1ghZ2+nDDe6GGcpnHWd0xbneElVALRRZcxf1uHb+dCfrSa9tU8RSlr7Cmc+84qZr
- iKHSwzPfNjYg==
-X-IronPort-AV: E=Sophos;i="5.77,355,1596524400"; d="scan'208";a="317098847"
-Received: from jkrzyszt-desk.igk.intel.com ([172.22.244.18])
- by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Oct 2020 10:02:42 -0700
-From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-To: igt-dev@lists.freedesktop.org
-Date: Fri,  9 Oct 2020 19:02:25 +0200
-Message-Id: <20201009170225.10542-1-janusz.krzysztofik@linux.intel.com>
-X-Mailer: git-send-email 2.21.1
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [216.205.24.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F32E96ED6B
+ for <intel-gfx@lists.freedesktop.org>; Fri,  9 Oct 2020 17:26:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1602264395;
+ h=from:from:reply-to:reply-to:subject:subject:date:date:
+ message-id:message-id:to:to:cc:cc:mime-version:mime-version:
+ content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=Y6ikGGK6aHMQWPhD82bP38Tw8B11lHIqI5A5jkizye8=;
+ b=M6BxPl7dJ38A3so/hfs2SfcCFIqcJM+bor1AQuA76Btpbs9NauYIcApaFIAPrjXMtZnfFQ
+ nq3aQ38hXHFFlSos2yDjDniqwYL3sFy25VT5snwguVAdT6rF5Ff+dQ/kMEYKLFXeDgv3Ou
+ 3H+NeHzF8fJV0fAhHceU9LCEvM9E660=
+Received: from mail-qk1-f200.google.com (mail-qk1-f200.google.com
+ [209.85.222.200]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-399-Xn63tzUXPvO23LwmqG5zzg-1; Fri, 09 Oct 2020 13:26:33 -0400
+X-MC-Unique: Xn63tzUXPvO23LwmqG5zzg-1
+Received: by mail-qk1-f200.google.com with SMTP id n125so7293366qke.19
+ for <intel-gfx@lists.freedesktop.org>; Fri, 09 Oct 2020 10:26:33 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:message-id:subject:from:reply-to:to:cc:date
+ :in-reply-to:references:organization:user-agent:mime-version
+ :content-transfer-encoding;
+ bh=Y6ikGGK6aHMQWPhD82bP38Tw8B11lHIqI5A5jkizye8=;
+ b=I9ysAxkinY1BZWoB3E343QtImrIJW7FdmxY3K3VezGg1Ls0N2tD3hG/59bvY3PCCX0
+ LP0xNSKh5INHa43sfhsqvtTnbwD5sFIRQ+imV5Gnqow5NM7r3pWjWaz8RKqHR5zHE5IU
+ AAq6+kKtBItoelXIoWlsbbfpjf9G8O9QM1yNJcObeTa2/mPcFcsqA3XAHZvL5FTCAE71
+ PgsBkr2yb9D9tQG1joBAcxMIafdh+RdsrTtcj92x24ZIVKorqewHvCiSNsCYvLK9Vkn2
+ h+l+13T1qFc50rnYmwuUJenSFEBp3uVdyQ7UVbvO8ixnUMI9+Uj6ceGso5BCp5jsjFfu
+ 3d1A==
+X-Gm-Message-State: AOAM5308MiMcxwrZXEL+H8NMwJDeUMjvqryzvdblnpgm4AJrg1qm5Xpa
+ JQ0sEnf01GnwQFhiM1iLScAtXxD3XvRfsX46XHh4n4eLA3wfvOvry3JJePz5eJyckqa3jpIVHhR
+ UMY8MzcmpXQuQIPcp8XLO7cylyKVA
+X-Received: by 2002:a05:620a:1185:: with SMTP id
+ b5mr14323731qkk.386.1602264393240; 
+ Fri, 09 Oct 2020 10:26:33 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJzp/SIm+I2tHWObGoz+HG1lGQmMTfmJLrFa/PeGFE7GwdStIYKbBNERYwy5v5frpjQ2xEoNwQ==
+X-Received: by 2002:a05:620a:1185:: with SMTP id
+ b5mr14323708qkk.386.1602264392973; 
+ Fri, 09 Oct 2020 10:26:32 -0700 (PDT)
+Received: from Whitewolf.lyude.net
+ (pool-108-49-102-102.bstnma.fios.verizon.net. [108.49.102.102])
+ by smtp.gmail.com with ESMTPSA id m18sm6767237qkg.77.2020.10.09.10.26.31
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Fri, 09 Oct 2020 10:26:32 -0700 (PDT)
+Message-ID: <983f12944c0f14a7eee7d77bac98203a5c18981c.camel@redhat.com>
+From: Lyude Paul <lyude@redhat.com>
+To: Aaron Ma <aaron.ma@canonical.com>, linux-kernel@vger.kernel.org, 
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, 
+ mapengyu@gmail.com, daniel@ffwll.ch, airlied@linux.ie, tzimmermann@suse.de,
+ mripard@kernel.org, maarten.lankhorst@linux.intel.com,
+ rodrigo.vivi@intel.com,  joonas.lahtinen@linux.intel.com,
+ jani.nikula@linux.intel.com,  ville.syrjala@linux.intel.com
+Date: Fri, 09 Oct 2020 13:26:31 -0400
+In-Reply-To: <20201009085750.88490-1-aaron.ma@canonical.com>
+References: <20201009085750.88490-1-aaron.ma@canonical.com>
+Organization: Red Hat
+User-Agent: Evolution 3.36.5 (3.36.5-1.fc32)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH i-g-t] tests/core_hotunplug: Restore i915
- debugfs health check
+Authentication-Results: relay.mimecast.com;
+ auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=lyude@redhat.com
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+Subject: [Intel-gfx] (Cc: drm-misc/intel maintainers) Re: [PATCH 1/2]
+ drm/i915/dpcd_bl: uncheck PWM_PIN_CAP when detect eDP backlight
+ capabilities
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,147 +90,56 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, Chris Wilson <chris@chris-wilson.co.uk>
+Reply-To: lyude@redhat.com
+Cc: Maxime Ripard <maxime.ripard@bootlin.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Removal of igt_fork_hang_detector() from local_i915_healthcheck() by
-commit 1fbd127bd4e1 ("core_hotplug: Teach the healthcheck how to check
-execution status") resulted in unintentional removal of an important
-though implicit test feature of detecting, reporting as failures and
-recovering from potential misses of debugfs subdirs of hot rebound i915
-devices.  As a consequence, unexpected failures or skips of other
-unrelated but subsequently run tests have been observed on CI.
+For the whole series:
 
-On the other hand, removal of the debugfs issue detection and subtest
-failures right after hot rebinding the driver enabled the better
-version of the i915 GPU health check fixed by the same commit to detect
-and report other issues potentially triggered by device late close.
+For the whole series:
 
-Restore the missing test feature by introducing an explicit i915 sysfs
-health check that verifies existence of device sysfs and debugfs areas.
-Also, split hotrebind/hotreplug scenarios into a pair of each, one that
-performs the health check right after hot rebind/replug and delegates
-the device late close step to a follow up recovery phase while the
-other one checks device health only after late closing it.
+Reviewed-by: Lyude Paul <lyude@redhat.com>
 
-Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-Cc: Chris Wilson <chris@chris-wilson.co.uk>
----
- tests/core_hotunplug.c | 61 ++++++++++++++++++++++++++++++++++++++----
- 1 file changed, 56 insertions(+), 5 deletions(-)
+I'm going to add a Cc for stable so that it can be backported, and I'll push it
+to drm-intel-next-queued once I get the OK from drm-misc/i915 folks
 
-diff --git a/tests/core_hotunplug.c b/tests/core_hotunplug.c
-index 70669c590..92c3440e7 100644
---- a/tests/core_hotunplug.c
-+++ b/tests/core_hotunplug.c
-@@ -250,6 +250,11 @@ static int local_i915_healthcheck(int i915, const char *prefix)
- 	};
- 	const struct intel_execution_engine2 *engine;
- 	int fence = -1;
-+	char path[200];
-+
-+	local_debug("%s%s\n", prefix, "running i915 sysfs healthcheck");
-+	igt_assert(igt_sysfs_path(i915, path, sizeof(path)));
-+	igt_assert(igt_debugfs_path(i915, path, sizeof(path)));
- 
- 	local_debug("%s%s\n", prefix, "running i915 GPU healthcheck");
- 	if (local_i915_is_wedged(i915))
-@@ -437,7 +442,7 @@ static void hotunplug_rescan(struct hotunplug *priv)
- 	healthcheck(priv, false);
- }
- 
--static void hotrebind_lateclose(struct hotunplug *priv)
-+static void hotrebind(struct hotunplug *priv)
- {
- 	igt_assert_eq(priv->fd.drm, -1);
- 	igt_assert_eq(priv->fd.drm_hc, -1);
-@@ -448,6 +453,30 @@ static void hotrebind_lateclose(struct hotunplug *priv)
- 	driver_bind(priv, 0);
- 
- 	healthcheck(priv, false);
-+}
-+
-+static void hotreplug(struct hotunplug *priv)
-+{
-+	igt_assert_eq(priv->fd.drm, -1);
-+	igt_assert_eq(priv->fd.drm_hc, -1);
-+	priv->fd.drm = local_drm_open_driver(false, "", " for hot replug");
-+
-+	device_unplug(priv, "hot ", 60);
-+
-+	bus_rescan(priv, 0);
-+
-+	healthcheck(priv, false);
-+}
-+
-+static void hotrebind_lateclose(struct hotunplug *priv)
-+{
-+	igt_assert_eq(priv->fd.drm, -1);
-+	igt_assert_eq(priv->fd.drm_hc, -1);
-+	priv->fd.drm = local_drm_open_driver(false, "", " for hot rebind");
-+
-+	driver_unbind(priv, "hot ", 60);
-+
-+	driver_bind(priv, 0);
- 
- 	priv->fd.drm = close_device(priv->fd.drm, "late ", "unbound ");
- 	igt_assert_eq(priv->fd.drm, -1);
-@@ -465,8 +494,6 @@ static void hotreplug_lateclose(struct hotunplug *priv)
- 
- 	bus_rescan(priv, 0);
- 
--	healthcheck(priv, false);
--
- 	priv->fd.drm = close_device(priv->fd.drm, "late ", "removed ");
- 	igt_assert_eq(priv->fd.drm, -1);
- 
-@@ -570,7 +597,31 @@ igt_main
- 		post_healthcheck(&priv);
- 
- 	igt_subtest_group {
--		igt_describe("Check if the driver hot unbound from a still open device can be cleanly rebound, then the old instance released");
-+		igt_describe("Check if the driver can be cleanly rebound to a device with a still open hot unbound driver instance");
-+		igt_subtest("hotrebind")
-+			hotrebind(&priv);
-+
-+		igt_fixture
-+			recover(&priv);
-+	}
-+
-+	igt_fixture
-+		post_healthcheck(&priv);
-+
-+	igt_subtest_group {
-+		igt_describe("Check if a hot unplugged and still open device can be cleanly restored");
-+		igt_subtest("hotreplug")
-+			hotreplug(&priv);
-+
-+		igt_fixture
-+			recover(&priv);
-+	}
-+
-+	igt_fixture
-+		post_healthcheck(&priv);
-+
-+	igt_subtest_group {
-+		igt_describe("Check if a hot unbound driver instance still open after hot rebind can be cleanly released");
- 		igt_subtest("hotrebind-lateclose")
- 			hotrebind_lateclose(&priv);
- 
-@@ -582,7 +633,7 @@ igt_main
- 		post_healthcheck(&priv);
- 
- 	igt_subtest_group {
--		igt_describe("Check if a still open while hot unplugged device can be cleanly restored, then the old instance released");
-+		igt_describe("Check if an instance of a still open while hot replugged device can be cleanly released");
- 		igt_subtest("hotreplug-lateclose")
- 			hotreplug_lateclose(&priv);
- 
+On Fri, 2020-10-09 at 16:57 +0800, Aaron Ma wrote:
+> BOE panel with ID 2270 claims both PWM_PIN_CAP and AUX_SET_CAP backlight
+> control bits, but default chip backlight failed to control brightness.
+> 
+> Check AUX_SET_CAP and proceed to check quirks or VBT backlight type.
+> DPCD can control the brightness of this pannel.
+> 
+> Signed-off-by: Aaron Ma <aaron.ma@canonical.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c | 3 +--
+>  1 file changed, 1 insertion(+), 2 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
+> b/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
+> index acbd7eb66cbe..308b14159b7c 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
+> @@ -334,8 +334,7 @@ intel_dp_aux_display_control_capable(struct
+> intel_connector *connector)
+>  	 * the panel can support backlight control over the aux channel
+>  	 */
+>  	if (intel_dp->edp_dpcd[1] & DP_EDP_TCON_BACKLIGHT_ADJUSTMENT_CAP &&
+> -	    (intel_dp->edp_dpcd[2] & DP_EDP_BACKLIGHT_BRIGHTNESS_AUX_SET_CAP) &&
+> -	    !(intel_dp->edp_dpcd[2] & DP_EDP_BACKLIGHT_BRIGHTNESS_PWM_PIN_CAP))
+> {
+> +	    (intel_dp->edp_dpcd[2] & DP_EDP_BACKLIGHT_BRIGHTNESS_AUX_SET_CAP)) {
+>  		drm_dbg_kms(&i915->drm, "AUX Backlight Control Supported!\n");
+>  		return true;
+>  	}
 -- 
-2.21.1
+Sincerely,
+      Lyude Paul (she/her)
+      Software Engineer at Red Hat
 
 _______________________________________________
 Intel-gfx mailing list
