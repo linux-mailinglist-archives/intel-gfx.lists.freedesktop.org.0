@@ -1,61 +1,30 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C21C728914C
-	for <lists+intel-gfx@lfdr.de>; Fri,  9 Oct 2020 20:41:51 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 27B7E2891A1
+	for <lists+intel-gfx@lfdr.de>; Fri,  9 Oct 2020 21:17:00 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AB4A96ECE3;
-	Fri,  9 Oct 2020 18:41:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9E06F6ED8D;
+	Fri,  9 Oct 2020 19:16:54 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AA8FD6ECE3
- for <intel-gfx@lists.freedesktop.org>; Fri,  9 Oct 2020 18:41:47 +0000 (UTC)
-IronPort-SDR: TZMxEaK8sRgTs2Dy50J7HSiPwYELmQ5b3Gu/ZvonLFcNMgsWw9VwNqXtHxSQWjlaNMfs7qDLO1
- gKeFbDF48Utw==
-X-IronPort-AV: E=McAfee;i="6000,8403,9769"; a="144844243"
-X-IronPort-AV: E=Sophos;i="5.77,355,1596524400"; 
- d="scan'208,217";a="144844243"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Oct 2020 11:41:47 -0700
-IronPort-SDR: +LKNdB/fJdhIcZbKXlQgvIbzNo7r0FmSqu9kzJgxrcWb3JXidR/YyDPajDitwQ/KWzcUbM9l/i
- oWo06nNSN53Q==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.77,355,1596524400"; 
- d="scan'208,217";a="328991074"
-Received: from fmsmsx604.amr.corp.intel.com ([10.18.126.84])
- by orsmga002.jf.intel.com with ESMTP; 09 Oct 2020 11:41:46 -0700
-Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
- fmsmsx604.amr.corp.intel.com (10.18.126.84) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1713.5; Fri, 9 Oct 2020 11:41:45 -0700
-Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
- fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1713.5; Fri, 9 Oct 2020 11:41:45 -0700
-Received: from fmsmsx611.amr.corp.intel.com ([10.18.126.91]) by
- fmsmsx611.amr.corp.intel.com ([10.18.126.91]) with mapi id 15.01.1713.004;
- Fri, 9 Oct 2020 11:41:45 -0700
-From: "Srivatsa, Anusha" <anusha.srivatsa@intel.com>
-To: "linux-firmware@kernel.org" <linux-firmware@kernel.org>
-Thread-Topic: i915 Update : DG1 DMC
-Thread-Index: Adaea4W6Jtrfz8J7RqGJot9NVZc0zQ==
-Date: Fri, 9 Oct 2020 18:41:45 +0000
-Message-ID: <3997663f047e4ab68fca41e3c8a05671@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-version: 11.5.1.3
-dlp-product: dlpe-windows
-dlp-reaction: no-action
-x-originating-ip: [10.22.254.132]
+Received: from fireflyinternet.com (unknown [77.68.26.236])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1B7A56ED8D;
+ Fri,  9 Oct 2020 19:16:52 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 22672418-1500050 
+ for multiple; Fri, 09 Oct 2020 20:16:42 +0100
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Fri,  9 Oct 2020 20:16:39 +0100
+Message-Id: <20201009191640.2006274-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.28.0
 MIME-Version: 1.0
-Subject: [Intel-gfx] i915 Update : DG1 DMC
+Subject: [Intel-gfx] [PATCH i-g-t 1/2] lib: Launch spinners from inside
+ userptr
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,155 +37,321 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Kyle McMartin <kyle@mcmartin.ca>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "'ben@decadent.org.uk'" <ben@decadent.org.uk>
-Content-Type: multipart/mixed; boundary="===============0525744542=="
+Cc: igt-dev@lists.freedesktop.org, Chris Wilson <chris@chris-wilson.co.uk>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0525744542==
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_3997663f047e4ab68fca41e3c8a05671intelcom_"
+Add support for dummyload to be userptr, the variation in object type
+may be useful in some tests and to ensure complete coverage of some dark
+corners.
 
---_000_3997663f047e4ab68fca41e3c8a05671intelcom_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Reviewed-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+---
+ lib/igt_dummyload.c         | 87 ++++++++++++++++++++++++-------------
+ lib/igt_dummyload.h         | 13 ++++--
+ tests/i915/gem_spin_batch.c | 23 ++++++----
+ 3 files changed, 80 insertions(+), 43 deletions(-)
 
-Hi Kyle, Ben,
-
-Please add the i915 updates to linux-firmware from branch dg1_dmc_v2_02
-
-The following changes since commit 58d41d0facca2478d3e45f6321224361519aee96=
-:
-
-  ice: Add comms package file for Intel E800 series driver (2020-10-05 08:0=
-9:03 -0400)
-
-are available in the Git repository at: dg1_dmc_v2_02
-
-  git://anongit.freedesktop.org/drm/drm-firmware dg1_dmc_v2_02
-
-for you to fetch changes up to a140ef3eb3746aba2c897db16e02ffb5ffa9e7a2:
-
-  i915: Add DG1 DMC v2.02 (2020-10-08 12:13:33 -0700)
-
-----------------------------------------------------------------
-Anusha Srivatsa (1):
-      i915: Add DG1 DMC v2.02
-
-WHENCE                   |   2 ++
-i915/dg1_dmc_ver2_02.bin | Bin 0 -> 16624 bytes
-2 files changed, 2 insertions(+)
-create mode 100644 i915/dg1_dmc_ver2_02.bin
-
-Thanks,
-Anusha
-
---_000_3997663f047e4ab68fca41e3c8a05671intelcom_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-family:"Calibri",sans-serif;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal">Hi Kyle, Ben,<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Please add the i915 updates to linux-firmware from b=
-ranch <b>
-dg1_dmc_v2_02</b><o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">The following changes since commit 58d41d0facca2478d=
-3e45f6321224361519aee96:<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">&nbsp; ice: Add comms package file for Intel E800 se=
-ries driver (2020-10-05 08:09:03 -0400)<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">are available in the Git repository at: dg1_dmc_v2_0=
-2<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">&nbsp; git://anongit.freedesktop.org/drm/drm-firmwar=
-e dg1_dmc_v2_02<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">for you to fetch changes up to a140ef3eb3746aba2c897=
-db16e02ffb5ffa9e7a2:<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">&nbsp; i915: Add DG1 DMC v2.02 (2020-10-08 12:13:33 =
--0700)<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">----------------------------------------------------=
-------------<o:p></o:p></p>
-<p class=3D"MsoNormal">Anusha Srivatsa (1):<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; i915: Add DG1 DMC v2.=
-02<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">WHENCE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |&nbsp;&nbsp=
-; 2 &#43;&#43;<o:p></o:p></p>
-<p class=3D"MsoNormal">i915/dg1_dmc_ver2_02.bin | Bin 0 -&gt; 16624 bytes<o=
-:p></o:p></p>
-<p class=3D"MsoNormal">2 files changed, 2 insertions(&#43;)<o:p></o:p></p>
-<p class=3D"MsoNormal">create mode 100644 i915/dg1_dmc_ver2_02.bin<o:p></o:=
-p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Thanks,<o:p></o:p></p>
-<p class=3D"MsoNormal">Anusha<o:p></o:p></p>
-</div>
-</body>
-</html>
-
---_000_3997663f047e4ab68fca41e3c8a05671intelcom_--
-
---===============0525744542==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+diff --git a/lib/igt_dummyload.c b/lib/igt_dummyload.c
+index 26ea154ac..d58f73108 100644
+--- a/lib/igt_dummyload.c
++++ b/lib/igt_dummyload.c
+@@ -68,6 +68,24 @@ static const int LOOP_START_OFFSET = 64;
+ static IGT_LIST_HEAD(spin_list);
+ static pthread_mutex_t list_lock = PTHREAD_MUTEX_INITIALIZER;
+ 
++static uint32_t
++handle_create(int fd, size_t sz, unsigned long flags, uint32_t **mem)
++{
++	*mem = NULL;
++
++	if (flags & IGT_SPIN_USERPTR) {
++		uint32_t handle;
++
++		*mem = mmap(NULL, sz, PROT_WRITE, MAP_SHARED | MAP_ANON, -1, 0);
++		igt_assert(*mem != (uint32_t *)-1);
++		gem_userptr(fd, *mem, sz, 0, 0, &handle);
++
++		return handle;
++	}
++
++	return gem_create(fd, sz);
++}
++
+ static int
+ emit_recursive_batch(igt_spin_t *spin,
+ 		     int fd, const struct igt_spin_factory *opts)
+@@ -81,8 +99,8 @@ emit_recursive_batch(igt_spin_t *spin,
+ 	unsigned int flags[GEM_MAX_ENGINES];
+ 	unsigned int nengine;
+ 	int fence_fd = -1;
+-	uint32_t *cs, *batch;
+ 	uint64_t addr;
++	uint32_t *cs;
+ 	int i;
+ 
+ 	/*
+@@ -126,13 +144,16 @@ emit_recursive_batch(igt_spin_t *spin,
+ 	execbuf->flags = I915_EXEC_NO_RELOC;
+ 	obj = memset(spin->obj, 0, sizeof(spin->obj));
+ 
+-	obj[BATCH].handle = gem_create(fd, BATCH_SIZE);
+-	batch = gem_mmap__device_coherent(fd, obj[BATCH].handle,
+-					  0, BATCH_SIZE, PROT_WRITE);
+-	gem_set_domain(fd, obj[BATCH].handle,
+-		       I915_GEM_DOMAIN_GTT, I915_GEM_DOMAIN_GTT);
++	obj[BATCH].handle =
++		handle_create(fd, BATCH_SIZE, opts->flags, &spin->batch);
++	if (!spin->batch) {
++		spin->batch = gem_mmap__device_coherent(fd, obj[BATCH].handle,
++						  0, BATCH_SIZE, PROT_WRITE);
++		gem_set_domain(fd, obj[BATCH].handle,
++			       I915_GEM_DOMAIN_GTT, I915_GEM_DOMAIN_GTT);
++	}
+ 	execbuf->buffer_count++;
+-	cs = batch;
++	cs = spin->batch;
+ 
+ 	obj[BATCH].offset = addr;
+ 	addr += BATCH_SIZE;
+@@ -165,19 +186,22 @@ emit_recursive_batch(igt_spin_t *spin,
+ 			igt_require(__igt_device_set_master(fd) == 0);
+ 		}
+ 
+-		spin->poll_handle = gem_create(fd, 4096);
++		spin->poll_handle =
++			handle_create(fd, 4096, opts->flags, &spin->poll);
+ 		obj[SCRATCH].handle = spin->poll_handle;
+ 
+-		if (__gem_set_caching(fd, spin->poll_handle,
+-				      I915_CACHING_CACHED) == 0)
+-			spin->poll = gem_mmap__cpu(fd, spin->poll_handle,
+-						   0, 4096,
+-						   PROT_READ | PROT_WRITE);
+-		else
+-			spin->poll = gem_mmap__device_coherent(fd,
+-							       spin->poll_handle,
+-							       0, 4096,
+-							       PROT_READ | PROT_WRITE);
++		if (!spin->poll) {
++			if (__gem_set_caching(fd, spin->poll_handle,
++					      I915_CACHING_CACHED) == 0)
++				spin->poll = gem_mmap__cpu(fd, spin->poll_handle,
++							   0, 4096,
++							   PROT_READ | PROT_WRITE);
++			else
++				spin->poll = gem_mmap__device_coherent(fd,
++								       spin->poll_handle,
++								       0, 4096,
++								       PROT_READ | PROT_WRITE);
++		}
+ 		addr += 4096; /* guard page */
+ 		obj[SCRATCH].offset = addr;
+ 		addr += 4096;
+@@ -210,8 +234,8 @@ emit_recursive_batch(igt_spin_t *spin,
+ 
+ 	spin->handle = obj[BATCH].handle;
+ 
+-	igt_assert_lt(cs - batch, LOOP_START_OFFSET / sizeof(*cs));
+-	spin->condition = batch + LOOP_START_OFFSET / sizeof(*cs);
++	igt_assert_lt(cs - spin->batch, LOOP_START_OFFSET / sizeof(*cs));
++	spin->condition = spin->batch + LOOP_START_OFFSET / sizeof(*cs);
+ 	cs = spin->condition;
+ 
+ 	/* Allow ourselves to be preempted */
+@@ -255,15 +279,15 @@ emit_recursive_batch(igt_spin_t *spin,
+ 		 * (using 5 << 12).
+ 		 * For simplicity, we try to stick to a one-size fits all.
+ 		 */
+-		spin->condition = batch + BATCH_SIZE / sizeof(*batch) - 2;
++		spin->condition = spin->batch + BATCH_SIZE / sizeof(*spin->batch) - 2;
+ 		spin->condition[0] = 0xffffffff;
+ 		spin->condition[1] = 0xffffffff;
+ 
+ 		r->presumed_offset = obj[BATCH].offset;
+ 		r->target_handle = obj[BATCH].handle;
+-		r->offset = (cs + 2 - batch) * sizeof(*cs);
++		r->offset = (cs + 2 - spin->batch) * sizeof(*cs);
+ 		r->read_domains = I915_GEM_DOMAIN_COMMAND;
+-		r->delta = (spin->condition - batch) * sizeof(*cs);
++		r->delta = (spin->condition - spin->batch) * sizeof(*cs);
+ 
+ 		*cs++ = MI_COND_BATCH_BUFFER_END | MI_DO_COMPARE | 2;
+ 		*cs++ = MI_BATCH_BUFFER_END;
+@@ -275,7 +299,7 @@ emit_recursive_batch(igt_spin_t *spin,
+ 	r = &relocs[obj[BATCH].relocation_count++];
+ 	r->target_handle = obj[BATCH].handle;
+ 	r->presumed_offset = obj[BATCH].offset;
+-	r->offset = (cs + 1 - batch) * sizeof(*cs);
++	r->offset = (cs + 1 - spin->batch) * sizeof(*cs);
+ 	r->read_domains = I915_GEM_DOMAIN_COMMAND;
+ 	r->delta = LOOP_START_OFFSET;
+ 	if (gen >= 8) {
+@@ -294,8 +318,8 @@ emit_recursive_batch(igt_spin_t *spin,
+ 	}
+ 	obj[BATCH].relocs_ptr = to_user_pointer(relocs);
+ 
+-	execbuf->buffers_ptr = to_user_pointer(obj +
+-					       (2 - execbuf->buffer_count));
++	execbuf->buffers_ptr =
++	       	to_user_pointer(obj + (2 - execbuf->buffer_count));
+ 	execbuf->rsvd1 = opts->ctx;
+ 
+ 	if (opts->flags & IGT_SPIN_FENCE_OUT)
+@@ -329,7 +353,7 @@ emit_recursive_batch(igt_spin_t *spin,
+ 		}
+ 	}
+ 
+-	igt_assert_lt(cs - batch, BATCH_SIZE / sizeof(*cs));
++	igt_assert_lt(cs - spin->batch, BATCH_SIZE / sizeof(*cs));
+ 
+ 	/* Make it easier for callers to resubmit. */
+ 	for (i = 0; i < ARRAY_SIZE(spin->obj); i++) {
+@@ -532,13 +556,14 @@ void igt_spin_free(int fd, igt_spin_t *spin)
+ 	}
+ 
+ 	igt_spin_end(spin);
+-	gem_munmap((void *)((unsigned long)spin->condition & (~4095UL)),
+-		   BATCH_SIZE);
+ 
+-	if (spin->poll) {
++	if (spin->poll)
+ 		gem_munmap(spin->poll, 4096);
++	if (spin->batch)
++		gem_munmap(spin->batch, BATCH_SIZE);
++
++	if (spin->poll_handle)
+ 		gem_close(fd, spin->poll_handle);
+-	}
+ 
+ 	if (spin->handle)
+ 		gem_close(fd, spin->handle);
+diff --git a/lib/igt_dummyload.h b/lib/igt_dummyload.h
+index aac0c83a9..6d3e65ce2 100644
+--- a/lib/igt_dummyload.h
++++ b/lib/igt_dummyload.h
+@@ -33,12 +33,19 @@
+ #include "i915_drm.h"
+ 
+ typedef struct igt_spin {
+-	unsigned int handle;
+ 	struct igt_list_head link;
+ 
++	uint32_t handle;
++	uint32_t poll_handle;
++
++	uint32_t *batch;
++
+ 	uint32_t *condition;
+ 	uint32_t cmd_precondition;
+ 
++	uint32_t *poll;
++#define SPIN_POLL_START_IDX 0
++
+ 	struct timespec last_signal;
+ 	pthread_t timer_thread;
+ 	int timerfd;
+@@ -47,9 +54,6 @@ typedef struct igt_spin {
+ 	struct drm_i915_gem_exec_object2 obj[2];
+ #define IGT_SPIN_BATCH   1
+ 	struct drm_i915_gem_execbuffer2 execbuf;
+-	uint32_t poll_handle;
+-	uint32_t *poll;
+-#define SPIN_POLL_START_IDX 0
+ } igt_spin_t;
+ 
+ struct igt_spin_factory {
+@@ -66,6 +70,7 @@ struct igt_spin_factory {
+ #define IGT_SPIN_FAST          (1 << 3)
+ #define IGT_SPIN_NO_PREEMPTION (1 << 4)
+ #define IGT_SPIN_INVALID_CS    (1 << 5)
++#define IGT_SPIN_USERPTR       (1 << 6)
+ 
+ igt_spin_t *
+ __igt_spin_factory(int fd, const struct igt_spin_factory *opts);
+diff --git a/tests/i915/gem_spin_batch.c b/tests/i915/gem_spin_batch.c
+index e7dd58ec2..19bc4638d 100644
+--- a/tests/i915/gem_spin_batch.c
++++ b/tests/i915/gem_spin_batch.c
+@@ -33,7 +33,9 @@
+ 		     "'%s' != '%s' (%lld not within %d%% tolerance of %lld)\n",\
+ 		     #x, #ref, (long long)x, tolerance, (long long)ref)
+ 
+-static void spin(int fd, const struct intel_execution_engine2 *e2,
++static void spin(int fd,
++		 const struct intel_execution_engine2 *e2,
++		 unsigned int flags,
+ 		 unsigned int timeout_sec)
+ {
+ 	const uint64_t timeout_100ms = 100000000LL;
+@@ -43,9 +45,10 @@ static void spin(int fd, const struct intel_execution_engine2 *e2,
+ 	struct timespec itv = { };
+ 	uint64_t elapsed;
+ 
+-	spin = __igt_spin_new(fd, .engine = e2->flags);
++	spin = __igt_spin_new(fd, .engine = e2->flags, .flags = flags);
+ 	while ((elapsed = igt_nsec_elapsed(&tv)) >> 30 < timeout_sec) {
+-		igt_spin_t *next = __igt_spin_new(fd, .engine = e2->flags);
++		igt_spin_t *next =
++			__igt_spin_new(fd, .engine = e2->flags, .flags = flags);
+ 
+ 		igt_spin_set_timeout(spin,
+ 				     timeout_100ms - igt_nsec_elapsed(&itv));
+@@ -120,14 +123,15 @@ static void spin_exit_handler(int sig)
+ 	igt_terminate_spins();
+ }
+ 
+-static void spin_on_all_engines(int fd, unsigned int timeout_sec)
++static void
++spin_on_all_engines(int fd, unsigned long flags, unsigned int timeout_sec)
+ {
+ 	const struct intel_execution_engine2 *e2;
+ 
+ 	__for_each_physical_engine(fd, e2) {
+ 		igt_fork(child, 1) {
+ 			igt_install_exit_handler(spin_exit_handler);
+-			spin(fd, e2, timeout_sec);
++			spin(fd, e2, flags, timeout_sec);
+ 		}
+ 	}
+ 
+@@ -186,7 +190,7 @@ igt_main
+ 		e2 = &e2__;
+ 
+ 		igt_subtest_f("legacy-%s", e->name)
+-			spin(fd, e2, 3);
++			spin(fd, e2, 0, 3);
+ 
+ 		igt_subtest_f("legacy-resubmit-%s", e->name)
+ 			spin_resubmit(fd, e2, 0);
+@@ -202,7 +206,7 @@ igt_main
+ 
+ 	__for_each_physical_engine(fd, e2) {
+ 		igt_subtest_f("%s", e2->name)
+-			spin(fd, e2, 3);
++			spin(fd, e2, 0, 3);
+ 
+ 		igt_subtest_f("resubmit-%s", e2->name)
+ 			spin_resubmit(fd, e2, 0);
+@@ -220,7 +224,10 @@ igt_main
+ 	}
+ 
+ 	igt_subtest("spin-each")
+-		spin_on_all_engines(fd, 3);
++		spin_on_all_engines(fd, 0, 3);
++
++	igt_subtest("user-each")
++		spin_on_all_engines(fd, IGT_SPIN_USERPTR, 3);
+ 
+ 	igt_fixture {
+ 		igt_stop_hang_detector();
+-- 
+2.28.0
 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============0525744542==--
