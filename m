@@ -1,65 +1,42 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 428F3289A7D
-	for <lists+intel-gfx@lfdr.de>; Fri,  9 Oct 2020 23:15:20 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 08509289BE8
+	for <lists+intel-gfx@lfdr.de>; Sat, 10 Oct 2020 00:47:15 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4FBE26EE0D;
-	Fri,  9 Oct 2020 21:15:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 48E4C6EE33;
+	Fri,  9 Oct 2020 22:47:10 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 98E8C6EE0D
- for <intel-gfx@lists.freedesktop.org>; Fri,  9 Oct 2020 21:15:16 +0000 (UTC)
-IronPort-SDR: XijbpalMuVIkDinQHvaJjovYIoyUk71Cue4ZXzSvw9IzW0wZZNPgKwhS4mSN1mv6A+meDOodam
- AM9Blg75dWHg==
-X-IronPort-AV: E=McAfee;i="6000,8403,9769"; a="144857783"
-X-IronPort-AV: E=Sophos;i="5.77,356,1596524400"; d="scan'208";a="144857783"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Oct 2020 14:15:15 -0700
-IronPort-SDR: kuWylZ+nfeXacPcUa2C2yDpaNUie8FEAgN2agOmDvEJKP2IElPP6pWwJZpYCaoe8HO7WzgS0oW
- b+Exq4mfEeuQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.77,356,1596524400"; d="scan'208";a="529077305"
-Received: from orsmsx604.amr.corp.intel.com ([10.22.229.17])
- by orsmga005.jf.intel.com with ESMTP; 09 Oct 2020 14:15:15 -0700
-Received: from orsmsx612.amr.corp.intel.com (10.22.229.25) by
- ORSMSX604.amr.corp.intel.com (10.22.229.17) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1713.5; Fri, 9 Oct 2020 14:15:15 -0700
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX612.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1713.5; Fri, 9 Oct 2020 14:15:14 -0700
-Received: from orsmsx610.amr.corp.intel.com ([10.22.229.23]) by
- ORSMSX610.amr.corp.intel.com ([10.22.229.23]) with mapi id 15.01.1713.004;
- Fri, 9 Oct 2020 14:15:14 -0700
-From: "Souza, Jose" <jose.souza@intel.com>
-To: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Thread-Topic: =?utf-8?B?4pyTIEZpLkNJLklHVDogc3VjY2VzcyBmb3Igc2VyaWVzIHN0YXJ0aW5nIHdp?=
- =?utf-8?B?dGggW3YzLDEvM10gZHJtL2k5MTUvdmJ0OiBGaXggYmFja2xpZ2h0IHBhcnNp?=
- =?utf-8?Q?ng_for_VBT_234+?=
-Thread-Index: AQHWndUMQf/Wj21J70qdijNOzAIwwamQPTaA
-Date: Fri, 9 Oct 2020 21:15:14 +0000
-Message-ID: <adfd8b4ed6e41b7bf0d09ce31aab3c198bf043a7.camel@intel.com>
-References: <20201008211932.24989-1-jose.souza@intel.com>
- <160220413737.1828.7929347175059857829@emeril.freedesktop.org>
-In-Reply-To: <160220413737.1828.7929347175059857829@emeril.freedesktop.org>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.132]
-Content-ID: <4865568A7212FE4183028D2097FC138B@intel.com>
+Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 89B886EE22;
+ Fri,  9 Oct 2020 21:34:37 +0000 (UTC)
+Received: from sol.localdomain (172-10-235-113.lightspeed.sntcca.sbcglobal.net
+ [172.10.235.113])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by mail.kernel.org (Postfix) with ESMTPSA id 44F7C21D6C;
+ Fri,  9 Oct 2020 21:34:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=default; t=1602279277;
+ bh=af4HYKUXjfzQEnpRkoqrLOtb/VuZgD2GaaA85DESAB8=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=mAKgXcy5CifgRYN2i2C2c94+Jg5oLVaoZk49jTIFxseeqdMtEOOqP5cL66hXhKNTI
+ eNSQDBkgqgAc1Wd7XIXje+joGiBVI4yatMIDb1+kpBlSLeGvwRiFFGcw+A+0IeryZM
+ wi38bfOOqpr1rBlahq6SJoGGKG4xvvKCLXOhXA9s=
+Date: Fri, 9 Oct 2020 14:34:34 -0700
+From: Eric Biggers <ebiggers@kernel.org>
+To: ira.weiny@intel.com
+Message-ID: <20201009213434.GA839@sol.localdomain>
+References: <20201009195033.3208459-1-ira.weiny@intel.com>
+ <20201009195033.3208459-23-ira.weiny@intel.com>
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] 
- =?utf-8?b?4pyTIEZpLkNJLklHVDogc3VjY2VzcyBmb3Igc2Vy?=
- =?utf-8?q?ies_starting_with_=5Bv3=2C1/3=5D_drm/i915/vbt=3A_Fix_backlight_?=
- =?utf-8?q?parsing_for_VBT_234+?=
+Content-Disposition: inline
+In-Reply-To: <20201009195033.3208459-23-ira.weiny@intel.com>
+X-Mailman-Approved-At: Fri, 09 Oct 2020 22:47:09 +0000
+Subject: Re: [Intel-gfx] [PATCH RFC PKS/PMEM 22/58] fs/f2fs: Utilize new
+ kmap_thread()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,90 +49,75 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: linux-aio@kvack.org, linux-efi@vger.kernel.org, kvm@vger.kernel.org,
+ linux-doc@vger.kernel.org, Peter Zijlstra <peterz@infradead.org>,
+ linux-mmc@vger.kernel.org, Dave Hansen <dave.hansen@linux.intel.com>,
+ dri-devel@lists.freedesktop.org, linux-mm@kvack.org,
+ target-devel@vger.kernel.org, linux-mtd@lists.infradead.org,
+ linux-kselftest@vger.kernel.org, Thomas Gleixner <tglx@linutronix.de>,
+ drbd-dev@lists.linbit.com, devel@driverdev.osuosl.org,
+ linux-cifs@vger.kernel.org, linux-nilfs@vger.kernel.org,
+ linux-scsi@vger.kernel.org, linux-nvdimm@lists.01.org,
+ linux-rdma@vger.kernel.org, x86@kernel.org, amd-gfx@lists.freedesktop.org,
+ linux-afs@lists.infradead.org, cluster-devel@redhat.com,
+ Ingo Molnar <mingo@redhat.com>, intel-wired-lan@lists.osuosl.org,
+ kexec@lists.infradead.org, xen-devel@lists.xenproject.org,
+ linux-ext4@vger.kernel.org, bpf@vger.kernel.org,
+ Dan Williams <dan.j.williams@intel.com>, Fenghua Yu <fenghua.yu@intel.com>,
+ intel-gfx@lists.freedesktop.org, ecryptfs@vger.kernel.org,
+ linux-um@lists.infradead.org, reiserfs-devel@vger.kernel.org,
+ linux-block@vger.kernel.org, linux-bcache@vger.kernel.org,
+ Borislav Petkov <bp@alien8.de>, Andy Lutomirski <luto@kernel.org>,
+ Jaegeuk Kim <jaegeuk@kernel.org>, ceph-devel@vger.kernel.org,
+ io-uring@vger.kernel.org, linux-cachefs@redhat.com, linux-nfs@vger.kernel.org,
+ linux-ntfs-dev@lists.sourceforge.net, netdev@vger.kernel.org,
+ linuxppc-dev@lists.ozlabs.org, samba-technical@lists.samba.org,
+ linux-kernel@vger.kernel.org, linux-f2fs-devel@lists.sourceforge.net,
+ linux-fsdevel@vger.kernel.org, Andrew Morton <akpm@linux-foundation.org>,
+ linux-erofs@lists.ozlabs.org, linux-btrfs@vger.kernel.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gRnJpLCAyMDIwLTEwLTA5IGF0IDAwOjQyICswMDAwLCBQYXRjaHdvcmsgd3JvdGU6DQo+IFBh
-dGNoIERldGFpbHMNCj4gU2VyaWVzOiBzZXJpZXMgc3RhcnRpbmcgd2l0aCBbdjMsMS8zXSBkcm0v
-aTkxNS92YnQ6IEZpeCBiYWNrbGlnaHQgcGFyc2luZyBmb3IgVkJUIDIzNCsgVVJMOiBodHRwczov
-L3BhdGNod29yay5mcmVlZGVza3RvcC5vcmcvc2VyaWVzLzgyNDgyLyBTdGF0ZToNCj4gc3VjY2Vz
-cyBEZXRhaWxzOiBodHRwczovL2ludGVsLWdmeC1jaS4wMS5vcmcvdHJlZS9kcm0tdGlwL1BhdGNo
-d29ya18xODY2MS9pbmRleC5odG1sIA0KPiBDSSBCdWcgTG9nIC0gY2hhbmdlcyBmcm9tIENJX0RS
-TV85MTEzX2Z1bGwgLT4gUGF0Y2h3b3JrXzE4NjYxX2Z1bGxTdW1tYXJ5U1VDQ0VTUw0KPiBObyBy
-ZWdyZXNzaW9ucyBmb3VuZC4NCg0KUHVzaGVkIHRvIGRpbnEsIHRoYW5rcyBmb3IgdGhlIHJldmll
-dy4NCg0KPiBLbm93biBpc3N1ZXNIZXJlIGFyZSB0aGUgY2hhbmdlcyBmb3VuZCBpbiBQYXRjaHdv
-cmtfMTg2NjFfZnVsbCB0aGF0IGNvbWUgZnJvbSBrbm93biBpc3N1ZXM6DQo+IElHVCBjaGFuZ2Vz
-SXNzdWVzIGhpdCAqIGlndEBnZW45X2V4ZWNfcGFyc2VAYWxsb3dlZC1zaW5nbGU6c2hhcmQtc2ts
-OiBQQVNTIC0+IERNRVNHLVdBUk4gKGk5MTUjMTQzNiAvIGk5MTUjNzE2KQ0KPiDCoCogaWd0QGk5
-MTVfbW9kdWxlX2xvYWRAcmVsb2FkOnNoYXJkLWhzdzogUEFTUyAtPiBETUVTRy1XQVJOIChpOTE1
-IzE5ODIpDQo+IMKgKiBpZ3RAaTkxNV9wbV9kY0BkYzYtcHNyOnNoYXJkLXNrbDogUEFTUyAtPiBG
-QUlMIChpOTE1IzQ1NCkNCj4gwqAqIGlndEBpOTE1X3N1c3BlbmRAZmVuY2UtcmVzdG9yZS11bnRp
-bGVkOnNoYXJkLXNrbDogUEFTUyAtPiBJTkNPTVBMRVRFIChpOTE1IzE5OCkNCj4gwqAqIGlndEBr
-bXNfY3Vyc29yX2xlZ2FjeUAyeC1sb25nLWZsaXAtdnMtY3Vyc29yLWF0b21pYzpzaGFyZC1nbGs6
-IFBBU1MgLT4gRkFJTCAoaTkxNSM3MikNCj4gwqAqIGlndEBrbXNfZmxpcEBmbGlwLXZzLWJsb2Nr
-aW5nLXdmLXZibGFua0BhLWRwMTpzaGFyZC1rYmw6IFBBU1MgLT4gRE1FU0ctV0FSTiAoaTkxNSMx
-OTgyKSArMSBzaW1pbGFyIGlzc3VlDQo+IMKgKiBpZ3RAa21zX2ZsaXBAZmxpcC12cy1ibG9ja2lu
-Zy13Zi12YmxhbmtAYS1lZHAxOnNoYXJkLXNrbDogUEFTUyAtPiBETUVTRy1XQVJOIChpOTE1IzE5
-ODIpICs1IHNpbWlsYXIgaXNzdWVzDQo+IMKgKiBpZ3RAa21zX2ZsaXBAZmxpcC12cy1leHBpcmVk
-LXZibGFuay1pbnRlcnJ1cHRpYmxlQGMtaGRtaS1hMTpzaGFyZC1nbGs6IFBBU1MgLT4gRkFJTCAo
-aTkxNSM3OSkNCj4gwqAqIGlndEBrbXNfZmxpcEBmbGlwLXZzLWV4cGlyZWQtdmJsYW5rQGEtZWRw
-MTpzaGFyZC1za2w6IFBBU1MgLT4gRkFJTCAoaTkxNSM3OSkgKzEgc2ltaWxhciBpc3N1ZQ0KPiDC
-oCogaWd0QGttc19mbGlwQGZsaXAtdnMtc3VzcGVuZEBhLWRwMTpzaGFyZC1rYmw6IFBBU1MgLT4g
-SU5DT01QTEVURSAoaTkxNSMxNTUpDQo+IMKgKiBpZ3RAa21zX2Zyb250YnVmZmVyX3RyYWNraW5n
-QGZiYy1zdHJpZGVjaGFuZ2U6c2hhcmQtdGdsYjogUEFTUyAtPiBETUVTRy1XQVJOIChpOTE1IzE5
-ODIpICsyIHNpbWlsYXIgaXNzdWVzc2hhcmQtZ2xrOiBQQVNTIC0+IERNRVNHLVdBUk4NCj4gKGk5
-MTUjMTk4MikgKzEgc2ltaWxhciBpc3N1ZQ0KPiDCoCogaWd0QGttc19wbGFuZV9hbHBoYV9ibGVu
-ZEBwaXBlLWMtY292ZXJhZ2UtN2VmYzpzaGFyZC1za2w6IFBBU1MgLT4gRkFJTCAoZmRvIzEwODE0
-NSAvIGk5MTUjMjY1KQ0KPiDCoCogaWd0QGttc19wc3JAcHNyMl9zcHJpdGVfbW1hcF9jcHU6c2hh
-cmQtaWNsYjogUEFTUyAtPiBTS0lQIChmZG8jMTA5NDQxKSArMSBzaW1pbGFyIGlzc3VlDQo+IMKg
-KiBpZ3RAa21zX3NldG1vZGVAYmFzaWM6c2hhcmQtZ2xrOiBQQVNTIC0+IEZBSUwgKGk5MTUjMzEp
-DQo+IMKgKiBpZ3RAa21zX3ZibGFua0BwaXBlLWEtdHMtY29udGludWF0aW9uLXN1c3BlbmQ6c2hh
-cmQta2JsOiBQQVNTIC0+IERNRVNHLVdBUk4gKGk5MTUjMTgwKSArNSBzaW1pbGFyIGlzc3Vlcw0K
-PiBQb3NzaWJsZSBmaXhlcyAqIHtpZ3RAZ2VtX2V4ZWNfY2FwdHVyZUBwaUByY3MwfTpzaGFyZC1z
-a2w6IElOQ09NUExFVEUgLT4gUEFTU3NoYXJkLWdsazogSU5DT01QTEVURSAtPiBQQVNTDQo+IMKg
-KiBpZ3RAZ2VtX21tYXBfZ3R0QGJhc2ljLXNtYWxsLWJvOnNoYXJkLWhzdzogSU5DT01QTEVURSAt
-PiBQQVNTDQo+IMKgKiBpZ3RAaTkxNV9wbV9ycG1Ac3lzdGVtLXN1c3BlbmQ6c2hhcmQtc2tsOiBJ
-TkNPTVBMRVRFIChpOTE1IzE1MSkgLT4gUEFTUw0KPiDCoCogaWd0QGk5MTVfc2VsZnRlc3RAbGl2
-ZUBndF9oZWFydGJlYXQ6c2hhcmQtc2tsOiBETUVTRy1GQUlMIChpOTE1IzU0MSkgLT4gUEFTUw0K
-PiDCoCoge2lndEBrbXNfYXN5bmNfZmxpcHNAYWx0ZXJuYXRlLXN5bmMtYXN5bmMtZmxpcH06c2hh
-cmQta2JsOiBGQUlMIChpOTE1IzI1MjEpIC0+IFBBU1MNCj4gwqAqIHtpZ3RAa21zX2FzeW5jX2Zs
-aXBzQGFzeW5jLWZsaXAtd2l0aC1wYWdlLWZsaXAtZXZlbnRzfTpzaGFyZC1nbGs6IEZBSUwgKGk5
-MTUjMjUyMSkgLT4gUEFTUw0KPiDCoCogaWd0QGttc19jdXJzb3JfbGVnYWN5QGN1cnNvci12cy1m
-bGlwLXZhcnlpbmctc2l6ZTpzaGFyZC1oc3c6IEZBSUwgKGk5MTUjMjM3MCkgLT4gUEFTUw0KPiDC
-oCogaWd0QGttc19mbGlwQDJ4LWRwbXMtdnMtdmJsYW5rLXJhY2VAYWItdmdhMS1oZG1pLWExOnNo
-YXJkLWhzdzogRE1FU0ctV0FSTiAoaTkxNSMxOTgyKSAtPiBQQVNTDQo+IMKgKiBpZ3RAa21zX2Zs
-aXBfdGlsaW5nQGZsaXAtY2hhbmdlcy10aWxpbmc6c2hhcmQtc2tsOiBGQUlMIChpOTE1IzY5OSkg
-LT4gUEFTUw0KPiDCoCogaWd0QGttc19mcm9udGJ1ZmZlcl90cmFja2luZ0BmYmMtZmFyZnJvbWZl
-bmNlOnNoYXJkLWdsazogRkFJTCAoaTkxNSM0OSkgLT4gUEFTUw0KPiDCoCogaWd0QGttc19mcm9u
-dGJ1ZmZlcl90cmFja2luZ0BmYmNwc3ItMXAtb2Zmc2NyZW4tcHJpLXNocmZiLWRyYXctcHdyaXRl
-OnNoYXJkLXRnbGI6IERNRVNHLVdBUk4gKGk5MTUjMTk4MikgLT4gUEFTUw0KPiDCoCogaWd0QGtt
-c19mcm9udGJ1ZmZlcl90cmFja2luZ0Bwc3ItMXAtcHJpbXNjcm4tY3VyLWluZGZiLWRyYXctcmVu
-ZGVyOnNoYXJkLXNrbDogRkFJTCAoaTkxNSM0OSkgLT4gUEFTUw0KPiDCoCogaWd0QGttc19wbGFu
-ZUBwbGFuZS1wb3NpdGlvbi1jb3ZlcmVkLXBpcGUtYi1wbGFuZXM6c2hhcmQtc2tsOiBETUVTRy1X
-QVJOIChpOTE1IzE5ODIpIC0+IFBBU1MgKzMgc2ltaWxhciBpc3N1ZXMNCj4gwqAqIGlndEBrbXNf
-cGxhbmVfYWxwaGFfYmxlbmRAcGlwZS1hLWNvdmVyYWdlLTdlZmM6c2hhcmQtc2tsOiBGQUlMIChm
-ZG8jMTA4MTQ1IC8gaTkxNSMyNjUpIC0+IFBBU1MNCj4gwqAqIGlndEBwcmltZV92Z2VtQHN5bmNA
-cmNzMDpzaGFyZC1pY2xiOiBJTkNPTVBMRVRFIChpOTE1IzQwOSkgLT4gUEFTUw0KPiBXYXJuaW5n
-cyAqIGlndEBpOTE1X3BtX2RjQGRjNS1wc3I6c2hhcmQtdGdsYjogRE1FU0ctV0FSTiAoaTkxNSMy
-NDExKSAtPiBGQUlMIChpOTE1IzE4OTkpDQo+IMKgKiBpZ3RAa21zX2N1cnNvcl9sZWdhY3lAZmxp
-cC12cy1jdXJzb3ItYXRvbWljOnNoYXJkLXNrbDogRE1FU0ctV0FSTiAoaTkxNSMxOTgyKSAtPiBE
-TUVTRy1GQUlMIChpOTE1IzE5ODIpDQo+IMKgKiBpZ3RAcnVubmVyQGFib3J0ZWQ6c2hhcmQtc2ts
-OiBGQUlMIChpOTE1IzI0MzkpIC0+IEZBSUwgKGk5MTUjMTQzNikNCj4ge25hbWV9OiBUaGlzIGVs
-ZW1lbnQgaXMgc3VwcHJlc3NlZC4gVGhpcyBtZWFucyBpdCBpcyBpZ25vcmVkIHdoZW4gY29tcHV0
-aW5nDQo+IMKgdGhlIHN0YXR1cyBvZiB0aGUgZGlmZmVyZW5jZSAoU1VDQ0VTUywgV0FSTklORywg
-b3IgRkFJTFVSRSkuDQo+IFBhcnRpY2lwYXRpbmcgaG9zdHMgKDExIC0+IDExKU5vIGNoYW5nZXMg
-aW4gcGFydGljaXBhdGluZyBob3N0cw0KPiBCdWlsZCBjaGFuZ2VzICogTGludXg6IENJX0RSTV85
-MTEzIC0+IFBhdGNod29ya18xODY2MQ0KPiBDSS0yMDE5MDUyOTogMjAxOTA1MjkNCj4gwqBDSV9E
-Uk1fOTExMzogNDEyZmYxNWYyYjlhOTdiZDBhYjMyZjU2MmVjYjdlZmM4NDgzNzg4MSBAIGdpdDov
-L2Fub25naXQuZnJlZWRlc2t0b3Aub3JnL2dmeC1jaS9saW51eA0KPiDCoElHVF81ODA1OiA5Y2U1
-MGZmZWQ4OWE0NmZhMWJjOThlZTJjZmUyMjcxYzQ5ODAxMDc5IEAgZ2l0Oi8vYW5vbmdpdC5mcmVl
-ZGVza3RvcC5vcmcveG9yZy9hcHAvaW50ZWwtZ3B1LXRvb2xzDQo+IMKgUGF0Y2h3b3JrXzE4NjYx
-OiBlY2QzMjBhN2ZjYTg2MDcxNTRjODM3ZTk0ZmYzNjAyNGRlNTZjNjBmIEAgZ2l0Oi8vYW5vbmdp
-dC5mcmVlZGVza3RvcC5vcmcvZ2Z4LWNpL2xpbnV4DQo+IMKgcGlnbGl0XzQ1MDk6IGZkYzVhNGNh
-MTExMjRhYjg0MTNjNzk4ODg5NmVlYzRjOTczMzY2OTQgQCBnaXQ6Ly9hbm9uZ2l0LmZyZWVkZXNr
-dG9wLm9yZy9waWdsaXQNCg0KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0
-b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50
-ZWwtZ2Z4Cg==
+On Fri, Oct 09, 2020 at 12:49:57PM -0700, ira.weiny@intel.com wrote:
+> From: Ira Weiny <ira.weiny@intel.com>
+> 
+> The kmap() calls in this FS are localized to a single thread.  To avoid
+> the over head of global PKRS updates use the new kmap_thread() call.
+> 
+> Cc: Jaegeuk Kim <jaegeuk@kernel.org>
+> Cc: Chao Yu <chao@kernel.org>
+> Signed-off-by: Ira Weiny <ira.weiny@intel.com>
+> ---
+>  fs/f2fs/f2fs.h | 8 ++++----
+>  1 file changed, 4 insertions(+), 4 deletions(-)
+> 
+> diff --git a/fs/f2fs/f2fs.h b/fs/f2fs/f2fs.h
+> index d9e52a7f3702..ff72a45a577e 100644
+> --- a/fs/f2fs/f2fs.h
+> +++ b/fs/f2fs/f2fs.h
+> @@ -2410,12 +2410,12 @@ static inline struct page *f2fs_pagecache_get_page(
+>  
+>  static inline void f2fs_copy_page(struct page *src, struct page *dst)
+>  {
+> -	char *src_kaddr = kmap(src);
+> -	char *dst_kaddr = kmap(dst);
+> +	char *src_kaddr = kmap_thread(src);
+> +	char *dst_kaddr = kmap_thread(dst);
+>  
+>  	memcpy(dst_kaddr, src_kaddr, PAGE_SIZE);
+> -	kunmap(dst);
+> -	kunmap(src);
+> +	kunmap_thread(dst);
+> +	kunmap_thread(src);
+>  }
+
+Wouldn't it make more sense to switch cases like this to kmap_atomic()?
+The pages are only mapped to do a memcpy(), then they're immediately unmapped.
+
+- Eric
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
