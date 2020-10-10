@@ -2,79 +2,64 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 656F428BD19
-	for <lists+intel-gfx@lfdr.de>; Mon, 12 Oct 2020 18:01:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1C1E728BD1B
+	for <lists+intel-gfx@lfdr.de>; Mon, 12 Oct 2020 18:01:12 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8BC596E523;
-	Mon, 12 Oct 2020 16:01:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 00B8E6E529;
+	Mon, 12 Oct 2020 16:01:04 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mx0b-001b2d01.pphosted.com (mx0b-001b2d01.pphosted.com
- [148.163.158.5])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 17AC46EEB8
- for <intel-gfx@lists.freedesktop.org>; Sat, 10 Oct 2020 11:36:57 +0000 (UTC)
-Received: from pps.filterd (m0098417.ppops.net [127.0.0.1])
- by mx0a-001b2d01.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id
- 09ABWOqF096823
- for <intel-gfx@lists.freedesktop.org>; Sat, 10 Oct 2020 07:36:56 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com;
- h=in-reply-to : subject :
- from : to : cc : date : mime-version : references :
- content-transfer-encoding : content-type : message-id; s=pp1;
- bh=NiDLo4pOxkTOHNh379y2lMt59tGJeK9BGhibE+AHe30=;
- b=fFl+sWZ60CJNW5vj7Uw0QdIFBZaJLDIK+TmFY7+uXdPQEExbAUVKU05YhKg5dS5u6J9M
- gRTcbWK1ehAiHgiW0QiEErv4vh+5MOV1iJMmz3AgZqVrCWi+Nh1nNGlGLl5qNxYu9TT3
- rsErWvzJTnT/TvD/yGmIkQ5cIJnW2dxyfP5KEerqQF50430xLTdRCdzrzGOBj/IVBjpb
- ZIGntFQpbgC01amsKXwfy1cB65UwCiqnbdgLT6Z6Qd+CSe7yV4n3BXy+qSd8xdiYdQTK
- an7SA2yY6csjDSnstIEkYdPhg6mYvKJGwGGY1NoLkcuzdqKyvDxx/5UGYpv3tzPn6Oq9 ZA== 
-Received: from smtp.notes.na.collabserv.com (smtp.notes.na.collabserv.com
- [192.155.248.91])
- by mx0a-001b2d01.pphosted.com with ESMTP id 343c5882vu-1
+X-Greylist: delayed 831 seconds by postgrey-1.36 at gabe;
+ Sat, 10 Oct 2020 20:25:04 UTC
+Received: from mx0a-002e3701.pphosted.com (mx0a-002e3701.pphosted.com
+ [148.163.147.86])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8E4C66E055
+ for <intel-gfx@lists.freedesktop.org>; Sat, 10 Oct 2020 20:25:04 +0000 (UTC)
+Received: from pps.filterd (m0134420.ppops.net [127.0.0.1])
+ by mx0b-002e3701.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id
+ 09AK8WI3012344
+ for <intel-gfx@lists.freedesktop.org>; Sat, 10 Oct 2020 20:11:12 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hpe.com;
+ h=date : from : to : cc :
+ subject : message-id : reply-to : content-type : mime-version; s=pps0720;
+ bh=Md6qIhIHovte9YdOGvPU2rRM4qhhZ5eplt15/Ax2MCs=;
+ b=KJeoLXYthQ+lawMsWMbieNPU7SVE6xQEaQbp5blP4zWD/SkwqEbwvK4lXvjnhKnZZk5z
+ 42PrhWgiY+f/SKJCSwNyJeMTvpOi2tLy0ej+tHXagG6OCFMrN7+mPAh3FVND70CtiE0e
+ hFXwTtivTgHyaMTFULNw8uBA0N8bQmp79Hssiprk+NEF/j0n7XuGyyzlqlBfx3JMgj8G
+ hF2poLICsarUl6oTFunRThiTzMBe5YMlCUenXfavZKuCztxKMmQPgVfSqDcrol2NUBa7
+ 0InfGnjUDqCyE1LK/fKrCmYgOnJq/ewWEtncYOjW5cNvQrxTDJFmEBaB2qA0JGCplBTj /g== 
+Received: from g9t5009.houston.hpe.com (g9t5009.houston.hpe.com [15.241.48.73])
+ by mx0b-002e3701.pphosted.com with ESMTP id 3432b242y5-1
  (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT)
- for <intel-gfx@lists.freedesktop.org>; Sat, 10 Oct 2020 07:36:56 -0400
-Received: from localhost
- by smtp.notes.na.collabserv.com with smtp.notes.na.collabserv.com ESMTP
- for <intel-gfx@lists.freedesktop.org> from <BMT@zurich.ibm.com>;
- Sat, 10 Oct 2020 11:36:55 -0000
-Received: from us1a3-smtp05.a3.dal06.isc4sb.com (10.146.71.159)
- by smtp.notes.na.collabserv.com (10.106.227.143) with
- smtp.notes.na.collabserv.com ESMTP; Sat, 10 Oct 2020 11:36:50 -0000
-Received: from us1a3-mail162.a3.dal06.isc4sb.com ([10.146.71.4])
- by us1a3-smtp05.a3.dal06.isc4sb.com
- with ESMTP id 2020101011364991-175970 ;
- Sat, 10 Oct 2020 11:36:49 +0000 
-In-Reply-To: <20201009195033.3208459-11-ira.weiny@intel.com>
-From: "Bernard Metzler" <BMT@zurich.ibm.com>
-To: ira.weiny@intel.com
-Date: Sat, 10 Oct 2020 11:36:49 +0000
+ for <intel-gfx@lists.freedesktop.org>; Sat, 10 Oct 2020 20:11:12 +0000
+Received: from g4t3433.houston.hpecorp.net (g4t3433.houston.hpecorp.net
+ [16.208.49.245])
+ by g9t5009.houston.hpe.com (Postfix) with ESMTP id 9DBDD5B
+ for <intel-gfx@lists.freedesktop.org>; Sat, 10 Oct 2020 20:11:10 +0000 (UTC)
+Received: from rfwz62 (rfwz62.americas.hpqcorp.net [10.33.237.8])
+ by g4t3433.houston.hpecorp.net (Postfix) with ESMTP id 9332045;
+ Sat, 10 Oct 2020 20:11:10 +0000 (UTC)
+Date: Sat, 10 Oct 2020 14:11:10 -0600
+From: rwright@hpe.com
+To: intel-gfx@lists.freedesktop.org
+Message-ID: <20201010201110.GA12600@rfwz62>
+Content-Disposition: inline
+User-Agent: Mutt/1.9.4 (2018-02-28)
+X-Proofpoint-UnRewURL: 0 URL was un-rewritten
 MIME-Version: 1.0
-Sensitivity: 
-Importance: Normal
-X-Priority: 3 (Normal)
-References: <20201009195033.3208459-11-ira.weiny@intel.com>,
- <20201009195033.3208459-1-ira.weiny@intel.com>
-X-Mailer: IBM iNotes ($HaikuForm 1054.1) | IBM Domino Build
- SCN1812108_20180501T0841_FP65 April 15, 2020 at 09:48
-X-LLNOutbound: False
-X-Disclaimed: 59823
-X-TNEFEvaluated: 1
-x-cbid: 20101011-2475-0000-0000-0000044A0339
-X-IBM-SpamModules-Scores: BY=0.233045; FL=0; FP=0; FZ=0; HX=0; KW=0; PH=0;
- SC=0.421684; ST=0; TS=0; UL=0; ISC=; MB=0.000000
-X-IBM-SpamModules-Versions: BY=3.00013982; HX=3.00000242; KW=3.00000007;
- PH=3.00000004; SC=3.00000295; SDB=6.01447073; UDB=6.00777937; IPR=6.01229775; 
- MB=3.00034472; MTD=3.00000008; XFM=3.00000015; UTC=2020-10-10 11:36:54
-X-IBM-AV-DETECTION: SAVI=unsuspicious REMOTE=unsuspicious XFE=unused
-X-IBM-AV-VERSION: SAVI=2020-10-10 06:57:40 - 6.00011937
-x-cbparentid: 20101011-2476-0000-0000-0000DAA5035B
-Message-Id: <OF849D92D8.F4735ECA-ON002585FD.003F5F27-002585FD.003FCBD6@notes.na.collabserv.com>
+X-HPE-SCL: -1
 X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.235, 18.0.687
- definitions=2020-10-10_04:2020-10-09,
+ definitions=2020-10-10_07:2020-10-09,
  2020-10-10 signatures=0
-X-Proofpoint-Spam-Reason: orgsafe
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ adultscore=0 phishscore=0
+ mlxscore=0 impostorscore=0 lowpriorityscore=0 suspectscore=0
+ malwarescore=0 bulkscore=0 clxscore=1015 mlxlogscore=999 spamscore=0
+ priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2009150000 definitions=main-2010100189
 X-Mailman-Approved-At: Mon, 12 Oct 2020 16:01:02 +0000
-Subject: Re: [Intel-gfx] [PATCH RFC PKS/PMEM 10/58] drivers/rdma: Utilize
- new kmap_thread()
+Subject: [Intel-gfx] [RFC] drm/i915/gt: reduce context clear batch size to
+ avoid gpu hang (rev2)
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -87,248 +72,86 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-aio@kvack.org, linux-efi@vger.kernel.org, kvm@vger.kernel.org,
- linux-doc@vger.kernel.org, Peter Zijlstra <peterz@infradead.org>,
- linux-mmc@vger.kernel.org, Dave Hansen <dave.hansen@linux.intel.com>,
- dri-devel@lists.freedesktop.org, linux-mm@kvack.org,
- target-devel@vger.kernel.org, linux-mtd@lists.infradead.org,
- linux-kselftest@vger.kernel.org, samba-technical@lists.samba.org,
- Thomas Gleixner <tglx@linutronix.de>, devel@driverdev.osuosl.org,
- linux-cifs@vger.kernel.org, linux-nilfs@vger.kernel.org,
- linux-scsi@vger.kernel.org, linux-nvdimm@lists.01.org,
- linux-rdma@vger.kernel.org, x86@kernel.org, ceph-devel@vger.kernel.org,
- io-uring@vger.kernel.org, cluster-devel@redhat.com, Jason
- Gunthorpe <jgg@ziepe.ca>, Doug Ledford <dledford@redhat.com>,
- Ingo Molnar <mingo@redhat.com>, intel-wired-lan@lists.osuosl.org,
- xen-devel@lists.xenproject.org, linux-ext4@vger.kernel.org,
- Fenghua Yu <fenghua.yu@intel.com>, linux-afs@lists.infradead.org,
- Faisal Latif <faisal.latif@intel.com>, linux-um@lists.infradead.org,
- intel-gfx@lists.freedesktop.org, ecryptfs@vger.kernel.org,
- linux-erofs@lists.ozlabs.org, linux-nfs@vger.kernel.org,
- reiserfs-devel@vger.kernel.org, linux-block@vger.kernel.org,
- linux-bcache@vger.kernel.org, Borislav Petkov <bp@alien8.de>,
- Andy Lutomirski <luto@kernel.org>, drbd-dev@tron.linbit.com,
- amd-gfx@lists.freed.esktop.org, Dan Williams <dan.j.williams@intel.com>,
- Shiraz
- Saleem <shiraz.saleem@intel.com>, bpf@vger.kernel.org, linux-cachefs@redhat.com,
- Mike Marciniszyn <mike.marciniszyn@intel.com>,
- linux-ntfs-dev@lists.sourceforge.net, netdev@vger.kernel.org,
- Dennis Dalessandro <dennis.dalessandro@intel.com>, kexec@lists.infradead.org,
- linux-kernel@vger.kernel.org, linux-f2fs-devel@lists.sourceforge.net,
- linux-fsdevel@vger.kernel.org, Andrew Morton <akpm@linux-foundation.org>,
- linuxppc-dev@lists.ozlabs.org, linux-btrfs@vger.kernel.org
+Reply-To: rwright@hpe.com
+Cc: rwright@hpe.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
------ira.weiny@intel.com wrote: -----
+The first version of this RFC patch caused a build error when - to my
+suprise - it was automatically built.  I had presumed an RFC message
+would be for comment only, and so I had pasted part of the patch,
+thereby breaking whitespace.  In this version, I have directly included
+the patch without pasting, so it should apply.  I also
+included a drm_dbg message omitted from v1.
 
->To: "Andrew Morton" <akpm@linux-foundation.org>, "Thomas Gleixner"
-><tglx@linutronix.de>, "Ingo Molnar" <mingo@redhat.com>, "Borislav
->Petkov" <bp@alien8.de>, "Andy Lutomirski" <luto@kernel.org>, "Peter
->Zijlstra" <peterz@infradead.org>
->From: ira.weiny@intel.com
->Date: 10/09/2020 09:52PM
->Cc: "Ira Weiny" <ira.weiny@intel.com>, "Mike Marciniszyn"
-><mike.marciniszyn@intel.com>, "Dennis Dalessandro"
-><dennis.dalessandro@intel.com>, "Doug Ledford" <dledford@redhat.com>,
->"Jason Gunthorpe" <jgg@ziepe.ca>, "Faisal Latif"
-><faisal.latif@intel.com>, "Shiraz Saleem" <shiraz.saleem@intel.com>,
->"Bernard Metzler" <bmt@zurich.ibm.com>, x86@kernel.org, "Dave Hansen"
-><dave.hansen@linux.intel.com>, "Dan Williams"
-><dan.j.williams@intel.com>, "Fenghua Yu" <fenghua.yu@intel.com>,
->linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org,
->linux-nvdimm@lists.01.org, linux-fsdevel@vger.kernel.org,
->linux-mm@kvack.org, linux-kselftest@vger.kernel.org,
->linuxppc-dev@lists.ozlabs.org, kvm@vger.kernel.org,
->netdev@vger.kernel.org, bpf@vger.kernel.org,
->kexec@lists.infradead.org, linux-bcache@vger.kernel.org,
->linux-mtd@lists.infradead.org, devel@driverdev.osuosl.org,
->linux-efi@vger.kernel.org, linux-mmc@vger.kernel.org,
->linux-scsi@vger.kernel.org, target-devel@vger.kernel.org,
->linux-nfs@vger.kernel.org, ceph-devel@vger.kernel.org,
->linux-ext4@vger.kernel.org, linux-aio@kvack.org,
->io-uring@vger.kernel.org, linux-erofs@lists.ozlabs.org,
->linux-um@lists.infradead.org, linux-ntfs-dev@lists.sourceforge.net,
->reiserfs-devel@vger.kernel.org,
->linux-f2fs-devel@lists.sourceforge.net, linux-nilfs@vger.kernel.org,
->cluster-devel@redhat.com, ecryptfs@vger.kernel.org,
->linux-cifs@vger.kernel.org, linux-btrfs@vger.kernel.org,
->linux-afs@lists.infradead.org, linux-rdma@vger.kernel.org,
->amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
->intel-gfx@lists.freedesktop.org, drbd-dev@tron.linbit.com,
->linux-block@vger.kernel.org, xen-devel@lists.xenproject.org,
->linux-cachefs@redhat.com, samba-technical@lists.samba.org,
->intel-wired-lan@lists.osuosl.org
->Subject: [EXTERNAL] [PATCH RFC PKS/PMEM 10/58] drivers/rdma: Utilize
->new kmap_thread()
->
->From: Ira Weiny <ira.weiny@intel.com>
->
->The kmap() calls in these drivers are localized to a single thread.
->To
->avoid the over head of global PKRS updates use the new kmap_thread()
->call.
->
->Cc: Mike Marciniszyn <mike.marciniszyn@intel.com>
->Cc: Dennis Dalessandro <dennis.dalessandro@intel.com>
->Cc: Doug Ledford <dledford@redhat.com>
->Cc: Jason Gunthorpe <jgg@ziepe.ca>
->Cc: Faisal Latif <faisal.latif@intel.com>
->Cc: Shiraz Saleem <shiraz.saleem@intel.com>
->Cc: Bernard Metzler <bmt@zurich.ibm.com>
->Signed-off-by: Ira Weiny <ira.weiny@intel.com>
->---
-> drivers/infiniband/hw/hfi1/sdma.c      |  4 ++--
-> drivers/infiniband/hw/i40iw/i40iw_cm.c | 10 +++++-----
-> drivers/infiniband/sw/siw/siw_qp_tx.c  | 14 +++++++-------
-> 3 files changed, 14 insertions(+), 14 deletions(-)
->
->diff --git a/drivers/infiniband/hw/hfi1/sdma.c
->b/drivers/infiniband/hw/hfi1/sdma.c
->index 04575c9afd61..09d206e3229a 100644
->--- a/drivers/infiniband/hw/hfi1/sdma.c
->+++ b/drivers/infiniband/hw/hfi1/sdma.c
->@@ -3130,7 +3130,7 @@ int ext_coal_sdma_tx_descs(struct hfi1_devdata
->*dd, struct sdma_txreq *tx,
-> 		}
-> 
-> 		if (type == SDMA_MAP_PAGE) {
->-			kvaddr = kmap(page);
->+			kvaddr = kmap_thread(page);
-> 			kvaddr += offset;
-> 		} else if (WARN_ON(!kvaddr)) {
-> 			__sdma_txclean(dd, tx);
->@@ -3140,7 +3140,7 @@ int ext_coal_sdma_tx_descs(struct hfi1_devdata
->*dd, struct sdma_txreq *tx,
-> 		memcpy(tx->coalesce_buf + tx->coalesce_idx, kvaddr, len);
-> 		tx->coalesce_idx += len;
-> 		if (type == SDMA_MAP_PAGE)
->-			kunmap(page);
->+			kunmap_thread(page);
-> 
-> 		/* If there is more data, return */
-> 		if (tx->tlen - tx->coalesce_idx)
->diff --git a/drivers/infiniband/hw/i40iw/i40iw_cm.c
->b/drivers/infiniband/hw/i40iw/i40iw_cm.c
->index a3b95805c154..122d7a5642a1 100644
->--- a/drivers/infiniband/hw/i40iw/i40iw_cm.c
->+++ b/drivers/infiniband/hw/i40iw/i40iw_cm.c
->@@ -3721,7 +3721,7 @@ int i40iw_accept(struct iw_cm_id *cm_id, struct
->iw_cm_conn_param *conn_param)
-> 		ibmr->device = iwpd->ibpd.device;
-> 		iwqp->lsmm_mr = ibmr;
-> 		if (iwqp->page)
->-			iwqp->sc_qp.qp_uk.sq_base = kmap(iwqp->page);
->+			iwqp->sc_qp.qp_uk.sq_base = kmap_thread(iwqp->page);
-> 		dev->iw_priv_qp_ops->qp_send_lsmm(&iwqp->sc_qp,
-> 							iwqp->ietf_mem.va,
-> 							(accept.size + conn_param->private_data_len),
->@@ -3729,12 +3729,12 @@ int i40iw_accept(struct iw_cm_id *cm_id,
->struct iw_cm_conn_param *conn_param)
-> 
-> 	} else {
-> 		if (iwqp->page)
->-			iwqp->sc_qp.qp_uk.sq_base = kmap(iwqp->page);
->+			iwqp->sc_qp.qp_uk.sq_base = kmap_thread(iwqp->page);
-> 		dev->iw_priv_qp_ops->qp_send_lsmm(&iwqp->sc_qp, NULL, 0, 0);
-> 	}
-> 
-> 	if (iwqp->page)
->-		kunmap(iwqp->page);
->+		kunmap_thread(iwqp->page);
-> 
-> 	iwqp->cm_id = cm_id;
-> 	cm_node->cm_id = cm_id;
->@@ -4102,10 +4102,10 @@ static void i40iw_cm_event_connected(struct
->i40iw_cm_event *event)
-> 	i40iw_cm_init_tsa_conn(iwqp, cm_node);
-> 	read0 = (cm_node->send_rdma0_op == SEND_RDMA_READ_ZERO);
-> 	if (iwqp->page)
->-		iwqp->sc_qp.qp_uk.sq_base = kmap(iwqp->page);
->+		iwqp->sc_qp.qp_uk.sq_base = kmap_thread(iwqp->page);
-> 	dev->iw_priv_qp_ops->qp_send_rtt(&iwqp->sc_qp, read0);
-> 	if (iwqp->page)
->-		kunmap(iwqp->page);
->+		kunmap_thread(iwqp->page);
-> 
-> 	memset(&attr, 0, sizeof(attr));
-> 	attr.qp_state = IB_QPS_RTS;
->diff --git a/drivers/infiniband/sw/siw/siw_qp_tx.c
->b/drivers/infiniband/sw/siw/siw_qp_tx.c
->index d19d8325588b..4ed37c328d02 100644
->--- a/drivers/infiniband/sw/siw/siw_qp_tx.c
->+++ b/drivers/infiniband/sw/siw/siw_qp_tx.c
->@@ -76,7 +76,7 @@ static int siw_try_1seg(struct siw_iwarp_tx *c_tx,
->void *paddr)
-> 			if (unlikely(!p))
-> 				return -EFAULT;
-> 
->-			buffer = kmap(p);
->+			buffer = kmap_thread(p);
-> 
-> 			if (likely(PAGE_SIZE - off >= bytes)) {
-> 				memcpy(paddr, buffer + off, bytes);
->@@ -84,7 +84,7 @@ static int siw_try_1seg(struct siw_iwarp_tx *c_tx,
->void *paddr)
-> 				unsigned long part = bytes - (PAGE_SIZE - off);
-> 
-> 				memcpy(paddr, buffer + off, part);
->-				kunmap(p);
->+				kunmap_thread(p);
-> 
-> 				if (!mem->is_pbl)
-> 					p = siw_get_upage(mem->umem,
->@@ -96,10 +96,10 @@ static int siw_try_1seg(struct siw_iwarp_tx
->*c_tx, void *paddr)
-> 				if (unlikely(!p))
-> 					return -EFAULT;
-> 
->-				buffer = kmap(p);
->+				buffer = kmap_thread(p);
-> 				memcpy(paddr + part, buffer, bytes - part);
-> 			}
->-			kunmap(p);
->+			kunmap_thread(p);
-> 		}
-> 	}
-> 	return (int)bytes;
->@@ -505,7 +505,7 @@ static int siw_tx_hdt(struct siw_iwarp_tx *c_tx,
->struct socket *s)
-> 				page_array[seg] = p;
-> 
-> 				if (!c_tx->use_sendpage) {
->-					iov[seg].iov_base = kmap(p) + fp_off;
->+					iov[seg].iov_base = kmap_thread(p) + fp_off;
+For several months, I've been experiencing GPU hangs when  starting
+Cinnamon on an HP Pavilion Mini 300-020 if I try to run an upstream
+kernel.  I reported this recently in
+https://gitlab.freedesktop.org/drm/intel/-/issues/2413 where I have
+attached the requested evidence including the state collected from
+/sys/class/drm/card0/error and debug output from dmesg.
 
-This misses a corresponding kunmap_thread() in siw_unmap_pages()
-(pls change line 403 in siw_qp_tx.c as well)
+I got around to running a bisect to find the problem, which indicates:
 
-Thanks,
-Bernard.
+  [47f8253d2b8947d79fd3196bf96c1959c0f25f20] drm/i915/gen7: Clear all EU/L3 residual contexts
 
-> 					iov[seg].iov_len = plen;
-> 
-> 					/* Remember for later kunmap() */
->@@ -518,9 +518,9 @@ static int siw_tx_hdt(struct siw_iwarp_tx *c_tx,
->struct socket *s)
-> 							plen);
-> 				} else if (do_crc) {
-> 					crypto_shash_update(c_tx->mpa_crc_hd,
->-							    kmap(p) + fp_off,
->+							    kmap_thread(p) + fp_off,
-> 							    plen);
->-					kunmap(p);
->+					kunmap_thread(p);
-> 				}
-> 			} else {
-> 				u64 va = sge->laddr + sge_off;
->-- 
->2.28.0.rc0.12.gb6a658bd00c9
->
->
+While I'm experienced in several areas of the Linux kernel, I'm really
+nothing but an end user of the graphics drivers.  But the nature of that
+troublesome commit suggested to me that reducing the batch size used in
+the context clear operation might help this relatively low-powered
+system to avoid the hang.... and it did!  I simply forced this system to
+take the smaller batch length that is already used for non-Haswell
+systems.
 
+I'm calling this patch an RFC because this version is quick-and-dirty,
+affecting only one file.  If this makes sense, I have a cleaner version
+that keys off of a proper quirk, but let's discuss the idea first before
+looking at that.   Maybe it doesn't need a new quirk?  Maybe there is
+already something distinctive on which the decision could be made?
+
+Signed-off-by: Randy Wright <rwright@hpe.com>
+---
+ drivers/gpu/drm/i915/gt/gen7_renderclear.c | 8 +++++++-
+ 1 file changed, 7 insertions(+), 1 deletion(-)
+
+diff --git a/drivers/gpu/drm/i915/gt/gen7_renderclear.c b/drivers/gpu/drm/i915/gt/gen7_renderclear.c
+index d93d85cd3027..96bc09bc41f2 100644
+--- a/drivers/gpu/drm/i915/gt/gen7_renderclear.c
++++ b/drivers/gpu/drm/i915/gt/gen7_renderclear.c
+@@ -49,7 +49,11 @@ struct batch_vals {
+ static void
+ batch_get_defaults(struct drm_i915_private *i915, struct batch_vals *bv)
+ {
+-	if (IS_HASWELL(i915)) {
++	struct pci_dev *d = i915->drm.pdev;
++	int force_reduced = (d->subsystem_vendor == PCI_VENDOR_ID_HP
++			  && d->subsystem_device == 0x2b38);
++
++	if (IS_HASWELL(i915) && !force_reduced) {
+ 		bv->max_primitives = 280;
+ 		bv->max_urb_entries = MAX_URB_ENTRIES;
+ 		bv->surface_height = 16 * 16;
+@@ -60,6 +64,8 @@ batch_get_defaults(struct drm_i915_private *i915, struct batch_vals *bv)
+ 		bv->surface_height = 16 * 8;
+ 		bv->surface_width = 32 * 16;
+ 	}
++	drm_dbg(&i915->drm, "force_reduced=%d max_primitives=%d\n",
++			     force_reduced, bv->max_primitives);
+ 	bv->cmd_size = bv->max_primitives * 4096;
+ 	bv->state_size = STATE_SIZE;
+ 	bv->state_start = bv->cmd_size;
+-- 
+2.25.1
+
+
+
+--
+Randy Wright            Usmail: Hewlett Packard Enterprise
+Email: rwright@hpe.com          Servers Linux Enablement
+Phone: (970) 898-0998           3404 E. Harmony Rd, Mailstop 36
+                                Fort Collins, CO 80528-9599 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
