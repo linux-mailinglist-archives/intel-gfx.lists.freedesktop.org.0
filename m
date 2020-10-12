@@ -2,49 +2,45 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2086A28B081
-	for <lists+intel-gfx@lfdr.de>; Mon, 12 Oct 2020 10:45:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 440AC28B122
+	for <lists+intel-gfx@lfdr.de>; Mon, 12 Oct 2020 11:09:28 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 52C636E22F;
-	Mon, 12 Oct 2020 08:45:20 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3165D6E22F
- for <Intel-gfx@lists.freedesktop.org>; Mon, 12 Oct 2020 08:45:19 +0000 (UTC)
-IronPort-SDR: 1ihjE/XTKYgKrfV1vlknid9ASOcHRmw7VQIzM/LTOIzhMTe7R2HPiNLF+iXptemIIgMdsPSJJF
- anKVFbEzKFdA==
-X-IronPort-AV: E=McAfee;i="6000,8403,9771"; a="165765976"
-X-IronPort-AV: E=Sophos;i="5.77,366,1596524400"; d="scan'208";a="165765976"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 074F56E0CE;
+	Mon, 12 Oct 2020 09:09:26 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E0B1B6E0CE
+ for <intel-gfx@lists.freedesktop.org>; Mon, 12 Oct 2020 09:09:23 +0000 (UTC)
+IronPort-SDR: w1st96hWHN2cZWiXHol2WilZbBSf+HvCUEqK/mwx7wXDwPH0YBOp9PbkB48Ng0v1BPjFHFIfRe
+ GgeuDxyNtkIw==
+X-IronPort-AV: E=McAfee;i="6000,8403,9771"; a="227356780"
+X-IronPort-AV: E=Sophos;i="5.77,366,1596524400"; d="scan'208";a="227356780"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Oct 2020 01:45:17 -0700
-IronPort-SDR: dRqT+ZMfCQGeam5bOf0lovKBjTKZDVf3sJIcKcMjl1w0YRl6x9nU3ddhqLbiHDWO03k4U53lr/
- YOCXdKC8ds6w==
-X-IronPort-AV: E=Sophos;i="5.77,366,1596524400"; d="scan'208";a="529872823"
-Received: from ereuven9-mobl1.ger.corp.intel.com (HELO [10.252.38.175])
- ([10.252.38.175])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Oct 2020 01:45:15 -0700
-To: Lu Baolu <baolu.lu@linux.intel.com>, Joerg Roedel <joro@8bytes.org>,
- Tom Murphy <murphyt7@tcd.ie>, David Woodhouse <dwmw2@infradead.org>,
- Christoph Hellwig <hch@infradead.org>
-References: <20200927063437.13988-1-baolu.lu@linux.intel.com>
- <e999e371-6d36-ffea-542f-a5f4b230b0ed@linux.intel.com>
- <c2af9a9d-1cae-b8f7-a0b3-880574060a23@linux.intel.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-Message-ID: <8bac9e91-36a0-c1d6-a887-4d60567ac75a@linux.intel.com>
-Date: Mon, 12 Oct 2020 09:44:55 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Oct 2020 02:09:22 -0700
+IronPort-SDR: w4aYr32z32iliPcvV9yPrwM0htx7dAEO0A9vyBsyUHqk/PGyxNBsDcoCgYclNAm0J9dRsqkrqS
+ kaDA9WLFxIbA==
+X-IronPort-AV: E=Sophos;i="5.77,366,1596524400"; d="scan'208";a="463034226"
+Received: from chunt1x-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.252.18.170])
+ by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Oct 2020 02:09:20 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: "20200828061941.17051-2-jani.nikula\@intel.com"
+ <20200828061941.17051-2-jani.nikula@intel.com>,
+ "intel-gfx\@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "Shankar\, Uma" <uma.shankar@intel.com>
+In-Reply-To: <BY5PR11MB4307E5790B466389CE00D68AA3070@BY5PR11MB4307.namprd11.prod.outlook.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <BY5PR11MB4307E5790B466389CE00D68AA3070@BY5PR11MB4307.namprd11.prod.outlook.com>
+Date: Mon, 12 Oct 2020 12:09:17 +0300
+Message-ID: <87362jdd4y.fsf@intel.com>
 MIME-Version: 1.0
-In-Reply-To: <c2af9a9d-1cae-b8f7-a0b3-880574060a23@linux.intel.com>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH v4 0/7] Convert the intel iommu driver to
- the dma-iommu api
+Subject: Re: [Intel-gfx] [PATCH 2/2] drm/i915/dp: use opregion mailbox #5
+ EDID for eDP, if available
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,34 +53,82 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel-gfx@lists.freedesktop.org, Ashok Raj <ashok.raj@intel.com>,
- iommu@lists.linux-foundation.org, linux-kernel@vger.kernel.org
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Ck9uIDI5LzA5LzIwMjAgMDE6MTEsIEx1IEJhb2x1IHdyb3RlOgo+IEhpIFR2cnRrbywKPiAKPiBP
-biA5LzI4LzIwIDU6NDQgUE0sIFR2cnRrbyBVcnN1bGluIHdyb3RlOgo+Pgo+PiBPbiAyNy8wOS8y
-MDIwIDA3OjM0LCBMdSBCYW9sdSB3cm90ZToKPj4+IEhpLAo+Pj4KPj4+IFRoZSBwcmV2aW91cyBw
-b3N0IG9mIHRoaXMgc2VyaWVzIGNvdWxkIGJlIGZvdW5kIGhlcmUuCj4+Pgo+Pj4gaHR0cHM6Ly9s
-b3JlLmtlcm5lbC5vcmcvbGludXgtaW9tbXUvMjAyMDA5MTIwMzIyMDAuMTE0ODktMS1iYW9sdS5s
-dUBsaW51eC5pbnRlbC5jb20vIAo+Pj4KPj4+Cj4+PiBUaGlzIHZlcnNpb24gaW50cm9kdWNlIGEg
-bmV3IHBhdGNoIFs0LzddIHRvIGZpeCBhbiBpc3N1ZSByZXBvcnRlZCBoZXJlLgo+Pj4KPj4+IGh0
-dHBzOi8vbG9yZS5rZXJuZWwub3JnL2xpbnV4LWlvbW11LzUxYTFiYWVjLTQ4ZDEtYzBhYy0xODFi
-LTFmYmE5MmFhNDI4ZEBsaW51eC5pbnRlbC5jb20vIAo+Pj4KPj4+Cj4+PiBUaGVyZSBhcmVuJ3Qg
-YW55IG90aGVyIGNoYW5nZXMuCj4+Pgo+Pj4gUGxlYXNlIGhlbHAgdG8gdGVzdCBhbmQgcmV2aWV3
-Lgo+Pj4KPj4+IEJlc3QgcmVnYXJkcywKPj4+IGJhb2x1Cj4+Pgo+Pj4gTHUgQmFvbHUgKDMpOgo+
-Pj4gwqDCoCBpb21tdTogQWRkIHF1aXJrIGZvciBJbnRlbCBncmFwaGljIGRldmljZXMgaW4gbWFw
-X3NnCj4+Cj4+IFNpbmNlIEkgZG8gaGF2ZSBwYXRjaGVzIHRvIGZpeCBpOTE1IHRvIGhhbmRsZSB0
-aGlzLCBkbyB3ZSB3YW50IHRvIAo+PiBjby1vcmRpbmF0ZSB0aGUgdHdvIGFuZCBhdm9pZCBoYXZp
-bmcgdG8gYWRkIHRoaXMgcXVpcmsgYW5kIHRoZW4gbGF0ZXIgCj4+IHJlbW92ZSBpdD8gT3IgeW91
-IHdhbnQgdG8gZ28gdGhlIHN0YWdlZCBhcHByb2FjaD8KPiAKPiBJIGhhdmUgbm8gcHJlZmVyZW5j
-ZS4gSXQgZGVwZW5kcyBvbiB3aGljaCBwYXRjaCBnb2VzIGZpcnN0LiBMZXQgdGhlCj4gbWFpbnRh
-aW5lcnMgaGVscCBoZXJlLgoKRllJIHdlIGhhdmUgbWVyZ2VkIHRoZSByZXF1aXJlZCBpOTE1IHBh
-dGNoZXMgdG8gb3V0IHRyZWUgbGFzdCB3ZWVrIG9yIApzby4gSSAqdGhpbmsqIHRoaXMgbWVhbnMg
-dGhleSB3aWxsIGdvIGludG8gNS4xMS4gU28gdGhlIGk5MTUgc3BlY2lmaWMgCndvcmthcm91bmQg
-cGF0Y2ggd2lsbCBub3QgYmUgbmVlZGVkIGluIEludGVsIElPTU1VLgoKUmVnYXJkcywKClR2cnRr
-bwpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1n
-ZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9s
-aXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
+On Mon, 12 Oct 2020, "Lee, Shawn C" <shawn.c.lee@intel.com> wrote:
+> On Fri, Aug 28, 2020 at 06:19AM, Shankar Uma wrote:
+>>> -----Original Message-----
+>>> From: Jani Nikula <jani.nikula@intel.com>
+>>> Sent: Friday, August 28, 2020 11:50 AM
+>>> To: intel-gfx@lists.freedesktop.org
+>>> Cc: Nikula, Jani <jani.nikula@intel.com>; Shankar, Uma
+>>> <uma.shankar@intel.com>
+>>> Subject: [PATCH 2/2] drm/i915/dp: use opregion mailbox #5 EDID for eDP, if
+>>> available
+>>>
+>>> If a panel's EDID is broken, there may be an override EDID set in the ACPI
+>>> OpRegion mailbox #5. Use it if available.
+>>
+>>Looks Good to me.
+>>Reviewed-by: Uma Shankar <uma.shankar@intel.com>
+>>
+>>> Cc: Uma Shankar <uma.shankar@intel.com>
+>>> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+>>> ---
+>>>  drivers/gpu/drm/i915/display/intel_dp.c | 3 +++
+>>>  1 file changed, 3 insertions(+)
+>>>
+>>> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c
+>>> b/drivers/gpu/drm/i915/display/intel_dp.c
+>>> index c57ac83bf563..d1307be196a2 100644
+>>> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+>>> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+>>> @@ -8114,6 +8114,9 @@ static bool intel_edp_init_connector(struct intel_dp
+>>> *intel_dp,
+>>>  goto out_vdd_off;
+>>>  }
+>>>
+>>> +/* Set up override EDID, if any, from ACPI OpRegion */
+>>> +intel_opregion_edid_override(intel_connector);
+>>> +
+>
+> Customer report DUT still get EDID from eDP panel instead of mailbox #5.
+> After some investigations, this change can retrieve EDID from mailbox #5 properly.
+> But driver still used panel's EDID to enable eDP display. This is because of drm_get_edid()
+> was executed after intel_opregion_edid_override(). drm_get_edid() return panel's EDID
+> and overwrite mailbox #5's.
+
+In recent kernels, drm_get_edid() respects EDID override, and calling
+drm_get_edid() will return the override EDID from mailbox #5 instead of
+retrieving the actual EDID.
+
+Check the kernel version they're using and the drm_get_edid()
+implementation.
+
+BR,
+Jani.
+
+
+>
+> We try to move drm_get_edid() before intel_opregion_edid_override().
+> The test result is positive, mailbox #5 EDID will substitute for panel's.
+> It seems we may need some additional change for this patch. Thanks!
+>
+> Best regards,
+> Shawn
+>
+>>>  mutex_lock(&dev->mode_config.mutex);
+>>>  edid = drm_get_edid(connector, &intel_dp->aux.ddc);
+>>>  if (edid) {
+>>> --
+>>> 2.20.1
+
+-- 
+Jani Nikula, Intel Open Source Graphics Center
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
