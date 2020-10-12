@@ -2,40 +2,40 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5BEC528C428
-	for <lists+intel-gfx@lfdr.de>; Mon, 12 Oct 2020 23:31:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7BDEC28C429
+	for <lists+intel-gfx@lfdr.de>; Mon, 12 Oct 2020 23:31:11 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E58CC6E7F5;
-	Mon, 12 Oct 2020 21:31:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A38FB6E81A;
+	Mon, 12 Oct 2020 21:31:09 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 574DC6E7DD
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6160F6E7E6
  for <intel-gfx@lists.freedesktop.org>; Mon, 12 Oct 2020 21:30:56 +0000 (UTC)
-IronPort-SDR: PgHXVtQXxetVCesn43SzPzSw/m2KrQUpd7DleO1FK7QqfWYELqgnwwLNM1MGJ7mnzId9xjkvFS
- DDzE1oTgZqqQ==
-X-IronPort-AV: E=McAfee;i="6000,8403,9772"; a="163169623"
-X-IronPort-AV: E=Sophos;i="5.77,368,1596524400"; d="scan'208";a="163169623"
+IronPort-SDR: Vm4dPTA25KMlAEqK3aD5LH5ZhyIXerOZFUvAu3D0q4gWEPyjaYb/gmBw1b7v13p9H0LQ+VRCc3
+ +mwzG0Gh3x0w==
+X-IronPort-AV: E=McAfee;i="6000,8403,9772"; a="163169624"
+X-IronPort-AV: E=Sophos;i="5.77,368,1596524400"; d="scan'208";a="163169624"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from orsmga004.jf.intel.com ([10.7.209.38])
  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  12 Oct 2020 14:30:55 -0700
-IronPort-SDR: i6nLo6NYzF9yvXGt8uRc+mveLrVEdfGJSDoScn68rR49HG33Rymkr5O8wA7aH1g4jnZcFG4prB
- PSIS6jv48WlQ==
-X-IronPort-AV: E=Sophos;i="5.77,368,1596524400"; d="scan'208";a="463244996"
+IronPort-SDR: 0TsIwKmz11C9ZR1M+DoOwvvJuQW5+LHnAR60O8Vdcl/tUY5xhJA+rFjtBQ1me9XF281YeszC7D
+ DjIVXMBidCWQ==
+X-IronPort-AV: E=Sophos;i="5.77,368,1596524400"; d="scan'208";a="463245000"
 Received: from lucas-s2600cw.jf.intel.com ([10.165.21.202])
  by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  12 Oct 2020 14:30:54 -0700
 From: Lucas De Marchi <lucas.demarchi@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Mon, 12 Oct 2020 14:29:54 -0700
-Message-Id: <20201012212959.871513-11-lucas.demarchi@intel.com>
+Date: Mon, 12 Oct 2020 14:29:55 -0700
+Message-Id: <20201012212959.871513-12-lucas.demarchi@intel.com>
 X-Mailer: git-send-email 2.28.0
 In-Reply-To: <20201012212959.871513-1-lucas.demarchi@intel.com>
 References: <20201012212959.871513-1-lucas.demarchi@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v7 10/15] drm/i915/dg1: Enable ports
+Subject: [Intel-gfx] [PATCH v7 11/15] drm/i915/dg1: Load DMC
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,82 +48,50 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Aditya Swarup <aditya.swarup@intel.com>
-
-For DG1 we have a little of mix up wrt to DDI/port names and indexes.
-Bspec refers to the ports as DDIA, DDIB, DDI USBC1 and DDI USBC2
-(besides the DDIA, DDIB, DDIC, DDID), but the previous naming is the
-most unambiguous one. This means that for any register on Display Engine
-we should use the index of A, B, D and E. However in some places this is
-not true:
-
-- VBT: uses C and D and have to be mapped to D/E
-
-- IO/Combo: uses C and D, but we already differentiate those when
-  we created the phy vs port distinction.
-
-This additional mapping for VBT and phy are already covered in previous
-patches, so now we can initialize all the DDIs as A, B, D and E.
-
-v2: Squash previous patch enabling just ports A and B since most of the
-pumbling code is already merged now
-
-Cc: Matt Roper <matthew.d.roper@intel.com>
-Cc: Clinton Taylor <Clinton.A.Taylor@intel.com>
-Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
----
- drivers/gpu/drm/i915/display/intel_display.c | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 0259893db694..3c964fb7dbf5 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -7329,7 +7329,7 @@ bool intel_phy_is_combo(struct drm_i915_private *dev_priv, enum phy phy)
- {
- 	if (phy == PHY_NONE)
- 		return false;
--	else if (IS_ROCKETLAKE(dev_priv))
-+	else if (IS_DG1(dev_priv) || IS_ROCKETLAKE(dev_priv))
- 		return phy <= PHY_D;
- 	else if (IS_ELKHARTLAKE(dev_priv))
- 		return phy <= PHY_C;
-@@ -7341,7 +7341,7 @@ bool intel_phy_is_combo(struct drm_i915_private *dev_priv, enum phy phy)
- 
- bool intel_phy_is_tc(struct drm_i915_private *dev_priv, enum phy phy)
- {
--	if (IS_ROCKETLAKE(dev_priv))
-+	if (IS_ROCKETLAKE(dev_priv) || IS_DG1(dev_priv))
- 		return false;
- 	else if (INTEL_GEN(dev_priv) >= 12)
- 		return phy >= PHY_D && phy <= PHY_I;
-@@ -7353,7 +7353,7 @@ bool intel_phy_is_tc(struct drm_i915_private *dev_priv, enum phy phy)
- 
- enum phy intel_port_to_phy(struct drm_i915_private *i915, enum port port)
- {
--	if (IS_ROCKETLAKE(i915) && port >= PORT_D)
-+	if ((IS_DG1(i915) || IS_ROCKETLAKE(i915)) && port >= PORT_D)
- 		return (enum phy)port - 1;
- 	else if (IS_ELKHARTLAKE(i915) && port == PORT_D)
- 		return PHY_A;
-@@ -17127,7 +17127,7 @@ static void intel_setup_outputs(struct drm_i915_private *dev_priv)
- 	if (!HAS_DISPLAY(dev_priv))
- 		return;
- 
--	if (IS_ROCKETLAKE(dev_priv)) {
-+	if (IS_DG1(dev_priv) || IS_ROCKETLAKE(dev_priv)) {
- 		intel_ddi_init(dev_priv, PORT_A);
- 		intel_ddi_init(dev_priv, PORT_B);
- 		intel_ddi_init(dev_priv, PORT_D);	/* DDI TC1 */
--- 
-2.28.0
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+RnJvbTogTWF0dCBBdHdvb2QgPG1hdHRoZXcucy5hdHdvb2RAaW50ZWwuY29tPgoKQWRkIHN1cHBv
+cnQgdG8gbG9hZCBETUMgdjIuMC4yIG9uIERHMQoKV2hpbGUgd2UncmUgYXQgaXQsIG1ha2UgVEdM
+IHVzZSB0aGUgc2FtZSBHRU4xMiBmaXJtd2FyZSBzaXplIGRlZmluaXRpb24KYW5kIHJlbW92ZSBv
+YnNvbGV0ZSBjb21tZW50LgoKQnBlYzogNDkyMzAKCnYyOiBkbyBub3QgcmVwbGFjZSBHRU4xMl9D
+U1JfTUFYX0ZXX1NJWkUgKGZyb20gSm9zw6kpCiAgICBhbmQgcmVwbGFjZSBzdGFsZSBjb21tZW50
+CgpDYzogTWF0dCBSb3BlciA8bWF0dGhldy5kLnJvcGVyQGludGVsLmNvbT4KU2lnbmVkLW9mZi1i
+eTogTWF0dCBBdHdvb2QgPG1hdHRoZXcucy5hdHdvb2RAaW50ZWwuY29tPgpTaWduZWQtb2ZmLWJ5
+OiBMdWNhcyBEZSBNYXJjaGkgPGx1Y2FzLmRlbWFyY2hpQGludGVsLmNvbT4KUmV2aWV3ZWQtYnk6
+IE1hdHQgUm9wZXIgPG1hdHRoZXcuZC5yb3BlckBpbnRlbC5jb20+Ci0tLQogZHJpdmVycy9ncHUv
+ZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9jc3IuYyB8IDEyICsrKysrKysrKy0tLQogMSBmaWxlIGNo
+YW5nZWQsIDkgaW5zZXJ0aW9ucygrKSwgMyBkZWxldGlvbnMoLSkKCmRpZmYgLS1naXQgYS9kcml2
+ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Nzci5jIGIvZHJpdmVycy9ncHUvZHJtL2k5
+MTUvZGlzcGxheS9pbnRlbF9jc3IuYwppbmRleCBkNWRiMTY3NjQ2MTkuLjY3ZGM2NGRmNzhhNSAx
+MDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9jc3IuYworKysg
+Yi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Nzci5jCkBAIC00MCwxMyArNDAs
+MTYgQEAKIAogI2RlZmluZSBHRU4xMl9DU1JfTUFYX0ZXX1NJWkUJCUlDTF9DU1JfTUFYX0ZXX1NJ
+WkUKIAorI2RlZmluZSBERzFfQ1NSX1BBVEgJCQkiaTkxNS9kZzFfZG1jX3ZlcjJfMDIuYmluIgor
+I2RlZmluZSBERzFfQ1NSX1ZFUlNJT05fUkVRVUlSRUQJQ1NSX1ZFUlNJT04oMiwgMikKK01PRFVM
+RV9GSVJNV0FSRShERzFfQ1NSX1BBVEgpOworCiAjZGVmaW5lIFJLTF9DU1JfUEFUSAkJCSJpOTE1
+L3JrbF9kbWNfdmVyMl8wMi5iaW4iCiAjZGVmaW5lIFJLTF9DU1JfVkVSU0lPTl9SRVFVSVJFRAlD
+U1JfVkVSU0lPTigyLCAyKQogTU9EVUxFX0ZJUk1XQVJFKFJLTF9DU1JfUEFUSCk7CiAKICNkZWZp
+bmUgVEdMX0NTUl9QQVRICQkJImk5MTUvdGdsX2RtY192ZXIyXzA4LmJpbiIKICNkZWZpbmUgVEdM
+X0NTUl9WRVJTSU9OX1JFUVVJUkVECUNTUl9WRVJTSU9OKDIsIDgpCi0jZGVmaW5lIFRHTF9DU1Jf
+TUFYX0ZXX1NJWkUJCTB4NjAwMAogTU9EVUxFX0ZJUk1XQVJFKFRHTF9DU1JfUEFUSCk7CiAKICNk
+ZWZpbmUgSUNMX0NTUl9QQVRICQkJImk5MTUvaWNsX2RtY192ZXIxXzA5LmJpbiIKQEAgLTY4Niwx
+NCArNjg5LDE3IEBAIHZvaWQgaW50ZWxfY3NyX3Vjb2RlX2luaXQoc3RydWN0IGRybV9pOTE1X3By
+aXZhdGUgKmRldl9wcml2KQogCSAqLwogCWludGVsX2Nzcl9ydW50aW1lX3BtX2dldChkZXZfcHJp
+dik7CiAKLQlpZiAoSVNfUk9DS0VUTEFLRShkZXZfcHJpdikpIHsKKwlpZiAoSVNfREcxKGRldl9w
+cml2KSkgeworCQljc3ItPmZ3X3BhdGggPSBERzFfQ1NSX1BBVEg7CisJCWNzci0+cmVxdWlyZWRf
+dmVyc2lvbiA9IERHMV9DU1JfVkVSU0lPTl9SRVFVSVJFRDsKKwkJY3NyLT5tYXhfZndfc2l6ZSA9
+IEdFTjEyX0NTUl9NQVhfRldfU0laRTsKKwl9IGVsc2UgaWYgKElTX1JPQ0tFVExBS0UoZGV2X3By
+aXYpKSB7CiAJCWNzci0+ZndfcGF0aCA9IFJLTF9DU1JfUEFUSDsKIAkJY3NyLT5yZXF1aXJlZF92
+ZXJzaW9uID0gUktMX0NTUl9WRVJTSU9OX1JFUVVJUkVEOwogCQljc3ItPm1heF9md19zaXplID0g
+R0VOMTJfQ1NSX01BWF9GV19TSVpFOwogCX0gZWxzZSBpZiAoSU5URUxfR0VOKGRldl9wcml2KSA+
+PSAxMikgewogCQljc3ItPmZ3X3BhdGggPSBUR0xfQ1NSX1BBVEg7CiAJCWNzci0+cmVxdWlyZWRf
+dmVyc2lvbiA9IFRHTF9DU1JfVkVSU0lPTl9SRVFVSVJFRDsKLQkJLyogQWxsb3cgdG8gbG9hZCBm
+dyB2aWEgcGFyYW1ldGVyIHVzaW5nIHRoZSBsYXN0IGtub3duIHNpemUgKi8KIAkJY3NyLT5tYXhf
+Zndfc2l6ZSA9IEdFTjEyX0NTUl9NQVhfRldfU0laRTsKIAl9IGVsc2UgaWYgKElTX0dFTihkZXZf
+cHJpdiwgMTEpKSB7CiAJCWNzci0+ZndfcGF0aCA9IElDTF9DU1JfUEFUSDsKLS0gCjIuMjguMAoK
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4
+IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
+dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
