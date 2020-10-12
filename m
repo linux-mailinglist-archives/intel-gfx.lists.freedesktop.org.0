@@ -1,40 +1,58 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4BEDE28BA9C
-	for <lists+intel-gfx@lfdr.de>; Mon, 12 Oct 2020 16:18:35 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3255828BACC
+	for <lists+intel-gfx@lfdr.de>; Mon, 12 Oct 2020 16:26:34 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 88CB76E48D;
-	Mon, 12 Oct 2020 14:18:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7FC526E492;
+	Mon, 12 Oct 2020 14:26:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 354E76E48D
- for <intel-gfx@lists.freedesktop.org>; Mon, 12 Oct 2020 14:18:32 +0000 (UTC)
-IronPort-SDR: cwS2euREgtCk1jhxvAb2DEDor8xAvIrVNa534N4YzOOHiHliFgx+2rgFzxTusckM5+onF7+QzO
- zqaUFExAllpQ==
-X-IronPort-AV: E=McAfee;i="6000,8403,9771"; a="183205316"
-X-IronPort-AV: E=Sophos;i="5.77,366,1596524400"; d="scan'208";a="183205316"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Oct 2020 07:18:31 -0700
-IronPort-SDR: THX2LjBa43RzsUkfs2BvUFrOHqpQi/yr5VWFOeH60P5tbj7+ofuqfUl4W/eDjk3wi1HtdxIB0R
- EB37XyiKP0BQ==
-X-IronPort-AV: E=Sophos;i="5.77,366,1596524400"; d="scan'208";a="529977054"
-Received: from unknown (HELO helsinki.fi.intel.com) ([10.237.66.162])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Oct 2020 07:18:30 -0700
-From: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Mon, 12 Oct 2020 17:18:26 +0300
-Message-Id: <20201012141826.1895740-1-gwan-gyeong.mun@intel.com>
-X-Mailer: git-send-email 2.25.0
+Received: from mail-wr1-x442.google.com (mail-wr1-x442.google.com
+ [IPv6:2a00:1450:4864:20::442])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 66C306E492
+ for <intel-gfx@lists.freedesktop.org>; Mon, 12 Oct 2020 14:26:31 +0000 (UTC)
+Received: by mail-wr1-x442.google.com with SMTP id e18so19406408wrw.9
+ for <intel-gfx@lists.freedesktop.org>; Mon, 12 Oct 2020 07:26:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:in-reply-to;
+ bh=woUargkA/zqgmf13xxgEV/cLC04mgF0Hb+5pUiQ1Cg4=;
+ b=dH0wEAOhW5veJEX2JEI/RmukCP6H/lXGR1SSjXVc8qTGVx1QyPoW1rJhdXvivIbxOg
+ PKilhqALfRRO9h+uJRvZE9hiPA7QU5xP8InkeXP5vjf7sH6pumTx5YHrKHkKaC9wnQvw
+ dq2a5u9PJRRMQhGUNrQr7qBtZaozS+/8ZHw6I=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:in-reply-to;
+ bh=woUargkA/zqgmf13xxgEV/cLC04mgF0Hb+5pUiQ1Cg4=;
+ b=ZcX5Mm8UOKANscmcf3WGL9uW7YYoCBbgxvwyq9zLWWsXeLwyFkUnDb5rTPL2wKhl8M
+ 4BUU8ptsNj+mwpKsUjW/K3KbROw/OdusB0xE3GlpZUU/iFC6dTet/VH9kRsQ+zAH2qYC
+ NAt1N5WGpjBArPW2LrPj7UsHbT+X/mOCO4ezcHJVAB9EGVNcsrjJ74+EUjsDE82RFMKK
+ eF6PkzYsQaPWfgKxFtMAFKsMNNiH6WCHfdUJWElocEL8kXYsKT6dFH0weJJrbN188MNw
+ C2YaIjyOiWMLLy/aQe2JxYfcSfQ/yItnt6vYGQHWRu6a79qRD8bXl7VMKYc1mvuXyxFR
+ zv9g==
+X-Gm-Message-State: AOAM5301hvIg3GRO6Y/R3q9uG1skyGuNaXc6D1cPAD+2gLBl5lmRN3cD
+ 3p3pmid7/+9J0OVHxXx5lxso3g==
+X-Google-Smtp-Source: ABdhPJywQsyq30xcEzxlPj5gvdjZEwo+qB48+wQgege4eUvXFV7nw3q3NKlkL6+ySri542Ch/TgVlw==
+X-Received: by 2002:adf:ba85:: with SMTP id p5mr17043794wrg.64.1602512790082; 
+ Mon, 12 Oct 2020 07:26:30 -0700 (PDT)
+Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
+ by smtp.gmail.com with ESMTPSA id u15sm22698376wml.21.2020.10.12.07.26.29
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 12 Oct 2020 07:26:29 -0700 (PDT)
+Date: Mon, 12 Oct 2020 16:26:27 +0200
+From: Daniel Vetter <daniel@ffwll.ch>
+To: Chris Wilson <chris@chris-wilson.co.uk>
+Message-ID: <20201012142627.GZ438822@phenom.ffwll.local>
+References: <20201012105131.32116-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915/psr: Configure and Program IO buffer
- Wake and Fast Wake
+Content-Disposition: inline
+In-Reply-To: <20201012105131.32116-1-chris@chris-wilson.co.uk>
+X-Operating-System: Linux phenom 5.7.0-1-amd64 
+Subject: Re: [Intel-gfx] [PATCH 1/2] drm: Ask whether drm_gem_get_pages()
+ should clear the CPU cache
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,119 +65,249 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-QXMgcGVyIGIuc3BlYyA0OTI3NCwgdGhlIElPIGJ1ZmZlciBXYWtlIGxpbmVzIGFuZCBGYXN0IFdh
-a2UgbGluZXMgY2FuIGJlCmNhbGN1bGF0ZWQgYmFzZWQgb24gdGhlIGZvbGxvd2luZyBmb3JtdWxh
-LgoKIElPIGJ1ZmZlciB3YWtlIGxpbmVzID0gUk9VTkRVUCg1MHVzIC8gdG90YWwgbGluZSB0aW1l
-IGluIHVzKQogRmFzdCB3YWtlIGxpbmVzID0gUk9VTkRVUCgzMnVzIC8gdG90YWwgbGluZSB0aW1l
-IGluIHVzKQogRm9yIGJvdGggZmllbGRzIGxpbWl0IHRoZSBtaW5pbXVtIHRvIDcgbGluZXMgYW5k
-IG1heGltdW0gdG8gMTIgbGluZXMKCkl0IGNhbGN1bGF0ZXMgSU8gYnVmZmVyIFdha2UgYW5kIEZh
-c3QgV2FrZSBiYXNlZCBvbiBiLnNwZWMgNDkyNzQgYW5kCnByb2dyYW1zIGl0LgoKQ2M6IEpvc8Op
-IFJvYmVydG8gZGUgU291emEgPGpvc2Uuc291emFAaW50ZWwuY29tPgpDYzogTGVlIFNoYXduIEMg
-PHNoYXduLmMubGVlQGludGVsLmNvbT4KU2lnbmVkLW9mZi1ieTogR3dhbi1neWVvbmcgTXVuIDxn
-d2FuLWd5ZW9uZy5tdW5AaW50ZWwuY29tPgotLS0KIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3Bs
-YXkvaW50ZWxfcHNyLmMgfCA2NyArKysrKysrKysrKysrKysrKysrLS0tLS0KIGRyaXZlcnMvZ3B1
-L2RybS9pOTE1L2k5MTVfZHJ2LmggICAgICAgICAgfCAgMiArCiBkcml2ZXJzL2dwdS9kcm0vaTkx
-NS9pOTE1X3JlZy5oICAgICAgICAgIHwgIDQgKysKIDMgZmlsZXMgY2hhbmdlZCwgNjEgaW5zZXJ0
-aW9ucygrKSwgMTIgZGVsZXRpb25zKC0pCgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5
-MTUvZGlzcGxheS9pbnRlbF9wc3IuYyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50
-ZWxfcHNyLmMKaW5kZXggOGE5ZDBiZGRlMWJmLi4zNmIzOTdhY2RkYjMgMTAwNjQ0Ci0tLSBhL2Ry
-aXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfcHNyLmMKKysrIGIvZHJpdmVycy9ncHUv
-ZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9wc3IuYwpAQCAtNTM4LDE5ICs1MzgsMTUgQEAgc3RhdGlj
-IHZvaWQgaHN3X2FjdGl2YXRlX3BzcjIoc3RydWN0IGludGVsX2RwICppbnRlbF9kcCkKIAl2YWwg
-fD0gaW50ZWxfcHNyMl9nZXRfdHBfdGltZShpbnRlbF9kcCk7CiAKIAlpZiAoSU5URUxfR0VOKGRl
-dl9wcml2KSA+PSAxMikgewotCQkvKgotCQkgKiBUT0RPOiA3IGxpbmVzIG9mIElPX0JVRkZFUl9X
-QUtFIGFuZCBGQVNUX1dBS0UgYXJlIGRlZmF1bHQKLQkJICogdmFsdWVzIGZyb20gQlNwZWMuIElu
-IG9yZGVyIHRvIHNldHRpbmcgYW4gb3B0aW1hbCBwb3dlcgotCQkgKiBjb25zdW1wdGlvbiwgbG93
-ZXIgdGhhbiA0ayByZXNvbHVpdGlvbiBtb2RlIG5lZWRzIHRvIGRlY3Jlc2UKLQkJICogSU9fQlVG
-RkVSX1dBS0UgYW5kIEZBU1RfV0FLRS4gQW5kIGhpZ2hlciB0aGFuIDRLIHJlc29sdXRpb24KLQkJ
-ICogbW9kZSBuZWVkcyB0byBpbmNyZWFzZSBJT19CVUZGRVJfV0FLRSBhbmQgRkFTVF9XQUtFLgot
-CQkgKi8KLQkJdmFsIHw9IFRHTF9FRFBfUFNSMl9CTE9DS19DT1VOVF9OVU1fMjsKLQkJdmFsIHw9
-IFRHTF9FRFBfUFNSMl9JT19CVUZGRVJfV0FLRSg3KTsKLQkJdmFsIHw9IFRHTF9FRFBfUFNSMl9G
-QVNUX1dBS0UoNyk7CisJCWlmIChkZXZfcHJpdi0+cHNyLmlvX2J1ZmZlcl93YWtlIDwgOSB8fCBk
-ZXZfcHJpdi0+cHNyLmZhc3Rfd2FrZSA8IDkpCisJCQl2YWwgfD0gVEdMX0VEUF9QU1IyX0JMT0NL
-X0NPVU5UX05VTV8yOworCQllbHNlCisJCQl2YWwgfD0gVEdMX0VEUF9QU1IyX0JMT0NLX0NPVU5U
-X05VTV8zOworCQl2YWwgfD0gVEdMX0VEUF9QU1IyX0lPX0JVRkZFUl9XQUtFKGRldl9wcml2LT5w
-c3IuaW9fYnVmZmVyX3dha2UpOworCQl2YWwgfD0gVEdMX0VEUF9QU1IyX0ZBU1RfV0FLRShkZXZf
-cHJpdi0+cHNyLmZhc3Rfd2FrZSk7CiAJfSBlbHNlIGlmIChJTlRFTF9HRU4oZGV2X3ByaXYpID49
-IDkpIHsKLQkJdmFsIHw9IEVEUF9QU1IyX0lPX0JVRkZFUl9XQUtFKDcpOwotCQl2YWwgfD0gRURQ
-X1BTUjJfRkFTVF9XQUtFKDcpOworCQl2YWwgfD0gRURQX1BTUjJfSU9fQlVGRkVSX1dBS0UoZGV2
-X3ByaXYtPnBzci5pb19idWZmZXJfd2FrZSk7CisJCXZhbCB8PSBFRFBfUFNSMl9GQVNUX1dBS0Uo
-ZGV2X3ByaXYtPnBzci5mYXN0X3dha2UpOwogCX0KIAogCWlmIChkZXZfcHJpdi0+cHNyLnBzcjJf
-c2VsX2ZldGNoX2VuYWJsZWQpIHsKQEAgLTgxMCw2ICs4MDYsOCBAQCB2b2lkIGludGVsX3Bzcl9j
-b21wdXRlX2NvbmZpZyhzdHJ1Y3QgaW50ZWxfZHAgKmludGVsX2RwLAogCWNvbnN0IHN0cnVjdCBk
-cm1fZGlzcGxheV9tb2RlICphZGp1c3RlZF9tb2RlID0KIAkJJmNydGNfc3RhdGUtPmh3LmFkanVz
-dGVkX21vZGU7CiAJaW50IHBzcl9zZXR1cF90aW1lOworCXUzMiBpb19idWZmZXJfd2FrZSA9IEVE
-UF9QU1IyX0lPX0JVRkZFUl9XQUtFX01JTl9MSU5FUzsKKwl1MzIgZmFzdF93YWtlID0gRURQX1BT
-UjJfRkFTVF9XQUtFX01JTl9MSU5FUzsKIAogCWlmICghQ0FOX1BTUihkZXZfcHJpdikpCiAJCXJl
-dHVybjsKQEAgLTg1OSw2ICs4NTcsNTEgQEAgdm9pZCBpbnRlbF9wc3JfY29tcHV0ZV9jb25maWco
-c3RydWN0IGludGVsX2RwICppbnRlbF9kcCwKIAkJcmV0dXJuOwogCX0KIAorCS8qCisJICogQi5T
-cGVjIDQ5Mjc0CisJICogSU8gYnVmZmVyIHdha2UgbGluZXMgPSBST1VORFVQKDUwdXMgLyB0b3Rh
-bCBsaW5lIHRpbWUgaW4gdXMpCisJICogRmFzdCB3YWtlIGxpbmVzID0gUk9VTkRVUCgzMnVzIC8g
-dG90YWwgbGluZSB0aW1lIGluIHVzKQorCSAqIEZvciBib3RoIGZpZWxkcyBsaW1pdCB0aGUgbWlu
-aW11bSB0byA3IGxpbmVzIGFuZCBtYXhpbXVtIHRvIDEyIGxpbmVzCisJICovCisJaW9fYnVmZmVy
-X3dha2UgPSBpbnRlbF91c2Vjc190b19zY2FubGluZXMoJmNydGNfc3RhdGUtPnVhcGkuYWRqdXN0
-ZWRfbW9kZSwgNTApOworCWZhc3Rfd2FrZSA9IGludGVsX3VzZWNzX3RvX3NjYW5saW5lcygmY3J0
-Y19zdGF0ZS0+dWFwaS5hZGp1c3RlZF9tb2RlLCAzMik7CisKKwlpZiAoSU5URUxfR0VOKGRldl9w
-cml2KSA+PSAxMikgeworCQlpZiAoaW9fYnVmZmVyX3dha2UgPCBUR0xfRURQX1BTUjJfSU9fQlVG
-RkVSX1dBS0VfTUlOX0xJTkVTIHx8CisJCSAgICBpb19idWZmZXJfd2FrZSA+IFRHTF9FRFBfUFNS
-Ml9JT19CVUZGRVJfV0FLRV9NQVhfTElORVMpIHsKKwkJCWRybV9kYmdfa21zKCZkZXZfcHJpdi0+
-ZHJtLAorCQkJCSAgICAiUFNSIGNvbmRpdGlvbiBmYWlsZWQ6IEludmFsaWQgUFNSMiBJTyBCdWZm
-ZXIgV2FrZSBsaW5lcyAoJWQpXG4iLAorCQkJCSAgICBpb19idWZmZXJfd2FrZSk7CisJCQlyZXR1
-cm47CisJCX0KKworCQlpZiAoZmFzdF93YWtlIDwgVEdMX0VEUF9QU1IyX0ZBU1RfV0FLRV9NSU5f
-TElORVMgfHwKKwkJICAgIGZhc3Rfd2FrZSA+IFRHTF9FRFBfUFNSMl9GQVNUX1dBS0VfTUFYX0xJ
-TkVTKSB7CisJCQlkcm1fZGJnX2ttcygmZGV2X3ByaXYtPmRybSwKKwkJCQkgICAgIlBTUiBjb25k
-aXRpb24gZmFpbGVkOiBJbnZhbGlkIFBTUjIgRkFTVCBXYWtlIGxpbmVzICglZClcbiIsCisJCQkJ
-ICAgIGZhc3Rfd2FrZSk7CisJCQlyZXR1cm47CisJCX0KKwl9IGVsc2UgaWYgKElOVEVMX0dFTihk
-ZXZfcHJpdikgPj0gOSkgeworCQlpZiAoaW9fYnVmZmVyX3dha2UgPCBFRFBfUFNSMl9JT19CVUZG
-RVJfV0FLRV9NSU5fTElORVMgfHwKKwkJICAgIGlvX2J1ZmZlcl93YWtlID4gRURQX1BTUjJfSU9f
-QlVGRkVSX1dBS0VfTUFYX0xJTkVTKSB7CisJCQlkcm1fZGJnX2ttcygmZGV2X3ByaXYtPmRybSwK
-KwkJCQkgICAgIlBTUiBjb25kaXRpb24gZmFpbGVkOiBJbnZhbGlkIFBTUjIgSU8gQnVmZmVyIFdh
-a2UgbGluZXMgKCVkKVxuIiwKKwkJCQkgICAgaW9fYnVmZmVyX3dha2UpOworCQkJcmV0dXJuOwor
-CQl9CisKKwkJaWYgKGZhc3Rfd2FrZSA8IEVEUF9QU1IyX0ZBU1RfV0FLRV9NSU5fTElORVMgfHwK
-KwkJICAgIGZhc3Rfd2FrZSA+IEVEUF9QU1IyX0ZBU1RfV0FLRV9NQVhfTElORVMpIHsKKwkJCWRy
-bV9kYmdfa21zKCZkZXZfcHJpdi0+ZHJtLAorCQkJCSAgICAiUFNSIGNvbmRpdGlvbiBmYWlsZWQ6
-IEludmFsaWQgUFNSMiBGQVNUIFdha2UgbGluZXMgKCVkKVxuIiwKKwkJCQkgICAgZmFzdF93YWtl
-KTsKKwkJCXJldHVybjsKKwkJfQorCX0KKwlkZXZfcHJpdi0+cHNyLmlvX2J1ZmZlcl93YWtlID0g
-aW9fYnVmZmVyX3dha2UgPCA3ID8gNyA6IGlvX2J1ZmZlcl93YWtlOworCWRldl9wcml2LT5wc3Iu
-ZmFzdF93YWtlID0gZmFzdF93YWtlIDwgNyA/IDcgOiBmYXN0X3dha2U7CisKIAljcnRjX3N0YXRl
-LT5oYXNfcHNyID0gdHJ1ZTsKIAljcnRjX3N0YXRlLT5oYXNfcHNyMiA9IGludGVsX3BzcjJfY29u
-ZmlnX3ZhbGlkKGludGVsX2RwLCBjcnRjX3N0YXRlKTsKIAljcnRjX3N0YXRlLT5pbmZvZnJhbWVz
-LmVuYWJsZSB8PSBpbnRlbF9oZG1pX2luZm9mcmFtZV9lbmFibGUoRFBfU0RQX1ZTQyk7CmRpZmYg
-LS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2Rydi5oIGIvZHJpdmVycy9ncHUvZHJt
-L2k5MTUvaTkxNV9kcnYuaAppbmRleCBlZWY5YTgyMWM0OWMuLjc2NzA2NmJjMzg3YyAxMDA2NDQK
-LS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9kcnYuaAorKysgYi9kcml2ZXJzL2dwdS9k
-cm0vaTkxNS9pOTE1X2Rydi5oCkBAIC01MDgsNiArNTA4LDggQEAgc3RydWN0IGk5MTVfcHNyIHsK
-IAlzdHJ1Y3QgZGVsYXllZF93b3JrIGRjM2NvX3dvcms7CiAJYm9vbCBmb3JjZV9tb2RlX2NoYW5n
-ZWQ7CiAJc3RydWN0IGRybV9kcF92c2Nfc2RwIHZzYzsKKwl1MzIgaW9fYnVmZmVyX3dha2U7CisJ
-dTMyIGZhc3Rfd2FrZTsKIH07CiAKICNkZWZpbmUgUVVJUktfTFZEU19TU0NfRElTQUJMRSAoMTw8
-MSkKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfcmVnLmggYi9kcml2ZXJz
-L2dwdS9kcm0vaTkxNS9pOTE1X3JlZy5oCmluZGV4IDZhZDllZTQyNDNhMC4uOGM5OGNkYjhjNDM4
-IDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X3JlZy5oCisrKyBiL2RyaXZl
-cnMvZ3B1L2RybS9pOTE1L2k5MTVfcmVnLmgKQEAgLTQ1NDcsMTQgKzQ1NDcsMTggQEAgZW51bSB7
-CiAjZGVmaW5lICAgRURQX01BWF9TVV9ESVNBQkxFX1RJTUUodCkJCSgodCkgPDwgMjApCiAjZGVm
-aW5lICAgRURQX01BWF9TVV9ESVNBQkxFX1RJTUVfTUFTSwkJKDB4MWYgPDwgMjApCiAjZGVmaW5l
-ICAgRURQX1BTUjJfSU9fQlVGRkVSX1dBS0VfTUFYX0xJTkVTCTgKKyNkZWZpbmUgICBFRFBfUFNS
-Ml9JT19CVUZGRVJfV0FLRV9NSU5fTElORVMJNQogI2RlZmluZSAgIEVEUF9QU1IyX0lPX0JVRkZF
-Ul9XQUtFKGxpbmVzKQkoKEVEUF9QU1IyX0lPX0JVRkZFUl9XQUtFX01BWF9MSU5FUyAtIChsaW5l
-cykpIDw8IDEzKQogI2RlZmluZSAgIEVEUF9QU1IyX0lPX0JVRkZFUl9XQUtFX01BU0sJCSgzIDw8
-IDEzKQorI2RlZmluZSAgIFRHTF9FRFBfUFNSMl9JT19CVUZGRVJfV0FLRV9NQVhfTElORVMJMTIK
-ICNkZWZpbmUgICBUR0xfRURQX1BTUjJfSU9fQlVGRkVSX1dBS0VfTUlOX0xJTkVTCTUKICNkZWZp
-bmUgICBUR0xfRURQX1BTUjJfSU9fQlVGRkVSX1dBS0UobGluZXMpCSgoKGxpbmVzKSAtIFRHTF9F
-RFBfUFNSMl9JT19CVUZGRVJfV0FLRV9NSU5fTElORVMpIDw8IDEzKQogI2RlZmluZSAgIFRHTF9F
-RFBfUFNSMl9JT19CVUZGRVJfV0FLRV9NQVNLCSg3IDw8IDEzKQogI2RlZmluZSAgIEVEUF9QU1Iy
-X0ZBU1RfV0FLRV9NQVhfTElORVMJCTgKKyNkZWZpbmUgICBFRFBfUFNSMl9GQVNUX1dBS0VfTUlO
-X0xJTkVTCQk1CiAjZGVmaW5lICAgRURQX1BTUjJfRkFTVF9XQUtFKGxpbmVzKQkJKChFRFBfUFNS
-Ml9GQVNUX1dBS0VfTUFYX0xJTkVTIC0gKGxpbmVzKSkgPDwgMTEpCiAjZGVmaW5lICAgRURQX1BT
-UjJfRkFTVF9XQUtFX01BU0sJCSgzIDw8IDExKQorI2RlZmluZSAgIFRHTF9FRFBfUFNSMl9GQVNU
-X1dBS0VfTUFYX0xJTkVTCTEyCiAjZGVmaW5lICAgVEdMX0VEUF9QU1IyX0ZBU1RfV0FLRV9NSU5f
-TElORVMJNQogI2RlZmluZSAgIFRHTF9FRFBfUFNSMl9GQVNUX1dBS0UobGluZXMpCQkoKChsaW5l
-cykgLSBUR0xfRURQX1BTUjJfRkFTVF9XQUtFX01JTl9MSU5FUykgPDwgMTApCiAjZGVmaW5lICAg
-VEdMX0VEUF9QU1IyX0ZBU1RfV0FLRV9NQVNLCQkoNyA8PCAxMCkKLS0gCjIuMjIuMAoKX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxp
-bmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJl
-ZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
+On Mon, Oct 12, 2020 at 11:51:30AM +0100, Chris Wilson wrote:
+> On some processors (such as arch/x86), accessing a page via a WC PAT is
+> bypassed if the page is physically tagged in the CPU cache, and the
+> access is serviced by the cache instead -- which leads to incoherency
+> should the physical page itself be accessed using DMA. In order to
+> prevent the false cache sharing of the physical pages, we need to
+> explicitly flush the cache lines of those pages.
+> 
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+
+Hm I'd leave this out for now. dma-api/cache flushing, and especially on
+x86 is kinda a mess. I'd just land v1 of your patch meanwhile for vgem.
+-Daniel
+
+> ---
+>  drivers/gpu/drm/drm_gem.c                   | 8 ++++++--
+>  drivers/gpu/drm/drm_gem_shmem_helper.c      | 8 +++++++-
+>  drivers/gpu/drm/etnaviv/etnaviv_gem.c       | 2 +-
+>  drivers/gpu/drm/gma500/gtt.c                | 2 +-
+>  drivers/gpu/drm/msm/msm_gem.c               | 2 +-
+>  drivers/gpu/drm/omapdrm/omap_gem.c          | 2 +-
+>  drivers/gpu/drm/rockchip/rockchip_drm_gem.c | 2 +-
+>  drivers/gpu/drm/tegra/gem.c                 | 2 +-
+>  drivers/gpu/drm/vgem/vgem_drv.c             | 2 +-
+>  drivers/gpu/drm/vkms/vkms_gem.c             | 2 +-
+>  drivers/gpu/drm/xen/xen_drm_front_gem.c     | 2 +-
+>  include/drm/drm_gem.h                       | 2 +-
+>  12 files changed, 23 insertions(+), 13 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/drm_gem.c b/drivers/gpu/drm/drm_gem.c
+> index 1da67d34e55d..1948855d69e6 100644
+> --- a/drivers/gpu/drm/drm_gem.c
+> +++ b/drivers/gpu/drm/drm_gem.c
+> @@ -40,6 +40,7 @@
+>  #include <linux/pagevec.h>
+>  
+>  #include <drm/drm.h>
+> +#include <drm/drm_cache.h>
+>  #include <drm/drm_device.h>
+>  #include <drm/drm_drv.h>
+>  #include <drm/drm_file.h>
+> @@ -525,6 +526,7 @@ static void drm_gem_check_release_pagevec(struct pagevec *pvec)
+>   * drm_gem_get_pages - helper to allocate backing pages for a GEM object
+>   * from shmem
+>   * @obj: obj in question
+> + * @clflush: whether to clear any CPU caches associated with the backing store
+>   *
+>   * This reads the page-array of the shmem-backing storage of the given gem
+>   * object. An array of pages is returned. If a page is not allocated or
+> @@ -546,14 +548,13 @@ static void drm_gem_check_release_pagevec(struct pagevec *pvec)
+>   * drm_gem_object_init(), but not for those initialized with
+>   * drm_gem_private_object_init() only.
+>   */
+> -struct page **drm_gem_get_pages(struct drm_gem_object *obj)
+> +struct page **drm_gem_get_pages(struct drm_gem_object *obj, bool clflush)
+>  {
+>  	struct address_space *mapping;
+>  	struct page *p, **pages;
+>  	struct pagevec pvec;
+>  	int i, npages;
+>  
+> -
+>  	if (WARN_ON(!obj->filp))
+>  		return ERR_PTR(-EINVAL);
+>  
+> @@ -589,6 +590,9 @@ struct page **drm_gem_get_pages(struct drm_gem_object *obj)
+>  				(page_to_pfn(p) >= 0x00100000UL));
+>  	}
+>  
+> +	if (clflush)
+> +		drm_clflush_pages(pages, npages);
+> +
+>  	return pages;
+>  
+>  fail:
+> diff --git a/drivers/gpu/drm/drm_gem_shmem_helper.c b/drivers/gpu/drm/drm_gem_shmem_helper.c
+> index fb11df7aced5..78a2eb77802b 100644
+> --- a/drivers/gpu/drm/drm_gem_shmem_helper.c
+> +++ b/drivers/gpu/drm/drm_gem_shmem_helper.c
+> @@ -152,7 +152,13 @@ static int drm_gem_shmem_get_pages_locked(struct drm_gem_shmem_object *shmem)
+>  	if (shmem->pages_use_count++ > 0)
+>  		return 0;
+>  
+> -	pages = drm_gem_get_pages(obj);
+> +	/*
+> +	 * On some processors (such as arch/x86), accessing a page via a WC PAT
+> +	 * is bypassed if the page is physically tagged in the CPU cache, and
+> +	 * the access is serviced by the cache instead -- which leads to
+> +	 * incoherency should the physical page itself be accessed using DMA.
+> +	 */
+> +	pages = drm_gem_get_pages(obj, !shmem->map_cached);
+>  	if (IS_ERR(pages)) {
+>  		DRM_DEBUG_KMS("Failed to get pages (%ld)\n", PTR_ERR(pages));
+>  		shmem->pages_use_count = 0;
+> diff --git a/drivers/gpu/drm/etnaviv/etnaviv_gem.c b/drivers/gpu/drm/etnaviv/etnaviv_gem.c
+> index 67d9a2b9ea6a..d8279ea363b3 100644
+> --- a/drivers/gpu/drm/etnaviv/etnaviv_gem.c
+> +++ b/drivers/gpu/drm/etnaviv/etnaviv_gem.c
+> @@ -58,7 +58,7 @@ static void etnaviv_gem_scatterlist_unmap(struct etnaviv_gem_object *etnaviv_obj
+>  static int etnaviv_gem_shmem_get_pages(struct etnaviv_gem_object *etnaviv_obj)
+>  {
+>  	struct drm_device *dev = etnaviv_obj->base.dev;
+> -	struct page **p = drm_gem_get_pages(&etnaviv_obj->base);
+> +	struct page **p = drm_gem_get_pages(&etnaviv_obj->base, false);
+>  
+>  	if (IS_ERR(p)) {
+>  		dev_dbg(dev->dev, "could not get pages: %ld\n", PTR_ERR(p));
+> diff --git a/drivers/gpu/drm/gma500/gtt.c b/drivers/gpu/drm/gma500/gtt.c
+> index 9278bcfad1bf..ada56aec7e68 100644
+> --- a/drivers/gpu/drm/gma500/gtt.c
+> +++ b/drivers/gpu/drm/gma500/gtt.c
+> @@ -197,7 +197,7 @@ static int psb_gtt_attach_pages(struct gtt_range *gt)
+>  
+>  	WARN_ON(gt->pages);
+>  
+> -	pages = drm_gem_get_pages(&gt->gem);
+> +	pages = drm_gem_get_pages(&gt->gem, false);
+>  	if (IS_ERR(pages))
+>  		return PTR_ERR(pages);
+>  
+> diff --git a/drivers/gpu/drm/msm/msm_gem.c b/drivers/gpu/drm/msm/msm_gem.c
+> index c79828d31822..a7a67ef4e27e 100644
+> --- a/drivers/gpu/drm/msm/msm_gem.c
+> +++ b/drivers/gpu/drm/msm/msm_gem.c
+> @@ -102,7 +102,7 @@ static struct page **get_pages(struct drm_gem_object *obj)
+>  		int npages = obj->size >> PAGE_SHIFT;
+>  
+>  		if (use_pages(obj))
+> -			p = drm_gem_get_pages(obj);
+> +			p = drm_gem_get_pages(obj, false);
+>  		else
+>  			p = get_pages_vram(obj, npages);
+>  
+> diff --git a/drivers/gpu/drm/omapdrm/omap_gem.c b/drivers/gpu/drm/omapdrm/omap_gem.c
+> index d8e09792793a..1ff272c4be33 100644
+> --- a/drivers/gpu/drm/omapdrm/omap_gem.c
+> +++ b/drivers/gpu/drm/omapdrm/omap_gem.c
+> @@ -236,7 +236,7 @@ static int omap_gem_attach_pages(struct drm_gem_object *obj)
+>  	if (!(omap_obj->flags & OMAP_BO_MEM_SHMEM) || omap_obj->pages)
+>  		return 0;
+>  
+> -	pages = drm_gem_get_pages(obj);
+> +	pages = drm_gem_get_pages(obj, false);
+>  	if (IS_ERR(pages)) {
+>  		dev_err(obj->dev->dev, "could not get pages: %ld\n", PTR_ERR(pages));
+>  		return PTR_ERR(pages);
+> diff --git a/drivers/gpu/drm/rockchip/rockchip_drm_gem.c b/drivers/gpu/drm/rockchip/rockchip_drm_gem.c
+> index 7d5ebb10323b..003b76c3e623 100644
+> --- a/drivers/gpu/drm/rockchip/rockchip_drm_gem.c
+> +++ b/drivers/gpu/drm/rockchip/rockchip_drm_gem.c
+> @@ -80,7 +80,7 @@ static int rockchip_gem_get_pages(struct rockchip_gem_object *rk_obj)
+>  	int ret, i;
+>  	struct scatterlist *s;
+>  
+> -	rk_obj->pages = drm_gem_get_pages(&rk_obj->base);
+> +	rk_obj->pages = drm_gem_get_pages(&rk_obj->base, false);
+>  	if (IS_ERR(rk_obj->pages))
+>  		return PTR_ERR(rk_obj->pages);
+>  
+> diff --git a/drivers/gpu/drm/tegra/gem.c b/drivers/gpu/drm/tegra/gem.c
+> index 26af8daa9a16..f075f005ecbb 100644
+> --- a/drivers/gpu/drm/tegra/gem.c
+> +++ b/drivers/gpu/drm/tegra/gem.c
+> @@ -289,7 +289,7 @@ static int tegra_bo_get_pages(struct drm_device *drm, struct tegra_bo *bo)
+>  {
+>  	int err;
+>  
+> -	bo->pages = drm_gem_get_pages(&bo->gem);
+> +	bo->pages = drm_gem_get_pages(&bo->gem, false);
+>  	if (IS_ERR(bo->pages))
+>  		return PTR_ERR(bo->pages);
+>  
+> diff --git a/drivers/gpu/drm/vgem/vgem_drv.c b/drivers/gpu/drm/vgem/vgem_drv.c
+> index fa54a6d1403d..f38dd590fa45 100644
+> --- a/drivers/gpu/drm/vgem/vgem_drv.c
+> +++ b/drivers/gpu/drm/vgem/vgem_drv.c
+> @@ -272,7 +272,7 @@ static struct page **vgem_pin_pages(struct drm_vgem_gem_object *bo)
+>  	if (bo->pages_pin_count++ == 0) {
+>  		struct page **pages;
+>  
+> -		pages = drm_gem_get_pages(&bo->base);
+> +		pages = drm_gem_get_pages(&bo->base, false);
+>  		if (IS_ERR(pages)) {
+>  			bo->pages_pin_count--;
+>  			mutex_unlock(&bo->pages_lock);
+> diff --git a/drivers/gpu/drm/vkms/vkms_gem.c b/drivers/gpu/drm/vkms/vkms_gem.c
+> index 19a0e260a4df..1d17b0ef56c7 100644
+> --- a/drivers/gpu/drm/vkms/vkms_gem.c
+> +++ b/drivers/gpu/drm/vkms/vkms_gem.c
+> @@ -166,7 +166,7 @@ static struct page **_get_pages(struct vkms_gem_object *vkms_obj)
+>  	struct drm_gem_object *gem_obj = &vkms_obj->gem;
+>  
+>  	if (!vkms_obj->pages) {
+> -		struct page **pages = drm_gem_get_pages(gem_obj);
+> +		struct page **pages = drm_gem_get_pages(gem_obj, false);
+>  
+>  		if (IS_ERR(pages))
+>  			return pages;
+> diff --git a/drivers/gpu/drm/xen/xen_drm_front_gem.c b/drivers/gpu/drm/xen/xen_drm_front_gem.c
+> index 4f34ef34ba60..520a15d75eb6 100644
+> --- a/drivers/gpu/drm/xen/xen_drm_front_gem.c
+> +++ b/drivers/gpu/drm/xen/xen_drm_front_gem.c
+> @@ -132,7 +132,7 @@ static struct xen_gem_object *gem_create(struct drm_device *dev, size_t size)
+>  	 * with the backend
+>  	 */
+>  	xen_obj->num_pages = DIV_ROUND_UP(size, PAGE_SIZE);
+> -	xen_obj->pages = drm_gem_get_pages(&xen_obj->base);
+> +	xen_obj->pages = drm_gem_get_pages(&xen_obj->base, false);
+>  	if (IS_ERR(xen_obj->pages)) {
+>  		ret = PTR_ERR(xen_obj->pages);
+>  		xen_obj->pages = NULL;
+> diff --git a/include/drm/drm_gem.h b/include/drm/drm_gem.h
+> index c38dd35da00b..118f13b1bb29 100644
+> --- a/include/drm/drm_gem.h
+> +++ b/include/drm/drm_gem.h
+> @@ -395,7 +395,7 @@ void drm_gem_free_mmap_offset(struct drm_gem_object *obj);
+>  int drm_gem_create_mmap_offset(struct drm_gem_object *obj);
+>  int drm_gem_create_mmap_offset_size(struct drm_gem_object *obj, size_t size);
+>  
+> -struct page **drm_gem_get_pages(struct drm_gem_object *obj);
+> +struct page **drm_gem_get_pages(struct drm_gem_object *obj, bool clflush);
+>  void drm_gem_put_pages(struct drm_gem_object *obj, struct page **pages,
+>  		bool dirty, bool accessed);
+>  
+> -- 
+> 2.20.1
+> 
+> _______________________________________________
+> dri-devel mailing list
+> dri-devel@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/dri-devel
+
+-- 
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
