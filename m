@@ -2,45 +2,42 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D6F6A28C4E5
-	for <lists+intel-gfx@lfdr.de>; Tue, 13 Oct 2020 00:51:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 26EB928C521
+	for <lists+intel-gfx@lfdr.de>; Tue, 13 Oct 2020 01:18:41 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 547086E831;
-	Mon, 12 Oct 2020 22:51:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5CA5F6E233;
+	Mon, 12 Oct 2020 23:18:36 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F05476E831
- for <intel-gfx@lists.freedesktop.org>; Mon, 12 Oct 2020 22:51:37 +0000 (UTC)
-IronPort-SDR: t4z6LsL9oqb0sDgN5ikboPQ7UvDoFpciuz19RrLr+uRSJucTVtP4zwJ9wHwVrE1SmFOHSBMwct
- dT5fU2sqbJdA==
-X-IronPort-AV: E=McAfee;i="6000,8403,9772"; a="227458364"
-X-IronPort-AV: E=Sophos;i="5.77,368,1596524400"; d="scan'208";a="227458364"
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 68D6B6E06E;
+ Mon, 12 Oct 2020 23:18:35 +0000 (UTC)
+IronPort-SDR: gkeKcViJs9ynU+I4Hi/hzHtizAWuvDcqabrG0DzhvIf1dwPUVJyv05CoOobmr63u7bUL6v66uN
+ LG2+BrTqD8tA==
+X-IronPort-AV: E=McAfee;i="6000,8403,9772"; a="165878063"
+X-IronPort-AV: E=Sophos;i="5.77,368,1596524400"; d="scan'208";a="165878063"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Oct 2020 15:51:35 -0700
-IronPort-SDR: yU2gM0OHkaulD+9FL7s+PAkJRSTgzOFpYJbprCrGenAbUggbAzqAqPtf0m/G0RqV2XSskC61gu
- qhkXFoUph1kg==
-X-IronPort-AV: E=Sophos;i="5.77,368,1596524400"; d="scan'208";a="463264061"
-Received: from smiththe-mobl.amr.corp.intel.com (HELO [10.251.3.216])
- ([10.251.3.216])
- by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Oct 2020 15:51:35 -0700
-To: Lucas De Marchi <lucas.demarchi@intel.com>, intel-gfx@lists.freedesktop.org
-References: <20201012212959.871513-1-lucas.demarchi@intel.com>
- <20201012212959.871513-8-lucas.demarchi@intel.com>
-From: Aditya Swarup <aditya.swarup@intel.com>
-Message-ID: <fb68c55e-5b1d-1928-2295-8ddcd7b77660@intel.com>
-Date: Mon, 12 Oct 2020 15:51:29 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Oct 2020 16:18:34 -0700
+IronPort-SDR: hwHGa0BRLcWwXPpaJhlAKSMfm3bmnEIv35G6Jw34kWUWZKSkyuLTW02FsodEFQjYvscUxPjnFZ
+ ThE9nf3URdGA==
+X-IronPort-AV: E=Sophos;i="5.77,368,1596524400"; d="scan'208";a="530156534"
+Received: from mdroper-desk1.fm.intel.com (HELO
+ mdroper-desk1.amr.corp.intel.com) ([10.1.27.168])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Oct 2020 16:18:33 -0700
+Date: Mon, 12 Oct 2020 16:18:32 -0700
+From: Matt Roper <matthew.d.roper@intel.com>
+To: Tejas Upadhyay <tejaskumarx.surendrakumar.upadhyay@intel.com>
+Message-ID: <20201012231832.GJ3805439@mdroper-desk1.amr.corp.intel.com>
+References: <20201007093638.15006-1-tejaskumarx.surendrakumar.upadhyay@intel.com>
 MIME-Version: 1.0
-In-Reply-To: <20201012212959.871513-8-lucas.demarchi@intel.com>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH v7 07/15] drm/i915/dg1: add hpd interrupt
- handling
+Content-Disposition: inline
+In-Reply-To: <20201007093638.15006-1-tejaskumarx.surendrakumar.upadhyay@intel.com>
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/jsl: Split EHL/JSL platform info
+ and PCI ids
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,140 +50,575 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gMTAvMTIvMjAgMjoyOSBQTSwgTHVjYXMgRGUgTWFyY2hpIHdyb3RlOgo+IERHMSBoYXMgb25l
-IG1vcmUgY29tYm8gcGh5IHBvcnQsIG5vIFRDIGFuZCBhbGwgaXJxIGhhbmRsaW5nIGdvZXMgdGhy
-b3VnaAo+IFNERSwgbGlrZSBmb3IgTUNDLgo+IAo+IHYyOiBBbHNvIGNoYW5nZSBpbnRlbF9ocGRf
-cGluX2RlZmF1bHQoKSB0byBpbmNsdWRlIERHMSBtYXBwaW5nCj4gdjM6IFJlYmFzZSBvbiBocGQg
-cmVmYWN0b3IKPiAKPiBDYzogVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4Lmlu
-dGVsLmNvbT4KPiBDYzogQW5zaHVtYW4gR3VwdGEgPGFuc2h1bWFuLmd1cHRhQGludGVsLmNvbT4K
-PiBDYzogSm9zw6kgUm9iZXJ0byBkZSBTb3V6YSA8am9zZS5zb3V6YUBpbnRlbC5jb20+Cj4gQ2M6
-IEltcmUgRGVhayA8aW1yZS5kZWFrQGludGVsLmNvbT4KPiBTaWduZWQtb2ZmLWJ5OiBMdWNhcyBE
-ZSBNYXJjaGkgPGx1Y2FzLmRlbWFyY2hpQGludGVsLmNvbT4KPiAtLS0KPiAgZHJpdmVycy9ncHUv
-ZHJtL2k5MTUvaTkxNV9pcnEuYyB8IDU4ICsrKysrKysrKysrKysrKysrKysrKysrKysrKysrLS0t
-LQo+ICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X3JlZy5oIHwgIDggKysrKysKPiAgMiBmaWxl
-cyBjaGFuZ2VkLCA1OSBpbnNlcnRpb25zKCspLCA3IGRlbGV0aW9ucygtKQo+IAo+IGRpZmYgLS1n
-aXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2lycS5jIGIvZHJpdmVycy9ncHUvZHJtL2k5
-MTUvaTkxNV9pcnEuYwo+IGluZGV4IGI3NTNjNzdjOWE3Ny4uMGQ2ZTQ4OTRiNTA1IDEwMDY0NAo+
-IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfaXJxLmMKPiArKysgYi9kcml2ZXJzL2dw
-dS9kcm0vaTkxNS9pOTE1X2lycS5jCj4gQEAgLTE1Miw2ICsxNTIsMTMgQEAgc3RhdGljIGNvbnN0
-IHUzMiBocGRfaWNwW0hQRF9OVU1fUElOU10gPSB7Cj4gIAlbSFBEX1BPUlRfVEM2XSA9IFNERV9U
-Q19IT1RQTFVHX0lDUChQT1JUX1RDNiksCj4gIH07Cj4gIAo+ICtzdGF0aWMgY29uc3QgdTMyIGhw
-ZF9kZzFfc2RlW0hQRF9OVU1fUElOU10gPSB7Cj4gKwlbSFBEX1BPUlRfQV0gPSBTREVfRERJX0hP
-VFBMVUdfSUNQKFBIWV9BKSwKPiArCVtIUERfUE9SVF9CXSA9IFNERV9ERElfSE9UUExVR19JQ1Ao
-UEhZX0IpLAo+ICsJW0hQRF9QT1JUX0RdID0gU0RFX0RESV9IT1RQTFVHX0lDUChQSFlfQyksCj4g
-KwlbSFBEX1BPUlRfRV0gPSBTREVfRERJX0hPVFBMVUdfSUNQKFBIWV9EKSwKPiArfTsKPiArCj4g
-IHN0YXRpYyB2b2lkIGludGVsX2hwZF9pbml0X3BpbnMoc3RydWN0IGRybV9pOTE1X3ByaXZhdGUg
-KmRldl9wcml2KQo+ICB7Cj4gIAlzdHJ1Y3QgaTkxNV9ob3RwbHVnICpocGQgPSAmZGV2X3ByaXYt
-PmhvdHBsdWc7Cj4gQEAgLTE3NiwxMSArMTgzLDE0IEBAIHN0YXRpYyB2b2lkIGludGVsX2hwZF9p
-bml0X3BpbnMoc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmRldl9wcml2KQo+ICAJZWxzZQo+ICAJ
-CWhwZC0+aHBkID0gaHBkX2lsazsKPiAgCj4gLQlpZiAoIUhBU19QQ0hfU1BMSVQoZGV2X3ByaXYp
-IHx8IEhBU19QQ0hfTk9QKGRldl9wcml2KSkKPiArCWlmICgoSU5URUxfUENIX1RZUEUoZGV2X3By
-aXYpIDwgUENIX0RHMSkgJiYKPiArCSAgICAoIUhBU19QQ0hfU1BMSVQoZGV2X3ByaXYpIHx8IEhB
-U19QQ0hfTk9QKGRldl9wcml2KSkpCj4gIAkJcmV0dXJuOwo+ICAKPiAtCWlmIChIQVNfUENIX1RH
-UChkZXZfcHJpdikgfHwgSEFTX1BDSF9KU1AoZGV2X3ByaXYpIHx8Cj4gLQkgICAgSEFTX1BDSF9J
-Q1AoZGV2X3ByaXYpIHx8IEhBU19QQ0hfTUNDKGRldl9wcml2KSkKPiArCWlmIChIQVNfUENIX0RH
-MShkZXZfcHJpdikpCj4gKwkJaHBkLT5wY2hfaHBkID0gaHBkX2RnMV9zZGU7Cj4gKwllbHNlIGlm
-IChIQVNfUENIX1RHUChkZXZfcHJpdikgfHwgSEFTX1BDSF9KU1AoZGV2X3ByaXYpIHx8Cj4gKwkJ
-IEhBU19QQ0hfSUNQKGRldl9wcml2KSB8fCBIQVNfUENIX01DQyhkZXZfcHJpdikpCj4gIAkJaHBk
-LT5wY2hfaHBkID0gaHBkX2ljcDsKPiAgCWVsc2UgaWYgKEhBU19QQ0hfQ05QKGRldl9wcml2KSB8
-fCBIQVNfUENIX1NQVChkZXZfcHJpdikpCj4gIAkJaHBkLT5wY2hfaHBkID0gaHBkX3NwdDsKPiBA
-QCAtMTA3OSw2ICsxMDg5LDIyIEBAIHN0YXRpYyBib29sIGljcF9kZGlfcG9ydF9ob3RwbHVnX2xv
-bmdfZGV0ZWN0KGVudW0gaHBkX3BpbiBwaW4sIHUzMiB2YWwpCj4gIAl9Cj4gIH0KPiAgCj4gK3N0
-YXRpYyBib29sIGRnMV9kZGlfcG9ydF9ob3RwbHVnX2xvbmdfZGV0ZWN0KGVudW0gaHBkX3BpbiBw
-aW4sIHUzMiB2YWwpCj4gK3sKPiArCXN3aXRjaCAocGluKSB7Cj4gKwljYXNlIEhQRF9QT1JUX0E6
-Cj4gKwkJcmV0dXJuIHZhbCAmIFNIT1RQTFVHX0NUTF9ERElfSFBEX0xPTkdfREVURUNUKFBPUlRf
-QSk7Cj4gKwljYXNlIEhQRF9QT1JUX0I6Cj4gKwkJcmV0dXJuIHZhbCAmIFNIT1RQTFVHX0NUTF9E
-RElfSFBEX0xPTkdfREVURUNUKFBPUlRfQik7Cj4gKwljYXNlIEhQRF9QT1JUX0Q6Cj4gKwkJcmV0
-dXJuIHZhbCAmIFNIT1RQTFVHX0NUTF9ERElfSFBEX0xPTkdfREVURUNUKFBPUlRfQyk7Cj4gKwlj
-YXNlIEhQRF9QT1JUX0U6Cj4gKwkJcmV0dXJuIHZhbCAmIFNIT1RQTFVHX0NUTF9ERElfSFBEX0xP
-TkdfREVURUNUKFBPUlRfRCk7Cj4gKwlkZWZhdWx0Ogo+ICsJCXJldHVybiBmYWxzZTsKPiArCX0K
-PiArfQo+ICsKPiAgc3RhdGljIGJvb2wgaWNwX3RjX3BvcnRfaG90cGx1Z19sb25nX2RldGVjdChl
-bnVtIGhwZF9waW4gcGluLCB1MzIgdmFsKQo+ICB7Cj4gIAlzd2l0Y2ggKHBpbikgewo+IEBAIC0x
-ODYzLDEyICsxODg5LDE5IEBAIHN0YXRpYyB2b2lkIGljcF9pcnFfaGFuZGxlcihzdHJ1Y3QgZHJt
-X2k5MTVfcHJpdmF0ZSAqZGV2X3ByaXYsIHUzMiBwY2hfaWlyKQo+ICB7Cj4gIAl1MzIgZGRpX2hv
-dHBsdWdfdHJpZ2dlciwgdGNfaG90cGx1Z190cmlnZ2VyOwo+ICAJdTMyIHBpbl9tYXNrID0gMCwg
-bG9uZ19tYXNrID0gMDsKPiArCWJvb2wgKCpkZGlfcG9ydF9ob3RwbHVnX2xvbmdfZGV0ZWN0KShl
-bnVtIGhwZF9waW4gcGluLCB1MzIgdmFsKTsKPiAgCj4gLQlpZiAoSEFTX1BDSF9UR1AoZGV2X3By
-aXYpKSB7Cj4gKwlpZiAoSEFTX1BDSF9ERzEoZGV2X3ByaXYpKSB7Cj4gKwkJZGRpX2hvdHBsdWdf
-dHJpZ2dlciA9IHBjaF9paXIgJiBTREVfRERJX01BU0tfREcxOwo+ICsJCWRkaV9wb3J0X2hvdHBs
-dWdfbG9uZ19kZXRlY3QgPSBkZzFfZGRpX3BvcnRfaG90cGx1Z19sb25nX2RldGVjdDsKPiArCQl0
-Y19ob3RwbHVnX3RyaWdnZXIgPSAwOwo+ICsJfSBlbHNlIGlmIChIQVNfUENIX1RHUChkZXZfcHJp
-dikpIHsKPiAgCQlkZGlfaG90cGx1Z190cmlnZ2VyID0gcGNoX2lpciAmIFNERV9ERElfTUFTS19U
-R1A7Cj4gKwkJZGRpX3BvcnRfaG90cGx1Z19sb25nX2RldGVjdCA9IGljcF9kZGlfcG9ydF9ob3Rw
-bHVnX2xvbmdfZGV0ZWN0Owo+ICAJCXRjX2hvdHBsdWdfdHJpZ2dlciA9IHBjaF9paXIgJiBTREVf
-VENfTUFTS19UR1A7Cj4gIAl9IGVsc2UgaWYgKEhBU19QQ0hfSlNQKGRldl9wcml2KSkgewo+ICAJ
-CWRkaV9ob3RwbHVnX3RyaWdnZXIgPSBwY2hfaWlyICYgU0RFX0RESV9NQVNLX1RHUDsKPiArCQlk
-ZGlfcG9ydF9ob3RwbHVnX2xvbmdfZGV0ZWN0ID0gaWNwX2RkaV9wb3J0X2hvdHBsdWdfbG9uZ19k
-ZXRlY3Q7Cj4gIAkJdGNfaG90cGx1Z190cmlnZ2VyID0gMDsKPiAgCX0gZWxzZSBpZiAoSEFTX1BD
-SF9NQ0MoZGV2X3ByaXYpKSB7Cj4gIAkJZGRpX2hvdHBsdWdfdHJpZ2dlciA9IHBjaF9paXIgJiBT
-REVfRERJX01BU0tfSUNQOwpNaXNzaW5nIGRkaV9wb3J0X2hvdHBsdWdfbG9uZ19kZXRlY3QgYXNz
-aWdubWVudCBmb3IgSEFTX1BDSF9NQ0MuIAoKSnVzdCBhIHN1Z2dlc3Rpb246IFdlIGNhbiBieSBk
-ZWZhdWx0IGFzc2lnbiBkZGlfcG9ydF9ob3RwbHVnX2xvbmdfZGV0ZWN0IHdpdGggaWNwX2RkaV9w
-b3J0X2hvdHBsdWdfbG9uZ19kZXRlY3QKb3V0c2lkZSB0aGUgaWYgZWxzZSBicmFuY2hpbmcoZHVy
-aW5nIGRlY2xhcmF0aW9uKS4KQXNzaWduIHRoZSBmdW5jIHB0ciB3aXRoaW4gcGxhdGZvcm0gY2hl
-Y2tzIG9ubHkgaWYgaXQgaXMgZGlmZmVyZW50IGZyb20gaWNwIGxpa2UgaW4gdGhlIGNhc2UgZm9y
-IGRnMS4KCkFkaXR5YQo+IEBAIC0xODc5LDYgKzE5MTIsNyBAQCBzdGF0aWMgdm9pZCBpY3BfaXJx
-X2hhbmRsZXIoc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmRldl9wcml2LCB1MzIgcGNoX2lpcikK
-PiAgCQkJIElOVEVMX1BDSF9UWVBFKGRldl9wcml2KSk7Cj4gIAo+ICAJCWRkaV9ob3RwbHVnX3Ry
-aWdnZXIgPSBwY2hfaWlyICYgU0RFX0RESV9NQVNLX0lDUDsKPiArCQlkZGlfcG9ydF9ob3RwbHVn
-X2xvbmdfZGV0ZWN0ID0gaWNwX2RkaV9wb3J0X2hvdHBsdWdfbG9uZ19kZXRlY3Q7Cj4gIAkJdGNf
-aG90cGx1Z190cmlnZ2VyID0gcGNoX2lpciAmIFNERV9UQ19NQVNLX0lDUDsKPiAgCX0KPiAgCj4g
-QEAgLTE4OTEsNyArMTkyNSw3IEBAIHN0YXRpYyB2b2lkIGljcF9pcnFfaGFuZGxlcihzdHJ1Y3Qg
-ZHJtX2k5MTVfcHJpdmF0ZSAqZGV2X3ByaXYsIHUzMiBwY2hfaWlyKQo+ICAJCWludGVsX2dldF9o
-cGRfcGlucyhkZXZfcHJpdiwgJnBpbl9tYXNrLCAmbG9uZ19tYXNrLAo+ICAJCQkJICAgZGRpX2hv
-dHBsdWdfdHJpZ2dlciwgZGlnX2hvdHBsdWdfcmVnLAo+ICAJCQkJICAgZGV2X3ByaXYtPmhvdHBs
-dWcucGNoX2hwZCwKPiAtCQkJCSAgIGljcF9kZGlfcG9ydF9ob3RwbHVnX2xvbmdfZGV0ZWN0KTsK
-PiArCQkJCSAgIGRkaV9wb3J0X2hvdHBsdWdfbG9uZ19kZXRlY3QpOwo+ICAJfQo+ICAKPiAgCWlm
-ICh0Y19ob3RwbHVnX3RyaWdnZXIpIHsKPiBAQCAtMzI1Miw2ICszMjg2LDEyIEBAIHN0YXRpYyB2
-b2lkIGpzcF9ocGRfaXJxX3NldHVwKHN0cnVjdCBkcm1faTkxNV9wcml2YXRlICpkZXZfcHJpdikK
-PiAgCQkJICBUR1BfRERJX0hQRF9FTkFCTEVfTUFTSywgMCk7Cj4gIH0KPiAgCj4gK3N0YXRpYyB2
-b2lkIGRnMV9ocGRfaXJxX3NldHVwKHN0cnVjdCBkcm1faTkxNV9wcml2YXRlICpkZXZfcHJpdikK
-PiArewo+ICsJaWNwX2hwZF9pcnFfc2V0dXAoZGV2X3ByaXYsCj4gKwkJCSAgREcxX0RESV9IUERf
-RU5BQkxFX01BU0ssIDApOwo+ICt9Cj4gKwo+ICBzdGF0aWMgdm9pZCBnZW4xMV9ocGRfZGV0ZWN0
-aW9uX3NldHVwKHN0cnVjdCBkcm1faTkxNV9wcml2YXRlICpkZXZfcHJpdikKPiAgewo+ICAJdTMy
-IGhvdHBsdWc7Cj4gQEAgLTM2NDUsNyArMzY4NSw5IEBAIHN0YXRpYyB2b2lkIGljcF9pcnFfcG9z
-dGluc3RhbGwoc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmRldl9wcml2KQo+ICAJZ2VuM19hc3Nl
-cnRfaWlyX2lzX3plcm8oJmRldl9wcml2LT51bmNvcmUsIFNERUlJUik7Cj4gIAlJOTE1X1dSSVRF
-KFNERUlNUiwgfm1hc2spOwo+ICAKPiAtCWlmIChIQVNfUENIX1RHUChkZXZfcHJpdikpIHsKPiAr
-CWlmIChIQVNfUENIX0RHMShkZXZfcHJpdikpCj4gKwkJaWNwX2RkaV9ocGRfZGV0ZWN0aW9uX3Nl
-dHVwKGRldl9wcml2LCBERzFfRERJX0hQRF9FTkFCTEVfTUFTSyk7Cj4gKwllbHNlIGlmIChIQVNf
-UENIX1RHUChkZXZfcHJpdikpIHsKPiAgCQlpY3BfZGRpX2hwZF9kZXRlY3Rpb25fc2V0dXAoZGV2
-X3ByaXYsIFRHUF9ERElfSFBEX0VOQUJMRV9NQVNLKTsKPiAgCQlpY3BfdGNfaHBkX2RldGVjdGlv
-bl9zZXR1cChkZXZfcHJpdiwgVEdQX1RDX0hQRF9FTkFCTEVfTUFTSyk7Cj4gIAl9IGVsc2UgaWYg
-KEhBU19QQ0hfSlNQKGRldl9wcml2KSkgewo+IEBAIC00MTYyLDcgKzQyMDQsOSBAQCB2b2lkIGlu
-dGVsX2lycV9pbml0KHN0cnVjdCBkcm1faTkxNV9wcml2YXRlICpkZXZfcHJpdikKPiAgCQlpZiAo
-STkxNV9IQVNfSE9UUExVRyhkZXZfcHJpdikpCj4gIAkJCWRldl9wcml2LT5kaXNwbGF5LmhwZF9p
-cnFfc2V0dXAgPSBpOTE1X2hwZF9pcnFfc2V0dXA7Cj4gIAl9IGVsc2Ugewo+IC0JCWlmIChIQVNf
-UENIX0pTUChkZXZfcHJpdikpCj4gKwkJaWYgKEhBU19QQ0hfREcxKGRldl9wcml2KSkKPiArCQkJ
-ZGV2X3ByaXYtPmRpc3BsYXkuaHBkX2lycV9zZXR1cCA9IGRnMV9ocGRfaXJxX3NldHVwOwo+ICsJ
-CWVsc2UgaWYgKEhBU19QQ0hfSlNQKGRldl9wcml2KSkKPiAgCQkJZGV2X3ByaXYtPmRpc3BsYXku
-aHBkX2lycV9zZXR1cCA9IGpzcF9ocGRfaXJxX3NldHVwOwo+ICAJCWVsc2UgaWYgKEhBU19QQ0hf
-TUNDKGRldl9wcml2KSkKPiAgCQkJZGV2X3ByaXYtPmRpc3BsYXkuaHBkX2lycV9zZXR1cCA9IG1j
-Y19ocGRfaXJxX3NldHVwOwo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1
-X3JlZy5oIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9yZWcuaAo+IGluZGV4IDQ5OTQ1ZTMz
-ZjU3My4uZTdmMWFhYzU1M2QwIDEwMDY0NAo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5
-MTVfcmVnLmgKPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X3JlZy5oCj4gQEAgLTgy
-MzAsNiArODIzMCwxMCBAQCBlbnVtIHsKPiAgCQkJCQkgU0RFX1RDX0hPVFBMVUdfSUNQKFBPUlRf
-VEMzKSB8IFwKPiAgCQkJCQkgU0RFX1RDX0hPVFBMVUdfSUNQKFBPUlRfVEMyKSB8IFwKPiAgCQkJ
-CQkgU0RFX1RDX0hPVFBMVUdfSUNQKFBPUlRfVEMxKSkKPiArI2RlZmluZSBTREVfRERJX01BU0tf
-REcxCQkoU0RFX0RESV9IT1RQTFVHX0lDUChQT1JUX0QpIHwgXAo+ICsJCQkJCSBTREVfRERJX0hP
-VFBMVUdfSUNQKFBPUlRfQykgfCBcCj4gKwkJCQkJIFNERV9ERElfSE9UUExVR19JQ1AoUE9SVF9C
-KSB8IFwKPiArCQkJCQkgU0RFX0RESV9IT1RQTFVHX0lDUChQT1JUX0EpKQo+ICAKPiAgI2RlZmlu
-ZSBTREVJU1IgIF9NTUlPKDB4YzQwMDApCj4gICNkZWZpbmUgU0RFSU1SICBfTU1JTygweGM0MDA0
-KQo+IEBAIC04NDI5LDYgKzg0MzMsMTAgQEAgZW51bSB7Cj4gICNkZWZpbmUgVEdQX1RDX0hQRF9F
-TkFCTEVfTUFTSwkJKElDUF9UQ19IUERfRU5BQkxFKFBPUlRfVEM2KSB8IFwKPiAgCQkJCQkgSUNQ
-X1RDX0hQRF9FTkFCTEUoUE9SVF9UQzUpIHwgXAo+ICAJCQkJCSBJQ1BfVENfSFBEX0VOQUJMRV9N
-QVNLKQo+ICsjZGVmaW5lIERHMV9ERElfSFBEX0VOQUJMRV9NQVNLCQkoU0hPVFBMVUdfQ1RMX0RE
-SV9IUERfRU5BQkxFKFBPUlRfRCkgfCBcCj4gKwkJCQkJIFNIT1RQTFVHX0NUTF9ERElfSFBEX0VO
-QUJMRShQT1JUX0MpIHwgXAo+ICsJCQkJCSBTSE9UUExVR19DVExfRERJX0hQRF9FTkFCTEUoUE9S
-VF9CKSB8IFwKPiArCQkJCQkgU0hPVFBMVUdfQ1RMX0RESV9IUERfRU5BQkxFKFBPUlRfQSkpCj4g
-IAo+ICAjZGVmaW5lIF9QQ0hfRFBMTF9BICAgICAgICAgICAgICAweGM2MDE0Cj4gICNkZWZpbmUg
-X1BDSF9EUExMX0IgICAgICAgICAgICAgIDB4YzYwMTgKPiAKCl9fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwt
-Z2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9t
-YWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
+On Wed, Oct 07, 2020 at 03:06:38PM +0530, Tejas Upadhyay wrote:
+> Recently we came across requirement to identify EHL and JSL
+> platform to program them differently. Thus Split the basic
+> platform definition, macros, and PCI IDs to differentiate
+> between EHL and JSL platforms. Also, IS_ELKHARTLAKE is replaced
+> with IS_JSL_EHL everywhere.
+
+I think the one other place that will need to be updated with this split
+is the definition of INTEL_UC_FIRMWARE_DEFS in
+drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c --- we'll need a new JASPERLAKE
+entry there now that's a duplicate of the ELKHARTLAKE one.
+
+There are also a couple minor conflicts with other patches that have
+just landed on drm-tip, but aside from that this looks reasonable to me.
+
+
+Matt
+
+> =
+
+> Cc : Matt Roper <matthew.d.roper@intel.com>
+> Cc : Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> Signed-off-by: Tejas Upadhyay <tejaskumarx.surendrakumar.upadhyay@intel.c=
+om>
+> ---
+>  drivers/gpu/drm/i915/display/icl_dsi.c         |  4 ++--
+>  drivers/gpu/drm/i915/display/intel_cdclk.c     |  4 ++--
+>  drivers/gpu/drm/i915/display/intel_combo_phy.c |  6 +++---
+>  drivers/gpu/drm/i915/display/intel_ddi.c       | 12 ++++++------
+>  drivers/gpu/drm/i915/display/intel_display.c   |  8 ++++----
+>  drivers/gpu/drm/i915/display/intel_dp.c        |  2 +-
+>  drivers/gpu/drm/i915/display/intel_dpll_mgr.c  | 16 ++++++++--------
+>  drivers/gpu/drm/i915/gt/intel_sseu.c           |  2 +-
+>  drivers/gpu/drm/i915/gt/intel_workarounds.c    |  4 ++--
+>  drivers/gpu/drm/i915/i915_drv.h                |  7 ++++---
+>  drivers/gpu/drm/i915/i915_pci.c                |  9 +++++++++
+>  drivers/gpu/drm/i915/intel_device_info.c       |  1 +
+>  drivers/gpu/drm/i915/intel_device_info.h       |  1 +
+>  drivers/gpu/drm/i915/intel_pch.c               |  6 +++---
+>  include/drm/i915_pciids.h                      |  9 ++++++---
+>  15 files changed, 53 insertions(+), 38 deletions(-)
+> =
+
+> diff --git a/drivers/gpu/drm/i915/display/icl_dsi.c b/drivers/gpu/drm/i91=
+5/display/icl_dsi.c
+> index 4400e83f783f..096652921453 100644
+> --- a/drivers/gpu/drm/i915/display/icl_dsi.c
+> +++ b/drivers/gpu/drm/i915/display/icl_dsi.c
+> @@ -455,7 +455,7 @@ static void gen11_dsi_config_phy_lanes_sequence(struc=
+t intel_encoder *encoder)
+>  		intel_de_write(dev_priv, ICL_PORT_TX_DW2_GRP(phy), tmp);
+>  =
+
+>  		/* For EHL, TGL, set latency optimization for PCS_DW1 lanes */
+> -		if (IS_ELKHARTLAKE(dev_priv) || (INTEL_GEN(dev_priv) >=3D 12)) {
+> +		if (IS_JSL_EHL(dev_priv) || (INTEL_GEN(dev_priv) >=3D 12)) {
+>  			tmp =3D intel_de_read(dev_priv,
+>  					    ICL_PORT_PCS_DW1_AUX(phy));
+>  			tmp &=3D ~LATENCY_OPTIM_MASK;
+> @@ -612,7 +612,7 @@ gen11_dsi_setup_dphy_timings(struct intel_encoder *en=
+coder,
+>  		}
+>  	}
+>  =
+
+> -	if (IS_ELKHARTLAKE(dev_priv)) {
+> +	if (IS_JSL_EHL(dev_priv)) {
+>  		for_each_dsi_phy(phy, intel_dsi->phys) {
+>  			tmp =3D intel_de_read(dev_priv, ICL_DPHY_CHKN(phy));
+>  			tmp |=3D ICL_DPHY_CHKN_AFE_OVER_PPI_STRAP;
+> diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm=
+/i915/display/intel_cdclk.c
+> index cb93f6cf6d37..c6e87569b3d6 100644
+> --- a/drivers/gpu/drm/i915/display/intel_cdclk.c
+> +++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
+> @@ -2588,7 +2588,7 @@ static int intel_compute_max_dotclk(struct drm_i915=
+_private *dev_priv)
+>   */
+>  void intel_update_max_cdclk(struct drm_i915_private *dev_priv)
+>  {
+> -	if (IS_ELKHARTLAKE(dev_priv)) {
+> +	if (IS_JSL_EHL(dev_priv)) {
+>  		if (dev_priv->cdclk.hw.ref =3D=3D 24000)
+>  			dev_priv->max_cdclk_freq =3D 552000;
+>  		else
+> @@ -2815,7 +2815,7 @@ void intel_init_cdclk_hooks(struct drm_i915_private=
+ *dev_priv)
+>  		dev_priv->display.modeset_calc_cdclk =3D bxt_modeset_calc_cdclk;
+>  		dev_priv->display.calc_voltage_level =3D tgl_calc_voltage_level;
+>  		dev_priv->cdclk.table =3D icl_cdclk_table;
+> -	} else if (IS_ELKHARTLAKE(dev_priv)) {
+> +	} else if (IS_JSL_EHL(dev_priv)) {
+>  		dev_priv->display.set_cdclk =3D bxt_set_cdclk;
+>  		dev_priv->display.bw_calc_min_cdclk =3D skl_bw_calc_min_cdclk;
+>  		dev_priv->display.modeset_calc_cdclk =3D bxt_modeset_calc_cdclk;
+> diff --git a/drivers/gpu/drm/i915/display/intel_combo_phy.c b/drivers/gpu=
+/drm/i915/display/intel_combo_phy.c
+> index 157d8c8c605a..d59ceaa2916a 100644
+> --- a/drivers/gpu/drm/i915/display/intel_combo_phy.c
+> +++ b/drivers/gpu/drm/i915/display/intel_combo_phy.c
+> @@ -188,7 +188,7 @@ static bool has_phy_misc(struct drm_i915_private *i91=
+5, enum phy phy)
+>  	 * PHY-B and may not even have instances of the register for the
+>  	 * other combo PHY's.
+>  	 */
+> -	if (IS_ELKHARTLAKE(i915) ||
+> +	if (IS_JSL_EHL(i915) ||
+>  	    IS_ROCKETLAKE(i915))
+>  		return phy < PHY_C;
+>  =
+
+> @@ -282,7 +282,7 @@ static bool icl_combo_phy_verify_state(struct drm_i91=
+5_private *dev_priv,
+>  		ret &=3D check_phy_reg(dev_priv, phy, ICL_PORT_COMP_DW8(phy),
+>  				     IREFGEN, IREFGEN);
+>  =
+
+> -		if (IS_ELKHARTLAKE(dev_priv)) {
+> +		if (IS_JSL_EHL(dev_priv)) {
+>  			if (ehl_vbt_ddi_d_present(dev_priv))
+>  				expected_val =3D ICL_PHY_MISC_MUX_DDID;
+>  =
+
+> @@ -376,7 +376,7 @@ static void icl_combo_phys_init(struct drm_i915_priva=
+te *dev_priv)
+>  		 * "internal" child devices.
+>  		 */
+>  		val =3D intel_de_read(dev_priv, ICL_PHY_MISC(phy));
+> -		if (IS_ELKHARTLAKE(dev_priv) && phy =3D=3D PHY_A) {
+> +		if (IS_JSL_EHL(dev_priv) && phy =3D=3D PHY_A) {
+>  			val &=3D ~ICL_PHY_MISC_MUX_DDID;
+>  =
+
+>  			if (ehl_vbt_ddi_d_present(dev_priv))
+> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i=
+915/display/intel_ddi.c
+> index 6f7bd67732f2..4f86fd198d70 100644
+> --- a/drivers/gpu/drm/i915/display/intel_ddi.c
+> +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+> @@ -2368,7 +2368,7 @@ static u8 intel_ddi_dp_voltage_max(struct intel_dp =
+*intel_dp,
+>  		else
+>  			tgl_get_dkl_buf_trans(encoder, crtc_state, &n_entries);
+>  	} else if (INTEL_GEN(dev_priv) =3D=3D 11) {
+> -		if (IS_ELKHARTLAKE(dev_priv))
+> +		if (IS_JSL_EHL(dev_priv))
+>  			ehl_get_combo_buf_trans(encoder, crtc_state, &n_entries);
+>  		else if (intel_phy_is_combo(dev_priv, phy))
+>  			icl_get_combo_buf_trans(encoder, crtc_state, &n_entries);
+> @@ -2549,7 +2549,7 @@ static void icl_ddi_combo_vswing_program(struct int=
+el_encoder *encoder,
+>  =
+
+>  	if (INTEL_GEN(dev_priv) >=3D 12)
+>  		ddi_translations =3D tgl_get_combo_buf_trans(encoder, crtc_state, &n_e=
+ntries);
+> -	else if (IS_ELKHARTLAKE(dev_priv))
+> +	else if (IS_JSL_EHL(dev_priv))
+>  		ddi_translations =3D ehl_get_combo_buf_trans(encoder, crtc_state, &n_e=
+ntries);
+>  	else
+>  		ddi_translations =3D icl_get_combo_buf_trans(encoder, crtc_state, &n_e=
+ntries);
+> @@ -3140,7 +3140,7 @@ static void intel_ddi_clk_select(struct intel_encod=
+er *encoder,
+>  		if (!intel_phy_is_combo(dev_priv, phy))
+>  			intel_de_write(dev_priv, DDI_CLK_SEL(port),
+>  				       icl_pll_to_ddi_clk_sel(encoder, crtc_state));
+> -		else if (IS_ELKHARTLAKE(dev_priv) && port >=3D PORT_C)
+> +		else if (IS_JSL_EHL(dev_priv) && port >=3D PORT_C)
+>  			/*
+>  			 * MG does not exist but the programming is required
+>  			 * to ungate DDIC and DDID
+> @@ -3189,7 +3189,7 @@ static void intel_ddi_clk_disable(struct intel_enco=
+der *encoder)
+>  =
+
+>  	if (INTEL_GEN(dev_priv) >=3D 11) {
+>  		if (!intel_phy_is_combo(dev_priv, phy) ||
+> -		    (IS_ELKHARTLAKE(dev_priv) && port >=3D PORT_C))
+> +		    (IS_JSL_EHL(dev_priv) && port >=3D PORT_C))
+>  			intel_de_write(dev_priv, DDI_CLK_SEL(port),
+>  				       DDI_CLK_SEL_NONE);
+>  	} else if (IS_CANNONLAKE(dev_priv)) {
+> @@ -4334,7 +4334,7 @@ void intel_ddi_compute_min_voltage_level(struct drm=
+_i915_private *dev_priv,
+>  {
+>  	if (INTEL_GEN(dev_priv) >=3D 12 && crtc_state->port_clock > 594000)
+>  		crtc_state->min_voltage_level =3D 2;
+> -	else if (IS_ELKHARTLAKE(dev_priv) && crtc_state->port_clock > 594000)
+> +	else if (IS_JSL_EHL(dev_priv) && crtc_state->port_clock > 594000)
+>  		crtc_state->min_voltage_level =3D 3;
+>  	else if (INTEL_GEN(dev_priv) >=3D 11 && crtc_state->port_clock > 594000)
+>  		crtc_state->min_voltage_level =3D 1;
+> @@ -5204,7 +5204,7 @@ void intel_ddi_init(struct drm_i915_private *dev_pr=
+iv, enum port port)
+>  		encoder->hpd_pin =3D rkl_hpd_pin(dev_priv, port);
+>  	else if (INTEL_GEN(dev_priv) >=3D 12)
+>  		encoder->hpd_pin =3D tgl_hpd_pin(dev_priv, port);
+> -	else if (IS_ELKHARTLAKE(dev_priv))
+> +	else if (IS_JSL_EHL(dev_priv))
+>  		encoder->hpd_pin =3D ehl_hpd_pin(dev_priv, port);
+>  	else if (IS_GEN(dev_priv, 11))
+>  		encoder->hpd_pin =3D icl_hpd_pin(dev_priv, port);
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/d=
+rm/i915/display/intel_display.c
+> index 907e1d155443..2ceaad8de75f 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> @@ -7334,7 +7334,7 @@ bool intel_phy_is_combo(struct drm_i915_private *de=
+v_priv, enum phy phy)
+>  		return false;
+>  	else if (IS_ROCKETLAKE(dev_priv))
+>  		return phy <=3D PHY_D;
+> -	else if (IS_ELKHARTLAKE(dev_priv))
+> +	else if (IS_JSL_EHL(dev_priv))
+>  		return phy <=3D PHY_C;
+>  	else if (INTEL_GEN(dev_priv) >=3D 11)
+>  		return phy <=3D PHY_B;
+> @@ -7348,7 +7348,7 @@ bool intel_phy_is_tc(struct drm_i915_private *dev_p=
+riv, enum phy phy)
+>  		return false;
+>  	else if (INTEL_GEN(dev_priv) >=3D 12)
+>  		return phy >=3D PHY_D && phy <=3D PHY_I;
+> -	else if (INTEL_GEN(dev_priv) >=3D 11 && !IS_ELKHARTLAKE(dev_priv))
+> +	else if (INTEL_GEN(dev_priv) >=3D 11 && !IS_JSL_EHL(dev_priv))
+>  		return phy >=3D PHY_C && phy <=3D PHY_F;
+>  	else
+>  		return false;
+> @@ -7358,7 +7358,7 @@ enum phy intel_port_to_phy(struct drm_i915_private =
+*i915, enum port port)
+>  {
+>  	if (IS_ROCKETLAKE(i915) && port >=3D PORT_D)
+>  		return (enum phy)port - 1;
+> -	else if (IS_ELKHARTLAKE(i915) && port =3D=3D PORT_D)
+> +	else if (IS_JSL_EHL(i915) && port =3D=3D PORT_D)
+>  		return PHY_A;
+>  =
+
+>  	return (enum phy)port;
+> @@ -17116,7 +17116,7 @@ static void intel_setup_outputs(struct drm_i915_p=
+rivate *dev_priv)
+>  		intel_ddi_init(dev_priv, PORT_H);
+>  		intel_ddi_init(dev_priv, PORT_I);
+>  		icl_dsi_init(dev_priv);
+> -	} else if (IS_ELKHARTLAKE(dev_priv)) {
+> +	} else if (IS_JSL_EHL(dev_priv)) {
+>  		intel_ddi_init(dev_priv, PORT_A);
+>  		intel_ddi_init(dev_priv, PORT_B);
+>  		intel_ddi_init(dev_priv, PORT_C);
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i9=
+15/display/intel_dp.c
+> index 239016dcd544..67be73acfe4e 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> @@ -277,7 +277,7 @@ static int icl_max_source_rate(struct intel_dp *intel=
+_dp)
+>  	enum phy phy =3D intel_port_to_phy(dev_priv, dig_port->base.port);
+>  =
+
+>  	if (intel_phy_is_combo(dev_priv, phy) &&
+> -	    !IS_ELKHARTLAKE(dev_priv) &&
+> +	    !IS_JSL_EHL(dev_priv) &&
+>  	    !intel_dp_is_edp(intel_dp))
+>  		return 540000;
+>  =
+
+> diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c b/drivers/gpu/=
+drm/i915/display/intel_dpll_mgr.c
+> index 2cc0e84e41ea..48c30c50a301 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
+> @@ -152,7 +152,7 @@ intel_combo_pll_enable_reg(struct drm_i915_private *i=
+915,
+>  			   struct intel_shared_dpll *pll)
+>  {
+>  =
+
+> -	if (IS_ELKHARTLAKE(i915) && (pll->info->id =3D=3D DPLL_ID_EHL_DPLL4))
+> +	if (IS_JSL_EHL(i915) && (pll->info->id =3D=3D DPLL_ID_EHL_DPLL4))
+>  		return MG_PLL_ENABLE(0);
+>  =
+
+>  	return CNL_DPLL_ENABLE(pll->info->id);
+> @@ -3551,7 +3551,7 @@ static bool icl_get_combo_phy_dpll(struct intel_ato=
+mic_state *state,
+>  			BIT(DPLL_ID_EHL_DPLL4) |
+>  			BIT(DPLL_ID_ICL_DPLL1) |
+>  			BIT(DPLL_ID_ICL_DPLL0);
+> -	} else if (IS_ELKHARTLAKE(dev_priv) && port !=3D PORT_A) {
+> +	} else if (IS_JSL_EHL(dev_priv) && port !=3D PORT_A) {
+>  		dpll_mask =3D
+>  			BIT(DPLL_ID_EHL_DPLL4) |
+>  			BIT(DPLL_ID_ICL_DPLL1) |
+> @@ -3853,7 +3853,7 @@ static bool icl_pll_get_hw_state(struct drm_i915_pr=
+ivate *dev_priv,
+>  		hw_state->cfgcr1 =3D intel_de_read(dev_priv,
+>  						 TGL_DPLL_CFGCR1(id));
+>  	} else {
+> -		if (IS_ELKHARTLAKE(dev_priv) && id =3D=3D DPLL_ID_EHL_DPLL4) {
+> +		if (IS_JSL_EHL(dev_priv) && id =3D=3D DPLL_ID_EHL_DPLL4) {
+>  			hw_state->cfgcr0 =3D intel_de_read(dev_priv,
+>  							 ICL_DPLL_CFGCR0(4));
+>  			hw_state->cfgcr1 =3D intel_de_read(dev_priv,
+> @@ -3902,7 +3902,7 @@ static void icl_dpll_write(struct drm_i915_private =
+*dev_priv,
+>  		cfgcr0_reg =3D TGL_DPLL_CFGCR0(id);
+>  		cfgcr1_reg =3D TGL_DPLL_CFGCR1(id);
+>  	} else {
+> -		if (IS_ELKHARTLAKE(dev_priv) && id =3D=3D DPLL_ID_EHL_DPLL4) {
+> +		if (IS_JSL_EHL(dev_priv) && id =3D=3D DPLL_ID_EHL_DPLL4) {
+>  			cfgcr0_reg =3D ICL_DPLL_CFGCR0(4);
+>  			cfgcr1_reg =3D ICL_DPLL_CFGCR1(4);
+>  		} else {
+> @@ -4076,7 +4076,7 @@ static void combo_pll_enable(struct drm_i915_privat=
+e *dev_priv,
+>  {
+>  	i915_reg_t enable_reg =3D intel_combo_pll_enable_reg(dev_priv, pll);
+>  =
+
+> -	if (IS_ELKHARTLAKE(dev_priv) &&
+> +	if (IS_JSL_EHL(dev_priv) &&
+>  	    pll->info->id =3D=3D DPLL_ID_EHL_DPLL4) {
+>  =
+
+>  		/*
+> @@ -4189,7 +4189,7 @@ static void combo_pll_disable(struct drm_i915_priva=
+te *dev_priv,
+>  =
+
+>  	icl_pll_disable(dev_priv, pll, enable_reg);
+>  =
+
+> -	if (IS_ELKHARTLAKE(dev_priv) &&
+> +	if (IS_JSL_EHL(dev_priv) &&
+>  	    pll->info->id =3D=3D DPLL_ID_EHL_DPLL4)
+>  		intel_display_power_put(dev_priv, POWER_DOMAIN_DPLL_DC_OFF,
+>  					pll->wakeref);
+> @@ -4356,7 +4356,7 @@ void intel_shared_dpll_init(struct drm_device *dev)
+>  		dpll_mgr =3D &rkl_pll_mgr;
+>  	else if (INTEL_GEN(dev_priv) >=3D 12)
+>  		dpll_mgr =3D &tgl_pll_mgr;
+> -	else if (IS_ELKHARTLAKE(dev_priv))
+> +	else if (IS_JSL_EHL(dev_priv))
+>  		dpll_mgr =3D &ehl_pll_mgr;
+>  	else if (INTEL_GEN(dev_priv) >=3D 11)
+>  		dpll_mgr =3D &icl_pll_mgr;
+> @@ -4498,7 +4498,7 @@ static void readout_dpll_hw_state(struct drm_i915_p=
+rivate *i915,
+>  	pll->on =3D pll->info->funcs->get_hw_state(i915, pll,
+>  						 &pll->state.hw_state);
+>  =
+
+> -	if (IS_ELKHARTLAKE(i915) && pll->on &&
+> +	if (IS_JSL_EHL(i915) && pll->on &&
+>  	    pll->info->id =3D=3D DPLL_ID_EHL_DPLL4) {
+>  		pll->wakeref =3D intel_display_power_get(i915,
+>  						       POWER_DOMAIN_DPLL_DC_OFF);
+> diff --git a/drivers/gpu/drm/i915/gt/intel_sseu.c b/drivers/gpu/drm/i915/=
+gt/intel_sseu.c
+> index f1c039e1b5ad..8a72e0fe34ca 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_sseu.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_sseu.c
+> @@ -169,7 +169,7 @@ static void gen11_sseu_info_init(struct intel_gt *gt)
+>  	u8 eu_en;
+>  	u8 s_en;
+>  =
+
+> -	if (IS_ELKHARTLAKE(gt->i915))
+> +	if (IS_JSL_EHL(gt->i915))
+>  		intel_sseu_set_info(sseu, 1, 4, 8);
+>  	else
+>  		intel_sseu_set_info(sseu, 1, 8, 8);
+> diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/dr=
+m/i915/gt/intel_workarounds.c
+> index 6c580d0d9ea8..0d50cf1d8ceb 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
+> @@ -1212,7 +1212,7 @@ icl_gt_workarounds_init(struct drm_i915_private *i9=
+15, struct i915_wa_list *wal)
+>  =
+
+>  	/* Wa_1607087056:icl,ehl,jsl */
+>  	if (IS_ICELAKE(i915) ||
+> -	    IS_EHL_REVID(i915, EHL_REVID_A0, EHL_REVID_A0)) {
+> +		IS_JSL_EHL_REVID(i915, EHL_REVID_A0, EHL_REVID_A0)) {
+>  		wa_write_or(wal,
+>  			    SLICE_UNIT_LEVEL_CLKGATE,
+>  			    L3_CLKGATE_DIS | L3_CR2X_CLKGATE_DIS);
+> @@ -1839,7 +1839,7 @@ rcs_engine_wa_init(struct intel_engine_cs *engine, =
+struct i915_wa_list *wal)
+>  			    GEN12_FF_TESSELATION_DOP_GATE_DISABLE);
+>  =
+
+>  		/* Wa_22010271021:ehl */
+> -		if (IS_ELKHARTLAKE(i915))
+> +		if (IS_JSL_EHL(i915))
+>  			wa_masked_en(wal,
+>  				     GEN9_CS_DEBUG_MODE1,
+>  				     FF_DOP_CLOCK_GATE_DISABLE);
+> diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_=
+drv.h
+> index eef9a821c49c..cff64b4f8420 100644
+> --- a/drivers/gpu/drm/i915/i915_drv.h
+> +++ b/drivers/gpu/drm/i915/i915_drv.h
+> @@ -1417,7 +1417,8 @@ IS_SUBPLATFORM(const struct drm_i915_private *i915,
+>  #define IS_COMETLAKE(dev_priv)	IS_PLATFORM(dev_priv, INTEL_COMETLAKE)
+>  #define IS_CANNONLAKE(dev_priv)	IS_PLATFORM(dev_priv, INTEL_CANNONLAKE)
+>  #define IS_ICELAKE(dev_priv)	IS_PLATFORM(dev_priv, INTEL_ICELAKE)
+> -#define IS_ELKHARTLAKE(dev_priv)	IS_PLATFORM(dev_priv, INTEL_ELKHARTLAKE)
+> +#define IS_JSL_EHL(dev_priv)	(IS_PLATFORM(dev_priv, INTEL_JASPERLAKE) ||=
+ \
+> +				IS_PLATFORM(dev_priv, INTEL_ELKHARTLAKE))
+>  #define IS_TIGERLAKE(dev_priv)	IS_PLATFORM(dev_priv, INTEL_TIGERLAKE)
+>  #define IS_ROCKETLAKE(dev_priv)	IS_PLATFORM(dev_priv, INTEL_ROCKETLAKE)
+>  #define IS_DG1(dev_priv)        IS_PLATFORM(dev_priv, INTEL_DG1)
+> @@ -1558,8 +1559,8 @@ extern const struct i915_rev_steppings kbl_revids[];
+>  =
+
+>  #define EHL_REVID_A0            0x0
+>  =
+
+> -#define IS_EHL_REVID(p, since, until) \
+> -	(IS_ELKHARTLAKE(p) && IS_REVID(p, since, until))
+> +#define IS_JSL_EHL_REVID(p, since, until) \
+> +	(IS_JSL_EHL(p) && IS_REVID(p, since, until))
+>  =
+
+>  enum {
+>  	TGL_REVID_A0,
+> diff --git a/drivers/gpu/drm/i915/i915_pci.c b/drivers/gpu/drm/i915/i915_=
+pci.c
+> index 366ddfc8df6b..8690b69fcf33 100644
+> --- a/drivers/gpu/drm/i915/i915_pci.c
+> +++ b/drivers/gpu/drm/i915/i915_pci.c
+> @@ -846,6 +846,14 @@ static const struct intel_device_info ehl_info =3D {
+>  	.ppgtt_size =3D 36,
+>  };
+>  =
+
+> +static const struct intel_device_info jsl_info =3D {
+> +	GEN11_FEATURES,
+> +	PLATFORM(INTEL_JASPERLAKE),
+> +	.require_force_probe =3D 1,
+> +	.platform_engine_mask =3D BIT(RCS0) | BIT(BCS0) | BIT(VCS0) | BIT(VECS0=
+),
+> +	.ppgtt_size =3D 36,
+> +};
+> +
+>  #define GEN12_FEATURES \
+>  	GEN11_FEATURES, \
+>  	GEN(12), \
+> @@ -985,6 +993,7 @@ static const struct pci_device_id pciidlist[] =3D {
+>  	INTEL_CNL_IDS(&cnl_info),
+>  	INTEL_ICL_11_IDS(&icl_info),
+>  	INTEL_EHL_IDS(&ehl_info),
+> +	INTEL_JSL_IDS(&jsl_info),
+>  	INTEL_TGL_12_IDS(&tgl_info),
+>  	INTEL_RKL_IDS(&rkl_info),
+>  	{0, 0, 0}
+> diff --git a/drivers/gpu/drm/i915/intel_device_info.c b/drivers/gpu/drm/i=
+915/intel_device_info.c
+> index adc836f15fde..e67cec8fa2aa 100644
+> --- a/drivers/gpu/drm/i915/intel_device_info.c
+> +++ b/drivers/gpu/drm/i915/intel_device_info.c
+> @@ -62,6 +62,7 @@ static const char * const platform_names[] =3D {
+>  	PLATFORM_NAME(CANNONLAKE),
+>  	PLATFORM_NAME(ICELAKE),
+>  	PLATFORM_NAME(ELKHARTLAKE),
+> +	PLATFORM_NAME(JASPERLAKE),
+>  	PLATFORM_NAME(TIGERLAKE),
+>  	PLATFORM_NAME(ROCKETLAKE),
+>  	PLATFORM_NAME(DG1),
+> diff --git a/drivers/gpu/drm/i915/intel_device_info.h b/drivers/gpu/drm/i=
+915/intel_device_info.h
+> index 6a3d607218aa..d92fa041c700 100644
+> --- a/drivers/gpu/drm/i915/intel_device_info.h
+> +++ b/drivers/gpu/drm/i915/intel_device_info.h
+> @@ -79,6 +79,7 @@ enum intel_platform {
+>  	/* gen11 */
+>  	INTEL_ICELAKE,
+>  	INTEL_ELKHARTLAKE,
+> +	INTEL_JASPERLAKE,
+>  	/* gen12 */
+>  	INTEL_TIGERLAKE,
+>  	INTEL_ROCKETLAKE,
+> diff --git a/drivers/gpu/drm/i915/intel_pch.c b/drivers/gpu/drm/i915/inte=
+l_pch.c
+> index 6c97192e9ca8..f31c0dabd0cc 100644
+> --- a/drivers/gpu/drm/i915/intel_pch.c
+> +++ b/drivers/gpu/drm/i915/intel_pch.c
+> @@ -115,7 +115,7 @@ intel_pch_type(const struct drm_i915_private *dev_pri=
+v, unsigned short id)
+>  		return PCH_ICP;
+>  	case INTEL_PCH_MCC_DEVICE_ID_TYPE:
+>  		drm_dbg_kms(&dev_priv->drm, "Found Mule Creek Canyon PCH\n");
+> -		drm_WARN_ON(&dev_priv->drm, !IS_ELKHARTLAKE(dev_priv));
+> +		drm_WARN_ON(&dev_priv->drm, !IS_JSL_EHL(dev_priv));
+>  		return PCH_MCC;
+>  	case INTEL_PCH_TGP_DEVICE_ID_TYPE:
+>  	case INTEL_PCH_TGP2_DEVICE_ID_TYPE:
+> @@ -126,7 +126,7 @@ intel_pch_type(const struct drm_i915_private *dev_pri=
+v, unsigned short id)
+>  	case INTEL_PCH_JSP_DEVICE_ID_TYPE:
+>  	case INTEL_PCH_JSP2_DEVICE_ID_TYPE:
+>  		drm_dbg_kms(&dev_priv->drm, "Found Jasper Lake PCH\n");
+> -		drm_WARN_ON(&dev_priv->drm, !IS_ELKHARTLAKE(dev_priv));
+> +		drm_WARN_ON(&dev_priv->drm, !IS_JSL_EHL(dev_priv));
+>  		return PCH_JSP;
+>  	default:
+>  		return PCH_NONE;
+> @@ -157,7 +157,7 @@ intel_virt_detect_pch(const struct drm_i915_private *=
+dev_priv)
+>  =
+
+>  	if (IS_TIGERLAKE(dev_priv) || IS_ROCKETLAKE(dev_priv))
+>  		id =3D INTEL_PCH_TGP_DEVICE_ID_TYPE;
+> -	else if (IS_ELKHARTLAKE(dev_priv))
+> +	else if (IS_JSL_EHL(dev_priv))
+>  		id =3D INTEL_PCH_MCC_DEVICE_ID_TYPE;
+>  	else if (IS_ICELAKE(dev_priv))
+>  		id =3D INTEL_PCH_ICP_DEVICE_ID_TYPE;
+> diff --git a/include/drm/i915_pciids.h b/include/drm/i915_pciids.h
+> index 7eeecb07c9a1..1b5e09cfa11e 100644
+> --- a/include/drm/i915_pciids.h
+> +++ b/include/drm/i915_pciids.h
+> @@ -579,15 +579,18 @@
+>  	INTEL_VGA_DEVICE(0x8A51, info), \
+>  	INTEL_VGA_DEVICE(0x8A5D, info)
+>  =
+
+> -/* EHL/JSL */
+> +/* EHL */
+>  #define INTEL_EHL_IDS(info) \
+>  	INTEL_VGA_DEVICE(0x4500, info),	\
+>  	INTEL_VGA_DEVICE(0x4571, info), \
+>  	INTEL_VGA_DEVICE(0x4551, info), \
+>  	INTEL_VGA_DEVICE(0x4541, info), \
+> -	INTEL_VGA_DEVICE(0x4E71, info), \
+>  	INTEL_VGA_DEVICE(0x4557, info), \
+> -	INTEL_VGA_DEVICE(0x4555, info), \
+> +	INTEL_VGA_DEVICE(0x4555, info)
+> +
+> +/* JSL */
+> +#define INTEL_JSL_IDS(info) \
+> +	INTEL_VGA_DEVICE(0x4E71, info), \
+>  	INTEL_VGA_DEVICE(0x4E61, info), \
+>  	INTEL_VGA_DEVICE(0x4E57, info), \
+>  	INTEL_VGA_DEVICE(0x4E55, info), \
+> -- =
+
+> 2.28.0
+> =
+
+
+-- =
+
+Matt Roper
+Graphics Software Engineer
+VTT-OSGC Platform Enablement
+Intel Corporation
+(916) 356-2795
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
