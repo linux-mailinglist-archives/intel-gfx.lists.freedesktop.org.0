@@ -2,46 +2,39 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E628D28AE7B
-	for <lists+intel-gfx@lfdr.de>; Mon, 12 Oct 2020 08:56:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6B28928AEC2
+	for <lists+intel-gfx@lfdr.de>; Mon, 12 Oct 2020 09:06:01 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 29BA16E07B;
-	Mon, 12 Oct 2020 06:56:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AFBB76E423;
+	Mon, 12 Oct 2020 07:05:58 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A617D6E07B;
- Mon, 12 Oct 2020 06:56:39 +0000 (UTC)
-IronPort-SDR: J5pHIn7aSuQjCIKysETNS6iP1yBEj3+Qb7I1h5hvCZC6N0tzTyCu4Bee8UBMqvvJXx/AIcag8n
- gUpHs1fLOD6g==
-X-IronPort-AV: E=McAfee;i="6000,8403,9771"; a="152624631"
-X-IronPort-AV: E=Sophos;i="5.77,366,1596524400"; d="scan'208";a="152624631"
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 087116E423;
+ Mon, 12 Oct 2020 07:05:57 +0000 (UTC)
+IronPort-SDR: szf/DD0dJHPh8sve4EzttmEGVjlNSFosAuxlsuh2CUj9mYuB3yt7ljulxhoBBd5Rjrx2+YMbNY
+ HxFjjSbBuAGQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9771"; a="163060457"
+X-IronPort-AV: E=Sophos;i="5.77,366,1596524400"; d="scan'208";a="163060457"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Oct 2020 23:56:37 -0700
-IronPort-SDR: DSpSIoZKV7KPLq4zxFvBA+ZLKNkpgmuUQCwMmUi8wsqk6OFxxWBKXoVpyUUZRY9EN2DChpPczf
- 4EPhWIQlBVGQ==
-X-IronPort-AV: E=Sophos;i="5.77,366,1596524400"; d="scan'208";a="529842687"
-Received: from iweiny-desk2.sc.intel.com (HELO localhost) ([10.3.52.147])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Oct 2020 23:56:35 -0700
-Date: Sun, 11 Oct 2020 23:56:35 -0700
-From: Ira Weiny <ira.weiny@intel.com>
-To: Eric Biggers <ebiggers@kernel.org>
-Message-ID: <20201012065635.GB2046448@iweiny-DESK2.sc.intel.com>
-References: <20201009195033.3208459-1-ira.weiny@intel.com>
- <20201009195033.3208459-23-ira.weiny@intel.com>
- <20201009213434.GA839@sol.localdomain>
- <20201010003954.GW20115@casper.infradead.org>
- <20201010013036.GD1122@sol.localdomain>
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Oct 2020 00:05:50 -0700
+IronPort-SDR: SuosyuuIM/lBRq2cqr4XOZsFRWm54baUb0uYr3ERQ5p8srr70RSq7XGFbwakROyjiALRrb8G+d
+ HJ5LUs4jDsMQ==
+X-IronPort-AV: E=Sophos;i="5.77,366,1596524400"; d="scan'208";a="463000072"
+Received: from jkrzyszt-desk.igk.intel.com ([172.22.244.18])
+ by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Oct 2020 00:05:49 -0700
+From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+To: igt-dev@lists.freedesktop.org
+Date: Mon, 12 Oct 2020 09:05:37 +0200
+Message-Id: <20201012070537.11773-1-janusz.krzysztofik@linux.intel.com>
+X-Mailer: git-send-email 2.21.1
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20201010013036.GD1122@sol.localdomain>
-User-Agent: Mutt/1.11.1 (2018-12-01)
-Subject: Re: [Intel-gfx] [PATCH RFC PKS/PMEM 22/58] fs/f2fs: Utilize new
- kmap_thread()
+Subject: [Intel-gfx] [PATCH i-g-t v2] tests/core_hotunplug: Restore i915
+ debugfs health check
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,117 +47,158 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-aio@kvack.org, linux-efi@vger.kernel.org, kvm@vger.kernel.org,
- linux-doc@vger.kernel.org, Peter Zijlstra <peterz@infradead.org>,
- linux-mmc@vger.kernel.org, Dave Hansen <dave.hansen@linux.intel.com>,
- dri-devel@lists.freedesktop.org, linux-mm@kvack.org,
- target-devel@vger.kernel.org, linux-mtd@lists.infradead.org,
- amd-gfx@lists.freedesktop.org, linux-kselftest@vger.kernel.org,
- Thomas Gleixner <tglx@linutronix.de>, drbd-dev@lists.linbit.com,
- devel@driverdev.osuosl.org, linux-cifs@vger.kernel.org,
- linux-nilfs@vger.kernel.org, linux-scsi@vger.kernel.org,
- linux-nvdimm@lists.01.org, linux-rdma@vger.kernel.org, x86@kernel.org,
- Matthew Wilcox <willy@infradead.org>, linux-afs@lists.infradead.org,
- cluster-devel@redhat.com, Ingo Molnar <mingo@redhat.com>,
- intel-wired-lan@lists.osuosl.org, kexec@lists.infradead.org,
- xen-devel@lists.xenproject.org, linux-ext4@vger.kernel.org,
- bpf@vger.kernel.org, Dan Williams <dan.j.williams@intel.com>,
- Fenghua Yu <fenghua.yu@intel.com>, intel-gfx@lists.freedesktop.org,
- ecryptfs@vger.kernel.org, linux-um@lists.infradead.org,
- reiserfs-devel@vger.kernel.org, linux-block@vger.kernel.org,
- linux-bcache@vger.kernel.org, Borislav Petkov <bp@alien8.de>,
- Andy Lutomirski <luto@kernel.org>, Jaegeuk Kim <jaegeuk@kernel.org>,
- ceph-devel@vger.kernel.org, io-uring@vger.kernel.org, linux-cachefs@redhat.com,
- linux-nfs@vger.kernel.org, linux-ntfs-dev@lists.sourceforge.net,
- netdev@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
- samba-technical@lists.samba.org, linux-kernel@vger.kernel.org,
- linux-f2fs-devel@lists.sourceforge.net, linux-fsdevel@vger.kernel.org,
- Andrew Morton <akpm@linux-foundation.org>, linux-erofs@lists.ozlabs.org,
- linux-btrfs@vger.kernel.org
+Cc: intel-gfx@lists.freedesktop.org, Chris Wilson <chris@chris-wilson.co.uk>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Oct 09, 2020 at 06:30:36PM -0700, Eric Biggers wrote:
-> On Sat, Oct 10, 2020 at 01:39:54AM +0100, Matthew Wilcox wrote:
-> > On Fri, Oct 09, 2020 at 02:34:34PM -0700, Eric Biggers wrote:
-> > > On Fri, Oct 09, 2020 at 12:49:57PM -0700, ira.weiny@intel.com wrote:
-> > > > The kmap() calls in this FS are localized to a single thread.  To avoid
-> > > > the over head of global PKRS updates use the new kmap_thread() call.
-> > > >
-> > > > @@ -2410,12 +2410,12 @@ static inline struct page *f2fs_pagecache_get_page(
-> > > >  
-> > > >  static inline void f2fs_copy_page(struct page *src, struct page *dst)
-> > > >  {
-> > > > -	char *src_kaddr = kmap(src);
-> > > > -	char *dst_kaddr = kmap(dst);
-> > > > +	char *src_kaddr = kmap_thread(src);
-> > > > +	char *dst_kaddr = kmap_thread(dst);
-> > > >  
-> > > >  	memcpy(dst_kaddr, src_kaddr, PAGE_SIZE);
-> > > > -	kunmap(dst);
-> > > > -	kunmap(src);
-> > > > +	kunmap_thread(dst);
-> > > > +	kunmap_thread(src);
-> > > >  }
-> > > 
-> > > Wouldn't it make more sense to switch cases like this to kmap_atomic()?
-> > > The pages are only mapped to do a memcpy(), then they're immediately unmapped.
-> > 
-> > Maybe you missed the earlier thread from Thomas trying to do something
-> > similar for rather different reasons ...
-> > 
-> > https://lore.kernel.org/lkml/20200919091751.011116649@linutronix.de/
-> 
-> I did miss it.  I'm not subscribed to any of the mailing lists it was sent to.
-> 
-> Anyway, it shouldn't matter.  Patchsets should be standalone, and not require
-> reading random prior threads on linux-kernel to understand.
+Removal of igt_fork_hang_detector() from local_i915_healthcheck() by
+commit 1fbd127bd4e1 ("core_hotplug: Teach the healthcheck how to check
+execution status") resulted in unintentional removal of an important
+though implicit test feature of detecting, reporting as failures and
+recovering from potential misses of debugfs subdirs of hot rebound i915
+devices.  As a consequence, unexpected failures or skips of other
+unrelated but subsequently run tests have been observed on CI.
 
-Sorry, but I did not think that the discussion above was directly related.  If
-I'm not mistaken, Thomas' work was directed at relaxing kmap_atomic() into
-kmap_thread() calls.  While interesting, it is not the point of this series.  I
-want to restrict kmap() callers into kmap_thread().
+On the other hand, removal of the debugfs issue detection and subtest
+failures right after hot rebinding the driver enabled the better
+version of the i915 GPU health check fixed by the same commit to detect
+and report other issues potentially triggered by device late close.
 
-For this series it was considered to change the kmap_thread() call sites to
-kmap_atomic().  But like I said in the cover letter kmap_atomic() is not the
-same semantic.  It is too strict.  Perhaps I should have expanded that
-explanation.
+Restore the missing test feature by introducing an explicit i915 sysfs
+health check that verifies existence of device sysfs and debugfs areas.
+Also, split hotrebind/hotreplug scenarios into a pair of each, one that
+performs the health check right after hot rebind/replug and delegates
+the device late close step to a follow up recovery phase while the
+other one checks device health only after late closing it.
 
-> 
-> And I still don't really understand.  After this patchset, there is still code
-> nearly identical to the above (doing a temporary mapping just for a memcpy) that
-> would still be using kmap_atomic().
+v2: Give GPU health check a better chance to detect issues - run it
+    before sysfs health checks.
 
-I don't understand.  You mean there would be other call sites calling:
+Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+Cc: Chris Wilson <chris@chris-wilson.co.uk>
+---
+ tests/core_hotunplug.c | 61 ++++++++++++++++++++++++++++++++++++++----
+ 1 file changed, 56 insertions(+), 5 deletions(-)
 
-kmap_atomic()
-memcpy()
-kunmap_atomic()
-
-?
-
-> Is the idea that later, such code will be
-> converted to use kmap_thread() instead?  If not, why use one over the other?
+diff --git a/tests/core_hotunplug.c b/tests/core_hotunplug.c
+index 70669c590..543161874 100644
+--- a/tests/core_hotunplug.c
++++ b/tests/core_hotunplug.c
+@@ -250,6 +250,7 @@ static int local_i915_healthcheck(int i915, const char *prefix)
+ 	};
+ 	const struct intel_execution_engine2 *engine;
+ 	int fence = -1;
++	char path[200];
  
+ 	local_debug("%s%s\n", prefix, "running i915 GPU healthcheck");
+ 	if (local_i915_is_wedged(i915))
+@@ -274,6 +275,10 @@ static int local_i915_healthcheck(int i915, const char *prefix)
+ 	if (local_i915_is_wedged(i915))
+ 		return -EIO;
+ 
++	local_debug("%s%s\n", prefix, "running i915 sysfs healthcheck");
++	igt_assert(igt_sysfs_path(i915, path, sizeof(path)));
++	igt_assert(igt_debugfs_path(i915, path, sizeof(path)));
++
+ 	return 0;
+ }
+ 
+@@ -437,7 +442,7 @@ static void hotunplug_rescan(struct hotunplug *priv)
+ 	healthcheck(priv, false);
+ }
+ 
+-static void hotrebind_lateclose(struct hotunplug *priv)
++static void hotrebind(struct hotunplug *priv)
+ {
+ 	igt_assert_eq(priv->fd.drm, -1);
+ 	igt_assert_eq(priv->fd.drm_hc, -1);
+@@ -448,6 +453,30 @@ static void hotrebind_lateclose(struct hotunplug *priv)
+ 	driver_bind(priv, 0);
+ 
+ 	healthcheck(priv, false);
++}
++
++static void hotreplug(struct hotunplug *priv)
++{
++	igt_assert_eq(priv->fd.drm, -1);
++	igt_assert_eq(priv->fd.drm_hc, -1);
++	priv->fd.drm = local_drm_open_driver(false, "", " for hot replug");
++
++	device_unplug(priv, "hot ", 60);
++
++	bus_rescan(priv, 0);
++
++	healthcheck(priv, false);
++}
++
++static void hotrebind_lateclose(struct hotunplug *priv)
++{
++	igt_assert_eq(priv->fd.drm, -1);
++	igt_assert_eq(priv->fd.drm_hc, -1);
++	priv->fd.drm = local_drm_open_driver(false, "", " for hot rebind");
++
++	driver_unbind(priv, "hot ", 60);
++
++	driver_bind(priv, 0);
+ 
+ 	priv->fd.drm = close_device(priv->fd.drm, "late ", "unbound ");
+ 	igt_assert_eq(priv->fd.drm, -1);
+@@ -465,8 +494,6 @@ static void hotreplug_lateclose(struct hotunplug *priv)
+ 
+ 	bus_rescan(priv, 0);
+ 
+-	healthcheck(priv, false);
+-
+ 	priv->fd.drm = close_device(priv->fd.drm, "late ", "removed ");
+ 	igt_assert_eq(priv->fd.drm, -1);
+ 
+@@ -570,7 +597,31 @@ igt_main
+ 		post_healthcheck(&priv);
+ 
+ 	igt_subtest_group {
+-		igt_describe("Check if the driver hot unbound from a still open device can be cleanly rebound, then the old instance released");
++		igt_describe("Check if the driver can be cleanly rebound to a device with a still open hot unbound driver instance");
++		igt_subtest("hotrebind")
++			hotrebind(&priv);
++
++		igt_fixture
++			recover(&priv);
++	}
++
++	igt_fixture
++		post_healthcheck(&priv);
++
++	igt_subtest_group {
++		igt_describe("Check if a hot unplugged and still open device can be cleanly restored");
++		igt_subtest("hotreplug")
++			hotreplug(&priv);
++
++		igt_fixture
++			recover(&priv);
++	}
++
++	igt_fixture
++		post_healthcheck(&priv);
++
++	igt_subtest_group {
++		igt_describe("Check if a hot unbound driver instance still open after hot rebind can be cleanly released");
+ 		igt_subtest("hotrebind-lateclose")
+ 			hotrebind_lateclose(&priv);
+ 
+@@ -582,7 +633,7 @@ igt_main
+ 		post_healthcheck(&priv);
+ 
+ 	igt_subtest_group {
+-		igt_describe("Check if a still open while hot unplugged device can be cleanly restored, then the old instance released");
++		igt_describe("Check if an instance of a still open while hot replugged device can be cleanly released");
+ 		igt_subtest("hotreplug-lateclose")
+ 			hotreplug_lateclose(&priv);
+ 
+-- 
+2.21.1
 
-The reason for the new call is that with PKS added behind kmap we have 3 levels
-of mapping we want.
-
-global kmap (can span threads and sleep)
-'thread' kmap (can sleep but not span threads)
-'atomic' kmap (can't sleep nor span threads [by definition])
-
-As Matthew said perhaps 'global kmaps' may be best changed to vmaps?  I just
-don't know the details of every call site.
-
-And since I don't know the call site details if there are kmap_thread() calls
-which are better off as kmap_atomic() calls I think it is worth converting
-them.  But I made the assumption that kmap users would already be calling
-kmap_atomic() if they could (because it is more efficient).
-
-Ira
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
