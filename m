@@ -2,26 +2,26 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AF5D128BB34
-	for <lists+intel-gfx@lfdr.de>; Mon, 12 Oct 2020 16:47:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1C7FE28BB2A
+	for <lists+intel-gfx@lfdr.de>; Mon, 12 Oct 2020 16:47:45 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 61F0A6E4BB;
-	Mon, 12 Oct 2020 14:47:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B8A116E4DD;
+	Mon, 12 Oct 2020 14:47:29 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mblankhorst.nl (mblankhorst.nl [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 77BC16E500
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A96876E4B5
  for <intel-gfx@lists.freedesktop.org>; Mon, 12 Oct 2020 14:47:15 +0000 (UTC)
 From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Mon, 12 Oct 2020 16:46:53 +0200
-Message-Id: <20201012144706.555345-49-maarten.lankhorst@linux.intel.com>
+Date: Mon, 12 Oct 2020 16:46:54 +0200
+Message-Id: <20201012144706.555345-50-maarten.lankhorst@linux.intel.com>
 X-Mailer: git-send-email 2.28.0
 In-Reply-To: <20201012144706.555345-1-maarten.lankhorst@linux.intel.com>
 References: <20201012144706.555345-1-maarten.lankhorst@linux.intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v2 48/61] drm/i915/selftests: Prepare object
- blit tests for obj->mm.lock removal.
+Subject: [Intel-gfx] [PATCH v2 49/61] drm/i915/selftests: Prepare
+ igt_gem_utils for obj->mm.lock removal
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,44 +39,28 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Use some unlocked versions where we're not holding the ww lock.
+igt_emit_store_dw needs to use the unlocked version, as it's not
+holding a lock. This fixes igt_gpu_fill_dw() which is used by
+some other selftests.
 
 Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 ---
- drivers/gpu/drm/i915/gem/selftests/i915_gem_object_blt.c | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/i915/gem/selftests/igt_gem_utils.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/gem/selftests/i915_gem_object_blt.c b/drivers/gpu/drm/i915/gem/selftests/i915_gem_object_blt.c
-index 23b6e11bbc3e..ee9496f3d11d 100644
---- a/drivers/gpu/drm/i915/gem/selftests/i915_gem_object_blt.c
-+++ b/drivers/gpu/drm/i915/gem/selftests/i915_gem_object_blt.c
-@@ -262,7 +262,7 @@ static int igt_fill_blt_thread(void *arg)
- 			goto err_flush;
- 		}
+diff --git a/drivers/gpu/drm/i915/gem/selftests/igt_gem_utils.c b/drivers/gpu/drm/i915/gem/selftests/igt_gem_utils.c
+index e21b5023ca7d..f4e85b4a347d 100644
+--- a/drivers/gpu/drm/i915/gem/selftests/igt_gem_utils.c
++++ b/drivers/gpu/drm/i915/gem/selftests/igt_gem_utils.c
+@@ -54,7 +54,7 @@ igt_emit_store_dw(struct i915_vma *vma,
+ 	if (IS_ERR(obj))
+ 		return ERR_CAST(obj);
  
--		vaddr = i915_gem_object_pin_map(obj, I915_MAP_WB);
-+		vaddr = i915_gem_object_pin_map_unlocked(obj, I915_MAP_WB);
- 		if (IS_ERR(vaddr)) {
- 			err = PTR_ERR(vaddr);
- 			goto err_put;
-@@ -380,7 +380,7 @@ static int igt_copy_blt_thread(void *arg)
- 			goto err_flush;
- 		}
- 
--		vaddr = i915_gem_object_pin_map(src, I915_MAP_WB);
-+		vaddr = i915_gem_object_pin_map_unlocked(src, I915_MAP_WB);
- 		if (IS_ERR(vaddr)) {
- 			err = PTR_ERR(vaddr);
- 			goto err_put_src;
-@@ -400,7 +400,7 @@ static int igt_copy_blt_thread(void *arg)
- 			goto err_put_src;
- 		}
- 
--		vaddr = i915_gem_object_pin_map(dst, I915_MAP_WB);
-+		vaddr = i915_gem_object_pin_map_unlocked(dst, I915_MAP_WB);
- 		if (IS_ERR(vaddr)) {
- 			err = PTR_ERR(vaddr);
- 			goto err_put_dst;
+-	cmd = i915_gem_object_pin_map(obj, I915_MAP_WC);
++	cmd = i915_gem_object_pin_map_unlocked(obj, I915_MAP_WC);
+ 	if (IS_ERR(cmd)) {
+ 		err = PTR_ERR(cmd);
+ 		goto err;
 -- 
 2.28.0
 
