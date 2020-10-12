@@ -1,45 +1,45 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 94DD828ACF9
-	for <lists+intel-gfx@lfdr.de>; Mon, 12 Oct 2020 06:26:24 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0D5F128AD3B
+	for <lists+intel-gfx@lfdr.de>; Mon, 12 Oct 2020 06:48:06 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B0B4A6E416;
-	Mon, 12 Oct 2020 04:26:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8D80C6E419;
+	Mon, 12 Oct 2020 04:48:02 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from ozlabs.org (ozlabs.org [203.11.71.1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0FFBB6E40F;
- Mon, 12 Oct 2020 04:26:21 +0000 (UTC)
-Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest
- SHA256) (No client certificate requested)
- by mail.ozlabs.org (Postfix) with ESMTPSA id 4C8lx65jg2z9sTf;
- Mon, 12 Oct 2020 15:26:18 +1100 (AEDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=canb.auug.org.au;
- s=201702; t=1602476779;
- bh=JaoueffLPiqe0vVFbNDyshuQW42Vb35P3hSNJmElmMw=;
- h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
- b=etiFfRjPep5aCsL5z9RKGh4Bey53GqVtc0RutV4WEoB8f6ghuNvGVDq0rj3o6CP/G
- atWk4UOwfFeXUlKtrMbtyHKwOoqmbRgtKX0b4xfmlPjhG1omOMC0G5DKTCj4ak/3Ou
- n9SIkAo1C1VCIa9nHp4UxtcTKG2xG/iMxkoZ2T2ULT3t3QS9yk4j0c8QHtyll/XdZf
- YvjcaQASdt7Dr17ZI2DsJLuXRobfMm8mf2mXMHCJW9wVjbQtm7XLzys9PX/3u5x/Lw
- bmexy1Cxo76Axl5Fm0N8F6wypRqV4oQLP1vpy5xDsEHtYdxUwu+nfAgp4xLy1iFFRR
- v2NGN7HCbQipw==
-Date: Mon, 12 Oct 2020 15:26:18 +1100
-From: Stephen Rothwell <sfr@canb.auug.org.au>
-To: Daniel Vetter <daniel.vetter@ffwll.ch>, Intel Graphics
- <intel-gfx@lists.freedesktop.org>, DRI <dri-devel@lists.freedesktop.org>
-Message-ID: <20201012152618.5e3116ca@canb.auug.org.au>
-In-Reply-To: <20201012152452.432c4867@canb.auug.org.au>
-References: <20201008140903.12a411b8@canb.auug.org.au>
- <20201008154202.175fbec7@canb.auug.org.au>
- <20201012152452.432c4867@canb.auug.org.au>
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4B0796E419;
+ Mon, 12 Oct 2020 04:48:01 +0000 (UTC)
+IronPort-SDR: MOnDdi13Xb++0S5pgoLvg2iWm5IEkQQHppTCUNJBtjP8vINbwpST0w56+lQPJkC0tePYcfl0T1
+ sCXW6cl3wqdw==
+X-IronPort-AV: E=McAfee;i="6000,8403,9771"; a="162223401"
+X-IronPort-AV: E=Sophos;i="5.77,365,1596524400"; d="scan'208";a="162223401"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Oct 2020 21:47:58 -0700
+IronPort-SDR: OeJlrvjJIthwDW5ZiLkp+F246Fw9BWID0JMdXYyjjISLX5UipnPYleFarWgQdoLnt1ZOhIB0kv
+ QrFucSf/AAcw==
+X-IronPort-AV: E=Sophos;i="5.77,365,1596524400"; d="scan'208";a="529805779"
+Received: from iweiny-desk2.sc.intel.com (HELO localhost) ([10.3.52.147])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Oct 2020 21:47:57 -0700
+Date: Sun, 11 Oct 2020 21:47:56 -0700
+From: Ira Weiny <ira.weiny@intel.com>
+To: Bernard Metzler <BMT@zurich.ibm.com>
+Message-ID: <20201012044756.GY2046448@iweiny-DESK2.sc.intel.com>
+References: <20201009195033.3208459-11-ira.weiny@intel.com>
+ <20201009195033.3208459-1-ira.weiny@intel.com>
+ <OF849D92D8.F4735ECA-ON002585FD.003F5F27-002585FD.003FCBD6@notes.na.collabserv.com>
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] linux-next: build failure after merge of the
- drm-misc tree
+Content-Disposition: inline
+In-Reply-To: <OF849D92D8.F4735ECA-ON002585FD.003F5F27-002585FD.003FCBD6@notes.na.collabserv.com>
+User-Agent: Mutt/1.11.1 (2018-12-01)
+Subject: Re: [Intel-gfx] [PATCH RFC PKS/PMEM 10/58] drivers/rdma: Utilize
+ new kmap_thread()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,199 +52,68 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Paul Cercueil <paul@crapouillou.net>, Dave Airlie <airlied@linux.ie>,
- Linux Next Mailing List <linux-next@vger.kernel.org>,
- Sam Ravnborg <sam@ravnborg.org>,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Content-Type: multipart/mixed; boundary="===============0248430594=="
+Cc: linux-aio@kvack.org, linux-efi@vger.kernel.org, kvm@vger.kernel.org,
+ linux-doc@vger.kernel.org, Peter Zijlstra <peterz@infradead.org>,
+ linux-mmc@vger.kernel.org, Dave Hansen <dave.hansen@linux.intel.com>,
+ dri-devel@lists.freedesktop.org, linux-mm@kvack.org,
+ target-devel@vger.kernel.org, linux-mtd@lists.infradead.org,
+ linux-kselftest@vger.kernel.org, samba-technical@lists.samba.org,
+ Thomas Gleixner <tglx@linutronix.de>, devel@driverdev.osuosl.org,
+ linux-cifs@vger.kernel.org, linux-nilfs@vger.kernel.org,
+ linux-scsi@vger.kernel.org, linux-nvdimm@lists.01.org,
+ linux-rdma@vger.kernel.org, x86@kernel.org, ceph-devel@vger.kernel.org,
+ io-uring@vger.kernel.org, cluster-devel@redhat.com,
+ Jason Gunthorpe <jgg@ziepe.ca>, Doug Ledford <dledford@redhat.com>,
+ Ingo Molnar <mingo@redhat.com>, intel-wired-lan@lists.osuosl.org,
+ xen-devel@lists.xenproject.org, linux-ext4@vger.kernel.org,
+ Fenghua Yu <fenghua.yu@intel.com>, linux-afs@lists.infradead.org,
+ Faisal Latif <faisal.latif@intel.com>, linux-um@lists.infradead.org,
+ intel-gfx@lists.freedesktop.org, ecryptfs@vger.kernel.org,
+ linux-erofs@lists.ozlabs.org, linux-nfs@vger.kernel.org,
+ reiserfs-devel@vger.kernel.org, linux-block@vger.kernel.org,
+ linux-bcache@vger.kernel.org, Borislav Petkov <bp@alien8.de>,
+ Andy Lutomirski <luto@kernel.org>, drbd-dev@tron.linbit.com,
+ amd-gfx@lists.freed.esktop.org, Dan Williams <dan.j.williams@intel.com>,
+ Shiraz Saleem <shiraz.saleem@intel.com>, bpf@vger.kernel.org,
+ linux-cachefs@redhat.com, Mike Marciniszyn <mike.marciniszyn@intel.com>,
+ linux-ntfs-dev@lists.sourceforge.net, netdev@vger.kernel.org,
+ Dennis Dalessandro <dennis.dalessandro@intel.com>, kexec@lists.infradead.org,
+ linux-kernel@vger.kernel.org, linux-f2fs-devel@lists.sourceforge.net,
+ linux-fsdevel@vger.kernel.org, Andrew Morton <akpm@linux-foundation.org>,
+ linuxppc-dev@lists.ozlabs.org, linux-btrfs@vger.kernel.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0248430594==
-Content-Type: multipart/signed; boundary="Sig_/PsBqT+2U+eGmb+1a29SSGu/";
- protocol="application/pgp-signature"; micalg=pgp-sha256
+On Sat, Oct 10, 2020 at 11:36:49AM +0000, Bernard Metzler wrote:
+> -----ira.weiny@intel.com wrote: -----
+> 
 
---Sig_/PsBqT+2U+eGmb+1a29SSGu/
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: quoted-printable
+[snip]
 
-Hi all,
+> >@@ -505,7 +505,7 @@ static int siw_tx_hdt(struct siw_iwarp_tx *c_tx,
+> >struct socket *s)
+> > 				page_array[seg] = p;
+> > 
+> > 				if (!c_tx->use_sendpage) {
+> >-					iov[seg].iov_base = kmap(p) + fp_off;
+> >+					iov[seg].iov_base = kmap_thread(p) + fp_off;
+> 
+> This misses a corresponding kunmap_thread() in siw_unmap_pages()
+> (pls change line 403 in siw_qp_tx.c as well)
 
-[Just adding Dave to cc's]
+Thanks I missed that.
 
-On Mon, 12 Oct 2020 15:24:52 +1100 Stephen Rothwell <sfr@canb.auug.org.au> =
-wrote:
->
-> Hi all,
->=20
-> On Thu, 8 Oct 2020 15:42:02 +1100 Stephen Rothwell <sfr@canb.auug.org.au>=
- wrote:
-> >
-> > On Thu, 8 Oct 2020 14:09:03 +1100 Stephen Rothwell <sfr@canb.auug.org.a=
-u> wrote: =20
-> > >
-> > > After merging the drm-misc tree, today's linux-next build (x86_64
-> > > allmodconfig) failed like this:   =20
-> >=20
-> > In file included from include/linux/clk.h:13,
-> >                  from drivers/gpu/drm/ingenic/ingenic-drm-drv.c:10:
-> > drivers/gpu/drm/ingenic/ingenic-drm-drv.c: In function 'ingenic_drm_upd=
-ate_palette':
-> > drivers/gpu/drm/ingenic/ingenic-drm-drv.c:448:35: error: 'struct ingeni=
-c_drm' has no member named 'dma_hwdescs'; did you mean 'dma_hwdesc_f0'?
-> >   448 |  for (i =3D 0; i < ARRAY_SIZE(priv->dma_hwdescs->palette); i++)=
- {
-> >       |                                   ^~~~~~~~~~~
-> > include/linux/kernel.h:47:33: note: in definition of macro 'ARRAY_SIZE'
-> >    47 | #define ARRAY_SIZE(arr) (sizeof(arr) / sizeof((arr)[0]) + __mus=
-t_be_array(arr))
-> >       |                                 ^~~
-> > drivers/gpu/drm/ingenic/ingenic-drm-drv.c:448:35: error: 'struct ingeni=
-c_drm' has no member named 'dma_hwdescs'; did you mean 'dma_hwdesc_f0'?
-> >   448 |  for (i =3D 0; i < ARRAY_SIZE(priv->dma_hwdescs->palette); i++)=
- {
-> >       |                                   ^~~~~~~~~~~
-> > include/linux/kernel.h:47:48: note: in definition of macro 'ARRAY_SIZE'
-> >    47 | #define ARRAY_SIZE(arr) (sizeof(arr) / sizeof((arr)[0]) + __mus=
-t_be_array(arr))
-> >       |                                                ^~~
-> > In file included from include/linux/bits.h:22,
-> >                  from include/linux/bitops.h:5,
-> >                  from drivers/gpu/drm/ingenic/ingenic-drm.h:10,
-> >                  from drivers/gpu/drm/ingenic/ingenic-drm-drv.c:7:
-> > drivers/gpu/drm/ingenic/ingenic-drm-drv.c:448:35: error: 'struct ingeni=
-c_drm' has no member named 'dma_hwdescs'; did you mean 'dma_hwdesc_f0'?
-> >   448 |  for (i =3D 0; i < ARRAY_SIZE(priv->dma_hwdescs->palette); i++)=
- {
-> >       |                                   ^~~~~~~~~~~
-> > include/linux/build_bug.h:16:62: note: in definition of macro 'BUILD_BU=
-G_ON_ZERO'
-> >    16 | #define BUILD_BUG_ON_ZERO(e) ((int)(sizeof(struct { int:(-!!(e)=
-); })))
-> >       |                                                              ^
-> > include/linux/compiler.h:224:46: note: in expansion of macro '__same_ty=
-pe'
-> >   224 | #define __must_be_array(a) BUILD_BUG_ON_ZERO(__same_type((a), &=
-(a)[0]))
-> >       |                                              ^~~~~~~~~~~
-> > include/linux/kernel.h:47:59: note: in expansion of macro '__must_be_ar=
-ray'
-> >    47 | #define ARRAY_SIZE(arr) (sizeof(arr) / sizeof((arr)[0]) + __mus=
-t_be_array(arr))
-> >       |                                                           ^~~~~=
-~~~~~~~~~~
-> > drivers/gpu/drm/ingenic/ingenic-drm-drv.c:448:18: note: in expansion of=
- macro 'ARRAY_SIZE'
-> >   448 |  for (i =3D 0; i < ARRAY_SIZE(priv->dma_hwdescs->palette); i++)=
- {
-> >       |                  ^~~~~~~~~~
-> > drivers/gpu/drm/ingenic/ingenic-drm-drv.c:448:35: error: 'struct ingeni=
-c_drm' has no member named 'dma_hwdescs'; did you mean 'dma_hwdesc_f0'?
-> >   448 |  for (i =3D 0; i < ARRAY_SIZE(priv->dma_hwdescs->palette); i++)=
- {
-> >       |                                   ^~~~~~~~~~~
-> > include/linux/build_bug.h:16:62: note: in definition of macro 'BUILD_BU=
-G_ON_ZERO'
-> >    16 | #define BUILD_BUG_ON_ZERO(e) ((int)(sizeof(struct { int:(-!!(e)=
-); })))
-> >       |                                                              ^
-> > include/linux/compiler.h:224:46: note: in expansion of macro '__same_ty=
-pe'
-> >   224 | #define __must_be_array(a) BUILD_BUG_ON_ZERO(__same_type((a), &=
-(a)[0]))
-> >       |                                              ^~~~~~~~~~~
-> > include/linux/kernel.h:47:59: note: in expansion of macro '__must_be_ar=
-ray'
-> >    47 | #define ARRAY_SIZE(arr) (sizeof(arr) / sizeof((arr)[0]) + __mus=
-t_be_array(arr))
-> >       |                                                           ^~~~~=
-~~~~~~~~~~
-> > drivers/gpu/drm/ingenic/ingenic-drm-drv.c:448:18: note: in expansion of=
- macro 'ARRAY_SIZE'
-> >   448 |  for (i =3D 0; i < ARRAY_SIZE(priv->dma_hwdescs->palette); i++)=
- {
-> >       |                  ^~~~~~~~~~
-> > include/linux/build_bug.h:16:51: error: bit-field '<anonymous>' width n=
-ot an integer constant
-> >    16 | #define BUILD_BUG_ON_ZERO(e) ((int)(sizeof(struct { int:(-!!(e)=
-); })))
-> >       |                                                   ^
-> > include/linux/compiler.h:224:28: note: in expansion of macro 'BUILD_BUG=
-_ON_ZERO'
-> >   224 | #define __must_be_array(a) BUILD_BUG_ON_ZERO(__same_type((a), &=
-(a)[0]))
-> >       |                            ^~~~~~~~~~~~~~~~~
-> > include/linux/kernel.h:47:59: note: in expansion of macro '__must_be_ar=
-ray'
-> >    47 | #define ARRAY_SIZE(arr) (sizeof(arr) / sizeof((arr)[0]) + __mus=
-t_be_array(arr))
-> >       |                                                           ^~~~~=
-~~~~~~~~~~
-> > drivers/gpu/drm/ingenic/ingenic-drm-drv.c:448:18: note: in expansion of=
- macro 'ARRAY_SIZE'
-> >   448 |  for (i =3D 0; i < ARRAY_SIZE(priv->dma_hwdescs->palette); i++)=
- {
-> >       |                  ^~~~~~~~~~
-> > drivers/gpu/drm/ingenic/ingenic-drm-drv.c:453:9: error: 'struct ingenic=
-_drm' has no member named 'dma_hwdescs'; did you mean 'dma_hwdesc_f0'?
-> >   453 |   priv->dma_hwdescs->palette[i] =3D color;
-> >       |         ^~~~~~~~~~~
-> >       |         dma_hwdesc_f0
-> > drivers/gpu/drm/ingenic/ingenic-drm-drv.c: In function 'ingenic_drm_pla=
-ne_atomic_update':
-> > drivers/gpu/drm/ingenic/ingenic-drm-drv.c:467:3: error: 'crtc_state' un=
-declared (first use in this function); did you mean 'ctx_state'?
-> >   467 |   crtc_state =3D state->crtc->state;
-> >       |   ^~~~~~~~~~
-> >       |   ctx_state
-> > drivers/gpu/drm/ingenic/ingenic-drm-drv.c:467:3: note: each undeclared =
-identifier is reported only once for each function it appears in
-> > At top level:
-> > drivers/gpu/drm/ingenic/ingenic-drm-drv.c:443:13: warning: 'ingenic_drm=
-_update_palette' defined but not used [-Wunused-function]
-> >   443 | static void ingenic_drm_update_palette(struct ingenic_drm *priv,
-> >       |             ^~~~~~~~~~~~~~~~~~~~~~~~~~
-> >  =20
-> > > I noticed that the ingenic driver revert I had been waiting for appea=
-red
-> > > in hte drm-misc tree, so I removed the BROKEN dependency for it, but =
-it
-> > > produced the above errors, so I have marked it BROKEN again.   =20
->=20
-> Any progress on this?  I am still marking CONFIG_DRM_INGENIC as BROKEN
-> in the drm and drm-misc trees.
+Done.
 
---=20
-Cheers,
-Stephen Rothwell
+Ira
 
---Sig_/PsBqT+2U+eGmb+1a29SSGu/
-Content-Type: application/pgp-signature
-Content-Description: OpenPGP digital signature
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAEBCAAdFiEENIC96giZ81tWdLgKAVBC80lX0GwFAl+D2uoACgkQAVBC80lX
-0Gwnowf9G2Odj/qp8Y+TBepUYlByT5rgvdUQpll2T8YtC8laneNWjNSd6w2d+rtR
-wqP0fL4IMOePhZ1Zq09hkfe57IFja+2U2/D2Ra/4nWJvVkpkTDgNoBj9nnfvuX6I
-YIG+J5AERsCer5RPUB6XO5SOag4oyDa+jxt9LCQkKSzUfbrY7Z1a7mBwtXBBv824
-ba5hdJz4QKnGvXP+yYGNLXEVP10LHZFpLhhf1XG+tzwv+aslBY/i38+CwZn39XX4
-dgH0iykSfgFqkX9DpBeyfWRwR0wuclFXG1nwmSzihasWklMZDRlaNYb6gliuz9B0
-3HCguHgn29KaYpLj39ZDymKuWyQO5w==
-=pQfj
------END PGP SIGNATURE-----
-
---Sig_/PsBqT+2U+eGmb+1a29SSGu/--
-
---===============0248430594==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
+> 
+> Thanks,
+> Bernard.
+> 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============0248430594==--
