@@ -2,26 +2,26 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AD97A28BB3A
-	for <lists+intel-gfx@lfdr.de>; Mon, 12 Oct 2020 16:47:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8016828BB30
+	for <lists+intel-gfx@lfdr.de>; Mon, 12 Oct 2020 16:47:48 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BDE606E4FE;
-	Mon, 12 Oct 2020 14:47:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 23E226E511;
+	Mon, 12 Oct 2020 14:47:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mblankhorst.nl (mblankhorst.nl [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8D4946E4E8
- for <intel-gfx@lists.freedesktop.org>; Mon, 12 Oct 2020 14:47:14 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EC2FD6E508
+ for <intel-gfx@lists.freedesktop.org>; Mon, 12 Oct 2020 14:47:15 +0000 (UTC)
 From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Mon, 12 Oct 2020 16:46:46 +0200
-Message-Id: <20201012144706.555345-42-maarten.lankhorst@linux.intel.com>
+Date: Mon, 12 Oct 2020 16:46:47 +0200
+Message-Id: <20201012144706.555345-43-maarten.lankhorst@linux.intel.com>
 X-Mailer: git-send-email 2.28.0
 In-Reply-To: <20201012144706.555345-1-maarten.lankhorst@linux.intel.com>
 References: <20201012144706.555345-1-maarten.lankhorst@linux.intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v2 41/61] drm/i915/selftests: Prepare client
- blit for obj->mm.lock removal.
+Subject: [Intel-gfx] [PATCH v2 42/61] drm/i915/selftests: Prepare coherency
+ tests for obj->mm.lock removal.
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,46 +44,28 @@ unlocked versions.
 
 Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 ---
- drivers/gpu/drm/i915/gem/selftests/i915_gem_client_blt.c | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/i915/gem/selftests/i915_gem_coherency.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gem/selftests/i915_gem_client_blt.c b/drivers/gpu/drm/i915/gem/selftests/i915_gem_client_blt.c
-index 4e36d4897ea6..cc782569765f 100644
---- a/drivers/gpu/drm/i915/gem/selftests/i915_gem_client_blt.c
-+++ b/drivers/gpu/drm/i915/gem/selftests/i915_gem_client_blt.c
-@@ -47,7 +47,7 @@ static int __igt_client_fill(struct intel_engine_cs *engine)
- 			goto err_flush;
- 		}
+diff --git a/drivers/gpu/drm/i915/gem/selftests/i915_gem_coherency.c b/drivers/gpu/drm/i915/gem/selftests/i915_gem_coherency.c
+index 2e439bb269d6..42aa3c5e0621 100644
+--- a/drivers/gpu/drm/i915/gem/selftests/i915_gem_coherency.c
++++ b/drivers/gpu/drm/i915/gem/selftests/i915_gem_coherency.c
+@@ -159,7 +159,7 @@ static int wc_set(struct context *ctx, unsigned long offset, u32 v)
+ 	if (err)
+ 		return err;
  
--		vaddr = i915_gem_object_pin_map(obj, I915_MAP_WB);
-+		vaddr = i915_gem_object_pin_map_unlocked(obj, I915_MAP_WB);
- 		if (IS_ERR(vaddr)) {
- 			err = PTR_ERR(vaddr);
- 			goto err_put;
-@@ -159,7 +159,7 @@ static int prepare_blit(const struct tiled_blits *t,
- 	u32 src_pitch, dst_pitch;
- 	u32 cmd, *cs;
+-	map = i915_gem_object_pin_map(ctx->obj, I915_MAP_WC);
++	map = i915_gem_object_pin_map_unlocked(ctx->obj, I915_MAP_WC);
+ 	if (IS_ERR(map))
+ 		return PTR_ERR(map);
  
--	cs = i915_gem_object_pin_map(batch, I915_MAP_WC);
-+	cs = i915_gem_object_pin_map_unlocked(batch, I915_MAP_WC);
- 	if (IS_ERR(cs))
- 		return PTR_ERR(cs);
+@@ -182,7 +182,7 @@ static int wc_get(struct context *ctx, unsigned long offset, u32 *v)
+ 	if (err)
+ 		return err;
  
-@@ -379,7 +379,7 @@ static int verify_buffer(const struct tiled_blits *t,
- 	y = i915_prandom_u32_max_state(t->height, prng);
- 	p = y * t->width + x;
- 
--	vaddr = i915_gem_object_pin_map(buf->vma->obj, I915_MAP_WC);
-+	vaddr = i915_gem_object_pin_map_unlocked(buf->vma->obj, I915_MAP_WC);
- 	if (IS_ERR(vaddr))
- 		return PTR_ERR(vaddr);
- 
-@@ -566,7 +566,7 @@ static int tiled_blits_prepare(struct tiled_blits *t,
- 	int err;
- 	int i;
- 
--	map = i915_gem_object_pin_map(t->scratch.vma->obj, I915_MAP_WC);
-+	map = i915_gem_object_pin_map_unlocked(t->scratch.vma->obj, I915_MAP_WC);
+-	map = i915_gem_object_pin_map(ctx->obj, I915_MAP_WC);
++	map = i915_gem_object_pin_map_unlocked(ctx->obj, I915_MAP_WC);
  	if (IS_ERR(map))
  		return PTR_ERR(map);
  
