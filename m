@@ -1,39 +1,42 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0632B28C426
-	for <lists+intel-gfx@lfdr.de>; Mon, 12 Oct 2020 23:31:08 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 81BCF28C422
+	for <lists+intel-gfx@lfdr.de>; Mon, 12 Oct 2020 23:31:04 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BA8806E80B;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 54DB86E7EF;
 	Mon, 12 Oct 2020 21:31:01 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 491C86E7DA
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D9E266E7DD
  for <intel-gfx@lists.freedesktop.org>; Mon, 12 Oct 2020 21:30:55 +0000 (UTC)
-IronPort-SDR: 5X7zrVGMZ78vq2HTxb+XE2IMQ3nQY1zQMuWhqKxaVDi2swC/bzCzicfTGsyeQ6t4YzApo/PdP6
- OduDu7K1hMGg==
-X-IronPort-AV: E=McAfee;i="6000,8403,9772"; a="163169613"
-X-IronPort-AV: E=Sophos;i="5.77,368,1596524400"; d="scan'208";a="163169613"
+IronPort-SDR: OjNNM0lYspkhboE+xNRR3580/CCP5i411L0MedD+q9VHL4UnvV3oHWRAgCaMIcZN5gd2crJ4p/
+ O9A5JFKfZIcA==
+X-IronPort-AV: E=McAfee;i="6000,8403,9772"; a="163169618"
+X-IronPort-AV: E=Sophos;i="5.77,368,1596524400"; d="scan'208";a="163169618"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from orsmga004.jf.intel.com ([10.7.209.38])
  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Oct 2020 14:30:54 -0700
-IronPort-SDR: jyKogBB7s1CXC7bu26qQ39rTxYUJmcH0XCm6bMC/EAoKi8V+Xg/6NcbtE8zgunkBWKeTJvu6/e
- uFglz0I6Upvw==
-X-IronPort-AV: E=Sophos;i="5.77,368,1596524400"; d="scan'208";a="463244967"
+ 12 Oct 2020 14:30:55 -0700
+IronPort-SDR: KVvilntGnsAVQ4bkG72/8QxqmJ99sitCEuyoVxkgm6h2EvU26pvqjdLcaG60SkCKhDIZSjKeCz
+ 0cTsMTUBXqHA==
+X-IronPort-AV: E=Sophos;i="5.77,368,1596524400"; d="scan'208";a="463244975"
 Received: from lucas-s2600cw.jf.intel.com ([10.165.21.202])
  by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  12 Oct 2020 14:30:54 -0700
 From: Lucas De Marchi <lucas.demarchi@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Mon, 12 Oct 2020 14:29:44 -0700
-Message-Id: <20201012212959.871513-1-lucas.demarchi@intel.com>
+Date: Mon, 12 Oct 2020 14:29:45 -0700
+Message-Id: <20201012212959.871513-2-lucas.demarchi@intel.com>
 X-Mailer: git-send-email 2.28.0
+In-Reply-To: <20201012212959.871513-1-lucas.demarchi@intel.com>
+References: <20201012212959.871513-1-lucas.demarchi@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v7 00/15] Introduce DG1
+Subject: [Intel-gfx] [PATCH v7 01/15] drm/i915/display: allow to skip
+ certain power wells
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,57 +54,79 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-v7:
-  - Remove already applied patches and rebase the rest
-  - Refactor DG1 power well handling to re-use table from TGL
-  - Squash patch to add all the ports in a single patch
-  - Use IS_DGFX() for DMC_DEBUG register move
+From: Aditya Swarup <aditya.swarup@intel.com>
 
-Aditya Swarup (4):
-  drm/i915/display: allow to skip certain power wells
-  drm/i915/dg1: Add DPLL macros for DG1
-  drm/i915/dg1: Add and setup DPLLs for DG1
-  drm/i915/dg1: Enable ports
+This allows us to skip power wells on a platform allowing it to re-use
+the table from another one instead of having to create a new table from
+scratch that is basically a copy with a few removals.
 
-Anshuman Gupta (2):
-  drm/i915/dg1: DG1 does not support DC6
-  drm/i915/dg1: Update DMC_DEBUG register
+Cc: Imre Deak <imre.deak@intel.com>
+Suggested-by: Matt Roper <matthew.d.roper@intel.com>
+Signed-off-by: Aditya Swarup <aditya.swarup@intel.com>
+[ Adapt to base ignore logic on pw id rather than adding a new field,
+  as suggested by Imre ]
+Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+---
+ .../drm/i915/display/intel_display_power.c    | 24 ++++++++++++++-----
+ 1 file changed, 18 insertions(+), 6 deletions(-)
 
-Clinton A Taylor (1):
-  drm/i915/dg1: invert HPD pins
-
-Lucas De Marchi (5):
-  drm/i915/cnl: skip PW_DDI_F on certain skus
-  drm/i915/dg1: Add DG1 power wells
-  drm/i915/dg1: Enable DPLL for DG1
-  drm/i915/dg1: add hpd interrupt handling
-  drm/i915/dg1: map/unmap pll clocks
-
-Matt Atwood (1):
-  drm/i915/dg1: Load DMC
-
-Michel Thierry (1):
-  drm/i915/dgfx: define llc and snooping behaviour
-
-Stuart Summers (1):
-  drm/i915/dg1: Add initial DG1 workarounds
-
- drivers/gpu/drm/i915/display/intel_csr.c      |  12 +-
- drivers/gpu/drm/i915/display/intel_ddi.c      |  92 ++++++++++++++-
- drivers/gpu/drm/i915/display/intel_display.c  |  33 +++++-
- .../drm/i915/display/intel_display_debugfs.c  |   9 +-
- .../drm/i915/display/intel_display_power.c    |  60 ++++++----
- .../drm/i915/display/intel_display_power.h    |   3 +
- drivers/gpu/drm/i915/display/intel_dpll_mgr.c |  54 +++++++--
- drivers/gpu/drm/i915/display/intel_dpll_mgr.h |  17 +++
- drivers/gpu/drm/i915/display/intel_sprite.c   |   4 +-
- drivers/gpu/drm/i915/gt/intel_workarounds.c   | 111 ++++++++++++++----
- drivers/gpu/drm/i915/i915_irq.c               |  67 +++++++++--
- drivers/gpu/drm/i915/i915_pci.c               |   4 +
- drivers/gpu/drm/i915/i915_reg.h               |  59 +++++++++-
- drivers/gpu/drm/i915/intel_pm.c               |  39 ++++--
- 14 files changed, 470 insertions(+), 94 deletions(-)
-
+diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
+index 7277e58b01f1..5b7f2b67791e 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_power.c
++++ b/drivers/gpu/drm/i915/display/intel_display_power.c
+@@ -4554,13 +4554,18 @@ static u32 get_allowed_dc_mask(const struct drm_i915_private *dev_priv,
+ static int
+ __set_power_wells(struct i915_power_domains *power_domains,
+ 		  const struct i915_power_well_desc *power_well_descs,
+-		  int power_well_count)
++		  int power_well_descs_sz, u64 skip_mask)
+ {
+ 	struct drm_i915_private *i915 = container_of(power_domains,
+ 						     struct drm_i915_private,
+ 						     power_domains);
+ 	u64 power_well_ids = 0;
+-	int i;
++	int power_well_count = 0;
++	int i, plt_idx = 0;
++
++	for (i = 0; i < power_well_descs_sz; i++)
++		if (!(BIT_ULL(power_well_descs[i].id) & skip_mask))
++			power_well_count++;
+ 
+ 	power_domains->power_well_count = power_well_count;
+ 	power_domains->power_wells =
+@@ -4570,10 +4575,14 @@ __set_power_wells(struct i915_power_domains *power_domains,
+ 	if (!power_domains->power_wells)
+ 		return -ENOMEM;
+ 
+-	for (i = 0; i < power_well_count; i++) {
++	for (i = 0; i < power_well_descs_sz; i++) {
+ 		enum i915_power_well_id id = power_well_descs[i].id;
+ 
+-		power_domains->power_wells[i].desc = &power_well_descs[i];
++		if (BIT_ULL(id) & skip_mask)
++			continue;
++
++		power_domains->power_wells[plt_idx++].desc =
++			&power_well_descs[i];
+ 
+ 		if (id == DISP_PW_ID_NONE)
+ 			continue;
+@@ -4586,9 +4595,12 @@ __set_power_wells(struct i915_power_domains *power_domains,
+ 	return 0;
+ }
+ 
+-#define set_power_wells(power_domains, __power_well_descs) \
++#define set_power_wells_mask(power_domains, __power_well_descs, skip_mask) \
+ 	__set_power_wells(power_domains, __power_well_descs, \
+-			  ARRAY_SIZE(__power_well_descs))
++			  ARRAY_SIZE(__power_well_descs), skip_mask)
++
++#define set_power_wells(power_domains, __power_well_descs) \
++	set_power_wells_mask(power_domains, __power_well_descs, 0)
+ 
+ /**
+  * intel_power_domains_init - initializes the power domain structures
 -- 
 2.28.0
 
