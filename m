@@ -2,52 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A50E028CDC2
-	for <lists+intel-gfx@lfdr.de>; Tue, 13 Oct 2020 14:03:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D5DC028CDCD
+	for <lists+intel-gfx@lfdr.de>; Tue, 13 Oct 2020 14:08:06 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 20DAB6E8D5;
-	Tue, 13 Oct 2020 12:03:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A686A6E2E1;
+	Tue, 13 Oct 2020 12:08:03 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-41104.protonmail.ch (mail-41104.protonmail.ch
- [185.70.41.104])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5B23B6E8D5
- for <intel-gfx@lists.freedesktop.org>; Tue, 13 Oct 2020 12:03:45 +0000 (UTC)
-Received: from mail-03.mail-europe.com (mail-03.mail-europe.com
- [91.134.188.129])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits))
- (No client certificate requested)
- by mail-41104.protonmail.ch (Postfix) with ESMTPS id 9D9272002C93
- for <intel-gfx@lists.freedesktop.org>; Tue, 13 Oct 2020 12:03:43 +0000 (UTC)
-Authentication-Results: mail-41104.protonmail.ch;
- dkim=pass (2048-bit key) header.d=emersion.fr header.i=@emersion.fr
- header.b="dW0FUHzm"
-Date: Tue, 13 Oct 2020 12:03:34 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=emersion.fr;
- s=protonmail2; t=1602590619;
- bh=xJSyQzG/wc/eo2ONFO3MxyEkoIOfZSkrghLMbcUyQAg=;
- h=Date:To:From:Cc:Reply-To:Subject:In-Reply-To:References:From;
- b=dW0FUHzmf4SQsmiETrMSH4Av2aeAGeg0ShH+Bd4aGcc4Xwt69ocpvsOcKx7BWpczu
- i+o71u7MBa8iuJDnoAVyBXAmJ6raRLt2jM8fqucX41jDc6gJhbuIyXmI0LaVWavZO2
- SKtLFZWQ3vrpd2y9D9sFK3IqA3pVBieLXXv62uP5osjeGokhrnqC1FiBLG0BCIdu20
- DvIjoHZz2uT88BBZXWaxOk1R4P9+TjcSdYaTIf7094vNJ4t6GXL3v8NZSLD0g3HvCy
- LncPhPvtx2GDCkwIGeUPSdznJcRz/vfqckgukjnK8yo4meFtEzXCL3TuHEJKEBMVs0
- Kikz7jSugC8pA==
-To: Pankaj Bharadiya <pankaj.laxminarayan.bharadiya@intel.com>
-From: Simon Ser <contact@emersion.fr>
-Message-ID: <5OoxGqCN-WPshwwU1WctxYhcJ3OqwLmph6wWhq-ZgTfKPhz1WQLGJlZZN1p2oM082DxSn0cv-nUP9bLJcdtoaK8FLvaXxoa5TB2N0LEy3LI=@emersion.fr>
-In-Reply-To: <20201012184130.937-2-pankaj.laxminarayan.bharadiya@intel.com>
-References: <20201012184130.937-1-pankaj.laxminarayan.bharadiya@intel.com>
- <20201012184130.937-2-pankaj.laxminarayan.bharadiya@intel.com>
+Received: from fireflyinternet.com (unknown [77.68.26.236])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4A1796E2E1
+ for <intel-gfx@lists.freedesktop.org>; Tue, 13 Oct 2020 12:08:02 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from localhost (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
+ 22701768-1500050 for multiple; Tue, 13 Oct 2020 13:07:59 +0100
 MIME-Version: 1.0
-X-Spam-Status: No, score=-1.2 required=10.0 tests=ALL_TRUSTED,DKIM_SIGNED,
- DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF shortcircuit=no
- autolearn=disabled version=3.4.4
-X-Spam-Checker-Version: SpamAssassin 3.4.4 (2020-01-24) on
- mailout.protonmail.ch
-Subject: Re: [Intel-gfx] [PATCH v6 1/5] drm: Introduce plane and CRTC
- scaling filter properties
+In-Reply-To: <160259031106.2946.5754638300794869595@build.alporthouse.com>
+References: <20201013111839.96637-1-matthew.auld@intel.com>
+ <160259031106.2946.5754638300794869595@build.alporthouse.com>
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: Matthew Auld <matthew.auld@intel.com>, intel-gfx@lists.freedesktop.org
+Date: Tue, 13 Oct 2020 13:07:58 +0100
+Message-ID: <160259087839.2946.11609856522168132905@build.alporthouse.com>
+User-Agent: alot/0.9
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/execbuf: don't allow zero batch_len
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,38 +39,64 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: Simon Ser <contact@emersion.fr>
-Cc: Maxime Ripard <mripard@kernel.org>,
- "daniels@collabora.com" <daniels@collabora.com>,
- David Airlie <airlied@linux.ie>, Thomas Zimmermann <tzimmermann@suse.de>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- "lorusak@gmail.com" <lorusak@gmail.com>,
- "themagnificentmrg@gmail.com" <themagnificentmrg@gmail.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-> +/**
-> + * DOC: Plane scaling filter property
-> + *
-> + * SCALING_FILTER:
-> + *
-> + *	Indicates scaling filter to be used for plane scaler
-> + *
-> + *	The value of this property can be one of the following:
-> + *	Default:
-> + *		Driver's default scaling filter
-> + *	Nearest Neighbor:
-> + *		Nearest Neighbor scaling filter
-> + *
-> + * Drivers can set up this property for a plane by calling
-> + * drm_plane_create_scaling_filter_property
-> + */
+Quoting Chris Wilson (2020-10-13 12:58:31)
+> Quoting Matthew Auld (2020-10-13 12:18:39)
+> > As per the ABI batch_len is u32, however if the batch_len is left unset,
+> > then the kernel will just assume batch_len is the size of the whole
+> > batch object, however since the vma->size is u64, while the batch_len is
+> > just u32 we can end up with batch_len = 0 if we are given too large batch
+> > object(e.g 1ULL << 32), which doesn't look the intended behaviour and
+> > probably leads to explosions on some HW.
+> > 
+> > Testcase: igt/gem_exec_params/larger-than-life-batch
+> > Fixes: 0b5372727be3 ("drm/i915/cmdparser: Use cached vmappings")
+> 
+> Nah. That's setting exec_len used for dispatch, not for parsing, which
+> is still using 
+> 
+> i915_gem_execbuffer_parse(engine, &shadow_exec_entry,
+>                           params->batch->obj,
+>                           eb,
+>                           args->batch_start_offset,
+>                           args->batch_len,
+>                           drm_is_current_master(file));
+> (and args->batch_len is straight from userspace and passed onwards)
+> 
+> It's right up until 435e8fc059db ("drm/i915: Allow parsing of unsized batches")
+> where we are using the user value of batch_len for allocating the shadow
+> object and parsing.
+> 
+> Fixes: 435e8fc059db ("drm/i915: Allow parsing of unsized batches")
+> 
+> > Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+> > Cc: Chris Wilson <chris@chris-wilson.co.uk>
+> > ---
+> >  drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c | 7 ++++++-
+> >  1 file changed, 6 insertions(+), 1 deletion(-)
+> > 
+> > diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+> > index 4b09bcd70cf4..80c738c72e6e 100644
+> > --- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+> > +++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+> > @@ -869,8 +869,13 @@ static int eb_lookup_vmas(struct i915_execbuffer *eb)
+> >                 return -EINVAL;
+> >         }
+> >  
+> > -       if (eb->batch_len == 0)
+> > +       if (eb->batch_len == 0) {
+> >                 eb->batch_len = eb->batch->vma->size - eb->batch_start_offset;
+> 
+> if (overflows_type(eb->batch->vma->size - eb->batch_start_offset, eb->batch_len))
 
-Similarily, this can be moved in "Plane Composition Properties".
-
+And we shouldn't fail here. So bump to u64, and since the vma->size
+cannot be larger than the GTT, we will be safe for gen2 where it makes a
+difference.
+-Chris
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
