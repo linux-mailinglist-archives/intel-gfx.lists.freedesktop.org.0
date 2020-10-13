@@ -1,31 +1,70 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B839328CCA1
-	for <lists+intel-gfx@lfdr.de>; Tue, 13 Oct 2020 13:32:37 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id DB77228CCB8
+	for <lists+intel-gfx@lfdr.de>; Tue, 13 Oct 2020 13:50:29 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 24FED6E8C4;
-	Tue, 13 Oct 2020 11:32:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4AB656E2D5;
+	Tue, 13 Oct 2020 11:50:28 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id ADC526E2E1;
- Tue, 13 Oct 2020 11:32:32 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id A6256A7DFB;
- Tue, 13 Oct 2020 11:32:32 +0000 (UTC)
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 33EF96E2D5
+ for <intel-gfx@lists.freedesktop.org>; Tue, 13 Oct 2020 11:50:27 +0000 (UTC)
+IronPort-SDR: 6f/62C96Rbv74AoABMuFCgROGTGJMBonA7tFIsvQUtUNsGYCvX7ClNcrVCIFnq1vLS2fFAvbQW
+ tKU4O0+ySycg==
+X-IronPort-AV: E=McAfee;i="6000,8403,9772"; a="163257858"
+X-IronPort-AV: E=Sophos;i="5.77,370,1596524400"; d="scan'208";a="163257858"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Oct 2020 04:50:26 -0700
+IronPort-SDR: p5dbuYpOtfOOIar2s4CnlUQN/oKclRTCXJTgNiYzx0n2NumCfqfbUHEl6Z4d0BIri8evGyIB7x
+ 52YDuDVfPfVA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.77,370,1596524400"; d="scan'208";a="530365915"
+Received: from irsmsx605.ger.corp.intel.com ([163.33.146.138])
+ by orsmga005.jf.intel.com with ESMTP; 13 Oct 2020 04:50:25 -0700
+Received: from irsmsx603.ger.corp.intel.com (163.33.146.9) by
+ IRSMSX605.ger.corp.intel.com (163.33.146.138) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1713.5; Tue, 13 Oct 2020 12:50:24 +0100
+Received: from irsmsx603.ger.corp.intel.com ([163.33.146.9]) by
+ irsmsx603.ger.corp.intel.com ([163.33.146.9]) with mapi id 15.01.1713.004;
+ Tue, 13 Oct 2020 12:50:24 +0100
+From: "Saarinen, Jani" <jani.saarinen@intel.com>
+To: =?iso-8859-1?Q?Ville_Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>,
+ Kai-Heng Feng <kai.heng.feng@canonical.com>
+Thread-Topic: [Intel-gfx] [Regression] "drm/i915: Implement display w/a #1143"
+ breaks HDMI on ASUS GL552VW
+Thread-Index: AQHWekb7ifJ+EaK+xE29hC+UxF2s76lJwKqAgACNE4CADCMyAIA+yueAgABjLACAABpisA==
+Date: Tue, 13 Oct 2020 11:50:24 +0000
+Message-ID: <34051428b30c46a9b04858124fe3932c@intel.com>
+References: <BYAPR11MB31902A8155BE70687A93FAFAB2430@BYAPR11MB3190.namprd11.prod.outlook.com>
+ <DF870FF7-4EAD-48B3-8159-27359BD7B02B@canonical.com>
+ <BYAPR11MB3190EA6507BFF7C7D8294C02B25E0@BYAPR11MB3190.namprd11.prod.outlook.com>
+ <30685BA7-1D02-48A0-9B7A-4933ED2B8F0D@canonical.com>
+ <20200824180438.GI6112@intel.com>
+ <BYAPR11MB31903D08E7BF1B2084309E80B2560@BYAPR11MB3190.namprd11.prod.outlook.com>
+ <010FB10D-B1EF-4C2E-A8AD-B7409E771BD0@canonical.com>
+ <20200826130511.GN6112@intel.com>
+ <432E1B70-7F52-4DF7-8887-0769F17DAD30@canonical.com>
+ <E1DE5E53-2C0B-4D5A-8D86-736639426A9D@canonical.com>
+ <20201013111532.GY6112@intel.com>
+In-Reply-To: <20201013111532.GY6112@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+dlp-version: 11.5.1.3
+dlp-reaction: no-action
+dlp-product: dlpe-windows
+x-originating-ip: [163.33.253.164]
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Tue, 13 Oct 2020 11:32:32 -0000
-Message-ID: <160258875264.28549.15466776176551608274@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20201013093742.3709-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20201013093742.3709-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/gem=3A_Poison_stolen_pages_before_use_=28rev2=29?=
+Subject: Re: [Intel-gfx] [Regression] "drm/i915: Implement display w/a
+ #1143" breaks HDMI on ASUS GL552VW
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,290 +77,267 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============0768547454=="
+Cc: intel-gfx <intel-gfx@lists.freedesktop.org>, "Runyan,
+ Arthur J" <arthur.j.runyan@intel.com>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0768547454==
-Content-Type: multipart/alternative;
- boundary="===============9209288963948727244=="
+Hi, =
 
---===============9209288963948727244==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+> -----Original Message-----
+> From: Intel-gfx <intel-gfx-bounces@lists.freedesktop.org> On Behalf Of Vi=
+lle
+> Syrj=E4l=E4
+> Sent: tiistai 13. lokakuuta 2020 14.16
+> To: Kai-Heng Feng <kai.heng.feng@canonical.com>
+> Cc: intel-gfx <intel-gfx@lists.freedesktop.org>; Runyan, Arthur J
+> <arthur.j.runyan@intel.com>
+> Subject: Re: [Intel-gfx] [Regression] "drm/i915: Implement display w/a #1=
+143"
+> breaks HDMI on ASUS GL552VW
+> =
 
-== Series Details ==
+> On Tue, Oct 13, 2020 at 01:20:35PM +0800, Kai-Heng Feng wrote:
+> >
+> >
+> > > On Sep 3, 2020, at 14:26, Kai-Heng Feng <kai.heng.feng@canonical.com>
+> wrote:
+> > >
+> > >
+> > >
+> > >> On Aug 26, 2020, at 21:05, Ville Syrj=E4l=E4 <ville.syrjala@linux.in=
+tel.com>
+> wrote:
+> > >>
+> > >> On Wed, Aug 26, 2020 at 12:40:15PM +0800, Kai-Heng Feng wrote:
+> > >>> Hi,
+> > >>>
+> > >>>> On Aug 25, 2020, at 02:46, Runyan, Arthur J
+> <arthur.j.runyan@intel.com> wrote:
+> > >>>>
+> > >>>> I remember some strangeness about the blnclegdisbl.  I'll see if I=
+ can dig
+> up some more.
+> > >>>
+> > >>>
+> > >>> The register read can be found at [1] and [2].
+> > >>>
+> > >>> [1]
+> > >>>
+> https://bugs.launchpad.net/ubuntu/+source/linux/+bug/1871721/comme
+> > >>> nts/119 [2]
+> > >>>
+> https://bugs.launchpad.net/ubuntu/+source/linux/+bug/1871721/comme
+> > >>> nts/120
+> > >>
+> > >> Looks like it's using the 400mV/0dB setting. Can we get the same
+> > >> dumps with the driver loaded just to confirm whether we're using
+> > >> different settings?
+> > >>
+> > >> Also a dump of /sys/kernel/debug/dri/0/i915_vbt would be good to
+> > >> have.
+> > >
+> > >
+> https://bugs.launchpad.net/ubuntu/+source/linux/+bug/1871721/comment
+> > > s/124
+> > >
+> https://bugs.launchpad.net/ubuntu/+source/linux/+bug/1871721/comment
+> > > s/125
+> > >
+> https://bugs.launchpad.net/ubuntu/+source/linux/+bug/1871721/comment
+> > > s/126
+> >
+> > A gentle ping...
+> =
 
-Series: drm/i915/gem: Poison stolen pages before use (rev2)
-URL   : https://patchwork.freedesktop.org/series/82463/
-State : success
+> I cooked up some hacks for you to try:
+> git://github.com/vsyrjala/linux.git skl_vswing_wa_hacks
+> =
 
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_9135 -> Patchwork_18684
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18684/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_18684 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@gem_ctx_create@basic-files:
-    - fi-apl-guc:         [PASS][1] -> [INCOMPLETE][2] ([i915#1635])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9135/fi-apl-guc/igt@gem_ctx_create@basic-files.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18684/fi-apl-guc/igt@gem_ctx_create@basic-files.html
-
-  * igt@gem_flink_basic@double-flink:
-    - fi-tgl-y:           [PASS][3] -> [DMESG-WARN][4] ([i915#402]) +1 similar issue
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9135/fi-tgl-y/igt@gem_flink_basic@double-flink.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18684/fi-tgl-y/igt@gem_flink_basic@double-flink.html
-
-  * igt@i915_pm_rpm@basic-pci-d3-state:
-    - fi-bsw-kefka:       [PASS][5] -> [DMESG-WARN][6] ([i915#1982])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9135/fi-bsw-kefka/igt@i915_pm_rpm@basic-pci-d3-state.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18684/fi-bsw-kefka/igt@i915_pm_rpm@basic-pci-d3-state.html
-
-  * igt@i915_selftest@live@gt_heartbeat:
-    - fi-tgl-u2:          [PASS][7] -> [INCOMPLETE][8] ([i915#2557])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9135/fi-tgl-u2/igt@i915_selftest@live@gt_heartbeat.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18684/fi-tgl-u2/igt@i915_selftest@live@gt_heartbeat.html
-
-  * igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1:
-    - fi-icl-u2:          [PASS][9] -> [DMESG-WARN][10] ([i915#1982])
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9135/fi-icl-u2/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18684/fi-icl-u2/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html
-
-  
-#### Possible fixes ####
-
-  * igt@gem_flink_basic@bad-flink:
-    - fi-tgl-y:           [DMESG-WARN][11] ([i915#402]) -> [PASS][12]
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9135/fi-tgl-y/igt@gem_flink_basic@bad-flink.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18684/fi-tgl-y/igt@gem_flink_basic@bad-flink.html
-
-  * igt@i915_pm_rpm@basic-pci-d3-state:
-    - fi-bsw-n3050:       [DMESG-WARN][13] ([i915#1982]) -> [PASS][14]
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9135/fi-bsw-n3050/igt@i915_pm_rpm@basic-pci-d3-state.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18684/fi-bsw-n3050/igt@i915_pm_rpm@basic-pci-d3-state.html
-
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:
-    - fi-icl-u2:          [DMESG-WARN][15] ([i915#1982]) -> [PASS][16]
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9135/fi-icl-u2/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18684/fi-icl-u2/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-
-  * igt@kms_pipe_crc_basic@read-crc-pipe-c:
-    - {fi-tgl-dsi}:       [DMESG-WARN][17] ([i915#1982]) -> [PASS][18]
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9135/fi-tgl-dsi/igt@kms_pipe_crc_basic@read-crc-pipe-c.html
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18684/fi-tgl-dsi/igt@kms_pipe_crc_basic@read-crc-pipe-c.html
-
-  
-#### Warnings ####
-
-  * igt@i915_pm_rpm@basic-rte:
-    - fi-kbl-guc:         [SKIP][19] ([fdo#109271]) -> [DMESG-FAIL][20] ([i915#2203])
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9135/fi-kbl-guc/igt@i915_pm_rpm@basic-rte.html
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18684/fi-kbl-guc/igt@i915_pm_rpm@basic-rte.html
-
-  * igt@i915_pm_rpm@module-reload:
-    - fi-tgl-y:           [DMESG-WARN][21] ([i915#2411]) -> [DMESG-WARN][22] ([i915#1982] / [i915#2411])
-   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9135/fi-tgl-y/igt@i915_pm_rpm@module-reload.html
-   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18684/fi-tgl-y/igt@i915_pm_rpm@module-reload.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [i915#1635]: https://gitlab.freedesktop.org/drm/intel/issues/1635
-  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
-  [i915#2203]: https://gitlab.freedesktop.org/drm/intel/issues/2203
-  [i915#2411]: https://gitlab.freedesktop.org/drm/intel/issues/2411
-  [i915#2557]: https://gitlab.freedesktop.org/drm/intel/issues/2557
-  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
+> An upstream bug report would probably be a good idea so that the
+> communication doesn't have to go through a middle man over email...
+Agree, please make gitlab issue on this. =
 
 
-Participating hosts (47 -> 41)
-------------------------------
+> =
 
-  Missing    (6): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-byt-clapper fi-bdw-samus 
+> >
+> > >
+> > > Kai-Heng
+> > >
+> > >>
+> > >>>
+> > >>> Kai-Heng
+> > >>>
+> > >>>>
+> > >>>> -----Original Message-----
+> > >>>> From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> > >>>> Sent: Monday, August 24, 2020 11:05 AM
+> > >>>> To: Kai-Heng Feng <kai.heng.feng@canonical.com>
+> > >>>> Cc: Runyan, Arthur J <arthur.j.runyan@intel.com>; Vivi, Rodrigo
+> > >>>> <rodrigo.vivi@intel.com>; intel-gfx
+> > >>>> <intel-gfx@lists.freedesktop.org>
+> > >>>> Subject: Re: [Regression] "drm/i915: Implement display w/a #1143"
+> > >>>> breaks HDMI on ASUS GL552VW
+> > >>>>
+> > >>>> On Mon, Aug 17, 2020 at 02:17:49PM +0800, Kai-Heng Feng wrote:
+> > >>>>>
+> > >>>>>
+> > >>>>>> On Aug 17, 2020, at 00:22, Runyan, Arthur J
+> <arthur.j.runyan@intel.com> wrote:
+> > >>>>>>
+> > >>>>>> You'll need to read out the DDI_BUF_TRANS_* and
+> DISPIO_CR_TX_BMU_CR0 registers at boot before i915 programs them and
+> compare with what driver programs.
+> > >>>>>> Rodrigo can probably show you how.
+> > >>>>>
+> > >>>>> Right, I'll wait for a patch then :)
+> > >>>>
+> > >>>> To grab the BIOS reg values we just have to make sure the driver d=
+oesn't
+> load. Eg. pass something like "modprobe.blacklist=3Di915,snd_hda_intel 3"=
+ to the
+> kernel cmdline (+ whatever other magic ubuntu might require). Confirm with
+> something like "lsmod | grep i915" to make sure the driver didn't sneak in
+> despite our best efforts.
+> > >>>>
+> > >>>> Then we can dump the registers with intel_reg from igt-gpu-tools:
+> > >>>> intel_reg read --count 20 0x64E00 0x64E60 0x64EC0 0x64F20 0x64F80
+> > >>>> intel_reg read 0x64000 0x64100 0x64200 0x64300 0x64400 0x6C00C
+> > >>>>
+> > >>>> The only somewhat suspicious thing I noticed is that we treat
+> DISPIO_CR_TX_BMU_CR0:tx_blnclegdisbl as a bitmask (bit 23 -> DDI A, bit 2=
+4 ->
+> DDI B, etc.) whereas the spec seems to be saying that we should just zero=
+ out all
+> the bits of tx_blnclegdisbl when any DDI needs iboost. Art, is our interp=
+retation
+> of the bits correct or just a fairy tale?
+> > >>>>
+> > >>>>>
+> > >>>>> Kai-Heng
+> > >>>>>
+> > >>>>>>
+> > >>>>>> -----Original Message-----
+> > >>>>>> From: Kai-Heng Feng <kai.heng.feng@canonical.com>
+> > >>>>>> Sent: Thursday, August 13, 2020 10:14 PM
+> > >>>>>> To: Runyan, Arthur J <arthur.j.runyan@intel.com>
+> > >>>>>> Cc: Vivi, Rodrigo <rodrigo.vivi@intel.com>; Ville Syrj=E4l=E4
+> > >>>>>> <ville.syrjala@linux.intel.com>; intel-gfx
+> > >>>>>> <intel-gfx@lists.freedesktop.org>
+> > >>>>>> Subject: Re: [Regression] "drm/i915: Implement display w/a #1143"
+> > >>>>>> breaks HDMI on ASUS GL552VW
+> > >>>>>>
+> > >>>>>> Hi,
+> > >>>>>>
+> > >>>>>>> On Aug 14, 2020, at 01:56, Runyan, Arthur J
+> <arthur.j.runyan@intel.com> wrote:
+> > >>>>>>>
+> > >>>>>>> The workaround is freeing up stuck vswing values to let new vsw=
+ing
+> programming kick in.  Maybe the new vswing values are wrong.
+> > >>>>>>> Try checking the vswing that driver programs against what
+> BIOS/GOP programs.
+> > >>>>>>
+> > >>>>>> Do you mean to print out value of I915_READ()?
+> > >>>>>> val =3D I915_READ(CHICKEN_TRANS(transcoder));
+> > >>>>>>
+> > >>>>>> Kai-Heng
+> > >>>>>>
+> > >>>>>>>
+> > >>>>>>> -----Original Message-----
+> > >>>>>>> From: Vivi, Rodrigo <rodrigo.vivi@intel.com>
+> > >>>>>>> Sent: Thursday, August 13, 2020 9:50 AM
+> > >>>>>>> To: Kai-Heng Feng <kai.heng.feng@canonical.com>; Runyan,
+> > >>>>>>> Arthur J <arthur.j.runyan@intel.com>
+> > >>>>>>> Cc: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>; intel-gfx
+> > >>>>>>> <intel-gfx@lists.freedesktop.org>
+> > >>>>>>> Subject: Re: [Regression] "drm/i915: Implement display w/a #114=
+3"
+> > >>>>>>> breaks HDMI on ASUS GL552VW
+> > >>>>>>>
+> > >>>>>>> Art, any comment here?
+> > >>>>>>>
+> > >>>>>>> I just checked and the  W/a 1143 is implemented as described, b=
+ut it
+> is failing HDMI on this hybrid system.
+> > >>>>>>>
+> > >>>>>>>> On Aug 12, 2020, at 9:07 PM, Kai-Heng Feng
+> <kai.heng.feng@canonical.com> wrote:
+> > >>>>>>>>
+> > >>>>>>>> Hi,
+> > >>>>>>>>
+> > >>>>>>>> There's a regression reported that HDMI output stops working
+> after os upgrade:
+> > >>>>>>>> https://bugs.launchpad.net/bugs/1871721
+> > >>>>>>>>
+> > >>>>>>>> Here's the bisect result:
+> > >>>>>>>> 0519c102f5285476d7868a387bdb6c58385e4074 is the first bad
+> > >>>>>>>> commit commit 0519c102f5285476d7868a387bdb6c58385e4074
+> > >>>>>>>> Author: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> > >>>>>>>> Date:   Mon Jan 22 19:41:31 2018 +0200
+> > >>>>>>>>
+> > >>>>>>>> drm/i915: Implement display w/a #1143
+> > >>>>>>>>
+> > >>>>>>>> Apparently SKL/KBL/CFL need some manual help to get the
+> > >>>>>>>> programmed HDMI vswing to stick. Implement the relevant
+> > >>>>>>>> workaround (display w/a #1143).
+> > >>>>>>>>
+> > >>>>>>>> Note that the relevant chicken bits live in a transcoder
+> > >>>>>>>> register even though the bits affect a specific DDI port
+> > >>>>>>>> rather than a specific transcoder. Hence we must pick the
+> > >>>>>>>> correct transcoder register instance based on the port rather
+> > >>>>>>>> than based on the cpu_transcoder.
+> > >>>>>>>>
+> > >>>>>>>> Also note that for completeness I included support for DDI
+> > >>>>>>>> A/E in the code even though we never have HDMI on those ports.
+> > >>>>>>>>
+> > >>>>>>>> v2: CFL needs the w/a as well (Rodrigo and Art)
+> > >>>>>>>>
+> > >>>>>>>> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> > >>>>>>>> Cc: Art Runyan <arthur.j.runyan@intel.com>
+> > >>>>>>>> Signed-off-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.co=
+m>
+> > >>>>>>>> Link:
+> > >>>>>>>>
+> https://patchwork.freedesktop.org/patch/msgid/20180122174131.
+> > >>>>>>>> 28046 -1-ville.syrjala@linux.intel.com
+> > >>>>>>>> Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> > >>>>>>>>
+> > >>>>>>>>
+> > >>>>>>>> dmesg from drm-tip with drm.debug=3D0xe can be found here:
+> > >>>>>>>>
+> https://bugs.launchpad.net/ubuntu/+source/linux/+bug/1871721/
+> > >>>>>>>> comme
+> > >>>>>>>> nts
+> > >>>>>>>> /
+> > >>>>>>>> 64
+> > >>>>>>>>
+> > >>>>>>>> Kai-Heng
+> > >>>>>>>
+> > >>>>>>>
+> > >>>>>>
+> > >>>>
+> > >>>> --
+> > >>>> Ville Syrj=E4l=E4
+> > >>>> Intel
+> > >>
+> > >> --
+> > >> Ville Syrj=E4l=E4
+> > >> Intel
+> > >
+> =
 
-
-Build changes
--------------
-
-  * Linux: CI_DRM_9135 -> Patchwork_18684
-
-  CI-20190529: 20190529
-  CI_DRM_9135: eb70ad33fcc91d3464b07679391fb477927ad4c7 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5813: d4e6dd955a1dad02271aa41c9389f5097ee17765 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_18684: 63280c8456340c626b2be035d851c1d3eb9b1287 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-63280c845634 drm/i915/gem: Poison stolen pages before use
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18684/index.html
-
---===============9209288963948727244==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/gem: Poison stolen pages before use (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/82463/">https://patchwork.freedesktop.org/series/82463/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18684/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18684/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_9135 -&gt; Patchwork_18684</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18684/index.html</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_18684 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@gem_ctx_create@basic-files:</p>
-<ul>
-<li>fi-apl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9135/fi-apl-guc/igt@gem_ctx_create@basic-files.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18684/fi-apl-guc/igt@gem_ctx_create@basic-files.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1635">i915#1635</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_flink_basic@double-flink:</p>
-<ul>
-<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9135/fi-tgl-y/igt@gem_flink_basic@double-flink.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18684/fi-tgl-y/igt@gem_flink_basic@double-flink.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) +1 similar issue</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_pm_rpm@basic-pci-d3-state:</p>
-<ul>
-<li>fi-bsw-kefka:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9135/fi-bsw-kefka/igt@i915_pm_rpm@basic-pci-d3-state.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18684/fi-bsw-kefka/igt@i915_pm_rpm@basic-pci-d3-state.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@gt_heartbeat:</p>
-<ul>
-<li>fi-tgl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9135/fi-tgl-u2/igt@i915_selftest@live@gt_heartbeat.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18684/fi-tgl-u2/igt@i915_selftest@live@gt_heartbeat.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2557">i915#2557</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1:</p>
-<ul>
-<li>fi-icl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9135/fi-icl-u2/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18684/fi-icl-u2/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@gem_flink_basic@bad-flink:</p>
-<ul>
-<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9135/fi-tgl-y/igt@gem_flink_basic@bad-flink.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18684/fi-tgl-y/igt@gem_flink_basic@bad-flink.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_pm_rpm@basic-pci-d3-state:</p>
-<ul>
-<li>fi-bsw-n3050:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9135/fi-bsw-n3050/igt@i915_pm_rpm@basic-pci-d3-state.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18684/fi-bsw-n3050/igt@i915_pm_rpm@basic-pci-d3-state.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:</p>
-<ul>
-<li>fi-icl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9135/fi-icl-u2/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18684/fi-icl-u2/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@read-crc-pipe-c:</p>
-<ul>
-<li>{fi-tgl-dsi}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9135/fi-tgl-dsi/igt@kms_pipe_crc_basic@read-crc-pipe-c.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18684/fi-tgl-dsi/igt@kms_pipe_crc_basic@read-crc-pipe-c.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h4>Warnings</h4>
-<ul>
-<li>
-<p>igt@i915_pm_rpm@basic-rte:</p>
-<ul>
-<li>fi-kbl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9135/fi-kbl-guc/igt@i915_pm_rpm@basic-rte.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18684/fi-kbl-guc/igt@i915_pm_rpm@basic-rte.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2203">i915#2203</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_pm_rpm@module-reload:</p>
-<ul>
-<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9135/fi-tgl-y/igt@i915_pm_rpm@module-reload.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2411">i915#2411</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18684/fi-tgl-y/igt@i915_pm_rpm@module-reload.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2411">i915#2411</a>)</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Participating hosts (47 -&gt; 41)</h2>
-<p>Missing    (6): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-byt-clapper fi-bdw-samus </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_9135 -&gt; Patchwork_18684</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_9135: eb70ad33fcc91d3464b07679391fb477927ad4c7 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_5813: d4e6dd955a1dad02271aa41c9389f5097ee17765 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
-  Patchwork_18684: 63280c8456340c626b2be035d851c1d3eb9b1287 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>63280c845634 drm/i915/gem: Poison stolen pages before use</p>
-
-</body>
-</html>
-
---===============9209288963948727244==--
-
---===============0768547454==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
+> --
+> Ville Syrj=E4l=E4
+> Intel
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============0768547454==--
