@@ -2,67 +2,38 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 628A528C8D5
-	for <lists+intel-gfx@lfdr.de>; Tue, 13 Oct 2020 08:57:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 62BB728C95E
+	for <lists+intel-gfx@lfdr.de>; Tue, 13 Oct 2020 09:30:10 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6CA696E891;
-	Tue, 13 Oct 2020 06:57:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 83EF76E89A;
+	Tue, 13 Oct 2020 07:30:08 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from wnew4-smtp.messagingengine.com (wnew4-smtp.messagingengine.com
- [64.147.123.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 19E0F6E872;
- Tue, 13 Oct 2020 06:57:14 +0000 (UTC)
-Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
- by mailnew.west.internal (Postfix) with ESMTP id 42715816;
- Tue, 13 Oct 2020 02:57:13 -0400 (EDT)
-Received: from mailfrontend1 ([10.202.2.162])
- by compute6.internal (MEProxy); Tue, 13 Oct 2020 02:57:14 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
- date:from:to:cc:subject:message-id:mime-version:content-type; s=
- fm1; bh=ze2pfgrr7TNSylID41m19UPE7vbTMbF15m10yVdWrF4=; b=R8sZVKiF
- k5LBqK//sXRNAHIhkXCE3UAG+wj7Rxocof1fFyD64sSNiHNENxRjByOPs0j8AvVw
- 4b9vORWbo5pRO/Zq0eArIqSwhKvPRLZN/Rld3Dhf/8j8JRbOAFynYnQxgGCu2lbj
- yLX1rBF22YpudJOaNAsKegQR+eDaUhjBtH3/V9CL6ONV28dsG478T3MmeE4C0gJ+
- 9e1AdlK3Y4Rs8iiugc3Ux3lwSBv4SBjP8aqqYa+rIfJz3K0VwIeGbfpyRoeyn1vH
- Ot8tgkXo4SShtk/C6Z9mzfOzucLdUVIA0rDP8d6VDfnk+CHu6P5YtBK9xmFXP3pd
- bSrDe/R+TILPcw==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
- messagingengine.com; h=cc:content-type:date:from:message-id
- :mime-version:subject:to:x-me-proxy:x-me-proxy:x-me-sender
- :x-me-sender:x-sasl-enc; s=fm1; bh=ze2pfgrr7TNSylID41m19UPE7vbTM
- bF15m10yVdWrF4=; b=Iehapgqc4kcZCG8FAH6/e3CiuCTw0YF+VsiB5jy7kmP6/
- rvz6Wcwa3zSkhMRkFcfR7jAq+7ZhNOK7g2Nn+wQfDKVNqh9COsFOlFhzbqTxbGqG
- tFYgYAn75EsFs/TdduYnhVtX7Ftlluy9qAtbaUEy2FE8HlnBtJKUPETEBGgn4UEI
- 1mIlwAYNwPH6fLcYWvMLDENfXU/roWg2IAtmDL6X0Z6DL+QKHU1omeFGnzmVvcul
- HU4ww9EJCVUMEAXgMohdVkG6HkIXlJynXmM1FOI0MXqrCEq1XY60R4Y671Xv7lQr
- 90qdewUMvJojBfNIGqpAd4MRxJAZP8GqZvKpOzXRg==
-X-ME-Sender: <xms:x0-FX7K8EqhGTO3fh6xNjF0PSBLUbqiIyrMId_-E33VDHHDx9A_oSA>
- <xme:x0-FX_JfkP1YsOP8ZweiE3beSIQlpwaTLhOsuwOkBb0VashoytZ442dyn1OLI3_9E
- Vak_QLZDcmRZNn5Iwo>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedujedrheekgdduudeiucetufdoteggodetrfdotf
- fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
- uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
- cujfgurhepfffhvffukfggtggusehgtderredttddvnecuhfhrohhmpeforgigihhmvgcu
- tfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrthhtvg
- hrnhepgeeuvddtheeggeehhfeigeetffeufeelveeggfekveegieevudeljeeugedviefg
- necuffhomhgrihhnpehfrhgvvgguvghskhhtohhprdhorhhgnecukfhppeeltddrkeelrd
- eikedrjeeinecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhho
- mhepmhgrgihimhgvsegtvghrnhhordhtvggthh
-X-ME-Proxy: <xmx:x0-FXzueJPNt_fHynyjFkUoOInIGch6ljA9PJPw7Fpy3vntFC1o8sg>
- <xmx:x0-FX0bNB7rKXcYmYNU1Yo0g7udXslJxtVTteOo8z9nSbxcySycctw>
- <xmx:x0-FXyYPi2TJD83X052evagOXrxw2AasFd_gtm61FiXaa10CKbPqiw>
- <xmx:yE-FX4OL8w_EqUl5ueWvmu7fLs02r4d5gimLRw5nPT0zl0sdSSPeY73QWeQ>
-Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr
- [90.89.68.76])
- by mail.messagingengine.com (Postfix) with ESMTPA id 7F91D328005D;
- Tue, 13 Oct 2020 02:57:11 -0400 (EDT)
-Date: Tue, 13 Oct 2020 08:57:09 +0200
-From: Maxime Ripard <maxime@cerno.tech>
-To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
-Message-ID: <20201013065709.lwjw3fthoxwsbqsl@gilmour.lan>
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E64916E89A
+ for <intel-gfx@lists.freedesktop.org>; Tue, 13 Oct 2020 07:30:07 +0000 (UTC)
+IronPort-SDR: flJoHX2xbHu673loJahFRySOSt0ORLGPtRdgRBpXLpGvjkSija0JXgDr0cwliX7XySW3PtmjKm
+ EXy6fyg2fpXA==
+X-IronPort-AV: E=McAfee;i="6000,8403,9772"; a="145182897"
+X-IronPort-AV: E=Sophos;i="5.77,369,1596524400"; d="scan'208";a="145182897"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Oct 2020 00:30:07 -0700
+IronPort-SDR: SvBFE9dhKDeKN0+q8tmMITNIIxv6dHjUojteSFJd3JeHHhMdvaMe/WwkYbSzwkWzX/lO1M40K8
+ 8x2khpDPk5pw==
+X-IronPort-AV: E=Sophos;i="5.77,369,1596524400"; d="scan'208";a="463392673"
+Received: from genxfsim-desktop.iind.intel.com ([10.223.74.178])
+ by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Oct 2020 00:30:05 -0700
+From: Anshuman Gupta <anshuman.gupta@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Tue, 13 Oct 2020 12:49:36 +0530
+Message-Id: <20201013071936.6798-1-anshuman.gupta@intel.com>
+X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PULL] drm-misc-next-fixes
+Subject: [Intel-gfx] [PATCH 0/2] HDCP over DP-MST misc
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,86 +46,26 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dim-tools@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Maxime Ripard <mripard@kernel.org>, intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============0391901101=="
+Cc: seanpaul@chromium.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+These Misc patches requires to work HDCP over DP-MST.
 
---===============0391901101==
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="x2ygx4kz7pktrxul"
-Content-Disposition: inline
+Anshuman Gupta (2):
+  drm/i915/hdcp: Update CP property in update_pipe
+  drm/i915/hotplug: Handle CP_IRQ for DP-MST
 
+ drivers/gpu/drm/i915/display/intel_dp.c   | 14 +++++++++++++-
+ drivers/gpu/drm/i915/display/intel_hdcp.c |  4 ++++
+ 2 files changed, 17 insertions(+), 1 deletion(-)
 
---x2ygx4kz7pktrxul
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-
-Hi Dave,
-
-Here's the remaining patches we have in drm-misc-next-fixes
-
-Maxime
-
-drm-misc-next-fixes-2020-10-13:
-One fix for a bad revert in ingenic-drm, and one fix for panfrost to increase a timeout at power up.
-The following changes since commit 8ba0b6d196315f68c271f549e8585129caefce97:
-
-  drm/vc4: crtc: Keep the previously assigned HVS FIFO (2020-09-25 16:56:21 +0200)
-
-are available in the Git repository at:
-
-  git://anongit.freedesktop.org/drm/drm-misc tags/drm-misc-next-fixes-2020-10-13
-
-for you to fetch changes up to d3c8f2784d3266d27956659c78835ee1d1925ad2:
-
-  drm/ingenic: Fix bad revert (2020-10-12 20:26:14 +0200)
-
-----------------------------------------------------------------
-One fix for a bad revert in ingenic-drm, and one fix for panfrost to increase a timeout at power up.
-
-----------------------------------------------------------------
-Christian Hewitt (1):
-      drm/panfrost: increase readl_relaxed_poll_timeout values
-
-Ondrej Jirman (1):
-      MAINTAINERS: Update entry for st7703 driver after the rename
-
-Paul Cercueil (2):
-      Revert "gpu/drm: ingenic: Add option to mmap GEM buffers cached"
-      drm/ingenic: Fix bad revert
-
- MAINTAINERS                               |   7 +-
- drivers/gpu/drm/ingenic/ingenic-drm-drv.c | 114 +-----------------------------
- drivers/gpu/drm/ingenic/ingenic-drm.h     |   4 --
- drivers/gpu/drm/ingenic/ingenic-ipu.c     |  12 +---
- drivers/gpu/drm/panfrost/panfrost_gpu.c   |   4 +-
- 5 files changed, 10 insertions(+), 131 deletions(-)
-
---x2ygx4kz7pktrxul
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCX4VPxQAKCRDj7w1vZxhR
-xatQAP4/YXu16Mt69ADcZF8cnrHgX6fn3PtO2PY0PA3X71wQ8wD6AzEI3c45XTih
-Migf2njfVBITYel0Kz5FPKoJZr0A1Q0=
-=nY+j
------END PGP SIGNATURE-----
-
---x2ygx4kz7pktrxul--
-
---===============0391901101==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+-- 
+2.26.2
 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============0391901101==--
