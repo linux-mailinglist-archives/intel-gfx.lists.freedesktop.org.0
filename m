@@ -1,30 +1,29 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E5FBD28CC3E
-	for <lists+intel-gfx@lfdr.de>; Tue, 13 Oct 2020 13:08:59 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 09FB428CF90
+	for <lists+intel-gfx@lfdr.de>; Tue, 13 Oct 2020 15:54:17 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3BC626E114;
-	Tue, 13 Oct 2020 11:08:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 24AC66E8EB;
+	Tue, 13 Oct 2020 13:54:15 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 594076E114
- for <intel-gfx@lists.freedesktop.org>; Tue, 13 Oct 2020 11:08:57 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 22700805-1500050 
- for multiple; Tue, 13 Oct 2020 12:08:46 +0100
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Tue, 13 Oct 2020 12:08:45 +0100
-Message-Id: <20201013110845.16127-1-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.20.1
+Received: from aposti.net (aposti.net [89.234.176.197])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 579536E8BC;
+ Tue, 13 Oct 2020 11:12:47 +0000 (UTC)
+Date: Tue, 13 Oct 2020 13:12:32 +0200
+From: Paul Cercueil <paul@crapouillou.net>
+To: Stephen Rothwell <sfr@canb.auug.org.au>
+Message-Id: <WG05IQ.DABE5ILJAA631@crapouillou.net>
+In-Reply-To: <20201012152452.432c4867@canb.auug.org.au>
+References: <20201008140903.12a411b8@canb.auug.org.au>
+ <20201008154202.175fbec7@canb.auug.org.au>
+ <20201012152452.432c4867@canb.auug.org.au>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915/gt: Cleanup kasan warning for on-stack
- (unsigned long) casting
+X-Mailman-Approved-At: Tue, 13 Oct 2020 13:54:08 +0000
+Subject: Re: [Intel-gfx] linux-next: build failure after merge of the
+ drm-misc tree
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,80 +36,241 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Chris Wilson <chris@chris-wilson.co.uk>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: Dave Airlie <airlied@linux.ie>, Daniel Vetter <daniel.vetter@ffwll.ch>,
+ Intel Graphics <intel-gfx@lists.freedesktop.org>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+ DRI <dri-devel@lists.freedesktop.org>, linux-next@vger.kernel.org,
+ Sam Ravnborg <sam@ravnborg.org>
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="iso-8859-1"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Kasan is gving a warning for passing a u32 parameter into find_first_bit
-(casting to a unsigned long *, with appropriate length restrictions):
+Hi Stephen,
 
-[   44.678262] BUG: KASAN: stack-out-of-bounds in find_first_bit+0x2e/0x50
-[   44.678295] Read of size 8 at addr ffff888233f4fc30 by task core_hotunplug/474
-[   44.678326]
-[   44.678358] CPU: 0 PID: 474 Comm: core_hotunplug Not tainted 5.9.0+ #608
-[   44.678465] Hardware name: BESSTAR (HK) LIMITED GN41/Default string, BIOS BLT-BI-MINIPC-F4G-EX3R110-GA65A-101-D 10/12/2018
-[   44.678500] Call Trace:
-[   44.678534]  dump_stack+0x84/0xba
-[   44.678569]  print_address_description.constprop.0+0x21/0x220
-[   44.678605]  ? kmsg_dump_rewind_nolock+0x5f/0x5f
-[   44.678638]  ? _raw_spin_lock_irqsave+0x6d/0xb0
-[   44.678669]  ? _raw_write_lock_irqsave+0xb0/0xb0
-[   44.678702]  ? set_task_cpu+0x1e0/0x1e0
-[   44.678733]  ? find_first_bit+0x2e/0x50
-[   44.678763]  kasan_report.cold+0x20/0x42
-[   44.678794]  ? find_first_bit+0x2e/0x50
-[   44.678825]  __asan_load8+0x69/0x90
-[   44.678856]  find_first_bit+0x2e/0x50
-[   44.679027]  __caps_show.isra.0+0x9e/0x1f0 [i915]
+Le lun. 12 oct. 2020 =E0 15:24, Stephen Rothwell <sfr@canb.auug.org.au> =
 
-Since we are only using the shorter type for our own convenience,
-accomodate kasan and use unsigned long.
+a =E9crit :
+> Hi all,
+> =
 
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
----
- drivers/gpu/drm/i915/gt/sysfs_engines.c | 10 +++-------
- 1 file changed, 3 insertions(+), 7 deletions(-)
+> On Thu, 8 Oct 2020 15:42:02 +1100 Stephen Rothwell =
 
-diff --git a/drivers/gpu/drm/i915/gt/sysfs_engines.c b/drivers/gpu/drm/i915/gt/sysfs_engines.c
-index 535cc1169e54..967031056202 100644
---- a/drivers/gpu/drm/i915/gt/sysfs_engines.c
-+++ b/drivers/gpu/drm/i915/gt/sysfs_engines.c
-@@ -79,14 +79,12 @@ static ssize_t repr_trim(char *buf, ssize_t len)
- 
- static ssize_t
- __caps_show(struct intel_engine_cs *engine,
--	    u32 caps, char *buf, bool show_unknown)
-+	    unsigned long caps, char *buf, bool show_unknown)
- {
- 	const char * const *repr;
- 	int count, n;
- 	ssize_t len;
- 
--	BUILD_BUG_ON(!typecheck(typeof(caps), engine->uabi_capabilities));
--
- 	switch (engine->class) {
- 	case VIDEO_DECODE_CLASS:
- 		repr = vcs_caps;
-@@ -103,12 +101,10 @@ __caps_show(struct intel_engine_cs *engine,
- 		count = 0;
- 		break;
- 	}
--	GEM_BUG_ON(count > BITS_PER_TYPE(typeof(caps)));
-+	GEM_BUG_ON(count > BITS_PER_LONG);
- 
- 	len = 0;
--	for_each_set_bit(n,
--			 (unsigned long *)&caps,
--			 show_unknown ? BITS_PER_TYPE(typeof(caps)) : count) {
-+	for_each_set_bit(n, &caps, show_unknown ? BITS_PER_LONG : count) {
- 		if (n >= count || !repr[n]) {
- 			if (GEM_WARN_ON(show_unknown))
- 				len += snprintf(buf + len, PAGE_SIZE - len,
--- 
-2.20.1
+> <sfr@canb.auug.org.au> wrote:
+>> =
+
+>>  On Thu, 8 Oct 2020 14:09:03 +1100 Stephen Rothwell =
+
+>> <sfr@canb.auug.org.au> wrote:
+>>  >
+>>  > After merging the drm-misc tree, today's linux-next build (x86_64
+>>  > allmodconfig) failed like this:
+>> =
+
+>>  In file included from include/linux/clk.h:13,
+>>                   from drivers/gpu/drm/ingenic/ingenic-drm-drv.c:10:
+>>  drivers/gpu/drm/ingenic/ingenic-drm-drv.c: In function =
+
+>> 'ingenic_drm_update_palette':
+>>  drivers/gpu/drm/ingenic/ingenic-drm-drv.c:448:35: error: 'struct =
+
+>> ingenic_drm' has no member named 'dma_hwdescs'; did you mean =
+
+>> 'dma_hwdesc_f0'?
+>>    448 |  for (i =3D 0; i < ARRAY_SIZE(priv->dma_hwdescs->palette); =
+
+>> i++) {
+>>        |                                   ^~~~~~~~~~~
+>>  include/linux/kernel.h:47:33: note: in definition of macro =
+
+>> 'ARRAY_SIZE'
+>>     47 | #define ARRAY_SIZE(arr) (sizeof(arr) / sizeof((arr)[0]) + =
+
+>> __must_be_array(arr))
+>>        |                                 ^~~
+>>  drivers/gpu/drm/ingenic/ingenic-drm-drv.c:448:35: error: 'struct =
+
+>> ingenic_drm' has no member named 'dma_hwdescs'; did you mean =
+
+>> 'dma_hwdesc_f0'?
+>>    448 |  for (i =3D 0; i < ARRAY_SIZE(priv->dma_hwdescs->palette); =
+
+>> i++) {
+>>        |                                   ^~~~~~~~~~~
+>>  include/linux/kernel.h:47:48: note: in definition of macro =
+
+>> 'ARRAY_SIZE'
+>>     47 | #define ARRAY_SIZE(arr) (sizeof(arr) / sizeof((arr)[0]) + =
+
+>> __must_be_array(arr))
+>>        |                                                ^~~
+>>  In file included from include/linux/bits.h:22,
+>>                   from include/linux/bitops.h:5,
+>>                   from drivers/gpu/drm/ingenic/ingenic-drm.h:10,
+>>                   from drivers/gpu/drm/ingenic/ingenic-drm-drv.c:7:
+>>  drivers/gpu/drm/ingenic/ingenic-drm-drv.c:448:35: error: 'struct =
+
+>> ingenic_drm' has no member named 'dma_hwdescs'; did you mean =
+
+>> 'dma_hwdesc_f0'?
+>>    448 |  for (i =3D 0; i < ARRAY_SIZE(priv->dma_hwdescs->palette); =
+
+>> i++) {
+>>        |                                   ^~~~~~~~~~~
+>>  include/linux/build_bug.h:16:62: note: in definition of macro =
+
+>> 'BUILD_BUG_ON_ZERO'
+>>     16 | #define BUILD_BUG_ON_ZERO(e) ((int)(sizeof(struct { =
+
+>> int:(-!!(e)); })))
+>>        |                                                             =
+
+>>  ^
+>>  include/linux/compiler.h:224:46: note: in expansion of macro =
+
+>> '__same_type'
+>>    224 | #define __must_be_array(a) =
+
+>> BUILD_BUG_ON_ZERO(__same_type((a), &(a)[0]))
+>>        |                                              ^~~~~~~~~~~
+>>  include/linux/kernel.h:47:59: note: in expansion of macro =
+
+>> '__must_be_array'
+>>     47 | #define ARRAY_SIZE(arr) (sizeof(arr) / sizeof((arr)[0]) + =
+
+>> __must_be_array(arr))
+>>        |                                                           =
+
+>> ^~~~~~~~~~~~~~~
+>>  drivers/gpu/drm/ingenic/ingenic-drm-drv.c:448:18: note: in =
+
+>> expansion of macro 'ARRAY_SIZE'
+>>    448 |  for (i =3D 0; i < ARRAY_SIZE(priv->dma_hwdescs->palette); =
+
+>> i++) {
+>>        |                  ^~~~~~~~~~
+>>  drivers/gpu/drm/ingenic/ingenic-drm-drv.c:448:35: error: 'struct =
+
+>> ingenic_drm' has no member named 'dma_hwdescs'; did you mean =
+
+>> 'dma_hwdesc_f0'?
+>>    448 |  for (i =3D 0; i < ARRAY_SIZE(priv->dma_hwdescs->palette); =
+
+>> i++) {
+>>        |                                   ^~~~~~~~~~~
+>>  include/linux/build_bug.h:16:62: note: in definition of macro =
+
+>> 'BUILD_BUG_ON_ZERO'
+>>     16 | #define BUILD_BUG_ON_ZERO(e) ((int)(sizeof(struct { =
+
+>> int:(-!!(e)); })))
+>>        |                                                             =
+
+>>  ^
+>>  include/linux/compiler.h:224:46: note: in expansion of macro =
+
+>> '__same_type'
+>>    224 | #define __must_be_array(a) =
+
+>> BUILD_BUG_ON_ZERO(__same_type((a), &(a)[0]))
+>>        |                                              ^~~~~~~~~~~
+>>  include/linux/kernel.h:47:59: note: in expansion of macro =
+
+>> '__must_be_array'
+>>     47 | #define ARRAY_SIZE(arr) (sizeof(arr) / sizeof((arr)[0]) + =
+
+>> __must_be_array(arr))
+>>        |                                                           =
+
+>> ^~~~~~~~~~~~~~~
+>>  drivers/gpu/drm/ingenic/ingenic-drm-drv.c:448:18: note: in =
+
+>> expansion of macro 'ARRAY_SIZE'
+>>    448 |  for (i =3D 0; i < ARRAY_SIZE(priv->dma_hwdescs->palette); =
+
+>> i++) {
+>>        |                  ^~~~~~~~~~
+>>  include/linux/build_bug.h:16:51: error: bit-field '<anonymous>' =
+
+>> width not an integer constant
+>>     16 | #define BUILD_BUG_ON_ZERO(e) ((int)(sizeof(struct { =
+
+>> int:(-!!(e)); })))
+>>        |                                                   ^
+>>  include/linux/compiler.h:224:28: note: in expansion of macro =
+
+>> 'BUILD_BUG_ON_ZERO'
+>>    224 | #define __must_be_array(a) =
+
+>> BUILD_BUG_ON_ZERO(__same_type((a), &(a)[0]))
+>>        |                            ^~~~~~~~~~~~~~~~~
+>>  include/linux/kernel.h:47:59: note: in expansion of macro =
+
+>> '__must_be_array'
+>>     47 | #define ARRAY_SIZE(arr) (sizeof(arr) / sizeof((arr)[0]) + =
+
+>> __must_be_array(arr))
+>>        |                                                           =
+
+>> ^~~~~~~~~~~~~~~
+>>  drivers/gpu/drm/ingenic/ingenic-drm-drv.c:448:18: note: in =
+
+>> expansion of macro 'ARRAY_SIZE'
+>>    448 |  for (i =3D 0; i < ARRAY_SIZE(priv->dma_hwdescs->palette); =
+
+>> i++) {
+>>        |                  ^~~~~~~~~~
+>>  drivers/gpu/drm/ingenic/ingenic-drm-drv.c:453:9: error: 'struct =
+
+>> ingenic_drm' has no member named 'dma_hwdescs'; did you mean =
+
+>> 'dma_hwdesc_f0'?
+>>    453 |   priv->dma_hwdescs->palette[i] =3D color;
+>>        |         ^~~~~~~~~~~
+>>        |         dma_hwdesc_f0
+>>  drivers/gpu/drm/ingenic/ingenic-drm-drv.c: In function =
+
+>> 'ingenic_drm_plane_atomic_update':
+>>  drivers/gpu/drm/ingenic/ingenic-drm-drv.c:467:3: error: =
+
+>> 'crtc_state' undeclared (first use in this function); did you mean =
+
+>> 'ctx_state'?
+>>    467 |   crtc_state =3D state->crtc->state;
+>>        |   ^~~~~~~~~~
+>>        |   ctx_state
+>>  drivers/gpu/drm/ingenic/ingenic-drm-drv.c:467:3: note: each =
+
+>> undeclared identifier is reported only once for each function it =
+
+>> appears in
+>>  At top level:
+>>  drivers/gpu/drm/ingenic/ingenic-drm-drv.c:443:13: warning: =
+
+>> 'ingenic_drm_update_palette' defined but not used [-Wunused-function]
+>>    443 | static void ingenic_drm_update_palette(struct ingenic_drm =
+
+>> *priv,
+>>        |             ^~~~~~~~~~~~~~~~~~~~~~~~~~
+>> =
+
+>>  > I noticed that the ingenic driver revert I had been waiting for =
+
+>> appeared
+>>  > in hte drm-misc tree, so I removed the BROKEN dependency for it, =
+
+>> but it
+>>  > produced the above errors, so I have marked it BROKEN again.
+> =
+
+> Any progress on this?  I am still marking CONFIG_DRM_INGENIC as BROKEN
+> in the drm and drm-misc trees.
+
+It should be good now.
+
+Cheers,
+-Paul
+
 
 _______________________________________________
 Intel-gfx mailing list
