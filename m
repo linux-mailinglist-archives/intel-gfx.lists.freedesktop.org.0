@@ -1,44 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7FB7228CF8F
-	for <lists+intel-gfx@lfdr.de>; Tue, 13 Oct 2020 15:54:15 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8930828CD4A
+	for <lists+intel-gfx@lfdr.de>; Tue, 13 Oct 2020 13:58:38 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 966536E11A;
-	Tue, 13 Oct 2020 13:54:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4BC2B6E8CC;
+	Tue, 13 Oct 2020 11:58:36 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 19C656E2ED;
- Tue, 13 Oct 2020 11:54:45 +0000 (UTC)
-Received: from mail.kernel.org (ip5f5ad5b2.dynamic.kabel-deutschland.de
- [95.90.213.178])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by mail.kernel.org (Postfix) with ESMTPSA id 5C68B22519;
- Tue, 13 Oct 2020 11:54:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=default; t=1602590081;
- bh=M1VGTHk8BLaW4v48n5cCYFm+g0FFa67u3wYgBuflCQw=;
- h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=RUycu8Vwl07BvKE8uEi8KRUuDO79Nu50ZplgRqQ3GRQWoao1YJRJt6EemVh8ePJO1
- SXFUX3L3quLHSvrjc4MLlvABbEL4YlWAZBhum3eGfATbB1fn9PBhRC//BJeiDvdawy
- NNJ7/P2EQQO8bMW6JsjVihpUDeHscX7/KqrwFpSU=
-Received: from mchehab by mail.kernel.org with local (Exim 4.94)
- (envelope-from <mchehab@kernel.org>)
- id 1kSIt4-006CV9-UU; Tue, 13 Oct 2020 13:54:38 +0200
-From: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-To: Linux Doc Mailing List <linux-doc@vger.kernel.org>
-Date: Tue, 13 Oct 2020 13:53:59 +0200
-Message-Id: <52a0dd42d3730d35b3ecd00d20a0601793e443e6.1602589096.git.mchehab+huawei@kernel.org>
-X-Mailer: git-send-email 2.26.2
-In-Reply-To: <cover.1602589096.git.mchehab+huawei@kernel.org>
-References: <cover.1602589096.git.mchehab+huawei@kernel.org>
+Received: from fireflyinternet.com (unknown [77.68.26.236])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 028326E8CC
+ for <intel-gfx@lists.freedesktop.org>; Tue, 13 Oct 2020 11:58:34 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from localhost (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
+ 22701516-1500050 for multiple; Tue, 13 Oct 2020 12:58:31 +0100
 MIME-Version: 1.0
-X-Mailman-Approved-At: Tue, 13 Oct 2020 13:54:08 +0000
-Subject: [Intel-gfx] [PATCH v6 44/80] docs: gpu: i915.rst: Fix several C
- duplication warnings
+In-Reply-To: <20201013111839.96637-1-matthew.auld@intel.com>
+References: <20201013111839.96637-1-matthew.auld@intel.com>
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: Matthew Auld <matthew.auld@intel.com>, intel-gfx@lists.freedesktop.org
+Date: Tue, 13 Oct 2020 12:58:31 +0100
+Message-ID: <160259031106.2946.5754638300794869595@build.alporthouse.com>
+User-Agent: alot/0.9
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/execbuf: don't allow zero batch_len
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,122 +38,71 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Thomas Zimmermann <tzimmermann@suse.de>, Jonathan Corbet <corbet@lwn.net>,
- Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- David Airlie <airlied@linux.ie>, Maxime Ripard <mripard@kernel.org>,
- intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-As reported by Sphinx:
+Quoting Matthew Auld (2020-10-13 12:18:39)
+> As per the ABI batch_len is u32, however if the batch_len is left unset,
+> then the kernel will just assume batch_len is the size of the whole
+> batch object, however since the vma->size is u64, while the batch_len is
+> just u32 we can end up with batch_len = 0 if we are given too large batch
+> object(e.g 1ULL << 32), which doesn't look the intended behaviour and
+> probably leads to explosions on some HW.
+> 
+> Testcase: igt/gem_exec_params/larger-than-life-batch
+> Fixes: 0b5372727be3 ("drm/i915/cmdparser: Use cached vmappings")
 
-	./Documentation/gpu/i915:646: ./drivers/gpu/drm/i915/i915_perf.c:1147: WARNING: Duplicate C declaration, also defined in 'gpu/i915'.
-	Declaration is 'i915_oa_wait_unlocked'.
-	./Documentation/gpu/i915:646: ./drivers/gpu/drm/i915/i915_perf.c:1169: WARNING: Duplicate C declaration, also defined in 'gpu/i915'.
-	Declaration is 'i915_oa_poll_wait'.
-	./Documentation/gpu/i915:646: ./drivers/gpu/drm/i915/i915_perf.c:1189: WARNING: Duplicate C declaration, also defined in 'gpu/i915'.
-	Declaration is 'i915_oa_read'.
-	./Documentation/gpu/i915:646: ./drivers/gpu/drm/i915/i915_perf.c:2669: WARNING: Duplicate C declaration, also defined in 'gpu/i915'.
-	Declaration is 'i915_oa_stream_enable'.
-	./Documentation/gpu/i915:646: ./drivers/gpu/drm/i915/i915_perf.c:2734: WARNING: Duplicate C declaration, also defined in 'gpu/i915'.
-	Declaration is 'i915_oa_stream_disable'.
-	./Documentation/gpu/i915:646: ./drivers/gpu/drm/i915/i915_perf.c:2820: WARNING: Duplicate C declaration, also defined in 'gpu/i915'.
-	Declaration is 'i915_oa_stream_init'.
-	./Documentation/gpu/i915:646: ./drivers/gpu/drm/i915/i915_perf.c:3010: WARNING: Duplicate C declaration, also defined in 'gpu/i915'.
-	Declaration is 'i915_perf_read'.
-	./Documentation/gpu/i915:646: ./drivers/gpu/drm/i915/i915_perf.c:3098: WARNING: Duplicate C declaration, also defined in 'gpu/i915'.
-	Declaration is 'i915_perf_poll_locked'.
-	./Documentation/gpu/i915:646: ./drivers/gpu/drm/i915/i915_perf.c:3129: WARNING: Duplicate C declaration, also defined in 'gpu/i915'.
-	Declaration is 'i915_perf_poll'.
-	./Documentation/gpu/i915:646: ./drivers/gpu/drm/i915/i915_perf.c:3152: WARNING: Duplicate C declaration, also defined in 'gpu/i915'.
-	Declaration is 'i915_perf_enable_locked'.
-	./Documentation/gpu/i915:646: ./drivers/gpu/drm/i915/i915_perf.c:3181: WARNING: Duplicate C declaration, also defined in 'gpu/i915'.
-	Declaration is 'i915_perf_disable_locked'.
-	./Documentation/gpu/i915:646: ./drivers/gpu/drm/i915/i915_perf.c:3273: WARNING: Duplicate C declaration, also defined in 'gpu/i915'.
-	Declaration is 'i915_perf_ioctl'.
-	./Documentation/gpu/i915:646: ./drivers/gpu/drm/i915/i915_perf.c:3296: WARNING: Duplicate C declaration, also defined in 'gpu/i915'.
-	Declaration is 'i915_perf_destroy_locked'.
-	./Documentation/gpu/i915:646: ./drivers/gpu/drm/i915/i915_perf.c:3321: WARNING: Duplicate C declaration, also defined in 'gpu/i915'.
-	Declaration is 'i915_perf_release'.
-	./Documentation/gpu/i915:646: ./drivers/gpu/drm/i915/i915_perf.c:3379: WARNING: Duplicate C declaration, also defined in 'gpu/i915'.
-	Declaration is 'i915_perf_open_ioctl_locked'.
-	./Documentation/gpu/i915:646: ./drivers/gpu/drm/i915/i915_perf.c:3534: WARNING: Duplicate C declaration, also defined in 'gpu/i915'.
-	Declaration is 'read_properties_unlocked'.
-	./Documentation/gpu/i915:646: ./drivers/gpu/drm/i915/i915_perf.c:3717: WARNING: Duplicate C declaration, also defined in 'gpu/i915'.
-	Declaration is 'i915_perf_open_ioctl'.
-	./Documentation/gpu/i915:646: ./drivers/gpu/drm/i915/i915_perf.c:3760: WARNING: Duplicate C declaration, also defined in 'gpu/i915'.
-	Declaration is 'i915_perf_register'.
-	./Documentation/gpu/i915:646: ./drivers/gpu/drm/i915/i915_perf.c:3789: WARNING: Duplicate C declaration, also defined in 'gpu/i915'.
-	Declaration is 'i915_perf_unregister'.
-	./Documentation/gpu/i915:646: ./drivers/gpu/drm/i915/i915_perf.c:4009: WARNING: Duplicate C declaration, also defined in 'gpu/i915'.
-	Declaration is 'i915_perf_add_config_ioctl'.
-	./Documentation/gpu/i915:646: ./drivers/gpu/drm/i915/i915_perf.c:4162: WARNING: Duplicate C declaration, also defined in 'gpu/i915'.
-	Declaration is 'i915_perf_remove_config_ioctl'.
-	./Documentation/gpu/i915:646: ./drivers/gpu/drm/i915/i915_perf.c:4260: WARNING: Duplicate C declaration, also defined in 'gpu/i915'.
-	Declaration is 'i915_perf_init'.
-	./Documentation/gpu/i915:646: ./drivers/gpu/drm/i915/i915_perf.c:4423: WARNING: Duplicate C declaration, also defined in 'gpu/i915'.
-	Declaration is 'i915_perf_fini'.
+Nah. That's setting exec_len used for dispatch, not for parsing, which
+is still using 
 
-With Sphinx 3, C declarations can't be duplicated anymore,
-so let's exclude those from the other internals found on
-i915_perf.c file.
+i915_gem_execbuffer_parse(engine, &shadow_exec_entry,
+			  params->batch->obj,
+			  eb,
+			  args->batch_start_offset,
+			  args->batch_len,
+			  drm_is_current_master(file));
+(and args->batch_len is straight from userspace and passed onwards)
 
-Signed-off-by: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
----
- Documentation/gpu/i915.rst | 29 +++++++++++++++++++++++++----
- 1 file changed, 25 insertions(+), 4 deletions(-)
+It's right up until 435e8fc059db ("drm/i915: Allow parsing of unsized batches")
+where we are using the user value of batch_len for allocating the shadow
+object and parsing.
 
-diff --git a/Documentation/gpu/i915.rst b/Documentation/gpu/i915.rst
-index 33cc6ddf8f64..cff1f154b473 100644
---- a/Documentation/gpu/i915.rst
-+++ b/Documentation/gpu/i915.rst
-@@ -636,15 +636,36 @@ i915 Perf Observation Architecture Stream
- .. kernel-doc:: drivers/gpu/drm/i915/i915_perf.c
-    :functions: i915_oa_poll_wait
- 
--All i915 Perf Internals
-------------------------
-+Other i915 Perf Internals
-+-------------------------
- 
--This section simply includes all currently documented i915 perf internals, in
--no particular order, but may include some more minor utilities or platform
-+This section simply includes all other currently documented i915 perf internals,
-+in no particular order, but may include some more minor utilities or platform
- specific details than found in the more high-level sections.
- 
- .. kernel-doc:: drivers/gpu/drm/i915/i915_perf.c
-    :internal:
-+   :no-identifiers:
-+       i915_perf_init
-+       i915_perf_fini
-+       i915_perf_register
-+       i915_perf_unregister
-+       i915_perf_open_ioctl
-+       i915_perf_release
-+       i915_perf_add_config_ioctl
-+       i915_perf_remove_config_ioctl
-+       read_properties_unlocked
-+       i915_perf_open_ioctl_locked
-+       i915_perf_destroy_locked
-+       i915_perf_read i915_perf_ioctl
-+       i915_perf_enable_locked
-+       i915_perf_disable_locked
-+       i915_perf_poll i915_perf_poll_locked
-+       i915_oa_stream_init i915_oa_read
-+       i915_oa_stream_enable
-+       i915_oa_stream_disable
-+       i915_oa_wait_unlocked
-+       i915_oa_poll_wait
- 
- Style
- =====
--- 
-2.26.2
+Fixes: 435e8fc059db ("drm/i915: Allow parsing of unsized batches")
 
+> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+> Cc: Chris Wilson <chris@chris-wilson.co.uk>
+> ---
+>  drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c | 7 ++++++-
+>  1 file changed, 6 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+> index 4b09bcd70cf4..80c738c72e6e 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+> @@ -869,8 +869,13 @@ static int eb_lookup_vmas(struct i915_execbuffer *eb)
+>                 return -EINVAL;
+>         }
+>  
+> -       if (eb->batch_len == 0)
+> +       if (eb->batch_len == 0) {
+>                 eb->batch_len = eb->batch->vma->size - eb->batch_start_offset;
+
+if (overflows_type(eb->batch->vma->size - eb->batch_start_offset, eb->batch_len))
+
+It should not have caused the cmdparser any trouble though, it should
+have been quite happy to copy nothing and reject the batch for reaching
+the end too early (with a very slim chance of a stale
+MI_BATCH_BUFFER_END to the rescue).
+
+intel_gt_get_buffer_pool() looks suspect given a size of 0, it will
+either give the largest object it has cached or break upon
+creating/allocating internal pages.
+
+In terms of HW fail, only gen2 used the parameter and it has a very
+limited batch/GTT size.
+-Chris
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
