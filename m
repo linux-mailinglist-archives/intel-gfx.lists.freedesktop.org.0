@@ -2,32 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 223EE28CB5C
-	for <lists+intel-gfx@lfdr.de>; Tue, 13 Oct 2020 12:04:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9FC8428CBBC
+	for <lists+intel-gfx@lfdr.de>; Tue, 13 Oct 2020 12:33:11 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ED3F46E0F0;
-	Tue, 13 Oct 2020 10:04:18 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
+	by gabe.freedesktop.org (Postfix) with ESMTP id 12A0B6E204;
+	Tue, 13 Oct 2020 10:33:10 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D4F976E0F0;
- Tue, 13 Oct 2020 10:04:17 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E116F6E204
+ for <intel-gfx@lists.freedesktop.org>; Tue, 13 Oct 2020 10:33:07 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 22699925-1500050 for multiple; Tue, 13 Oct 2020 11:04:14 +0100
-MIME-Version: 1.0
-In-Reply-To: <20201013094612.83843-1-tvrtko.ursulin@linux.intel.com>
-References: <20201013094612.83843-1-tvrtko.ursulin@linux.intel.com>
+Received: from build.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 22700298-1500050 
+ for multiple; Tue, 13 Oct 2020 11:32:57 +0100
 From: Chris Wilson <chris@chris-wilson.co.uk>
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- igt-dev@lists.freedesktop.org
-Date: Tue, 13 Oct 2020 11:04:13 +0100
-Message-ID: <160258345334.2946.10818279953482792145@build.alporthouse.com>
-User-Agent: alot/0.9
-Subject: Re: [Intel-gfx] [igt-dev] [PATCH i-g-t] i915/perf_pmu: Fix perf fd
- leak
+To: intel-gfx@lists.freedesktop.org
+Date: Tue, 13 Oct 2020 11:32:56 +0100
+Message-Id: <20201013103256.31446-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.20.1
+MIME-Version: 1.0
+Subject: [Intel-gfx] [PATCH] drm/i915: Make the GEM reclaim workqueue high
+ priority
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,43 +37,56 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel-gfx@lists.freedesktop.org
+Cc: Chris Wilson <chris@chris-wilson.co.uk>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Tvrtko Ursulin (2020-10-13 10:46:12)
-> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-> 
-> As it turns out opening the perf fd in group mode still produces separate
-> file descriptors for all members of the group, which in turn need to be
-> closed manually to avoid leaking them.
+Since removing dev->struct_mutex usage, we only use i915->wq for batch
+freeing of GEM objects and ppGTT, it is essential for memory reclaim. If
+we let the workqueue dawdle, we trap excess amounts of memory, so give
+it a priority boost. Although since we no longer depend on a singular
+mutex, we could run unbounded, but first lets try to keep some
+constraint upon the worker.
 
-Hmm. That caught me by surprise, but yes while close(group) does call
-free_event() on all its children [aiui], it will not remove the fd and
-each event does receive its own fd. And since close(child) will call
-into perf_event_release, we do have to keep the fd alive until the end.
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: CQ Tang <cq.tang@intel.com>
+---
+ drivers/gpu/drm/i915/i915_drv.c | 16 +++-------------
+ 1 file changed, 3 insertions(+), 13 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/i915_drv.c b/drivers/gpu/drm/i915/i915_drv.c
+index 8bb7e2dcfaaa..8c9198f0d2ad 100644
+--- a/drivers/gpu/drm/i915/i915_drv.c
++++ b/drivers/gpu/drm/i915/i915_drv.c
+@@ -219,20 +219,10 @@ intel_teardown_mchbar(struct drm_i915_private *dev_priv)
+ static int i915_workqueues_init(struct drm_i915_private *dev_priv)
+ {
+ 	/*
+-	 * The i915 workqueue is primarily used for batched retirement of
+-	 * requests (and thus managing bo) once the task has been completed
+-	 * by the GPU. i915_retire_requests() is called directly when we
+-	 * need high-priority retirement, such as waiting for an explicit
+-	 * bo.
+-	 *
+-	 * It is also used for periodic low-priority events, such as
+-	 * idle-timers and recording error state.
+-	 *
+-	 * All tasks on the workqueue are expected to acquire the dev mutex
+-	 * so there is no point in running more than one instance of the
+-	 * workqueue at any time.  Use an ordered one.
++	 * The i915 workqueue is primarily used for batched freeing of
++	 * GEM objects and ppGTT, and is essential for memory reclaim.
+ 	 */
+-	dev_priv->wq = alloc_ordered_workqueue("i915", 0);
++	dev_priv->wq = alloc_ordered_workqueue("i915", WQ_HIGHPRI);
+ 	if (dev_priv->wq == NULL)
+ 		goto out_err;
  
-> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-> ---
->  tests/i915/perf_pmu.c | 130 +++++++++++++++++++++++++-----------------
->  1 file changed, 78 insertions(+), 52 deletions(-)
-> 
-> diff --git a/tests/i915/perf_pmu.c b/tests/i915/perf_pmu.c
-> index 873b275dca6b..6f8bec28d274 100644
-> --- a/tests/i915/perf_pmu.c
-> +++ b/tests/i915/perf_pmu.c
-> @@ -475,7 +475,8 @@ busy_check_all(int gem_fd, const struct intel_execution_engine2 *e,
->  
->         end_spin(gem_fd, spin, FLAG_SYNC);
->         igt_spin_free(gem_fd, spin);
-> -       close(fd[0]);
-> +       for (i = 0; i < num_engines; i++)
-> +               close(fd[i]);
+-- 
+2.20.1
 
-close_group(fd, num_engines) ?
--Chris
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
