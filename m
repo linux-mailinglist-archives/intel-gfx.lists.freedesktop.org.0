@@ -2,39 +2,43 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3BBCB28CC61
-	for <lists+intel-gfx@lfdr.de>; Tue, 13 Oct 2020 13:18:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1471C28CF8E
+	for <lists+intel-gfx@lfdr.de>; Tue, 13 Oct 2020 15:54:14 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 398DB6E8C1;
-	Tue, 13 Oct 2020 11:18:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 338756E107;
+	Tue, 13 Oct 2020 13:54:09 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D483F6E8C1
- for <intel-gfx@lists.freedesktop.org>; Tue, 13 Oct 2020 11:18:51 +0000 (UTC)
-IronPort-SDR: ugVeXq2SDh0o+d08k5+isRZhovRjzmojyDTSy1qKEDzYm7+920Qq/5IzKcKbdJeCkWwT0KG1zr
- 6uUKLiFPqUqA==
-X-IronPort-AV: E=McAfee;i="6000,8403,9772"; a="166003442"
-X-IronPort-AV: E=Sophos;i="5.77,370,1596524400"; d="scan'208";a="166003442"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Oct 2020 04:18:46 -0700
-IronPort-SDR: /CsIy0dxuz43RgvOcfBGN7zb/6mSeP80sE61dUzzOKXULzSYmEQJeuQq2V+hzHPpGR87Hz9kw2
- Px13StRHMjkQ==
-X-IronPort-AV: E=Sophos;i="5.77,370,1596524400"; d="scan'208";a="463451319"
-Received: from jnavarro-mobl3.ger.corp.intel.com (HELO
- mwauld-desk1.ger.corp.intel.com) ([10.252.3.12])
- by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Oct 2020 04:18:45 -0700
-From: Matthew Auld <matthew.auld@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Tue, 13 Oct 2020 12:18:39 +0100
-Message-Id: <20201013111839.96637-1-matthew.auld@intel.com>
-X-Mailer: git-send-email 2.26.2
+Received: from casper.infradead.org (casper.infradead.org
+ [IPv6:2001:8b0:10b:1236::1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C42A76E2D5;
+ Tue, 13 Oct 2020 11:26:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=infradead.org; s=casper.20170209; h=In-Reply-To:Content-Type:MIME-Version:
+ References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
+ Content-Transfer-Encoding:Content-ID:Content-Description;
+ bh=ap+vugPRXoOSJhloW5EJc9FGxy9ZwiLwbnG+7+pEMhA=; b=a/Sp1GZZiVtkIrsbDZFKKgQTkQ
+ FS+JHTt9pp+5vCrBdk0ac5b7U8ZgZGFScrKiULCJv4PZD4wWqOSzzq06ZoGh/8vFLI33VuvYYBdii
+ wZ4VlXJvl5fnmlD+q4pIJJmvrTs/0jX/FIDmEAYUX2+Mt6vIwB3sAbRYRgWIA8hB4i4EWyZuWPFOQ
+ rIaV+GwSaVBgBLKvO/SsFSj7I46VHFxg38PLmJQ+Oh1DkRIQcIx5NIWLGcWnDXshQ14JMdlpURiF2
+ LxyBxRGv+1Wkfh31jf6dzRr+U4xHgvz3PsshAxeZoaF0OQPY6Fl5VA2XZOxLonra6CTBCfgsfUBp/
+ 6eTYHzgA==;
+Received: from hch by casper.infradead.org with local (Exim 4.92.3 #3 (Red Hat
+ Linux)) id 1kSIR6-0001VK-7P; Tue, 13 Oct 2020 11:25:44 +0000
+Date: Tue, 13 Oct 2020 12:25:44 +0100
+From: Christoph Hellwig <hch@infradead.org>
+To: ira.weiny@intel.com
+Message-ID: <20201013112544.GA5249@infradead.org>
+References: <20201009195033.3208459-1-ira.weiny@intel.com>
+ <20201009195033.3208459-25-ira.weiny@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915/execbuf: don't allow zero batch_len
+Content-Disposition: inline
+In-Reply-To: <20201009195033.3208459-25-ira.weiny@intel.com>
+X-SRS-Rewrite: SMTP reverse-path rewritten from <hch@infradead.org> by
+ casper.infradead.org. See http://www.infradead.org/rpr.html
+X-Mailman-Approved-At: Tue, 13 Oct 2020 13:54:08 +0000
+Subject: Re: [Intel-gfx] [PATCH RFC PKS/PMEM 24/58] fs/freevxfs: Utilize new
+ kmap_thread()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,49 +51,52 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: linux-aio@kvack.org, linux-efi@vger.kernel.org, kvm@vger.kernel.org,
+ linux-doc@vger.kernel.org, Peter Zijlstra <peterz@infradead.org>,
+ linux-mmc@vger.kernel.org, Dave Hansen <dave.hansen@linux.intel.com>,
+ dri-devel@lists.freedesktop.org, linux-mm@kvack.org,
+ target-devel@vger.kernel.org, linux-mtd@lists.infradead.org,
+ linux-kselftest@vger.kernel.org, samba-technical@lists.samba.org,
+ Thomas Gleixner <tglx@linutronix.de>, drbd-dev@lists.linbit.com,
+ devel@driverdev.osuosl.org, cluster-devel@redhat.com,
+ linux-nilfs@vger.kernel.org, linux-scsi@vger.kernel.org,
+ linux-nvdimm@lists.01.org, linux-rdma@vger.kernel.org, x86@kernel.org,
+ ceph-devel@vger.kernel.org, amd-gfx@lists.freedesktop.org,
+ io-uring@vger.kernel.org, Christoph Hellwig <hch@infradead.org>,
+ Ingo Molnar <mingo@redhat.com>, intel-wired-lan@lists.osuosl.org,
+ xen-devel@lists.xenproject.org, linux-ext4@vger.kernel.org,
+ Fenghua Yu <fenghua.yu@intel.com>, linux-afs@lists.infradead.org,
+ linux-cifs@vger.kernel.org, linux-um@lists.infradead.org,
+ intel-gfx@lists.freedesktop.org, ecryptfs@vger.kernel.org,
+ linux-erofs@lists.ozlabs.org, reiserfs-devel@vger.kernel.org,
+ linux-block@vger.kernel.org, linux-bcache@vger.kernel.org,
+ Borislav Petkov <bp@alien8.de>, Andy Lutomirski <luto@kernel.org>,
+ Dan Williams <dan.j.williams@intel.com>,
+ Andrew Morton <akpm@linux-foundation.org>, linux-cachefs@redhat.com,
+ linux-nfs@vger.kernel.org, linux-ntfs-dev@lists.sourceforge.net,
+ netdev@vger.kernel.org, kexec@lists.infradead.org,
+ linux-kernel@vger.kernel.org, linux-f2fs-devel@lists.sourceforge.net,
+ linux-fsdevel@vger.kernel.org, bpf@vger.kernel.org,
+ linuxppc-dev@lists.ozlabs.org, linux-btrfs@vger.kernel.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-As per the ABI batch_len is u32, however if the batch_len is left unset,
-then the kernel will just assume batch_len is the size of the whole
-batch object, however since the vma->size is u64, while the batch_len is
-just u32 we can end up with batch_len = 0 if we are given too large batch
-object(e.g 1ULL << 32), which doesn't look the intended behaviour and
-probably leads to explosions on some HW.
+> -	kaddr = kmap(pp);
+> +	kaddr = kmap_thread(pp);
+>  	memcpy(kaddr, vip->vii_immed.vi_immed + offset, PAGE_SIZE);
+> -	kunmap(pp);
+> +	kunmap_thread(pp);
 
-Testcase: igt/gem_exec_params/larger-than-life-batch
-Fixes: 0b5372727be3 ("drm/i915/cmdparser: Use cached vmappings")
-Signed-off-by: Matthew Auld <matthew.auld@intel.com>
-Cc: Chris Wilson <chris@chris-wilson.co.uk>
----
- drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c | 7 ++++++-
- 1 file changed, 6 insertions(+), 1 deletion(-)
+You only Cced me on this particular patch, which means I have absolutely
+no idea what kmap_thread and kunmap_thread actually do, and thus can't
+provide an informed review.
 
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-index 4b09bcd70cf4..80c738c72e6e 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-@@ -869,8 +869,13 @@ static int eb_lookup_vmas(struct i915_execbuffer *eb)
- 		return -EINVAL;
- 	}
- 
--	if (eb->batch_len == 0)
-+	if (eb->batch_len == 0) {
- 		eb->batch_len = eb->batch->vma->size - eb->batch_start_offset;
-+		if (unlikely(eb->batch_len == 0)) {
-+			drm_dbg(&i915->drm, "Attempting to use too large batch\n");
-+			return -EINVAL;
-+		}
-+	}
- 
- 	return 0;
- 
--- 
-2.26.2
-
+That being said I think your life would be a lot easier if you add
+helpers for the above code sequence and its counterpart that copies
+to a potential hughmem page first, as that hides the implementation
+details from most users.
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
