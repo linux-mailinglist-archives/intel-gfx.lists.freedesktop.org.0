@@ -1,32 +1,48 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B32DB28CF13
-	for <lists+intel-gfx@lfdr.de>; Tue, 13 Oct 2020 15:24:07 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id A619F28CF43
+	for <lists+intel-gfx@lfdr.de>; Tue, 13 Oct 2020 15:39:25 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1D9B66E8E6;
-	Tue, 13 Oct 2020 13:24:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5623D6E8E2;
+	Tue, 13 Oct 2020 13:39:23 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 828D36E8E2;
- Tue, 13 Oct 2020 13:24:04 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 79BB6A008A;
- Tue, 13 Oct 2020 13:24:04 +0000 (UTC)
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E3B2A6E8E2
+ for <intel-gfx@lists.freedesktop.org>; Tue, 13 Oct 2020 13:39:22 +0000 (UTC)
+IronPort-SDR: TYhHqEmwDchMFVJ/srgSgeaJDWc0kZDSoXcj0UiLqx89Lre3dEa2UYBKdTwFfpcPZK5K7Zflbq
+ Z5qW9+ijKFlw==
+X-IronPort-AV: E=McAfee;i="6000,8403,9772"; a="162445824"
+X-IronPort-AV: E=Sophos;i="5.77,370,1596524400"; d="scan'208";a="162445824"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Oct 2020 06:39:22 -0700
+IronPort-SDR: 5kjsXEZirzOYcrpJ0nsJbQnfgC+QhrHzAIRieDGqHD/jKrE2RaWZAr8mvvRecAxnxjCqVww/zN
+ 4BlKMfT2KVyQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.77,370,1596524400"; d="scan'208";a="318288941"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
+ by orsmga006.jf.intel.com with SMTP; 13 Oct 2020 06:39:20 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Tue, 13 Oct 2020 16:39:19 +0300
+Date: Tue, 13 Oct 2020 16:39:19 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Imre Deak <imre.deak@intel.com>
+Message-ID: <20201013133919.GB6112@intel.com>
+References: <20201006185809.4655-1-ville.syrjala@linux.intel.com>
+ <20201007192241.10241-1-ville.syrjala@linux.intel.com>
+ <20201012193645.GA2349678@ideak-desk.fi.intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Tue, 13 Oct 2020 13:24:04 -0000
-Message-ID: <160259544446.28551.8210780586297898816@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20201013110845.16127-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20201013110845.16127-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/gt=3A_Cleanup_kasan_warning_for_on-stack_=28unsigned_long?=
- =?utf-8?q?=29_casting?=
+Content-Disposition: inline
+In-Reply-To: <20201012193645.GA2349678@ideak-desk.fi.intel.com>
+X-Patchwork-Hint: comment
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: Re: [Intel-gfx] [PATCH v2 1/3] drm/i915: Reorder hpd init vs.
+ display resume
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,299 +55,367 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============1141894497=="
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============1141894497==
-Content-Type: multipart/alternative;
- boundary="===============2919713362447852570=="
+On Mon, Oct 12, 2020 at 10:36:45PM +0300, Imre Deak wrote:
+> On Wed, Oct 07, 2020 at 10:22:41PM +0300, Ville Syrjala wrote:
+> > From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> > =
 
---===============2919713362447852570==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+> > Currently we call .hpd_irq_setup() directly just before display
+> > resume, and follow it with another call via intel_hpd_init()
+> > just afterwards. Assuming the hpd pins are marked as enabled
+> > during the open-coded call these two things do exactly the
+> > same thing (ie. enable HPD interrupts). Which even makes sense
+> > since we definitely need working HPD interrupts for MST sideband
+> > during the display resume.
+> > =
 
-== Series Details ==
+> > So let's nuke the open-coded call and move the intel_hpd_init()
+> > call earlier. However we need to leave the poll_init_work stuff
+> > behind after the display resume as that will trigger display
+> > detection while we're resuming. We don't want that trampling over
+> > the display resume process. To make this a bit more symmetric
+> > we turn this into a intel_hpd_poll_{enable,disable}() pair.
+> > So we end up with the following transformation:
+> > intel_hpd_poll_init() -> intel_hpd_poll_enable()
+> > lone intel_hpd_init() -> intel_hpd_init()+intel_hpd_poll_disable()
+> > .hpd_irq_setup()+resume+intel_hpd_init() -> intel_hpd_init()+resume+int=
+el_hpd_poll_disable()
+> > =
 
-Series: drm/i915/gt: Cleanup kasan warning for on-stack (unsigned long) casting
-URL   : https://patchwork.freedesktop.org/series/82619/
-State : success
+> > If we really would like to prevent all *long* HPD processing during
+> > display resume we'd need some kind of software mechanism to simply
+> > ignore all long HPDs. Currently we appear to have that just for
+> > fbdev via ifbdev->hpd_suspended. Since we aren't exploding left and
+> > right all the time I guess that's mostly sufficient.
+> > =
 
-== Summary ==
+> > For a bit of history on this, we first got a mechanism to block
+> > hotplug processing during suspend in commit 15239099d7a7 ("drm/i915:
+> > enable irqs earlier when resuming") on account of moving the irq enable
+> > earlier. This then got removed in commit 50c3dc970a09 ("drm/fb-helper:
+> > Fix hpd vs. initial config races") because the fdev initial config
+> > got pushed to a later point. The second ad-hoc hpd_irq_setup() for
+> > resume was added in commit 0e32b39ceed6 ("drm/i915: add DP 1.2 MST
+> > support (v0.7)") to be able to do MST sideband during the resume.
+> > And finally we got a partial resurrection of the hpd blocking
+> > mechanism in commit e8a8fedd57fd ("drm/i915: Block fbdev HPD
+> > processing during suspend"), but this time it only prevent fbdev
+> > from handling hpd while resuming.
+> > =
 
-CI Bug Log - changes from CI_DRM_9135 -> Patchwork_18686
-====================================================
+> > v2: Leave the poll_init_work behind
+> > =
 
-Summary
--------
+> > Cc: Lyude Paul <lyude@redhat.com>
+> > Signed-off-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> > ---
+> >  drivers/gpu/drm/i915/display/intel_display.c  |  9 ++--
+> >  .../drm/i915/display/intel_display_power.c    |  3 +-
+> >  drivers/gpu/drm/i915/display/intel_hotplug.c  | 42 ++++++++++++++-----
+> >  drivers/gpu/drm/i915/display/intel_hotplug.h  |  3 +-
+> >  drivers/gpu/drm/i915/i915_drv.c               | 23 ++++------
+> >  5 files changed, 46 insertions(+), 34 deletions(-)
+> > =
 
-  **SUCCESS**
+> > diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu=
+/drm/i915/display/intel_display.c
+> > index 907e1d155443..0d5607ae97c4 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_display.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> > @@ -5036,18 +5036,15 @@ void intel_finish_reset(struct drm_i915_private=
+ *dev_priv)
+> >  		intel_pps_unlock_regs_wa(dev_priv);
+> >  		intel_modeset_init_hw(dev_priv);
+> >  		intel_init_clock_gating(dev_priv);
+> > -
+> > -		spin_lock_irq(&dev_priv->irq_lock);
+> > -		if (dev_priv->display.hpd_irq_setup)
+> > -			dev_priv->display.hpd_irq_setup(dev_priv);
+> > -		spin_unlock_irq(&dev_priv->irq_lock);
+> > +		intel_hpd_init(dev_priv);
+> > +		intel_hpd_poll_disable(dev_priv);
+> >  =
 
-  No regressions found.
+> >  		ret =3D __intel_display_resume(dev, state, ctx);
+> >  		if (ret)
+> >  			drm_err(&dev_priv->drm,
+> >  				"Restoring old state failed with %i\n", ret);
+> >  =
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18686/index.html
+> > -		intel_hpd_init(dev_priv);
+> > +		intel_hpd_poll_disable(dev_priv);
+> =
 
-Known issues
-------------
+> This call is the needed one (to re-probe the connectors) and the above
+> call is not.
+> =
 
-  Here are the changes found in Patchwork_18686 that come from known issues:
+> >  	}
+> >  =
 
-### IGT changes ###
+> >  	drm_atomic_state_put(state);
+> > diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drive=
+rs/gpu/drm/i915/display/intel_display_power.c
+> > index 7277e58b01f1..20ddc54298cb 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_display_power.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_display_power.c
+> > @@ -1424,6 +1424,7 @@ static void vlv_display_power_well_init(struct dr=
+m_i915_private *dev_priv)
+> >  		return;
+> >  =
 
-#### Issues hit ####
+> >  	intel_hpd_init(dev_priv);
+> > +	intel_hpd_poll_disable(dev_priv);
+> >  =
 
-  * igt@gem_flink_basic@flink-lifetime:
-    - fi-tgl-y:           [PASS][1] -> [DMESG-WARN][2] ([i915#402]) +1 similar issue
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9135/fi-tgl-y/igt@gem_flink_basic@flink-lifetime.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18686/fi-tgl-y/igt@gem_flink_basic@flink-lifetime.html
+> >  	/* Re-enable the ADPA, if we have one */
+> >  	for_each_intel_encoder(&dev_priv->drm, encoder) {
+> > @@ -1449,7 +1450,7 @@ static void vlv_display_power_well_deinit(struct =
+drm_i915_private *dev_priv)
+> >  =
 
-  * igt@i915_pm_rpm@module-reload:
-    - fi-kbl-soraka:      [PASS][3] -> [DMESG-WARN][4] ([i915#1982])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9135/fi-kbl-soraka/igt@i915_pm_rpm@module-reload.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18686/fi-kbl-soraka/igt@i915_pm_rpm@module-reload.html
+> >  	/* Prevent us from re-enabling polling on accident in late suspend */
+> >  	if (!dev_priv->drm.dev->power.is_suspended)
+> > -		intel_hpd_poll_init(dev_priv);
+> > +		intel_hpd_poll_enable(dev_priv);
+> >  }
+> >  =
 
-  * igt@kms_cursor_legacy@basic-flip-before-cursor-atomic:
-    - fi-icl-u2:          [PASS][5] -> [DMESG-WARN][6] ([i915#1982])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9135/fi-icl-u2/igt@kms_cursor_legacy@basic-flip-before-cursor-atomic.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18686/fi-icl-u2/igt@kms_cursor_legacy@basic-flip-before-cursor-atomic.html
+> >  static void vlv_display_power_well_enable(struct drm_i915_private *dev=
+_priv,
+> > diff --git a/drivers/gpu/drm/i915/display/intel_hotplug.c b/drivers/gpu=
+/drm/i915/display/intel_hotplug.c
+> > index 5c58c1ed6493..30bd4c86d146 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_hotplug.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_hotplug.c
+> > @@ -584,7 +584,7 @@ void intel_hpd_irq_handler(struct drm_i915_private =
+*dev_priv,
+> >   * This is a separate step from interrupt enabling to simplify the loc=
+king rules
+> >   * in the driver load and resume code.
+> >   *
+> > - * Also see: intel_hpd_poll_init(), which enables connector polling
+> > + * Also see: intel_hpd_poll_enable() and intel_hpd_poll_disable().
+> >   */
+> >  void intel_hpd_init(struct drm_i915_private *dev_priv)
+> >  {
+> > @@ -595,9 +595,6 @@ void intel_hpd_init(struct drm_i915_private *dev_pr=
+iv)
+> >  		dev_priv->hotplug.stats[i].state =3D HPD_ENABLED;
+> >  	}
+> >  =
 
-  * igt@prime_vgem@basic-write:
-    - fi-cml-s:           [PASS][7] -> [DMESG-WARN][8] ([i915#1982])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9135/fi-cml-s/igt@prime_vgem@basic-write.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18686/fi-cml-s/igt@prime_vgem@basic-write.html
+> > -	WRITE_ONCE(dev_priv->hotplug.poll_enabled, false);
+> > -	schedule_work(&dev_priv->hotplug.poll_init_work);
+> > -
+> >  	/*
+> >  	 * Interrupt setup is already guaranteed to be single-threaded, this =
+is
+> >  	 * just to make the assert_spin_locked checks happy.
+> > @@ -654,12 +651,12 @@ static void i915_hpd_poll_init_work(struct work_s=
+truct *work)
+> >  }
+> >  =
 
-  
-#### Possible fixes ####
+> >  /**
+> > - * intel_hpd_poll_init - enables/disables polling for connectors with =
+hpd
+> > + * intel_hpd_poll_enable - enable polling for connectors with hpd
+> >   * @dev_priv: i915 device instance
+> >   *
+> > - * This function enables polling for all connectors, regardless of whe=
+ther or
+> > - * not they support hotplug detection. Under certain conditions HPD ma=
+y not be
+> > - * functional. On most Intel GPUs, this happens when we enter runtime =
+suspend.
+> > + * This function enables polling for all connectors which support HPD.
+> > + * Under certain conditions HPD may not be functional. On most Intel G=
+PUs,
+> > + * this happens when we enter runtime suspend.
+> >   * On Valleyview and Cherryview systems, this also happens when we shu=
+t off all
+> >   * of the powerwells.
+> >   *
+> > @@ -667,9 +664,9 @@ static void i915_hpd_poll_init_work(struct work_str=
+uct *work)
+> >   * dev->mode_config.mutex, we do the actual hotplug enabling in a sepe=
+rate
+> >   * worker.
+> >   *
+> > - * Also see: intel_hpd_init(), which restores hpd handling.
+> > + * Also see: intel_hpd_init() and intel_hpd_poll_disable().
+> >   */
+> > -void intel_hpd_poll_init(struct drm_i915_private *dev_priv)
+> > +void intel_hpd_poll_enable(struct drm_i915_private *dev_priv)
+> >  {
+> >  	WRITE_ONCE(dev_priv->hotplug.poll_enabled, true);
+> >  =
 
-  * igt@gem_flink_basic@bad-flink:
-    - fi-tgl-y:           [DMESG-WARN][9] ([i915#402]) -> [PASS][10]
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9135/fi-tgl-y/igt@gem_flink_basic@bad-flink.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18686/fi-tgl-y/igt@gem_flink_basic@bad-flink.html
+> > @@ -682,6 +679,31 @@ void intel_hpd_poll_init(struct drm_i915_private *=
+dev_priv)
+> >  	schedule_work(&dev_priv->hotplug.poll_init_work);
+> >  }
+> >  =
 
-  * igt@i915_pm_rpm@basic-pci-d3-state:
-    - fi-byt-j1900:       [DMESG-WARN][11] ([i915#1982]) -> [PASS][12]
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9135/fi-byt-j1900/igt@i915_pm_rpm@basic-pci-d3-state.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18686/fi-byt-j1900/igt@i915_pm_rpm@basic-pci-d3-state.html
-    - fi-bsw-n3050:       [DMESG-WARN][13] ([i915#1982]) -> [PASS][14]
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9135/fi-bsw-n3050/igt@i915_pm_rpm@basic-pci-d3-state.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18686/fi-bsw-n3050/igt@i915_pm_rpm@basic-pci-d3-state.html
+> > +/**
+> > + * intel_hpd_poll_disable - disable polling for connectors with hpd
+> > + * @dev_priv: i915 device instance
+> > + *
+> > + * This function disables polling for all connectors which support HPD.
+> > + * Under certain conditions HPD may not be functional. On most Intel G=
+PUs,
+> > + * this happens when we enter runtime suspend.
+> > + * On Valleyview and Cherryview systems, this also happens when we shu=
+t off all
+> > + * of the powerwells.
+> > + *
+> > + * Since this function can get called in contexts where we're already =
+holding
+> > + * dev->mode_config.mutex, we do the actual hotplug enabling in a sepe=
+rate
+> > + * worker.
+> > + *
+> > + * Also used during driver init to initialize connector->polled
+> > + * appropriately for all connectors.
+> > + *
+> > + * Also see: intel_hpd_init() and intel_hpd_poll_enable().
+> > + */
+> > +void intel_hpd_poll_disable(struct drm_i915_private *dev_priv)
+> > +{
+> > +	WRITE_ONCE(dev_priv->hotplug.poll_enabled, false);
+> > +	schedule_work(&dev_priv->hotplug.poll_init_work);
+> > +}
+> > +
+> >  void intel_hpd_init_work(struct drm_i915_private *dev_priv)
+> >  {
+> >  	INIT_DELAYED_WORK(&dev_priv->hotplug.hotplug_work,
+> > diff --git a/drivers/gpu/drm/i915/display/intel_hotplug.h b/drivers/gpu=
+/drm/i915/display/intel_hotplug.h
+> > index a704d7c94d16..b87e95d606e6 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_hotplug.h
+> > +++ b/drivers/gpu/drm/i915/display/intel_hotplug.h
+> > @@ -14,7 +14,8 @@ struct intel_digital_port;
+> >  struct intel_encoder;
+> >  enum port;
+> >  =
 
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:
-    - fi-icl-u2:          [DMESG-WARN][15] ([i915#1982]) -> [PASS][16]
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9135/fi-icl-u2/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18686/fi-icl-u2/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-    - fi-bsw-kefka:       [DMESG-WARN][17] ([i915#1982]) -> [PASS][18]
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9135/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18686/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-    - fi-apl-guc:         [DMESG-WARN][19] ([i915#1635] / [i915#1982]) -> [PASS][20]
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9135/fi-apl-guc/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18686/fi-apl-guc/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
+> > -void intel_hpd_poll_init(struct drm_i915_private *dev_priv);
+> > +void intel_hpd_poll_enable(struct drm_i915_private *dev_priv);
+> > +void intel_hpd_poll_disable(struct drm_i915_private *dev_priv);
+> >  enum intel_hotplug_state intel_encoder_hotplug(struct intel_encoder *e=
+ncoder,
+> >  					       struct intel_connector *connector);
+> >  void intel_hpd_irq_handler(struct drm_i915_private *dev_priv,
+> > diff --git a/drivers/gpu/drm/i915/i915_drv.c b/drivers/gpu/drm/i915/i91=
+5_drv.c
+> > index ebc15066d108..3fc7b996fc48 100644
+> > --- a/drivers/gpu/drm/i915/i915_drv.c
+> > +++ b/drivers/gpu/drm/i915/i915_drv.c
+> > @@ -1226,26 +1226,15 @@ static int i915_drm_resume(struct drm_device *d=
+ev)
+> >  =
 
-  * igt@kms_pipe_crc_basic@read-crc-pipe-c:
-    - {fi-tgl-dsi}:       [DMESG-WARN][21] ([i915#1982]) -> [PASS][22]
-   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9135/fi-tgl-dsi/igt@kms_pipe_crc_basic@read-crc-pipe-c.html
-   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18686/fi-tgl-dsi/igt@kms_pipe_crc_basic@read-crc-pipe-c.html
+> >  	intel_modeset_init_hw(dev_priv);
+> >  	intel_init_clock_gating(dev_priv);
+> > +	intel_hpd_init(dev_priv);
+> >  =
 
-  
-#### Warnings ####
+> > -	spin_lock_irq(&dev_priv->irq_lock);
+> > -	if (dev_priv->display.hpd_irq_setup)
+> > -		dev_priv->display.hpd_irq_setup(dev_priv);
+> > -	spin_unlock_irq(&dev_priv->irq_lock);
+> > -
+> > +	/* MST sideband requires HPD interrupts enabled */
+> =
 
-  * igt@i915_pm_rpm@module-reload:
-    - fi-kbl-guc:         [DMESG-WARN][23] ([i915#2203]) -> [DMESG-FAIL][24] ([i915#2203])
-   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9135/fi-kbl-guc/igt@i915_pm_rpm@module-reload.html
-   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18686/fi-kbl-guc/igt@i915_pm_rpm@module-reload.html
+> The above is a comment for intel_hpd_init().
 
-  * igt@kms_frontbuffer_tracking@basic:
-    - fi-tgl-y:           [FAIL][25] -> [DMESG-FAIL][26] ([i915#1982])
-   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9135/fi-tgl-y/igt@kms_frontbuffer_tracking@basic.html
-   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18686/fi-tgl-y/igt@kms_frontbuffer_tracking@basic.html
+I meant it more as "here be the point where we start to depend on HPD
+interrupts".
 
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
+> =
 
-  [i915#1635]: https://gitlab.freedesktop.org/drm/intel/issues/1635
-  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
-  [i915#2203]: https://gitlab.freedesktop.org/drm/intel/issues/2203
-  [i915#2411]: https://gitlab.freedesktop.org/drm/intel/issues/2411
-  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
+> intel_modeset_init() also calls intel_hpd_init(), looks like that
+> guarantees the explicit connector probing during driver loading. Do we
+> need to call intel_hpd_poll_disable() somewhere on that path too? (Maybe
+> only from i915_driver_register().)
 
+Argh. Must have been some rebase failure. Even reflog remembers me
+adding that call, but apparently it never made it into the version I
+posted.
 
-Participating hosts (47 -> 41)
-------------------------------
+> =
 
-  Missing    (6): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-byt-clapper fi-bdw-samus 
+> >  	intel_dp_mst_resume(dev_priv);
+> > -
+> >  	intel_display_resume(dev);
+> >  =
 
+> > +	intel_hpd_poll_disable(dev_priv);
+> >  	drm_kms_helper_poll_enable(dev);
+> >  =
 
-Build changes
--------------
+> > -	/*
+> > -	 * ... but also need to make sure that hotplug processing
+> > -	 * doesn't cause havoc. Like in the driver load code we don't
+> > -	 * bother with the tiny race here where we might lose hotplug
+> > -	 * notifications.
+> > -	 * */
+> > -	intel_hpd_init(dev_priv);
+> > -
+> >  	intel_opregion_resume(dev_priv);
+> >  =
 
-  * Linux: CI_DRM_9135 -> Patchwork_18686
+> >  	intel_fbdev_set_suspend(dev, FBINFO_STATE_RUNNING, false);
+> > @@ -1557,7 +1546,7 @@ static int intel_runtime_suspend(struct device *k=
+dev)
+> >  	assert_forcewakes_inactive(&dev_priv->uncore);
+> >  =
 
-  CI-20190529: 20190529
-  CI_DRM_9135: eb70ad33fcc91d3464b07679391fb477927ad4c7 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5813: d4e6dd955a1dad02271aa41c9389f5097ee17765 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_18686: 6ccdb007c7e9cc28358c407936b6e24411a6a84d @ git://anongit.freedesktop.org/gfx-ci/linux
+> >  	if (!IS_VALLEYVIEW(dev_priv) && !IS_CHERRYVIEW(dev_priv))
+> > -		intel_hpd_poll_init(dev_priv);
+> > +		intel_hpd_poll_enable(dev_priv);
+> >  =
 
+> >  	drm_dbg_kms(&dev_priv->drm, "Device suspended\n");
+> >  	return 0;
+> > @@ -1602,8 +1591,10 @@ static int intel_runtime_resume(struct device *k=
+dev)
+> >  	 * power well, so hpd is reinitialized from there. For
+> >  	 * everyone else do it here.
+> >  	 */
+> > -	if (!IS_VALLEYVIEW(dev_priv) && !IS_CHERRYVIEW(dev_priv))
+> > +	if (!IS_VALLEYVIEW(dev_priv) && !IS_CHERRYVIEW(dev_priv)) {
+> >  		intel_hpd_init(dev_priv);
+> > +		intel_hpd_poll_disable(dev_priv);
+> > +	}
+> >  =
 
-== Linux commits ==
+> >  	intel_enable_ipc(dev_priv);
+> >  =
 
-6ccdb007c7e9 drm/i915/gt: Cleanup kasan warning for on-stack (unsigned long) casting
+> > -- =
 
-== Logs ==
+> > 2.26.2
+> > =
 
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18686/index.html
+> > _______________________________________________
+> > Intel-gfx mailing list
+> > Intel-gfx@lists.freedesktop.org
+> > https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 
---===============2919713362447852570==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+-- =
 
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/gt: Cleanup kasan warning for on-stack (unsigned long) casting</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/82619/">https://patchwork.freedesktop.org/series/82619/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18686/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18686/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_9135 -&gt; Patchwork_18686</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18686/index.html</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_18686 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@gem_flink_basic@flink-lifetime:</p>
-<ul>
-<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9135/fi-tgl-y/igt@gem_flink_basic@flink-lifetime.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18686/fi-tgl-y/igt@gem_flink_basic@flink-lifetime.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) +1 similar issue</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_pm_rpm@module-reload:</p>
-<ul>
-<li>fi-kbl-soraka:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9135/fi-kbl-soraka/igt@i915_pm_rpm@module-reload.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18686/fi-kbl-soraka/igt@i915_pm_rpm@module-reload.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@basic-flip-before-cursor-atomic:</p>
-<ul>
-<li>fi-icl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9135/fi-icl-u2/igt@kms_cursor_legacy@basic-flip-before-cursor-atomic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18686/fi-icl-u2/igt@kms_cursor_legacy@basic-flip-before-cursor-atomic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@prime_vgem@basic-write:</p>
-<ul>
-<li>fi-cml-s:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9135/fi-cml-s/igt@prime_vgem@basic-write.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18686/fi-cml-s/igt@prime_vgem@basic-write.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@gem_flink_basic@bad-flink:</p>
-<ul>
-<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9135/fi-tgl-y/igt@gem_flink_basic@bad-flink.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18686/fi-tgl-y/igt@gem_flink_basic@bad-flink.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_pm_rpm@basic-pci-d3-state:</p>
-<ul>
-<li>
-<p>fi-byt-j1900:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9135/fi-byt-j1900/igt@i915_pm_rpm@basic-pci-d3-state.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18686/fi-byt-j1900/igt@i915_pm_rpm@basic-pci-d3-state.html">PASS</a></p>
-</li>
-<li>
-<p>fi-bsw-n3050:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9135/fi-bsw-n3050/igt@i915_pm_rpm@basic-pci-d3-state.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18686/fi-bsw-n3050/igt@i915_pm_rpm@basic-pci-d3-state.html">PASS</a></p>
-</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:</p>
-<ul>
-<li>
-<p>fi-icl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9135/fi-icl-u2/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18686/fi-icl-u2/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html">PASS</a></p>
-</li>
-<li>
-<p>fi-bsw-kefka:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9135/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18686/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html">PASS</a></p>
-</li>
-<li>
-<p>fi-apl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9135/fi-apl-guc/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1635">i915#1635</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18686/fi-apl-guc/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html">PASS</a></p>
-</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@read-crc-pipe-c:</p>
-<ul>
-<li>{fi-tgl-dsi}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9135/fi-tgl-dsi/igt@kms_pipe_crc_basic@read-crc-pipe-c.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18686/fi-tgl-dsi/igt@kms_pipe_crc_basic@read-crc-pipe-c.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h4>Warnings</h4>
-<ul>
-<li>
-<p>igt@i915_pm_rpm@module-reload:</p>
-<ul>
-<li>fi-kbl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9135/fi-kbl-guc/igt@i915_pm_rpm@module-reload.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2203">i915#2203</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18686/fi-kbl-guc/igt@i915_pm_rpm@module-reload.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2203">i915#2203</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_frontbuffer_tracking@basic:</p>
-<ul>
-<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9135/fi-tgl-y/igt@kms_frontbuffer_tracking@basic.html">FAIL</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18686/fi-tgl-y/igt@kms_frontbuffer_tracking@basic.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>)</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Participating hosts (47 -&gt; 41)</h2>
-<p>Missing    (6): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-byt-clapper fi-bdw-samus </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_9135 -&gt; Patchwork_18686</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_9135: eb70ad33fcc91d3464b07679391fb477927ad4c7 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_5813: d4e6dd955a1dad02271aa41c9389f5097ee17765 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
-  Patchwork_18686: 6ccdb007c7e9cc28358c407936b6e24411a6a84d @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>6ccdb007c7e9 drm/i915/gt: Cleanup kasan warning for on-stack (unsigned long) casting</p>
-
-</body>
-</html>
-
---===============2919713362447852570==--
-
---===============1141894497==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
+Ville Syrj=E4l=E4
+Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============1141894497==--
