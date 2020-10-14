@@ -2,40 +2,40 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 345A328E72D
-	for <lists+intel-gfx@lfdr.de>; Wed, 14 Oct 2020 21:20:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 19E8228E736
+	for <lists+intel-gfx@lfdr.de>; Wed, 14 Oct 2020 21:21:05 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 51FCD6EB3B;
-	Wed, 14 Oct 2020 19:20:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 567E56EB3E;
+	Wed, 14 Oct 2020 19:21:03 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 177196EB34
- for <intel-gfx@lists.freedesktop.org>; Wed, 14 Oct 2020 19:20:50 +0000 (UTC)
-IronPort-SDR: 4no8LrMBnFZWoc+asey/6Klq3GL66SFlEXtzCFUqNXgQ34FqWe7XlNNfnskZ/IF7sAg2AiCcsw
- KuDF9QxiuNAA==
-X-IronPort-AV: E=McAfee;i="6000,8403,9774"; a="183703015"
-X-IronPort-AV: E=Sophos;i="5.77,375,1596524400"; d="scan'208";a="183703015"
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3D5BA6EB37
+ for <intel-gfx@lists.freedesktop.org>; Wed, 14 Oct 2020 19:20:51 +0000 (UTC)
+IronPort-SDR: cNBwqqp+auqxQwtyNdWTuYaOUQvcsam+flm5miOrXcuEszQK0aJVmf++VQAE/sARVAh8imvyYC
+ 7vbaMCs5D3Dw==
+X-IronPort-AV: E=McAfee;i="6000,8403,9774"; a="183703016"
+X-IronPort-AV: E=Sophos;i="5.77,375,1596524400"; d="scan'208";a="183703016"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from fmsmga004.fm.intel.com ([10.253.24.48])
  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  14 Oct 2020 12:20:44 -0700
-IronPort-SDR: rBjCkqEN8JF8VrZjuvwlXZ0vElFJtaap7CAjkx5vM6ZTIwQKa7BUR6lVkh9ykya731QrKQqH8a
- 4t0ETFx95JWA==
-X-IronPort-AV: E=Sophos;i="5.77,375,1596524400"; d="scan'208";a="345781245"
+IronPort-SDR: NEcjXk407+uKA/ABKSBQdD/+Q5j3+Kc/Q1gEvgAVEm08oXchVtnOTN5AoYwB9kd3ObbxJWqlfy
+ HZZ9xOewlZ8Q==
+X-IronPort-AV: E=Sophos;i="5.77,375,1596524400"; d="scan'208";a="345781248"
 Received: from lucas-s2600cw.jf.intel.com ([10.165.21.202])
  by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Oct 2020 12:20:43 -0700
+ 14 Oct 2020 12:20:44 -0700
 From: Lucas De Marchi <lucas.demarchi@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Wed, 14 Oct 2020 12:19:31 -0700
-Message-Id: <20201014191937.1266226-5-lucas.demarchi@intel.com>
+Date: Wed, 14 Oct 2020 12:19:32 -0700
+Message-Id: <20201014191937.1266226-6-lucas.demarchi@intel.com>
 X-Mailer: git-send-email 2.28.0
 In-Reply-To: <20201014191937.1266226-1-lucas.demarchi@intel.com>
 References: <20201014191937.1266226-1-lucas.demarchi@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [CI 05/11] drm/i915/dg1: Add and setup DPLLs for DG1
+Subject: [Intel-gfx] [CI 06/11] drm/i915/dg1: Enable DPLL for DG1
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,104 +53,65 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Aditya Swarup <aditya.swarup@intel.com>
+Add DG1 DPLL Enable register macro and use the macro to enable the
+correct DPLL based on PLL id. Although we use
+_MG_PLL1_ENABLE/_MG_PLL2_ENABLE these are rather combo phys.
 
-Add entries for dg1 plls and setup dg1_pll_mgr to reuse ICL callbacks.
-Initial setup for shared dplls DPLL0/1 for DDIA/DDIB and DPLL2/3 for
-DDI-TC1/DDI-TC2. Configure dpll cfgcrx registers to drive the plls on
-DG1.
+While at it, fix coding style: wrong newlines and use if/else chain
 
-v2 (Lucas): Reword commit message and add missing update_ref_clks hook
-   (requested by Matt Roper)
+v2: Rewrite original patch from Aditya Swarup based on refactors
+upstream
 
-Signed-off-by: Aditya Swarup <aditya.swarup@intel.com>
-Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
+Bspec: 49443, 49206
+
+Cc: Clinton Taylor <Clinton.A.Taylor@intel.com>
+Cc: Matt Roper <matthew.d.roper@intel.com>
+Cc: Aditya Swarup <aditya.swarup@intel.com>
 Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+Reviewed-by: Aditya Swarup <aditya.swarup@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dpll_mgr.c | 42 +++++++++++++++++--
- 1 file changed, 38 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/i915/display/intel_dpll_mgr.c | 8 ++++----
+ drivers/gpu/drm/i915/i915_reg.h               | 4 ++++
+ 2 files changed, 8 insertions(+), 4 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-index 48c30c50a301..2f412d2c9d09 100644
+index 2f412d2c9d09..eaef7a2d041f 100644
 --- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
 +++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-@@ -3546,7 +3546,17 @@ static bool icl_get_combo_phy_dpll(struct intel_atomic_state *state,
+@@ -151,14 +151,14 @@ static i915_reg_t
+ intel_combo_pll_enable_reg(struct drm_i915_private *i915,
+ 			   struct intel_shared_dpll *pll)
+ {
+-
+-	if (IS_JSL_EHL(i915) && (pll->info->id == DPLL_ID_EHL_DPLL4))
++	if (IS_DG1(i915))
++		return DG1_DPLL_ENABLE(pll->info->id);
++	else if (IS_JSL_EHL(i915) && (pll->info->id == DPLL_ID_EHL_DPLL4))
+ 		return MG_PLL_ENABLE(0);
  
- 	icl_calc_dpll_state(dev_priv, &pll_params, &port_dpll->hw_state);
- 
--	if (IS_ROCKETLAKE(dev_priv)) {
-+	if (IS_DG1(dev_priv)) {
-+		if (port == PORT_D || port == PORT_E) {
-+			dpll_mask =
-+				BIT(DPLL_ID_DG1_DPLL2) |
-+				BIT(DPLL_ID_DG1_DPLL3);
-+		} else {
-+			dpll_mask =
-+				BIT(DPLL_ID_DG1_DPLL0) |
-+				BIT(DPLL_ID_DG1_DPLL1);
-+		}
-+	} else if (IS_ROCKETLAKE(dev_priv)) {
- 		dpll_mask =
- 			BIT(DPLL_ID_EHL_DPLL4) |
- 			BIT(DPLL_ID_ICL_DPLL1) |
-@@ -3842,7 +3852,10 @@ static bool icl_pll_get_hw_state(struct drm_i915_private *dev_priv,
- 	if (!(val & PLL_ENABLE))
- 		goto out;
- 
--	if (IS_ROCKETLAKE(dev_priv)) {
-+	if (IS_DG1(dev_priv)) {
-+		hw_state->cfgcr0 = intel_de_read(dev_priv, DG1_DPLL_CFGCR0(id));
-+		hw_state->cfgcr1 = intel_de_read(dev_priv, DG1_DPLL_CFGCR1(id));
-+	} else if (IS_ROCKETLAKE(dev_priv)) {
- 		hw_state->cfgcr0 = intel_de_read(dev_priv,
- 						 RKL_DPLL_CFGCR0(id));
- 		hw_state->cfgcr1 = intel_de_read(dev_priv,
-@@ -3895,7 +3908,10 @@ static void icl_dpll_write(struct drm_i915_private *dev_priv,
- 	const enum intel_dpll_id id = pll->info->id;
- 	i915_reg_t cfgcr0_reg, cfgcr1_reg;
- 
--	if (IS_ROCKETLAKE(dev_priv)) {
-+	if (IS_DG1(dev_priv)) {
-+		cfgcr0_reg = DG1_DPLL_CFGCR0(id);
-+		cfgcr1_reg = DG1_DPLL_CFGCR1(id);
-+	} else if (IS_ROCKETLAKE(dev_priv)) {
- 		cfgcr0_reg = RKL_DPLL_CFGCR0(id);
- 		cfgcr1_reg = RKL_DPLL_CFGCR1(id);
- 	} else if (INTEL_GEN(dev_priv) >= 12) {
-@@ -4339,6 +4355,22 @@ static const struct intel_dpll_mgr rkl_pll_mgr = {
- 	.dump_hw_state = icl_dump_hw_state,
- };
- 
-+static const struct dpll_info dg1_plls[] = {
-+	{ "DPLL 0", &combo_pll_funcs, DPLL_ID_DG1_DPLL0, 0 },
-+	{ "DPLL 1", &combo_pll_funcs, DPLL_ID_DG1_DPLL1, 0 },
-+	{ "DPLL 2", &combo_pll_funcs, DPLL_ID_DG1_DPLL2, 0 },
-+	{ "DPLL 3", &combo_pll_funcs, DPLL_ID_DG1_DPLL3, 0 },
-+	{ },
-+};
-+
-+static const struct intel_dpll_mgr dg1_pll_mgr = {
-+	.dpll_info = dg1_plls,
-+	.get_dplls = icl_get_dplls,
-+	.put_dplls = icl_put_dplls,
-+	.update_ref_clks = icl_update_dpll_ref_clks,
-+	.dump_hw_state = icl_dump_hw_state,
-+};
+ 	return CNL_DPLL_ENABLE(pll->info->id);
+-
+-
+ }
 +
  /**
-  * intel_shared_dpll_init - Initialize shared DPLLs
-  * @dev: drm device
-@@ -4352,7 +4384,9 @@ void intel_shared_dpll_init(struct drm_device *dev)
- 	const struct dpll_info *dpll_info;
- 	int i;
+  * intel_prepare_shared_dpll - call a dpll's prepare hook
+  * @crtc_state: CRTC, and its state, which has a shared dpll
+diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+index 0b67c868c51d..49945e33f573 100644
+--- a/drivers/gpu/drm/i915/i915_reg.h
++++ b/drivers/gpu/drm/i915/i915_reg.h
+@@ -10316,6 +10316,10 @@ enum skl_power_gate {
+ #define MG_PLL_ENABLE(tc_port)	_MMIO_PORT((tc_port), _MG_PLL1_ENABLE, \
+ 					   _MG_PLL2_ENABLE)
  
--	if (IS_ROCKETLAKE(dev_priv))
-+	if (IS_DG1(dev_priv))
-+		dpll_mgr = &dg1_pll_mgr;
-+	else if (IS_ROCKETLAKE(dev_priv))
- 		dpll_mgr = &rkl_pll_mgr;
- 	else if (INTEL_GEN(dev_priv) >= 12)
- 		dpll_mgr = &tgl_pll_mgr;
++/* DG1 PLL */
++#define DG1_DPLL_ENABLE(pll)    _MMIO_PLL3(pll, DPLL0_ENABLE, DPLL1_ENABLE, \
++					   _MG_PLL1_ENABLE, _MG_PLL2_ENABLE)
++
+ #define _MG_REFCLKIN_CTL_PORT1				0x16892C
+ #define _MG_REFCLKIN_CTL_PORT2				0x16992C
+ #define _MG_REFCLKIN_CTL_PORT3				0x16A92C
 -- 
 2.28.0
 
