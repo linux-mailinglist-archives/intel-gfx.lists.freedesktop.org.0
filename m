@@ -1,29 +1,30 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5DA6128DEEE
-	for <lists+intel-gfx@lfdr.de>; Wed, 14 Oct 2020 12:32:12 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id D10C628DF10
+	for <lists+intel-gfx@lfdr.de>; Wed, 14 Oct 2020 12:40:57 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 974A16E429;
-	Wed, 14 Oct 2020 10:32:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D0F456EA3F;
+	Wed, 14 Oct 2020 10:40:51 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B07BA6E429
- for <intel-gfx@lists.freedesktop.org>; Wed, 14 Oct 2020 10:32:07 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C0F476EA38;
+ Wed, 14 Oct 2020 10:40:47 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
-Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 22711367-1500050 
- for multiple; Wed, 14 Oct 2020 11:31:53 +0100
+Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 22711488-1500050 
+ for multiple; Wed, 14 Oct 2020 11:40:40 +0100
 From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Wed, 14 Oct 2020 11:31:52 +0100
-Message-Id: <20201014103152.21935-1-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.20.1
+To: igt-dev@lists.freedesktop.org
+Date: Wed, 14 Oct 2020 11:40:29 +0100
+Message-Id: <20201014104038.2554985-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.28.0
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915/gt: Fixup tgl mocs for PTE tracking
+Subject: [Intel-gfx] [PATCH i-g-t 01/10] i915/gem_userptr_blits: Tighten
+ has_userptr()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,38 +37,65 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
- Chris Wilson <chris@chris-wilson.co.uk>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: intel-gfx@lists.freedesktop.org, Chris Wilson <chris@chris-wilson.co.uk>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Rm9yY2luZyBtb2NzOjEgW3VzZWQgZm9yIG91ciB3aW5zeXMgZm9sbG93cy1wdGUgbW9kZV0gdG8g
-YmUgY2FjaGVkCmNhdXNlZCBkaXNwbGF5IGdsaXRjaGVzLiBUaG91Z2ggaXQgaXMgZG9jdW1lbnRl
-ZCBhcyBkZXByZWNhdGVkIChhbmQgc28KbGlrZWx5IGJlaGF2ZXMgYXMgdW5jYWNoZWQpIHVzZSB0
-aGUgZm9sbG93LXB0ZSBiaXQgYW5kIGZvcmNlIGl0IG91dCBvZgpMMyBjYWNoZS4KCkZpeGVzOiA0
-ZDhhNWNmZTNiMTMgKCJkcm0vaTkxNS9ndDogSW5pdGlhbGl6ZSByZXNlcnZlZCBhbmQgdW5zcGVj
-aWZpZWQgTU9DUyBpbmRpY2VzIikKVGVzdGNhc2U6IGlndC9rbXNfZnJvbnRidWZmZXJfdHJhY2tp
-bmcKVGVzdGNhc2U6IGlndC9rbXNfYmlnX2ZiClNpZ25lZC1vZmYtYnk6IENocmlzIFdpbHNvbiA8
-Y2hyaXNAY2hyaXMtd2lsc29uLmNvLnVrPgpDYzogQXlheiBBIFNpZGRpcXVpIDxheWF6LnNpZGRp
-cXVpQGludGVsLmNvbT4KQ2M6IEx1Y2FzIERlIE1hcmNoaSA8bHVjYXMuZGVtYXJjaGlAaW50ZWwu
-Y29tPgpDYzogTWF0dCBSb3BlciA8bWF0dGhldy5kLnJvcGVyQGludGVsLmNvbT4KQ2M6IFZpbGxl
-IFN5cmrDpGzDpCA8dmlsbGUuc3lyamFsYUBsaW51eC5pbnRlbC5jb20+CkNjOiBKb29uYXMgTGFo
-dGluZW4gPGpvb25hcy5sYWh0aW5lbkBsaW51eC5pbnRlbC5jb20+Ci0tLQogZHJpdmVycy9ncHUv
-ZHJtL2k5MTUvZ3QvaW50ZWxfbW9jcy5jIHwgNSArKystLQogMSBmaWxlIGNoYW5nZWQsIDMgaW5z
-ZXJ0aW9ucygrKSwgMiBkZWxldGlvbnMoLSkKCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0v
-aTkxNS9ndC9pbnRlbF9tb2NzLmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC9pbnRlbF9tb2Nz
-LmMKaW5kZXggMzkxNzlhM2VlZTk4Li4wOTNiMzJkYjM0MjggMTAwNjQ0Ci0tLSBhL2RyaXZlcnMv
-Z3B1L2RybS9pOTE1L2d0L2ludGVsX21vY3MuYworKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9n
-dC9pbnRlbF9tb2NzLmMKQEAgLTI0Myw4ICsyNDMsOSBAQCBzdGF0aWMgY29uc3Qgc3RydWN0IGRy
-bV9pOTE1X21vY3NfZW50cnkgdGdsX21vY3NfdGFibGVbXSA9IHsKIAkgKiBvbmx5LCBfX2luaXRf
-bW9jc190YWJsZSgpIHRha2UgY2FyZSB0byBwcm9ncmFtIHVudXNlZCBpbmRleCB3aXRoCiAJICog
-dGhpcyBlbnRyeS4KIAkgKi8KLQlNT0NTX0VOVFJZKDEsIExFXzNfV0IgfCBMRV9UQ18xX0xMQyB8
-IExFX0xSVU0oMyksCi0JCSAgIEwzXzNfV0IpLAorCU1PQ1NfRU5UUlkoSTkxNV9NT0NTX1BURSwK
-KwkJICAgTEVfMF9QQUdFVEFCTEUgfCBMRV9UQ18wX1BBR0VUQUJMRSwKKwkJICAgTDNfMV9VQyks
-CiAJR0VOMTFfTU9DU19FTlRSSUVTLAogCiAJLyogSW1wbGljaXRseSBlbmFibGUgTDEgLSBIREM6
-TDEgKyBMMyArIExMQyAqLwotLSAKMi4yMC4xCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0
-cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9s
-aXN0aW5mby9pbnRlbC1nZngK
+We use has_userptr() to determine if the different flags are supported,
+so it helps not to override the flags inside the test.
+
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+---
+ tests/i915/gem_userptr_blits.c | 12 ++++++------
+ 1 file changed, 6 insertions(+), 6 deletions(-)
+
+diff --git a/tests/i915/gem_userptr_blits.c b/tests/i915/gem_userptr_blits.c
+index 268423dcd..01498edad 100644
+--- a/tests/i915/gem_userptr_blits.c
++++ b/tests/i915/gem_userptr_blits.c
+@@ -71,8 +71,7 @@
+ #define PAGE_SIZE 4096
+ #endif
+ 
+-static uint32_t userptr_flags = I915_USERPTR_UNSYNCHRONIZED;
+-
++static uint32_t userptr_flags;
+ static bool *can_mmap;
+ 
+ #define WIDTH 512
+@@ -504,14 +503,11 @@ static int has_userptr(int fd)
+ {
+ 	uint32_t handle = 0;
+ 	void *ptr;
+-	uint32_t oldflags;
+ 	int ret;
+ 
+ 	igt_assert(posix_memalign(&ptr, PAGE_SIZE, PAGE_SIZE) == 0);
+-	oldflags = userptr_flags;
+-	gem_userptr_test_unsynchronized();
+ 	ret = __gem_userptr(fd, ptr, PAGE_SIZE, 0, userptr_flags, &handle);
+-	userptr_flags = oldflags;
++	errno = 0;
+ 	if (ret != 0) {
+ 		free(ptr);
+ 		return 0;
+@@ -2112,6 +2108,10 @@ igt_main_args("c:", NULL, help_str, opt_handler, NULL)
+ 
+ 	igt_subtest_group {
+ 		igt_fixture {
++			/* Either mode will do for parameter checking */
++			gem_userptr_test_synchronized();
++			if (!has_userptr(fd))
++				gem_userptr_test_unsynchronized();
+ 			igt_require(has_userptr(fd));
+ 		}
+ 
+-- 
+2.28.0
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
