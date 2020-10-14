@@ -1,40 +1,41 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 64A1428E733
-	for <lists+intel-gfx@lfdr.de>; Wed, 14 Oct 2020 21:21:02 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8CBB328E72F
+	for <lists+intel-gfx@lfdr.de>; Wed, 14 Oct 2020 21:20:58 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 725586EB38;
+	by gabe.freedesktop.org (Postfix) with ESMTP id B6B9F6EB39;
 	Wed, 14 Oct 2020 19:20:55 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8A1196EB3C
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0D1266EB37
  for <intel-gfx@lists.freedesktop.org>; Wed, 14 Oct 2020 19:20:51 +0000 (UTC)
-IronPort-SDR: 3JoYOklARiBbh1e0uHAMeVOO9SsoMd7y00ch0u0QT76WWOXEag/TUjKgfYpvFRyIfI9rKbJ7Wp
- hIFX3qHnFVtg==
-X-IronPort-AV: E=McAfee;i="6000,8403,9774"; a="183703011"
-X-IronPort-AV: E=Sophos;i="5.77,375,1596524400"; d="scan'208";a="183703011"
+IronPort-SDR: GFliv7ctRGcs0wu+PLUv+skbXc8a3azv+SJ6ShVd+mX7EX6QoEskeDNhSCEgEkQ/OPJpeqqkK/
+ KyXnLPraKbsA==
+X-IronPort-AV: E=McAfee;i="6000,8403,9774"; a="183703012"
+X-IronPort-AV: E=Sophos;i="5.77,375,1596524400"; d="scan'208";a="183703012"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from fmsmga004.fm.intel.com ([10.253.24.48])
  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  14 Oct 2020 12:20:43 -0700
-IronPort-SDR: R1YlljDdNNvGeDUPuficoeX1Uv03zzHwUkVSmVgJG9pEIFa1+WuIpn0aE7t8m7owvMKN7yIYoi
- yDbV/rq4d5XQ==
-X-IronPort-AV: E=Sophos;i="5.77,375,1596524400"; d="scan'208";a="345781230"
+IronPort-SDR: Q5PytgSGP0iuYw7qGGTQwYNMn2crXd2UBhf1Ncc66SqKaeZetvyqjS+Bz437D/1WNHR7blzgTF
+ z+iibsjZG1Sw==
+X-IronPort-AV: E=Sophos;i="5.77,375,1596524400"; d="scan'208";a="345781232"
 Received: from lucas-s2600cw.jf.intel.com ([10.165.21.202])
  by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  14 Oct 2020 12:20:43 -0700
 From: Lucas De Marchi <lucas.demarchi@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Wed, 14 Oct 2020 12:19:27 -0700
-Message-Id: <20201014191937.1266226-1-lucas.demarchi@intel.com>
+Date: Wed, 14 Oct 2020 12:19:28 -0700
+Message-Id: <20201014191937.1266226-2-lucas.demarchi@intel.com>
 X-Mailer: git-send-email 2.28.0
+In-Reply-To: <20201014191937.1266226-1-lucas.demarchi@intel.com>
+References: <20201014191937.1266226-1-lucas.demarchi@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [CI 01/11] drm/i915/display: allow to skip certain
- power wells
+Subject: [Intel-gfx] [CI 02/11] drm/i915/cnl: skip PW_DDI_F on certain skus
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,80 +53,77 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Aditya Swarup <aditya.swarup@intel.com>
+The skus guarded by IS_CNL_WITH_PORT_F() have port F and thus they need
+those power wells. The others don't have those. Up to now we were
+just overriding the number of power wells on !IS_CNL_WITH_PORT_F(),
+relying on those power wells to be the last ones. Now that we have logic
+in place to skip power wells by id, use it instead.
 
-This allows us to skip power wells on a platform allowing it to re-use
-the table from another one instead of having to create a new table from
-scratch that is basically a copy with a few removals.
-
-Cc: Imre Deak <imre.deak@intel.com>
-Suggested-by: Matt Roper <matthew.d.roper@intel.com>
-Signed-off-by: Aditya Swarup <aditya.swarup@intel.com>
-[ Adapt ignore logic to be based on pw id rather than adding a new
-  field, as suggested by Imre ]
 Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
 Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
 ---
- .../drm/i915/display/intel_display_power.c    | 24 ++++++++++++++-----
- 1 file changed, 18 insertions(+), 6 deletions(-)
+ .../drm/i915/display/intel_display_power.c    | 19 +++++++------------
+ .../drm/i915/display/intel_display_power.h    |  2 ++
+ 2 files changed, 9 insertions(+), 12 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
-index 7277e58b01f1..5b7f2b67791e 100644
+index 5b7f2b67791e..7437c7a79e5f 100644
 --- a/drivers/gpu/drm/i915/display/intel_display_power.c
 +++ b/drivers/gpu/drm/i915/display/intel_display_power.c
-@@ -4554,13 +4554,18 @@ static u32 get_allowed_dc_mask(const struct drm_i915_private *dev_priv,
- static int
- __set_power_wells(struct i915_power_domains *power_domains,
- 		  const struct i915_power_well_desc *power_well_descs,
--		  int power_well_count)
-+		  int power_well_descs_sz, u64 skip_mask)
- {
- 	struct drm_i915_private *i915 = container_of(power_domains,
- 						     struct drm_i915_private,
- 						     power_domains);
- 	u64 power_well_ids = 0;
--	int i;
-+	int power_well_count = 0;
-+	int i, plt_idx = 0;
-+
-+	for (i = 0; i < power_well_descs_sz; i++)
-+		if (!(BIT_ULL(power_well_descs[i].id) & skip_mask))
-+			power_well_count++;
- 
- 	power_domains->power_well_count = power_well_count;
- 	power_domains->power_wells =
-@@ -4570,10 +4575,14 @@ __set_power_wells(struct i915_power_domains *power_domains,
- 	if (!power_domains->power_wells)
- 		return -ENOMEM;
- 
--	for (i = 0; i < power_well_count; i++) {
-+	for (i = 0; i < power_well_descs_sz; i++) {
- 		enum i915_power_well_id id = power_well_descs[i].id;
- 
--		power_domains->power_wells[i].desc = &power_well_descs[i];
-+		if (BIT_ULL(id) & skip_mask)
-+			continue;
-+
-+		power_domains->power_wells[plt_idx++].desc =
-+			&power_well_descs[i];
- 
- 		if (id == DISP_PW_ID_NONE)
- 			continue;
-@@ -4586,9 +4595,12 @@ __set_power_wells(struct i915_power_domains *power_domains,
- 	return 0;
- }
- 
--#define set_power_wells(power_domains, __power_well_descs) \
-+#define set_power_wells_mask(power_domains, __power_well_descs, skip_mask) \
- 	__set_power_wells(power_domains, __power_well_descs, \
--			  ARRAY_SIZE(__power_well_descs))
-+			  ARRAY_SIZE(__power_well_descs), skip_mask)
-+
-+#define set_power_wells(power_domains, __power_well_descs) \
-+	set_power_wells_mask(power_domains, __power_well_descs, 0)
- 
- /**
-  * intel_power_domains_init - initializes the power domain structures
+@@ -3650,7 +3650,7 @@ static const struct i915_power_well_desc cnl_power_wells[] = {
+ 		.name = "DDI F IO power well",
+ 		.domains = CNL_DISPLAY_DDI_F_IO_POWER_DOMAINS,
+ 		.ops = &hsw_power_well_ops,
+-		.id = DISP_PW_ID_NONE,
++		.id = CNL_DISP_PW_DDI_F_IO,
+ 		{
+ 			.hsw.regs = &hsw_power_well_regs,
+ 			.hsw.idx = CNL_PW_CTL_IDX_DDI_F,
+@@ -3660,7 +3660,7 @@ static const struct i915_power_well_desc cnl_power_wells[] = {
+ 		.name = "AUX F",
+ 		.domains = CNL_DISPLAY_AUX_F_POWER_DOMAINS,
+ 		.ops = &hsw_power_well_ops,
+-		.id = DISP_PW_ID_NONE,
++		.id = CNL_DISP_PW_DDI_F_AUX,
+ 		{
+ 			.hsw.regs = &hsw_power_well_regs,
+ 			.hsw.idx = CNL_PW_CTL_IDX_AUX_F,
+@@ -4640,17 +4640,12 @@ int intel_power_domains_init(struct drm_i915_private *dev_priv)
+ 		err = set_power_wells(power_domains, tgl_power_wells);
+ 	} else if (IS_GEN(dev_priv, 11)) {
+ 		err = set_power_wells(power_domains, icl_power_wells);
+-	} else if (IS_CANNONLAKE(dev_priv)) {
++	} else if (IS_CNL_WITH_PORT_F(dev_priv)) {
+ 		err = set_power_wells(power_domains, cnl_power_wells);
+-
+-		/*
+-		 * DDI and Aux IO are getting enabled for all ports
+-		 * regardless the presence or use. So, in order to avoid
+-		 * timeouts, lets remove them from the list
+-		 * for the SKUs without port F.
+-		 */
+-		if (!IS_CNL_WITH_PORT_F(dev_priv))
+-			power_domains->power_well_count -= 2;
++	} else if (IS_CANNONLAKE(dev_priv)) {
++		err = set_power_wells_mask(power_domains, cnl_power_wells,
++					   BIT_ULL(CNL_DISP_PW_DDI_F_IO) |
++					   BIT_ULL(CNL_DISP_PW_DDI_F_AUX));
+ 	} else if (IS_GEMINILAKE(dev_priv)) {
+ 		err = set_power_wells(power_domains, glk_power_wells);
+ 	} else if (IS_BROXTON(dev_priv)) {
+diff --git a/drivers/gpu/drm/i915/display/intel_display_power.h b/drivers/gpu/drm/i915/display/intel_display_power.h
+index 54c20c76057e..824590c5401f 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_power.h
++++ b/drivers/gpu/drm/i915/display/intel_display_power.h
+@@ -101,6 +101,8 @@ enum i915_power_well_id {
+ 	SKL_DISP_PW_MISC_IO,
+ 	SKL_DISP_PW_1,
+ 	SKL_DISP_PW_2,
++	CNL_DISP_PW_DDI_F_IO,
++	CNL_DISP_PW_DDI_F_AUX,
+ 	ICL_DISP_PW_3,
+ 	SKL_DISP_DC_OFF,
+ };
 -- 
 2.28.0
 
