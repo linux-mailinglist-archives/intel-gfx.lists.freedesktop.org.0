@@ -2,31 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5DF0228DF0E
-	for <lists+intel-gfx@lfdr.de>; Wed, 14 Oct 2020 12:40:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 993D528DF11
+	for <lists+intel-gfx@lfdr.de>; Wed, 14 Oct 2020 12:40:59 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 07C6D6EA39;
-	Wed, 14 Oct 2020 10:40:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 26EF96EA43;
+	Wed, 14 Oct 2020 10:40:53 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D0A256EA3E;
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C16AE6EA39;
  Wed, 14 Oct 2020 10:40:47 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 22711491-1500050 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 22711492-1500050 
  for multiple; Wed, 14 Oct 2020 11:40:41 +0100
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: igt-dev@lists.freedesktop.org
-Date: Wed, 14 Oct 2020 11:40:32 +0100
-Message-Id: <20201014104038.2554985-4-chris@chris-wilson.co.uk>
+Date: Wed, 14 Oct 2020 11:40:33 +0100
+Message-Id: <20201014104038.2554985-5-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.28.0
 In-Reply-To: <20201014104038.2554985-1-chris@chris-wilson.co.uk>
 References: <20201014104038.2554985-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH i-g-t 04/10] i915/gem_exec_schedule: Include
- userptr scheduling tests
+Subject: [Intel-gfx] [PATCH i-g-t 05/10] i915/gem_exec_balancer: Check
+ interactions between bonds and userptr
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,256 +45,157 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-In practice, it turns out that compute likes to use userptr for
-everything, and so in turn so must we.
-
 Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
 ---
- tests/i915/gem_exec_schedule.c | 79 ++++++++++++++++++++++++----------
- 1 file changed, 57 insertions(+), 22 deletions(-)
+ tests/i915/gem_exec_balancer.c | 46 +++++++++++++++++++++++-----------
+ 1 file changed, 31 insertions(+), 15 deletions(-)
 
-diff --git a/tests/i915/gem_exec_schedule.c b/tests/i915/gem_exec_schedule.c
-index e316cf4d7..53462c425 100644
---- a/tests/i915/gem_exec_schedule.c
-+++ b/tests/i915/gem_exec_schedule.c
-@@ -308,7 +308,7 @@ static void implicit_rw(int i915, unsigned ring, enum implicit_dir dir)
- 		igt_assert_eq_u32(result, ring);
+diff --git a/tests/i915/gem_exec_balancer.c b/tests/i915/gem_exec_balancer.c
+index 0c334b91b..adba776e7 100644
+--- a/tests/i915/gem_exec_balancer.c
++++ b/tests/i915/gem_exec_balancer.c
+@@ -34,6 +34,10 @@
+ 
+ IGT_TEST_DESCRIPTION("Exercise in-kernel load-balancing");
+ 
++#define CORK		(1ul << 0)
++#define VIRTUAL_ENGINE	(1ul << 1)
++#define USERPTR		(1ul << 2)
++
+ #define MI_SEMAPHORE_WAIT		(0x1c << 23)
+ #define   MI_SEMAPHORE_POLL             (1 << 15)
+ #define   MI_SEMAPHORE_SAD_GT_SDD       (0 << 12)
+@@ -578,7 +582,6 @@ static void individual(int i915)
  }
  
--static void independent(int fd, unsigned int engine)
-+static void independent(int fd, unsigned int engine, unsigned long flags)
+ static void bonded(int i915, unsigned int flags)
+-#define CORK 0x1
  {
- 	const struct intel_execution_engine2 *e;
- 	IGT_CORK_FENCE(cork);
-@@ -332,7 +332,9 @@ static void independent(int fd, unsigned int engine)
- 			continue;
+ 	I915_DEFINE_CONTEXT_ENGINES_BOND(bonds[16], 1);
+ 	struct i915_engine_class_instance *master_engines;
+@@ -660,13 +663,15 @@ static void bonded(int i915, unsigned int flags)
+ 				plug = __igt_spin_new(i915,
+ 						      .ctx = master,
+ 						      .engine = bond,
+-						      .dependency = igt_cork_plug(&cork, i915));
++						      .dependency = igt_cork_plug(&cork, i915),
++						      .flags = (flags & USERPTR ? IGT_SPIN_USERPTR : 0));
+ 			}
  
- 		if (spin == NULL) {
--			spin = __igt_spin_new(fd, .engine = e->flags);
-+			spin = __igt_spin_new(fd,
-+					      .engine = e->flags,
-+					      .flags = flags);
- 		} else {
- 			struct drm_i915_gem_execbuffer2 eb = {
- 				.buffer_count = 1,
-@@ -628,7 +630,7 @@ static void timesliceN(int i915, unsigned int engine, int count)
- 	munmap(result, sz);
+ 			spin = __igt_spin_new(i915,
+ 					      .ctx = master,
+ 					      .engine = bond,
+-					      .flags = IGT_SPIN_FENCE_OUT);
++					      .flags = IGT_SPIN_FENCE_OUT |
++					      (flags & USERPTR ? IGT_SPIN_USERPTR : 0));
+ 
+ 			eb = spin->execbuf;
+ 			eb.rsvd1 = ctx;
+@@ -717,8 +722,6 @@ static void bonded(int i915, unsigned int flags)
+ 	gem_context_destroy(i915, master);
  }
  
--static void lateslice(int i915, unsigned int engine)
-+static void lateslice(int i915, unsigned int engine, unsigned long flags)
+-#define VIRTUAL_ENGINE (1u << 0)
+-
+ static unsigned int offset_in_page(void *addr)
  {
- 	igt_spin_t *spin[3];
+ 	return (uintptr_t)addr & 4095;
+@@ -1057,7 +1060,8 @@ static void bonded_chain(int i915)
+ 
+ static void __bonded_sema(int i915, uint32_t ctx,
+ 			  const struct i915_engine_class_instance *siblings,
+-			  unsigned int count)
++			  unsigned int count,
++			  unsigned long flags)
+ {
+ 	const int priorities[] = { -1023, 0, 1023 };
+ 	struct drm_i915_gem_exec_object2 batch = {
+@@ -1074,7 +1078,8 @@ static void __bonded_sema(int i915, uint32_t ctx,
+ 		/* A: spin forever on seperate render engine */
+ 		spin = igt_spin_new(i915,
+ 				    .flags = (IGT_SPIN_POLL_RUN |
+-					      IGT_SPIN_FENCE_OUT));
++					      IGT_SPIN_FENCE_OUT |
++					      (flags & USERPTR ? IGT_SPIN_USERPTR : 0)));
+ 		igt_spin_busywait_until_started(spin);
+ 
+ 		/*
+@@ -1128,7 +1133,7 @@ static void __bonded_sema(int i915, uint32_t ctx,
+ 	gem_close(i915, batch.handle);
+ }
+ 
+-static void bonded_semaphore(int i915)
++static void bonded_semaphore(int i915, unsigned long flags)
+ {
  	uint32_t ctx;
-@@ -640,7 +642,8 @@ static void lateslice(int i915, unsigned int engine)
- 	ctx = gem_context_create(i915);
- 	spin[0] = igt_spin_new(i915, .ctx = ctx, .engine = engine,
- 			       .flags = (IGT_SPIN_POLL_RUN |
--					 IGT_SPIN_FENCE_OUT));
-+					 IGT_SPIN_FENCE_OUT |
-+					 flags));
- 	gem_context_destroy(i915, ctx);
  
- 	igt_spin_busywait_until_started(spin[0]);
-@@ -649,7 +652,8 @@ static void lateslice(int i915, unsigned int engine)
- 	spin[1] = igt_spin_new(i915, .ctx = ctx, .engine = engine,
- 			       .fence = spin[0]->out_fence,
- 			       .flags = (IGT_SPIN_POLL_RUN |
--					 IGT_SPIN_FENCE_IN));
-+					 IGT_SPIN_FENCE_IN |
-+					 flags));
- 	gem_context_destroy(i915, ctx);
+@@ -1149,7 +1154,7 @@ static void bonded_semaphore(int i915)
  
- 	usleep(5000); /* give some time for the new spinner to be scheduled */
-@@ -663,7 +667,7 @@ static void lateslice(int i915, unsigned int engine)
+ 		siblings = list_engines(i915, 1u << class, &count);
+ 		if (count > 1)
+-			__bonded_sema(i915, ctx, siblings, count);
++			__bonded_sema(i915, ctx, siblings, count, flags);
+ 		free(siblings);
+ 	}
  
- 	ctx = gem_context_create(i915);
- 	spin[2] = igt_spin_new(i915, .ctx = ctx, .engine = engine,
--			       .flags = IGT_SPIN_POLL_RUN);
-+			       .flags = IGT_SPIN_POLL_RUN | flags);
- 	gem_context_destroy(i915, ctx);
+@@ -1839,7 +1844,7 @@ static void __bonded_early(int i915, uint32_t ctx,
+ 	spin = igt_spin_new(i915,
+ 			    .ctx = ctx,
+ 			    .engine = (flags & VIRTUAL_ENGINE) ? 0 : 1,
+-			    .flags = IGT_SPIN_NO_PREEMPTION);
++			    .flags = IGT_SPIN_NO_PREEMPTION | (flags & USERPTR ? IGT_SPIN_USERPTR : 0));
  
- 	igt_spin_busywait_until_started(spin[2]);
-@@ -722,6 +726,7 @@ static void submit_slice(int i915,
- 			 unsigned int flags)
- #define EARLY_SUBMIT 0x1
- #define LATE_SUBMIT 0x2
-+#define USERPTR 0x4
- {
- 	I915_DEFINE_CONTEXT_PARAM_ENGINES(engines , 1) = {};
- 	const struct intel_execution_engine2 *cancel;
-@@ -766,6 +771,7 @@ static void submit_slice(int i915,
- 				    .flags =
- 				    IGT_SPIN_POLL_RUN |
- 				    (flags & LATE_SUBMIT ? IGT_SPIN_FENCE_IN : 0) |
-+				    (flags & USERPTR ? IGT_SPIN_USERPTR : 0) |
- 				    IGT_SPIN_FENCE_OUT);
- 		if (fence != -1)
- 			close(fence);
-@@ -805,7 +811,7 @@ static uint32_t batch_create(int i915)
- 	return __batch_create(i915, 0);
- }
- 
--static void semaphore_userlock(int i915)
-+static void semaphore_userlock(int i915, unsigned long flags)
- {
- 	const struct intel_execution_engine2 *e;
- 	struct drm_i915_gem_exec_object2 obj = {
-@@ -828,7 +834,8 @@ static void semaphore_userlock(int i915)
- 		if (!spin) {
- 			spin = igt_spin_new(i915,
- 					    .dependency = scratch,
--					    .engine = e->flags);
-+					    .engine = e->flags,
-+					    .flags = flags);
- 		} else {
- 			uint64_t saved = spin->execbuf.flags;
- 
-@@ -869,7 +876,7 @@ static void semaphore_userlock(int i915)
+ 	/* B: runs after A on engine 1 */
+ 	execbuf.flags = I915_EXEC_FENCE_OUT;
+@@ -1882,7 +1887,7 @@ static void __bonded_early(int i915, uint32_t ctx,
  	igt_spin_free(i915, spin);
  }
  
--static void semaphore_codependency(int i915)
-+static void semaphore_codependency(int i915, unsigned long flags)
+-static void bonded_early(int i915)
++static void bonded_early(int i915, unsigned long flags)
  {
- 	const struct intel_execution_engine2 *e;
- 	struct {
-@@ -903,7 +910,7 @@ static void semaphore_codependency(int i915)
- 			__igt_spin_new(i915,
- 				       .ctx = ctx,
- 				       .engine = e->flags,
--				       .flags = IGT_SPIN_POLL_RUN);
-+				       .flags = IGT_SPIN_POLL_RUN | flags);
- 		igt_spin_busywait_until_started(task[i].xcs);
+ 	uint32_t ctx;
  
- 		/* Common rcs tasks will be queued in FIFO */
-@@ -925,13 +932,18 @@ static void semaphore_codependency(int i915)
- 	igt_spin_end(task[1].rcs);
- 	gem_sync(i915, task[1].rcs->handle); /* to hang if task[0] hogs rcs */
+@@ -1909,8 +1914,8 @@ static void bonded_early(int i915)
  
-+	for (i = 0; i < ARRAY_SIZE(task); i++) {
-+		igt_spin_end(task[i].xcs);
-+		igt_spin_end(task[i].rcs);
-+	}
-+
- 	for (i = 0; i < ARRAY_SIZE(task); i++) {
- 		igt_spin_free(i915, task[i].xcs);
- 		igt_spin_free(i915, task[i].rcs);
- 	}
- }
- 
--static void semaphore_resolve(int i915)
-+static void semaphore_resolve(int i915, unsigned long flags)
- {
- 	const struct intel_execution_engine2 *e;
- 	const uint32_t SEMAPHORE_ADDR = 64 << 10;
-@@ -966,7 +978,7 @@ static void semaphore_resolve(int i915)
- 		if (!gem_class_can_store_dword(i915, e->class))
- 			continue;
- 
--		spin = __igt_spin_new(i915, .engine = e->flags);
-+		spin = __igt_spin_new(i915, .engine = e->flags, .flags = flags);
- 		igt_spin_end(spin); /* we just want its address for later */
- 		gem_sync(i915, spin->handle);
- 		igt_spin_reset(spin);
-@@ -1060,7 +1072,7 @@ static void semaphore_resolve(int i915)
- 	gem_context_destroy(i915, outer);
- }
- 
--static void semaphore_noskip(int i915)
-+static void semaphore_noskip(int i915, unsigned long flags)
- {
- 	const int gen = intel_gen(intel_get_drm_devid(i915));
- 	const struct intel_execution_engine2 *outer, *inner;
-@@ -1081,9 +1093,9 @@ static void semaphore_noskip(int i915)
- 		    !gem_class_can_store_dword(i915, inner->class))
- 			continue;
- 
--		chain = __igt_spin_new(i915, .engine = outer->flags);
-+		chain = __igt_spin_new(i915, .engine = outer->flags, .flags = flags);
- 
--		spin = __igt_spin_new(i915, .engine = inner->flags);
-+		spin = __igt_spin_new(i915, .engine = inner->flags, .flags = flags);
- 		igt_spin_end(spin); /* we just want its address for later */
- 		gem_sync(i915, spin->handle);
- 		igt_spin_reset(spin);
-@@ -1274,7 +1286,8 @@ static void preempt(int fd, const struct intel_execution_engine2 *e, unsigned fl
+ 		siblings = list_engines(i915, 1u << class, &count);
+ 		if (count > 1) {
+-			__bonded_early(i915, ctx, siblings, count, 0);
+-			__bonded_early(i915, ctx, siblings, count, VIRTUAL_ENGINE);
++			__bonded_early(i915, ctx, siblings, count, flags);
++			__bonded_early(i915, ctx, siblings, count, flags | VIRTUAL_ENGINE);
  		}
- 		spin[n] = __igt_spin_new(fd,
- 					 .ctx = ctx[LO],
--					 .engine = e->flags);
-+					 .engine = e->flags,
-+					 .flags = flags & USERPTR ? IGT_SPIN_USERPTR : 0);
- 		igt_debug("spin[%d].handle=%d\n", n, spin[n]->handle);
+ 		free(siblings);
+ 	}
+@@ -2882,7 +2887,16 @@ igt_main
+ 			bonded(i915, CORK);
  
- 		store_dword(fd, ctx[HI], e->flags, result, 0, n + 1, I915_GEM_DOMAIN_RENDER);
-@@ -2561,7 +2574,9 @@ igt_main
- 			implicit_rw(fd, e->flags, READ_WRITE | WRITE_READ);
- 
- 		test_each_engine_store("independent", fd, e)
--			independent(fd, e->flags);
-+			independent(fd, e->flags, 0);
-+		test_each_engine_store("u-independent", fd, e)
-+			independent(fd, e->flags, IGT_SPIN_USERPTR);
+ 		igt_subtest("bonded-early")
+-			bonded_early(i915);
++			bonded_early(i915, 0);
++
++		igt_subtest("u-bonded-imm")
++			bonded(i915, USERPTR);
++
++		igt_subtest("u-bonded-cork")
++			bonded(i915, CORK | USERPTR);
++
++		igt_subtest("u-bonded-early")
++			bonded_early(i915, USERPTR);
  	}
  
- 	igt_subtest_group {
-@@ -2582,23 +2597,40 @@ igt_main
- 			timesliceN(fd, e->flags, 67);
+ 	igt_subtest("bonded-slice")
+@@ -2892,7 +2906,9 @@ igt_main
+ 		bonded_chain(i915);
  
- 		test_each_engine("lateslice", fd, e)
--			lateslice(fd, e->flags);
-+			lateslice(fd, e->flags, 0);
-+		test_each_engine("u-lateslice", fd, e)
-+			lateslice(fd, e->flags, IGT_SPIN_USERPTR);
+ 	igt_subtest("bonded-semaphore")
+-		bonded_semaphore(i915);
++		bonded_semaphore(i915, 0);
++	igt_subtest("u-bonded-semaphore")
++		bonded_semaphore(i915, USERPTR);
  
- 		test_each_engine("submit-early-slice", fd, e)
- 			submit_slice(fd, e, EARLY_SUBMIT);
-+		test_each_engine("u-submit-early-slice", fd, e)
-+			submit_slice(fd, e, EARLY_SUBMIT | USERPTR);
- 		test_each_engine("submit-golden-slice", fd, e)
- 			submit_slice(fd, e, 0);
-+		test_each_engine("u-submit-golden-slice", fd, e)
-+			submit_slice(fd, e, USERPTR);
- 		test_each_engine("submit-late-slice", fd, e)
- 			submit_slice(fd, e, LATE_SUBMIT);
-+		test_each_engine("u-submit-late-slice", fd, e)
-+			submit_slice(fd, e, LATE_SUBMIT | USERPTR);
- 
- 		igt_subtest("semaphore-user")
--			semaphore_userlock(fd);
-+			semaphore_userlock(fd, 0);
- 		igt_subtest("semaphore-codependency")
--			semaphore_codependency(fd);
-+			semaphore_codependency(fd, 0);
- 		igt_subtest("semaphore-resolve")
--			semaphore_resolve(fd);
-+			semaphore_resolve(fd, 0);
- 		igt_subtest("semaphore-noskip")
--			semaphore_noskip(fd);
-+			semaphore_noskip(fd, 0);
-+
-+		igt_subtest("u-semaphore-user")
-+			semaphore_userlock(fd, IGT_SPIN_USERPTR);
-+		igt_subtest("u-semaphore-codependency")
-+			semaphore_codependency(fd, IGT_SPIN_USERPTR);
-+		igt_subtest("u-semaphore-resolve")
-+			semaphore_resolve(fd, IGT_SPIN_USERPTR);
-+		igt_subtest("u-semaphore-noskip")
-+			semaphore_noskip(fd, IGT_SPIN_USERPTR);
- 
- 		igt_subtest("smoketest-all")
- 			smoketest(fd, ALL_ENGINES, 30);
-@@ -2623,6 +2655,9 @@ igt_main
- 			test_each_engine_store("preempt-contexts", fd, e)
- 				preempt(fd, e, NEW_CTX);
- 
-+			test_each_engine_store("preempt-user", fd, e)
-+				preempt(fd, e, USERPTR);
-+
- 			test_each_engine_store("preempt-self", fd, e)
- 				preempt_self(fd, e->flags);
- 
+ 	igt_subtest("bonded-pair")
+ 		bonded_runner(i915, __bonded_pair);
 -- 
 2.28.0
 
