@@ -1,32 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6B1F028DF14
-	for <lists+intel-gfx@lfdr.de>; Wed, 14 Oct 2020 12:41:03 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id CC34F28DF13
+	for <lists+intel-gfx@lfdr.de>; Wed, 14 Oct 2020 12:41:01 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8A4606EA49;
-	Wed, 14 Oct 2020 10:40:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DDE4C6EA46;
+	Wed, 14 Oct 2020 10:40:53 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C1EAE6EA3A;
- Wed, 14 Oct 2020 10:40:48 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D79946EA3F;
+ Wed, 14 Oct 2020 10:40:49 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 22711497-1500050 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 22711498-1500050 
  for multiple; Wed, 14 Oct 2020 11:40:42 +0100
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: igt-dev@lists.freedesktop.org
-Date: Wed, 14 Oct 2020 11:40:37 +0100
-Message-Id: <20201014104038.2554985-9-chris@chris-wilson.co.uk>
+Date: Wed, 14 Oct 2020 11:40:38 +0100
+Message-Id: <20201014104038.2554985-10-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.28.0
 In-Reply-To: <20201014104038.2554985-1-chris@chris-wilson.co.uk>
 References: <20201014104038.2554985-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH i-g-t 09/10] tests/i915: Treat gen as unsigned
- for forward compatibility
+Subject: [Intel-gfx] [PATCH i-g-t 10/10] i915/gem_exec_schedule: Try to spot
+ unfairness
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,681 +40,454 @@ List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: intel-gfx@lists.freedesktop.org, Chris Wilson <chris@chris-wilson.co.uk>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-We want to recognise future devices (gen = -1u) and treat them as an
-extension of the latest known device, which is typically true.
-
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
----
- tests/i915/gem_bad_reloc.c            |  2 +-
- tests/i915/gem_ctx_create.c           |  2 +-
- tests/i915/gem_ctx_engines.c          |  2 +-
- tests/i915/gem_ctx_isolation.c        |  2 +-
- tests/i915/gem_ctx_shared.c           |  4 ++--
- tests/i915/gem_ctx_thrash.c           |  2 +-
- tests/i915/gem_exec_async.c           |  2 +-
- tests/i915/gem_exec_await.c           |  2 +-
- tests/i915/gem_exec_capture.c         |  4 ++--
- tests/i915/gem_exec_fence.c           | 10 +++++-----
- tests/i915/gem_exec_flush.c           |  4 ++--
- tests/i915/gem_exec_gttfill.c         |  2 +-
- tests/i915/gem_exec_latency.c         |  4 ++--
- tests/i915/gem_exec_nop.c             |  4 ++--
- tests/i915/gem_exec_parallel.c        |  2 +-
- tests/i915/gem_exec_params.c          |  2 +-
- tests/i915/gem_exec_reloc.c           |  8 ++++----
- tests/i915/gem_exec_schedule.c        |  8 ++++----
- tests/i915/gem_exec_store.c           |  6 +++---
- tests/i915/gem_exec_suspend.c         |  2 +-
- tests/i915/gem_exec_whisper.c         |  2 +-
- tests/i915/gem_render_copy.c          |  4 ++--
- tests/i915/gem_ringfill.c             |  2 +-
- tests/i915/gem_softpin.c              |  4 ++--
- tests/i915/gem_sync.c                 |  8 ++++----
- tests/i915/gem_tiled_fence_blits.c    |  2 +-
- tests/i915/gem_userptr_blits.c        |  4 ++--
- tests/i915/gem_vm_create.c            |  2 +-
- tests/i915/i915_module_load.c         |  4 ++--
- tests/i915/i915_pm_rc6_residency.c    |  4 ++--
- tests/i915/sysfs_timeslice_duration.c |  2 +-
- 31 files changed, 56 insertions(+), 56 deletions(-)
-
-diff --git a/tests/i915/gem_bad_reloc.c b/tests/i915/gem_bad_reloc.c
-index 7eb7fa538..6acc1724f 100644
---- a/tests/i915/gem_bad_reloc.c
-+++ b/tests/i915/gem_bad_reloc.c
-@@ -113,7 +113,7 @@ static void negative_reloc(int fd, unsigned flags)
- 
- static void negative_reloc_blt(int fd)
- {
--	const int gen = intel_gen(intel_get_drm_devid(fd));
-+	const unsigned int gen = intel_gen(intel_get_drm_devid(fd));
- 	struct drm_i915_gem_execbuffer2 execbuf;
- 	struct drm_i915_gem_exec_object2 obj[1024][2];
- 	struct drm_i915_gem_relocation_entry reloc;
-diff --git a/tests/i915/gem_ctx_create.c b/tests/i915/gem_ctx_create.c
-index 39305f026..c7295f705 100644
---- a/tests/i915/gem_ctx_create.c
-+++ b/tests/i915/gem_ctx_create.c
-@@ -419,7 +419,7 @@ static void basic_ext_param(int i915)
- static void check_single_timeline(int i915, uint32_t ctx, int num_engines)
- {
- #define RCS_TIMESTAMP (0x2000 + 0x358)
--	const int gen = intel_gen(intel_get_drm_devid(i915));
-+	const unsigned int gen = intel_gen(intel_get_drm_devid(i915));
- 	const int has_64bit_reloc = gen >= 8;
- 	struct drm_i915_gem_exec_object2 results = { .handle = gem_create(i915, 4096) };
- 	const uint32_t bbe = MI_BATCH_BUFFER_END;
-diff --git a/tests/i915/gem_ctx_engines.c b/tests/i915/gem_ctx_engines.c
-index e6def511b..7d4abdb5c 100644
---- a/tests/i915/gem_ctx_engines.c
-+++ b/tests/i915/gem_ctx_engines.c
-@@ -482,7 +482,7 @@ static uint32_t read_result(int timeline, uint32_t *map, int idx)
- static void independent(int i915)
- {
- #define RCS_TIMESTAMP (0x2000 + 0x358)
--	const int gen = intel_gen(intel_get_drm_devid(i915));
-+	const unsigned int gen = intel_gen(intel_get_drm_devid(i915));
- 	const int has_64bit_reloc = gen >= 8;
- 	I915_DEFINE_CONTEXT_PARAM_ENGINES(engines , I915_EXEC_RING_MASK + 1);
- 	struct drm_i915_gem_context_param param = {
-diff --git a/tests/i915/gem_ctx_isolation.c b/tests/i915/gem_ctx_isolation.c
-index 9fdf78bb8..58a35b487 100644
---- a/tests/i915/gem_ctx_isolation.c
-+++ b/tests/i915/gem_ctx_isolation.c
-@@ -501,7 +501,7 @@ static void dump_regs(int fd,
- 		      const struct intel_execution_engine2 *e,
- 		      unsigned int regs)
- {
--	const int gen = intel_gen(intel_get_drm_devid(fd));
-+	const unsigned int gen = intel_gen(intel_get_drm_devid(fd));
- 	const unsigned int gen_bit = 1 << gen;
- 	const unsigned int engine_bit = ENGINE(e->class, e->instance);
- 	const uint32_t mmio_base = gem_engine_mmio_base(fd, e->name);
-diff --git a/tests/i915/gem_ctx_shared.c b/tests/i915/gem_ctx_shared.c
-index 55678d96f..616462d79 100644
---- a/tests/i915/gem_ctx_shared.c
-+++ b/tests/i915/gem_ctx_shared.c
-@@ -186,7 +186,7 @@ static void exhaust_shared_gtt(int i915, unsigned int flags)
- 
- static void exec_shared_gtt(int i915, unsigned int ring)
- {
--	const int gen = intel_gen(intel_get_drm_devid(i915));
-+	const unsigned int gen = intel_gen(intel_get_drm_devid(i915));
- 	const uint32_t bbe = MI_BATCH_BUFFER_END;
- 	struct drm_i915_gem_exec_object2 obj = {};
- 	struct drm_i915_gem_execbuffer2 execbuf = {
-@@ -436,7 +436,7 @@ static void store_dword(int i915, uint32_t ctx, unsigned ring,
- 			uint32_t target, uint32_t offset, uint32_t value,
- 			uint32_t cork, unsigned write_domain)
- {
--	const int gen = intel_gen(intel_get_drm_devid(i915));
-+	const unsigned int gen = intel_gen(intel_get_drm_devid(i915));
- 	struct drm_i915_gem_exec_object2 obj[3];
- 	struct drm_i915_gem_relocation_entry reloc;
- 	struct drm_i915_gem_execbuffer2 execbuf;
-diff --git a/tests/i915/gem_ctx_thrash.c b/tests/i915/gem_ctx_thrash.c
-index dc7259c18..d32619d5d 100644
---- a/tests/i915/gem_ctx_thrash.c
-+++ b/tests/i915/gem_ctx_thrash.c
-@@ -46,7 +46,7 @@ static void xchg_int(void *array, unsigned i, unsigned j)
- 
- static unsigned context_size(int fd)
- {
--	const int gen = intel_gen(intel_get_drm_devid(fd));
-+	const unsigned int gen = intel_gen(intel_get_drm_devid(fd));
- 
- 	switch (gen) {
- 	case 0:
-diff --git a/tests/i915/gem_exec_async.c b/tests/i915/gem_exec_async.c
-index 035e78377..9f2c80f05 100644
---- a/tests/i915/gem_exec_async.c
-+++ b/tests/i915/gem_exec_async.c
-@@ -29,7 +29,7 @@ IGT_TEST_DESCRIPTION("Check that we can issue concurrent writes across the engin
- static void store_dword(int fd, unsigned ring,
- 			uint32_t target, uint32_t offset, uint32_t value)
- {
--	const int gen = intel_gen(intel_get_drm_devid(fd));
-+	const unsigned int gen = intel_gen(intel_get_drm_devid(fd));
- 	struct drm_i915_gem_exec_object2 obj[2];
- 	struct drm_i915_gem_relocation_entry reloc;
- 	struct drm_i915_gem_execbuffer2 execbuf;
-diff --git a/tests/i915/gem_exec_await.c b/tests/i915/gem_exec_await.c
-index 6bc624e4a..70fda968e 100644
---- a/tests/i915/gem_exec_await.c
-+++ b/tests/i915/gem_exec_await.c
-@@ -59,7 +59,7 @@ static void wide(int fd, int ring_size, int timeout, unsigned int flags)
- {
- 	const struct intel_execution_engine2 *engine;
- 	const uint32_t bbe = MI_BATCH_BUFFER_END;
--	const int gen = intel_gen(intel_get_drm_devid(fd));
-+	const unsigned int gen = intel_gen(intel_get_drm_devid(fd));
- 	struct {
- 		struct drm_i915_gem_exec_object2 *obj;
- 		struct drm_i915_gem_exec_object2 exec[2];
-diff --git a/tests/i915/gem_exec_capture.c b/tests/i915/gem_exec_capture.c
-index 85645a267..cb0d3151b 100644
---- a/tests/i915/gem_exec_capture.c
-+++ b/tests/i915/gem_exec_capture.c
-@@ -61,7 +61,7 @@ static void check_error_state(int dir, struct drm_i915_gem_exec_object2 *obj)
- 
- static void __capture1(int fd, int dir, unsigned ring, uint32_t target)
- {
--	const int gen = intel_gen(intel_get_drm_devid(fd));
-+	const unsigned int gen = intel_gen(intel_get_drm_devid(fd));
- 	struct drm_i915_gem_exec_object2 obj[4];
- #define SCRATCH 0
- #define CAPTURE 1
-@@ -197,7 +197,7 @@ static struct offset {
- #define INCREMENTAL 0x1
- #define ASYNC 0x2
- {
--	const int gen = intel_gen(intel_get_drm_devid(fd));
-+	const unsigned int gen = intel_gen(intel_get_drm_devid(fd));
- 	struct drm_i915_gem_exec_object2 *obj;
- 	struct drm_i915_gem_relocation_entry reloc[2];
- 	struct drm_i915_gem_execbuffer2 execbuf;
-diff --git a/tests/i915/gem_exec_fence.c b/tests/i915/gem_exec_fence.c
-index 0b8ab1400..56469ebab 100644
---- a/tests/i915/gem_exec_fence.c
-+++ b/tests/i915/gem_exec_fence.c
-@@ -61,7 +61,7 @@ static void store(int fd, const struct intel_execution_engine2 *e,
- {
- 	const int SCRATCH = 0;
- 	const int BATCH = 1;
--	const int gen = intel_gen(intel_get_drm_devid(fd));
-+	const unsigned int gen = intel_gen(intel_get_drm_devid(fd));
- 	struct drm_i915_gem_exec_object2 obj[2];
- 	struct drm_i915_gem_relocation_entry reloc;
- 	struct drm_i915_gem_execbuffer2 execbuf;
-@@ -122,7 +122,7 @@ static bool fence_busy(int fence)
- static void test_fence_busy(int fd, const struct intel_execution_engine2 *e,
- 			    unsigned flags)
- {
--	const int gen = intel_gen(intel_get_drm_devid(fd));
-+	const unsigned int gen = intel_gen(intel_get_drm_devid(fd));
- 	struct drm_i915_gem_exec_object2 obj;
- 	struct drm_i915_gem_relocation_entry reloc;
- 	struct drm_i915_gem_execbuffer2 execbuf;
-@@ -218,7 +218,7 @@ static void test_fence_busy(int fd, const struct intel_execution_engine2 *e,
- static void test_fence_busy_all(int fd, unsigned flags)
- {
- 	const struct intel_execution_engine2 *e;
--	const int gen = intel_gen(intel_get_drm_devid(fd));
-+	const unsigned int gen = intel_gen(intel_get_drm_devid(fd));
- 	struct drm_i915_gem_exec_object2 obj;
- 	struct drm_i915_gem_relocation_entry reloc;
- 	struct drm_i915_gem_execbuffer2 execbuf;
-@@ -598,7 +598,7 @@ static int __execbuf(int fd, struct drm_i915_gem_execbuffer2 *execbuf)
- static void test_parallel(int i915, const struct intel_execution_engine2 *e)
- {
- 	const struct intel_execution_engine2 *e2;
--	const int gen = intel_gen(intel_get_drm_devid(i915));
-+	const unsigned int gen = intel_gen(intel_get_drm_devid(i915));
- 	uint32_t scratch = gem_create(i915, 4096);
- 	uint32_t *out = gem_mmap__wc(i915, scratch, 0, 4096, PROT_READ);
- 	uint32_t handle[I915_EXEC_RING_MASK];
-@@ -704,7 +704,7 @@ static void test_parallel(int i915, const struct intel_execution_engine2 *e)
- 
- static void test_concurrent(int i915, const struct intel_execution_engine2 *e)
- {
--	const int gen = intel_gen(intel_get_drm_devid(i915));
-+	const unsigned int gen = intel_gen(intel_get_drm_devid(i915));
- 	struct drm_i915_gem_relocation_entry reloc = {
- 		.target_handle =  gem_create(i915, 4096),
- 		.write_domain = I915_GEM_DOMAIN_RENDER,
-diff --git a/tests/i915/gem_exec_flush.c b/tests/i915/gem_exec_flush.c
-index 7d9fcbfcb..403e498bd 100644
---- a/tests/i915/gem_exec_flush.c
-+++ b/tests/i915/gem_exec_flush.c
-@@ -78,7 +78,7 @@ static uint32_t movnt(uint32_t *map, int i)
- static void run(int fd, unsigned ring, int nchild, int timeout,
- 		unsigned flags)
- {
--	const int gen = intel_gen(intel_get_drm_devid(fd));
-+	const unsigned int gen = intel_gen(intel_get_drm_devid(fd));
- 
- 	/* The crux of this testing is whether writes by the GPU are coherent
- 	 * from the CPU.
-@@ -355,7 +355,7 @@ enum batch_mode {
- static void batch(int fd, unsigned ring, int nchild, int timeout,
- 		  enum batch_mode mode, unsigned flags)
- {
--	const int gen = intel_gen(intel_get_drm_devid(fd));
-+	const unsigned int gen = intel_gen(intel_get_drm_devid(fd));
- 
- 	if (mode == BATCH_GTT)
- 		gem_require_mappable_ggtt(fd);
-diff --git a/tests/i915/gem_exec_gttfill.c b/tests/i915/gem_exec_gttfill.c
-index 7a6d7c0fb..8f2336a30 100644
---- a/tests/i915/gem_exec_gttfill.c
-+++ b/tests/i915/gem_exec_gttfill.c
-@@ -107,7 +107,7 @@ static void submit(int fd, int gen,
- 
- static void fillgtt(int fd, unsigned ring, int timeout)
- {
--	const int gen = intel_gen(intel_get_drm_devid(fd));
-+	const unsigned int gen = intel_gen(intel_get_drm_devid(fd));
- 	struct drm_i915_gem_execbuffer2 execbuf;
- 	struct drm_i915_gem_relocation_entry reloc[2];
- 	volatile uint64_t *shared;
-diff --git a/tests/i915/gem_exec_latency.c b/tests/i915/gem_exec_latency.c
-index 198e54fd2..568d727f2 100644
---- a/tests/i915/gem_exec_latency.c
-+++ b/tests/i915/gem_exec_latency.c
-@@ -109,7 +109,7 @@ static void latency_on_ring(int fd,
- 			    unsigned ring, const char *name,
- 			    unsigned flags)
- {
--	const int gen = intel_gen(intel_get_drm_devid(fd));
-+	const unsigned int gen = intel_gen(intel_get_drm_devid(fd));
- 	const int has_64bit_reloc = gen >= 8;
- 	struct drm_i915_gem_exec_object2 obj[3];
- 	struct drm_i915_gem_relocation_entry reloc;
-@@ -258,7 +258,7 @@ static void latency_from_ring(int fd,
- 			      unsigned ring, const char *name,
- 			      unsigned flags)
- {
--	const int gen = intel_gen(intel_get_drm_devid(fd));
-+	const unsigned int gen = intel_gen(intel_get_drm_devid(fd));
- 	const int has_64bit_reloc = gen >= 8;
- 	struct drm_i915_gem_exec_object2 obj[3];
- 	struct drm_i915_gem_relocation_entry reloc;
-diff --git a/tests/i915/gem_exec_nop.c b/tests/i915/gem_exec_nop.c
-index 21a937c83..62554ecb2 100644
---- a/tests/i915/gem_exec_nop.c
-+++ b/tests/i915/gem_exec_nop.c
-@@ -104,7 +104,7 @@ static double nop_on_ring(int fd, uint32_t handle,
- static void poll_ring(int fd, const struct intel_execution_engine2 *e,
- 		      int timeout)
- {
--	const int gen = intel_gen(intel_get_drm_devid(fd));
-+	const unsigned int gen = intel_gen(intel_get_drm_devid(fd));
- 	const uint32_t MI_ARB_CHK = 0x5 << 23;
- 	struct drm_i915_gem_execbuffer2 execbuf;
- 	struct drm_i915_gem_exec_object2 obj;
-@@ -214,7 +214,7 @@ static void poll_ring(int fd, const struct intel_execution_engine2 *e,
- 
- static void poll_sequential(int fd, const char *name, int timeout)
- {
--	const int gen = intel_gen(intel_get_drm_devid(fd));
-+	const unsigned int gen = intel_gen(intel_get_drm_devid(fd));
- 	const struct intel_execution_engine2 *e;
- 	const uint32_t MI_ARB_CHK = 0x5 << 23;
- 	struct drm_i915_gem_execbuffer2 execbuf;
-diff --git a/tests/i915/gem_exec_parallel.c b/tests/i915/gem_exec_parallel.c
-index 96feb8250..bdb8e3e90 100644
---- a/tests/i915/gem_exec_parallel.c
-+++ b/tests/i915/gem_exec_parallel.c
-@@ -191,7 +191,7 @@ static void handle_close(int fd, unsigned int flags, uint32_t handle, void *data
- 
- static void all(int fd, struct intel_execution_engine2 *engine, unsigned flags)
- {
--	const int gen = intel_gen(intel_get_drm_devid(fd));
-+	const unsigned int gen = intel_gen(intel_get_drm_devid(fd));
- 	pthread_mutex_t mutex;
- 	pthread_cond_t cond;
- 	struct thread *threads;
-diff --git a/tests/i915/gem_exec_params.c b/tests/i915/gem_exec_params.c
-index f8a940740..e0bbea94b 100644
---- a/tests/i915/gem_exec_params.c
-+++ b/tests/i915/gem_exec_params.c
-@@ -91,7 +91,7 @@ static bool has_resource_streamer(int fd)
- 
- static void test_batch_first(int fd)
- {
--	const int gen = intel_gen(intel_get_drm_devid(fd));
-+	const unsigned int gen = intel_gen(intel_get_drm_devid(fd));
- 	struct drm_i915_gem_execbuffer2 execbuf;
- 	struct drm_i915_gem_exec_object2 obj[3];
- 	struct drm_i915_gem_relocation_entry reloc[2];
-diff --git a/tests/i915/gem_exec_reloc.c b/tests/i915/gem_exec_reloc.c
-index fc2bd0a56..299c2c79b 100644
---- a/tests/i915/gem_exec_reloc.c
-+++ b/tests/i915/gem_exec_reloc.c
-@@ -64,7 +64,7 @@ static void write_dword(int fd,
- 			uint64_t target_offset,
- 			uint32_t value)
- {
--	int gen = intel_gen(intel_get_drm_devid(fd));
-+	unsigned int gen = intel_gen(intel_get_drm_devid(fd));
- 	struct drm_i915_gem_execbuffer2 execbuf;
- 	struct drm_i915_gem_exec_object2 obj[2];
- 	struct drm_i915_gem_relocation_entry reloc;
-@@ -266,7 +266,7 @@ static void check_bo(int fd, uint32_t handle)
- 
- static void active(int fd, unsigned engine)
- {
--	const int gen = intel_gen(intel_get_drm_devid(fd));
-+	const unsigned int gen = intel_gen(intel_get_drm_devid(fd));
- 	struct drm_i915_gem_relocation_entry reloc;
- 	struct drm_i915_gem_exec_object2 obj[2];
- 	struct drm_i915_gem_execbuffer2 execbuf;
-@@ -872,7 +872,7 @@ static void basic_softpin(int fd)
- static uint64_t concurrent_relocs(int i915, int idx, int count)
- {
- 	struct drm_i915_gem_relocation_entry *reloc;
--	const int gen = intel_gen(intel_get_drm_devid(i915));
-+	const unsigned int gen = intel_gen(intel_get_drm_devid(i915));
- 	unsigned long sz;
- 	int offset;
- 
-@@ -972,7 +972,7 @@ static void concurrent_child(int i915,
- 
- static uint32_t create_concurrent_batch(int i915, unsigned int count)
- {
--	const int gen = intel_gen(intel_get_drm_devid(i915));
-+	const unsigned int gen = intel_gen(intel_get_drm_devid(i915));
- 	size_t sz = ALIGN(4 * (1 + 4 * count), 4096);
- 	uint32_t handle = gem_create(i915, sz);
- 	uint32_t *map, *cs;
-diff --git a/tests/i915/gem_exec_schedule.c b/tests/i915/gem_exec_schedule.c
-index 53462c425..74d77d3e6 100644
---- a/tests/i915/gem_exec_schedule.c
-+++ b/tests/i915/gem_exec_schedule.c
-@@ -94,7 +94,7 @@ static uint32_t __store_dword(int fd, uint32_t ctx, unsigned ring,
- 			      uint32_t target, uint32_t offset, uint32_t value,
- 			      uint32_t cork, int fence, unsigned write_domain)
- {
--	const int gen = intel_gen(intel_get_drm_devid(fd));
-+	const unsigned int gen = intel_gen(intel_get_drm_devid(fd));
- 	struct drm_i915_gem_exec_object2 obj[3];
- 	struct drm_i915_gem_relocation_entry reloc;
- 	struct drm_i915_gem_execbuffer2 execbuf;
-@@ -1074,7 +1074,7 @@ static void semaphore_resolve(int i915, unsigned long flags)
- 
- static void semaphore_noskip(int i915, unsigned long flags)
- {
--	const int gen = intel_gen(intel_get_drm_devid(i915));
-+	const unsigned int gen = intel_gen(intel_get_drm_devid(i915));
- 	const struct intel_execution_engine2 *outer, *inner;
- 	uint32_t ctx;
- 
-@@ -1723,7 +1723,7 @@ static void deep(int fd, unsigned ring)
- 
- 	/* Create a deep dependency chain, with a few branches */
- 	for (n = 0; n < nreq && igt_seconds_elapsed(&tv) < 2; n++) {
--		const int gen = intel_gen(intel_get_drm_devid(fd));
-+		const unsigned int gen = intel_gen(intel_get_drm_devid(fd));
- 		struct drm_i915_gem_exec_object2 obj[3];
- 		struct drm_i915_gem_relocation_entry reloc;
- 		struct drm_i915_gem_execbuffer2 eb = {
-@@ -1876,7 +1876,7 @@ static void wide(int fd, unsigned ring)
- static void reorder_wide(int fd, unsigned ring)
- {
- 	const unsigned int ring_size = gem_submission_measure(fd, ring);
--	const int gen = intel_gen(intel_get_drm_devid(fd));
-+	const unsigned int gen = intel_gen(intel_get_drm_devid(fd));
- 	const int priorities[] = { MIN_PRIO, MAX_PRIO };
- 	struct drm_i915_gem_relocation_entry reloc;
- 	struct drm_i915_gem_exec_object2 obj[2];
-diff --git a/tests/i915/gem_exec_store.c b/tests/i915/gem_exec_store.c
-index 272ab9cd8..771ee1690 100644
---- a/tests/i915/gem_exec_store.c
-+++ b/tests/i915/gem_exec_store.c
-@@ -38,7 +38,7 @@
- 
- static void store_dword(int fd, const struct intel_execution_engine2 *e)
- {
--	const int gen = intel_gen(intel_get_drm_devid(fd));
-+	const unsigned int gen = intel_gen(intel_get_drm_devid(fd));
- 	struct drm_i915_gem_exec_object2 obj[2];
- 	struct drm_i915_gem_relocation_entry reloc;
- 	struct drm_i915_gem_execbuffer2 execbuf;
-@@ -96,7 +96,7 @@ static void store_dword(int fd, const struct intel_execution_engine2 *e)
- static void store_cachelines(int fd, const struct intel_execution_engine2 *e,
- 			     unsigned int flags)
- {
--	const int gen = intel_gen(intel_get_drm_devid(fd));
-+	const unsigned int gen = intel_gen(intel_get_drm_devid(fd));
- 	struct drm_i915_gem_exec_object2 *obj;
- 	struct drm_i915_gem_relocation_entry *reloc;
- 	struct drm_i915_gem_execbuffer2 execbuf;
-@@ -172,7 +172,7 @@ static void store_cachelines(int fd, const struct intel_execution_engine2 *e,
- 
- static void store_all(int fd)
- {
--	const int gen = intel_gen(intel_get_drm_devid(fd));
-+	const unsigned int gen = intel_gen(intel_get_drm_devid(fd));
- 	struct drm_i915_gem_exec_object2 obj[2];
- 	struct intel_execution_engine2 *engine;
- 	struct drm_i915_gem_relocation_entry *reloc;
-diff --git a/tests/i915/gem_exec_suspend.c b/tests/i915/gem_exec_suspend.c
-index d768db911..6886bccd4 100644
---- a/tests/i915/gem_exec_suspend.c
-+++ b/tests/i915/gem_exec_suspend.c
-@@ -89,7 +89,7 @@ static bool has_semaphores(int fd)
- 
- static void run_test(int fd, unsigned engine, unsigned flags)
- {
--	const int gen = intel_gen(intel_get_drm_devid(fd));
-+	const unsigned int gen = intel_gen(intel_get_drm_devid(fd));
- 	const uint32_t bbe = MI_BATCH_BUFFER_END;
- 	struct drm_i915_gem_exec_object2 obj[2];
- 	struct drm_i915_gem_relocation_entry reloc;
-diff --git a/tests/i915/gem_exec_whisper.c b/tests/i915/gem_exec_whisper.c
-index 1fded7618..9acf6c306 100644
---- a/tests/i915/gem_exec_whisper.c
-+++ b/tests/i915/gem_exec_whisper.c
-@@ -168,7 +168,7 @@ static void ctx_set_random_priority(int fd, uint32_t ctx)
- static void whisper(int fd, unsigned engine, unsigned flags)
- {
- 	const uint32_t bbe = MI_BATCH_BUFFER_END;
--	const int gen = intel_gen(intel_get_drm_devid(fd));
-+	const unsigned int gen = intel_gen(intel_get_drm_devid(fd));
- 	struct drm_i915_gem_exec_object2 batches[QLEN];
- 	struct drm_i915_gem_relocation_entry inter[QLEN];
- 	struct drm_i915_gem_relocation_entry reloc;
-diff --git a/tests/i915/gem_render_copy.c b/tests/i915/gem_render_copy.c
-index ae6e18334..afc490f1a 100644
---- a/tests/i915/gem_render_copy.c
-+++ b/tests/i915/gem_render_copy.c
-@@ -101,7 +101,7 @@ copy_from_linear_buf(data_t *data, struct intel_buf *src, struct intel_buf *dst)
- static void *linear_copy_ccs(data_t *data, struct intel_buf *buf)
- {
- 	void *ccs_data, *linear;
--	int gen = intel_gen(data->devid);
-+	unsigned int gen = intel_gen(data->devid);
- 	int ccs_size = intel_buf_ccs_width(gen, buf) *
- 		intel_buf_ccs_height(gen, buf);
- 	int bo_size = intel_buf_bo_size(buf);
-@@ -295,7 +295,7 @@ scratch_buf_check_all(data_t *data,
- static void scratch_buf_ccs_check(data_t *data,
- 				  struct intel_buf *buf)
- {
--	int gen = intel_gen(data->devid);
-+	unsigned int gen = intel_gen(data->devid);
- 	int ccs_size = intel_buf_ccs_width(gen, buf) *
- 		intel_buf_ccs_height(gen, buf);
- 	uint8_t *linear;
-diff --git a/tests/i915/gem_ringfill.c b/tests/i915/gem_ringfill.c
-index 3e24ccf18..c499cb0dd 100644
---- a/tests/i915/gem_ringfill.c
-+++ b/tests/i915/gem_ringfill.c
-@@ -99,7 +99,7 @@ static void setup_execbuf(int fd,
- 			  struct drm_i915_gem_relocation_entry *reloc,
- 			  unsigned int ring)
- {
--	const int gen = intel_gen(intel_get_drm_devid(fd));
-+	const unsigned int gen = intel_gen(intel_get_drm_devid(fd));
- 	const uint32_t bbe = MI_BATCH_BUFFER_END;
- 	uint32_t *batch, *b;
- 	int i;
-diff --git a/tests/i915/gem_softpin.c b/tests/i915/gem_softpin.c
-index 202abdd88..fcaf8ef30 100644
---- a/tests/i915/gem_softpin.c
-+++ b/tests/i915/gem_softpin.c
-@@ -265,7 +265,7 @@ static void test_reverse(int i915)
- 
- static uint64_t busy_batch(int fd)
- {
--	const int gen = intel_gen(intel_get_drm_devid(fd));
-+	unsigned const int gen = intel_gen(intel_get_drm_devid(fd));
- 	const int has_64bit_reloc = gen >= 8;
- 	struct drm_i915_gem_execbuffer2 execbuf;
- 	struct drm_i915_gem_exec_object2 object[2];
-@@ -452,7 +452,7 @@ static void xchg_offset(void *array, unsigned i, unsigned j)
- enum sleep { NOSLEEP, SUSPEND, HIBERNATE };
- static void test_noreloc(int fd, enum sleep sleep, unsigned flags)
- {
--	const int gen = intel_gen(intel_get_drm_devid(fd));
-+	unsigned const int gen = intel_gen(intel_get_drm_devid(fd));
- 	const uint32_t size = 4096;
- 	const uint32_t bbe = MI_BATCH_BUFFER_END;
- 	struct drm_i915_gem_execbuffer2 execbuf;
-diff --git a/tests/i915/gem_sync.c b/tests/i915/gem_sync.c
-index b317a3927..a82bda924 100644
---- a/tests/i915/gem_sync.c
-+++ b/tests/i915/gem_sync.c
-@@ -491,7 +491,7 @@ active_wakeup_ring(int fd, unsigned ring, int timeout, int wlen)
- static void
- store_ring(int fd, unsigned ring, int num_children, int timeout)
- {
--	const int gen = intel_gen(intel_get_drm_devid(fd));
-+	const unsigned int gen = intel_gen(intel_get_drm_devid(fd));
- 	struct intel_engine_data ied;
- 
- 	ied = list_store_engines(fd, ring);
-@@ -587,7 +587,7 @@ store_ring(int fd, unsigned ring, int num_children, int timeout)
- static void
- switch_ring(int fd, unsigned ring, int num_children, int timeout)
- {
--	const int gen = intel_gen(intel_get_drm_devid(fd));
-+	const unsigned int gen = intel_gen(intel_get_drm_devid(fd));
- 	struct intel_engine_data ied;
- 
- 	gem_require_contexts(fd);
-@@ -766,7 +766,7 @@ static void *waiter(void *arg)
- static void
- __store_many(int fd, unsigned ring, int timeout, unsigned long *cycles)
- {
--	const int gen = intel_gen(intel_get_drm_devid(fd));
-+	const unsigned int gen = intel_gen(intel_get_drm_devid(fd));
- 	const uint32_t bbe = MI_BATCH_BUFFER_END;
- 	struct drm_i915_gem_exec_object2 object[2];
- 	struct drm_i915_gem_execbuffer2 execbuf;
-@@ -971,7 +971,7 @@ sync_all(int fd, int num_children, int timeout)
- static void
- store_all(int fd, int num_children, int timeout)
- {
--	const int gen = intel_gen(intel_get_drm_devid(fd));
-+	const unsigned int gen = intel_gen(intel_get_drm_devid(fd));
- 	struct intel_engine_data ied;
- 
- 	ied = list_store_engines(fd, ALL_ENGINES);
-diff --git a/tests/i915/gem_tiled_fence_blits.c b/tests/i915/gem_tiled_fence_blits.c
-index 99ec78f9b..0a633d91b 100644
---- a/tests/i915/gem_tiled_fence_blits.c
-+++ b/tests/i915/gem_tiled_fence_blits.c
-@@ -88,7 +88,7 @@ static void check_bo(int fd, uint32_t handle, uint32_t start_val)
- static uint32_t
- create_batch(int fd, struct drm_i915_gem_relocation_entry *reloc)
- {
--	const int gen = intel_gen(intel_get_drm_devid(fd));
-+	const unsigned int gen = intel_gen(intel_get_drm_devid(fd));
- 	const bool has_64b_reloc = gen >= 8;
- 	uint32_t *batch;
- 	uint32_t handle;
-diff --git a/tests/i915/gem_userptr_blits.c b/tests/i915/gem_userptr_blits.c
-index 6f2e89269..5f47a5f41 100644
---- a/tests/i915/gem_userptr_blits.c
-+++ b/tests/i915/gem_userptr_blits.c
-@@ -299,7 +299,7 @@ blit(int fd, uint32_t dst, uint32_t src, uint32_t *all_bo, int n_bo)
- static void store_dword(int fd, uint32_t target,
- 			uint32_t offset, uint32_t value)
- {
--	const int gen = intel_gen(intel_get_drm_devid(fd));
-+	const unsigned int gen = intel_gen(intel_get_drm_devid(fd));
- 	struct drm_i915_gem_exec_object2 obj[2];
- 	struct drm_i915_gem_relocation_entry reloc;
- 	struct drm_i915_gem_execbuffer2 execbuf;
-@@ -1155,7 +1155,7 @@ static void store_dword_rand(int i915, unsigned int engine,
- 			     uint32_t target, uint64_t sz,
- 			     int count)
- {
--	const int gen = intel_gen(intel_get_drm_devid(i915));
-+	const unsigned int gen = intel_gen(intel_get_drm_devid(i915));
- 	struct drm_i915_gem_relocation_entry *reloc;
- 	struct drm_i915_gem_exec_object2 obj[2];
- 	struct drm_i915_gem_execbuffer2 exec;
-diff --git a/tests/i915/gem_vm_create.c b/tests/i915/gem_vm_create.c
-index e8af68f19..8843b1b3b 100644
---- a/tests/i915/gem_vm_create.c
-+++ b/tests/i915/gem_vm_create.c
-@@ -250,7 +250,7 @@ static void execbuf(int i915)
- static void
- write_to_address(int fd, uint32_t ctx, uint64_t addr, uint32_t value)
- {
--	const int gen = intel_gen(intel_get_drm_devid(fd));
-+	const unsigned int gen = intel_gen(intel_get_drm_devid(fd));
- 	struct drm_i915_gem_exec_object2 batch = {
- 		.handle = gem_create(fd, 4096)
- 	};
-diff --git a/tests/i915/i915_module_load.c b/tests/i915/i915_module_load.c
-index 77aaac5c6..aa998b992 100644
---- a/tests/i915/i915_module_load.c
-+++ b/tests/i915/i915_module_load.c
-@@ -40,7 +40,7 @@
- 
- static void store_dword(int fd, unsigned ring)
- {
--	const int gen = intel_gen(intel_get_drm_devid(fd));
-+	const unsigned int gen = intel_gen(intel_get_drm_devid(fd));
- 	struct drm_i915_gem_exec_object2 obj[2];
- 	struct drm_i915_gem_relocation_entry reloc;
- 	struct drm_i915_gem_execbuffer2 execbuf;
-@@ -102,7 +102,7 @@ static void store_dword(int fd, unsigned ring)
- 
- static void store_all(int fd)
- {
--	const int gen = intel_gen(intel_get_drm_devid(fd));
-+	const unsigned int gen = intel_gen(intel_get_drm_devid(fd));
- 	struct drm_i915_gem_exec_object2 obj[2];
- 	struct drm_i915_gem_relocation_entry reloc[32];
- 	struct drm_i915_gem_execbuffer2 execbuf;
-diff --git a/tests/i915/i915_pm_rc6_residency.c b/tests/i915/i915_pm_rc6_residency.c
-index 6fdc607e3..d484121e7 100644
---- a/tests/i915/i915_pm_rc6_residency.c
-+++ b/tests/i915/i915_pm_rc6_residency.c
-@@ -361,7 +361,7 @@ static void rc6_idle(int i915)
- {
- 	const int64_t duration_ns = SLEEP_DURATION * (int64_t)NSEC_PER_SEC;
- 	const int tolerance = 20; /* Some RC6 is better than none! */
--	const int gen = intel_gen(intel_get_drm_devid(i915));
-+	const unsigned int gen = intel_gen(intel_get_drm_devid(i915));
- 	struct {
- 		const char *name;
- 		unsigned int flags;
-@@ -452,7 +452,7 @@ static void rc6_fence(int i915)
- {
- 	const int64_t duration_ns = SLEEP_DURATION * (int64_t)NSEC_PER_SEC;
- 	const int tolerance = 20; /* Some RC6 is better than none! */
--	const int gen = intel_gen(intel_get_drm_devid(i915));
-+	const unsigned int gen = intel_gen(intel_get_drm_devid(i915));
- 	const struct intel_execution_engine2 *e;
- 	struct power_sample sample[2];
- 	unsigned long slept;
-diff --git a/tests/i915/sysfs_timeslice_duration.c b/tests/i915/sysfs_timeslice_duration.c
-index 2b1e52c80..b5b6ded78 100644
---- a/tests/i915/sysfs_timeslice_duration.c
-+++ b/tests/i915/sysfs_timeslice_duration.c
-@@ -186,7 +186,7 @@ static uint64_t __test_duration(int i915, int engine, unsigned int timeout)
- 		.buffer_count = ARRAY_SIZE(obj),
- 		.buffers_ptr = to_user_pointer(obj),
- 	};
--	const int gen = intel_gen(intel_get_drm_devid(i915));
-+	const unsigned int gen = intel_gen(intel_get_drm_devid(i915));
- 	double duration = clockrate(i915);
- 	unsigned int class, inst, mmio;
- 	uint32_t *cs, *map;
--- 
-2.28.0
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+QW4gaW1wb3J0YW50IHByb3BlcnR5IGZvciBtdWx0aS1jbGllbnQgc3lzdGVtcyBpcyB0aGF0IGVh
+Y2ggY2xpZW50IGdldHMKYSAnZmFpcicgYWxsb3RtZW50IG9mIHN5c3RlbSB0aW1lLiAoV2hlcmUg
+ZmFpcm5lc3MgaXMgYXQgdGhlIHdoaW0gb2YgdGhlCmNvbnRleHQgcHJvcGVydGllcywgc3VjaCBh
+cyBwcmlvcml0aWVzLikgVGhpcyB0ZXN0IGZvcmtzIE4gaW5kZXBlbmRlbnQKY2xpZW50cyAoYWxi
+ZWl0IHRoZXkgaGFwcGVuIHRvIHNoYXJlIGEgc2luZ2xlIHZtKSwgYW5kIGRvZXMgYW4gZXF1YWwK
+YW1vdW50IG9mIHdvcmsgaW4gY2xpZW50IGFuZCBhc3NlcnRzIHRoYXQgdGhleSB0YWtlIGFuIGVx
+dWFsIGFtb3VudCBvZgp0aW1lLgoKVGhvdWdoIHdlIGhhdmUgbmV2ZXIgY2xhaW1lZCB0byBoYXZl
+IGEgY29tcGxldGVseSBmYWlyIHNjaGVkdWxlciwgdGhhdAppcyB3aGF0IGlzIGV4cGVjdGVkLgoK
+U2lnbmVkLW9mZi1ieTogQ2hyaXMgV2lsc29uIDxjaHJpc0BjaHJpcy13aWxzb24uY28udWs+CkNj
+OiBUdnJ0a28gVXJzdWxpbiA8dHZydGtvLnVyc3VsaW5AaW50ZWwuY29tPgpDYzogUmFtYWxpbmdh
+bSBDIDxyYW1hbGluZ2FtLmNAaW50ZWwuY29tPgotLS0KIHRlc3RzL2k5MTUvZ2VtX2V4ZWNfc2No
+ZWR1bGUuYyB8IDg0NyArKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysKIDEgZmlsZSBj
+aGFuZ2VkLCA4NDcgaW5zZXJ0aW9ucygrKQoKZGlmZiAtLWdpdCBhL3Rlc3RzL2k5MTUvZ2VtX2V4
+ZWNfc2NoZWR1bGUuYyBiL3Rlc3RzL2k5MTUvZ2VtX2V4ZWNfc2NoZWR1bGUuYwppbmRleCA3NGQ3
+N2QzZTYuLmRhNWE2ZDI0OCAxMDA2NDQKLS0tIGEvdGVzdHMvaTkxNS9nZW1fZXhlY19zY2hlZHVs
+ZS5jCisrKyBiL3Rlc3RzL2k5MTUvZ2VtX2V4ZWNfc2NoZWR1bGUuYwpAQCAtMjksNiArMjksNyBA
+QAogI2luY2x1ZGUgPHN5cy9wb2xsLmg+CiAjaW5jbHVkZSA8c3lzL2lvY3RsLmg+CiAjaW5jbHVk
+ZSA8c3lzL21tYW4uaD4KKyNpbmNsdWRlIDxzeXMvcmVzb3VyY2UuaD4KICNpbmNsdWRlIDxzeXMv
+c3lzY2FsbC5oPgogI2luY2x1ZGUgPHNjaGVkLmg+CiAjaW5jbHVkZSA8c2lnbmFsLmg+CkBAIC0y
+NTMxLDYgKzI1MzIsODE5IEBAIHN0YXRpYyB2b2lkIG1lYXN1cmVfc2VtYXBob3JlX3Bvd2VyKGlu
+dCBpOTE1KQogCXJhcGxfY2xvc2UoJnBrZyk7CiB9CiAKK3N0YXRpYyBpbnQgcmVhZF90aW1lc3Rh
+bXBfZnJlcXVlbmN5KGludCBpOTE1KQoreworCWludCB2YWx1ZSA9IDA7CisJZHJtX2k5MTVfZ2V0
+cGFyYW1fdCBncCA9IHsKKwkJLnZhbHVlID0gJnZhbHVlLAorCQkucGFyYW0gPSBJOTE1X1BBUkFN
+X0NTX1RJTUVTVEFNUF9GUkVRVUVOQ1ksCisJfTsKKwlpb2N0bChpOTE1LCBEUk1fSU9DVExfSTkx
+NV9HRVRQQVJBTSwgJmdwKTsKKwlyZXR1cm4gdmFsdWU7Cit9CisKK3N0YXRpYyB1aW50NjRfdCBk
+aXY2NF91NjRfcm91bmRfdXAodWludDY0X3QgeCwgdWludDY0X3QgeSkKK3sKKwlyZXR1cm4gKHgg
+KyB5IC0gMSkgLyB5OworfQorCitzdGF0aWMgdWludDY0X3QgbnNfdG9fY3R4X3RpY2tzKGludCBp
+OTE1LCB1aW50NjRfdCBucykKK3sKKwlpbnQgZiA9IHJlYWRfdGltZXN0YW1wX2ZyZXF1ZW5jeShp
+OTE1KTsKKwlpZiAoaW50ZWxfZ2VuKGludGVsX2dldF9kcm1fZGV2aWQoaTkxNSkpID09IDExKQor
+CQlmID0gMTI1MDAwMDA7IC8qIGljbCEhISBhcmUgeW91IGZlZWxpbmcgYWxyaWdodD8gQ1RYIHZz
+IENTICovCisJcmV0dXJuIGRpdjY0X3U2NF9yb3VuZF91cChucyAqIGYsIE5TRUNfUEVSX1NFQyk7
+Cit9CisKK3N0YXRpYyB1aW50NjRfdCB0aWNrc190b19ucyhpbnQgaTkxNSwgdWludDY0X3QgdGlj
+a3MpCit7CisJcmV0dXJuIGRpdjY0X3U2NF9yb3VuZF91cCh0aWNrcyAqIE5TRUNfUEVSX1NFQywK
+KwkJCQkgIHJlYWRfdGltZXN0YW1wX2ZyZXF1ZW5jeShpOTE1KSk7Cit9CisKKyNkZWZpbmUgTUlf
+SU5TVFIob3Bjb2RlLCBmbGFncykgKCgob3Bjb2RlKSA8PCAyMykgfCAoZmxhZ3MpKQorCisjZGVm
+aW5lIE1JX01BVEgoeCkgICAgICAgICAgICAgICAgICAgICAgTUlfSU5TVFIoMHgxYSwgKHgpIC0g
+MSkKKyNkZWZpbmUgTUlfTUFUSF9JTlNUUihvcGNvZGUsIG9wMSwgb3AyKSAoKG9wY29kZSkgPDwg
+MjAgfCAob3AxKSA8PCAxMCB8IChvcDIpKQorLyogT3Bjb2RlcyBmb3IgTUlfTUFUSF9JTlNUUiAq
+LworI2RlZmluZSAgIE1JX01BVEhfTk9PUCAgICAgICAgICAgICAgICAgIE1JX01BVEhfSU5TVFIo
+MHgwMDAsIDB4MCwgMHgwKQorI2RlZmluZSAgIE1JX01BVEhfTE9BRChvcDEsIG9wMikgICAgICAg
+IE1JX01BVEhfSU5TVFIoMHgwODAsIG9wMSwgb3AyKQorI2RlZmluZSAgIE1JX01BVEhfTE9BRElO
+VihvcDEsIG9wMikgICAgIE1JX01BVEhfSU5TVFIoMHg0ODAsIG9wMSwgb3AyKQorI2RlZmluZSAg
+IE1JX01BVEhfTE9BRDAob3AxKSAgICAgICAgICAgIE1JX01BVEhfSU5TVFIoMHgwODEsIG9wMSkK
+KyNkZWZpbmUgICBNSV9NQVRIX0xPQUQxKG9wMSkgICAgICAgICAgICBNSV9NQVRIX0lOU1RSKDB4
+NDgxLCBvcDEpCisjZGVmaW5lICAgTUlfTUFUSF9BREQgICAgICAgICAgICAgICAgICAgTUlfTUFU
+SF9JTlNUUigweDEwMCwgMHgwLCAweDApCisjZGVmaW5lICAgTUlfTUFUSF9TVUIgICAgICAgICAg
+ICAgICAgICAgTUlfTUFUSF9JTlNUUigweDEwMSwgMHgwLCAweDApCisjZGVmaW5lICAgTUlfTUFU
+SF9BTkQgICAgICAgICAgICAgICAgICAgTUlfTUFUSF9JTlNUUigweDEwMiwgMHgwLCAweDApCisj
+ZGVmaW5lICAgTUlfTUFUSF9PUiAgICAgICAgICAgICAgICAgICAgTUlfTUFUSF9JTlNUUigweDEw
+MywgMHgwLCAweDApCisjZGVmaW5lICAgTUlfTUFUSF9YT1IgICAgICAgICAgICAgICAgICAgTUlf
+TUFUSF9JTlNUUigweDEwNCwgMHgwLCAweDApCisjZGVmaW5lICAgTUlfTUFUSF9TVE9SRShvcDEs
+IG9wMikgICAgICAgTUlfTUFUSF9JTlNUUigweDE4MCwgb3AxLCBvcDIpCisjZGVmaW5lICAgTUlf
+TUFUSF9TVE9SRUlOVihvcDEsIG9wMikgICAgTUlfTUFUSF9JTlNUUigweDU4MCwgb3AxLCBvcDIp
+CisvKiBSZWdpc3RlcnMgdXNlZCBhcyBvcGVyYW5kcyBpbiBNSV9NQVRIX0lOU1RSICovCisjZGVm
+aW5lICAgTUlfTUFUSF9SRUcoeCkgICAgICAgICAgICAgICAgKHgpCisjZGVmaW5lICAgTUlfTUFU
+SF9SRUdfU1JDQSAgICAgICAgICAgICAgMHgyMAorI2RlZmluZSAgIE1JX01BVEhfUkVHX1NSQ0Ig
+ICAgICAgICAgICAgIDB4MjEKKyNkZWZpbmUgICBNSV9NQVRIX1JFR19BQ0NVICAgICAgICAgICAg
+ICAweDMxCisjZGVmaW5lICAgTUlfTUFUSF9SRUdfWkYgICAgICAgICAgICAgICAgMHgzMgorI2Rl
+ZmluZSAgIE1JX01BVEhfUkVHX0NGICAgICAgICAgICAgICAgIDB4MzMKKworI2RlZmluZSBNSV9M
+T0FEX1JFR0lTVEVSX1JFRyAgICBNSV9JTlNUUigweDJBLCAxKQorCitzdGF0aWMgdm9pZCBkZWxh
+eShpbnQgaTkxNSwKKwkJICBjb25zdCBzdHJ1Y3QgaW50ZWxfZXhlY3V0aW9uX2VuZ2luZTIgKmUs
+CisJCSAgdWludDMyX3QgaGFuZGxlLAorCQkgIHVpbnQ2NF90IGFkZHIsCisJCSAgdWludDY0X3Qg
+bnMpCit7CisJY29uc3QgaW50IHVzZV82NGIgPSBpbnRlbF9nZW4oaW50ZWxfZ2V0X2RybV9kZXZp
+ZChpOTE1KSkgPj0gODsKKwljb25zdCB1aW50MzJfdCBiYXNlID0gZ2VtX2VuZ2luZV9tbWlvX2Jh
+c2UoaTkxNSwgZS0+bmFtZSk7CisjZGVmaW5lIENTX0dQUih4KSAoYmFzZSArIDB4NjAwICsgOCAq
+ICh4KSkKKyNkZWZpbmUgUlVOVElNRSAoYmFzZSArIDB4M2E4KQorCWVudW0geyBTVEFSVF9UUywg
+Tk9XX1RTIH07CisJdWludDMyX3QgKm1hcCwgKmNzLCAqam1wOworCisJaWd0X3JlcXVpcmUoYmFz
+ZSk7CisKKwkvKiBMb29wIHVudGlsIENUWF9USU1FU1RBTVAgLSBpbml0aWFsID4gQG5zICovCisK
+KwljcyA9IG1hcCA9IGdlbV9tbWFwX19kZXZpY2VfY29oZXJlbnQoaTkxNSwgaGFuZGxlLCAwLCA0
+MDk2LCBQUk9UX1dSSVRFKTsKKworCSpjcysrID0gTUlfTE9BRF9SRUdJU1RFUl9JTU07CisJKmNz
+KysgPSBDU19HUFIoU1RBUlRfVFMpICsgNDsKKwkqY3MrKyA9IDA7CisJKmNzKysgPSBNSV9MT0FE
+X1JFR0lTVEVSX1JFRzsKKwkqY3MrKyA9IFJVTlRJTUU7CisJKmNzKysgPSBDU19HUFIoU1RBUlRf
+VFMpOworCisJd2hpbGUgKG9mZnNldF9pbl9wYWdlKGNzKSAmIDYzKQorCQkqY3MrKyA9IDA7CisJ
+am1wID0gY3M7CisKKwkqY3MrKyA9IDB4NSA8PCAyMzsgLyogTUlfQVJCX0NIRUNLICovCisKKwkq
+Y3MrKyA9IE1JX0xPQURfUkVHSVNURVJfSU1NOworCSpjcysrID0gQ1NfR1BSKE5PV19UUykgKyA0
+OworCSpjcysrID0gMDsKKwkqY3MrKyA9IE1JX0xPQURfUkVHSVNURVJfUkVHOworCSpjcysrID0g
+UlVOVElNRTsKKwkqY3MrKyA9IENTX0dQUihOT1dfVFMpOworCisJLyogZGVsdGEgPSBub3cgLSBz
+dGFydDsgaW52ZXJ0ZWQgdG8gbWF0Y2ggQ09ORF9CQkUgKi8KKwkqY3MrKyA9IE1JX01BVEgoNCk7
+CisJKmNzKysgPSBNSV9NQVRIX0xPQUQoTUlfTUFUSF9SRUdfU1JDQSwgTUlfTUFUSF9SRUcoTk9X
+X1RTKSk7CisJKmNzKysgPSBNSV9NQVRIX0xPQUQoTUlfTUFUSF9SRUdfU1JDQiwgTUlfTUFUSF9S
+RUcoU1RBUlRfVFMpKTsKKwkqY3MrKyA9IE1JX01BVEhfU1VCOworCSpjcysrID0gTUlfTUFUSF9T
+VE9SRUlOVihNSV9NQVRIX1JFRyhOT1dfVFMpLCBNSV9NQVRIX1JFR19BQ0NVKTsKKworCS8qIFNh
+dmUgZGVsdGEgZm9yIHJlYWRpbmcgYnkgQ09ORF9CQkUgKi8KKwkqY3MrKyA9IDB4MjQgPDwgMjMg
+fCAoMSArIHVzZV82NGIpOyAvKiBTUk0gKi8KKwkqY3MrKyA9IENTX0dQUihOT1dfVFMpOworCSpj
+cysrID0gYWRkciArIDQwMDA7CisJKmNzKysgPSBhZGRyID4+IDMyOworCisJLyogRGVsYXkgYmV0
+d2VlbiBTUk0gYW5kIENPTkRfQkJFIHRvIHBvc3QgdGhlIHdyaXRlcyAqLworCWZvciAoaW50IG4g
+PSAwOyBuIDwgODsgbisrKSB7CisJCSpjcysrID0gTUlfU1RPUkVfRFdPUkRfSU1NOworCQlpZiAo
+dXNlXzY0YikgeworCQkJKmNzKysgPSBhZGRyICsgNDA2NDsKKwkJCSpjcysrID0gYWRkciA+PiAz
+MjsKKwkJfSBlbHNlIHsKKwkJCSpjcysrID0gMDsKKwkJCSpjcysrID0gYWRkciArIDQwNjQ7CisJ
+CX0KKwkJKmNzKysgPSAwOworCX0KKworCS8qIEJyZWFrIGlmIGRlbHRhIFt0aW1lIGVsYXBzZWRd
+ID4gbnMgKi8KKwkqY3MrKyA9IE1JX0NPTkRfQkFUQ0hfQlVGRkVSX0VORCB8IE1JX0RPX0NPTVBB
+UkUgfCAoMSArIHVzZV82NGIpOworCSpjcysrID0gfm5zX3RvX2N0eF90aWNrcyhpOTE1LCBucyk7
+CisJKmNzKysgPSBhZGRyICsgNDAwMDsKKwkqY3MrKyA9IGFkZHIgPj4gMzI7CisKKwkvKiBPdGhl
+cndpc2UgYmFjayB0byByZWNhbGN1bGF0aW5nIGRlbHRhICovCisJKmNzKysgPSBNSV9CQVRDSF9C
+VUZGRVJfU1RBUlQgfCAxIDw8IDggfCB1c2VfNjRiOworCSpjcysrID0gYWRkciArIG9mZnNldF9p
+bl9wYWdlKGptcCk7CisJKmNzKysgPSBhZGRyID4+IDMyOworCisJbXVubWFwKG1hcCwgNDA5Nik7
+Cit9CisKK3N0YXRpYyBzdHJ1Y3QgZHJtX2k5MTVfZ2VtX2V4ZWNfb2JqZWN0MgorZGVsYXlfY3Jl
+YXRlKGludCBpOTE1LCB1aW50MzJfdCBjdHgsCisJICAgICBjb25zdCBzdHJ1Y3QgaW50ZWxfZXhl
+Y3V0aW9uX2VuZ2luZTIgKmUsCisJICAgICB1aW50NjRfdCB0YXJnZXRfbnMpCit7CisJc3RydWN0
+IGRybV9pOTE1X2dlbV9leGVjX29iamVjdDIgb2JqID0geworCQkuaGFuZGxlID0gYmF0Y2hfY3Jl
+YXRlKGk5MTUpLAorCQkuZmxhZ3MgPSBFWEVDX09CSkVDVF9TVVBQT1JUU180OEJfQUREUkVTUywK
+Kwl9OworCXN0cnVjdCBkcm1faTkxNV9nZW1fZXhlY2J1ZmZlcjIgZXhlY2J1ZiA9IHsKKwkJLmJ1
+ZmZlcnNfcHRyID0gdG9fdXNlcl9wb2ludGVyKCZvYmopLAorCQkuYnVmZmVyX2NvdW50ID0gMSwK
+KwkJLnJzdmQxID0gY3R4LAorCQkuZmxhZ3MgPSBlLT5mbGFncywKKwl9OworCisJb2JqLm9mZnNl
+dCA9IG9iai5oYW5kbGUgPDwgMTI7CisJZ2VtX2V4ZWNidWYoaTkxNSwgJmV4ZWNidWYpOworCWdl
+bV9zeW5jKGk5MTUsIG9iai5oYW5kbGUpOworCisJZGVsYXkoaTkxNSwgZSwgb2JqLmhhbmRsZSwg
+b2JqLm9mZnNldCwgdGFyZ2V0X25zKTsKKworCW9iai5mbGFncyB8PSBFWEVDX09CSkVDVF9QSU5O
+RUQ7CisJcmV0dXJuIG9iajsKK30KKworc3RhdGljIHZvaWQgdHNsb2coaW50IGk5MTUsCisJCSAg
+Y29uc3Qgc3RydWN0IGludGVsX2V4ZWN1dGlvbl9lbmdpbmUyICplLAorCQkgIHVpbnQzMl90IGhh
+bmRsZSwKKwkJICB1aW50NjRfdCBhZGRyKQoreworCWNvbnN0IGludCB1c2VfNjRiID0gaW50ZWxf
+Z2VuKGludGVsX2dldF9kcm1fZGV2aWQoaTkxNSkpID49IDg7CisJY29uc3QgdWludDMyX3QgYmFz
+ZSA9IGdlbV9lbmdpbmVfbW1pb19iYXNlKGk5MTUsIGUtPm5hbWUpOworI2RlZmluZSBDU19HUFIo
+eCkgKGJhc2UgKyAweDYwMCArIDggKiAoeCkpCisjZGVmaW5lIENTX1RJTUVTVEFNUCAoYmFzZSAr
+IDB4MzU4KQorCWVudW0geyBJTkMsIE1BU0ssIEFERFIgfTsKKwl1aW50MzJfdCAqdGltZXN0YW1w
+X2xvLCAqYWRkcl9sbzsKKwl1aW50MzJfdCAqbWFwLCAqY3M7CisKKwlpZ3RfcmVxdWlyZShiYXNl
+KTsKKworCW1hcCA9IGdlbV9tbWFwX19kZXZpY2VfY29oZXJlbnQoaTkxNSwgaGFuZGxlLCAwLCA0
+MDk2LCBQUk9UX1dSSVRFKTsKKwljcyA9IG1hcCArIDUxMjsKKworCS8qIFJlY29yZCB0aGUgY3Vy
+cmVudCBDU19USU1FU1RBTVAgaW50byBhIGpvdXJuYWwgW2EgNTEyIHNsb3QgcmluZ10uICovCisJ
+KmNzKysgPSAweDI0IDw8IDIzIHwgKDEgKyB1c2VfNjRiKTsgLyogU1JNICovCisJKmNzKysgPSBD
+U19USU1FU1RBTVA7CisJdGltZXN0YW1wX2xvID0gY3M7CisJKmNzKysgPSBhZGRyOworCSpjcysr
+ID0gYWRkciA+PiAzMjsKKworCS8qIExvYWQgdGhlIGFkZHJlc3MgKyBpbmMgJiBtYXNrIHZhcmlh
+YmxlcyAqLworCSpjcysrID0gTUlfTE9BRF9SRUdJU1RFUl9JTU07CisJKmNzKysgPSBDU19HUFIo
+QUREUik7CisJYWRkcl9sbyA9IGNzOworCSpjcysrID0gYWRkcjsKKwkqY3MrKyA9IE1JX0xPQURf
+UkVHSVNURVJfSU1NOworCSpjcysrID0gQ1NfR1BSKEFERFIpICsgNDsKKwkqY3MrKyA9IGFkZHIg
+Pj4gMzI7CisKKwkqY3MrKyA9IE1JX0xPQURfUkVHSVNURVJfSU1NOworCSpjcysrID0gQ1NfR1BS
+KElOQyk7CisJKmNzKysgPSA0OworCSpjcysrID0gTUlfTE9BRF9SRUdJU1RFUl9JTU07CisJKmNz
+KysgPSBDU19HUFIoSU5DKSArIDQ7CisJKmNzKysgPSAwOworCisJKmNzKysgPSBNSV9MT0FEX1JF
+R0lTVEVSX0lNTTsKKwkqY3MrKyA9IENTX0dQUihNQVNLKTsKKwkqY3MrKyA9IDB4ZmZmZmY3ZmY7
+CisJKmNzKysgPSBNSV9MT0FEX1JFR0lTVEVSX0lNTTsKKwkqY3MrKyA9IENTX0dQUihNQVNLKSAr
+IDQ7CisJKmNzKysgPSAweGZmZmZmZmZmOworCisJLyogSW5jcmVtZW50IHRoZSBbcmluZ10gYWRk
+cmVzcyBmb3Igc2F2aW5nIENTX1RJTUVTVEFNUCAqLworCSpjcysrID0gTUlfTUFUSCg4KTsKKwkq
+Y3MrKyA9IE1JX01BVEhfTE9BRChNSV9NQVRIX1JFR19TUkNBLCBNSV9NQVRIX1JFRyhJTkMpKTsK
+KwkqY3MrKyA9IE1JX01BVEhfTE9BRChNSV9NQVRIX1JFR19TUkNCLCBNSV9NQVRIX1JFRyhBRERS
+KSk7CisJKmNzKysgPSBNSV9NQVRIX0FERDsKKwkqY3MrKyA9IE1JX01BVEhfU1RPUkUoTUlfTUFU
+SF9SRUcoQUREUiksIE1JX01BVEhfUkVHX0FDQ1UpOworCSpjcysrID0gTUlfTUFUSF9MT0FEKE1J
+X01BVEhfUkVHX1NSQ0EsIE1JX01BVEhfUkVHKEFERFIpKTsKKwkqY3MrKyA9IE1JX01BVEhfTE9B
+RChNSV9NQVRIX1JFR19TUkNCLCBNSV9NQVRIX1JFRyhNQVNLKSk7CisJKmNzKysgPSBNSV9NQVRI
+X0FORDsKKwkqY3MrKyA9IE1JX01BVEhfU1RPUkUoTUlfTUFUSF9SRUcoQUREUiksIE1JX01BVEhf
+UkVHX0FDQ1UpOworCisJLyogUmV3cml0ZSB0aGUgYmF0Y2ggYnVmZmVyIGZvciB0aGUgbmV4dCBl
+eGVjdXRpb24gKi8KKwkqY3MrKyA9IDB4MjQgPDwgMjMgfCAoMSArIHVzZV82NGIpOyAvKiBTUk0g
+Ki8KKwkqY3MrKyA9IENTX0dQUihBRERSKTsKKwkqY3MrKyA9IGFkZHIgKyBvZmZzZXRfaW5fcGFn
+ZSh0aW1lc3RhbXBfbG8pOworCSpjcysrID0gYWRkciA+PiAzMjsKKwkqY3MrKyA9IDB4MjQgPDwg
+MjMgfCAoMSArIHVzZV82NGIpOyAvKiBTUk0gKi8KKwkqY3MrKyA9IENTX0dQUihBRERSKTsKKwkq
+Y3MrKyA9IGFkZHIgKyBvZmZzZXRfaW5fcGFnZShhZGRyX2xvKTsKKwkqY3MrKyA9IGFkZHIgPj4g
+MzI7CisKKwkqY3MrKyA9IE1JX0JBVENIX0JVRkZFUl9FTkQ7CisKKwltdW5tYXAobWFwLCA0MDk2
+KTsKK30KKworc3RhdGljIHN0cnVjdCBkcm1faTkxNV9nZW1fZXhlY19vYmplY3QyCit0c2xvZ19j
+cmVhdGUoaW50IGk5MTUsIHVpbnQzMl90IGN0eCwgY29uc3Qgc3RydWN0IGludGVsX2V4ZWN1dGlv
+bl9lbmdpbmUyICplKQoreworCXN0cnVjdCBkcm1faTkxNV9nZW1fZXhlY19vYmplY3QyIG9iaiA9
+IHsKKwkJLmhhbmRsZSA9IGJhdGNoX2NyZWF0ZShpOTE1KSwKKwkJLmZsYWdzID0gRVhFQ19PQkpF
+Q1RfU1VQUE9SVFNfNDhCX0FERFJFU1MsCisJfTsKKwlzdHJ1Y3QgZHJtX2k5MTVfZ2VtX2V4ZWNi
+dWZmZXIyIGV4ZWNidWYgPSB7CisJCS5idWZmZXJzX3B0ciA9IHRvX3VzZXJfcG9pbnRlcigmb2Jq
+KSwKKwkJLmJ1ZmZlcl9jb3VudCA9IDEsCisJCS5yc3ZkMSA9IGN0eCwKKwkJLmZsYWdzID0gZS0+
+ZmxhZ3MsCisJfTsKKworCW9iai5vZmZzZXQgPSBvYmouaGFuZGxlIDw8IDEyOworCWdlbV9leGVj
+YnVmKGk5MTUsICZleGVjYnVmKTsKKwlnZW1fc3luYyhpOTE1LCBvYmouaGFuZGxlKTsKKworCXRz
+bG9nKGk5MTUsIGUsIG9iai5oYW5kbGUsIG9iai5vZmZzZXQpOworCisJb2JqLmZsYWdzIHw9IEVY
+RUNfT0JKRUNUX1BJTk5FRDsKKwlyZXR1cm4gb2JqOworfQorCitzdGF0aWMgaW50IGNtcF91MzIo
+Y29uc3Qgdm9pZCAqQSwgY29uc3Qgdm9pZCAqQikKK3sKKwljb25zdCB1aW50MzJfdCAqYSA9IEEs
+ICpiID0gQjsKKworCWlmICgqYSA8ICpiKQorCQlyZXR1cm4gLTE7CisJZWxzZSBpZiAoKmEgPiAq
+YikKKwkJcmV0dXJuIDE7CisJZWxzZQorCQlyZXR1cm4gMDsKK30KKworc3RhdGljIGJvb2wgaGFz
+X2N0eF90aW1lc3RhbXAoaW50IGk5MTUsIGNvbnN0IHN0cnVjdCBpbnRlbF9leGVjdXRpb25fZW5n
+aW5lMiAqZSkKK3sKKwljb25zdCBpbnQgZ2VuID0gaW50ZWxfZ2VuKGludGVsX2dldF9kcm1fZGV2
+aWQoaTkxNSkpOworCisJaWYgKGdlbiA9PSA4ICYmIGUtPmNsYXNzID09IEk5MTVfRU5HSU5FX0NM
+QVNTX1ZJREVPKQorCQlyZXR1cm4gZmFsc2U7IC8qIGxvb2tzIGZ1YmFyICovCisKKwlyZXR1cm4g
+dHJ1ZTsKK30KKworc3RhdGljIHN0cnVjdCBpbnRlbF9leGVjdXRpb25fZW5naW5lMgorcGlja19y
+YW5kb21fZW5naW5lKGludCBpOTE1LCBjb25zdCBzdHJ1Y3QgaW50ZWxfZXhlY3V0aW9uX2VuZ2lu
+ZTIgKm5vdCkKK3sKKwljb25zdCBzdHJ1Y3QgaW50ZWxfZXhlY3V0aW9uX2VuZ2luZTIgKmU7CisJ
+dW5zaWduZWQgaW50IGNvdW50ID0gMDsKKworCV9fZm9yX2VhY2hfcGh5c2ljYWxfZW5naW5lKGk5
+MTUsIGUpIHsKKwkJaWYgKGUtPmZsYWdzID09IG5vdC0+ZmxhZ3MpCisJCQljb250aW51ZTsKKwkJ
+aWYgKCFnZW1fY2xhc3NfaGFzX211dGFibGVfc3VibWlzc2lvbihpOTE1LCBlLT5jbGFzcykpCisJ
+CQljb250aW51ZTsKKwkJY291bnQrKzsKKwl9CisJaWYgKCFjb3VudCkKKwkJcmV0dXJuICpub3Q7
+CisKKwljb3VudCA9IHJhbmQoKSAlIGNvdW50OworCV9fZm9yX2VhY2hfcGh5c2ljYWxfZW5naW5l
+KGk5MTUsIGUpIHsKKwkJaWYgKGUtPmZsYWdzID09IG5vdC0+ZmxhZ3MpCisJCQljb250aW51ZTsK
+KwkJaWYgKCFnZW1fY2xhc3NfaGFzX211dGFibGVfc3VibWlzc2lvbihpOTE1LCBlLT5jbGFzcykp
+CisJCQljb250aW51ZTsKKwkJaWYgKCFjb3VudC0tKQorCQkJYnJlYWs7CisJfQorCisJcmV0dXJu
+ICplOworfQorCitzdGF0aWMgdm9pZCBmYWlyX2NoaWxkKGludCBpOTE1LCB1aW50MzJfdCBjdHgs
+CisJCSAgICAgICBjb25zdCBzdHJ1Y3QgaW50ZWxfZXhlY3V0aW9uX2VuZ2luZTIgKmUsCisJCSAg
+ICAgICB1aW50NjRfdCBmcmFtZV9ucywKKwkJICAgICAgIGludCB0aW1lbGluZSwKKwkJICAgICAg
+IHVpbnQzMl90IGNvbW1vbiwKKwkJICAgICAgIHVuc2lnbmVkIGludCBmbGFncywKKwkJICAgICAg
+IHVuc2lnbmVkIGxvbmcgKmN0bCwKKwkJICAgICAgIHVuc2lnbmVkIGxvbmcgKm91dCkKKyNkZWZp
+bmUgRl9TWU5DCQkoMSA8PCAwKQorI2RlZmluZSBGX1BBQ0UJCSgxIDw8IDEpCisjZGVmaW5lIEZf
+RkxPVwkJKDEgPDwgMikKKyNkZWZpbmUgRl9IQUxGCQkoMSA8PCAzKQorI2RlZmluZSBGX1NPTE8J
+CSgxIDw8IDQpCisjZGVmaW5lIEZfU1BBUkUJCSgxIDw8IDUpCisjZGVmaW5lIEZfTkVYVAkJKDEg
+PDwgNikKKyNkZWZpbmUgRl9WSVAJCSgxIDw8IDcpCisjZGVmaW5lIEZfUlJVTAkJKDEgPDwgOCkK
+KyNkZWZpbmUgRl9TSEFSRQkJKDEgPDwgOSkKKyNkZWZpbmUgRl9QSU5HCQkoMSA8PCAxMCkKKyNk
+ZWZpbmUgRl9USFJPVFRMRQkoMSA8PCAxMSkKKyNkZWZpbmUgRl9JU09MQVRFCSgxIDw8IDEyKQor
+eworCWNvbnN0IGludCBiYXRjaGVzX3Blcl9mcmFtZSA9IGZsYWdzICYgRl9TT0xPID8gMSA6IDM7
+CisJc3RydWN0IGRybV9pOTE1X2dlbV9leGVjX29iamVjdDIgb2JqWzRdID0geworCQl7fSwKKwkJ
+eworCQkJLmhhbmRsZSA9IGNvbW1vbiA/OiBnZW1fY3JlYXRlKGk5MTUsIDQwOTYpLAorCQl9LAor
+CQlkZWxheV9jcmVhdGUoaTkxNSwgY3R4LCBlLCBmcmFtZV9ucyAvIGJhdGNoZXNfcGVyX2ZyYW1l
+KSwKKwkJZGVsYXlfY3JlYXRlKGk5MTUsIGN0eCwgZSwgZnJhbWVfbnMgLyBiYXRjaGVzX3Blcl9m
+cmFtZSksCisJfTsKKwlzdHJ1Y3QgaW50ZWxfZXhlY3V0aW9uX2VuZ2luZTIgcGluZyA9ICplOwor
+CWludCBwX2ZlbmNlID0gLTEsIG5fZmVuY2UgPSAtMTsKKwl1bnNpZ25lZCBsb25nIGNvdW50ID0g
+MDsKKwlpbnQgbjsKKworCXNyYW5kb20oZ2V0cGlkKCkpOworCWlmIChmbGFncyAmIEZfUElORykK
+KwkJcGluZyA9IHBpY2tfcmFuZG9tX2VuZ2luZShpOTE1LCBlKTsKKwlvYmpbMF0gPSB0c2xvZ19j
+cmVhdGUoaTkxNSwgY3R4LCAmcGluZyk7CisKKwl3aGlsZSAoIVJFQURfT05DRSgqY3RsKSkgewor
+CQlzdHJ1Y3QgZHJtX2k5MTVfZ2VtX2V4ZWNidWZmZXIyIGV4ZWNidWYgPSB7CisJCQkuYnVmZmVy
+c19wdHIgPSB0b191c2VyX3BvaW50ZXIob2JqKSwKKwkJCS5idWZmZXJfY291bnQgPSA0LAorCQkJ
+LnJzdmQxID0gY3R4LAorCQkJLnJzdmQyID0gLTEsCisJCQkuZmxhZ3MgPSBlLT5mbGFncywKKwkJ
+fTsKKworCQlpZiAoZmxhZ3MgJiBGX0ZMT1cpIHsKKwkJCXVuc2lnbmVkIGludCBzZXE7CisKKwkJ
+CXNlcSA9IGNvdW50OworCQkJaWYgKGZsYWdzICYgRl9ORVhUKQorCQkJCXNlcSsrOworCisJCQll
+eGVjYnVmLnJzdmQyID0KKwkJCQlzd19zeW5jX3RpbWVsaW5lX2NyZWF0ZV9mZW5jZSh0aW1lbGlu
+ZSwgc2VxKTsKKwkJCWV4ZWNidWYuZmxhZ3MgfD0gSTkxNV9FWEVDX0ZFTkNFX0lOOworCQl9CisK
+KwkJZXhlY2J1Zi5mbGFncyB8PSBJOTE1X0VYRUNfRkVOQ0VfT1VUOworCQlnZW1fZXhlY2J1Zl93
+cihpOTE1LCAmZXhlY2J1Zik7CisJCW5fZmVuY2UgPSBleGVjYnVmLnJzdmQyID4+IDMyOworCQll
+eGVjYnVmLmZsYWdzICY9IH4oSTkxNV9FWEVDX0ZFTkNFX09VVCB8IEk5MTVfRVhFQ19GRU5DRV9J
+Tik7CisJCWZvciAobiA9IDE7IG4gPCBiYXRjaGVzX3Blcl9mcmFtZTsgbisrKQorCQkJZ2VtX2V4
+ZWNidWYoaTkxNSwgJmV4ZWNidWYpOworCQljbG9zZShleGVjYnVmLnJzdmQyKTsKKworCQlleGVj
+YnVmLmJ1ZmZlcl9jb3VudCA9IDE7CisJCWV4ZWNidWYuYmF0Y2hfc3RhcnRfb2Zmc2V0ID0gMjA0
+ODsKKwkJZXhlY2J1Zi5mbGFncyA9IHBpbmcuZmxhZ3MgfCBJOTE1X0VYRUNfRkVOQ0VfSU47CisJ
+CWV4ZWNidWYucnN2ZDIgPSBuX2ZlbmNlOworCQlnZW1fZXhlY2J1ZihpOTE1LCAmZXhlY2J1Zik7
+CisKKwkJaWYgKGZsYWdzICYgRl9QQUNFICYmIHBfZmVuY2UgIT0gLTEpIHsKKwkJCXN0cnVjdCBw
+b2xsZmQgcGZkID0geworCQkJCS5mZCA9IHBfZmVuY2UsCisJCQkJLmV2ZW50cyA9IFBPTExJTiwK
+KwkJCX07CisJCQlwb2xsKCZwZmQsIDEsIC0xKTsKKwkJfQorCQljbG9zZShwX2ZlbmNlKTsKKwor
+CQlpZiAoZmxhZ3MgJiBGX1NZTkMpIHsKKwkJCXN0cnVjdCBwb2xsZmQgcGZkID0geworCQkJCS5m
+ZCA9IG5fZmVuY2UsCisJCQkJLmV2ZW50cyA9IFBPTExJTiwKKwkJCX07CisJCQlwb2xsKCZwZmQs
+IDEsIC0xKTsKKwkJfQorCisJCWlmIChmbGFncyAmIEZfVEhST1RUTEUpCisJCQlpZ3RfaW9jdGwo
+aTkxNSwgRFJNX0lPQ1RMX0k5MTVfR0VNX1RIUk9UVExFLCAwKTsKKworCQlpZ3Rfc3dhcChvYmpb
+Ml0sIG9ialszXSk7CisJCWlndF9zd2FwKHBfZmVuY2UsIG5fZmVuY2UpOworCQljb3VudCsrOwor
+CX0KKwljbG9zZShwX2ZlbmNlKTsKKworCWdlbV9jbG9zZShpOTE1LCBvYmpbM10uaGFuZGxlKTsK
+KwlnZW1fY2xvc2UoaTkxNSwgb2JqWzJdLmhhbmRsZSk7CisJaWYgKG9ialsxXS5oYW5kbGUgIT0g
+Y29tbW9uKQorCQlnZW1fY2xvc2UoaTkxNSwgb2JqWzFdLmhhbmRsZSk7CisKKwlnZW1fc3luYyhp
+OTE1LCBvYmpbMF0uaGFuZGxlKTsKKwlpZiAob3V0KSB7CisJCXVpbnQzMl90ICptYXA7CisKKwkJ
+bWFwID0gZ2VtX21tYXBfX2RldmljZV9jb2hlcmVudChpOTE1LCBvYmpbMF0uaGFuZGxlLAorCQkJ
+CQkJMCwgNDA5NiwgUFJPVF9XUklURSk7CisJCWZvciAobiA9IDE7IG4gPCBtaW4oY291bnQsIDUx
+Mik7IG4rKykgeworCQkJaWd0X2Fzc2VydChtYXBbbl0pOworCQkJbWFwW24gLSAxXSA9IG1hcFtu
+XSAtIG1hcFtuIC0gMV07CisJCX0KKwkJcXNvcnQobWFwLCAtLW4sIHNpemVvZigqbWFwKSwgY21w
+X3UzMik7CisJCSpvdXQgPSB0aWNrc190b19ucyhpOTE1LCBtYXBbbiAvIDJdKTsKKwkJbXVubWFw
+KG1hcCwgNDA5Nik7CisJfQorCWdlbV9jbG9zZShpOTE1LCBvYmpbMF0uaGFuZGxlKTsKK30KKwor
+c3RhdGljIGludCBjbXBfdWwoY29uc3Qgdm9pZCAqQSwgY29uc3Qgdm9pZCAqQikKK3sKKwljb25z
+dCB1bnNpZ25lZCBsb25nICphID0gQSwgKmIgPSBCOworCisJaWYgKCphIDwgKmIpCisJCXJldHVy
+biAtMTsKKwllbHNlIGlmICgqYSA+ICpiKQorCQlyZXR1cm4gMTsKKwllbHNlCisJCXJldHVybiAw
+OworfQorCitzdGF0aWMgdWludDY0X3QgZF9jcHVfdGltZShjb25zdCBzdHJ1Y3QgcnVzYWdlICph
+LCBjb25zdCBzdHJ1Y3QgcnVzYWdlICpiKQoreworCXVpbnQ2NF90IGNwdV90aW1lID0gMDsKKwor
+CWNwdV90aW1lICs9IChhLT5ydV91dGltZS50dl9zZWMgLSBiLT5ydV91dGltZS50dl9zZWMpICog
+TlNFQ19QRVJfU0VDOworCWNwdV90aW1lICs9IChhLT5ydV91dGltZS50dl91c2VjIC0gYi0+cnVf
+dXRpbWUudHZfdXNlYykgKiAxMDAwOworCisJY3B1X3RpbWUgKz0gKGEtPnJ1X3N0aW1lLnR2X3Nl
+YyAtIGItPnJ1X3N0aW1lLnR2X3NlYykgKiBOU0VDX1BFUl9TRUM7CisJY3B1X3RpbWUgKz0gKGEt
+PnJ1X3N0aW1lLnR2X3VzZWMgLSBiLT5ydV9zdGltZS50dl91c2VjKSAqIDEwMDA7CisKKwlyZXR1
+cm4gY3B1X3RpbWU7Cit9CisKK3N0YXRpYyB2b2lkIHRpbWVsaW5lX2FkdmFuY2UoaW50IHRpbWVs
+aW5lLCBpbnQgZGVsYXlfbnMpCit7CisJc3RydWN0IHRpbWVzcGVjIHR2ID0geyAudHZfbnNlYyA9
+IGRlbGF5X25zIH07CisJbmFub3NsZWVwKCZ0diwgTlVMTCk7CisJc3dfc3luY190aW1lbGluZV9p
+bmModGltZWxpbmUsIDEpOworfQorCitzdGF0aWMgdm9pZCBmYWlybmVzcyhpbnQgaTkxNSwKKwkJ
+ICAgICBjb25zdCBzdHJ1Y3QgaW50ZWxfZXhlY3V0aW9uX2VuZ2luZTIgKmUsCisJCSAgICAgaW50
+IHRpbWVvdXQsIHVuc2lnbmVkIGludCBmbGFncykKK3sKKwljb25zdCBpbnQgZnJhbWVfbnMgPSAx
+NjY2NiAqIDEwMDA7CisJY29uc3QgaW50IGZlbmNlX25zID0gZmxhZ3MgJiBGX0hBTEYgPyAyICog
+ZnJhbWVfbnMgOiBmcmFtZV9uczsKKwl1bnNpZ25lZCBsb25nICpyZXN1bHQ7CisJdWludDMyX3Qg
+Y29tbW9uID0gMDsKKworCWlndF9yZXF1aXJlKGhhc19jdHhfdGltZXN0YW1wKGk5MTUsIGUpKTsK
+KwlpZ3RfcmVxdWlyZShnZW1fY2xhc3NfaGFzX211dGFibGVfc3VibWlzc2lvbihpOTE1LCBlLT5j
+bGFzcykpOworCisJaWYgKGZsYWdzICYgRl9TSEFSRSkKKwkJY29tbW9uID0gZ2VtX2NyZWF0ZShp
+OTE1LCA0MDk1KTsKKworCXJlc3VsdCA9IG1tYXAoTlVMTCwgNDA5NiwgUFJPVF9XUklURSwgTUFQ
+X1NIQVJFRCB8IE1BUF9BTk9OLCAtMSwgMCk7CisKKwlmb3IgKGludCBuID0gMjsgbiA8PSA2NDsg
+biA8PD0gMSkgeyAvKiAzMiA9PSA1MDB1cyBwZXIgY2xpZW50ICovCisJCWludCB0aW1lbGluZSA9
+IHN3X3N5bmNfdGltZWxpbmVfY3JlYXRlKCk7CisJCWludCBuZmVuY2VzID0gdGltZW91dCAqIE5T
+RUNfUEVSX1NFQyAvIGZlbmNlX25zICsgMTsKKwkJY29uc3QgaW50IG5jaGlsZCA9IG4gLSAxOyAv
+KiBvZGQgZm9yIGVhc3kgbWVkaWFucyAqLworCQljb25zdCBpbnQgY2hpbGRfbnMgPSBmcmFtZV9u
+cyAvIChuY2hpbGQgKyAhIShmbGFncyAmIEZfU1BBUkUpKTsKKwkJY29uc3QgaW50IGxvID0gbmNo
+aWxkIC8gNDsKKwkJY29uc3QgaW50IGhpID0gKDMgKiBuY2hpbGQgKyAzKSAvIDQgLSAxOworCQlz
+dHJ1Y3QgcnVzYWdlIG9sZF91c2FnZSwgdXNhZ2U7CisJCXVpbnQ2NF90IGNwdV90aW1lLCBkX3Rp
+bWU7CisJCXVuc2lnbmVkIGxvbmcgdmlwID0gLTE7CisJCXN0cnVjdCB0aW1lc3BlYyB0djsKKwkJ
+c3RydWN0IGlndF9tZWFuIG07CisKKwkJaWYgKGZsYWdzICYgRl9QSU5HKSB7CisJCQlzdHJ1Y3Qg
+aW50ZWxfZXhlY3V0aW9uX2VuZ2luZTIgKnBpbmc7CisKKwkJCV9fZm9yX2VhY2hfcGh5c2ljYWxf
+ZW5naW5lKGk5MTUsIHBpbmcpIHsKKwkJCQlpZiAocGluZy0+ZmxhZ3MgPT0gZS0+ZmxhZ3MpCisJ
+CQkJCWNvbnRpbnVlOworCisJCQkJaWd0X2ZvcmsoY2hpbGQsIDEpIHsKKwkJCQkJdWludDMyX3Qg
+Y3R4ID0gZ2VtX2NvbnRleHRfY2xvbmVfd2l0aF9lbmdpbmVzKGk5MTUsIDApOworCisJCQkJCWZh
+aXJfY2hpbGQoaTkxNSwgY3R4LCBwaW5nLAorCQkJCQkJICAgY2hpbGRfbnMgLyA4LAorCQkJCQkJ
+ICAgLTEsIGNvbW1vbiwKKwkJCQkJCSAgIEZfU09MTyB8IEZfUEFDRSB8IEZfU0hBUkUsCisJCQkJ
+CQkgICAmcmVzdWx0W25jaGlsZF0sCisJCQkJCQkgICBOVUxMKTsKKworCQkJCQlnZW1fY29udGV4
+dF9kZXN0cm95KGk5MTUsIGN0eCk7CisJCQkJfQorCQkJfQorCQl9CisKKwkJbWVtc2V0KHJlc3Vs
+dCwgMCwgKG5jaGlsZCArIDEpICogc2l6ZW9mKHJlc3VsdFswXSkpOworCQlnZXRydXNhZ2UoUlVT
+QUdFX0NISUxEUkVOLCAmb2xkX3VzYWdlKTsKKwkJaWd0X25zZWNfZWxhcHNlZChtZW1zZXQoJnR2
+LCAwLCBzaXplb2YodHYpKSk7CisJCWlndF9mb3JrKGNoaWxkLCBuY2hpbGQpIHsKKwkJCXVpbnQz
+Ml90IGN0eDsKKworCQkJaWYgKGZsYWdzICYgRl9JU09MQVRFKSB7CisJCQkJaW50IGNsb25lLCBk
+bWFidWYgPSAtMTsKKworCQkJCWlmIChjb21tb24pCisJCQkJCWRtYWJ1ZiA9IHByaW1lX2hhbmRs
+ZV90b19mZChpOTE1LCBjb21tb24pOworCisJCQkJY2xvbmUgPSBnZW1fcmVvcGVuX2RyaXZlcihp
+OTE1KTsKKwkJCQlnZW1fY29udGV4dF9jb3B5X2VuZ2luZXMoaTkxNSwgMCwgY2xvbmUsIDApOwor
+CQkJCWk5MTUgPSBjbG9uZTsKKworCQkJCWlmIChkbWFidWYgIT0gLTEpCisJCQkJCWNvbW1vbiA9
+IHByaW1lX2ZkX3RvX2hhbmRsZShpOTE1LCBkbWFidWYpOworCQkJfQorCisJCQljdHggPSBnZW1f
+Y29udGV4dF9jbG9uZV93aXRoX2VuZ2luZXMoaTkxNSwgMCk7CisKKwkJCWlmIChmbGFncyAmIEZf
+VklQICYmIGNoaWxkID09IDApIHsKKwkJCQlnZW1fY29udGV4dF9zZXRfcHJpb3JpdHkoaTkxNSwg
+Y3R4LCBNQVhfUFJJTyk7CisJCQkJZmxhZ3MgfD0gRl9GTE9XOworCQkJfQorCQkJaWYgKGZsYWdz
+ICYgRl9SUlVMICYmIGNoaWxkID09IDApCisJCQkJZmxhZ3MgfD0gRl9TT0xPIHwgRl9GTE9XIHwg
+Rl9TWU5DOworCisJCQlmYWlyX2NoaWxkKGk5MTUsIGN0eCwgZSwgY2hpbGRfbnMsCisJCQkJICAg
+dGltZWxpbmUsIGNvbW1vbiwgZmxhZ3MsCisJCQkJICAgJnJlc3VsdFtuY2hpbGRdLAorCQkJCSAg
+ICZyZXN1bHRbY2hpbGRdKTsKKworCQkJZ2VtX2NvbnRleHRfZGVzdHJveShpOTE1LCBjdHgpOwor
+CQl9CisKKwkJd2hpbGUgKG5mZW5jZXMtLSkKKwkJCXRpbWVsaW5lX2FkdmFuY2UodGltZWxpbmUs
+IGZlbmNlX25zKTsKKworCQlyZXN1bHRbbmNoaWxkXSA9IDE7CisJCWZvciAoaW50IGNoaWxkID0g
+MDsgY2hpbGQgPCBuY2hpbGQ7IGNoaWxkKyspIHsKKwkJCXdoaWxlICghUkVBRF9PTkNFKHJlc3Vs
+dFtjaGlsZF0pKQorCQkJCXRpbWVsaW5lX2FkdmFuY2UodGltZWxpbmUsIGZlbmNlX25zKTsKKwkJ
+fQorCisJCWlndF93YWl0Y2hpbGRyZW4oKTsKKwkJY2xvc2UodGltZWxpbmUpOworCisJCS8qIEFy
+ZSB3ZSBydW5uaW5nIG91dCBvZiBDUFUgdGltZSwgYW5kIGZhaWwgdG8gc3VibWl0IGZyYW1lcz8g
+Ki8KKwkJZF90aW1lID0gaWd0X25zZWNfZWxhcHNlZCgmdHYpOworCQlnZXRydXNhZ2UoUlVTQUdF
+X0NISUxEUkVOLCAmdXNhZ2UpOworCQljcHVfdGltZSA9IGRfY3B1X3RpbWUoJnVzYWdlLCAmb2xk
+X3VzYWdlKTsKKwkJaWYgKDEwICogY3B1X3RpbWUgPiA5ICogZF90aW1lKSB7CisJCQlpZiAobmNo
+aWxkID4gNykKKwkJCQlicmVhazsKKworCQkJaWd0X3NraXBfb25fZigxMCAqIGNwdV90aW1lID4g
+OSAqIGRfdGltZSwKKwkJCQkgICAgICAiJS4wZiUlIENQVSB1c2FnZSwgcHJlc3VtaW5nIGNhcGFj
+aXR5IGV4Y2VlZGVkXG4iLAorCQkJCSAgICAgIDEwMC4gKiBjcHVfdGltZSAvIGRfdGltZSk7CisJ
+CX0KKworCQlpZ3RfbWVhbl9pbml0KCZtKTsKKwkJZm9yIChpbnQgY2hpbGQgPSAwOyBjaGlsZCA8
+IG5jaGlsZDsgY2hpbGQrKykKKwkJCWlndF9tZWFuX2FkZCgmbSwgcmVzdWx0W2NoaWxkXSk7CisK
+KwkJaWYgKGZsYWdzICYgKEZfVklQIHwgRl9SUlVMKSkKKwkJCXZpcCA9IHJlc3VsdFswXTsKKwor
+CQlxc29ydChyZXN1bHQsIG5jaGlsZCwgc2l6ZW9mKCpyZXN1bHQpLCBjbXBfdWwpOworCQlpZ3Rf
+aW5mbygiJTJkIGNsaWVudHMsIHJhbmdlOiBbJS4xZiwgJS4xZl0sIGlxcjogWyUuMWYsICUuMWZd
+LCBtZWRpYW46ICUuMWYsIG1lYW46ICUuMWYgwrEgJS4yZiBtc1xuIiwKKwkJCSBuY2hpbGQsCisJ
+CQkgMWUtNiAqIHJlc3VsdFswXSwgIDFlLTYgKiByZXN1bHRbbmNoaWxkIC0gMV0sCisJCQkgMWUt
+NiAqIHJlc3VsdFtsb10sIDFlLTYgKiByZXN1bHRbaGldLAorCQkJIDFlLTYgKiByZXN1bHRbbmNo
+aWxkIC8gMl0sCisJCQkgMWUtNiAqIGlndF9tZWFuX2dldCgmbSksCisJCQkgMWUtNiAqIHNxcnQo
+aWd0X21lYW5fZ2V0X3ZhcmlhbmNlKCZtKSkpOworCisJCWlmICh2aXAgIT0gLTEpIHsKKwkJCWln
+dF9pbmZvKCJWSVAgaW50ZXJ2YWwgJS4yZiBtc1xuIiwgMWUtNiAqIHZpcCk7CisJCQlpZ3RfYXNz
+ZXJ0KDQgKiB2aXAgPiAzICogZmVuY2VfbnMgJiYKKwkJCQkgICAzICogdmlwIDwgNCAqIGZlbmNl
+X25zKTsKKwkJfQorCisJCS8qIE1heSBiZSBzbG93ZWQgZHVlIHRvIHNoZWVyIHZvbHVtZSBvZiBj
+b250ZXh0IHN3aXRjaGVzICovCisJCWlndF9hc3NlcnQoNCAqIGlndF9tZWFuX2dldCgmbSkgPiAz
+ICogZmVuY2VfbnMgJiYKKwkJCSAgICAgICBpZ3RfbWVhbl9nZXQoJm0pIDwgMyAqIGZlbmNlX25z
+KTsKKworCQlpZ3RfYXNzZXJ0KDQgKiBpZ3RfbWVhbl9nZXQoJm0pID4gMyAqIHJlc3VsdFtuY2hp
+bGQgLyAyXSAmJgorCQkJICAgMyAqIGlndF9tZWFuX2dldCgmbSkgPCA0ICogcmVzdWx0W25jaGls
+ZCAvIDJdKTsKKworCQlpZ3RfYXNzZXJ0KDIgKiAocmVzdWx0W2hpXSAtIHJlc3VsdFtsb10pIDwg
+cmVzdWx0W25jaGlsZCAvIDJdKTsKKwl9CisKKwltdW5tYXAocmVzdWx0LCA0MDk2KTsKKwlpZiAo
+Y29tbW9uKQorCQlnZW1fY2xvc2UoaTkxNSwgY29tbW9uKTsKK30KKworc3RhdGljIHZvaWQgdGVz
+dF9mYWlybmVzcyhpbnQgaTkxNSwgaW50IHRpbWVvdXQpCit7CisJc3RhdGljIGNvbnN0IHN0cnVj
+dCB7CisJCWNvbnN0IGNoYXIgKm5hbWU7CisJCXVuc2lnbmVkIGludCBmbGFnczsKKwl9IGZhaXJb
+XSA9IHsKKwkJLyoKKwkJICogbm9uZSAtIG1heGltYWwgZ3JlZWQgaW4gZWFjaCBjbGllbnQKKwkJ
+ICoKKwkJICogUHVzaCBhcyBtYW55IGZyYW1lcyBmcm9tIGVhY2ggY2xpZW50IGFzIGZhc3QgYXMg
+cG9zc2libGUKKwkJICovCisJCXsgIm5vbmUiLCAgICAgICAwIH0sCisJCXsgIm5vbmUtdmlwIiwg
+ICBGX1ZJUCB9LCAvKiBvbmUgdmlwIGNsaWVudCBtdXN0IG1lZXQgZGVhZGxpbmVzICovCisJCXsg
+Im5vbmUtc29sbyIsICBGX1NPTE8gfSwgLyogMSBiYXRjaCBwZXIgZnJhbWUgcGVyIGNsaWVudCAq
+LworCQl7ICJub25lLXNoYXJlIiwgRl9TSEFSRSB9LCAvKiByZWFkIGZyb20gYSBjb21tb24gYnVm
+ZmVyICovCisJCXsgIm5vbmUtcnJ1bCIsICBGX1JSVUwgfSwgLyogInJlYWx0aW1lLXJlc3BvbnNl
+IHVuZGVyIGxvYWQiICovCisJCXsgIm5vbmUtcGluZyIsICBGX1BJTkcgfSwgLyogbWVhc3VyZSBp
+bnRlci1lbmdpbmUgZmFpcm5lc3MgKi8KKworCQkvKgorCQkgKiB0aHJvdHRsZSAtIG9yaWdpbmFs
+IHBlciBjbGllbnQgdGhyb3R0bGluZworCQkgKgorCQkgKiBVc2VkIGZvciBmcm9udCBidWZmZXJp
+bmcgcmVuZGVyaW5nIHdoZXJlIHRoZXJlIGlzIG5vCisJCSAqIGV4dGVuYWwgZnJhbWUgbWFya2Vy
+LiBFYWNoIGNsaWVudCB0cmllcyB0byBvbmx5IGtlZXAKKwkJICogMjBtcyBvZiB3b3JrIHN1Ym1p
+dHRlZCwgdGhvdWdoIHRoYXQgbWVhc3VyZW1lbnQgaXMKKwkJICogZmxhd2VkLi4uCisJCSAqCisJ
+CSAqIFRoaXMgaXMgdXNlZCBieSBYb3JnIHRvIHRyeSBhbmQgbWFpbnRhaW4gc29tZSByZXNlbWJh
+bGFuY2UKKwkJICogb2YgaW5wdXQvb3V0cHV0IGNvbnNpc3RlbmN5IHdoZW4gYmVpbmcgZmVlZCBh
+IGNvbnRpbnVvdXMKKwkJICogc3RyZWFtIG9mIFgxMSBkcmF3IHJlcXVlc3RzIHN0cmFpZ2h0IGlu
+dG8gc2Nhbm91dCwgd2hlcmUKKwkJICogdGhlIGNsaWVudHMgbWF5IHN1Ym1pdCB0aGUgd29yayBm
+YXN0ZXIgdGhhbiBjYW4gYmUgZHJhd24uCisJCSAqCisJCSAqIFRocm90dGxpbmcgdHJhY2tzIHJl
+cXVlc3RzIHBlci1maWxlIChhbmQgYXNzdW1lcyB0aGF0CisJCSAqIGFsbCByZXF1ZXN0cyBhcmUg
+aW4gc3VibWlzc2lvbiBvcmRlciBhY3Jvc3MgdGhlIHdob2xlIGZpbGUpLAorCQkgKiBzbyB3ZSBz
+cGxpdCBlYWNoIGNoaWxkIHRvIGl0cyBvd24gZmQuCisJCSAqLworCQl7ICJ0aHJvdHRsZSIsICAg
+ICAgIEZfVEhST1RUTEUgfCBGX0lTT0xBVEUgfSwKKwkJeyAidGhyb3R0bGUtdmlwIiwgICBGX1RI
+Uk9UVExFIHwgRl9JU09MQVRFIHwgRl9WSVAgfSwKKwkJeyAidGhyb3R0bGUtc29sbyIsICBGX1RI
+Uk9UVExFIHwgRl9JU09MQVRFIHwgRl9TT0xPIH0sCisJCXsgInRocm90dGxlLXNoYXJlIiwgRl9U
+SFJPVFRMRSB8IEZfSVNPTEFURSB8IEZfU0hBUkUgfSwKKwkJeyAidGhyb3R0bGUtcnJ1bCIsICBG
+X1RIUk9UVExFIHwgRl9JU09MQVRFIHwgRl9SUlVMIH0sCisKKwkJLyoKKwkJICogcGFjZSAtIG1l
+c2EgInN1Ym1pdCBkb3VibGUgYnVmZmVyaW5nIgorCQkgKgorCQkgKiBTdWJtaXQgYSBmcmFtZSwg
+d2FpdCBmb3IgcHJldmlvdXMgZnJhbWUgdG8gc3RhcnQuIFRoaXMKKwkJICogcHJldmVudHMgZWFj
+aCBjbGllbnQgZnJvbSBnZXR0aW5nIHRvbyBmYXIgYWhlYWQgb2YgaXRzCisJCSAqIHJlbmRlcmlu
+ZywgbWFpbnRhaW5pbmcgYSBjb25zaXN0ZW50IGlucHV0L291dHB1dCBsYXRlbmN5LgorCQkgKi8K
+KwkJeyAicGFjZSIsICAgICAgIEZfUEFDRSB9LAorCQl7ICJwYWNlLXNvbG8iLCAgRl9QQUNFIHwg
+Rl9TT0xPfSwKKwkJeyAicGFjZS1zaGFyZSIsIEZfUEFDRSB8IEZfU0hBUkV9LAorCQl7ICJwYWNl
+LXBpbmciLCAgRl9QQUNFIHwgRl9TSEFSRSB8IEZfUElOR30sCisKKwkJLyogc3luYyAtIG9ubHkg
+c3VibWl0IGEgZnJhbWUgYXQgYSB0aW1lICovCisJCXsgInN5bmMiLCAgICAgIEZfU1lOQyB9LAor
+CQl7ICJzeW5jLXZpcCIsICBGX1NZTkMgfCBGX1ZJUCB9LAorCQl7ICJzeW5jLXNvbG8iLCBGX1NZ
+TkMgfCBGX1NPTE8gfSwKKworCQkvKiBmbG93IC0gc3luY2hyb25pc2UgZXhlY3V0aW9uIGFnYWlu
+c3QgdGhlIGNsb2NrICh2YmxhbmspICovCisJCXsgImZsb3ciLCAgICAgICBGX1BBQ0UgfCBGX0ZM
+T1cgfSwKKwkJeyAiZmxvdy1zaGFyZSIsIEZfUEFDRSB8IEZfRkxPVyB8IEZfU0hBUkUgfSwKKwkJ
+eyAiZmxvdy1waW5nIiwgIEZfUEFDRSB8IEZfRkxPVyB8IEZfU0hBUkUgfCBGX1BJTkcgfSwKKwor
+CQkvKiBuZXh0IC0gc3VibWl0IGFoZWFkIG9mIHRoZSBjbG9jayAodmJsYW5rIGRvdWJsZSBidWZm
+ZXJpbmcpICovCisJCXsgIm5leHQiLCAgICAgICBGX1BBQ0UgfCBGX0ZMT1cgfCBGX05FWFQgfSwK
+KwkJeyAibmV4dC1zaGFyZSIsIEZfUEFDRSB8IEZfRkxPVyB8IEZfTkVYVCB8IEZfU0hBUkUgfSwK
+KwkJeyAibmV4dC1waW5nIiwgIEZfUEFDRSB8IEZfRkxPVyB8IEZfTkVYVCB8IEZfU0hBUkUgfCBG
+X1BJTkcgfSwKKworCQkvKiBzcGFyZSAtIHVuZGVydXRpbGlzZSBieSBhIHNpbmdsZSBjbGllbnQg
+dGltZXNsaWNlICovCisJCXsgInNwYXJlIiwgRl9QQUNFIHwgRl9GTE9XIHwgRl9TUEFSRSB9LAor
+CisJCS8qIGhhbGYgLSBydW4gYXQgaGFsZiBwYWNlIChzdWJtaXQgMTZtcyBvZiB3b3JrIGV2ZXJ5
+IDMybXMpICovCisJCXsgImhhbGYiLCAgRl9QQUNFIHwgRl9GTE9XIHwgRl9IQUxGIH0sCisKKwkJ
+e30KKwl9OworCisJaWd0X2ZpeHR1cmUgeworCQlpZ3RfaW5mbygiQ1MgdGltZXN0YW1wIGZyZXF1
+ZW5jeTogJWRcbiIsCisJCQkgcmVhZF90aW1lc3RhbXBfZnJlcXVlbmN5KGk5MTUpKTsKKworCQlp
+Z3RfcmVxdWlyZShpbnRlbF9nZW4oaW50ZWxfZ2V0X2RybV9kZXZpZChpOTE1KSkgPj0gOCk7CisJ
+fQorCisJZm9yICh0eXBlb2YoKmZhaXIpICpmID0gZmFpcjsgZi0+bmFtZTsgZisrKSB7CisJCWln
+dF9zdWJ0ZXN0X3dpdGhfZHluYW1pY19mKCJmYWlyLSVzIiwgZi0+bmFtZSkgIHsKKwkJCWNvbnN0
+IHN0cnVjdCBpbnRlbF9leGVjdXRpb25fZW5naW5lMiAqZTsKKworCQkJX19mb3JfZWFjaF9waHlz
+aWNhbF9lbmdpbmUoaTkxNSwgZSkgeworCQkJCWlmICghZ2VtX2NsYXNzX2Nhbl9zdG9yZV9kd29y
+ZChpOTE1LCBlLT5jbGFzcykpCisJCQkJCWNvbnRpbnVlOworCisJCQkJaWd0X2R5bmFtaWNfZigi
+JXMiLCBlLT5uYW1lKQorCQkJCQlmYWlybmVzcyhpOTE1LCBlLCB0aW1lb3V0LCBmLT5mbGFncyk7
+CisJCQl9CisJCX0KKwl9Cit9CisKK3N0YXRpYyB1aW50MzJfdCByZWFkX2N0eF90aW1lc3RhbXAo
+aW50IGk5MTUsCisJCQkJICAgdWludDMyX3QgY3R4LAorCQkJCSAgIGNvbnN0IHN0cnVjdCBpbnRl
+bF9leGVjdXRpb25fZW5naW5lMiAqZSkKK3sKKwljb25zdCBpbnQgdXNlXzY0YiA9IGludGVsX2dl
+bihpbnRlbF9nZXRfZHJtX2RldmlkKGk5MTUpKSA+PSA4OworCWNvbnN0IHVpbnQzMl90IGJhc2Ug
+PSBnZW1fZW5naW5lX21taW9fYmFzZShpOTE1LCBlLT5uYW1lKTsKKwlzdHJ1Y3QgZHJtX2k5MTVf
+Z2VtX3JlbG9jYXRpb25fZW50cnkgcmVsb2M7CisJc3RydWN0IGRybV9pOTE1X2dlbV9leGVjX29i
+amVjdDIgb2JqID0geworCQkuaGFuZGxlID0gZ2VtX2NyZWF0ZShpOTE1LCA0MDk2KSwKKwkJLm9m
+ZnNldCA9IDMyIDw8IDIwLAorCQkucmVsb2NzX3B0ciA9IHRvX3VzZXJfcG9pbnRlcigmcmVsb2Mp
+LAorCQkucmVsb2NhdGlvbl9jb3VudCA9IDEsCisJfTsKKwlzdHJ1Y3QgZHJtX2k5MTVfZ2VtX2V4
+ZWNidWZmZXIyIGV4ZWNidWYgPSB7CisJCS5idWZmZXJzX3B0ciA9IHRvX3VzZXJfcG9pbnRlcigm
+b2JqKSwKKwkJLmJ1ZmZlcl9jb3VudCA9IDEsCisJCS5mbGFncyA9IGUtPmZsYWdzLAorCQkucnN2
+ZDEgPSBjdHgsCisJfTsKKyNkZWZpbmUgUlVOVElNRSAoYmFzZSArIDB4M2E4KQorCXVpbnQzMl90
+ICptYXAsICpjczsKKwl1aW50MzJfdCB0czsKKworCWlndF9yZXF1aXJlKGJhc2UpOworCisJY3Mg
+PSBtYXAgPSBnZW1fbW1hcF9fZGV2aWNlX2NvaGVyZW50KGk5MTUsIG9iai5oYW5kbGUsCisJCQkJ
+CSAgICAgMCwgNDA5NiwgUFJPVF9XUklURSk7CisKKwkqY3MrKyA9IDB4MjQgPDwgMjMgfCAoMSAr
+IHVzZV82NGIpOyAvKiBTUk0gKi8KKwkqY3MrKyA9IFJVTlRJTUU7CisJbWVtc2V0KCZyZWxvYywg
+MCwgc2l6ZW9mKHJlbG9jKSk7CisJcmVsb2MudGFyZ2V0X2hhbmRsZSA9IG9iai5oYW5kbGU7CisJ
+cmVsb2MucHJlc3VtZWRfb2Zmc2V0ID0gb2JqLm9mZnNldDsKKwlyZWxvYy5vZmZzZXQgPSBvZmZz
+ZXRfaW5fcGFnZShjcyk7CisJcmVsb2MuZGVsdGEgPSA0MDAwOworCSpjcysrID0gb2JqLm9mZnNl
+dCArIDQwMDA7CisJKmNzKysgPSBvYmoub2Zmc2V0ID4+IDMyOworCisJKmNzKysgPSBNSV9CQVRD
+SF9CVUZGRVJfRU5EOworCisJZ2VtX2V4ZWNidWYoaTkxNSwgJmV4ZWNidWYpOworCWdlbV9zeW5j
+KGk5MTUsIG9iai5oYW5kbGUpOworCWdlbV9jbG9zZShpOTE1LCBvYmouaGFuZGxlKTsKKworCXRz
+ID0gbWFwWzEwMDBdOworCW11bm1hcChtYXAsIDQwOTYpOworCisJcmV0dXJuIHRzOworfQorCitz
+dGF0aWMgdm9pZCBmYWlyc2xpY2UoaW50IGk5MTUsCisJCSAgICAgIGNvbnN0IHN0cnVjdCBpbnRl
+bF9leGVjdXRpb25fZW5naW5lMiAqZSwKKwkJICAgICAgdW5zaWduZWQgbG9uZyBmbGFncykKK3sK
+KwlpZ3Rfc3Bpbl90ICpzcGluID0gTlVMTDsKKwl1aW50MzJfdCBjdHhbM107CisJdWludDMyX3Qg
+dHNbM107CisKKwlmb3IgKGludCBpID0gMDsgaSA8IEFSUkFZX1NJWkUoY3R4KTsgaSsrKSB7CisJ
+CWN0eFtpXSA9IGdlbV9jb250ZXh0X2Nsb25lX3dpdGhfZW5naW5lcyhpOTE1LCAwKTsKKwkJaWYg
+KHNwaW4gPT0gTlVMTCkgeworCQkJc3BpbiA9IF9faWd0X3NwaW5fbmV3KGk5MTUsCisJCQkJCSAg
+ICAgIC5jdHggPSBjdHhbaV0sCisJCQkJCSAgICAgIC5lbmdpbmUgPSBlLT5mbGFncywKKwkJCQkJ
+ICAgICAgLmZsYWdzID0gZmxhZ3MpOworCQl9IGVsc2UgeworCQkJc3RydWN0IGRybV9pOTE1X2dl
+bV9leGVjYnVmZmVyMiBlYiA9IHsKKwkJCQkuYnVmZmVyX2NvdW50ID0gMSwKKwkJCQkuYnVmZmVy
+c19wdHIgPSB0b191c2VyX3BvaW50ZXIoJnNwaW4tPm9ialtJR1RfU1BJTl9CQVRDSF0pLAorCQkJ
+CS5mbGFncyA9IGUtPmZsYWdzLAorCQkJCS5yc3ZkMSA9IGN0eFtpXSwKKwkJCX07CisJCQlnZW1f
+ZXhlY2J1ZihpOTE1LCAmZWIpOworCQl9CisJfQorCisJc2xlZXAoMik7IC8qIG92ZXIgdGhlIGNv
+dXJzZSBvZiBtYW55IHRpbWVzbGljZXMgKi8KKworCWlndF9hc3NlcnQoZ2VtX2JvX2J1c3koaTkx
+NSwgc3Bpbi0+aGFuZGxlKSk7CisJaWd0X3NwaW5fZW5kKHNwaW4pOworCWZvciAoaW50IGkgPSAw
+OyBpIDwgQVJSQVlfU0laRShjdHgpOyBpKyspCisJCXRzW2ldID0gcmVhZF9jdHhfdGltZXN0YW1w
+KGk5MTUsIGN0eFtpXSwgZSk7CisKKwlmb3IgKGludCBpID0gMDsgaSA8IEFSUkFZX1NJWkUoY3R4
+KTsgaSsrKQorCQlnZW1fY29udGV4dF9kZXN0cm95KGk5MTUsIGN0eFtpXSk7CisJaWd0X3NwaW5f
+ZnJlZShpOTE1LCBzcGluKTsKKworCXFzb3J0KHRzLCAzLCBzaXplb2YoKnRzKSwgY21wX3UzMik7
+CisJaWd0X2luZm8oIiVzOiBbJS4xZiwgJS4xZl0gbXNcbiIsIGUtPm5hbWUsCisJCSAxZS02ICog
+dGlja3NfdG9fbnMoaTkxNSwgdHNbMF0pLAorCQkgMWUtNiAqIHRpY2tzX3RvX25zKGk5MTUsIHRz
+WzJdKSk7CisKKwlpZ3RfYXNzZXJ0KHRzWzBdICYmIHRzWzJdID4gdHNbMF0pOworCWlndF9hc3Nl
+cnQoNCAqIHRzWzBdID4gMyAqIHRzWzJdKTsKK30KKwogI2RlZmluZSB0ZXN0X2VhY2hfZW5naW5l
+KFQsIGk5MTUsIGUpIFwKIAlpZ3Rfc3VidGVzdF93aXRoX2R5bmFtaWMoVCkgX19mb3JfZWFjaF9w
+aHlzaWNhbF9lbmdpbmUoaTkxNSwgZSkgXAogCQlpZ3RfZHluYW1pY19mKCIlcyIsIGUtPm5hbWUp
+CkBAIC0yNjAxLDYgKzM0MTUsMzUgQEAgaWd0X21haW4KIAkJdGVzdF9lYWNoX2VuZ2luZSgidS1s
+YXRlc2xpY2UiLCBmZCwgZSkKIAkJCWxhdGVzbGljZShmZCwgZS0+ZmxhZ3MsIElHVF9TUElOX1VT
+RVJQVFIpOwogCisJCWlndF9zdWJ0ZXN0X2dyb3VwIHsKKwkJCWlndF9maXh0dXJlIHsKKwkJCQlp
+Z3RfcmVxdWlyZShnZW1fc2NoZWR1bGVyX2hhc19zZW1hcGhvcmVzKGZkKSk7CisJCQkJaWd0X3Jl
+cXVpcmUoZ2VtX3NjaGVkdWxlcl9oYXNfcHJlZW1wdGlvbihmZCkpOworCQkJCWlndF9yZXF1aXJl
+KGludGVsX2dlbihpbnRlbF9nZXRfZHJtX2RldmlkKGZkKSkgPj0gOCk7CisJCQl9CisKKwkJCXRl
+c3RfZWFjaF9lbmdpbmUoImZhaXJzbGljZSIsIGZkLCBlKQorCQkJCWZhaXJzbGljZShmZCwgZSwg
+MCk7CisKKwkJCXRlc3RfZWFjaF9lbmdpbmUoInUtZmFpcnNsaWNlIiwgZmQsIGUpCisJCQkJZmFp
+cnNsaWNlKGZkLCBlLCBJR1RfU1BJTl9VU0VSUFRSKTsKKworCQkJaWd0X3N1YnRlc3QoImZhaXJz
+bGljZS1hbGwiKSAgeworCQkJCV9fZm9yX2VhY2hfcGh5c2ljYWxfZW5naW5lKGZkLCBlKSB7CisJ
+CQkJCWlndF9mb3JrKGNoaWxkLCAxKQorCQkJCQkJZmFpcnNsaWNlKGZkLCBlLCAwKTsKKwkJCQl9
+CisJCQkJaWd0X3dhaXRjaGlsZHJlbigpOworCQkJfQorCQkJaWd0X3N1YnRlc3QoInUtZmFpcnNs
+aWNlLWFsbCIpICB7CisJCQkJX19mb3JfZWFjaF9waHlzaWNhbF9lbmdpbmUoZmQsIGUpIHsKKwkJ
+CQkJaWd0X2ZvcmsoY2hpbGQsIDEpCisJCQkJCQlmYWlyc2xpY2UoZmQsIGUsIElHVF9TUElOX1VT
+RVJQVFIpOworCQkJCX0KKwkJCQlpZ3Rfd2FpdGNoaWxkcmVuKCk7CisJCQl9CisJCX0KKwogCQl0
+ZXN0X2VhY2hfZW5naW5lKCJzdWJtaXQtZWFybHktc2xpY2UiLCBmZCwgZSkKIAkJCXN1Ym1pdF9z
+bGljZShmZCwgZSwgRUFSTFlfU1VCTUlUKTsKIAkJdGVzdF9lYWNoX2VuZ2luZSgidS1zdWJtaXQt
+ZWFybHktc2xpY2UiLCBmZCwgZSkKQEAgLTI2NDQsNiArMzQ4NywxMCBAQCBpZ3RfbWFpbgogCQl0
+ZXN0X2VhY2hfZW5naW5lX3N0b3JlKCJwcm9tb3Rpb24iLCBmZCwgZSkKIAkJCXByb21vdGlvbihm
+ZCwgZS0+ZmxhZ3MpOwogCisJCWlndF9zdWJ0ZXN0X2dyb3VwIHsKKwkJCXRlc3RfZmFpcm5lc3Mo
+ZmQsIDIpOworCQl9CisKIAkJaWd0X3N1YnRlc3RfZ3JvdXAgewogCQkJaWd0X2ZpeHR1cmUgewog
+CQkJCWlndF9yZXF1aXJlKGdlbV9zY2hlZHVsZXJfaGFzX3ByZWVtcHRpb24oZmQpKTsKLS0gCjIu
+MjguMAoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50
+ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBz
+Oi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
