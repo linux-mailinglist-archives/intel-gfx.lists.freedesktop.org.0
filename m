@@ -1,24 +1,27 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id EF00A28F0E8
-	for <lists+intel-gfx@lfdr.de>; Thu, 15 Oct 2020 13:26:34 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 112F128F0FD
+	for <lists+intel-gfx@lfdr.de>; Thu, 15 Oct 2020 13:26:53 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 094A86EC6D;
-	Thu, 15 Oct 2020 11:26:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B2A4D6EC78;
+	Thu, 15 Oct 2020 11:26:47 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mblankhorst.nl (mblankhorst.nl [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B56586EC69
- for <intel-gfx@lists.freedesktop.org>; Thu, 15 Oct 2020 11:26:31 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 053E56EC67
+ for <intel-gfx@lists.freedesktop.org>; Thu, 15 Oct 2020 11:26:33 +0000 (UTC)
 From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Thu, 15 Oct 2020 13:25:24 +0200
-Message-Id: <20201015112627.1142745-1-maarten.lankhorst@linux.intel.com>
+Date: Thu, 15 Oct 2020 13:25:25 +0200
+Message-Id: <20201015112627.1142745-2-maarten.lankhorst@linux.intel.com>
 X-Mailer: git-send-email 2.28.0
+In-Reply-To: <20201015112627.1142745-1-maarten.lankhorst@linux.intel.com>
+References: <20201015112627.1142745-1-maarten.lankhorst@linux.intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v3 00/63] drm/i915: Remove obj->mm.lock!
+Subject: [Intel-gfx] [PATCH v3 01/63] drm/i915: Move cmd parser pinning to
+ execbuffer
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -31,203 +34,495 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-RmluYWxseSB0aGVyZSwganVzdCBuZWVkcyBhIGxvdCBvZiBmaXhlcyEKCkEgbG90IG9mIHBsYWNl
-cyB3ZXJlIGNhbGxpbmcgY2VydGFpbiBjYWxscyB3aXRob3V0IGFueSBvYmplY3QgbG9jayBoZWxk
-LAp3aXRoIHRoZSByZW1vdmFsIG9mIG1tLmxvY2sgd2UgY2FuIG5vIGxvbmdlciBkbyB0aGlzLCBh
-bmQgaGF2ZSB0byBmaXggaXQuCgpQaHlzIHBhZ2UgaGFuZGxpbmcgaGFzIHRvIGJlIHJlZG9uZSwg
-YXMgbm90aGluZyBwcm90ZWN0cyBvYmotPm9wcyBzdHJ1Y3R1cmUsCndlIGhhdmUgdG8gcmVtb3Zl
-IHN3YXBwaW5nIGl0LCBhbmQgbW92ZSBIQVNfU1RSVUNUX1BBR0UgdG8gb2JqLT5mbGFncyBpbnN0
-ZWFkLgoKVXNlcnBvaW50ZXIgbG9ja2luZyBpcyBpbnZlcnRlZCwgd2hpY2ggd2UgdHJpZWQgdG8g
-Z2V0IGFyb3VuZCB3aXRoIGEgd29ya3F1ZXVlLgpXZSBjb3JyZWN0IHRoZSBsb2NrIG9yZGVyaW5n
-IGFuZCB0cnkgdG8gYWNxdWlyZSB1c2VycHRyIHBhZ2VzIGZpcnN0IGJlZm9yZSB0YWtpbmcKYW55
-IHd3IGxvY2tzLiBUaGlzIGlzIG1vcmUgY29tcGF0aWJsZSB3aXRoIHRoZSBsb2NraW5nIGhpZXJh
-cmNoeSwgYXMgd2UgbWF5IG5lZWQKdG8gYWNxdWlyZSBtbWFwX3NlbS4KClRoZSBwcmV2aW91cyB2
-ZXJzaW9uZSBicm9rZSBnZW1fZXhlY19zY2hlZHVsZUBwaS1zaGFyZWQvZGlzdGluY3QtaW92YSwg
-YnV0Cm5vdyB0aGF0IHdlIG9ubHkgdW5iaW5kIHdoZW4gcmVxdWlyZWQsIHRoaXMgaXMgbm93IGZp
-eGVkLgoKV2UgYWxzbyBoYXZlIHRvIGZpeCBzb21lIGRtYS13b3JrLCB0aGUgY29tbWFuZCBwYXJz
-ZXIgYW5kIGNsZmx1c2ggYXJlIHNsaWdodGx5CnJld29ya2VkIHRvIHB1dCBhbGwgbWVtb3J5IGFs
-bG9jYXRpb25zIGFuZCBwaW5uaW5nIGluIHRoZSBwcmVwYXJhdGlvbiwKc28gdGhlIHdvcmsgY291
-bGQgcGFzcyBmZW5jZSBhbm5vdGF0aW9ucy4KCkluIGEgZmV3IHBsYWNlcyBsaWtlIGlndF9zcGlu
-bmVyIGFuZCBleGVjbGlzdHMsIHdlIG1vdmUgc29tZSBwYXJ0IG9mIGluaXQgdG8gdGhlCmZpcnN0
-IHBpbiwgYmVjYXVzZSB3ZSBuZWVkIHRvIGhhdmUgdGhlIHd3IGxvY2sgaGVsZCBhbmQgaXQgbWFr
-ZXMgaXQgZWFzaWVyIHRoYXQgd2F5LgoKRmluYWxseSB3ZSBjb252ZXJ0IGFsbCBzZWxmdGVzdHMs
-IGFuZCB0aGVuIHJlbW92ZSBvYmotPm1tLmxvY2shCgpQcmV2aW91cyB2ZXJzaW9uIGhhZCBzb21l
-IGlzc3VlcyB3aXRoIGh3c3AsIHRob3NlIGFyZSBub3cgZml4ZWQuIEEgbWVtc2V0IHdhcwptaXNz
-aW5nLCBhbmQgaGFzIGJlZW4gcmUtYWRkZWQuCgpTb21lIGlzc3VlcyB3aXRoIHVzZXJwdHIgZG91
-YmxlIGxvY2sgcG9wcGVkIHVwLiBVc2VycHRyIG5vdGlmaWVyX2xvY2sKaXMgbm93IGEgc3Bpbmxv
-Y2sgYXMgaXQgc2hvdWxkIG9ubHkgYmUgaGVsZCBmb3IgdmVyeSBzaG9ydCBhbW91bnRzIG9mIHRp
-bWUKYW5kIHNsZWVwaW5nIGlzIG5vdCBhbGxvd2VkLCBhbmQgbm93IGNvcnJlY3RseSB1bmxvY2tl
-ZCB3aGVuIGludmFsaWRhdGluZy4KClRoaXMgc2hvdWxkIGZpeCB0aGUgcmVtYWluaW5nIHRlc3Qg
-aXNzdWVzLgoKVGVzdC13aXRoOiAxNjAyNTEwNTA0NDYuMzE5MTEuMTcyMjA4MjI1MjI5NzU3MzM5
-NzNAZW1lcmlsLmZyZWVkZXNrdG9wLm9yZwoKTWFhcnRlbiBMYW5raG9yc3QgKDYyKToKICBkcm0v
-aTkxNTogTW92ZSBjbWQgcGFyc2VyIHBpbm5pbmcgdG8gZXhlY2J1ZmZlcgogIGRybS9pOTE1OiBB
-ZGQgbWlzc2luZyAtRURFQURMSyBoYW5kbGluZyB0byBleGVjYnVmIHBpbm5pbmcKICBkcm0vaTkx
-NTogRG8gbm90IHNoYXJlIGh3c3AgYWNyb3NzIGNvbnRleHRzIGFueSBtb3JlLCB2My4KICBkcm0v
-aTkxNTogUGluIHRpbWVsaW5lIG1hcCBhZnRlciBmaXJzdCB0aW1lbGluZSBwaW4sIHYzLgogIGRy
-bS9pOTE1OiBFbnN1cmUgd2UgaG9sZCB0aGUgb2JqZWN0IG11dGV4IGluIHBpbiBjb3JyZWN0bHku
-CiAgZHJtL2k5MTU6IEFkZCBnZW0gb2JqZWN0IGxvY2tpbmcgdG8gbWFkdmlzZS4KICBkcm0vaTkx
-NTogTW92ZSBIQVNfU1RSVUNUX1BBR0UgdG8gb2JqLT5mbGFncwogIGRybS9pOTE1OiBSZXdvcmsg
-c3RydWN0IHBoeXMgYXR0YWNobWVudCBoYW5kbGluZwogIGRybS9pOTE1OiBDb252ZXJ0IGk5MTVf
-Z2VtX29iamVjdF9hdHRhY2hfcGh5cygpIHRvIHd3IGxvY2tpbmcKICBkcm0vaTkxNTogbWFrZSBs
-b2NrZGVwIHNsaWdodGx5IGhhcHBpZXIgYWJvdXQgZXhlY2J1Zi4KICBkcm0vaTkxNTogRGlzYWJs
-ZSB1c2VycHRyIHByZWFkL3B3cml0ZSBzdXBwb3J0LgogIGRybS9pOTE1OiBObyBsb25nZXIgYWxs
-b3cgZXhwb3J0aW5nIHVzZXJwdHIgdGhyb3VnaCBkbWEtYnVmCiAgZHJtL2k5MTU6IFJlamVjdCBt
-b3JlIGlvY3RscyBmb3IgdXNlcnB0cgogIGRybS9pOTE1OiBSZWplY3QgVU5TWU5DSFJPTklaRUQg
-Zm9yIHVzZXJwdHIKICBkcm0vaTkxNTogRml4IHVzZXJwdHIgc28gd2UgZG8gbm90IGhhdmUgdG8g
-d29ycnkgYWJvdXQgb2JqLT5tbS5sb2NrLAogICAgdjMuCiAgZHJtL2k5MTU6IEZsYXR0ZW4gb2Jq
-LT5tbS5sb2NrCiAgZHJtL2k5MTU6IFBvcHVsYXRlIGxvZ2ljYWwgY29udGV4dCBkdXJpbmcgZmly
-c3QgcGluLgogIGRybS9pOTE1OiBNYWtlIHJpbmcgc3VibWlzc2lvbiBjb21wYXRpYmxlIHdpdGgg
-b2JqLT5tbS5sb2NrIHJlbW92YWwsCiAgICB2Mi4KICBkcm0vaTkxNTogSGFuZGxlIHd3IGxvY2tp
-bmcgaW4gaW5pdF9zdGF0dXNfcGFnZQogIGRybS9pOTE1OiBSZXdvcmsgY2xmbHVzaCB0byB3b3Jr
-IGNvcnJlY3RseSB3aXRob3V0IG9iai0+bW0ubG9jay4KICBkcm0vaTkxNTogUGFzcyB3dyBjdHgg
-dG8gaW50ZWxfcGluX3RvX2Rpc3BsYXlfcGxhbmUKICBkcm0vaTkxNTogQWRkIG9iamVjdCBsb2Nr
-aW5nIHRvIHZtX2ZhdWx0X2NwdQogIGRybS9pOTE1OiBNb3ZlIHBpbm5pbmcgdG8gaW5zaWRlIGVu
-Z2luZV93YV9saXN0X3ZlcmlmeSgpCiAgZHJtL2k5MTU6IFRha2UgcmVzZXJ2YXRpb24gbG9jayBh
-cm91bmQgaTkxNV92bWFfcGluLgogIGRybS9pOTE1OiBNYWtlIGludGVsX2luaXRfd29ya2Fyb3Vu
-ZF9iYiBtb3JlIGNvbXBhdGlibGUgd2l0aCB3dwogICAgbG9ja2luZy4KICBkcm0vaTkxNTogTWFr
-ZSBfX2VuZ2luZV91bnBhcmsoKSBjb21wYXRpYmxlIHdpdGggd3cgbG9ja2luZy4KICBkcm0vaTkx
-NTogVGFrZSBvYmogbG9jayBhcm91bmQgc2V0X2RvbWFpbiBpb2N0bAogIGRybS9pOTE1OiBEZWZl
-ciBwaW4gY2FsbHMgaW4gYnVmZmVyIHBvb2wgdW50aWwgZmlyc3QgdXNlIGJ5IGNhbGxlci4KICBk
-cm0vaTkxNTogRml4IHByZWFkL3B3cml0ZSB0byB3b3JrIHdpdGggbmV3IGxvY2tpbmcgcnVsZXMu
-CiAgZHJtL2k5MTU6IEZpeCB3b3JrYXJvdW5kcyBzZWxmdGVzdCwgcGFydCAxCiAgZHJtL2k5MTU6
-IEFkZCBpZ3Rfc3Bpbm5lcl9waW4oKSB0byBhbGxvdyBmb3Igd3cgbG9ja2luZyBhcm91bmQKICAg
-IHNwaW5uZXIuCiAgZHJtL2k5MTU6IEFkZCB3dyBsb2NraW5nIGFyb3VuZCB2bV9hY2Nlc3MoKQog
-IGRybS9pOTE1OiBJbmNyZWFzZSB3dyBsb2NraW5nIGZvciBwZXJmLgogIGRybS9pOTE1OiBMb2Nr
-IHd3IGluIHVjb2RlIG9iamVjdHMgY29ycmVjdGx5CiAgZHJtL2k5MTU6IEFkZCB3dyBsb2NraW5n
-IHRvIGRtYS1idWYgb3BzLgogIGRybS9pOTE1OiBBZGQgbWlzc2luZyB3dyBsb2NrIGluIGludGVs
-X2RzYl9wcmVwYXJlLgogIGRybS9pOTE1OiBGaXggd3cgbG9ja2luZyBpbiBzaG1lbV9jcmVhdGVf
-ZnJvbV9vYmplY3QKICBkcm0vaTkxNTogVXNlIGEgc2luZ2xlIHBhZ2UgdGFibGUgbG9jayBmb3Ig
-ZWFjaCBndHQuCiAgZHJtL2k5MTUvc2VsZnRlc3RzOiBQcmVwYXJlIGh1Z2VfcGFnZXMgdGVzdGNh
-c2VzIGZvciBvYmotPm1tLmxvY2sKICAgIHJlbW92YWwuCiAgZHJtL2k5MTUvc2VsZnRlc3RzOiBQ
-cmVwYXJlIGNsaWVudCBibGl0IGZvciBvYmotPm1tLmxvY2sgcmVtb3ZhbC4KICBkcm0vaTkxNS9z
-ZWxmdGVzdHM6IFByZXBhcmUgY29oZXJlbmN5IHRlc3RzIGZvciBvYmotPm1tLmxvY2sgcmVtb3Zh
-bC4KICBkcm0vaTkxNS9zZWxmdGVzdHM6IFByZXBhcmUgY29udGV4dCB0ZXN0cyBmb3Igb2JqLT5t
-bS5sb2NrIHJlbW92YWwuCiAgZHJtL2k5MTUvc2VsZnRlc3RzOiBQcmVwYXJlIGRtYS1idWYgdGVz
-dHMgZm9yIG9iai0+bW0ubG9jayByZW1vdmFsLgogIGRybS9pOTE1L3NlbGZ0ZXN0czogUHJlcGFy
-ZSBleGVjYnVmIHRlc3RzIGZvciBvYmotPm1tLmxvY2sgcmVtb3ZhbC4KICBkcm0vaTkxNS9zZWxm
-dGVzdHM6IFByZXBhcmUgbW1hbiB0ZXN0Y2FzZXMgZm9yIG9iai0+bW0ubG9jayByZW1vdmFsLgog
-IGRybS9pOTE1L3NlbGZ0ZXN0czogUHJlcGFyZSBvYmplY3QgdGVzdHMgZm9yIG9iai0+bW0ubG9j
-ayByZW1vdmFsLgogIGRybS9pOTE1L3NlbGZ0ZXN0czogUHJlcGFyZSBvYmplY3QgYmxpdCB0ZXN0
-cyBmb3Igb2JqLT5tbS5sb2NrCiAgICByZW1vdmFsLgogIGRybS9pOTE1L3NlbGZ0ZXN0czogUHJl
-cGFyZSBpZ3RfZ2VtX3V0aWxzIGZvciBvYmotPm1tLmxvY2sgcmVtb3ZhbAogIGRybS9pOTE1L3Nl
-bGZ0ZXN0czogUHJlcGFyZSBjb250ZXh0IHNlbGZ0ZXN0IGZvciBvYmotPm1tLmxvY2sgcmVtb3Zh
-bAogIGRybS9pOTE1L3NlbGZ0ZXN0czogUHJlcGFyZSBoYW5nY2hlY2sgZm9yIG9iai0+bW0ubG9j
-ayByZW1vdmFsCiAgZHJtL2k5MTUvc2VsZnRlc3RzOiBQcmVwYXJlIGV4ZWNsaXN0cyBmb3Igb2Jq
-LT5tbS5sb2NrIHJlbW92YWwKICBkcm0vaTkxNS9zZWxmdGVzdHM6IFByZXBhcmUgbW9jcyB0ZXN0
-cyBmb3Igb2JqLT5tbS5sb2NrIHJlbW92YWwKICBkcm0vaTkxNS9zZWxmdGVzdHM6IFByZXBhcmUg
-cmluZyBzdWJtaXNzaW9uIGZvciBvYmotPm1tLmxvY2sgcmVtb3ZhbAogIGRybS9pOTE1L3NlbGZ0
-ZXN0czogUHJlcGFyZSB0aW1lbGluZSB0ZXN0cyBmb3Igb2JqLT5tbS5sb2NrIHJlbW92YWwKICBk
-cm0vaTkxNS9zZWxmdGVzdHM6IFByZXBhcmUgaTkxNV9yZXF1ZXN0IHRlc3RzIGZvciBvYmotPm1t
-LmxvY2sKICAgIHJlbW92YWwKICBkcm0vaTkxNS9zZWxmdGVzdHM6IFByZXBhcmUgbWVtb3J5IHJl
-Z2lvbiB0ZXN0cyBmb3Igb2JqLT5tbS5sb2NrCiAgICByZW1vdmFsCiAgZHJtL2k5MTUvc2VsZnRl
-c3RzOiBQcmVwYXJlIGNzIGVuZ2luZSB0ZXN0cyBmb3Igb2JqLT5tbS5sb2NrIHJlbW92YWwKICBk
-cm0vaTkxNS9zZWxmdGVzdHM6IFByZXBhcmUgZ3R0IHRlc3RzIGZvciBvYmotPm1tLmxvY2sgcmVt
-b3ZhbAogIGRybS9pOTE1OiBGaW5hbGx5IHJlbW92ZSBvYmotPm1tLmxvY2suCiAgZHJtL2k5MTU6
-IEtlZXAgdXNlcnBvaW50ZXIgYmluZGluZ3MgaWYgc2VxY291bnQgaXMgdW5jaGFuZ2VkLCB2Mi4K
-ICBkcm0vaTkxNTogSWRlYSB0byBpbXBsZW1lbnQgZXZpY3Rpb24gbG9ja2luZwogIGRybS9pOTE1
-OiBLZWVwIGxhenkgcmVmZXJlbmNlIHRvIHVzZXJwdHIgcGFnZXMKClRob21hcyBIZWxsc3Ryw7Zt
-ICgxKToKICBkcm0vaTkxNTogUHJlcGFyZSBmb3Igb2JqLT5tbS5sb2NrIHJlbW92YWwKCiBkcml2
-ZXJzL2dwdS9kcm0vaTkxNS9NYWtlZmlsZSAgICAgICAgICAgICAgICAgfCAgIDEgLQogZHJpdmVy
-cy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5LmMgIHwgIDcxICstCiBkcml2ZXJz
-L2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXkuaCAgfCAgIDIgKy0KIGRyaXZlcnMv
-Z3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZHNiLmMgICAgICB8ICAgMiArLQogZHJpdmVycy9n
-cHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9mYmRldi5jICAgIHwgICAyICstCiBkcml2ZXJzL2dw
-dS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX292ZXJsYXkuYyAgfCAgMzQgKy0KIGRyaXZlcnMvZ3B1
-L2RybS9pOTE1L2dlbS9pOTE1X2dlbV9jbGZsdXNoLmMgICB8ICAxNSArLQogZHJpdmVycy9ncHUv
-ZHJtL2k5MTUvZ2VtL2k5MTVfZ2VtX2RtYWJ1Zi5jICAgIHwgIDYyICstCiBkcml2ZXJzL2dwdS9k
-cm0vaTkxNS9nZW0vaTkxNV9nZW1fZG9tYWluLmMgICAgfCAgNTEgKy0KIC4uLi9ncHUvZHJtL2k5
-MTUvZ2VtL2k5MTVfZ2VtX2V4ZWNidWZmZXIuYyAgICB8IDIwOSArKysrLQogZHJpdmVycy9ncHUv
-ZHJtL2k5MTUvZ2VtL2k5MTVfZ2VtX2ZlbmNlLmMgICAgIHwgIDk1IC0tCiBkcml2ZXJzL2dwdS9k
-cm0vaTkxNS9nZW0vaTkxNV9nZW1faW50ZXJuYWwuYyAgfCAgIDYgKy0KIGRyaXZlcnMvZ3B1L2Ry
-bS9pOTE1L2dlbS9pOTE1X2dlbV9sbWVtLmMgICAgICB8ICAgNCArLQogZHJpdmVycy9ncHUvZHJt
-L2k5MTUvZ2VtL2k5MTVfZ2VtX21tYW4uYyAgICAgIHwgIDM1ICstCiBkcml2ZXJzL2dwdS9kcm0v
-aTkxNS9nZW0vaTkxNV9nZW1fb2JqZWN0LmMgICAgfCAgMTAgKy0KIGRyaXZlcnMvZ3B1L2RybS9p
-OTE1L2dlbS9pOTE1X2dlbV9vYmplY3QuaCAgICB8IDEyNiArKy0KIC4uLi9ncHUvZHJtL2k5MTUv
-Z2VtL2k5MTVfZ2VtX29iamVjdF9ibHQuYyAgICB8ICAgNiArCiAuLi4vZ3B1L2RybS9pOTE1L2dl
-bS9pOTE1X2dlbV9vYmplY3RfdHlwZXMuaCAgfCAgMjMgKy0KIGRyaXZlcnMvZ3B1L2RybS9pOTE1
-L2dlbS9pOTE1X2dlbV9wYWdlcy5jICAgICB8IDEwNCArKy0KIGRyaXZlcnMvZ3B1L2RybS9pOTE1
-L2dlbS9pOTE1X2dlbV9waHlzLmMgICAgICB8ICA5NSArLQogZHJpdmVycy9ncHUvZHJtL2k5MTUv
-Z2VtL2k5MTVfZ2VtX3JlZ2lvbi5jICAgIHwgICA0ICstCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9n
-ZW0vaTkxNV9nZW1fcmVnaW9uLmggICAgfCAgIDMgKy0KIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2dl
-bS9pOTE1X2dlbV9zaG1lbS5jICAgICB8ICAxOCArLQogZHJpdmVycy9ncHUvZHJtL2k5MTUvZ2Vt
-L2k5MTVfZ2VtX3Nocmlua2VyLmMgIHwgIDQ3ICstCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9nZW0v
-aTkxNV9nZW1fc2hyaW5rZXIuaCAgfCAgIDQgKy0KIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2dlbS9p
-OTE1X2dlbV9zdG9sZW4uYyAgICB8ICAxNCArLQogZHJpdmVycy9ncHUvZHJtL2k5MTUvZ2VtL2k5
-MTVfZ2VtX3RpbGluZy5jICAgIHwgICAyIC0KIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2dlbS9pOTE1
-X2dlbV91c2VycHRyLmMgICB8IDg3NSArKysrKystLS0tLS0tLS0tLS0KIC4uLi9kcm0vaTkxNS9n
-ZW0vc2VsZnRlc3RzL2h1Z2VfZ2VtX29iamVjdC5jICB8ICAgNCArLQogLi4uL2dwdS9kcm0vaTkx
-NS9nZW0vc2VsZnRlc3RzL2h1Z2VfcGFnZXMuYyAgIHwgIDM4ICstCiAuLi4vaTkxNS9nZW0vc2Vs
-ZnRlc3RzL2k5MTVfZ2VtX2NsaWVudF9ibHQuYyAgfCAgIDggKy0KIC4uLi9pOTE1L2dlbS9zZWxm
-dGVzdHMvaTkxNV9nZW1fY29oZXJlbmN5LmMgICB8ICAxOCArLQogLi4uL2RybS9pOTE1L2dlbS9z
-ZWxmdGVzdHMvaTkxNV9nZW1fY29udGV4dC5jIHwgIDEwICstCiAuLi4vZHJtL2k5MTUvZ2VtL3Nl
-bGZ0ZXN0cy9pOTE1X2dlbV9kbWFidWYuYyAgfCAgIDIgKy0KIC4uLi9pOTE1L2dlbS9zZWxmdGVz
-dHMvaTkxNV9nZW1fZXhlY2J1ZmZlci5jICB8ICAgMiArLQogLi4uL2RybS9pOTE1L2dlbS9zZWxm
-dGVzdHMvaTkxNV9nZW1fbW1hbi5jICAgIHwgIDIxICstCiAuLi4vZHJtL2k5MTUvZ2VtL3NlbGZ0
-ZXN0cy9pOTE1X2dlbV9vYmplY3QuYyAgfCAgIDIgKy0KIC4uLi9pOTE1L2dlbS9zZWxmdGVzdHMv
-aTkxNV9nZW1fb2JqZWN0X2JsdC5jICB8ICAgNiArLQogLi4uL2RybS9pOTE1L2dlbS9zZWxmdGVz
-dHMvaTkxNV9nZW1fcGh5cy5jICAgIHwgIDEwICstCiAuLi4vZHJtL2k5MTUvZ2VtL3NlbGZ0ZXN0
-cy9pZ3RfZ2VtX3V0aWxzLmMgICAgfCAgIDIgKy0KIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L2lu
-dGVsX2NvbnRleHRfdHlwZXMuaCB8ICAxMyArLQogZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvaW50
-ZWxfZW5naW5lX2NzLmMgICAgIHwgIDM3ICstCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC9pbnRl
-bF9lbmdpbmVfcG0uYyAgICAgfCAgIDQgKy0KIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L2ludGVs
-X2dndHQuYyAgICAgICAgICB8ICAxMCArLQogLi4uL2dwdS9kcm0vaTkxNS9ndC9pbnRlbF9ndF9i
-dWZmZXJfcG9vbC5jICAgIHwgIDQ3ICstCiAuLi4vZ3B1L2RybS9pOTE1L2d0L2ludGVsX2d0X2J1
-ZmZlcl9wb29sLmggICAgfCAgIDUgKwogLi4uL2RybS9pOTE1L2d0L2ludGVsX2d0X2J1ZmZlcl9w
-b29sX3R5cGVzLmggIHwgICAxICsKIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L2ludGVsX2d0X3R5
-cGVzLmggICAgICB8ICAgNCAtCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC9pbnRlbF9ndHQuYyAg
-ICAgICAgICAgfCAgMzggKy0KIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L2ludGVsX2d0dC5oICAg
-ICAgICAgICB8ICAgNSArCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC9pbnRlbF9scmMuYyAgICAg
-ICAgICAgfCAxNTAgKy0tCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC9pbnRlbF9wcGd0dC5jICAg
-ICAgICAgfCAgIDMgKy0KIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L2ludGVsX3JlbmRlcnN0YXRl
-LmMgICB8ICAgMiArLQogLi4uL2dwdS9kcm0vaTkxNS9ndC9pbnRlbF9yaW5nX3N1Ym1pc3Npb24u
-YyAgIHwgMTg0ICsrLS0KIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L2ludGVsX3RpbWVsaW5lLmMg
-ICAgICB8IDM5MiArKy0tLS0tLQogZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvaW50ZWxfdGltZWxp
-bmUuaCAgICAgIHwgICAyICsKIC4uLi9ncHUvZHJtL2k5MTUvZ3QvaW50ZWxfdGltZWxpbmVfdHlw
-ZXMuaCAgICB8ICAxNSArLQogZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvaW50ZWxfd29ya2Fyb3Vu
-ZHMuYyAgIHwgIDI0ICstCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC9tb2NrX2VuZ2luZS5jICAg
-ICAgICAgfCAgMjIgKy0KIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L3NlbGZ0ZXN0X2NvbnRleHQu
-YyAgICB8ICAgNCArLQogZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3Qvc2VsZnRlc3RfZW5naW5lX2Nz
-LmMgIHwgICA0ICstCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC9zZWxmdGVzdF9oYW5nY2hlY2su
-YyAgfCAgIDggKy0KIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L3NlbGZ0ZXN0X2xyYy5jICAgICAg
-ICB8ICAzNCArLQogZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3Qvc2VsZnRlc3RfbW9jcy5jICAgICAg
-IHwgICAyICstCiAuLi4vZHJtL2k5MTUvZ3Qvc2VsZnRlc3RfcmluZ19zdWJtaXNzaW9uLmMgICAg
-fCAgIDQgKy0KIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L3NlbGZ0ZXN0X3RpbWVsaW5lLmMgICB8
-ICA5OCArLQogLi4uL2dwdS9kcm0vaTkxNS9ndC9zZWxmdGVzdF93b3JrYXJvdW5kcy5jICAgIHwg
-MTAxICstCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC9zaG1lbV91dGlscy5jICAgICAgICAgfCAg
-IDIgKy0KIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L3VjL2ludGVsX2d1Yy5jICAgICAgICB8ICAg
-MiArLQogZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvdWMvaW50ZWxfZ3VjX2xvZy5jICAgIHwgICA0
-ICstCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC91Yy9pbnRlbF9odWMuYyAgICAgICAgfCAgIDIg
-Ky0KIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L3VjL2ludGVsX3VjX2Z3LmMgICAgICB8ICAgMiAr
-LQogZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3Z0L2RtYWJ1Zi5jICAgICAgICAgICAgIHwgICAyICst
-CiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2FjdGl2ZS5jICAgICAgICAgICAgfCAgMjAgKy0K
-IGRyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfY21kX3BhcnNlci5jICAgICAgICB8IDEwNCArLS0K
-IGRyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfZGVidWdmcy5jICAgICAgICAgICB8ICAgNCArLQog
-ZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9kcnYuaCAgICAgICAgICAgICAgIHwgIDE4ICstCiBk
-cml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2dlbS5jICAgICAgICAgICAgICAgfCAyOTggKysrLS0t
-CiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2dlbS5oICAgICAgICAgICAgICAgfCAgIDUgKy0K
-IGRyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfZ2VtX2d0dC5jICAgICAgICAgICB8ICAgMiArLQog
-ZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9tZW1jcHkuYyAgICAgICAgICAgIHwgICAyICstCiBk
-cml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X21lbWNweS5oICAgICAgICAgICAgfCAgIDIgKy0KIGRy
-aXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfcGVyZi5jICAgICAgICAgICAgICB8ICA1NiArLQogZHJp
-dmVycy9ncHUvZHJtL2k5MTUvaTkxNV9yZXF1ZXN0LmMgICAgICAgICAgIHwgICA0IC0KIGRyaXZl
-cnMvZ3B1L2RybS9pOTE1L2k5MTVfcmVxdWVzdC5oICAgICAgICAgICB8ICAxMCAtCiBkcml2ZXJz
-L2dwdS9kcm0vaTkxNS9pOTE1X3NlbGZ0ZXN0LmggICAgICAgICAgfCAgIDIgKwogZHJpdmVycy9n
-cHUvZHJtL2k5MTUvaTkxNV92bWEuYyAgICAgICAgICAgICAgIHwgIDI2ICstCiBkcml2ZXJzL2dw
-dS9kcm0vaTkxNS9pOTE1X3ZtYS5oICAgICAgICAgICAgICAgfCAgMjAgKy0KIGRyaXZlcnMvZ3B1
-L2RybS9pOTE1L3NlbGZ0ZXN0cy9pOTE1X2dlbV9ndHQuYyB8ICA5NCArLQogZHJpdmVycy9ncHUv
-ZHJtL2k5MTUvc2VsZnRlc3RzL2k5MTVfcmVxdWVzdC5jIHwgIDEwICstCiBkcml2ZXJzL2dwdS9k
-cm0vaTkxNS9zZWxmdGVzdHMvaWd0X3NwaW5uZXIuYyAgfCAxMzYgKystCiBkcml2ZXJzL2dwdS9k
-cm0vaTkxNS9zZWxmdGVzdHMvaWd0X3NwaW5uZXIuaCAgfCAgIDUgKwogLi4uL2RybS9pOTE1L3Nl
-bGZ0ZXN0cy9pbnRlbF9tZW1vcnlfcmVnaW9uLmMgIHwgIDE4ICstCiBkcml2ZXJzL2dwdS9kcm0v
-aTkxNS9zZWxmdGVzdHMvbW9ja19yZWdpb24uYyAgfCAgIDQgKy0KIDk0IGZpbGVzIGNoYW5nZWQs
-IDIwOTQgaW5zZXJ0aW9ucygrKSwgMjAxNiBkZWxldGlvbnMoLSkKIGRlbGV0ZSBtb2RlIDEwMDY0
-NCBkcml2ZXJzL2dwdS9kcm0vaTkxNS9nZW0vaTkxNV9nZW1fZmVuY2UuYwoKCmJhc2UtY29tbWl0
-OiAxMTRiM2ZmMzU4NzA2MjNmYmQ3YjdhYTU4MGU0YjQzYzY5MGVkYWNlCi0tIAoyLjI4LjAKX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1h
-aWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMu
-ZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
+We need to get rid of allocations in the cmd parser, because it needs
+to be called from a signaling context, first move all pinning to
+execbuf, where we already hold all locks.
+
+Allocate jump_whitelist in the execbuffer, and add annotations around
+intel_engine_cmd_parser(), to ensure we only call the command parser
+without allocating any memory, or taking any locks we're not supposed to.
+
+Because i915_gem_object_get_page() may also allocate memory, add a
+path to i915_gem_object_get_sg() that prevents memory allocations,
+and walk the sg list manually. It should be similarly fast.
+
+This has the added benefit of being able to catch all memory allocation
+errors before the point of no return, and return -ENOMEM safely to the
+execbuf submitter.
+
+Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+---
+ .../gpu/drm/i915/gem/i915_gem_execbuffer.c    |  74 ++++++++++++-
+ drivers/gpu/drm/i915/gem/i915_gem_object.h    |  10 +-
+ drivers/gpu/drm/i915/gem/i915_gem_pages.c     |  21 +++-
+ drivers/gpu/drm/i915/gt/intel_ggtt.c          |   2 +-
+ drivers/gpu/drm/i915/i915_cmd_parser.c        | 104 ++++++++----------
+ drivers/gpu/drm/i915/i915_drv.h               |   7 +-
+ drivers/gpu/drm/i915/i915_memcpy.c            |   2 +-
+ drivers/gpu/drm/i915/i915_memcpy.h            |   2 +-
+ 8 files changed, 142 insertions(+), 80 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+index 4b09bcd70cf4..63e2f16204da 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+@@ -27,6 +27,7 @@
+ #include "i915_sw_fence_work.h"
+ #include "i915_trace.h"
+ #include "i915_user_extensions.h"
++#include "i915_memcpy.h"
+ 
+ struct eb_vma {
+ 	struct i915_vma *vma;
+@@ -2269,24 +2270,45 @@ struct eb_parse_work {
+ 	struct i915_vma *trampoline;
+ 	unsigned long batch_offset;
+ 	unsigned long batch_length;
++	unsigned long *jump_whitelist;
++	const void *batch_map;
++	void *shadow_map;
+ };
+ 
+ static int __eb_parse(struct dma_fence_work *work)
+ {
+ 	struct eb_parse_work *pw = container_of(work, typeof(*pw), base);
++	int ret;
++	bool cookie;
+ 
+-	return intel_engine_cmd_parser(pw->engine,
+-				       pw->batch,
+-				       pw->batch_offset,
+-				       pw->batch_length,
+-				       pw->shadow,
+-				       pw->trampoline);
++	cookie = dma_fence_begin_signalling();
++	ret = intel_engine_cmd_parser(pw->engine,
++				      pw->batch,
++				      pw->batch_offset,
++				      pw->batch_length,
++				      pw->shadow,
++				      pw->jump_whitelist,
++				      pw->shadow_map,
++				      pw->batch_map);
++	dma_fence_end_signalling(cookie);
++
++	return ret;
+ }
+ 
+ static void __eb_parse_release(struct dma_fence_work *work)
+ {
+ 	struct eb_parse_work *pw = container_of(work, typeof(*pw), base);
+ 
++	if (!IS_ERR_OR_NULL(pw->jump_whitelist))
++		kfree(pw->jump_whitelist);
++
++	if (pw->batch_map)
++		i915_gem_object_unpin_map(pw->batch->obj);
++	else
++		i915_gem_object_unpin_pages(pw->batch->obj);
++
++	i915_gem_object_unpin_map(pw->shadow->obj);
++
+ 	if (pw->trampoline)
+ 		i915_active_release(&pw->trampoline->active);
+ 	i915_active_release(&pw->shadow->active);
+@@ -2336,6 +2358,8 @@ static int eb_parse_pipeline(struct i915_execbuffer *eb,
+ 			     struct i915_vma *trampoline)
+ {
+ 	struct eb_parse_work *pw;
++	struct drm_i915_gem_object *batch = eb->batch->vma->obj;
++	bool needs_clflush;
+ 	int err;
+ 
+ 	GEM_BUG_ON(overflows_type(eb->batch_start_offset, pw->batch_offset));
+@@ -2359,6 +2383,34 @@ static int eb_parse_pipeline(struct i915_execbuffer *eb,
+ 			goto err_shadow;
+ 	}
+ 
++	pw->shadow_map = i915_gem_object_pin_map(shadow->obj, I915_MAP_FORCE_WB);
++	if (IS_ERR(pw->shadow_map)) {
++		err = PTR_ERR(pw->shadow_map);
++		goto err_trampoline;
++	}
++
++	needs_clflush =
++		!(batch->cache_coherent & I915_BO_CACHE_COHERENT_FOR_READ);
++
++	pw->batch_map = ERR_PTR(-ENODEV);
++	if (needs_clflush && i915_has_memcpy_from_wc())
++		pw->batch_map = i915_gem_object_pin_map(batch, I915_MAP_WC);
++
++	if (IS_ERR(pw->batch_map)) {
++		err = i915_gem_object_pin_pages(batch);
++		if (err)
++			goto err_unmap_shadow;
++		pw->batch_map = NULL;
++	}
++
++	pw->jump_whitelist =
++		intel_engine_cmd_parser_alloc_jump_whitelist(eb->batch_len,
++							     trampoline);
++	if (IS_ERR(pw->jump_whitelist)) {
++		err = PTR_ERR(pw->jump_whitelist);
++		goto err_unmap_batch;
++	}
++
+ 	dma_fence_work_init(&pw->base, &eb_parse_ops);
+ 
+ 	pw->engine = eb->engine;
+@@ -2398,6 +2450,16 @@ static int eb_parse_pipeline(struct i915_execbuffer *eb,
+ 	dma_fence_work_commit_imm(&pw->base);
+ 	return err;
+ 
++err_unmap_batch:
++	if (pw->batch_map)
++		i915_gem_object_unpin_map(batch);
++	else
++		i915_gem_object_unpin_pages(batch);
++err_unmap_shadow:
++	i915_gem_object_unpin_map(shadow->obj);
++err_trampoline:
++	if (trampoline)
++		i915_active_release(&trampoline->active);
+ err_shadow:
+ 	i915_active_release(&shadow->active);
+ err_batch:
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object.h b/drivers/gpu/drm/i915/gem/i915_gem_object.h
+index be14486f63a7..99b18ba0c48d 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_object.h
++++ b/drivers/gpu/drm/i915/gem/i915_gem_object.h
+@@ -275,22 +275,22 @@ struct scatterlist *
+ __i915_gem_object_get_sg(struct drm_i915_gem_object *obj,
+ 			 struct i915_gem_object_page_iter *iter,
+ 			 unsigned int n,
+-			 unsigned int *offset);
++			 unsigned int *offset, bool allow_alloc);
+ 
+ static inline struct scatterlist *
+ i915_gem_object_get_sg(struct drm_i915_gem_object *obj,
+ 		       unsigned int n,
+-		       unsigned int *offset)
++		       unsigned int *offset, bool allow_alloc)
+ {
+-	return __i915_gem_object_get_sg(obj, &obj->mm.get_page, n, offset);
++	return __i915_gem_object_get_sg(obj, &obj->mm.get_page, n, offset, allow_alloc);
+ }
+ 
+ static inline struct scatterlist *
+ i915_gem_object_get_sg_dma(struct drm_i915_gem_object *obj,
+ 			   unsigned int n,
+-			   unsigned int *offset)
++			   unsigned int *offset, bool allow_alloc)
+ {
+-	return __i915_gem_object_get_sg(obj, &obj->mm.get_dma_page, n, offset);
++	return __i915_gem_object_get_sg(obj, &obj->mm.get_dma_page, n, offset, allow_alloc);
+ }
+ 
+ struct page *
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_pages.c b/drivers/gpu/drm/i915/gem/i915_gem_pages.c
+index 256e69f4eb5a..2e89ba5133eb 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_pages.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_pages.c
+@@ -457,7 +457,8 @@ struct scatterlist *
+ __i915_gem_object_get_sg(struct drm_i915_gem_object *obj,
+ 			 struct i915_gem_object_page_iter *iter,
+ 			 unsigned int n,
+-			 unsigned int *offset)
++			 unsigned int *offset,
++			 bool allow_alloc)
+ {
+ 	const bool dma = iter == &obj->mm.get_dma_page;
+ 	struct scatterlist *sg;
+@@ -479,6 +480,9 @@ __i915_gem_object_get_sg(struct drm_i915_gem_object *obj,
+ 	if (n < READ_ONCE(iter->sg_idx))
+ 		goto lookup;
+ 
++	if (!allow_alloc)
++		goto manual_lookup;
++
+ 	mutex_lock(&iter->lock);
+ 
+ 	/* We prefer to reuse the last sg so that repeated lookup of this
+@@ -528,7 +532,16 @@ __i915_gem_object_get_sg(struct drm_i915_gem_object *obj,
+ 	if (unlikely(n < idx)) /* insertion completed by another thread */
+ 		goto lookup;
+ 
+-	/* In case we failed to insert the entry into the radixtree, we need
++	goto manual_walk;
++
++manual_lookup:
++	idx = 0;
++	sg = obj->mm.pages->sgl;
++	count = __sg_page_count(sg);
++
++manual_walk:
++	/*
++	 * In case we failed to insert the entry into the radixtree, we need
+ 	 * to look beyond the current sg.
+ 	 */
+ 	while (idx + count <= n) {
+@@ -575,7 +588,7 @@ i915_gem_object_get_page(struct drm_i915_gem_object *obj, unsigned int n)
+ 
+ 	GEM_BUG_ON(!i915_gem_object_has_struct_page(obj));
+ 
+-	sg = i915_gem_object_get_sg(obj, n, &offset);
++	sg = i915_gem_object_get_sg(obj, n, &offset, true);
+ 	return nth_page(sg_page(sg), offset);
+ }
+ 
+@@ -601,7 +614,7 @@ i915_gem_object_get_dma_address_len(struct drm_i915_gem_object *obj,
+ 	struct scatterlist *sg;
+ 	unsigned int offset;
+ 
+-	sg = i915_gem_object_get_sg_dma(obj, n, &offset);
++	sg = i915_gem_object_get_sg_dma(obj, n, &offset, true);
+ 
+ 	if (len)
+ 		*len = sg_dma_len(sg) - (offset << PAGE_SHIFT);
+diff --git a/drivers/gpu/drm/i915/gt/intel_ggtt.c b/drivers/gpu/drm/i915/gt/intel_ggtt.c
+index cf94525be2c1..60bd2c8ed8b0 100644
+--- a/drivers/gpu/drm/i915/gt/intel_ggtt.c
++++ b/drivers/gpu/drm/i915/gt/intel_ggtt.c
+@@ -1383,7 +1383,7 @@ intel_partial_pages(const struct i915_ggtt_view *view,
+ 	if (ret)
+ 		goto err_sg_alloc;
+ 
+-	iter = i915_gem_object_get_sg_dma(obj, view->partial.offset, &offset);
++	iter = i915_gem_object_get_sg_dma(obj, view->partial.offset, &offset, true);
+ 	GEM_BUG_ON(!iter);
+ 
+ 	sg = st->sgl;
+diff --git a/drivers/gpu/drm/i915/i915_cmd_parser.c b/drivers/gpu/drm/i915/i915_cmd_parser.c
+index 93265951fdbb..8883a7d4964f 100644
+--- a/drivers/gpu/drm/i915/i915_cmd_parser.c
++++ b/drivers/gpu/drm/i915/i915_cmd_parser.c
+@@ -1136,38 +1136,19 @@ find_reg(const struct intel_engine_cs *engine, u32 addr)
+ /* Returns a vmap'd pointer to dst_obj, which the caller must unmap */
+ static u32 *copy_batch(struct drm_i915_gem_object *dst_obj,
+ 		       struct drm_i915_gem_object *src_obj,
+-		       unsigned long offset, unsigned long length)
++		       unsigned long offset, unsigned long length,
++		       void *dst, const void *src)
+ {
+-	bool needs_clflush;
+-	void *dst, *src;
+-	int ret;
+-
+-	dst = i915_gem_object_pin_map(dst_obj, I915_MAP_FORCE_WB);
+-	if (IS_ERR(dst))
+-		return dst;
+-
+-	ret = i915_gem_object_pin_pages(src_obj);
+-	if (ret) {
+-		i915_gem_object_unpin_map(dst_obj);
+-		return ERR_PTR(ret);
+-	}
+-
+-	needs_clflush =
++	bool needs_clflush =
+ 		!(src_obj->cache_coherent & I915_BO_CACHE_COHERENT_FOR_READ);
+ 
+-	src = ERR_PTR(-ENODEV);
+-	if (needs_clflush && i915_has_memcpy_from_wc()) {
+-		src = i915_gem_object_pin_map(src_obj, I915_MAP_WC);
+-		if (!IS_ERR(src)) {
+-			i915_unaligned_memcpy_from_wc(dst,
+-						      src + offset,
+-						      length);
+-			i915_gem_object_unpin_map(src_obj);
+-		}
+-	}
+-	if (IS_ERR(src)) {
+-		unsigned long x, n;
++	if (src) {
++		GEM_BUG_ON(!needs_clflush);
++		i915_unaligned_memcpy_from_wc(dst, src + offset, length);
++	} else {
++		struct scatterlist *sg;
+ 		void *ptr;
++		unsigned int x, sg_ofs;
+ 
+ 		/*
+ 		 * We can avoid clflushing partial cachelines before the write
+@@ -1183,23 +1164,32 @@ static u32 *copy_batch(struct drm_i915_gem_object *dst_obj,
+ 
+ 		ptr = dst;
+ 		x = offset_in_page(offset);
+-		for (n = offset >> PAGE_SHIFT; length; n++) {
+-			int len = min(length, PAGE_SIZE - x);
+-
+-			src = kmap_atomic(i915_gem_object_get_page(src_obj, n));
+-			if (needs_clflush)
+-				drm_clflush_virt_range(src + x, len);
+-			memcpy(ptr, src + x, len);
+-			kunmap_atomic(src);
+-
+-			ptr += len;
+-			length -= len;
+-			x = 0;
++
++		sg = i915_gem_object_get_sg(src_obj, offset >> PAGE_SHIFT, &sg_ofs, false);
++
++		while (length) {
++			unsigned long sg_max = sg->length >> PAGE_SHIFT;
++
++			for (; length && sg_ofs < sg_max; sg_ofs++) {
++				unsigned long len = min(length, PAGE_SIZE - x);
++				void *map;
++
++				map = kmap_atomic(nth_page(sg_page(sg), sg_ofs));
++				if (needs_clflush)
++					drm_clflush_virt_range(map + x, len);
++				memcpy(ptr, map + x, len);
++				kunmap_atomic(map);
++
++				ptr += len;
++				length -= len;
++				x = 0;
++			}
++
++			sg_ofs = 0;
++			sg = sg_next(sg);
+ 		}
+ 	}
+ 
+-	i915_gem_object_unpin_pages(src_obj);
+-
+ 	/* dst_obj is returned with vmap pinned */
+ 	return dst;
+ }
+@@ -1359,9 +1349,6 @@ static int check_bbstart(u32 *cmd, u32 offset, u32 length,
+ 	if (target_cmd_index == offset)
+ 		return 0;
+ 
+-	if (IS_ERR(jump_whitelist))
+-		return PTR_ERR(jump_whitelist);
+-
+ 	if (!test_bit(target_cmd_index, jump_whitelist)) {
+ 		DRM_DEBUG("CMD: BB_START to 0x%llx not a previously executed cmd\n",
+ 			  jump_target);
+@@ -1371,10 +1358,14 @@ static int check_bbstart(u32 *cmd, u32 offset, u32 length,
+ 	return 0;
+ }
+ 
+-static unsigned long *alloc_whitelist(u32 batch_length)
++unsigned long *intel_engine_cmd_parser_alloc_jump_whitelist(u32 batch_length,
++							    bool trampoline)
+ {
+ 	unsigned long *jmp;
+ 
++	if (trampoline)
++		return NULL;
++
+ 	/*
+ 	 * We expect batch_length to be less than 256KiB for known users,
+ 	 * i.e. we need at most an 8KiB bitmap allocation which should be
+@@ -1417,14 +1408,16 @@ int intel_engine_cmd_parser(struct intel_engine_cs *engine,
+ 			    unsigned long batch_offset,
+ 			    unsigned long batch_length,
+ 			    struct i915_vma *shadow,
+-			    bool trampoline)
++			    unsigned long *jump_whitelist,
++			    void *shadow_map,
++			    const void *batch_map)
+ {
+ 	u32 *cmd, *batch_end, offset = 0;
+ 	struct drm_i915_cmd_descriptor default_desc = noop_desc;
+ 	const struct drm_i915_cmd_descriptor *desc = &default_desc;
+-	unsigned long *jump_whitelist;
+ 	u64 batch_addr, shadow_addr;
+ 	int ret = 0;
++	bool trampoline = !jump_whitelist;
+ 
+ 	GEM_BUG_ON(!IS_ALIGNED(batch_offset, sizeof(*cmd)));
+ 	GEM_BUG_ON(!IS_ALIGNED(batch_length, sizeof(*cmd)));
+@@ -1432,16 +1425,8 @@ int intel_engine_cmd_parser(struct intel_engine_cs *engine,
+ 				     batch->size));
+ 	GEM_BUG_ON(!batch_length);
+ 
+-	cmd = copy_batch(shadow->obj, batch->obj, batch_offset, batch_length);
+-	if (IS_ERR(cmd)) {
+-		DRM_DEBUG("CMD: Failed to copy batch\n");
+-		return PTR_ERR(cmd);
+-	}
+-
+-	jump_whitelist = NULL;
+-	if (!trampoline)
+-		/* Defer failure until attempted use */
+-		jump_whitelist = alloc_whitelist(batch_length);
++	cmd = copy_batch(shadow->obj, batch->obj, batch_offset, batch_length,
++			 shadow_map, batch_map);
+ 
+ 	shadow_addr = gen8_canonical_addr(shadow->node.start);
+ 	batch_addr = gen8_canonical_addr(batch->node.start + batch_offset);
+@@ -1549,9 +1534,6 @@ int intel_engine_cmd_parser(struct intel_engine_cs *engine,
+ 		drm_clflush_virt_range(ptr, (void *)(cmd + 1) - ptr);
+ 	}
+ 
+-	if (!IS_ERR_OR_NULL(jump_whitelist))
+-		kfree(jump_whitelist);
+-	i915_gem_object_unpin_map(shadow->obj);
+ 	return ret;
+ }
+ 
+diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
+index c95db2d5485c..126114484cb6 100644
+--- a/drivers/gpu/drm/i915/i915_drv.h
++++ b/drivers/gpu/drm/i915/i915_drv.h
+@@ -1949,12 +1949,17 @@ const char *i915_cache_level_str(struct drm_i915_private *i915, int type);
+ int i915_cmd_parser_get_version(struct drm_i915_private *dev_priv);
+ void intel_engine_init_cmd_parser(struct intel_engine_cs *engine);
+ void intel_engine_cleanup_cmd_parser(struct intel_engine_cs *engine);
++unsigned long *intel_engine_cmd_parser_alloc_jump_whitelist(u32 batch_length,
++							    bool trampoline);
++
+ int intel_engine_cmd_parser(struct intel_engine_cs *engine,
+ 			    struct i915_vma *batch,
+ 			    unsigned long batch_offset,
+ 			    unsigned long batch_length,
+ 			    struct i915_vma *shadow,
+-			    bool trampoline);
++			    unsigned long *jump_whitelist,
++			    void *shadow_map,
++			    const void *batch_map);
+ #define I915_CMD_PARSER_TRAMPOLINE_SIZE 8
+ 
+ /* intel_device_info.c */
+diff --git a/drivers/gpu/drm/i915/i915_memcpy.c b/drivers/gpu/drm/i915/i915_memcpy.c
+index 7b3b83bd5ab8..1b021a4902de 100644
+--- a/drivers/gpu/drm/i915/i915_memcpy.c
++++ b/drivers/gpu/drm/i915/i915_memcpy.c
+@@ -135,7 +135,7 @@ bool i915_memcpy_from_wc(void *dst, const void *src, unsigned long len)
+  * accepts that its arguments may not be aligned, but are valid for the
+  * potential 16-byte read past the end.
+  */
+-void i915_unaligned_memcpy_from_wc(void *dst, void *src, unsigned long len)
++void i915_unaligned_memcpy_from_wc(void *dst, const void *src, unsigned long len)
+ {
+ 	unsigned long addr;
+ 
+diff --git a/drivers/gpu/drm/i915/i915_memcpy.h b/drivers/gpu/drm/i915/i915_memcpy.h
+index e36d30edd987..3df063a3293b 100644
+--- a/drivers/gpu/drm/i915/i915_memcpy.h
++++ b/drivers/gpu/drm/i915/i915_memcpy.h
+@@ -13,7 +13,7 @@ struct drm_i915_private;
+ void i915_memcpy_init_early(struct drm_i915_private *i915);
+ 
+ bool i915_memcpy_from_wc(void *dst, const void *src, unsigned long len);
+-void i915_unaligned_memcpy_from_wc(void *dst, void *src, unsigned long len);
++void i915_unaligned_memcpy_from_wc(void *dst, const void *src, unsigned long len);
+ 
+ /* The movntdqa instructions used for memcpy-from-wc require 16-byte alignment,
+  * as well as SSE4.1 support. i915_memcpy_from_wc() will report if it cannot
+-- 
+2.28.0
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
