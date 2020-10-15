@@ -2,43 +2,40 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B60EF28F86D
-	for <lists+intel-gfx@lfdr.de>; Thu, 15 Oct 2020 20:24:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D3E6B28F891
+	for <lists+intel-gfx@lfdr.de>; Thu, 15 Oct 2020 20:29:09 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F413F6E209;
-	Thu, 15 Oct 2020 18:23:58 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9C3236E1A2;
+	Thu, 15 Oct 2020 18:29:04 +0000 (UTC)
+X-Original-To: Intel-GFX@lists.freedesktop.org
+Delivered-To: Intel-GFX@lists.freedesktop.org
 Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B1A086E207;
- Thu, 15 Oct 2020 18:23:57 +0000 (UTC)
-IronPort-SDR: D/F+OnZUNHFu49CXrZnPru+PmzpbxBGmcXc47Q+xrVhG27ujt68KV6uIe8ut2TKNjdksQR2A1+
- NiABoa0QQJVg==
-X-IronPort-AV: E=McAfee;i="6000,8403,9775"; a="163804562"
-X-IronPort-AV: E=Sophos;i="5.77,379,1596524400"; d="scan'208";a="163804562"
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D86C06E077
+ for <Intel-GFX@lists.freedesktop.org>; Thu, 15 Oct 2020 18:29:02 +0000 (UTC)
+IronPort-SDR: y5lNRrPCLhHBTzJ3L1zYcV0L23+pepBQuqUAkqW9KiQVAju4W2oiwYk4GwrVna2QxZgrQI+ZKO
+ o6mrHixTl4zA==
+X-IronPort-AV: E=McAfee;i="6000,8403,9775"; a="163805175"
+X-IronPort-AV: E=Sophos;i="5.77,380,1596524400"; d="scan'208";a="163805175"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Oct 2020 11:23:57 -0700
-IronPort-SDR: e50qo+P6RG8MjztVp6acCwhEEEFKq3UXXq0w+mz0DSx9S3H83r3F2BG+zosibmSLnxROfHQioM
- gO0MUncPLjyw==
-X-IronPort-AV: E=Sophos;i="5.77,379,1596524400"; d="scan'208";a="421234189"
-Received: from rdvivi-losangeles.jf.intel.com (HELO intel.com)
- ([10.165.21.201])
- by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Oct 2020 11:23:56 -0700
-Date: Thu, 15 Oct 2020 14:25:42 -0400
-From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-To: Lyude Paul <lyude@redhat.com>
-Message-ID: <20201015182542.GB2616619@intel.com>
-References: <20200916171855.129511-1-lyude@redhat.com>
- <20200916171855.129511-2-lyude@redhat.com>
+ 15 Oct 2020 11:29:02 -0700
+IronPort-SDR: 0uQv5xQHdavdHKB4G68GH58AeNKsp7DJYzRgFp2AYbW3bl6nwEveyPqOS49iGzHqu0yAbJvsUp
+ ngn4dk217aLw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.77,380,1596524400"; d="scan'208";a="531364109"
+Received: from relo-linux-5.jf.intel.com ([10.165.21.134])
+ by orsmga005.jf.intel.com with ESMTP; 15 Oct 2020 11:29:01 -0700
+From: John.C.Harrison@Intel.com
+To: Intel-GFX@Lists.FreeDesktop.Org
+Date: Thu, 15 Oct 2020 11:28:57 -0700
+Message-Id: <20201015182901.3197788-1-John.C.Harrison@Intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200916171855.129511-2-lyude@redhat.com>
-Subject: Re: [Intel-gfx] [RFC v2 1/8] drm/i915/dp: Program source OUI on eDP
- panels
+Organization: Intel Corporation (UK) Ltd. - Co. Reg. #1134945 - Pipers Way,
+ Swindon SN3 1RJ
+Subject: [Intel-gfx] [PATCH CI v2 0/4] drm/i915/guc: Update to GuC v49
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,111 +48,44 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: David Airlie <airlied@linux.ie>, intel-gfx@lists.freedesktop.org,
- open list <linux-kernel@vger.kernel.org>, dri-devel@lists.freedesktop.org,
- Vasily Khoruzhick <anarsoul@gmail.com>, Sean Paul <seanpaul@chromium.org>,
- Wambui Karuga <wambui.karugax@gmail.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Sep 16, 2020 at 01:18:48PM -0400, Lyude Paul wrote:
-> Since we're about to start adding support for Intel's magic HDR
-> backlight interface over DPCD, we need to ensure we're properly
-> programming this field so that Intel specific sink services are exposed.
-> Otherwise, 0x300-0x3ff will just read zeroes.
-> 
-> We also take care not to reprogram the source OUI if it already matches
-> what we expect. This is just to be careful so that we don't accidentally
-> take the panel out of any backlight control modes we found it in.
-> 
-> v2:
-> * Add careful parameter to intel_edp_init_source_oui() to avoid
->   re-writing the source OUI if it's already been set during driver
->   initialization
-> 
-> Signed-off-by: Lyude Paul <lyude@redhat.com>
-> Cc: thaytan@noraisin.net
-> Cc: Vasily Khoruzhick <anarsoul@gmail.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_dp.c | 33 +++++++++++++++++++++++++
->  1 file changed, 33 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-> index 4bd10456ad188..7db2b6a3cd52e 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> @@ -3424,6 +3424,29 @@ void intel_dp_sink_set_decompression_state(struct intel_dp *intel_dp,
->  			    enable ? "enable" : "disable");
->  }
->  
-> +static void
-> +intel_edp_init_source_oui(struct intel_dp *intel_dp, bool careful)
-> +{
-> +	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
-> +	u8 oui[] = { 0x00, 0xaa, 0x01 };
-> +	u8 buf[3] = { 0 };
-> +
-> +	/*
-> +	 * During driver init, we want to be careful and avoid changing the source OUI if it's
-> +	 * already set to what we want, so as to avoid clearing any state by accident
-> +	 */
-> +	if (careful) {
+From: John Harrison <John.C.Harrison@Intel.com>
 
-my first reaction here is why the problem described on the commit message doesn't
-appear during the init, and setting it to the same shouldn't be a problem... but
-yeap, I agree the risk of taking panel down is high... let's move with the careful approach
+Update to the latest GuC firmware
+
+v2: Rebase to newer tree, updated a commit message (review feedback
+from Daniele) and dropped the patch to enable GuC/HuC loading by
+default as apparently this is not allowed.
+
+Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
 
 
-Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+John Harrison (4):
+  drm/i915/guc: Update to use firmware v49.0.1
+  drm/i915/guc: Improved reporting when GuC fails to load
+  drm/i915/guc: Clear pointers on free
+  CI: turn on GuC/HuC auto mode by default
 
+ drivers/gpu/drm/i915/gt/intel_engine_cs.c    |   3 +-
+ drivers/gpu/drm/i915/gt/uc/intel_guc.c       |  18 ---
+ drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c   | 132 +++++++++++++++----
+ drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c    |   1 +
+ drivers/gpu/drm/i915/gt/uc/intel_guc_fw.c    |  31 +++--
+ drivers/gpu/drm/i915/gt/uc/intel_guc_fwif.h  |  80 +++++------
+ drivers/gpu/drm/i915/gt/uc/intel_guc_reg.h   |   5 +
+ drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c     |  29 ++--
+ drivers/gpu/drm/i915/gt/uc/intel_uc_fw.h     |   2 +
+ drivers/gpu/drm/i915/gt/uc/intel_uc_fw_abi.h |   6 +-
+ drivers/gpu/drm/i915/i915_params.h           |   2 +-
+ 11 files changed, 202 insertions(+), 107 deletions(-)
 
-> +		if (drm_dp_dpcd_read(&intel_dp->aux, DP_SOURCE_OUI, buf, sizeof(buf)) < 0)
-> +			drm_err(&i915->drm, "Failed to read source OUI\n");
-> +
-> +		if (memcmp(oui, buf, sizeof(oui)) == 0)
-> +			return;
-> +	}
-> +
-> +	if (drm_dp_dpcd_write(&intel_dp->aux, DP_SOURCE_OUI, oui, sizeof(oui)) < 0)
-> +		drm_err(&i915->drm, "Failed to write source OUI\n");
-> +}
-> +
->  /* If the sink supports it, try to set the power state appropriately */
->  void intel_dp_sink_dpms(struct intel_dp *intel_dp, int mode)
->  {
-> @@ -3443,6 +3466,10 @@ void intel_dp_sink_dpms(struct intel_dp *intel_dp, int mode)
->  	} else {
->  		struct intel_lspcon *lspcon = dp_to_lspcon(intel_dp);
->  
-> +		/* Write the source OUI as early as possible */
-> +		if (intel_dp_is_edp(intel_dp))
-> +			intel_edp_init_source_oui(intel_dp, false);
-> +
->  		/*
->  		 * When turning on, we need to retry for 1ms to give the sink
->  		 * time to wake up.
-> @@ -4607,6 +4634,12 @@ intel_edp_init_dpcd(struct intel_dp *intel_dp)
->  	if (INTEL_GEN(dev_priv) >= 10 || IS_GEMINILAKE(dev_priv))
->  		intel_dp_get_dsc_sink_cap(intel_dp);
->  
-> +	/*
-> +	 * If needed, program our source OUI so we can make various Intel-specific AUX services
-> +	 * available (such as HDR backlight controls)
-> +	 */
-> +	intel_edp_init_source_oui(intel_dp, true);
-> +
->  	return true;
->  }
->  
-> -- 
-> 2.26.2
-> 
-> _______________________________________________
-> dri-devel mailing list
-> dri-devel@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/dri-devel
+-- 
+2.25.1
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
