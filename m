@@ -1,53 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7DA8E28F170
-	for <lists+intel-gfx@lfdr.de>; Thu, 15 Oct 2020 13:38:51 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id AACD728F16C
+	for <lists+intel-gfx@lfdr.de>; Thu, 15 Oct 2020 13:37:49 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E139188E5B;
-	Thu, 15 Oct 2020 11:38:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9C0006ECBC;
+	Thu, 15 Oct 2020 11:37:46 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 427 seconds by postgrey-1.36 at gabe;
- Thu, 15 Oct 2020 11:38:48 UTC
-Received: from esa6.hc3370-68.iphmx.com (esa6.hc3370-68.iphmx.com
- [216.71.155.175])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7DF0488E5B
- for <intel-gfx@lists.freedesktop.org>; Thu, 15 Oct 2020 11:38:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
- d=citrix.com; s=securemail; t=1602761928;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=JaKKGt3d+i+nh0Sf/oHSA2TVHCS6q9lA/II9WTvsiHI=;
- b=KWkvu115/N33VEphFBngI9if60/E3hoxNSvAOwFh+LoCa0iPnUklTqOZ
- iF0X5h3rOLsI0wPRuoWYB0TpUZeP1wIqIvzWZP1SHII7mvoV7sV+HrIZ7
- AheO8ni7DxgZ6Mp6x5Bf6t8irED8k20FcHNh+2uv2GvaA8a70tn6pDL3z g=;
-Authentication-Results: esa6.hc3370-68.iphmx.com;
- dkim=none (message not signed) header.i=none
-IronPort-SDR: RTxSUs8l+PfyoDrEqhblrAMlIjAPi4B35dQozjF52rakKudSspVBFEp++RApEw57Kq1MBrOhEv
- +y/JW6VwM0kfES4d7GN7Chx049SKFoCm1kP/XsuxrdjXwWr8Jr1J7vre3OX7pUyK3CJDpRrfeM
- XpdLLcgLEcJZ6iKbTGh5hfGgYma7ILqJ7iDP1T9/5l8Q84yk0xnTb6ZY3cliTNTNlemZyHOV+B
- 6cf+bd3v+W7xz/eK69xtYZ/na3uJdT5RwfAjVAXhGE4Jp93Ad141PASZsyN+ntBcYvXuhHauRx
- 1Ug=
-X-SBRS: 2.5
-X-MesageID: 29314360
-X-Ironport-Server: esa6.hc3370-68.iphmx.com
-X-Remote-IP: 162.221.158.21
-X-Policy: $RELAYED
-X-IronPort-AV: E=Sophos;i="5.77,378,1596513600"; d="scan'208";a="29314360"
-Date: Thu, 15 Oct 2020 13:31:33 +0200
-From: Roger Pau =?utf-8?B?TW9ubsOp?= <roger.pau@citrix.com>
-To: Jason Andryuk <jandryuk@gmail.com>
-Message-ID: <20201015113109.GA68032@Air-de-Roger>
-References: <CAKf6xpv-LRCuo-qHHWMuukYtvJiR-i+-YhLUOZeqoAFd-=swEQ@mail.gmail.com>
- <1a3b90f4-564e-84d3-fd6a-3454e8753579@citrix.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 684C488E5B;
+ Thu, 15 Oct 2020 11:37:45 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 54FA2A363B;
+ Thu, 15 Oct 2020 11:37:45 +0000 (UTC)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <1a3b90f4-564e-84d3-fd6a-3454e8753579@citrix.com>
-X-ClientProxiedBy: AMSPEX02CAS02.citrite.net (10.69.22.113) To
- FTLPEX02CL06.citrite.net (10.13.108.179)
-Subject: Re: [Intel-gfx] i915 dma faults on Xen
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Ankit Nautiyal" <ankit.k.nautiyal@intel.com>
+Date: Thu, 15 Oct 2020 11:37:45 -0000
+Message-ID: <160276186531.13180.15764019278794074865@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20201015105259.27934-1-ankit.k.nautiyal@intel.com>
+In-Reply-To: <20201015105259.27934-1-ankit.k.nautiyal@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_Add_support_for_DP-HDMI2=2E1_PCON_=28rev3=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,67 +38,266 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Andrew Cooper <andrew.cooper3@citrix.com>, intel-gfx@lists.freedesktop.org,
- xen-devel <xen-devel@lists.xenproject.org>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gV2VkLCBPY3QgMTQsIDIwMjAgYXQgMDg6Mzc6MDZQTSArMDEwMCwgQW5kcmV3IENvb3BlciB3
-cm90ZToKPiBPbiAxNC8xMC8yMDIwIDIwOjI4LCBKYXNvbiBBbmRyeXVrIHdyb3RlOgo+ID4gSGks
-Cj4gPgo+ID4gQnVnIG9wZW5lZCBhdCBodHRwczovL2dpdGxhYi5mcmVlZGVza3RvcC5vcmcvZHJt
-L2ludGVsLy0vaXNzdWVzLzI1NzYKPiA+Cj4gPiBJJ20gc2VlaW5nIERNQSBmYXVsdHMgZm9yIHRo
-ZSBpOTE1IGdyYXBoaWNzIGhhcmR3YXJlIG9uIGEgRGVsbAo+ID4gTGF0aXR1ZGUgNTUwMC4gVGhl
-c2Ugd2VyZSBjYXB0dXJlZCB3aGVuIEkgcGx1Z2dlZCBpbnRvIGEgRGVsbAo+ID4gVGh1bmRlcmJv
-bHQgZG9jayB3aXRoIHR3byBEaXNwbGF5UG9ydCBtb25pdG9ycyBhdHRhY2hlZC4gIFhlbiA0LjEy
-LjQKPiA+IHN0YWdpbmcgYW5kIExpbnV4IDUuNC43MCAoYW5kIHNvbWUgZWFybGllciB2ZXJzaW9u
-cykuCj4gPgo+ID4gT2N0IDE0IDE4OjQxOjQ5LjA1NjQ5MCBrZXJuZWw6WyAgIDg1LjU3MDM0N10g
-W2RybTpnZW44X2RlX2lycV9oYW5kbGVyCj4gPiBbaTkxNV1dICpFUlJPUiogRmF1bHQgZXJyb3Jz
-IG9uIHBpcGUgQTogMHgwMDAwMDA4MAo+ID4gT2N0IDE0IDE4OjQxOjQ5LjA1NjQ5NCBrZXJuZWw6
-WyAgIDg1LjU3MDM5NV0gW2RybTpnZW44X2RlX2lycV9oYW5kbGVyCj4gPiBbaTkxNV1dICpFUlJP
-UiogRmF1bHQgZXJyb3JzIG9uIHBpcGUgQTogMHgwMDAwMDA4MAo+ID4gT2N0IDE0IDE4OjQxOjQ5
-LjA1NjU4OSBWTSBoeXBlcnZpc29yOiAoWEVOKSBbVlQtRF1ETUFSOltETUEgUmVhZF0KPiA+IFJl
-cXVlc3QgZGV2aWNlIFswMDAwOjAwOjAyLjBdIGZhdWx0IGFkZHIgMzliNTg0NTAwMCwgaW9tbXUg
-cmVnID0KPiA+IGZmZmY4MmMwMDAyMWQwMDAKPiA+IE9jdCAxNCAxODo0MTo0OS4wNTY1OTQgVk0g
-aHlwZXJ2aXNvcjogKFhFTikgW1ZULURdRE1BUjogcmVhc29uIDA2IC0KPiA+IFBURSBSZWFkIGFj
-Y2VzcyBpcyBub3Qgc2V0Cj4gPiBPY3QgMTQgMTg6NDE6NDkuMDU2Nzg0IGtlcm5lbDpbICAgODUu
-NTcwNjY4XSBbZHJtOmdlbjhfZGVfaXJxX2hhbmRsZXIKPiA+IFtpOTE1XV0gKkVSUk9SKiBGYXVs
-dCBlcnJvcnMgb24gcGlwZSBBOiAweDAwMDAwMDgwCj4gPiBPY3QgMTQgMTg6NDE6NDkuMDU2Nzg5
-IGtlcm5lbDpbICAgODUuNTcwNjg3XSBbZHJtOmdlbjhfZGVfaXJxX2hhbmRsZXIKPiA+IFtpOTE1
-XV0gKkVSUk9SKiBGYXVsdCBlcnJvcnMgb24gcGlwZSBBOiAweDAwMDAwMDgwCj4gPiBPY3QgMTQg
-MTg6NDE6NDkuMDU2ODg1IFZNIGh5cGVydmlzb3I6IChYRU4pIFtWVC1EXURNQVI6W0RNQSBSZWFk
-XQo+ID4gUmVxdWVzdCBkZXZpY2UgWzAwMDA6MDA6MDIuMF0gZmF1bHQgYWRkciA0MjM4ZDBhMDAw
-LCBpb21tdSByZWcgPQo+ID4gZmZmZjgyYzAwMDIxZDAwMAo+ID4gT2N0IDE0IDE4OjQxOjQ5LjA1
-Njg5MCBWTSBoeXBlcnZpc29yOiAoWEVOKSBbVlQtRF1ETUFSOiByZWFzb24gMDYgLQo+ID4gUFRF
-IFJlYWQgYWNjZXNzIGlzIG5vdCBzZXQKPiA+Cj4gPiBUaGV5IHJlcGVhdC4gSW4gdGhlIGxvZyBh
-dHRhY2hlZCB0bwo+ID4gaHR0cHM6Ly9naXRsYWIuZnJlZWRlc2t0b3Aub3JnL2RybS9pbnRlbC8t
-L2lzc3Vlcy8yNTc2LCB0aGV5IHN0YXJ0IGF0Cj4gPiAiT2N0IDE0IDE4OjQxOjQ5LjA1NjU4OSIg
-YW5kIGNvbnRpbnVlIHVudGlsIEkgdW5wbHVnIHRoZSBkb2NrIGFyb3VuZAo+ID4gIk9jdCAxNCAx
-ODo0MTo1NC44MDE4MDIiLgo+ID4KPiA+IEkndmUgYWxzbyBzZWVuIHNpbWlsYXIgbWVzc2FnZXMg
-d2hlbiBhdHRhY2hpbmcgdGhlIGxhcHRvcCdzIEhETUkgcG9ydAo+ID4gdG8gYSA0ayBtb25pdG9y
-LiBUaGUgZURQIGRpc3BsYXkgYnkgaXRzZWxmIHNlZW1zIG9rYXkuCj4gPgo+ID4gSSB0cmllZCBG
-ZWRvcmEgMzEgJiAzMiBsaXZlIGltYWdlcyB3aXRoIGludGVsX2lvbW11PW9uLCBzbyBubyBYZW4s
-IGFuZAo+ID4gZGlkbid0IHNlZSBhbnkgZXJyb3JzCj4gPgo+ID4gVGhpcyBpcyBhIGtlcm5lbCAm
-IHhlbiBsb2cgd2l0aCBkcm0uZGVidWc9MHgxZS4gSXQgYWxzbyBpbmNsdWRlcyBzb21lCj4gPiBh
-cHBsaWNhdGlvbiAoZ2xhc3MpIGxvZ2dpbmcgd2hlbiBpdCBjaGFuZ2VzIHJlc29sdXRpb25zIHdo
-aWNoIHNlZW1zIHRvCj4gPiBzZXQgb2ZmIHRoZSBETUEgZmF1bHRzLiA1NTAwLWlnZngtbWVzc2Fn
-ZXMta2Vybi14ZW4tZ2xhc3MKPiA+Cj4gPiBSdW5uaW5nIHhlbiB3aXRoIGlvbW11PW5vLWlnZngg
-ZGlzYWJsZXMgdGhlIGlvbW11IGZvciB0aGUgaTkxNQo+ID4gZ3JhcGhpY3MgYW5kIG5vIGZhdWx0
-cyBhcmUgcmVwb3J0ZWQuIEhvd2V2ZXIsIHRoYXQgYnJlYWtzIHNvbWUgb3RoZXIKPiA+IGRldmlj
-ZXMgKERlbGwgTGF0aXR1ZGUgNzIwMCBhbmQgNTU4MCkgZ2l2aW5nIGEgYmxhY2sgc2NyZWVuIHdp
-dGg6Cj4gPgo+ID4gT2N0IDEwIDEzOjI0OjM3LjAyMjExNyBrZXJuZWw6WyAgIDE0Ljg4NDc1OV0g
-aTkxNSAwMDAwOjAwOjAyLjA6IEZhaWxlZAo+ID4gdG8gaWRsZSBlbmdpbmVzLCBkZWNsYXJpbmcg
-d2VkZ2VkIQo+ID4gT2N0IDEwIDEzOjI0OjM3LjAyMjExOCBrZXJuZWw6WyAgIDE0Ljk2NDc5NF0g
-aTkxNSAwMDAwOjAwOjAyLjA6IEZhaWxlZAo+ID4gdG8gaW5pdGlhbGl6ZSBHUFUsIGRlY2xhcmlu
-ZyBpdCB3ZWRnZWQhCj4gPgo+ID4gQW55IHN1Z2dlc3Rpb25zIHdlbGNvbWUuCj4gCj4gUHJlc3Vt
-YWJseSB0aGlzIGlzIHdpdGggYSBQViBkb20wLsKgIFdoYXQgYXJlIDM5YjU4NDUwMDAgYW5kIDQy
-MzhkMGEwMDAKPiBpbiB0aGUgbWFjaGluZSBtZW1vcnkgbWFwPwo+IAo+IFRoaXMgc21lbGxzIGxp
-a2UgYSBtaXNzaW5nIFJNUlIgaW4gdGhlIEFDUEkgdGFibGVzLgoKSSBhZ3JlZS4KCkNhbiB5b3Ug
-cGFzdGUgdGhlIG1lbW9yeSBtYXAgYXMgcHJpbnRlZCBieSBYZW4gd2hlbiBib290aW5nLCBhbmQg
-d2hhdApjb21tYW5kIGxpbmUgYXJlIHlvdSB1c2luZyB0byBib290IFhlbi4KCkhhdmUgeW91IHRy
-aWVkIGFkZGluZyBkb20wLWlvbW11PW1hcC1pbmNsdXNpdmUgdG8gdGhlIFhlbiBjb21tYW5kCmxp
-bmU/CgpSb2dlci4KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3Jn
-Cmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
-Cg==
+== Series Details ==
+
+Series: Add support for DP-HDMI2.1 PCON (rev3)
+URL   : https://patchwork.freedesktop.org/series/82098/
+State : warning
+
+== Summary ==
+
+$ dim checkpatch origin/drm-tip
+b6564bd05445 drm/edid: Add additional HFVSDB fields for HDMI2.1
+-:57: WARNING:NO_AUTHOR_SIGN_OFF: Missing Signed-off-by: line by nominal patch author 'Swati Sharma <swati2.sharma@intel.com>'
+
+total: 0 errors, 1 warnings, 0 checks, 36 lines checked
+5cf1af19ed2a drm/edid: Parse MAX_FRL field from HFVSDB block
+-:25: ERROR:SPACING: space required before the open parenthesis '('
+#25: FILE: drivers/gpu/drm/drm_edid.c:4855:
++	switch(max_frl_rate) {
+
+-:75: WARNING:SUSPECT_CODE_INDENT: suspect code indent for conditional statements (8, 20)
+#75: FILE: drivers/gpu/drm/drm_edid.c:4951:
++	if (hf_vsdb[7]) {
++		    DRM_DEBUG_KMS("hdmi_21 sink detected. parsing edid\n");
+
+-:99: WARNING:NO_AUTHOR_SIGN_OFF: Missing Signed-off-by: line by nominal patch author 'Swati Sharma <swati2.sharma@intel.com>'
+
+total: 1 errors, 2 warnings, 0 checks, 75 lines checked
+5532836b0fcd drm/dp_helper: Add FRL training support for a DP-HDMI2.1 PCON
+23370263e088 drm/i915: Capture max frl rate for PCON in dfp cap structure
+66efbc57f8df drm/i915: Add support for starting FRL training for HDMI2.1 via PCON
+-:173: WARNING:LONG_LINE: line length of 101 exceeds 100 columns
+#173: FILE: drivers/gpu/drm/i915/display/intel_dp.c:3991:
++	wait_for(is_active = drm_dp_pcon_is_frl_ready(&intel_dp->aux) == true, TIMEOUT_FRL_READY_MS);
+
+-:192: WARNING:LONG_LINE: line length of 112 exceeds 100 columns
+#192: FILE: drivers/gpu/drm/i915/display/intel_dp.c:4010:
++	wait_for(is_active = drm_dp_pcon_hdmi_link_active(&intel_dp->aux) == true, TIMEOUT_HDMI_LINK_ACTIVE_MS);
+
+-:199: WARNING:LONG_LINE: line length of 101 exceeds 100 columns
+#199: FILE: drivers/gpu/drm/i915/display/intel_dp.c:4017:
++	if (DP_PCON_HDMI_MODE_FRL != drm_dp_pcon_hdmi_link_mode(&intel_dp->aux, &frl_trained_mask)) {
+
+-:199: WARNING:CONSTANT_COMPARISON: Comparisons should place the constant on the right side of the test
+#199: FILE: drivers/gpu/drm/i915/display/intel_dp.c:4017:
++	if (DP_PCON_HDMI_MODE_FRL != drm_dp_pcon_hdmi_link_mode(&intel_dp->aux, &frl_trained_mask)) {
+
+-:203: WARNING:LONG_LINE: line length of 106 exceeds 100 columns
+#203: FILE: drivers/gpu/drm/i915/display/intel_dp.c:4021:
++	drm_dbg(&i915->drm, "MAX_FRL_MASK = %u, FRL_TRAINED_MASK = %u\n", max_frl_mask, frl_trained_mask);
+
+total: 0 errors, 5 warnings, 0 checks, 243 lines checked
+5dca2e8ce7dc drm/i915: Check for FRL training before DP Link training
+d5229d1b0a07 drm/dp_helper: Add support for link status and link recovery
+-:36: ERROR:OPEN_BRACE: that open brace { should be on the previous line
+#36: FILE: drivers/gpu/drm/drm_dp_helper.c:2907:
++	for (i = 0; i < hdmi->max_lanes; i++)
++	{
+
+-:38: ERROR:SPACING: space prohibited before that ',' (ctx:WxW)
+#38: FILE: drivers/gpu/drm/drm_dp_helper.c:2909:
++		if (drm_dp_dpcd_readb(aux, DP_PCON_HDMI_ERROR_STATUS_LN0 + i , &buf) < 0)
+ 		                                                             ^
+
+-:43: ERROR:SPACING: space required before the open parenthesis '('
+#43: FILE: drivers/gpu/drm/drm_dp_helper.c:2914:
++	switch(error_count) {
+
+total: 3 errors, 0 warnings, 0 checks, 68 lines checked
+d95bcc66c14e drm/i915: Add support for enabling link status and recovery
+-:47: WARNING:LONG_LINE: line length of 107 exceeds 100 columns
+#47: FILE: drivers/gpu/drm/i915/display/intel_dp.c:5977:
++		drm_dp_pcon_hdmi_frl_link_error_count(&intel_dp->aux, &intel_dp->attached_connector->base);
+
+total: 0 errors, 1 warnings, 0 checks, 77 lines checked
+7186f49cb2c6 drm/edid: Parse DSC1.2 cap fields from HFVSDB block
+-:28: ERROR:CODE_INDENT: code indent should use tabs where possible
+#28: FILE: drivers/gpu/drm/drm_edid.c:4899:
++        hdmi->dsc_native_420 = db[11] & DRM_EDID_DSC_NATIVE_420;$
+
+-:28: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#28: FILE: drivers/gpu/drm/drm_edid.c:4899:
++        hdmi->dsc_native_420 = db[11] & DRM_EDID_DSC_NATIVE_420;$
+
+total: 1 errors, 1 warnings, 0 checks, 67 lines checked
+1acec2c71f1a drm/dp_helper: Add support for Configuring DSC for HDMI2.1 Pcon
+-:47: WARNING:BLOCK_COMMENT_STYLE: Block comments use a trailing */ on a separate line
+#47: FILE: drivers/gpu/drm/drm_dp_helper.c:2958:
++ * */
+
+-:67: WARNING:BLOCK_COMMENT_STYLE: Block comments use a trailing */ on a separate line
+#67: FILE: drivers/gpu/drm/drm_dp_helper.c:2978:
++ * */
+
+-:92: WARNING:BLOCK_COMMENT_STYLE: Block comments use a trailing */ on a separate line
+#92: FILE: drivers/gpu/drm/drm_dp_helper.c:3003:
++ * */
+
+total: 0 errors, 3 warnings, 0 checks, 227 lines checked
+eb940db0bb23 drm/i915: Read DSC capabilities of the HDMI2.1 PCON encoder
+-:31: WARNING:ONE_SEMICOLON: Statements terminations use 1 semicolon
+#31: FILE: drivers/gpu/drm/i915/display/intel_display_types.h:1303:
++	u8 max_slices;;
+
+-:88: ERROR:SPACING: space prohibited before that ':' (ctx:WxE)
+#88: FILE: drivers/gpu/drm/i915/display/intel_dp.c:3916:
++	case DP_PCON_DSC_RC_BUF_BLK_1KB :
+ 	                                ^
+
+-:91: ERROR:SPACING: space prohibited before that ':' (ctx:WxE)
+#91: FILE: drivers/gpu/drm/i915/display/intel_dp.c:3919:
++	case DP_PCON_DSC_RC_BUF_BLK_4KB :
+ 	                                ^
+
+-:94: ERROR:SPACING: space prohibited before that ':' (ctx:WxE)
+#94: FILE: drivers/gpu/drm/i915/display/intel_dp.c:3922:
++	case DP_PCON_DSC_RC_BUF_BLK_16KB :
+ 	                                 ^
+
+-:97: ERROR:SPACING: space prohibited before that ':' (ctx:WxE)
+#97: FILE: drivers/gpu/drm/i915/display/intel_dp.c:3925:
++	case DP_PCON_DSC_RC_BUF_BLK_64KB :
+ 	                                 ^
+
+-:100: ERROR:SPACING: space prohibited before that ':' (ctx:WxE)
+#100: FILE: drivers/gpu/drm/i915/display/intel_dp.c:3928:
++	default :
+ 	        ^
+
+-:115: WARNING:SUSPECT_CODE_INDENT: suspect code indent for conditional statements (8, 15)
+#115: FILE: drivers/gpu/drm/i915/display/intel_dp.c:3943:
++	if (buf & DP_PCON_DSC_24_PER_DSC_ENC)
++	       max_slices = 24;
+
+-:152: ERROR:SPACING: space prohibited before that ':' (ctx:WxE)
+#152: FILE: drivers/gpu/drm/i915/display/intel_dp.c:3980:
++	case DP_PCON_DSC_DEPTH_8_BITS :
+ 	                              ^
+
+-:155: ERROR:SPACING: space prohibited before that ':' (ctx:WxE)
+#155: FILE: drivers/gpu/drm/i915/display/intel_dp.c:3983:
++	case DP_PCON_DSC_DEPTH_9_BITS :
+ 	                              ^
+
+-:158: ERROR:SPACING: space prohibited before that ':' (ctx:WxE)
+#158: FILE: drivers/gpu/drm/i915/display/intel_dp.c:3986:
++	case DP_PCON_DSC_DEPTH_10_BITS :
+ 	                               ^
+
+-:161: ERROR:SPACING: space prohibited before that ':' (ctx:WxE)
+#161: FILE: drivers/gpu/drm/i915/display/intel_dp.c:3989:
++	case DP_PCON_DSC_DEPTH_11_BITS :
+ 	                               ^
+
+-:164: ERROR:SPACING: space prohibited before that ':' (ctx:WxE)
+#164: FILE: drivers/gpu/drm/i915/display/intel_dp.c:3992:
++	case DP_PCON_DSC_DEPTH_12_BITS :
+ 	                               ^
+
+-:167: ERROR:SPACING: space prohibited before that ':' (ctx:WxE)
+#167: FILE: drivers/gpu/drm/i915/display/intel_dp.c:3995:
++	case DP_PCON_DSC_DEPTH_13_BITS :
+ 	                               ^
+
+-:170: ERROR:SPACING: space prohibited before that ':' (ctx:WxE)
+#170: FILE: drivers/gpu/drm/i915/display/intel_dp.c:3998:
++	case DP_PCON_DSC_DEPTH_14_BITS :
+ 	                               ^
+
+-:173: ERROR:SPACING: space prohibited before that ':' (ctx:WxE)
+#173: FILE: drivers/gpu/drm/i915/display/intel_dp.c:4001:
++	case DP_PCON_DSC_DEPTH_15_BITS :
+ 	                               ^
+
+-:176: ERROR:SPACING: space prohibited before that ':' (ctx:WxE)
+#176: FILE: drivers/gpu/drm/i915/display/intel_dp.c:4004:
++	case DP_PCON_DSC_DEPTH_16_BITS :
+ 	                               ^
+
+-:179: ERROR:SPACING: space prohibited before that ':' (ctx:WxE)
+#179: FILE: drivers/gpu/drm/i915/display/intel_dp.c:4007:
++	default :
+ 	        ^
+
+-:206: WARNING:ONE_SEMICOLON: Statements terminations use 1 semicolon
+#206: FILE: drivers/gpu/drm/i915/display/intel_dp.c:4034:
++	pcon_dsc->max_slice_width = buf;;
+
+-:212: ERROR:SPACING: space required before the open parenthesis '('
+#212: FILE: drivers/gpu/drm/i915/display/intel_dp.c:4040:
++	switch(buf & DP_PCON_DSC_BPP_INCR_MASK) {
+
+-:228: ERROR:SPACING: space prohibited before that ':' (ctx:WxE)
+#228: FILE: drivers/gpu/drm/i915/display/intel_dp.c:4056:
++	default :
+ 	        ^
+
+total: 17 errors, 3 warnings, 0 checks, 218 lines checked
+86eb94630c5f drm/i915: Add helper functions for calculating DSC parameters for HDMI2.1
+-:37: ERROR:SPACING: spaces required around that '+=' (ctx:VxV)
+#37: FILE: drivers/gpu/drm/i915/display/intel_hdmi.c:3453:
++	for (slice_height = 96; slice_height <= vactive; slice_height+=2)
+ 	                                                             ^
+
+-:100: WARNING:SUSPECT_CODE_INDENT: suspect code indent for conditional statements (16, 23)
+#100: FILE: drivers/gpu/drm/i915/display/intel_hdmi.c:3516:
++		if (min_slices <= 1 && src_max_slices >= 1 && hdmi_max_slices >= 1)
++		       target_slices = 1;
+
+-:102: WARNING:SUSPECT_CODE_INDENT: suspect code indent for conditional statements (16, 23)
+#102: FILE: drivers/gpu/drm/i915/display/intel_hdmi.c:3518:
++		else if (min_slices <= 2 && src_max_slices >= 2 && hdmi_max_slices >= 2)
++		       target_slices = 2;
+
+-:104: WARNING:SUSPECT_CODE_INDENT: suspect code indent for conditional statements (16, 23)
+#104: FILE: drivers/gpu/drm/i915/display/intel_hdmi.c:3520:
++		else if (min_slices <= 4 && src_max_slices >= 4 && hdmi_max_slices >= 4)
++		       target_slices = 4;
+
+-:106: WARNING:SUSPECT_CODE_INDENT: suspect code indent for conditional statements (16, 23)
+#106: FILE: drivers/gpu/drm/i915/display/intel_hdmi.c:3522:
++		else if (min_slices <= 8 && src_max_slices >= 8 && hdmi_max_slices >= 8)
++		       target_slices = 8;
+
+-:108: WARNING:SUSPECT_CODE_INDENT: suspect code indent for conditional statements (16, 23)
+#108: FILE: drivers/gpu/drm/i915/display/intel_hdmi.c:3524:
++		else if (min_slices <= 12 && src_max_slices >= 12 && hdmi_max_slices >= 12)
++		       target_slices = 12;
+
+-:110: WARNING:SUSPECT_CODE_INDENT: suspect code indent for conditional statements (16, 23)
+#110: FILE: drivers/gpu/drm/i915/display/intel_hdmi.c:3526:
++		else if (min_slices <= 16 && src_max_slices >= 16 && hdmi_max_slices >= 16)
++		       target_slices = 16;
+
+total: 1 errors, 6 warnings, 0 checks, 186 lines checked
+133fc9c90e8f drm/i915: Configure PCON for DSC1.1 to DSC1.2 encoding
+-:82: CHECK:BRACES: Blank lines aren't necessary after an open brace '{'
+#82: FILE: drivers/gpu/drm/i915/display/intel_dp.c:4280:
++{
++
+
+-:99: CHECK:LINE_SPACING: Please don't use multiple blank lines
+#99: FILE: drivers/gpu/drm/i915/display/intel_dp.c:4297:
++
++
+
+-:155: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#155: FILE: drivers/gpu/drm/i915/display/intel_dp.c:4353:
++	bits_per_pixel = intel_dp_pcon_dsc_enc_bpp(intel_dp, crtc_state,
++						  num_slices, slice_width);
+
+total: 0 errors, 0 warnings, 3 checks, 166 lines checked
+
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
