@@ -1,27 +1,27 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2438628F105
-	for <lists+intel-gfx@lfdr.de>; Thu, 15 Oct 2020 13:26:58 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4829228F0ED
+	for <lists+intel-gfx@lfdr.de>; Thu, 15 Oct 2020 13:26:39 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7B3826EC8D;
-	Thu, 15 Oct 2020 11:26:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6EA3D6EC71;
+	Thu, 15 Oct 2020 11:26:36 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mblankhorst.nl (mblankhorst.nl [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 707FE6EC6F
- for <intel-gfx@lists.freedesktop.org>; Thu, 15 Oct 2020 11:26:34 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3574D6EC6F
+ for <intel-gfx@lists.freedesktop.org>; Thu, 15 Oct 2020 11:26:33 +0000 (UTC)
 From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Thu, 15 Oct 2020 13:25:29 +0200
-Message-Id: <20201015112627.1142745-6-maarten.lankhorst@linux.intel.com>
+Date: Thu, 15 Oct 2020 13:25:30 +0200
+Message-Id: <20201015112627.1142745-7-maarten.lankhorst@linux.intel.com>
 X-Mailer: git-send-email 2.28.0
 In-Reply-To: <20201015112627.1142745-1-maarten.lankhorst@linux.intel.com>
 References: <20201015112627.1142745-1-maarten.lankhorst@linux.intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v3 05/63] drm/i915: Ensure we hold the object
- mutex in pin correctly.
+Subject: [Intel-gfx] [PATCH v3 06/63] drm/i915: Add gem object locking to
+ madvise.
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,77 +39,42 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Currently we have a lot of places where we hold the gem object lock,
-but haven't yet been converted to the ww dance. Complain loudly about
-those places.
-
-i915_vma_pin shouldn't have the obj lock held, so we can do a ww dance,
-while i915_vma_pin_ww should.
+Doesn't need the full ww lock, only checking if pages are bound.
 
 Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 ---
- drivers/gpu/drm/i915/gt/intel_renderstate.c |  2 +-
- drivers/gpu/drm/i915/i915_vma.c             | 11 ++++++++++-
- drivers/gpu/drm/i915/i915_vma.h             |  3 +++
- 3 files changed, 14 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/i915/i915_gem.c | 8 +++++++-
+ 1 file changed, 7 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_renderstate.c b/drivers/gpu/drm/i915/gt/intel_renderstate.c
-index ea2a77c7b469..a68e5c23a67c 100644
---- a/drivers/gpu/drm/i915/gt/intel_renderstate.c
-+++ b/drivers/gpu/drm/i915/gt/intel_renderstate.c
-@@ -196,7 +196,7 @@ int intel_renderstate_init(struct intel_renderstate *so,
+diff --git a/drivers/gpu/drm/i915/i915_gem.c b/drivers/gpu/drm/i915/i915_gem.c
+index bb0c12975f38..30af7e4b71ab 100644
+--- a/drivers/gpu/drm/i915/i915_gem.c
++++ b/drivers/gpu/drm/i915/i915_gem.c
+@@ -1071,10 +1071,14 @@ i915_gem_madvise_ioctl(struct drm_device *dev, void *data,
+ 	if (!obj)
+ 		return -ENOENT;
+ 
+-	err = mutex_lock_interruptible(&obj->mm.lock);
++	err = i915_gem_object_lock_interruptible(obj, NULL);
  	if (err)
- 		goto err_context;
+ 		goto out;
  
--	err = i915_vma_pin(so->vma, 0, 0, PIN_GLOBAL | PIN_HIGH);
-+	err = i915_vma_pin_ww(so->vma, &so->ww, 0, 0, PIN_GLOBAL | PIN_HIGH);
- 	if (err)
- 		goto err_context;
- 
-diff --git a/drivers/gpu/drm/i915/i915_vma.c b/drivers/gpu/drm/i915/i915_vma.c
-index ffb5287e055a..4ead74c5142b 100644
---- a/drivers/gpu/drm/i915/i915_vma.c
-+++ b/drivers/gpu/drm/i915/i915_vma.c
-@@ -863,6 +863,8 @@ int i915_vma_pin_ww(struct i915_vma *vma, struct i915_gem_ww_ctx *ww,
- #ifdef CONFIG_PROVE_LOCKING
- 	if (debug_locks && lockdep_is_held(&vma->vm->i915->drm.struct_mutex))
- 		WARN_ON(!ww);
-+	if (debug_locks && ww && vma->resv)
-+		assert_vma_held(vma);
- #endif
- 
- 	BUILD_BUG_ON(PIN_GLOBAL != I915_VMA_GLOBAL_BIND);
-@@ -1018,8 +1020,15 @@ int i915_ggtt_pin(struct i915_vma *vma, struct i915_gem_ww_ctx *ww,
- 
- 	GEM_BUG_ON(!i915_vma_is_ggtt(vma));
- 
-+#ifdef CONFIG_LOCKDEP
-+	WARN_ON(!ww && vma->resv && dma_resv_held(vma->resv));
-+#endif
++	err = mutex_lock_interruptible(&obj->mm.lock);
++	if (err)
++		goto out_ww;
 +
- 	do {
--		err = i915_vma_pin_ww(vma, ww, 0, align, flags | PIN_GLOBAL);
-+		if (ww)
-+			err = i915_vma_pin_ww(vma, ww, 0, align, flags | PIN_GLOBAL);
-+		else
-+			err = i915_vma_pin(vma, 0, align, flags | PIN_GLOBAL);
- 		if (err != -ENOSPC) {
- 			if (!err) {
- 				err = i915_vma_wait_for_bind(vma);
-diff --git a/drivers/gpu/drm/i915/i915_vma.h b/drivers/gpu/drm/i915/i915_vma.h
-index 5b3a3c653454..838bbbeb11cc 100644
---- a/drivers/gpu/drm/i915/i915_vma.h
-+++ b/drivers/gpu/drm/i915/i915_vma.h
-@@ -243,6 +243,9 @@ i915_vma_pin_ww(struct i915_vma *vma, struct i915_gem_ww_ctx *ww,
- static inline int __must_check
- i915_vma_pin(struct i915_vma *vma, u64 size, u64 alignment, u64 flags)
- {
-+#ifdef CONFIG_LOCKDEP
-+	WARN_ON_ONCE(vma->resv && dma_resv_held(vma->resv));
-+#endif
- 	return i915_vma_pin_ww(vma, NULL, size, alignment, flags);
- }
+ 	if (i915_gem_object_has_pages(obj) &&
+ 	    i915_gem_object_is_tiled(obj) &&
+ 	    i915->quirks & QUIRK_PIN_SWIZZLED_PAGES) {
+@@ -1119,6 +1123,8 @@ i915_gem_madvise_ioctl(struct drm_device *dev, void *data,
+ 	args->retained = obj->mm.madv != __I915_MADV_PURGED;
+ 	mutex_unlock(&obj->mm.lock);
  
++out_ww:
++	i915_gem_object_unlock(obj);
+ out:
+ 	i915_gem_object_put(obj);
+ 	return err;
 -- 
 2.28.0
 
