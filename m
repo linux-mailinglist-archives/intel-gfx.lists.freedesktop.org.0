@@ -1,47 +1,47 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3162B28F2C4
-	for <lists+intel-gfx@lfdr.de>; Thu, 15 Oct 2020 14:58:19 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id C0F9A28F2E7
+	for <lists+intel-gfx@lfdr.de>; Thu, 15 Oct 2020 15:07:15 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 35FC16ECC9;
-	Thu, 15 Oct 2020 12:58:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B8F8D6ECF7;
+	Thu, 15 Oct 2020 13:07:12 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CC3186ECC9
- for <intel-gfx@lists.freedesktop.org>; Thu, 15 Oct 2020 12:58:15 +0000 (UTC)
-IronPort-SDR: bxlbZJbw62e7UJsv74ZtSXUxw9500v4W+KL3keREvXcRinO2/PZoZxaLQV5nNGKsY6xqGISR2z
- +59CqWJ52J3A==
-X-IronPort-AV: E=McAfee;i="6000,8403,9774"; a="227987423"
-X-IronPort-AV: E=Sophos;i="5.77,379,1596524400"; d="scan'208";a="227987423"
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 70A4A6ECF7
+ for <intel-gfx@lists.freedesktop.org>; Thu, 15 Oct 2020 13:07:11 +0000 (UTC)
+IronPort-SDR: jMU+j+UOoCS9R9aXuoA/6sud9tImFqpAoHXZWLJe5Gd9BuDH0Q0UJNZfbkHdY4j8YMoPNFsHtG
+ 1YbTg8jpLo6Q==
+X-IronPort-AV: E=McAfee;i="6000,8403,9774"; a="146200499"
+X-IronPort-AV: E=Sophos;i="5.77,379,1596524400"; d="scan'208";a="146200499"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Oct 2020 05:58:14 -0700
-IronPort-SDR: 0YHsyMHSEaJmp5imea9FHUzWZ8iIuzM+9Cf4GYlX7mWDAgXCtGCiBJPE5pYgQg4eRhfH9DQBjc
- ZepHsi7rjC8A==
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Oct 2020 06:07:08 -0700
+IronPort-SDR: aJD7GAzIdqh8XurbSZgkEyROJ8mlUxMg0amJrmhoAX27fhRv8XDUFH3aaXic+ho0x0RqO1DrZ7
+ 7TrKMSe5hrSg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.77,379,1596524400"; d="scan'208";a="356975194"
+X-IronPort-AV: E=Sophos;i="5.77,379,1596524400"; d="scan'208";a="356978603"
 Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by FMSMGA003.fm.intel.com with SMTP; 15 Oct 2020 05:58:12 -0700
+ by FMSMGA003.fm.intel.com with SMTP; 15 Oct 2020 06:07:06 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 15 Oct 2020 15:58:11 +0300
-Date: Thu, 15 Oct 2020 15:58:11 +0300
+ Thu, 15 Oct 2020 16:07:05 +0300
+Date: Thu, 15 Oct 2020 16:07:05 +0300
 From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org
-Message-ID: <20201015125811.GK6112@intel.com>
-References: <20200716190426.17047-1-ville.syrjala@linux.intel.com>
- <20200716190426.17047-2-ville.syrjala@linux.intel.com>
+To: Manasi Navare <manasi.d.navare@intel.com>
+Message-ID: <20201015130705.GL6112@intel.com>
+References: <20201008214535.22942-1-manasi.d.navare@intel.com>
+ <20201008214535.22942-6-manasi.d.navare@intel.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20200716190426.17047-2-ville.syrjala@linux.intel.com>
+In-Reply-To: <20201008214535.22942-6-manasi.d.navare@intel.com>
 X-Patchwork-Hint: comment
 User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH 2/2] drm/i915: Apply WAC6entrylatency to
- kbl/cfl
+Subject: Re: [Intel-gfx] [PATCH v10 06/11] drm/i915: Enable big joiner
+ support in enable and disable sequences.
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,135 +54,591 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Jul 16, 2020 at 10:04:26PM +0300, Ville Syrjala wrote:
-> From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> =
+On Thu, Oct 08, 2020 at 02:45:30PM -0700, Manasi Navare wrote:
+> @@ -4504,6 +4514,29 @@ void intel_ddi_get_config(struct intel_encoder *en=
+coder,
+>  	default:
+>  		break;
+>  	}
+> +}
+> +
+> +void intel_ddi_get_config(struct intel_encoder *encoder,
+> +			  struct intel_crtc_state *pipe_config)
+> +{
+> +	struct drm_i915_private *dev_priv =3D to_i915(encoder->base.dev);
+> +	enum transcoder cpu_transcoder =3D pipe_config->cpu_transcoder;
+> +
+> +	/* XXX: DSI transcoder paranoia */
+> +	if (WARN_ON(transcoder_is_dsi(cpu_transcoder)))
+> +		return;
+> +
+> +	intel_ddi_read_func_ctl(encoder, pipe_config);
+> +	if (pipe_config->bigjoiner_slave) {
+> +		/* read out pipe settings from master */
+> +		enum transcoder save =3D pipe_config->cpu_transcoder;
+> +
+> +		/* Our own transcoder needs to be disabled when reading it in intel_dd=
+i_read_func_ctl() */
+> +		WARN_ON(pipe_config->output_types);
+> +		pipe_config->cpu_transcoder =3D (enum transcoder)pipe_config->bigjoine=
+r_linked_crtc->pipe;
+> +		intel_ddi_read_func_ctl(encoder, pipe_config);
+> +		pipe_config->cpu_transcoder =3D save;
+> +	}
 
-> WAC6entrylatency is trying to fix excessive rc6 entry latency caused
-> by the extra delay from FBC_LLC_READ_CTRL, which is there for some
-> extra sync with uncore for frame buffer caching in LLC.
-> =
+This stuff is rather horrible. Shouldn't both pipes be using the
+same transcoder anyway? If so, is this stuff here just because
+we've miscalculated cpu_transcoder for the slave?
 
-> Reading through the hsd the recommendation was to set the FBC_LLC_FULLY_O=
-PEN
-> bit to disable this extra delay entirely. This can be done whenever fb LLC
-> caching is not used. The alternative suggestion was to reduce the delay to
-> eg. 0x5 via updated BIOS programming instructions. But all the kbl/cfl
-> machines I've seen still have the default 0xff programmed. As we never use
-> fb LLC caching let's just apply the w/a to all skl derivatives to get
-> consistent rc6 latencies.
-> =
-
-> I was able to measure the effect of FBC_LLC_READ_CTRL to rc6 latency
-> via forcewake. Here's a graph of some of the results:
-> =
-
->              sleep;fw_req=3D1;wait fw_ack=3D=3D1;sleep;fw_req=3D0;wait fw=
-_ack=3D=3D0
->  fw_ack=3D=3D1 duration
->     160us +--------------------------------------------------------------=
---+
->           |          +          +        $$+         +          +        =
-  |
->           |  $$           $    $   ******$$ **   $ $**$*  #########$$####=
-##|
->     140us |-$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$*$$$$$$$$$$$$$$$$ $$$$=
-$$|
->           | $                     *                       #              =
-  |
->           | $                     *                       #              =
-  |
->     120us |$+                     *                       #              =
-+-|
->           |$                      *                       #              =
-  |
->           |$                      *                  #   #               =
-  |
->     100us |$+         ************########################               =
-+-|
->           |$          *          *#                                      =
-  |
->           |$      *****   #########                                      =
-  |
->      80us |$+     *    # ####   ##                                       =
-+-|
->           |$   **** ### # #                                              =
-  |
->           |  ** ####                     FBC_LLC_READ_CTRL: 0x8000 ******=
-* |
->      60us |-######                       FBC_LLC_READ_CTRL: 0xffff ######=
-#-|
->           |##        +          +    FBC_LLC_READ_CTRL: 0x400000ff $$$$$$=
-$ |
->           +--------------------------------------------------------------=
---+
->          0ms       10ms       20ms       30ms      40ms       50ms       =
-60ms
->                                    sleep duration
-> =
-
-> The default FBC_LLC_READ_CTRL value of 0xff is documented to give us
-> a 170usec delay. That tracks well with the knees at 0xffff->~44usec and
-> 0x8000->~22usec we see in the graph.
-
-Those should obviously say msec instead of usec.
-
-> =
-
-> We can see that if we sleep longer than the FBC_LLC_READ_CTRL delay
-> we always observe the full (~145usec) rc6 wakeup latency. But if we sleep
-> for less than the FBC_LLC_READ_CTRL delay we see a quicker fw wakeup,
-> presumably due the hardware not having yet entered rc6 fully.
-> The other plateaus in the graph I suspect correspond to some shallower
-> internal rc states.
-> =
-
-> Signed-off-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> ---
->  drivers/gpu/drm/i915/intel_pm.c | 8 ++++++++
->  1 file changed, 8 insertions(+)
-> =
-
-> diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/intel=
-_pm.c
-> index 0a1a95060f38..3998aa00563e 100644
-> --- a/drivers/gpu/drm/i915/intel_pm.c
-> +++ b/drivers/gpu/drm/i915/intel_pm.c
-> @@ -7197,6 +7197,10 @@ static void cfl_init_clock_gating(struct drm_i915_=
-private *dev_priv)
->  	cnp_init_clock_gating(dev_priv);
->  	gen9_init_clock_gating(dev_priv);
 >  =
 
-> +	/* WAC6entrylatency:cfl */
-> +	I915_WRITE(FBC_LLC_READ_CTRL, I915_READ(FBC_LLC_READ_CTRL) |
-> +		   FBC_LLC_FULLY_OPEN);
+>  	pipe_config->has_audio =3D
+>  		intel_ddi_is_audio_enabled(dev_priv, cpu_transcoder);
+> @@ -4529,7 +4562,8 @@ void intel_ddi_get_config(struct intel_encoder *enc=
+oder,
+>  		dev_priv->vbt.edp.bpp =3D pipe_config->pipe_bpp;
+>  	}
+>  =
+
+> -	intel_ddi_clock_get(encoder, pipe_config);
+> +	if (!pipe_config->bigjoiner_slave)
+> +		intel_ddi_clock_get(encoder, pipe_config);
+>  =
+
+>  	if (IS_GEN9_LP(dev_priv))
+>  		pipe_config->lane_lat_optim_mask =3D
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/d=
+rm/i915/display/intel_display.c
+> index 37b56f4c2401..faf8bf757bed 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> @@ -7125,6 +7125,45 @@ static void hsw_set_frame_start_delay(const struct=
+ intel_crtc_state *crtc_state)
+>  	intel_de_write(dev_priv, reg, val);
+>  }
+>  =
+
+> +static void tgl_ddi_bigjoiner_pre_enable(struct intel_atomic_state *stat=
+e,
+> +					 const struct intel_crtc_state *crtc_state)
+> +{
+> +	struct intel_crtc *master =3D to_intel_crtc(crtc_state->uapi.crtc);
+> +	struct intel_crtc_state *master_crtc_state;
+> +	struct drm_connector_state *conn_state;
+> +	struct drm_connector *conn;
+> +	struct intel_encoder *encoder =3D NULL;
+> +	int i;
 > +
->  	/*
->  	 * WaFbcTurnOffFbcWatermark:cfl
->  	 * Display WA #0562: cfl
-> @@ -7216,6 +7220,10 @@ static void kbl_init_clock_gating(struct drm_i915_=
-private *dev_priv)
+> +	if (crtc_state->bigjoiner_slave)
+> +		master =3D crtc_state->bigjoiner_linked_crtc;
+> +
+> +	master_crtc_state =3D intel_atomic_get_new_crtc_state(state, master);
+> +
+> +	for_each_new_connector_in_state(&state->base, conn, conn_state, i) {
+> +		if (conn_state->crtc !=3D &master->base)
+> +			continue;
+> +
+> +		encoder =3D to_intel_encoder(conn_state->best_encoder);
+> +		break;
+> +	}
+> +
+> +	if (!crtc_state->bigjoiner_slave) {
+> +		/* need to enable VDSC, which we skipped in pre-enable */
+> +		intel_dsc_enable(encoder, crtc_state);
+> +	} else {
+> +		/*
+> +		 * Enable sequence steps 1-7 on bigjoiner master
+> +		 */
+> +		intel_encoders_pre_pll_enable(state, master);
+> +		intel_enable_shared_dpll(master_crtc_state);
+> +		intel_encoders_pre_enable(state, master);
+> +
+> +		/* and DSC on slave */
+> +		intel_dsc_enable(NULL, crtc_state);
+> +	}
+> +}
+> +
+>  static void hsw_crtc_enable(struct intel_atomic_state *state,
+>  			    struct intel_crtc *crtc)
 >  {
->  	gen9_init_clock_gating(dev_priv);
+> @@ -7138,34 +7177,39 @@ static void hsw_crtc_enable(struct intel_atomic_s=
+tate *state,
+>  	if (drm_WARN_ON(&dev_priv->drm, crtc->active))
+>  		return;
 >  =
 
-> +	/* WAC6entrylatency:kbl */
-> +	I915_WRITE(FBC_LLC_READ_CTRL, I915_READ(FBC_LLC_READ_CTRL) |
-> +		   FBC_LLC_FULLY_OPEN);
+> -	intel_encoders_pre_pll_enable(state, crtc);
+> -
+> -	if (new_crtc_state->shared_dpll)
+> -		intel_enable_shared_dpll(new_crtc_state);
+> +	if (!new_crtc_state->bigjoiner) {
+> +		intel_encoders_pre_pll_enable(state, crtc);
+>  =
+
+> -	intel_encoders_pre_enable(state, crtc);
+> +		if (new_crtc_state->shared_dpll)
+> +			intel_enable_shared_dpll(new_crtc_state);
+>  =
+
+> -	if (!transcoder_is_dsi(cpu_transcoder))
+> -		intel_set_transcoder_timings(new_crtc_state);
+> +		intel_encoders_pre_enable(state, crtc);
+> +	} else {
+> +		tgl_ddi_bigjoiner_pre_enable(state, new_crtc_state);
+> +	}
+>  =
+
+>  	intel_set_pipe_src_size(new_crtc_state);
+> +	if (INTEL_GEN(dev_priv) >=3D 9 || IS_BROADWELL(dev_priv))
+> +		bdw_set_pipemisc(new_crtc_state);
+>  =
+
+> -	if (cpu_transcoder !=3D TRANSCODER_EDP &&
+> -	    !transcoder_is_dsi(cpu_transcoder))
+> -		intel_de_write(dev_priv, PIPE_MULT(cpu_transcoder),
+> -			       new_crtc_state->pixel_multiplier - 1);
+> +	if (!new_crtc_state->bigjoiner_slave && !transcoder_is_dsi(cpu_transcod=
+er)) {
+> +		if (!transcoder_is_dsi(cpu_transcoder))
+> +			intel_set_transcoder_timings(new_crtc_state);
+>  =
+
+> -	if (new_crtc_state->has_pch_encoder)
+> -		intel_cpu_transcoder_set_m_n(new_crtc_state,
+> -					     &new_crtc_state->fdi_m_n, NULL);
+> +		if (cpu_transcoder !=3D TRANSCODER_EDP &&
+> +		    !transcoder_is_dsi(cpu_transcoder))
+> +			intel_de_write(dev_priv, PIPE_MULT(cpu_transcoder),
+> +				       new_crtc_state->pixel_multiplier - 1);
 > +
->  	/* WaDisableSDEUnitClockGating:kbl */
->  	if (IS_KBL_REVID(dev_priv, 0, KBL_REVID_B0))
->  		I915_WRITE(GEN8_UCGCTL6, I915_READ(GEN8_UCGCTL6) |
-> -- =
+> +		if (new_crtc_state->has_pch_encoder)
+> +			intel_cpu_transcoder_set_m_n(new_crtc_state,
+> +						     &new_crtc_state->fdi_m_n, NULL);
+>  =
 
-> 2.26.2
+> -	if (!transcoder_is_dsi(cpu_transcoder)) {
+>  		hsw_set_frame_start_delay(new_crtc_state);
+> -		hsw_set_pipeconf(new_crtc_state);
+>  	}
+>  =
 
+> -	if (INTEL_GEN(dev_priv) >=3D 9 || IS_BROADWELL(dev_priv))
+> -		bdw_set_pipemisc(new_crtc_state);
+> +	if (!transcoder_is_dsi(cpu_transcoder))
+> +		hsw_set_pipeconf(new_crtc_state);
+>  =
+
+>  	crtc->active =3D true;
+>  =
+
+> @@ -7201,6 +7245,11 @@ static void hsw_crtc_enable(struct intel_atomic_st=
+ate *state,
+>  	if (INTEL_GEN(dev_priv) >=3D 11)
+>  		icl_pipe_mbus_enable(crtc);
+>  =
+
+> +	if (new_crtc_state->bigjoiner_slave) {
+> +		trace_intel_pipe_enable(crtc);
+> +		intel_crtc_vblank_on(new_crtc_state);
+> +	}
+> +
+>  	intel_encoders_enable(state, crtc);
+>  =
+
+>  	if (psl_clkgate_wa) {
+> @@ -7495,6 +7544,9 @@ static u64 get_crtc_power_domains(struct intel_crtc=
+_state *crtc_state)
+>  	if (crtc_state->shared_dpll)
+>  		mask |=3D BIT_ULL(POWER_DOMAIN_DISPLAY_CORE);
+>  =
+
+> +	if (crtc_state->dsc.compression_enable)
+> +		mask |=3D BIT_ULL(intel_dsc_power_domain(crtc_state));
+> +
+>  	return mask;
+>  }
+>  =
+
+> @@ -8113,6 +8165,30 @@ static u32 ilk_pipe_pixel_rate(const struct intel_=
+crtc_state *crtc_state)
+>  		       pfit_w * pfit_h);
+>  }
+>  =
+
+> +static void intel_encoder_get_config(struct intel_encoder *encoder,
+> +				     struct intel_crtc_state *crtc_state)
+> +{
+> +	struct drm_display_mode *pipe_mode =3D &crtc_state->hw.pipe_mode;
+> +
+> +	encoder->get_config(encoder, crtc_state);
+> +
+> +	*pipe_mode =3D crtc_state->hw.adjusted_mode;
+> +	if (crtc_state->bigjoiner) {
+> +		/*
+> +		 * transcoder is programmed to the full mode,
+> +		 * but pipe timings are half of the transcoder mode
+> +		 */
+> +		pipe_mode->crtc_hdisplay /=3D 2;
+> +		pipe_mode->crtc_hblank_start /=3D 2;
+> +		pipe_mode->crtc_hblank_end /=3D 2;
+> +		pipe_mode->crtc_hsync_start /=3D 2;
+> +		pipe_mode->crtc_hsync_end /=3D 2;
+> +		pipe_mode->crtc_htotal /=3D 2;
+> +		pipe_mode->crtc_hskew /=3D 2;
+> +		pipe_mode->crtc_clock /=3D 2;
+> +	}
+> +}
+> +
+>  static void intel_crtc_compute_pixel_rate(struct intel_crtc_state *crtc_=
+state)
+>  {
+>  	struct drm_i915_private *dev_priv =3D to_i915(crtc_state->uapi.crtc->de=
+v);
+> @@ -9027,20 +9103,22 @@ static void intel_get_pipe_src_size(struct intel_=
+crtc *crtc,
+>  void intel_mode_from_pipe_config(struct drm_display_mode *mode,
+>  				 struct intel_crtc_state *pipe_config)
+>  {
+> -	mode->hdisplay =3D pipe_config->hw.adjusted_mode.crtc_hdisplay;
+> -	mode->htotal =3D pipe_config->hw.adjusted_mode.crtc_htotal;
+> -	mode->hsync_start =3D pipe_config->hw.adjusted_mode.crtc_hsync_start;
+> -	mode->hsync_end =3D pipe_config->hw.adjusted_mode.crtc_hsync_end;
+> +	struct drm_display_mode *hw_mode =3D &pipe_config->hw.adjusted_mode;
+> +
+> +	mode->hdisplay =3D hw_mode->crtc_hdisplay;
+> +	mode->htotal =3D hw_mode->crtc_htotal;
+> +	mode->hsync_start =3D hw_mode->crtc_hsync_start;
+> +	mode->hsync_end =3D hw_mode->crtc_hsync_end;
+>  =
+
+> -	mode->vdisplay =3D pipe_config->hw.adjusted_mode.crtc_vdisplay;
+> -	mode->vtotal =3D pipe_config->hw.adjusted_mode.crtc_vtotal;
+> -	mode->vsync_start =3D pipe_config->hw.adjusted_mode.crtc_vsync_start;
+> -	mode->vsync_end =3D pipe_config->hw.adjusted_mode.crtc_vsync_end;
+> +	mode->vdisplay =3D hw_mode->crtc_vdisplay;
+> +	mode->vtotal =3D hw_mode->crtc_vtotal;
+> +	mode->vsync_start =3D hw_mode->crtc_vsync_start;
+> +	mode->vsync_end =3D hw_mode->crtc_vsync_end;
+>  =
+
+> -	mode->flags =3D pipe_config->hw.adjusted_mode.flags;
+> +	mode->flags =3D hw_mode->flags;
+>  	mode->type =3D DRM_MODE_TYPE_DRIVER;
+>  =
+
+> -	mode->clock =3D pipe_config->hw.adjusted_mode.crtc_clock;
+> +	mode->clock =3D hw_mode->crtc_clock;
+>  =
+
+>  	drm_mode_set_name(mode);
+>  }
+> @@ -11207,6 +11285,9 @@ static void hsw_get_ddi_port_state(struct intel_c=
+rtc *crtc,
+>  	} else {
+>  		tmp =3D intel_de_read(dev_priv,
+>  				    TRANS_DDI_FUNC_CTL(cpu_transcoder));
+> +		if (!(tmp & TRANS_DDI_FUNC_ENABLE))
+> +			return;
+> +
+>  		if (INTEL_GEN(dev_priv) >=3D 12)
+>  			port =3D TGL_TRANS_DDI_FUNC_CTL_VAL_TO_PORT(tmp);
+>  		else
+> @@ -11279,12 +11360,20 @@ static bool hsw_get_pipe_config(struct intel_cr=
+tc *crtc,
+>  		drm_WARN_ON(&dev_priv->drm, active);
+>  		active =3D true;
+>  	}
+> +	intel_dsc_get_config(pipe_config);
+>  =
+
+> -	if (!active)
+> -		goto out;
+> +	if (!active) {
+> +		/* bigjoiner slave doesn't enable transcoder */
+> +		if (!pipe_config->bigjoiner_slave)
+> +			goto out;
+>  =
+
+> -	if (!transcoder_is_dsi(pipe_config->cpu_transcoder) ||
+> -	    INTEL_GEN(dev_priv) >=3D 11) {
+> +		active =3D true;
+> +		pipe_config->pixel_multiplier =3D 1;
+> +
+> +		/* we cannot read out most state, so don't bother.. */
+> +		pipe_config->quirks |=3D PIPE_CONFIG_QUIRK_BIGJOINER_SLAVE;
+> +	} else if (!transcoder_is_dsi(pipe_config->cpu_transcoder) ||
+> +		   INTEL_GEN(dev_priv) >=3D 11) {
+>  		hsw_get_ddi_port_state(crtc, pipe_config);
+>  		intel_get_transcoder_timings(crtc, pipe_config);
+>  	}
+> @@ -11370,8 +11459,11 @@ static bool hsw_get_pipe_config(struct intel_crt=
+c *crtc,
+>  		}
+>  	}
+>  =
+
+> -	if (pipe_config->cpu_transcoder !=3D TRANSCODER_EDP &&
+> -	    !transcoder_is_dsi(pipe_config->cpu_transcoder)) {
+> +	if (pipe_config->bigjoiner_slave) {
+> +		/* Cannot be read out as a slave, set to 0. */
+> +		pipe_config->pixel_multiplier =3D 0;
+> +	} else if (pipe_config->cpu_transcoder !=3D TRANSCODER_EDP &&
+> +		    !transcoder_is_dsi(pipe_config->cpu_transcoder)) {
+>  		pipe_config->pixel_multiplier =3D
+>  			intel_de_read(dev_priv,
+>  				      PIPE_MULT(pipe_config->cpu_transcoder)) + 1;
+> @@ -12386,7 +12478,7 @@ intel_encoder_current_mode(struct intel_encoder *=
+encoder)
+>  		return NULL;
+>  	}
+>  =
+
+> -	encoder->get_config(encoder, crtc_state);
+> +	intel_encoder_get_config(encoder, crtc_state);
+>  =
+
+>  	intel_mode_from_pipe_config(mode, crtc_state);
+>  =
+
+> @@ -13385,12 +13477,15 @@ intel_crtc_copy_uapi_to_hw_state(struct intel_a=
+tomic_state *state,
+>  	intel_crtc_copy_uapi_to_hw_state_nomodeset(state, crtc_state);
+>  }
+>  =
+
+> -static void intel_crtc_copy_hw_to_uapi_state(struct intel_crtc_state *cr=
+tc_state)
+> +static void intel_crtc_copy_hw_to_uapi_state(struct intel_crtc_state *cr=
+tc_state,
+> +					     struct drm_display_mode *user_mode)
+>  {
+> -	crtc_state->uapi.enable =3D crtc_state->hw.enable;
+> -	crtc_state->uapi.active =3D crtc_state->hw.active;
+> -	drm_WARN_ON(crtc_state->uapi.crtc->dev,
+> -		    drm_atomic_set_mode_for_crtc(&crtc_state->uapi, &crtc_state->hw.mo=
+de) < 0);
+> +	if (!crtc_state->bigjoiner_slave) {
+> +		crtc_state->uapi.enable =3D crtc_state->hw.enable;
+> +		crtc_state->uapi.active =3D crtc_state->hw.active;
+> +		drm_WARN_ON(crtc_state->uapi.crtc->dev,
+> +			    drm_atomic_set_mode_for_crtc(&crtc_state->uapi, user_mode) < 0);
+> +	}
+>  =
+
+>  	crtc_state->uapi.adjusted_mode =3D crtc_state->hw.adjusted_mode;
+>  =
+
+> @@ -14027,21 +14122,42 @@ intel_pipe_config_compare(const struct intel_cr=
+tc_state *current_config,
+>  =
+
+>  	PIPE_CONF_CHECK_X(output_types);
+>  =
+
+> -	PIPE_CONF_CHECK_I(hw.adjusted_mode.crtc_hdisplay);
+> -	PIPE_CONF_CHECK_I(hw.adjusted_mode.crtc_htotal);
+> -	PIPE_CONF_CHECK_I(hw.adjusted_mode.crtc_hblank_start);
+> -	PIPE_CONF_CHECK_I(hw.adjusted_mode.crtc_hblank_end);
+> -	PIPE_CONF_CHECK_I(hw.adjusted_mode.crtc_hsync_start);
+> -	PIPE_CONF_CHECK_I(hw.adjusted_mode.crtc_hsync_end);
+> -
+> -	PIPE_CONF_CHECK_I(hw.adjusted_mode.crtc_vdisplay);
+> -	PIPE_CONF_CHECK_I(hw.adjusted_mode.crtc_vtotal);
+> -	PIPE_CONF_CHECK_I(hw.adjusted_mode.crtc_vblank_start);
+> -	PIPE_CONF_CHECK_I(hw.adjusted_mode.crtc_vblank_end);
+> -	PIPE_CONF_CHECK_I(hw.adjusted_mode.crtc_vsync_start);
+> -	PIPE_CONF_CHECK_I(hw.adjusted_mode.crtc_vsync_end);
+> -
+> -	PIPE_CONF_CHECK_I(pixel_multiplier);
+> +	if (!PIPE_CONF_QUIRK(PIPE_CONFIG_QUIRK_BIGJOINER_SLAVE)) {
+> +		/* bigjoiner mode =3D transcoder mode / 2, for calculations */
+> +		PIPE_CONF_CHECK_I(hw.pipe_mode.crtc_hdisplay);
+> +		PIPE_CONF_CHECK_I(hw.pipe_mode.crtc_htotal);
+> +		PIPE_CONF_CHECK_I(hw.pipe_mode.crtc_vdisplay);
+> +		PIPE_CONF_CHECK_I(hw.pipe_mode.crtc_vtotal);
+> +
+> +		PIPE_CONF_CHECK_I(hw.adjusted_mode.crtc_hdisplay);
+> +		PIPE_CONF_CHECK_I(hw.adjusted_mode.crtc_htotal);
+> +		PIPE_CONF_CHECK_I(hw.adjusted_mode.crtc_hblank_start);
+> +		PIPE_CONF_CHECK_I(hw.adjusted_mode.crtc_hblank_end);
+> +		PIPE_CONF_CHECK_I(hw.adjusted_mode.crtc_hsync_start);
+> +		PIPE_CONF_CHECK_I(hw.adjusted_mode.crtc_hsync_end);
+> +
+> +		PIPE_CONF_CHECK_I(hw.adjusted_mode.crtc_vdisplay);
+> +		PIPE_CONF_CHECK_I(hw.adjusted_mode.crtc_vtotal);
+> +		PIPE_CONF_CHECK_I(hw.adjusted_mode.crtc_vblank_start);
+> +		PIPE_CONF_CHECK_I(hw.adjusted_mode.crtc_vblank_end);
+> +		PIPE_CONF_CHECK_I(hw.adjusted_mode.crtc_vsync_start);
+> +		PIPE_CONF_CHECK_I(hw.adjusted_mode.crtc_vsync_end);
+> +
+> +		PIPE_CONF_CHECK_FLAGS(hw.adjusted_mode.flags,
+> +				      DRM_MODE_FLAG_INTERLACE);
+> +
+> +		if (!PIPE_CONF_QUIRK(PIPE_CONFIG_QUIRK_MODE_SYNC_FLAGS)) {
+> +			PIPE_CONF_CHECK_FLAGS(hw.adjusted_mode.flags,
+> +					      DRM_MODE_FLAG_PHSYNC);
+> +			PIPE_CONF_CHECK_FLAGS(hw.adjusted_mode.flags,
+> +					      DRM_MODE_FLAG_NHSYNC);
+> +			PIPE_CONF_CHECK_FLAGS(hw.adjusted_mode.flags,
+> +					      DRM_MODE_FLAG_PVSYNC);
+> +			PIPE_CONF_CHECK_FLAGS(hw.adjusted_mode.flags,
+> +					      DRM_MODE_FLAG_NVSYNC);
+> +		}
+> +		PIPE_CONF_CHECK_I(pixel_multiplier);
+> +	}
+>  	PIPE_CONF_CHECK_I(output_format);
+>  	PIPE_CONF_CHECK_BOOL(has_hdmi_sink);
+>  	if ((INTEL_GEN(dev_priv) < 8 && !IS_HASWELL(dev_priv)) ||
+> @@ -14051,24 +14167,11 @@ intel_pipe_config_compare(const struct intel_cr=
+tc_state *current_config,
+>  	PIPE_CONF_CHECK_BOOL(hdmi_scrambling);
+>  	PIPE_CONF_CHECK_BOOL(hdmi_high_tmds_clock_ratio);
+>  	PIPE_CONF_CHECK_BOOL(has_infoframe);
+> -	PIPE_CONF_CHECK_BOOL(fec_enable);
+> +	if (!PIPE_CONF_QUIRK(PIPE_CONFIG_QUIRK_BIGJOINER_SLAVE))
+> +		PIPE_CONF_CHECK_BOOL(fec_enable);
+>  =
+
+>  	PIPE_CONF_CHECK_BOOL_INCOMPLETE(has_audio);
+>  =
+
+> -	PIPE_CONF_CHECK_FLAGS(hw.adjusted_mode.flags,
+> -			      DRM_MODE_FLAG_INTERLACE);
+> -
+> -	if (!PIPE_CONF_QUIRK(PIPE_CONFIG_QUIRK_MODE_SYNC_FLAGS)) {
+> -		PIPE_CONF_CHECK_FLAGS(hw.adjusted_mode.flags,
+> -				      DRM_MODE_FLAG_PHSYNC);
+> -		PIPE_CONF_CHECK_FLAGS(hw.adjusted_mode.flags,
+> -				      DRM_MODE_FLAG_NHSYNC);
+> -		PIPE_CONF_CHECK_FLAGS(hw.adjusted_mode.flags,
+> -				      DRM_MODE_FLAG_PVSYNC);
+> -		PIPE_CONF_CHECK_FLAGS(hw.adjusted_mode.flags,
+> -				      DRM_MODE_FLAG_NVSYNC);
+> -	}
+> -
+>  	PIPE_CONF_CHECK_X(gmch_pfit.control);
+>  	/* pfit ratios are autocomputed by the hw on gen4+ */
+>  	if (INTEL_GEN(dev_priv) < 4)
+> @@ -14094,7 +14197,8 @@ intel_pipe_config_compare(const struct intel_crtc=
+_state *current_config,
+>  		}
+>  =
+
+>  		PIPE_CONF_CHECK_I(scaler_state.scaler_id);
+> -		PIPE_CONF_CHECK_CLOCK_FUZZY(pixel_rate);
+> +		if (!PIPE_CONF_QUIRK(PIPE_CONFIG_QUIRK_BIGJOINER_SLAVE))
+> +			PIPE_CONF_CHECK_CLOCK_FUZZY(pixel_rate);
+>  =
+
+>  		PIPE_CONF_CHECK_X(gamma_mode);
+>  		if (IS_CHERRYVIEW(dev_priv))
+> @@ -14115,48 +14219,51 @@ intel_pipe_config_compare(const struct intel_cr=
+tc_state *current_config,
+>  	PIPE_CONF_CHECK_BOOL(double_wide);
+>  =
+
+>  	PIPE_CONF_CHECK_P(shared_dpll);
+> -	PIPE_CONF_CHECK_X(dpll_hw_state.dpll);
+> -	PIPE_CONF_CHECK_X(dpll_hw_state.dpll_md);
+> -	PIPE_CONF_CHECK_X(dpll_hw_state.fp0);
+> -	PIPE_CONF_CHECK_X(dpll_hw_state.fp1);
+> -	PIPE_CONF_CHECK_X(dpll_hw_state.wrpll);
+> -	PIPE_CONF_CHECK_X(dpll_hw_state.spll);
+> -	PIPE_CONF_CHECK_X(dpll_hw_state.ctrl1);
+> -	PIPE_CONF_CHECK_X(dpll_hw_state.cfgcr1);
+> -	PIPE_CONF_CHECK_X(dpll_hw_state.cfgcr2);
+> -	PIPE_CONF_CHECK_X(dpll_hw_state.cfgcr0);
+> -	PIPE_CONF_CHECK_X(dpll_hw_state.ebb0);
+> -	PIPE_CONF_CHECK_X(dpll_hw_state.ebb4);
+> -	PIPE_CONF_CHECK_X(dpll_hw_state.pll0);
+> -	PIPE_CONF_CHECK_X(dpll_hw_state.pll1);
+> -	PIPE_CONF_CHECK_X(dpll_hw_state.pll2);
+> -	PIPE_CONF_CHECK_X(dpll_hw_state.pll3);
+> -	PIPE_CONF_CHECK_X(dpll_hw_state.pll6);
+> -	PIPE_CONF_CHECK_X(dpll_hw_state.pll8);
+> -	PIPE_CONF_CHECK_X(dpll_hw_state.pll9);
+> -	PIPE_CONF_CHECK_X(dpll_hw_state.pll10);
+> -	PIPE_CONF_CHECK_X(dpll_hw_state.pcsdw12);
+> -	PIPE_CONF_CHECK_X(dpll_hw_state.mg_refclkin_ctl);
+> -	PIPE_CONF_CHECK_X(dpll_hw_state.mg_clktop2_coreclkctl1);
+> -	PIPE_CONF_CHECK_X(dpll_hw_state.mg_clktop2_hsclkctl);
+> -	PIPE_CONF_CHECK_X(dpll_hw_state.mg_pll_div0);
+> -	PIPE_CONF_CHECK_X(dpll_hw_state.mg_pll_div1);
+> -	PIPE_CONF_CHECK_X(dpll_hw_state.mg_pll_lf);
+> -	PIPE_CONF_CHECK_X(dpll_hw_state.mg_pll_frac_lock);
+> -	PIPE_CONF_CHECK_X(dpll_hw_state.mg_pll_ssc);
+> -	PIPE_CONF_CHECK_X(dpll_hw_state.mg_pll_bias);
+> -	PIPE_CONF_CHECK_X(dpll_hw_state.mg_pll_tdc_coldst_bias);
+> -
+> -	PIPE_CONF_CHECK_X(dsi_pll.ctrl);
+> -	PIPE_CONF_CHECK_X(dsi_pll.div);
+> -
+> -	if (IS_G4X(dev_priv) || INTEL_GEN(dev_priv) >=3D 5)
+> -		PIPE_CONF_CHECK_I(pipe_bpp);
+> -
+> -	PIPE_CONF_CHECK_CLOCK_FUZZY(hw.adjusted_mode.crtc_clock);
+> -	PIPE_CONF_CHECK_CLOCK_FUZZY(port_clock);
+> -
+> -	PIPE_CONF_CHECK_I(min_voltage_level);
+> +	if (!PIPE_CONF_QUIRK(PIPE_CONFIG_QUIRK_BIGJOINER_SLAVE)) {
+
+This looks super sketchy. I don't see why we'd want to skip all this
+state checking for bigjoiner.
+
+> +		PIPE_CONF_CHECK_X(dpll_hw_state.dpll);
+> +		PIPE_CONF_CHECK_X(dpll_hw_state.dpll_md);
+> +		PIPE_CONF_CHECK_X(dpll_hw_state.fp0);
+> +		PIPE_CONF_CHECK_X(dpll_hw_state.fp1);
+> +		PIPE_CONF_CHECK_X(dpll_hw_state.wrpll);
+> +		PIPE_CONF_CHECK_X(dpll_hw_state.spll);
+> +		PIPE_CONF_CHECK_X(dpll_hw_state.ctrl1);
+> +		PIPE_CONF_CHECK_X(dpll_hw_state.cfgcr1);
+> +		PIPE_CONF_CHECK_X(dpll_hw_state.cfgcr2);
+> +		PIPE_CONF_CHECK_X(dpll_hw_state.cfgcr0);
+> +		PIPE_CONF_CHECK_X(dpll_hw_state.ebb0);
+> +		PIPE_CONF_CHECK_X(dpll_hw_state.ebb4);
+> +		PIPE_CONF_CHECK_X(dpll_hw_state.pll0);
+> +		PIPE_CONF_CHECK_X(dpll_hw_state.pll1);
+> +		PIPE_CONF_CHECK_X(dpll_hw_state.pll2);
+> +		PIPE_CONF_CHECK_X(dpll_hw_state.pll3);
+> +		PIPE_CONF_CHECK_X(dpll_hw_state.pll6);
+> +		PIPE_CONF_CHECK_X(dpll_hw_state.pll8);
+> +		PIPE_CONF_CHECK_X(dpll_hw_state.pll9);
+> +		PIPE_CONF_CHECK_X(dpll_hw_state.pll10);
+> +		PIPE_CONF_CHECK_X(dpll_hw_state.pcsdw12);
+> +		PIPE_CONF_CHECK_X(dpll_hw_state.mg_refclkin_ctl);
+> +		PIPE_CONF_CHECK_X(dpll_hw_state.mg_clktop2_coreclkctl1);
+> +		PIPE_CONF_CHECK_X(dpll_hw_state.mg_clktop2_hsclkctl);
+> +		PIPE_CONF_CHECK_X(dpll_hw_state.mg_pll_div0);
+> +		PIPE_CONF_CHECK_X(dpll_hw_state.mg_pll_div1);
+> +		PIPE_CONF_CHECK_X(dpll_hw_state.mg_pll_lf);
+> +		PIPE_CONF_CHECK_X(dpll_hw_state.mg_pll_frac_lock);
+> +		PIPE_CONF_CHECK_X(dpll_hw_state.mg_pll_ssc);
+> +		PIPE_CONF_CHECK_X(dpll_hw_state.mg_pll_bias);
+> +		PIPE_CONF_CHECK_X(dpll_hw_state.mg_pll_tdc_coldst_bias);
+> +
+> +		PIPE_CONF_CHECK_X(dsi_pll.ctrl);
+> +		PIPE_CONF_CHECK_X(dsi_pll.div);
+> +
+> +		if (IS_G4X(dev_priv) || INTEL_GEN(dev_priv) >=3D 5)
+> +			PIPE_CONF_CHECK_I(pipe_bpp);
+> +
+> +		PIPE_CONF_CHECK_CLOCK_FUZZY(hw.adjusted_mode.crtc_clock);
+> +		PIPE_CONF_CHECK_CLOCK_FUZZY(hw.pipe_mode.crtc_clock);
+> +		PIPE_CONF_CHECK_CLOCK_FUZZY(port_clock);
+> +
+> +		PIPE_CONF_CHECK_I(min_voltage_level);
+> +	}
+>  =
+
+>  	PIPE_CONF_CHECK_X(infoframes.enable);
+>  	PIPE_CONF_CHECK_X(infoframes.gcp);
 -- =
 
 Ville Syrj=E4l=E4
