@@ -1,69 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7A6F628F9E7
-	for <lists+intel-gfx@lfdr.de>; Thu, 15 Oct 2020 22:09:38 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9760728FA0B
+	for <lists+intel-gfx@lfdr.de>; Thu, 15 Oct 2020 22:19:26 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7EEB56E147;
-	Thu, 15 Oct 2020 20:09:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 665258920E;
+	Thu, 15 Oct 2020 20:19:23 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 31A4D6E147
- for <intel-gfx@lists.freedesktop.org>; Thu, 15 Oct 2020 20:09:35 +0000 (UTC)
-IronPort-SDR: wZXtDGi+RQOv00c8twDfC1onw8n/iYhJDwIb1OaGYRcST3yEf+NM7O7j/ROm3qkiX7BnytCnw+
- RDjTZ4TvKJFA==
-X-IronPort-AV: E=McAfee;i="6000,8403,9775"; a="145751945"
-X-IronPort-AV: E=Sophos;i="5.77,380,1596524400"; d="scan'208";a="145751945"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Oct 2020 13:09:33 -0700
-IronPort-SDR: +SRAkdRHcxBDgtM1bNiXqp3Rob5cwSkO3P9OTkAEWaGHgvC/PmqvzK4cyzzsWS0LXnDBP8BWh+
- Q5LEDz4XSAGw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.77,380,1596524400"; d="scan'208";a="421258446"
-Received: from fmsmsx606.amr.corp.intel.com ([10.18.126.86])
- by fmsmga001.fm.intel.com with ESMTP; 15 Oct 2020 13:09:33 -0700
-Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
- fmsmsx606.amr.corp.intel.com (10.18.126.86) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1713.5; Thu, 15 Oct 2020 13:09:33 -0700
-Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
- fmsmsx612.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1713.5; Thu, 15 Oct 2020 13:09:32 -0700
-Received: from fmsmsx611.amr.corp.intel.com ([10.18.126.91]) by
- fmsmsx611.amr.corp.intel.com ([10.18.126.91]) with mapi id 15.01.1713.004;
- Thu, 15 Oct 2020 13:09:32 -0700
-From: "Tang, CQ" <cq.tang@intel.com>
-To: Chris Wilson <chris@chris-wilson.co.uk>, "intel-gfx@lists.freedesktop.org"
- <intel-gfx@lists.freedesktop.org>
-Thread-Topic: [Intel-gfx] [PATCH] drm/i915: Make the GEM reclaim workqueue
- high priority
-Thread-Index: AQHWoUw7vknVeKpXoUG0dRnaVPrLvamVsYWggAB79wD//4wCsIAAbQPggAMV3QD//91WoA==
-Date: Thu, 15 Oct 2020 20:09:32 +0000
-Message-ID: <8440cc7f281a49509efc25987b349438@intel.com>
-References: <20201013103256.31446-1-chris@chris-wilson.co.uk>
- <8c41461201764a0d8a05caba47d1589a@intel.com>
- <160260628825.2946.16678261690978530238@build.alporthouse.com>
- <daa1a1f388a94b07ad95ce5d12132925@intel.com>
- <917a40e55bb64ff1a9692563eb459611@intel.com>
- <160277441055.32312.12137014703246379267@build.alporthouse.com>
-In-Reply-To: <160277441055.32312.12137014703246379267@build.alporthouse.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-product: dlpe-windows
-dlp-reaction: no-action
-dlp-version: 11.5.1.3
-x-originating-ip: [10.22.254.132]
+Received: from fireflyinternet.com (unknown [77.68.26.236])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3F37F88FFE
+ for <intel-gfx@lists.freedesktop.org>; Thu, 15 Oct 2020 20:19:22 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from localhost (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
+ 22728857-1500050 for multiple; Thu, 15 Oct 2020 21:19:18 +0100
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Make the GEM reclaim workqueue
- high priority
+In-Reply-To: <20200716190426.17047-2-ville.syrjala@linux.intel.com>
+References: <20200716190426.17047-1-ville.syrjala@linux.intel.com>
+ <20200716190426.17047-2-ville.syrjala@linux.intel.com>
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
+Date: Thu, 15 Oct 2020 21:19:18 +0100
+Message-ID: <160279315810.3047.6112212821588179581@build.alporthouse.com>
+User-Agent: alot/0.9
+Subject: Re: [Intel-gfx] [PATCH 2/2] drm/i915: Apply WAC6entrylatency to
+ kbl/cfl
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -76,63 +41,79 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-
-
-> -----Original Message-----
-> From: Chris Wilson <chris@chris-wilson.co.uk>
-> Sent: Thursday, October 15, 2020 8:07 AM
-> To: Tang, CQ <cq.tang@intel.com>; intel-gfx@lists.freedesktop.org
-> Subject: Re: [Intel-gfx] [PATCH] drm/i915: Make the GEM reclaim workqueue
-> high priority
-> 
-> Quoting Tang, CQ (2020-10-14 00:29:13)
-> > i915_gem_free_object() is called by multiple threads/processes, they all
-> add objects onto the same free_list. The free_list processing worker thread
-> becomes bottle-neck. I see that the worker is mostly a single thread (with
-> particular thread ID), but sometimes multiple threads are launched to
-> process the 'free_list' work concurrently. But the processing speed is still
-> slower than the multiple process's feeding speed, and 'free_list' is holding
-> more and more memory.
-> 
-> We can also prune the free_list immediately, if we know we are outside of
-> any critical section. (We do this before create ioctls, and I thought upon
-> close(device), but I see that's just contexts.)
-> 
-> > The worker launching time is delayed a lot, we call queue_work() when we
-> add the first object onto the empty 'free_list', but when the worker is
-> launched, the 'free_list' has sometimes accumulated 1M objects. Maybe it is
-> because of waiting currently running worker to finish?
-> 
-> 1M is a lot more than is comfortable, and that's even with a high-priority
-> worker.  The problem with objects being freed from any context is that we
-> can't simply put a flush_work around there. (Not without ridding ourselves of
-> a few mutexes at least.) We could try more than worker, but it's no more
-> more effort to starve 2 cpus than it is to starve 1.
-> 
-> No, with that much pressure the only option is to apply the backpressure at
-> the point of allocation ala create_ioctl. i.e. find the hog, and look to see if
-> there's a convenient spot before/after to call
-> i915_gem_flush_free_objects(). Since you highlight the vma-stash as the
-> likely culprit, and the free_pt_stash is unlikely to be inside any critical section,
-> might as well try flushing from there for starters.
-
-I have not yet tested, but I guess calling i915_gem_flush_free_objects() inside free_pt_stash() will solve the problem that gem_exec_gttfill has, because it will give some back pressure on the system traffic.
-
-But this is only for the page table 4K lmem objects allocated/freed by vma-stash. We might encounter the same situation with user space allocated objects.
-
---CQ
-
-> 
-> Hmm, actually we are tantalizing close to having dropped all mutexes (and
-> similar global lock-like effects) from free_objects. That would be a nice
-> victory.
-> -Chris
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+UXVvdGluZyBWaWxsZSBTeXJqYWxhICgyMDIwLTA3LTE2IDIwOjA0OjI2KQo+IEZyb206IFZpbGxl
+IFN5cmrDpGzDpCA8dmlsbGUuc3lyamFsYUBsaW51eC5pbnRlbC5jb20+Cj4gCj4gV0FDNmVudHJ5
+bGF0ZW5jeSBpcyB0cnlpbmcgdG8gZml4IGV4Y2Vzc2l2ZSByYzYgZW50cnkgbGF0ZW5jeSBjYXVz
+ZWQKPiBieSB0aGUgZXh0cmEgZGVsYXkgZnJvbSBGQkNfTExDX1JFQURfQ1RSTCwgd2hpY2ggaXMg
+dGhlcmUgZm9yIHNvbWUKPiBleHRyYSBzeW5jIHdpdGggdW5jb3JlIGZvciBmcmFtZSBidWZmZXIg
+Y2FjaGluZyBpbiBMTEMuCj4gCj4gUmVhZGluZyB0aHJvdWdoIHRoZSBoc2QgdGhlIHJlY29tbWVu
+ZGF0aW9uIHdhcyB0byBzZXQgdGhlIEZCQ19MTENfRlVMTFlfT1BFTgo+IGJpdCB0byBkaXNhYmxl
+IHRoaXMgZXh0cmEgZGVsYXkgZW50aXJlbHkuIFRoaXMgY2FuIGJlIGRvbmUgd2hlbmV2ZXIgZmIg
+TExDCj4gY2FjaGluZyBpcyBub3QgdXNlZC4KCkFoLCBpcyB0aGF0IHdoYXQgaXQgbWVhbnMgYnkg
+J211c3Qgbm90IGJlIHNldCB1bmxlc3MgY29vcmRpbmF0ZWQgd2l0aAp1bmNvcmU/JyBPay4KCj4g
+VGhlIGFsdGVybmF0aXZlIHN1Z2dlc3Rpb24gd2FzIHRvIHJlZHVjZSB0aGUgZGVsYXkgdG8KPiBl
+Zy4gMHg1IHZpYSB1cGRhdGVkIEJJT1MgcHJvZ3JhbW1pbmcgaW5zdHJ1Y3Rpb25zLiBCdXQgYWxs
+IHRoZSBrYmwvY2ZsCj4gbWFjaGluZXMgSSd2ZSBzZWVuIHN0aWxsIGhhdmUgdGhlIGRlZmF1bHQg
+MHhmZiBwcm9ncmFtbWVkLiBBcyB3ZSBuZXZlciB1c2UKPiBmYiBMTEMgY2FjaGluZyBsZXQncyBq
+dXN0IGFwcGx5IHRoZSB3L2EgdG8gYWxsIHNrbCBkZXJpdmF0aXZlcyB0byBnZXQKPiBjb25zaXN0
+ZW50IHJjNiBsYXRlbmNpZXMuCj4gCj4gSSB3YXMgYWJsZSB0byBtZWFzdXJlIHRoZSBlZmZlY3Qg
+b2YgRkJDX0xMQ19SRUFEX0NUUkwgdG8gcmM2IGxhdGVuY3kKPiB2aWEgZm9yY2V3YWtlLiBIZXJl
+J3MgYSBncmFwaCBvZiBzb21lIG9mIHRoZSByZXN1bHRzOgo+IAo+ICAgICAgICAgICAgICBzbGVl
+cDtmd19yZXE9MTt3YWl0IGZ3X2Fjaz09MTtzbGVlcDtmd19yZXE9MDt3YWl0IGZ3X2Fjaz09MAo+
+ICBmd19hY2s9PTEgZHVyYXRpb24KPiAgICAgMTYwdXMgKy0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0rCj4gICAgICAgICAgIHwg
+ICAgICAgICAgKyAgICAgICAgICArICAgICAgICAkJCsgICAgICAgICArICAgICAgICAgICsgICAg
+ICAgICAgfAo+ICAgICAgICAgICB8ICAkJCAgICAgICAgICAgJCAgICAkICAgKioqKioqJCQgKiog
+ICAkICQqKiQqICAjIyMjIyMjIyMkJCMjIyMjI3wKPiAgICAgMTQwdXMgfC0kJCQkJCQkJCQkJCQk
+JCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQqJCQkJCQkJCQkJCQkJCQkJCAkJCQkJCR8Cj4gICAg
+ICAgICAgIHwgJCAgICAgICAgICAgICAgICAgICAgICogICAgICAgICAgICAgICAgICAgICAgICMg
+ICAgICAgICAgICAgICAgfAo+ICAgICAgICAgICB8ICQgICAgICAgICAgICAgICAgICAgICAqICAg
+ICAgICAgICAgICAgICAgICAgICAjICAgICAgICAgICAgICAgIHwKPiAgICAgMTIwdXMgfCQrICAg
+ICAgICAgICAgICAgICAgICAgKiAgICAgICAgICAgICAgICAgICAgICAgIyAgICAgICAgICAgICAg
+Ky18Cj4gICAgICAgICAgIHwkICAgICAgICAgICAgICAgICAgICAgICogICAgICAgICAgICAgICAg
+ICAgICAgICMgICAgICAgICAgICAgICAgfAo+ICAgICAgICAgICB8JCAgICAgICAgICAgICAgICAg
+ICAgICAqICAgICAgICAgICAgICAgICAgIyAgICMgICAgICAgICAgICAgICAgIHwKPiAgICAgMTAw
+dXMgfCQrICAgICAgICAgKioqKioqKioqKioqIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjICAgICAg
+ICAgICAgICAgKy18Cj4gICAgICAgICAgIHwkICAgICAgICAgICogICAgICAgICAgKiMgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgfAo+ICAgICAgICAgICB8JCAgICAgICoq
+KioqICAgIyMjIyMjIyMjICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHwK
+PiAgICAgIDgwdXMgfCQrICAgICAqICAgICMgIyMjIyAgICMjICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgKy18Cj4gICAgICAgICAgIHwkICAgKioqKiAjIyMgIyAjICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgfAo+ICAgICAgICAgICB8
+ICAqKiAjIyMjICAgICAgICAgICAgICAgICAgICAgRkJDX0xMQ19SRUFEX0NUUkw6IDB4ODAwMCAq
+KioqKioqIHwKPiAgICAgIDYwdXMgfC0jIyMjIyMgICAgICAgICAgICAgICAgICAgICAgIEZCQ19M
+TENfUkVBRF9DVFJMOiAweGZmZmYgIyMjIyMjIy18Cj4gICAgICAgICAgIHwjIyAgICAgICAgKyAg
+ICAgICAgICArICAgIEZCQ19MTENfUkVBRF9DVFJMOiAweDQwMDAwMGZmICQkJCQkJCQgfAo+ICAg
+ICAgICAgICArLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLSsKPiAgICAgICAgICAwbXMgICAgICAgMTBtcyAgICAgICAyMG1zICAg
+ICAgIDMwbXMgICAgICA0MG1zICAgICAgIDUwbXMgICAgICAgNjBtcwo+ICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgc2xlZXAgZHVyYXRpb24KPiAKPiBUaGUgZGVmYXVsdCBGQkNf
+TExDX1JFQURfQ1RSTCB2YWx1ZSBvZiAweGZmIGlzIGRvY3VtZW50ZWQgdG8gZ2l2ZSB1cwo+IGEg
+MTcwdXNlYyBkZWxheS4gVGhhdCB0cmFja3Mgd2VsbCB3aXRoIHRoZSBrbmVlcyBhdCAweGZmZmYt
+Pn40NHVzZWMgYW5kCj4gMHg4MDAwLT5+MjJ1c2VjIHdlIHNlZSBpbiB0aGUgZ3JhcGguCj4gCj4g
+V2UgY2FuIHNlZSB0aGF0IGlmIHdlIHNsZWVwIGxvbmdlciB0aGFuIHRoZSBGQkNfTExDX1JFQURf
+Q1RSTCBkZWxheQo+IHdlIGFsd2F5cyBvYnNlcnZlIHRoZSBmdWxsICh+MTQ1dXNlYykgcmM2IHdh
+a2V1cCBsYXRlbmN5LiBCdXQgaWYgd2Ugc2xlZXAKPiBmb3IgbGVzcyB0aGFuIHRoZSBGQkNfTExD
+X1JFQURfQ1RSTCBkZWxheSB3ZSBzZWUgYSBxdWlja2VyIGZ3IHdha2V1cCwKPiBwcmVzdW1hYmx5
+IGR1ZSB0aGUgaGFyZHdhcmUgbm90IGhhdmluZyB5ZXQgZW50ZXJlZCByYzYgZnVsbHkuCj4gVGhl
+IG90aGVyIHBsYXRlYXVzIGluIHRoZSBncmFwaCBJIHN1c3BlY3QgY29ycmVzcG9uZCB0byBzb21l
+IHNoYWxsb3dlcgo+IGludGVybmFsIHJjIHN0YXRlcy4KCkhtbSwgc28gYnkgc2V0dGluZyBMTEMg
+YXMgZnVsbHkgb3BlbiwgdGhlcmUgaXMgYWx3YXlzIGEgZml4ZWQgMTQwdXMKbGF0ZW5jeSBmb3Ig
+cmM2LCBpbXBseWluZyB0aGF0IHdlIGFsd2F5cyBpbW1lZGlhdGVseSB0cnkgdG8gZW50ZXIgcmM2
+CnJhdGhlciB0aGFuIGFmdGVyIH41MG1zLgoKSSByZWFsaXplIHRoYXQgbXkgcmM2IHBvd2VyIG1l
+YXN1cmVtZW50cyBzaG91bGQgYmUgd2l0aCB0aGUgZGlzcGxheQphbHJlYWR5IG9mZiBhbmQgc28g
+d2lsbCBub3Qgc2hvdyBhbnkgZWZmZWN0LiA6fAoKVGhlIGdyYXBoIGRvZXMgaW1wbHkgdGhhdCB0
+aGVyZSBzaG91bGQgYmUgYSBub3RpY2VhYmxlIGVmZmVjdCBmb3IKY29tcG9zaXRlZCBkZXNrdG9w
+cywgYm90aCBpbiBwb3dlciBzYXZpbmcgYW5kIGEgbGF0ZW5jeSBwZW5hbHR5LiAxNDB1cwppcyBh
+Ym91dCB0aGUgc2FtZSBzb3J0IG9mIGJhbGxwYXJrIGFzIGFsbCB0aGUgb3ZlciBzdGFydHVwIGNv
+c3RzLCBhbmQKb25lIGhvcGVzIHRoZXkgb3ZlcmxhcC4KCj4gU2lnbmVkLW9mZi1ieTogVmlsbGUg
+U3lyasOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4KUmV2aWV3ZWQtYnk6IENo
+cmlzIFdpbHNvbiA8Y2hyaXNAY2hyaXMtd2lsc29uLmNvLnVrPgotQ2hyaXMKX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlz
+dApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0
+b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
