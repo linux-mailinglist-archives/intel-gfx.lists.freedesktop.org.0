@@ -1,30 +1,119 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5224328EE9D
-	for <lists+intel-gfx@lfdr.de>; Thu, 15 Oct 2020 10:36:45 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 78C8728EEAE
+	for <lists+intel-gfx@lfdr.de>; Thu, 15 Oct 2020 10:41:49 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2FA526EC42;
-	Thu, 15 Oct 2020 08:36:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D1B4B89C6B;
+	Thu, 15 Oct 2020 08:41:42 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2BDF86EC41;
- Thu, 15 Oct 2020 08:36:39 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 22721166-1500050 
- for multiple; Thu, 15 Oct 2020 09:36:33 +0100
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Thu, 15 Oct 2020 09:36:32 +0100
-Message-Id: <20201015083632.2618018-1-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.28.0
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5479789BFF;
+ Thu, 15 Oct 2020 08:41:41 +0000 (UTC)
+IronPort-SDR: mAsKvaqyJBPPymmdMIvC5TcvfqIfkxhU0GZYIDjLkLRYzasBhPHziMPXLyN87YnoJg98gqtDZ6
+ a1ZEEtaRibHg==
+X-IronPort-AV: E=McAfee;i="6000,8403,9774"; a="250986038"
+X-IronPort-AV: E=Sophos;i="5.77,378,1596524400"; d="scan'208";a="250986038"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Oct 2020 01:41:40 -0700
+IronPort-SDR: xyvpgtN2+AvJjhV10oBKJVgxBlnq0xvXytRhvlM+PZAuVGzvn8VchfbyVcujxNQFI34he1QJ7N
+ FYYDSbX6wOpQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.77,378,1596524400"; d="scan'208";a="318952460"
+Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
+ by orsmga006.jf.intel.com with ESMTP; 15 Oct 2020 01:41:39 -0700
+Received: from fmsmsx603.amr.corp.intel.com (10.18.126.83) by
+ fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1713.5; Thu, 15 Oct 2020 01:41:39 -0700
+Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
+ fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1713.5
+ via Frontend Transport; Thu, 15 Oct 2020 01:41:39 -0700
+Received: from NAM02-SN1-obe.outbound.protection.outlook.com (104.47.36.52) by
+ edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.1713.5; Thu, 15 Oct 2020 01:41:37 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=TUKRDUdF1uNvemSDTACPhiIamNct0AsXxxK3GW3mgxC19sWg4nrBEDmow0Y+eTft8RvU7EnZEGz8TVqBEfOQI584NwTom7fZPTaO/PZdMvmO7Kq0h65zKpE0DL30yDwnhea/TWVtHz5oubZ1S2QSf2Gqvs27H1wxbNdC3kDUVS163h0LcqDXwEcs4yhFhGl7jAjchyoKTIxmCXQ0+RK5wStg4VAZCnPdIELBr2rfVDvOB+eMFhMRl2Cgw0EOFzqnVIRkdYF9ryZlp1oa/owi0lx0/RH/ANurvVd9NiT9eMzPl1LWrLu+E3CObGe9yo0KmagWKg8A6GXy+LTjPeVSkA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=LpWEc+u3WpbJiP6T1vc+3TEf1UhRlqjBf7xistUh6p8=;
+ b=EVtuF8MogRm+UeapcxUEPdzCkjPuOeHnLTWbsz0fjXxFv06mAA7TOhfqYSRcNNwrIUf+zY6pmhrALyeoyW9ZidcSF6t3jdB87MEfEKfK3RZYBc/S9FOaFIhMxfjCH00yw5AUhNogc59OoR/L2pUdSO/9iKmnzpKX0CSlv/56Y+4luhhgB/mQhWOg0feCOs/6k/XWZ/Z+l4/n2SAY/y4IvnlGdunmj8dEL+PUYKXstR8XgJLZDWVkFE7zWtAxuNxZxIbCM0EpkvKlVMJqBqaerT/WswNCl8aOEmyLqIgpBsBNTD8XLt5NcD4inUlFI5HZ23mgC4aBVS58bXZm1dJVVQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=intel.onmicrosoft.com; 
+ s=selector2-intel-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=LpWEc+u3WpbJiP6T1vc+3TEf1UhRlqjBf7xistUh6p8=;
+ b=VqY+tWDeaYrKAxgFMEUngGYVrvAKGXZ9a3vBf10B4zyzMaQC1XzOjJyq+O8+4D3jJNo7QuGNF119ixklSpyHPSpPD+Di3W7wDCKQtZN53DChotbjIjxegtkUOqcntIv4eV56gBNil0+eHVpu3uST+vk2YQwYhFzP6BnmnBtWJNE=
+Received: from BYAPR11MB3014.namprd11.prod.outlook.com (2603:10b6:a03:91::17)
+ by BYAPR11MB3365.namprd11.prod.outlook.com (2603:10b6:a03:7e::13)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3455.24; Thu, 15 Oct
+ 2020 08:41:32 +0000
+Received: from BYAPR11MB3014.namprd11.prod.outlook.com
+ ([fe80::64d4:f49d:bb3a:689d]) by BYAPR11MB3014.namprd11.prod.outlook.com
+ ([fe80::64d4:f49d:bb3a:689d%6]) with mapi id 15.20.3455.030; Thu, 15 Oct 2020
+ 08:41:32 +0000
+From: "K, SrinivasX" <srinivasx.k@intel.com>
+To: "Pandey, Hariom" <hariom.pandey@intel.com>
+Thread-Topic: [Intel-gfx] [PATCH] drm/i915/ehl: Remove require_force_probe
+ protection
+Thread-Index: AQHWm/En69MkClzmQ0ObvZWAiNjahamK2W6AgAAAfICAAAIGAIAAAfcAgAQV2sCAAFdYAIAAS2kAgAjJ5xA=
+Date: Thu, 15 Oct 2020 08:41:32 +0000
+Message-ID: <BYAPR11MB30149153D9229142DD2CF96BF9020@BYAPR11MB3014.namprd11.prod.outlook.com>
+References: <20201006145632.117291-1-srinivasx.k@intel.com>
+ <2f7809798dd0b59246d67c5044dafb1e518fc4c5.camel@intel.com>
+ <160200650945.2919.11750150118902885340@build.alporthouse.com>
+ <3CDB63EE-D1CD-43E4-A977-4E966CD19313@intel.com>
+ <c88bc0fbc4956395324674ca202b395326208888.camel@intel.com>
+ <BYAPR11MB3014087624B8206C05362830F9080@BYAPR11MB3014.namprd11.prod.outlook.com>
+ <B6C174E8-161A-43BD-AFDA-21C94F6D56E3@intel.com>
+ <BY5PR11MB44341733BF4A7CCB79861322F6080@BY5PR11MB4434.namprd11.prod.outlook.com>
+In-Reply-To: <BY5PR11MB44341733BF4A7CCB79861322F6080@BY5PR11MB4434.namprd11.prod.outlook.com>
+Accept-Language: en-IN, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: intel.com; dkim=none (message not signed)
+ header.d=none;intel.com; dmarc=none action=none header.from=intel.com;
+x-originating-ip: [49.205.250.6]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: fd4f4491-bb63-41ed-1af8-08d870e61e78
+x-ms-traffictypediagnostic: BYAPR11MB3365:
+x-ld-processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <BYAPR11MB3365EEEDD4981C385B9E26EDF9020@BYAPR11MB3365.namprd11.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:10000;
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: kSrOvzrJLux6zywWytulE6q7ip9VXvHM5zhJtP4wRbx21u2ITdyrzNyP4Gltt4KeRhAFVSlL4gmL5t6rvte+S6yngIh5mJbFWbMfrNRF2kUSl/hS15VyccGx4URjiIA7AAZHSeGtUnQEsE1jmnw1cUnguU1QH+PLe6xA2u6U9JftDq6YomO3wpjH/PwP9boHd9wye/b6cmb06Q4Zkw8oE9uoh0ni3ccImm1eD8975Bsjlnwpa08+9eE5WnMcw6j81BZ434TffVIhicV5a2IQejfCpwes0jyPpFO/nTw+nSvwtP8sGWTEFFJf+wbkH+jn1plNzZaRbEfLvq4nuVsqnJ6HCI4dTkop+M/Wr6BciufkaOU8dFlg0nTA+ZPP2uooqnD0YUv83s5BKUeWapwkaw==
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:BYAPR11MB3014.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(4636009)(376002)(396003)(366004)(136003)(39860400002)(346002)(55016002)(54906003)(478600001)(83080400001)(66476007)(2906002)(4326008)(86362001)(316002)(52536014)(76116006)(66946007)(66556008)(64756008)(186003)(26005)(66446008)(107886003)(6862004)(5660300002)(53546011)(6506007)(83380400001)(966005)(33656002)(6636002)(8936002)(71200400001)(8676002)(7696005)(9686003);
+ DIR:OUT; SFP:1102; 
+x-ms-exchange-antispam-messagedata: 2kD9hnpiY2SnpqlTqOvd/TLEua3EQQEMIVsWVpmyflqXDc2lmMcRuzKsD/ds3E+TLEOFKyNM7n7IjdLeLay/QzSNwdavilZxp4t6/ZrS0WaNlS3C7d5pyyjlNNYYeJmrT1GFkbKX8VrZej7Dm9IyY4AMM2Kyya5uAeBK+9+5zwXXkkkEL23z2gw3dpx/HhnmtJmNW1fcIT33Q6Vu37ZVNCUDcgxAXm4NX6I0UssAFQEGJAN3W7TXZAxY04FQ3jX1k6SNJJZ+NRXfD9V5yYi1lYcgv9MtKhZgsxEVxJau8N6Mr5lHIJEcp3Gy1Zih8hSLtVe6LvZUSX1uE1qwN4bjnLOy6PqKRJJrM4zwwxk5XTFjYlVHEtfxGH718bnBmH8Y8etnYzTEXrBq+X5KIo/mzQoW7ZAkhY1jOdENDTAA0TjDOyrfSK33bOOI0ihM4K7LmT0ciXVWcQJqGAamweY+WBDWArXTXGn4e4LovNy3bsuEh+W9W2fxogOp7/6e4GcTxRCQegcHDCxwEvm2AVXGa0POFGLxsClqbYwIrRppg+26UJ3v+oQpU7frn3XxxS79kSC7xZnx0H3sCjt57MxunuIMTjF4Kk8FPDJOE8N28S00zpFMocoxXbmK0kbaoVNLXNf/sPO4lXth6lAiSVCOTg==
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH i-g-t] i915/sysfs: Verify .defaults are
- read-only and match their namesakes
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: BYAPR11MB3014.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: fd4f4491-bb63-41ed-1af8-08d870e61e78
+X-MS-Exchange-CrossTenant-originalarrivaltime: 15 Oct 2020 08:41:32.6903 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: Fa2/dQ69OOwfc60f67Qrn1QFEsexD7B9v0ObS02F/vgUpB+Kq3ISpar/zSBvvD+L+sfyySWXQL63YIrP+tV9vg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BYAPR11MB3365
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/ehl: Remove require_force_probe
+ protection
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,89 +126,110 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: igt-dev@lists.freedesktop.org, Chris Wilson <chris@chris-wilson.co.uk>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: "Nikula, Jani" <jani.nikula@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "chris@chris-wilson.co.uk" <chris@chris-wilson.co.uk>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-U2lnbmVkLW9mZi1ieTogQ2hyaXMgV2lsc29uIDxjaHJpc0BjaHJpcy13aWxzb24uY28udWs+Ci0t
-LQogdGVzdHMvTWFrZWZpbGUuc291cmNlcyAgICAgIHwgICAzICsKIHRlc3RzL2k5MTUvc3lzZnNf
-ZGVmYXVsdHMuYyB8IDExMCArKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysKIHRl
-c3RzL21lc29uLmJ1aWxkICAgICAgICAgICB8ICAgMSArCiAzIGZpbGVzIGNoYW5nZWQsIDExNCBp
-bnNlcnRpb25zKCspCiBjcmVhdGUgbW9kZSAxMDA2NDQgdGVzdHMvaTkxNS9zeXNmc19kZWZhdWx0
-cy5jCgpkaWZmIC0tZ2l0IGEvdGVzdHMvTWFrZWZpbGUuc291cmNlcyBiL3Rlc3RzL01ha2VmaWxl
-LnNvdXJjZXMKaW5kZXggZWM1MzViYTg1Li4yNTgxYzA0MjkgMTAwNjQ0Ci0tLSBhL3Rlc3RzL01h
-a2VmaWxlLnNvdXJjZXMKKysrIGIvdGVzdHMvTWFrZWZpbGUuc291cmNlcwpAQCAtMTExLDYgKzEx
-MSw5IEBAIFRFU1RTX3Byb2dzID0gXAogVEVTVFNfcHJvZ3MgKz0gYXBpX2ludGVsX2JiCiBhcGlf
-aW50ZWxfYmJfU09VUkNFUyA9IGk5MTUvYXBpX2ludGVsX2JiLmMKIAorVEVTVFNfcHJvZ3MgKz0g
-c3lzZnNfZGVmYXVsdHMKK3N5c2ZzX2RlZmF1bHRzX1NPVVJDRVMgPSBpOTE1L3N5c2ZzX2RlZmF1
-bHRzLmMKKwogVEVTVFNfcHJvZ3MgKz0gc3lzZnNfaGVhcnRiZWF0X2ludGVydmFsCiBzeXNmc19o
-ZWFydGJlYXRfaW50ZXJ2YWxfU09VUkNFUyA9IGk5MTUvc3lzZnNfaGVhcnRiZWF0X2ludGVydmFs
-LmMKIApkaWZmIC0tZ2l0IGEvdGVzdHMvaTkxNS9zeXNmc19kZWZhdWx0cy5jIGIvdGVzdHMvaTkx
-NS9zeXNmc19kZWZhdWx0cy5jCm5ldyBmaWxlIG1vZGUgMTAwNjQ0CmluZGV4IDAwMDAwMDAwMC4u
-NjRjNWViMzczCi0tLSAvZGV2L251bGwKKysrIGIvdGVzdHMvaTkxNS9zeXNmc19kZWZhdWx0cy5j
-CkBAIC0wLDAgKzEsMTEwIEBACisvKgorICogQ29weXJpZ2h0IMKpIDIwMTkgSW50ZWwgQ29ycG9y
-YXRpb24KKyAqCisgKiBQZXJtaXNzaW9uIGlzIGhlcmVieSBncmFudGVkLCBmcmVlIG9mIGNoYXJn
-ZSwgdG8gYW55IHBlcnNvbiBvYnRhaW5pbmcgYQorICogY29weSBvZiB0aGlzIHNvZnR3YXJlIGFu
-ZCBhc3NvY2lhdGVkIGRvY3VtZW50YXRpb24gZmlsZXMgKHRoZSAiU29mdHdhcmUiKSwKKyAqIHRv
-IGRlYWwgaW4gdGhlIFNvZnR3YXJlIHdpdGhvdXQgcmVzdHJpY3Rpb24sIGluY2x1ZGluZyB3aXRo
-b3V0IGxpbWl0YXRpb24KKyAqIHRoZSByaWdodHMgdG8gdXNlLCBjb3B5LCBtb2RpZnksIG1lcmdl
-LCBwdWJsaXNoLCBkaXN0cmlidXRlLCBzdWJsaWNlbnNlLAorICogYW5kL29yIHNlbGwgY29waWVz
-IG9mIHRoZSBTb2Z0d2FyZSwgYW5kIHRvIHBlcm1pdCBwZXJzb25zIHRvIHdob20gdGhlCisgKiBT
-b2Z0d2FyZSBpcyBmdXJuaXNoZWQgdG8gZG8gc28sIHN1YmplY3QgdG8gdGhlIGZvbGxvd2luZyBj
-b25kaXRpb25zOgorICoKKyAqIFRoZSBhYm92ZSBjb3B5cmlnaHQgbm90aWNlIGFuZCB0aGlzIHBl
-cm1pc3Npb24gbm90aWNlIChpbmNsdWRpbmcgdGhlIG5leHQKKyAqIHBhcmFncmFwaCkgc2hhbGwg
-YmUgaW5jbHVkZWQgaW4gYWxsIGNvcGllcyBvciBzdWJzdGFudGlhbCBwb3J0aW9ucyBvZiB0aGUK
-KyAqIFNvZnR3YXJlLgorICoKKyAqIFRIRSBTT0ZUV0FSRSBJUyBQUk9WSURFRCAiQVMgSVMiLCBX
-SVRIT1VUIFdBUlJBTlRZIE9GIEFOWSBLSU5ELCBFWFBSRVNTIE9SCisgKiBJTVBMSUVELCBJTkNM
-VURJTkcgQlVUIE5PVCBMSU1JVEVEIFRPIFRIRSBXQVJSQU5USUVTIE9GIE1FUkNIQU5UQUJJTElU
-WSwKKyAqIEZJVE5FU1MgRk9SIEEgUEFSVElDVUxBUiBQVVJQT1NFIEFORCBOT05JTkZSSU5HRU1F
-TlQuICBJTiBOTyBFVkVOVCBTSEFMTAorICogVEhFIEFVVEhPUlMgT1IgQ09QWVJJR0hUIEhPTERF
-UlMgQkUgTElBQkxFIEZPUiBBTlkgQ0xBSU0sIERBTUFHRVMgT1IgT1RIRVIKKyAqIExJQUJJTElU
-WSwgV0hFVEhFUiBJTiBBTiBBQ1RJT04gT0YgQ09OVFJBQ1QsIFRPUlQgT1IgT1RIRVJXSVNFLCBB
-UklTSU5HCisgKiBGUk9NLCBPVVQgT0YgT1IgSU4gQ09OTkVDVElPTiBXSVRIIFRIRSBTT0ZUV0FS
-RSBPUiBUSEUgVVNFIE9SIE9USEVSIERFQUxJTkdTCisgKiBJTiBUSEUgU09GVFdBUkUuCisgKi8K
-KworI2luY2x1ZGUgPGRpcmVudC5oPgorI2luY2x1ZGUgPGVycm5vLmg+CisjaW5jbHVkZSA8ZmNu
-dGwuaD4KKyNpbmNsdWRlIDxpbnR0eXBlcy5oPgorI2luY2x1ZGUgPHN5cy9zdGF0Lmg+CisjaW5j
-bHVkZSA8c3lzL3R5cGVzLmg+CisjaW5jbHVkZSA8dW5pc3RkLmg+CisKKyNpbmNsdWRlICJkcm10
-ZXN0LmgiCisjaW5jbHVkZSAiaTkxNS9nZW0uaCIKKyNpbmNsdWRlICJpOTE1L2dlbV9lbmdpbmVf
-dG9wb2xvZ3kuaCIKKyNpbmNsdWRlICJpZ3Rfc3lzZnMuaCIKKworc3RhdGljIGJvb2wgbWF5X3dy
-aXRlKGludCBkaXIsIGNvbnN0IGNoYXIgKmZpbGUpCit7CisJc3RydWN0IHN0YXQgc3Q7CisKKwlp
-Z3RfYXNzZXJ0KGZzdGF0YXQoZGlyLCBmaWxlLCAmc3QsIDApID09IDApOworCXJldHVybiBzdC5z
-dF9tb2RlICYgMDIyMjsKK30KKworc3RhdGljIHZvaWQgdGVzdF93cml0YWJsZShpbnQgaTkxNSwg
-aW50IGVuZ2luZSkKK3sKKwlzdHJ1Y3QgZGlyZW50ICpkZTsKKwlpbnQgZGVmYXVsdHM7CisJRElS
-ICpkaXI7CisKKwlkZWZhdWx0cyA9IG9wZW5hdChlbmdpbmUsICIuZGVmYXVsdHMiLCBPX0RJUkVD
-VE9SWSk7CisJaWd0X3JlcXVpcmUoZGVmYXVsdHMgIT0gLTEpOworCisJZGlyID0gZmRvcGVuZGly
-KGVuZ2luZSk7CisJd2hpbGUgKChkZSA9IHJlYWRkaXIoZGlyKSkpIHsKKwkJaWYgKCEoZGUtPmRf
-dHlwZSAmIERUX1JFRykpCisJCQljb250aW51ZTsKKworCQlpZiAoIW1heV93cml0ZShlbmdpbmUs
-IGRlLT5kX25hbWUpKSB7CisJCQlpZ3RfZGVidWcoIlNraXBwaW5nIGNvbnN0YW50IGF0dHIgJyVz
-J1xuIiwgZGUtPmRfbmFtZSk7CisJCQljb250aW51ZTsKKwkJfQorCisJCWlndF9kZWJ1ZygiQ2hl
-Y2tpbmcgYXR0ciAnJXMnXG4iLCBkZS0+ZF9uYW1lKTsKKworCQkvKiBFdmVyeSBhdHRyaWJ1dGUg
-c2hvdWxkIGhhdmUgYSBkZWZhdWx0IHZhbHVlICovCisJCWlndF9hc3NlcnRfZihmYWNjZXNzYXQo
-ZGVmYXVsdHMsIGRlLT5kX25hbWUsIEZfT0ssIDApID09IDAsCisJCQkgICAgICJkZWZhdWx0IHZh
-bHVlIGZvciAlcyBub3QgYWNjZXNzaWJsZVxuIiwKKwkJCSAgICAgZGUtPmRfbmFtZSk7CisKKwkJ
-LyogQnV0IG5vIG9uZSBpcyBhbGxvd2VkIHRvIGNoYW5nZSBpdCAqLworCQlpZ3RfYXNzZXJ0X2Yo
-IW1heV93cml0ZShkZWZhdWx0cywgZGUtPmRfbmFtZSksCisJCQkgICAgICJkZWZhdWx0IHZhbHVl
-IGZvciAlcyB3cml0YWJsZSFcbiIsCisJCQkgICAgIGRlLT5kX25hbWUpOworCisJCWlndF9hc3Nl
-cnRfZighaWd0X3N5c2ZzX3NldChkZWZhdWx0cywgZGUtPmRfbmFtZSwgImdhcmJhZ2UiKSwKKwkJ
-CSAgICAgIndyaXRlIGludG8gZGVmYXVsdCB2YWx1ZSBvZiAlcyBzdWNjZWVkZWQhXG4iLAorCQkJ
-ICAgICBkZS0+ZF9uYW1lKTsKKwl9CisJY2xvc2VkaXIoZGlyKTsKK30KKworaWd0X21haW4KK3sK
-KwlpbnQgaTkxNSA9IC0xLCBlbmdpbmVzID0gLTE7CisKKwlpZ3RfZml4dHVyZSB7CisJCWludCBz
-eXM7CisKKwkJaTkxNSA9IGRybV9vcGVuX2RyaXZlcihEUklWRVJfSU5URUwpOworCQlpZ3RfcmVx
-dWlyZV9nZW0oaTkxNSk7CisJCWlndF9hbGxvd19oYW5nKGk5MTUsIDAsIDApOworCisJCXN5cyA9
-IGlndF9zeXNmc19vcGVuKGk5MTUpOworCQlpZ3RfcmVxdWlyZShzeXMgIT0gLTEpOworCisJCWVu
-Z2luZXMgPSBvcGVuYXQoc3lzLCAiZW5naW5lIiwgT19SRE9OTFkpOworCQlpZ3RfcmVxdWlyZShl
-bmdpbmVzICE9IC0xKTsKKworCQljbG9zZShzeXMpOworCX0KKworCWlndF9zdWJ0ZXN0X3dpdGhf
-ZHluYW1pYygid3JpdGFibGUiKQorCQlkeW5fc3lzZnNfZW5naW5lcyhpOTE1LCBlbmdpbmVzLCBO
-VUxMLCB0ZXN0X3dyaXRhYmxlKTsKKworCWlndF9maXh0dXJlIHsKKwkJY2xvc2UoZW5naW5lcyk7
-CisJCWNsb3NlKGk5MTUpOworCX0KK30KZGlmZiAtLWdpdCBhL3Rlc3RzL21lc29uLmJ1aWxkIGIv
-dGVzdHMvbWVzb24uYnVpbGQKaW5kZXggMDgyMDBmMjZjLi40Zjc2NWRhMzAgMTAwNjQ0Ci0tLSBh
-L3Rlc3RzL21lc29uLmJ1aWxkCisrKyBiL3Rlc3RzL21lc29uLmJ1aWxkCkBAIC0yMzUsNiArMjM1
-LDcgQEAgaTkxNV9wcm9ncyA9IFsKIAknaTkxNV9xdWVyeScsCiAJJ2k5MTVfc2VsZnRlc3QnLAog
-CSdpOTE1X3N1c3BlbmQnLAorCSdzeXNmc19kZWZhdWx0cycsCiAJJ3N5c2ZzX2hlYXJ0YmVhdF9p
-bnRlcnZhbCcsCiAJJ3N5c2ZzX3ByZWVtcHRfdGltZW91dCcsCiAJJ3N5c2ZzX3RpbWVzbGljZV9k
-dXJhdGlvbicsCi0tIAoyLjI4LjAKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVk
-ZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZv
-L2ludGVsLWdmeAo=
+Hi Hariom,
+
+With Sunil's help was able to see EHL achieving rc6 state. 
+Verified from sys entries, under no load to gpu rc6_residency_ms counter is changing.
+Also ran all the Rodrigo mention tests and I see them passing. But with i915_selftest dmesg warnings are still seen.
+
+Thanks,
+Srinivas
+
+-----Original Message-----
+From: Pandey, Hariom <hariom.pandey@intel.com> 
+Sent: 09 October 2020 23:39
+To: K, SrinivasX <srinivasx.k@intel.com>
+Cc: Souza, Jose <jose.souza@intel.com>; chris@chris-wilson.co.uk; Ausmus, James <james.ausmus@intel.com>; Nikula, Jani <jani.nikula@intel.com>; Roper, Matthew D <matthew.d.roper@intel.com>; intel-gfx@lists.freedesktop.org; dri-devel@lists.freedesktop.org; Surendrakumar Upadhyay, TejaskumarX <tejaskumarx.surendrakumar.upadhyay@intel.com>; Vivi, Rodrigo <rodrigo.vivi@intel.com>
+Subject: RE: [Intel-gfx] [PATCH] drm/i915/ehl: Remove require_force_probe protection
+
+Hi Srinivas,
+
+Take Sunil's help who has recently validated RC6 on EHL DRM tip and found to be passing. If the WA were sporadically failing and if you confirm that RC6 is passing, this patch can be proceeded with. 
+
+Thanks
+Hariom Pandey
+
+-----Original Message-----
+From: Vivi, Rodrigo <rodrigo.vivi@intel.com> 
+Sent: Friday, October 9, 2020 7:09 PM
+To: K, SrinivasX <srinivasx.k@intel.com>
+Cc: Souza, Jose <jose.souza@intel.com>; chris@chris-wilson.co.uk; Ausmus, James <james.ausmus@intel.com>; Nikula, Jani <jani.nikula@intel.com>; Pandey, Hariom <hariom.pandey@intel.com>; Roper, Matthew D <matthew.d.roper@intel.com>; intel-gfx@lists.freedesktop.org; dri-devel@lists.freedesktop.org; Surendrakumar Upadhyay, TejaskumarX <tejaskumarx.surendrakumar.upadhyay@intel.com>
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/ehl: Remove require_force_probe protection
+
+
+
+> On Oct 9, 2020, at 1:31 AM, K, SrinivasX <srinivasx.k@intel.com> wrote:
+> 
+> Hi Rodrigo,
+> 
+> How do we get W/A and rc6 changes in, do you have any details?
+
+I told based on what I was seeing on https://intel-gfx-ci.01.org/tree/drm-tip/drmtip-alt.html?
+focusing on the issues that are exclusively for ehl and not happening on other platforms.
+
+It looks like workarounds are fine there now. so I'm not sure if it was sporadic thing that day.
+
+for the rc6 there are a few testcases failing around it:
+https://intel-gfx-ci.01.org/tree/drm-tip/drmtip_675/fi-ehl-1/igt@i915_pm_rc6_residency@rc6-fence.html
+https://intel-gfx-ci.01.org/tree/drm-tip/drmtip_675/fi-ehl-1/igt@i915_pm_rc6_residency@rc6-idle.html
+https://intel-gfx-ci.01.org/tree/drm-tip/drmtip_675/fi-ehl-1/igt@i915_selftest@live@gt_pm.html#dmesg-warnings415
+
+> 
+> Thanks,
+> Srinivas
+> 
+> -----Original Message-----
+> From: Souza, Jose <jose.souza@intel.com>
+> Sent: 06 October 2020 23:33
+> To: Vivi, Rodrigo <rodrigo.vivi@intel.com>; chris@chris-wilson.co.uk
+> Cc: Ausmus, James <james.ausmus@intel.com>; Nikula, Jani 
+> <jani.nikula@intel.com>; Pandey, Hariom <hariom.pandey@intel.com>; 
+> Roper, Matthew D <matthew.d.roper@intel.com>; 
+> intel-gfx@lists.freedesktop.org; dri-devel@lists.freedesktop.org; K, 
+> SrinivasX <srinivasx.k@intel.com>; Surendrakumar Upadhyay, TejaskumarX 
+> <tejaskumarx.surendrakumar.upadhyay@intel.com>
+> Subject: Re: [Intel-gfx] [PATCH] drm/i915/ehl: Remove 
+> require_force_probe protection
+> 
+> On Tue, 2020-10-06 at 10:55 -0700, Vivi, Rodrigo wrote:
+>> 
+>>> On Oct 6, 2020, at 10:48 AM, Chris Wilson <chris@chris-wilson.co.uk> wrote:
+>>> 
+>>> Quoting Souza, Jose (2020-10-06 18:46:45)
+>>>> +Rodrigo and Jani
+>>>> 
+>>>> On Tue, 2020-10-06 at 14:56 +0000, Kamati Srinivas wrote:
+>>>>> Removing force probe protection from EHL platform. Did not observe 
+>>>>> warnings, errors, flickering or any visual defects while doing 
+>>>>> ordinary tasks like browsing and editing documents in a two 
+>>>>> monitor setup.
+>>>> 
+>>>> One of the requirements was also to have CI BAT all green and 
+>>>> shards as green is possible but EHL don't show up in CI results, we actually have one single EHL machine in CI but I guess it is not able to run all tests that shards do:
+>>>> https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9097/filelist.html
+>>> 
+>>> https://intel-gfx-ci.01.org/tree/drm-tip/drmtip-alt.html
+>> 
+>> we are really close to that point. We just need to fix some w/a and
+>> rc6 issues before applying this change.
+>> 
+>>> -Chris
+>> 
+> 
+> Huum okay we have drm-tip results for EHL but if someone sends a patch that breaks EHL it will not be caught in pre-merge testing.
+> 
+
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
