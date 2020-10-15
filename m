@@ -2,42 +2,43 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6576428F893
-	for <lists+intel-gfx@lfdr.de>; Thu, 15 Oct 2020 20:29:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8A39328F88F
+	for <lists+intel-gfx@lfdr.de>; Thu, 15 Oct 2020 20:29:07 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EDFAB6E095;
-	Thu, 15 Oct 2020 18:29:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4D9306E077;
+	Thu, 15 Oct 2020 18:29:04 +0000 (UTC)
 X-Original-To: Intel-GFX@lists.freedesktop.org
 Delivered-To: Intel-GFX@lists.freedesktop.org
 Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 40D8D6E095
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5ACB96E077
  for <Intel-GFX@lists.freedesktop.org>; Thu, 15 Oct 2020 18:29:03 +0000 (UTC)
-IronPort-SDR: YbBkxkTVRmNCUatqmtwDJB/J8Y7Yz+EBXnGLBDXLecemGBurelj4gBolsktb/aveirVqWGsCvK
- Ca9bRGRF1YNA==
-X-IronPort-AV: E=McAfee;i="6000,8403,9775"; a="163805180"
-X-IronPort-AV: E=Sophos;i="5.77,380,1596524400"; d="scan'208";a="163805180"
+IronPort-SDR: 1mokOJ/UzUlO/pb/eRX5OGt9kJGomI/eh0aQwMmn9zell89twl0atQcujoIdarnPE6iFkZxIB0
+ fzSkGtkqrMiA==
+X-IronPort-AV: E=McAfee;i="6000,8403,9775"; a="163805182"
+X-IronPort-AV: E=Sophos;i="5.77,380,1596524400"; d="scan'208";a="163805182"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from orsmga005.jf.intel.com ([10.7.209.41])
  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  15 Oct 2020 11:29:02 -0700
-IronPort-SDR: l7ZpqNJbMWrWhwJZGtOiMRWTu6xZUHanEnnMbgjXiryi0jdKAc0Mc4fnKRP3Hmt4WORLASnc/W
- hF6ZPFSu0QRA==
+IronPort-SDR: /L1uo9t0WGGfuPF99K0eWGFa+l4wLRbbISMcnVRNEX5QIvgcGJyiy8vF9wiS7DME0yuc+Dauyo
+ 3EbSx3YL5NRA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.77,380,1596524400"; d="scan'208";a="531364120"
+X-IronPort-AV: E=Sophos;i="5.77,380,1596524400"; d="scan'208";a="531364122"
 Received: from relo-linux-5.jf.intel.com ([10.165.21.134])
  by orsmga005.jf.intel.com with ESMTP; 15 Oct 2020 11:29:02 -0700
 From: John.C.Harrison@Intel.com
 To: Intel-GFX@Lists.FreeDesktop.Org
-Date: Thu, 15 Oct 2020 11:29:00 -0700
-Message-Id: <20201015182901.3197788-4-John.C.Harrison@Intel.com>
+Date: Thu, 15 Oct 2020 11:29:01 -0700
+Message-Id: <20201015182901.3197788-5-John.C.Harrison@Intel.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20201015182901.3197788-1-John.C.Harrison@Intel.com>
 References: <20201015182901.3197788-1-John.C.Harrison@Intel.com>
 MIME-Version: 1.0
 Organization: Intel Corporation (UK) Ltd. - Co. Reg. #1134945 - Pipers Way,
  Swindon SN3 1RJ
-Subject: [Intel-gfx] [PATCH CI v2 3/4] drm/i915/guc: Clear pointers on free
+Subject: [Intel-gfx] [PATCH CI v2 4/4] CI: turn on GuC/HuC auto mode by
+ default
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,40 +58,25 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: John Harrison <John.C.Harrison@Intel.com>
 
-Clear out some pointers when objects have been de-allocated. This
-makes it much easier to track down use-after-free type issues.
-
-Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
-Reviewed-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+Enable Guc/HuC loading by default for Gen11+ platforms in order to get
+a CI run.
 ---
- drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c | 1 +
- drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c  | 1 +
- 2 files changed, 2 insertions(+)
+ drivers/gpu/drm/i915/i915_params.h | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c
-index 7950d28beb8c..5212ff844292 100644
---- a/drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c
-+++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c
-@@ -220,6 +220,7 @@ int intel_guc_ads_create(struct intel_guc *guc)
- void intel_guc_ads_destroy(struct intel_guc *guc)
- {
- 	i915_vma_unpin_and_release(&guc->ads_vma, I915_VMA_RELEASE_MAP);
-+	guc->ads_blob = NULL;
- }
- 
- static void guc_ads_private_data_reset(struct intel_guc *guc)
-diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
-index 11742fca0e9e..fa9e048cc65f 100644
---- a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
-+++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
-@@ -210,6 +210,7 @@ void intel_guc_ct_fini(struct intel_guc_ct *ct)
- 	GEM_BUG_ON(ct->enabled);
- 
- 	i915_vma_unpin_and_release(&ct->vma, I915_VMA_RELEASE_MAP);
-+	memset(ct, 0, sizeof(*ct));
- }
- 
- /**
+diff --git a/drivers/gpu/drm/i915/i915_params.h b/drivers/gpu/drm/i915/i915_params.h
+index 330c03e2b4f7..7bdbd8f6ed30 100644
+--- a/drivers/gpu/drm/i915/i915_params.h
++++ b/drivers/gpu/drm/i915/i915_params.h
+@@ -58,7 +58,7 @@ struct drm_printer;
+ 	param(int, disable_power_well, -1, 0400) \
+ 	param(int, enable_ips, 1, 0600) \
+ 	param(int, invert_brightness, 0, 0600) \
+-	param(int, enable_guc, 0, 0400) \
++	param(int, enable_guc, -1, 0400) \
+ 	param(int, guc_log_level, -1, 0400) \
+ 	param(char *, guc_firmware_path, NULL, 0400) \
+ 	param(char *, huc_firmware_path, NULL, 0400) \
 -- 
 2.25.1
 
