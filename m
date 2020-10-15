@@ -1,47 +1,48 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DE36D28F5E5
-	for <lists+intel-gfx@lfdr.de>; Thu, 15 Oct 2020 17:32:57 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id B32C428F690
+	for <lists+intel-gfx@lfdr.de>; Thu, 15 Oct 2020 18:25:16 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0FA2189834;
-	Thu, 15 Oct 2020 15:32:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F0B476ED74;
+	Thu, 15 Oct 2020 16:25:14 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D770A89834
- for <intel-gfx@lists.freedesktop.org>; Thu, 15 Oct 2020 15:32:53 +0000 (UTC)
-IronPort-SDR: szZBTKardWumygWbD6qCGJBuWMcNghJPOpigPpe3hhschubw2yN0FVCfqH9WX6m3nBjEL3qWBb
- i0w+ezKemikw==
-X-IronPort-AV: E=McAfee;i="6000,8403,9775"; a="153312379"
-X-IronPort-AV: E=Sophos;i="5.77,379,1596524400"; d="scan'208";a="153312379"
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C30756ED74
+ for <intel-gfx@lists.freedesktop.org>; Thu, 15 Oct 2020 16:25:13 +0000 (UTC)
+IronPort-SDR: +WJoMGI/00S6CLi1mEVwuOgE3RNwimM3Y20f5TfN9Z/dwGyYUylX43UTNYdlFQKNLZI8Y0lYyJ
+ UHXKSPXx41rQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9775"; a="154217821"
+X-IronPort-AV: E=Sophos;i="5.77,379,1596524400"; d="scan'208";a="154217821"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Oct 2020 08:32:53 -0700
-IronPort-SDR: o54b+pvyR9j8GfttZiKlK7gY5pIgUp4QtRj8RYySGpCAZe+mZtaUX0UdaW5OybeGlxayROg4tV
- n2lOFAT8YTdw==
-X-IronPort-AV: E=Sophos;i="5.77,379,1596524400"; d="scan'208";a="464337848"
-Received: from smdhoble-mobl.gar.corp.intel.com (HELO [10.251.165.220])
- ([10.251.165.220])
- by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Oct 2020 08:32:52 -0700
-To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
-References: <20201013153506.4215-1-chris@chris-wilson.co.uk>
- <20201014084342.18296-1-chris@chris-wilson.co.uk>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-Message-ID: <8a6d0936-03ea-9eee-0a3a-0b42ed2d5d05@linux.intel.com>
-Date: Thu, 15 Oct 2020 16:32:48 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Oct 2020 09:25:13 -0700
+IronPort-SDR: fbqrhxQBFMkOAEjBM7r7M3Uxh5nHpg9nqzKrbYVJ5oHcLYUVfdwoJK1j0rIKYxHg4LomcNDzKR
+ sJ9vAsL3Wb8A==
+X-IronPort-AV: E=Sophos;i="5.77,379,1596524400"; d="scan'208";a="531319092"
+Received: from labuser-z97x-ud5h.jf.intel.com (HELO labuser-Z97X-UD5H)
+ ([10.165.21.211])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Oct 2020 09:25:12 -0700
+Date: Thu, 15 Oct 2020 09:26:45 -0700
+From: "Navare, Manasi" <manasi.d.navare@intel.com>
+To: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+Message-ID: <20201015162645.GA28888@labuser-Z97X-UD5H>
+References: <20201008214535.22942-1-manasi.d.navare@intel.com>
+ <20201008214535.22942-4-manasi.d.navare@intel.com>
+ <20201014112634.GG6112@intel.com>
+ <20201014190405.GA22826@labuser-Z97X-UD5H>
+ <20201015115247.GI6112@intel.com>
 MIME-Version: 1.0
-In-Reply-To: <20201014084342.18296-1-chris@chris-wilson.co.uk>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/gt: Confirm the context survives
- execution
+Content-Disposition: inline
+In-Reply-To: <20201015115247.GI6112@intel.com>
+User-Agent: Mutt/1.5.24 (2015-08-30)
+Subject: Re: [Intel-gfx] [PATCH v10 04/11] drm/i915/dp: Allow big joiner
+ modes in intel_dp_mode_valid(), v3.
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,138 +55,177 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+On Thu, Oct 15, 2020 at 02:52:47PM +0300, Ville Syrj=E4l=E4 wrote:
+> On Wed, Oct 14, 2020 at 12:04:10PM -0700, Navare, Manasi wrote:
+> > On Wed, Oct 14, 2020 at 02:26:34PM +0300, Ville Syrj=E4l=E4 wrote:
+> > > On Thu, Oct 08, 2020 at 02:45:28PM -0700, Manasi Navare wrote:
+> > > > From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+> > > > =
 
-On 14/10/2020 09:43, Chris Wilson wrote:
-> Repeat our sanitychecks from before execution to after execution. One
-> expects that if we were to see these, the gpu would already be on fire,
-> but the timing may be informative.
-> 
-> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-> ---
->   drivers/gpu/drm/i915/gt/intel_engine_pm.c | 37 +++++++++++++++--------
->   drivers/gpu/drm/i915/gt/intel_lrc.c       | 12 ++++++--
->   2 files changed, 34 insertions(+), 15 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/gt/intel_engine_pm.c b/drivers/gpu/drm/i915/gt/intel_engine_pm.c
-> index f7b2e07e2229..c5376790a6b9 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_engine_pm.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_engine_pm.c
-> @@ -17,6 +17,25 @@
->   #include "intel_ring.h"
->   #include "shmem_utils.h"
->   
-> +static void dbg_poison_ce(struct intel_context *ce)
-> +{
-> +	if (!IS_ENABLED(CONFIG_DRM_I915_DEBUG_GEM))
-> +		return;
-> +
-> +	if (ce->state) {
-> +		struct drm_i915_gem_object *obj = ce->state->obj;
-> +		int type = i915_coherent_map_type(ce->engine->i915);
-> +		void *map;
-> +
-> +		map = i915_gem_object_pin_map(obj, type);
-> +		if (!IS_ERR(map)) {
-> +			memset(map, CONTEXT_REDZONE, obj->base.size);
-> +			i915_gem_object_flush_map(obj);
-> +			i915_gem_object_unpin_map(obj);
-> +		}
-> +	}
-> +}
-> +
->   static int __engine_unpark(struct intel_wakeref *wf)
->   {
->   	struct intel_engine_cs *engine =
-> @@ -32,20 +51,14 @@ static int __engine_unpark(struct intel_wakeref *wf)
->   	if (ce) {
->   		GEM_BUG_ON(test_bit(CONTEXT_VALID_BIT, &ce->flags));
->   
-> +		/* Flush all pending HW writes before we touch the context */
-> +		while (unlikely(intel_context_inflight(ce)))
-> +			intel_engine_flush_submission(ce->engine);
-s/ce->engine/engine/, insert small value of improvement here >.< :)
+> > > > Small changes to intel_dp_mode_valid(), allow listing modes that
+> > > > can only be supported in the bigjoiner configuration, which is
+> > > > not supported yet.
+> > > > =
 
-Regards,
+> > > > eDP does not support bigjoiner, so do not expose bigjoiner only
+> > > > modes on the eDP port.
+> > > > =
 
-Tvrtko
+> > > > v7:
+> > > > * Add can_bigjoiner() helper (Ville)
+> > > > * Pass bigjoiner to plane_size validation (Ville)
+> > > > v6:
+> > > > * Rebase after dp_downstream mode valid changes (Manasi)
+> > > > v5:
+> > > > * Increase max plane width to support 8K with bigjoiner (Maarten)
+> > > > v4:
+> > > > * Rebase (Manasi)
+> > > > =
 
-> +
->   		/* First poison the image to verify we never fully trust it */
-> -		if (IS_ENABLED(CONFIG_DRM_I915_DEBUG_GEM) && ce->state) {
-> -			struct drm_i915_gem_object *obj = ce->state->obj;
-> -			int type = i915_coherent_map_type(engine->i915);
-> -			void *map;
-> -
-> -			map = i915_gem_object_pin_map(obj, type);
-> -			if (!IS_ERR(map)) {
-> -				memset(map, CONTEXT_REDZONE, obj->base.size);
-> -				i915_gem_object_flush_map(obj);
-> -				i915_gem_object_unpin_map(obj);
-> -			}
-> -		}
-> +		dbg_poison_ce(ce);
->   
-> +		/* Scrub the context image after our loss of control */
->   		ce->ops->reset(ce);
->   	}
->   
-> diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
-> index 287537089c77..6170f6874f52 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_lrc.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
-> @@ -1216,7 +1216,8 @@ static void intel_engine_context_out(struct intel_engine_cs *engine)
->   
->   static void
->   execlists_check_context(const struct intel_context *ce,
-> -			const struct intel_engine_cs *engine)
-> +			const struct intel_engine_cs *engine,
-> +			const char *when)
->   {
->   	const struct intel_ring *ring = ce->ring;
->   	u32 *regs = ce->lrc_reg_state;
-> @@ -1251,7 +1252,7 @@ execlists_check_context(const struct intel_context *ce,
->   		valid = false;
->   	}
->   
-> -	WARN_ONCE(!valid, "Invalid lrc state found before submission\n");
-> +	WARN_ONCE(!valid, "Invalid lrc state found %s submission\n", when);
->   }
->   
->   static void restore_default_state(struct intel_context *ce,
-> @@ -1347,7 +1348,7 @@ __execlists_schedule_in(struct i915_request *rq)
->   		reset_active(rq, engine);
->   
->   	if (IS_ENABLED(CONFIG_DRM_I915_DEBUG_GEM))
-> -		execlists_check_context(ce, engine);
-> +		execlists_check_context(ce, engine, "before");
->   
->   	if (ce->tag) {
->   		/* Use a fixed tag for OA and friends */
-> @@ -1418,6 +1419,9 @@ __execlists_schedule_out(struct i915_request *rq,
->   	 * refrain from doing non-trivial work here.
->   	 */
->   
-> +	if (IS_ENABLED(CONFIG_DRM_I915_DEBUG_GEM))
-> +		execlists_check_context(ce, engine, "after");
-> +
->   	/*
->   	 * If we have just completed this context, the engine may now be
->   	 * idle and we want to re-enter powersaving.
-> @@ -4078,6 +4082,8 @@ static void reset_csb_pointers(struct intel_engine_cs *engine)
->   
->   static void execlists_sanitize(struct intel_engine_cs *engine)
->   {
-> +	GEM_BUG_ON(execlists_active(&engine->execlists));
-> +
->   	/*
->   	 * Poison residual state on resume, in case the suspend didn't!
->   	 *
-> 
+> > > > Changes since v1:
+> > > > - Disallow bigjoiner on eDP.
+> > > > Changes since v2:
+> > > > - Rename intel_dp_downstream_max_dotclock to intel_dp_max_dotclock,
+> > > >   and split off the downstream and source checking to its own funct=
+ion.
+> > > >   (Ville)
+> > > > v3:
+> > > > * Rebase (Manasi)
+> > > > =
+
+> > > > Signed-off-by: Manasi Navare <manasi.d.navare@intel.com>
+> > > > Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+> > > > ---
+> > > >  drivers/gpu/drm/i915/display/intel_display.c |   5 +-
+> > > >  drivers/gpu/drm/i915/display/intel_display.h |   3 +-
+> > > >  drivers/gpu/drm/i915/display/intel_dp.c      | 126 +++++++++++++++=
+----
+> > > >  drivers/gpu/drm/i915/display/intel_dp_mst.c  |   2 +-
+> > > >  drivers/gpu/drm/i915/display/intel_dsi.c     |   2 +-
+> > > >  drivers/gpu/drm/i915/display/intel_hdmi.c    |   2 +-
+> > > >  6 files changed, 111 insertions(+), 29 deletions(-)
+> > > > =
+
+> > > > diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers=
+/gpu/drm/i915/display/intel_display.c
+> > > > index 723766b1eae3..cc540c7b7dcd 100644
+> > > > --- a/drivers/gpu/drm/i915/display/intel_display.c
+> > > > +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> > > > @@ -17642,7 +17642,8 @@ intel_mode_valid(struct drm_device *dev,
+> > > >  =
+
+> > > >  enum drm_mode_status
+> > > >  intel_mode_valid_max_plane_size(struct drm_i915_private *dev_priv,
+> > > > -				const struct drm_display_mode *mode)
+> > > > +				const struct drm_display_mode *mode,
+> > > > +				bool bigjoiner)
+> > > >  {
+> > > >  	int plane_width_max, plane_height_max;
+> > > >  =
+
+> > > > @@ -17659,7 +17660,7 @@ intel_mode_valid_max_plane_size(struct drm_=
+i915_private *dev_priv,
+> > > >  	 * too big for that.
+> > > >  	 */
+> > > >  	if (INTEL_GEN(dev_priv) >=3D 11) {
+> > > > -		plane_width_max =3D 5120;
+> > > > +		plane_width_max =3D 5120 << bigjoiner;
+> > > >  		plane_height_max =3D 4320;
+> > > >  	} else {
+> > > >  		plane_width_max =3D 5120;
+> > > > diff --git a/drivers/gpu/drm/i915/display/intel_display.h b/drivers=
+/gpu/drm/i915/display/intel_display.h
+> > > > index d10b7c8cde3f..3d860a9da8fe 100644
+> > > > --- a/drivers/gpu/drm/i915/display/intel_display.h
+> > > > +++ b/drivers/gpu/drm/i915/display/intel_display.h
+> > > > @@ -496,7 +496,8 @@ u32 intel_plane_fb_max_stride(struct drm_i915_p=
+rivate *dev_priv,
+> > > >  bool intel_plane_can_remap(const struct intel_plane_state *plane_s=
+tate);
+> > > >  enum drm_mode_status
+> > > >  intel_mode_valid_max_plane_size(struct drm_i915_private *dev_priv,
+> > > > -				const struct drm_display_mode *mode);
+> > > > +				const struct drm_display_mode *mode,
+> > > > +				bool bigjoiner);
+> > > >  enum phy intel_port_to_phy(struct drm_i915_private *i915, enum por=
+t port);
+> > > >  bool is_trans_port_sync_mode(const struct intel_crtc_state *state);
+> > > >  =
+
+> > > > diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/=
+drm/i915/display/intel_dp.c
+> > > > index 8a522edd7386..af2ff425e5d5 100644
+> > > > --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> > > > +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> > > > @@ -247,6 +247,29 @@ intel_dp_max_data_rate(int max_link_clock, int=
+ max_lanes)
+> > > >  	return max_link_clock * max_lanes;
+> > > >  }
+> > > >  =
+
+> > > > +static int source_max_dotclock(struct intel_dp *intel_dp, bool all=
+ow_bigjoiner)
+> > > > +{
+> > > > +	struct intel_digital_port *intel_dig_port =3D dp_to_dig_port(inte=
+l_dp);
+> > > > +	struct intel_encoder *encoder =3D &intel_dig_port->base;
+> > > > +	struct drm_i915_private *dev_priv =3D to_i915(encoder->base.dev);
+> > > > +
+> > > > +	if (allow_bigjoiner && INTEL_GEN(dev_priv) >=3D 11 && !intel_dp_i=
+s_edp(intel_dp))
+> > > > +		return 2 * dev_priv->max_dotclk_freq;
+> > > > +
+> > > > +	return dev_priv->max_dotclk_freq;
+> > > > +}
+> > > > +
+> > > > +static int
+> > > > +intel_dp_max_dotclock(struct intel_dp *intel_dp, bool allow_bigjoi=
+ner)
+> > > > +{
+> > > > +	int max_dotclk =3D source_max_dotclock(intel_dp, allow_bigjoiner);
+> > > > +
+> > > > +	if (intel_dp->dfp.max_dotclock)
+> > > =
+
+> > > No. dfp checks should stay where they are.
+> > =
+
+> > I am using dfp.max_dotclock because we populate that with drm_dp_downst=
+ream_max_dotclock()
+> > should that be used here directly from drm_dp_downstream_max_dotclock i=
+nstead of using dfp.maxdotclock ?
+> =
+
+> Can you explain how bigjoiner and DFP dotclock limits relate to each
+> other?
+
+Before the dfp dotclock checks were added, we were obtaining the max dotclo=
+ck as min (source_max_dotclock, downstream max dotclock from dpcd)
+And thats why I was using the dfp.max_dotclock
+
+But while addressing your feedback , I have now max_dotclock =3D source max=
+ dotclock
+and the downstream max dotclock checks happen in intel_dp_mode_valid_downst=
+ream(), so I think we dont need to consider
+this here in max dotclock computation.
+
+Is this correct?
+
+Manasi
+ =
+
+> =
+
+> -- =
+
+> Ville Syrj=E4l=E4
+> Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
