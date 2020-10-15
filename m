@@ -2,25 +2,26 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C815A28F0FA
-	for <lists+intel-gfx@lfdr.de>; Thu, 15 Oct 2020 13:26:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A2DF528F101
+	for <lists+intel-gfx@lfdr.de>; Thu, 15 Oct 2020 13:26:55 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1FA8F6EC8B;
-	Thu, 15 Oct 2020 11:26:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AA2576EC77;
+	Thu, 15 Oct 2020 11:26:47 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mblankhorst.nl (mblankhorst.nl [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BC3086EC72
- for <intel-gfx@lists.freedesktop.org>; Thu, 15 Oct 2020 11:26:35 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BE0226EC71
+ for <intel-gfx@lists.freedesktop.org>; Thu, 15 Oct 2020 11:26:34 +0000 (UTC)
 From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Thu, 15 Oct 2020 13:25:40 +0200
-Message-Id: <20201015112627.1142745-17-maarten.lankhorst@linux.intel.com>
+Date: Thu, 15 Oct 2020 13:25:41 +0200
+Message-Id: <20201015112627.1142745-18-maarten.lankhorst@linux.intel.com>
 X-Mailer: git-send-email 2.28.0
 In-Reply-To: <20201015112627.1142745-1-maarten.lankhorst@linux.intel.com>
 References: <20201015112627.1142745-1-maarten.lankhorst@linux.intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v3 16/63] drm/i915: Flatten obj->mm.lock
+Subject: [Intel-gfx] [PATCH v3 17/63] drm/i915: Populate logical context
+ during first pin.
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,215 +39,199 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-With userptr fixed, there is no need for all separate lockdep classes
-now, and we can remove all lockdep tricks used. A trylock in the
-shrinker is all we need now to flatten the locking hierarchy.
+This allows us to remove pin_map from state allocation, which saves
+us a few retry loops. We won't need this until first pin, anyway.
 
 Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 ---
- drivers/gpu/drm/i915/gem/i915_gem_object.c   |  6 +---
- drivers/gpu/drm/i915/gem/i915_gem_object.h   | 20 ++----------
- drivers/gpu/drm/i915/gem/i915_gem_pages.c    | 34 ++++++++++----------
- drivers/gpu/drm/i915/gem/i915_gem_phys.c     |  2 +-
- drivers/gpu/drm/i915/gem/i915_gem_shrinker.c | 10 +++---
- drivers/gpu/drm/i915/gem/i915_gem_userptr.c  |  2 +-
- 6 files changed, 27 insertions(+), 47 deletions(-)
+ drivers/gpu/drm/i915/gt/intel_context_types.h |  13 ++-
+ drivers/gpu/drm/i915/gt/intel_lrc.c           | 107 +++++++++---------
+ 2 files changed, 62 insertions(+), 58 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object.c b/drivers/gpu/drm/i915/gem/i915_gem_object.c
-index 1393988bd5af..028a556ab1a5 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_object.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_object.c
-@@ -62,7 +62,7 @@ void i915_gem_object_init(struct drm_i915_gem_object *obj,
- 			  const struct drm_i915_gem_object_ops *ops,
- 			  struct lock_class_key *key, unsigned flags)
- {
--	__mutex_init(&obj->mm.lock, ops->name ?: "obj->mm.lock", key);
-+	mutex_init(&obj->mm.lock);
+diff --git a/drivers/gpu/drm/i915/gt/intel_context_types.h b/drivers/gpu/drm/i915/gt/intel_context_types.h
+index 552cb57a2e8c..bebf52868563 100644
+--- a/drivers/gpu/drm/i915/gt/intel_context_types.h
++++ b/drivers/gpu/drm/i915/gt/intel_context_types.h
+@@ -64,12 +64,13 @@ struct intel_context {
+ 	unsigned long flags;
+ #define CONTEXT_BARRIER_BIT		0
+ #define CONTEXT_ALLOC_BIT		1
+-#define CONTEXT_VALID_BIT		2
+-#define CONTEXT_CLOSED_BIT		3
+-#define CONTEXT_USE_SEMAPHORES		4
+-#define CONTEXT_BANNED			5
+-#define CONTEXT_FORCE_SINGLE_SUBMISSION	6
+-#define CONTEXT_NOPREEMPT		7
++#define CONTEXT_INIT_BIT		2
++#define CONTEXT_VALID_BIT		3
++#define CONTEXT_CLOSED_BIT		4
++#define CONTEXT_USE_SEMAPHORES		5
++#define CONTEXT_BANNED			6
++#define CONTEXT_FORCE_SINGLE_SUBMISSION	7
++#define CONTEXT_NOPREEMPT		8
  
- 	spin_lock_init(&obj->vma.lock);
- 	INIT_LIST_HEAD(&obj->vma.list);
-@@ -86,10 +86,6 @@ void i915_gem_object_init(struct drm_i915_gem_object *obj,
- 	mutex_init(&obj->mm.get_page.lock);
- 	INIT_RADIX_TREE(&obj->mm.get_dma_page.radix, GFP_KERNEL | __GFP_NOWARN);
- 	mutex_init(&obj->mm.get_dma_page.lock);
--
--	if (IS_ENABLED(CONFIG_LOCKDEP) && i915_gem_object_is_shrinkable(obj))
--		i915_gem_shrinker_taints_mutex(to_i915(obj->base.dev),
--					       &obj->mm.lock);
+ 	u32 *lrc_reg_state;
+ 	union {
+diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
+index 287537089c77..39cb45ccb506 100644
+--- a/drivers/gpu/drm/i915/gt/intel_lrc.c
++++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
+@@ -3525,9 +3525,39 @@ __execlists_update_reg_state(const struct intel_context *ce,
+ 	}
  }
  
- /**
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object.h b/drivers/gpu/drm/i915/gem/i915_gem_object.h
-index abcce4d285b5..b7d15a3db10e 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_object.h
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_object.h
-@@ -316,27 +316,10 @@ void __i915_gem_object_set_pages(struct drm_i915_gem_object *obj,
- int ____i915_gem_object_get_pages(struct drm_i915_gem_object *obj);
- int __i915_gem_object_get_pages(struct drm_i915_gem_object *obj);
- 
--enum i915_mm_subclass { /* lockdep subclass for obj->mm.lock/struct_mutex */
--	I915_MM_NORMAL = 0,
--	/*
--	 * Only used by struct_mutex, when called "recursively" from
--	 * direct-reclaim-esque. Safe because there is only every one
--	 * struct_mutex in the entire system.
--	 */
--	I915_MM_SHRINKER = 1,
--	/*
--	 * Used for obj->mm.lock when allocating pages. Safe because the object
--	 * isn't yet on any LRU, and therefore the shrinker can't deadlock on
--	 * it. As soon as the object has pages, obj->mm.lock nests within
--	 * fs_reclaim.
--	 */
--	I915_MM_GET_PAGES = 1,
--};
--
- static inline int __must_check
- i915_gem_object_pin_pages(struct drm_i915_gem_object *obj)
- {
--	might_lock_nested(&obj->mm.lock, I915_MM_GET_PAGES);
-+	might_lock(&obj->mm.lock);
- 
- 	if (atomic_inc_not_zero(&obj->mm.pages_pin_count))
- 		return 0;
-@@ -380,6 +363,7 @@ i915_gem_object_unpin_pages(struct drm_i915_gem_object *obj)
- }
- 
- int __i915_gem_object_put_pages(struct drm_i915_gem_object *obj);
-+int __i915_gem_object_put_pages_locked(struct drm_i915_gem_object *obj);
- void i915_gem_object_truncate(struct drm_i915_gem_object *obj);
- void i915_gem_object_writeback(struct drm_i915_gem_object *obj);
- 
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_pages.c b/drivers/gpu/drm/i915/gem/i915_gem_pages.c
-index b81f253f5dc9..00ce88c609f9 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_pages.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_pages.c
-@@ -111,7 +111,7 @@ int __i915_gem_object_get_pages(struct drm_i915_gem_object *obj)
- {
- 	int err;
- 
--	err = mutex_lock_interruptible_nested(&obj->mm.lock, I915_MM_GET_PAGES);
-+	err = mutex_lock_interruptible(&obj->mm.lock);
- 	if (err)
- 		return err;
- 
-@@ -195,21 +195,13 @@ __i915_gem_object_unset_pages(struct drm_i915_gem_object *obj)
- 	return pages;
- }
- 
--int __i915_gem_object_put_pages(struct drm_i915_gem_object *obj)
-+int __i915_gem_object_put_pages_locked(struct drm_i915_gem_object *obj)
- {
- 	struct sg_table *pages;
--	int err;
- 
- 	if (i915_gem_object_has_pinned_pages(obj))
- 		return -EBUSY;
- 
--	/* May be called by shrinker from within get_pages() (on another bo) */
--	mutex_lock(&obj->mm.lock);
--	if (unlikely(atomic_read(&obj->mm.pages_pin_count))) {
--		err = -EBUSY;
--		goto unlock;
--	}
--
- 	i915_gem_object_release_mmap_offset(obj);
- 
- 	/*
-@@ -225,14 +217,22 @@ int __i915_gem_object_put_pages(struct drm_i915_gem_object *obj)
- 	 * get_pages backends we should be better able to handle the
- 	 * cancellation of the async task in a more uniform manner.
- 	 */
--	if (!pages)
--		pages = ERR_PTR(-EINVAL);
--
--	if (!IS_ERR(pages))
-+	if (!IS_ERR_OR_NULL(pages))
- 		obj->ops->put_pages(obj, pages);
- 
--	err = 0;
--unlock:
-+	return 0;
++static void populate_lr_context(struct intel_context *ce,
++				struct intel_engine_cs *engine,
++				void *vaddr)
++{
++	bool inhibit = true;
++	struct drm_i915_gem_object *ctx_obj = ce->state->obj;
++
++	set_redzone(vaddr, engine);
++
++	if (engine->default_state) {
++		shmem_read(engine->default_state, 0,
++			   vaddr, engine->context_size);
++		__set_bit(CONTEXT_VALID_BIT, &ce->flags);
++		inhibit = false;
++	}
++
++	/* Clear the ppHWSP (inc. per-context counters) */
++	memset(vaddr, 0, PAGE_SIZE);
++
++	/*
++	 * The second page of the context object contains some registers which
++	 * must be set up prior to the first execution.
++	 */
++	execlists_init_reg_state(vaddr + LRC_STATE_OFFSET,
++				 ce, engine, ce->ring, inhibit);
++
++	__i915_gem_object_flush_map(ctx_obj, 0, engine->context_size);
 +}
 +
-+int __i915_gem_object_put_pages(struct drm_i915_gem_object *obj)
+ static int
+-execlists_context_pre_pin(struct intel_context *ce,
+-			  struct i915_gem_ww_ctx *ww, void **vaddr)
++__execlists_context_pre_pin(struct intel_context *ce,
++			    struct intel_engine_cs *engine,
++			    struct i915_gem_ww_ctx *ww, void **vaddr)
+ {
+ 	GEM_BUG_ON(!ce->state);
+ 	GEM_BUG_ON(!i915_vma_is_pinned(ce->state));
+@@ -3535,8 +3565,20 @@ execlists_context_pre_pin(struct intel_context *ce,
+ 	*vaddr = i915_gem_object_pin_map(ce->state->obj,
+ 					i915_coherent_map_type(ce->engine->i915) |
+ 					I915_MAP_OVERRIDE);
++	if (IS_ERR(*vaddr))
++		return PTR_ERR(*vaddr);
++
++	if (!__test_and_set_bit(CONTEXT_INIT_BIT, &ce->flags))
++		populate_lr_context(ce, engine, *vaddr);
++
++	return 0;
++}
+ 
+-	return PTR_ERR_OR_ZERO(*vaddr);
++static int
++execlists_context_pre_pin(struct intel_context *ce,
++			  struct i915_gem_ww_ctx *ww, void **vaddr)
 +{
-+	int err;
-+
-+	if (i915_gem_object_has_pinned_pages(obj))
-+		return -EBUSY;
-+
-+	/* May be called by shrinker from within get_pages() (on another bo) */
-+	mutex_lock(&obj->mm.lock);
-+	err = __i915_gem_object_put_pages_locked(obj);
- 	mutex_unlock(&obj->mm.lock);
- 
- 	return err;
-@@ -354,7 +354,7 @@ void *i915_gem_object_pin_map(struct drm_i915_gem_object *obj,
- 	    !i915_gem_object_type_has(obj, I915_GEM_OBJECT_HAS_IOMEM))
- 		return ERR_PTR(-ENXIO);
- 
--	err = mutex_lock_interruptible_nested(&obj->mm.lock, I915_MM_GET_PAGES);
-+	err = mutex_lock_interruptible(&obj->mm.lock);
- 	if (err)
- 		return ERR_PTR(err);
- 
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_phys.c b/drivers/gpu/drm/i915/gem/i915_gem_phys.c
-index 153de6538378..4322e35cfe48 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_phys.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_phys.c
-@@ -186,7 +186,7 @@ int i915_gem_object_attach_phys(struct drm_i915_gem_object *obj, int align)
- 	if (err)
- 		return err;
- 
--	err = mutex_lock_interruptible_nested(&obj->mm.lock, I915_MM_GET_PAGES);
-+	err = mutex_lock_interruptible(&obj->mm.lock);
- 	if (err)
- 		goto err_unlock;
- 
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_shrinker.c b/drivers/gpu/drm/i915/gem/i915_gem_shrinker.c
-index dc8f052a0ffe..afc6e5b4dcf1 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_shrinker.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_shrinker.c
-@@ -48,9 +48,9 @@ static bool unsafe_drop_pages(struct drm_i915_gem_object *obj,
- 		flags = I915_GEM_OBJECT_UNBIND_TEST;
- 
- 	if (i915_gem_object_unbind(obj, flags) == 0)
--		__i915_gem_object_put_pages(obj);
-+		return true;
- 
--	return !i915_gem_object_has_pages(obj);
-+	return false;
++	return __execlists_context_pre_pin(ce, ce->engine, ww, vaddr);
  }
  
- static void try_to_writeback(struct drm_i915_gem_object *obj,
-@@ -199,10 +199,10 @@ i915_gem_shrink(struct drm_i915_private *i915,
+ static int
+@@ -5331,45 +5373,6 @@ static void execlists_init_reg_state(u32 *regs,
+ 	__reset_stop_ring(regs, engine);
+ }
  
- 			spin_unlock_irqrestore(&i915->mm.obj_lock, flags);
+-static int
+-populate_lr_context(struct intel_context *ce,
+-		    struct drm_i915_gem_object *ctx_obj,
+-		    struct intel_engine_cs *engine,
+-		    struct intel_ring *ring)
+-{
+-	bool inhibit = true;
+-	void *vaddr;
+-
+-	vaddr = i915_gem_object_pin_map(ctx_obj, I915_MAP_WB);
+-	if (IS_ERR(vaddr)) {
+-		drm_dbg(&engine->i915->drm, "Could not map object pages!\n");
+-		return PTR_ERR(vaddr);
+-	}
+-
+-	set_redzone(vaddr, engine);
+-
+-	if (engine->default_state) {
+-		shmem_read(engine->default_state, 0,
+-			   vaddr, engine->context_size);
+-		__set_bit(CONTEXT_VALID_BIT, &ce->flags);
+-		inhibit = false;
+-	}
+-
+-	/* Clear the ppHWSP (inc. per-context counters) */
+-	memset(vaddr, 0, PAGE_SIZE);
+-
+-	/*
+-	 * The second page of the context object contains some registers which
+-	 * must be set up prior to the first execution.
+-	 */
+-	execlists_init_reg_state(vaddr + LRC_STATE_OFFSET,
+-				 ce, engine, ring, inhibit);
+-
+-	__i915_gem_object_flush_map(ctx_obj, 0, engine->context_size);
+-	i915_gem_object_unpin_map(ctx_obj);
+-	return 0;
+-}
+-
+ static struct intel_timeline *pinned_timeline(struct intel_context *ce)
+ {
+ 	struct intel_timeline *tl = fetch_and_zero(&ce->timeline);
+@@ -5433,20 +5436,11 @@ static int __execlists_context_alloc(struct intel_context *ce,
+ 		goto error_deref_obj;
+ 	}
  
--			if (unsafe_drop_pages(obj, shrink)) {
-+			if (unsafe_drop_pages(obj, shrink) &&
-+			    mutex_trylock(&obj->mm.lock)) {
- 				/* May arrive from get_pages on another bo */
--				mutex_lock(&obj->mm.lock);
--				if (!i915_gem_object_has_pages(obj)) {
-+				if (!__i915_gem_object_put_pages_locked(obj)) {
- 					try_to_writeback(obj, shrink);
- 					count += obj->base.size >> PAGE_SHIFT;
- 				}
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_userptr.c b/drivers/gpu/drm/i915/gem/i915_gem_userptr.c
-index e0a5e3ae9d4d..80608063e8be 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_userptr.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_userptr.c
-@@ -235,7 +235,7 @@ static int i915_gem_object_userptr_unbind(struct drm_i915_gem_object *obj, bool
- 	if (GEM_WARN_ON(i915_gem_object_has_pinned_pages(obj)))
- 		return -EBUSY;
+-	ret = populate_lr_context(ce, ctx_obj, engine, ring);
+-	if (ret) {
+-		drm_dbg(&engine->i915->drm,
+-			"Failed to populate LRC: %d\n", ret);
+-		goto error_ring_free;
+-	}
+-
+ 	ce->ring = ring;
+ 	ce->state = vma;
  
--	mutex_lock_nested(&obj->mm.lock, I915_MM_GET_PAGES);
-+	mutex_lock(&obj->mm.lock);
+ 	return 0;
  
- 	pages = __i915_gem_object_unset_pages(obj);
- 	if (!IS_ERR_OR_NULL(pages))
+-error_ring_free:
+-	intel_ring_put(ring);
+ error_deref_obj:
+ 	i915_gem_object_put(ctx_obj);
+ 	return ret;
+@@ -5524,6 +5518,15 @@ static int virtual_context_alloc(struct intel_context *ce)
+ 	return __execlists_context_alloc(ce, ve->siblings[0]);
+ }
+ 
++static int
++virtual_context_pre_pin(struct intel_context *ce,
++			  struct i915_gem_ww_ctx *ww, void **vaddr)
++{
++	struct virtual_engine *ve = container_of(ce, typeof(*ve), context);
++
++	return __execlists_context_pre_pin(ce, ve->siblings[0], ww, vaddr);
++}
++
+ static int virtual_context_pin(struct intel_context *ce, void *vaddr)
+ {
+ 	struct virtual_engine *ve = container_of(ce, typeof(*ve), context);
+@@ -5557,7 +5560,7 @@ static void virtual_context_exit(struct intel_context *ce)
+ static const struct intel_context_ops virtual_context_ops = {
+ 	.alloc = virtual_context_alloc,
+ 
+-	.pre_pin = execlists_context_pre_pin,
++	.pre_pin = virtual_context_pre_pin,
+ 	.pin = virtual_context_pin,
+ 	.unpin = execlists_context_unpin,
+ 	.post_unpin = execlists_context_post_unpin,
 -- 
 2.28.0
 
