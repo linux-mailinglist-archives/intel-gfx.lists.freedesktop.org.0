@@ -2,43 +2,44 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0BFEA28EC82
-	for <lists+intel-gfx@lfdr.de>; Thu, 15 Oct 2020 06:58:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 79D7428EE6A
+	for <lists+intel-gfx@lfdr.de>; Thu, 15 Oct 2020 10:23:45 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A3FD56EC19;
-	Thu, 15 Oct 2020 04:58:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CBC246EC2E;
+	Thu, 15 Oct 2020 08:23:43 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9EBFA6EC19;
- Thu, 15 Oct 2020 04:58:09 +0000 (UTC)
-IronPort-SDR: +memVoZG6ynFsB8yFFWCKSHRtCX2/GeRIyxWw9a4VbdIXlWl0kMNKkXS24ZVBT+mpEu6PwppfL
- wj6LbntthS8A==
-X-IronPort-AV: E=McAfee;i="6000,8403,9774"; a="162797503"
-X-IronPort-AV: E=Sophos;i="5.77,377,1596524400"; d="scan'208";a="162797503"
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A906D6E0CC;
+ Thu, 15 Oct 2020 08:23:42 +0000 (UTC)
+IronPort-SDR: SNDF/Nx7wuTQv0hCCa4obb8CcQa7qxVB8TnlQuxxJJG85hVBOnYXQh3D3vjpLcCnFKk0hmLmWu
+ EYlNWONgh8VA==
+X-IronPort-AV: E=McAfee;i="6000,8403,9774"; a="145607573"
+X-IronPort-AV: E=Sophos;i="5.77,378,1596524400"; d="scan'208";a="145607573"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Oct 2020 21:58:09 -0700
-IronPort-SDR: ASsOy/M6RLEECGEFBXI0zDNpIvKXXpHWy7Hvxp6PcVvEd/TTPZ8owQDzfoz4GWd8sjx2jzElys
- OKZxwFBaYpkw==
-X-IronPort-AV: E=Sophos;i="5.77,377,1596524400"; d="scan'208";a="531108122"
-Received: from rsztejna-mobl.ger.corp.intel.com (HELO zkempczy-mobl2)
- ([10.213.21.90])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Oct 2020 21:58:07 -0700
-Date: Thu, 15 Oct 2020 06:58:03 +0200
-From: Zbigniew =?utf-8?Q?Kempczy=C5=84ski?= <zbigniew.kempczynski@intel.com>
-To: Chris Wilson <chris@chris-wilson.co.uk>
-Message-ID: <20201015045803.GB4183@zkempczy-mobl2>
-References: <20201014104038.2554985-1-chris@chris-wilson.co.uk>
- <20201014104038.2554985-8-chris@chris-wilson.co.uk>
-MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20201014104038.2554985-8-chris@chris-wilson.co.uk>
-Subject: Re: [Intel-gfx] [PATCH i-g-t 08/10] lib: Use unsigned gen for
- forward compatible tests
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Oct 2020 01:23:42 -0700
+IronPort-SDR: gcHR9oSPX8zXFzAsfhQT2vXFmR1ceMD2a2L1UwMItRVzqwN2i9bQlKoAVzFQzHEvZpeFQz1giu
+ Mp5vTylWJrfQ==
+X-IronPort-AV: E=Sophos;i="5.77,378,1596524400"; d="scan'208";a="464204728"
+Received: from mbernato-z370.igk.intel.com ([10.102.30.7])
+ by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Oct 2020 01:23:40 -0700
+Message-ID: <19482560cb22b16f296d193284a8c700436b8362.camel@linux.intel.com>
+From: Marcin Bernatowicz <marcin.bernatowicz@linux.intel.com>
+To: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>, 
+ igt-dev@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
+Date: Thu, 15 Oct 2020 09:15:00 +0200
+In-Reply-To: <20201013110234.17680-1-janusz.krzysztofik@linux.intel.com>
+References: <20201013110234.17680-1-janusz.krzysztofik@linux.intel.com>
+Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173,
+ 80-298 Gdansk - KRS 101882 - NIP 957-07-52-316
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+Mime-Version: 1.0
+Subject: Re: [Intel-gfx] [igt-dev] [PATCH i-g-t v3] tests/core_hotunplug:
+ Restore i915 debugfs health check
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,83 +52,206 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: igt-dev@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: Adam Miszczak <adam.miszczak@intel.com>,
+ Chris Wilson <chris@chris-wilson.co.uk>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gV2VkLCBPY3QgMTQsIDIwMjAgYXQgMTE6NDA6MzZBTSArMDEwMCwgQ2hyaXMgV2lsc29uIHdy
-b3RlOgo+IFVua25vd24sIHNvIGZ1dHVyZSwgZ2VuIGFyZSBtYXJrZWQgYXMgLTEgd2hpY2ggd2Ug
-d2FudCB0byB0cmVhdCBhcyAtMXUKPiBzbyB0aGF0IGFsd2F5cyBwYXNzID49IGdlbiBjaGVja3Mu
-CgpXZSd2ZSBkaXNjdXNzZWQgdGhpcyBzb21lIHRpbWUgYWdvLiBJIHdhcyBwcmV2aW91c2x5IHRv
-ICdubycgYnV0IHlvdSd2ZQpyZWFsaXplZCBtZSB3ZSBjYW4gYXZvaWQgYSBsb3Qgb2YgZmFpbHVy
-ZXMgb24gbGlrZWx5IHdvcmtpbmcgdGVzdHMgYmVjYXVzZQp0aGV5IHdpbGwgZmFpbCBvbiBnZW4g
-Y2hlY2sgd2hlcmUncyByZWFsIHJlYXNvbiBpcyBsYWNrIG9mIHBsYXRmb3JtIGVudHJ5Cih0aGVu
-IGZvY3VzIG9uIHRob3NlIHdoaWNoIHdpbGwgZmFpbCkuCgpTbywgSSBzZWUgbm8gcHJvYmxlbSB3
-aXRoIHRoYXQ6CgpBY2tlZC1ieTogWmJpZ25pZXcgS2VtcGN6ecWEc2tpIDx6Ymlnbmlldy5rZW1w
-Y3p5bnNraUBpbnRlbC5jb20+Cgo+IAo+IENsb3NlczogaHR0cHM6Ly9naXRsYWIuZnJlZWRlc2t0
-b3Aub3JnL2RybS9pbnRlbC8tL2lzc3Vlcy8yMjk4Cj4gU2lnbmVkLW9mZi1ieTogQ2hyaXMgV2ls
-c29uIDxjaHJpc0BjaHJpcy13aWxzb24uY28udWs+Cj4gQ2M6IFpiaWduaWV3IEtlbXBjennFhHNr
-aSA8emJpZ25pZXcua2VtcGN6eW5za2lAaW50ZWwuY29tPgo+IC0tLQo+ICBsaWIvaW50ZWxfYmF0
-Y2hidWZmZXIuYyB8IDEwICsrKysrLS0tLS0KPiAgbGliL2ludGVsX2JhdGNoYnVmZmVyLmggfCAx
-MCArKysrKystLS0tCj4gIDIgZmlsZXMgY2hhbmdlZCwgMTEgaW5zZXJ0aW9ucygrKSwgOSBkZWxl
-dGlvbnMoLSkKPiAKPiBkaWZmIC0tZ2l0IGEvbGliL2ludGVsX2JhdGNoYnVmZmVyLmMgYi9saWIv
-aW50ZWxfYmF0Y2hidWZmZXIuYwo+IGluZGV4IDYwZGJmZTI2MS4uZmM3MzQ5NWMwIDEwMDY0NAo+
-IC0tLSBhL2xpYi9pbnRlbF9iYXRjaGJ1ZmZlci5jCj4gKysrIGIvbGliL2ludGVsX2JhdGNoYnVm
-ZmVyLmMKPiBAQCAtNDE0LDcgKzQxNCw3IEBAIGludGVsX2JsdF9jb3B5KHN0cnVjdCBpbnRlbF9i
-YXRjaGJ1ZmZlciAqYmF0Y2gsCj4gIAkgICAgICAgZHJtX2ludGVsX2JvICpkc3RfYm8sIGludCBk
-c3RfeDEsIGludCBkc3RfeTEsIGludCBkc3RfcGl0Y2gsCj4gIAkgICAgICAgaW50IHdpZHRoLCBp
-bnQgaGVpZ2h0LCBpbnQgYnBwKQo+ICB7Cj4gLQljb25zdCBpbnQgZ2VuID0gYmF0Y2gtPmdlbjsK
-PiArCWNvbnN0IHVuc2lnbmVkIGludCBnZW4gPSBiYXRjaC0+Z2VuOwo+ICAJdWludDMyX3Qgc3Jj
-X3RpbGluZywgZHN0X3RpbGluZywgc3dpenpsZTsKPiAgCXVpbnQzMl90IGNtZF9iaXRzID0gMDsK
-PiAgCXVpbnQzMl90IGJyMTNfYml0czsKPiBAQCAtNTUzLDcgKzU1Myw3IEBAIHVuc2lnbmVkIGln
-dF9idWZfaGVpZ2h0KGNvbnN0IHN0cnVjdCBpZ3RfYnVmICpidWYpCj4gICAqIFJldHVybnM6Cj4g
-ICAqIFRoZSB3aWR0aCBvZiB0aGUgY2NzIGJ1ZmZlciBkYXRhLgo+ICAgKi8KPiAtdW5zaWduZWQg
-aW50IGlndF9idWZfaW50ZWxfY2NzX3dpZHRoKGludCBnZW4sIGNvbnN0IHN0cnVjdCBpZ3RfYnVm
-ICpidWYpCj4gK3Vuc2lnbmVkIGludCBpZ3RfYnVmX2ludGVsX2Njc193aWR0aCh1bnNpZ25lZCBp
-bnQgZ2VuLCBjb25zdCBzdHJ1Y3QgaWd0X2J1ZiAqYnVmKQo+ICB7Cj4gIAkvKgo+ICAJICogR0VO
-MTIrOiBUaGUgQ0NTIHVuaXQgc2l6ZSBpcyA2NCBieXRlcyBtYXBwaW5nIDQgbWFpbiBzdXJmYWNl
-Cj4gQEAgLTU3Niw3ICs1NzYsNyBAQCB1bnNpZ25lZCBpbnQgaWd0X2J1Zl9pbnRlbF9jY3Nfd2lk
-dGgoaW50IGdlbiwgY29uc3Qgc3RydWN0IGlndF9idWYgKmJ1ZikKPiAgICogUmV0dXJuczoKPiAg
-ICogVGhlIGhlaWdodCBvZiB0aGUgY2NzIGJ1ZmZlciBkYXRhLgo+ICAgKi8KPiAtdW5zaWduZWQg
-aW50IGlndF9idWZfaW50ZWxfY2NzX2hlaWdodChpbnQgZ2VuLCBjb25zdCBzdHJ1Y3QgaWd0X2J1
-ZiAqYnVmKQo+ICt1bnNpZ25lZCBpbnQgaWd0X2J1Zl9pbnRlbF9jY3NfaGVpZ2h0KHVuc2lnbmVk
-IGludCBnZW4sIGNvbnN0IHN0cnVjdCBpZ3RfYnVmICpidWYpCj4gIHsKPiAgCS8qCj4gIAkgKiBH
-RU4xMis6IFRoZSBDQ1MgdW5pdCBzaXplIGlzIDY0IGJ5dGVzIG1hcHBpbmcgNCBtYWluIHN1cmZh
-Y2UKPiBAQCAtNzAzLDcgKzcwMyw3IEBAIGZpbGxfb2JqZWN0KHN0cnVjdCBkcm1faTkxNV9nZW1f
-ZXhlY19vYmplY3QyICpvYmosIHVpbnQzMl90IGdlbV9oYW5kbGUsCj4gIAo+ICBzdGF0aWMgdm9p
-ZCBleGVjX2JsaXQoaW50IGZkLAo+ICAJCSAgICAgIHN0cnVjdCBkcm1faTkxNV9nZW1fZXhlY19v
-YmplY3QyICpvYmpzLCB1aW50MzJfdCBjb3VudCwKPiAtCQkgICAgICBpbnQgZ2VuKQo+ICsJCSAg
-ICAgIHVuc2lnbmVkIGludCBnZW4pCj4gIHsKPiAgCXN0cnVjdCBkcm1faTkxNV9nZW1fZXhlY2J1
-ZmZlcjIgZXhlYyA9IHsKPiAgCQkuYnVmZmVyc19wdHIgPSB0b191c2VyX3BvaW50ZXIob2Jqcyks
-Cj4gQEAgLTI0MTYsNyArMjQxNiw3IEBAIHZvaWQgaW50ZWxfYmJfZW1pdF9ibHRfY29weShzdHJ1
-Y3QgaW50ZWxfYmIgKmliYiwKPiAgCQkJICAgIGludCBkc3RfeDEsIGludCBkc3RfeTEsIGludCBk
-c3RfcGl0Y2gsCj4gIAkJCSAgICBpbnQgd2lkdGgsIGludCBoZWlnaHQsIGludCBicHApCj4gIHsK
-PiAtCWNvbnN0IGludCBnZW4gPSBpYmItPmdlbjsKPiArCWNvbnN0IHVuc2lnbmVkIGludCBnZW4g
-PSBpYmItPmdlbjsKPiAgCXVpbnQzMl90IGNtZF9iaXRzID0gMDsKPiAgCXVpbnQzMl90IGJyMTNf
-Yml0czsKPiAgCXVpbnQzMl90IG1hc2s7Cj4gZGlmZiAtLWdpdCBhL2xpYi9pbnRlbF9iYXRjaGJ1
-ZmZlci5oIGIvbGliL2ludGVsX2JhdGNoYnVmZmVyLmgKPiBpbmRleCBkMjBiNGU2NmEuLmFiMWIw
-YzI4NiAxMDA2NDQKPiAtLS0gYS9saWIvaW50ZWxfYmF0Y2hidWZmZXIuaAo+ICsrKyBiL2xpYi9p
-bnRlbF9iYXRjaGJ1ZmZlci5oCj4gQEAgLTE1LDcgKzE1LDcgQEAKPiAgc3RydWN0IGludGVsX2Jh
-dGNoYnVmZmVyIHsKPiAgCWRybV9pbnRlbF9idWZtZ3IgKmJ1Zm1ncjsKPiAgCXVpbnQzMl90IGRl
-dmlkOwo+IC0JaW50IGdlbjsKPiArCXVuc2lnbmVkIGludCBnZW47Cj4gIAo+ICAJZHJtX2ludGVs
-X2NvbnRleHQgKmN0eDsKPiAgCWRybV9pbnRlbF9ibyAqYm87Cj4gQEAgLTI2Myw4ICsyNjMsMTAg
-QEAgc3RhdGljIGlubGluZSBib29sIGlndF9idWZfY29tcHJlc3NlZChjb25zdCBzdHJ1Y3QgaWd0
-X2J1ZiAqYnVmKQo+ICAKPiAgdW5zaWduZWQgaWd0X2J1Zl93aWR0aChjb25zdCBzdHJ1Y3QgaWd0
-X2J1ZiAqYnVmKTsKPiAgdW5zaWduZWQgaWd0X2J1Zl9oZWlnaHQoY29uc3Qgc3RydWN0IGlndF9i
-dWYgKmJ1Zik7Cj4gLXVuc2lnbmVkIGludCBpZ3RfYnVmX2ludGVsX2Njc193aWR0aChpbnQgZ2Vu
-LCBjb25zdCBzdHJ1Y3QgaWd0X2J1ZiAqYnVmKTsKPiAtdW5zaWduZWQgaW50IGlndF9idWZfaW50
-ZWxfY2NzX2hlaWdodChpbnQgZ2VuLCBjb25zdCBzdHJ1Y3QgaWd0X2J1ZiAqYnVmKTsKPiArdW5z
-aWduZWQgaW50IGlndF9idWZfaW50ZWxfY2NzX3dpZHRoKHVuc2lnbmVkIGludCBnZW4sCj4gKwkJ
-CQkgICAgIGNvbnN0IHN0cnVjdCBpZ3RfYnVmICpidWYpOwo+ICt1bnNpZ25lZCBpbnQgaWd0X2J1
-Zl9pbnRlbF9jY3NfaGVpZ2h0KHVuc2lnbmVkIGludCBnZW4sCj4gKwkJCQkgICAgICBjb25zdCBz
-dHJ1Y3QgaWd0X2J1ZiAqYnVmKTsKPiAgCj4gIHZvaWQgaWd0X2JsaXR0ZXJfc3JjX2NvcHkoaW50
-IGZkLAo+ICAJCQkgIC8qIHNyYyAqLwo+IEBAIC00MzQsNyArNDM2LDcgQEAgaWd0X21lZGlhX3Nw
-aW5mdW5jX3QgaWd0X2dldF9tZWRpYV9zcGluZnVuYyhpbnQgZGV2aWQpOwo+ICAgKi8KPiAgc3Ry
-dWN0IGludGVsX2JiIHsKPiAgCWludCBpOTE1Owo+IC0JaW50IGdlbjsKPiArCXVuc2lnbmVkIGlu
-dCBnZW47Cj4gIAlib29sIGRlYnVnOwo+ICAJYm9vbCBkdW1wX2Jhc2U2NDsKPiAgCWJvb2wgZW5m
-b3JjZV9yZWxvY3M7Cj4gLS0gCj4gMi4yOC4wCj4gCl9fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxp
-c3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFu
-L2xpc3RpbmZvL2ludGVsLWdmeAo=
+On Tue, 2020-10-13 at 13:02 +0200, Janusz Krzysztofik wrote:
+> Removal of igt_fork_hang_detector() from local_i915_healthcheck() by
+> commit 1fbd127bd4e1 ("core_hotplug: Teach the healthcheck how to
+> check
+> execution status") resulted in unintentional removal of an important
+> though implicit test feature of detecting, reporting as failures and
+> recovering from potential misses of debugfs subdirs of hot rebound
+> i915
+> devices.  As a consequence, unexpected failures or skips of other
+> unrelated but subsequently run tests have been observed on CI.
+> 
+> On the other hand, removal of the debugfs issue detection and subtest
+> failures from right after hot rebinding the driver enabled the better
+> version of the i915 GPU health check fixed by the same commit to
+> detect
+> and report other issues potentially triggered by device late close.
+> 
+> Restore the missing test feature by introducing an explicit sysfs
+> health check, not limited to i915,  that verifies existence of device
+> sysfs and debugfs areas.  Also, split hotrebind/hotreplug scenarios
+> into a pair of each, one that performs the health check right after
+> hot
+> rebind/replug and delegates the device late close step to a follow up
+> recovery phase, while the other one checks device health only after
+> late closing it.
+> 
+> v2: Give GPU health check a better chance to detect issues - run it
+>     before sysfs health checks.
+> v3: Run sysfs health check on any hardware, not only i915.
+> 
+> Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com
+> >
+> Cc: Chris Wilson <chris@chris-wilson.co.uk>
+> ---
+> Even if the root cause has occurred to be sitting on the IGT lib side
+> and has been already fixed by commit 937526629344 ("lib: Don't fail
+> debugfs lookup on an expected absent drm device"), I think we should
+> restore the debugfs health check just in case new issues with similar
+> symptoms appear in the future and start affecting subsequent tests
+> silently.
+> 
+> Thanks,
+> Janusz
+> 
+>  tests/core_hotunplug.c | 68 ++++++++++++++++++++++++++++++++++++++
+> ----
+>  1 file changed, 62 insertions(+), 6 deletions(-)
+> 
+> diff --git a/tests/core_hotunplug.c b/tests/core_hotunplug.c
+> index 70669c590..cdc07c85d 100644
+> --- a/tests/core_hotunplug.c
+> +++ b/tests/core_hotunplug.c
+> @@ -308,7 +308,7 @@ static void node_healthcheck(struct hotunplug
+> *priv, unsigned flags)
+>  		priv->failure = "Unrecoverable test failure";
+>  		if (local_i915_healthcheck(fd_drm, "") &&
+>  		    (!(flags & FLAG_RECOVER) ||
+> local_i915_recover(fd_drm)))
+> -			priv->failure = "Healthcheck failure!";
+> +			priv->failure = "GPU healthcheck failure!";
+>  		else
+>  			priv->failure = NULL;
+>  
+> @@ -317,6 +317,16 @@ static void node_healthcheck(struct hotunplug
+> *priv, unsigned flags)
+>  		priv->failure = NULL;
+>  	}
+>  
+> +	if (!priv->failure) {
+> +		char path[200];
+> +
+> +		priv->failure = "Device sysfs healthckeck failure!";
+> +		local_debug("%s\n", "running device sysfs
+> healthcheck");
+> +		igt_assert(igt_sysfs_path(fd_drm, path, sizeof(path)));
+> +		igt_assert(igt_debugfs_path(fd_drm, path,
+> sizeof(path)));
+> +		priv->failure = NULL;
+> +	}
+> +
+
+LGTM,
+Reviewed-by: Marcin Bernatowicz <marcin.bernatowicz@linux.intel.com>
+
+>  	fd_drm = close_device(fd_drm, "", "health checked ");
+>  	if (closed || fd_drm < -1)	/* update status for
+> post_healthcheck */
+>  		priv->fd.drm_hc = fd_drm;
+> @@ -437,7 +447,7 @@ static void hotunplug_rescan(struct hotunplug
+> *priv)
+>  	healthcheck(priv, false);
+>  }
+>  
+> -static void hotrebind_lateclose(struct hotunplug *priv)
+> +static void hotrebind(struct hotunplug *priv)
+>  {
+>  	igt_assert_eq(priv->fd.drm, -1);
+>  	igt_assert_eq(priv->fd.drm_hc, -1);
+> @@ -448,6 +458,30 @@ static void hotrebind_lateclose(struct hotunplug
+> *priv)
+>  	driver_bind(priv, 0);
+>  
+>  	healthcheck(priv, false);
+> +}
+> +
+> +static void hotreplug(struct hotunplug *priv)
+> +{
+> +	igt_assert_eq(priv->fd.drm, -1);
+> +	igt_assert_eq(priv->fd.drm_hc, -1);
+> +	priv->fd.drm = local_drm_open_driver(false, "", " for hot
+> replug");
+> +
+> +	device_unplug(priv, "hot ", 60);
+> +
+> +	bus_rescan(priv, 0);
+> +
+> +	healthcheck(priv, false);
+> +}
+> +
+> +static void hotrebind_lateclose(struct hotunplug *priv)
+> +{
+> +	igt_assert_eq(priv->fd.drm, -1);
+> +	igt_assert_eq(priv->fd.drm_hc, -1);
+> +	priv->fd.drm = local_drm_open_driver(false, "", " for hot
+> rebind");
+> +
+> +	driver_unbind(priv, "hot ", 60);
+> +
+> +	driver_bind(priv, 0);
+>  
+>  	priv->fd.drm = close_device(priv->fd.drm, "late ", "unbound ");
+>  	igt_assert_eq(priv->fd.drm, -1);
+> @@ -465,8 +499,6 @@ static void hotreplug_lateclose(struct hotunplug
+> *priv)
+>  
+>  	bus_rescan(priv, 0);
+>  
+> -	healthcheck(priv, false);
+> -
+>  	priv->fd.drm = close_device(priv->fd.drm, "late ", "removed ");
+>  	igt_assert_eq(priv->fd.drm, -1);
+>  
+> @@ -570,7 +602,31 @@ igt_main
+>  		post_healthcheck(&priv);
+>  
+>  	igt_subtest_group {
+> -		igt_describe("Check if the driver hot unbound from a
+> still open device can be cleanly rebound, then the old instance
+> released");
+> +		igt_describe("Check if the driver can be cleanly
+> rebound to a device with a still open hot unbound driver instance");
+> +		igt_subtest("hotrebind")
+> +			hotrebind(&priv);
+> +
+> +		igt_fixture
+> +			recover(&priv);
+> +	}
+> +
+> +	igt_fixture
+> +		post_healthcheck(&priv);
+> +
+> +	igt_subtest_group {
+> +		igt_describe("Check if a hot unplugged and still open
+> device can be cleanly restored");
+> +		igt_subtest("hotreplug")
+> +			hotreplug(&priv);
+> +
+> +		igt_fixture
+> +			recover(&priv);
+> +	}
+> +
+> +	igt_fixture
+> +		post_healthcheck(&priv);
+> +
+> +	igt_subtest_group {
+> +		igt_describe("Check if a hot unbound driver instance
+> still open after hot rebind can be cleanly released");
+>  		igt_subtest("hotrebind-lateclose")
+>  			hotrebind_lateclose(&priv);
+>  
+> @@ -582,7 +638,7 @@ igt_main
+>  		post_healthcheck(&priv);
+>  
+>  	igt_subtest_group {
+> -		igt_describe("Check if a still open while hot unplugged
+> device can be cleanly restored, then the old instance released");
+> +		igt_describe("Check if an instance of a still open
+> while hot replugged device can be cleanly released");
+>  		igt_subtest("hotreplug-lateclose")
+>  			hotreplug_lateclose(&priv);
+>  
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
