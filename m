@@ -1,34 +1,38 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9760728FA0B
-	for <lists+intel-gfx@lfdr.de>; Thu, 15 Oct 2020 22:19:26 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1628928FA22
+	for <lists+intel-gfx@lfdr.de>; Thu, 15 Oct 2020 22:32:50 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 665258920E;
-	Thu, 15 Oct 2020 20:19:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 168AE89DA2;
+	Thu, 15 Oct 2020 20:32:47 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3F37F88FFE
- for <intel-gfx@lists.freedesktop.org>; Thu, 15 Oct 2020 20:19:22 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0D0EE89DA2
+ for <intel-gfx@lists.freedesktop.org>; Thu, 15 Oct 2020 20:32:44 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from localhost (unverified [78.156.65.138]) 
  by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 22728857-1500050 for multiple; Thu, 15 Oct 2020 21:19:18 +0100
+ 22728916-1500050 for multiple; Thu, 15 Oct 2020 21:32:41 +0100
 MIME-Version: 1.0
-In-Reply-To: <20200716190426.17047-2-ville.syrjala@linux.intel.com>
-References: <20200716190426.17047-1-ville.syrjala@linux.intel.com>
- <20200716190426.17047-2-ville.syrjala@linux.intel.com>
+In-Reply-To: <8440cc7f281a49509efc25987b349438@intel.com>
+References: <20201013103256.31446-1-chris@chris-wilson.co.uk>
+ <8c41461201764a0d8a05caba47d1589a@intel.com>
+ <160260628825.2946.16678261690978530238@build.alporthouse.com>
+ <daa1a1f388a94b07ad95ce5d12132925@intel.com>
+ <917a40e55bb64ff1a9692563eb459611@intel.com>
+ <160277441055.32312.12137014703246379267@build.alporthouse.com>
+ <8440cc7f281a49509efc25987b349438@intel.com>
 From: Chris Wilson <chris@chris-wilson.co.uk>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-Date: Thu, 15 Oct 2020 21:19:18 +0100
-Message-ID: <160279315810.3047.6112212821588179581@build.alporthouse.com>
+To: "Tang, CQ" <cq.tang@intel.com>, intel-gfx@lists.freedesktop.org
+Date: Thu, 15 Oct 2020 21:32:40 +0100
+Message-ID: <160279396077.3047.5670029514653870704@build.alporthouse.com>
 User-Agent: alot/0.9
-Subject: Re: [Intel-gfx] [PATCH 2/2] drm/i915: Apply WAC6entrylatency to
- kbl/cfl
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Make the GEM reclaim workqueue
+ high priority
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,79 +45,82 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-UXVvdGluZyBWaWxsZSBTeXJqYWxhICgyMDIwLTA3LTE2IDIwOjA0OjI2KQo+IEZyb206IFZpbGxl
-IFN5cmrDpGzDpCA8dmlsbGUuc3lyamFsYUBsaW51eC5pbnRlbC5jb20+Cj4gCj4gV0FDNmVudHJ5
-bGF0ZW5jeSBpcyB0cnlpbmcgdG8gZml4IGV4Y2Vzc2l2ZSByYzYgZW50cnkgbGF0ZW5jeSBjYXVz
-ZWQKPiBieSB0aGUgZXh0cmEgZGVsYXkgZnJvbSBGQkNfTExDX1JFQURfQ1RSTCwgd2hpY2ggaXMg
-dGhlcmUgZm9yIHNvbWUKPiBleHRyYSBzeW5jIHdpdGggdW5jb3JlIGZvciBmcmFtZSBidWZmZXIg
-Y2FjaGluZyBpbiBMTEMuCj4gCj4gUmVhZGluZyB0aHJvdWdoIHRoZSBoc2QgdGhlIHJlY29tbWVu
-ZGF0aW9uIHdhcyB0byBzZXQgdGhlIEZCQ19MTENfRlVMTFlfT1BFTgo+IGJpdCB0byBkaXNhYmxl
-IHRoaXMgZXh0cmEgZGVsYXkgZW50aXJlbHkuIFRoaXMgY2FuIGJlIGRvbmUgd2hlbmV2ZXIgZmIg
-TExDCj4gY2FjaGluZyBpcyBub3QgdXNlZC4KCkFoLCBpcyB0aGF0IHdoYXQgaXQgbWVhbnMgYnkg
-J211c3Qgbm90IGJlIHNldCB1bmxlc3MgY29vcmRpbmF0ZWQgd2l0aAp1bmNvcmU/JyBPay4KCj4g
-VGhlIGFsdGVybmF0aXZlIHN1Z2dlc3Rpb24gd2FzIHRvIHJlZHVjZSB0aGUgZGVsYXkgdG8KPiBl
-Zy4gMHg1IHZpYSB1cGRhdGVkIEJJT1MgcHJvZ3JhbW1pbmcgaW5zdHJ1Y3Rpb25zLiBCdXQgYWxs
-IHRoZSBrYmwvY2ZsCj4gbWFjaGluZXMgSSd2ZSBzZWVuIHN0aWxsIGhhdmUgdGhlIGRlZmF1bHQg
-MHhmZiBwcm9ncmFtbWVkLiBBcyB3ZSBuZXZlciB1c2UKPiBmYiBMTEMgY2FjaGluZyBsZXQncyBq
-dXN0IGFwcGx5IHRoZSB3L2EgdG8gYWxsIHNrbCBkZXJpdmF0aXZlcyB0byBnZXQKPiBjb25zaXN0
-ZW50IHJjNiBsYXRlbmNpZXMuCj4gCj4gSSB3YXMgYWJsZSB0byBtZWFzdXJlIHRoZSBlZmZlY3Qg
-b2YgRkJDX0xMQ19SRUFEX0NUUkwgdG8gcmM2IGxhdGVuY3kKPiB2aWEgZm9yY2V3YWtlLiBIZXJl
-J3MgYSBncmFwaCBvZiBzb21lIG9mIHRoZSByZXN1bHRzOgo+IAo+ICAgICAgICAgICAgICBzbGVl
-cDtmd19yZXE9MTt3YWl0IGZ3X2Fjaz09MTtzbGVlcDtmd19yZXE9MDt3YWl0IGZ3X2Fjaz09MAo+
-ICBmd19hY2s9PTEgZHVyYXRpb24KPiAgICAgMTYwdXMgKy0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0rCj4gICAgICAgICAgIHwg
-ICAgICAgICAgKyAgICAgICAgICArICAgICAgICAkJCsgICAgICAgICArICAgICAgICAgICsgICAg
-ICAgICAgfAo+ICAgICAgICAgICB8ICAkJCAgICAgICAgICAgJCAgICAkICAgKioqKioqJCQgKiog
-ICAkICQqKiQqICAjIyMjIyMjIyMkJCMjIyMjI3wKPiAgICAgMTQwdXMgfC0kJCQkJCQkJCQkJCQk
-JCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQqJCQkJCQkJCQkJCQkJCQkJCAkJCQkJCR8Cj4gICAg
-ICAgICAgIHwgJCAgICAgICAgICAgICAgICAgICAgICogICAgICAgICAgICAgICAgICAgICAgICMg
-ICAgICAgICAgICAgICAgfAo+ICAgICAgICAgICB8ICQgICAgICAgICAgICAgICAgICAgICAqICAg
-ICAgICAgICAgICAgICAgICAgICAjICAgICAgICAgICAgICAgIHwKPiAgICAgMTIwdXMgfCQrICAg
-ICAgICAgICAgICAgICAgICAgKiAgICAgICAgICAgICAgICAgICAgICAgIyAgICAgICAgICAgICAg
-Ky18Cj4gICAgICAgICAgIHwkICAgICAgICAgICAgICAgICAgICAgICogICAgICAgICAgICAgICAg
-ICAgICAgICMgICAgICAgICAgICAgICAgfAo+ICAgICAgICAgICB8JCAgICAgICAgICAgICAgICAg
-ICAgICAqICAgICAgICAgICAgICAgICAgIyAgICMgICAgICAgICAgICAgICAgIHwKPiAgICAgMTAw
-dXMgfCQrICAgICAgICAgKioqKioqKioqKioqIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjICAgICAg
-ICAgICAgICAgKy18Cj4gICAgICAgICAgIHwkICAgICAgICAgICogICAgICAgICAgKiMgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgfAo+ICAgICAgICAgICB8JCAgICAgICoq
-KioqICAgIyMjIyMjIyMjICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHwK
-PiAgICAgIDgwdXMgfCQrICAgICAqICAgICMgIyMjIyAgICMjICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgKy18Cj4gICAgICAgICAgIHwkICAgKioqKiAjIyMgIyAjICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgfAo+ICAgICAgICAgICB8
-ICAqKiAjIyMjICAgICAgICAgICAgICAgICAgICAgRkJDX0xMQ19SRUFEX0NUUkw6IDB4ODAwMCAq
-KioqKioqIHwKPiAgICAgIDYwdXMgfC0jIyMjIyMgICAgICAgICAgICAgICAgICAgICAgIEZCQ19M
-TENfUkVBRF9DVFJMOiAweGZmZmYgIyMjIyMjIy18Cj4gICAgICAgICAgIHwjIyAgICAgICAgKyAg
-ICAgICAgICArICAgIEZCQ19MTENfUkVBRF9DVFJMOiAweDQwMDAwMGZmICQkJCQkJCQgfAo+ICAg
-ICAgICAgICArLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLSsKPiAgICAgICAgICAwbXMgICAgICAgMTBtcyAgICAgICAyMG1zICAg
-ICAgIDMwbXMgICAgICA0MG1zICAgICAgIDUwbXMgICAgICAgNjBtcwo+ICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgc2xlZXAgZHVyYXRpb24KPiAKPiBUaGUgZGVmYXVsdCBGQkNf
-TExDX1JFQURfQ1RSTCB2YWx1ZSBvZiAweGZmIGlzIGRvY3VtZW50ZWQgdG8gZ2l2ZSB1cwo+IGEg
-MTcwdXNlYyBkZWxheS4gVGhhdCB0cmFja3Mgd2VsbCB3aXRoIHRoZSBrbmVlcyBhdCAweGZmZmYt
-Pn40NHVzZWMgYW5kCj4gMHg4MDAwLT5+MjJ1c2VjIHdlIHNlZSBpbiB0aGUgZ3JhcGguCj4gCj4g
-V2UgY2FuIHNlZSB0aGF0IGlmIHdlIHNsZWVwIGxvbmdlciB0aGFuIHRoZSBGQkNfTExDX1JFQURf
-Q1RSTCBkZWxheQo+IHdlIGFsd2F5cyBvYnNlcnZlIHRoZSBmdWxsICh+MTQ1dXNlYykgcmM2IHdh
-a2V1cCBsYXRlbmN5LiBCdXQgaWYgd2Ugc2xlZXAKPiBmb3IgbGVzcyB0aGFuIHRoZSBGQkNfTExD
-X1JFQURfQ1RSTCBkZWxheSB3ZSBzZWUgYSBxdWlja2VyIGZ3IHdha2V1cCwKPiBwcmVzdW1hYmx5
-IGR1ZSB0aGUgaGFyZHdhcmUgbm90IGhhdmluZyB5ZXQgZW50ZXJlZCByYzYgZnVsbHkuCj4gVGhl
-IG90aGVyIHBsYXRlYXVzIGluIHRoZSBncmFwaCBJIHN1c3BlY3QgY29ycmVzcG9uZCB0byBzb21l
-IHNoYWxsb3dlcgo+IGludGVybmFsIHJjIHN0YXRlcy4KCkhtbSwgc28gYnkgc2V0dGluZyBMTEMg
-YXMgZnVsbHkgb3BlbiwgdGhlcmUgaXMgYWx3YXlzIGEgZml4ZWQgMTQwdXMKbGF0ZW5jeSBmb3Ig
-cmM2LCBpbXBseWluZyB0aGF0IHdlIGFsd2F5cyBpbW1lZGlhdGVseSB0cnkgdG8gZW50ZXIgcmM2
-CnJhdGhlciB0aGFuIGFmdGVyIH41MG1zLgoKSSByZWFsaXplIHRoYXQgbXkgcmM2IHBvd2VyIG1l
-YXN1cmVtZW50cyBzaG91bGQgYmUgd2l0aCB0aGUgZGlzcGxheQphbHJlYWR5IG9mZiBhbmQgc28g
-d2lsbCBub3Qgc2hvdyBhbnkgZWZmZWN0LiA6fAoKVGhlIGdyYXBoIGRvZXMgaW1wbHkgdGhhdCB0
-aGVyZSBzaG91bGQgYmUgYSBub3RpY2VhYmxlIGVmZmVjdCBmb3IKY29tcG9zaXRlZCBkZXNrdG9w
-cywgYm90aCBpbiBwb3dlciBzYXZpbmcgYW5kIGEgbGF0ZW5jeSBwZW5hbHR5LiAxNDB1cwppcyBh
-Ym91dCB0aGUgc2FtZSBzb3J0IG9mIGJhbGxwYXJrIGFzIGFsbCB0aGUgb3ZlciBzdGFydHVwIGNv
-c3RzLCBhbmQKb25lIGhvcGVzIHRoZXkgb3ZlcmxhcC4KCj4gU2lnbmVkLW9mZi1ieTogVmlsbGUg
-U3lyasOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4KUmV2aWV3ZWQtYnk6IENo
-cmlzIFdpbHNvbiA8Y2hyaXNAY2hyaXMtd2lsc29uLmNvLnVrPgotQ2hyaXMKX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlz
-dApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0
-b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
+Quoting Tang, CQ (2020-10-15 21:09:32)
+> 
+> 
+> > -----Original Message-----
+> > From: Chris Wilson <chris@chris-wilson.co.uk>
+> > Sent: Thursday, October 15, 2020 8:07 AM
+> > To: Tang, CQ <cq.tang@intel.com>; intel-gfx@lists.freedesktop.org
+> > Subject: Re: [Intel-gfx] [PATCH] drm/i915: Make the GEM reclaim workqueue
+> > high priority
+> > 
+> > Quoting Tang, CQ (2020-10-14 00:29:13)
+> > > i915_gem_free_object() is called by multiple threads/processes, they all
+> > add objects onto the same free_list. The free_list processing worker thread
+> > becomes bottle-neck. I see that the worker is mostly a single thread (with
+> > particular thread ID), but sometimes multiple threads are launched to
+> > process the 'free_list' work concurrently. But the processing speed is still
+> > slower than the multiple process's feeding speed, and 'free_list' is holding
+> > more and more memory.
+> > 
+> > We can also prune the free_list immediately, if we know we are outside of
+> > any critical section. (We do this before create ioctls, and I thought upon
+> > close(device), but I see that's just contexts.)
+> > 
+> > > The worker launching time is delayed a lot, we call queue_work() when we
+> > add the first object onto the empty 'free_list', but when the worker is
+> > launched, the 'free_list' has sometimes accumulated 1M objects. Maybe it is
+> > because of waiting currently running worker to finish?
+> > 
+> > 1M is a lot more than is comfortable, and that's even with a high-priority
+> > worker.  The problem with objects being freed from any context is that we
+> > can't simply put a flush_work around there. (Not without ridding ourselves of
+> > a few mutexes at least.) We could try more than worker, but it's no more
+> > more effort to starve 2 cpus than it is to starve 1.
+> > 
+> > No, with that much pressure the only option is to apply the backpressure at
+> > the point of allocation ala create_ioctl. i.e. find the hog, and look to see if
+> > there's a convenient spot before/after to call
+> > i915_gem_flush_free_objects(). Since you highlight the vma-stash as the
+> > likely culprit, and the free_pt_stash is unlikely to be inside any critical section,
+> > might as well try flushing from there for starters.
+> 
+> I have not yet tested, but I guess calling i915_gem_flush_free_objects() inside free_pt_stash() will solve the problem that gem_exec_gttfill has, because it will give some back pressure on the system traffic.
+
+Still I'm slightly concerned that so many PD objects are being created;
+it's not something that shows up in the smem ppgtt tests (or at least
+it's been dwarfed by other bottlenecks), and the set of vma (and so the
+PD) are meant to reach a steady state. You would need to be using a
+constant set of objects and recycling the vma, not to hit the
+create_ioctl flush. However, it points back to the pressure point being
+around the vma bind.
+
+> But this is only for the page table 4K lmem objects allocated/freed by vma-stash. We might encounter the same situation with user space allocated objects.
+
+See gem_exec_create, it's mission is to cause memory starvation by
+creating as many new objects as it can and releasing them after a nop
+batch. That's why we have the freelist flush from create_ioctl.
+
+Now I need to add a pass that tries to create as many vma from a few
+objects as is possible.
+
+(And similarly why we try to free requests as they are created.)
+
+One problem is that they will catch the client after the hog, not
+necessarily the hog themselves.
+
+I'm optimistic we can make freeing the object atomic, even if that means
+pushing the pages onto some reclaim list. (Which is currently a really
+nasty drawback of the free worker, a trick lost with the removal of
+struct_mutex.)
+-Chris
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
