@@ -1,28 +1,28 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C4B1329032D
-	for <lists+intel-gfx@lfdr.de>; Fri, 16 Oct 2020 12:45:16 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5AEB9290344
+	for <lists+intel-gfx@lfdr.de>; Fri, 16 Oct 2020 12:45:32 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7CD0D6EB19;
-	Fri, 16 Oct 2020 10:44:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0730E6EB8E;
+	Fri, 16 Oct 2020 10:45:01 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mblankhorst.nl (mblankhorst.nl
  [IPv6:2a02:2308::216:3eff:fe92:dfa3])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CFE2F6EB13
- for <intel-gfx@lists.freedesktop.org>; Fri, 16 Oct 2020 10:44:50 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 01D196EABC
+ for <intel-gfx@lists.freedesktop.org>; Fri, 16 Oct 2020 10:44:51 +0000 (UTC)
 From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Fri, 16 Oct 2020 12:44:01 +0200
-Message-Id: <20201016104444.1492028-19-maarten.lankhorst@linux.intel.com>
+Date: Fri, 16 Oct 2020 12:44:02 +0200
+Message-Id: <20201016104444.1492028-20-maarten.lankhorst@linux.intel.com>
 X-Mailer: git-send-email 2.28.0
 In-Reply-To: <20201016104444.1492028-1-maarten.lankhorst@linux.intel.com>
 References: <20201016104444.1492028-1-maarten.lankhorst@linux.intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v4 18/61] drm/i915: Make ring submission
- compatible with obj->mm.lock removal, v2.
+Subject: [Intel-gfx] [PATCH v4 19/61] drm/i915: Handle ww locking in
+ init_status_page
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -35,299 +35,98 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Dan Carpenter <dan.carpenter@oracle.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-We map the initial context during first pin.
-
-This allows us to remove pin_map from state allocation, which saves
-us a few retry loops. We won't need this until first pin anyway.
-
-intel_ring_submission_setup() is also reworked slightly to do all
-pinning in a single ww loop.
-
-Changes since v1:
-- Handle -EDEADLK backoff in intel_ring_submission_setup() better.
-- Handle smatch errors reported by Dan and testbot.
+Try to pin to ggtt first, and use a full ww loop to handle
+eviction correctly.
 
 Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Reported-by: kernel test robot <lkp@intel.com>
-Reported-by: Dan Carpenter <dan.carpenter@oracle.com>
 ---
- .../gpu/drm/i915/gt/intel_ring_submission.c   | 184 +++++++++++-------
- 1 file changed, 118 insertions(+), 66 deletions(-)
+ drivers/gpu/drm/i915/gt/intel_engine_cs.c | 37 +++++++++++++++--------
+ 1 file changed, 24 insertions(+), 13 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_ring_submission.c b/drivers/gpu/drm/i915/gt/intel_ring_submission.c
-index a41b43f445b8..6b280904db43 100644
---- a/drivers/gpu/drm/i915/gt/intel_ring_submission.c
-+++ b/drivers/gpu/drm/i915/gt/intel_ring_submission.c
-@@ -478,6 +478,26 @@ static void ring_context_destroy(struct kref *ref)
- 	intel_context_free(ce);
+diff --git a/drivers/gpu/drm/i915/gt/intel_engine_cs.c b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+index 1985772152bf..66d87ce764e0 100644
+--- a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
++++ b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+@@ -615,6 +615,7 @@ static void cleanup_status_page(struct intel_engine_cs *engine)
  }
  
-+static int ring_context_init_default_state(struct intel_context *ce,
-+					   struct i915_gem_ww_ctx *ww)
-+{
-+	struct drm_i915_gem_object *obj = ce->state->obj;
-+	void *vaddr;
-+
-+	vaddr = i915_gem_object_pin_map(obj, I915_MAP_WB);
-+	if (IS_ERR(vaddr))
-+		return PTR_ERR(vaddr);
-+
-+	shmem_read(ce->engine->default_state, 0,
-+		   vaddr, ce->engine->context_size);
-+
-+	i915_gem_object_flush_map(obj);
-+	__i915_gem_object_release_map(obj);
-+
-+	__set_bit(CONTEXT_VALID_BIT, &ce->flags);
-+	return 0;
-+}
-+
- static int ring_context_pre_pin(struct intel_context *ce,
- 				struct i915_gem_ww_ctx *ww,
- 				void **unused)
-@@ -485,6 +505,13 @@ static int ring_context_pre_pin(struct intel_context *ce,
- 	struct i915_address_space *vm;
- 	int err = 0;
+ static int pin_ggtt_status_page(struct intel_engine_cs *engine,
++				struct i915_gem_ww_ctx *ww,
+ 				struct i915_vma *vma)
+ {
+ 	unsigned int flags;
+@@ -635,12 +636,13 @@ static int pin_ggtt_status_page(struct intel_engine_cs *engine,
+ 	else
+ 		flags = PIN_HIGH;
  
-+	if (ce->engine->default_state &&
-+	    !test_bit(CONTEXT_VALID_BIT, &ce->flags)) {
-+		err = ring_context_init_default_state(ce, ww);
-+		if (err)
-+			return err;
-+	}
-+
- 	vm = vm_alias(ce->vm);
- 	if (vm)
- 		err = gen6_ppgtt_pin(i915_vm_to_ppgtt((vm)), ww);
-@@ -540,22 +567,6 @@ alloc_context_vma(struct intel_engine_cs *engine)
- 	if (IS_IVYBRIDGE(i915))
- 		i915_gem_object_set_cache_coherency(obj, I915_CACHE_L3_LLC);
+-	return i915_ggtt_pin(vma, NULL, 0, flags);
++	return i915_ggtt_pin(vma, ww, 0, flags);
+ }
  
--	if (engine->default_state) {
--		void *vaddr;
--
--		vaddr = i915_gem_object_pin_map(obj, I915_MAP_WB);
--		if (IS_ERR(vaddr)) {
--			err = PTR_ERR(vaddr);
--			goto err_obj;
--		}
--
--		shmem_read(engine->default_state, 0,
--			   vaddr, engine->context_size);
--
--		i915_gem_object_flush_map(obj);
--		__i915_gem_object_release_map(obj);
--	}
--
+ static int init_status_page(struct intel_engine_cs *engine)
+ {
+ 	struct drm_i915_gem_object *obj;
++	struct i915_gem_ww_ctx ww;
+ 	struct i915_vma *vma;
+ 	void *vaddr;
+ 	int ret;
+@@ -664,30 +666,39 @@ static int init_status_page(struct intel_engine_cs *engine)
  	vma = i915_vma_instance(obj, &engine->gt->ggtt->vm, NULL);
  	if (IS_ERR(vma)) {
- 		err = PTR_ERR(vma);
-@@ -587,8 +598,6 @@ static int ring_context_alloc(struct intel_context *ce)
- 			return PTR_ERR(vma);
- 
- 		ce->state = vma;
--		if (engine->default_state)
--			__set_bit(CONTEXT_VALID_BIT, &ce->flags);
+ 		ret = PTR_ERR(vma);
+-		goto err;
++		goto err_put;
  	}
  
- 	return 0;
-@@ -1184,37 +1193,15 @@ static int gen7_ctx_switch_bb_setup(struct intel_engine_cs * const engine,
- 	return gen7_setup_clear_gpr_bb(engine, vma);
- }
- 
--static int gen7_ctx_switch_bb_init(struct intel_engine_cs *engine)
-+static int gen7_ctx_switch_bb_init(struct intel_engine_cs *engine,
-+				   struct i915_gem_ww_ctx *ww,
-+				   struct i915_vma *vma)
- {
--	struct drm_i915_gem_object *obj;
--	struct i915_vma *vma;
--	int size;
- 	int err;
- 
--	size = gen7_ctx_switch_bb_setup(engine, NULL /* probe size */);
--	if (size <= 0)
--		return size;
--
--	size = ALIGN(size, PAGE_SIZE);
--	obj = i915_gem_object_create_internal(engine->i915, size);
--	if (IS_ERR(obj))
--		return PTR_ERR(obj);
--
--	vma = i915_vma_instance(obj, engine->gt->vm, NULL);
--	if (IS_ERR(vma)) {
--		err = PTR_ERR(vma);
--		goto err_obj;
--	}
--
--	vma->private = intel_context_create(engine); /* dummy residuals */
--	if (IS_ERR(vma->private)) {
--		err = PTR_ERR(vma->private);
--		goto err_obj;
--	}
--
--	err = i915_vma_pin(vma, 0, 0, PIN_USER | PIN_HIGH);
-+	err = i915_vma_pin_ww(vma, ww, 0, 0, PIN_USER | PIN_HIGH);
- 	if (err)
--		goto err_private;
-+		return err;
- 
- 	err = i915_vma_sync(vma);
- 	if (err)
-@@ -1229,17 +1216,53 @@ static int gen7_ctx_switch_bb_init(struct intel_engine_cs *engine)
- 
- err_unpin:
- 	i915_vma_unpin(vma);
--err_private:
--	intel_context_put(vma->private);
--err_obj:
--	i915_gem_object_put(obj);
- 	return err;
- }
- 
-+static struct i915_vma *gen7_ctx_vma(struct intel_engine_cs *engine)
-+{
-+	struct drm_i915_gem_object *obj;
-+	struct i915_vma *vma;
-+	int size, err;
-+
-+	if (!IS_HASWELL(engine->i915) || engine->class != RENDER_CLASS)
-+		return 0;
-+
-+	err = gen7_ctx_switch_bb_setup(engine, NULL /* probe size */);
-+	if (err < 0)
-+		return ERR_PTR(err);
-+	if (!err)
-+		return NULL;
-+
-+	size = ALIGN(err, PAGE_SIZE);
-+
-+	obj = i915_gem_object_create_internal(engine->i915, size);
-+	if (IS_ERR(obj))
-+		return ERR_CAST(obj);
-+
-+	vma = i915_vma_instance(obj, engine->gt->vm, NULL);
-+	if (IS_ERR(vma)) {
-+		i915_gem_object_put(obj);
-+		return ERR_CAST(vma);
-+	}
-+
-+	vma->private = intel_context_create(engine); /* dummy residuals */
-+	if (IS_ERR(vma->private)) {
-+		err = PTR_ERR(vma->private);
-+		vma->private = NULL;
-+		i915_gem_object_put(obj);
-+		return ERR_PTR(err);
-+	}
-+
-+	return vma;
-+}
-+
- int intel_ring_submission_setup(struct intel_engine_cs *engine)
- {
-+	struct i915_gem_ww_ctx ww;
- 	struct intel_timeline *timeline;
- 	struct intel_ring *ring;
-+	struct i915_vma *gen7_wa_vma;
- 	int err;
- 
- 	setup_common(engine);
-@@ -1270,43 +1293,72 @@ int intel_ring_submission_setup(struct intel_engine_cs *engine)
- 	}
- 	GEM_BUG_ON(timeline->has_initial_breadcrumb);
- 
--	err = intel_timeline_pin(timeline, NULL);
--	if (err)
--		goto err_timeline;
--
- 	ring = intel_engine_create_ring(engine, SZ_16K);
- 	if (IS_ERR(ring)) {
- 		err = PTR_ERR(ring);
--		goto err_timeline_unpin;
-+		goto err_timeline;
- 	}
- 
--	err = intel_ring_pin(ring, NULL);
--	if (err)
--		goto err_ring;
--
- 	GEM_BUG_ON(engine->legacy.ring);
- 	engine->legacy.ring = ring;
- 	engine->legacy.timeline = timeline;
- 
--	GEM_BUG_ON(timeline->hwsp_ggtt != engine->status_page.vma);
-+	gen7_wa_vma = gen7_ctx_vma(engine);
-+	if (IS_ERR(gen7_wa_vma)) {
-+		err = PTR_ERR(gen7_wa_vma);
-+		goto err_ring;
-+	}
- 
--	if (IS_HASWELL(engine->i915) && engine->class == RENDER_CLASS) {
--		err = gen7_ctx_switch_bb_init(engine);
-+	i915_gem_ww_ctx_init(&ww, false);
-+
++	i915_gem_ww_ctx_init(&ww, true);
 +retry:
-+	err = i915_gem_object_lock(timeline->hwsp_ggtt->obj, &ww);
-+	if (!err && gen7_wa_vma)
-+		err = i915_gem_object_lock(gen7_wa_vma->obj, &ww);
-+	if (!err && engine->legacy.ring->vma->obj)
-+		err = i915_gem_object_lock(engine->legacy.ring->vma->obj, &ww);
-+	if (!err)
-+		err = intel_timeline_pin(timeline, &ww);
-+	if (!err) {
-+		err = intel_ring_pin(ring, &ww);
- 		if (err)
--			goto err_ring_unpin;
-+			intel_timeline_unpin(timeline);
++	ret = i915_gem_object_lock(obj, &ww);
++	if (!ret && !HWS_NEEDS_PHYSICAL(engine->i915))
++		ret = pin_ggtt_status_page(engine, &ww, vma);
++	if (ret)
++		goto err;
++
+ 	vaddr = i915_gem_object_pin_map(obj, I915_MAP_WB);
+ 	if (IS_ERR(vaddr)) {
+ 		ret = PTR_ERR(vaddr);
+-		goto err;
++		goto err_unpin;
  	}
-+	if (err)
-+		goto out;
-+
-+	GEM_BUG_ON(timeline->hwsp_ggtt != engine->status_page.vma);
-+
-+	if (gen7_wa_vma) {
-+		err = gen7_ctx_switch_bb_init(engine, &ww, gen7_wa_vma);
-+		if (err) {
-+			intel_ring_unpin(ring);
-+			intel_timeline_unpin(timeline);
-+		}
-+	}
-+
-+out:
-+	if (err == -EDEADLK) {
-+		err = i915_gem_ww_ctx_backoff(&ww);
-+		if (!err)
+ 
+ 	engine->status_page.addr = memset(vaddr, 0, PAGE_SIZE);
+ 	engine->status_page.vma = vma;
+ 
+-	if (!HWS_NEEDS_PHYSICAL(engine->i915)) {
+-		ret = pin_ggtt_status_page(engine, vma);
+-		if (ret)
+-			goto err_unpin;
+-	}
+-
+-	return 0;
+-
+ err_unpin:
+-	i915_gem_object_unpin_map(obj);
++	if (ret)
++		i915_vma_unpin(vma);
+ err:
+-	i915_gem_object_put(obj);
++	if (ret == -EDEADLK) {
++		ret = i915_gem_ww_ctx_backoff(&ww);
++		if (!ret)
 +			goto retry;
 +	}
 +	i915_gem_ww_ctx_fini(&ww);
-+	if (err)
-+		goto err_gen7_put;
++err_put:
++	if (ret)
++		i915_gem_object_put(obj);
+ 	return ret;
+ }
  
- 	/* Finally, take ownership and responsibility for cleanup! */
- 	engine->release = ring_release;
- 
- 	return 0;
- 
--err_ring_unpin:
--	intel_ring_unpin(ring);
-+err_gen7_put:
-+	if (gen7_wa_vma) {
-+		intel_context_put(gen7_wa_vma->private);
-+		i915_gem_object_put(gen7_wa_vma->obj);
-+	}
- err_ring:
- 	intel_ring_put(ring);
--err_timeline_unpin:
--	intel_timeline_unpin(timeline);
- err_timeline:
- 	intel_timeline_put(timeline);
- err:
 -- 
 2.28.0
 
