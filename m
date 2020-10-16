@@ -1,47 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8835C2903AC
-	for <lists+intel-gfx@lfdr.de>; Fri, 16 Oct 2020 13:01:19 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4807E2903EF
+	for <lists+intel-gfx@lfdr.de>; Fri, 16 Oct 2020 13:18:27 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C42E76EC34;
-	Fri, 16 Oct 2020 11:01:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4A5B96EDA0;
+	Fri, 16 Oct 2020 11:18:25 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B07776EC30;
- Fri, 16 Oct 2020 11:01:14 +0000 (UTC)
-IronPort-SDR: diU9Tu4hlpV91J+2xgPgTC9HEyz3k/pSVIFwQNWWDIKHy5sJdeLEuM20ly7RYEdbTJpkBGGzFr
- cjLTLh1SOYEA==
-X-IronPort-AV: E=McAfee;i="6000,8403,9775"; a="230779713"
-X-IronPort-AV: E=Sophos;i="5.77,382,1596524400"; d="scan'208";a="230779713"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Oct 2020 04:01:13 -0700
-IronPort-SDR: /Q+mvagjsZ8zx4IQMSorTjsfTJ3IvnFocgJAJnyNwJv7u4EZKztOx7qp0pVPiB+Wb1RdEo59rB
- sBzGbcU8OUag==
-X-IronPort-AV: E=Sophos;i="5.77,382,1596524400"; d="scan'208";a="522195618"
-Received: from ssherida-mobl.ger.corp.intel.com (HELO localhost)
- ([10.251.83.218])
- by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Oct 2020 04:01:09 -0700
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 848C76EDA0;
+ Fri, 16 Oct 2020 11:18:23 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 7BC51A7DFC;
+ Fri, 16 Oct 2020 11:18:23 +0000 (UTC)
 MIME-Version: 1.0
-In-Reply-To: <52a0dd42d3730d35b3ecd00d20a0601793e443e6.1602589096.git.mchehab+huawei@kernel.org>
-References: <cover.1602589096.git.mchehab+huawei@kernel.org>
- <52a0dd42d3730d35b3ecd00d20a0601793e443e6.1602589096.git.mchehab+huawei@kernel.org>
-To: Linux Doc Mailing List <linux-doc@vger.kernel.org>,
- Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
- Lionel Landwerlin <lionel.g.landwerlin@intel.com>
-From: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Message-ID: <160284606673.11659.11178759979047002902@jlahtine-mobl.ger.corp.intel.com>
-User-Agent: alot/0.8.1
-Date: Fri, 16 Oct 2020 14:01:07 +0300
-Subject: Re: [Intel-gfx] [PATCH v6 44/80] docs: gpu: i915.rst: Fix several C
- duplication warnings
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>
+Date: Fri, 16 Oct 2020 11:18:23 -0000
+Message-ID: <160284710347.8601.12228154043449632002@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20201016104444.1492028-1-maarten.lankhorst@linux.intel.com>
+In-Reply-To: <20201016104444.1492028-1-maarten.lankhorst@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciBk?=
+ =?utf-8?q?rm/i915=3A_Remove_obj-=3Emm=2Elock!_=28rev5=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,133 +38,53 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Thomas Zimmermann <tzimmermann@suse.de>, Jonathan Corbet <corbet@lwn.net>,
- Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- David Airlie <airlied@linux.ie>, Maxime Ripard <mripard@kernel.org>,
- intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-+ Lionel
-
-Can you please take a look at best resolving the below problem.
-
-Maybe we should eliminate the duplicate declarations? Updating such
-a list manually seems error prone to me.
-
-Regards, Joonas
-
-Quoting Mauro Carvalho Chehab (2020-10-13 14:53:59)
-> As reported by Sphinx:
-> 
->         ./Documentation/gpu/i915:646: ./drivers/gpu/drm/i915/i915_perf.c:1147: WARNING: Duplicate C declaration, also defined in 'gpu/i915'.
->         Declaration is 'i915_oa_wait_unlocked'.
->         ./Documentation/gpu/i915:646: ./drivers/gpu/drm/i915/i915_perf.c:1169: WARNING: Duplicate C declaration, also defined in 'gpu/i915'.
->         Declaration is 'i915_oa_poll_wait'.
->         ./Documentation/gpu/i915:646: ./drivers/gpu/drm/i915/i915_perf.c:1189: WARNING: Duplicate C declaration, also defined in 'gpu/i915'.
->         Declaration is 'i915_oa_read'.
->         ./Documentation/gpu/i915:646: ./drivers/gpu/drm/i915/i915_perf.c:2669: WARNING: Duplicate C declaration, also defined in 'gpu/i915'.
->         Declaration is 'i915_oa_stream_enable'.
->         ./Documentation/gpu/i915:646: ./drivers/gpu/drm/i915/i915_perf.c:2734: WARNING: Duplicate C declaration, also defined in 'gpu/i915'.
->         Declaration is 'i915_oa_stream_disable'.
->         ./Documentation/gpu/i915:646: ./drivers/gpu/drm/i915/i915_perf.c:2820: WARNING: Duplicate C declaration, also defined in 'gpu/i915'.
->         Declaration is 'i915_oa_stream_init'.
->         ./Documentation/gpu/i915:646: ./drivers/gpu/drm/i915/i915_perf.c:3010: WARNING: Duplicate C declaration, also defined in 'gpu/i915'.
->         Declaration is 'i915_perf_read'.
->         ./Documentation/gpu/i915:646: ./drivers/gpu/drm/i915/i915_perf.c:3098: WARNING: Duplicate C declaration, also defined in 'gpu/i915'.
->         Declaration is 'i915_perf_poll_locked'.
->         ./Documentation/gpu/i915:646: ./drivers/gpu/drm/i915/i915_perf.c:3129: WARNING: Duplicate C declaration, also defined in 'gpu/i915'.
->         Declaration is 'i915_perf_poll'.
->         ./Documentation/gpu/i915:646: ./drivers/gpu/drm/i915/i915_perf.c:3152: WARNING: Duplicate C declaration, also defined in 'gpu/i915'.
->         Declaration is 'i915_perf_enable_locked'.
->         ./Documentation/gpu/i915:646: ./drivers/gpu/drm/i915/i915_perf.c:3181: WARNING: Duplicate C declaration, also defined in 'gpu/i915'.
->         Declaration is 'i915_perf_disable_locked'.
->         ./Documentation/gpu/i915:646: ./drivers/gpu/drm/i915/i915_perf.c:3273: WARNING: Duplicate C declaration, also defined in 'gpu/i915'.
->         Declaration is 'i915_perf_ioctl'.
->         ./Documentation/gpu/i915:646: ./drivers/gpu/drm/i915/i915_perf.c:3296: WARNING: Duplicate C declaration, also defined in 'gpu/i915'.
->         Declaration is 'i915_perf_destroy_locked'.
->         ./Documentation/gpu/i915:646: ./drivers/gpu/drm/i915/i915_perf.c:3321: WARNING: Duplicate C declaration, also defined in 'gpu/i915'.
->         Declaration is 'i915_perf_release'.
->         ./Documentation/gpu/i915:646: ./drivers/gpu/drm/i915/i915_perf.c:3379: WARNING: Duplicate C declaration, also defined in 'gpu/i915'.
->         Declaration is 'i915_perf_open_ioctl_locked'.
->         ./Documentation/gpu/i915:646: ./drivers/gpu/drm/i915/i915_perf.c:3534: WARNING: Duplicate C declaration, also defined in 'gpu/i915'.
->         Declaration is 'read_properties_unlocked'.
->         ./Documentation/gpu/i915:646: ./drivers/gpu/drm/i915/i915_perf.c:3717: WARNING: Duplicate C declaration, also defined in 'gpu/i915'.
->         Declaration is 'i915_perf_open_ioctl'.
->         ./Documentation/gpu/i915:646: ./drivers/gpu/drm/i915/i915_perf.c:3760: WARNING: Duplicate C declaration, also defined in 'gpu/i915'.
->         Declaration is 'i915_perf_register'.
->         ./Documentation/gpu/i915:646: ./drivers/gpu/drm/i915/i915_perf.c:3789: WARNING: Duplicate C declaration, also defined in 'gpu/i915'.
->         Declaration is 'i915_perf_unregister'.
->         ./Documentation/gpu/i915:646: ./drivers/gpu/drm/i915/i915_perf.c:4009: WARNING: Duplicate C declaration, also defined in 'gpu/i915'.
->         Declaration is 'i915_perf_add_config_ioctl'.
->         ./Documentation/gpu/i915:646: ./drivers/gpu/drm/i915/i915_perf.c:4162: WARNING: Duplicate C declaration, also defined in 'gpu/i915'.
->         Declaration is 'i915_perf_remove_config_ioctl'.
->         ./Documentation/gpu/i915:646: ./drivers/gpu/drm/i915/i915_perf.c:4260: WARNING: Duplicate C declaration, also defined in 'gpu/i915'.
->         Declaration is 'i915_perf_init'.
->         ./Documentation/gpu/i915:646: ./drivers/gpu/drm/i915/i915_perf.c:4423: WARNING: Duplicate C declaration, also defined in 'gpu/i915'.
->         Declaration is 'i915_perf_fini'.
-> 
-> With Sphinx 3, C declarations can't be duplicated anymore,
-> so let's exclude those from the other internals found on
-> i915_perf.c file.
-> 
-> Signed-off-by: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-> ---
->  Documentation/gpu/i915.rst | 29 +++++++++++++++++++++++++----
->  1 file changed, 25 insertions(+), 4 deletions(-)
-> 
-> diff --git a/Documentation/gpu/i915.rst b/Documentation/gpu/i915.rst
-> index 33cc6ddf8f64..cff1f154b473 100644
-> --- a/Documentation/gpu/i915.rst
-> +++ b/Documentation/gpu/i915.rst
-> @@ -636,15 +636,36 @@ i915 Perf Observation Architecture Stream
->  .. kernel-doc:: drivers/gpu/drm/i915/i915_perf.c
->     :functions: i915_oa_poll_wait
->  
-> -All i915 Perf Internals
-> ------------------------
-> +Other i915 Perf Internals
-> +-------------------------
->  
-> -This section simply includes all currently documented i915 perf internals, in
-> -no particular order, but may include some more minor utilities or platform
-> +This section simply includes all other currently documented i915 perf internals,
-> +in no particular order, but may include some more minor utilities or platform
->  specific details than found in the more high-level sections.
->  
->  .. kernel-doc:: drivers/gpu/drm/i915/i915_perf.c
->     :internal:
-> +   :no-identifiers:
-> +       i915_perf_init
-> +       i915_perf_fini
-> +       i915_perf_register
-> +       i915_perf_unregister
-> +       i915_perf_open_ioctl
-> +       i915_perf_release
-> +       i915_perf_add_config_ioctl
-> +       i915_perf_remove_config_ioctl
-> +       read_properties_unlocked
-> +       i915_perf_open_ioctl_locked
-> +       i915_perf_destroy_locked
-> +       i915_perf_read i915_perf_ioctl
-> +       i915_perf_enable_locked
-> +       i915_perf_disable_locked
-> +       i915_perf_poll i915_perf_poll_locked
-> +       i915_oa_stream_init i915_oa_read
-> +       i915_oa_stream_enable
-> +       i915_oa_stream_disable
-> +       i915_oa_wait_unlocked
-> +       i915_oa_poll_wait
->  
->  Style
->  =====
-> -- 
-> 2.26.2
-> 
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+PT0gU2VyaWVzIERldGFpbHMgPT0KClNlcmllczogZHJtL2k5MTU6IFJlbW92ZSBvYmotPm1tLmxv
+Y2shIChyZXY1KQpVUkwgICA6IGh0dHBzOi8vcGF0Y2h3b3JrLmZyZWVkZXNrdG9wLm9yZy9zZXJp
+ZXMvODIzMzcvClN0YXRlIDogZmFpbHVyZQoKPT0gU3VtbWFyeSA9PQoKQ0FMTCAgICBzY3JpcHRz
+L2NoZWNrc3lzY2FsbHMuc2gKICBDQUxMICAgIHNjcmlwdHMvYXRvbWljL2NoZWNrLWF0b21pY3Mu
+c2gKICBERVNDRU5EICBvYmp0b29sCiAgQ0hLICAgICBpbmNsdWRlL2dlbmVyYXRlZC9jb21waWxl
+LmgKICBDQyBbTV0gIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L2ludGVsX3RpbWVsaW5lLm8KZHJp
+dmVycy9ncHUvZHJtL2k5MTUvZ3QvaW50ZWxfdGltZWxpbmUuYzogSW4gZnVuY3Rpb24g4oCYaW50
+ZWxfdGltZWxpbmVfcGluX21hcOKAmToKZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvaW50ZWxfdGlt
+ZWxpbmUuYzo2NzoxODogZXJyb3I6IHBhc3NpbmcgYXJndW1lbnQgMSBvZiDigJhjbGZsdXNo4oCZ
+IGRpc2NhcmRzIOKAmGNvbnN04oCZIHF1YWxpZmllciBmcm9tIHBvaW50ZXIgdGFyZ2V0IHR5cGUg
+Wy1XZXJyb3I9ZGlzY2FyZGVkLXF1YWxpZmllcnNdCiAgY2xmbHVzaCh0aW1lbGluZS0+aHdzcF9z
+ZXFubyk7CiAgICAgICAgICB+fn5+fn5+fl5+fn5+fn5+fn5+fgpJbiBmaWxlIGluY2x1ZGVkIGZy
+b20gLi9hcmNoL3g4Ni9pbmNsdWRlL2FzbS9wcm9jZXNzb3IuaDoyNSwKICAgICAgICAgICAgICAg
+ICBmcm9tIC4vYXJjaC94ODYvaW5jbHVkZS9hc20vY3B1ZmVhdHVyZS5oOjUsCiAgICAgICAgICAg
+ICAgICAgZnJvbSAuL2FyY2gveDg2L2luY2x1ZGUvYXNtL3RocmVhZF9pbmZvLmg6NTMsCiAgICAg
+ICAgICAgICAgICAgZnJvbSAuL2luY2x1ZGUvbGludXgvdGhyZWFkX2luZm8uaDozOCwKICAgICAg
+ICAgICAgICAgICBmcm9tIC4vYXJjaC94ODYvaW5jbHVkZS9hc20vcHJlZW1wdC5oOjcsCiAgICAg
+ICAgICAgICAgICAgZnJvbSAuL2luY2x1ZGUvbGludXgvcHJlZW1wdC5oOjc4LAogICAgICAgICAg
+ICAgICAgIGZyb20gLi9pbmNsdWRlL2xpbnV4L3NwaW5sb2NrLmg6NTEsCiAgICAgICAgICAgICAg
+ICAgZnJvbSAuL2luY2x1ZGUvbGludXgvbW16b25lLmg6OCwKICAgICAgICAgICAgICAgICBmcm9t
+IC4vaW5jbHVkZS9saW51eC9nZnAuaDo2LAogICAgICAgICAgICAgICAgIGZyb20gLi9pbmNsdWRl
+L2xpbnV4L3NsYWIuaDoxNSwKICAgICAgICAgICAgICAgICBmcm9tIC4vaW5jbHVkZS9saW51eC9p
+by1tYXBwaW5nLmg6MTAsCiAgICAgICAgICAgICAgICAgZnJvbSAuL2RyaXZlcnMvZ3B1L2RybS9p
+OTE1L2k5MTVfZHJ2Lmg6MzYsCiAgICAgICAgICAgICAgICAgZnJvbSBkcml2ZXJzL2dwdS9kcm0v
+aTkxNS9ndC9pbnRlbF90aW1lbGluZS5jOjc6Ci4vYXJjaC94ODYvaW5jbHVkZS9hc20vc3BlY2lh
+bF9pbnNucy5oOjIwODo0Mzogbm90ZTogZXhwZWN0ZWQg4oCYdm9sYXRpbGUgdm9pZCAq4oCZIGJ1
+dCBhcmd1bWVudCBpcyBvZiB0eXBlIOKAmGNvbnN0IHUzMiAq4oCZIHtha2Eg4oCYY29uc3QgdW5z
+aWduZWQgaW50ICrigJl9CiBzdGF0aWMgaW5saW5lIHZvaWQgY2xmbHVzaCh2b2xhdGlsZSB2b2lk
+ICpfX3ApCiAgICAgICAgICAgICAgICAgICAgICAgICAgICB+fn5+fn5+fn5+fn5+fn5efn4KY2Mx
+OiBhbGwgd2FybmluZ3MgYmVpbmcgdHJlYXRlZCBhcyBlcnJvcnMKc2NyaXB0cy9NYWtlZmlsZS5i
+dWlsZDoyODM6IHJlY2lwZSBmb3IgdGFyZ2V0ICdkcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC9pbnRl
+bF90aW1lbGluZS5vJyBmYWlsZWQKbWFrZVs0XTogKioqIFtkcml2ZXJzL2dwdS9kcm0vaTkxNS9n
+dC9pbnRlbF90aW1lbGluZS5vXSBFcnJvciAxCnNjcmlwdHMvTWFrZWZpbGUuYnVpbGQ6NTAwOiBy
+ZWNpcGUgZm9yIHRhcmdldCAnZHJpdmVycy9ncHUvZHJtL2k5MTUnIGZhaWxlZAptYWtlWzNdOiAq
+KiogW2RyaXZlcnMvZ3B1L2RybS9pOTE1XSBFcnJvciAyCnNjcmlwdHMvTWFrZWZpbGUuYnVpbGQ6
+NTAwOiByZWNpcGUgZm9yIHRhcmdldCAnZHJpdmVycy9ncHUvZHJtJyBmYWlsZWQKbWFrZVsyXTog
+KioqIFtkcml2ZXJzL2dwdS9kcm1dIEVycm9yIDIKc2NyaXB0cy9NYWtlZmlsZS5idWlsZDo1MDA6
+IHJlY2lwZSBmb3IgdGFyZ2V0ICdkcml2ZXJzL2dwdScgZmFpbGVkCm1ha2VbMV06ICoqKiBbZHJp
+dmVycy9ncHVdIEVycm9yIDIKTWFrZWZpbGU6MTc4NDogcmVjaXBlIGZvciB0YXJnZXQgJ2RyaXZl
+cnMnIGZhaWxlZAptYWtlOiAqKiogW2RyaXZlcnNdIEVycm9yIDIKCgpfX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0Cklu
+dGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5v
+cmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
