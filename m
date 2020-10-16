@@ -1,45 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B6DBF28FFDA
-	for <lists+intel-gfx@lfdr.de>; Fri, 16 Oct 2020 10:17:13 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 68BBB290017
+	for <lists+intel-gfx@lfdr.de>; Fri, 16 Oct 2020 10:44:06 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 42F586EA9E;
-	Fri, 16 Oct 2020 08:17:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5208F6E115;
+	Fri, 16 Oct 2020 08:44:03 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C2C876EA9E;
- Fri, 16 Oct 2020 08:17:09 +0000 (UTC)
-IronPort-SDR: GXGXb3avMOJpmlKpG0uuV6f1k4kdxmJyFQq+LresBmFYg+QWhoHxPEf2QclPjigsMef2UnnCHX
- QY1tUXcopRxw==
-X-IronPort-AV: E=McAfee;i="6000,8403,9775"; a="166624652"
-X-IronPort-AV: E=Sophos;i="5.77,382,1596524400"; d="scan'208";a="166624652"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Oct 2020 01:17:09 -0700
-IronPort-SDR: ksFzsufU/YLmsJOeKmP8eA3ueP6zKnx3ow6nse4vGUbuamrZrFblGodHXq2eXDTAunLUOlbexd
- gdy1zE0Yi8Ew==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.77,382,1596524400"; d="scan'208";a="314820660"
-Received: from unknown (HELO [10.239.160.24]) ([10.239.160.24])
- by orsmga003.jf.intel.com with ESMTP; 16 Oct 2020 01:17:07 -0700
-To: intel-gvt-dev@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- zhenyuw@linux.intel.com
-References: <20201016081353.376670-1-colin.xu@intel.com>
-From: Colin Xu <Colin.Xu@intel.com>
-Message-ID: <5010efb2-a1ce-d746-5210-171ac9f0db2b@intel.com>
-Date: Fri, 16 Oct 2020 16:17:07 +0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.12.0
+Received: from fireflyinternet.com (unknown [77.68.26.236])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E456C6E115
+ for <intel-gfx@lists.freedesktop.org>; Fri, 16 Oct 2020 08:44:00 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from localhost (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
+ 22732115-1500050 for multiple; Fri, 16 Oct 2020 09:43:53 +0100
 MIME-Version: 1.0
-In-Reply-To: <20201016081353.376670-1-colin.xu@intel.com>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH v5 2/2] drm/i915/gvt: Add GVT suspend/resume
- routine to i915
+In-Reply-To: <DM6PR11MB2956DF219D9F3F46DAE1CDB3CD030@DM6PR11MB2956.namprd11.prod.outlook.com>
+References: <20201015195023.32346-1-chris@chris-wilson.co.uk>
+ <DM6PR11MB2956DF219D9F3F46DAE1CDB3CD030@DM6PR11MB2956.namprd11.prod.outlook.com>
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: "Shi, Yang A" <yang.a.shi@intel.com>, intel-gfx@lists.freedesktop.org
+Date: Fri, 16 Oct 2020 09:43:53 +0100
+Message-ID: <160283783335.3047.17395434970082935636@build.alporthouse.com>
+User-Agent: alot/0.9
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/gt: Delay execlist processing for
+ tgl
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,69 +40,28 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: Colin.Xu@intel.com
+Cc: stable@vger.kernel.org
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+Quoting Shi, Yang A (2020-10-16 02:08:24)
+> Hi Chris:
+>         
+>         How to determine the length of the magic delay in here?
 
-On 2020-10-16 16:13, Colin Xu wrote:
-> This patch add gvt suspend/resume wrapper into i915: i915_drm_suspend()
-> and i915_drm_resume(). GVT relies on i915 so suspend gvt ahead of other
-> i915 sub-routine and resume gvt at last.
->
-> V2:
-> - Direct call into gvt suspend/resume wrapper in intel_gvt.h/intel_gvt.c.
-> The wrapper and implementation will check and call gvt routine. (zhenyu)
->
-> V3:
-> Refresh.
->
-> V4:
-> Rebase.
->
-> V5:
-> Fail intel_gvt_suspend() if fail to save GGTT.
->
-> Signed-off-by: Hang Yuan <hang.yuan@linux.intel.com>
-> Signed-off-by: Colin Xu <colin.xu@intel.com>
-> ---
->   drivers/gpu/drm/i915/i915_drv.c | 5 +++++
->   1 file changed, 5 insertions(+)
->
-> diff --git a/drivers/gpu/drm/i915/i915_drv.c b/drivers/gpu/drm/i915/i915_drv.c
-> index 8bb7e2dcfaaa..b3203292b0ee 100644
-> --- a/drivers/gpu/drm/i915/i915_drv.c
-> +++ b/drivers/gpu/drm/i915/i915_drv.c
-> @@ -1104,6 +1104,9 @@ static int i915_drm_suspend(struct drm_device *dev)
->   
->   	drm_kms_helper_poll_disable(dev);
->   
-> +	if (intel_gvt_suspend(dev_priv))
-> +		drm_err(&dev_priv->drm, "failed to suspend GVT\n");
-I'm not quite sure if it's OK to fail i915_drm_suspend() here if 
-intel_gvt_suspend() fails. I saw intel_display_suspend() may also return 
-failure but i915_drm_suspend() doesn't handle such case so I just follow 
-the style for intel_gvt_suspend().
-> +
->   	pci_save_state(pdev);
->   
->   	intel_display_suspend(dev);
-> @@ -1281,6 +1284,8 @@ static int i915_drm_resume(struct drm_device *dev)
->   
->   	intel_power_domains_enable(dev_priv);
->   
-> +	intel_gvt_resume(dev_priv);
-> +
->   	enable_rpm_wakeref_asserts(&dev_priv->runtime_pm);
->   
->   	return 0;
+That is the question. I started with a large udelay, played with moving
+it around and shortening (5us) to try and isolate what is going on. An
+arbitrary delay is awful as it is guaranteed to fail since it imposes no
+barrier/serialisation, mmio often have the desired side-effect, if you
+can tickle the right one.
 
--- 
-Best Regards,
-Colin Xu
-
+Still this is nothing more than empirical evidence (an easily reproduced
+hang that goes away), and not a hard explanation. An uncached read upon
+acking the preemption event, is a pretty nasty nuisance (it's 80% of our
+CS bottom half) but as compromises go, it could be far worse.
+-Chris
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
