@@ -1,27 +1,26 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 31824290342
-	for <lists+intel-gfx@lfdr.de>; Fri, 16 Oct 2020 12:45:31 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0D12229033E
+	for <lists+intel-gfx@lfdr.de>; Fri, 16 Oct 2020 12:45:30 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 150796EB9D;
-	Fri, 16 Oct 2020 10:45:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6BC796EB28;
+	Fri, 16 Oct 2020 10:45:00 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mblankhorst.nl (mblankhorst.nl [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 842636EABE
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A30316EABC
  for <intel-gfx@lists.freedesktop.org>; Fri, 16 Oct 2020 10:44:55 +0000 (UTC)
 From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Fri, 16 Oct 2020 12:44:42 +0200
-Message-Id: <20201016104444.1492028-60-maarten.lankhorst@linux.intel.com>
+Date: Fri, 16 Oct 2020 12:44:43 +0200
+Message-Id: <20201016104444.1492028-61-maarten.lankhorst@linux.intel.com>
 X-Mailer: git-send-email 2.28.0
 In-Reply-To: <20201016104444.1492028-1-maarten.lankhorst@linux.intel.com>
 References: <20201016104444.1492028-1-maarten.lankhorst@linux.intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v4 59/61] drm/i915/selftests: Prepare gtt tests
- for obj->mm.lock removal
+Subject: [Intel-gfx] [PATCH v4 60/61] drm/i915: Finally remove obj->mm.lock.
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,237 +38,481 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-We need to lock the global gtt dma_resv, use i915_vm_lock_objects
-to handle this correctly. Add ww handling for this where required.
-
-Add the object lock around unpin/put pages, and use the unlocked
-versions of pin_pages and pin_map where required.
+With all callers and selftests fixed to use ww locking, we can now
+finally remove this lock.
 
 Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 ---
- drivers/gpu/drm/i915/selftests/i915_gem_gtt.c | 92 ++++++++++++++-----
- 1 file changed, 67 insertions(+), 25 deletions(-)
+ drivers/gpu/drm/i915/gem/i915_gem_object.c    |  2 -
+ drivers/gpu/drm/i915/gem/i915_gem_object.h    |  5 +--
+ .../gpu/drm/i915/gem/i915_gem_object_types.h  |  1 -
+ drivers/gpu/drm/i915/gem/i915_gem_pages.c     | 38 ++++---------------
+ drivers/gpu/drm/i915/gem/i915_gem_phys.c      | 34 ++++-------------
+ drivers/gpu/drm/i915/gem/i915_gem_shmem.c     |  2 +-
+ drivers/gpu/drm/i915/gem/i915_gem_shrinker.c  | 37 +++++++++++++-----
+ drivers/gpu/drm/i915/gem/i915_gem_shrinker.h  |  4 +-
+ drivers/gpu/drm/i915/gem/i915_gem_tiling.c    |  2 -
+ drivers/gpu/drm/i915/gem/i915_gem_userptr.c   |  3 +-
+ drivers/gpu/drm/i915/i915_debugfs.c           |  4 +-
+ drivers/gpu/drm/i915/i915_gem.c               |  8 +---
+ drivers/gpu/drm/i915/i915_gem_gtt.c           |  2 +-
+ 13 files changed, 53 insertions(+), 89 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/selftests/i915_gem_gtt.c b/drivers/gpu/drm/i915/selftests/i915_gem_gtt.c
-index 2cfe99c79034..d07dd6780005 100644
---- a/drivers/gpu/drm/i915/selftests/i915_gem_gtt.c
-+++ b/drivers/gpu/drm/i915/selftests/i915_gem_gtt.c
-@@ -129,7 +129,7 @@ fake_dma_object(struct drm_i915_private *i915, u64 size)
- 	obj->cache_level = I915_CACHE_NONE;
- 
- 	/* Preallocate the "backing storage" */
--	if (i915_gem_object_pin_pages(obj))
-+	if (i915_gem_object_pin_pages_unlocked(obj))
- 		goto err_obj;
- 
- 	i915_gem_object_unpin_pages(obj);
-@@ -145,6 +145,7 @@ static int igt_ppgtt_alloc(void *arg)
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object.c b/drivers/gpu/drm/i915/gem/i915_gem_object.c
+index 028a556ab1a5..08d806bbf48e 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_object.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_object.c
+@@ -62,8 +62,6 @@ void i915_gem_object_init(struct drm_i915_gem_object *obj,
+ 			  const struct drm_i915_gem_object_ops *ops,
+ 			  struct lock_class_key *key, unsigned flags)
  {
- 	struct drm_i915_private *dev_priv = arg;
- 	struct i915_ppgtt *ppgtt;
-+	struct i915_gem_ww_ctx ww;
- 	u64 size, last, limit;
- 	int err = 0;
+-	mutex_init(&obj->mm.lock);
+-
+ 	spin_lock_init(&obj->vma.lock);
+ 	INIT_LIST_HEAD(&obj->vma.list);
  
-@@ -170,6 +171,12 @@ static int igt_ppgtt_alloc(void *arg)
- 	limit = totalram_pages() << PAGE_SHIFT;
- 	limit = min(ppgtt->vm.total, limit);
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object.h b/drivers/gpu/drm/i915/gem/i915_gem_object.h
+index e7236224a29c..f6ccd05010df 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_object.h
++++ b/drivers/gpu/drm/i915/gem/i915_gem_object.h
+@@ -123,7 +123,7 @@ static inline void assert_object_held_shared(struct drm_i915_gem_object *obj)
+ 	 */
+ 	if (IS_ENABLED(CONFIG_LOCKDEP) &&
+ 	    kref_read(&obj->base.refcount) > 0)
+-		lockdep_assert_held(&obj->mm.lock);
++		assert_object_held(obj);
+ }
  
-+	i915_gem_ww_ctx_init(&ww, false);
-+retry:
-+	err = i915_vm_lock_objects(&ppgtt->vm, &ww);
-+	if (err)
-+		goto err_ppgtt_cleanup;
-+
- 	/* Check we can allocate the entire range */
- 	for (size = 4096; size <= limit; size <<= 2) {
- 		struct i915_vm_pt_stash stash = {};
-@@ -214,6 +221,13 @@ static int igt_ppgtt_alloc(void *arg)
+ static inline int __i915_gem_object_lock(struct drm_i915_gem_object *obj,
+@@ -328,7 +328,7 @@ int __i915_gem_object_get_pages(struct drm_i915_gem_object *obj);
+ static inline int __must_check
+ i915_gem_object_pin_pages(struct drm_i915_gem_object *obj)
+ {
+-	might_lock(&obj->mm.lock);
++	assert_object_held(obj);
+ 
+ 	if (atomic_inc_not_zero(&obj->mm.pages_pin_count))
+ 		return 0;
+@@ -374,7 +374,6 @@ i915_gem_object_unpin_pages(struct drm_i915_gem_object *obj)
+ }
+ 
+ int __i915_gem_object_put_pages(struct drm_i915_gem_object *obj);
+-int __i915_gem_object_put_pages_locked(struct drm_i915_gem_object *obj);
+ void i915_gem_object_truncate(struct drm_i915_gem_object *obj);
+ void i915_gem_object_writeback(struct drm_i915_gem_object *obj);
+ 
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object_types.h b/drivers/gpu/drm/i915/gem/i915_gem_object_types.h
+index 0aa391f5d73c..6ba8f5abef49 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_object_types.h
++++ b/drivers/gpu/drm/i915/gem/i915_gem_object_types.h
+@@ -209,7 +209,6 @@ struct drm_i915_gem_object {
+ 		 * Protects the pages and their use. Do not use directly, but
+ 		 * instead go through the pin/unpin interfaces.
+ 		 */
+-		struct mutex lock;
+ 		atomic_t pages_pin_count;
+ 		atomic_t shrink_pin;
+ 
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_pages.c b/drivers/gpu/drm/i915/gem/i915_gem_pages.c
+index 81b1b560ad18..55ed1b7b06ce 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_pages.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_pages.c
+@@ -67,7 +67,7 @@ void __i915_gem_object_set_pages(struct drm_i915_gem_object *obj,
+ 		struct list_head *list;
+ 		unsigned long flags;
+ 
+-		lockdep_assert_held(&obj->mm.lock);
++		assert_object_held(obj);
+ 		spin_lock_irqsave(&i915->mm.obj_lock, flags);
+ 
+ 		i915->mm.shrink_count++;
+@@ -114,9 +114,7 @@ int __i915_gem_object_get_pages(struct drm_i915_gem_object *obj)
+ {
+ 	int err;
+ 
+-	err = mutex_lock_interruptible(&obj->mm.lock);
+-	if (err)
+-		return err;
++	assert_object_held(obj);
+ 
+ 	assert_object_held_shared(obj);
+ 
+@@ -125,15 +123,13 @@ int __i915_gem_object_get_pages(struct drm_i915_gem_object *obj)
+ 
+ 		err = ____i915_gem_object_get_pages(obj);
+ 		if (err)
+-			goto unlock;
++			return err;
+ 
+ 		smp_mb__before_atomic();
+ 	}
+ 	atomic_inc(&obj->mm.pages_pin_count);
+ 
+-unlock:
+-	mutex_unlock(&obj->mm.lock);
+-	return err;
++	return 0;
+ }
+ 
+ int i915_gem_object_pin_pages_unlocked(struct drm_i915_gem_object *obj)
+@@ -222,7 +218,7 @@ __i915_gem_object_unset_pages(struct drm_i915_gem_object *obj)
+ 	return pages;
+ }
+ 
+-int __i915_gem_object_put_pages_locked(struct drm_i915_gem_object *obj)
++int __i915_gem_object_put_pages(struct drm_i915_gem_object *obj)
+ {
+ 	struct sg_table *pages;
+ 
+@@ -253,21 +249,6 @@ int __i915_gem_object_put_pages_locked(struct drm_i915_gem_object *obj)
+ 	return 0;
+ }
+ 
+-int __i915_gem_object_put_pages(struct drm_i915_gem_object *obj)
+-{
+-	int err;
+-
+-	if (i915_gem_object_has_pinned_pages(obj))
+-		return -EBUSY;
+-
+-	/* May be called by shrinker from within get_pages() (on another bo) */
+-	mutex_lock(&obj->mm.lock);
+-	err = __i915_gem_object_put_pages_locked(obj);
+-	mutex_unlock(&obj->mm.lock);
+-
+-	return err;
+-}
+-
+ static inline pte_t iomap_pte(resource_size_t base,
+ 			      dma_addr_t offset,
+ 			      pgprot_t prot)
+@@ -384,9 +365,7 @@ void *i915_gem_object_pin_map(struct drm_i915_gem_object *obj,
+ 	    !i915_gem_object_type_has(obj, I915_GEM_OBJECT_HAS_IOMEM))
+ 		return ERR_PTR(-ENXIO);
+ 
+-	err = mutex_lock_interruptible(&obj->mm.lock);
+-	if (err)
+-		return ERR_PTR(err);
++	assert_object_held(obj);
+ 
+ 	pinned = !(type & I915_MAP_OVERRIDE);
+ 	type &= ~I915_MAP_OVERRIDE;
+@@ -428,15 +407,12 @@ void *i915_gem_object_pin_map(struct drm_i915_gem_object *obj,
+ 		obj->mm.mapping = page_pack_bits(ptr, type);
  	}
  
- err_ppgtt_cleanup:
-+	if (err == -EDEADLK) {
-+		err = i915_gem_ww_ctx_backoff(&ww);
-+		if (!err)
-+			goto retry;
-+	}
-+	i915_gem_ww_ctx_fini(&ww);
-+
- 	i915_vm_put(&ppgtt->vm);
- 	return err;
+-out_unlock:
+-	mutex_unlock(&obj->mm.lock);
+ 	return ptr;
+ 
+ err_unpin:
+ 	atomic_dec(&obj->mm.pages_pin_count);
+ err_unlock:
+-	ptr = ERR_PTR(err);
+-	goto out_unlock;
++	return ERR_PTR(err);
  }
-@@ -275,7 +289,7 @@ static int lowlevel_hole(struct i915_address_space *vm,
  
- 		GEM_BUG_ON(obj->base.size != BIT_ULL(size));
+ void *i915_gem_object_pin_map_unlocked(struct drm_i915_gem_object *obj,
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_phys.c b/drivers/gpu/drm/i915/gem/i915_gem_phys.c
+index 15d8f8d52cbe..fee2e1ffba07 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_phys.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_phys.c
+@@ -184,40 +184,22 @@ int i915_gem_object_attach_phys(struct drm_i915_gem_object *obj, int align)
+ 	if (err)
+ 		return err;
  
--		if (i915_gem_object_pin_pages(obj)) {
-+		if (i915_gem_object_pin_pages_unlocked(obj)) {
- 			i915_gem_object_put(obj);
- 			kfree(order);
- 			break;
-@@ -296,20 +310,36 @@ static int lowlevel_hole(struct i915_address_space *vm,
+-	err = mutex_lock_interruptible(&obj->mm.lock);
+-	if (err)
+-		return err;
++	if (obj->mm.madv != I915_MADV_WILLNEED)
++		return -EFAULT;
  
- 			if (vm->allocate_va_range) {
- 				struct i915_vm_pt_stash stash = {};
-+				struct i915_gem_ww_ctx ww;
-+				int err;
-+
-+				i915_gem_ww_ctx_init(&ww, false);
-+retry:
-+				err = i915_vm_lock_objects(vm, &ww);
-+				if (err)
-+					goto alloc_vm_end;
+-	if (unlikely(!i915_gem_object_has_struct_page(obj)))
+-		goto out;
++	if (obj->mm.quirked)
++		return -EFAULT;
  
-+				err = -ENOMEM;
- 				if (i915_vm_alloc_pt_stash(vm, &stash,
- 							   BIT_ULL(size)))
--					break;
+-	if (obj->mm.madv != I915_MADV_WILLNEED) {
+-		err = -EFAULT;
+-		goto out;
+-	}
 -
--				if (i915_vm_pin_pt_stash(vm, &stash)) {
--					i915_vm_free_pt_stash(vm, &stash);
--					break;
--				}
-+					goto alloc_vm_end;
+-	if (obj->mm.quirked) {
+-		err = -EFAULT;
+-		goto out;
+-	}
+-
+-	if (obj->mm.mapping || i915_gem_object_has_pinned_pages(obj)) {
+-		err = -EBUSY;
+-		goto out;
+-	}
++	if (obj->mm.mapping || i915_gem_object_has_pinned_pages(obj))
++		return -EBUSY;
  
--				vm->allocate_va_range(vm, &stash,
--						      addr, BIT_ULL(size));
-+				err = i915_vm_pin_pt_stash(vm, &stash);
-+				if (!err)
-+					vm->allocate_va_range(vm, &stash,
-+							      addr, BIT_ULL(size));
+ 	if (unlikely(obj->mm.madv != I915_MADV_WILLNEED)) {
+ 		drm_dbg(obj->base.dev,
+ 			"Attempting to obtain a purgeable object\n");
+-		err = -EFAULT;
+-		goto out;
++		return -EFAULT;
+ 	}
  
- 				i915_vm_free_pt_stash(vm, &stash);
-+alloc_vm_end:
-+				if (err == -EDEADLK) {
-+					err = i915_gem_ww_ctx_backoff(&ww);
-+					if (!err)
-+						goto retry;
-+				}
-+				i915_gem_ww_ctx_fini(&ww);
-+
-+				if (err)
-+					break;
+-	err = i915_gem_object_shmem_to_phys(obj);
+-
+-out:
+-	mutex_unlock(&obj->mm.lock);
+-	return err;
++	return i915_gem_object_shmem_to_phys(obj);
+ }
+ 
+ #if IS_ENABLED(CONFIG_DRM_I915_SELFTEST)
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_shmem.c b/drivers/gpu/drm/i915/gem/i915_gem_shmem.c
+index e0778b3cc0c3..5ae09be61c0b 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_shmem.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_shmem.c
+@@ -99,7 +99,7 @@ static int shmem_get_pages(struct drm_i915_gem_object *obj)
+ 				goto err_sg;
  			}
  
- 			mock_vma->pages = obj->mm.pages;
-@@ -1165,7 +1195,7 @@ static int igt_ggtt_page(void *arg)
- 	if (IS_ERR(obj))
- 		return PTR_ERR(obj);
+-			i915_gem_shrink(i915, 2 * page_count, NULL, *s++);
++			i915_gem_shrink(NULL, i915, 2 * page_count, NULL, *s++);
  
--	err = i915_gem_object_pin_pages(obj);
-+	err = i915_gem_object_pin_pages_unlocked(obj);
- 	if (err)
- 		goto out_free;
+ 			/*
+ 			 * We've tried hard to allocate the memory by reaping
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_shrinker.c b/drivers/gpu/drm/i915/gem/i915_gem_shrinker.c
+index afc6e5b4dcf1..e42192834c88 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_shrinker.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_shrinker.c
+@@ -93,7 +93,8 @@ static void try_to_writeback(struct drm_i915_gem_object *obj,
+  * The number of pages of backing storage actually released.
+  */
+ unsigned long
+-i915_gem_shrink(struct drm_i915_private *i915,
++i915_gem_shrink(struct i915_gem_ww_ctx *ww,
++		struct drm_i915_private *i915,
+ 		unsigned long target,
+ 		unsigned long *nr_scanned,
+ 		unsigned int shrink)
+@@ -112,6 +113,7 @@ i915_gem_shrink(struct drm_i915_private *i915,
+ 	intel_wakeref_t wakeref = 0;
+ 	unsigned long count = 0;
+ 	unsigned long scanned = 0;
++	int err;
  
-@@ -1332,7 +1362,7 @@ static int igt_gtt_reserve(void *arg)
- 			goto out;
- 		}
+ 	trace_i915_gem_shrink(i915, target, shrink);
  
--		err = i915_gem_object_pin_pages(obj);
-+		err = i915_gem_object_pin_pages_unlocked(obj);
- 		if (err) {
- 			i915_gem_object_put(obj);
- 			goto out;
-@@ -1384,7 +1414,7 @@ static int igt_gtt_reserve(void *arg)
- 			goto out;
- 		}
+@@ -199,23 +201,38 @@ i915_gem_shrink(struct drm_i915_private *i915,
  
--		err = i915_gem_object_pin_pages(obj);
-+		err = i915_gem_object_pin_pages_unlocked(obj);
- 		if (err) {
- 			i915_gem_object_put(obj);
- 			goto out;
-@@ -1548,7 +1578,7 @@ static int igt_gtt_insert(void *arg)
- 			goto out;
- 		}
+ 			spin_unlock_irqrestore(&i915->mm.obj_lock, flags);
  
--		err = i915_gem_object_pin_pages(obj);
-+		err = i915_gem_object_pin_pages_unlocked(obj);
- 		if (err) {
- 			i915_gem_object_put(obj);
- 			goto out;
-@@ -1657,7 +1687,7 @@ static int igt_gtt_insert(void *arg)
- 			goto out;
- 		}
- 
--		err = i915_gem_object_pin_pages(obj);
-+		err = i915_gem_object_pin_pages_unlocked(obj);
- 		if (err) {
- 			i915_gem_object_put(obj);
- 			goto out;
-@@ -1828,7 +1858,7 @@ static int igt_cs_tlb(void *arg)
- 		goto out_vm;
- 	}
- 
--	batch = i915_gem_object_pin_map(bbe, I915_MAP_WC);
-+	batch = i915_gem_object_pin_map_unlocked(bbe, I915_MAP_WC);
- 	if (IS_ERR(batch)) {
- 		err = PTR_ERR(batch);
- 		goto out_put_bbe;
-@@ -1844,7 +1874,7 @@ static int igt_cs_tlb(void *arg)
- 	}
- 
- 	/* Track the execution of each request by writing into different slot */
--	batch = i915_gem_object_pin_map(act, I915_MAP_WC);
-+	batch = i915_gem_object_pin_map_unlocked(act, I915_MAP_WC);
- 	if (IS_ERR(batch)) {
- 		err = PTR_ERR(batch);
- 		goto out_put_act;
-@@ -1891,7 +1921,7 @@ static int igt_cs_tlb(void *arg)
- 		goto out_put_out;
- 	GEM_BUG_ON(vma->node.start != vm->total - PAGE_SIZE);
- 
--	result = i915_gem_object_pin_map(out, I915_MAP_WB);
-+	result = i915_gem_object_pin_map_unlocked(out, I915_MAP_WB);
- 	if (IS_ERR(result)) {
- 		err = PTR_ERR(result);
- 		goto out_put_out;
-@@ -1907,6 +1937,7 @@ static int igt_cs_tlb(void *arg)
- 		while (!__igt_timeout(end_time, NULL)) {
- 			struct i915_vm_pt_stash stash = {};
- 			struct i915_request *rq;
-+			struct i915_gem_ww_ctx ww;
- 			u64 offset;
- 
- 			offset = igt_random_offset(&prng,
-@@ -1925,19 +1956,30 @@ static int igt_cs_tlb(void *arg)
- 			if (err)
- 				goto end;
- 
-+			i915_gem_ww_ctx_init(&ww, false);
-+retry:
-+			err = i915_vm_lock_objects(vm, &ww);
-+			if (err)
-+				goto end_ww;
+-			if (unsafe_drop_pages(obj, shrink) &&
+-			    mutex_trylock(&obj->mm.lock)) {
++			err = 0;
++			if (unsafe_drop_pages(obj, shrink)) {
+ 				/* May arrive from get_pages on another bo */
+-				if (!__i915_gem_object_put_pages_locked(obj)) {
++				if (!ww) {
++					if (!i915_gem_object_trylock(obj))
++						goto skip;
++				} else {
++					err = i915_gem_object_lock(obj, ww);
++					if (err)
++						goto skip;
++				}
 +
- 			err = i915_vm_alloc_pt_stash(vm, &stash, chunk_size);
- 			if (err)
--				goto end;
-+				goto end_ww;
++				if (!__i915_gem_object_put_pages(obj)) {
+ 					try_to_writeback(obj, shrink);
+ 					count += obj->base.size >> PAGE_SHIFT;
+ 				}
+-				mutex_unlock(&obj->mm.lock);
++				if (!ww)
++					i915_gem_object_unlock(obj);
+ 			}
  
- 			err = i915_vm_pin_pt_stash(vm, &stash);
--			if (err) {
--				i915_vm_free_pt_stash(vm, &stash);
--				goto end;
--			}
--
--			vm->allocate_va_range(vm, &stash, offset, chunk_size);
-+			if (!err)
-+				vm->allocate_va_range(vm, &stash, offset, chunk_size);
+ 			scanned += obj->base.size >> PAGE_SHIFT;
++skip:
+ 			i915_gem_object_put(obj);
  
- 			i915_vm_free_pt_stash(vm, &stash);
-+end_ww:
-+			if (err == -EDEADLK) {
-+				err = i915_gem_ww_ctx_backoff(&ww);
-+				if (!err)
-+					goto retry;
-+			}
-+			i915_gem_ww_ctx_fini(&ww);
+ 			spin_lock_irqsave(&i915->mm.obj_lock, flags);
 +			if (err)
-+				goto end;
++				break;
+ 		}
+ 		list_splice_tail(&still_in_list, phase->list);
+ 		spin_unlock_irqrestore(&i915->mm.obj_lock, flags);
++		if (err)
++			return err;
+ 	}
  
- 			/* Prime the TLB with the dummy pages */
- 			for (i = 0; i < count; i++) {
+ 	if (shrink & I915_SHRINK_BOUND)
+@@ -246,7 +263,7 @@ unsigned long i915_gem_shrink_all(struct drm_i915_private *i915)
+ 	unsigned long freed = 0;
+ 
+ 	with_intel_runtime_pm(&i915->runtime_pm, wakeref) {
+-		freed = i915_gem_shrink(i915, -1UL, NULL,
++		freed = i915_gem_shrink(NULL, i915, -1UL, NULL,
+ 					I915_SHRINK_BOUND |
+ 					I915_SHRINK_UNBOUND);
+ 	}
+@@ -292,7 +309,7 @@ i915_gem_shrinker_scan(struct shrinker *shrinker, struct shrink_control *sc)
+ 
+ 	sc->nr_scanned = 0;
+ 
+-	freed = i915_gem_shrink(i915,
++	freed = i915_gem_shrink(NULL, i915,
+ 				sc->nr_to_scan,
+ 				&sc->nr_scanned,
+ 				I915_SHRINK_BOUND |
+@@ -301,7 +318,7 @@ i915_gem_shrinker_scan(struct shrinker *shrinker, struct shrink_control *sc)
+ 		intel_wakeref_t wakeref;
+ 
+ 		with_intel_runtime_pm(&i915->runtime_pm, wakeref) {
+-			freed += i915_gem_shrink(i915,
++			freed += i915_gem_shrink(NULL, i915,
+ 						 sc->nr_to_scan - sc->nr_scanned,
+ 						 &sc->nr_scanned,
+ 						 I915_SHRINK_ACTIVE |
+@@ -326,7 +343,7 @@ i915_gem_shrinker_oom(struct notifier_block *nb, unsigned long event, void *ptr)
+ 
+ 	freed_pages = 0;
+ 	with_intel_runtime_pm(&i915->runtime_pm, wakeref)
+-		freed_pages += i915_gem_shrink(i915, -1UL, NULL,
++		freed_pages += i915_gem_shrink(NULL, i915, -1UL, NULL,
+ 					       I915_SHRINK_BOUND |
+ 					       I915_SHRINK_UNBOUND |
+ 					       I915_SHRINK_WRITEBACK);
+@@ -364,7 +381,7 @@ i915_gem_shrinker_vmap(struct notifier_block *nb, unsigned long event, void *ptr
+ 	intel_wakeref_t wakeref;
+ 
+ 	with_intel_runtime_pm(&i915->runtime_pm, wakeref)
+-		freed_pages += i915_gem_shrink(i915, -1UL, NULL,
++		freed_pages += i915_gem_shrink(NULL, i915, -1UL, NULL,
+ 					       I915_SHRINK_BOUND |
+ 					       I915_SHRINK_UNBOUND |
+ 					       I915_SHRINK_VMAPS);
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_shrinker.h b/drivers/gpu/drm/i915/gem/i915_gem_shrinker.h
+index b397d7785789..8512470f6fd6 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_shrinker.h
++++ b/drivers/gpu/drm/i915/gem/i915_gem_shrinker.h
+@@ -9,10 +9,12 @@
+ #include <linux/bits.h>
+ 
+ struct drm_i915_private;
++struct i915_gem_ww_ctx;
+ struct mutex;
+ 
+ /* i915_gem_shrinker.c */
+-unsigned long i915_gem_shrink(struct drm_i915_private *i915,
++unsigned long i915_gem_shrink(struct i915_gem_ww_ctx *ww,
++			      struct drm_i915_private *i915,
+ 			      unsigned long target,
+ 			      unsigned long *nr_scanned,
+ 			      unsigned flags);
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_tiling.c b/drivers/gpu/drm/i915/gem/i915_gem_tiling.c
+index ffcaee74a249..4523a14db86e 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_tiling.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_tiling.c
+@@ -265,7 +265,6 @@ i915_gem_object_set_tiling(struct drm_i915_gem_object *obj,
+ 	 * pages to prevent them being swapped out and causing corruption
+ 	 * due to the change in swizzling.
+ 	 */
+-	mutex_lock(&obj->mm.lock);
+ 	if (i915_gem_object_has_pages(obj) &&
+ 	    obj->mm.madv == I915_MADV_WILLNEED &&
+ 	    i915->quirks & QUIRK_PIN_SWIZZLED_PAGES) {
+@@ -280,7 +279,6 @@ i915_gem_object_set_tiling(struct drm_i915_gem_object *obj,
+ 			obj->mm.quirked = true;
+ 		}
+ 	}
+-	mutex_unlock(&obj->mm.lock);
+ 
+ 	spin_lock(&obj->vma.lock);
+ 	for_each_ggtt_vma(vma, obj) {
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_userptr.c b/drivers/gpu/drm/i915/gem/i915_gem_userptr.c
+index 01a9b7306c68..8f05b6d90d54 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_userptr.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_userptr.c
+@@ -240,7 +240,7 @@ static int i915_gem_object_userptr_unbind(struct drm_i915_gem_object *obj, bool
+ 	if (GEM_WARN_ON(i915_gem_object_has_pinned_pages(obj)))
+ 		return -EBUSY;
+ 
+-	mutex_lock(&obj->mm.lock);
++	assert_object_held(obj);
+ 
+ 	pages = __i915_gem_object_unset_pages(obj);
+ 	if (!IS_ERR_OR_NULL(pages))
+@@ -248,7 +248,6 @@ static int i915_gem_object_userptr_unbind(struct drm_i915_gem_object *obj, bool
+ 
+ 	if (get_pages)
+ 		err = ____i915_gem_object_get_pages(obj);
+-	mutex_unlock(&obj->mm.lock);
+ 
+ 	return err;
+ }
+diff --git a/drivers/gpu/drm/i915/i915_debugfs.c b/drivers/gpu/drm/i915/i915_debugfs.c
+index ea469168cd44..c5c7f77ee8dd 100644
+--- a/drivers/gpu/drm/i915/i915_debugfs.c
++++ b/drivers/gpu/drm/i915/i915_debugfs.c
+@@ -1508,10 +1508,10 @@ i915_drop_caches_set(void *data, u64 val)
+ 
+ 	fs_reclaim_acquire(GFP_KERNEL);
+ 	if (val & DROP_BOUND)
+-		i915_gem_shrink(i915, LONG_MAX, NULL, I915_SHRINK_BOUND);
++		i915_gem_shrink(NULL, i915, LONG_MAX, NULL, I915_SHRINK_BOUND);
+ 
+ 	if (val & DROP_UNBOUND)
+-		i915_gem_shrink(i915, LONG_MAX, NULL, I915_SHRINK_UNBOUND);
++		i915_gem_shrink(NULL, i915, LONG_MAX, NULL, I915_SHRINK_UNBOUND);
+ 
+ 	if (val & DROP_SHRINK_ALL)
+ 		i915_gem_shrink_all(i915);
+diff --git a/drivers/gpu/drm/i915/i915_gem.c b/drivers/gpu/drm/i915/i915_gem.c
+index c58ea2490bf4..5a497576614c 100644
+--- a/drivers/gpu/drm/i915/i915_gem.c
++++ b/drivers/gpu/drm/i915/i915_gem.c
+@@ -1103,10 +1103,6 @@ i915_gem_madvise_ioctl(struct drm_device *dev, void *data,
+ 	if (err)
+ 		goto out;
+ 
+-	err = mutex_lock_interruptible(&obj->mm.lock);
+-	if (err)
+-		goto out_ww;
+-
+ 	if (i915_gem_object_has_pages(obj) &&
+ 	    i915_gem_object_is_tiled(obj) &&
+ 	    i915->quirks & QUIRK_PIN_SWIZZLED_PAGES) {
+@@ -1149,9 +1145,7 @@ i915_gem_madvise_ioctl(struct drm_device *dev, void *data,
+ 		i915_gem_object_truncate(obj);
+ 
+ 	args->retained = obj->mm.madv != __I915_MADV_PURGED;
+-	mutex_unlock(&obj->mm.lock);
+ 
+-out_ww:
+ 	i915_gem_object_unlock(obj);
+ out:
+ 	i915_gem_object_put(obj);
+@@ -1332,7 +1326,7 @@ int i915_gem_freeze_late(struct drm_i915_private *i915)
+ 
+ 	wakeref = intel_runtime_pm_get(&i915->runtime_pm);
+ 
+-	i915_gem_shrink(i915, -1UL, NULL, ~0);
++	i915_gem_shrink(NULL, i915, -1UL, NULL, ~0);
+ 	i915_gem_drain_freed_objects(i915);
+ 
+ 	list_for_each_entry(obj, &i915->mm.shrink_list, mm.link) {
+diff --git a/drivers/gpu/drm/i915/i915_gem_gtt.c b/drivers/gpu/drm/i915/i915_gem_gtt.c
+index c5ee1567f3d1..729074ee33d4 100644
+--- a/drivers/gpu/drm/i915/i915_gem_gtt.c
++++ b/drivers/gpu/drm/i915/i915_gem_gtt.c
+@@ -44,7 +44,7 @@ int i915_gem_gtt_prepare_pages(struct drm_i915_gem_object *obj,
+ 		 * the DMA remapper, i915_gem_shrink will return 0.
+ 		 */
+ 		GEM_BUG_ON(obj->mm.pages == pages);
+-	} while (i915_gem_shrink(to_i915(obj->base.dev),
++	} while (i915_gem_shrink(NULL, to_i915(obj->base.dev),
+ 				 obj->base.size >> PAGE_SHIFT, NULL,
+ 				 I915_SHRINK_BOUND |
+ 				 I915_SHRINK_UNBOUND));
 -- 
 2.28.0
 
