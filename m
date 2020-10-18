@@ -2,64 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A31AE292047
-	for <lists+intel-gfx@lfdr.de>; Sun, 18 Oct 2020 23:41:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B152A29204B
+	for <lists+intel-gfx@lfdr.de>; Sun, 18 Oct 2020 23:50:15 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F22A06E8B0;
-	Sun, 18 Oct 2020 21:41:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1CE996E8B1;
+	Sun, 18 Oct 2020 21:50:14 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 98CFD6E8AD;
- Sun, 18 Oct 2020 21:41:26 +0000 (UTC)
-IronPort-SDR: tzQsfKuTWeTil5omp8Ie9y9d4OICoxp/p3yPN/kYzRah0FgO53fHM9ePbJAX1GBTJ5PcrBZCn8
- 27Z/vnTNyhag==
-X-IronPort-AV: E=McAfee;i="6000,8403,9778"; a="251629890"
-X-IronPort-AV: E=Sophos;i="5.77,392,1596524400"; d="scan'208";a="251629890"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Oct 2020 14:41:24 -0700
-IronPort-SDR: pzIDHYWmRZxJWisyVv6PSCl/oGT7cp+3/j9yeU97slnkzhj/dOuL2rRs92YX40l/IqHwKRMeHf
- 5a+avafTcONg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.77,392,1596524400"; d="scan'208";a="331719723"
-Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
- by orsmga002.jf.intel.com with ESMTP; 18 Oct 2020 14:41:24 -0700
-Received: from bgsmsx604.gar.corp.intel.com (10.67.234.6) by
- fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1713.5; Sun, 18 Oct 2020 14:41:23 -0700
-Received: from bgsmsx604.gar.corp.intel.com (10.67.234.6) by
- BGSMSX604.gar.corp.intel.com (10.67.234.6) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1713.5; Mon, 19 Oct 2020 03:11:21 +0530
-Received: from bgsmsx604.gar.corp.intel.com ([10.67.234.6]) by
- BGSMSX604.gar.corp.intel.com ([10.67.234.6]) with mapi id 15.01.1713.004;
- Mon, 19 Oct 2020 03:11:21 +0530
-From: "Shankar, Uma" <uma.shankar@intel.com>
-To: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Thread-Topic: [RFC 04/13] drm/i915: Capture max frl rate for PCON in dfp cap
- structure
-Thread-Index: AQHWouJcgIX68uRI1UWxHSdq32y3YKmd56mg
-Date: Sun, 18 Oct 2020 21:41:21 +0000
-Message-ID: <0bc6df6f31934c4e99777e78a994808c@intel.com>
-References: <20201015105259.27934-1-ankit.k.nautiyal@intel.com>
- <20201015105259.27934-5-ankit.k.nautiyal@intel.com>
-In-Reply-To: <20201015105259.27934-5-ankit.k.nautiyal@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-product: dlpe-windows
-dlp-reaction: no-action
-dlp-version: 11.5.1.3
-x-originating-ip: [10.223.10.1]
+Received: from mail-qt1-x841.google.com (mail-qt1-x841.google.com
+ [IPv6:2607:f8b0:4864:20::841])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F17B86E8B1;
+ Sun, 18 Oct 2020 21:50:12 +0000 (UTC)
+Received: by mail-qt1-x841.google.com with SMTP id m9so4993580qth.7;
+ Sun, 18 Oct 2020 14:50:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=LW7NtPMGJ2R8VOhKgzw6sjc10vh2YbY8kQEEkfju8fA=;
+ b=BT6sX70H+s8KhgIkqlKxOTyt7nLW9Zkkp/pWMqwoIwpRPwASphI99ISJJY/DrRq4YB
+ tuxxuQta89p2LltScao7kwUamcV10d6qq0/0GsMri9Y5uCbzF0DQIPVBZym6oh2w8IRp
+ jGv4FzahYM8UB3UvXODpIfq1ilK2uqq9Xd/9k1Vp0D25EYeZvsrsLMiSOVKbh0jHo8ly
+ ZwpyiDfjYzQI7omWM6lYTXWC4WxC4zXCwovEKbG2sVh0lXA3kgHlfvQ9kncK/jS7lzXB
+ WtZ4PQbPMGBo2Fvzsm14b4aTThFD0/Vsyl0CynTIq6qQwMl+W5yJA342KaaYBMt5xICG
+ NkkQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=LW7NtPMGJ2R8VOhKgzw6sjc10vh2YbY8kQEEkfju8fA=;
+ b=SsHnizGfes5cx3+Nv4b1GzPH6kQ8+gLCpuNviLCnVH4dNzH18zqC7yzL/NVR7V/LIn
+ hUk7etXvvO4HBI2/ePJw8r3gt6dYwEuX9fHzu4GoZjtcUgL3LfsbZ4JCzmKaSDdk+NVe
+ hp1kclKWgF+QJamBNlkyr3NYijk/a32K4c6Db6LoJ8H9Qxw2UKgHB8W0hvNIiiQ5Vcm1
+ u7EQWO0HsdWZJnc96fUEvBKuLVc6BHJOE1DJuud9SKxaKhtqln7F6X2Um0z+s/7dirI1
+ YEIDDNV53/TZkqzBfSLh64O0P1/Kq87Koe/QhFppU9+JcHgrlNl2sQrr0Hc0ox3h3Ga7
+ UJBw==
+X-Gm-Message-State: AOAM530h3GgTA+n3OrSOgtUFIjBYf+z/pgYjTQGYJqZHYK6Eg6uJCEre
+ n8lmz8MmMZKgC1ReNGI/ag+ywwiXeaK5XBoo+mk=
+X-Google-Smtp-Source: ABdhPJw59Z9ZSI7YkUnrDX/NzYUwLZIQMERPV41io/elXdvNyA/Ph+eIMdFGNAEYy/TP8jUOuq9oIUb3paHWMlURueE=
+X-Received: by 2002:aed:2983:: with SMTP id o3mr12423656qtd.285.1603057812125; 
+ Sun, 18 Oct 2020 14:50:12 -0700 (PDT)
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [RFC 04/13] drm/i915: Capture max frl rate for PCON
- in dfp cap structure
+References: <20200817091617.28119-1-allen.cryptic@gmail.com>
+In-Reply-To: <20200817091617.28119-1-allen.cryptic@gmail.com>
+From: Richard Weinberger <richard.weinberger@gmail.com>
+Date: Sun, 18 Oct 2020 23:50:00 +0200
+Message-ID: <CAFLxGvxsHD6zvTJSHeo2gaoRQfjUPZ6M=5BirOObHFjGqnzfew@mail.gmail.com>
+To: Allen Pais <allen.cryptic@gmail.com>
+Subject: Re: [Intel-gfx] [PATCH] arch: um: convert tasklets to use new
+ tasklet_setup() API
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,130 +61,57 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
+Cc: Ulf Hansson <ulf.hansson@linaro.org>,
+ linux-atm-general@lists.sourceforge.net, manohar.vanga@gmail.com,
+ Dave Airlie <airlied@linux.ie>, Allen Pais <allen.lkml@gmail.com>,
+ linux-hyperv@vger.kernel.org,
+ DRI mailing list <dri-devel@lists.freedesktop.org>,
+ LKML <linux-kernel@vger.kernel.org>,
+ James Bottomley <James.Bottomley@hansenpartnership.com>,
+ "K. Y. Srinivasan" <kys@microsoft.com>,
+ Anton Ivanov <anton.ivanov@cambridgegreys.com>, devel@driverdev.osuosl.org,
+ linux-s390@vger.kernel.org, linux1394-devel@lists.sourceforge.net,
+ Maxim Levitsky <maximlevitsky@gmail.com>, Richard Weinberger <richard@nod.at>,
+ Helge Deller <deller@gmx.de>, jassisinghbrar@gmail.com, 3chas3@gmail.com,
+ intel-gfx@lists.freedesktop.org, kuba@kernel.org, mporter@kernel.crashing.org,
+ Jeff Dike <jdike@addtoit.com>, Kees Cook <keescook@chromium.org>,
+ Alex Dubov <oakad@yahoo.com>, Sascha Hauer <s.hauer@pengutronix.de>,
+ linux-input@vger.kernel.org, linux-um <linux-um@lists.infradead.org>,
+ linux-block@vger.kernel.org, Mark Brown <broonie@kernel.org>,
+ openipmi-developer@lists.sourceforge.net, mitch@sfgoth.com,
+ linux-arm-kernel@lists.infradead.org, Jens Axboe <axboe@kernel.dk>,
+ linux-parisc@vger.kernel.org, netdev@vger.kernel.org, martyn@welchs.me.uk,
+ dmitry.torokhov@gmail.com, linux-mmc@vger.kernel.org,
+ Sebastian Reichel <sre@kernel.org>,
+ "open list:SPI SUBSYSTEM" <linux-spi@vger.kernel.org>, alex.bou9@gmail.com,
+ stefanr@s5r6.in-berlin.de, linux-ntb@googlegroups.com,
+ Romain Perier <romain.perier@gmail.com>, Shawn Guo <shawnguo@kernel.org>,
+ "David S. Miller" <davem@davemloft.net>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-
-
-> -----Original Message-----
-> From: Nautiyal, Ankit K <ankit.k.nautiyal@intel.com>
-> Sent: Thursday, October 15, 2020 4:23 PM
-> To: intel-gfx@lists.freedesktop.org
-> Cc: dri-devel@lists.freedesktop.org; Shankar, Uma <uma.shankar@intel.com>;
-> Kulkarni, Vandita <vandita.kulkarni@intel.com>; ville.syrjala@linux.intel.com;
-> Sharma, Swati2 <swati2.sharma@intel.com>
-> Subject: [RFC 04/13] drm/i915: Capture max frl rate for PCON in dfp cap structure
-> 
-> HDMI2.1 PCON advertises Max FRL bandwidth supported by the PCON and by the
-> sink.
-> 
-> This patch captures these in dfp cap structure in intel_dp and uses these to
-> prune connector modes that cannot be supported by the PCON and sink FRL
-> bandwidth.
-> 
-> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+On Mon, Aug 17, 2020 at 11:17 AM Allen Pais <allen.cryptic@gmail.com> wrote:
+>
+> From: Allen Pais <allen.lkml@gmail.com>
+>
+> In preparation for unconditionally passing the
+> struct tasklet_struct pointer to all tasklet
+> callbacks, switch to using the new tasklet_setup()
+> and from_tasklet() to pass the tasklet pointer explicitly.
+>
+> Signed-off-by: Romain Perier <romain.perier@gmail.com>
+> Signed-off-by: Allen Pais <allen.lkml@gmail.com>
 > ---
->  .../drm/i915/display/intel_display_types.h    |  1 +
->  drivers/gpu/drm/i915/display/intel_dp.c       | 33 +++++++++++++++++--
->  2 files changed, 32 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h
-> b/drivers/gpu/drm/i915/display/intel_display_types.h
-> index 0b5df8e44966..e2f58d0575a2 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
-> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-> @@ -1398,6 +1398,7 @@ struct intel_dp {
->  	struct {
->  		int min_tmds_clock, max_tmds_clock;
->  		int max_dotclock;
-> +		int pcon_max_frl, sink_max_frl;
+>  arch/um/drivers/vector_kern.c | 6 +++---
+>  1 file changed, 3 insertions(+), 3 deletions(-)
 
-Append it with bw or rate.
+Anton, can you please review this patch?
 
->  		u8 max_bpc;
->  		bool ycbcr_444_to_420;
->  	} dfp;
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c
-> b/drivers/gpu/drm/i915/display/intel_dp.c
-> index 0902a9aeeda1..cd6934f28f32 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> @@ -683,6 +683,24 @@ intel_dp_mode_valid_downstream(struct
-> intel_connector *connector,
->  	const struct drm_display_info *info = &connector->base.display_info;
->  	int tmds_clock;
-> 
-> +	/* If PCON and HDMI2.1 sink both support FRL MODE, check FRL
-
-Use multi line comment style.
-
-> +	 * bandwidth constraints.
-> +	 */
-> +	if (intel_dp->dfp.pcon_max_frl) {
-> +		int target_bw;
-> +		int max_frl_bw;
-> +		int bpp = intel_dp_mode_min_output_bpp(&connector->base,
-> mode);
-> +
-> +		target_bw = bpp * DIV_ROUND_UP(target_clock, 1000000);
-
-To avoid any roundup errors, it would be good to multiple max_frl_bw by 1000000 than dividing target_clock
-
-> +
-> +		max_frl_bw = min(intel_dp->dfp.pcon_max_frl,
-> +				 intel_dp->dfp.sink_max_frl);
-> +		if (target_bw > max_frl_bw)
-> +			return MODE_CLOCK_HIGH;
-> +
-> +		return MODE_OK;
-> +	}
-> +
->  	if (intel_dp->dfp.max_dotclock &&
->  	    target_clock > intel_dp->dfp.max_dotclock)
->  		return MODE_CLOCK_HIGH;
-> @@ -6383,13 +6401,21 @@ intel_dp_update_dfp(struct intel_dp *intel_dp,
->  						 intel_dp->downstream_ports,
->  						 edid);
-> 
-> +	intel_dp->dfp.pcon_max_frl =
-> +		drm_dp_get_pcon_max_frl_bw(intel_dp->dpcd,
-> +					   intel_dp->downstream_ports);
-> +
-> +	intel_dp->dfp.sink_max_frl =
-> +drm_dp_get_hdmi_max_frl_bw(&intel_dp->aux);
-> +
->  	drm_dbg_kms(&i915->drm,
-> -		    "[CONNECTOR:%d:%s] DFP max bpc %d, max dotclock %d,
-> TMDS clock %d-%d\n",
-> +		    "[CONNECTOR:%d:%s] DFP max bpc %d, max dotclock %d,
-> TMDS clock
-> +%d-%d, PCON Max FRL BW %dGbps, Sink Max FRL BW %dGbps\n",
->  		    connector->base.base.id, connector->base.name,
->  		    intel_dp->dfp.max_bpc,
->  		    intel_dp->dfp.max_dotclock,
->  		    intel_dp->dfp.min_tmds_clock,
-> -		    intel_dp->dfp.max_tmds_clock);
-> +		    intel_dp->dfp.max_tmds_clock,
-> +		    intel_dp->dfp.pcon_max_frl,
-> +		    intel_dp->dfp.sink_max_frl);
->  }
-> 
->  static void
-> @@ -6479,6 +6505,9 @@ intel_dp_unset_edid(struct intel_dp *intel_dp)
->  	intel_dp->dfp.min_tmds_clock = 0;
->  	intel_dp->dfp.max_tmds_clock = 0;
-> 
-> +	intel_dp->dfp.pcon_max_frl = 0;
-> +	intel_dp->dfp.sink_max_frl = 0;
-> +
->  	intel_dp->dfp.ycbcr_444_to_420 = false;
->  	connector->base.ycbcr_420_allowed = false;  }
-> --
-> 2.17.1
-
+-- 
+Thanks,
+//richard
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
