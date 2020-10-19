@@ -1,33 +1,40 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5BD5E292898
-	for <lists+intel-gfx@lfdr.de>; Mon, 19 Oct 2020 15:50:32 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1BE8C2922EC
+	for <lists+intel-gfx@lfdr.de>; Mon, 19 Oct 2020 09:23:38 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6A9AE6E9A0;
-	Mon, 19 Oct 2020 13:50:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6A0F36E8E2;
+	Mon, 19 Oct 2020 07:23:36 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from manul.sfritsch.de (manul.sfritsch.de
- [IPv6:2a01:4f8:172:195f:112::2])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DFD876E8DA
- for <intel-gfx@lists.freedesktop.org>; Mon, 19 Oct 2020 07:03:11 +0000 (UTC)
-To: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- intel-gfx@lists.freedesktop.org, Zhenyu Wang <zhenyuw@linux.intel.com>,
- Zhi Wang <zhi.a.wang@intel.com>
-References: <20201016152340.15906-1-sf@sfritsch.de>
- <160308979457.4267.13628612734509793218@jlahtine-mobl.ger.corp.intel.com>
-From: Stefan Fritsch <sf@sfritsch.de>
-Message-ID: <6402f498-ed07-6b0c-eeed-df9db086b14c@sfritsch.de>
-Date: Mon, 19 Oct 2020 09:03:00 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.3.2
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E154A6E8E2;
+ Mon, 19 Oct 2020 07:23:34 +0000 (UTC)
+IronPort-SDR: e+CLbM9wHDjsfKQHkPVixNoWgIg/B2An6NnIPqZsCWU3WRAjZlxFeGrzfSL3SX1EUyH81xMKnu
+ Hgww0gB4E6PQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9778"; a="146841709"
+X-IronPort-AV: E=Sophos;i="5.77,393,1596524400"; d="scan'208";a="146841709"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Oct 2020 00:23:34 -0700
+IronPort-SDR: Axi42uHUYYOSKb6aCDkw+HAfZZw6E4wArEb1IRJFcXi7qVOt4xGMEM43KuxMXTk2lw8lvxNtjW
+ Cx0uYV18qIXQ==
+X-IronPort-AV: E=Sophos;i="5.77,393,1596524400"; d="scan'208";a="465429219"
+Received: from genxfsim-desktop.iind.intel.com ([10.223.74.178])
+ by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Oct 2020 00:23:32 -0700
+From: Anshuman Gupta <anshuman.gupta@intel.com>
+To: dri-devel@lists.freedesktop.org,
+	intel-gfx@lists.freedesktop.org
+Date: Mon, 19 Oct 2020 12:42:59 +0530
+Message-Id: <20201019071259.24566-1-anshuman.gupta@intel.com>
+X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
-In-Reply-To: <160308979457.4267.13628612734509793218@jlahtine-mobl.ger.corp.intel.com>
-Content-Language: de-DE
-X-Mailman-Approved-At: Mon, 19 Oct 2020 13:50:27 +0000
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Rate limit 'Fault errors' message
+Subject: [Intel-gfx] [RFC] drm/hdcp: Max MST content streams
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,60 +47,46 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: stable@vger.kernel.org
+Cc: Sean Paul <seanpaul@chromium.org>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-I think we should do both. Any log message that can be triggered 50 
-times per second in practice should be rate limited. Also, the rate 
-limiting is probably a candidate for backporting to stable kernels while 
-the real fix may be not.
+Let's define Maximum MST content streams up to four
+generically which can be supported by modern display
+controllers.
 
-PS: See also my other mail about "drm/i915: Detecting Vt-d when running 
-as guest os"
+Cc: Sean Paul <seanpaul@chromium.org>
+Cc: Ramalingam C <ramalingam.c@intel.com>
+Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
+---
+ include/drm/drm_hdcp.h | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
 
-On 19.10.20 08:43, Joonas Lahtinen wrote:
-> + Zhenyu & Zhi,
-> 
-> Should not we instead fix the reason why the errors happen instead of
-> rate-limiting them?
-> 
-> Regards, Joonas
-> 
-> Quoting Stefan Fritsch (2020-10-16 18:23:40)
->> If linux is running as a guest and the host is doing igd pass-through
->> with VT-d enabled, this message is logged dozens of times per second.
->>
->> Cc: stable@vger.kernel.org
->> Signed-off-by: Stefan Fritsch <sf@sfritsch.de>
->> ---
->>
->> The i915 driver should also detect VT-d in this case, but that is a
->> different issue.  I have sent a separate mail with subject 'Detecting
->> Vt-d when running as guest os'.
->>
->>
->>   drivers/gpu/drm/i915/i915_irq.c | 2 +-
->>   1 file changed, 1 insertion(+), 1 deletion(-)
->>
->> diff --git a/drivers/gpu/drm/i915/i915_irq.c b/drivers/gpu/drm/i915/i915_irq.c
->> index 759f523c6a6b..29096634e697 100644
->> --- a/drivers/gpu/drm/i915/i915_irq.c
->> +++ b/drivers/gpu/drm/i915/i915_irq.c
->> @@ -2337,7 +2337,7 @@ gen8_de_irq_handler(struct drm_i915_private *dev_priv, u32 master_ctl)
->>   
->>                  fault_errors = iir & gen8_de_pipe_fault_mask(dev_priv);
->>                  if (fault_errors)
->> -                       drm_err(&dev_priv->drm,
->> +                       drm_err_ratelimited(&dev_priv->drm,
->>                                  "Fault errors on pipe %c: 0x%08x\n",
->>                                  pipe_name(pipe),
->>                                  fault_errors);
->> -- 
->> 2.28.0
->>
+diff --git a/include/drm/drm_hdcp.h b/include/drm/drm_hdcp.h
+index fe58dbb46962..ac22c246542a 100644
+--- a/include/drm/drm_hdcp.h
++++ b/include/drm/drm_hdcp.h
+@@ -101,11 +101,11 @@
+ 
+ /* Following Macros take a byte at a time for bit(s) masking */
+ /*
+- * TODO: This has to be changed for DP MST, as multiple stream on
+- * same port is possible.
+- * For HDCP2.2 on HDMI and DP SST this value is always 1.
++ * TODO: HDCP_2_2_MAX_CONTENT_STREAMS_CNT is based upon actual
++ * H/W MST streams capacity.
++ * This required to be moved out to platform specific header.
+  */
+-#define HDCP_2_2_MAX_CONTENT_STREAMS_CNT	1
++#define HDCP_2_2_MAX_CONTENT_STREAMS_CNT	4
+ #define HDCP_2_2_TXCAP_MASK_LEN			2
+ #define HDCP_2_2_RXCAPS_LEN			3
+ #define HDCP_2_2_RX_REPEATER(x)			((x) & BIT(0))
+-- 
+2.26.2
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
