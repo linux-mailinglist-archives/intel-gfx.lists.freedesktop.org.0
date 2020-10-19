@@ -1,47 +1,51 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 65934292B6B
-	for <lists+intel-gfx@lfdr.de>; Mon, 19 Oct 2020 18:26:46 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id E59B8292B86
+	for <lists+intel-gfx@lfdr.de>; Mon, 19 Oct 2020 18:30:15 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C91546E8EE;
-	Mon, 19 Oct 2020 16:26:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 410C36EA10;
+	Mon, 19 Oct 2020 16:30:14 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EF0436E8EE
- for <intel-gfx@lists.freedesktop.org>; Mon, 19 Oct 2020 16:26:42 +0000 (UTC)
-IronPort-SDR: 2SO9CkoRTp0N5KfYK/j8nC2qjUYpBVbJbghnibgOrrHCcLJSW4Pqg2dul5KCSZeIC6YnidYfrj
- ZjBQcvdUuHjg==
-X-IronPort-AV: E=McAfee;i="6000,8403,9779"; a="167172382"
-X-IronPort-AV: E=Sophos;i="5.77,395,1596524400"; d="scan'208";a="167172382"
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4003E6EA10
+ for <intel-gfx@lists.freedesktop.org>; Mon, 19 Oct 2020 16:30:13 +0000 (UTC)
+IronPort-SDR: ceUt5fRhWnBUWhubeDTkqB1MfqQv5cm4wd/xqxh78cEj+ZG4Jle1lyyxBcRz7ioqbU1SlRg1Zs
+ Q6TWW2nb2gSw==
+X-IronPort-AV: E=McAfee;i="6000,8403,9779"; a="167140472"
+X-IronPort-AV: E=Sophos;i="5.77,395,1596524400"; d="scan'208";a="167140472"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Oct 2020 09:26:22 -0700
-IronPort-SDR: hnb4l3ciuJKzr8834TZUR7HMP7lL25J0oJkXU5PwANDd+RSZptbYKwt0Y4W6uLrFH9L4uI+jg+
- FAnDruq5DOyg==
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Oct 2020 09:30:10 -0700
+IronPort-SDR: 9x3NukId3fQe52swWXS4wWBV5xGgLJCPFGdflfeVbpQ6aNuvtAmCIblaEgjUpZc9+AwEECmOpI
+ LQyHAgdI9BOQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.77,395,1596524400"; d="scan'208";a="358205900"
+X-IronPort-AV: E=Sophos;i="5.77,395,1596524400"; d="scan'208";a="358881179"
 Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by FMSMGA003.fm.intel.com with SMTP; 19 Oct 2020 09:26:20 -0700
+ by orsmga007.jf.intel.com with SMTP; 19 Oct 2020 09:30:08 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Mon, 19 Oct 2020 19:26:19 +0300
-Date: Mon, 19 Oct 2020 19:26:19 +0300
+ Mon, 19 Oct 2020 19:30:07 +0300
+Date: Mon, 19 Oct 2020 19:30:07 +0300
 From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Manasi Navare <manasi.d.navare@intel.com>
-Message-ID: <20201019162619.GU6112@intel.com>
+To: "Navare, Manasi" <manasi.d.navare@intel.com>
+Message-ID: <20201019163007.GV6112@intel.com>
 References: <20201008214535.22942-1-manasi.d.navare@intel.com>
- <20201008214535.22942-10-manasi.d.navare@intel.com>
+ <20201008214535.22942-4-manasi.d.navare@intel.com>
+ <20201014112634.GG6112@intel.com>
+ <20201014190405.GA22826@labuser-Z97X-UD5H>
+ <20201015115247.GI6112@intel.com>
+ <20201015162645.GA28888@labuser-Z97X-UD5H>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20201008214535.22942-10-manasi.d.navare@intel.com>
+In-Reply-To: <20201015162645.GA28888@labuser-Z97X-UD5H>
 X-Patchwork-Hint: comment
 User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH v10 10/11] drm/i915: Ensure correct
- master/slave enable/disable sequence
+Subject: Re: [Intel-gfx] [PATCH v10 04/11] drm/i915/dp: Allow big joiner
+ modes in intel_dp_mode_valid(), v3.
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,277 +64,176 @@ Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Oct 08, 2020 at 02:45:34PM -0700, Manasi Navare wrote:
-> From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+On Thu, Oct 15, 2020 at 09:26:45AM -0700, Navare, Manasi wrote:
+> On Thu, Oct 15, 2020 at 02:52:47PM +0300, Ville Syrj=E4l=E4 wrote:
+> > On Wed, Oct 14, 2020 at 12:04:10PM -0700, Navare, Manasi wrote:
+> > > On Wed, Oct 14, 2020 at 02:26:34PM +0300, Ville Syrj=E4l=E4 wrote:
+> > > > On Thu, Oct 08, 2020 at 02:45:28PM -0700, Manasi Navare wrote:
+> > > > > From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+> > > > > =
+
+> > > > > Small changes to intel_dp_mode_valid(), allow listing modes that
+> > > > > can only be supported in the bigjoiner configuration, which is
+> > > > > not supported yet.
+> > > > > =
+
+> > > > > eDP does not support bigjoiner, so do not expose bigjoiner only
+> > > > > modes on the eDP port.
+> > > > > =
+
+> > > > > v7:
+> > > > > * Add can_bigjoiner() helper (Ville)
+> > > > > * Pass bigjoiner to plane_size validation (Ville)
+> > > > > v6:
+> > > > > * Rebase after dp_downstream mode valid changes (Manasi)
+> > > > > v5:
+> > > > > * Increase max plane width to support 8K with bigjoiner (Maarten)
+> > > > > v4:
+> > > > > * Rebase (Manasi)
+> > > > > =
+
+> > > > > Changes since v1:
+> > > > > - Disallow bigjoiner on eDP.
+> > > > > Changes since v2:
+> > > > > - Rename intel_dp_downstream_max_dotclock to intel_dp_max_dotcloc=
+k,
+> > > > >   and split off the downstream and source checking to its own fun=
+ction.
+> > > > >   (Ville)
+> > > > > v3:
+> > > > > * Rebase (Manasi)
+> > > > > =
+
+> > > > > Signed-off-by: Manasi Navare <manasi.d.navare@intel.com>
+> > > > > Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.c=
+om>
+> > > > > ---
+> > > > >  drivers/gpu/drm/i915/display/intel_display.c |   5 +-
+> > > > >  drivers/gpu/drm/i915/display/intel_display.h |   3 +-
+> > > > >  drivers/gpu/drm/i915/display/intel_dp.c      | 126 +++++++++++++=
+++----
+> > > > >  drivers/gpu/drm/i915/display/intel_dp_mst.c  |   2 +-
+> > > > >  drivers/gpu/drm/i915/display/intel_dsi.c     |   2 +-
+> > > > >  drivers/gpu/drm/i915/display/intel_hdmi.c    |   2 +-
+> > > > >  6 files changed, 111 insertions(+), 29 deletions(-)
+> > > > > =
+
+> > > > > diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drive=
+rs/gpu/drm/i915/display/intel_display.c
+> > > > > index 723766b1eae3..cc540c7b7dcd 100644
+> > > > > --- a/drivers/gpu/drm/i915/display/intel_display.c
+> > > > > +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> > > > > @@ -17642,7 +17642,8 @@ intel_mode_valid(struct drm_device *dev,
+> > > > >  =
+
+> > > > >  enum drm_mode_status
+> > > > >  intel_mode_valid_max_plane_size(struct drm_i915_private *dev_pri=
+v,
+> > > > > -				const struct drm_display_mode *mode)
+> > > > > +				const struct drm_display_mode *mode,
+> > > > > +				bool bigjoiner)
+> > > > >  {
+> > > > >  	int plane_width_max, plane_height_max;
+> > > > >  =
+
+> > > > > @@ -17659,7 +17660,7 @@ intel_mode_valid_max_plane_size(struct dr=
+m_i915_private *dev_priv,
+> > > > >  	 * too big for that.
+> > > > >  	 */
+> > > > >  	if (INTEL_GEN(dev_priv) >=3D 11) {
+> > > > > -		plane_width_max =3D 5120;
+> > > > > +		plane_width_max =3D 5120 << bigjoiner;
+> > > > >  		plane_height_max =3D 4320;
+> > > > >  	} else {
+> > > > >  		plane_width_max =3D 5120;
+> > > > > diff --git a/drivers/gpu/drm/i915/display/intel_display.h b/drive=
+rs/gpu/drm/i915/display/intel_display.h
+> > > > > index d10b7c8cde3f..3d860a9da8fe 100644
+> > > > > --- a/drivers/gpu/drm/i915/display/intel_display.h
+> > > > > +++ b/drivers/gpu/drm/i915/display/intel_display.h
+> > > > > @@ -496,7 +496,8 @@ u32 intel_plane_fb_max_stride(struct drm_i915=
+_private *dev_priv,
+> > > > >  bool intel_plane_can_remap(const struct intel_plane_state *plane=
+_state);
+> > > > >  enum drm_mode_status
+> > > > >  intel_mode_valid_max_plane_size(struct drm_i915_private *dev_pri=
+v,
+> > > > > -				const struct drm_display_mode *mode);
+> > > > > +				const struct drm_display_mode *mode,
+> > > > > +				bool bigjoiner);
+> > > > >  enum phy intel_port_to_phy(struct drm_i915_private *i915, enum p=
+ort port);
+> > > > >  bool is_trans_port_sync_mode(const struct intel_crtc_state *stat=
+e);
+> > > > >  =
+
+> > > > > diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gp=
+u/drm/i915/display/intel_dp.c
+> > > > > index 8a522edd7386..af2ff425e5d5 100644
+> > > > > --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> > > > > +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> > > > > @@ -247,6 +247,29 @@ intel_dp_max_data_rate(int max_link_clock, i=
+nt max_lanes)
+> > > > >  	return max_link_clock * max_lanes;
+> > > > >  }
+> > > > >  =
+
+> > > > > +static int source_max_dotclock(struct intel_dp *intel_dp, bool a=
+llow_bigjoiner)
+> > > > > +{
+> > > > > +	struct intel_digital_port *intel_dig_port =3D dp_to_dig_port(in=
+tel_dp);
+> > > > > +	struct intel_encoder *encoder =3D &intel_dig_port->base;
+> > > > > +	struct drm_i915_private *dev_priv =3D to_i915(encoder->base.dev=
+);
+> > > > > +
+> > > > > +	if (allow_bigjoiner && INTEL_GEN(dev_priv) >=3D 11 && !intel_dp=
+_is_edp(intel_dp))
+> > > > > +		return 2 * dev_priv->max_dotclk_freq;
+> > > > > +
+> > > > > +	return dev_priv->max_dotclk_freq;
+> > > > > +}
+> > > > > +
+> > > > > +static int
+> > > > > +intel_dp_max_dotclock(struct intel_dp *intel_dp, bool allow_bigj=
+oiner)
+> > > > > +{
+> > > > > +	int max_dotclk =3D source_max_dotclock(intel_dp, allow_bigjoine=
+r);
+> > > > > +
+> > > > > +	if (intel_dp->dfp.max_dotclock)
+> > > > =
+
+> > > > No. dfp checks should stay where they are.
+> > > =
+
+> > > I am using dfp.max_dotclock because we populate that with drm_dp_down=
+stream_max_dotclock()
+> > > should that be used here directly from drm_dp_downstream_max_dotclock=
+ instead of using dfp.maxdotclock ?
+> > =
+
+> > Can you explain how bigjoiner and DFP dotclock limits relate to each
+> > other?
 > =
 
-> Enabling is done in a special sequence and so should plane updates
-> be. Ideally the end user never notices the second pipe is used.
+> Before the dfp dotclock checks were added, we were obtaining the max dotc=
+lock as min (source_max_dotclock, downstream max dotclock from dpcd)
+> And thats why I was using the dfp.max_dotclock
 > =
 
-> This way ideally everything will be tear free, and updates are
-> really atomic as userspace expects it.
+> But while addressing your feedback , I have now max_dotclock =3D source m=
+ax dotclock
+> and the downstream max dotclock checks happen in intel_dp_mode_valid_down=
+stream(), so I think we dont need to consider
+> this here in max dotclock computation.
 > =
 
-> This uses generic modeset_enables() calls like trans port sync
-> but still has special handling for disable since for slave we
-> should not disable things like encoder, plls that are not enabled
-> for  slave.
-> =
+> Is this correct?
 
-> v3:
-> * Fixes in enable and disable sequence from testing (Manasi)
-> v2:
-> * Manual Rebase (Manasi)
-> * Refactoring on intel_update_crtc and enable_crtc and removing
-> special trans_port_sync_update (Manasi)
-> =
-
-> Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-> Signed-off-by: Manasi Navare <manasi.d.navare@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_display.c | 55 ++++++++++++++------
->  drivers/gpu/drm/i915/display/intel_sprite.c  |  5 +-
->  2 files changed, 43 insertions(+), 17 deletions(-)
-> =
-
-> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/d=
-rm/i915/display/intel_display.c
-> index 357cc2bce300..101ddd0b48ab 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> @@ -15878,6 +15878,9 @@ static void intel_enable_crtc(struct intel_atomic=
-_state *state,
->  =
-
->  	dev_priv->display.crtc_enable(state, crtc);
->  =
-
-> +	if (new_crtc_state->bigjoiner_slave)
-> +		return;
-> +
->  	/* vblanks work again, re-enable pipe CRC. */
->  	intel_crtc_enable_pipe_crc(crtc);
->  }
-> @@ -15914,9 +15917,7 @@ static void intel_update_crtc(struct intel_atomic=
-_state *state,
->  =
-
->  	commit_pipe_config(state, crtc);
->  =
-
-> -	if (new_crtc_state->bigjoiner) {
-> -	/* Not supported yet */
-> -	} else if (INTEL_GEN(dev_priv) >=3D 9)
-> +	if (INTEL_GEN(dev_priv) >=3D 9)
->  		skl_update_planes_on_crtc(state, crtc);
->  	else
->  		i9xx_update_planes_on_crtc(state, crtc);
-> @@ -15945,9 +15946,17 @@ static void intel_old_crtc_state_disables(struct=
- intel_atomic_state *state,
->  	drm_WARN_ON(&dev_priv->drm, old_crtc_state->bigjoiner_slave);
->  =
-
->  	intel_crtc_disable_planes(state, crtc);
-> -	if (old_crtc_state->bigjoiner)
-> +
-> +	/*
-> +	 * We still need special handling for disabling bigjoiner master
-> +	 * and slaves since for slave we do not have encoder or plls
-> +	 * so we dont need to disable those.
-> +	 */
-> +	if (old_crtc_state->bigjoiner) {
->  		intel_crtc_disable_planes(state,
->  					  old_crtc_state->bigjoiner_linked_crtc);
-> +		old_crtc_state->bigjoiner_linked_crtc->active =3D false;
-> +	}
->  =
-
->  	/*
->  	 * We need to disable pipe CRC before disabling the pipe,
-> @@ -15977,7 +15986,7 @@ static void intel_commit_modeset_disables(struct =
-intel_atomic_state *state)
->  	/* Only disable port sync and MST slaves */
->  	for_each_oldnew_intel_crtc_in_state(state, crtc, old_crtc_state,
->  					    new_crtc_state, i) {
-> -		if (!needs_modeset(new_crtc_state) || old_crtc_state->bigjoiner_slave)
-> +		if (!needs_modeset(new_crtc_state) || old_crtc_state->bigjoiner)
->  			continue;
->  =
-
->  		if (!old_crtc_state->hw.active)
-> @@ -16040,6 +16049,7 @@ static void skl_commit_modeset_enables(struct int=
-el_atomic_state *state)
->  	struct intel_crtc *crtc;
->  	struct intel_crtc_state *old_crtc_state, *new_crtc_state;
->  	struct skl_ddb_entry entries[I915_MAX_PIPES] =3D {};
-> +	struct skl_ddb_entry new_entries[I915_MAX_PIPES] =3D {};
->  	u8 update_pipes =3D 0, modeset_pipes =3D 0;
->  	int i;
->  =
-
-> @@ -16056,6 +16066,14 @@ static void skl_commit_modeset_enables(struct in=
-tel_atomic_state *state)
->  		} else {
->  			modeset_pipes |=3D BIT(pipe);
->  		}
-> +
-> +		new_entries[i] =3D new_crtc_state->wm.skl.ddb;
-> +
-> +		/* ignore allocations for crtc's that have been turned off during mode=
-set. */
-> +		if (needs_modeset(new_crtc_state))
-> +			continue;
-> +
-> +		entries[i] =3D old_crtc_state->wm.skl.ddb;
->  	}
->  =
-
->  	/*
-> @@ -16071,28 +16089,28 @@ static void skl_commit_modeset_enables(struct i=
-ntel_atomic_state *state)
->  		for_each_oldnew_intel_crtc_in_state(state, crtc, old_crtc_state,
->  						    new_crtc_state, i) {
->  			enum pipe pipe =3D crtc->pipe;
-> +			bool ddb_changed;
->  =
-
->  			if ((update_pipes & BIT(pipe)) =3D=3D 0)
->  				continue;
->  =
-
-> -			if (skl_ddb_allocation_overlaps(&new_crtc_state->wm.skl.ddb,
-> +			if (skl_ddb_allocation_overlaps(&new_entries[pipe],
->  							entries, I915_MAX_PIPES, pipe))
->  				continue;
->  =
-
-> -			entries[pipe] =3D new_crtc_state->wm.skl.ddb;
-> +			ddb_changed =3D !skl_ddb_entry_equal(&new_entries[pipe], &entries[pip=
-e]);
-> +			entries[pipe] =3D new_entries[pipe];
->  			update_pipes &=3D ~BIT(pipe);
->  =
-
-> -			intel_update_crtc(state, crtc);
-> -
->  			/*
->  			 * If this is an already active pipe, it's DDB changed,
->  			 * and this isn't the last pipe that needs updating
->  			 * then we need to wait for a vblank to pass for the
->  			 * new ddb allocation to take effect.
->  			 */
-> -			if (!skl_ddb_entry_equal(&new_crtc_state->wm.skl.ddb,
-> -						 &old_crtc_state->wm.skl.ddb) &&
-> -			    (update_pipes | modeset_pipes))
-> +			intel_update_crtc(state, crtc);
-> +
-> +			if (ddb_changed && (update_pipes | modeset_pipes))
->  				intel_wait_for_vblank(dev_priv, pipe);
-
-What are these ddb changes trying to achieve?
-
->  		}
->  	}
-> @@ -16110,7 +16128,8 @@ static void skl_commit_modeset_enables(struct int=
-el_atomic_state *state)
->  			continue;
->  =
-
->  		if (intel_dp_mst_is_slave_trans(new_crtc_state) ||
-> -		    is_trans_port_sync_master(new_crtc_state))
-> +		    is_trans_port_sync_master(new_crtc_state) ||
-> +		    (new_crtc_state->bigjoiner && !new_crtc_state->bigjoiner_slave))
->  			continue;
->  =
-
->  		modeset_pipes &=3D ~BIT(pipe);
-> @@ -16120,7 +16139,7 @@ static void skl_commit_modeset_enables(struct int=
-el_atomic_state *state)
->  =
-
->  	/*
->  	 * Then we enable all remaining pipes that depend on other
-> -	 * pipes: MST slaves and port sync masters.
-> +	 * pipes: MST slaves and port sync masters, big joiner master
->  	 */
->  	for_each_new_intel_crtc_in_state(state, crtc, new_crtc_state, i) {
->  		enum pipe pipe =3D crtc->pipe;
-> @@ -16128,6 +16147,10 @@ static void skl_commit_modeset_enables(struct in=
-tel_atomic_state *state)
->  		if ((modeset_pipes & BIT(pipe)) =3D=3D 0)
->  			continue;
->  =
-
-> +		WARN_ON(skl_ddb_allocation_overlaps(&new_entries[pipe],
-> +						    entries, I915_MAX_PIPES, pipe));
-> +
-> +		entries[pipe] =3D new_entries[pipe];
->  		modeset_pipes &=3D ~BIT(pipe);
->  =
-
->  		intel_enable_crtc(state, crtc);
-> @@ -16142,10 +16165,10 @@ static void skl_commit_modeset_enables(struct i=
-ntel_atomic_state *state)
->  		if ((update_pipes & BIT(pipe)) =3D=3D 0)
->  			continue;
->  =
-
-> -		drm_WARN_ON(&dev_priv->drm, skl_ddb_allocation_overlaps(&new_crtc_stat=
-e->wm.skl.ddb,
-> +		drm_WARN_ON(&dev_priv->drm, skl_ddb_allocation_overlaps(&new_entries[p=
-ipe],
->  									entries, I915_MAX_PIPES, pipe));
->  =
-
-> -		entries[pipe] =3D new_crtc_state->wm.skl.ddb;
-> +		entries[pipe] =3D new_entries[pipe];
->  		update_pipes &=3D ~BIT(pipe);
->  =
-
->  		intel_update_crtc(state, crtc);
-> diff --git a/drivers/gpu/drm/i915/display/intel_sprite.c b/drivers/gpu/dr=
-m/i915/display/intel_sprite.c
-> index 9e235210adc7..1c740a22a8d7 100644
-> --- a/drivers/gpu/drm/i915/display/intel_sprite.c
-> +++ b/drivers/gpu/drm/i915/display/intel_sprite.c
-> @@ -103,6 +103,8 @@ void intel_pipe_update_start(const struct intel_crtc_=
-state *new_crtc_state)
->  =
-
->  	/* FIXME needs to be calibrated sensibly */
->  	min =3D vblank_start - intel_usecs_to_scanlines(adjusted_mode,
-> +						      new_crtc_state->bigjoiner ?
-> +						      2 * VBLANK_EVASION_TIME_US :
->  						      VBLANK_EVASION_TIME_US);
->  	max =3D vblank_start - 1;
->  =
-
-> @@ -227,7 +229,8 @@ void intel_pipe_update_end(struct intel_crtc_state *n=
-ew_crtc_state)
->  =
-
->  		spin_lock(&crtc->base.dev->event_lock);
->  		drm_crtc_arm_vblank_event(&crtc->base,
-> -				          new_crtc_state->uapi.event);
-> +					  new_crtc_state->uapi.event);
-> +
-
-Spurious whitespace change.
-
->  		spin_unlock(&crtc->base.dev->event_lock);
->  =
-
->  		new_crtc_state->uapi.event =3D NULL;
-> -- =
-
-> 2.19.1
-> =
-
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+DFP's have nothing to do with bigjoiner. It is a purely internal
+implemntation detail of our display engine. So mixing up the two
+would be very wrong.
 
 -- =
 
