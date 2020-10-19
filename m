@@ -1,43 +1,30 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 87262292F71
-	for <lists+intel-gfx@lfdr.de>; Mon, 19 Oct 2020 22:31:08 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 28B7D292F8D
+	for <lists+intel-gfx@lfdr.de>; Mon, 19 Oct 2020 22:38:51 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EE66C6EA75;
-	Mon, 19 Oct 2020 20:31:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 398266EA76;
+	Mon, 19 Oct 2020 20:38:48 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5C9596EA75
- for <intel-gfx@lists.freedesktop.org>; Mon, 19 Oct 2020 20:31:06 +0000 (UTC)
-IronPort-SDR: eaWhif+XqpqTuQwZiOLEYztj1S4dKY8oACWOo/1KWvztvdRklpa1P654wxEkHBpL7xf+kNwd+U
- oMHx8pE6Vg5w==
-X-IronPort-AV: E=McAfee;i="6000,8403,9779"; a="184715981"
-X-IronPort-AV: E=Sophos;i="5.77,395,1596524400"; d="scan'208";a="184715981"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Oct 2020 13:30:55 -0700
-IronPort-SDR: Rt4ILKqitJ22dgmVmQvU7QQHxdaPQlAcmdBmjHmmUWvSWRtkafSPMiCDSabr5CejJ7A3jX8Rlh
- Ki9Z9YUq59qw==
-X-IronPort-AV: E=Sophos;i="5.77,395,1596524400"; d="scan'208";a="358268395"
-Received: from mdroper-desk1.fm.intel.com (HELO
- mdroper-desk1.amr.corp.intel.com) ([10.1.27.168])
- by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Oct 2020 13:30:53 -0700
-Date: Mon, 19 Oct 2020 13:30:51 -0700
-From: Matt Roper <matthew.d.roper@intel.com>
-To: =?iso-8859-1?Q?Jos=E9?= Roberto de Souza <jose.souza@intel.com>
-Message-ID: <20201019203051.GR3805439@mdroper-desk1.amr.corp.intel.com>
-References: <20201019175609.28715-1-jose.souza@intel.com>
+Received: from fireflyinternet.com (unknown [77.68.26.236])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9324A6EA76
+ for <intel-gfx@lists.freedesktop.org>; Mon, 19 Oct 2020 20:38:45 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from build.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 22760834-1500050 
+ for multiple; Mon, 19 Oct 2020 21:38:26 +0100
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Mon, 19 Oct 2020 21:38:25 +0100
+Message-Id: <20201019203825.10966-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20201019175609.28715-1-jose.souza@intel.com>
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/display/fbc: Implement WA
- 22010751166
+Subject: [Intel-gfx] [PATCH] drm/i915/gem: Flush coherency domains on first
+ set-domain-ioctl
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,91 +37,64 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Cc: stable@vger.kernel.org, Chris Wilson <chris@chris-wilson.co.uk>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Oct 19, 2020 at 10:56:09AM -0700, Jos=E9 Roberto de Souza wrote:
-> Underruns happens when plane height + y offset is not a module of 4
-
-I think you meant 'modulo' rather than 'module' here.
-
-> when FBC is enabled.
-
-Technically the workaround calls for us to just do our FBC disables for
-non-modulo 4 planes when the scanline is at vactive-10, but that doesn't
-seem to be something that's actually feasible to do at the software
-level.  Just keeping FBC disabled when working with planes of the
-problematic size as you do here does seem like the safest approach.
-Should we make a note of our slight deviation from the workaround
-details here?
-
-> =
-
-> Specification says that it only affects TGL display C stepping and
-> newer but to simply the check and as TGL is already in final costumers
-> hands, pre-production display stepping A and B was also included.
-> =
-
-> BSpec: 52887 ICL
-> BSpec: 52888 EHL/JSL
-> BSpec: 52890/55378 TGL
-> BSpec: 53508 DG1
-> BSpec: 53273 RKL
-> Signed-off-by: Jos=E9 Roberto de Souza <jose.souza@intel.com>
-
-Up to you whether you tweak the commit message as noted above or not.
-Otherwise,
-
-Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
-
-> ---
->  drivers/gpu/drm/i915/display/intel_fbc.c | 7 +++++++
->  1 file changed, 7 insertions(+)
-> =
-
-> diff --git a/drivers/gpu/drm/i915/display/intel_fbc.c b/drivers/gpu/drm/i=
-915/display/intel_fbc.c
-> index 135f5e8a4d70..a5b072816a7b 100644
-> --- a/drivers/gpu/drm/i915/display/intel_fbc.c
-> +++ b/drivers/gpu/drm/i915/display/intel_fbc.c
-> @@ -907,6 +907,13 @@ static bool intel_fbc_can_activate(struct intel_crtc=
- *crtc)
->  		return false;
->  	}
->  =
-
-> +	/* Wa_22010751166: icl, ehl, tgl, dg1, rkl */
-> +	if (INTEL_GEN(dev_priv) >=3D 11 &&
-> +	    (cache->plane.src_h + cache->plane.adjusted_y) % 4) {
-> +		fbc->no_fbc_reason =3D "plane height + offset is non-modulo of 4";
-> +		return false;
-> +	}
-> +
->  	return true;
->  }
->  =
-
-> -- =
-
-> 2.28.0
-> =
-
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
--- =
-
-Matt Roper
-Graphics Software Engineer
-VTT-OSGC Platform Enablement
-Intel Corporation
-(916) 356-2795
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+QXZvaWQgc2tpcHBpbmcgd2hhdCBhcHBlYXJzIHRvIGJlIGEgbm8tb3Agc2V0LWRvbWFpbi1pb2N0
+bCBpZiB0aGUgY2FjaGUKY29oZXJlbmN5IHN0YXRlIGlzIGluY29uc2lzdGVudCB3aXRoIG91ciB0
+YXJnZXQgZG9tYWluLiBUaGlzIGFsc28gaGFzCnRoZSB1dGlsaXR5IG9mIHVzaW5nIHRoZSBwb3B1
+bGF0aW9uIG9mIHRoZSBwYWdlcyB0byB2YWxpZGF0ZSB0aGUgYmFja2luZwpzdG9yZS4KClRoZSBk
+YW5nZXIgaW4gc2tpcHBpbmcgdGhlIGZpcnN0IHNldC1kb21haW4gaXMgbGVhdmluZyB0aGUgY2Fj
+aGUKaW5jb25zaXN0ZW50IGFuZCBzdWJtaXR0aW5nIHN0YWxlIGRhdGEsIG9yIHdvcnNlIGxlYXZp
+bmcgdGhlIGNsZWFuIGRhdGEKaW4gdGhlIGNhY2hlIGFuZCBub3QgZmx1c2hpbmcgaXQgdG8gdGhl
+IEdQVS4gVGhlIGltcGFjdCBzaG91bGQgYmUgc21hbGwKYXMgaXQgcmVxdWlyZXMgYSBuby1vcCBz
+ZXQtZG9tYWluIGFzIHRoZSB2ZXJ5IGZpcnN0IGlvY3RsIGluIGEKcGFydGljdWxhciBzZXF1ZW5j
+ZSBub3QgZm91bmQgaW4gdHlwaWNhbCB1c2Vyc3BhY2UuCgpSZXBvcnRlZC1ieTogWmJpZ25pZXcg
+S2VtcGN6ecWEc2tpIDx6Ymlnbmlldy5rZW1wY3p5bnNraUBpbnRlbC5jb20+CkZpeGVzOiA3NTRh
+MjU0NDI3MDUgKCJkcm0vaTkxNTogU2tpcCBvYmplY3QgbG9ja2luZyBhcm91bmQgYSBuby1vcCBz
+ZXQtZG9tYWluIGlvY3RsIikKVGVzdGNhc2U6IGlndC9nZW1fbW1hcF9vZmZzZXQvYmx0LWNvaGVy
+ZW5jeQpTaWduZWQtb2ZmLWJ5OiBDaHJpcyBXaWxzb24gPGNocmlzQGNocmlzLXdpbHNvbi5jby51
+az4KQ2M6IEpvb25hcyBMYWh0aW5lbiA8am9vbmFzLmxhaHRpbmVuQGxpbnV4LmludGVsLmNvbT4K
+Q2M6IE1hdHRoZXcgQXVsZCA8bWF0dGhldy53aWxsaWFtLmF1bGRAZ21haWwuY29tPgpDYzogWmJp
+Z25pZXcgS2VtcGN6ecWEc2tpIDx6Ymlnbmlldy5rZW1wY3p5bnNraUBpbnRlbC5jb20+CkNjOiA8
+c3RhYmxlQHZnZXIua2VybmVsLm9yZz4gIyB2NS4yKwotLS0KIGRyaXZlcnMvZ3B1L2RybS9pOTE1
+L2dlbS9pOTE1X2dlbV9kb21haW4uYyB8IDI4ICsrKysrKysrKystLS0tLS0tLS0tLS0KIDEgZmls
+ZSBjaGFuZ2VkLCAxMyBpbnNlcnRpb25zKCspLCAxNSBkZWxldGlvbnMoLSkKCmRpZmYgLS1naXQg
+YS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9nZW0vaTkxNV9nZW1fZG9tYWluLmMgYi9kcml2ZXJzL2dw
+dS9kcm0vaTkxNS9nZW0vaTkxNV9nZW1fZG9tYWluLmMKaW5kZXggN2M5MGE2M2MyNzNkLi5mY2Nl
+NjkwOWYyMDEgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2dlbS9pOTE1X2dlbV9k
+b21haW4uYworKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9nZW0vaTkxNV9nZW1fZG9tYWluLmMK
+QEAgLTUwOCwyMSArNTA4LDYgQEAgaTkxNV9nZW1fc2V0X2RvbWFpbl9pb2N0bChzdHJ1Y3QgZHJt
+X2RldmljZSAqZGV2LCB2b2lkICpkYXRhLAogCWlmICghb2JqKQogCQlyZXR1cm4gLUVOT0VOVDsK
+IAotCS8qCi0JICogQWxyZWFkeSBpbiB0aGUgZGVzaXJlZCB3cml0ZSBkb21haW4/IE5vdGhpbmcg
+Zm9yIHVzIHRvIGRvIQotCSAqCi0JICogV2UgYXBwbHkgYSBsaXR0bGUgYml0IG9mIGN1bm5pbmcg
+aGVyZSB0byBjYXRjaCBhIGJyb2FkZXIgc2V0IG9mCi0JICogbm8tb3BzLiBJZiBvYmotPndyaXRl
+X2RvbWFpbiBpcyBzZXQsIHdlIG11c3QgYmUgaW4gdGhlIHNhbWUKLQkgKiBvYmotPnJlYWRfZG9t
+YWlucywgYW5kIG9ubHkgdGhhdCBkb21haW4uIFRoZXJlZm9yZSwgaWYgdGhhdAotCSAqIG9iai0+
+d3JpdGVfZG9tYWluIG1hdGNoZXMgdGhlIHJlcXVlc3QgcmVhZF9kb21haW5zLCB3ZSBhcmUKLQkg
+KiBhbHJlYWR5IGluIHRoZSBzYW1lIHJlYWQvd3JpdGUgZG9tYWluIGFuZCBjYW4gc2tpcCB0aGUg
+b3BlcmF0aW9uLAotCSAqIHdpdGhvdXQgaGF2aW5nIHRvIGZ1cnRoZXIgY2hlY2sgdGhlIHJlcXVl
+c3RlZCB3cml0ZV9kb21haW4uCi0JICovCi0JaWYgKFJFQURfT05DRShvYmotPndyaXRlX2RvbWFp
+bikgPT0gcmVhZF9kb21haW5zKSB7Ci0JCWVyciA9IDA7Ci0JCWdvdG8gb3V0OwotCX0KLQogCS8q
+CiAJICogVHJ5IHRvIGZsdXNoIHRoZSBvYmplY3Qgb2ZmIHRoZSBHUFUgd2l0aG91dCBob2xkaW5n
+IHRoZSBsb2NrLgogCSAqIFdlIHdpbGwgcmVwZWF0IHRoZSBmbHVzaCBob2xkaW5nIHRoZSBsb2Nr
+IGluIHRoZSBub3JtYWwgbWFubmVyCkBAIC01NjAsNiArNTQ1LDE5IEBAIGk5MTVfZ2VtX3NldF9k
+b21haW5faW9jdGwoc3RydWN0IGRybV9kZXZpY2UgKmRldiwgdm9pZCAqZGF0YSwKIAlpZiAoZXJy
+KQogCQlnb3RvIG91dDsKIAorCS8qCisJICogQWxyZWFkeSBpbiB0aGUgZGVzaXJlZCB3cml0ZSBk
+b21haW4/IE5vdGhpbmcgZm9yIHVzIHRvIGRvIQorCSAqCisJICogV2UgYXBwbHkgYSBsaXR0bGUg
+Yml0IG9mIGN1bm5pbmcgaGVyZSB0byBjYXRjaCBhIGJyb2FkZXIgc2V0IG9mCisJICogbm8tb3Bz
+LiBJZiBvYmotPndyaXRlX2RvbWFpbiBpcyBzZXQsIHdlIG11c3QgYmUgaW4gdGhlIHNhbWUKKwkg
+KiBvYmotPnJlYWRfZG9tYWlucywgYW5kIG9ubHkgdGhhdCBkb21haW4uIFRoZXJlZm9yZSwgaWYg
+dGhhdAorCSAqIG9iai0+d3JpdGVfZG9tYWluIG1hdGNoZXMgdGhlIHJlcXVlc3QgcmVhZF9kb21h
+aW5zLCB3ZSBhcmUKKwkgKiBhbHJlYWR5IGluIHRoZSBzYW1lIHJlYWQvd3JpdGUgZG9tYWluIGFu
+ZCBjYW4gc2tpcCB0aGUgb3BlcmF0aW9uLAorCSAqIHdpdGhvdXQgaGF2aW5nIHRvIGZ1cnRoZXIg
+Y2hlY2sgdGhlIHJlcXVlc3RlZCB3cml0ZV9kb21haW4uCisJICovCisJaWYgKFJFQURfT05DRShv
+YmotPndyaXRlX2RvbWFpbikgPT0gcmVhZF9kb21haW5zKQorCQlnb3RvIG91dF91bnBpbjsKKwog
+CWVyciA9IGk5MTVfZ2VtX29iamVjdF9sb2NrX2ludGVycnVwdGlibGUob2JqLCBOVUxMKTsKIAlp
+ZiAoZXJyKQogCQlnb3RvIG91dF91bnBpbjsKLS0gCjIuMjAuMQoKX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRl
+bC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3Jn
+L21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
