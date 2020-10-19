@@ -2,41 +2,42 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 60CC9292D99
-	for <lists+intel-gfx@lfdr.de>; Mon, 19 Oct 2020 20:33:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A92DC292D9D
+	for <lists+intel-gfx@lfdr.de>; Mon, 19 Oct 2020 20:35:19 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8260A6EA30;
-	Mon, 19 Oct 2020 18:33:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 124936EA35;
+	Mon, 19 Oct 2020 18:35:18 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D18166EA30;
- Mon, 19 Oct 2020 18:33:46 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 22760069-1500050 for multiple; Mon, 19 Oct 2020 19:33:33 +0100
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B06BC6EA35
+ for <intel-gfx@lists.freedesktop.org>; Mon, 19 Oct 2020 18:35:16 +0000 (UTC)
+IronPort-SDR: meysofN1N/jgdzwHBjbbbeQtTBPhHYuDtdb3qHaLgWTFTQ50dUSEiqbUt4LSixDKr98n71riSJ
+ qGYe4Jh7vegA==
+X-IronPort-AV: E=McAfee;i="6000,8403,9779"; a="166304744"
+X-IronPort-AV: E=Sophos;i="5.77,395,1596524400"; d="scan'208";a="166304744"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Oct 2020 11:35:12 -0700
+IronPort-SDR: cjG7EmX4D7hD3jifVfPObczLzgt/NSIWIKw7up7eladp1K3Gwf5P+3qCGyJEJltUhSQo3qATa5
+ sLpdOsZ17lSA==
+X-IronPort-AV: E=Sophos;i="5.77,395,1596524400"; d="scan'208";a="422266563"
+Received: from rdvivi-losangeles.jf.intel.com (HELO intel.com)
+ ([10.165.21.201])
+ by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Oct 2020 11:35:12 -0700
+Date: Mon, 19 Oct 2020 14:36:52 -0400
+From: Rodrigo Vivi <rodrigo.vivi@intel.com>
+To: Chris Wilson <chris@chris-wilson.co.uk>
+Message-ID: <20201019183652.GC3149316@intel.com>
+References: <20201019175310.GH2616619@intel.com>
+ <160313151290.4425.4599710652649306435@build.alporthouse.com>
 MIME-Version: 1.0
-In-Reply-To: <20201019182936.GA3149316@intel.com>
-References: <20201006145632.117291-1-srinivasx.k@intel.com>
- <2f7809798dd0b59246d67c5044dafb1e518fc4c5.camel@intel.com>
- <160200650945.2919.11750150118902885340@build.alporthouse.com>
- <3CDB63EE-D1CD-43E4-A977-4E966CD19313@intel.com>
- <c88bc0fbc4956395324674ca202b395326208888.camel@intel.com>
- <BYAPR11MB3014087624B8206C05362830F9080@BYAPR11MB3014.namprd11.prod.outlook.com>
- <B6C174E8-161A-43BD-AFDA-21C94F6D56E3@intel.com>
- <BY5PR11MB44341733BF4A7CCB79861322F6080@BY5PR11MB4434.namprd11.prod.outlook.com>
- <BYAPR11MB30149153D9229142DD2CF96BF9020@BYAPR11MB3014.namprd11.prod.outlook.com>
- <20201019182936.GA3149316@intel.com>
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: "K, SrinivasX" <srinivasx.k@intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
-Date: Mon, 19 Oct 2020 19:33:32 +0100
-Message-ID: <160313241261.4425.3184593266306110227@build.alporthouse.com>
-User-Agent: alot/0.9
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/ehl: Remove require_force_probe
- protection
+Content-Disposition: inline
+In-Reply-To: <160313151290.4425.4599710652649306435@build.alporthouse.com>
+Subject: Re: [Intel-gfx] Fixes that failed cherry-pick to 5.10
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,26 +50,33 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Pandey, Hariom" <hariom.pandey@intel.com>, "Nikula,
- Jani" <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org,
+ Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Rodrigo Vivi (2020-10-19 19:29:36)
+On Mon, Oct 19, 2020 at 07:18:32PM +0100, Chris Wilson wrote:
+> Quoting Rodrigo Vivi (2020-10-19 18:53:10)
+> > Hi Chris and Ville,
+> > 
+> > Failed to cherry-pick:
+> > 233c1ae3c83f ("drm/i915/gt: Wait for CSB entries on Tigerlake")
 > 
-> I just checked the CI picture and it looks much better indeed.
-> 
-> Only bad case being the gt_pm, which is also failing on other platforms.
+> See https://cgit.freedesktop.org/~ickle/linux-2.6/log/?h=dif for the
+> dependencies.
 
-Not nearly in the same manner. CI is indicating that there is no RC6
-entry and no power saving at all; neither in the selftests nor visible
-from userspace. That is a critical battery eating bug.
+Thanks.
 
-If there's a patch to fix it for ehl and jsl, send it to CI for proving.
--Chris
+And the other one was already there, but dim got confused.
+Please disregard that.
+
+> -Chris
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
