@@ -2,36 +2,46 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3F930293BF4
-	for <lists+intel-gfx@lfdr.de>; Tue, 20 Oct 2020 14:41:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 197A3293BF7
+	for <lists+intel-gfx@lfdr.de>; Tue, 20 Oct 2020 14:41:19 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B1F916EC8B;
-	Tue, 20 Oct 2020 12:41:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7D6896EC8C;
+	Tue, 20 Oct 2020 12:41:17 +0000 (UTC)
 X-Original-To: Intel-gfx@lists.freedesktop.org
 Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 822946EC8B
- for <Intel-gfx@lists.freedesktop.org>; Tue, 20 Oct 2020 12:41:12 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 22766983-1500050 for multiple; Tue, 20 Oct 2020 13:40:35 +0100
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 59EAD6EC8B
+ for <Intel-gfx@lists.freedesktop.org>; Tue, 20 Oct 2020 12:41:13 +0000 (UTC)
+IronPort-SDR: jYAgiFOgIsyIu2uw82OMMHDAZbKcLN7qFTfGYYGqc/tj/71Q+FweYU/7hRxQiIFAOjce/jPXZ8
+ L+7QFbNcyY+w==
+X-IronPort-AV: E=McAfee;i="6000,8403,9779"; a="146493339"
+X-IronPort-AV: E=Sophos;i="5.77,397,1596524400"; d="scan'208";a="146493339"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Oct 2020 05:41:12 -0700
+IronPort-SDR: LLeBPCQLGk/dai9hXwwQOMH9Mfra4D9WYS1dtEuvG4jHHh58mcNHIKMxm0kHrO8ujhBivid01S
+ iKZfrHL0XzTQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.77,397,1596524400"; d="scan'208";a="320635462"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
+ by orsmga006.jf.intel.com with SMTP; 20 Oct 2020 05:41:09 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Tue, 20 Oct 2020 15:41:08 +0300
+Date: Tue, 20 Oct 2020 15:41:08 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Khaled Almahallawy <khaled.almahallawy@intel.com>
+Message-ID: <20201020124108.GX6112@intel.com>
+References: <20201020074555.24315-1-khaled.almahallawy@intel.com>
 MIME-Version: 1.0
-In-Reply-To: <46422560-ca2e-474a-ab07-1107153f1229@linux.intel.com>
-References: <20201020100822.543332-1-tvrtko.ursulin@linux.intel.com>
- <20201020100822.543332-2-tvrtko.ursulin@linux.intel.com>
- <160319519741.15830.12777651851324275501@build.alporthouse.com>
- <160319580270.15830.9644634406956362493@build.alporthouse.com>
- <46422560-ca2e-474a-ab07-1107153f1229@linux.intel.com>
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: Intel-gfx@lists.freedesktop.org,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Date: Tue, 20 Oct 2020 13:40:33 +0100
-Message-ID: <160319763357.15830.6451291888634667832@build.alporthouse.com>
-User-Agent: alot/0.9
-Subject: Re: [Intel-gfx] [PATCH 2/2] drm/i915/pmu: Fix CPU hotplug with
- multiple GPUs
+Content-Disposition: inline
+In-Reply-To: <20201020074555.24315-1-khaled.almahallawy@intel.com>
+X-Patchwork-Hint: comment
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/tgl: Set
+ drm_crtc_state.active=false for all added disconnected CRTCs sharing MST
+ stream.
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,142 +54,74 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Daniel Vetter <daniel.vetter@intel.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: Daniel Vetter <daniel.vetter@ffwll.ch>, Intel-gfx@lists.freedesktop.org,
+ seanpaul@chromium.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Tvrtko Ursulin (2020-10-20 13:33:12)
-> 
-> On 20/10/2020 13:10, Chris Wilson wrote:
-> > Quoting Chris Wilson (2020-10-20 12:59:57)
-> >> Quoting Tvrtko Ursulin (2020-10-20 11:08:22)
-> >>> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-> >>>
-> >>> Since we keep a driver global mask of online CPUs and base the decision
-> >>> whether PMU needs to be migrated upon it, we need to make sure the
-> >>> migration is done for all registered PMUs (so GPUs).
-> >>>
-> >>> To do this we need to track the current CPU for each PMU and base the
-> >>> decision on whether to migrate on a comparison between global and local
-> >>> state.
-> >>>
-> >>> At the same time, since dynamic CPU hotplug notification slots are a
-> >>> scarce resource and given how we already register the multi instance type
-> >>> state, we can and should add multiple instance of the i915 PMU to this
-> >>> same state and not allocate a new one for every GPU.
-> >>>
-> >>> v2:
-> >>>   * Use pr_notice. (Chris)
-> >>>
-> >>> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-> >>> Suggested-by: Daniel Vetter <daniel.vetter@intel.com> # dynamic slot optimisation
-> >>> Cc: Chris Wilson <chris@chris-wilson.co.uk>
-> >>> ---
-> >>>   drivers/gpu/drm/i915/i915_pci.c |  7 ++++-
-> >>>   drivers/gpu/drm/i915/i915_pmu.c | 50 ++++++++++++++++++++-------------
-> >>>   drivers/gpu/drm/i915/i915_pmu.h |  6 +++-
-> >>>   3 files changed, 41 insertions(+), 22 deletions(-)
-> >>>
-> >>> diff --git a/drivers/gpu/drm/i915/i915_pci.c b/drivers/gpu/drm/i915/i915_pci.c
-> >>> index 27964ac0638a..a384f51c91c1 100644
-> >>> --- a/drivers/gpu/drm/i915/i915_pci.c
-> >>> +++ b/drivers/gpu/drm/i915/i915_pci.c
-> >>> @@ -1150,9 +1150,13 @@ static int __init i915_init(void)
-> >>>                  return 0;
-> >>>          }
-> >>>   
-> >>> +       i915_pmu_init();
-> >>> +
-> >>>          err = pci_register_driver(&i915_pci_driver);
-> >>> -       if (err)
-> >>> +       if (err) {
-> >>> +               i915_pmu_exit();
-> >>>                  return err;
-> >>> +       }
-> >>>   
-> >>>          i915_perf_sysctl_register();
-> >>>          return 0;
-> >>> @@ -1166,6 +1170,7 @@ static void __exit i915_exit(void)
-> >>>          i915_perf_sysctl_unregister();
-> >>>          pci_unregister_driver(&i915_pci_driver);
-> >>>          i915_globals_exit();
-> >>> +       i915_pmu_exit();
-> >>>   }
-> >>>   
-> >>>   module_init(i915_init);
-> >>> diff --git a/drivers/gpu/drm/i915/i915_pmu.c b/drivers/gpu/drm/i915/i915_pmu.c
-> >>> index 51ed7d0efcdc..0d6c0945621e 100644
-> >>> --- a/drivers/gpu/drm/i915/i915_pmu.c
-> >>> +++ b/drivers/gpu/drm/i915/i915_pmu.c
-> >>> @@ -30,6 +30,7 @@
-> >>>   #define ENGINE_SAMPLE_BITS (1 << I915_PMU_SAMPLE_BITS)
-> >>>   
-> >>>   static cpumask_t i915_pmu_cpumask;
-> >>> +static unsigned int i915_pmu_target_cpu = -1;
-> >>>   
-> >>>   static u8 engine_config_sample(u64 config)
-> >>>   {
-> >>> @@ -1049,25 +1050,32 @@ static int i915_pmu_cpu_online(unsigned int cpu, struct hlist_node *node)
-> >>>   static int i915_pmu_cpu_offline(unsigned int cpu, struct hlist_node *node)
-> >>>   {
-> >>>          struct i915_pmu *pmu = hlist_entry_safe(node, typeof(*pmu), cpuhp.node);
-> >>> -       unsigned int target;
-> >>> +       unsigned int target = i915_pmu_target_cpu;
-> >>
-> >> So we still have multiple callbacks, one per pmu. But each callback is
-> >> now stored in a list from the cpuhp_slot instead of each callback having
-> >> its own slot.
-> >>
-> >>>   
-> >>>          GEM_BUG_ON(!pmu->base.event_init);
-> >>>   
-> >>>          if (cpumask_test_and_clear_cpu(cpu, &i915_pmu_cpumask)) {
-> >>
-> >> On first callback...
-> >>
-> >>>                  target = cpumask_any_but(topology_sibling_cpumask(cpu), cpu);
-> >>
-> >> Pick any other cpu.
-> >>
-> >>> +
-> >>>                  /* Migrate events if there is a valid target */
-> >>>                  if (target < nr_cpu_ids) {
-> >>>                          cpumask_set_cpu(target, &i915_pmu_cpumask);
-> >>> -                       perf_pmu_migrate_context(&pmu->base, cpu, target);
-> >>> +                       i915_pmu_target_cpu = target;
-> >>
-> >> Store target for all callbacks.
-> >>
-> >>>                  }
-> >>>          }
-> >>>   
-> >>> +       if (target < nr_cpu_ids && target != pmu->cpuhp.cpu) {
-> >>
-> >> If global [i915_pmu_target_cpu] target has changed, update perf.
-> >>
-> >>> +               perf_pmu_migrate_context(&pmu->base, cpu, target);
-> >>> +               pmu->cpuhp.cpu = target;
-> >>
-> >> It is claimed that cpuhp_state_remove_instance() will call the offline
-> >> callback for all online cpus... Do we need a pmu->base.state != STOPPED
-> >> guard?
-> > 
-> > s/claimed/it definitely does :)/
-> > 
-> > Or rather pmu->closed.
-> 
-> Hm why? You think perf_pmu_migrate_context accesses something in the PMU 
-> outside of the already protected entry points?
-
-If this callback is being called for every online when we unplug one
-device, we then believe that no cpus remain online for all other devices.
-Should a cpu then be offlined, target is -1u so greater than
-nr_cpu_online and we move the perf context to the void, worst case, in
-the best case we fail to migrate the perf context off the dying cpu.
--Chris
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+T24gVHVlLCBPY3QgMjAsIDIwMjAgYXQgMTI6NDU6NTVBTSAtMDcwMCwgS2hhbGVkIEFsbWFoYWxs
+YXd5IHdyb3RlOgo+IFRoaXMgcGF0Y2ggYXZvaWRzIGZhaWxpbmcgYXRvbWljIGNvbW1pdHMgc2Vu
+dCBieSB1c2VyIHNwYWNlIGJ5IG1ha2luZyBzdXJlIENSVEMvQ29ubmVjdG9yIGFkZGVkIHRvIGRy
+bV9hdG9taWNfc3RhdGUgYnkgdGhlIGRyaXZlciBhcmUgaW4gdmFsaWQgc3RhdGUuCj4gCj4gV2hl
+biBkaXNjb25uZWN0aW5nIE1TVCBodWIgd2l0aCB0d28gb3IgbW9yZSBjb25uZWN0ZWQgZGlzcGxh
+eXMuIFRoZSB1c2VyIHNwYWNlIHNlbmRzIElPQ1RMIGZvciBlYWNoIE1TVCBwaXBlIHRvIGRpc2Fi
+bGUuCj4gZHJtX2F0b21pY19zdGF0ZSBvYmplY3Qgc2VudCBmcm9tIHVzZXIgc3BhY2UgY29udGFp
+bnMgb25seSB0aGUgc3RhdGUgb2YgdGhlIGNydGMvcGlwZSBpbnRlbmRlZCB0byBkaXNhYmxlLgo+
+IEluIFRHTCwgaW50ZWxfZHBfbXN0X2F0b21pY19tYXN0ZXJfdHJhbnNfY2hlY2sgd2lsbCBhZGQg
+YWxsIG90aGVyIENSVEMgYW5kIGNvbm5lY3RvcnMgdGhhdCBzaGFyZSB0aGUgTVNUIHN0cmVhbSB0
+byBkcm1fYXRvbWljX3N0YXRlOgo+IAo+IGRybV9hdG9taWNfY29tbWl0Cj4gICAgZHJtX2F0b21p
+Y19oZWxwZXJfY2hlY2tfbW9kZXNldAo+ICAgICAgICB1cGRhdGVfY29ubmVjdG9yX3JvdXRpbmcK
+PiAgICAgICAgaW50ZWxfZHBfbXN0X2F0b21pY19jaGVjayA9IGZ1bmNzLT5hdG9taWNfY2hlY2so
+Y29ubmVjdG9yLCBzdGF0ZSk7Cj4gICAgICAgIAkgICBpbnRlbF9kcF9tc3RfYXRvbWljX21hc3Rl
+cl90cmFuc19jaGVjawo+IAkJaW50ZWxfYXRvbWljX2dldF9kaWdpdGFsX2Nvbm5lY3Rvcl9zdGF0
+ZQo+IAkJCWRybV9hdG9taWNfZ2V0X2Nvbm5lY3Rvcl9zdGF0ZSAgIDwtLSBBZGQgYWxsIENvbm5l
+Y3RvcnMKPiAJCQkgICAgZHJtX2F0b21pY19nZXRfY3J0Y19zdGF0ZSA8LS0gQWRkIGFsbCBDUlRD
+cwo+ICAgICAgICB1cGRhdGVfY29ubmVjdG9yX3JvdXRpbmcgPC0tIENoZWNrIGFkZGVkIENvbm5l
+Y3Rvci9DUlRDcyAtIFdpbGwgZmFpbAo+IAo+IEhvd2V2ZXIgdGhlIGFkZGVkIGNydGMvY29ubmVj
+dG9yIHBhaXIgd2lsbCBiZSBpbiBpbnZhbGlkIHN0YXRlIChlbmFibGVkIHN0YXRlIGZvciBhIHJl
+bW92ZWQgY29ubmVjdG9yKQo+IHRyaWdnZXJpbmcgdGhpcyBjb25kaXRpb24gaW4gZHJtX2F0b21p
+Y19oZWxwZXIuYy91cGRhdGVfY29ubmVjdG9yX3JvdXRpbmc6Cj4gCj4gCWlmICghc3RhdGUtPmR1
+cGxpY2F0ZWQgJiYgZHJtX2Nvbm5lY3Rvcl9pc191bnJlZ2lzdGVyZWQoY29ubmVjdG9yKSAmJgo+
+IAkgICAgY3J0Y19zdGF0ZS0+YWN0aXZlKSB7Cj4gCQlEUk1fREVCVUdfQVRPTUlDKCJbQ09OTkVD
+VE9SOiVkOiVzXSBpcyBub3QgcmVnaXN0ZXJlZFxuIiwKPiAJCQkJIGNvbm5lY3Rvci0+YmFzZS5p
+ZCwgY29ubmVjdG9yLT5uYW1lKTsKPiAJCXJldHVybiAtRUlOVkFMOwo+IAl9CgpZZWFoLCBJIHRo
+aW5rIHRoYXQgInJlamVjdCBtb2Rlc2V0IG9uIHVucmVnaXN0ZXJlZCBjb25uZWN0b3JzIiBpZGVh
+IGlzCmEgYml0IGJyb2tlbiBnaXZlbiBob3cgdGhlIHVhcGkgaGFzIHdvcmtlZCBpbiB0aGUgcGFz
+dC4gQ2M6aW5nIGRhbnZldAphbmQgbHl1ZGUgd2hvIElJUkMgd2VyZSBpbnZvbHZlZCB3aXRoIHRo
+YXQuCgpIbW0uIE1heWJlIHdlIGNvdWxkIGFkZCB0aGUgb3RoZXIgc3R1ZmYgdG8gdGhlIHN0YXRl
+IG9ubHkgYWZ0ZXIgdGhlCmNvbm5lY3RvciAuYXRvbWljX2NoZWNrKCkgc3R1ZmYgaGFzIGJlZW4g
+ZG9uZT8gSSBkb24ndCBxdWl0ZSByZW1lbWJlcgp3aHkgd2UgZGVjaWRlZCB0byBkbyBpdCBoZXJl
+LiBKb3PDqSBkbyB5b3UgcmVjYWxsIHRoZSBkZXRhaWxzPwoKPiAKPiBXaGljaCB3aWxsIGNhdXNl
+IHRoZSBkcm1fYXRvbWljX2NvbW1pdC9JT0NUTCBmb3IgZGlzYWJsaW5nIG9uZSBvZiBNU1Qgc3Ry
+ZWFtIHBpcGVzIChNYWluIE1TVCkgdG8gZmFpbC4KPiAKPiBUaGUgcHJvYmxlbSBoYXBwZW5zIHdo
+ZW4gYSB1c2VyIHNwYWNlIChhcyBDaHJvbWUpIGRvZXNu4oCZdCByZXRyeSBhIGZhbGxpbmcgY29t
+bWl0LCBsZWF2aW5nIGEgZGlzY29ubmVjdGVkIE1TVCBwaXBlIHN0aWxsIE9OLAo+IHdoaWNoIHdp
+bGwgcmVzdWx0IGluIGZhaWxpbmcgcmVjb25uZWN0IG9mIE1TVCBodWIgb3IgZXZlbiB3b3JzZSBs
+ZWF2aW5nIFRDIFBIWSBpbiBhIGNvbm5lY3RlZCBzdGF0ZSB3aGlsZSB0aGUgTVNUIEh1YiBpcyBk
+aXNjb25uZWN0ZWQuCj4gCj4gVGVzdGVkIG9uIFVidW50dShkcm0tdGlwKSBhbmQgQ2hyb21lKGtl
+cm5lbC1uZXh0IDUuOSByYzcpCj4gCj4gU2lnbmVkLW9mZi1ieTogS2hhbGVkIEFsbWFoYWxsYXd5
+IDxraGFsZWQuYWxtYWhhbGxhd3lAaW50ZWwuY29tPgo+IC0tLQo+ICBkcml2ZXJzL2dwdS9kcm0v
+aTkxNS9kaXNwbGF5L2ludGVsX2RwX21zdC5jIHwgMyArKysKPiAgMSBmaWxlIGNoYW5nZWQsIDMg
+aW5zZXJ0aW9ucygrKQo+IAo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNw
+bGF5L2ludGVsX2RwX21zdC5jIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9k
+cF9tc3QuYwo+IGluZGV4IGU5NDhhYWNiZDRhYi4uMWVkZTk4MDg3NmVkIDEwMDY0NAo+IC0tLSBh
+L2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZHBfbXN0LmMKPiArKysgYi9kcml2
+ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RwX21zdC5jCj4gQEAgLTI2NSw2ICsyNjUs
+OSBAQCBpbnRlbF9kcF9tc3RfYXRvbWljX21hc3Rlcl90cmFuc19jaGVjayhzdHJ1Y3QgaW50ZWxf
+Y29ubmVjdG9yICpjb25uZWN0b3IsCj4gIAkJCXJldHVybiByZXQ7Cj4gIAkJfQo+ICAJCWNydGNf
+c3RhdGUtPnVhcGkubW9kZV9jaGFuZ2VkID0gdHJ1ZTsKPiArCj4gKwkJaWYgKGNvbm5lY3Rvcl9p
+dGVyLT5iYXNlLnN0YXR1cyA9PSBjb25uZWN0b3Jfc3RhdHVzX2Rpc2Nvbm5lY3RlZCkKPiArCQkJ
+Y3J0Y19zdGF0ZS0+dWFwaS5hY3RpdmUgPSBmYWxzZTsKClRoYXQgd2lsbCBtYWtlIHRoZSBzdGF0
+ZSB1c2Vyc3BhY2UgbGFzdCBzZXQgaW5jb25zaXN0ZW50IHdpdGggd2hhdCdzCnJlYWxseSBnb2lu
+ZyBvbi4gV2hpY2ggbWVhbnMgc3VkZGVubHkgcGFnZSBmbGlwcy92Ymxhbmsgd2FpdHMgYW5kCndo
+YXRub3Qgd2lsbCBzdGFydCB0byBmYWlsLgoKQWxzbyB0aGF0IHdpbCBkaXJlY3RseSBtdXRhdGUg
+dGhlIHByb3AgdmlzaWJsZSB0byB1c2VyIHNwYWNlLCB3aGljaAppcyBub3QgaG93IHRoZXNlIHRo
+aW5ncyBhcmUgc3VwcG9zZWQgdG8gd29yay4gSSB0aGluayBpZiB3ZSBkaWQgZG8Kc29tZXRoaW5n
+IGxpa2UgdGhpcyB3ZSBzaG91bGQgbWF5YmUgaGF2ZSBzb21lIGtpbmQgb2YgaW50ZXJuYWwKZmxh
+ZyBmb3IgaXQuCgo+ICAJfQo+ICAJZHJtX2Nvbm5lY3Rvcl9saXN0X2l0ZXJfZW5kKCZjb25uZWN0
+b3JfbGlzdF9pdGVyKTsKPiAgCj4gLS0gCj4gMi4yNS4xCgotLSAKVmlsbGUgU3lyasOkbMOkCklu
+dGVsCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVs
+LWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczov
+L2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
