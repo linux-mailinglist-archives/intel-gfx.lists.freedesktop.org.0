@@ -1,34 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3A2E4293919
-	for <lists+intel-gfx@lfdr.de>; Tue, 20 Oct 2020 12:25:49 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id E6CEE293A64
+	for <lists+intel-gfx@lfdr.de>; Tue, 20 Oct 2020 14:00:13 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 914136EC45;
-	Tue, 20 Oct 2020 10:25:47 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5C6286EC5B;
+	Tue, 20 Oct 2020 12:00:07 +0000 (UTC)
+X-Original-To: Intel-gfx@lists.freedesktop.org
+Delivered-To: Intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 178936EC45
- for <intel-gfx@lists.freedesktop.org>; Tue, 20 Oct 2020 10:25:45 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4CAA16EC80
+ for <Intel-gfx@lists.freedesktop.org>; Tue, 20 Oct 2020 12:00:05 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from localhost (unverified [78.156.65.138]) 
  by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 22765413-1500050 for multiple; Tue, 20 Oct 2020 11:25:27 +0100
+ 22766519-1500050 for multiple; Tue, 20 Oct 2020 12:59:57 +0100
 MIME-Version: 1.0
-In-Reply-To: <alpine.DEB.2.21.2010191506390.5579@manul.sfritsch.de>
-References: <20201019101230.29860-1-chris@chris-wilson.co.uk>
- <20201019101523.4145-1-chris@chris-wilson.co.uk>
- <alpine.DEB.2.21.2010191506390.5579@manul.sfritsch.de>
+In-Reply-To: <20201020100822.543332-2-tvrtko.ursulin@linux.intel.com>
+References: <20201020100822.543332-1-tvrtko.ursulin@linux.intel.com>
+ <20201020100822.543332-2-tvrtko.ursulin@linux.intel.com>
 From: Chris Wilson <chris@chris-wilson.co.uk>
-To: Stefan Fritsch <sf@sfritsch.de>
-Date: Tue, 20 Oct 2020 11:25:27 +0100
-Message-ID: <160318952720.14137.17333330864672781597@build.alporthouse.com>
+To: Intel-gfx@lists.freedesktop.org,
+ Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Date: Tue, 20 Oct 2020 12:59:57 +0100
+Message-ID: <160319519741.15830.12777651851324275501@build.alporthouse.com>
 User-Agent: alot/0.9
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Force VT'd workarounds when
- running as a guest OS
+Subject: Re: [Intel-gfx] [PATCH 2/2] drm/i915/pmu: Fix CPU hotplug with
+ multiple GPUs
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,21 +41,123 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, stable@vger.kernel.org
+Cc: Daniel Vetter <daniel.vetter@intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Stefan Fritsch (2020-10-19 14:08:17)
-> Works for me and makes the fault messages disappear. Thanks.
+Quoting Tvrtko Ursulin (2020-10-20 11:08:22)
+> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 > 
-> Tested-by: Stefan Fritsch <sf@sfritsch.de>
+> Since we keep a driver global mask of online CPUs and base the decision
+> whether PMU needs to be migrated upon it, we need to make sure the
+> migration is done for all registered PMUs (so GPUs).
+> 
+> To do this we need to track the current CPU for each PMU and base the
+> decision on whether to migrate on a comparison between global and local
+> state.
+> 
+> At the same time, since dynamic CPU hotplug notification slots are a
+> scarce resource and given how we already register the multi instance type
+> state, we can and should add multiple instance of the i915 PMU to this
+> same state and not allocate a new one for every GPU.
+> 
+> v2:
+>  * Use pr_notice. (Chris)
+> 
+> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+> Suggested-by: Daniel Vetter <daniel.vetter@intel.com> # dynamic slot optimisation
+> Cc: Chris Wilson <chris@chris-wilson.co.uk>
+> ---
+>  drivers/gpu/drm/i915/i915_pci.c |  7 ++++-
+>  drivers/gpu/drm/i915/i915_pmu.c | 50 ++++++++++++++++++++-------------
+>  drivers/gpu/drm/i915/i915_pmu.h |  6 +++-
+>  3 files changed, 41 insertions(+), 22 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/i915_pci.c b/drivers/gpu/drm/i915/i915_pci.c
+> index 27964ac0638a..a384f51c91c1 100644
+> --- a/drivers/gpu/drm/i915/i915_pci.c
+> +++ b/drivers/gpu/drm/i915/i915_pci.c
+> @@ -1150,9 +1150,13 @@ static int __init i915_init(void)
+>                 return 0;
+>         }
+>  
+> +       i915_pmu_init();
+> +
+>         err = pci_register_driver(&i915_pci_driver);
+> -       if (err)
+> +       if (err) {
+> +               i915_pmu_exit();
+>                 return err;
+> +       }
+>  
+>         i915_perf_sysctl_register();
+>         return 0;
+> @@ -1166,6 +1170,7 @@ static void __exit i915_exit(void)
+>         i915_perf_sysctl_unregister();
+>         pci_unregister_driver(&i915_pci_driver);
+>         i915_globals_exit();
+> +       i915_pmu_exit();
+>  }
+>  
+>  module_init(i915_init);
+> diff --git a/drivers/gpu/drm/i915/i915_pmu.c b/drivers/gpu/drm/i915/i915_pmu.c
+> index 51ed7d0efcdc..0d6c0945621e 100644
+> --- a/drivers/gpu/drm/i915/i915_pmu.c
+> +++ b/drivers/gpu/drm/i915/i915_pmu.c
+> @@ -30,6 +30,7 @@
+>  #define ENGINE_SAMPLE_BITS (1 << I915_PMU_SAMPLE_BITS)
+>  
+>  static cpumask_t i915_pmu_cpumask;
+> +static unsigned int i915_pmu_target_cpu = -1;
+>  
+>  static u8 engine_config_sample(u64 config)
+>  {
+> @@ -1049,25 +1050,32 @@ static int i915_pmu_cpu_online(unsigned int cpu, struct hlist_node *node)
+>  static int i915_pmu_cpu_offline(unsigned int cpu, struct hlist_node *node)
+>  {
+>         struct i915_pmu *pmu = hlist_entry_safe(node, typeof(*pmu), cpuhp.node);
+> -       unsigned int target;
+> +       unsigned int target = i915_pmu_target_cpu;
 
-Thanks for the report and testing. In hindsight, this should have been
-obvious.
+So we still have multiple callbacks, one per pmu. But each callback is
+now stored in a list from the cpuhp_slot instead of each callback having
+its own slot.
 
-Pushed,
+>  
+>         GEM_BUG_ON(!pmu->base.event_init);
+>  
+>         if (cpumask_test_and_clear_cpu(cpu, &i915_pmu_cpumask)) {
+
+On first callback...
+
+>                 target = cpumask_any_but(topology_sibling_cpumask(cpu), cpu);
+
+Pick any other cpu.
+
+> +
+>                 /* Migrate events if there is a valid target */
+>                 if (target < nr_cpu_ids) {
+>                         cpumask_set_cpu(target, &i915_pmu_cpumask);
+> -                       perf_pmu_migrate_context(&pmu->base, cpu, target);
+> +                       i915_pmu_target_cpu = target;
+
+Store target for all callbacks.
+
+>                 }
+>         }
+>  
+> +       if (target < nr_cpu_ids && target != pmu->cpuhp.cpu) {
+
+If global [i915_pmu_target_cpu] target has changed, update perf.
+
+> +               perf_pmu_migrate_context(&pmu->base, cpu, target);
+> +               pmu->cpuhp.cpu = target;
+
+It is claimed that cpuhp_state_remove_instance() will call the offline
+callback for all online cpus... Do we need a pmu->base.state != STOPPED
+guard?
 -Chris
 _______________________________________________
 Intel-gfx mailing list
