@@ -2,45 +2,63 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CD9682931A9
-	for <lists+intel-gfx@lfdr.de>; Tue, 20 Oct 2020 01:03:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A747D293257
+	for <lists+intel-gfx@lfdr.de>; Tue, 20 Oct 2020 02:25:33 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 53DBA6EB81;
-	Mon, 19 Oct 2020 23:03:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 845586E958;
+	Tue, 20 Oct 2020 00:25:31 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2B9446EB81
- for <intel-gfx@lists.freedesktop.org>; Mon, 19 Oct 2020 23:03:25 +0000 (UTC)
-IronPort-SDR: DkGSH6yHORwIsd0+6bDG1M0wzWilN8M6+IoGsNqKhC5INh6RYOvvddCN6zO77QmDijxt9HpCtW
- nf4QFqx+bXEw==
-X-IronPort-AV: E=McAfee;i="6000,8403,9779"; a="184737808"
-X-IronPort-AV: E=Sophos;i="5.77,395,1596524400"; d="scan'208";a="184737808"
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CE5E96E958
+ for <intel-gfx@lists.freedesktop.org>; Tue, 20 Oct 2020 00:25:29 +0000 (UTC)
+IronPort-SDR: 2upUAOgineDboYZDDENeqLYjGS1CamDj95IB/CJ/c3whgKzXeXvY1h/TV8JoLHIaSnH3QMyJUp
+ eTz0V48wBZVg==
+X-IronPort-AV: E=McAfee;i="6000,8403,9779"; a="146424268"
+X-IronPort-AV: E=Sophos;i="5.77,395,1596524400"; d="scan'208";a="146424268"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Oct 2020 16:03:20 -0700
-IronPort-SDR: UjtYAz1L8rTsLAT8Ak7ji/4hPHm3bhM1qUjIYKXEfjscNQxy0xtQ93EhSx0X2/oF0TPVgVyu/v
- SfvTzTjcxeaA==
-X-IronPort-AV: E=Sophos;i="5.77,395,1596524400"; d="scan'208";a="465699149"
-Received: from labuser-z97x-ud5h.jf.intel.com (HELO labuser-Z97X-UD5H)
- ([10.165.21.211])
- by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Oct 2020 16:03:20 -0700
-Date: Mon, 19 Oct 2020 16:05:00 -0700
-From: "Navare, Manasi" <manasi.d.navare@intel.com>
-To: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-Message-ID: <20201019230454.GD22486@labuser-Z97X-UD5H>
-References: <20201008214535.22942-1-manasi.d.navare@intel.com>
- <20201008214535.22942-10-manasi.d.navare@intel.com>
- <20201019162619.GU6112@intel.com>
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Oct 2020 17:25:24 -0700
+IronPort-SDR: PHSBcWChxhYgOO62ZanIjNC/NOMd3KykmlbqNEPgcnRO2SHPBHwQxGgdtlOCHnmChZ4dxF2bpC
+ dKhR4kz09/FQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.77,395,1596524400"; d="scan'208";a="465722149"
+Received: from orsmsx606.amr.corp.intel.com ([10.22.229.19])
+ by orsmga004.jf.intel.com with ESMTP; 19 Oct 2020 17:25:22 -0700
+Received: from orsmsx612.amr.corp.intel.com (10.22.229.25) by
+ ORSMSX606.amr.corp.intel.com (10.22.229.19) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1713.5; Mon, 19 Oct 2020 17:25:22 -0700
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX612.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1713.5; Mon, 19 Oct 2020 17:25:21 -0700
+Received: from orsmsx610.amr.corp.intel.com ([10.22.229.23]) by
+ ORSMSX610.amr.corp.intel.com ([10.22.229.23]) with mapi id 15.01.1713.004;
+ Mon, 19 Oct 2020 17:25:21 -0700
+From: "Souza, Jose" <jose.souza@intel.com>
+To: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Thread-Topic: =?utf-8?B?4pyXIEZpLkNJLklHVDogZmFpbHVyZSBmb3IgZHJtL2k5MTUvZGlzcGxheTog?=
+ =?utf-8?Q?Program_DBUF=5FCTL_tracker_state_service_(rev2)?=
+Thread-Index: AQHWpll6aDWL2ib+iE6ZCqK0t1pTS6mgF4GA
+Date: Tue, 20 Oct 2020 00:25:21 +0000
+Message-ID: <4c884116edcf75d7631c2ff9c03cfbbc16d8262d.camel@intel.com>
+References: <20201019173906.18892-1-jose.souza@intel.com>
+ <160314062421.32024.18356269925225838430@emeril.freedesktop.org>
+In-Reply-To: <160314062421.32024.18356269925225838430@emeril.freedesktop.org>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.1.200.100]
+Content-ID: <ED62EC319E14CA439E169F818243C729@intel.com>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20201019162619.GU6112@intel.com>
-User-Agent: Mutt/1.5.24 (2015-08-30)
-Subject: Re: [Intel-gfx] [PATCH v10 10/11] drm/i915: Ensure correct
- master/slave enable/disable sequence
+Subject: Re: [Intel-gfx] 
+ =?utf-8?b?4pyXIEZpLkNJLklHVDogZmFpbHVyZSBmb3IgZHJt?=
+ =?utf-8?q?/i915/display=3A_Program_DBUF=5FCTL_tracker_state_service_=28re?=
+ =?utf-8?b?djIp?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,307 +71,102 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Oct 19, 2020 at 07:26:19PM +0300, Ville Syrj=E4l=E4 wrote:
-> On Thu, Oct 08, 2020 at 02:45:34PM -0700, Manasi Navare wrote:
-> > From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-> > =
-
-> > Enabling is done in a special sequence and so should plane updates
-> > be. Ideally the end user never notices the second pipe is used.
-> > =
-
-> > This way ideally everything will be tear free, and updates are
-> > really atomic as userspace expects it.
-> > =
-
-> > This uses generic modeset_enables() calls like trans port sync
-> > but still has special handling for disable since for slave we
-> > should not disable things like encoder, plls that are not enabled
-> > for  slave.
-> > =
-
-> > v3:
-> > * Fixes in enable and disable sequence from testing (Manasi)
-> > v2:
-> > * Manual Rebase (Manasi)
-> > * Refactoring on intel_update_crtc and enable_crtc and removing
-> > special trans_port_sync_update (Manasi)
-> > =
-
-> > Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-> > Signed-off-by: Manasi Navare <manasi.d.navare@intel.com>
-> > ---
-> >  drivers/gpu/drm/i915/display/intel_display.c | 55 ++++++++++++++------
-> >  drivers/gpu/drm/i915/display/intel_sprite.c  |  5 +-
-> >  2 files changed, 43 insertions(+), 17 deletions(-)
-> > =
-
-> > diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu=
-/drm/i915/display/intel_display.c
-> > index 357cc2bce300..101ddd0b48ab 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_display.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> > @@ -15878,6 +15878,9 @@ static void intel_enable_crtc(struct intel_atom=
-ic_state *state,
-> >  =
-
-> >  	dev_priv->display.crtc_enable(state, crtc);
-> >  =
-
-> > +	if (new_crtc_state->bigjoiner_slave)
-> > +		return;
-> > +
-> >  	/* vblanks work again, re-enable pipe CRC. */
-> >  	intel_crtc_enable_pipe_crc(crtc);
-> >  }
-> > @@ -15914,9 +15917,7 @@ static void intel_update_crtc(struct intel_atom=
-ic_state *state,
-> >  =
-
-> >  	commit_pipe_config(state, crtc);
-> >  =
-
-> > -	if (new_crtc_state->bigjoiner) {
-> > -	/* Not supported yet */
-> > -	} else if (INTEL_GEN(dev_priv) >=3D 9)
-> > +	if (INTEL_GEN(dev_priv) >=3D 9)
-> >  		skl_update_planes_on_crtc(state, crtc);
-> >  	else
-> >  		i9xx_update_planes_on_crtc(state, crtc);
-> > @@ -15945,9 +15946,17 @@ static void intel_old_crtc_state_disables(stru=
-ct intel_atomic_state *state,
-> >  	drm_WARN_ON(&dev_priv->drm, old_crtc_state->bigjoiner_slave);
-> >  =
-
-> >  	intel_crtc_disable_planes(state, crtc);
-> > -	if (old_crtc_state->bigjoiner)
-> > +
-> > +	/*
-> > +	 * We still need special handling for disabling bigjoiner master
-> > +	 * and slaves since for slave we do not have encoder or plls
-> > +	 * so we dont need to disable those.
-> > +	 */
-> > +	if (old_crtc_state->bigjoiner) {
-> >  		intel_crtc_disable_planes(state,
-> >  					  old_crtc_state->bigjoiner_linked_crtc);
-> > +		old_crtc_state->bigjoiner_linked_crtc->active =3D false;
-> > +	}
-> >  =
-
-> >  	/*
-> >  	 * We need to disable pipe CRC before disabling the pipe,
-> > @@ -15977,7 +15986,7 @@ static void intel_commit_modeset_disables(struc=
-t intel_atomic_state *state)
-> >  	/* Only disable port sync and MST slaves */
-> >  	for_each_oldnew_intel_crtc_in_state(state, crtc, old_crtc_state,
-> >  					    new_crtc_state, i) {
-> > -		if (!needs_modeset(new_crtc_state) || old_crtc_state->bigjoiner_slav=
-e)
-> > +		if (!needs_modeset(new_crtc_state) || old_crtc_state->bigjoiner)
-> >  			continue;
-> >  =
-
-> >  		if (!old_crtc_state->hw.active)
-> > @@ -16040,6 +16049,7 @@ static void skl_commit_modeset_enables(struct i=
-ntel_atomic_state *state)
-> >  	struct intel_crtc *crtc;
-> >  	struct intel_crtc_state *old_crtc_state, *new_crtc_state;
-> >  	struct skl_ddb_entry entries[I915_MAX_PIPES] =3D {};
-> > +	struct skl_ddb_entry new_entries[I915_MAX_PIPES] =3D {};
-> >  	u8 update_pipes =3D 0, modeset_pipes =3D 0;
-> >  	int i;
-> >  =
-
-> > @@ -16056,6 +16066,14 @@ static void skl_commit_modeset_enables(struct =
-intel_atomic_state *state)
-> >  		} else {
-> >  			modeset_pipes |=3D BIT(pipe);
-> >  		}
-> > +
-> > +		new_entries[i] =3D new_crtc_state->wm.skl.ddb;
-> > +
-> > +		/* ignore allocations for crtc's that have been turned off during mo=
-deset. */
-> > +		if (needs_modeset(new_crtc_state))
-> > +			continue;
-> > +
-> > +		entries[i] =3D old_crtc_state->wm.skl.ddb;
-> >  	}
-> >  =
-
-> >  	/*
-> > @@ -16071,28 +16089,28 @@ static void skl_commit_modeset_enables(struct=
- intel_atomic_state *state)
-> >  		for_each_oldnew_intel_crtc_in_state(state, crtc, old_crtc_state,
-> >  						    new_crtc_state, i) {
-> >  			enum pipe pipe =3D crtc->pipe;
-> > +			bool ddb_changed;
-> >  =
-
-> >  			if ((update_pipes & BIT(pipe)) =3D=3D 0)
-> >  				continue;
-> >  =
-
-> > -			if (skl_ddb_allocation_overlaps(&new_crtc_state->wm.skl.ddb,
-> > +			if (skl_ddb_allocation_overlaps(&new_entries[pipe],
-> >  							entries, I915_MAX_PIPES, pipe))
-> >  				continue;
-> >  =
-
-> > -			entries[pipe] =3D new_crtc_state->wm.skl.ddb;
-> > +			ddb_changed =3D !skl_ddb_entry_equal(&new_entries[pipe], &entries[p=
-ipe]);
-> > +			entries[pipe] =3D new_entries[pipe];
-> >  			update_pipes &=3D ~BIT(pipe);
-> >  =
-
-> > -			intel_update_crtc(state, crtc);
-> > -
-> >  			/*
-> >  			 * If this is an already active pipe, it's DDB changed,
-> >  			 * and this isn't the last pipe that needs updating
-> >  			 * then we need to wait for a vblank to pass for the
-> >  			 * new ddb allocation to take effect.
-> >  			 */
-> > -			if (!skl_ddb_entry_equal(&new_crtc_state->wm.skl.ddb,
-> > -						 &old_crtc_state->wm.skl.ddb) &&
-> > -			    (update_pipes | modeset_pipes))
-> > +			intel_update_crtc(state, crtc);
-> > +
-> > +			if (ddb_changed && (update_pipes | modeset_pipes))
-> >  				intel_wait_for_vblank(dev_priv, pipe);
-> =
-
-> What are these ddb changes trying to achieve?
-
-Maarten had these in the attempt of making sure we account for master and s=
-lave ddb entries.
-Do we jus remove these changes for now since we are treating them like 2p2p=
- now?
-
-
-> =
-
-> >  		}
-> >  	}
-> > @@ -16110,7 +16128,8 @@ static void skl_commit_modeset_enables(struct i=
-ntel_atomic_state *state)
-> >  			continue;
-> >  =
-
-> >  		if (intel_dp_mst_is_slave_trans(new_crtc_state) ||
-> > -		    is_trans_port_sync_master(new_crtc_state))
-> > +		    is_trans_port_sync_master(new_crtc_state) ||
-> > +		    (new_crtc_state->bigjoiner && !new_crtc_state->bigjoiner_slave))
-> >  			continue;
-> >  =
-
-> >  		modeset_pipes &=3D ~BIT(pipe);
-> > @@ -16120,7 +16139,7 @@ static void skl_commit_modeset_enables(struct i=
-ntel_atomic_state *state)
-> >  =
-
-> >  	/*
-> >  	 * Then we enable all remaining pipes that depend on other
-> > -	 * pipes: MST slaves and port sync masters.
-> > +	 * pipes: MST slaves and port sync masters, big joiner master
-> >  	 */
-> >  	for_each_new_intel_crtc_in_state(state, crtc, new_crtc_state, i) {
-> >  		enum pipe pipe =3D crtc->pipe;
-> > @@ -16128,6 +16147,10 @@ static void skl_commit_modeset_enables(struct =
-intel_atomic_state *state)
-> >  		if ((modeset_pipes & BIT(pipe)) =3D=3D 0)
-> >  			continue;
-> >  =
-
-> > +		WARN_ON(skl_ddb_allocation_overlaps(&new_entries[pipe],
-> > +						    entries, I915_MAX_PIPES, pipe));
-> > +
-> > +		entries[pipe] =3D new_entries[pipe];
-> >  		modeset_pipes &=3D ~BIT(pipe);
-> >  =
-
-> >  		intel_enable_crtc(state, crtc);
-> > @@ -16142,10 +16165,10 @@ static void skl_commit_modeset_enables(struct=
- intel_atomic_state *state)
-> >  		if ((update_pipes & BIT(pipe)) =3D=3D 0)
-> >  			continue;
-> >  =
-
-> > -		drm_WARN_ON(&dev_priv->drm, skl_ddb_allocation_overlaps(&new_crtc_st=
-ate->wm.skl.ddb,
-> > +		drm_WARN_ON(&dev_priv->drm, skl_ddb_allocation_overlaps(&new_entries=
-[pipe],
-> >  									entries, I915_MAX_PIPES, pipe));
-> >  =
-
-> > -		entries[pipe] =3D new_crtc_state->wm.skl.ddb;
-> > +		entries[pipe] =3D new_entries[pipe];
-> >  		update_pipes &=3D ~BIT(pipe);
-> >  =
-
-> >  		intel_update_crtc(state, crtc);
-> > diff --git a/drivers/gpu/drm/i915/display/intel_sprite.c b/drivers/gpu/=
-drm/i915/display/intel_sprite.c
-> > index 9e235210adc7..1c740a22a8d7 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_sprite.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_sprite.c
-> > @@ -103,6 +103,8 @@ void intel_pipe_update_start(const struct intel_crt=
-c_state *new_crtc_state)
-> >  =
-
-> >  	/* FIXME needs to be calibrated sensibly */
-> >  	min =3D vblank_start - intel_usecs_to_scanlines(adjusted_mode,
-> > +						      new_crtc_state->bigjoiner ?
-> > +						      2 * VBLANK_EVASION_TIME_US :
-> >  						      VBLANK_EVASION_TIME_US);
-> >  	max =3D vblank_start - 1;
-> >  =
-
-> > @@ -227,7 +229,8 @@ void intel_pipe_update_end(struct intel_crtc_state =
-*new_crtc_state)
-> >  =
-
-> >  		spin_lock(&crtc->base.dev->event_lock);
-> >  		drm_crtc_arm_vblank_event(&crtc->base,
-> > -				          new_crtc_state->uapi.event);
-> > +					  new_crtc_state->uapi.event);
-> > +
-> =
-
-> Spurious whitespace change.
-
-Yes will fix that, everything else here looks good?
-
-Manasi
-> =
-
-> >  		spin_unlock(&crtc->base.dev->event_lock);
-> >  =
-
-> >  		new_crtc_state->uapi.event =3D NULL;
-> > -- =
-
-> > 2.19.1
-> > =
-
-> > _______________________________________________
-> > Intel-gfx mailing list
-> > Intel-gfx@lists.freedesktop.org
-> > https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-> =
-
-> -- =
-
-> Ville Syrj=E4l=E4
-> Intel
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+T24gTW9uLCAyMDIwLTEwLTE5IGF0IDIwOjUwICswMDAwLCBQYXRjaHdvcmsgd3JvdGU6DQo+IFBh
+dGNoIERldGFpbHMNCj4gU2VyaWVzOmRybS9pOTE1L2Rpc3BsYXk6IFByb2dyYW0gREJVRl9DVEwg
+dHJhY2tlciBzdGF0ZSBzZXJ2aWNlIChyZXYyKVVSTDpodHRwczovL3BhdGNod29yay5mcmVlZGVz
+a3RvcC5vcmcvc2VyaWVzLzgyNzg1L1N0YXRlOmZhaWx1cmUNCj4gRGV0YWlsczpodHRwczovL2lu
+dGVsLWdmeC1jaS4wMS5vcmcvdHJlZS9kcm0tdGlwL1BhdGNod29ya18xODczNC9pbmRleC5odG1s
+IA0KPiBDSSBCdWcgTG9nIC0gY2hhbmdlcyBmcm9tIENJX0RSTV85MTYzX2Z1bGwgLT4gUGF0Y2h3
+b3JrXzE4NzM0X2Z1bGxTdW1tYXJ5RkFJTFVSRQ0KPiBTZXJpb3VzIHVua25vd24gY2hhbmdlcyBj
+b21pbmcgd2l0aCBQYXRjaHdvcmtfMTg3MzRfZnVsbCBhYnNvbHV0ZWx5IG5lZWQgdG8gYmUNCj4g
+wqB2ZXJpZmllZCBtYW51YWxseS4NCj4gSWYgeW91IHRoaW5rIHRoZSByZXBvcnRlZCBjaGFuZ2Vz
+IGhhdmUgbm90aGluZyB0byBkbyB3aXRoIHRoZSBjaGFuZ2VzDQo+IMKgaW50cm9kdWNlZCBpbiBQ
+YXRjaHdvcmtfMTg3MzRfZnVsbCwgcGxlYXNlIG5vdGlmeSB5b3VyIGJ1ZyB0ZWFtIHRvIGFsbG93
+IHRoZW0NCj4gwqB0byBkb2N1bWVudCB0aGlzIG5ldyBmYWlsdXJlIG1vZGUsIHdoaWNoIHdpbGwg
+cmVkdWNlIGZhbHNlIHBvc2l0aXZlcyBpbiBDSS4NCj4gUG9zc2libGUgbmV3IGlzc3Vlc0hlcmUg
+YXJlIHRoZSB1bmtub3duIGNoYW5nZXMgdGhhdCBtYXkgaGF2ZSBiZWVuIGludHJvZHVjZWQgaW4g
+UGF0Y2h3b3JrXzE4NzM0X2Z1bGw6DQo+IElHVCBjaGFuZ2VzUG9zc2libGUgcmVncmVzc2lvbnMg
+KiBpZ3RAZ2VtX2V4ZWNfd2hpc3BlckBiYXNpYy1xdWV1ZXMtcHJpb3JpdHktYWxsOnNoYXJkLWds
+azogUEFTUyAtPiBJTkNPTVBMRVRFDQo+IFdhcm5pbmdzICogaWd0QGNvcmVfaG90dW5wbHVnQGhv
+dHJlYmluZC1sYXRlY2xvc2U6c2hhcmQtaHN3OiBXQVJOIChpOTE1IzIyODMpIC0+IEZBSUwNCg0K
+VGhlIGVycm9yIGFuZCB0aGUgd2FybmluZ3MgYWJvdmUgYXJlIGluIHBsYXRmb3JtcyBub3QgYWZm
+ZWN0ZWQgYnkgdGhpcyBjaGFuZ2UuDQoNClB1c2hlZCB0byBkaW5xLCB0aGFua3MgZm9yIHRoZSBy
+ZXZpZXcgTWF0dC4NCg0KPiBLbm93biBpc3N1ZXNIZXJlIGFyZSB0aGUgY2hhbmdlcyBmb3VuZCBp
+biBQYXRjaHdvcmtfMTg3MzRfZnVsbCB0aGF0IGNvbWUgZnJvbSBrbm93biBpc3N1ZXM6DQo+IElH
+VCBjaGFuZ2VzSXNzdWVzIGhpdCAqIGlndEBnZW1fY3R4X2NyZWF0ZUBiYXNpYzpzaGFyZC1pY2xi
+OiBQQVNTIC0+IERNRVNHLVdBUk4gKGk5MTUjMTk4MikNCj4gwqAqIGlndEBnZW1fZXhlY19yZWxv
+Y0BiYXNpYy1tYW55LWFjdGl2ZUB2ZWNzMDpzaGFyZC1nbGs6IFBBU1MgLT4gRkFJTCAoaTkxNSMy
+Mzg5KSArMiBzaW1pbGFyIGlzc3Vlcw0KPiDCoCogaWd0QGdlbV9leGVjX3doaXNwZXJAYmFzaWMt
+cXVldWVzLWZvcmtlZDpzaGFyZC1nbGs6IFBBU1MgLT4gRE1FU0ctV0FSTiAoaTkxNSMxMTggLyBp
+OTE1Izk1KQ0KPiDCoCogaWd0QGdlbV91c2VycHRyX2JsaXRzQHN5bmMtdW5tYXAtY3ljbGVzOnNo
+YXJkLXNrbDogUEFTUyAtPiBUSU1FT1VUIChpOTE1IzI0MjQpDQo+IMKgKiBpZ3RAaTkxNV9wbV9k
+Y0BkYzYtcHNyOnNoYXJkLXNrbDogUEFTUyAtPiBGQUlMIChpOTE1IzQ1NCkNCj4gwqAqIGlndEBr
+bXNfYmlnX2ZiQGxpbmVhci0zMmJwcC1yb3RhdGUtMTgwOnNoYXJkLWdsazogUEFTUyAtPiBETUVT
+Ry1GQUlMIChpOTE1IzExOCAvIGk5MTUjOTUpDQo+IMKgKiBpZ3RAa21zX2N1cnNvcl9lZGdlX3dh
+bGtAcGlwZS1iLTI1NngyNTYtcmlnaHQtZWRnZTpzaGFyZC1za2w6IFBBU1MgLT4gRE1FU0ctV0FS
+TiAoaTkxNSMxOTgyKSArNyBzaW1pbGFyIGlzc3Vlcw0KPiDCoCogaWd0QGttc19mbGlwQGZsaXAt
+dnMtZXhwaXJlZC12YmxhbmstaW50ZXJydXB0aWJsZUBhLWVkcDE6c2hhcmQtc2tsOiBQQVNTIC0+
+IEZBSUwgKGk5MTUjMjEyMikNCj4gwqAqIGlndEBrbXNfZmxpcEBmbGlwLXZzLWV4cGlyZWQtdmJs
+YW5rLWludGVycnVwdGlibGVAYi1lZHAxOnNoYXJkLXNrbDogUEFTUyAtPiBGQUlMIChpOTE1Izc5
+KQ0KPiDCoCogaWd0QGttc19mcm9udGJ1ZmZlcl90cmFja2luZ0BmYmMtc3RyaWRlY2hhbmdlOnNo
+YXJkLWdsazogUEFTUyAtPiBETUVTRy1XQVJOIChpOTE1IzE5ODIpDQo+IMKgKiBpZ3RAa21zX2Zy
+b250YnVmZmVyX3RyYWNraW5nQGZiY3Bzci0xcC1wcmltc2Nybi1jdXItaW5kZmItb25vZmY6c2hh
+cmQtdGdsYjogUEFTUyAtPiBETUVTRy1XQVJOIChpOTE1IzE5ODIpICsyIHNpbWlsYXIgaXNzdWVz
+DQo+IMKgKiBpZ3RAa21zX3BzckBwc3IyX2N1cnNvcl9wbGFuZV9vbm9mZjpzaGFyZC1pY2xiOiBQ
+QVNTIC0+IFNLSVAgKGZkbyMxMDk0NDEpICsxIHNpbWlsYXIgaXNzdWUNCj4gwqAqIGlndEBrbXNf
+dW5pdmVyc2FsX3BsYW5lQHVuaXZlcnNhbC1wbGFuZS1nZW45LWZlYXR1cmVzLXBpcGUtYTpzaGFy
+ZC1rYmw6IFBBU1MgLT4gRE1FU0ctV0FSTiAoaTkxNSMxOTgyKSArMSBzaW1pbGFyIGlzc3VlDQo+
+IMKgKiBpZ3RAcGVyZkBwb2xsaW5nLXBhcmFtZXRlcml6ZWQ6c2hhcmQtaWNsYjogUEFTUyAtPiBG
+QUlMIChpOTE1IzE1NDIpDQo+IMKgKiBpZ3RAcHJpbWVfdmdlbUBjb2hlcmVuY3ktYmx0OnNoYXJk
+LXNuYjogUEFTUyAtPiBJTkNPTVBMRVRFIChpOTE1IzgyKQ0KPiDCoCogaWd0QHN5bmNvYmpfYmFz
+aWNAYmFkLWZsYWdzLWZkLXRvLWhhbmRsZTpzaGFyZC1hcGw6IFBBU1MgLT4gRE1FU0ctV0FSTiAo
+aTkxNSMxNjM1IC8gaTkxNSMxOTgyKQ0KPiBQb3NzaWJsZSBmaXhlcyAqIGlndEBnZW1fZXhlY19y
+ZWxvY0BiYXNpYy1tYW55LWFjdGl2ZUByY3MwOnNoYXJkLWhzdzogRkFJTCAoaTkxNSMyMzg5KSAt
+PiBQQVNTDQo+IMKgKiBpZ3RAZ2VtX3VzZXJwdHJfYmxpdHNAdW5zeW5jLXVubWFwLWN5Y2xlczpz
+aGFyZC1za2w6IFRJTUVPVVQgKGk5MTUjMjQyNCkgLT4gUEFTUw0KPiDCoCogaWd0QGttc19jdXJz
+b3JfY3JjQHBpcGUtYy1jdXJzb3ItMTI4eDEyOC1vbnNjcmVlbjpzaGFyZC1za2w6IEZBSUwgKGk5
+MTUjNTQpIC0+IFBBU1MNCj4gwqAqIGlndEBrbXNfY3Vyc29yX2xlZ2FjeUBjdXJzb3ItdnMtZmxp
+cC1hdG9taWMtdHJhbnNpdGlvbnMtdmFyeWluZy1zaXplOnNoYXJkLXNrbDogRE1FU0ctV0FSTiAo
+aTkxNSMxOTgyKSAtPiBQQVNTICszIHNpbWlsYXIgaXNzdWVzDQo+IMKgKiBpZ3RAa21zX2ZsaXBA
+cGxhaW4tZmxpcC1mYi1yZWNyZWF0ZS1pbnRlcnJ1cHRpYmxlQGEtZWRwMTpzaGFyZC1za2w6IEZB
+SUwgKGk5MTUjMjEyMikgLT4gUEFTUw0KPiDCoCogaWd0QGttc19mcm9udGJ1ZmZlcl90cmFja2lu
+Z0BmYmMtbW9kZXNldGZyb21idXN5OnNoYXJkLXNuYjogRkFJTCAoaTkxNSMyNTQ2KSAtPiBQQVNT
+DQo+IMKgKiBpZ3RAa21zX2Zyb250YnVmZmVyX3RyYWNraW5nQHBzci0xcC1wcmltc2Nybi1wcmkt
+aW5kZmItZHJhdy1tbWFwLXdjOnNoYXJkLXRnbGI6IERNRVNHLVdBUk4gKGk5MTUjMTk4MikgLT4g
+UEFTUw0KPiDCoCogaWd0QGttc19wbGFuZV9hbHBoYV9ibGVuZEBwaXBlLWMtY292ZXJhZ2UtN2Vm
+YzpzaGFyZC1za2w6IEZBSUwgKGZkbyMxMDgxNDUgLyBpOTE1IzI2NSkgLT4gUEFTUyArMiBzaW1p
+bGFyIGlzc3Vlcw0KPiDCoCogaWd0QGttc19wbGFuZV9jdXJzb3JAcGlwZS1hLXByaW1hcnktc2l6
+ZS0yNTY6c2hhcmQtZ2xrOiBETUVTRy1XQVJOIChpOTE1IzE5ODIpIC0+IFBBU1MgKzEgc2ltaWxh
+ciBpc3N1ZQ0KPiDCoCogaWd0QGttc19wc3JAcHNyMl9wcmltYXJ5X21tYXBfY3B1OnNoYXJkLWlj
+bGI6IFNLSVAgKGZkbyMxMDk0NDEpIC0+IFBBU1MgKzEgc2ltaWxhciBpc3N1ZQ0KPiDCoCogaWd0
+QGttc192YmxhbmtAcGlwZS1jLXRzLWNvbnRpbnVhdGlvbi1kcG1zLXN1c3BlbmQ6c2hhcmQtc2ts
+OiBJTkNPTVBMRVRFIChpOTE1IzE5OCkgLT4gUEFTUyArMSBzaW1pbGFyIGlzc3VlDQo+IMKgKiBp
+Z3RAcGVyZkBwb2xsaW5nOnNoYXJkLWhzdzogU0tJUCAoZmRvIzEwOTI3MSkgLT4gUEFTUw0KPiDC
+oCogaWd0QHBlcmZAcG9sbGluZy1wYXJhbWV0ZXJpemVkOnNoYXJkLXNrbDogRkFJTCAoaTkxNSMx
+NTQyKSAtPiBQQVNTDQo+IFdhcm5pbmdzICogaWd0QGttc19kcF9kc2NAYmFzaWMtZHNjLWVuYWJs
+ZS1lZHA6c2hhcmQtaWNsYjogU0tJUCAoZmRvIzEwOTM0OSkgLT4gRE1FU0ctV0FSTiAoaTkxNSMx
+MjI2KQ0KPiDCoCogaWd0QGttc19mbGlwQGZsaXAtdnMtc3VzcGVuZC1pbnRlcnJ1cHRpYmxlQGMt
+ZWRwMTpzaGFyZC10Z2xiOiBETUVTRy1XQVJOIChpOTE1IzI0MTEpIC0+IElOQ09NUExFVEUgKGk5
+MTUjMjQxMSkNCj4gwqAqIGlndEBydW5uZXJAYWJvcnRlZDpzaGFyZC1za2w6IEZBSUwgKGk5MTUj
+MjAyOSAvIGk5MTUjMjQzOSkgLT4gRkFJTCAoaTkxNSMxNjExIC8gaTkxNSMyMDI5IC8gaTkxNSMy
+NDM5KQ0KPiB7bmFtZX06IFRoaXMgZWxlbWVudCBpcyBzdXBwcmVzc2VkLiBUaGlzIG1lYW5zIGl0
+IGlzIGlnbm9yZWQgd2hlbiBjb21wdXRpbmcNCj4gwqB0aGUgc3RhdHVzIG9mIHRoZSBkaWZmZXJl
+bmNlIChTVUNDRVNTLCBXQVJOSU5HLCBvciBGQUlMVVJFKS4NCj4gUGFydGljaXBhdGluZyBob3N0
+cyAoMTEgLT4gMTEpTm8gY2hhbmdlcyBpbiBwYXJ0aWNpcGF0aW5nIGhvc3RzDQo+IEJ1aWxkIGNo
+YW5nZXMgKiBMaW51eDogQ0lfRFJNXzkxNjMgLT4gUGF0Y2h3b3JrXzE4NzM0DQo+IENJLTIwMTkw
+NTI5OiAyMDE5MDUyOQ0KPiDCoENJX0RSTV85MTYzOiBlOTg0ZjhjYmQ5Mjc2NWEzMDVkZDMyMjI0
+MDI3OGUwZjY5ZGJhZTM4IEAgZ2l0Oi8vYW5vbmdpdC5mcmVlZGVza3RvcC5vcmcvZ2Z4LWNpL2xp
+bnV4DQo+IMKgSUdUXzU4MjI6IGI0YmNmMDVjYjk4MzkwMzcxMjg5MDVkZWRhNzE0NjQzNDE1NWNj
+NDEgQCBnaXQ6Ly9hbm9uZ2l0LmZyZWVkZXNrdG9wLm9yZy94b3JnL2FwcC9pbnRlbC1ncHUtdG9v
+bHMNCj4gwqBQYXRjaHdvcmtfMTg3MzQ6IGI5NTlhZmY1OWVhMmRhZjZmMTQwY2U0NDJjMDMyMTc3
+MzZkODBmYzEgQCBnaXQ6Ly9hbm9uZ2l0LmZyZWVkZXNrdG9wLm9yZy9nZngtY2kvbGludXgNCj4g
+wqBwaWdsaXRfNDUwOTogZmRjNWE0Y2ExMTEyNGFiODQxM2M3OTg4ODk2ZWVjNGM5NzMzNjY5NCBA
+IGdpdDovL2Fub25naXQuZnJlZWRlc2t0b3Aub3JnL3BpZ2xpdA0KDQpfX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0Cklu
+dGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5v
+cmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
