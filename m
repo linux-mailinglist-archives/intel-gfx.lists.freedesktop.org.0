@@ -1,68 +1,43 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id ED5E5293E66
-	for <lists+intel-gfx@lfdr.de>; Tue, 20 Oct 2020 16:14:56 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 23C9F293E9A
+	for <lists+intel-gfx@lfdr.de>; Tue, 20 Oct 2020 16:25:25 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 62E366ECA8;
-	Tue, 20 Oct 2020 14:14:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 560BE6E157;
+	Tue, 20 Oct 2020 14:25:23 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from wnew4-smtp.messagingengine.com (wnew4-smtp.messagingengine.com
- [64.147.123.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 427AB6ECA8;
- Tue, 20 Oct 2020 14:14:54 +0000 (UTC)
-Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
- by mailnew.west.internal (Postfix) with ESMTP id 4CFC9B45;
- Tue, 20 Oct 2020 10:14:50 -0400 (EDT)
-Received: from mailfrontend1 ([10.202.2.162])
- by compute6.internal (MEProxy); Tue, 20 Oct 2020 10:14:52 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
- date:from:to:cc:subject:message-id:mime-version:content-type; s=
- fm1; bh=QNxDlJJQRQrOOLUrLPsoyXNQLI0P4pusWiyTYiUp3D4=; b=CebhdNj4
- e+tsVNlDaqXzt+5TyTL5+nmlarnlcXVW7nB3dil372bboMpCmHfAc4Kd3+JCnBdV
- U5ug15/bwwvlZSQiH5dYsj3xIIRSY8Ws1Wgm64fs4Wn+F0uJQzIh3gIoZSV2F+GZ
- AnmEmu5bDt+k+J+4n+KNADdnkkoDVprlS9mXihEkuU62KfjqHh7v1h9QLLuR+WjG
- 226LbtzNMkAf+0GgfPfT0xe84P/SUiSiDFoRi4AX4rgEPm7ZBFEJgaJR2YTjMSOR
- K/UNm8oVlWsPA9EkIKpgxYzeOFwuBZ0Upd1AjD6lqgWVi0hPA2AducPqOzHy8MbX
- FKr5n+8Q/bNJvg==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
- messagingengine.com; h=cc:content-type:date:from:message-id
- :mime-version:subject:to:x-me-proxy:x-me-proxy:x-me-sender
- :x-me-sender:x-sasl-enc; s=fm1; bh=QNxDlJJQRQrOOLUrLPsoyXNQLI0P4
- pusWiyTYiUp3D4=; b=PLfG9Nxw9rpNR5Tg7Dejc3RTLy1DxPd3uXGA6vunT35ns
- f44yClnqADL9atBaxBiqIAxokUn1CySp44W7RKQmbjiG2zLFpvHYzHpGtRUpM3Do
- LlgdavxGO7yOC4zsBzGacg0RCoIXUMb1QNFJhLVk/OA3jhhJhRoX8X9LBocU0PZ+
- vM6ZhEiuOmUv+A5m/gf+LMWVqe6Ak7sWh11mctBafkwFtPnjLWu5jUxllQLS6pSj
- shgfEUcRbCVssGwuX+Qf1lr7/9Ws5doZOnwKI3fLyQku5oiA9ZokhGxVgwxnkOmL
- mffOnao6F+jAFBwNtzK1soqMDmyKaAVqs33JPKFiA==
-X-ME-Sender: <xms:2PCOX6koDCe_uLxAFJKa0VIGk3Nb8be9ti6jGfETpz0pIC3dT7_Vug>
- <xme:2PCOXx1Cd95aRth1EQ0AlYkdg8OrHk4FzXWGSHVFgU854ko_kS1tyerShARWKi40G
- dWVFiWB8dKrhlGTQwU>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedujedrjeefgdejvdcutefuodetggdotefrodftvf
- curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
- uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
- fjughrpeffhffvuffkgggtugesghdtreertddtvdenucfhrhhomhepofgrgihimhgvucft
- ihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrghtthgvrh
- hnpeeguedvtdehgeeghefhieegteffueefleevgefgkeevgeeiveduleejueegvdeigfen
- ucffohhmrghinhepfhhrvggvuggvshhkthhophdrohhrghenucfkphepledtrdekledrie
- ekrdejieenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhm
- pehmrgigihhmvgestggvrhhnohdrthgvtghh
-X-ME-Proxy: <xmx:2PCOX4qMSe5__ZJn6RLlidWuA8AZ8mrfy2tvMK0ottVAfb0yuV12Ew>
- <xmx:2PCOX-k-sAmWLezgq7E3x9_c3n_DgQoQHhAounrzAEtvcg3YQRtBJQ>
- <xmx:2PCOX43jn8FW_28RBAmV8txWEqQ-wT9L5ndpG8E_Cbw95a2pdexa0g>
- <xmx:2vCOX5Kr_Lm1TTmyGF6c0xdrgczklP52bXLjcHJPOcknfr7jYePZWKBR09o>
-Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr
- [90.89.68.76])
- by mail.messagingengine.com (Postfix) with ESMTPA id 5479A3280063;
- Tue, 20 Oct 2020 10:14:48 -0400 (EDT)
-Date: Tue, 20 Oct 2020 16:14:45 +0200
-From: Maxime Ripard <maxime@cerno.tech>
-To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
-Message-ID: <20201020141445.4jisqylfbusdnzge@gilmour>
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 959C56E157
+ for <intel-gfx@lists.freedesktop.org>; Tue, 20 Oct 2020 14:25:22 +0000 (UTC)
+IronPort-SDR: pMERATo2bDBXnxzWPtiyKcy6T3TXTKm3zKYWaRheYix/dRqs5+yVuEvQ0u6XPXtLYiblb+Yzfd
+ pPFzKNQvE+eg==
+X-IronPort-AV: E=McAfee;i="6000,8403,9779"; a="228845595"
+X-IronPort-AV: E=Sophos;i="5.77,397,1596524400"; d="scan'208";a="228845595"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Oct 2020 07:25:21 -0700
+IronPort-SDR: QveZ2f++q7m+N227pxhhOcjNtTLZ3JKhM40+Pl1lqOSSmLspS1/MW7tWPCRmrSQSoZAFsF940U
+ ZgXb8tiIge5Q==
+X-IronPort-AV: E=Sophos;i="5.77,397,1596524400"; d="scan'208";a="533079020"
+Received: from ideak-desk.fi.intel.com ([10.237.68.141])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Oct 2020 07:25:19 -0700
+Date: Tue, 20 Oct 2020 17:25:16 +0300
+From: Imre Deak <imre.deak@intel.com>
+To: Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+ Andrzej Kre <andrzej.kre@gmail.com>
+Message-ID: <20201020142516.GC3370607@ideak-desk.fi.intel.com>
+References: <CA+Gspvj6MpJsjFWQnhrVf971EpBoSvUk1DCyPr62N9nJUMOFcw@mail.gmail.com>
+ <20201019142459.GM1667571@kuha.fi.intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PULL] drm-misc-next-fixes
+Content-Disposition: inline
+In-Reply-To: <20201019142459.GM1667571@kuha.fi.intel.com>
+Subject: Re: [Intel-gfx] USB-C DP mode problem on linux
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,78 +50,59 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dim-tools@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Maxime Ripard <mripard@kernel.org>, intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============1598703165=="
+Reply-To: imre.deak@intel.com
+Cc: intel-gfx@lists.freedesktop.org,
+ Heikki Krogerus <heikki.krogerus@linux.intel.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+Hi,
 
---===============1598703165==
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="cjr3fy77yrhqgfqc"
-Content-Disposition: inline
+On Mon, Oct 19, 2020 at 05:24:59PM +0300, Heikki Krogerus wrote:
+> Hi Andrzej,
+> 
+> On Sat, Oct 17, 2020 at 01:34:54PM +0200, Andrzej Kre wrote:
+> > Hi,
+> > 
+> > I know that You were involved in working on USB-C DP drivers.
+> > You are my last chance to resolve my issue.
+> > 
+> > On my HP laptop I have Intel UHD Graphics 620.
+> > When I'm connecting my 4K monitor to Display Port. It is assigning to
+> > DP-2-2 socket and  I have full 3840x2160 with 60.00Hz
+> > But, when I'm connecting the same monitor to the USB-C port, then it is
+> > connecting to the DP-1 socket and the maximum that it can achieve is
+> > 3840x2160 with only 30.00Hz.
+> > But I'm making some trick: I'm connecting the same monitor through HDMI, so
+> > it is connecting to DP-1 socket, and simultaneously I'm connecting USB-C,
+> > and now USB-C is connecting to DP-2-2 socket (because DP-1 is occupied by
+> > HDMI) and I can have full 4K with 60Hz.
+> > Please, help me, how to force USB-C to connect always to DP-2-2 socket?
+> > Or do You know maybe where is the problem?
+> 
+> Unfortunately we have no control over the mux in the operating system
+> on Skylakes, at least in USB subsystem. It all happens in firmware.
+> Maybe graphics side can do something.
+> 
+> Adding Jani, Imre, Ville and the Intel GFX list.
 
+On SKL/KBL the USB-C -> native DP/HDMI conversion is done by an off-CPU
+chip and the display driver doesn't have a way either to affect the
+muxing.
 
---cjr3fy77yrhqgfqc
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Not sure why things work on DP-2 and not on DP-1, there is no port
+specific limits on the CPU side that would explain this. There is a link
+training failure in the log, so would be good to see more details on
+that. Could you file a ticket at 
+https://gitlab.freedesktop.org/drm/intel/-/issues
+providing a full log booting with drm.debug=0x1e for the working and
+non-working cases?
 
-Hi!
-
-Here's a couple of patches that should be merged in the current merge-window.
-
-Thanks!
-Maxime
-
-drm-misc-next-fixes-2020-10-20:
-Two patches to prevent out-of-bands accesses on fonts buffers
-The following changes since commit d3c8f2784d3266d27956659c78835ee1d1925ad2:
-
-  drm/ingenic: Fix bad revert (2020-10-12 20:26:14 +0200)
-
-are available in the Git repository at:
-
-  git://anongit.freedesktop.org/drm/drm-misc tags/drm-misc-next-fixes-2020-10-20
-
-for you to fetch changes up to 272d70895113ef00c03ab325787d159ee51718c8:
-
-  Fonts: Support FONT_EXTRA_WORDS macros for font_6x8 (2020-10-19 17:55:10 +0200)
-
-----------------------------------------------------------------
-Two patches to prevent out-of-bands accesses on fonts buffers
-
-----------------------------------------------------------------
-Peilin Ye (2):
-      docs: fb: Add font_6x8 to available built-in fonts
-      Fonts: Support FONT_EXTRA_WORDS macros for font_6x8
-
- Documentation/fb/fbcon.rst | 2 +-
- lib/fonts/font_6x8.c       | 8 ++++----
- 2 files changed, 5 insertions(+), 5 deletions(-)
-
---cjr3fy77yrhqgfqc
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCX47w1QAKCRDj7w1vZxhR
-xdOcAQCNl61Tr2zRoeD0sBeDstoAICioSfcXnJATXOQOlDhB/AD+IdTeU6ZZ7U/z
-6dTV02h2nd99xSpJgGSCR+m0tuFVagA=
-=heIM
------END PGP SIGNATURE-----
-
---cjr3fy77yrhqgfqc--
-
---===============1598703165==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
+Thanks,
+Imre
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============1598703165==--
