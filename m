@@ -1,49 +1,46 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 03BA0294277
-	for <lists+intel-gfx@lfdr.de>; Tue, 20 Oct 2020 20:51:22 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id E08A7294279
+	for <lists+intel-gfx@lfdr.de>; Tue, 20 Oct 2020 20:51:36 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 907F16E214;
-	Tue, 20 Oct 2020 18:51:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4E1996E21C;
+	Tue, 20 Oct 2020 18:51:35 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7D0DB6E214
- for <intel-gfx@lists.freedesktop.org>; Tue, 20 Oct 2020 18:51:18 +0000 (UTC)
-IronPort-SDR: H5vrcd50M2hSVuZaj2zvSTEv8Nv94Hild+aemRxPpXFsIJu+9sulxLKUp6/tKfIL5Lfysthlz5
- St0MhUqbwR1Q==
-X-IronPort-AV: E=McAfee;i="6000,8403,9780"; a="155046728"
-X-IronPort-AV: E=Sophos;i="5.77,398,1596524400"; d="scan'208";a="155046728"
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7C54A6E21C
+ for <intel-gfx@lists.freedesktop.org>; Tue, 20 Oct 2020 18:51:34 +0000 (UTC)
+IronPort-SDR: IMDNmb133Oc3oSWZaw95i7EAXkSlzInihPBBz30sN3Wz8SwA3iv6WOm1Amvm1hw7W0pheXOW9l
+ /h04KCMZpmkw==
+X-IronPort-AV: E=McAfee;i="6000,8403,9780"; a="155046748"
+X-IronPort-AV: E=Sophos;i="5.77,398,1596524400"; d="scan'208";a="155046748"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Oct 2020 11:51:18 -0700
-IronPort-SDR: 9FGjZSrFY2PWdW714/Rlmaq5NIu+QtVze2Cftbd6/WdbQmx0Ia0+tKuCkVWDhzvOyKXkaBFRs5
- 7aF2A3uSOAag==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.77,398,1596524400"; d="scan'208";a="359262727"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by orsmga007.jf.intel.com with SMTP; 20 Oct 2020 11:51:15 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 20 Oct 2020 21:51:15 +0300
-Date: Tue, 20 Oct 2020 21:51:15 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: "Navare, Manasi" <manasi.d.navare@intel.com>
-Message-ID: <20201020185115.GD6112@intel.com>
+ 20 Oct 2020 11:51:34 -0700
+IronPort-SDR: CXy+OB2ln9pCYs0raDwwttTtQzKXbfsPmWrwCLrOgIqGrSx1PSFGABHITXyQ9C7dw1eesU72RG
+ 0nrOtJ5R4bVg==
+X-IronPort-AV: E=Sophos;i="5.77,398,1596524400"; d="scan'208";a="466028638"
+Received: from labuser-z97x-ud5h.jf.intel.com (HELO labuser-Z97X-UD5H)
+ ([10.165.21.211])
+ by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Oct 2020 11:51:33 -0700
+Date: Tue, 20 Oct 2020 11:53:14 -0700
+From: "Navare, Manasi" <manasi.d.navare@intel.com>
+To: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+Message-ID: <20201020185309.GA8662@labuser-Z97X-UD5H>
 References: <20201008214535.22942-1-manasi.d.navare@intel.com>
- <20201008214535.22942-9-manasi.d.navare@intel.com>
- <20201019162031.GT6112@intel.com>
- <20201019225637.GC22486@labuser-Z97X-UD5H>
+ <20201008214535.22942-4-manasi.d.navare@intel.com>
+ <20201020183953.GB6112@intel.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20201019225637.GC22486@labuser-Z97X-UD5H>
-X-Patchwork-Hint: comment
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH v10 09/11] drm/i915: Add bigjoiner aware
- plane clipping checks
+In-Reply-To: <20201020183953.GB6112@intel.com>
+User-Agent: Mutt/1.5.24 (2015-08-30)
+Subject: Re: [Intel-gfx] [PATCH v10 04/11] drm/i915/dp: Allow big joiner
+ modes in intel_dp_mode_valid(), v3.
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,82 +59,139 @@ Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Oct 19, 2020 at 03:56:37PM -0700, Navare, Manasi wrote:
-> On Mon, Oct 19, 2020 at 07:20:31PM +0300, Ville Syrj=E4l=E4 wrote:
-> > On Thu, Oct 08, 2020 at 02:45:33PM -0700, Manasi Navare wrote:
-> > > From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-> > > =
-
-> > > We need to look at hw.fb for the framebuffer, and add the translation
-> > > for the slave_plane_state. With these changes we set the correct
-> > > rectangle on the bigjoiner slave, and don't set incorrect
-> > > src/dst/visibility on the slave plane.
-> > > =
-
-> > > v2:
-> > > * Manual rebase (Manasi)
-> > > =
-
-> > > Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-> > > Signed-off-by: Manasi Navare <manasi.d.navare@intel.com>
-> > > ---
-> > >  .../gpu/drm/i915/display/intel_atomic_plane.c | 60 +++++++++++++++++=
-++
-> > >  .../gpu/drm/i915/display/intel_atomic_plane.h |  4 ++
-> > >  drivers/gpu/drm/i915/display/intel_display.c  | 19 +++---
-> > >  drivers/gpu/drm/i915/display/intel_sprite.c   | 21 +++----
-> > >  4 files changed, 80 insertions(+), 24 deletions(-)
-> > > =
-
-> > > diff --git a/drivers/gpu/drm/i915/display/intel_atomic_plane.c b/driv=
-ers/gpu/drm/i915/display/intel_atomic_plane.c
-> > > index a8f1fd85a6c0..09cb3adc36da 100644
-> > > --- a/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-> > > +++ b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-> > > @@ -267,6 +267,9 @@ void intel_plane_copy_uapi_to_hw_state(const stru=
-ct intel_crtc_state *crtc_state
-> > >  	plane_state->hw.rotation =3D from_plane_state->uapi.rotation;
-> > >  	plane_state->hw.color_encoding =3D from_plane_state->uapi.color_enc=
-oding;
-> > >  	plane_state->hw.color_range =3D from_plane_state->uapi.color_range;
-> > > +
-> > > +	plane_state->uapi.src =3D drm_plane_state_src(&from_plane_state->ua=
-pi);
-> > > +	plane_state->uapi.dst =3D drm_plane_state_dest(&from_plane_state->u=
-api);
-> > >  }
-> > >  =
-
-> > >  void intel_plane_set_invisible(struct intel_crtc_state *crtc_state,
-> > > @@ -519,6 +522,63 @@ void i9xx_update_planes_on_crtc(struct intel_ato=
-mic_state *state,
-> > >  	}
-> > >  }
-> > >  =
-
-> > > +int intel_atomic_plane_check_clipping(struct intel_plane_state *plan=
-e_state,
-> > > +				      struct intel_crtc_state *crtc_state,
-> > > +				      int min_scale, int max_scale,
-> > > +				      bool can_position)
-> > > +{
-> > > +	struct drm_framebuffer *fb =3D plane_state->hw.fb;
-> > > +	struct drm_rect *src =3D &plane_state->uapi.src;
-> > > +	struct drm_rect *dst =3D &plane_state->uapi.dst;
-> > > +	unsigned int rotation =3D plane_state->uapi.rotation;
+On Tue, Oct 20, 2020 at 09:39:53PM +0300, Ville Syrj=E4l=E4 wrote:
+> On Thu, Oct 08, 2020 at 02:45:28PM -0700, Manasi Navare wrote:
+> > From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 > > =
 
-> > hw.rotation
+> > Small changes to intel_dp_mode_valid(), allow listing modes that
+> > can only be supported in the bigjoiner configuration, which is
+> > not supported yet.
+> > =
+
+> > eDP does not support bigjoiner, so do not expose bigjoiner only
+> > modes on the eDP port.
+> > =
+
+> > v7:
+> > * Add can_bigjoiner() helper (Ville)
+> > * Pass bigjoiner to plane_size validation (Ville)
+> > v6:
+> > * Rebase after dp_downstream mode valid changes (Manasi)
+> > v5:
+> > * Increase max plane width to support 8K with bigjoiner (Maarten)
+> > v4:
+> > * Rebase (Manasi)
+> > =
+
+> > Changes since v1:
+> > - Disallow bigjoiner on eDP.
+> > Changes since v2:
+> > - Rename intel_dp_downstream_max_dotclock to intel_dp_max_dotclock,
+> >   and split off the downstream and source checking to its own function.
+> >   (Ville)
+> > v3:
+> > * Rebase (Manasi)
+> > =
+
+> > Signed-off-by: Manasi Navare <manasi.d.navare@intel.com>
+> > Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+> > ---
+> >  drivers/gpu/drm/i915/display/intel_display.c |   5 +-
+> >  drivers/gpu/drm/i915/display/intel_display.h |   3 +-
+> >  drivers/gpu/drm/i915/display/intel_dp.c      | 126 +++++++++++++++----
+> >  drivers/gpu/drm/i915/display/intel_dp_mst.c  |   2 +-
+> >  drivers/gpu/drm/i915/display/intel_dsi.c     |   2 +-
+> >  drivers/gpu/drm/i915/display/intel_hdmi.c    |   2 +-
+> >  6 files changed, 111 insertions(+), 29 deletions(-)
+> > =
+
+> > diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu=
+/drm/i915/display/intel_display.c
+> > index 723766b1eae3..cc540c7b7dcd 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_display.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> > @@ -17642,7 +17642,8 @@ intel_mode_valid(struct drm_device *dev,
+> >  =
+
+> >  enum drm_mode_status
+> >  intel_mode_valid_max_plane_size(struct drm_i915_private *dev_priv,
+> > -				const struct drm_display_mode *mode)
+> > +				const struct drm_display_mode *mode,
+> > +				bool bigjoiner)
+> >  {
+> >  	int plane_width_max, plane_height_max;
+> >  =
+
+> > @@ -17659,7 +17660,7 @@ intel_mode_valid_max_plane_size(struct drm_i915=
+_private *dev_priv,
+> >  	 * too big for that.
+> >  	 */
+> >  	if (INTEL_GEN(dev_priv) >=3D 11) {
+> > -		plane_width_max =3D 5120;
+> > +		plane_width_max =3D 5120 << bigjoiner;
+> >  		plane_height_max =3D 4320;
+> >  	} else {
+> >  		plane_width_max =3D 5120;
+> > diff --git a/drivers/gpu/drm/i915/display/intel_display.h b/drivers/gpu=
+/drm/i915/display/intel_display.h
+> > index d10b7c8cde3f..3d860a9da8fe 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_display.h
+> > +++ b/drivers/gpu/drm/i915/display/intel_display.h
+> > @@ -496,7 +496,8 @@ u32 intel_plane_fb_max_stride(struct drm_i915_priva=
+te *dev_priv,
+> >  bool intel_plane_can_remap(const struct intel_plane_state *plane_state=
+);
+> >  enum drm_mode_status
+> >  intel_mode_valid_max_plane_size(struct drm_i915_private *dev_priv,
+> > -				const struct drm_display_mode *mode);
+> > +				const struct drm_display_mode *mode,
+> > +				bool bigjoiner);
+> >  enum phy intel_port_to_phy(struct drm_i915_private *i915, enum port po=
+rt);
+> >  bool is_trans_port_sync_mode(const struct intel_crtc_state *state);
+> >  =
+
+> > diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/=
+i915/display/intel_dp.c
+> > index 8a522edd7386..af2ff425e5d5 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> > @@ -247,6 +247,29 @@ intel_dp_max_data_rate(int max_link_clock, int max=
+_lanes)
+> >  	return max_link_clock * max_lanes;
+> >  }
+> >  =
+
+> > +static int source_max_dotclock(struct intel_dp *intel_dp, bool allow_b=
+igjoiner)
+> > +{
+> > +	struct intel_digital_port *intel_dig_port =3D dp_to_dig_port(intel_dp=
+);
+> > +	struct intel_encoder *encoder =3D &intel_dig_port->base;
+> > +	struct drm_i915_private *dev_priv =3D to_i915(encoder->base.dev);
+> > +
+> > +	if (allow_bigjoiner && INTEL_GEN(dev_priv) >=3D 11 && !intel_dp_is_ed=
+p(intel_dp))
 > =
 
-> So use hw.rotation instead of uapi.rotation ?
+> Wasn't this supposed to be s/edp/port=3D=3DA/ ?
 
-Yes.
+Yes will use the new function intel_dp_can_bigjoiner() here instead that ch=
+ecks for PORT A
 
--- =
+Manasi
 
-Ville Syrj=E4l=E4
-Intel
+> =
+
+> > +		return 2 * dev_priv->max_dotclk_freq;
+> > +
+> > +	return dev_priv->max_dotclk_freq;
+> > +}
+> -- =
+
+> Ville Syrj=E4l=E4
+> Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
