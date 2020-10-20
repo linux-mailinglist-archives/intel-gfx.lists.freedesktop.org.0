@@ -1,43 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 297E9293DC7
-	for <lists+intel-gfx@lfdr.de>; Tue, 20 Oct 2020 15:50:26 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 472D8293DF0
+	for <lists+intel-gfx@lfdr.de>; Tue, 20 Oct 2020 15:57:04 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A7A366ECCD;
-	Tue, 20 Oct 2020 13:50:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A1D156ECB1;
+	Tue, 20 Oct 2020 13:57:02 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AD8216ECCB;
- Tue, 20 Oct 2020 13:50:20 +0000 (UTC)
-IronPort-SDR: xvsNy7wRn7IKq2129m+bn2o9zX3VGd4PJgUFvudJXvTGNqNG/eH5dU7bqMTPOBOWzCj4z+DLDg
- ufDw9pYfGSrQ==
-X-IronPort-AV: E=McAfee;i="6000,8403,9779"; a="184837579"
-X-IronPort-AV: E=Sophos;i="5.77,397,1596524400"; d="scan'208";a="184837579"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Oct 2020 06:50:20 -0700
-IronPort-SDR: Dys8Tzaqy+eclTc+5d08FMgn/brL9DC6uzblZjYkJLAZCaMMRS6j9dUPlechWgktgIITf1audr
- bfdxQ+KOSQSg==
-X-IronPort-AV: E=Sophos;i="5.77,397,1596524400"; d="scan'208";a="465935152"
-Received: from genxfsim-desktop.iind.intel.com ([10.223.74.178])
- by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Oct 2020 06:50:17 -0700
-From: Anshuman Gupta <anshuman.gupta@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	dri-devel@lists.freedesktop.org
-Date: Tue, 20 Oct 2020 19:09:06 +0530
-Message-Id: <20201020133906.23710-16-anshuman.gupta@intel.com>
-X-Mailer: git-send-email 2.26.2
-In-Reply-To: <20201020133906.23710-1-anshuman.gupta@intel.com>
-References: <20201020133906.23710-1-anshuman.gupta@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 6631A6ECB1;
+ Tue, 20 Oct 2020 13:57:01 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 5E2C7A008A;
+ Tue, 20 Oct 2020 13:57:01 +0000 (UTC)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v2 15/15] drm/i915/hdcp: Enable HDCP 2.2 MST
- support
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Anshuman Gupta" <anshuman.gupta@intel.com>
+Date: Tue, 20 Oct 2020 13:57:01 -0000
+Message-ID: <160320222138.24449.16459113903312071992@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20201020133906.23710-1-anshuman.gupta@intel.com>
+In-Reply-To: <20201020133906.23710-1-anshuman.gupta@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_HDCP_2=2E2_DP_MST_Support_=28rev4=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,126 +38,43 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jani.nikula@intel.com, seanpaul@chromium.org
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Enable HDCP 2.2 over DP MST.
+== Series Details ==
 
-Cc: Ramalingam C <ramalingam.c@intel.com>
-Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
----
- drivers/gpu/drm/i915/display/intel_hdcp.c | 46 ++++++++++++++++++++++-
- 1 file changed, 44 insertions(+), 2 deletions(-)
+Series: HDCP 2.2 DP MST Support (rev4)
+URL   : https://patchwork.freedesktop.org/series/81538/
+State : warning
 
-diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c b/drivers/gpu/drm/i915/display/intel_hdcp.c
-index b5e6bcf800aa..5f1fadbc5a10 100644
---- a/drivers/gpu/drm/i915/display/intel_hdcp.c
-+++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
-@@ -1696,6 +1696,32 @@ static int hdcp2_authenticate_sink(struct intel_connector *connector)
- 	return ret;
- }
- 
-+static int hdcp2_enable_stream_encryption(struct intel_connector *connector)
-+{
-+	struct intel_digital_port *dig_port = intel_attached_dig_port(connector);
-+	struct drm_i915_private *dev_priv = to_i915(connector->base.dev);
-+	struct intel_hdcp *hdcp = &connector->hdcp;
-+	enum transcoder cpu_transcoder = hdcp->cpu_transcoder;
-+	enum port port = dig_port->base.port;
-+	int ret = 0;
-+
-+	if (!(intel_de_read(dev_priv, HDCP2_STATUS(dev_priv, cpu_transcoder, port)) &
-+			    LINK_ENCRYPTION_STATUS)) {
-+		drm_err(&dev_priv->drm, "HDCP 2.2 Link is not encrypted\n");
-+		return -EPERM;
-+	}
-+
-+	if (hdcp->shim->stream_2_2_encryption) {
-+		ret = hdcp->shim->stream_2_2_encryption(dig_port, true);
-+		if (ret) {
-+			drm_err(&dev_priv->drm, "Failed to enable HDCP 2.2 stream enc\n");
-+			return ret;
-+		}
-+	}
-+
-+	return ret;
-+}
-+
- static int hdcp2_enable_encryption(struct intel_connector *connector)
- {
- 	struct intel_digital_port *dig_port = intel_attached_dig_port(connector);
-@@ -1834,7 +1860,7 @@ static int hdcp2_authenticate_and_encrypt(struct intel_connector *connector)
- 			drm_dbg_kms(&i915->drm, "Port deauth failed.\n");
- 	}
- 
--	if (!ret) {
-+	if (!ret && !dig_port->port_auth) {
- 		/*
- 		 * Ensuring the required 200mSec min time interval between
- 		 * Session Key Exchange and encryption.
-@@ -1849,6 +1875,8 @@ static int hdcp2_authenticate_and_encrypt(struct intel_connector *connector)
- 		}
- 	}
- 
-+	ret = hdcp2_enable_stream_encryption(connector);
-+
- 	return ret;
- }
- 
-@@ -1893,11 +1921,23 @@ static int _intel_hdcp2_disable(struct intel_connector *connector)
- 	struct intel_digital_port *dig_port = intel_attached_dig_port(connector);
- 	struct drm_i915_private *i915 = to_i915(connector->base.dev);
- 	struct hdcp_port_data *data = &dig_port->port_data;
-+	struct intel_hdcp *hdcp = &connector->hdcp;
- 	int ret;
- 
- 	drm_dbg_kms(&i915->drm, "[%s:%d] HDCP2.2 is being Disabled\n",
- 		    connector->base.name, connector->base.base.id);
- 
-+	if (hdcp->shim->stream_2_2_encryption) {
-+		ret = hdcp->shim->stream_2_2_encryption(dig_port, false);
-+		if (ret) {
-+			drm_err(&i915->drm, "Failed to disable HDCP 2.2 stream enc\n");
-+			return ret;
-+		}
-+	}
-+
-+	if (dig_port->num_hdcp_streams > 0)
-+		return ret;
-+
- 	ret = hdcp2_disable_encryption(connector);
- 
- 	if (hdcp2_deauthenticate_port(connector) < 0)
-@@ -1921,6 +1961,7 @@ static int intel_hdcp2_check_link(struct intel_connector *connector)
- 	int ret = 0;
- 
- 	mutex_lock(&hdcp->mutex);
-+	mutex_lock(&dig_port->hdcp_mutex);
- 	cpu_transcoder = hdcp->cpu_transcoder;
- 
- 	/* hdcp2_check_link is expected only when HDCP2.2 is Enabled */
-@@ -1998,6 +2039,7 @@ static int intel_hdcp2_check_link(struct intel_connector *connector)
- 	}
- 
- out:
-+	mutex_unlock(&dig_port->hdcp_mutex);
- 	mutex_unlock(&hdcp->mutex);
- 	return ret;
- }
-@@ -2179,7 +2221,7 @@ int intel_hdcp_init(struct intel_connector *connector,
- 	if (!shim)
- 		return -EINVAL;
- 
--	if (is_hdcp2_supported(dev_priv) && !connector->mst_port)
-+	if (is_hdcp2_supported(dev_priv))
- 		intel_hdcp2_init(connector, dig_port, shim);
- 
- 	ret =
--- 
-2.26.2
+== Summary ==
+
+$ dim checkpatch origin/drm-tip
+a4d3a9ec3849 drm/i915/hdcp: Update CP property in update_pipe
+2018cc25b202 drm/i915/hotplug: Handle CP_IRQ for DP-MST
+11bcba39ffde drm/i915/hdcp: DP MST transcoder for link and stream
+aba9f25aea66 drm/i915/hdcp: Move HDCP enc status timeout to header
+-:13: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit 7e90e8d0c0ea ("drm/i915: Increase timeout for Encrypt status change")'
+#13: 
+Related: 7e90e8d0c0ea ("drm/i915: Increase timeout for Encrypt
+
+total: 1 errors, 0 warnings, 0 checks, 47 lines checked
+ae925c693494 drm/i915/hdcp: HDCP stream encryption support
+a79629da8f04 drm/i915/hdcp: Enable Gen12 HDCP 1.4 DP MST support
+5621415e6d6e drm/i915/hdcp: Pass dig_port to intel_hdcp_init
+39ed7e61c0e9 drm/i915/hdcp: Encapsulate hdcp_port_data to dig_port
+69bf14c05085 misc/mei/hdcp: Fix AUTH_STREAM_REQ cmd buffer len
+d3fd32def329 drm/hdcp: Max MST content streams
+c25e6261d34e drm/i915/hdcp: mst streams support in hdcp port_data
+9590fecf06d5 drm/i915/hdcp: Pass connector to check_2_2_link
+e0a0c5f3814d drm/i915/hdcp: Add HDCP 2.2 stream register
+8786d421d43c drm/i915/hdcp: Support for HDCP 2.2 MST shim callbacks
+351b313c2199 drm/i915/hdcp: Enable HDCP 2.2 MST support
+
 
 _______________________________________________
 Intel-gfx mailing list
