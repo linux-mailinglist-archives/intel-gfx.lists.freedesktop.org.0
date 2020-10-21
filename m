@@ -1,46 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D520A2952F8
-	for <lists+intel-gfx@lfdr.de>; Wed, 21 Oct 2020 21:31:00 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8E43D295308
+	for <lists+intel-gfx@lfdr.de>; Wed, 21 Oct 2020 21:36:12 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F1A7F6F4C5;
-	Wed, 21 Oct 2020 19:30:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 78FC26F4CC;
+	Wed, 21 Oct 2020 19:36:10 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 867296F4C5
- for <intel-gfx@lists.freedesktop.org>; Wed, 21 Oct 2020 19:30:57 +0000 (UTC)
-IronPort-SDR: Qh+Dmg0NRN/Hma6ngPp0iXcBaPBELJduWKsK+OOroZdwK4EtYIhkTovHnfUEA9gohscKj9dv88
- bzHFkOGeay8A==
-X-IronPort-AV: E=McAfee;i="6000,8403,9781"; a="252121909"
-X-IronPort-AV: E=Sophos;i="5.77,401,1596524400"; d="scan'208";a="252121909"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Oct 2020 12:30:56 -0700
-IronPort-SDR: 7dBsDlJCDAQpkesD9e7LkzGGgTynnDu77b+rbf1fN8hs+nAqV4kBDUG5gXDj+ccrCNzZDw6bD0
- YpOftahwG27w==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.77,401,1596524400"; d="scan'208";a="332697017"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by orsmga002.jf.intel.com with SMTP; 21 Oct 2020 12:30:54 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 21 Oct 2020 22:30:53 +0300
-Date: Wed, 21 Oct 2020 22:30:53 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Chris Wilson <chris@chris-wilson.co.uk>
-Message-ID: <20201021193053.GH6112@intel.com>
-References: <20201021185649.17759-1-chris@chris-wilson.co.uk>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id B84CE6F4C6;
+ Wed, 21 Oct 2020 19:36:09 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id B05D2A7DFE;
+ Wed, 21 Oct 2020 19:36:09 +0000 (UTC)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20201021185649.17759-1-chris@chris-wilson.co.uk>
-X-Patchwork-Hint: comment
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/display: Unkerneldoc
- cnl_program_nearest_filter_coefs
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Manasi Navare" <manasi.d.navare@intel.com>
+Date: Wed, 21 Oct 2020 19:36:09 -0000
+Message-ID: <160330896969.17471.12515227459484166444@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20201021183252.4765-1-manasi.d.navare@intel.com>
+In-Reply-To: <20201021183252.4765-1-manasi.d.navare@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
+ =?utf-8?q?/i915=3A_Add_hw=2Epipe=5Fmode_to_allow_bigjoiner_pipe/transcode?=
+ =?utf-8?q?r_split?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,68 +39,289 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: multipart/mixed; boundary="===============1936974211=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Oct 21, 2020 at 07:56:49PM +0100, Chris Wilson wrote:
-> The block comment for cnl_program_nearest_filter_coefs() has a wonderful
-> diagram, but although it is marked up as kerneldoc does not use the
-> markup for providing the function definition.
-> =
+--===============1936974211==
+Content-Type: multipart/alternative;
+ boundary="===============4739341916414584155=="
 
-> drivers/gpu/drm/i915/display/intel_display.c:6341: warning: Function para=
-meter or member 'dev_priv' not described in 'cnl_program_nearest_filter_coe=
-fs'
-> drivers/gpu/drm/i915/display/intel_display.c:6341: warning: Function para=
-meter or member 'pipe' not described in 'cnl_program_nearest_filter_coefs'
-> drivers/gpu/drm/i915/display/intel_display.c:6341: warning: Function para=
-meter or member 'id' not described in 'cnl_program_nearest_filter_coefs'
-> drivers/gpu/drm/i915/display/intel_display.c:6341: warning: Function para=
-meter or member 'set' not described in 'cnl_program_nearest_filter_coefs'
-> =
+--===============4739341916414584155==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+== Series Details ==
 
-Reviewed-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+Series: drm/i915: Add hw.pipe_mode to allow bigjoiner pipe/transcoder split
+URL   : https://patchwork.freedesktop.org/series/82931/
+State : failure
 
-> ---
->  drivers/gpu/drm/i915/display/intel_display.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> =
+== Summary ==
 
-> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/d=
-rm/i915/display/intel_display.c
-> index 130303e0298a..6eff9a971d0b 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> @@ -6299,7 +6299,7 @@ static u16 cnl_nearest_filter_coef(int t)
->  	return t =3D=3D 3 ? 0x0800 : 0x3000;
->  }
->  =
+CI Bug Log - changes from CI_DRM_9178 -> Patchwork_18757
+====================================================
 
-> -/**
-> +/*
->   *  Theory behind setting nearest-neighbor integer scaling:
->   *
->   *  17 phase of 7 taps requires 119 coefficients in 60 dwords per set.
-> -- =
+Summary
+-------
 
-> 2.20.1
-> =
+  **FAILURE**
 
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+  Serious unknown changes coming with Patchwork_18757 absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in Patchwork_18757, please notify your bug team to allow them
+  to document this new failure mode, which will reduce false positives in CI.
 
--- =
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18757/index.html
 
-Ville Syrj=E4l=E4
-Intel
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_18757:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@runner@aborted:
+    - fi-ilk-650:         NOTRUN -> [FAIL][1]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18757/fi-ilk-650/igt@runner@aborted.html
+    - fi-pnv-d510:        NOTRUN -> [FAIL][2]
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18757/fi-pnv-d510/igt@runner@aborted.html
+    - fi-skl-6600u:       NOTRUN -> [FAIL][3]
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18757/fi-skl-6600u/igt@runner@aborted.html
+    - fi-gdg-551:         NOTRUN -> [FAIL][4]
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18757/fi-gdg-551/igt@runner@aborted.html
+    - fi-snb-2520m:       NOTRUN -> [FAIL][5]
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18757/fi-snb-2520m/igt@runner@aborted.html
+    - fi-skl-lmem:        NOTRUN -> [FAIL][6]
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18757/fi-skl-lmem/igt@runner@aborted.html
+    - fi-bwr-2160:        NOTRUN -> [FAIL][7]
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18757/fi-bwr-2160/igt@runner@aborted.html
+    - fi-kbl-guc:         NOTRUN -> [FAIL][8]
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18757/fi-kbl-guc/igt@runner@aborted.html
+    - fi-snb-2600:        NOTRUN -> [FAIL][9]
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18757/fi-snb-2600/igt@runner@aborted.html
+    - fi-cml-u2:          NOTRUN -> [FAIL][10]
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18757/fi-cml-u2/igt@runner@aborted.html
+    - fi-ivb-3770:        NOTRUN -> [FAIL][11]
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18757/fi-ivb-3770/igt@runner@aborted.html
+    - fi-byt-j1900:       NOTRUN -> [FAIL][12]
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18757/fi-byt-j1900/igt@runner@aborted.html
+    - fi-elk-e7500:       NOTRUN -> [FAIL][13]
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18757/fi-elk-e7500/igt@runner@aborted.html
+    - fi-cml-s:           NOTRUN -> [FAIL][14]
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18757/fi-cml-s/igt@runner@aborted.html
+    - fi-skl-guc:         NOTRUN -> [FAIL][15]
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18757/fi-skl-guc/igt@runner@aborted.html
+    - fi-skl-6700k2:      NOTRUN -> [FAIL][16]
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18757/fi-skl-6700k2/igt@runner@aborted.html
+    - fi-blb-e6850:       NOTRUN -> [FAIL][17]
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18757/fi-blb-e6850/igt@runner@aborted.html
+
+  
+#### Suppressed ####
+
+  The following results come from untrusted machines, tests, or statuses.
+  They do not affect the overall result.
+
+  * igt@runner@aborted:
+    - {fi-ehl-1}:         NOTRUN -> [FAIL][18]
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18757/fi-ehl-1/igt@runner@aborted.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_18757 that come from known issues:
+
+### IGT changes ###
+
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [i915#1436]: https://gitlab.freedesktop.org/drm/intel/issues/1436
+  [i915#1569]: https://gitlab.freedesktop.org/drm/intel/issues/1569
+  [i915#1784]: https://gitlab.freedesktop.org/drm/intel/issues/1784
+  [i915#192]: https://gitlab.freedesktop.org/drm/intel/issues/192
+  [i915#193]: https://gitlab.freedesktop.org/drm/intel/issues/193
+  [i915#194]: https://gitlab.freedesktop.org/drm/intel/issues/194
+  [i915#2439]: https://gitlab.freedesktop.org/drm/intel/issues/2439
+
+
+Participating hosts (44 -> 38)
+------------------------------
+
+  Additional (1): fi-blb-e6850 
+  Missing    (7): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-byt-clapper fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_9178 -> Patchwork_18757
+
+  CI-20190529: 20190529
+  CI_DRM_9178: e5886151db1a9d6300303264648595d3bd5a8d60 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5822: b4bcf05cb9839037128905deda7146434155cc41 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_18757: 3060c815173414fa0ee78585e2774e3b4c7a5a81 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+3060c8151734 drm/i915: Add hw.pipe_mode to allow bigjoiner pipe/transcoder split
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18757/index.html
+
+--===============4739341916414584155==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915: Add hw.pipe_mode to allow bigjoiner pipe/transcoder split</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/82931/">https://patchwork.freedesktop.org/series/82931/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18757/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18757/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_9178 -&gt; Patchwork_18757</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with Patchwork_18757 absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in Patchwork_18757, please notify your bug team to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18757/index.html</p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in Patchwork_18757:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>
+<p>igt@runner@aborted:</p>
+<ul>
+<li>
+<p>fi-ilk-650:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18757/fi-ilk-650/igt@runner@aborted.html">FAIL</a></p>
+</li>
+<li>
+<p>fi-pnv-d510:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18757/fi-pnv-d510/igt@runner@aborted.html">FAIL</a></p>
+</li>
+<li>
+<p>fi-skl-6600u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18757/fi-skl-6600u/igt@runner@aborted.html">FAIL</a></p>
+</li>
+<li>
+<p>fi-gdg-551:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18757/fi-gdg-551/igt@runner@aborted.html">FAIL</a></p>
+</li>
+<li>
+<p>fi-snb-2520m:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18757/fi-snb-2520m/igt@runner@aborted.html">FAIL</a></p>
+</li>
+<li>
+<p>fi-skl-lmem:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18757/fi-skl-lmem/igt@runner@aborted.html">FAIL</a></p>
+</li>
+<li>
+<p>fi-bwr-2160:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18757/fi-bwr-2160/igt@runner@aborted.html">FAIL</a></p>
+</li>
+<li>
+<p>fi-kbl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18757/fi-kbl-guc/igt@runner@aborted.html">FAIL</a></p>
+</li>
+<li>
+<p>fi-snb-2600:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18757/fi-snb-2600/igt@runner@aborted.html">FAIL</a></p>
+</li>
+<li>
+<p>fi-cml-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18757/fi-cml-u2/igt@runner@aborted.html">FAIL</a></p>
+</li>
+<li>
+<p>fi-ivb-3770:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18757/fi-ivb-3770/igt@runner@aborted.html">FAIL</a></p>
+</li>
+<li>
+<p>fi-byt-j1900:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18757/fi-byt-j1900/igt@runner@aborted.html">FAIL</a></p>
+</li>
+<li>
+<p>fi-elk-e7500:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18757/fi-elk-e7500/igt@runner@aborted.html">FAIL</a></p>
+</li>
+<li>
+<p>fi-cml-s:           NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18757/fi-cml-s/igt@runner@aborted.html">FAIL</a></p>
+</li>
+<li>
+<p>fi-skl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18757/fi-skl-guc/igt@runner@aborted.html">FAIL</a></p>
+</li>
+<li>
+<p>fi-skl-6700k2:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18757/fi-skl-6700k2/igt@runner@aborted.html">FAIL</a></p>
+</li>
+<li>
+<p>fi-blb-e6850:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18757/fi-blb-e6850/igt@runner@aborted.html">FAIL</a></p>
+</li>
+</ul>
+</li>
+</ul>
+<h4>Suppressed</h4>
+<p>The following results come from untrusted machines, tests, or statuses.<br />
+  They do not affect the overall result.</p>
+<ul>
+<li>igt@runner@aborted:<ul>
+<li>{fi-ehl-1}:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18757/fi-ehl-1/igt@runner@aborted.html">FAIL</a></li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_18757 that come from known issues:</p>
+<h3>IGT changes</h3>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Participating hosts (44 -&gt; 38)</h2>
+<p>Additional (1): fi-blb-e6850 <br />
+  Missing    (7): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-byt-clapper fi-bdw-samus </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_9178 -&gt; Patchwork_18757</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_9178: e5886151db1a9d6300303264648595d3bd5a8d60 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_5822: b4bcf05cb9839037128905deda7146434155cc41 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
+  Patchwork_18757: 3060c815173414fa0ee78585e2774e3b4c7a5a81 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>3060c8151734 drm/i915: Add hw.pipe_mode to allow bigjoiner pipe/transcoder split</p>
+
+</body>
+</html>
+
+--===============4739341916414584155==--
+
+--===============1936974211==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============1936974211==--
