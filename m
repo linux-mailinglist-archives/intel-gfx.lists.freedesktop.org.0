@@ -1,61 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0E54029515E
-	for <lists+intel-gfx@lfdr.de>; Wed, 21 Oct 2020 19:14:06 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 37F6B29515F
+	for <lists+intel-gfx@lfdr.de>; Wed, 21 Oct 2020 19:14:08 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CBFA56E153;
-	Wed, 21 Oct 2020 17:14:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 798766EE1E;
+	Wed, 21 Oct 2020 17:14:05 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1E8686E153
- for <intel-gfx@lists.freedesktop.org>; Wed, 21 Oct 2020 17:14:01 +0000 (UTC)
-IronPort-SDR: FHYnQrizrP+9e+bmpx99Ya79gkvp6CdfCD8HSTqvXIToWLHquECO0NP9KmpiYjyfESo20iYZb5
- oRd84gq7WG+A==
-X-IronPort-AV: E=McAfee;i="6000,8403,9780"; a="231597411"
-X-IronPort-AV: E=Sophos;i="5.77,401,1596524400"; d="scan'208";a="231597411"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Oct 2020 10:13:46 -0700
-IronPort-SDR: xCOXkyPMo/B3voamyyoSGSexVgdf/WjowHt8/PoD00zRqMt+731OBWv2pvl6G8WOfKJpQ7F7bl
- 2vdKe8FmmYXg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.77,401,1596524400"; d="scan'208";a="348611941"
-Received: from orsmsx604.amr.corp.intel.com ([10.22.229.17])
- by orsmga008.jf.intel.com with ESMTP; 21 Oct 2020 10:13:46 -0700
-Received: from orsmsx612.amr.corp.intel.com (10.22.229.25) by
- ORSMSX604.amr.corp.intel.com (10.22.229.17) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1713.5; Wed, 21 Oct 2020 10:13:45 -0700
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX612.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1713.5; Wed, 21 Oct 2020 10:13:44 -0700
-Received: from orsmsx610.amr.corp.intel.com ([10.22.229.23]) by
- ORSMSX610.amr.corp.intel.com ([10.22.229.23]) with mapi id 15.01.1713.004;
- Wed, 21 Oct 2020 10:13:44 -0700
-From: "Souza, Jose" <jose.souza@intel.com>
-To: "Lee, Shawn C" <shawn.c.lee@intel.com>, "intel-gfx@lists.freedesktop.org"
- <intel-gfx@lists.freedesktop.org>
-Thread-Topic: [PATCH] drm/i915: wait PSR state back to idle when turn PSR off
-Thread-Index: AQHWp7WOTaiyq52mIkSPouwz1YNUHamiwN0A
-Date: Wed, 21 Oct 2020 17:13:44 +0000
-Message-ID: <690c040328458ae91d1fde7d23fc2d54c0c11480.camel@intel.com>
-References: <20201021142450.7758-1-shawn.c.lee@intel.com>
-In-Reply-To: <20201021142450.7758-1-shawn.c.lee@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.132]
-Content-ID: <F76DEB5AF0EDB2448AF69A045D39CEE8@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 3519E6EE1E;
+ Wed, 21 Oct 2020 17:14:04 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 2DE10A0091;
+ Wed, 21 Oct 2020 17:14:04 +0000 (UTC)
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: wait PSR state back to idle when
- turn PSR off
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Daniel Vetter" <daniel.vetter@ffwll.ch>
+Date: Wed, 21 Oct 2020 17:14:04 -0000
+Message-ID: <160330044418.17471.17245034152264285542@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20201021163242.1458885-1-daniel.vetter@ffwll.ch>
+In-Reply-To: <20201021163242.1458885-1-daniel.vetter@ffwll.ch>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_series_starting_with_=5B1/3=5D_drm/atomic-helpers=3A_remove?=
+ =?utf-8?q?_legacy=5Fcursor=5Fupdate_hacks?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,98 +39,41 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Chiou,
- Cooper" <cooper.chiou@intel.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gV2VkLCAyMDIwLTEwLTIxIGF0IDIyOjI0ICswODAwLCBMZWUgU2hhd24gQyB3cm90ZToNCj4g
-RHJpdmVyIHNob3VsZCByZWZlciB0byBjb21taXQgJ2IyZmMyMjUyY2U0MSAoImRybS9pOTE1L3Bz
-cjoNCj4gQWx3YXlzIHdhaXQgZm9yIGlkbGUgc3RhdGUgd2hlbiBkaXNhYmxpbmcgUFNSIiknIHRv
-IHdhaXQgZm9yDQo+IGlkbGUgc3RhdGUgd2hlbiB0dXJuIFBTUiBvZmYuIEJ1dCBpdCBkaWQgbm90
-IGZvbGxvdw0KPiBwcmV2aW91cyBtZXRob2QuIERyaXZlciBqdXN0IGNhbGwgaW50ZWxfcHNyX2V4
-aXQoKSBpbg0KPiBpbnRlbF9wc3JfaW52YWxpZGF0ZSgpIGFuZCBwc3JfZm9yY2VfaHdfdHJhY2tp
-bmdfZXhpdCgpLg0KPiBUaGVuIGxlYXZlIHRoZSBmdW5jdGlvbiByaWdodCBhd2F5Lg0KPiANCj4g
-QWZ0ZXIgUFNSIGRpc2FibGVkLCB3ZSBmb3VuZCBzb21lIHVzZXIgc3BhY2UgYXBwbGljYXRpb25z
-DQo+IHdvdWxkIGVuYWJsZWQgUFNSIGFnYWluIGltbWVkaWF0ZWx5LiBUaGF0IGNhdXNlZCBwYXJ0
-aWN1bGFyDQo+IFRDT04gdG8gZ2V0IGludG8gaW5jb3JyZWN0IHN0YXRlIG1hY2hpbmUgYW5kIGNh
-bid0IHJlY29nbml6ZQ0KPiB2aWRlbyBkYXRhIGZyb20gc291cmNlIHByb3Blcmx5Lg0KDQpIb3c/
-IEkgZG9uJ3Qgc2VlIGhvdyB0aGlzIGlzIHBvc3NpYmxlIHRoaXMgY2hhbmdlIGlzIG9ubHkgYWRk
-aW5nIGRlbGF5IGJldHdlZW4gdXNlcnNwYWNlIGNhbGxzLg0KDQpUYWtlIGEgbG9vayBhdCBpbnRl
-bF9wc3Jfd29yaygpLCBQU1Igd2lsbCBvbmx5IGJlIGVuYWJsZWQgYWdhaW4gd2hlbiBpZGxlLg0K
-DQo+IA0KPiBBZGQgdGhpcyBjaGFuZ2UgdG8gd2FpdCBQU1IgaWRsZSBzdGF0ZSBpbiBpbnRlbF9w
-c3JfaW52YWxpZGF0ZSgpDQo+IGFuZCBwc3JfZm9yY2VfaHdfdHJhY2tpbmdfZXhpdCgpLiBUaGlz
-IHN5bXB0b20gaXMgbm90IGFibGUNCj4gdG8gcmVwbGljYXRlIGFueW1vcmUuDQo+IA0KPiBGaXhl
-czogYjJmYzIyNTJjZTQxIChkcm0vaTkxNS9wc3I6IEFsd2F5cyB3YWl0IGZvciBpZGxlIHN0YXRl
-DQo+IHdoZW4gZGlzYWJsaW5nIFBTUikuDQo+IA0KPiBDYzogTWFuYXNpIE5hdmFyZSA8bWFuYXNp
-LmQubmF2YXJlQGludGVsLmNvbT4NCj4gQ2M6IEphbmkgTmlrdWxhIDxqYW5pLm5pa3VsYUBsaW51
-eC5pbnRlbC5jb20+DQo+IENjOiBWaWxsZSBTeXJqYWxhIDx2aWxsZS5zeXJqYWxhQGxpbnV4Lmlu
-dGVsLmNvbT4NCj4gQ2M6IEpvc8OpIFJvYmVydG8gZGUgU291emEgPGpvc2Uuc291emFAaW50ZWwu
-Y29tPg0KPiBDYzogQ29vcGVyIENoaW91IDxjb29wZXIuY2hpb3VAaW50ZWwuY29tPg0KPiBDYzog
-S2hhbGVkIEFsbWFoYWxsYXd5IDxraGFsZWQuYWxtYWhhbGxhd3lAaW50ZWwuY29tPg0KPiBTaWdu
-ZWQtb2ZmLWJ5OiBMZWUgU2hhd24gQyA8c2hhd24uYy5sZWVAaW50ZWwuY29tPg0KPiAtLS0NCj4g
-wqBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX3Bzci5jIHwgNDMgKysrKysrKysr
-KysrKystLS0tLS0tLS0tDQo+IMKgMSBmaWxlIGNoYW5nZWQsIDI2IGluc2VydGlvbnMoKyksIDE3
-IGRlbGV0aW9ucygtKQ0KPiANCj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rp
-c3BsYXkvaW50ZWxfcHNyLmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX3Bz
-ci5jDQo+IGluZGV4IGE1OTFhNDc1ZjE0OC4uODNiNjQyYTU1NjdlIDEwMDY0NA0KPiAtLS0gYS9k
-cml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX3Bzci5jDQo+ICsrKyBiL2RyaXZlcnMv
-Z3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfcHNyLmMNCj4gQEAgLTEwMzYsNiArMTAzNiwyNSBA
-QCB2b2lkIGludGVsX3Bzcl9lbmFibGUoc3RydWN0IGludGVsX2RwICppbnRlbF9kcCwNCj4gwqAJ
-bXV0ZXhfdW5sb2NrKCZkZXZfcHJpdi0+cHNyLmxvY2spOw0KPiDCoH0NCj4gwqANCj4gDQo+IA0K
-PiANCj4gK3N0YXRpYyB2b2lkIGludGVsX3Bzcl93YWl0X2lkbGUoc3RydWN0IGRybV9pOTE1X3By
-aXZhdGUgKmRldl9wcml2KQ0KPiArew0KPiArCWk5MTVfcmVnX3QgcHNyX3N0YXR1czsNCj4gKwl1
-MzIgcHNyX3N0YXR1c19tYXNrOw0KPiArDQo+ICsJaWYgKGRldl9wcml2LT5wc3IucHNyMl9lbmFi
-bGVkKSB7DQo+ICsJCXBzcl9zdGF0dXMgPSBFRFBfUFNSMl9TVEFUVVMoZGV2X3ByaXYtPnBzci50
-cmFuc2NvZGVyKTsNCj4gKwkJcHNyX3N0YXR1c19tYXNrID0gRURQX1BTUjJfU1RBVFVTX1NUQVRF
-X01BU0s7DQo+ICsJfSBlbHNlIHsNCj4gKwkJcHNyX3N0YXR1cyA9IEVEUF9QU1JfU1RBVFVTKGRl
-dl9wcml2LT5wc3IudHJhbnNjb2Rlcik7DQo+ICsJCXBzcl9zdGF0dXNfbWFzayA9IEVEUF9QU1Jf
-U1RBVFVTX1NUQVRFX01BU0s7DQo+ICsJfQ0KPiArDQo+ICsJLyogV2FpdCB0aWxsIFBTUiBpcyBp
-ZGxlICovDQo+ICsJaWYgKGludGVsX2RlX3dhaXRfZm9yX2NsZWFyKGRldl9wcml2LCBwc3Jfc3Rh
-dHVzLA0KPiArCQkJCSAgICBwc3Jfc3RhdHVzX21hc2ssIDIwMDApKQ0KPiArCQlkcm1fZXJyKCZk
-ZXZfcHJpdi0+ZHJtLCAiVGltZWQgb3V0IHdhaXRpbmcgUFNSIGlkbGUgc3RhdGVcbiIpOw0KPiAr
-fQ0KPiArDQo+IMKgc3RhdGljIHZvaWQgaW50ZWxfcHNyX2V4aXQoc3RydWN0IGRybV9pOTE1X3By
-aXZhdGUgKmRldl9wcml2KQ0KPiDCoHsNCj4gwqAJdTMyIHZhbDsNCj4gQEAgLTEwNzYsOCArMTA5
-NSw2IEBAIHN0YXRpYyB2b2lkIGludGVsX3Bzcl9leGl0KHN0cnVjdCBkcm1faTkxNV9wcml2YXRl
-ICpkZXZfcHJpdikNCj4gwqBzdGF0aWMgdm9pZCBpbnRlbF9wc3JfZGlzYWJsZV9sb2NrZWQoc3Ry
-dWN0IGludGVsX2RwICppbnRlbF9kcCkNCj4gwqB7DQo+IMKgCXN0cnVjdCBkcm1faTkxNV9wcml2
-YXRlICpkZXZfcHJpdiA9IGRwX3RvX2k5MTUoaW50ZWxfZHApOw0KPiAtCWk5MTVfcmVnX3QgcHNy
-X3N0YXR1czsNCj4gLQl1MzIgcHNyX3N0YXR1c19tYXNrOw0KPiDCoA0KPiANCj4gDQo+IA0KPiDC
-oAlsb2NrZGVwX2Fzc2VydF9oZWxkKCZkZXZfcHJpdi0+cHNyLmxvY2spOw0KPiDCoA0KPiANCj4g
-DQo+IA0KPiBAQCAtMTA4OCwxOSArMTEwNSw3IEBAIHN0YXRpYyB2b2lkIGludGVsX3Bzcl9kaXNh
-YmxlX2xvY2tlZChzdHJ1Y3QgaW50ZWxfZHAgKmludGVsX2RwKQ0KPiDCoAkJICAgIGRldl9wcml2
-LT5wc3IucHNyMl9lbmFibGVkID8gIjIiIDogIjEiKTsNCj4gwqANCj4gDQo+IA0KPiANCj4gwqAJ
-aW50ZWxfcHNyX2V4aXQoZGV2X3ByaXYpOw0KPiAtDQo+IC0JaWYgKGRldl9wcml2LT5wc3IucHNy
-Ml9lbmFibGVkKSB7DQo+IC0JCXBzcl9zdGF0dXMgPSBFRFBfUFNSMl9TVEFUVVMoZGV2X3ByaXYt
-PnBzci50cmFuc2NvZGVyKTsNCj4gLQkJcHNyX3N0YXR1c19tYXNrID0gRURQX1BTUjJfU1RBVFVT
-X1NUQVRFX01BU0s7DQo+IC0JfSBlbHNlIHsNCj4gLQkJcHNyX3N0YXR1cyA9IEVEUF9QU1JfU1RB
-VFVTKGRldl9wcml2LT5wc3IudHJhbnNjb2Rlcik7DQo+IC0JCXBzcl9zdGF0dXNfbWFzayA9IEVE
-UF9QU1JfU1RBVFVTX1NUQVRFX01BU0s7DQo+IC0JfQ0KPiAtDQo+IC0JLyogV2FpdCB0aWxsIFBT
-UiBpcyBpZGxlICovDQo+IC0JaWYgKGludGVsX2RlX3dhaXRfZm9yX2NsZWFyKGRldl9wcml2LCBw
-c3Jfc3RhdHVzLA0KPiAtCQkJCSAgICBwc3Jfc3RhdHVzX21hc2ssIDIwMDApKQ0KPiAtCQlkcm1f
-ZXJyKCZkZXZfcHJpdi0+ZHJtLCAiVGltZWQgb3V0IHdhaXRpbmcgUFNSIGlkbGUgc3RhdGVcbiIp
-Ow0KPiArCWludGVsX3Bzcl93YWl0X2lkbGUoZGV2X3ByaXYpOw0KPiDCoA0KPiANCj4gDQo+IA0K
-PiDCoAkvKiBXQSAxNDA4MzMwODQ3ICovDQo+IMKgCWlmIChkZXZfcHJpdi0+cHNyLnBzcjJfc2Vs
-X2ZldGNoX2VuYWJsZWQgJiYNCj4gQEAgLTExNTgsMTIgKzExNjMsMTQgQEAgc3RhdGljIHZvaWQg
-cHNyX2ZvcmNlX2h3X3RyYWNraW5nX2V4aXQoc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmRldl9w
-cml2KQ0KPiDCoAkJICogcGlwZS4NCj4gwqAJCSAqLw0KPiDCoAkJaW50ZWxfZGVfd3JpdGUoZGV2
-X3ByaXYsIENVUlNVUkZMSVZFKGRldl9wcml2LT5wc3IucGlwZSksIDApOw0KPiAtCWVsc2UNCj4g
-KwllbHNlIHsNCj4gwqAJCS8qDQo+IMKgCQkgKiBBIHdyaXRlIHRvIENVUlNVUkZMSVZFIGRvIG5v
-dCBjYXVzZSBIVyB0cmFja2luZyB0byBleGl0IFBTUg0KPiDCoAkJICogb24gb2xkZXIgZ2VucyBz
-byBkb2luZyB0aGUgbWFudWFsIGV4aXQgaW5zdGVhZC4NCj4gwqAJCSAqLw0KPiDCoAkJaW50ZWxf
-cHNyX2V4aXQoZGV2X3ByaXYpOw0KPiArCQlpbnRlbF9wc3Jfd2FpdF9pZGxlKGRldl9wcml2KTsN
-Cj4gKwl9DQo+IMKgfQ0KPiDCoA0KPiANCj4gDQo+IA0KPiDCoHZvaWQgaW50ZWxfcHNyMl9wcm9n
-cmFtX3BsYW5lX3NlbF9mZXRjaChzdHJ1Y3QgaW50ZWxfcGxhbmUgKnBsYW5lLA0KPiBAQCAtMTU5
-Myw4ICsxNjAwLDEwIEBAIHZvaWQgaW50ZWxfcHNyX2ludmFsaWRhdGUoc3RydWN0IGRybV9pOTE1
-X3ByaXZhdGUgKmRldl9wcml2LA0KPiDCoAlmcm9udGJ1ZmZlcl9iaXRzICY9IElOVEVMX0ZST05U
-QlVGRkVSX0FMTF9NQVNLKGRldl9wcml2LT5wc3IucGlwZSk7DQo+IMKgCWRldl9wcml2LT5wc3Iu
-YnVzeV9mcm9udGJ1ZmZlcl9iaXRzIHw9IGZyb250YnVmZmVyX2JpdHM7DQo+IMKgDQo+IA0KPiAN
-Cj4gDQo+IC0JaWYgKGZyb250YnVmZmVyX2JpdHMpDQo+ICsJaWYgKGZyb250YnVmZmVyX2JpdHMp
-IHsNCj4gwqAJCWludGVsX3Bzcl9leGl0KGRldl9wcml2KTsNCj4gKwkJaW50ZWxfcHNyX3dhaXRf
-aWRsZShkZXZfcHJpdik7DQo+ICsJfQ0KPiDCoA0KPiANCj4gDQo+IA0KPiDCoAltdXRleF91bmxv
-Y2soJmRldl9wcml2LT5wc3IubG9jayk7DQo+IMKgfQ0KDQpfX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdm
-eEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFp
-bG1hbi9saXN0aW5mby9pbnRlbC1nZngK
+== Series Details ==
+
+Series: series starting with [1/3] drm/atomic-helpers: remove legacy_cursor_update hacks
+URL   : https://patchwork.freedesktop.org/series/82926/
+State : warning
+
+== Summary ==
+
+$ dim checkpatch origin/drm-tip
+84380fbd2ded drm/atomic-helpers: remove legacy_cursor_update hacks
+-:29: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit 674e78acae0d ("drm/amd/display: Add fast path for cursor plane updates")'
+#29: 
+commit 674e78acae0dfb4beb56132e41cbae5b60f7d662
+
+-:75: WARNING:NO_AUTHOR_SIGN_OFF: Missing Signed-off-by: line by nominal patch author 'Daniel Vetter <daniel.vetter@ffwll.ch>'
+
+total: 1 errors, 1 warnings, 0 checks, 25 lines checked
+b5e226fd5ce6 drm/vc4: Drop legacy_cursor_update override
+-:29: WARNING:NO_AUTHOR_SIGN_OFF: Missing Signed-off-by: line by nominal patch author 'Daniel Vetter <daniel.vetter@ffwll.ch>'
+
+total: 0 errors, 1 warnings, 0 checks, 12 lines checked
+38cf9a367c10 drm/doc: Document legacy_cursor_update better
+-:65: WARNING:NO_AUTHOR_SIGN_OFF: Missing Signed-off-by: line by nominal patch author 'Daniel Vetter <daniel.vetter@ffwll.ch>'
+
+total: 0 errors, 1 warnings, 0 checks, 34 lines checked
+
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
