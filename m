@@ -1,30 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8C9772954A0
-	for <lists+intel-gfx@lfdr.de>; Thu, 22 Oct 2020 00:04:34 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id A875829549F
+	for <lists+intel-gfx@lfdr.de>; Thu, 22 Oct 2020 00:04:22 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E3FDF6EAB8;
-	Wed, 21 Oct 2020 22:04:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 161F96EE92;
+	Wed, 21 Oct 2020 22:04:21 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8B5AE6EAB8
- for <intel-gfx@lists.freedesktop.org>; Wed, 21 Oct 2020 22:04:31 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D7EBD6EE92
+ for <intel-gfx@lists.freedesktop.org>; Wed, 21 Oct 2020 22:04:19 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 22769467-1500050 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 22769468-1500050 
  for multiple; Wed, 21 Oct 2020 23:04:13 +0100
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Wed, 21 Oct 2020 23:04:10 +0100
-Message-Id: <20201021220411.5777-1-chris@chris-wilson.co.uk>
+Date: Wed, 21 Oct 2020 23:04:11 +0100
+Message-Id: <20201021220411.5777-2-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.20.1
+In-Reply-To: <20201021220411.5777-1-chris@chris-wilson.co.uk>
+References: <20201021220411.5777-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 1/2] drm/i915/gt: Use the local HWSP offset
- during submission
+Subject: [Intel-gfx] [PATCH 2/2] drm/i915/selftests: Exercise
+ intel_timeline_read_hwsp()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,169 +39,430 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: stable@vger.kernel.org, Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Chris Wilson <chris@chris-wilson.co.uk>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-We wrap the timeline on construction of the next request, but there may
-still be requests in flight that have not yet finalized the breadcrumb.
-(The breadcrumb is delayed as we need engine-local offsets, and for the
-virtual engine that is not known until execution.) As such, by the time
-we write to the timeline's HWSP offset it may have changed, and we
-should use the value we preserved in the request instead.
+intel_timeline_read_hwsp() is used to support semaphore waits between
+engines, that may themselves be deferred for arbitrary periods -- that
+is the read of the target request's HWSP is at an indeterminant point in
+the future. To support this, we need to prevent overwriting a HWSP that
+is being watched across a seqno wrap (otherwise the next request will
+write its value into the old HWSP preventing the watcher from making
+progress, ad infinitum.) To simulate the observer across a wrap, let's
+create a request that reads from the HWSP and dispatch it at different
+points around a wrap to see if the value is lost.
 
-Though the window is small and infrequent (at full flow we can expect a
-timeline's seqno to wrap once every 30 minutes), the impact of writing
-the old seqno into the new HWSP is severe: the old requests are never
-completed, and the new requests are completed before they are even
-submitted.
-
-Fixes: ebece7539242 ("drm/i915: Keep timeline HWSP allocated until idle across the system")
 Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-Cc: <stable@vger.kernel.org> # v5.2+
 ---
- drivers/gpu/drm/i915/gt/intel_lrc.c           | 22 ++++++++++++-------
- drivers/gpu/drm/i915/gt/intel_timeline.c      | 18 ++++++++-------
- .../gpu/drm/i915/gt/intel_timeline_types.h    |  2 ++
- 3 files changed, 26 insertions(+), 16 deletions(-)
+ drivers/gpu/drm/i915/gt/selftest_timeline.c | 378 +++++++++++++++++++-
+ 1 file changed, 376 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
-index c22d47cc6701..84ba6cd70a2a 100644
---- a/drivers/gpu/drm/i915/gt/intel_lrc.c
-+++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
-@@ -3597,6 +3597,14 @@ static const struct intel_context_ops execlists_context_ops = {
- 	.destroy = execlists_context_destroy,
- };
+diff --git a/drivers/gpu/drm/i915/gt/selftest_timeline.c b/drivers/gpu/drm/i915/gt/selftest_timeline.c
+index 19c2cb166e7c..2edf2b15885f 100644
+--- a/drivers/gpu/drm/i915/gt/selftest_timeline.c
++++ b/drivers/gpu/drm/i915/gt/selftest_timeline.c
+@@ -17,8 +17,9 @@
+ #include "../selftests/i915_random.h"
+ #include "../i915_selftest.h"
  
-+static u32 hwsp_offset(struct i915_request *rq)
+-#include "../selftests/igt_flush_test.h"
+-#include "../selftests/mock_gem_device.h"
++#include "selftests/igt_flush_test.h"
++#include "selftests/lib_sw_fence.h"
++#include "selftests/mock_gem_device.h"
+ #include "selftests/mock_timeline.h"
+ 
+ static struct page *hwsp_page(struct intel_timeline *tl)
+@@ -755,6 +756,378 @@ static int live_hwsp_wrap(void *arg)
+ 	return err;
+ }
+ 
++static int emit_read_hwsp(struct i915_request *rq,
++			  u32 seqno, u32 hwsp,
++			  u32 *addr)
 +{
-+	if (rq->hwsp_cacheline)
-+		return rq->hwsp_cacheline->ggtt_offset;
-+	else
-+		return i915_request_active_timeline(rq)->hwsp_offset;
++	const u32 gpr = i915_mmio_reg_offset(GEN8_RING_CS_GPR(rq->engine->mmio_base, 0));
++	u32 *cs;
++
++	cs = intel_ring_begin(rq, 12);
++	if (IS_ERR(cs))
++		return PTR_ERR(cs);
++
++	*cs++ = MI_STORE_DWORD_IMM_GEN4 | MI_USE_GGTT;
++	*cs++ = *addr;
++	*cs++ = 0;
++	*cs++ = seqno;
++	*addr += 4;
++
++	*cs++ = MI_LOAD_REGISTER_MEM_GEN8 | MI_USE_GGTT;
++	*cs++ = gpr;
++	*cs++ = hwsp;
++	*cs++ = 0;
++
++	*cs++ = MI_STORE_REGISTER_MEM_GEN8 | MI_USE_GGTT;
++	*cs++ = gpr;
++	*cs++ = *addr;
++	*cs++ = 0;
++	*addr += 4;
++
++	intel_ring_advance(rq, cs);
++
++	return 0;
 +}
 +
- static int gen8_emit_init_breadcrumb(struct i915_request *rq)
- {
- 	u32 *cs;
-@@ -3619,7 +3627,7 @@ static int gen8_emit_init_breadcrumb(struct i915_request *rq)
- 	*cs++ = MI_NOOP;
- 
- 	*cs++ = MI_STORE_DWORD_IMM_GEN4 | MI_USE_GGTT;
--	*cs++ = i915_request_timeline(rq)->hwsp_offset;
-+	*cs++ = hwsp_offset(rq);
- 	*cs++ = 0;
- 	*cs++ = rq->fence.seqno - 1;
- 
-@@ -4939,11 +4947,9 @@ gen8_emit_fini_breadcrumb_tail(struct i915_request *request, u32 *cs)
- 	return gen8_emit_wa_tail(request, cs);
- }
- 
--static u32 *emit_xcs_breadcrumb(struct i915_request *request, u32 *cs)
-+static u32 *emit_xcs_breadcrumb(struct i915_request *rq, u32 *cs)
- {
--	u32 addr = i915_request_active_timeline(request)->hwsp_offset;
--
--	return gen8_emit_ggtt_write(cs, request->fence.seqno, addr, 0);
-+	return gen8_emit_ggtt_write(cs, rq->fence.seqno, hwsp_offset(rq), 0);
- }
- 
- static u32 *gen8_emit_fini_breadcrumb(struct i915_request *rq, u32 *cs)
-@@ -4962,7 +4968,7 @@ static u32 *gen8_emit_fini_breadcrumb_rcs(struct i915_request *request, u32 *cs)
- 	/* XXX flush+write+CS_STALL all in one upsets gem_concurrent_blt:kbl */
- 	cs = gen8_emit_ggtt_write_rcs(cs,
- 				      request->fence.seqno,
--				      i915_request_active_timeline(request)->hwsp_offset,
-+				      hwsp_offset(request),
- 				      PIPE_CONTROL_FLUSH_ENABLE |
- 				      PIPE_CONTROL_CS_STALL);
- 
-@@ -4974,7 +4980,7 @@ gen11_emit_fini_breadcrumb_rcs(struct i915_request *request, u32 *cs)
- {
- 	cs = gen8_emit_ggtt_write_rcs(cs,
- 				      request->fence.seqno,
--				      i915_request_active_timeline(request)->hwsp_offset,
-+				      hwsp_offset(request),
- 				      PIPE_CONTROL_CS_STALL |
- 				      PIPE_CONTROL_TILE_CACHE_FLUSH |
- 				      PIPE_CONTROL_RENDER_TARGET_CACHE_FLUSH |
-@@ -5044,7 +5050,7 @@ gen12_emit_fini_breadcrumb_rcs(struct i915_request *request, u32 *cs)
- {
- 	cs = gen12_emit_ggtt_write_rcs(cs,
- 				       request->fence.seqno,
--				       i915_request_active_timeline(request)->hwsp_offset,
-+				       hwsp_offset(request),
- 				       PIPE_CONTROL0_HDC_PIPELINE_FLUSH,
- 				       PIPE_CONTROL_CS_STALL |
- 				       PIPE_CONTROL_TILE_CACHE_FLUSH |
-diff --git a/drivers/gpu/drm/i915/gt/intel_timeline.c b/drivers/gpu/drm/i915/gt/intel_timeline.c
-index a2f74cefe4c3..7ea94d201fe6 100644
---- a/drivers/gpu/drm/i915/gt/intel_timeline.c
-+++ b/drivers/gpu/drm/i915/gt/intel_timeline.c
-@@ -188,10 +188,14 @@ cacheline_alloc(struct intel_timeline_hwsp *hwsp, unsigned int cacheline)
- 	return cl;
- }
- 
--static void cacheline_acquire(struct intel_timeline_cacheline *cl)
-+static void cacheline_acquire(struct intel_timeline_cacheline *cl,
-+			      u32 ggtt_offset)
- {
--	if (cl)
--		i915_active_acquire(&cl->active);
-+	if (!cl)
-+		return;
++struct hwsp_watcher {
++	struct i915_vma *vma;
++	struct i915_request *rq;
++	u32 addr;
++	u32 *map;
++};
 +
-+	cl->ggtt_offset = ggtt_offset;
-+	i915_active_acquire(&cl->active);
- }
- 
- static void cacheline_release(struct intel_timeline_cacheline *cl)
-@@ -340,7 +344,7 @@ int intel_timeline_pin(struct intel_timeline *tl, struct i915_gem_ww_ctx *ww)
- 	GT_TRACE(tl->gt, "timeline:%llx using HWSP offset:%x\n",
- 		 tl->fence_context, tl->hwsp_offset);
- 
--	cacheline_acquire(tl->hwsp_cacheline);
-+	cacheline_acquire(tl->hwsp_cacheline, tl->hwsp_offset);
- 	if (atomic_fetch_inc(&tl->pin_count)) {
- 		cacheline_release(tl->hwsp_cacheline);
- 		__i915_vma_unpin(tl->hwsp_ggtt);
-@@ -515,7 +519,7 @@ __intel_timeline_get_seqno(struct intel_timeline *tl,
- 	GT_TRACE(tl->gt, "timeline:%llx using HWSP offset:%x\n",
- 		 tl->fence_context, tl->hwsp_offset);
- 
--	cacheline_acquire(cl);
-+	cacheline_acquire(cl, tl->hwsp_offset);
- 	tl->hwsp_cacheline = cl;
- 
- 	*seqno = timeline_advance(tl);
-@@ -573,9 +577,7 @@ int intel_timeline_read_hwsp(struct i915_request *from,
- 	if (err)
- 		goto out;
- 
--	*hwsp = i915_ggtt_offset(cl->hwsp->vma) +
--		ptr_unmask_bits(cl->vaddr, CACHELINE_BITS) * CACHELINE_BYTES;
--
-+	*hwsp = cl->ggtt_offset;
- out:
- 	i915_active_release(&cl->active);
- 	return err;
-diff --git a/drivers/gpu/drm/i915/gt/intel_timeline_types.h b/drivers/gpu/drm/i915/gt/intel_timeline_types.h
-index 02181c5020db..4474f487f589 100644
---- a/drivers/gpu/drm/i915/gt/intel_timeline_types.h
-+++ b/drivers/gpu/drm/i915/gt/intel_timeline_types.h
-@@ -94,6 +94,8 @@ struct intel_timeline_cacheline {
- 	struct intel_timeline_hwsp *hwsp;
- 	void *vaddr;
- 
-+	u32 ggtt_offset;
++static bool cmp_lt(u32 a, u32 b)
++{
++	return a < b;
++}
 +
- 	struct rcu_head rcu;
- };
- 
++static bool cmp_gte(u32 a, u32 b)
++{
++	return a >= b;
++}
++
++static int setup_watcher(struct hwsp_watcher *w, struct intel_gt *gt)
++{
++	struct drm_i915_gem_object *obj;
++	struct i915_vma *vma;
++
++	obj = i915_gem_object_create_internal(gt->i915, SZ_2M);
++	if (IS_ERR(obj))
++		return PTR_ERR(obj);
++
++	w->map = i915_gem_object_pin_map(obj, I915_MAP_WB);
++	if (IS_ERR(w->map)) {
++		i915_gem_object_put(obj);
++		return PTR_ERR(w->map);
++	}
++
++	vma = i915_gem_object_ggtt_pin_ww(obj, NULL, NULL, 0, 0, 0);
++	if (IS_ERR(vma)) {
++		i915_gem_object_put(obj);
++		return PTR_ERR(vma);
++	}
++
++	w->vma = vma;
++	w->addr = i915_ggtt_offset(vma);
++	return 0;
++}
++
++static int create_watcher(struct hwsp_watcher *w,
++			  struct intel_engine_cs *engine,
++			  int ringsz)
++{
++	struct intel_context *ce;
++	struct intel_timeline *tl;
++
++	ce = intel_context_create(engine);
++	if (IS_ERR(ce))
++		return PTR_ERR(ce);
++
++	ce->ring = __intel_context_ring_size(ringsz);
++	w->rq = intel_context_create_request(ce);
++	intel_context_put(ce);
++	if (IS_ERR(w->rq))
++		return PTR_ERR(w->rq);
++
++	w->addr = i915_ggtt_offset(w->vma);
++	tl = w->rq->context->timeline;
++
++	/* some light mutex juggling required; think co-routines */
++	lockdep_unpin_lock(&tl->mutex, w->rq->cookie);
++	mutex_unlock(&tl->mutex);
++
++	return 0;
++}
++
++static int check_watcher(struct hwsp_watcher *w, const char *name,
++			 bool (*op)(u32 hwsp, u32 seqno))
++{
++	struct i915_request *rq = fetch_and_zero(&w->rq);
++	struct intel_timeline *tl = rq->context->timeline;
++	u32 offset, end;
++	int err;
++
++	GEM_BUG_ON(w->addr - i915_ggtt_offset(w->vma) > w->vma->size);
++
++	i915_request_get(rq);
++	mutex_lock(&tl->mutex);
++	rq->cookie = lockdep_pin_lock(&tl->mutex);
++	i915_request_add(rq);
++
++	if (i915_request_wait(rq, 0, HZ) < 0) {
++		err = -ETIME;
++		goto out;
++	}
++
++	err = 0;
++	offset = 0;
++	end = (w->addr - i915_ggtt_offset(w->vma)) / sizeof(*w->map);
++	while (offset < end) {
++		if (!op(w->map[offset + 1], w->map[offset])) {
++			pr_err("Watcher '%s' found HWSP value %x for seqno %x\n",
++			       name, w->map[offset + 1], w->map[offset]);
++			err = -EINVAL;
++		}
++
++		offset += 2;
++	}
++
++out:
++	i915_request_put(rq);
++	return err;
++}
++
++static void cleanup_watcher(struct hwsp_watcher *w)
++{
++	if (w->rq) {
++		struct intel_timeline *tl = w->rq->context->timeline;
++
++		mutex_lock(&tl->mutex);
++		w->rq->cookie = lockdep_pin_lock(&tl->mutex);
++
++		i915_request_add(w->rq);
++	}
++
++	i915_vma_unpin_and_release(&w->vma, I915_VMA_RELEASE_MAP);
++}
++
++static bool retire_requests(struct intel_timeline *tl)
++{
++	struct i915_request *rq, *rn;
++
++	mutex_lock(&tl->mutex);
++	list_for_each_entry_safe(rq, rn, &tl->requests, link)
++		if (!i915_request_retire(rq))
++			break;
++	mutex_unlock(&tl->mutex);
++
++	return !i915_active_fence_isset(&tl->last_request);
++}
++
++static struct i915_request *wrap_timeline(struct i915_request *rq)
++{
++	struct intel_context *ce = rq->context;
++	struct intel_timeline *tl = ce->timeline;
++	u32 seqno = rq->fence.seqno;
++
++	while (tl->seqno >= seqno) { /* Cause a wrap */
++		i915_request_put(rq);
++		rq = intel_context_create_request(ce);
++		if (IS_ERR(rq))
++			return rq;
++
++		i915_request_get(rq);
++		i915_request_add(rq);
++	}
++
++	i915_request_put(rq);
++	rq = intel_context_create_request(ce);
++	if (IS_ERR(rq))
++		return rq;
++
++	i915_request_get(rq);
++	i915_request_add(rq);
++
++	return rq;
++}
++
++static int live_hwsp_read(void *arg)
++{
++	struct intel_gt *gt = arg;
++	struct hwsp_watcher watcher[2] = {};
++	struct intel_engine_cs *engine;
++	struct intel_timeline *tl;
++	enum intel_engine_id id;
++	int err = 0;
++	int i;
++
++	/*
++	 * If we take a reference to the HWSP for reading on the GPU, that
++	 * read may be arbitrarily delayed (either by foreign fence or
++	 * priority saturation) and a wrap can happen within 30 minutes.
++	 * When the GPU read is finally submitted it should be correct,
++	 * even across multiple wraps.
++	 */
++
++	if (INTEL_GEN(gt->i915) < 8) /* CS convenience [SRM/LRM] */
++		return 0;
++
++	tl = intel_timeline_create(gt);
++	if (IS_ERR(tl))
++		return PTR_ERR(tl);
++
++	if (!tl->hwsp_cacheline)
++		goto out_free;
++
++	for (i = 0; i < ARRAY_SIZE(watcher); i++) {
++		err = setup_watcher(&watcher[i], gt);
++		if (err)
++			goto out;
++	}
++
++	for_each_engine(engine, gt, id) {
++		struct intel_context *ce;
++		unsigned long count = 0;
++		IGT_TIMEOUT(end_time);
++
++		/* Create a request we can use for remote reading of the HWSP */
++		err = create_watcher(&watcher[1], engine, SZ_512K);
++		if (err)
++			goto out;
++
++		do {
++			struct i915_sw_fence *submit;
++			struct i915_request *rq;
++			u32 hwsp;
++
++			submit = heap_fence_create(GFP_KERNEL);
++			if (!submit) {
++				err = -ENOMEM;
++				goto out;
++			}
++
++			err = create_watcher(&watcher[0], engine, SZ_4K);
++			if (err)
++				goto out;
++
++			ce = intel_context_create(engine);
++			if (IS_ERR(ce)) {
++				err = PTR_ERR(ce);
++				goto out;
++			}
++
++			/* Skip to the end, saving 30 minutes of nops */
++			tl->seqno = -10u + 2 * (count & 3);
++			WRITE_ONCE(*(u32 *)tl->hwsp_seqno, tl->seqno);
++			ce->timeline = intel_timeline_get(tl);
++
++			rq = intel_context_create_request(ce);
++			if (IS_ERR(rq)) {
++				err = PTR_ERR(rq);
++				intel_context_put(ce);
++				goto out;
++			}
++
++			err = i915_sw_fence_await_dma_fence(&rq->submit,
++							    &watcher[0].rq->fence, 0,
++							    GFP_KERNEL);
++			if (err < 0) {
++				i915_request_add(rq);
++				intel_context_put(ce);
++				goto out;
++			}
++
++			mutex_lock(&watcher[0].rq->context->timeline->mutex);
++			err = intel_timeline_read_hwsp(rq, watcher[0].rq, &hwsp);
++			if (err == 0)
++				err = emit_read_hwsp(watcher[0].rq, /* before */
++						     rq->fence.seqno, hwsp,
++						     &watcher[0].addr);
++			mutex_unlock(&watcher[0].rq->context->timeline->mutex);
++			if (err) {
++				i915_request_add(rq);
++				intel_context_put(ce);
++				goto out;
++			}
++
++			mutex_lock(&watcher[1].rq->context->timeline->mutex);
++			err = intel_timeline_read_hwsp(rq, watcher[1].rq, &hwsp);
++			if (err == 0)
++				err = emit_read_hwsp(watcher[1].rq, /* after */
++						     rq->fence.seqno, hwsp,
++						     &watcher[1].addr);
++			mutex_unlock(&watcher[1].rq->context->timeline->mutex);
++			if (err) {
++				i915_request_add(rq);
++				intel_context_put(ce);
++				goto out;
++			}
++
++			i915_request_get(rq);
++			i915_request_add(rq);
++
++			rq = wrap_timeline(rq);
++			intel_context_put(ce);
++			if (IS_ERR(rq)) {
++				err = PTR_ERR(rq);
++				goto out;
++			}
++
++			err = i915_sw_fence_await_dma_fence(&watcher[1].rq->submit,
++							    &rq->fence, 0,
++							    GFP_KERNEL);
++			if (err < 0) {
++				i915_request_put(rq);
++				goto out;
++			}
++
++			err = check_watcher(&watcher[0], "before", cmp_lt);
++			i915_sw_fence_commit(submit);
++			heap_fence_put(submit);
++			if (err) {
++				i915_request_put(rq);
++				goto out;
++			}
++			count++;
++
++			if (8 * watcher[1].rq->ring->emit >
++			    3 * watcher[1].rq->ring->size) {
++				i915_request_put(rq);
++				break;
++			}
++
++			/* Flush the timeline before manually wrapping again */
++			if (i915_request_wait(rq,
++					      I915_WAIT_INTERRUPTIBLE,
++					      HZ) < 0) {
++				err = -ETIME;
++				i915_request_put(rq);
++				goto out;
++			}
++
++			retire_requests(tl);
++			i915_request_put(rq);
++		} while (!__igt_timeout(end_time, NULL));
++		WRITE_ONCE(*(u32 *)tl->hwsp_seqno, 0xdeadbeef);
++
++		pr_info("%s: simulated %lu wraps\n", engine->name, count);
++		err = check_watcher(&watcher[1], "after", cmp_gte);
++		if (err)
++			goto out;
++	}
++
++out:
++	for (i = 0; i < ARRAY_SIZE(watcher); i++)
++		cleanup_watcher(&watcher[i]);
++
++	if (igt_flush_test(gt->i915))
++		err = -EIO;
++
++out_free:
++	intel_timeline_put(tl);
++	return err;
++}
++
+ static int live_hwsp_rollover_kernel(void *arg)
+ {
+ 	struct intel_gt *gt = arg;
+@@ -998,6 +1371,7 @@ int intel_timeline_live_selftests(struct drm_i915_private *i915)
+ 		SUBTEST(live_hwsp_engine),
+ 		SUBTEST(live_hwsp_alternate),
+ 		SUBTEST(live_hwsp_wrap),
++		SUBTEST(live_hwsp_read),
+ 		SUBTEST(live_hwsp_rollover_kernel),
+ 		SUBTEST(live_hwsp_rollover_user),
+ 	};
 -- 
 2.20.1
 
