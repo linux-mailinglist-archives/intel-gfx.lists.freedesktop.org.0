@@ -2,44 +2,41 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AD44B2953B1
-	for <lists+intel-gfx@lfdr.de>; Wed, 21 Oct 2020 22:58:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D58CC2953D8
+	for <lists+intel-gfx@lfdr.de>; Wed, 21 Oct 2020 23:07:33 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5A26D6F507;
-	Wed, 21 Oct 2020 20:58:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3A8C66EE78;
+	Wed, 21 Oct 2020 21:07:31 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 57CDC6F507
- for <intel-gfx@lists.freedesktop.org>; Wed, 21 Oct 2020 20:58:03 +0000 (UTC)
-IronPort-SDR: +zJi7c7W+j1tcEIlv+PTNEDGv/pMLU4A5PBa3/OdHke+gKh76DQ85CTDvS+yXBdmmJNyFkPRNb
- wnql7AdSF3Zg==
-X-IronPort-AV: E=McAfee;i="6000,8403,9781"; a="185105978"
-X-IronPort-AV: E=Sophos;i="5.77,402,1596524400"; d="scan'208";a="185105978"
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 718F76EE78
+ for <intel-gfx@lists.freedesktop.org>; Wed, 21 Oct 2020 21:07:30 +0000 (UTC)
+IronPort-SDR: Z6wtMWAwuuDKB1s3UUTc68FFD8V7Qw9dwU1u+ZD65gGr3u6NR0lmBwfCVVVWSRN6ZOIisEetFf
+ QE28EAGpgA4w==
+X-IronPort-AV: E=McAfee;i="6000,8403,9781"; a="231627126"
+X-IronPort-AV: E=Sophos;i="5.77,402,1596524400"; d="scan'208";a="231627126"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Oct 2020 13:58:02 -0700
-IronPort-SDR: Y/fcge+kgo4RlNpLxzV4BCzAcnZNWZxmk5DFRPoQbG6EmyVvXzYW1lrhHqCxgNyZcKcqmJuXVN
- 6TnLWZbxR1fQ==
-X-IronPort-AV: E=Sophos;i="5.77,402,1596524400"; d="scan'208";a="533681392"
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Oct 2020 14:07:29 -0700
+IronPort-SDR: NSJK5Bg5Nqr2e89cBmgljCR7toaLGwXdufWDC3Wcefi7fzhm/vt38KxSQiRnE3HIZZdO74TG/b
+ DM2bsKtDPXhA==
+X-IronPort-AV: E=Sophos;i="5.77,402,1596524400"; d="scan'208";a="524037475"
 Received: from vibhasma-mobl1.amr.corp.intel.com (HELO ldmartin-desk1)
  ([10.209.136.128])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Oct 2020 13:58:01 -0700
-Date: Wed, 21 Oct 2020 13:57:58 -0700
+ by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Oct 2020 14:07:28 -0700
+Date: Wed, 21 Oct 2020 14:07:24 -0700
 From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: Matt Roper <matthew.d.roper@intel.com>
-Message-ID: <20201021205758.eda3fesehvzmnc6w@ldmartin-desk1>
-References: <20201021133213.328994-1-aditya.swarup@intel.com>
- <20201021133213.328994-3-aditya.swarup@intel.com>
- <20201021204342.GC627052@mdroper-desk1.amr.corp.intel.com>
+To: intel-gfx@lists.freedesktop.org
+Message-ID: <20201021210724.fkgijmojwzoxc426@ldmartin-desk1>
+References: <20201021082034.3170478-1-lucas.demarchi@intel.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20201021204342.GC627052@mdroper-desk1.amr.corp.intel.com>
-Subject: Re: [Intel-gfx] [PATCH 02/18] x86/gpu: add ADL_S stolen memory
- support
+In-Reply-To: <20201021082034.3170478-1-lucas.demarchi@intel.com>
+Subject: Re: [Intel-gfx] [PATCH 0/6] dg1: remaining basic enabling patches
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,85 +49,53 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"; Format="flowed"
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Oct 21, 2020 at 01:43:42PM -0700, Matt Roper wrote:
->On Wed, Oct 21, 2020 at 06:31:57AM -0700, Aditya Swarup wrote:
->> From: Caz Yokoyama <caz.yokoyama@intel.com>
->>
->> ADL_S re-uses the same stolen memory registers as TGL and ICL.
->>
->> Bspec: 52055
->> Bspec: 49589
->> Bspec: 49636
->>
->> Cc: Lucas De Marchi <lucas.demarchi@intel.com>
->> Cc: Anusha Srivatsa <anusha.srivatsa@intel.com>
->> Cc: Jani Nikula <jani.nikula@intel.com>
->> Cc: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
->> Cc: Imre Deak <imre.deak@intel.com>
->> Signed-off-by: Caz Yokoyama <caz.yokoyama@intel.com>
->> Signed-off-by: Aditya Swarup <aditya.swarup@intel.com>
+On Wed, Oct 21, 2020 at 01:20:28AM -0700, Lucas De Marchi wrote:
+>These are the remaining patches from
+>https://patchwork.freedesktop.org/series/82594/
 >
->I think you need to Cc the x86 maintainers on this patch and get their
->ack to merge it through the i915 tree.
+>Main change here is how we enable hpd interrupt handling since that
+>changed on recent refactors for other platforms. This commit is
+>currently not tested as for DG1 we are still missing the lmem part and
+>other bits to get a usable drivers. I will test it soon with the rebased
+>patches and update here.
 
-Yeah, but make sure to mention the dependency on the first patch so they
-don't try to apply and get a build error. See
-https://lore.kernel.org/intel-gfx/alpine.DEB.2.21.1907170845470.1767@nanos.=
-tec.linutronix.de/
+Tested on DDI-E and it's working. The only possible issues would be on
+DDI-D and DDI-E, so this seems good.
 
-Also see https://lore.kernel.org/intel-gfx/20200520093025.GD1457@zn.tnic/
-
-For the patch itself,
-
-Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
-
-thanks
 Lucas De Marchi
 
 >
+>I'm also a couple of WAs that were added/changed to the spec.
 >
->Matt
+>Aditya Swarup (1):
+>  drm/i915/dg1: Enable ports
 >
->> ---
->>  arch/x86/kernel/early-quirks.c | 1 +
->>  1 file changed, 1 insertion(+)
->>
->> diff --git a/arch/x86/kernel/early-quirks.c b/arch/x86/kernel/early-quir=
-ks.c
->> index a4b5af03dcc1..6edd1e2ee8af 100644
->> --- a/arch/x86/kernel/early-quirks.c
->> +++ b/arch/x86/kernel/early-quirks.c
->> @@ -551,6 +551,7 @@ static const struct pci_device_id intel_early_ids[] =
-__initconst =3D {
->>  	INTEL_EHL_IDS(&gen11_early_ops),
->>  	INTEL_TGL_12_IDS(&gen11_early_ops),
->>  	INTEL_RKL_IDS(&gen11_early_ops),
->> +	INTEL_ADLS_IDS(&gen11_early_ops),
->>  };
->>
->>  struct resource intel_graphics_stolen_res __ro_after_init =3D DEFINE_RE=
-S_MEM(0, 0);
->> --
->> 2.27.0
->>
->> _______________________________________________
->> Intel-gfx mailing list
->> Intel-gfx@lists.freedesktop.org
->> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+>Clinton A Taylor (1):
+>  drm/i915/dg1: invert HPD pins
 >
->-- =
-
->Matt Roper
->Graphics Software Engineer
->VTT-OSGC Platform Enablement
->Intel Corporation
->(916) 356-2795
+>Lucas De Marchi (3):
+>  drm/i915/dg1: add hpd interrupt handling
+>  drm/i915/dg1: map/unmap pll clocks
+>  drm/i915/dg1: make Wa_22010271021 permanent
+>
+>Swathi Dhanavanthri (1):
+>  drm/i915/dg1: Implement WA_16011163337
+>
+> drivers/gpu/drm/i915/display/intel_ddi.c     | 105 ++++++++++++++++++-
+> drivers/gpu/drm/i915/display/intel_display.c |  33 +++++-
+> drivers/gpu/drm/i915/gt/intel_workarounds.c  |  21 ++--
+> drivers/gpu/drm/i915/i915_irq.c              |  46 ++++++--
+> drivers/gpu/drm/i915/i915_reg.h              |  27 +++++
+> 5 files changed, 209 insertions(+), 23 deletions(-)
+>
+>-- 
+>2.28.0
+>
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
