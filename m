@@ -1,80 +1,30 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8DB4B29541E
-	for <lists+intel-gfx@lfdr.de>; Wed, 21 Oct 2020 23:25:51 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8C9772954A0
+	for <lists+intel-gfx@lfdr.de>; Thu, 22 Oct 2020 00:04:34 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D58246F51A;
-	Wed, 21 Oct 2020 21:25:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E3FDF6EAB8;
+	Wed, 21 Oct 2020 22:04:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [63.128.21.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B8DDA6F51A
- for <intel-gfx@lists.freedesktop.org>; Wed, 21 Oct 2020 21:25:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1603315546;
- h=from:from:reply-to:reply-to:subject:subject:date:date:
- message-id:message-id:to:to:cc:cc:mime-version:mime-version:
- content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=UwGfz0tY9AjE0sLb7Dt67Mk9FtxXlJcalXgozQ5UAR0=;
- b=YDPUWnK3/q2dDC6ZQqui4XZS5uMetGod29Pzi7nEDu8yrH5trN+OjbTYEVxcpmZ/04UT02
- FL8dxbJaQYQiGGRxSk7zz0lVMeFyEO1DwXvWcyH26BZ7GZYdivmxl/Adlmjn0GHig61FQm
- bcx/NhvSlgE/1DfoXUon/X00B4T0BOE=
-Received: from mail-qk1-f199.google.com (mail-qk1-f199.google.com
- [209.85.222.199]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-390-qiUNeueuMAi-CFFkMDFTwA-1; Wed, 21 Oct 2020 17:25:42 -0400
-X-MC-Unique: qiUNeueuMAi-CFFkMDFTwA-1
-Received: by mail-qk1-f199.google.com with SMTP id x5so2636719qkn.2
- for <Intel-gfx@lists.freedesktop.org>; Wed, 21 Oct 2020 14:25:42 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:message-id:subject:from:reply-to:to:cc:date
- :in-reply-to:references:organization:user-agent:mime-version
- :content-transfer-encoding;
- bh=UwGfz0tY9AjE0sLb7Dt67Mk9FtxXlJcalXgozQ5UAR0=;
- b=C92maTWp/Ruu+YWVXT1FFJjEfi2B9Nhm544lfUvAGMkWXJ80uBNALOGqx4MoBIWN0V
- 8chJDqcEtwzEre3iqi8Y+zkEwmKDlqoMN0ZZPgWyt33oJlsU80q3ZBPvOKnqsx8G+jDK
- oimkx/uydGh3o/OeoqiaBsp7O6gwb/q1cF4WjlYK4zk4tUXUCSkW6jT+YFgjz/VPgv+Y
- 7n9++r8wMY+rQcuzfnNKax3vYhRNJpA0UoSDnwRNq0WIxrOrYZz26Rn5q42o5wdEZWiL
- K97ybcuBNuSU0/NK/p/EhgmD26BSWZqMuIropJW2iH7Iib7F/YdRoJkpwouiq7UXynrh
- yHaw==
-X-Gm-Message-State: AOAM532v7dwzPRv/drZd0y8gVuK/mFTuP5H+OFGOv62rhWptznFwbaMC
- OAEL4RsOo8iO7pCNSeT7jSOztyDYVKXXO+kTSzfM5Z/sIUStyxS5X208gUsRryQItqsOyUfideb
- cZLLIe/0LP0i6XUviJDvT+x1V0ie2
-X-Received: by 2002:ac8:5793:: with SMTP id v19mr4686260qta.83.1603315542421; 
- Wed, 21 Oct 2020 14:25:42 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJzAe0N43BBM9ytRsqTFfEkQ1zj8woCctHbHgDVfTkdzAZgY0FJnzu5Y94FO3GKYUyfkhC99Gg==
-X-Received: by 2002:ac8:5793:: with SMTP id v19mr4686234qta.83.1603315542020; 
- Wed, 21 Oct 2020 14:25:42 -0700 (PDT)
-Received: from Whitewolf.lyude.net
- (pool-108-49-102-102.bstnma.fios.verizon.net. [108.49.102.102])
- by smtp.gmail.com with ESMTPSA id a128sm2146960qkc.92.2020.10.21.14.25.40
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 21 Oct 2020 14:25:41 -0700 (PDT)
-Message-ID: <6f9c166c7b115672e1d427748d7e4d4dfd35b256.camel@redhat.com>
-From: Lyude Paul <lyude@redhat.com>
-To: Ville =?ISO-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>, 
- "Souza, Jose" <jose.souza@intel.com>
-Date: Wed, 21 Oct 2020 17:25:40 -0400
-In-Reply-To: <20201021132639.GF6112@intel.com>
-References: <20201020074555.24315-1-khaled.almahallawy@intel.com>
- <20201020124108.GX6112@intel.com>
- <ded1023ff55d62717e6c7a7055b8e7f651e19c5b.camel@intel.com>
- <20201021132639.GF6112@intel.com>
-Organization: Red Hat
-User-Agent: Evolution 3.36.5 (3.36.5-1.fc32)
+Received: from fireflyinternet.com (unknown [77.68.26.236])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8B5AE6EAB8
+ for <intel-gfx@lists.freedesktop.org>; Wed, 21 Oct 2020 22:04:31 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from build.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 22769467-1500050 
+ for multiple; Wed, 21 Oct 2020 23:04:13 +0100
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Wed, 21 Oct 2020 23:04:10 +0100
+Message-Id: <20201021220411.5777-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Authentication-Results: relay.mimecast.com;
- auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=lyude@redhat.com
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/tgl: Set
- drm_crtc_state.active=false for all added disconnected CRTCs sharing MST
- stream.
+Subject: [Intel-gfx] [PATCH 1/2] drm/i915/gt: Use the local HWSP offset
+ during submission
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -87,97 +37,173 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: lyude@redhat.com
-Cc: "daniel.vetter@ffwll.ch" <daniel.vetter@ffwll.ch>,
- "Intel-gfx@lists.freedesktop.org" <Intel-gfx@lists.freedesktop.org>,
- "seanpaul@chromium.org" <seanpaul@chromium.org>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: stable@vger.kernel.org, Chris Wilson <chris@chris-wilson.co.uk>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gV2VkLCAyMDIwLTEwLTIxIGF0IDE2OjI2ICswMzAwLCBWaWxsZSBTeXJqw6Rsw6Qgd3JvdGU6
-Cj4gT24gVHVlLCBPY3QgMjAsIDIwMjAgYXQgMTE6MjU6NTNQTSArMDAwMCwgU291emEsIEpvc2Ug
-d3JvdGU6Cj4gPiBPbiBUdWUsIDIwMjAtMTAtMjAgYXQgMTU6NDEgKzAzMDAsIFZpbGxlIFN5cmrD
-g8aSw4LCpGzDg8aSw4LCpCB3cm90ZToKPiA+ID4gT24gVHVlLCBPY3QgMjAsIDIwMjAgYXQgMTI6
-NDU6NTVBTSAtMDcwMCwgS2hhbGVkIEFsbWFoYWxsYXd5IHdyb3RlOgo+ID4gPiA+IFRoaXMgcGF0
-Y2ggYXZvaWRzIGZhaWxpbmcgYXRvbWljIGNvbW1pdHMgc2VudCBieSB1c2VyIHNwYWNlIGJ5IG1h
-a2luZwo+ID4gPiA+IHN1cmUgQ1JUQy9Db25uZWN0b3IgYWRkZWQgdG8gZHJtX2F0b21pY19zdGF0
-ZSBieSB0aGUgZHJpdmVyIGFyZSBpbiB2YWxpZAo+ID4gPiA+IHN0YXRlLgo+ID4gPiA+IAo+ID4g
-PiA+IFdoZW4gZGlzY29ubmVjdGluZyBNU1QgaHViIHdpdGggdHdvIG9yIG1vcmUgY29ubmVjdGVk
-IGRpc3BsYXlzLiBUaGUgdXNlcgo+ID4gPiA+IHNwYWNlIHNlbmRzIElPQ1RMIGZvciBlYWNoIE1T
-VCBwaXBlIHRvIGRpc2FibGUuCj4gPiA+ID4gZHJtX2F0b21pY19zdGF0ZSBvYmplY3Qgc2VudCBm
-cm9tIHVzZXIgc3BhY2UgY29udGFpbnMgb25seSB0aGUgc3RhdGUgb2YKPiA+ID4gPiB0aGUgY3J0
-Yy9waXBlIGludGVuZGVkIHRvIGRpc2FibGUuCj4gPiA+ID4gSW4gVEdMLCBpbnRlbF9kcF9tc3Rf
-YXRvbWljX21hc3Rlcl90cmFuc19jaGVjayB3aWxsIGFkZCBhbGwgb3RoZXIgQ1JUQwo+ID4gPiA+
-IGFuZCBjb25uZWN0b3JzIHRoYXQgc2hhcmUgdGhlIE1TVCBzdHJlYW0gdG8gZHJtX2F0b21pY19z
-dGF0ZToKPiA+ID4gPiAKPiA+ID4gPiBkcm1fYXRvbWljX2NvbW1pdAo+ID4gPiA+IMOD4oCaw4Ig
-w4PigJrDgiDDg+KAmsOCIGRybV9hdG9taWNfaGVscGVyX2NoZWNrX21vZGVzZXQKPiA+ID4gPiDD
-g+KAmsOCIMOD4oCaw4Igw4PigJrDgiDDg+KAmsOCIMOD4oCaw4Igw4PigJrDgiDDg+KAmsOCIHVw
-ZGF0ZV9jb25uZWN0b3Jfcm91dGluZwo+ID4gPiA+IMOD4oCaw4Igw4PigJrDgiDDg+KAmsOCIMOD
-4oCaw4Igw4PigJrDgiDDg+KAmsOCIMOD4oCaw4IgaW50ZWxfZHBfbXN0X2F0b21pY19jaGVjayA9
-IGZ1bmNzLQo+ID4gPiA+ID5hdG9taWNfY2hlY2soY29ubmVjdG9yLCBzdGF0ZSk7Cj4gPiA+ID4g
-w4PigJrDgiDDg+KAmsOCIMOD4oCaw4Igw4PigJrDgiDDg+KAmsOCIMOD4oCaw4Igw4PigJrDgiAJ
-ICAgaW50ZWxfZHBfbXN0X2F0b21pY19tYXN0ZXJfdHJhbnNfY2hlYwo+ID4gPiA+IGsKPiA+ID4g
-PiAJCWludGVsX2F0b21pY19nZXRfZGlnaXRhbF9jb25uZWN0b3Jfc3RhdGUKPiA+ID4gPiAJCQlk
-cm1fYXRvbWljX2dldF9jb25uZWN0b3Jfc3RhdGUgICA8LS0gQWRkIGFsbAo+ID4gPiA+IENvbm5l
-Y3RvcnMKPiA+ID4gPiAJCQkgICAgZHJtX2F0b21pY19nZXRfY3J0Y19zdGF0ZSA8LS0gQWRkIGFs
-bCBDUlRDcwo+ID4gPiA+IMOD4oCaw4Igw4PigJrDgiDDg+KAmsOCIMOD4oCaw4Igw4PigJrDgiDD
-g+KAmsOCIMOD4oCaw4IgdXBkYXRlX2Nvbm5lY3Rvcl9yb3V0aW5nIDwtLSBDaGVjayBhZGRlZAo+
-ID4gPiA+IENvbm5lY3Rvci9DUlRDcyAtIFdpbGwgZmFpbAo+ID4gPiA+IAo+ID4gPiA+IEhvd2V2
-ZXIgdGhlIGFkZGVkIGNydGMvY29ubmVjdG9yIHBhaXIgd2lsbCBiZSBpbiBpbnZhbGlkIHN0YXRl
-IChlbmFibGVkCj4gPiA+ID4gc3RhdGUgZm9yIGEgcmVtb3ZlZCBjb25uZWN0b3IpCj4gPiA+ID4g
-dHJpZ2dlcmluZyB0aGlzIGNvbmRpdGlvbiBpbgo+ID4gPiA+IGRybV9hdG9taWNfaGVscGVyLmMv
-dXBkYXRlX2Nvbm5lY3Rvcl9yb3V0aW5nOgo+ID4gPiA+IAo+ID4gPiA+IAlpZiAoIXN0YXRlLT5k
-dXBsaWNhdGVkICYmCj4gPiA+ID4gZHJtX2Nvbm5lY3Rvcl9pc191bnJlZ2lzdGVyZWQoY29ubmVj
-dG9yKSAmJgo+ID4gPiA+IAkgICAgY3J0Y19zdGF0ZS0+YWN0aXZlKSB7Cj4gPiA+ID4gCQlEUk1f
-REVCVUdfQVRPTUlDKCJbQ09OTkVDVE9SOiVkOiVzXSBpcyBub3QKPiA+ID4gPiByZWdpc3RlcmVk
-XG4iLAo+ID4gPiA+IAkJCQkgY29ubmVjdG9yLT5iYXNlLmlkLCBjb25uZWN0b3ItPm5hbWUpOwo+
-ID4gPiA+IAkJcmV0dXJuIC1FSU5WQUw7Cj4gPiA+ID4gCX0KPiA+ID4gCj4gPiA+IFllYWgsIEkg
-dGhpbmsgdGhhdCAicmVqZWN0IG1vZGVzZXQgb24gdW5yZWdpc3RlcmVkIGNvbm5lY3RvcnMiIGlk
-ZWEgaXMKPiA+ID4gYSBiaXQgYnJva2VuIGdpdmVuIGhvdyB0aGUgdWFwaSBoYXMgd29ya2VkIGlu
-IHRoZSBwYXN0LiBDYzppbmcgZGFudmV0Cj4gPiA+IGFuZCBseXVkZSB3aG8gSUlSQyB3ZXJlIGlu
-dm9sdmVkIHdpdGggdGhhdC4KPiA+ID4gCj4gPiA+IEhtbS4gTWF5YmUgd2UgY291bGQgYWRkIHRo
-ZSBvdGhlciBzdHVmZiB0byB0aGUgc3RhdGUgb25seSBhZnRlciB0aGUKPiA+ID4gY29ubmVjdG9y
-IC5hdG9taWNfY2hlY2soKSBzdHVmZiBoYXMgYmVlbiBkb25lPyBJIGRvbid0IHF1aXRlIHJlbWVt
-YmVyCj4gPiA+IHdoeSB3ZSBkZWNpZGVkIHRvIGRvIGl0IGhlcmUuIEpvc8ODxpLDgsKpIGRvIHlv
-dSByZWNhbGwgdGhlIGRldGFpbHM/Cj4gPiAKPiA+IEJlY2F1c2UgdGhlIGNvbm5lY3RvciBjaGVj
-ayBmdW5jdGlvbiBydW5zIHR3aWNlIGluCj4gPiBkcm1fYXRvbWljX2hlbHBlcl9jaGVja19tb2Rl
-c2V0KCksIGluIHRoZSBmaXJzdCBpdGVyYXRpb24gaXQgd2lsbCBhZGQgYWxsCj4gPiBjb25uZWN0
-b3JzIHRoYXQgc2hhcmUgdGhlCj4gPiBzYW1lIE1TVCBzdHJlYW0gdG8gc3RhdGUsIHRoZSBzZWNv
-bmQgb25lIHdpbGwgbWFrZSBzdXJlIGFsbCBvdGhlciBjaGVja3MKPiA+IHBhc3NlZCBpbiBhbGwg
-Y29ubmVjdG9ycyBvZiB0aGUgTVNUIHN0cmVhbS4KPiA+IAo+ID4gVG8gbWUgbG9va3MgbGlrZSB0
-aGUgQ2hyb21lIHVzZXJzcGFjZSBpcyBub3QgZG9pbmcgdGhlIHJpZ2h0IHRoaW5nLCBpdCBpcwo+
-ID4gc2VuZGluZyBhc3luY2hyb25vdXMgYXRvbWljIGNvbW1pdHMgd2l0aCBjb25mbGljdGluZyBz
-dGF0ZSBiZXR3ZWVuIGVhY2gKPiA+IGNvbW1pdC4KPiA+IElmIGl0IGhhZCBhIHBvb2wgdGhhdCBk
-aXNwYXRjaCBvbmUgYXRvbWljIHN0YXRlIGF0IHRpbWUgd2FpdGluZyBmb3IKPiA+IGNvbXBsZXRp
-b24gYmVmb3JlIGRpc3BhdGNoIHRoZSBuZXh0IG9uZSBpdCB3b3VsZCBub3QgYmUgYSBpc3N1ZS4K
-PiAKPiBZZWFoLCB3aXRoIGF0b21pYyB1c2Vyc3BhY2UgY291bGQgYXZvaWQgdGhpcyBwb3RlbnRp
-YWxseS4gVGhvdWdoIGl0Cj4gbWF5IGJlIHJhY3kgZGVwZW5kaW5nIG9uIHdoZXRoZXIgaXQgaGFz
-IG5vdGljZWQgYWxsIHRoZSBNU1QgY29ubmVjdG9ycwo+IGRpc2FwcGVhcmluZyB5ZXQgb3Igbm90
-LiBFaXRoZXIgd2F5IGl0J3Mgc3RpbGwgYW4gaXNzdWUgZm9yIGxlZ2FjeQo+IHVhcGkuCgpTaWdo
-LUkgaGFkIGhvcGVkIHRoYXQgd2Ugd291bGQgaGF2ZSBob29rZWQgdGhpcyB1cCBzdWNoIHRoYXQg
-d2UnZCBhdm9pZCB0aGlzIChhcwpJJ3ZlIGFscmVhZHkgaGFkIHRvIGZpeCBzb21lIGlzc3VlcyB0
-aGlzIGNhdXNlZCB3aXRoIGxlZ2FjeSBtb2Rlc2V0dGluZykgYnV0IEkKZ3Vlc3Mgbm90LiBIYXZl
-IHlvdSBndXlzIGNvbnNpZGVyZWQgdHJ5aW5nIHRvIHVzZSB0aGUgY29ubmVjdG9yIGVwb2NocyB3
-aGVuZXZlcgp5b3UgcmVjZWl2ZSBhIGhvdHBsdWcgZXZlbnQgdG8gZGlmZmVyZW50aWF0ZSBiZXR3
-ZWVuIHJlbW92ZWQgKCdzdGFsZScpCmNvbm5lY3RvcnMgYW5kIG90aGVyIGNvbm5lY3RvcnM/IHRi
-aCwgaWYgeW91IGNhbid0IGZpbmQgYSBjb25uZWN0b3Igd2l0aCB0aGUKc2FtZSBtc3QgcGF0aCBh
-bmQgZXBvY2ggeW91IGxhc3QgaGFkIGFzIHlvdXIgc3RhbGUgY29ubmVjdG9yIHRoZW4gaXQncyBz
-YWZlIHRvCmp1c3QgYXNzdW1lIGl0J3MgZ29uZS4KCkFsc28gLSBJJ20gdG90YWxseSBvcGVuIHRv
-IGJldHRlciBpZGVhcyBmb3IgaGFuZGxpbmcgdGhpcyBvciBtYWtpbmcgaXQgbW9yZQpvYnZpb3Vz
-IHdoZW4gYSBjb25uZWN0b3IgaGFzIGJlZW4gcmVtb3ZlZCwgbW9zdCBvZiB0aGUgcmVhc29uIGZv
-ciBhZGRpbmcgdGhlc2UKY2hlY2tzIHdhcyB0byB0cnkgb3VyIGJlc3QgKGFzIHRoaXMgaXMgaW1w
-b3NzaWJsZSB0byBmdWxseSBndWFyYW50ZWUpIHRvIGF2b2lkCnNpdHVhdGlvbnMgd2hlcmUgYSBo
-b3N0IHRyaWVkIHRvIGVuYWJsZSBhbiBNU1QgZGlzcGxheSB0aGF0IG5vIGxvbmdlciBleGlzdGVk
-CmFuZCBwdXQgdGhlIGhhcmR3YXJlIGludG8gYSB3ZWlyZCBzdGF0ZS4gQXQgbGVhc3QgaWYgSSBy
-ZW1lbWJlciBjb3JyZWN0bHksIGl0J3MKYmVlbiBhIHdoaWxlLgoKPiAKLS0gClNpbmNlcmVseSwK
-ICAgICAgTHl1ZGUgUGF1bCAoc2hlL2hlcikKICAgICAgU29mdHdhcmUgRW5naW5lZXIgYXQgUmVk
-IEhhdAoKTm90ZTogSSBkZWFsIHdpdGggYSBsb3Qgb2YgZW1haWxzIGFuZCBoYXZlIGEgbG90IG9m
-IGJ1Z3Mgb24gbXkgcGxhdGUuIElmIHlvdSd2ZQphc2tlZCBtZSBhIHF1ZXN0aW9uLCBhcmUgd2Fp
-dGluZyBmb3IgYSByZXZpZXcvbWVyZ2Ugb24gYSBwYXRjaCwgZXRjLiBhbmQgSQpoYXZlbid0IHJl
-c3BvbmRlZCBpbiBhIHdoaWxlLCBwbGVhc2UgZmVlbCBmcmVlIHRvIHNlbmQgbWUgYW5vdGhlciBl
-bWFpbCB0byBjaGVjawpvbiBteSBzdGF0dXMuIEkgZG9uJ3QgYml0ZSEKCl9fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QK
-SW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9w
-Lm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
+We wrap the timeline on construction of the next request, but there may
+still be requests in flight that have not yet finalized the breadcrumb.
+(The breadcrumb is delayed as we need engine-local offsets, and for the
+virtual engine that is not known until execution.) As such, by the time
+we write to the timeline's HWSP offset it may have changed, and we
+should use the value we preserved in the request instead.
+
+Though the window is small and infrequent (at full flow we can expect a
+timeline's seqno to wrap once every 30 minutes), the impact of writing
+the old seqno into the new HWSP is severe: the old requests are never
+completed, and the new requests are completed before they are even
+submitted.
+
+Fixes: ebece7539242 ("drm/i915: Keep timeline HWSP allocated until idle across the system")
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+Cc: <stable@vger.kernel.org> # v5.2+
+---
+ drivers/gpu/drm/i915/gt/intel_lrc.c           | 22 ++++++++++++-------
+ drivers/gpu/drm/i915/gt/intel_timeline.c      | 18 ++++++++-------
+ .../gpu/drm/i915/gt/intel_timeline_types.h    |  2 ++
+ 3 files changed, 26 insertions(+), 16 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
+index c22d47cc6701..84ba6cd70a2a 100644
+--- a/drivers/gpu/drm/i915/gt/intel_lrc.c
++++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
+@@ -3597,6 +3597,14 @@ static const struct intel_context_ops execlists_context_ops = {
+ 	.destroy = execlists_context_destroy,
+ };
+ 
++static u32 hwsp_offset(struct i915_request *rq)
++{
++	if (rq->hwsp_cacheline)
++		return rq->hwsp_cacheline->ggtt_offset;
++	else
++		return i915_request_active_timeline(rq)->hwsp_offset;
++}
++
+ static int gen8_emit_init_breadcrumb(struct i915_request *rq)
+ {
+ 	u32 *cs;
+@@ -3619,7 +3627,7 @@ static int gen8_emit_init_breadcrumb(struct i915_request *rq)
+ 	*cs++ = MI_NOOP;
+ 
+ 	*cs++ = MI_STORE_DWORD_IMM_GEN4 | MI_USE_GGTT;
+-	*cs++ = i915_request_timeline(rq)->hwsp_offset;
++	*cs++ = hwsp_offset(rq);
+ 	*cs++ = 0;
+ 	*cs++ = rq->fence.seqno - 1;
+ 
+@@ -4939,11 +4947,9 @@ gen8_emit_fini_breadcrumb_tail(struct i915_request *request, u32 *cs)
+ 	return gen8_emit_wa_tail(request, cs);
+ }
+ 
+-static u32 *emit_xcs_breadcrumb(struct i915_request *request, u32 *cs)
++static u32 *emit_xcs_breadcrumb(struct i915_request *rq, u32 *cs)
+ {
+-	u32 addr = i915_request_active_timeline(request)->hwsp_offset;
+-
+-	return gen8_emit_ggtt_write(cs, request->fence.seqno, addr, 0);
++	return gen8_emit_ggtt_write(cs, rq->fence.seqno, hwsp_offset(rq), 0);
+ }
+ 
+ static u32 *gen8_emit_fini_breadcrumb(struct i915_request *rq, u32 *cs)
+@@ -4962,7 +4968,7 @@ static u32 *gen8_emit_fini_breadcrumb_rcs(struct i915_request *request, u32 *cs)
+ 	/* XXX flush+write+CS_STALL all in one upsets gem_concurrent_blt:kbl */
+ 	cs = gen8_emit_ggtt_write_rcs(cs,
+ 				      request->fence.seqno,
+-				      i915_request_active_timeline(request)->hwsp_offset,
++				      hwsp_offset(request),
+ 				      PIPE_CONTROL_FLUSH_ENABLE |
+ 				      PIPE_CONTROL_CS_STALL);
+ 
+@@ -4974,7 +4980,7 @@ gen11_emit_fini_breadcrumb_rcs(struct i915_request *request, u32 *cs)
+ {
+ 	cs = gen8_emit_ggtt_write_rcs(cs,
+ 				      request->fence.seqno,
+-				      i915_request_active_timeline(request)->hwsp_offset,
++				      hwsp_offset(request),
+ 				      PIPE_CONTROL_CS_STALL |
+ 				      PIPE_CONTROL_TILE_CACHE_FLUSH |
+ 				      PIPE_CONTROL_RENDER_TARGET_CACHE_FLUSH |
+@@ -5044,7 +5050,7 @@ gen12_emit_fini_breadcrumb_rcs(struct i915_request *request, u32 *cs)
+ {
+ 	cs = gen12_emit_ggtt_write_rcs(cs,
+ 				       request->fence.seqno,
+-				       i915_request_active_timeline(request)->hwsp_offset,
++				       hwsp_offset(request),
+ 				       PIPE_CONTROL0_HDC_PIPELINE_FLUSH,
+ 				       PIPE_CONTROL_CS_STALL |
+ 				       PIPE_CONTROL_TILE_CACHE_FLUSH |
+diff --git a/drivers/gpu/drm/i915/gt/intel_timeline.c b/drivers/gpu/drm/i915/gt/intel_timeline.c
+index a2f74cefe4c3..7ea94d201fe6 100644
+--- a/drivers/gpu/drm/i915/gt/intel_timeline.c
++++ b/drivers/gpu/drm/i915/gt/intel_timeline.c
+@@ -188,10 +188,14 @@ cacheline_alloc(struct intel_timeline_hwsp *hwsp, unsigned int cacheline)
+ 	return cl;
+ }
+ 
+-static void cacheline_acquire(struct intel_timeline_cacheline *cl)
++static void cacheline_acquire(struct intel_timeline_cacheline *cl,
++			      u32 ggtt_offset)
+ {
+-	if (cl)
+-		i915_active_acquire(&cl->active);
++	if (!cl)
++		return;
++
++	cl->ggtt_offset = ggtt_offset;
++	i915_active_acquire(&cl->active);
+ }
+ 
+ static void cacheline_release(struct intel_timeline_cacheline *cl)
+@@ -340,7 +344,7 @@ int intel_timeline_pin(struct intel_timeline *tl, struct i915_gem_ww_ctx *ww)
+ 	GT_TRACE(tl->gt, "timeline:%llx using HWSP offset:%x\n",
+ 		 tl->fence_context, tl->hwsp_offset);
+ 
+-	cacheline_acquire(tl->hwsp_cacheline);
++	cacheline_acquire(tl->hwsp_cacheline, tl->hwsp_offset);
+ 	if (atomic_fetch_inc(&tl->pin_count)) {
+ 		cacheline_release(tl->hwsp_cacheline);
+ 		__i915_vma_unpin(tl->hwsp_ggtt);
+@@ -515,7 +519,7 @@ __intel_timeline_get_seqno(struct intel_timeline *tl,
+ 	GT_TRACE(tl->gt, "timeline:%llx using HWSP offset:%x\n",
+ 		 tl->fence_context, tl->hwsp_offset);
+ 
+-	cacheline_acquire(cl);
++	cacheline_acquire(cl, tl->hwsp_offset);
+ 	tl->hwsp_cacheline = cl;
+ 
+ 	*seqno = timeline_advance(tl);
+@@ -573,9 +577,7 @@ int intel_timeline_read_hwsp(struct i915_request *from,
+ 	if (err)
+ 		goto out;
+ 
+-	*hwsp = i915_ggtt_offset(cl->hwsp->vma) +
+-		ptr_unmask_bits(cl->vaddr, CACHELINE_BITS) * CACHELINE_BYTES;
+-
++	*hwsp = cl->ggtt_offset;
+ out:
+ 	i915_active_release(&cl->active);
+ 	return err;
+diff --git a/drivers/gpu/drm/i915/gt/intel_timeline_types.h b/drivers/gpu/drm/i915/gt/intel_timeline_types.h
+index 02181c5020db..4474f487f589 100644
+--- a/drivers/gpu/drm/i915/gt/intel_timeline_types.h
++++ b/drivers/gpu/drm/i915/gt/intel_timeline_types.h
+@@ -94,6 +94,8 @@ struct intel_timeline_cacheline {
+ 	struct intel_timeline_hwsp *hwsp;
+ 	void *vaddr;
+ 
++	u32 ggtt_offset;
++
+ 	struct rcu_head rcu;
+ };
+ 
+-- 
+2.20.1
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
