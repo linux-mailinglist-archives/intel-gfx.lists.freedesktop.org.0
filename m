@@ -1,41 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id ADE5C294949
-	for <lists+intel-gfx@lfdr.de>; Wed, 21 Oct 2020 10:21:56 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2C1982949C4
+	for <lists+intel-gfx@lfdr.de>; Wed, 21 Oct 2020 10:57:50 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2D7726EA7C;
-	Wed, 21 Oct 2020 08:21:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 809B56F47E;
+	Wed, 21 Oct 2020 08:57:48 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0498D6EA78
- for <intel-gfx@lists.freedesktop.org>; Wed, 21 Oct 2020 08:21:49 +0000 (UTC)
-IronPort-SDR: LbZHV1ygvewZOemjPSkRIXbcLeVBjUymLxGWfP/WYT9me+Og3AkDtsLGxldb9bbFMMib1Ge7YI
- 8lqHCC69NYTQ==
-X-IronPort-AV: E=McAfee;i="6000,8403,9780"; a="167452510"
-X-IronPort-AV: E=Sophos;i="5.77,400,1596524400"; d="scan'208";a="167452510"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Oct 2020 01:21:49 -0700
-IronPort-SDR: KJ7nkIe/sP62kEBdhHno2cYygK+rp4xF7Oh/RcDWIp06XXMHRux+ZAan07VeqzDwUbwAa9K3e9
- Ncjd0LLjVwxg==
-X-IronPort-AV: E=Sophos;i="5.77,400,1596524400"; d="scan'208";a="316303291"
-Received: from lucas-s2600cw.jf.intel.com ([10.165.21.202])
- by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Oct 2020 01:21:49 -0700
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Wed, 21 Oct 2020 01:20:34 -0700
-Message-Id: <20201021082034.3170478-7-lucas.demarchi@intel.com>
-X-Mailer: git-send-email 2.28.0
-In-Reply-To: <20201021082034.3170478-1-lucas.demarchi@intel.com>
-References: <20201021082034.3170478-1-lucas.demarchi@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 8A88A6F47E;
+ Wed, 21 Oct 2020 08:57:47 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 82784A41FB;
+ Wed, 21 Oct 2020 08:57:47 +0000 (UTC)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 6/6] drm/i915/dg1: Implement WA_16011163337
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Lucas De Marchi" <lucas.demarchi@intel.com>
+Date: Wed, 21 Oct 2020 08:57:47 -0000
+Message-ID: <160327066753.17473.6391059320142640533@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20201021082034.3170478-1-lucas.demarchi@intel.com>
+In-Reply-To: <20201021082034.3170478-1-lucas.demarchi@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_dg1=3A_remaining_basic_enabling_patches?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,41 +38,35 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Swathi Dhanavanthri <swathi.dhanavanthri@intel.com>
+== Series Details ==
 
-Set GS Timer to 224.
-Bspec: 53508
+Series: dg1: remaining basic enabling patches
+URL   : https://patchwork.freedesktop.org/series/82905/
+State : warning
 
-Cc: Matt Roper <matthew.d.roper@intel.com>
-Signed-off-by: Swathi Dhanavanthri <swathi.dhanavanthri@intel.com>
-Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
----
- drivers/gpu/drm/i915/gt/intel_workarounds.c | 5 +++++
- 1 file changed, 5 insertions(+)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-index 8d24ea769fe6..cd0c5847e2df 100644
---- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
-+++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-@@ -684,6 +684,11 @@ static void dg1_ctx_workarounds_init(struct intel_engine_cs *engine,
- 	/* Wa_22010493298 */
- 	WA_SET_BIT_MASKED(HIZ_CHICKEN,
- 			  DG1_HZ_READ_SUPPRESSION_OPTIMIZATION_DISABLE);
-+
-+	/* Wa_16011163337 */
-+	wa_add(wal,
-+	       FF_MODE2,
-+	       FF_MODE2_GS_TIMER_MASK, FF_MODE2_GS_TIMER_224, 0);
- }
- 
- static void
--- 
-2.28.0
+$ dim checkpatch origin/drm-tip
+cb46b8b1fbc0 drm/i915/dg1: add hpd interrupt handling
+810c0e12bdf7 drm/i915/dg1: invert HPD pins
+1dfe3610ce5f drm/i915/dg1: map/unmap pll clocks
+-:244: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'phy' - possible side-effects?
+#244: FILE: drivers/gpu/drm/i915/i915_reg.h:10332:
++#define   DG1_DPCLKA_CFGCR0_DDI_CLK_SEL_VAL_TO_ID(val, phy) \
++	  ((((val) & DG1_DPCLKA_CFGCR0_DDI_CLK_SEL_MASK(phy)) >> ((phy % 2) * 2)) + (2 * (phy / 2)))
+
+total: 0 errors, 0 warnings, 1 checks, 204 lines checked
+f65c4b4b84ec drm/i915/dg1: Enable ports
+7e72b27c5ac4 drm/i915/dg1: make Wa_22010271021 permanent
+634e785b005e drm/i915/dg1: Implement WA_16011163337
+
 
 _______________________________________________
 Intel-gfx mailing list
