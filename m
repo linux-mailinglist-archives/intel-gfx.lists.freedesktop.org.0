@@ -2,31 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CDA40294E4A
-	for <lists+intel-gfx@lfdr.de>; Wed, 21 Oct 2020 16:12:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 750B7294E5A
+	for <lists+intel-gfx@lfdr.de>; Wed, 21 Oct 2020 16:16:38 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 38F466EDA9;
-	Wed, 21 Oct 2020 14:12:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4957B6E175;
+	Wed, 21 Oct 2020 14:16:36 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id DA41B6EDA9;
- Wed, 21 Oct 2020 14:11:59 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id 082A66E175;
+ Wed, 21 Oct 2020 14:16:35 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id D17AAA0BA8;
- Wed, 21 Oct 2020 14:11:59 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 00464A47E9;
+ Wed, 21 Oct 2020 14:16:34 +0000 (UTC)
 MIME-Version: 1.0
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?b?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-Date: Wed, 21 Oct 2020 14:11:59 -0000
-Message-ID: <160328951982.17471.12294214150310330816@emeril.freedesktop.org>
+To: "Aditya Swarup" <aditya.swarup@intel.com>
+Date: Wed, 21 Oct 2020 14:16:34 -0000
+Message-ID: <160328979497.17470.3582983749998276026@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20201021131443.25616-1-ville.syrjala@linux.intel.com>
-In-Reply-To: <20201021131443.25616-1-ville.syrjala@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
- =?utf-8?q?ies_starting_with_=5B1/5=5D_drm/i915=3A_Restore_ILK-M_RPS_suppo?=
- =?utf-8?q?rt?=
+References: <20201021133213.328994-1-aditya.swarup@intel.com>
+In-Reply-To: <20201021133213.328994-1-aditya.swarup@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_Introduce_Alderlake-S?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,241 +40,124 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============0471667915=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0471667915==
-Content-Type: multipart/alternative;
- boundary="===============7626306019427302706=="
-
---===============7626306019427302706==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: series starting with [1/5] drm/i915: Restore ILK-M RPS support
-URL   : https://patchwork.freedesktop.org/series/82916/
-State : success
+Series: Introduce Alderlake-S
+URL   : https://patchwork.freedesktop.org/series/82917/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from CI_DRM_9176 -> Patchwork_18751
-====================================================
+$ dim checkpatch origin/drm-tip
+37adab61ebad drm/i915/adl_s: Add ADL-S platform info and PCI ids
+-:54: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'p' - possible side-effects?
+#54: FILE: drivers/gpu/drm/i915/i915_drv.h:1622:
++#define IS_ADLS_REVID(p, since, until) \
++       (IS_ALDERLAKE_S(p) && IS_REVID(p, since, until))
 
-Summary
--------
+-:55: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#55: FILE: drivers/gpu/drm/i915/i915_drv.h:1623:
++       (IS_ALDERLAKE_S(p) && IS_REVID(p, since, until))$
 
-  **SUCCESS**
+-:123: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
+#123: FILE: include/drm/i915_pciids.h:639:
++#define INTEL_ADLS_IDS(info) \
++	INTEL_VGA_DEVICE(0x4680, info), \
++	INTEL_VGA_DEVICE(0x4681, info), \
++	INTEL_VGA_DEVICE(0x4682, info), \
++	INTEL_VGA_DEVICE(0x4683, info), \
++	INTEL_VGA_DEVICE(0x4690, info), \
++	INTEL_VGA_DEVICE(0x4691, info), \
++	INTEL_VGA_DEVICE(0x4692, info), \
++	INTEL_VGA_DEVICE(0x4693, info), \
++	INTEL_VGA_DEVICE(0x4698, info), \
++	INTEL_VGA_DEVICE(0x4699, info)
 
-  No regressions found.
+-:123: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'info' - possible side-effects?
+#123: FILE: include/drm/i915_pciids.h:639:
++#define INTEL_ADLS_IDS(info) \
++	INTEL_VGA_DEVICE(0x4680, info), \
++	INTEL_VGA_DEVICE(0x4681, info), \
++	INTEL_VGA_DEVICE(0x4682, info), \
++	INTEL_VGA_DEVICE(0x4683, info), \
++	INTEL_VGA_DEVICE(0x4690, info), \
++	INTEL_VGA_DEVICE(0x4691, info), \
++	INTEL_VGA_DEVICE(0x4692, info), \
++	INTEL_VGA_DEVICE(0x4693, info), \
++	INTEL_VGA_DEVICE(0x4698, info), \
++	INTEL_VGA_DEVICE(0x4699, info)
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18751/index.html
+total: 1 errors, 1 warnings, 2 checks, 76 lines checked
+3f14bf129a7d x86/gpu: add ADL_S stolen memory support
+9541e1b5d9c5 drm/i915/adl_s: Add PCH support
+0cdf50266822 drm/i915/adl_s: Add Interrupt Support
+8426881fd08d drm/i915/adl_s: Add PHYs for Alderlake S
+eec312e2d54c drm/i915/adl_s: Configure DPLL for ADL-S
+cf0751c1b462 drm/i915/adl_s: Configure Port clock registers for ADL-S
+919fedfd3bf3 drm/i915/adl_s: Setup display outputs and HTI support for ADL-S
+adec6f0e64aa drm/i915/adl_s: Add adl-s ddc pin mapping
+5e3a85cbe54a drm/i915/adl_s: Add vbt port and aux channel settings for adls
+-:10: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
+#10: 
+- ADL-S driver internal mapping uses PORT D, E, F, G for Combo phy B, C, D and E.
 
-Known issues
-------------
+total: 0 errors, 1 warnings, 0 checks, 61 lines checked
+7fe0b1ea22d2 drm/i915/adl_s: Update combo PHY master/slave relationships
+9f3a0b45ebec drm/i915/adl_s: Update PHY_MISC programming
+1ad9fe655cde drm/i915/adl_s: Add display, gt, ctx and ADL-S whitelist WA
+-:163: WARNING:NO_AUTHOR_SIGN_OFF: Missing Signed-off-by: line by nominal patch author 'Anusha Srivatsa <anusha.srivatsa@intel.com>'
 
-  Here are the changes found in Patchwork_18751 that come from known issues:
+total: 0 errors, 1 warnings, 0 checks, 110 lines checked
+f3ca8144e558 drm/i915/adl_s: MCHBAR memory info registers are moved
+-:56: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#56: FILE: drivers/gpu/drm/i915/intel_dram.c:189:
++		val = intel_uncore_read(&i915->uncore,
++				ADLS_MAD_DIMM_CH0_0_0_0_MCHBAR);
 
-### IGT changes ###
+-:59: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#59: FILE: drivers/gpu/drm/i915/intel_dram.c:192:
++		val = intel_uncore_read(&i915->uncore,
+ 				SKL_MAD_DIMM_CH0_0_0_0_MCHBAR_MCMAIN);
 
-#### Issues hit ####
+-:67: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#67: FILE: drivers/gpu/drm/i915/intel_dram.c:199:
++		val = intel_uncore_read(&i915->uncore,
++				ADLS_MAD_DIMM_CH1_0_0_0_MCHBAR);
 
-  * igt@kms_chamelium@common-hpd-after-suspend:
-    - fi-kbl-7500u:       [PASS][1] -> [DMESG-WARN][2] ([i915#2203])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9176/fi-kbl-7500u/igt@kms_chamelium@common-hpd-after-suspend.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18751/fi-kbl-7500u/igt@kms_chamelium@common-hpd-after-suspend.html
+-:70: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#70: FILE: drivers/gpu/drm/i915/intel_dram.c:202:
++		val = intel_uncore_read(&i915->uncore,
+ 				SKL_MAD_DIMM_CH1_0_0_0_MCHBAR_MCMAIN);
 
-  
-#### Possible fixes ####
+-:80: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#80: FILE: drivers/gpu/drm/i915/intel_dram.c:244:
++		val = intel_uncore_read(&i915->uncore,
++				ADLS_MAD_INTER_CHANNEL_0_0_0_MCHBAR);
 
-  * igt@i915_pm_rpm@basic-pci-d3-state:
-    - fi-byt-j1900:       [DMESG-WARN][3] ([i915#1982]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9176/fi-byt-j1900/igt@i915_pm_rpm@basic-pci-d3-state.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18751/fi-byt-j1900/igt@i915_pm_rpm@basic-pci-d3-state.html
+-:83: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#83: FILE: drivers/gpu/drm/i915/intel_dram.c:247:
++		val = intel_uncore_read(&i915->uncore,
+ 				SKL_MAD_INTER_CHANNEL_0_0_0_MCHBAR_MCMAIN);
 
-  * igt@i915_selftest@live@gt_heartbeat:
-    - fi-tgl-u2:          [INCOMPLETE][5] ([i915#2557]) -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9176/fi-tgl-u2/igt@i915_selftest@live@gt_heartbeat.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18751/fi-tgl-u2/igt@i915_selftest@live@gt_heartbeat.html
+total: 0 errors, 0 warnings, 6 checks, 52 lines checked
+e3638c808f9e drm/i915/adl_s: Re-use TGL GuC/HuC firmware
+1a52773c70d3 drm/i915/display: Add HAS_D12_PLANE_MINIMIZATION
+-:44: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'dev_priv' - possible side-effects?
+#44: FILE: drivers/gpu/drm/i915/i915_drv.h:1768:
++#define HAS_D12_PLANE_MINIMIZATION(dev_priv) (IS_ROCKETLAKE(dev_priv) || \
++					      IS_ALDERLAKE_S(dev_priv))
 
-  * igt@kms_chamelium@dp-crc-fast:
-    - fi-kbl-7500u:       [DMESG-FAIL][7] ([i915#165] / [i915#262]) -> [PASS][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9176/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18751/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html
+total: 0 errors, 0 warnings, 1 checks, 33 lines checked
+8da8a7726ee0 drm/i915/adl_s: Update memory bandwidth parameters
+7f707777a91f drm/i915/adl_s: Load DMC
 
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:
-    - fi-bsw-kefka:       [DMESG-WARN][9] ([i915#1982]) -> [PASS][10]
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9176/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18751/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-
-  * igt@kms_cursor_legacy@basic-flip-after-cursor-legacy:
-    - fi-icl-u2:          [DMESG-WARN][11] ([i915#1982]) -> [PASS][12]
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9176/fi-icl-u2/igt@kms_cursor_legacy@basic-flip-after-cursor-legacy.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18751/fi-icl-u2/igt@kms_cursor_legacy@basic-flip-after-cursor-legacy.html
-
-  
-#### Warnings ####
-
-  * igt@kms_chamelium@hdmi-crc-fast:
-    - fi-kbl-7500u:       [DMESG-WARN][13] ([i915#1982] / [i915#2203]) -> [DMESG-WARN][14] ([i915#2203])
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9176/fi-kbl-7500u/igt@kms_chamelium@hdmi-crc-fast.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18751/fi-kbl-7500u/igt@kms_chamelium@hdmi-crc-fast.html
-
-  
-  [i915#165]: https://gitlab.freedesktop.org/drm/intel/issues/165
-  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
-  [i915#2203]: https://gitlab.freedesktop.org/drm/intel/issues/2203
-  [i915#2557]: https://gitlab.freedesktop.org/drm/intel/issues/2557
-  [i915#262]: https://gitlab.freedesktop.org/drm/intel/issues/262
-
-
-Participating hosts (45 -> 38)
-------------------------------
-
-  Missing    (7): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-byt-clapper fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_9176 -> Patchwork_18751
-
-  CI-20190529: 20190529
-  CI_DRM_9176: e3d4f747f53899164788f2008a16c82d236b762a @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5822: b4bcf05cb9839037128905deda7146434155cc41 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_18751: 6fc9ed9e531eef8d3be939be68d19c266950445f @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-6fc9ed9e531e drm/i915: Clean up the irq enable/disable for ilk rps
-df49c031cf6c drm/i915: Do gen5_gt_irq_postinstall() before enabling the master interrupt
-4350caada7af drm/i915: Fix potential overflows in ilk ips calculations
-110c58450658 drm/i915: Read actual GPU frequency from MEMSTAT_ILK on ILK
-b38fe67f42d1 drm/i915: Restore ILK-M RPS support
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18751/index.html
-
---===============7626306019427302706==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>series starting with [1/5] drm/i915: Restore ILK-M RPS support</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/82916/">https://patchwork.freedesktop.org/series/82916/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18751/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18751/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_9176 -&gt; Patchwork_18751</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18751/index.html</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_18751 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@kms_chamelium@common-hpd-after-suspend:<ul>
-<li>fi-kbl-7500u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9176/fi-kbl-7500u/igt@kms_chamelium@common-hpd-after-suspend.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18751/fi-kbl-7500u/igt@kms_chamelium@common-hpd-after-suspend.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2203">i915#2203</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@i915_pm_rpm@basic-pci-d3-state:</p>
-<ul>
-<li>fi-byt-j1900:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9176/fi-byt-j1900/igt@i915_pm_rpm@basic-pci-d3-state.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18751/fi-byt-j1900/igt@i915_pm_rpm@basic-pci-d3-state.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@gt_heartbeat:</p>
-<ul>
-<li>fi-tgl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9176/fi-tgl-u2/igt@i915_selftest@live@gt_heartbeat.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2557">i915#2557</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18751/fi-tgl-u2/igt@i915_selftest@live@gt_heartbeat.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@dp-crc-fast:</p>
-<ul>
-<li>fi-kbl-7500u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9176/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/165">i915#165</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/262">i915#262</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18751/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:</p>
-<ul>
-<li>fi-bsw-kefka:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9176/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18751/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@basic-flip-after-cursor-legacy:</p>
-<ul>
-<li>fi-icl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9176/fi-icl-u2/igt@kms_cursor_legacy@basic-flip-after-cursor-legacy.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18751/fi-icl-u2/igt@kms_cursor_legacy@basic-flip-after-cursor-legacy.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h4>Warnings</h4>
-<ul>
-<li>igt@kms_chamelium@hdmi-crc-fast:<ul>
-<li>fi-kbl-7500u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9176/fi-kbl-7500u/igt@kms_chamelium@hdmi-crc-fast.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2203">i915#2203</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18751/fi-kbl-7500u/igt@kms_chamelium@hdmi-crc-fast.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2203">i915#2203</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Participating hosts (45 -&gt; 38)</h2>
-<p>Missing    (7): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-byt-clapper fi-bdw-samus </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_9176 -&gt; Patchwork_18751</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_9176: e3d4f747f53899164788f2008a16c82d236b762a @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_5822: b4bcf05cb9839037128905deda7146434155cc41 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
-  Patchwork_18751: 6fc9ed9e531eef8d3be939be68d19c266950445f @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>6fc9ed9e531e drm/i915: Clean up the irq enable/disable for ilk rps<br />
-df49c031cf6c drm/i915: Do gen5_gt_irq_postinstall() before enabling the master interrupt<br />
-4350caada7af drm/i915: Fix potential overflows in ilk ips calculations<br />
-110c58450658 drm/i915: Read actual GPU frequency from MEMSTAT_ILK on ILK<br />
-b38fe67f42d1 drm/i915: Restore ILK-M RPS support</p>
-
-</body>
-</html>
-
---===============7626306019427302706==--
-
---===============0471667915==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============0471667915==--
