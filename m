@@ -2,39 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A0AE3296636
-	for <lists+intel-gfx@lfdr.de>; Thu, 22 Oct 2020 22:54:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 095E1296660
+	for <lists+intel-gfx@lfdr.de>; Thu, 22 Oct 2020 23:08:27 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1630B6E24D;
-	Thu, 22 Oct 2020 20:54:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 147666E252;
+	Thu, 22 Oct 2020 21:08:24 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5611D6E24D;
- Thu, 22 Oct 2020 20:54:36 +0000 (UTC)
-IronPort-SDR: jhnxwNKkeieGJwNELgg8K1W1YPxU5gQbE0Ip0ORpxNY3j2T05sewjbEV05+EuOgDy8W4mItaOy
- 3RnlhoDReLvA==
-X-IronPort-AV: E=McAfee;i="6000,8403,9782"; a="155377271"
-X-IronPort-AV: E=Sophos;i="5.77,404,1596524400"; d="scan'208";a="155377271"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Oct 2020 13:54:35 -0700
-IronPort-SDR: 3Tpqp/yAFjqjBMIKGg19ESYxLe6Kj5o0492FcPVK/KcX8JD+gBYbwh7gwX1XbONp2tG/uhnpti
- VoiSLsy1W5Og==
-X-IronPort-AV: E=Sophos;i="5.77,404,1596524400"; d="scan'208";a="316859993"
-Received: from rdvivi-losangeles.jf.intel.com (HELO intel.com)
- ([10.165.21.201])
- by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Oct 2020 13:54:35 -0700
-Date: Thu, 22 Oct 2020 16:56:13 -0400
-From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
-Message-ID: <20201022205613.GA3469192@intel.com>
+Received: from fireflyinternet.com (unknown [77.68.26.236])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 85B2B6E252
+ for <intel-gfx@lists.freedesktop.org>; Thu, 22 Oct 2020 21:08:22 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from build.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 22779077-1500050 
+ for multiple; Thu, 22 Oct 2020 22:08:16 +0100
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Thu, 22 Oct 2020 22:08:14 +0100
+Message-Id: <20201022210814.23004-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Content-Disposition: inline
-Subject: [Intel-gfx] [PULL] drm-intel-next-fixes
+Subject: [Intel-gfx] [PATCH] drm/i915/selftests: Skip RPS tests on Ironlake
+ (only IPS)
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,101 +37,68 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dim-tools@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Maxime Ripard <mripard@kernel.org>, intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Cc: Chris Wilson <chris@chris-wilson.co.uk>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Dave and Daniel,
+Since Ironlake uses intel_ips.ko for its dynamic frequency adjustment,
+we do not have direct control over the frequency management so such
+tests are defunct. Similarly, we can't check the gen6+ RPS registers on
+Ironlake.
 
-Here is probably the last drm-intel-next-fixes before -rc1.
+Hopefully this catches all the invalid tests now that Ironlake has
+rejoined the dynamic GPU frequency club.
 
-This includes a few patches from dinq and a bunch from drm-intel-gt-next.
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+---
+ drivers/gpu/drm/i915/gt/selftest_rps.c | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
 
-drm-intel-next-fixes-2020-10-22:
-- Tweak initia DPCD backlight.enabled value (Sean)
-- Initialize reserved MOCS indices (Ayaz)
-- Mark initial fb obj as WT on eLLC machines to avoid rcu lockup (Ville)
-- Support parsing of oversize batches (Chris)
-- Delay execlists processing for TGL (Chris)
-- Use the active reference on the vma during error capture (Chris)
-- Widen CSB pointer (Chris)
-- Wait for CSB entries on TGL (Chris)
-- Fix unwind for scratch page allocation (Chris)
-- Exclude low patches of stolen memory (Chris)
-- Force VT'd workarounds when running as a guest OS (Chris)
-- Drop runtime-pm assert from vpgu io accessors (Chris)
-The following changes since commit 214bba50616f65264dfc30d095daef3ab7500f52:
+diff --git a/drivers/gpu/drm/i915/gt/selftest_rps.c b/drivers/gpu/drm/i915/gt/selftest_rps.c
+index 3540ba9bd459..aa5675ecb5cc 100644
+--- a/drivers/gpu/drm/i915/gt/selftest_rps.c
++++ b/drivers/gpu/drm/i915/gt/selftest_rps.c
+@@ -219,7 +219,7 @@ int live_rps_clock_interval(void *arg)
+ 	struct igt_spinner spin;
+ 	int err = 0;
+ 
+-	if (!intel_rps_is_enabled(rps))
++	if (!intel_rps_is_enabled(rps) || INTEL_GEN(gt->i915) < 6)
+ 		return 0;
+ 
+ 	if (igt_spinner_init(&spin, gt))
+@@ -1028,7 +1028,7 @@ int live_rps_interrupt(void *arg)
+ 	 * First, let's check whether or not we are receiving interrupts.
+ 	 */
+ 
+-	if (!intel_rps_has_interrupts(rps))
++	if (!intel_rps_has_interrupts(rps) || INTEL_GEN(gt->i915) < 6)
+ 		return 0;
+ 
+ 	intel_gt_pm_get(gt);
+@@ -1133,7 +1133,7 @@ int live_rps_power(void *arg)
+ 	 * that theory.
+ 	 */
+ 
+-	if (!intel_rps_is_enabled(rps))
++	if (!intel_rps_is_enabled(rps) || INTEL_GEN(gt->i915) < 6)
+ 		return 0;
+ 
+ 	if (!librapl_energy_uJ())
+@@ -1237,7 +1237,7 @@ int live_rps_dynamic(void *arg)
+ 	 * moving parts into dynamic reclocking based on load.
+ 	 */
+ 
+-	if (!intel_rps_is_enabled(rps))
++	if (!intel_rps_is_enabled(rps) || INTEL_GEN(gt->i915) < 6)
+ 		return 0;
+ 
+ 	if (igt_spinner_init(&spin, gt))
+-- 
+2.20.1
 
-  drm/i915: Set all unused color plane offsets to ~0xfff again (2020-10-12 =
-14:23:22 -0400)
-
-are available in the Git repository at:
-
-  git://anongit.freedesktop.org/drm/drm-intel tags/drm-intel-next-fixes-202=
-0-10-22
-
-for you to fetch changes up to 5c6c13cd1102caf92d006a3cf4591c0229019daf:
-
-  drm/i915: Drop runtime-pm assert from vgpu io accessors (2020-10-21 08:32=
-:32 -0400)
-
-----------------------------------------------------------------
-- Tweak initia DPCD backlight.enabled value (Sean)
-- Initialize reserved MOCS indices (Ayaz)
-- Mark initial fb obj as WT on eLLC machines to avoid rcu lockup (Ville)
-- Support parsing of oversize batches (Chris)
-- Delay execlists processing for TGL (Chris)
-- Use the active reference on the vma during error capture (Chris)
-- Widen CSB pointer (Chris)
-- Wait for CSB entries on TGL (Chris)
-- Fix unwind for scratch page allocation (Chris)
-- Exclude low patches of stolen memory (Chris)
-- Force VT'd workarounds when running as a guest OS (Chris)
-- Drop runtime-pm assert from vpgu io accessors (Chris)
-
-----------------------------------------------------------------
-Ayaz A Siddiqui (1):
-      drm/i915/gt: Initialize reserved and unspecified MOCS indices
-
-Chris Wilson (10):
-      drm/i915/gem: Support parsing of oversize batches
-      drm/i915/gt: Delay execlist processing for tgl
-      drm/i915/gt: Undo forced context restores after trivial preemptions
-      drm/i915: Use the active reference on the vma while capturing
-      drm/i915/gt: Widen CSB pointer to u64 for the parsers
-      drm/i915/gt: Wait for CSB entries on Tigerlake
-      drm/i915/gt: Onion unwind for scratch page allocation failure
-      drm/i915: Exclude low pages (128KiB) of stolen from use
-      drm/i915: Force VT'd workarounds when running as a guest OS
-      drm/i915: Drop runtime-pm assert from vgpu io accessors
-
-Sean Paul (1):
-      drm/i915/dp: Tweak initial dpcd backlight.enabled value
-
-Ville Syrj=E4l=E4 (1):
-      drm/i915: Mark ininitial fb obj as WT on eLLC machines to avoid rcu l=
-ockup during fbdev init
-
- drivers/gpu/drm/i915/Kconfig.debug                 |   1 +
- drivers/gpu/drm/i915/display/intel_display.c       |   8 +
- .../gpu/drm/i915/display/intel_dp_aux_backlight.c  |  31 ++--
- drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c     |  10 +-
- drivers/gpu/drm/i915/gem/i915_gem_stolen.c         |   6 +-
- drivers/gpu/drm/i915/gem/i915_gem_stolen.h         |   2 +
- drivers/gpu/drm/i915/gt/gen6_ppgtt.c               |  18 +-
- drivers/gpu/drm/i915/gt/gen8_ppgtt.c               |   3 +-
- drivers/gpu/drm/i915/gt/intel_engine_types.h       |   2 +-
- drivers/gpu/drm/i915/gt/intel_lrc.c                |  58 +++---
- drivers/gpu/drm/i915/gt/intel_mocs.c               |  16 +-
- drivers/gpu/drm/i915/gt/selftest_reset.c           | 196 +++++++++++++++++=
-++++
- drivers/gpu/drm/i915/i915_drv.h                    |   6 +-
- drivers/gpu/drm/i915/i915_gpu_error.c              |   3 +-
- drivers/gpu/drm/i915/intel_uncore.c                |  27 ++-
- 15 files changed, 334 insertions(+), 53 deletions(-)
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
