@@ -1,30 +1,45 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 01C55296177
-	for <lists+intel-gfx@lfdr.de>; Thu, 22 Oct 2020 17:09:57 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2A107296196
+	for <lists+intel-gfx@lfdr.de>; Thu, 22 Oct 2020 17:22:20 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 13D986E102;
-	Thu, 22 Oct 2020 15:09:55 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 557996E0C4;
- Thu, 22 Oct 2020 15:09:52 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 22776346-1500050 
- for multiple; Thu, 22 Oct 2020 16:09:46 +0100
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Thu, 22 Oct 2020 16:09:43 +0100
-Message-Id: <20201022150943.3041180-1-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.28.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id C7EFE6E198;
+	Thu, 22 Oct 2020 15:22:16 +0000 (UTC)
+X-Original-To: Intel-GFX@lists.freedesktop.org
+Delivered-To: Intel-GFX@lists.freedesktop.org
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F36926E198
+ for <Intel-GFX@lists.freedesktop.org>; Thu, 22 Oct 2020 15:22:15 +0000 (UTC)
+IronPort-SDR: y4Y6HEzs9eFWECK+5ThdjJjSY26YO3VsvLK2WDALSX79t/hLkNby4OoCBUvr7NfPtutV8dmlfE
+ oqstXttzIk/A==
+X-IronPort-AV: E=McAfee;i="6000,8403,9781"; a="252242456"
+X-IronPort-AV: E=Sophos;i="5.77,404,1596524400"; d="scan'208";a="252242456"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Oct 2020 08:22:13 -0700
+IronPort-SDR: bxjBFIhhv6pc/Ht4v+8jBwQRxVK6lNCKyxiZr/H/IUYuyB3RMkeyaYJNcEIE4iWGR4Ec+2hp/E
+ 4rzSSjwsqTwg==
+X-IronPort-AV: E=Sophos;i="5.77,404,1596524400"; d="scan'208";a="534008722"
+Received: from peterhae-mobl1.ger.corp.intel.com (HELO [10.249.41.22])
+ ([10.249.41.22])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Oct 2020 08:22:12 -0700
+To: John.C.Harrison@Intel.com, Intel-GFX@Lists.FreeDesktop.Org
+References: <20201015182901.3197788-1-John.C.Harrison@Intel.com>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+Message-ID: <cf95a101-95c0-a28f-dca7-25c9fa9e6838@linux.intel.com>
+Date: Thu, 22 Oct 2020 16:22:10 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH i-g-t] i915/gem_mmap_gtt: Trim object size for
- ptracing
+In-Reply-To: <20201015182901.3197788-1-John.C.Harrison@Intel.com>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH CI v2 0/4] drm/i915/guc: Update to GuC v49
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,84 +52,53 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: igt-dev@lists.freedesktop.org, Chris Wilson <chris@chris-wilson.co.uk>
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-For verifying vm_ops.access we only need a page or two to check we both
-advance across a page boundary and find the right offset within a page.
-16MiB is overkill for the slow uncached reads through the slow ptrace
-interface, so reduce the object size by a couple of orders of magnitude.
 
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
----
- tests/i915/gem_mmap_gtt.c | 23 ++++++++++++-----------
- 1 file changed, 12 insertions(+), 11 deletions(-)
++ Joonas for maintainer class question.
 
-diff --git a/tests/i915/gem_mmap_gtt.c b/tests/i915/gem_mmap_gtt.c
-index 6637bba06..3cce19e9a 100644
---- a/tests/i915/gem_mmap_gtt.c
-+++ b/tests/i915/gem_mmap_gtt.c
-@@ -525,6 +525,7 @@ static void *memchr_inv(const void *s, int c, size_t n)
- static void
- test_ptrace(int fd)
- {
-+	unsigned long sz = 16 * 4096;
- 	unsigned long AA, CC;
- 	unsigned long *gtt, *cpy;
- 	uint32_t bo;
-@@ -533,16 +534,16 @@ test_ptrace(int fd)
- 	memset(&AA, 0xaa, sizeof(AA));
- 	memset(&CC, 0x55, sizeof(CC));
- 
--	cpy = malloc(OBJECT_SIZE);
--	memset(cpy, AA, OBJECT_SIZE);
-+	cpy = malloc(sz);
-+	memset(cpy, AA, sz);
- 
--	bo = gem_create(fd, OBJECT_SIZE);
--	gtt = mmap_bo(fd, bo, OBJECT_SIZE);
--	memset(gtt, CC, OBJECT_SIZE);
-+	bo = gem_create(fd, sz);
-+	gtt = mmap_bo(fd, bo, sz);
-+	memset(gtt, CC, sz);
- 	gem_close(fd, bo);
- 
--	igt_assert(!memchr_inv(gtt, CC, OBJECT_SIZE));
--	igt_assert(!memchr_inv(cpy, AA, OBJECT_SIZE));
-+	igt_assert(!memchr_inv(gtt, CC, sz));
-+	igt_assert(!memchr_inv(cpy, AA, sz));
- 
- 	igt_fork(child, 1) {
- 		ptrace(PTRACE_TRACEME, 0, NULL, NULL);
-@@ -553,7 +554,7 @@ test_ptrace(int fd)
- 	pid = wait(NULL);
- 
- 	ptrace(PTRACE_ATTACH, pid, NULL, NULL);
--	for (int i = 0; i < OBJECT_SIZE / sizeof(long); i++) {
-+	for (int i = 0; i < sz / sizeof(long); i++) {
- 		long ret;
- 
- 		ret = ptrace(PTRACE_PEEKDATA, pid, gtt + i);
-@@ -570,10 +571,10 @@ test_ptrace(int fd)
- 	igt_waitchildren();
- 
- 	/* The contents of the two buffers should now be swapped */
--	igt_assert(!memchr_inv(gtt, AA, OBJECT_SIZE));
--	igt_assert(!memchr_inv(cpy, CC, OBJECT_SIZE));
-+	igt_assert(!memchr_inv(gtt, AA, sz));
-+	igt_assert(!memchr_inv(cpy, CC, sz));
- 
--	munmap(gtt, OBJECT_SIZE);
-+	munmap(gtt, sz);
- 	free(cpy);
- }
- 
--- 
-2.28.0
+On 15/10/2020 19:28, John.C.Harrison@Intel.com wrote:
+> From: John Harrison <John.C.Harrison@Intel.com>
+> 
+> Update to the latest GuC firmware
+> 
+> v2: Rebase to newer tree, updated a commit message (review feedback
+> from Daniele) and dropped the patch to enable GuC/HuC loading by
+> default as apparently this is not allowed.
+> 
+> Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
+> 
+> 
+> John Harrison (4):
+>    drm/i915/guc: Update to use firmware v49.0.1
+>    drm/i915/guc: Improved reporting when GuC fails to load
+>    drm/i915/guc: Clear pointers on free
+>    CI: turn on GuC/HuC auto mode by default
+> 
+>   drivers/gpu/drm/i915/gt/intel_engine_cs.c    |   3 +-
+>   drivers/gpu/drm/i915/gt/uc/intel_guc.c       |  18 ---
+>   drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c   | 132 +++++++++++++++----
+>   drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c    |   1 +
+>   drivers/gpu/drm/i915/gt/uc/intel_guc_fw.c    |  31 +++--
+>   drivers/gpu/drm/i915/gt/uc/intel_guc_fwif.h  |  80 +++++------
+>   drivers/gpu/drm/i915/gt/uc/intel_guc_reg.h   |   5 +
+>   drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c     |  29 ++--
+>   drivers/gpu/drm/i915/gt/uc/intel_uc_fw.h     |   2 +
+>   drivers/gpu/drm/i915/gt/uc/intel_uc_fw_abi.h |   6 +-
+>   drivers/gpu/drm/i915/i915_params.h           |   2 +-
+>   11 files changed, 202 insertions(+), 107 deletions(-)
 
+I tried to merge this for John today but the series applies to 
+drm-intel-next-queued and not drm-intel-gt-next, which I thought is 
+where GT/GuC should go to. Long story short, where to merge GuC patches 
+and how is the question?
+
+Regards,
+
+Tvrtko
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
