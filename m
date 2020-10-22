@@ -1,31 +1,40 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 37F64296627
-	for <lists+intel-gfx@lfdr.de>; Thu, 22 Oct 2020 22:48:46 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id A0AE3296636
+	for <lists+intel-gfx@lfdr.de>; Thu, 22 Oct 2020 22:54:40 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 535216E23F;
-	Thu, 22 Oct 2020 20:48:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1630B6E24D;
+	Thu, 22 Oct 2020 20:54:38 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 45FDD6E23F;
- Thu, 22 Oct 2020 20:48:42 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 3E338A7DFB;
- Thu, 22 Oct 2020 20:48:42 +0000 (UTC)
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5611D6E24D;
+ Thu, 22 Oct 2020 20:54:36 +0000 (UTC)
+IronPort-SDR: jhnxwNKkeieGJwNELgg8K1W1YPxU5gQbE0Ip0ORpxNY3j2T05sewjbEV05+EuOgDy8W4mItaOy
+ 3RnlhoDReLvA==
+X-IronPort-AV: E=McAfee;i="6000,8403,9782"; a="155377271"
+X-IronPort-AV: E=Sophos;i="5.77,404,1596524400"; d="scan'208";a="155377271"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Oct 2020 13:54:35 -0700
+IronPort-SDR: 3Tpqp/yAFjqjBMIKGg19ESYxLe6Kj5o0492FcPVK/KcX8JD+gBYbwh7gwX1XbONp2tG/uhnpti
+ VoiSLsy1W5Og==
+X-IronPort-AV: E=Sophos;i="5.77,404,1596524400"; d="scan'208";a="316859993"
+Received: from rdvivi-losangeles.jf.intel.com (HELO intel.com)
+ ([10.165.21.201])
+ by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Oct 2020 13:54:35 -0700
+Date: Thu, 22 Oct 2020 16:56:13 -0400
+From: Rodrigo Vivi <rodrigo.vivi@intel.com>
+To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
+Message-ID: <20201022205613.GA3469192@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
-Date: Thu, 22 Oct 2020 20:48:42 -0000
-Message-ID: <160339972222.7805.15914487544408508487@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20201022194256.30978-1-ville.syrjala@linux.intel.com>
-In-Reply-To: <20201022194256.30978-1-ville.syrjala@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/modes=3A_Switch_to_64bit_maths_to_avoid_integer_overflow?=
+Content-Disposition: inline
+Subject: [Intel-gfx] [PULL] drm-intel-next-fixes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,182 +47,102 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============2035544045=="
+Cc: dim-tools@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Maxime Ripard <mripard@kernel.org>, intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============2035544045==
-Content-Type: multipart/alternative;
- boundary="===============3110484764208133595=="
+Hi Dave and Daniel,
 
---===============3110484764208133595==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Here is probably the last drm-intel-next-fixes before -rc1.
 
-== Series Details ==
+This includes a few patches from dinq and a bunch from drm-intel-gt-next.
 
-Series: drm/modes: Switch to 64bit maths to avoid integer overflow
-URL   : https://patchwork.freedesktop.org/series/82963/
-State : success
+drm-intel-next-fixes-2020-10-22:
+- Tweak initia DPCD backlight.enabled value (Sean)
+- Initialize reserved MOCS indices (Ayaz)
+- Mark initial fb obj as WT on eLLC machines to avoid rcu lockup (Ville)
+- Support parsing of oversize batches (Chris)
+- Delay execlists processing for TGL (Chris)
+- Use the active reference on the vma during error capture (Chris)
+- Widen CSB pointer (Chris)
+- Wait for CSB entries on TGL (Chris)
+- Fix unwind for scratch page allocation (Chris)
+- Exclude low patches of stolen memory (Chris)
+- Force VT'd workarounds when running as a guest OS (Chris)
+- Drop runtime-pm assert from vpgu io accessors (Chris)
+The following changes since commit 214bba50616f65264dfc30d095daef3ab7500f52:
 
-== Summary ==
+  drm/i915: Set all unused color plane offsets to ~0xfff again (2020-10-12 =
+14:23:22 -0400)
 
-CI Bug Log - changes from CI_DRM_9186 -> Patchwork_18767
-====================================================
+are available in the Git repository at:
 
-Summary
--------
+  git://anongit.freedesktop.org/drm/drm-intel tags/drm-intel-next-fixes-202=
+0-10-22
 
-  **SUCCESS**
+for you to fetch changes up to 5c6c13cd1102caf92d006a3cf4591c0229019daf:
 
-  No regressions found.
+  drm/i915: Drop runtime-pm assert from vgpu io accessors (2020-10-21 08:32=
+:32 -0400)
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18767/index.html
+----------------------------------------------------------------
+- Tweak initia DPCD backlight.enabled value (Sean)
+- Initialize reserved MOCS indices (Ayaz)
+- Mark initial fb obj as WT on eLLC machines to avoid rcu lockup (Ville)
+- Support parsing of oversize batches (Chris)
+- Delay execlists processing for TGL (Chris)
+- Use the active reference on the vma during error capture (Chris)
+- Widen CSB pointer (Chris)
+- Wait for CSB entries on TGL (Chris)
+- Fix unwind for scratch page allocation (Chris)
+- Exclude low patches of stolen memory (Chris)
+- Force VT'd workarounds when running as a guest OS (Chris)
+- Drop runtime-pm assert from vpgu io accessors (Chris)
 
-Known issues
-------------
+----------------------------------------------------------------
+Ayaz A Siddiqui (1):
+      drm/i915/gt: Initialize reserved and unspecified MOCS indices
 
-  Here are the changes found in Patchwork_18767 that come from known issues:
+Chris Wilson (10):
+      drm/i915/gem: Support parsing of oversize batches
+      drm/i915/gt: Delay execlist processing for tgl
+      drm/i915/gt: Undo forced context restores after trivial preemptions
+      drm/i915: Use the active reference on the vma while capturing
+      drm/i915/gt: Widen CSB pointer to u64 for the parsers
+      drm/i915/gt: Wait for CSB entries on Tigerlake
+      drm/i915/gt: Onion unwind for scratch page allocation failure
+      drm/i915: Exclude low pages (128KiB) of stolen from use
+      drm/i915: Force VT'd workarounds when running as a guest OS
+      drm/i915: Drop runtime-pm assert from vgpu io accessors
 
-### IGT changes ###
+Sean Paul (1):
+      drm/i915/dp: Tweak initial dpcd backlight.enabled value
 
-#### Issues hit ####
+Ville Syrj=E4l=E4 (1):
+      drm/i915: Mark ininitial fb obj as WT on eLLC machines to avoid rcu l=
+ockup during fbdev init
 
-  * igt@gem_ctx_create@basic-files:
-    - fi-apl-guc:         [PASS][1] -> [INCOMPLETE][2] ([i915#1635])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9186/fi-apl-guc/igt@gem_ctx_create@basic-files.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18767/fi-apl-guc/igt@gem_ctx_create@basic-files.html
-
-  * igt@i915_pm_rpm@basic-pci-d3-state:
-    - fi-bsw-kefka:       [PASS][3] -> [DMESG-WARN][4] ([i915#1982])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9186/fi-bsw-kefka/igt@i915_pm_rpm@basic-pci-d3-state.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18767/fi-bsw-kefka/igt@i915_pm_rpm@basic-pci-d3-state.html
-
-  * igt@kms_cursor_legacy@basic-flip-after-cursor-atomic:
-    - fi-icl-u2:          [PASS][5] -> [DMESG-WARN][6] ([i915#1982])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9186/fi-icl-u2/igt@kms_cursor_legacy@basic-flip-after-cursor-atomic.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18767/fi-icl-u2/igt@kms_cursor_legacy@basic-flip-after-cursor-atomic.html
-
-  
-  [i915#1635]: https://gitlab.freedesktop.org/drm/intel/issues/1635
-  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
-
-
-Participating hosts (44 -> 39)
-------------------------------
-
-  Additional (1): fi-skl-lmem 
-  Missing    (6): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-byt-clapper 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_9186 -> Patchwork_18767
-
-  CI-20190529: 20190529
-  CI_DRM_9186: 88e88abb49e9b08d25ba928cc34ed09082f209b0 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5822: b4bcf05cb9839037128905deda7146434155cc41 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_18767: af56b064d8e01c158fb67bbc7f7475f4cb6a5ba7 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-af56b064d8e0 drm/modes: Switch to 64bit maths to avoid integer overflow
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18767/index.html
-
---===============3110484764208133595==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/modes: Switch to 64bit maths to avoid integer overflow</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/82963/">https://patchwork.freedesktop.org/series/82963/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18767/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18767/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_9186 -&gt; Patchwork_18767</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18767/index.html</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_18767 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@gem_ctx_create@basic-files:</p>
-<ul>
-<li>fi-apl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9186/fi-apl-guc/igt@gem_ctx_create@basic-files.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18767/fi-apl-guc/igt@gem_ctx_create@basic-files.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1635">i915#1635</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_pm_rpm@basic-pci-d3-state:</p>
-<ul>
-<li>fi-bsw-kefka:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9186/fi-bsw-kefka/igt@i915_pm_rpm@basic-pci-d3-state.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18767/fi-bsw-kefka/igt@i915_pm_rpm@basic-pci-d3-state.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@basic-flip-after-cursor-atomic:</p>
-<ul>
-<li>fi-icl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9186/fi-icl-u2/igt@kms_cursor_legacy@basic-flip-after-cursor-atomic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18767/fi-icl-u2/igt@kms_cursor_legacy@basic-flip-after-cursor-atomic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Participating hosts (44 -&gt; 39)</h2>
-<p>Additional (1): fi-skl-lmem <br />
-  Missing    (6): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-byt-clapper </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_9186 -&gt; Patchwork_18767</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_9186: 88e88abb49e9b08d25ba928cc34ed09082f209b0 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_5822: b4bcf05cb9839037128905deda7146434155cc41 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
-  Patchwork_18767: af56b064d8e01c158fb67bbc7f7475f4cb6a5ba7 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>af56b064d8e0 drm/modes: Switch to 64bit maths to avoid integer overflow</p>
-
-</body>
-</html>
-
---===============3110484764208133595==--
-
---===============2035544045==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
+ drivers/gpu/drm/i915/Kconfig.debug                 |   1 +
+ drivers/gpu/drm/i915/display/intel_display.c       |   8 +
+ .../gpu/drm/i915/display/intel_dp_aux_backlight.c  |  31 ++--
+ drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c     |  10 +-
+ drivers/gpu/drm/i915/gem/i915_gem_stolen.c         |   6 +-
+ drivers/gpu/drm/i915/gem/i915_gem_stolen.h         |   2 +
+ drivers/gpu/drm/i915/gt/gen6_ppgtt.c               |  18 +-
+ drivers/gpu/drm/i915/gt/gen8_ppgtt.c               |   3 +-
+ drivers/gpu/drm/i915/gt/intel_engine_types.h       |   2 +-
+ drivers/gpu/drm/i915/gt/intel_lrc.c                |  58 +++---
+ drivers/gpu/drm/i915/gt/intel_mocs.c               |  16 +-
+ drivers/gpu/drm/i915/gt/selftest_reset.c           | 196 +++++++++++++++++=
+++++
+ drivers/gpu/drm/i915/i915_drv.h                    |   6 +-
+ drivers/gpu/drm/i915/i915_gpu_error.c              |   3 +-
+ drivers/gpu/drm/i915/intel_uncore.c                |  27 ++-
+ 15 files changed, 334 insertions(+), 53 deletions(-)
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============2035544045==--
