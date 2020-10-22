@@ -1,42 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 78FD629580D
-	for <lists+intel-gfx@lfdr.de>; Thu, 22 Oct 2020 07:41:04 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id D647D295834
+	for <lists+intel-gfx@lfdr.de>; Thu, 22 Oct 2020 08:01:38 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A34346F3CF;
-	Thu, 22 Oct 2020 05:40:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ACE636E1A4;
+	Thu, 22 Oct 2020 06:01:36 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 663FE6E199
- for <intel-gfx@lists.freedesktop.org>; Thu, 22 Oct 2020 05:40:55 +0000 (UTC)
-IronPort-SDR: 5CyXfxWExWqtfm1VOwoiITpXAdilEOvuuwveLG/PCTXh0qoOPgIM3F56+3SqaClLLk8dBfKDGF
- 0aX6+6Ppb+nQ==
-X-IronPort-AV: E=McAfee;i="6000,8403,9781"; a="146768375"
-X-IronPort-AV: E=Sophos;i="5.77,403,1596524400"; d="scan'208";a="146768375"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Oct 2020 22:40:55 -0700
-IronPort-SDR: 5GmOYPo0vbPt235qiwem4LWVogHzublnfb447WGFG1ysmK1xc8453XE2Y55qTvm0/J5L1crm1n
- 1t+XgfRyXiNw==
-X-IronPort-AV: E=Sophos;i="5.77,403,1596524400"; d="scan'208";a="523012914"
-Received: from labuser-z97x-ud5h.jf.intel.com ([10.165.21.211])
- by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-SHA;
- 21 Oct 2020 22:40:54 -0700
-From: Manasi Navare <manasi.d.navare@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Wed, 21 Oct 2020 22:42:23 -0700
-Message-Id: <20201022054223.25071-13-manasi.d.navare@intel.com>
-X-Mailer: git-send-email 2.19.1
-In-Reply-To: <20201022054223.25071-1-manasi.d.navare@intel.com>
-References: <20201022054223.25071-1-manasi.d.navare@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 897D76E1A4;
+ Thu, 22 Oct 2020 06:01:35 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 807B5A66C9;
+ Thu, 22 Oct 2020 06:01:35 +0000 (UTC)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v11 12/12] drm/i915: Add debugfs dumping for
- bigjoiner, v3.
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Manasi Navare" <manasi.d.navare@intel.com>
+Date: Thu, 22 Oct 2020 06:01:35 -0000
+Message-ID: <160334649549.7804.7097129764733775580@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20201022054223.25071-1-manasi.d.navare@intel.com>
+In-Reply-To: <20201022054223.25071-1-manasi.d.navare@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_Big_joiner_enabling?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,90 +38,190 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+== Series Details ==
 
-Dump debugfs and planar links as well, this will make it easier to debug
-when things go wrong.
+Series: Big joiner enabling
+URL   : https://patchwork.freedesktop.org/series/82944/
+State : warning
 
-v4:
-* Rebase
-Changes since v1:
-- Report planar slaves as such, now that we have the plane_state switch.
-Changes since v2:
-- Rebase on top of the new plane format dumping
+== Summary ==
 
-Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Signed-off-by: Manasi Navare <manasi.d.navare@intel.com>
----
- .../drm/i915/display/intel_display_debugfs.c  | 29 ++++++++++++++++++-
- 1 file changed, 28 insertions(+), 1 deletion(-)
+$ dim checkpatch origin/drm-tip
+28921f36dd2c HAX to make DSC work on the icelake test system
+4e9e1fe595d7 drm/i915: Add hw.pipe_mode to allow bigjoiner pipe/transcoder split
+-:7: WARNING:TYPO_SPELLING: 'halfs' may be misspelled - perhaps 'halves'?
+#7: 
+With bigjoiner, there will be 2 pipes driving 2 halfs of 1 transcoder,
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-index cfb4c1474982..963069b266ab 100644
---- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-@@ -755,6 +755,17 @@ static void plane_rotation(char *buf, size_t bufsize, unsigned int rotation)
- 		 rotation);
- }
- 
-+static const char *plane_visibility(const struct intel_plane_state *plane_state)
-+{
-+	if (plane_state->uapi.visible)
-+		return "visible";
-+
-+	if (plane_state->planar_slave)
-+		return "planar-slave";
-+
-+	return "hidden";
-+}
-+
- static void intel_plane_uapi_info(struct seq_file *m, struct intel_plane *plane)
- {
- 	const struct intel_plane_state *plane_state =
-@@ -773,12 +784,22 @@ static void intel_plane_uapi_info(struct seq_file *m, struct intel_plane *plane)
- 	plane_rotation(rot_str, sizeof(rot_str),
- 		       plane_state->uapi.rotation);
- 
--	seq_printf(m, "\t\tuapi: fb=%d,%s,%dx%d, src=" DRM_RECT_FP_FMT ", dst=" DRM_RECT_FMT ", rotation=%s\n",
+-:134: CHECK:MULTIPLE_ASSIGNMENTS: multiple assignments should be avoided
+#134: FILE: drivers/gpu/drm/i915/display/intel_display.c:13460:
++	crtc_state->hw.pipe_mode = crtc_state->hw.adjusted_mode = crtc_state->uapi.adjusted_mode;
+
+total: 0 errors, 1 warnings, 1 checks, 366 lines checked
+c4a7f00c7188 drm/i915/dp: Some reshuffling in mode_valid as prep for bigjoiner modes
+f2fbe5b3f867 drm/i915/dp: Allow big joiner modes in intel_dp_mode_valid(), v3.
+4e7811e6d8ed drm/i915/dp: Prep for bigjoiner atomic check
+f5dd757111ef drm/i915: Try to make bigjoiner work in atomic check
+-:100: WARNING:LONG_LINE: line length of 101 exceeds 100 columns
+#100: FILE: drivers/gpu/drm/i915/display/intel_display.c:13472:
++								  crtc_state->bigjoiner_linked_crtc);
+
+-:146: CHECK:MULTIPLE_ASSIGNMENTS: multiple assignments should be avoided
+#146: FILE: drivers/gpu/drm/i915/display/intel_display.c:13546:
++	crtc_state->nv12_planes = crtc_state->c8_planes = crtc_state->update_planes = 0;
+
+-:231: CHECK:MULTIPLE_ASSIGNMENTS: multiple assignments should be avoided
+#231: FILE: drivers/gpu/drm/i915/display/intel_display.c:15153:
++	slave = new_crtc_state->bigjoiner_linked_crtc =
+
+-:265: CHECK:MULTIPLE_ASSIGNMENTS: multiple assignments should be avoided
+#265: FILE: drivers/gpu/drm/i915/display/intel_display.c:15187:
++		slave_crtc_state->bigjoiner = master_crtc_state->bigjoiner = false;
+
+-:266: CHECK:MULTIPLE_ASSIGNMENTS: multiple assignments should be avoided
+#266: FILE: drivers/gpu/drm/i915/display/intel_display.c:15188:
++		slave_crtc_state->bigjoiner_slave = master_crtc_state->bigjoiner_slave = false;
+
+-:267: WARNING:LONG_LINE: line length of 106 exceeds 100 columns
+#267: FILE: drivers/gpu/drm/i915/display/intel_display.c:15189:
++		slave_crtc_state->bigjoiner_linked_crtc = master_crtc_state->bigjoiner_linked_crtc = NULL;
+
+-:267: CHECK:MULTIPLE_ASSIGNMENTS: multiple assignments should be avoided
+#267: FILE: drivers/gpu/drm/i915/display/intel_display.c:15189:
++		slave_crtc_state->bigjoiner_linked_crtc = master_crtc_state->bigjoiner_linked_crtc = NULL;
+
+-:315: WARNING:BRACES: braces {} are not necessary for any arm of this statement
+#315: FILE: drivers/gpu/drm/i915/display/intel_display.c:15723:
++	if (new_crtc_state->bigjoiner) {
+[...]
++	} else if (INTEL_GEN(dev_priv) >= 9)
+[...]
+ 	else
+[...]
+
+total: 0 errors, 3 warnings, 5 checks, 337 lines checked
+c5aeb07221de drm/i915/dp: Modify VDSC helpers to configure DSC for Bigjoiner slave
+eeb383630551 drm/i915/dp: Master/Slave enable/disable sequence for bigjoiner
+-:120: ERROR:CODE_INDENT: code indent should use tabs where possible
+#120: FILE: drivers/gpu/drm/i915/display/intel_display.c:7263:
++                 * Enable sequence steps 1-7 on bigjoiner master$
+
+-:121: ERROR:CODE_INDENT: code indent should use tabs where possible
+#121: FILE: drivers/gpu/drm/i915/display/intel_display.c:7264:
++                 */$
+
+-:164: ERROR:SPACING: space required before the open brace '{'
+#164: FILE: drivers/gpu/drm/i915/display/intel_display.c:7302:
++	if (!new_crtc_state->bigjoiner_slave || !transcoder_is_dsi(cpu_transcoder)){
+
+-:165: WARNING:SUSPECT_CODE_INDENT: suspect code indent for conditional statements (16, 16)
+#165: FILE: drivers/gpu/drm/i915/display/intel_display.c:7303:
++		if (!transcoder_is_dsi(cpu_transcoder))
++		intel_set_transcoder_timings(new_crtc_state);
+
+total: 3 errors, 1 warnings, 0 checks, 242 lines checked
+c95ea184d537 drm/i915: HW state readout for Bigjoiner case
+-:79: WARNING:LONG_LINE_COMMENT: line length of 106 exceeds 100 columns
+#79: FILE: drivers/gpu/drm/i915/display/intel_ddi.c:4529:
++		/* Our own transcoder needs to be disabled when reading it in intel_ddi_read_func_ctl() */
+
+-:81: WARNING:LONG_LINE: line length of 104 exceeds 100 columns
+#81: FILE: drivers/gpu/drm/i915/display/intel_ddi.c:4531:
++		pipe_config->cpu_transcoder = (enum transcoder)pipe_config->bigjoiner_linked_crtc->pipe;
+
+-:106: WARNING:TABSTOP: Statements should start on a tabstop
+#106: FILE: drivers/gpu/drm/i915/display/intel_display.c:3634:
++	 struct intel_crtc_state *crtc_state =
+
+-:246: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
+#246: FILE: drivers/gpu/drm/i915/display/intel_display.c:11501:
++^I} else ^Iif (!transcoder_is_dsi(pipe_config->cpu_transcoder) ||$
+
+-:258: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
+#258: FILE: drivers/gpu/drm/i915/display/intel_display.c:11579:
++^I} else ^Iif (pipe_config->cpu_transcoder != TRANSCODER_EDP &&$
+
+-:655: CHECK:SPACING: spaces preferred around that '<<' (ctx:VxV)
+#655: FILE: drivers/gpu/drm/i915/display/intel_display_types.h:848:
++#define PIPE_CONFIG_QUIRK_BIGJOINER_SLAVE      (1<<1) /* bigjoiner slave, partial readout */
+                                                  ^
+
+total: 0 errors, 5 warnings, 1 checks, 594 lines checked
+ed5b71b1f929 drm/i915: Link planes in a bigjoiner configuration, v3.
+-:206: ERROR:CODE_INDENT: code indent should use tabs where possible
+#206: FILE: drivers/gpu/drm/i915/display/intel_display.c:12849:
++         * Setup and teardown the new bigjoiner plane mappings.$
+
+-:207: ERROR:CODE_INDENT: code indent should use tabs where possible
+#207: FILE: drivers/gpu/drm/i915/display/intel_display.c:12850:
++         */$
+
+-:292: ERROR:CODE_INDENT: code indent should use tabs where possible
+#292: FILE: drivers/gpu/drm/i915/display/intel_display.c:12931:
++         *$
+
+-:308: WARNING:LONG_LINE: line length of 105 exceeds 100 columns
+#308: FILE: drivers/gpu/drm/i915/display/intel_display.c:12945:
++		for_each_oldnew_intel_plane_in_state(state, plane, old_plane_state, new_plane_state, i) {
+
+-:327: ERROR:CODE_INDENT: code indent should use tabs where possible
+#327: FILE: drivers/gpu/drm/i915/display/intel_display.c:12961:
++         * Make sure bigjoiner slave crtc's are also pulled in. This is not done automatically$
+
+-:328: ERROR:CODE_INDENT: code indent should use tabs where possible
+#328: FILE: drivers/gpu/drm/i915/display/intel_display.c:12962:
++         * when adding slave planes, because plane_state->crtc is null.$
+
+-:329: ERROR:CODE_INDENT: code indent should use tabs where possible
+#329: FILE: drivers/gpu/drm/i915/display/intel_display.c:12963:
++         */$
+
+-:438: WARNING:SUSPECT_CODE_INDENT: suspect code indent for conditional statements (8, 8)
+#438: FILE: drivers/gpu/drm/i915/display/intel_display.h:473:
++	for_each_intel_plane_mask(((crtc_state)->uapi.state->dev), (iter), \
+[...]
++	for_each_if ((((plane_state) = \
+
+-:444: WARNING:SPACING: space prohibited between function name and open parenthesis '('
+#444: FILE: drivers/gpu/drm/i915/display/intel_display.h:479:
++	for_each_if ((((plane_state) = \
+
+-:445: WARNING:LONG_LINE: line length of 124 exceeds 100 columns
+#445: FILE: drivers/gpu/drm/i915/display/intel_display.h:480:
++		       to_intel_plane_state(__drm_atomic_get_current_plane_state((crtc_state)->uapi.state, &iter->base))), \
+
+-:446: WARNING:LONG_LINE: line length of 109 exceeds 100 columns
+#446: FILE: drivers/gpu/drm/i915/display/intel_display.h:481:
++		      ((plane) = (plane_state)->bigjoiner_slave ? (plane_state)->bigjoiner_plane : (iter)), \
+
+-:448: WARNING:LONG_LINE: line length of 125 exceeds 100 columns
+#448: FILE: drivers/gpu/drm/i915/display/intel_display.h:483:
++		       to_intel_plane_state(__drm_atomic_get_current_plane_state((crtc_state)->uapi.state, &plane->base)) : \
+
+total: 6 errors, 6 warnings, 0 checks, 482 lines checked
+bf37cfa8496f drm/i915: Add bigjoiner aware plane clipping checks
+040cc02e306c drm/i915: Add debugfs dumping for bigjoiner, v3.
+-:46: WARNING:LONG_LINE: line length of 123 exceeds 100 columns
+#46: FILE: drivers/gpu/drm/i915/display/intel_display_debugfs.c:787:
 +	seq_printf(m, "\t\tuapi: fb=%d,%s,%dx%d, visible=%s, src=" DRM_RECT_FP_FMT ", dst=" DRM_RECT_FMT ", rotation=%s\n",
- 		   fb ? fb->base.id : 0, fb ? format_name.str : "n/a",
- 		   fb ? fb->width : 0, fb ? fb->height : 0,
-+		   plane_visibility(plane_state),
- 		   DRM_RECT_FP_ARG(&src),
- 		   DRM_RECT_ARG(&dst),
- 		   rot_str);
-+
-+	if (plane_state->planar_linked_plane)
-+		seq_printf(m, "\t\tplanar: Linked to [PLANE:%d:%s] as a %s\n",
+
+-:56: WARNING:LONG_LINE: line length of 119 exceeds 100 columns
+#56: FILE: drivers/gpu/drm/i915/display/intel_display_debugfs.c:797:
 +			   plane_state->planar_linked_plane->base.base.id, plane_state->planar_linked_plane->base.name,
-+			   plane_state->planar_slave ? "slave" : "master");
-+	if (plane_state->bigjoiner_plane)
-+		seq_printf(m, "\t\tbigjoiner: Linked to [PLANE:%d:%s] as a %s\n",
+
+-:60: WARNING:LONG_LINE: line length of 111 exceeds 100 columns
+#60: FILE: drivers/gpu/drm/i915/display/intel_display_debugfs.c:801:
 +			   plane_state->bigjoiner_plane->base.base.id, plane_state->bigjoiner_plane->base.name,
-+			   plane_state->bigjoiner_slave ? "slave" : "master");
- }
- 
- static void intel_plane_hw_info(struct seq_file *m, struct intel_plane *plane)
-@@ -874,6 +895,12 @@ static void intel_crtc_info(struct seq_file *m, struct intel_crtc *crtc)
- 		intel_scaler_info(m, crtc);
- 	}
- 
-+	if (crtc_state->bigjoiner)
-+		seq_printf(m, "\tLinked to [CRTC:%d:%s] as a %s\n",
-+			   crtc_state->bigjoiner_linked_crtc->base.base.id,
-+			   crtc_state->bigjoiner_linked_crtc->base.name,
-+			   crtc_state->bigjoiner_slave ? "slave" : "master");
-+
- 	for_each_intel_encoder_mask(&dev_priv->drm, encoder,
- 				    crtc_state->uapi.encoder_mask)
- 		intel_encoder_info(m, crtc, encoder);
--- 
-2.19.1
+
+total: 0 errors, 3 warnings, 0 checks, 52 lines checked
+
 
 _______________________________________________
 Intel-gfx mailing list
