@@ -1,31 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 51F7A29584F
-	for <lists+intel-gfx@lfdr.de>; Thu, 22 Oct 2020 08:26:37 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id D46B029587E
+	for <lists+intel-gfx@lfdr.de>; Thu, 22 Oct 2020 08:41:51 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ECBF76F3AD;
-	Thu, 22 Oct 2020 06:26:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C050B6E19A;
+	Thu, 22 Oct 2020 06:41:48 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 99DB46E19B;
- Thu, 22 Oct 2020 06:26:33 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 956DEA47EA;
- Thu, 22 Oct 2020 06:26:33 +0000 (UTC)
+Received: from fireflyinternet.com (unknown [77.68.26.236])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6078F6E19A
+ for <intel-gfx@lists.freedesktop.org>; Thu, 22 Oct 2020 06:41:47 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from build.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 22770774-1500050 
+ for multiple; Thu, 22 Oct 2020 07:41:29 +0100
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Thu, 22 Oct 2020 07:41:27 +0100
+Message-Id: <20201022064127.10159-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.20.1
+In-Reply-To: <20201021220411.5777-1-chris@chris-wilson.co.uk>
+References: <20201021220411.5777-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Manasi Navare" <manasi.d.navare@intel.com>
-Date: Thu, 22 Oct 2020 06:26:33 -0000
-Message-ID: <160334799360.7804.15269569127786930910@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20201022054223.25071-1-manasi.d.navare@intel.com>
-In-Reply-To: <20201022054223.25071-1-manasi.d.navare@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgQmln?=
- =?utf-8?q?_joiner_enabling?=
+Subject: [Intel-gfx] [PATCH] drm/i915/gt: Use the local HWSP offset during
+ submission
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,249 +39,178 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============1500454446=="
+Cc: stable@vger.kernel.org, Chris Wilson <chris@chris-wilson.co.uk>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============1500454446==
-Content-Type: multipart/alternative;
- boundary="===============9014501719881418597=="
+We wrap the timeline on construction of the next request, but there may
+still be requests in flight that have not yet finalized the breadcrumb.
+(The breadcrumb is delayed as we need engine-local offsets, and for the
+virtual engine that is not known until execution.) As such, by the time
+we write to the timeline's HWSP offset it may have changed, and we
+should use the value we preserved in the request instead.
 
---===============9014501719881418597==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Though the window is small and infrequent (at full flow we can expect a
+timeline's seqno to wrap once every 30 minutes), the impact of writing
+the old seqno into the new HWSP is severe: the old requests are never
+completed, and the new requests are completed before they are even
+submitted.
 
-== Series Details ==
+Fixes: ebece7539242 ("drm/i915: Keep timeline HWSP allocated until idle across the system")
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+Cc: <stable@vger.kernel.org> # v5.2+
+---
+ drivers/gpu/drm/i915/gt/intel_lrc.c           | 27 +++++++++++++------
+ drivers/gpu/drm/i915/gt/intel_timeline.c      | 18 +++++++------
+ .../gpu/drm/i915/gt/intel_timeline_types.h    |  2 ++
+ 3 files changed, 31 insertions(+), 16 deletions(-)
 
-Series: Big joiner enabling
-URL   : https://patchwork.freedesktop.org/series/82944/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_9180 -> Patchwork_18761
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18761/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_18761 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@kms_chamelium@hdmi-edid-read:
-    - fi-kbl-7500u:       [PASS][1] -> [DMESG-FAIL][2] ([i915#165])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9180/fi-kbl-7500u/igt@kms_chamelium@hdmi-edid-read.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18761/fi-kbl-7500u/igt@kms_chamelium@hdmi-edid-read.html
-
-  * igt@kms_cursor_legacy@basic-flip-after-cursor-atomic:
-    - fi-icl-u2:          [PASS][3] -> [DMESG-WARN][4] ([i915#1982])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9180/fi-icl-u2/igt@kms_cursor_legacy@basic-flip-after-cursor-atomic.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18761/fi-icl-u2/igt@kms_cursor_legacy@basic-flip-after-cursor-atomic.html
-
-  
-#### Possible fixes ####
-
-  * igt@kms_chamelium@hdmi-crc-fast:
-    - fi-kbl-7500u:       [DMESG-WARN][5] ([i915#2203]) -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9180/fi-kbl-7500u/igt@kms_chamelium@hdmi-crc-fast.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18761/fi-kbl-7500u/igt@kms_chamelium@hdmi-crc-fast.html
-    - fi-icl-u2:          [FAIL][7] ([i915#1161]) -> [PASS][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9180/fi-icl-u2/igt@kms_chamelium@hdmi-crc-fast.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18761/fi-icl-u2/igt@kms_chamelium@hdmi-crc-fast.html
-
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:
-    - {fi-kbl-7560u}:     [DMESG-WARN][9] ([i915#1982]) -> [PASS][10]
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9180/fi-kbl-7560u/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18761/fi-kbl-7560u/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-
-  
-#### Warnings ####
-
-  * igt@i915_pm_rpm@module-reload:
-    - fi-kbl-guc:         [DMESG-WARN][11] ([i915#2203]) -> [DMESG-FAIL][12] ([i915#2203])
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9180/fi-kbl-guc/igt@i915_pm_rpm@module-reload.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18761/fi-kbl-guc/igt@i915_pm_rpm@module-reload.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [i915#1161]: https://gitlab.freedesktop.org/drm/intel/issues/1161
-  [i915#165]: https://gitlab.freedesktop.org/drm/intel/issues/165
-  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
-  [i915#2203]: https://gitlab.freedesktop.org/drm/intel/issues/2203
-
-
-Participating hosts (45 -> 36)
-------------------------------
-
-  Missing    (9): fi-ilk-m540 fi-bxt-dsi fi-hsw-4200u fi-glk-dsi fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-byt-clapper fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_9180 -> Patchwork_18761
-
-  CI-20190529: 20190529
-  CI_DRM_9180: b174cec7fd714a954d4a65088ca53e32ae9cd45e @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5822: b4bcf05cb9839037128905deda7146434155cc41 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_18761: 040cc02e306c96264ba552adc8c96a7fcd09d386 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-040cc02e306c drm/i915: Add debugfs dumping for bigjoiner, v3.
-bf37cfa8496f drm/i915: Add bigjoiner aware plane clipping checks
-ed5b71b1f929 drm/i915: Link planes in a bigjoiner configuration, v3.
-c95ea184d537 drm/i915: HW state readout for Bigjoiner case
-eeb383630551 drm/i915/dp: Master/Slave enable/disable sequence for bigjoiner
-c5aeb07221de drm/i915/dp: Modify VDSC helpers to configure DSC for Bigjoiner slave
-f5dd757111ef drm/i915: Try to make bigjoiner work in atomic check
-4e7811e6d8ed drm/i915/dp: Prep for bigjoiner atomic check
-f2fbe5b3f867 drm/i915/dp: Allow big joiner modes in intel_dp_mode_valid(), v3.
-c4a7f00c7188 drm/i915/dp: Some reshuffling in mode_valid as prep for bigjoiner modes
-4e9e1fe595d7 drm/i915: Add hw.pipe_mode to allow bigjoiner pipe/transcoder split
-28921f36dd2c HAX to make DSC work on the icelake test system
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18761/index.html
-
---===============9014501719881418597==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Big joiner enabling</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/82944/">https://patchwork.freedesktop.org/series/82944/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18761/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18761/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_9180 -&gt; Patchwork_18761</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18761/index.html</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_18761 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@kms_chamelium@hdmi-edid-read:</p>
-<ul>
-<li>fi-kbl-7500u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9180/fi-kbl-7500u/igt@kms_chamelium@hdmi-edid-read.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18761/fi-kbl-7500u/igt@kms_chamelium@hdmi-edid-read.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/165">i915#165</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@basic-flip-after-cursor-atomic:</p>
-<ul>
-<li>fi-icl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9180/fi-icl-u2/igt@kms_cursor_legacy@basic-flip-after-cursor-atomic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18761/fi-icl-u2/igt@kms_cursor_legacy@basic-flip-after-cursor-atomic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@kms_chamelium@hdmi-crc-fast:</p>
-<ul>
-<li>
-<p>fi-kbl-7500u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9180/fi-kbl-7500u/igt@kms_chamelium@hdmi-crc-fast.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2203">i915#2203</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18761/fi-kbl-7500u/igt@kms_chamelium@hdmi-crc-fast.html">PASS</a></p>
-</li>
-<li>
-<p>fi-icl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9180/fi-icl-u2/igt@kms_chamelium@hdmi-crc-fast.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1161">i915#1161</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18761/fi-icl-u2/igt@kms_chamelium@hdmi-crc-fast.html">PASS</a></p>
-</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:</p>
-<ul>
-<li>{fi-kbl-7560u}:     <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9180/fi-kbl-7560u/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18761/fi-kbl-7560u/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h4>Warnings</h4>
-<ul>
-<li>igt@i915_pm_rpm@module-reload:<ul>
-<li>fi-kbl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9180/fi-kbl-guc/igt@i915_pm_rpm@module-reload.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2203">i915#2203</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18761/fi-kbl-guc/igt@i915_pm_rpm@module-reload.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2203">i915#2203</a>)</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Participating hosts (45 -&gt; 36)</h2>
-<p>Missing    (9): fi-ilk-m540 fi-bxt-dsi fi-hsw-4200u fi-glk-dsi fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-byt-clapper fi-bdw-samus </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_9180 -&gt; Patchwork_18761</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_9180: b174cec7fd714a954d4a65088ca53e32ae9cd45e @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_5822: b4bcf05cb9839037128905deda7146434155cc41 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
-  Patchwork_18761: 040cc02e306c96264ba552adc8c96a7fcd09d386 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>040cc02e306c drm/i915: Add debugfs dumping for bigjoiner, v3.<br />
-bf37cfa8496f drm/i915: Add bigjoiner aware plane clipping checks<br />
-ed5b71b1f929 drm/i915: Link planes in a bigjoiner configuration, v3.<br />
-c95ea184d537 drm/i915: HW state readout for Bigjoiner case<br />
-eeb383630551 drm/i915/dp: Master/Slave enable/disable sequence for bigjoiner<br />
-c5aeb07221de drm/i915/dp: Modify VDSC helpers to configure DSC for Bigjoiner slave<br />
-f5dd757111ef drm/i915: Try to make bigjoiner work in atomic check<br />
-4e7811e6d8ed drm/i915/dp: Prep for bigjoiner atomic check<br />
-f2fbe5b3f867 drm/i915/dp: Allow big joiner modes in intel_dp_mode_valid(), v3.<br />
-c4a7f00c7188 drm/i915/dp: Some reshuffling in mode_valid as prep for bigjoiner modes<br />
-4e9e1fe595d7 drm/i915: Add hw.pipe_mode to allow bigjoiner pipe/transcoder split<br />
-28921f36dd2c HAX to make DSC work on the icelake test system</p>
-
-</body>
-</html>
-
---===============9014501719881418597==--
-
---===============1500454446==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
+index c22d47cc6701..d0be98b67138 100644
+--- a/drivers/gpu/drm/i915/gt/intel_lrc.c
++++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
+@@ -3597,6 +3597,19 @@ static const struct intel_context_ops execlists_context_ops = {
+ 	.destroy = execlists_context_destroy,
+ };
+ 
++static u32 hwsp_offset(const struct i915_request *rq)
++{
++	const struct intel_timeline_cacheline *cl;
++
++	/* Before the request is executed, the timeline/cachline is fixed */
++
++	cl = rcu_dereference_protected(rq->hwsp_cacheline, 1);
++	if (cl)
++		return cl->ggtt_offset;
++
++	return rcu_dereference_protected(rq->timeline, 1)->hwsp_offset;
++}
++
+ static int gen8_emit_init_breadcrumb(struct i915_request *rq)
+ {
+ 	u32 *cs;
+@@ -3619,7 +3632,7 @@ static int gen8_emit_init_breadcrumb(struct i915_request *rq)
+ 	*cs++ = MI_NOOP;
+ 
+ 	*cs++ = MI_STORE_DWORD_IMM_GEN4 | MI_USE_GGTT;
+-	*cs++ = i915_request_timeline(rq)->hwsp_offset;
++	*cs++ = hwsp_offset(rq);
+ 	*cs++ = 0;
+ 	*cs++ = rq->fence.seqno - 1;
+ 
+@@ -4939,11 +4952,9 @@ gen8_emit_fini_breadcrumb_tail(struct i915_request *request, u32 *cs)
+ 	return gen8_emit_wa_tail(request, cs);
+ }
+ 
+-static u32 *emit_xcs_breadcrumb(struct i915_request *request, u32 *cs)
++static u32 *emit_xcs_breadcrumb(struct i915_request *rq, u32 *cs)
+ {
+-	u32 addr = i915_request_active_timeline(request)->hwsp_offset;
+-
+-	return gen8_emit_ggtt_write(cs, request->fence.seqno, addr, 0);
++	return gen8_emit_ggtt_write(cs, rq->fence.seqno, hwsp_offset(rq), 0);
+ }
+ 
+ static u32 *gen8_emit_fini_breadcrumb(struct i915_request *rq, u32 *cs)
+@@ -4962,7 +4973,7 @@ static u32 *gen8_emit_fini_breadcrumb_rcs(struct i915_request *request, u32 *cs)
+ 	/* XXX flush+write+CS_STALL all in one upsets gem_concurrent_blt:kbl */
+ 	cs = gen8_emit_ggtt_write_rcs(cs,
+ 				      request->fence.seqno,
+-				      i915_request_active_timeline(request)->hwsp_offset,
++				      hwsp_offset(request),
+ 				      PIPE_CONTROL_FLUSH_ENABLE |
+ 				      PIPE_CONTROL_CS_STALL);
+ 
+@@ -4974,7 +4985,7 @@ gen11_emit_fini_breadcrumb_rcs(struct i915_request *request, u32 *cs)
+ {
+ 	cs = gen8_emit_ggtt_write_rcs(cs,
+ 				      request->fence.seqno,
+-				      i915_request_active_timeline(request)->hwsp_offset,
++				      hwsp_offset(request),
+ 				      PIPE_CONTROL_CS_STALL |
+ 				      PIPE_CONTROL_TILE_CACHE_FLUSH |
+ 				      PIPE_CONTROL_RENDER_TARGET_CACHE_FLUSH |
+@@ -5044,7 +5055,7 @@ gen12_emit_fini_breadcrumb_rcs(struct i915_request *request, u32 *cs)
+ {
+ 	cs = gen12_emit_ggtt_write_rcs(cs,
+ 				       request->fence.seqno,
+-				       i915_request_active_timeline(request)->hwsp_offset,
++				       hwsp_offset(request),
+ 				       PIPE_CONTROL0_HDC_PIPELINE_FLUSH,
+ 				       PIPE_CONTROL_CS_STALL |
+ 				       PIPE_CONTROL_TILE_CACHE_FLUSH |
+diff --git a/drivers/gpu/drm/i915/gt/intel_timeline.c b/drivers/gpu/drm/i915/gt/intel_timeline.c
+index a2f74cefe4c3..7ea94d201fe6 100644
+--- a/drivers/gpu/drm/i915/gt/intel_timeline.c
++++ b/drivers/gpu/drm/i915/gt/intel_timeline.c
+@@ -188,10 +188,14 @@ cacheline_alloc(struct intel_timeline_hwsp *hwsp, unsigned int cacheline)
+ 	return cl;
+ }
+ 
+-static void cacheline_acquire(struct intel_timeline_cacheline *cl)
++static void cacheline_acquire(struct intel_timeline_cacheline *cl,
++			      u32 ggtt_offset)
+ {
+-	if (cl)
+-		i915_active_acquire(&cl->active);
++	if (!cl)
++		return;
++
++	cl->ggtt_offset = ggtt_offset;
++	i915_active_acquire(&cl->active);
+ }
+ 
+ static void cacheline_release(struct intel_timeline_cacheline *cl)
+@@ -340,7 +344,7 @@ int intel_timeline_pin(struct intel_timeline *tl, struct i915_gem_ww_ctx *ww)
+ 	GT_TRACE(tl->gt, "timeline:%llx using HWSP offset:%x\n",
+ 		 tl->fence_context, tl->hwsp_offset);
+ 
+-	cacheline_acquire(tl->hwsp_cacheline);
++	cacheline_acquire(tl->hwsp_cacheline, tl->hwsp_offset);
+ 	if (atomic_fetch_inc(&tl->pin_count)) {
+ 		cacheline_release(tl->hwsp_cacheline);
+ 		__i915_vma_unpin(tl->hwsp_ggtt);
+@@ -515,7 +519,7 @@ __intel_timeline_get_seqno(struct intel_timeline *tl,
+ 	GT_TRACE(tl->gt, "timeline:%llx using HWSP offset:%x\n",
+ 		 tl->fence_context, tl->hwsp_offset);
+ 
+-	cacheline_acquire(cl);
++	cacheline_acquire(cl, tl->hwsp_offset);
+ 	tl->hwsp_cacheline = cl;
+ 
+ 	*seqno = timeline_advance(tl);
+@@ -573,9 +577,7 @@ int intel_timeline_read_hwsp(struct i915_request *from,
+ 	if (err)
+ 		goto out;
+ 
+-	*hwsp = i915_ggtt_offset(cl->hwsp->vma) +
+-		ptr_unmask_bits(cl->vaddr, CACHELINE_BITS) * CACHELINE_BYTES;
+-
++	*hwsp = cl->ggtt_offset;
+ out:
+ 	i915_active_release(&cl->active);
+ 	return err;
+diff --git a/drivers/gpu/drm/i915/gt/intel_timeline_types.h b/drivers/gpu/drm/i915/gt/intel_timeline_types.h
+index 02181c5020db..4474f487f589 100644
+--- a/drivers/gpu/drm/i915/gt/intel_timeline_types.h
++++ b/drivers/gpu/drm/i915/gt/intel_timeline_types.h
+@@ -94,6 +94,8 @@ struct intel_timeline_cacheline {
+ 	struct intel_timeline_hwsp *hwsp;
+ 	void *vaddr;
+ 
++	u32 ggtt_offset;
++
+ 	struct rcu_head rcu;
+ };
+ 
+-- 
+2.20.1
 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============1500454446==--
