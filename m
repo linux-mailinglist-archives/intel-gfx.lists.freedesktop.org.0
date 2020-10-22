@@ -1,45 +1,46 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id BC1D129679D
-	for <lists+intel-gfx@lfdr.de>; Fri, 23 Oct 2020 01:22:16 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7FC802967A3
+	for <lists+intel-gfx@lfdr.de>; Fri, 23 Oct 2020 01:26:20 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 16A2D6E431;
-	Thu, 22 Oct 2020 23:22:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CD2256E433;
+	Thu, 22 Oct 2020 23:26:18 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 02A096E431
- for <intel-gfx@lists.freedesktop.org>; Thu, 22 Oct 2020 23:22:13 +0000 (UTC)
-IronPort-SDR: G8W3wHzPge2ZS8hpeqkPQw6JqaBCEYzprHUtbVq41ohaJrKbuwq9Z3QSGQOlscZ5/7LzRWfdLu
- Q2OQID+/HP6g==
-X-IronPort-AV: E=McAfee;i="6000,8403,9782"; a="167729406"
-X-IronPort-AV: E=Sophos;i="5.77,404,1596524400"; d="scan'208";a="167729406"
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EEEDA6E433
+ for <intel-gfx@lists.freedesktop.org>; Thu, 22 Oct 2020 23:26:16 +0000 (UTC)
+IronPort-SDR: qGUQ8CpWe+vFqMmNbD01Opout+4ck95IJav+tqnflSwKIMUkEvmcEVe9geGNXOYQfECr1fz/Bo
+ YtA+K59rEMdQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9782"; a="165015599"
+X-IronPort-AV: E=Sophos;i="5.77,404,1596524400"; d="scan'208";a="165015599"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Oct 2020 16:22:13 -0700
-IronPort-SDR: YFUHWxGa9DMyKveZvfYfFcxatEV2CvcEYPSFF3bCpMEseSLXoctzwfLIiExDa+tuwwtktXbfOD
- B0X3GUwPJFhQ==
-X-IronPort-AV: E=Sophos;i="5.77,404,1596524400"; d="scan'208";a="349030069"
-Received: from mtdupree-mobl2.amr.corp.intel.com (HELO ldmartin-desk1)
- ([10.212.152.253])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Oct 2020 16:22:13 -0700
-Date: Thu, 22 Oct 2020 16:22:12 -0700
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>
-Message-ID: <20201022232212.f44g54ywu4bznttz@ldmartin-desk1>
-References: <20201006143349.5561-1-ville.syrjala@linux.intel.com>
- <20201006143349.5561-2-ville.syrjala@linux.intel.com>
- <20201007221156.rqchuc2k2cmpaumb@ldmartin-desk1>
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Oct 2020 16:26:16 -0700
+IronPort-SDR: jieoxgc7mi6gzUsOSGigbvSDfb6XwR/XzoFE8hQ0bsgcQm122tbc8bjLj3PxGy2bDi2iejnHe7
+ jO3POutP2wXg==
+X-IronPort-AV: E=Sophos;i="5.77,404,1596524400"; d="scan'208";a="359420272"
+Received: from zoujingy-mobl1.amr.corp.intel.com (HELO [10.251.9.25])
+ ([10.251.9.25])
+ by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Oct 2020 16:26:15 -0700
+To: Lucas De Marchi <lucas.demarchi@intel.com>
+References: <20201021133213.328994-1-aditya.swarup@intel.com>
+ <20201021133213.328994-5-aditya.swarup@intel.com>
+ <20201021172819.mxujeqari4j7usgc@ldmartin-desk1>
+From: Aditya Swarup <aditya.swarup@intel.com>
+Message-ID: <c2ab87d4-67ee-7d83-823a-3e1f5b14c868@intel.com>
+Date: Thu, 22 Oct 2020 16:26:15 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20201007221156.rqchuc2k2cmpaumb@ldmartin-desk1>
-Subject: Re: [Intel-gfx] [PATCH 01/20] drm/i915: Sort the mess around ICP TC
- hotplugs regs
+In-Reply-To: <20201021172819.mxujeqari4j7usgc@ldmartin-desk1>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH 04/18] drm/i915/adl_s: Add Interrupt Support
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,327 +53,106 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"; Format="flowed"
+Cc: Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Oct 07, 2020 at 03:11:56PM -0700, Lucas De Marchi wrote:
->On Tue, Oct 06, 2020 at 05:33:30PM +0300, Ville Syrj=E4l=E4 wrote:
->>From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
->>
->>Move the DSC stuff out from the middle of the ICP HPD register
->>definitions. The location seems to have been selected by a
->>dice roll.
->>
->>SHPD_FILTER_CNT addition also went astray due to the DSC
->>mess, so we also fix that vs. ICP_TC_HPD_{SHORT,LONG}_DETECT().
->>
->>Signed-off-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
->>---
->>drivers/gpu/drm/i915/i915_reg.h | 215 ++++++++++++++++----------------
->>1 file changed, 107 insertions(+), 108 deletions(-)
->>
->>diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_=
-reg.h
->>index 6ad9ee4243a0..efe51a4ef719 100644
->>--- a/drivers/gpu/drm/i915/i915_reg.h
->>+++ b/drivers/gpu/drm/i915/i915_reg.h
->>@@ -4618,6 +4618,110 @@ enum {
->>#define  PSR2_MAN_TRK_CTL_SF_CONTINUOS_FULL_FRAME	REG_BIT(2)
->>#define  PSR2_MAN_TRK_CTL_SF_PARTIAL_FRAME_UPDATE	REG_BIT(1)
->>
->>+/* Icelake DSC Rate Control Range Parameter Registers */
->>+#define DSCA_RC_RANGE_PARAMETERS_0		_MMIO(0x6B240)
->>+#define DSCA_RC_RANGE_PARAMETERS_0_UDW		_MMIO(0x6B240 + 4)
->>+#define DSCC_RC_RANGE_PARAMETERS_0		_MMIO(0x6BA40)
->>+#define DSCC_RC_RANGE_PARAMETERS_0_UDW		_MMIO(0x6BA40 + 4)
->>+#define _ICL_DSC0_RC_RANGE_PARAMETERS_0_PB	(0x78208)
->>+#define _ICL_DSC0_RC_RANGE_PARAMETERS_0_UDW_PB	(0x78208 + 4)
->>+#define _ICL_DSC1_RC_RANGE_PARAMETERS_0_PB	(0x78308)
->>+#define _ICL_DSC1_RC_RANGE_PARAMETERS_0_UDW_PB	(0x78308 + 4)
->>+#define _ICL_DSC0_RC_RANGE_PARAMETERS_0_PC	(0x78408)
->>+#define _ICL_DSC0_RC_RANGE_PARAMETERS_0_UDW_PC	(0x78408 + 4)
->>+#define _ICL_DSC1_RC_RANGE_PARAMETERS_0_PC	(0x78508)
->>+#define _ICL_DSC1_RC_RANGE_PARAMETERS_0_UDW_PC	(0x78508 + 4)
->>+#define ICL_DSC0_RC_RANGE_PARAMETERS_0(pipe)		_MMIO_PIPE((pipe) - PIPE_B=
-, \
->>+							_ICL_DSC0_RC_RANGE_PARAMETERS_0_PB, \
->>+							_ICL_DSC0_RC_RANGE_PARAMETERS_0_PC)
->>+#define ICL_DSC0_RC_RANGE_PARAMETERS_0_UDW(pipe)	_MMIO_PIPE((pipe) - PIP=
-E_B, \
->>+							_ICL_DSC0_RC_RANGE_PARAMETERS_0_UDW_PB, \
->>+							_ICL_DSC0_RC_RANGE_PARAMETERS_0_UDW_PC)
->>+#define ICL_DSC1_RC_RANGE_PARAMETERS_0(pipe)		_MMIO_PIPE((pipe) - PIPE_B=
-, \
->>+							_ICL_DSC1_RC_RANGE_PARAMETERS_0_PB, \
->>+							_ICL_DSC1_RC_RANGE_PARAMETERS_0_PC)
->>+#define ICL_DSC1_RC_RANGE_PARAMETERS_0_UDW(pipe)	_MMIO_PIPE((pipe) - PIP=
-E_B, \
->>+							_ICL_DSC1_RC_RANGE_PARAMETERS_0_UDW_PB, \
->>+							_ICL_DSC1_RC_RANGE_PARAMETERS_0_UDW_PC)
->>+#define RC_BPG_OFFSET_SHIFT			10
->>+#define RC_MAX_QP_SHIFT				5
->>+#define RC_MIN_QP_SHIFT				0
->>+
->>+#define DSCA_RC_RANGE_PARAMETERS_1		_MMIO(0x6B248)
->>+#define DSCA_RC_RANGE_PARAMETERS_1_UDW		_MMIO(0x6B248 + 4)
->>+#define DSCC_RC_RANGE_PARAMETERS_1		_MMIO(0x6BA48)
->>+#define DSCC_RC_RANGE_PARAMETERS_1_UDW		_MMIO(0x6BA48 + 4)
->>+#define _ICL_DSC0_RC_RANGE_PARAMETERS_1_PB	(0x78210)
->>+#define _ICL_DSC0_RC_RANGE_PARAMETERS_1_UDW_PB	(0x78210 + 4)
->>+#define _ICL_DSC1_RC_RANGE_PARAMETERS_1_PB	(0x78310)
->>+#define _ICL_DSC1_RC_RANGE_PARAMETERS_1_UDW_PB	(0x78310 + 4)
->>+#define _ICL_DSC0_RC_RANGE_PARAMETERS_1_PC	(0x78410)
->>+#define _ICL_DSC0_RC_RANGE_PARAMETERS_1_UDW_PC	(0x78410 + 4)
->>+#define _ICL_DSC1_RC_RANGE_PARAMETERS_1_PC	(0x78510)
->>+#define _ICL_DSC1_RC_RANGE_PARAMETERS_1_UDW_PC	(0x78510 + 4)
->>+#define ICL_DSC0_RC_RANGE_PARAMETERS_1(pipe)		_MMIO_PIPE((pipe) - PIPE_B=
-, \
->>+							_ICL_DSC0_RC_RANGE_PARAMETERS_1_PB, \
->>+							_ICL_DSC0_RC_RANGE_PARAMETERS_1_PC)
->>+#define ICL_DSC0_RC_RANGE_PARAMETERS_1_UDW(pipe)	_MMIO_PIPE((pipe) - PIP=
-E_B, \
->>+							_ICL_DSC0_RC_RANGE_PARAMETERS_1_UDW_PB, \
->>+							_ICL_DSC0_RC_RANGE_PARAMETERS_1_UDW_PC)
->>+#define ICL_DSC1_RC_RANGE_PARAMETERS_1(pipe)		_MMIO_PIPE((pipe) - PIPE_B=
-, \
->>+							_ICL_DSC1_RC_RANGE_PARAMETERS_1_PB, \
->>+							_ICL_DSC1_RC_RANGE_PARAMETERS_1_PC)
->>+#define ICL_DSC1_RC_RANGE_PARAMETERS_1_UDW(pipe)	_MMIO_PIPE((pipe) - PIP=
-E_B, \
->>+							_ICL_DSC1_RC_RANGE_PARAMETERS_1_UDW_PB, \
->>+							_ICL_DSC1_RC_RANGE_PARAMETERS_1_UDW_PC)
->>+
->>+#define DSCA_RC_RANGE_PARAMETERS_2		_MMIO(0x6B250)
->>+#define DSCA_RC_RANGE_PARAMETERS_2_UDW		_MMIO(0x6B250 + 4)
->>+#define DSCC_RC_RANGE_PARAMETERS_2		_MMIO(0x6BA50)
->>+#define DSCC_RC_RANGE_PARAMETERS_2_UDW		_MMIO(0x6BA50 + 4)
->>+#define _ICL_DSC0_RC_RANGE_PARAMETERS_2_PB	(0x78218)
->>+#define _ICL_DSC0_RC_RANGE_PARAMETERS_2_UDW_PB	(0x78218 + 4)
->>+#define _ICL_DSC1_RC_RANGE_PARAMETERS_2_PB	(0x78318)
->>+#define _ICL_DSC1_RC_RANGE_PARAMETERS_2_UDW_PB	(0x78318 + 4)
->>+#define _ICL_DSC0_RC_RANGE_PARAMETERS_2_PC	(0x78418)
->>+#define _ICL_DSC0_RC_RANGE_PARAMETERS_2_UDW_PC	(0x78418 + 4)
->>+#define _ICL_DSC1_RC_RANGE_PARAMETERS_2_PC	(0x78518)
->>+#define _ICL_DSC1_RC_RANGE_PARAMETERS_2_UDW_PC	(0x78518 + 4)
->>+#define ICL_DSC0_RC_RANGE_PARAMETERS_2(pipe)		_MMIO_PIPE((pipe) - PIPE_B=
-, \
->>+							_ICL_DSC0_RC_RANGE_PARAMETERS_2_PB, \
->>+							_ICL_DSC0_RC_RANGE_PARAMETERS_2_PC)
->>+#define ICL_DSC0_RC_RANGE_PARAMETERS_2_UDW(pipe)	_MMIO_PIPE((pipe) - PIP=
-E_B, \
->>+							_ICL_DSC0_RC_RANGE_PARAMETERS_2_UDW_PB, \
->>+							_ICL_DSC0_RC_RANGE_PARAMETERS_2_UDW_PC)
->>+#define ICL_DSC1_RC_RANGE_PARAMETERS_2(pipe)		_MMIO_PIPE((pipe) - PIPE_B=
-, \
->>+							_ICL_DSC1_RC_RANGE_PARAMETERS_2_PB, \
->>+							_ICL_DSC1_RC_RANGE_PARAMETERS_2_PC)
->>+#define ICL_DSC1_RC_RANGE_PARAMETERS_2_UDW(pipe)	_MMIO_PIPE((pipe) - PIP=
-E_B, \
->>+							_ICL_DSC1_RC_RANGE_PARAMETERS_2_UDW_PB, \
->>+							_ICL_DSC1_RC_RANGE_PARAMETERS_2_UDW_PC)
->>+
->>+#define DSCA_RC_RANGE_PARAMETERS_3		_MMIO(0x6B258)
->>+#define DSCA_RC_RANGE_PARAMETERS_3_UDW		_MMIO(0x6B258 + 4)
->>+#define DSCC_RC_RANGE_PARAMETERS_3		_MMIO(0x6BA58)
->>+#define DSCC_RC_RANGE_PARAMETERS_3_UDW		_MMIO(0x6BA58 + 4)
->>+#define _ICL_DSC0_RC_RANGE_PARAMETERS_3_PB	(0x78220)
->>+#define _ICL_DSC0_RC_RANGE_PARAMETERS_3_UDW_PB	(0x78220 + 4)
->>+#define _ICL_DSC1_RC_RANGE_PARAMETERS_3_PB	(0x78320)
->>+#define _ICL_DSC1_RC_RANGE_PARAMETERS_3_UDW_PB	(0x78320 + 4)
->>+#define _ICL_DSC0_RC_RANGE_PARAMETERS_3_PC	(0x78420)
->>+#define _ICL_DSC0_RC_RANGE_PARAMETERS_3_UDW_PC	(0x78420 + 4)
->>+#define _ICL_DSC1_RC_RANGE_PARAMETERS_3_PC	(0x78520)
->>+#define _ICL_DSC1_RC_RANGE_PARAMETERS_3_UDW_PC	(0x78520 + 4)
->>+#define ICL_DSC0_RC_RANGE_PARAMETERS_3(pipe)		_MMIO_PIPE((pipe) - PIPE_B=
-, \
->>+							_ICL_DSC0_RC_RANGE_PARAMETERS_3_PB, \
->>+							_ICL_DSC0_RC_RANGE_PARAMETERS_3_PC)
->>+#define ICL_DSC0_RC_RANGE_PARAMETERS_3_UDW(pipe)	_MMIO_PIPE((pipe) - PIP=
-E_B, \
->>+							_ICL_DSC0_RC_RANGE_PARAMETERS_3_UDW_PB, \
->>+							_ICL_DSC0_RC_RANGE_PARAMETERS_3_UDW_PC)
->>+#define ICL_DSC1_RC_RANGE_PARAMETERS_3(pipe)		_MMIO_PIPE((pipe) - PIPE_B=
-, \
->>+							_ICL_DSC1_RC_RANGE_PARAMETERS_3_PB, \
->>+							_ICL_DSC1_RC_RANGE_PARAMETERS_3_PC)
->>+#define ICL_DSC1_RC_RANGE_PARAMETERS_3_UDW(pipe)	_MMIO_PIPE((pipe) - PIP=
-E_B, \
->>+							_ICL_DSC1_RC_RANGE_PARAMETERS_3_UDW_PB, \
->>+							_ICL_DSC1_RC_RANGE_PARAMETERS_3_UDW_PC)
->>+
->>/* VGA port control */
->>#define ADPA			_MMIO(0x61100)
->>#define PCH_ADPA                _MMIO(0xe1100)
->>@@ -8305,117 +8409,12 @@ enum {
->>
->>#define SHOTPLUG_CTL_TC				_MMIO(0xc4034)
->>#define   ICP_TC_HPD_ENABLE(tc_port)		(8 << (tc_port) * 4)
->>-
->>-#define SHPD_FILTER_CNT				_MMIO(0xc4038)
->>-#define   SHPD_FILTER_CNT_500_ADJ		0x001D9
->>-
->>-/* Icelake DSC Rate Control Range Parameter Registers */
->>-#define DSCA_RC_RANGE_PARAMETERS_0		_MMIO(0x6B240)
->>-#define DSCA_RC_RANGE_PARAMETERS_0_UDW		_MMIO(0x6B240 + 4)
->>-#define DSCC_RC_RANGE_PARAMETERS_0		_MMIO(0x6BA40)
->>-#define DSCC_RC_RANGE_PARAMETERS_0_UDW		_MMIO(0x6BA40 + 4)
->>-#define _ICL_DSC0_RC_RANGE_PARAMETERS_0_PB	(0x78208)
->>-#define _ICL_DSC0_RC_RANGE_PARAMETERS_0_UDW_PB	(0x78208 + 4)
->>-#define _ICL_DSC1_RC_RANGE_PARAMETERS_0_PB	(0x78308)
->>-#define _ICL_DSC1_RC_RANGE_PARAMETERS_0_UDW_PB	(0x78308 + 4)
->>-#define _ICL_DSC0_RC_RANGE_PARAMETERS_0_PC	(0x78408)
->>-#define _ICL_DSC0_RC_RANGE_PARAMETERS_0_UDW_PC	(0x78408 + 4)
->>-#define _ICL_DSC1_RC_RANGE_PARAMETERS_0_PC	(0x78508)
->>-#define _ICL_DSC1_RC_RANGE_PARAMETERS_0_UDW_PC	(0x78508 + 4)
->>-#define ICL_DSC0_RC_RANGE_PARAMETERS_0(pipe)		_MMIO_PIPE((pipe) - PIPE_B=
-, \
->>-							_ICL_DSC0_RC_RANGE_PARAMETERS_0_PB, \
->>-							_ICL_DSC0_RC_RANGE_PARAMETERS_0_PC)
->>-#define ICL_DSC0_RC_RANGE_PARAMETERS_0_UDW(pipe)	_MMIO_PIPE((pipe) - PIP=
-E_B, \
->>-							_ICL_DSC0_RC_RANGE_PARAMETERS_0_UDW_PB, \
->>-							_ICL_DSC0_RC_RANGE_PARAMETERS_0_UDW_PC)
->>-#define ICL_DSC1_RC_RANGE_PARAMETERS_0(pipe)		_MMIO_PIPE((pipe) - PIPE_B=
-, \
->>-							_ICL_DSC1_RC_RANGE_PARAMETERS_0_PB, \
->>-							_ICL_DSC1_RC_RANGE_PARAMETERS_0_PC)
->>-#define ICL_DSC1_RC_RANGE_PARAMETERS_0_UDW(pipe)	_MMIO_PIPE((pipe) - PIP=
-E_B, \
->>-							_ICL_DSC1_RC_RANGE_PARAMETERS_0_UDW_PB, \
->>-							_ICL_DSC1_RC_RANGE_PARAMETERS_0_UDW_PC)
->>-#define RC_BPG_OFFSET_SHIFT			10
->>-#define RC_MAX_QP_SHIFT				5
->>-#define RC_MIN_QP_SHIFT				0
->>-
->>-#define DSCA_RC_RANGE_PARAMETERS_1		_MMIO(0x6B248)
->>-#define DSCA_RC_RANGE_PARAMETERS_1_UDW		_MMIO(0x6B248 + 4)
->>-#define DSCC_RC_RANGE_PARAMETERS_1		_MMIO(0x6BA48)
->>-#define DSCC_RC_RANGE_PARAMETERS_1_UDW		_MMIO(0x6BA48 + 4)
->>-#define _ICL_DSC0_RC_RANGE_PARAMETERS_1_PB	(0x78210)
->>-#define _ICL_DSC0_RC_RANGE_PARAMETERS_1_UDW_PB	(0x78210 + 4)
->>-#define _ICL_DSC1_RC_RANGE_PARAMETERS_1_PB	(0x78310)
->>-#define _ICL_DSC1_RC_RANGE_PARAMETERS_1_UDW_PB	(0x78310 + 4)
->>-#define _ICL_DSC0_RC_RANGE_PARAMETERS_1_PC	(0x78410)
->>-#define _ICL_DSC0_RC_RANGE_PARAMETERS_1_UDW_PC	(0x78410 + 4)
->>-#define _ICL_DSC1_RC_RANGE_PARAMETERS_1_PC	(0x78510)
->>-#define _ICL_DSC1_RC_RANGE_PARAMETERS_1_UDW_PC	(0x78510 + 4)
->>-#define ICL_DSC0_RC_RANGE_PARAMETERS_1(pipe)		_MMIO_PIPE((pipe) - PIPE_B=
-, \
->>-							_ICL_DSC0_RC_RANGE_PARAMETERS_1_PB, \
->>-							_ICL_DSC0_RC_RANGE_PARAMETERS_1_PC)
->>-#define ICL_DSC0_RC_RANGE_PARAMETERS_1_UDW(pipe)	_MMIO_PIPE((pipe) - PIP=
-E_B, \
->>-							_ICL_DSC0_RC_RANGE_PARAMETERS_1_UDW_PB, \
->>-							_ICL_DSC0_RC_RANGE_PARAMETERS_1_UDW_PC)
->>-#define ICL_DSC1_RC_RANGE_PARAMETERS_1(pipe)		_MMIO_PIPE((pipe) - PIPE_B=
-, \
->>-							_ICL_DSC1_RC_RANGE_PARAMETERS_1_PB, \
->>-							_ICL_DSC1_RC_RANGE_PARAMETERS_1_PC)
->>-#define ICL_DSC1_RC_RANGE_PARAMETERS_1_UDW(pipe)	_MMIO_PIPE((pipe) - PIP=
-E_B, \
->>-							_ICL_DSC1_RC_RANGE_PARAMETERS_1_UDW_PB, \
->>-							_ICL_DSC1_RC_RANGE_PARAMETERS_1_UDW_PC)
->>-
->>-#define DSCA_RC_RANGE_PARAMETERS_2		_MMIO(0x6B250)
->>-#define DSCA_RC_RANGE_PARAMETERS_2_UDW		_MMIO(0x6B250 + 4)
->>-#define DSCC_RC_RANGE_PARAMETERS_2		_MMIO(0x6BA50)
->>-#define DSCC_RC_RANGE_PARAMETERS_2_UDW		_MMIO(0x6BA50 + 4)
->>-#define _ICL_DSC0_RC_RANGE_PARAMETERS_2_PB	(0x78218)
->>-#define _ICL_DSC0_RC_RANGE_PARAMETERS_2_UDW_PB	(0x78218 + 4)
->>-#define _ICL_DSC1_RC_RANGE_PARAMETERS_2_PB	(0x78318)
->>-#define _ICL_DSC1_RC_RANGE_PARAMETERS_2_UDW_PB	(0x78318 + 4)
->>-#define _ICL_DSC0_RC_RANGE_PARAMETERS_2_PC	(0x78418)
->>-#define _ICL_DSC0_RC_RANGE_PARAMETERS_2_UDW_PC	(0x78418 + 4)
->>-#define _ICL_DSC1_RC_RANGE_PARAMETERS_2_PC	(0x78518)
->>-#define _ICL_DSC1_RC_RANGE_PARAMETERS_2_UDW_PC	(0x78518 + 4)
->>-#define ICL_DSC0_RC_RANGE_PARAMETERS_2(pipe)		_MMIO_PIPE((pipe) - PIPE_B=
-, \
->>-							_ICL_DSC0_RC_RANGE_PARAMETERS_2_PB, \
->>-							_ICL_DSC0_RC_RANGE_PARAMETERS_2_PC)
->>-#define ICL_DSC0_RC_RANGE_PARAMETERS_2_UDW(pipe)	_MMIO_PIPE((pipe) - PIP=
-E_B, \
->>-							_ICL_DSC0_RC_RANGE_PARAMETERS_2_UDW_PB, \
->>-							_ICL_DSC0_RC_RANGE_PARAMETERS_2_UDW_PC)
->>-#define ICL_DSC1_RC_RANGE_PARAMETERS_2(pipe)		_MMIO_PIPE((pipe) - PIPE_B=
-, \
->>-							_ICL_DSC1_RC_RANGE_PARAMETERS_2_PB, \
->>-							_ICL_DSC1_RC_RANGE_PARAMETERS_2_PC)
->>-#define ICL_DSC1_RC_RANGE_PARAMETERS_2_UDW(pipe)	_MMIO_PIPE((pipe) - PIP=
-E_B, \
->>-							_ICL_DSC1_RC_RANGE_PARAMETERS_2_UDW_PB, \
->>-							_ICL_DSC1_RC_RANGE_PARAMETERS_2_UDW_PC)
->>-
->>-#define DSCA_RC_RANGE_PARAMETERS_3		_MMIO(0x6B258)
->>-#define DSCA_RC_RANGE_PARAMETERS_3_UDW		_MMIO(0x6B258 + 4)
->>-#define DSCC_RC_RANGE_PARAMETERS_3		_MMIO(0x6BA58)
->>-#define DSCC_RC_RANGE_PARAMETERS_3_UDW		_MMIO(0x6BA58 + 4)
->>-#define _ICL_DSC0_RC_RANGE_PARAMETERS_3_PB	(0x78220)
->>-#define _ICL_DSC0_RC_RANGE_PARAMETERS_3_UDW_PB	(0x78220 + 4)
->>-#define _ICL_DSC1_RC_RANGE_PARAMETERS_3_PB	(0x78320)
->>-#define _ICL_DSC1_RC_RANGE_PARAMETERS_3_UDW_PB	(0x78320 + 4)
->>-#define _ICL_DSC0_RC_RANGE_PARAMETERS_3_PC	(0x78420)
->>-#define _ICL_DSC0_RC_RANGE_PARAMETERS_3_UDW_PC	(0x78420 + 4)
->>-#define _ICL_DSC1_RC_RANGE_PARAMETERS_3_PC	(0x78520)
->>-#define _ICL_DSC1_RC_RANGE_PARAMETERS_3_UDW_PC	(0x78520 + 4)
->>-#define ICL_DSC0_RC_RANGE_PARAMETERS_3(pipe)		_MMIO_PIPE((pipe) - PIPE_B=
-, \
->>-							_ICL_DSC0_RC_RANGE_PARAMETERS_3_PB, \
->>-							_ICL_DSC0_RC_RANGE_PARAMETERS_3_PC)
->>-#define ICL_DSC0_RC_RANGE_PARAMETERS_3_UDW(pipe)	_MMIO_PIPE((pipe) - PIP=
-E_B, \
->>-							_ICL_DSC0_RC_RANGE_PARAMETERS_3_UDW_PB, \
->>-							_ICL_DSC0_RC_RANGE_PARAMETERS_3_UDW_PC)
->>-#define ICL_DSC1_RC_RANGE_PARAMETERS_3(pipe)		_MMIO_PIPE((pipe) - PIPE_B=
-, \
->>-							_ICL_DSC1_RC_RANGE_PARAMETERS_3_PB, \
->>-							_ICL_DSC1_RC_RANGE_PARAMETERS_3_PC)
->>-#define ICL_DSC1_RC_RANGE_PARAMETERS_3_UDW(pipe)	_MMIO_PIPE((pipe) - PIP=
-E_B, \
->>-							_ICL_DSC1_RC_RANGE_PARAMETERS_3_UDW_PB, \
->>-							_ICL_DSC1_RC_RANGE_PARAMETERS_3_UDW_PC)
->>-
->>#define   ICP_TC_HPD_LONG_DETECT(tc_port)	(2 << (tc_port) * 4)
->>#define   ICP_TC_HPD_SHORT_DETECT(tc_port)	(1 << (tc_port) * 4)
->>
->>+#define SHPD_FILTER_CNT				_MMIO(0xc4038)
->>+#define   SHPD_FILTER_CNT_500_ADJ		0x001D9
->>+
->
->that is a weird choice git 2.26 made for the diff, but looks correct. With
->--color-moved (and not sure if the version made any difference, but mine
->is 2.28) I could check this is plain move.
->
->Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
-
-
-Let's see if patchwork now accepts the comment without the email header
-to ignore.
-
-Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
-
-
->
->Lucas De Marchi
->
->>#define ICP_DDI_HPD_ENABLE_MASK		(SHOTPLUG_CTL_DDI_HPD_ENABLE(PORT_B) | \
->>					 SHOTPLUG_CTL_DDI_HPD_ENABLE(PORT_A))
->>#define ICP_TC_HPD_ENABLE_MASK		(ICP_TC_HPD_ENABLE(PORT_TC4) | \
->>-- =
-
->>2.26.2
->>
->>_______________________________________________
->>Intel-gfx mailing list
->>Intel-gfx@lists.freedesktop.org
->>https://lists.freedesktop.org/mailman/listinfo/intel-gfx
->_______________________________________________
->Intel-gfx mailing list
->Intel-gfx@lists.freedesktop.org
->https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+T24gMTAvMjEvMjAgMTA6MjggQU0sIEx1Y2FzIERlIE1hcmNoaSB3cm90ZToKPiBPbiBXZWQsIE9j
+dCAyMSwgMjAyMCBhdCAwNjozMTo1OUFNIC0wNzAwLCBBZGl0eWEgU3dhcnVwIHdyb3RlOgo+PiBG
+cm9tOiBBbnVzaGEgU3JpdmF0c2EgPGFudXNoYS5zcml2YXRzYUBpbnRlbC5jb20+Cj4+Cj4+IEFE
+TFMgZm9sbG93cyBJQ1AvVEdQIGxpa2UgaW50ZXJydXB0cy4gUmV1c2UgaHBkX2ljcCBhbmQgaW50
+cm9kdWNlCj4+IEFETFMgRERJIGFuZCBIUEQgbWFza3MgZm9yIHNldHRpbmcgdXAgaHBkIGludGVy
+cnVwdHMuCj4+Cj4+IENjOiBMdWNhcyBEZSBNYXJjaGkgPGx1Y2FzLmRlbWFyY2hpQGludGVsLmNv
+bT4KPj4gQ2M6IEphbmkgTmlrdWxhIDxqYW5pLm5pa3VsYUBpbnRlbC5jb20+Cj4+IENjOiBWaWxs
+ZSBTeXJqw6Rsw6QgPHZpbGxlLnN5cmphbGFAbGludXguaW50ZWwuY29tPgo+PiBDYzogSW1yZSBE
+ZWFrIDxpbXJlLmRlYWtAaW50ZWwuY29tPgo+PiBDYzogTWF0dCBSb3BlciA8bWF0dGhldy5kLnJv
+cGVyQGludGVsLmNvbT4KPj4gQ2M6IEpvc8OpIFJvYmVydG8gZGUgU291emEgPGpvc2Uuc291emFA
+aW50ZWwuY29tPgo+PiBTaWduZWQtb2ZmLWJ5OiBBbnVzaGEgU3JpdmF0c2EgPGFudXNoYS5zcml2
+YXRzYUBpbnRlbC5jb20+Cj4+IFNpZ25lZC1vZmYtYnk6IEFkaXR5YSBTd2FydXAgPGFkaXR5YS5z
+d2FydXBAaW50ZWwuY29tPgo+PiAtLS0KPj4gZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9pcnEu
+YyB8IDIwICsrKysrKysrKysrKysrKystLS0tCj4+IGRyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVf
+cmVnLmggfMKgIDMgKysrCj4+IDIgZmlsZXMgY2hhbmdlZCwgMTkgaW5zZXJ0aW9ucygrKSwgNCBk
+ZWxldGlvbnMoLSkKPj4KPj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVf
+aXJxLmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2lycS5jCj4+IGluZGV4IGI3NTNjNzdj
+OWE3Ny4uOTAzMzIyMTk5NWFkIDEwMDY0NAo+PiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9p
+OTE1X2lycS5jCj4+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfaXJxLmMKPj4gQEAg
+LTE3OSw4ICsxNzksOSBAQCBzdGF0aWMgdm9pZCBpbnRlbF9ocGRfaW5pdF9waW5zKHN0cnVjdCBk
+cm1faTkxNV9wcml2YXRlICpkZXZfcHJpdikKPiAKPiB5b3Ugc3RpbGwgbmVlZCB0byBhc3NpZ24g
+aHBkX3BpbiB0byBkbyB0aGUgbWFwcGluZyBiZXR3ZWVuIHBvcnQgYW5kIGhwZAo+IHBpbi4gRWFy
+bGllciB0aGlzIHdhcyBkb25lIGluIHRoZSBpcnEgaGFuZGxlciBpdHNlbGYsIGJ1dCBub3cgaXMg
+ZG9uZSBpbgo+IGludGVsX2RkaV9pbml0KCkuIFNlZSB3aGF0IEkgZGlkIGZvciBERzE6Cj4gaHR0
+cHM6Ly9wYXRjaHdvcmsuZnJlZWRlc2t0b3Aub3JnL3BhdGNoLzM5NjA2Mi8/c2VyaWVzPTgyOTA1
+JnJldj0xCgpJIGRvbid0IHRoaW5rIHRoYXQgaXMgcmVxdWlyZWQgYXMgZm9yIGFsbCBHZW4xMisg
+cGxhdGZvcm1zLCB0Z2xfaHBkX3BpbiBpcyB1c2VkIGZvciBhc3NpZ25tZW50CmFuZCB0aGUgbG9n
+aWMgd29ya3MgZm9yIGFkbC1zIHdpdGggUE9SVCBBIG1hcHBpbmcgc3RheWluZyB0aGUgc2FtZSBh
+bmQgZm9yIHBvcnRzIGdyZWF0ZXIgdGhhbgpQT1JUIEQsIEhQRF9QT1JUX1RDMSBpcyB1c2VkIGFz
+IHN0YXJ0aW5nIG9mZnNldC4KCkZyb20gaW50ZWxfZGRpX2luaXQoKQplbHNlIGlmIChJTlRFTF9H
+RU4oZGV2X3ByaXYpID49IDEyKQogICAgICAgICAgICAgICAgZW5jb2Rlci0+aHBkX3BpbiA9IHRn
+bF9ocGRfcGluKGRldl9wcml2LCBwb3J0KTsKCkFsc28sIEkgaGF2ZSB0ZXN0ZWQgdGhpcyBjb2Rl
+IHdydCBob3RwbHVncyBvbiB0aGUgc3lzdGVtIGFuZCBpdCB3b3JrcyBmb3IgYWxsIHBvcnRzLgoK
+UmVnYXJkcywKQWRpdHlhIFN3YXJ1cAo+IAo+IEx1Y2FzIERlIE1hcmNoaQo+IAo+PiDCoMKgwqDC
+oGlmICghSEFTX1BDSF9TUExJVChkZXZfcHJpdikgfHwgSEFTX1BDSF9OT1AoZGV2X3ByaXYpKQo+
+PiDCoMKgwqDCoMKgwqDCoCByZXR1cm47Cj4+Cj4+IC3CoMKgwqAgaWYgKEhBU19QQ0hfVEdQKGRl
+dl9wcml2KSB8fCBIQVNfUENIX0pTUChkZXZfcHJpdikgfHwKPj4gLcKgwqDCoMKgwqDCoMKgIEhB
+U19QQ0hfSUNQKGRldl9wcml2KSB8fCBIQVNfUENIX01DQyhkZXZfcHJpdikpCj4+ICvCoMKgwqAg
+aWYgKEhBU19QQ0hfQURQKGRldl9wcml2KSB8fCBIQVNfUENIX1RHUChkZXZfcHJpdikgfHwKPj4g
+K8KgwqDCoMKgwqDCoMKgIEhBU19QQ0hfSlNQKGRldl9wcml2KSB8fCBIQVNfUENIX0lDUChkZXZf
+cHJpdikgfHwKPj4gK8KgwqDCoMKgwqDCoMKgIEhBU19QQ0hfTUNDKGRldl9wcml2KSkKPj4gwqDC
+oMKgwqDCoMKgwqAgaHBkLT5wY2hfaHBkID0gaHBkX2ljcDsKPj4gwqDCoMKgwqBlbHNlIGlmIChI
+QVNfUENIX0NOUChkZXZfcHJpdikgfHwgSEFTX1BDSF9TUFQoZGV2X3ByaXYpKQo+PiDCoMKgwqDC
+oMKgwqDCoCBocGQtPnBjaF9ocGQgPSBocGRfc3B0Owo+PiBAQCAtMTg2NCw3ICsxODY1LDEwIEBA
+IHN0YXRpYyB2b2lkIGljcF9pcnFfaGFuZGxlcihzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqZGV2
+X3ByaXYsIHUzMiBwY2hfaWlyKQo+PiDCoMKgwqDCoHUzMiBkZGlfaG90cGx1Z190cmlnZ2VyLCB0
+Y19ob3RwbHVnX3RyaWdnZXI7Cj4+IMKgwqDCoMKgdTMyIHBpbl9tYXNrID0gMCwgbG9uZ19tYXNr
+ID0gMDsKPj4KPj4gLcKgwqDCoCBpZiAoSEFTX1BDSF9UR1AoZGV2X3ByaXYpKSB7Cj4+ICvCoMKg
+wqAgaWYgKElTX0FMREVSTEFLRV9TKGRldl9wcml2KSkgewo+PiArwqDCoMKgwqDCoMKgwqAgZGRp
+X2hvdHBsdWdfdHJpZ2dlciA9IHBjaF9paXIgJiBTREVfRERJX01BU0tfQURMUzsKPj4gK8KgwqDC
+oMKgwqDCoMKgIHRjX2hvdHBsdWdfdHJpZ2dlciA9IHBjaF9paXIgJiBTREVfVENfTUFTS19JQ1A7
+Cj4+ICvCoMKgwqAgfSBlbHNlIGlmIChIQVNfUENIX1RHUChkZXZfcHJpdikpIHsKPj4gwqDCoMKg
+wqDCoMKgwqAgZGRpX2hvdHBsdWdfdHJpZ2dlciA9IHBjaF9paXIgJiBTREVfRERJX01BU0tfVEdQ
+Owo+PiDCoMKgwqDCoMKgwqDCoCB0Y19ob3RwbHVnX3RyaWdnZXIgPSBwY2hfaWlyICYgU0RFX1RD
+X01BU0tfVEdQOwo+PiDCoMKgwqDCoH0gZWxzZSBpZiAoSEFTX1BDSF9KU1AoZGV2X3ByaXYpKSB7
+Cj4+IEBAIC0zMjUyLDYgKzMyNTYsMTIgQEAgc3RhdGljIHZvaWQganNwX2hwZF9pcnFfc2V0dXAo
+c3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmRldl9wcml2KQo+PiDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoCBUR1BfRERJX0hQRF9FTkFCTEVfTUFTSywgMCk7Cj4+IH0KPj4KPj4gK3N0YXRpYyB2
+b2lkIGFkbHNfaHBkX2lycV9zZXR1cChzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqZGV2X3ByaXYp
+Cj4+ICt7Cj4+ICvCoMKgwqAgaWNwX2hwZF9pcnFfc2V0dXAoZGV2X3ByaXYsCj4+ICvCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoCBBRExTX0RESV9IUERfRU5BQkxFX01BU0ssIElDUF9UQ19IUERf
+RU5BQkxFX01BU0spOwo+PiArfQo+PiArCj4+IHN0YXRpYyB2b2lkIGdlbjExX2hwZF9kZXRlY3Rp
+b25fc2V0dXAoc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmRldl9wcml2KQo+PiB7Cj4+IMKgwqDC
+oMKgdTMyIGhvdHBsdWc7Cj4+IEBAIC00MTYyLDcgKzQxNzIsOSBAQCB2b2lkIGludGVsX2lycV9p
+bml0KHN0cnVjdCBkcm1faTkxNV9wcml2YXRlICpkZXZfcHJpdikKPj4gwqDCoMKgwqDCoMKgwqAg
+aWYgKEk5MTVfSEFTX0hPVFBMVUcoZGV2X3ByaXYpKQo+PiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+IGRldl9wcml2LT5kaXNwbGF5LmhwZF9pcnFfc2V0dXAgPSBpOTE1X2hwZF9pcnFfc2V0dXA7Cj4+
+IMKgwqDCoMKgfSBlbHNlIHsKPj4gLcKgwqDCoMKgwqDCoMKgIGlmIChIQVNfUENIX0pTUChkZXZf
+cHJpdikpCj4+ICvCoMKgwqDCoMKgwqDCoCBpZiAoSVNfQUxERVJMQUtFX1MoZGV2X3ByaXYpKQo+
+PiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBkZXZfcHJpdi0+ZGlzcGxheS5ocGRfaXJxX3NldHVw
+ID0gYWRsc19ocGRfaXJxX3NldHVwOwo+PiArwqDCoMKgwqDCoMKgwqAgZWxzZSBpZiAoSEFTX1BD
+SF9KU1AoZGV2X3ByaXYpKQo+PiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIGRldl9wcml2LT5kaXNw
+bGF5LmhwZF9pcnFfc2V0dXAgPSBqc3BfaHBkX2lycV9zZXR1cDsKPj4gwqDCoMKgwqDCoMKgwqAg
+ZWxzZSBpZiAoSEFTX1BDSF9NQ0MoZGV2X3ByaXYpKQo+PiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+IGRldl9wcml2LT5kaXNwbGF5LmhwZF9pcnFfc2V0dXAgPSBtY2NfaHBkX2lycV9zZXR1cDsKPj4g
+ZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfcmVnLmggYi9kcml2ZXJzL2dw
+dS9kcm0vaTkxNS9pOTE1X3JlZy5oCj4+IGluZGV4IDgzZGRlYTFjZDE3NC4uZjZiODQ0Y2E3YTlm
+IDEwMDY0NAo+PiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X3JlZy5oCj4+ICsrKyBi
+L2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfcmVnLmgKPj4gQEAgLTgzNDMsNiArODM0Myw3IEBA
+IGVudW0gewo+PiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIFNERV9U
+Q19IT1RQTFVHX0lDUChQT1JUX1RDMykgfCBcCj4+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqAgU0RFX1RDX0hPVFBMVUdfSUNQKFBPUlRfVEMyKSB8IFwKPj4gwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBTREVfVENfSE9UUExVR19JQ1AoUE9S
+VF9UQzEpKQo+PiArI2RlZmluZSBTREVfRERJX01BU0tfQURMU8KgwqDCoMKgwqDCoMKgwqAgU0RF
+X0RESV9IT1RQTFVHX0lDUChQT1JUX0EpCj4+Cj4+ICNkZWZpbmUgU0RFSVNSwqAgX01NSU8oMHhj
+NDAwMCkKPj4gI2RlZmluZSBTREVJTVLCoCBfTU1JTygweGM0MDA0KQo+PiBAQCAtODQzOCw2ICs4
+NDM5LDggQEAgZW51bSB7Cj4+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqAgSUNQX1RDX0hQRF9FTkFCTEUoUE9SVF9UQzUpIHwgXAo+PiDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgIElDUF9UQ19IUERfRU5BQkxFX01BU0spCj4+Cj4+ICsjZGVm
+aW5lIEFETFNfRERJX0hQRF9FTkFCTEVfTUFTS8KgwqDCoMKgIFNIT1RQTFVHX0NUTF9ERElfSFBE
+X0VOQUJMRShQT1JUX0EpCj4+ICsKPj4gI2RlZmluZSBfUENIX0RQTExfQcKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgIDB4YzYwMTQKPj4gI2RlZmluZSBfUENIX0RQTExfQsKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgIDB4YzYwMTgKPj4gI2RlZmluZSBQQ0hfRFBMTChwbGwpIF9NTUlPKChwbGwp
+ID09IDAgPyBfUENIX0RQTExfQSA6IF9QQ0hfRFBMTF9CKQo+PiAtLcKgCj4+IDIuMjcuMAo+PgoK
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4
+IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
+dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
