@@ -2,42 +2,48 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6534A2967AB
-	for <lists+intel-gfx@lfdr.de>; Fri, 23 Oct 2020 01:35:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 138842967C4
+	for <lists+intel-gfx@lfdr.de>; Fri, 23 Oct 2020 01:56:28 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CEB786E435;
-	Thu, 22 Oct 2020 23:35:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EAA806E439;
+	Thu, 22 Oct 2020 23:56:25 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 76B796E435
- for <intel-gfx@lists.freedesktop.org>; Thu, 22 Oct 2020 23:35:32 +0000 (UTC)
-IronPort-SDR: Sokt9lwv4z9BhpwM167aBkIBzjb715M/L11jl5Cbi1JUbnw0vxtPcRHFrCQXfujgdHl5Y9ps7n
- FEt3kf4XZtHQ==
-X-IronPort-AV: E=McAfee;i="6000,8403,9782"; a="164114554"
-X-IronPort-AV: E=Sophos;i="5.77,404,1596524400"; d="scan'208";a="164114554"
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1178E6E439
+ for <intel-gfx@lists.freedesktop.org>; Thu, 22 Oct 2020 23:56:25 +0000 (UTC)
+IronPort-SDR: 4GBgSRFONpc89WubfY6cxxd1YOlBuRckycKsDQgK6LcePnkGJw/mEgbOD98F2PaeQI3MG+xgCt
+ 5bhCT+WTsC0A==
+X-IronPort-AV: E=McAfee;i="6000,8403,9782"; a="147468480"
+X-IronPort-AV: E=Sophos;i="5.77,404,1596524400"; d="scan'208";a="147468480"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Oct 2020 16:35:32 -0700
-IronPort-SDR: zlz9mpfksiJ7jy+/X384oPhvQ8VNGOcHJ9Fa6E/SG+vJkn4rQNIsue8Dg0Ac40GXfMLyEubgBs
- hrJ4CTq/Ajlg==
-X-IronPort-AV: E=Sophos;i="5.77,404,1596524400"; d="scan'208";a="393218167"
-Received: from mdroper-desk1.fm.intel.com (HELO
- mdroper-desk1.amr.corp.intel.com) ([10.1.27.168])
- by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Oct 2020 16:35:31 -0700
-Date: Thu, 22 Oct 2020 16:35:30 -0700
-From: Matt Roper <matthew.d.roper@intel.com>
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Oct 2020 16:56:24 -0700
+IronPort-SDR: QYdwnrZ224SW+Yc/T333hO8htBUukC67IqT8gHp4usQf8PEvk889sqgxnVVe+AkPLoyxNZ5wc5
+ gPGbG2iVdzrw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.77,404,1596524400"; d="scan'208";a="359428743"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
+ by FMSMGA003.fm.intel.com with SMTP; 22 Oct 2020 16:56:22 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Fri, 23 Oct 2020 02:56:21 +0300
+Date: Fri, 23 Oct 2020 02:56:21 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
 To: Lucas De Marchi <lucas.demarchi@intel.com>
-Message-ID: <20201022233530.GS627052@mdroper-desk1.amr.corp.intel.com>
-References: <20201021082034.3170478-1-lucas.demarchi@intel.com>
- <20201021082034.3170478-7-lucas.demarchi@intel.com>
+Message-ID: <20201022235621.GU6112@intel.com>
+References: <20201006143349.5561-1-ville.syrjala@linux.intel.com>
+ <20201006143349.5561-6-ville.syrjala@linux.intel.com>
+ <20201007225111.zplmtcrjto3imijf@ldmartin-desk1>
+ <20201008084028.GG6112@intel.com>
+ <20201008085230.76522yxdanfacp6l@ldmartin-desk1>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20201021082034.3170478-7-lucas.demarchi@intel.com>
-Subject: Re: [Intel-gfx] [PATCH 6/6] drm/i915/dg1: Implement WA_16011163337
+In-Reply-To: <20201008085230.76522yxdanfacp6l@ldmartin-desk1>
+X-Patchwork-Hint: comment
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: Re: [Intel-gfx] [PATCH 05/20] drm/i915: Introduce AUX_CH_USBCn
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,58 +57,149 @@ List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Oct 21, 2020 at 01:20:34AM -0700, Lucas De Marchi wrote:
-> From: Swathi Dhanavanthri <swathi.dhanavanthri@intel.com>
-> 
-> Set GS Timer to 224.
-> Bspec: 53508
-> 
-> Cc: Matt Roper <matthew.d.roper@intel.com>
-> Signed-off-by: Swathi Dhanavanthri <swathi.dhanavanthri@intel.com>
-> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
-> ---
->  drivers/gpu/drm/i915/gt/intel_workarounds.c | 5 +++++
->  1 file changed, 5 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-> index 8d24ea769fe6..cd0c5847e2df 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-> @@ -684,6 +684,11 @@ static void dg1_ctx_workarounds_init(struct intel_engine_cs *engine,
->  	/* Wa_22010493298 */
->  	WA_SET_BIT_MASKED(HIZ_CHICKEN,
->  			  DG1_HZ_READ_SUPPRESSION_OPTIMIZATION_DISABLE);
-> +
-> +	/* Wa_16011163337 */
-> +	wa_add(wal,
-> +	       FF_MODE2,
-> +	       FF_MODE2_GS_TIMER_MASK, FF_MODE2_GS_TIMER_224, 0);
+On Thu, Oct 08, 2020 at 01:52:30AM -0700, Lucas De Marchi wrote:
+> On Thu, Oct 08, 2020 at 11:40:28AM +0300, Ville Syrj=E4l=E4 wrote:
+> >On Wed, Oct 07, 2020 at 03:51:11PM -0700, Lucas De Marchi wrote:
+> >> On Tue, Oct 06, 2020 at 05:33:34PM +0300, Ville Syrj=E4l=E4 wrote:
+> >> >From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> >> >
+> >> >Just like with the DDIs tgl+ renamed the AUX CHs to reflect
+> >> >the type of the DDI. Let's add the aliasing enum values for
+> >> >the type-C AUX CHs.
+> >> >
+> >> >Signed-off-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> >> >---
+> >> > drivers/gpu/drm/i915/display/intel_display.h |  8 +++
+> >> > drivers/gpu/drm/i915/display/intel_dp.c      | 53 ++++++++++++++++++=
+--
+> >> > 2 files changed, 58 insertions(+), 3 deletions(-)
+> >> >
+> >> >diff --git a/drivers/gpu/drm/i915/display/intel_display.h b/drivers/g=
+pu/drm/i915/display/intel_display.h
+> >> >index a39be3c9e0cf..cba876721ea0 100644
+> >> >--- a/drivers/gpu/drm/i915/display/intel_display.h
+> >> >+++ b/drivers/gpu/drm/i915/display/intel_display.h
+> >> >@@ -290,6 +290,14 @@ enum aux_ch {
+> >> > 	AUX_CH_G,
+> >> > 	AUX_CH_H,
+> >> > 	AUX_CH_I,
+> >> >+
+> >> >+	/* tgl+ */
+> >> >+	AUX_CH_USBC1 =3D AUX_CH_D,
+> >> >+	AUX_CH_USBC2,
+> >> >+	AUX_CH_USBC3,
+> >> >+	AUX_CH_USBC4,
+> >> >+	AUX_CH_USBC5,
+> >> >+	AUX_CH_USBC6,
+> >> > };
+> >> >
+> >> > #define aux_ch_name(a) ((a) + 'A')
+> >> >diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/dr=
+m/i915/display/intel_dp.c
+> >> >index 239016dcd544..a73c354c920e 100644
+> >> >--- a/drivers/gpu/drm/i915/display/intel_dp.c
+> >> >+++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> >> >@@ -1792,7 +1792,6 @@ static i915_reg_t skl_aux_ctl_reg(struct intel_=
+dp *intel_dp)
+> >> > 	case AUX_CH_D:
+> >> > 	case AUX_CH_E:
+> >> > 	case AUX_CH_F:
+> >> >-	case AUX_CH_G:
+> >> > 		return DP_AUX_CH_CTL(aux_ch);
+> >> > 	default:
+> >> > 		MISSING_CASE(aux_ch);
+> >> >@@ -1813,7 +1812,52 @@ static i915_reg_t skl_aux_data_reg(struct inte=
+l_dp *intel_dp, int index)
+> >> > 	case AUX_CH_D:
+> >> > 	case AUX_CH_E:
+> >> > 	case AUX_CH_F:
+> >> >-	case AUX_CH_G:
+> >> >+		return DP_AUX_CH_DATA(aux_ch, index);
+> >> >+	default:
+> >> >+		MISSING_CASE(aux_ch);
+> >> >+		return DP_AUX_CH_DATA(AUX_CH_A, index);
+> >> >+	}
+> >> >+}
+> >> >+
+> >> >+static i915_reg_t tgl_aux_ctl_reg(struct intel_dp *intel_dp)
+> >> >+{
+> >> >+	struct drm_i915_private *dev_priv =3D dp_to_i915(intel_dp);
+> >> >+	struct intel_digital_port *dig_port =3D dp_to_dig_port(intel_dp);
+> >> >+	enum aux_ch aux_ch =3D dig_port->aux_ch;
+> >> >+
+> >> >+	switch (aux_ch) {
+> >> >+	case AUX_CH_A:
+> >> >+	case AUX_CH_B:
+> >> >+	case AUX_CH_C:
+> >> >+	case AUX_CH_USBC1:
+> >> >+	case AUX_CH_USBC2:
+> >> >+	case AUX_CH_USBC3:
+> >> >+	case AUX_CH_USBC4:
+> >> >+	case AUX_CH_USBC5:
+> >> >+	case AUX_CH_USBC6:
+> >> >+		return DP_AUX_CH_CTL(aux_ch);
+> >> >+	default:
+> >> >+		MISSING_CASE(aux_ch);
+> >> >+		return DP_AUX_CH_CTL(AUX_CH_A);
+> >> >+	}
+> >> >+}
+> >> >+
+> >> >+static i915_reg_t tgl_aux_data_reg(struct intel_dp *intel_dp, int in=
+dex)
+> >> >+{
+> >> >+	struct drm_i915_private *dev_priv =3D dp_to_i915(intel_dp);
+> >> >+	struct intel_digital_port *dig_port =3D dp_to_dig_port(intel_dp);
+> >> >+	enum aux_ch aux_ch =3D dig_port->aux_ch;
+> >> >+
+> >> >+	switch (aux_ch) {
+> >> >+	case AUX_CH_A:
+> >> >+	case AUX_CH_B:
+> >> >+	case AUX_CH_C:
+> >> >+	case AUX_CH_USBC1:
+> >> >+	case AUX_CH_USBC2:
+> >> >+	case AUX_CH_USBC3:
+> >> >+	case AUX_CH_USBC4:
+> >> >+	case AUX_CH_USBC5:
+> >> >+	case AUX_CH_USBC6:
+> >> > 		return DP_AUX_CH_DATA(aux_ch, index);
+> >> > 	default:
+> >> > 		MISSING_CASE(aux_ch);
+> >> >@@ -1834,7 +1878,10 @@ intel_dp_aux_init(struct intel_dp *intel_dp)
+> >> > 	struct intel_digital_port *dig_port =3D dp_to_dig_port(intel_dp);
+> >> > 	struct intel_encoder *encoder =3D &dig_port->base;
+> >> >
+> >> >-	if (INTEL_GEN(dev_priv) >=3D 9) {
+> >> >+	if (INTEL_GEN(dev_priv) >=3D 12) {
+> >> >+		intel_dp->aux_ch_ctl_reg =3D tgl_aux_ctl_reg;
+> >>
+> >> why is this even a function pointer rather than just the reg? AFAICS it
+> >> only depends on dig_port->aux_ch that is initialized in intel_ddi_init=
+()
+> >
+> >Just for consistency with .aux_ch_data_reg() I guess. Can't remember
+> >a more specific reason at least.
+> =
 
-It looks like with the latest bspec updates we can just move this into
-gen12_ctx_workarounds_init() (and remove the copy in the tgl_ function);
-it now applies to all platforms that will be using that function.
+> even that may be overkill since all the users just use index to
+> do `+ index * 4`
 
+The code used to do that but we got rid of it when the i915_reg
+stuff was introduced to discourage people from doing hand rolled =
 
-Matt
+arithmetic on register offsets. I think the tradeoff has been
+generally worth it because I can't remeber the last time someone
+messed up the register offsets. Before type safety it was a
+somewhat regular occurance.
 
->  }
->  
->  static void
-> -- 
-> 2.28.0
-> 
+-- =
 
--- 
-Matt Roper
-Graphics Software Engineer
-VTT-OSGC Platform Enablement
-Intel Corporation
-(916) 356-2795
+Ville Syrj=E4l=E4
+Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
