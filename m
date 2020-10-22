@@ -2,45 +2,44 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0BADA296765
-	for <lists+intel-gfx@lfdr.de>; Fri, 23 Oct 2020 00:38:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EC5B929676F
+	for <lists+intel-gfx@lfdr.de>; Fri, 23 Oct 2020 00:46:39 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6AE6F6E423;
-	Thu, 22 Oct 2020 22:38:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B29046E425;
+	Thu, 22 Oct 2020 22:46:37 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 869C76E423
- for <intel-gfx@lists.freedesktop.org>; Thu, 22 Oct 2020 22:38:20 +0000 (UTC)
-IronPort-SDR: rZrYkQXC0FWgaQjeeUNzGrTac8EZGwXDe+BQ3ndF+A4AZ9SoDsuSFlKmmiNGk+F54PAJPMEeWA
- a2Mzf4PN6ptg==
-X-IronPort-AV: E=McAfee;i="6000,8403,9782"; a="231797459"
-X-IronPort-AV: E=Sophos;i="5.77,404,1596524400"; d="scan'208";a="231797459"
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2CA0F6E425
+ for <intel-gfx@lists.freedesktop.org>; Thu, 22 Oct 2020 22:46:36 +0000 (UTC)
+IronPort-SDR: pBnEYPKFqkxP4ilo6azqwd6a3gpJMA2Yirc5SxU9SApn3N4swx2Hr3XeU74rReQvnpzkwI79/X
+ PQTz7YQa7y8w==
+X-IronPort-AV: E=McAfee;i="6000,8403,9782"; a="154560672"
+X-IronPort-AV: E=Sophos;i="5.77,404,1596524400"; d="scan'208";a="154560672"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Oct 2020 15:38:20 -0700
-IronPort-SDR: c8yAkEsnEMU6mIB6OqtuJvS17IDqc+pn9NlBT4kINAmnwA4Hivk5ElCFAxB0yIuU9x++yNWVNW
- w3I4ViT+fyPQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.77,404,1596524400"; d="scan'208";a="321530358"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by orsmga006.jf.intel.com with SMTP; 22 Oct 2020 15:38:17 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 23 Oct 2020 01:38:16 +0300
-Date: Fri, 23 Oct 2020 01:38:16 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Chris Wilson <chris@chris-wilson.co.uk>
-Message-ID: <20201022223816.GT6112@intel.com>
-References: <20201022210814.23004-1-chris@chris-wilson.co.uk>
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Oct 2020 15:46:35 -0700
+IronPort-SDR: g2YSrcvdIDu2/oaF4nD4+Te2YWQUoz13cBDo/PSVQ5OVHrxLQlFKrTSAfyRfPT9GxtfEPr/UKF
+ b7MKVgYNKm3g==
+X-IronPort-AV: E=Sophos;i="5.77,404,1596524400"; d="scan'208";a="523293141"
+Received: from mtdupree-mobl2.amr.corp.intel.com (HELO ldmartin-desk1)
+ ([10.212.152.253])
+ by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Oct 2020 15:46:34 -0700
+Date: Thu, 22 Oct 2020 15:46:31 -0700
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: Matt Roper <matthew.d.roper@intel.com>
+Message-ID: <20201022224631.io2i5aso6amsmboc@ldmartin-desk1>
+X-Patchwork-Hint: comment
+References: <20201021082034.3170478-1-lucas.demarchi@intel.com>
+ <20201021082034.3170478-2-lucas.demarchi@intel.com>
+ <20201022223643.GP627052@mdroper-desk1.amr.corp.intel.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20201022210814.23004-1-chris@chris-wilson.co.uk>
-X-Patchwork-Hint: comment
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/selftests: Skip RPS tests on
- Ironlake (only IPS)
+In-Reply-To: <20201022223643.GP627052@mdroper-desk1.amr.corp.intel.com>
+Subject: Re: [Intel-gfx] [PATCH 1/6] drm/i915/dg1: add hpd interrupt handling
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,100 +53,221 @@ List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="iso-8859-1"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Oct 22, 2020 at 10:08:14PM +0100, Chris Wilson wrote:
-> Since Ironlake uses intel_ips.ko for its dynamic frequency adjustment,
-> we do not have direct control over the frequency management so such
-> tests are defunct.
+On Thu, Oct 22, 2020 at 03:36:43PM -0700, Matt Roper wrote:
+>On Wed, Oct 21, 2020 at 01:20:29AM -0700, Lucas De Marchi wrote:
+>> DG1 has one more combo phy port, no TC and all irq handling goes through
+>> SDE, like for MCC.
+>>
+>> v2: Also change intel_hpd_pin_default() to include DG1 mapping
+>> v3, v4: Rebase on hpd refactor
+>>
+>> Cc: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+>> Cc: Anshuman Gupta <anshuman.gupta@intel.com>
+>> Cc: Jos=E9 Roberto de Souza <jose.souza@intel.com>
+>> Cc: Imre Deak <imre.deak@intel.com>
+>> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+>
+>Looks good to me.
+>
+>Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
+>
+>I sort of wish we'd named hpd->pch_hpd as hpd->sde_hpd (and hpd->hpd as
+>hpd->nde_hpd) back when we did that refactor, but it doesn't really
+>matter too much.
 
-We could just ignore what ips is saying, but maybe we don't want to.
+Agreed. I think this would be something good to do once DG1, ADL-S and
+the refactors from Ville land.
 
-> Similarly, we can't check the gen6+ RPS registers on
-> Ironlake.
+thanks
+Lucas De Marchi
 
-I can definitely get behind that one.
+>
+>
+>Matt
+>
+>> ---
+>>  drivers/gpu/drm/i915/display/intel_ddi.c | 13 ++++++++-
+>>  drivers/gpu/drm/i915/i915_irq.c          | 37 ++++++++++++++++++++----
+>>  drivers/gpu/drm/i915/i915_reg.h          |  8 +++++
+>>  3 files changed, 51 insertions(+), 7 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/=
+i915/display/intel_ddi.c
+>> index bb0b9930958f..3a99f209f1e6 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_ddi.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+>> @@ -5066,6 +5066,15 @@ static bool hti_uses_phy(struct drm_i915_private =
+*i915, enum phy phy)
+>>  		 i915->hti_state & HDPORT_PHY_USED_HDMI(phy));
+>>  }
+>>
+>> +static enum hpd_pin dg1_hpd_pin(struct drm_i915_private *dev_priv,
+>> +				enum port port)
+>> +{
+>> +	if (port >=3D PORT_D)
+>> +		return HPD_PORT_C + port - PORT_D;
+>> +	else
+>> +		return HPD_PORT_A + port - PORT_A;
+>> +}
+>> +
+>>  static enum hpd_pin tgl_hpd_pin(struct drm_i915_private *dev_priv,
+>>  				enum port port)
+>>  {
+>> @@ -5195,7 +5204,9 @@ void intel_ddi_init(struct drm_i915_private *dev_p=
+riv, enum port port)
+>>  	encoder->cloneable =3D 0;
+>>  	encoder->pipe_mask =3D ~0;
+>>
+>> -	if (IS_ROCKETLAKE(dev_priv))
+>> +	if (IS_DG1(dev_priv))
+>> +		encoder->hpd_pin =3D dg1_hpd_pin(dev_priv, port);
+>> +	else if (IS_ROCKETLAKE(dev_priv))
+>>  		encoder->hpd_pin =3D rkl_hpd_pin(dev_priv, port);
+>>  	else if (INTEL_GEN(dev_priv) >=3D 12)
+>>  		encoder->hpd_pin =3D tgl_hpd_pin(dev_priv, port);
+>> diff --git a/drivers/gpu/drm/i915/i915_irq.c b/drivers/gpu/drm/i915/i915=
+_irq.c
+>> index b753c77c9a77..b6169fbadb1d 100644
+>> --- a/drivers/gpu/drm/i915/i915_irq.c
+>> +++ b/drivers/gpu/drm/i915/i915_irq.c
+>> @@ -152,6 +152,13 @@ static const u32 hpd_icp[HPD_NUM_PINS] =3D {
+>>  	[HPD_PORT_TC6] =3D SDE_TC_HOTPLUG_ICP(PORT_TC6),
+>>  };
+>>
+>> +static const u32 hpd_sde_dg1[HPD_NUM_PINS] =3D {
+>> +	[HPD_PORT_A] =3D SDE_DDI_HOTPLUG_ICP(PORT_A),
+>> +	[HPD_PORT_B] =3D SDE_DDI_HOTPLUG_ICP(PORT_B),
+>> +	[HPD_PORT_C] =3D SDE_DDI_HOTPLUG_ICP(PORT_C),
+>> +	[HPD_PORT_D] =3D SDE_DDI_HOTPLUG_ICP(PORT_D),
+>> +};
+>> +
+>>  static void intel_hpd_init_pins(struct drm_i915_private *dev_priv)
+>>  {
+>>  	struct i915_hotplug *hpd =3D &dev_priv->hotplug;
+>> @@ -176,11 +183,14 @@ static void intel_hpd_init_pins(struct drm_i915_pr=
+ivate *dev_priv)
+>>  	else
+>>  		hpd->hpd =3D hpd_ilk;
+>>
+>> -	if (!HAS_PCH_SPLIT(dev_priv) || HAS_PCH_NOP(dev_priv))
+>> +	if ((INTEL_PCH_TYPE(dev_priv) < PCH_DG1) &&
+>> +	    (!HAS_PCH_SPLIT(dev_priv) || HAS_PCH_NOP(dev_priv)))
+>>  		return;
+>>
+>> -	if (HAS_PCH_TGP(dev_priv) || HAS_PCH_JSP(dev_priv) ||
+>> -	    HAS_PCH_ICP(dev_priv) || HAS_PCH_MCC(dev_priv))
+>> +	if (HAS_PCH_DG1(dev_priv))
+>> +		hpd->pch_hpd =3D hpd_sde_dg1;
+>> +	else if (HAS_PCH_TGP(dev_priv) || HAS_PCH_JSP(dev_priv) ||
+>> +		 HAS_PCH_ICP(dev_priv) || HAS_PCH_MCC(dev_priv))
+>>  		hpd->pch_hpd =3D hpd_icp;
+>>  	else if (HAS_PCH_CNP(dev_priv) || HAS_PCH_SPT(dev_priv))
+>>  		hpd->pch_hpd =3D hpd_spt;
+>> @@ -1074,6 +1084,8 @@ static bool icp_ddi_port_hotplug_long_detect(enum =
+hpd_pin pin, u32 val)
+>>  		return val & SHOTPLUG_CTL_DDI_HPD_LONG_DETECT(PORT_B);
+>>  	case HPD_PORT_C:
+>>  		return val & SHOTPLUG_CTL_DDI_HPD_LONG_DETECT(PORT_C);
+>> +	case HPD_PORT_D:
+>> +		return val & SHOTPLUG_CTL_DDI_HPD_LONG_DETECT(PORT_D);
+>>  	default:
+>>  		return false;
+>>  	}
+>> @@ -1864,7 +1876,10 @@ static void icp_irq_handler(struct drm_i915_priva=
+te *dev_priv, u32 pch_iir)
+>>  	u32 ddi_hotplug_trigger, tc_hotplug_trigger;
+>>  	u32 pin_mask =3D 0, long_mask =3D 0;
+>>
+>> -	if (HAS_PCH_TGP(dev_priv)) {
+>> +	if (HAS_PCH_DG1(dev_priv)) {
+>> +		ddi_hotplug_trigger =3D pch_iir & SDE_DDI_MASK_DG1;
+>> +		tc_hotplug_trigger =3D 0;
+>> +	} else if (HAS_PCH_TGP(dev_priv)) {
+>>  		ddi_hotplug_trigger =3D pch_iir & SDE_DDI_MASK_TGP;
+>>  		tc_hotplug_trigger =3D pch_iir & SDE_TC_MASK_TGP;
+>>  	} else if (HAS_PCH_JSP(dev_priv)) {
+>> @@ -3252,6 +3267,12 @@ static void jsp_hpd_irq_setup(struct drm_i915_pri=
+vate *dev_priv)
+>>  			  TGP_DDI_HPD_ENABLE_MASK, 0);
+>>  }
+>>
+>> +static void dg1_hpd_irq_setup(struct drm_i915_private *dev_priv)
+>> +{
+>> +	icp_hpd_irq_setup(dev_priv,
+>> +			  DG1_DDI_HPD_ENABLE_MASK, 0);
+>> +}
+>> +
+>>  static void gen11_hpd_detection_setup(struct drm_i915_private *dev_priv)
+>>  {
+>>  	u32 hotplug;
+>> @@ -3645,7 +3666,9 @@ static void icp_irq_postinstall(struct drm_i915_pr=
+ivate *dev_priv)
+>>  	gen3_assert_iir_is_zero(&dev_priv->uncore, SDEIIR);
+>>  	I915_WRITE(SDEIMR, ~mask);
+>>
+>> -	if (HAS_PCH_TGP(dev_priv)) {
+>> +	if (HAS_PCH_DG1(dev_priv))
+>> +		icp_ddi_hpd_detection_setup(dev_priv, DG1_DDI_HPD_ENABLE_MASK);
+>> +	else if (HAS_PCH_TGP(dev_priv)) {
+>>  		icp_ddi_hpd_detection_setup(dev_priv, TGP_DDI_HPD_ENABLE_MASK);
+>>  		icp_tc_hpd_detection_setup(dev_priv, TGP_TC_HPD_ENABLE_MASK);
+>>  	} else if (HAS_PCH_JSP(dev_priv)) {
+>> @@ -4162,7 +4185,9 @@ void intel_irq_init(struct drm_i915_private *dev_p=
+riv)
+>>  		if (I915_HAS_HOTPLUG(dev_priv))
+>>  			dev_priv->display.hpd_irq_setup =3D i915_hpd_irq_setup;
+>>  	} else {
+>> -		if (HAS_PCH_JSP(dev_priv))
+>> +		if (HAS_PCH_DG1(dev_priv))
+>> +			dev_priv->display.hpd_irq_setup =3D dg1_hpd_irq_setup;
+>> +		else if (HAS_PCH_JSP(dev_priv))
+>>  			dev_priv->display.hpd_irq_setup =3D jsp_hpd_irq_setup;
+>>  		else if (HAS_PCH_MCC(dev_priv))
+>>  			dev_priv->display.hpd_irq_setup =3D mcc_hpd_irq_setup;
+>> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915=
+_reg.h
+>> index 6d97e6286c2d..236199891611 100644
+>> --- a/drivers/gpu/drm/i915/i915_reg.h
+>> +++ b/drivers/gpu/drm/i915/i915_reg.h
+>> @@ -8235,6 +8235,10 @@ enum {
+>>  					 SDE_TC_HOTPLUG_ICP(PORT_TC3) | \
+>>  					 SDE_TC_HOTPLUG_ICP(PORT_TC2) | \
+>>  					 SDE_TC_HOTPLUG_ICP(PORT_TC1))
+>> +#define SDE_DDI_MASK_DG1		(SDE_DDI_HOTPLUG_ICP(PORT_D) | \
+>> +					 SDE_DDI_HOTPLUG_ICP(PORT_C) | \
+>> +					 SDE_DDI_HOTPLUG_ICP(PORT_B) | \
+>> +					 SDE_DDI_HOTPLUG_ICP(PORT_A))
+>>
+>>  #define SDEISR  _MMIO(0xc4000)
+>>  #define SDEIMR  _MMIO(0xc4004)
+>> @@ -8434,6 +8438,10 @@ enum {
+>>  #define TGP_TC_HPD_ENABLE_MASK		(ICP_TC_HPD_ENABLE(PORT_TC6) | \
+>>  					 ICP_TC_HPD_ENABLE(PORT_TC5) | \
+>>  					 ICP_TC_HPD_ENABLE_MASK)
+>> +#define DG1_DDI_HPD_ENABLE_MASK		(SHOTPLUG_CTL_DDI_HPD_ENABLE(PORT_D) |=
+ \
+>> +					 SHOTPLUG_CTL_DDI_HPD_ENABLE(PORT_C) | \
+>> +					 SHOTPLUG_CTL_DDI_HPD_ENABLE(PORT_B) | \
+>> +					 SHOTPLUG_CTL_DDI_HPD_ENABLE(PORT_A))
+>>
+>>  #define _PCH_DPLL_A              0xc6014
+>>  #define _PCH_DPLL_B              0xc6018
+>> --
+>> 2.28.0
+>>
+>
+>-- =
 
-Reviewed-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-
-> =
-
-> Hopefully this catches all the invalid tests now that Ironlake has
-> rejoined the dynamic GPU frequency club.
-> =
-
-> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-> ---
->  drivers/gpu/drm/i915/gt/selftest_rps.c | 8 ++++----
->  1 file changed, 4 insertions(+), 4 deletions(-)
-> =
-
-> diff --git a/drivers/gpu/drm/i915/gt/selftest_rps.c b/drivers/gpu/drm/i91=
-5/gt/selftest_rps.c
-> index 3540ba9bd459..aa5675ecb5cc 100644
-> --- a/drivers/gpu/drm/i915/gt/selftest_rps.c
-> +++ b/drivers/gpu/drm/i915/gt/selftest_rps.c
-> @@ -219,7 +219,7 @@ int live_rps_clock_interval(void *arg)
->  	struct igt_spinner spin;
->  	int err =3D 0;
->  =
-
-> -	if (!intel_rps_is_enabled(rps))
-> +	if (!intel_rps_is_enabled(rps) || INTEL_GEN(gt->i915) < 6)
->  		return 0;
->  =
-
->  	if (igt_spinner_init(&spin, gt))
-> @@ -1028,7 +1028,7 @@ int live_rps_interrupt(void *arg)
->  	 * First, let's check whether or not we are receiving interrupts.
->  	 */
->  =
-
-> -	if (!intel_rps_has_interrupts(rps))
-> +	if (!intel_rps_has_interrupts(rps) || INTEL_GEN(gt->i915) < 6)
->  		return 0;
->  =
-
->  	intel_gt_pm_get(gt);
-> @@ -1133,7 +1133,7 @@ int live_rps_power(void *arg)
->  	 * that theory.
->  	 */
->  =
-
-> -	if (!intel_rps_is_enabled(rps))
-> +	if (!intel_rps_is_enabled(rps) || INTEL_GEN(gt->i915) < 6)
->  		return 0;
->  =
-
->  	if (!librapl_energy_uJ())
-> @@ -1237,7 +1237,7 @@ int live_rps_dynamic(void *arg)
->  	 * moving parts into dynamic reclocking based on load.
->  	 */
->  =
-
-> -	if (!intel_rps_is_enabled(rps))
-> +	if (!intel_rps_is_enabled(rps) || INTEL_GEN(gt->i915) < 6)
->  		return 0;
->  =
-
->  	if (igt_spinner_init(&spin, gt))
-> -- =
-
-> 2.20.1
-> =
-
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
--- =
-
-Ville Syrj=E4l=E4
-Intel
+>Matt Roper
+>Graphics Software Engineer
+>VTT-OSGC Platform Enablement
+>Intel Corporation
+>(916) 356-2795
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
