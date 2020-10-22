@@ -2,50 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 25B10295D2E
-	for <lists+intel-gfx@lfdr.de>; Thu, 22 Oct 2020 13:08:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 266A8295D44
+	for <lists+intel-gfx@lfdr.de>; Thu, 22 Oct 2020 13:20:26 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 65ECB6E054;
-	Thu, 22 Oct 2020 11:08:04 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D9ADF6E054
- for <Intel-gfx@lists.freedesktop.org>; Thu, 22 Oct 2020 11:08:03 +0000 (UTC)
-IronPort-SDR: k27I6g0H5vNk55OiLUiRUOSIivPpngESquwjbFNmYyi0Vv6i9qDfuR1PQAGyx7r+2mVf82GPSm
- ipaBCpw7ZP+Q==
-X-IronPort-AV: E=McAfee;i="6000,8403,9781"; a="147366428"
-X-IronPort-AV: E=Sophos;i="5.77,404,1596524400"; d="scan'208";a="147366428"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Oct 2020 04:08:03 -0700
-IronPort-SDR: IU+D+vzGXmClUmA96wK/DErcDkYqQ/+P9S4XS1eyX8J61TCP0Zh3KM+Ci5Mv0hJpQoSV4Sf6uG
- icbRJTzJfaqg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.77,404,1596524400"; d="scan'208";a="321345799"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by orsmga006.jf.intel.com with SMTP; 22 Oct 2020 04:07:59 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 22 Oct 2020 14:07:59 +0300
-Date: Thu, 22 Oct 2020 14:07:59 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Lyude Paul <lyude@redhat.com>
-Message-ID: <20201022110759.GK6112@intel.com>
-References: <20201020074555.24315-1-khaled.almahallawy@intel.com>
- <20201020124108.GX6112@intel.com>
- <ded1023ff55d62717e6c7a7055b8e7f651e19c5b.camel@intel.com>
- <20201021132639.GF6112@intel.com>
- <6f9c166c7b115672e1d427748d7e4d4dfd35b256.camel@redhat.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 390C46F5E0;
+	Thu, 22 Oct 2020 11:20:24 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 803DD6F5DF;
+ Thu, 22 Oct 2020 11:20:23 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 79026A8830;
+ Thu, 22 Oct 2020 11:20:23 +0000 (UTC)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <6f9c166c7b115672e1d427748d7e4d4dfd35b256.camel@redhat.com>
-X-Patchwork-Hint: comment
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/tgl: Set
- drm_crtc_state.active=false for all added disconnected CRTCs sharing MST
- stream.
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Anshuman Gupta" <anshuman.gupta@intel.com>
+Date: Thu, 22 Oct 2020 11:20:23 -0000
+Message-ID: <160336562346.7805.7356758531742410431@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20201022085552.18353-1-anshuman.gupta@intel.com>
+In-Reply-To: <20201022085552.18353-1-anshuman.gupta@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_HDCP_2=2E2_DP_MST_Support_=28rev5=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,96 +38,46 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "daniel.vetter@ffwll.ch" <daniel.vetter@ffwll.ch>,
- "Intel-gfx@lists.freedesktop.org" <Intel-gfx@lists.freedesktop.org>,
- "seanpaul@chromium.org" <seanpaul@chromium.org>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gV2VkLCBPY3QgMjEsIDIwMjAgYXQgMDU6MjU6NDBQTSAtMDQwMCwgTHl1ZGUgUGF1bCB3cm90
-ZToKPiBPbiBXZWQsIDIwMjAtMTAtMjEgYXQgMTY6MjYgKzAzMDAsIFZpbGxlIFN5cmrDpGzDpCB3
-cm90ZToKPiA+IE9uIFR1ZSwgT2N0IDIwLCAyMDIwIGF0IDExOjI1OjUzUE0gKzAwMDAsIFNvdXph
-LCBKb3NlIHdyb3RlOgo+ID4gPiBPbiBUdWUsIDIwMjAtMTAtMjAgYXQgMTU6NDEgKzAzMDAsIFZp
-bGxlIFN5cmrDg8aSw4LCpGzDg8aSw4LCpCB3cm90ZToKPiA+ID4gPiBPbiBUdWUsIE9jdCAyMCwg
-MjAyMCBhdCAxMjo0NTo1NUFNIC0wNzAwLCBLaGFsZWQgQWxtYWhhbGxhd3kgd3JvdGU6Cj4gPiA+
-ID4gPiBUaGlzIHBhdGNoIGF2b2lkcyBmYWlsaW5nIGF0b21pYyBjb21taXRzIHNlbnQgYnkgdXNl
-ciBzcGFjZSBieSBtYWtpbmcKPiA+ID4gPiA+IHN1cmUgQ1JUQy9Db25uZWN0b3IgYWRkZWQgdG8g
-ZHJtX2F0b21pY19zdGF0ZSBieSB0aGUgZHJpdmVyIGFyZSBpbiB2YWxpZAo+ID4gPiA+ID4gc3Rh
-dGUuCj4gPiA+ID4gPiAKPiA+ID4gPiA+IFdoZW4gZGlzY29ubmVjdGluZyBNU1QgaHViIHdpdGgg
-dHdvIG9yIG1vcmUgY29ubmVjdGVkIGRpc3BsYXlzLiBUaGUgdXNlcgo+ID4gPiA+ID4gc3BhY2Ug
-c2VuZHMgSU9DVEwgZm9yIGVhY2ggTVNUIHBpcGUgdG8gZGlzYWJsZS4KPiA+ID4gPiA+IGRybV9h
-dG9taWNfc3RhdGUgb2JqZWN0IHNlbnQgZnJvbSB1c2VyIHNwYWNlIGNvbnRhaW5zIG9ubHkgdGhl
-IHN0YXRlIG9mCj4gPiA+ID4gPiB0aGUgY3J0Yy9waXBlIGludGVuZGVkIHRvIGRpc2FibGUuCj4g
-PiA+ID4gPiBJbiBUR0wsIGludGVsX2RwX21zdF9hdG9taWNfbWFzdGVyX3RyYW5zX2NoZWNrIHdp
-bGwgYWRkIGFsbCBvdGhlciBDUlRDCj4gPiA+ID4gPiBhbmQgY29ubmVjdG9ycyB0aGF0IHNoYXJl
-IHRoZSBNU1Qgc3RyZWFtIHRvIGRybV9hdG9taWNfc3RhdGU6Cj4gPiA+ID4gPiAKPiA+ID4gPiA+
-IGRybV9hdG9taWNfY29tbWl0Cj4gPiA+ID4gPiDDg+KAmsOCIMOD4oCaw4Igw4PigJrDgiBkcm1f
-YXRvbWljX2hlbHBlcl9jaGVja19tb2Rlc2V0Cj4gPiA+ID4gPiDDg+KAmsOCIMOD4oCaw4Igw4Pi
-gJrDgiDDg+KAmsOCIMOD4oCaw4Igw4PigJrDgiDDg+KAmsOCIHVwZGF0ZV9jb25uZWN0b3Jfcm91
-dGluZwo+ID4gPiA+ID4gw4PigJrDgiDDg+KAmsOCIMOD4oCaw4Igw4PigJrDgiDDg+KAmsOCIMOD
-4oCaw4Igw4PigJrDgiBpbnRlbF9kcF9tc3RfYXRvbWljX2NoZWNrID0gZnVuY3MtCj4gPiA+ID4g
-PiA+YXRvbWljX2NoZWNrKGNvbm5lY3Rvciwgc3RhdGUpOwo+ID4gPiA+ID4gw4PigJrDgiDDg+KA
-msOCIMOD4oCaw4Igw4PigJrDgiDDg+KAmsOCIMOD4oCaw4Igw4PigJrDgiAJICAgaW50ZWxfZHBf
-bXN0X2F0b21pY19tYXN0ZXJfdHJhbnNfY2hlYwo+ID4gPiA+ID4gawo+ID4gPiA+ID4gCQlpbnRl
-bF9hdG9taWNfZ2V0X2RpZ2l0YWxfY29ubmVjdG9yX3N0YXRlCj4gPiA+ID4gPiAJCQlkcm1fYXRv
-bWljX2dldF9jb25uZWN0b3Jfc3RhdGUgICA8LS0gQWRkIGFsbAo+ID4gPiA+ID4gQ29ubmVjdG9y
-cwo+ID4gPiA+ID4gCQkJICAgIGRybV9hdG9taWNfZ2V0X2NydGNfc3RhdGUgPC0tIEFkZCBhbGwg
-Q1JUQ3MKPiA+ID4gPiA+IMOD4oCaw4Igw4PigJrDgiDDg+KAmsOCIMOD4oCaw4Igw4PigJrDgiDD
-g+KAmsOCIMOD4oCaw4IgdXBkYXRlX2Nvbm5lY3Rvcl9yb3V0aW5nIDwtLSBDaGVjayBhZGRlZAo+
-ID4gPiA+ID4gQ29ubmVjdG9yL0NSVENzIC0gV2lsbCBmYWlsCj4gPiA+ID4gPiAKPiA+ID4gPiA+
-IEhvd2V2ZXIgdGhlIGFkZGVkIGNydGMvY29ubmVjdG9yIHBhaXIgd2lsbCBiZSBpbiBpbnZhbGlk
-IHN0YXRlIChlbmFibGVkCj4gPiA+ID4gPiBzdGF0ZSBmb3IgYSByZW1vdmVkIGNvbm5lY3RvcikK
-PiA+ID4gPiA+IHRyaWdnZXJpbmcgdGhpcyBjb25kaXRpb24gaW4KPiA+ID4gPiA+IGRybV9hdG9t
-aWNfaGVscGVyLmMvdXBkYXRlX2Nvbm5lY3Rvcl9yb3V0aW5nOgo+ID4gPiA+ID4gCj4gPiA+ID4g
-PiAJaWYgKCFzdGF0ZS0+ZHVwbGljYXRlZCAmJgo+ID4gPiA+ID4gZHJtX2Nvbm5lY3Rvcl9pc191
-bnJlZ2lzdGVyZWQoY29ubmVjdG9yKSAmJgo+ID4gPiA+ID4gCSAgICBjcnRjX3N0YXRlLT5hY3Rp
-dmUpIHsKPiA+ID4gPiA+IAkJRFJNX0RFQlVHX0FUT01JQygiW0NPTk5FQ1RPUjolZDolc10gaXMg
-bm90Cj4gPiA+ID4gPiByZWdpc3RlcmVkXG4iLAo+ID4gPiA+ID4gCQkJCSBjb25uZWN0b3ItPmJh
-c2UuaWQsIGNvbm5lY3Rvci0+bmFtZSk7Cj4gPiA+ID4gPiAJCXJldHVybiAtRUlOVkFMOwo+ID4g
-PiA+ID4gCX0KPiA+ID4gPiAKPiA+ID4gPiBZZWFoLCBJIHRoaW5rIHRoYXQgInJlamVjdCBtb2Rl
-c2V0IG9uIHVucmVnaXN0ZXJlZCBjb25uZWN0b3JzIiBpZGVhIGlzCj4gPiA+ID4gYSBiaXQgYnJv
-a2VuIGdpdmVuIGhvdyB0aGUgdWFwaSBoYXMgd29ya2VkIGluIHRoZSBwYXN0LiBDYzppbmcgZGFu
-dmV0Cj4gPiA+ID4gYW5kIGx5dWRlIHdobyBJSVJDIHdlcmUgaW52b2x2ZWQgd2l0aCB0aGF0Lgo+
-ID4gPiA+IAo+ID4gPiA+IEhtbS4gTWF5YmUgd2UgY291bGQgYWRkIHRoZSBvdGhlciBzdHVmZiB0
-byB0aGUgc3RhdGUgb25seSBhZnRlciB0aGUKPiA+ID4gPiBjb25uZWN0b3IgLmF0b21pY19jaGVj
-aygpIHN0dWZmIGhhcyBiZWVuIGRvbmU/IEkgZG9uJ3QgcXVpdGUgcmVtZW1iZXIKPiA+ID4gPiB3
-aHkgd2UgZGVjaWRlZCB0byBkbyBpdCBoZXJlLiBKb3PDg8aSw4LCqSBkbyB5b3UgcmVjYWxsIHRo
-ZSBkZXRhaWxzPwo+ID4gPiAKPiA+ID4gQmVjYXVzZSB0aGUgY29ubmVjdG9yIGNoZWNrIGZ1bmN0
-aW9uIHJ1bnMgdHdpY2UgaW4KPiA+ID4gZHJtX2F0b21pY19oZWxwZXJfY2hlY2tfbW9kZXNldCgp
-LCBpbiB0aGUgZmlyc3QgaXRlcmF0aW9uIGl0IHdpbGwgYWRkIGFsbAo+ID4gPiBjb25uZWN0b3Jz
-IHRoYXQgc2hhcmUgdGhlCj4gPiA+IHNhbWUgTVNUIHN0cmVhbSB0byBzdGF0ZSwgdGhlIHNlY29u
-ZCBvbmUgd2lsbCBtYWtlIHN1cmUgYWxsIG90aGVyIGNoZWNrcwo+ID4gPiBwYXNzZWQgaW4gYWxs
-IGNvbm5lY3RvcnMgb2YgdGhlIE1TVCBzdHJlYW0uCj4gPiA+IAo+ID4gPiBUbyBtZSBsb29rcyBs
-aWtlIHRoZSBDaHJvbWUgdXNlcnNwYWNlIGlzIG5vdCBkb2luZyB0aGUgcmlnaHQgdGhpbmcsIGl0
-IGlzCj4gPiA+IHNlbmRpbmcgYXN5bmNocm9ub3VzIGF0b21pYyBjb21taXRzIHdpdGggY29uZmxp
-Y3Rpbmcgc3RhdGUgYmV0d2VlbiBlYWNoCj4gPiA+IGNvbW1pdC4KPiA+ID4gSWYgaXQgaGFkIGEg
-cG9vbCB0aGF0IGRpc3BhdGNoIG9uZSBhdG9taWMgc3RhdGUgYXQgdGltZSB3YWl0aW5nIGZvcgo+
-ID4gPiBjb21wbGV0aW9uIGJlZm9yZSBkaXNwYXRjaCB0aGUgbmV4dCBvbmUgaXQgd291bGQgbm90
-IGJlIGEgaXNzdWUuCj4gPiAKPiA+IFllYWgsIHdpdGggYXRvbWljIHVzZXJzcGFjZSBjb3VsZCBh
-dm9pZCB0aGlzIHBvdGVudGlhbGx5LiBUaG91Z2ggaXQKPiA+IG1heSBiZSByYWN5IGRlcGVuZGlu
-ZyBvbiB3aGV0aGVyIGl0IGhhcyBub3RpY2VkIGFsbCB0aGUgTVNUIGNvbm5lY3RvcnMKPiA+IGRp
-c2FwcGVhcmluZyB5ZXQgb3Igbm90LiBFaXRoZXIgd2F5IGl0J3Mgc3RpbGwgYW4gaXNzdWUgZm9y
-IGxlZ2FjeQo+ID4gdWFwaS4KPiAKPiBTaWdoLUkgaGFkIGhvcGVkIHRoYXQgd2Ugd291bGQgaGF2
-ZSBob29rZWQgdGhpcyB1cCBzdWNoIHRoYXQgd2UnZCBhdm9pZCB0aGlzIChhcwo+IEkndmUgYWxy
-ZWFkeSBoYWQgdG8gZml4IHNvbWUgaXNzdWVzIHRoaXMgY2F1c2VkIHdpdGggbGVnYWN5IG1vZGVz
-ZXR0aW5nKSBidXQgSQo+IGd1ZXNzIG5vdC4gSGF2ZSB5b3UgZ3V5cyBjb25zaWRlcmVkIHRyeWlu
-ZyB0byB1c2UgdGhlIGNvbm5lY3RvciBlcG9jaHMgd2hlbmV2ZXIKPiB5b3UgcmVjZWl2ZSBhIGhv
-dHBsdWcgZXZlbnQgdG8gZGlmZmVyZW50aWF0ZSBiZXR3ZWVuIHJlbW92ZWQgKCdzdGFsZScpCj4g
-Y29ubmVjdG9ycyBhbmQgb3RoZXIgY29ubmVjdG9ycz8gdGJoLCBpZiB5b3UgY2FuJ3QgZmluZCBh
-IGNvbm5lY3RvciB3aXRoIHRoZQo+IHNhbWUgbXN0IHBhdGggYW5kIGVwb2NoIHlvdSBsYXN0IGhh
-ZCBhcyB5b3VyIHN0YWxlIGNvbm5lY3RvciB0aGVuIGl0J3Mgc2FmZSB0bwo+IGp1c3QgYXNzdW1l
-IGl0J3MgZ29uZS4KPiAKPiBBbHNvIC0gSSdtIHRvdGFsbHkgb3BlbiB0byBiZXR0ZXIgaWRlYXMg
-Zm9yIGhhbmRsaW5nIHRoaXMgb3IgbWFraW5nIGl0IG1vcmUKPiBvYnZpb3VzIHdoZW4gYSBjb25u
-ZWN0b3IgaGFzIGJlZW4gcmVtb3ZlZCwgbW9zdCBvZiB0aGUgcmVhc29uIGZvciBhZGRpbmcgdGhl
-c2UKPiBjaGVja3Mgd2FzIHRvIHRyeSBvdXIgYmVzdCAoYXMgdGhpcyBpcyBpbXBvc3NpYmxlIHRv
-IGZ1bGx5IGd1YXJhbnRlZSkgdG8gYXZvaWQKPiBzaXR1YXRpb25zIHdoZXJlIGEgaG9zdCB0cmll
-ZCB0byBlbmFibGUgYW4gTVNUIGRpc3BsYXkgdGhhdCBubyBsb25nZXIgZXhpc3RlZAo+IGFuZCBw
-dXQgdGhlIGhhcmR3YXJlIGludG8gYSB3ZWlyZCBzdGF0ZS4gQXQgbGVhc3QgaWYgSSByZW1lbWJl
-ciBjb3JyZWN0bHksIGl0J3MKPiBiZWVuIGEgd2hpbGUuCgpJdCdzIGFsbCByYWN5IGFueXdheSBp
-cyBpdCBub3Q/IEJlY2F1c2Ugb2YgdGhhdCBJJ20gcHJldHR5IGZpcm1seSBpbgp0aGUgImp1c3Qg
-cGxvdyBhaGVhZCBibGluZGx5IiBjYW1wLgoKLS0gClZpbGxlIFN5cmrDpGzDpApJbnRlbApfX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFp
-bGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
+== Series Details ==
+
+Series: HDCP 2.2 DP MST Support (rev5)
+URL   : https://patchwork.freedesktop.org/series/81538/
+State : warning
+
+== Summary ==
+
+$ dim checkpatch origin/drm-tip
+3c203819df03 drm/i915/hdcp: Update CP property in update_pipe
+ed3fec051c2e drm/i915/hdcp: Get conn while content_type changed
+e6ea1e5d0a69 drm/i915/hotplug: Handle CP_IRQ for DP-MST
+ce083eb6afcb drm/i915/hdcp: DP MST transcoder for link and stream
+cd7dfdf4d705 drm/i915/hdcp: Move HDCP enc status timeout to header
+-:13: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit 7e90e8d0c0ea ("drm/i915: Increase timeout for Encrypt status change")'
+#13: 
+Related: 7e90e8d0c0ea ("drm/i915: Increase timeout for Encrypt
+
+total: 1 errors, 0 warnings, 0 checks, 47 lines checked
+a3c2628d301d drm/i915/hdcp: HDCP stream encryption support
+c563af8ef24a drm/i915/hdcp: Enable Gen12 HDCP 1.4 DP MST support
+d1d2ae46766e drm/i915/hdcp: Pass dig_port to intel_hdcp_init
+5524d56ad1d9 drm/i915/hdcp: Encapsulate hdcp_port_data to dig_port
+587b272daea6 misc/mei/hdcp: Fix AUTH_STREAM_REQ cmd buffer len
+c62cbbaece50 drm/hdcp: Max MST content streams
+14aea2bd217e drm/i915/hdcp: MST streams support in hdcp port_data
+fe282dce943b drm/i915/hdcp: Pass connector to check_2_2_link
+844bace9a8bb drm/i915/hdcp: Add HDCP 2.2 stream register
+7286d357f37e drm/i915/hdcp: Support for HDCP 2.2 MST shim callbacks
+3f09be950b9e drm/i915/hdcp: Enable HDCP 2.2 MST support
+
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
