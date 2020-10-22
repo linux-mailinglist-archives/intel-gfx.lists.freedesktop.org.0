@@ -1,42 +1,42 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D07A929580C
-	for <lists+intel-gfx@lfdr.de>; Thu, 22 Oct 2020 07:41:03 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 78FD629580D
+	for <lists+intel-gfx@lfdr.de>; Thu, 22 Oct 2020 07:41:04 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 89FC96F3C9;
-	Thu, 22 Oct 2020 05:40:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A34346F3CF;
+	Thu, 22 Oct 2020 05:40:59 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 42D3E6F3A6
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 663FE6E199
  for <intel-gfx@lists.freedesktop.org>; Thu, 22 Oct 2020 05:40:55 +0000 (UTC)
-IronPort-SDR: UnBRVW+j4sEIz2OmgUekBe0crqKFJL5FjHF02NgBj9Zqd3jLGbETnHpGz3vaJme1GP4bKKaN89
- qC/YNcdeM5JA==
-X-IronPort-AV: E=McAfee;i="6000,8403,9781"; a="146768373"
-X-IronPort-AV: E=Sophos;i="5.77,403,1596524400"; d="scan'208";a="146768373"
+IronPort-SDR: 5CyXfxWExWqtfm1VOwoiITpXAdilEOvuuwveLG/PCTXh0qoOPgIM3F56+3SqaClLLk8dBfKDGF
+ 0aX6+6Ppb+nQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9781"; a="146768375"
+X-IronPort-AV: E=Sophos;i="5.77,403,1596524400"; d="scan'208";a="146768375"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from fmsmga006.fm.intel.com ([10.253.24.20])
  by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Oct 2020 22:40:54 -0700
-IronPort-SDR: 8VrJidzaHNDHRRYC1WbiOAAmnVo22Dp6xp4QWPKv5AQx8Lmchozbfe83YsLS2R0rtJfbtfNs2y
- jHU6kinfbspg==
-X-IronPort-AV: E=Sophos;i="5.77,403,1596524400"; d="scan'208";a="523012911"
+ 21 Oct 2020 22:40:55 -0700
+IronPort-SDR: 5GmOYPo0vbPt235qiwem4LWVogHzublnfb447WGFG1ysmK1xc8453XE2Y55qTvm0/J5L1crm1n
+ 1t+XgfRyXiNw==
+X-IronPort-AV: E=Sophos;i="5.77,403,1596524400"; d="scan'208";a="523012914"
 Received: from labuser-z97x-ud5h.jf.intel.com ([10.165.21.211])
  by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-SHA;
  21 Oct 2020 22:40:54 -0700
 From: Manasi Navare <manasi.d.navare@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Wed, 21 Oct 2020 22:42:22 -0700
-Message-Id: <20201022054223.25071-12-manasi.d.navare@intel.com>
+Date: Wed, 21 Oct 2020 22:42:23 -0700
+Message-Id: <20201022054223.25071-13-manasi.d.navare@intel.com>
 X-Mailer: git-send-email 2.19.1
 In-Reply-To: <20201022054223.25071-1-manasi.d.navare@intel.com>
 References: <20201022054223.25071-1-manasi.d.navare@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v11 11/12] drm/i915: Add bigjoiner aware plane
- clipping checks
+Subject: [Intel-gfx] [PATCH v11 12/12] drm/i915: Add debugfs dumping for
+ bigjoiner, v3.
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,202 +56,81 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 
-We need to look at hw.fb for the framebuffer, and add the translation
-for the slave_plane_state. With these changes we set the correct
-rectangle on the bigjoiner slave, and don't set incorrect
-src/dst/visibility on the slave plane.
+Dump debugfs and planar links as well, this will make it easier to debug
+when things go wrong.
 
-v2:
-* Manual rebase (Manasi)
-
-v3:
-* hw.rotation instead of uapi.rotation (Ville)
+v4:
+* Rebase
+Changes since v1:
+- Report planar slaves as such, now that we have the plane_state switch.
+Changes since v2:
+- Rebase on top of the new plane format dumping
 
 Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 Signed-off-by: Manasi Navare <manasi.d.navare@intel.com>
 ---
- .../gpu/drm/i915/display/intel_atomic_plane.c | 60 +++++++++++++++++++
- .../gpu/drm/i915/display/intel_atomic_plane.h |  4 ++
- drivers/gpu/drm/i915/display/intel_display.c  | 19 +++---
- drivers/gpu/drm/i915/display/intel_sprite.c   | 21 +++----
- 4 files changed, 80 insertions(+), 24 deletions(-)
+ .../drm/i915/display/intel_display_debugfs.c  | 29 ++++++++++++++++++-
+ 1 file changed, 28 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_atomic_plane.c b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-index 5df928f8f322..32a013798836 100644
---- a/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-+++ b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-@@ -268,6 +268,9 @@ void intel_plane_copy_uapi_to_hw_state(const struct intel_crtc_state *crtc_state
- 	plane_state->hw.color_encoding = from_plane_state->uapi.color_encoding;
- 	plane_state->hw.color_range = from_plane_state->uapi.color_range;
- 	plane_state->hw.scaling_filter = from_plane_state->uapi.scaling_filter;
-+
-+	plane_state->uapi.src = drm_plane_state_src(&from_plane_state->uapi);
-+	plane_state->uapi.dst = drm_plane_state_dest(&from_plane_state->uapi);
+diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+index cfb4c1474982..963069b266ab 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
++++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+@@ -755,6 +755,17 @@ static void plane_rotation(char *buf, size_t bufsize, unsigned int rotation)
+ 		 rotation);
  }
  
- void intel_plane_set_invisible(struct intel_crtc_state *crtc_state,
-@@ -520,6 +523,63 @@ void i9xx_update_planes_on_crtc(struct intel_atomic_state *state,
- 	}
- }
- 
-+int intel_atomic_plane_check_clipping(struct intel_plane_state *plane_state,
-+				      struct intel_crtc_state *crtc_state,
-+				      int min_scale, int max_scale,
-+				      bool can_position)
++static const char *plane_visibility(const struct intel_plane_state *plane_state)
 +{
-+	struct drm_framebuffer *fb = plane_state->hw.fb;
-+	struct drm_rect *src = &plane_state->uapi.src;
-+	struct drm_rect *dst = &plane_state->uapi.dst;
-+	unsigned int rotation = plane_state->hw.rotation;
-+	struct drm_rect clip = {};
-+	int hscale, vscale;
++	if (plane_state->uapi.visible)
++		return "visible";
 +
-+	if (!fb) {
-+		plane_state->uapi.visible = false;
-+		return 0;
-+	}
++	if (plane_state->planar_slave)
++		return "planar-slave";
 +
-+	drm_rect_rotate(src, fb->width << 16, fb->height << 16, rotation);
-+
-+	/* Check scaling */
-+	hscale = drm_rect_calc_hscale(src, dst, min_scale, max_scale);
-+	vscale = drm_rect_calc_vscale(src, dst, min_scale, max_scale);
-+	if (hscale < 0 || vscale < 0) {
-+		DRM_DEBUG_KMS("Invalid scaling of plane\n");
-+		drm_rect_debug_print("src: ", src, true);
-+		drm_rect_debug_print("dst: ", dst, false);
-+		return -ERANGE;
-+	}
-+
-+	if (crtc_state->hw.enable) {
-+		clip.x2 = crtc_state->pipe_src_w;
-+		clip.y2 = crtc_state->pipe_src_h;
-+	}
-+
-+	/* right side of the image is on the slave crtc, adjust dst to match */
-+	if (crtc_state->bigjoiner_slave)
-+		drm_rect_translate(dst, -crtc_state->pipe_src_w, 0);
-+
-+	/*
-+	 * FIXME: This might need further adjustment for seamless scaling
-+	 * with phase information, for the 2p2 and 2p1 scenarios.
-+	 */
-+	plane_state->uapi.visible = drm_rect_clip_scaled(src, dst, &clip);
-+
-+	drm_rect_rotate_inv(src, fb->width << 16, fb->height << 16, rotation);
-+
-+	if (!can_position && plane_state->uapi.visible &&
-+	    !drm_rect_equals(dst, &clip)) {
-+		DRM_DEBUG_KMS("Plane must cover entire CRTC\n");
-+		drm_rect_debug_print("dst: ", dst, false);
-+		drm_rect_debug_print("clip: ", &clip, false);
-+		return -EINVAL;
-+	}
-+
-+	return 0;
++	return "hidden";
 +}
 +
- const struct drm_plane_helper_funcs intel_plane_helper_funcs = {
- 	.prepare_fb = intel_prepare_plane_fb,
- 	.cleanup_fb = intel_cleanup_plane_fb,
-diff --git a/drivers/gpu/drm/i915/display/intel_atomic_plane.h b/drivers/gpu/drm/i915/display/intel_atomic_plane.h
-index c2a1e7c86e6c..d0a599d00ecd 100644
---- a/drivers/gpu/drm/i915/display/intel_atomic_plane.h
-+++ b/drivers/gpu/drm/i915/display/intel_atomic_plane.h
-@@ -53,6 +53,10 @@ int intel_plane_atomic_calc_changes(const struct intel_crtc_state *old_crtc_stat
- int intel_plane_calc_min_cdclk(struct intel_atomic_state *state,
- 			       struct intel_plane *plane,
- 			       bool *need_cdclk_calc);
-+int intel_atomic_plane_check_clipping(struct intel_plane_state *plane_state,
-+				      struct intel_crtc_state *crtc_state,
-+				      int min_scale, int max_scale,
-+				      bool can_position);
- void intel_plane_set_invisible(struct intel_crtc_state *crtc_state,
- 			       struct intel_plane_state *plane_state);
+ static void intel_plane_uapi_info(struct seq_file *m, struct intel_plane *plane)
+ {
+ 	const struct intel_plane_state *plane_state =
+@@ -773,12 +784,22 @@ static void intel_plane_uapi_info(struct seq_file *m, struct intel_plane *plane)
+ 	plane_rotation(rot_str, sizeof(rot_str),
+ 		       plane_state->uapi.rotation);
  
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 579cccc1fd91..e706f202e195 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -4414,12 +4414,10 @@ i9xx_plane_check(struct intel_crtc_state *crtc_state,
- 	if (ret)
- 		return ret;
+-	seq_printf(m, "\t\tuapi: fb=%d,%s,%dx%d, src=" DRM_RECT_FP_FMT ", dst=" DRM_RECT_FMT ", rotation=%s\n",
++	seq_printf(m, "\t\tuapi: fb=%d,%s,%dx%d, visible=%s, src=" DRM_RECT_FP_FMT ", dst=" DRM_RECT_FMT ", rotation=%s\n",
+ 		   fb ? fb->base.id : 0, fb ? format_name.str : "n/a",
+ 		   fb ? fb->width : 0, fb ? fb->height : 0,
++		   plane_visibility(plane_state),
+ 		   DRM_RECT_FP_ARG(&src),
+ 		   DRM_RECT_ARG(&dst),
+ 		   rot_str);
++
++	if (plane_state->planar_linked_plane)
++		seq_printf(m, "\t\tplanar: Linked to [PLANE:%d:%s] as a %s\n",
++			   plane_state->planar_linked_plane->base.base.id, plane_state->planar_linked_plane->base.name,
++			   plane_state->planar_slave ? "slave" : "master");
++	if (plane_state->bigjoiner_plane)
++		seq_printf(m, "\t\tbigjoiner: Linked to [PLANE:%d:%s] as a %s\n",
++			   plane_state->bigjoiner_plane->base.base.id, plane_state->bigjoiner_plane->base.name,
++			   plane_state->bigjoiner_slave ? "slave" : "master");
+ }
  
--	ret = drm_atomic_helper_check_plane_state(&plane_state->uapi,
--						  &crtc_state->uapi,
--						  DRM_PLANE_HELPER_NO_SCALING,
--						  DRM_PLANE_HELPER_NO_SCALING,
--						  i9xx_plane_has_windowing(plane),
--						  true);
-+	ret = intel_atomic_plane_check_clipping(plane_state, crtc_state,
-+						DRM_PLANE_HELPER_NO_SCALING,
-+						DRM_PLANE_HELPER_NO_SCALING,
-+						i9xx_plane_has_windowing(plane));
- 	if (ret)
- 		return ret;
- 
-@@ -11701,11 +11699,10 @@ static int intel_check_cursor(struct intel_crtc_state *crtc_state,
- 		return -EINVAL;
+ static void intel_plane_hw_info(struct seq_file *m, struct intel_plane *plane)
+@@ -874,6 +895,12 @@ static void intel_crtc_info(struct seq_file *m, struct intel_crtc *crtc)
+ 		intel_scaler_info(m, crtc);
  	}
  
--	ret = drm_atomic_helper_check_plane_state(&plane_state->uapi,
--						  &crtc_state->uapi,
--						  DRM_PLANE_HELPER_NO_SCALING,
--						  DRM_PLANE_HELPER_NO_SCALING,
--						  true, true);
-+	ret = intel_atomic_plane_check_clipping(plane_state, crtc_state,
-+						DRM_PLANE_HELPER_NO_SCALING,
-+						DRM_PLANE_HELPER_NO_SCALING,
-+						true);
- 	if (ret)
- 		return ret;
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_sprite.c b/drivers/gpu/drm/i915/display/intel_sprite.c
-index b6deeb338477..172453821b64 100644
---- a/drivers/gpu/drm/i915/display/intel_sprite.c
-+++ b/drivers/gpu/drm/i915/display/intel_sprite.c
-@@ -2059,10 +2059,8 @@ g4x_sprite_check(struct intel_crtc_state *crtc_state,
- 		}
- 	}
- 
--	ret = drm_atomic_helper_check_plane_state(&plane_state->uapi,
--						  &crtc_state->uapi,
--						  min_scale, max_scale,
--						  true, true);
-+	ret = intel_atomic_plane_check_clipping(plane_state, crtc_state,
-+						min_scale, max_scale, true);
- 	if (ret)
- 		return ret;
- 
-@@ -2117,11 +2115,10 @@ vlv_sprite_check(struct intel_crtc_state *crtc_state,
- 	if (ret)
- 		return ret;
- 
--	ret = drm_atomic_helper_check_plane_state(&plane_state->uapi,
--						  &crtc_state->uapi,
--						  DRM_PLANE_HELPER_NO_SCALING,
--						  DRM_PLANE_HELPER_NO_SCALING,
--						  true, true);
-+	ret = intel_atomic_plane_check_clipping(plane_state, crtc_state,
-+						DRM_PLANE_HELPER_NO_SCALING,
-+						DRM_PLANE_HELPER_NO_SCALING,
-+						true);
- 	if (ret)
- 		return ret;
- 
-@@ -2328,10 +2325,8 @@ static int skl_plane_check(struct intel_crtc_state *crtc_state,
- 		max_scale = skl_plane_max_scale(dev_priv, fb);
- 	}
- 
--	ret = drm_atomic_helper_check_plane_state(&plane_state->uapi,
--						  &crtc_state->uapi,
--						  min_scale, max_scale,
--						  true, true);
-+	ret = intel_atomic_plane_check_clipping(plane_state, crtc_state,
-+						min_scale, max_scale, true);
- 	if (ret)
- 		return ret;
- 
++	if (crtc_state->bigjoiner)
++		seq_printf(m, "\tLinked to [CRTC:%d:%s] as a %s\n",
++			   crtc_state->bigjoiner_linked_crtc->base.base.id,
++			   crtc_state->bigjoiner_linked_crtc->base.name,
++			   crtc_state->bigjoiner_slave ? "slave" : "master");
++
+ 	for_each_intel_encoder_mask(&dev_priv->drm, encoder,
+ 				    crtc_state->uapi.encoder_mask)
+ 		intel_encoder_info(m, crtc, encoder);
 -- 
 2.19.1
 
