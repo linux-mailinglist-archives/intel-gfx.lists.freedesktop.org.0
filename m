@@ -2,55 +2,41 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BA8512963A5
-	for <lists+intel-gfx@lfdr.de>; Thu, 22 Oct 2020 19:22:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6CA972963CD
+	for <lists+intel-gfx@lfdr.de>; Thu, 22 Oct 2020 19:34:08 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9215F6F5F4;
-	Thu, 22 Oct 2020 17:22:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9608D6F5FE;
+	Thu, 22 Oct 2020 17:34:06 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-x441.google.com (mail-wr1-x441.google.com
- [IPv6:2a00:1450:4864:20::441])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 29FB16F5F4;
- Thu, 22 Oct 2020 17:22:09 +0000 (UTC)
-Received: by mail-wr1-x441.google.com with SMTP id h7so3438392wre.4;
- Thu, 22 Oct 2020 10:22:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc:content-transfer-encoding;
- bh=3SbKtGsD0deWgGwVQ6la/8JOmG1h8qGCr8ZTv5ep8js=;
- b=OO7sm4t4/zsmQdXQSOuAQBxpt3zn/uMPrPLifttyDIUq1DLrvRdxXGQre9CMz8+YBK
- I/K8Ik8pMsaEPFRLr5jXsSKezrgM/rlDmAZmWYhbjKyDo3INJ4SRqjMBovvhCBDxxrk1
- dOQ5NMQjgeaczExu4OPAJEb4CFdE50O3UFTymGe/RztHH11xv66/iJ7tMLrzpT1LIE8g
- arJZG59B1N+sLNpSo8bfry0e2sr1ywvOG56Zl6QVR+ywEbIZ21OWcJS+bKBMpBFENlYD
- +fE4Tz1gDVDmRKFAiMAgVhiVCzOh+hAaO/+CCb/2YgnjX/LxonVAbAbp1FvWyjRZGQ1x
- 881w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc:content-transfer-encoding;
- bh=3SbKtGsD0deWgGwVQ6la/8JOmG1h8qGCr8ZTv5ep8js=;
- b=pK0bxcb6/GYUVS1by4oXSmnmSRNaB4mAx4XB3wwtRomS85Gds9pkaBFPVlgWfdBhm/
- cdsGKxJWFms6+xw9LrXvoYRNOiy3vW4f326SHm70lNMtFp+q6UuKMFc4H6WkZ9ZFutwF
- vxyjWEPhhQbunvO+sMhIU6/2foOg6BWSHsSQrHOFFGABpDfutl7ZRWIqOc9bVoPhIrr+
- tFSXf94xrpYIpqRZoWFTJE/Vdfv+ptmKkxN/MWrEwVGKwBmrpHAiv8cszRn2wGYux5hI
- VZYcaO1JwzLtKRdZGBvq/liEwP49oyLsMDfwU/e9vrvibf5/pyF5jRi99PhmS0btomKa
- FFQw==
-X-Gm-Message-State: AOAM533frj+KlZf7dQe3qX8yoHDMBIqld3YoqKwBfEoL9HgcQZ8ZdyDz
- CHjcIB2sTnfLtqzurbOmf56G0LE2m8zkPpARwTI=
-X-Google-Smtp-Source: ABdhPJzeIFqaRFgtHCBVv3UkBvkbJ25pSuQX/PPgOa5jkAnaq+DgqTO5mlTEJC+4oW4om7Rf5pLjaomDHv0aKhmDr+0=
-X-Received: by 2002:adf:c501:: with SMTP id q1mr3593309wrf.147.1603387327777; 
- Thu, 22 Oct 2020 10:22:07 -0700 (PDT)
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 38E296F5FE
+ for <intel-gfx@lists.freedesktop.org>; Thu, 22 Oct 2020 17:34:05 +0000 (UTC)
+IronPort-SDR: +FQIrqm3Wgl6fNDkZ5fYa15wOEAYkhceiif52SpqemSwdA5p9E1AlxIVxIYI+qD8Appz/VC6Pa
+ l9KLDG7vt6hA==
+X-IronPort-AV: E=McAfee;i="6000,8403,9782"; a="146858945"
+X-IronPort-AV: E=Sophos;i="5.77,404,1596524400"; d="scan'208";a="146858945"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Oct 2020 10:31:04 -0700
+IronPort-SDR: UliNlfLY09awj0Z71bJMgL6EuuFVgOE+ffmdkW1JYOUiYI3AzHxRqPaNUf8SDJcSP6Dc701jRb
+ f0ypZah0utLA==
+X-IronPort-AV: E=Sophos;i="5.77,404,1596524400"; d="scan'208";a="359330041"
+Received: from gtax-ubuntu-2004.fm.intel.com ([10.105.23.106])
+ by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Oct 2020 10:31:04 -0700
+Date: Thu, 22 Oct 2020 17:30:59 +0000
+From: Matthew Brost <matthew.brost@intel.com>
+To: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+Message-ID: <20201022173059.GA36422@gtax-ubuntu-2004.fm.intel.com>
+References: <20201021191454.13418-1-daniele.ceraolospurio@intel.com>
 MIME-Version: 1.0
-References: <20201021163242.1458885-1-daniel.vetter@ffwll.ch>
- <CAF6AEGsHA33RGoX-iX=9mL+EgtxFJgLH4n2xKR9XckBA=SJhBw@mail.gmail.com>
-In-Reply-To: <CAF6AEGsHA33RGoX-iX=9mL+EgtxFJgLH4n2xKR9XckBA=SJhBw@mail.gmail.com>
-From: Rob Clark <robdclark@gmail.com>
-Date: Thu, 22 Oct 2020 10:21:56 -0700
-Message-ID: <CAF6AEGta-uZ=YV3aKTatWkp-XD7S1GzrW9Mcdyp=qsFrHibuiQ@mail.gmail.com>
-To: Daniel Vetter <daniel.vetter@ffwll.ch>
-Subject: Re: [Intel-gfx] [PATCH 1/3] drm/atomic-helpers: remove
- legacy_cursor_update hacks
+Content-Disposition: inline
+In-Reply-To: <20201021191454.13418-1-daniele.ceraolospurio@intel.com>
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/guc: skip disabling CTBs before
+ sanitizing the GuC
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,83 +49,75 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-arm-msm <linux-arm-msm@vger.kernel.org>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- DRI Development <dri-devel@lists.freedesktop.org>,
- Daniel Vetter <daniel.vetter@intel.com>, mikita.lipski@amd.com,
- Harry Wentland <harry.wentland@amd.com>,
- =?UTF-8?Q?Michel_D=C3=A4nzer?= <michel@daenzer.net>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gVGh1LCBPY3QgMjIsIDIwMjAgYXQgMTA6MDIgQU0gUm9iIENsYXJrIDxyb2JkY2xhcmtAZ21h
-aWwuY29tPiB3cm90ZToKPgo+IE9uIFdlZCwgT2N0IDIxLCAyMDIwIGF0IDk6MzIgQU0gRGFuaWVs
-IFZldHRlciA8ZGFuaWVsLnZldHRlckBmZndsbC5jaD4gd3JvdGU6Cj4gPgo+ID4gVGhlIHN0dWZm
-IG5ldmVyIHJlYWxseSB3b3JrZWQsIGFuZCBsZWFkcyB0byBsb3RzIG9mIGZ1biBiZWNhdXNlIGl0
-Cj4gPiBvdXQtb2Ytb3JkZXIgZnJlZXMgYXRvbWljIHN0YXRlcy4gV2hpY2ggdXBzZXRzIEtBU0FO
-LCBhbW9uZyBvdGhlcgo+ID4gdGhpbmdzLgo+ID4KPiA+IEZvciBhc3luYyB1cGRhdGVzIHdlIG5v
-dyBoYXZlIGEgbW9yZSBzb2xpZCBzb2x1dGlvbiB3aXRoIHRoZQo+ID4gLT5hdG9taWNfYXN5bmNf
-Y2hlY2sgYW5kIC0+YXRvbWljX2FzeW5jX2NvbW1pdCBob29rcy4gU3VwcG9ydCBmb3IgdGhhdAo+
-ID4gZm9yIG1zbSBhbmQgdmM0IGxhbmRlZC4gbm91dmVhdSBhbmQgaTkxNSBoYXZlIHRoZWlyIG93
-biBjb21taXQKPiA+IHJvdXRpbmVzLCBkb2luZyBzb21ldGhpbmcgc2ltaWxhci4KPiA+Cj4gPiBG
-b3IgZXZlcnlvbmUgZWxzZSBpdCdzIHByb2JhYmx5IGJldHRlciB0byByZW1vdmUgdGhlIHVzZS1h
-ZnRlci1mcmVlCj4gPiBidWcsIGFuZCBlbmNvdXJhZ2UgZm9sa3MgdG8gdXNlIHRoZSBhc3luYyBz
-dXBwb3J0IGluc3RlYWQuIFRoZQo+ID4gYWZmZWN0ZWQgZHJpdmVycyB3aGljaCByZWdpc3RlciBh
-IGxlZ2FjeSBjdXJzb3IgcGxhbmUgYW5kIGRvbid0IGVpdGhlcgo+ID4gdXNlIHRoZSBuZXcgYXN5
-bmMgc3R1ZmYgb3IgdGhlaXIgb3duIGNvbW1pdCByb3V0aW5lIGFyZTogYW1kZ3B1LAo+ID4gYXRt
-ZWwsIG1lZGlhdGVrLCBxeGwsIHJvY2tjaGlwLCBzdGksIHN1bjRpLCB0ZWdyYSwgdmlydGlvLCBh
-bmQgdm13Z2Z4Lgo+ID4KPiA+IEluc3BpcmVkIGJ5IGFuIGFtZGdwdSBidWcgcmVwb3J0Lgo+ID4K
-PiA+IHYyOiBEcm9wIFJGQywgSSB0aGluayB3aXRoIGFtZGdwdSBjb252ZXJ0ZWQgb3ZlciB0byB1
-c2UKPiA+IGF0b21pY19hc3luY19jaGVjay9jb21taXQgZG9uZSBpbgo+ID4KPiA+IGNvbW1pdCA2
-NzRlNzhhY2FlMGRmYjRiZWI1NjEzMmU0MWNiYWU1YjYwZjdkNjYyCj4gPiBBdXRob3I6IE5pY2hv
-bGFzIEthemxhdXNrYXMgPG5pY2hvbGFzLmthemxhdXNrYXNAYW1kLmNvbT4KPiA+IERhdGU6ICAg
-V2VkIERlYyA1IDE0OjU5OjA3IDIwMTggLTA1MDAKPiA+Cj4gPiAgICAgZHJtL2FtZC9kaXNwbGF5
-OiBBZGQgZmFzdCBwYXRoIGZvciBjdXJzb3IgcGxhbmUgdXBkYXRlcwo+ID4KPiA+IHdlIGRvbid0
-IGhhdmUgYW55IGRyaXZlciBhbnltb3JlIHdoZXJlIHdlIGhhdmUgdXNlcnNwYWNlIGV4cGVjdGlu
-Zwo+ID4gc29saWQgbGVnYWN5IGN1cnNvciBzdXBwb3J0IF9hbmRfIHRoZXkgYXJlIHVzaW5nIHRo
-ZSBhdG9taWMgaGVscGVycyBpbgo+ID4gdGhlaXIgZnVsbHkgZ2xvcnkuIFNvIHdlIGNhbiByZXRp
-cmUgdGhpcy4KPiA+Cj4gPiBSZWZlcmVuY2VzOiBodHRwczovL2J1Z3ppbGxhLmtlcm5lbC5vcmcv
-c2hvd19idWcuY2dpP2lkPTE5OTQyNQo+ID4gQ2M6IG1pa2l0YS5saXBza2lAYW1kLmNvbQo+ID4g
-Q2M6IE1pY2hlbCBEw6RuemVyIDxtaWNoZWxAZGFlbnplci5uZXQ+Cj4gPiBDYzogaGFycnkud2Vu
-dGxhbmRAYW1kLmNvbQo+ID4gU2lnbmVkLW9mZi1ieTogRGFuaWVsIFZldHRlciA8ZGFuaWVsLnZl
-dHRlckBpbnRlbC5jb20+Cj4KPiBUaGlzICpjb21wbGV0ZWx5KiBkZXN0cm95cyBmcHMgd2hlbiB0
-aGVyZSBpcyBjdXJzb3IgbW92ZW1lbnQsIGl0IHdvdWxkCj4gYmUgYSBwcmV0dHkgYmFkIHJlZ3Jl
-c3Npb24sIHNvIG5hawoKV2hpY2ggSSAqZ3Vlc3MqIGlzIGR1ZSB0byBkcHUgbm90IHdpcmluZyB1
-cCB0aGUgcGxhbmUtPmFzeW5jXyogZnVuY3MsCmVmZmVjdGl2ZWx5IG1ha2luZyBjdXJzb3IgdXBk
-YXRlcyBzeW5jaHJvbm91cy4uIGJ1dCBpdCB3aWxsIHRha2Ugc29tZQp0aW1lIHRvIHNvcnQgb3V0
-IDotKAoKPiBCUiwKPiAtUgo+Cj4gPiAtLS0KPiA+ICBkcml2ZXJzL2dwdS9kcm0vZHJtX2F0b21p
-Y19oZWxwZXIuYyB8IDEzIC0tLS0tLS0tLS0tLS0KPiA+ICAxIGZpbGUgY2hhbmdlZCwgMTMgZGVs
-ZXRpb25zKC0pCj4gPgo+ID4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9kcm1fYXRvbWlj
-X2hlbHBlci5jIGIvZHJpdmVycy9ncHUvZHJtL2RybV9hdG9taWNfaGVscGVyLmMKPiA+IGluZGV4
-IGE3YmNiNGI0NTg2Yy4uNTQ5YTMxZTYwNDJjIDEwMDY0NAo+ID4gLS0tIGEvZHJpdmVycy9ncHUv
-ZHJtL2RybV9hdG9taWNfaGVscGVyLmMKPiA+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9kcm1fYXRv
-bWljX2hlbHBlci5jCj4gPiBAQCAtMTQ4MSwxMyArMTQ4MSw2IEBAIGRybV9hdG9taWNfaGVscGVy
-X3dhaXRfZm9yX3ZibGFua3Moc3RydWN0IGRybV9kZXZpY2UgKmRldiwKPiA+ICAgICAgICAgaW50
-IGksIHJldDsKPiA+ICAgICAgICAgdW5zaWduZWQgY3J0Y19tYXNrID0gMDsKPiA+Cj4gPiAtICAg
-ICAgICAvKgo+ID4gLSAgICAgICAgICogTGVnYWN5IGN1cnNvciBpb2N0bHMgYXJlIGNvbXBsZXRl
-bHkgdW5zeW5jZWQsIGFuZCB1c2Vyc3BhY2UKPiA+IC0gICAgICAgICAqIHJlbGllcyBvbiB0aGF0
-IChieSBkb2luZyB0b25zIG9mIGN1cnNvciB1cGRhdGVzKS4KPiA+IC0gICAgICAgICAqLwo+ID4g
-LSAgICAgICBpZiAob2xkX3N0YXRlLT5sZWdhY3lfY3Vyc29yX3VwZGF0ZSkKPiA+IC0gICAgICAg
-ICAgICAgICByZXR1cm47Cj4gPiAtCj4gPiAgICAgICAgIGZvcl9lYWNoX29sZG5ld19jcnRjX2lu
-X3N0YXRlKG9sZF9zdGF0ZSwgY3J0Yywgb2xkX2NydGNfc3RhdGUsIG5ld19jcnRjX3N0YXRlLCBp
-KSB7Cj4gPiAgICAgICAgICAgICAgICAgaWYgKCFuZXdfY3J0Y19zdGF0ZS0+YWN0aXZlKQo+ID4g
-ICAgICAgICAgICAgICAgICAgICAgICAgY29udGludWU7Cj4gPiBAQCAtMjEwNiwxMiArMjA5OSw2
-IEBAIGludCBkcm1fYXRvbWljX2hlbHBlcl9zZXR1cF9jb21taXQoc3RydWN0IGRybV9hdG9taWNf
-c3RhdGUgKnN0YXRlLAo+ID4gICAgICAgICAgICAgICAgICAgICAgICAgY29udGludWU7Cj4gPiAg
-ICAgICAgICAgICAgICAgfQo+ID4KPiA+IC0gICAgICAgICAgICAgICAvKiBMZWdhY3kgY3Vyc29y
-IHVwZGF0ZXMgYXJlIGZ1bGx5IHVuc3luY2VkLiAqLwo+ID4gLSAgICAgICAgICAgICAgIGlmIChz
-dGF0ZS0+bGVnYWN5X2N1cnNvcl91cGRhdGUpIHsKPiA+IC0gICAgICAgICAgICAgICAgICAgICAg
-IGNvbXBsZXRlX2FsbCgmY29tbWl0LT5mbGlwX2RvbmUpOwo+ID4gLSAgICAgICAgICAgICAgICAg
-ICAgICAgY29udGludWU7Cj4gPiAtICAgICAgICAgICAgICAgfQo+ID4gLQo+ID4gICAgICAgICAg
-ICAgICAgIGlmICghbmV3X2NydGNfc3RhdGUtPmV2ZW50KSB7Cj4gPiAgICAgICAgICAgICAgICAg
-ICAgICAgICBjb21taXQtPmV2ZW50ID0ga3phbGxvYyhzaXplb2YoKmNvbW1pdC0+ZXZlbnQpLAo+
-ID4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgR0ZQX0tF
-Uk5FTCk7Cj4gPiAtLQo+ID4gMi4yOC4wCj4gPgo+ID4gX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX18KPiA+IEludGVsLWdmeCBtYWlsaW5nIGxpc3QKPiA+IElu
-dGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKPiA+IGh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0
-b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cl9fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4
-QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWls
-bWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
+On Wed, Oct 21, 2020 at 12:14:54PM -0700, Daniele Ceraolo Spurio wrote:
+> If we're about to sanitize the GuC, something might have gone wrong
+> beforehand, so we should avoid trying to talk to it. Even if GuC is
+> still running fine, the sanitize will reset its internal state and clear
+> the CTB registration, so there is still no need to explicitly do so.
+> 
+> References: https://gitlab.freedesktop.org/drm/intel/-/issues/2469
+> Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+
+Looks good to me.
+Reviewed-by: Matthew Brost <matthew.brost@intel.com>
+
+> Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
+> Cc: Matthew Brost <matthew.brost@intel.com>
+> Cc: John Harrison <John.C.Harrison@Intel.com>
+> ---
+>  drivers/gpu/drm/i915/gt/uc/intel_uc.c | 8 +-------
+>  1 file changed, 1 insertion(+), 7 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_uc.c b/drivers/gpu/drm/i915/gt/uc/intel_uc.c
+> index 4e6070e95fe9..309eef9313e8 100644
+> --- a/drivers/gpu/drm/i915/gt/uc/intel_uc.c
+> +++ b/drivers/gpu/drm/i915/gt/uc/intel_uc.c
+> @@ -486,7 +486,7 @@ static int __uc_init_hw(struct intel_uc *uc)
+>  
+>  	ret = intel_guc_sample_forcewake(guc);
+>  	if (ret)
+> -		goto err_communication;
+> +		goto err_log_capture;
+>  
+>  	if (intel_uc_uses_guc_submission(uc))
+>  		intel_guc_submission_enable(guc);
+> @@ -511,8 +511,6 @@ static int __uc_init_hw(struct intel_uc *uc)
+>  	/*
+>  	 * We've failed to load the firmware :(
+>  	 */
+> -err_communication:
+> -	guc_disable_communication(guc);
+>  err_log_capture:
+>  	__uc_capture_load_err_log(uc);
+>  err_out:
+> @@ -540,9 +538,6 @@ static void __uc_fini_hw(struct intel_uc *uc)
+>  	if (intel_uc_uses_guc_submission(uc))
+>  		intel_guc_submission_disable(guc);
+>  
+> -	if (guc_communication_enabled(guc))
+> -		guc_disable_communication(guc);
+> -
+>  	__uc_sanitize(uc);
+>  }
+>  
+> @@ -559,7 +554,6 @@ void intel_uc_reset_prepare(struct intel_uc *uc)
+>  	if (!intel_guc_is_ready(guc))
+>  		return;
+>  
+> -	guc_disable_communication(guc);
+>  	__uc_sanitize(uc);
+>  }
+>  
+> -- 
+> 2.24.1
+> 
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
