@@ -1,48 +1,40 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1497C295C23
-	for <lists+intel-gfx@lfdr.de>; Thu, 22 Oct 2020 11:42:54 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id A6E53295C32
+	for <lists+intel-gfx@lfdr.de>; Thu, 22 Oct 2020 11:48:58 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 53D1A6E0BF;
-	Thu, 22 Oct 2020 09:42:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0F4E26F57B;
+	Thu, 22 Oct 2020 09:48:57 +0000 (UTC)
 X-Original-To: Intel-gfx@lists.freedesktop.org
 Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DCC446E0BF
- for <Intel-gfx@lists.freedesktop.org>; Thu, 22 Oct 2020 09:42:49 +0000 (UTC)
-IronPort-SDR: gOPx2VdDMWg3yvrXnRL1vEKBk8MuV5evMq3G5YKoiiXJ7cSc56ugEwxPkDUWvrTFhJnuAci7ip
- jMs6/62fKooA==
-X-IronPort-AV: E=McAfee;i="6000,8403,9781"; a="167597599"
-X-IronPort-AV: E=Sophos;i="5.77,404,1596524400"; d="scan'208";a="167597599"
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7FD886F57B;
+ Thu, 22 Oct 2020 09:48:56 +0000 (UTC)
+IronPort-SDR: iL2dI6PQNZ2fPrly90qWdDUWwQU3y0KZaALqdvHbXyK8lrJMBVV1/LqmezwB/H/sML52U0gsq2
+ lybf+SI/SMIw==
+X-IronPort-AV: E=McAfee;i="6000,8403,9781"; a="155286677"
+X-IronPort-AV: E=Sophos;i="5.77,404,1596524400"; d="scan'208";a="155286677"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Oct 2020 02:42:49 -0700
-IronPort-SDR: IRsBD552uOzXPo6TEIRsrtCg78lKPuLbrgaYQL1/Fvt5m63fofryLqnEqls95J9w680Ptw3LCA
- 0BRlCYGvSgXw==
-X-IronPort-AV: E=Sophos;i="5.77,404,1596524400"; d="scan'208";a="533895046"
-Received: from peterhae-mobl1.ger.corp.intel.com (HELO [10.249.41.22])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Oct 2020 02:48:55 -0700
+IronPort-SDR: 5VGFhJ7tB9nG1dRvsxo9AQWm0cqbc92lwK46ZR1/STVZ/847/QS7AJX0cEWlQciHnop9zmvQDQ
+ gglkEVMaVrNA==
+X-IronPort-AV: E=Sophos;i="5.77,404,1596524400"; d="scan'208";a="533896955"
+Received: from peterhae-mobl1.ger.corp.intel.com (HELO localhost.localdomain)
  ([10.249.41.22])
  by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Oct 2020 02:42:48 -0700
-To: Chris Wilson <chris@chris-wilson.co.uk>, Intel-gfx@lists.freedesktop.org
-References: <20201020100822.543332-2-tvrtko.ursulin@linux.intel.com>
- <20201020161144.678668-1-tvrtko.ursulin@linux.intel.com>
- <160321074478.17091.14742863826313913540@build.alporthouse.com>
+ 22 Oct 2020 02:48:54 -0700
 From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-Message-ID: <3f24af14-0b50-3240-11e0-b2b98dfcb692@linux.intel.com>
-Date: Thu, 22 Oct 2020 10:42:46 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+To: igt-dev@lists.freedesktop.org
+Date: Thu, 22 Oct 2020 10:48:50 +0100
+Message-Id: <20201022094850.1670710-1-tvrtko.ursulin@linux.intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-In-Reply-To: <160321074478.17091.14742863826313913540@build.alporthouse.com>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH v2 2/2] drm/i915/pmu: Fix CPU hotplug with
- multiple GPUs
+Subject: [Intel-gfx] [PATCH i-g-t v2] tests/i915/perf_pmu: PCI unbind test
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,198 +47,175 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Daniel Vetter <daniel.vetter@intel.com>
+Cc: Intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 
-On 20/10/2020 17:19, Chris Wilson wrote:
-> Quoting Tvrtko Ursulin (2020-10-20 17:11:44)
->> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
->>
->> Since we keep a driver global mask of online CPUs and base the decision
->> whether PMU needs to be migrated upon it, we need to make sure the
->> migration is done for all registered PMUs (so GPUs).
->>
->> To do this we need to track the current CPU for each PMU and base the
->> decision on whether to migrate on a comparison between global and local
->> state.
->>
->> At the same time, since dynamic CPU hotplug notification slots are a
->> scarce resource and given how we already register the multi instance type
->> state, we can and should add multiple instance of the i915 PMU to this
->> same state and not allocate a new one for every GPU.
->>
->> v2:
->>   * Use pr_notice. (Chris)
->>
->> v3:
->>   * Handle a nasty interaction where unregistration which triggers a false
->>     CPU offline event. (Chris)
->>
->> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
->> Suggested-by: Daniel Vetter <daniel.vetter@intel.com> # dynamic slot optimisation
->> Cc: Chris Wilson <chris@chris-wilson.co.uk>
->> ---
->>   drivers/gpu/drm/i915/i915_pci.c |  7 +++-
->>   drivers/gpu/drm/i915/i915_pmu.c | 57 +++++++++++++++++++++------------
->>   drivers/gpu/drm/i915/i915_pmu.h |  6 +++-
->>   3 files changed, 48 insertions(+), 22 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/i915/i915_pci.c b/drivers/gpu/drm/i915/i915_pci.c
->> index 27964ac0638a..a384f51c91c1 100644
->> --- a/drivers/gpu/drm/i915/i915_pci.c
->> +++ b/drivers/gpu/drm/i915/i915_pci.c
->> @@ -1150,9 +1150,13 @@ static int __init i915_init(void)
->>                  return 0;
->>          }
->>   
->> +       i915_pmu_init();
->> +
->>          err = pci_register_driver(&i915_pci_driver);
->> -       if (err)
->> +       if (err) {
->> +               i915_pmu_exit();
->>                  return err;
-> 
-> We could do an onion bhaji and call i915_globals_exit() as well.
-> 
->> +       }
->>   
->>          i915_perf_sysctl_register();
->>          return 0;
->> @@ -1166,6 +1170,7 @@ static void __exit i915_exit(void)
->>          i915_perf_sysctl_unregister();
->>          pci_unregister_driver(&i915_pci_driver);
->>          i915_globals_exit();
->> +       i915_pmu_exit();
-> 
-> pmu_exit then globals_exit to pair with i915_init?
+Test driver unbind from device with active PMU client.
 
-Maybe later, sorry.
+v2:
+ * Verify successful open after rebind. (Chris)
 
->>   }
->>   
->>   module_init(i915_init);
->> diff --git a/drivers/gpu/drm/i915/i915_pmu.c b/drivers/gpu/drm/i915/i915_pmu.c
->> index 51ed7d0efcdc..cd786ad12be7 100644
->> --- a/drivers/gpu/drm/i915/i915_pmu.c
->> +++ b/drivers/gpu/drm/i915/i915_pmu.c
->> @@ -30,6 +30,7 @@
->>   #define ENGINE_SAMPLE_BITS (1 << I915_PMU_SAMPLE_BITS)
->>   
->>   static cpumask_t i915_pmu_cpumask;
->> +static unsigned int i915_pmu_target_cpu = -1;
->>   
->>   static u8 engine_config_sample(u64 config)
->>   {
->> @@ -1049,25 +1050,39 @@ static int i915_pmu_cpu_online(unsigned int cpu, struct hlist_node *node)
->>   static int i915_pmu_cpu_offline(unsigned int cpu, struct hlist_node *node)
->>   {
->>          struct i915_pmu *pmu = hlist_entry_safe(node, typeof(*pmu), cpuhp.node);
->> -       unsigned int target;
->> +       unsigned int target = i915_pmu_target_cpu;
->>   
->>          GEM_BUG_ON(!pmu->base.event_init);
->>   
->> +       /*
->> +        * Unregistering an instance generates a CPU offline event which we must
->> +        * ignore to avoid incorrectly modifying the shared i915_pmu_cpumask.
->> +        */
->> +       if (pmu->closed)
->> +               return 0;
->> +
->>          if (cpumask_test_and_clear_cpu(cpu, &i915_pmu_cpumask)) {
->>                  target = cpumask_any_but(topology_sibling_cpumask(cpu), cpu);
->> +
->>                  /* Migrate events if there is a valid target */
->>                  if (target < nr_cpu_ids) {
->>                          cpumask_set_cpu(target, &i915_pmu_cpumask);
->> -                       perf_pmu_migrate_context(&pmu->base, cpu, target);
->> +                       i915_pmu_target_cpu = target;
->>                  }
->>          }
->>   
->> +       if (target < nr_cpu_ids && target != pmu->cpuhp.cpu) {
->> +               perf_pmu_migrate_context(&pmu->base, cpu, target);
->> +               pmu->cpuhp.cpu = target;
->> +       }
->> +
->>          return 0;
->>   }
->>   
->> -static int i915_pmu_register_cpuhp_state(struct i915_pmu *pmu)
->> +static enum cpuhp_state cpuhp_slot = CPUHP_INVALID;
->> +
->> +void i915_pmu_init(void)
->>   {
->> -       enum cpuhp_state slot;
->>          int ret;
->>   
->>          ret = cpuhp_setup_state_multi(CPUHP_AP_ONLINE_DYN,
->> @@ -1075,27 +1090,29 @@ static int i915_pmu_register_cpuhp_state(struct i915_pmu *pmu)
->>                                        i915_pmu_cpu_online,
->>                                        i915_pmu_cpu_offline);
->>          if (ret < 0)
->> -               return ret;
->> +               pr_notice("Failed to setup cpuhp state for i915 PMU! (%d)\n",
->> +                         ret);
->> +       else
->> +               cpuhp_slot = ret;
->> +}
->>   
->> -       slot = ret;
->> -       ret = cpuhp_state_add_instance(slot, &pmu->cpuhp.node);
->> -       if (ret) {
->> -               cpuhp_remove_multi_state(slot);
->> -               return ret;
->> -       }
->> +void i915_pmu_exit(void)
->> +{
->> +       if (cpuhp_slot != CPUHP_INVALID)
->> +               cpuhp_remove_multi_state(cpuhp_slot);
->> +}
->>   
->> -       pmu->cpuhp.slot = slot;
->> -       return 0;
->> +static int i915_pmu_register_cpuhp_state(struct i915_pmu *pmu)
->> +{
->> +       if (cpuhp_slot == CPUHP_INVALID)
->> +               return -EINVAL;
->> +
->> +       return cpuhp_state_add_instance(cpuhp_slot, &pmu->cpuhp.node);
->>   }
->>   
->>   static void i915_pmu_unregister_cpuhp_state(struct i915_pmu *pmu)
->>   {
->> -       struct drm_i915_private *i915 = container_of(pmu, typeof(*i915), pmu);
->> -
->> -       drm_WARN_ON(&i915->drm, pmu->cpuhp.slot == CPUHP_INVALID);
->> -       drm_WARN_ON(&i915->drm, cpuhp_state_remove_instance(pmu->cpuhp.slot, &pmu->cpuhp.node));
->> -       cpuhp_remove_multi_state(pmu->cpuhp.slot);
->> -       pmu->cpuhp.slot = CPUHP_INVALID;
->> +       cpuhp_state_remove_instance(cpuhp_slot, &pmu->cpuhp.node);
->>   }
->>   
->>   static bool is_igp(struct drm_i915_private *i915)
->> @@ -1129,7 +1146,7 @@ void i915_pmu_register(struct drm_i915_private *i915)
->>          spin_lock_init(&pmu->lock);
->>          hrtimer_init(&pmu->timer, CLOCK_MONOTONIC, HRTIMER_MODE_REL);
->>          pmu->timer.function = i915_sample;
->> -       pmu->cpuhp.slot = CPUHP_INVALID;
->> +       pmu->cpuhp.cpu = -1;
-> 
-> To the best of my limited understanding of cpuhp,
-> Reviewed-by: Chris Wilson <chris@chris-wilson.co.uk>
+Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+---
+ tests/i915/perf_pmu.c | 113 ++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 113 insertions(+)
 
-Pushed these two, having declared shard runs flip-flops are unrelated. 
-Thanks!
+diff --git a/tests/i915/perf_pmu.c b/tests/i915/perf_pmu.c
+index cb7273142b8f..76bfa0d40e2c 100644
+--- a/tests/i915/perf_pmu.c
++++ b/tests/i915/perf_pmu.c
+@@ -43,6 +43,7 @@
+ #include "igt.h"
+ #include "igt_core.h"
+ #include "igt_device.h"
++#include "igt_device_scan.h"
+ #include "igt_kmod.h"
+ #include "igt_perf.h"
+ #include "igt_sysfs.h"
+@@ -2011,6 +2012,80 @@ static void test_unload(unsigned int num_engines)
+ 	igt_assert_eq(unload_i915(), 0);
+ }
+ 
++static void set_filter_from_device(int fd)
++{
++	const char *filter_type = "sys:";
++	char filter[strlen(filter_type) + PATH_MAX + 1];
++	char *dst = stpcpy(filter, filter_type);
++	char path[PATH_MAX + 1];
++
++	igt_assert(igt_sysfs_path(fd, path, PATH_MAX));
++	igt_ignore_warn(strncat(path, "/device", PATH_MAX - strlen(path)));
++	igt_assert(realpath(path, dst));
++
++	igt_device_filter_free_all();
++	igt_assert_eq(igt_device_filter_add(filter), 1);
++}
++
++struct rebind_data
++{
++	int sysfs;
++	uint64_t perf_type;
++	char *bus_addr;
++};
++
++static void test_rebind(struct rebind_data *data)
++{
++	struct igt_helper_process pmu_client = { };
++	const unsigned int timeout = 5;
++	int pmu;
++
++	/* Start rapid PMU traffic from a background process. */
++	igt_fork_helper(&pmu_client) {
++		pmu = igt_perf_open(data->perf_type, I915_PMU_INTERRUPTS);
++		igt_assert(pmu >= 0);
++
++		for (;;) {
++			pmu_read_single(pmu);
++			usleep(500);
++		}
++	}
++
++	/* Let the child run for a bit. */
++	usleep(1e6);
++
++	/* Unbind the device. */
++	igt_set_timeout(timeout, "Driver unbind timeout!");
++	igt_assert_f(igt_sysfs_set(data->sysfs, "unbind", data->bus_addr),
++		     "Driver unbind failure!\n");
++	igt_reset_timeout();
++
++	/* Check new PMUs cannot be opened. */
++	pmu = igt_perf_open(data->perf_type, I915_PMU_INTERRUPTS);
++	igt_assert(pmu < 0);
++	usleep(1e6);
++	pmu = igt_perf_open(data->perf_type, I915_PMU_INTERRUPTS);
++	igt_assert(pmu < 0);
++
++	/* Stop background PMU traffic. */
++	usleep(1e6);
++	igt_stop_helper(&pmu_client);
++
++	/* Bind the device back. */
++	igt_set_timeout(timeout, "Driver bind timeout!");
++	igt_assert_f(igt_sysfs_set(data->sysfs, "bind", data->bus_addr),
++		     "Driver bind failure\n!");
++	igt_reset_timeout();
++
++	igt_fail_on_f(faccessat(data->sysfs, data->bus_addr, F_OK, 0),
++		      "Device not present!\n");
++
++	/* Check new PMUs can be opened. */
++	pmu = igt_perf_open(data->perf_type, I915_PMU_INTERRUPTS);
++	igt_assert(pmu >= 0);
++	close(pmu);
++}
++
+ #define test_each_engine(T, i915, e) \
+ 	igt_subtest_with_dynamic(T) __for_each_physical_engine(i915, e) \
+ 		igt_dynamic_f("%s", e->name)
+@@ -2026,6 +2101,7 @@ igt_main
+ 	const unsigned int num_other_metrics =
+ 		I915_PMU_LAST - __I915_PMU_OTHER(0) + 1;
+ 	unsigned int num_engines = 0;
++	struct rebind_data rebind;
+ 	int fd = -1;
+ 
+ 	igt_fixture {
+@@ -2269,9 +2345,46 @@ igt_main
+ 	}
+ 
+ 	igt_fixture {
++		const char *filter;
++		char *sysfs_path;
++		int sysfs_dev;
++
++		/* Prepare for the rebind test before closing the device. */
++		set_filter_from_device(fd);
++
++		filter = igt_device_filter_get(0);
++		igt_assert(filter);
++
++		rebind.bus_addr = strrchr(filter, '/');
++		igt_assert(rebind.bus_addr++);
++
++		sysfs_path = strchr(filter, ':');
++		igt_assert(sysfs_path++);
++		igt_debug("sysfs path = %s\n", sysfs_path);
++
++		sysfs_dev = open(sysfs_path, O_DIRECTORY);
++		igt_assert_fd(sysfs_dev);
++
++		rebind.sysfs = openat(sysfs_dev, "driver", O_DIRECTORY);
++		igt_assert_fd(rebind.sysfs);
++
++		close(sysfs_dev);
++
++		rebind.perf_type = i915_perf_type_id(fd);
++		igt_debug("type id = %"PRIu64"\n", rebind.perf_type);
++
++		/* Close the device - REQUIRED step for following tests! */
+ 		close(fd);
+ 	}
+ 
++	igt_subtest("rebind")
++		test_rebind(&rebind);
++
++	igt_fixture {
++		close(rebind.sysfs);
++		igt_device_filter_free_all();
++	}
++
+ 	igt_subtest("module-unload") {
+ 		igt_require(unload_i915() == 0);
+ 		for (int pass = 0; pass < 3; pass++)
+-- 
+2.25.1
 
-Regards,
-
-Tvrtko
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
