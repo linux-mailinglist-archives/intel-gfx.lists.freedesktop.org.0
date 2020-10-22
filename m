@@ -2,43 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 50C8D295D6A
-	for <lists+intel-gfx@lfdr.de>; Thu, 22 Oct 2020 13:33:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 95570295D82
+	for <lists+intel-gfx@lfdr.de>; Thu, 22 Oct 2020 13:39:27 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B4C8E6E0CD;
-	Thu, 22 Oct 2020 11:33:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 719DC894D4;
+	Thu, 22 Oct 2020 11:39:24 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0394F6E0CD
- for <intel-gfx@lists.freedesktop.org>; Thu, 22 Oct 2020 11:33:00 +0000 (UTC)
-IronPort-SDR: Ib2BCkWLa7j8WxwU+2PFpCtE7fxuisDszzbISCgP53brn+yzUTc5IVjeHslOYUdYk743ef840W
- MU+Nxfs6loJA==
-X-IronPort-AV: E=McAfee;i="6000,8403,9781"; a="154464766"
-X-IronPort-AV: E=Sophos;i="5.77,404,1596524400"; d="scan'208";a="154464766"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Oct 2020 04:32:55 -0700
-IronPort-SDR: pi6GzvvgDOba1Q4NPatJnbwBIaIFp60yQA6qC8b9h717dqIQrIoGHL/vQ6ixXgM/31okVYXx/s
- sjNgz/X3KAEA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.77,404,1596524400"; d="scan'208";a="359223936"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by FMSMGA003.fm.intel.com with SMTP; 22 Oct 2020 04:32:52 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 22 Oct 2020 14:32:52 +0300
-Date: Thu, 22 Oct 2020 14:32:52 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Chris Wilson <chris@chris-wilson.co.uk>
-Message-ID: <20201022113252.GL6112@intel.com>
-References: <20201022071637.17240-1-chris@chris-wilson.co.uk>
+Received: from fireflyinternet.com (unknown [77.68.26.236])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A461B6E0ED
+ for <intel-gfx@lists.freedesktop.org>; Thu, 22 Oct 2020 11:39:22 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from localhost (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
+ 22774004-1500050 for multiple; Thu, 22 Oct 2020 12:38:55 +0100
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20201022071637.17240-1-chris@chris-wilson.co.uk>
-X-Patchwork-Hint: comment
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <20201022113252.GL6112@intel.com>
+References: <20201022071637.17240-1-chris@chris-wilson.co.uk>
+ <20201022113252.GL6112@intel.com>
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Date: Thu, 22 Oct 2020 12:38:54 +0100
+Message-ID: <160336673428.18131.13841687704954985601@build.alporthouse.com>
+User-Agent: alot/0.9
 Subject: Re: [Intel-gfx] [PATCH] drm/i915: Reset the interrupt mask on
  disabling interrupts
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -54,163 +41,96 @@ List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Oct 22, 2020 at 08:16:37AM +0100, Chris Wilson wrote:
-> As we disable the interrupt during suspend, also reset the irq_mask to
-> short-circuit subsystems that later try to turn off their interrupt
-> source.
-> =
-
-> <4>[  101.816730] i915 0000:00:02.0: drm_WARN_ON(!intel_irqs_enabled(dev_=
-priv))
-> <4>[  101.816853] WARNING: CPU: 3 PID: 4241 at drivers/gpu/drm/i915/i915_=
-irq.c:343 ilk_update_display_irq+0xb3/0x130 [i915]
-
-Doh. Lack of irq symmetry in suspend vs. resume strikes again :(
-
-> =
-
-> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-> Cc: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> ---
->  drivers/gpu/drm/i915/i915_irq.c | 25 ++++++++++---------------
->  1 file changed, 10 insertions(+), 15 deletions(-)
-> =
-
-> diff --git a/drivers/gpu/drm/i915/i915_irq.c b/drivers/gpu/drm/i915/i915_=
-irq.c
-> index 09221ca1ffb2..cbb71fc73313 100644
-> --- a/drivers/gpu/drm/i915/i915_irq.c
-> +++ b/drivers/gpu/drm/i915/i915_irq.c
-> @@ -337,17 +337,14 @@ void ilk_update_display_irq(struct drm_i915_private=
- *dev_priv,
->  	u32 new_val;
->  =
-
->  	lockdep_assert_held(&dev_priv->irq_lock);
-> -
->  	drm_WARN_ON(&dev_priv->drm, enabled_irq_mask & ~interrupt_mask);
->  =
-
-> -	if (drm_WARN_ON(&dev_priv->drm, !intel_irqs_enabled(dev_priv)))
-> -		return;
-> -
->  	new_val =3D dev_priv->irq_mask;
->  	new_val &=3D ~interrupt_mask;
->  	new_val |=3D (~enabled_irq_mask & interrupt_mask);
->  =
-
-> -	if (new_val !=3D dev_priv->irq_mask) {
-> +	if (new_val !=3D dev_priv->irq_mask &&
-> +	    !drm_WARN_ON(&dev_priv->drm, !intel_irqs_enabled(dev_priv))) {
->  		dev_priv->irq_mask =3D new_val;
->  		I915_WRITE(DEIMR, dev_priv->irq_mask);
->  		POSTING_READ(DEIMR);
-> @@ -368,19 +365,16 @@ static void bdw_update_port_irq(struct drm_i915_pri=
-vate *dev_priv,
->  	u32 old_val;
->  =
-
->  	lockdep_assert_held(&dev_priv->irq_lock);
-> -
->  	drm_WARN_ON(&dev_priv->drm, enabled_irq_mask & ~interrupt_mask);
->  =
-
-> -	if (drm_WARN_ON(&dev_priv->drm, !intel_irqs_enabled(dev_priv)))
-> -		return;
-> -
->  	old_val =3D I915_READ(GEN8_DE_PORT_IMR);
->  =
-
->  	new_val =3D old_val;
->  	new_val &=3D ~interrupt_mask;
->  	new_val |=3D (~enabled_irq_mask & interrupt_mask);
->  =
-
-> -	if (new_val !=3D old_val) {
-> +	if (new_val !=3D old_val &&
-> +	    !drm_WARN_ON(&dev_priv->drm, !intel_irqs_enabled(dev_priv))) {
->  		I915_WRITE(GEN8_DE_PORT_IMR, new_val);
->  		POSTING_READ(GEN8_DE_PORT_IMR);
->  	}
-> @@ -401,17 +395,14 @@ void bdw_update_pipe_irq(struct drm_i915_private *d=
-ev_priv,
->  	u32 new_val;
->  =
-
->  	lockdep_assert_held(&dev_priv->irq_lock);
-> -
->  	drm_WARN_ON(&dev_priv->drm, enabled_irq_mask & ~interrupt_mask);
->  =
-
-> -	if (drm_WARN_ON(&dev_priv->drm, !intel_irqs_enabled(dev_priv)))
-> -		return;
-> -
->  	new_val =3D dev_priv->de_irq_mask[pipe];
->  	new_val &=3D ~interrupt_mask;
->  	new_val |=3D (~enabled_irq_mask & interrupt_mask);
->  =
-
-> -	if (new_val !=3D dev_priv->de_irq_mask[pipe]) {
-> +	if (new_val !=3D dev_priv->de_irq_mask[pipe] &&
-> +	    !drm_WARN_ON(&dev_priv->drm, !intel_irqs_enabled(dev_priv))) {
->  		dev_priv->de_irq_mask[pipe] =3D new_val;
->  		I915_WRITE(GEN8_DE_PIPE_IMR(pipe), dev_priv->de_irq_mask[pipe]);
->  		POSTING_READ(GEN8_DE_PIPE_IMR(pipe));
-
-Not resetting de_irq_mask[] anywhere? Hmm. we seem to be lacking a
-gen8_de_irq_reset()...
-
-> @@ -2951,6 +2942,8 @@ static void ilk_irq_reset(struct drm_i915_private *=
-dev_priv)
->  	struct intel_uncore *uncore =3D &dev_priv->uncore;
->  =
-
->  	GEN3_IRQ_RESET(uncore, DE);
-> +	dev_priv->irq_mask =3D ~0u;
-> +
->  	if (IS_GEN(dev_priv, 7))
->  		intel_uncore_write(uncore, GEN7_ERR_INT, 0xffffffff);
->  =
-
-> @@ -3864,6 +3857,7 @@ static void i915_irq_reset(struct drm_i915_private =
-*dev_priv)
->  	i9xx_pipestat_irq_reset(dev_priv);
->  =
-
->  	GEN3_IRQ_RESET(uncore, GEN2_);
-> +	dev_priv->irq_mask =3D ~0u;
->  }
->  =
-
->  static void i915_irq_postinstall(struct drm_i915_private *dev_priv)
-> @@ -3970,6 +3964,7 @@ static void i965_irq_reset(struct drm_i915_private =
-*dev_priv)
->  	i9xx_pipestat_irq_reset(dev_priv);
->  =
-
->  	GEN3_IRQ_RESET(uncore, GEN2_);
-> +	dev_priv->irq_mask =3D ~0u;
->  }
-
-Missing gen2?
-
->  =
-
->  static void i965_irq_postinstall(struct drm_i915_private *dev_priv)
-> -- =
-
-> 2.20.1
-
--- =
-
-Ville Syrj=E4l=E4
-Intel
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+UXVvdGluZyBWaWxsZSBTeXJqw6Rsw6QgKDIwMjAtMTAtMjIgMTI6MzI6NTIpCj4gT24gVGh1LCBP
+Y3QgMjIsIDIwMjAgYXQgMDg6MTY6MzdBTSArMDEwMCwgQ2hyaXMgV2lsc29uIHdyb3RlOgo+ID4g
+QXMgd2UgZGlzYWJsZSB0aGUgaW50ZXJydXB0IGR1cmluZyBzdXNwZW5kLCBhbHNvIHJlc2V0IHRo
+ZSBpcnFfbWFzayB0bwo+ID4gc2hvcnQtY2lyY3VpdCBzdWJzeXN0ZW1zIHRoYXQgbGF0ZXIgdHJ5
+IHRvIHR1cm4gb2ZmIHRoZWlyIGludGVycnVwdAo+ID4gc291cmNlLgo+ID4gCj4gPiA8ND5bICAx
+MDEuODE2NzMwXSBpOTE1IDAwMDA6MDA6MDIuMDogZHJtX1dBUk5fT04oIWludGVsX2lycXNfZW5h
+YmxlZChkZXZfcHJpdikpCj4gPiA8ND5bICAxMDEuODE2ODUzXSBXQVJOSU5HOiBDUFU6IDMgUElE
+OiA0MjQxIGF0IGRyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfaXJxLmM6MzQzIGlsa191cGRhdGVf
+ZGlzcGxheV9pcnErMHhiMy8weDEzMCBbaTkxNV0KPiAKPiBEb2guIExhY2sgb2YgaXJxIHN5bW1l
+dHJ5IGluIHN1c3BlbmQgdnMuIHJlc3VtZSBzdHJpa2VzIGFnYWluIDooCj4gCj4gPiAKPiA+IFNp
+Z25lZC1vZmYtYnk6IENocmlzIFdpbHNvbiA8Y2hyaXNAY2hyaXMtd2lsc29uLmNvLnVrPgo+ID4g
+Q2M6IFZpbGxlIFN5cmrDpGzDpCA8dmlsbGUuc3lyamFsYUBsaW51eC5pbnRlbC5jb20+Cj4gPiAt
+LS0KPiA+ICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2lycS5jIHwgMjUgKysrKysrKysrKy0t
+LS0tLS0tLS0tLS0tLQo+ID4gIDEgZmlsZSBjaGFuZ2VkLCAxMCBpbnNlcnRpb25zKCspLCAxNSBk
+ZWxldGlvbnMoLSkKPiA+IAo+ID4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5
+MTVfaXJxLmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2lycS5jCj4gPiBpbmRleCAwOTIy
+MWNhMWZmYjIuLmNiYjcxZmM3MzMxMyAxMDA2NDQKPiA+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9p
+OTE1L2k5MTVfaXJxLmMKPiA+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfaXJxLmMK
+PiA+IEBAIC0zMzcsMTcgKzMzNywxNCBAQCB2b2lkIGlsa191cGRhdGVfZGlzcGxheV9pcnEoc3Ry
+dWN0IGRybV9pOTE1X3ByaXZhdGUgKmRldl9wcml2LAo+ID4gICAgICAgdTMyIG5ld192YWw7Cj4g
+PiAgCj4gPiAgICAgICBsb2NrZGVwX2Fzc2VydF9oZWxkKCZkZXZfcHJpdi0+aXJxX2xvY2spOwo+
+ID4gLQo+ID4gICAgICAgZHJtX1dBUk5fT04oJmRldl9wcml2LT5kcm0sIGVuYWJsZWRfaXJxX21h
+c2sgJiB+aW50ZXJydXB0X21hc2spOwo+ID4gIAo+ID4gLSAgICAgaWYgKGRybV9XQVJOX09OKCZk
+ZXZfcHJpdi0+ZHJtLCAhaW50ZWxfaXJxc19lbmFibGVkKGRldl9wcml2KSkpCj4gPiAtICAgICAg
+ICAgICAgIHJldHVybjsKPiA+IC0KPiA+ICAgICAgIG5ld192YWwgPSBkZXZfcHJpdi0+aXJxX21h
+c2s7Cj4gPiAgICAgICBuZXdfdmFsICY9IH5pbnRlcnJ1cHRfbWFzazsKPiA+ICAgICAgIG5ld192
+YWwgfD0gKH5lbmFibGVkX2lycV9tYXNrICYgaW50ZXJydXB0X21hc2spOwo+ID4gIAo+ID4gLSAg
+ICAgaWYgKG5ld192YWwgIT0gZGV2X3ByaXYtPmlycV9tYXNrKSB7Cj4gPiArICAgICBpZiAobmV3
+X3ZhbCAhPSBkZXZfcHJpdi0+aXJxX21hc2sgJiYKPiA+ICsgICAgICAgICAhZHJtX1dBUk5fT04o
+JmRldl9wcml2LT5kcm0sICFpbnRlbF9pcnFzX2VuYWJsZWQoZGV2X3ByaXYpKSkgewo+ID4gICAg
+ICAgICAgICAgICBkZXZfcHJpdi0+aXJxX21hc2sgPSBuZXdfdmFsOwo+ID4gICAgICAgICAgICAg
+ICBJOTE1X1dSSVRFKERFSU1SLCBkZXZfcHJpdi0+aXJxX21hc2spOwo+ID4gICAgICAgICAgICAg
+ICBQT1NUSU5HX1JFQUQoREVJTVIpOwo+ID4gQEAgLTM2OCwxOSArMzY1LDE2IEBAIHN0YXRpYyB2
+b2lkIGJkd191cGRhdGVfcG9ydF9pcnEoc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmRldl9wcml2
+LAo+ID4gICAgICAgdTMyIG9sZF92YWw7Cj4gPiAgCj4gPiAgICAgICBsb2NrZGVwX2Fzc2VydF9o
+ZWxkKCZkZXZfcHJpdi0+aXJxX2xvY2spOwo+ID4gLQo+ID4gICAgICAgZHJtX1dBUk5fT04oJmRl
+dl9wcml2LT5kcm0sIGVuYWJsZWRfaXJxX21hc2sgJiB+aW50ZXJydXB0X21hc2spOwo+ID4gIAo+
+ID4gLSAgICAgaWYgKGRybV9XQVJOX09OKCZkZXZfcHJpdi0+ZHJtLCAhaW50ZWxfaXJxc19lbmFi
+bGVkKGRldl9wcml2KSkpCj4gPiAtICAgICAgICAgICAgIHJldHVybjsKPiA+IC0KPiA+ICAgICAg
+IG9sZF92YWwgPSBJOTE1X1JFQUQoR0VOOF9ERV9QT1JUX0lNUik7Cj4gPiAgCj4gPiAgICAgICBu
+ZXdfdmFsID0gb2xkX3ZhbDsKPiA+ICAgICAgIG5ld192YWwgJj0gfmludGVycnVwdF9tYXNrOwo+
+ID4gICAgICAgbmV3X3ZhbCB8PSAofmVuYWJsZWRfaXJxX21hc2sgJiBpbnRlcnJ1cHRfbWFzayk7
+Cj4gPiAgCj4gPiAtICAgICBpZiAobmV3X3ZhbCAhPSBvbGRfdmFsKSB7Cj4gPiArICAgICBpZiAo
+bmV3X3ZhbCAhPSBvbGRfdmFsICYmCj4gPiArICAgICAgICAgIWRybV9XQVJOX09OKCZkZXZfcHJp
+di0+ZHJtLCAhaW50ZWxfaXJxc19lbmFibGVkKGRldl9wcml2KSkpIHsKPiA+ICAgICAgICAgICAg
+ICAgSTkxNV9XUklURShHRU44X0RFX1BPUlRfSU1SLCBuZXdfdmFsKTsKPiA+ICAgICAgICAgICAg
+ICAgUE9TVElOR19SRUFEKEdFTjhfREVfUE9SVF9JTVIpOwo+ID4gICAgICAgfQo+ID4gQEAgLTQw
+MSwxNyArMzk1LDE0IEBAIHZvaWQgYmR3X3VwZGF0ZV9waXBlX2lycShzdHJ1Y3QgZHJtX2k5MTVf
+cHJpdmF0ZSAqZGV2X3ByaXYsCj4gPiAgICAgICB1MzIgbmV3X3ZhbDsKPiA+ICAKPiA+ICAgICAg
+IGxvY2tkZXBfYXNzZXJ0X2hlbGQoJmRldl9wcml2LT5pcnFfbG9jayk7Cj4gPiAtCj4gPiAgICAg
+ICBkcm1fV0FSTl9PTigmZGV2X3ByaXYtPmRybSwgZW5hYmxlZF9pcnFfbWFzayAmIH5pbnRlcnJ1
+cHRfbWFzayk7Cj4gPiAgCj4gPiAtICAgICBpZiAoZHJtX1dBUk5fT04oJmRldl9wcml2LT5kcm0s
+ICFpbnRlbF9pcnFzX2VuYWJsZWQoZGV2X3ByaXYpKSkKPiA+IC0gICAgICAgICAgICAgcmV0dXJu
+Owo+ID4gLQo+ID4gICAgICAgbmV3X3ZhbCA9IGRldl9wcml2LT5kZV9pcnFfbWFza1twaXBlXTsK
+PiA+ICAgICAgIG5ld192YWwgJj0gfmludGVycnVwdF9tYXNrOwo+ID4gICAgICAgbmV3X3ZhbCB8
+PSAofmVuYWJsZWRfaXJxX21hc2sgJiBpbnRlcnJ1cHRfbWFzayk7Cj4gPiAgCj4gPiAtICAgICBp
+ZiAobmV3X3ZhbCAhPSBkZXZfcHJpdi0+ZGVfaXJxX21hc2tbcGlwZV0pIHsKPiA+ICsgICAgIGlm
+IChuZXdfdmFsICE9IGRldl9wcml2LT5kZV9pcnFfbWFza1twaXBlXSAmJgo+ID4gKyAgICAgICAg
+ICFkcm1fV0FSTl9PTigmZGV2X3ByaXYtPmRybSwgIWludGVsX2lycXNfZW5hYmxlZChkZXZfcHJp
+dikpKSB7Cj4gPiAgICAgICAgICAgICAgIGRldl9wcml2LT5kZV9pcnFfbWFza1twaXBlXSA9IG5l
+d192YWw7Cj4gPiAgICAgICAgICAgICAgIEk5MTVfV1JJVEUoR0VOOF9ERV9QSVBFX0lNUihwaXBl
+KSwgZGV2X3ByaXYtPmRlX2lycV9tYXNrW3BpcGVdKTsKPiA+ICAgICAgICAgICAgICAgUE9TVElO
+R19SRUFEKEdFTjhfREVfUElQRV9JTVIocGlwZSkpOwo+IAo+IE5vdCByZXNldHRpbmcgZGVfaXJx
+X21hc2tbXSBhbnl3aGVyZT8gSG1tLiB3ZSBzZWVtIHRvIGJlIGxhY2tpbmcgYQo+IGdlbjhfZGVf
+aXJxX3Jlc2V0KCkuLi4KCk1heWJlIEkgd2FzIGJlaW5nIGEgYml0IG9wdGltaXN0aWMsIGFuZCBl
+cnJlZCBvbiB0aGUgc2lkZSBvZiBzdGlja2luZyB0bwp0aGUgc2ltcGxlIHJlc2V0cy4KCj4gPiBA
+QCAtMjk1MSw2ICsyOTQyLDggQEAgc3RhdGljIHZvaWQgaWxrX2lycV9yZXNldChzdHJ1Y3QgZHJt
+X2k5MTVfcHJpdmF0ZSAqZGV2X3ByaXYpCj4gPiAgICAgICBzdHJ1Y3QgaW50ZWxfdW5jb3JlICp1
+bmNvcmUgPSAmZGV2X3ByaXYtPnVuY29yZTsKPiA+ICAKPiA+ICAgICAgIEdFTjNfSVJRX1JFU0VU
+KHVuY29yZSwgREUpOwo+ID4gKyAgICAgZGV2X3ByaXYtPmlycV9tYXNrID0gfjB1Owo+ID4gKwo+
+ID4gICAgICAgaWYgKElTX0dFTihkZXZfcHJpdiwgNykpCj4gPiAgICAgICAgICAgICAgIGludGVs
+X3VuY29yZV93cml0ZSh1bmNvcmUsIEdFTjdfRVJSX0lOVCwgMHhmZmZmZmZmZik7Cj4gPiAgCj4g
+PiBAQCAtMzg2NCw2ICszODU3LDcgQEAgc3RhdGljIHZvaWQgaTkxNV9pcnFfcmVzZXQoc3RydWN0
+IGRybV9pOTE1X3ByaXZhdGUgKmRldl9wcml2KQo+ID4gICAgICAgaTl4eF9waXBlc3RhdF9pcnFf
+cmVzZXQoZGV2X3ByaXYpOwo+ID4gIAo+ID4gICAgICAgR0VOM19JUlFfUkVTRVQodW5jb3JlLCBH
+RU4yXyk7Cj4gPiArICAgICBkZXZfcHJpdi0+aXJxX21hc2sgPSB+MHU7Cj4gPiAgfQo+ID4gIAo+
+ID4gIHN0YXRpYyB2b2lkIGk5MTVfaXJxX3Bvc3RpbnN0YWxsKHN0cnVjdCBkcm1faTkxNV9wcml2
+YXRlICpkZXZfcHJpdikKPiA+IEBAIC0zOTcwLDYgKzM5NjQsNyBAQCBzdGF0aWMgdm9pZCBpOTY1
+X2lycV9yZXNldChzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqZGV2X3ByaXYpCj4gPiAgICAgICBp
+OXh4X3BpcGVzdGF0X2lycV9yZXNldChkZXZfcHJpdik7Cj4gPiAgCj4gPiAgICAgICBHRU4zX0lS
+UV9SRVNFVCh1bmNvcmUsIEdFTjJfKTsKPiA+ICsgICAgIGRldl9wcml2LT5pcnFfbWFzayA9IH4w
+dTsKPiA+ICB9Cj4gCj4gTWlzc2luZyBnZW4yPwoKSG1tLCBJIHNhdyBHRU4yIGFuZCBhc3N1bWVk
+IGl0IHdhcyBjb3ZlcmVkLiBpOHh4X2lycV9yZXNldCgpIGxvb2tzCnN0cmFpZ2h0Zm9yd2FyZC4K
+CkkgZ3Vlc3Mgc3BsaXQgdGhpcyBwYXRjaCB0byBvbmx5IHRoaW5rIGFib3V0IGRldl9wcml2LT5p
+cnFfbWFzay4uLgotQ2hyaXMKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0
+b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50
+ZWwtZ2Z4Cg==
