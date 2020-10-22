@@ -1,44 +1,43 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3DED52967A4
-	for <lists+intel-gfx@lfdr.de>; Fri, 23 Oct 2020 01:29:33 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6534A2967AB
+	for <lists+intel-gfx@lfdr.de>; Fri, 23 Oct 2020 01:35:34 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CA9116E434;
-	Thu, 22 Oct 2020 23:29:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CEB786E435;
+	Thu, 22 Oct 2020 23:35:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2C8A16E434
- for <intel-gfx@lists.freedesktop.org>; Thu, 22 Oct 2020 23:29:29 +0000 (UTC)
-IronPort-SDR: lHqql8iAY1xJZ0ZMCLN4rfZNGC3BSFcrww7uaEbKjuQxIAcHKkW5r0qC/hj5hLBcm6lol+9TPW
- /gmKI3oSV0SQ==
-X-IronPort-AV: E=McAfee;i="6000,8403,9782"; a="165015816"
-X-IronPort-AV: E=Sophos;i="5.77,404,1596524400"; d="scan'208";a="165015816"
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 76B796E435
+ for <intel-gfx@lists.freedesktop.org>; Thu, 22 Oct 2020 23:35:32 +0000 (UTC)
+IronPort-SDR: Sokt9lwv4z9BhpwM167aBkIBzjb715M/L11jl5Cbi1JUbnw0vxtPcRHFrCQXfujgdHl5Y9ps7n
+ FEt3kf4XZtHQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9782"; a="164114554"
+X-IronPort-AV: E=Sophos;i="5.77,404,1596524400"; d="scan'208";a="164114554"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Oct 2020 16:29:28 -0700
-IronPort-SDR: nOBcMoTnNrlngJNv5SFmpIG+SCMHGxsvXaQvBBxEHGTUoJAvMZywv0gWouDd4sFscI+d4Y+z7C
- KLdx3xoa1Y4Q==
-X-IronPort-AV: E=Sophos;i="5.77,404,1596524400"; d="scan'208";a="466863664"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Oct 2020 16:35:32 -0700
+IronPort-SDR: zlz9mpfksiJ7jy+/X384oPhvQ8VNGOcHJ9Fa6E/SG+vJkn4rQNIsue8Dg0Ac40GXfMLyEubgBs
+ hrJ4CTq/Ajlg==
+X-IronPort-AV: E=Sophos;i="5.77,404,1596524400"; d="scan'208";a="393218167"
 Received: from mdroper-desk1.fm.intel.com (HELO
  mdroper-desk1.amr.corp.intel.com) ([10.1.27.168])
- by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Oct 2020 16:29:28 -0700
-Date: Thu, 22 Oct 2020 16:29:26 -0700
+ by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Oct 2020 16:35:31 -0700
+Date: Thu, 22 Oct 2020 16:35:30 -0700
 From: Matt Roper <matthew.d.roper@intel.com>
 To: Lucas De Marchi <lucas.demarchi@intel.com>
-Message-ID: <20201022232926.GR627052@mdroper-desk1.amr.corp.intel.com>
+Message-ID: <20201022233530.GS627052@mdroper-desk1.amr.corp.intel.com>
 References: <20201021082034.3170478-1-lucas.demarchi@intel.com>
- <20201021082034.3170478-6-lucas.demarchi@intel.com>
+ <20201021082034.3170478-7-lucas.demarchi@intel.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20201021082034.3170478-6-lucas.demarchi@intel.com>
-Subject: Re: [Intel-gfx] [PATCH 5/6] drm/i915/dg1: make Wa_22010271021
- permanent
+In-Reply-To: <20201021082034.3170478-7-lucas.demarchi@intel.com>
+Subject: Re: [Intel-gfx] [PATCH 6/6] drm/i915/dg1: Implement WA_16011163337
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,60 +56,43 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Oct 21, 2020 at 01:20:33AM -0700, Lucas De Marchi wrote:
-> Just like for rkl and tgl, this should be permanent as well for dg1
-> instead just for A0. The commit making it permanent for those platforms
-> ended up "racing" with the commit adding the DG1 WAs, so now fix that up.
+On Wed, Oct 21, 2020 at 01:20:34AM -0700, Lucas De Marchi wrote:
+> From: Swathi Dhanavanthri <swathi.dhanavanthri@intel.com>
 > 
-> Cc: Swathi Dhanavanthri <swathi.dhanavanthri@intel.com>
+> Set GS Timer to 224.
+> Bspec: 53508
+> 
+> Cc: Matt Roper <matthew.d.roper@intel.com>
+> Signed-off-by: Swathi Dhanavanthri <swathi.dhanavanthri@intel.com>
 > Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
 > ---
->  drivers/gpu/drm/i915/gt/intel_workarounds.c | 16 ++++++++--------
->  1 file changed, 8 insertions(+), 8 deletions(-)
+>  drivers/gpu/drm/i915/gt/intel_workarounds.c | 5 +++++
+>  1 file changed, 5 insertions(+)
 > 
 > diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-> index fed9503a7c4e..8d24ea769fe6 100644
+> index 8d24ea769fe6..cd0c5847e2df 100644
 > --- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
 > +++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-> @@ -1768,6 +1768,14 @@ rcs_engine_wa_init(struct intel_engine_cs *engine, struct i915_wa_list *wal)
->  		 */
->  		wa_write_or(wal, GEN7_FF_THREAD_MODE,
->  			    GEN12_FF_TESSELATION_DOP_GATE_DISABLE);
+> @@ -684,6 +684,11 @@ static void dg1_ctx_workarounds_init(struct intel_engine_cs *engine,
+>  	/* Wa_22010493298 */
+>  	WA_SET_BIT_MASKED(HIZ_CHICKEN,
+>  			  DG1_HZ_READ_SUPPRESSION_OPTIMIZATION_DISABLE);
 > +
-> +		/*
-> +		 * Wa_1606700617
+> +	/* Wa_16011163337 */
+> +	wa_add(wal,
+> +	       FF_MODE2,
+> +	       FF_MODE2_GS_TIMER_MASK, FF_MODE2_GS_TIMER_224, 0);
 
-Not sure if you meant to drop the ":tgl" suffix here when you moved it?
-This alternate number also shows up in the DG1 database now (but not
-RKL) so we could make this "tgl,dg1" to match the spec.
+It looks like with the latest bspec updates we can just move this into
+gen12_ctx_workarounds_init() (and remove the copy in the tgl_ function);
+it now applies to all platforms that will be using that function.
 
-Either way,
 
-Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
+Matt
 
-> +		 * Wa_22010271021:tgl,rkl,dg1
-> +		 */
-> +		wa_masked_en(wal,
-> +			     GEN9_CS_DEBUG_MODE1,
-> +			     FF_DOP_CLOCK_GATE_DISABLE);
->  	}
+>  }
 >  
->  	if (IS_DG1_REVID(i915, DG1_REVID_A0, DG1_REVID_A0) ||
-> @@ -1796,14 +1804,6 @@ rcs_engine_wa_init(struct intel_engine_cs *engine, struct i915_wa_list *wal)
->  			     GEN6_RC_SLEEP_PSMI_CONTROL,
->  			     GEN12_WAIT_FOR_EVENT_POWER_DOWN_DISABLE |
->  			     GEN8_RC_SEMA_IDLE_MSG_DISABLE);
-> -
-> -		/*
-> -		 * Wa_1606700617:tgl
-> -		 * Wa_22010271021:tgl,rkl
-> -		 */
-> -		wa_masked_en(wal,
-> -			     GEN9_CS_DEBUG_MODE1,
-> -			     FF_DOP_CLOCK_GATE_DISABLE);
->  	}
->  
->  	if (IS_GEN(i915, 12)) {
+>  static void
 > -- 
 > 2.28.0
 > 
