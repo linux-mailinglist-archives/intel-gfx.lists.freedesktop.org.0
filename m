@@ -1,32 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1BC7C295D97
-	for <lists+intel-gfx@lfdr.de>; Thu, 22 Oct 2020 13:43:04 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 76F76295DB1
+	for <lists+intel-gfx@lfdr.de>; Thu, 22 Oct 2020 13:46:05 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A03BC6E037;
-	Thu, 22 Oct 2020 11:43:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E53C36E0D4;
+	Thu, 22 Oct 2020 11:46:03 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4F2F06E037
- for <intel-gfx@lists.freedesktop.org>; Thu, 22 Oct 2020 11:42:59 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 22774043-1500050 
- for multiple; Thu, 22 Oct 2020 12:42:49 +0100
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Thu, 22 Oct 2020 12:42:46 +0100
-Message-Id: <20201022114246.28566-1-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20201022071637.17240-1-chris@chris-wilson.co.uk>
-References: <20201022071637.17240-1-chris@chris-wilson.co.uk>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 7B4EC6E0D4;
+ Thu, 22 Oct 2020 11:46:02 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 73537A47E1;
+ Thu, 22 Oct 2020 11:46:02 +0000 (UTC)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915: Reset the interrupt mask on disabling
- interrupts
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Anshuman Gupta" <anshuman.gupta@intel.com>
+Date: Thu, 22 Oct 2020 11:46:02 -0000
+Message-ID: <160336716246.7804.12457274582784338757@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20201022085552.18353-1-anshuman.gupta@intel.com>
+In-Reply-To: <20201022085552.18353-1-anshuman.gupta@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgSERD?=
+ =?utf-8?q?P_2=2E2_DP_MST_Support_=28rev5=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,57 +38,207 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Chris Wilson <chris@chris-wilson.co.uk>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============1486840695=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-QXMgd2UgZGlzYWJsZSB0aGUgaW50ZXJydXB0IGR1cmluZyBzdXNwZW5kLCBhbHNvIHJlc2V0IHRo
-ZSBpcnFfbWFzayB0bwpzaG9ydC1jaXJjdWl0IHN1YnN5c3RlbXMgdGhhdCBsYXRlciB0cnkgdG8g
-dHVybiBvZmYgdGhlaXIgaW50ZXJydXB0CnNvdXJjZS4KCjw0PlsgIDEwMS44MTY3MzBdIGk5MTUg
-MDAwMDowMDowMi4wOiBkcm1fV0FSTl9PTighaW50ZWxfaXJxc19lbmFibGVkKGRldl9wcml2KSkK
-PDQ+WyAgMTAxLjgxNjg1M10gV0FSTklORzogQ1BVOiAzIFBJRDogNDI0MSBhdCBkcml2ZXJzL2dw
-dS9kcm0vaTkxNS9pOTE1X2lycS5jOjM0MyBpbGtfdXBkYXRlX2Rpc3BsYXlfaXJxKzB4YjMvMHgx
-MzAgW2k5MTVdCgp2MjogUmVzZXQgaXJxX21hc2sgZm9yIGk4eHhfaXJxX3Jlc2V0IGFzIHdlbGws
-IGFuZCBzcGxpdCBwYXRjaCB0byBmb2N1cwpvbiBvbmx5IGk5MTUtPmlycV9tYXNrCgpTaWduZWQt
-b2ZmLWJ5OiBDaHJpcyBXaWxzb24gPGNocmlzQGNocmlzLXdpbHNvbi5jby51az4KQ2M6IFZpbGxl
-IFN5cmrDpGzDpCA8dmlsbGUuc3lyamFsYUBsaW51eC5pbnRlbC5jb20+Ci0tLQogZHJpdmVycy9n
-cHUvZHJtL2k5MTUvaTkxNV9pcnEuYyB8IDEyICsrKysrKystLS0tLQogMSBmaWxlIGNoYW5nZWQs
-IDcgaW5zZXJ0aW9ucygrKSwgNSBkZWxldGlvbnMoLSkKCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dw
-dS9kcm0vaTkxNS9pOTE1X2lycS5jIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9pcnEuYwpp
-bmRleCAwOTIyMWNhMWZmYjIuLjUzZTY3Yzc5NmQwOSAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUv
-ZHJtL2k5MTUvaTkxNV9pcnEuYworKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2lycS5j
-CkBAIC0zMzcsMTcgKzMzNywxNCBAQCB2b2lkIGlsa191cGRhdGVfZGlzcGxheV9pcnEoc3RydWN0
-IGRybV9pOTE1X3ByaXZhdGUgKmRldl9wcml2LAogCXUzMiBuZXdfdmFsOwogCiAJbG9ja2RlcF9h
-c3NlcnRfaGVsZCgmZGV2X3ByaXYtPmlycV9sb2NrKTsKLQogCWRybV9XQVJOX09OKCZkZXZfcHJp
-di0+ZHJtLCBlbmFibGVkX2lycV9tYXNrICYgfmludGVycnVwdF9tYXNrKTsKIAotCWlmIChkcm1f
-V0FSTl9PTigmZGV2X3ByaXYtPmRybSwgIWludGVsX2lycXNfZW5hYmxlZChkZXZfcHJpdikpKQot
-CQlyZXR1cm47Ci0KIAluZXdfdmFsID0gZGV2X3ByaXYtPmlycV9tYXNrOwogCW5ld192YWwgJj0g
-fmludGVycnVwdF9tYXNrOwogCW5ld192YWwgfD0gKH5lbmFibGVkX2lycV9tYXNrICYgaW50ZXJy
-dXB0X21hc2spOwogCi0JaWYgKG5ld192YWwgIT0gZGV2X3ByaXYtPmlycV9tYXNrKSB7CisJaWYg
-KG5ld192YWwgIT0gZGV2X3ByaXYtPmlycV9tYXNrICYmCisJICAgICFkcm1fV0FSTl9PTigmZGV2
-X3ByaXYtPmRybSwgIWludGVsX2lycXNfZW5hYmxlZChkZXZfcHJpdikpKSB7CiAJCWRldl9wcml2
-LT5pcnFfbWFzayA9IG5ld192YWw7CiAJCUk5MTVfV1JJVEUoREVJTVIsIGRldl9wcml2LT5pcnFf
-bWFzayk7CiAJCVBPU1RJTkdfUkVBRChERUlNUik7CkBAIC0yOTUxLDYgKzI5NDgsOCBAQCBzdGF0
-aWMgdm9pZCBpbGtfaXJxX3Jlc2V0KHN0cnVjdCBkcm1faTkxNV9wcml2YXRlICpkZXZfcHJpdikK
-IAlzdHJ1Y3QgaW50ZWxfdW5jb3JlICp1bmNvcmUgPSAmZGV2X3ByaXYtPnVuY29yZTsKIAogCUdF
-TjNfSVJRX1JFU0VUKHVuY29yZSwgREUpOworCWRldl9wcml2LT5pcnFfbWFzayA9IH4wdTsKKwog
-CWlmIChJU19HRU4oZGV2X3ByaXYsIDcpKQogCQlpbnRlbF91bmNvcmVfd3JpdGUodW5jb3JlLCBH
-RU43X0VSUl9JTlQsIDB4ZmZmZmZmZmYpOwogCkBAIC0zNjk1LDYgKzM2OTQsNyBAQCBzdGF0aWMg
-dm9pZCBpOHh4X2lycV9yZXNldChzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqZGV2X3ByaXYpCiAJ
-aTl4eF9waXBlc3RhdF9pcnFfcmVzZXQoZGV2X3ByaXYpOwogCiAJR0VOMl9JUlFfUkVTRVQodW5j
-b3JlKTsKKwlkZXZfcHJpdi0+aXJxX21hc2sgPSB+MHU7CiB9CiAKIHN0YXRpYyB2b2lkIGk4eHhf
-aXJxX3Bvc3RpbnN0YWxsKHN0cnVjdCBkcm1faTkxNV9wcml2YXRlICpkZXZfcHJpdikKQEAgLTM4
-NjQsNiArMzg2NCw3IEBAIHN0YXRpYyB2b2lkIGk5MTVfaXJxX3Jlc2V0KHN0cnVjdCBkcm1faTkx
-NV9wcml2YXRlICpkZXZfcHJpdikKIAlpOXh4X3BpcGVzdGF0X2lycV9yZXNldChkZXZfcHJpdik7
-CiAKIAlHRU4zX0lSUV9SRVNFVCh1bmNvcmUsIEdFTjJfKTsKKwlkZXZfcHJpdi0+aXJxX21hc2sg
-PSB+MHU7CiB9CiAKIHN0YXRpYyB2b2lkIGk5MTVfaXJxX3Bvc3RpbnN0YWxsKHN0cnVjdCBkcm1f
-aTkxNV9wcml2YXRlICpkZXZfcHJpdikKQEAgLTM5NzAsNiArMzk3MSw3IEBAIHN0YXRpYyB2b2lk
-IGk5NjVfaXJxX3Jlc2V0KHN0cnVjdCBkcm1faTkxNV9wcml2YXRlICpkZXZfcHJpdikKIAlpOXh4
-X3BpcGVzdGF0X2lycV9yZXNldChkZXZfcHJpdik7CiAKIAlHRU4zX0lSUV9SRVNFVCh1bmNvcmUs
-IEdFTjJfKTsKKwlkZXZfcHJpdi0+aXJxX21hc2sgPSB+MHU7CiB9CiAKIHN0YXRpYyB2b2lkIGk5
-NjVfaXJxX3Bvc3RpbnN0YWxsKHN0cnVjdCBkcm1faTkxNV9wcml2YXRlICpkZXZfcHJpdikKLS0g
-CjIuMjAuMQoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18K
-SW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0
-dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
+--===============1486840695==
+Content-Type: multipart/alternative;
+ boundary="===============7685113062636964060=="
+
+--===============7685113062636964060==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+== Series Details ==
+
+Series: HDCP 2.2 DP MST Support (rev5)
+URL   : https://patchwork.freedesktop.org/series/81538/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_9182 -> Patchwork_18764
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18764/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_18764 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:
+    - fi-bsw-kefka:       [PASS][1] -> [DMESG-WARN][2] ([i915#1982]) +1 similar issue
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9182/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18764/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
+
+  
+#### Possible fixes ####
+
+  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:
+    - {fi-kbl-7560u}:     [DMESG-WARN][3] ([i915#1982]) -> [PASS][4]
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9182/fi-kbl-7560u/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18764/fi-kbl-7560u/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
+
+
+Participating hosts (45 -> 39)
+------------------------------
+
+  Additional (1): fi-apl-guc 
+  Missing    (7): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-byt-clapper fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_9182 -> Patchwork_18764
+
+  CI-20190529: 20190529
+  CI_DRM_9182: 5d76506480cdfef424b52f63a0d21093b2c78dc4 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5822: b4bcf05cb9839037128905deda7146434155cc41 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_18764: 3f09be950b9e6adb84ba3105116cf84549c743dc @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+3f09be950b9e drm/i915/hdcp: Enable HDCP 2.2 MST support
+7286d357f37e drm/i915/hdcp: Support for HDCP 2.2 MST shim callbacks
+844bace9a8bb drm/i915/hdcp: Add HDCP 2.2 stream register
+fe282dce943b drm/i915/hdcp: Pass connector to check_2_2_link
+14aea2bd217e drm/i915/hdcp: MST streams support in hdcp port_data
+c62cbbaece50 drm/hdcp: Max MST content streams
+587b272daea6 misc/mei/hdcp: Fix AUTH_STREAM_REQ cmd buffer len
+5524d56ad1d9 drm/i915/hdcp: Encapsulate hdcp_port_data to dig_port
+d1d2ae46766e drm/i915/hdcp: Pass dig_port to intel_hdcp_init
+c563af8ef24a drm/i915/hdcp: Enable Gen12 HDCP 1.4 DP MST support
+a3c2628d301d drm/i915/hdcp: HDCP stream encryption support
+cd7dfdf4d705 drm/i915/hdcp: Move HDCP enc status timeout to header
+ce083eb6afcb drm/i915/hdcp: DP MST transcoder for link and stream
+e6ea1e5d0a69 drm/i915/hotplug: Handle CP_IRQ for DP-MST
+ed3fec051c2e drm/i915/hdcp: Get conn while content_type changed
+3c203819df03 drm/i915/hdcp: Update CP property in update_pipe
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18764/index.html
+
+--===============7685113062636964060==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>HDCP 2.2 DP MST Support (rev5)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/81538/">https://patchwork.freedesktop.org/series/81538/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18764/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18764/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_9182 -&gt; Patchwork_18764</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18764/index.html</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_18764 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:<ul>
+<li>fi-bsw-kefka:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9182/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18764/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>) +1 similar issue</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:<ul>
+<li>{fi-kbl-7560u}:     <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9182/fi-kbl-7560u/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18764/fi-kbl-7560u/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Participating hosts (45 -&gt; 39)</h2>
+<p>Additional (1): fi-apl-guc <br />
+  Missing    (7): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-byt-clapper fi-bdw-samus </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_9182 -&gt; Patchwork_18764</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_9182: 5d76506480cdfef424b52f63a0d21093b2c78dc4 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_5822: b4bcf05cb9839037128905deda7146434155cc41 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
+  Patchwork_18764: 3f09be950b9e6adb84ba3105116cf84549c743dc @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>3f09be950b9e drm/i915/hdcp: Enable HDCP 2.2 MST support<br />
+7286d357f37e drm/i915/hdcp: Support for HDCP 2.2 MST shim callbacks<br />
+844bace9a8bb drm/i915/hdcp: Add HDCP 2.2 stream register<br />
+fe282dce943b drm/i915/hdcp: Pass connector to check_2_2_link<br />
+14aea2bd217e drm/i915/hdcp: MST streams support in hdcp port_data<br />
+c62cbbaece50 drm/hdcp: Max MST content streams<br />
+587b272daea6 misc/mei/hdcp: Fix AUTH_STREAM_REQ cmd buffer len<br />
+5524d56ad1d9 drm/i915/hdcp: Encapsulate hdcp_port_data to dig_port<br />
+d1d2ae46766e drm/i915/hdcp: Pass dig_port to intel_hdcp_init<br />
+c563af8ef24a drm/i915/hdcp: Enable Gen12 HDCP 1.4 DP MST support<br />
+a3c2628d301d drm/i915/hdcp: HDCP stream encryption support<br />
+cd7dfdf4d705 drm/i915/hdcp: Move HDCP enc status timeout to header<br />
+ce083eb6afcb drm/i915/hdcp: DP MST transcoder for link and stream<br />
+e6ea1e5d0a69 drm/i915/hotplug: Handle CP_IRQ for DP-MST<br />
+ed3fec051c2e drm/i915/hdcp: Get conn while content_type changed<br />
+3c203819df03 drm/i915/hdcp: Update CP property in update_pipe</p>
+
+</body>
+</html>
+
+--===============7685113062636964060==--
+
+--===============1486840695==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============1486840695==--
