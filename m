@@ -2,60 +2,41 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4102C296FAD
-	for <lists+intel-gfx@lfdr.de>; Fri, 23 Oct 2020 14:48:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EC6F229709B
+	for <lists+intel-gfx@lfdr.de>; Fri, 23 Oct 2020 15:34:29 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 59AFB6F635;
-	Fri, 23 Oct 2020 12:48:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9953C6E0AA;
+	Fri, 23 Oct 2020 13:34:27 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-qt1-x842.google.com (mail-qt1-x842.google.com
- [IPv6:2607:f8b0:4864:20::842])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B477B6F629;
- Fri, 23 Oct 2020 12:48:17 +0000 (UTC)
-Received: by mail-qt1-x842.google.com with SMTP id c15so764498qtc.2;
- Fri, 23 Oct 2020 05:48:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=kN9kvxiNVibBZTgq0gJlnAcXQlAi8tvlS3bLfxZ/9Tg=;
- b=iSruePsCDOSSSek8VmIdWIecZPJdKPQB8neXqqeC0RcF1jNjM1uQe/LYOBgrDFst7v
- k5UG8O4FaKJKN9Jq7EVBEvVG38rRjFCJ0J9xaAdZQOgCfmryI2Wd16uQFD0JYjAMiMJu
- CLyQuSW+UJkXQHG1gsguO4sAuTUi3XRwEV12KQoirWZaDJ/vLsEJOMp6pFA4Gs9aUFd9
- M0y2qhI+FNmAKp7i1dp/JeSaZCd3FL9V/ZfYFAFI92YyaCSGP/RwUfQ1Q3bK4eVm3YI0
- vfdYpbi9wIB3/huwm73ZW8Bgs96cH65iOqmbHKOXWsl5iVXPCoFrbSQUH6fbHfz7jInJ
- 3LbQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=kN9kvxiNVibBZTgq0gJlnAcXQlAi8tvlS3bLfxZ/9Tg=;
- b=lk+ExBE23lGxqbJ4Fa/DqWqjo5AcqDql31l0pfNqZ8K+g9Bh9OvvSQW53uLHzao3hf
- yQMUSromQCdX766h4a/SMrZU7yWcj/GcNFwm+NI4fKxUbhfY53RM+WDSh2YRu+PwtcgY
- iky8eO3ls7X9XZGpOX4lnGd+m18+ivv9m3r5ZWGCbe3PKwl0wH6obRiIpaFJTKQM9QHy
- dLhH58OV/ZRrtD20fI0WbCNvlEEr69CB6gNPHHcfFwFc+OuPr9ffBXhuSaqZrdIsluuz
- Zu1x+8IpfwVnKGQyHEBBTrbjfelEUoB2qzUtxlimHInAq6Db1VmcxdLgC+fPLzWJYVIm
- u/sQ==
-X-Gm-Message-State: AOAM533jwOu7thJLaUyn8X/o433HUOTmaMQmItytktgVTcfTk73f0SfI
- KI28/aVAvkMRiFGh9E5IuvM=
-X-Google-Smtp-Source: ABdhPJwss66nnNh/TIoNtNpkFq5ijx+SQxOSU4m66935MInf9uh/+db78AydLcYVToxU309qomK8BQ==
-X-Received: by 2002:ac8:5bc2:: with SMTP id b2mr1951485qtb.284.1603457296761; 
- Fri, 23 Oct 2020 05:48:16 -0700 (PDT)
-Received: from pm2-ws13.praxislan02.com ([2001:470:8:67e:ba27:ebff:fee8:ce27])
- by smtp.gmail.com with ESMTPSA id
- q188sm626586qka.56.2020.10.23.05.48.15
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 23 Oct 2020 05:48:16 -0700 (PDT)
-From: Jason Andryuk <jandryuk@gmail.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
-Date: Fri, 23 Oct 2020 08:48:04 -0400
-Message-Id: <20201023124804.11457-1-jandryuk@gmail.com>
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 00C416E0AA
+ for <intel-gfx@lists.freedesktop.org>; Fri, 23 Oct 2020 13:34:25 +0000 (UTC)
+IronPort-SDR: pXf4lGFBRN0plNvYrsrdVPDeM42kqcGWlm8vJTzhol+3urtrqp0/bwkMThrlXt1akyBpkwWokb
+ iMeR/m+NsLeg==
+X-IronPort-AV: E=McAfee;i="6000,8403,9782"; a="166891042"
+X-IronPort-AV: E=Sophos;i="5.77,408,1596524400"; d="scan'208";a="166891042"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Oct 2020 06:34:23 -0700
+IronPort-SDR: 0SL/f6EfZfHMDVg7xlopJnsD0i2uOdX79Etqay+LQwks33ijsixbaPwUCiKplxyFiEandletaq
+ D8yeBmwviPmg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.77,408,1596524400"; d="scan'208";a="354436843"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
+ by fmsmga002.fm.intel.com with SMTP; 23 Oct 2020 06:34:21 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Fri, 23 Oct 2020 16:34:20 +0300
+From: Ville Syrjala <ville.syrjala@linux.intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Fri, 23 Oct 2020 16:34:01 +0300
+Message-Id: <20201023133420.12039-1-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] i915: Add QUIRK_EDP_CHANNEL_EQ for Dell 7200
- 2-in-1
+Subject: [Intel-gfx] [PATCH v2 00/19] drm/i915: Futher cleanup around hpd
+ pins and port identfiers
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,141 +49,42 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: David Airlie <airlied@linux.ie>, intel-gfx@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- stable@vger.kernel.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-We're seeing channel equalization "fail" consistently coming out of DPMS
-on the eDP of a Dell Latitude 7200 2-in-1.  When the display tries to
-come out of DPMS, it briefly flashes on before going dark.  This repeats
-once per second, and the system is unusable.  ssh-ing into the system,
-it also seems to be sluggish when in this state.  You have to reboot to
-get the display back.
-
-In intel_dp_link_training_channel_equalization, lane 0 can get to state
-0x7 by the 3rd pattern, but lane 1 never gets further than 0x1.
-[drm] ln0_1:0x0 ln2_3:0x0 align:0x0 sink:0x0 adj_req0_1:0x0 adj_req2_3:0x0
-[drm] ln0_1:0x11 ln2_3:0x0 align:0x80 sink:0x0 adj_req0_1:0x44 adj_req2_3:0x0
-[drm] ln0_1:0x11 ln2_3:0x0 align:0x80 sink:0x0 adj_req0_1:0x88 adj_req2_3:0x0
-[drm] ln0_1:0x71 ln2_3:0x0 align:0x80 sink:0x0 adj_req0_1:0x84 adj_req2_3:0x0
-[drm] ln0_1:0x71 ln2_3:0x0 align:0x0 sink:0x0 adj_req0_1:0x84 adj_req2_3:0x0
-[drm] ln0_1:0x71 ln2_3:0x0 align:0x0 sink:0x0 adj_req0_1:0x84 adj_req2_3:0x0
-
-Narrow fast vs. wide slow is not an option because the max clock is
-270000 and the 1920x1280 resolution requires 2x270000.
-[drm] DP link computation with lane count min/max 1/2 270000/270000 bpp
-min/max 18/24 pixel clock 164250KHz
-
-The display is functional even though lane 1 is in state 0x1, so just
-return success for channel equalization on eDP.
-
-Introduce QUIRK_EDP_CHANNEL_EQ and match the DMI for a Dell Latitude
-7200 2-in-1.  This quirk allows channel equalization to succeed even
-though it failed.
-
-Workaround for https://gitlab.freedesktop.org/drm/intel/-/issues/1378
-
-Signed-off-by: Jason Andryuk <jandryuk@gmail.com>
-Cc: <stable@vger.kernel.org>
----
- .../drm/i915/display/intel_dp_link_training.c |  7 +++++
- drivers/gpu/drm/i915/display/intel_quirks.c   | 30 +++++++++++++++++++
- drivers/gpu/drm/i915/i915_drv.h               |  1 +
- 3 files changed, 38 insertions(+)
-
-diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_training.c b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-index a23ed7290843..2dd441a94fda 100644
---- a/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-@@ -375,6 +375,13 @@ intel_dp_link_training_channel_equalization(struct intel_dp *intel_dp)
- 
- 	intel_dp_set_idle_link_train(intel_dp);
- 
-+	if (channel_eq == false &&
-+	    intel_dp_is_edp(intel_dp) &&
-+	    i915->quirks & QUIRK_EDP_CHANNEL_EQ) {
-+		DRM_NOTE("Forcing channel_eq success for eDP\n");
-+		channel_eq = true;
-+	}
-+
- 	return channel_eq;
- 
- }
-diff --git a/drivers/gpu/drm/i915/display/intel_quirks.c b/drivers/gpu/drm/i915/display/intel_quirks.c
-index 46beb155d835..b45b23680321 100644
---- a/drivers/gpu/drm/i915/display/intel_quirks.c
-+++ b/drivers/gpu/drm/i915/display/intel_quirks.c
-@@ -53,6 +53,17 @@ static void quirk_increase_ddi_disabled_time(struct drm_i915_private *i915)
- 	drm_info(&i915->drm, "Applying Increase DDI Disabled quirk\n");
- }
- 
-+/*
-+ * Some machines (Dell Latitude 7200 2-in-1) fail channel equalization
-+ * on their eDP when it is actually usable.  This lets channel_eq
-+ * report success.
-+ */
-+static void quirk_edp_channel_eq(struct drm_i915_private *i915)
-+{
-+	i915->quirks |= QUIRK_EDP_CHANNEL_EQ;
-+	drm_info(&i915->drm, "applying eDP channel_eq quirk\n");
-+}
-+
- struct intel_quirk {
- 	int device;
- 	int subsystem_vendor;
-@@ -72,6 +83,12 @@ static int intel_dmi_reverse_brightness(const struct dmi_system_id *id)
- 	return 1;
- }
- 
-+static int intel_dmi_edp_channel_eq(const struct dmi_system_id *id)
-+{
-+	DRM_INFO("eDP channel_eq workaround on %s\n", id->ident);
-+	return 1;
-+}
-+
- static const struct intel_dmi_quirk intel_dmi_quirks[] = {
- 	{
- 		.dmi_id_list = &(const struct dmi_system_id[]) {
-@@ -96,6 +113,19 @@ static const struct intel_dmi_quirk intel_dmi_quirks[] = {
- 		},
- 		.hook = quirk_invert_brightness,
- 	},
-+	{
-+		.dmi_id_list = &(const struct dmi_system_id[]) {
-+			{
-+				.callback = intel_dmi_edp_channel_eq,
-+				.ident = "Dell Latitude 7200 2-in-1",
-+				.matches = {DMI_MATCH(DMI_SYS_VENDOR, "Dell Inc."),
-+					    DMI_MATCH(DMI_PRODUCT_NAME, "Latitude 7200 2-in-1"),
-+				},
-+			},
-+			{ }  /* terminating entry */
-+		},
-+		.hook = quirk_edp_channel_eq,
-+	},
- };
- 
- static struct intel_quirk intel_quirks[] = {
-diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
-index e4f7f6518945..fc32ea7380b7 100644
---- a/drivers/gpu/drm/i915/i915_drv.h
-+++ b/drivers/gpu/drm/i915/i915_drv.h
-@@ -525,6 +525,7 @@ struct i915_psr {
- #define QUIRK_PIN_SWIZZLED_PAGES (1<<5)
- #define QUIRK_INCREASE_T12_DELAY (1<<6)
- #define QUIRK_INCREASE_DDI_DISABLED_TIME (1<<7)
-+#define QUIRK_EDP_CHANNEL_EQ (1<<8)
- 
- struct intel_fbdev;
- struct intel_fbc_work;
--- 
-2.26.2
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+RnJvbTogVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4KClJl
+bWFpbmRlciBvZiB0aGUgbGF0ZXN0IGhwZCBjbGVhbnVwLiBBcGFydCBmcm9tIHJlYmFzaW5nIEkK
+ZGlkbid0IGNoYW5nZSBtdWNoLCBleGNlcHQgSSBkaWQgdGhlIHMvVENfUE9SVF9UQzEvVENfUE9S
+VF8xLwp0aGluZyBMdWNhcyBzdWdnZXN0ZWQuCgpWaWxsZSBTeXJqw6Rsw6QgKDE5KToKICBkcm0v
+aTkxNTogcy9QT1JUX1RDL1RDX1BPUlRfLwogIGRybS9pOTE1OiBBZGQgUE9SVF9UQ24gYWxpYXNl
+cyB0byBlbnVtIHBvcnQKICBkcm0vaTkxNTogR2l2ZSBEREkgZW5jb2RlcnMgZXZlbiBiZXR0ZXIg
+bmFtZXMKICBkcm0vaTkxNTogSW50cm9kdWNlIEFVWF9DSF9VU0JDbgogIGRybS9pOTE1OiBQaW1w
+IEFVWCBDSCBuYW1lcwogIGRybS9pOTE1OiBVc2UgQVVYX0NIX1VTQkNuIGZvciB0aGUgUktMIFZC
+VCBBVVggQ0ggc2V0dXAKICBkcm0vaTkxNTogUGFyYW1ldHJpemUgQlhUX0RFX1BPUlRfSFBfRERJ
+IHdpdGggaHBkX3BpbgogIGRybS9pOTE1OiBJbnRyb2R1Y2UgR0VOOF9ERV9QT1JUX0hPVFBMVUco
+KQogIGRybS9pOTE1OiBzL3BvcnQvaHBkX3Bpbi8gZm9yIGljcCsgZGRpIGhwZCBiaXRzCiAgZHJt
+L2k5MTU6IHMvdGNfcG9ydC9ocGRfcGluLyBpbiBHRU4xMV97VEMsVEJUfV9IT1RQTFVHKCkKICBk
+cm0vaTkxNTogcy90Y19wb3J0L2hwZF9waW4vIGluIGljcCsgVEMgaG90cGx1ZyBiaXRzCiAgZHJt
+L2k5MTU6IFJlbG9jYXRlIGludGVsX2hwZF97ZW5hYmxlZCxob3RwbHVnfV9pcnFzKCkKICBkcm0v
+aTkxNTogU3BsaXQgZ2VuMTFfaHBkX2RldGVjdGlvbl9zZXR1cCgpIGludG8gdGMgdnMuIHRidCB2
+YXJpYW50cwogIGRybS9pOTE1OiBEb24ndCBlbmFibGUgaHBkIGRldGVjdGlvbiBsb2dpYyBmcm9t
+IGlycV9wb3N0aW5zdGFsbCgpCiAgZHJtL2k5MTU6IFJlbmFtZSAndG1wX21hc2snCiAgZHJtL2k5
+MTU6IFJlbW92ZSB0aGUgcGVyLXBsYWZvcm0gSUlSIEhQRCBtYXNraW5nCiAgZHJtL2k5MTU6IEVu
+YWJsZSBocGQgbG9naWMgb25seSBmb3IgcG9ydHMgdGhhdCBhcmUgcHJlc2VudAogIGRybS9pOTE1
+OiBVc2UgR0VOM19JUlFfSU5JVCgpIHRvIGluaXQgc291dGggaW50ZXJydXB0cyBpbiBpY3ArCiAg
+ZHJtL2k5MTU6IEdldCByaWQgb2YgaWJ4X2lycV9wcmVfcG9zdGluc3RhbGwoKQoKIGRyaXZlcnMv
+Z3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfYmlvcy5jICAgIHwgIDE4ICstCiBkcml2ZXJzL2dw
+dS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RkaS5jICAgICB8ICAzMSArLQogZHJpdmVycy9ncHUv
+ZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5LmMgfCAgMzAgKy0KIGRyaXZlcnMvZ3B1L2Ry
+bS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheS5oIHwgIDMwICstCiBkcml2ZXJzL2dwdS9kcm0v
+aTkxNS9kaXNwbGF5L2ludGVsX2RwLmMgICAgICB8ICA2NiArKy0KIGRyaXZlcnMvZ3B1L2RybS9p
+OTE1L2Rpc3BsYXkvaW50ZWxfdGMuYyAgICAgIHwgICAyICstCiBkcml2ZXJzL2dwdS9kcm0vaTkx
+NS9ndnQvZGlzcGxheS5jICAgICAgICAgICB8ICAxNSArLQogZHJpdmVycy9ncHUvZHJtL2k5MTUv
+aTkxNV9pcnEuYyAgICAgICAgICAgICAgfCA1NDkgKysrKysrKysrKy0tLS0tLS0tLQogZHJpdmVy
+cy9ncHUvZHJtL2k5MTUvaTkxNV9yZWcuaCAgICAgICAgICAgICAgfCAxMTQgKystLQogOSBmaWxl
+cyBjaGFuZ2VkLCA0OTMgaW5zZXJ0aW9ucygrKSwgMzYyIGRlbGV0aW9ucygtKQoKLS0gCjIuMjYu
+MgoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwt
+Z2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8v
+bGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
