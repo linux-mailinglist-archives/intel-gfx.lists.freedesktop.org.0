@@ -2,41 +2,44 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 129E3297856
-	for <lists+intel-gfx@lfdr.de>; Fri, 23 Oct 2020 22:40:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 71A6F297884
+	for <lists+intel-gfx@lfdr.de>; Fri, 23 Oct 2020 22:55:49 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F16DB6E826;
-	Fri, 23 Oct 2020 20:40:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C6ECC6E829;
+	Fri, 23 Oct 2020 20:55:47 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 778186E823;
- Fri, 23 Oct 2020 20:40:01 +0000 (UTC)
-IronPort-SDR: /AafczF3owKnhh13c+aG9EnEnAsOSsyY/u9wjOQB/WLXwiweneXHeAOgW2fya4Gu134fqap+n0
- 5u8jmtCvWBlw==
-X-IronPort-AV: E=McAfee;i="6000,8403,9783"; a="231920964"
-X-IronPort-AV: E=Sophos;i="5.77,409,1596524400"; d="scan'208";a="231920964"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Oct 2020 13:40:00 -0700
-IronPort-SDR: xpqGVB7Nlr5ymj9xZcxRPT6JQsOqTlH5910zgpYNMGZQtLziAmg9pkw3ww4orwob0T9RIPXz76
- YrBPA0e1TH7g==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.77,409,1596524400"; d="scan'208";a="360339594"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by orsmga007.jf.intel.com with SMTP; 23 Oct 2020 13:39:58 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 23 Oct 2020 23:39:57 +0300
-From: Ville Syrjala <ville.syrjala@linux.intel.com>
-To: dri-devel@lists.freedesktop.org
-Date: Fri, 23 Oct 2020 23:39:57 +0300
-Message-Id: <20201023203957.3255-1-ville.syrjala@linux.intel.com>
-X-Mailer: git-send-email 2.26.2
+Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C85576E828;
+ Fri, 23 Oct 2020 20:53:39 +0000 (UTC)
+Received: from paulmck-ThinkPad-P72.home (50-39-104-11.bvtn.or.frontiernet.net
+ [50.39.104.11])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by mail.kernel.org (Postfix) with ESMTPSA id 693F1208E4;
+ Fri, 23 Oct 2020 20:53:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=default; t=1603486419;
+ bh=ojQX8v4FWHWriM/9vutOQ7P1tVXDPKF1/x3d5VeoJaw=;
+ h=Date:From:To:Cc:Subject:Reply-To:References:In-Reply-To:From;
+ b=kvqPjaUAbhgOA7v9m5hPwFhSot+9JpnZXoeCrdsm06tmZk3i0PrkuY3l00nQhXTO7
+ mME/ZUGMaFJ8HfKVhEI2MvB8tG0mJXu0Oz9Lq5QXxDSvD9OeEOp7qTfPlU5UBnvfap
+ tnFzhsUdlh/9ZNLst1GWoxnofysl3fTu/WbsWfz4=
+Received: by paulmck-ThinkPad-P72.home (Postfix, from userid 1000)
+ id 03E563520D11; Fri, 23 Oct 2020 13:53:39 -0700 (PDT)
+Date: Fri, 23 Oct 2020 13:53:38 -0700
+From: "Paul E. McKenney" <paulmck@kernel.org>
+To: Daniel Vetter <daniel.vetter@ffwll.ch>
+Message-ID: <20201023205338.GQ3249@paulmck-ThinkPad-P72>
+References: <20201021163242.1458885-1-daniel.vetter@ffwll.ch>
+ <20201023122216.2373294-1-daniel.vetter@ffwll.ch>
+ <20201023122216.2373294-4-daniel.vetter@ffwll.ch>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm: Don't create the IN_FORMATS blob when the
- driver does not provide .format_mod_supported()
+Content-Disposition: inline
+In-Reply-To: <20201023122216.2373294-4-daniel.vetter@ffwll.ch>
+User-Agent: Mutt/1.9.4 (2018-02-28)
+X-Mailman-Approved-At: Fri, 23 Oct 2020 20:55:46 +0000
+Subject: Re: [Intel-gfx] [PATCH 04/65] mm: Extract might_alloc() debug check
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,46 +52,150 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Reply-To: paulmck@kernel.org
+Cc: Peter Zijlstra <peterz@infradead.org>,
+ Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
+ Dave Chinner <david@fromorbit.com>,
+ DRI Development <dri-devel@lists.freedesktop.org>, linux-mm@kvack.org,
+ Daniel Vetter <daniel.vetter@intel.com>, Christoph Lameter <cl@linux.com>,
+ Michel Lespinasse <walken@google.com>, Ingo Molnar <mingo@kernel.org>,
+ Pekka Enberg <penberg@kernel.org>, David Rientjes <rientjes@google.com>,
+ Waiman Long <longman@redhat.com>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ Qian Cai <cai@lca.pw>, Thomas Gleixner <tglx@linutronix.de>,
+ Joonsoo Kim <iamjoonsoo.kim@lge.com>, Vlastimil Babka <vbabka@suse.cz>,
+ Randy Dunlap <rdunlap@infradead.org>, linux-xfs@vger.kernel.org,
+ linux-fsdevel@vger.kernel.org,
+ Mathieu Desnoyers <mathieu.desnoyers@efficios.com>,
+ Andrew Morton <akpm@linux-foundation.org>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-RnJvbTogVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4KClRo
-ZSBjb2RlIHJlc3BvbnNpYmxlIGZvciBjcmVhdGluZyB0aGUgSU5fRk9STUFUUwpibG9iIGlzIGJy
-b2tlbiB3aGVuIHRoZSBkcml2ZXIgZG9lc24ndCBwcm92aWRlIGEKLmZvcm1hdF9tb2Rfc3VwcG9y
-dGVkKCkgaG9vay4gSXQganVzdCBjb3BpZXMgaW4KdGhlIGZvcm1hdCBsaXN0LCBidXQgbGVhdmVz
-IGFsbCB0aGUgbW9kaWZpZXIgaW5mb3JtYXRpb24KemVyb2VkLiBUaGF0IHdvdWxkIGluZGljYXRl
-IChpbiBhIHZlcnkgc2lsbHkgd2F5KSB0aGF0CnRoZXJlIGFyZSBpbiBmYWN0IG5vIHN1cHBvcnRl
-ZCBmb3JtYXQrbW9kaWZpZXIgY29tYmluYXRpb25zLgpUaGF0IGlzIHV0dGVyIG5vbnNlbnNlLgoK
-TGV0J3MganVzdCBub3QgY3JlYXRlIHRoZSBibG9iIGF0IGFsbCBpbiB0aGF0IGNhc2UuIFRoZQph
-bHRlcm5hdGl2ZSB3b3VsZCBiZSB0byBhc3N1bWUgYWxsIGZvcm1hdCttb2QgY29tYm9zIHdpbGwK
-d29yayBhbmQgcG9wdWxhdGUgaXQgYWNjb3JkaW5nbHkuIEJ1dCBJJ20gbm90IGNvbnZpbmNlZCB3
-ZQpjYW4gbWFrZSB0aGF0IHByb21pc2UgdG8gdXNlcnNwYWNlIGZvciBhbGwgdGhlIGRyaXZlcnMu
-CgpTaWduZWQtb2ZmLWJ5OiBWaWxsZSBTeXJqw6Rsw6QgPHZpbGxlLnN5cmphbGFAbGludXguaW50
-ZWwuY29tPgotLS0KIGRyaXZlcnMvZ3B1L2RybS9kcm1fcGxhbmUuYyB8IDcgKy0tLS0tLQogMSBm
-aWxlIGNoYW5nZWQsIDEgaW5zZXJ0aW9uKCspLCA2IGRlbGV0aW9ucygtKQoKZGlmZiAtLWdpdCBh
-L2RyaXZlcnMvZ3B1L2RybS9kcm1fcGxhbmUuYyBiL2RyaXZlcnMvZ3B1L2RybS9kcm1fcGxhbmUu
-YwppbmRleCBlNjIzMTk0N2Y5ODcuLjIwMmEyYjY4MDk0NyAxMDA2NDQKLS0tIGEvZHJpdmVycy9n
-cHUvZHJtL2RybV9wbGFuZS5jCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9kcm1fcGxhbmUuYwpAQCAt
-MTI0LDEwICsxMjQsNiBAQCBzdGF0aWMgaW50IGNyZWF0ZV9pbl9mb3JtYXRfYmxvYihzdHJ1Y3Qg
-ZHJtX2RldmljZSAqZGV2LCBzdHJ1Y3QgZHJtX3BsYW5lICpwbGFuZQogCiAJbWVtY3B5KGZvcm1h
-dHNfcHRyKGJsb2JfZGF0YSksIHBsYW5lLT5mb3JtYXRfdHlwZXMsIGZvcm1hdHNfc2l6ZSk7CiAK
-LQkvKiBJZiB3ZSBjYW4ndCBkZXRlcm1pbmUgc3VwcG9ydCwganVzdCBiYWlsICovCi0JaWYgKCFw
-bGFuZS0+ZnVuY3MtPmZvcm1hdF9tb2Rfc3VwcG9ydGVkKQotCQlnb3RvIGRvbmU7Ci0KIAltb2Qg
-PSBtb2RpZmllcnNfcHRyKGJsb2JfZGF0YSk7CiAJZm9yIChpID0gMDsgaSA8IHBsYW5lLT5tb2Rp
-Zmllcl9jb3VudDsgaSsrKSB7CiAJCWZvciAoaiA9IDA7IGogPCBwbGFuZS0+Zm9ybWF0X2NvdW50
-OyBqKyspIHsKQEAgLTE0NSw3ICsxNDEsNiBAQCBzdGF0aWMgaW50IGNyZWF0ZV9pbl9mb3JtYXRf
-YmxvYihzdHJ1Y3QgZHJtX2RldmljZSAqZGV2LCBzdHJ1Y3QgZHJtX3BsYW5lICpwbGFuZQogCQlt
-b2QrKzsKIAl9CiAKLWRvbmU6CiAJZHJtX29iamVjdF9hdHRhY2hfcHJvcGVydHkoJnBsYW5lLT5i
-YXNlLCBjb25maWctPm1vZGlmaWVyc19wcm9wZXJ0eSwKIAkJCQkgICBibG9iLT5iYXNlLmlkKTsK
-IApAQCAtMjgxLDcgKzI3Niw3IEBAIGludCBkcm1fdW5pdmVyc2FsX3BsYW5lX2luaXQoc3RydWN0
-IGRybV9kZXZpY2UgKmRldiwgc3RydWN0IGRybV9wbGFuZSAqcGxhbmUsCiAJCWRybV9vYmplY3Rf
-YXR0YWNoX3Byb3BlcnR5KCZwbGFuZS0+YmFzZSwgY29uZmlnLT5wcm9wX3NyY19oLCAwKTsKIAl9
-CiAKLQlpZiAoY29uZmlnLT5hbGxvd19mYl9tb2RpZmllcnMpCisJaWYgKGNvbmZpZy0+YWxsb3df
-ZmJfbW9kaWZpZXJzICYmIGZ1bmNzLT5mb3JtYXRfbW9kX3N1cHBvcnRlZCkKIAkJY3JlYXRlX2lu
-X2Zvcm1hdF9ibG9iKGRldiwgcGxhbmUpOwogCiAJcmV0dXJuIDA7Ci0tIAoyLjI2LjIKCl9fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWls
-aW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
+On Fri, Oct 23, 2020 at 02:21:15PM +0200, Daniel Vetter wrote:
+> Extracted from slab.h, which seems to have the most complete version
+> including the correct might_sleep() check. Roll it out to slob.c.
+> 
+> Motivated by a discussion with Paul about possibly changing call_rcu
+> behaviour to allocate memory, but only roughly every 500th call.
+> 
+> There are a lot fewer places in the kernel that care about whether
+> allocating memory is allowed or not (due to deadlocks with reclaim
+> code) than places that care whether sleeping is allowed. But debugging
+> these also tends to be a lot harder, so nice descriptive checks could
+> come in handy. I might have some use eventually for annotations in
+> drivers/gpu.
+> 
+> Note that unlike fs_reclaim_acquire/release gfpflags_allow_blocking
+> does not consult the PF_MEMALLOC flags. But there is no flag
+> equivalent for GFP_NOWAIT, hence this check can't go wrong due to
+> memalloc_no*_save/restore contexts.
+> 
+> Cc: Paul E. McKenney <paulmck@kernel.org>
+> Cc: Christoph Lameter <cl@linux.com>
+> Cc: Pekka Enberg <penberg@kernel.org>
+> Cc: David Rientjes <rientjes@google.com>
+> Cc: Joonsoo Kim <iamjoonsoo.kim@lge.com>
+> Cc: Andrew Morton <akpm@linux-foundation.org>
+> Cc: Peter Zijlstra <peterz@infradead.org>
+> Cc: Ingo Molnar <mingo@kernel.org>
+> Cc: Vlastimil Babka <vbabka@suse.cz>
+> Cc: Mathieu Desnoyers <mathieu.desnoyers@efficios.com>
+> Cc: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
+> Cc: Michel Lespinasse <walken@google.com>
+> Cc: Daniel Vetter <daniel.vetter@ffwll.ch>
+> Cc: Waiman Long <longman@redhat.com>
+> Cc: Thomas Gleixner <tglx@linutronix.de>
+> Cc: Randy Dunlap <rdunlap@infradead.org>
+> Cc: linux-mm@kvack.org
+> Cc: linux-fsdevel@vger.kernel.org
+> Cc: Dave Chinner <david@fromorbit.com>
+> Cc: Qian Cai <cai@lca.pw>
+> Cc: linux-xfs@vger.kernel.org
+> Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
+
+Nice!!!
+
+Acked-by: Paul E. McKenney <paulmck@kernel.org>
+
+> ---
+>  include/linux/sched/mm.h | 16 ++++++++++++++++
+>  mm/slab.h                |  5 +----
+>  mm/slob.c                |  6 ++----
+>  3 files changed, 19 insertions(+), 8 deletions(-)
+> 
+> diff --git a/include/linux/sched/mm.h b/include/linux/sched/mm.h
+> index f889e332912f..2b0037abac0b 100644
+> --- a/include/linux/sched/mm.h
+> +++ b/include/linux/sched/mm.h
+> @@ -205,6 +205,22 @@ static inline void fs_reclaim_acquire(gfp_t gfp_mask) { }
+>  static inline void fs_reclaim_release(gfp_t gfp_mask) { }
+>  #endif
+>  
+> +/**
+> + * might_alloc - Marks possible allocation sites
+> + * @gfp_mask: gfp_t flags that would be use to allocate
+> + *
+> + * Similar to might_sleep() and other annotations this can be used in functions
+> + * that might allocate, but often dont. Compiles to nothing without
+> + * CONFIG_LOCKDEP. Includes a conditional might_sleep() if @gfp allows blocking.
+> + */
+> +static inline void might_alloc(gfp_t gfp_mask)
+> +{
+> +	fs_reclaim_acquire(gfp_mask);
+> +	fs_reclaim_release(gfp_mask);
+> +
+> +	might_sleep_if(gfpflags_allow_blocking(gfp_mask));
+> +}
+> +
+>  /**
+>   * memalloc_noio_save - Marks implicit GFP_NOIO allocation scope.
+>   *
+> diff --git a/mm/slab.h b/mm/slab.h
+> index 6cc323f1313a..fedd789b2270 100644
+> --- a/mm/slab.h
+> +++ b/mm/slab.h
+> @@ -492,10 +492,7 @@ static inline struct kmem_cache *slab_pre_alloc_hook(struct kmem_cache *s,
+>  {
+>  	flags &= gfp_allowed_mask;
+>  
+> -	fs_reclaim_acquire(flags);
+> -	fs_reclaim_release(flags);
+> -
+> -	might_sleep_if(gfpflags_allow_blocking(flags));
+> +	might_alloc(flags);
+>  
+>  	if (should_failslab(s, flags))
+>  		return NULL;
+> diff --git a/mm/slob.c b/mm/slob.c
+> index 7cc9805c8091..8d4bfa46247f 100644
+> --- a/mm/slob.c
+> +++ b/mm/slob.c
+> @@ -474,8 +474,7 @@ __do_kmalloc_node(size_t size, gfp_t gfp, int node, unsigned long caller)
+>  
+>  	gfp &= gfp_allowed_mask;
+>  
+> -	fs_reclaim_acquire(gfp);
+> -	fs_reclaim_release(gfp);
+> +	might_alloc(gfp);
+>  
+>  	if (size < PAGE_SIZE - minalign) {
+>  		int align = minalign;
+> @@ -597,8 +596,7 @@ static void *slob_alloc_node(struct kmem_cache *c, gfp_t flags, int node)
+>  
+>  	flags &= gfp_allowed_mask;
+>  
+> -	fs_reclaim_acquire(flags);
+> -	fs_reclaim_release(flags);
+> +	might_alloc(flags);
+>  
+>  	if (c->size < PAGE_SIZE) {
+>  		b = slob_alloc(c->size, flags, c->align, node, 0);
+> -- 
+> 2.28.0
+> 
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
