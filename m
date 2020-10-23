@@ -2,39 +2,42 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 946F9296B0B
-	for <lists+intel-gfx@lfdr.de>; Fri, 23 Oct 2020 10:17:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3E2DC296CBE
+	for <lists+intel-gfx@lfdr.de>; Fri, 23 Oct 2020 12:23:35 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 05FA46E4D7;
-	Fri, 23 Oct 2020 08:17:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 927766E4F1;
+	Fri, 23 Oct 2020 10:23:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7CCD96E4D7;
- Fri, 23 Oct 2020 08:17:49 +0000 (UTC)
-IronPort-SDR: rJzkCFByXlix/ElTuX+T/lcbr6ra9leMDk+0Jt+2LQY8dUSiXfgMw/66S5p1X0ZXWIOJBupnRA
- 7RvZvjt0hD1Q==
-X-IronPort-AV: E=McAfee;i="6000,8403,9782"; a="155428689"
-X-IronPort-AV: E=Sophos;i="5.77,407,1596524400"; d="scan'208";a="155428689"
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C906E6E466;
+ Fri, 23 Oct 2020 10:23:30 +0000 (UTC)
+IronPort-SDR: sW4LrAZkqFMRU2yh+m+vgF9hyoElJFVZnNR1pVk4C/2i9Z/rq+iQjDRqkSTRrVM4Svv6OSZA2D
+ p9Hks2tTkzcQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9782"; a="229290339"
+X-IronPort-AV: E=Sophos;i="5.77,407,1596524400"; d="scan'208";a="229290339"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Oct 2020 01:17:42 -0700
-IronPort-SDR: YgrEkSm3xGdsFjVju8pK3uGJMtiNtVXfQtUU5ZUfxfhO+W23Ma/IMZvPBtYS4MfugWbMjkSSLg
- lpF/8iWZtkSg==
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Oct 2020 03:23:26 -0700
+IronPort-SDR: Xt5rz6R7Bt1n018YImoHwTXHwsb4tRWXbh5ryzlyur/vGyS0Ou7qABag9bjRfq6Vw2J7bYO6qn
+ f1YHNNem9QXQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.77,407,1596524400"; d="scan'208";a="349118319"
-Received: from unknown (HELO coxu-arch-shz.sh.intel.com) ([10.239.160.21])
- by fmsmga004.fm.intel.com with ESMTP; 23 Oct 2020 01:17:40 -0700
-From: Colin Xu <colin.xu@intel.com>
-To: zhenyuw@linux.intel.com
-Date: Fri, 23 Oct 2020 16:17:37 +0800
-Message-Id: <20201023081737.773378-1-colin.xu@intel.com>
-X-Mailer: git-send-email 2.29.0
+X-IronPort-AV: E=Sophos;i="5.77,407,1596524400"; d="scan'208";a="302718961"
+Received: from gaia.fi.intel.com ([10.237.72.192])
+ by fmsmga007.fm.intel.com with ESMTP; 23 Oct 2020 03:23:25 -0700
+Received: by gaia.fi.intel.com (Postfix, from userid 1000)
+ id 84EF45C2038; Fri, 23 Oct 2020 13:21:45 +0300 (EEST)
+From: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
+In-Reply-To: <20201022150943.3041180-1-chris@chris-wilson.co.uk>
+References: <20201022150943.3041180-1-chris@chris-wilson.co.uk>
+Date: Fri, 23 Oct 2020 13:21:45 +0300
+Message-ID: <87tuulqm2u.fsf@gaia.fi.intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v6 2/2] drm/i915/gvt: Add GVT resume routine to
- i915
+Subject: Re: [Intel-gfx] [igt-dev] [PATCH i-g-t] i915/gem_mmap_gtt: Trim
+ object size for ptracing
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,54 +50,93 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, intel-gvt-dev@lists.freedesktop.org
+Cc: igt-dev@lists.freedesktop.org, Chris Wilson <chris@chris-wilson.co.uk>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This patch add gvt resume wrapper into i915_drm_resume().
-GVT relies on i915 so resume gvt at last.
+Chris Wilson <chris@chris-wilson.co.uk> writes:
 
-V2:
-- Direct call into gvt suspend/resume wrapper in intel_gvt.h/intel_gvt.c.
-The wrapper and implementation will check and call gvt routine. (zhenyu)
+> For verifying vm_ops.access we only need a page or two to check we both
+> advance across a page boundary and find the right offset within a page.
+> 16MiB is overkill for the slow uncached reads through the slow ptrace
+> interface, so reduce the object size by a couple of orders of magnitude.
+>
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
 
-V3:
-Refresh.
+Reviewed-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
 
-V4:
-Rebase.
-
-V5:
-Fail intel_gvt_suspend() if fail to save GGTT.
-
-V6:
-Save host entry to per-vGPU gtt.ggtt_mm on each host_entry update so
-only need the resume routine.
-
-Signed-off-by: Hang Yuan <hang.yuan@linux.intel.com>
-Signed-off-by: Colin Xu <colin.xu@intel.com>
----
- drivers/gpu/drm/i915/i915_drv.c | 2 ++
- 1 file changed, 2 insertions(+)
-
-diff --git a/drivers/gpu/drm/i915/i915_drv.c b/drivers/gpu/drm/i915/i915_drv.c
-index d3237b0d821d..2c15c9440f8a 100644
---- a/drivers/gpu/drm/i915/i915_drv.c
-+++ b/drivers/gpu/drm/i915/i915_drv.c
-@@ -1270,6 +1270,8 @@ static int i915_drm_resume(struct drm_device *dev)
- 
- 	intel_power_domains_enable(dev_priv);
- 
-+	intel_gvt_resume(dev_priv);
-+
- 	enable_rpm_wakeref_asserts(&dev_priv->runtime_pm);
- 
- 	return 0;
--- 
-2.29.0
-
+> ---
+>  tests/i915/gem_mmap_gtt.c | 23 ++++++++++++-----------
+>  1 file changed, 12 insertions(+), 11 deletions(-)
+>
+> diff --git a/tests/i915/gem_mmap_gtt.c b/tests/i915/gem_mmap_gtt.c
+> index 6637bba06..3cce19e9a 100644
+> --- a/tests/i915/gem_mmap_gtt.c
+> +++ b/tests/i915/gem_mmap_gtt.c
+> @@ -525,6 +525,7 @@ static void *memchr_inv(const void *s, int c, size_t n)
+>  static void
+>  test_ptrace(int fd)
+>  {
+> +	unsigned long sz = 16 * 4096;
+>  	unsigned long AA, CC;
+>  	unsigned long *gtt, *cpy;
+>  	uint32_t bo;
+> @@ -533,16 +534,16 @@ test_ptrace(int fd)
+>  	memset(&AA, 0xaa, sizeof(AA));
+>  	memset(&CC, 0x55, sizeof(CC));
+>  
+> -	cpy = malloc(OBJECT_SIZE);
+> -	memset(cpy, AA, OBJECT_SIZE);
+> +	cpy = malloc(sz);
+> +	memset(cpy, AA, sz);
+>  
+> -	bo = gem_create(fd, OBJECT_SIZE);
+> -	gtt = mmap_bo(fd, bo, OBJECT_SIZE);
+> -	memset(gtt, CC, OBJECT_SIZE);
+> +	bo = gem_create(fd, sz);
+> +	gtt = mmap_bo(fd, bo, sz);
+> +	memset(gtt, CC, sz);
+>  	gem_close(fd, bo);
+>  
+> -	igt_assert(!memchr_inv(gtt, CC, OBJECT_SIZE));
+> -	igt_assert(!memchr_inv(cpy, AA, OBJECT_SIZE));
+> +	igt_assert(!memchr_inv(gtt, CC, sz));
+> +	igt_assert(!memchr_inv(cpy, AA, sz));
+>  
+>  	igt_fork(child, 1) {
+>  		ptrace(PTRACE_TRACEME, 0, NULL, NULL);
+> @@ -553,7 +554,7 @@ test_ptrace(int fd)
+>  	pid = wait(NULL);
+>  
+>  	ptrace(PTRACE_ATTACH, pid, NULL, NULL);
+> -	for (int i = 0; i < OBJECT_SIZE / sizeof(long); i++) {
+> +	for (int i = 0; i < sz / sizeof(long); i++) {
+>  		long ret;
+>  
+>  		ret = ptrace(PTRACE_PEEKDATA, pid, gtt + i);
+> @@ -570,10 +571,10 @@ test_ptrace(int fd)
+>  	igt_waitchildren();
+>  
+>  	/* The contents of the two buffers should now be swapped */
+> -	igt_assert(!memchr_inv(gtt, AA, OBJECT_SIZE));
+> -	igt_assert(!memchr_inv(cpy, CC, OBJECT_SIZE));
+> +	igt_assert(!memchr_inv(gtt, AA, sz));
+> +	igt_assert(!memchr_inv(cpy, CC, sz));
+>  
+> -	munmap(gtt, OBJECT_SIZE);
+> +	munmap(gtt, sz);
+>  	free(cpy);
+>  }
+>  
+> -- 
+> 2.28.0
+>
+> _______________________________________________
+> igt-dev mailing list
+> igt-dev@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/igt-dev
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
