@@ -1,46 +1,30 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B4880296E16
-	for <lists+intel-gfx@lfdr.de>; Fri, 23 Oct 2020 13:58:40 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 93F9D296F13
+	for <lists+intel-gfx@lfdr.de>; Fri, 23 Oct 2020 14:27:13 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1B3066E504;
-	Fri, 23 Oct 2020 11:58:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 00E0F6E525;
+	Fri, 23 Oct 2020 12:27:12 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DFEEB6E504
- for <intel-gfx@lists.freedesktop.org>; Fri, 23 Oct 2020 11:58:36 +0000 (UTC)
-Received: from mail-il1-f171.google.com (mail-il1-f171.google.com
- [209.85.166.171])
- (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
- (No client certificate requested)
- by mail.kernel.org (Postfix) with ESMTPSA id 6C6DF24631
- for <intel-gfx@lists.freedesktop.org>; Fri, 23 Oct 2020 11:58:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=default; t=1603454316;
- bh=xu6ztFg5IBpO5cVaGxm2D9PYP4Ip/ZYqM71qJsQCWd4=;
- h=References:In-Reply-To:From:Date:Subject:To:List-Id:Cc:From;
- b=Qt3HGB6moIuSuLVF4dz5AIHv57m1lQ2QIZf+cJsUAVY8u6O6agQnI6XEP0GtnqDuD
- Adrfmh57y5ppEJ9SYl1uJEbvFXjsLvWwobaP8XTFGKYOtEW9FQEvybpfhRhxDB91fB
- VCaxyOtpHuNAZUD2945mTzuwYJPbIJ2MLEhFDOFw=
-Received: by mail-il1-f171.google.com with SMTP id p9so1102353ilr.1
- for <intel-gfx@lists.freedesktop.org>; Fri, 23 Oct 2020 04:58:36 -0700 (PDT)
-X-Gm-Message-State: AOAM533VKy3zb6bJ0YYmIed3SsSp4q5awJVGsyeVgKANMfVVMfntZI6B
- 3WhTkatOl+HFS8wR5kAA4mYep4WcV5dTbe89o6g=
-X-Google-Smtp-Source: ABdhPJy05gNx/02KcDt4JoV7BlP9meLBkYJMyx3sqQOG33rZybJrPMfaBsTtS1J/tlXAygvs2OD7hv5NI/PELJfGVfI=
-X-Received: by 2002:a92:600e:: with SMTP id u14mr1289210ilb.303.1603454315751; 
- Fri, 23 Oct 2020 04:58:35 -0700 (PDT)
+Received: from verein.lst.de (verein.lst.de [213.95.11.211])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 405B26E525;
+ Fri, 23 Oct 2020 12:27:11 +0000 (UTC)
+Received: by verein.lst.de (Postfix, from userid 2407)
+ id 5262967373; Fri, 23 Oct 2020 14:19:41 +0200 (CEST)
+Date: Fri, 23 Oct 2020 14:19:41 +0200
+From: Christoph Hellwig <hch@lst.de>
+To: Dan Carpenter <dan.carpenter@oracle.com>
+Message-ID: <20201023121941.GB18499@lst.de>
+References: <20201023113401.GG282278@mwanda>
 MIME-Version: 1.0
-References: <3997663f047e4ab68fca41e3c8a05671@intel.com>
-In-Reply-To: <3997663f047e4ab68fca41e3c8a05671@intel.com>
-From: Josh Boyer <jwboyer@kernel.org>
-Date: Fri, 23 Oct 2020 07:58:24 -0400
-X-Gmail-Original-Message-ID: <CA+5PVA4tEqub_1KmA9WeRa3WZ4OpDejdBn2FDxZ-LESfFD1Vnw@mail.gmail.com>
-Message-ID: <CA+5PVA4tEqub_1KmA9WeRa3WZ4OpDejdBn2FDxZ-LESfFD1Vnw@mail.gmail.com>
-To: "Srivatsa, Anusha" <anusha.srivatsa@intel.com>
-Subject: Re: [Intel-gfx] i915 Update : DG1 DMC
+Content-Disposition: inline
+In-Reply-To: <20201023113401.GG282278@mwanda>
+User-Agent: Mutt/1.5.17 (2007-11-01)
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Fix a crash in shmem_pin_map()
+ error handling
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,75 +37,49 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Kyle McMartin <kyle@mcmartin.ca>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "ben@decadent.org.uk" <ben@decadent.org.uk>,
- "linux-firmware@kernel.org" <linux-firmware@kernel.org>
+Cc: dri-devel@lists.freedesktop.org, David Airlie <airlied@linux.ie>,
+ intel-gfx@lists.freedesktop.org, kernel-janitors@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Chris Wilson <chris@chris-wilson.co.uk>,
+ Matthew Auld <matthew.auld@intel.com>,
+ Andrew Morton <akpm@linux-foundation.org>, Christoph Hellwig <hch@lst.de>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Pulled and pushed out.
+On Fri, Oct 23, 2020 at 02:34:01PM +0300, Dan Carpenter wrote:
+> There is a signedness bug in shmem_pin_map() error handling because "i"
+> is unsigned.  The "while (--i >= 0)" will loop forever until the system
+> crashes.
 
-josh
+I actually sent a patch to Andrew before the end of the merge window
+to use a for loop with a new j iterator to fix this based on your
+automated report, but it looks like that didn't go in.
 
-On Fri, Oct 9, 2020 at 2:41 PM Srivatsa, Anusha
-<anusha.srivatsa@intel.com> wrote:
->
-> Hi Kyle, Ben,
->
->
->
-> Please add the i915 updates to linux-firmware from branch dg1_dmc_v2_02
->
->
->
-> The following changes since commit 58d41d0facca2478d3e45f6321224361519aee96:
->
->
->
->   ice: Add comms package file for Intel E800 series driver (2020-10-05 08:09:03 -0400)
->
->
->
-> are available in the Git repository at: dg1_dmc_v2_02
->
->
->
->   git://anongit.freedesktop.org/drm/drm-firmware dg1_dmc_v2_02
->
->
->
-> for you to fetch changes up to a140ef3eb3746aba2c897db16e02ffb5ffa9e7a2:
->
->
->
->   i915: Add DG1 DMC v2.02 (2020-10-08 12:13:33 -0700)
->
->
->
-> ----------------------------------------------------------------
->
-> Anusha Srivatsa (1):
->
->       i915: Add DG1 DMC v2.02
->
->
->
-> WHENCE                   |   2 ++
->
-> i915/dg1_dmc_ver2_02.bin | Bin 0 -> 16624 bytes
->
-> 2 files changed, 2 insertions(+)
->
-> create mode 100644 i915/dg1_dmc_ver2_02.bin
->
->
->
-> Thanks,
->
-> Anusha
+> Fixes: bfed6708d6c9 ("drm/i915: use vmap in shmem_pin_map")
+> Signed-off-by: Dan Carpenter <dan.carpenter@oracle.com>
+> ---
+>  drivers/gpu/drm/i915/gt/shmem_utils.c | 3 ++-
+>  1 file changed, 2 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/gt/shmem_utils.c b/drivers/gpu/drm/i915/gt/shmem_utils.c
+> index f011ea42487e..7eb542018219 100644
+> --- a/drivers/gpu/drm/i915/gt/shmem_utils.c
+> +++ b/drivers/gpu/drm/i915/gt/shmem_utils.c
+> @@ -52,8 +52,9 @@ struct file *shmem_create_from_object(struct drm_i915_gem_object *obj)
+>  void *shmem_pin_map(struct file *file)
+>  {
+>  	struct page **pages;
+> -	size_t n_pages, i;
+> +	size_t n_pages;
+>  	void *vaddr;
+> +	int i;
+>  
+>  	n_pages = file->f_mapping->host->i_size >> PAGE_SHIFT;
+>  	pages = kvmalloc_array(n_pages, sizeof(*pages), GFP_KERNEL);
+
+This assumes we never have more than INT_MAX worth of pages before
+a failure. 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
