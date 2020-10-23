@@ -2,75 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BD3A5296F08
-	for <lists+intel-gfx@lfdr.de>; Fri, 23 Oct 2020 14:26:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8F702296F11
+	for <lists+intel-gfx@lfdr.de>; Fri, 23 Oct 2020 14:26:58 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 119866E528;
-	Fri, 23 Oct 2020 12:26:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 388416E527;
+	Fri, 23 Oct 2020 12:26:56 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wm1-x343.google.com (mail-wm1-x343.google.com
- [IPv6:2a00:1450:4864:20::343])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 431F66E527
- for <intel-gfx@lists.freedesktop.org>; Fri, 23 Oct 2020 12:26:06 +0000 (UTC)
-Received: by mail-wm1-x343.google.com with SMTP id e2so1316148wme.1
- for <intel-gfx@lists.freedesktop.org>; Fri, 23 Oct 2020 05:26:06 -0700 (PDT)
+Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com
+ [IPv6:2a00:1450:4864:20::329])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E65586E51C
+ for <intel-gfx@lists.freedesktop.org>; Fri, 23 Oct 2020 12:26:54 +0000 (UTC)
+Received: by mail-wm1-x329.google.com with SMTP id d78so1242290wmd.3
+ for <intel-gfx@lists.freedesktop.org>; Fri, 23 Oct 2020 05:26:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=date:from:to:cc:subject:message-id:mail-followup-to:references
- :mime-version:content-disposition:content-transfer-encoding
- :in-reply-to; bh=PAFtVAQ3tChjSUzKujX9wl7xWmpuDPW53yjWkRt+YX4=;
- b=K/MlvxqbXxKBD7NtxzEVlnQQgEo8R7jzzQ6d8aTKu/t7mVOfhin25s4agcsW7aC9Fm
- Dg+jn2+aY9gWuXi7wduTHjxE/oiqtUmeSjJS9d5bV3rltqi1wTiNFP2rJPUUFWgVs7E6
- gRtIWzD7wrVKYbLUc6keZxA0hqL4l6D2l+jUk=
+ h=from:to:cc:subject:date:message-id:in-reply-to:references
+ :mime-version:content-transfer-encoding;
+ bh=KPJV6pgXYvIyIebW+FLMHGoXfGGSrvlz8saNgZrREPI=;
+ b=EsB0WAHNsX1s2YwBrIYhgp+sAMv/zbWckRLE2nH0JaRqxVhaenthwGGxRSiTK93/qQ
+ KghjbPGEYatJIGNaVpmJe1XORiQQxbbcO4kotk4cUSU/asiD9wLEeViRFFyLnB0uXuqi
+ JIF+P4q2mphsgVwE5sZu4lmn/49/4lb5hqgUU=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id
- :mail-followup-to:references:mime-version:content-disposition
- :content-transfer-encoding:in-reply-to;
- bh=PAFtVAQ3tChjSUzKujX9wl7xWmpuDPW53yjWkRt+YX4=;
- b=YHyleXiFyhiRFcwBpIvXw+cC4A0+BtjAuzsM8svf5M+aNMPlc7jYBbOfQAaWH1JDrh
- 2F/L0BlhmxvGj7Aqg9HklIVo765Vr8swCA/7GkogIJ5BYJRl55Rgg2FY/jepdhoAGYc+
- mt1PwkIvgNC7aO5hAGv98tyOetE4bRsSxSTxvQqIRh/ZwKtNOTU48wPctJwaoZAM/m1w
- a0GwTESoWJwTn1LC+aElx+FcADWIwFmhnbKW9DXm77uSqNLLt9XB4JboSSkEHIgTs2hz
- KjcdcHj0NUoAyVRbKiG6B/aXkinw8tj5iEdpfKY4HP5phyLbZBXZ4gqeGOR/XlLkXj/x
- Qwtg==
-X-Gm-Message-State: AOAM532lOSbsStdw7UUipZWb42DMa2M70bV9IQ8Y4cCRUbY4h/cRecD/
- +ogD9JfN0Ohxx1OtV+Ir349/3g==
-X-Google-Smtp-Source: ABdhPJzmCXFy0gj+CVwTI7L79a3sWTdS3hTTu9nmTWuT4VCd2/G9Mq4Y+61MqYgpQ+yiCjJ3FCfC5Q==
-X-Received: by 2002:a7b:c015:: with SMTP id c21mr2044322wmb.22.1603455964962; 
- Fri, 23 Oct 2020 05:26:04 -0700 (PDT)
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+ :references:mime-version:content-transfer-encoding;
+ bh=KPJV6pgXYvIyIebW+FLMHGoXfGGSrvlz8saNgZrREPI=;
+ b=ZVlpITR9ja9b3gog/e4fNcDRmridiziqiFkC7Dn7/xEn8+JfL86WlqoWAYB+6nDHkG
+ 3XC6wMcwrWz+tAfMhFwU3aPXT+RBo+GDM2Mq9Mr1tPxzfUOTQvO1toRb0WGqG35tgSAq
+ 0vebATUx+iLMMAczXDVU6YdAqy8nW+gvgp+5mpE2FSnWabG+lCAm6yMVmGZjjtiBe729
+ CFTLleU6NUfd1slfW655ivXj3jyGJuRFMgy8P47HmGKFXkOipVeICpvG7XkxrdsfrgVM
+ UK1Ih7kFgUfo6E98+E4NMf/xszrsPxix0YVWg8W7TI0461nWHszjydCOHC+wAkmcc42f
+ eIGQ==
+X-Gm-Message-State: AOAM532wP9zYX6HZaP1G8zr1hAltwJ4kD1gfYpSotAd8xrHO163ATOqc
+ lofNxL92B2SX+5d9v1N2NILlDA==
+X-Google-Smtp-Source: ABdhPJyYzRU/s0Ci59YeneBZmTOPNA962vI9PbtrBbM6jP1mADD1GMPNfNFwZzk/jAUFl28n0HEjgQ==
+X-Received: by 2002:a1c:5545:: with SMTP id j66mr2154742wmb.31.1603456013642; 
+ Fri, 23 Oct 2020 05:26:53 -0700 (PDT)
 Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id k203sm3232158wmb.37.2020.10.23.05.26.03
+ by smtp.gmail.com with ESMTPSA id s11sm2895513wrm.56.2020.10.23.05.26.52
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 23 Oct 2020 05:26:04 -0700 (PDT)
-Date: Fri, 23 Oct 2020 14:26:02 +0200
-From: Daniel Vetter <daniel@ffwll.ch>
+ Fri, 23 Oct 2020 05:26:52 -0700 (PDT)
+From: Daniel Vetter <daniel.vetter@ffwll.ch>
 To: DRI Development <dri-devel@lists.freedesktop.org>
-Message-ID: <20201023122602.GB401619@phenom.ffwll.local>
-Mail-Followup-To: DRI Development <dri-devel@lists.freedesktop.org>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- Gerald Schaefer <gerald.schaefer@linux.ibm.com>,
- Daniel Vetter <daniel.vetter@intel.com>,
- Jason Gunthorpe <jgg@ziepe.ca>,
- Dan Williams <dan.j.williams@intel.com>,
- Kees Cook <keescook@chromium.org>,
- Andrew Morton <akpm@linux-foundation.org>,
- John Hubbard <jhubbard@nvidia.com>,
- =?iso-8859-1?B?Suly9G1l?= Glisse <jglisse@redhat.com>,
- Jan Kara <jack@suse.cz>, linux-mm@kvack.org,
- linux-arm-kernel@lists.infradead.org,
- linux-samsung-soc@vger.kernel.org, linux-media@vger.kernel.org,
- Niklas Schnelle <schnelle@linux.ibm.com>,
- linux-s390@vger.kernel.org
+Date: Fri, 23 Oct 2020 14:26:41 +0200
+Message-Id: <20201023122641.2373814-1-daniel.vetter@ffwll.ch>
+X-Mailer: git-send-email 2.28.0
+In-Reply-To: <20201021163242.1458885-1-daniel.vetter@ffwll.ch>
 References: <20201021163242.1458885-1-daniel.vetter@ffwll.ch>
- <20201023122216.2373294-1-daniel.vetter@ffwll.ch>
- <20201023122216.2373294-29-daniel.vetter@ffwll.ch>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20201023122216.2373294-29-daniel.vetter@ffwll.ch>
-X-Operating-System: Linux phenom 5.7.0-1-amd64 
-Subject: Re: [Intel-gfx] [PATCH 29/65] s390/pci: Remove races against pte
- updates
+Subject: [Intel-gfx] [PATCH] drm/atomic-helpers: remove legacy_cursor_update
+ hacks
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -83,281 +64,91 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-s390@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
- Jan Kara <jack@suse.cz>, Kees Cook <keescook@chromium.org>, linux-mm@kvack.org,
- Daniel Vetter <daniel.vetter@ffwll.ch>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- Niklas Schnelle <schnelle@linux.ibm.com>,
- Andrew Morton <akpm@linux-foundation.org>, Jason Gunthorpe <jgg@ziepe.ca>,
- =?iso-8859-1?B?Suly9G1l?= Glisse <jglisse@redhat.com>,
- John Hubbard <jhubbard@nvidia.com>, Daniel Vetter <daniel.vetter@intel.com>,
- Dan Williams <dan.j.williams@intel.com>,
- Gerald Schaefer <gerald.schaefer@linux.ibm.com>,
- linux-arm-kernel@lists.infradead.org, linux-media@vger.kernel.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Cc: Daniel Vetter <daniel.vetter@ffwll.ch>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>, "Kazlauskas,
+ Nicholas" <nicholas.kazlauskas@amd.com>,
+ Daniel Vetter <daniel.vetter@intel.com>, mikita.lipski@amd.com,
+ harry.wentland@amd.com, =?UTF-8?q?Michel=20D=C3=A4nzer?= <michel@daenzer.net>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Oct 23, 2020 at 02:21:40PM +0200, Daniel Vetter wrote:
-> Way back it was a reasonable assumptions that iomem mappings never
-> change the pfn range they point at. But this has changed:
-> =
-
-> - gpu drivers dynamically manage their memory nowadays, invalidating
-> ptes with unmap_mapping_range when buffers get moved
-> =
-
-> - contiguous dma allocations have moved from dedicated carvetouts to
-> cma regions. This means if we miss the unmap the pfn might contain
-> pagecache or anon memory (well anything allocated with GFP_MOVEABLE)
-> =
-
-> - even /dev/mem now invalidates mappings when the kernel requests that
-> iomem region when CONFIG_IO_STRICT_DEVMEM is set, see commit
-> 3234ac664a87 ("/dev/mem: Revoke mappings when a driver claims the
-> region")
-> =
-
-> Accessing pfns obtained from ptes without holding all the locks is
-> therefore no longer a good idea. Fix this.
-> =
-
-> Since zpci_memcpy_from|toio seems to not do anything nefarious with
-> locks we just need to open code get_pfn and follow_pfn and make sure
-> we drop the locks only after we're done. The write function also needs
-> the copy_from_user move, since we can't take userspace faults while
-> holding the mmap sem.
-> =
-
-> v2: Move VM_IO | VM_PFNMAP checks around so they keep returning EINVAL
-> like before (Gerard)
-> =
-
-> v3: Polish commit message (Niklas)
-> =
-
-> Reviewed-by: Gerald Schaefer <gerald.schaefer@linux.ibm.com>
-> Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
-> Cc: Jason Gunthorpe <jgg@ziepe.ca>
-> Cc: Dan Williams <dan.j.williams@intel.com>
-> Cc: Kees Cook <keescook@chromium.org>
-> Cc: Andrew Morton <akpm@linux-foundation.org>
-> Cc: John Hubbard <jhubbard@nvidia.com>
-> Cc: J=E9r=F4me Glisse <jglisse@redhat.com>
-> Cc: Jan Kara <jack@suse.cz>
-> Cc: linux-mm@kvack.org
-> Cc: linux-arm-kernel@lists.infradead.org
-> Cc: linux-samsung-soc@vger.kernel.org
-> Cc: linux-media@vger.kernel.org
-> Cc: Niklas Schnelle <schnelle@linux.ibm.com>
-> Cc: Gerald Schaefer <gerald.schaefer@linux.ibm.com>
-> Cc: linux-s390@vger.kernel.org
-> Cc: Niklas Schnelle <schnelle@linux.ibm.com>
-> Signed-off-by: Daniel Vetter <daniel.vetter@ffwll.ch>
-
-Apologies for this random patch bomb, typoed git send-email command :-/
-
-v4 of this will come properly on Monday or so.
--Daniel
-
-> ---
->  arch/s390/pci/pci_mmio.c | 98 +++++++++++++++++++++++-----------------
->  1 file changed, 57 insertions(+), 41 deletions(-)
-> =
-
-> diff --git a/arch/s390/pci/pci_mmio.c b/arch/s390/pci/pci_mmio.c
-> index 401cf670a243..1a6adbc68ee8 100644
-> --- a/arch/s390/pci/pci_mmio.c
-> +++ b/arch/s390/pci/pci_mmio.c
-> @@ -119,33 +119,15 @@ static inline int __memcpy_toio_inuser(void __iomem=
- *dst,
->  	return rc;
->  }
->  =
-
-> -static long get_pfn(unsigned long user_addr, unsigned long access,
-> -		    unsigned long *pfn)
-> -{
-> -	struct vm_area_struct *vma;
-> -	long ret;
-> -
-> -	mmap_read_lock(current->mm);
-> -	ret =3D -EINVAL;
-> -	vma =3D find_vma(current->mm, user_addr);
-> -	if (!vma)
-> -		goto out;
-> -	ret =3D -EACCES;
-> -	if (!(vma->vm_flags & access))
-> -		goto out;
-> -	ret =3D follow_pfn(vma, user_addr, pfn);
-> -out:
-> -	mmap_read_unlock(current->mm);
-> -	return ret;
-> -}
-> -
->  SYSCALL_DEFINE3(s390_pci_mmio_write, unsigned long, mmio_addr,
->  		const void __user *, user_buffer, size_t, length)
->  {
->  	u8 local_buf[64];
->  	void __iomem *io_addr;
->  	void *buf;
-> -	unsigned long pfn;
-> +	struct vm_area_struct *vma;
-> +	pte_t *ptep;
-> +	spinlock_t *ptl;
->  	long ret;
->  =
-
->  	if (!zpci_is_enabled())
-> @@ -158,7 +140,7 @@ SYSCALL_DEFINE3(s390_pci_mmio_write, unsigned long, m=
-mio_addr,
->  	 * We only support write access to MIO capable devices if we are on
->  	 * a MIO enabled system. Otherwise we would have to check for every
->  	 * address if it is a special ZPCI_ADDR and would have to do
-> -	 * a get_pfn() which we don't need for MIO capable devices.  Currently
-> +	 * a pfn lookup which we don't need for MIO capable devices.  Currently
->  	 * ISM devices are the only devices without MIO support and there is no
->  	 * known need for accessing these from userspace.
->  	 */
-> @@ -176,21 +158,37 @@ SYSCALL_DEFINE3(s390_pci_mmio_write, unsigned long,=
- mmio_addr,
->  	} else
->  		buf =3D local_buf;
->  =
-
-> -	ret =3D get_pfn(mmio_addr, VM_WRITE, &pfn);
-> +	ret =3D -EFAULT;
-> +	if (copy_from_user(buf, user_buffer, length))
-> +		goto out_free;
-> +
-> +	mmap_read_lock(current->mm);
-> +	ret =3D -EINVAL;
-> +	vma =3D find_vma(current->mm, mmio_addr);
-> +	if (!vma)
-> +		goto out_unlock_mmap;
-> +	if (!(vma->vm_flags & (VM_IO | VM_PFNMAP)))
-> +		goto out_unlock_mmap;
-> +	ret =3D -EACCES;
-> +	if (!(vma->vm_flags & VM_WRITE))
-> +		goto out_unlock_mmap;
-> +
-> +	ret =3D follow_pte_pmd(vma->vm_mm, mmio_addr, NULL, &ptep, NULL, &ptl);
->  	if (ret)
-> -		goto out;
-> -	io_addr =3D (void __iomem *)((pfn << PAGE_SHIFT) |
-> +		goto out_unlock_mmap;
-> +
-> +	io_addr =3D (void __iomem *)((pte_pfn(*ptep) << PAGE_SHIFT) |
->  			(mmio_addr & ~PAGE_MASK));
->  =
-
-> -	ret =3D -EFAULT;
->  	if ((unsigned long) io_addr < ZPCI_IOMAP_ADDR_BASE)
-> -		goto out;
-> -
-> -	if (copy_from_user(buf, user_buffer, length))
-> -		goto out;
-> +		goto out_unlock_pt;
->  =
-
->  	ret =3D zpci_memcpy_toio(io_addr, buf, length);
-> -out:
-> +out_unlock_pt:
-> +	pte_unmap_unlock(ptep, ptl);
-> +out_unlock_mmap:
-> +	mmap_read_unlock(current->mm);
-> +out_free:
->  	if (buf !=3D local_buf)
->  		kfree(buf);
->  	return ret;
-> @@ -274,7 +272,9 @@ SYSCALL_DEFINE3(s390_pci_mmio_read, unsigned long, mm=
-io_addr,
->  	u8 local_buf[64];
->  	void __iomem *io_addr;
->  	void *buf;
-> -	unsigned long pfn;
-> +	struct vm_area_struct *vma;
-> +	pte_t *ptep;
-> +	spinlock_t *ptl;
->  	long ret;
->  =
-
->  	if (!zpci_is_enabled())
-> @@ -287,7 +287,7 @@ SYSCALL_DEFINE3(s390_pci_mmio_read, unsigned long, mm=
-io_addr,
->  	 * We only support read access to MIO capable devices if we are on
->  	 * a MIO enabled system. Otherwise we would have to check for every
->  	 * address if it is a special ZPCI_ADDR and would have to do
-> -	 * a get_pfn() which we don't need for MIO capable devices.  Currently
-> +	 * a pfn lookup which we don't need for MIO capable devices.  Currently
->  	 * ISM devices are the only devices without MIO support and there is no
->  	 * known need for accessing these from userspace.
->  	 */
-> @@ -306,22 +306,38 @@ SYSCALL_DEFINE3(s390_pci_mmio_read, unsigned long, =
-mmio_addr,
->  		buf =3D local_buf;
->  	}
->  =
-
-> -	ret =3D get_pfn(mmio_addr, VM_READ, &pfn);
-> +	mmap_read_lock(current->mm);
-> +	ret =3D -EINVAL;
-> +	vma =3D find_vma(current->mm, mmio_addr);
-> +	if (!vma)
-> +		goto out_unlock_mmap;
-> +	if (!(vma->vm_flags & (VM_IO | VM_PFNMAP)))
-> +		goto out_unlock_mmap;
-> +	ret =3D -EACCES;
-> +	if (!(vma->vm_flags & VM_WRITE))
-> +		goto out_unlock_mmap;
-> +
-> +	ret =3D follow_pte_pmd(vma->vm_mm, mmio_addr, NULL, &ptep, NULL, &ptl);
->  	if (ret)
-> -		goto out;
-> -	io_addr =3D (void __iomem *)((pfn << PAGE_SHIFT) | (mmio_addr & ~PAGE_M=
-ASK));
-> +		goto out_unlock_mmap;
-> +
-> +	io_addr =3D (void __iomem *)((pte_pfn(*ptep) << PAGE_SHIFT) |
-> +			(mmio_addr & ~PAGE_MASK));
->  =
-
->  	if ((unsigned long) io_addr < ZPCI_IOMAP_ADDR_BASE) {
->  		ret =3D -EFAULT;
-> -		goto out;
-> +		goto out_unlock_pt;
->  	}
->  	ret =3D zpci_memcpy_fromio(buf, io_addr, length);
-> -	if (ret)
-> -		goto out;
-> -	if (copy_to_user(user_buffer, buf, length))
-> +
-> +out_unlock_pt:
-> +	pte_unmap_unlock(ptep, ptl);
-> +out_unlock_mmap:
-> +	mmap_read_unlock(current->mm);
-> +
-> +	if (!ret && copy_to_user(user_buffer, buf, length))
->  		ret =3D -EFAULT;
->  =
-
-> -out:
->  	if (buf !=3D local_buf)
->  		kfree(buf);
->  	return ret;
-> -- =
-
-> 2.28.0
-> =
-
-
--- =
-
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+VGhlIHN0dWZmIG5ldmVyIHJlYWxseSB3b3JrZWQsIGFuZCBsZWFkcyB0byBsb3RzIG9mIGZ1biBi
+ZWNhdXNlIGl0Cm91dC1vZi1vcmRlciBmcmVlcyBhdG9taWMgc3RhdGVzLiBXaGljaCB1cHNldHMg
+S0FTQU4sIGFtb25nIG90aGVyCnRoaW5ncy4KCkZvciBhc3luYyB1cGRhdGVzIHdlIG5vdyBoYXZl
+IGEgbW9yZSBzb2xpZCBzb2x1dGlvbiB3aXRoIHRoZQotPmF0b21pY19hc3luY19jaGVjayBhbmQg
+LT5hdG9taWNfYXN5bmNfY29tbWl0IGhvb2tzLiBTdXBwb3J0IGZvciB0aGF0CmZvciBtc20gYW5k
+IHZjNCBsYW5kZWQuIG5vdXZlYXUgYW5kIGk5MTUgaGF2ZSB0aGVpciBvd24gY29tbWl0CnJvdXRp
+bmVzLCBkb2luZyBzb21ldGhpbmcgc2ltaWxhci4KCkZvciBldmVyeW9uZSBlbHNlIGl0J3MgcHJv
+YmFibHkgYmV0dGVyIHRvIHJlbW92ZSB0aGUgdXNlLWFmdGVyLWZyZWUKYnVnLCBhbmQgZW5jb3Vy
+YWdlIGZvbGtzIHRvIHVzZSB0aGUgYXN5bmMgc3VwcG9ydCBpbnN0ZWFkLiBUaGUKYWZmZWN0ZWQg
+ZHJpdmVycyB3aGljaCByZWdpc3RlciBhIGxlZ2FjeSBjdXJzb3IgcGxhbmUgYW5kIGRvbid0IGVp
+dGhlcgp1c2UgdGhlIG5ldyBhc3luYyBzdHVmZiBvciB0aGVpciBvd24gY29tbWl0IHJvdXRpbmUg
+YXJlOiBhbWRncHUsCmF0bWVsLCBtZWRpYXRlaywgcXhsLCByb2NrY2hpcCwgc3RpLCBzdW40aSwg
+dGVncmEsIHZpcnRpbywgYW5kIHZtd2dmeC4KCkluc3BpcmVkIGJ5IGFuIGFtZGdwdSBidWcgcmVw
+b3J0LgoKdjI6IERyb3AgUkZDLCBJIHRoaW5rIHdpdGggYW1kZ3B1IGNvbnZlcnRlZCBvdmVyIHRv
+IHVzZQphdG9taWNfYXN5bmNfY2hlY2svY29tbWl0IGRvbmUgaW4KCmNvbW1pdCA2NzRlNzhhY2Fl
+MGRmYjRiZWI1NjEzMmU0MWNiYWU1YjYwZjdkNjYyCkF1dGhvcjogTmljaG9sYXMgS2F6bGF1c2th
+cyA8bmljaG9sYXMua2F6bGF1c2thc0BhbWQuY29tPgpEYXRlOiAgIFdlZCBEZWMgNSAxNDo1OTow
+NyAyMDE4IC0wNTAwCgogICAgZHJtL2FtZC9kaXNwbGF5OiBBZGQgZmFzdCBwYXRoIGZvciBjdXJz
+b3IgcGxhbmUgdXBkYXRlcwoKd2UgZG9uJ3QgaGF2ZSBhbnkgZHJpdmVyIGFueW1vcmUgd2hlcmUg
+d2UgaGF2ZSB1c2Vyc3BhY2UgZXhwZWN0aW5nCnNvbGlkIGxlZ2FjeSBjdXJzb3Igc3VwcG9ydCBf
+YW5kXyB0aGV5IGFyZSB1c2luZyB0aGUgYXRvbWljIGhlbHBlcnMgaW4KdGhlaXIgZnVsbHkgZ2xv
+cnkuIFNvIHdlIGNhbiByZXRpcmUgdGhpcy4KCnYzOiBQYXBlciBvdmVyIG1zbSBhbmQgaTkxNSBy
+ZWdyZXNzaW9uLiBUaGUgY29tcGxldGVfYWxsIGlzIHRoZSBvbmx5CnRoaW5nIG1pc3NpbmcgYWZh
+aWN0LgoKUmVmZXJlbmNlczogaHR0cHM6Ly9idWd6aWxsYS5rZXJuZWwub3JnL3Nob3dfYnVnLmNn
+aT9pZD0xOTk0MjUKQ2M6IG1pa2l0YS5saXBza2lAYW1kLmNvbQpDYzogTWljaGVsIETDpG56ZXIg
+PG1pY2hlbEBkYWVuemVyLm5ldD4KQ2M6IGhhcnJ5LndlbnRsYW5kQGFtZC5jb20KQ2M6IFJvYiBD
+bGFyayA8cm9iZGNsYXJrQGdtYWlsLmNvbT4KQ2M6ICJLYXpsYXVza2FzLCBOaWNob2xhcyIgPG5p
+Y2hvbGFzLmthemxhdXNrYXNAYW1kLmNvbT4KU2lnbmVkLW9mZi1ieTogRGFuaWVsIFZldHRlciA8
+ZGFuaWVsLnZldHRlckBpbnRlbC5jb20+Ci0tLQogZHJpdmVycy9ncHUvZHJtL2RybV9hdG9taWNf
+aGVscGVyLmMgICAgICAgICAgfCAxMyAtLS0tLS0tLS0tLS0tCiBkcml2ZXJzL2dwdS9kcm0vaTkx
+NS9kaXNwbGF5L2ludGVsX2Rpc3BsYXkuYyB8IDEzICsrKysrKysrKysrKysKIGRyaXZlcnMvZ3B1
+L2RybS9tc20vbXNtX2F0b21pYy5jICAgICAgICAgICAgIHwgIDIgKysKIDMgZmlsZXMgY2hhbmdl
+ZCwgMTUgaW5zZXJ0aW9ucygrKSwgMTMgZGVsZXRpb25zKC0pCgpkaWZmIC0tZ2l0IGEvZHJpdmVy
+cy9ncHUvZHJtL2RybV9hdG9taWNfaGVscGVyLmMgYi9kcml2ZXJzL2dwdS9kcm0vZHJtX2F0b21p
+Y19oZWxwZXIuYwppbmRleCBhN2JjYjRiNDU4NmMuLjU0OWEzMWU2MDQyYyAxMDA2NDQKLS0tIGEv
+ZHJpdmVycy9ncHUvZHJtL2RybV9hdG9taWNfaGVscGVyLmMKKysrIGIvZHJpdmVycy9ncHUvZHJt
+L2RybV9hdG9taWNfaGVscGVyLmMKQEAgLTE0ODEsMTMgKzE0ODEsNiBAQCBkcm1fYXRvbWljX2hl
+bHBlcl93YWl0X2Zvcl92YmxhbmtzKHN0cnVjdCBkcm1fZGV2aWNlICpkZXYsCiAJaW50IGksIHJl
+dDsKIAl1bnNpZ25lZCBjcnRjX21hc2sgPSAwOwogCi0JIC8qCi0JICAqIExlZ2FjeSBjdXJzb3Ig
+aW9jdGxzIGFyZSBjb21wbGV0ZWx5IHVuc3luY2VkLCBhbmQgdXNlcnNwYWNlCi0JICAqIHJlbGll
+cyBvbiB0aGF0IChieSBkb2luZyB0b25zIG9mIGN1cnNvciB1cGRhdGVzKS4KLQkgICovCi0JaWYg
+KG9sZF9zdGF0ZS0+bGVnYWN5X2N1cnNvcl91cGRhdGUpCi0JCXJldHVybjsKLQogCWZvcl9lYWNo
+X29sZG5ld19jcnRjX2luX3N0YXRlKG9sZF9zdGF0ZSwgY3J0Yywgb2xkX2NydGNfc3RhdGUsIG5l
+d19jcnRjX3N0YXRlLCBpKSB7CiAJCWlmICghbmV3X2NydGNfc3RhdGUtPmFjdGl2ZSkKIAkJCWNv
+bnRpbnVlOwpAQCAtMjEwNiwxMiArMjA5OSw2IEBAIGludCBkcm1fYXRvbWljX2hlbHBlcl9zZXR1
+cF9jb21taXQoc3RydWN0IGRybV9hdG9taWNfc3RhdGUgKnN0YXRlLAogCQkJY29udGludWU7CiAJ
+CX0KIAotCQkvKiBMZWdhY3kgY3Vyc29yIHVwZGF0ZXMgYXJlIGZ1bGx5IHVuc3luY2VkLiAqLwot
+CQlpZiAoc3RhdGUtPmxlZ2FjeV9jdXJzb3JfdXBkYXRlKSB7Ci0JCQljb21wbGV0ZV9hbGwoJmNv
+bW1pdC0+ZmxpcF9kb25lKTsKLQkJCWNvbnRpbnVlOwotCQl9Ci0KIAkJaWYgKCFuZXdfY3J0Y19z
+dGF0ZS0+ZXZlbnQpIHsKIAkJCWNvbW1pdC0+ZXZlbnQgPSBremFsbG9jKHNpemVvZigqY29tbWl0
+LT5ldmVudCksCiAJCQkJCQlHRlBfS0VSTkVMKTsKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2Ry
+bS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheS5jIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlz
+cGxheS9pbnRlbF9kaXNwbGF5LmMKaW5kZXggMTMwMzAzZTAyOThhLi40MjU3YWQ3YzY5YzcgMTAw
+NjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheS5jCisr
+KyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheS5jCkBAIC0xNjEy
+Miw2ICsxNjEyMiwxOSBAQCBzdGF0aWMgaW50IGludGVsX2F0b21pY19jb21taXQoc3RydWN0IGRy
+bV9kZXZpY2UgKmRldiwKIAkJCQlzdGF0ZS0+YmFzZS5sZWdhY3lfY3Vyc29yX3VwZGF0ZSA9IGZh
+bHNlOwogCX0KIAorCS8qCisJICogRklYTUU6IEN1dCBvdmVyIHRvIChhc3luYykgY29tbWl0IGhl
+bHBlcnMgaW5zdGVhZCBvZiBoYW5kLXJvbGxpbmcKKwkgKiBldmVyeXRoaW5nLgorCSAqLworCWlm
+IChzdGF0ZS0+YmFzZS5sZWdhY3lfY3Vyc29yX3VwZGF0ZSkgeworCQlzdHJ1Y3QgaW50ZWxfY3J0
+Y19zdGF0ZSAqbmV3X2NydGNfc3RhdGU7CisJCXN0cnVjdCBpbnRlbF9jcnRjICpjcnRjOworCQlp
+bnQgaTsKKworCQlmb3JfZWFjaF9uZXdfaW50ZWxfY3J0Y19pbl9zdGF0ZShzdGF0ZSwgY3J0Yywg
+bmV3X2NydGNfc3RhdGUsIGkpCisJCQljb21wbGV0ZV9hbGwoJm5ld19jcnRjX3N0YXRlLT51YXBp
+LmNvbW1pdC0+ZmxpcF9kb25lKTsKKwl9CisKIAlyZXQgPSBpbnRlbF9hdG9taWNfcHJlcGFyZV9j
+b21taXQoc3RhdGUpOwogCWlmIChyZXQpIHsKIAkJZHJtX2RiZ19hdG9taWMoJmRldl9wcml2LT5k
+cm0sCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vbXNtL21zbV9hdG9taWMuYyBiL2RyaXZl
+cnMvZ3B1L2RybS9tc20vbXNtX2F0b21pYy5jCmluZGV4IDU2MWJmYTQ4ODQxYy4uZTA1OTliMTZh
+NGVmIDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vbXNtL21zbV9hdG9taWMuYworKysgYi9k
+cml2ZXJzL2dwdS9kcm0vbXNtL21zbV9hdG9taWMuYwpAQCAtMjE1LDYgKzIxNSw4IEBAIHZvaWQg
+bXNtX2F0b21pY19jb21taXRfdGFpbChzdHJ1Y3QgZHJtX2F0b21pY19zdGF0ZSAqc3RhdGUpCiAJ
+CS8qIGFzeW5jIHVwZGF0ZXMgYXJlIGxpbWl0ZWQgdG8gc2luZ2xlLWNydGMgdXBkYXRlczogKi8K
+IAkJV0FSTl9PTihjcnRjX21hc2sgIT0gZHJtX2NydGNfbWFzayhhc3luY19jcnRjKSk7CiAKKwkJ
+Y29tcGxldGVfYWxsKCZhc3luY19jcnRjLT5zdGF0ZS0+Y29tbWl0LT5mbGlwX2RvbmUpOworCiAJ
+CS8qCiAJCSAqIFN0YXJ0IHRpbWVyIGlmIHdlIGRvbid0IGFscmVhZHkgaGF2ZSBhbiB1cGRhdGUg
+cGVuZGluZwogCQkgKiBvbiB0aGlzIGNydGM6Ci0tIAoyLjI4LjAKCl9fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50
+ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9y
+Zy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
