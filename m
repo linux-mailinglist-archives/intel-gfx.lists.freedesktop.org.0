@@ -1,46 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 16016297683
-	for <lists+intel-gfx@lfdr.de>; Fri, 23 Oct 2020 20:12:06 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id DB8232976B1
+	for <lists+intel-gfx@lfdr.de>; Fri, 23 Oct 2020 20:15:08 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1176A6E3D3;
-	Fri, 23 Oct 2020 18:12:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2E2C66E12C;
+	Fri, 23 Oct 2020 18:15:07 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9D01C6E3D3
- for <intel-gfx@lists.freedesktop.org>; Fri, 23 Oct 2020 18:12:02 +0000 (UTC)
-IronPort-SDR: +chb9sgWG5zjhL/uRpjYSLrSExhfSlHDkggB+pBtz1+0Lws3M2cMHhIkJ1NjFHO81qp3RAMUQ4
- FfFbVvY1mhlg==
-X-IronPort-AV: E=McAfee;i="6000,8403,9783"; a="185417278"
-X-IronPort-AV: E=Sophos;i="5.77,409,1596524400"; d="scan'208";a="185417278"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Oct 2020 11:12:02 -0700
-IronPort-SDR: OF8cx0UJxIuBgvj+UrYj26/25ud6HN5p1qRt1rNsFmxv/pnJ1/vU903SrwvpSUDM1BYFAqu22K
- Drt8rvFopIbA==
-X-IronPort-AV: E=Sophos;i="5.77,409,1596524400"; d="scan'208";a="467161378"
-Received: from labuser-z97x-ud5h.jf.intel.com (HELO labuser-Z97X-UD5H)
- ([10.165.21.211])
- by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Oct 2020 11:12:01 -0700
-Date: Fri, 23 Oct 2020 11:13:47 -0700
-From: "Navare, Manasi" <manasi.d.navare@intel.com>
-To: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-Message-ID: <20201023181347.GA7479@labuser-Z97X-UD5H>
-References: <20201022054223.25071-1-manasi.d.navare@intel.com>
- <20201022054223.25071-7-manasi.d.navare@intel.com>
- <20201023174200.GY6112@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id BBD3F6E12C;
+ Fri, 23 Oct 2020 18:15:05 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id B390AA8169;
+ Fri, 23 Oct 2020 18:15:05 +0000 (UTC)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20201023174200.GY6112@intel.com>
-User-Agent: Mutt/1.5.24 (2015-08-30)
-Subject: Re: [Intel-gfx] [PATCH v11 06/12] drm/i915: Try to make bigjoiner
- work in atomic check
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Navare, Manasi" <manasi.d.navare@intel.com>
+Date: Fri, 23 Oct 2020 18:15:05 -0000
+Message-ID: <160347690570.1407.5309247385185603516@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20201022222709.29386-1-manasi.d.navare@intel.com>
+In-Reply-To: <20201022222709.29386-1-manasi.d.navare@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgVlJS?=
+ =?utf-8?q?/Adaptive_Sync_enabling_in_i915_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,534 +38,267 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: multipart/mixed; boundary="===============0726226508=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Oct 23, 2020 at 08:42:00PM +0300, Ville Syrj=E4l=E4 wrote:
-> On Wed, Oct 21, 2020 at 10:42:17PM -0700, Manasi Navare wrote:
-> > From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-> > =
+--===============0726226508==
+Content-Type: multipart/alternative;
+ boundary="===============8659954505089685156=="
 
-> >  When the clock is higher than the dotclock, try with 2 pipes enabled.
-> >  If we can enable 2, then we will go into big joiner mode, and steal
-> >  the adjacent crtc.
-> > =
+--===============8659954505089685156==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-> >  This only links the crtc's in software, no hardware or plane
-> >  programming is done yet. Blobs are also copied from the master's
-> >  crtc_state, so it doesn't depend at commit time on the other
-> >  crtc_state.
-> > =
+== Series Details ==
 
-> > v4:
-> > * Fixes in intel_crtc_compute_config (Ville)
-> > v3:
-> > * Manual Rebase (Manasi)
-> >  Changes since v1:
-> >  - Rename pipe timings to transcoder timings, as they are now different.
-> >   Changes since v2:
-> >  - Rework bigjoiner checks; always disable slave when recalculating
-> >    master. No need to have a separate bigjoiner pass any more.
-> >  - Use pipe_mode instead of transcoder_mode, to clean up the code.
-> > =
+Series: VRR/Adaptive Sync enabling in i915 (rev2)
+URL   : https://patchwork.freedesktop.org/series/82966/
+State : success
 
-> > Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-> > Signed-off-by: Manasi Navare <manasi.d.navare@intel.com>
-> > ---
-> >  drivers/gpu/drm/i915/display/intel_display.c  | 181 ++++++++++++++++--
-> >  .../drm/i915/display/intel_display_types.h    |   9 +
-> >  drivers/gpu/drm/i915/display/intel_dp.c       |  22 ++-
-> >  3 files changed, 191 insertions(+), 21 deletions(-)
-> > =
+== Summary ==
 
-> > diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu=
-/drm/i915/display/intel_display.c
-> > index 92cd38964142..ffee6afe4ddb 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_display.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> > @@ -8237,9 +8237,24 @@ static int intel_crtc_compute_config(struct inte=
-l_crtc *crtc,
-> >  				     struct intel_crtc_state *pipe_config)
-> >  {
-> >  	struct drm_i915_private *dev_priv =3D to_i915(crtc->base.dev);
-> > -	const struct drm_display_mode *pipe_mode =3D &pipe_config->hw.pipe_mo=
-de;
-> > +	struct drm_display_mode *pipe_mode =3D &pipe_config->hw.pipe_mode;
-> >  	int clock_limit =3D dev_priv->max_dotclk_freq;
-> >  =
+CI Bug Log - changes from CI_DRM_9191 -> Patchwork_18777
+====================================================
 
-> > +	*pipe_mode =3D pipe_config->hw.adjusted_mode;
-> > +
-> > +	/* Adjust pipe_mode for bigjoiner, with half the horizontal mode */
-> > +	if (pipe_config->bigjoiner) {
-> > +		pipe_mode->crtc_clock /=3D 2;
-> > +		pipe_mode->crtc_hdisplay /=3D 2;
-> > +		pipe_mode->crtc_hblank_start /=3D 2;
-> > +		pipe_mode->crtc_hblank_end /=3D 2;
-> > +		pipe_mode->crtc_hsync_start /=3D 2;
-> > +		pipe_mode->crtc_hsync_end /=3D 2;
-> > +		pipe_mode->crtc_htotal /=3D 2;
-> > +		pipe_mode->crtc_hskew /=3D 2;
-> > +		pipe_config->pipe_src_w /=3D 2;
-> > +	}
-> > +
-> >  	if (INTEL_GEN(dev_priv) < 4) {
-> >  		clock_limit =3D dev_priv->max_cdclk_freq * 9 / 10;
-> >  =
+Summary
+-------
 
-> > @@ -8300,7 +8315,7 @@ static int intel_crtc_compute_config(struct intel=
-_crtc *crtc,
-> >  	 * WaPruneModeWithIncorrectHsyncOffset:ctg,elk,ilk,snb,ivb,vlv,hsw.
-> >  	 */
-> >  	if ((INTEL_GEN(dev_priv) > 4 || IS_G4X(dev_priv)) &&
-> > -		pipe_mode->crtc_hsync_start =3D=3D pipe_mode->crtc_hdisplay)
-> > +	    pipe_mode->crtc_hsync_start =3D=3D pipe_mode->crtc_hdisplay)
-> >  		return -EINVAL;
-> >  =
+  **SUCCESS**
 
-> >  	intel_crtc_compute_pixel_rate(pipe_config);
-> > @@ -12657,7 +12672,7 @@ static bool encoders_cloneable(const struct int=
-el_encoder *a,
-> >  			  b->cloneable & (1 << a->type));
-> >  }
-> >  =
+  No regressions found.
 
-> > -static bool check_single_encoder_cloning(struct drm_atomic_state *stat=
-e,
-> > +static bool check_single_encoder_cloning(struct intel_atomic_state *st=
-ate,
-> >  					 struct intel_crtc *crtc,
-> >  					 struct intel_encoder *encoder)
-> >  {
-> > @@ -12666,7 +12681,7 @@ static bool check_single_encoder_cloning(struct=
- drm_atomic_state *state,
-> >  	struct drm_connector_state *connector_state;
-> >  	int i;
-> >  =
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18777/index.html
 
-> > -	for_each_new_connector_in_state(state, connector, connector_state, i)=
- {
-> > +	for_each_new_connector_in_state(&state->base, connector, connector_st=
-ate, i) {
-> =
+Known issues
+------------
 
-> There's still this extra noise in the patch. I thought you were going
-> to split out the calling convention changes to reduce it?
+  Here are the changes found in Patchwork_18777 that come from known issues:
 
-Hmm I split the calling convention changes that were adding from_crtc_state=
- into a separate patch
-May be I will split this one out too in a diff patch?
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@core_hotunplug@unbind-rebind:
+    - fi-icl-y:           [PASS][1] -> [DMESG-WARN][2] ([i915#1982])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9191/fi-icl-y/igt@core_hotunplug@unbind-rebind.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18777/fi-icl-y/igt@core_hotunplug@unbind-rebind.html
+
+  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:
+    - fi-byt-j1900:       [PASS][3] -> [DMESG-WARN][4] ([i915#1982])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9191/fi-byt-j1900/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18777/fi-byt-j1900/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
+
+  * igt@vgem_basic@unload:
+    - fi-skl-guc:         [PASS][5] -> [DMESG-WARN][6] ([i915#2203])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9191/fi-skl-guc/igt@vgem_basic@unload.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18777/fi-skl-guc/igt@vgem_basic@unload.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_pm_rpm@module-reload:
+    - fi-byt-j1900:       [DMESG-WARN][7] ([i915#1982]) -> [PASS][8]
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9191/fi-byt-j1900/igt@i915_pm_rpm@module-reload.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18777/fi-byt-j1900/igt@i915_pm_rpm@module-reload.html
+
+  * igt@kms_chamelium@dp-crc-fast:
+    - fi-kbl-7500u:       [DMESG-WARN][9] ([i915#165]) -> [PASS][10]
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9191/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18777/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html
+
+  * igt@kms_chamelium@hdmi-crc-fast:
+    - fi-kbl-7500u:       [DMESG-WARN][11] ([i915#2203]) -> [PASS][12]
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9191/fi-kbl-7500u/igt@kms_chamelium@hdmi-crc-fast.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18777/fi-kbl-7500u/igt@kms_chamelium@hdmi-crc-fast.html
+
+  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:
+    - {fi-kbl-7560u}:     [DMESG-WARN][13] ([i915#1982]) -> [PASS][14]
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9191/fi-kbl-7560u/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18777/fi-kbl-7560u/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
+
+  * igt@kms_cursor_legacy@basic-flip-after-cursor-atomic:
+    - fi-icl-u2:          [DMESG-WARN][15] ([i915#1982]) -> [PASS][16] +1 similar issue
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9191/fi-icl-u2/igt@kms_cursor_legacy@basic-flip-after-cursor-atomic.html
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18777/fi-icl-u2/igt@kms_cursor_legacy@basic-flip-after-cursor-atomic.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [i915#165]: https://gitlab.freedesktop.org/drm/intel/issues/165
+  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
+  [i915#2203]: https://gitlab.freedesktop.org/drm/intel/issues/2203
 
 
-> =
+Participating hosts (46 -> 39)
+------------------------------
 
-> >  		if (connector_state->crtc !=3D &crtc->base)
-> >  			continue;
-> >  =
+  Missing    (7): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-byt-clapper fi-bdw-samus 
 
-> > @@ -12906,6 +12921,7 @@ static int intel_crtc_atomic_check(struct intel=
-_atomic_state *state,
-> >  =
 
-> >  	if (mode_changed && crtc_state->hw.enable &&
-> >  	    dev_priv->display.crtc_compute_clock &&
-> > +	    !crtc_state->bigjoiner_slave &&
-> >  	    !drm_WARN_ON(&dev_priv->drm, crtc_state->shared_dpll)) {
-> >  		ret =3D dev_priv->display.crtc_compute_clock(crtc, crtc_state);
-> >  		if (ret)
-> > @@ -13447,6 +13463,15 @@ intel_crtc_copy_uapi_to_hw_state_nomodeset(str=
-uct intel_atomic_state *state,
-> >  {
-> >  	const struct intel_crtc_state *from_crtc_state =3D crtc_state;
-> >  =
+Build changes
+-------------
 
-> > +	if (crtc_state->bigjoiner_slave) {
-> > +		from_crtc_state =3D intel_atomic_get_new_crtc_state(state,
-> > +								  crtc_state->bigjoiner_linked_crtc);
-> > +
-> > +		/* No need to copy state if the master state is unchanged */
-> > +		if (!from_crtc_state)
-> > +			return;
-> > +	}
-> > +
-> >  	intel_crtc_copy_color_blobs(crtc_state, from_crtc_state);
-> >  }
-> >  =
+  * Linux: CI_DRM_9191 -> Patchwork_18777
 
-> > @@ -13482,6 +13507,47 @@ static void intel_crtc_copy_hw_to_uapi_state(s=
-truct intel_crtc_state *crtc_state
-> >  				  crtc_state->hw.ctm);
-> >  }
-> >  =
+  CI-20190529: 20190529
+  CI_DRM_9191: 4b693bbb9b41fda404b5cd081bf5cd8dba240468 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5823: 7dd2fe99bd9dde00456cc5abf7e5ef0c8d7d6118 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_18777: fffbfc7cc4a0bf38fa0c38d7b565e68095f613bd @ git://anongit.freedesktop.org/gfx-ci/linux
 
-> > +static int
-> > +copy_bigjoiner_crtc_state(struct intel_crtc_state *crtc_state,
-> > +			  const struct intel_crtc_state *from_crtc_state)
-> > +{
-> > +	struct intel_crtc_state *saved_state;
-> > +	struct intel_crtc *crtc =3D to_intel_crtc(crtc_state->uapi.crtc);
-> > +
-> > +	saved_state =3D kmemdup(from_crtc_state, sizeof(*saved_state), GFP_KE=
-RNEL);
-> > +	if (!saved_state)
-> > +		return -ENOMEM;
-> > +
-> > +	saved_state->uapi =3D crtc_state->uapi;
-> > +	saved_state->scaler_state =3D crtc_state->scaler_state;
-> > +	saved_state->shared_dpll =3D crtc_state->shared_dpll;
-> > +	saved_state->dpll_hw_state =3D crtc_state->dpll_hw_state;
-> > +	saved_state->crc_enabled =3D crtc_state->crc_enabled;
-> > +
-> > +	intel_crtc_free_hw_state(crtc_state);
-> > +	memcpy(crtc_state, saved_state, sizeof(*crtc_state));
-> > +	kfree(saved_state);
-> > +
-> > +	/* Re-init hw state */
-> > +	memset(&crtc_state->hw, 0, sizeof(saved_state->hw));
-> > +	crtc_state->hw.enable =3D from_crtc_state->hw.enable;
-> > +	crtc_state->hw.active =3D from_crtc_state->hw.active;
-> > +	crtc_state->hw.pipe_mode =3D from_crtc_state->hw.pipe_mode;
-> > +	crtc_state->hw.adjusted_mode =3D from_crtc_state->hw.adjusted_mode;
-> > +
-> > +	/* Some fixups */
-> > +	crtc_state->uapi.mode_changed =3D from_crtc_state->uapi.mode_changed;
-> > +	crtc_state->uapi.connectors_changed =3D from_crtc_state->uapi.connect=
-ors_changed;
-> > +	crtc_state->uapi.active_changed =3D from_crtc_state->uapi.active_chan=
-ged;
-> > +	crtc_state->nv12_planes =3D crtc_state->c8_planes =3D crtc_state->upd=
-ate_planes =3D 0;
-> > +	crtc_state->bigjoiner_linked_crtc =3D to_intel_crtc(from_crtc_state->=
-uapi.crtc);
-> > +	crtc_state->bigjoiner_slave =3D true;
-> > +	crtc_state->cpu_transcoder =3D (enum transcoder)crtc->pipe;
-> > +	crtc_state->has_audio =3D false;
-> > +
-> > +	return 0;
-> > +}
-> > +
-> >  static int
-> >  intel_crtc_prepare_cleared_state(struct intel_atomic_state *state,
-> >  				 struct intel_crtc_state *crtc_state)
-> > @@ -13522,10 +13588,10 @@ intel_crtc_prepare_cleared_state(struct intel=
-_atomic_state *state,
-> >  }
-> >  =
 
-> >  static int
-> > -intel_modeset_pipe_config(struct intel_crtc_state *pipe_config)
-> > +intel_modeset_pipe_config(struct intel_atomic_state *state,
-> > +			  struct intel_crtc_state *pipe_config)
-> >  {
-> >  	struct drm_crtc *crtc =3D pipe_config->uapi.crtc;
-> > -	struct drm_atomic_state *state =3D pipe_config->uapi.state;
-> >  	struct drm_i915_private *i915 =3D to_i915(pipe_config->uapi.crtc->dev=
-);
-> >  	struct drm_connector *connector;
-> >  	struct drm_connector_state *connector_state;
-> > @@ -13567,7 +13633,7 @@ intel_modeset_pipe_config(struct intel_crtc_sta=
-te *pipe_config)
-> >  			       &pipe_config->pipe_src_w,
-> >  			       &pipe_config->pipe_src_h);
-> >  =
+== Linux commits ==
 
-> > -	for_each_new_connector_in_state(state, connector, connector_state, i)=
- {
-> > +	for_each_new_connector_in_state(&state->base, connector, connector_st=
-ate, i) {
-> >  		struct intel_encoder *encoder =3D
-> >  			to_intel_encoder(connector_state->best_encoder);
-> >  =
+fffbfc7cc4a0 drm/i915/display: Add HW state readout for VRR
+19de88b31e66 drm/i915/display/vrr: Set IGNORE_MSA_PAR state in DP Sink
+1ad704e2734c drm/i915/display/vrr: Disable VRR in modeset disable path
+e54bfcb81993 drm/i915/display/vrr: Send VRR push to flip the frame
+eb5fbde0f099 drm/i915/display/vrr: Configure and enable VRR in modeset enable
+4166383fc218 drm/i915/display/dp: Do not enable PSR if VRR is enabled
+2f683b532029 drm/i915/display/dp: Compute VRR state in atomic_check
+f6539e810029 drm/i915/display/dp: Add VRR crtc state variables
+575c776fcd14 drm/i915/display/dp: Attach and set drm connector VRR property
+34bcabeb4cdc drm/i915/display/vrr: Create VRR file and add VRR capability check
+079903f97657 drm/i915: Add REG_FIELD_PREP to VRR register def
 
-> > @@ -13605,7 +13671,7 @@ intel_modeset_pipe_config(struct intel_crtc_sta=
-te *pipe_config)
-> >  	 * adjust it according to limitations or connector properties, and al=
-so
-> >  	 * a chance to reject the mode entirely.
-> >  	 */
-> > -	for_each_new_connector_in_state(state, connector, connector_state, i)=
- {
-> > +	for_each_new_connector_in_state(&state->base, connector, connector_st=
-ate, i) {
-> >  		struct intel_encoder *encoder =3D
-> >  			to_intel_encoder(connector_state->best_encoder);
-> >  =
+== Logs ==
 
-> > @@ -13657,9 +13723,6 @@ intel_modeset_pipe_config(struct intel_crtc_sta=
-te *pipe_config)
-> >  		    "hw max bpp: %i, pipe bpp: %i, dithering: %i\n",
-> >  		    base_bpp, pipe_config->pipe_bpp, pipe_config->dither);
-> >  =
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18777/index.html
 
-> > -	/* without bigjoiner, pipe_mode =3D=3D adjusted_mode */
-> > -	pipe_config->hw.pipe_mode =3D pipe_config->hw.adjusted_mode;
-> > -
-> >  	return 0;
-> >  }
-> >  =
+--===============8659954505089685156==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-> > @@ -15055,6 +15118,75 @@ static bool intel_cpu_transcoders_need_modeset=
-(struct intel_atomic_state *state,
-> >  	return false;
-> >  }
-> >  =
 
-> > +static int intel_atomic_check_bigjoiner(struct intel_atomic_state *sta=
-te,
-> > +					struct intel_crtc *crtc,
-> > +					struct intel_crtc_state *old_crtc_state,
-> > +					struct intel_crtc_state *new_crtc_state)
-> > +{
-> > +	struct drm_i915_private *dev_priv =3D to_i915(state->base.dev);
-> > +	struct intel_crtc_state *slave_crtc_state, *master_crtc_state;
-> > +	struct intel_crtc *slave, *master;
-> > +
-> > +	/* slave being enabled, is master is still claiming this crtc? */
-> > +	if (old_crtc_state->bigjoiner_slave) {
-> > +		slave =3D crtc;
-> > +		master =3D old_crtc_state->bigjoiner_linked_crtc;
-> > +		master_crtc_state =3D intel_atomic_get_new_crtc_state(state, master);
-> > +		if (!master_crtc_state || !needs_modeset(master_crtc_state))
-> > +			goto claimed;
-> > +	}
-> > +
-> > +	if (!new_crtc_state->bigjoiner)
-> > +		return 0;
-> > +
-> > +	if (1 + crtc->pipe >=3D INTEL_NUM_PIPES(dev_priv)) {
-> > +		DRM_DEBUG_KMS("[CRTC:%d:%s] Big joiner configuration requires "
-> > +			      "CRTC + 1 to be used, doesn't exist\n",
-> > +			      crtc->base.base.id, crtc->base.name);
-> > +		return -EINVAL;
-> > +	}
-> > +
-> > +	slave =3D new_crtc_state->bigjoiner_linked_crtc =3D
-> > +		intel_get_crtc_for_pipe(dev_priv, crtc->pipe + 1);
-> > +	slave_crtc_state =3D intel_atomic_get_crtc_state(&state->base, slave);
-> > +	master =3D crtc;
-> > +	if (IS_ERR(slave_crtc_state))
-> > +		return PTR_ERR(slave_crtc_state);
-> > +
-> > +	/* master being enabled, slave was already configured? */
-> > +	if (slave_crtc_state->uapi.enable)
-> > +		goto claimed;
-> > +
-> > +	DRM_DEBUG_KMS("[CRTC:%d:%s] Used as slave for big joiner\n",
-> > +		      slave->base.base.id, slave->base.name);
-> > +
-> > +	return copy_bigjoiner_crtc_state(slave_crtc_state, new_crtc_state);
-> > +
-> > +claimed:
-> > +	DRM_DEBUG_KMS("[CRTC:%d:%s] Slave is enabled as normal CRTC, but "
-> > +		      "[CRTC:%d:%s] claiming this CRTC for bigjoiner.\n",
-> > +		      slave->base.base.id, slave->base.name,
-> > +		      master->base.base.id, master->base.name);
-> > +	return -EINVAL;
-> > +}
-> > +
-> > +static int kill_bigjoiner_slave(struct intel_atomic_state *state,
-> > +				struct intel_crtc_state *master_crtc_state)
-> > +{
-> > +	struct intel_crtc_state *slave_crtc_state =3D
-> > +			intel_atomic_get_crtc_state(&state->base,
-> > +						    master_crtc_state->bigjoiner_linked_crtc);
-> > +
-> > +		if (IS_ERR(slave_crtc_state))
-> > +			return PTR_ERR(slave_crtc_state);
-> > +
-> > +		slave_crtc_state->bigjoiner =3D master_crtc_state->bigjoiner =3D fal=
-se;
-> > +		slave_crtc_state->bigjoiner_slave =3D master_crtc_state->bigjoiner_s=
-lave =3D false;
-> > +		slave_crtc_state->bigjoiner_linked_crtc =3D master_crtc_state->bigjo=
-iner_linked_crtc =3D NULL;
-> > +		intel_crtc_copy_uapi_to_hw_state(state, slave_crtc_state);
-> > +		return 0;
-> > +}
-> > +
-> >  /**
-> >   * DOC: asynchronous flip implementation
-> >   *
-> > @@ -15222,14 +15354,31 @@ static int intel_atomic_check(struct drm_devi=
-ce *dev,
-> >  			continue;
-> >  		}
-> >  =
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
 
-> > +		/* Kill old bigjoiner link, we may re-establish afterwards */
-> > +		if (old_crtc_state->bigjoiner && !old_crtc_state->bigjoiner_slave) {
-> > +			ret =3D kill_bigjoiner_slave(state, new_crtc_state);
-> > +			if (ret)
-> > +				goto fail;
-> > +		}
-> > +
-> > +		if (!new_crtc_state->uapi.enable) {
-> > +			if (!new_crtc_state->bigjoiner_slave) {
-> > +				intel_crtc_copy_uapi_to_hw_state(state, new_crtc_state);
-> > +				any_ms =3D true;
-> > +			}
-> > +			continue;
-> > +		}
-> > +
-> >  		ret =3D intel_crtc_prepare_cleared_state(state, new_crtc_state);
-> >  		if (ret)
-> >  			goto fail;
-> >  =
 
-> > -		if (!new_crtc_state->hw.enable)
-> > -			continue;
-> > +		ret =3D intel_modeset_pipe_config(state, new_crtc_state);
-> > +		if (ret)
-> > +			goto fail;
-> >  =
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>VRR/Adaptive Sync enabling in i915 (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/82966/">https://patchwork.freedesktop.org/series/82966/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
 
-> > -		ret =3D intel_modeset_pipe_config(new_crtc_state);
-> > +		ret =3D intel_atomic_check_bigjoiner(state, crtc, old_crtc_state,
-> > +						   new_crtc_state);
-> >  		if (ret)
-> >  			goto fail;
-> >  	}
-> > @@ -15567,7 +15716,9 @@ static void intel_update_crtc(struct intel_atom=
-ic_state *state,
-> >  =
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18777/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18777/index.html</a></td></tr>
 
-> >  	commit_pipe_config(state, crtc);
-> >  =
+</table>
 
-> > -	if (INTEL_GEN(dev_priv) >=3D 9)
-> > +	if (new_crtc_state->bigjoiner) {
-> > +	/* Not supported yet */
-> > +	} else if (INTEL_GEN(dev_priv) >=3D 9)
-> >  		skl_update_planes_on_crtc(state, crtc);
-> >  	else
-> >  		i9xx_update_planes_on_crtc(state, crtc);
-> > diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drive=
-rs/gpu/drm/i915/display/intel_display_types.h
-> > index b526afee595c..59ed94d68b55 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_display_types.h
-> > +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-> > @@ -1070,6 +1070,15 @@ struct intel_crtc_state {
-> >  	/* enable pipe csc? */
-> >  	bool csc_enable;
-> >  =
 
-> > +	/* enable pipe big joiner? */
-> > +	bool bigjoiner;
-> > +
-> > +	/* big joiner slave crtc? */
-> > +	bool bigjoiner_slave;
-> > +
-> > +	/* linked crtc for bigjoiner, either slave or master */
-> > +	struct intel_crtc *bigjoiner_linked_crtc;
-> > +
-> >  	/* Display Stream compression state */
-> >  	struct {
-> >  		bool compression_enable;
-> > diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/=
-i915/display/intel_dp.c
-> > index d123e5a508c1..cb604899a881 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> > @@ -2349,6 +2349,15 @@ static int intel_dp_dsc_compute_config(struct in=
-tel_dp *intel_dp,
-> >  	pipe_config->port_clock =3D intel_dp->common_rates[limits->max_clock];
-> >  	pipe_config->lane_count =3D limits->max_lane_count;
-> >  =
+    <h1>CI Bug Log - changes from CI_DRM_9191 -&gt; Patchwork_18777</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18777/index.html</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_18777 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@core_hotunplug@unbind-rebind:</p>
+<ul>
+<li>fi-icl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9191/fi-icl-y/igt@core_hotunplug@unbind-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18777/fi-icl-y/igt@core_hotunplug@unbind-rebind.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:</p>
+<ul>
+<li>fi-byt-j1900:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9191/fi-byt-j1900/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18777/fi-byt-j1900/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@vgem_basic@unload:</p>
+<ul>
+<li>fi-skl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9191/fi-skl-guc/igt@vgem_basic@unload.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18777/fi-skl-guc/igt@vgem_basic@unload.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2203">i915#2203</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@i915_pm_rpm@module-reload:</p>
+<ul>
+<li>fi-byt-j1900:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9191/fi-byt-j1900/igt@i915_pm_rpm@module-reload.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18777/fi-byt-j1900/igt@i915_pm_rpm@module-reload.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium@dp-crc-fast:</p>
+<ul>
+<li>fi-kbl-7500u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9191/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/165">i915#165</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18777/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium@hdmi-crc-fast:</p>
+<ul>
+<li>fi-kbl-7500u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9191/fi-kbl-7500u/igt@kms_chamelium@hdmi-crc-fast.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2203">i915#2203</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18777/fi-kbl-7500u/igt@kms_chamelium@hdmi-crc-fast.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:</p>
+<ul>
+<li>{fi-kbl-7560u}:     <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9191/fi-kbl-7560u/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18777/fi-kbl-7560u/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_legacy@basic-flip-after-cursor-atomic:</p>
+<ul>
+<li>fi-icl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9191/fi-icl-u2/igt@kms_cursor_legacy@basic-flip-after-cursor-atomic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18777/fi-icl-u2/igt@kms_cursor_legacy@basic-flip-after-cursor-atomic.html">PASS</a> +1 similar issue</li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Participating hosts (46 -&gt; 39)</h2>
+<p>Missing    (7): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-byt-clapper fi-bdw-samus </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_9191 -&gt; Patchwork_18777</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_9191: 4b693bbb9b41fda404b5cd081bf5cd8dba240468 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_5823: 7dd2fe99bd9dde00456cc5abf7e5ef0c8d7d6118 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
+  Patchwork_18777: fffbfc7cc4a0bf38fa0c38d7b565e68095f613bd @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>fffbfc7cc4a0 drm/i915/display: Add HW state readout for VRR<br />
+19de88b31e66 drm/i915/display/vrr: Set IGNORE_MSA_PAR state in DP Sink<br />
+1ad704e2734c drm/i915/display/vrr: Disable VRR in modeset disable path<br />
+e54bfcb81993 drm/i915/display/vrr: Send VRR push to flip the frame<br />
+eb5fbde0f099 drm/i915/display/vrr: Configure and enable VRR in modeset enable<br />
+4166383fc218 drm/i915/display/dp: Do not enable PSR if VRR is enabled<br />
+2f683b532029 drm/i915/display/dp: Compute VRR state in atomic_check<br />
+f6539e810029 drm/i915/display/dp: Add VRR crtc state variables<br />
+575c776fcd14 drm/i915/display/dp: Attach and set drm connector VRR property<br />
+34bcabeb4cdc drm/i915/display/vrr: Create VRR file and add VRR capability check<br />
+079903f97657 drm/i915: Add REG_FIELD_PREP to VRR register def</p>
 
-> > +	if (adjusted_mode->crtc_clock > intel_dp_max_dotclock(intel_dp, false=
-)) {
-> > +		if (adjusted_mode->crtc_clock > intel_dp_max_dotclock(intel_dp, true=
-)) {
-> > +			DRM_DEBUG_KMS("Clock rate too high for big joiner\n");
-> > +			return -EINVAL;
-> > +		}
-> =
+</body>
+</html>
 
-> That second check is redundant I think. intel_crtc_compute_config()
-> already takes care of it.
+--===============8659954505089685156==--
 
-Why is it redundant? I mean with bigjoiner =3D true we still need to make s=
-ure
-that crtc_clock is not > max dotclock with bigjoiner right?
+--===============0726226508==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
-> =
-
-> So seems like we should be good with just something super simple like:
-> =
-
-> if (crtc_clock > dev_priv->max_dotclock && can_bigjoiner())
-> 	bigjoiner =3D true;
-
-Manasi
-
-> =
-
-> =
-
-> > +		pipe_config->bigjoiner =3D true;
-> > +		DRM_DEBUG_KMS("Using bigjoiner configuration\n");
-> > +	}
-> > +
-> >  	if (intel_dp_is_edp(intel_dp)) {
-> >  		pipe_config->dsc.compressed_bpp =3D
-> >  			min_t(u16, drm_edp_dsc_sink_output_bpp(intel_dp->dsc_dpcd) >> 4,
-> > @@ -2366,12 +2375,12 @@ static int intel_dp_dsc_compute_config(struct i=
-ntel_dp *intel_dp,
-> >  						    pipe_config->lane_count,
-> >  						    adjusted_mode->crtc_clock,
-> >  						    adjusted_mode->crtc_hdisplay,
-> > -						    false);
-> > +						    pipe_config->bigjoiner);
-> >  		dsc_dp_slice_count =3D
-> >  			intel_dp_dsc_get_slice_count(intel_dp,
-> >  						     adjusted_mode->crtc_clock,
-> >  						     adjusted_mode->crtc_hdisplay,
-> > -						     false);
-> > +						     pipe_config->bigjoiner);
-> >  		if (!dsc_max_output_bpp || !dsc_dp_slice_count) {
-> >  			drm_dbg_kms(&dev_priv->drm,
-> >  				    "Compressed BPP/Slice Count not supported\n");
-> > @@ -2387,14 +2396,15 @@ static int intel_dp_dsc_compute_config(struct i=
-ntel_dp *intel_dp,
-> >  	 * is greater than the maximum Cdclock and if slice count is even
-> >  	 * then we need to use 2 VDSC instances.
-> >  	 */
-> > -	if (adjusted_mode->crtc_clock > dev_priv->max_cdclk_freq) {
-> > -		if (pipe_config->dsc.slice_count > 1) {
-> > -			pipe_config->dsc.dsc_split =3D true;
-> > -		} else {
-> > +	if (adjusted_mode->crtc_clock > dev_priv->max_cdclk_freq ||
-> > +	    pipe_config->bigjoiner) {
-> > +		if (pipe_config->dsc.slice_count < 2) {
-> >  			drm_dbg_kms(&dev_priv->drm,
-> >  				    "Cannot split stream to use 2 VDSC instances\n");
-> >  			return -EINVAL;
-> >  		}
-> > +
-> > +		pipe_config->dsc.dsc_split =3D true;
-> >  	}
-> >  =
-
-> >  	ret =3D intel_dp_dsc_compute_params(&dig_port->base, pipe_config);
-> > -- =
-
-> > 2.19.1
-> > =
-
-> > _______________________________________________
-> > Intel-gfx mailing list
-> > Intel-gfx@lists.freedesktop.org
-> > https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-> =
-
-> -- =
-
-> Ville Syrj=E4l=E4
-> Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============0726226508==--
