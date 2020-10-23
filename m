@@ -1,30 +1,57 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 93F9D296F13
-	for <lists+intel-gfx@lfdr.de>; Fri, 23 Oct 2020 14:27:13 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 372FA296EBC
+	for <lists+intel-gfx@lfdr.de>; Fri, 23 Oct 2020 14:23:35 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 00E0F6E525;
-	Fri, 23 Oct 2020 12:27:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F0B4A6E563;
+	Fri, 23 Oct 2020 12:22:46 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from verein.lst.de (verein.lst.de [213.95.11.211])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 405B26E525;
- Fri, 23 Oct 2020 12:27:11 +0000 (UTC)
-Received: by verein.lst.de (Postfix, from userid 2407)
- id 5262967373; Fri, 23 Oct 2020 14:19:41 +0200 (CEST)
-Date: Fri, 23 Oct 2020 14:19:41 +0200
-From: Christoph Hellwig <hch@lst.de>
-To: Dan Carpenter <dan.carpenter@oracle.com>
-Message-ID: <20201023121941.GB18499@lst.de>
-References: <20201023113401.GG282278@mwanda>
+Received: from mail-wr1-x443.google.com (mail-wr1-x443.google.com
+ [IPv6:2a00:1450:4864:20::443])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DA7556E558
+ for <intel-gfx@lists.freedesktop.org>; Fri, 23 Oct 2020 12:22:38 +0000 (UTC)
+Received: by mail-wr1-x443.google.com with SMTP id n6so1551786wrm.13
+ for <intel-gfx@lists.freedesktop.org>; Fri, 23 Oct 2020 05:22:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
+ h=from:to:cc:subject:date:message-id:in-reply-to:references
+ :mime-version:content-transfer-encoding;
+ bh=guHCCErCMqoPbxQI9pil+wt2PYB+uT5fZSBV+IuYGoA=;
+ b=jh07aP9HtA5zZ0rExIH5k72dtvWHENezPdTQy80zBiovspyuKBwX2akrt3+ul2MhgD
+ p3We86q8j0ZN3fG9crJVf/Ymn9R3OAAuOHvwblHsFW3q0W3MsbMLNoXk8ahEmLW035nC
+ SfW0gQODnSL2VTXhH4JUVWVTsdeo3h7bI483M=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+ :references:mime-version:content-transfer-encoding;
+ bh=guHCCErCMqoPbxQI9pil+wt2PYB+uT5fZSBV+IuYGoA=;
+ b=QCIIqXAVrZUgeZ0wfE16JIqeoxDJMG7q71xKWCYF3bpxOkMSthPlW0YvU+Ix7pSsBS
+ 5cOgeV72wdtaqk2GKgWTeG3KA7CB5zhNqFIOcG8iWrxhQ6ehHTfRyUemmU6O6yh+NsqN
+ 70EDsVdo+UfLzJ00PaN+bk+SFWPUn+q7CppI4jjCi7iHd3Ofqw8NIn6kQH4v1Ud25P99
+ r/aRyyuvP6JMVsPKzw/ATrPDLjesyY3RzyS/dWTT6AF7jJOxNcojM6ILHO+aUp/DJgZ6
+ 8yx7AmMFBmb6+kVMDIkrXEHm+P2VSfGHTOgHzfH6MOzxoAEhuw8OsIaeLAMe9lHe83CW
+ tloA==
+X-Gm-Message-State: AOAM5322XYK4xnYBzJo4FfbHSLZmMptengqx4uVCUIgApAxrZ7+aS3DT
+ UOPhRKJlnX3UvMaK+OqhM3+GK1UP7358IRsB
+X-Google-Smtp-Source: ABdhPJzOJi5Bq7RQ+JzlmtBQ4eZOuXPDONkpCj/pAIS1V21cUj3BCeaDSlH9SpbP7OmlqeL4ulNYqg==
+X-Received: by 2002:a5d:6cae:: with SMTP id a14mr2451820wra.187.1603455742060; 
+ Fri, 23 Oct 2020 05:22:22 -0700 (PDT)
+Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
+ by smtp.gmail.com with ESMTPSA id y4sm3056484wrp.74.2020.10.23.05.22.21
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Fri, 23 Oct 2020 05:22:21 -0700 (PDT)
+From: Daniel Vetter <daniel.vetter@ffwll.ch>
+To: DRI Development <dri-devel@lists.freedesktop.org>
+Date: Fri, 23 Oct 2020 14:21:12 +0200
+Message-Id: <20201023122216.2373294-1-daniel.vetter@ffwll.ch>
+X-Mailer: git-send-email 2.28.0
+In-Reply-To: <20201021163242.1458885-1-daniel.vetter@ffwll.ch>
+References: <20201021163242.1458885-1-daniel.vetter@ffwll.ch>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20201023113401.GG282278@mwanda>
-User-Agent: Mutt/1.5.17 (2007-11-01)
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Fix a crash in shmem_pin_map()
- error handling
+Subject: [Intel-gfx] [PATCH 01/65] drm/vc4: Drop legacy_cursor_update
+ override
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,49 +64,44 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel@lists.freedesktop.org, David Airlie <airlied@linux.ie>,
- intel-gfx@lists.freedesktop.org, kernel-janitors@vger.kernel.org,
- linux-kernel@vger.kernel.org, Chris Wilson <chris@chris-wilson.co.uk>,
- Matthew Auld <matthew.auld@intel.com>,
- Andrew Morton <akpm@linux-foundation.org>, Christoph Hellwig <hch@lst.de>
+Cc: Eric Anholt <eric@anholt.net>, Daniel Vetter <daniel.vetter@ffwll.ch>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ Maxime Ripard <mripard@kernel.org>, Daniel Vetter <daniel.vetter@intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Oct 23, 2020 at 02:34:01PM +0300, Dan Carpenter wrote:
-> There is a signedness bug in shmem_pin_map() error handling because "i"
-> is unsigned.  The "while (--i >= 0)" will loop forever until the system
-> crashes.
+With the removal of helper support it doesn't do anything anymore.
+Also, we already have async plane update code in vc4.
 
-I actually sent a patch to Andrew before the end of the merge window
-to use a for loop with a new j iterator to fix this based on your
-automated report, but it looks like that didn't go in.
+Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
+Cc: Eric Anholt <eric@anholt.net>
+Cc: Maxime Ripard <mripard@kernel.org>
+---
+ drivers/gpu/drm/vc4/vc4_kms.c | 6 ------
+ 1 file changed, 6 deletions(-)
 
-> Fixes: bfed6708d6c9 ("drm/i915: use vmap in shmem_pin_map")
-> Signed-off-by: Dan Carpenter <dan.carpenter@oracle.com>
-> ---
->  drivers/gpu/drm/i915/gt/shmem_utils.c | 3 ++-
->  1 file changed, 2 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/gt/shmem_utils.c b/drivers/gpu/drm/i915/gt/shmem_utils.c
-> index f011ea42487e..7eb542018219 100644
-> --- a/drivers/gpu/drm/i915/gt/shmem_utils.c
-> +++ b/drivers/gpu/drm/i915/gt/shmem_utils.c
-> @@ -52,8 +52,9 @@ struct file *shmem_create_from_object(struct drm_i915_gem_object *obj)
->  void *shmem_pin_map(struct file *file)
->  {
->  	struct page **pages;
-> -	size_t n_pages, i;
-> +	size_t n_pages;
->  	void *vaddr;
-> +	int i;
->  
->  	n_pages = file->f_mapping->host->i_size >> PAGE_SHIFT;
->  	pages = kvmalloc_array(n_pages, sizeof(*pages), GFP_KERNEL);
+diff --git a/drivers/gpu/drm/vc4/vc4_kms.c b/drivers/gpu/drm/vc4/vc4_kms.c
+index 149825ff5df8..bf0da77ab2e6 100644
+--- a/drivers/gpu/drm/vc4/vc4_kms.c
++++ b/drivers/gpu/drm/vc4/vc4_kms.c
+@@ -353,12 +353,6 @@ static int vc4_atomic_commit(struct drm_device *dev,
+ 		return 0;
+ 	}
+ 
+-	/* We know for sure we don't want an async update here. Set
+-	 * state->legacy_cursor_update to false to prevent
+-	 * drm_atomic_helper_setup_commit() from auto-completing
+-	 * commit->flip_done.
+-	 */
+-	state->legacy_cursor_update = false;
+ 	ret = drm_atomic_helper_setup_commit(state, nonblock);
+ 	if (ret)
+ 		return ret;
+-- 
+2.28.0
 
-This assumes we never have more than INT_MAX worth of pages before
-a failure. 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
