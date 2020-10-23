@@ -1,47 +1,44 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0F07429766A
-	for <lists+intel-gfx@lfdr.de>; Fri, 23 Oct 2020 20:08:42 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id C20C229767E
+	for <lists+intel-gfx@lfdr.de>; Fri, 23 Oct 2020 20:11:48 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 07B516E3CE;
-	Fri, 23 Oct 2020 18:08:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 33B876E3D2;
+	Fri, 23 Oct 2020 18:11:46 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C2BBA6E3CE
- for <intel-gfx@lists.freedesktop.org>; Fri, 23 Oct 2020 18:08:37 +0000 (UTC)
-IronPort-SDR: Ve0NINlxzZgeZumo91UM15HZZ+Nqc5G8YwfoDtNFvwKA7Ur7p8NIsMQHbwpJybb2ecGj5Qch8f
- AIcD+YrOPodg==
-X-IronPort-AV: E=McAfee;i="6000,8403,9783"; a="147570687"
-X-IronPort-AV: E=Sophos;i="5.77,409,1596524400"; d="scan'208";a="147570687"
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9F90B6E3D2
+ for <intel-gfx@lists.freedesktop.org>; Fri, 23 Oct 2020 18:11:44 +0000 (UTC)
+IronPort-SDR: 3AHNSVL3cis8cco2b2HkMQoV2pE1cdpZSgJI38GiIZMhs3sn121cbLNcEcG6R3IW74YYdc9ePV
+ hzy9luL+DA3A==
+X-IronPort-AV: E=McAfee;i="6000,8403,9783"; a="167807552"
+X-IronPort-AV: E=Sophos;i="5.77,409,1596524400"; d="scan'208";a="167807552"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Oct 2020 11:08:24 -0700
-IronPort-SDR: 8mnwFWRbWlRAWWqBpV+jUaLIQrtkyC+6+wfo1sLZhmQ3NloQbxEWApwXVNKNVEkoy9zTfQxTMc
- NXzLXh0zML0w==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.77,409,1596524400"; d="scan'208";a="359669561"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by FMSMGA003.fm.intel.com with SMTP; 23 Oct 2020 11:08:22 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 23 Oct 2020 21:08:21 +0300
-Date: Fri, 23 Oct 2020 21:08:21 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Lucas De Marchi <lucas.demarchi@intel.com>
-Message-ID: <20201023180821.GA6112@intel.com>
-References: <20201023133420.12039-1-ville.syrjala@linux.intel.com>
- <20201023133420.12039-2-ville.syrjala@linux.intel.com>
- <20201023175724.jcmjndbmtr3rjhws@ldmartin-desk1>
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Oct 2020 11:11:44 -0700
+IronPort-SDR: kajaq2Dima1qv74gPbs99OpIO97CvzHAocOgzfpex7LqtE/YV0MhM4lnnlHQ1gTlE1roelZJxi
+ vXPwN9xXB2DA==
+X-IronPort-AV: E=Sophos;i="5.77,409,1596524400"; d="scan'208";a="349295766"
+Received: from mdroper-desk1.fm.intel.com (HELO
+ mdroper-desk1.amr.corp.intel.com) ([10.1.27.168])
+ by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Oct 2020 11:11:44 -0700
+Date: Fri, 23 Oct 2020 11:11:42 -0700
+From: Matt Roper <matthew.d.roper@intel.com>
+To: Aditya Swarup <aditya.swarup@intel.com>
+Message-ID: <20201023181142.GZ627052@mdroper-desk1.amr.corp.intel.com>
+References: <20201021133213.328994-1-aditya.swarup@intel.com>
+ <20201021133213.328994-6-aditya.swarup@intel.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20201023175724.jcmjndbmtr3rjhws@ldmartin-desk1>
-X-Patchwork-Hint: comment
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH v2 01/19] drm/i915: s/PORT_TC/TC_PORT_/
+In-Reply-To: <20201021133213.328994-6-aditya.swarup@intel.com>
+Subject: Re: [Intel-gfx] [PATCH 05/18] drm/i915/adl_s: Add PHYs for
+ Alderlake S
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,117 +51,117 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org,
+ Lucas De Marchi <lucas.demarchi@intel.com>
 Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Oct 23, 2020 at 10:57:24AM -0700, Lucas De Marchi wrote:
-> On Fri, Oct 23, 2020 at 04:34:02PM +0300, Ville Syrj=E4l=E4 wrote:
-> >@@ -8352,19 +8352,19 @@ enum {
-> > #define SDE_DDI_HOTPLUG_ICP(port)	(1 << ((port) + 16))
-> > #define SDE_DDI_MASK_ICP		(SDE_DDI_HOTPLUG_ICP(PORT_B) | \
-> > 					 SDE_DDI_HOTPLUG_ICP(PORT_A))
-> >-#define SDE_TC_MASK_ICP			(SDE_TC_HOTPLUG_ICP(PORT_TC4) | \
-> >-					 SDE_TC_HOTPLUG_ICP(PORT_TC3) | \
-> >-					 SDE_TC_HOTPLUG_ICP(PORT_TC2) | \
-> >-					 SDE_TC_HOTPLUG_ICP(PORT_TC1))
-> >+#define SDE_TC_MASK_ICP			(SDE_TC_HOTPLUG_ICP(TC_PORT_4) | \
-> >+					 SDE_TC_HOTPLUG_ICP(TC_PORT_3) | \
-> >+					 SDE_TC_HOTPLUG_ICP(TC_PORT_2) | \
-> >+					 SDE_TC_HOTPLUG_ICP(TC_PORT_1))
+On Wed, Oct 21, 2020 at 06:32:00AM -0700, Aditya Swarup wrote:
+> From: Anusha Srivatsa <anusha.srivatsa@intel.com>
 > =
 
-> At some point we may also want to add *HOTPLUG* to these macros to
-> signify what it really is.  For another day.
-
-Hmm. I have a feeling I end up removing these before the end of the
-series. Ah no, that was in a followup patch I played around with.
-But I'm not convinced that patch (making the IIR readout mask
-calculation also based on the encoders present) is actually a
-necessary thing. I guess it would be if some if the hpd bits get
-repurposed and we still want to share the irq handler between
-platforms with conflicting bits.
-
+> Alderlake-S has 5 combo phys, add reg definitions for
+> combo phys and update the port to phy helper for ADL-S.
 > =
 
+> Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+> Cc: Jani Nikula <jani.nikula@intel.com>
+> Cc: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> Cc: Imre Deak <imre.deak@intel.com>
+> Cc: Matt Roper <matthew.d.roper@intel.com>
+> Signed-off-by: Anusha Srivatsa <anusha.srivatsa@intel.com>
+> Signed-off-by: Aditya Swarup <aditya.swarup@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_display.c | 8 ++++++--
+>  drivers/gpu/drm/i915/i915_reg.h              | 5 ++++-
+>  2 files changed, 10 insertions(+), 3 deletions(-)
 > =
 
-> Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/d=
+rm/i915/display/intel_display.c
+> index 60bacdbe7f92..70ca5d2e5b0a 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> @@ -7333,6 +7333,8 @@ bool intel_phy_is_combo(struct drm_i915_private *de=
+v_priv, enum phy phy)
+>  {
+>  	if (phy =3D=3D PHY_NONE)
+>  		return false;
+> +	else if (IS_ALDERLAKE_S(dev_priv))
+> +		return phy <=3D PHY_E;
+>  	else if (IS_ROCKETLAKE(dev_priv))
+>  		return phy <=3D PHY_D;
+>  	else if (IS_JSL_EHL(dev_priv))
+> @@ -7345,7 +7347,7 @@ bool intel_phy_is_combo(struct drm_i915_private *de=
+v_priv, enum phy phy)
+>  =
+
+>  bool intel_phy_is_tc(struct drm_i915_private *dev_priv, enum phy phy)
+>  {
+> -	if (IS_ROCKETLAKE(dev_priv))
+> +	if (IS_ROCKETLAKE(dev_priv) || IS_ALDERLAKE_S(dev_priv))
+
+Minor nitpick:  we're trying to be more consistent about placing the new
+platforms first in conditions like this.
+
+Aside from that,
+
+Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
+
+
+>  		return false;
+>  	else if (INTEL_GEN(dev_priv) >=3D 12)
+>  		return phy >=3D PHY_D && phy <=3D PHY_I;
+> @@ -7357,7 +7359,9 @@ bool intel_phy_is_tc(struct drm_i915_private *dev_p=
+riv, enum phy phy)
+>  =
+
+>  enum phy intel_port_to_phy(struct drm_i915_private *i915, enum port port)
+>  {
+> -	if (IS_ROCKETLAKE(i915) && port >=3D PORT_D)
+> +	if (IS_ALDERLAKE_S(i915) && port >=3D PORT_D)
+> +		return (enum phy)port - 2;
+> +	else if (IS_ROCKETLAKE(i915) && port >=3D PORT_D)
+>  		return (enum phy)port - 1;
+>  	else if (IS_JSL_EHL(i915) && port =3D=3D PORT_D)
+>  		return PHY_A;
+> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_=
+reg.h
+> index f6b844ca7a9f..85c5e4fb3e7c 100644
+> --- a/drivers/gpu/drm/i915/i915_reg.h
+> +++ b/drivers/gpu/drm/i915/i915_reg.h
+> @@ -1870,10 +1870,13 @@ static inline bool i915_mmio_reg_valid(i915_reg_t=
+ reg)
+>  #define _ICL_COMBOPHY_B			0x6C000
+>  #define _EHL_COMBOPHY_C			0x160000
+>  #define _RKL_COMBOPHY_D			0x161000
+> +#define _ADL_COMBOPHY_E			0x16B000
+> +
+>  #define _ICL_COMBOPHY(phy)		_PICK(phy, _ICL_COMBOPHY_A, \
+>  					      _ICL_COMBOPHY_B, \
+>  					      _EHL_COMBOPHY_C, \
+> -					      _RKL_COMBOPHY_D)
+> +					      _RKL_COMBOPHY_D, \
+> +					      _ADL_COMBOPHY_E)
+>  =
+
+>  /* CNL/ICL Port CL_DW registers */
+>  #define _ICL_PORT_CL_DW(dw, phy)	(_ICL_COMBOPHY(phy) + \
+> -- =
+
+> 2.27.0
 > =
 
-> Lucas De Marchi
-> =
-
-> > #define SDE_DDI_MASK_TGP		(SDE_DDI_HOTPLUG_ICP(PORT_C) | \
-> > 					 SDE_DDI_HOTPLUG_ICP(PORT_B) | \
-> > 					 SDE_DDI_HOTPLUG_ICP(PORT_A))
-> >-#define SDE_TC_MASK_TGP			(SDE_TC_HOTPLUG_ICP(PORT_TC6) | \
-> >-					 SDE_TC_HOTPLUG_ICP(PORT_TC5) | \
-> >-					 SDE_TC_HOTPLUG_ICP(PORT_TC4) | \
-> >-					 SDE_TC_HOTPLUG_ICP(PORT_TC3) | \
-> >-					 SDE_TC_HOTPLUG_ICP(PORT_TC2) | \
-> >-					 SDE_TC_HOTPLUG_ICP(PORT_TC1))
-> >+#define SDE_TC_MASK_TGP			(SDE_TC_HOTPLUG_ICP(TC_PORT_6) | \
-> >+					 SDE_TC_HOTPLUG_ICP(TC_PORT_5) | \
-> >+					 SDE_TC_HOTPLUG_ICP(TC_PORT_4) | \
-> >+					 SDE_TC_HOTPLUG_ICP(TC_PORT_3) | \
-> >+					 SDE_TC_HOTPLUG_ICP(TC_PORT_2) | \
-> >+					 SDE_TC_HOTPLUG_ICP(TC_PORT_1))
-> >
-> > #define SDEISR  _MMIO(0xc4000)
-> > #define SDEIMR  _MMIO(0xc4004)
-> >@@ -8449,15 +8449,15 @@ enum {
-> >
-> > #define ICP_DDI_HPD_ENABLE_MASK		(SHOTPLUG_CTL_DDI_HPD_ENABLE(PORT_B) |=
- \
-> > 					 SHOTPLUG_CTL_DDI_HPD_ENABLE(PORT_A))
-> >-#define ICP_TC_HPD_ENABLE_MASK		(ICP_TC_HPD_ENABLE(PORT_TC4) | \
-> >-					 ICP_TC_HPD_ENABLE(PORT_TC3) | \
-> >-					 ICP_TC_HPD_ENABLE(PORT_TC2) | \
-> >-					 ICP_TC_HPD_ENABLE(PORT_TC1))
-> >+#define ICP_TC_HPD_ENABLE_MASK		(ICP_TC_HPD_ENABLE(TC_PORT_4) | \
-> >+					 ICP_TC_HPD_ENABLE(TC_PORT_3) | \
-> >+					 ICP_TC_HPD_ENABLE(TC_PORT_2) | \
-> >+					 ICP_TC_HPD_ENABLE(TC_PORT_1))
-> > #define TGP_DDI_HPD_ENABLE_MASK		(SHOTPLUG_CTL_DDI_HPD_ENABLE(PORT_C) |=
- \
-> > 					 SHOTPLUG_CTL_DDI_HPD_ENABLE(PORT_B) | \
-> > 					 SHOTPLUG_CTL_DDI_HPD_ENABLE(PORT_A))
-> >-#define TGP_TC_HPD_ENABLE_MASK		(ICP_TC_HPD_ENABLE(PORT_TC6) | \
-> >-					 ICP_TC_HPD_ENABLE(PORT_TC5) | \
-> >+#define TGP_TC_HPD_ENABLE_MASK		(ICP_TC_HPD_ENABLE(TC_PORT_6) | \
-> >+					 ICP_TC_HPD_ENABLE(TC_PORT_5) | \
-> > 					 ICP_TC_HPD_ENABLE_MASK)
-> >
-> > #define _PCH_DPLL_A              0xc6014
-> >@@ -10315,9 +10315,9 @@ enum skl_power_gate {
-> > #define ICL_DPCLKA_CFGCR0			_MMIO(0x164280)
-> > #define  ICL_DPCLKA_CFGCR0_DDI_CLK_OFF(phy)	(1 << _PICK(phy, 10, 11, 24=
-))
-> > #define  RKL_DPCLKA_CFGCR0_DDI_CLK_OFF(phy)	REG_BIT((phy) + 10)
-> >-#define  ICL_DPCLKA_CFGCR0_TC_CLK_OFF(tc_port)	(1 << ((tc_port) < PORT_=
-TC4 ? \
-> >+#define  ICL_DPCLKA_CFGCR0_TC_CLK_OFF(tc_port)	(1 << ((tc_port) < TC_PO=
-RT_4 ? \
-> > 						       (tc_port) + 12 : \
-> >-						       (tc_port) - PORT_TC4 + 21))
-> >+						       (tc_port) - TC_PORT_4 + 21))
-> > #define  ICL_DPCLKA_CFGCR0_DDI_CLK_SEL_SHIFT(phy)	((phy) * 2)
-> > #define  ICL_DPCLKA_CFGCR0_DDI_CLK_SEL_MASK(phy)	(3 << ICL_DPCLKA_CFGCR=
-0_DDI_CLK_SEL_SHIFT(phy))
-> > #define  ICL_DPCLKA_CFGCR0_DDI_CLK_SEL(pll, phy)	((pll) << ICL_DPCLKA_C=
-FGCR0_DDI_CLK_SEL_SHIFT(phy))
-> >-- =
-
-> >2.26.2
-> >
 
 -- =
 
-Ville Syrj=E4l=E4
-Intel
+Matt Roper
+Graphics Software Engineer
+VTT-OSGC Platform Enablement
+Intel Corporation
+(916) 356-2795
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
