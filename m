@@ -2,40 +2,46 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0373B297942
-	for <lists+intel-gfx@lfdr.de>; Sat, 24 Oct 2020 00:21:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 164D029796E
+	for <lists+intel-gfx@lfdr.de>; Sat, 24 Oct 2020 00:52:16 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 329106E84D;
-	Fri, 23 Oct 2020 22:21:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AEBF86E851;
+	Fri, 23 Oct 2020 22:52:08 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B3E546E84D
- for <intel-gfx@lists.freedesktop.org>; Fri, 23 Oct 2020 22:21:38 +0000 (UTC)
-IronPort-SDR: bAeRbf0L9+yznd4mVB0gCev/lEtRZMxhnnQ5GeBFBbM8nxt6J2/XI8TrIZWJuZSkWtzZ+Oho7z
- QoP/G0mXrX2g==
-X-IronPort-AV: E=McAfee;i="6000,8403,9783"; a="167860115"
-X-IronPort-AV: E=Sophos;i="5.77,409,1596524400"; d="scan'208";a="167860115"
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 504056E839;
+ Fri, 23 Oct 2020 22:52:07 +0000 (UTC)
+IronPort-SDR: PH9r20ZImY//Cl8eOWUNd7oZRDH9XyN+F7CTSJaYmGxlFoystp9s4Di9j0m9OKXsYAbHt+7M9p
+ PiJ/EsVDe3Jg==
+X-IronPort-AV: E=McAfee;i="6000,8403,9783"; a="167862143"
+X-IronPort-AV: E=Sophos;i="5.77,410,1596524400"; d="scan'208";a="167862143"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Oct 2020 15:21:38 -0700
-IronPort-SDR: IhOeThGrQgZz246g9V5WGHpj2fo3RWA1dcMUy0GTs5+Lsg9eWP1b/tQmr1zCICnpV7+SGmJwjk
- Nzf0Rbs1KGag==
-X-IronPort-AV: E=Sophos;i="5.77,409,1596524400"; d="scan'208";a="523638622"
-Received: from dceraolo-linux.fm.intel.com ([10.1.27.145])
- by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Oct 2020 15:21:38 -0700
-From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Fri, 23 Oct 2020 15:22:47 -0700
-Message-Id: <20201023222247.5926-2-daniele.ceraolospurio@intel.com>
-X-Mailer: git-send-email 2.24.1
-In-Reply-To: <20201023222247.5926-1-daniele.ceraolospurio@intel.com>
-References: <20201023222247.5926-1-daniele.ceraolospurio@intel.com>
+ 23 Oct 2020 15:52:06 -0700
+IronPort-SDR: 3lB6R6crZpjscfm5YpA2kGymX/e+mbbGX0VDo7rGavBni8rIb7r4fUmcuyarurRwngJCcjWlme
+ uTrtK2h0XRzA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.77,410,1596524400"; d="scan'208";a="359738119"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
+ by FMSMGA003.fm.intel.com with SMTP; 23 Oct 2020 15:52:01 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Sat, 24 Oct 2020 01:52:00 +0300
+Date: Sat, 24 Oct 2020 01:52:00 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Simon Ser <contact@emersion.fr>
+Message-ID: <20201023225200.GF6112@intel.com>
+References: <20201023203957.3255-1-ville.syrjala@linux.intel.com>
+ <wusQ8YNZOE_lHaJ5e15M4lmDPxrD2HiUYKJN5Sh6bcZC-Ly-IzqOPeU9OSmC1X4ftuMbwhJpHRnpDQDnp6Z5-bHrONqzOyS8sdKYxN-TFTY=@emersion.fr>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [CI 2/2] HAX: drm/i915: default to enable_guc=2
+Content-Disposition: inline
+In-Reply-To: <wusQ8YNZOE_lHaJ5e15M4lmDPxrD2HiUYKJN5Sh6bcZC-Ly-IzqOPeU9OSmC1X4ftuMbwhJpHRnpDQDnp6Z5-bHrONqzOyS8sdKYxN-TFTY=@emersion.fr>
+X-Patchwork-Hint: comment
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: Re: [Intel-gfx] [PATCH] drm: Don't create the IN_FORMATS blob when
+ the driver does not provide .format_mod_supported()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,34 +54,55 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: Marek Vasut <marex@denx.de>, Joonyoung Shim <jy0922.shim@samsung.com>,
+ Jingoo Han <jingoohan1@gmail.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ Seung-Woo Kim <sw0312.kim@samsung.com>, Chen-Yu Tsai <wens@csie.org>,
+ Stefan Agner <stefan@agner.ch>, Maxime Ripard <mripard@kernel.org>,
+ Inki Dae <inki.dae@samsung.com>, Kyungmin Park <kyungmin.park@samsung.com>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ Gerd Hoffmann <kraxel@redhat.com>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-To enable GuC and HuC loading on all gen9+ CI machines.
+On Fri, Oct 23, 2020 at 10:03:50PM +0000, Simon Ser wrote:
+> On Friday, October 23, 2020 10:39 PM, Ville Syrjala <ville.syrjala@linux.=
+intel.com> wrote:
+> =
 
-Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
----
- drivers/gpu/drm/i915/i915_params.h | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+> > From: Ville Syrj=E4l=E4 ville.syrjala@linux.intel.com
+> >
+> > The code responsible for creating the IN_FORMATS
+> > blob is broken when the driver doesn't provide a
+> > .format_mod_supported() hook. It just copies in
+> > the format list, but leaves all the modifier information
+> > zeroed. That would indicate (in a very silly way) that
+> > there are in fact no supported format+modifier combinations.
+> > That is utter nonsense.
+> =
 
-diff --git a/drivers/gpu/drm/i915/i915_params.h b/drivers/gpu/drm/i915/i915_params.h
-index 330c03e2b4f7..04b21c47d19f 100644
---- a/drivers/gpu/drm/i915/i915_params.h
-+++ b/drivers/gpu/drm/i915/i915_params.h
-@@ -58,7 +58,7 @@ struct drm_printer;
- 	param(int, disable_power_well, -1, 0400) \
- 	param(int, enable_ips, 1, 0600) \
- 	param(int, invert_brightness, 0, 0600) \
--	param(int, enable_guc, 0, 0400) \
-+	param(int, enable_guc, 2, 0400) \
- 	param(int, guc_log_level, -1, 0400) \
- 	param(char *, guc_firmware_path, NULL, 0400) \
- 	param(char *, huc_firmware_path, NULL, 0400) \
--- 
-2.24.1
+> Should we WARN_ON when the driver enables allow_fb_modifiers but
+> doesn't populate format_mod_supported?
 
+.format_mod_supported() was supposed to be optional IIRC.
+
+But now that I look at it, it looks like only these
+drivers are lacking .format_mod_supported(): exynos, mxsfb,
+tiny/cirrus, tiny/gm12u320.
+
+There is some other oddity going on with sun4i which sometimes
+uses modifiers sometimes it doesn't. No idea what is going on there.
+But it does have .format_mod_supported() at least.
+
+So I guess if we can get exynos, mxsfb, and tiny/* to implement
+the hook then we could make it mandatory.
+
+-- =
+
+Ville Syrj=E4l=E4
+Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
