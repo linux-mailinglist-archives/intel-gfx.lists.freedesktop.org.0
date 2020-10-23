@@ -1,57 +1,58 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1979A296EDC
-	for <lists+intel-gfx@lfdr.de>; Fri, 23 Oct 2020 14:24:04 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id C9D8A296EDF
+	for <lists+intel-gfx@lfdr.de>; Fri, 23 Oct 2020 14:24:05 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A0D546E5C1;
+	by gabe.freedesktop.org (Postfix) with ESMTP id EC2646E5CD;
 	Fri, 23 Oct 2020 12:22:58 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com
- [IPv6:2a00:1450:4864:20::435])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E487E6E578
- for <intel-gfx@lists.freedesktop.org>; Fri, 23 Oct 2020 12:22:50 +0000 (UTC)
-Received: by mail-wr1-x435.google.com with SMTP id i1so1601987wro.1
- for <intel-gfx@lists.freedesktop.org>; Fri, 23 Oct 2020 05:22:50 -0700 (PDT)
+Received: from mail-wr1-x442.google.com (mail-wr1-x442.google.com
+ [IPv6:2a00:1450:4864:20::442])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EC41A6E5B0
+ for <intel-gfx@lists.freedesktop.org>; Fri, 23 Oct 2020 12:22:51 +0000 (UTC)
+Received: by mail-wr1-x442.google.com with SMTP id h5so1574519wrv.7
+ for <intel-gfx@lists.freedesktop.org>; Fri, 23 Oct 2020 05:22:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=zNLsePzx9q992VMUFr7jP13mOUJ18X4OgZGDXlRd89Q=;
- b=c4+Wt0jZWdUsbBCRJW2m5SqYXFEjUMqnB7DwJiDwC4SE8llY5gbhPUKL4RpvHt7iak
- tT9ENSQcUCu68HFHANbDr5UvPr/h5eJkIG0N3B733nAaDlc8iO1BwfbBOlcH6kKylnwk
- Ryr0bpXTAaQTpKMVJe3DJrLiewdSxeQG/cFwI=
+ bh=xQPq+yAA8AW/svlJ9AY1HOlvb3EW8VTS4T+GBR6wLrU=;
+ b=NbbqlkrQtu0CB8BYCG4gn7RuzIui8JESMpqzF0eOWNi7WRWNJsMD67jNJ/wTMkx80t
+ dHejKFxffPPJcYZQ5OPid41hRwZwXJIpXBjPuiO9kFq/IVZWKe8WcsaP/i3jxoMxdCp5
+ 3SKI/6UoxcqWqPY5Z7UgEnhEd3hKOFis+lAKk=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=zNLsePzx9q992VMUFr7jP13mOUJ18X4OgZGDXlRd89Q=;
- b=m1/n8FGIPlQJKESJVzryeKxaDP4jyG81ZFAfyr2vlC1dE6HAgON7WuSlnZn0eQQfht
- CN+ZyAKw2mK4+owrgCqate021/UjLIwmx9wtP5sEDQClgKUK6cuhNe1MaqJnDRn6YRcG
- fsRnVCtrxI/0BhQ1xEM7U2hmJ2OO4/ErQuFQJqSptUA4PggTobBHRgXeKCeH2cRz/6VU
- a045cdJCgh1RzksEG53wo3P2WUcGYEGcv+Oqw3pilL4/9wApggFRnadr02ORHtgIRWTl
- tXBpYw3nL2EGhKlh7NRzFZqu/S3nad9wFO36jodhSXQc0ggTLbBxtxMw+GgUJ5D/2Rsi
- QxTw==
-X-Gm-Message-State: AOAM5323NuWwWlF+vJ4YAWNGTP9l/+w4sxzkvs7DQ2G6pnylwSywHxwd
- 0A3vP2hu7fdL+83NlL9FOe1s6w==
-X-Google-Smtp-Source: ABdhPJzoiQot47ZpCJS2Cvb9SYJIeWWev2nIpe012aky1wGXlk6HifOuXL9F7qCAFLgVwFQZd9UZPQ==
-X-Received: by 2002:adf:fd8a:: with SMTP id d10mr2235560wrr.85.1603455769576; 
- Fri, 23 Oct 2020 05:22:49 -0700 (PDT)
+ bh=xQPq+yAA8AW/svlJ9AY1HOlvb3EW8VTS4T+GBR6wLrU=;
+ b=FVF2pKkllW45DIBd09P9HetKz1H0GuOherSh2OdFFnWlklBM+TX4Jpacl8CaoTnwFX
+ 4vekVo12fpuB7xWL1pLTuYBLvO2TiIzkFn9ZDtKM8jEdlX7W+DnTuLhgL+vapN46Z/LO
+ QTbwtxsFBm+OARsrOlaiTqNFO/iKt9Ngn9tf1Jj/soqR/NUrrfn3E9IIOmmJLCV4DY7K
+ IHFw1dWcVVvdoteayB+Kr8D8JsFW7lCd/ec/a9PlrL4yueO1B9WvetSKRcLjl6lZkVVC
+ AlyogKwYCEuy5jjruetz+gFGTf2FiC4fUz+4PPcwTm+GYTyQW2CplWJpCOWVidu/+GYw
+ TrVg==
+X-Gm-Message-State: AOAM531qOZXbMMIOuJ2gzEHubaI7Ob1d6l2SZfLQ9vdbVdxa2ymxyVjo
+ 4gYUGYkGlXhFocWqcW29aX0y9A==
+X-Google-Smtp-Source: ABdhPJzSQqrDw6b5+z+eaZhTT8mvZTxmEyqPgiuTUkvBgDnQP2YTPSXTYeqNjOlv1o0+3jz665V43Q==
+X-Received: by 2002:adf:e8c7:: with SMTP id k7mr2367177wrn.102.1603455770631; 
+ Fri, 23 Oct 2020 05:22:50 -0700 (PDT)
 Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id y4sm3056484wrp.74.2020.10.23.05.22.48
+ by smtp.gmail.com with ESMTPSA id y4sm3056484wrp.74.2020.10.23.05.22.49
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 23 Oct 2020 05:22:49 -0700 (PDT)
+ Fri, 23 Oct 2020 05:22:50 -0700 (PDT)
 From: Daniel Vetter <daniel.vetter@ffwll.ch>
 To: DRI Development <dri-devel@lists.freedesktop.org>
-Date: Fri, 23 Oct 2020 14:21:35 +0200
-Message-Id: <20201023122216.2373294-24-daniel.vetter@ffwll.ch>
+Date: Fri, 23 Oct 2020 14:21:36 +0200
+Message-Id: <20201023122216.2373294-25-daniel.vetter@ffwll.ch>
 X-Mailer: git-send-email 2.28.0
 In-Reply-To: <20201023122216.2373294-1-daniel.vetter@ffwll.ch>
 References: <20201021163242.1458885-1-daniel.vetter@ffwll.ch>
  <20201023122216.2373294-1-daniel.vetter@ffwll.ch>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 24/65] Revert "drm/i915: Annotate dma_fence_work"
+Subject: [Intel-gfx] [PATCH 25/65] drm/nouveau: Drop mutex_lock_nested for
+ atomic
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,40 +65,67 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Daniel Vetter <daniel.vetter@ffwll.ch>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>
+Cc: Maarten Lankhorst <m.b.lankhorst@gmail.com>,
+ Daniel Vetter <daniel.vetter@ffwll.ch>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ Ben Skeggs <bskeggs@redhat.com>, nouveau@lists.freedesktop.org,
+ Daniel Vetter <daniel.vetter@intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This reverts commit 7fbc6eca6f0db8244cddc39471d71471a2f30254.
+Purely conjecture, but I think the original locking inversion with the
+legacy page flip code between flipping and ttm's bo move function
+shoudn't exist anymore with atomic: With atomic the bo pinning and
+actual modeset commit is completely separated in the code patsh.
 
-I need working lockdep back
+This annotation was originally added in
+
+commit 060810d7abaabcab282e062c595871d661561400
+Author: Ben Skeggs <bskeggs@redhat.com>
+Date:   Mon Jul 8 14:15:51 2013 +1000
+
+    drm/nouveau: fix locking issues in page flipping paths
+
+due to
+
+commit b580c9e2b7ba5030a795aa2fb73b796523d65a78
+Author: Maarten Lankhorst <m.b.lankhorst@gmail.com>
+Date:   Thu Jun 27 13:48:18 2013 +0200
+
+    drm/nouveau: make flipping lockdep safe
+
+Reviewed-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
+Cc: Maarten Lankhorst <m.b.lankhorst@gmail.com>
+Cc: Ben Skeggs <bskeggs@redhat.com>
+Cc: Dave Airlie <airlied@gmail.com>
+Cc: nouveau@lists.freedesktop.org
 ---
- drivers/gpu/drm/i915/i915_sw_fence_work.c | 3 ---
- 1 file changed, 3 deletions(-)
+I might be totally wrong, so this definitely needs testing :-)
 
-diff --git a/drivers/gpu/drm/i915/i915_sw_fence_work.c b/drivers/gpu/drm/i915/i915_sw_fence_work.c
-index 5b74acadaef5..a3a81bb8f2c3 100644
---- a/drivers/gpu/drm/i915/i915_sw_fence_work.c
-+++ b/drivers/gpu/drm/i915/i915_sw_fence_work.c
-@@ -17,15 +17,12 @@ static void fence_work(struct work_struct *work)
- {
- 	struct dma_fence_work *f = container_of(work, typeof(*f), work);
- 	int err;
--	bool fence_cookie;
+Cheers, Daniel
+---
+ drivers/gpu/drm/nouveau/nouveau_bo.c | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
+
+diff --git a/drivers/gpu/drm/nouveau/nouveau_bo.c b/drivers/gpu/drm/nouveau/nouveau_bo.c
+index 70b6f3b1ae85..c04a808664f8 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_bo.c
++++ b/drivers/gpu/drm/nouveau/nouveau_bo.c
+@@ -775,7 +775,10 @@ nouveau_bo_move_m2mf(struct ttm_buffer_object *bo, int evict,
+ 			return ret;
+ 	}
  
--	fence_cookie = dma_fence_begin_signalling();
- 	err = f->ops->work(f);
- 	if (err)
- 		dma_fence_set_error(&f->dma, err);
- 
- 	fence_complete(f);
--	dma_fence_end_signalling(fence_cookie);
- 	dma_fence_put(&f->dma);
- }
- 
+-	mutex_lock_nested(&cli->mutex, SINGLE_DEPTH_NESTING);
++	if (drm_drv_uses_atomic_modeset(drm->dev))
++		mutex_lock(&cli->mutex);
++	else
++		mutex_lock_nested(&cli->mutex, SINGLE_DEPTH_NESTING);
+ 	ret = nouveau_fence_sync(nouveau_bo(bo), chan, true, ctx->interruptible);
+ 	if (ret == 0) {
+ 		ret = drm->ttm.move(chan, bo, &bo->mem, new_reg);
 -- 
 2.28.0
 
