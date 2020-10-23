@@ -2,43 +2,42 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E50D32977B2
-	for <lists+intel-gfx@lfdr.de>; Fri, 23 Oct 2020 21:23:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 14ADF2977B8
+	for <lists+intel-gfx@lfdr.de>; Fri, 23 Oct 2020 21:25:18 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5A5966E7D9;
-	Fri, 23 Oct 2020 19:23:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 64AE06E7D1;
+	Fri, 23 Oct 2020 19:25:16 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C18586E7D9
- for <intel-gfx@lists.freedesktop.org>; Fri, 23 Oct 2020 19:23:36 +0000 (UTC)
-IronPort-SDR: ngTCCp4ujZX/HaYKwNOYe7LopuFuYgjiLHWU+zRGQjWgKUKgzpMouzPMAMxpyKVxJfySx0MmkP
- q69MSZBhlosQ==
-X-IronPort-AV: E=McAfee;i="6000,8403,9783"; a="229357669"
-X-IronPort-AV: E=Sophos;i="5.77,409,1596524400"; d="scan'208";a="229357669"
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 752396E7D1
+ for <intel-gfx@lists.freedesktop.org>; Fri, 23 Oct 2020 19:25:14 +0000 (UTC)
+IronPort-SDR: ZYVbGxYDQWAIvzma1zRn1fz9BlExTQDJwEEtU2ArxSGlf/mcjKlBcedi3pzhExZSy7os3Yy14b
+ TRp3E3NHYcXA==
+X-IronPort-AV: E=McAfee;i="6000,8403,9783"; a="147579213"
+X-IronPort-AV: E=Sophos;i="5.77,409,1596524400"; d="scan'208";a="147579213"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Oct 2020 12:23:36 -0700
-IronPort-SDR: dkCNW1E53fKhxdNXq18/RkjcMC6xQUND+81VoXLscZZDjvPkBfsEwVoRaWKHQPxHayQRrWkuG5
- T53DJsBIqYzA==
-X-IronPort-AV: E=Sophos;i="5.77,409,1596524400"; d="scan'208";a="423508128"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Oct 2020 12:25:13 -0700
+IronPort-SDR: KqDmXSoCj8qnvjfrOi9XL5apzYpiVF8Zt1W3Auu56Uih6QPIj5mQpIoH0YIdYAJVYMqarvGE0i
+ ZW7cSXRw1/Vw==
+X-IronPort-AV: E=Sophos;i="5.77,409,1596524400"; d="scan'208";a="467179026"
 Received: from spoase-mobl.amr.corp.intel.com (HELO ldmartin-desk1)
  ([10.212.216.15])
- by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Oct 2020 12:23:35 -0700
-Date: Fri, 23 Oct 2020 12:23:35 -0700
+ by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Oct 2020 12:25:13 -0700
+Date: Fri, 23 Oct 2020 12:25:13 -0700
 From: Lucas De Marchi <lucas.demarchi@intel.com>
 To: Ville Syrjala <ville.syrjala@linux.intel.com>
-Message-ID: <20201023192335.mqvhuq6wxw36dfdu@ldmartin-desk1>
+Message-ID: <20201023192513.zr45eo5x4hitjfwf@ldmartin-desk1>
 References: <20201023133420.12039-1-ville.syrjala@linux.intel.com>
- <20201023133420.12039-14-ville.syrjala@linux.intel.com>
+ <20201023133420.12039-16-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20201023133420.12039-14-ville.syrjala@linux.intel.com>
-Subject: Re: [Intel-gfx] [PATCH v2 13/19] drm/i915: Split
- gen11_hpd_detection_setup() into tc vs. tbt variants
+In-Reply-To: <20201023133420.12039-16-ville.syrjala@linux.intel.com>
+Subject: Re: [Intel-gfx] [PATCH v2 15/19] drm/i915: Rename 'tmp_mask'
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,12 +56,11 @@ Content-Type: text/plain; charset="iso-8859-1"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Oct 23, 2020 at 04:34:14PM +0300, Ville Syrj=E4l=E4 wrote:
+On Fri, Oct 23, 2020 at 04:34:16PM +0300, Ville Syrj=E4l=E4 wrote:
 >From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
 >
->No reason to stuff both type-c and tbt into the same function.
->Let's split this so we may more easily handle platforms that
->lack the tbt spefific bits.
+>Replace this silly tmp_mask with hotplug_trigger/te_trigger
+>where appropriate.
 >
 >Signed-off-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
 
@@ -71,61 +69,63 @@ Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
 
 Lucas De Marchi
 >---
-> drivers/gpu/drm/i915/i915_irq.c | 13 ++++++++++---
-> 1 file changed, 10 insertions(+), 3 deletions(-)
+> drivers/gpu/drm/i915/i915_irq.c | 22 ++++++++++++----------
+> 1 file changed, 12 insertions(+), 10 deletions(-)
 >
 >diff --git a/drivers/gpu/drm/i915/i915_irq.c b/drivers/gpu/drm/i915/i915_i=
 rq.c
->index 68e9d2813d32..2c8813f34a45 100644
+>index b1f21502b78b..be69c129dd5a 100644
 >--- a/drivers/gpu/drm/i915/i915_irq.c
 >+++ b/drivers/gpu/drm/i915/i915_irq.c
->@@ -3251,7 +3251,7 @@ static void jsp_hpd_irq_setup(struct drm_i915_privat=
-e *dev_priv)
-> 			  TGP_DDI_HPD_ENABLE_MASK, 0);
-> }
+>@@ -2371,7 +2371,6 @@ gen8_de_irq_handler(struct drm_i915_private *dev_pri=
+v, u32 master_ctl)
+> 	if (master_ctl & GEN8_DE_PORT_IRQ) {
+> 		iir =3D I915_READ(GEN8_DE_PORT_IIR);
+> 		if (iir) {
+>-			u32 tmp_mask;
+> 			bool found =3D false;
 >
->-static void gen11_hpd_detection_setup(struct drm_i915_private *dev_priv)
->+static void gen11_tc_hpd_detection_setup(struct drm_i915_private *dev_pri=
-v)
-> {
-> 	u32 hotplug;
+> 			I915_WRITE(GEN8_DE_PORT_IIR, iir);
+>@@ -2383,15 +2382,17 @@ gen8_de_irq_handler(struct drm_i915_private *dev_p=
+riv, u32 master_ctl)
+> 			}
 >
->@@ -3263,6 +3263,11 @@ static void gen11_hpd_detection_setup(struct drm_i9=
-15_private *dev_priv)
-> 		   GEN11_HOTPLUG_CTL_ENABLE(HPD_PORT_TC5) |
-> 		   GEN11_HOTPLUG_CTL_ENABLE(HPD_PORT_TC6);
-> 	I915_WRITE(GEN11_TC_HOTPLUG_CTL, hotplug);
->+}
+> 			if (IS_GEN9_LP(dev_priv)) {
+>-				tmp_mask =3D iir & BXT_DE_PORT_HOTPLUG_MASK;
+>-				if (tmp_mask) {
+>-					bxt_hpd_irq_handler(dev_priv, tmp_mask);
+>+				u32 hotplug_trigger =3D iir & BXT_DE_PORT_HOTPLUG_MASK;
 >+
->+static void gen11_tbt_hpd_detection_setup(struct drm_i915_private *dev_pr=
-iv)
->+{
->+	u32 hotplug;
+>+				if (hotplug_trigger) {
+>+					bxt_hpd_irq_handler(dev_priv, hotplug_trigger);
+> 					found =3D true;
+> 				}
+> 			} else if (IS_BROADWELL(dev_priv)) {
+>-				tmp_mask =3D iir & BDW_DE_PORT_HOTPLUG_MASK;
+>-				if (tmp_mask) {
+>-					ilk_hpd_irq_handler(dev_priv, tmp_mask);
+>+				u32 hotplug_trigger =3D iir & BDW_DE_PORT_HOTPLUG_MASK;
+>+
+>+				if (hotplug_trigger) {
+>+					ilk_hpd_irq_handler(dev_priv, hotplug_trigger);
+> 					found =3D true;
+> 				}
+> 			}
+>@@ -2402,9 +2403,10 @@ gen8_de_irq_handler(struct drm_i915_private *dev_pr=
+iv, u32 master_ctl)
+> 			}
 >
-> 	hotplug =3D I915_READ(GEN11_TBT_HOTPLUG_CTL);
-> 	hotplug |=3D GEN11_HOTPLUG_CTL_ENABLE(HPD_PORT_TC1) |
->@@ -3288,7 +3293,8 @@ static void gen11_hpd_irq_setup(struct drm_i915_priv=
-ate *dev_priv)
-> 	I915_WRITE(GEN11_DE_HPD_IMR, val);
-> 	POSTING_READ(GEN11_DE_HPD_IMR);
->
->-	gen11_hpd_detection_setup(dev_priv);
->+	gen11_tc_hpd_detection_setup(dev_priv);
->+	gen11_tbt_hpd_detection_setup(dev_priv);
->
-> 	if (INTEL_PCH_TYPE(dev_priv) >=3D PCH_TGP)
-> 		icp_hpd_irq_setup(dev_priv,
->@@ -3603,7 +3609,8 @@ static void gen8_de_irq_postinstall(struct drm_i915_=
-private *dev_priv)
->
-> 		GEN3_IRQ_INIT(uncore, GEN11_DE_HPD_, ~de_hpd_masked,
-> 			      de_hpd_enables);
->-		gen11_hpd_detection_setup(dev_priv);
->+		gen11_tc_hpd_detection_setup(dev_priv);
->+		gen11_tbt_hpd_detection_setup(dev_priv);
-> 	} else if (IS_GEN9_LP(dev_priv)) {
-> 		bxt_hpd_detection_setup(dev_priv);
-> 	} else if (IS_BROADWELL(dev_priv)) {
+> 			if (INTEL_GEN(dev_priv) >=3D 11) {
+>-				tmp_mask =3D iir & (DSI0_TE | DSI1_TE);
+>-				if (tmp_mask) {
+>-					gen11_dsi_te_interrupt_handler(dev_priv, tmp_mask);
+>+				u32 te_trigger =3D iir & (DSI0_TE | DSI1_TE);
+>+
+>+				if (te_trigger) {
+>+					gen11_dsi_te_interrupt_handler(dev_priv, te_trigger);
+> 					found =3D true;
+> 				}
+> 			}
 >-- =
 
 >2.26.2
