@@ -2,57 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id CAA77296EBD
-	for <lists+intel-gfx@lfdr.de>; Fri, 23 Oct 2020 14:23:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1C443296EAB
+	for <lists+intel-gfx@lfdr.de>; Fri, 23 Oct 2020 14:23:27 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6AA666E50D;
-	Fri, 23 Oct 2020 12:22:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0195D6E544;
+	Fri, 23 Oct 2020 12:22:43 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-x441.google.com (mail-wr1-x441.google.com
- [IPv6:2a00:1450:4864:20::441])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 75F6E6E532
- for <intel-gfx@lists.freedesktop.org>; Fri, 23 Oct 2020 12:22:38 +0000 (UTC)
-Received: by mail-wr1-x441.google.com with SMTP id s9so1565229wro.8
- for <intel-gfx@lists.freedesktop.org>; Fri, 23 Oct 2020 05:22:38 -0700 (PDT)
+Received: from mail-wr1-x444.google.com (mail-wr1-x444.google.com
+ [IPv6:2a00:1450:4864:20::444])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 881E26E544
+ for <intel-gfx@lists.freedesktop.org>; Fri, 23 Oct 2020 12:22:39 +0000 (UTC)
+Received: by mail-wr1-x444.google.com with SMTP id t9so1554425wrq.11
+ for <intel-gfx@lists.freedesktop.org>; Fri, 23 Oct 2020 05:22:39 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=Mc/HaupIcTONzzNY/IPbsojEeOx/OAVida519eIWl3o=;
- b=SiAF8YIghStwaDa3nrFgt2H+nRr1uyHWcXttox6xsUDFvOnOYoFcZimI2jXJ/tQ7oH
- feUtbc0GqpivsTSlahj/KEGE/aKiHWUzahbyDVAa1YM27E6zsOtyx45uFNDB4N2qd6YL
- q1lehFKjBkl5Qzb++NNO7IciOhxlrxh4dqu4w=
+ bh=K3NZe7vLn6lD7nkDNbTprNLF6a+N9v1C4Qxxx3dRr+E=;
+ b=OJpDzpwTCtfzVlTdltudrfVKKES1edfNiS35w78x9FwDemsY3lSs+MLaUdUVQbJpij
+ dKAosS1nxMHPgDo9SZ6KaLlc1KTEcKmWWwqTjJ0a0Gb1LOebCLYats1VPhAmFInNfAFn
+ 5ykwXufwXxwmuyHPkAc7oKXCl2rcqd29y0Hzo=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=Mc/HaupIcTONzzNY/IPbsojEeOx/OAVida519eIWl3o=;
- b=Fzr/pY627f00HO/UVgeQ/a7/Hvd0TazLP9SLj0EMuRPXrwBclIqx29BJ2rtUIucJ66
- YlpWUGMBKyRxvrHEaFmnDez7cin+v8QgVao2Btz8ubCn8NC4Wrm8xUJqGuJLh74BEg63
- 2wBZj9URg+icDgk0jz4jXUYbuOZzJsrA/GAoWXxdZyKG0aSWw7/3L9LknsGhafV1t0WX
- G4nanHEJ0uHqBEjZzjWXQFu8oJo12q0H1r6ndnN+nrhw1NFuWZxy8pPgrHqnMW2APBQe
- 2av/OjT1UUYXJ5mM839zKQkz30Dmqo0nD3RSFLhhENA1cRqzbkhAbny7W/MvskAxuTP2
- 0v5Q==
-X-Gm-Message-State: AOAM532sQPyA2sgZrMQpLz+g35VExshmbem0abpr47ZKIVWn+tTdSHz5
- 4Jj06+Ci2V6egztdduaG+wxPaQ==
-X-Google-Smtp-Source: ABdhPJwKwDRvXGALRAAZ5e8yx21fm1FpIVQ5ciR3SjfBnMLg6G8gjBK3IN3bWlAi2QNlABheXDpePg==
-X-Received: by 2002:a05:6000:1109:: with SMTP id
- z9mr2146352wrw.388.1603455757106; 
- Fri, 23 Oct 2020 05:22:37 -0700 (PDT)
+ bh=K3NZe7vLn6lD7nkDNbTprNLF6a+N9v1C4Qxxx3dRr+E=;
+ b=pBro2L4KGy9KG1ctiW1d0z6zsAbBSeK+dT/3leGT/pTD5/2evX7sV91qdTSO3HVCj9
+ mT49tBxbwEDTgCRe5Et2rs8s32Gg7Aocr4/L1IZsBdr0Z9BhbnGw5neWhfqrM9Q7vpWt
+ /0mJxuOHhOwTWmo958BAtd0/hZOJHIEJSbGGar/b0AvDpp9XWGixOOhftd4fO8xTnrUM
+ lCu+R9fTxIJLPkkJCwmb9J+3Qn3C6RyvcWmaK2Wp4V8mz29Jju+0wq+tQUULFW3JXACz
+ 1VnQpTWNZ6rrU4fWeGbxKSqVCQwl/4ec4TrF4cna5N+WLlByhn0XYqV9vxcJIDrl34F8
+ diWA==
+X-Gm-Message-State: AOAM531XfL/AnPEnUAzPelz4G+dOg10X+LRx3MgqkxdaKD2es1TUt79D
+ UmqumsOwziLjkkqKTSIJOIDFMw==
+X-Google-Smtp-Source: ABdhPJzSNL4sJERp/2eSQ+h8FWQR4c5/iIHCJq+1OAZs58Faet0em60bngY5pomBtc8/sRioPM8fIA==
+X-Received: by 2002:adf:ab50:: with SMTP id r16mr2243426wrc.235.1603455758304; 
+ Fri, 23 Oct 2020 05:22:38 -0700 (PDT)
 Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id y4sm3056484wrp.74.2020.10.23.05.22.36
+ by smtp.gmail.com with ESMTPSA id y4sm3056484wrp.74.2020.10.23.05.22.37
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 23 Oct 2020 05:22:36 -0700 (PDT)
+ Fri, 23 Oct 2020 05:22:37 -0700 (PDT)
 From: Daniel Vetter <daniel.vetter@ffwll.ch>
 To: DRI Development <dri-devel@lists.freedesktop.org>
-Date: Fri, 23 Oct 2020 14:21:24 +0200
-Message-Id: <20201023122216.2373294-13-daniel.vetter@ffwll.ch>
+Date: Fri, 23 Oct 2020 14:21:25 +0200
+Message-Id: <20201023122216.2373294-14-daniel.vetter@ffwll.ch>
 X-Mailer: git-send-email 2.28.0
 In-Reply-To: <20201023122216.2373294-1-daniel.vetter@ffwll.ch>
 References: <20201021163242.1458885-1-daniel.vetter@ffwll.ch>
  <20201023122216.2373294-1-daniel.vetter@ffwll.ch>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 13/65] drm/omapdrm: Annotate dma-fence critical
+Subject: [Intel-gfx] [PATCH 14/65] drm/rcar-du: Annotate dma-fence critical
  section in commit path
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -68,64 +67,46 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: Daniel Vetter <daniel.vetter@ffwll.ch>,
  Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- Tomi Valkeinen <tomi.valkeinen@ti.com>,
+ linux-renesas-soc@vger.kernel.org,
+ Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
  Daniel Vetter <daniel.vetter@intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Nothing special, just put the end right after hw_done(). Note that in
-one path there's a wait for the flip/update to complete. But as far as
-I understand from comments and code that's only relevant for modesets,
-and skipped if there wasn't a modeset done on a given crtc.
-
-For a bit more clarity pull the hw_done() call out of the if/else,
-that way it's a bit clearer flow. But happy to shuffle this around as
-is seen fit.
+Ends right after drm_atomic_helper_commit_hw_done(), absolutely
+nothing fancy going on here.
 
 Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
-Cc: Tomi Valkeinen <tomi.valkeinen@ti.com>
+Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc: Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>
+Cc: linux-renesas-soc@vger.kernel.org
 ---
- drivers/gpu/drm/omapdrm/omap_drv.c | 9 +++++----
- 1 file changed, 5 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/rcar-du/rcar_du_kms.c | 2 ++
+ 1 file changed, 2 insertions(+)
 
-diff --git a/drivers/gpu/drm/omapdrm/omap_drv.c b/drivers/gpu/drm/omapdrm/omap_drv.c
-index 2e598b8b72af..2b82a708eca6 100644
---- a/drivers/gpu/drm/omapdrm/omap_drv.c
-+++ b/drivers/gpu/drm/omapdrm/omap_drv.c
-@@ -68,6 +68,7 @@ static void omap_atomic_commit_tail(struct drm_atomic_state *old_state)
- {
- 	struct drm_device *dev = old_state->dev;
- 	struct omap_drm_private *priv = dev->dev_private;
+diff --git a/drivers/gpu/drm/rcar-du/rcar_du_kms.c b/drivers/gpu/drm/rcar-du/rcar_du_kms.c
+index 72dda446355f..8d91140151cc 100644
+--- a/drivers/gpu/drm/rcar-du/rcar_du_kms.c
++++ b/drivers/gpu/drm/rcar-du/rcar_du_kms.c
+@@ -441,6 +441,7 @@ static void rcar_du_atomic_commit_tail(struct drm_atomic_state *old_state)
+ 	struct drm_crtc_state *crtc_state;
+ 	struct drm_crtc *crtc;
+ 	unsigned int i;
 +	bool fence_cookie = dma_fence_begin_signalling();
  
- 	priv->dispc_ops->runtime_get(priv->dispc);
- 
-@@ -90,8 +91,6 @@ static void omap_atomic_commit_tail(struct drm_atomic_state *old_state)
- 		omap_atomic_wait_for_completion(dev, old_state);
- 
- 		drm_atomic_helper_commit_planes(dev, old_state, 0);
--
--		drm_atomic_helper_commit_hw_done(old_state);
- 	} else {
- 		/*
- 		 * OMAP3 DSS seems to have issues with the work-around above,
-@@ -101,10 +100,12 @@ static void omap_atomic_commit_tail(struct drm_atomic_state *old_state)
- 		drm_atomic_helper_commit_planes(dev, old_state, 0);
- 
- 		drm_atomic_helper_commit_modeset_enables(dev, old_state);
--
--		drm_atomic_helper_commit_hw_done(old_state);
- 	}
- 
-+	drm_atomic_helper_commit_hw_done(old_state);
-+
-+	dma_fence_end_signalling(fence_cookie);
-+
  	/*
- 	 * Wait for completion of the page flips to ensure that old buffers
- 	 * can't be touched by the hardware anymore before cleaning up planes.
+ 	 * Store RGB routing to DPAD0 and DPAD1, the hardware will be configured
+@@ -467,6 +468,7 @@ static void rcar_du_atomic_commit_tail(struct drm_atomic_state *old_state)
+ 	drm_atomic_helper_commit_modeset_enables(dev, old_state);
+ 
+ 	drm_atomic_helper_commit_hw_done(old_state);
++	dma_fence_end_signalling(fence_cookie);
+ 	drm_atomic_helper_wait_for_flip_done(dev, old_state);
+ 
+ 	drm_atomic_helper_cleanup_planes(dev, old_state);
 -- 
 2.28.0
 
