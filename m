@@ -2,48 +2,48 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A3A732976ED
-	for <lists+intel-gfx@lfdr.de>; Fri, 23 Oct 2020 20:31:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D45A129772E
+	for <lists+intel-gfx@lfdr.de>; Fri, 23 Oct 2020 20:44:07 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2BA196E3B2;
-	Fri, 23 Oct 2020 18:31:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3D9956E3EC;
+	Fri, 23 Oct 2020 18:44:04 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A6C326E3B2
- for <intel-gfx@lists.freedesktop.org>; Fri, 23 Oct 2020 18:31:00 +0000 (UTC)
-IronPort-SDR: VU51K+TXg2zN8Oz9FKfV/6euMJeiNYD0uld2oUoq4r9khzOeyUOet4K6tB720KT4PC0GomgDTf
- wCsBKNPcpAyQ==
-X-IronPort-AV: E=McAfee;i="6000,8403,9783"; a="147006234"
-X-IronPort-AV: E=Sophos;i="5.77,409,1596524400"; d="scan'208";a="147006234"
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9A7216E3EC
+ for <intel-gfx@lists.freedesktop.org>; Fri, 23 Oct 2020 18:44:03 +0000 (UTC)
+IronPort-SDR: 0KJPUqT9vj4OhtofCTaTU0QghRgL1ZWx267WKaAQ0mPqkQGcUOmJXbKXhrA+7OeiUnzVo7G46e
+ hgRL4i7jVdOw==
+X-IronPort-AV: E=McAfee;i="6000,8403,9783"; a="165125122"
+X-IronPort-AV: E=Sophos;i="5.77,409,1596524400"; d="scan'208";a="165125122"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Oct 2020 11:30:59 -0700
-IronPort-SDR: yJ9Z2HZwkJbXOZREQcyVJ+ls4O4HPA4ediTOCGb693n6CU4fDGC38LGvyT0o6jjKJrHyoW3LGT
- hMm8sN3u1ByA==
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Oct 2020 11:44:03 -0700
+IronPort-SDR: Ekyt6W9M8xWkTOyyppi7JuKqGJBwBazeYnU3nO8dUsx/zjwbFOHOEClQddgvkxxn/E9lGaXjp/
+ ts75L7nEr9iA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.77,409,1596524400"; d="scan'208";a="360305746"
+X-IronPort-AV: E=Sophos;i="5.77,409,1596524400"; d="scan'208";a="333390891"
 Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by orsmga007.jf.intel.com with SMTP; 23 Oct 2020 11:30:57 -0700
+ by orsmga002.jf.intel.com with SMTP; 23 Oct 2020 11:44:00 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 23 Oct 2020 21:30:56 +0300
-Date: Fri, 23 Oct 2020 21:30:56 +0300
+ Fri, 23 Oct 2020 21:44:00 +0300
+Date: Fri, 23 Oct 2020 21:44:00 +0300
 From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
 To: "Navare, Manasi" <manasi.d.navare@intel.com>
-Message-ID: <20201023183056.GB6112@intel.com>
+Message-ID: <20201023184400.GC6112@intel.com>
 References: <20201022054223.25071-1-manasi.d.navare@intel.com>
- <20201022054223.25071-7-manasi.d.navare@intel.com>
- <20201023174200.GY6112@intel.com>
- <20201023181347.GA7479@labuser-Z97X-UD5H>
+ <20201022054223.25071-5-manasi.d.navare@intel.com>
+ <20201023173200.GX6112@intel.com>
+ <20201023183007.GB7479@labuser-Z97X-UD5H>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20201023181347.GA7479@labuser-Z97X-UD5H>
+In-Reply-To: <20201023183007.GB7479@labuser-Z97X-UD5H>
 X-Patchwork-Hint: comment
 User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH v11 06/12] drm/i915: Try to make bigjoiner
- work in atomic check
+Subject: Re: [Intel-gfx] [PATCH v11 04/12] drm/i915/dp: Allow big joiner
+ modes in intel_dp_mode_valid(), v3.
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,551 +62,289 @@ Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Oct 23, 2020 at 11:13:47AM -0700, Navare, Manasi wrote:
-> On Fri, Oct 23, 2020 at 08:42:00PM +0300, Ville Syrj=E4l=E4 wrote:
-> > On Wed, Oct 21, 2020 at 10:42:17PM -0700, Manasi Navare wrote:
+On Fri, Oct 23, 2020 at 11:30:08AM -0700, Navare, Manasi wrote:
+> On Fri, Oct 23, 2020 at 08:32:00PM +0300, Ville Syrj=E4l=E4 wrote:
+> > On Wed, Oct 21, 2020 at 10:42:15PM -0700, Manasi Navare wrote:
 > > > From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 > > > =
 
-> > >  When the clock is higher than the dotclock, try with 2 pipes enabled.
-> > >  If we can enable 2, then we will go into big joiner mode, and steal
-> > >  the adjacent crtc.
+> > > Small changes to intel_dp_mode_valid(), allow listing modes that
+> > > can only be supported in the bigjoiner configuration, which is
+> > > not supported yet.
 > > > =
 
-> > >  This only links the crtc's in software, no hardware or plane
-> > >  programming is done yet. Blobs are also copied from the master's
-> > >  crtc_state, so it doesn't depend at commit time on the other
-> > >  crtc_state.
+> > > eDP does not support bigjoiner, so do not expose bigjoiner only
+> > > modes on the eDP port.
 > > > =
 
+> > > v9:
+> > > * Restric Bigjoiner on PORT A (Ville)
+> > > v8:
+> > > * use source dotclock for max dotclock (Manasi)
+> > > v7:
+> > > * Add can_bigjoiner() helper (Ville)
+> > > * Pass bigjoiner to plane_size validation (Ville)
+> > > v6:
+> > > * Rebase after dp_downstream mode valid changes (Manasi)
+> > > v5:
+> > > * Increase max plane width to support 8K with bigjoiner (Maarten)
 > > > v4:
-> > > * Fixes in intel_crtc_compute_config (Ville)
-> > > v3:
-> > > * Manual Rebase (Manasi)
-> > >  Changes since v1:
-> > >  - Rename pipe timings to transcoder timings, as they are now differe=
-nt.
-> > >   Changes since v2:
-> > >  - Rework bigjoiner checks; always disable slave when recalculating
-> > >    master. No need to have a separate bigjoiner pass any more.
-> > >  - Use pipe_mode instead of transcoder_mode, to clean up the code.
+> > > * Rebase (Manasi)
 > > > =
 
-> > > Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+> > > Changes since v1:
+> > > - Disallow bigjoiner on eDP.
+> > > Changes since v2:
+> > > - Rename intel_dp_downstream_max_dotclock to intel_dp_max_dotclock,
+> > >   and split off the downstream and source checking to its own functio=
+n.
+> > >   (Ville)
+> > > v3:
+> > > * Rebase (Manasi)
+> > > =
+
 > > > Signed-off-by: Manasi Navare <manasi.d.navare@intel.com>
+> > > Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 > > > ---
-> > >  drivers/gpu/drm/i915/display/intel_display.c  | 181 ++++++++++++++++=
+> > >  drivers/gpu/drm/i915/display/intel_display.c |   5 +-
+> > >  drivers/gpu/drm/i915/display/intel_display.h |   3 +-
+> > >  drivers/gpu/drm/i915/display/intel_dp.c      | 106 +++++++++++++++--=
 --
-> > >  .../drm/i915/display/intel_display_types.h    |   9 +
-> > >  drivers/gpu/drm/i915/display/intel_dp.c       |  22 ++-
-> > >  3 files changed, 191 insertions(+), 21 deletions(-)
+> > >  drivers/gpu/drm/i915/display/intel_dp_mst.c  |   2 +-
+> > >  drivers/gpu/drm/i915/display/intel_dsi.c     |   2 +-
+> > >  drivers/gpu/drm/i915/display/intel_hdmi.c    |   2 +-
+> > >  6 files changed, 96 insertions(+), 24 deletions(-)
 > > > =
 
 > > > diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/g=
 pu/drm/i915/display/intel_display.c
-> > > index 92cd38964142..ffee6afe4ddb 100644
+> > > index 9b4fcc734122..1c2d67ae361d 100644
 > > > --- a/drivers/gpu/drm/i915/display/intel_display.c
 > > > +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> > > @@ -8237,9 +8237,24 @@ static int intel_crtc_compute_config(struct in=
-tel_crtc *crtc,
-> > >  				     struct intel_crtc_state *pipe_config)
+> > > @@ -17751,7 +17751,8 @@ intel_mode_valid(struct drm_device *dev,
+> > >  =
+
+> > >  enum drm_mode_status
+> > >  intel_mode_valid_max_plane_size(struct drm_i915_private *dev_priv,
+> > > -				const struct drm_display_mode *mode)
+> > > +				const struct drm_display_mode *mode,
+> > > +				bool bigjoiner)
 > > >  {
-> > >  	struct drm_i915_private *dev_priv =3D to_i915(crtc->base.dev);
-> > > -	const struct drm_display_mode *pipe_mode =3D &pipe_config->hw.pipe_=
-mode;
-> > > +	struct drm_display_mode *pipe_mode =3D &pipe_config->hw.pipe_mode;
-> > >  	int clock_limit =3D dev_priv->max_dotclk_freq;
+> > >  	int plane_width_max, plane_height_max;
 > > >  =
 
-> > > +	*pipe_mode =3D pipe_config->hw.adjusted_mode;
-> > > +
-> > > +	/* Adjust pipe_mode for bigjoiner, with half the horizontal mode */
-> > > +	if (pipe_config->bigjoiner) {
-> > > +		pipe_mode->crtc_clock /=3D 2;
-> > > +		pipe_mode->crtc_hdisplay /=3D 2;
-> > > +		pipe_mode->crtc_hblank_start /=3D 2;
-> > > +		pipe_mode->crtc_hblank_end /=3D 2;
-> > > +		pipe_mode->crtc_hsync_start /=3D 2;
-> > > +		pipe_mode->crtc_hsync_end /=3D 2;
-> > > +		pipe_mode->crtc_htotal /=3D 2;
-> > > +		pipe_mode->crtc_hskew /=3D 2;
-> > > +		pipe_config->pipe_src_w /=3D 2;
-> > > +	}
-> > > +
-> > >  	if (INTEL_GEN(dev_priv) < 4) {
-> > >  		clock_limit =3D dev_priv->max_cdclk_freq * 9 / 10;
-> > >  =
-
-> > > @@ -8300,7 +8315,7 @@ static int intel_crtc_compute_config(struct int=
-el_crtc *crtc,
-> > >  	 * WaPruneModeWithIncorrectHsyncOffset:ctg,elk,ilk,snb,ivb,vlv,hsw.
+> > > @@ -17768,7 +17769,7 @@ intel_mode_valid_max_plane_size(struct drm_i9=
+15_private *dev_priv,
+> > >  	 * too big for that.
 > > >  	 */
-> > >  	if ((INTEL_GEN(dev_priv) > 4 || IS_G4X(dev_priv)) &&
-> > > -		pipe_mode->crtc_hsync_start =3D=3D pipe_mode->crtc_hdisplay)
-> > > +	    pipe_mode->crtc_hsync_start =3D=3D pipe_mode->crtc_hdisplay)
-> > >  		return -EINVAL;
+> > >  	if (INTEL_GEN(dev_priv) >=3D 11) {
+> > > -		plane_width_max =3D 5120;
+> > > +		plane_width_max =3D 5120 << bigjoiner;
+> > >  		plane_height_max =3D 4320;
+> > >  	} else {
+> > >  		plane_width_max =3D 5120;
+> > > diff --git a/drivers/gpu/drm/i915/display/intel_display.h b/drivers/g=
+pu/drm/i915/display/intel_display.h
+> > > index 1b946209e06b..4f8dee9dfb4d 100644
+> > > --- a/drivers/gpu/drm/i915/display/intel_display.h
+> > > +++ b/drivers/gpu/drm/i915/display/intel_display.h
+> > > @@ -497,7 +497,8 @@ u32 intel_plane_fb_max_stride(struct drm_i915_pri=
+vate *dev_priv,
+> > >  bool intel_plane_can_remap(const struct intel_plane_state *plane_sta=
+te);
+> > >  enum drm_mode_status
+> > >  intel_mode_valid_max_plane_size(struct drm_i915_private *dev_priv,
+> > > -				const struct drm_display_mode *mode);
+> > > +				const struct drm_display_mode *mode,
+> > > +				bool bigjoiner);
+> > >  enum phy intel_port_to_phy(struct drm_i915_private *i915, enum port =
+port);
+> > >  bool is_trans_port_sync_mode(const struct intel_crtc_state *state);
 > > >  =
 
-> > >  	intel_crtc_compute_pixel_rate(pipe_config);
-> > > @@ -12657,7 +12672,7 @@ static bool encoders_cloneable(const struct i=
-ntel_encoder *a,
-> > >  			  b->cloneable & (1 << a->type));
-> > >  }
-> > >  =
-
-> > > -static bool check_single_encoder_cloning(struct drm_atomic_state *st=
-ate,
-> > > +static bool check_single_encoder_cloning(struct intel_atomic_state *=
-state,
-> > >  					 struct intel_crtc *crtc,
-> > >  					 struct intel_encoder *encoder)
-> > >  {
-> > > @@ -12666,7 +12681,7 @@ static bool check_single_encoder_cloning(stru=
-ct drm_atomic_state *state,
-> > >  	struct drm_connector_state *connector_state;
-> > >  	int i;
-> > >  =
-
-> > > -	for_each_new_connector_in_state(state, connector, connector_state, =
-i) {
-> > > +	for_each_new_connector_in_state(&state->base, connector, connector_=
-state, i) {
-> > =
-
-> > There's still this extra noise in the patch. I thought you were going
-> > to split out the calling convention changes to reduce it?
-> =
-
-> Hmm I split the calling convention changes that were adding from_crtc_sta=
-te into a separate patch
-> May be I will split this one out too in a diff patch?
-
-Go through all the patches, read them all while keeping the
-single thought "which parts can be split out?" foremost in
-our mind. When you no longer find any parts that can be split
-out then the patch is ready, not before.
-
-> =
-
-> =
-
-> > =
-
-> > >  		if (connector_state->crtc !=3D &crtc->base)
-> > >  			continue;
-> > >  =
-
-> > > @@ -12906,6 +12921,7 @@ static int intel_crtc_atomic_check(struct int=
-el_atomic_state *state,
-> > >  =
-
-> > >  	if (mode_changed && crtc_state->hw.enable &&
-> > >  	    dev_priv->display.crtc_compute_clock &&
-> > > +	    !crtc_state->bigjoiner_slave &&
-> > >  	    !drm_WARN_ON(&dev_priv->drm, crtc_state->shared_dpll)) {
-> > >  		ret =3D dev_priv->display.crtc_compute_clock(crtc, crtc_state);
-> > >  		if (ret)
-> > > @@ -13447,6 +13463,15 @@ intel_crtc_copy_uapi_to_hw_state_nomodeset(s=
-truct intel_atomic_state *state,
-> > >  {
-> > >  	const struct intel_crtc_state *from_crtc_state =3D crtc_state;
-> > >  =
-
-> > > +	if (crtc_state->bigjoiner_slave) {
-> > > +		from_crtc_state =3D intel_atomic_get_new_crtc_state(state,
-> > > +								  crtc_state->bigjoiner_linked_crtc);
-> > > +
-> > > +		/* No need to copy state if the master state is unchanged */
-> > > +		if (!from_crtc_state)
-> > > +			return;
-> > > +	}
-> > > +
-> > >  	intel_crtc_copy_color_blobs(crtc_state, from_crtc_state);
-> > >  }
-> > >  =
-
-> > > @@ -13482,6 +13507,47 @@ static void intel_crtc_copy_hw_to_uapi_state=
-(struct intel_crtc_state *crtc_state
-> > >  				  crtc_state->hw.ctm);
-> > >  }
-> > >  =
-
-> > > +static int
-> > > +copy_bigjoiner_crtc_state(struct intel_crtc_state *crtc_state,
-> > > +			  const struct intel_crtc_state *from_crtc_state)
-> > > +{
-> > > +	struct intel_crtc_state *saved_state;
-> > > +	struct intel_crtc *crtc =3D to_intel_crtc(crtc_state->uapi.crtc);
-> > > +
-> > > +	saved_state =3D kmemdup(from_crtc_state, sizeof(*saved_state), GFP_=
-KERNEL);
-> > > +	if (!saved_state)
-> > > +		return -ENOMEM;
-> > > +
-> > > +	saved_state->uapi =3D crtc_state->uapi;
-> > > +	saved_state->scaler_state =3D crtc_state->scaler_state;
-> > > +	saved_state->shared_dpll =3D crtc_state->shared_dpll;
-> > > +	saved_state->dpll_hw_state =3D crtc_state->dpll_hw_state;
-> > > +	saved_state->crc_enabled =3D crtc_state->crc_enabled;
-> > > +
-> > > +	intel_crtc_free_hw_state(crtc_state);
-> > > +	memcpy(crtc_state, saved_state, sizeof(*crtc_state));
-> > > +	kfree(saved_state);
-> > > +
-> > > +	/* Re-init hw state */
-> > > +	memset(&crtc_state->hw, 0, sizeof(saved_state->hw));
-> > > +	crtc_state->hw.enable =3D from_crtc_state->hw.enable;
-> > > +	crtc_state->hw.active =3D from_crtc_state->hw.active;
-> > > +	crtc_state->hw.pipe_mode =3D from_crtc_state->hw.pipe_mode;
-> > > +	crtc_state->hw.adjusted_mode =3D from_crtc_state->hw.adjusted_mode;
-> > > +
-> > > +	/* Some fixups */
-> > > +	crtc_state->uapi.mode_changed =3D from_crtc_state->uapi.mode_change=
-d;
-> > > +	crtc_state->uapi.connectors_changed =3D from_crtc_state->uapi.conne=
-ctors_changed;
-> > > +	crtc_state->uapi.active_changed =3D from_crtc_state->uapi.active_ch=
-anged;
-> > > +	crtc_state->nv12_planes =3D crtc_state->c8_planes =3D crtc_state->u=
-pdate_planes =3D 0;
-> > > +	crtc_state->bigjoiner_linked_crtc =3D to_intel_crtc(from_crtc_state=
-->uapi.crtc);
-> > > +	crtc_state->bigjoiner_slave =3D true;
-> > > +	crtc_state->cpu_transcoder =3D (enum transcoder)crtc->pipe;
-> > > +	crtc_state->has_audio =3D false;
-> > > +
-> > > +	return 0;
-> > > +}
-> > > +
-> > >  static int
-> > >  intel_crtc_prepare_cleared_state(struct intel_atomic_state *state,
-> > >  				 struct intel_crtc_state *crtc_state)
-> > > @@ -13522,10 +13588,10 @@ intel_crtc_prepare_cleared_state(struct int=
-el_atomic_state *state,
-> > >  }
-> > >  =
-
-> > >  static int
-> > > -intel_modeset_pipe_config(struct intel_crtc_state *pipe_config)
-> > > +intel_modeset_pipe_config(struct intel_atomic_state *state,
-> > > +			  struct intel_crtc_state *pipe_config)
-> > >  {
-> > >  	struct drm_crtc *crtc =3D pipe_config->uapi.crtc;
-> > > -	struct drm_atomic_state *state =3D pipe_config->uapi.state;
-> > >  	struct drm_i915_private *i915 =3D to_i915(pipe_config->uapi.crtc->d=
-ev);
-> > >  	struct drm_connector *connector;
-> > >  	struct drm_connector_state *connector_state;
-> > > @@ -13567,7 +13633,7 @@ intel_modeset_pipe_config(struct intel_crtc_s=
-tate *pipe_config)
-> > >  			       &pipe_config->pipe_src_w,
-> > >  			       &pipe_config->pipe_src_h);
-> > >  =
-
-> > > -	for_each_new_connector_in_state(state, connector, connector_state, =
-i) {
-> > > +	for_each_new_connector_in_state(&state->base, connector, connector_=
-state, i) {
-> > >  		struct intel_encoder *encoder =3D
-> > >  			to_intel_encoder(connector_state->best_encoder);
-> > >  =
-
-> > > @@ -13605,7 +13671,7 @@ intel_modeset_pipe_config(struct intel_crtc_s=
-tate *pipe_config)
-> > >  	 * adjust it according to limitations or connector properties, and =
-also
-> > >  	 * a chance to reject the mode entirely.
-> > >  	 */
-> > > -	for_each_new_connector_in_state(state, connector, connector_state, =
-i) {
-> > > +	for_each_new_connector_in_state(&state->base, connector, connector_=
-state, i) {
-> > >  		struct intel_encoder *encoder =3D
-> > >  			to_intel_encoder(connector_state->best_encoder);
-> > >  =
-
-> > > @@ -13657,9 +13723,6 @@ intel_modeset_pipe_config(struct intel_crtc_s=
-tate *pipe_config)
-> > >  		    "hw max bpp: %i, pipe bpp: %i, dithering: %i\n",
-> > >  		    base_bpp, pipe_config->pipe_bpp, pipe_config->dither);
-> > >  =
-
-> > > -	/* without bigjoiner, pipe_mode =3D=3D adjusted_mode */
-> > > -	pipe_config->hw.pipe_mode =3D pipe_config->hw.adjusted_mode;
-> > > -
-> > >  	return 0;
-> > >  }
-> > >  =
-
-> > > @@ -15055,6 +15118,75 @@ static bool intel_cpu_transcoders_need_modes=
-et(struct intel_atomic_state *state,
-> > >  	return false;
-> > >  }
-> > >  =
-
-> > > +static int intel_atomic_check_bigjoiner(struct intel_atomic_state *s=
-tate,
-> > > +					struct intel_crtc *crtc,
-> > > +					struct intel_crtc_state *old_crtc_state,
-> > > +					struct intel_crtc_state *new_crtc_state)
-> > > +{
-> > > +	struct drm_i915_private *dev_priv =3D to_i915(state->base.dev);
-> > > +	struct intel_crtc_state *slave_crtc_state, *master_crtc_state;
-> > > +	struct intel_crtc *slave, *master;
-> > > +
-> > > +	/* slave being enabled, is master is still claiming this crtc? */
-> > > +	if (old_crtc_state->bigjoiner_slave) {
-> > > +		slave =3D crtc;
-> > > +		master =3D old_crtc_state->bigjoiner_linked_crtc;
-> > > +		master_crtc_state =3D intel_atomic_get_new_crtc_state(state, maste=
-r);
-> > > +		if (!master_crtc_state || !needs_modeset(master_crtc_state))
-> > > +			goto claimed;
-> > > +	}
-> > > +
-> > > +	if (!new_crtc_state->bigjoiner)
-> > > +		return 0;
-> > > +
-> > > +	if (1 + crtc->pipe >=3D INTEL_NUM_PIPES(dev_priv)) {
-> > > +		DRM_DEBUG_KMS("[CRTC:%d:%s] Big joiner configuration requires "
-> > > +			      "CRTC + 1 to be used, doesn't exist\n",
-> > > +			      crtc->base.base.id, crtc->base.name);
-> > > +		return -EINVAL;
-> > > +	}
-> > > +
-> > > +	slave =3D new_crtc_state->bigjoiner_linked_crtc =3D
-> > > +		intel_get_crtc_for_pipe(dev_priv, crtc->pipe + 1);
-> > > +	slave_crtc_state =3D intel_atomic_get_crtc_state(&state->base, slav=
-e);
-> > > +	master =3D crtc;
-> > > +	if (IS_ERR(slave_crtc_state))
-> > > +		return PTR_ERR(slave_crtc_state);
-> > > +
-> > > +	/* master being enabled, slave was already configured? */
-> > > +	if (slave_crtc_state->uapi.enable)
-> > > +		goto claimed;
-> > > +
-> > > +	DRM_DEBUG_KMS("[CRTC:%d:%s] Used as slave for big joiner\n",
-> > > +		      slave->base.base.id, slave->base.name);
-> > > +
-> > > +	return copy_bigjoiner_crtc_state(slave_crtc_state, new_crtc_state);
-> > > +
-> > > +claimed:
-> > > +	DRM_DEBUG_KMS("[CRTC:%d:%s] Slave is enabled as normal CRTC, but "
-> > > +		      "[CRTC:%d:%s] claiming this CRTC for bigjoiner.\n",
-> > > +		      slave->base.base.id, slave->base.name,
-> > > +		      master->base.base.id, master->base.name);
-> > > +	return -EINVAL;
-> > > +}
-> > > +
-> > > +static int kill_bigjoiner_slave(struct intel_atomic_state *state,
-> > > +				struct intel_crtc_state *master_crtc_state)
-> > > +{
-> > > +	struct intel_crtc_state *slave_crtc_state =3D
-> > > +			intel_atomic_get_crtc_state(&state->base,
-> > > +						    master_crtc_state->bigjoiner_linked_crtc);
-> > > +
-> > > +		if (IS_ERR(slave_crtc_state))
-> > > +			return PTR_ERR(slave_crtc_state);
-> > > +
-> > > +		slave_crtc_state->bigjoiner =3D master_crtc_state->bigjoiner =3D f=
-alse;
-> > > +		slave_crtc_state->bigjoiner_slave =3D master_crtc_state->bigjoiner=
-_slave =3D false;
-> > > +		slave_crtc_state->bigjoiner_linked_crtc =3D master_crtc_state->big=
-joiner_linked_crtc =3D NULL;
-> > > +		intel_crtc_copy_uapi_to_hw_state(state, slave_crtc_state);
-> > > +		return 0;
-> > > +}
-> > > +
-> > >  /**
-> > >   * DOC: asynchronous flip implementation
-> > >   *
-> > > @@ -15222,14 +15354,31 @@ static int intel_atomic_check(struct drm_de=
-vice *dev,
-> > >  			continue;
-> > >  		}
-> > >  =
-
-> > > +		/* Kill old bigjoiner link, we may re-establish afterwards */
-> > > +		if (old_crtc_state->bigjoiner && !old_crtc_state->bigjoiner_slave)=
- {
-> > > +			ret =3D kill_bigjoiner_slave(state, new_crtc_state);
-> > > +			if (ret)
-> > > +				goto fail;
-> > > +		}
-> > > +
-> > > +		if (!new_crtc_state->uapi.enable) {
-> > > +			if (!new_crtc_state->bigjoiner_slave) {
-> > > +				intel_crtc_copy_uapi_to_hw_state(state, new_crtc_state);
-> > > +				any_ms =3D true;
-> > > +			}
-> > > +			continue;
-> > > +		}
-> > > +
-> > >  		ret =3D intel_crtc_prepare_cleared_state(state, new_crtc_state);
-> > >  		if (ret)
-> > >  			goto fail;
-> > >  =
-
-> > > -		if (!new_crtc_state->hw.enable)
-> > > -			continue;
-> > > +		ret =3D intel_modeset_pipe_config(state, new_crtc_state);
-> > > +		if (ret)
-> > > +			goto fail;
-> > >  =
-
-> > > -		ret =3D intel_modeset_pipe_config(new_crtc_state);
-> > > +		ret =3D intel_atomic_check_bigjoiner(state, crtc, old_crtc_state,
-> > > +						   new_crtc_state);
-> > >  		if (ret)
-> > >  			goto fail;
-> > >  	}
-> > > @@ -15567,7 +15716,9 @@ static void intel_update_crtc(struct intel_at=
-omic_state *state,
-> > >  =
-
-> > >  	commit_pipe_config(state, crtc);
-> > >  =
-
-> > > -	if (INTEL_GEN(dev_priv) >=3D 9)
-> > > +	if (new_crtc_state->bigjoiner) {
-> > > +	/* Not supported yet */
-> > > +	} else if (INTEL_GEN(dev_priv) >=3D 9)
-> > >  		skl_update_planes_on_crtc(state, crtc);
-> > >  	else
-> > >  		i9xx_update_planes_on_crtc(state, crtc);
-> > > diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/dri=
-vers/gpu/drm/i915/display/intel_display_types.h
-> > > index b526afee595c..59ed94d68b55 100644
-> > > --- a/drivers/gpu/drm/i915/display/intel_display_types.h
-> > > +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-> > > @@ -1070,6 +1070,15 @@ struct intel_crtc_state {
-> > >  	/* enable pipe csc? */
-> > >  	bool csc_enable;
-> > >  =
-
-> > > +	/* enable pipe big joiner? */
-> > > +	bool bigjoiner;
-> > > +
-> > > +	/* big joiner slave crtc? */
-> > > +	bool bigjoiner_slave;
-> > > +
-> > > +	/* linked crtc for bigjoiner, either slave or master */
-> > > +	struct intel_crtc *bigjoiner_linked_crtc;
-> > > +
-> > >  	/* Display Stream compression state */
-> > >  	struct {
-> > >  		bool compression_enable;
 > > > diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/dr=
 m/i915/display/intel_dp.c
-> > > index d123e5a508c1..cb604899a881 100644
+> > > index 2c29e7f5281b..d123e5a508c1 100644
 > > > --- a/drivers/gpu/drm/i915/display/intel_dp.c
 > > > +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> > > @@ -2349,6 +2349,15 @@ static int intel_dp_dsc_compute_config(struct =
-intel_dp *intel_dp,
-> > >  	pipe_config->port_clock =3D intel_dp->common_rates[limits->max_cloc=
-k];
-> > >  	pipe_config->lane_count =3D limits->max_lane_count;
+> > > @@ -254,6 +254,29 @@ intel_dp_max_data_rate(int max_link_clock, int m=
+ax_lanes)
+> > >  	return max_link_clock * max_lanes;
+> > >  }
 > > >  =
 
-> > > +	if (adjusted_mode->crtc_clock > intel_dp_max_dotclock(intel_dp, fal=
-se)) {
-> > > +		if (adjusted_mode->crtc_clock > intel_dp_max_dotclock(intel_dp, tr=
-ue)) {
-> > > +			DRM_DEBUG_KMS("Clock rate too high for big joiner\n");
-> > > +			return -EINVAL;
-> > > +		}
-> > =
+> > > +static bool intel_dp_can_bigjoiner(struct intel_dp *intel_dp)
+> > > +{
+> > > +	struct intel_digital_port *intel_dig_port =3D dp_to_dig_port(intel_=
+dp);
+> > > +	struct intel_encoder *encoder =3D &intel_dig_port->base;
+> > > +	struct drm_i915_private *dev_priv =3D to_i915(encoder->base.dev);
+> > > +
+> > > +	return INTEL_GEN(dev_priv) >=3D 12 ||
+> > > +		(INTEL_GEN(dev_priv) =3D=3D 11 &&
+> > > +		 encoder->port !=3D PORT_A);
+> > > +}
+> > > +
+> > > +static int intel_dp_max_dotclock(struct intel_dp *intel_dp, bool all=
+ow_bigjoiner)
+> > > +{
+> > > +	struct intel_digital_port *intel_dig_port =3D dp_to_dig_port(intel_=
+dp);
+> > > +	struct intel_encoder *encoder =3D &intel_dig_port->base;
+> > > +	struct drm_i915_private *dev_priv =3D to_i915(encoder->base.dev);
+> > > +
+> > > +	if (allow_bigjoiner && intel_dp_can_bigjoiner(intel_dp))
+> > > +		return 2 * dev_priv->max_dotclk_freq;
+> > > +
+> > > +	return dev_priv->max_dotclk_freq;
+> > > +}
+> > > +
+> > >  static int cnl_max_source_rate(struct intel_dp *intel_dp)
+> > >  {
+> > >  	struct intel_digital_port *dig_port =3D dp_to_dig_port(intel_dp);
+> > > @@ -519,7 +542,8 @@ small_joiner_ram_size_bits(struct drm_i915_privat=
+e *i915)
+> > >  =
 
-> > That second check is redundant I think. intel_crtc_compute_config()
-> > already takes care of it.
-> =
+> > >  static u16 intel_dp_dsc_get_output_bpp(struct drm_i915_private *i915,
+> > >  				       u32 link_clock, u32 lane_count,
+> > > -				       u32 mode_clock, u32 mode_hdisplay)
+> > > +				       u32 mode_clock, u32 mode_hdisplay,
+> > > +				       bool bigjoiner)
+> > >  {
+> > >  	u32 bits_per_pixel, max_bpp_small_joiner_ram;
+> > >  	int i;
+> > > @@ -537,6 +561,10 @@ static u16 intel_dp_dsc_get_output_bpp(struct dr=
+m_i915_private *i915,
+> > >  	/* Small Joiner Check: output bpp <=3D joiner RAM (bits) / Horiz. w=
+idth */
+> > >  	max_bpp_small_joiner_ram =3D small_joiner_ram_size_bits(i915) /
+> > >  		mode_hdisplay;
+> > > +
+> > > +	if (bigjoiner)
+> > > +		max_bpp_small_joiner_ram *=3D 2;
+> > > +
+> > >  	drm_dbg_kms(&i915->drm, "Max small joiner bpp: %u\n",
+> > >  		    max_bpp_small_joiner_ram);
+> > >  =
 
-> Why is it redundant? I mean with bigjoiner =3D true we still need to make=
- sure
-> that crtc_clock is not > max dotclock with bigjoiner right?
+> > > @@ -546,6 +574,15 @@ static u16 intel_dp_dsc_get_output_bpp(struct dr=
+m_i915_private *i915,
+> > >  	 */
+> > >  	bits_per_pixel =3D min(bits_per_pixel, max_bpp_small_joiner_ram);
+> > >  =
 
-intel_crtc_compute_config() already takes care of it, like I said.
-
-> =
-
-> > =
-
-> > So seems like we should be good with just something super simple like:
-> > =
-
-> > if (crtc_clock > dev_priv->max_dotclock && can_bigjoiner())
-> > 	bigjoiner =3D true;
-> =
-
-> Manasi
-> =
-
-> > =
-
-> > =
-
-> > > +		pipe_config->bigjoiner =3D true;
-> > > +		DRM_DEBUG_KMS("Using bigjoiner configuration\n");
+> > > +	if (bigjoiner) {
+> > > +		u32 max_bpp_bigjoiner =3D
+> > > +			i915->max_cdclk_freq * 48 /
+> > > +			intel_dp_mode_to_fec_clock(mode_clock);
+> > > +
+> > > +		DRM_DEBUG_KMS("Max big joiner bpp: %u\n", max_bpp_bigjoiner);
+> > > +		bits_per_pixel =3D min(bits_per_pixel, max_bpp_bigjoiner);
 > > > +	}
 > > > +
-> > >  	if (intel_dp_is_edp(intel_dp)) {
-> > >  		pipe_config->dsc.compressed_bpp =3D
-> > >  			min_t(u16, drm_edp_dsc_sink_output_bpp(intel_dp->dsc_dpcd) >> 4,
-> > > @@ -2366,12 +2375,12 @@ static int intel_dp_dsc_compute_config(struct=
- intel_dp *intel_dp,
-> > >  						    pipe_config->lane_count,
-> > >  						    adjusted_mode->crtc_clock,
-> > >  						    adjusted_mode->crtc_hdisplay,
-> > > -						    false);
-> > > +						    pipe_config->bigjoiner);
-> > >  		dsc_dp_slice_count =3D
-> > >  			intel_dp_dsc_get_slice_count(intel_dp,
-> > >  						     adjusted_mode->crtc_clock,
-> > >  						     adjusted_mode->crtc_hdisplay,
-> > > -						     false);
-> > > +						     pipe_config->bigjoiner);
-> > >  		if (!dsc_max_output_bpp || !dsc_dp_slice_count) {
-> > >  			drm_dbg_kms(&dev_priv->drm,
-> > >  				    "Compressed BPP/Slice Count not supported\n");
-> > > @@ -2387,14 +2396,15 @@ static int intel_dp_dsc_compute_config(struct=
- intel_dp *intel_dp,
-> > >  	 * is greater than the maximum Cdclock and if slice count is even
-> > >  	 * then we need to use 2 VDSC instances.
-> > >  	 */
-> > > -	if (adjusted_mode->crtc_clock > dev_priv->max_cdclk_freq) {
-> > > -		if (pipe_config->dsc.slice_count > 1) {
-> > > -			pipe_config->dsc.dsc_split =3D true;
-> > > -		} else {
-> > > +	if (adjusted_mode->crtc_clock > dev_priv->max_cdclk_freq ||
-> > > +	    pipe_config->bigjoiner) {
-> > > +		if (pipe_config->dsc.slice_count < 2) {
-> > >  			drm_dbg_kms(&dev_priv->drm,
-> > >  				    "Cannot split stream to use 2 VDSC instances\n");
-> > >  			return -EINVAL;
-> > >  		}
+> > >  	/* Error out if the max bpp is less than smallest allowed valid bpp=
+ */
+> > >  	if (bits_per_pixel < valid_dsc_bpp[0]) {
+> > >  		drm_dbg_kms(&i915->drm, "Unsupported BPP %u, min %u\n",
+> > > @@ -568,7 +605,8 @@ static u16 intel_dp_dsc_get_output_bpp(struct drm=
+_i915_private *i915,
+> > >  }
+> > >  =
+
+> > >  static u8 intel_dp_dsc_get_slice_count(struct intel_dp *intel_dp,
+> > > -				       int mode_clock, int mode_hdisplay)
+> > > +				       int mode_clock, int mode_hdisplay,
+> > > +				       bool bigjoiner)
+> > >  {
+> > >  	struct drm_i915_private *i915 =3D dp_to_i915(intel_dp);
+> > >  	u8 min_slice_count, i;
+> > > @@ -595,12 +633,20 @@ static u8 intel_dp_dsc_get_slice_count(struct i=
+ntel_dp *intel_dp,
+> > >  =
+
+> > >  	/* Find the closest match to the valid slice count values */
+> > >  	for (i =3D 0; i < ARRAY_SIZE(valid_dsc_slicecount); i++) {
+> > > -		if (valid_dsc_slicecount[i] >
+> > > -		    drm_dp_dsc_sink_max_slice_count(intel_dp->dsc_dpcd,
+> > > -						    false))
+> > > +		u8 test_slice_count =3D bigjoiner ?
+> > > +			2 * valid_dsc_slicecount[i] :
+> > > +			valid_dsc_slicecount[i];
 > > > +
-> > > +		pipe_config->dsc.dsc_split =3D true;
+> > > +		if (test_slice_count >
+> > > +		    drm_dp_dsc_sink_max_slice_count(intel_dp->dsc_dpcd, false))
+> > >  			break;
+> > > -		if (min_slice_count  <=3D valid_dsc_slicecount[i])
+> > > -			return valid_dsc_slicecount[i];
+> > > +
+> > > +		/* big joiner needs small joiner to be enabled */
+> > > +		if (bigjoiner && test_slice_count < 4)
+> > > +			continue;
+> > > +
+> > > +		if (min_slice_count <=3D test_slice_count)
+> > > +			return test_slice_count;
 > > >  	}
 > > >  =
 
-> > >  	ret =3D intel_dp_dsc_compute_params(&dig_port->base, pipe_config);
-> > > -- =
+> > >  	drm_dbg_kms(&i915->drm, "Unsupported Slice Count %d\n",
+> > > @@ -684,10 +730,6 @@ intel_dp_mode_valid_downstream(struct intel_conn=
+ector *connector,
+> > >  	const struct drm_display_info *info =3D &connector->base.display_in=
+fo;
+> > >  	int tmds_clock;
+> > >  =
 
-> > > 2.19.1
-> > > =
+> > > -	if (intel_dp->dfp.max_dotclock &&
+> > > -	    target_clock > intel_dp->dfp.max_dotclock)
+> > > -		return MODE_CLOCK_HIGH;
+> > > -
+> > >  	/* Assume 8bpc for the DP++/HDMI/DVI TMDS clock check */
+> > >  	tmds_clock =3D target_clock;
+> > >  	if (drm_mode_is_420_only(info, mode))
+> > > @@ -717,6 +759,7 @@ intel_dp_mode_valid(struct drm_connector *connect=
+or,
+> > >  	u16 dsc_max_output_bpp =3D 0;
+> > >  	u8 dsc_slice_count =3D 0;
+> > >  	enum drm_mode_status status;
+> > > +	bool dsc =3D false, bigjoiner =3D false;
+> > >  =
 
-> > > _______________________________________________
-> > > Intel-gfx mailing list
-> > > Intel-gfx@lists.freedesktop.org
-> > > https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+> > >  	if (mode->flags & DRM_MODE_FLAG_DBLSCAN)
+> > >  		return MODE_NO_DBLESCAN;
+> > > @@ -724,6 +767,8 @@ intel_dp_mode_valid(struct drm_connector *connect=
+or,
+> > >  	if (mode->flags & DRM_MODE_FLAG_DBLCLK)
+> > >  		return MODE_H_ILLEGAL;
+> > >  =
+
+> > > +	max_dotclk =3D intel_dp_max_dotclock(intel_dp, false);
+> > > +
+> > >  	if (intel_dp_is_edp(intel_dp) && fixed_mode) {
+> > >  		if (mode->hdisplay > fixed_mode->hdisplay)
+> > >  			return MODE_PANEL;
+> > > @@ -737,6 +782,18 @@ intel_dp_mode_valid(struct drm_connector *connec=
+tor,
+> > >  	if (mode->clock < 10000)
+> > >  		return MODE_CLOCK_LOW;
+> > >  =
+
+> > > +	if (target_clock > max_dotclk) {
+> > > +		if (intel_dp_is_edp(intel_dp))
+> > > +			return MODE_CLOCK_HIGH;
 > > =
 
-> > -- =
+> > Not sure why we check for edp?
+> =
 
-> > Ville Syrj=E4l=E4
-> > Intel
+> We dont support bigjoiner on edp so on edp thsi would be a mode_clock_high
+
+Something to do with dsc calculations, or why exactly?
+
+If there's an actual reason then just put the check into =
+
+intel_can_bigjoiner(). I would accompany it with a comment
+explaining why it is needed.
 
 -- =
 
