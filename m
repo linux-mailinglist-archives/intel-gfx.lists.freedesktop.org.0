@@ -2,57 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3C8D9296F3A
-	for <lists+intel-gfx@lfdr.de>; Fri, 23 Oct 2020 14:31:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6D4C1296F84
+	for <lists+intel-gfx@lfdr.de>; Fri, 23 Oct 2020 14:39:37 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 12ED46F626;
-	Fri, 23 Oct 2020 12:31:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3EC586F874;
+	Fri, 23 Oct 2020 12:39:33 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-x444.google.com (mail-wr1-x444.google.com
- [IPv6:2a00:1450:4864:20::444])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2F4F46F625
- for <intel-gfx@lists.freedesktop.org>; Fri, 23 Oct 2020 12:31:16 +0000 (UTC)
-Received: by mail-wr1-x444.google.com with SMTP id b8so1630331wrn.0
- for <intel-gfx@lists.freedesktop.org>; Fri, 23 Oct 2020 05:31:16 -0700 (PDT)
+Received: from mail-wr1-x42c.google.com (mail-wr1-x42c.google.com
+ [IPv6:2a00:1450:4864:20::42c])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 43E106F63C
+ for <intel-gfx@lists.freedesktop.org>; Fri, 23 Oct 2020 12:39:32 +0000 (UTC)
+Received: by mail-wr1-x42c.google.com with SMTP id x7so1656860wrl.3
+ for <intel-gfx@lists.freedesktop.org>; Fri, 23 Oct 2020 05:39:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:in-reply-to;
- bh=0K9n5btUkQgHNc94+HXshcsD+XAtphIGD4JP/A2UdMg=;
- b=SkDJXPrszRCddtMWdyc8vs7YWfvuZJS6045icRmwg1vjA4ClWcVdxt98H1hN0YTzIU
- fr4U97TObH3GPMYdNg6VOYB+Kju/ZJwjEnqdU2L15GY8iFu/22eyoutQcRP89d11Gi5Y
- izxonozZIw4prJrO+cGJDH6204h4CyBDELjR8=
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=KPJV6pgXYvIyIebW+FLMHGoXfGGSrvlz8saNgZrREPI=;
+ b=bSbE2nT7uAnIg/gP/L22NprivILlDUwF2Pax3T1qm8rf3pzs5IBtWU79iTAMPxFC2X
+ vSwcF88lWcx9t+hc+Zsr3H3l6cfzF0eYwa2sYPNKTd/el3XvMamQ/FOYeO4j49CB3LPi
+ QLTKAJj2m9x/Nsuk0YoC8xIEGlB9+Uav34+wU=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:in-reply-to;
- bh=0K9n5btUkQgHNc94+HXshcsD+XAtphIGD4JP/A2UdMg=;
- b=SVcP0WKeUHqJMAKmtosgj2kXEPslbC6y8Oh/dQ5lmr448RxsriY02FqCVDOeMcr+I+
- OvLZDN3mbA5ogXZU+b/sS3YFsdSTLDD3XM1+01gOlJL/GFx3ZoOuHMzk4TKvTknyxYDR
- 5ek2m9vKeYP0fvWq+gICYqzTRR4ms2MUkeIp8uiL8hVVYWHrQVCs5F6VR5OjZzn5KOBT
- QrnS9BafeuLepLrTGTDGbzQ3mTCwmz+3f1pKkYUfoV+0tJxl8lvJug9U0U+Wp/WgAGSn
- qIo8qzbS+A3dNlcXw5u7s9FSk1C3jsNxKc3ThGAcwzs3QwT6ihzzhC47rS0rqwkG8k5d
- k5RA==
-X-Gm-Message-State: AOAM530T264kOcwu3Rrgy4jslqdx2cqca4JOfnMNVz+v0zWBRkruV7Zm
- wVmg+t8TMdUuziHyIg06ZRtY4A==
-X-Google-Smtp-Source: ABdhPJyiKDwA0QQqDjGokW5S1OqzmqdeRB6jBmVN5Xz18a+Kv1tR4wh3VVBde8D51WgpFFiDiPmgMg==
-X-Received: by 2002:a5d:6a0d:: with SMTP id m13mr2322946wru.161.1603456274900; 
- Fri, 23 Oct 2020 05:31:14 -0700 (PDT)
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=KPJV6pgXYvIyIebW+FLMHGoXfGGSrvlz8saNgZrREPI=;
+ b=KEUMklRhBZOKJl1rJzADt7K8oWC9FOW6/P32ZyOvU2D6miPC6HVr3zvAsrBJ+DK/9A
+ VOp8ZuNZ3qluySNWpqVLgkwzIPkQOE3Tu8zOAhHkDW89ruMHRJribB838B+hBB5TMdqw
+ yUetuVC92yNCZ7IjDCNlnICaVH68FbXvfi61yA6nFbOVxP9rEAy28mS+gzoQynRIYSoP
+ cf1VQh4T2SLWrEtFiDM5Red6/SnXOZli4/d+Vko3zAzvnifbMJjYyFH0Qhzc2chKRhtg
+ /LTkp8K6o6XkLpR0O9+9LrF0ArqBsV0LjTBLVUxsNsPCJ7dXXT53/wPfsBGsCwqMk5Jf
+ 41Dw==
+X-Gm-Message-State: AOAM5327PhQcMlle73wwB+Z7lij1jn7zcUUROIJ3XhwslpC8y5ocBZnb
+ /BYiZprKWhxAobQ4E3MY7r8fWA==
+X-Google-Smtp-Source: ABdhPJzMN6V/IQnYJnKyScmt43oDU0iNKbSaaPmNJSAYmrSAcIeyOfLuBrQ/GETnjM2hm16iTpHV2g==
+X-Received: by 2002:adf:ff8e:: with SMTP id j14mr2536043wrr.255.1603456770821; 
+ Fri, 23 Oct 2020 05:39:30 -0700 (PDT)
 Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id v17sm3684425wrc.23.2020.10.23.05.31.13
+ by smtp.gmail.com with ESMTPSA id 133sm3286462wmb.2.2020.10.23.05.39.29
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 23 Oct 2020 05:31:13 -0700 (PDT)
-Date: Fri, 23 Oct 2020 14:31:11 +0200
-From: Daniel Vetter <daniel@ffwll.ch>
+ Fri, 23 Oct 2020 05:39:30 -0700 (PDT)
+From: Daniel Vetter <daniel.vetter@ffwll.ch>
 To: DRI Development <dri-devel@lists.freedesktop.org>
-Message-ID: <20201023123111.GC401619@phenom.ffwll.local>
-References: <20200904143941.110665-1-daniel.vetter@ffwll.ch>
- <20200904143941.110665-11-daniel.vetter@ffwll.ch>
+Date: Fri, 23 Oct 2020 14:39:23 +0200
+Message-Id: <20201023123925.2374863-1-daniel.vetter@ffwll.ch>
+X-Mailer: git-send-email 2.28.0
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200904143941.110665-11-daniel.vetter@ffwll.ch>
-X-Operating-System: Linux phenom 5.7.0-1-amd64 
-Subject: Re: [Intel-gfx] [PATCH 10/24] drm/arc: Switch to devm_drm_dev_alloc
+Subject: [Intel-gfx] [PATCH 1/3] drm/atomic-helpers: remove
+ legacy_cursor_update hacks
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,133 +63,90 @@ List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: Daniel Vetter <daniel.vetter@ffwll.ch>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- Alexey Brodkin <abrodkin@synopsys.com>,
- Eugeniy Paltsev <Eugeniy.Paltsev@synopsys.com>,
- Daniel Vetter <daniel.vetter@intel.com>, Sam Ravnborg <sam@ravnborg.org>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>, "Kazlauskas,
+ Nicholas" <nicholas.kazlauskas@amd.com>,
+ Daniel Vetter <daniel.vetter@intel.com>, mikita.lipski@amd.com,
+ harry.wentland@amd.com, =?UTF-8?q?Michel=20D=C3=A4nzer?= <michel@daenzer.net>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Sep 04, 2020 at 04:39:27PM +0200, Daniel Vetter wrote:
-> - Need to embedded the drm_device, but for now we keep the usual
->   pointer chasing.
-> - No more devm_kzalloc, which fixes a lifetime issues on driver
->   remove.
-> - No more drm_dev_put, that's done by devm_ now.
-> 
-> Acked-by: Sam Ravnborg <sam@ravnborg.org>
-> Cc: Eugeniy Paltsev <Eugeniy.Paltsev@synopsys.com>
-> Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
-> Cc: Alexey Brodkin <abrodkin@synopsys.com>
-
-Ping for some testing/feedback/review on the arcpgu series here. I can
-also resend that pile again.
-
-Thanks, Daniel
-
-> ---
->  drivers/gpu/drm/arc/arcpgu.h     |  1 +
->  drivers/gpu/drm/arc/arcpgu_drv.c | 33 +++++++++++++-------------------
->  2 files changed, 14 insertions(+), 20 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/arc/arcpgu.h b/drivers/gpu/drm/arc/arcpgu.h
-> index 6aac44b953ad..cd9e932f501e 100644
-> --- a/drivers/gpu/drm/arc/arcpgu.h
-> +++ b/drivers/gpu/drm/arc/arcpgu.h
-> @@ -9,6 +9,7 @@
->  #define _ARCPGU_H_
->  
->  struct arcpgu_drm_private {
-> +	struct drm_device	drm;
->  	void __iomem		*regs;
->  	struct clk		*clk;
->  	struct drm_framebuffer	*fb;
-> diff --git a/drivers/gpu/drm/arc/arcpgu_drv.c b/drivers/gpu/drm/arc/arcpgu_drv.c
-> index f164818ec477..68eb4a31c54b 100644
-> --- a/drivers/gpu/drm/arc/arcpgu_drv.c
-> +++ b/drivers/gpu/drm/arc/arcpgu_drv.c
-> @@ -42,18 +42,14 @@ static void arcpgu_setup_mode_config(struct drm_device *drm)
->  
->  DEFINE_DRM_GEM_CMA_FOPS(arcpgu_drm_ops);
->  
-> -static int arcpgu_load(struct drm_device *drm)
-> +static int arcpgu_load(struct arcpgu_drm_private *arcpgu)
->  {
-> -	struct platform_device *pdev = to_platform_device(drm->dev);
-> -	struct arcpgu_drm_private *arcpgu;
-> +	struct platform_device *pdev = to_platform_device(arcpgu->drm.dev);
->  	struct device_node *encoder_node = NULL, *endpoint_node = NULL;
-> +	struct drm_device *drm = &arcpgu->drm;
->  	struct resource *res;
->  	int ret;
->  
-> -	arcpgu = devm_kzalloc(&pdev->dev, sizeof(*arcpgu), GFP_KERNEL);
-> -	if (arcpgu == NULL)
-> -		return -ENOMEM;
-> -
->  	drm->dev_private = arcpgu;
->  
->  	arcpgu->clk = devm_clk_get(drm->dev, "pxlclk");
-> @@ -162,30 +158,28 @@ static struct drm_driver arcpgu_drm_driver = {
->  
->  static int arcpgu_probe(struct platform_device *pdev)
->  {
-> -	struct drm_device *drm;
-> +	struct arcpgu_drm_private *arcpgu;
->  	int ret;
->  
-> -	drm = drm_dev_alloc(&arcpgu_drm_driver, &pdev->dev);
-> -	if (IS_ERR(drm))
-> -		return PTR_ERR(drm);
-> +	arcpgu = devm_drm_dev_alloc(&pdev->dev, &arcpgu_drm_driver,
-> +				    struct arcpgu_drm_private, drm);
-> +	if (IS_ERR(arcpgu))
-> +		return PTR_ERR(arcpgu);
->  
-> -	ret = arcpgu_load(drm);
-> +	ret = arcpgu_load(arcpgu);
->  	if (ret)
-> -		goto err_unref;
-> +		return ret;
->  
-> -	ret = drm_dev_register(drm, 0);
-> +	ret = drm_dev_register(&arcpgu->drm, 0);
->  	if (ret)
->  		goto err_unload;
->  
-> -	drm_fbdev_generic_setup(drm, 16);
-> +	drm_fbdev_generic_setup(&arcpgu->drm, 16);
->  
->  	return 0;
->  
->  err_unload:
-> -	arcpgu_unload(drm);
-> -
-> -err_unref:
-> -	drm_dev_put(drm);
-> +	arcpgu_unload(&arcpgu->drm);
->  
->  	return ret;
->  }
-> @@ -196,7 +190,6 @@ static int arcpgu_remove(struct platform_device *pdev)
->  
->  	drm_dev_unregister(drm);
->  	arcpgu_unload(drm);
-> -	drm_dev_put(drm);
->  
->  	return 0;
->  }
-> -- 
-> 2.28.0
-> 
-
--- 
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+VGhlIHN0dWZmIG5ldmVyIHJlYWxseSB3b3JrZWQsIGFuZCBsZWFkcyB0byBsb3RzIG9mIGZ1biBi
+ZWNhdXNlIGl0Cm91dC1vZi1vcmRlciBmcmVlcyBhdG9taWMgc3RhdGVzLiBXaGljaCB1cHNldHMg
+S0FTQU4sIGFtb25nIG90aGVyCnRoaW5ncy4KCkZvciBhc3luYyB1cGRhdGVzIHdlIG5vdyBoYXZl
+IGEgbW9yZSBzb2xpZCBzb2x1dGlvbiB3aXRoIHRoZQotPmF0b21pY19hc3luY19jaGVjayBhbmQg
+LT5hdG9taWNfYXN5bmNfY29tbWl0IGhvb2tzLiBTdXBwb3J0IGZvciB0aGF0CmZvciBtc20gYW5k
+IHZjNCBsYW5kZWQuIG5vdXZlYXUgYW5kIGk5MTUgaGF2ZSB0aGVpciBvd24gY29tbWl0CnJvdXRp
+bmVzLCBkb2luZyBzb21ldGhpbmcgc2ltaWxhci4KCkZvciBldmVyeW9uZSBlbHNlIGl0J3MgcHJv
+YmFibHkgYmV0dGVyIHRvIHJlbW92ZSB0aGUgdXNlLWFmdGVyLWZyZWUKYnVnLCBhbmQgZW5jb3Vy
+YWdlIGZvbGtzIHRvIHVzZSB0aGUgYXN5bmMgc3VwcG9ydCBpbnN0ZWFkLiBUaGUKYWZmZWN0ZWQg
+ZHJpdmVycyB3aGljaCByZWdpc3RlciBhIGxlZ2FjeSBjdXJzb3IgcGxhbmUgYW5kIGRvbid0IGVp
+dGhlcgp1c2UgdGhlIG5ldyBhc3luYyBzdHVmZiBvciB0aGVpciBvd24gY29tbWl0IHJvdXRpbmUg
+YXJlOiBhbWRncHUsCmF0bWVsLCBtZWRpYXRlaywgcXhsLCByb2NrY2hpcCwgc3RpLCBzdW40aSwg
+dGVncmEsIHZpcnRpbywgYW5kIHZtd2dmeC4KCkluc3BpcmVkIGJ5IGFuIGFtZGdwdSBidWcgcmVw
+b3J0LgoKdjI6IERyb3AgUkZDLCBJIHRoaW5rIHdpdGggYW1kZ3B1IGNvbnZlcnRlZCBvdmVyIHRv
+IHVzZQphdG9taWNfYXN5bmNfY2hlY2svY29tbWl0IGRvbmUgaW4KCmNvbW1pdCA2NzRlNzhhY2Fl
+MGRmYjRiZWI1NjEzMmU0MWNiYWU1YjYwZjdkNjYyCkF1dGhvcjogTmljaG9sYXMgS2F6bGF1c2th
+cyA8bmljaG9sYXMua2F6bGF1c2thc0BhbWQuY29tPgpEYXRlOiAgIFdlZCBEZWMgNSAxNDo1OTow
+NyAyMDE4IC0wNTAwCgogICAgZHJtL2FtZC9kaXNwbGF5OiBBZGQgZmFzdCBwYXRoIGZvciBjdXJz
+b3IgcGxhbmUgdXBkYXRlcwoKd2UgZG9uJ3QgaGF2ZSBhbnkgZHJpdmVyIGFueW1vcmUgd2hlcmUg
+d2UgaGF2ZSB1c2Vyc3BhY2UgZXhwZWN0aW5nCnNvbGlkIGxlZ2FjeSBjdXJzb3Igc3VwcG9ydCBf
+YW5kXyB0aGV5IGFyZSB1c2luZyB0aGUgYXRvbWljIGhlbHBlcnMgaW4KdGhlaXIgZnVsbHkgZ2xv
+cnkuIFNvIHdlIGNhbiByZXRpcmUgdGhpcy4KCnYzOiBQYXBlciBvdmVyIG1zbSBhbmQgaTkxNSBy
+ZWdyZXNzaW9uLiBUaGUgY29tcGxldGVfYWxsIGlzIHRoZSBvbmx5CnRoaW5nIG1pc3NpbmcgYWZh
+aWN0LgoKUmVmZXJlbmNlczogaHR0cHM6Ly9idWd6aWxsYS5rZXJuZWwub3JnL3Nob3dfYnVnLmNn
+aT9pZD0xOTk0MjUKQ2M6IG1pa2l0YS5saXBza2lAYW1kLmNvbQpDYzogTWljaGVsIETDpG56ZXIg
+PG1pY2hlbEBkYWVuemVyLm5ldD4KQ2M6IGhhcnJ5LndlbnRsYW5kQGFtZC5jb20KQ2M6IFJvYiBD
+bGFyayA8cm9iZGNsYXJrQGdtYWlsLmNvbT4KQ2M6ICJLYXpsYXVza2FzLCBOaWNob2xhcyIgPG5p
+Y2hvbGFzLmthemxhdXNrYXNAYW1kLmNvbT4KU2lnbmVkLW9mZi1ieTogRGFuaWVsIFZldHRlciA8
+ZGFuaWVsLnZldHRlckBpbnRlbC5jb20+Ci0tLQogZHJpdmVycy9ncHUvZHJtL2RybV9hdG9taWNf
+aGVscGVyLmMgICAgICAgICAgfCAxMyAtLS0tLS0tLS0tLS0tCiBkcml2ZXJzL2dwdS9kcm0vaTkx
+NS9kaXNwbGF5L2ludGVsX2Rpc3BsYXkuYyB8IDEzICsrKysrKysrKysrKysKIGRyaXZlcnMvZ3B1
+L2RybS9tc20vbXNtX2F0b21pYy5jICAgICAgICAgICAgIHwgIDIgKysKIDMgZmlsZXMgY2hhbmdl
+ZCwgMTUgaW5zZXJ0aW9ucygrKSwgMTMgZGVsZXRpb25zKC0pCgpkaWZmIC0tZ2l0IGEvZHJpdmVy
+cy9ncHUvZHJtL2RybV9hdG9taWNfaGVscGVyLmMgYi9kcml2ZXJzL2dwdS9kcm0vZHJtX2F0b21p
+Y19oZWxwZXIuYwppbmRleCBhN2JjYjRiNDU4NmMuLjU0OWEzMWU2MDQyYyAxMDA2NDQKLS0tIGEv
+ZHJpdmVycy9ncHUvZHJtL2RybV9hdG9taWNfaGVscGVyLmMKKysrIGIvZHJpdmVycy9ncHUvZHJt
+L2RybV9hdG9taWNfaGVscGVyLmMKQEAgLTE0ODEsMTMgKzE0ODEsNiBAQCBkcm1fYXRvbWljX2hl
+bHBlcl93YWl0X2Zvcl92YmxhbmtzKHN0cnVjdCBkcm1fZGV2aWNlICpkZXYsCiAJaW50IGksIHJl
+dDsKIAl1bnNpZ25lZCBjcnRjX21hc2sgPSAwOwogCi0JIC8qCi0JICAqIExlZ2FjeSBjdXJzb3Ig
+aW9jdGxzIGFyZSBjb21wbGV0ZWx5IHVuc3luY2VkLCBhbmQgdXNlcnNwYWNlCi0JICAqIHJlbGll
+cyBvbiB0aGF0IChieSBkb2luZyB0b25zIG9mIGN1cnNvciB1cGRhdGVzKS4KLQkgICovCi0JaWYg
+KG9sZF9zdGF0ZS0+bGVnYWN5X2N1cnNvcl91cGRhdGUpCi0JCXJldHVybjsKLQogCWZvcl9lYWNo
+X29sZG5ld19jcnRjX2luX3N0YXRlKG9sZF9zdGF0ZSwgY3J0Yywgb2xkX2NydGNfc3RhdGUsIG5l
+d19jcnRjX3N0YXRlLCBpKSB7CiAJCWlmICghbmV3X2NydGNfc3RhdGUtPmFjdGl2ZSkKIAkJCWNv
+bnRpbnVlOwpAQCAtMjEwNiwxMiArMjA5OSw2IEBAIGludCBkcm1fYXRvbWljX2hlbHBlcl9zZXR1
+cF9jb21taXQoc3RydWN0IGRybV9hdG9taWNfc3RhdGUgKnN0YXRlLAogCQkJY29udGludWU7CiAJ
+CX0KIAotCQkvKiBMZWdhY3kgY3Vyc29yIHVwZGF0ZXMgYXJlIGZ1bGx5IHVuc3luY2VkLiAqLwot
+CQlpZiAoc3RhdGUtPmxlZ2FjeV9jdXJzb3JfdXBkYXRlKSB7Ci0JCQljb21wbGV0ZV9hbGwoJmNv
+bW1pdC0+ZmxpcF9kb25lKTsKLQkJCWNvbnRpbnVlOwotCQl9Ci0KIAkJaWYgKCFuZXdfY3J0Y19z
+dGF0ZS0+ZXZlbnQpIHsKIAkJCWNvbW1pdC0+ZXZlbnQgPSBremFsbG9jKHNpemVvZigqY29tbWl0
+LT5ldmVudCksCiAJCQkJCQlHRlBfS0VSTkVMKTsKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2Ry
+bS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheS5jIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlz
+cGxheS9pbnRlbF9kaXNwbGF5LmMKaW5kZXggMTMwMzAzZTAyOThhLi40MjU3YWQ3YzY5YzcgMTAw
+NjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheS5jCisr
+KyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheS5jCkBAIC0xNjEy
+Miw2ICsxNjEyMiwxOSBAQCBzdGF0aWMgaW50IGludGVsX2F0b21pY19jb21taXQoc3RydWN0IGRy
+bV9kZXZpY2UgKmRldiwKIAkJCQlzdGF0ZS0+YmFzZS5sZWdhY3lfY3Vyc29yX3VwZGF0ZSA9IGZh
+bHNlOwogCX0KIAorCS8qCisJICogRklYTUU6IEN1dCBvdmVyIHRvIChhc3luYykgY29tbWl0IGhl
+bHBlcnMgaW5zdGVhZCBvZiBoYW5kLXJvbGxpbmcKKwkgKiBldmVyeXRoaW5nLgorCSAqLworCWlm
+IChzdGF0ZS0+YmFzZS5sZWdhY3lfY3Vyc29yX3VwZGF0ZSkgeworCQlzdHJ1Y3QgaW50ZWxfY3J0
+Y19zdGF0ZSAqbmV3X2NydGNfc3RhdGU7CisJCXN0cnVjdCBpbnRlbF9jcnRjICpjcnRjOworCQlp
+bnQgaTsKKworCQlmb3JfZWFjaF9uZXdfaW50ZWxfY3J0Y19pbl9zdGF0ZShzdGF0ZSwgY3J0Yywg
+bmV3X2NydGNfc3RhdGUsIGkpCisJCQljb21wbGV0ZV9hbGwoJm5ld19jcnRjX3N0YXRlLT51YXBp
+LmNvbW1pdC0+ZmxpcF9kb25lKTsKKwl9CisKIAlyZXQgPSBpbnRlbF9hdG9taWNfcHJlcGFyZV9j
+b21taXQoc3RhdGUpOwogCWlmIChyZXQpIHsKIAkJZHJtX2RiZ19hdG9taWMoJmRldl9wcml2LT5k
+cm0sCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vbXNtL21zbV9hdG9taWMuYyBiL2RyaXZl
+cnMvZ3B1L2RybS9tc20vbXNtX2F0b21pYy5jCmluZGV4IDU2MWJmYTQ4ODQxYy4uZTA1OTliMTZh
+NGVmIDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vbXNtL21zbV9hdG9taWMuYworKysgYi9k
+cml2ZXJzL2dwdS9kcm0vbXNtL21zbV9hdG9taWMuYwpAQCAtMjE1LDYgKzIxNSw4IEBAIHZvaWQg
+bXNtX2F0b21pY19jb21taXRfdGFpbChzdHJ1Y3QgZHJtX2F0b21pY19zdGF0ZSAqc3RhdGUpCiAJ
+CS8qIGFzeW5jIHVwZGF0ZXMgYXJlIGxpbWl0ZWQgdG8gc2luZ2xlLWNydGMgdXBkYXRlczogKi8K
+IAkJV0FSTl9PTihjcnRjX21hc2sgIT0gZHJtX2NydGNfbWFzayhhc3luY19jcnRjKSk7CiAKKwkJ
+Y29tcGxldGVfYWxsKCZhc3luY19jcnRjLT5zdGF0ZS0+Y29tbWl0LT5mbGlwX2RvbmUpOworCiAJ
+CS8qCiAJCSAqIFN0YXJ0IHRpbWVyIGlmIHdlIGRvbid0IGFscmVhZHkgaGF2ZSBhbiB1cGRhdGUg
+cGVuZGluZwogCQkgKiBvbiB0aGlzIGNydGM6Ci0tIAoyLjI4LjAKCl9fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50
+ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9y
+Zy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
