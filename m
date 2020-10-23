@@ -2,59 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 00145297364
-	for <lists+intel-gfx@lfdr.de>; Fri, 23 Oct 2020 18:19:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A14552973EB
+	for <lists+intel-gfx@lfdr.de>; Fri, 23 Oct 2020 18:32:20 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B94BD6E11C;
-	Fri, 23 Oct 2020 16:19:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C5DB56E117;
+	Fri, 23 Oct 2020 16:32:17 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-x443.google.com (mail-wr1-x443.google.com
- [IPv6:2a00:1450:4864:20::443])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 28B716E11C;
- Fri, 23 Oct 2020 16:19:46 +0000 (UTC)
-Received: by mail-wr1-x443.google.com with SMTP id e17so2582483wru.12;
- Fri, 23 Oct 2020 09:19:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc:content-transfer-encoding;
- bh=pcyKnD0GL8cUH+LZqBS5drzjgkD+yDyZKgqlHZHy/po=;
- b=g1775DhxGYhUcP2uR4Ds7PEc/0qOetJ3gRLRLL7AhQLSpyZopfVEQT1bLIMHVZg3uw
- d8lJM0O7sNa1aTqFhp7UkNa6fSkTqzavQXVj5z5pttzCPdsRVMq+GGWnQBj7FQD68FrR
- vTuQecZd0ALn5d9j0atfGZiByKwgyi6NapmrX7Zq++N/Y3/6WuK+fYeUJXvSjWRCFrtO
- gO0ug5rHoEYOHltLXxmflTE29xgLqcBFr0rNdvF6YLMBuayj6kqC+RS/efsva/72pCye
- jgqNkFUoq9IwGSAXPojAuz4yO9a/mp0O9HkI2k86LvuusHZ3vAv2+8AYhb0XTGJgDPKt
- /Bsg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc:content-transfer-encoding;
- bh=pcyKnD0GL8cUH+LZqBS5drzjgkD+yDyZKgqlHZHy/po=;
- b=kxlPgNDijd3ucUNvrvBM46/rChMVHvaa6RMaT4LCPi2pfiiP1LP/rKLBzfIVf0vqip
- qD2qs+osWuawxvT9858Ip7hPWtSncur2Zt1WAwFQP+/1sOlf11AAWgBgJkbE4O4P+Y2M
- NFiBUhIm0BE3QzxqZuDm57tqwxovc6n7cUghStoGEM5yvQGmUbLRQJXn8jpdf2RzlkRw
- h0Y4zjcdT22Al/1lp8+QBjhwYpHmAgEZ/hPokGygsIRKLYQqUpjrE3h9abfnbD9Bb/RU
- 2ew/ZD1bsyGN3Ig7W71jdkBQfyp3u5K+dk6nH4U5gRnLY29ZqIoFFMDEK/ID5I8poVwQ
- I5Bw==
-X-Gm-Message-State: AOAM531lk15qL7wWR+KKYwgwDwKLykrIdWoBWkGS4E9ZlwKQ759fZRr2
- b3zLRUqinS1yghqxjxAwGNy12fYtnv7qCSUfggU=
-X-Google-Smtp-Source: ABdhPJztTB0f29AwyS+8nwtQJvMn1n+zibaIB9dbkkIIkW0xgjPhNLjm0bXpoVAC8RHu3f2nqpN1l4tyHVZ7HU5zGVs=
-X-Received: by 2002:adf:bc0f:: with SMTP id s15mr3495405wrg.83.1603469984697; 
- Fri, 23 Oct 2020 09:19:44 -0700 (PDT)
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id D2F6E6E117;
+ Fri, 23 Oct 2020 16:32:16 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id C5259A363B;
+ Fri, 23 Oct 2020 16:32:16 +0000 (UTC)
 MIME-Version: 1.0
-References: <20201021163242.1458885-1-daniel.vetter@ffwll.ch>
- <CAF6AEGsHA33RGoX-iX=9mL+EgtxFJgLH4n2xKR9XckBA=SJhBw@mail.gmail.com>
- <CAF6AEGta-uZ=YV3aKTatWkp-XD7S1GzrW9Mcdyp=qsFrHibuiQ@mail.gmail.com>
- <CAKMK7uETWveBqOCRvHe2fGGnrVOB_9prmmenW3bARRCT-kg__A@mail.gmail.com>
- <CAF6AEGtWAT-pD+ZO0T9E0W2uuZ_KgvX2r_BsGUQpzS7M5x4u5w@mail.gmail.com>
- <CAKMK7uHu7fRrfPEjZKy9m8jOnmLk2wOGApZDWpz-8CdLmc+_EA@mail.gmail.com>
-In-Reply-To: <CAKMK7uHu7fRrfPEjZKy9m8jOnmLk2wOGApZDWpz-8CdLmc+_EA@mail.gmail.com>
-From: Rob Clark <robdclark@gmail.com>
-Date: Fri, 23 Oct 2020 09:21:10 -0700
-Message-ID: <CAF6AEGvY5oUcnFC=3bfgxTv-no=+4p3nkuH1G+mkNWfF-hzgtw@mail.gmail.com>
-To: Daniel Vetter <daniel.vetter@ffwll.ch>
-Subject: Re: [Intel-gfx] [PATCH 1/3] drm/atomic-helpers: remove
- legacy_cursor_update hacks
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Daniel Vetter" <daniel.vetter@ffwll.ch>
+Date: Fri, 23 Oct 2020 16:32:16 -0000
+Message-ID: <160347073677.1406.8498023430352913535@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20201023122811.2374118-1-daniel.vetter@ffwll.ch>
+In-Reply-To: <20201023122811.2374118-1-daniel.vetter@ffwll.ch>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_series_starting_with_=5B1/5=5D_drm/radeon=3A_Stop_changing_?=
+ =?utf-8?q?the_drm=5Fdriver_struct_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,141 +39,205 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-arm-msm <linux-arm-msm@vger.kernel.org>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- DRI Development <dri-devel@lists.freedesktop.org>,
- Daniel Vetter <daniel.vetter@intel.com>, Mikita Lipski <mikita.lipski@amd.com>,
- Harry Wentland <harry.wentland@amd.com>,
- =?UTF-8?Q?Michel_D=C3=A4nzer?= <michel@daenzer.net>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gRnJpLCBPY3QgMjMsIDIwMjAgYXQgOTowMCBBTSBEYW5pZWwgVmV0dGVyIDxkYW5pZWwudmV0
-dGVyQGZmd2xsLmNoPiB3cm90ZToKPgo+IE9uIEZyaSwgT2N0IDIzLCAyMDIwIGF0IDU6MDIgUE0g
-Um9iIENsYXJrIDxyb2JkY2xhcmtAZ21haWwuY29tPiB3cm90ZToKPiA+Cj4gPiBPbiBUaHUsIE9j
-dCAyMiwgMjAyMCBhdCAxMjoxNiBQTSBEYW5pZWwgVmV0dGVyIDxkYW5pZWwudmV0dGVyQGZmd2xs
-LmNoPiB3cm90ZToKPiA+ID4KPiA+ID4gT24gVGh1LCBPY3QgMjIsIDIwMjAgYXQgNzoyMiBQTSBS
-b2IgQ2xhcmsgPHJvYmRjbGFya0BnbWFpbC5jb20+IHdyb3RlOgo+ID4gPiA+Cj4gPiA+ID4gT24g
-VGh1LCBPY3QgMjIsIDIwMjAgYXQgMTA6MDIgQU0gUm9iIENsYXJrIDxyb2JkY2xhcmtAZ21haWwu
-Y29tPiB3cm90ZToKPiA+ID4gPiA+Cj4gPiA+ID4gPiBPbiBXZWQsIE9jdCAyMSwgMjAyMCBhdCA5
-OjMyIEFNIERhbmllbCBWZXR0ZXIgPGRhbmllbC52ZXR0ZXJAZmZ3bGwuY2g+IHdyb3RlOgo+ID4g
-PiA+ID4gPgo+ID4gPiA+ID4gPiBUaGUgc3R1ZmYgbmV2ZXIgcmVhbGx5IHdvcmtlZCwgYW5kIGxl
-YWRzIHRvIGxvdHMgb2YgZnVuIGJlY2F1c2UgaXQKPiA+ID4gPiA+ID4gb3V0LW9mLW9yZGVyIGZy
-ZWVzIGF0b21pYyBzdGF0ZXMuIFdoaWNoIHVwc2V0cyBLQVNBTiwgYW1vbmcgb3RoZXIKPiA+ID4g
-PiA+ID4gdGhpbmdzLgo+ID4gPiA+ID4gPgo+ID4gPiA+ID4gPiBGb3IgYXN5bmMgdXBkYXRlcyB3
-ZSBub3cgaGF2ZSBhIG1vcmUgc29saWQgc29sdXRpb24gd2l0aCB0aGUKPiA+ID4gPiA+ID4gLT5h
-dG9taWNfYXN5bmNfY2hlY2sgYW5kIC0+YXRvbWljX2FzeW5jX2NvbW1pdCBob29rcy4gU3VwcG9y
-dCBmb3IgdGhhdAo+ID4gPiA+ID4gPiBmb3IgbXNtIGFuZCB2YzQgbGFuZGVkLiBub3V2ZWF1IGFu
-ZCBpOTE1IGhhdmUgdGhlaXIgb3duIGNvbW1pdAo+ID4gPiA+ID4gPiByb3V0aW5lcywgZG9pbmcg
-c29tZXRoaW5nIHNpbWlsYXIuCj4gPiA+ID4gPiA+Cj4gPiA+ID4gPiA+IEZvciBldmVyeW9uZSBl
-bHNlIGl0J3MgcHJvYmFibHkgYmV0dGVyIHRvIHJlbW92ZSB0aGUgdXNlLWFmdGVyLWZyZWUKPiA+
-ID4gPiA+ID4gYnVnLCBhbmQgZW5jb3VyYWdlIGZvbGtzIHRvIHVzZSB0aGUgYXN5bmMgc3VwcG9y
-dCBpbnN0ZWFkLiBUaGUKPiA+ID4gPiA+ID4gYWZmZWN0ZWQgZHJpdmVycyB3aGljaCByZWdpc3Rl
-ciBhIGxlZ2FjeSBjdXJzb3IgcGxhbmUgYW5kIGRvbid0IGVpdGhlcgo+ID4gPiA+ID4gPiB1c2Ug
-dGhlIG5ldyBhc3luYyBzdHVmZiBvciB0aGVpciBvd24gY29tbWl0IHJvdXRpbmUgYXJlOiBhbWRn
-cHUsCj4gPiA+ID4gPiA+IGF0bWVsLCBtZWRpYXRlaywgcXhsLCByb2NrY2hpcCwgc3RpLCBzdW40
-aSwgdGVncmEsIHZpcnRpbywgYW5kIHZtd2dmeC4KPiA+ID4gPiA+ID4KPiA+ID4gPiA+ID4gSW5z
-cGlyZWQgYnkgYW4gYW1kZ3B1IGJ1ZyByZXBvcnQuCj4gPiA+ID4gPiA+Cj4gPiA+ID4gPiA+IHYy
-OiBEcm9wIFJGQywgSSB0aGluayB3aXRoIGFtZGdwdSBjb252ZXJ0ZWQgb3ZlciB0byB1c2UKPiA+
-ID4gPiA+ID4gYXRvbWljX2FzeW5jX2NoZWNrL2NvbW1pdCBkb25lIGluCj4gPiA+ID4gPiA+Cj4g
-PiA+ID4gPiA+IGNvbW1pdCA2NzRlNzhhY2FlMGRmYjRiZWI1NjEzMmU0MWNiYWU1YjYwZjdkNjYy
-Cj4gPiA+ID4gPiA+IEF1dGhvcjogTmljaG9sYXMgS2F6bGF1c2thcyA8bmljaG9sYXMua2F6bGF1
-c2thc0BhbWQuY29tPgo+ID4gPiA+ID4gPiBEYXRlOiAgIFdlZCBEZWMgNSAxNDo1OTowNyAyMDE4
-IC0wNTAwCj4gPiA+ID4gPiA+Cj4gPiA+ID4gPiA+ICAgICBkcm0vYW1kL2Rpc3BsYXk6IEFkZCBm
-YXN0IHBhdGggZm9yIGN1cnNvciBwbGFuZSB1cGRhdGVzCj4gPiA+ID4gPiA+Cj4gPiA+ID4gPiA+
-IHdlIGRvbid0IGhhdmUgYW55IGRyaXZlciBhbnltb3JlIHdoZXJlIHdlIGhhdmUgdXNlcnNwYWNl
-IGV4cGVjdGluZwo+ID4gPiA+ID4gPiBzb2xpZCBsZWdhY3kgY3Vyc29yIHN1cHBvcnQgX2FuZF8g
-dGhleSBhcmUgdXNpbmcgdGhlIGF0b21pYyBoZWxwZXJzIGluCj4gPiA+ID4gPiA+IHRoZWlyIGZ1
-bGx5IGdsb3J5LiBTbyB3ZSBjYW4gcmV0aXJlIHRoaXMuCj4gPiA+ID4gPiA+Cj4gPiA+ID4gPiA+
-IFJlZmVyZW5jZXM6IGh0dHBzOi8vYnVnemlsbGEua2VybmVsLm9yZy9zaG93X2J1Zy5jZ2k/aWQ9
-MTk5NDI1Cj4gPiA+ID4gPiA+IENjOiBtaWtpdGEubGlwc2tpQGFtZC5jb20KPiA+ID4gPiA+ID4g
-Q2M6IE1pY2hlbCBEw6RuemVyIDxtaWNoZWxAZGFlbnplci5uZXQ+Cj4gPiA+ID4gPiA+IENjOiBo
-YXJyeS53ZW50bGFuZEBhbWQuY29tCj4gPiA+ID4gPiA+IFNpZ25lZC1vZmYtYnk6IERhbmllbCBW
-ZXR0ZXIgPGRhbmllbC52ZXR0ZXJAaW50ZWwuY29tPgo+ID4gPiA+ID4KPiA+ID4gPiA+IFRoaXMg
-KmNvbXBsZXRlbHkqIGRlc3Ryb3lzIGZwcyB3aGVuIHRoZXJlIGlzIGN1cnNvciBtb3ZlbWVudCwg
-aXQgd291bGQKPiA+ID4gPiA+IGJlIGEgcHJldHR5IGJhZCByZWdyZXNzaW9uLCBzbyBuYWsKPiA+
-ID4gPgo+ID4gPiA+IFdoaWNoIEkgKmd1ZXNzKiBpcyBkdWUgdG8gZHB1IG5vdCB3aXJpbmcgdXAg
-dGhlIHBsYW5lLT5hc3luY18qIGZ1bmNzLAo+ID4gPiA+IGVmZmVjdGl2ZWx5IG1ha2luZyBjdXJz
-b3IgdXBkYXRlcyBzeW5jaHJvbm91cy4uIGJ1dCBpdCB3aWxsIHRha2Ugc29tZQo+ID4gPiA+IHRp
-bWUgdG8gc29ydCBvdXQgOi0oCj4gPiA+Cj4gPiA+IERvZXMgc29tZXRoaW5nIGxpa2UgdGhlIGJl
-bG93IChub3QgZXZlbiBjb21waWxlIHRlc3RlZCkgZ2V0IGRwdSBiYWNrIGluIG9yZGVyPwo+ID4g
-Pgo+ID4gPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL21zbS9tc21fYXRvbWljLmMgYi9k
-cml2ZXJzL2dwdS9kcm0vbXNtL21zbV9hdG9taWMuYwo+ID4gPiBpbmRleCA1NjFiZmE0ODg0MWMu
-LmVjOGI0Zjc0ZGE0OSAxMDA2NDQKPiA+ID4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL21zbS9tc21f
-YXRvbWljLmMKPiA+ID4gKysrIGIvZHJpdmVycy9ncHUvZHJtL21zbS9tc21fYXRvbWljLmMKPiA+
-ID4gQEAgLTIxNSw2ICsyMTUsOCBAQCB2b2lkIG1zbV9hdG9taWNfY29tbWl0X3RhaWwoc3RydWN0
-IGRybV9hdG9taWNfc3RhdGUgKnN0YXRlKQo+ID4gPiAgICAgICAgICAgICAgICAvKiBhc3luYyB1
-cGRhdGVzIGFyZSBsaW1pdGVkIHRvIHNpbmdsZS1jcnRjIHVwZGF0ZXM6ICovCj4gPiA+ICAgICAg
-ICAgICAgICAgIFdBUk5fT04oY3J0Y19tYXNrICE9IGRybV9jcnRjX21hc2soYXN5bmNfY3J0Yykp
-Owo+ID4gPgo+ID4gPiArICAgICAgICAgICAgICAgY29tcGxldGVfYWxsKGFzeW5jX2NydGMtPnN0
-YXRlLT5mbGlwX2RvbmUpOwo+ID4gPiArCj4gPiA+ICAgICAgICAgICAgICAgIC8qCj4gPiA+ICAg
-ICAgICAgICAgICAgICAqIFN0YXJ0IHRpbWVyIGlmIHdlIGRvbid0IGFscmVhZHkgaGF2ZSBhbiB1
-cGRhdGUgcGVuZGluZwo+ID4gPiAgICAgICAgICAgICAgICAgKiBvbiB0aGlzIGNydGM6Cj4gPiA+
-Cj4gPiA+IFRoYXQgd2F5IHdlIGNvdWxkIHBlcmhhcHMgc3RpbGwgbW92ZSBhaGVhZCB3aXRoIHJl
-bW92aW5nIHRoZSBoYWNrcwo+ID4gPiBmcm9tIHNoYXJlZCBoZWxwZXJzLCBhbmQgbXNtLWRwdSBj
-YW4ga2VlcCBkb2luZyB3aGF0IGl0IGRvZXMuIFRoZQo+ID4gPiBvdGhlciBodW5rIGlzIGluIGEg
-ZnVuY3Rpb24gdGhhdCBkcHUgY29kZSBkb2Vzbid0IGV2ZW4gdXNlLCBzbyBjYW4ndAo+ID4gPiBz
-ZWUgaG93IHRoYXQgd291bGQgY2hhbmdlIGFueXRoaW5nLgo+ID4KPiA+IFRoYXQgY2F1c2VzIG1h
-c3NpdmUgZXhwbG9zaW9ucy4uLiBhbmdlcmluZyBXQVJOX09OKGRwdV9jcnRjLT5ldmVudCk7Cj4g
-Pgo+ID4gU2VlbXMgaXQgaXMgcHJvYmFibHkgdGhlIHJpZ2h0IGlkZWEgYnV0IHRoZSB3cm9uZyBw
-bGFjZT8gIEknbGwgdHJ5IHRvCj4gPiBtYWtlIHNvbWUgdGltZSBpbiBuZXh0IGZldyBkYXlzIHRv
-IGxvb2sgYXQgdGhpcyBtb3JlLCBidXQganVnZ2xpbmcgYQo+ID4gYnVuY2ggb2YgZGlmZmVyZW50
-IHRoaW5ncyBhdG0gKGFuZCBJIGd1ZXNzIGF0IGFueSByYXRlIHRoaXMgd29uJ3QgYmUgYQo+ID4g
-NS4xMCB0aGluZywgc28gd2UgaGF2ZSBhIGJpdCBvZiB0aW1lKQo+Cj4gWWVhaCB3ZSBoYXZlIHRp
-bWUgZm9yIHRoaXMsIGxlZ2FjeV9jdXJzb3JfdXBkYXRlIGJlaW5nIGEgbWlzdGFrZSBpbgo+IGF0
-b21pYyBoYXMgYmVlbiBhIHRob3JuIHRvIG15IGVnbyBmb3IgeWVhcnMsIGl0J3Mgbm90IGdvaW5n
-IHRvIGdldAo+IHdvcnNlIHdpdGggYSBiaXQgbW9yZSB0aW1lIGl0Y2hpbmcgOi0pIEl0J3MgbW9y
-ZSB0aGF0IEkgd2FudCB0byByZWFsbHkKPiBtYWtlIHN1cmUgd2UgZG9uJ3Qgc3ByZWFkIHRoaXMg
-ZnVydGhlciwgc2luY2UgdGhlIGhhY2tzIGluIGF0b21pYwo+IGhlbHBlcnMgcmVhbGx5IGJyZWFr
-IHRoZSBlbnRpcmUgY29tbWl0IGhlbHBlciBtb2RlbCBxdWl0ZSBiYWRseSBhbGwKPiBvdmVyLgo+
-Cj4gU28gbWF5YmUganVzdCBhY2sgb24gdGhlIGRvY3VtZW50YXRpb24gcGF0Y2ggaW50ZXJpbSwg
-d2hpbGUgd2UgZmlndXJlCj4gb3V0IHNvbWV0aGluZyBhdCBsZWFzdXJlPyBJJ3ZlIGFsc28gYnJv
-a2VuIGk5MTUsIHNvIG1heWJlIEkgZmlndXJlIG91dAo+IG1lYW53aGlsZSBob3cgdG8gcmVhcHBs
-eSB0aGUgZHVjdC10YXBlIHRoZXJlLgoKeWVhaCwgbWFrZXMgc2Vuc2UsIGEtYiBmb3IgZG9jIHBh
-dGNoCgpCUiwKLVIKCj4gLURhbmllbAo+Cj4gPiBCUiwKPiA+IC1SCj4gPgo+ID4gPiAtRGFuaWVs
-Cj4gPiA+Cj4gPiA+ID4KPiA+ID4gPiA+IEJSLAo+ID4gPiA+ID4gLVIKPiA+ID4gPiA+Cj4gPiA+
-ID4gPiA+IC0tLQo+ID4gPiA+ID4gPiAgZHJpdmVycy9ncHUvZHJtL2RybV9hdG9taWNfaGVscGVy
-LmMgfCAxMyAtLS0tLS0tLS0tLS0tCj4gPiA+ID4gPiA+ICAxIGZpbGUgY2hhbmdlZCwgMTMgZGVs
-ZXRpb25zKC0pCj4gPiA+ID4gPiA+Cj4gPiA+ID4gPiA+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dw
-dS9kcm0vZHJtX2F0b21pY19oZWxwZXIuYyBiL2RyaXZlcnMvZ3B1L2RybS9kcm1fYXRvbWljX2hl
-bHBlci5jCj4gPiA+ID4gPiA+IGluZGV4IGE3YmNiNGI0NTg2Yy4uNTQ5YTMxZTYwNDJjIDEwMDY0
-NAo+ID4gPiA+ID4gPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vZHJtX2F0b21pY19oZWxwZXIuYwo+
-ID4gPiA+ID4gPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vZHJtX2F0b21pY19oZWxwZXIuYwo+ID4g
-PiA+ID4gPiBAQCAtMTQ4MSwxMyArMTQ4MSw2IEBAIGRybV9hdG9taWNfaGVscGVyX3dhaXRfZm9y
-X3ZibGFua3Moc3RydWN0IGRybV9kZXZpY2UgKmRldiwKPiA+ID4gPiA+ID4gICAgICAgICBpbnQg
-aSwgcmV0Owo+ID4gPiA+ID4gPiAgICAgICAgIHVuc2lnbmVkIGNydGNfbWFzayA9IDA7Cj4gPiA+
-ID4gPiA+Cj4gPiA+ID4gPiA+IC0gICAgICAgIC8qCj4gPiA+ID4gPiA+IC0gICAgICAgICAqIExl
-Z2FjeSBjdXJzb3IgaW9jdGxzIGFyZSBjb21wbGV0ZWx5IHVuc3luY2VkLCBhbmQgdXNlcnNwYWNl
-Cj4gPiA+ID4gPiA+IC0gICAgICAgICAqIHJlbGllcyBvbiB0aGF0IChieSBkb2luZyB0b25zIG9m
-IGN1cnNvciB1cGRhdGVzKS4KPiA+ID4gPiA+ID4gLSAgICAgICAgICovCj4gPiA+ID4gPiA+IC0g
-ICAgICAgaWYgKG9sZF9zdGF0ZS0+bGVnYWN5X2N1cnNvcl91cGRhdGUpCj4gPiA+ID4gPiA+IC0g
-ICAgICAgICAgICAgICByZXR1cm47Cj4gPiA+ID4gPiA+IC0KPiA+ID4gPiA+ID4gICAgICAgICBm
-b3JfZWFjaF9vbGRuZXdfY3J0Y19pbl9zdGF0ZShvbGRfc3RhdGUsIGNydGMsIG9sZF9jcnRjX3N0
-YXRlLCBuZXdfY3J0Y19zdGF0ZSwgaSkgewo+ID4gPiA+ID4gPiAgICAgICAgICAgICAgICAgaWYg
-KCFuZXdfY3J0Y19zdGF0ZS0+YWN0aXZlKQo+ID4gPiA+ID4gPiAgICAgICAgICAgICAgICAgICAg
-ICAgICBjb250aW51ZTsKPiA+ID4gPiA+ID4gQEAgLTIxMDYsMTIgKzIwOTksNiBAQCBpbnQgZHJt
-X2F0b21pY19oZWxwZXJfc2V0dXBfY29tbWl0KHN0cnVjdCBkcm1fYXRvbWljX3N0YXRlICpzdGF0
-ZSwKPiA+ID4gPiA+ID4gICAgICAgICAgICAgICAgICAgICAgICAgY29udGludWU7Cj4gPiA+ID4g
-PiA+ICAgICAgICAgICAgICAgICB9Cj4gPiA+ID4gPiA+Cj4gPiA+ID4gPiA+IC0gICAgICAgICAg
-ICAgICAvKiBMZWdhY3kgY3Vyc29yIHVwZGF0ZXMgYXJlIGZ1bGx5IHVuc3luY2VkLiAqLwo+ID4g
-PiA+ID4gPiAtICAgICAgICAgICAgICAgaWYgKHN0YXRlLT5sZWdhY3lfY3Vyc29yX3VwZGF0ZSkg
-ewo+ID4gPiA+ID4gPiAtICAgICAgICAgICAgICAgICAgICAgICBjb21wbGV0ZV9hbGwoJmNvbW1p
-dC0+ZmxpcF9kb25lKTsKPiA+ID4gPiA+ID4gLSAgICAgICAgICAgICAgICAgICAgICAgY29udGlu
-dWU7Cj4gPiA+ID4gPiA+IC0gICAgICAgICAgICAgICB9Cj4gPiA+ID4gPiA+IC0KPiA+ID4gPiA+
-ID4gICAgICAgICAgICAgICAgIGlmICghbmV3X2NydGNfc3RhdGUtPmV2ZW50KSB7Cj4gPiA+ID4g
-PiA+ICAgICAgICAgICAgICAgICAgICAgICAgIGNvbW1pdC0+ZXZlbnQgPSBremFsbG9jKHNpemVv
-ZigqY29tbWl0LT5ldmVudCksCj4gPiA+ID4gPiA+ICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgIEdGUF9LRVJORUwpOwo+ID4gPiA+ID4gPiAtLQo+ID4gPiA+
-ID4gPiAyLjI4LjAKPiA+ID4gPiA+ID4KPiA+ID4gPiA+ID4gX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX18KPiA+ID4gPiA+ID4gSW50ZWwtZ2Z4IG1haWxpbmcg
-bGlzdAo+ID4gPiA+ID4gPiBJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCj4gPiA+ID4g
-PiA+IGh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwt
-Z2Z4Cj4gPiA+Cj4gPiA+Cj4gPiA+Cj4gPiA+IC0tCj4gPiA+IERhbmllbCBWZXR0ZXIKPiA+ID4g
-U29mdHdhcmUgRW5naW5lZXIsIEludGVsIENvcnBvcmF0aW9uCj4gPiA+IGh0dHA6Ly9ibG9nLmZm
-d2xsLmNoCj4KPgo+Cj4gLS0KPiBEYW5pZWwgVmV0dGVyCj4gU29mdHdhcmUgRW5naW5lZXIsIElu
-dGVsIENvcnBvcmF0aW9uCj4gaHR0cDovL2Jsb2cuZmZ3bGwuY2gKX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRl
-bC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3Jn
-L21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
+== Series Details ==
+
+Series: series starting with [1/5] drm/radeon: Stop changing the drm_driver struct (rev2)
+URL   : https://patchwork.freedesktop.org/series/82993/
+State : warning
+
+== Summary ==
+
+$ dim checkpatch origin/drm-tip
+2f883aa943af drm/radeon: Stop changing the drm_driver struct
+-:60: CHECK:SPACING: spaces preferred around that '|' (ctx:VxV)
+#60: FILE: drivers/gpu/drm/radeon/radeon_drv.c:587:
++	DRM_IOCTL_DEF_DRV(RADEON_CP_INIT, drm_invalid_op, DRM_AUTH|DRM_MASTER|DRM_ROOT_ONLY),
+ 	                                                          ^
+
+-:60: CHECK:SPACING: spaces preferred around that '|' (ctx:VxV)
+#60: FILE: drivers/gpu/drm/radeon/radeon_drv.c:587:
++	DRM_IOCTL_DEF_DRV(RADEON_CP_INIT, drm_invalid_op, DRM_AUTH|DRM_MASTER|DRM_ROOT_ONLY),
+ 	                                                                     ^
+
+-:61: CHECK:SPACING: spaces preferred around that '|' (ctx:VxV)
+#61: FILE: drivers/gpu/drm/radeon/radeon_drv.c:588:
++	DRM_IOCTL_DEF_DRV(RADEON_CP_START, drm_invalid_op, DRM_AUTH|DRM_MASTER|DRM_ROOT_ONLY),
+ 	                                                           ^
+
+-:61: CHECK:SPACING: spaces preferred around that '|' (ctx:VxV)
+#61: FILE: drivers/gpu/drm/radeon/radeon_drv.c:588:
++	DRM_IOCTL_DEF_DRV(RADEON_CP_START, drm_invalid_op, DRM_AUTH|DRM_MASTER|DRM_ROOT_ONLY),
+ 	                                                                      ^
+
+-:62: CHECK:SPACING: spaces preferred around that '|' (ctx:VxV)
+#62: FILE: drivers/gpu/drm/radeon/radeon_drv.c:589:
++	DRM_IOCTL_DEF_DRV(RADEON_CP_STOP, drm_invalid_op, DRM_AUTH|DRM_MASTER|DRM_ROOT_ONLY),
+ 	                                                          ^
+
+-:62: CHECK:SPACING: spaces preferred around that '|' (ctx:VxV)
+#62: FILE: drivers/gpu/drm/radeon/radeon_drv.c:589:
++	DRM_IOCTL_DEF_DRV(RADEON_CP_STOP, drm_invalid_op, DRM_AUTH|DRM_MASTER|DRM_ROOT_ONLY),
+ 	                                                                     ^
+
+-:63: CHECK:SPACING: spaces preferred around that '|' (ctx:VxV)
+#63: FILE: drivers/gpu/drm/radeon/radeon_drv.c:590:
++	DRM_IOCTL_DEF_DRV(RADEON_CP_RESET, drm_invalid_op, DRM_AUTH|DRM_MASTER|DRM_ROOT_ONLY),
+ 	                                                           ^
+
+-:63: CHECK:SPACING: spaces preferred around that '|' (ctx:VxV)
+#63: FILE: drivers/gpu/drm/radeon/radeon_drv.c:590:
++	DRM_IOCTL_DEF_DRV(RADEON_CP_RESET, drm_invalid_op, DRM_AUTH|DRM_MASTER|DRM_ROOT_ONLY),
+ 	                                                                      ^
+
+-:74: CHECK:SPACING: spaces preferred around that '|' (ctx:VxV)
+#74: FILE: drivers/gpu/drm/radeon/radeon_drv.c:601:
++	DRM_IOCTL_DEF_DRV(RADEON_INDIRECT, drm_invalid_op, DRM_AUTH|DRM_MASTER|DRM_ROOT_ONLY),
+ 	                                                           ^
+
+-:74: CHECK:SPACING: spaces preferred around that '|' (ctx:VxV)
+#74: FILE: drivers/gpu/drm/radeon/radeon_drv.c:601:
++	DRM_IOCTL_DEF_DRV(RADEON_INDIRECT, drm_invalid_op, DRM_AUTH|DRM_MASTER|DRM_ROOT_ONLY),
+ 	                                                                      ^
+
+-:81: CHECK:SPACING: spaces preferred around that '|' (ctx:VxV)
+#81: FILE: drivers/gpu/drm/radeon/radeon_drv.c:608:
++	DRM_IOCTL_DEF_DRV(RADEON_INIT_HEAP, drm_invalid_op, DRM_AUTH|DRM_MASTER|DRM_ROOT_ONLY),
+ 	                                                            ^
+
+-:81: CHECK:SPACING: spaces preferred around that '|' (ctx:VxV)
+#81: FILE: drivers/gpu/drm/radeon/radeon_drv.c:608:
++	DRM_IOCTL_DEF_DRV(RADEON_INIT_HEAP, drm_invalid_op, DRM_AUTH|DRM_MASTER|DRM_ROOT_ONLY),
+ 	                                                                       ^
+
+-:88: CHECK:SPACING: spaces preferred around that '|' (ctx:VxV)
+#88: FILE: drivers/gpu/drm/radeon/radeon_drv.c:615:
++	DRM_IOCTL_DEF_DRV(RADEON_GEM_INFO, radeon_gem_info_ioctl, DRM_AUTH|DRM_RENDER_ALLOW),
+ 	                                                                  ^
+
+-:89: CHECK:SPACING: spaces preferred around that '|' (ctx:VxV)
+#89: FILE: drivers/gpu/drm/radeon/radeon_drv.c:616:
++	DRM_IOCTL_DEF_DRV(RADEON_GEM_CREATE, radeon_gem_create_ioctl, DRM_AUTH|DRM_RENDER_ALLOW),
+ 	                                                                      ^
+
+-:90: CHECK:SPACING: spaces preferred around that '|' (ctx:VxV)
+#90: FILE: drivers/gpu/drm/radeon/radeon_drv.c:617:
++	DRM_IOCTL_DEF_DRV(RADEON_GEM_MMAP, radeon_gem_mmap_ioctl, DRM_AUTH|DRM_RENDER_ALLOW),
+ 	                                                                  ^
+
+-:91: WARNING:LONG_LINE: line length of 105 exceeds 100 columns
+#91: FILE: drivers/gpu/drm/radeon/radeon_drv.c:618:
++	DRM_IOCTL_DEF_DRV(RADEON_GEM_SET_DOMAIN, radeon_gem_set_domain_ioctl, DRM_AUTH|DRM_RENDER_ALLOW),
+
+-:91: CHECK:SPACING: spaces preferred around that '|' (ctx:VxV)
+#91: FILE: drivers/gpu/drm/radeon/radeon_drv.c:618:
++	DRM_IOCTL_DEF_DRV(RADEON_GEM_SET_DOMAIN, radeon_gem_set_domain_ioctl, DRM_AUTH|DRM_RENDER_ALLOW),
+ 	                                                                              ^
+
+-:94: WARNING:LONG_LINE: line length of 103 exceeds 100 columns
+#94: FILE: drivers/gpu/drm/radeon/radeon_drv.c:621:
++	DRM_IOCTL_DEF_DRV(RADEON_GEM_WAIT_IDLE, radeon_gem_wait_idle_ioctl, DRM_AUTH|DRM_RENDER_ALLOW),
+
+-:94: CHECK:SPACING: spaces preferred around that '|' (ctx:VxV)
+#94: FILE: drivers/gpu/drm/radeon/radeon_drv.c:621:
++	DRM_IOCTL_DEF_DRV(RADEON_GEM_WAIT_IDLE, radeon_gem_wait_idle_ioctl, DRM_AUTH|DRM_RENDER_ALLOW),
+ 	                                                                            ^
+
+-:95: CHECK:SPACING: spaces preferred around that '|' (ctx:VxV)
+#95: FILE: drivers/gpu/drm/radeon/radeon_drv.c:622:
++	DRM_IOCTL_DEF_DRV(RADEON_CS, radeon_cs_ioctl, DRM_AUTH|DRM_RENDER_ALLOW),
+ 	                                                      ^
+
+-:96: CHECK:SPACING: spaces preferred around that '|' (ctx:VxV)
+#96: FILE: drivers/gpu/drm/radeon/radeon_drv.c:623:
++	DRM_IOCTL_DEF_DRV(RADEON_INFO, radeon_info_ioctl, DRM_AUTH|DRM_RENDER_ALLOW),
+ 	                                                          ^
+
+-:97: WARNING:LONG_LINE: line length of 105 exceeds 100 columns
+#97: FILE: drivers/gpu/drm/radeon/radeon_drv.c:624:
++	DRM_IOCTL_DEF_DRV(RADEON_GEM_SET_TILING, radeon_gem_set_tiling_ioctl, DRM_AUTH|DRM_RENDER_ALLOW),
+
+-:97: CHECK:SPACING: spaces preferred around that '|' (ctx:VxV)
+#97: FILE: drivers/gpu/drm/radeon/radeon_drv.c:624:
++	DRM_IOCTL_DEF_DRV(RADEON_GEM_SET_TILING, radeon_gem_set_tiling_ioctl, DRM_AUTH|DRM_RENDER_ALLOW),
+ 	                                                                              ^
+
+-:98: WARNING:LONG_LINE: line length of 105 exceeds 100 columns
+#98: FILE: drivers/gpu/drm/radeon/radeon_drv.c:625:
++	DRM_IOCTL_DEF_DRV(RADEON_GEM_GET_TILING, radeon_gem_get_tiling_ioctl, DRM_AUTH|DRM_RENDER_ALLOW),
+
+-:98: CHECK:SPACING: spaces preferred around that '|' (ctx:VxV)
+#98: FILE: drivers/gpu/drm/radeon/radeon_drv.c:625:
++	DRM_IOCTL_DEF_DRV(RADEON_GEM_GET_TILING, radeon_gem_get_tiling_ioctl, DRM_AUTH|DRM_RENDER_ALLOW),
+ 	                                                                              ^
+
+-:99: CHECK:SPACING: spaces preferred around that '|' (ctx:VxV)
+#99: FILE: drivers/gpu/drm/radeon/radeon_drv.c:626:
++	DRM_IOCTL_DEF_DRV(RADEON_GEM_BUSY, radeon_gem_busy_ioctl, DRM_AUTH|DRM_RENDER_ALLOW),
+ 	                                                                  ^
+
+-:100: CHECK:SPACING: spaces preferred around that '|' (ctx:VxV)
+#100: FILE: drivers/gpu/drm/radeon/radeon_drv.c:627:
++	DRM_IOCTL_DEF_DRV(RADEON_GEM_VA, radeon_gem_va_ioctl, DRM_AUTH|DRM_RENDER_ALLOW),
+ 	                                                              ^
+
+-:101: CHECK:SPACING: spaces preferred around that '|' (ctx:VxV)
+#101: FILE: drivers/gpu/drm/radeon/radeon_drv.c:628:
++	DRM_IOCTL_DEF_DRV(RADEON_GEM_OP, radeon_gem_op_ioctl, DRM_AUTH|DRM_RENDER_ALLOW),
+ 	                                                              ^
+
+-:102: CHECK:SPACING: spaces preferred around that '|' (ctx:VxV)
+#102: FILE: drivers/gpu/drm/radeon/radeon_drv.c:629:
++	DRM_IOCTL_DEF_DRV(RADEON_GEM_USERPTR, radeon_gem_userptr_ioctl, DRM_AUTH|DRM_RENDER_ALLOW),
+ 	                                                                        ^
+
+total: 0 errors, 4 warnings, 25 checks, 157 lines checked
+7ed751705b45 drm: Compile out legacy chunks from struct drm_device
+-:50: WARNING:BRACES: braces {} are not necessary for single statement blocks
+#50: FILE: drivers/gpu/drm/drm_vblank.c:214:
++	else if (dev->driver->get_vblank_counter) {
+ 		return dev->driver->get_vblank_counter(dev, pipe);
+ 	}
+
+-:64: WARNING:BRACES: braces {} are not necessary for single statement blocks
+#64: FILE: drivers/gpu/drm/drm_vblank.c:437:
++	else {
+ 		dev->driver->disable_vblank(dev, pipe);
+ 	}
+
+-:64: CHECK:BRACES: Unbalanced braces around else statement
+#64: FILE: drivers/gpu/drm/drm_vblank.c:437:
++	else {
+
+-:78: WARNING:BRACES: braces {} are not necessary for single statement blocks
+#78: FILE: drivers/gpu/drm/drm_vblank.c:1107:
++	else if (dev->driver->enable_vblank) {
+ 		return dev->driver->enable_vblank(dev, pipe);
+ 	}
+
+total: 0 errors, 3 warnings, 1 checks, 64 lines checked
+4f84e9660b68 drm/amdgpu: Paper over the drm_driver mangling for virt
+93256c8fddc6 drm: Allow const struct drm_driver
+-:38: CHECK:SPACING: No space is necessary after a cast
+#38: FILE: drivers/gpu/drm/drm_drv.c:593:
++	dev->driver = (struct drm_driver *) driver;
+
+total: 0 errors, 0 warnings, 1 checks, 80 lines checked
+2976dd730172 drm/<drivers>: Constify struct drm_driver
+-:698: WARNING:OBSOLETE: drivers/gpu/drm/tiny/cirrus.c is marked as 'obsolete' in the MAINTAINERS hierarchy.  No unnecessary modifications please.
+
+-:701: WARNING:OBSOLETE: drivers/gpu/drm/tiny/cirrus.c is marked as 'obsolete' in the MAINTAINERS hierarchy.  No unnecessary modifications please.
+
+total: 0 errors, 2 warnings, 0 checks, 619 lines checked
+
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
