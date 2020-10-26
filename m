@@ -2,36 +2,36 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 63D092999B4
-	for <lists+intel-gfx@lfdr.de>; Mon, 26 Oct 2020 23:32:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 02AF12999C9
+	for <lists+intel-gfx@lfdr.de>; Mon, 26 Oct 2020 23:40:00 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D706C6EA81;
-	Mon, 26 Oct 2020 22:32:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3E8FD6EA82;
+	Mon, 26 Oct 2020 22:39:58 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C40B36EA81
- for <intel-gfx@lists.freedesktop.org>; Mon, 26 Oct 2020 22:32:25 +0000 (UTC)
-IronPort-SDR: pUxuS6mN+s+JUfwJLfkR+fzK6LCM8hYaDYCiXnUjHCzOMmGAowDTcX1jBlfaciVaOos6+mjhi0
- rr4x0yrbbyJw==
-X-IronPort-AV: E=McAfee;i="6000,8403,9786"; a="229633038"
-X-IronPort-AV: E=Sophos;i="5.77,421,1596524400"; d="scan'208";a="229633038"
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1B78C6EA82
+ for <intel-gfx@lists.freedesktop.org>; Mon, 26 Oct 2020 22:39:57 +0000 (UTC)
+IronPort-SDR: dLs3sXzP/LexflPRciFlwQbiBfplfu3USd2mVZ6SO0JZRC7a/J58QCfOW1PWz/eSZalgWZPxQ0
+ hojvI4xowrnw==
+X-IronPort-AV: E=McAfee;i="6000,8403,9786"; a="232185244"
+X-IronPort-AV: E=Sophos;i="5.77,421,1596524400"; d="scan'208";a="232185244"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Oct 2020 15:32:25 -0700
-IronPort-SDR: RGFUZ7Q1sfCSx7AhZsKlHwlgmeO4K4VwELDT49/iKtE9HUkIKs1+lnFvtunxAK3+bmIGW+XSmG
- Yqbe3+HFJQEQ==
-X-IronPort-AV: E=Sophos;i="5.77,421,1596524400"; d="scan'208";a="322704627"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Oct 2020 15:39:56 -0700
+IronPort-SDR: EwHXYhEzdHYhC4meF1/iP5+sBYE0siiixPuf3yRbXt29rXCpTVzPdFQo1CSj7kHntbMYow4kmw
+ G6daEWw7h1CQ==
+X-IronPort-AV: E=Sophos;i="5.77,421,1596524400"; d="scan'208";a="468082551"
 Received: from labuser-z97x-ud5h.jf.intel.com (HELO labuser-Z97X-UD5H)
  ([10.165.21.211])
- by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Oct 2020 15:32:25 -0700
-Date: Mon, 26 Oct 2020 15:34:17 -0700
+ by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Oct 2020 15:39:56 -0700
+Date: Mon, 26 Oct 2020 15:41:48 -0700
 From: "Navare, Manasi" <manasi.d.navare@intel.com>
 To: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-Message-ID: <20201026223417.GE25941@labuser-Z97X-UD5H>
+Message-ID: <20201026224148.GF25941@labuser-Z97X-UD5H>
 References: <20201022054223.25071-1-manasi.d.navare@intel.com>
  <20201022054223.25071-11-manasi.d.navare@intel.com>
  <20201026201854.GL6112@intel.com>
@@ -58,10 +58,6 @@ Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-
-@Ville, assuming no comments or concerns as a Ack By you on this
-
-Manasi
 
 On Mon, Oct 26, 2020 at 10:18:54PM +0200, Ville Syrj=E4l=E4 wrote:
 > On Wed, Oct 21, 2020 at 10:42:21PM -0700, Manasi Navare wrote:
@@ -316,7 +312,13 @@ e);
 
 > somewhere before we do the plane->check() stuff. I guess start
 > of intel_atomic_check_planes() could be the right spot.
-> =
+>
+
+Yes may be but honestly I leave this optimization/change to the original
+author Maarten or you as a follow up
+
+Manasi
+ =
 
 > > +	}
 > > +	return 0;
