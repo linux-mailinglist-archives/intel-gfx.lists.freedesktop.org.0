@@ -2,58 +2,64 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4985929A7FC
-	for <lists+intel-gfx@lfdr.de>; Tue, 27 Oct 2020 10:36:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3D68929A839
+	for <lists+intel-gfx@lfdr.de>; Tue, 27 Oct 2020 10:50:32 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3534289CA0;
-	Tue, 27 Oct 2020 09:36:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F07E66E219;
+	Tue, 27 Oct 2020 09:50:27 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-x442.google.com (mail-wr1-x442.google.com
- [IPv6:2a00:1450:4864:20::442])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 67D3B6E1A8
- for <intel-gfx@lists.freedesktop.org>; Tue, 27 Oct 2020 09:36:35 +0000 (UTC)
-Received: by mail-wr1-x442.google.com with SMTP id e17so1037190wru.12
- for <intel-gfx@lists.freedesktop.org>; Tue, 27 Oct 2020 02:36:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:in-reply-to;
- bh=oKyhhlggIzQZEALt6LDXbEGeExFCJKLngSO4q056TRw=;
- b=SgiGfHua4PGRBgKddAU9OCyQ6gEct1idFssRqSbWwjGRJqXG169x46PTmvdjQceWZf
- fk5dAtJxunjnhbD4rbCsNxxDzknml/sX2Srv0TepflP0Th4ndJ/+cwJxg9Nb54onNn7a
- SioLMZC7T1foebo0tvNh9MYDlsSqwMmR1SUDo=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:in-reply-to;
- bh=oKyhhlggIzQZEALt6LDXbEGeExFCJKLngSO4q056TRw=;
- b=Zyl7lIiUBkhZw5SSQqFcrn5JikxW699FJClM6h0tB2Of/wZ9Yz4YI/0LDMdLchw4Wq
- PSVU2x7e/2Rn9mBgWOklBsK/h/9i+EtvBz3BF03YANYHYJz71URiKiytpKmDMi3YG9yA
- M1SNB6YXD6X9NZWb5myGRxST4dFDChDxxL52zvvQCQRc4d+Z5O19+w2+fG2/n+cDCdfk
- j+pDGz4VRldnT1TU0k3nG9ba426nrRlxf3NWbtCcdjxeW+W3VPdEFqvygTtiNnMU/AIL
- cUbjmdc9gsk+t2IqbnK7gc5Gr53ghJnXyrbKFyhDCJBcPeQ4MGayLb9MLOaIFCFTIsM9
- 4GwQ==
-X-Gm-Message-State: AOAM531HoSG1rLJMXzSGLF3XKQuU0WbYbCFKG6p0v1Psf54cY1anEPEQ
- cu/o6nQrZclMmpb3iVx7CjQiLQ==
-X-Google-Smtp-Source: ABdhPJzHD8U/7HI5c4wsPD1H08r/8tFlxpBIJaaJcDdq1QoqLSTpEsPUJ2pxSZrV6BQcS2YaZr5g8A==
-X-Received: by 2002:adf:c3c6:: with SMTP id d6mr1782755wrg.206.1603791394082; 
- Tue, 27 Oct 2020 02:36:34 -0700 (PDT)
-Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id u15sm1268718wrm.77.2020.10.27.02.36.32
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 27 Oct 2020 02:36:33 -0700 (PDT)
-Date: Tue, 27 Oct 2020 10:36:31 +0100
-From: Daniel Vetter <daniel@ffwll.ch>
-To: DRI Development <dri-devel@lists.freedesktop.org>
-Message-ID: <20201027093631.GJ401619@phenom.ffwll.local>
-References: <20201023123925.2374863-1-daniel.vetter@ffwll.ch>
- <20201023123925.2374863-3-daniel.vetter@ffwll.ch>
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CAA836E03F;
+ Tue, 27 Oct 2020 09:50:25 +0000 (UTC)
+IronPort-SDR: RV3TBTjK7yPnmbi7qCwcIJrfNSbBVko39V1agiu+D9SEL3lj8nIafOgIeXGvdfk4cnnFsc+cK9
+ UoCXqt0WkvcQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9786"; a="147337270"
+X-IronPort-AV: E=Sophos;i="5.77,423,1596524400"; d="scan'208";a="147337270"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Oct 2020 02:50:25 -0700
+IronPort-SDR: qMCcsfCv7LcXekTU/FKXjKqMgkKZYiw4Jv8CPir+TvgmB4iHfiAfmIdq9P2QcIWSqhtaPOWQII
+ iPoa/dfj4AcQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.77,423,1596524400"; d="scan'208";a="350223557"
+Received: from fmsmsx606.amr.corp.intel.com ([10.18.126.86])
+ by orsmga008.jf.intel.com with ESMTP; 27 Oct 2020 02:50:24 -0700
+Received: from bgsmsx603.gar.corp.intel.com (10.109.78.82) by
+ fmsmsx606.amr.corp.intel.com (10.18.126.86) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1713.5; Tue, 27 Oct 2020 02:50:23 -0700
+Received: from bgsmsx604.gar.corp.intel.com (10.67.234.6) by
+ BGSMSX603.gar.corp.intel.com (10.109.78.82) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1713.5; Tue, 27 Oct 2020 15:20:21 +0530
+Received: from bgsmsx604.gar.corp.intel.com ([10.67.234.6]) by
+ BGSMSX604.gar.corp.intel.com ([10.67.234.6]) with mapi id 15.01.1713.004;
+ Tue, 27 Oct 2020 15:20:21 +0530
+From: "Shankar, Uma" <uma.shankar@intel.com>
+To: "Gupta, Anshuman" <anshuman.gupta@intel.com>
+Thread-Topic: [PATCH v3 14/16] drm/i915/hdcp: Add HDCP 2.2 stream register
+Thread-Index: AQHWqTkItgbYgdwjiEOXz7Jf5LPbkKmrClsQ///FSICAAGlvIA==
+Date: Tue, 27 Oct 2020 09:50:21 +0000
+Message-ID: <38f7ba3e3ff348928c959864e1f1c3ec@intel.com>
+References: <20201023122112.15265-1-anshuman.gupta@intel.com>
+ <20201023122112.15265-15-anshuman.gupta@intel.com>
+ <3b7df974286b4497ba31ad4a554062e0@intel.com>
+ <20201027085704.GG29526@intel.com>
+In-Reply-To: <20201027085704.GG29526@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+dlp-product: dlpe-windows
+dlp-reaction: no-action
+dlp-version: 11.5.1.3
+x-originating-ip: [10.223.10.1]
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20201023123925.2374863-3-daniel.vetter@ffwll.ch>
-X-Operating-System: Linux phenom 5.7.0-1-amd64 
-Subject: Re: [Intel-gfx] [PATCH 3/3] drm/doc: Document legacy_cursor_update
- better
+Subject: Re: [Intel-gfx] [PATCH v3 14/16] drm/i915/hdcp: Add HDCP 2.2 stream
+ register
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,93 +72,128 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: David Airlie <airlied@linux.ie>, Daniel Vetter <daniel.vetter@ffwll.ch>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Daniel Vetter <daniel.vetter@intel.com>
+Cc: "Nikula, Jani" <jani.nikula@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ "seanpaul@chromium.org" <seanpaul@chromium.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Oct 23, 2020 at 02:39:25PM +0200, Daniel Vetter wrote:
-> It's the horror and shouldn't be used. Realized we're not clear on
-> this in a discussion with Rob about what msm is doing to better
-> support async commits.
-> 
-> v2: Refine existing todo item to include this (Thomas)
-> 
-> Cc: Sean Paul <sean@poorly.run>
-> Cc: Rob Clark <robdclark@gmail.com>
-> Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
-> Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-> Cc: Maxime Ripard <mripard@kernel.org>
-> Cc: Thomas Zimmermann <tzimmermann@suse.de>
-> Cc: David Airlie <airlied@linux.ie>
-> Cc: Daniel Vetter <daniel@ffwll.ch>
 
-Pushed this one with Rob's irc-ack, since the functional changes will take
-a bit longer to figure out.
--Daniel
 
-> ---
->  Documentation/gpu/todo.rst |  4 ++++
->  include/drm/drm_atomic.h   | 12 +++++++++++-
->  2 files changed, 15 insertions(+), 1 deletion(-)
+> -----Original Message-----
+> From: Anshuman Gupta <anshuman.gupta@intel.com>
+> Sent: Tuesday, October 27, 2020 2:27 PM
+> To: Shankar, Uma <uma.shankar@intel.com>
+> Cc: intel-gfx@lists.freedesktop.org; dri-devel@lists.freedesktop.org;
+> seanpaul@chromium.org; Nikula, Jani <jani.nikula@intel.com>; C, Ramalingam
+> <ramalingam.c@intel.com>; Li, Juston <juston.li@intel.com>
+> Subject: Re: [PATCH v3 14/16] drm/i915/hdcp: Add HDCP 2.2 stream register
 > 
-> diff --git a/Documentation/gpu/todo.rst b/Documentation/gpu/todo.rst
-> index 700637e25ecd..6b224ef14455 100644
-> --- a/Documentation/gpu/todo.rst
-> +++ b/Documentation/gpu/todo.rst
-> @@ -105,6 +105,10 @@ converted over to the new infrastructure.
->  One issue with the helpers is that they require that drivers handle completion
->  events for atomic commits correctly. But fixing these bugs is good anyway.
->  
-> +Somewhat related is the legacy_cursor_update hack, which should be replaced with
-> +the new atomic_async_check/commit functionality in the helpers in drivers that
-> +still look at that flag.
-> +
->  Contact: Daniel Vetter, respective driver maintainers
->  
->  Level: Advanced
-> diff --git a/include/drm/drm_atomic.h b/include/drm/drm_atomic.h
-> index d07c851d255b..413fd0ca56a8 100644
-> --- a/include/drm/drm_atomic.h
-> +++ b/include/drm/drm_atomic.h
-> @@ -308,7 +308,6 @@ struct __drm_private_objs_state {
->   * struct drm_atomic_state - the global state object for atomic updates
->   * @ref: count of all references to this state (will not be freed until zero)
->   * @dev: parent DRM device
-> - * @legacy_cursor_update: hint to enforce legacy cursor IOCTL semantics
->   * @async_update: hint for asynchronous plane update
->   * @planes: pointer to array of structures with per-plane data
->   * @crtcs: pointer to array of CRTC pointers
-> @@ -336,6 +335,17 @@ struct drm_atomic_state {
->  	 * drm_atomic_crtc_needs_modeset().
->  	 */
->  	bool allow_modeset : 1;
-> +	/**
-> +	 * @legacy_cursor_update:
-> +	 *
-> +	 * Hint to enforce legacy cursor IOCTL semantics.
-> +	 *
-> +	 * WARNING: This is thoroughly broken and pretty much impossible to
-> +	 * implement correctly. Drivers must ignore this and should instead
-> +	 * implement &drm_plane_helper_funcs.atomic_async_check and
-> +	 * &drm_plane_helper_funcs.atomic_async_commit hooks. New users of this
-> +	 * flag are not allowed.
-> +	 */
->  	bool legacy_cursor_update : 1;
->  	bool async_update : 1;
->  	/**
-> -- 
-> 2.28.0
-> 
+> On 2020-10-27 at 12:41:41 +0530, Shankar, Uma wrote:
+> >
+> >
+> > > -----Original Message-----
+> > > From: Anshuman Gupta <anshuman.gupta@intel.com>
+> > > Sent: Friday, October 23, 2020 5:51 PM
+> > > To: intel-gfx@lists.freedesktop.org; dri-devel@lists.freedesktop.org
+> > > Cc: seanpaul@chromium.org; Nikula, Jani <jani.nikula@intel.com>; C,
+> > > Ramalingam <ramalingam.c@intel.com>; Li, Juston
+> > > <juston.li@intel.com>; Shankar, Uma <uma.shankar@intel.com>; Gupta,
+> > > Anshuman <anshuman.gupta@intel.com>
+> > > Subject: [PATCH v3 14/16] drm/i915/hdcp: Add HDCP 2.2 stream
+> > > register
+> > >
+> > > Add HDCP 2.2 DP MST HDCP2_STREAM_STATUS and HDCP2_AUTH_STREAM
+> > > register in i915_reg header.
+> > >
+> > > Cc: Ramalingam C <ramalingam.c@intel.com>
+> > > Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
+> > > ---
+> > >  drivers/gpu/drm/i915/i915_reg.h | 30 ++++++++++++++++++++++++++++++
+> > >  1 file changed, 30 insertions(+)
+> > >
+> > > diff --git a/drivers/gpu/drm/i915/i915_reg.h
+> > > b/drivers/gpu/drm/i915/i915_reg.h index 86a9a5145e47..cb6ec2c241f2
+> > > 100644
+> > > --- a/drivers/gpu/drm/i915/i915_reg.h
+> > > +++ b/drivers/gpu/drm/i915/i915_reg.h
+> > > @@ -9882,6 +9882,7 @@ enum skl_power_gate {
+> > >  					  _PORTD_HDCP2_BASE, \
+> > >  					  _PORTE_HDCP2_BASE, \
+> > >  					  _PORTF_HDCP2_BASE) + (x))
+> > > +
+> > >  #define PORT_HDCP2_AUTH(port)		_PORT_HDCP2_BASE(port, 0x98)
+> > >  #define _TRANSA_HDCP2_AUTH		0x66498
+> > >  #define _TRANSB_HDCP2_AUTH		0x66598
+> > > @@ -9921,6 +9922,35 @@ enum skl_power_gate {
+> > >  					 TRANS_HDCP2_STATUS(trans) : \
+> > >  					 PORT_HDCP2_STATUS(port))
+> > >
+> > > +#define PORT_HDCP2_STREAM_STATUS(port)
+> 	_PORT_HDCP2_BASE(port,
+> > > 0xC0)
+> > > +#define _TRANSA_HDCP2_STREAM_STATUS		0x664C0
+> > > +#define _TRANSB_HDCP2_STREAM_STATUS		0x665C0
+> > > +#define TRANS_HDCP2_STREAM_STATUS(trans)	_MMIO_TRANS(trans, \
+> > > +
+> > > _TRANSA_HDCP2_STREAM_STATUS, \
+> > > +
+> > > _TRANSB_HDCP2_STREAM_STATUS)
+> > > +#define   STREAM_ENCRYPTION_STATUS	BIT(31)
+> > > +#define   STREAM_TYPE_STATUS		BIT(30)
+> > > +#define HDCP2_STREAM_STATUS(dev_priv, trans, port) \
+> > > +					(INTEL_GEN(dev_priv) >= 12 ? \
+> > > +					 TRANS_HDCP2_STREAM_STATUS(trans) :
+> > > \
+> > > +					 PORT_HDCP2_STREAM_STATUS(port))
+> > > +
+> > > +#define _PORTA_HDCP2_AUTH_STREAM		0x66F00
+> > > +#define _PORTB_HDCP2_AUTH_STREAM		0x66F04
+> > > +#define PORT_HDCP2_AUTH_STREAM(port)	_MMIO_PORT(port, \
+> > > +
+> > > _PORTA_HDCP2_AUTH_STREAM, \
+> > > +
+> > > _PORTB_HDCP2_AUTH_STREAM)
+> >
+> > Should it also not be defined as the other counterparts for pre Gen12.
+> It has already been defined with Gen12 and Pre Gen12 annotation below
+> HDCP2_AUTH_STREAM should TRANS_HDCP2_AUTH_STREAM for Gen12 and
+> PORT_HDCP2_AUTH_STREAM for pre Gen12.
+> Is it something else u find it is missing ?
 
--- 
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
+I was checking the declarations similar to
+#define PORT_HDCP2_AUTH(port)		_PORT_HDCP2_BASE(port, 0x98)
+
+But as discussed offline, this set is placed at different register group then the rest of
+HDCP regs. So this looks good.
+
+Reviewed-by: Uma Shankar <uma.shankar@intel.com>
+
+> Thanks,
+> Anshuman.
+> >
+> > > +#define _TRANSA_HDCP2_AUTH_STREAM		0x66F00
+> > > +#define _TRANSB_HDCP2_AUTH_STREAM		0x66F04
+> > > +#define TRANS_HDCP2_AUTH_STREAM(trans)	_MMIO_TRANS(trans, \
+> > > +
+> > > _TRANSA_HDCP2_AUTH_STREAM, \
+> > > +
+> > > _TRANSB_HDCP2_AUTH_STREAM)
+> > > +#define   AUTH_STREAM_TYPE		BIT(31)
+> > > +#define HDCP2_AUTH_STREAM(dev_priv, trans, port) \
+> > > +					(INTEL_GEN(dev_priv) >= 12 ? \
+> > > +					 TRANS_HDCP2_AUTH_STREAM(trans) : \
+> > > +					 PORT_HDCP2_AUTH_STREAM(port))
+> > > +
+> > >  /* Per-pipe DDI Function Control */
+> > >  #define _TRANS_DDI_FUNC_CTL_A		0x60400
+> > >  #define _TRANS_DDI_FUNC_CTL_B		0x61400
+> > > --
+> > > 2.26.2
+> >
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
