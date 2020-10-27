@@ -2,42 +2,41 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5A82329CA91
-	for <lists+intel-gfx@lfdr.de>; Tue, 27 Oct 2020 21:45:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id AE54A29CA90
+	for <lists+intel-gfx@lfdr.de>; Tue, 27 Oct 2020 21:45:15 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BBF836E0E1;
-	Tue, 27 Oct 2020 20:45:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BD6846EC48;
+	Tue, 27 Oct 2020 20:45:13 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DCE2B6E0E1
- for <intel-gfx@lists.freedesktop.org>; Tue, 27 Oct 2020 20:45:32 +0000 (UTC)
-IronPort-SDR: x5xZ9Dcs+Zi6cwXjlBY+rivBqK/P0Zx+Yssna/tevTNQ6QTrfqJATd7TPNvpdsYyn1RyGHv/nA
- kDkOYULsiLxg==
-X-IronPort-AV: E=McAfee;i="6000,8403,9787"; a="155129219"
-X-IronPort-AV: E=Sophos;i="5.77,424,1596524400"; d="scan'208";a="155129219"
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5AD746E0E1;
+ Tue, 27 Oct 2020 20:45:12 +0000 (UTC)
+IronPort-SDR: +HyX+BMU1+YT/dE/sR4ZRBK+dVH30EOe4uUQr7HI5TZi4V1c8VfH5CkOHSl8qfKpUhVjUkJf4M
+ a98CDnuUUlnQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9787"; a="232344468"
+X-IronPort-AV: E=Sophos;i="5.77,424,1596524400"; d="scan'208";a="232344468"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Oct 2020 13:45:32 -0700
-IronPort-SDR: G+1ZhUnW0diwIUcoBZ8V9r5Pv8qfccn2ZRJyT2RxKtW8OjXNy2H3nOOsR1nYQxb6z28TfxSCry
- PTiwJMFG5WkQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.77,424,1596524400"; d="scan'208";a="304019138"
-Received: from gaia.fi.intel.com ([10.237.72.192])
- by fmsmga007.fm.intel.com with ESMTP; 27 Oct 2020 13:45:31 -0700
-Received: by gaia.fi.intel.com (Postfix, from userid 1000)
- id 35DB35C2054; Tue, 27 Oct 2020 22:43:48 +0200 (EET)
-From: Mika Kuoppala <mika.kuoppala@linux.intel.com>
-To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
-In-Reply-To: <20201027184759.29888-1-chris@chris-wilson.co.uk>
-References: <20201027184759.29888-1-chris@chris-wilson.co.uk>
-Date: Tue, 27 Oct 2020 22:43:48 +0200
-Message-ID: <87d013qu0r.fsf@gaia.fi.intel.com>
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Oct 2020 13:45:11 -0700
+IronPort-SDR: abqokq2LiQoTEfObRgtfetkPxn0sDJeXXCKukszge/U+O6WiqT6d0ADSMnEQq0EIHSHjR+jxj9
+ A1Lbw9dpdhcw==
+X-IronPort-AV: E=Sophos;i="5.77,424,1596524400"; d="scan'208";a="355679204"
+Received: from rdvivi-losangeles.jf.intel.com (HELO intel.com)
+ ([10.165.21.201])
+ by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Oct 2020 13:45:11 -0700
+Date: Tue, 27 Oct 2020 16:46:43 -0400
+From: Rodrigo Vivi <rodrigo.vivi@intel.com>
+To: Zhenyu Wang <zhenyuw@linux.intel.com>
+Message-ID: <20201027204643.GE3771340@intel.com>
+References: <20201027031740.GA27141@zhen-hp.sh.intel.com>
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/gem: Avoid synchronous binds deep
- within locks
+Content-Disposition: inline
+In-Reply-To: <20201027031740.GA27141@zhen-hp.sh.intel.com>
+Subject: Re: [Intel-gfx] [PULL] gvt-fixes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,47 +49,66 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Jani Nikula <jani.nikula@intel.com>,
+ intel-gfx <intel-gfx@lists.freedesktop.org>, "Yuan,
+ Hang" <hang.yuan@intel.com>, "Lv, Zhiyuan" <zhiyuan.lv@intel.com>,
+ intel-gvt-dev <intel-gvt-dev@lists.freedesktop.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Chris Wilson <chris@chris-wilson.co.uk> writes:
+On Tue, Oct 27, 2020 at 11:17:40AM +0800, Zhenyu Wang wrote:
+> 
+> Hi,
+> 
+> Here's first gvt fixes for 5.10 which includes more vGPU
+> suspend/resume fix in HWSP reset handling, and also fix for host i915
+> suspend regression when vGPU is created (not need to be active), and
+> one workaround for APL guest hang issue.
 
-> On bxt, we require a VT'd w/a to serialise all GGTT updates with memory
-> transfers, and use stop_machine() for this purpose. stop_machine() is a
-> global serialisation barrier and so dangerous to use from within
-> critical sections, as the stop_machine() will wait for all cpus to enter
-> the stop_machine callback, and those cpus may be waiting for the
-> critical section already held.
->
-> Fixes: d7085b0faac8 ("drm/i915/gem: Poison stolen pages before use")
-> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-> Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+pulled to drm-intel-fixes
+thanks
 
-Reviewed-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
-
-> ---
->  drivers/gpu/drm/i915/gem/i915_gem_stolen.c | 3 +++
->  1 file changed, 3 insertions(+)
->
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_stolen.c b/drivers/gpu/drm/i915/gem/i915_gem_stolen.c
-> index 4f923b8c43fb..29bffc6afcc1 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_stolen.c
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_stolen.c
-> @@ -505,6 +505,9 @@ static void dbg_poison(struct i915_ggtt *ggtt,
->  	if (!drm_mm_node_allocated(&ggtt->error_capture))
->  		return;
->  
-> +	if (ggtt->vm.bind_async_flags & I915_VMA_GLOBAL_BIND)
-> +		return; /* beware stop_machine() inversion */
-> +
->  	GEM_BUG_ON(!IS_ALIGNED(size, PAGE_SIZE));
->  
->  	mutex_lock(&ggtt->error_mutex);
+> 
+> Thanks
+> --
+> The following changes since commit 16cce04cdb200ba905d1241b425ac48da5a9ace5:
+> 
+>   drm/i915/selftests: Push the fake iommu device from the stack to data (2020-09-23 10:15:46 +0300)
+> 
+> are available in the Git repository at:
+> 
+>   https://github.com/intel/gvt-linux tags/gvt-fixes-2020-10-27
+> 
+> for you to fetch changes up to 401ccfa87856656b874c737522ea92721394a348:
+> 
+>   drm/i915/gvt: Only pin/unpin intel_context along with workload (2020-10-19 16:54:28 +0800)
+> 
+> ----------------------------------------------------------------
+> gvt-fixes-2020-10-27
+> 
+> - Fix HWSP reset handling during vGPU suspend/resume (Colin)
+> - Apply flush workaround on APL now for possible guest hang (Colin)
+> - Fix vGPU context pin/unpin also for host suspend regression with
+>   vGPU created (Colin)
+> 
+> ----------------------------------------------------------------
+> Colin Xu (3):
+>       drm/i915/gvt: Allow zero out HWSP addr on hws_pga_write
+>       drm/i915/gvt: Set SNOOP for PAT3 on BXT/APL to workaround GPU BB hang
+>       drm/i915/gvt: Only pin/unpin intel_context along with workload
+> 
+>  drivers/gpu/drm/i915/gvt/handlers.c  | 35 +++++++++++++++++++++++++++++++++--
+>  drivers/gpu/drm/i915/gvt/scheduler.c | 15 ++++++++-------
+>  2 files changed, 41 insertions(+), 9 deletions(-)
+> 
+> 
 > -- 
-> 2.20.1
+> 
+> $gpg --keyserver wwwkeys.pgp.net --recv-keys 4D781827
+
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
