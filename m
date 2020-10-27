@@ -2,45 +2,42 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4667A29CA80
-	for <lists+intel-gfx@lfdr.de>; Tue, 27 Oct 2020 21:41:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5A82329CA91
+	for <lists+intel-gfx@lfdr.de>; Tue, 27 Oct 2020 21:45:36 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B44B76EC52;
-	Tue, 27 Oct 2020 20:41:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BBF836E0E1;
+	Tue, 27 Oct 2020 20:45:34 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7DD906EC48
- for <intel-gfx@lists.freedesktop.org>; Tue, 27 Oct 2020 20:41:22 +0000 (UTC)
-IronPort-SDR: MGuS3vt2jRP96d3/sO8zOkvQGPyYcxzKtR9Bs+giOy9xqHy4+MqL30OR2z94kGwYl8AYJv6ji3
- Op44yYDjg1yA==
-X-IronPort-AV: E=McAfee;i="6000,8403,9787"; a="252859476"
-X-IronPort-AV: E=Sophos;i="5.77,424,1596524400"; d="scan'208";a="252859476"
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DCE2B6E0E1
+ for <intel-gfx@lists.freedesktop.org>; Tue, 27 Oct 2020 20:45:32 +0000 (UTC)
+IronPort-SDR: x5xZ9Dcs+Zi6cwXjlBY+rivBqK/P0Zx+Yssna/tevTNQ6QTrfqJATd7TPNvpdsYyn1RyGHv/nA
+ kDkOYULsiLxg==
+X-IronPort-AV: E=McAfee;i="6000,8403,9787"; a="155129219"
+X-IronPort-AV: E=Sophos;i="5.77,424,1596524400"; d="scan'208";a="155129219"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Oct 2020 13:41:22 -0700
-IronPort-SDR: hNI7pFkHNHzeHT4aHQPnoSJJzMB+6ea5lAVaKZ1lq+kEl4S6srQj2VKwBiQkD+aurwz6J9PO+d
- XGf4npb3d15w==
-X-IronPort-AV: E=Sophos;i="5.77,424,1596524400"; d="scan'208";a="350736312"
-Received: from labuser-z97x-ud5h.jf.intel.com (HELO labuser-Z97X-UD5H)
- ([10.165.21.211])
- by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Oct 2020 13:41:21 -0700
-Date: Tue, 27 Oct 2020 13:43:15 -0700
-From: "Navare, Manasi" <manasi.d.navare@intel.com>
-To: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-Message-ID: <20201027204315.GA29088@labuser-Z97X-UD5H>
-References: <20201027193034.28721-1-manasi.d.navare@intel.com>
- <20201027193034.28721-5-manasi.d.navare@intel.com>
- <20201027200920.GS6112@intel.com>
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Oct 2020 13:45:32 -0700
+IronPort-SDR: G+1ZhUnW0diwIUcoBZ8V9r5Pv8qfccn2ZRJyT2RxKtW8OjXNy2H3nOOsR1nYQxb6z28TfxSCry
+ PTiwJMFG5WkQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.77,424,1596524400"; d="scan'208";a="304019138"
+Received: from gaia.fi.intel.com ([10.237.72.192])
+ by fmsmga007.fm.intel.com with ESMTP; 27 Oct 2020 13:45:31 -0700
+Received: by gaia.fi.intel.com (Postfix, from userid 1000)
+ id 35DB35C2054; Tue, 27 Oct 2020 22:43:48 +0200 (EET)
+From: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
+In-Reply-To: <20201027184759.29888-1-chris@chris-wilson.co.uk>
+References: <20201027184759.29888-1-chris@chris-wilson.co.uk>
+Date: Tue, 27 Oct 2020 22:43:48 +0200
+Message-ID: <87d013qu0r.fsf@gaia.fi.intel.com>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20201027200920.GS6112@intel.com>
-User-Agent: Mutt/1.5.24 (2015-08-30)
-Subject: Re: [Intel-gfx] [PATCH 4/5] drm/i915/dp: Call hw.adjusted_mode as
- hw_mode for clarity
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/gem: Avoid synchronous binds deep
+ within locks
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,95 +50,47 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Cc: Chris Wilson <chris@chris-wilson.co.uk>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Oct 27, 2020 at 10:09:20PM +0200, Ville Syrj=E4l=E4 wrote:
-> On Tue, Oct 27, 2020 at 12:30:33PM -0700, Manasi Navare wrote:
-> > No functional changes just use hw_mode to retrive
-> > hw.adjusted_mode during HW state readout for clarity
-> > in bigjoiner case.
-> =
+Chris Wilson <chris@chris-wilson.co.uk> writes:
 
-> Still don't understnad what this has to do with bigjoiner. Looks
-> like a simple introduction of a strangely named local variable to
-> me?
+> On bxt, we require a VT'd w/a to serialise all GGTT updates with memory
+> transfers, and use stop_machine() for this purpose. stop_machine() is a
+> global serialisation barrier and so dangerous to use from within
+> critical sections, as the stop_machine() will wait for all cpus to enter
+> the stop_machine callback, and those cpus may be waiting for the
+> critical section already held.
+>
+> Fixes: d7085b0faac8 ("drm/i915/gem: Poison stolen pages before use")
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
 
-SHould I just drop this then? Or just reword the commit message to remove
-bigjoiner related stuff?
+Reviewed-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
 
-Manasi
-> =
-
-> > =
-
-> > Signed-off-by: Manasi Navare <manasi.d.navare@intel.com>
-> > ---
-> >  drivers/gpu/drm/i915/display/intel_display.c | 22 +++++++++++---------
-> >  1 file changed, 12 insertions(+), 10 deletions(-)
-> > =
-
-> > diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu=
-/drm/i915/display/intel_display.c
-> > index cabda5a02e9e..b000dd68977f 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_display.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> > @@ -9119,20 +9119,22 @@ static void intel_get_pipe_src_size(struct inte=
-l_crtc *crtc,
-> >  void intel_mode_from_pipe_config(struct drm_display_mode *mode,
-> >  				 struct intel_crtc_state *pipe_config)
-> >  {
-> > -	mode->hdisplay =3D pipe_config->hw.adjusted_mode.crtc_hdisplay;
-> > -	mode->htotal =3D pipe_config->hw.adjusted_mode.crtc_htotal;
-> > -	mode->hsync_start =3D pipe_config->hw.adjusted_mode.crtc_hsync_start;
-> > -	mode->hsync_end =3D pipe_config->hw.adjusted_mode.crtc_hsync_end;
-> > +	struct drm_display_mode *hw_mode =3D &pipe_config->hw.adjusted_mode;
-> >  =
-
-> > -	mode->vdisplay =3D pipe_config->hw.adjusted_mode.crtc_vdisplay;
-> > -	mode->vtotal =3D pipe_config->hw.adjusted_mode.crtc_vtotal;
-> > -	mode->vsync_start =3D pipe_config->hw.adjusted_mode.crtc_vsync_start;
-> > -	mode->vsync_end =3D pipe_config->hw.adjusted_mode.crtc_vsync_end;
-> > +	mode->hdisplay =3D hw_mode->crtc_hdisplay;
-> > +	mode->htotal =3D hw_mode->crtc_htotal;
-> > +	mode->hsync_start =3D hw_mode->crtc_hsync_start;
-> > +	mode->hsync_end =3D hw_mode->crtc_hsync_end;
-> >  =
-
-> > -	mode->flags =3D pipe_config->hw.adjusted_mode.flags;
-> > +	mode->vdisplay =3D hw_mode->crtc_vdisplay;
-> > +	mode->vtotal =3D hw_mode->crtc_vtotal;
-> > +	mode->vsync_start =3D hw_mode->crtc_vsync_start;
-> > +	mode->vsync_end =3D hw_mode->crtc_vsync_end;
-> > +
-> > +	mode->flags =3D hw_mode->flags;
-> >  	mode->type =3D DRM_MODE_TYPE_DRIVER;
-> >  =
-
-> > -	mode->clock =3D pipe_config->hw.adjusted_mode.crtc_clock;
-> > +	mode->clock =3D hw_mode->crtc_clock;
-> >  =
-
-> >  	drm_mode_set_name(mode);
-> >  }
-> > -- =
-
-> > 2.19.1
-> > =
-
-> > _______________________________________________
-> > Intel-gfx mailing list
-> > Intel-gfx@lists.freedesktop.org
-> > https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-> =
-
-> -- =
-
-> Ville Syrj=E4l=E4
-> Intel
+> ---
+>  drivers/gpu/drm/i915/gem/i915_gem_stolen.c | 3 +++
+>  1 file changed, 3 insertions(+)
+>
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_stolen.c b/drivers/gpu/drm/i915/gem/i915_gem_stolen.c
+> index 4f923b8c43fb..29bffc6afcc1 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_stolen.c
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_stolen.c
+> @@ -505,6 +505,9 @@ static void dbg_poison(struct i915_ggtt *ggtt,
+>  	if (!drm_mm_node_allocated(&ggtt->error_capture))
+>  		return;
+>  
+> +	if (ggtt->vm.bind_async_flags & I915_VMA_GLOBAL_BIND)
+> +		return; /* beware stop_machine() inversion */
+> +
+>  	GEM_BUG_ON(!IS_ALIGNED(size, PAGE_SIZE));
+>  
+>  	mutex_lock(&ggtt->error_mutex);
+> -- 
+> 2.20.1
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
