@@ -1,61 +1,47 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3371B29C9D3
-	for <lists+intel-gfx@lfdr.de>; Tue, 27 Oct 2020 21:13:10 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id AD95929CA01
+	for <lists+intel-gfx@lfdr.de>; Tue, 27 Oct 2020 21:17:42 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7E29D6EC40;
-	Tue, 27 Oct 2020 20:13:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EEE2D6EC42;
+	Tue, 27 Oct 2020 20:17:39 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 69EE46EC40
- for <intel-gfx@lists.freedesktop.org>; Tue, 27 Oct 2020 20:13:07 +0000 (UTC)
-IronPort-SDR: m9sO2aJMMpsSZwa43rDPtKpQ/DdG6ggQnIQxTfg3tiuyQFi8gBvU93EV46cE8punFcjej6F+Mo
- 6QHvA2yFOM1w==
-X-IronPort-AV: E=McAfee;i="6000,8403,9787"; a="185905550"
-X-IronPort-AV: E=Sophos;i="5.77,424,1596524400"; d="scan'208";a="185905550"
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DDFA56EC42
+ for <intel-gfx@lists.freedesktop.org>; Tue, 27 Oct 2020 20:17:38 +0000 (UTC)
+IronPort-SDR: +VeuiukKJRzRMfTTH5TuzQ2P1ekeV90K2PiA24XJLPGcqIFOrVTy0mY+2ve/oH7W6+MloRFY6K
+ p+/ROeDFAv5w==
+X-IronPort-AV: E=McAfee;i="6000,8403,9787"; a="252856753"
+X-IronPort-AV: E=Sophos;i="5.77,424,1596524400"; d="scan'208";a="252856753"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Oct 2020 13:13:00 -0700
-IronPort-SDR: A1nZxx+5r9UtCd+VepnzQP3Y2nD7sn8ywSGKTDJhFToFVlriUe9xoDMmZlAItDlpaDIGqQqO7N
- lleTIbGfTLtA==
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Oct 2020 13:17:38 -0700
+IronPort-SDR: +O47tdQdGHAIPc1lMTIYPJZtYzPvm7HM8BxnA2w7DsXVGvuCQy5YgajJSbCpVULaSWlmaev3LO
+ GkzLU4MYuahQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.77,424,1596524400"; d="scan'208";a="355672070"
-Received: from irsmsx602.ger.corp.intel.com ([163.33.146.8])
- by fmsmga002.fm.intel.com with ESMTP; 27 Oct 2020 13:12:59 -0700
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- irsmsx602.ger.corp.intel.com (163.33.146.8) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1713.5; Tue, 27 Oct 2020 20:12:58 +0000
-Received: from orsmsx610.amr.corp.intel.com ([10.22.229.23]) by
- ORSMSX610.amr.corp.intel.com ([10.22.229.23]) with mapi id 15.01.1713.004;
- Tue, 27 Oct 2020 13:12:56 -0700
-From: "Souza, Jose" <jose.souza@intel.com>
-To: "Mun, Gwan-gyeong" <gwan-gyeong.mun@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Thread-Topic: [Intel-gfx] [PATCH 2/6] drm/i915/display/psr: Use plane damage
- clips to calculate damaged area
-Thread-Index: AQHWobRN4jSuhASKLEGmJvCD25Y0B6mq8yeAgAA444CAAUDtgA==
-Date: Tue, 27 Oct 2020 20:12:56 +0000
-Message-ID: <0933a0a5e71702638db60953baba781d6a6b8198.camel@intel.com>
-References: <20201013230121.331595-1-jose.souza@intel.com>
- <20201013230121.331595-2-jose.souza@intel.com>
- <39fe2eb7bb30de6eed687592f70f6652ca12e24f.camel@intel.com>
- <3ea6bf28fecf1d164fafa88ffdb7ec9d6c9c9b7f.camel@intel.com>
-In-Reply-To: <3ea6bf28fecf1d164fafa88ffdb7ec9d6c9c9b7f.camel@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.1.200.100]
-Content-ID: <8D8373B1536C4D4B87D2BCC613AF231A@intel.com>
+X-IronPort-AV: E=Sophos;i="5.77,424,1596524400"; d="scan'208";a="394603993"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
+ by orsmga001.jf.intel.com with SMTP; 27 Oct 2020 13:17:36 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Tue, 27 Oct 2020 22:17:35 +0200
+Date: Tue, 27 Oct 2020 22:17:35 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Manasi Navare <manasi.d.navare@intel.com>
+Message-ID: <20201027201735.GT6112@intel.com>
+References: <20201027193034.28721-1-manasi.d.navare@intel.com>
+ <20201027193034.28721-6-manasi.d.navare@intel.com>
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH 2/6] drm/i915/display/psr: Use plane damage
- clips to calculate damaged area
+Content-Disposition: inline
+In-Reply-To: <20201027193034.28721-6-manasi.d.navare@intel.com>
+X-Patchwork-Hint: comment
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: Re: [Intel-gfx] [PATCH 5/5] drm/i915/dp: Allow big joiner modes in
+ intel_dp_mode_valid(), v3.
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,107 +54,413 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gVHVlLCAyMDIwLTEwLTI3IGF0IDAxOjA0ICswMDAwLCBTb3V6YSwgSm9zZSB3cm90ZToNCj4g
-T24gTW9uLCAyMDIwLTEwLTI2IGF0IDIxOjQwICswMDAwLCBNdW4sIEd3YW4tZ3llb25nIHdyb3Rl
-Og0KPiA+IE9uIFR1ZSwgMjAyMC0xMC0xMyBhdCAxNjowMSAtMDcwMCwgSm9zw6kgUm9iZXJ0byBk
-ZSBTb3V6YSB3cm90ZToNCj4gPiA+IE5vdyB1c2luZyBwbGFuZSBkYW1hZ2UgY2xpcHMgcHJvcGVy
-dHkgdG8gY2FsY3VhbHRlIHRoZSBkYW1hZ2VkIGFyZWEuDQo+ID4gPiBTZWxlY3RpdmUgZmV0Y2gg
-b25seSBzdXBwb3J0cyBvbmUgcmVnaW9uIHRvIGJlIGZldGNoZWQgc28gc29mdHdhcmUNCj4gPiA+
-IG5lZWRzIHRvIGNhbGN1bGF0ZSBhIGJvdW5kaW5nIGJveCBhcm91bmQgYWxsIGRhbWFnZSBjbGlw
-cy4NCj4gPiA+IA0KPiA+ID4gQ2M6IFZpbGxlIFN5cmrDpGzDpCA8dmlsbGUuc3lyamFsYUBsaW51
-eC5pbnRlbC5jb20+DQo+ID4gPiBDYzogR3dhbi1neWVvbmcgTXVuIDxnd2FuLWd5ZW9uZy5tdW5A
-aW50ZWwuY29tPg0KPiA+ID4gU2lnbmVkLW9mZi1ieTogSm9zw6kgUm9iZXJ0byBkZSBTb3V6YSA8
-am9zZS5zb3V6YUBpbnRlbC5jb20+DQo+ID4gPiAtLS0NCj4gPiA+IMKgZHJpdmVycy9ncHUvZHJt
-L2k5MTUvZGlzcGxheS9pbnRlbF9wc3IuYyB8IDU0ICsrKysrKysrKysrKysrKysrKysrKy0NCj4g
-PiA+IC0tDQo+ID4gPiDCoDEgZmlsZSBjaGFuZ2VkLCA0OSBpbnNlcnRpb25zKCspLCA1IGRlbGV0
-aW9ucygtKQ0KPiA+ID4gDQo+ID4gPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUv
-ZGlzcGxheS9pbnRlbF9wc3IuYw0KPiA+ID4gYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5
-L2ludGVsX3Bzci5jDQo+ID4gPiBpbmRleCA3NzNhNWI1ZmEwNzguLjBmMWU5ZjBmYTU3ZiAxMDA2
-NDQNCj4gPiA+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfcHNyLmMN
-Cj4gPiA+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfcHNyLmMNCj4g
-PiA+IEBAIC0xMjczLDYgKzEyNzMsOSBAQCBpbnQgaW50ZWxfcHNyMl9zZWxfZmV0Y2hfdXBkYXRl
-KHN0cnVjdA0KPiA+ID4gaW50ZWxfYXRvbWljX3N0YXRlICpzdGF0ZSwNCj4gPiA+IMKgCWZvcl9l
-YWNoX29sZG5ld19pbnRlbF9wbGFuZV9pbl9zdGF0ZShzdGF0ZSwgcGxhbmUsDQo+ID4gPiBvbGRf
-cGxhbmVfc3RhdGUsDQo+ID4gPiDCoAkJCQkJICAgICBuZXdfcGxhbmVfc3RhdGUsIGkpIHsNCj4g
-PiA+IMKgCQlzdHJ1Y3QgZHJtX3JlY3QgKnNlbF9mZXRjaF9hcmVhLCB0ZW1wOw0KPiA+ID4gKwkJ
-c3RydWN0IGRybV9tb2RlX3JlY3QgKmRhbWFnZWRfY2xpcHM7DQo+ID4gPiArCQl1MzIgbnVtX2Ns
-aXBzOw0KPiA+ID4gKwkJaW50IGo7DQo+ID4gPiDCoA0KPiA+ID4gDQo+ID4gPiANCj4gPiA+IA0K
-PiA+ID4gwqAJCWlmIChuZXdfcGxhbmVfc3RhdGUtPnVhcGkuY3J0YyAhPSBjcnRjX3N0YXRlLQ0K
-PiA+ID4gPiB1YXBpLmNydGMpDQo+ID4gPiDCoAkJCWNvbnRpbnVlOw0KPiA+ID4gQEAgLTEyOTEs
-MTMgKzEyOTQsNTQgQEAgaW50IGludGVsX3BzcjJfc2VsX2ZldGNoX3VwZGF0ZShzdHJ1Y3QNCj4g
-PiA+IGludGVsX2F0b21pY19zdGF0ZSAqc3RhdGUsDQo+ID4gPiDCoAkJaWYgKCFuZXdfcGxhbmVf
-c3RhdGUtPnVhcGkudmlzaWJsZSkNCj4gPiA+IMKgCQkJY29udGludWU7DQo+ID4gPiDCoA0KPiA+
-ID4gDQo+ID4gPiANCj4gPiA+IA0KPiA+ID4gKwkJc2VsX2ZldGNoX2FyZWEgPSAmbmV3X3BsYW5l
-X3N0YXRlLT5wc3IyX3NlbF9mZXRjaF9hcmVhOw0KPiA+ID4gKwkJc2VsX2ZldGNoX2FyZWEtPnkx
-ID0gLTE7DQo+ID4gPiArDQo+ID4gPiArCQlkYW1hZ2VkX2NsaXBzID0NCj4gPiA+IGRybV9wbGFu
-ZV9nZXRfZGFtYWdlX2NsaXBzKCZuZXdfcGxhbmVfc3RhdGUtPnVhcGkpOw0KPiA+ID4gKwkJbnVt
-X2NsaXBzID0NCj4gPiA+IGRybV9wbGFuZV9nZXRfZGFtYWdlX2NsaXBzX2NvdW50KCZuZXdfcGxh
-bmVfc3RhdGUtPnVhcGkpOw0KPiA+ID4gKw0KPiA+ID4gwqAJCS8qDQo+ID4gPiAtCQkgKiBGb3Ig
-bm93IGRvaW5nIGEgc2VsZWN0aXZlIGZldGNoIGluIHRoZSB3aG9sZSBwbGFuZQ0KPiA+ID4gYXJl
-YSwNCj4gPiA+IC0JCSAqIG9wdGltaXphdGlvbnMgd2lsbCBjb21lIGluIHRoZSBmdXR1cmUuDQo+
-ID4gPiArCQkgKiBJZiBwbGFuZSBtb3ZlZCwgbWFyayB0aGUgd2hvbGUgcGxhbmUgYXJlYSBhcyBk
-YW1hZ2VkDQo+ID4gPiBhcyBpdA0KPiA+ID4gKwkJICogbmVlZHMgdG8gYmUgY29tcGxldGUgcmVk
-cmF3IGluIHRoZSBuZXcgcG9zaXRpb24uDQo+ID4gPiDCoAkJICovDQo+ID4gPiAtCQlzZWxfZmV0
-Y2hfYXJlYSA9ICZuZXdfcGxhbmVfc3RhdGUtPnBzcjJfc2VsX2ZldGNoX2FyZWE7DQo+ID4gPiAt
-CQlzZWxfZmV0Y2hfYXJlYS0+eTEgPSBuZXdfcGxhbmVfc3RhdGUtPnVhcGkuc3JjLnkxID4+DQo+
-ID4gPiAxNjsNCj4gPiA+IC0JCXNlbF9mZXRjaF9hcmVhLT55MiA9IG5ld19wbGFuZV9zdGF0ZS0+
-dWFwaS5zcmMueTIgPj4NCj4gPiA+IDE2Ow0KPiA+ID4gKwkJaWYgKCFkcm1fcmVjdF9lcXVhbHMo
-Jm5ld19wbGFuZV9zdGF0ZS0+dWFwaS5kc3QsDQo+ID4gPiArCQkJCSAgICAgJm9sZF9wbGFuZV9z
-dGF0ZS0+dWFwaS5kc3QpKSB7DQo+ID4gPiArCQkJbnVtX2NsaXBzID0gMDsNCj4gPiA+ICsJCQlz
-ZWxfZmV0Y2hfYXJlYS0+eTEgPSBuZXdfcGxhbmVfc3RhdGUtDQo+ID4gPiA+IHVhcGkuc3JjLnkx
-ID4+IDE2Ow0KPiA+ID4gKwkJCXNlbF9mZXRjaF9hcmVhLT55MiA9IG5ld19wbGFuZV9zdGF0ZS0N
-Cj4gPiA+ID4gdWFwaS5zcmMueTIgPj4gMTY7DQo+ID4gPiArCQl9IGVsc2UgaWYgKCFudW1fY2xp
-cHMgJiYgbmV3X3BsYW5lX3N0YXRlLT51YXBpLmZiICE9DQo+ID4gPiArCQkJICAgb2xkX3BsYW5l
-X3N0YXRlLT51YXBpLmZiKSB7DQo+ID4gPiArCQkJLyoNCj4gPiA+ICsJCQkgKiBJZiB0aGUgcGxh
-bmUgZG9uJ3QgaGF2ZSBkYW1hZ2UgYXJlYXMgYnV0IHRoZQ0KPiA+ID4gKwkJCSAqIGZyYW1lYnVm
-ZmVyIGNoYW5nZWQsIG1hcmsgdGhlIHdob2xlIHBsYW5lDQo+ID4gPiBhcmVhIGFzDQo+ID4gPiAr
-CQkJICogZGFtYWdlZC4NCj4gPiA+ICsJCQkgKi8NCj4gPiA+ICsJCQlzZWxfZmV0Y2hfYXJlYS0+
-eTEgPSBuZXdfcGxhbmVfc3RhdGUtDQo+ID4gPiA+IHVhcGkuc3JjLnkxID4+IDE2Ow0KPiA+ID4g
-KwkJCXNlbF9mZXRjaF9hcmVhLT55MiA9IG5ld19wbGFuZV9zdGF0ZS0NCj4gPiA+ID4gdWFwaS5z
-cmMueTIgPj4gMTY7DQo+ID4gPiArCQl9DQo+ID4gPiArDQo+ID4gd2h5IGRvbid0IHlvdSB1c2Ug
-ZHJtX2F0b21pY19oZWxwZXJfZGFtYWdlX21lcmdlZCgpIGZ1bmN0aW9uIGhlcmU/DQo+IA0KPiBo
-dW0gZGlkIG5vdCBrbmV3IGFib3V0IHRoaXMgZnVuY3Rpb24sIHdpbGwgdGFrZSBhIGxvb2sgYXQg
-YXMgaXQgZG9lcyBtb3JlIHRoYW4ganVzdCBtZXJnZSBhbGwgZGFtYWdlZCBhcmVhcy4NCg0KV2Ug
-Y2FuJ3QgdXNlIHRoaXMgZnVuY3Rpb24gYXMgaXQgbWFya3MgdGhlIHdob2xlIHBsYW5lIGFyZWEg
-YXMgZGFtYWdlZCBpZiB0aGVyZSBpcyBubyBkYW1hZ2VkIGNsaXBzLg0KQnV0IGZvciBvdXIgdXNl
-IGNhc2UgdGhpcyBpcyBiYWQgYXMgd2UgYWRkIGFsbCBwbGFuZXMgb2YgdGhlIHBpcGUvQ1JUQyB0
-byB0aGUgc3RhdGUsIHNvIGl0IHdvdWxkIGNhdXNlIGEgZnVsbCBmZXRjaCBvZiB0aGUgcGxhbmVz
-IHdpdGhvdXQgYW55DQpmbGlwL21vZGlmaWNhdGlvbi4NCg0KPiANCj4gPiA+ICsJCWZvciAoaiA9
-IDA7IGogPCBudW1fY2xpcHM7IGorKykgew0KPiA+ID4gKwkJCXN0cnVjdCBkcm1fcmVjdCBkYW1h
-Z2VfYXJlYTsNCj4gPiA+ICsNCj4gPiA+ICsJCQlkYW1hZ2VfYXJlYS55MSA9IGRhbWFnZWRfY2xp
-cHNbal0ueTE7DQo+ID4gPiArCQkJZGFtYWdlX2FyZWEueTIgPSBkYW1hZ2VkX2NsaXBzW2pdLnky
-Ow0KPiA+ID4gKwkJCWNsaXBfYXJlYV91cGRhdGUoc2VsX2ZldGNoX2FyZWEsICZkYW1hZ2VfYXJl
-YSk7DQo+ID4gPiArCQl9DQo+ID4gPiArDQo+ID4gPiArCQkvKg0KPiA+ID4gKwkJICogTm8gcGFn
-ZSBmbGlwLCBubyBwbGFuZSBtb3ZpbWVudCBvciBubyBkYW1hZ2UgYXJlYXMsDQo+ID4gPiBzbyBk
-b24ndA0KPiA+IHR5cG8gKG1vdmltZW50IC0+IG1vdmVtZW50KQ0KPiANCj4gZml4ZWQNCj4gDQo+
-ID4gPiArCQkgKiBmZXRjaCBhbnkgcGl4ZWwgZnJvbSBtZW1vcnkgZm9yIHRoaXMgcGxhbmUNCj4g
-PiA+ICsJCSAqLw0KPiA+ID4gKwkJaWYgKHNlbF9mZXRjaF9hcmVhLT55MSA9PSAtMSkgew0KPiA+
-ID4gKwkJCXNlbF9mZXRjaF9hcmVhLT55MSA9IDA7DQo+ID4gPiArCQkJc2VsX2ZldGNoX2FyZWEt
-PnkyID0gMDsNCj4gPiA+ICsJCX0NCj4gPiA+ICsNCj4gPiA+ICsJCS8qIERvbid0IG5lZWQgdG8g
-cmVkcmF3IHBsYW5lIGRhbWFnZWQgYXJlYXMgb3V0c2lkZSBvZg0KPiA+ID4gc2NyZWVuICovDQo+
-ID4gPiArCQlqID0gc2VsX2ZldGNoX2FyZWEtPnkyICsgKG5ld19wbGFuZV9zdGF0ZS0+dWFwaS5k
-c3QueTENCj4gPiA+ID4gPiAxNik7DQo+ID4gc3JjIGNvb3JkaW5hdGVzIG9mIHRoZSBkcm1fcGxh
-bmVfc3RhdGUgYXJlIDE2LjE2IGZpeGVkIHBvaW50IGJ1dCBkc3QNCj4gPiBjb29yZGluYXRlcyBh
-cmUgbm90IDE2LjE2IGZpeGVkIHBvaW50Lg0KPiA+IHRoZXJlZm9yZSB3ZSBkb24ndCBuZWVkIHRv
-IGJpdCBzaGlmdCBmb3IgZHN0Lg0KPiA+IEJlY2F1c2UgdGhlIHNlbF9mZXRjaF9hcmVhIHNlZW1z
-IGJhc2VkIG9uIHNyYyBjb29yZGluYXRlcywgaW4gb3JkZXIgdG8NCj4gPiBhcHBseSB0byBkc3Qg
-Y29vcmRpbmF0ZXMgaGVyZSwgIGl0IHJlcXVpcmVzIGNvb3JkaW5hdGUgY2FsY3VsYXRpb24uIA0K
-PiANCj4gdGhhbmtzIGZvciBjYXRjaGluZyB0aGlzLCBhbHNvIGZpeGVkIHRoZSBzYW1lIGlzc3Vl
-IHBhdGNoIDEuDQo+IA0KPiA+ID4gKwkJaiA9IGNydGNfc3RhdGUtPnVhcGkuYWRqdXN0ZWRfbW9k
-ZS5jcnRjX3ZkaXNwbGF5IC0gajsNCj4gPiA+ICsJCWlmIChqIDwgMCkNCj4gPiA+ICsJCQlzZWxf
-ZmV0Y2hfYXJlYS0+eTIgKz0gajsNCj4gPiA+IMKgDQo+ID4gPiANCj4gPiA+IA0KPiA+ID4gDQo+
-ID4gPiANCj4gPiA+IA0KPiA+ID4gDQo+ID4gPiANCj4gPiA+IA0KPiA+ID4gDQo+ID4gPiANCj4g
-PiA+IA0KPiA+ID4gDQo+ID4gPiANCj4gPiA+IA0KPiA+ID4gDQo+ID4gPiDCoAkJdGVtcCA9ICpz
-ZWxfZmV0Y2hfYXJlYTsNCj4gPiA+IMKgCQl0ZW1wLnkxICs9IG5ld19wbGFuZV9zdGF0ZS0+dWFw
-aS5kc3QueTEgPj4gMTY7DQo+IA0KPiBfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fXw0KPiBJbnRlbC1nZnggbWFpbGluZyBsaXN0DQo+IEludGVsLWdmeEBsaXN0
-cy5mcmVlZGVza3RvcC5vcmcNCj4gaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1h
-bi9saXN0aW5mby9pbnRlbC1nZngNCg0KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJl
-ZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGlu
-Zm8vaW50ZWwtZ2Z4Cg==
+On Tue, Oct 27, 2020 at 12:30:34PM -0700, Manasi Navare wrote:
+> From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+> =
+
+> Small changes to intel_dp_mode_valid(), allow listing modes that
+> can only be supported in the bigjoiner configuration, which is
+> not supported yet.
+> =
+
+> v11:
+> * Make intel_dp_can_bigjoiner non static
+> so it can be used in intel_display (Manasi)
+> v10:
+> * Simplify logic (Ville)
+> * Allow bigjoiner on edp (Ville)
+> v9:
+> * Restric Bigjoiner on PORT A (Ville)
+> v8:
+> * use source dotclock for max dotclock (Manasi)
+> v7:
+> * Add can_bigjoiner() helper (Ville)
+> * Pass bigjoiner to plane_size validation (Ville)
+> v6:
+> * Rebase after dp_downstream mode valid changes (Manasi)
+> v5:
+> * Increase max plane width to support 8K with bigjoiner (Maarten)
+> v4:
+> * Rebase (Manasi)
+> =
+
+> Changes since v1:
+> - Disallow bigjoiner on eDP.
+> Changes since v2:
+> - Rename intel_dp_downstream_max_dotclock to intel_dp_max_dotclock,
+>   and split off the downstream and source checking to its own function.
+>   (Ville)
+> v3:
+> * Rebase (Manasi)
+> =
+
+> Signed-off-by: Manasi Navare <manasi.d.navare@intel.com>
+> Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_display.c |  5 +-
+>  drivers/gpu/drm/i915/display/intel_display.h |  3 +-
+>  drivers/gpu/drm/i915/display/intel_dp.c      | 83 +++++++++++++++-----
+>  drivers/gpu/drm/i915/display/intel_dp.h      |  1 +
+>  drivers/gpu/drm/i915/display/intel_dp_mst.c  |  2 +-
+>  drivers/gpu/drm/i915/display/intel_dsi.c     |  2 +-
+>  drivers/gpu/drm/i915/display/intel_hdmi.c    |  2 +-
+>  7 files changed, 74 insertions(+), 24 deletions(-)
+> =
+
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/d=
+rm/i915/display/intel_display.c
+> index b000dd68977f..7796a6c9d1f5 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> @@ -17762,7 +17762,8 @@ intel_mode_valid(struct drm_device *dev,
+>  =
+
+>  enum drm_mode_status
+>  intel_mode_valid_max_plane_size(struct drm_i915_private *dev_priv,
+> -				const struct drm_display_mode *mode)
+> +				const struct drm_display_mode *mode,
+> +				bool bigjoiner)
+>  {
+>  	int plane_width_max, plane_height_max;
+>  =
+
+> @@ -17779,7 +17780,7 @@ intel_mode_valid_max_plane_size(struct drm_i915_p=
+rivate *dev_priv,
+>  	 * too big for that.
+>  	 */
+>  	if (INTEL_GEN(dev_priv) >=3D 11) {
+> -		plane_width_max =3D 5120;
+> +		plane_width_max =3D 5120 << bigjoiner;
+>  		plane_height_max =3D 4320;
+>  	} else {
+>  		plane_width_max =3D 5120;
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.h b/drivers/gpu/d=
+rm/i915/display/intel_display.h
+> index 1b946209e06b..4f8dee9dfb4d 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display.h
+> @@ -497,7 +497,8 @@ u32 intel_plane_fb_max_stride(struct drm_i915_private=
+ *dev_priv,
+>  bool intel_plane_can_remap(const struct intel_plane_state *plane_state);
+>  enum drm_mode_status
+>  intel_mode_valid_max_plane_size(struct drm_i915_private *dev_priv,
+> -				const struct drm_display_mode *mode);
+> +				const struct drm_display_mode *mode,
+> +				bool bigjoiner);
+>  enum phy intel_port_to_phy(struct drm_i915_private *i915, enum port port=
+);
+>  bool is_trans_port_sync_mode(const struct intel_crtc_state *state);
+>  =
+
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i9=
+15/display/intel_dp.c
+> index 2c29e7f5281b..ce50c25ef98a 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> @@ -254,6 +254,17 @@ intel_dp_max_data_rate(int max_link_clock, int max_l=
+anes)
+>  	return max_link_clock * max_lanes;
+>  }
+>  =
+
+> +bool intel_dp_can_bigjoiner(struct intel_dp *intel_dp)
+> +{
+> +	struct intel_digital_port *intel_dig_port =3D dp_to_dig_port(intel_dp);
+> +	struct intel_encoder *encoder =3D &intel_dig_port->base;
+> +	struct drm_i915_private *dev_priv =3D to_i915(encoder->base.dev);
+> +
+> +	return INTEL_GEN(dev_priv) >=3D 12 ||
+> +		(INTEL_GEN(dev_priv) =3D=3D 11 &&
+> +		 encoder->port !=3D PORT_A);
+> +}
+> +
+>  static int cnl_max_source_rate(struct intel_dp *intel_dp)
+>  {
+>  	struct intel_digital_port *dig_port =3D dp_to_dig_port(intel_dp);
+> @@ -519,7 +530,8 @@ small_joiner_ram_size_bits(struct drm_i915_private *i=
+915)
+>  =
+
+>  static u16 intel_dp_dsc_get_output_bpp(struct drm_i915_private *i915,
+>  				       u32 link_clock, u32 lane_count,
+> -				       u32 mode_clock, u32 mode_hdisplay)
+> +				       u32 mode_clock, u32 mode_hdisplay,
+> +				       bool bigjoiner)
+>  {
+>  	u32 bits_per_pixel, max_bpp_small_joiner_ram;
+>  	int i;
+> @@ -537,6 +549,10 @@ static u16 intel_dp_dsc_get_output_bpp(struct drm_i9=
+15_private *i915,
+>  	/* Small Joiner Check: output bpp <=3D joiner RAM (bits) / Horiz. width=
+ */
+>  	max_bpp_small_joiner_ram =3D small_joiner_ram_size_bits(i915) /
+>  		mode_hdisplay;
+> +
+> +	if (bigjoiner)
+> +		max_bpp_small_joiner_ram *=3D 2;
+> +
+>  	drm_dbg_kms(&i915->drm, "Max small joiner bpp: %u\n",
+>  		    max_bpp_small_joiner_ram);
+>  =
+
+> @@ -546,6 +562,15 @@ static u16 intel_dp_dsc_get_output_bpp(struct drm_i9=
+15_private *i915,
+>  	 */
+>  	bits_per_pixel =3D min(bits_per_pixel, max_bpp_small_joiner_ram);
+>  =
+
+> +	if (bigjoiner) {
+> +		u32 max_bpp_bigjoiner =3D
+> +			i915->max_cdclk_freq * 48 /
+> +			intel_dp_mode_to_fec_clock(mode_clock);
+> +
+> +		DRM_DEBUG_KMS("Max big joiner bpp: %u\n", max_bpp_bigjoiner);
+> +		bits_per_pixel =3D min(bits_per_pixel, max_bpp_bigjoiner);
+> +	}
+> +
+>  	/* Error out if the max bpp is less than smallest allowed valid bpp */
+>  	if (bits_per_pixel < valid_dsc_bpp[0]) {
+>  		drm_dbg_kms(&i915->drm, "Unsupported BPP %u, min %u\n",
+> @@ -568,7 +593,8 @@ static u16 intel_dp_dsc_get_output_bpp(struct drm_i91=
+5_private *i915,
+>  }
+>  =
+
+>  static u8 intel_dp_dsc_get_slice_count(struct intel_dp *intel_dp,
+> -				       int mode_clock, int mode_hdisplay)
+> +				       int mode_clock, int mode_hdisplay,
+> +				       bool bigjoiner)
+>  {
+>  	struct drm_i915_private *i915 =3D dp_to_i915(intel_dp);
+>  	u8 min_slice_count, i;
+> @@ -595,12 +621,20 @@ static u8 intel_dp_dsc_get_slice_count(struct intel=
+_dp *intel_dp,
+>  =
+
+>  	/* Find the closest match to the valid slice count values */
+>  	for (i =3D 0; i < ARRAY_SIZE(valid_dsc_slicecount); i++) {
+> -		if (valid_dsc_slicecount[i] >
+> -		    drm_dp_dsc_sink_max_slice_count(intel_dp->dsc_dpcd,
+> -						    false))
+> +		u8 test_slice_count =3D bigjoiner ?
+> +			2 * valid_dsc_slicecount[i] :
+> +			valid_dsc_slicecount[i];
+
+This still makes me think it's got something to do with
+"test slices" which I don't think is a thing.
+
+I'd probably just make that something like
+int slice_count =3D valid_dsc_slicecount[i] << bigjoiner;
+
+I have no idea about any of this dsc stuff. You may want to
+get someone who knows dsc to read it.
+
+> +
+> +		if (test_slice_count >
+> +		    drm_dp_dsc_sink_max_slice_count(intel_dp->dsc_dpcd, false))
+>  			break;
+> -		if (min_slice_count  <=3D valid_dsc_slicecount[i])
+> -			return valid_dsc_slicecount[i];
+> +
+> +		/* big joiner needs small joiner to be enabled */
+> +		if (bigjoiner && test_slice_count < 4)
+> +			continue;
+> +
+> +		if (min_slice_count <=3D test_slice_count)
+> +			return test_slice_count;
+>  	}
+>  =
+
+>  	drm_dbg_kms(&i915->drm, "Unsupported Slice Count %d\n",
+> @@ -684,10 +718,6 @@ intel_dp_mode_valid_downstream(struct intel_connecto=
+r *connector,
+>  	const struct drm_display_info *info =3D &connector->base.display_info;
+>  	int tmds_clock;
+>  =
+
+> -	if (intel_dp->dfp.max_dotclock &&
+> -	    target_clock > intel_dp->dfp.max_dotclock)
+> -		return MODE_CLOCK_HIGH;
+> -
+
+Eh?
+
+Apart from these the rest looks OK to me.
+
+>  	/* Assume 8bpc for the DP++/HDMI/DVI TMDS clock check */
+>  	tmds_clock =3D target_clock;
+>  	if (drm_mode_is_420_only(info, mode))
+> @@ -717,6 +747,7 @@ intel_dp_mode_valid(struct drm_connector *connector,
+>  	u16 dsc_max_output_bpp =3D 0;
+>  	u8 dsc_slice_count =3D 0;
+>  	enum drm_mode_status status;
+> +	bool dsc =3D false, bigjoiner =3D false;
+>  =
+
+>  	if (mode->flags & DRM_MODE_FLAG_DBLSCAN)
+>  		return MODE_NO_DBLESCAN;
+> @@ -737,6 +768,13 @@ intel_dp_mode_valid(struct drm_connector *connector,
+>  	if (mode->clock < 10000)
+>  		return MODE_CLOCK_LOW;
+>  =
+
+> +	if (target_clock > max_dotclk && intel_dp_can_bigjoiner(intel_dp)) {
+> +		bigjoiner =3D true;
+> +		max_dotclk *=3D 2;
+> +	}
+> +	if (target_clock > max_dotclk)
+> +		return MODE_CLOCK_HIGH;
+> +
+>  	max_link_clock =3D intel_dp_max_link_rate(intel_dp);
+>  	max_lanes =3D intel_dp_max_lane_count(intel_dp);
+>  =
+
+> @@ -765,16 +803,23 @@ intel_dp_mode_valid(struct drm_connector *connector,
+>  							    max_link_clock,
+>  							    max_lanes,
+>  							    target_clock,
+> -							    mode->hdisplay) >> 4;
+> +							    mode->hdisplay,
+> +							    bigjoiner) >> 4;
+>  			dsc_slice_count =3D
+>  				intel_dp_dsc_get_slice_count(intel_dp,
+>  							     target_clock,
+> -							     mode->hdisplay);
+> +							     mode->hdisplay,
+> +							     bigjoiner);
+>  		}
+> +
+> +		dsc =3D dsc_max_output_bpp && dsc_slice_count;
+>  	}
+>  =
+
+> -	if ((mode_rate > max_rate && !(dsc_max_output_bpp && dsc_slice_count)) =
+||
+> -	    target_clock > max_dotclk)
+> +	/* big joiner configuration needs DSC */
+> +	if (bigjoiner && !dsc)
+> +		return MODE_CLOCK_HIGH;
+> +
+> +	if (mode_rate > max_rate && !dsc)
+>  		return MODE_CLOCK_HIGH;
+>  =
+
+>  	status =3D intel_dp_mode_valid_downstream(intel_connector,
+> @@ -782,7 +827,7 @@ intel_dp_mode_valid(struct drm_connector *connector,
+>  	if (status !=3D MODE_OK)
+>  		return status;
+>  =
+
+> -	return intel_mode_valid_max_plane_size(dev_priv, mode);
+> +	return intel_mode_valid_max_plane_size(dev_priv, mode, bigjoiner);
+>  }
+>  =
+
+>  u32 intel_dp_pack_aux(const u8 *src, int src_bytes)
+> @@ -2297,11 +2342,13 @@ static int intel_dp_dsc_compute_config(struct int=
+el_dp *intel_dp,
+>  						    pipe_config->port_clock,
+>  						    pipe_config->lane_count,
+>  						    adjusted_mode->crtc_clock,
+> -						    adjusted_mode->crtc_hdisplay);
+> +						    adjusted_mode->crtc_hdisplay,
+> +						    false);
+>  		dsc_dp_slice_count =3D
+>  			intel_dp_dsc_get_slice_count(intel_dp,
+>  						     adjusted_mode->crtc_clock,
+> -						     adjusted_mode->crtc_hdisplay);
+> +						     adjusted_mode->crtc_hdisplay,
+> +						     false);
+>  		if (!dsc_max_output_bpp || !dsc_dp_slice_count) {
+>  			drm_dbg_kms(&dev_priv->drm,
+>  				    "Compressed BPP/Slice Count not supported\n");
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp.h b/drivers/gpu/drm/i9=
+15/display/intel_dp.h
+> index 3f862b4fd34f..b871a09b6901 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp.h
+> +++ b/drivers/gpu/drm/i915/display/intel_dp.h
+> @@ -106,6 +106,7 @@ bool intel_dp_source_supports_hbr3(struct intel_dp *i=
+ntel_dp);
+>  bool intel_dp_get_colorimetry_status(struct intel_dp *intel_dp);
+>  int intel_dp_link_required(int pixel_clock, int bpp);
+>  int intel_dp_max_data_rate(int max_link_clock, int max_lanes);
+> +bool intel_dp_can_bigjoiner(struct intel_dp *intel_dp);
+>  bool intel_dp_needs_vsc_sdp(const struct intel_crtc_state *crtc_state,
+>  			    const struct drm_connector_state *conn_state);
+>  void intel_dp_compute_psr_vsc_sdp(struct intel_dp *intel_dp,
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/dr=
+m/i915/display/intel_dp_mst.c
+> index c8fcec4d0788..0c8684634fca 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> @@ -714,7 +714,7 @@ intel_dp_mst_mode_valid_ctx(struct drm_connector *con=
+nector,
+>  		return 0;
+>  	}
+>  =
+
+> -	*status =3D intel_mode_valid_max_plane_size(dev_priv, mode);
+> +	*status =3D intel_mode_valid_max_plane_size(dev_priv, mode, false);
+>  	return 0;
+>  }
+>  =
+
+> diff --git a/drivers/gpu/drm/i915/display/intel_dsi.c b/drivers/gpu/drm/i=
+915/display/intel_dsi.c
+> index afa4e6817e8c..f453ceb8d149 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dsi.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dsi.c
+> @@ -75,7 +75,7 @@ enum drm_mode_status intel_dsi_mode_valid(struct drm_co=
+nnector *connector,
+>  			return MODE_CLOCK_HIGH;
+>  	}
+>  =
+
+> -	return intel_mode_valid_max_plane_size(dev_priv, mode);
+> +	return intel_mode_valid_max_plane_size(dev_priv, mode, false);
+>  }
+>  =
+
+>  struct intel_dsi_host *intel_dsi_host_init(struct intel_dsi *intel_dsi,
+> diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/=
+i915/display/intel_hdmi.c
+> index f90838bc74fb..82674a8853c6 100644
+> --- a/drivers/gpu/drm/i915/display/intel_hdmi.c
+> +++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
+> @@ -2274,7 +2274,7 @@ intel_hdmi_mode_valid(struct drm_connector *connect=
+or,
+>  	if (status !=3D MODE_OK)
+>  		return status;
+>  =
+
+> -	return intel_mode_valid_max_plane_size(dev_priv, mode);
+> +	return intel_mode_valid_max_plane_size(dev_priv, mode, false);
+>  }
+>  =
+
+>  bool intel_hdmi_deep_color_possible(const struct intel_crtc_state *crtc_=
+state,
+> -- =
+
+> 2.19.1
+> =
+
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+-- =
+
+Ville Syrj=E4l=E4
+Intel
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
