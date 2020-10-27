@@ -1,42 +1,66 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E2FA929A44F
-	for <lists+intel-gfx@lfdr.de>; Tue, 27 Oct 2020 06:49:19 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id D86E429A459
+	for <lists+intel-gfx@lfdr.de>; Tue, 27 Oct 2020 06:52:20 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 197376EAD6;
-	Tue, 27 Oct 2020 05:49:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 223426EAD8;
+	Tue, 27 Oct 2020 05:52:19 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A9D2F6EAD3
- for <intel-gfx@lists.freedesktop.org>; Tue, 27 Oct 2020 05:49:12 +0000 (UTC)
-IronPort-SDR: 2t9yyYzmVvzkxXSnL1zwU2kLaWh7hWQo1c6h2M6UfonJzK2k+7cp0IY6j06PVbrapaFqCW8crC
- XUqsTse3GU4A==
-X-IronPort-AV: E=McAfee;i="6000,8403,9786"; a="167249523"
-X-IronPort-AV: E=Sophos;i="5.77,422,1596524400"; d="scan'208";a="167249523"
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 05F506EAD5;
+ Tue, 27 Oct 2020 05:52:17 +0000 (UTC)
+IronPort-SDR: HXrhYReA1asKBEMcZLjOhr7lqqFZPcbyEEJZUFlIlTWoNRzAQ95Jeh1x80JqlRa9N7VOwcmxf1
+ iYyWr8u0j3KA==
+X-IronPort-AV: E=McAfee;i="6000,8403,9786"; a="147885603"
+X-IronPort-AV: E=Sophos;i="5.77,422,1596524400"; d="scan'208";a="147885603"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Oct 2020 22:49:12 -0700
-IronPort-SDR: dXEIouRFBhmtXYjV+NiW67L44O+VVfMVC7kjvImYZ6i5ZJw4u/C6TRqyTkF6G2AeHfGAQ7xttr
- sKOF4m5ibrYQ==
-X-IronPort-AV: E=Sophos;i="5.77,422,1596524400"; d="scan'208";a="525762388"
-Received: from labuser-z97x-ud5h.jf.intel.com ([10.165.21.211])
- by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-SHA;
- 26 Oct 2020 22:49:12 -0700
-From: Manasi Navare <manasi.d.navare@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Mon, 26 Oct 2020 22:50:54 -0700
-Message-Id: <20201027055054.32697-4-manasi.d.navare@intel.com>
-X-Mailer: git-send-email 2.19.1
-In-Reply-To: <20201022054223.25071-7-manasi.d.navare@intel.com>
-References: <20201022054223.25071-7-manasi.d.navare@intel.com>
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Oct 2020 22:52:17 -0700
+IronPort-SDR: sjVwdDBXl4Q3bKxbq4ObM47ox0Q0xKCviljTwrK1HvdeDyhClPaaKAnNZu3MZqkpqrUiiwuI78
+ UC8/RKtMIqaw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.77,422,1596524400"; d="scan'208";a="318108611"
+Received: from fmsmsx606.amr.corp.intel.com ([10.18.126.86])
+ by orsmga003.jf.intel.com with ESMTP; 26 Oct 2020 22:52:17 -0700
+Received: from bgsmsx603.gar.corp.intel.com (10.109.78.82) by
+ fmsmsx606.amr.corp.intel.com (10.18.126.86) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1713.5; Mon, 26 Oct 2020 22:52:16 -0700
+Received: from bgsmsx604.gar.corp.intel.com (10.67.234.6) by
+ BGSMSX603.gar.corp.intel.com (10.109.78.82) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1713.5; Tue, 27 Oct 2020 11:22:13 +0530
+Received: from bgsmsx604.gar.corp.intel.com ([10.67.234.6]) by
+ BGSMSX604.gar.corp.intel.com ([10.67.234.6]) with mapi id 15.01.1713.004;
+ Tue, 27 Oct 2020 11:22:13 +0530
+From: "Shankar, Uma" <uma.shankar@intel.com>
+To: "Gupta, Anshuman" <anshuman.gupta@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
+Thread-Topic: [PATCH v3 05/16] drm/i915/hdcp: Move HDCP enc status timeout to
+ header
+Thread-Index: AQHWqTj5oTwEMB1V3kmkQg3zB7bqOqmq98aw
+Date: Tue, 27 Oct 2020 05:52:13 +0000
+Message-ID: <80aaa54c474449cf9e4b204e34488493@intel.com>
+References: <20201023122112.15265-1-anshuman.gupta@intel.com>
+ <20201023122112.15265-6-anshuman.gupta@intel.com>
+In-Reply-To: <20201023122112.15265-6-anshuman.gupta@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+dlp-product: dlpe-windows
+dlp-reaction: no-action
+dlp-version: 11.5.1.3
+x-originating-ip: [10.223.10.1]
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v12 06/12] drm/i915: Try to make bigjoiner work
- in atomic check
+Subject: Re: [Intel-gfx] [PATCH v3 05/16] drm/i915/hdcp: Move HDCP enc
+ status timeout to header
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,363 +73,117 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: "Nikula, Jani" <jani.nikula@intel.com>,
+ "seanpaul@chromium.org" <seanpaul@chromium.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 
- When the clock is higher than the dotclock, try with 2 pipes enabled.
- If we can enable 2, then we will go into big joiner mode, and steal
- the adjacent crtc.
 
- This only links the crtc's in software, no hardware or plane
- programming is done yet. Blobs are also copied from the master's
- crtc_state, so it doesn't depend at commit time on the other
- crtc_state.
+> -----Original Message-----
+> From: Anshuman Gupta <anshuman.gupta@intel.com>
+> Sent: Friday, October 23, 2020 5:51 PM
+> To: intel-gfx@lists.freedesktop.org; dri-devel@lists.freedesktop.org
+> Cc: seanpaul@chromium.org; Nikula, Jani <jani.nikula@intel.com>; C,
+> Ramalingam <ramalingam.c@intel.com>; Li, Juston <juston.li@intel.com>;
+> Shankar, Uma <uma.shankar@intel.com>; Gupta, Anshuman
+> <anshuman.gupta@intel.com>
+> Subject: [PATCH v3 05/16] drm/i915/hdcp: Move HDCP enc status timeout to
+> header
+> 
+> DP MST stream encryption status requires time of a link frame in order to change
+> its status, but as there were some HDCP encryption timeout observed earlier, it
+> is safer to use ENCRYPT_STATUS_CHANGE_TIMEOUT_MS timeout for stream
+> status too, it requires to move the macro to a header.
+> It will be used by both HDCP{1.x,2.x} stream status timeout.
 
-v4:
-* Fixes in intel_crtc_compute_config (Ville)
-v3:
-* Manual Rebase (Manasi)
- Changes since v1:
- - Rename pipe timings to transcoder timings, as they are now different.
-  Changes since v2:
- - Rework bigjoiner checks; always disable slave when recalculating
-   master. No need to have a separate bigjoiner pass any more.
- - Use pipe_mode instead of transcoder_mode, to clean up the code.
+Looks Good to me.
+Reviewed-by: Uma Shankar <uma.shankar@intel.com>
 
-Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Signed-off-by: Manasi Navare <manasi.d.navare@intel.com>
----
- drivers/gpu/drm/i915/display/intel_display.c  | 169 +++++++++++++++++-
- .../drm/i915/display/intel_display_types.h    |   9 +
- drivers/gpu/drm/i915/display/intel_dp.c       |  22 ++-
- 3 files changed, 185 insertions(+), 15 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 2bbbe0a6d4c7..91c6991217c2 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -8237,9 +8237,24 @@ static int intel_crtc_compute_config(struct intel_crtc *crtc,
- 				     struct intel_crtc_state *pipe_config)
- {
- 	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
--	const struct drm_display_mode *pipe_mode = &pipe_config->hw.pipe_mode;
-+	struct drm_display_mode *pipe_mode = &pipe_config->hw.pipe_mode;
- 	int clock_limit = dev_priv->max_dotclk_freq;
- 
-+	*pipe_mode = pipe_config->hw.adjusted_mode;
-+
-+	/* Adjust pipe_mode for bigjoiner, with half the horizontal mode */
-+	if (pipe_config->bigjoiner) {
-+		pipe_mode->crtc_clock /= 2;
-+		pipe_mode->crtc_hdisplay /= 2;
-+		pipe_mode->crtc_hblank_start /= 2;
-+		pipe_mode->crtc_hblank_end /= 2;
-+		pipe_mode->crtc_hsync_start /= 2;
-+		pipe_mode->crtc_hsync_end /= 2;
-+		pipe_mode->crtc_htotal /= 2;
-+		pipe_mode->crtc_hskew /= 2;
-+		pipe_config->pipe_src_w /= 2;
-+	}
-+
- 	if (INTEL_GEN(dev_priv) < 4) {
- 		clock_limit = dev_priv->max_cdclk_freq * 9 / 10;
- 
-@@ -8300,7 +8315,7 @@ static int intel_crtc_compute_config(struct intel_crtc *crtc,
- 	 * WaPruneModeWithIncorrectHsyncOffset:ctg,elk,ilk,snb,ivb,vlv,hsw.
- 	 */
- 	if ((INTEL_GEN(dev_priv) > 4 || IS_G4X(dev_priv)) &&
--		pipe_mode->crtc_hsync_start == pipe_mode->crtc_hdisplay)
-+	    pipe_mode->crtc_hsync_start == pipe_mode->crtc_hdisplay)
- 		return -EINVAL;
- 
- 	intel_crtc_compute_pixel_rate(pipe_config);
-@@ -12910,6 +12925,7 @@ static int intel_crtc_atomic_check(struct intel_atomic_state *state,
- 
- 	if (mode_changed && crtc_state->hw.enable &&
- 	    dev_priv->display.crtc_compute_clock &&
-+	    !crtc_state->bigjoiner_slave &&
- 	    !drm_WARN_ON(&dev_priv->drm, crtc_state->shared_dpll)) {
- 		ret = dev_priv->display.crtc_compute_clock(crtc, crtc_state);
- 		if (ret)
-@@ -13451,6 +13467,15 @@ intel_crtc_copy_uapi_to_hw_state_nomodeset(struct intel_atomic_state *state,
- {
- 	const struct intel_crtc_state *from_crtc_state = crtc_state;
- 
-+	if (crtc_state->bigjoiner_slave) {
-+		from_crtc_state = intel_atomic_get_new_crtc_state(state,
-+								  crtc_state->bigjoiner_linked_crtc);
-+
-+		/* No need to copy state if the master state is unchanged */
-+		if (!from_crtc_state)
-+			return;
-+	}
-+
- 	intel_crtc_copy_color_blobs(crtc_state, from_crtc_state);
- }
- 
-@@ -13486,6 +13511,47 @@ static void intel_crtc_copy_hw_to_uapi_state(struct intel_crtc_state *crtc_state
- 				  crtc_state->hw.ctm);
- }
- 
-+static int
-+copy_bigjoiner_crtc_state(struct intel_crtc_state *crtc_state,
-+			  const struct intel_crtc_state *from_crtc_state)
-+{
-+	struct intel_crtc_state *saved_state;
-+	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
-+
-+	saved_state = kmemdup(from_crtc_state, sizeof(*saved_state), GFP_KERNEL);
-+	if (!saved_state)
-+		return -ENOMEM;
-+
-+	saved_state->uapi = crtc_state->uapi;
-+	saved_state->scaler_state = crtc_state->scaler_state;
-+	saved_state->shared_dpll = crtc_state->shared_dpll;
-+	saved_state->dpll_hw_state = crtc_state->dpll_hw_state;
-+	saved_state->crc_enabled = crtc_state->crc_enabled;
-+
-+	intel_crtc_free_hw_state(crtc_state);
-+	memcpy(crtc_state, saved_state, sizeof(*crtc_state));
-+	kfree(saved_state);
-+
-+	/* Re-init hw state */
-+	memset(&crtc_state->hw, 0, sizeof(saved_state->hw));
-+	crtc_state->hw.enable = from_crtc_state->hw.enable;
-+	crtc_state->hw.active = from_crtc_state->hw.active;
-+	crtc_state->hw.pipe_mode = from_crtc_state->hw.pipe_mode;
-+	crtc_state->hw.adjusted_mode = from_crtc_state->hw.adjusted_mode;
-+
-+	/* Some fixups */
-+	crtc_state->uapi.mode_changed = from_crtc_state->uapi.mode_changed;
-+	crtc_state->uapi.connectors_changed = from_crtc_state->uapi.connectors_changed;
-+	crtc_state->uapi.active_changed = from_crtc_state->uapi.active_changed;
-+	crtc_state->nv12_planes = crtc_state->c8_planes = crtc_state->update_planes = 0;
-+	crtc_state->bigjoiner_linked_crtc = to_intel_crtc(from_crtc_state->uapi.crtc);
-+	crtc_state->bigjoiner_slave = true;
-+	crtc_state->cpu_transcoder = (enum transcoder)crtc->pipe;
-+	crtc_state->has_audio = false;
-+
-+	return 0;
-+}
-+
- static int
- intel_crtc_prepare_cleared_state(struct intel_atomic_state *state,
- 				 struct intel_crtc_state *crtc_state)
-@@ -13661,9 +13727,6 @@ intel_modeset_pipe_config(struct intel_atomic_state *state,
- 		    "hw max bpp: %i, pipe bpp: %i, dithering: %i\n",
- 		    base_bpp, pipe_config->pipe_bpp, pipe_config->dither);
- 
--	/* without bigjoiner, pipe_mode == adjusted_mode */
--	pipe_config->hw.pipe_mode = pipe_config->hw.adjusted_mode;
--
- 	return 0;
- }
- 
-@@ -15059,6 +15122,75 @@ static bool intel_cpu_transcoders_need_modeset(struct intel_atomic_state *state,
- 	return false;
- }
- 
-+static int intel_atomic_check_bigjoiner(struct intel_atomic_state *state,
-+					struct intel_crtc *crtc,
-+					struct intel_crtc_state *old_crtc_state,
-+					struct intel_crtc_state *new_crtc_state)
-+{
-+	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
-+	struct intel_crtc_state *slave_crtc_state, *master_crtc_state;
-+	struct intel_crtc *slave, *master;
-+
-+	/* slave being enabled, is master is still claiming this crtc? */
-+	if (old_crtc_state->bigjoiner_slave) {
-+		slave = crtc;
-+		master = old_crtc_state->bigjoiner_linked_crtc;
-+		master_crtc_state = intel_atomic_get_new_crtc_state(state, master);
-+		if (!master_crtc_state || !needs_modeset(master_crtc_state))
-+			goto claimed;
-+	}
-+
-+	if (!new_crtc_state->bigjoiner)
-+		return 0;
-+
-+	if (1 + crtc->pipe >= INTEL_NUM_PIPES(dev_priv)) {
-+		DRM_DEBUG_KMS("[CRTC:%d:%s] Big joiner configuration requires "
-+			      "CRTC + 1 to be used, doesn't exist\n",
-+			      crtc->base.base.id, crtc->base.name);
-+		return -EINVAL;
-+	}
-+
-+	slave = new_crtc_state->bigjoiner_linked_crtc =
-+		intel_get_crtc_for_pipe(dev_priv, crtc->pipe + 1);
-+	slave_crtc_state = intel_atomic_get_crtc_state(&state->base, slave);
-+	master = crtc;
-+	if (IS_ERR(slave_crtc_state))
-+		return PTR_ERR(slave_crtc_state);
-+
-+	/* master being enabled, slave was already configured? */
-+	if (slave_crtc_state->uapi.enable)
-+		goto claimed;
-+
-+	DRM_DEBUG_KMS("[CRTC:%d:%s] Used as slave for big joiner\n",
-+		      slave->base.base.id, slave->base.name);
-+
-+	return copy_bigjoiner_crtc_state(slave_crtc_state, new_crtc_state);
-+
-+claimed:
-+	DRM_DEBUG_KMS("[CRTC:%d:%s] Slave is enabled as normal CRTC, but "
-+		      "[CRTC:%d:%s] claiming this CRTC for bigjoiner.\n",
-+		      slave->base.base.id, slave->base.name,
-+		      master->base.base.id, master->base.name);
-+	return -EINVAL;
-+}
-+
-+static int kill_bigjoiner_slave(struct intel_atomic_state *state,
-+				struct intel_crtc_state *master_crtc_state)
-+{
-+	struct intel_crtc_state *slave_crtc_state =
-+			intel_atomic_get_crtc_state(&state->base,
-+						    master_crtc_state->bigjoiner_linked_crtc);
-+
-+		if (IS_ERR(slave_crtc_state))
-+			return PTR_ERR(slave_crtc_state);
-+
-+		slave_crtc_state->bigjoiner = master_crtc_state->bigjoiner = false;
-+		slave_crtc_state->bigjoiner_slave = master_crtc_state->bigjoiner_slave = false;
-+		slave_crtc_state->bigjoiner_linked_crtc = master_crtc_state->bigjoiner_linked_crtc = NULL;
-+		intel_crtc_copy_uapi_to_hw_state(state, slave_crtc_state);
-+		return 0;
-+}
-+
- /**
-  * DOC: asynchronous flip implementation
-  *
-@@ -15226,16 +15358,33 @@ static int intel_atomic_check(struct drm_device *dev,
- 			continue;
- 		}
- 
-+		/* Kill old bigjoiner link, we may re-establish afterwards */
-+		if (old_crtc_state->bigjoiner && !old_crtc_state->bigjoiner_slave) {
-+			ret = kill_bigjoiner_slave(state, new_crtc_state);
-+			if (ret)
-+				goto fail;
-+		}
-+
-+		if (!new_crtc_state->uapi.enable) {
-+			if (!new_crtc_state->bigjoiner_slave) {
-+				intel_crtc_copy_uapi_to_hw_state(state, new_crtc_state);
-+				any_ms = true;
-+			}
-+			continue;
-+		}
-+
- 		ret = intel_crtc_prepare_cleared_state(state, new_crtc_state);
- 		if (ret)
- 			goto fail;
- 
--		if (!new_crtc_state->hw.enable)
--			continue;
--
- 		ret = intel_modeset_pipe_config(state, new_crtc_state);
- 		if (ret)
- 			goto fail;
-+
-+		ret = intel_atomic_check_bigjoiner(state, crtc, old_crtc_state,
-+						   new_crtc_state);
-+		if (ret)
-+			goto fail;
- 	}
- 
- 	for_each_oldnew_intel_crtc_in_state(state, crtc, old_crtc_state,
-@@ -15571,7 +15720,9 @@ static void intel_update_crtc(struct intel_atomic_state *state,
- 
- 	commit_pipe_config(state, crtc);
- 
--	if (INTEL_GEN(dev_priv) >= 9)
-+	if (new_crtc_state->bigjoiner) {
-+	/* Not supported yet */
-+	} else if (INTEL_GEN(dev_priv) >= 9)
- 		skl_update_planes_on_crtc(state, crtc);
- 	else
- 		i9xx_update_planes_on_crtc(state, crtc);
-diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-index b526afee595c..59ed94d68b55 100644
---- a/drivers/gpu/drm/i915/display/intel_display_types.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-@@ -1070,6 +1070,15 @@ struct intel_crtc_state {
- 	/* enable pipe csc? */
- 	bool csc_enable;
- 
-+	/* enable pipe big joiner? */
-+	bool bigjoiner;
-+
-+	/* big joiner slave crtc? */
-+	bool bigjoiner_slave;
-+
-+	/* linked crtc for bigjoiner, either slave or master */
-+	struct intel_crtc *bigjoiner_linked_crtc;
-+
- 	/* Display Stream compression state */
- 	struct {
- 		bool compression_enable;
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index aebcff7068f0..c3780c5ec7fc 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -2326,6 +2326,15 @@ static int intel_dp_dsc_compute_config(struct intel_dp *intel_dp,
- 	pipe_config->port_clock = intel_dp->common_rates[limits->max_clock];
- 	pipe_config->lane_count = limits->max_lane_count;
- 
-+	if (adjusted_mode->crtc_clock > intel_dp_max_dotclock(intel_dp, false)) {
-+		if (adjusted_mode->crtc_clock > intel_dp_max_dotclock(intel_dp, true)) {
-+			DRM_DEBUG_KMS("Clock rate too high for big joiner\n");
-+			return -EINVAL;
-+		}
-+		pipe_config->bigjoiner = true;
-+		DRM_DEBUG_KMS("Using bigjoiner configuration\n");
-+	}
-+
- 	if (intel_dp_is_edp(intel_dp)) {
- 		pipe_config->dsc.compressed_bpp =
- 			min_t(u16, drm_edp_dsc_sink_output_bpp(intel_dp->dsc_dpcd) >> 4,
-@@ -2343,12 +2352,12 @@ static int intel_dp_dsc_compute_config(struct intel_dp *intel_dp,
- 						    pipe_config->lane_count,
- 						    adjusted_mode->crtc_clock,
- 						    adjusted_mode->crtc_hdisplay,
--						    false);
-+						    pipe_config->bigjoiner);
- 		dsc_dp_slice_count =
- 			intel_dp_dsc_get_slice_count(intel_dp,
- 						     adjusted_mode->crtc_clock,
- 						     adjusted_mode->crtc_hdisplay,
--						     false);
-+						     pipe_config->bigjoiner);
- 		if (!dsc_max_output_bpp || !dsc_dp_slice_count) {
- 			drm_dbg_kms(&dev_priv->drm,
- 				    "Compressed BPP/Slice Count not supported\n");
-@@ -2364,14 +2373,15 @@ static int intel_dp_dsc_compute_config(struct intel_dp *intel_dp,
- 	 * is greater than the maximum Cdclock and if slice count is even
- 	 * then we need to use 2 VDSC instances.
- 	 */
--	if (adjusted_mode->crtc_clock > dev_priv->max_cdclk_freq) {
--		if (pipe_config->dsc.slice_count > 1) {
--			pipe_config->dsc.dsc_split = true;
--		} else {
-+	if (adjusted_mode->crtc_clock > dev_priv->max_cdclk_freq ||
-+	    pipe_config->bigjoiner) {
-+		if (pipe_config->dsc.slice_count < 2) {
- 			drm_dbg_kms(&dev_priv->drm,
- 				    "Cannot split stream to use 2 VDSC instances\n");
- 			return -EINVAL;
- 		}
-+
-+		pipe_config->dsc.dsc_split = true;
- 	}
- 
- 	ret = intel_dp_dsc_compute_params(&dig_port->base, pipe_config);
--- 
-2.19.1
+> Related: 7e90e8d0c0ea ("drm/i915: Increase timeout for Encrypt status change")
+> Cc: Ramalingam C <ramalingam.c@intel.com>
+> Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_hdcp.c | 9 ++++-----
+> drivers/gpu/drm/i915/display/intel_hdcp.h | 2 ++
+>  2 files changed, 6 insertions(+), 5 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c
+> b/drivers/gpu/drm/i915/display/intel_hdcp.c
+> index a9b652c6e742..61252d4be3dd 100644
+> --- a/drivers/gpu/drm/i915/display/intel_hdcp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
+> @@ -23,7 +23,6 @@
+>  #include "intel_connector.h"
+> 
+>  #define KEY_LOAD_TRIES	5
+> -#define ENCRYPT_STATUS_CHANGE_TIMEOUT_MS	50
+>  #define HDCP2_LC_RETRY_CNT			3
+> 
+>  static
+> @@ -762,7 +761,7 @@ static int intel_hdcp_auth(struct intel_connector
+> *connector)
+>  	if (intel_de_wait_for_set(dev_priv,
+>  				  HDCP_STATUS(dev_priv, cpu_transcoder, port),
+>  				  HDCP_STATUS_ENC,
+> -				  ENCRYPT_STATUS_CHANGE_TIMEOUT_MS)) {
+> +
+> HDCP_ENCRYPT_STATUS_CHANGE_TIMEOUT_MS)) {
+>  		drm_err(&dev_priv->drm, "Timed out waiting for encryption\n");
+>  		return -ETIMEDOUT;
+>  	}
+> @@ -809,7 +808,7 @@ static int _intel_hdcp_disable(struct intel_connector
+> *connector)
+>  	intel_de_write(dev_priv, HDCP_CONF(dev_priv, cpu_transcoder, port), 0);
+>  	if (intel_de_wait_for_clear(dev_priv,
+>  				    HDCP_STATUS(dev_priv, cpu_transcoder, port),
+> -				    ~0, ENCRYPT_STATUS_CHANGE_TIMEOUT_MS))
+> {
+> +				    ~0,
+> HDCP_ENCRYPT_STATUS_CHANGE_TIMEOUT_MS)) {
+>  		drm_err(&dev_priv->drm,
+>  			"Failed to disable HDCP, timeout clearing status\n");
+>  		return -ETIMEDOUT;
+> @@ -1641,7 +1640,7 @@ static int hdcp2_enable_encryption(struct
+> intel_connector *connector)
+>  				    HDCP2_STATUS(dev_priv, cpu_transcoder,
+>  						 port),
+>  				    LINK_ENCRYPTION_STATUS,
+> -				    ENCRYPT_STATUS_CHANGE_TIMEOUT_MS);
+> +
+> HDCP_ENCRYPT_STATUS_CHANGE_TIMEOUT_MS);
+> 
+>  	return ret;
+>  }
+> @@ -1665,7 +1664,7 @@ static int hdcp2_disable_encryption(struct
+> intel_connector *connector)
+>  				      HDCP2_STATUS(dev_priv, cpu_transcoder,
+>  						   port),
+>  				      LINK_ENCRYPTION_STATUS,
+> -				      ENCRYPT_STATUS_CHANGE_TIMEOUT_MS);
+> +
+> HDCP_ENCRYPT_STATUS_CHANGE_TIMEOUT_MS);
+>  	if (ret == -ETIMEDOUT)
+>  		drm_dbg_kms(&dev_priv->drm, "Disable Encryption Timedout");
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.h
+> b/drivers/gpu/drm/i915/display/intel_hdcp.h
+> index bc51c1e9b481..b912a3a0f5b8 100644
+> --- a/drivers/gpu/drm/i915/display/intel_hdcp.h
+> +++ b/drivers/gpu/drm/i915/display/intel_hdcp.h
+> @@ -8,6 +8,8 @@
+> 
+>  #include <linux/types.h>
+> 
+> +#define HDCP_ENCRYPT_STATUS_CHANGE_TIMEOUT_MS	50
+> +
+>  struct drm_connector;
+>  struct drm_connector_state;
+>  struct drm_i915_private;
+> --
+> 2.26.2
 
 _______________________________________________
 Intel-gfx mailing list
