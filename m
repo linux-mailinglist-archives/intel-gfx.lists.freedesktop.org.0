@@ -2,60 +2,45 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5478629AA42
-	for <lists+intel-gfx@lfdr.de>; Tue, 27 Oct 2020 12:07:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 46A6429ABCB
+	for <lists+intel-gfx@lfdr.de>; Tue, 27 Oct 2020 13:18:41 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 072A189F33;
-	Tue, 27 Oct 2020 11:07:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E1B5A6EB6F;
+	Tue, 27 Oct 2020 12:18:34 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from ste-pvt-msa1.bahnhof.se (ste-pvt-msa1.bahnhof.se
- [213.80.101.70])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C529C89FA0
- for <intel-gfx@lists.freedesktop.org>; Tue, 27 Oct 2020 11:07:15 +0000 (UTC)
-Received: from localhost (localhost [127.0.0.1])
- by ste-pvt-msa1.bahnhof.se (Postfix) with ESMTP id 474AE3F6AD;
- Tue, 27 Oct 2020 12:07:14 +0100 (CET)
-Authentication-Results: ste-pvt-msa1.bahnhof.se; dkim=pass (1024-bit key;
- unprotected) header.d=shipmail.org header.i=@shipmail.org header.b=MJuDE7YM; 
- dkim-atps=neutral
-X-Virus-Scanned: Debian amavisd-new at bahnhof.se
-X-Spam-Flag: NO
-X-Spam-Score: -4.266
-X-Spam-Level: 
-X-Spam-Status: No, score=-4.266 tagged_above=-999 required=6.31
- tests=[BAYES_00=-1.9, DKIM_SIGNED=0.1, DKIM_VALID=-0.1,
- DKIM_VALID_AU=-0.1, DKIM_VALID_EF=-0.1, NICE_REPLY_A=-2.167,
- URIBL_BLOCKED=0.001] autolearn=ham autolearn_force=no
-Received: from ste-pvt-msa1.bahnhof.se ([127.0.0.1])
- by localhost (ste-pvt-msa1.bahnhof.se [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id lyfRqutJf30Z; Tue, 27 Oct 2020 12:07:13 +0100 (CET)
-Received: by ste-pvt-msa1.bahnhof.se (Postfix) with ESMTPA id 2C8723F5F1;
- Tue, 27 Oct 2020 12:07:12 +0100 (CET)
-Received: from Win10-768gb107.SSPE.ch.intel.com (jfdmzpr04-ext.jf.intel.com
- [134.134.137.73])
- by mail1.shipmail.org (Postfix) with ESMTPSA id 17AEA3600BE;
- Tue, 27 Oct 2020 12:07:10 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=shipmail.org; s=mail;
- t=1603796832; bh=y7dXHcLFzmC/h2y4X8Dymis/JNx1SVJm2dxo6kqvGQo=;
- h=Subject:To:References:From:Date:In-Reply-To:From;
- b=MJuDE7YM7Bo19LELFjGCG2H5gvAI+kYYCLrRiBsRGqAfltbzxxgKZwg1/bEAcDXjh
- C9wjSp1koL7MYJ30yvS+gUYXalbz8LL6KbhjjeSqSbRRh/wU3M63beHJBPHeSSZm0v
- LWfqOzFAtin8c4DDpTZHo/IBW71953KQrPXatgY0=
-To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-References: <20201015112627.1142745-1-maarten.lankhorst@linux.intel.com>
- <20201015112627.1142745-6-maarten.lankhorst@linux.intel.com>
-From: =?UTF-8?Q?Thomas_Hellstr=c3=b6m_=28Intel=29?= <thomas_os@shipmail.org>
-Message-ID: <8cd56014-415b-e8ad-4288-c7d0458fb87b@shipmail.org>
-Date: Tue, 27 Oct 2020 12:07:07 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.3.1
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8AA1F6E0EF;
+ Tue, 27 Oct 2020 12:18:33 +0000 (UTC)
+IronPort-SDR: VNX5c0kWiLbZHZqWKaJV2Xohbby+9lLawyxBULSgZ/cw8j02s+gffWpnBW/a9IOhpTNVGdxJG2
+ Lh+zP12T/j6g==
+X-IronPort-AV: E=McAfee;i="6000,8403,9786"; a="164568695"
+X-IronPort-AV: E=Sophos;i="5.77,423,1596524400"; d="scan'208";a="164568695"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Oct 2020 05:18:33 -0700
+IronPort-SDR: YNN8Okkn3bb0sf54zIvhyrHLBCwCgglliIlsUhu6t2luMIOo8k3xyma4TyZDFqgIAHtA1fl1Ub
+ nlznqwO5UorA==
+X-IronPort-AV: E=Sophos;i="5.77,423,1596524400"; d="scan'208";a="303860138"
+Received: from genxfsim-desktop.iind.intel.com (HELO intel.com)
+ ([10.223.74.178])
+ by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Oct 2020 05:18:30 -0700
+Date: Tue, 27 Oct 2020 17:34:53 +0530
+From: Anshuman Gupta <anshuman.gupta@intel.com>
+To: "Shankar, Uma" <uma.shankar@intel.com>
+Message-ID: <20201027120452.GH29526@intel.com>
+References: <20201023122112.15265-1-anshuman.gupta@intel.com>
+ <20201023122112.15265-8-anshuman.gupta@intel.com>
+ <bcd909eb40694baba56d58941aa7518a@intel.com>
 MIME-Version: 1.0
-In-Reply-To: <20201015112627.1142745-6-maarten.lankhorst@linux.intel.com>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH v3 05/63] drm/i915: Ensure we hold the
- object mutex in pin correctly.
+Content-Disposition: inline
+In-Reply-To: <bcd909eb40694baba56d58941aa7518a@intel.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
+Subject: Re: [Intel-gfx] [PATCH v3 07/16] drm/i915/hdcp: Enable Gen12 HDCP
+ 1.4 DP MST support
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,19 +53,164 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Cc: "Nikula, Jani" <jani.nikula@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ "seanpaul@chromium.org" <seanpaul@chromium.org>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Ck9uIDEwLzE1LzIwIDE6MjUgUE0sIE1hYXJ0ZW4gTGFua2hvcnN0IHdyb3RlOgo+IEN1cnJlbnRs
-eSB3ZSBoYXZlIGEgbG90IG9mIHBsYWNlcyB3aGVyZSB3ZSBob2xkIHRoZSBnZW0gb2JqZWN0IGxv
-Y2ssCj4gYnV0IGhhdmVuJ3QgeWV0IGJlZW4gY29udmVydGVkIHRvIHRoZSB3dyBkYW5jZS4gQ29t
-cGxhaW4gbG91ZGx5IGFib3V0Cj4gdGhvc2UgcGxhY2VzLgo+Cj4gaTkxNV92bWFfcGluIHNob3Vs
-ZG4ndCBoYXZlIHRoZSBvYmogbG9jayBoZWxkLCBzbyB3ZSBjYW4gZG8gYSB3dyBkYW5jZSwKPiB3
-aGlsZSBpOTE1X3ZtYV9waW5fd3cgc2hvdWxkLgo+Cj4gU2lnbmVkLW9mZi1ieTogTWFhcnRlbiBM
-YW5raG9yc3QgPG1hYXJ0ZW4ubGFua2hvcnN0QGxpbnV4LmludGVsLmNvbT4KClJldmlld2VkLWJ5
-OiBUaG9tYXMgSGVsbHN0csO2bSA8dGhvbWFzLmhlbGxzdHJvbUBpbnRlbC5jb20+CgoKX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxp
-bmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJl
-ZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
+On 2020-10-27 at 11:59:14 +0530, Shankar, Uma wrote:
+> 
+> 
+> > -----Original Message-----
+> > From: Anshuman Gupta <anshuman.gupta@intel.com>
+> > Sent: Friday, October 23, 2020 5:51 PM
+> > To: intel-gfx@lists.freedesktop.org; dri-devel@lists.freedesktop.org
+> > Cc: seanpaul@chromium.org; Nikula, Jani <jani.nikula@intel.com>; C,
+> > Ramalingam <ramalingam.c@intel.com>; Li, Juston <juston.li@intel.com>;
+> > Shankar, Uma <uma.shankar@intel.com>; Gupta, Anshuman
+> > <anshuman.gupta@intel.com>
+> > Subject: [PATCH v3 07/16] drm/i915/hdcp: Enable Gen12 HDCP 1.4 DP MST
+> > support
+> > 
+> > Enable HDCP 1.4 over DP MST for Gen12.
+> > This also enable the stream encryption support for older generations, which was
+> > missing earlier.
+> > 
+> > v2:
+> > - Added debug print for stream encryption.
+> > - Disable the hdcp on port after disabling last stream
+> >   encryption.
+> 
+> Don't see port disable here, Am I missing something.
+> 
+> > 
+> > Cc: Ramalingam C <ramalingam.c@intel.com>
+> > Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
+> > ---
+> >  drivers/gpu/drm/i915/display/intel_dp_mst.c | 10 ++---
+> >  drivers/gpu/drm/i915/display/intel_hdcp.c   | 46 ++++++++++++++-------
+> >  2 files changed, 35 insertions(+), 21 deletions(-)
+> > 
+> > diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> > b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> > index 16865b200062..f00e12fc83e8 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> > @@ -826,13 +826,9 @@ static struct drm_connector
+> > *intel_dp_add_mst_connector(struct drm_dp_mst_topolo
+> >  	intel_attach_force_audio_property(connector);
+> >  	intel_attach_broadcast_rgb_property(connector);
+> > 
+> > -
+> > -	/* TODO: Figure out how to make HDCP work on GEN12+ */
+> > -	if (INTEL_GEN(dev_priv) < 12) {
+> > -		ret = intel_dp_init_hdcp(dig_port, intel_connector);
+> > -		if (ret)
+> > -			DRM_DEBUG_KMS("HDCP init failed, skipping.\n");
+> > -	}
+> > +	ret = intel_dp_init_hdcp(dig_port, intel_connector);
+> > +	if (ret)
+> > +		drm_dbg_kms(&dev_priv->drm, "HDCP init failed, skipping.\n");
+> > 
+> >  	/*
+> >  	 * Reuse the prop from the SST connector because we're diff --git
+> > a/drivers/gpu/drm/i915/display/intel_hdcp.c
+> > b/drivers/gpu/drm/i915/display/intel_hdcp.c
+> > index 61252d4be3dd..46c9bd588db1 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_hdcp.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
+> > @@ -612,7 +612,12 @@ int intel_hdcp_auth_downstream(struct intel_connector
+> > *connector)
+> >  	return ret;
+> >  }
+> > 
+> > -/* Implements Part 1 of the HDCP authorization procedure */
+> > +/*
+> > + * Implements Part 1 of the HDCP authorization procedure.
+> > + * Authentication Part 1 steps for Multi-stream DisplayPort.
+> > + * Step 1. Auth Part 1 sequence on the driving MST Trasport Link.
+> > + * Step 2. Enable encryption for each stream that requires encryption.
+> > + */
+> >  static int intel_hdcp_auth(struct intel_connector *connector)  {
+> >  	struct intel_digital_port *dig_port = intel_attached_dig_port(connector);
+> > @@ -766,10 +771,16 @@ static int intel_hdcp_auth(struct intel_connector
+> > *connector)
+> >  		return -ETIMEDOUT;
+> >  	}
+> > 
+> > -	/*
+> > -	 * XXX: If we have MST-connected devices, we need to enable encryption
+> > -	 * on those as well.
+> > -	 */
+> > +	/* DP MST Auth Part 1 Step 2.a and Step 2.b */
+> > +	if (shim->stream_encryption) {
+> > +		ret = shim->stream_encryption(dig_port, true);
+> > +		if (ret) {
+> > +			drm_err(&dev_priv->drm, "Failed to enable HDCP 1.4
+> > stream enc\n");
+> > +			return ret;
+> > +		}
+> > +		drm_dbg_kms(&dev_priv->drm, "HDCP 1.4 tras %s stream
+> > encrypted\n",
+> > +			    transcoder_name(hdcp->stream_transcoder));
+> > +	}
+> > 
+> >  	if (repeater_present)
+> >  		return intel_hdcp_auth_downstream(connector);
+> > @@ -790,19 +801,26 @@ static int _intel_hdcp_disable(struct intel_connector
+> > *connector)
+> > 
+> >  	drm_dbg_kms(&dev_priv->drm, "[%s:%d] HDCP is being disabled...\n",
+> >  		    connector->base.name, connector->base.base.id);
+> > +	/*
+> > +	 * Step 1: Deselect HDCP Multiplestream Bit.
+> > +	 * Step 2: poll for stream encryption status to be disable.
+> > +	 */
+> 
+> The above comment should be inside the callback, doesn't add value here.
+stream_encryption call back is common for enable/disable stream encryption.
+probbaly it would be better to nuke the above comment in case not adds value here.
+Thanks,
+Anshuman.
+> 
+> > +	if (hdcp->shim->stream_encryption) {
+> > +		ret = hdcp->shim->stream_encryption(dig_port, false);
+> > +		if (ret) {
+> > +			drm_err(&dev_priv->drm, "Failed to disable HDCP 1.4
+> > stream enc\n");
+> > +			return ret;
+> > +		}
+> > +		drm_dbg_kms(&dev_priv->drm, "HDCP 1.4 trans %s stream
+> > encryption disabled\n",
+> > +			    transcoder_name(hdcp->stream_transcoder));
+> > +	}
+> > 
+> >  	/*
+> > -	 * If there are other connectors on this port using HDCP, don't disable
+> > -	 * it. Instead, toggle the HDCP signalling off on that particular
+> > -	 * connector/pipe and exit.
+> > +	 * If there are other connectors on this port using HDCP, don't disable it.
+> > +	 * Repeat steps 1-2 for each stream that no longer requires encryption.
+> >  	 */
+> > -	if (dig_port->num_hdcp_streams > 0) {
+> > -		ret = hdcp->shim->toggle_signalling(dig_port,
+> > -						    cpu_transcoder, false);
+> > -		if (ret)
+> > -			DRM_ERROR("Failed to disable HDCP signalling\n");
+> > +	if (dig_port->num_hdcp_streams > 0)
+> >  		return ret;
+> > -	}
+> > 
+> >  	hdcp->hdcp_encrypted = false;
+> >  	intel_de_write(dev_priv, HDCP_CONF(dev_priv, cpu_transcoder, port), 0);
+> > --
+> > 2.26.2
+> 
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
