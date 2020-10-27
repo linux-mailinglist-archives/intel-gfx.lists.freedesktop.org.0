@@ -2,41 +2,41 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7401429A44E
-	for <lists+intel-gfx@lfdr.de>; Tue, 27 Oct 2020 06:49:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8637A29A451
+	for <lists+intel-gfx@lfdr.de>; Tue, 27 Oct 2020 06:49:24 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A211E6EAD3;
-	Tue, 27 Oct 2020 05:49:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 06B916EADA;
+	Tue, 27 Oct 2020 05:49:21 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 772486EAD3
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9054A6EAD2
  for <intel-gfx@lists.freedesktop.org>; Tue, 27 Oct 2020 05:49:12 +0000 (UTC)
-IronPort-SDR: UUCzmrh689xm6gqzUhxmTVKRapYEtizpS04VpdPzEibi90F8od/RtOkdVgQ7RDfmy1nfAqV3Nu
- T/a2geG8g1KA==
-X-IronPort-AV: E=McAfee;i="6000,8403,9786"; a="167249521"
-X-IronPort-AV: E=Sophos;i="5.77,422,1596524400"; d="scan'208";a="167249521"
+IronPort-SDR: XLavxTR0u4bFw4nyOvF9dCtsfUfi74FHJ3q6pHIZav4T8MYVMueCVhYFM5viyvfrI7IOi1xiqf
+ AB1ssUqzZpPg==
+X-IronPort-AV: E=McAfee;i="6000,8403,9786"; a="167249522"
+X-IronPort-AV: E=Sophos;i="5.77,422,1596524400"; d="scan'208";a="167249522"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from fmsmga005.fm.intel.com ([10.253.24.32])
  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  26 Oct 2020 22:49:11 -0700
-IronPort-SDR: wTMM6rLSFfxGhTC3u3+/g7Ss8Wki2cQ1CXN40Kyz9Pbfgw7+A5JU9JzhbFkpglz5yxFsp5/eUH
- f2uJfgnggsFQ==
-X-IronPort-AV: E=Sophos;i="5.77,422,1596524400"; d="scan'208";a="525762380"
+IronPort-SDR: fPYG1z6v7fPBhJpVy+jX81Q9X3uU3IwVriAnmVB9p1X9EyN8x6rS/rhkIKHVD0FXxztw/6wVkx
+ aX+xJwUH5ezw==
+X-IronPort-AV: E=Sophos;i="5.77,422,1596524400"; d="scan'208";a="525762385"
 Received: from labuser-z97x-ud5h.jf.intel.com ([10.165.21.211])
  by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-SHA;
  26 Oct 2020 22:49:11 -0700
 From: Manasi Navare <manasi.d.navare@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Mon, 26 Oct 2020 22:50:52 -0700
-Message-Id: <20201027055054.32697-2-manasi.d.navare@intel.com>
+Date: Mon, 26 Oct 2020 22:50:53 -0700
+Message-Id: <20201027055054.32697-3-manasi.d.navare@intel.com>
 X-Mailer: git-send-email 2.19.1
-In-Reply-To: <20201022054223.25071-9-manasi.d.navare@intel.com>
-References: <20201022054223.25071-9-manasi.d.navare@intel.com>
+In-Reply-To: <20201022054223.25071-6-manasi.d.navare@intel.com>
+References: <20201022054223.25071-6-manasi.d.navare@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v12 08/12] drm/i915/dp: Master/Slave
- enable/disable sequence for bigjoiner
+Subject: [Intel-gfx] [PATCH v12 05/12] drm/i915/dp: Prep for bigjoiner
+ atomic check
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,296 +49,142 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Enabling is done in a special sequence and so should plane updates
-be. Ideally the end user never notices the second pipe is used.
-
-This way ideally everything will be tear free, and updates are
-really atomic as userspace expects it.
-
-This uses generic modeset_enables() calls like trans port sync
-but still has special handling for disable since for slave we
-should not disable things like encoder, plls that are not enabled
-for  slave.
-
-Signed-off-by: Manasi Navare <manasi.d.navare@intel.com>
----
- drivers/gpu/drm/i915/display/intel_ddi.c     |  25 +++-
- drivers/gpu/drm/i915/display/intel_display.c | 118 +++++++++++++++----
- 2 files changed, 118 insertions(+), 25 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
-index 753ac6f4d4e3..a710b5958d45 100644
---- a/drivers/gpu/drm/i915/display/intel_ddi.c
-+++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-@@ -28,6 +28,7 @@
- #include <drm/drm_scdc_helper.h>
- 
- #include "i915_drv.h"
-+#include "i915_trace.h"
- #include "intel_audio.h"
- #include "intel_combo_phy.h"
- #include "intel_connector.h"
-@@ -3500,7 +3501,8 @@ static void tgl_ddi_pre_enable_dp(struct intel_atomic_state *state,
- 
- 	/* 7.l Configure and enable FEC if needed */
- 	intel_ddi_enable_fec(encoder, crtc_state);
--	intel_dsc_enable(encoder, crtc_state);
-+	if (!crtc_state->bigjoiner)
-+		intel_dsc_enable(encoder, crtc_state);
- }
- 
- static void hsw_ddi_pre_enable_dp(struct intel_atomic_state *state,
-@@ -3572,7 +3574,8 @@ static void hsw_ddi_pre_enable_dp(struct intel_atomic_state *state,
- 	if (!is_mst)
- 		intel_ddi_enable_pipe_clock(encoder, crtc_state);
- 
--	intel_dsc_enable(encoder, crtc_state);
-+	if (!crtc_state->bigjoiner)
-+		intel_dsc_enable(encoder, crtc_state);
- }
- 
- static void intel_ddi_pre_enable_dp(struct intel_atomic_state *state,
-@@ -3821,6 +3824,21 @@ static void intel_ddi_post_disable(struct intel_atomic_state *state,
- 			ilk_pfit_disable(old_crtc_state);
- 	}
- 
-+	if (old_crtc_state->bigjoiner_linked_crtc) {
-+		struct intel_atomic_state *state =
-+			to_intel_atomic_state(old_crtc_state->uapi.state);
-+		struct intel_crtc *slave =
-+			old_crtc_state->bigjoiner_linked_crtc;
-+		const struct intel_crtc_state *old_slave_crtc_state =
-+			intel_atomic_get_old_crtc_state(state, slave);
-+
-+		intel_crtc_vblank_off(old_slave_crtc_state);
-+		trace_intel_pipe_disable(slave);
-+
-+		intel_dsc_disable(old_slave_crtc_state);
-+		skl_scaler_disable(old_slave_crtc_state);
-+	}
-+
- 	/*
- 	 * When called from DP MST code:
- 	 * - old_conn_state will be NULL
-@@ -4037,7 +4055,8 @@ static void intel_enable_ddi(struct intel_atomic_state *state,
- {
- 	drm_WARN_ON(state->base.dev, crtc_state->has_pch_encoder);
- 
--	intel_ddi_enable_transcoder_func(encoder, crtc_state);
-+	if (!crtc_state->bigjoiner_slave)
-+		intel_ddi_enable_transcoder_func(encoder, crtc_state);
- 
- 	intel_enable_pipe(crtc_state);
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index c4716fda3c06..5cf128668a79 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -7232,6 +7232,45 @@ static void hsw_set_frame_start_delay(const struct intel_crtc_state *crtc_state)
- 	intel_de_write(dev_priv, reg, val);
- }
- 
-+static void icl_ddi_bigjoiner_pre_enable(struct intel_atomic_state *state,
-+					 const struct intel_crtc_state *crtc_state)
-+{
-+	struct intel_crtc *master = to_intel_crtc(crtc_state->uapi.crtc);
-+	struct intel_crtc_state *master_crtc_state;
-+	struct drm_connector_state *conn_state;
-+	struct drm_connector *conn;
-+	struct intel_encoder *encoder = NULL;
-+	int i;
-+
-+	if (crtc_state->bigjoiner_slave)
-+		master = crtc_state->bigjoiner_linked_crtc;
-+
-+	master_crtc_state = intel_atomic_get_new_crtc_state(state, master);
-+
-+	for_each_new_connector_in_state(&state->base, conn, conn_state, i) {
-+		if (conn_state->crtc != &master->base)
-+			continue;
-+
-+		encoder = to_intel_encoder(conn_state->best_encoder);
-+		break;
-+	}
-+
-+	if (!crtc_state->bigjoiner_slave) {
-+		/* need to enable VDSC, which we skipped in pre-enable */
-+		intel_dsc_enable(encoder, crtc_state);
-+	} else {
-+		/*
-+                 * Enable sequence steps 1-7 on bigjoiner master
-+                 */
-+		intel_encoders_pre_pll_enable(state, master);
-+		intel_enable_shared_dpll(master_crtc_state);
-+		intel_encoders_pre_enable(state, master);
-+
-+		/* and DSC on slave */
-+		intel_dsc_enable(NULL, crtc_state);
-+	}
-+}
-+
- static void hsw_crtc_enable(struct intel_atomic_state *state,
- 			    struct intel_crtc *crtc)
- {
-@@ -7245,34 +7284,39 @@ static void hsw_crtc_enable(struct intel_atomic_state *state,
- 	if (drm_WARN_ON(&dev_priv->drm, crtc->active))
- 		return;
- 
--	intel_encoders_pre_pll_enable(state, crtc);
--
--	if (new_crtc_state->shared_dpll)
--		intel_enable_shared_dpll(new_crtc_state);
-+	if (!new_crtc_state->bigjoiner) {
-+		intel_encoders_pre_pll_enable(state, crtc);
- 
--	intel_encoders_pre_enable(state, crtc);
-+		if (new_crtc_state->shared_dpll)
-+			intel_enable_shared_dpll(new_crtc_state);
- 
--	if (!transcoder_is_dsi(cpu_transcoder))
--		intel_set_transcoder_timings(new_crtc_state);
-+		intel_encoders_pre_enable(state, crtc);
-+	} else {
-+		icl_ddi_bigjoiner_pre_enable(state, new_crtc_state);
-+	}
- 
- 	intel_set_pipe_src_size(new_crtc_state);
-+	if (INTEL_GEN(dev_priv) >= 9 || IS_BROADWELL(dev_priv))
-+		bdw_set_pipemisc(new_crtc_state);
- 
--	if (cpu_transcoder != TRANSCODER_EDP &&
--	    !transcoder_is_dsi(cpu_transcoder))
--		intel_de_write(dev_priv, PIPE_MULT(cpu_transcoder),
--			       new_crtc_state->pixel_multiplier - 1);
-+	if (!new_crtc_state->bigjoiner_slave || !transcoder_is_dsi(cpu_transcoder)){
-+		if (!transcoder_is_dsi(cpu_transcoder))
-+			intel_set_transcoder_timings(new_crtc_state);
- 
--	if (new_crtc_state->has_pch_encoder)
--		intel_cpu_transcoder_set_m_n(new_crtc_state,
--					     &new_crtc_state->fdi_m_n, NULL);
-+		if (cpu_transcoder != TRANSCODER_EDP &&
-+		    !transcoder_is_dsi(cpu_transcoder))
-+			intel_de_write(dev_priv, PIPE_MULT(cpu_transcoder),
-+				       new_crtc_state->pixel_multiplier - 1);
-+
-+		if (new_crtc_state->has_pch_encoder)
-+			intel_cpu_transcoder_set_m_n(new_crtc_state,
-+						     &new_crtc_state->fdi_m_n, NULL);
- 
--	if (!transcoder_is_dsi(cpu_transcoder)) {
- 		hsw_set_frame_start_delay(new_crtc_state);
--		hsw_set_pipeconf(new_crtc_state);
- 	}
- 
--	if (INTEL_GEN(dev_priv) >= 9 || IS_BROADWELL(dev_priv))
--		bdw_set_pipemisc(new_crtc_state);
-+	if (!transcoder_is_dsi(cpu_transcoder))
-+		hsw_set_pipeconf(new_crtc_state);
- 
- 	crtc->active = true;
- 
-@@ -7308,6 +7352,11 @@ static void hsw_crtc_enable(struct intel_atomic_state *state,
- 	if (INTEL_GEN(dev_priv) >= 11)
- 		icl_pipe_mbus_enable(crtc);
- 
-+	if (new_crtc_state->bigjoiner_slave) {
-+		trace_intel_pipe_enable(crtc);
-+		intel_crtc_vblank_on(new_crtc_state);
-+	}
-+
- 	intel_encoders_enable(state, crtc);
- 
- 	if (psl_clkgate_wa) {
-@@ -15687,6 +15736,9 @@ static void intel_enable_crtc(struct intel_atomic_state *state,
- 
- 	dev_priv->display.crtc_enable(state, crtc);
- 
-+	if (new_crtc_state->bigjoiner_slave)
-+		return;
-+
- 	/* vblanks work again, re-enable pipe CRC. */
- 	intel_crtc_enable_pipe_crc(crtc);
- }
-@@ -15751,8 +15803,21 @@ static void intel_old_crtc_state_disables(struct intel_atomic_state *state,
- {
- 	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
- 
-+	drm_WARN_ON(&dev_priv->drm, old_crtc_state->bigjoiner_slave);
-+
- 	intel_crtc_disable_planes(state, crtc);
- 
-+	/*
-+	 * We still need special handling for disabling bigjoiner master
-+	 * and slaves since for slave we do not have encoder or plls
-+	 * so we dont need to disable those.
-+	 */
-+	if (old_crtc_state->bigjoiner) {
-+		intel_crtc_disable_planes(state,
-+					  old_crtc_state->bigjoiner_linked_crtc);
-+		old_crtc_state->bigjoiner_linked_crtc->active = false;
-+	}
-+
- 	/*
- 	 * We need to disable pipe CRC before disabling the pipe,
- 	 * or we race against vblank off.
-@@ -15781,7 +15846,7 @@ static void intel_commit_modeset_disables(struct intel_atomic_state *state)
- 	/* Only disable port sync and MST slaves */
- 	for_each_oldnew_intel_crtc_in_state(state, crtc, old_crtc_state,
- 					    new_crtc_state, i) {
--		if (!needs_modeset(new_crtc_state))
-+		if (!needs_modeset(new_crtc_state) || old_crtc_state->bigjoiner)
- 			continue;
- 
- 		if (!old_crtc_state->hw.active)
-@@ -15806,10 +15871,18 @@ static void intel_commit_modeset_disables(struct intel_atomic_state *state)
- 	for_each_oldnew_intel_crtc_in_state(state, crtc, old_crtc_state,
- 					    new_crtc_state, i) {
- 		if (!needs_modeset(new_crtc_state) ||
--		    (handled & BIT(crtc->pipe)))
-+		    (handled & BIT(crtc->pipe)) ||
-+		    old_crtc_state->bigjoiner_slave)
- 			continue;
- 
- 		intel_pre_plane_update(state, crtc);
-+		if (old_crtc_state->bigjoiner) {
-+			struct intel_crtc *slave =
-+				old_crtc_state->bigjoiner_linked_crtc;
-+
-+			intel_pre_plane_update(state, slave);
-+		}
-+
- 		if (old_crtc_state->hw.active)
- 			intel_old_crtc_state_disables(state, old_crtc_state,
- 						      new_crtc_state, crtc);
-@@ -15907,7 +15980,8 @@ static void skl_commit_modeset_enables(struct intel_atomic_state *state)
- 			continue;
- 
- 		if (intel_dp_mst_is_slave_trans(new_crtc_state) ||
--		    is_trans_port_sync_master(new_crtc_state))
-+		    is_trans_port_sync_master(new_crtc_state) ||
-+		    (new_crtc_state->bigjoiner && !new_crtc_state->bigjoiner_slave))
- 			continue;
- 
- 		modeset_pipes &= ~BIT(pipe);
-@@ -15917,7 +15991,7 @@ static void skl_commit_modeset_enables(struct intel_atomic_state *state)
- 
- 	/*
- 	 * Then we enable all remaining pipes that depend on other
--	 * pipes: MST slaves and port sync masters.
-+	 * pipes: MST slaves and port sync masters, big joiner master
- 	 */
- 	for_each_new_intel_crtc_in_state(state, crtc, new_crtc_state, i) {
- 		enum pipe pipe = crtc->pipe;
--- 
-2.19.1
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+Tm8gZnVuY3Rpb25hbCBjaGFuZ2VzIGhlcmUuIEp1c3QgcGFzcyBpbnRlbF9hdG9taWNfc3RhdGUK
+YWxvbmcgd2l0aCBjcnRjX3N0YXRlIHRvIGNlcnRhaW4gYXRvbWljX2NoZWNrIGZ1bmN0aW9ucy4K
+VGhpcyB3aWxsIGxheSB0aGUgZm91bmRhdGlvbiBmb3IgYWRkaW5nIGJpZ2pvaW5lciBtYXN0ZXIv
+c2xhdmUKc3RhdGVzIGluIGF0b21pYyBjaGVjay4KCnYyOgoqIE1vcmUgcHJlcCB3aXRoIGludGVs
+X2F0b21pY19zdGF0ZSAoVmlsbGUpCgpDYzogVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJqYWxh
+QGxpbnV4LmludGVsLmNvbT4KU2lnbmVkLW9mZi1ieTogTWFuYXNpIE5hdmFyZSA8bWFuYXNpLmQu
+bmF2YXJlQGludGVsLmNvbT4KLS0tCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVs
+X2F0b21pYy5jICB8ICA5ICsrLS0tCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVs
+X2F0b21pYy5oICB8ICAzICstCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rp
+c3BsYXkuYyB8IDM1ICsrKysrKysrKysrLS0tLS0tLS0tCiAzIGZpbGVzIGNoYW5nZWQsIDI3IGlu
+c2VydGlvbnMoKyksIDIwIGRlbGV0aW9ucygtKQoKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2Ry
+bS9pOTE1L2Rpc3BsYXkvaW50ZWxfYXRvbWljLmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNw
+bGF5L2ludGVsX2F0b21pYy5jCmluZGV4IDg2YmUwMzJiY2Y5Ni4uZTI0M2NlOTdiNTM0IDEwMDY0
+NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2F0b21pYy5jCisrKyBi
+L2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfYXRvbWljLmMKQEAgLTI3MCwxNCAr
+MjcwLDE1IEBAIHZvaWQgaW50ZWxfY3J0Y19mcmVlX2h3X3N0YXRlKHN0cnVjdCBpbnRlbF9jcnRj
+X3N0YXRlICpjcnRjX3N0YXRlKQogCWludGVsX2NydGNfcHV0X2NvbG9yX2Jsb2JzKGNydGNfc3Rh
+dGUpOwogfQogCi12b2lkIGludGVsX2NydGNfY29weV9jb2xvcl9ibG9icyhzdHJ1Y3QgaW50ZWxf
+Y3J0Y19zdGF0ZSAqY3J0Y19zdGF0ZSkKK3ZvaWQgaW50ZWxfY3J0Y19jb3B5X2NvbG9yX2Jsb2Jz
+KHN0cnVjdCBpbnRlbF9jcnRjX3N0YXRlICpjcnRjX3N0YXRlLAorCQkJCSBjb25zdCBzdHJ1Y3Qg
+aW50ZWxfY3J0Y19zdGF0ZSAqZnJvbV9jcnRjX3N0YXRlKQogewogCWRybV9wcm9wZXJ0eV9yZXBs
+YWNlX2Jsb2IoJmNydGNfc3RhdGUtPmh3LmRlZ2FtbWFfbHV0LAotCQkJCSAgY3J0Y19zdGF0ZS0+
+dWFwaS5kZWdhbW1hX2x1dCk7CisJCQkJICBmcm9tX2NydGNfc3RhdGUtPnVhcGkuZGVnYW1tYV9s
+dXQpOwogCWRybV9wcm9wZXJ0eV9yZXBsYWNlX2Jsb2IoJmNydGNfc3RhdGUtPmh3LmdhbW1hX2x1
+dCwKLQkJCQkgIGNydGNfc3RhdGUtPnVhcGkuZ2FtbWFfbHV0KTsKKwkJCQkgIGZyb21fY3J0Y19z
+dGF0ZS0+dWFwaS5nYW1tYV9sdXQpOwogCWRybV9wcm9wZXJ0eV9yZXBsYWNlX2Jsb2IoJmNydGNf
+c3RhdGUtPmh3LmN0bSwKLQkJCQkgIGNydGNfc3RhdGUtPnVhcGkuY3RtKTsKKwkJCQkgIGZyb21f
+Y3J0Y19zdGF0ZS0+dWFwaS5jdG0pOwogfQogCiAvKioKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1
+L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfYXRvbWljLmggYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9k
+aXNwbGF5L2ludGVsX2F0b21pYy5oCmluZGV4IDI4NWRlMDcwMTFkYy4uNjJhMzM2NWVkNWU2IDEw
+MDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2F0b21pYy5oCisr
+KyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfYXRvbWljLmgKQEAgLTQzLDcg
+KzQzLDggQEAgc3RydWN0IGRybV9jcnRjX3N0YXRlICppbnRlbF9jcnRjX2R1cGxpY2F0ZV9zdGF0
+ZShzdHJ1Y3QgZHJtX2NydGMgKmNydGMpOwogdm9pZCBpbnRlbF9jcnRjX2Rlc3Ryb3lfc3RhdGUo
+c3RydWN0IGRybV9jcnRjICpjcnRjLAogCQkJICAgICAgIHN0cnVjdCBkcm1fY3J0Y19zdGF0ZSAq
+c3RhdGUpOwogdm9pZCBpbnRlbF9jcnRjX2ZyZWVfaHdfc3RhdGUoc3RydWN0IGludGVsX2NydGNf
+c3RhdGUgKmNydGNfc3RhdGUpOwotdm9pZCBpbnRlbF9jcnRjX2NvcHlfY29sb3JfYmxvYnMoc3Ry
+dWN0IGludGVsX2NydGNfc3RhdGUgKmNydGNfc3RhdGUpOwordm9pZCBpbnRlbF9jcnRjX2NvcHlf
+Y29sb3JfYmxvYnMoc3RydWN0IGludGVsX2NydGNfc3RhdGUgKmNydGNfc3RhdGUsCisJCQkJIGNv
+bnN0IHN0cnVjdCBpbnRlbF9jcnRjX3N0YXRlICpmcm9tX2NydGNfc3RhdGUpOwogc3RydWN0IGRy
+bV9hdG9taWNfc3RhdGUgKmludGVsX2F0b21pY19zdGF0ZV9hbGxvYyhzdHJ1Y3QgZHJtX2Rldmlj
+ZSAqZGV2KTsKIHZvaWQgaW50ZWxfYXRvbWljX3N0YXRlX2ZyZWUoc3RydWN0IGRybV9hdG9taWNf
+c3RhdGUgKnN0YXRlKTsKIHZvaWQgaW50ZWxfYXRvbWljX3N0YXRlX2NsZWFyKHN0cnVjdCBkcm1f
+YXRvbWljX3N0YXRlICpzdGF0ZSk7CmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9k
+aXNwbGF5L2ludGVsX2Rpc3BsYXkuYyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50
+ZWxfZGlzcGxheS5jCmluZGV4IDQ4NmNlNzEwNzBiZi4uMmJiYmUwYTZkNGM3IDEwMDY0NAotLS0g
+YS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXkuYworKysgYi9kcml2
+ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXkuYwpAQCAtMTI2NjEsNyArMTI2
+NjEsNyBAQCBzdGF0aWMgYm9vbCBlbmNvZGVyc19jbG9uZWFibGUoY29uc3Qgc3RydWN0IGludGVs
+X2VuY29kZXIgKmEsCiAJCQkgIGItPmNsb25lYWJsZSAmICgxIDw8IGEtPnR5cGUpKTsKIH0KIAot
+c3RhdGljIGJvb2wgY2hlY2tfc2luZ2xlX2VuY29kZXJfY2xvbmluZyhzdHJ1Y3QgZHJtX2F0b21p
+Y19zdGF0ZSAqc3RhdGUsCitzdGF0aWMgYm9vbCBjaGVja19zaW5nbGVfZW5jb2Rlcl9jbG9uaW5n
+KHN0cnVjdCBpbnRlbF9hdG9taWNfc3RhdGUgKnN0YXRlLAogCQkJCQkgc3RydWN0IGludGVsX2Ny
+dGMgKmNydGMsCiAJCQkJCSBzdHJ1Y3QgaW50ZWxfZW5jb2RlciAqZW5jb2RlcikKIHsKQEAgLTEy
+NjcwLDcgKzEyNjcwLDcgQEAgc3RhdGljIGJvb2wgY2hlY2tfc2luZ2xlX2VuY29kZXJfY2xvbmlu
+ZyhzdHJ1Y3QgZHJtX2F0b21pY19zdGF0ZSAqc3RhdGUsCiAJc3RydWN0IGRybV9jb25uZWN0b3Jf
+c3RhdGUgKmNvbm5lY3Rvcl9zdGF0ZTsKIAlpbnQgaTsKIAotCWZvcl9lYWNoX25ld19jb25uZWN0
+b3JfaW5fc3RhdGUoc3RhdGUsIGNvbm5lY3RvciwgY29ubmVjdG9yX3N0YXRlLCBpKSB7CisJZm9y
+X2VhY2hfbmV3X2Nvbm5lY3Rvcl9pbl9zdGF0ZSgmc3RhdGUtPmJhc2UsIGNvbm5lY3RvciwgY29u
+bmVjdG9yX3N0YXRlLCBpKSB7CiAJCWlmIChjb25uZWN0b3Jfc3RhdGUtPmNydGMgIT0gJmNydGMt
+PmJhc2UpCiAJCQljb250aW51ZTsKIApAQCAtMTM0NDYsMTMgKzEzNDQ2LDE3IEBAIHN0YXRpYyBi
+b29sIGNoZWNrX2RpZ2l0YWxfcG9ydF9jb25mbGljdHMoc3RydWN0IGludGVsX2F0b21pY19zdGF0
+ZSAqc3RhdGUpCiB9CiAKIHN0YXRpYyB2b2lkCi1pbnRlbF9jcnRjX2NvcHlfdWFwaV90b19od19z
+dGF0ZV9ub21vZGVzZXQoc3RydWN0IGludGVsX2NydGNfc3RhdGUgKmNydGNfc3RhdGUpCitpbnRl
+bF9jcnRjX2NvcHlfdWFwaV90b19od19zdGF0ZV9ub21vZGVzZXQoc3RydWN0IGludGVsX2F0b21p
+Y19zdGF0ZSAqc3RhdGUsCisJCQkJCSAgIHN0cnVjdCBpbnRlbF9jcnRjX3N0YXRlICpjcnRjX3N0
+YXRlKQogewotCWludGVsX2NydGNfY29weV9jb2xvcl9ibG9icyhjcnRjX3N0YXRlKTsKKwljb25z
+dCBzdHJ1Y3QgaW50ZWxfY3J0Y19zdGF0ZSAqZnJvbV9jcnRjX3N0YXRlID0gY3J0Y19zdGF0ZTsK
+KworCWludGVsX2NydGNfY29weV9jb2xvcl9ibG9icyhjcnRjX3N0YXRlLCBmcm9tX2NydGNfc3Rh
+dGUpOwogfQogCiBzdGF0aWMgdm9pZAotaW50ZWxfY3J0Y19jb3B5X3VhcGlfdG9faHdfc3RhdGUo
+c3RydWN0IGludGVsX2NydGNfc3RhdGUgKmNydGNfc3RhdGUpCitpbnRlbF9jcnRjX2NvcHlfdWFw
+aV90b19od19zdGF0ZShzdHJ1Y3QgaW50ZWxfYXRvbWljX3N0YXRlICpzdGF0ZSwKKwkJCQkgc3Ry
+dWN0IGludGVsX2NydGNfc3RhdGUgKmNydGNfc3RhdGUpCiB7CiAJY3J0Y19zdGF0ZS0+aHcuZW5h
+YmxlID0gY3J0Y19zdGF0ZS0+dWFwaS5lbmFibGU7CiAJY3J0Y19zdGF0ZS0+aHcuYWN0aXZlID0g
+Y3J0Y19zdGF0ZS0+dWFwaS5hY3RpdmU7CkBAIC0xMzQ2MCw3ICsxMzQ2NCw3IEBAIGludGVsX2Ny
+dGNfY29weV91YXBpX3RvX2h3X3N0YXRlKHN0cnVjdCBpbnRlbF9jcnRjX3N0YXRlICpjcnRjX3N0
+YXRlKQogCWNydGNfc3RhdGUtPmh3LnBpcGVfbW9kZSA9IGNydGNfc3RhdGUtPmh3LmFkanVzdGVk
+X21vZGUgPSBjcnRjX3N0YXRlLT51YXBpLmFkanVzdGVkX21vZGU7CiAJY3J0Y19zdGF0ZS0+aHcu
+c2NhbGluZ19maWx0ZXIgPSBjcnRjX3N0YXRlLT51YXBpLnNjYWxpbmdfZmlsdGVyOwogCi0JaW50
+ZWxfY3J0Y19jb3B5X3VhcGlfdG9faHdfc3RhdGVfbm9tb2Rlc2V0KGNydGNfc3RhdGUpOworCWlu
+dGVsX2NydGNfY29weV91YXBpX3RvX2h3X3N0YXRlX25vbW9kZXNldChzdGF0ZSwgY3J0Y19zdGF0
+ZSk7CiB9CiAKIHN0YXRpYyB2b2lkIGludGVsX2NydGNfY29weV9od190b191YXBpX3N0YXRlKHN0
+cnVjdCBpbnRlbF9jcnRjX3N0YXRlICpjcnRjX3N0YXRlKQpAQCAtMTM0ODMsNyArMTM0ODcsOCBA
+QCBzdGF0aWMgdm9pZCBpbnRlbF9jcnRjX2NvcHlfaHdfdG9fdWFwaV9zdGF0ZShzdHJ1Y3QgaW50
+ZWxfY3J0Y19zdGF0ZSAqY3J0Y19zdGF0ZQogfQogCiBzdGF0aWMgaW50Ci1pbnRlbF9jcnRjX3By
+ZXBhcmVfY2xlYXJlZF9zdGF0ZShzdHJ1Y3QgaW50ZWxfY3J0Y19zdGF0ZSAqY3J0Y19zdGF0ZSkK
+K2ludGVsX2NydGNfcHJlcGFyZV9jbGVhcmVkX3N0YXRlKHN0cnVjdCBpbnRlbF9hdG9taWNfc3Rh
+dGUgKnN0YXRlLAorCQkJCSBzdHJ1Y3QgaW50ZWxfY3J0Y19zdGF0ZSAqY3J0Y19zdGF0ZSkKIHsK
+IAlzdHJ1Y3QgaW50ZWxfY3J0YyAqY3J0YyA9IHRvX2ludGVsX2NydGMoY3J0Y19zdGF0ZS0+dWFw
+aS5jcnRjKTsKIAlzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqZGV2X3ByaXYgPSB0b19pOTE1KGNy
+dGMtPmJhc2UuZGV2KTsKQEAgLTEzNTE1LDE2ICsxMzUyMCwxNiBAQCBpbnRlbF9jcnRjX3ByZXBh
+cmVfY2xlYXJlZF9zdGF0ZShzdHJ1Y3QgaW50ZWxfY3J0Y19zdGF0ZSAqY3J0Y19zdGF0ZSkKIAlt
+ZW1jcHkoY3J0Y19zdGF0ZSwgc2F2ZWRfc3RhdGUsIHNpemVvZigqY3J0Y19zdGF0ZSkpOwogCWtm
+cmVlKHNhdmVkX3N0YXRlKTsKIAotCWludGVsX2NydGNfY29weV91YXBpX3RvX2h3X3N0YXRlKGNy
+dGNfc3RhdGUpOworCWludGVsX2NydGNfY29weV91YXBpX3RvX2h3X3N0YXRlKHN0YXRlLCBjcnRj
+X3N0YXRlKTsKIAogCXJldHVybiAwOwogfQogCiBzdGF0aWMgaW50Ci1pbnRlbF9tb2Rlc2V0X3Bp
+cGVfY29uZmlnKHN0cnVjdCBpbnRlbF9jcnRjX3N0YXRlICpwaXBlX2NvbmZpZykKK2ludGVsX21v
+ZGVzZXRfcGlwZV9jb25maWcoc3RydWN0IGludGVsX2F0b21pY19zdGF0ZSAqc3RhdGUsCisJCQkg
+IHN0cnVjdCBpbnRlbF9jcnRjX3N0YXRlICpwaXBlX2NvbmZpZykKIHsKIAlzdHJ1Y3QgZHJtX2Ny
+dGMgKmNydGMgPSBwaXBlX2NvbmZpZy0+dWFwaS5jcnRjOwotCXN0cnVjdCBkcm1fYXRvbWljX3N0
+YXRlICpzdGF0ZSA9IHBpcGVfY29uZmlnLT51YXBpLnN0YXRlOwogCXN0cnVjdCBkcm1faTkxNV9w
+cml2YXRlICppOTE1ID0gdG9faTkxNShwaXBlX2NvbmZpZy0+dWFwaS5jcnRjLT5kZXYpOwogCXN0
+cnVjdCBkcm1fY29ubmVjdG9yICpjb25uZWN0b3I7CiAJc3RydWN0IGRybV9jb25uZWN0b3Jfc3Rh
+dGUgKmNvbm5lY3Rvcl9zdGF0ZTsKQEAgLTEzNTY2LDcgKzEzNTcxLDcgQEAgaW50ZWxfbW9kZXNl
+dF9waXBlX2NvbmZpZyhzdHJ1Y3QgaW50ZWxfY3J0Y19zdGF0ZSAqcGlwZV9jb25maWcpCiAJCQkg
+ICAgICAgJnBpcGVfY29uZmlnLT5waXBlX3NyY193LAogCQkJICAgICAgICZwaXBlX2NvbmZpZy0+
+cGlwZV9zcmNfaCk7CiAKLQlmb3JfZWFjaF9uZXdfY29ubmVjdG9yX2luX3N0YXRlKHN0YXRlLCBj
+b25uZWN0b3IsIGNvbm5lY3Rvcl9zdGF0ZSwgaSkgeworCWZvcl9lYWNoX25ld19jb25uZWN0b3Jf
+aW5fc3RhdGUoJnN0YXRlLT5iYXNlLCBjb25uZWN0b3IsIGNvbm5lY3Rvcl9zdGF0ZSwgaSkgewog
+CQlzdHJ1Y3QgaW50ZWxfZW5jb2RlciAqZW5jb2RlciA9CiAJCQl0b19pbnRlbF9lbmNvZGVyKGNv
+bm5lY3Rvcl9zdGF0ZS0+YmVzdF9lbmNvZGVyKTsKIApAQCAtMTM2MDQsNyArMTM2MDksNyBAQCBp
+bnRlbF9tb2Rlc2V0X3BpcGVfY29uZmlnKHN0cnVjdCBpbnRlbF9jcnRjX3N0YXRlICpwaXBlX2Nv
+bmZpZykKIAkgKiBhZGp1c3QgaXQgYWNjb3JkaW5nIHRvIGxpbWl0YXRpb25zIG9yIGNvbm5lY3Rv
+ciBwcm9wZXJ0aWVzLCBhbmQgYWxzbwogCSAqIGEgY2hhbmNlIHRvIHJlamVjdCB0aGUgbW9kZSBl
+bnRpcmVseS4KIAkgKi8KLQlmb3JfZWFjaF9uZXdfY29ubmVjdG9yX2luX3N0YXRlKHN0YXRlLCBj
+b25uZWN0b3IsIGNvbm5lY3Rvcl9zdGF0ZSwgaSkgeworCWZvcl9lYWNoX25ld19jb25uZWN0b3Jf
+aW5fc3RhdGUoJnN0YXRlLT5iYXNlLCBjb25uZWN0b3IsIGNvbm5lY3Rvcl9zdGF0ZSwgaSkgewog
+CQlzdHJ1Y3QgaW50ZWxfZW5jb2RlciAqZW5jb2RlciA9CiAJCQl0b19pbnRlbF9lbmNvZGVyKGNv
+bm5lY3Rvcl9zdGF0ZS0+YmVzdF9lbmNvZGVyKTsKIApAQCAtMTUyMTYsMTkgKzE1MjIxLDE5IEBA
+IHN0YXRpYyBpbnQgaW50ZWxfYXRvbWljX2NoZWNrKHN0cnVjdCBkcm1fZGV2aWNlICpkZXYsCiAJ
+CQkJCSAgICBuZXdfY3J0Y19zdGF0ZSwgaSkgewogCQlpZiAoIW5lZWRzX21vZGVzZXQobmV3X2Ny
+dGNfc3RhdGUpKSB7CiAJCQkvKiBMaWdodCBjb3B5ICovCi0JCQlpbnRlbF9jcnRjX2NvcHlfdWFw
+aV90b19od19zdGF0ZV9ub21vZGVzZXQobmV3X2NydGNfc3RhdGUpOworCQkJaW50ZWxfY3J0Y19j
+b3B5X3VhcGlfdG9faHdfc3RhdGVfbm9tb2Rlc2V0KHN0YXRlLCBuZXdfY3J0Y19zdGF0ZSk7CiAK
+IAkJCWNvbnRpbnVlOwogCQl9CiAKLQkJcmV0ID0gaW50ZWxfY3J0Y19wcmVwYXJlX2NsZWFyZWRf
+c3RhdGUobmV3X2NydGNfc3RhdGUpOworCQlyZXQgPSBpbnRlbF9jcnRjX3ByZXBhcmVfY2xlYXJl
+ZF9zdGF0ZShzdGF0ZSwgbmV3X2NydGNfc3RhdGUpOwogCQlpZiAocmV0KQogCQkJZ290byBmYWls
+OwogCiAJCWlmICghbmV3X2NydGNfc3RhdGUtPmh3LmVuYWJsZSkKIAkJCWNvbnRpbnVlOwogCi0J
+CXJldCA9IGludGVsX21vZGVzZXRfcGlwZV9jb25maWcobmV3X2NydGNfc3RhdGUpOworCQlyZXQg
+PSBpbnRlbF9tb2Rlc2V0X3BpcGVfY29uZmlnKHN0YXRlLCBuZXdfY3J0Y19zdGF0ZSk7CiAJCWlm
+IChyZXQpCiAJCQlnb3RvIGZhaWw7CiAJfQotLSAKMi4xOS4xCgpfX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVs
+LWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcv
+bWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
