@@ -1,42 +1,42 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4162E29CBD1
-	for <lists+intel-gfx@lfdr.de>; Tue, 27 Oct 2020 23:11:33 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 21D1F29CBCE
+	for <lists+intel-gfx@lfdr.de>; Tue, 27 Oct 2020 23:11:27 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 73B816E118;
-	Tue, 27 Oct 2020 22:11:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 221E66E20A;
+	Tue, 27 Oct 2020 22:11:25 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0BBC16E20A
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 558FB6E20A
  for <intel-gfx@lists.freedesktop.org>; Tue, 27 Oct 2020 22:11:24 +0000 (UTC)
-IronPort-SDR: i1XEG4nxXfgYE4lup/mezB/5hbMRA+StqdBdKD1Q7XQZ1uv01lt+XrCJ9C4TGFneLD/EyN+u8i
- X7eGBmYuWrqQ==
-X-IronPort-AV: E=McAfee;i="6000,8403,9787"; a="168299462"
-X-IronPort-AV: E=Sophos;i="5.77,424,1596524400"; d="scan'208";a="168299462"
+IronPort-SDR: uRqVzqco0z50JPi+CdZvgOXhEfe1dN8OLG5BO20OLiroVYogCQI5BnHt0mnqCeRhtBdI6BdIqu
+ swTrczbSeeEg==
+X-IronPort-AV: E=McAfee;i="6000,8403,9787"; a="168299463"
+X-IronPort-AV: E=Sophos;i="5.77,424,1596524400"; d="scan'208";a="168299463"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from orsmga006.jf.intel.com ([10.7.209.51])
  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  27 Oct 2020 15:11:23 -0700
-IronPort-SDR: f9A5EfFVcEOfqZD8/LP1PGpEkohLgq6PiVPCew+ud39rwrVUbQaU+Rp0xpQS5qkks86iBdlnrc
- pRZ4yHDeGrDA==
-X-IronPort-AV: E=Sophos;i="5.77,424,1596524400"; d="scan'208";a="323114115"
+IronPort-SDR: SHsAh2x1wD4Xb9G41jgtYVcMtAPES5IYu22iatN6d4qub2yV02pyCQaoqLm+S+ino22Co8EGQo
+ gew+WfLKy0HQ==
+X-IronPort-AV: E=Sophos;i="5.77,424,1596524400"; d="scan'208";a="323114119"
 Received: from labuser-z97x-ud5h.jf.intel.com ([10.165.21.211])
  by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-SHA;
  27 Oct 2020 15:11:23 -0700
 From: Manasi Navare <manasi.d.navare@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Tue, 27 Oct 2020 15:13:10 -0700
-Message-Id: <20201027221312.16518-3-manasi.d.navare@intel.com>
+Date: Tue, 27 Oct 2020 15:13:11 -0700
+Message-Id: <20201027221312.16518-4-manasi.d.navare@intel.com>
 X-Mailer: git-send-email 2.19.1
 In-Reply-To: <20201027221312.16518-1-manasi.d.navare@intel.com>
 References: <20201027221312.16518-1-manasi.d.navare@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v2 3/5] drm/i915: Pass intel_atomic_state
- instead of drm_atomic_state
+Subject: [Intel-gfx] [PATCH v2 4/5] drm/i915/dp: Prep for bigjoiner atomic
+ check
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,87 +49,103 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-No functional changes, to align with previous cleanups pass
-intel_atomic_state instead of drm_atomic_state.
-Also pass this intel_atomic_state with crtc_state to
-some of the atomic_check functions.
-
-Signed-off-by: Manasi Navare <manasi.d.navare@intel.com>
----
- drivers/gpu/drm/i915/display/intel_display.c | 14 +++++++-------
- 1 file changed, 7 insertions(+), 7 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 756683b2a5be..396ddcbb1520 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -12661,7 +12661,7 @@ static bool encoders_cloneable(const struct intel_encoder *a,
- 			  b->cloneable & (1 << a->type));
- }
- 
--static bool check_single_encoder_cloning(struct drm_atomic_state *state,
-+static bool check_single_encoder_cloning(struct intel_atomic_state *state,
- 					 struct intel_crtc *crtc,
- 					 struct intel_encoder *encoder)
- {
-@@ -12670,7 +12670,7 @@ static bool check_single_encoder_cloning(struct drm_atomic_state *state,
- 	struct drm_connector_state *connector_state;
- 	int i;
- 
--	for_each_new_connector_in_state(state, connector, connector_state, i) {
-+	for_each_new_connector_in_state(&state->base, connector, connector_state, i) {
- 		if (connector_state->crtc != &crtc->base)
- 			continue;
- 
-@@ -13521,10 +13521,10 @@ intel_crtc_prepare_cleared_state(struct intel_crtc_state *crtc_state)
- }
- 
- static int
--intel_modeset_pipe_config(struct intel_crtc_state *pipe_config)
-+intel_modeset_pipe_config(struct intel_atomic_state *state,
-+			  struct intel_crtc_state *pipe_config)
- {
- 	struct drm_crtc *crtc = pipe_config->uapi.crtc;
--	struct drm_atomic_state *state = pipe_config->uapi.state;
- 	struct drm_i915_private *i915 = to_i915(pipe_config->uapi.crtc->dev);
- 	struct drm_connector *connector;
- 	struct drm_connector_state *connector_state;
-@@ -13566,7 +13566,7 @@ intel_modeset_pipe_config(struct intel_crtc_state *pipe_config)
- 			       &pipe_config->pipe_src_w,
- 			       &pipe_config->pipe_src_h);
- 
--	for_each_new_connector_in_state(state, connector, connector_state, i) {
-+	for_each_new_connector_in_state(&state->base, connector, connector_state, i) {
- 		struct intel_encoder *encoder =
- 			to_intel_encoder(connector_state->best_encoder);
- 
-@@ -13604,7 +13604,7 @@ intel_modeset_pipe_config(struct intel_crtc_state *pipe_config)
- 	 * adjust it according to limitations or connector properties, and also
- 	 * a chance to reject the mode entirely.
- 	 */
--	for_each_new_connector_in_state(state, connector, connector_state, i) {
-+	for_each_new_connector_in_state(&state->base, connector, connector_state, i) {
- 		struct intel_encoder *encoder =
- 			to_intel_encoder(connector_state->best_encoder);
- 
-@@ -15228,7 +15228,7 @@ static int intel_atomic_check(struct drm_device *dev,
- 		if (!new_crtc_state->hw.enable)
- 			continue;
- 
--		ret = intel_modeset_pipe_config(new_crtc_state);
-+		ret = intel_modeset_pipe_config(state, new_crtc_state);
- 		if (ret)
- 			goto fail;
- 	}
--- 
-2.19.1
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+Tm8gZnVuY3Rpb25hbCBjaGFuZ2VzIGhlcmUuIEp1c3QgcGFzcyBpbnRlbF9hdG9taWNfc3RhdGUK
+YWxvbmcgd2l0aCBjcnRjX3N0YXRlIHRvIGNlcnRhaW4gYXRvbWljX2NoZWNrIGZ1bmN0aW9ucy4K
+VGhpcyB3aWxsIGxheSB0aGUgZm91bmRhdGlvbiBmb3IgYWRkaW5nIGJpZ2pvaW5lciBtYXN0ZXIv
+c2xhdmUKc3RhdGVzIGluIGF0b21pYyBjaGVjay4KCnYyOgoqIE1vcmUgcHJlcCB3aXRoIGludGVs
+X2F0b21pY19zdGF0ZSAoVmlsbGUpCgpDYzogVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJqYWxh
+QGxpbnV4LmludGVsLmNvbT4KU2lnbmVkLW9mZi1ieTogTWFuYXNpIE5hdmFyZSA8bWFuYXNpLmQu
+bmF2YXJlQGludGVsLmNvbT4KLS0tCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVs
+X2F0b21pYy5jICB8ICA5ICsrKysrLS0tLQogZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9p
+bnRlbF9hdG9taWMuaCAgfCAgMyArKy0KIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50
+ZWxfZGlzcGxheS5jIHwgMjEgKysrKysrKysrKysrLS0tLS0tLS0KIDMgZmlsZXMgY2hhbmdlZCwg
+MjAgaW5zZXJ0aW9ucygrKSwgMTMgZGVsZXRpb25zKC0pCgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9n
+cHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9hdG9taWMuYyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1
+L2Rpc3BsYXkvaW50ZWxfYXRvbWljLmMKaW5kZXggODZiZTAzMmJjZjk2Li5lMjQzY2U5N2I1MzQg
+MTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfYXRvbWljLmMK
+KysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9hdG9taWMuYwpAQCAtMjcw
+LDE0ICsyNzAsMTUgQEAgdm9pZCBpbnRlbF9jcnRjX2ZyZWVfaHdfc3RhdGUoc3RydWN0IGludGVs
+X2NydGNfc3RhdGUgKmNydGNfc3RhdGUpCiAJaW50ZWxfY3J0Y19wdXRfY29sb3JfYmxvYnMoY3J0
+Y19zdGF0ZSk7CiB9CiAKLXZvaWQgaW50ZWxfY3J0Y19jb3B5X2NvbG9yX2Jsb2JzKHN0cnVjdCBp
+bnRlbF9jcnRjX3N0YXRlICpjcnRjX3N0YXRlKQordm9pZCBpbnRlbF9jcnRjX2NvcHlfY29sb3Jf
+YmxvYnMoc3RydWN0IGludGVsX2NydGNfc3RhdGUgKmNydGNfc3RhdGUsCisJCQkJIGNvbnN0IHN0
+cnVjdCBpbnRlbF9jcnRjX3N0YXRlICpmcm9tX2NydGNfc3RhdGUpCiB7CiAJZHJtX3Byb3BlcnR5
+X3JlcGxhY2VfYmxvYigmY3J0Y19zdGF0ZS0+aHcuZGVnYW1tYV9sdXQsCi0JCQkJICBjcnRjX3N0
+YXRlLT51YXBpLmRlZ2FtbWFfbHV0KTsKKwkJCQkgIGZyb21fY3J0Y19zdGF0ZS0+dWFwaS5kZWdh
+bW1hX2x1dCk7CiAJZHJtX3Byb3BlcnR5X3JlcGxhY2VfYmxvYigmY3J0Y19zdGF0ZS0+aHcuZ2Ft
+bWFfbHV0LAotCQkJCSAgY3J0Y19zdGF0ZS0+dWFwaS5nYW1tYV9sdXQpOworCQkJCSAgZnJvbV9j
+cnRjX3N0YXRlLT51YXBpLmdhbW1hX2x1dCk7CiAJZHJtX3Byb3BlcnR5X3JlcGxhY2VfYmxvYigm
+Y3J0Y19zdGF0ZS0+aHcuY3RtLAotCQkJCSAgY3J0Y19zdGF0ZS0+dWFwaS5jdG0pOworCQkJCSAg
+ZnJvbV9jcnRjX3N0YXRlLT51YXBpLmN0bSk7CiB9CiAKIC8qKgpkaWZmIC0tZ2l0IGEvZHJpdmVy
+cy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9hdG9taWMuaCBiL2RyaXZlcnMvZ3B1L2RybS9p
+OTE1L2Rpc3BsYXkvaW50ZWxfYXRvbWljLmgKaW5kZXggMjg1ZGUwNzAxMWRjLi42MmEzMzY1ZWQ1
+ZTYgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfYXRvbWlj
+LmgKKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9hdG9taWMuaApAQCAt
+NDMsNyArNDMsOCBAQCBzdHJ1Y3QgZHJtX2NydGNfc3RhdGUgKmludGVsX2NydGNfZHVwbGljYXRl
+X3N0YXRlKHN0cnVjdCBkcm1fY3J0YyAqY3J0Yyk7CiB2b2lkIGludGVsX2NydGNfZGVzdHJveV9z
+dGF0ZShzdHJ1Y3QgZHJtX2NydGMgKmNydGMsCiAJCQkgICAgICAgc3RydWN0IGRybV9jcnRjX3N0
+YXRlICpzdGF0ZSk7CiB2b2lkIGludGVsX2NydGNfZnJlZV9od19zdGF0ZShzdHJ1Y3QgaW50ZWxf
+Y3J0Y19zdGF0ZSAqY3J0Y19zdGF0ZSk7Ci12b2lkIGludGVsX2NydGNfY29weV9jb2xvcl9ibG9i
+cyhzdHJ1Y3QgaW50ZWxfY3J0Y19zdGF0ZSAqY3J0Y19zdGF0ZSk7Cit2b2lkIGludGVsX2NydGNf
+Y29weV9jb2xvcl9ibG9icyhzdHJ1Y3QgaW50ZWxfY3J0Y19zdGF0ZSAqY3J0Y19zdGF0ZSwKKwkJ
+CQkgY29uc3Qgc3RydWN0IGludGVsX2NydGNfc3RhdGUgKmZyb21fY3J0Y19zdGF0ZSk7CiBzdHJ1
+Y3QgZHJtX2F0b21pY19zdGF0ZSAqaW50ZWxfYXRvbWljX3N0YXRlX2FsbG9jKHN0cnVjdCBkcm1f
+ZGV2aWNlICpkZXYpOwogdm9pZCBpbnRlbF9hdG9taWNfc3RhdGVfZnJlZShzdHJ1Y3QgZHJtX2F0
+b21pY19zdGF0ZSAqc3RhdGUpOwogdm9pZCBpbnRlbF9hdG9taWNfc3RhdGVfY2xlYXIoc3RydWN0
+IGRybV9hdG9taWNfc3RhdGUgKnN0YXRlKTsKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9p
+OTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheS5jIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxh
+eS9pbnRlbF9kaXNwbGF5LmMKaW5kZXggMzk2ZGRjYmIxNTIwLi45NjJmMTUwODVhMDYgMTAwNjQ0
+Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheS5jCisrKyBi
+L2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheS5jCkBAIC0xMzQ0Niwx
+MyArMTM0NDYsMTcgQEAgc3RhdGljIGJvb2wgY2hlY2tfZGlnaXRhbF9wb3J0X2NvbmZsaWN0cyhz
+dHJ1Y3QgaW50ZWxfYXRvbWljX3N0YXRlICpzdGF0ZSkKIH0KIAogc3RhdGljIHZvaWQKLWludGVs
+X2NydGNfY29weV91YXBpX3RvX2h3X3N0YXRlX25vbW9kZXNldChzdHJ1Y3QgaW50ZWxfY3J0Y19z
+dGF0ZSAqY3J0Y19zdGF0ZSkKK2ludGVsX2NydGNfY29weV91YXBpX3RvX2h3X3N0YXRlX25vbW9k
+ZXNldChzdHJ1Y3QgaW50ZWxfYXRvbWljX3N0YXRlICpzdGF0ZSwKKwkJCQkJICAgc3RydWN0IGlu
+dGVsX2NydGNfc3RhdGUgKmNydGNfc3RhdGUpCiB7Ci0JaW50ZWxfY3J0Y19jb3B5X2NvbG9yX2Js
+b2JzKGNydGNfc3RhdGUpOworCWNvbnN0IHN0cnVjdCBpbnRlbF9jcnRjX3N0YXRlICpmcm9tX2Ny
+dGNfc3RhdGUgPSBjcnRjX3N0YXRlOworCisJaW50ZWxfY3J0Y19jb3B5X2NvbG9yX2Jsb2JzKGNy
+dGNfc3RhdGUsIGZyb21fY3J0Y19zdGF0ZSk7CiB9CiAKIHN0YXRpYyB2b2lkCi1pbnRlbF9jcnRj
+X2NvcHlfdWFwaV90b19od19zdGF0ZShzdHJ1Y3QgaW50ZWxfY3J0Y19zdGF0ZSAqY3J0Y19zdGF0
+ZSkKK2ludGVsX2NydGNfY29weV91YXBpX3RvX2h3X3N0YXRlKHN0cnVjdCBpbnRlbF9hdG9taWNf
+c3RhdGUgKnN0YXRlLAorCQkJCSBzdHJ1Y3QgaW50ZWxfY3J0Y19zdGF0ZSAqY3J0Y19zdGF0ZSkK
+IHsKIAljcnRjX3N0YXRlLT5ody5lbmFibGUgPSBjcnRjX3N0YXRlLT51YXBpLmVuYWJsZTsKIAlj
+cnRjX3N0YXRlLT5ody5hY3RpdmUgPSBjcnRjX3N0YXRlLT51YXBpLmFjdGl2ZTsKQEAgLTEzNDYw
+LDcgKzEzNDY0LDcgQEAgaW50ZWxfY3J0Y19jb3B5X3VhcGlfdG9faHdfc3RhdGUoc3RydWN0IGlu
+dGVsX2NydGNfc3RhdGUgKmNydGNfc3RhdGUpCiAJY3J0Y19zdGF0ZS0+aHcucGlwZV9tb2RlID0g
+Y3J0Y19zdGF0ZS0+aHcuYWRqdXN0ZWRfbW9kZSA9IGNydGNfc3RhdGUtPnVhcGkuYWRqdXN0ZWRf
+bW9kZTsKIAljcnRjX3N0YXRlLT5ody5zY2FsaW5nX2ZpbHRlciA9IGNydGNfc3RhdGUtPnVhcGku
+c2NhbGluZ19maWx0ZXI7CiAKLQlpbnRlbF9jcnRjX2NvcHlfdWFwaV90b19od19zdGF0ZV9ub21v
+ZGVzZXQoY3J0Y19zdGF0ZSk7CisJaW50ZWxfY3J0Y19jb3B5X3VhcGlfdG9faHdfc3RhdGVfbm9t
+b2Rlc2V0KHN0YXRlLCBjcnRjX3N0YXRlKTsKIH0KIAogc3RhdGljIHZvaWQgaW50ZWxfY3J0Y19j
+b3B5X2h3X3RvX3VhcGlfc3RhdGUoc3RydWN0IGludGVsX2NydGNfc3RhdGUgKmNydGNfc3RhdGUp
+CkBAIC0xMzQ4Myw3ICsxMzQ4Nyw4IEBAIHN0YXRpYyB2b2lkIGludGVsX2NydGNfY29weV9od190
+b191YXBpX3N0YXRlKHN0cnVjdCBpbnRlbF9jcnRjX3N0YXRlICpjcnRjX3N0YXRlCiB9CiAKIHN0
+YXRpYyBpbnQKLWludGVsX2NydGNfcHJlcGFyZV9jbGVhcmVkX3N0YXRlKHN0cnVjdCBpbnRlbF9j
+cnRjX3N0YXRlICpjcnRjX3N0YXRlKQoraW50ZWxfY3J0Y19wcmVwYXJlX2NsZWFyZWRfc3RhdGUo
+c3RydWN0IGludGVsX2F0b21pY19zdGF0ZSAqc3RhdGUsCisJCQkJIHN0cnVjdCBpbnRlbF9jcnRj
+X3N0YXRlICpjcnRjX3N0YXRlKQogewogCXN0cnVjdCBpbnRlbF9jcnRjICpjcnRjID0gdG9faW50
+ZWxfY3J0YyhjcnRjX3N0YXRlLT51YXBpLmNydGMpOwogCXN0cnVjdCBkcm1faTkxNV9wcml2YXRl
+ICpkZXZfcHJpdiA9IHRvX2k5MTUoY3J0Yy0+YmFzZS5kZXYpOwpAQCAtMTM1MTUsNyArMTM1MjAs
+NyBAQCBpbnRlbF9jcnRjX3ByZXBhcmVfY2xlYXJlZF9zdGF0ZShzdHJ1Y3QgaW50ZWxfY3J0Y19z
+dGF0ZSAqY3J0Y19zdGF0ZSkKIAltZW1jcHkoY3J0Y19zdGF0ZSwgc2F2ZWRfc3RhdGUsIHNpemVv
+ZigqY3J0Y19zdGF0ZSkpOwogCWtmcmVlKHNhdmVkX3N0YXRlKTsKIAotCWludGVsX2NydGNfY29w
+eV91YXBpX3RvX2h3X3N0YXRlKGNydGNfc3RhdGUpOworCWludGVsX2NydGNfY29weV91YXBpX3Rv
+X2h3X3N0YXRlKHN0YXRlLCBjcnRjX3N0YXRlKTsKIAogCXJldHVybiAwOwogfQpAQCAtMTUyMTYs
+MTIgKzE1MjIxLDEyIEBAIHN0YXRpYyBpbnQgaW50ZWxfYXRvbWljX2NoZWNrKHN0cnVjdCBkcm1f
+ZGV2aWNlICpkZXYsCiAJCQkJCSAgICBuZXdfY3J0Y19zdGF0ZSwgaSkgewogCQlpZiAoIW5lZWRz
+X21vZGVzZXQobmV3X2NydGNfc3RhdGUpKSB7CiAJCQkvKiBMaWdodCBjb3B5ICovCi0JCQlpbnRl
+bF9jcnRjX2NvcHlfdWFwaV90b19od19zdGF0ZV9ub21vZGVzZXQobmV3X2NydGNfc3RhdGUpOwor
+CQkJaW50ZWxfY3J0Y19jb3B5X3VhcGlfdG9faHdfc3RhdGVfbm9tb2Rlc2V0KHN0YXRlLCBuZXdf
+Y3J0Y19zdGF0ZSk7CiAKIAkJCWNvbnRpbnVlOwogCQl9CiAKLQkJcmV0ID0gaW50ZWxfY3J0Y19w
+cmVwYXJlX2NsZWFyZWRfc3RhdGUobmV3X2NydGNfc3RhdGUpOworCQlyZXQgPSBpbnRlbF9jcnRj
+X3ByZXBhcmVfY2xlYXJlZF9zdGF0ZShzdGF0ZSwgbmV3X2NydGNfc3RhdGUpOwogCQlpZiAocmV0
+KQogCQkJZ290byBmYWlsOwogCi0tIAoyLjE5LjEKCl9fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxp
+c3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFu
+L2xpc3RpbmZvL2ludGVsLWdmeAo=
