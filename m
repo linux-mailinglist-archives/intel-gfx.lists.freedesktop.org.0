@@ -1,40 +1,62 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8A7D729B8B5
-	for <lists+intel-gfx@lfdr.de>; Tue, 27 Oct 2020 17:09:50 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id CAE4329BAE9
+	for <lists+intel-gfx@lfdr.de>; Tue, 27 Oct 2020 17:25:48 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C9A4A6E059;
-	Tue, 27 Oct 2020 16:09:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B4E2E6E0AF;
+	Tue, 27 Oct 2020 16:25:46 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BF4966E059
- for <intel-gfx@lists.freedesktop.org>; Tue, 27 Oct 2020 16:09:47 +0000 (UTC)
-IronPort-SDR: WpHHdI82RVSbLCpNI+f5c8z5+jZ5kOqSYPnCHxwv1n3ZkB2TwX4PHFxR4qt/yKuX7Ar3Xpqaeq
- mwJN4XYpzMoQ==
-X-IronPort-AV: E=McAfee;i="6000,8403,9787"; a="147395711"
-X-IronPort-AV: E=Sophos;i="5.77,424,1596524400"; d="scan'208";a="147395711"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Oct 2020 09:09:32 -0700
-IronPort-SDR: eXSjjl0VqlaVrD7vwH4StwWtbvpvoMReB7rzLlEwp9+UvW9ZsAJDCCeYrLEUe5eg0fQQBV3bUd
- FrR9ykXqPqlA==
-X-IronPort-AV: E=Sophos;i="5.77,424,1596524400"; d="scan'208";a="535851232"
-Received: from ideak-desk.fi.intel.com ([10.237.68.141])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Oct 2020 09:09:30 -0700
-From: Imre Deak <imre.deak@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Tue, 27 Oct 2020 18:09:28 +0200
-Message-Id: <20201027160928.3665377-1-imre.deak@intel.com>
-X-Mailer: git-send-email 2.25.1
+Received: from pio-pvt-msa3.bahnhof.se (pio-pvt-msa3.bahnhof.se [79.136.2.42])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F295C6E0AF
+ for <intel-gfx@lists.freedesktop.org>; Tue, 27 Oct 2020 16:25:44 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+ by pio-pvt-msa3.bahnhof.se (Postfix) with ESMTP id A57E33F6BA;
+ Tue, 27 Oct 2020 17:25:42 +0100 (CET)
+Authentication-Results: pio-pvt-msa3.bahnhof.se; dkim=pass (1024-bit key;
+ unprotected) header.d=shipmail.org header.i=@shipmail.org header.b=rdfm4Dfu; 
+ dkim-atps=neutral
+X-Virus-Scanned: Debian amavisd-new at bahnhof.se
+X-Spam-Flag: NO
+X-Spam-Score: -4.266
+X-Spam-Level: 
+X-Spam-Status: No, score=-4.266 tagged_above=-999 required=6.31
+ tests=[BAYES_00=-1.9, DKIM_SIGNED=0.1, DKIM_VALID=-0.1,
+ DKIM_VALID_AU=-0.1, DKIM_VALID_EF=-0.1, NICE_REPLY_A=-2.167,
+ URIBL_BLOCKED=0.001] autolearn=ham autolearn_force=no
+Received: from pio-pvt-msa3.bahnhof.se ([127.0.0.1])
+ by localhost (pio-pvt-msa3.bahnhof.se [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id VxeJC7jSYK05; Tue, 27 Oct 2020 17:25:41 +0100 (CET)
+Received: by pio-pvt-msa3.bahnhof.se (Postfix) with ESMTPA id 3ED033F53E;
+ Tue, 27 Oct 2020 17:25:39 +0100 (CET)
+Received: from Win10-768gb107.SSPE.ch.intel.com (jfdmzpr04-ext.jf.intel.com
+ [134.134.137.73])
+ by mail1.shipmail.org (Postfix) with ESMTPSA id 109C33600BE;
+ Tue, 27 Oct 2020 17:25:37 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=shipmail.org; s=mail;
+ t=1603815939; bh=NaQ3xCOIbNV5Q6OPg6NKXByslfTk7Wc9i+3htqJhpVM=;
+ h=Subject:To:References:From:Date:In-Reply-To:From;
+ b=rdfm4DfuqQo6ZaAHycBM6VwJ/Y3uY32Oj3+bJtNieOb/8BqOPtiFr3ZhtK/i9nB/U
+ Gv38hCpnnExV6XSPfc3YM1YXw4zXQ4HpGOhO48reNI/1se9y7cPofNKQc2AcTM86BH
+ mYVGvnIcYOoo3W07DNCRJJOxp6aY5Db1mWTcTmeo=
+To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
+References: <20201015112627.1142745-1-maarten.lankhorst@linux.intel.com>
+ <20201015112627.1142745-5-maarten.lankhorst@linux.intel.com>
+ <8677ec74-b31e-05c9-2cdf-514fd11462e4@shipmail.org>
+ <89f87f2f-a941-0769-4765-0b659b357703@linux.intel.com>
+From: =?UTF-8?Q?Thomas_Hellstr=c3=b6m_=28Intel=29?= <thomas_os@shipmail.org>
+Message-ID: <a5e1a5a0-e72c-c7da-5830-7211faa56386@shipmail.org>
+Date: Tue, 27 Oct 2020 17:25:33 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.3.1
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915: Fix encoder lookup during PSR atomic
- check
+In-Reply-To: <89f87f2f-a941-0769-4765-0b659b357703@linux.intel.com>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH v3 04/63] drm/i915: Pin timeline map after
+ first timeline pin, v3.
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,89 +69,66 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Cooper Chiou <cooper.chiou@intel.com>, stable@vger.kernel.org,
- William Tseng <william.tseng@intel.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The atomic check hooks must look up the encoder to be used with a
-connector from the connector's atomic state, and not assume that it's
-the connector's current attached encoder. The latter one can change
-under the atomic check func, or can be unset yet as in the case of MST
-connectors.
-
-This fixes
-[    7.940719] Oops: 0000 [#1] SMP NOPTI
-[    7.944407] CPU: 2 PID: 143 Comm: kworker/2:2 Not tainted 5.6.0-1023-oem #23-Ubuntu
-[    7.952102] Hardware name: Dell Inc. Latitude 7320/, BIOS 88.87.11 09/07/2020
-[    7.959278] Workqueue: events output_poll_execute [drm_kms_helper]
-[    7.965511] RIP: 0010:intel_psr_atomic_check+0x37/0xa0 [i915]
-[    7.971327] Code: 80 2d 06 00 00 20 74 42 80 b8 34 71 00 00 00 74 39 48 8b 72 08 48 85 f6 74 30 80 b8 f8 71 00 00 00 74 27 4c 8b 87 80 04 00 00 <41> 8b 78 78 83 ff 08 77 19 31 c9 83 ff 05 77 19 48 81 c1 20 01 00
-[    7.977541] input: PS/2 Generic Mouse as /devices/platform/i8042/serio1/input/input5
-[    7.990154] RSP: 0018:ffffb864c073fac8 EFLAGS: 00010202
-[    7.990155] RAX: ffff8c5d55ce0000 RBX: ffff8c5d54519000 RCX: 0000000000000000
-[    7.990155] RDX: ffff8c5d55cb30c0 RSI: ffff8c5d89a0c800 RDI: ffff8c5d55fcf800
-[    7.990156] RBP: ffffb864c073fac8 R08: 0000000000000000 R09: ffff8c5d55d9f3a0
-[    7.990156] R10: ffff8c5d55cb30c0 R11: 0000000000000009 R12: ffff8c5d55fcf800
-[    7.990156] R13: ffff8c5d55cb30c0 R14: ffff8c5d56989cc0 R15: ffff8c5d56989cc0
-[    7.990158] FS:  0000000000000000(0000) GS:ffff8c5d8e480000(0000) knlGS:0000000000000000
-[    8.047193] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
-[    8.052970] CR2: 0000000000000078 CR3: 0000000856500005 CR4: 0000000000760ee0
-[    8.060137] PKRU: 55555554
-[    8.062867] Call Trace:
-[    8.065361]  intel_digital_connector_atomic_check+0x53/0x130 [i915]
-[    8.071703]  intel_dp_mst_atomic_check+0x5b/0x200 [i915]
-[    8.077074]  drm_atomic_helper_check_modeset+0x1db/0x790 [drm_kms_helper]
-[    8.083942]  intel_atomic_check+0x92/0xc50 [i915]
-[    8.088705]  ? drm_plane_check_pixel_format+0x4f/0xb0 [drm]
-[    8.094345]  ? drm_atomic_plane_check+0x7a/0x3a0 [drm]
-[    8.099548]  drm_atomic_check_only+0x2b1/0x450 [drm]
-[    8.104573]  drm_atomic_commit+0x18/0x50 [drm]
-[    8.109070]  drm_client_modeset_commit_atomic+0x1c9/0x200 [drm]
-[    8.115056]  drm_client_modeset_commit_force+0x55/0x160 [drm]
-[    8.120866]  drm_fb_helper_restore_fbdev_mode_unlocked+0x54/0xb0 [drm_kms_helper]
-[    8.128415]  drm_fb_helper_set_par+0x34/0x50 [drm_kms_helper]
-[    8.134225]  drm_fb_helper_hotplug_event.part.0+0xb4/0xe0 [drm_kms_helper]
-[    8.141150]  drm_fb_helper_hotplug_event+0x1c/0x30 [drm_kms_helper]
-[    8.147481]  intel_fbdev_output_poll_changed+0x6f/0xa0 [i915]
-[    8.153287]  drm_kms_helper_hotplug_event+0x2c/0x40 [drm_kms_helper]
-[    8.159709]  output_poll_execute+0x1aa/0x1c0 [drm_kms_helper]
-[    8.165506]  process_one_work+0x1e8/0x3b0
-[    8.169561]  worker_thread+0x4d/0x400
-[    8.173249]  kthread+0x104/0x140
-[    8.176515]  ? process_one_work+0x3b0/0x3b0
-[    8.180726]  ? kthread_park+0x90/0x90
-[    8.184416]  ret_from_fork+0x1f/0x40
-
-Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/2361
-References: https://gitlab.freedesktop.org/drm/intel/-/issues/2486
-Reported-by: William Tseng <william.tseng@intel.com>
-Reported-by: Cooper Chiou <cooper.chiou@intel.com>
-Cc: <stable@vger.kernel.org>
-Signed-off-by: Imre Deak <imre.deak@intel.com>
----
- drivers/gpu/drm/i915/display/intel_psr.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-index b2544102e7b1..1576c3722d0b 100644
---- a/drivers/gpu/drm/i915/display/intel_psr.c
-+++ b/drivers/gpu/drm/i915/display/intel_psr.c
-@@ -1884,7 +1884,7 @@ void intel_psr_atomic_check(struct drm_connector *connector,
- 		return;
- 
- 	intel_connector = to_intel_connector(connector);
--	dig_port = enc_to_dig_port(intel_attached_encoder(intel_connector));
-+	dig_port = enc_to_dig_port(to_intel_encoder(new_state->best_encoder));
- 	if (dev_priv->psr.dp != &dig_port->dp)
- 		return;
- 
--- 
-2.25.1
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+Ck9uIDEwLzI3LzIwIDM6MzEgUE0sIE1hYXJ0ZW4gTGFua2hvcnN0IHdyb3RlOgo+IE9wIDI3LTEw
+LTIwMjAgb20gMTI6MDMgc2NocmVlZiBUaG9tYXMgSGVsbHN0csO2bSAoSW50ZWwpOgo+PiBPbiAx
+MC8xNS8yMCAxOjI1IFBNLCBNYWFydGVuIExhbmtob3JzdCB3cm90ZToKPj4+IFdlJ3JlIHN0YXJ0
+aW5nIHRvIHJlcXVpcmUgdGhlIHJlc2VydmF0aW9uIGxvY2sgZm9yIHBpbm5pbmcsCj4+PiBzbyB3
+YWl0IHVudGlsIHdlIGhhdmUgdGhhdC4KPj4+Cj4+PiBVcGRhdGUgdGhlIHNlbGZ0ZXN0cyB0byBo
+YW5kbGUgdGhpcyBjb3JyZWN0bHksIGFuZCBlbnN1cmUgcGluIGlzCj4+PiBjYWxsZWQgaW4gbGl2
+ZV9od3NwX3JvbGxvdmVyX3VzZXIoKSBhbmQgbW9ja19od3NwX2ZyZWVsaXN0KCkuCj4+Pgo+Pj4g
+Q2hhbmdlcyBzaW5jZSB2MToKPj4+IC0gRml4IE5VTEwgKyBYWCBhcml0aG1hdGljLCB1c2UgY2Fz
+dHMuIChrYnVpbGQpCj4+PiBDaGFuZ2VzIHNpbmNlIHYyOgo+Pj4gLSBDbGVhciBlbnRpcmUgY2Fj
+aGVsaW5lIHdoZW4gcGlubmluZy4KPj4+Cj4+PiBTaWduZWQtb2ZmLWJ5OiBNYWFydGVuIExhbmto
+b3JzdCA8bWFhcnRlbi5sYW5raG9yc3RAbGludXguaW50ZWwuY29tPgo+Pj4gUmVwb3J0ZWQtYnk6
+IGtlcm5lbCB0ZXN0IHJvYm90IDxsa3BAaW50ZWwuY29tPgo+PiAuLi4KPj4+IEBAIC0xNTAsNiAr
+MTYxLDEyIEBAIGludCBpbnRlbF90aW1lbGluZV9waW4oc3RydWN0IGludGVsX3RpbWVsaW5lICp0
+bCwgc3RydWN0IGk5MTVfZ2VtX3d3X2N0eCAqd3cpCj4+PiAgwqDCoMKgwqDCoCBpZiAoYXRvbWlj
+X2FkZF91bmxlc3MoJnRsLT5waW5fY291bnQsIDEsIDApKQo+Pj4gIMKgwqDCoMKgwqDCoMKgwqDC
+oCByZXR1cm4gMDsKPj4+ICDCoCArwqDCoMKgIGlmICghdGwtPmh3c3BfbWFwKSB7Cj4+PiArwqDC
+oMKgwqDCoMKgwqAgZXJyID0gaW50ZWxfdGltZWxpbmVfcGluX21hcCh0bCk7Cj4+PiArwqDCoMKg
+wqDCoMKgwqAgaWYgKGVycikKPj4+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIHJldHVybiBlcnI7
+Cj4+PiArwqDCoMKgIH0KPj4+ICsKPj4gT24gc3Vic2VxdWVudCBlcnJvcnMgb3IgaWYgc29tZWJv
+ZHkgYmVhdHMgdXMgdG8gdGhlIDAtPjEgdHJhbnNpdGlvbiwgd2UgbmVlZCB0byB1bnBpbl9tYXAg
+dG8gYXZvaWQgbGVha2luZyBwaW5zLgo+IE5vPyB0bC0+aHdzcF9tYXAgY2FuIHN0YXkgc2V0LiBX
+ZSBob2xkIGEgbG9jayB0byB0bC0+aHdzcF9nZ3R0IHRvIHByZXZlbnQgYW55IHJhY2VzLiA6KQoK
+T0ssIGJ1dCBpbiB0aGF0IGNhc2Ugd2UgbmVlZCB0byBiZSBjb25zaXN0ZW50LiBFaXRoZXIgdGhl
+cmUgYXJlIG5vIHJhY2VzIAphbmQgd2UgY2FuIHJlbW92ZSB0aGUgY29kZSB0aGF0IGhhbmRsZXMg
+dGhlbSwgb3IgdGhlcmUgYXJlIHJhY2VzIGFuZCB3ZSAKc2hvdWxkIHRha2UgdGhpcyBpbnRvIGFj
+Y291bnQuCgo+Cj4gfk1hYXJ0ZW4KPgo+Pj4gIMKgwqDCoMKgwqAgZXJyID0gaTkxNV9nZ3R0X3Bp
+bih0bC0+aHdzcF9nZ3R0LCB3dywgMCwgUElOX0hJR0gpOwo+Pj4gIMKgwqDCoMKgwqAgaWYgKGVy
+cikKPj4+ICDCoMKgwqDCoMKgwqDCoMKgwqAgcmV0dXJuIGVycjsKPj4+IGRpZmYgLS1naXQgYS9k
+cml2ZXJzL2dwdS9kcm0vaTkxNS9ndC9pbnRlbF90aW1lbGluZS5oIGIvZHJpdmVycy9ncHUvZHJt
+L2k5MTUvZ3QvaW50ZWxfdGltZWxpbmUuaAo+Pj4gaW5kZXggOTg4MmNkOTExZDhlLi4xY2ZkYzQ2
+NzliNjIgMTAwNjQ0Cj4+PiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC9pbnRlbF90aW1l
+bGluZS5oCj4+PiArKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC9pbnRlbF90aW1lbGluZS5o
+Cj4+PiBAQCAtMTA2LDQgKzEwNiw2IEBAIGludCBpbnRlbF90aW1lbGluZV9yZWFkX2h3c3Aoc3Ry
+dWN0IGk5MTVfcmVxdWVzdCAqZnJvbSwKPj4+ICDCoCB2b2lkIGludGVsX2d0X2luaXRfdGltZWxp
+bmVzKHN0cnVjdCBpbnRlbF9ndCAqZ3QpOwo+Pj4gIMKgIHZvaWQgaW50ZWxfZ3RfZmluaV90aW1l
+bGluZXMoc3RydWN0IGludGVsX2d0ICpndCk7Cj4+PiAgwqAgK0k5MTVfU0VMRlRFU1RfREVDTEFS
+RShpbnQgaW50ZWxfdGltZWxpbmVfcGluX21hcChzdHJ1Y3QgaW50ZWxfdGltZWxpbmUgKnRsKSk7
+Cj4+PiArCj4+PiAgwqAgI2VuZGlmCj4+PiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5
+MTUvZ3QvbW9ja19lbmdpbmUuYyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L21vY2tfZW5naW5l
+LmMKPj4+IGluZGV4IDJmODMwMDE3YzUxZC4uZWZmYmFjODc3ZWVjIDEwMDY0NAo+Pj4gLS0tIGEv
+ZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvbW9ja19lbmdpbmUuYwo+Pj4gKysrIGIvZHJpdmVycy9n
+cHUvZHJtL2k5MTUvZ3QvbW9ja19lbmdpbmUuYwo+Pj4gQEAgLTMyLDkgKzMyLDIwIEBACj4+PiAg
+wqAgI2luY2x1ZGUgIm1vY2tfZW5naW5lLmgiCj4+PiAgwqAgI2luY2x1ZGUgInNlbGZ0ZXN0cy9t
+b2NrX3JlcXVlc3QuaCIKPj4+ICDCoCAtc3RhdGljIHZvaWQgbW9ja190aW1lbGluZV9waW4oc3Ry
+dWN0IGludGVsX3RpbWVsaW5lICp0bCkKPj4+ICtzdGF0aWMgaW50IG1vY2tfdGltZWxpbmVfcGlu
+KHN0cnVjdCBpbnRlbF90aW1lbGluZSAqdGwpCj4+PiAgwqAgewo+Pj4gK8KgwqDCoCBpbnQgZXJy
+Owo+Pj4gKwo+Pj4gK8KgwqDCoCBpZiAoV0FSTl9PTighaTkxNV9nZW1fb2JqZWN0X3RyeWxvY2so
+dGwtPmh3c3BfZ2d0dC0+b2JqKSkpCj4+PiArwqDCoMKgwqDCoMKgwqAgcmV0dXJuIC1FQlVTWTsK
+Pj4gSSB0aGluayB3ZSBzaG91bGQgZWl0aGVyIGFubm90YXRlIHRoaXMgcHJvcGVybHkgYXMgYW4g
+aXNvbGF0ZWQgbG9jaywgb3IgYWxsb3cgYSBzaWxlbnQgLUVCVVNZLgo+IFRoaXMgaXMgZG9uZSBp
+biBhIGNvbnRyb2xsZWQgc2VsZnRlc3Qgd2hlcmUgd2UgbW9jayB0aGUgZW50aXJlIGk5MTUgZGV2
+aWNlLCBzbyBub3JtYWxseSB0aGlzIGNhbid0IGhhcHBlbi4gOikKCkJ1dCBpZiBpdCBkb2VzLCB3
+ZSBnZXQgZXJyYXRpYyBCQVQgZmFpbHVyZXMsIGFuZCBpZiBpdCBpbmRlZWQgZG9lc24ndCAKaGFw
+cGVuLCB0aGVuIGFuIGFubm90YXRlZCBpc29sYXRlZCBsb2NrIHdvdWxkIGd1YXJhbnRlZSB0aGF0
+LgoKL1Rob21hcwoKCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5v
+cmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1n
+ZngK
