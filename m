@@ -1,48 +1,40 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BBF5B29B15C
-	for <lists+intel-gfx@lfdr.de>; Tue, 27 Oct 2020 15:31:06 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8A7D729B8B5
+	for <lists+intel-gfx@lfdr.de>; Tue, 27 Oct 2020 17:09:50 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 29C486EB7E;
-	Tue, 27 Oct 2020 14:31:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C9A4A6E059;
+	Tue, 27 Oct 2020 16:09:48 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 82B916EB7E
- for <intel-gfx@lists.freedesktop.org>; Tue, 27 Oct 2020 14:31:04 +0000 (UTC)
-IronPort-SDR: 58u1+LIo5JhW3kqfPCyvXug73Zgu5NWtBfb8mEfEDOvcE3ON/PDh5QJik3T0mSaV5/v/0eEmZP
- EORQTNFhwq+Q==
-X-IronPort-AV: E=McAfee;i="6000,8403,9786"; a="232274613"
-X-IronPort-AV: E=Sophos;i="5.77,424,1596524400"; d="scan'208";a="232274613"
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BF4966E059
+ for <intel-gfx@lists.freedesktop.org>; Tue, 27 Oct 2020 16:09:47 +0000 (UTC)
+IronPort-SDR: WpHHdI82RVSbLCpNI+f5c8z5+jZ5kOqSYPnCHxwv1n3ZkB2TwX4PHFxR4qt/yKuX7Ar3Xpqaeq
+ mwJN4XYpzMoQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9787"; a="147395711"
+X-IronPort-AV: E=Sophos;i="5.77,424,1596524400"; d="scan'208";a="147395711"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Oct 2020 07:31:04 -0700
-IronPort-SDR: 1x1Eiyn8M1N9Oqu/EWgR5wL8vbarqKQ3yGgVyr5rTS6BS+b1SyvW5CJ360uBq07nEWkmHmC3nA
- 4YHVmKuAyLRw==
-X-IronPort-AV: E=Sophos;i="5.77,424,1596524400"; d="scan'208";a="535816308"
-Received: from lbatukox-mobl.ccr.corp.intel.com (HELO [10.252.58.34])
- ([10.252.58.34])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Oct 2020 09:09:32 -0700
+IronPort-SDR: eXSjjl0VqlaVrD7vwH4StwWtbvpvoMReB7rzLlEwp9+UvW9ZsAJDCCeYrLEUe5eg0fQQBV3bUd
+ FrR9ykXqPqlA==
+X-IronPort-AV: E=Sophos;i="5.77,424,1596524400"; d="scan'208";a="535851232"
+Received: from ideak-desk.fi.intel.com ([10.237.68.141])
  by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Oct 2020 07:31:03 -0700
-To: =?UTF-8?Q?Thomas_Hellstr=c3=b6m_=28Intel=29?= <thomas_os@shipmail.org>,
- intel-gfx@lists.freedesktop.org
-References: <20201015112627.1142745-1-maarten.lankhorst@linux.intel.com>
- <20201015112627.1142745-5-maarten.lankhorst@linux.intel.com>
- <8677ec74-b31e-05c9-2cdf-514fd11462e4@shipmail.org>
-From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Message-ID: <89f87f2f-a941-0769-4765-0b659b357703@linux.intel.com>
-Date: Tue, 27 Oct 2020 15:31:01 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.4.0
+ 27 Oct 2020 09:09:30 -0700
+From: Imre Deak <imre.deak@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Tue, 27 Oct 2020 18:09:28 +0200
+Message-Id: <20201027160928.3665377-1-imre.deak@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-In-Reply-To: <8677ec74-b31e-05c9-2cdf-514fd11462e4@shipmail.org>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH v3 04/63] drm/i915: Pin timeline map after
- first timeline pin, v3.
+Subject: [Intel-gfx] [PATCH] drm/i915: Fix encoder lookup during PSR atomic
+ check
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,58 +47,89 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: Cooper Chiou <cooper.chiou@intel.com>, stable@vger.kernel.org,
+ William Tseng <william.tseng@intel.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T3AgMjctMTAtMjAyMCBvbSAxMjowMyBzY2hyZWVmIFRob21hcyBIZWxsc3Ryw7ZtIChJbnRlbCk6
-Cj4KPiBPbiAxMC8xNS8yMCAxOjI1IFBNLCBNYWFydGVuIExhbmtob3JzdCB3cm90ZToKPj4gV2Un
-cmUgc3RhcnRpbmcgdG8gcmVxdWlyZSB0aGUgcmVzZXJ2YXRpb24gbG9jayBmb3IgcGlubmluZywK
-Pj4gc28gd2FpdCB1bnRpbCB3ZSBoYXZlIHRoYXQuCj4+Cj4+IFVwZGF0ZSB0aGUgc2VsZnRlc3Rz
-IHRvIGhhbmRsZSB0aGlzIGNvcnJlY3RseSwgYW5kIGVuc3VyZSBwaW4gaXMKPj4gY2FsbGVkIGlu
-IGxpdmVfaHdzcF9yb2xsb3Zlcl91c2VyKCkgYW5kIG1vY2tfaHdzcF9mcmVlbGlzdCgpLgo+Pgo+
-PiBDaGFuZ2VzIHNpbmNlIHYxOgo+PiAtIEZpeCBOVUxMICsgWFggYXJpdGhtYXRpYywgdXNlIGNh
-c3RzLiAoa2J1aWxkKQo+PiBDaGFuZ2VzIHNpbmNlIHYyOgo+PiAtIENsZWFyIGVudGlyZSBjYWNo
-ZWxpbmUgd2hlbiBwaW5uaW5nLgo+Pgo+PiBTaWduZWQtb2ZmLWJ5OiBNYWFydGVuIExhbmtob3Jz
-dCA8bWFhcnRlbi5sYW5raG9yc3RAbGludXguaW50ZWwuY29tPgo+PiBSZXBvcnRlZC1ieToga2Vy
-bmVsIHRlc3Qgcm9ib3QgPGxrcEBpbnRlbC5jb20+Cj4gLi4uCj4+IEBAIC0xNTAsNiArMTYxLDEy
-IEBAIGludCBpbnRlbF90aW1lbGluZV9waW4oc3RydWN0IGludGVsX3RpbWVsaW5lICp0bCwgc3Ry
-dWN0IGk5MTVfZ2VtX3d3X2N0eCAqd3cpCj4+IMKgwqDCoMKgwqAgaWYgKGF0b21pY19hZGRfdW5s
-ZXNzKCZ0bC0+cGluX2NvdW50LCAxLCAwKSkKPj4gwqDCoMKgwqDCoMKgwqDCoMKgIHJldHVybiAw
-Owo+PiDCoCArwqDCoMKgIGlmICghdGwtPmh3c3BfbWFwKSB7Cj4+ICvCoMKgwqDCoMKgwqDCoCBl
-cnIgPSBpbnRlbF90aW1lbGluZV9waW5fbWFwKHRsKTsKPj4gK8KgwqDCoMKgwqDCoMKgIGlmIChl
-cnIpCj4+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIHJldHVybiBlcnI7Cj4+ICvCoMKgwqAgfQo+
-PiArCj4KPiBPbiBzdWJzZXF1ZW50IGVycm9ycyBvciBpZiBzb21lYm9keSBiZWF0cyB1cyB0byB0
-aGUgMC0+MSB0cmFuc2l0aW9uLCB3ZSBuZWVkIHRvIHVucGluX21hcCB0byBhdm9pZCBsZWFraW5n
-IHBpbnMuCgpObz8gdGwtPmh3c3BfbWFwIGNhbiBzdGF5IHNldC4gV2UgaG9sZCBhIGxvY2sgdG8g
-dGwtPmh3c3BfZ2d0dCB0byBwcmV2ZW50IGFueSByYWNlcy4gOikKCn5NYWFydGVuCgo+PiDCoMKg
-wqDCoMKgIGVyciA9IGk5MTVfZ2d0dF9waW4odGwtPmh3c3BfZ2d0dCwgd3csIDAsIFBJTl9ISUdI
-KTsKPj4gwqDCoMKgwqDCoCBpZiAoZXJyKQo+PiDCoMKgwqDCoMKgwqDCoMKgwqAgcmV0dXJuIGVy
-cjsKPgo+PiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvaW50ZWxfdGltZWxp
-bmUuaCBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L2ludGVsX3RpbWVsaW5lLmgKPj4gaW5kZXgg
-OTg4MmNkOTExZDhlLi4xY2ZkYzQ2NzliNjIgMTAwNjQ0Cj4+IC0tLSBhL2RyaXZlcnMvZ3B1L2Ry
-bS9pOTE1L2d0L2ludGVsX3RpbWVsaW5lLmgKPj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUv
-Z3QvaW50ZWxfdGltZWxpbmUuaAo+PiBAQCAtMTA2LDQgKzEwNiw2IEBAIGludCBpbnRlbF90aW1l
-bGluZV9yZWFkX2h3c3Aoc3RydWN0IGk5MTVfcmVxdWVzdCAqZnJvbSwKPj4gwqAgdm9pZCBpbnRl
-bF9ndF9pbml0X3RpbWVsaW5lcyhzdHJ1Y3QgaW50ZWxfZ3QgKmd0KTsKPj4gwqAgdm9pZCBpbnRl
-bF9ndF9maW5pX3RpbWVsaW5lcyhzdHJ1Y3QgaW50ZWxfZ3QgKmd0KTsKPj4gwqAgK0k5MTVfU0VM
-RlRFU1RfREVDTEFSRShpbnQgaW50ZWxfdGltZWxpbmVfcGluX21hcChzdHJ1Y3QgaW50ZWxfdGlt
-ZWxpbmUgKnRsKSk7Cj4+ICsKPj4gwqAgI2VuZGlmCj4+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dw
-dS9kcm0vaTkxNS9ndC9tb2NrX2VuZ2luZS5jIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvbW9j
-a19lbmdpbmUuYwo+PiBpbmRleCAyZjgzMDAxN2M1MWQuLmVmZmJhYzg3N2VlYyAxMDA2NDQKPj4g
-LS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvbW9ja19lbmdpbmUuYwo+PiArKysgYi9kcml2
-ZXJzL2dwdS9kcm0vaTkxNS9ndC9tb2NrX2VuZ2luZS5jCj4+IEBAIC0zMiw5ICszMiwyMCBAQAo+
-PiDCoCAjaW5jbHVkZSAibW9ja19lbmdpbmUuaCIKPj4gwqAgI2luY2x1ZGUgInNlbGZ0ZXN0cy9t
-b2NrX3JlcXVlc3QuaCIKPj4gwqAgLXN0YXRpYyB2b2lkIG1vY2tfdGltZWxpbmVfcGluKHN0cnVj
-dCBpbnRlbF90aW1lbGluZSAqdGwpCj4+ICtzdGF0aWMgaW50IG1vY2tfdGltZWxpbmVfcGluKHN0
-cnVjdCBpbnRlbF90aW1lbGluZSAqdGwpCj4+IMKgIHsKPj4gK8KgwqDCoCBpbnQgZXJyOwo+PiAr
-Cj4+ICvCoMKgwqAgaWYgKFdBUk5fT04oIWk5MTVfZ2VtX29iamVjdF90cnlsb2NrKHRsLT5od3Nw
-X2dndHQtPm9iaikpKQo+PiArwqDCoMKgwqDCoMKgwqAgcmV0dXJuIC1FQlVTWTsKPgo+IEkgdGhp
-bmsgd2Ugc2hvdWxkIGVpdGhlciBhbm5vdGF0ZSB0aGlzIHByb3Blcmx5IGFzIGFuIGlzb2xhdGVk
-IGxvY2ssIG9yIGFsbG93IGEgc2lsZW50IC1FQlVTWS4gCgpUaGlzIGlzIGRvbmUgaW4gYSBjb250
-cm9sbGVkIHNlbGZ0ZXN0IHdoZXJlIHdlIG1vY2sgdGhlIGVudGlyZSBpOTE1IGRldmljZSwgc28g
-bm9ybWFsbHkgdGhpcyBjYW4ndCBoYXBwZW4uIDopCgpfX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBs
-aXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1h
-bi9saXN0aW5mby9pbnRlbC1nZngK
+The atomic check hooks must look up the encoder to be used with a
+connector from the connector's atomic state, and not assume that it's
+the connector's current attached encoder. The latter one can change
+under the atomic check func, or can be unset yet as in the case of MST
+connectors.
+
+This fixes
+[    7.940719] Oops: 0000 [#1] SMP NOPTI
+[    7.944407] CPU: 2 PID: 143 Comm: kworker/2:2 Not tainted 5.6.0-1023-oem #23-Ubuntu
+[    7.952102] Hardware name: Dell Inc. Latitude 7320/, BIOS 88.87.11 09/07/2020
+[    7.959278] Workqueue: events output_poll_execute [drm_kms_helper]
+[    7.965511] RIP: 0010:intel_psr_atomic_check+0x37/0xa0 [i915]
+[    7.971327] Code: 80 2d 06 00 00 20 74 42 80 b8 34 71 00 00 00 74 39 48 8b 72 08 48 85 f6 74 30 80 b8 f8 71 00 00 00 74 27 4c 8b 87 80 04 00 00 <41> 8b 78 78 83 ff 08 77 19 31 c9 83 ff 05 77 19 48 81 c1 20 01 00
+[    7.977541] input: PS/2 Generic Mouse as /devices/platform/i8042/serio1/input/input5
+[    7.990154] RSP: 0018:ffffb864c073fac8 EFLAGS: 00010202
+[    7.990155] RAX: ffff8c5d55ce0000 RBX: ffff8c5d54519000 RCX: 0000000000000000
+[    7.990155] RDX: ffff8c5d55cb30c0 RSI: ffff8c5d89a0c800 RDI: ffff8c5d55fcf800
+[    7.990156] RBP: ffffb864c073fac8 R08: 0000000000000000 R09: ffff8c5d55d9f3a0
+[    7.990156] R10: ffff8c5d55cb30c0 R11: 0000000000000009 R12: ffff8c5d55fcf800
+[    7.990156] R13: ffff8c5d55cb30c0 R14: ffff8c5d56989cc0 R15: ffff8c5d56989cc0
+[    7.990158] FS:  0000000000000000(0000) GS:ffff8c5d8e480000(0000) knlGS:0000000000000000
+[    8.047193] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+[    8.052970] CR2: 0000000000000078 CR3: 0000000856500005 CR4: 0000000000760ee0
+[    8.060137] PKRU: 55555554
+[    8.062867] Call Trace:
+[    8.065361]  intel_digital_connector_atomic_check+0x53/0x130 [i915]
+[    8.071703]  intel_dp_mst_atomic_check+0x5b/0x200 [i915]
+[    8.077074]  drm_atomic_helper_check_modeset+0x1db/0x790 [drm_kms_helper]
+[    8.083942]  intel_atomic_check+0x92/0xc50 [i915]
+[    8.088705]  ? drm_plane_check_pixel_format+0x4f/0xb0 [drm]
+[    8.094345]  ? drm_atomic_plane_check+0x7a/0x3a0 [drm]
+[    8.099548]  drm_atomic_check_only+0x2b1/0x450 [drm]
+[    8.104573]  drm_atomic_commit+0x18/0x50 [drm]
+[    8.109070]  drm_client_modeset_commit_atomic+0x1c9/0x200 [drm]
+[    8.115056]  drm_client_modeset_commit_force+0x55/0x160 [drm]
+[    8.120866]  drm_fb_helper_restore_fbdev_mode_unlocked+0x54/0xb0 [drm_kms_helper]
+[    8.128415]  drm_fb_helper_set_par+0x34/0x50 [drm_kms_helper]
+[    8.134225]  drm_fb_helper_hotplug_event.part.0+0xb4/0xe0 [drm_kms_helper]
+[    8.141150]  drm_fb_helper_hotplug_event+0x1c/0x30 [drm_kms_helper]
+[    8.147481]  intel_fbdev_output_poll_changed+0x6f/0xa0 [i915]
+[    8.153287]  drm_kms_helper_hotplug_event+0x2c/0x40 [drm_kms_helper]
+[    8.159709]  output_poll_execute+0x1aa/0x1c0 [drm_kms_helper]
+[    8.165506]  process_one_work+0x1e8/0x3b0
+[    8.169561]  worker_thread+0x4d/0x400
+[    8.173249]  kthread+0x104/0x140
+[    8.176515]  ? process_one_work+0x3b0/0x3b0
+[    8.180726]  ? kthread_park+0x90/0x90
+[    8.184416]  ret_from_fork+0x1f/0x40
+
+Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/2361
+References: https://gitlab.freedesktop.org/drm/intel/-/issues/2486
+Reported-by: William Tseng <william.tseng@intel.com>
+Reported-by: Cooper Chiou <cooper.chiou@intel.com>
+Cc: <stable@vger.kernel.org>
+Signed-off-by: Imre Deak <imre.deak@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_psr.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
+index b2544102e7b1..1576c3722d0b 100644
+--- a/drivers/gpu/drm/i915/display/intel_psr.c
++++ b/drivers/gpu/drm/i915/display/intel_psr.c
+@@ -1884,7 +1884,7 @@ void intel_psr_atomic_check(struct drm_connector *connector,
+ 		return;
+ 
+ 	intel_connector = to_intel_connector(connector);
+-	dig_port = enc_to_dig_port(intel_attached_encoder(intel_connector));
++	dig_port = enc_to_dig_port(to_intel_encoder(new_state->best_encoder));
+ 	if (dev_priv->psr.dp != &dig_port->dp)
+ 		return;
+ 
+-- 
+2.25.1
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
