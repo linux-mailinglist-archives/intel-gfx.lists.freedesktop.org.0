@@ -2,43 +2,45 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id BCDCA29CA69
-	for <lists+intel-gfx@lfdr.de>; Tue, 27 Oct 2020 21:40:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4667A29CA80
+	for <lists+intel-gfx@lfdr.de>; Tue, 27 Oct 2020 21:41:25 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 306136EC4C;
-	Tue, 27 Oct 2020 20:40:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B44B76EC52;
+	Tue, 27 Oct 2020 20:41:23 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 92F9D6EC4D
- for <intel-gfx@lists.freedesktop.org>; Tue, 27 Oct 2020 20:40:23 +0000 (UTC)
-IronPort-SDR: B+PvzksoNvqM18cFz1usIZuabdaFpm3GsXAh3BvYwAyhimPZj85swYD6ejxcZIZlOs6BnRt8GC
- oCj51VO2Utew==
-X-IronPort-AV: E=McAfee;i="6000,8403,9787"; a="155128647"
-X-IronPort-AV: E=Sophos;i="5.77,424,1596524400"; d="scan'208";a="155128647"
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7DD906EC48
+ for <intel-gfx@lists.freedesktop.org>; Tue, 27 Oct 2020 20:41:22 +0000 (UTC)
+IronPort-SDR: MGuS3vt2jRP96d3/sO8zOkvQGPyYcxzKtR9Bs+giOy9xqHy4+MqL30OR2z94kGwYl8AYJv6ji3
+ Op44yYDjg1yA==
+X-IronPort-AV: E=McAfee;i="6000,8403,9787"; a="252859476"
+X-IronPort-AV: E=Sophos;i="5.77,424,1596524400"; d="scan'208";a="252859476"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Oct 2020 13:40:22 -0700
-IronPort-SDR: /SFMOKKvG5jeWHiZ+2QviUAw0ynmQzUUA6UtAEmJLk2YpasmxZH8g/o5laydFPVtEeajIGhrIS
- nLYJAQ03hFrA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.77,424,1596524400"; d="scan'208";a="355677949"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by fmsmga002.fm.intel.com with SMTP; 27 Oct 2020 13:40:20 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 27 Oct 2020 22:40:19 +0200
-From: Ville Syrjala <ville.syrjala@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Tue, 27 Oct 2020 22:39:55 +0200
-Message-Id: <20201027203955.28032-9-ville.syrjala@linux.intel.com>
-X-Mailer: git-send-email 2.26.2
-In-Reply-To: <20201027203955.28032-1-ville.syrjala@linux.intel.com>
-References: <20201027203955.28032-1-ville.syrjala@linux.intel.com>
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Oct 2020 13:41:22 -0700
+IronPort-SDR: hNI7pFkHNHzeHT4aHQPnoSJJzMB+6ea5lAVaKZ1lq+kEl4S6srQj2VKwBiQkD+aurwz6J9PO+d
+ XGf4npb3d15w==
+X-IronPort-AV: E=Sophos;i="5.77,424,1596524400"; d="scan'208";a="350736312"
+Received: from labuser-z97x-ud5h.jf.intel.com (HELO labuser-Z97X-UD5H)
+ ([10.165.21.211])
+ by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Oct 2020 13:41:21 -0700
+Date: Tue, 27 Oct 2020 13:43:15 -0700
+From: "Navare, Manasi" <manasi.d.navare@intel.com>
+To: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+Message-ID: <20201027204315.GA29088@labuser-Z97X-UD5H>
+References: <20201027193034.28721-1-manasi.d.navare@intel.com>
+ <20201027193034.28721-5-manasi.d.navare@intel.com>
+ <20201027200920.GS6112@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 8/8] drm/i915: Do a bit more initial readout for
- dbuf
+Content-Disposition: inline
+In-Reply-To: <20201027200920.GS6112@intel.com>
+User-Agent: Mutt/1.5.24 (2015-08-30)
+Subject: Re: [Intel-gfx] [PATCH 4/5] drm/i915/dp: Call hw.adjusted_mode as
+ hw_mode for clarity
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,76 +53,96 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-RnJvbTogVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4KClJl
-YWRvdXQgdGhlIGRidWYgcmVsYXRlZCBzdHVmZiBkdXJpbmcgZHJpdmVyIGluaXQvcmVzdW1lIGFu
-ZApzdGljayBpdCBpbnRvIG91ciBkYnVmIHN0YXRlLgoKQ2M6IFN0YW5pc2xhdiBMaXNvdnNraXkg
-PHN0YW5pc2xhdi5saXNvdnNraXlAaW50ZWwuY29tPgpTaWduZWQtb2ZmLWJ5OiBWaWxsZSBTeXJq
-w6Rsw6QgPHZpbGxlLnN5cmphbGFAbGludXguaW50ZWwuY29tPgotLS0KIGRyaXZlcnMvZ3B1L2Ry
-bS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheS5jIHwgIDQgLS0KIGRyaXZlcnMvZ3B1L2RybS9p
-OTE1L2ludGVsX3BtLmMgICAgICAgICAgICAgIHwgNDggKysrKysrKysrKysrKysrKysrKy0KIDIg
-ZmlsZXMgY2hhbmdlZCwgNDYgaW5zZXJ0aW9ucygrKSwgNiBkZWxldGlvbnMoLSkKCmRpZmYgLS1n
-aXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXkuYyBiL2RyaXZl
-cnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheS5jCmluZGV4IDQ4ZDc5Y2FhN2E1
-NC4uNjMwNTdmOTY2YTRjIDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5
-L2ludGVsX2Rpc3BsYXkuYworKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVs
-X2Rpc3BsYXkuYwpAQCAtMTc4ODMsMTQgKzE3ODgzLDEwIEBAIHZvaWQgaW50ZWxfbW9kZXNldF9p
-bml0X2h3KHN0cnVjdCBkcm1faTkxNV9wcml2YXRlICppOTE1KQogewogCXN0cnVjdCBpbnRlbF9j
-ZGNsa19zdGF0ZSAqY2RjbGtfc3RhdGUgPQogCQl0b19pbnRlbF9jZGNsa19zdGF0ZShpOTE1LT5j
-ZGNsay5vYmouc3RhdGUpOwotCXN0cnVjdCBpbnRlbF9kYnVmX3N0YXRlICpkYnVmX3N0YXRlID0K
-LQkJdG9faW50ZWxfZGJ1Zl9zdGF0ZShpOTE1LT5kYnVmLm9iai5zdGF0ZSk7CiAKIAlpbnRlbF91
-cGRhdGVfY2RjbGsoaTkxNSk7CiAJaW50ZWxfZHVtcF9jZGNsa19jb25maWcoJmk5MTUtPmNkY2xr
-Lmh3LCAiQ3VycmVudCBDRENMSyIpOwogCWNkY2xrX3N0YXRlLT5sb2dpY2FsID0gY2RjbGtfc3Rh
-dGUtPmFjdHVhbCA9IGk5MTUtPmNkY2xrLmh3OwotCi0JZGJ1Zl9zdGF0ZS0+ZW5hYmxlZF9zbGlj
-ZXMgPSBpOTE1LT5kYnVmLmVuYWJsZWRfc2xpY2VzOwogfQogCiBzdGF0aWMgaW50IHNhbml0aXpl
-X3dhdGVybWFya3NfYWRkX2FmZmVjdGVkKHN0cnVjdCBkcm1fYXRvbWljX3N0YXRlICpzdGF0ZSkK
-ZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2ludGVsX3BtLmMgYi9kcml2ZXJzL2dw
-dS9kcm0vaTkxNS9pbnRlbF9wbS5jCmluZGV4IDlhMTk5ZWIyZDAxMy4uZTA3OTA0M2FkM2U4IDEw
-MDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pbnRlbF9wbS5jCisrKyBiL2RyaXZlcnMv
-Z3B1L2RybS9pOTE1L2ludGVsX3BtLmMKQEAgLTU2NzAsNiArNTY3MCwxOCBAQCBzdGF0aWMgYm9v
-bCBza2xfZGRiX2VudHJpZXNfb3ZlcmxhcChjb25zdCBzdHJ1Y3Qgc2tsX2RkYl9lbnRyeSAqYSwK
-IAlyZXR1cm4gYS0+c3RhcnQgPCBiLT5lbmQgJiYgYi0+c3RhcnQgPCBhLT5lbmQ7CiB9CiAKK3N0
-YXRpYyB2b2lkIHNrbF9kZGJfZW50cnlfdW5pb24oc3RydWN0IHNrbF9kZGJfZW50cnkgKmEsCisJ
-CQkJY29uc3Qgc3RydWN0IHNrbF9kZGJfZW50cnkgKmIpCit7CisJaWYgKGEtPmVuZCAmJiBiLT5l
-bmQpIHsKKwkJYS0+c3RhcnQgPSBtaW4oYS0+c3RhcnQsIGItPnN0YXJ0KTsKKwkJYS0+ZW5kID0g
-bWF4KGEtPmVuZCwgYi0+ZW5kKTsKKwl9IGVsc2UgaWYgKGItPmVuZCkgeworCQlhLT5zdGFydCA9
-IGItPnN0YXJ0OworCQlhLT5lbmQgPSBiLT5lbmQ7CisJfQorfQorCiBib29sIHNrbF9kZGJfYWxs
-b2NhdGlvbl9vdmVybGFwcyhjb25zdCBzdHJ1Y3Qgc2tsX2RkYl9lbnRyeSAqZGRiLAogCQkJCSBj
-b25zdCBzdHJ1Y3Qgc2tsX2RkYl9lbnRyeSAqZW50cmllcywKIAkJCQkgaW50IG51bV9lbnRyaWVz
-LCBpbnQgaWdub3JlX2lkeCkKQEAgLTYxODYsMTQgKzYxOTgsNDYgQEAgdm9pZCBza2xfcGlwZV93
-bV9nZXRfaHdfc3RhdGUoc3RydWN0IGludGVsX2NydGMgKmNydGMsCiAKIHZvaWQgc2tsX3dtX2dl
-dF9od19zdGF0ZShzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqZGV2X3ByaXYpCiB7CisJc3RydWN0
-IGludGVsX2RidWZfc3RhdGUgKmRidWZfc3RhdGUgPQorCQl0b19pbnRlbF9kYnVmX3N0YXRlKGRl
-dl9wcml2LT5kYnVmLm9iai5zdGF0ZSk7CiAJc3RydWN0IGludGVsX2NydGMgKmNydGM7Ci0Jc3Ry
-dWN0IGludGVsX2NydGNfc3RhdGUgKmNydGNfc3RhdGU7CiAKIAlmb3JfZWFjaF9pbnRlbF9jcnRj
-KCZkZXZfcHJpdi0+ZHJtLCBjcnRjKSB7Ci0JCWNydGNfc3RhdGUgPSB0b19pbnRlbF9jcnRjX3N0
-YXRlKGNydGMtPmJhc2Uuc3RhdGUpOworCQlzdHJ1Y3QgaW50ZWxfY3J0Y19zdGF0ZSAqY3J0Y19z
-dGF0ZSA9CisJCQl0b19pbnRlbF9jcnRjX3N0YXRlKGNydGMtPmJhc2Uuc3RhdGUpOworCQllbnVt
-IHBpcGUgcGlwZSA9IGNydGMtPnBpcGU7CisJCWVudW0gcGxhbmVfaWQgcGxhbmVfaWQ7CiAKIAkJ
-c2tsX3BpcGVfd21fZ2V0X2h3X3N0YXRlKGNydGMsICZjcnRjX3N0YXRlLT53bS5za2wub3B0aW1h
-bCk7CisKKwkJbWVtc2V0KCZkYnVmX3N0YXRlLT5kZGJbcGlwZV0sIDAsIHNpemVvZihkYnVmX3N0
-YXRlLT5kZGJbcGlwZV0pKTsKKworCQlmb3JfZWFjaF9wbGFuZV9pZF9vbl9jcnRjKGNydGMsIHBs
-YW5lX2lkKSB7CisJCQlzdHJ1Y3Qgc2tsX2RkYl9lbnRyeSAqZGRiX3kgPQorCQkJCSZjcnRjX3N0
-YXRlLT53bS5za2wucGxhbmVfZGRiX3lbcGxhbmVfaWRdOworCQkJc3RydWN0IHNrbF9kZGJfZW50
-cnkgKmRkYl91diA9CisJCQkJJmNydGNfc3RhdGUtPndtLnNrbC5wbGFuZV9kZGJfdXZbcGxhbmVf
-aWRdOworCisJCQlza2xfZGRiX2dldF9od19wbGFuZV9zdGF0ZShkZXZfcHJpdiwgY3J0Yy0+cGlw
-ZSwKKwkJCQkJCSAgIHBsYW5lX2lkLCBkZGJfeSwgZGRiX3V2KTsKKworCQkJc2tsX2RkYl9lbnRy
-eV91bmlvbigmZGJ1Zl9zdGF0ZS0+ZGRiW3BpcGVdLCBkZGJfeSk7CisJCQlza2xfZGRiX2VudHJ5
-X3VuaW9uKCZkYnVmX3N0YXRlLT5kZGJbcGlwZV0sIGRkYl91dik7CisJCX0KKworCQlkYnVmX3N0
-YXRlLT5zbGljZXNbcGlwZV0gPQorCQkJc2tsX2NvbXB1dGVfZGJ1Zl9zbGljZXMoY3J0YywgZGJ1
-Zl9zdGF0ZS0+YWN0aXZlX3BpcGVzKTsKKworCQlkYnVmX3N0YXRlLT53ZWlnaHRbcGlwZV0gPSBp
-bnRlbF9jcnRjX2RkYl93ZWlnaHQoY3J0Y19zdGF0ZSk7CisKKwkJZHJtX2RiZ19rbXMoJmRldl9w
-cml2LT5kcm0sCisJCQkgICAgIltDUlRDOiVkOiVzXSBkYnVmIHNsaWNlcyAweCV4LCBkZGIgKCVk
-IC0gJWQpLCBhY3RpdmUgcGlwZXMgMHgleFxuIiwKKwkJCSAgICBjcnRjLT5iYXNlLmJhc2UuaWQs
-IGNydGMtPmJhc2UubmFtZSwKKwkJCSAgICBkYnVmX3N0YXRlLT5zbGljZXNbcGlwZV0sIGRidWZf
-c3RhdGUtPmRkYltwaXBlXS5zdGFydCwKKwkJCSAgICBkYnVmX3N0YXRlLT5kZGJbcGlwZV0uZW5k
-LCBkYnVmX3N0YXRlLT5hY3RpdmVfcGlwZXMpOwogCX0KKworCWRidWZfc3RhdGUtPmVuYWJsZWRf
-c2xpY2VzID0gZGV2X3ByaXYtPmRidWYuZW5hYmxlZF9zbGljZXM7CiB9CiAKIHN0YXRpYyB2b2lk
-IGlsa19waXBlX3dtX2dldF9od19zdGF0ZShzdHJ1Y3QgaW50ZWxfY3J0YyAqY3J0YykKLS0gCjIu
-MjYuMgoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50
-ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBz
-Oi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
+On Tue, Oct 27, 2020 at 10:09:20PM +0200, Ville Syrj=E4l=E4 wrote:
+> On Tue, Oct 27, 2020 at 12:30:33PM -0700, Manasi Navare wrote:
+> > No functional changes just use hw_mode to retrive
+> > hw.adjusted_mode during HW state readout for clarity
+> > in bigjoiner case.
+> =
+
+> Still don't understnad what this has to do with bigjoiner. Looks
+> like a simple introduction of a strangely named local variable to
+> me?
+
+SHould I just drop this then? Or just reword the commit message to remove
+bigjoiner related stuff?
+
+Manasi
+> =
+
+> > =
+
+> > Signed-off-by: Manasi Navare <manasi.d.navare@intel.com>
+> > ---
+> >  drivers/gpu/drm/i915/display/intel_display.c | 22 +++++++++++---------
+> >  1 file changed, 12 insertions(+), 10 deletions(-)
+> > =
+
+> > diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu=
+/drm/i915/display/intel_display.c
+> > index cabda5a02e9e..b000dd68977f 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_display.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> > @@ -9119,20 +9119,22 @@ static void intel_get_pipe_src_size(struct inte=
+l_crtc *crtc,
+> >  void intel_mode_from_pipe_config(struct drm_display_mode *mode,
+> >  				 struct intel_crtc_state *pipe_config)
+> >  {
+> > -	mode->hdisplay =3D pipe_config->hw.adjusted_mode.crtc_hdisplay;
+> > -	mode->htotal =3D pipe_config->hw.adjusted_mode.crtc_htotal;
+> > -	mode->hsync_start =3D pipe_config->hw.adjusted_mode.crtc_hsync_start;
+> > -	mode->hsync_end =3D pipe_config->hw.adjusted_mode.crtc_hsync_end;
+> > +	struct drm_display_mode *hw_mode =3D &pipe_config->hw.adjusted_mode;
+> >  =
+
+> > -	mode->vdisplay =3D pipe_config->hw.adjusted_mode.crtc_vdisplay;
+> > -	mode->vtotal =3D pipe_config->hw.adjusted_mode.crtc_vtotal;
+> > -	mode->vsync_start =3D pipe_config->hw.adjusted_mode.crtc_vsync_start;
+> > -	mode->vsync_end =3D pipe_config->hw.adjusted_mode.crtc_vsync_end;
+> > +	mode->hdisplay =3D hw_mode->crtc_hdisplay;
+> > +	mode->htotal =3D hw_mode->crtc_htotal;
+> > +	mode->hsync_start =3D hw_mode->crtc_hsync_start;
+> > +	mode->hsync_end =3D hw_mode->crtc_hsync_end;
+> >  =
+
+> > -	mode->flags =3D pipe_config->hw.adjusted_mode.flags;
+> > +	mode->vdisplay =3D hw_mode->crtc_vdisplay;
+> > +	mode->vtotal =3D hw_mode->crtc_vtotal;
+> > +	mode->vsync_start =3D hw_mode->crtc_vsync_start;
+> > +	mode->vsync_end =3D hw_mode->crtc_vsync_end;
+> > +
+> > +	mode->flags =3D hw_mode->flags;
+> >  	mode->type =3D DRM_MODE_TYPE_DRIVER;
+> >  =
+
+> > -	mode->clock =3D pipe_config->hw.adjusted_mode.crtc_clock;
+> > +	mode->clock =3D hw_mode->crtc_clock;
+> >  =
+
+> >  	drm_mode_set_name(mode);
+> >  }
+> > -- =
+
+> > 2.19.1
+> > =
+
+> > _______________________________________________
+> > Intel-gfx mailing list
+> > Intel-gfx@lists.freedesktop.org
+> > https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+> =
+
+> -- =
+
+> Ville Syrj=E4l=E4
+> Intel
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
