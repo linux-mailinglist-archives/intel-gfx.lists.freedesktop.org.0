@@ -2,43 +2,45 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E8AA329A5CA
-	for <lists+intel-gfx@lfdr.de>; Tue, 27 Oct 2020 08:49:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B086029A612
+	for <lists+intel-gfx@lfdr.de>; Tue, 27 Oct 2020 09:04:06 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5BD836EB1D;
-	Tue, 27 Oct 2020 07:49:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DBBCD6E1B3;
+	Tue, 27 Oct 2020 08:04:03 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 076E16EB1D
- for <intel-gfx@lists.freedesktop.org>; Tue, 27 Oct 2020 07:49:03 +0000 (UTC)
-IronPort-SDR: yAhJu7Opp1IEuL14SzsM+nBfIkfypfR0XGkoOhExGMM1GxxZuRUn37PqPsdoSSrGWBjK56GhcQ
- s1x4/02GAFfw==
-X-IronPort-AV: E=McAfee;i="6000,8403,9786"; a="185779342"
-X-IronPort-AV: E=Sophos;i="5.77,423,1596524400"; d="scan'208";a="185779342"
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5642D6E1B3;
+ Tue, 27 Oct 2020 08:04:03 +0000 (UTC)
+IronPort-SDR: kr6fKKF/gdo6u6zhvQTVaylukm2beDOTkYsXOQw9UqAS7ERiZZz0uCTn59wqmC38TtNiHn+klM
+ ig30nRq7ygRA==
+X-IronPort-AV: E=McAfee;i="6000,8403,9786"; a="229679240"
+X-IronPort-AV: E=Sophos;i="5.77,423,1596524400"; d="scan'208";a="229679240"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Oct 2020 00:49:02 -0700
-IronPort-SDR: vU8Qfq88b43QK2dfDv5Obj26eNeHFRhJY5E1IuvwKVJXsH55o0p+z9dYhdKn0+JPxiH5DlfIEX
- /vGpglqUc3/A==
-X-IronPort-AV: E=Sophos;i="5.77,423,1596524400"; d="scan'208";a="535690468"
-Received: from poomaduv-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.251.87.111])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Oct 2020 01:04:02 -0700
+IronPort-SDR: w1c8joy0st/SiY0LXb8lELpGViZNHbWIVdFAUHdXmG6eQKsiYam4JyY6UopZs6i7gDhS9tbPCn
+ cjYrov6rV4JQ==
+X-IronPort-AV: E=Sophos;i="5.77,423,1596524400"; d="scan'208";a="535694834"
+Received: from genxfsim-desktop.iind.intel.com (HELO intel.com)
+ ([10.223.74.178])
  by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Oct 2020 00:49:01 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Lucas De Marchi <lucas.demarchi@intel.com>, intel-gfx@lists.freedesktop.org
-In-Reply-To: <20201027044618.719064-2-lucas.demarchi@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20201027044618.719064-1-lucas.demarchi@intel.com>
- <20201027044618.719064-2-lucas.demarchi@intel.com>
-Date: Tue, 27 Oct 2020 09:48:58 +0200
-Message-ID: <87zh48hzx1.fsf@intel.com>
+ 27 Oct 2020 01:04:00 -0700
+Date: Tue, 27 Oct 2020 13:20:22 +0530
+From: Anshuman Gupta <anshuman.gupta@intel.com>
+To: "Shankar, Uma" <uma.shankar@intel.com>
+Message-ID: <20201027075022.GE29526@intel.com>
+References: <20201023122112.15265-1-anshuman.gupta@intel.com>
+ <20201023122112.15265-2-anshuman.gupta@intel.com>
+ <3aff190f909b4dc290ca1f1d8b47d963@intel.com>
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH 2/3] drm/i915/display: remove debug message
- from error path
+Content-Disposition: inline
+In-Reply-To: <3aff190f909b4dc290ca1f1d8b47d963@intel.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
+Subject: Re: [Intel-gfx] [PATCH v3 01/16] drm/i915/hdcp: Update CP property
+ in update_pipe
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,48 +53,88 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: "Nikula, Jani" <jani.nikula@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ "seanpaul@chromium.org" <seanpaul@chromium.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 26 Oct 2020, Lucas De Marchi <lucas.demarchi@intel.com> wrote:
-> First check in the function is if swsci() is supported. All the error
-> paths are easy to figure out the reason, so remove the extra debug
-> message: it's normal not to support swsci() e.g. in dgfx.
->
-> v2: Rather than special case dgfx, just remove the debug message
->     (from Ville)
->
-> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
-
-Reviewed-by: Jani Nikula <jani.nikula@intel.com>
-
-> ---
->  drivers/gpu/drm/i915/display/intel_opregion.c | 6 +-----
->  1 file changed, 1 insertion(+), 5 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_opregion.c b/drivers/gpu/drm/i915/display/intel_opregion.c
-> index de995362f428..4f77cf849171 100644
-> --- a/drivers/gpu/drm/i915/display/intel_opregion.c
-> +++ b/drivers/gpu/drm/i915/display/intel_opregion.c
-> @@ -1007,12 +1007,8 @@ intel_opregion_get_panel_type(struct drm_i915_private *dev_priv)
->  	int ret;
->  
->  	ret = swsci(dev_priv, SWSCI_GBDA_PANEL_DETAILS, 0x0, &panel_details);
-> -	if (ret) {
-> -		drm_dbg_kms(&dev_priv->drm,
-> -			    "Failed to get panel details from OpRegion (%d)\n",
-> -			    ret);
-> +	if (ret)
->  		return ret;
-> -	}
->  
->  	ret = (panel_details >> 8) & 0xff;
->  	if (ret > 0x10) {
-
--- 
-Jani Nikula, Intel Open Source Graphics Center
+On 2020-10-27 at 11:02:26 +0530, Shankar, Uma wrote:
+> 
+> 
+> > -----Original Message-----
+> > From: Anshuman Gupta <anshuman.gupta@intel.com>
+> > Sent: Friday, October 23, 2020 5:51 PM
+> > To: intel-gfx@lists.freedesktop.org; dri-devel@lists.freedesktop.org
+> > Cc: seanpaul@chromium.org; Nikula, Jani <jani.nikula@intel.com>; C,
+> > Ramalingam <ramalingam.c@intel.com>; Li, Juston <juston.li@intel.com>;
+> > Shankar, Uma <uma.shankar@intel.com>; Gupta, Anshuman
+> > <anshuman.gupta@intel.com>
+> > Subject: [PATCH v3 01/16] drm/i915/hdcp: Update CP property in update_pipe
+> > 
+> > When crtc state need_modeset is true it is not necessary it is going to be a real
+> > modeset, it can turns to be a update_pipe instead of modeset.
+> 
+> I believe you refer fastest here. May be make this a bit clear. 
+> 
+> > This turns content protection property to be DESIRED and hdcp update_pipe left
+> > with property to be in DESIRED state but actually hdcp->value was ENABLED.
+> > This caught with DP MST setup, when disabling HDCP on a connector sets the crtc
+> > state need_modeset to true for all crtc driving the other DP-MST topology
+> > connectors.
+> 
+> This is a bit ambiguous, you can mention it a bit more clearly. In case of DP MST, how this
+> affects would help make it clearer.
+> 
+> > 
+> > v2:
+> > Fix WARN_ON(connector->base.registration_state ==
+> > DRM_CONNECTOR_REGISTERED)
+> > 
+> > Fixes: 33f9a623bfc6 ("drm/i915/hdcp: Update CP as per the kernel internal
+> > state")
+> > Cc: Ramalingam C <ramalingam.c@intel.com>
+> > Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
+> > ---
+> >  drivers/gpu/drm/i915/display/intel_hdcp.c | 5 +++++
+> >  1 file changed, 5 insertions(+)
+> > 
+> > diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c
+> > b/drivers/gpu/drm/i915/display/intel_hdcp.c
+> > index b2a4bbcfdcd2..0d9e8d3b5603 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_hdcp.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
+> > @@ -2221,6 +2221,11 @@ void intel_hdcp_update_pipe(struct
+> > intel_atomic_state *state,
+> >  		desired_and_not_enabled =
+> >  			hdcp->value !=
+> > DRM_MODE_CONTENT_PROTECTION_ENABLED;
+> >  		mutex_unlock(&hdcp->mutex);
+> >
+> 
+> Please add a comment explaining the rationale here as well.
+Sure i will fix all above comment.
+> 
+> > +		if (!desired_and_not_enabled &&
+> > !content_protection_type_changed) {
+> > +			drm_connector_get(&connector->base);
+> 
+> Where are we releasing this ref.
+prop worker function releases the connector reference.
+Thanks,
+Anshuman Gupta.
+> 
+> > +			schedule_work(&hdcp->prop_work);
+> > +		}
+> >  	}
+> > 
+> >  	if (desired_and_not_enabled || content_protection_type_changed)
+> > --
+> > 2.26.2
+> 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
