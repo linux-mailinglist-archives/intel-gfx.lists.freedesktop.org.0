@@ -1,58 +1,75 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id ED33529CFA5
-	for <lists+intel-gfx@lfdr.de>; Wed, 28 Oct 2020 12:18:57 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id E688529CFD2
+	for <lists+intel-gfx@lfdr.de>; Wed, 28 Oct 2020 12:53:34 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 470AF6E4FE;
-	Wed, 28 Oct 2020 11:18:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 30A9B6EC93;
+	Wed, 28 Oct 2020 11:53:33 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1C5BD6E4FE;
- Wed, 28 Oct 2020 11:18:50 +0000 (UTC)
-IronPort-SDR: uI3tlewNgphi5B1hf8FTXEMaWbnJGHVgxP/f2yF4JEDoRKCZhBJ3LCCwq1XhVC/50ozBP7C9YT
- 1bKFFLYgyn4g==
-X-IronPort-AV: E=McAfee;i="6000,8403,9787"; a="232423283"
-X-IronPort-AV: E=Sophos;i="5.77,426,1596524400"; 
- d="scan'208,217";a="232423283"
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E70936EC93;
+ Wed, 28 Oct 2020 11:53:31 +0000 (UTC)
+IronPort-SDR: cw0CglvhaIZkrE/xKjJG0ixwMpE2zIHXY7z1JCT9OCd4KvjZ/6PI+ZLYs5yoqqQSzyKwExOxdb
+ yg3HkG6Sw3mw==
+X-IronPort-AV: E=McAfee;i="6000,8403,9787"; a="155213407"
+X-IronPort-AV: E=Sophos;i="5.77,426,1596524400"; d="scan'208";a="155213407"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Oct 2020 04:18:49 -0700
-IronPort-SDR: NWJjm8rflGAKvSqCR/AytOskHVJGktQfmnO0sTqpl4BYYb9wduRxYHmrnJG2K0kAU8FGRIYKPu
- sgChWzJzLdfA==
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Oct 2020 04:53:31 -0700
+IronPort-SDR: WcDnvR/07PlmS0Wc08tWu2IVj8DUyIuT8Da0gbirhB3C31/xj34JwYqTCA/C6jirr2T0aH+CBU
+ OAjxBXiA6fnQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.77,426,1596524400"; 
- d="scan'208,217";a="318560558"
-Received: from irsmsx602.ger.corp.intel.com ([163.33.146.8])
- by orsmga003.jf.intel.com with ESMTP; 28 Oct 2020 04:18:48 -0700
+X-IronPort-AV: E=Sophos;i="5.77,426,1596524400"; d="scan'208";a="355872294"
+Received: from fmsmsx605.amr.corp.intel.com ([10.18.126.85])
+ by fmsmga002.fm.intel.com with ESMTP; 28 Oct 2020 04:53:31 -0700
 Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
- irsmsx602.ger.corp.intel.com (163.33.146.8) with Microsoft SMTP Server
+ fmsmsx605.amr.corp.intel.com (10.18.126.85) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1713.5; Wed, 28 Oct 2020 11:18:47 +0000
+ 15.1.1713.5; Wed, 28 Oct 2020 04:53:30 -0700
+Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1713.5; Wed, 28 Oct 2020 04:53:30 -0700
 Received: from fmsmsx610.amr.corp.intel.com ([10.18.126.90]) by
  fmsmsx610.amr.corp.intel.com ([10.18.126.90]) with mapi id 15.01.1713.004;
- Wed, 28 Oct 2020 04:18:45 -0700
+ Wed, 28 Oct 2020 04:53:30 -0700
 From: "Vivi, Rodrigo" <rodrigo.vivi@intel.com>
-To: Zhenyu Wang <zhenyuw@linux.intel.com>
-Thread-Topic: [Intel-gfx] [PULL] gvt-fixes
-Thread-Index: AQHWrBKsP6vgaCbhMUe7vqjiY+MZE6msYcGAgADzpYA=
-Date: Wed, 28 Oct 2020 11:18:45 +0000
-Message-ID: <C9292B4F-9A82-46AF-BFAB-D372D202F314@intel.com>
-References: <20201027031740.GA27141@zhen-hp.sh.intel.com>
- <20201027204643.GE3771340@intel.com>
-In-Reply-To: <20201027204643.GE3771340@intel.com>
+To: "Pandey, Hariom" <hariom.pandey@intel.com>, "Szwichtenberg, Radoslaw"
+ <radoslaw.szwichtenberg@intel.com>
+Thread-Topic: [Intel-gfx] [PATCH] drm/i915/ehl: Remove require_force_probe
+ protection
+Thread-Index: AQHWm/FceboB2e8wtEe68XkD/d20damLTsaAgAAAfICAAAIFgIAAAfkAgAQXZwCAAFXKgIAAS2oAgAjPkQCABu2iAIAAARkAgAFmvoCAC/mmAIAAVNAA
+Date: Wed, 28 Oct 2020 11:53:30 +0000
+Message-ID: <D7AA9562-983D-4F83-BFD7-6E66801FA273@intel.com>
+References: <20201006145632.117291-1-srinivasx.k@intel.com>
+ <2f7809798dd0b59246d67c5044dafb1e518fc4c5.camel@intel.com>
+ <160200650945.2919.11750150118902885340@build.alporthouse.com>
+ <3CDB63EE-D1CD-43E4-A977-4E966CD19313@intel.com>
+ <c88bc0fbc4956395324674ca202b395326208888.camel@intel.com>
+ <BYAPR11MB3014087624B8206C05362830F9080@BYAPR11MB3014.namprd11.prod.outlook.com>
+ <B6C174E8-161A-43BD-AFDA-21C94F6D56E3@intel.com>
+ <BY5PR11MB44341733BF4A7CCB79861322F6080@BY5PR11MB4434.namprd11.prod.outlook.com>
+ <BYAPR11MB30149153D9229142DD2CF96BF9020@BYAPR11MB3014.namprd11.prod.outlook.com>
+ <20201019182936.GA3149316@intel.com>
+ <160313241261.4425.3184593266306110227@build.alporthouse.com>
+ <CO1PR11MB50750A169A14FCC84C70C936F61F0@CO1PR11MB5075.namprd11.prod.outlook.com>
+ <CO1PR11MB5075AAFA3500F4A3A610FC52F6170@CO1PR11MB5075.namprd11.prod.outlook.com>
+In-Reply-To: <CO1PR11MB5075AAFA3500F4A3A610FC52F6170@CO1PR11MB5075.namprd11.prod.outlook.com>
 Accept-Language: en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
 x-mailer: Apple Mail (2.3608.120.23.2.4)
 x-originating-ip: [10.22.254.132]
+Content-ID: <2713191CB3F86E4488B4CF5046231C1F@intel.com>
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PULL] gvt-fixes
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/ehl: Remove require_force_probe
+ protection
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,345 +83,73 @@ List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: "Nikula, Jani" <jani.nikula@intel.com>,
- intel-gfx <intel-gfx@lists.freedesktop.org>,
- intel-gvt-dev <intel-gvt-dev@lists.freedesktop.org>, "Lv, 
- Zhiyuan" <zhiyuan.lv@intel.com>, "Yuan, Hang" <hang.yuan@intel.com>
-Content-Type: multipart/mixed; boundary="===============0386958231=="
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ dri-devel <dri-devel@lists.freedesktop.org>,
+ Chris Wilson <chris@chris-wilson.co.uk>, "Meena,
+ Mahesh" <mahesh.meena@intel.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0386958231==
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_C9292B4F9A8246AFBFABD372D202F314intelcom_"
-
---_000_C9292B4F9A8246AFBFABD372D202F314intelcom_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-
-
-On Oct 27, 2020, at 1:46 PM, Rodrigo Vivi <rodrigo.vivi@intel.com<mailto:ro=
-drigo.vivi@intel.com>> wrote:
-
-On Tue, Oct 27, 2020 at 11:17:40AM +0800, Zhenyu Wang wrote:
-
-Hi,
-
-Here's first gvt fixes for 5.10 which includes more vGPU
-suspend/resume fix in HWSP reset handling, and also fix for host i915
-suspend regression when vGPU is created (not need to be active), and
-one workaround for APL guest hang issue.
-
-pulled to drm-intel-fixes
-
-I'm actually pulling it off. I had bypassed dim, considering this was an ol=
-d issue with our email decoder,
-but it happens that
-
-$ git show 401ccfa87856 | grep Fixes
-Fixes: e6ba76480299 (drm/i915: Remove i915->kernel_context)
-
-And this is what it should have:
-
-$ dim fixes e6ba76480299 | grep Fixes
-Fixes: e6ba76480299 ("drm/i915: Remove i915->kernel_context")
-
-Sorry for the trouble.
-Let's fix this in place so we don't propagate bad tag that might break othe=
-r scripts on the way
-
-Sorry,
-Rodrigo.
-
-thanks
-
-
-Thanks
---
-The following changes since commit 16cce04cdb200ba905d1241b425ac48da5a9ace5=
-:
-
- drm/i915/selftests: Push the fake iommu device from the stack to data (202=
-0-09-23 10:15:46 +0300)
-
-are available in the Git repository at:
-
- https://github.com/intel/gvt-linux tags/gvt-fixes-2020-10-27
-
-for you to fetch changes up to 401ccfa87856656b874c737522ea92721394a348:
-
- drm/i915/gvt: Only pin/unpin intel_context along with workload (2020-10-19=
- 16:54:28 +0800)
-
-----------------------------------------------------------------
-gvt-fixes-2020-10-27
-
-- Fix HWSP reset handling during vGPU suspend/resume (Colin)
-- Apply flush workaround on APL now for possible guest hang (Colin)
-- Fix vGPU context pin/unpin also for host suspend regression with
- vGPU created (Colin)
-
-----------------------------------------------------------------
-Colin Xu (3):
-     drm/i915/gvt: Allow zero out HWSP addr on hws_pga_write
-     drm/i915/gvt: Set SNOOP for PAT3 on BXT/APL to workaround GPU BB hang
-     drm/i915/gvt: Only pin/unpin intel_context along with workload
-
-drivers/gpu/drm/i915/gvt/handlers.c  | 35 +++++++++++++++++++++++++++++++++=
---
-drivers/gpu/drm/i915/gvt/scheduler.c | 15 ++++++++-------
-2 files changed, 41 insertions(+), 9 deletions(-)
-
-
---
-
-$gpg --keyserver wwwkeys.pgp.net<http://wwwkeys.pgp.net> --recv-keys 4D7818=
-27
-
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org<mailto:Intel-gfx@lists.freedesktop.org>
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
-
---_000_C9292B4F9A8246AFBFABD372D202F314intelcom_
-Content-Type: text/html; charset="us-ascii"
-Content-ID: <F60C8D5E5E452C46888CB32D04CA331E@intel.com>
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-</head>
-<body style=3D"word-wrap: break-word; -webkit-nbsp-mode: space; line-break:=
- after-white-space;" class=3D"">
-<br class=3D"">
-<div><br class=3D"">
-<blockquote type=3D"cite" class=3D"">
-<div class=3D"">On Oct 27, 2020, at 1:46 PM, Rodrigo Vivi &lt;<a href=3D"ma=
-ilto:rodrigo.vivi@intel.com" class=3D"">rodrigo.vivi@intel.com</a>&gt; wrot=
-e:</div>
-<br class=3D"Apple-interchange-newline">
-<div class=3D""><span style=3D"caret-color: rgb(0, 0, 0); font-family: Helv=
-etica; font-size: 12px; font-style: normal; font-variant-caps: normal; font=
--weight: normal; letter-spacing: normal; text-align: start; text-indent: 0p=
-x; text-transform: none; white-space: normal; word-spacing: 0px; -webkit-te=
-xt-stroke-width: 0px; text-decoration: none; float: none; display: inline !=
-important;" class=3D"">On
- Tue, Oct 27, 2020 at 11:17:40AM &#43;0800, Zhenyu Wang wrote:</span><br st=
-yle=3D"caret-color: rgb(0, 0, 0); font-family: Helvetica; font-size: 12px; =
-font-style: normal; font-variant-caps: normal; font-weight: normal; letter-=
-spacing: normal; text-align: start; text-indent: 0px; text-transform: none;=
- white-space: normal; word-spacing: 0px; -webkit-text-stroke-width: 0px; te=
-xt-decoration: none;" class=3D"">
-<blockquote type=3D"cite" style=3D"font-family: Helvetica; font-size: 12px;=
- font-style: normal; font-variant-caps: normal; font-weight: normal; letter=
--spacing: normal; orphans: auto; text-align: start; text-indent: 0px; text-=
-transform: none; white-space: normal; widows: auto; word-spacing: 0px; -web=
-kit-text-size-adjust: auto; -webkit-text-stroke-width: 0px; text-decoration=
-: none;" class=3D"">
-<br class=3D"">
-Hi,<br class=3D"">
-<br class=3D"">
-Here's first gvt fixes for 5.10 which includes more vGPU<br class=3D"">
-suspend/resume fix in HWSP reset handling, and also fix for host i915<br cl=
-ass=3D"">
-suspend regression when vGPU is created (not need to be active), and<br cla=
-ss=3D"">
-one workaround for APL guest hang issue.<br class=3D"">
-</blockquote>
-<br style=3D"caret-color: rgb(0, 0, 0); font-family: Helvetica; font-size: =
-12px; font-style: normal; font-variant-caps: normal; font-weight: normal; l=
-etter-spacing: normal; text-align: start; text-indent: 0px; text-transform:=
- none; white-space: normal; word-spacing: 0px; -webkit-text-stroke-width: 0=
-px; text-decoration: none;" class=3D"">
-<span style=3D"caret-color: rgb(0, 0, 0); font-family: Helvetica; font-size=
-: 12px; font-style: normal; font-variant-caps: normal; font-weight: normal;=
- letter-spacing: normal; text-align: start; text-indent: 0px; text-transfor=
-m: none; white-space: normal; word-spacing: 0px; -webkit-text-stroke-width:=
- 0px; text-decoration: none; float: none; display: inline !important;" clas=
-s=3D"">pulled
- to drm-intel-fixes</span><br style=3D"caret-color: rgb(0, 0, 0); font-fami=
-ly: Helvetica; font-size: 12px; font-style: normal; font-variant-caps: norm=
-al; font-weight: normal; letter-spacing: normal; text-align: start; text-in=
-dent: 0px; text-transform: none; white-space: normal; word-spacing: 0px; -w=
-ebkit-text-stroke-width: 0px; text-decoration: none;" class=3D"">
-</div>
-</blockquote>
-<div><br class=3D"">
-</div>
-<div>I'm actually pulling it off. I had bypassed dim, considering this was =
-an old issue with our email decoder,</div>
-<div>but it happens that&nbsp;</div>
-<div><br class=3D"">
-</div>
-<div>$ git show 401ccfa87856 | grep Fixes</div>
-<div>Fixes: e6ba76480299 (drm/i915: Remove i915-&gt;kernel_context)</div>
-<div><br class=3D"">
-</div>
-<div>And this is what it should have:</div>
-<div><br class=3D"">
-</div>
-<div>$ dim fixes e6ba76480299 | grep Fixes</div>
-<div>Fixes: e6ba76480299 (&quot;drm/i915: Remove i915-&gt;kernel_context&qu=
-ot;)</div>
-<div><br class=3D"">
-</div>
-<div>Sorry for the trouble.</div>
-<div>Let's fix this in place so we don't propagate bad tag that might break=
- other scripts on the way</div>
-<div><br class=3D"">
-</div>
-<div>Sorry,</div>
-<div>Rodrigo.</div>
-<br class=3D"">
-<blockquote type=3D"cite" class=3D"">
-<div class=3D""><span style=3D"caret-color: rgb(0, 0, 0); font-family: Helv=
-etica; font-size: 12px; font-style: normal; font-variant-caps: normal; font=
--weight: normal; letter-spacing: normal; text-align: start; text-indent: 0p=
-x; text-transform: none; white-space: normal; word-spacing: 0px; -webkit-te=
-xt-stroke-width: 0px; text-decoration: none; float: none; display: inline !=
-important;" class=3D"">thanks</span><br style=3D"caret-color: rgb(0, 0, 0);=
- font-family: Helvetica; font-size: 12px; font-style: normal; font-variant-=
-caps: normal; font-weight: normal; letter-spacing: normal; text-align: star=
-t; text-indent: 0px; text-transform: none; white-space: normal; word-spacin=
-g: 0px; -webkit-text-stroke-width: 0px; text-decoration: none;" class=3D"">
-<br style=3D"caret-color: rgb(0, 0, 0); font-family: Helvetica; font-size: =
-12px; font-style: normal; font-variant-caps: normal; font-weight: normal; l=
-etter-spacing: normal; text-align: start; text-indent: 0px; text-transform:=
- none; white-space: normal; word-spacing: 0px; -webkit-text-stroke-width: 0=
-px; text-decoration: none;" class=3D"">
-<blockquote type=3D"cite" style=3D"font-family: Helvetica; font-size: 12px;=
- font-style: normal; font-variant-caps: normal; font-weight: normal; letter=
--spacing: normal; orphans: auto; text-align: start; text-indent: 0px; text-=
-transform: none; white-space: normal; widows: auto; word-spacing: 0px; -web=
-kit-text-size-adjust: auto; -webkit-text-stroke-width: 0px; text-decoration=
-: none;" class=3D"">
-<br class=3D"">
-Thanks<br class=3D"">
---<br class=3D"">
-The following changes since commit 16cce04cdb200ba905d1241b425ac48da5a9ace5=
-:<br class=3D"">
-<br class=3D"">
-&nbsp;drm/i915/selftests: Push the fake iommu device from the stack to data=
- (2020-09-23 10:15:46 &#43;0300)<br class=3D"">
-<br class=3D"">
-are available in the Git repository at:<br class=3D"">
-<br class=3D"">
-&nbsp;<a href=3D"https://github.com/intel/gvt-linux" class=3D"">https://git=
-hub.com/intel/gvt-linux</a> tags/gvt-fixes-2020-10-27<br class=3D"">
-<br class=3D"">
-for you to fetch changes up to 401ccfa87856656b874c737522ea92721394a348:<br=
- class=3D"">
-<br class=3D"">
-&nbsp;drm/i915/gvt: Only pin/unpin intel_context along with workload (2020-=
-10-19 16:54:28 &#43;0800)<br class=3D"">
-<br class=3D"">
-----------------------------------------------------------------<br class=
-=3D"">
-gvt-fixes-2020-10-27<br class=3D"">
-<br class=3D"">
-- Fix HWSP reset handling during vGPU suspend/resume (Colin)<br class=3D"">
-- Apply flush workaround on APL now for possible guest hang (Colin)<br clas=
-s=3D"">
-- Fix vGPU context pin/unpin also for host suspend regression with<br class=
-=3D"">
-&nbsp;vGPU created (Colin)<br class=3D"">
-<br class=3D"">
-----------------------------------------------------------------<br class=
-=3D"">
-Colin Xu (3):<br class=3D"">
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;drm/i915/gvt: Allow zero out HWSP addr on hws=
-_pga_write<br class=3D"">
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;drm/i915/gvt: Set SNOOP for PAT3 on BXT/APL t=
-o workaround GPU BB hang<br class=3D"">
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;drm/i915/gvt: Only pin/unpin intel_context al=
-ong with workload<br class=3D"">
-<br class=3D"">
-drivers/gpu/drm/i915/gvt/handlers.c &nbsp;| 35 &#43;&#43;&#43;&#43;&#43;&#4=
-3;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#4=
-3;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;--<br class=
-=3D"">
-drivers/gpu/drm/i915/gvt/scheduler.c | 15 &#43;&#43;&#43;&#43;&#43;&#43;&#4=
-3;&#43;-------<br class=3D"">
-2 files changed, 41 insertions(&#43;), 9 deletions(-)<br class=3D"">
-<br class=3D"">
-<br class=3D"">
---<span class=3D"Apple-converted-space">&nbsp;</span><br class=3D"">
-<br class=3D"">
-$gpg --keyserver <a href=3D"http://wwwkeys.pgp.net" class=3D"">wwwkeys.pgp.=
-net</a> --recv-keys 4D781827<br class=3D"">
-</blockquote>
-<br style=3D"caret-color: rgb(0, 0, 0); font-family: Helvetica; font-size: =
-12px; font-style: normal; font-variant-caps: normal; font-weight: normal; l=
-etter-spacing: normal; text-align: start; text-indent: 0px; text-transform:=
- none; white-space: normal; word-spacing: 0px; -webkit-text-stroke-width: 0=
-px; text-decoration: none;" class=3D"">
-<br style=3D"caret-color: rgb(0, 0, 0); font-family: Helvetica; font-size: =
-12px; font-style: normal; font-variant-caps: normal; font-weight: normal; l=
-etter-spacing: normal; text-align: start; text-indent: 0px; text-transform:=
- none; white-space: normal; word-spacing: 0px; -webkit-text-stroke-width: 0=
-px; text-decoration: none;" class=3D"">
-<span style=3D"caret-color: rgb(0, 0, 0); font-family: Helvetica; font-size=
-: 12px; font-style: normal; font-variant-caps: normal; font-weight: normal;=
- letter-spacing: normal; text-align: start; text-indent: 0px; text-transfor=
-m: none; white-space: normal; word-spacing: 0px; -webkit-text-stroke-width:=
- 0px; text-decoration: none; float: none; display: inline !important;" clas=
-s=3D"">_______________________________________________</span><br style=3D"c=
-aret-color: rgb(0, 0, 0); font-family: Helvetica; font-size: 12px; font-sty=
-le: normal; font-variant-caps: normal; font-weight: normal; letter-spacing:=
- normal; text-align: start; text-indent: 0px; text-transform: none; white-s=
-pace: normal; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decor=
-ation: none;" class=3D"">
-<span style=3D"caret-color: rgb(0, 0, 0); font-family: Helvetica; font-size=
-: 12px; font-style: normal; font-variant-caps: normal; font-weight: normal;=
- letter-spacing: normal; text-align: start; text-indent: 0px; text-transfor=
-m: none; white-space: normal; word-spacing: 0px; -webkit-text-stroke-width:=
- 0px; text-decoration: none; float: none; display: inline !important;" clas=
-s=3D"">Intel-gfx
- mailing list</span><br style=3D"caret-color: rgb(0, 0, 0); font-family: He=
-lvetica; font-size: 12px; font-style: normal; font-variant-caps: normal; fo=
-nt-weight: normal; letter-spacing: normal; text-align: start; text-indent: =
-0px; text-transform: none; white-space: normal; word-spacing: 0px; -webkit-=
-text-stroke-width: 0px; text-decoration: none;" class=3D"">
-<a href=3D"mailto:Intel-gfx@lists.freedesktop.org" style=3D"font-family: He=
-lvetica; font-size: 12px; font-style: normal; font-variant-caps: normal; fo=
-nt-weight: normal; letter-spacing: normal; orphans: auto; text-align: start=
-; text-indent: 0px; text-transform: none; white-space: normal; widows: auto=
-; word-spacing: 0px; -webkit-text-size-adjust: auto; -webkit-text-stroke-wi=
-dth: 0px;" class=3D"">Intel-gfx@lists.freedesktop.org</a><br style=3D"caret=
--color: rgb(0, 0, 0); font-family: Helvetica; font-size: 12px; font-style: =
-normal; font-variant-caps: normal; font-weight: normal; letter-spacing: nor=
-mal; text-align: start; text-indent: 0px; text-transform: none; white-space=
-: normal; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoratio=
-n: none;" class=3D"">
-<a href=3D"https://lists.freedesktop.org/mailman/listinfo/intel-gfx" style=
-=3D"font-family: Helvetica; font-size: 12px; font-style: normal; font-varia=
-nt-caps: normal; font-weight: normal; letter-spacing: normal; orphans: auto=
-; text-align: start; text-indent: 0px; text-transform: none; white-space: n=
-ormal; widows: auto; word-spacing: 0px; -webkit-text-size-adjust: auto; -we=
-bkit-text-stroke-width: 0px;" class=3D"">https://lists.freedesktop.org/mail=
-man/listinfo/intel-gfx</a></div>
-</blockquote>
-</div>
-<br class=3D"">
-</body>
-</html>
-
---_000_C9292B4F9A8246AFBFABD372D202F314intelcom_--
-
---===============0386958231==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============0386958231==--
+DQoNCj4gT24gT2N0IDI3LCAyMDIwLCBhdCAxMTo0OSBQTSwgUGFuZGV5LCBIYXJpb20gPGhhcmlv
+bS5wYW5kZXlAaW50ZWwuY29tPiB3cm90ZToNCj4gDQo+IEhpIENocmlzLA0KPiAgDQo+IEF3YWl0
+aW5nIHlvdXIga2luZCByZXNwb25zZSBoZXJl4oCmDQoNCmh0dHBzOi8vaW50ZWwtZ2Z4LWNpLjAx
+Lm9yZy90cmVlL2RybS10aXAvQ0lfRFJNXzkyMDgvZmktZWhsLTEvaWd0QGk5MTVfc2VsZnRlc3RA
+bGl2ZUBndF9wbS5odG1sDQoiRGlkIG5vdCBlbnRlciBSQzYhIg0KDQpDaHJpcyBhbHJlYWR5IHRv
+bGQgdGhhdCB3ZSBuZWVkIHRvIGdldCBSQzYgd29ya2luZyBvbiBDSS4NCklmIHdlIG5lZWQgQklP
+UyB1cGRhdGUgb3IgbWFjaGluZSByZXBsYWNlbWVudCB0aGVyZSB3ZSBuZWVkIHRvIHdvcmsgd2l0
+aCBDSSB0ZWFtIHRvIG1ha2UgdGhhdCBoYXBwZW4uDQoNCj4gIA0KPiBUaGFua3MNCj4gSGFyaW9t
+IFBhbmRleQ0KPiAgDQo+IEZyb206IFBhbmRleSwgSGFyaW9tIA0KPiBTZW50OiBUdWVzZGF5LCBP
+Y3RvYmVyIDIwLCAyMDIwIDk6MjggUE0NCj4gVG86IENocmlzIFdpbHNvbiA8Y2hyaXNAY2hyaXMt
+d2lsc29uLmNvLnVrPg0KPiBDYzogQXVzbXVzLCBKYW1lcyA8amFtZXMuYXVzbXVzQGludGVsLmNv
+bT47IE5pa3VsYSwgSmFuaSA8amFuaS5uaWt1bGFAaW50ZWwuY29tPjsgaW50ZWwtZ2Z4QCA8bGlz
+dHMuZnJlZWRlc2t0b3Aub3JnIGludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmc+OyBTb3V6
+YSwgSm9zZSA8am9zZS5zb3V6YUBpbnRlbC5jb20+OyBkcmktZGV2ZWxAIDxsaXN0cy5mcmVlZGVz
+a3RvcC5vcmcgZHJpLWRldmVsQGxpc3RzLmZyZWVkZXNrdG9wLm9yZz47IFN1cmVuZHJha3VtYXIg
+VXBhZGh5YXksIFRlamFza3VtYXJYIDx0ZWphc2t1bWFyeC5zdXJlbmRyYWt1bWFyLnVwYWRoeWF5
+QGludGVsLmNvbT47IEssIFNyaW5pdmFzWCA8c3Jpbml2YXN4LmtAaW50ZWwuY29tPjsgVml2aSwg
+Um9kcmlnbyA8cm9kcmlnby52aXZpQGludGVsLmNvbT47IE1lZW5hLCBNYWhlc2ggPE1haGVzaC5N
+ZWVuYUBpbnRlbC5jb20+DQo+IFN1YmplY3Q6IFJFOiBbSW50ZWwtZ2Z4XSBbUEFUQ0hdIGRybS9p
+OTE1L2VobDogUmVtb3ZlIHJlcXVpcmVfZm9yY2VfcHJvYmUgcHJvdGVjdGlvbg0KPiAgDQo+IEhp
+IENocmlzLA0KPiAgDQo+IFdlIGhhdmUgcnVuIFJDNiB0ZXN0IGNhc2VzIGFzIHJlY2VudGx5IGFz
+IDQgZGF5cyBhZ28gb24gRUhMIGFuZCB0aGV5IGhhdmUgcGFzc2VkLiBCZWxvdyBhcmUgdGhlIHBh
+c3MgbG9nIGxpbmtzICYgYXR0YWNoZWQgZW1haWwgaGFzIHRoZSBEUk0vSUdUIHRhZyB3aGVyZSB0
+aGV5IGhhdmUgcGFzc2VkLiBXZSBhcmUgZmluZGluZyB0aGF0IHRoZSDigJxFSEwgQkFUIHNldHVw
+4oCdIGlzIG5vdCB1cHRvIGRhdGUgaW4gdGVybXMgb2YgU2lsaWNvbiAmIEJJT1Mgd2hpY2ggd2Ug
+YXJlIHdvcmtpbmcgdG8gdXBncmFkZS4gQnV0IGp1c3QgZm9yIHRoYXQsIHNob3VsZCB3ZSBibG9j
+ayB0aGlzIHBhdGNoPyBKdXN0IHRyeWluZyB0byB1bmRlcnN0YW5kIGFzIHRoZXJlIGlzIG5vIGlu
+aGVyZW50IG9yIGxhdGVudCBSQzYgaXNzdWUgYW55bW9yZS4NCj4gIA0KPiAJ4oCiIGlndEBpOTE1
+X3BtX3JjNl9yZXNpZGVuY3lAcmM2LWFjY3VyYWN5IC0tLSBQQVNTIC0gTG9nDQo+IAnigKIgaWd0
+QGk5MTVfcG1fcmM2X3Jlc2lkZW5jeUByYzYtZmVuY2UgLS0tIFBBU1Mg4oCTIExvZw0KPiAJ4oCi
+IGlndEBpOTE1X3BtX3JjNl9yZXNpZGVuY3lAcmM2LWlkbGUgLS0tIFBBU1MgLSBMb2cNCj4gCeKA
+oiBpZ3RAcGVyZkByYzYtZGlzYWJsZSAtLS0gUEFTUyAtIExvZw0KPiAJ4oCiIGlndEBwZXJmX3Bt
+dUByYzYgLS0tIFBBU1MgLSBMb2cNCj4gCeKAoiBpZ3RAcGVyZl9wbXVAcmM2LXJ1bnRpbWUtcG0g
+LS0tIFBBU1MgLSBMb2cNCj4gCeKAoiBpZ3RAcGVyZl9wbXVAcmM2LXJ1bnRpbWUtcG0tbG9uZyAt
+LS0gUEFTUyDigJMgTG9nDQo+ICANCj4gIA0KPiBUaGFua3MNCj4gSGFyaW9tIFBhbmRleQ0KPiAg
+DQo+ID4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gPiBGcm9tOiBDaHJpcyBXaWxzb24g
+PGNocmlzQGNocmlzLXdpbHNvbi5jby51az4NCj4gPiBTZW50OiBUdWVzZGF5LCBPY3RvYmVyIDIw
+LCAyMDIwIDEyOjA0IEFNDQo+ID4gVG86IEssIFNyaW5pdmFzWCA8c3Jpbml2YXN4LmtAaW50ZWwu
+Y29tPjsgVml2aSwgUm9kcmlnbw0KPiA+IDxyb2RyaWdvLnZpdmlAaW50ZWwuY29tPg0KPiA+IENj
+OiBQYW5kZXksIEhhcmlvbSA8aGFyaW9tLnBhbmRleUBpbnRlbC5jb20+OyBBdXNtdXMsIEphbWVz
+DQo+ID4gPGphbWVzLmF1c211c0BpbnRlbC5jb20+OyBOaWt1bGEsIEphbmkgPGphbmkubmlrdWxh
+QGludGVsLmNvbT47IGludGVsLWdmeEANCj4gPiA8bGlzdHMuZnJlZWRlc2t0b3Aub3JnIGludGVs
+LWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmc+OyBTb3V6YSwgSm9zZQ0KPiA+IDxqb3NlLnNvdXph
+QGludGVsLmNvbT47IGRyaS1kZXZlbEAgPGxpc3RzLmZyZWVkZXNrdG9wLm9yZyBkcmktDQo+ID4g
+ZGV2ZWxAbGlzdHMuZnJlZWRlc2t0b3Aub3JnPjsgU3VyZW5kcmFrdW1hciBVcGFkaHlheSwgVGVq
+YXNrdW1hclgNCj4gPiA8dGVqYXNrdW1hcnguc3VyZW5kcmFrdW1hci51cGFkaHlheUBpbnRlbC5j
+b20+DQo+ID4gU3ViamVjdDogUmU6IFtJbnRlbC1nZnhdIFtQQVRDSF0gZHJtL2k5MTUvZWhsOiBS
+ZW1vdmUgcmVxdWlyZV9mb3JjZV9wcm9iZQ0KPiA+IHByb3RlY3Rpb24NCj4gPiANCj4gPiBRdW90
+aW5nIFJvZHJpZ28gVml2aSAoMjAyMC0xMC0xOSAxOToyOTozNikNCj4gPiA+DQo+ID4gPiBJIGp1
+c3QgY2hlY2tlZCB0aGUgQ0kgcGljdHVyZSBhbmQgaXQgbG9va3MgbXVjaCBiZXR0ZXIgaW5kZWVk
+Lg0KPiA+ID4NCj4gPiA+IE9ubHkgYmFkIGNhc2UgYmVpbmcgdGhlIGd0X3BtLCB3aGljaCBpcyBh
+bHNvIGZhaWxpbmcgb24gb3RoZXIgcGxhdGZvcm1zLg0KPiA+IA0KPiA+IE5vdCBuZWFybHkgaW4g
+dGhlIHNhbWUgbWFubmVyLiBDSSBpcyBpbmRpY2F0aW5nIHRoYXQgdGhlcmUgaXMgbm8gUkM2IGVu
+dHJ5IGFuZA0KPiA+IG5vIHBvd2VyIHNhdmluZyBhdCBhbGw7IG5laXRoZXIgaW4gdGhlIHNlbGZ0
+ZXN0cyBub3IgdmlzaWJsZSBmcm9tIHVzZXJzcGFjZS4NCj4gPiBUaGF0IGlzIGEgY3JpdGljYWwg
+YmF0dGVyeSBlYXRpbmcgYnVnLg0KPiA+IA0KPiA+IElmIHRoZXJlJ3MgYSBwYXRjaCB0byBmaXgg
+aXQgZm9yIGVobCBhbmQganNsLCBzZW5kIGl0IHRvIENJIGZvciBwcm92aW5nLg0KPiA+IC1DaHJp
+cw0KPiA8TWFpbCBBdHRhY2htZW50LmVtbD4NCg0KX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlz
+dHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4v
+bGlzdGluZm8vaW50ZWwtZ2Z4Cg==
