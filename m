@@ -2,44 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id BB06529D3E6
-	for <lists+intel-gfx@lfdr.de>; Wed, 28 Oct 2020 22:47:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id F13E129D46C
+	for <lists+intel-gfx@lfdr.de>; Wed, 28 Oct 2020 22:52:08 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 242DD6E5CD;
-	Wed, 28 Oct 2020 21:47:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B81FD6E5D3;
+	Wed, 28 Oct 2020 21:52:05 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 420C16E5CD
- for <intel-gfx@lists.freedesktop.org>; Wed, 28 Oct 2020 21:47:52 +0000 (UTC)
-IronPort-SDR: hWyeJ06k0fwiD6iAIPF71C9vzO7Igynlv+GWBWe1jCkx3d6zqUmT1+eOMjloTxAhNx+5t7aixz
- t5CP3OKN/q6g==
-X-IronPort-AV: E=McAfee;i="6000,8403,9788"; a="168442572"
-X-IronPort-AV: E=Sophos;i="5.77,428,1596524400"; d="scan'208";a="168442572"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Oct 2020 14:47:51 -0700
-IronPort-SDR: Xr8lZqk4pwzHF3ho+QWgGZMIcTooPS91qVtkKcQPyIRt3n9o06fZkkYZpi0pJ9Kz8dTWdGENxq
- KfbQ9pVVYoug==
-X-IronPort-AV: E=Sophos;i="5.77,428,1596524400"; d="scan'208";a="536404373"
-Received: from nsato-mobl.amr.corp.intel.com (HELO ldmartin-desk1)
- ([10.254.182.129])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Oct 2020 14:47:50 -0700
-Date: Wed, 28 Oct 2020 14:47:50 -0700
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>
-Message-ID: <20201028214750.mk3rovnzh2lv5wma@ldmartin-desk1>
-X-Patchwork-Hint: comment
-References: <20201028213323.5423-1-ville.syrjala@linux.intel.com>
- <20201028213323.5423-15-ville.syrjala@linux.intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 3C1A16E5D3;
+ Wed, 28 Oct 2020 21:52:04 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 24677A0BA8;
+ Wed, 28 Oct 2020 21:52:04 +0000 (UTC)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20201028213323.5423-15-ville.syrjala@linux.intel.com>
-Subject: Re: [Intel-gfx] [PATCH v3 14/19] drm/i915: Don't enable hpd
- detection logic from irq_postinstall()
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
+Date: Wed, 28 Oct 2020 21:52:04 -0000
+Message-ID: <160392192411.21341.4663548802574154155@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20201028213323.5423-1-ville.syrjala@linux.intel.com>
+In-Reply-To: <20201028213323.5423-1-ville.syrjala@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/i915=3A_Futher_cleanup_around_hpd_pins_and_port_identfi?=
+ =?utf-8?q?ers_=28rev5=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,144 +39,59 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"; Format="flowed"
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Oct 28, 2020 at 11:33:18PM +0200, Ville Syrj=E4l=E4 wrote:
->From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
->
->No reason that I can see why we should enable the hpd detection logic
->already during irq postinstall phase. We don't even do this on all
->the platforms. We just need it before we actually enable the hotplug
->interrupts in .hpd_irq_setup(), and in fact we already do it there as
->well. Let's just eliminate the redundant early setup.
+== Series Details ==
 
-yep, it makes sense. If CI is happy and doesn't explode in something
-neither of us antecipated, I'm happy too.
+Series: drm/i915: Futher cleanup around hpd pins and port identfiers (rev5)
+URL   : https://patchwork.freedesktop.org/series/82411/
+State : warning
+
+== Summary ==
+
+$ dim checkpatch origin/drm-tip
+ee08af3a4155 drm/i915: s/PORT_TC/TC_PORT_/
+-:313: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'tc_port' - possible side-effects?
+#313: FILE: drivers/gpu/drm/i915/i915_reg.h:10330:
++#define  ICL_DPCLKA_CFGCR0_TC_CLK_OFF(tc_port)	(1 << ((tc_port) < TC_PORT_4 ? \
+ 						       (tc_port) + 12 : \
++						       (tc_port) - TC_PORT_4 + 21))
+
+total: 0 errors, 0 warnings, 1 checks, 269 lines checked
+fe19b59abf59 drm/i915: Add PORT_TCn aliases to enum port
+287c7226cbc0 drm/i915: Give DDI encoders even better names
+-:44: WARNING:LONG_LINE: line length of 102 exceeds 100 columns
+#44: FILE: drivers/gpu/drm/i915/display/intel_ddi.c:5186:
++				 tc_port != TC_PORT_NONE ? phy_name(phy) : tc_port - TC_PORT_1 + '1');
+
+-:54: WARNING:LONG_LINE: line length of 102 exceeds 100 columns
+#54: FILE: drivers/gpu/drm/i915/display/intel_ddi.c:5196:
++				 tc_port != TC_PORT_NONE ? phy_name(phy) : tc_port - TC_PORT_1 + '1');
+
+total: 0 errors, 2 warnings, 0 checks, 33 lines checked
+5b31fc7d2973 drm/i915: Introduce AUX_CH_USBCn
+907a6f378413 drm/i915: Pimp AUX CH names
+cb0bc14e42f1 drm/i915: Use AUX_CH_USBCn for the RKL VBT AUX CH setup
+00239142669f drm/i915: Parametrize BXT_DE_PORT_HP_DDI with hpd_pin
+4a178195598a drm/i915: Introduce GEN8_DE_PORT_HOTPLUG()
+60ce87b4b638 drm/i915: s/port/hpd_pin/ for icp+ ddi hpd bits
+6d636206aba9 drm/i915: s/tc_port/hpd_pin/ in GEN11_{TC, TBT}_HOTPLUG()
+8b3e20e749bc drm/i915: s/tc_port/hpd_pin/ in icp+ TC hotplug bits
+15e7a4125c07 drm/i915: Relocate intel_hpd_{enabled, hotplug}_irqs()
+2cecffb1a88e drm/i915: Split gen11_hpd_detection_setup() into tc vs. tbt variants
+62b52af3a1fc drm/i915: Don't enable hpd detection logic from irq_postinstall()
+567b2cbf4a84 drm/i915: Rename 'tmp_mask'
+26e100e104d0 drm/i915: Remove the per-plaform IIR HPD masking
+3059c7ee9196 drm/i915: Enable hpd logic only for ports that are present
+f2def9dff59f drm/i915: Use GEN3_IRQ_INIT() to init south interrupts in icp+
+bd3fd9cc28ab drm/i915: Get rid of ibx_irq_pre_postinstall()
 
 
-Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
-
-Lucas De Marchi
-
->
->Signed-off-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
->---
-> drivers/gpu/drm/i915/i915_irq.c | 40 +++------------------------------
-> 1 file changed, 3 insertions(+), 37 deletions(-)
->
->diff --git a/drivers/gpu/drm/i915/i915_irq.c b/drivers/gpu/drm/i915/i915_i=
-rq.c
->index 43e3e7f70c14..3ff5747e755d 100644
->--- a/drivers/gpu/drm/i915/i915_irq.c
->+++ b/drivers/gpu/drm/i915/i915_irq.c
->@@ -3407,8 +3407,8 @@ static void ilk_hpd_irq_setup(struct drm_i915_privat=
-e *dev_priv)
-> 	ibx_hpd_irq_setup(dev_priv);
-> }
->
->-static void __bxt_hpd_detection_setup(struct drm_i915_private *dev_priv,
->-				      u32 enabled_irqs)
->+static void bxt_hpd_detection_setup(struct drm_i915_private *dev_priv,
->+				    u32 enabled_irqs)
-> {
-> 	u32 hotplug;
->
->@@ -3439,11 +3439,6 @@ static void __bxt_hpd_detection_setup(struct drm_i9=
-15_private *dev_priv,
-> 	I915_WRITE(PCH_PORT_HOTPLUG, hotplug);
-> }
->
->-static void bxt_hpd_detection_setup(struct drm_i915_private *dev_priv)
->-{
->-	__bxt_hpd_detection_setup(dev_priv, BXT_DE_PORT_HOTPLUG_MASK);
->-}
->-
-> static void bxt_hpd_irq_setup(struct drm_i915_private *dev_priv)
-> {
-> 	u32 hotplug_irqs, enabled_irqs;
->@@ -3453,7 +3448,7 @@ static void bxt_hpd_irq_setup(struct drm_i915_privat=
-e *dev_priv)
->
-> 	bdw_update_port_irq(dev_priv, hotplug_irqs, enabled_irqs);
->
->-	__bxt_hpd_detection_setup(dev_priv, enabled_irqs);
->+	bxt_hpd_detection_setup(dev_priv, enabled_irqs);
-> }
->
-> static void ibx_irq_postinstall(struct drm_i915_private *dev_priv)
->@@ -3472,12 +3467,6 @@ static void ibx_irq_postinstall(struct drm_i915_pri=
-vate *dev_priv)
->
-> 	gen3_assert_iir_is_zero(&dev_priv->uncore, SDEIIR);
-> 	I915_WRITE(SDEIMR, ~mask);
->-
->-	if (HAS_PCH_IBX(dev_priv) || HAS_PCH_CPT(dev_priv) ||
->-	    HAS_PCH_LPT(dev_priv))
->-		ibx_hpd_detection_setup(dev_priv);
->-	else
->-		spt_hpd_detection_setup(dev_priv);
-> }
->
-> static void ilk_irq_postinstall(struct drm_i915_private *dev_priv)
->@@ -3517,8 +3506,6 @@ static void ilk_irq_postinstall(struct drm_i915_priv=
-ate *dev_priv)
-> 	GEN3_IRQ_INIT(uncore, DE, dev_priv->irq_mask,
-> 		      display_mask | extra_mask);
->
->-	ilk_hpd_detection_setup(dev_priv);
->-
-> 	ibx_irq_postinstall(dev_priv);
-> }
->
->@@ -3639,12 +3626,6 @@ static void gen8_de_irq_postinstall(struct drm_i915=
-_private *dev_priv)
->
-> 		GEN3_IRQ_INIT(uncore, GEN11_DE_HPD_, ~de_hpd_masked,
-> 			      de_hpd_enables);
->-		gen11_tc_hpd_detection_setup(dev_priv);
->-		gen11_tbt_hpd_detection_setup(dev_priv);
->-	} else if (IS_GEN9_LP(dev_priv)) {
->-		bxt_hpd_detection_setup(dev_priv);
->-	} else if (IS_BROADWELL(dev_priv)) {
->-		ilk_hpd_detection_setup(dev_priv);
-> 	}
-> }
->
->@@ -3672,21 +3653,6 @@ static void icp_irq_postinstall(struct drm_i915_pri=
-vate *dev_priv)
->
-> 	gen3_assert_iir_is_zero(&dev_priv->uncore, SDEIIR);
-> 	I915_WRITE(SDEIMR, ~mask);
->-
->-	if (HAS_PCH_DG1(dev_priv))
->-		icp_ddi_hpd_detection_setup(dev_priv, DG1_DDI_HPD_ENABLE_MASK);
->-	else if (HAS_PCH_TGP(dev_priv)) {
->-		icp_ddi_hpd_detection_setup(dev_priv, TGP_DDI_HPD_ENABLE_MASK);
->-		icp_tc_hpd_detection_setup(dev_priv, TGP_TC_HPD_ENABLE_MASK);
->-	} else if (HAS_PCH_JSP(dev_priv)) {
->-		icp_ddi_hpd_detection_setup(dev_priv, TGP_DDI_HPD_ENABLE_MASK);
->-	} else if (HAS_PCH_MCC(dev_priv)) {
->-		icp_ddi_hpd_detection_setup(dev_priv, ICP_DDI_HPD_ENABLE_MASK);
->-		icp_tc_hpd_detection_setup(dev_priv, ICP_TC_HPD_ENABLE(HPD_PORT_TC1));
->-	} else {
->-		icp_ddi_hpd_detection_setup(dev_priv, ICP_DDI_HPD_ENABLE_MASK);
->-		icp_tc_hpd_detection_setup(dev_priv, ICP_TC_HPD_ENABLE_MASK);
->-	}
-> }
->
-> static void gen11_irq_postinstall(struct drm_i915_private *dev_priv)
->-- =
-
->2.26.2
->
->_______________________________________________
->Intel-gfx mailing list
->Intel-gfx@lists.freedesktop.org
->https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
