@@ -1,52 +1,45 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0A50E29D63B
-	for <lists+intel-gfx@lfdr.de>; Wed, 28 Oct 2020 23:13:10 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id D07AF29D6A4
+	for <lists+intel-gfx@lfdr.de>; Wed, 28 Oct 2020 23:17:03 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B9A486E7D0;
-	Wed, 28 Oct 2020 22:13:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 288586E7D2;
+	Wed, 28 Oct 2020 22:17:01 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8FB2E6E7D0
- for <intel-gfx@lists.freedesktop.org>; Wed, 28 Oct 2020 22:13:05 +0000 (UTC)
-IronPort-SDR: 87QNBlk4HhskFH/IHFfwnqUMFn2W0NwDo0AMfKKF6DOC8rS/ihqfHIkSKUQzCClfSqP+EIqi0N
- UrfxQRgp4kEw==
-X-IronPort-AV: E=McAfee;i="6000,8403,9788"; a="164847851"
-X-IronPort-AV: E=Sophos;i="5.77,428,1596524400"; d="scan'208";a="164847851"
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AABE06E7D2
+ for <intel-gfx@lists.freedesktop.org>; Wed, 28 Oct 2020 22:16:59 +0000 (UTC)
+IronPort-SDR: sA9lTNI3xLt/ngO6tLUoTnpNkGDoL8pqBgsBnwwtuzq1jxmBUzmVuRiHqFmykqxR2zozqFchLE
+ t6arcsfL4i2g==
+X-IronPort-AV: E=McAfee;i="6000,8403,9788"; a="148202082"
+X-IronPort-AV: E=Sophos;i="5.77,428,1596524400"; d="scan'208";a="148202082"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Oct 2020 15:13:04 -0700
-IronPort-SDR: GIq3pCQ1RhDVovzRJ6CIsXXhLD7QEprhxRRcCQrMDiEjNp+blHh4xyr/6rAhQtiibAPyIC5UQn
- IgnSAFU3IQ9Q==
-X-IronPort-AV: E=Sophos;i="5.77,428,1596524400"; d="scan'208";a="318750396"
-Received: from labuser-z97x-ud5h.jf.intel.com (HELO labuser-Z97X-UD5H)
- ([10.165.21.211])
- by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Oct 2020 15:13:04 -0700
-Date: Wed, 28 Oct 2020 15:15:00 -0700
-From: "Navare, Manasi" <manasi.d.navare@intel.com>
-To: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-Message-ID: <20201028221500.GA5744@labuser-Z97X-UD5H>
-References: <20201022054223.25071-1-manasi.d.navare@intel.com>
- <20201022054223.25071-11-manasi.d.navare@intel.com>
- <20201026201854.GL6112@intel.com>
- <20201026224148.GF25941@labuser-Z97X-UD5H>
- <20201027134230.GN6112@intel.com>
- <20201027181910.GB3950@labuser-Z97X-UD5H>
- <20201027191150.GP6112@intel.com>
- <dec38bb5-c6a2-18dc-684c-92564e630451@linux.intel.com>
- <20201028130437.GW6112@intel.com>
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Oct 2020 15:16:58 -0700
+IronPort-SDR: HLJkEJxenRiFsPYR6O6vu3Bn+966km2l+REx2Dnqh0LVYAdk7HBehk+267g2XyLUC49SiHpqX+
+ PD+/lb/v9kxQ==
+X-IronPort-AV: E=Sophos;i="5.77,428,1596524400"; d="scan'208";a="536411762"
+Received: from nsato-mobl.amr.corp.intel.com (HELO ldmartin-desk1)
+ ([10.254.182.129])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Oct 2020 15:16:57 -0700
+Date: Wed, 28 Oct 2020 15:16:57 -0700
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>
+Message-ID: <20201028221657.lizjycr7kxwl274n@ldmartin-desk1>
+X-Patchwork-Hint: comment
+References: <20201028213323.5423-1-ville.syrjala@linux.intel.com>
+ <20201028213323.5423-18-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20201028130437.GW6112@intel.com>
-User-Agent: Mutt/1.5.24 (2015-08-30)
-Subject: Re: [Intel-gfx] [PATCH v11 10/12] drm/i915: Link planes in a
- bigjoiner configuration, v3.
+In-Reply-To: <20201028213323.5423-18-ville.syrjala@linux.intel.com>
+Subject: Re: [Intel-gfx] [PATCH v3 17/19] drm/i915: Enable hpd logic only
+ for ports that are present
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,352 +53,540 @@ List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="iso-8859-1"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Oct 28, 2020 at 03:04:37PM +0200, Ville Syrj=E4l=E4 wrote:
-> On Wed, Oct 28, 2020 at 01:26:27PM +0100, Maarten Lankhorst wrote:
-> > Op 27-10-2020 om 20:11 schreef Ville Syrj=E4l=E4:
-> > > On Tue, Oct 27, 2020 at 11:19:16AM -0700, Navare, Manasi wrote:
-> > >> On Tue, Oct 27, 2020 at 03:42:30PM +0200, Ville Syrj=E4l=E4 wrote:
-> > >>> On Mon, Oct 26, 2020 at 03:41:48PM -0700, Navare, Manasi wrote:
-> > >>>> On Mon, Oct 26, 2020 at 10:18:54PM +0200, Ville Syrj=E4l=E4 wrote:
-> > >>>>> On Wed, Oct 21, 2020 at 10:42:21PM -0700, Manasi Navare wrote:
-> > >>>>>> From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-> > >>>>>>
-> > >>>>>>  Make sure that when a plane is set in a bigjoiner mode, we will=
- add
-> > >>>>>>  their counterpart to the atomic state as well. This will allow =
-us to
-> > >>>>>>  make sure all state is available when planes are checked.
-> > >>>>>>
-> > >>>>>> Because of the funny interactions with bigjoiner and planar YUV
-> > >>>>>> formats, we may end up adding a lot of planes, so we have to keep
-> > >>>>>> iterating until we no longer add any planes.
-> > >>>>>>
-> > >>>>>> Also fix the atomic intel plane iterator, so things watermarks s=
-tart
-> > >>>>>> working automagically.
-> > >>>>>>
-> > >>>>>> v6:
-> > >>>>>> * Fix from_plane_state assignments (Manasi)
-> > >>>>>> v5:
-> > >>>>>> * Rebase after adding sagv support (Manasi)
-> > >>>>>> v4:
-> > >>>>>> * Manual rebase (Manasi)
-> > >>>>>> Changes since v1:
-> > >>>>>> - Rebase on top of plane_state split, cleaning up the code a lot.
-> > >>>>>> - Make intel_atomic_crtc_state_for_each_plane_state() bigjoiner =
-capable.
-> > >>>>>> - Add iter macro to intel_atomic_crtc_state_for_each_plane_state=
-() to
-> > >>>>>>   keep iteration working.
-> > >>>>>> Changes since v2:
-> > >>>>>> - Add icl_(un)set_bigjoiner_plane_links, to make it more clear w=
-here
-> > >>>>>>   links are made and broken.
-> > >>>>>>
-> > >>>>>> Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.=
-com>
-> > >>>>>> Signed-off-by: Manasi Navare <manasi.d.navare@intel.com>
-> > >>>>>> ---
-> > >>>>>>  .../gpu/drm/i915/display/intel_atomic_plane.c |  53 ++++-
-> > >>>>>>  .../gpu/drm/i915/display/intel_atomic_plane.h |   3 +-
-> > >>>>>>  drivers/gpu/drm/i915/display/intel_display.c  | 207 +++++++++++=
-+++++--
-> > >>>>>>  drivers/gpu/drm/i915/display/intel_display.h  |  20 +-
-> > >>>>>>  .../drm/i915/display/intel_display_types.h    |  11 +
-> > >>>>>>  drivers/gpu/drm/i915/intel_pm.c               |  20 +-
-> > >>>>>>  6 files changed, 274 insertions(+), 40 deletions(-)
-> > >>>>>>
-> > >>>>>> diff --git a/drivers/gpu/drm/i915/display/intel_atomic_plane.c b=
-/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-> > >>>>>> index 3334ff253600..5df928f8f322 100644
-> > >>>>>> --- a/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-> > >>>>>> +++ b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-> > >>>>>> @@ -246,12 +246,17 @@ static void intel_plane_clear_hw_state(str=
-uct intel_plane_state *plane_state)
-> > >>>>>>  	memset(&plane_state->hw, 0, sizeof(plane_state->hw));
-> > >>>>>>  }
-> > >>>>>>  =
+On Wed, Oct 28, 2020 at 11:33:21PM +0200, Ville Syrj=E4l=E4 wrote:
+>From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+>
+>Let's enable the hardware hpd logic only for the ports we
+>can actually use.
+>
+>In theory this may save some miniscule amounts of power,
+>and more importantly it eliminates a lot if platform specific
+>codepaths since the generic thing can now deal with any
+>combination of ports being present on each SKU.
+>
+>v2: Deal with DG1
+>
+>Signed-off-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
 
-> > >>>>>> -void intel_plane_copy_uapi_to_hw_state(struct intel_plane_state=
- *plane_state,
-> > >>>>>> +void intel_plane_copy_uapi_to_hw_state(const struct intel_crtc_=
-state *crtc_state,
-> > >>>>>> +				       struct intel_plane_state *plane_state,
-> > >>>>>>  				       const struct intel_plane_state *from_plane_state)
-> > >>>>>>  {
-> > >>>>>>  	intel_plane_clear_hw_state(plane_state);
-> > >>>>>>  =
 
-> > >>>>>> -	plane_state->hw.crtc =3D from_plane_state->uapi.crtc;
-> > >>>>>> +	if (from_plane_state->uapi.crtc)
-> > >>>>>> +		plane_state->hw.crtc =3D crtc_state->uapi.crtc;
-> > >>>>>> +	else
-> > >>>>>> +		plane_state->hw.crtc =3D NULL;
-> > >>>>>> +
-> > >>>>>>  	plane_state->hw.fb =3D from_plane_state->uapi.fb;
-> > >>>>>>  	if (plane_state->hw.fb)
-> > >>>>>>  		drm_framebuffer_get(plane_state->hw.fb);
-> > >>>>>> @@ -320,15 +325,36 @@ int intel_plane_atomic_check_with_state(co=
-nst struct intel_crtc_state *old_crtc_
-> > >>>>>>  }
-> > >>>>>>  =
+Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
 
-> > >>>>>>  static struct intel_crtc *
-> > >>>>>> -get_crtc_from_states(const struct intel_plane_state *old_plane_=
-state,
-> > >>>>>> +get_crtc_from_states(struct intel_atomic_state *state,
-> > >>>>>> +		     const struct intel_plane_state *old_plane_state,
-> > >>>>>>  		     const struct intel_plane_state *new_plane_state)
-> > >>>>>>  {
-> > >>>>>> +	struct drm_i915_private *dev_priv =3D to_i915(state->base.dev);
-> > >>>>>> +	struct intel_plane *plane =3D to_intel_plane(new_plane_state->=
-uapi.plane);
-> > >>>>>> +
-> > >>>>>>  	if (new_plane_state->uapi.crtc)
-> > >>>>>>  		return to_intel_crtc(new_plane_state->uapi.crtc);
-> > >>>>>>  =
+Lucas De Marchi
 
-> > >>>>>>  	if (old_plane_state->uapi.crtc)
-> > >>>>>>  		return to_intel_crtc(old_plane_state->uapi.crtc);
-> > >>>>>>  =
-
-> > >>>>>> +	if (new_plane_state->bigjoiner_slave) {
-> > >>>>>> +		const struct intel_plane_state *new_master_plane_state =3D
-> > >>>>>> +			intel_atomic_get_new_plane_state(state, new_plane_state->big=
-joiner_plane);
-> > >>>>>> +
-> > >>>>>> +		/* need to use uapi here, new_master_plane_state might not be=
- copied to hw yet */
-> > >>>>>> +		if (new_master_plane_state->uapi.crtc)
-> > >>>>>> +			return intel_get_crtc_for_pipe(dev_priv, plane->pipe);
-> > >>>>>> +	}
-> > >>>>>> +
-> > >>>>>> +	if (old_plane_state->bigjoiner_slave) {
-> > >>>>>> +		const struct intel_plane_state *old_master_plane_state =3D
-> > >>>>>> +			intel_atomic_get_old_plane_state(state, old_plane_state->big=
-joiner_plane);
-> > >>>>>> +
-> > >>>>>> +		if (old_master_plane_state->uapi.crtc)
-> > >>>>>> +			return intel_get_crtc_for_pipe(dev_priv, plane->pipe);
-> > >>>>>> +	}
-> > >>>>>> +
-> > >>>>>>  	return NULL;
-> > >>>>>>  }
-> > >>>>>>  =
-
-> > >>>>>> @@ -339,18 +365,33 @@ int intel_plane_atomic_check(struct intel_=
-atomic_state *state,
-> > >>>>>>  		intel_atomic_get_new_plane_state(state, plane);
-> > >>>>>>  	const struct intel_plane_state *old_plane_state =3D
-> > >>>>>>  		intel_atomic_get_old_plane_state(state, plane);
-> > >>>>>> +	const struct intel_plane_state *new_master_plane_state;
-> > >>>>>>  	struct intel_crtc *crtc =3D
-> > >>>>>> -		get_crtc_from_states(old_plane_state, new_plane_state);
-> > >>>>>> +		get_crtc_from_states(state, old_plane_state,
-> > >>>>>> +				     new_plane_state);
-> > >>>>>>  	const struct intel_crtc_state *old_crtc_state;
-> > >>>>>>  	struct intel_crtc_state *new_crtc_state;
-> > >>>>>>  =
-
-> > >>>>>> -	intel_plane_copy_uapi_to_hw_state(new_plane_state, new_plane_s=
-tate);
-> > >>>>>> +	if (crtc)
-> > >>>>>> +		new_crtc_state =3D intel_atomic_get_new_crtc_state(state, crt=
-c);
-> > >>>>>> +	else
-> > >>>>>> +		new_crtc_state =3D NULL;
-> > >>>>>> +
-> > >>>>>> +	new_master_plane_state =3D new_plane_state;
-> > >>>>>> +	if (new_plane_state->bigjoiner_slave)
-> > >>>>>> +		new_master_plane_state =3D
-> > >>>>>> +			intel_atomic_get_new_plane_state(state,
-> > >>>>>> +							 new_plane_state->bigjoiner_plane);
-> > >>>>>> +
-> > >>>>>> +	intel_plane_copy_uapi_to_hw_state(new_crtc_state,
-> > >>>>>> +					  new_plane_state,
-> > >>>>>> +					  new_master_plane_state);
-> > >>>>>> +
-> > >>>>>>  	new_plane_state->uapi.visible =3D false;
-> > >>>>>>  	if (!crtc)
-> > >>>>>>  		return 0;
-> > >>>>>>  =
-
-> > >>>>>>  	old_crtc_state =3D intel_atomic_get_old_crtc_state(state, crtc=
+>---
+> drivers/gpu/drm/i915/i915_irq.c | 302 ++++++++++++++++++++++----------
+> drivers/gpu/drm/i915/i915_reg.h |  17 --
+> 2 files changed, 205 insertions(+), 114 deletions(-)
+>
+>diff --git a/drivers/gpu/drm/i915/i915_irq.c b/drivers/gpu/drm/i915/i915_i=
+rq.c
+>index fa8a07c2f82d..2337416e581c 100644
+>--- a/drivers/gpu/drm/i915/i915_irq.c
+>+++ b/drivers/gpu/drm/i915/i915_irq.c
+>@@ -61,6 +61,8 @@
+>  */
+>
+> typedef bool (*long_pulse_detect_func)(enum hpd_pin pin, u32 val);
+>+typedef u32 (*hotplug_enables_func)(struct drm_i915_private *i915,
+>+				    enum hpd_pin pin);
+>
+> static const u32 hpd_ilk[HPD_NUM_PINS] =3D {
+> 	[HPD_PORT_A] =3D DE_DP_A_HOTPLUG,
+>@@ -1230,6 +1232,18 @@ static u32 intel_hpd_hotplug_irqs(struct drm_i915_p=
+rivate *dev_priv,
+> 	return hotplug_irqs;
+> }
+>
+>+static u32 intel_hpd_hotplug_enables(struct drm_i915_private *i915,
+>+				     hotplug_enables_func hotplug_enables)
+>+{
+>+	struct intel_encoder *encoder;
+>+	u32 hotplug =3D 0;
+>+
+>+	for_each_intel_encoder(&i915->drm, encoder)
+>+		hotplug |=3D hotplug_enables(i915, encoder->hpd_pin);
+>+
+>+	return hotplug;
+>+}
+>+
+> static void gmbus_irq_handler(struct drm_i915_private *dev_priv)
+> {
+> 	wake_up_all(&dev_priv->gmbus_wait_queue);
+>@@ -3152,6 +3166,31 @@ static void cherryview_irq_reset(struct drm_i915_pr=
+ivate *dev_priv)
+> 	spin_unlock_irq(&dev_priv->irq_lock);
+> }
+>
+>+static u32 ibx_hotplug_enables(struct drm_i915_private *i915,
+>+			       enum hpd_pin pin)
+>+{
+>+	switch (pin) {
+>+	case HPD_PORT_A:
+>+		/*
+>+		 * When CPU and PCH are on the same package, port A
+>+		 * HPD must be enabled in both north and south.
+>+		 */
+>+		return HAS_PCH_LPT_LP(i915) ?
+>+			PORTA_HOTPLUG_ENABLE : 0;
+>+	case HPD_PORT_B:
+>+		return PORTB_HOTPLUG_ENABLE |
+>+			PORTB_PULSE_DURATION_2ms;
+>+	case HPD_PORT_C:
+>+		return PORTC_HOTPLUG_ENABLE |
+>+			PORTC_PULSE_DURATION_2ms;
+>+	case HPD_PORT_D:
+>+		return PORTD_HOTPLUG_ENABLE |
+>+			PORTD_PULSE_DURATION_2ms;
+>+	default:
+>+		return 0;
+>+	}
+>+}
+>+
+> static void ibx_hpd_detection_setup(struct drm_i915_private *dev_priv)
+> {
+> 	u32 hotplug;
+>@@ -3162,18 +3201,14 @@ static void ibx_hpd_detection_setup(struct drm_i91=
+5_private *dev_priv)
+> 	 * The pulse duration bits are reserved on LPT+.
+> 	 */
+> 	hotplug =3D I915_READ(PCH_PORT_HOTPLUG);
+>-	hotplug &=3D ~(PORTB_PULSE_DURATION_MASK |
+>+	hotplug &=3D ~(PORTA_HOTPLUG_ENABLE |
+>+		     PORTB_HOTPLUG_ENABLE |
+>+		     PORTC_HOTPLUG_ENABLE |
+>+		     PORTD_HOTPLUG_ENABLE |
+>+		     PORTB_PULSE_DURATION_MASK |
+> 		     PORTC_PULSE_DURATION_MASK |
+> 		     PORTD_PULSE_DURATION_MASK);
+>-	hotplug |=3D PORTB_HOTPLUG_ENABLE | PORTB_PULSE_DURATION_2ms;
+>-	hotplug |=3D PORTC_HOTPLUG_ENABLE | PORTC_PULSE_DURATION_2ms;
+>-	hotplug |=3D PORTD_HOTPLUG_ENABLE | PORTD_PULSE_DURATION_2ms;
+>-	/*
+>-	 * When CPU and PCH are on the same package, port A
+>-	 * HPD must be enabled in both north and south.
+>-	 */
+>-	if (HAS_PCH_LPT_LP(dev_priv))
+>-		hotplug |=3D PORTA_HOTPLUG_ENABLE;
+>+	hotplug |=3D intel_hpd_hotplug_enables(dev_priv, ibx_hotplug_enables);
+> 	I915_WRITE(PCH_PORT_HOTPLUG, hotplug);
+> }
+>
+>@@ -3189,28 +3224,63 @@ static void ibx_hpd_irq_setup(struct drm_i915_priv=
+ate *dev_priv)
+> 	ibx_hpd_detection_setup(dev_priv);
+> }
+>
+>-static void icp_ddi_hpd_detection_setup(struct drm_i915_private *dev_priv,
+>-					u32 enable_mask)
+>+static u32 icp_ddi_hotplug_enables(struct drm_i915_private *i915,
+>+				   enum hpd_pin pin)
+>+{
+>+	switch (pin) {
+>+	case HPD_PORT_A:
+>+	case HPD_PORT_B:
+>+	case HPD_PORT_C:
+>+		return SHOTPLUG_CTL_DDI_HPD_ENABLE(pin);
+>+	default:
+>+		return 0;
+>+	}
+>+}
+>+
+>+static u32 icp_tc_hotplug_enables(struct drm_i915_private *i915,
+>+				  enum hpd_pin pin)
+>+{
+>+	switch (pin) {
+>+	case HPD_PORT_TC1:
+>+	case HPD_PORT_TC2:
+>+	case HPD_PORT_TC3:
+>+	case HPD_PORT_TC4:
+>+	case HPD_PORT_TC5:
+>+	case HPD_PORT_TC6:
+>+		return ICP_TC_HPD_ENABLE(pin);
+>+	default:
+>+		return 0;
+>+	}
+>+}
+>+
+>+static void icp_ddi_hpd_detection_setup(struct drm_i915_private *dev_priv)
+> {
+> 	u32 hotplug;
+>
+> 	hotplug =3D I915_READ(SHOTPLUG_CTL_DDI);
+>-	hotplug |=3D enable_mask;
+>+	hotplug &=3D ~(SHOTPLUG_CTL_DDI_HPD_ENABLE(HPD_PORT_A) |
+>+		     SHOTPLUG_CTL_DDI_HPD_ENABLE(HPD_PORT_B) |
+>+		     SHOTPLUG_CTL_DDI_HPD_ENABLE(HPD_PORT_C));
+>+	hotplug |=3D intel_hpd_hotplug_enables(dev_priv, icp_ddi_hotplug_enables=
 );
-> > >>>>>> -	new_crtc_state =3D intel_atomic_get_new_crtc_state(state, crtc=
-);
-> > >>>>>>  =
+> 	I915_WRITE(SHOTPLUG_CTL_DDI, hotplug);
+> }
+>
+>-static void icp_tc_hpd_detection_setup(struct drm_i915_private *dev_priv,
+>-				       u32 enable_mask)
+>+static void icp_tc_hpd_detection_setup(struct drm_i915_private *dev_priv)
+> {
+> 	u32 hotplug;
+>
+> 	hotplug =3D I915_READ(SHOTPLUG_CTL_TC);
+>-	hotplug |=3D enable_mask;
+>+	hotplug &=3D ~(ICP_TC_HPD_ENABLE(HPD_PORT_TC1) |
+>+		     ICP_TC_HPD_ENABLE(HPD_PORT_TC2) |
+>+		     ICP_TC_HPD_ENABLE(HPD_PORT_TC3) |
+>+		     ICP_TC_HPD_ENABLE(HPD_PORT_TC4) |
+>+		     ICP_TC_HPD_ENABLE(HPD_PORT_TC5) |
+>+		     ICP_TC_HPD_ENABLE(HPD_PORT_TC6));
+>+	hotplug |=3D intel_hpd_hotplug_enables(dev_priv, icp_tc_hotplug_enables);
+> 	I915_WRITE(SHOTPLUG_CTL_TC, hotplug);
+> }
+>
+>-static void icp_hpd_irq_setup(struct drm_i915_private *dev_priv,
+>-			      u32 ddi_enable_mask, u32 tc_enable_mask)
+>+static void icp_hpd_irq_setup(struct drm_i915_private *dev_priv)
+> {
+> 	u32 hotplug_irqs, enabled_irqs;
+>
+>@@ -3222,30 +3292,24 @@ static void icp_hpd_irq_setup(struct drm_i915_priv=
+ate *dev_priv,
+>
+> 	ibx_display_interrupt_update(dev_priv, hotplug_irqs, enabled_irqs);
+>
+>-	icp_ddi_hpd_detection_setup(dev_priv, ddi_enable_mask);
+>-	if (tc_enable_mask)
+>-		icp_tc_hpd_detection_setup(dev_priv, tc_enable_mask);
+>+	icp_ddi_hpd_detection_setup(dev_priv);
+>+	icp_tc_hpd_detection_setup(dev_priv);
+> }
+>
+>-/*
+>- * EHL doesn't need most of gen11_hpd_irq_setup, it's handling only the
+>- * equivalent of SDE.
+>- */
+>-static void mcc_hpd_irq_setup(struct drm_i915_private *dev_priv)
+>+static u32 gen11_hotplug_enables(struct drm_i915_private *i915,
+>+				 enum hpd_pin pin)
+> {
+>-	icp_hpd_irq_setup(dev_priv,
+>-			  ICP_DDI_HPD_ENABLE_MASK, ICP_TC_HPD_ENABLE(HPD_PORT_TC1));
+>-}
+>-
+>-/*
+>- * JSP behaves exactly the same as MCC above except that port C is mapped=
+ to
+>- * the DDI-C pins instead of the TC1 pins.  This means we should follow T=
+GP's
+>- * masks & tables rather than ICP's masks & tables.
+>- */
+>-static void jsp_hpd_irq_setup(struct drm_i915_private *dev_priv)
+>-{
+>-	icp_hpd_irq_setup(dev_priv,
+>-			  TGP_DDI_HPD_ENABLE_MASK, 0);
+>+	switch (pin) {
+>+	case HPD_PORT_TC1:
+>+	case HPD_PORT_TC2:
+>+	case HPD_PORT_TC3:
+>+	case HPD_PORT_TC4:
+>+	case HPD_PORT_TC5:
+>+	case HPD_PORT_TC6:
+>+		return GEN11_HOTPLUG_CTL_ENABLE(pin);
+>+	default:
+>+		return 0;
+>+	}
+> }
+>
+> static void dg1_hpd_irq_setup(struct drm_i915_private *dev_priv)
+>@@ -3259,8 +3323,7 @@ static void dg1_hpd_irq_setup(struct drm_i915_privat=
+e *dev_priv)
+> 		INVERT_DDID_HPD);
+> 	I915_WRITE(SOUTH_CHICKEN1, val);
+>
+>-	icp_hpd_irq_setup(dev_priv,
+>-			  DG1_DDI_HPD_ENABLE_MASK, 0);
+>+	icp_hpd_irq_setup(dev_priv);
+> }
+>
+> static void gen11_tc_hpd_detection_setup(struct drm_i915_private *dev_pri=
+v)
+>@@ -3268,12 +3331,13 @@ static void gen11_tc_hpd_detection_setup(struct dr=
+m_i915_private *dev_priv)
+> 	u32 hotplug;
+>
+> 	hotplug =3D I915_READ(GEN11_TC_HOTPLUG_CTL);
+>-	hotplug |=3D GEN11_HOTPLUG_CTL_ENABLE(HPD_PORT_TC1) |
+>-		   GEN11_HOTPLUG_CTL_ENABLE(HPD_PORT_TC2) |
+>-		   GEN11_HOTPLUG_CTL_ENABLE(HPD_PORT_TC3) |
+>-		   GEN11_HOTPLUG_CTL_ENABLE(HPD_PORT_TC4) |
+>-		   GEN11_HOTPLUG_CTL_ENABLE(HPD_PORT_TC5) |
+>-		   GEN11_HOTPLUG_CTL_ENABLE(HPD_PORT_TC6);
+>+	hotplug &=3D ~(GEN11_HOTPLUG_CTL_ENABLE(HPD_PORT_TC1) |
+>+		     GEN11_HOTPLUG_CTL_ENABLE(HPD_PORT_TC2) |
+>+		     GEN11_HOTPLUG_CTL_ENABLE(HPD_PORT_TC3) |
+>+		     GEN11_HOTPLUG_CTL_ENABLE(HPD_PORT_TC4) |
+>+		     GEN11_HOTPLUG_CTL_ENABLE(HPD_PORT_TC5) |
+>+		     GEN11_HOTPLUG_CTL_ENABLE(HPD_PORT_TC6));
+>+	hotplug |=3D intel_hpd_hotplug_enables(dev_priv, gen11_hotplug_enables);
+> 	I915_WRITE(GEN11_TC_HOTPLUG_CTL, hotplug);
+> }
+>
+>@@ -3282,12 +3346,13 @@ static void gen11_tbt_hpd_detection_setup(struct d=
+rm_i915_private *dev_priv)
+> 	u32 hotplug;
+>
+> 	hotplug =3D I915_READ(GEN11_TBT_HOTPLUG_CTL);
+>-	hotplug |=3D GEN11_HOTPLUG_CTL_ENABLE(HPD_PORT_TC1) |
+>-		   GEN11_HOTPLUG_CTL_ENABLE(HPD_PORT_TC2) |
+>-		   GEN11_HOTPLUG_CTL_ENABLE(HPD_PORT_TC3) |
+>-		   GEN11_HOTPLUG_CTL_ENABLE(HPD_PORT_TC4) |
+>-		   GEN11_HOTPLUG_CTL_ENABLE(HPD_PORT_TC5) |
+>-		   GEN11_HOTPLUG_CTL_ENABLE(HPD_PORT_TC6);
+>+	hotplug &=3D ~(GEN11_HOTPLUG_CTL_ENABLE(HPD_PORT_TC1) |
+>+		     GEN11_HOTPLUG_CTL_ENABLE(HPD_PORT_TC2) |
+>+		     GEN11_HOTPLUG_CTL_ENABLE(HPD_PORT_TC3) |
+>+		     GEN11_HOTPLUG_CTL_ENABLE(HPD_PORT_TC4) |
+>+		     GEN11_HOTPLUG_CTL_ENABLE(HPD_PORT_TC5) |
+>+		     GEN11_HOTPLUG_CTL_ENABLE(HPD_PORT_TC6));
+>+	hotplug |=3D intel_hpd_hotplug_enables(dev_priv, gen11_hotplug_enables);
+> 	I915_WRITE(GEN11_TBT_HOTPLUG_CTL, hotplug);
+> }
+>
+>@@ -3308,12 +3373,36 @@ static void gen11_hpd_irq_setup(struct drm_i915_pr=
+ivate *dev_priv)
+> 	gen11_tc_hpd_detection_setup(dev_priv);
+> 	gen11_tbt_hpd_detection_setup(dev_priv);
+>
+>-	if (INTEL_PCH_TYPE(dev_priv) >=3D PCH_TGP)
+>-		icp_hpd_irq_setup(dev_priv,
+>-				  TGP_DDI_HPD_ENABLE_MASK, TGP_TC_HPD_ENABLE_MASK);
+>-	else if (INTEL_PCH_TYPE(dev_priv) >=3D PCH_ICP)
+>-		icp_hpd_irq_setup(dev_priv,
+>-				  ICP_DDI_HPD_ENABLE_MASK, ICP_TC_HPD_ENABLE_MASK);
+>+	if (INTEL_PCH_TYPE(dev_priv) >=3D PCH_ICP)
+>+		icp_hpd_irq_setup(dev_priv);
+>+}
+>+
+>+static u32 spt_hotplug_enables(struct drm_i915_private *i915,
+>+			       enum hpd_pin pin)
+>+{
+>+	switch (pin) {
+>+	case HPD_PORT_A:
+>+		return PORTA_HOTPLUG_ENABLE;
+>+	case HPD_PORT_B:
+>+		return PORTB_HOTPLUG_ENABLE;
+>+	case HPD_PORT_C:
+>+		return PORTC_HOTPLUG_ENABLE;
+>+	case HPD_PORT_D:
+>+		return PORTD_HOTPLUG_ENABLE;
+>+	default:
+>+		return 0;
+>+	}
+>+}
+>+
+>+static u32 spt_hotplug2_enables(struct drm_i915_private *i915,
+>+				enum hpd_pin pin)
+>+{
+>+	switch (pin) {
+>+	case HPD_PORT_E:
+>+		return PORTE_HOTPLUG_ENABLE;
+>+	default:
+>+		return 0;
+>+	}
+> }
+>
+> static void spt_hpd_detection_setup(struct drm_i915_private *dev_priv)
+>@@ -3330,14 +3419,16 @@ static void spt_hpd_detection_setup(struct drm_i91=
+5_private *dev_priv)
+>
+> 	/* Enable digital hotplug on the PCH */
+> 	hotplug =3D I915_READ(PCH_PORT_HOTPLUG);
+>-	hotplug |=3D PORTA_HOTPLUG_ENABLE |
+>-		   PORTB_HOTPLUG_ENABLE |
+>-		   PORTC_HOTPLUG_ENABLE |
+>-		   PORTD_HOTPLUG_ENABLE;
+>+	hotplug &=3D ~(PORTA_HOTPLUG_ENABLE |
+>+		     PORTB_HOTPLUG_ENABLE |
+>+		     PORTC_HOTPLUG_ENABLE |
+>+		     PORTD_HOTPLUG_ENABLE);
+>+	hotplug |=3D intel_hpd_hotplug_enables(dev_priv, spt_hotplug_enables);
+> 	I915_WRITE(PCH_PORT_HOTPLUG, hotplug);
+>
+> 	hotplug =3D I915_READ(PCH_PORT_HOTPLUG2);
+>-	hotplug |=3D PORTE_HOTPLUG_ENABLE;
+>+	hotplug &=3D ~PORTE_HOTPLUG_ENABLE;
+>+	hotplug |=3D intel_hpd_hotplug_enables(dev_priv, spt_hotplug2_enables);
+> 	I915_WRITE(PCH_PORT_HOTPLUG2, hotplug);
+> }
+>
+>@@ -3356,6 +3447,18 @@ static void spt_hpd_irq_setup(struct drm_i915_priva=
+te *dev_priv)
+> 	spt_hpd_detection_setup(dev_priv);
+> }
+>
+>+static u32 ilk_hotplug_enables(struct drm_i915_private *i915,
+>+			       enum hpd_pin pin)
+>+{
+>+	switch (pin) {
+>+	case HPD_PORT_A:
+>+		return DIGITAL_PORTA_HOTPLUG_ENABLE |
+>+			DIGITAL_PORTA_PULSE_DURATION_2ms;
+>+	default:
+>+		return 0;
+>+	}
+>+}
+>+
+> static void ilk_hpd_detection_setup(struct drm_i915_private *dev_priv)
+> {
+> 	u32 hotplug;
+>@@ -3366,9 +3469,9 @@ static void ilk_hpd_detection_setup(struct drm_i915_=
+private *dev_priv)
+> 	 * The pulse duration bits are reserved on HSW+.
+> 	 */
+> 	hotplug =3D I915_READ(DIGITAL_PORT_HOTPLUG_CNTRL);
+>-	hotplug &=3D ~DIGITAL_PORTA_PULSE_DURATION_MASK;
+>-	hotplug |=3D DIGITAL_PORTA_HOTPLUG_ENABLE |
+>-		   DIGITAL_PORTA_PULSE_DURATION_2ms;
+>+	hotplug &=3D ~(DIGITAL_PORTA_HOTPLUG_ENABLE |
+>+		     DIGITAL_PORTA_PULSE_DURATION_MASK);
+>+	hotplug |=3D intel_hpd_hotplug_enables(dev_priv, ilk_hotplug_enables);
+> 	I915_WRITE(DIGITAL_PORT_HOTPLUG_CNTRL, hotplug);
+> }
+>
+>@@ -3389,35 +3492,44 @@ static void ilk_hpd_irq_setup(struct drm_i915_priv=
+ate *dev_priv)
+> 	ibx_hpd_irq_setup(dev_priv);
+> }
+>
+>-static void bxt_hpd_detection_setup(struct drm_i915_private *dev_priv,
+>-				    u32 enabled_irqs)
+>+static u32 bxt_hotplug_enables(struct drm_i915_private *i915,
+>+			       enum hpd_pin pin)
+>+{
+>+	u32 hotplug;
+>+
+>+	switch (pin) {
+>+	case HPD_PORT_A:
+>+		hotplug =3D PORTA_HOTPLUG_ENABLE;
+>+		if (intel_bios_is_port_hpd_inverted(i915, PORT_A))
+>+			hotplug |=3D BXT_DDIA_HPD_INVERT;
+>+		return hotplug;
+>+	case HPD_PORT_B:
+>+		hotplug =3D PORTB_HOTPLUG_ENABLE;
+>+		if (intel_bios_is_port_hpd_inverted(i915, PORT_B))
+>+			hotplug |=3D BXT_DDIB_HPD_INVERT;
+>+		return hotplug;
+>+	case HPD_PORT_C:
+>+		hotplug =3D PORTC_HOTPLUG_ENABLE;
+>+		if (intel_bios_is_port_hpd_inverted(i915, PORT_C))
+>+			hotplug |=3D BXT_DDIC_HPD_INVERT;
+>+		return hotplug;
+>+	default:
+>+		return 0;
+>+	}
+>+}
+>+
+>+static void bxt_hpd_detection_setup(struct drm_i915_private *dev_priv)
+> {
+> 	u32 hotplug;
+>
+> 	hotplug =3D I915_READ(PCH_PORT_HOTPLUG);
+>-	hotplug |=3D PORTA_HOTPLUG_ENABLE |
+>-		   PORTB_HOTPLUG_ENABLE |
+>-		   PORTC_HOTPLUG_ENABLE;
+>-
+>-	drm_dbg_kms(&dev_priv->drm,
+>-		    "Invert bit setting: hp_ctl:%x hp_port:%x\n",
+>-		    hotplug, enabled_irqs);
+>-	hotplug &=3D ~BXT_DDI_HPD_INVERT_MASK;
+>-
+>-	/*
+>-	 * For BXT invert bit has to be set based on AOB design
+>-	 * for HPD detection logic, update it based on VBT fields.
+>-	 */
+>-	if ((enabled_irqs & GEN8_DE_PORT_HOTPLUG(HPD_PORT_A)) &&
+>-	    intel_bios_is_port_hpd_inverted(dev_priv, PORT_A))
+>-		hotplug |=3D BXT_DDIA_HPD_INVERT;
+>-	if ((enabled_irqs & GEN8_DE_PORT_HOTPLUG(HPD_PORT_B)) &&
+>-	    intel_bios_is_port_hpd_inverted(dev_priv, PORT_B))
+>-		hotplug |=3D BXT_DDIB_HPD_INVERT;
+>-	if ((enabled_irqs & GEN8_DE_PORT_HOTPLUG(HPD_PORT_C)) &&
+>-	    intel_bios_is_port_hpd_inverted(dev_priv, PORT_C))
+>-		hotplug |=3D BXT_DDIC_HPD_INVERT;
+>-
+>+	hotplug &=3D ~(PORTA_HOTPLUG_ENABLE |
+>+		     PORTB_HOTPLUG_ENABLE |
+>+		     PORTC_HOTPLUG_ENABLE |
+>+		     BXT_DDIA_HPD_INVERT |
+>+		     BXT_DDIB_HPD_INVERT |
+>+		     BXT_DDIC_HPD_INVERT);
+>+	hotplug |=3D intel_hpd_hotplug_enables(dev_priv, bxt_hotplug_enables);
+> 	I915_WRITE(PCH_PORT_HOTPLUG, hotplug);
+> }
+>
+>@@ -3430,7 +3542,7 @@ static void bxt_hpd_irq_setup(struct drm_i915_privat=
+e *dev_priv)
+>
+> 	bdw_update_port_irq(dev_priv, hotplug_irqs, enabled_irqs);
+>
+>-	bxt_hpd_detection_setup(dev_priv, enabled_irqs);
+>+	bxt_hpd_detection_setup(dev_priv);
+> }
+>
+> static void ibx_irq_postinstall(struct drm_i915_private *dev_priv)
+>@@ -4145,10 +4257,6 @@ void intel_irq_init(struct drm_i915_private *dev_pr=
+iv)
+> 	} else {
+> 		if (HAS_PCH_DG1(dev_priv))
+> 			dev_priv->display.hpd_irq_setup =3D dg1_hpd_irq_setup;
+>-		else if (HAS_PCH_JSP(dev_priv))
+>-			dev_priv->display.hpd_irq_setup =3D jsp_hpd_irq_setup;
+>-		else if (HAS_PCH_MCC(dev_priv))
+>-			dev_priv->display.hpd_irq_setup =3D mcc_hpd_irq_setup;
+> 		else if (INTEL_GEN(dev_priv) >=3D 11)
+> 			dev_priv->display.hpd_irq_setup =3D gen11_hpd_irq_setup;
+> 		else if (IS_GEN9_LP(dev_priv))
+>diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_r=
+eg.h
+>index eacec3c46a4d..a5c55e0af2db 100644
+>--- a/drivers/gpu/drm/i915/i915_reg.h
+>+++ b/drivers/gpu/drm/i915/i915_reg.h
+>@@ -8443,23 +8443,6 @@ enum {
+> #define SHPD_FILTER_CNT				_MMIO(0xc4038)
+> #define   SHPD_FILTER_CNT_500_ADJ		0x001D9
+>
+>-#define ICP_DDI_HPD_ENABLE_MASK		(SHOTPLUG_CTL_DDI_HPD_ENABLE(HPD_PORT_B)=
+ | \
+>-					 SHOTPLUG_CTL_DDI_HPD_ENABLE(HPD_PORT_A))
+>-#define ICP_TC_HPD_ENABLE_MASK		(ICP_TC_HPD_ENABLE(HPD_PORT_TC4) | \
+>-					 ICP_TC_HPD_ENABLE(HPD_PORT_TC3) | \
+>-					 ICP_TC_HPD_ENABLE(HPD_PORT_TC2) | \
+>-					 ICP_TC_HPD_ENABLE(HPD_PORT_TC1))
+>-#define TGP_DDI_HPD_ENABLE_MASK		(SHOTPLUG_CTL_DDI_HPD_ENABLE(HPD_PORT_C)=
+ | \
+>-					 SHOTPLUG_CTL_DDI_HPD_ENABLE(HPD_PORT_B) | \
+>-					 SHOTPLUG_CTL_DDI_HPD_ENABLE(HPD_PORT_A))
+>-#define TGP_TC_HPD_ENABLE_MASK		(ICP_TC_HPD_ENABLE(HPD_PORT_TC6) | \
+>-					 ICP_TC_HPD_ENABLE(HPD_PORT_TC5) | \
+>-					 ICP_TC_HPD_ENABLE_MASK)
+>-#define DG1_DDI_HPD_ENABLE_MASK		(SHOTPLUG_CTL_DDI_HPD_ENABLE(HPD_PORT_D)=
+ | \
+>-					 SHOTPLUG_CTL_DDI_HPD_ENABLE(HPD_PORT_C) | \
+>-					 SHOTPLUG_CTL_DDI_HPD_ENABLE(HPD_PORT_B) | \
+>-					 SHOTPLUG_CTL_DDI_HPD_ENABLE(HPD_PORT_A))
+>-
+> #define _PCH_DPLL_A              0xc6014
+> #define _PCH_DPLL_B              0xc6018
+> #define PCH_DPLL(pll) _MMIO((pll) =3D=3D 0 ? _PCH_DPLL_A : _PCH_DPLL_B)
+>-- =
 
-> > >>>>>>  	return intel_plane_atomic_check_with_state(old_crtc_state,
-> > >>>>>>  						   new_crtc_state,
-> > >>>>>> diff --git a/drivers/gpu/drm/i915/display/intel_atomic_plane.h b=
-/drivers/gpu/drm/i915/display/intel_atomic_plane.h
-> > >>>>>> index 59dd1fbb02ea..c2a1e7c86e6c 100644
-> > >>>>>> --- a/drivers/gpu/drm/i915/display/intel_atomic_plane.h
-> > >>>>>> +++ b/drivers/gpu/drm/i915/display/intel_atomic_plane.h
-> > >>>>>> @@ -23,7 +23,8 @@ unsigned int intel_plane_pixel_rate(const stru=
-ct intel_crtc_state *crtc_state,
-> > >>>>>>  =
-
-> > >>>>>>  unsigned int intel_plane_data_rate(const struct intel_crtc_stat=
-e *crtc_state,
-> > >>>>>>  				   const struct intel_plane_state *plane_state);
-> > >>>>>> -void intel_plane_copy_uapi_to_hw_state(struct intel_plane_state=
- *plane_state,
-> > >>>>>> +void intel_plane_copy_uapi_to_hw_state(const struct intel_crtc_=
-state *crtc_state,
-> > >>>>>> +				       struct intel_plane_state *plane_state,
-> > >>>>>>  				       const struct intel_plane_state *from_plane_state);
-> > >>>>>>  void intel_update_plane(struct intel_plane *plane,
-> > >>>>>>  			const struct intel_crtc_state *crtc_state,
-> > >>>>>> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/driv=
-ers/gpu/drm/i915/display/intel_display.c
-> > >>>>>> index c0715a3ea47b..579cccc1fd91 100644
-> > >>>>>> --- a/drivers/gpu/drm/i915/display/intel_display.c
-> > >>>>>> +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> > >>>>>> @@ -3718,7 +3718,7 @@ intel_find_initial_plane_obj(struct intel_=
-crtc *intel_crtc,
-> > >>>>>>  	drm_framebuffer_get(fb);
-> > >>>>>>  =
-
-> > >>>>>>  	plane_state->crtc =3D &intel_crtc->base;
-> > >>>>>> -	intel_plane_copy_uapi_to_hw_state(intel_state, intel_state);
-> > >>>>>> +	intel_plane_copy_uapi_to_hw_state(crtc_state, intel_state, int=
-el_state);
-> > >>>>>>  =
-
-> > >>>>>>  	intel_frontbuffer_flush(to_intel_frontbuffer(fb), ORIGIN_DIRTY=
-FB);
-> > >>>>>>  =
-
-> > >>>>>> @@ -12801,26 +12801,180 @@ static bool check_single_encoder_clon=
-ing(struct intel_atomic_state *state,
-> > >>>>>>  	return true;
-> > >>>>>>  }
-> > >>>>>>  =
-
-> > >>>>>> +static int icl_unset_bigjoiner_plane_links(struct intel_atomic_=
-state *state,
-> > >>>>>> +					   struct intel_crtc_state *new_crtc_state)
-> > >>>>>> +{
-> > >>>>>> +	struct intel_crtc *crtc =3D to_intel_crtc(new_crtc_state->uapi=
-.crtc);
-> > >>>>>> +	struct intel_plane *plane;
-> > >>>>>> +
-> > >>>>>> +	/*
-> > >>>>>> +	 * Teardown the old bigjoiner plane mappings.
-> > >>>>>> +	 */
-> > >>>>>> +	for_each_intel_plane_on_crtc(crtc->base.dev, crtc, plane) {
-> > >>>>>> +		struct intel_plane_state *plane_state, *other_plane_state;
-> > >>>>>> +		struct intel_plane *other_plane;
-> > >>>>>> +
-> > >>>>>> +		plane_state =3D intel_atomic_get_plane_state(state, plane);
-> > >>>>>> +		if (IS_ERR(plane_state))
-> > >>>>>> +			return PTR_ERR(plane_state);
-> > >>>>>> +
-> > >>>>>> +		other_plane =3D plane_state->bigjoiner_plane;
-> > >>>>>> +		if (!other_plane)
-> > >>>>>> +			continue;
-> > >>>>>> +
-> > >>>>>> +		plane_state->bigjoiner_plane =3D NULL;
-> > >>>>>> +		plane_state->bigjoiner_slave =3D false;
-> > >>>>>> +
-> > >>>>>> +		other_plane_state =3D intel_atomic_get_plane_state(state, oth=
-er_plane);
-> > >>>>>> +		if (IS_ERR(other_plane_state))
-> > >>>>>> +			return PTR_ERR(other_plane_state);
-> > >>>>>> +		other_plane_state->bigjoiner_plane =3D NULL;
-> > >>>>>> +		other_plane_state->bigjoiner_slave =3D false;
-> > >>>>> Why would we even need this bigjoiner stuff in the planes? AFAICS=
- about
-> > >>>>> the only thing we should need is someting like
-> > >>>>>
-> > >>>>> for_each_plane_on_master()
-> > >>>>> 	add_same_plane_on_slave()
-> > >>>>>
-> > >>>>> somewhere before we do the plane->check() stuff. I guess start
-> > >>>>> of intel_atomic_check_planes() could be the right spot.
-> > >>>>>
-> > >>>> Yes may be but honestly I leave this optimization/change to the or=
-iginal
-> > >>>> author Maarten or you as a follow up
-> > >>> I don't want to see several hundred lines of totally uneccessary co=
-de
-> > >>> added. If it's buggy (which it may very well be because it's too bi=
-g to
-> > >>> review properly) we are going to have to revert it anyway. If anyth=
-ing
-> > >>> else has changed in the same code the revertr is going to be a huge
-> > >>> pain.
-> > >>>> >> This entire patch just does the linking of planes and there is =
-no
-> > >> unnecessary code.
-> > > Yes there is. Each plane should have a proper hw state so there =
-
-> > > should be absolutely no need for this linking stuff.
-> > >
-> > >> Also since I am just a carrier of this code and not
-> > >> the original author I dont know how this can be simplified
-> > >> without breaking the functionality. =
-
-> > > You don't understand the code, I don't understand the code. How do
-> > > you suggest we can merge this? If there is any problem with the code
-> > > we have no choice but a full revert.
-> > =
-
-> > Hey,
-> > =
-
-> > There's good reason to link the planes. The reason is similar to linkin=
-g Y and CbCr planes.
-> =
-
-> There we actually have to link them in some fashion because that's what
-> the hw requires. But with the uapi vs. hw state split we should be able
-> to make a proper state copy there too, and thus we could get rid of the
-> magic "let's use the other plane's state during commit" stuff.
-> =
-
-> > You're completely correct that hardware programming doesn't need the li=
-nking, and planes are
-> > in theory standalone.
-> > =
-
-> > But there's also atomic. The lifetime of plane_state on the bigjoiner s=
-lave plane must be
-> > linked to the lifetime of the master plane. Otherwise if you do a commi=
-t on the master plane,
-> > you may get a use after free on slave. To prevent this I just linked th=
-em together. :)
-> =
-
-> There should be nothing in the slave's plane state that references the
-> master's state. Whatever pointers we have there (fb/gamma/etc.) should
-> be refcounted. So can't immediately think where any uaf would come from. =
-
-> =
-
-> That said. Looks like watermarks are a bit of a mess again. Time to
-> finally get rid of that intel_atomic_crtc_state_for_each_plane_state()
-> I think...
-> =
-
-
-So can we move forward with the plane linking as of now or would @Maarten h=
-ave
-some BW to change this?
-
-Manasi
-
-> -- =
-
-> Ville Syrj=E4l=E4
-> Intel
+>2.26.2
+>
+>_______________________________________________
+>Intel-gfx mailing list
+>Intel-gfx@lists.freedesktop.org
+>https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
