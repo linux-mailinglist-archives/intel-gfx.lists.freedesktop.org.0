@@ -1,31 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id EA9B929D08C
-	for <lists+intel-gfx@lfdr.de>; Wed, 28 Oct 2020 16:09:48 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id B4B6729D08E
+	for <lists+intel-gfx@lfdr.de>; Wed, 28 Oct 2020 16:10:42 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 534486E55E;
-	Wed, 28 Oct 2020 15:09:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 01E106E56D;
+	Wed, 28 Oct 2020 15:10:41 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 437C06E558;
- Wed, 28 Oct 2020 15:09:46 +0000 (UTC)
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id D159C6E56D;
+ Wed, 28 Oct 2020 15:10:39 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 3B64CA47E1;
- Wed, 28 Oct 2020 15:09:46 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id CCF56A41FB;
+ Wed, 28 Oct 2020 15:10:39 +0000 (UTC)
 MIME-Version: 1.0
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Lee Shawn C" <shawn.c.lee@intel.com>
-Date: Wed, 28 Oct 2020 15:09:46 -0000
-Message-ID: <160389778624.21340.16682863293183792899@emeril.freedesktop.org>
+To: john.c.harrison@intel.com
+Date: Wed, 28 Oct 2020 15:10:39 -0000
+Message-ID: <160389783983.21339.18007173253053822510@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20201028144312.12520-1-shawn.c.lee@intel.com>
-In-Reply-To: <20201028144312.12520-1-shawn.c.lee@intel.com>
+References: <20201028145826.2949180-1-John.C.Harrison@Intel.com>
+In-Reply-To: <20201028145826.2949180-1-John.C.Harrison@Intel.com>
 Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciBk?=
- =?utf-8?q?rm/i915/rkl=3A_new_rkl_ddc_map_for_different_PCH?=
+ =?utf-8?q?rm/i915/guc=3A_Update_to_GuC_v49?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,23 +47,25 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: drm/i915/rkl: new rkl ddc map for different PCH
-URL   : https://patchwork.freedesktop.org/series/83154/
+Series: drm/i915/guc: Update to GuC v49
+URL   : https://patchwork.freedesktop.org/series/83157/
 State : failure
 
 == Summary ==
 
-Applying: drm/i915/rkl: new rkl ddc map for different PCH
+Applying: drm/i915/guc: Update to use firmware v49.0.1
 Using index info to reconstruct a base tree...
-M	drivers/gpu/drm/i915/display/intel_bios.c
-M	drivers/gpu/drm/i915/display/intel_vbt_defs.h
+M	drivers/gpu/drm/i915/gt/intel_engine_cs.c
+M	drivers/gpu/drm/i915/gt/uc/intel_guc.c
+M	drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c
 Falling back to patching base and 3-way merge...
-Auto-merging drivers/gpu/drm/i915/display/intel_vbt_defs.h
-Auto-merging drivers/gpu/drm/i915/display/intel_bios.c
-CONFLICT (content): Merge conflict in drivers/gpu/drm/i915/display/intel_bios.c
+Auto-merging drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c
+CONFLICT (content): Merge conflict in drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c
+Auto-merging drivers/gpu/drm/i915/gt/uc/intel_guc.c
+Auto-merging drivers/gpu/drm/i915/gt/intel_engine_cs.c
 error: Failed to merge in the changes.
 hint: Use 'git am --show-current-patch=diff' to see the failed patch
-Patch failed at 0001 drm/i915/rkl: new rkl ddc map for different PCH
+Patch failed at 0001 drm/i915/guc: Update to use firmware v49.0.1
 When you have resolved this problem, run "git am --continue".
 If you prefer to skip this patch, run "git am --skip" instead.
 To restore the original branch and stop patching, run "git am --abort".
