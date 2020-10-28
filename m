@@ -1,41 +1,57 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 29ACF29D15C
-	for <lists+intel-gfx@lfdr.de>; Wed, 28 Oct 2020 18:40:44 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id EDE1029D1F3
+	for <lists+intel-gfx@lfdr.de>; Wed, 28 Oct 2020 20:49:21 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 75C7F6E2D7;
-	Wed, 28 Oct 2020 17:40:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5A39D89D99;
+	Wed, 28 Oct 2020 19:49:18 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 56C6A6E2DE
- for <intel-gfx@lists.freedesktop.org>; Wed, 28 Oct 2020 17:40:41 +0000 (UTC)
-IronPort-SDR: D2muYFbMSgmz54/uUSx1Arc5Q63jukQNRFT3yPv7mkKNM6vAaqxz4DD1GQoJNRkbB1PtsODkBr
- GtR8NZ58K3PA==
-X-IronPort-AV: E=McAfee;i="6000,8403,9788"; a="155273058"
-X-IronPort-AV: E=Sophos;i="5.77,427,1596524400"; d="scan'208";a="155273058"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Oct 2020 10:40:40 -0700
-IronPort-SDR: l3rpQJqvyvrjYLVJ5HmApNLBuQ8P0Sinwows9oNEwq2e20sC6kFDTm4ZyPtuNUrcQk7GzKdxmF
- QPY5TrL2tA9Q==
-X-IronPort-AV: E=Sophos;i="5.77,427,1596524400"; d="scan'208";a="536321533"
-Received: from ideak-desk.fi.intel.com ([10.237.68.141])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Oct 2020 10:40:39 -0700
-Date: Wed, 28 Oct 2020 19:40:35 +0200
-From: Imre Deak <imre.deak@intel.com>
-To: Tejas Upadhyay <tejaskumarx.surendrakumar.upadhyay@intel.com>
-Message-ID: <20201028174035.GD3693479@ideak-desk.fi.intel.com>
-References: <20201028091641.137195-1-tejaskumarx.surendrakumar.upadhyay@intel.com>
+Received: from mail-wr1-x443.google.com (mail-wr1-x443.google.com
+ [IPv6:2a00:1450:4864:20::443])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E80716E342
+ for <intel-gfx@lists.freedesktop.org>; Wed, 28 Oct 2020 19:49:16 +0000 (UTC)
+Received: by mail-wr1-x443.google.com with SMTP id t9so328751wrq.11
+ for <intel-gfx@lists.freedesktop.org>; Wed, 28 Oct 2020 12:49:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:in-reply-to;
+ bh=7yGnLARxCw22Ojs/TsKg75JWHtU+IWb2IRnsoKkOIBA=;
+ b=HnaZhcpFD2zdrJWFOiQ++1/fi5BWdqMCwdagSfdXQ0TXWd67iL0kca/eV7VBK4vIVl
+ N+J9xs2HqGBU6716GH1M6bhtHvqHhUCNeeOP8H5EsRJxEJSsUdSZ0oEFwig/VZusPpLH
+ eKYXd0oIz+x6QYi0pQch4tKz7P3L0Yy6+YF4s=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:in-reply-to;
+ bh=7yGnLARxCw22Ojs/TsKg75JWHtU+IWb2IRnsoKkOIBA=;
+ b=dtoGbYAUmryBa+OTvFkbvn1P2J0w8/QHukPlsCQ4vUZLESe3rUHor2DcYohrRdwCsf
+ Dv1eBVa3mhDNY8UAk74y/JDN+MrOqi1LJYc3x10sFwSfm6koYiX+pmwccGX4aXuQcsi6
+ FCOv8S+Pk11zji9rUm1jxlDxUqXPRKjs2pSTt/ZJvFxfUuI/QdA1CC+MCiIdK1Q5hgk/
+ bYJEt/2iAEgINF0CtT+fALTxnGr78Iq99qJQ0GCklI5I8PeMba0qPKDvsYPl1EFVym47
+ zOvXQzbw45wOT+JKshis8JSbkBTj5vnnYrp1iU4Ihm7ETU3rbk6aqbapNAchQjlXfGrC
+ 78/Q==
+X-Gm-Message-State: AOAM532EqxD3Kox9Yi4KhoOfK5rwkGMKdEWG9y3z3xCywuBmG/pq9lmA
+ dKDVg9ZhnW/aJPnWkAyOc28CBA==
+X-Google-Smtp-Source: ABdhPJwy91Tkz6a/lq4QdXJXSiaLOmD1dxTOuvAjFra1URVheEiMxpxM6fq4ibeaccGqh6Aakv9CuA==
+X-Received: by 2002:a5d:6605:: with SMTP id n5mr1031398wru.355.1603914555405; 
+ Wed, 28 Oct 2020 12:49:15 -0700 (PDT)
+Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
+ by smtp.gmail.com with ESMTPSA id j13sm791045wru.86.2020.10.28.12.49.13
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 28 Oct 2020 12:49:14 -0700 (PDT)
+Date: Wed, 28 Oct 2020 20:49:11 +0100
+From: Daniel Vetter <daniel@ffwll.ch>
+To: Jason Gunthorpe <jgg@nvidia.com>
+Message-ID: <20201028194911.GY401619@phenom.ffwll.local>
+References: <0-v1-44733fccd781+13d-rm_scatterlist_max_jgg@nvidia.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20201028091641.137195-1-tejaskumarx.surendrakumar.upadhyay@intel.com>
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/ehl: Implement W/A 22010492432
+In-Reply-To: <0-v1-44733fccd781+13d-rm_scatterlist_max_jgg@nvidia.com>
+X-Operating-System: Linux phenom 5.7.0-1-amd64 
+Subject: Re: [Intel-gfx] [PATCH] drm: Remove SCATTERLIST_MAX_SEGMENT
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,74 +64,138 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: imre.deak@intel.com
-Cc: intel-gfx@lists.freedesktop.org, hariom.pandey@intel.com
+Cc: Maxime Ripard <mripard@kernel.org>,
+ Thomas Hellstrom <thellstrom@vmware.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@linux.ie>,
+ Roland Scheidegger <sroland@vmware.com>, intel-gfx@lists.freedesktop.org,
+ Daniel Vetter <daniel.vetter@ffwll.ch>,
+ VMware Graphics <linux-graphics-maintainer@vmware.com>,
+ dri-devel@lists.freedesktop.org, Qian Cai <cai@lca.pw>,
+ Christoph Hellwig <hch@lst.de>, Gerd Hoffmann <kraxel@redhat.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Oct 28, 2020 at 02:46:41PM +0530, Tejas Upadhyay wrote:
-> As per W/A implemented for TGL to program half of the nominal
-> DCO divider fraction value which is also applicable on EHL.
+On Wed, Oct 28, 2020 at 04:15:26PM -0300, Jason Gunthorpe wrote:
+> Since commit 9a40401cfa13 ("lib/scatterlist: Do not limit max_segment to
+> PAGE_ALIGNED values") the max_segment input to sg_alloc_table_from_pages()
+> does not have to be any special value. The new algorithm will always
+> create something less than what the user provides. Thus eliminate this
+> confusing constant.
 > 
-> Cc: Deak Imre <imre.deak@intel.com>
-> Signed-off-by: Tejas Upadhyay <tejaskumarx.surendrakumar.upadhyay@intel.com>
+> - vmwgfx should use the HW capability, not mix in the OS page size for
+>   calling dma_set_max_seg_size()
+> 
+> - i915 uses i915_sg_segment_size() both for sg_alloc_table_from_pages
+>   and for some open coded sgl construction. This doesn't change the value
+>   since rounddown(size, UINT_MAX) == SCATTERLIST_MAX_SEGMENT
+> 
+> - drm_prime_pages_to_sg uses it as a default if max_segment is zero,
+>   UINT_MAX is fine to use directly.
+> 
+> Cc: Gerd Hoffmann <kraxel@redhat.com>
+> Cc: Daniel Vetter <daniel.vetter@ffwll.ch>
+> Cc: Thomas Hellstrom <thellstrom@vmware.com>
+> Cc: Qian Cai <cai@lca.pw>
+> Cc: "Ursulin, Tvrtko" <tvrtko.ursulin@intel.com>
+> Suggested-by: Christoph Hellwig <hch@lst.de>
+> Signed-off-by: Jason Gunthorpe <jgg@nvidia.com>
+
+lgtm. Do you want to push this through some other queue, or should I put
+this into drm trees? Prefer 5.10 or 5.11?
+
+If you want to merge this Acked-by: Daniel Vetter <daniel.vetter@ffwll.ch>
+-Daniel
+
 > ---
->  drivers/gpu/drm/i915/display/intel_dpll_mgr.c | 12 +++++++-----
->  1 file changed, 7 insertions(+), 5 deletions(-)
+>  drivers/gpu/drm/drm_prime.c             | 4 ++--
+>  drivers/gpu/drm/i915/i915_scatterlist.h | 2 +-
+>  drivers/gpu/drm/vmwgfx/vmwgfx_drv.c     | 3 +--
+>  include/linux/scatterlist.h             | 6 ------
+>  tools/testing/scatterlist/main.c        | 2 +-
+>  5 files changed, 5 insertions(+), 12 deletions(-)
 > 
-> diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-> index eaef7a2d041f..0f3208d3c083 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-> @@ -2636,13 +2636,15 @@ static bool cnl_ddi_hdmi_pll_dividers(struct intel_crtc_state *crtc_state)
->  }
+> diff --git a/drivers/gpu/drm/drm_prime.c b/drivers/gpu/drm/drm_prime.c
+> index d6808f678db541..c3693e5e8b74b0 100644
+> --- a/drivers/gpu/drm/drm_prime.c
+> +++ b/drivers/gpu/drm/drm_prime.c
+> @@ -816,8 +816,8 @@ struct sg_table *drm_prime_pages_to_sg(struct drm_device *dev,
 >  
+>  	if (dev)
+>  		max_segment = dma_max_mapping_size(dev->dev);
+> -	if (max_segment == 0 || max_segment > SCATTERLIST_MAX_SEGMENT)
+> -		max_segment = SCATTERLIST_MAX_SEGMENT;
+> +	if (max_segment == 0)
+> +		max_segment = UINT_MAX;
+>  	sge = __sg_alloc_table_from_pages(sg, pages, nr_pages, 0,
+>  					  nr_pages << PAGE_SHIFT,
+>  					  max_segment,
+> diff --git a/drivers/gpu/drm/i915/i915_scatterlist.h b/drivers/gpu/drm/i915/i915_scatterlist.h
+> index b7b59328cb76ab..883dd8d09d6bf2 100644
+> --- a/drivers/gpu/drm/i915/i915_scatterlist.h
+> +++ b/drivers/gpu/drm/i915/i915_scatterlist.h
+> @@ -112,7 +112,7 @@ static inline unsigned int i915_sg_segment_size(void)
+>  	unsigned int size = swiotlb_max_segment();
+>  
+>  	if (size == 0)
+> -		return SCATTERLIST_MAX_SEGMENT;
+> +		size = UINT_MAX;
+>  
+>  	size = rounddown(size, PAGE_SIZE);
+>  	/* swiotlb_max_segment_size can return 1 byte when it means one page. */
+> diff --git a/drivers/gpu/drm/vmwgfx/vmwgfx_drv.c b/drivers/gpu/drm/vmwgfx/vmwgfx_drv.c
+> index 31e3e5c9f36223..c1817f1a3006e0 100644
+> --- a/drivers/gpu/drm/vmwgfx/vmwgfx_drv.c
+> +++ b/drivers/gpu/drm/vmwgfx/vmwgfx_drv.c
+> @@ -792,8 +792,7 @@ static int vmw_driver_load(struct drm_device *dev, unsigned long chipset)
+>  	if (unlikely(ret != 0))
+>  		goto out_err0;
+>  
+> -	dma_set_max_seg_size(dev->dev, min_t(unsigned int, U32_MAX & PAGE_MASK,
+> -					     SCATTERLIST_MAX_SEGMENT));
+> +	dma_set_max_seg_size(dev->dev, U32_MAX);
+>  
+>  	if (dev_priv->capabilities & SVGA_CAP_GMR2) {
+>  		DRM_INFO("Max GMR ids is %u\n",
+> diff --git a/include/linux/scatterlist.h b/include/linux/scatterlist.h
+> index 36c47e7e66a203..6f70572b2938be 100644
+> --- a/include/linux/scatterlist.h
+> +++ b/include/linux/scatterlist.h
+> @@ -18,12 +18,6 @@ struct scatterlist {
+>  #endif
+>  };
+>  
+> -/*
+> - * Since the above length field is an unsigned int, below we define the maximum
+> - * length in bytes that can be stored in one scatterlist entry.
+> - */
+> -#define SCATTERLIST_MAX_SEGMENT (UINT_MAX & PAGE_MASK)
+> -
 >  /*
-> - * Display WA #22010492432: tgl
-> + * Display WA #22010492432: ehl, tgl
->   * Program half of the nominal DCO divider fraction value.
->   */
->  static bool
-> -tgl_combo_pll_div_frac_wa_needed(struct drm_i915_private *i915)
-> +combo_pll_div_frac_wa_needed(struct drm_i915_private *i915)
-
-The usual way is to prefix such function names with the earliest
-relevant platform, so I'd use ehl_ here.
-
+>   * These macros should be used after a dma_map_sg call has been done
+>   * to get bus addresses of each of the SG entries and their lengths.
+> diff --git a/tools/testing/scatterlist/main.c b/tools/testing/scatterlist/main.c
+> index b2c7e9f7b8d3dc..d264bf853034bd 100644
+> --- a/tools/testing/scatterlist/main.c
+> +++ b/tools/testing/scatterlist/main.c
+> @@ -50,7 +50,7 @@ static void fail(struct test *test, struct sg_table *st, const char *cond)
+>  
+>  int main(void)
 >  {
-> -	return IS_TIGERLAKE(i915) && i915->dpll.ref_clks.nssc == 38400;
-> +	return (IS_PLATFORM(i915, INTEL_ELKHARTLAKE) ||
-
-On EHL the WA is needed only B stepping onwards.
-
-> +		IS_TIGERLAKE(i915)) &&
-> +		i915->dpll.ref_clks.nssc == 38400;
->  }
->  
->  static int __cnl_ddi_wrpll_get_freq(struct drm_i915_private *dev_priv,
-> @@ -2696,7 +2698,7 @@ static int __cnl_ddi_wrpll_get_freq(struct drm_i915_private *dev_priv,
->  	dco_fraction = (pll_state->cfgcr0 & DPLL_CFGCR0_DCO_FRACTION_MASK) >>
->  		       DPLL_CFGCR0_DCO_FRACTION_SHIFT;
->  
-> -	if (tgl_combo_pll_div_frac_wa_needed(dev_priv))
-> +	if (combo_pll_div_frac_wa_needed(dev_priv))
->  		dco_fraction *= 2;
->  
->  	dco_freq += (dco_fraction * ref_clock) / 0x8000;
-> @@ -3086,7 +3088,7 @@ static void icl_calc_dpll_state(struct drm_i915_private *i915,
->  
->  	memset(pll_state, 0, sizeof(*pll_state));
->  
-> -	if (tgl_combo_pll_div_frac_wa_needed(i915))
-> +	if (combo_pll_div_frac_wa_needed(i915))
->  		dco_fraction = DIV_ROUND_CLOSEST(dco_fraction, 2);
->  
->  	pll_state->cfgcr0 = DPLL_CFGCR0_DCO_FRACTION(dco_fraction) |
+> -	const unsigned int sgmax = SCATTERLIST_MAX_SEGMENT;
+> +	const unsigned int sgmax = UINT_MAX;
+>  	struct test *test, tests[] = {
+>  		{ -EINVAL, 1, pfn(0), PAGE_SIZE, PAGE_SIZE + 1, 1 },
+>  		{ -EINVAL, 1, pfn(0), PAGE_SIZE, 0, 1 },
 > -- 
 > 2.28.0
 > 
+
+-- 
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
