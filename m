@@ -2,30 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5667229CCCC
-	for <lists+intel-gfx@lfdr.de>; Wed, 28 Oct 2020 01:28:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6141E29CCD2
+	for <lists+intel-gfx@lfdr.de>; Wed, 28 Oct 2020 01:46:58 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AF2AA6EC72;
-	Wed, 28 Oct 2020 00:28:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 273946E255;
+	Wed, 28 Oct 2020 00:46:55 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id F32216E43A;
- Wed, 28 Oct 2020 00:28:32 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id EECE1A8831;
- Wed, 28 Oct 2020 00:28:32 +0000 (UTC)
+Received: from mail-lj1-x241.google.com (mail-lj1-x241.google.com
+ [IPv6:2a00:1450:4864:20::241])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 785BA6E255
+ for <intel-gfx@lists.freedesktop.org>; Wed, 28 Oct 2020 00:46:53 +0000 (UTC)
+Received: by mail-lj1-x241.google.com with SMTP id a5so3875475ljj.11
+ for <intel-gfx@lists.freedesktop.org>; Tue, 27 Oct 2020 17:46:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=TUD8ay06BVPxlabmvIIcN6afv5KlVK6te/JW5ssKI1o=;
+ b=JZg+DdpL4ViUSdpidGLIS8Lvj6t/F6V3TIumo6Xzzk3wHOYHf8J5ScoY9v/f7dydWM
+ nv4XsAnIQzmylveMvZr91+WC+bQAAAIRhxcJhn/M7+H3bE9M0U0UhfT/ybL8B48d2HBj
+ vsKgTZvF6t7Q2qBlAfTqqRg4zzUyXlJjBLCkgD7zpwFmKFUBiwItTllSoIdd6B13r+ZO
+ 4AC4UthU5nujPQoPfFt5u/8OuVM9z3BEnhHHoJDaIhGLMWm4kWeROVPWmgAHmrMxkCKh
+ mTs39gV8DfBFBGqwYXJPLIdxfLebZhhXbcmdSgNCFpn+Tb6CDKcf0N5nJQ7YGP64Wa84
+ bM2Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=TUD8ay06BVPxlabmvIIcN6afv5KlVK6te/JW5ssKI1o=;
+ b=Yj+LrEzfpxA/u9qvqZv5uwT9ZhqsDDYlZaPOl2HlASxPz5QH42Vy7MsRFcwqEN1vrV
+ eWusCiWVaCbhjhL6G1CBVv2cutT6h+TUftEiiapl+BHaFVvn7tEpNccODV3hHrqfmgj1
+ H9fqAxGDIAFVCiS6iMX8ff52r6SDh3uOZ51kU9l2BTBKpPRkedNYMwO6CSWyiOHpqkEE
+ lZP61nPkeCt1b/HZoG2jE02NvIqziW6pjDP2Gz+L0PuNthM9cB+prakn5FAADKCuRtLK
+ KEoNrn8Y9kAPneztT+DXLlBoIZM26ltrbw0MAoP5PvB52h/MR4WOUGWa7jTfSVqe6TpU
+ ln2g==
+X-Gm-Message-State: AOAM530hFUSLU1VHs2y/UY8TzP22I/Ybvluy6VmGLmLH8rGp7rHqZS81
+ isuSIlU31yLIUcbC3ZcEN8Y1b6xghwTsRKPbabw=
+X-Google-Smtp-Source: ABdhPJzJj19opmLEhtN1yCanZW1+zX5AlTUgsHxULq7q9O4nw6m2hldsR0zTrS1F4uDQv97cnc6+62yr9xVIH3UluVI=
+X-Received: by 2002:a2e:b5b3:: with SMTP id f19mr2233003ljn.467.1603846011811; 
+ Tue, 27 Oct 2020 17:46:51 -0700 (PDT)
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Manasi Navare" <manasi.d.navare@intel.com>
-Date: Wed, 28 Oct 2020 00:28:32 -0000
-Message-ID: <160384491297.21342.11073138872936402821@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20201022054223.25071-1-manasi.d.navare@intel.com>
-In-Reply-To: <20201022054223.25071-1-manasi.d.navare@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciBC?=
- =?utf-8?q?ig_joiner_enabling_=28rev5=29?=
+References: <20201028000610.932524-1-lucas.demarchi@intel.com>
+In-Reply-To: <20201028000610.932524-1-lucas.demarchi@intel.com>
+From: Lucas De Marchi <lucas.de.marchi@gmail.com>
+Date: Tue, 27 Oct 2020 17:46:40 -0700
+Message-ID: <CAKi4VA+=LobofTEQ30QHWPi_0VHypcKG+45tNTrgptbxxQLkRA@mail.gmail.com>
+To: Lucas De Marchi <lucas.demarchi@intel.com>
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/dg1: Fix unbalanced braces
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,38 +60,54 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: Intel Graphics <intel-gfx@lists.freedesktop.org>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-PT0gU2VyaWVzIERldGFpbHMgPT0KClNlcmllczogQmlnIGpvaW5lciBlbmFibGluZyAocmV2NSkK
-VVJMICAgOiBodHRwczovL3BhdGNod29yay5mcmVlZGVza3RvcC5vcmcvc2VyaWVzLzgyOTQ0LwpT
-dGF0ZSA6IGZhaWx1cmUKCj09IFN1bW1hcnkgPT0KCkNBTEwgICAgc2NyaXB0cy9jaGVja3N5c2Nh
-bGxzLnNoCiAgQ0FMTCAgICBzY3JpcHRzL2F0b21pYy9jaGVjay1hdG9taWNzLnNoCiAgREVTQ0VO
-RCAgb2JqdG9vbAogIENISyAgICAgaW5jbHVkZS9nZW5lcmF0ZWQvY29tcGlsZS5oCiAgQ0MgW01d
-ICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RwLm8KZHJpdmVycy9ncHUvZHJt
-L2k5MTUvZGlzcGxheS9pbnRlbF9kcC5jOiBJbiBmdW5jdGlvbiDigJhpbnRlbF9kcF9kc2NfY29t
-cHV0ZV9jb25maWfigJk6CmRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZHAuYzoy
-MzI3OjM0OiBlcnJvcjogaW1wbGljaXQgZGVjbGFyYXRpb24gb2YgZnVuY3Rpb24g4oCYaW50ZWxf
-ZHBfbWF4X2RvdGNsb2Nr4oCZOyBkaWQgeW91IG1lYW4g4oCYaW50ZWxfZHBfc2V0X2Nsb2Nr4oCZ
-PyBbLVdlcnJvcj1pbXBsaWNpdC1mdW5jdGlvbi1kZWNsYXJhdGlvbl0KICBpZiAoYWRqdXN0ZWRf
-bW9kZS0+Y3J0Y19jbG9jayA+IGludGVsX2RwX21heF9kb3RjbG9jayhpbnRlbF9kcCwgZmFsc2Up
-KSB7CiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBefn5+fn5+fn5+fn5+fn5+fn5+
-fn4KICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIGludGVsX2RwX3NldF9jbG9jawpj
-YzE6IGFsbCB3YXJuaW5ncyBiZWluZyB0cmVhdGVkIGFzIGVycm9ycwpzY3JpcHRzL01ha2VmaWxl
-LmJ1aWxkOjI4MzogcmVjaXBlIGZvciB0YXJnZXQgJ2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3Bs
-YXkvaW50ZWxfZHAubycgZmFpbGVkCm1ha2VbNF06ICoqKiBbZHJpdmVycy9ncHUvZHJtL2k5MTUv
-ZGlzcGxheS9pbnRlbF9kcC5vXSBFcnJvciAxCnNjcmlwdHMvTWFrZWZpbGUuYnVpbGQ6NTAwOiBy
-ZWNpcGUgZm9yIHRhcmdldCAnZHJpdmVycy9ncHUvZHJtL2k5MTUnIGZhaWxlZAptYWtlWzNdOiAq
-KiogW2RyaXZlcnMvZ3B1L2RybS9pOTE1XSBFcnJvciAyCnNjcmlwdHMvTWFrZWZpbGUuYnVpbGQ6
-NTAwOiByZWNpcGUgZm9yIHRhcmdldCAnZHJpdmVycy9ncHUvZHJtJyBmYWlsZWQKbWFrZVsyXTog
-KioqIFtkcml2ZXJzL2dwdS9kcm1dIEVycm9yIDIKc2NyaXB0cy9NYWtlZmlsZS5idWlsZDo1MDA6
-IHJlY2lwZSBmb3IgdGFyZ2V0ICdkcml2ZXJzL2dwdScgZmFpbGVkCm1ha2VbMV06ICoqKiBbZHJp
-dmVycy9ncHVdIEVycm9yIDIKTWFrZWZpbGU6MTc5OTogcmVjaXBlIGZvciB0YXJnZXQgJ2RyaXZl
-cnMnIGZhaWxlZAptYWtlOiAqKiogW2RyaXZlcnNdIEVycm9yIDIKCgpfX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0Cklu
-dGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5v
-cmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
+On Tue, Oct 27, 2020 at 5:06 PM Lucas De Marchi
+<lucas.demarchi@intel.com> wrote:
+>
+> Missing braces after rebase and surprisingly not caught by checkpatch.
+>
+> Fixes: 229f31e2d370 ("drm/i915/dg1: add hpd interrupt handling")
+> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+> ---
+>  drivers/gpu/drm/i915/i915_irq.c | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/i915_irq.c b/drivers/gpu/drm/i915/i915_irq.c
+> index dc33c96d741d..9087fff662c3 100644
+> --- a/drivers/gpu/drm/i915/i915_irq.c
+> +++ b/drivers/gpu/drm/i915/i915_irq.c
+> @@ -3666,9 +3666,9 @@ static void icp_irq_postinstall(struct drm_i915_private *dev_priv)
+>         gen3_assert_iir_is_zero(&dev_priv->uncore, SDEIIR);
+>         I915_WRITE(SDEIMR, ~mask);
+>
+> -       if (HAS_PCH_DG1(dev_priv))
+> +       if (HAS_PCH_DG1(dev_priv)) {
+>                 icp_ddi_hpd_detection_setup(dev_priv, DG1_DDI_HPD_ENABLE_MASK);
+> -       else if (HAS_PCH_TGP(dev_priv)) {
+> +       } else if (HAS_PCH_TGP(dev_priv)) {
+
+actually this will go away soon when
+https://patchwork.freedesktop.org/patch/396744/?series=82411&rev=4 is
+merged, so this patch can be ignored.
+
+Lucas De Marchi
+
+>                 icp_ddi_hpd_detection_setup(dev_priv, TGP_DDI_HPD_ENABLE_MASK);
+>                 icp_tc_hpd_detection_setup(dev_priv, TGP_TC_HPD_ENABLE_MASK);
+>         } else if (HAS_PCH_JSP(dev_priv)) {
+> --
+> 2.29.0
+>
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
