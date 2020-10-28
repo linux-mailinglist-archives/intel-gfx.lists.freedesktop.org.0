@@ -2,51 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2E9B929CFE7
-	for <lists+intel-gfx@lfdr.de>; Wed, 28 Oct 2020 13:26:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4320229CFF4
+	for <lists+intel-gfx@lfdr.de>; Wed, 28 Oct 2020 13:55:01 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1FA9E6E506;
-	Wed, 28 Oct 2020 12:26:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 83BA46E524;
+	Wed, 28 Oct 2020 12:54:59 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A81A66E506
- for <intel-gfx@lists.freedesktop.org>; Wed, 28 Oct 2020 12:26:31 +0000 (UTC)
-IronPort-SDR: MhTu1C2FmUUo5yuq1Roybhkwijft6/MkNRCyG3b7GBIq1tdZ0E5USwwW6+go1+4vdyX3VIOgkJ
- ECYviNlumsHA==
-X-IronPort-AV: E=McAfee;i="6000,8403,9787"; a="155216802"
-X-IronPort-AV: E=Sophos;i="5.77,426,1596524400"; 
- d="scan'208,217";a="155216802"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Oct 2020 05:26:30 -0700
-IronPort-SDR: 4qDDwlA+kek+U7IcInZ3wL1KgmBLHj+3fGvUdTT/jxxMomevp00RL5hjIruNxWHC5eJsHp/FSD
- U+YkEy3ebYng==
-X-IronPort-AV: E=Sophos;i="5.77,426,1596524400"; 
- d="scan'208,217";a="468699987"
-Received: from vvlada-mobl.ger.corp.intel.com (HELO [10.252.43.111])
- ([10.252.43.111])
- by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Oct 2020 05:26:29 -0700
-To: =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>,
- "Navare, Manasi" <manasi.d.navare@intel.com>
-References: <20201022054223.25071-1-manasi.d.navare@intel.com>
- <20201022054223.25071-11-manasi.d.navare@intel.com>
- <20201026201854.GL6112@intel.com> <20201026224148.GF25941@labuser-Z97X-UD5H>
- <20201027134230.GN6112@intel.com> <20201027181910.GB3950@labuser-Z97X-UD5H>
- <20201027191150.GP6112@intel.com>
-From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Message-ID: <dec38bb5-c6a2-18dc-684c-92564e630451@linux.intel.com>
-Date: Wed, 28 Oct 2020 13:26:27 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.4.0
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 4671E6E504;
+ Wed, 28 Oct 2020 12:54:58 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 3D295A8835;
+ Wed, 28 Oct 2020 12:54:58 +0000 (UTC)
 MIME-Version: 1.0
-In-Reply-To: <20201027191150.GP6112@intel.com>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH v11 10/12] drm/i915: Link planes in a
- bigjoiner configuration, v3.
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Tejas Upadhyay" <tejaskumarx.surendrakumar.upadhyay@intel.com>
+Date: Wed, 28 Oct 2020 12:54:58 -0000
+Message-ID: <160388969821.21341.6539264382875113958@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20201028111731.137873-1-tejaskumarx.surendrakumar.upadhyay@intel.com>
+In-Reply-To: <20201028111731.137873-1-tejaskumarx.surendrakumar.upadhyay@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/jsl=3A_Disable_cursor_clock_gating_in_HDR_mode?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,565 +38,405 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============0678169579=="
+Content-Type: multipart/mixed; boundary="===============0035108893=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This is a multi-part message in MIME format.
---===============0678169579==
+--===============0035108893==
 Content-Type: multipart/alternative;
- boundary="------------85F0D60842EEB4493FE0B519"
-Content-Language: en-US
+ boundary="===============1910114961492044322=="
 
-This is a multi-part message in MIME format.
---------------85F0D60842EEB4493FE0B519
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 8bit
+--===============1910114961492044322==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Op 27-10-2020 om 20:11 schreef Ville Syrjälä:
-> On Tue, Oct 27, 2020 at 11:19:16AM -0700, Navare, Manasi wrote:
->> On Tue, Oct 27, 2020 at 03:42:30PM +0200, Ville Syrjälä wrote:
->>> On Mon, Oct 26, 2020 at 03:41:48PM -0700, Navare, Manasi wrote:
->>>> On Mon, Oct 26, 2020 at 10:18:54PM +0200, Ville Syrjälä wrote:
->>>>> On Wed, Oct 21, 2020 at 10:42:21PM -0700, Manasi Navare wrote:
->>>>>> From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
->>>>>>
->>>>>>  Make sure that when a plane is set in a bigjoiner mode, we will add
->>>>>>  their counterpart to the atomic state as well. This will allow us to
->>>>>>  make sure all state is available when planes are checked.
->>>>>>
->>>>>> Because of the funny interactions with bigjoiner and planar YUV
->>>>>> formats, we may end up adding a lot of planes, so we have to keep
->>>>>> iterating until we no longer add any planes.
->>>>>>
->>>>>> Also fix the atomic intel plane iterator, so things watermarks start
->>>>>> working automagically.
->>>>>>
->>>>>> v6:
->>>>>> * Fix from_plane_state assignments (Manasi)
->>>>>> v5:
->>>>>> * Rebase after adding sagv support (Manasi)
->>>>>> v4:
->>>>>> * Manual rebase (Manasi)
->>>>>> Changes since v1:
->>>>>> - Rebase on top of plane_state split, cleaning up the code a lot.
->>>>>> - Make intel_atomic_crtc_state_for_each_plane_state() bigjoiner capable.
->>>>>> - Add iter macro to intel_atomic_crtc_state_for_each_plane_state() to
->>>>>>   keep iteration working.
->>>>>> Changes since v2:
->>>>>> - Add icl_(un)set_bigjoiner_plane_links, to make it more clear where
->>>>>>   links are made and broken.
->>>>>>
->>>>>> Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
->>>>>> Signed-off-by: Manasi Navare <manasi.d.navare@intel.com>
->>>>>> ---
->>>>>>  .../gpu/drm/i915/display/intel_atomic_plane.c |  53 ++++-
->>>>>>  .../gpu/drm/i915/display/intel_atomic_plane.h |   3 +-
->>>>>>  drivers/gpu/drm/i915/display/intel_display.c  | 207 ++++++++++++++++--
->>>>>>  drivers/gpu/drm/i915/display/intel_display.h  |  20 +-
->>>>>>  .../drm/i915/display/intel_display_types.h    |  11 +
->>>>>>  drivers/gpu/drm/i915/intel_pm.c               |  20 +-
->>>>>>  6 files changed, 274 insertions(+), 40 deletions(-)
->>>>>>
->>>>>> diff --git a/drivers/gpu/drm/i915/display/intel_atomic_plane.c b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
->>>>>> index 3334ff253600..5df928f8f322 100644
->>>>>> --- a/drivers/gpu/drm/i915/display/intel_atomic_plane.c
->>>>>> +++ b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
->>>>>> @@ -246,12 +246,17 @@ static void intel_plane_clear_hw_state(struct intel_plane_state *plane_state)
->>>>>>  	memset(&plane_state->hw, 0, sizeof(plane_state->hw));
->>>>>>  }
->>>>>>  
->>>>>> -void intel_plane_copy_uapi_to_hw_state(struct intel_plane_state *plane_state,
->>>>>> +void intel_plane_copy_uapi_to_hw_state(const struct intel_crtc_state *crtc_state,
->>>>>> +				       struct intel_plane_state *plane_state,
->>>>>>  				       const struct intel_plane_state *from_plane_state)
->>>>>>  {
->>>>>>  	intel_plane_clear_hw_state(plane_state);
->>>>>>  
->>>>>> -	plane_state->hw.crtc = from_plane_state->uapi.crtc;
->>>>>> +	if (from_plane_state->uapi.crtc)
->>>>>> +		plane_state->hw.crtc = crtc_state->uapi.crtc;
->>>>>> +	else
->>>>>> +		plane_state->hw.crtc = NULL;
->>>>>> +
->>>>>>  	plane_state->hw.fb = from_plane_state->uapi.fb;
->>>>>>  	if (plane_state->hw.fb)
->>>>>>  		drm_framebuffer_get(plane_state->hw.fb);
->>>>>> @@ -320,15 +325,36 @@ int intel_plane_atomic_check_with_state(const struct intel_crtc_state *old_crtc_
->>>>>>  }
->>>>>>  
->>>>>>  static struct intel_crtc *
->>>>>> -get_crtc_from_states(const struct intel_plane_state *old_plane_state,
->>>>>> +get_crtc_from_states(struct intel_atomic_state *state,
->>>>>> +		     const struct intel_plane_state *old_plane_state,
->>>>>>  		     const struct intel_plane_state *new_plane_state)
->>>>>>  {
->>>>>> +	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
->>>>>> +	struct intel_plane *plane = to_intel_plane(new_plane_state->uapi.plane);
->>>>>> +
->>>>>>  	if (new_plane_state->uapi.crtc)
->>>>>>  		return to_intel_crtc(new_plane_state->uapi.crtc);
->>>>>>  
->>>>>>  	if (old_plane_state->uapi.crtc)
->>>>>>  		return to_intel_crtc(old_plane_state->uapi.crtc);
->>>>>>  
->>>>>> +	if (new_plane_state->bigjoiner_slave) {
->>>>>> +		const struct intel_plane_state *new_master_plane_state =
->>>>>> +			intel_atomic_get_new_plane_state(state, new_plane_state->bigjoiner_plane);
->>>>>> +
->>>>>> +		/* need to use uapi here, new_master_plane_state might not be copied to hw yet */
->>>>>> +		if (new_master_plane_state->uapi.crtc)
->>>>>> +			return intel_get_crtc_for_pipe(dev_priv, plane->pipe);
->>>>>> +	}
->>>>>> +
->>>>>> +	if (old_plane_state->bigjoiner_slave) {
->>>>>> +		const struct intel_plane_state *old_master_plane_state =
->>>>>> +			intel_atomic_get_old_plane_state(state, old_plane_state->bigjoiner_plane);
->>>>>> +
->>>>>> +		if (old_master_plane_state->uapi.crtc)
->>>>>> +			return intel_get_crtc_for_pipe(dev_priv, plane->pipe);
->>>>>> +	}
->>>>>> +
->>>>>>  	return NULL;
->>>>>>  }
->>>>>>  
->>>>>> @@ -339,18 +365,33 @@ int intel_plane_atomic_check(struct intel_atomic_state *state,
->>>>>>  		intel_atomic_get_new_plane_state(state, plane);
->>>>>>  	const struct intel_plane_state *old_plane_state =
->>>>>>  		intel_atomic_get_old_plane_state(state, plane);
->>>>>> +	const struct intel_plane_state *new_master_plane_state;
->>>>>>  	struct intel_crtc *crtc =
->>>>>> -		get_crtc_from_states(old_plane_state, new_plane_state);
->>>>>> +		get_crtc_from_states(state, old_plane_state,
->>>>>> +				     new_plane_state);
->>>>>>  	const struct intel_crtc_state *old_crtc_state;
->>>>>>  	struct intel_crtc_state *new_crtc_state;
->>>>>>  
->>>>>> -	intel_plane_copy_uapi_to_hw_state(new_plane_state, new_plane_state);
->>>>>> +	if (crtc)
->>>>>> +		new_crtc_state = intel_atomic_get_new_crtc_state(state, crtc);
->>>>>> +	else
->>>>>> +		new_crtc_state = NULL;
->>>>>> +
->>>>>> +	new_master_plane_state = new_plane_state;
->>>>>> +	if (new_plane_state->bigjoiner_slave)
->>>>>> +		new_master_plane_state =
->>>>>> +			intel_atomic_get_new_plane_state(state,
->>>>>> +							 new_plane_state->bigjoiner_plane);
->>>>>> +
->>>>>> +	intel_plane_copy_uapi_to_hw_state(new_crtc_state,
->>>>>> +					  new_plane_state,
->>>>>> +					  new_master_plane_state);
->>>>>> +
->>>>>>  	new_plane_state->uapi.visible = false;
->>>>>>  	if (!crtc)
->>>>>>  		return 0;
->>>>>>  
->>>>>>  	old_crtc_state = intel_atomic_get_old_crtc_state(state, crtc);
->>>>>> -	new_crtc_state = intel_atomic_get_new_crtc_state(state, crtc);
->>>>>>  
->>>>>>  	return intel_plane_atomic_check_with_state(old_crtc_state,
->>>>>>  						   new_crtc_state,
->>>>>> diff --git a/drivers/gpu/drm/i915/display/intel_atomic_plane.h b/drivers/gpu/drm/i915/display/intel_atomic_plane.h
->>>>>> index 59dd1fbb02ea..c2a1e7c86e6c 100644
->>>>>> --- a/drivers/gpu/drm/i915/display/intel_atomic_plane.h
->>>>>> +++ b/drivers/gpu/drm/i915/display/intel_atomic_plane.h
->>>>>> @@ -23,7 +23,8 @@ unsigned int intel_plane_pixel_rate(const struct intel_crtc_state *crtc_state,
->>>>>>  
->>>>>>  unsigned int intel_plane_data_rate(const struct intel_crtc_state *crtc_state,
->>>>>>  				   const struct intel_plane_state *plane_state);
->>>>>> -void intel_plane_copy_uapi_to_hw_state(struct intel_plane_state *plane_state,
->>>>>> +void intel_plane_copy_uapi_to_hw_state(const struct intel_crtc_state *crtc_state,
->>>>>> +				       struct intel_plane_state *plane_state,
->>>>>>  				       const struct intel_plane_state *from_plane_state);
->>>>>>  void intel_update_plane(struct intel_plane *plane,
->>>>>>  			const struct intel_crtc_state *crtc_state,
->>>>>> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
->>>>>> index c0715a3ea47b..579cccc1fd91 100644
->>>>>> --- a/drivers/gpu/drm/i915/display/intel_display.c
->>>>>> +++ b/drivers/gpu/drm/i915/display/intel_display.c
->>>>>> @@ -3718,7 +3718,7 @@ intel_find_initial_plane_obj(struct intel_crtc *intel_crtc,
->>>>>>  	drm_framebuffer_get(fb);
->>>>>>  
->>>>>>  	plane_state->crtc = &intel_crtc->base;
->>>>>> -	intel_plane_copy_uapi_to_hw_state(intel_state, intel_state);
->>>>>> +	intel_plane_copy_uapi_to_hw_state(crtc_state, intel_state, intel_state);
->>>>>>  
->>>>>>  	intel_frontbuffer_flush(to_intel_frontbuffer(fb), ORIGIN_DIRTYFB);
->>>>>>  
->>>>>> @@ -12801,26 +12801,180 @@ static bool check_single_encoder_cloning(struct intel_atomic_state *state,
->>>>>>  	return true;
->>>>>>  }
->>>>>>  
->>>>>> +static int icl_unset_bigjoiner_plane_links(struct intel_atomic_state *state,
->>>>>> +					   struct intel_crtc_state *new_crtc_state)
->>>>>> +{
->>>>>> +	struct intel_crtc *crtc = to_intel_crtc(new_crtc_state->uapi.crtc);
->>>>>> +	struct intel_plane *plane;
->>>>>> +
->>>>>> +	/*
->>>>>> +	 * Teardown the old bigjoiner plane mappings.
->>>>>> +	 */
->>>>>> +	for_each_intel_plane_on_crtc(crtc->base.dev, crtc, plane) {
->>>>>> +		struct intel_plane_state *plane_state, *other_plane_state;
->>>>>> +		struct intel_plane *other_plane;
->>>>>> +
->>>>>> +		plane_state = intel_atomic_get_plane_state(state, plane);
->>>>>> +		if (IS_ERR(plane_state))
->>>>>> +			return PTR_ERR(plane_state);
->>>>>> +
->>>>>> +		other_plane = plane_state->bigjoiner_plane;
->>>>>> +		if (!other_plane)
->>>>>> +			continue;
->>>>>> +
->>>>>> +		plane_state->bigjoiner_plane = NULL;
->>>>>> +		plane_state->bigjoiner_slave = false;
->>>>>> +
->>>>>> +		other_plane_state = intel_atomic_get_plane_state(state, other_plane);
->>>>>> +		if (IS_ERR(other_plane_state))
->>>>>> +			return PTR_ERR(other_plane_state);
->>>>>> +		other_plane_state->bigjoiner_plane = NULL;
->>>>>> +		other_plane_state->bigjoiner_slave = false;
->>>>> Why would we even need this bigjoiner stuff in the planes? AFAICS about
->>>>> the only thing we should need is someting like
->>>>>
->>>>> for_each_plane_on_master()
->>>>> 	add_same_plane_on_slave()
->>>>>
->>>>> somewhere before we do the plane->check() stuff. I guess start
->>>>> of intel_atomic_check_planes() could be the right spot.
->>>>>
->>>> Yes may be but honestly I leave this optimization/change to the original
->>>> author Maarten or you as a follow up
->>> I don't want to see several hundred lines of totally uneccessary code
->>> added. If it's buggy (which it may very well be because it's too big to
->>> review properly) we are going to have to revert it anyway. If anything
->>> else has changed in the same code the revertr is going to be a huge
->>> pain.
->>>
->> This entire patch just does the linking of planes and there is no
->> unnecessary code.
-> Yes there is. Each plane should have a proper hw state so there 
-> should be absolutely no need for this linking stuff.
->
->> Also since I am just a carrier of this code and not
->> the original author I dont know how this can be simplified
->> without breaking the functionality. 
-> You don't understand the code, I don't understand the code. How do
-> you suggest we can merge this? If there is any problem with the code
-> we have no choice but a full revert.
+== Series Details ==
 
-Hey,
+Series: drm/i915/jsl: Disable cursor clock gating in HDR mode
+URL   : https://patchwork.freedesktop.org/series/83142/
+State : success
 
-There's good reason to link the planes. The reason is similar to linking Y and CbCr planes.
-You're completely correct that hardware programming doesn't need the linking, and planes are
-in theory standalone.
+== Summary ==
 
-But there's also atomic. The lifetime of plane_state on the bigjoiner slave plane must be
-linked to the lifetime of the master plane. Otherwise if you do a commit on the master plane,
-you may get a use after free on slave. To prevent this I just linked them together. :)
+CI Bug Log - changes from CI_DRM_9209 -> Patchwork_18797
+====================================================
 
-~Maarten
+Summary
+-------
 
-~Maarten
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18797/index.html
+
+New tests
+---------
+
+  New tests have been introduced between CI_DRM_9209 and Patchwork_18797:
+
+### New CI tests (1) ###
+
+  * boot:
+    - Statuses : 40 pass(s)
+    - Exec time: [0.0] s
+
+  
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_18797 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@core_hotunplug@unbind-rebind:
+    - fi-tgl-u2:          [PASS][1] -> [DMESG-WARN][2] ([i915#1982])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9209/fi-tgl-u2/igt@core_hotunplug@unbind-rebind.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18797/fi-tgl-u2/igt@core_hotunplug@unbind-rebind.html
+
+  * igt@gem_exec_create@basic:
+    - fi-tgl-y:           [PASS][3] -> [DMESG-WARN][4] ([i915#402])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9209/fi-tgl-y/igt@gem_exec_create@basic.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18797/fi-tgl-y/igt@gem_exec_create@basic.html
+
+  * igt@gem_exec_suspend@basic-s3:
+    - fi-tgl-u2:          [PASS][5] -> [FAIL][6] ([i915#1888])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9209/fi-tgl-u2/igt@gem_exec_suspend@basic-s3.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18797/fi-tgl-u2/igt@gem_exec_suspend@basic-s3.html
+
+  * igt@i915_module_load@reload:
+    - fi-apl-guc:         [PASS][7] -> [DMESG-WARN][8] ([i915#1635] / [i915#1982])
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9209/fi-apl-guc/igt@i915_module_load@reload.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18797/fi-apl-guc/igt@i915_module_load@reload.html
+
+  * igt@kms_chamelium@dp-crc-fast:
+    - fi-cml-u2:          [PASS][9] -> [FAIL][10] ([i915#1161] / [i915#262])
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9209/fi-cml-u2/igt@kms_chamelium@dp-crc-fast.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18797/fi-cml-u2/igt@kms_chamelium@dp-crc-fast.html
+
+  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:
+    - fi-bsw-kefka:       [PASS][11] -> [DMESG-WARN][12] ([i915#1982]) +1 similar issue
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9209/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18797/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
+
+  * igt@kms_psr@cursor_plane_move:
+    - fi-cml-u2:          [PASS][13] -> [INCOMPLETE][14] ([i915#2606])
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9209/fi-cml-u2/igt@kms_psr@cursor_plane_move.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18797/fi-cml-u2/igt@kms_psr@cursor_plane_move.html
+
+  * igt@kms_psr@primary_mmap_gtt:
+    - fi-cml-s:           [PASS][15] -> [INCOMPLETE][16] ([i915#2606])
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9209/fi-cml-s/igt@kms_psr@primary_mmap_gtt.html
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18797/fi-cml-s/igt@kms_psr@primary_mmap_gtt.html
+
+  * igt@vgem_basic@unload:
+    - fi-skl-guc:         [PASS][17] -> [DMESG-WARN][18] ([i915#2203])
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9209/fi-skl-guc/igt@vgem_basic@unload.html
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18797/fi-skl-guc/igt@vgem_basic@unload.html
+
+  
+#### Possible fixes ####
+
+  * igt@debugfs_test@read_all_entries:
+    - {fi-kbl-7560u}:     [INCOMPLETE][19] ([i915#2417]) -> [PASS][20]
+   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9209/fi-kbl-7560u/igt@debugfs_test@read_all_entries.html
+   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18797/fi-kbl-7560u/igt@debugfs_test@read_all_entries.html
+
+  * igt@kms_chamelium@dp-crc-fast:
+    - fi-icl-u2:          [INCOMPLETE][21] ([i915#2606]) -> [PASS][22]
+   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9209/fi-icl-u2/igt@kms_chamelium@dp-crc-fast.html
+   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18797/fi-icl-u2/igt@kms_chamelium@dp-crc-fast.html
+
+  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:
+    - fi-byt-j1900:       [DMESG-WARN][23] ([i915#1982]) -> [PASS][24]
+   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9209/fi-byt-j1900/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
+   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18797/fi-byt-j1900/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
+    - fi-apl-guc:         [DMESG-WARN][25] ([i915#1635] / [i915#1982]) -> [PASS][26]
+   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9209/fi-apl-guc/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
+   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18797/fi-apl-guc/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
+
+  * igt@kms_flip@basic-flip-vs-modeset@d-dsi1:
+    - {fi-tgl-dsi}:       [DMESG-WARN][27] ([i915#1982]) -> [PASS][28]
+   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9209/fi-tgl-dsi/igt@kms_flip@basic-flip-vs-modeset@d-dsi1.html
+   [28]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18797/fi-tgl-dsi/igt@kms_flip@basic-flip-vs-modeset@d-dsi1.html
+
+  * igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-b:
+    - fi-tgl-y:           [DMESG-WARN][29] ([i915#1982]) -> [PASS][30]
+   [29]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9209/fi-tgl-y/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-b.html
+   [30]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18797/fi-tgl-y/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-b.html
+
+  * igt@kms_psr@primary_page_flip:
+    - fi-tgl-y:           [INCOMPLETE][31] ([i915#2606]) -> [PASS][32]
+   [31]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9209/fi-tgl-y/igt@kms_psr@primary_page_flip.html
+   [32]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18797/fi-tgl-y/igt@kms_psr@primary_page_flip.html
+    - fi-kbl-soraka:      [INCOMPLETE][33] ([i915#2606]) -> [PASS][34]
+   [33]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9209/fi-kbl-soraka/igt@kms_psr@primary_page_flip.html
+   [34]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18797/fi-kbl-soraka/igt@kms_psr@primary_page_flip.html
+
+  
+#### Warnings ####
+
+  * igt@core_hotunplug@unbind-rebind:
+    - fi-skl-6700k2:      [DMESG-WARN][35] ([i915#1982] / [i915#2203]) -> [DMESG-WARN][36] ([i915#2203])
+   [35]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9209/fi-skl-6700k2/igt@core_hotunplug@unbind-rebind.html
+   [36]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18797/fi-skl-6700k2/igt@core_hotunplug@unbind-rebind.html
+
+  * igt@i915_pm_rpm@basic-pci-d3-state:
+    - fi-kbl-guc:         [DMESG-FAIL][37] ([i915#2203]) -> [SKIP][38] ([fdo#109271])
+   [37]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9209/fi-kbl-guc/igt@i915_pm_rpm@basic-pci-d3-state.html
+   [38]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18797/fi-kbl-guc/igt@i915_pm_rpm@basic-pci-d3-state.html
+
+  * igt@runner@aborted:
+    - fi-cfl-8109u:       [FAIL][39] -> [FAIL][40] ([k.org#202107] / [k.org#202109])
+   [39]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9209/fi-cfl-8109u/igt@runner@aborted.html
+   [40]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18797/fi-cfl-8109u/igt@runner@aborted.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [i915#1161]: https://gitlab.freedesktop.org/drm/intel/issues/1161
+  [i915#1635]: https://gitlab.freedesktop.org/drm/intel/issues/1635
+  [i915#1784]: https://gitlab.freedesktop.org/drm/intel/issues/1784
+  [i915#1814]: https://gitlab.freedesktop.org/drm/intel/issues/1814
+  [i915#1888]: https://gitlab.freedesktop.org/drm/intel/issues/1888
+  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
+  [i915#2203]: https://gitlab.freedesktop.org/drm/intel/issues/2203
+  [i915#2417]: https://gitlab.freedesktop.org/drm/intel/issues/2417
+  [i915#2606]: https://gitlab.freedesktop.org/drm/intel/issues/2606
+  [i915#262]: https://gitlab.freedesktop.org/drm/intel/issues/262
+  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
+  [k.org#202107]: https://bugzilla.kernel.org/show_bug.cgi?id=202107
+  [k.org#202109]: https://bugzilla.kernel.org/show_bug.cgi?id=202109
 
 
---------------85F0D60842EEB4493FE0B519
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: 8bit
+Participating hosts (42 -> 40)
+------------------------------
 
-<html>
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  </head>
-  <body>
-    <div class="moz-cite-prefix">Op 27-10-2020 om 20:11 schreef Ville
-      Syrjälä:<br>
-    </div>
-    <blockquote type="cite" cite="mid:20201027191150.GP6112@intel.com">
-      <pre class="moz-quote-pre" wrap="">On Tue, Oct 27, 2020 at 11:19:16AM -0700, Navare, Manasi wrote:
-</pre>
-      <blockquote type="cite">
-        <pre class="moz-quote-pre" wrap="">On Tue, Oct 27, 2020 at 03:42:30PM +0200, Ville Syrjälä wrote:
-</pre>
-        <blockquote type="cite">
-          <pre class="moz-quote-pre" wrap="">On Mon, Oct 26, 2020 at 03:41:48PM -0700, Navare, Manasi wrote:
-</pre>
-          <blockquote type="cite">
-            <pre class="moz-quote-pre" wrap="">On Mon, Oct 26, 2020 at 10:18:54PM +0200, Ville Syrjälä wrote:
-</pre>
-            <blockquote type="cite">
-              <pre class="moz-quote-pre" wrap="">On Wed, Oct 21, 2020 at 10:42:21PM -0700, Manasi Navare wrote:
-</pre>
-              <blockquote type="cite">
-                <pre class="moz-quote-pre" wrap="">From: Maarten Lankhorst <a class="moz-txt-link-rfc2396E" href="mailto:maarten.lankhorst@linux.intel.com">&lt;maarten.lankhorst@linux.intel.com&gt;</a>
+  Missing    (2): fi-bsw-cyan fi-bdw-samus 
 
- Make sure that when a plane is set in a bigjoiner mode, we will add
- their counterpart to the atomic state as well. This will allow us to
- make sure all state is available when planes are checked.
 
-Because of the funny interactions with bigjoiner and planar YUV
-formats, we may end up adding a lot of planes, so we have to keep
-iterating until we no longer add any planes.
+Build changes
+-------------
 
-Also fix the atomic intel plane iterator, so things watermarks start
-working automagically.
+  * Linux: CI_DRM_9209 -> Patchwork_18797
 
-v6:
-* Fix from_plane_state assignments (Manasi)
-v5:
-* Rebase after adding sagv support (Manasi)
-v4:
-* Manual rebase (Manasi)
-Changes since v1:
-- Rebase on top of plane_state split, cleaning up the code a lot.
-- Make intel_atomic_crtc_state_for_each_plane_state() bigjoiner capable.
-- Add iter macro to intel_atomic_crtc_state_for_each_plane_state() to
-  keep iteration working.
-Changes since v2:
-- Add icl_(un)set_bigjoiner_plane_links, to make it more clear where
-  links are made and broken.
+  CI-20190529: 20190529
+  CI_DRM_9209: 4fae4e56ba6454058fd74317a457c8636b4c4613 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5827: 7fd7e3fb8b42eb4e62a4575f6edc5a048e5bec3d @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_18797: 9a0596db58682508c4dce9202e1ea78a3983afdc @ git://anongit.freedesktop.org/gfx-ci/linux
 
-Signed-off-by: Maarten Lankhorst <a class="moz-txt-link-rfc2396E" href="mailto:maarten.lankhorst@linux.intel.com">&lt;maarten.lankhorst@linux.intel.com&gt;</a>
-Signed-off-by: Manasi Navare <a class="moz-txt-link-rfc2396E" href="mailto:manasi.d.navare@intel.com">&lt;manasi.d.navare@intel.com&gt;</a>
----
- .../gpu/drm/i915/display/intel_atomic_plane.c |  53 ++++-
- .../gpu/drm/i915/display/intel_atomic_plane.h |   3 +-
- drivers/gpu/drm/i915/display/intel_display.c  | 207 ++++++++++++++++--
- drivers/gpu/drm/i915/display/intel_display.h  |  20 +-
- .../drm/i915/display/intel_display_types.h    |  11 +
- drivers/gpu/drm/i915/intel_pm.c               |  20 +-
- 6 files changed, 274 insertions(+), 40 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_atomic_plane.c b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-index 3334ff253600..5df928f8f322 100644
---- a/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-+++ b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-@@ -246,12 +246,17 @@ static void intel_plane_clear_hw_state(struct intel_plane_state *plane_state)
- 	memset(&amp;plane_state-&gt;hw, 0, sizeof(plane_state-&gt;hw));
- }
- 
--void intel_plane_copy_uapi_to_hw_state(struct intel_plane_state *plane_state,
-+void intel_plane_copy_uapi_to_hw_state(const struct intel_crtc_state *crtc_state,
-+				       struct intel_plane_state *plane_state,
- 				       const struct intel_plane_state *from_plane_state)
- {
- 	intel_plane_clear_hw_state(plane_state);
- 
--	plane_state-&gt;hw.crtc = from_plane_state-&gt;uapi.crtc;
-+	if (from_plane_state-&gt;uapi.crtc)
-+		plane_state-&gt;hw.crtc = crtc_state-&gt;uapi.crtc;
-+	else
-+		plane_state-&gt;hw.crtc = NULL;
-+
- 	plane_state-&gt;hw.fb = from_plane_state-&gt;uapi.fb;
- 	if (plane_state-&gt;hw.fb)
- 		drm_framebuffer_get(plane_state-&gt;hw.fb);
-@@ -320,15 +325,36 @@ int intel_plane_atomic_check_with_state(const struct intel_crtc_state *old_crtc_
- }
- 
- static struct intel_crtc *
--get_crtc_from_states(const struct intel_plane_state *old_plane_state,
-+get_crtc_from_states(struct intel_atomic_state *state,
-+		     const struct intel_plane_state *old_plane_state,
- 		     const struct intel_plane_state *new_plane_state)
- {
-+	struct drm_i915_private *dev_priv = to_i915(state-&gt;base.dev);
-+	struct intel_plane *plane = to_intel_plane(new_plane_state-&gt;uapi.plane);
-+
- 	if (new_plane_state-&gt;uapi.crtc)
- 		return to_intel_crtc(new_plane_state-&gt;uapi.crtc);
- 
- 	if (old_plane_state-&gt;uapi.crtc)
- 		return to_intel_crtc(old_plane_state-&gt;uapi.crtc);
- 
-+	if (new_plane_state-&gt;bigjoiner_slave) {
-+		const struct intel_plane_state *new_master_plane_state =
-+			intel_atomic_get_new_plane_state(state, new_plane_state-&gt;bigjoiner_plane);
-+
-+		/* need to use uapi here, new_master_plane_state might not be copied to hw yet */
-+		if (new_master_plane_state-&gt;uapi.crtc)
-+			return intel_get_crtc_for_pipe(dev_priv, plane-&gt;pipe);
-+	}
-+
-+	if (old_plane_state-&gt;bigjoiner_slave) {
-+		const struct intel_plane_state *old_master_plane_state =
-+			intel_atomic_get_old_plane_state(state, old_plane_state-&gt;bigjoiner_plane);
-+
-+		if (old_master_plane_state-&gt;uapi.crtc)
-+			return intel_get_crtc_for_pipe(dev_priv, plane-&gt;pipe);
-+	}
-+
- 	return NULL;
- }
- 
-@@ -339,18 +365,33 @@ int intel_plane_atomic_check(struct intel_atomic_state *state,
- 		intel_atomic_get_new_plane_state(state, plane);
- 	const struct intel_plane_state *old_plane_state =
- 		intel_atomic_get_old_plane_state(state, plane);
-+	const struct intel_plane_state *new_master_plane_state;
- 	struct intel_crtc *crtc =
--		get_crtc_from_states(old_plane_state, new_plane_state);
-+		get_crtc_from_states(state, old_plane_state,
-+				     new_plane_state);
- 	const struct intel_crtc_state *old_crtc_state;
- 	struct intel_crtc_state *new_crtc_state;
- 
--	intel_plane_copy_uapi_to_hw_state(new_plane_state, new_plane_state);
-+	if (crtc)
-+		new_crtc_state = intel_atomic_get_new_crtc_state(state, crtc);
-+	else
-+		new_crtc_state = NULL;
-+
-+	new_master_plane_state = new_plane_state;
-+	if (new_plane_state-&gt;bigjoiner_slave)
-+		new_master_plane_state =
-+			intel_atomic_get_new_plane_state(state,
-+							 new_plane_state-&gt;bigjoiner_plane);
-+
-+	intel_plane_copy_uapi_to_hw_state(new_crtc_state,
-+					  new_plane_state,
-+					  new_master_plane_state);
-+
- 	new_plane_state-&gt;uapi.visible = false;
- 	if (!crtc)
- 		return 0;
- 
- 	old_crtc_state = intel_atomic_get_old_crtc_state(state, crtc);
--	new_crtc_state = intel_atomic_get_new_crtc_state(state, crtc);
- 
- 	return intel_plane_atomic_check_with_state(old_crtc_state,
- 						   new_crtc_state,
-diff --git a/drivers/gpu/drm/i915/display/intel_atomic_plane.h b/drivers/gpu/drm/i915/display/intel_atomic_plane.h
-index 59dd1fbb02ea..c2a1e7c86e6c 100644
---- a/drivers/gpu/drm/i915/display/intel_atomic_plane.h
-+++ b/drivers/gpu/drm/i915/display/intel_atomic_plane.h
-@@ -23,7 +23,8 @@ unsigned int intel_plane_pixel_rate(const struct intel_crtc_state *crtc_state,
- 
- unsigned int intel_plane_data_rate(const struct intel_crtc_state *crtc_state,
- 				   const struct intel_plane_state *plane_state);
--void intel_plane_copy_uapi_to_hw_state(struct intel_plane_state *plane_state,
-+void intel_plane_copy_uapi_to_hw_state(const struct intel_crtc_state *crtc_state,
-+				       struct intel_plane_state *plane_state,
- 				       const struct intel_plane_state *from_plane_state);
- void intel_update_plane(struct intel_plane *plane,
- 			const struct intel_crtc_state *crtc_state,
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index c0715a3ea47b..579cccc1fd91 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -3718,7 +3718,7 @@ intel_find_initial_plane_obj(struct intel_crtc *intel_crtc,
- 	drm_framebuffer_get(fb);
- 
- 	plane_state-&gt;crtc = &amp;intel_crtc-&gt;base;
--	intel_plane_copy_uapi_to_hw_state(intel_state, intel_state);
-+	intel_plane_copy_uapi_to_hw_state(crtc_state, intel_state, intel_state);
- 
- 	intel_frontbuffer_flush(to_intel_frontbuffer(fb), ORIGIN_DIRTYFB);
- 
-@@ -12801,26 +12801,180 @@ static bool check_single_encoder_cloning(struct intel_atomic_state *state,
- 	return true;
- }
- 
-+static int icl_unset_bigjoiner_plane_links(struct intel_atomic_state *state,
-+					   struct intel_crtc_state *new_crtc_state)
-+{
-+	struct intel_crtc *crtc = to_intel_crtc(new_crtc_state-&gt;uapi.crtc);
-+	struct intel_plane *plane;
-+
-+	/*
-+	 * Teardown the old bigjoiner plane mappings.
-+	 */
-+	for_each_intel_plane_on_crtc(crtc-&gt;base.dev, crtc, plane) {
-+		struct intel_plane_state *plane_state, *other_plane_state;
-+		struct intel_plane *other_plane;
-+
-+		plane_state = intel_atomic_get_plane_state(state, plane);
-+		if (IS_ERR(plane_state))
-+			return PTR_ERR(plane_state);
-+
-+		other_plane = plane_state-&gt;bigjoiner_plane;
-+		if (!other_plane)
-+			continue;
-+
-+		plane_state-&gt;bigjoiner_plane = NULL;
-+		plane_state-&gt;bigjoiner_slave = false;
-+
-+		other_plane_state = intel_atomic_get_plane_state(state, other_plane);
-+		if (IS_ERR(other_plane_state))
-+			return PTR_ERR(other_plane_state);
-+		other_plane_state-&gt;bigjoiner_plane = NULL;
-+		other_plane_state-&gt;bigjoiner_slave = false;
-</pre>
-              </blockquote>
-              <pre class="moz-quote-pre" wrap="">
-Why would we even need this bigjoiner stuff in the planes? AFAICS about
-the only thing we should need is someting like
+== Linux commits ==
 
-for_each_plane_on_master()
-	add_same_plane_on_slave()
+9a0596db5868 drm/i915/jsl: Disable cursor clock gating in HDR mode
 
-somewhere before we do the plane-&gt;check() stuff. I guess start
-of intel_atomic_check_planes() could be the right spot.
+== Logs ==
 
-</pre>
-            </blockquote>
-            <pre class="moz-quote-pre" wrap="">
-Yes may be but honestly I leave this optimization/change to the original
-author Maarten or you as a follow up
-</pre>
-          </blockquote>
-          <pre class="moz-quote-pre" wrap="">
-I don't want to see several hundred lines of totally uneccessary code
-added. If it's buggy (which it may very well be because it's too big to
-review properly) we are going to have to revert it anyway. If anything
-else has changed in the same code the revertr is going to be a huge
-pain.
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18797/index.html
 
-</pre>
-        </blockquote>
-        <pre class="moz-quote-pre" wrap="">
-This entire patch just does the linking of planes and there is no
-unnecessary code.
-</pre>
-      </blockquote>
-      <pre class="moz-quote-pre" wrap="">
-Yes there is. Each plane should have a proper hw state so there 
-should be absolutely no need for this linking stuff.
+--===============1910114961492044322==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-</pre>
-      <blockquote type="cite">
-        <pre class="moz-quote-pre" wrap="">Also since I am just a carrier of this code and not
-the original author I dont know how this can be simplified
-without breaking the functionality. 
-</pre>
-      </blockquote>
-      <pre class="moz-quote-pre" wrap="">
-You don't understand the code, I don't understand the code. How do
-you suggest we can merge this? If there is any problem with the code
-we have no choice but a full revert.
-</pre>
-    </blockquote>
-    <p>Hey,</p>
-    <pre>There's good reason to link the planes. The reason is similar to linking Y and CbCr planes.
-You're completely correct that hardware programming doesn't need the linking, and planes are
-in theory standalone.
 
-But there's also atomic. The lifetime of plane_state on the bigjoiner slave plane must be
-linked to the lifetime of the master plane. Otherwise if you do a commit on the master plane,
-you may get a use after free on slave. To prevent this I just linked them together. :)
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
 
-~Maarten
 
-~Maarten
-</pre>
-  </body>
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/jsl: Disable cursor clock gating in HDR mode</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/83142/">https://patchwork.freedesktop.org/series/83142/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18797/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18797/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_9209 -&gt; Patchwork_18797</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18797/index.html</p>
+<h2>New tests</h2>
+<p>New tests have been introduced between CI_DRM_9209 and Patchwork_18797:</p>
+<h3>New CI tests (1)</h3>
+<ul>
+<li>boot:<ul>
+<li>Statuses : 40 pass(s)</li>
+<li>Exec time: [0.0] s</li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_18797 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@core_hotunplug@unbind-rebind:</p>
+<ul>
+<li>fi-tgl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9209/fi-tgl-u2/igt@core_hotunplug@unbind-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18797/fi-tgl-u2/igt@core_hotunplug@unbind-rebind.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_exec_create@basic:</p>
+<ul>
+<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9209/fi-tgl-y/igt@gem_exec_create@basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18797/fi-tgl-y/igt@gem_exec_create@basic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_exec_suspend@basic-s3:</p>
+<ul>
+<li>fi-tgl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9209/fi-tgl-u2/igt@gem_exec_suspend@basic-s3.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18797/fi-tgl-u2/igt@gem_exec_suspend@basic-s3.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1888">i915#1888</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_module_load@reload:</p>
+<ul>
+<li>fi-apl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9209/fi-apl-guc/igt@i915_module_load@reload.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18797/fi-apl-guc/igt@i915_module_load@reload.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1635">i915#1635</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium@dp-crc-fast:</p>
+<ul>
+<li>fi-cml-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9209/fi-cml-u2/igt@kms_chamelium@dp-crc-fast.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18797/fi-cml-u2/igt@kms_chamelium@dp-crc-fast.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1161">i915#1161</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/262">i915#262</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:</p>
+<ul>
+<li>fi-bsw-kefka:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9209/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18797/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>) +1 similar issue</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_psr@cursor_plane_move:</p>
+<ul>
+<li>fi-cml-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9209/fi-cml-u2/igt@kms_psr@cursor_plane_move.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18797/fi-cml-u2/igt@kms_psr@cursor_plane_move.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2606">i915#2606</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_psr@primary_mmap_gtt:</p>
+<ul>
+<li>fi-cml-s:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9209/fi-cml-s/igt@kms_psr@primary_mmap_gtt.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18797/fi-cml-s/igt@kms_psr@primary_mmap_gtt.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2606">i915#2606</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@vgem_basic@unload:</p>
+<ul>
+<li>fi-skl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9209/fi-skl-guc/igt@vgem_basic@unload.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18797/fi-skl-guc/igt@vgem_basic@unload.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2203">i915#2203</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@debugfs_test@read_all_entries:</p>
+<ul>
+<li>{fi-kbl-7560u}:     <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9209/fi-kbl-7560u/igt@debugfs_test@read_all_entries.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2417">i915#2417</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18797/fi-kbl-7560u/igt@debugfs_test@read_all_entries.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium@dp-crc-fast:</p>
+<ul>
+<li>fi-icl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9209/fi-icl-u2/igt@kms_chamelium@dp-crc-fast.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2606">i915#2606</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18797/fi-icl-u2/igt@kms_chamelium@dp-crc-fast.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:</p>
+<ul>
+<li>
+<p>fi-byt-j1900:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9209/fi-byt-j1900/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18797/fi-byt-j1900/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html">PASS</a></p>
+</li>
+<li>
+<p>fi-apl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9209/fi-apl-guc/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1635">i915#1635</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18797/fi-apl-guc/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html">PASS</a></p>
+</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_flip@basic-flip-vs-modeset@d-dsi1:</p>
+<ul>
+<li>{fi-tgl-dsi}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9209/fi-tgl-dsi/igt@kms_flip@basic-flip-vs-modeset@d-dsi1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18797/fi-tgl-dsi/igt@kms_flip@basic-flip-vs-modeset@d-dsi1.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-b:</p>
+<ul>
+<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9209/fi-tgl-y/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-b.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18797/fi-tgl-y/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-b.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_psr@primary_page_flip:</p>
+<ul>
+<li>
+<p>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9209/fi-tgl-y/igt@kms_psr@primary_page_flip.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2606">i915#2606</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18797/fi-tgl-y/igt@kms_psr@primary_page_flip.html">PASS</a></p>
+</li>
+<li>
+<p>fi-kbl-soraka:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9209/fi-kbl-soraka/igt@kms_psr@primary_page_flip.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2606">i915#2606</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18797/fi-kbl-soraka/igt@kms_psr@primary_page_flip.html">PASS</a></p>
+</li>
+</ul>
+</li>
+</ul>
+<h4>Warnings</h4>
+<ul>
+<li>
+<p>igt@core_hotunplug@unbind-rebind:</p>
+<ul>
+<li>fi-skl-6700k2:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9209/fi-skl-6700k2/igt@core_hotunplug@unbind-rebind.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2203">i915#2203</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18797/fi-skl-6700k2/igt@core_hotunplug@unbind-rebind.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2203">i915#2203</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_pm_rpm@basic-pci-d3-state:</p>
+<ul>
+<li>fi-kbl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9209/fi-kbl-guc/igt@i915_pm_rpm@basic-pci-d3-state.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2203">i915#2203</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18797/fi-kbl-guc/igt@i915_pm_rpm@basic-pci-d3-state.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@runner@aborted:</p>
+<ul>
+<li>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9209/fi-cfl-8109u/igt@runner@aborted.html">FAIL</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18797/fi-cfl-8109u/igt@runner@aborted.html">FAIL</a> (<a href="https://bugzilla.kernel.org/show_bug.cgi?id=202107">k.org#202107</a> / <a href="https://bugzilla.kernel.org/show_bug.cgi?id=202109">k.org#202109</a>)</li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Participating hosts (42 -&gt; 40)</h2>
+<p>Missing    (2): fi-bsw-cyan fi-bdw-samus </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_9209 -&gt; Patchwork_18797</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_9209: 4fae4e56ba6454058fd74317a457c8636b4c4613 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_5827: 7fd7e3fb8b42eb4e62a4575f6edc5a048e5bec3d @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
+  Patchwork_18797: 9a0596db58682508c4dce9202e1ea78a3983afdc @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>9a0596db5868 drm/i915/jsl: Disable cursor clock gating in HDR mode</p>
+
+</body>
 </html>
 
---------------85F0D60842EEB4493FE0B519--
+--===============1910114961492044322==--
 
---===============0678169579==
+--===============0035108893==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -628,4 +447,4 @@ Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 
---===============0678169579==--
+--===============0035108893==--
