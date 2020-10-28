@@ -1,38 +1,38 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D878D29D004
-	for <lists+intel-gfx@lfdr.de>; Wed, 28 Oct 2020 14:27:16 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2AC1029D062
+	for <lists+intel-gfx@lfdr.de>; Wed, 28 Oct 2020 15:40:05 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 44B726E112;
-	Wed, 28 Oct 2020 13:27:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3D5286E53C;
+	Wed, 28 Oct 2020 14:40:03 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
- by gabe.freedesktop.org (Postfix) with ESMTP id 4F1B86E112;
- Wed, 28 Oct 2020 13:27:13 +0000 (UTC)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
- by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 83F4A1766;
- Wed, 28 Oct 2020 06:27:12 -0700 (PDT)
-Received: from e110455-lin.cambridge.arm.com (usa-sjc-imap-foss1.foss.arm.com
- [10.121.207.14])
- by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 636513F66E;
- Wed, 28 Oct 2020 06:27:12 -0700 (PDT)
-Received: by e110455-lin.cambridge.arm.com (Postfix, from userid 1000)
- id 1B094683244; Wed, 28 Oct 2020 13:27:11 +0000 (GMT)
-Date: Wed, 28 Oct 2020 13:27:11 +0000
-From: Liviu Dudau <liviu.dudau@arm.com>
-To: Daniel Vetter <daniel.vetter@ffwll.ch>
-Message-ID: <20201028132711.GL1008493@e110455-lin.cambridge.arm.com>
-References: <20201021163242.1458885-1-daniel.vetter@ffwll.ch>
- <20201023122216.2373294-1-daniel.vetter@ffwll.ch>
- <20201023122216.2373294-10-daniel.vetter@ffwll.ch>
-MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20201023122216.2373294-10-daniel.vetter@ffwll.ch>
-Subject: Re: [Intel-gfx] [PATCH 10/65] drm/malidp: Annotate dma-fence
- critical section in commit path
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B50EA6E53C
+ for <intel-gfx@lists.freedesktop.org>; Wed, 28 Oct 2020 14:40:01 +0000 (UTC)
+IronPort-SDR: nGqDwTitziYCGtgGk6k6YdUaCfp35sEpKF7jpVxGEh4+DgXNIJz7g13N/3n/XZPehXHZKZGFRH
+ cnKrlh3iD2ew==
+X-IronPort-AV: E=McAfee;i="6000,8403,9787"; a="148123922"
+X-IronPort-AV: E=Sophos;i="5.77,426,1596524400"; d="scan'208";a="148123922"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Oct 2020 07:39:57 -0700
+IronPort-SDR: oaEe4BsgbQ+wGYGDBBH2g5lLJT3Yv5Dt3UZ307iqqDNRpki9dRv0VE8lqrH5iyowNeIlEwiE1r
+ wbrJ+z+QEe8w==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.77,426,1596524400"; d="scan'208";a="351029965"
+Received: from shawnle1-build-machine.itwn.intel.com ([10.5.253.9])
+ by fmsmga004.fm.intel.com with ESMTP; 28 Oct 2020 07:39:55 -0700
+From: Lee Shawn C <shawn.c.lee@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Wed, 28 Oct 2020 22:43:12 +0800
+Message-Id: <20201028144312.12520-1-shawn.c.lee@intel.com>
+X-Mailer: git-send-email 2.17.1
+Subject: [Intel-gfx] [PATCH] drm/i915/rkl: new rkl ddc map for different PCH
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,44 +45,92 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Daniel Vetter <daniel.vetter@intel.com>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- Mihail Atanassov <mihail.atanassov@arm.com>,
- "James \(Qian\) Wang" <james.qian.wang@arm.com>,
- DRI Development <dri-devel@lists.freedesktop.org>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: Cooper Chiou <cooper.chiou@intel.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gRnJpLCBPY3QgMjMsIDIwMjAgYXQgMDI6MjE6MjFQTSArMDIwMCwgRGFuaWVsIFZldHRlciB3
-cm90ZToKPiBBZ2FpbiBuZWVkcyB0byBiZSBwdXQgcmlnaHQgYWZ0ZXIgdGhlIGNhbGwgdG8KPiBk
-cm1fYXRvbWljX2hlbHBlcl9jb21taXRfaHdfZG9uZSgpLCBzaW5jZSB0aGF0J3MgdGhlIGxhc3Qg
-dGhpbmcgd2hpY2gKPiBjYW4gaG9sZCB1cCBhIHN1YnNlcXVlbnQgYXRvbWljIGNvbW1pdC4KPiAK
-PiBObyBzdXJwcmlzZXMgaGVyZS4KPiAKPiBTaWduZWQtb2ZmLWJ5OiBEYW5pZWwgVmV0dGVyIDxk
-YW5pZWwudmV0dGVyQGludGVsLmNvbT4KPiBDYzogIkphbWVzIChRaWFuKSBXYW5nIiA8amFtZXMu
-cWlhbi53YW5nQGFybS5jb20+Cj4gQ2M6IExpdml1IER1ZGF1IDxsaXZpdS5kdWRhdUBhcm0uY29t
-PgoKQWNrZWQtYnk6IExpdml1IER1ZGF1IDxsaXZpdS5kdWRhdUBhcm0uY29tPgoKVGhhbmtzIGZv
-ciB0aGUgcGF0Y2ghCgpCZXN0IHJlZ2FyZHMsCkxpdml1Cgo+IENjOiBNaWhhaWwgQXRhbmFzc292
-IDxtaWhhaWwuYXRhbmFzc292QGFybS5jb20+Cj4gLS0tCj4gIGRyaXZlcnMvZ3B1L2RybS9hcm0v
-bWFsaWRwX2Rydi5jIHwgMyArKysKPiAgMSBmaWxlIGNoYW5nZWQsIDMgaW5zZXJ0aW9ucygrKQo+
-IAo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vYXJtL21hbGlkcF9kcnYuYyBiL2RyaXZl
-cnMvZ3B1L2RybS9hcm0vbWFsaWRwX2Rydi5jCj4gaW5kZXggNjlmZWUwNWMyNTZjLi4yNmU2MDQw
-MWE4ZTEgMTAwNjQ0Cj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2FybS9tYWxpZHBfZHJ2LmMKPiAr
-KysgYi9kcml2ZXJzL2dwdS9kcm0vYXJtL21hbGlkcF9kcnYuYwo+IEBAIC0yMzQsNiArMjM0LDcg
-QEAgc3RhdGljIHZvaWQgbWFsaWRwX2F0b21pY19jb21taXRfdGFpbChzdHJ1Y3QgZHJtX2F0b21p
-Y19zdGF0ZSAqc3RhdGUpCj4gIAlzdHJ1Y3QgZHJtX2NydGMgKmNydGM7Cj4gIAlzdHJ1Y3QgZHJt
-X2NydGNfc3RhdGUgKm9sZF9jcnRjX3N0YXRlOwo+ICAJaW50IGk7Cj4gKwlib29sIGZlbmNlX2Nv
-b2tpZSA9IGRtYV9mZW5jZV9iZWdpbl9zaWduYWxsaW5nKCk7Cj4gIAo+ICAJcG1fcnVudGltZV9n
-ZXRfc3luYyhkcm0tPmRldik7Cj4gIAo+IEBAIC0yNjAsNiArMjYxLDggQEAgc3RhdGljIHZvaWQg
-bWFsaWRwX2F0b21pY19jb21taXRfdGFpbChzdHJ1Y3QgZHJtX2F0b21pY19zdGF0ZSAqc3RhdGUp
-Cj4gIAo+ICAJbWFsaWRwX2F0b21pY19jb21taXRfaHdfZG9uZShzdGF0ZSk7Cj4gIAo+ICsJZG1h
-X2ZlbmNlX2VuZF9zaWduYWxsaW5nKGZlbmNlX2Nvb2tpZSk7Cj4gKwo+ICAJcG1fcnVudGltZV9w
-dXQoZHJtLT5kZXYpOwo+ICAKPiAgCWRybV9hdG9taWNfaGVscGVyX2NsZWFudXBfcGxhbmVzKGRy
-bSwgc3RhdGUpOwo+IC0tIAo+IDIuMjguMAo+IAoKLS0gCj09PT09PT09PT09PT09PT09PT09Cnwg
-SSB3b3VsZCBsaWtlIHRvIHwKfCBmaXggdGhlIHdvcmxkLCAgfAp8IGJ1dCB0aGV5J3JlIG5vdCB8
-CnwgZ2l2aW5nIG1lIHRoZSAgIHwKIFwgc291cmNlIGNvZGUhICAvCiAgLS0tLS0tLS0tLS0tLS0t
-CiAgICDCr1xfKOODhClfL8KvCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNr
-dG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2lu
-dGVsLWdmeAo=
+After boot into kernel. Driver configured ddc pin mapping based on
+predefined table in parse_ddi_port(). Now driver configure rkl
+ddc pin mapping depends on icp_ddc_pin_map[]. Then this table will
+give incorrect gmbus port number to cause HDMI can't work.
+
+Refer to commit d0a89527d06 ("drm/i915/rkl: Add DDC pin mapping").
+Create two ddc pin table for rkl TGP and CMP pch. Then HDMI can
+works properly on rkl.
+
+Cc: Matt Roper <matthew.d.roper@intel.com>
+Cc: Aditya Swarup <aditya.swarup@intel.com>
+Cc: Anusha Srivatsa <anusha.srivatsa@intel.com>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>
+Cc: Cooper Chiou <cooper.chiou@intel.com>
+Cc: Khaled Almahallawy <khaled.almahallawy@intel.com>
+Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/2577
+Signed-off-by: Lee Shawn C <shawn.c.lee@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_bios.c     | 22 ++++++++++++++++++-
+ drivers/gpu/drm/i915/display/intel_vbt_defs.h |  4 ++++
+ 2 files changed, 25 insertions(+), 1 deletion(-)
+
+diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/i915/display/intel_bios.c
+index a0a41ec5c341..f2c4772e4c7f 100644
+--- a/drivers/gpu/drm/i915/display/intel_bios.c
++++ b/drivers/gpu/drm/i915/display/intel_bios.c
+@@ -1597,12 +1597,32 @@ static const u8 icp_ddc_pin_map[] = {
+ 	[TGL_DDC_BUS_PORT_6] = GMBUS_PIN_14_TC6_TGP,
+ };
+ 
++static const u8 rkl_pch_tgp_ddc_pin_map[] = {
++	[RKL_DDC_BUS_DDI_B] = GMBUS_PIN_2_BXT,
++	[RKL_DDC_BUS_DDI_D] = GMBUS_PIN_9_TC1_ICP,
++	[RKL_DDC_BUS_DDI_E] = GMBUS_PIN_10_TC2_ICP,
++};
++
++static const u8 rkl_pch_cmp_ddc_pin_map[] = {
++	[RKL_DDC_BUS_DDI_B] = GMBUS_PIN_2_BXT,
++	[RKL_DDC_BUS_DDI_D] = GMBUS_PIN_3_BXT,
++	[RKL_DDC_BUS_DDI_E] = GMBUS_PIN_4_CNP,
++};
++
+ static u8 map_ddc_pin(struct drm_i915_private *dev_priv, u8 vbt_pin)
+ {
+ 	const u8 *ddc_pin_map;
+ 	int n_entries;
+ 
+-	if (INTEL_PCH_TYPE(dev_priv) >= PCH_ICP) {
++	if (IS_ROCKETLAKE(dev_priv)) {
++		if (INTEL_PCH_TYPE(dev_priv) >= PCH_TGP) {
++			ddc_pin_map = rkl_pch_tgp_ddc_pin_map;
++			n_entries = ARRAY_SIZE(rkl_pch_tgp_ddc_pin_map);
++		} else {
++			ddc_pin_map = rkl_pch_cmp_ddc_pin_map;
++			n_entries = ARRAY_SIZE(rkl_pch_cmp_ddc_pin_map);
++		}
++	} else if (INTEL_PCH_TYPE(dev_priv) >= PCH_ICP) {
+ 		ddc_pin_map = icp_ddc_pin_map;
+ 		n_entries = ARRAY_SIZE(icp_ddc_pin_map);
+ 	} else if (HAS_PCH_CNP(dev_priv)) {
+diff --git a/drivers/gpu/drm/i915/display/intel_vbt_defs.h b/drivers/gpu/drm/i915/display/intel_vbt_defs.h
+index 6faabd4f6d49..3418c00446c1 100644
+--- a/drivers/gpu/drm/i915/display/intel_vbt_defs.h
++++ b/drivers/gpu/drm/i915/display/intel_vbt_defs.h
+@@ -315,6 +315,10 @@ enum vbt_gmbus_ddi {
+ 	ICL_DDC_BUS_DDI_A = 0x1,
+ 	ICL_DDC_BUS_DDI_B,
+ 	TGL_DDC_BUS_DDI_C,
++	RKL_DDC_BUS_DDI_B = 0x1,
++	RKL_DDC_BUS_DDI_C,
++	RKL_DDC_BUS_DDI_D,
++	RKL_DDC_BUS_DDI_E,
+ 	ICL_DDC_BUS_PORT_1 = 0x4,
+ 	ICL_DDC_BUS_PORT_2,
+ 	ICL_DDC_BUS_PORT_3,
+-- 
+2.28.0
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
