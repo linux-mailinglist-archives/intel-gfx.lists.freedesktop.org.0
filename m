@@ -2,33 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A30AE29ED28
-	for <lists+intel-gfx@lfdr.de>; Thu, 29 Oct 2020 14:41:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C821329ECF9
+	for <lists+intel-gfx@lfdr.de>; Thu, 29 Oct 2020 14:33:59 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 60B066ECC4;
-	Thu, 29 Oct 2020 13:41:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3C0A26ECD0;
+	Thu, 29 Oct 2020 13:33:58 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from szxga06-in.huawei.com (szxga06-in.huawei.com [45.249.212.32])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4EC9F6E051;
- Thu, 29 Oct 2020 02:07:04 +0000 (UTC)
-Received: from DGGEMS401-HUB.china.huawei.com (unknown [172.30.72.58])
- by szxga06-in.huawei.com (SkyGuard) with ESMTP id 4CM82X1zCHzhbTC;
- Thu, 29 Oct 2020 10:07:00 +0800 (CST)
-Received: from linux-lmwb.huawei.com (10.175.103.112) by
- DGGEMS401-HUB.china.huawei.com (10.3.19.201) with Microsoft SMTP Server id
- 14.3.487.0; Thu, 29 Oct 2020 10:06:46 +0800
-From: Zou Wei <zou_wei@huawei.com>
-To: <jani.nikula@linux.intel.com>, <joonas.lahtinen@linux.intel.com>,
- <rodrigo.vivi@intel.com>, <airlied@linux.ie>, <daniel@ffwll.ch>
-Date: Thu, 29 Oct 2020 10:18:45 +0800
-Message-ID: <1603937925-53176-1-git-send-email-zou_wei@huawei.com>
-X-Mailer: git-send-email 2.6.2
+Received: from mail-wr1-x444.google.com (mail-wr1-x444.google.com
+ [IPv6:2a00:1450:4864:20::444])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E2ACE6ECD0
+ for <intel-gfx@lists.freedesktop.org>; Thu, 29 Oct 2020 13:33:56 +0000 (UTC)
+Received: by mail-wr1-x444.google.com with SMTP id y12so2790686wrp.6
+ for <intel-gfx@lists.freedesktop.org>; Thu, 29 Oct 2020 06:33:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
+ h=from:to:cc:subject:date:message-id:in-reply-to:references
+ :mime-version:content-transfer-encoding;
+ bh=okqbNzFdwZPuRMdjzbPQXLm8pTjJ9aJfiEX+wWumIls=;
+ b=D2WwOWKrdQmWDWCUjvY9eaPf2zDAMYB8TdU/SSTxil33av6cJkfaWCZX2s581e6tNv
+ Gi/x9Ygo45uTti508Wan9u5R+7NTaJ0/1nRb/nS5nk7gJFuoIhhw7sT4LwUYHF7ZHYYa
+ FuyG8xrrbEkRPL76kkl3fEmX4Z5tMrJqhMU0w=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+ :references:mime-version:content-transfer-encoding;
+ bh=okqbNzFdwZPuRMdjzbPQXLm8pTjJ9aJfiEX+wWumIls=;
+ b=V70w2dtU0BrbYKguXKlH2aAkputa8DwuYU4G0g9PgBMlDyN0DpyVpVQYztuoZXmpYx
+ iyFqWhw6WrCDJ7KoFt/sysg5MMtgrDfNUGthXxr1W+JidgwXUTFw5mLMS+Dbdnbz+ANy
+ RKFbH4AKuQ2wXvtuqiXKbj8oQUxiajpJFDKmJLREj0VCvJnmNQvJfjixnBzOrlUJkyVd
+ V/iGBBZH3r4XY+TVklTHlUV45YbpUnnyKOvjEc3QcwYWIJS1/7ih0zpbw6aMFZMHWryX
+ xa0gmH4knrG+LNqZIGvF7xYScJPNRCimOCddM2vOsMp0MM1jweV2l5vKnzAo7XrWNLEC
+ ilMw==
+X-Gm-Message-State: AOAM531/BnjhIj8CTYbq12knmrq5SJzm/JH8wtykW5Ao3+crgrOzEwt9
+ MbMwrVovX0ULdG/Wu6dt6M4E0g==
+X-Google-Smtp-Source: ABdhPJwECelWl0Q5uLtp0RD46KHIttYNX4xjJA8dHiXIyessUl0H/6RZq/tvKmoSh2GysP6jYNFH8w==
+X-Received: by 2002:adf:db51:: with SMTP id f17mr5651935wrj.126.1603978435680; 
+ Thu, 29 Oct 2020 06:33:55 -0700 (PDT)
+Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
+ by smtp.gmail.com with ESMTPSA id l3sm5576804wmg.32.2020.10.29.06.33.54
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 29 Oct 2020 06:33:55 -0700 (PDT)
+From: Daniel Vetter <daniel.vetter@ffwll.ch>
+To: DRI Development <dri-devel@lists.freedesktop.org>
+Date: Thu, 29 Oct 2020 14:33:47 +0100
+Message-Id: <20201029133347.4088884-1-daniel.vetter@ffwll.ch>
+X-Mailer: git-send-email 2.28.0
+In-Reply-To: <20201029101428.4058311-3-daniel.vetter@ffwll.ch>
+References: <20201029101428.4058311-3-daniel.vetter@ffwll.ch>
 MIME-Version: 1.0
-X-Originating-IP: [10.175.103.112]
-X-CFilter-Loop: Reflected
-X-Mailman-Approved-At: Thu, 29 Oct 2020 13:41:12 +0000
-Subject: [Intel-gfx] [PATCH -next] drm/i915: Remove unused variable ret
+Subject: [Intel-gfx] [PATCH] drm/qxl: Remove fbcon acceleration leftovers
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,46 +63,76 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, Zou Wei <zou_wei@huawei.com>
+Cc: spice-devel@lists.freedesktop.org, Daniel Vetter <daniel.vetter@ffwll.ch>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ virtualization@lists.linux-foundation.org, Gerd Hoffmann <kraxel@redhat.com>,
+ Daniel Vetter <daniel.vetter@intel.com>, Dave Airlie <airlied@redhat.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This patch fixes below warnings reported by coccicheck
+These are leftovers from 13aff184ed9f ("drm/qxl: remove dead qxl fbdev
+emulation code").
 
-./drivers/gpu/drm/i915/i915_debugfs.c:789:5-8: Unneeded variable: "ret". Return "0" on line 1012
+v2: Somehow these structs provided the struct qxl_device pre-decl,
+reorder the header to not anger compilers.
 
-Reported-by: Hulk Robot <hulkci@huawei.com>
-Signed-off-by: Zou Wei <zou_wei@huawei.com>
+Acked-by: Gerd Hoffmann <kraxel@redhat.com>
+Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
+Cc: Dave Airlie <airlied@redhat.com>
+Cc: Gerd Hoffmann <kraxel@redhat.com>
+Cc: virtualization@lists.linux-foundation.org
+Cc: spice-devel@lists.freedesktop.org
 ---
- drivers/gpu/drm/i915/i915_debugfs.c | 3 +--
- 1 file changed, 1 insertion(+), 2 deletions(-)
+ drivers/gpu/drm/qxl/qxl_drv.h | 18 ++----------------
+ 1 file changed, 2 insertions(+), 16 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/i915_debugfs.c b/drivers/gpu/drm/i915/i915_debugfs.c
-index ea46916..200f6b8 100644
---- a/drivers/gpu/drm/i915/i915_debugfs.c
-+++ b/drivers/gpu/drm/i915/i915_debugfs.c
-@@ -786,7 +786,6 @@ static int i915_frequency_info(struct seq_file *m, void *unused)
- 	struct intel_uncore *uncore = &dev_priv->uncore;
- 	struct intel_rps *rps = &dev_priv->gt.rps;
- 	intel_wakeref_t wakeref;
--	int ret = 0;
+diff --git a/drivers/gpu/drm/qxl/qxl_drv.h b/drivers/gpu/drm/qxl/qxl_drv.h
+index 3602e8b34189..6239626503ef 100644
+--- a/drivers/gpu/drm/qxl/qxl_drv.h
++++ b/drivers/gpu/drm/qxl/qxl_drv.h
+@@ -166,20 +166,6 @@ struct qxl_drm_image {
+ 	struct list_head chunk_list;
+ };
  
- 	wakeref = intel_runtime_pm_get(&dev_priv->runtime_pm);
+-struct qxl_fb_image {
+-	struct qxl_device *qdev;
+-	uint32_t pseudo_palette[16];
+-	struct fb_image fb_image;
+-	uint32_t visual;
+-};
+-
+-struct qxl_draw_fill {
+-	struct qxl_device *qdev;
+-	struct qxl_rect rect;
+-	uint32_t color;
+-	uint16_t rop;
+-};
+-
+ /*
+  * Debugfs
+  */
+@@ -188,8 +174,6 @@ struct qxl_debugfs {
+ 	unsigned int num_files;
+ };
  
-@@ -1009,7 +1008,7 @@ static int i915_frequency_info(struct seq_file *m, void *unused)
- 	seq_printf(m, "Max pixel clock frequency: %d kHz\n", dev_priv->max_dotclk_freq);
+-int qxl_debugfs_fence_init(struct qxl_device *rdev);
+-
+ struct qxl_device {
+ 	struct drm_device ddev;
  
- 	intel_runtime_pm_put(&dev_priv->runtime_pm, wakeref);
--	return ret;
-+	return 0;
- }
+@@ -271,6 +255,8 @@ struct qxl_device {
  
- static int i915_ring_freq_table(struct seq_file *m, void *unused)
+ #define to_qxl(dev) container_of(dev, struct qxl_device, ddev)
+ 
++int qxl_debugfs_fence_init(struct qxl_device *rdev);
++
+ extern const struct drm_ioctl_desc qxl_ioctls[];
+ extern int qxl_max_ioctl;
+ 
 -- 
-2.6.2
+2.28.0
 
 _______________________________________________
 Intel-gfx mailing list
