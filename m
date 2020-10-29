@@ -2,61 +2,64 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3C80929F6FD
-	for <lists+intel-gfx@lfdr.de>; Thu, 29 Oct 2020 22:37:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6B9F329F75D
+	for <lists+intel-gfx@lfdr.de>; Thu, 29 Oct 2020 23:06:35 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EF70A6E910;
-	Thu, 29 Oct 2020 21:37:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 33C396E915;
+	Thu, 29 Oct 2020 22:06:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C269D6E910
- for <intel-gfx@lists.freedesktop.org>; Thu, 29 Oct 2020 21:37:16 +0000 (UTC)
-IronPort-SDR: JTKuTomyeu9/MtVgh1yDc0yt55rXLsAYvxXJsZAcScR41UWfYeVoF/mGtFTqXmWTjmqO8RHTIC
- 7aXfSubR3UFg==
-X-IronPort-AV: E=McAfee;i="6000,8403,9789"; a="165930407"
-X-IronPort-AV: E=Sophos;i="5.77,430,1596524400"; d="scan'208";a="165930407"
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4778A6E915
+ for <intel-gfx@lists.freedesktop.org>; Thu, 29 Oct 2020 22:06:31 +0000 (UTC)
+IronPort-SDR: epCZswCSiqWkfo9e4nCleq4GhbMWH27i1kWZZapsuuZEO/j0HKWRICDpNy0cD+BjgiKbFbRzEN
+ IEQcKxkzj79A==
+X-IronPort-AV: E=McAfee;i="6000,8403,9789"; a="155492413"
+X-IronPort-AV: E=Sophos;i="5.77,430,1596524400"; d="scan'208";a="155492413"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Oct 2020 14:37:14 -0700
-IronPort-SDR: 3vGmuonQ625yfoatOAGi9CO+FJrxgBZN/Yeucc05Jt3ukBYDZnys5Eu1D9EUfv9DU07W145shu
- nRTBQ0madFNw==
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Oct 2020 15:06:30 -0700
+IronPort-SDR: 0FjZo4rOy1Cd/Rfu8E0XCDP243fOxUZ6nzBKB0CfmcFQt1hyBk/fOsPeOyk3X2Y4BhSI12Q3kh
+ YwjZq3mt6pKg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.77,430,1596524400"; d="scan'208";a="536824625"
-Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
- by orsmga005.jf.intel.com with ESMTP; 29 Oct 2020 14:37:14 -0700
-Received: from orsmsx612.amr.corp.intel.com (10.22.229.25) by
- ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="5.77,430,1596524400"; d="scan'208";a="356411900"
+Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
+ by fmsmga002.fm.intel.com with ESMTP; 29 Oct 2020 15:06:29 -0700
+Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
+ fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1713.5; Thu, 29 Oct 2020 14:37:14 -0700
-Received: from irsmsx605.ger.corp.intel.com (163.33.146.138) by
- ORSMSX612.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ 15.1.1713.5; Thu, 29 Oct 2020 15:06:29 -0700
+Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx612.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1713.5; Thu, 29 Oct 2020 14:37:12 -0700
-Received: from irsmsx605.ger.corp.intel.com ([163.33.146.138]) by
- IRSMSX605.ger.corp.intel.com ([163.33.146.138]) with mapi id 15.01.1713.004;
- Thu, 29 Oct 2020 21:37:11 +0000
-From: "Mun, Gwan-gyeong" <gwan-gyeong.mun@intel.com>
-To: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "Souza, Jose" <jose.souza@intel.com>
-Thread-Topic: [PATCH v2 1/6] drm/i915/display/psr: Calculate selective fetch
- plane registers
-Thread-Index: AQHWrLtNvtQD+XSiQkWOOJDMumEcwqmvHdWA
-Date: Thu, 29 Oct 2020 21:37:11 +0000
-Message-ID: <f351a96f67f178cc05367abf4f69ff8d7f46827a.camel@intel.com>
-References: <20201027234526.33043-1-jose.souza@intel.com>
-In-Reply-To: <20201027234526.33043-1-jose.souza@intel.com>
+ 15.1.1713.5; Thu, 29 Oct 2020 15:06:29 -0700
+Received: from fmsmsx611.amr.corp.intel.com ([10.18.126.91]) by
+ fmsmsx611.amr.corp.intel.com ([10.18.126.91]) with mapi id 15.01.1713.004;
+ Thu, 29 Oct 2020 15:06:29 -0700
+From: "Srivatsa, Anusha" <anusha.srivatsa@intel.com>
+To: "De Marchi, Lucas" <lucas.demarchi@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Thread-Topic: [Intel-gfx] [PATCH 3/3] drm/i915: remove some debug-only
+ registers from MCHBAR
+Thread-Index: AQHWrBwvk+r56klfVE+T1ie0dLPw5qmvJwqw
+Date: Thu, 29 Oct 2020 22:06:28 +0000
+Message-ID: <9f4e757fbc0546ff87a7ce893b46d6bf@intel.com>
+References: <20201027044618.719064-1-lucas.demarchi@intel.com>
+ <20201027044618.719064-3-lucas.demarchi@intel.com>
+In-Reply-To: <20201027044618.719064-3-lucas.demarchi@intel.com>
 Accept-Language: en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-originating-ip: [163.33.253.164]
-Content-ID: <DFBDE3FFE239714E8CA9F0ABC5E03664@intel.com>
+dlp-version: 11.5.1.3
+dlp-product: dlpe-windows
+dlp-reaction: no-action
+x-originating-ip: [10.22.254.132]
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH v2 1/6] drm/i915/display/psr: Calculate
- selective fetch plane registers
+Subject: Re: [Intel-gfx] [PATCH 3/3] drm/i915: remove some debug-only
+ registers from MCHBAR
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,97 +72,171 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gVHVlLCAyMDIwLTEwLTI3IGF0IDE2OjQ1IC0wNzAwLCBKb3PDqSBSb2JlcnRvIGRlIFNvdXph
-IHdyb3RlOg0KPiBBZGQgdGhlIGNhbGN1bGF0aW9ucyB0byBzZXQgcGxhbmUgc2VsZWN0aXZlIGZl
-dGNoIHJlZ2lzdGVycyBkZXBlbmRpbmcNCj4gaW4gdGhlIHZhbHVlIG9mIHRoZSBhcmVhIGRhbWFn
-ZWQuDQo+IEl0IGlzIHN0aWxsIHVzaW5nIHRoZSB3aG9sZSBwbGFuZSBhcmVhIGFzIGRhbWFnZWQg
-YnV0IHRoYXQgd2lsbA0KPiBjaGFuZ2UNCj4gaW4gbmV4dCBwYXRjaGVzLg0KPiANCj4gdjI6DQo+
-IC0gZml4ZWQgbmV3X3BsYW5lX3N0YXRlLT51YXBpLmRzdC55MiB0eXBvIGluDQo+IGludGVsX3Bz
-cjJfc2VsX2ZldGNoX3VwZGF0ZSgpDQo+IC0gZG8gbm90IHNoaWZ0aGluZyBuZXdfcGxhbmVfc3Rh
-dGUtPnVhcGkuZHN0IG9ubHkgc3JjIGlzIGluIDE2LjE2DQo+IGZvcm1hdA0KPiANCj4gQlNwZWM6
-IDU1MjI5DQo+IENjOiBHd2FuLWd5ZW9uZyBNdW4gPGd3YW4tZ3llb25nLm11bkBpbnRlbC5jb20+
-DQo+IENjOiBWaWxsZSBTeXJqw6Rsw6QgPHZpbGxlLnN5cmphbGFAbGludXguaW50ZWwuY29tPg0K
-PiBTaWduZWQtb2ZmLWJ5OiBKb3PDqSBSb2JlcnRvIGRlIFNvdXphIDxqb3NlLnNvdXphQGludGVs
-LmNvbT4NCj4gLS0tDQo+ICAuLi4vZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5X3R5cGVz
-LmggICAgfCAgMiArKw0KPiAgZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9wc3Iu
-YyAgICAgIHwgMjIgKysrKysrKysrKysrKystLS0NCj4gLS0NCj4gIDIgZmlsZXMgY2hhbmdlZCwg
-MTggaW5zZXJ0aW9ucygrKSwgNiBkZWxldGlvbnMoLSkNCj4gDQo+IGRpZmYgLS1naXQgYS9kcml2
-ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXlfdHlwZXMuaA0KPiBiL2RyaXZl
-cnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheV90eXBlcy5oDQo+IGluZGV4IGY2
-ZjA2MjY2NDllMC4uM2YyNzA3ZDg4MmNjIDEwMDY0NA0KPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0v
-aTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXlfdHlwZXMuaA0KPiArKysgYi9kcml2ZXJzL2dwdS9k
-cm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXlfdHlwZXMuaA0KPiBAQCAtNjA0LDYgKzYwNCw4
-IEBAIHN0cnVjdCBpbnRlbF9wbGFuZV9zdGF0ZSB7DQo+ICAJdTMyIHBsYW5hcl9zbGF2ZTsNCj4g
-IA0KPiAgCXN0cnVjdCBkcm1faW50ZWxfc3ByaXRlX2NvbG9ya2V5IGNrZXk7DQo+ICsNCj4gKwlz
-dHJ1Y3QgZHJtX3JlY3QgcHNyMl9zZWxfZmV0Y2hfYXJlYTsNCj4gIH07DQo+ICANCj4gIHN0cnVj
-dCBpbnRlbF9pbml0aWFsX3BsYW5lX2NvbmZpZyB7DQo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dw
-dS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX3Bzci5jDQo+IGIvZHJpdmVycy9ncHUvZHJtL2k5MTUv
-ZGlzcGxheS9pbnRlbF9wc3IuYw0KPiBpbmRleCBiMjU0NDEwMmU3YjEuLjZkZWFkNTFkN2E4MSAx
-MDA2NDQNCj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9wc3IuYw0K
-PiArKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX3Bzci5jDQo+IEBAIC0x
-MTg3LDYgKzExODcsNyBAQCB2b2lkIGludGVsX3BzcjJfcHJvZ3JhbV9wbGFuZV9zZWxfZmV0Y2go
-c3RydWN0DQo+IGludGVsX3BsYW5lICpwbGFuZSwNCj4gIHsNCj4gIAlzdHJ1Y3QgZHJtX2k5MTVf
-cHJpdmF0ZSAqZGV2X3ByaXYgPSB0b19pOTE1KHBsYW5lLT5iYXNlLmRldik7DQo+ICAJZW51bSBw
-aXBlIHBpcGUgPSBwbGFuZS0+cGlwZTsNCj4gKwljb25zdCBzdHJ1Y3QgZHJtX3JlY3QgKmNsaXA7
-DQo+ICAJdTMyIHZhbDsNCj4gIA0KPiAgCWlmICghY3J0Y19zdGF0ZS0+ZW5hYmxlX3BzcjJfc2Vs
-X2ZldGNoKQ0KPiBAQCAtMTE5OCwxNiArMTE5OSwyMCBAQCB2b2lkDQo+IGludGVsX3BzcjJfcHJv
-Z3JhbV9wbGFuZV9zZWxfZmV0Y2goc3RydWN0IGludGVsX3BsYW5lICpwbGFuZSwNCj4gIAlpZiAo
-IXZhbCB8fCBwbGFuZS0+aWQgPT0gUExBTkVfQ1VSU09SKQ0KPiAgCQlyZXR1cm47DQo+ICANCj4g
-LQl2YWwgPSBwbGFuZV9zdGF0ZS0+dWFwaS5kc3QueTEgPDwgMTYgfCBwbGFuZV9zdGF0ZS0NCj4g
-PnVhcGkuZHN0LngxOw0KPiArCWNsaXAgPSAmcGxhbmVfc3RhdGUtPnBzcjJfc2VsX2ZldGNoX2Fy
-ZWE7DQo+ICsNCj4gKwl2YWwgPSAoY2xpcC0+eTEgKyBwbGFuZV9zdGF0ZS0+dWFwaS5kc3QueTEp
-IDw8IDE2Ow0KPiArCXZhbCB8PSBwbGFuZV9zdGF0ZS0+dWFwaS5kc3QueDE7DQo+ICAJaW50ZWxf
-ZGVfd3JpdGVfZncoZGV2X3ByaXYsIFBMQU5FX1NFTF9GRVRDSF9QT1MocGlwZSwgcGxhbmUtDQo+
-ID5pZCksIHZhbCk7DQo+ICANCj4gLQl2YWwgPSBwbGFuZV9zdGF0ZS0+Y29sb3JfcGxhbmVbY29s
-b3JfcGxhbmVdLnkgPDwgMTY7DQo+ICsJLyogVE9ETzogY29uc2lkZXIgdGlsaW5nIGFuZCBhdXhp
-bGlhcnkgc3VyZmFjZXMgKi8NCj4gKwl2YWwgPSAoY2xpcC0+eTEgKyBwbGFuZV9zdGF0ZS0+Y29s
-b3JfcGxhbmVbY29sb3JfcGxhbmVdLnkpIDw8DQo+IDE2Ow0KPiAgCXZhbCB8PSBwbGFuZV9zdGF0
-ZS0+Y29sb3JfcGxhbmVbY29sb3JfcGxhbmVdLng7DQo+ICAJaW50ZWxfZGVfd3JpdGVfZncoZGV2
-X3ByaXYsIFBMQU5FX1NFTF9GRVRDSF9PRkZTRVQocGlwZSwgcGxhbmUtDQo+ID5pZCksDQo+ICAJ
-CQkgIHZhbCk7DQo+ICANCj4gIAkvKiBTaXplcyBhcmUgMCBiYXNlZCAqLw0KPiAtCXZhbCA9ICgo
-ZHJtX3JlY3RfaGVpZ2h0KCZwbGFuZV9zdGF0ZS0+dWFwaS5zcmMpID4+IDE2KSAtIDEpIDw8DQo+
-IDE2Ow0KPiArCXZhbCA9IChkcm1fcmVjdF9oZWlnaHQoY2xpcCkgLSAxKSA8PCAxNjsNCj4gIAl2
-YWwgfD0gKGRybV9yZWN0X3dpZHRoKCZwbGFuZV9zdGF0ZS0+dWFwaS5zcmMpID4+IDE2KSAtIDE7
-DQo+ICAJaW50ZWxfZGVfd3JpdGVfZncoZGV2X3ByaXYsIFBMQU5FX1NFTF9GRVRDSF9TSVpFKHBp
-cGUsIHBsYW5lLQ0KPiA+aWQpLCB2YWwpOw0KPiAgfQ0KPiBAQCAtMTI4MSw3ICsxMjg2LDcgQEAg
-aW50IGludGVsX3BzcjJfc2VsX2ZldGNoX3VwZGF0ZShzdHJ1Y3QNCj4gaW50ZWxfYXRvbWljX3N0
-YXRlICpzdGF0ZSwNCj4gIA0KPiAgCWZvcl9lYWNoX29sZG5ld19pbnRlbF9wbGFuZV9pbl9zdGF0
-ZShzdGF0ZSwgcGxhbmUsDQo+IG9sZF9wbGFuZV9zdGF0ZSwNCj4gIAkJCQkJICAgICBuZXdfcGxh
-bmVfc3RhdGUsIGkpIHsNCj4gLQkJc3RydWN0IGRybV9yZWN0IHRlbXA7DQo+ICsJCXN0cnVjdCBk
-cm1fcmVjdCAqc2VsX2ZldGNoX2FyZWEsIHRlbXA7DQo+ICANCj4gIAkJaWYgKG5ld19wbGFuZV9z
-dGF0ZS0+dWFwaS5jcnRjICE9IGNydGNfc3RhdGUtDQo+ID51YXBpLmNydGMpDQo+ICAJCQljb250
-aW51ZTsNCj4gQEAgLTEzMDQsOCArMTMwOSwxMyBAQCBpbnQgaW50ZWxfcHNyMl9zZWxfZmV0Y2hf
-dXBkYXRlKHN0cnVjdA0KPiBpbnRlbF9hdG9taWNfc3RhdGUgKnN0YXRlLA0KPiAgCQkgKiBGb3Ig
-bm93IGRvaW5nIGEgc2VsZWN0aXZlIGZldGNoIGluIHRoZSB3aG9sZSBwbGFuZQ0KPiBhcmVhLA0K
-PiAgCQkgKiBvcHRpbWl6YXRpb25zIHdpbGwgY29tZSBpbiB0aGUgZnV0dXJlLg0KPiAgCQkgKi8N
-Cj4gLQkJdGVtcC55MSA9IG5ld19wbGFuZV9zdGF0ZS0+dWFwaS5kc3QueTE7DQo+IC0JCXRlbXAu
-eTIgPSBuZXdfcGxhbmVfc3RhdGUtPnVhcGkuZHN0LnkyOw0KPiArCQlzZWxfZmV0Y2hfYXJlYSA9
-ICZuZXdfcGxhbmVfc3RhdGUtPnBzcjJfc2VsX2ZldGNoX2FyZWE7DQo+ICsJCXNlbF9mZXRjaF9h
-cmVhLT55MSA9IG5ld19wbGFuZV9zdGF0ZS0+dWFwaS5zcmMueTEgPj4NCj4gMTY7DQo+ICsJCXNl
-bF9mZXRjaF9hcmVhLT55MiA9IG5ld19wbGFuZV9zdGF0ZS0+dWFwaS5zcmMueTIgPj4NCj4gMTY7
-DQo+ICsNCj4gKwkJdGVtcCA9ICpzZWxfZmV0Y2hfYXJlYTsNCj4gKwkJdGVtcC55MSArPSBuZXdf
-cGxhbmVfc3RhdGUtPnVhcGkuZHN0LnkxOw0KPiArCQl0ZW1wLnkyICs9IG5ld19wbGFuZV9zdGF0
-ZS0+dWFwaS5kc3QueTI7DQp3aGVuIHRoZSB1c2Vyc3BhY2UgY2FsbCBkcm1Nb2RlU2V0UGxhbmUo
-KSwgc3JjX3kgYW5kIGNydGNfeSBjYW4gYmUNCmRpZmZlci4NCihkcm0gY29yZSB1c2VzIGRybV9y
-ZWN0X3RyYW5zbGF0ZV90bygpIHV0aWxpdHkgZnVuY3Rpb24gZm9yIGFwcGx5DQpjb29yZGluYXRl
-IHRyYXNsYXRlIHRvIGRzdCBmcm9tIHNyYy4gKQ0KDQpJbiBteSBvcGluaW9uLCB3ZSBjYW4gY2Fs
-Y3VsYXRlIGxpa2UgYXMsDQppbnQgY29vcmRfdHJhbnMgPSBuZXdfcGxhbmVfc3RhdGUtPnVhcGku
-ZHN0LnkxIC0gbmV3X3BsYW5lX3N0YXRlLQ0KPnVhcGkuc3JjLnkxID4+IDE2Ow0KdGVtcCA9ICpz
-ZWxfZmV0Y2hfYXJlYTsgLy8gYXNzdW5lcyB0aGF0IHNlbF9mZXRjaF9hcmVhIGhhcyBkYW1hZ2Ug
-YXJlYS4NCnRlbXAueTEgKz0gY29vcmRfdHJhbnM7DQp0ZW1wLnkyICs9IGNvb3JkX3RyYW5zOw0K
-DQo+ICAJCWNsaXBfYXJlYV91cGRhdGUoJnBpcGVfY2xpcCwgJnRlbXApOw0KDQpBcyB3ZSBkb24n
-dCBjaGVjayBhbmQgY2FsY3VsYXRlIHBsYW5lIHJvdGF0aW9uIGFuZCBzY2FsZSBmb3IgZHN0DQpj
-b29yZGluYXRlcyBoZXJlLg0Kc28gY2FuIHlvdSBhZGQgY2hlY2tpbmcgb2YgcGxhbmUgc2NhbGUg
-b3Igcm90YXRpb24/IGFuZCBpZiB0aGUgcGxhbmUNCmhhcyBhIHNjYWxlIGZhY3RvciBvciByb3Rh
-dGlvbiwgZm9yIG5vdywgd2Ugc2hvdWxkIG5vdCBhcHBseSBQU1IgU1UuDQooaWYgcGxhbmUgc2Nh
-bGUgb3Igcm90YXRpb24gYXJlIHVzZWQsIGRzdCBtaWdodCBkaWZmZXIuIGlmIHdlIGRvbid0DQph
-cHBseSBQU1IgU1UsIHdlIGRvbid0IG5lZWQgdG8gY2FsbCBjbGlwX2FyZWFfdXBkYXRlKCkgaGVy
-ZS4gKQ0KPiAgCX0NCj4gIA0KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0
-b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50
-ZWwtZ2Z4Cg==
+
+
+> -----Original Message-----
+> From: Intel-gfx <intel-gfx-bounces@lists.freedesktop.org> On Behalf Of
+> Lucas De Marchi
+> Sent: Monday, October 26, 2020 9:46 PM
+> To: intel-gfx@lists.freedesktop.org
+> Subject: [Intel-gfx] [PATCH 3/3] drm/i915: remove some debug-only registers
+> from MCHBAR
+> 
+> GT_PERF_STATUS and RP_STATE_LIMITS were added a long time ago in
+> commit 3b8d8d91d51c ("drm/i915: dynamic render p-state support for
+> Sandy Bridge").  Other than printing their values in debugfs we don't do
+> anything with them.  There's not much useful information in them. These
+> registers may change location in future platforms, but instead of adding
+> new locations, it's simpler to just remove them.
+> 
+> Cc: Matt Roper <matthew.d.roper@intel.com>
+> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+
+Reviewed-by: Anusha Srivatsa <anusha.srivatsa@intel.com>
+
+> ---
+>  drivers/gpu/drm/i915/gt/debugfs_gt_pm.c | 17 ++---------------
+>  drivers/gpu/drm/i915/i915_debugfs.c     | 17 ++---------------
+>  drivers/gpu/drm/i915/i915_reg.h         |  3 ---
+>  3 files changed, 4 insertions(+), 33 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/gt/debugfs_gt_pm.c
+> b/drivers/gpu/drm/i915/gt/debugfs_gt_pm.c
+> index 174a24553322..8a68088c12ea 100644
+> --- a/drivers/gpu/drm/i915/gt/debugfs_gt_pm.c
+> +++ b/drivers/gpu/drm/i915/gt/debugfs_gt_pm.c
+> @@ -296,8 +296,6 @@ static int frequency_show(struct seq_file *m, void
+> *unused)
+>  		seq_printf(m, "efficient (RPe) frequency: %d MHz\n",
+>  			   intel_gpu_freq(rps, rps->efficient_freq));
+>  	} else if (INTEL_GEN(i915) >= 6) {
+> -		u32 rp_state_limits;
+> -		u32 gt_perf_status;
+>  		u32 rp_state_cap;
+>  		u32 rpmodectl, rpinclimit, rpdeclimit;
+>  		u32 rpstat, cagf, reqf;
+> @@ -307,14 +305,10 @@ static int frequency_show(struct seq_file *m, void
+> *unused)
+>  		u32 pm_ier, pm_imr, pm_isr, pm_iir, pm_mask;
+>  		int max_freq;
+> 
+> -		rp_state_limits = intel_uncore_read(uncore,
+> GEN6_RP_STATE_LIMITS);
+> -		if (IS_GEN9_LP(i915)) {
+> +		if (IS_GEN9_LP(i915))
+>  			rp_state_cap = intel_uncore_read(uncore,
+> BXT_RP_STATE_CAP);
+> -			gt_perf_status = intel_uncore_read(uncore,
+> BXT_GT_PERF_STATUS);
+> -		} else {
+> +		else
+>  			rp_state_cap = intel_uncore_read(uncore,
+> GEN6_RP_STATE_CAP);
+> -			gt_perf_status = intel_uncore_read(uncore,
+> GEN6_GT_PERF_STATUS);
+> -		}
+> 
+>  		/* RPSTAT1 is in the GT power well */
+>  		intel_uncore_forcewake_get(uncore, FORCEWAKE_ALL); @@
+> -390,13 +384,6 @@ static int frequency_show(struct seq_file *m, void
+> *unused)
+>  				   pm_isr, pm_iir);
+>  		seq_printf(m, "pm_intrmsk_mbz: 0x%08x\n",
+>  			   rps->pm_intrmsk_mbz);
+> -		seq_printf(m, "GT_PERF_STATUS: 0x%08x\n",
+> gt_perf_status);
+> -		seq_printf(m, "Render p-state ratio: %d\n",
+> -			   (gt_perf_status & (INTEL_GEN(i915) >= 9 ? 0x1ff00 :
+> 0xff00)) >> 8);
+> -		seq_printf(m, "Render p-state VID: %d\n",
+> -			   gt_perf_status & 0xff);
+> -		seq_printf(m, "Render p-state limit: %d\n",
+> -			   rp_state_limits & 0xff);
+>  		seq_printf(m, "RPSTAT1: 0x%08x\n", rpstat);
+>  		seq_printf(m, "RPMODECTL: 0x%08x\n", rpmodectl);
+>  		seq_printf(m, "RPINCLIMIT: 0x%08x\n", rpinclimit); diff --git
+> a/drivers/gpu/drm/i915/i915_debugfs.c
+> b/drivers/gpu/drm/i915/i915_debugfs.c
+> index ea469168cd44..c01f27eebf9c 100644
+> --- a/drivers/gpu/drm/i915/i915_debugfs.c
+> +++ b/drivers/gpu/drm/i915/i915_debugfs.c
+> @@ -838,8 +838,6 @@ static int i915_frequency_info(struct seq_file *m,
+> void *unused)
+>  			   "efficient (RPe) frequency: %d MHz\n",
+>  			   intel_gpu_freq(rps, rps->efficient_freq));
+>  	} else if (INTEL_GEN(dev_priv) >= 6) {
+> -		u32 rp_state_limits;
+> -		u32 gt_perf_status;
+>  		u32 rp_state_cap;
+>  		u32 rpmodectl, rpinclimit, rpdeclimit;
+>  		u32 rpstat, cagf, reqf;
+> @@ -848,14 +846,10 @@ static int i915_frequency_info(struct seq_file *m,
+> void *unused)
+>  		u32 pm_ier, pm_imr, pm_isr, pm_iir, pm_mask;
+>  		int max_freq;
+> 
+> -		rp_state_limits = I915_READ(GEN6_RP_STATE_LIMITS);
+> -		if (IS_GEN9_LP(dev_priv)) {
+> +		if (IS_GEN9_LP(dev_priv))
+>  			rp_state_cap = I915_READ(BXT_RP_STATE_CAP);
+> -			gt_perf_status = I915_READ(BXT_GT_PERF_STATUS);
+> -		} else {
+> +		else
+>  			rp_state_cap = I915_READ(GEN6_RP_STATE_CAP);
+> -			gt_perf_status =
+> I915_READ(GEN6_GT_PERF_STATUS);
+> -		}
+> 
+>  		/* RPSTAT1 is in the GT power well */
+>  		intel_uncore_forcewake_get(&dev_priv->uncore,
+> FORCEWAKE_ALL); @@ -924,13 +918,6 @@ static int
+> i915_frequency_info(struct seq_file *m, void *unused)
+>  				   pm_isr, pm_iir);
+>  		seq_printf(m, "pm_intrmsk_mbz: 0x%08x\n",
+>  			   rps->pm_intrmsk_mbz);
+> -		seq_printf(m, "GT_PERF_STATUS: 0x%08x\n",
+> gt_perf_status);
+> -		seq_printf(m, "Render p-state ratio: %d\n",
+> -			   (gt_perf_status & (INTEL_GEN(dev_priv) >= 9 ?
+> 0x1ff00 : 0xff00)) >> 8);
+> -		seq_printf(m, "Render p-state VID: %d\n",
+> -			   gt_perf_status & 0xff);
+> -		seq_printf(m, "Render p-state limit: %d\n",
+> -			   rp_state_limits & 0xff);
+>  		seq_printf(m, "RPSTAT1: 0x%08x\n", rpstat);
+>  		seq_printf(m, "RPMODECTL: 0x%08x\n", rpmodectl);
+>  		seq_printf(m, "RPINCLIMIT: 0x%08x\n", rpinclimit); diff --git
+> a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+> index 8b021f77cb1f..6e7a0dc38bce 100644
+> --- a/drivers/gpu/drm/i915/i915_reg.h
+> +++ b/drivers/gpu/drm/i915/i915_reg.h
+> @@ -4044,9 +4044,6 @@ static inline bool i915_mmio_reg_valid(i915_reg_t
+> reg)  #define GEN6_GT_THREAD_STATUS_REG _MMIO(0x13805c)  #define
+> GEN6_GT_THREAD_STATUS_CORE_MASK 0x7
+> 
+> -#define GEN6_GT_PERF_STATUS
+> 	_MMIO(MCHBAR_MIRROR_BASE_SNB + 0x5948)
+> -#define BXT_GT_PERF_STATUS      _MMIO(MCHBAR_MIRROR_BASE_SNB +
+> 0x7070)
+> -#define GEN6_RP_STATE_LIMITS
+> 	_MMIO(MCHBAR_MIRROR_BASE_SNB + 0x5994)
+>  #define GEN6_RP_STATE_CAP	_MMIO(MCHBAR_MIRROR_BASE_SNB +
+> 0x5998)
+>  #define BXT_RP_STATE_CAP        _MMIO(0x138170)
+>  #define GEN9_RP_STATE_LIMITS	_MMIO(0x138148)
+> --
+> 2.29.0
+> 
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
