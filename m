@@ -2,58 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A711429EA44
-	for <lists+intel-gfx@lfdr.de>; Thu, 29 Oct 2020 12:13:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id CF83D29EA68
+	for <lists+intel-gfx@lfdr.de>; Thu, 29 Oct 2020 12:23:55 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F3B156ECB0;
-	Thu, 29 Oct 2020 11:13:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 249D16ECB1;
+	Thu, 29 Oct 2020 11:23:53 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [63.128.21.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8082B6ECB0
- for <intel-gfx@lists.freedesktop.org>; Thu, 29 Oct 2020 11:13:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1603970005;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=zIaJu7FAw8dfZKVBgnoDacf5K6Q+ovY8+WxFh0DYprM=;
- b=EAzsN1yZBqTt1/Vj0nMLTihVC412L8+W0dfflFx/HJtJANmb2PFqXPdqxNwq1C5K0nmblG
- S6d0518AKaW8QyBilfEhPj85DNQJEnGf8YunuwnYkaEh8r9oIBDPXg+mOYzePWioDYhL8K
- du9Mgt1OEDRIPAFdf1aPBF7OfhykykM=
-Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
- [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-192-koXZ2FOkOZe8sI_qzCfRWQ-1; Thu, 29 Oct 2020 07:13:21 -0400
-X-MC-Unique: koXZ2FOkOZe8sI_qzCfRWQ-1
-Received: from smtp.corp.redhat.com (int-mx05.intmail.prod.int.phx2.redhat.com
- [10.5.11.15])
- (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
- (No client certificate requested)
- by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 640BA108597B;
- Thu, 29 Oct 2020 11:13:20 +0000 (UTC)
-Received: from sirius.home.kraxel.org (ovpn-114-66.ams2.redhat.com
- [10.36.114.66])
- by smtp.corp.redhat.com (Postfix) with ESMTP id 3740C7515B;
- Thu, 29 Oct 2020 11:13:01 +0000 (UTC)
-Received: by sirius.home.kraxel.org (Postfix, from userid 1000)
- id 020BB9D0D; Thu, 29 Oct 2020 12:13:00 +0100 (CET)
-Date: Thu, 29 Oct 2020 12:13:00 +0100
-From: Gerd Hoffmann <kraxel@redhat.com>
-To: Daniel Vetter <daniel.vetter@ffwll.ch>
-Message-ID: <20201029111300.p2vld6qc4e2q53xy@sirius.home.kraxel.org>
-References: <20201029101428.4058311-1-daniel.vetter@ffwll.ch>
- <20201029101428.4058311-3-daniel.vetter@ffwll.ch>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id C63346ECB1;
+ Thu, 29 Oct 2020 11:23:51 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id B537CA47DB;
+ Thu, 29 Oct 2020 11:23:51 +0000 (UTC)
 MIME-Version: 1.0
-In-Reply-To: <20201029101428.4058311-3-daniel.vetter@ffwll.ch>
-X-Scanned-By: MIMEDefang 2.79 on 10.5.11.15
-Authentication-Results: relay.mimecast.com;
- auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=kraxel@redhat.com
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
-Content-Disposition: inline
-Subject: Re: [Intel-gfx] [PATCH 3/3] drm/qxl: Remove fbcon acceleration
- leftovers
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Daniel Vetter" <daniel.vetter@ffwll.ch>
+Date: Thu, 29 Oct 2020 11:23:51 -0000
+Message-ID: <160397063170.1427.11671605706636049343@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20201029101428.4058311-1-daniel.vetter@ffwll.ch>
+In-Reply-To: <20201029101428.4058311-1-daniel.vetter@ffwll.ch>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_series_starting_with_=5B1/3=5D_fbcon=3A_Disable_accelerated?=
+ =?utf-8?q?_scrolling?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,21 +39,51 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Dave Airlie <airlied@redhat.com>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- DRI Development <dri-devel@lists.freedesktop.org>,
- virtualization@lists.linux-foundation.org, spice-devel@lists.freedesktop.org,
- Daniel Vetter <daniel.vetter@intel.com>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Oct 29, 2020 at 11:14:28AM +0100, Daniel Vetter wrote:
-> These are leftovers from 13aff184ed9f ("drm/qxl: remove dead qxl fbdev
-> emulation code").
+== Series Details ==
 
-Acked-by: Gerd Hoffmann <kraxel@redhat.com>
+Series: series starting with [1/3] fbcon: Disable accelerated scrolling
+URL   : https://patchwork.freedesktop.org/series/83194/
+State : warning
+
+== Summary ==
+
+$ dim checkpatch origin/drm-tip
+83d868107d69 fbcon: Disable accelerated scrolling
+-:8: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit 50145474f6ef ("fbcon: remove soft scrollback code")'
+#8: 
+features, e.g.  50145474f6ef ("fbcon: remove soft scrollback code").
+
+-:55: WARNING:BAD_SIGN_OFF: Duplicate signature
+#55: 
+Cc: Jiri Slaby <jirislaby@kernel.org>
+
+-:161: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Daniel Vetter <daniel.vetter@ffwll.ch>' != 'Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>'
+
+total: 1 errors, 2 warnings, 0 checks, 87 lines checked
+84aed1557f93 fbcon: Drop EXPORT_SYMBOL
+-:8: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit 6104c37094e7 ("fbcon: Make fbcon a built-time depency for fbdev")'
+#8: 
+commit 6104c37094e729f3d4ce65797002112735d49cd1
+
+-:91: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Daniel Vetter <daniel.vetter@ffwll.ch>' != 'Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>'
+
+total: 1 errors, 1 warnings, 0 checks, 21 lines checked
+ef7c8e4df6fd drm/qxl: Remove fbcon acceleration leftovers
+-:6: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit 13aff184ed9f ("drm/qxl: remove dead qxl fbdev emulation code")'
+#6: 
+These are leftovers from 13aff184ed9f ("drm/qxl: remove dead qxl fbdev
+
+-:40: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Daniel Vetter <daniel.vetter@ffwll.ch>' != 'Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>'
+
+total: 1 errors, 1 warnings, 0 checks, 20 lines checked
+
 
 _______________________________________________
 Intel-gfx mailing list
