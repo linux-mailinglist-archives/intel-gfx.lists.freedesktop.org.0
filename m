@@ -1,30 +1,30 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7D2F429F376
-	for <lists+intel-gfx@lfdr.de>; Thu, 29 Oct 2020 18:41:01 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 49DAC29F3A5
+	for <lists+intel-gfx@lfdr.de>; Thu, 29 Oct 2020 18:54:48 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 98F226E8F3;
-	Thu, 29 Oct 2020 17:40:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AC5216E8EB;
+	Thu, 29 Oct 2020 17:54:45 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 0BDD86E902;
- Thu, 29 Oct 2020 17:40:58 +0000 (UTC)
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id C94E96E8EB;
+ Thu, 29 Oct 2020 17:54:44 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 0385EA0BA8;
- Thu, 29 Oct 2020 17:40:58 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id C130CA0091;
+ Thu, 29 Oct 2020 17:54:44 +0000 (UTC)
 MIME-Version: 1.0
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Anshuman Gupta" <anshuman.gupta@intel.com>
-Date: Thu, 29 Oct 2020 17:40:57 -0000
-Message-ID: <160399325797.1422.220781909558062314@emeril.freedesktop.org>
+Date: Thu, 29 Oct 2020 17:54:44 -0000
+Message-ID: <160399408475.1422.14557230419084763153@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20201027164208.10026-1-anshuman.gupta@intel.com>
 In-Reply-To: <20201027164208.10026-1-anshuman.gupta@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLklHVDogZmFpbHVyZSBmb3IgSERD?=
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLklHVDogc3VjY2VzcyBmb3IgSERD?=
  =?utf-8?q?P_2=2E2_and_HDCP_1=2E4_Gen12_DP_MST_support_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -40,15 +40,15 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============0506027057=="
+Content-Type: multipart/mixed; boundary="===============1804777004=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0506027057==
+--===============1804777004==
 Content-Type: multipart/alternative;
- boundary="===============1973022340458756455=="
+ boundary="===============5042302379675426936=="
 
---===============1973022340458756455==
+--===============5042302379675426936==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -57,7 +57,7 @@ Content-Transfer-Encoding: 7bit
 
 Series: HDCP 2.2 and HDCP 1.4 Gen12 DP MST support (rev2)
 URL   : https://patchwork.freedesktop.org/series/82998/
-State : failure
+State : success
 
 == Summary ==
 
@@ -67,14 +67,9 @@ CI Bug Log - changes from CI_DRM_9206_full -> Patchwork_18788_full
 Summary
 -------
 
-  **FAILURE**
+  **SUCCESS**
 
-  Serious unknown changes coming with Patchwork_18788_full absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_18788_full, please notify your bug team to allow them
-  to document this new failure mode, which will reduce false positives in CI.
+  No regressions found.
 
   
 
@@ -85,23 +80,15 @@ Possible new issues
 
 ### IGT changes ###
 
-#### Possible regressions ####
-
-  * igt@kms_big_fb@linear-32bpp-rotate-180:
-    - shard-glk:          [PASS][1] -> [INCOMPLETE][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9206/shard-glk8/igt@kms_big_fb@linear-32bpp-rotate-180.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18788/shard-glk2/igt@kms_big_fb@linear-32bpp-rotate-180.html
-
-  
 #### Suppressed ####
 
   The following results come from untrusted machines, tests, or statuses.
   They do not affect the overall result.
 
   * {igt@gem_exec_parallel@engines@userptr}:
-    - shard-hsw:          [PASS][3] -> [FAIL][4]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9206/shard-hsw6/igt@gem_exec_parallel@engines@userptr.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18788/shard-hsw4/igt@gem_exec_parallel@engines@userptr.html
+    - shard-hsw:          [PASS][1] -> [FAIL][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9206/shard-hsw6/igt@gem_exec_parallel@engines@userptr.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18788/shard-hsw4/igt@gem_exec_parallel@engines@userptr.html
 
   
 
@@ -110,8 +97,8 @@ Possible new issues
 #### Possible regressions ####
 
   * spec@glsl-4.00@execution@built-in-functions@gs-op-mult-dmat3-dmat3 (NEW):
-    - {pig-icl-1065g7}:   NOTRUN -> [INCOMPLETE][5] +2 similar issues
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18788/pig-icl-1065g7/spec@glsl-4.00@execution@built-in-functions@gs-op-mult-dmat3-dmat3.html
+    - {pig-icl-1065g7}:   NOTRUN -> [INCOMPLETE][3] +2 similar issues
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18788/pig-icl-1065g7/spec@glsl-4.00@execution@built-in-functions@gs-op-mult-dmat3-dmat3.html
 
   
 New tests
@@ -175,24 +162,29 @@ Known issues
 #### Issues hit ####
 
   * igt@drm_read@empty-nonblock:
-    - shard-glk:          [PASS][6] -> [DMESG-WARN][7] ([i915#1982]) +2 similar issues
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9206/shard-glk7/igt@drm_read@empty-nonblock.html
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18788/shard-glk5/igt@drm_read@empty-nonblock.html
+    - shard-glk:          [PASS][4] -> [DMESG-WARN][5] ([i915#1982]) +2 similar issues
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9206/shard-glk7/igt@drm_read@empty-nonblock.html
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18788/shard-glk5/igt@drm_read@empty-nonblock.html
 
   * igt@gem_exec_parallel@engines@contexts:
-    - shard-snb:          [PASS][8] -> [INCOMPLETE][9] ([i915#82])
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9206/shard-snb5/igt@gem_exec_parallel@engines@contexts.html
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18788/shard-snb4/igt@gem_exec_parallel@engines@contexts.html
+    - shard-snb:          [PASS][6] -> [INCOMPLETE][7] ([i915#82])
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9206/shard-snb5/igt@gem_exec_parallel@engines@contexts.html
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18788/shard-snb4/igt@gem_exec_parallel@engines@contexts.html
 
   * igt@gem_userptr_blits@unsync-unmap-cycles:
-    - shard-hsw:          [PASS][10] -> [FAIL][11] ([i915#1888])
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9206/shard-hsw1/igt@gem_userptr_blits@unsync-unmap-cycles.html
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18788/shard-hsw4/igt@gem_userptr_blits@unsync-unmap-cycles.html
+    - shard-hsw:          [PASS][8] -> [FAIL][9] ([i915#1888])
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9206/shard-hsw1/igt@gem_userptr_blits@unsync-unmap-cycles.html
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18788/shard-hsw4/igt@gem_userptr_blits@unsync-unmap-cycles.html
 
   * igt@i915_selftest@live@evict:
-    - shard-skl:          [PASS][12] -> [INCOMPLETE][13] ([i915#198])
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9206/shard-skl9/igt@i915_selftest@live@evict.html
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18788/shard-skl3/igt@i915_selftest@live@evict.html
+    - shard-skl:          [PASS][10] -> [INCOMPLETE][11] ([i915#198])
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9206/shard-skl9/igt@i915_selftest@live@evict.html
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18788/shard-skl3/igt@i915_selftest@live@evict.html
+
+  * igt@kms_big_fb@linear-32bpp-rotate-180:
+    - shard-glk:          [PASS][12] -> [INCOMPLETE][13] ([i915#1888])
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9206/shard-glk8/igt@kms_big_fb@linear-32bpp-rotate-180.html
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18788/shard-glk2/igt@kms_big_fb@linear-32bpp-rotate-180.html
 
   * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:
     - shard-skl:          [PASS][14] -> [DMESG-WARN][15] ([i915#1982]) +6 similar issues
@@ -486,7 +478,7 @@ Build changes
 
 For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18788/index.html
 
---===============1973022340458756455==
+--===============5042302379675426936==
 Content-Type: text/html; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
@@ -510,7 +502,7 @@ Content-Transfer-Encoding: quoted-printable
 rev2)</td></tr>
 <tr><td><b>URL:</b></td><td><a href=3D"https://patchwork.freedesktop.org/se=
 ries/82998/">https://patchwork.freedesktop.org/series/82998/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
 
     <tr><td><b>Details:</b></td><td><a href=3D"https://intel-gfx-ci.01.org/=
 tree/drm-tip/Patchwork_18788/index.html">https://intel-gfx-ci.01.org/tree/d=
@@ -522,31 +514,12 @@ rm-tip/Patchwork_18788/index.html</a></td></tr>
     <h1>CI Bug Log - changes from CI_DRM_9206_full -&gt; Patchwork_18788_fu=
 ll</h1>
 <h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with Patchwork_18788_full absolutely need=
- to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br=
- />
-  introduced in Patchwork_18788_full, please notify your bug team to allow =
-them<br />
-  to document this new failure mode, which will reduce false positives in C=
-I.</p>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
 <h2>Possible new issues</h2>
 <p>Here are the unknown changes that may have been introduced in Patchwork_=
 18788_full:</p>
 <h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>igt@kms_big_fb@linear-32bpp-rotate-180:<ul>
-<li>shard-glk:          <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
-/CI_DRM_9206/shard-glk8/igt@kms_big_fb@linear-32bpp-rotate-180.html">PASS</=
-a> -&gt; <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_1878=
-8/shard-glk2/igt@kms_big_fb@linear-32bpp-rotate-180.html">INCOMPLETE</a></l=
-i>
-</ul>
-</li>
-</ul>
 <h4>Suppressed</h4>
 <p>The following results come from untrusted machines, tests, or statuses.<=
 br />
@@ -686,6 +659,17 @@ a>)</li>
 a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18788/shard-sk=
 l3/igt@i915_selftest@live@evict.html">INCOMPLETE</a> (<a href=3D"https://gi=
 tlab.freedesktop.org/drm/intel/issues/198">i915#198</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_big_fb@linear-32bpp-rotate-180:</p>
+<ul>
+<li>shard-glk:          <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
+/CI_DRM_9206/shard-glk8/igt@kms_big_fb@linear-32bpp-rotate-180.html">PASS</=
+a> -&gt; <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_1878=
+8/shard-glk2/igt@kms_big_fb@linear-32bpp-rotate-180.html">INCOMPLETE</a> (<=
+a href=3D"https://gitlab.freedesktop.org/drm/intel/issues/1888">i915#1888</=
+a>)</li>
 </ul>
 </li>
 <li>
@@ -1223,9 +1207,9 @@ edesktop.org/piglit</p>
 </body>
 </html>
 
---===============1973022340458756455==--
+--===============5042302379675426936==--
 
---===============0506027057==
+--===============1804777004==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -1236,4 +1220,4 @@ Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 
---===============0506027057==--
+--===============1804777004==--
