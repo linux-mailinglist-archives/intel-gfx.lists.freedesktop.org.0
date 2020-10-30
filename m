@@ -2,40 +2,47 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3DB542A0698
-	for <lists+intel-gfx@lfdr.de>; Fri, 30 Oct 2020 14:38:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 43AB52A06C2
+	for <lists+intel-gfx@lfdr.de>; Fri, 30 Oct 2020 14:50:18 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D7F9B6EDE4;
-	Fri, 30 Oct 2020 13:38:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A42DF6E9BA;
+	Fri, 30 Oct 2020 13:50:16 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8F2816EDE5
- for <intel-gfx@lists.freedesktop.org>; Fri, 30 Oct 2020 13:38:12 +0000 (UTC)
-IronPort-SDR: zK99ZWDnEGBAFWUSKYZslfPxYMBu+y+FCsDp9zSLFDZdRMnmMGr0r7XCoME3w3kh4+XfIR2KxV
- Rshg0zlXNmvg==
-X-IronPort-AV: E=McAfee;i="6000,8403,9789"; a="147891063"
-X-IronPort-AV: E=Sophos;i="5.77,433,1596524400"; d="scan'208";a="147891063"
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 537CE6E9BA
+ for <intel-gfx@lists.freedesktop.org>; Fri, 30 Oct 2020 13:50:15 +0000 (UTC)
+IronPort-SDR: q6C9Nm1ya7WknNbnXViMmMdVcG6QLw2UR3ohhH+csA+l5FqS+yct+d3Jq90XUol8F1RWJVkCAY
+ OOQCok8gG0Sw==
+X-IronPort-AV: E=McAfee;i="6000,8403,9789"; a="166020969"
+X-IronPort-AV: E=Sophos;i="5.77,433,1596524400"; d="scan'208";a="166020969"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Oct 2020 06:38:11 -0700
-IronPort-SDR: zGaflnWInX2DmN7akjhRB4aldvzVOY4ZVWoNjqv5Z55QuYXdjfAA7/ZHQyeQaeA4FqPOkOYYpL
- Sq6lpwpamRiA==
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Oct 2020 06:50:14 -0700
+IronPort-SDR: gePcNNnwiQ7zr8wuS0BdKEDCwqVvs8wNpublrTWHuXkKAnZq05mtgTrufVCUzVgEJgEsGsRD9t
+ rKYx9Rmsx6Ow==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.77,433,1596524400"; d="scan'208";a="525886782"
-Received: from shawnle1-build-machine.itwn.intel.com ([10.5.253.9])
- by fmsmga006.fm.intel.com with ESMTP; 30 Oct 2020 06:38:09 -0700
-From: Lee Shawn C <shawn.c.lee@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Fri, 30 Oct 2020 21:41:37 +0800
-Message-Id: <20201030134137.30867-1-shawn.c.lee@intel.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20201028144312.12520-1-shawn.c.lee@intel.com>
-References: <20201028144312.12520-1-shawn.c.lee@intel.com>
-Subject: [Intel-gfx] [PATCH v2] drm/i915/rkl: new rkl ddc map for different
- PCH
+X-IronPort-AV: E=Sophos;i="5.77,433,1596524400"; d="scan'208";a="425349095"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
+ by fmsmga001.fm.intel.com with SMTP; 30 Oct 2020 06:50:12 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Fri, 30 Oct 2020 15:50:11 +0200
+Date: Fri, 30 Oct 2020 15:50:11 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Lucas De Marchi <lucas.demarchi@intel.com>
+Message-ID: <20201030135011.GI6112@intel.com>
+References: <20201028213323.5423-1-ville.syrjala@linux.intel.com>
+ <20201028213323.5423-18-ville.syrjala@linux.intel.com>
+ <20201028221657.lizjycr7kxwl274n@ldmartin-desk1>
+MIME-Version: 1.0
+Content-Disposition: inline
+In-Reply-To: <20201028221657.lizjycr7kxwl274n@ldmartin-desk1>
+X-Patchwork-Hint: comment
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: Re: [Intel-gfx] [PATCH v3 17/19] drm/i915: Enable hpd logic only
+ for ports that are present
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,93 +55,43 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Cooper Chiou <cooper.chiou@intel.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-After boot into kernel. Driver configured ddc pin mapping based on
-predefined table in parse_ddi_port(). Now driver configure rkl
-ddc pin mapping depends on icp_ddc_pin_map[]. Then this table will
-give incorrect gmbus port number to cause HDMI can't work.
+On Wed, Oct 28, 2020 at 03:16:57PM -0700, Lucas De Marchi wrote:
+> On Wed, Oct 28, 2020 at 11:33:21PM +0200, Ville Syrj=E4l=E4 wrote:
+> >From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> >
+> >Let's enable the hardware hpd logic only for the ports we
+> >can actually use.
+> >
+> >In theory this may save some miniscule amounts of power,
+> >and more importantly it eliminates a lot if platform specific
+> >codepaths since the generic thing can now deal with any
+> >combination of ports being present on each SKU.
+> >
+> >v2: Deal with DG1
+> >
+> >Signed-off-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> =
 
-Refer to commit d0a89527d06 ("drm/i915/rkl: Add DDC pin mapping").
-Create two ddc pin table for rkl TGP and CMP pch. Then HDMI can
-works properly on rkl.
+> =
 
-v2: update patch based on latest dinq branch.
+> Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
 
-Cc: Matt Roper <matthew.d.roper@intel.com>
-Cc: Aditya Swarup <aditya.swarup@intel.com>
-Cc: Anusha Srivatsa <anusha.srivatsa@intel.com>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>
-Cc: Cooper Chiou <cooper.chiou@intel.com>
-Cc: Khaled Almahallawy <khaled.almahallawy@intel.com>
-Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/2577
-Signed-off-by: Lee Shawn C <shawn.c.lee@intel.com>
----
- drivers/gpu/drm/i915/display/intel_bios.c     | 20 +++++++++++++++++++
- drivers/gpu/drm/i915/display/intel_vbt_defs.h |  4 ++++
- 2 files changed, 24 insertions(+)
+While applying I noticed that I fumbled the dg1 changes slightly.
+icp_ddi_hotplug_enables() was missing the HPD_PORT_D stuff.
+I fixed that up and pushed the lot.
 
-diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/i915/display/intel_bios.c
-index 0a309645fe06..ca9426e1768a 100644
---- a/drivers/gpu/drm/i915/display/intel_bios.c
-+++ b/drivers/gpu/drm/i915/display/intel_bios.c
-@@ -1623,6 +1623,18 @@ static const u8 icp_ddc_pin_map[] = {
- 	[TGL_DDC_BUS_PORT_6] = GMBUS_PIN_14_TC6_TGP,
- };
- 
-+static const u8 rkl_pch_tgp_ddc_pin_map[] = {
-+	[RKL_DDC_BUS_DDI_B] = GMBUS_PIN_2_BXT,
-+	[RKL_DDC_BUS_DDI_D] = GMBUS_PIN_9_TC1_ICP,
-+	[RKL_DDC_BUS_DDI_E] = GMBUS_PIN_10_TC2_ICP,
-+};
-+
-+static const u8 rkl_pch_cmp_ddc_pin_map[] = {
-+	[RKL_DDC_BUS_DDI_B] = GMBUS_PIN_2_BXT,
-+	[RKL_DDC_BUS_DDI_D] = GMBUS_PIN_3_BXT,
-+	[RKL_DDC_BUS_DDI_E] = GMBUS_PIN_4_CNP,
-+};
-+
- static u8 map_ddc_pin(struct drm_i915_private *dev_priv, u8 vbt_pin)
- {
- 	const u8 *ddc_pin_map;
-@@ -1630,6 +1642,14 @@ static u8 map_ddc_pin(struct drm_i915_private *dev_priv, u8 vbt_pin)
- 
- 	if (INTEL_PCH_TYPE(dev_priv) >= PCH_DG1) {
- 		return vbt_pin;
-+	} else if (IS_ROCKETLAKE(dev_priv)) {
-+		if (INTEL_PCH_TYPE(dev_priv) >= PCH_TGP) {
-+			ddc_pin_map = rkl_pch_tgp_ddc_pin_map;
-+			n_entries = ARRAY_SIZE(rkl_pch_tgp_ddc_pin_map);
-+		} else {
-+			ddc_pin_map = rkl_pch_cmp_ddc_pin_map;
-+			n_entries = ARRAY_SIZE(rkl_pch_cmp_ddc_pin_map);
-+		}
- 	} else if (INTEL_PCH_TYPE(dev_priv) >= PCH_ICP) {
- 		ddc_pin_map = icp_ddc_pin_map;
- 		n_entries = ARRAY_SIZE(icp_ddc_pin_map);
-diff --git a/drivers/gpu/drm/i915/display/intel_vbt_defs.h b/drivers/gpu/drm/i915/display/intel_vbt_defs.h
-index 49b4b5fca941..2df009996128 100644
---- a/drivers/gpu/drm/i915/display/intel_vbt_defs.h
-+++ b/drivers/gpu/drm/i915/display/intel_vbt_defs.h
-@@ -319,6 +319,10 @@ enum vbt_gmbus_ddi {
- 	ICL_DDC_BUS_DDI_A = 0x1,
- 	ICL_DDC_BUS_DDI_B,
- 	TGL_DDC_BUS_DDI_C,
-+	RKL_DDC_BUS_DDI_B = 0x1,
-+	RKL_DDC_BUS_DDI_C,
-+	RKL_DDC_BUS_DDI_D,
-+	RKL_DDC_BUS_DDI_E,
- 	ICL_DDC_BUS_PORT_1 = 0x4,
- 	ICL_DDC_BUS_PORT_2,
- 	ICL_DDC_BUS_PORT_3,
--- 
-2.28.0
+Thanks for the review.
 
+-- =
+
+Ville Syrj=E4l=E4
+Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
