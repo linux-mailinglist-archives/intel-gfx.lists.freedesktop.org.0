@@ -2,30 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6DCDC2A0D22
-	for <lists+intel-gfx@lfdr.de>; Fri, 30 Oct 2020 19:11:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 32A592A0D24
+	for <lists+intel-gfx@lfdr.de>; Fri, 30 Oct 2020 19:11:49 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 441636E9B7;
-	Fri, 30 Oct 2020 18:11:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 334FD6E9E3;
+	Fri, 30 Oct 2020 18:11:47 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 1BAB36E9B7;
- Fri, 30 Oct 2020 18:11:42 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id 235736E9E0;
+ Fri, 30 Oct 2020 18:11:44 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 0FCD6A41FB;
- Fri, 30 Oct 2020 18:11:42 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 1F8C4AA3D8;
+ Fri, 30 Oct 2020 18:11:44 +0000 (UTC)
 MIME-Version: 1.0
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
-Date: Fri, 30 Oct 2020 18:11:42 -0000
-Message-ID: <160408150203.23389.18418541783701152315@emeril.freedesktop.org>
+Date: Fri, 30 Oct 2020 18:11:44 -0000
+Message-ID: <160408150412.23388.5042745619165447359@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20201030165045.5000-1-ville.syrjala@linux.intel.com>
 In-Reply-To: <20201030165045.5000-1-ville.syrjala@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915=3A_ilk+_wm_cleanups?=
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiB3YXJuaW5nIGZvciBk?=
+ =?utf-8?q?rm/i915=3A_ilk+_wm_cleanups?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,1122 +40,553 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============0259857263=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0259857263==
-Content-Type: multipart/alternative;
- boundary="===============2464977406355603508=="
-
---===============2464977406355603508==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-
-== Series Details ==
-
-Series: drm/i915: ilk+ wm cleanups
-URL   : https://patchwork.freedesktop.org/series/83289/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_9229 -> Patchwork_18817
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18817/index.html
-
-New tests
----------
-
-  New tests have been introduced between CI_DRM_9229 and Patchwork_18817:
-
-### New CI tests (1) ###
-
-  * boot:
-    - Statuses : 40 pass(s)
-    - Exec time: [0.0] s
-
-  
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_18817 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@core_hotunplug@unbind-rebind:
-    - fi-tgl-u2:          [PASS][1] -> [DMESG-WARN][2] ([i915#1982])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9229/fi-tgl-u2/igt@core_hotunplug@unbind-rebind.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18817/fi-tgl-u2/igt@core_hotunplug@unbind-rebind.html
-
-  * igt@i915_module_load@reload:
-    - fi-bxt-dsi:         [PASS][3] -> [DMESG-WARN][4] ([i915#1635] / [i915#1982])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9229/fi-bxt-dsi/igt@i915_module_load@reload.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18817/fi-bxt-dsi/igt@i915_module_load@reload.html
-
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:
-    - fi-byt-j1900:       [PASS][5] -> [DMESG-WARN][6] ([i915#1982])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9229/fi-byt-j1900/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18817/fi-byt-j1900/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-
-  * igt@kms_cursor_legacy@basic-flip-before-cursor-atomic:
-    - fi-icl-u2:          [PASS][7] -> [DMESG-WARN][8] ([i915#1982])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9229/fi-icl-u2/igt@kms_cursor_legacy@basic-flip-before-cursor-atomic.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18817/fi-icl-u2/igt@kms_cursor_legacy@basic-flip-before-cursor-atomic.html
-
-  * igt@kms_flip@basic-flip-vs-wf_vblank@a-edp1:
-    - fi-kbl-soraka:      [PASS][9] -> [FAIL][10] ([i915#2122])
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9229/fi-kbl-soraka/igt@kms_flip@basic-flip-vs-wf_vblank@a-edp1.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18817/fi-kbl-soraka/igt@kms_flip@basic-flip-vs-wf_vblank@a-edp1.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_module_load@reload:
-    - fi-byt-j1900:       [DMESG-WARN][11] ([i915#1982]) -> [PASS][12] +1 similar issue
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9229/fi-byt-j1900/igt@i915_module_load@reload.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18817/fi-byt-j1900/igt@i915_module_load@reload.html
-
-  * igt@i915_selftest@live@active:
-    - {fi-ehl-1}:         [INCOMPLETE][13] -> [PASS][14]
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9229/fi-ehl-1/igt@i915_selftest@live@active.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18817/fi-ehl-1/igt@i915_selftest@live@active.html
-
-  * igt@i915_selftest@live@execlists:
-    - fi-kbl-x1275:       [INCOMPLETE][15] ([i915#794]) -> [PASS][16]
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9229/fi-kbl-x1275/igt@i915_selftest@live@execlists.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18817/fi-kbl-x1275/igt@i915_selftest@live@execlists.html
-
-  * igt@kms_busy@basic@flip:
-    - {fi-kbl-7560u}:     [DMESG-WARN][17] ([i915#1982]) -> [PASS][18] +1 similar issue
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9229/fi-kbl-7560u/igt@kms_busy@basic@flip.html
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18817/fi-kbl-7560u/igt@kms_busy@basic@flip.html
-
-  
-#### Warnings ####
-
-  * igt@core_hotunplug@unbind-rebind:
-    - fi-icl-u2:          [DMESG-WARN][19] ([i915#1982] / [i915#289]) -> [DMESG-WARN][20] ([i915#289])
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9229/fi-icl-u2/igt@core_hotunplug@unbind-rebind.html
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18817/fi-icl-u2/igt@core_hotunplug@unbind-rebind.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [i915#1635]: https://gitlab.freedesktop.org/drm/intel/issues/1635
-  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
-  [i915#2122]: https://gitlab.freedesktop.org/drm/intel/issues/2122
-  [i915#2411]: https://gitlab.freedesktop.org/drm/intel/issues/2411
-  [i915#289]: https://gitlab.freedesktop.org/drm/intel/issues/289
-  [i915#794]: https://gitlab.freedesktop.org/drm/intel/issues/794
-
-
-Participating hosts (45 -> 40)
-------------------------------
-
-  Missing    (5): fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_9229 -> Patchwork_18817
-
-  CI-20190529: 20190529
-  CI_DRM_9229: 4abde8e3625d7249799c3e1cdeac1b2aa3ad3edb @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5830: 12d370cb57e0cfcb781c87ad9e15e68b17a1f41f @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_18817: edaa7edda21c8d60b7772330048faddea456f26b @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Kernel 32bit build ==
-
-Warning: Kernel 32bit buildtest failed:
-https://intel-gfx-ci.01.org/Patchwork_18817/build_32bit.log
-
-  CALL    scripts/checksyscalls.sh
-  CALL    scripts/atomic/check-atomics.sh
-  CHK     include/generated/compile.h
-  CC [M]  drivers/gpu/drm/i915/intel_pm.o
-In file included from <command-line>:
-drivers/gpu/drm/i915/intel_pm.c: In function ‘intel_read_wm_latency’:
-./include/linux/bits.h:35:22: error: left shift count >= width of type [-Werror=shift-count-overflow]
-  (((~UL(0)) - (UL(1) << (l)) + 1) & \
-                      ^~
-././include/linux/compiler_types.h:299:9: note: in definition of macro ‘__compiletime_assert’
-   if (!(condition))     \
-         ^~~~~~~~~
-././include/linux/compiler_types.h:319:2: note: in expansion of macro ‘_compiletime_assert’
-  _compiletime_assert(condition, msg, __compiletime_assert_, __COUNTER__)
-  ^~~~~~~~~~~~~~~~~~~
-./include/linux/build_bug.h:39:37: note: in expansion of macro ‘compiletime_assert’
- #define BUILD_BUG_ON_MSG(cond, msg) compiletime_assert(!(cond), msg)
-                                     ^~~~~~~~~~~~~~~~~~
-./include/linux/bitfield.h:46:3: note: in expansion of macro ‘BUILD_BUG_ON_MSG’
-   BUILD_BUG_ON_MSG(!__builtin_constant_p(_mask),  \
-   ^~~~~~~~~~~~~~~~
-./include/linux/bitfield.h:108:3: note: in expansion of macro ‘__BF_FIELD_CHECK’
-   __BF_FIELD_CHECK(_mask, _reg, 0U, "FIELD_GET: "); \
-   ^~~~~~~~~~~~~~~~
-./drivers/gpu/drm/i915/i915_reg.h:184:56: note: in expansion of macro ‘FIELD_GET’
- #define _REG_FIELD_GET(__type, __mask, __val) ((__type)FIELD_GET(__mask, __val))
-                                                        ^~~~~~~~~
-./drivers/gpu/drm/i915/i915_reg.h:208:40: note: in expansion of macro ‘_REG_FIELD_GET’
- #define REG_FIELD_GET64(__mask, __val) _REG_FIELD_GET(u64, __mask, __val)
-                                        ^~~~~~~~~~~~~~
-drivers/gpu/drm/i915/intel_pm.c:2936:11: note: in expansion of macro ‘REG_FIELD_GET64’
-   wm[0] = REG_FIELD_GET64(SSKPD_NEW_WM0_MASK_HSW, sskpd);
-           ^~~~~~~~~~~~~~~
-./include/linux/bits.h:38:31: note: in expansion of macro ‘__GENMASK’
-  (GENMASK_INPUT_CHECK(h, l) + __GENMASK(h, l))
-                               ^~~~~~~~~
-./drivers/gpu/drm/i915/i915_reg.h:133:12: note: in expansion of macro ‘GENMASK’
-  ((__type)(GENMASK(__high, __low) +    \
-            ^~~~~~~
-./drivers/gpu/drm/i915/i915_reg.h:160:38: note: in expansion of macro ‘_REG_GENMASK’
- #define REG_GENMASK64(__high, __low) _REG_GENMASK(u64, __high, __low)
-                                      ^~~~~~~~~~~~
-./drivers/gpu/drm/i915/i915_reg.h:3822:34: note: in expansion of macro ‘REG_GENMASK64’
- #define   SSKPD_NEW_WM0_MASK_HSW REG_GENMASK64(63, 56)
-                                  ^~~~~~~~~~~~~
-drivers/gpu/drm/i915/intel_pm.c:2936:27: note: in expansion of macro ‘SSKPD_NEW_WM0_MASK_HSW’
-   wm[0] = REG_FIELD_GET64(SSKPD_NEW_WM0_MASK_HSW, sskpd);
-                           ^~~~~~~~~~~~~~~~~~~~~~
-./include/linux/bits.h:36:11: error: right shift count is negative [-Werror=shift-count-negative]
-   (~UL(0) >> (BITS_PER_LONG - 1 - (h))))
-           ^~
-././include/linux/compiler_types.h:299:9: note: in definition of macro ‘__compiletime_assert’
-   if (!(condition))     \
-         ^~~~~~~~~
-././include/linux/compiler_types.h:319:2: note: in expansion of macro ‘_compiletime_assert’
-  _compiletime_assert(condition, msg, __compiletime_assert_, __COUNTER__)
-  ^~~~~~~~~~~~~~~~~~~
-./include/linux/build_bug.h:39:37: note: in expansion of macro ‘compiletime_assert’
- #define BUILD_BUG_ON_MSG(cond, msg) compiletime_assert(!(cond), msg)
-                                     ^~~~~~~~~~~~~~~~~~
-./include/linux/bitfield.h:46:3: note: in expansion of macro ‘BUILD_BUG_ON_MSG’
-   BUILD_BUG_ON_MSG(!__builtin_constant_p(_mask),  \
-   ^~~~~~~~~~~~~~~~
-./include/linux/bitfield.h:108:3: note: in expansion of macro ‘__BF_FIELD_CHECK’
-   __BF_FIELD_CHECK(_mask, _reg, 0U, "FIELD_GET: "); \
-   ^~~~~~~~~~~~~~~~
-./drivers/gpu/drm/i915/i915_reg.h:184:56: note: in expansion of macro ‘FIELD_GET’
- #define _REG_FIELD_GET(__type, __mask, __val) ((__type)FIELD_GET(__mask, __val))
-                                                        ^~~~~~~~~
-./drivers/gpu/drm/i915/i915_reg.h:208:40: note: in expansion of macro ‘_REG_FIELD_GET’
- #define REG_FIELD_GET64(__mask, __val) _REG_FIELD_GET(u64, __mask, __val)
-                                        ^~~~~~~~~~~~~~
-drivers/gpu/drm/i915/intel_pm.c:2936:11: note: in expansion of macro ‘REG_FIELD_GET64’
-   wm[0] = REG_FIELD_GET64(SSKPD_NEW_WM0_MASK_HSW, sskpd);
-           ^~~~~~~~~~~~~~~
-./include/linux/bits.h:38:31: note: in expansion of macro ‘__GENMASK’
-  (GENMASK_INPUT_CHECK(h, l) + __GENMASK(h, l))
-                               ^~~~~~~~~
-./drivers/gpu/drm/i915/i915_reg.h:133:12: note: in expansion of macro ‘GENMASK’
-  ((__type)(GENMASK(__high, __low) +    \
-            ^~~~~~~
-./drivers/gpu/drm/i915/i915_reg.h:160:38: note: in expansion of macro ‘_REG_GENMASK’
- #define REG_GENMASK64(__high, __low) _REG_GENMASK(u64, __high, __low)
-                                      ^~~~~~~~~~~~
-./drivers/gpu/drm/i915/i915_reg.h:3822:34: note: in expansion of macro ‘REG_GENMASK64’
- #define   SSKPD_NEW_WM0_MASK_HSW REG_GENMASK64(63, 56)
-                                  ^~~~~~~~~~~~~
-drivers/gpu/drm/i915/intel_pm.c:2936:27: note: in expansion of macro ‘SSKPD_NEW_WM0_MASK_HSW’
-   wm[0] = REG_FIELD_GET64(SSKPD_NEW_WM0_MASK_HSW, sskpd);
-                           ^~~~~~~~~~~~~~~~~~~~~~
-./include/linux/bits.h:35:22: error: left shift count >= width of type [-Werror=shift-count-overflow]
-  (((~UL(0)) - (UL(1) << (l)) + 1) & \
-                      ^~
-././include/linux/compiler_types.h:299:9: note: in definition of macro ‘__compiletime_assert’
-   if (!(condition))     \
-         ^~~~~~~~~
-././include/linux/compiler_types.h:319:2: note: in expansion of macro ‘_compiletime_assert’
-  _compiletime_assert(condition, msg, __compiletime_assert_, __COUNTER__)
-  ^~~~~~~~~~~~~~~~~~~
-./include/linux/build_bug.h:39:37: note: in expansion of macro ‘compiletime_assert’
- #define BUILD_BUG_ON_MSG(cond, msg) compiletime_assert(!(cond), msg)
-                                     ^~~~~~~~~~~~~~~~~~
-./include/linux/bitfield.h:48:3: note: in expansion of macro ‘BUILD_BUG_ON_MSG’
-   BUILD_BUG_ON_MSG((_mask) == 0, _pfx "mask is zero"); \
-   ^~~~~~~~~~~~~~~~
-./include/linux/bitfield.h:108:3: note: in expansion of macro ‘__BF_FIELD_CHECK’
-   __BF_FIELD_CHECK(_mask, _reg, 0U, "FIELD_GET: "); \
-   ^~~~~~~~~~~~~~~~
-./drivers/gpu/drm/i915/i915_reg.h:184:56: note: in expansion of macro ‘FIELD_GET’
- #define _REG_FIELD_GET(__type, __mask, __val) ((__type)FIELD_GET(__mask, __val))
-                                                        ^~~~~~~~~
-./drivers/gpu/drm/i915/i915_reg.h:208:40: note: in expansion of macro ‘_REG_FIELD_GET’
- #define REG_FIELD_GET64(__mask, __val) _REG_FIELD_GET(u64, __mask, __val)
-                                        ^~~~~~~~~~~~~~
-drivers/gpu/drm/i915/intel_pm.c:2936:11: note: in expansion of macro ‘REG_FIELD_GET64’
-   wm[0] = REG_FIELD_GET64(SSKPD_NEW_WM0_MASK_HSW, sskpd);
-           ^~~~~~~~~~~~~~~
-./include/linux/bits.h:38:31: note: in expansion of macro ‘__GENMASK’
-  (GENMASK_INPUT_CHECK(h, l) + __GENMASK(h, l))
-                               ^~~~~~~~~
-./drivers/gpu/drm/i915/i915_reg.h:133:12: note: in expansion of macro ‘GENMASK’
-  ((__type)(GENMASK(__high, __low) +    \
-            ^~~~~~~
-./drivers/gpu/drm/i915/i915_reg.h:160:38: note: in expansion of macro ‘_REG_GENMASK’
- #define REG_GENMASK64(__high, __low) _REG_GENMASK(u64, __high, __low)
-                                      ^~~~~~~~~~~~
-./drivers/gpu/drm/i915/i915_reg.h:3822:34: note: in expansion of macro ‘REG_GENMASK64’
- #define   SSKPD_NEW_WM0_MASK_HSW REG_GENMASK64(63, 56)
-                                  ^~~~~~~~~~~~~
-drivers/gpu/drm/i915/intel_pm.c:2936:27: note: in expansion of macro ‘SSKPD_NEW_WM0_MASK_HSW’
-   wm[0] = REG_FIELD_GET64(SSKPD_NEW_WM0_MASK_HSW, sskpd);
-                           ^~~~~~~~~~~~~~~~~~~~~~
-./include/linux/bits.h:36:11: error: right shift count is negative [-Werror=shift-count-negative]
-   (~UL(0) >> (BITS_PER_LONG - 1 - (h))))
-           ^~
-././include/linux/compiler_types.h:299:9: note: in definition of macro ‘__compiletime_assert’
-   if (!(condition))     \
-         ^~~~~~~~~
-././include/linux/compiler_types.h:319:2: note: in expansion of macro ‘_compiletime_assert’
-  _compiletime_assert(condition, msg, __compiletime_assert_, __COUNTER__)
-  ^~~~~~~~~~~~~~~~~~~
-./include/linux/build_bug.h:39:37: note: in expansion of macro ‘compiletime_assert’
- #define BUILD_BUG_ON_MSG(cond, msg) compiletime_assert(!(cond), msg)
-                                     ^~~~~~~~~~~~~~~~~~
-./include/linux/bitfield.h:48:3: note: in expansion of macro ‘BUILD_BUG_ON_MSG’
-   BUILD_BUG_ON_MSG((_mask) == 0, _pfx "mask is zero"); \
-   ^~~~~~~~~~~~~~~~
-./include/linux/bitfield.h:108:3: note: in expansion of macro ‘__BF_FIELD_CHECK’
-   __BF_FIELD_CHECK(_mask, _reg, 0U, "FIELD_GET: "); \
-   ^~~~~~~~~~~~~~~~
-./drivers/gpu/drm/i915/i915_reg.h:184:56: note: in expansion of macro ‘FIELD_GET’
- #define _REG_FIELD_GET(__type, __mask, __val) ((__type)FIELD_GET(__mask, __val))
-                                                        ^~~~~~~~~
-./drivers/gpu/drm/i915/i915_reg.h:208:40: note: in expansion of macro ‘_REG_FIELD_GET’
- #define REG_FIELD_GET64(__mask, __val) _REG_FIELD_GET(u64, __mask, __val)
-                                        ^~~~~~~~~~~~~~
-drivers/gpu/drm/i915/intel_pm.c:2936:11: note: in expansion of macro ‘REG_FIELD_GET64’
-   wm[0] = REG_FIELD_GET64(SSKPD_NEW_WM0_MASK_HSW, sskpd);
-           ^~~~~~~~~~~~~~~
-./include/linux/bits.h:38:31: note: in expansion of macro ‘__GENMASK’
-  (GENMASK_INPUT_CHECK(h, l) + __GENMASK(h, l))
-                               ^~~~~~~~~
-./drivers/gpu/drm/i915/i915_reg.h:133:12: note: in expansion of macro ‘GENMASK’
-  ((__type)(GENMASK(__high, __low) +    \
-            ^~~~~~~
-./drivers/gpu/drm/i915/i915_reg.h:160:38: note: in expansion of macro ‘_REG_GENMASK’
- #define REG_GENMASK64(__high, __low) _REG_GENMASK(u64, __high, __low)
-                                      ^~~~~~~~~~~~
-./drivers/gpu/drm/i915/i915_reg.h:3822:34: note: in expansion of macro ‘REG_GENMASK64’
- #define   SSKPD_NEW_WM0_MASK_HSW REG_GENMASK64(63, 56)
-                                  ^~~~~~~~~~~~~
-drivers/gpu/drm/i915/intel_pm.c:2936:27: note: in expansion of macro ‘SSKPD_NEW_WM0_MASK_HSW’
-   wm[0] = REG_FIELD_GET64(SSKPD_NEW_WM0_MASK_HSW, sskpd);
-                           ^~~~~~~~~~~~~~~~~~~~~~
-./include/linux/bits.h:35:22: error: left shift count >= width of type [-Werror=shift-count-overflow]
-  (((~UL(0)) - (UL(1) << (l)) + 1) & \
-                      ^~
-././include/linux/compiler_types.h:299:9: note: in definition of macro ‘__compiletime_assert’
-   if (!(condition))     \
-         ^~~~~~~~~
-././include/linux/compiler_types.h:319:2: note: in expansion of macro ‘_compiletime_assert’
-  _compiletime_assert(condition, msg, __compiletime_assert_, __COUNTER__)
-  ^~~~~~~~~~~~~~~~~~~
-./include/linux/build_bug.h:39:37: note: in expansion of macro ‘compiletime_assert’
- #define BUILD_BUG_ON_MSG(cond, msg) compiletime_assert(!(cond), msg)
-                                     ^~~~~~~~~~~~~~~~~~
-./include/linux/bitfield.h:49:3: note: in expansion of macro ‘BUILD_BUG_ON_MSG’
-   BUILD_BUG_ON_MSG(__builtin_constant_p(_val) ?  \
-   ^~~~~~~~~~~~~~~~
-./include/linux/bitfield.h:108:3: note: in expansion of macro ‘__BF_FIELD_CHECK’
-   __BF_FIELD_CHECK(_mask, _reg, 0U, "FIELD_GET: "); \
-   ^~~~~~~~~~~~~~~~
-./drivers/gpu/drm/i915/i915_reg.h:184:56: note: in expansion of macro ‘FIELD_GET’
- #define _REG_FIELD_GET(__type, __mask, __val) ((__type)FIELD_GET(__mask, __val))
-                                                        ^~~~~~~~~
-./drivers/gpu/drm/i915/i915_reg.h:208:40: note: in expansion of macro ‘_REG_FIELD_GET’
- #define REG_FIELD_GET64(__mask, __val) _REG_FIELD_GET(u64, __mask, __val)
-                                        ^~~~~~~~~~~~~~
-drivers/gpu/drm/i915/intel_pm.c:2936:11: note: in expansion of macro ‘REG_FIELD_GET64’
-   wm[0] = REG_FIELD_GET64(SSKPD_NEW_WM0_MASK_HSW, sskpd);
-           ^~~~~~~~~~~~~~~
-./include/linux/bits.h:38:31: note: in expansion of macro ‘__GENMASK’
-  (GENMASK_INPUT_CHECK(h, l) + __GENMASK(h, l))
-                               ^~~~~~~~~
-./drivers/gpu/drm/i915/i915_reg.h:133:12: note: in expansion of macro ‘GENMASK’
-  ((__type)(GENMASK(__high, __low) +    \
-            ^~~~~~~
-./drivers/gpu/drm/i915/i915_reg.h:160:38: note: in expansion of macro ‘_REG_GENMASK’
- #define REG_GENMASK64(__high, __low) _REG_GENMASK(u64, __high, __low)
-                                      ^~~~~~~~~~~~
-./drivers/gpu/drm/i915/i915_reg.h:3822:34: note: in expansion of macro ‘REG_GENMASK64’
- #define   SSKPD_NEW_WM0_MASK_HSW REG_GENMASK64(63, 56)
-                                  ^~~~~~~~~~~~~
-drivers/gpu/drm/i915/intel_pm.c:2936:27: note: in expansion of macro ‘SSKPD_NEW_WM0_MASK_HSW’
-   wm[0] = REG_FIELD_GET64(SSKPD_NEW_WM0_MASK_HSW, sskpd);
-                           ^~~~~~~~~~~~~~~~~~~~~~
-./include/linux/bits.h:36:11: error: right shift count is negative [-Werror=shift-count-negative]
-   (~UL(0) >> (BITS_PER_LONG - 1 - (h))))
-           ^~
-././include/linux/compiler_types.h:299:9: note: in definition of macro ‘__compiletime_assert’
-   if (!(condition))     \
-         ^~~~~~~~~
-././include/linux/compiler_types.h:319:2: note: in expansion of macro ‘_compiletime_assert’
-  _compiletime_assert(condition, msg, __compiletime_assert_, __COUNTER__)
-  ^~~~~~~~~~~~~~~~~~~
-./include/linux/build_bug.h:39:37: note: in expansion of macro ‘compiletime_assert’
- #define BUILD_BUG_ON_MSG(cond, msg) compiletime_assert(!(cond), msg)
-                                     ^~~~~~~~~~~~~~~~~~
-./include/linux/bitfield.h:49:3: note: in expansion of macro ‘BUILD_BUG_ON_MSG’
-   BUILD_BUG_ON_MSG(__builtin_constant_p(_val) ?  \
-   ^~~~~~~~~~~~~~~~
-./include/linux/bitfield.h:108:3: note: in expansion of macro ‘__BF_FIELD_CHECK’
-   __BF_FIELD_CHECK(_mask, _reg, 0U, "FIELD_GET: "); \
-   ^~~~~~~~~~~~~~~~
-./drivers/gpu/drm/i915/i915_reg.h:184:56: note: in expansion of macro ‘FIELD_GET’
- #define _REG_FIELD_GET(__type, __mask, __val) ((__type)FIELD_GET(__mask, __val))
-                                                        ^~~~~~~~~
-./drivers/gpu/drm/i915/i915_reg.h:208:40: note: in expansion of macro ‘_REG_FIELD_GET’
- #define REG_FIELD_GET64(__mask, __val) _REG_FIELD_GET(u64, __mask, __val)
-                                        ^~~~~~~~~~~~~~
-drivers/gpu/drm/i915/intel_pm.c:2936:11: note: in expansion of macro ‘REG_FIELD_GET64’
-   wm[0] = REG_FIELD_GET64(SSKPD_NEW_WM0_MASK_HSW, sskpd);
-           ^~~~~~~~~~~~~~~
-./include/linux/bits.h:38:31: note: in expansion of macro ‘__GENMASK’
-  (GENMASK_INPUT_CHECK(h, l) + __GENMASK(h, l))
-                               ^~~~~~~~~
-./drivers/gpu/drm/i915/i915_reg.h:133:12: note: in expansion of macro ‘GENMASK’
-  ((__type)(GENMASK(__high, __low) +    \
-            ^~~~~~~
-./drivers/gpu/drm/i915/i915_reg.h:160:38: note: in expansion of macro ‘_REG_GENMASK’
- #define REG_GENMASK64(__high, __low) _REG_GENMASK(u64, __high, __low)
-                                      ^~~~~~~~~~~~
-./drivers/gpu/drm/i915/i915_reg.h:3822:34: note: in expansion of macro ‘REG_GENMASK64’
- #define   SSKPD_NEW_WM0_MASK_HSW REG_GENMASK64(63, 56)
-                                  ^~~~~~~~~~~~~
-drivers/gpu/drm/i915/intel_pm.c:2936:27: note: in expansion of macro ‘SSKPD_NEW_WM0_MASK_HSW’
-   wm[0] = REG_FIELD_GET64(SSKPD_NEW_WM0_MASK_HSW, sskpd);
-                           ^~~~~~~~~~~~~~~~~~~~~~
-./include/linux/bits.h:35:22: error: left shift count >= width of type [-Werror=shift-count-overflow]
-  (((~UL(0)) - (UL(1) << (l)) + 1) & \
-                      ^~
-././include/linux/compiler_types.h:299:9: note: in definition of macro ‘__compiletime_assert’
-   if (!(condition))     \
-         ^~~~~~~~~
-././include/linux/compiler_types.h:319:2: note: in expansion of macro ‘_compiletime_assert’
-  _compiletime_assert(condition, msg, __compiletime_assert_, __COUNTER__)
-  ^~~~~~~~~~~~~~~~~~~
-./include/linux/build_bug.h:39:37: note: in expansion of macro ‘compiletime_assert’
- #define BUILD_BUG_ON_MSG(cond, msg) compiletime_assert(!(cond), msg)
-                                     ^~~~~~~~~~~~~~~~~~
-./include/linux/bitfield.h:49:3: note: in expansion of macro ‘BUILD_BUG_ON_MSG’
-   BUILD_BUG_ON_MSG(__builtin_constant_p(_val) ?  \
-   ^~~~~~~~~~~~~~~~
-./include/linux/bitfield.h:50:19: note: in expansion of macro ‘__bf_shf’
-      ~((_mask) >> __bf_shf(_mask)) & (_val) : 0, \
-                   ^~~~~~~~
-./include/linux/bitfield.h:108:3: note: in expansion of macro ‘__BF_FIELD_CHECK’
-   __BF_FIELD_CHECK(_mask, _reg, 0U, "FIELD_GET: "); \
-   ^~~~~~~~~~~~~~~~
-./drivers/gpu/drm/i915/i915_reg.h:184:56: note: in expansion of macro ‘FIELD_GET’
- #define _REG_FIELD_GET(__type, __mask, __val) ((__type)FIELD_GET(__mask, __val))
-                                                        ^~~~~~~~~
-./drivers/gpu/drm/i915/i915_reg.h:208:40: note: in expansion of macro ‘_REG_FIELD_GET’
- #define REG_FIELD_GET64(__mask, __val) _REG_FIELD_GET(u64, __mask, __val)
-                                        ^~~~~~~~~~~~~~
-drivers/gpu/drm/i915/intel_pm.c:2936:11: note: in expansion of macro ‘REG_FIELD_GET64’
-   wm[0] = REG_FIELD_GET64(SSKPD_NEW_WM0_MASK_HSW, sskpd);
-           ^~~~~~~~~~~~~~~
-./include/linux/bits.h:38:31: note: in expansion of macro ‘__GENMASK’
-  (GENMASK_INPUT_CHECK(h, l) + __GENMASK(h, l))
-                               ^~~~~~~~~
-./drivers/gpu/drm/i915/i915_reg.h:133:12: note: in expansion of macro ‘GENMASK’
-  ((__type)(GENMASK(__high, __low) +    \
-            ^~~~~~~
-./drivers/gpu/drm/i915/i915_reg.h:160:38: note: in expansion of macro ‘_REG_GENMASK’
- #define REG_GENMASK64(__high, __low) _REG_GENMASK(u64, __high, __low)
-                                      ^~~~~~~~~~~~
-./drivers/gpu/drm/i915/i915_reg.h:3822:34: note: in expansion of macro ‘REG_GENMASK64’
- #define   SSKPD_NEW_WM0_MASK_HSW REG_GENMASK64(63, 56)
-                                  ^~~~~~~~~~~~~
-drivers/gpu/drm/i915/intel_pm.c:2936:27: note: in expansion of macro ‘SSKPD_NEW_WM0_MASK_HSW’
-   wm[0] = REG_FIELD_GET64(SSKPD_NEW_WM0_MASK_HSW, sskpd);
-                           ^~~~~~~~~~~~~~~~~~~~~~
-./include/linux/bits.h:36:11: error: right shift count is negative [-Werror=shift-count-negative]
-   (~UL(0) >> (BITS_PER_LONG - 1 - (h))))
-           ^~
-././include/linux/compiler_types.h:299:9: note: in definition of macro ‘__compiletime_assert’
-   if (!(condition))     \
-         ^~~~~~~~~
-././include/linux/compiler_types.h:319:2: note: in expansion of macro ‘_compiletime_assert’
-  _compiletime_assert(condition, msg, __compiletime_assert_, __COUNTER__)
-  ^~~~~~~~~~~~~~~~~~~
-./include/linux/build_bug.h:39:37: note: in expansion of macro ‘compiletime_assert’
- #define BUILD_BUG_ON_MSG(cond, msg) compiletime_assert(!(cond), msg)
-                                     ^~~~~~~~~~~~~~~~~~
-./include/linux/bitfield.h:49:3: note: in expansion of macro ‘BUILD_BUG_ON_MSG’
-   BUILD_BUG_ON_MSG(__builtin_constant_p(_val) ?  \
-   ^~~~~~~~~~~~~~~~
-./include/linux/bitfield.h:50:19: note: in expansion of macro ‘__bf_shf’
-      ~((_mask) >> __bf_shf(_mask)) & (_val) : 0, \
-                   ^~~~~~~~
-./include/linux/bitfield.h:108:3: note: in expansion of macro ‘__BF_FIELD_CHECK’
-   __BF_FIELD_CHECK(_mask, _reg, 0U, "FIELD_GET: "); \
-   ^~~~~~~~~~~~~~~~
-./drivers/gpu/drm/i915/i915_reg.h:184:56: note: in expansion of macro ‘FIELD_GET’
- #define _REG_FIELD_GET(__type, __mask, __val) ((__type)FIELD_GET(__mask, __val))
-                                                        ^~~~~~~~~
-./drivers/gpu/drm/i915/i915_reg.h:208:40: note: in expansion of macro ‘_REG_FIELD_GET’
- #define REG_FIELD_GET64(__mask, __val) _REG_FIELD_GET(u64, __mask, __val)
-                                        ^~~~~~~~~~~~~~
-drivers/gpu/drm/i915/intel_pm.c:2936:11: note: in expansion of macro ‘REG_FIELD_GET64’
-   wm[0] = REG_FIELD_GET64(SSKPD_NEW_WM0_MASK_HSW, sskpd);
-           ^~~~~~~~~~~~~~~
-./include/linux/bits.h:38:31: note: in expansion of macro ‘__GENMASK’
-  (GENMASK_INPUT_CHECK(h, l) + __GENMASK(h, l))
-                               ^~~~~~~~~
-./drivers/gpu/drm/i915/i915_reg.h:133:12: note: in expansion of macro ‘GENMASK’
-  ((__type)(GENMASK(__high, __low) +    \
-            ^~~~~~~
-./drivers/gpu/drm/i915/i915_reg.h:160:38: note: in expansion of macro ‘_REG_GENMASK’
- #define REG_GENMASK64(__high, __low) _REG_GENMASK(u64, __high, __low)
-                                      ^~~~~~~~~~~~
-./drivers/gpu/drm/i915/i915_reg.h:3822:34: note: in expansion of macro ‘REG_GENMASK64’
- #define   SSKPD_NEW_WM0_MASK_HSW REG_GENMASK64(63, 56)
-                                  ^~~~~~~~~~~~~
-drivers/gpu/drm/i915/intel_pm.c:2936:27: note: in expansion of macro ‘SSKPD_NEW_WM0_MASK_HSW’
-   wm[0] = REG_FIELD_GET64(SSKPD_NEW_WM0_MASK_HSW, sskpd);
-                           ^~~~~~~~~~~~~~~~~~~~~~
-./include/linux/bitfield.h:50:16: error: right shift count is negative [-Werror=shift-count-negative]
-      ~((_mask) >> __bf_shf(_mask)) & (_val) : 0, \
-                ^~
-././include/linux/compiler_types.h:299:9: note: in definition of macro ‘__compiletime_assert’
-   if (!(condition))     \
-         ^~~~~~~~~
-././include/linux/compiler_types.h:319:2: note: in expansion of macro ‘_compiletime_assert’
-  _compiletime_assert(condition, msg, __compiletime_assert_, __COUNTER__)
-  ^~~~~~~~~~~~~~~~~~~
-./include/linux/build_bug.h:39:37: note: in expansion of macro ‘compiletime_assert’
- #define BUILD_BUG_ON_MSG(cond, msg) compiletime_assert(!(cond), msg)
-                                     ^~~~~~~~~~~~~~~~~~
-./include/linux/bitfield.h:49:3: note: in expansion of macro ‘BUILD_BUG_ON_MSG’
-   BUILD_BUG_ON_MSG(__builtin_constant_p(_val) ?  \
-   ^~~~~~~~~~~~~~~~
-./include/linux/bitfield.h:108:3: note: in expansion of macro ‘__BF_FIELD_CHECK’
-   __BF_FIELD_CHECK(_mask, _reg, 0U, "FIELD_GET: "); \
-   ^~~~~~~~~~~~~~~~
-./drivers/gpu/drm/i915/i915_reg.h:184:56: note: in expansion of macro ‘FIELD_GET’
- #define _REG_FIELD_GET(__type, __mask, __val) ((__type)FIELD_GET(__mask, __val))
-                                                        ^~~~~~~~~
-./drivers/gpu/drm/i915/i915_reg.h:208:40: note: in expansion of macro ‘_REG_FIELD_GET’
- #define REG_FIELD_GET64(__mask, __val) _REG_FIELD_GET(u64, __mask, __val)
-                                        ^~~~~~~~~~~~~~
-drivers/gpu/drm/i915/intel_pm.c:2936:11: note: in expansion of macro ‘REG_FIELD_GET64’
-   wm[0] = REG_FIELD_GET64(SSKPD_NEW_WM0_MASK_HSW, sskpd);
-           ^~~~~~~~~~~~~~~
-./include/linux/bits.h:35:22: error: left shift count >= width of type [-Werror=shift-count-overflow]
-  (((~UL(0)) - (UL(1) << (l)) + 1) & \
-                      ^~
-././include/linux/compiler_types.h:299:9: note: in definition of macro ‘__compiletime_assert’
-   if (!(condition))     \
-         ^~~~~~~~~
-././include/linux/compiler_types.h:319:2: note: in expansion of macro ‘_compiletime_assert’
-  _compiletime_assert(condition, msg, __compiletime_assert_, __COUNTER__)
-  ^~~~~~~~~~~~~~~~~~~
-./include/linux/build_bug.h:39:37: note: in expansion of macro ‘compiletime_assert’
- #define BUILD_BUG_ON_MSG(cond, msg) compiletime_assert(!(cond), msg)
-                                     ^~~~~~~~~~~~~~~~~~
-./include/linux/bitfield.h:52:3: note: in expansion of macro ‘BUILD_BUG_ON_MSG’
-   BUILD_BUG_ON_MSG((_mask) > (typeof(_reg))~0ull,  \
-   ^~~~~~~~~~~~~~~~
-./include/linux/bitfield.h:108:3: note: in expansion of macro ‘__BF_FIELD_CHECK’
-   __BF_FIELD_CHECK(_mask, _reg, 0U, "FIELD_GET: "); \
-   ^~~~~~~~~~~~~~~~
-./drivers/gpu/drm/i915/i915_reg.h:184:56: note: in expansion of macro ‘FIELD_GET’
- #define _REG_FIELD_GET(__type, __mask, __val) ((__type)FIELD_GET(__mask, __val))
-                                                        ^~~~~~~~~
-./drivers/gpu/drm/i915/i915_reg.h:208:40: note: in expansion of macro ‘_REG_FIELD_GET’
- #define REG_FIELD_GET64(__mask, __val) _REG_FIELD_GET(u64, __mask, __val)
-                                        ^~~~~~~~~~~~~~
-drivers/gpu/drm/i915/intel_pm.c:2936:11: note: in expansion of macro ‘REG_FIELD_GET64’
-   wm[0] = REG_FIELD_GET64(SSKPD_NEW_WM0_MASK_HSW, sskpd);
-           ^~~~~~~~~~~~~~~
-./include/linux/bits.h:38:31: note: in expansion of macro ‘__GENMASK’
-  (GENMASK_INPUT_CHECK(h, l) + __GENMASK(h, l))
-                               ^~~~~~~~~
-./drivers/gpu/drm/i915/i915_reg.h:133:12: note: in expansion of macro ‘GENMASK’
-  ((__type)(GENMASK(__high, __low) +    \
-            ^~~~~~~
-./drivers/gpu/drm/i915/i915_reg.h:160:38: note: in expansion of macro ‘_REG_GENMASK’
- #define REG_GENMASK64(__high, __low) _REG_GENMASK(u64, __high, __low)
-                                      ^~~~~~~~~~~~
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18817/index.html
-
---===============2464977406355603508==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915: ilk+ wm cleanups</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/83289/">https://patchwork.freedesktop.org/series/83289/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18817/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18817/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_9229 -&gt; Patchwork_18817</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18817/index.html</p>
-<h2>New tests</h2>
-<p>New tests have been introduced between CI_DRM_9229 and Patchwork_18817:</p>
-<h3>New CI tests (1)</h3>
-<ul>
-<li>boot:<ul>
-<li>Statuses : 40 pass(s)</li>
-<li>Exec time: [0.0] s</li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_18817 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@core_hotunplug@unbind-rebind:</p>
-<ul>
-<li>fi-tgl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9229/fi-tgl-u2/igt@core_hotunplug@unbind-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18817/fi-tgl-u2/igt@core_hotunplug@unbind-rebind.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_module_load@reload:</p>
-<ul>
-<li>fi-bxt-dsi:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9229/fi-bxt-dsi/igt@i915_module_load@reload.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18817/fi-bxt-dsi/igt@i915_module_load@reload.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1635">i915#1635</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:</p>
-<ul>
-<li>fi-byt-j1900:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9229/fi-byt-j1900/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18817/fi-byt-j1900/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@basic-flip-before-cursor-atomic:</p>
-<ul>
-<li>fi-icl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9229/fi-icl-u2/igt@kms_cursor_legacy@basic-flip-before-cursor-atomic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18817/fi-icl-u2/igt@kms_cursor_legacy@basic-flip-before-cursor-atomic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@basic-flip-vs-wf_vblank@a-edp1:</p>
-<ul>
-<li>fi-kbl-soraka:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9229/fi-kbl-soraka/igt@kms_flip@basic-flip-vs-wf_vblank@a-edp1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18817/fi-kbl-soraka/igt@kms_flip@basic-flip-vs-wf_vblank@a-edp1.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2122">i915#2122</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@i915_module_load@reload:</p>
-<ul>
-<li>fi-byt-j1900:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9229/fi-byt-j1900/igt@i915_module_load@reload.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18817/fi-byt-j1900/igt@i915_module_load@reload.html">PASS</a> +1 similar issue</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@active:</p>
-<ul>
-<li>{fi-ehl-1}:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9229/fi-ehl-1/igt@i915_selftest@live@active.html">INCOMPLETE</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18817/fi-ehl-1/igt@i915_selftest@live@active.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@execlists:</p>
-<ul>
-<li>fi-kbl-x1275:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9229/fi-kbl-x1275/igt@i915_selftest@live@execlists.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/794">i915#794</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18817/fi-kbl-x1275/igt@i915_selftest@live@execlists.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_busy@basic@flip:</p>
-<ul>
-<li>{fi-kbl-7560u}:     <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9229/fi-kbl-7560u/igt@kms_busy@basic@flip.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18817/fi-kbl-7560u/igt@kms_busy@basic@flip.html">PASS</a> +1 similar issue</li>
-</ul>
-</li>
-</ul>
-<h4>Warnings</h4>
-<ul>
-<li>igt@core_hotunplug@unbind-rebind:<ul>
-<li>fi-icl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9229/fi-icl-u2/igt@core_hotunplug@unbind-rebind.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/289">i915#289</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18817/fi-icl-u2/igt@core_hotunplug@unbind-rebind.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/289">i915#289</a>)</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Participating hosts (45 -&gt; 40)</h2>
-<p>Missing    (5): fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-bdw-samus </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_9229 -&gt; Patchwork_18817</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_9229: 4abde8e3625d7249799c3e1cdeac1b2aa3ad3edb @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_5830: 12d370cb57e0cfcb781c87ad9e15e68b17a1f41f @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
-  Patchwork_18817: edaa7edda21c8d60b7772330048faddea456f26b @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Kernel 32bit build ==</p>
-<p>Warning: Kernel 32bit buildtest failed:<br />
-https://intel-gfx-ci.01.org/Patchwork_18817/build_32bit.log</p>
-<p>CALL    scripts/checksyscalls.sh<br />
-  CALL    scripts/atomic/check-atomics.sh<br />
-  CHK     include/generated/compile.h<br />
-  CC [M]  drivers/gpu/drm/i915/intel_pm.o<br />
-In file included from <command-line>:<br />
-drivers/gpu/drm/i915/intel_pm.c: In function ‘intel_read_wm_latency’:<br />
-./include/linux/bits.h:35:22: error: left shift count &gt;= width of type [-Werror=shift-count-overflow]<br />
-  (((~UL(0)) - (UL(1) &lt;&lt; (l)) + 1) &amp; \<br />
-                      ^~<br />
-././include/linux/compiler_types.h:299:9: note: in definition of macro ‘<strong>compiletime_assert’<br />
-   if (!(condition))     \<br />
-         ^~~~~~~~~<br />
-././include/linux/compiler_types.h:319:2: note: in expansion of macro ‘<em>compiletime_assert’<br />
-  _compiletime_assert(condition, msg, __compiletime_assert</em>, __COUNTER</strong>)<br />
-  ^~~~~~~~~~~~~~~~~~~<br />
-./include/linux/build_bug.h:39:37: note: in expansion of macro ‘compiletime_assert’<br />
- #define BUILD_BUG_ON_MSG(cond, msg) compiletime_assert(!(cond), msg)<br />
-                                     ^~~~~~~~~~~~~~~~~~<br />
-./include/linux/bitfield.h:46:3: note: in expansion of macro ‘BUILD_BUG_ON_MSG’<br />
-   BUILD_BUG_ON_MSG(!<strong>builtin_constant_p(<em>mask),  \<br />
-   ^~~~~~~~~~~~~~~~<br />
-./include/linux/bitfield.h:108:3: note: in expansion of macro ‘__BF_FIELD_CHECK’<br />
-   __BF_FIELD_CHECK(_mask, _reg, 0U, "FIELD_GET: "); \<br />
-   ^~~~~~~~~~~~~~~~<br />
-./drivers/gpu/drm/i915/i915_reg.h:184:56: note: in expansion of macro ‘FIELD_GET’<br />
- #define _REG_FIELD_GET(__type, __mask, __val) ((__type)FIELD_GET(__mask, __val))<br />
-                                                        ^~~~~~~~~<br />
-./drivers/gpu/drm/i915/i915_reg.h:208:40: note: in expansion of macro ‘_REG_FIELD_GET’<br />
- #define REG_FIELD_GET64(__mask, __val) _REG_FIELD_GET(u64, __mask, __val)<br />
-                                        ^~~~~~~~~~~~~~<br />
-drivers/gpu/drm/i915/intel_pm.c:2936:11: note: in expansion of macro ‘REG_FIELD_GET64’<br />
-   wm[0] = REG_FIELD_GET64(SSKPD_NEW_WM0_MASK_HSW, sskpd);<br />
-           ^~~~~~~~~~~~~~~<br />
-./include/linux/bits.h:38:31: note: in expansion of macro ‘__GENMASK’<br />
-  (GENMASK_INPUT_CHECK(h, l) + __GENMASK(h, l))<br />
-                               ^~~~~~~~~<br />
-./drivers/gpu/drm/i915/i915_reg.h:133:12: note: in expansion of macro ‘GENMASK’<br />
-  ((__type)(GENMASK(__high, __low) +    \<br />
-            ^~~~~~~<br />
-./drivers/gpu/drm/i915/i915_reg.h:160:38: note: in expansion of macro ‘_REG_GENMASK’<br />
- #define REG_GENMASK64(__high, __low) _REG_GENMASK(u64, __high, __low)<br />
-                                      ^~~~~~~~~~~~<br />
-./drivers/gpu/drm/i915/i915_reg.h:3822:34: note: in expansion of macro ‘REG_GENMASK64’<br />
- #define   SSKPD_NEW_WM0_MASK_HSW REG_GENMASK64(63, 56)<br />
-                                  ^~~~~~~~~~~~~<br />
-drivers/gpu/drm/i915/intel_pm.c:2936:27: note: in expansion of macro ‘SSKPD_NEW_WM0_MASK_HSW’<br />
-   wm[0] = REG_FIELD_GET64(SSKPD_NEW_WM0_MASK_HSW, sskpd);<br />
-                           ^~~~~~~~~~~~~~~~~~~~~~<br />
-./include/linux/bits.h:36:11: error: right shift count is negative [-Werror=shift-count-negative]<br />
-   (~UL(0) &gt;&gt; (BITS_PER_LONG - 1 - (h))))<br />
-           ^~<br />
-././include/linux/compiler_types.h:299:9: note: in definition of macro ‘__compiletime_assert’<br />
-   if (!(condition))     \<br />
-         ^~~~~~~~~<br />
-././include/linux/compiler_types.h:319:2: note: in expansion of macro ‘_compiletime_assert’<br />
-  _compiletime_assert(condition, msg, __compiletime_assert</em>, __COUNTER</strong>)<br />
-  ^~~~~~~~~~~~~~~~~~~<br />
-./include/linux/build_bug.h:39:37: note: in expansion of macro ‘compiletime_assert’<br />
- #define BUILD_BUG_ON_MSG(cond, msg) compiletime_assert(!(cond), msg)<br />
-                                     ^~~~~~~~~~~~~~~~~~<br />
-./include/linux/bitfield.h:46:3: note: in expansion of macro ‘BUILD_BUG_ON_MSG’<br />
-   BUILD_BUG_ON_MSG(!<strong>builtin_constant_p(<em>mask),  \<br />
-   ^~~~~~~~~~~~~~~~<br />
-./include/linux/bitfield.h:108:3: note: in expansion of macro ‘__BF_FIELD_CHECK’<br />
-   __BF_FIELD_CHECK(_mask, _reg, 0U, "FIELD_GET: "); \<br />
-   ^~~~~~~~~~~~~~~~<br />
-./drivers/gpu/drm/i915/i915_reg.h:184:56: note: in expansion of macro ‘FIELD_GET’<br />
- #define _REG_FIELD_GET(__type, __mask, __val) ((__type)FIELD_GET(__mask, __val))<br />
-                                                        ^~~~~~~~~<br />
-./drivers/gpu/drm/i915/i915_reg.h:208:40: note: in expansion of macro ‘_REG_FIELD_GET’<br />
- #define REG_FIELD_GET64(__mask, __val) _REG_FIELD_GET(u64, __mask, __val)<br />
-                                        ^~~~~~~~~~~~~~<br />
-drivers/gpu/drm/i915/intel_pm.c:2936:11: note: in expansion of macro ‘REG_FIELD_GET64’<br />
-   wm[0] = REG_FIELD_GET64(SSKPD_NEW_WM0_MASK_HSW, sskpd);<br />
-           ^~~~~~~~~~~~~~~<br />
-./include/linux/bits.h:38:31: note: in expansion of macro ‘__GENMASK’<br />
-  (GENMASK_INPUT_CHECK(h, l) + __GENMASK(h, l))<br />
-                               ^~~~~~~~~<br />
-./drivers/gpu/drm/i915/i915_reg.h:133:12: note: in expansion of macro ‘GENMASK’<br />
-  ((__type)(GENMASK(__high, __low) +    \<br />
-            ^~~~~~~<br />
-./drivers/gpu/drm/i915/i915_reg.h:160:38: note: in expansion of macro ‘_REG_GENMASK’<br />
- #define REG_GENMASK64(__high, __low) _REG_GENMASK(u64, __high, __low)<br />
-                                      ^~~~~~~~~~~~<br />
-./drivers/gpu/drm/i915/i915_reg.h:3822:34: note: in expansion of macro ‘REG_GENMASK64’<br />
- #define   SSKPD_NEW_WM0_MASK_HSW REG_GENMASK64(63, 56)<br />
-                                  ^~~~~~~~~~~~~<br />
-drivers/gpu/drm/i915/intel_pm.c:2936:27: note: in expansion of macro ‘SSKPD_NEW_WM0_MASK_HSW’<br />
-   wm[0] = REG_FIELD_GET64(SSKPD_NEW_WM0_MASK_HSW, sskpd);<br />
-                           ^~~~~~~~~~~~~~~~~~~~~~<br />
-./include/linux/bits.h:35:22: error: left shift count &gt;= width of type [-Werror=shift-count-overflow]<br />
-  (((~UL(0)) - (UL(1) &lt;&lt; (l)) + 1) &amp; \<br />
-                      ^~<br />
-././include/linux/compiler_types.h:299:9: note: in definition of macro ‘__compiletime_assert’<br />
-   if (!(condition))     \<br />
-         ^~~~~~~~~<br />
-././include/linux/compiler_types.h:319:2: note: in expansion of macro ‘_compiletime_assert’<br />
-  _compiletime_assert(condition, msg, __compiletime_assert</em>, __COUNTER</strong>)<br />
-  ^~~~~~~~~~~~~~~~~~~<br />
-./include/linux/build_bug.h:39:37: note: in expansion of macro ‘compiletime_assert’<br />
- #define BUILD_BUG_ON_MSG(cond, msg) compiletime_assert(!(cond), msg)<br />
-                                     ^~~~~~~~~~~~~~~~~~<br />
-./include/linux/bitfield.h:48:3: note: in expansion of macro ‘BUILD_BUG_ON_MSG’<br />
-   BUILD_BUG_ON_MSG((<em>mask) == 0, _pfx "mask is zero"); \<br />
-   ^~~~~~~~~~~~~~~~<br />
-./include/linux/bitfield.h:108:3: note: in expansion of macro ‘__BF_FIELD_CHECK’<br />
-   __BF_FIELD_CHECK(_mask, _reg, 0U, "FIELD_GET: "); \<br />
-   ^~~~~~~~~~~~~~~~<br />
-./drivers/gpu/drm/i915/i915_reg.h:184:56: note: in expansion of macro ‘FIELD_GET’<br />
- #define _REG_FIELD_GET(__type, __mask, __val) ((__type)FIELD_GET(__mask, __val))<br />
-                                                        ^~~~~~~~~<br />
-./drivers/gpu/drm/i915/i915_reg.h:208:40: note: in expansion of macro ‘_REG_FIELD_GET’<br />
- #define REG_FIELD_GET64(__mask, __val) _REG_FIELD_GET(u64, __mask, __val)<br />
-                                        ^~~~~~~~~~~~~~<br />
-drivers/gpu/drm/i915/intel_pm.c:2936:11: note: in expansion of macro ‘REG_FIELD_GET64’<br />
-   wm[0] = REG_FIELD_GET64(SSKPD_NEW_WM0_MASK_HSW, sskpd);<br />
-           ^~~~~~~~~~~~~~~<br />
-./include/linux/bits.h:38:31: note: in expansion of macro ‘__GENMASK’<br />
-  (GENMASK_INPUT_CHECK(h, l) + __GENMASK(h, l))<br />
-                               ^~~~~~~~~<br />
-./drivers/gpu/drm/i915/i915_reg.h:133:12: note: in expansion of macro ‘GENMASK’<br />
-  ((__type)(GENMASK(__high, __low) +    \<br />
-            ^~~~~~~<br />
-./drivers/gpu/drm/i915/i915_reg.h:160:38: note: in expansion of macro ‘_REG_GENMASK’<br />
- #define REG_GENMASK64(__high, __low) _REG_GENMASK(u64, __high, __low)<br />
-                                      ^~~~~~~~~~~~<br />
-./drivers/gpu/drm/i915/i915_reg.h:3822:34: note: in expansion of macro ‘REG_GENMASK64’<br />
- #define   SSKPD_NEW_WM0_MASK_HSW REG_GENMASK64(63, 56)<br />
-                                  ^~~~~~~~~~~~~<br />
-drivers/gpu/drm/i915/intel_pm.c:2936:27: note: in expansion of macro ‘SSKPD_NEW_WM0_MASK_HSW’<br />
-   wm[0] = REG_FIELD_GET64(SSKPD_NEW_WM0_MASK_HSW, sskpd);<br />
-                           ^~~~~~~~~~~~~~~~~~~~~~<br />
-./include/linux/bits.h:36:11: error: right shift count is negative [-Werror=shift-count-negative]<br />
-   (~UL(0) &gt;&gt; (BITS_PER_LONG - 1 - (h))))<br />
-           ^~<br />
-././include/linux/compiler_types.h:299:9: note: in definition of macro ‘__compiletime_assert’<br />
-   if (!(condition))     \<br />
-         ^~~~~~~~~<br />
-././include/linux/compiler_types.h:319:2: note: in expansion of macro ‘_compiletime_assert’<br />
-  _compiletime_assert(condition, msg, __compiletime_assert</em>, <strong>COUNTER</strong>)<br />
-  ^~~~~~~~~~~~~~~~~~~<br />
-./include/linux/build_bug.h:39:37: note: in expansion of macro ‘compiletime_assert’<br />
- #define BUILD_BUG_ON_MSG(cond, msg) compiletime_assert(!(cond), msg)<br />
-                                     ^~~~~~~~~~~~~~~~~~<br />
-./include/linux/bitfield.h:48:3: note: in expansion of macro ‘BUILD_BUG_ON_MSG’<br />
-   BUILD_BUG_ON_MSG((<em>mask) == 0, _pfx "mask is zero"); \<br />
-   ^~~~~~~~~~~~~~~~<br />
-./include/linux/bitfield.h:108:3: note: in expansion of macro ‘__BF_FIELD_CHECK’<br />
-   __BF_FIELD_CHECK(_mask, _reg, 0U, "FIELD_GET: "); \<br />
-   ^~~~~~~~~~~~~~~~<br />
-./drivers/gpu/drm/i915/i915_reg.h:184:56: note: in expansion of macro ‘FIELD_GET’<br />
- #define _REG_FIELD_GET(__type, __mask, __val) ((__type)FIELD_GET(__mask, __val))<br />
-                                                        ^~~~~~~~~<br />
-./drivers/gpu/drm/i915/i915_reg.h:208:40: note: in expansion of macro ‘_REG_FIELD_GET’<br />
- #define REG_FIELD_GET64(__mask, __val) _REG_FIELD_GET(u64, __mask, __val)<br />
-                                        ^~~~~~~~~~~~~~<br />
-drivers/gpu/drm/i915/intel_pm.c:2936:11: note: in expansion of macro ‘REG_FIELD_GET64’<br />
-   wm[0] = REG_FIELD_GET64(SSKPD_NEW_WM0_MASK_HSW, sskpd);<br />
-           ^~~~~~~~~~~~~~~<br />
-./include/linux/bits.h:38:31: note: in expansion of macro ‘__GENMASK’<br />
-  (GENMASK_INPUT_CHECK(h, l) + __GENMASK(h, l))<br />
-                               ^~~~~~~~~<br />
-./drivers/gpu/drm/i915/i915_reg.h:133:12: note: in expansion of macro ‘GENMASK’<br />
-  ((__type)(GENMASK(__high, __low) +    \<br />
-            ^~~~~~~<br />
-./drivers/gpu/drm/i915/i915_reg.h:160:38: note: in expansion of macro ‘_REG_GENMASK’<br />
- #define REG_GENMASK64(__high, __low) _REG_GENMASK(u64, __high, __low)<br />
-                                      ^~~~~~~~~~~~<br />
-./drivers/gpu/drm/i915/i915_reg.h:3822:34: note: in expansion of macro ‘REG_GENMASK64’<br />
- #define   SSKPD_NEW_WM0_MASK_HSW REG_GENMASK64(63, 56)<br />
-                                  ^~~~~~~~~~~~~<br />
-drivers/gpu/drm/i915/intel_pm.c:2936:27: note: in expansion of macro ‘SSKPD_NEW_WM0_MASK_HSW’<br />
-   wm[0] = REG_FIELD_GET64(SSKPD_NEW_WM0_MASK_HSW, sskpd);<br />
-                           ^~~~~~~~~~~~~~~~~~~~~~<br />
-./include/linux/bits.h:35:22: error: left shift count &gt;= width of type [-Werror=shift-count-overflow]<br />
-  (((~UL(0)) - (UL(1) &lt;&lt; (l)) + 1) &amp; \<br />
-                      ^~<br />
-././include/linux/compiler_types.h:299:9: note: in definition of macro ‘__compiletime_assert’<br />
-   if (!(condition))     \<br />
-         ^~~~~~~~~<br />
-././include/linux/compiler_types.h:319:2: note: in expansion of macro ‘_compiletime_assert’<br />
-  _compiletime_assert(condition, msg, __compiletime_assert</em>, <strong>COUNTER</strong>)<br />
-  ^~~~~~~~~~~~~~~~~~~<br />
-./include/linux/build_bug.h:39:37: note: in expansion of macro ‘compiletime_assert’<br />
- #define BUILD_BUG_ON_MSG(cond, msg) compiletime_assert(!(cond), msg)<br />
-                                     ^~~~~~~~~~~~~~~~~~<br />
-./include/linux/bitfield.h:49:3: note: in expansion of macro ‘BUILD_BUG_ON_MSG’<br />
-   BUILD_BUG_ON_MSG(<strong>builtin_constant_p(<em>val) ?  \<br />
-   ^~~~~~~~~~~~~~~~<br />
-./include/linux/bitfield.h:108:3: note: in expansion of macro ‘__BF_FIELD_CHECK’<br />
-   __BF_FIELD_CHECK(_mask, _reg, 0U, "FIELD_GET: "); \<br />
-   ^~~~~~~~~~~~~~~~<br />
-./drivers/gpu/drm/i915/i915_reg.h:184:56: note: in expansion of macro ‘FIELD_GET’<br />
- #define _REG_FIELD_GET(__type, __mask, __val) ((__type)FIELD_GET(__mask, __val))<br />
-                                                        ^~~~~~~~~<br />
-./drivers/gpu/drm/i915/i915_reg.h:208:40: note: in expansion of macro ‘_REG_FIELD_GET’<br />
- #define REG_FIELD_GET64(__mask, __val) _REG_FIELD_GET(u64, __mask, __val)<br />
-                                        ^~~~~~~~~~~~~~<br />
-drivers/gpu/drm/i915/intel_pm.c:2936:11: note: in expansion of macro ‘REG_FIELD_GET64’<br />
-   wm[0] = REG_FIELD_GET64(SSKPD_NEW_WM0_MASK_HSW, sskpd);<br />
-           ^~~~~~~~~~~~~~~<br />
-./include/linux/bits.h:38:31: note: in expansion of macro ‘__GENMASK’<br />
-  (GENMASK_INPUT_CHECK(h, l) + __GENMASK(h, l))<br />
-                               ^~~~~~~~~<br />
-./drivers/gpu/drm/i915/i915_reg.h:133:12: note: in expansion of macro ‘GENMASK’<br />
-  ((__type)(GENMASK(__high, __low) +    \<br />
-            ^~~~~~~<br />
-./drivers/gpu/drm/i915/i915_reg.h:160:38: note: in expansion of macro ‘_REG_GENMASK’<br />
- #define REG_GENMASK64(__high, __low) _REG_GENMASK(u64, __high, __low)<br />
-                                      ^~~~~~~~~~~~<br />
-./drivers/gpu/drm/i915/i915_reg.h:3822:34: note: in expansion of macro ‘REG_GENMASK64’<br />
- #define   SSKPD_NEW_WM0_MASK_HSW REG_GENMASK64(63, 56)<br />
-                                  ^~~~~~~~~~~~~<br />
-drivers/gpu/drm/i915/intel_pm.c:2936:27: note: in expansion of macro ‘SSKPD_NEW_WM0_MASK_HSW’<br />
-   wm[0] = REG_FIELD_GET64(SSKPD_NEW_WM0_MASK_HSW, sskpd);<br />
-                           ^~~~~~~~~~~~~~~~~~~~~~<br />
-./include/linux/bits.h:36:11: error: right shift count is negative [-Werror=shift-count-negative]<br />
-   (~UL(0) &gt;&gt; (BITS_PER_LONG - 1 - (h))))<br />
-           ^~<br />
-././include/linux/compiler_types.h:299:9: note: in definition of macro ‘__compiletime_assert’<br />
-   if (!(condition))     \<br />
-         ^~~~~~~~~<br />
-././include/linux/compiler_types.h:319:2: note: in expansion of macro ‘_compiletime_assert’<br />
-  _compiletime_assert(condition, msg, __compiletime_assert</em>, __COUNTER</strong>)<br />
-  ^~~~~~~~~~~~~~~~~~~<br />
-./include/linux/build_bug.h:39:37: note: in expansion of macro ‘compiletime_assert’<br />
- #define BUILD_BUG_ON_MSG(cond, msg) compiletime_assert(!(cond), msg)<br />
-                                     ^~~~~~~~~~~~~~~~~~<br />
-./include/linux/bitfield.h:49:3: note: in expansion of macro ‘BUILD_BUG_ON_MSG’<br />
-   BUILD_BUG_ON_MSG(<strong>builtin_constant_p(<em>val) ?  \<br />
-   ^~~~~~~~~~~~~~~~<br />
-./include/linux/bitfield.h:108:3: note: in expansion of macro ‘__BF_FIELD_CHECK’<br />
-   __BF_FIELD_CHECK(_mask, _reg, 0U, "FIELD_GET: "); \<br />
-   ^~~~~~~~~~~~~~~~<br />
-./drivers/gpu/drm/i915/i915_reg.h:184:56: note: in expansion of macro ‘FIELD_GET’<br />
- #define _REG_FIELD_GET(__type, __mask, __val) ((__type)FIELD_GET(__mask, __val))<br />
-                                                        ^~~~~~~~~<br />
-./drivers/gpu/drm/i915/i915_reg.h:208:40: note: in expansion of macro ‘_REG_FIELD_GET’<br />
- #define REG_FIELD_GET64(__mask, __val) _REG_FIELD_GET(u64, __mask, __val)<br />
-                                        ^~~~~~~~~~~~~~<br />
-drivers/gpu/drm/i915/intel_pm.c:2936:11: note: in expansion of macro ‘REG_FIELD_GET64’<br />
-   wm[0] = REG_FIELD_GET64(SSKPD_NEW_WM0_MASK_HSW, sskpd);<br />
-           ^~~~~~~~~~~~~~~<br />
-./include/linux/bits.h:38:31: note: in expansion of macro ‘__GENMASK’<br />
-  (GENMASK_INPUT_CHECK(h, l) + __GENMASK(h, l))<br />
-                               ^~~~~~~~~<br />
-./drivers/gpu/drm/i915/i915_reg.h:133:12: note: in expansion of macro ‘GENMASK’<br />
-  ((__type)(GENMASK(__high, __low) +    \<br />
-            ^~~~~~~<br />
-./drivers/gpu/drm/i915/i915_reg.h:160:38: note: in expansion of macro ‘_REG_GENMASK’<br />
- #define REG_GENMASK64(__high, __low) _REG_GENMASK(u64, __high, __low)<br />
-                                      ^~~~~~~~~~~~<br />
-./drivers/gpu/drm/i915/i915_reg.h:3822:34: note: in expansion of macro ‘REG_GENMASK64’<br />
- #define   SSKPD_NEW_WM0_MASK_HSW REG_GENMASK64(63, 56)<br />
-                                  ^~~~~~~~~~~~~<br />
-drivers/gpu/drm/i915/intel_pm.c:2936:27: note: in expansion of macro ‘SSKPD_NEW_WM0_MASK_HSW’<br />
-   wm[0] = REG_FIELD_GET64(SSKPD_NEW_WM0_MASK_HSW, sskpd);<br />
-                           ^~~~~~~~~~~~~~~~~~~~~~<br />
-./include/linux/bits.h:35:22: error: left shift count &gt;= width of type [-Werror=shift-count-overflow]<br />
-  (((~UL(0)) - (UL(1) &lt;&lt; (l)) + 1) &amp; \<br />
-                      ^~<br />
-././include/linux/compiler_types.h:299:9: note: in definition of macro ‘__compiletime_assert’<br />
-   if (!(condition))     \<br />
-         ^~~~~~~~~<br />
-././include/linux/compiler_types.h:319:2: note: in expansion of macro ‘_compiletime_assert’<br />
-  _compiletime_assert(condition, msg, __compiletime_assert</em>, __COUNTER</strong>)<br />
-  ^~~~~~~~~~~~~~~~~~~<br />
-./include/linux/build_bug.h:39:37: note: in expansion of macro ‘compiletime_assert’<br />
- #define BUILD_BUG_ON_MSG(cond, msg) compiletime_assert(!(cond), msg)<br />
-                                     ^~~~~~~~~~~~~~~~~~<br />
-./include/linux/bitfield.h:49:3: note: in expansion of macro ‘BUILD_BUG_ON_MSG’<br />
-   BUILD_BUG_ON_MSG(<strong>builtin_constant_p(<em>val) ?  \<br />
-   ^~~~~~~~~~~~~~~~<br />
-./include/linux/bitfield.h:50:19: note: in expansion of macro ‘__bf_shf’<br />
-      ~((_mask) &gt;&gt; __bf_shf(_mask)) &amp; (_val) : 0, \<br />
-                   ^~~~~~~~<br />
-./include/linux/bitfield.h:108:3: note: in expansion of macro ‘__BF_FIELD_CHECK’<br />
-   __BF_FIELD_CHECK(_mask, _reg, 0U, "FIELD_GET: "); \<br />
-   ^~~~~~~~~~~~~~~~<br />
-./drivers/gpu/drm/i915/i915_reg.h:184:56: note: in expansion of macro ‘FIELD_GET’<br />
- #define _REG_FIELD_GET(__type, __mask, __val) ((__type)FIELD_GET(__mask, __val))<br />
-                                                        ^~~~~~~~~<br />
-./drivers/gpu/drm/i915/i915_reg.h:208:40: note: in expansion of macro ‘_REG_FIELD_GET’<br />
- #define REG_FIELD_GET64(__mask, __val) _REG_FIELD_GET(u64, __mask, __val)<br />
-                                        ^~~~~~~~~~~~~~<br />
-drivers/gpu/drm/i915/intel_pm.c:2936:11: note: in expansion of macro ‘REG_FIELD_GET64’<br />
-   wm[0] = REG_FIELD_GET64(SSKPD_NEW_WM0_MASK_HSW, sskpd);<br />
-           ^~~~~~~~~~~~~~~<br />
-./include/linux/bits.h:38:31: note: in expansion of macro ‘__GENMASK’<br />
-  (GENMASK_INPUT_CHECK(h, l) + __GENMASK(h, l))<br />
-                               ^~~~~~~~~<br />
-./drivers/gpu/drm/i915/i915_reg.h:133:12: note: in expansion of macro ‘GENMASK’<br />
-  ((__type)(GENMASK(__high, __low) +    \<br />
-            ^~~~~~~<br />
-./drivers/gpu/drm/i915/i915_reg.h:160:38: note: in expansion of macro ‘_REG_GENMASK’<br />
- #define REG_GENMASK64(__high, __low) _REG_GENMASK(u64, __high, __low)<br />
-                                      ^~~~~~~~~~~~<br />
-./drivers/gpu/drm/i915/i915_reg.h:3822:34: note: in expansion of macro ‘REG_GENMASK64’<br />
- #define   SSKPD_NEW_WM0_MASK_HSW REG_GENMASK64(63, 56)<br />
-                                  ^~~~~~~~~~~~~<br />
-drivers/gpu/drm/i915/intel_pm.c:2936:27: note: in expansion of macro ‘SSKPD_NEW_WM0_MASK_HSW’<br />
-   wm[0] = REG_FIELD_GET64(SSKPD_NEW_WM0_MASK_HSW, sskpd);<br />
-                           ^~~~~~~~~~~~~~~~~~~~~~<br />
-./include/linux/bits.h:36:11: error: right shift count is negative [-Werror=shift-count-negative]<br />
-   (~UL(0) &gt;&gt; (BITS_PER_LONG - 1 - (h))))<br />
-           ^~<br />
-././include/linux/compiler_types.h:299:9: note: in definition of macro ‘__compiletime_assert’<br />
-   if (!(condition))     \<br />
-         ^~~~~~~~~<br />
-././include/linux/compiler_types.h:319:2: note: in expansion of macro ‘_compiletime_assert’<br />
-  _compiletime_assert(condition, msg, __compiletime_assert</em>, __COUNTER</strong>)<br />
-  ^~~~~~~~~~~~~~~~~~~<br />
-./include/linux/build_bug.h:39:37: note: in expansion of macro ‘compiletime_assert’<br />
- #define BUILD_BUG_ON_MSG(cond, msg) compiletime_assert(!(cond), msg)<br />
-                                     ^~~~~~~~~~~~~~~~~~<br />
-./include/linux/bitfield.h:49:3: note: in expansion of macro ‘BUILD_BUG_ON_MSG’<br />
-   BUILD_BUG_ON_MSG(<strong>builtin_constant_p(<em>val) ?  \<br />
-   ^~~~~~~~~~~~~~~~<br />
-./include/linux/bitfield.h:50:19: note: in expansion of macro ‘__bf_shf’<br />
-      ~((_mask) &gt;&gt; __bf_shf(_mask)) &amp; (_val) : 0, \<br />
-                   ^~~~~~~~<br />
-./include/linux/bitfield.h:108:3: note: in expansion of macro ‘__BF_FIELD_CHECK’<br />
-   __BF_FIELD_CHECK(_mask, _reg, 0U, "FIELD_GET: "); \<br />
-   ^~~~~~~~~~~~~~~~<br />
-./drivers/gpu/drm/i915/i915_reg.h:184:56: note: in expansion of macro ‘FIELD_GET’<br />
- #define _REG_FIELD_GET(__type, __mask, __val) ((__type)FIELD_GET(__mask, __val))<br />
-                                                        ^~~~~~~~~<br />
-./drivers/gpu/drm/i915/i915_reg.h:208:40: note: in expansion of macro ‘_REG_FIELD_GET’<br />
- #define REG_FIELD_GET64(__mask, __val) _REG_FIELD_GET(u64, __mask, __val)<br />
-                                        ^~~~~~~~~~~~~~<br />
-drivers/gpu/drm/i915/intel_pm.c:2936:11: note: in expansion of macro ‘REG_FIELD_GET64’<br />
-   wm[0] = REG_FIELD_GET64(SSKPD_NEW_WM0_MASK_HSW, sskpd);<br />
-           ^~~~~~~~~~~~~~~<br />
-./include/linux/bits.h:38:31: note: in expansion of macro ‘__GENMASK’<br />
-  (GENMASK_INPUT_CHECK(h, l) + __GENMASK(h, l))<br />
-                               ^~~~~~~~~<br />
-./drivers/gpu/drm/i915/i915_reg.h:133:12: note: in expansion of macro ‘GENMASK’<br />
-  ((__type)(GENMASK(__high, __low) +    \<br />
-            ^~~~~~~<br />
-./drivers/gpu/drm/i915/i915_reg.h:160:38: note: in expansion of macro ‘_REG_GENMASK’<br />
- #define REG_GENMASK64(__high, __low) _REG_GENMASK(u64, __high, __low)<br />
-                                      ^~~~~~~~~~~~<br />
-./drivers/gpu/drm/i915/i915_reg.h:3822:34: note: in expansion of macro ‘REG_GENMASK64’<br />
- #define   SSKPD_NEW_WM0_MASK_HSW REG_GENMASK64(63, 56)<br />
-                                  ^~~~~~~~~~~~~<br />
-drivers/gpu/drm/i915/intel_pm.c:2936:27: note: in expansion of macro ‘SSKPD_NEW_WM0_MASK_HSW’<br />
-   wm[0] = REG_FIELD_GET64(SSKPD_NEW_WM0_MASK_HSW, sskpd);<br />
-                           ^~~~~~~~~~~~~~~~~~~~~~<br />
-./include/linux/bitfield.h:50:16: error: right shift count is negative [-Werror=shift-count-negative]<br />
-      ~((_mask) &gt;&gt; __bf_shf(_mask)) &amp; (_val) : 0, \<br />
-                ^~<br />
-././include/linux/compiler_types.h:299:9: note: in definition of macro ‘__compiletime_assert’<br />
-   if (!(condition))     \<br />
-         ^~~~~~~~~<br />
-././include/linux/compiler_types.h:319:2: note: in expansion of macro ‘_compiletime_assert’<br />
-  _compiletime_assert(condition, msg, __compiletime_assert</em>, __COUNTER</strong>)<br />
-  ^~~~~~~~~~~~~~~~~~~<br />
-./include/linux/build_bug.h:39:37: note: in expansion of macro ‘compiletime_assert’<br />
- #define BUILD_BUG_ON_MSG(cond, msg) compiletime_assert(!(cond), msg)<br />
-                                     ^~~~~~~~~~~~~~~~~~<br />
-./include/linux/bitfield.h:49:3: note: in expansion of macro ‘BUILD_BUG_ON_MSG’<br />
-   BUILD_BUG_ON_MSG(<strong>builtin_constant_p(<em>val) ?  \<br />
-   ^~~~~~~~~~~~~~~~<br />
-./include/linux/bitfield.h:108:3: note: in expansion of macro ‘__BF_FIELD_CHECK’<br />
-   __BF_FIELD_CHECK(_mask, _reg, 0U, "FIELD_GET: "); \<br />
-   ^~~~~~~~~~~~~~~~<br />
-./drivers/gpu/drm/i915/i915_reg.h:184:56: note: in expansion of macro ‘FIELD_GET’<br />
- #define _REG_FIELD_GET(__type, __mask, __val) ((__type)FIELD_GET(__mask, __val))<br />
-                                                        ^~~~~~~~~<br />
-./drivers/gpu/drm/i915/i915_reg.h:208:40: note: in expansion of macro ‘_REG_FIELD_GET’<br />
- #define REG_FIELD_GET64(__mask, __val) _REG_FIELD_GET(u64, __mask, __val)<br />
-                                        ^~~~~~~~~~~~~~<br />
-drivers/gpu/drm/i915/intel_pm.c:2936:11: note: in expansion of macro ‘REG_FIELD_GET64’<br />
-   wm[0] = REG_FIELD_GET64(SSKPD_NEW_WM0_MASK_HSW, sskpd);<br />
-           ^~~~~~~~~~~~~~~<br />
-./include/linux/bits.h:35:22: error: left shift count &gt;= width of type [-Werror=shift-count-overflow]<br />
-  (((~UL(0)) - (UL(1) &lt;&lt; (l)) + 1) &amp; \<br />
-                      ^~<br />
-././include/linux/compiler_types.h:299:9: note: in definition of macro ‘__compiletime_assert’<br />
-   if (!(condition))     \<br />
-         ^~~~~~~~~<br />
-././include/linux/compiler_types.h:319:2: note: in expansion of macro ‘_compiletime_assert’<br />
-  _compiletime_assert(condition, msg, __compiletime_assert</em>, __COUNTER</strong>)<br />
-  ^~~~~~~~~~~~~~~~~~~<br />
-./include/linux/build_bug.h:39:37: note: in expansion of macro ‘compiletime_assert’<br />
- #define BUILD_BUG_ON_MSG(cond, msg) compiletime_assert(!(cond), msg)<br />
-                                     ^~~~~~~~~~~~~~~~~~<br />
-./include/linux/bitfield.h:52:3: note: in expansion of macro ‘BUILD_BUG_ON_MSG’<br />
-   BUILD_BUG_ON_MSG((_mask) &gt; (typeof(_reg))~0ull,  \<br />
-   ^~~~~~~~~~~~~~~~<br />
-./include/linux/bitfield.h:108:3: note: in expansion of macro ‘__BF_FIELD_CHECK’<br />
-   __BF_FIELD_CHECK(_mask, _reg, 0U, "FIELD_GET: "); \<br />
-   ^~~~~~~~~~~~~~~~<br />
-./drivers/gpu/drm/i915/i915_reg.h:184:56: note: in expansion of macro ‘FIELD_GET’<br />
- #define _REG_FIELD_GET(__type, __mask, __val) ((__type)FIELD_GET(__mask, __val))<br />
-                                                        ^~~~~~~~~<br />
-./drivers/gpu/drm/i915/i915_reg.h:208:40: note: in expansion of macro ‘_REG_FIELD_GET’<br />
- #define REG_FIELD_GET64(__mask, __val) _REG_FIELD_GET(u64, __mask, __val)<br />
-                                        ^~~~~~~~~~~~~~<br />
-drivers/gpu/drm/i915/intel_pm.c:2936:11: note: in expansion of macro ‘REG_FIELD_GET64’<br />
-   wm[0] = REG_FIELD_GET64(SSKPD_NEW_WM0_MASK_HSW, sskpd);<br />
-           ^~~~~~~~~~~~~~~<br />
-./include/linux/bits.h:38:31: note: in expansion of macro ‘__GENMASK’<br />
-  (GENMASK_INPUT_CHECK(h, l) + __GENMASK(h, l))<br />
-                               ^~~~~~~~~<br />
-./drivers/gpu/drm/i915/i915_reg.h:133:12: note: in expansion of macro ‘GENMASK’<br />
-  ((__type)(GENMASK(__high, __low) +    \<br />
-            ^~~~~~~<br />
-./drivers/gpu/drm/i915/i915_reg.h:160:38: note: in expansion of macro ‘_REG_GENMASK’<br />
- #define REG_GENMASK64(__high, __low) _REG_GENMASK(u64, __high, __low)<br />
-                                      ^~~~~~~~~~~~</p>
-
-</body>
-</html>
-
---===============2464977406355603508==--
-
---===============0259857263==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============0259857263==--
+PT0gU2VyaWVzIERldGFpbHMgPT0KClNlcmllczogZHJtL2k5MTU6IGlsaysgd20gY2xlYW51cHMK
+VVJMICAgOiBodHRwczovL3BhdGNod29yay5mcmVlZGVza3RvcC5vcmcvc2VyaWVzLzgzMjg5LwpT
+dGF0ZSA6IHdhcm5pbmcKCj09IFN1bW1hcnkgPT0KCkNBTEwgICAgc2NyaXB0cy9jaGVja3N5c2Nh
+bGxzLnNoCiAgQ0FMTCAgICBzY3JpcHRzL2F0b21pYy9jaGVjay1hdG9taWNzLnNoCiAgQ0hLICAg
+ICBpbmNsdWRlL2dlbmVyYXRlZC9jb21waWxlLmgKICBDQyBbTV0gIGRyaXZlcnMvZ3B1L2RybS9p
+OTE1L2ludGVsX3BtLm8KSW4gZmlsZSBpbmNsdWRlZCBmcm9tIDxjb21tYW5kLWxpbmU+Ogpkcml2
+ZXJzL2dwdS9kcm0vaTkxNS9pbnRlbF9wbS5jOiBJbiBmdW5jdGlvbiDigJhpbnRlbF9yZWFkX3dt
+X2xhdGVuY3nigJk6Ci4vaW5jbHVkZS9saW51eC9iaXRzLmg6MzU6MjI6IGVycm9yOiBsZWZ0IHNo
+aWZ0IGNvdW50ID49IHdpZHRoIG9mIHR5cGUgWy1XZXJyb3I9c2hpZnQtY291bnQtb3ZlcmZsb3dd
+CiAgKCgoflVMKDApKSAtIChVTCgxKSA8PCAobCkpICsgMSkgJiBcCiAgICAgICAgICAgICAgICAg
+ICAgICBefgouLy4vaW5jbHVkZS9saW51eC9jb21waWxlcl90eXBlcy5oOjI5OTo5OiBub3RlOiBp
+biBkZWZpbml0aW9uIG9mIG1hY3JvIOKAmF9fY29tcGlsZXRpbWVfYXNzZXJ04oCZCiAgIGlmICgh
+KGNvbmRpdGlvbikpICAgICBcCiAgICAgICAgIF5+fn5+fn5+fgouLy4vaW5jbHVkZS9saW51eC9j
+b21waWxlcl90eXBlcy5oOjMxOToyOiBub3RlOiBpbiBleHBhbnNpb24gb2YgbWFjcm8g4oCYX2Nv
+bXBpbGV0aW1lX2Fzc2VydOKAmQogIF9jb21waWxldGltZV9hc3NlcnQoY29uZGl0aW9uLCBtc2cs
+IF9fY29tcGlsZXRpbWVfYXNzZXJ0XywgX19DT1VOVEVSX18pCiAgXn5+fn5+fn5+fn5+fn5+fn5+
+fgouL2luY2x1ZGUvbGludXgvYnVpbGRfYnVnLmg6Mzk6Mzc6IG5vdGU6IGluIGV4cGFuc2lvbiBv
+ZiBtYWNybyDigJhjb21waWxldGltZV9hc3NlcnTigJkKICNkZWZpbmUgQlVJTERfQlVHX09OX01T
+Ryhjb25kLCBtc2cpIGNvbXBpbGV0aW1lX2Fzc2VydCghKGNvbmQpLCBtc2cpCiAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICBefn5+fn5+fn5+fn5+fn5+fn4KLi9pbmNsdWRlL2xp
+bnV4L2JpdGZpZWxkLmg6NDY6Mzogbm90ZTogaW4gZXhwYW5zaW9uIG9mIG1hY3JvIOKAmEJVSUxE
+X0JVR19PTl9NU0figJkKICAgQlVJTERfQlVHX09OX01TRyghX19idWlsdGluX2NvbnN0YW50X3Ao
+X21hc2spLCAgXAogICBefn5+fn5+fn5+fn5+fn5+Ci4vaW5jbHVkZS9saW51eC9iaXRmaWVsZC5o
+OjEwODozOiBub3RlOiBpbiBleHBhbnNpb24gb2YgbWFjcm8g4oCYX19CRl9GSUVMRF9DSEVDS+KA
+mQogICBfX0JGX0ZJRUxEX0NIRUNLKF9tYXNrLCBfcmVnLCAwVSwgIkZJRUxEX0dFVDogIik7IFwK
+ICAgXn5+fn5+fn5+fn5+fn5+fgouL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfcmVnLmg6MTg0
+OjU2OiBub3RlOiBpbiBleHBhbnNpb24gb2YgbWFjcm8g4oCYRklFTERfR0VU4oCZCiAjZGVmaW5l
+IF9SRUdfRklFTERfR0VUKF9fdHlwZSwgX19tYXNrLCBfX3ZhbCkgKChfX3R5cGUpRklFTERfR0VU
+KF9fbWFzaywgX192YWwpKQogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgIF5+fn5+fn5+fgouL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfcmVn
+Lmg6MjA4OjQwOiBub3RlOiBpbiBleHBhbnNpb24gb2YgbWFjcm8g4oCYX1JFR19GSUVMRF9HRVTi
+gJkKICNkZWZpbmUgUkVHX0ZJRUxEX0dFVDY0KF9fbWFzaywgX192YWwpIF9SRUdfRklFTERfR0VU
+KHU2NCwgX19tYXNrLCBfX3ZhbCkKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgIF5+fn5+fn5+fn5+fn5+CmRyaXZlcnMvZ3B1L2RybS9pOTE1L2ludGVsX3BtLmM6MjkzNjox
+MTogbm90ZTogaW4gZXhwYW5zaW9uIG9mIG1hY3JvIOKAmFJFR19GSUVMRF9HRVQ2NOKAmQogICB3
+bVswXSA9IFJFR19GSUVMRF9HRVQ2NChTU0tQRF9ORVdfV00wX01BU0tfSFNXLCBzc2twZCk7CiAg
+ICAgICAgICAgXn5+fn5+fn5+fn5+fn5+Ci4vaW5jbHVkZS9saW51eC9iaXRzLmg6Mzg6MzE6IG5v
+dGU6IGluIGV4cGFuc2lvbiBvZiBtYWNybyDigJhfX0dFTk1BU0vigJkKICAoR0VOTUFTS19JTlBV
+VF9DSEVDSyhoLCBsKSArIF9fR0VOTUFTSyhoLCBsKSkKICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgIF5+fn5+fn5+fgouL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfcmVnLmg6MTMzOjEy
+OiBub3RlOiBpbiBleHBhbnNpb24gb2YgbWFjcm8g4oCYR0VOTUFTS+KAmQogICgoX190eXBlKShH
+RU5NQVNLKF9faGlnaCwgX19sb3cpICsgICAgXAogICAgICAgICAgICBefn5+fn5+Ci4vZHJpdmVy
+cy9ncHUvZHJtL2k5MTUvaTkxNV9yZWcuaDoxNjA6Mzg6IG5vdGU6IGluIGV4cGFuc2lvbiBvZiBt
+YWNybyDigJhfUkVHX0dFTk1BU0vigJkKICNkZWZpbmUgUkVHX0dFTk1BU0s2NChfX2hpZ2gsIF9f
+bG93KSBfUkVHX0dFTk1BU0sodTY0LCBfX2hpZ2gsIF9fbG93KQogICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgIF5+fn5+fn5+fn5+fgouL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5
+MTVfcmVnLmg6MzgyMjozNDogbm90ZTogaW4gZXhwYW5zaW9uIG9mIG1hY3JvIOKAmFJFR19HRU5N
+QVNLNjTigJkKICNkZWZpbmUgICBTU0tQRF9ORVdfV00wX01BU0tfSFNXIFJFR19HRU5NQVNLNjQo
+NjMsIDU2KQogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgXn5+fn5+fn5+fn5+fgpk
+cml2ZXJzL2dwdS9kcm0vaTkxNS9pbnRlbF9wbS5jOjI5MzY6Mjc6IG5vdGU6IGluIGV4cGFuc2lv
+biBvZiBtYWNybyDigJhTU0tQRF9ORVdfV00wX01BU0tfSFNX4oCZCiAgIHdtWzBdID0gUkVHX0ZJ
+RUxEX0dFVDY0KFNTS1BEX05FV19XTTBfTUFTS19IU1csIHNza3BkKTsKICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgXn5+fn5+fn5+fn5+fn5+fn5+fn5+fgouL2luY2x1ZGUvbGludXgvYml0cy5o
+OjM2OjExOiBlcnJvcjogcmlnaHQgc2hpZnQgY291bnQgaXMgbmVnYXRpdmUgWy1XZXJyb3I9c2hp
+ZnQtY291bnQtbmVnYXRpdmVdCiAgICh+VUwoMCkgPj4gKEJJVFNfUEVSX0xPTkcgLSAxIC0gKGgp
+KSkpCiAgICAgICAgICAgXn4KLi8uL2luY2x1ZGUvbGludXgvY29tcGlsZXJfdHlwZXMuaDoyOTk6
+OTogbm90ZTogaW4gZGVmaW5pdGlvbiBvZiBtYWNybyDigJhfX2NvbXBpbGV0aW1lX2Fzc2VydOKA
+mQogICBpZiAoIShjb25kaXRpb24pKSAgICAgXAogICAgICAgICBefn5+fn5+fn4KLi8uL2luY2x1
+ZGUvbGludXgvY29tcGlsZXJfdHlwZXMuaDozMTk6Mjogbm90ZTogaW4gZXhwYW5zaW9uIG9mIG1h
+Y3JvIOKAmF9jb21waWxldGltZV9hc3NlcnTigJkKICBfY29tcGlsZXRpbWVfYXNzZXJ0KGNvbmRp
+dGlvbiwgbXNnLCBfX2NvbXBpbGV0aW1lX2Fzc2VydF8sIF9fQ09VTlRFUl9fKQogIF5+fn5+fn5+
+fn5+fn5+fn5+fn4KLi9pbmNsdWRlL2xpbnV4L2J1aWxkX2J1Zy5oOjM5OjM3OiBub3RlOiBpbiBl
+eHBhbnNpb24gb2YgbWFjcm8g4oCYY29tcGlsZXRpbWVfYXNzZXJ04oCZCiAjZGVmaW5lIEJVSUxE
+X0JVR19PTl9NU0coY29uZCwgbXNnKSBjb21waWxldGltZV9hc3NlcnQoIShjb25kKSwgbXNnKQog
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgXn5+fn5+fn5+fn5+fn5+fn5+Ci4v
+aW5jbHVkZS9saW51eC9iaXRmaWVsZC5oOjQ2OjM6IG5vdGU6IGluIGV4cGFuc2lvbiBvZiBtYWNy
+byDigJhCVUlMRF9CVUdfT05fTVNH4oCZCiAgIEJVSUxEX0JVR19PTl9NU0coIV9fYnVpbHRpbl9j
+b25zdGFudF9wKF9tYXNrKSwgIFwKICAgXn5+fn5+fn5+fn5+fn5+fgouL2luY2x1ZGUvbGludXgv
+Yml0ZmllbGQuaDoxMDg6Mzogbm90ZTogaW4gZXhwYW5zaW9uIG9mIG1hY3JvIOKAmF9fQkZfRklF
+TERfQ0hFQ0vigJkKICAgX19CRl9GSUVMRF9DSEVDSyhfbWFzaywgX3JlZywgMFUsICJGSUVMRF9H
+RVQ6ICIpOyBcCiAgIF5+fn5+fn5+fn5+fn5+fn4KLi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1
+X3JlZy5oOjE4NDo1Njogbm90ZTogaW4gZXhwYW5zaW9uIG9mIG1hY3JvIOKAmEZJRUxEX0dFVOKA
+mQogI2RlZmluZSBfUkVHX0ZJRUxEX0dFVChfX3R5cGUsIF9fbWFzaywgX192YWwpICgoX190eXBl
+KUZJRUxEX0dFVChfX21hc2ssIF9fdmFsKSkKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICBefn5+fn5+fn4KLi9kcml2ZXJzL2dwdS9kcm0vaTkx
+NS9pOTE1X3JlZy5oOjIwODo0MDogbm90ZTogaW4gZXhwYW5zaW9uIG9mIG1hY3JvIOKAmF9SRUdf
+RklFTERfR0VU4oCZCiAjZGVmaW5lIFJFR19GSUVMRF9HRVQ2NChfX21hc2ssIF9fdmFsKSBfUkVH
+X0ZJRUxEX0dFVCh1NjQsIF9fbWFzaywgX192YWwpCiAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICBefn5+fn5+fn5+fn5+fgpkcml2ZXJzL2dwdS9kcm0vaTkxNS9pbnRlbF9w
+bS5jOjI5MzY6MTE6IG5vdGU6IGluIGV4cGFuc2lvbiBvZiBtYWNybyDigJhSRUdfRklFTERfR0VU
+NjTigJkKICAgd21bMF0gPSBSRUdfRklFTERfR0VUNjQoU1NLUERfTkVXX1dNMF9NQVNLX0hTVywg
+c3NrcGQpOwogICAgICAgICAgIF5+fn5+fn5+fn5+fn5+fgouL2luY2x1ZGUvbGludXgvYml0cy5o
+OjM4OjMxOiBub3RlOiBpbiBleHBhbnNpb24gb2YgbWFjcm8g4oCYX19HRU5NQVNL4oCZCiAgKEdF
+Tk1BU0tfSU5QVVRfQ0hFQ0soaCwgbCkgKyBfX0dFTk1BU0soaCwgbCkpCiAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICBefn5+fn5+fn4KLi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X3Jl
+Zy5oOjEzMzoxMjogbm90ZTogaW4gZXhwYW5zaW9uIG9mIG1hY3JvIOKAmEdFTk1BU0vigJkKICAo
+KF9fdHlwZSkoR0VOTUFTSyhfX2hpZ2gsIF9fbG93KSArICAgIFwKICAgICAgICAgICAgXn5+fn5+
+fgouL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfcmVnLmg6MTYwOjM4OiBub3RlOiBpbiBleHBh
+bnNpb24gb2YgbWFjcm8g4oCYX1JFR19HRU5NQVNL4oCZCiAjZGVmaW5lIFJFR19HRU5NQVNLNjQo
+X19oaWdoLCBfX2xvdykgX1JFR19HRU5NQVNLKHU2NCwgX19oaWdoLCBfX2xvdykKICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICBefn5+fn5+fn5+fn4KLi9kcml2ZXJzL2dwdS9k
+cm0vaTkxNS9pOTE1X3JlZy5oOjM4MjI6MzQ6IG5vdGU6IGluIGV4cGFuc2lvbiBvZiBtYWNybyDi
+gJhSRUdfR0VOTUFTSzY04oCZCiAjZGVmaW5lICAgU1NLUERfTkVXX1dNMF9NQVNLX0hTVyBSRUdf
+R0VOTUFTSzY0KDYzLCA1NikKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIF5+fn5+
+fn5+fn5+fn4KZHJpdmVycy9ncHUvZHJtL2k5MTUvaW50ZWxfcG0uYzoyOTM2OjI3OiBub3RlOiBp
+biBleHBhbnNpb24gb2YgbWFjcm8g4oCYU1NLUERfTkVXX1dNMF9NQVNLX0hTV+KAmQogICB3bVsw
+XSA9IFJFR19GSUVMRF9HRVQ2NChTU0tQRF9ORVdfV00wX01BU0tfSFNXLCBzc2twZCk7CiAgICAg
+ICAgICAgICAgICAgICAgICAgICAgIF5+fn5+fn5+fn5+fn5+fn5+fn5+fn4KLi9pbmNsdWRlL2xp
+bnV4L2JpdHMuaDozNToyMjogZXJyb3I6IGxlZnQgc2hpZnQgY291bnQgPj0gd2lkdGggb2YgdHlw
+ZSBbLVdlcnJvcj1zaGlmdC1jb3VudC1vdmVyZmxvd10KICAoKCh+VUwoMCkpIC0gKFVMKDEpIDw8
+IChsKSkgKyAxKSAmIFwKICAgICAgICAgICAgICAgICAgICAgIF5+Ci4vLi9pbmNsdWRlL2xpbnV4
+L2NvbXBpbGVyX3R5cGVzLmg6Mjk5Ojk6IG5vdGU6IGluIGRlZmluaXRpb24gb2YgbWFjcm8g4oCY
+X19jb21waWxldGltZV9hc3NlcnTigJkKICAgaWYgKCEoY29uZGl0aW9uKSkgICAgIFwKICAgICAg
+ICAgXn5+fn5+fn5+Ci4vLi9pbmNsdWRlL2xpbnV4L2NvbXBpbGVyX3R5cGVzLmg6MzE5OjI6IG5v
+dGU6IGluIGV4cGFuc2lvbiBvZiBtYWNybyDigJhfY29tcGlsZXRpbWVfYXNzZXJ04oCZCiAgX2Nv
+bXBpbGV0aW1lX2Fzc2VydChjb25kaXRpb24sIG1zZywgX19jb21waWxldGltZV9hc3NlcnRfLCBf
+X0NPVU5URVJfXykKICBefn5+fn5+fn5+fn5+fn5+fn5+Ci4vaW5jbHVkZS9saW51eC9idWlsZF9i
+dWcuaDozOTozNzogbm90ZTogaW4gZXhwYW5zaW9uIG9mIG1hY3JvIOKAmGNvbXBpbGV0aW1lX2Fz
+c2VydOKAmQogI2RlZmluZSBCVUlMRF9CVUdfT05fTVNHKGNvbmQsIG1zZykgY29tcGlsZXRpbWVf
+YXNzZXJ0KCEoY29uZCksIG1zZykKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+IF5+fn5+fn5+fn5+fn5+fn5+fgouL2luY2x1ZGUvbGludXgvYml0ZmllbGQuaDo0ODozOiBub3Rl
+OiBpbiBleHBhbnNpb24gb2YgbWFjcm8g4oCYQlVJTERfQlVHX09OX01TR+KAmQogICBCVUlMRF9C
+VUdfT05fTVNHKChfbWFzaykgPT0gMCwgX3BmeCAibWFzayBpcyB6ZXJvIik7IFwKICAgXn5+fn5+
+fn5+fn5+fn5+fgouL2luY2x1ZGUvbGludXgvYml0ZmllbGQuaDoxMDg6Mzogbm90ZTogaW4gZXhw
+YW5zaW9uIG9mIG1hY3JvIOKAmF9fQkZfRklFTERfQ0hFQ0vigJkKICAgX19CRl9GSUVMRF9DSEVD
+SyhfbWFzaywgX3JlZywgMFUsICJGSUVMRF9HRVQ6ICIpOyBcCiAgIF5+fn5+fn5+fn5+fn5+fn4K
+Li9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X3JlZy5oOjE4NDo1Njogbm90ZTogaW4gZXhwYW5z
+aW9uIG9mIG1hY3JvIOKAmEZJRUxEX0dFVOKAmQogI2RlZmluZSBfUkVHX0ZJRUxEX0dFVChfX3R5
+cGUsIF9fbWFzaywgX192YWwpICgoX190eXBlKUZJRUxEX0dFVChfX21hc2ssIF9fdmFsKSkKICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBefn5+
+fn5+fn4KLi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X3JlZy5oOjIwODo0MDogbm90ZTogaW4g
+ZXhwYW5zaW9uIG9mIG1hY3JvIOKAmF9SRUdfRklFTERfR0VU4oCZCiAjZGVmaW5lIFJFR19GSUVM
+RF9HRVQ2NChfX21hc2ssIF9fdmFsKSBfUkVHX0ZJRUxEX0dFVCh1NjQsIF9fbWFzaywgX192YWwp
+CiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBefn5+fn5+fn5+fn5+fgpk
+cml2ZXJzL2dwdS9kcm0vaTkxNS9pbnRlbF9wbS5jOjI5MzY6MTE6IG5vdGU6IGluIGV4cGFuc2lv
+biBvZiBtYWNybyDigJhSRUdfRklFTERfR0VUNjTigJkKICAgd21bMF0gPSBSRUdfRklFTERfR0VU
+NjQoU1NLUERfTkVXX1dNMF9NQVNLX0hTVywgc3NrcGQpOwogICAgICAgICAgIF5+fn5+fn5+fn5+
+fn5+fgouL2luY2x1ZGUvbGludXgvYml0cy5oOjM4OjMxOiBub3RlOiBpbiBleHBhbnNpb24gb2Yg
+bWFjcm8g4oCYX19HRU5NQVNL4oCZCiAgKEdFTk1BU0tfSU5QVVRfQ0hFQ0soaCwgbCkgKyBfX0dF
+Tk1BU0soaCwgbCkpCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBefn5+fn5+fn4KLi9k
+cml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X3JlZy5oOjEzMzoxMjogbm90ZTogaW4gZXhwYW5zaW9u
+IG9mIG1hY3JvIOKAmEdFTk1BU0vigJkKICAoKF9fdHlwZSkoR0VOTUFTSyhfX2hpZ2gsIF9fbG93
+KSArICAgIFwKICAgICAgICAgICAgXn5+fn5+fgouL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVf
+cmVnLmg6MTYwOjM4OiBub3RlOiBpbiBleHBhbnNpb24gb2YgbWFjcm8g4oCYX1JFR19HRU5NQVNL
+4oCZCiAjZGVmaW5lIFJFR19HRU5NQVNLNjQoX19oaWdoLCBfX2xvdykgX1JFR19HRU5NQVNLKHU2
+NCwgX19oaWdoLCBfX2xvdykKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBe
+fn5+fn5+fn5+fn4KLi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X3JlZy5oOjM4MjI6MzQ6IG5v
+dGU6IGluIGV4cGFuc2lvbiBvZiBtYWNybyDigJhSRUdfR0VOTUFTSzY04oCZCiAjZGVmaW5lICAg
+U1NLUERfTkVXX1dNMF9NQVNLX0hTVyBSRUdfR0VOTUFTSzY0KDYzLCA1NikKICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgIF5+fn5+fn5+fn5+fn4KZHJpdmVycy9ncHUvZHJtL2k5MTUv
+aW50ZWxfcG0uYzoyOTM2OjI3OiBub3RlOiBpbiBleHBhbnNpb24gb2YgbWFjcm8g4oCYU1NLUERf
+TkVXX1dNMF9NQVNLX0hTV+KAmQogICB3bVswXSA9IFJFR19GSUVMRF9HRVQ2NChTU0tQRF9ORVdf
+V00wX01BU0tfSFNXLCBzc2twZCk7CiAgICAgICAgICAgICAgICAgICAgICAgICAgIF5+fn5+fn5+
+fn5+fn5+fn5+fn5+fn4KLi9pbmNsdWRlL2xpbnV4L2JpdHMuaDozNjoxMTogZXJyb3I6IHJpZ2h0
+IHNoaWZ0IGNvdW50IGlzIG5lZ2F0aXZlIFstV2Vycm9yPXNoaWZ0LWNvdW50LW5lZ2F0aXZlXQog
+ICAoflVMKDApID4+IChCSVRTX1BFUl9MT05HIC0gMSAtIChoKSkpKQogICAgICAgICAgIF5+Ci4v
+Li9pbmNsdWRlL2xpbnV4L2NvbXBpbGVyX3R5cGVzLmg6Mjk5Ojk6IG5vdGU6IGluIGRlZmluaXRp
+b24gb2YgbWFjcm8g4oCYX19jb21waWxldGltZV9hc3NlcnTigJkKICAgaWYgKCEoY29uZGl0aW9u
+KSkgICAgIFwKICAgICAgICAgXn5+fn5+fn5+Ci4vLi9pbmNsdWRlL2xpbnV4L2NvbXBpbGVyX3R5
+cGVzLmg6MzE5OjI6IG5vdGU6IGluIGV4cGFuc2lvbiBvZiBtYWNybyDigJhfY29tcGlsZXRpbWVf
+YXNzZXJ04oCZCiAgX2NvbXBpbGV0aW1lX2Fzc2VydChjb25kaXRpb24sIG1zZywgX19jb21waWxl
+dGltZV9hc3NlcnRfLCBfX0NPVU5URVJfXykKICBefn5+fn5+fn5+fn5+fn5+fn5+Ci4vaW5jbHVk
+ZS9saW51eC9idWlsZF9idWcuaDozOTozNzogbm90ZTogaW4gZXhwYW5zaW9uIG9mIG1hY3JvIOKA
+mGNvbXBpbGV0aW1lX2Fzc2VydOKAmQogI2RlZmluZSBCVUlMRF9CVUdfT05fTVNHKGNvbmQsIG1z
+ZykgY29tcGlsZXRpbWVfYXNzZXJ0KCEoY29uZCksIG1zZykKICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgIF5+fn5+fn5+fn5+fn5+fn5+fgouL2luY2x1ZGUvbGludXgvYml0Zmll
+bGQuaDo0ODozOiBub3RlOiBpbiBleHBhbnNpb24gb2YgbWFjcm8g4oCYQlVJTERfQlVHX09OX01T
+R+KAmQogICBCVUlMRF9CVUdfT05fTVNHKChfbWFzaykgPT0gMCwgX3BmeCAibWFzayBpcyB6ZXJv
+Iik7IFwKICAgXn5+fn5+fn5+fn5+fn5+fgouL2luY2x1ZGUvbGludXgvYml0ZmllbGQuaDoxMDg6
+Mzogbm90ZTogaW4gZXhwYW5zaW9uIG9mIG1hY3JvIOKAmF9fQkZfRklFTERfQ0hFQ0vigJkKICAg
+X19CRl9GSUVMRF9DSEVDSyhfbWFzaywgX3JlZywgMFUsICJGSUVMRF9HRVQ6ICIpOyBcCiAgIF5+
+fn5+fn5+fn5+fn5+fn4KLi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X3JlZy5oOjE4NDo1Njog
+bm90ZTogaW4gZXhwYW5zaW9uIG9mIG1hY3JvIOKAmEZJRUxEX0dFVOKAmQogI2RlZmluZSBfUkVH
+X0ZJRUxEX0dFVChfX3R5cGUsIF9fbWFzaywgX192YWwpICgoX190eXBlKUZJRUxEX0dFVChfX21h
+c2ssIF9fdmFsKSkKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICBefn5+fn5+fn4KLi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X3JlZy5oOjIw
+ODo0MDogbm90ZTogaW4gZXhwYW5zaW9uIG9mIG1hY3JvIOKAmF9SRUdfRklFTERfR0VU4oCZCiAj
+ZGVmaW5lIFJFR19GSUVMRF9HRVQ2NChfX21hc2ssIF9fdmFsKSBfUkVHX0ZJRUxEX0dFVCh1NjQs
+IF9fbWFzaywgX192YWwpCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBe
+fn5+fn5+fn5+fn5+fgpkcml2ZXJzL2dwdS9kcm0vaTkxNS9pbnRlbF9wbS5jOjI5MzY6MTE6IG5v
+dGU6IGluIGV4cGFuc2lvbiBvZiBtYWNybyDigJhSRUdfRklFTERfR0VUNjTigJkKICAgd21bMF0g
+PSBSRUdfRklFTERfR0VUNjQoU1NLUERfTkVXX1dNMF9NQVNLX0hTVywgc3NrcGQpOwogICAgICAg
+ICAgIF5+fn5+fn5+fn5+fn5+fgouL2luY2x1ZGUvbGludXgvYml0cy5oOjM4OjMxOiBub3RlOiBp
+biBleHBhbnNpb24gb2YgbWFjcm8g4oCYX19HRU5NQVNL4oCZCiAgKEdFTk1BU0tfSU5QVVRfQ0hF
+Q0soaCwgbCkgKyBfX0dFTk1BU0soaCwgbCkpCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICBefn5+fn5+fn4KLi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X3JlZy5oOjEzMzoxMjogbm90
+ZTogaW4gZXhwYW5zaW9uIG9mIG1hY3JvIOKAmEdFTk1BU0vigJkKICAoKF9fdHlwZSkoR0VOTUFT
+SyhfX2hpZ2gsIF9fbG93KSArICAgIFwKICAgICAgICAgICAgXn5+fn5+fgouL2RyaXZlcnMvZ3B1
+L2RybS9pOTE1L2k5MTVfcmVnLmg6MTYwOjM4OiBub3RlOiBpbiBleHBhbnNpb24gb2YgbWFjcm8g
+4oCYX1JFR19HRU5NQVNL4oCZCiAjZGVmaW5lIFJFR19HRU5NQVNLNjQoX19oaWdoLCBfX2xvdykg
+X1JFR19HRU5NQVNLKHU2NCwgX19oaWdoLCBfX2xvdykKICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICBefn5+fn5+fn5+fn4KLi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X3Jl
+Zy5oOjM4MjI6MzQ6IG5vdGU6IGluIGV4cGFuc2lvbiBvZiBtYWNybyDigJhSRUdfR0VOTUFTSzY0
+4oCZCiAjZGVmaW5lICAgU1NLUERfTkVXX1dNMF9NQVNLX0hTVyBSRUdfR0VOTUFTSzY0KDYzLCA1
+NikKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIF5+fn5+fn5+fn5+fn4KZHJpdmVy
+cy9ncHUvZHJtL2k5MTUvaW50ZWxfcG0uYzoyOTM2OjI3OiBub3RlOiBpbiBleHBhbnNpb24gb2Yg
+bWFjcm8g4oCYU1NLUERfTkVXX1dNMF9NQVNLX0hTV+KAmQogICB3bVswXSA9IFJFR19GSUVMRF9H
+RVQ2NChTU0tQRF9ORVdfV00wX01BU0tfSFNXLCBzc2twZCk7CiAgICAgICAgICAgICAgICAgICAg
+ICAgICAgIF5+fn5+fn5+fn5+fn5+fn5+fn5+fn4KLi9pbmNsdWRlL2xpbnV4L2JpdHMuaDozNToy
+MjogZXJyb3I6IGxlZnQgc2hpZnQgY291bnQgPj0gd2lkdGggb2YgdHlwZSBbLVdlcnJvcj1zaGlm
+dC1jb3VudC1vdmVyZmxvd10KICAoKCh+VUwoMCkpIC0gKFVMKDEpIDw8IChsKSkgKyAxKSAmIFwK
+ICAgICAgICAgICAgICAgICAgICAgIF5+Ci4vLi9pbmNsdWRlL2xpbnV4L2NvbXBpbGVyX3R5cGVz
+Lmg6Mjk5Ojk6IG5vdGU6IGluIGRlZmluaXRpb24gb2YgbWFjcm8g4oCYX19jb21waWxldGltZV9h
+c3NlcnTigJkKICAgaWYgKCEoY29uZGl0aW9uKSkgICAgIFwKICAgICAgICAgXn5+fn5+fn5+Ci4v
+Li9pbmNsdWRlL2xpbnV4L2NvbXBpbGVyX3R5cGVzLmg6MzE5OjI6IG5vdGU6IGluIGV4cGFuc2lv
+biBvZiBtYWNybyDigJhfY29tcGlsZXRpbWVfYXNzZXJ04oCZCiAgX2NvbXBpbGV0aW1lX2Fzc2Vy
+dChjb25kaXRpb24sIG1zZywgX19jb21waWxldGltZV9hc3NlcnRfLCBfX0NPVU5URVJfXykKICBe
+fn5+fn5+fn5+fn5+fn5+fn5+Ci4vaW5jbHVkZS9saW51eC9idWlsZF9idWcuaDozOTozNzogbm90
+ZTogaW4gZXhwYW5zaW9uIG9mIG1hY3JvIOKAmGNvbXBpbGV0aW1lX2Fzc2VydOKAmQogI2RlZmlu
+ZSBCVUlMRF9CVUdfT05fTVNHKGNvbmQsIG1zZykgY29tcGlsZXRpbWVfYXNzZXJ0KCEoY29uZCks
+IG1zZykKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIF5+fn5+fn5+fn5+fn5+
+fn5+fgouL2luY2x1ZGUvbGludXgvYml0ZmllbGQuaDo0OTozOiBub3RlOiBpbiBleHBhbnNpb24g
+b2YgbWFjcm8g4oCYQlVJTERfQlVHX09OX01TR+KAmQogICBCVUlMRF9CVUdfT05fTVNHKF9fYnVp
+bHRpbl9jb25zdGFudF9wKF92YWwpID8gIFwKICAgXn5+fn5+fn5+fn5+fn5+fgouL2luY2x1ZGUv
+bGludXgvYml0ZmllbGQuaDoxMDg6Mzogbm90ZTogaW4gZXhwYW5zaW9uIG9mIG1hY3JvIOKAmF9f
+QkZfRklFTERfQ0hFQ0vigJkKICAgX19CRl9GSUVMRF9DSEVDSyhfbWFzaywgX3JlZywgMFUsICJG
+SUVMRF9HRVQ6ICIpOyBcCiAgIF5+fn5+fn5+fn5+fn5+fn4KLi9kcml2ZXJzL2dwdS9kcm0vaTkx
+NS9pOTE1X3JlZy5oOjE4NDo1Njogbm90ZTogaW4gZXhwYW5zaW9uIG9mIG1hY3JvIOKAmEZJRUxE
+X0dFVOKAmQogI2RlZmluZSBfUkVHX0ZJRUxEX0dFVChfX3R5cGUsIF9fbWFzaywgX192YWwpICgo
+X190eXBlKUZJRUxEX0dFVChfX21hc2ssIF9fdmFsKSkKICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBefn5+fn5+fn4KLi9kcml2ZXJzL2dwdS9k
+cm0vaTkxNS9pOTE1X3JlZy5oOjIwODo0MDogbm90ZTogaW4gZXhwYW5zaW9uIG9mIG1hY3JvIOKA
+mF9SRUdfRklFTERfR0VU4oCZCiAjZGVmaW5lIFJFR19GSUVMRF9HRVQ2NChfX21hc2ssIF9fdmFs
+KSBfUkVHX0ZJRUxEX0dFVCh1NjQsIF9fbWFzaywgX192YWwpCiAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICBefn5+fn5+fn5+fn5+fgpkcml2ZXJzL2dwdS9kcm0vaTkxNS9p
+bnRlbF9wbS5jOjI5MzY6MTE6IG5vdGU6IGluIGV4cGFuc2lvbiBvZiBtYWNybyDigJhSRUdfRklF
+TERfR0VUNjTigJkKICAgd21bMF0gPSBSRUdfRklFTERfR0VUNjQoU1NLUERfTkVXX1dNMF9NQVNL
+X0hTVywgc3NrcGQpOwogICAgICAgICAgIF5+fn5+fn5+fn5+fn5+fgouL2luY2x1ZGUvbGludXgv
+Yml0cy5oOjM4OjMxOiBub3RlOiBpbiBleHBhbnNpb24gb2YgbWFjcm8g4oCYX19HRU5NQVNL4oCZ
+CiAgKEdFTk1BU0tfSU5QVVRfQ0hFQ0soaCwgbCkgKyBfX0dFTk1BU0soaCwgbCkpCiAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICBefn5+fn5+fn4KLi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9p
+OTE1X3JlZy5oOjEzMzoxMjogbm90ZTogaW4gZXhwYW5zaW9uIG9mIG1hY3JvIOKAmEdFTk1BU0vi
+gJkKICAoKF9fdHlwZSkoR0VOTUFTSyhfX2hpZ2gsIF9fbG93KSArICAgIFwKICAgICAgICAgICAg
+Xn5+fn5+fgouL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfcmVnLmg6MTYwOjM4OiBub3RlOiBp
+biBleHBhbnNpb24gb2YgbWFjcm8g4oCYX1JFR19HRU5NQVNL4oCZCiAjZGVmaW5lIFJFR19HRU5N
+QVNLNjQoX19oaWdoLCBfX2xvdykgX1JFR19HRU5NQVNLKHU2NCwgX19oaWdoLCBfX2xvdykKICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBefn5+fn5+fn5+fn4KLi9kcml2ZXJz
+L2dwdS9kcm0vaTkxNS9pOTE1X3JlZy5oOjM4MjI6MzQ6IG5vdGU6IGluIGV4cGFuc2lvbiBvZiBt
+YWNybyDigJhSRUdfR0VOTUFTSzY04oCZCiAjZGVmaW5lICAgU1NLUERfTkVXX1dNMF9NQVNLX0hT
+VyBSRUdfR0VOTUFTSzY0KDYzLCA1NikKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+IF5+fn5+fn5+fn5+fn4KZHJpdmVycy9ncHUvZHJtL2k5MTUvaW50ZWxfcG0uYzoyOTM2OjI3OiBu
+b3RlOiBpbiBleHBhbnNpb24gb2YgbWFjcm8g4oCYU1NLUERfTkVXX1dNMF9NQVNLX0hTV+KAmQog
+ICB3bVswXSA9IFJFR19GSUVMRF9HRVQ2NChTU0tQRF9ORVdfV00wX01BU0tfSFNXLCBzc2twZCk7
+CiAgICAgICAgICAgICAgICAgICAgICAgICAgIF5+fn5+fn5+fn5+fn5+fn5+fn5+fn4KLi9pbmNs
+dWRlL2xpbnV4L2JpdHMuaDozNjoxMTogZXJyb3I6IHJpZ2h0IHNoaWZ0IGNvdW50IGlzIG5lZ2F0
+aXZlIFstV2Vycm9yPXNoaWZ0LWNvdW50LW5lZ2F0aXZlXQogICAoflVMKDApID4+IChCSVRTX1BF
+Ul9MT05HIC0gMSAtIChoKSkpKQogICAgICAgICAgIF5+Ci4vLi9pbmNsdWRlL2xpbnV4L2NvbXBp
+bGVyX3R5cGVzLmg6Mjk5Ojk6IG5vdGU6IGluIGRlZmluaXRpb24gb2YgbWFjcm8g4oCYX19jb21w
+aWxldGltZV9hc3NlcnTigJkKICAgaWYgKCEoY29uZGl0aW9uKSkgICAgIFwKICAgICAgICAgXn5+
+fn5+fn5+Ci4vLi9pbmNsdWRlL2xpbnV4L2NvbXBpbGVyX3R5cGVzLmg6MzE5OjI6IG5vdGU6IGlu
+IGV4cGFuc2lvbiBvZiBtYWNybyDigJhfY29tcGlsZXRpbWVfYXNzZXJ04oCZCiAgX2NvbXBpbGV0
+aW1lX2Fzc2VydChjb25kaXRpb24sIG1zZywgX19jb21waWxldGltZV9hc3NlcnRfLCBfX0NPVU5U
+RVJfXykKICBefn5+fn5+fn5+fn5+fn5+fn5+Ci4vaW5jbHVkZS9saW51eC9idWlsZF9idWcuaDoz
+OTozNzogbm90ZTogaW4gZXhwYW5zaW9uIG9mIG1hY3JvIOKAmGNvbXBpbGV0aW1lX2Fzc2VydOKA
+mQogI2RlZmluZSBCVUlMRF9CVUdfT05fTVNHKGNvbmQsIG1zZykgY29tcGlsZXRpbWVfYXNzZXJ0
+KCEoY29uZCksIG1zZykKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIF5+fn5+
+fn5+fn5+fn5+fn5+fgouL2luY2x1ZGUvbGludXgvYml0ZmllbGQuaDo0OTozOiBub3RlOiBpbiBl
+eHBhbnNpb24gb2YgbWFjcm8g4oCYQlVJTERfQlVHX09OX01TR+KAmQogICBCVUlMRF9CVUdfT05f
+TVNHKF9fYnVpbHRpbl9jb25zdGFudF9wKF92YWwpID8gIFwKICAgXn5+fn5+fn5+fn5+fn5+fgou
+L2luY2x1ZGUvbGludXgvYml0ZmllbGQuaDoxMDg6Mzogbm90ZTogaW4gZXhwYW5zaW9uIG9mIG1h
+Y3JvIOKAmF9fQkZfRklFTERfQ0hFQ0vigJkKICAgX19CRl9GSUVMRF9DSEVDSyhfbWFzaywgX3Jl
+ZywgMFUsICJGSUVMRF9HRVQ6ICIpOyBcCiAgIF5+fn5+fn5+fn5+fn5+fn4KLi9kcml2ZXJzL2dw
+dS9kcm0vaTkxNS9pOTE1X3JlZy5oOjE4NDo1Njogbm90ZTogaW4gZXhwYW5zaW9uIG9mIG1hY3Jv
+IOKAmEZJRUxEX0dFVOKAmQogI2RlZmluZSBfUkVHX0ZJRUxEX0dFVChfX3R5cGUsIF9fbWFzaywg
+X192YWwpICgoX190eXBlKUZJRUxEX0dFVChfX21hc2ssIF9fdmFsKSkKICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBefn5+fn5+fn4KLi9kcml2
+ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X3JlZy5oOjIwODo0MDogbm90ZTogaW4gZXhwYW5zaW9uIG9m
+IG1hY3JvIOKAmF9SRUdfRklFTERfR0VU4oCZCiAjZGVmaW5lIFJFR19GSUVMRF9HRVQ2NChfX21h
+c2ssIF9fdmFsKSBfUkVHX0ZJRUxEX0dFVCh1NjQsIF9fbWFzaywgX192YWwpCiAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICBefn5+fn5+fn5+fn5+fgpkcml2ZXJzL2dwdS9k
+cm0vaTkxNS9pbnRlbF9wbS5jOjI5MzY6MTE6IG5vdGU6IGluIGV4cGFuc2lvbiBvZiBtYWNybyDi
+gJhSRUdfRklFTERfR0VUNjTigJkKICAgd21bMF0gPSBSRUdfRklFTERfR0VUNjQoU1NLUERfTkVX
+X1dNMF9NQVNLX0hTVywgc3NrcGQpOwogICAgICAgICAgIF5+fn5+fn5+fn5+fn5+fgouL2luY2x1
+ZGUvbGludXgvYml0cy5oOjM4OjMxOiBub3RlOiBpbiBleHBhbnNpb24gb2YgbWFjcm8g4oCYX19H
+RU5NQVNL4oCZCiAgKEdFTk1BU0tfSU5QVVRfQ0hFQ0soaCwgbCkgKyBfX0dFTk1BU0soaCwgbCkp
+CiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBefn5+fn5+fn4KLi9kcml2ZXJzL2dwdS9k
+cm0vaTkxNS9pOTE1X3JlZy5oOjEzMzoxMjogbm90ZTogaW4gZXhwYW5zaW9uIG9mIG1hY3JvIOKA
+mEdFTk1BU0vigJkKICAoKF9fdHlwZSkoR0VOTUFTSyhfX2hpZ2gsIF9fbG93KSArICAgIFwKICAg
+ICAgICAgICAgXn5+fn5+fgouL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfcmVnLmg6MTYwOjM4
+OiBub3RlOiBpbiBleHBhbnNpb24gb2YgbWFjcm8g4oCYX1JFR19HRU5NQVNL4oCZCiAjZGVmaW5l
+IFJFR19HRU5NQVNLNjQoX19oaWdoLCBfX2xvdykgX1JFR19HRU5NQVNLKHU2NCwgX19oaWdoLCBf
+X2xvdykKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBefn5+fn5+fn5+fn4K
+Li9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X3JlZy5oOjM4MjI6MzQ6IG5vdGU6IGluIGV4cGFu
+c2lvbiBvZiBtYWNybyDigJhSRUdfR0VOTUFTSzY04oCZCiAjZGVmaW5lICAgU1NLUERfTkVXX1dN
+MF9NQVNLX0hTVyBSRUdfR0VOTUFTSzY0KDYzLCA1NikKICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgIF5+fn5+fn5+fn5+fn4KZHJpdmVycy9ncHUvZHJtL2k5MTUvaW50ZWxfcG0uYzoy
+OTM2OjI3OiBub3RlOiBpbiBleHBhbnNpb24gb2YgbWFjcm8g4oCYU1NLUERfTkVXX1dNMF9NQVNL
+X0hTV+KAmQogICB3bVswXSA9IFJFR19GSUVMRF9HRVQ2NChTU0tQRF9ORVdfV00wX01BU0tfSFNX
+LCBzc2twZCk7CiAgICAgICAgICAgICAgICAgICAgICAgICAgIF5+fn5+fn5+fn5+fn5+fn5+fn5+
+fn4KLi9pbmNsdWRlL2xpbnV4L2JpdHMuaDozNToyMjogZXJyb3I6IGxlZnQgc2hpZnQgY291bnQg
+Pj0gd2lkdGggb2YgdHlwZSBbLVdlcnJvcj1zaGlmdC1jb3VudC1vdmVyZmxvd10KICAoKCh+VUwo
+MCkpIC0gKFVMKDEpIDw8IChsKSkgKyAxKSAmIFwKICAgICAgICAgICAgICAgICAgICAgIF5+Ci4v
+Li9pbmNsdWRlL2xpbnV4L2NvbXBpbGVyX3R5cGVzLmg6Mjk5Ojk6IG5vdGU6IGluIGRlZmluaXRp
+b24gb2YgbWFjcm8g4oCYX19jb21waWxldGltZV9hc3NlcnTigJkKICAgaWYgKCEoY29uZGl0aW9u
+KSkgICAgIFwKICAgICAgICAgXn5+fn5+fn5+Ci4vLi9pbmNsdWRlL2xpbnV4L2NvbXBpbGVyX3R5
+cGVzLmg6MzE5OjI6IG5vdGU6IGluIGV4cGFuc2lvbiBvZiBtYWNybyDigJhfY29tcGlsZXRpbWVf
+YXNzZXJ04oCZCiAgX2NvbXBpbGV0aW1lX2Fzc2VydChjb25kaXRpb24sIG1zZywgX19jb21waWxl
+dGltZV9hc3NlcnRfLCBfX0NPVU5URVJfXykKICBefn5+fn5+fn5+fn5+fn5+fn5+Ci4vaW5jbHVk
+ZS9saW51eC9idWlsZF9idWcuaDozOTozNzogbm90ZTogaW4gZXhwYW5zaW9uIG9mIG1hY3JvIOKA
+mGNvbXBpbGV0aW1lX2Fzc2VydOKAmQogI2RlZmluZSBCVUlMRF9CVUdfT05fTVNHKGNvbmQsIG1z
+ZykgY29tcGlsZXRpbWVfYXNzZXJ0KCEoY29uZCksIG1zZykKICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgIF5+fn5+fn5+fn5+fn5+fn5+fgouL2luY2x1ZGUvbGludXgvYml0Zmll
+bGQuaDo0OTozOiBub3RlOiBpbiBleHBhbnNpb24gb2YgbWFjcm8g4oCYQlVJTERfQlVHX09OX01T
+R+KAmQogICBCVUlMRF9CVUdfT05fTVNHKF9fYnVpbHRpbl9jb25zdGFudF9wKF92YWwpID8gIFwK
+ICAgXn5+fn5+fn5+fn5+fn5+fgouL2luY2x1ZGUvbGludXgvYml0ZmllbGQuaDo1MDoxOTogbm90
+ZTogaW4gZXhwYW5zaW9uIG9mIG1hY3JvIOKAmF9fYmZfc2hm4oCZCiAgICAgIH4oKF9tYXNrKSA+
+PiBfX2JmX3NoZihfbWFzaykpICYgKF92YWwpIDogMCwgXAogICAgICAgICAgICAgICAgICAgXn5+
+fn5+fn4KLi9pbmNsdWRlL2xpbnV4L2JpdGZpZWxkLmg6MTA4OjM6IG5vdGU6IGluIGV4cGFuc2lv
+biBvZiBtYWNybyDigJhfX0JGX0ZJRUxEX0NIRUNL4oCZCiAgIF9fQkZfRklFTERfQ0hFQ0soX21h
+c2ssIF9yZWcsIDBVLCAiRklFTERfR0VUOiAiKTsgXAogICBefn5+fn5+fn5+fn5+fn5+Ci4vZHJp
+dmVycy9ncHUvZHJtL2k5MTUvaTkxNV9yZWcuaDoxODQ6NTY6IG5vdGU6IGluIGV4cGFuc2lvbiBv
+ZiBtYWNybyDigJhGSUVMRF9HRVTigJkKICNkZWZpbmUgX1JFR19GSUVMRF9HRVQoX190eXBlLCBf
+X21hc2ssIF9fdmFsKSAoKF9fdHlwZSlGSUVMRF9HRVQoX19tYXNrLCBfX3ZhbCkpCiAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgXn5+fn5+fn5+
+Ci4vZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9yZWcuaDoyMDg6NDA6IG5vdGU6IGluIGV4cGFu
+c2lvbiBvZiBtYWNybyDigJhfUkVHX0ZJRUxEX0dFVOKAmQogI2RlZmluZSBSRUdfRklFTERfR0VU
+NjQoX19tYXNrLCBfX3ZhbCkgX1JFR19GSUVMRF9HRVQodTY0LCBfX21hc2ssIF9fdmFsKQogICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgXn5+fn5+fn5+fn5+fn4KZHJpdmVy
+cy9ncHUvZHJtL2k5MTUvaW50ZWxfcG0uYzoyOTM2OjExOiBub3RlOiBpbiBleHBhbnNpb24gb2Yg
+bWFjcm8g4oCYUkVHX0ZJRUxEX0dFVDY04oCZCiAgIHdtWzBdID0gUkVHX0ZJRUxEX0dFVDY0KFNT
+S1BEX05FV19XTTBfTUFTS19IU1csIHNza3BkKTsKICAgICAgICAgICBefn5+fn5+fn5+fn5+fn4K
+Li9pbmNsdWRlL2xpbnV4L2JpdHMuaDozODozMTogbm90ZTogaW4gZXhwYW5zaW9uIG9mIG1hY3Jv
+IOKAmF9fR0VOTUFTS+KAmQogIChHRU5NQVNLX0lOUFVUX0NIRUNLKGgsIGwpICsgX19HRU5NQVNL
+KGgsIGwpKQogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgXn5+fn5+fn5+Ci4vZHJpdmVy
+cy9ncHUvZHJtL2k5MTUvaTkxNV9yZWcuaDoxMzM6MTI6IG5vdGU6IGluIGV4cGFuc2lvbiBvZiBt
+YWNybyDigJhHRU5NQVNL4oCZCiAgKChfX3R5cGUpKEdFTk1BU0soX19oaWdoLCBfX2xvdykgKyAg
+ICBcCiAgICAgICAgICAgIF5+fn5+fn4KLi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X3JlZy5o
+OjE2MDozODogbm90ZTogaW4gZXhwYW5zaW9uIG9mIG1hY3JvIOKAmF9SRUdfR0VOTUFTS+KAmQog
+I2RlZmluZSBSRUdfR0VOTUFTSzY0KF9faGlnaCwgX19sb3cpIF9SRUdfR0VOTUFTSyh1NjQsIF9f
+aGlnaCwgX19sb3cpCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgXn5+fn5+
+fn5+fn5+Ci4vZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9yZWcuaDozODIyOjM0OiBub3RlOiBp
+biBleHBhbnNpb24gb2YgbWFjcm8g4oCYUkVHX0dFTk1BU0s2NOKAmQogI2RlZmluZSAgIFNTS1BE
+X05FV19XTTBfTUFTS19IU1cgUkVHX0dFTk1BU0s2NCg2MywgNTYpCiAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICBefn5+fn5+fn5+fn5+CmRyaXZlcnMvZ3B1L2RybS9pOTE1L2ludGVs
+X3BtLmM6MjkzNjoyNzogbm90ZTogaW4gZXhwYW5zaW9uIG9mIG1hY3JvIOKAmFNTS1BEX05FV19X
+TTBfTUFTS19IU1figJkKICAgd21bMF0gPSBSRUdfRklFTERfR0VUNjQoU1NLUERfTkVXX1dNMF9N
+QVNLX0hTVywgc3NrcGQpOwogICAgICAgICAgICAgICAgICAgICAgICAgICBefn5+fn5+fn5+fn5+
+fn5+fn5+fn5+Ci4vaW5jbHVkZS9saW51eC9iaXRzLmg6MzY6MTE6IGVycm9yOiByaWdodCBzaGlm
+dCBjb3VudCBpcyBuZWdhdGl2ZSBbLVdlcnJvcj1zaGlmdC1jb3VudC1uZWdhdGl2ZV0KICAgKH5V
+TCgwKSA+PiAoQklUU19QRVJfTE9ORyAtIDEgLSAoaCkpKSkKICAgICAgICAgICBefgouLy4vaW5j
+bHVkZS9saW51eC9jb21waWxlcl90eXBlcy5oOjI5OTo5OiBub3RlOiBpbiBkZWZpbml0aW9uIG9m
+IG1hY3JvIOKAmF9fY29tcGlsZXRpbWVfYXNzZXJ04oCZCiAgIGlmICghKGNvbmRpdGlvbikpICAg
+ICBcCiAgICAgICAgIF5+fn5+fn5+fgouLy4vaW5jbHVkZS9saW51eC9jb21waWxlcl90eXBlcy5o
+OjMxOToyOiBub3RlOiBpbiBleHBhbnNpb24gb2YgbWFjcm8g4oCYX2NvbXBpbGV0aW1lX2Fzc2Vy
+dOKAmQogIF9jb21waWxldGltZV9hc3NlcnQoY29uZGl0aW9uLCBtc2csIF9fY29tcGlsZXRpbWVf
+YXNzZXJ0XywgX19DT1VOVEVSX18pCiAgXn5+fn5+fn5+fn5+fn5+fn5+fgouL2luY2x1ZGUvbGlu
+dXgvYnVpbGRfYnVnLmg6Mzk6Mzc6IG5vdGU6IGluIGV4cGFuc2lvbiBvZiBtYWNybyDigJhjb21w
+aWxldGltZV9hc3NlcnTigJkKICNkZWZpbmUgQlVJTERfQlVHX09OX01TRyhjb25kLCBtc2cpIGNv
+bXBpbGV0aW1lX2Fzc2VydCghKGNvbmQpLCBtc2cpCiAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICBefn5+fn5+fn5+fn5+fn5+fn4KLi9pbmNsdWRlL2xpbnV4L2JpdGZpZWxkLmg6
+NDk6Mzogbm90ZTogaW4gZXhwYW5zaW9uIG9mIG1hY3JvIOKAmEJVSUxEX0JVR19PTl9NU0figJkK
+ICAgQlVJTERfQlVHX09OX01TRyhfX2J1aWx0aW5fY29uc3RhbnRfcChfdmFsKSA/ICBcCiAgIF5+
+fn5+fn5+fn5+fn5+fn4KLi9pbmNsdWRlL2xpbnV4L2JpdGZpZWxkLmg6NTA6MTk6IG5vdGU6IGlu
+IGV4cGFuc2lvbiBvZiBtYWNybyDigJhfX2JmX3NoZuKAmQogICAgICB+KChfbWFzaykgPj4gX19i
+Zl9zaGYoX21hc2spKSAmIChfdmFsKSA6IDAsIFwKICAgICAgICAgICAgICAgICAgIF5+fn5+fn5+
+Ci4vaW5jbHVkZS9saW51eC9iaXRmaWVsZC5oOjEwODozOiBub3RlOiBpbiBleHBhbnNpb24gb2Yg
+bWFjcm8g4oCYX19CRl9GSUVMRF9DSEVDS+KAmQogICBfX0JGX0ZJRUxEX0NIRUNLKF9tYXNrLCBf
+cmVnLCAwVSwgIkZJRUxEX0dFVDogIik7IFwKICAgXn5+fn5+fn5+fn5+fn5+fgouL2RyaXZlcnMv
+Z3B1L2RybS9pOTE1L2k5MTVfcmVnLmg6MTg0OjU2OiBub3RlOiBpbiBleHBhbnNpb24gb2YgbWFj
+cm8g4oCYRklFTERfR0VU4oCZCiAjZGVmaW5lIF9SRUdfRklFTERfR0VUKF9fdHlwZSwgX19tYXNr
+LCBfX3ZhbCkgKChfX3R5cGUpRklFTERfR0VUKF9fbWFzaywgX192YWwpKQogICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIF5+fn5+fn5+fgouL2Ry
+aXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfcmVnLmg6MjA4OjQwOiBub3RlOiBpbiBleHBhbnNpb24g
+b2YgbWFjcm8g4oCYX1JFR19GSUVMRF9HRVTigJkKICNkZWZpbmUgUkVHX0ZJRUxEX0dFVDY0KF9f
+bWFzaywgX192YWwpIF9SRUdfRklFTERfR0VUKHU2NCwgX19tYXNrLCBfX3ZhbCkKICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIF5+fn5+fn5+fn5+fn5+CmRyaXZlcnMvZ3B1
+L2RybS9pOTE1L2ludGVsX3BtLmM6MjkzNjoxMTogbm90ZTogaW4gZXhwYW5zaW9uIG9mIG1hY3Jv
+IOKAmFJFR19GSUVMRF9HRVQ2NOKAmQogICB3bVswXSA9IFJFR19GSUVMRF9HRVQ2NChTU0tQRF9O
+RVdfV00wX01BU0tfSFNXLCBzc2twZCk7CiAgICAgICAgICAgXn5+fn5+fn5+fn5+fn5+Ci4vaW5j
+bHVkZS9saW51eC9iaXRzLmg6Mzg6MzE6IG5vdGU6IGluIGV4cGFuc2lvbiBvZiBtYWNybyDigJhf
+X0dFTk1BU0vigJkKICAoR0VOTUFTS19JTlBVVF9DSEVDSyhoLCBsKSArIF9fR0VOTUFTSyhoLCBs
+KSkKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIF5+fn5+fn5+fgouL2RyaXZlcnMvZ3B1
+L2RybS9pOTE1L2k5MTVfcmVnLmg6MTMzOjEyOiBub3RlOiBpbiBleHBhbnNpb24gb2YgbWFjcm8g
+4oCYR0VOTUFTS+KAmQogICgoX190eXBlKShHRU5NQVNLKF9faGlnaCwgX19sb3cpICsgICAgXAog
+ICAgICAgICAgICBefn5+fn5+Ci4vZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9yZWcuaDoxNjA6
+Mzg6IG5vdGU6IGluIGV4cGFuc2lvbiBvZiBtYWNybyDigJhfUkVHX0dFTk1BU0vigJkKICNkZWZp
+bmUgUkVHX0dFTk1BU0s2NChfX2hpZ2gsIF9fbG93KSBfUkVHX0dFTk1BU0sodTY0LCBfX2hpZ2gs
+IF9fbG93KQogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIF5+fn5+fn5+fn5+
+fgouL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfcmVnLmg6MzgyMjozNDogbm90ZTogaW4gZXhw
+YW5zaW9uIG9mIG1hY3JvIOKAmFJFR19HRU5NQVNLNjTigJkKICNkZWZpbmUgICBTU0tQRF9ORVdf
+V00wX01BU0tfSFNXIFJFR19HRU5NQVNLNjQoNjMsIDU2KQogICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgXn5+fn5+fn5+fn5+fgpkcml2ZXJzL2dwdS9kcm0vaTkxNS9pbnRlbF9wbS5j
+OjI5MzY6Mjc6IG5vdGU6IGluIGV4cGFuc2lvbiBvZiBtYWNybyDigJhTU0tQRF9ORVdfV00wX01B
+U0tfSFNX4oCZCiAgIHdtWzBdID0gUkVHX0ZJRUxEX0dFVDY0KFNTS1BEX05FV19XTTBfTUFTS19I
+U1csIHNza3BkKTsKICAgICAgICAgICAgICAgICAgICAgICAgICAgXn5+fn5+fn5+fn5+fn5+fn5+
+fn5+fgouL2luY2x1ZGUvbGludXgvYml0ZmllbGQuaDo1MDoxNjogZXJyb3I6IHJpZ2h0IHNoaWZ0
+IGNvdW50IGlzIG5lZ2F0aXZlIFstV2Vycm9yPXNoaWZ0LWNvdW50LW5lZ2F0aXZlXQogICAgICB+
+KChfbWFzaykgPj4gX19iZl9zaGYoX21hc2spKSAmIChfdmFsKSA6IDAsIFwKICAgICAgICAgICAg
+ICAgIF5+Ci4vLi9pbmNsdWRlL2xpbnV4L2NvbXBpbGVyX3R5cGVzLmg6Mjk5Ojk6IG5vdGU6IGlu
+IGRlZmluaXRpb24gb2YgbWFjcm8g4oCYX19jb21waWxldGltZV9hc3NlcnTigJkKICAgaWYgKCEo
+Y29uZGl0aW9uKSkgICAgIFwKICAgICAgICAgXn5+fn5+fn5+Ci4vLi9pbmNsdWRlL2xpbnV4L2Nv
+bXBpbGVyX3R5cGVzLmg6MzE5OjI6IG5vdGU6IGluIGV4cGFuc2lvbiBvZiBtYWNybyDigJhfY29t
+cGlsZXRpbWVfYXNzZXJ04oCZCiAgX2NvbXBpbGV0aW1lX2Fzc2VydChjb25kaXRpb24sIG1zZywg
+X19jb21waWxldGltZV9hc3NlcnRfLCBfX0NPVU5URVJfXykKICBefn5+fn5+fn5+fn5+fn5+fn5+
+Ci4vaW5jbHVkZS9saW51eC9idWlsZF9idWcuaDozOTozNzogbm90ZTogaW4gZXhwYW5zaW9uIG9m
+IG1hY3JvIOKAmGNvbXBpbGV0aW1lX2Fzc2VydOKAmQogI2RlZmluZSBCVUlMRF9CVUdfT05fTVNH
+KGNvbmQsIG1zZykgY29tcGlsZXRpbWVfYXNzZXJ0KCEoY29uZCksIG1zZykKICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgIF5+fn5+fn5+fn5+fn5+fn5+fgouL2luY2x1ZGUvbGlu
+dXgvYml0ZmllbGQuaDo0OTozOiBub3RlOiBpbiBleHBhbnNpb24gb2YgbWFjcm8g4oCYQlVJTERf
+QlVHX09OX01TR+KAmQogICBCVUlMRF9CVUdfT05fTVNHKF9fYnVpbHRpbl9jb25zdGFudF9wKF92
+YWwpID8gIFwKICAgXn5+fn5+fn5+fn5+fn5+fgouL2luY2x1ZGUvbGludXgvYml0ZmllbGQuaDox
+MDg6Mzogbm90ZTogaW4gZXhwYW5zaW9uIG9mIG1hY3JvIOKAmF9fQkZfRklFTERfQ0hFQ0vigJkK
+ICAgX19CRl9GSUVMRF9DSEVDSyhfbWFzaywgX3JlZywgMFUsICJGSUVMRF9HRVQ6ICIpOyBcCiAg
+IF5+fn5+fn5+fn5+fn5+fn4KLi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X3JlZy5oOjE4NDo1
+Njogbm90ZTogaW4gZXhwYW5zaW9uIG9mIG1hY3JvIOKAmEZJRUxEX0dFVOKAmQogI2RlZmluZSBf
+UkVHX0ZJRUxEX0dFVChfX3R5cGUsIF9fbWFzaywgX192YWwpICgoX190eXBlKUZJRUxEX0dFVChf
+X21hc2ssIF9fdmFsKSkKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICBefn5+fn5+fn4KLi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X3JlZy5o
+OjIwODo0MDogbm90ZTogaW4gZXhwYW5zaW9uIG9mIG1hY3JvIOKAmF9SRUdfRklFTERfR0VU4oCZ
+CiAjZGVmaW5lIFJFR19GSUVMRF9HRVQ2NChfX21hc2ssIF9fdmFsKSBfUkVHX0ZJRUxEX0dFVCh1
+NjQsIF9fbWFzaywgX192YWwpCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICBefn5+fn5+fn5+fn5+fgpkcml2ZXJzL2dwdS9kcm0vaTkxNS9pbnRlbF9wbS5jOjI5MzY6MTE6
+IG5vdGU6IGluIGV4cGFuc2lvbiBvZiBtYWNybyDigJhSRUdfRklFTERfR0VUNjTigJkKICAgd21b
+MF0gPSBSRUdfRklFTERfR0VUNjQoU1NLUERfTkVXX1dNMF9NQVNLX0hTVywgc3NrcGQpOwogICAg
+ICAgICAgIF5+fn5+fn5+fn5+fn5+fgouL2luY2x1ZGUvbGludXgvYml0cy5oOjM1OjIyOiBlcnJv
+cjogbGVmdCBzaGlmdCBjb3VudCA+PSB3aWR0aCBvZiB0eXBlIFstV2Vycm9yPXNoaWZ0LWNvdW50
+LW92ZXJmbG93XQogICgoKH5VTCgwKSkgLSAoVUwoMSkgPDwgKGwpKSArIDEpICYgXAogICAgICAg
+ICAgICAgICAgICAgICAgXn4KLi8uL2luY2x1ZGUvbGludXgvY29tcGlsZXJfdHlwZXMuaDoyOTk6
+OTogbm90ZTogaW4gZGVmaW5pdGlvbiBvZiBtYWNybyDigJhfX2NvbXBpbGV0aW1lX2Fzc2VydOKA
+mQogICBpZiAoIShjb25kaXRpb24pKSAgICAgXAogICAgICAgICBefn5+fn5+fn4KLi8uL2luY2x1
+ZGUvbGludXgvY29tcGlsZXJfdHlwZXMuaDozMTk6Mjogbm90ZTogaW4gZXhwYW5zaW9uIG9mIG1h
+Y3JvIOKAmF9jb21waWxldGltZV9hc3NlcnTigJkKICBfY29tcGlsZXRpbWVfYXNzZXJ0KGNvbmRp
+dGlvbiwgbXNnLCBfX2NvbXBpbGV0aW1lX2Fzc2VydF8sIF9fQ09VTlRFUl9fKQogIF5+fn5+fn5+
+fn5+fn5+fn5+fn4KLi9pbmNsdWRlL2xpbnV4L2J1aWxkX2J1Zy5oOjM5OjM3OiBub3RlOiBpbiBl
+eHBhbnNpb24gb2YgbWFjcm8g4oCYY29tcGlsZXRpbWVfYXNzZXJ04oCZCiAjZGVmaW5lIEJVSUxE
+X0JVR19PTl9NU0coY29uZCwgbXNnKSBjb21waWxldGltZV9hc3NlcnQoIShjb25kKSwgbXNnKQog
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgXn5+fn5+fn5+fn5+fn5+fn5+Ci4v
+aW5jbHVkZS9saW51eC9iaXRmaWVsZC5oOjUyOjM6IG5vdGU6IGluIGV4cGFuc2lvbiBvZiBtYWNy
+byDigJhCVUlMRF9CVUdfT05fTVNH4oCZCiAgIEJVSUxEX0JVR19PTl9NU0coKF9tYXNrKSA+ICh0
+eXBlb2YoX3JlZykpfjB1bGwsICBcCiAgIF5+fn5+fn5+fn5+fn5+fn4KLi9pbmNsdWRlL2xpbnV4
+L2JpdGZpZWxkLmg6MTA4OjM6IG5vdGU6IGluIGV4cGFuc2lvbiBvZiBtYWNybyDigJhfX0JGX0ZJ
+RUxEX0NIRUNL4oCZCiAgIF9fQkZfRklFTERfQ0hFQ0soX21hc2ssIF9yZWcsIDBVLCAiRklFTERf
+R0VUOiAiKTsgXAogICBefn5+fn5+fn5+fn5+fn5+Ci4vZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkx
+NV9yZWcuaDoxODQ6NTY6IG5vdGU6IGluIGV4cGFuc2lvbiBvZiBtYWNybyDigJhGSUVMRF9HRVTi
+gJkKICNkZWZpbmUgX1JFR19GSUVMRF9HRVQoX190eXBlLCBfX21hc2ssIF9fdmFsKSAoKF9fdHlw
+ZSlGSUVMRF9HRVQoX19tYXNrLCBfX3ZhbCkpCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgXn5+fn5+fn5+Ci4vZHJpdmVycy9ncHUvZHJtL2k5
+MTUvaTkxNV9yZWcuaDoyMDg6NDA6IG5vdGU6IGluIGV4cGFuc2lvbiBvZiBtYWNybyDigJhfUkVH
+X0ZJRUxEX0dFVOKAmQogI2RlZmluZSBSRUdfRklFTERfR0VUNjQoX19tYXNrLCBfX3ZhbCkgX1JF
+R19GSUVMRF9HRVQodTY0LCBfX21hc2ssIF9fdmFsKQogICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgXn5+fn5+fn5+fn5+fn4KZHJpdmVycy9ncHUvZHJtL2k5MTUvaW50ZWxf
+cG0uYzoyOTM2OjExOiBub3RlOiBpbiBleHBhbnNpb24gb2YgbWFjcm8g4oCYUkVHX0ZJRUxEX0dF
+VDY04oCZCiAgIHdtWzBdID0gUkVHX0ZJRUxEX0dFVDY0KFNTS1BEX05FV19XTTBfTUFTS19IU1cs
+IHNza3BkKTsKICAgICAgICAgICBefn5+fn5+fn5+fn5+fn4KLi9pbmNsdWRlL2xpbnV4L2JpdHMu
+aDozODozMTogbm90ZTogaW4gZXhwYW5zaW9uIG9mIG1hY3JvIOKAmF9fR0VOTUFTS+KAmQogIChH
+RU5NQVNLX0lOUFVUX0NIRUNLKGgsIGwpICsgX19HRU5NQVNLKGgsIGwpKQogICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgXn5+fn5+fn5+Ci4vZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9y
+ZWcuaDoxMzM6MTI6IG5vdGU6IGluIGV4cGFuc2lvbiBvZiBtYWNybyDigJhHRU5NQVNL4oCZCiAg
+KChfX3R5cGUpKEdFTk1BU0soX19oaWdoLCBfX2xvdykgKyAgICBcCiAgICAgICAgICAgIF5+fn5+
+fn4KLi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X3JlZy5oOjE2MDozODogbm90ZTogaW4gZXhw
+YW5zaW9uIG9mIG1hY3JvIOKAmF9SRUdfR0VOTUFTS+KAmQogI2RlZmluZSBSRUdfR0VOTUFTSzY0
+KF9faGlnaCwgX19sb3cpIF9SRUdfR0VOTUFTSyh1NjQsIF9faGlnaCwgX19sb3cpCiAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgXn5+fn5+fn5+fn5+Ci4vZHJpdmVycy9ncHUv
+ZHJtL2k5MTUvaTkxNV9yZWcuaDozODIyOjM0OiBub3RlOiBpbiBleHBhbnNpb24gb2YgbWFjcm8g
+4oCYUkVHX0dFTk1BU0s2NOKAmQogI2RlZmluZSAgIFNTS1BEX05FV19XTTBfTUFTS19IU1cgUkVH
+X0dFTk1BU0s2NCg2MywgNTYpCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBefn5+
+fn5+fn5+fn5+CmRyaXZlcnMvZ3B1L2RybS9pOTE1L2ludGVsX3BtLmM6MjkzNjoyNzogbm90ZTog
+aW4gZXhwYW5zaW9uIG9mIG1hY3JvIOKAmFNTS1BEX05FV19XTTBfTUFTS19IU1figJkKICAgd21b
+MF0gPSBSRUdfRklFTERfR0VUNjQoU1NLUERfTkVXX1dNMF9NQVNLX0hTVywgc3NrcGQpOwogICAg
+ICAgICAgICAgICAgICAgICAgICAgICBefn5+fn5+fn5+fn5+fn5+fn5+fn5+Ci4vaW5jbHVkZS9s
+aW51eC9iaXRzLmg6MzY6MTE6IGVycm9yOiByaWdodCBzaGlmdCBjb3VudCBpcyBuZWdhdGl2ZSBb
+LVdlcnJvcj1zaGlmdC1jb3VudC1uZWdhdGl2ZV0KICAgKH5VTCgwKSA+PiAoQklUU19QRVJfTE9O
+RyAtIDEgLSAoaCkpKSkKICAgICAgICAgICBefgouLy4vaW5jbHVkZS9saW51eC9jb21waWxlcl90
+eXBlcy5oOjI5OTo5OiBub3RlOiBpbiBkZWZpbml0aW9uIG9mIG1hY3JvIOKAmF9fY29tcGlsZXRp
+bWVfYXNzZXJ04oCZCiAgIGlmICghKGNvbmRpdGlvbikpICAgICBcCiAgICAgICAgIF5+fn5+fn5+
+fgouLy4vaW5jbHVkZS9saW51eC9jb21waWxlcl90eXBlcy5oOjMxOToyOiBub3RlOiBpbiBleHBh
+bnNpb24gb2YgbWFjcm8g4oCYX2NvbXBpbGV0aW1lX2Fzc2VydOKAmQogIF9jb21waWxldGltZV9h
+c3NlcnQoY29uZGl0aW9uLCBtc2csIF9fY29tcGlsZXRpbWVfYXNzZXJ0XywgX19DT1VOVEVSX18p
+CiAgXn5+fn5+fn5+fn5+fn5+fn5+fgouL2luY2x1ZGUvbGludXgvYnVpbGRfYnVnLmg6Mzk6Mzc6
+IG5vdGU6IGluIGV4cGFuc2lvbiBvZiBtYWNybyDigJhjb21waWxldGltZV9hc3NlcnTigJkKICNk
+ZWZpbmUgQlVJTERfQlVHX09OX01TRyhjb25kLCBtc2cpIGNvbXBpbGV0aW1lX2Fzc2VydCghKGNv
+bmQpLCBtc2cpCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBefn5+fn5+fn5+
+fn5+fn5+fn4KLi9pbmNsdWRlL2xpbnV4L2JpdGZpZWxkLmg6NTI6Mzogbm90ZTogaW4gZXhwYW5z
+aW9uIG9mIG1hY3JvIOKAmEJVSUxEX0JVR19PTl9NU0figJkKICAgQlVJTERfQlVHX09OX01TRygo
+X21hc2spID4gKHR5cGVvZihfcmVnKSl+MHVsbCwgIFwKICAgXn5+fn5+fn5+fn5+fn5+fgouL2lu
+Y2x1ZGUvbGludXgvYml0ZmllbGQuaDoxMDg6Mzogbm90ZTogaW4gZXhwYW5zaW9uIG9mIG1hY3Jv
+IOKAmF9fQkZfRklFTERfQ0hFQ0vigJkKICAgX19CRl9GSUVMRF9DSEVDSyhfbWFzaywgX3JlZywg
+MFUsICJGSUVMRF9HRVQ6ICIpOyBcCiAgIF5+fn5+fn5+fn5+fn5+fn4KLi9kcml2ZXJzL2dwdS9k
+cm0vaTkxNS9pOTE1X3JlZy5oOjE4NDo1Njogbm90ZTogaW4gZXhwYW5zaW9uIG9mIG1hY3JvIOKA
+mEZJRUxEX0dFVOKAmQogI2RlZmluZSBfUkVHX0ZJRUxEX0dFVChfX3R5cGUsIF9fbWFzaywgX192
+YWwpICgoX190eXBlKUZJRUxEX0dFVChfX21hc2ssIF9fdmFsKSkKICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBefn5+fn5+fn4KLi9kcml2ZXJz
+L2dwdS9kcm0vaTkxNS9pOTE1X3JlZy5oOjIwODo0MDogbm90ZTogaW4gZXhwYW5zaW9uIG9mIG1h
+Y3JvIOKAmF9SRUdfRklFTERfR0VU4oCZCiAjZGVmaW5lIFJFR19GSUVMRF9HRVQ2NChfX21hc2ss
+IF9fdmFsKSBfUkVHX0ZJRUxEX0dFVCh1NjQsIF9fbWFzaywgX192YWwpCiAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICBefn5+fn5+fn5+fn5+fgpkcml2ZXJzL2dwdS9kcm0v
+aTkxNS9pbnRlbF9wbS5jOjI5MzY6MTE6IG5vdGU6IGluIGV4cGFuc2lvbiBvZiBtYWNybyDigJhS
+RUdfRklFTERfR0VUNjTigJkKICAgd21bMF0gPSBSRUdfRklFTERfR0VUNjQoU1NLUERfTkVXX1dN
+MF9NQVNLX0hTVywgc3NrcGQpOwogICAgICAgICAgIF5+fn5+fn5+fn5+fn5+fgouL2luY2x1ZGUv
+bGludXgvYml0cy5oOjM4OjMxOiBub3RlOiBpbiBleHBhbnNpb24gb2YgbWFjcm8g4oCYX19HRU5N
+QVNL4oCZCiAgKEdFTk1BU0tfSU5QVVRfQ0hFQ0soaCwgbCkgKyBfX0dFTk1BU0soaCwgbCkpCiAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICBefn5+fn5+fn4KLi9kcml2ZXJzL2dwdS9kcm0v
+aTkxNS9pOTE1X3JlZy5oOjEzMzoxMjogbm90ZTogaW4gZXhwYW5zaW9uIG9mIG1hY3JvIOKAmEdF
+Tk1BU0vigJkKICAoKF9fdHlwZSkoR0VOTUFTSyhfX2hpZ2gsIF9fbG93KSArICAgIFwKICAgICAg
+ICAgICAgXn5+fn5+fgouL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfcmVnLmg6MTYwOjM4OiBu
+b3RlOiBpbiBleHBhbnNpb24gb2YgbWFjcm8g4oCYX1JFR19HRU5NQVNL4oCZCiAjZGVmaW5lIFJF
+R19HRU5NQVNLNjQoX19oaWdoLCBfX2xvdykgX1JFR19HRU5NQVNLKHU2NCwgX19oaWdoLCBfX2xv
+dykKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBefn5+fn5+fn5+fn4KLi9k
+cml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X3JlZy5oOjM4MjI6MzQ6IG5vdGU6IGluIGV4cGFuc2lv
+biBvZiBtYWNybyDigJhSRUdfR0VOTUFTSzY04oCZCiAjZGVmaW5lICAgU1NLUERfTkVXX1dNMF9N
+QVNLX0hTVyBSRUdfR0VOTUFTSzY0KDYzLCA1NikKICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgIF5+fn5+fn5+fn5+fn4KZHJpdmVycy9ncHUvZHJtL2k5MTUvaW50ZWxfcG0uYzoyOTM2
+OjI3OiBub3RlOiBpbiBleHBhbnNpb24gb2YgbWFjcm8g4oCYU1NLUERfTkVXX1dNMF9NQVNLX0hT
+V+KAmQogICB3bVswXSA9IFJFR19GSUVMRF9HRVQ2NChTU0tQRF9ORVdfV00wX01BU0tfSFNXLCBz
+c2twZCk7CiAgICAgICAgICAgICAgICAgICAgICAgICAgIF5+fn5+fn5+fn5+fn5+fn5+fn5+fn4K
+Li9pbmNsdWRlL2xpbnV4L2JpdHMuaDozNToyMjogZXJyb3I6IGxlZnQgc2hpZnQgY291bnQgPj0g
+d2lkdGggb2YgdHlwZSBbLVdlcnJvcj1zaGlmdC1jb3VudC1vdmVyZmxvd10KICAoKCh+VUwoMCkp
+IC0gKFVMKDEpIDw8IChsKSkgKyAxKSAmIFwKICAgICAgICAgICAgICAgICAgICAgIF5+Ci4vLi9p
+bmNsdWRlL2xpbnV4L2NvbXBpbGVyX3R5cGVzLmg6Mjk5Ojk6IG5vdGU6IGluIGRlZmluaXRpb24g
+b2YgbWFjcm8g4oCYX19jb21waWxldGltZV9hc3NlcnTigJkKICAgaWYgKCEoY29uZGl0aW9uKSkg
+ICAgIFwKICAgICAgICAgXn5+fn5+fn5+Ci4vLi9pbmNsdWRlL2xpbnV4L2NvbXBpbGVyX3R5cGVz
+Lmg6MzE5OjI6IG5vdGU6IGluIGV4cGFuc2lvbiBvZiBtYWNybyDigJhfY29tcGlsZXRpbWVfYXNz
+ZXJ04oCZCiAgX2NvbXBpbGV0aW1lX2Fzc2VydChjb25kaXRpb24sIG1zZywgX19jb21waWxldGlt
+ZV9hc3NlcnRfLCBfX0NPVU5URVJfXykKICBefn5+fn5+fn5+fn5+fn5+fn5+Ci4vaW5jbHVkZS9s
+aW51eC9idWlsZF9idWcuaDozOTozNzogbm90ZTogaW4gZXhwYW5zaW9uIG9mIG1hY3JvIOKAmGNv
+bXBpbGV0aW1lX2Fzc2VydOKAmQogI2RlZmluZSBCVUlMRF9CVUdfT05fTVNHKGNvbmQsIG1zZykg
+Y29tcGlsZXRpbWVfYXNzZXJ0KCEoY29uZCksIG1zZykKICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgIF5+fn5+fn5+fn5+fn5+fn5+fgouL2luY2x1ZGUvbGludXgvYnVpbGRfYnVn
+Lmg6NTA6Mjogbm90ZTogaW4gZXhwYW5zaW9uIG9mIG1hY3JvIOKAmEJVSUxEX0JVR19PTl9NU0fi
+gJkKICBCVUlMRF9CVUdfT05fTVNHKGNvbmRpdGlvbiwgIkJVSUxEX0JVR19PTiBmYWlsZWQ6ICIg
+I2NvbmRpdGlvbikKICBefn5+fn5+fn5+fn5+fn5+Ci4vaW5jbHVkZS9saW51eC9idWlsZF9idWcu
+aDoyMToyOiBub3RlOiBpbiBleHBhbnNpb24gb2YgbWFjcm8g4oCYQlVJTERfQlVHX09O4oCZCiAg
+QlVJTERfQlVHX09OKCgobikgJiAoKG4pIC0gMSkpICE9IDApCiAgXn5+fn5+fn5+fn5+Ci4vaW5j
+bHVkZS9saW51eC9iaXRmaWVsZC5oOjU0OjM6IG5vdGU6IGluIGV4cGFuc2lvbiBvZiBtYWNybyDi
+gJhfX0JVSUxEX0JVR19PTl9OT1RfUE9XRVJfT0ZfMuKAmQogICBfX0JVSUxEX0JVR19PTl9OT1Rf
+UE9XRVJfT0ZfMigoX21hc2spICsgICBcCiAgIF5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+
+Ci4vaW5jbHVkZS9saW51eC9iaXRmaWVsZC5oOjEwODozOiBub3RlOiBpbiBleHBhbnNpb24gb2Yg
+bWFjcm8g4oCYX19CRl9GSUVMRF9DSEVDS+KAmQogICBfX0JGX0ZJRUxEX0NIRUNLKF9tYXNrLCBf
+cmVnLCAwVSwgIkZJRUxEX0dFVDogIik7IFwKICAgXn5+fn5+fn5+fn5+fn5+fgouL2RyaXZlcnMv
+Z3B1L2RybS9pOTE1L2k5MTVfcmVnLmg6MTg0OjU2OiBub3RlOiBpbiBleHBhbnNpb24gb2YgbWFj
+cm8g4oCYRklFTERfR0VU4oCZCiAjZGVmaW5lIF9SRUdfRklFTERfR0VUKF9fdHlwZSwgX19tYXNr
+LCBfX3ZhbCkgKChfX3R5cGUpRklFTERfR0VUKF9fbWFzaywgX192YWwpKQogICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIF5+fn5+fn5+fgouL2Ry
+aXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfcmVnLmg6MjA4OjQwOiBub3RlOiBpbiBleHBhbnNpb24g
+b2YgbWFjcm8g4oCYX1JFR19GSUVMRF9HRVTigJkKICNkZWZpbmUgUkVHX0ZJRUxEX0dFVDY0KF9f
+bWFzaywgX192YWwpIF9SRUdfRklFTERfR0VUKHU2NCwgX19tYXNrLCBfX3ZhbCkKICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIF5+fn5+fn5+fn5+fn5+CmRyaXZlcnMvZ3B1
+L2RybS9pOTE1L2ludGVsX3BtLmM6MjkzNjoxMTogbm90ZTogaW4gZXhwYW5zaW9uIG9mIG1hY3Jv
+IOKAmFJFR19GSUVMRF9HRVQ2NOKAmQogICB3bVswXSA9IFJFR19GSUVMRF9HRVQ2NChTU0tQRF9O
+RVdfV00wX01BU0tfSFNXLCBzc2twZCk7CiAgICAgICAgICAgXn5+fn5+fn5+fn5+fn5+Ci4vaW5j
+bHVkZS9saW51eC9iaXRzLmg6Mzg6MzE6IG5vdGU6IGluIGV4cGFuc2lvbiBvZiBtYWNybyDigJhf
+X0dFTk1BU0vigJkKICAoR0VOTUFTS19JTlBVVF9DSEVDSyhoLCBsKSArIF9fR0VOTUFTSyhoLCBs
+KSkKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIF5+fn5+fn5+fgouL2RyaXZlcnMvZ3B1
+L2RybS9pOTE1L2k5MTVfcmVnLmg6MTMzOjEyOiBub3RlOiBpbiBleHBhbnNpb24gb2YgbWFjcm8g
+4oCYR0VOTUFTS+KAmQogICgoX190eXBlKShHRU5NQVNLKF9faGlnaCwgX19sb3cpICsgICAgXAog
+ICAgICAgICAgICBefn5+fn5+Ci4vZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9yZWcuaDoxNjA6
+Mzg6IG5vdGU6IGluIGV4cGFuc2lvbiBvZiBtYWNybyDigJhfUkVHX0dFTk1BU0vigJkKICNkZWZp
+bmUgUkVHX0dFTk1BU0s2NChfX2hpZ2gsIF9fbG93KSBfUkVHX0dFTk1BU0sodTY0LCBfX2hpZ2gs
+IF9fbG93KQogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIF5+fn5+fn5+fn5+
+fgouL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfcmVnLmg6Cgo9PSBMb2dzID09CgpGb3IgbW9y
+ZSBkZXRhaWxzIHNlZTogaHR0cHM6Ly9pbnRlbC1nZngtY2kuMDEub3JnL3RyZWUvZHJtLXRpcC9Q
+YXRjaHdvcmtfMTg4MTcvYnVpbGRfMzJiaXQubG9nCl9fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxp
+c3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFu
+L2xpc3RpbmZvL2ludGVsLWdmeAo=
