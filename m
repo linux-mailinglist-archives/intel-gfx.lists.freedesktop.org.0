@@ -1,52 +1,47 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id CAB592A006C
-	for <lists+intel-gfx@lfdr.de>; Fri, 30 Oct 2020 09:52:16 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id E95642A0092
+	for <lists+intel-gfx@lfdr.de>; Fri, 30 Oct 2020 09:59:25 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EB5226E980;
-	Fri, 30 Oct 2020 08:52:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DFE346ED0F;
+	Fri, 30 Oct 2020 08:59:23 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-oo1-xc44.google.com (mail-oo1-xc44.google.com
- [IPv6:2607:f8b0:4864:20::c44])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9C5566E980
- for <intel-gfx@lists.freedesktop.org>; Fri, 30 Oct 2020 08:52:13 +0000 (UTC)
-Received: by mail-oo1-xc44.google.com with SMTP id v123so1414358ooa.5
- for <intel-gfx@lists.freedesktop.org>; Fri, 30 Oct 2020 01:52:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=sROKsWha4Hz2bAVIx/xdgtU//r/RKM3264fFYvCQuQU=;
- b=EALtV0HMhRIcWS47jWUhaaSLc5CYpmOLAncz1BBgEc0ujy7C5BF1IOL8VWhfXAzI7r
- KsDAEJ75yjJooXkTkVIaPWb4xeXmYFvuT4aoj6qLtFai9jbv1so7SRBGx74nswZbCIbS
- V5LdffJSGDeJpPpy5+fxUm9T2Qna63QrVTLdw=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=sROKsWha4Hz2bAVIx/xdgtU//r/RKM3264fFYvCQuQU=;
- b=t1XLYRXlP8uz7Xp6y9yuhILcmbIoe13uMun2kWnYKCXRVEeT5X68kQo7PN8XWRJj7z
- N8KjT3LmdDIvT6DWUKwqZQJVyPkV2LFTPxj/tiYtPTgGYHv1Ar7k5y6WeV/8kVIL7YSm
- sLUrVPO6M/gTcuRguvvBqhwayxYKT4DA6l4dArzEhSqbGWd0eCHJhfdn9aG9g/JeltYm
- DMvI0d4okv8bEhQmBbhPe9o5XKcO2PJxYHlYIF4bUcfrLr1QheECPpSjkHgx37VaPibT
- w+tbS+8bn53Sa6NXiSAVaIyYAZ5/xh2H9prYxBe52PrOVKnCZrQ0wqUDZ3RRs9twftGT
- k4BA==
-X-Gm-Message-State: AOAM5320euL33N93vnfL/C80oEeY/VTf3L8AQ/OcUqlUYkKEmOAN+xc1
- avFQK82BS8YqEPrLnv5ehuQZ5ZKcCtV4SB9qpcLWTw==
-X-Google-Smtp-Source: ABdhPJztwOoU7TFvMLGmA3q8p6nsC5myNMpPdKxrEMx25F3XgQTxx/9ygbvJ7W7BR79mQBzbQ2stw0sxZPPitPBaGiA=
-X-Received: by 2002:a4a:b503:: with SMTP id r3mr958264ooo.28.1604047932902;
- Fri, 30 Oct 2020 01:52:12 -0700 (PDT)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B6D5F6ED13
+ for <intel-gfx@lists.freedesktop.org>; Fri, 30 Oct 2020 08:59:22 +0000 (UTC)
+IronPort-SDR: P3Ix9TDO2KjDHQqK2YlMQaYkVm8VOMUQYAnTt6vSIdJH1OfhES0X4VwiZPO0czMWFb/PWVxNVu
+ vKq/zKwflysQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9789"; a="155553458"
+X-IronPort-AV: E=Sophos;i="5.77,432,1596524400"; d="scan'208";a="155553458"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Oct 2020 01:59:22 -0700
+IronPort-SDR: hE6/4+C39hSFwmacXTrTPg0Txg32GcPDzdrGN60QdJgbicdfbXG0U5eUrOQ5CL1tUhTS0h0keH
+ qPeZnElH9lbA==
+X-IronPort-AV: E=Sophos;i="5.77,432,1596524400"; d="scan'208";a="351797206"
+Received: from oc5mblwhs02.amr.corp.intel.com (HELO
+ Win10-45-1tb161.SSPE.ch.intel.com) ([10.249.254.155])
+ by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Oct 2020 01:59:21 -0700
+To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
+References: <20201016104444.1492028-1-maarten.lankhorst@linux.intel.com>
+ <20201016104444.1492028-11-maarten.lankhorst@linux.intel.com>
+From: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>
+Message-ID: <ddce6604-2d5d-30c5-4c7e-53cd636ff706@linux.intel.com>
+Date: Fri, 30 Oct 2020 09:59:18 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.3.1
 MIME-Version: 1.0
-References: <20201029101428.4058311-1-daniel.vetter@ffwll.ch>
- <20201029132229.4068359-1-daniel.vetter@ffwll.ch>
- <df3f5733-21b3-809c-71d7-0bd83f29ae62@ti.com>
-In-Reply-To: <df3f5733-21b3-809c-71d7-0bd83f29ae62@ti.com>
-From: Daniel Vetter <daniel.vetter@ffwll.ch>
-Date: Fri, 30 Oct 2020 09:52:01 +0100
-Message-ID: <CAKMK7uEH5dYP9-ybQ2OjS6c3Np99uEWE4QyL-x+nhLT=S7y0AA@mail.gmail.com>
-To: Tomi Valkeinen <tomi.valkeinen@ti.com>
-Subject: Re: [Intel-gfx] [PATCH] fbcon: Disable accelerated scrolling
+In-Reply-To: <20201016104444.1492028-11-maarten.lankhorst@linux.intel.com>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH v4 10/61] drm/i915: make lockdep slightly
+ happier about execbuf.
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,145 +54,41 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: George Kennedy <george.kennedy@oracle.com>, Sam Ravnborg <sam@ravnborg.org>,
- Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
- Tetsuo Handa <penguin-kernel@i-love.sakura.ne.jp>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- "Gustavo A. R. Silva" <gustavoars@kernel.org>,
- DRI Development <dri-devel@lists.freedesktop.org>,
- Peter Rosin <peda@axentia.se>, Linus Torvalds <torvalds@linux-foundation.org>,
- Ben Skeggs <bskeggs@redhat.com>, Thomas Zimmermann <tzimmermann@suse.de>,
- Nouveau Dev <nouveau@lists.freedesktop.org>,
- Daniel Vetter <daniel.vetter@intel.com>,
- Nathan Chancellor <natechancellor@gmail.com>,
- Jiri Slaby <jirislaby@kernel.org>, Peilin Ye <yepeilin.cs@gmail.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Oct 30, 2020 at 9:30 AM Tomi Valkeinen <tomi.valkeinen@ti.com> wrote:
->
-> On 29/10/2020 15:22, Daniel Vetter wrote:
-> > So ever since syzbot discovered fbcon, we have solid proof that it's
-> > full of bugs. And often the solution is to just delete code and remove
-> > features, e.g.  50145474f6ef ("fbcon: remove soft scrollback code").
-> >
-> > Now the problem is that most modern-ish drivers really only treat
-> > fbcon as an dumb kernel console until userspace takes over, and Oops
-> > printer for some emergencies. Looking at drm drivers and the basic
-> > vesa/efi fbdev drivers shows that only 3 drivers support any kind of
-> > acceleration:
-> >
-> > - nouveau, seems to be enabled by default
-> > - omapdrm, when a DMM remapper exists using remapper rewriting for
-> >   y/xpanning
-> > - gma500, but that is getting deleted now for the GTT remapper trick,
-> >   and the accelerated copyarea never set the FBINFO_HWACCEL_COPYAREA
-> >   flag, so unused (and could be deleted already I think).
-> >
-> > No other driver supportes accelerated fbcon. And fbcon is the only
-> > user of this accel code (it's not exposed as uapi through ioctls),
-> > which means we could garbage collect fairly enormous amounts of code
-> > if we kill this.
-> >
-> > Plus because syzbot only runs on virtual hardware, and none of the
-> > drivers for that have acceleration, we'd remove a huge gap in testing.
-> > And there's no other even remotely comprehensive testing aside from
-> > syzbot.
-> >
-> > This patch here just disables the acceleration code by always
-> > redrawing when scrolling. The plan is that once this has been merged
-> > for well over a year in released kernels, we can start to go around
-> > and delete a lot of code.
-> >
-> > v2:
-> > - Drop a few more unused local variables, somehow I missed the
-> > compiler warnings (Sam)
-> > - Fix typo in comment (Jiri)
-> > - add a todo entry for the cleanup (Thomas)
-> >
-> > v3: Remove more unused variables (0day)
-> >
-> > Reviewed-by: Thomas Zimmermann <tzimmermann@suse.de>
-> > Reviewed-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-> > Acked-by: Sam Ravnborg <sam@ravnborg.org>
-> > Cc: Jiri Slaby <jirislaby@kernel.org>
-> > Cc: Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>
-> > Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-> > Cc: Linus Torvalds <torvalds@linux-foundation.org>
-> > Cc: Ben Skeggs <bskeggs@redhat.com>
-> > Cc: nouveau@lists.freedesktop.org
-> > Cc: Tomi Valkeinen <tomi.valkeinen@ti.com>
-> > Cc: Daniel Vetter <daniel.vetter@ffwll.ch>
-> > Cc: Jiri Slaby <jirislaby@kernel.org>
-> > Cc: "Gustavo A. R. Silva" <gustavoars@kernel.org>
-> > Cc: Tetsuo Handa <penguin-kernel@I-love.SAKURA.ne.jp>
-> > Cc: Peilin Ye <yepeilin.cs@gmail.com>
-> > Cc: George Kennedy <george.kennedy@oracle.com>
-> > Cc: Nathan Chancellor <natechancellor@gmail.com>
-> > Cc: Peter Rosin <peda@axentia.se>
-> > Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
-> > ---
-> >  Documentation/gpu/todo.rst       | 18 +++++++++++++
-> >  drivers/video/fbdev/core/fbcon.c | 45 ++++++--------------------------
-> >  2 files changed, 26 insertions(+), 37 deletions(-)
-> >
-> > diff --git a/Documentation/gpu/todo.rst b/Documentation/gpu/todo.rst
-> > index 6b224ef14455..bec99341a904 100644
-> > --- a/Documentation/gpu/todo.rst
-> > +++ b/Documentation/gpu/todo.rst
-> > @@ -277,6 +277,24 @@ Contact: Daniel Vetter, Noralf Tronnes
-> >
-> >  Level: Advanced
-> >
-> > +Garbage collect fbdev scrolling acceleration
-> > +--------------------------------------------
-> > +
-> > +Scroll acceleration is disabled in fbcon by hard-wiring p->scrollmode =
-> > +SCROLL_REDRAW. There's a ton of code this will allow us to remove:
-> > +- lots of code in fbcon.c
-> > +- a bunch of the hooks in fbcon_ops, maybe the remaining hooks could be called
-> > +  directly instead of the function table (with a switch on p->rotate)
-> > +- fb_copyarea is unused after this, and can be deleted from all drivers
-> > +
-> > +Note that not all acceleration code can be deleted, since clearing and cursor
-> > +support is still accelerated, which might be good candidates for further
-> > +deletion projects.
->
-> Apparently omapdrm's accelerated panning has been broken for some time, and no one has noticed. It does:
->
-> strcmp(fbi->fix.id, MODULE_NAME), which is a comparison of omapdrmdrmfb == omapdrm and always fails.
->
-> Fixing that, and applying this patch, things work fine (unaccelerated, of course). I did notice a
-> single call to omap_fbdev_pan_display() when loading the drivers. This comes from fbcon_switch ->
-> bit_update_start -> fb_pan_display. Maybe this is from the clearing you mention above?
-
-The accel left is through fb_fillrect and fb_imageblt, plus there's
-still fb_cursor (but not much use of that even in fbdev drivers).
-
-I'm honestly not sure why there's the pan call in there, maybe just to
-reset to default state in case an fbdev chardev user moved the origin
-around. Aside from the accel code there's a call to this in
-fbcon_switch and fbcon_modechanged, so I think it's just that.
--Daniel
->
-> Reviewed-by: Tomi Valkeinen <tomi.valkeinen@ti.com>
->
->  Tomi
->
-> --
-> Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki.
-> Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
-
-
-
--- 
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+Ck9uIDEwLzE2LzIwIDEyOjQzIFBNLCBNYWFydGVuIExhbmtob3JzdCB3cm90ZToKPiBBcyBzb29u
+IGFzIHdlIGluc3RhbGwgZmVuY2VzLCB3ZSBzaG91bGQgc3RvcCBhbGxvY2F0aW5nIG1lbW9yeQo+
+IGluIG9yZGVyIHRvIHByZXZlbnQgYW55IHBvdGVudGlhbCBkZWFkbG9ja3MuCj4KPiBUaGlzIGlz
+IHJlcXVpcmVkIGxhdGVyIG9uLCB3aGVuIHdlIHN0YXJ0IGFkZGluZyBzdXBwb3J0IGZvcgo+IGRt
+YS1mZW5jZSBhbm5vdGF0aW9ucy4KPgo+IFNpZ25lZC1vZmYtYnk6IE1hYXJ0ZW4gTGFua2hvcnN0
+IDxtYWFydGVuLmxhbmtob3JzdEBsaW51eC5pbnRlbC5jb20+CgpDb21tZW50IGJlbG93LCBidXQg
+d2Ugc2hvdWxkIHByb2JhYmx5IGZpeCB0aGF0IHVwIGFmdGVyd2FyZHMuCgpSZXZpZXdlZC1ieTog
+VGhvbWFzIEhlbGxzdHLDtm0gPHRob21hcy5oZWxsc3Ryb21AbGludXguaW50ZWwuY29tPgoKCj4g
+LS0tCj4gICAuLi4vZ3B1L2RybS9pOTE1L2dlbS9pOTE1X2dlbV9leGVjYnVmZmVyLmMgICAgfCAy
+NCArKysrKysrKysrKysrKy0tLS0tCj4gICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2FjdGl2
+ZS5jICAgICAgICAgICAgfCAyMCArKysrKysrKy0tLS0tLS0tCj4gICBkcml2ZXJzL2dwdS9kcm0v
+aTkxNS9pOTE1X3ZtYS5jICAgICAgICAgICAgICAgfCAgOCArKysrLS0tCj4gICBkcml2ZXJzL2dw
+dS9kcm0vaTkxNS9pOTE1X3ZtYS5oICAgICAgICAgICAgICAgfCAgMyArKysKPiAgIDQgZmlsZXMg
+Y2hhbmdlZCwgMzYgaW5zZXJ0aW9ucygrKSwgMTkgZGVsZXRpb25zKC0pCj4KPiBkaWZmIC0tZ2l0
+IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ2VtL2k5MTVfZ2VtX2V4ZWNidWZmZXIuYyBiL2RyaXZl
+cnMvZ3B1L2RybS9pOTE1L2dlbS9pOTE1X2dlbV9leGVjYnVmZmVyLmMKPiBpbmRleCAwZjVlZmNl
+ZDBiODcuLjlhNDRkOWE2YjVlZCAxMDA2NDQKPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9n
+ZW0vaTkxNV9nZW1fZXhlY2J1ZmZlci5jCj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ2Vt
+L2k5MTVfZ2VtX2V4ZWNidWZmZXIuYwo+IEBAIC00OSwxMSArNDksMTIgQEAgZW51bSB7Cj4gICAj
+ZGVmaW5lIERCR19GT1JDRV9SRUxPQyAwIC8qIGNob29zZSBvbmUgb2YgdGhlIGFib3ZlISAqLwo+
+ICAgfTsKPiAgIAo+IC0jZGVmaW5lIF9fRVhFQ19PQkpFQ1RfSEFTX1BJTgkJQklUKDMxKQo+IC0j
+ZGVmaW5lIF9fRVhFQ19PQkpFQ1RfSEFTX0ZFTkNFCQlCSVQoMzApCj4gLSNkZWZpbmUgX19FWEVD
+X09CSkVDVF9ORUVEU19NQVAJCUJJVCgyOSkKPiAtI2RlZmluZSBfX0VYRUNfT0JKRUNUX05FRURT
+X0JJQVMJQklUKDI4KQo+IC0jZGVmaW5lIF9fRVhFQ19PQkpFQ1RfSU5URVJOQUxfRkxBR1MJKH4w
+dSA8PCAyOCkgLyogYWxsIG9mIHRoZSBhYm92ZSAqLwo+ICsvKiBfX0VYRUNfT0JKRUNUX05PX1JF
+U0VSVkUgaXMgQklUKDMxKSwgZGVmaW5lZCBpbiBpOTE1X3ZtYS5oICovCgpVZ2guIFdlIHNob3Vs
+ZCBwcm9iYWJseSBtb3ZlIHRoZXNlIGZsYWdzIHRvIGEgc2VwYXJhdGUgaGVhZGVyIGlmIHRoaXMg
+aXMgCm5lZWRlZC4KU2luY2UgdGhlIHVhcGkgYXBwZWFycyB0b8KgIGFsbG93IDY0IGJpdHMgZm9y
+IEVYRUMgZmxhZ3MsIGxvb2tzIGxpa2UgYSAKZ2VuZXJhbCBvdmVoYXVsIGlzIG5lZWRlZCBhdCBz
+b21lIHBvaW50LgoKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9y
+ZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdm
+eAo=
