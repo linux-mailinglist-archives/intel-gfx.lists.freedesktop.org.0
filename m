@@ -2,59 +2,46 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 026432A002B
-	for <lists+intel-gfx@lfdr.de>; Fri, 30 Oct 2020 09:38:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 00AC92A003C
+	for <lists+intel-gfx@lfdr.de>; Fri, 30 Oct 2020 09:43:59 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D727F6ED0E;
-	Fri, 30 Oct 2020 08:38:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0565E6ED24;
+	Fri, 30 Oct 2020 08:43:56 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from pio-pvt-msa1.bahnhof.se (pio-pvt-msa1.bahnhof.se [79.136.2.40])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EEF4C6ED0E
- for <intel-gfx@lists.freedesktop.org>; Fri, 30 Oct 2020 08:38:26 +0000 (UTC)
-Received: from localhost (localhost [127.0.0.1])
- by pio-pvt-msa1.bahnhof.se (Postfix) with ESMTP id 20DD23F839;
- Fri, 30 Oct 2020 09:38:25 +0100 (CET)
-Authentication-Results: pio-pvt-msa1.bahnhof.se; dkim=pass (1024-bit key;
- unprotected) header.d=shipmail.org header.i=@shipmail.org header.b="dwA5ErUc";
- dkim-atps=neutral
-X-Virus-Scanned: Debian amavisd-new at bahnhof.se
-X-Spam-Flag: NO
-X-Spam-Score: -2.206
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.206 tagged_above=-999 required=6.31
- tests=[BAYES_00=-1.9, DKIM_SIGNED=0.1, DKIM_VALID=-0.1,
- DKIM_VALID_AU=-0.1, DKIM_VALID_EF=-0.1, NICE_REPLY_A=-0.107,
- URIBL_BLOCKED=0.001] autolearn=ham autolearn_force=no
-Received: from pio-pvt-msa1.bahnhof.se ([127.0.0.1])
- by localhost (pio-pvt-msa1.bahnhof.se [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id ih8mSVoM3LT0; Fri, 30 Oct 2020 09:38:23 +0100 (CET)
-Received: by pio-pvt-msa1.bahnhof.se (Postfix) with ESMTPA id 3B3C53F5AB;
- Fri, 30 Oct 2020 09:38:22 +0100 (CET)
-Received: from Win10-45-1tb161.SSPE.ch.intel.com (jfdmzpr06-ext.jf.intel.com
- [134.134.137.75])
- by mail1.shipmail.org (Postfix) with ESMTPSA id E704E3605DC;
- Fri, 30 Oct 2020 09:38:20 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=shipmail.org; s=mail;
- t=1604047102; bh=dI9WqC7vLdYobXraW/C5cfO94im39N4xI4qUh6GV0g8=;
- h=Subject:To:References:From:Date:In-Reply-To:From;
- b=dwA5ErUc3xIY3B/SHTJHSRkaQKwGA+sRHHE+VVxSin6u1Q3giZv85dqcPaxsnXKlp
- xQns0LHcHaT3rbVs7kXAAJ09aBUwzNsE/QRPw34cM0lWLrUQ3GBQXSAzk9+QImKzxV
- Eo5sEnlXfMLgdb5LBe9L3twxng5RcCUH4azvwtnY=
-To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7B1236ED20
+ for <intel-gfx@lists.freedesktop.org>; Fri, 30 Oct 2020 08:43:55 +0000 (UTC)
+IronPort-SDR: zIhddJnHw01i2zsG1q5R50YGTpsLOSTA6rU0HsD/BZ8QitnJCukpWL4GB3C08SVc0vJXLE2aWx
+ Ci0mEqXprcYQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9789"; a="148433260"
+X-IronPort-AV: E=Sophos;i="5.77,432,1596524400"; d="scan'208";a="148433260"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Oct 2020 01:43:55 -0700
+IronPort-SDR: PxT3dfPT8f/7noI0BSdIMrHCrPW9+mRA4J4YgQ7ce1KcsiyySU8eaSds6jxV2Q4fngxL141W1v
+ FI1n0o9L//3w==
+X-IronPort-AV: E=Sophos;i="5.77,432,1596524400"; d="scan'208";a="527048950"
+Received: from bmurphy-mobl.ger.corp.intel.com (HELO [10.249.41.199])
+ ([10.249.41.199])
+ by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Oct 2020 01:43:54 -0700
+To: Matthew Brost <matthew.brost@intel.com>
 References: <20201016104444.1492028-1-maarten.lankhorst@linux.intel.com>
- <20201016104444.1492028-10-maarten.lankhorst@linux.intel.com>
-From: =?UTF-8?Q?Thomas_Hellstr=c3=b6m_=28Intel=29?= <thomas_os@shipmail.org>
-Message-ID: <fdd11d21-2e66-9e4d-b0aa-3c1904f3060c@shipmail.org>
-Date: Fri, 30 Oct 2020 09:38:15 +0100
+ <20201016104444.1492028-3-maarten.lankhorst@linux.intel.com>
+ <20201020201816.GA6055@gtax-ubuntu-1910.fm.intel.com>
+From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Message-ID: <b5a7ac50-0a09-4cc3-22b5-724f8932c945@linux.intel.com>
+Date: Fri, 30 Oct 2020 09:43:51 +0100
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.3.1
+ Thunderbird/78.4.0
 MIME-Version: 1.0
-In-Reply-To: <20201016104444.1492028-10-maarten.lankhorst@linux.intel.com>
+In-Reply-To: <20201020201816.GA6055@gtax-ubuntu-1910.fm.intel.com>
 Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH v4 09/61] drm/i915: Convert
- i915_gem_object_attach_phys() to ww locking
+Subject: Re: [Intel-gfx] [PATCH v4 02/61] drm/i915: Add missing -EDEADLK
+ handling to execbuf pinning
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,19 +54,110 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Ck9uIDEwLzE2LzIwIDEyOjQzIFBNLCBNYWFydGVuIExhbmtob3JzdCB3cm90ZToKPiBTaW1wbGUg
-YWRkaW5nIG9mIGk5MTVfZ2VtX29iamVjdF9sb2NrLCB3ZSBtYXkgc3RhcnQgdG8gcGFzcyB3dyB0
-bwo+IGdldF9wYWdlcygpIGluIHRoZSBmdXR1cmUsIGJ1dCB0aGF0IHdvbid0IGJlIHRoZSBjYXNl
-IGhlcmU7Cj4gV2Ugb3ZlcnJpZGUgc2htZW0ncyBnZXRfcGFnZXMoKSBoYW5kbGluZyBieSBjYWxs
-aW5nCj4gaTkxNV9nZW1fb2JqZWN0X2dldF9wYWdlc19waHlzKCksIG5vIHd3IGlzIG5lZWRlZC4K
-Pgo+IFNpZ25lZC1vZmYtYnk6IE1hYXJ0ZW4gTGFua2hvcnN0IDxtYWFydGVuLmxhbmtob3JzdEBs
-aW51eC5pbnRlbC5jb20+CgpSZXZpZXdlZC1ieTogVGhvbWFzIEhlbGxzdHLDtm0gPHRob21hcy5o
-ZWxsc3Ryb21AbGludXguaW50ZWwuY29tPgoKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3Rz
-LmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xp
-c3RpbmZvL2ludGVsLWdmeAo=
+Op 20-10-2020 om 22:18 schreef Matthew Brost:
+> On Fri, Oct 16, 2020 at 12:43:45PM +0200, Maarten Lankhorst wrote:
+>> i915_vma_pin may fail with -EDEADLK when we start locking page tables,
+>> so ensure we handle this correctly.
+>>
+>> Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+>> ---
+>>  .../gpu/drm/i915/gem/i915_gem_execbuffer.c    | 23 +++++++++++++++----
+>>  1 file changed, 18 insertions(+), 5 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+>> index a199336792fb..0f5efced0b87 100644
+>> --- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+>> +++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+>> @@ -419,13 +419,14 @@ static u64 eb_pin_flags(const struct drm_i915_gem_exec_object2 *entry,
+>>  	return pin_flags;
+>>  }
+>>  
+>> -static inline bool
+>> +static inline int
+>>  eb_pin_vma(struct i915_execbuffer *eb,
+>>  	   const struct drm_i915_gem_exec_object2 *entry,
+>>  	   struct eb_vma *ev)
+>>  {
+>>  	struct i915_vma *vma = ev->vma;
+>>  	u64 pin_flags;
+>> +	int err;
+>>  
+>>  	if (vma->node.size)
+>>  		pin_flags = vma->node.start;
+>> @@ -438,16 +439,24 @@ eb_pin_vma(struct i915_execbuffer *eb,
+>>  
+>>  	/* Attempt to reuse the current location if available */
+>>  	/* TODO: Add -EDEADLK handling here */
+> Drop the TODO?
+>
+>> -	if (unlikely(i915_vma_pin_ww(vma, &eb->ww, 0, 0, pin_flags))) {
+>> +	err = i915_vma_pin_ww(vma, &eb->ww, 0, 0, pin_flags);
+>> +	if (err == -EDEADLK)
+>> +		return err;
+>> +
+>> +	if (unlikely(err)) {
+>>  		if (entry->flags & EXEC_OBJECT_PINNED)
+>>  			return false;
+>>  
+>>  		/* Failing that pick any _free_ space if suitable */
+>> -		if (unlikely(i915_vma_pin_ww(vma, &eb->ww,
+>> +		err = i915_vma_pin_ww(vma, &eb->ww,
+>>  					     entry->pad_to_size,
+>>  					     entry->alignment,
+>>  					     eb_pin_flags(entry, ev->flags) |
+>> -					     PIN_USER | PIN_NOEVICT)))
+>> +					     PIN_USER | PIN_NOEVICT);
+>> +		if (err == -EDEADLK)
+>> +			return err;
+>> +
+>> +		if (unlikely(err))
+>>  			return false;
+> Confusing to return a boolean 'false' while the return value of this
+> function is an int. Return '0' if that is the intent, which I believe it
+> based on how the caller handles the return. 
+
+Yeah, I think it makes more sense to change eb_pin_vma to a proper int, instead of a special one.
+
+In most places we can just propagate the error. I will respin this patch. :)
+
+>>  	}
+>>  
+>> @@ -900,7 +909,11 @@ static int eb_validate_vmas(struct i915_execbuffer *eb)
+>>  		if (err)
+>>  			return err;
+>>  
+> Can't say I love the triple comparison of the return values, but if you
+> need to do this I'd put all of comparison in the same clause. Just my
+> opinion.
+Neither. I think I will just special case -EDEADLK, which should be easy with the fix to eb_pin_vma I suggested above.
+>
+> Matt
+>
+>> -		if (eb_pin_vma(eb, entry, ev)) {
+>> +		err = eb_pin_vma(eb, entry, ev);
+>> +		if (err < 0)
+>> +			return err;
+>> +
+>> +		if (err > 0) {
+>>  			if (entry->offset != vma->node.start) {
+>>  				entry->offset = vma->node.start | UPDATE;
+>>  				eb->args->flags |= __EXEC_HAS_RELOC;
+>> -- 
+>> 2.28.0
+>>
+>> _______________________________________________
+>> Intel-gfx mailing list
+>> Intel-gfx@lists.freedesktop.org
+>> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
