@@ -1,31 +1,65 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D8CB02A0CA5
-	for <lists+intel-gfx@lfdr.de>; Fri, 30 Oct 2020 18:43:46 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id BF60B2A0D11
+	for <lists+intel-gfx@lfdr.de>; Fri, 30 Oct 2020 19:04:29 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 11C306E9CF;
-	Fri, 30 Oct 2020 17:43:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B1467894E7;
+	Fri, 30 Oct 2020 18:04:26 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id DCFED6E9CF;
- Fri, 30 Oct 2020 17:43:42 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id D5AFCA8830;
- Fri, 30 Oct 2020 17:43:42 +0000 (UTC)
+Received: from mail-pg1-x542.google.com (mail-pg1-x542.google.com
+ [IPv6:2607:f8b0:4864:20::542])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E1D83897FB;
+ Fri, 30 Oct 2020 03:29:52 +0000 (UTC)
+Received: by mail-pg1-x542.google.com with SMTP id z24so4049442pgk.3;
+ Thu, 29 Oct 2020 20:29:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=date:from:to:cc:subject:message-id:mime-version:content-disposition;
+ bh=kNFigGmlnT8RRi6z0sCPMt5Zg63u/lv6a6WCx8xI9/k=;
+ b=mq0/8Qy7Ve6u00MU6iGI3ZON19U0Xh/nF42bdR7N8KoIOexf6e9uuP1lJ7aPL9gxUF
+ /6hU8zFSrMi6wE7MgmKYzth/P3AAHrFx3hiCLQqn74BJsqXoEznfDAxOU5bUjLpHiriW
+ +xvNTLfTgQB/aH1BCeDHWPLsRnuRkZqcguv6AiS45T+8S70dPK3t9d1Z5D89aEvbA36h
+ SSN0kZRpx6bb/PIB4Mg9d0IvpLH3k8tMjtCqBHy9vjRtvysTEcMkFXvrsqVhBh/S1tVI
+ a9I2R3URX8Eno+U2bihtbF7TL09mAfmAwplYxtkDUuWuhZ8HRtLZLiCIVNjSul1ss+1T
+ towA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:mime-version
+ :content-disposition;
+ bh=kNFigGmlnT8RRi6z0sCPMt5Zg63u/lv6a6WCx8xI9/k=;
+ b=bH9RVvtRdTLI0/bTH8F8FjaOUDQSflQWomkphsvtXxv+SQlIkNsmy7iLu3VtKeGhMu
+ 5itmlPJsTvZPVzVJMqvmRgZH9/U4OgvDfySLiq/ah3t74SgngZ6akCGpHTEgAjcVYSvD
+ tlSNPxWJFeaFdHyqCOnfOPFikidiKBZWnVh4FKT19WPW6P2AK2XQmKBGaxW9rdZA/jVP
+ twf4JxnZ8xPJriaQXwQ8MVB1s6N8NQLDF18LDfF1gz0l4rdk32oS5VeH3LElcXPFoVmz
+ Ulz8SwTqRJCgobQBC2nC5cpAinXRrdBFvswPsCFGb2AeqwkDcrurDgSTOjZ5Tgf3SSO/
+ wnLw==
+X-Gm-Message-State: AOAM532++Q4Hw0s46W1R39jyrnU/JZFXoPiYF7Nkr+08Kjv6ednU0Rwv
+ ZjDkFUMRSuA2xJ6RvsBjOm8=
+X-Google-Smtp-Source: ABdhPJwIVMjw39qjT1TY0hYU+IjXwoIA0G3zsE2DQwL6bJLjQU34JC8Hiwe282UUBVpaiq3XeYJhvQ==
+X-Received: by 2002:a63:c053:: with SMTP id z19mr393466pgi.418.1604028592566; 
+ Thu, 29 Oct 2020 20:29:52 -0700 (PDT)
+Received: from my--box ([103.98.79.70])
+ by smtp.gmail.com with ESMTPSA id b16sm220933pju.16.2020.10.29.20.29.48
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 29 Oct 2020 20:29:52 -0700 (PDT)
+Date: Fri, 30 Oct 2020 08:59:45 +0530
+From: Deepak R Varma <mh12gx2825@gmail.com>
+To: outreachy-kernel@googlegroups.com, Zhenyu Wang <zhenyuw@linux.intel.com>,
+ Zhi Wang <zhi.a.wang@intel.com>, Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
+ intel-gvt-dev@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org
+Message-ID: <20201030032945.GA274850@my--box>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
-Date: Fri, 30 Oct 2020 17:43:42 -0000
-Message-ID: <160407982284.23389.8910744615946360705@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20201030165045.5000-1-ville.syrjala@linux.intel.com>
-In-Reply-To: <20201030165045.5000-1-ville.syrjala@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_drm/i915=3A_ilk+_wm_cleanups?=
+Content-Disposition: inline
+X-Mailman-Approved-At: Fri, 30 Oct 2020 18:04:25 +0000
+Subject: [Intel-gfx] [PATCH] drm/i915/gvt: use DEFINE_DEBUGFS_ATTRIBUTE with
+ debugfs_create_file_unsafe()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,64 +72,56 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: melissa.srw@gmail.com, daniel.vetter@ffwll.ch, mh12gx2825@gmail.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Using DEFINE_DEBUGFS_ATTRIBUTE macro with debugfs_create_file_unsafe()
+function in place of the debugfs_create_file() function will make the
+file operation struct "reset" aware of the file's lifetime. Additional
+details here: https://lists.archive.carbon60.com/linux/kernel/2369498
 
-Series: drm/i915: ilk+ wm cleanups
-URL   : https://patchwork.freedesktop.org/series/83289/
-State : warning
+Issue reported by Coccinelle script:
+scripts/coccinelle/api/debugfs/debugfs_simple_attr.cocci
 
-== Summary ==
+Signed-off-by: Deepak R Varma <mh12gx2825@gmail.com>
+---
+Please Note: This is a Outreachy project task patch.
 
-$ dim checkpatch origin/drm-tip
-b3a6a0cd6f2b drm/i915: s/USHRT_MAX/U16_MAX/
-0a33e58a3709 drm/i915: Shrink ilk-bdw wm storage by using u16
-2fd87c0096c8 drm/i915: Rename ilk watermark structs/enums
-4dfe713bb6f6 drm/i915: s/dev_priv->wm.hw/&dev_priv->wm.ilk/
-e2474971c9a4 drm/i915: s/ilk_pipe_wm/ilk_wm_state/
-8b27740a8cff drm/i915: Stash away the original SSKPD latency values
-75df3bb251fb drm/i915: Remove gen6_check_mch_setup()
-cd66098043f8 drm/i915: Add REG_GENMASK64() and REG_FIELD_GET64()
--:22: CHECK:MACRO_ARG_REUSE: Macro argument reuse '__type' - possible side-effects?
-#22: FILE: drivers/gpu/drm/i915/i915_reg.h:132:
-+#define _REG_GENMASK(__type, __high, __low)				\
-+	((__type)(GENMASK(__high, __low) +				\
-+	       BUILD_BUG_ON_ZERO(__is_constexpr(__high) &&		\
-+				 __is_constexpr(__low) &&		\
-+				 ((__low) < 0 ||			\
-+				  (__high) >= BITS_PER_TYPE(__type) ||	\
-+				  (__low) > (__high)))))
+ drivers/gpu/drm/i915/gvt/debugfs.c | 9 ++++-----
+ 1 file changed, 4 insertions(+), 5 deletions(-)
 
--:22: CHECK:MACRO_ARG_REUSE: Macro argument reuse '__high' - possible side-effects?
-#22: FILE: drivers/gpu/drm/i915/i915_reg.h:132:
-+#define _REG_GENMASK(__type, __high, __low)				\
-+	((__type)(GENMASK(__high, __low) +				\
-+	       BUILD_BUG_ON_ZERO(__is_constexpr(__high) &&		\
-+				 __is_constexpr(__low) &&		\
-+				 ((__low) < 0 ||			\
-+				  (__high) >= BITS_PER_TYPE(__type) ||	\
-+				  (__low) > (__high)))))
-
--:22: CHECK:MACRO_ARG_REUSE: Macro argument reuse '__low' - possible side-effects?
-#22: FILE: drivers/gpu/drm/i915/i915_reg.h:132:
-+#define _REG_GENMASK(__type, __high, __low)				\
-+	((__type)(GENMASK(__high, __low) +				\
-+	       BUILD_BUG_ON_ZERO(__is_constexpr(__high) &&		\
-+				 __is_constexpr(__low) &&		\
-+				 ((__low) < 0 ||			\
-+				  (__high) >= BITS_PER_TYPE(__type) ||	\
-+				  (__low) > (__high)))))
-
-total: 0 errors, 0 warnings, 3 checks, 65 lines checked
-b4636d40be70 drm/i915: Clean up SSKPD/MLTR defines
-edaa7edda21c drm/i915: Polish ilk+ wm regidster bits
-
+diff --git a/drivers/gpu/drm/i915/gvt/debugfs.c b/drivers/gpu/drm/i915/gvt/debugfs.c
+index 62e6a14ad58e..18adfa2d5f5b 100644
+--- a/drivers/gpu/drm/i915/gvt/debugfs.c
++++ b/drivers/gpu/drm/i915/gvt/debugfs.c
+@@ -147,9 +147,8 @@ vgpu_scan_nonprivbb_set(void *data, u64 val)
+ 	return 0;
+ }
+ 
+-DEFINE_SIMPLE_ATTRIBUTE(vgpu_scan_nonprivbb_fops,
+-			vgpu_scan_nonprivbb_get, vgpu_scan_nonprivbb_set,
+-			"0x%llx\n");
++DEFINE_DEBUGFS_ATTRIBUTE(vgpu_scan_nonprivbb_fops, vgpu_scan_nonprivbb_get,
++			 vgpu_scan_nonprivbb_set, "0x%llx\n");
+ 
+ /**
+  * intel_gvt_debugfs_add_vgpu - register debugfs entries for a vGPU
+@@ -165,8 +164,8 @@ void intel_gvt_debugfs_add_vgpu(struct intel_vgpu *vgpu)
+ 	debugfs_create_bool("active", 0444, vgpu->debugfs, &vgpu->active);
+ 	debugfs_create_file("mmio_diff", 0444, vgpu->debugfs, vgpu,
+ 			    &vgpu_mmio_diff_fops);
+-	debugfs_create_file("scan_nonprivbb", 0644, vgpu->debugfs, vgpu,
+-			    &vgpu_scan_nonprivbb_fops);
++	debugfs_create_file_unsafe("scan_nonprivbb", 0644, vgpu->debugfs, vgpu,
++				   &vgpu_scan_nonprivbb_fops);
+ }
+ 
+ /**
+-- 
+2.25.1
 
 _______________________________________________
 Intel-gfx mailing list
