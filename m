@@ -2,47 +2,61 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 43AB52A06C2
-	for <lists+intel-gfx@lfdr.de>; Fri, 30 Oct 2020 14:50:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id BCBAC2A0795
+	for <lists+intel-gfx@lfdr.de>; Fri, 30 Oct 2020 15:14:34 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A42DF6E9BA;
-	Fri, 30 Oct 2020 13:50:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 70F1B6E9B5;
+	Fri, 30 Oct 2020 14:14:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 537CE6E9BA
- for <intel-gfx@lists.freedesktop.org>; Fri, 30 Oct 2020 13:50:15 +0000 (UTC)
-IronPort-SDR: q6C9Nm1ya7WknNbnXViMmMdVcG6QLw2UR3ohhH+csA+l5FqS+yct+d3Jq90XUol8F1RWJVkCAY
- OOQCok8gG0Sw==
-X-IronPort-AV: E=McAfee;i="6000,8403,9789"; a="166020969"
-X-IronPort-AV: E=Sophos;i="5.77,433,1596524400"; d="scan'208";a="166020969"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Oct 2020 06:50:14 -0700
-IronPort-SDR: gePcNNnwiQ7zr8wuS0BdKEDCwqVvs8wNpublrTWHuXkKAnZq05mtgTrufVCUzVgEJgEsGsRD9t
- rKYx9Rmsx6Ow==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.77,433,1596524400"; d="scan'208";a="425349095"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by fmsmga001.fm.intel.com with SMTP; 30 Oct 2020 06:50:12 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 30 Oct 2020 15:50:11 +0200
-Date: Fri, 30 Oct 2020 15:50:11 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Lucas De Marchi <lucas.demarchi@intel.com>
-Message-ID: <20201030135011.GI6112@intel.com>
-References: <20201028213323.5423-1-ville.syrjala@linux.intel.com>
- <20201028213323.5423-18-ville.syrjala@linux.intel.com>
- <20201028221657.lizjycr7kxwl274n@ldmartin-desk1>
+Received: from pio-pvt-msa3.bahnhof.se (pio-pvt-msa3.bahnhof.se [79.136.2.42])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 25E2F6E9B5
+ for <intel-gfx@lists.freedesktop.org>; Fri, 30 Oct 2020 14:14:31 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+ by pio-pvt-msa3.bahnhof.se (Postfix) with ESMTP id 81CEC3F615;
+ Fri, 30 Oct 2020 15:14:29 +0100 (CET)
+Authentication-Results: pio-pvt-msa3.bahnhof.se; dkim=pass (1024-bit key;
+ unprotected) header.d=shipmail.org header.i=@shipmail.org header.b=nxW6/fQp; 
+ dkim-atps=neutral
+X-Virus-Scanned: Debian amavisd-new at bahnhof.se
+X-Spam-Flag: NO
+X-Spam-Score: -2.36
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.36 tagged_above=-999 required=6.31
+ tests=[BAYES_00=-1.9, DKIM_SIGNED=0.1, DKIM_VALID=-0.1,
+ DKIM_VALID_AU=-0.1, DKIM_VALID_EF=-0.1, NICE_REPLY_A=-0.261,
+ URIBL_BLOCKED=0.001] autolearn=ham autolearn_force=no
+Received: from pio-pvt-msa3.bahnhof.se ([127.0.0.1])
+ by localhost (pio-pvt-msa3.bahnhof.se [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id E2cpBLRiLYOk; Fri, 30 Oct 2020 15:14:28 +0100 (CET)
+Received: by pio-pvt-msa3.bahnhof.se (Postfix) with ESMTPA id 2FEED3F67D;
+ Fri, 30 Oct 2020 15:14:26 +0100 (CET)
+Received: from localhost.localdomain (jfdmzpr03-ext.jf.intel.com
+ [134.134.139.72])
+ by mail1.shipmail.org (Postfix) with ESMTPSA id 3A1ED361802;
+ Fri, 30 Oct 2020 15:14:24 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=shipmail.org; s=mail;
+ t=1604067266; bh=vCF3rQq/Wr9Pni7Jw7OcBPnEGQxt/f8IYQrrta9y/no=;
+ h=Subject:To:References:From:Date:In-Reply-To:From;
+ b=nxW6/fQptSClurroBlQH4nCMllkc3b+xdtWk9Urt4K6UoignAa7VdxN36ZQJ/mGQO
+ fbirrrK8J4DaXtADjEeYWhKYIR/zwhU2v3iBBvZQjm4SXzYgHEM18yks3ELeONPjtr
+ J/b/LUsg3WBh99bi8vKLexM/L1G0857NsdIMAwZ4=
+To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
+References: <20201016104444.1492028-1-maarten.lankhorst@linux.intel.com>
+ <20201016104444.1492028-14-maarten.lankhorst@linux.intel.com>
+ <b8793d0e-6fee-2055-7447-3073b374666d@shipmail.org>
+ <8d924da9-d88d-2f8e-65a5-247c561f2311@linux.intel.com>
+From: =?UTF-8?Q?Thomas_Hellstr=c3=b6m_=28Intel=29?= <thomas_os@shipmail.org>
+Message-ID: <b8775053-7aa5-4740-ca8d-3f931a6a0372@shipmail.org>
+Date: Fri, 30 Oct 2020 15:14:20 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.3.1
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20201028221657.lizjycr7kxwl274n@ldmartin-desk1>
-X-Patchwork-Hint: comment
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH v3 17/19] drm/i915: Enable hpd logic only
- for ports that are present
+In-Reply-To: <8d924da9-d88d-2f8e-65a5-247c561f2311@linux.intel.com>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH v4 13/61] drm/i915: Reject more ioctls for
+ userptr
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,44 +69,25 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Oct 28, 2020 at 03:16:57PM -0700, Lucas De Marchi wrote:
-> On Wed, Oct 28, 2020 at 11:33:21PM +0200, Ville Syrj=E4l=E4 wrote:
-> >From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> >
-> >Let's enable the hardware hpd logic only for the ports we
-> >can actually use.
-> >
-> >In theory this may save some miniscule amounts of power,
-> >and more importantly it eliminates a lot if platform specific
-> >codepaths since the generic thing can now deal with any
-> >combination of ports being present on each SKU.
-> >
-> >v2: Deal with DG1
-> >
-> >Signed-off-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> =
-
-> =
-
-> Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
-
-While applying I noticed that I fumbled the dg1 changes slightly.
-icp_ddi_hotplug_enables() was missing the HPD_PORT_D stuff.
-I fixed that up and pushed the lot.
-
-Thanks for the review.
-
--- =
-
-Ville Syrj=E4l=E4
-Intel
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+SGksIE1hYXJ0ZW4sCgpPbiAxMC8zMC8yMCAxMDo1NiBBTSwgTWFhcnRlbiBMYW5raG9yc3Qgd3Jv
+dGU6Cj4gT3AgMzAtMTAtMjAyMCBvbSAxMDoyMiBzY2hyZWVmIFRob21hcyBIZWxsc3Ryw7ZtIChJ
+bnRlbCk6Cj4+IE9uIDEwLzE2LzIwIDEyOjQzIFBNLCBNYWFydGVuIExhbmtob3JzdCB3cm90ZToK
+Pj4+IEFsbG93IHNldF9kb21haW4gdG8gZmFpbCBzaWxlbnRseSwgd2FpdGluZyBmb3IgaWRsZSBz
+aG91bGQgYmUgZ29vZCBlbm91Z2guCj4+PiBzZXRfdGlsaW5nIGFuZCBzZXRfY2FjaGluZyBhcmUg
+cmVqZWN0ZWQgd2l0aCAtRU5YSU8sIHRoZXJlJ3Mgbm8gdmFsaWQgcmVhc29uCj4+PiB0byBhbGxv
+dyBpdC4KPj4gUGxlYXNlIGxpc3QgYWxsIGFmZmVjdGVkIGlvY3RscyBhZmZlY3RlZCBieSB0aGUg
+SVNfUFJPWFkgZmxhZy4gV2UgYWxzbyBuZWVkIHVzZXJzcGFjZSBtYWludGFpbmVyIGFja3MgZm9y
+IHRoaXMuCj4gc2V0X2NhY2hpbmcsIHNldF9kb21haW4gYW5kIHNldF90aWxpbmcuIHNldF9kb21h
+aW4gdHVybnMgaW50byBhIGdlbV93YWl0IGZvciBjb2hlcmVudCB1c2VycHRyLCBzaW5jZSB0aGUg
+b3RoZXIgaW9jdGwncyB0aGF0IGFmZmVjdCBwbGFjZW1lbnQgYW5kIGNhY2hpbmcgYXJlIG5vIGxv
+bmdlciBhbGxvd2VkLiA6KQoKU291bmRzIGZpbmUuIFRoZSBjb21tZW50IHdhcyBhYm91dCBhZGRp
+bmcgdG8gdGhlIGNvbW1pdCBtZXNzYWdlLgoKCj4gfk1hYXJ0ZW4KPgo+Pj4gU2lnbmVkLW9mZi1i
+eTogTWFhcnRlbiBMYW5raG9yc3QgPG1hYXJ0ZW4ubGFua2hvcnN0QGxpbnV4LmludGVsLmNvbT4K
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4
+IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
+dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
