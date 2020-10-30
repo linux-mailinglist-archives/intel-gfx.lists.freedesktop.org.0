@@ -1,47 +1,47 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 682D12A0829
-	for <lists+intel-gfx@lfdr.de>; Fri, 30 Oct 2020 15:44:00 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 094652A093E
+	for <lists+intel-gfx@lfdr.de>; Fri, 30 Oct 2020 16:08:09 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4D0406EDE9;
-	Fri, 30 Oct 2020 14:43:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 71B566EDC6;
+	Fri, 30 Oct 2020 15:08:07 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E38156EDF1;
- Fri, 30 Oct 2020 14:43:55 +0000 (UTC)
-IronPort-SDR: wkjxUDULoM9laG/ocQYCN3zw0JEixZaCl//nfywFsJA/3D1s2o4gG0X/TeJE6D2V34nQF5FguB
- aLWCg/OnUGUQ==
-X-IronPort-AV: E=McAfee;i="6000,8403,9789"; a="165117825"
-X-IronPort-AV: E=Sophos;i="5.77,433,1596524400"; d="scan'208";a="165117825"
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DBE1A6EDC6
+ for <intel-gfx@lists.freedesktop.org>; Fri, 30 Oct 2020 15:08:05 +0000 (UTC)
+IronPort-SDR: Ct/UTdGJQIFlkP5GHH0payWOTsZ3NEcQY2+qdF4zJKW+2RsqIl5QEp+vptEbL11J5gJ0mfUAnR
+ BMZB2vnWH2qQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9790"; a="253327537"
+X-IronPort-AV: E=Sophos;i="5.77,433,1596524400"; d="scan'208";a="253327537"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Oct 2020 07:43:52 -0700
-IronPort-SDR: 3sNntcel3Mt5MdolL+3ZJfoZkbkDPOMwyJKTBvktwKLoWskwvT/ejKmqeo6P+0xe+PIdt4ohQs
- mXOnfaPGEUjw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.77,433,1596524400"; d="scan'208";a="361866344"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by FMSMGA003.fm.intel.com with SMTP; 30 Oct 2020 07:43:47 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 30 Oct 2020 16:43:46 +0200
-Date: Fri, 30 Oct 2020 16:43:46 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Chris Wilson <chris@chris-wilson.co.uk>
-Message-ID: <20201030144346.GJ6112@intel.com>
-References: <20201022194256.30978-1-ville.syrjala@linux.intel.com>
- <160406758530.15070.9622609556730885347@build.alporthouse.com>
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Oct 2020 08:08:05 -0700
+IronPort-SDR: nuQl9fTmPxkzqTKv/FR3Rf0mjwYoW5RAHE8qY6Ew9H8b03srGC1aWzYgenIFriEAbi48FW2ATx
+ ShZEH85jtLxw==
+X-IronPort-AV: E=Sophos;i="5.77,433,1596524400"; d="scan'208";a="537095404"
+Received: from sfhansen-mobl.ger.corp.intel.com (HELO localhost.localdomain)
+ ([10.249.254.46])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Oct 2020 08:08:04 -0700
+To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
+References: <20201016104444.1492028-1-maarten.lankhorst@linux.intel.com>
+ <20201016104444.1492028-21-maarten.lankhorst@linux.intel.com>
+From: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>
+Message-ID: <1b38a307-0d57-9abd-d72d-a0e783b39183@linux.intel.com>
+Date: Fri, 30 Oct 2020 16:08:00 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.3.1
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <160406758530.15070.9622609556730885347@build.alporthouse.com>
-X-Patchwork-Hint: comment
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH] drm/modes: Switch to 64bit maths to avoid
- integer overflow
+In-Reply-To: <20201016104444.1492028-21-maarten.lankhorst@linux.intel.com>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH v4 20/61] drm/i915: Rework clflush to work
+ correctly without obj->mm.lock.
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,83 +54,55 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, Randy Dunlap <rdunlap@infradead.org>,
- stable@vger.kernel.org, dri-devel@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Oct 30, 2020 at 02:19:45PM +0000, Chris Wilson wrote:
-> Quoting Ville Syrjala (2020-10-22 20:42:56)
-> > From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> > =
 
-> > The new >8k CEA modes have dotclocks reaching 5.94 GHz, which
-> > means our clock*1000 will now overflow the 32bit unsigned
-> > integer. Switch to 64bit maths to avoid it.
-> > =
+On 10/16/20 12:44 PM, Maarten Lankhorst wrote:
+> Pin in the caller, not in the work itself. This should also
+> work better for dma-fence annotations.
+>
+> Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+> ---
+>   drivers/gpu/drm/i915/gem/i915_gem_clflush.c | 15 +++++++--------
+>   1 file changed, 7 insertions(+), 8 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_clflush.c b/drivers/gpu/drm/i915/gem/i915_gem_clflush.c
+> index bc0223716906..daf9284ef1f5 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_clflush.c
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_clflush.c
+> @@ -27,15 +27,8 @@ static void __do_clflush(struct drm_i915_gem_object *obj)
+>   static int clflush_work(struct dma_fence_work *base)
+>   {
+>   	struct clflush *clflush = container_of(base, typeof(*clflush), base);
+> -	struct drm_i915_gem_object *obj = clflush->obj;
+> -	int err;
+>   
+> -	err = i915_gem_object_pin_pages(obj);
+> -	if (err)
+> -		return err;
+> -
+> -	__do_clflush(obj);
+> -	i915_gem_object_unpin_pages(obj);
+> +	__do_clflush(clflush->obj);
+>   
+>   	return 0;
+>   }
+> @@ -44,6 +37,7 @@ static void clflush_release(struct dma_fence_work *base)
+>   {
+>   	struct clflush *clflush = container_of(base, typeof(*clflush), base);
+>   
+> +	i915_gem_object_unpin_pages(clflush->obj);
 
-> > Cc: stable@vger.kernel.org
-> > Reported-by: Randy Dunlap <rdunlap@infradead.org>
-> > Signed-off-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> > ---
-> > An interesting question how many other place might suffer from similar
-> > overflows. I think i915 should be mostly OK. The one place I know we use
-> > Hz instead kHz is the hsw DPLL code, which I would prefer we also change
-> > to use kHz. The other concern is whether we have any potential overflows
-> > before we check this against the platform's max dotclock.
-> > =
+Hmm, Could we do without pinning here? Pages present are protected first 
+by the object lock, then by the fence?
 
-> > I do have this unreviewed igt series =
+/Thomas
 
-> > https://patchwork.freedesktop.org/series/69531/ which extends the
-> > current testing with some other forms of invalid modes. Could probably
-> > extend that with a mode.clock=3DINT_MAX test to see if anything else mi=
-ght
-> > trip up.
-> > =
 
-> > No idea about other drivers.
-> > =
 
-> >  drivers/gpu/drm/drm_modes.c | 4 ++--
-> >  1 file changed, 2 insertions(+), 2 deletions(-)
-> > =
-
-> > diff --git a/drivers/gpu/drm/drm_modes.c b/drivers/gpu/drm/drm_modes.c
-> > index 501b4fe55a3d..511cde5c7fa6 100644
-> > --- a/drivers/gpu/drm/drm_modes.c
-> > +++ b/drivers/gpu/drm/drm_modes.c
-> > @@ -762,7 +762,7 @@ int drm_mode_vrefresh(const struct drm_display_mode=
- *mode)
-> >         if (mode->htotal =3D=3D 0 || mode->vtotal =3D=3D 0)
-> >                 return 0;
-> >  =
-
-> > -       num =3D mode->clock * 1000;
-> > +       num =3D mode->clock;
-> >         den =3D mode->htotal * mode->vtotal;
-> =
-
-> You don't want to promote den to u64 while you are here? We are at
-> 8kx4k, throw in dblscan and some vscan, and we could soon have wacky
-> refresh rates.
-
-i915 has 16kx8k hard limit currently, and we reject vscan>1
-(wish we could also reject DBLSCAN). So we should not hit
-that, at least not yet. Other drivers might not be so strict
-I guess.
-
-I have a nagging feeling that other places are in danger of
-overflows if we try to push the current limits significantly.
-But I guess no real harm in going full 64bit here, except
-maybe making it a bit slower.
-
--- =
-
-Ville Syrj=E4l=E4
-Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
