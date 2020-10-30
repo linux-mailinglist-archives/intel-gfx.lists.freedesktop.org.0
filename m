@@ -2,55 +2,46 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E0C4529FFFD
-	for <lists+intel-gfx@lfdr.de>; Fri, 30 Oct 2020 09:31:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B1D382A0001
+	for <lists+intel-gfx@lfdr.de>; Fri, 30 Oct 2020 09:31:39 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DB0FC6ED08;
-	Fri, 30 Oct 2020 08:31:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1DFFD6ED04;
+	Fri, 30 Oct 2020 08:31:38 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 532B56ED03;
- Fri, 30 Oct 2020 08:30:58 +0000 (UTC)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
- by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 09U8UaPB113645;
- Fri, 30 Oct 2020 03:30:36 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
- s=ti-com-17Q1; t=1604046636;
- bh=CzNQBwZKghppT04NXnze7g8o+ankWdaMI3TDyZqHlZw=;
- h=Subject:To:CC:References:From:Date:In-Reply-To;
- b=mK0hGOuZOholBu+L3sSHTXU8AVHo0SNxAXDj2wrHoNZEOBntBbWNJtOAYcs+9eRz3
- wUcYgrGkmb1iba27F2B/xinm9EpGPtljj3Zm31xyJ/x9E4nMNUZQ/g9FvECobR094Z
- SEsOybPpZOJGPUB6nC6O6phQSkGOzVnWDEf0atmk=
-Received: from DFLE106.ent.ti.com (dfle106.ent.ti.com [10.64.6.27])
- by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 09U8Ua2b031844
- (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
- Fri, 30 Oct 2020 03:30:36 -0500
-Received: from DFLE112.ent.ti.com (10.64.6.33) by DFLE106.ent.ti.com
- (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Fri, 30
- Oct 2020 03:30:35 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE112.ent.ti.com
- (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Fri, 30 Oct 2020 03:30:35 -0500
-Received: from [192.168.2.6] (ileax41-snat.itg.ti.com [10.172.224.153])
- by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 09U8UVt4091602;
- Fri, 30 Oct 2020 03:30:32 -0500
-To: Daniel Vetter <daniel.vetter@ffwll.ch>, DRI Development
- <dri-devel@lists.freedesktop.org>
-References: <20201029101428.4058311-1-daniel.vetter@ffwll.ch>
- <20201029132229.4068359-1-daniel.vetter@ffwll.ch>
-From: Tomi Valkeinen <tomi.valkeinen@ti.com>
-Message-ID: <df3f5733-21b3-809c-71d7-0bd83f29ae62@ti.com>
-Date: Fri, 30 Oct 2020 10:30:31 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 46E926ED04
+ for <intel-gfx@lists.freedesktop.org>; Fri, 30 Oct 2020 08:31:36 +0000 (UTC)
+IronPort-SDR: WmRz8EH0E/sFspkdu3jHL86iArt2eyXT0V7G/fFeWQyqvowBBzE74xEFa3Cv5up+0df3QaWN7g
+ l8xNLt7MQH1A==
+X-IronPort-AV: E=McAfee;i="6000,8403,9789"; a="167795088"
+X-IronPort-AV: E=Sophos;i="5.77,432,1596524400"; d="scan'208";a="167795088"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Oct 2020 01:31:35 -0700
+IronPort-SDR: BPc7g/lsOHGg9ueuK+adijo1yVsVMZ92k5Kf1SyNNydOGVVyBLTPdWBzk35piGWUkfX32W0qYD
+ d4S5rkJlwn/A==
+X-IronPort-AV: E=Sophos;i="5.77,432,1596524400"; d="scan'208";a="351790522"
+Received: from oc5mblwhs02.amr.corp.intel.com (HELO
+ Win10-45-1tb161.SSPE.ch.intel.com) ([10.249.254.155])
+ by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Oct 2020 01:31:35 -0700
+To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
+References: <20201016104444.1492028-1-maarten.lankhorst@linux.intel.com>
+ <20201016104444.1492028-8-maarten.lankhorst@linux.intel.com>
+From: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>
+Message-ID: <a1d7eccd-12ff-5d5b-b08d-c40f36d9a3df@linux.intel.com>
+Date: Fri, 30 Oct 2020 09:31:32 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.3.1
 MIME-Version: 1.0
-In-Reply-To: <20201029132229.4068359-1-daniel.vetter@ffwll.ch>
+In-Reply-To: <20201016104444.1492028-8-maarten.lankhorst@linux.intel.com>
 Content-Language: en-US
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: Re: [Intel-gfx] [PATCH] fbcon: Disable accelerated scrolling
+Subject: Re: [Intel-gfx] [PATCH v4 07/61] drm/i915: Move HAS_STRUCT_PAGE to
+ obj->flags
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,125 +54,19 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: George Kennedy <george.kennedy@oracle.com>, Sam Ravnborg <sam@ravnborg.org>,
- Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
- Tetsuo Handa <penguin-kernel@I-love.SAKURA.ne.jp>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- "Gustavo A. R. Silva" <gustavoars@kernel.org>, Peter Rosin <peda@axentia.se>,
- Linus Torvalds <torvalds@linux-foundation.org>,
- Ben Skeggs <bskeggs@redhat.com>, Thomas Zimmermann <tzimmermann@suse.de>,
- nouveau@lists.freedesktop.org, Daniel Vetter <daniel.vetter@intel.com>,
- Nathan Chancellor <natechancellor@gmail.com>,
- Jiri Slaby <jirislaby@kernel.org>, Peilin Ye <yepeilin.cs@gmail.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 29/10/2020 15:22, Daniel Vetter wrote:
-> So ever since syzbot discovered fbcon, we have solid proof that it's
-> full of bugs. And often the solution is to just delete code and remove
-> features, e.g.  50145474f6ef ("fbcon: remove soft scrollback code").
-> 
-> Now the problem is that most modern-ish drivers really only treat
-> fbcon as an dumb kernel console until userspace takes over, and Oops
-> printer for some emergencies. Looking at drm drivers and the basic
-> vesa/efi fbdev drivers shows that only 3 drivers support any kind of
-> acceleration:
-> 
-> - nouveau, seems to be enabled by default
-> - omapdrm, when a DMM remapper exists using remapper rewriting for
->   y/xpanning
-> - gma500, but that is getting deleted now for the GTT remapper trick,
->   and the accelerated copyarea never set the FBINFO_HWACCEL_COPYAREA
->   flag, so unused (and could be deleted already I think).
-> 
-> No other driver supportes accelerated fbcon. And fbcon is the only
-> user of this accel code (it's not exposed as uapi through ioctls),
-> which means we could garbage collect fairly enormous amounts of code
-> if we kill this.
-> 
-> Plus because syzbot only runs on virtual hardware, and none of the
-> drivers for that have acceleration, we'd remove a huge gap in testing.
-> And there's no other even remotely comprehensive testing aside from
-> syzbot.
-> 
-> This patch here just disables the acceleration code by always
-> redrawing when scrolling. The plan is that once this has been merged
-> for well over a year in released kernels, we can start to go around
-> and delete a lot of code.
-> 
-> v2:
-> - Drop a few more unused local variables, somehow I missed the
-> compiler warnings (Sam)
-> - Fix typo in comment (Jiri)
-> - add a todo entry for the cleanup (Thomas)
-> 
-> v3: Remove more unused variables (0day)
-> 
-> Reviewed-by: Thomas Zimmermann <tzimmermann@suse.de>
-> Reviewed-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-> Acked-by: Sam Ravnborg <sam@ravnborg.org>
-> Cc: Jiri Slaby <jirislaby@kernel.org>
-> Cc: Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>
-> Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-> Cc: Linus Torvalds <torvalds@linux-foundation.org>
-> Cc: Ben Skeggs <bskeggs@redhat.com>
-> Cc: nouveau@lists.freedesktop.org
-> Cc: Tomi Valkeinen <tomi.valkeinen@ti.com>
-> Cc: Daniel Vetter <daniel.vetter@ffwll.ch>
-> Cc: Jiri Slaby <jirislaby@kernel.org>
-> Cc: "Gustavo A. R. Silva" <gustavoars@kernel.org>
-> Cc: Tetsuo Handa <penguin-kernel@I-love.SAKURA.ne.jp>
-> Cc: Peilin Ye <yepeilin.cs@gmail.com>
-> Cc: George Kennedy <george.kennedy@oracle.com>
-> Cc: Nathan Chancellor <natechancellor@gmail.com>
-> Cc: Peter Rosin <peda@axentia.se>
-> Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
-> ---
->  Documentation/gpu/todo.rst       | 18 +++++++++++++
->  drivers/video/fbdev/core/fbcon.c | 45 ++++++--------------------------
->  2 files changed, 26 insertions(+), 37 deletions(-)
-> 
-> diff --git a/Documentation/gpu/todo.rst b/Documentation/gpu/todo.rst
-> index 6b224ef14455..bec99341a904 100644
-> --- a/Documentation/gpu/todo.rst
-> +++ b/Documentation/gpu/todo.rst
-> @@ -277,6 +277,24 @@ Contact: Daniel Vetter, Noralf Tronnes
->  
->  Level: Advanced
->  
-> +Garbage collect fbdev scrolling acceleration
-> +--------------------------------------------
-> +
-> +Scroll acceleration is disabled in fbcon by hard-wiring p->scrollmode =
-> +SCROLL_REDRAW. There's a ton of code this will allow us to remove:
-> +- lots of code in fbcon.c
-> +- a bunch of the hooks in fbcon_ops, maybe the remaining hooks could be called
-> +  directly instead of the function table (with a switch on p->rotate)
-> +- fb_copyarea is unused after this, and can be deleted from all drivers
-> +
-> +Note that not all acceleration code can be deleted, since clearing and cursor
-> +support is still accelerated, which might be good candidates for further
-> +deletion projects.
-
-Apparently omapdrm's accelerated panning has been broken for some time, and no one has noticed. It does:
-
-strcmp(fbi->fix.id, MODULE_NAME), which is a comparison of omapdrmdrmfb == omapdrm and always fails.
-
-Fixing that, and applying this patch, things work fine (unaccelerated, of course). I did notice a
-single call to omap_fbdev_pan_display() when loading the drivers. This comes from fbcon_switch ->
-bit_update_start -> fb_pan_display. Maybe this is from the clearing you mention above?
-
-Reviewed-by: Tomi Valkeinen <tomi.valkeinen@ti.com>
-
- Tomi
-
--- 
-Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki.
-Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+Ck9uIDEwLzE2LzIwIDEyOjQzIFBNLCBNYWFydGVuIExhbmtob3JzdCB3cm90ZToKPiBXZSB3YW50
+IHRvIHJlbW92ZSB0aGUgY2hhbmdpbmcgb2Ygb3BzIHN0cnVjdHVyZSBmb3IgYXR0YWNoaW5nCj4g
+cGh5cyBwYWdlcywgc28gd2UgbmVlZCB0byBraWxsIG9mZiBIQVNfU1RSVUNUX1BBR0UgZnJvbSBv
+cHMtPmZsYWdzLAo+IGFuZCBwdXQgaXQgaW4gdGhlIGJvLgo+Cj4gVGhpcyB3aWxsIHJlbW92ZSBh
+IHBvdGVudGlhbCByYWNlIG9mIGRlcmVmZXJlbmNpbmcgdGhlIHdyb25nIG9iai0+b3BzCj4gd2l0
+aG91dCB3dyBtdXRleCBoZWxkLgo+Cj4gU2lnbmVkLW9mZi1ieTogTWFhcnRlbiBMYW5raG9yc3Qg
+PG1hYXJ0ZW4ubGFua2hvcnN0QGxpbnV4LmludGVsLmNvbT4KClJldmlld2VkLWJ5OiBUaG9tYXMg
+SGVsbHN0csO2bSA8dGhvbWFzLmhlbGxzdHJvbUBsaW51eC5pbnRlbC5jb20+CgoKX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcg
+bGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRl
+c2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
