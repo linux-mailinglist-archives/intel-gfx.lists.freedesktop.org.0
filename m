@@ -1,47 +1,52 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 00AC92A003C
-	for <lists+intel-gfx@lfdr.de>; Fri, 30 Oct 2020 09:43:59 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id CAB592A006C
+	for <lists+intel-gfx@lfdr.de>; Fri, 30 Oct 2020 09:52:16 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0565E6ED24;
-	Fri, 30 Oct 2020 08:43:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EB5226E980;
+	Fri, 30 Oct 2020 08:52:14 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7B1236ED20
- for <intel-gfx@lists.freedesktop.org>; Fri, 30 Oct 2020 08:43:55 +0000 (UTC)
-IronPort-SDR: zIhddJnHw01i2zsG1q5R50YGTpsLOSTA6rU0HsD/BZ8QitnJCukpWL4GB3C08SVc0vJXLE2aWx
- Ci0mEqXprcYQ==
-X-IronPort-AV: E=McAfee;i="6000,8403,9789"; a="148433260"
-X-IronPort-AV: E=Sophos;i="5.77,432,1596524400"; d="scan'208";a="148433260"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Oct 2020 01:43:55 -0700
-IronPort-SDR: PxT3dfPT8f/7noI0BSdIMrHCrPW9+mRA4J4YgQ7ce1KcsiyySU8eaSds6jxV2Q4fngxL141W1v
- FI1n0o9L//3w==
-X-IronPort-AV: E=Sophos;i="5.77,432,1596524400"; d="scan'208";a="527048950"
-Received: from bmurphy-mobl.ger.corp.intel.com (HELO [10.249.41.199])
- ([10.249.41.199])
- by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Oct 2020 01:43:54 -0700
-To: Matthew Brost <matthew.brost@intel.com>
-References: <20201016104444.1492028-1-maarten.lankhorst@linux.intel.com>
- <20201016104444.1492028-3-maarten.lankhorst@linux.intel.com>
- <20201020201816.GA6055@gtax-ubuntu-1910.fm.intel.com>
-From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Message-ID: <b5a7ac50-0a09-4cc3-22b5-724f8932c945@linux.intel.com>
-Date: Fri, 30 Oct 2020 09:43:51 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.4.0
+Received: from mail-oo1-xc44.google.com (mail-oo1-xc44.google.com
+ [IPv6:2607:f8b0:4864:20::c44])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9C5566E980
+ for <intel-gfx@lists.freedesktop.org>; Fri, 30 Oct 2020 08:52:13 +0000 (UTC)
+Received: by mail-oo1-xc44.google.com with SMTP id v123so1414358ooa.5
+ for <intel-gfx@lists.freedesktop.org>; Fri, 30 Oct 2020 01:52:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=sROKsWha4Hz2bAVIx/xdgtU//r/RKM3264fFYvCQuQU=;
+ b=EALtV0HMhRIcWS47jWUhaaSLc5CYpmOLAncz1BBgEc0ujy7C5BF1IOL8VWhfXAzI7r
+ KsDAEJ75yjJooXkTkVIaPWb4xeXmYFvuT4aoj6qLtFai9jbv1so7SRBGx74nswZbCIbS
+ V5LdffJSGDeJpPpy5+fxUm9T2Qna63QrVTLdw=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=sROKsWha4Hz2bAVIx/xdgtU//r/RKM3264fFYvCQuQU=;
+ b=t1XLYRXlP8uz7Xp6y9yuhILcmbIoe13uMun2kWnYKCXRVEeT5X68kQo7PN8XWRJj7z
+ N8KjT3LmdDIvT6DWUKwqZQJVyPkV2LFTPxj/tiYtPTgGYHv1Ar7k5y6WeV/8kVIL7YSm
+ sLUrVPO6M/gTcuRguvvBqhwayxYKT4DA6l4dArzEhSqbGWd0eCHJhfdn9aG9g/JeltYm
+ DMvI0d4okv8bEhQmBbhPe9o5XKcO2PJxYHlYIF4bUcfrLr1QheECPpSjkHgx37VaPibT
+ w+tbS+8bn53Sa6NXiSAVaIyYAZ5/xh2H9prYxBe52PrOVKnCZrQ0wqUDZ3RRs9twftGT
+ k4BA==
+X-Gm-Message-State: AOAM5320euL33N93vnfL/C80oEeY/VTf3L8AQ/OcUqlUYkKEmOAN+xc1
+ avFQK82BS8YqEPrLnv5ehuQZ5ZKcCtV4SB9qpcLWTw==
+X-Google-Smtp-Source: ABdhPJztwOoU7TFvMLGmA3q8p6nsC5myNMpPdKxrEMx25F3XgQTxx/9ygbvJ7W7BR79mQBzbQ2stw0sxZPPitPBaGiA=
+X-Received: by 2002:a4a:b503:: with SMTP id r3mr958264ooo.28.1604047932902;
+ Fri, 30 Oct 2020 01:52:12 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <20201020201816.GA6055@gtax-ubuntu-1910.fm.intel.com>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH v4 02/61] drm/i915: Add missing -EDEADLK
- handling to execbuf pinning
+References: <20201029101428.4058311-1-daniel.vetter@ffwll.ch>
+ <20201029132229.4068359-1-daniel.vetter@ffwll.ch>
+ <df3f5733-21b3-809c-71d7-0bd83f29ae62@ti.com>
+In-Reply-To: <df3f5733-21b3-809c-71d7-0bd83f29ae62@ti.com>
+From: Daniel Vetter <daniel.vetter@ffwll.ch>
+Date: Fri, 30 Oct 2020 09:52:01 +0100
+Message-ID: <CAKMK7uEH5dYP9-ybQ2OjS6c3Np99uEWE4QyL-x+nhLT=S7y0AA@mail.gmail.com>
+To: Tomi Valkeinen <tomi.valkeinen@ti.com>
+Subject: Re: [Intel-gfx] [PATCH] fbcon: Disable accelerated scrolling
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,109 +59,144 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: George Kennedy <george.kennedy@oracle.com>, Sam Ravnborg <sam@ravnborg.org>,
+ Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
+ Tetsuo Handa <penguin-kernel@i-love.sakura.ne.jp>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ "Gustavo A. R. Silva" <gustavoars@kernel.org>,
+ DRI Development <dri-devel@lists.freedesktop.org>,
+ Peter Rosin <peda@axentia.se>, Linus Torvalds <torvalds@linux-foundation.org>,
+ Ben Skeggs <bskeggs@redhat.com>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Nouveau Dev <nouveau@lists.freedesktop.org>,
+ Daniel Vetter <daniel.vetter@intel.com>,
+ Nathan Chancellor <natechancellor@gmail.com>,
+ Jiri Slaby <jirislaby@kernel.org>, Peilin Ye <yepeilin.cs@gmail.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Op 20-10-2020 om 22:18 schreef Matthew Brost:
-> On Fri, Oct 16, 2020 at 12:43:45PM +0200, Maarten Lankhorst wrote:
->> i915_vma_pin may fail with -EDEADLK when we start locking page tables,
->> so ensure we handle this correctly.
->>
->> Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
->> ---
->>  .../gpu/drm/i915/gem/i915_gem_execbuffer.c    | 23 +++++++++++++++----
->>  1 file changed, 18 insertions(+), 5 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
->> index a199336792fb..0f5efced0b87 100644
->> --- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
->> +++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
->> @@ -419,13 +419,14 @@ static u64 eb_pin_flags(const struct drm_i915_gem_exec_object2 *entry,
->>  	return pin_flags;
->>  }
->>  
->> -static inline bool
->> +static inline int
->>  eb_pin_vma(struct i915_execbuffer *eb,
->>  	   const struct drm_i915_gem_exec_object2 *entry,
->>  	   struct eb_vma *ev)
->>  {
->>  	struct i915_vma *vma = ev->vma;
->>  	u64 pin_flags;
->> +	int err;
->>  
->>  	if (vma->node.size)
->>  		pin_flags = vma->node.start;
->> @@ -438,16 +439,24 @@ eb_pin_vma(struct i915_execbuffer *eb,
->>  
->>  	/* Attempt to reuse the current location if available */
->>  	/* TODO: Add -EDEADLK handling here */
-> Drop the TODO?
+On Fri, Oct 30, 2020 at 9:30 AM Tomi Valkeinen <tomi.valkeinen@ti.com> wrote:
 >
->> -	if (unlikely(i915_vma_pin_ww(vma, &eb->ww, 0, 0, pin_flags))) {
->> +	err = i915_vma_pin_ww(vma, &eb->ww, 0, 0, pin_flags);
->> +	if (err == -EDEADLK)
->> +		return err;
->> +
->> +	if (unlikely(err)) {
->>  		if (entry->flags & EXEC_OBJECT_PINNED)
->>  			return false;
->>  
->>  		/* Failing that pick any _free_ space if suitable */
->> -		if (unlikely(i915_vma_pin_ww(vma, &eb->ww,
->> +		err = i915_vma_pin_ww(vma, &eb->ww,
->>  					     entry->pad_to_size,
->>  					     entry->alignment,
->>  					     eb_pin_flags(entry, ev->flags) |
->> -					     PIN_USER | PIN_NOEVICT)))
->> +					     PIN_USER | PIN_NOEVICT);
->> +		if (err == -EDEADLK)
->> +			return err;
->> +
->> +		if (unlikely(err))
->>  			return false;
-> Confusing to return a boolean 'false' while the return value of this
-> function is an int. Return '0' if that is the intent, which I believe it
-> based on how the caller handles the return. 
-
-Yeah, I think it makes more sense to change eb_pin_vma to a proper int, instead of a special one.
-
-In most places we can just propagate the error. I will respin this patch. :)
-
->>  	}
->>  
->> @@ -900,7 +909,11 @@ static int eb_validate_vmas(struct i915_execbuffer *eb)
->>  		if (err)
->>  			return err;
->>  
-> Can't say I love the triple comparison of the return values, but if you
-> need to do this I'd put all of comparison in the same clause. Just my
-> opinion.
-Neither. I think I will just special case -EDEADLK, which should be easy with the fix to eb_pin_vma I suggested above.
+> On 29/10/2020 15:22, Daniel Vetter wrote:
+> > So ever since syzbot discovered fbcon, we have solid proof that it's
+> > full of bugs. And often the solution is to just delete code and remove
+> > features, e.g.  50145474f6ef ("fbcon: remove soft scrollback code").
+> >
+> > Now the problem is that most modern-ish drivers really only treat
+> > fbcon as an dumb kernel console until userspace takes over, and Oops
+> > printer for some emergencies. Looking at drm drivers and the basic
+> > vesa/efi fbdev drivers shows that only 3 drivers support any kind of
+> > acceleration:
+> >
+> > - nouveau, seems to be enabled by default
+> > - omapdrm, when a DMM remapper exists using remapper rewriting for
+> >   y/xpanning
+> > - gma500, but that is getting deleted now for the GTT remapper trick,
+> >   and the accelerated copyarea never set the FBINFO_HWACCEL_COPYAREA
+> >   flag, so unused (and could be deleted already I think).
+> >
+> > No other driver supportes accelerated fbcon. And fbcon is the only
+> > user of this accel code (it's not exposed as uapi through ioctls),
+> > which means we could garbage collect fairly enormous amounts of code
+> > if we kill this.
+> >
+> > Plus because syzbot only runs on virtual hardware, and none of the
+> > drivers for that have acceleration, we'd remove a huge gap in testing.
+> > And there's no other even remotely comprehensive testing aside from
+> > syzbot.
+> >
+> > This patch here just disables the acceleration code by always
+> > redrawing when scrolling. The plan is that once this has been merged
+> > for well over a year in released kernels, we can start to go around
+> > and delete a lot of code.
+> >
+> > v2:
+> > - Drop a few more unused local variables, somehow I missed the
+> > compiler warnings (Sam)
+> > - Fix typo in comment (Jiri)
+> > - add a todo entry for the cleanup (Thomas)
+> >
+> > v3: Remove more unused variables (0day)
+> >
+> > Reviewed-by: Thomas Zimmermann <tzimmermann@suse.de>
+> > Reviewed-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+> > Acked-by: Sam Ravnborg <sam@ravnborg.org>
+> > Cc: Jiri Slaby <jirislaby@kernel.org>
+> > Cc: Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>
+> > Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+> > Cc: Linus Torvalds <torvalds@linux-foundation.org>
+> > Cc: Ben Skeggs <bskeggs@redhat.com>
+> > Cc: nouveau@lists.freedesktop.org
+> > Cc: Tomi Valkeinen <tomi.valkeinen@ti.com>
+> > Cc: Daniel Vetter <daniel.vetter@ffwll.ch>
+> > Cc: Jiri Slaby <jirislaby@kernel.org>
+> > Cc: "Gustavo A. R. Silva" <gustavoars@kernel.org>
+> > Cc: Tetsuo Handa <penguin-kernel@I-love.SAKURA.ne.jp>
+> > Cc: Peilin Ye <yepeilin.cs@gmail.com>
+> > Cc: George Kennedy <george.kennedy@oracle.com>
+> > Cc: Nathan Chancellor <natechancellor@gmail.com>
+> > Cc: Peter Rosin <peda@axentia.se>
+> > Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
+> > ---
+> >  Documentation/gpu/todo.rst       | 18 +++++++++++++
+> >  drivers/video/fbdev/core/fbcon.c | 45 ++++++--------------------------
+> >  2 files changed, 26 insertions(+), 37 deletions(-)
+> >
+> > diff --git a/Documentation/gpu/todo.rst b/Documentation/gpu/todo.rst
+> > index 6b224ef14455..bec99341a904 100644
+> > --- a/Documentation/gpu/todo.rst
+> > +++ b/Documentation/gpu/todo.rst
+> > @@ -277,6 +277,24 @@ Contact: Daniel Vetter, Noralf Tronnes
+> >
+> >  Level: Advanced
+> >
+> > +Garbage collect fbdev scrolling acceleration
+> > +--------------------------------------------
+> > +
+> > +Scroll acceleration is disabled in fbcon by hard-wiring p->scrollmode =
+> > +SCROLL_REDRAW. There's a ton of code this will allow us to remove:
+> > +- lots of code in fbcon.c
+> > +- a bunch of the hooks in fbcon_ops, maybe the remaining hooks could be called
+> > +  directly instead of the function table (with a switch on p->rotate)
+> > +- fb_copyarea is unused after this, and can be deleted from all drivers
+> > +
+> > +Note that not all acceleration code can be deleted, since clearing and cursor
+> > +support is still accelerated, which might be good candidates for further
+> > +deletion projects.
 >
-> Matt
+> Apparently omapdrm's accelerated panning has been broken for some time, and no one has noticed. It does:
 >
->> -		if (eb_pin_vma(eb, entry, ev)) {
->> +		err = eb_pin_vma(eb, entry, ev);
->> +		if (err < 0)
->> +			return err;
->> +
->> +		if (err > 0) {
->>  			if (entry->offset != vma->node.start) {
->>  				entry->offset = vma->node.start | UPDATE;
->>  				eb->args->flags |= __EXEC_HAS_RELOC;
->> -- 
->> 2.28.0
->>
->> _______________________________________________
->> Intel-gfx mailing list
->> Intel-gfx@lists.freedesktop.org
->> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+> strcmp(fbi->fix.id, MODULE_NAME), which is a comparison of omapdrmdrmfb == omapdrm and always fails.
+>
+> Fixing that, and applying this patch, things work fine (unaccelerated, of course). I did notice a
+> single call to omap_fbdev_pan_display() when loading the drivers. This comes from fbcon_switch ->
+> bit_update_start -> fb_pan_display. Maybe this is from the clearing you mention above?
+
+The accel left is through fb_fillrect and fb_imageblt, plus there's
+still fb_cursor (but not much use of that even in fbdev drivers).
+
+I'm honestly not sure why there's the pan call in there, maybe just to
+reset to default state in case an fbdev chardev user moved the origin
+around. Aside from the accel code there's a call to this in
+fbcon_switch and fbcon_modechanged, so I think it's just that.
+-Daniel
+>
+> Reviewed-by: Tomi Valkeinen <tomi.valkeinen@ti.com>
+>
+>  Tomi
+>
+> --
+> Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki.
+> Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
 
 
+
+-- 
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
