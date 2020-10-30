@@ -1,31 +1,45 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 657462A07B3
-	for <lists+intel-gfx@lfdr.de>; Fri, 30 Oct 2020 15:19:52 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 682D12A0829
+	for <lists+intel-gfx@lfdr.de>; Fri, 30 Oct 2020 15:44:00 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AFAAC6E9C4;
-	Fri, 30 Oct 2020 14:19:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4D0406EDE9;
+	Fri, 30 Oct 2020 14:43:57 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 975D76E9C4;
- Fri, 30 Oct 2020 14:19:49 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 22845286-1500050 for multiple; Fri, 30 Oct 2020 14:19:46 +0000
-MIME-Version: 1.0
-In-Reply-To: <20201022194256.30978-1-ville.syrjala@linux.intel.com>
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E38156EDF1;
+ Fri, 30 Oct 2020 14:43:55 +0000 (UTC)
+IronPort-SDR: wkjxUDULoM9laG/ocQYCN3zw0JEixZaCl//nfywFsJA/3D1s2o4gG0X/TeJE6D2V34nQF5FguB
+ aLWCg/OnUGUQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9789"; a="165117825"
+X-IronPort-AV: E=Sophos;i="5.77,433,1596524400"; d="scan'208";a="165117825"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Oct 2020 07:43:52 -0700
+IronPort-SDR: 3sNntcel3Mt5MdolL+3ZJfoZkbkDPOMwyJKTBvktwKLoWskwvT/ejKmqeo6P+0xe+PIdt4ohQs
+ mXOnfaPGEUjw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.77,433,1596524400"; d="scan'208";a="361866344"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
+ by FMSMGA003.fm.intel.com with SMTP; 30 Oct 2020 07:43:47 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Fri, 30 Oct 2020 16:43:46 +0200
+Date: Fri, 30 Oct 2020 16:43:46 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Chris Wilson <chris@chris-wilson.co.uk>
+Message-ID: <20201030144346.GJ6112@intel.com>
 References: <20201022194256.30978-1-ville.syrjala@linux.intel.com>
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>,
- dri-devel@lists.freedesktop.org
-Date: Fri, 30 Oct 2020 14:19:45 +0000
-Message-ID: <160406758530.15070.9622609556730885347@build.alporthouse.com>
-User-Agent: alot/0.9
+ <160406758530.15070.9622609556730885347@build.alporthouse.com>
+MIME-Version: 1.0
+Content-Disposition: inline
+In-Reply-To: <160406758530.15070.9622609556730885347@build.alporthouse.com>
+X-Patchwork-Hint: comment
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Subject: Re: [Intel-gfx] [PATCH] drm/modes: Switch to 64bit maths to avoid
  integer overflow
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -41,44 +55,83 @@ List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: intel-gfx@lists.freedesktop.org, Randy Dunlap <rdunlap@infradead.org>,
- stable@vger.kernel.org
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+ stable@vger.kernel.org, dri-devel@lists.freedesktop.org
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-UXVvdGluZyBWaWxsZSBTeXJqYWxhICgyMDIwLTEwLTIyIDIwOjQyOjU2KQo+IEZyb206IFZpbGxl
-IFN5cmrDpGzDpCA8dmlsbGUuc3lyamFsYUBsaW51eC5pbnRlbC5jb20+Cj4gCj4gVGhlIG5ldyA+
-OGsgQ0VBIG1vZGVzIGhhdmUgZG90Y2xvY2tzIHJlYWNoaW5nIDUuOTQgR0h6LCB3aGljaAo+IG1l
-YW5zIG91ciBjbG9jayoxMDAwIHdpbGwgbm93IG92ZXJmbG93IHRoZSAzMmJpdCB1bnNpZ25lZAo+
-IGludGVnZXIuIFN3aXRjaCB0byA2NGJpdCBtYXRocyB0byBhdm9pZCBpdC4KPiAKPiBDYzogc3Rh
-YmxlQHZnZXIua2VybmVsLm9yZwo+IFJlcG9ydGVkLWJ5OiBSYW5keSBEdW5sYXAgPHJkdW5sYXBA
-aW5mcmFkZWFkLm9yZz4KPiBTaWduZWQtb2ZmLWJ5OiBWaWxsZSBTeXJqw6Rsw6QgPHZpbGxlLnN5
-cmphbGFAbGludXguaW50ZWwuY29tPgo+IC0tLQo+IEFuIGludGVyZXN0aW5nIHF1ZXN0aW9uIGhv
-dyBtYW55IG90aGVyIHBsYWNlIG1pZ2h0IHN1ZmZlciBmcm9tIHNpbWlsYXIKPiBvdmVyZmxvd3Mu
-IEkgdGhpbmsgaTkxNSBzaG91bGQgYmUgbW9zdGx5IE9LLiBUaGUgb25lIHBsYWNlIEkga25vdyB3
-ZSB1c2UKPiBIeiBpbnN0ZWFkIGtIeiBpcyB0aGUgaHN3IERQTEwgY29kZSwgd2hpY2ggSSB3b3Vs
-ZCBwcmVmZXIgd2UgYWxzbyBjaGFuZ2UKPiB0byB1c2Uga0h6LiBUaGUgb3RoZXIgY29uY2VybiBp
-cyB3aGV0aGVyIHdlIGhhdmUgYW55IHBvdGVudGlhbCBvdmVyZmxvd3MKPiBiZWZvcmUgd2UgY2hl
-Y2sgdGhpcyBhZ2FpbnN0IHRoZSBwbGF0Zm9ybSdzIG1heCBkb3RjbG9jay4KPiAKPiBJIGRvIGhh
-dmUgdGhpcyB1bnJldmlld2VkIGlndCBzZXJpZXMgCj4gaHR0cHM6Ly9wYXRjaHdvcmsuZnJlZWRl
-c2t0b3Aub3JnL3Nlcmllcy82OTUzMS8gd2hpY2ggZXh0ZW5kcyB0aGUKPiBjdXJyZW50IHRlc3Rp
-bmcgd2l0aCBzb21lIG90aGVyIGZvcm1zIG9mIGludmFsaWQgbW9kZXMuIENvdWxkIHByb2JhYmx5
-Cj4gZXh0ZW5kIHRoYXQgd2l0aCBhIG1vZGUuY2xvY2s9SU5UX01BWCB0ZXN0IHRvIHNlZSBpZiBh
-bnl0aGluZyBlbHNlIG1pZ2h0Cj4gdHJpcCB1cC4KPiAKPiBObyBpZGVhIGFib3V0IG90aGVyIGRy
-aXZlcnMuCj4gCj4gIGRyaXZlcnMvZ3B1L2RybS9kcm1fbW9kZXMuYyB8IDQgKystLQo+ICAxIGZp
-bGUgY2hhbmdlZCwgMiBpbnNlcnRpb25zKCspLCAyIGRlbGV0aW9ucygtKQo+IAo+IGRpZmYgLS1n
-aXQgYS9kcml2ZXJzL2dwdS9kcm0vZHJtX21vZGVzLmMgYi9kcml2ZXJzL2dwdS9kcm0vZHJtX21v
-ZGVzLmMKPiBpbmRleCA1MDFiNGZlNTVhM2QuLjUxMWNkZTVjN2ZhNiAxMDA2NDQKPiAtLS0gYS9k
-cml2ZXJzL2dwdS9kcm0vZHJtX21vZGVzLmMKPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vZHJtX21v
-ZGVzLmMKPiBAQCAtNzYyLDcgKzc2Miw3IEBAIGludCBkcm1fbW9kZV92cmVmcmVzaChjb25zdCBz
-dHJ1Y3QgZHJtX2Rpc3BsYXlfbW9kZSAqbW9kZSkKPiAgICAgICAgIGlmIChtb2RlLT5odG90YWwg
-PT0gMCB8fCBtb2RlLT52dG90YWwgPT0gMCkKPiAgICAgICAgICAgICAgICAgcmV0dXJuIDA7Cj4g
-IAo+IC0gICAgICAgbnVtID0gbW9kZS0+Y2xvY2sgKiAxMDAwOwo+ICsgICAgICAgbnVtID0gbW9k
-ZS0+Y2xvY2s7Cj4gICAgICAgICBkZW4gPSBtb2RlLT5odG90YWwgKiBtb2RlLT52dG90YWw7CgpZ
-b3UgZG9uJ3Qgd2FudCB0byBwcm9tb3RlIGRlbiB0byB1NjQgd2hpbGUgeW91IGFyZSBoZXJlPyBX
-ZSBhcmUgYXQKOGt4NGssIHRocm93IGluIGRibHNjYW4gYW5kIHNvbWUgdnNjYW4sIGFuZCB3ZSBj
-b3VsZCBzb29uIGhhdmUgd2Fja3kKcmVmcmVzaCByYXRlcy4KLUNocmlzCl9fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QK
-SW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9w
-Lm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
+On Fri, Oct 30, 2020 at 02:19:45PM +0000, Chris Wilson wrote:
+> Quoting Ville Syrjala (2020-10-22 20:42:56)
+> > From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> > =
+
+> > The new >8k CEA modes have dotclocks reaching 5.94 GHz, which
+> > means our clock*1000 will now overflow the 32bit unsigned
+> > integer. Switch to 64bit maths to avoid it.
+> > =
+
+> > Cc: stable@vger.kernel.org
+> > Reported-by: Randy Dunlap <rdunlap@infradead.org>
+> > Signed-off-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> > ---
+> > An interesting question how many other place might suffer from similar
+> > overflows. I think i915 should be mostly OK. The one place I know we use
+> > Hz instead kHz is the hsw DPLL code, which I would prefer we also change
+> > to use kHz. The other concern is whether we have any potential overflows
+> > before we check this against the platform's max dotclock.
+> > =
+
+> > I do have this unreviewed igt series =
+
+> > https://patchwork.freedesktop.org/series/69531/ which extends the
+> > current testing with some other forms of invalid modes. Could probably
+> > extend that with a mode.clock=3DINT_MAX test to see if anything else mi=
+ght
+> > trip up.
+> > =
+
+> > No idea about other drivers.
+> > =
+
+> >  drivers/gpu/drm/drm_modes.c | 4 ++--
+> >  1 file changed, 2 insertions(+), 2 deletions(-)
+> > =
+
+> > diff --git a/drivers/gpu/drm/drm_modes.c b/drivers/gpu/drm/drm_modes.c
+> > index 501b4fe55a3d..511cde5c7fa6 100644
+> > --- a/drivers/gpu/drm/drm_modes.c
+> > +++ b/drivers/gpu/drm/drm_modes.c
+> > @@ -762,7 +762,7 @@ int drm_mode_vrefresh(const struct drm_display_mode=
+ *mode)
+> >         if (mode->htotal =3D=3D 0 || mode->vtotal =3D=3D 0)
+> >                 return 0;
+> >  =
+
+> > -       num =3D mode->clock * 1000;
+> > +       num =3D mode->clock;
+> >         den =3D mode->htotal * mode->vtotal;
+> =
+
+> You don't want to promote den to u64 while you are here? We are at
+> 8kx4k, throw in dblscan and some vscan, and we could soon have wacky
+> refresh rates.
+
+i915 has 16kx8k hard limit currently, and we reject vscan>1
+(wish we could also reject DBLSCAN). So we should not hit
+that, at least not yet. Other drivers might not be so strict
+I guess.
+
+I have a nagging feeling that other places are in danger of
+overflows if we try to push the current limits significantly.
+But I guess no real harm in going full 64bit here, except
+maybe making it a bit slower.
+
+-- =
+
+Ville Syrj=E4l=E4
+Intel
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
