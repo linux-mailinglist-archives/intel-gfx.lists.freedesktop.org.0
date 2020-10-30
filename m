@@ -2,62 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2879D2A00AC
-	for <lists+intel-gfx@lfdr.de>; Fri, 30 Oct 2020 10:05:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0C50B2A0133
+	for <lists+intel-gfx@lfdr.de>; Fri, 30 Oct 2020 10:22:48 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 77D146ED18;
-	Fri, 30 Oct 2020 09:04:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EBD9D6ED16;
+	Fri, 30 Oct 2020 09:22:44 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from ste-pvt-msa2.bahnhof.se (ste-pvt-msa2.bahnhof.se
- [213.80.101.71])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7911B6ED18
- for <intel-gfx@lists.freedesktop.org>; Fri, 30 Oct 2020 09:04:57 +0000 (UTC)
+Received: from ste-pvt-msa1.bahnhof.se (ste-pvt-msa1.bahnhof.se
+ [213.80.101.70])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E2A006ED16
+ for <intel-gfx@lists.freedesktop.org>; Fri, 30 Oct 2020 09:22:43 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by ste-pvt-msa2.bahnhof.se (Postfix) with ESMTP id E58F43F766;
- Fri, 30 Oct 2020 10:04:35 +0100 (CET)
-Authentication-Results: ste-pvt-msa2.bahnhof.se; dkim=pass (1024-bit key;
- unprotected) header.d=shipmail.org header.i=@shipmail.org header.b=qkqA+0QZ; 
+ by ste-pvt-msa1.bahnhof.se (Postfix) with ESMTP id 137DE3FA37;
+ Fri, 30 Oct 2020 10:22:42 +0100 (CET)
+Authentication-Results: ste-pvt-msa1.bahnhof.se; dkim=pass (1024-bit key;
+ unprotected) header.d=shipmail.org header.i=@shipmail.org header.b=FsgH5jRG; 
  dkim-atps=neutral
 X-Virus-Scanned: Debian amavisd-new at bahnhof.se
 X-Spam-Flag: NO
-X-Spam-Score: -2.36
+X-Spam-Score: -3.02
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.36 tagged_above=-999 required=6.31
+X-Spam-Status: No, score=-3.02 tagged_above=-999 required=6.31
  tests=[BAYES_00=-1.9, DKIM_SIGNED=0.1, DKIM_VALID=-0.1,
- DKIM_VALID_AU=-0.1, DKIM_VALID_EF=-0.1, NICE_REPLY_A=-0.261,
+ DKIM_VALID_AU=-0.1, DKIM_VALID_EF=-0.1, NICE_REPLY_A=-0.921,
  URIBL_BLOCKED=0.001] autolearn=ham autolearn_force=no
-Authentication-Results: ste-ftg-msa2.bahnhof.se (amavisd-new);
- dkim=pass (1024-bit key) header.d=shipmail.org
-Received: from ste-pvt-msa2.bahnhof.se ([127.0.0.1])
- by localhost (ste-ftg-msa2.bahnhof.se [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id 8Dm8l1ry2rYB; Fri, 30 Oct 2020 10:04:35 +0100 (CET)
-Received: by ste-pvt-msa2.bahnhof.se (Postfix) with ESMTPA id 9D22F3F762;
- Fri, 30 Oct 2020 10:04:33 +0100 (CET)
+Received: from ste-pvt-msa1.bahnhof.se ([127.0.0.1])
+ by localhost (ste-pvt-msa1.bahnhof.se [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id sPuFmKdkaJpP; Fri, 30 Oct 2020 10:22:41 +0100 (CET)
+Received: by ste-pvt-msa1.bahnhof.se (Postfix) with ESMTPA id A60A13F2E2;
+ Fri, 30 Oct 2020 10:22:39 +0100 (CET)
 Received: from Win10-45-1tb161.SSPE.ch.intel.com (jfdmzpr06-ext.jf.intel.com
  [134.134.137.75])
- by mail1.shipmail.org (Postfix) with ESMTPSA id 7A90D3605DC;
- Fri, 30 Oct 2020 10:04:51 +0100 (CET)
+ by mail1.shipmail.org (Postfix) with ESMTPSA id 5C68B3605DC;
+ Fri, 30 Oct 2020 10:22:38 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=shipmail.org; s=mail;
- t=1604048692; bh=inX60YaVI5zR60KbKdp68YD6TdtAjFT45yJYEXg5eV0=;
+ t=1604049759; bh=K2RPeBV2Df2Nme6t/V3ixztycgVlBaDjb22EWJ8DQ18=;
  h=Subject:To:References:From:Date:In-Reply-To:From;
- b=qkqA+0QZF7IyhihGSkig2tYHOqW3+35YQUbnkXJ7nNB5WpG2TvPdAq/sHhnmrqtdG
- icNEwh3rHo2FUBe/u7aNwU1XWh3OKwHrl74QNoY8eGZQunbv3Qpj9Er9nr3S3xmg1v
- QGLFIQ34vk0OwSYiHKm12esTqf7A8GsyK9kVKLZE=
+ b=FsgH5jRGLfBtB3Fu3Yp89FIt0HuxFsEkfDJfuGXxTOXBZ0fZ8cyyQi32JYSh42ql/
+ yelM0e61bB+e460N8WIRknSQWzllplizuyyvxBYO9zvmUBBPjnwOPwsSyHiM1Uhreh
+ ehCfckhjabG5qsyzxxOgmkS3lJNVmg2pr7IReV88=
 To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
  intel-gfx@lists.freedesktop.org
 References: <20201016104444.1492028-1-maarten.lankhorst@linux.intel.com>
- <20201016104444.1492028-13-maarten.lankhorst@linux.intel.com>
+ <20201016104444.1492028-14-maarten.lankhorst@linux.intel.com>
 From: =?UTF-8?Q?Thomas_Hellstr=c3=b6m_=28Intel=29?= <thomas_os@shipmail.org>
-Message-ID: <864332ef-6dff-4533-c2d9-cc3b261626bd@shipmail.org>
-Date: Fri, 30 Oct 2020 10:04:46 +0100
+Message-ID: <b8793d0e-6fee-2055-7447-3073b374666d@shipmail.org>
+Date: Fri, 30 Oct 2020 10:22:33 +0100
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
  Thunderbird/78.3.1
 MIME-Version: 1.0
-In-Reply-To: <20201016104444.1492028-13-maarten.lankhorst@linux.intel.com>
+In-Reply-To: <20201016104444.1492028-14-maarten.lankhorst@linux.intel.com>
 Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH v4 12/61] drm/i915: No longer allow
- exporting userptr through dma-buf
+Subject: Re: [Intel-gfx] [PATCH v4 13/61] drm/i915: Reject more ioctls for
+ userptr
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,18 +68,23 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Ck9uIDEwLzE2LzIwIDEyOjQzIFBNLCBNYWFydGVuIExhbmtob3JzdCB3cm90ZToKPiBJdCBkb2Vz
-bid0IG1ha2Ugc2Vuc2UgdG8gZXhwb3J0IGEgbWVtb3J5IGFkZHJlc3MsIHdlIHdpbGwgcHJldmVu
-dAo+IGFsbG93aW5nIGFjY2VzcyB0aGlzIHdheSB0byBkaWZmZXJlbnQgYWRkcmVzcyBzcGFjZXMg
-d2hlbiB3ZQo+IHJld29yayB1c2VycHRyIGhhbmRsaW5nLCBzbyBiZXN0IHRvIGV4cGxpY2l0bHkg
-ZGlzYWJsZSBpdC4KPgo+IFNpZ25lZC1vZmYtYnk6IE1hYXJ0ZW4gTGFua2hvcnN0IDxtYWFydGVu
-Lmxhbmtob3JzdEBsaW51eC5pbnRlbC5jb20+CgpSZXZpZXdlZC1ieTogVGhvbWFzIEhlbGxzdHLD
-tm0gPHRob21hcy5oZWxsc3Ryb21AbGludXguaW50ZWwuY29tPgoKCl9fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50
-ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9y
-Zy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
+
+On 10/16/20 12:43 PM, Maarten Lankhorst wrote:
+> Allow set_domain to fail silently, waiting for idle should be good enough.
+> set_tiling and set_caching are rejected with -ENXIO, there's no valid reason
+> to allow it.
+
+Please list all affected ioctls affected by the IS_PROXY flag. We also 
+need userspace maintainer acks for this.
+
+
+> Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
