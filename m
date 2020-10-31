@@ -1,120 +1,93 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B0D142A1330
-	for <lists+intel-gfx@lfdr.de>; Sat, 31 Oct 2020 03:55:42 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id B41BB2A1372
+	for <lists+intel-gfx@lfdr.de>; Sat, 31 Oct 2020 06:09:35 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1AAAF6E0D2;
-	Sat, 31 Oct 2020 02:55:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6E0086E0FD;
+	Sat, 31 Oct 2020 05:09:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 594D46E0D2
- for <intel-gfx@lists.freedesktop.org>; Sat, 31 Oct 2020 02:55:40 +0000 (UTC)
-IronPort-SDR: yZqkYyFWnuWmJj+HyiTTnXtQ6UpkSoa1Jjxz4llVj5kDypglwUGDlAK9yBbsgSAwMbLddZsY+o
- Yv6SG4lMYqSA==
-X-IronPort-AV: E=McAfee;i="6000,8403,9790"; a="168823758"
-X-IronPort-AV: E=Sophos;i="5.77,435,1596524400"; d="scan'208";a="168823758"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Oct 2020 19:55:39 -0700
-IronPort-SDR: Ea/G9zWtYN8+wftj4HONojkkg6cQ7O0Si/+WFdAd4FefOSv7+IMgWJkPuhDncnIU60RLxEY3Op
- LHNl4pcf5FZA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.77,435,1596524400"; d="scan'208";a="356774673"
-Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
- by fmsmga002.fm.intel.com with ESMTP; 30 Oct 2020 19:55:39 -0700
-Received: from orsmsx608.amr.corp.intel.com (10.22.229.21) by
- ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1713.5; Fri, 30 Oct 2020 19:55:39 -0700
-Received: from orsmsx601.amr.corp.intel.com (10.22.229.14) by
- ORSMSX608.amr.corp.intel.com (10.22.229.21) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1713.5; Fri, 30 Oct 2020 19:55:38 -0700
-Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
- orsmsx601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1713.5
- via Frontend Transport; Fri, 30 Oct 2020 19:55:38 -0700
-Received: from NAM04-CO1-obe.outbound.protection.outlook.com (104.47.45.58) by
- edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.1713.5; Fri, 30 Oct 2020 19:55:38 -0700
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam12on2058.outbound.protection.outlook.com [40.107.237.58])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 29E406E0FD;
+ Sat, 31 Oct 2020 05:09:31 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=N3vrAsdOBycnVff4W19Ju8hC4VENTmu/rq9REEDB/D/dGmiLJJA6d4AJ1Avg/UwhigknldCzrj9dvV4iIksc/0l9O/g0+rNU9TOQUPgVuOAq/18HIyjArNUfs1unTp9Tluui9hH5wU9UnLRUnjxKY8cjGmZvzA93ADpMe4837cK/CTFDwyr9oRwv3jImj1qjuMHQf45PPp32NaenJc0MSKM1L2/LY0PUCzBnZLn3RPOZMfjJYuTl51xHNIyvJcDI6MWHR8M4sxlKKSpymmECddkKyYj8c76RxZd8ihikG5t8t4bH2FrBhwovG6x1zPuR1ihiC9q2UOfdbLuZBauAwg==
+ b=MCcObwhQkdHNXjKz11B4UwdFzzrqwnqLMHAhikwBJggDg6xB++O+xLvkvaTffB0i0AmFvuHQg4VPLVjXcdGT/o0BH8krm2oDuQ67ZaUKuYO7XUHOH98ZANRkJ4WNkHpYe5v/AidOxLAyyaf+noStGAOPxImzFhORUg7cIV5FVIBwGXKd67EWjsgTQh0ik0i8vhAsJQcKGYOqiTDGXVgAxl0qfCoWo2p0y8FEDVnl3GldPb3XCjLWaOlZkkk2JlXKHNBenVOcwCwtUgwfbVh0lWavghE6d0ZwNgRc4vXFGAMnnmZI1jLpvr/+N8x1T7SrzezQYSOgmIzeg6SVvZ1TDw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=rSHW7tjb4RZ8pGHylkywcxCpYqFbqibVmOfzAhRHJFM=;
- b=dGXphDidXhaH5rW4XptFlPmvxHA1ZRhnsGV7trFav87fpt98DzPLKVvQYHVN6l8vkBu8EGMc7aRtP/cNiZGNHKtuW+c+kpyPz32M/E7GTZYZ57ajNVtZov5s/UtE9uxBKlwig/kHj4x3aYGBq17nb0CKFUvpgWaN4QT4kZgAxwaFLZrIk10NgaBQUamCHXTB50CyGxwO6VBFhGtr4mc6QnS7KxxZjwl0lF/sxKERJV9Ek1vv4iKLDxDzb2MldHiNDMY4bkQ8FgVBgaWcOaas2J31mmriWI9gRo5Q99e9/Xou0lw1GMQX7JRKFU5jhmHDNYTXk9Qfu1AnwuaFfW0UlQ==
+ bh=UlmwZQmqjIOZCU9QxVh0jNM4dQjOnt3nYkwxx9OEYV0=;
+ b=g0ZqTbV50EK78hTmdts2KEmi88EaFUZOjBXTh73Fd3JSjma5Dk1cBElVuEu9k/W099jvbR651DOdytUNzNTS86YphJnqPJCkJqZOPgf/QOvjUzWD9mK+Dd8XmGgSX0WXZ9vDcsRs/TRtCEkHZjzA5LwWoTy9066IxWG4fbQKVipnw5yt2DoYxLE4DMHrJdcFPQP+JpQjh5IcGgwLfV2TcOVpXtpqRvb/L86geX2Fhtcx6y/4zIxLnCIZ1O19HIFA/BxXsCS/3HDAeyCDT49JMDEengg9m9dv4dKk/BmGKD4VX/2qTXmfE1odnZ3R/1f6xjJeTaVJRI27nQzmfzHY/A==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=intel.onmicrosoft.com; 
- s=selector2-intel-onmicrosoft-com;
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=rSHW7tjb4RZ8pGHylkywcxCpYqFbqibVmOfzAhRHJFM=;
- b=mDk2q8ZcmvLppuqQMs/3F9w150E8wnLgn5dY/q9AYuKGgfPwRekOnUIjW3HGwRoC9rV7tJY8hNqlt/sJs/O+TJ3MwGQJFRz4ywzglhI73kIrxFEfyiXBBZEIM/LnSYrDOWb0RPmmizCpjfyr5yHY1n3VYNhtsmRhG0ewfnwT4AA=
-Received: from BY5PR11MB4307.namprd11.prod.outlook.com (2603:10b6:a03:1bd::27)
- by SJ0PR11MB5165.namprd11.prod.outlook.com (2603:10b6:a03:2ad::16)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3499.18; Sat, 31 Oct
- 2020 02:55:35 +0000
-Received: from BY5PR11MB4307.namprd11.prod.outlook.com
- ([fe80::f5ac:283:9981:823a]) by BY5PR11MB4307.namprd11.prod.outlook.com
- ([fe80::f5ac:283:9981:823a%7]) with mapi id 15.20.3477.028; Sat, 31 Oct 2020
- 02:55:35 +0000
-From: "Lee, Shawn C" <shawn.c.lee@intel.com>
-To: "Roper, Matthew D" <matthew.d.roper@intel.com>
-Thread-Topic: [PATCH v2] drm/i915/rkl: new rkl ddc map for different PCH
-Thread-Index: AQHWrsHvNvOEGcYAYEeYF5tqIJuFZqmwaJsAgACa14A=
-Date: Sat, 31 Oct 2020 02:55:35 +0000
-Message-ID: <BY5PR11MB43074CA0CF93E3C6608FC83CA3120@BY5PR11MB4307.namprd11.prod.outlook.com>
-References: <20201028144312.12520-1-shawn.c.lee@intel.com>
- <20201030134137.30867-1-shawn.c.lee@intel.com>
- <20201030173530.GO627052@mdroper-desk1.amr.corp.intel.com>
-In-Reply-To: <20201030173530.GO627052@mdroper-desk1.amr.corp.intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-reaction: no-action
-dlp-version: 11.5.1.3
-dlp-product: dlpe-windows
-authentication-results: intel.com; dkim=none (message not signed)
- header.d=none;intel.com; dmarc=none action=none header.from=intel.com;
-x-originating-ip: [1.169.150.250]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: ec742118-77d2-4e94-17ce-08d87d4870a8
-x-ms-traffictypediagnostic: SJ0PR11MB5165:
-x-ld-processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <SJ0PR11MB516518BDDA89259C54D66569A3120@SJ0PR11MB5165.namprd11.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:10000;
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: PBFPeYPjhGDgxy4FFlqSzIGIVfj3DZyoQfUdqduNnVSrWJdjj1ctg/x4afN1utBNoUuzvG/c70eA3yFWYrPsKOPAK50H4W6VTlyaijBI1YGPRoYVzhk0BuemhMRMULwS50S5qHAcMAPw3K90WCSQdUDMr6FFMy4+fQR+VZYriJv99y5Rl1ZM3BxVQTQlhkRyVImOZsaCMEGeZ25JjtJK6osqDiVDdMIaDz+gFAQfm1g+hXzdSLz1pDhpV95efqworxYQfgjcOk0GySmPwaG63q5N84sMlLEeCTkzS3Yzh97FuqmXzBqt73H7EbshjJdjHgNYCM1S7CLZ3oi7UygiVJYVJc2EJS2bqkdWX+D1nudXkOzUWUDGv/vXZtIKhGqbcjRS57xIy2Xy+M5E9MYRMH7dAdqQ/msy97QNjYYozOg=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BY5PR11MB4307.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(4636009)(136003)(396003)(376002)(39860400002)(346002)(366004)(66476007)(5660300002)(52536014)(71200400001)(66446008)(64756008)(54906003)(86362001)(26005)(66946007)(83380400001)(76116006)(66556008)(33656002)(6506007)(9686003)(186003)(8796002)(8936002)(2906002)(316002)(478600001)(966005)(6636002)(55016002)(4326008)(8676002)(6862004)(7696005)(226253002);
- DIR:OUT; SFP:1102; 
-x-ms-exchange-antispam-messagedata: 3Z13D31zyKLWikG5b+XmS4z0syktmjl5sre/JLM3ava7zxplxJpyRMrH1ij8rO10xQpvM8ysRP3ugo+xzjvleqi4pJci1edsMsU9k/YWNpcZSXUeG0fZTsKXbk0I78JwUWczbTqvCsWuU0aC41bvttQnsE/F2QLwfi7tuIWfi31Q/lPLvpDvzZXmZDbdfOQ+nM2sMIk1ubEG0T9/gPzbKGCdyjcPUymvAaSicOvq2vZlfPhxq53XXdbdrokJ7jHB7ny7N+gN+LKhJYFMzayPh94Um2TGAKugHONp3hfX+ZhtE3neY5btKcyxjRMJOqg9vgTkXpC4JfR8FPfMDF5prq9JZU0tr7rv+3p6whGRRATHL9ffMkgh/BvVJTyTv+h5LdpQXKmRftEriYd1Na73XgAcAj8ubIdt0emnQEg++d3WbaY4L7VD/Ind9elF/2b4Fqrx2EHA2uqOkqMRe6hVccLZvHtqvfDPqjhhci30F1gzC782MhmeOpY72pC5ISc0r5AV4313NKWgQWAcy89tII2dj3eGjcTbPzPVJXeAWNoowZyeaDyJjLp9AFOYqYprkTwtp7Z0hLFnpd5wmK0zV1bHuSvCBJeApYhlWu9dqeROFPpkwwSFnQV5Z1iGtMQBpeNO/qTTYJs55/rS6l59cA==
+ bh=UlmwZQmqjIOZCU9QxVh0jNM4dQjOnt3nYkwxx9OEYV0=;
+ b=oYHjiakTNK8gvB+4Zjkc+Av91Pr13e+xJH/0DANcVINoI7Z/8a0hG4s/SmORntaKDG6SvMplERVb5CPwxKpUvJQqZaGArmXfivflFC73Xvm9Hbuw4xDWwI6Fe0QDFhqWFtWqtC6hA3Y6JfaS+CjPBH8532JtaSpWiAlFmrCA0vs=
+Authentication-Results: intel.com; dkim=none (message not signed)
+ header.d=none;intel.com; dmarc=none action=none header.from=amd.com;
+Received: from DM6PR12MB3962.namprd12.prod.outlook.com (2603:10b6:5:1ce::21)
+ by DM5PR12MB1356.namprd12.prod.outlook.com (2603:10b6:3:74::18) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3499.29; Sat, 31 Oct
+ 2020 05:09:24 +0000
+Received: from DM6PR12MB3962.namprd12.prod.outlook.com
+ ([fe80::935:a67:59f8:7067]) by DM6PR12MB3962.namprd12.prod.outlook.com
+ ([fe80::935:a67:59f8:7067%7]) with mapi id 15.20.3499.028; Sat, 31 Oct 2020
+ 05:09:24 +0000
+To: Daniel Vetter <daniel.vetter@ffwll.ch>, "Liu, Monk" <Monk.Liu@amd.com>
+References: <20201030101104.2503-1-daniel.vetter@ffwll.ch>
+ <20201030101104.2503-3-daniel.vetter@ffwll.ch>
+ <DM5PR12MB1708CC019EE615AA6B3D8A0184150@DM5PR12MB1708.namprd12.prod.outlook.com>
+ <CAKMK7uGjiVVemSHUBCJoeYfkY42Hegfz6gikkrYp_nxYCF4FUA@mail.gmail.com>
+From: Luben Tuikov <luben.tuikov@amd.com>
+Message-ID: <f4c6da45-35c4-572f-46ed-9dd6aaa7d4a6@amd.com>
+Date: Sat, 31 Oct 2020 01:09:20 -0400
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Thunderbird/78.4.0
+In-Reply-To: <CAKMK7uGjiVVemSHUBCJoeYfkY42Hegfz6gikkrYp_nxYCF4FUA@mail.gmail.com>
+Content-Language: en-CA
+X-Originating-IP: [165.204.54.211]
+X-ClientProxiedBy: YTBPR01CA0017.CANPRD01.PROD.OUTLOOK.COM
+ (2603:10b6:b01:14::30) To DM6PR12MB3962.namprd12.prod.outlook.com
+ (2603:10b6:5:1ce::21)
 MIME-Version: 1.0
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from [10.252.35.64] (165.204.54.211) by
+ YTBPR01CA0017.CANPRD01.PROD.OUTLOOK.COM (2603:10b6:b01:14::30) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.3499.18 via Frontend Transport; Sat, 31 Oct 2020 05:09:22 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-HT: Tenant
+X-MS-Office365-Filtering-Correlation-Id: ef9de376-3254-4a05-a641-08d87d5b2222
+X-MS-TrafficTypeDiagnostic: DM5PR12MB1356:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <DM5PR12MB13564D283D1AB5002F97508099120@DM5PR12MB1356.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:10000;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 3ufmPLCwzvXZb7iCLMvAW6WSFks9ZQwZDrvnUabIAV/La97kYtOF+gN4MoaeqZ6xfIox3Zv1DU0zntDevI2c5gk5ADeYuPO5aXsWoApZhlh1ufJ+jxetlScJ1IID/I5XxvkHkEtJRGRDSXcLHWEFPcjbazyglgqw+CsRqml3BCm9VYosjpYApgL1Jxd7UNfB7Fsx3M23bW5Yl8FFstd2RDDv8ttEpVN43vwxwH+7t31yjWf8CfsA1Y1BzvlYyRE4oG4LuTw8R3h4FF3q1gSIFX2KwYuBD/k5NomEutbrYU4sN4CEft7DNqCYgjuAhYCaUXoGbN//EpEZzzSNWf/JgIvHaMUC5S/+MxbucKlVNrEW/OiVPaJ9QF77fEK17wWJ
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM6PR12MB3962.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(4636009)(376002)(136003)(396003)(39860400002)(366004)(346002)(31686004)(4001150100001)(86362001)(44832011)(956004)(2616005)(8936002)(36756003)(8676002)(2906002)(4326008)(66574015)(83380400001)(16576012)(6486002)(110136005)(54906003)(6636002)(478600001)(316002)(53546011)(5660300002)(52116002)(31696002)(16526019)(66946007)(186003)(26005)(66556008)(66476007)(43740500002);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData: t3PxI7HQqeAqweYsdSAXnBAjYFPfVKxk3VKAO0U4u/0vP8uKqoqQ5HvY/dE4qRiCcuLbnztSzzD4O5QANA2qmiguGXuorMfNE0HVr4mvzWcFpTcy94AROVwcVwsGDulelv5aV9uHDDTl2J1H2tyr9SWYlOEzKw/yEIJn6AB2uwTG/5nNigH93ewQoizFyf5qZeYKpKlAmZMUnwxu+lIA933Z1E8X2mDC/R0bZ8djte5dwIn74wxflHZJ/RIINkxQvOjtSSOc3peUgVm1SCNUwZd7uipzi+UI/uvOfo2QzQCHrQ32KUfTuGj8rrKUWOkLq0vU+udvBgBjA4ELk4zt/98WFdS9dH60mitLwNVo2VLEWHo55TwSplopg9uLNJ6jF6hQ8tSkJib+9p3qto8Yl1Ahg0DIcQdHcIYsJdOsRrXTPZdEqkKETRIsnvwbOoKQUDzQenydSLInRKWbRp7GdpFESju33OiuP9f/ABJTi2p9t/WmVKhNixuvuP3bG/RyJRSlFri/j+9pfXhFwTWS5a7zYhF+huSNZm/FHE1eZFpq5T/Kpvztxg3ZKVG7q7utw6PnJrdhfeyUAQZV6XgBT0FShm1shw/InyQ0RaFRTmVZwaXZV5u0C954avKIfs5D/UwYYr09Wo0YBkDh+qDA/w==
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: ef9de376-3254-4a05-a641-08d87d5b2222
+X-MS-Exchange-CrossTenant-AuthSource: DM6PR12MB3962.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: BY5PR11MB4307.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: ec742118-77d2-4e94-17ce-08d87d4870a8
-X-MS-Exchange-CrossTenant-originalarrivaltime: 31 Oct 2020 02:55:35.1508 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: QTlT331RQvI4mEEkgGVNjvfp+8wh3/jRAiDA0d1pPeZ+e3jRYCzUple2z1TYrccfucRCRYxFB1Ro+8j9dLIvYg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR11MB5165
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH v2] drm/i915/rkl: new rkl ddc map for
- different PCH
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 31 Oct 2020 05:09:24.3485 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: MPpsWzLCHHEh/QQYPWLyhv4WXFdFew0bErtNsbGf+rhom60GBJQ2h6DlI+McIS3t
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR12MB1356
+Subject: Re: [Intel-gfx] [PATCH 3/5] drm/amdgpu: Paper over the drm_driver
+ mangling for virt
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -127,147 +100,132 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: "20201030134137.30867-1-shawn.c.lee@intel.com"
- <20201030134137.30867-1-shawn.c.lee@intel.com>
-Cc: "Chiou, Cooper" <cooper.chiou@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: "Grodzovsky, Andrey" <Andrey.Grodzovsky@amd.com>, "Gong,
+ Curry" <Curry.Gong@amd.com>, "Zhang, Bokun" <Bokun.Zhang@amd.com>, "Kuehling,
+ Felix" <Felix.Kuehling@amd.com>,
+ DRI Development <dri-devel@lists.freedesktop.org>, "Koenig,
+ Christian" <Christian.Koenig@amd.com>, "Liu, Shaoyun" <Shaoyun.Liu@amd.com>,
+ "Yang, Stanley" <Stanley.Yang@amd.com>, "Sheng, Wenhui" <Wenhui.Sheng@amd.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>, "Deucher,
+ Alexander" <Alexander.Deucher@amd.com>,
+ Daniel Vetter <daniel.vetter@intel.com>, Yintian Tao <yttao@amd.com>, "Quan,
+ Evan" <Evan.Quan@amd.com>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>, "Li,
+ Dennis" <Dennis.Li@amd.com>, "Zhang, Hawking" <Hawking.Zhang@amd.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-
-On Fri, Oct. 30, 2020, 5:35 p.m., Matt Roper wrote:
->On Fri, Oct 30, 2020 at 09:41:37PM +0800, Lee Shawn C wrote:
->> After boot into kernel. Driver configured ddc pin mapping based on 
->> predefined table in parse_ddi_port(). Now driver configure rkl ddc pin 
->> mapping depends on icp_ddc_pin_map[]. Then this table will give 
->> incorrect gmbus port number to cause HDMI can't work.
->> 
->> Refer to commit d0a89527d06 ("drm/i915/rkl: Add DDC pin mapping").
->> Create two ddc pin table for rkl TGP and CMP pch. Then HDMI can works 
->> properly on rkl.
->> 
->> v2: update patch based on latest dinq branch.
->> 
->> Cc: Matt Roper <matthew.d.roper@intel.com>
->> Cc: Aditya Swarup <aditya.swarup@intel.com>
->> Cc: Anusha Srivatsa <anusha.srivatsa@intel.com>
->> Cc: Jani Nikula <jani.nikula@linux.intel.com>
->> Cc: Cooper Chiou <cooper.chiou@intel.com>
->> Cc: Khaled Almahallawy <khaled.almahallawy@intel.com>
->> Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/2577
->> Signed-off-by: Lee Shawn C <shawn.c.lee@intel.com>
->> ---
->>  drivers/gpu/drm/i915/display/intel_bios.c     | 20 +++++++++++++++++++
->>  drivers/gpu/drm/i915/display/intel_vbt_defs.h |  4 ++++
->>  2 files changed, 24 insertions(+)
->> 
->> diff --git a/drivers/gpu/drm/i915/display/intel_bios.c 
->> b/drivers/gpu/drm/i915/display/intel_bios.c
->> index 0a309645fe06..ca9426e1768a 100644
->> --- a/drivers/gpu/drm/i915/display/intel_bios.c
->> +++ b/drivers/gpu/drm/i915/display/intel_bios.c
->> @@ -1623,6 +1623,18 @@ static const u8 icp_ddc_pin_map[] = {
->>  	[TGL_DDC_BUS_PORT_6] = GMBUS_PIN_14_TC6_TGP,  };
->>  
->> +static const u8 rkl_pch_tgp_ddc_pin_map[] = {
->> +	[RKL_DDC_BUS_DDI_B] = GMBUS_PIN_2_BXT,
->> +	[RKL_DDC_BUS_DDI_D] = GMBUS_PIN_9_TC1_ICP,
->> +	[RKL_DDC_BUS_DDI_E] = GMBUS_PIN_10_TC2_ICP, };
->> +
->> +static const u8 rkl_pch_cmp_ddc_pin_map[] = {
->> +	[RKL_DDC_BUS_DDI_B] = GMBUS_PIN_2_BXT,
->> +	[RKL_DDC_BUS_DDI_D] = GMBUS_PIN_3_BXT,
->> +	[RKL_DDC_BUS_DDI_E] = GMBUS_PIN_4_CNP, };
->> +
->>  static u8 map_ddc_pin(struct drm_i915_private *dev_priv, u8 vbt_pin)  
->> {
->>  	const u8 *ddc_pin_map;
->> @@ -1630,6 +1642,14 @@ static u8 map_ddc_pin(struct drm_i915_private 
->> *dev_priv, u8 vbt_pin)
->>  
->>  	if (INTEL_PCH_TYPE(dev_priv) >= PCH_DG1) {
->>  		return vbt_pin;
->> +	} else if (IS_ROCKETLAKE(dev_priv)) {
->> +		if (INTEL_PCH_TYPE(dev_priv) >= PCH_TGP) {
->> +			ddc_pin_map = rkl_pch_tgp_ddc_pin_map;
->> +			n_entries = ARRAY_SIZE(rkl_pch_tgp_ddc_pin_map);
->> +		} else {
->> +			ddc_pin_map = rkl_pch_cmp_ddc_pin_map;
->> +			n_entries = ARRAY_SIZE(rkl_pch_cmp_ddc_pin_map);
->> +		}
->>  	} else if (INTEL_PCH_TYPE(dev_priv) >= PCH_ICP) {
->>  		ddc_pin_map = icp_ddc_pin_map;
->>  		n_entries = ARRAY_SIZE(icp_ddc_pin_map); diff --git 
->> a/drivers/gpu/drm/i915/display/intel_vbt_defs.h 
->> b/drivers/gpu/drm/i915/display/intel_vbt_defs.h
->> index 49b4b5fca941..2df009996128 100644
->> --- a/drivers/gpu/drm/i915/display/intel_vbt_defs.h
->> +++ b/drivers/gpu/drm/i915/display/intel_vbt_defs.h
->> @@ -319,6 +319,10 @@ enum vbt_gmbus_ddi {
->>  	ICL_DDC_BUS_DDI_A = 0x1,
->>  	ICL_DDC_BUS_DDI_B,
->>  	TGL_DDC_BUS_DDI_C,
->> +	RKL_DDC_BUS_DDI_B = 0x1,
->> +	RKL_DDC_BUS_DDI_C,
->> +	RKL_DDC_BUS_DDI_D,
->> +	RKL_DDC_BUS_DDI_E,
->
->These definitions don't really make sense; according to the VBT definition in the bspec (20124), the symbolic names map to different VBT input values depending on which PCH is paired with RKL.  E.g., VBT value of "2" refers to PHY-C when using a CMP PCH, but refers to PHY-B when using a TGP PCH.
->
->From what I can see, RKL+TGP is already handled properly today in the code and doesn't need any special handling.  The patch here would actually break it, because it would associate the wrong pins to outputs (and fail to associate anything at all with PHY-B [vbt value 2]).
->
->For RKL+CMP, we do need a change to the code to pick valid output pins in the range 1-4 rather than 1,2,9,A, but it doesn't look like the mapping being added here is quite right for that either.  CMP is a derivative of CNP, so I believe we should be following the "CNL-PCH"
->column of the VBT definition.
->
->
->Matt
->
-
-Hi Matt, 
-
-Thanks for your comments! Below is EFP configuration from vbt. And we know there is no real port "C" on physical hardware with TGP-PCH.
-EFP1 : DisplayPort-B
-EFP2 : HDMI-C
-EFP3 : HDMI-D
-EFP4 : no device
-
-Below messages came from customer board with latest drm-tip kernel (5.10.0-rc1+). Port D/E will be mapped to ddc pin 0x3/0x9 according to icp_ddc_pin_map[].
-But port D/E should map to 0x9/0xa on TGP-PCH.
-Oct 23 18:39:14 ubuntu kernel: i915 0000:00:02.0: [drm:intel_bios_port_aux_ch [i915]] using AUX D for port D (platform default)
-Oct 23 18:39:14 ubuntu kernel: i915 0000:00:02.0: [drm:intel_hdmi_init_connector [i915]] Adding HDMI connector on [ENCODER:201:DDI D]
-Oct 23 18:39:14 ubuntu kernel: i915 0000:00:02.0: [drm:intel_hdmi_init_connector [i915]] Using DDC pin 0x3 for port D (VBT)
-Oct 23 18:39:14 ubuntu kernel: i915 0000:00:02.0: [drm:intel_bios_port_aux_ch [i915]] using AUX E for port E (platform default)
-Oct 23 18:39:14 ubuntu kernel: i915 0000:00:02.0: [drm:intel_hdmi_init_connector [i915]] Adding HDMI connector on [ENCODER:205:DDI E]
-Oct 23 18:39:14 ubuntu kernel: i915 0000:00:02.0: [drm:intel_hdmi_init_connector [i915]] Using DDC pin 0x9 for port E (VBT)
-
-This is what we got after applied this change.
-Oct 28 18:18:47 ubuntu kernel: i915 0000:00:02.0: [drm:intel_bios_port_aux_ch [i915]] using AUX D for port D (platform default)
-Oct 28 18:18:47 ubuntu kernel: i915 0000:00:02.0: [drm:intel_hdmi_init_connector [i915]] Adding HDMI connector on [ENCODER:201:DDI D]
-Oct 28 18:18:47 ubuntu kernel: i915 0000:00:02.0: [drm:intel_hdmi_init_connector [i915]] Using DDC pin 0x9 for port D (VBT)
-Oct 28 18:18:47 ubuntu kernel: i915 0000:00:02.0: [drm:intel_bios_port_aux_ch [i915]] using AUX E for port E (platform default)
-Oct 28 18:18:47 ubuntu kernel: i915 0000:00:02.0: [drm:intel_hdmi_init_connector [i915]] Adding HDMI connector on [ENCODER:205:DDI E]
-Oct 28 18:18:47 ubuntu kernel: i915 0000:00:02.0: [drm:intel_hdmi_init_connector [i915]] Using DDC pin 0xa for port E (VBT)
-
-Best regards,
-Shawn
-
->>  	ICL_DDC_BUS_PORT_1 = 0x4,
->>  	ICL_DDC_BUS_PORT_2,
->>  	ICL_DDC_BUS_PORT_3,
->> --
->> 2.28.0
->> 
->
->-- 
->Matt Roper
->Graphics Software Engineer
->VTT-OSGC Platform Enablement
->Intel Corporation
->(916) 356-2795
->
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+T24gMjAyMC0xMC0zMCAwODowNCwgRGFuaWVsIFZldHRlciB3cm90ZToKPiBPbiBGcmksIE9jdCAz
+MCwgMjAyMCBhdCAxMTo0MSBBTSBMaXUsIE1vbmsgPE1vbmsuTGl1QGFtZC5jb20+IHdyb3RlOgo+
+Pgo+PiBbQU1EIE9mZmljaWFsIFVzZSBPbmx5IC0gSW50ZXJuYWwgRGlzdHJpYnV0aW9uIE9ubHld
+Cj4+Cj4+IFdoYXQncyB0aGUgcHVycG9zZSBvZiB0aGUgcGF0Y2ggc2V0cwo+Pgo+PiBlLmcuOiB3
+aGF0IGJ1ZyBjYW4gdGhvc2UgNSBwYXRjaGVzIGZpeCBvciB3aGF0IGZlYXR1cmUgcHJvdmlkZWQK
+Pj4KPj4gZm9yIHRoaXMgcGFydGljdWxhciBvbmUgKDMvNSkgSSBkaWRuJ3Qgc2VlIGhvdyBpdCBo
+ZWxwZnVsLCBjb3VsZCB5b3UgZ2l2ZSBhIGJhY2tncm91bmQgID8KPiAKPiBJdCdzIGdvb2QgdG8g
+bWFrZSBmdW5jdGlvbiB0YWJsZXMgY29uc3QsIHNvIHRoYXQgdGhleSBjYW4gYmUgd3JpdGUKPiBw
+cm90ZWN0ZWQuIE1vcmUgcmVzaWxpZW5jZSBhZ2FpbnN0IGV4cGxvaXRzIGFuZCBhbGwgdGhhdC4g
+VGhpcyBwYXRjaAo+IGhlcmUgaXMgbmVlZGVkIHRvIGJlIGFibGUgdG8gbWFrZSBkcm1fZGV2aWNl
+LT5kcml2ZXIgY29uc3Qgc28gdGhhdCBhbGwKPiBvdGhlciBkcml2ZXJzIGNhbiBtYWtlIHRoZWly
+IGRybV9kcml2ZXIgc3RydWN0dXJlIGNvbnN0LiBXb3VsZCBiZSBnb29kCj4gdG8gZnVsbHkgZml4
+IHVwIGFtZGdwdSBsaWtlIGluIHRoZSBjb21tZW50LCBidXQgSSdtIG5vdCBnb2luZyB0aGF0IGlu
+Cj4gdGhpcyBzZXJpZXMgaGVyZS4KPiAtRGFuaWVsCgpIaSBEYW5pZWwsCgpJIGZlZWwgdGhhdCB0
+aGF0J3MgYSBnb29kIGNoYW5nZS4KCkJ1dCBpZiB5b3UgY2FuIGNsYXJpZnkgdGhpcyBmb3IgbWUu
+Li4gSXMgdGhpcyBsZWFkaW5nCnRvd2FyZHMgYSBzaW5nbGUgaW5zdGFuY2Ugb2YgYSBzdHJ1Y3Qg
+ZHJtX2RyaXZlciBwZXIKbG93LWxldmVsIGRyaXZlciwgaS5lLiBhbWRncHU/CgpBbmQgYXMgc3Vj
+aCwgYmVpbmcgYWJsZSB0byBiZSBkZWZpbmVkIGFzIGNvbnN0PwoKU28gdGhhdCB3ZSBoYXZlIG1h
+bnkgR1BVIGRldmljZXMgZHJpdmVuIGJ5IG9uZQpsb3ctbGV2ZWwgZHJpdmVyIChhbWRncHVfZHJ2
+KSwgcmVwcmVzZW50ZWQgYnkgb25lCmNvbnN0IGRybV9kcml2ZXIgKGFuZCB0aHVzIGNvbnN0KT8K
+CldoaWNoIHdvdWxkIGltcGx5IHRoYXQgaWYgdmFyaWVkIGRldmljZXMgY2FuIGJlIGhhbmRsZWQK
+YnkgYSBzaW5nbGUgbG93LWxldmVsIGRyaXZlciwgd2hvc2Ugc3RydWN0IGRybV9kcml2ZXIKc2V0
+dGluZ3MgY2Fubm90IGJlIHNoYXJlZCBhbW9uZyBzdWJzZXQgb2YgZGV2aWNlcyAoc2F5CnZlcnkg
+b2xkIGFuZCBuZXcpLCB0aGVuIHRoZSBsb3ctbGV2ZWwgZHJpdmVyCndvdWxkIGhhdmUgdG8gY3Jl
+YXRlIG1vcmUgdGhhbiBvbmUgImNvbnN0IiBzdHJ1Y3QgZHJtX2RyaXZlcj8KClJlZ2FyZHMsCkx1
+YmVuCgo+IAo+Pgo+PiB0aGFua3MKPj4gX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fXwo+PiBNb25rIExpdXxHUFUgVmlydHVhbGl6YXRpb24gVGVhbSB8QU1ECj4+Cj4+Cj4+IC0t
+LS0tT3JpZ2luYWwgTWVzc2FnZS0tLS0tCj4+IEZyb206IERhbmllbCBWZXR0ZXIgPGRhbmllbC52
+ZXR0ZXJAZmZ3bGwuY2g+Cj4+IFNlbnQ6IEZyaWRheSwgT2N0b2JlciAzMCwgMjAyMCA2OjExIFBN
+Cj4+IFRvOiBEUkkgRGV2ZWxvcG1lbnQgPGRyaS1kZXZlbEBsaXN0cy5mcmVlZGVza3RvcC5vcmc+
+Cj4+IENjOiBJbnRlbCBHcmFwaGljcyBEZXZlbG9wbWVudCA8aW50ZWwtZ2Z4QGxpc3RzLmZyZWVk
+ZXNrdG9wLm9yZz47IERhbmllbCBWZXR0ZXIgPGRhbmllbC52ZXR0ZXJAZmZ3bGwuY2g+OyBEZXVj
+aGVyLCBBbGV4YW5kZXIgPEFsZXhhbmRlci5EZXVjaGVyQGFtZC5jb20+OyBLb2VuaWcsIENocmlz
+dGlhbiA8Q2hyaXN0aWFuLktvZW5pZ0BhbWQuY29tPjsgUXVhbiwgRXZhbiA8RXZhbi5RdWFuQGFt
+ZC5jb20+OyBLdWVobGluZywgRmVsaXggPEZlbGl4Lkt1ZWhsaW5nQGFtZC5jb20+OyBaaGFuZywg
+SGF3a2luZyA8SGF3a2luZy5aaGFuZ0BhbWQuY29tPjsgR3JvZHpvdnNreSwgQW5kcmV5IDxBbmRy
+ZXkuR3JvZHpvdnNreUBhbWQuY29tPjsgVHVpa292LCBMdWJlbiA8THViZW4uVHVpa292QGFtZC5j
+b20+OyBUaG9tYXMgWmltbWVybWFubiA8dHppbW1lcm1hbm5Ac3VzZS5kZT47IExpdSwgTW9uayA8
+TW9uay5MaXVAYW1kLmNvbT47IFlpbnRpYW4gVGFvIDx5dHRhb0BhbWQuY29tPjsgTGksIERlbm5p
+cyA8RGVubmlzLkxpQGFtZC5jb20+OyBMaXUsIFNoYW95dW4gPFNoYW95dW4uTGl1QGFtZC5jb20+
+OyBaaGFuZywgQm9rdW4gPEJva3VuLlpoYW5nQGFtZC5jb20+OyBZYW5nLCBTdGFubGV5IDxTdGFu
+bGV5LllhbmdAYW1kLmNvbT47IFNoZW5nLCBXZW5odWkgPFdlbmh1aS5TaGVuZ0BhbWQuY29tPjsg
+R29uZywgQ3VycnkgPEN1cnJ5LkdvbmdAYW1kLmNvbT47IERhbmllbCBWZXR0ZXIgPGRhbmllbC52
+ZXR0ZXJAaW50ZWwuY29tPgo+PiBTdWJqZWN0OiBbUEFUQ0ggMy81XSBkcm0vYW1kZ3B1OiBQYXBl
+ciBvdmVyIHRoZSBkcm1fZHJpdmVyIG1hbmdsaW5nIGZvciB2aXJ0Cj4+Cj4+IFByZXAgd29yayB0
+byBtYWtlIGRybV9kZXZpY2UtPmRyaXZlciBjb25zdC4KPj4KPj4gU2lnbmVkLW9mZi1ieTogRGFu
+aWVsIFZldHRlciA8ZGFuaWVsLnZldHRlckBmZndsbC5jaD4KPj4gQ2M6IEFsZXggRGV1Y2hlciA8
+YWxleGFuZGVyLmRldWNoZXJAYW1kLmNvbT4KPj4gQ2M6ICJDaHJpc3RpYW4gS8O2bmlnIiA8Y2hy
+aXN0aWFuLmtvZW5pZ0BhbWQuY29tPgo+PiBDYzogRXZhbiBRdWFuIDxldmFuLnF1YW5AYW1kLmNv
+bT4KPj4gQ2M6IEZlbGl4IEt1ZWhsaW5nIDxGZWxpeC5LdWVobGluZ0BhbWQuY29tPgo+PiBDYzog
+SGF3a2luZyBaaGFuZyA8SGF3a2luZy5aaGFuZ0BhbWQuY29tPgo+PiBDYzogQW5kcmV5IEdyb2R6
+b3Zza3kgPGFuZHJleS5ncm9kem92c2t5QGFtZC5jb20+Cj4+IENjOiBMdWJlbiBUdWlrb3YgPGx1
+YmVuLnR1aWtvdkBhbWQuY29tPgo+PiBDYzogVGhvbWFzIFppbW1lcm1hbm4gPHR6aW1tZXJtYW5u
+QHN1c2UuZGU+Cj4+IENjOiBNb25rIExpdSA8TW9uay5MaXVAYW1kLmNvbT4KPj4gQ2M6IFlpbnRp
+YW4gVGFvIDx5dHRhb0BhbWQuY29tPgo+PiBDYzogRGVubmlzIExpIDxEZW5uaXMuTGlAYW1kLmNv
+bT4KPj4gQ2M6IHNoYW95dW5sIDxzaGFveXVuLmxpdUBhbWQuY29tPgo+PiBDYzogQm9rdW4gWmhh
+bmcgPEJva3VuLlpoYW5nQGFtZC5jb20+Cj4+IENjOiAiU3RhbmxleS5ZYW5nIiA8U3RhbmxleS5Z
+YW5nQGFtZC5jb20+Cj4+IENjOiBXZW5odWkgU2hlbmcgPFdlbmh1aS5TaGVuZ0BhbWQuY29tPgo+
+PiBDYzogY2hlbiBnb25nIDxjdXJyeS5nb25nQGFtZC5jb20+Cj4+IFNpZ25lZC1vZmYtYnk6IERh
+bmllbCBWZXR0ZXIgPGRhbmllbC52ZXR0ZXJAaW50ZWwuY29tPgo+PiAtLS0KPj4gIGRyaXZlcnMv
+Z3B1L2RybS9hbWQvYW1kZ3B1L2FtZGdwdV9kcnYuYyAgfCAgOCArKysrLS0tLSAgZHJpdmVycy9n
+cHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1X3ZpcnQuYyB8IDEyICsrKysrKysrKysrLQo+PiAgMiBm
+aWxlcyBjaGFuZ2VkLCAxNSBpbnNlcnRpb25zKCspLCA1IGRlbGV0aW9ucygtKQo+Pgo+PiBkaWZm
+IC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1X2Rydi5jIGIvZHJpdmVy
+cy9ncHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1X2Rydi5jCj4+IGluZGV4IDAyNGMzYjcwYjFhYS4u
+M2QzMzdmMTNhZTRlIDEwMDY0NAo+PiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9h
+bWRncHVfZHJ2LmMKPj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1X2Ry
+di5jCj4+IEBAIC0xMDkzLDcgKzEwOTMsNyBAQCBzdGF0aWMgY29uc3Qgc3RydWN0IHBjaV9kZXZp
+Y2VfaWQgcGNpaWRsaXN0W10gPSB7Cj4+Cj4+ICBNT0RVTEVfREVWSUNFX1RBQkxFKHBjaSwgcGNp
+aWRsaXN0KTsKPj4KPj4gLXN0YXRpYyBzdHJ1Y3QgZHJtX2RyaXZlciBrbXNfZHJpdmVyOwo+PiAr
+c3RydWN0IGRybV9kcml2ZXIgYW1kZ3B1X2ttc19kcml2ZXI7Cj4+Cj4+ICBzdGF0aWMgaW50IGFt
+ZGdwdV9wY2lfcHJvYmUoc3RydWN0IHBjaV9kZXYgKnBkZXYsCj4+ICAgICAgY29uc3Qgc3RydWN0
+IHBjaV9kZXZpY2VfaWQgKmVudCkgQEAgLTExNjQsNyArMTE2NCw3IEBAIHN0YXRpYyBpbnQgYW1k
+Z3B1X3BjaV9wcm9iZShzdHJ1Y3QgcGNpX2RldiAqcGRldiwKPj4gIGlmIChyZXQpCj4+ICByZXR1
+cm4gcmV0Owo+Pgo+PiAtYWRldiA9IGRldm1fZHJtX2Rldl9hbGxvYygmcGRldi0+ZGV2LCAma21z
+X2RyaXZlciwgdHlwZW9mKCphZGV2KSwgZGRldik7Cj4+ICthZGV2ID0gZGV2bV9kcm1fZGV2X2Fs
+bG9jKCZwZGV2LT5kZXYsICZhbWRncHVfa21zX2RyaXZlciwKPj4gK3R5cGVvZigqYWRldiksIGRk
+ZXYpOwo+PiAgaWYgKElTX0VSUihhZGV2KSkKPj4gIHJldHVybiBQVFJfRVJSKGFkZXYpOwo+Pgo+
+PiBAQCAtMTUwOCw3ICsxNTA4LDcgQEAgaW50IGFtZGdwdV9maWxlX3RvX2Zwcml2KHN0cnVjdCBm
+aWxlICpmaWxwLCBzdHJ1Y3QgYW1kZ3B1X2Zwcml2ICoqZnByaXYpCj4+ICByZXR1cm4gMDsKPj4g
+IH0KPj4KPj4gLXN0YXRpYyBzdHJ1Y3QgZHJtX2RyaXZlciBrbXNfZHJpdmVyID0gewo+PiArc3Ry
+dWN0IGRybV9kcml2ZXIgYW1kZ3B1X2ttc19kcml2ZXIgPSB7Cj4+ICAuZHJpdmVyX2ZlYXR1cmVz
+ID0KPj4gICAgICBEUklWRVJfQVRPTUlDIHwKPj4gICAgICBEUklWRVJfR0VNIHwKPj4gQEAgLTE1
+NzEsNyArMTU3MSw3IEBAIHN0YXRpYyBpbnQgX19pbml0IGFtZGdwdV9pbml0KHZvaWQpCj4+ICBn
+b3RvIGVycm9yX2ZlbmNlOwo+Pgo+PiAgRFJNX0lORk8oImFtZGdwdSBrZXJuZWwgbW9kZXNldHRp
+bmcgZW5hYmxlZC5cbiIpOwo+PiAta21zX2RyaXZlci5udW1faW9jdGxzID0gYW1kZ3B1X21heF9r
+bXNfaW9jdGw7Cj4+ICthbWRncHVfa21zX2RyaXZlci5udW1faW9jdGxzID0gYW1kZ3B1X21heF9r
+bXNfaW9jdGw7Cj4+ICBhbWRncHVfcmVnaXN0ZXJfYXRweF9oYW5kbGVyKCk7Cj4+Cj4+ICAvKiBJ
+Z25vcmUgS0ZEIGluaXQgZmFpbHVyZXMuIE5vcm1hbCB3aGVuIENPTkZJR19IU0FfQU1EIGlzIG5v
+dCBzZXQuICovIGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVf
+dmlydC5jIGIvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1X3ZpcnQuYwo+PiBpbmRl
+eCBkMGFlYTVlMzk1MzEuLmRkZTRjNDQ5YzI4NCAxMDA2NDQKPj4gLS0tIGEvZHJpdmVycy9ncHUv
+ZHJtL2FtZC9hbWRncHUvYW1kZ3B1X3ZpcnQuYwo+PiArKysgYi9kcml2ZXJzL2dwdS9kcm0vYW1k
+L2FtZGdwdS9hbWRncHVfdmlydC5jCj4+IEBAIC00NSwxMyArNDUsMjMgQEAgYm9vbCBhbWRncHVf
+dmlydF9tbWlvX2Jsb2NrZWQoc3RydWN0IGFtZGdwdV9kZXZpY2UgKmFkZXYpCj4+ICByZXR1cm4g
+UlJFRzMyX05PX0tJUSgweGMwNDApID09IDB4ZmZmZmZmZmY7ICB9Cj4+Cj4+ICtleHRlcm4gc3Ry
+dWN0IGRybV9kcml2ZXIgYW1kZ3B1X2ttc19kcml2ZXI7Cj4+ICsKPj4gIHZvaWQgYW1kZ3B1X3Zp
+cnRfaW5pdF9zZXR0aW5nKHN0cnVjdCBhbWRncHVfZGV2aWNlICphZGV2KSAgewo+PiAgLyogZW5h
+YmxlIHZpcnR1YWwgZGlzcGxheSAqLwo+PiAgaWYgKGFkZXYtPm1vZGVfaW5mby5udW1fY3J0YyA9
+PSAwKQo+PiAgYWRldi0+bW9kZV9pbmZvLm51bV9jcnRjID0gMTsKPj4gIGFkZXYtPmVuYWJsZV92
+aXJ0dWFsX2Rpc3BsYXkgPSB0cnVlOwo+PiAtYWRldl90b19kcm0oYWRldiktPmRyaXZlci0+ZHJp
+dmVyX2ZlYXR1cmVzICY9IH5EUklWRVJfQVRPTUlDOwo+PiArCj4+ICsvKgo+PiArICogRklYTUU6
+IEVpdGhlciBtYWtlIHZpcnQgc3VwcG9ydCBhdG9taWMgb3IgbWFrZSBzdXJlIHlvdSBoYXZlIHR3
+bwo+PiArICogZHJtX2RyaXZlciBzdHJ1Y3RzLCB0aGVzZSBraW5kIG9mIHRyaWNrcyBhcmUgb25s
+eSBvayB3aGVuIHRoZXJlJ3MKPj4gKyAqIGd1YXJhbnRlZWQgb25seSBhIHNpbmdsZSBkZXZpY2Ug
+cGVyIHN5c3RlbS4gVGhpcyBzaG91bGQgYWxzbyBiZSBkb25lCj4+ICsgKiBiZWZvcmUgc3RydWN0
+IGRybV9kZXZpY2UgaXMgaW5pdGlhbGl6ZWQuCj4+ICsgKi8KPj4gK2FtZGdwdV9rbXNfZHJpdmVy
+LmRyaXZlcl9mZWF0dXJlcyAmPSB+RFJJVkVSX0FUT01JQzsKPj4gKwo+PiAgYWRldi0+Y2dfZmxh
+Z3MgPSAwOwo+PiAgYWRldi0+cGdfZmxhZ3MgPSAwOwo+PiAgfQo+PiAtLQo+PiAyLjI4LjAKPj4K
+PiAKPiAKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCklu
+dGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRw
+czovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
