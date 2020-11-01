@@ -2,47 +2,47 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 34C5B2A1C6C
-	for <lists+intel-gfx@lfdr.de>; Sun,  1 Nov 2020 07:26:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B040C2A1C79
+	for <lists+intel-gfx@lfdr.de>; Sun,  1 Nov 2020 07:52:46 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1C9806EA70;
-	Sun,  1 Nov 2020 06:26:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BB0CC6EA75;
+	Sun,  1 Nov 2020 06:52:40 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7A8E26E199;
- Sun,  1 Nov 2020 06:26:39 +0000 (UTC)
-IronPort-SDR: B2nqL198e706+Z/ap+07FQQrSZlB5VAmhkQCn8Cv685qq2JgZjDr5oLgjQgomrps2uwzigj5KY
- KKMGcyQtjgFg==
-X-IronPort-AV: E=McAfee;i="6000,8403,9791"; a="232945122"
-X-IronPort-AV: E=Sophos;i="5.77,440,1596524400"; d="scan'208";a="232945122"
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C70EB6EA74;
+ Sun,  1 Nov 2020 06:52:38 +0000 (UTC)
+IronPort-SDR: SNDAn0twZKeqva+QhYwFrsspdYNg+DFrP7ivNeUxsVrfng61U7iNOQFDvr9k+MpwiTrMTK8WPd
+ JBX9yKFIDIrA==
+X-IronPort-AV: E=McAfee;i="6000,8403,9791"; a="155756429"
+X-IronPort-AV: E=Sophos;i="5.77,440,1596524400"; d="scan'208";a="155756429"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Oct 2020 23:26:38 -0700
-IronPort-SDR: jbjgbDLZLy3t8uL85Lz54ssjsjlWOaAuQLjCT/10NLLtMHeGupFSFZN9kHod5PLGfDBdfKxI/E
- yMcWkYxfZvuA==
-X-IronPort-AV: E=Sophos;i="5.77,440,1596524400"; d="scan'208";a="537576864"
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 Oct 2020 23:52:38 -0700
+IronPort-SDR: kHPP9iGgTMCeFcv/02gpjW7CHD73lnjj6K/r62vDTen3wCFXwuCq4tmue5AgnYgDkNRCbgO85p
+ 9HWnAfAoAkQQ==
+X-IronPort-AV: E=Sophos;i="5.77,440,1596524400"; d="scan'208";a="537582900"
 Received: from aknautiy-mobl.gar.corp.intel.com (HELO [10.215.177.133])
  ([10.215.177.133])
  by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Oct 2020 23:26:36 -0700
+ 31 Oct 2020 23:52:35 -0700
 To: "Shankar, Uma" <uma.shankar@intel.com>,
  "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
 References: <20201015105259.27934-1-ankit.k.nautiyal@intel.com>
- <20201015105259.27934-9-ankit.k.nautiyal@intel.com>
- <7de8d75aab0e42cf9fba4e7945304b5e@intel.com>
+ <20201015105259.27934-10-ankit.k.nautiyal@intel.com>
+ <dde5113aa60d430db1a1101e4e18cb70@intel.com>
 From: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
-Message-ID: <50a23471-7d75-43af-5278-8000b6b0fdb4@intel.com>
-Date: Sun, 1 Nov 2020 11:56:34 +0530
+Message-ID: <2e8f4c95-bb70-9364-2927-7fb703b1a129@intel.com>
+Date: Sun, 1 Nov 2020 12:22:32 +0530
 User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
  Thunderbird/68.12.1
 MIME-Version: 1.0
-In-Reply-To: <7de8d75aab0e42cf9fba4e7945304b5e@intel.com>
+In-Reply-To: <dde5113aa60d430db1a1101e4e18cb70@intel.com>
 Content-Language: en-US
-Subject: Re: [Intel-gfx] [RFC 08/13] drm/i915: Add support for enabling link
- status and recovery
+Subject: Re: [Intel-gfx] [RFC 09/13] drm/edid: Parse DSC1.2 cap fields from
+ HFVSDB block
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,99 +56,159 @@ List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Ck9uIDEwLzE5LzIwMjAgNDoxOSBBTSwgU2hhbmthciwgVW1hIHdyb3RlOgo+Cj4+IC0tLS0tT3Jp
-Z2luYWwgTWVzc2FnZS0tLS0tCj4+IEZyb206IE5hdXRpeWFsLCBBbmtpdCBLIDxhbmtpdC5rLm5h
-dXRpeWFsQGludGVsLmNvbT4KPj4gU2VudDogVGh1cnNkYXksIE9jdG9iZXIgMTUsIDIwMjAgNDoy
-MyBQTQo+PiBUbzogaW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwo+PiBDYzogZHJpLWRl
-dmVsQGxpc3RzLmZyZWVkZXNrdG9wLm9yZzsgU2hhbmthciwgVW1hIDx1bWEuc2hhbmthckBpbnRl
-bC5jb20+Owo+PiBLdWxrYXJuaSwgVmFuZGl0YSA8dmFuZGl0YS5rdWxrYXJuaUBpbnRlbC5jb20+
-OyB2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbTsKPj4gU2hhcm1hLCBTd2F0aTIgPHN3YXRp
-Mi5zaGFybWFAaW50ZWwuY29tPgo+PiBTdWJqZWN0OiBbUkZDIDA4LzEzXSBkcm0vaTkxNTogQWRk
-IHN1cHBvcnQgZm9yIGVuYWJsaW5nIGxpbmsgc3RhdHVzIGFuZCByZWNvdmVyeQo+Pgo+PiBGcm9t
-OiBTd2F0aSBTaGFybWEgPHN3YXRpMi5zaGFybWFAaW50ZWwuY29tPgo+Pgo+PiBJbiB0aGlzIHBh
-dGNoIGVuYWJsZWQgc3VwcG9ydCBmb3IgbGluayBzdGF0dXMgYW5kIHJlY292ZXJ5IGluIGk5MTUg
-ZHJpdmVyLiBIRE1JCj4+IGxpbmsgbG9zcyBpbmRpY2F0aW9uIHRvIHVwc3RyZWFtIERQIHNvdXJj
-ZSBpcyBpbmRpY2F0ZWQgdmlhIElSUV9IUEQuIFRoaXMgaXMKPj4gZm9sbG93ZWQgYnkgcmVhZGlu
-ZyBvZiBIRE1JIGxpbmsgY29uZmlndXJhdGlvbiBzdGF0dXMKPj4gKEhETUlfVFhfTElOS19BQ1RJ
-VkVfU1RBVFVTKS4gSWYgdGhlIFBDT04g4oaSIEhETUkgMi4xIGxpbmsgc3RhdHVzIGlzIG9mZjsK
-Pj4gcmVpbml0aWF0ZSBmcmwgbGluayB0cmFpbmluZyB0byByZWNvdmVyLgo+PiBBbHNvLCBIRE1J
-IEZSTCBsaW5rIGVycm9yIGNvdW50IHJhbmdlIGZvciBlYWNoIGluZGl2aWR1YWwgRlJMIGFjdGl2
-ZSBsYW5lIGlzCj4+IGluZGljYXRlZCBieSBET1dOU1RSRUFNX0hETUlfRVJST1JfU1RBVFVTX0xO
-IHJlZ2lzdGVycy4KPj4KPj4gU2lnbmVkLW9mZi1ieTogU3dhdGkgU2hhcm1hIDxzd2F0aTIuc2hh
-cm1hQGludGVsLmNvbT4KPj4gU2lnbmVkLW9mZi1ieTogQW5raXQgTmF1dGl5YWwgPGFua2l0Lmsu
-bmF1dGl5YWxAaW50ZWwuY29tPgo+PiAtLS0KPj4gICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNw
-bGF5L2ludGVsX2RwLmMgfCA0NyArKysrKysrKysrKysrKysrKysrKysrKy0tCj4+ICAgMSBmaWxl
-IGNoYW5nZWQsIDQ0IGluc2VydGlvbnMoKyksIDMgZGVsZXRpb25zKC0pCj4+Cj4+IGRpZmYgLS1n
-aXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RwLmMKPj4gYi9kcml2ZXJz
-L2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RwLmMKPj4gaW5kZXggNjY4MTY1ZGQyYjFhLi5l
-NmM0Y2I4NDRlMzcgMTAwNjQ0Cj4+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkv
-aW50ZWxfZHAuYwo+PiArKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rw
-LmMKPj4gQEAgLTU5NTUsNiArNTk1NSwyOSBAQCBpbnRlbF9kcF9jaGVja19tc3Rfc3RhdHVzKHN0
-cnVjdCBpbnRlbF9kcCAqaW50ZWxfZHApCj4+ICAgcmV0dXJuIGxpbmtfb2s7Cj4+ICAgfQo+Pgo+
-PiArc3RhdGljIHZvaWQKPj4gK2ludGVsX2RwX2hhbmRsZV9oZG1pX2xpbmtfc3RhdHVzX2NoYW5n
-ZShzdHJ1Y3QgaW50ZWxfZHAgKmludGVsX2RwKSB7Cj4+ICtib29sIGlzX2FjdGl2ZTsKPj4gK3U4
-IGJ1ZiA9IDA7Cj4+ICsKPj4gK2lzX2FjdGl2ZSA9IGRybV9kcF9wY29uX2hkbWlfbGlua19hY3Rp
-dmUoJmludGVsX2RwLT5hdXgpOwo+PiAraWYgKGludGVsX2RwLT5mcmwuaXNfdHJhaW5lZCAmJiAh
-aXNfYWN0aXZlKSB7Cj4+ICtpZiAoZHJtX2RwX2RwY2RfcmVhZGIoJmludGVsX2RwLT5hdXgsCj4+
-IERQX1BDT05fSERNSV9MSU5LX0NPTkZJR18xLCAmYnVmKSA8IDApCj4+ICtyZXR1cm47Cj4+ICsK
-Pj4gK2J1ZiAmPSAgfkRQX1BDT05fRU5BQkxFX0hETUlfTElOSzsKPj4gK2lmIChkcm1fZHBfZHBj
-ZF93cml0ZWIoJmludGVsX2RwLT5hdXgsCj4+IERQX1BDT05fSERNSV9MSU5LX0NPTkZJR18xLCBi
-dWYpIDwgMCkKPj4gK3JldHVybjsKPj4gKwo+PiAraW50ZWxfZHAtPmZybC5pc190cmFpbmVkID0g
-ZmFsc2U7Cj4+ICtpbnRlbF9kcC0+ZnJsLnRyYWluZWRfcmF0ZV9nYnBzID0gMDsKPj4gKwo+PiAr
-aW50ZWxfZHBfY2hlY2tfZnJsX3RyYWluaW5nKGludGVsX2RwKTsKPj4gK2RybV9kcF9wY29uX2hk
-bWlfZnJsX2xpbmtfZXJyb3JfY291bnQoJmludGVsX2RwLT5hdXgsCj4+ICZpbnRlbF9kcC0+YXR0
-YWNoZWRfY29ubmVjdG9yLT5iYXNlKTsKPiBKdXN0IHByaW50aW5nIHRoZSBlcnJvciBoZXJlIG1h
-eSBub3QgaGVscCBpbiByZWNvdmVyeS4gSWYgRlJMIGlzIGZhaWxpbmcgbWF5IGJlIGEgVE1EUyBm
-YWxsYmFjayBzaG91bGQgYmUKPiBhdHRlbXB0ZWQuIEFsc28gZXJyb3IgY291bnQgc2hvdWxkIGJl
-IHJldHVybmVkIGluc3RlYWQgb2YganVzdCBhIHByaW50LgoKVGhlIGZ1bmN0aW9uIGRwX2NoZWNr
-X2ZybF90cmFpbmluZygpIHdpbGwgcmVzdGFydCB0aGUgRlJMIGxpbmsgdHJhaW5pbmcgCmlmIHJl
-cXVpcmVkIGFuZCBmYWxsIGJhY2sgdG8gVE1EUyBpZiBGUkwgZG9lcyBub3Qgc3VjY2VlZC4KClRo
-ZSBmdW5jdGlvbiBmb3IgZXJyb3IgY291bnQgc2hvdWxkIGJlIGZpcnN0IGFuZCBsYXRlciB0aGUg
-ZnJsIHRyYWluaW5nIApzaG91bGQgYmUgY2hlY2tlZC4gV2lsbCBmaXggdGhpcyBpbiBuZXh0IHBh
-dGNoIHZlcnNpb24uCgpUaGUgZXJyb3IgY291bnRzIHdpbGwgYmUgZGlmZmVyZW50IGZvciBkaWZm
-ZXJlbnQgbGFuZXMsIHNvIElNSE8sIHRoaXMgCmluZm9ybWF0aW9uIGlzIG1vcmUgZm9yIGRlYnVn
-Z2luZy4gTm90IHN1cmUsIGlmIHdlIGNhbgoKdXNlIHRoaXMgdG8gdGFrZSBhbnkgY29ycmVjdGl2
-ZSBhY3Rpb24uCgoKPj4gK30KPj4gK30KPj4gKwo+PiAgIHN0YXRpYyBib29sCj4+ICAgaW50ZWxf
-ZHBfbmVlZHNfbGlua19yZXRyYWluKHN0cnVjdCBpbnRlbF9kcCAqaW50ZWxfZHApICB7IEBAIC02
-MzIwLDcgKzYzNDMsNwo+PiBAQCBpbnRlbF9kcF9ob3RwbHVnKHN0cnVjdCBpbnRlbF9lbmNvZGVy
-ICplbmNvZGVyLAo+PiAgIHJldHVybiBzdGF0ZTsKPj4gICB9Cj4+Cj4+IC1zdGF0aWMgdm9pZCBp
-bnRlbF9kcF9jaGVja19zZXJ2aWNlX2lycShzdHJ1Y3QgaW50ZWxfZHAgKmludGVsX2RwKQo+PiAr
-c3RhdGljIHZvaWQgaW50ZWxfZHBfY2hlY2tfZGV2aWNlX3NlcnZpY2VfaXJxKHN0cnVjdCBpbnRl
-bF9kcAo+PiArKmludGVsX2RwKQo+PiAgIHsKPj4gICBzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAq
-aTkxNSA9IGRwX3RvX2k5MTUoaW50ZWxfZHApOwo+PiAgIHU4IHZhbDsKPj4gQEAgLTYzNDQsNiAr
-NjM2NywyMyBAQCBzdGF0aWMgdm9pZCBpbnRlbF9kcF9jaGVja19zZXJ2aWNlX2lycShzdHJ1Y3Qg
-aW50ZWxfZHAKPj4gKmludGVsX2RwKQo+PiAgIGRybV9kYmdfa21zKCZpOTE1LT5kcm0sICJTaW5r
-IHNwZWNpZmljIGlycSB1bmhhbmRsZWRcbiIpOyAgfQo+Pgo+PiArc3RhdGljIHZvaWQgaW50ZWxf
-ZHBfY2hlY2tfbGlua19zZXJ2aWNlX2lycShzdHJ1Y3QgaW50ZWxfZHAgKmludGVsX2RwKQo+PiAr
-ewo+PiArdTggdmFsOwo+PiArCj4+ICtpZiAoaW50ZWxfZHAtPmRwY2RbRFBfRFBDRF9SRVZdIDwg
-MHgxMSkKPj4gK3JldHVybjsKPj4gKwo+PiAraWYgKGRybV9kcF9kcGNkX3JlYWRiKCZpbnRlbF9k
-cC0+YXV4LAo+PiArICAgICAgRFBfTElOS19TRVJWSUNFX0lSUV9WRUNUT1JfRVNJMCwgJnZhbCkg
-IT0gMSB8fAo+PiAhdmFsKQo+IEFuIGVycm9yIG1lc3NhZ2Ugd291bGQgYmUgaGFuZHkgaGVyZS4K
-CgpBbHJpZ2h0LCB3aWxsIGJlIGFkZGluZyBhcHByb3ByaWF0ZSBlcnJvciBtZXNzYWdlIGhlcmUu
-Cgo+Cj4+ICtyZXR1cm47Cj4+ICsKPj4gK2RybV9kcF9kcGNkX3dyaXRlYigmaW50ZWxfZHAtPmF1
-eCwKPj4gRFBfTElOS19TRVJWSUNFX0lSUV9WRUNUT1JfRVNJMCwKPj4gK3ZhbCk7Cj4gQ2hlY2sg
-Zm9yIGVycm9yIG1lc3NhZ2UgaGVyZS4KCkFzIG1lbnRpb25lZCBhYm92ZSwgd2lsbCB0YWtlIGNh
-cmUgaW4gbmV4dCB2ZXJzaW9uLgoKVGhhbmtzICYgUmVnYXJkcywKCkFua2l0CgoKPgo+PiArCj4+
-ICtpZiAodmFsICYgSERNSV9MSU5LX1NUQVRVU19DSEFOR0VEKQo+PiAraW50ZWxfZHBfaGFuZGxl
-X2hkbWlfbGlua19zdGF0dXNfY2hhbmdlKGludGVsX2RwKTsKPj4gK30KPj4gKwo+PiAgIC8qCj4+
-ICAgICogQWNjb3JkaW5nIHRvIERQIHNwZWMKPj4gICAgKiA1LjEuMjoKPj4gQEAgLTYzODMsNyAr
-NjQyMyw4IEBAIGludGVsX2RwX3Nob3J0X3B1bHNlKHN0cnVjdCBpbnRlbF9kcCAqaW50ZWxfZHAp
-Cj4+ICAgcmV0dXJuIGZhbHNlOwo+PiAgIH0KPj4KPj4gLWludGVsX2RwX2NoZWNrX3NlcnZpY2Vf
-aXJxKGludGVsX2RwKTsKPj4gK2ludGVsX2RwX2NoZWNrX2RldmljZV9zZXJ2aWNlX2lycShpbnRl
-bF9kcCk7Cj4+ICtpbnRlbF9kcF9jaGVja19saW5rX3NlcnZpY2VfaXJxKGludGVsX2RwKTsKPj4K
-Pj4gICAvKiBIYW5kbGUgQ0VDIGludGVycnVwdHMsIGlmIGFueSAqLwo+PiAgIGRybV9kcF9jZWNf
-aXJxKCZpbnRlbF9kcC0+YXV4KTsKPj4gQEAgLTY4MTUsNyArNjg1Niw3IEBAIGludGVsX2RwX2Rl
-dGVjdChzdHJ1Y3QgZHJtX2Nvbm5lY3RvciAqY29ubmVjdG9yLAo+PiAgICAgICB0b19pbnRlbF9j
-b25uZWN0b3IoY29ubmVjdG9yKS0+ZGV0ZWN0X2VkaWQpCj4+ICAgc3RhdHVzID0gY29ubmVjdG9y
-X3N0YXR1c19jb25uZWN0ZWQ7Cj4+Cj4+IC1pbnRlbF9kcF9jaGVja19zZXJ2aWNlX2lycShpbnRl
-bF9kcCk7Cj4+ICtpbnRlbF9kcF9jaGVja19kZXZpY2Vfc2VydmljZV9pcnEoaW50ZWxfZHApOwo+
-Pgo+PiAgIG91dDoKPj4gICBpZiAoc3RhdHVzICE9IGNvbm5lY3Rvcl9zdGF0dXNfY29ubmVjdGVk
-ICYmICFpbnRlbF9kcC0+aXNfbXN0KQo+PiAtLQo+PiAyLjE3LjEKX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRl
-bC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3Jn
-L21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
+
+On 10/19/2020 4:31 AM, Shankar, Uma wrote:
+>
+>> -----Original Message-----
+>> From: Nautiyal, Ankit K <ankit.k.nautiyal@intel.com>
+>> Sent: Thursday, October 15, 2020 4:23 PM
+>> To: intel-gfx@lists.freedesktop.org
+>> Cc: dri-devel@lists.freedesktop.org; Shankar, Uma <uma.shankar@intel.com>;
+>> Kulkarni, Vandita <vandita.kulkarni@intel.com>; ville.syrjala@linux.intel.com;
+>> Sharma, Swati2 <swati2.sharma@intel.com>
+>> Subject: [RFC 09/13] drm/edid: Parse DSC1.2 cap fields from HFVSDB block
+> Move this also to beginning of series along with all DRM helpers.
+
+
+Agreed will move this with other DRM helpers.
+
+>
+>> This patch parses HFVSDB fields for DSC1.2 capabilities of an
+>> HDMI2.1 sink. These fields are required by a source to understand the DSC
+>> capability of the sink, to set appropriate PPS parameters, before transmitting
+>> compressed data stream.
+>>
+>> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+>> ---
+>>   drivers/gpu/drm/drm_edid.c  | 19 +++++++++++++++++++
+>> include/drm/drm_connector.h | 32 ++++++++++++++++++++++++++++++++
+>>   2 files changed, 51 insertions(+)
+>>
+>> diff --git a/drivers/gpu/drm/drm_edid.c b/drivers/gpu/drm/drm_edid.c index
+>> 8afb136e73f5..feee19657a7a 100644
+>> --- a/drivers/gpu/drm/drm_edid.c
+>> +++ b/drivers/gpu/drm/drm_edid.c
+>> @@ -4889,10 +4889,29 @@ static void
+>> drm_parse_hdmi_21_additional_fields(struct drm_connector *connector,  {
+>>   struct drm_hdmi_info *hdmi = &connector->display_info.hdmi;
+>>   u8 max_frl_rate;
+>> +u8 dsc_max_frl_rate;
+>>
+>>   max_frl_rate = db[7] & DRM_EDID_MAX_FRL_RATE_MASK;
+>>   drm_get_max_frl_rate(max_frl_rate, &hdmi->max_lanes,
+>>        &hdmi->max_frl_rate_per_lane);
+>> +
+>> +hdmi->dsc_1p2 = db[11] & DRM_EDID_DSC_1P2;
+> We should right shift them as well to get right values.
+
+You are right, For MAX_FRL_RATE and DSC_MAX_FRL_RATE_MASK given below, 
+we need to rshift by 4 for getting correct values.
+
+I had missed that in this patch. Will take care in the next version.
+
+But for others there are only 1 bit, we are just storing these as bool, 
+if the appropriate bit is set.
+
+
+>
+>> +        hdmi->dsc_native_420 = db[11] & DRM_EDID_DSC_NATIVE_420;
+> Same here. Also Alignment is off.
+
+
+Will fix the alignment in next version.
+
+>
+>> +hdmi->dsc_all_bpp = db[11] & DRM_EDID_DSC_ALL_BPP;
+>> +
+>> +if (db[11] & DRM_EDID_DSC_16BPC)
+>> +hdmi->dsc_bpc_supported = 16;
+>> +else if (db[11] & DRM_EDID_DSC_12BPC)
+>> +hdmi->dsc_bpc_supported = 12;
+>> +else if (db[11] & DRM_EDID_DSC_10BPC)
+>> +hdmi->dsc_bpc_supported = 10;
+>> +else
+>> +hdmi->dsc_bpc_supported = 0;
+>> +
+>> +dsc_max_frl_rate = db[12] & DRM_EDID_DSC_MAX_FRL_RATE;
+> This will not give correct value. Fix it.
+
+As mentioned above, will fix this in next version.
+
+
+>
+>> +drm_get_max_frl_rate(dsc_max_frl_rate, &hdmi->dsc_max_lanes,
+>> +     &hdmi->dsc_max_frl_rate_per_lane);
+>> +hdmi->dsc_total_chunk_kbytes = db[13] &
+>> +DRM_EDID_DSC_TOTAL_CHUNK_KBYTES;
+>>   }
+>>
+>>   static void drm_parse_ycbcr420_deep_color_info(struct drm_connector
+>> *connector, diff --git a/include/drm/drm_connector.h
+>> b/include/drm/drm_connector.h index f351bf10c076..7100012f9c0f 100644
+>> --- a/include/drm/drm_connector.h
+>> +++ b/include/drm/drm_connector.h
+>> @@ -213,6 +213,38 @@ struct drm_hdmi_info {
+>>
+>>   /** @max_lanes: supported by sink */
+>>   u8 max_lanes;
+>> +
+>> +/** @dsc_1p2: flag for dsc1.2 support by sink */
+>> +bool dsc_1p2;
+> Add a struct for all these HDMI dsc params.
+
+
+Makes sense, will add a new struct for HDMI dsc parameters read for DSC 
+supported by a given HDMI sink.
+
+Thanks & Regards,
+
+Ankit
+
+>
+>> +
+>> +/** @dsc_native_420: Does sink support DSC with 4:2:0 compression */
+>> +bool dsc_native_420;
+>> +
+>> +/**
+>> + * @dsc_all_bpp: Does sink support all bpp with 4:4:4: or 4:2:2
+>> + * compressed formats
+>> + */
+>> +bool dsc_all_bpp;
+>> +
+>> +/**
+>> + * @dsc_bpc_supported: compressed bpc supported by sink : 10, 12 or 16
+>> bpc
+>> + */
+>> +u8 dsc_bpc_supported;
+>> +
+>> +/** @dsc_max_slices: maximum number of Horizontal slices supported
+>> by */
+>> +u8 dsc_max_slices;
+>> +
+>> +/** @dsc_clk_per_slice : max pixel clock in MHz supported per slice */
+>> +u8 dsc_clk_per_slice;
+>> +
+>> +/** @dsc_max_lanes : dsc max lanes supported for Fixed rate Link
+>> training */
+>> +u8 dsc_max_lanes;
+>> +
+>> +/** @dsc_max_frl_rate_per_lane : maximum frl rate with DSC per lane */
+>> +u8 dsc_max_frl_rate_per_lane;
+>> +
+>> +/** @dsc_total_chunk_kbytes: max size of chunks in KBs supported per
+>> line*/
+>> +u8 dsc_total_chunk_kbytes;
+>>   };
+>>
+>>   /**
+>> --
+>> 2.17.1
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
