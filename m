@@ -2,40 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BD3142A1D2E
-	for <lists+intel-gfx@lfdr.de>; Sun,  1 Nov 2020 11:14:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C09D82A1D58
+	for <lists+intel-gfx@lfdr.de>; Sun,  1 Nov 2020 11:38:22 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5910C6EAAB;
-	Sun,  1 Nov 2020 10:14:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AC1806EA92;
+	Sun,  1 Nov 2020 10:38:19 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CFEE36EA95;
- Sun,  1 Nov 2020 10:14:11 +0000 (UTC)
-IronPort-SDR: k30YtS5wPdJPv/dqaoHMPwIYOOCBwLqT6cpyiMb63ifrx+YaUlwE2KWqhwZZGY9iFfwNbifZQm
- XyKYuKYr3nVA==
-X-IronPort-AV: E=McAfee;i="6000,8403,9791"; a="167997875"
-X-IronPort-AV: E=Sophos;i="5.77,441,1596524400"; d="scan'208";a="167997875"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Nov 2020 02:14:11 -0800
-IronPort-SDR: T4RlCzCorp1iK2DwWaeMtq3uNoRCWmxpkclHOnnfL+zalqilbPrZ/NeaOGynoPlCOIH659DQfy
- mfroV7IWanFw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.77,441,1596524400"; d="scan'208";a="425738694"
-Received: from linux-akn.iind.intel.com ([10.223.34.148])
- by fmsmga001.fm.intel.com with ESMTP; 01 Nov 2020 02:14:09 -0800
-From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Sun,  1 Nov 2020 15:36:57 +0530
-Message-Id: <20201101100657.12087-14-ankit.k.nautiyal@intel.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20201101100657.12087-1-ankit.k.nautiyal@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id E1EB76EA92;
+ Sun,  1 Nov 2020 10:38:17 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 1588AA8832;
+ Sun,  1 Nov 2020 10:38:17 +0000 (UTC)
+MIME-Version: 1.0
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Ankit Nautiyal" <ankit.k.nautiyal@intel.com>
+Date: Sun, 01 Nov 2020 10:38:17 -0000
+Message-ID: <160422709705.4895.293981534971832629@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
 References: <20201101100657.12087-1-ankit.k.nautiyal@intel.com>
-Subject: [Intel-gfx] [PATCH v2 13/13] drm/i915: Configure PCON for DSC1.1 to
- DSC1.2 encoding
+In-Reply-To: <20201101100657.12087-1-ankit.k.nautiyal@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_Add_support_for_DP-HDMI2=2E1_PCON_=28rev4=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,225 +38,185 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel@lists.freedesktop.org
-MIME-Version: 1.0
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-When a source supporting DSC1.1 is connected to DSC1.2 HDMI2.1 sink
-via DP HDMI2.1 PCON, the PCON can be configured to decode the
-DSC1.1 compressed stream and encode to DSC1.2. It then sends the
-DSC1.2 compressed stream to the HDMI2.1 sink.
+== Series Details ==
 
-This patch configures the PCON for DSC1.1 to DSC1.2 encoding, based
-on the PCON's DSC encoder capablities and HDMI2.1 sink's DSC decoder
-capabilities.
+Series: Add support for DP-HDMI2.1 PCON (rev4)
+URL   : https://patchwork.freedesktop.org/series/82098/
+State : warning
 
-v2: Rebase
+== Summary ==
 
-Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
----
- drivers/gpu/drm/i915/display/intel_ddi.c |   1 +
- drivers/gpu/drm/i915/display/intel_dp.c  | 128 ++++++++++++++++++++++-
- drivers/gpu/drm/i915/display/intel_dp.h  |   2 +
- 3 files changed, 129 insertions(+), 2 deletions(-)
+$ dim checkpatch origin/drm-tip
+27e3b6298aa3 drm/edid: Add additional HFVSDB fields for HDMI2.1
+-:60: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email name mismatch: 'From: Swati Sharma <swati2.sharma@intel.com>' != 'Signed-off-by: Sharma, Swati2 <swati2.sharma@intel.com>'
 
-diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
-index 3e76fb1117df..dbf28d021d08 100644
---- a/drivers/gpu/drm/i915/display/intel_ddi.c
-+++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-@@ -3493,6 +3493,7 @@ static void tgl_ddi_pre_enable_dp(struct intel_atomic_state *state,
- 	intel_dp_sink_set_fec_ready(intel_dp, crtc_state);
- 
- 	intel_dp_check_frl_training(intel_dp);
-+	intel_dp_pcon_dsc_configure(intel_dp, crtc_state);
- 
- 	/*
- 	 * 7.i Follow DisplayPort specification training sequence (see notes for
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index 2e7ddb062efe..bc1f1afc35ad 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -788,6 +788,16 @@ intel_dp_mode_valid(struct drm_connector *connector,
- 							     target_clock,
- 							     mode->hdisplay);
- 		}
-+
-+		/*
-+		 * TODO: If its a PCON with HDMI sink:
-+		 * Assumption : Source only supports DSC1.1
-+		 *
-+		 * If HDMI supports DSC 1.2 but PCON does not support
-+		 * DSC1.1->DSC1.2 encoding Then return MODE_CLOCK_HIGH.
-+		 * Otherwise check if the mode can be applied according to
-+		 * DSC capablities of the PCON and HDMI Sink combine.
-+		 */
- 	}
- 
- 	if ((mode_rate > max_rate && !(dsc_max_output_bpp && dsc_slice_count)) ||
-@@ -3936,9 +3946,21 @@ static int intel_dp_hdmi_sink_max_frl(struct intel_dp *intel_dp)
- {
- 	struct intel_connector *intel_connector = intel_dp->attached_connector;
- 	struct drm_connector *connector = &intel_connector->base;
-+	int max_frl_rate;
-+	int max_lanes, rate_per_lane;
-+	int max_dsc_lanes, dsc_rate_per_lane;
-+
-+	max_lanes = connector->display_info.hdmi.max_lanes;
-+	rate_per_lane = connector->display_info.hdmi.max_frl_rate_per_lane;
-+	max_frl_rate = max_lanes * rate_per_lane;
-+
-+	if (connector->display_info.hdmi.dsc_cap.v_1p2) {
-+		max_dsc_lanes = connector->display_info.hdmi.dsc_cap.max_lanes;
-+		dsc_rate_per_lane = connector->display_info.hdmi.dsc_cap.max_frl_rate_per_lane;
-+		max_frl_rate = min(max_frl_rate, max_dsc_lanes * dsc_rate_per_lane);
-+	}
- 
--	return (connector->display_info.hdmi.max_frl_rate_per_lane *
--		connector->display_info.hdmi.max_lanes);
-+	return max_frl_rate;
- }
- 
- static int intel_dp_pcon_start_frl_training(struct intel_dp *intel_dp)
-@@ -4071,6 +4093,106 @@ void intel_dp_check_frl_training(struct intel_dp *intel_dp)
- 	}
- }
- 
-+static int
-+intel_dp_pcon_dsc_enc_slice_height(const struct intel_crtc_state *crtc_state)
+total: 0 errors, 1 warnings, 0 checks, 36 lines checked
+1aebdfd6f051 drm/edid: Parse MAX_FRL field from HFVSDB block
+-:72: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#72: FILE: drivers/gpu/drm/drm_edid.c:4946:
++		drm_get_max_frl_rate(max_frl_rate, &hdmi->max_lanes,
++				&hdmi->max_frl_rate_per_lane);
+
+-:94: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email name mismatch: 'From: Swati Sharma <swati2.sharma@intel.com>' != 'Signed-off-by: Sharma, Swati2 <swati2.sharma@intel.com>'
+
+total: 0 errors, 1 warnings, 1 checks, 68 lines checked
+8f11c904f67d drm/edid: Parse DSC1.2 cap fields from HFVSDB block
+-:50: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#50: FILE: drivers/gpu/drm/drm_edid.c:4967:
++			drm_get_max_frl_rate(dsc_max_frl_rate, &hdmi_dsc->max_lanes,
++					&hdmi_dsc->max_frl_rate_per_lane);
+
+-:51: WARNING:LONG_LINE: line length of 101 exceeds 100 columns
+#51: FILE: drivers/gpu/drm/drm_edid.c:4968:
++			hdmi_dsc->total_chunk_kbytes = hf_vsdb[13] & DRM_EDID_DSC_TOTAL_CHUNK_KBYTES;
+
+total: 0 errors, 1 warnings, 1 checks, 125 lines checked
+ba56200d5979 drm/dp_helper: Add Helpers for FRL Link Training support for DP-HDMI2.1 PCON
+a8f954072aa1 drm/dp_helper: Add support for link failure detection
+-:111: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#111: FILE: include/drm/drm_dp_helper.h:2066:
++void drm_dp_pcon_hdmi_frl_link_error_count(struct drm_dp_aux *aux,
++					  struct drm_connector *connector);
+
+total: 0 errors, 0 warnings, 1 checks, 76 lines checked
+66e1ef9ccd96 drm/dp_helper: Add support for Configuring DSC for HDMI2.1 Pcon
+-:155: WARNING:BLOCK_COMMENT_STYLE: Block comments use a trailing */ on a separate line
+#155: FILE: drivers/gpu/drm/drm_dp_helper.c:3070:
++ * */
+
+-:175: WARNING:BLOCK_COMMENT_STYLE: Block comments use a trailing */ on a separate line
+#175: FILE: drivers/gpu/drm/drm_dp_helper.c:3090:
++ * */
+
+-:200: WARNING:BLOCK_COMMENT_STYLE: Block comments use a trailing */ on a separate line
+#200: FILE: drivers/gpu/drm/drm_dp_helper.c:3115:
++ * */
+
+total: 0 errors, 3 warnings, 0 checks, 337 lines checked
+387f2d64c66f drm/i915: Capture max frl rate for PCON in dfp cap structure
+-:14: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
+#14: 
+-tweaked the comparison of target bw and pcon frl bw to avoid roundup errors.
+
+total: 0 errors, 1 warnings, 0 checks, 68 lines checked
+d827cabe3e1d drm/i915: Add support for starting FRL training for HDMI2.1 via PCON
+-:97: CHECK:BRACES: Blank lines aren't necessary after an open brace '{'
+#97: FILE: drivers/gpu/drm/i915/display/intel_dp.c:3952:
 +{
 +
-+	int vactive = crtc_state->hw.adjusted_mode.vdisplay;
-+
-+	return intel_hdmi_dsc_get_slice_height(vactive);
-+}
-+
-+static int
-+intel_dp_pcon_dsc_enc_slices(struct intel_dp *intel_dp,
-+			     const struct intel_crtc_state *crtc_state)
+
+-:169: WARNING:LONG_LINE: line length of 101 exceeds 100 columns
+#169: FILE: drivers/gpu/drm/i915/display/intel_dp.c:4024:
++	wait_for(is_active = drm_dp_pcon_is_frl_ready(&intel_dp->aux) == true, TIMEOUT_FRL_READY_MS);
+
+-:188: WARNING:LONG_LINE: line length of 112 exceeds 100 columns
+#188: FILE: drivers/gpu/drm/i915/display/intel_dp.c:4043:
++	wait_for(is_active = drm_dp_pcon_hdmi_link_active(&intel_dp->aux) == true, TIMEOUT_HDMI_LINK_ACTIVE_MS);
+
+-:194: WARNING:LONG_LINE: line length of 101 exceeds 100 columns
+#194: FILE: drivers/gpu/drm/i915/display/intel_dp.c:4049:
++	if (DP_PCON_HDMI_MODE_FRL != drm_dp_pcon_hdmi_link_mode(&intel_dp->aux, &frl_trained_mask)) {
+
+-:194: WARNING:CONSTANT_COMPARISON: Comparisons should place the constant on the right side of the test
+#194: FILE: drivers/gpu/drm/i915/display/intel_dp.c:4049:
++	if (DP_PCON_HDMI_MODE_FRL != drm_dp_pcon_hdmi_link_mode(&intel_dp->aux, &frl_trained_mask)) {
+
+-:198: WARNING:LONG_LINE: line length of 109 exceeds 100 columns
+#198: FILE: drivers/gpu/drm/i915/display/intel_dp.c:4053:
++	drm_dbg(&i915->drm, "MAX_FRL_MASK = %u, FRL_TRAINED_MASK = %u\n", max_frl_bw_mask, frl_trained_mask);
+
+total: 0 errors, 5 warnings, 1 checks, 232 lines checked
+572ef7628b8b drm/i915: Check for FRL training before DP Link training
+f528721e41d3 drm/i915: Add support for enabling link status and recovery
+-:47: WARNING:LONG_LINE: line length of 107 exceeds 100 columns
+#47: FILE: drivers/gpu/drm/i915/display/intel_dp.c:6004:
++		drm_dp_pcon_hdmi_frl_link_error_count(&intel_dp->aux, &intel_dp->attached_connector->base);
+
+total: 0 errors, 1 warnings, 0 checks, 86 lines checked
+addfded61f9d drm/i915: Read DSC capabilities of the HDMI2.1 PCON encoder
+-:48: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#48: FILE: drivers/gpu/drm/i915/display/intel_dp.c:3935:
++	if (drm_dp_dpcd_read(&intel_dp->aux, DP_PCON_DSC_ENCODER,
++				     intel_dp->pcon_dsc_dpcd,
+
+-:54: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#54: FILE: drivers/gpu/drm/i915/display/intel_dp.c:3941:
++	drm_dbg_kms(&i915->drm, "PCON ENCODER DSC DPCD: %*ph\n",
++		   (int)sizeof(intel_dp->pcon_dsc_dpcd), intel_dp->pcon_dsc_dpcd);
+
+total: 0 errors, 0 warnings, 2 checks, 39 lines checked
+e32618cd039c drm/i915: Add helper functions for calculating DSC parameters for HDMI2.1
+-:106: WARNING:SUSPECT_CODE_INDENT: suspect code indent for conditional statements (16, 23)
+#106: FILE: drivers/gpu/drm/i915/display/intel_hdmi.c:3522:
++		if (min_slices <= 1 && src_max_slices >= 1 && hdmi_max_slices >= 1)
++		       target_slices = 1;
+
+-:108: WARNING:SUSPECT_CODE_INDENT: suspect code indent for conditional statements (16, 23)
+#108: FILE: drivers/gpu/drm/i915/display/intel_hdmi.c:3524:
++		else if (min_slices <= 2 && src_max_slices >= 2 && hdmi_max_slices >= 2)
++		       target_slices = 2;
+
+-:110: WARNING:SUSPECT_CODE_INDENT: suspect code indent for conditional statements (16, 23)
+#110: FILE: drivers/gpu/drm/i915/display/intel_hdmi.c:3526:
++		else if (min_slices <= 4 && src_max_slices >= 4 && hdmi_max_slices >= 4)
++		       target_slices = 4;
+
+-:112: WARNING:SUSPECT_CODE_INDENT: suspect code indent for conditional statements (16, 23)
+#112: FILE: drivers/gpu/drm/i915/display/intel_hdmi.c:3528:
++		else if (min_slices <= 8 && src_max_slices >= 8 && hdmi_max_slices >= 8)
++		       target_slices = 8;
+
+-:114: WARNING:SUSPECT_CODE_INDENT: suspect code indent for conditional statements (16, 23)
+#114: FILE: drivers/gpu/drm/i915/display/intel_hdmi.c:3530:
++		else if (min_slices <= 12 && src_max_slices >= 12 && hdmi_max_slices >= 12)
++		       target_slices = 12;
+
+-:116: WARNING:SUSPECT_CODE_INDENT: suspect code indent for conditional statements (16, 23)
+#116: FILE: drivers/gpu/drm/i915/display/intel_hdmi.c:3532:
++		else if (min_slices <= 16 && src_max_slices >= 16 && hdmi_max_slices >= 16)
++		       target_slices = 16;
+
+total: 0 errors, 6 warnings, 0 checks, 196 lines checked
+15815a741992 drm/i915: Configure PCON for DSC1.1 to DSC1.2 encoding
+-:83: CHECK:BRACES: Blank lines aren't necessary after an open brace '{'
+#83: FILE: drivers/gpu/drm/i915/display/intel_dp.c:4153:
 +{
-+	struct intel_connector *intel_connector = intel_dp->attached_connector;
-+	struct drm_connector *connector = &intel_connector->base;
-+	int hdmi_throughput = connector->display_info.hdmi.dsc_cap.clk_per_slice;
-+	int hdmi_max_slices = connector->display_info.hdmi.dsc_cap.max_slices;
-+	int pcon_max_slices = drm_dp_pcon_dsc_max_slices(intel_dp->pcon_dsc_dpcd);
-+	int pcon_max_slice_width = drm_dp_pcon_dsc_max_slice_width(intel_dp->pcon_dsc_dpcd);
++
+
+-:100: CHECK:LINE_SPACING: Please don't use multiple blank lines
+#100: FILE: drivers/gpu/drm/i915/display/intel_dp.c:4170:
 +
 +
-+	return intel_hdmi_dsc_get_num_slices(crtc_state, pcon_max_slices,
-+					     pcon_max_slice_width,
-+					     hdmi_max_slices, hdmi_throughput);
-+}
-+
-+static int
-+intel_dp_pcon_dsc_enc_bpp(struct intel_dp *intel_dp,
-+			  const struct intel_crtc_state *crtc_state,
-+			  int num_slices, int slice_width)
-+{
-+	struct intel_connector *intel_connector = intel_dp->attached_connector;
-+	struct drm_connector *connector = &intel_connector->base;
-+	int output_format = crtc_state->output_format;
-+	bool hdmi_all_bpp = connector->display_info.hdmi.dsc_cap.all_bpp;
-+	int pcon_fractional_bpp = drm_dp_pcon_dsc_bpp_incr(intel_dp->pcon_dsc_dpcd);
-+	int hdmi_max_chunk_bytes =
-+		connector->display_info.hdmi.dsc_cap.total_chunk_kbytes * 1024;
-+
-+	return intel_hdmi_dsc_get_bpp(pcon_fractional_bpp, slice_width,
-+				      num_slices, output_format, hdmi_all_bpp,
-+				      hdmi_max_chunk_bytes);
-+}
-+
-+void
-+intel_dp_pcon_dsc_configure(struct intel_dp *intel_dp,
-+			    const struct intel_crtc_state *crtc_state)
-+{
-+	u8 pps_param[6];
-+	u8 buf;
-+	int version_major, version_minor;
-+	int slice_height;
-+	int slice_width;
-+	int num_slices;
-+	int bits_per_pixel;
-+	int ret;
-+	struct intel_connector *intel_connector = intel_dp->attached_connector;
-+	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
-+	struct drm_connector *connector = &intel_connector->base;
-+	bool hdmi_is_dsc_1_2 = connector->display_info.hdmi.dsc_cap.v_1p2;
+
+-:141: CHECK:LINE_SPACING: Please don't use multiple blank lines
+#141: FILE: drivers/gpu/drm/i915/display/intel_dp.c:4211:
 +
 +
-+	buf = intel_dp->pcon_dsc_dpcd[DP_PCON_DSC_VERSION - DP_PCON_DSC_ENCODER];
-+	version_major = (buf & DP_PCON_DSC_MAJOR_MASK) >> DP_PCON_DSC_MAJOR_SHIFT;
-+	version_minor = (buf & DP_PCON_DSC_MINOR_MASK) >> DP_PCON_DSC_MINOR_SHIFT;
+
+-:146: CHECK:LINE_SPACING: Please don't use multiple blank lines
+#146: FILE: drivers/gpu/drm/i915/display/intel_dp.c:4216:
 +
 +
-+	/* Only if PCON encoder and HDMI decoder both support DSC 1.2 */
+
+-:148: CHECK:UNNECESSARY_PARENTHESES: Unnecessary parentheses around '!hdmi_is_dsc_1_2'
+#148: FILE: drivers/gpu/drm/i915/display/intel_dp.c:4218:
 +	if ((version_major != 1 || version_minor != 2) ||
 +	    (!hdmi_is_dsc_1_2))
-+		return;
-+
-+	slice_height = intel_dp_pcon_dsc_enc_slice_height(crtc_state);
-+	if (!slice_height)
-+		return;
-+
-+	num_slices = intel_dp_pcon_dsc_enc_slices(intel_dp, crtc_state);
-+	if (!num_slices)
-+		return;
-+
-+	slice_width = DIV_ROUND_UP(crtc_state->hw.adjusted_mode.hdisplay,
-+				   num_slices);
-+
+
+-:164: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#164: FILE: drivers/gpu/drm/i915/display/intel_dp.c:4234:
 +	bits_per_pixel = intel_dp_pcon_dsc_enc_bpp(intel_dp, crtc_state,
 +						  num_slices, slice_width);
-+	if (!bits_per_pixel)
-+		return;
-+
-+	pps_param[0] = slice_height >> 8;
-+	pps_param[1] = slice_height & 0xFF;
-+	pps_param[2] = slice_width >> 8;
-+	pps_param[3] = slice_width & 0xFF;
-+	pps_param[4] = bits_per_pixel >> 8;
-+	pps_param[5] = bits_per_pixel & 0xFF;
-+
-+	ret = drm_dp_pcon_pps_override_param(&intel_dp->aux, pps_param);
-+	if (ret < 0)
-+		drm_dbg_kms(&i915->drm, "Failed to set pcon DSC\n");
-+}
-+
- static void
- g4x_set_link_train(struct intel_dp *intel_dp,
- 		   const struct intel_crtc_state *crtc_state,
-@@ -4202,6 +4324,7 @@ static void intel_enable_dp(struct intel_atomic_state *state,
- 	intel_dp_set_power(intel_dp, DP_SET_POWER_D0);
- 	intel_dp_configure_protocol_converter(intel_dp);
- 	intel_dp_check_frl_training(intel_dp);
-+	intel_dp_pcon_dsc_configure(intel_dp, pipe_config);
- 	intel_dp_start_link_train(intel_dp, pipe_config);
- 	intel_dp_stop_link_train(intel_dp, pipe_config);
- 
-@@ -6149,6 +6272,7 @@ int intel_dp_retrain_link(struct intel_encoder *encoder,
- 			continue;
- 
- 		intel_dp_check_frl_training(intel_dp);
-+		intel_dp_pcon_dsc_configure(intel_dp, crtc_state);
- 		intel_dp_start_link_train(intel_dp, crtc_state);
- 		intel_dp_stop_link_train(intel_dp, crtc_state);
- 		break;
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.h b/drivers/gpu/drm/i915/display/intel_dp.h
-index a667d3f578d6..3515e057447e 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.h
-+++ b/drivers/gpu/drm/i915/display/intel_dp.h
-@@ -144,5 +144,7 @@ void intel_dp_sync_state(struct intel_encoder *encoder,
- 			 const struct intel_crtc_state *crtc_state);
- 
- void intel_dp_check_frl_training(struct intel_dp *intel_dp);
-+void intel_dp_pcon_dsc_configure(struct intel_dp *intel_dp,
-+				 const struct intel_crtc_state *crtc_state);
- 
- #endif /* __INTEL_DP_H__ */
--- 
-2.17.1
+
+total: 0 errors, 0 warnings, 6 checks, 173 lines checked
+
 
 _______________________________________________
 Intel-gfx mailing list
