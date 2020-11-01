@@ -1,49 +1,56 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CA1B72A1C87
-	for <lists+intel-gfx@lfdr.de>; Sun,  1 Nov 2020 08:14:58 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5E9772A1D08
+	for <lists+intel-gfx@lfdr.de>; Sun,  1 Nov 2020 10:59:25 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1D3536EA78;
-	Sun,  1 Nov 2020 07:14:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3CEF689A72;
+	Sun,  1 Nov 2020 09:59:22 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3C2456EA78;
- Sun,  1 Nov 2020 07:14:56 +0000 (UTC)
-IronPort-SDR: zqqaJietLCe1e1PmEymquBLbx2tKjy/7leBcZBofKt63HVQkVhkV9kD0io6k86oRtAH1gKp7jQ
- 3SynFvjQLi2g==
-X-IronPort-AV: E=McAfee;i="6000,8403,9791"; a="165273613"
-X-IronPort-AV: E=Sophos;i="5.77,440,1596524400"; d="scan'208";a="165273613"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Nov 2020 00:14:55 -0700
-IronPort-SDR: zZoOqSaPjsa6YyVsxXUuGd9NIbVdfvWw1UUOe6mdYBLs4/3DxqE1Mp0CmfmuFLBvNXEs41qjxJ
- vpW3HHYMhpmQ==
-X-IronPort-AV: E=Sophos;i="5.77,440,1596524400"; d="scan'208";a="537587262"
-Received: from aknautiy-mobl.gar.corp.intel.com (HELO [10.215.177.133])
- ([10.215.177.133])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Nov 2020 00:14:52 -0700
-To: "Shankar, Uma" <uma.shankar@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-References: <20201015105259.27934-1-ankit.k.nautiyal@intel.com>
- <20201015105259.27934-12-ankit.k.nautiyal@intel.com>
- <e4d5cbbd77b94e878c18e7d7f936c215@intel.com>
- <dbd7b77cd2fa4ed189b9c2c623fbae2b@intel.com>
-From: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
-Message-ID: <bf75733e-e319-7e8c-6d71-28feb519e186@intel.com>
-Date: Sun, 1 Nov 2020 12:44:50 +0530
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
- Thunderbird/68.12.1
+Received: from mail-ot1-x341.google.com (mail-ot1-x341.google.com
+ [IPv6:2607:f8b0:4864:20::341])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4AEF7892F0
+ for <intel-gfx@lists.freedesktop.org>; Sun,  1 Nov 2020 09:59:21 +0000 (UTC)
+Received: by mail-ot1-x341.google.com with SMTP id 79so2361680otc.7
+ for <intel-gfx@lists.freedesktop.org>; Sun, 01 Nov 2020 01:59:21 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc:content-transfer-encoding;
+ bh=Dm4asBdVmUzLRxf3VzmSxOuQiwGbdrf+uIQsQTtBQOs=;
+ b=bJu23aVf5FL/TMt0Ly4R+Tu1iTKlWm8xIWlHnjOPlKSmYVDIFAXRt77jZm5dafNg+3
+ gqIFnWGcjQLXsm2jZIXTy7lvvA/3eHOM+phG4rGe7LMnss27AneaAV4bijjiOkbq9ilD
+ 66DieL2kdJNchOQbj5N65EEaNkFZILZKTTmp8=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc:content-transfer-encoding;
+ bh=Dm4asBdVmUzLRxf3VzmSxOuQiwGbdrf+uIQsQTtBQOs=;
+ b=p9y6AVk9hdw2pWK6ekG4upQuy5rg5C2bcN1VU+sDj5dYAU/z8i4jnaBIL/n45wd3ox
+ R2Vvk5nmPNEGhx5slzeipWOPrZVPix2IZlk8GsFeY2F2sNdiFKN/sNStihm5KFhiG93e
+ QdnAqPC0/Qo8grpprn4keOFVgDzKKvj6lN8PPIEuD/9MVHm456RthiP+lTL5H/S/oKBA
+ LDerRdR3lCUitit7qPYD0bPaHL47HQCzfJgmaKLZy4uL2fAvNlFK3Q7CGZMWK+nCyEzx
+ 3r6fZovQtQdU1DMoMn/5QpBJhQNH21l5u3EB8bS11PZneB1gKaaYoue3Yq2Ke17C3MRC
+ 909A==
+X-Gm-Message-State: AOAM531/3Tv+Rcl7eH4pXQFMfeNjzuxYIopgX1vMHqKd5WOeAkhSflso
+ /FmO8tV3h3gNHLqptuH6/DcqwM/rUhobpxYF13VU/w==
+X-Google-Smtp-Source: ABdhPJy2nwLBurkuSGsvfLsprVngcUxvgQH33WmO2SykjPeBCe3bmylPRLAFfjJmZXv0KOjbpiU18XXDWN80I/4jN4E=
+X-Received: by 2002:a9d:3b4:: with SMTP id f49mr7148507otf.188.1604224760595; 
+ Sun, 01 Nov 2020 01:59:20 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <dbd7b77cd2fa4ed189b9c2c623fbae2b@intel.com>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [RFC 11/13] drm/i915: Read DSC capabilities of the
- HDMI2.1 PCON encoder
+References: <20201030101104.2503-1-daniel.vetter@ffwll.ch>
+ <20201030101104.2503-3-daniel.vetter@ffwll.ch>
+ <DM5PR12MB1708CC019EE615AA6B3D8A0184150@DM5PR12MB1708.namprd12.prod.outlook.com>
+ <CAKMK7uGjiVVemSHUBCJoeYfkY42Hegfz6gikkrYp_nxYCF4FUA@mail.gmail.com>
+ <f4c6da45-35c4-572f-46ed-9dd6aaa7d4a6@amd.com>
+In-Reply-To: <f4c6da45-35c4-572f-46ed-9dd6aaa7d4a6@amd.com>
+From: Daniel Vetter <daniel.vetter@ffwll.ch>
+Date: Sun, 1 Nov 2020 10:59:09 +0100
+Message-ID: <CAKMK7uGODqd+Rc2uZdwtTD3JExEEAHwtUNj9m66Eug_wmhzK1A@mail.gmail.com>
+To: Luben Tuikov <luben.tuikov@amd.com>
+Subject: Re: [Intel-gfx] [PATCH 3/5] drm/amdgpu: Paper over the drm_driver
+ mangling for virt
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,330 +63,144 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Cc: "Grodzovsky, Andrey" <Andrey.Grodzovsky@amd.com>, "Gong,
+ Curry" <Curry.Gong@amd.com>, "Zhang, Bokun" <Bokun.Zhang@amd.com>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ DRI Development <dri-devel@lists.freedesktop.org>, "Sheng,
+ Wenhui" <Wenhui.Sheng@amd.com>, "Liu, Shaoyun" <Shaoyun.Liu@amd.com>, "Yang,
+ Stanley" <Stanley.Yang@amd.com>, "Li, Dennis" <Dennis.Li@amd.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Daniel Vetter <daniel.vetter@intel.com>, "Deucher,
+ Alexander" <Alexander.Deucher@amd.com>, "Kuehling,
+ Felix" <Felix.Kuehling@amd.com>, Yintian Tao <yttao@amd.com>, "Quan,
+ Evan" <Evan.Quan@amd.com>, "Koenig, Christian" <Christian.Koenig@amd.com>,
+ "Liu, Monk" <Monk.Liu@amd.com>, "Zhang, Hawking" <Hawking.Zhang@amd.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-
-On 10/19/2020 5:04 AM, Shankar, Uma wrote:
->
->> -----Original Message-----
->> From: Shankar, Uma
->> Sent: Monday, October 19, 2020 5:02 AM
->> To: Nautiyal, Ankit K <ankit.k.nautiyal@intel.com>; intel-
->> gfx@lists.freedesktop.org
->> Cc: dri-devel@lists.freedesktop.org; Kulkarni, Vandita
->> <vandita.kulkarni@intel.com>; ville.syrjala@linux.intel.com; Sharma, Swati2
->> <swati2.sharma@intel.com>
->> Subject: RE: [RFC 11/13] drm/i915: Read DSC capabilities of the HDMI2.1 PCON
->> encoder
-> Also it would be good to move to DRM Core.
-
-
-Agreed, as mentioned in earlier patch, will move the appropriate code as 
-drm_helper functions.
-
-
-Regards,
-
-Ankit
-
->
->>
->>> -----Original Message-----
->>> From: Nautiyal, Ankit K <ankit.k.nautiyal@intel.com>
->>> Sent: Thursday, October 15, 2020 4:23 PM
->>> To: intel-gfx@lists.freedesktop.org
->>> Cc: dri-devel@lists.freedesktop.org; Shankar, Uma
->>> <uma.shankar@intel.com>; Kulkarni, Vandita
->>> <vandita.kulkarni@intel.com>; ville.syrjala@linux.intel.com; Sharma,
->>> Swati2 <swati2.sharma@intel.com>
->>> Subject: [RFC 11/13] drm/i915: Read DSC capabilities of the HDMI2.1
->>> PCON encoder
->>>
->>> This patch adds a helper function to read the DSC capabilities of the
->>> HDMI2.1 PCon encoder. It also adds a new structure to store these
->>> caps, which can then be used to get the PPS parameters for
->>> PCON-HDMI2.1 sink pair. Which inturn will be used to take a call to
->>> override the existing PPS-metadata, by either writing the entire new
->>> PPS metadata, or by writing only the PPS override parameters.
->>>
->>> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
->>> ---
->>>   .../drm/i915/display/intel_display_types.h    |  16 ++
->>>   drivers/gpu/drm/i915/display/intel_dp.c       | 178 ++++++++++++++++++
->>>   2 files changed, 194 insertions(+)
->>>
->>> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h
->>> b/drivers/gpu/drm/i915/display/intel_display_types.h
->>> index 6c69922313d6..23282695a47f 100644
->>> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
->>> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
->>> @@ -1292,6 +1292,21 @@ struct intel_dp_pcon_frl {
->>>   	int trained_rate_gbps;
->>>   };
->>>
->>> +struct intel_dp_pcon_dsc {
->>> +	bool enc_support;
->>> +	bool pps_override_support;
->>> +	bool blk_prediction_support;
->>> +	u8 version_major;
->>> +	u8 version_minor;
->>> +	u8 color_fmt_mask;
->>> +	u8 color_depth_mask;
->>> +	u8 max_slices;;
->>> +	u8 max_slice_width;
->>> +	u8 line_buf_bit_depth;
->>> +	u8 bpp_precision_incr;
->>> +	int rc_buf_size;
->>> +};
->>> +
->>>   struct intel_dp {
->>>   	i915_reg_t output_reg;
->>>   	u32 DP;
->>> @@ -1415,6 +1430,7 @@ struct intel_dp {
->>>   	bool hobl_active;
->>>
->>>   	struct intel_dp_pcon_frl frl;
->>> +	struct intel_dp_pcon_dsc pcon_dsc;
->>>   };
->>>
->>>   enum lspcon_vendor {
->>> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c
->>> b/drivers/gpu/drm/i915/display/intel_dp.c
->>> index e6c4cb844e37..b4f8abaea607 100644
->>> --- a/drivers/gpu/drm/i915/display/intel_dp.c
->>> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
->>> @@ -3882,6 +3882,182 @@ cpt_set_link_train(struct intel_dp *intel_dp,
->>>   	intel_de_posting_read(dev_priv, intel_dp->output_reg);  }
->>>
->>> +void intel_dp_get_pcon_dsc_cap(struct intel_dp *intel_dp) {
->>> +	u8 buf;
->>> +	u8 rc_buf_blk_size;
->>> +	u8 max_slices = 0;
->>> +
->>> +	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
->>> +	struct intel_dp_pcon_dsc *pcon_dsc = &intel_dp->pcon_dsc;
->>> +
->>> +	if (drm_dp_dpcd_readb(&intel_dp->aux, DP_PCON_DSC_ENCODER, &buf)
->>> < 0) {
->>> +		drm_err(&i915->drm, "Failed to read
->>> DP_PCON_DSC_ENCODER\n");
->>> +		return;
->>> +	}
->>> +	pcon_dsc->enc_support = buf & DP_PCON_DSC_ENCODER_SUPPORTED;
->>> +	pcon_dsc->pps_override_support = buf &
->>> DP_PCON_DSC_PPS_ENC_OVERRIDE;
->>> +
->>> +	if (drm_dp_dpcd_readb(&intel_dp->aux, DP_PCON_DSC_VERSION, &buf)
->>> < 0) {
->>> +		drm_err(&i915->drm, "Failed to read
->>> DP_PCON_DSC_VERSION\n");
->>> +		return;
->> If we fail here or in any of the subsequent calls below shouldn't we reset the dsc
->> params saying DSC not supported. Else we may return with ex.
->> pcon_dsc->enc_support = buf & DP_PCON_DSC_ENCODER_SUPPORTED which
->> would ideally not be right.
->>
->>> +	}
->>> +	pcon_dsc->version_major = (buf & DP_PCON_DSC_MAJOR_MASK) >>
->>> +				  DP_PCON_DSC_MAJOR_SHIFT;
->>> +	pcon_dsc->version_minor = (buf & DP_PCON_DSC_MINOR_MASK) >>
->>> +				  DP_PCON_DSC_MINOR_SHIFT;
->>> +
->>> +	if (drm_dp_dpcd_readb(&intel_dp->aux,
->>> DP_PCON_DSC_RC_BUF_BLK_INFO, &buf) < 0) {
->>> +		drm_err(&i915->drm, "Failed to read
->>> DP_PCON_DSC_RC_BUF_BLK_INFO\n");
->>> +		return;
->>> +	}
->>> +
->>> +	switch (buf & DP_PCON_DSC_RC_BUF_BLK_SIZE) {
->>> +	case DP_PCON_DSC_RC_BUF_BLK_1KB :
->>> +		rc_buf_blk_size = 1;
->>> +		break;
->>> +	case DP_PCON_DSC_RC_BUF_BLK_4KB :
->>> +		rc_buf_blk_size = 4;
->>> +		break;
->>> +	case DP_PCON_DSC_RC_BUF_BLK_16KB :
->>> +		rc_buf_blk_size = 16;
->>> +		break;
->>> +	case DP_PCON_DSC_RC_BUF_BLK_64KB :
->>> +		rc_buf_blk_size = 64;
->>> +		break;
->>> +	default :
->>> +		rc_buf_blk_size = 0;
->>> +	}
->> It would be good if you create sub-functions for each of these aspects to make it
->> more readable.
->>
->>> +	if (drm_dp_dpcd_readb(&intel_dp->aux, DP_PCON_DSC_RC_BUF_SIZE,
->>> &buf) < 0) {
->>> +		drm_err(&i915->drm, "Failed to read
->>> DP_PCON_DSC_RC_BUF_SIZE\n");
->>> +		return;
->>> +	}
->>> +	/* storing rc_buf_size in bytes */
->>> +	pcon_dsc->rc_buf_size = (buf + 1) * rc_buf_blk_size * 1024;
->>> +
->>> +	if (drm_dp_dpcd_readb(&intel_dp->aux, DP_PCON_DSC_SLICE_CAP_2,
->>> &buf) < 0) {
->>> +		drm_err(&i915->drm, "Failed to read
->>> DP_PCON_DSC_SLICE_CAP_2\n");
->>> +		return;
->>> +	}
->>> +	if (buf & DP_PCON_DSC_24_PER_DSC_ENC)
->>> +	       max_slices = 24;
->>> +	else if (buf & DP_PCON_DSC_20_PER_DSC_ENC)
->>> +		max_slices = 20;
->>> +	else if (buf & DP_PCON_DSC_16_PER_DSC_ENC)
->>> +		max_slices = 16;
->>> +
->>> +	if (max_slices == 0) {
->>> +		if (drm_dp_dpcd_readb(&intel_dp->aux,
->>> DP_PCON_DSC_SLICE_CAP_1,
->>> +				      &buf) < 0) {
->>> +			drm_err(&i915->drm, "Failed to read
->>> DP_PCON_DSC_SLICE_CAP_2\n");
->> Its SLICE_CAP_1.
->>
->>> +			return;
->>> +		}
->>> +
->>> +		if (buf & DP_PCON_DSC_12_PER_DSC_ENC)
->>> +			max_slices = 12;
->>> +		else if (buf & DP_PCON_DSC_10_PER_DSC_ENC)
->>> +			max_slices = 10;
->>> +		else if (buf & DP_PCON_DSC_8_PER_DSC_ENC)
->>> +			max_slices = 8;
->>> +		else if (buf & DP_PCON_DSC_6_PER_DSC_ENC)
->>> +			max_slices = 6;
->>> +		else if (buf & DP_PCON_DSC_4_PER_DSC_ENC)
->>> +			max_slices = 4;
->>> +		else if (buf & DP_PCON_DSC_2_PER_DSC_ENC)
->>> +			max_slices = 2;
->>> +		else if (buf & DP_PCON_DSC_1_PER_DSC_ENC)
->>> +			max_slices = 1;
->> Use switch here as well.
->>
->>> +	}
->>> +
->>> +	pcon_dsc->max_slices = max_slices;
->>> +
->>> +	if (drm_dp_dpcd_readb(&intel_dp->aux, DP_PCON_DSC_BUF_BIT_DEPTH,
->>> &buf) < 0) {
->>> +		drm_err(&i915->drm, "Failed to read
->>> DP_PCON_DSC_BUF_BIT_DEPTH\n");
->>> +		return;
->>> +	}
->>> +	switch (buf & DP_PCON_DSC_BIT_DEPTH_MASK) {
->>> +	case DP_PCON_DSC_DEPTH_8_BITS :
->>> +		pcon_dsc->line_buf_bit_depth = 8;
->>> +		break;
->>> +	case DP_PCON_DSC_DEPTH_9_BITS :
->>> +		pcon_dsc->line_buf_bit_depth = 9;
->>> +		break;
->>> +	case DP_PCON_DSC_DEPTH_10_BITS :
->>> +		pcon_dsc->line_buf_bit_depth = 10;
->>> +		break;
->>> +	case DP_PCON_DSC_DEPTH_11_BITS :
->>> +		pcon_dsc->line_buf_bit_depth = 11;
->>> +		break;
->>> +	case DP_PCON_DSC_DEPTH_12_BITS :
->>> +		pcon_dsc->line_buf_bit_depth = 12;
->>> +		break;
->>> +	case DP_PCON_DSC_DEPTH_13_BITS :
->>> +		pcon_dsc->line_buf_bit_depth = 13;
->>> +		break;
->>> +	case DP_PCON_DSC_DEPTH_14_BITS :
->>> +		pcon_dsc->line_buf_bit_depth = 14;
->>> +		break;
->>> +	case DP_PCON_DSC_DEPTH_15_BITS :
->>> +		pcon_dsc->line_buf_bit_depth = 15;
->>> +		break;
->>> +	case DP_PCON_DSC_DEPTH_16_BITS :
->>> +		pcon_dsc->line_buf_bit_depth = 16;
->>> +		break;
->>> +	default :
->>> +		pcon_dsc->line_buf_bit_depth = 0;
->>> +	}
->>> +
->>> +	if (drm_dp_dpcd_readb(&intel_dp->aux,
->>> DP_PCON_DSC_BLOCK_PREDICTION, &buf) < 0) {
->>> +		drm_err(&i915->drm, "Failed to read
->>> DP_PCON_DSC_BLOCK_PREDICTION\n");
->>> +		return;
->>> +	}
->>> +	if (buf && DP_PCON_DSC_BLOCK_PRED_SUPPORT)
->>> +		pcon_dsc->blk_prediction_support = true;
->>> +
->>> +	if (drm_dp_dpcd_readb(&intel_dp->aux,
->>> DP_PCON_DSC_ENC_COLOR_FMT_CAP, &buf) < 0) {
->>> +		drm_err(&i915->drm, "Failed to read
->>> DP_PCON_DSC_ENC_COLOR_FMT_CAP\n");
->>> +		return;
->>> +	}
->>> +	pcon_dsc->color_fmt_mask = buf;
->>> +
->>> +	if (drm_dp_dpcd_readb(&intel_dp->aux,
->>> DP_PCON_DSC_ENC_COLOR_DEPTH_CAP, &buf) < 0) {
->>> +		drm_err(&i915->drm, "Failed to read
->>> DP_PCON_DSC_ENC_COLOR_DEPTH_CAP\n");
->>> +		return;
->>> +	}
->>> +	pcon_dsc->color_depth_mask = buf;
->>> +
->>> +	if (drm_dp_dpcd_readb(&intel_dp->aux,
->>> DP_PCON_DSC_MAX_SLICE_WIDTH, &buf) < 0) {
->>> +		drm_err(&i915->drm, "Failed to read
->>> DP_PCON_DSC_MAX_SLICE_WIDTH\n");
->>> +		return;
->>> +	}
->>> +	pcon_dsc->max_slice_width = buf;;
->>> +
->>> +	if (drm_dp_dpcd_readb(&intel_dp->aux, DP_PCON_DSC_BPP_INCR, &buf)
->>> < 0) {
->>> +		drm_err(&i915->drm, "Failed to read
->>> DP_PCON_DSC_BPP_INCR\n");
->>> +		return;
->>> +	}
->>> +	switch(buf & DP_PCON_DSC_BPP_INCR_MASK) {
->>> +	case DP_PCON_DSC_ONE_16TH_BPP:
->>> +		pcon_dsc->bpp_precision_incr = 16;
->>> +		break;
->>> +	case DP_PCON_DSC_ONE_8TH_BPP:
->>> +		pcon_dsc->bpp_precision_incr = 8;
->>> +		break;
->>> +	case DP_PCON_DSC_ONE_4TH_BPP:
->>> +		pcon_dsc->bpp_precision_incr = 4;
->>> +		break;
->>> +	case DP_PCON_DSC_ONE_HALF_BPP:
->>> +		pcon_dsc->bpp_precision_incr = 2;
->>> +		break;
->>> +	case DP_PCON_DSC_ONE_BPP:
->>> +		pcon_dsc->bpp_precision_incr = 1;
->>> +		break;
->>> +	default :
->>> +		pcon_dsc->bpp_precision_incr = 0;
->>> +	}
->>> +}
->>> +
->>>   static int intel_dp_get_max_rate_gbps(struct intel_dp *intel_dp)  {
->>>   	int max_link_clock, max_lanes, max_rate_khz, max_rate_gbps; @@ -
->>> 6659,6 +6835,8 @@ intel_dp_update_dfp(struct intel_dp *intel_dp,
->>>   		    intel_dp->dfp.max_tmds_clock,
->>>   		    intel_dp->dfp.pcon_max_frl,
->>>   		    intel_dp->dfp.sink_max_frl);
->>> +
->>> +	intel_dp_get_pcon_dsc_cap(intel_dp);
->>>   }
->>>
->>>   static void
->>> --
->>> 2.17.1
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+T24gU2F0LCBPY3QgMzEsIDIwMjAgYXQgNjowOSBBTSBMdWJlbiBUdWlrb3YgPGx1YmVuLnR1aWtv
+dkBhbWQuY29tPiB3cm90ZToKPgo+IE9uIDIwMjAtMTAtMzAgMDg6MDQsIERhbmllbCBWZXR0ZXIg
+d3JvdGU6Cj4gPiBPbiBGcmksIE9jdCAzMCwgMjAyMCBhdCAxMTo0MSBBTSBMaXUsIE1vbmsgPE1v
+bmsuTGl1QGFtZC5jb20+IHdyb3RlOgo+ID4+Cj4gPj4gW0FNRCBPZmZpY2lhbCBVc2UgT25seSAt
+IEludGVybmFsIERpc3RyaWJ1dGlvbiBPbmx5XQo+ID4+Cj4gPj4gV2hhdCdzIHRoZSBwdXJwb3Nl
+IG9mIHRoZSBwYXRjaCBzZXRzCj4gPj4KPiA+PiBlLmcuOiB3aGF0IGJ1ZyBjYW4gdGhvc2UgNSBw
+YXRjaGVzIGZpeCBvciB3aGF0IGZlYXR1cmUgcHJvdmlkZWQKPiA+Pgo+ID4+IGZvciB0aGlzIHBh
+cnRpY3VsYXIgb25lICgzLzUpIEkgZGlkbid0IHNlZSBob3cgaXQgaGVscGZ1bCwgY291bGQgeW91
+IGdpdmUgYSBiYWNrZ3JvdW5kICA/Cj4gPgo+ID4gSXQncyBnb29kIHRvIG1ha2UgZnVuY3Rpb24g
+dGFibGVzIGNvbnN0LCBzbyB0aGF0IHRoZXkgY2FuIGJlIHdyaXRlCj4gPiBwcm90ZWN0ZWQuIE1v
+cmUgcmVzaWxpZW5jZSBhZ2FpbnN0IGV4cGxvaXRzIGFuZCBhbGwgdGhhdC4gVGhpcyBwYXRjaAo+
+ID4gaGVyZSBpcyBuZWVkZWQgdG8gYmUgYWJsZSB0byBtYWtlIGRybV9kZXZpY2UtPmRyaXZlciBj
+b25zdCBzbyB0aGF0IGFsbAo+ID4gb3RoZXIgZHJpdmVycyBjYW4gbWFrZSB0aGVpciBkcm1fZHJp
+dmVyIHN0cnVjdHVyZSBjb25zdC4gV291bGQgYmUgZ29vZAo+ID4gdG8gZnVsbHkgZml4IHVwIGFt
+ZGdwdSBsaWtlIGluIHRoZSBjb21tZW50LCBidXQgSSdtIG5vdCBnb2luZyB0aGF0IGluCj4gPiB0
+aGlzIHNlcmllcyBoZXJlLgo+ID4gLURhbmllbAo+Cj4gSGkgRGFuaWVsLAo+Cj4gSSBmZWVsIHRo
+YXQgdGhhdCdzIGEgZ29vZCBjaGFuZ2UuCj4KPiBCdXQgaWYgeW91IGNhbiBjbGFyaWZ5IHRoaXMg
+Zm9yIG1lLi4uIElzIHRoaXMgbGVhZGluZwo+IHRvd2FyZHMgYSBzaW5nbGUgaW5zdGFuY2Ugb2Yg
+YSBzdHJ1Y3QgZHJtX2RyaXZlciBwZXIKPiBsb3ctbGV2ZWwgZHJpdmVyLCBpLmUuIGFtZGdwdT8K
+Pgo+IEFuZCBhcyBzdWNoLCBiZWluZyBhYmxlIHRvIGJlIGRlZmluZWQgYXMgY29uc3Q/Cj4KPiBT
+byB0aGF0IHdlIGhhdmUgbWFueSBHUFUgZGV2aWNlcyBkcml2ZW4gYnkgb25lCj4gbG93LWxldmVs
+IGRyaXZlciAoYW1kZ3B1X2RydiksIHJlcHJlc2VudGVkIGJ5IG9uZQo+IGNvbnN0IGRybV9kcml2
+ZXIgKGFuZCB0aHVzIGNvbnN0KT8KPgo+IFdoaWNoIHdvdWxkIGltcGx5IHRoYXQgaWYgdmFyaWVk
+IGRldmljZXMgY2FuIGJlIGhhbmRsZWQKPiBieSBhIHNpbmdsZSBsb3ctbGV2ZWwgZHJpdmVyLCB3
+aG9zZSBzdHJ1Y3QgZHJtX2RyaXZlcgo+IHNldHRpbmdzIGNhbm5vdCBiZSBzaGFyZWQgYW1vbmcg
+c3Vic2V0IG9mIGRldmljZXMgKHNheQo+IHZlcnkgb2xkIGFuZCBuZXcpLCB0aGVuIHRoZSBsb3ct
+bGV2ZWwgZHJpdmVyCj4gd291bGQgaGF2ZSB0byBjcmVhdGUgbW9yZSB0aGFuIG9uZSAiY29uc3Qi
+IHN0cnVjdCBkcm1fZHJpdmVyPwoKVGhpcyBpcyBhbHJlYWR5IHRoZSBjYXNlLCBtaW51cyB0aGUg
+Y29uc3QuIFdoaWNoIGlzIHdoeSBpdCdzCnByb2JsZW1hbnRpYyBpZiB5b3UgY2hhbmdlIHRoYXQg
+c2hhcmVkIGRybV9kcml2ZXIgaW5zdGFuY2UgYXQgcnVudGltZQpmcm9tIGEgc3BlY2lmaWMgZHJp
+dmVyLCBzaW5jZSB5b3UgYWx3YXlzIGNoYW5nZSBpdCBmb3IgYWxsIGluc3RhbmNlcy4KLURhbmll
+bAoKPgo+IFJlZ2FyZHMsCj4gTHViZW4KPgo+ID4KPiA+Pgo+ID4+IHRoYW5rcwo+ID4+IF9fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KPiA+PiBNb25rIExpdXxHUFUgVmlydHVh
+bGl6YXRpb24gVGVhbSB8QU1ECj4gPj4KPiA+Pgo+ID4+IC0tLS0tT3JpZ2luYWwgTWVzc2FnZS0t
+LS0tCj4gPj4gRnJvbTogRGFuaWVsIFZldHRlciA8ZGFuaWVsLnZldHRlckBmZndsbC5jaD4KPiA+
+PiBTZW50OiBGcmlkYXksIE9jdG9iZXIgMzAsIDIwMjAgNjoxMSBQTQo+ID4+IFRvOiBEUkkgRGV2
+ZWxvcG1lbnQgPGRyaS1kZXZlbEBsaXN0cy5mcmVlZGVza3RvcC5vcmc+Cj4gPj4gQ2M6IEludGVs
+IEdyYXBoaWNzIERldmVsb3BtZW50IDxpbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnPjsg
+RGFuaWVsIFZldHRlciA8ZGFuaWVsLnZldHRlckBmZndsbC5jaD47IERldWNoZXIsIEFsZXhhbmRl
+ciA8QWxleGFuZGVyLkRldWNoZXJAYW1kLmNvbT47IEtvZW5pZywgQ2hyaXN0aWFuIDxDaHJpc3Rp
+YW4uS29lbmlnQGFtZC5jb20+OyBRdWFuLCBFdmFuIDxFdmFuLlF1YW5AYW1kLmNvbT47IEt1ZWhs
+aW5nLCBGZWxpeCA8RmVsaXguS3VlaGxpbmdAYW1kLmNvbT47IFpoYW5nLCBIYXdraW5nIDxIYXdr
+aW5nLlpoYW5nQGFtZC5jb20+OyBHcm9kem92c2t5LCBBbmRyZXkgPEFuZHJleS5Hcm9kem92c2t5
+QGFtZC5jb20+OyBUdWlrb3YsIEx1YmVuIDxMdWJlbi5UdWlrb3ZAYW1kLmNvbT47IFRob21hcyBa
+aW1tZXJtYW5uIDx0emltbWVybWFubkBzdXNlLmRlPjsgTGl1LCBNb25rIDxNb25rLkxpdUBhbWQu
+Y29tPjsgWWludGlhbiBUYW8gPHl0dGFvQGFtZC5jb20+OyBMaSwgRGVubmlzIDxEZW5uaXMuTGlA
+YW1kLmNvbT47IExpdSwgU2hhb3l1biA8U2hhb3l1bi5MaXVAYW1kLmNvbT47IFpoYW5nLCBCb2t1
+biA8Qm9rdW4uWmhhbmdAYW1kLmNvbT47IFlhbmcsIFN0YW5sZXkgPFN0YW5sZXkuWWFuZ0BhbWQu
+Y29tPjsgU2hlbmcsIFdlbmh1aSA8V2VuaHVpLlNoZW5nQGFtZC5jb20+OyBHb25nLCBDdXJyeSA8
+Q3VycnkuR29uZ0BhbWQuY29tPjsgRGFuaWVsIFZldHRlciA8ZGFuaWVsLnZldHRlckBpbnRlbC5j
+b20+Cj4gPj4gU3ViamVjdDogW1BBVENIIDMvNV0gZHJtL2FtZGdwdTogUGFwZXIgb3ZlciB0aGUg
+ZHJtX2RyaXZlciBtYW5nbGluZyBmb3IgdmlydAo+ID4+Cj4gPj4gUHJlcCB3b3JrIHRvIG1ha2Ug
+ZHJtX2RldmljZS0+ZHJpdmVyIGNvbnN0Lgo+ID4+Cj4gPj4gU2lnbmVkLW9mZi1ieTogRGFuaWVs
+IFZldHRlciA8ZGFuaWVsLnZldHRlckBmZndsbC5jaD4KPiA+PiBDYzogQWxleCBEZXVjaGVyIDxh
+bGV4YW5kZXIuZGV1Y2hlckBhbWQuY29tPgo+ID4+IENjOiAiQ2hyaXN0aWFuIEvDtm5pZyIgPGNo
+cmlzdGlhbi5rb2VuaWdAYW1kLmNvbT4KPiA+PiBDYzogRXZhbiBRdWFuIDxldmFuLnF1YW5AYW1k
+LmNvbT4KPiA+PiBDYzogRmVsaXggS3VlaGxpbmcgPEZlbGl4Lkt1ZWhsaW5nQGFtZC5jb20+Cj4g
+Pj4gQ2M6IEhhd2tpbmcgWmhhbmcgPEhhd2tpbmcuWmhhbmdAYW1kLmNvbT4KPiA+PiBDYzogQW5k
+cmV5IEdyb2R6b3Zza3kgPGFuZHJleS5ncm9kem92c2t5QGFtZC5jb20+Cj4gPj4gQ2M6IEx1YmVu
+IFR1aWtvdiA8bHViZW4udHVpa292QGFtZC5jb20+Cj4gPj4gQ2M6IFRob21hcyBaaW1tZXJtYW5u
+IDx0emltbWVybWFubkBzdXNlLmRlPgo+ID4+IENjOiBNb25rIExpdSA8TW9uay5MaXVAYW1kLmNv
+bT4KPiA+PiBDYzogWWludGlhbiBUYW8gPHl0dGFvQGFtZC5jb20+Cj4gPj4gQ2M6IERlbm5pcyBM
+aSA8RGVubmlzLkxpQGFtZC5jb20+Cj4gPj4gQ2M6IHNoYW95dW5sIDxzaGFveXVuLmxpdUBhbWQu
+Y29tPgo+ID4+IENjOiBCb2t1biBaaGFuZyA8Qm9rdW4uWmhhbmdAYW1kLmNvbT4KPiA+PiBDYzog
+IlN0YW5sZXkuWWFuZyIgPFN0YW5sZXkuWWFuZ0BhbWQuY29tPgo+ID4+IENjOiBXZW5odWkgU2hl
+bmcgPFdlbmh1aS5TaGVuZ0BhbWQuY29tPgo+ID4+IENjOiBjaGVuIGdvbmcgPGN1cnJ5LmdvbmdA
+YW1kLmNvbT4KPiA+PiBTaWduZWQtb2ZmLWJ5OiBEYW5pZWwgVmV0dGVyIDxkYW5pZWwudmV0dGVy
+QGludGVsLmNvbT4KPiA+PiAtLS0KPiA+PiAgZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvYW1k
+Z3B1X2Rydi5jICB8ICA4ICsrKystLS0tICBkcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRn
+cHVfdmlydC5jIHwgMTIgKysrKysrKysrKystCj4gPj4gIDIgZmlsZXMgY2hhbmdlZCwgMTUgaW5z
+ZXJ0aW9ucygrKSwgNSBkZWxldGlvbnMoLSkKPiA+Pgo+ID4+IGRpZmYgLS1naXQgYS9kcml2ZXJz
+L2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVfZHJ2LmMgYi9kcml2ZXJzL2dwdS9kcm0vYW1kL2Ft
+ZGdwdS9hbWRncHVfZHJ2LmMKPiA+PiBpbmRleCAwMjRjM2I3MGIxYWEuLjNkMzM3ZjEzYWU0ZSAx
+MDA2NDQKPiA+PiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVfZHJ2LmMK
+PiA+PiArKysgYi9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVfZHJ2LmMKPiA+PiBA
+QCAtMTA5Myw3ICsxMDkzLDcgQEAgc3RhdGljIGNvbnN0IHN0cnVjdCBwY2lfZGV2aWNlX2lkIHBj
+aWlkbGlzdFtdID0gewo+ID4+Cj4gPj4gIE1PRFVMRV9ERVZJQ0VfVEFCTEUocGNpLCBwY2lpZGxp
+c3QpOwo+ID4+Cj4gPj4gLXN0YXRpYyBzdHJ1Y3QgZHJtX2RyaXZlciBrbXNfZHJpdmVyOwo+ID4+
+ICtzdHJ1Y3QgZHJtX2RyaXZlciBhbWRncHVfa21zX2RyaXZlcjsKPiA+Pgo+ID4+ICBzdGF0aWMg
+aW50IGFtZGdwdV9wY2lfcHJvYmUoc3RydWN0IHBjaV9kZXYgKnBkZXYsCj4gPj4gICAgICBjb25z
+dCBzdHJ1Y3QgcGNpX2RldmljZV9pZCAqZW50KSBAQCAtMTE2NCw3ICsxMTY0LDcgQEAgc3RhdGlj
+IGludCBhbWRncHVfcGNpX3Byb2JlKHN0cnVjdCBwY2lfZGV2ICpwZGV2LAo+ID4+ICBpZiAocmV0
+KQo+ID4+ICByZXR1cm4gcmV0Owo+ID4+Cj4gPj4gLWFkZXYgPSBkZXZtX2RybV9kZXZfYWxsb2Mo
+JnBkZXYtPmRldiwgJmttc19kcml2ZXIsIHR5cGVvZigqYWRldiksIGRkZXYpOwo+ID4+ICthZGV2
+ID0gZGV2bV9kcm1fZGV2X2FsbG9jKCZwZGV2LT5kZXYsICZhbWRncHVfa21zX2RyaXZlciwKPiA+
+PiArdHlwZW9mKCphZGV2KSwgZGRldik7Cj4gPj4gIGlmIChJU19FUlIoYWRldikpCj4gPj4gIHJl
+dHVybiBQVFJfRVJSKGFkZXYpOwo+ID4+Cj4gPj4gQEAgLTE1MDgsNyArMTUwOCw3IEBAIGludCBh
+bWRncHVfZmlsZV90b19mcHJpdihzdHJ1Y3QgZmlsZSAqZmlscCwgc3RydWN0IGFtZGdwdV9mcHJp
+diAqKmZwcml2KQo+ID4+ICByZXR1cm4gMDsKPiA+PiAgfQo+ID4+Cj4gPj4gLXN0YXRpYyBzdHJ1
+Y3QgZHJtX2RyaXZlciBrbXNfZHJpdmVyID0gewo+ID4+ICtzdHJ1Y3QgZHJtX2RyaXZlciBhbWRn
+cHVfa21zX2RyaXZlciA9IHsKPiA+PiAgLmRyaXZlcl9mZWF0dXJlcyA9Cj4gPj4gICAgICBEUklW
+RVJfQVRPTUlDIHwKPiA+PiAgICAgIERSSVZFUl9HRU0gfAo+ID4+IEBAIC0xNTcxLDcgKzE1NzEs
+NyBAQCBzdGF0aWMgaW50IF9faW5pdCBhbWRncHVfaW5pdCh2b2lkKQo+ID4+ICBnb3RvIGVycm9y
+X2ZlbmNlOwo+ID4+Cj4gPj4gIERSTV9JTkZPKCJhbWRncHUga2VybmVsIG1vZGVzZXR0aW5nIGVu
+YWJsZWQuXG4iKTsKPiA+PiAta21zX2RyaXZlci5udW1faW9jdGxzID0gYW1kZ3B1X21heF9rbXNf
+aW9jdGw7Cj4gPj4gK2FtZGdwdV9rbXNfZHJpdmVyLm51bV9pb2N0bHMgPSBhbWRncHVfbWF4X2tt
+c19pb2N0bDsKPiA+PiAgYW1kZ3B1X3JlZ2lzdGVyX2F0cHhfaGFuZGxlcigpOwo+ID4+Cj4gPj4g
+IC8qIElnbm9yZSBLRkQgaW5pdCBmYWlsdXJlcy4gTm9ybWFsIHdoZW4gQ09ORklHX0hTQV9BTUQg
+aXMgbm90IHNldC4gKi8gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2Ft
+ZGdwdV92aXJ0LmMgYi9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVfdmlydC5jCj4g
+Pj4gaW5kZXggZDBhZWE1ZTM5NTMxLi5kZGU0YzQ0OWMyODQgMTAwNjQ0Cj4gPj4gLS0tIGEvZHJp
+dmVycy9ncHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1X3ZpcnQuYwo+ID4+ICsrKyBiL2RyaXZlcnMv
+Z3B1L2RybS9hbWQvYW1kZ3B1L2FtZGdwdV92aXJ0LmMKPiA+PiBAQCAtNDUsMTMgKzQ1LDIzIEBA
+IGJvb2wgYW1kZ3B1X3ZpcnRfbW1pb19ibG9ja2VkKHN0cnVjdCBhbWRncHVfZGV2aWNlICphZGV2
+KQo+ID4+ICByZXR1cm4gUlJFRzMyX05PX0tJUSgweGMwNDApID09IDB4ZmZmZmZmZmY7ICB9Cj4g
+Pj4KPiA+PiArZXh0ZXJuIHN0cnVjdCBkcm1fZHJpdmVyIGFtZGdwdV9rbXNfZHJpdmVyOwo+ID4+
+ICsKPiA+PiAgdm9pZCBhbWRncHVfdmlydF9pbml0X3NldHRpbmcoc3RydWN0IGFtZGdwdV9kZXZp
+Y2UgKmFkZXYpICB7Cj4gPj4gIC8qIGVuYWJsZSB2aXJ0dWFsIGRpc3BsYXkgKi8KPiA+PiAgaWYg
+KGFkZXYtPm1vZGVfaW5mby5udW1fY3J0YyA9PSAwKQo+ID4+ICBhZGV2LT5tb2RlX2luZm8ubnVt
+X2NydGMgPSAxOwo+ID4+ICBhZGV2LT5lbmFibGVfdmlydHVhbF9kaXNwbGF5ID0gdHJ1ZTsKPiA+
+PiAtYWRldl90b19kcm0oYWRldiktPmRyaXZlci0+ZHJpdmVyX2ZlYXR1cmVzICY9IH5EUklWRVJf
+QVRPTUlDOwo+ID4+ICsKPiA+PiArLyoKPiA+PiArICogRklYTUU6IEVpdGhlciBtYWtlIHZpcnQg
+c3VwcG9ydCBhdG9taWMgb3IgbWFrZSBzdXJlIHlvdSBoYXZlIHR3bwo+ID4+ICsgKiBkcm1fZHJp
+dmVyIHN0cnVjdHMsIHRoZXNlIGtpbmQgb2YgdHJpY2tzIGFyZSBvbmx5IG9rIHdoZW4gdGhlcmUn
+cwo+ID4+ICsgKiBndWFyYW50ZWVkIG9ubHkgYSBzaW5nbGUgZGV2aWNlIHBlciBzeXN0ZW0uIFRo
+aXMgc2hvdWxkIGFsc28gYmUgZG9uZQo+ID4+ICsgKiBiZWZvcmUgc3RydWN0IGRybV9kZXZpY2Ug
+aXMgaW5pdGlhbGl6ZWQuCj4gPj4gKyAqLwo+ID4+ICthbWRncHVfa21zX2RyaXZlci5kcml2ZXJf
+ZmVhdHVyZXMgJj0gfkRSSVZFUl9BVE9NSUM7Cj4gPj4gKwo+ID4+ICBhZGV2LT5jZ19mbGFncyA9
+IDA7Cj4gPj4gIGFkZXYtPnBnX2ZsYWdzID0gMDsKPiA+PiAgfQo+ID4+IC0tCj4gPj4gMi4yOC4w
+Cj4gPj4KPiA+Cj4gPgo+CgoKLS0gCkRhbmllbCBWZXR0ZXIKU29mdHdhcmUgRW5naW5lZXIsIElu
+dGVsIENvcnBvcmF0aW9uCmh0dHA6Ly9ibG9nLmZmd2xsLmNoCl9fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwt
+Z2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9t
+YWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
