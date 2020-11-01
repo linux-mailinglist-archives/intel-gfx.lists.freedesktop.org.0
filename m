@@ -1,52 +1,48 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6B5992A1819
-	for <lists+intel-gfx@lfdr.de>; Sat, 31 Oct 2020 15:17:44 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id C80EB2A1C1C
+	for <lists+intel-gfx@lfdr.de>; Sun,  1 Nov 2020 06:32:24 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C499D6E131;
-	Sat, 31 Oct 2020 14:17:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 90FCC6E088;
+	Sun,  1 Nov 2020 05:32:21 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-oi1-x241.google.com (mail-oi1-x241.google.com
- [IPv6:2607:f8b0:4864:20::241])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 322706E134
- for <intel-gfx@lists.freedesktop.org>; Sat, 31 Oct 2020 14:17:40 +0000 (UTC)
-Received: by mail-oi1-x241.google.com with SMTP id m143so426228oig.7
- for <intel-gfx@lists.freedesktop.org>; Sat, 31 Oct 2020 07:17:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=85u7n/mBD72V7LoZgUrJfLZzSqQeAdrLWgd/luOfIOc=;
- b=a8y1Hz0R+UqAreSJHLdbbm1eXPV9XtGz1Ccz622/lJAS/hXFdV5y6BLD3REBqkRXul
- jtXvvCz+4ankYTdtS9tzprAJB4uU3bsqOAo+SZHlHsgIUusBMod3q3B2o8+x82iEVzg0
- sFk86+JcXpqWyDGff6wSE0ps8OPtThvkE8Qw8=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=85u7n/mBD72V7LoZgUrJfLZzSqQeAdrLWgd/luOfIOc=;
- b=AFy3+3Hvc2UzgHQmIEmWUXA220KlEP3a1dyDfBsyqhtIxH/tYfx4HQSq7Emj+ivQ2T
- MunJEJ3Y4cGZc7iiIyKbIWmO4Iy9eFShB7olNsUwiHbKTzfNcBDYO+PSKeA2PxoeVi3c
- GFA4QEXRAnJ9/hNHKfKv2H/tZQ7MnVgAMGpnFjnhN5j1ztcqOPUADb5PcmirShth5vlE
- t1GFsAQemfcE5SPUJ3t5F3u9r1nc4CP15tOFB1lfi5wWXZYIE41GwpFAW/BI0dzAwAFK
- c+28S6p2HuA+HQTHVM6qTvL4930BYf3hFBfIlbO8D4jXPys0KmpqRvVOxQ61jSgnvyDt
- 9I3Q==
-X-Gm-Message-State: AOAM530klaqaffG9PiIv6lMV89RtNSJk8/AFusJLpETdSZ6RzEvDYzHS
- vjknAx9HxgxnBQUJThHgHRISVPu2fRiI09RTTVAYHQ==
-X-Google-Smtp-Source: ABdhPJwgyR5GHaaBMBe9OmRcpwBxUYT3EzvwQF4FkT4Cpf/ilc8gVxirstyQoQEGsRO3g+SIVZUjv9fVhXj/q6RSZnA=
-X-Received: by 2002:aca:b141:: with SMTP id a62mr4466196oif.101.1604153859378; 
- Sat, 31 Oct 2020 07:17:39 -0700 (PDT)
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0972A6E088;
+ Sun,  1 Nov 2020 05:32:20 +0000 (UTC)
+IronPort-SDR: FlAo/KVXhhVqQfb2MByNHYJN1t5pYRH6LiiV1nPRnhEPXCCGtvedOgry9Urjw/pqDhSADpsyzv
+ 74uoqS09oN5w==
+X-IronPort-AV: E=McAfee;i="6000,8403,9791"; a="165270187"
+X-IronPort-AV: E=Sophos;i="5.77,440,1596524400"; d="scan'208";a="165270187"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 Oct 2020 22:32:20 -0700
+IronPort-SDR: LoF8Q4IOYRBSOZvb3WqJ+FdcQoSOFjONA7weLwhVo30aKEQsBaTOVpQKQaKaJiOy51kyNwdHiB
+ zcD0vekTioPw==
+X-IronPort-AV: E=Sophos;i="5.77,440,1596524400"; d="scan'208";a="537564623"
+Received: from aknautiy-mobl.gar.corp.intel.com (HELO [10.215.177.133])
+ ([10.215.177.133])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 Oct 2020 22:32:17 -0700
+To: "Shankar, Uma" <uma.shankar@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+References: <20201015105259.27934-1-ankit.k.nautiyal@intel.com>
+ <20201015105259.27934-2-ankit.k.nautiyal@intel.com>
+ <7137c1244ee3409da343a6c4a1de38ee@intel.com>
+From: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
+Message-ID: <aaf40f1d-3ec7-af5d-8c21-fb92483a4e38@intel.com>
+Date: Sun, 1 Nov 2020 11:01:59 +0530
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
+ Thunderbird/68.12.1
 MIME-Version: 1.0
-References: <20201029101428.4058311-1-daniel.vetter@ffwll.ch>
- <20201029132229.4068359-1-daniel.vetter@ffwll.ch>
- <alpine.DEB.2.22.394.2010311116530.379363@ramsan.of.borg>
-In-Reply-To: <alpine.DEB.2.22.394.2010311116530.379363@ramsan.of.borg>
-From: Daniel Vetter <daniel.vetter@ffwll.ch>
-Date: Sat, 31 Oct 2020 15:17:27 +0100
-Message-ID: <CAKMK7uH3SQEjhJkcMcZSW6foiDsMKS91StLYcKoyH+h1obKPCA@mail.gmail.com>
-To: Geert Uytterhoeven <geert@linux-m68k.org>
-Subject: Re: [Intel-gfx] [PATCH] fbcon: Disable accelerated scrolling
+In-Reply-To: <7137c1244ee3409da343a6c4a1de38ee@intel.com>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [RFC 01/13] drm/edid: Add additional HFVSDB fields
+ for HDMI2.1
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,295 +55,63 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Linux Fbdev development list <linux-fbdev@vger.kernel.org>,
- Jiri Slaby <jirislaby@kernel.org>,
- Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
- Tetsuo Handa <penguin-kernel@i-love.sakura.ne.jp>,
- Linus Torvalds <torvalds@linux-foundation.org>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- "Gustavo A. R. Silva" <gustavoars@kernel.org>,
- DRI Development <dri-devel@lists.freedesktop.org>,
- Peilin Ye <yepeilin.cs@gmail.com>, George Kennedy <george.kennedy@oracle.com>,
- Tomi Valkeinen <tomi.valkeinen@ti.com>, Ben Skeggs <bskeggs@redhat.com>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Nouveau Dev <nouveau@lists.freedesktop.org>,
- Daniel Vetter <daniel.vetter@intel.com>,
- Nathan Chancellor <natechancellor@gmail.com>, Sam Ravnborg <sam@ravnborg.org>,
- Peter Rosin <peda@axentia.se>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Sat, Oct 31, 2020 at 11:28 AM Geert Uytterhoeven
-<geert@linux-m68k.org> wrote:
->
->         Hi Daniel,
->
-> CC linux-fbdev
->
-> Thanks for your patch!
->
-> On Thu, 29 Oct 2020, Daniel Vetter wrote:
-> > So ever since syzbot discovered fbcon, we have solid proof that it's
-> > full of bugs. And often the solution is to just delete code and remove
-> > features, e.g.  50145474f6ef ("fbcon: remove soft scrollback code").
-> >
-> > Now the problem is that most modern-ish drivers really only treat
-> > fbcon as an dumb kernel console until userspace takes over, and Oops
-> > printer for some emergencies. Looking at drm drivers and the basic
-> > vesa/efi fbdev drivers shows that only 3 drivers support any kind of
-> > acceleration:
-> >
-> > - nouveau, seems to be enabled by default
-> > - omapdrm, when a DMM remapper exists using remapper rewriting for
-> >  y/xpanning
-> > - gma500, but that is getting deleted now for the GTT remapper trick,
-> >  and the accelerated copyarea never set the FBINFO_HWACCEL_COPYAREA
-> >  flag, so unused (and could be deleted already I think).
-> >
-> > No other driver supportes accelerated fbcon. And fbcon is the only
-> > user of this accel code (it's not exposed as uapi through ioctls),
-> > which means we could garbage collect fairly enormous amounts of code
-> > if we kill this.
->
-> "git grep FBINFO_HWACCEL_COPYAREA" shows me there are 32 more drivers
-> using acceleration under drivers/video/fbdev/.
->
-> > Plus because syzbot only runs on virtual hardware, and none of the
-> > drivers for that have acceleration, we'd remove a huge gap in testing.
-> > And there's no other even remotely comprehensive testing aside from
-> > syzbot.
->
-> That sounds like a great argument to remove all hardware drivers from
-> the kernel ;-)
-
-fbdev is unmaintained, has no one volunteering to put in the work (and
-there's huge amounts of work needed), and there's no test suite. No,
-fbtest.c doesn't can't, that's not even close. We're not going to
-delete everything in the kernel, but slowly sunsetting stuff that's
-just costing and not bringing in up is a good idea.
-
-> Seriously, how hard can it be to add "software-accelerated" acceleration
-> hooks to drivers/video/fbdev/vfb.c, to enable syzbot to exercise the
-> core acceleration code paths?
-
-Just this one is 5 combinations, which means I'd need to convince
-syzbot to test 5 different machine setups.
-
-Plus we're still lacking a test suite, and judging from how much time
-it took to get something basic going for kms, that's about 2 engineer
-years of effort that no one is even close to willing to spend.
-
-> > This patch here just disables the acceleration code by always
-> > redrawing when scrolling. The plan is that once this has been merged
-> > for well over a year in released kernels, we can start to go around
-> > and delete a lot of code.
->
-> Have you benchmarked the performance impact on traditional fbdev
-> drivers?
-
-There's still some acceleration if you have an image blit engine for
-redrawing the screen. But the complexity is contained in the old
-drivers that no one cares about.
-
-For anything I have access to the difference is 0.
-
-Also note that for anything remotely modern the fbcon acceleration
-framework is pretty badly designed, because it does not allow
-sufficient pipelining and queuing of operations. We've had an fbcon
-acceleration prototype for i915 10 years ago or so, it's just not
-worth the bother.
-
-And again, no one is volunteering to create an fbcon accel framework
-that doesn't just suck, despite that this has been discussed in
-various places for years. I've done a summary of the sorry state of 2d
-acceleration 2 years ago because it's come up so many times:
-https://blog.ffwll.ch/2018/08/no-2d-in-drm.html Nothing at all
-happened since then.
-
-Reality is that fbdev is just there nowadays for Oops printing and
-emergency usage, and it's plenty good enough for that. If there's
-anyone who cares beyond that, they're most definitely not able to put
-in time for upstream work.
--Daniel
-
-> Thanks!
->
-> > v2:
-> > - Drop a few more unused local variables, somehow I missed the
-> > compiler warnings (Sam)
-> > - Fix typo in comment (Jiri)
-> > - add a todo entry for the cleanup (Thomas)
-> >
-> > v3: Remove more unused variables (0day)
-> >
-> > Reviewed-by: Thomas Zimmermann <tzimmermann@suse.de>
-> > Reviewed-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-> > Acked-by: Sam Ravnborg <sam@ravnborg.org>
-> > Cc: Jiri Slaby <jirislaby@kernel.org>
-> > Cc: Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>
-> > Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-> > Cc: Linus Torvalds <torvalds@linux-foundation.org>
-> > Cc: Ben Skeggs <bskeggs@redhat.com>
-> > Cc: nouveau@lists.freedesktop.org
-> > Cc: Tomi Valkeinen <tomi.valkeinen@ti.com>
-> > Cc: Daniel Vetter <daniel.vetter@ffwll.ch>
-> > Cc: Jiri Slaby <jirislaby@kernel.org>
-> > Cc: "Gustavo A. R. Silva" <gustavoars@kernel.org>
-> > Cc: Tetsuo Handa <penguin-kernel@I-love.SAKURA.ne.jp>
-> > Cc: Peilin Ye <yepeilin.cs@gmail.com>
-> > Cc: George Kennedy <george.kennedy@oracle.com>
-> > Cc: Nathan Chancellor <natechancellor@gmail.com>
-> > Cc: Peter Rosin <peda@axentia.se>
-> > Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
-> > ---
-> > Documentation/gpu/todo.rst       | 18 +++++++++++++
-> > drivers/video/fbdev/core/fbcon.c | 45 ++++++--------------------------
-> > 2 files changed, 26 insertions(+), 37 deletions(-)
-> >
-> > diff --git a/Documentation/gpu/todo.rst b/Documentation/gpu/todo.rst
-> > index 6b224ef14455..bec99341a904 100644
-> > --- a/Documentation/gpu/todo.rst
-> > +++ b/Documentation/gpu/todo.rst
-> > @@ -277,6 +277,24 @@ Contact: Daniel Vetter, Noralf Tronnes
-> >
-> > Level: Advanced
-> >
-> > +Garbage collect fbdev scrolling acceleration
-> > +--------------------------------------------
-> > +
-> > +Scroll acceleration is disabled in fbcon by hard-wiring p->scrollmode =
-> > +SCROLL_REDRAW. There's a ton of code this will allow us to remove:
-> > +- lots of code in fbcon.c
-> > +- a bunch of the hooks in fbcon_ops, maybe the remaining hooks could be called
-> > +  directly instead of the function table (with a switch on p->rotate)
-> > +- fb_copyarea is unused after this, and can be deleted from all drivers
-> > +
-> > +Note that not all acceleration code can be deleted, since clearing and cursor
-> > +support is still accelerated, which might be good candidates for further
-> > +deletion projects.
-> > +
-> > +Contact: Daniel Vetter
-> > +
-> > +Level: Intermediate
-> > +
-> > idr_init_base()
-> > ---------------
-> >
-> > diff --git a/drivers/video/fbdev/core/fbcon.c b/drivers/video/fbdev/core/fbcon.c
-> > index cef437817b0d..8d1ae973041a 100644
-> > --- a/drivers/video/fbdev/core/fbcon.c
-> > +++ b/drivers/video/fbdev/core/fbcon.c
-> > @@ -1033,7 +1033,7 @@ static void fbcon_init(struct vc_data *vc, int init)
-> >       struct vc_data *svc = *default_mode;
-> >       struct fbcon_display *t, *p = &fb_display[vc->vc_num];
-> >       int logo = 1, new_rows, new_cols, rows, cols, charcnt = 256;
-> > -     int cap, ret;
-> > +     int ret;
-> >
-> >       if (WARN_ON(info_idx == -1))
-> >           return;
-> > @@ -1042,7 +1042,6 @@ static void fbcon_init(struct vc_data *vc, int init)
-> >               con2fb_map[vc->vc_num] = info_idx;
-> >
-> >       info = registered_fb[con2fb_map[vc->vc_num]];
-> > -     cap = info->flags;
-> >
-> >       if (logo_shown < 0 && console_loglevel <= CONSOLE_LOGLEVEL_QUIET)
-> >               logo_shown = FBCON_LOGO_DONTSHOW;
-> > @@ -1147,11 +1146,13 @@ static void fbcon_init(struct vc_data *vc, int init)
-> >
-> >       ops->graphics = 0;
-> >
-> > -     if ((cap & FBINFO_HWACCEL_COPYAREA) &&
-> > -         !(cap & FBINFO_HWACCEL_DISABLED))
-> > -             p->scrollmode = SCROLL_MOVE;
-> > -     else /* default to something safe */
-> > -             p->scrollmode = SCROLL_REDRAW;
-> > +     /*
-> > +      * No more hw acceleration for fbcon.
-> > +      *
-> > +      * FIXME: Garbage collect all the now dead code after sufficient time
-> > +      * has passed.
-> > +      */
-> > +     p->scrollmode = SCROLL_REDRAW;
-> >
-> >       /*
-> >        *  ++guenther: console.c:vc_allocate() relies on initializing
-> > @@ -1961,45 +1962,15 @@ static void updatescrollmode(struct fbcon_display *p,
-> > {
-> >       struct fbcon_ops *ops = info->fbcon_par;
-> >       int fh = vc->vc_font.height;
-> > -     int cap = info->flags;
-> > -     u16 t = 0;
-> > -     int ypan = FBCON_SWAP(ops->rotate, info->fix.ypanstep,
-> > -                               info->fix.xpanstep);
-> > -     int ywrap = FBCON_SWAP(ops->rotate, info->fix.ywrapstep, t);
-> >       int yres = FBCON_SWAP(ops->rotate, info->var.yres, info->var.xres);
-> >       int vyres = FBCON_SWAP(ops->rotate, info->var.yres_virtual,
-> >                                  info->var.xres_virtual);
-> > -     int good_pan = (cap & FBINFO_HWACCEL_YPAN) &&
-> > -             divides(ypan, vc->vc_font.height) && vyres > yres;
-> > -     int good_wrap = (cap & FBINFO_HWACCEL_YWRAP) &&
-> > -             divides(ywrap, vc->vc_font.height) &&
-> > -             divides(vc->vc_font.height, vyres) &&
-> > -             divides(vc->vc_font.height, yres);
-> > -     int reading_fast = cap & FBINFO_READS_FAST;
-> > -     int fast_copyarea = (cap & FBINFO_HWACCEL_COPYAREA) &&
-> > -             !(cap & FBINFO_HWACCEL_DISABLED);
-> > -     int fast_imageblit = (cap & FBINFO_HWACCEL_IMAGEBLIT) &&
-> > -             !(cap & FBINFO_HWACCEL_DISABLED);
-> >
-> >       p->vrows = vyres/fh;
-> >       if (yres > (fh * (vc->vc_rows + 1)))
-> >               p->vrows -= (yres - (fh * vc->vc_rows)) / fh;
-> >       if ((yres % fh) && (vyres % fh < yres % fh))
-> >               p->vrows--;
-> > -
-> > -     if (good_wrap || good_pan) {
-> > -             if (reading_fast || fast_copyarea)
-> > -                     p->scrollmode = good_wrap ?
-> > -                             SCROLL_WRAP_MOVE : SCROLL_PAN_MOVE;
-> > -             else
-> > -                     p->scrollmode = good_wrap ? SCROLL_REDRAW :
-> > -                             SCROLL_PAN_REDRAW;
-> > -     } else {
-> > -             if (reading_fast || (fast_copyarea && !fast_imageblit))
-> > -                     p->scrollmode = SCROLL_MOVE;
-> > -             else
-> > -                     p->scrollmode = SCROLL_REDRAW;
-> > -     }
-> > }
-> >
-> > #define PITCH(w) (((w) + 7) >> 3)
-> > --
-> > 2.28.0
-> >
-> > _______________________________________________
-> > dri-devel mailing list
-> > dri-devel@lists.freedesktop.org
-> > https://lists.freedesktop.org/mailman/listinfo/dri-devel
->
-> Gr{oetje,eeting}s,
->
->                                                 Geert
->
-> --
-> Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
->
-> In personal conversations with technical people, I call myself a hacker. But
-> when I'm talking to journalists I just say "programmer" or something like that.
->                                                             -- Linus Torvalds
-
-
-
--- 
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+VGhhbmtzIFVtYSBmb3IgdGhlIHJldmlldyBhbmQgaGlnaGxpZ2h0aW5nIHRoZSBpc3N1ZXMgaW4g
+dGhlIHBhdGNoLXNlcmllcy4KCkkgYWdyZWUgdG8gbW9zdCBvZiB0aGUgY29tbWVudHMgYW5kIHdp
+bGwgYmUgYWRkcmVzc2luZyBjb21tZW50cyBhbmQgCmNvcnJlY3Rpb25zIGluIHRoZSBuZXh0wqAg
+dmVyc2lvbiBzaG9ydGx5LgoKUGxlYXNlIGZpbmQgbXkgcmVzcG9uc2UgaW5saW5lLgoKT24gMTAv
+MTkvMjAyMCAyOjE3IEFNLCBTaGFua2FyLCBVbWEgd3JvdGU6Cj4KPj4gLS0tLS1PcmlnaW5hbCBN
+ZXNzYWdlLS0tLS0KPj4gRnJvbTogTmF1dGl5YWwsIEFua2l0IEsgPGFua2l0LmsubmF1dGl5YWxA
+aW50ZWwuY29tPgo+PiBTZW50OiBUaHVyc2RheSwgT2N0b2JlciAxNSwgMjAyMCA0OjIzIFBNCj4+
+IFRvOiBpbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCj4+IENjOiBkcmktZGV2ZWxAbGlz
+dHMuZnJlZWRlc2t0b3Aub3JnOyBTaGFua2FyLCBVbWEgPHVtYS5zaGFua2FyQGludGVsLmNvbT47
+Cj4+IEt1bGthcm5pLCBWYW5kaXRhIDx2YW5kaXRhLmt1bGthcm5pQGludGVsLmNvbT47IHZpbGxl
+LnN5cmphbGFAbGludXguaW50ZWwuY29tOwo+PiBTaGFybWEsIFN3YXRpMiA8c3dhdGkyLnNoYXJt
+YUBpbnRlbC5jb20+Cj4+IFN1YmplY3Q6IFtSRkMgMDEvMTNdIGRybS9lZGlkOiBBZGQgYWRkaXRp
+b25hbCBIRlZTREIgZmllbGRzIGZvciBIRE1JMi4xCj4+Cj4+IEZyb206IFN3YXRpIFNoYXJtYSA8
+c3dhdGkyLnNoYXJtYUBpbnRlbC5jb20+Cj4+Cj4+IFRoZSBIRE1JMi4xIGV4dGVuZHMgSEZWU0JE
+IChIRE1JIEZvcnVtIFZlbmRvciBTcGVjaWZpYyBEYXRhIGJsb2NrKSB0byBoYXZlCj4gVHlwbyBp
+biBIRlZTREIKCgpXaWxsIGZpeCBpbiB0aGUgbmV4dCBwYXRjaCBzZXQuCgo+PiBmaWVsZHMgcmVs
+YXRlZCB0byBuZXdseSBkZWZpbmVkIG1ldGhvZHMgb2YgRlJMIChGaXhlZCBSYXRlIExpbmspIGxl
+dmVscywgbnVtYmVyCj4+IG9mIGxhbmVzIHN1cHBvcnRlZCwgRFNDIENvbG9yIGJpdCBkZXB0aCwg
+VlJSIG1pbi9tYXgsIEZWQSAoRmFzdCBWYWN0aXZlKSwgQUxMTQo+PiBldGMuCj4+Cj4+IFRoaXMg
+cGF0Y2ggYWRkcyB0aGUgbmV3IEhGVlNEQiBmaWVsZHMgdGhhdCBhcmUgcmVxdWlyZWQgZm9yIEhE
+TUkyLjEuCj4+Cj4+IFNpZ25lZC1vZmYtYnk6IFNoYXJtYSwgU3dhdGkyIDxzd2F0aTIuc2hhcm1h
+QGludGVsLmNvbT4KPj4gU2lnbmVkLW9mZi1ieTogQW5raXQgTmF1dGl5YWwgPGFua2l0LmsubmF1
+dGl5YWxAaW50ZWwuY29tPgo+PiAtLS0KPj4gICBpbmNsdWRlL2RybS9kcm1fZWRpZC5oIHwgMzAg
+KysrKysrKysrKysrKysrKysrKysrKysrKysrKysrCj4+ICAgMSBmaWxlIGNoYW5nZWQsIDMwIGlu
+c2VydGlvbnMoKykKPj4KPj4gZGlmZiAtLWdpdCBhL2luY2x1ZGUvZHJtL2RybV9lZGlkLmggYi9p
+bmNsdWRlL2RybS9kcm1fZWRpZC5oIGluZGV4Cj4+IGIyN2EwZTIxNjljOC4uMWNjNWMyYzczMjgy
+IDEwMDY0NAo+PiAtLS0gYS9pbmNsdWRlL2RybS9kcm1fZWRpZC5oCj4+ICsrKyBiL2luY2x1ZGUv
+ZHJtL2RybV9lZGlkLmgKPj4gQEAgLTIyOSw2ICsyMjksMzYgQEAgc3RydWN0IGRldGFpbGVkX3Rp
+bWluZyB7Cj4+ICAgICAgIERSTV9FRElEX1lDQkNSNDIwX0RDXzM2IHwgXAo+PiAgICAgICBEUk1f
+RURJRF9ZQ0JDUjQyMF9EQ18zMCkKPj4KPj4gKy8qIEhETUkgMi4xIGFkZGl0aW9uYWwgZmllbGRz
+ICovCj4+ICsjZGVmaW5lIERSTV9FRElEX01BWF9GUkxfUkFURV9NQVNLMHhmMAo+PiArI2RlZmlu
+ZSBEUk1fRURJRF9GQVBBX1NUQVJUX0xPQ0FUSU9OKDEgPDwgMCkKPj4gKyNkZWZpbmUgRFJNX0VE
+SURfQUxMTSgxIDw8IDEpCj4+ICsjZGVmaW5lIERSTV9FRElEX0ZWQSgxIDw8IDIpCj4+ICsKPj4g
+Ky8qIERlZXAgQ29sb3Igc3BlY2lmaWMgKi8KPj4gKyNkZWZpbmUgRFJNX0VESURfRENfMzBCSVRf
+NDIwKDEgPDwgMCkKPj4gKyNkZWZpbmUgRFJNX0VESURfRENfMzZCSVRfNDIwKDEgPDwgMSkKPj4g
+KyNkZWZpbmUgRFJNX0VESURfRENfNDhCSVRfNDIwKDEgPDwgMikKPj4gKwo+PiArLyogVlJSIHNw
+ZWNpZmljICovCj4+ICsjZGVmaW5lIERSTV9FRElEX0NOTVZSUigxIDw8IDMpCj4+ICsjZGVmaW5l
+IERSTV9FRElEX0NJTkVNQV9WUlIoMSA8PCA0KQo+PiArI2RlZmluZSBEUk1fRURJRF9NREVMVEEo
+MSA8PCA1KQo+PiArI2RlZmluZSBEUk1fRURJRF9WUlJfTUFYX1VQUEVSX01BU0sweGMwCj4+ICsj
+ZGVmaW5lIERSTV9FRElEX1ZSUl9NQVhfTE9XRVJfTUFTSzB4ZmYKPj4gKyNkZWZpbmUgRFJNX0VE
+SURfVlJSX01JTl9NQVNLMHgzZgo+PiArCj4+ICsvKiBEU0Mgc3BlY2lmaWMgKi8KPj4gKyNkZWZp
+bmUgRFJNX0VESURfRFNDXzEwQlBDKDEgPDwgMCkKPj4gKyNkZWZpbmUgRFJNX0VESURfRFNDXzEy
+QlBDKDEgPDwgMSkKPj4gKyNkZWZpbmUgRFJNX0VESURfRFNDXzE2QlBDKDEgPDwgMikKPj4gKyNk
+ZWZpbmUgRFJNX0VESURfRFNDX0FMTF9CUFAoMSA8PCAzKQo+PiArI2RlZmluZSBEUk1fRURJRF9E
+U0NfTkFUSVZFXzQyMCgxIDw8IDYpCj4+ICsjZGVmaW5lIERSTV9FRElEX0RTQ18xUDIoMSA8PCA3
+KQo+PiArI2RlZmluZSBEUk1fRURJRF9EU0NfTUFYX0ZSTF9SQVRFMHhmCj4gVGhpcyBzaG91bGQg
+YmUgc2V0IGFzIG1hc2sgYW5kIG1hZGUgaXQgYXMgMHhmMAoKQWdyZWVkLCB3aWxsIHRha2UgY2Fy
+ZSBpbiB0aGUgbmV4dCB2ZXJzaW9uLgoKUmVnYXJkcywKCkFua2l0Cgo+Cj4+ICsjZGVmaW5lIERS
+TV9FRElEX0RTQ19NQVhfU0xJQ0VTMHhmCj4+ICsjZGVmaW5lIERSTV9FRElEX0RTQ19UT1RBTF9D
+SFVOS19LQllURVMweDNmCj4+ICsKPj4gICAvKiBFTEQgSGVhZGVyIEJsb2NrICovCj4+ICAgI2Rl
+ZmluZSBEUk1fRUxEX0hFQURFUl9CTE9DS19TSVpFNAo+Pgo+PiAtLQo+PiAyLjE3LjEKX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxp
+bmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJl
+ZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
