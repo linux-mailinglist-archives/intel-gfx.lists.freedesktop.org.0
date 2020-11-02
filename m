@@ -2,30 +2,40 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 94A7D2A20C2
-	for <lists+intel-gfx@lfdr.de>; Sun,  1 Nov 2020 19:24:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id EC1AD2A22CA
+	for <lists+intel-gfx@lfdr.de>; Mon,  2 Nov 2020 02:43:42 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5B9186EB5D;
-	Sun,  1 Nov 2020 18:24:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 205706E13C;
+	Mon,  2 Nov 2020 01:43:35 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 8257D6EB59;
- Sun,  1 Nov 2020 18:24:13 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 799ACA7525;
- Sun,  1 Nov 2020 18:24:13 +0000 (UTC)
+Received: from ozlabs.org (bilbo.ozlabs.org [IPv6:2401:3900:2:1::2])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9D0E56E101;
+ Mon,  2 Nov 2020 01:43:33 +0000 (UTC)
+Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest
+ SHA256) (No client certificate requested)
+ by mail.ozlabs.org (Postfix) with ESMTPSA id 4CPbKX75Bbz9sVM;
+ Mon,  2 Nov 2020 12:43:28 +1100 (AEDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=canb.auug.org.au;
+ s=201702; t=1604281410;
+ bh=UZJnKassjurkUYFn1LtRDB9BZRJJwQe2Tnjaoo+5sn4=;
+ h=Date:From:To:Cc:Subject:From;
+ b=qJJ77BWKgBSEYT1T0APFfbFUmxFDp1zG+Xl0da8byynuYDWHynqj2B3frfb6OIj1I
+ BZkDmLDZACg3kYkE6Bnl+1CVlTbGKvii/aJT4rrz3oxQUbXrQgoabudv0QqA3e9/85
+ cP8KSzulqTqbVH6a/4/U5NHS2H+V1S6mNizZJ8N6l2AONn6AlG4mzBiiRRyDWGJdCx
+ udpa7J9FmDXxP/yDS+Q13Uo1ubpKKCPNEu737132g75XlevRlrySViqUEYa7ADM/L7
+ LbkM8OQffJmpFnWLc7Ljtpva2YOkbQC67ONYcC5MHfKWOmbgF0oRusuDuicdWZuaN/
+ 5KKSxL0Np484A==
+Date: Mon, 2 Nov 2020 12:43:27 +1100
+From: Stephen Rothwell <sfr@canb.auug.org.au>
+To: Daniel Vetter <daniel.vetter@ffwll.ch>, Intel Graphics
+ <intel-gfx@lists.freedesktop.org>, DRI <dri-devel@lists.freedesktop.org>
+Message-ID: <20201102124327.2f82b2a7@canb.auug.org.au>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: rwright@hpe.com
-Date: Sun, 01 Nov 2020 18:24:13 -0000
-Message-ID: <160425505346.4894.8157151318236708761@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20201101174132.10513-1-rwright@hpe.com>
-In-Reply-To: <20201101174132.10513-1-rwright@hpe.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgUmVk?=
- =?utf-8?q?uce_context_clear_batch_size_to_avoid_gpu_hang_=28rev2=29?=
+Subject: [Intel-gfx] linux-next: build failure after merge of the drm-misc
+ tree
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,308 +48,104 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============0793678458=="
+Cc: Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+ Linux Next Mailing List <linux-next@vger.kernel.org>,
+ Joerg Roedel <jroedel@suse.de>,
+ Christian =?UTF-8?B?S8O2bmln?= <christian.koenig@amd.com>,
+ "Michael S. Tsirkin" <mst@redhat.com>
+Content-Type: multipart/mixed; boundary="===============1751650285=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0793678458==
-Content-Type: multipart/alternative;
- boundary="===============4631903310624065825=="
+--===============1751650285==
+Content-Type: multipart/signed; boundary="Sig_/+6=teLWTuoxG+moGZWw9H_h";
+ protocol="application/pgp-signature"; micalg=pgp-sha256
 
---===============4631903310624065825==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+--Sig_/+6=teLWTuoxG+moGZWw9H_h
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: quoted-printable
 
-== Series Details ==
+Hi all,
 
-Series: Reduce context clear batch size to avoid gpu hang (rev2)
-URL   : https://patchwork.freedesktop.org/series/83306/
-State : failure
+After merging the drm-misc tree, today's linux-next build (arm
+multi_v7_defconfig) failed like this:
 
-== Summary ==
+In file included from drivers/gpu/drm/nouveau/nouveau_ttm.c:26:
+include/linux/swiotlb.h: In function 'swiotlb_max_mapping_size':
+include/linux/swiotlb.h:99:9: error: 'SIZE_MAX' undeclared (first use in th=
+is function)
+   99 |  return SIZE_MAX;
+      |         ^~~~~~~~
+include/linux/swiotlb.h:7:1: note: 'SIZE_MAX' is defined in header '<stdint=
+.h>'; did you forget to '#include <stdint.h>'?
+    6 | #include <linux/init.h>
+  +++ |+#include <stdint.h>
+    7 | #include <linux/types.h>
+include/linux/swiotlb.h:99:9: note: each undeclared identifier is reported =
+only once for each function it appears in
+   99 |  return SIZE_MAX;
+      |         ^~~~~~~~
 
-CI Bug Log - changes from CI_DRM_9237 -> Patchwork_18822
-====================================================
+Caused by commit
 
-Summary
--------
+  abe420bfae52 ("swiotlb: Introduce swiotlb_max_mapping_size()")
 
-  **FAILURE**
+but only exposed by commit
 
-  Serious unknown changes coming with Patchwork_18822 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_18822, please notify your bug team to allow them
-  to document this new failure mode, which will reduce false positives in CI.
+  4dbafbd30aef ("drm/nouveu: fix swiotlb include")
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18822/index.html
+I applied the following fix for today:
 
-Possible new issues
--------------------
+From: Stephen Rothwell <sfr@canb.auug.org.au>
+Date: Mon, 2 Nov 2020 12:34:57 +1100
+Subject: [PATCH] swiotlb: using SIZE_MAX needs limits.h included
 
-  Here are the unknown changes that may have been introduced in Patchwork_18822:
+Fixes: abe420bfae52 ("swiotlb: Introduce swiotlb_max_mapping_size()")
+Signed-off-by: Stephen Rothwell <sfr@canb.auug.org.au>
+---
+ include/linux/swiotlb.h | 3 +++
+ 1 file changed, 3 insertions(+)
 
-### IGT changes ###
+diff --git a/include/linux/swiotlb.h b/include/linux/swiotlb.h
+index 513913ff7486..ed9de7855d3b 100644
+--- a/include/linux/swiotlb.h
++++ b/include/linux/swiotlb.h
+@@ -5,6 +5,9 @@
+ #include <linux/dma-direction.h>
+ #include <linux/init.h>
+ #include <linux/types.h>
++#ifndef CONFIG_SWIOTLB
++#include <linux/limits.h>
++#endif
+=20
+ struct device;
+ struct page;
+--=20
+2.28.0
 
-#### Possible regressions ####
+--=20
+Cheers,
+Stephen Rothwell
 
-  * igt@kms_chamelium@dp-crc-fast:
-    - fi-kbl-7500u:       [PASS][1] -> [DMESG-WARN][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9237/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18822/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html
+--Sig_/+6=teLWTuoxG+moGZWw9H_h
+Content-Type: application/pgp-signature
+Content-Description: OpenPGP digital signature
 
-  
-New tests
----------
+-----BEGIN PGP SIGNATURE-----
 
-  New tests have been introduced between CI_DRM_9237 and Patchwork_18822:
+iQEzBAEBCAAdFiEENIC96giZ81tWdLgKAVBC80lX0GwFAl+fZD8ACgkQAVBC80lX
+0Gy4Ewf/Xax561099MjSc01Qu4bldqQsUT2wm0XpotqdqEpG3jwA8Ixs1ZaKsvtL
+nh2037AUrfl1VhjwWYw9kKulwOjN4aCRF+Ek7FblCuCH4yJryxMfyxSwFmHLr1p1
+Y95gO09HP/mFLPVt1BHIcUU/0BY98vd0I1D2EaZB1GpniqwX4tg79Mad1C4293ub
+vhWq2Ql+4HMHYoXdy7MZQ6+Q0Vr4Dn09HLLZGCyLFguHlVmUkdQmXjXjuqU/eIDy
+l3SEfaxSxJNDfGDwPLaKUUUVZCKroxGArj8pHTW8VWByPxnYu+W12seT13eFu7e7
+oVruhcMLwfxJG/jqHqd6kdhZ4YSvrQ==
+=h4wL
+-----END PGP SIGNATURE-----
 
-### New CI tests (1) ###
+--Sig_/+6=teLWTuoxG+moGZWw9H_h--
 
-  * boot:
-    - Statuses : 38 pass(s)
-    - Exec time: [0.0] s
-
-  
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_18822 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@core_hotunplug@unbind-rebind:
-    - fi-icl-u2:          [PASS][3] -> [DMESG-WARN][4] ([i915#1982]) +1 similar issue
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9237/fi-icl-u2/igt@core_hotunplug@unbind-rebind.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18822/fi-icl-u2/igt@core_hotunplug@unbind-rebind.html
-
-  * igt@i915_module_load@reload:
-    - fi-byt-j1900:       [PASS][5] -> [DMESG-WARN][6] ([i915#1982])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9237/fi-byt-j1900/igt@i915_module_load@reload.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18822/fi-byt-j1900/igt@i915_module_load@reload.html
-
-  * igt@i915_pm_rpm@basic-pci-d3-state:
-    - fi-bsw-kefka:       [PASS][7] -> [DMESG-WARN][8] ([i915#1982])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9237/fi-bsw-kefka/igt@i915_pm_rpm@basic-pci-d3-state.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18822/fi-bsw-kefka/igt@i915_pm_rpm@basic-pci-d3-state.html
-    - fi-apl-guc:         [PASS][9] -> [DMESG-WARN][10] ([i915#1635] / [i915#1982])
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9237/fi-apl-guc/igt@i915_pm_rpm@basic-pci-d3-state.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18822/fi-apl-guc/igt@i915_pm_rpm@basic-pci-d3-state.html
-
-  * igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-b:
-    - fi-cfl-8109u:       [PASS][11] -> [DMESG-WARN][12] ([i915#165]) +15 similar issues
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9237/fi-cfl-8109u/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-b.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18822/fi-cfl-8109u/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-b.html
-
-  
-#### Possible fixes ####
-
-  * igt@gem_exec_suspend@basic-s3:
-    - {fi-kbl-7560u}:     [INCOMPLETE][13] -> [PASS][14]
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9237/fi-kbl-7560u/igt@gem_exec_suspend@basic-s3.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18822/fi-kbl-7560u/igt@gem_exec_suspend@basic-s3.html
-
-  * igt@i915_pm_rpm@basic-pci-d3-state:
-    - fi-bxt-dsi:         [DMESG-WARN][15] ([i915#1635] / [i915#1982]) -> [PASS][16]
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9237/fi-bxt-dsi/igt@i915_pm_rpm@basic-pci-d3-state.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18822/fi-bxt-dsi/igt@i915_pm_rpm@basic-pci-d3-state.html
-
-  * igt@kms_chamelium@dp-crc-fast:
-    - fi-cml-u2:          [DMESG-WARN][17] ([i915#1982]) -> [PASS][18]
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9237/fi-cml-u2/igt@kms_chamelium@dp-crc-fast.html
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18822/fi-cml-u2/igt@kms_chamelium@dp-crc-fast.html
-
-  * igt@kms_cursor_legacy@basic-flip-after-cursor-legacy:
-    - fi-icl-u2:          [DMESG-WARN][19] ([i915#1982]) -> [PASS][20]
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9237/fi-icl-u2/igt@kms_cursor_legacy@basic-flip-after-cursor-legacy.html
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18822/fi-icl-u2/igt@kms_cursor_legacy@basic-flip-after-cursor-legacy.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [i915#1635]: https://gitlab.freedesktop.org/drm/intel/issues/1635
-  [i915#165]: https://gitlab.freedesktop.org/drm/intel/issues/165
-  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
-
-
-Participating hosts (42 -> 38)
-------------------------------
-
-  Missing    (4): fi-ilk-m540 fi-bsw-cyan fi-bdw-samus fi-hsw-4200u 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_9237 -> Patchwork_18822
-
-  CI-20190529: 20190529
-  CI_DRM_9237: eb3bd5069c40571849c6ccba06387ed4b8364b86 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5830: 12d370cb57e0cfcb781c87ad9e15e68b17a1f41f @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_18822: eaa8b2fa9755852d24ca628410732f0c425eedbe @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-eaa8b2fa9755 drm/i915/gt: Force reduced batch size if new QUIRK_RENDERCLEAR_REDUCED is set.
-7cfeb5acfcd5 drm/i915/display: Add function quirk_renderclear_reduced
-c2bab1fe9322 drm/i915: Introduce quirk QUIRK_RENDERCLEAR_REDUCED
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18822/index.html
-
---===============4631903310624065825==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Reduce context clear batch size to avoid gpu hang (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/83306/">https://patchwork.freedesktop.org/series/83306/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18822/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18822/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_9237 -&gt; Patchwork_18822</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with Patchwork_18822 absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in Patchwork_18822, please notify your bug team to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18822/index.html</p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in Patchwork_18822:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>igt@kms_chamelium@dp-crc-fast:<ul>
-<li>fi-kbl-7500u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9237/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18822/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html">DMESG-WARN</a></li>
-</ul>
-</li>
-</ul>
-<h2>New tests</h2>
-<p>New tests have been introduced between CI_DRM_9237 and Patchwork_18822:</p>
-<h3>New CI tests (1)</h3>
-<ul>
-<li>boot:<ul>
-<li>Statuses : 38 pass(s)</li>
-<li>Exec time: [0.0] s</li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_18822 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@core_hotunplug@unbind-rebind:</p>
-<ul>
-<li>fi-icl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9237/fi-icl-u2/igt@core_hotunplug@unbind-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18822/fi-icl-u2/igt@core_hotunplug@unbind-rebind.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>) +1 similar issue</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_module_load@reload:</p>
-<ul>
-<li>fi-byt-j1900:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9237/fi-byt-j1900/igt@i915_module_load@reload.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18822/fi-byt-j1900/igt@i915_module_load@reload.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_pm_rpm@basic-pci-d3-state:</p>
-<ul>
-<li>
-<p>fi-bsw-kefka:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9237/fi-bsw-kefka/igt@i915_pm_rpm@basic-pci-d3-state.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18822/fi-bsw-kefka/igt@i915_pm_rpm@basic-pci-d3-state.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>)</p>
-</li>
-<li>
-<p>fi-apl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9237/fi-apl-guc/igt@i915_pm_rpm@basic-pci-d3-state.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18822/fi-apl-guc/igt@i915_pm_rpm@basic-pci-d3-state.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1635">i915#1635</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>)</p>
-</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-b:</p>
-<ul>
-<li>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9237/fi-cfl-8109u/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-b.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18822/fi-cfl-8109u/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-b.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/165">i915#165</a>) +15 similar issues</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@gem_exec_suspend@basic-s3:</p>
-<ul>
-<li>{fi-kbl-7560u}:     <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9237/fi-kbl-7560u/igt@gem_exec_suspend@basic-s3.html">INCOMPLETE</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18822/fi-kbl-7560u/igt@gem_exec_suspend@basic-s3.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_pm_rpm@basic-pci-d3-state:</p>
-<ul>
-<li>fi-bxt-dsi:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9237/fi-bxt-dsi/igt@i915_pm_rpm@basic-pci-d3-state.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1635">i915#1635</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18822/fi-bxt-dsi/igt@i915_pm_rpm@basic-pci-d3-state.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@dp-crc-fast:</p>
-<ul>
-<li>fi-cml-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9237/fi-cml-u2/igt@kms_chamelium@dp-crc-fast.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18822/fi-cml-u2/igt@kms_chamelium@dp-crc-fast.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@basic-flip-after-cursor-legacy:</p>
-<ul>
-<li>fi-icl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9237/fi-icl-u2/igt@kms_cursor_legacy@basic-flip-after-cursor-legacy.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18822/fi-icl-u2/igt@kms_cursor_legacy@basic-flip-after-cursor-legacy.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Participating hosts (42 -&gt; 38)</h2>
-<p>Missing    (4): fi-ilk-m540 fi-bsw-cyan fi-bdw-samus fi-hsw-4200u </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_9237 -&gt; Patchwork_18822</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_9237: eb3bd5069c40571849c6ccba06387ed4b8364b86 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_5830: 12d370cb57e0cfcb781c87ad9e15e68b17a1f41f @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
-  Patchwork_18822: eaa8b2fa9755852d24ca628410732f0c425eedbe @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>eaa8b2fa9755 drm/i915/gt: Force reduced batch size if new QUIRK_RENDERCLEAR_REDUCED is set.<br />
-7cfeb5acfcd5 drm/i915/display: Add function quirk_renderclear_reduced<br />
-c2bab1fe9322 drm/i915: Introduce quirk QUIRK_RENDERCLEAR_REDUCED</p>
-
-</body>
-</html>
-
---===============4631903310624065825==--
-
---===============0793678458==
+--===============1751650285==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -350,4 +156,4 @@ Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 
---===============0793678458==--
+--===============1751650285==--
