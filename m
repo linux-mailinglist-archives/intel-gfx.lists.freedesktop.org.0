@@ -1,40 +1,42 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D102D2A35DF
-	for <lists+intel-gfx@lfdr.de>; Mon,  2 Nov 2020 22:17:16 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3ADD02A35DE
+	for <lists+intel-gfx@lfdr.de>; Mon,  2 Nov 2020 22:17:15 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CDB946E3D0;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 814016E3CE;
 	Mon,  2 Nov 2020 21:17:10 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BB4356E3CE
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7631E6E3CE
  for <intel-gfx@lists.freedesktop.org>; Mon,  2 Nov 2020 21:17:09 +0000 (UTC)
-IronPort-SDR: PNyuHm+TUKKCSeKedn0dJK3ihda3XPg7ZUaQ9mgeXhmMRiuj2C3gHArdsban7JkvhrFoUP1VWL
- CyYC27z/p8bQ==
-X-IronPort-AV: E=McAfee;i="6000,8403,9793"; a="156733397"
-X-IronPort-AV: E=Sophos;i="5.77,445,1596524400"; d="scan'208";a="156733397"
+IronPort-SDR: 3Sw6/2mH2jpUQvg2W64eXwpEFbBw3FypUTP20enr6953byo0yLR7HLNsGdJSjYDnfs2kjBtani
+ ZpE0U5D3QxdA==
+X-IronPort-AV: E=McAfee;i="6000,8403,9793"; a="156733398"
+X-IronPort-AV: E=Sophos;i="5.77,445,1596524400"; d="scan'208";a="156733398"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from fmsmga005.fm.intel.com ([10.253.24.32])
  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  02 Nov 2020 13:17:08 -0800
-IronPort-SDR: n23ZeEKSA5ytABxsKOXuFfWVIAueul5acvKJRxeV8gieFU6LnA1I62YzidpjG34C2PcLajsgEO
- c3UVIibPwVNQ==
-X-IronPort-AV: E=Sophos;i="5.77,445,1596524400"; d="scan'208";a="528153818"
+IronPort-SDR: yAZk8i+QmxZdLul+kkQxk67o5B2Nj+9efQweWtp2Ll85esEgBr/b9SGBT/FxddzojktAQo0wyQ
+ iyAOknYLYgPg==
+X-IronPort-AV: E=Sophos;i="5.77,445,1596524400"; d="scan'208";a="528153821"
 Received: from labuser-z97x-ud5h.jf.intel.com ([10.165.21.211])
  by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-SHA;
  02 Nov 2020 13:17:08 -0800
 From: Manasi Navare <manasi.d.navare@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Mon,  2 Nov 2020 13:19:01 -0800
-Message-Id: <20201102211906.4893-1-manasi.d.navare@intel.com>
+Date: Mon,  2 Nov 2020 13:19:02 -0800
+Message-Id: <20201102211906.4893-2-manasi.d.navare@intel.com>
 X-Mailer: git-send-email 2.19.1
+In-Reply-To: <20201102211906.4893-1-manasi.d.navare@intel.com>
+References: <20201102211906.4893-1-manasi.d.navare@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v5 1/6] drm/i915/dp: Some reshuffling in
- mode_valid as prep for bigjoiner modes
+Subject: [Intel-gfx] [PATCH v5 2/6] drm/i915: Move encoder->get_config to a
+ new function
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,40 +49,69 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Tm8gZnVuY3Rpb25hbCBjaGFuZ2VzLiBUaGlzIHBhdGNoIGp1c3QgbW92ZXMgc29tZSBtb2RlIGNo
-ZWNrcwphcm91bmQgdG8gcHJlcGFyZSBmb3IgYWRkaW5nIGJpZ2pvaW5lciByZWxhdGVkIG1vZGUg
-dmFsaWRhdGlvbgoKQ2M6IFZpbGxlIFN5cmrDpGzDpCA8dmlsbGUuc3lyamFsYUBsaW51eC5pbnRl
-bC5jb20+ClNpZ25lZC1vZmYtYnk6IE1hbmFzaSBOYXZhcmUgPG1hbmFzaS5kLm5hdmFyZUBpbnRl
-bC5jb20+ClJldmlld2VkLWJ5OiBWaWxsZSBTeXJqw6Rsw6QgPHZpbGxlLnN5cmphbGFAbGludXgu
-aW50ZWwuY29tPgotLS0KIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZHAuYyB8
-IDEyICsrKysrKy0tLS0tLQogMSBmaWxlIGNoYW5nZWQsIDYgaW5zZXJ0aW9ucygrKSwgNiBkZWxl
-dGlvbnMoLSkKCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVs
-X2RwLmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RwLmMKaW5kZXggY2Yw
-OWFjYTc2MDdiLi5jYTRkNGE4MTIyZDkgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1
-L2Rpc3BsYXkvaW50ZWxfZHAuYworKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2lu
-dGVsX2RwLmMKQEAgLTcyMSw2ICs3MjEsOSBAQCBpbnRlbF9kcF9tb2RlX3ZhbGlkKHN0cnVjdCBk
-cm1fY29ubmVjdG9yICpjb25uZWN0b3IsCiAJaWYgKG1vZGUtPmZsYWdzICYgRFJNX01PREVfRkxB
-R19EQkxTQ0FOKQogCQlyZXR1cm4gTU9ERV9OT19EQkxFU0NBTjsKIAorCWlmIChtb2RlLT5mbGFn
-cyAmIERSTV9NT0RFX0ZMQUdfREJMQ0xLKQorCQlyZXR1cm4gTU9ERV9IX0lMTEVHQUw7CisKIAlp
-ZiAoaW50ZWxfZHBfaXNfZWRwKGludGVsX2RwKSAmJiBmaXhlZF9tb2RlKSB7CiAJCWlmIChtb2Rl
-LT5oZGlzcGxheSA+IGZpeGVkX21vZGUtPmhkaXNwbGF5KQogCQkJcmV0dXJuIE1PREVfUEFORUw7
-CkBAIC03MzEsNiArNzM0LDkgQEAgaW50ZWxfZHBfbW9kZV92YWxpZChzdHJ1Y3QgZHJtX2Nvbm5l
-Y3RvciAqY29ubmVjdG9yLAogCQl0YXJnZXRfY2xvY2sgPSBmaXhlZF9tb2RlLT5jbG9jazsKIAl9
-CiAKKwlpZiAobW9kZS0+Y2xvY2sgPCAxMDAwMCkKKwkJcmV0dXJuIE1PREVfQ0xPQ0tfTE9XOwor
-CiAJbWF4X2xpbmtfY2xvY2sgPSBpbnRlbF9kcF9tYXhfbGlua19yYXRlKGludGVsX2RwKTsKIAlt
-YXhfbGFuZXMgPSBpbnRlbF9kcF9tYXhfbGFuZV9jb3VudChpbnRlbF9kcCk7CiAKQEAgLTc3MSwx
-MiArNzc3LDYgQEAgaW50ZWxfZHBfbW9kZV92YWxpZChzdHJ1Y3QgZHJtX2Nvbm5lY3RvciAqY29u
-bmVjdG9yLAogCSAgICB0YXJnZXRfY2xvY2sgPiBtYXhfZG90Y2xrKQogCQlyZXR1cm4gTU9ERV9D
-TE9DS19ISUdIOwogCi0JaWYgKG1vZGUtPmNsb2NrIDwgMTAwMDApCi0JCXJldHVybiBNT0RFX0NM
-T0NLX0xPVzsKLQotCWlmIChtb2RlLT5mbGFncyAmIERSTV9NT0RFX0ZMQUdfREJMQ0xLKQotCQly
-ZXR1cm4gTU9ERV9IX0lMTEVHQUw7Ci0KIAlzdGF0dXMgPSBpbnRlbF9kcF9tb2RlX3ZhbGlkX2Rv
-d25zdHJlYW0oaW50ZWxfY29ubmVjdG9yLAogCQkJCQkJbW9kZSwgdGFyZ2V0X2Nsb2NrKTsKIAlp
-ZiAoc3RhdHVzICE9IE1PREVfT0spCi0tIAoyLjE5LjEKCl9fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4
-QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWls
-bWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
+No functional changes, create a separate intel_encoder_get_config()
+function that calls encoder->get_config hook.
+This is needed so that later we can add beigjoienr related
+readout here.
+
+Signed-off-by: Manasi Navare <manasi.d.navare@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_display.c | 12 +++++++++---
+ 1 file changed, 9 insertions(+), 3 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index cddbda5303ff..e9fbcfe1649e 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -8222,6 +8222,12 @@ static u32 ilk_pipe_pixel_rate(const struct intel_crtc_state *crtc_state)
+ 		       pfit_w * pfit_h);
+ }
+ 
++static void intel_encoder_get_config(struct intel_encoder *encoder,
++				     struct intel_crtc_state *crtc_state)
++{
++	encoder->get_config(encoder, crtc_state);
++}
++
+ static void intel_crtc_compute_pixel_rate(struct intel_crtc_state *crtc_state)
+ {
+ 	struct drm_i915_private *dev_priv = to_i915(crtc_state->uapi.crtc->dev);
+@@ -12475,7 +12481,7 @@ intel_encoder_current_mode(struct intel_encoder *encoder)
+ 		return NULL;
+ 	}
+ 
+-	encoder->get_config(encoder, crtc_state);
++	intel_encoder_get_config(encoder, crtc_state);
+ 
+ 	intel_mode_from_pipe_config(mode, crtc_state);
+ 
+@@ -14520,7 +14526,7 @@ verify_crtc_state(struct intel_crtc *crtc,
+ 				pipe_name(pipe));
+ 
+ 		if (active)
+-			encoder->get_config(encoder, pipe_config);
++			intel_encoder_get_config(encoder, pipe_config);
+ 	}
+ 
+ 	intel_crtc_compute_pixel_rate(pipe_config);
+@@ -18835,7 +18841,7 @@ static void intel_modeset_readout_hw_state(struct drm_device *dev)
+ 			crtc_state = to_intel_crtc_state(crtc->base.state);
+ 
+ 			encoder->base.crtc = &crtc->base;
+-			encoder->get_config(encoder, crtc_state);
++			intel_encoder_get_config(encoder, crtc_state);
+ 			if (encoder->sync_state)
+ 				encoder->sync_state(encoder, crtc_state);
+ 		} else {
+-- 
+2.19.1
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
