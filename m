@@ -2,40 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 774CE2A22CD
-	for <lists+intel-gfx@lfdr.de>; Mon,  2 Nov 2020 02:46:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C1E462A22D7
+	for <lists+intel-gfx@lfdr.de>; Mon,  2 Nov 2020 02:59:12 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D00FB6E20B;
-	Mon,  2 Nov 2020 01:46:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BFD0C6E241;
+	Mon,  2 Nov 2020 01:59:09 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from ozlabs.org (ozlabs.org [203.11.71.1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A99B26E20B;
- Mon,  2 Nov 2020 01:46:41 +0000 (UTC)
-Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest
- SHA256) (No client certificate requested)
- by mail.ozlabs.org (Postfix) with ESMTPSA id 4CPbPB2W86z9sVM;
- Mon,  2 Nov 2020 12:46:38 +1100 (AEDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=canb.auug.org.au;
- s=201702; t=1604281599;
- bh=oQFsCoiE8U94TPw5QxzXe6ZcHl/6J4ak2cxPP2CA0pg=;
- h=Date:From:To:Cc:Subject:From;
- b=FiUEa3I4OCfkHiK6+0eyi4cFeTddu+zRsl8/gWChE+lh01UQrDo9yFhsjZMyCLYQX
- csNUDtExjI5WZIArq9ycfx/bRzkLFwpbopMJWCRFLP3jsApJqM5syaJMD1ZFEq5kHQ
- vPZ/Rs8BK+Bu/SYujq2Jnp6GDI+XR9OR5DWY6qmUmZHb7m9nK8oXa5NtV9UoRDixqG
- +P/py18z90saDh9dxw+OyQkwsdqtXcsV1NDhoifnJW/0AjURN+kwzvtef0Ef3AyOk/
- tSvjS0xCei7fnNOT44vUQXk1mY0UP27apQVgE49gd5OuPd8fnsD0YH516jT0Kx1XoR
- 8LgUeOHRmRlOA==
-Date: Mon, 2 Nov 2020 12:46:37 +1100
-From: Stephen Rothwell <sfr@canb.auug.org.au>
-To: Daniel Vetter <daniel.vetter@ffwll.ch>, Intel Graphics
- <intel-gfx@lists.freedesktop.org>, DRI <dri-devel@lists.freedesktop.org>
-Message-ID: <20201102124637.1e846861@canb.auug.org.au>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 4527E6E23B;
+ Mon,  2 Nov 2020 01:59:09 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 3C8B8A8835;
+ Mon,  2 Nov 2020 01:59:09 +0000 (UTC)
 MIME-Version: 1.0
-Subject: [Intel-gfx] linux-next: build warning after merge of the drm-misc
- tree
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Stephen Rothwell" <sfr@canb.auug.org.au>
+Date: Mon, 02 Nov 2020 01:59:09 -0000
+Message-ID: <160428234921.26394.6709101186302882523@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20201102124327.2f82b2a7@canb.auug.org.au>
+In-Reply-To: <20201102124327.2f82b2a7@canb.auug.org.au>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_linux-next=3A_build_failure_after_merge_of_the_drm-misc_tre?=
+ =?utf-8?q?e?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,67 +39,35 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Linux Next Mailing List <linux-next@vger.kernel.org>,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
- Steven Price <steven.price@arm.com>
-Content-Type: multipart/mixed; boundary="===============1292737771=="
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============1292737771==
-Content-Type: multipart/signed; boundary="Sig_/Pm3yuwARsKf/T8Ex=wJggVw";
- protocol="application/pgp-signature"; micalg=pgp-sha256
+== Series Details ==
 
---Sig_/Pm3yuwARsKf/T8Ex=wJggVw
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: quoted-printable
+Series: linux-next: build failure after merge of the drm-misc tree
+URL   : https://patchwork.freedesktop.org/series/83323/
+State : warning
 
-Hi all,
+== Summary ==
 
-After merging the imx-drm tree, today's linux-next build (arm
-multi_v7_defconfig) produced this warning:
+$ dim checkpatch origin/drm-tip
+667a901ef419 linux-next: build failure after merge of the drm-misc tree
+-:26: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit abe420bfae52 ("swiotlb: Introduce swiotlb_max_mapping_size()")'
+#26: 
+  abe420bfae52 ("swiotlb: Introduce swiotlb_max_mapping_size()")
 
-drivers/gpu/drm/panfrost/panfrost_job.c: In function 'panfrost_job_close':
-drivers/gpu/drm/panfrost/panfrost_job.c:617:28: warning: unused variable 'j=
-s' [-Wunused-variable]
-  617 |  struct panfrost_job_slot *js =3D pfdev->js;
-      |                            ^~
+-:30: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit 4dbafbd30aef ("drm/nouveu: fix swiotlb include")'
+#30: 
+  4dbafbd30aef ("drm/nouveu: fix swiotlb include")
 
-Introduced by commit
+total: 2 errors, 0 warnings, 0 checks, 9 lines checked
 
-  a17d609e3e21 ("drm/panfrost: Don't corrupt the queue mutex on open/close")
-
---=20
-Cheers,
-Stephen Rothwell
-
---Sig_/Pm3yuwARsKf/T8Ex=wJggVw
-Content-Type: application/pgp-signature
-Content-Description: OpenPGP digital signature
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAEBCAAdFiEENIC96giZ81tWdLgKAVBC80lX0GwFAl+fZP0ACgkQAVBC80lX
-0GylaAf+JKje30rm2zVTrjXc4tUoNnjahQ81iOA94KdpwWzX53618rPY9VgFGaXY
-39U2CC+rEfcPsUgmu57TPTa0CVBb10HfQPRhrD8RSi+jqoQ3MXQWTt0mLCe/nMPN
-+CKjYwVUcN0JCoKXVYWzYm9wLZPHzA0I4QfC63okiqoVEYT0HA1bItUse78jCjmf
-yYUCwWNzkgPgvQZsGm8aJdzsSIj86sKL8Q9FlT+rsosNzwP8bWwXeuCZA+bqqpde
-sE+8e+2+pqkQNqQOiUzIhWJEzEtS+010/C8B8oWZKsHJOxGjgD8DtuJHsFtUJvpo
-HAGADilhPByfycb3qEoPOOt/N41Yzw==
-=W0fQ
------END PGP SIGNATURE-----
-
---Sig_/Pm3yuwARsKf/T8Ex=wJggVw--
-
---===============1292737771==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============1292737771==--
