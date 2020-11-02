@@ -2,30 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AE7CA2A2D04
-	for <lists+intel-gfx@lfdr.de>; Mon,  2 Nov 2020 15:31:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D813A2A2D54
+	for <lists+intel-gfx@lfdr.de>; Mon,  2 Nov 2020 15:49:32 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 121BE6E50B;
-	Mon,  2 Nov 2020 14:31:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B28C56E530;
+	Mon,  2 Nov 2020 14:49:26 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 3FDAD6E50B;
- Mon,  2 Nov 2020 14:31:40 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 38ED2A47DB;
- Mon,  2 Nov 2020 14:31:40 +0000 (UTC)
+Received: from mail-wm1-x342.google.com (mail-wm1-x342.google.com
+ [IPv6:2a00:1450:4864:20::342])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 439E86E50D
+ for <intel-gfx@lists.freedesktop.org>; Mon,  2 Nov 2020 14:49:25 +0000 (UTC)
+Received: by mail-wm1-x342.google.com with SMTP id v5so9650690wmh.1
+ for <intel-gfx@lists.freedesktop.org>; Mon, 02 Nov 2020 06:49:25 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:in-reply-to;
+ bh=eWPSTQ3LyHRATFWSmNrhaF+4O+LGE489CHQSWVvIakQ=;
+ b=EYaEVplljEOVq2w2k+Y6BXIiI7Vfv1pSWBIA+xAnno6DFFMsikJaHm5gJKlCVe4oNL
+ SB2tE9qxLCaHEH/TTvabzX3NLPbaSxHeFniMk9SgFJOjSUF3ibflTJaIq4+LtEtYMIz9
+ ipn2ttrvnId8SW0J8MhV7x85Sx+aHqz/21AdA=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:in-reply-to;
+ bh=eWPSTQ3LyHRATFWSmNrhaF+4O+LGE489CHQSWVvIakQ=;
+ b=iHnxiOQlFt7MFBVZ3Ius/HTQg4SnJzPyMzEvkNa5naaQNDVecDQf2VqC0Pt008XLWN
+ foBd52P0NyT3ErIUGGGRpZyRyKmLyWh05nP/1QG9ToR8IfpHaMO2oiylFpfeLEc3KmLa
+ 2goUI574lvj7e2yqVr3+ojKOYlk7bgfw9ts9/psn5Rm+S8PoDZQ6eI66QNlP/J0L7SzN
+ LW2gEQFemGhUNe1INJyFn7LmdVNn5DZn2LqxwTWYBSnGgw9sX8sc8lqoVqQNykGGXqM3
+ 8iyWWGBZgYFHgGQxxpQtOTbMuiP3UjDXRDbmIX1mJghRwF3XdiGLjT5ZzxVKOf0ooApX
+ m4KA==
+X-Gm-Message-State: AOAM533z5QzOehWSbcnsd9qnnqN/mzh10J5BsxoBEzyn4Agy8cVezWSN
+ o4SYosHlevW/LI+xF0/1+j5+Bw==
+X-Google-Smtp-Source: ABdhPJx61R08kqYlbeAzGt1hVvEsgHasNzxVslBvrG1yqRmR0TnkXDcIQp++Tx0H8mvrszOhyYUHWQ==
+X-Received: by 2002:a1c:4b18:: with SMTP id y24mr10715678wma.154.1604328563837; 
+ Mon, 02 Nov 2020 06:49:23 -0800 (PST)
+Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
+ by smtp.gmail.com with ESMTPSA id z14sm16312474wmc.15.2020.11.02.06.49.22
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 02 Nov 2020 06:49:22 -0800 (PST)
+Date: Mon, 2 Nov 2020 15:49:20 +0100
+From: Daniel Vetter <daniel@ffwll.ch>
+To: Jason Gunthorpe <jgg@nvidia.com>
+Message-ID: <20201102144920.GS401619@phenom.ffwll.local>
+References: <0-v1-44733fccd781+13d-rm_scatterlist_max_jgg@nvidia.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Lee Shawn C" <shawn.c.lee@intel.com>
-Date: Mon, 02 Nov 2020 14:31:40 -0000
-Message-ID: <160432750020.26396.7888844887383245026@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20201028144312.12520-1-shawn.c.lee@intel.com>
-In-Reply-To: <20201028144312.12520-1-shawn.c.lee@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
- =?utf-8?q?/i915/rkl=3A_new_rkl_ddc_map_for_different_PCH_=28rev3=29?=
+Content-Disposition: inline
+In-Reply-To: <0-v1-44733fccd781+13d-rm_scatterlist_max_jgg@nvidia.com>
+X-Operating-System: Linux phenom 5.7.0-1-amd64 
+Subject: Re: [Intel-gfx] [PATCH] drm: Remove SCATTERLIST_MAX_SEGMENT
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,289 +64,136 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============1730496473=="
+Cc: Maxime Ripard <mripard@kernel.org>,
+ Thomas Hellstrom <thellstrom@vmware.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@linux.ie>,
+ Roland Scheidegger <sroland@vmware.com>, intel-gfx@lists.freedesktop.org,
+ Daniel Vetter <daniel.vetter@ffwll.ch>,
+ VMware Graphics <linux-graphics-maintainer@vmware.com>,
+ dri-devel@lists.freedesktop.org, Qian Cai <cai@lca.pw>,
+ Christoph Hellwig <hch@lst.de>, Gerd Hoffmann <kraxel@redhat.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============1730496473==
-Content-Type: multipart/alternative;
- boundary="===============7175656391459319040=="
+On Wed, Oct 28, 2020 at 04:15:26PM -0300, Jason Gunthorpe wrote:
+> Since commit 9a40401cfa13 ("lib/scatterlist: Do not limit max_segment to
+> PAGE_ALIGNED values") the max_segment input to sg_alloc_table_from_pages()
+> does not have to be any special value. The new algorithm will always
+> create something less than what the user provides. Thus eliminate this
+> confusing constant.
+> 
+> - vmwgfx should use the HW capability, not mix in the OS page size for
+>   calling dma_set_max_seg_size()
+> 
+> - i915 uses i915_sg_segment_size() both for sg_alloc_table_from_pages
+>   and for some open coded sgl construction. This doesn't change the value
+>   since rounddown(size, UINT_MAX) == SCATTERLIST_MAX_SEGMENT
+> 
+> - drm_prime_pages_to_sg uses it as a default if max_segment is zero,
+>   UINT_MAX is fine to use directly.
+> 
+> Cc: Gerd Hoffmann <kraxel@redhat.com>
+> Cc: Daniel Vetter <daniel.vetter@ffwll.ch>
+> Cc: Thomas Hellstrom <thellstrom@vmware.com>
+> Cc: Qian Cai <cai@lca.pw>
+> Cc: "Ursulin, Tvrtko" <tvrtko.ursulin@intel.com>
+> Suggested-by: Christoph Hellwig <hch@lst.de>
+> Signed-off-by: Jason Gunthorpe <jgg@nvidia.com>
 
---===============7175656391459319040==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Merged to drm-misc-next, thanks for your patch.
+-Daniel
 
-== Series Details ==
+> ---
+>  drivers/gpu/drm/drm_prime.c             | 4 ++--
+>  drivers/gpu/drm/i915/i915_scatterlist.h | 2 +-
+>  drivers/gpu/drm/vmwgfx/vmwgfx_drv.c     | 3 +--
+>  include/linux/scatterlist.h             | 6 ------
+>  tools/testing/scatterlist/main.c        | 2 +-
+>  5 files changed, 5 insertions(+), 12 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/drm_prime.c b/drivers/gpu/drm/drm_prime.c
+> index d6808f678db541..c3693e5e8b74b0 100644
+> --- a/drivers/gpu/drm/drm_prime.c
+> +++ b/drivers/gpu/drm/drm_prime.c
+> @@ -816,8 +816,8 @@ struct sg_table *drm_prime_pages_to_sg(struct drm_device *dev,
+>  
+>  	if (dev)
+>  		max_segment = dma_max_mapping_size(dev->dev);
+> -	if (max_segment == 0 || max_segment > SCATTERLIST_MAX_SEGMENT)
+> -		max_segment = SCATTERLIST_MAX_SEGMENT;
+> +	if (max_segment == 0)
+> +		max_segment = UINT_MAX;
+>  	sge = __sg_alloc_table_from_pages(sg, pages, nr_pages, 0,
+>  					  nr_pages << PAGE_SHIFT,
+>  					  max_segment,
+> diff --git a/drivers/gpu/drm/i915/i915_scatterlist.h b/drivers/gpu/drm/i915/i915_scatterlist.h
+> index b7b59328cb76ab..883dd8d09d6bf2 100644
+> --- a/drivers/gpu/drm/i915/i915_scatterlist.h
+> +++ b/drivers/gpu/drm/i915/i915_scatterlist.h
+> @@ -112,7 +112,7 @@ static inline unsigned int i915_sg_segment_size(void)
+>  	unsigned int size = swiotlb_max_segment();
+>  
+>  	if (size == 0)
+> -		return SCATTERLIST_MAX_SEGMENT;
+> +		size = UINT_MAX;
+>  
+>  	size = rounddown(size, PAGE_SIZE);
+>  	/* swiotlb_max_segment_size can return 1 byte when it means one page. */
+> diff --git a/drivers/gpu/drm/vmwgfx/vmwgfx_drv.c b/drivers/gpu/drm/vmwgfx/vmwgfx_drv.c
+> index 31e3e5c9f36223..c1817f1a3006e0 100644
+> --- a/drivers/gpu/drm/vmwgfx/vmwgfx_drv.c
+> +++ b/drivers/gpu/drm/vmwgfx/vmwgfx_drv.c
+> @@ -792,8 +792,7 @@ static int vmw_driver_load(struct drm_device *dev, unsigned long chipset)
+>  	if (unlikely(ret != 0))
+>  		goto out_err0;
+>  
+> -	dma_set_max_seg_size(dev->dev, min_t(unsigned int, U32_MAX & PAGE_MASK,
+> -					     SCATTERLIST_MAX_SEGMENT));
+> +	dma_set_max_seg_size(dev->dev, U32_MAX);
+>  
+>  	if (dev_priv->capabilities & SVGA_CAP_GMR2) {
+>  		DRM_INFO("Max GMR ids is %u\n",
+> diff --git a/include/linux/scatterlist.h b/include/linux/scatterlist.h
+> index 36c47e7e66a203..6f70572b2938be 100644
+> --- a/include/linux/scatterlist.h
+> +++ b/include/linux/scatterlist.h
+> @@ -18,12 +18,6 @@ struct scatterlist {
+>  #endif
+>  };
+>  
+> -/*
+> - * Since the above length field is an unsigned int, below we define the maximum
+> - * length in bytes that can be stored in one scatterlist entry.
+> - */
+> -#define SCATTERLIST_MAX_SEGMENT (UINT_MAX & PAGE_MASK)
+> -
+>  /*
+>   * These macros should be used after a dma_map_sg call has been done
+>   * to get bus addresses of each of the SG entries and their lengths.
+> diff --git a/tools/testing/scatterlist/main.c b/tools/testing/scatterlist/main.c
+> index b2c7e9f7b8d3dc..d264bf853034bd 100644
+> --- a/tools/testing/scatterlist/main.c
+> +++ b/tools/testing/scatterlist/main.c
+> @@ -50,7 +50,7 @@ static void fail(struct test *test, struct sg_table *st, const char *cond)
+>  
+>  int main(void)
+>  {
+> -	const unsigned int sgmax = SCATTERLIST_MAX_SEGMENT;
+> +	const unsigned int sgmax = UINT_MAX;
+>  	struct test *test, tests[] = {
+>  		{ -EINVAL, 1, pfn(0), PAGE_SIZE, PAGE_SIZE + 1, 1 },
+>  		{ -EINVAL, 1, pfn(0), PAGE_SIZE, 0, 1 },
+> -- 
+> 2.28.0
+> 
 
-Series: drm/i915/rkl: new rkl ddc map for different PCH (rev3)
-URL   : https://patchwork.freedesktop.org/series/83154/
-State : failure
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_9245 -> Patchwork_18826
-====================================================
-
-Summary
--------
-
-  **FAILURE**
-
-  Serious unknown changes coming with Patchwork_18826 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_18826, please notify your bug team to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18826/index.html
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_18826:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@i915_module_load@reload:
-    - fi-skl-lmem:        [PASS][1] -> [DMESG-WARN][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9245/fi-skl-lmem/igt@i915_module_load@reload.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18826/fi-skl-lmem/igt@i915_module_load@reload.html
-
-  
-New tests
----------
-
-  New tests have been introduced between CI_DRM_9245 and Patchwork_18826:
-
-### New CI tests (1) ###
-
-  * boot:
-    - Statuses : 38 pass(s)
-    - Exec time: [0.0] s
-
-  
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_18826 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_module_load@reload:
-    - fi-byt-j1900:       [PASS][3] -> [DMESG-WARN][4] ([i915#1982])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9245/fi-byt-j1900/igt@i915_module_load@reload.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18826/fi-byt-j1900/igt@i915_module_load@reload.html
-    - fi-tgl-u2:          [PASS][5] -> [DMESG-WARN][6] ([i915#1982] / [k.org#205379])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9245/fi-tgl-u2/igt@i915_module_load@reload.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18826/fi-tgl-u2/igt@i915_module_load@reload.html
-
-  * igt@kms_cursor_legacy@basic-flip-before-cursor-atomic:
-    - fi-icl-u2:          [PASS][7] -> [DMESG-WARN][8] ([i915#1982])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9245/fi-icl-u2/igt@kms_cursor_legacy@basic-flip-before-cursor-atomic.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18826/fi-icl-u2/igt@kms_cursor_legacy@basic-flip-before-cursor-atomic.html
-
-  
-#### Possible fixes ####
-
-  * igt@gem_exec_suspend@basic-s0:
-    - fi-cfl-8109u:       [DMESG-WARN][9] -> [PASS][10] +1 similar issue
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9245/fi-cfl-8109u/igt@gem_exec_suspend@basic-s0.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18826/fi-cfl-8109u/igt@gem_exec_suspend@basic-s0.html
-
-  * igt@i915_module_load@reload:
-    - fi-icl-y:           [DMESG-WARN][11] ([i915#1982]) -> [PASS][12]
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9245/fi-icl-y/igt@i915_module_load@reload.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18826/fi-icl-y/igt@i915_module_load@reload.html
-
-  * igt@i915_pm_rpm@module-reload:
-    - fi-byt-j1900:       [DMESG-WARN][13] ([i915#1982]) -> [PASS][14]
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9245/fi-byt-j1900/igt@i915_pm_rpm@module-reload.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18826/fi-byt-j1900/igt@i915_pm_rpm@module-reload.html
-
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy:
-    - fi-icl-u2:          [DMESG-WARN][15] ([i915#1982]) -> [PASS][16] +1 similar issue
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9245/fi-icl-u2/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18826/fi-icl-u2/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
-  [k.org#205379]: https://bugzilla.kernel.org/show_bug.cgi?id=205379
-
-
-Participating hosts (42 -> 38)
-------------------------------
-
-  Missing    (4): fi-ilk-m540 fi-bsw-cyan fi-bdw-samus fi-hsw-4200u 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_9245 -> Patchwork_18826
-
-  CI-20190529: 20190529
-  CI_DRM_9245: 02c27d0ee1335328e9d87ed1a0932671efbb0d5c @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5830: 12d370cb57e0cfcb781c87ad9e15e68b17a1f41f @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_18826: c0a38bfa9c23a6b42bf1ebb3003349951582730e @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-c0a38bfa9c23 drm/i915/rkl: new rkl ddc map for different PCH
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18826/index.html
-
---===============7175656391459319040==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/rkl: new rkl ddc map for different PCH (rev3)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/83154/">https://patchwork.freedesktop.org/series/83154/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18826/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18826/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_9245 -&gt; Patchwork_18826</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with Patchwork_18826 absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in Patchwork_18826, please notify your bug team to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18826/index.html</p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in Patchwork_18826:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>igt@i915_module_load@reload:<ul>
-<li>fi-skl-lmem:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9245/fi-skl-lmem/igt@i915_module_load@reload.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18826/fi-skl-lmem/igt@i915_module_load@reload.html">DMESG-WARN</a></li>
-</ul>
-</li>
-</ul>
-<h2>New tests</h2>
-<p>New tests have been introduced between CI_DRM_9245 and Patchwork_18826:</p>
-<h3>New CI tests (1)</h3>
-<ul>
-<li>boot:<ul>
-<li>Statuses : 38 pass(s)</li>
-<li>Exec time: [0.0] s</li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_18826 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@i915_module_load@reload:</p>
-<ul>
-<li>
-<p>fi-byt-j1900:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9245/fi-byt-j1900/igt@i915_module_load@reload.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18826/fi-byt-j1900/igt@i915_module_load@reload.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>)</p>
-</li>
-<li>
-<p>fi-tgl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9245/fi-tgl-u2/igt@i915_module_load@reload.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18826/fi-tgl-u2/igt@i915_module_load@reload.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a> / <a href="https://bugzilla.kernel.org/show_bug.cgi?id=205379">k.org#205379</a>)</p>
-</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@basic-flip-before-cursor-atomic:</p>
-<ul>
-<li>fi-icl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9245/fi-icl-u2/igt@kms_cursor_legacy@basic-flip-before-cursor-atomic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18826/fi-icl-u2/igt@kms_cursor_legacy@basic-flip-before-cursor-atomic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@gem_exec_suspend@basic-s0:</p>
-<ul>
-<li>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9245/fi-cfl-8109u/igt@gem_exec_suspend@basic-s0.html">DMESG-WARN</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18826/fi-cfl-8109u/igt@gem_exec_suspend@basic-s0.html">PASS</a> +1 similar issue</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_module_load@reload:</p>
-<ul>
-<li>fi-icl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9245/fi-icl-y/igt@i915_module_load@reload.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18826/fi-icl-y/igt@i915_module_load@reload.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_pm_rpm@module-reload:</p>
-<ul>
-<li>fi-byt-j1900:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9245/fi-byt-j1900/igt@i915_pm_rpm@module-reload.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18826/fi-byt-j1900/igt@i915_pm_rpm@module-reload.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy:</p>
-<ul>
-<li>fi-icl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9245/fi-icl-u2/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18826/fi-icl-u2/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html">PASS</a> +1 similar issue</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Participating hosts (42 -&gt; 38)</h2>
-<p>Missing    (4): fi-ilk-m540 fi-bsw-cyan fi-bdw-samus fi-hsw-4200u </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_9245 -&gt; Patchwork_18826</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_9245: 02c27d0ee1335328e9d87ed1a0932671efbb0d5c @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_5830: 12d370cb57e0cfcb781c87ad9e15e68b17a1f41f @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
-  Patchwork_18826: c0a38bfa9c23a6b42bf1ebb3003349951582730e @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>c0a38bfa9c23 drm/i915/rkl: new rkl ddc map for different PCH</p>
-
-</body>
-</html>
-
---===============7175656391459319040==--
-
---===============1730496473==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
+-- 
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============1730496473==--
