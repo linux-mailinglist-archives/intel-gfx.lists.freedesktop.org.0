@@ -1,52 +1,69 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 921E32A29FB
-	for <lists+intel-gfx@lfdr.de>; Mon,  2 Nov 2020 12:53:45 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0AD522A2B39
+	for <lists+intel-gfx@lfdr.de>; Mon,  2 Nov 2020 14:09:09 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 40B3A6E4C4;
-	Mon,  2 Nov 2020 11:53:42 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 874DF6E4C4
- for <Intel-gfx@lists.freedesktop.org>; Mon,  2 Nov 2020 11:53:41 +0000 (UTC)
-IronPort-SDR: jVviYL/19OSEkRuI/s+WvXYo+XFmse247OvDezfbqfk83jIDBbjU3Vrgh1pdHPU87Dzyrgq5IM
- WKvX0JTJd9Gw==
-X-IronPort-AV: E=McAfee;i="6000,8403,9792"; a="166280397"
-X-IronPort-AV: E=Sophos;i="5.77,444,1596524400"; d="scan'208";a="166280397"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Nov 2020 03:53:40 -0800
-IronPort-SDR: JujtdMfOAx3lNDW4tWz544fQ5QF9JJIDoMZ1lf8+fKS5PmuQGjIhFOcxZTdD/KDiDTP3LzV1Wf
- mgNpMhSxp92w==
-X-IronPort-AV: E=Sophos;i="5.77,444,1596524400"; d="scan'208";a="537991316"
-Received: from obarniv1-mobl.ger.corp.intel.com (HELO [10.214.212.214])
- ([10.214.212.214])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Nov 2020 03:53:37 -0800
-To: Lu Baolu <baolu.lu@linux.intel.com>, Joerg Roedel <joro@8bytes.org>,
- Tom Murphy <murphyt7@tcd.ie>, David Woodhouse <dwmw2@infradead.org>,
- Christoph Hellwig <hch@infradead.org>
-References: <20200927063437.13988-1-baolu.lu@linux.intel.com>
- <e999e371-6d36-ffea-542f-a5f4b230b0ed@linux.intel.com>
- <c2af9a9d-1cae-b8f7-a0b3-880574060a23@linux.intel.com>
- <8bac9e91-36a0-c1d6-a887-4d60567ac75a@linux.intel.com>
- <3f5694f3-62f9-cc2b-1c2b-f9e99a4788c1@linux.intel.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-Message-ID: <1ce5b94a-38b3-548e-3b1a-a68390b93953@linux.intel.com>
-Date: Mon, 2 Nov 2020 11:52:12 +0000
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id 47FE06E50E;
+	Mon,  2 Nov 2020 13:09:06 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from aserp2130.oracle.com (aserp2130.oracle.com [141.146.126.79])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AC0146E50E
+ for <intel-gfx@lists.freedesktop.org>; Mon,  2 Nov 2020 13:09:04 +0000 (UTC)
+Received: from pps.filterd (aserp2130.oracle.com [127.0.0.1])
+ by aserp2130.oracle.com (8.16.0.42/8.16.0.42) with SMTP id 0A2D3vHk096304;
+ Mon, 2 Nov 2020 13:08:01 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=oracle.com;
+ h=date : from : to : cc
+ : subject : message-id : mime-version : content-type :
+ content-transfer-encoding; s=corp-2020-01-29;
+ bh=XZ3K+BAZaN4Gb1xlpxJpEXY5kzg1SJ7WSJ80Eurv2gM=;
+ b=SjI0d8ZpNLJKDhOX5H6XOQBSGq7tFG6uDwJVwpQv3G6ryVtHzOkpw3UtHoYL7pC6M2Dr
+ BFS7mxSgzzqRPlpfjbxj9pgyQ6oC1i+quhTfmpLTTzqXQG18UMmiX+sTZGWlYKfwzIrx
+ k904jJxBlDfbxkbiVIgU5L9EH0AjF6w9jeIUFpUPaXnM7XReFGwkraHUQdXUsUgCe8fZ
+ ggnSqL64aqgmDqB0OBTsiSey0qgndGFCYefM5jJNHXA1Ay+5CIw9egw5+2D/TGa6LIHP
+ dsDRq4QjBy6oHtoJnT1VuS1enTYQxb1qxBv5Pvaaub+nksGveY8v4XynH0iH4A4yG3qZ eA== 
+Received: from userp3030.oracle.com (userp3030.oracle.com [156.151.31.80])
+ by aserp2130.oracle.com with ESMTP id 34hhb1uqxg-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
+ Mon, 02 Nov 2020 13:08:01 +0000
+Received: from pps.filterd (userp3030.oracle.com [127.0.0.1])
+ by userp3030.oracle.com (8.16.0.42/8.16.0.42) with SMTP id 0A2D5e81012823;
+ Mon, 2 Nov 2020 13:08:00 GMT
+Received: from aserv0121.oracle.com (aserv0121.oracle.com [141.146.126.235])
+ by userp3030.oracle.com with ESMTP id 34hvrtupv2-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+ Mon, 02 Nov 2020 13:08:00 +0000
+Received: from abhmp0018.oracle.com (abhmp0018.oracle.com [141.146.116.24])
+ by aserv0121.oracle.com (8.14.4/8.13.8) with ESMTP id 0A2D7xxC011786;
+ Mon, 2 Nov 2020 13:07:59 GMT
+Received: from mwanda (/41.57.98.10) by default (Oracle Beehive Gateway v4.0)
+ with ESMTP ; Mon, 02 Nov 2020 05:07:46 -0800
+Date: Mon, 2 Nov 2020 16:07:36 +0300
+From: Dan Carpenter <dan.carpenter@oracle.com>
+To: ville.syrjala@linux.intel.com
+Message-ID: <20201102130736.GA31073@mwanda>
 MIME-Version: 1.0
-In-Reply-To: <3f5694f3-62f9-cc2b-1c2b-f9e99a4788c1@linux.intel.com>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH v4 0/7] Convert the intel iommu driver to
- the dma-iommu api
+Content-Disposition: inline
+X-Proofpoint-Virus-Version: vendor=nai engine=6000 definitions=9792
+ signatures=668682
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 bulkscore=0
+ adultscore=0 mlxscore=0
+ malwarescore=0 mlxlogscore=999 suspectscore=3 spamscore=0 phishscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2009150000
+ definitions=main-2011020103
+X-Proofpoint-Virus-Version: vendor=nai engine=6000 definitions=9792
+ signatures=668682
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 bulkscore=0
+ phishscore=0 suspectscore=3
+ clxscore=1015 mlxlogscore=999 impostorscore=0 malwarescore=0
+ lowpriorityscore=0 adultscore=0 spamscore=0 priorityscore=1501 mlxscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2009150000
+ definitions=main-2011020103
+Subject: [Intel-gfx] [bug report] drm/i915: Replace some gamma_mode ifs with
+ switches
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,43 +76,50 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel-gfx@lists.freedesktop.org, Ashok Raj <ashok.raj@intel.com>,
- iommu@lists.linux-foundation.org, linux-kernel@vger.kernel.org
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Ck9uIDAyLzExLzIwMjAgMDI6MDAsIEx1IEJhb2x1IHdyb3RlOgo+IEhpIFR2cnRrbywKPiBPbiAx
-MC8xMi8yMCA0OjQ0IFBNLCBUdnJ0a28gVXJzdWxpbiB3cm90ZToKPj4KPj4gT24gMjkvMDkvMjAy
-MCAwMToxMSwgTHUgQmFvbHUgd3JvdGU6Cj4+PiBIaSBUdnJ0a28sCj4+Pgo+Pj4gT24gOS8yOC8y
-MCA1OjQ0IFBNLCBUdnJ0a28gVXJzdWxpbiB3cm90ZToKPj4+Pgo+Pj4+IE9uIDI3LzA5LzIwMjAg
-MDc6MzQsIEx1IEJhb2x1IHdyb3RlOgo+Pj4+PiBIaSwKPj4+Pj4KPj4+Pj4gVGhlIHByZXZpb3Vz
-IHBvc3Qgb2YgdGhpcyBzZXJpZXMgY291bGQgYmUgZm91bmQgaGVyZS4KPj4+Pj4KPj4+Pj4gaHR0
-cHM6Ly9sb3JlLmtlcm5lbC5vcmcvbGludXgtaW9tbXUvMjAyMDA5MTIwMzIyMDAuMTE0ODktMS1i
-YW9sdS5sdUBsaW51eC5pbnRlbC5jb20vIAo+Pj4+Pgo+Pj4+Pgo+Pj4+PiBUaGlzIHZlcnNpb24g
-aW50cm9kdWNlIGEgbmV3IHBhdGNoIFs0LzddIHRvIGZpeCBhbiBpc3N1ZSByZXBvcnRlZCAKPj4+
-Pj4gaGVyZS4KPj4+Pj4KPj4+Pj4gaHR0cHM6Ly9sb3JlLmtlcm5lbC5vcmcvbGludXgtaW9tbXUv
-NTFhMWJhZWMtNDhkMS1jMGFjLTE4MWItMWZiYTkyYWE0MjhkQGxpbnV4LmludGVsLmNvbS8gCj4+
-Pj4+Cj4+Pj4+Cj4+Pj4+IFRoZXJlIGFyZW4ndCBhbnkgb3RoZXIgY2hhbmdlcy4KPj4+Pj4KPj4+
-Pj4gUGxlYXNlIGhlbHAgdG8gdGVzdCBhbmQgcmV2aWV3Lgo+Pj4+Pgo+Pj4+PiBCZXN0IHJlZ2Fy
-ZHMsCj4+Pj4+IGJhb2x1Cj4+Pj4+Cj4+Pj4+IEx1IEJhb2x1ICgzKToKPj4+Pj4gwqDCoCBpb21t
-dTogQWRkIHF1aXJrIGZvciBJbnRlbCBncmFwaGljIGRldmljZXMgaW4gbWFwX3NnCj4+Pj4KPj4+
-PiBTaW5jZSBJIGRvIGhhdmUgcGF0Y2hlcyB0byBmaXggaTkxNSB0byBoYW5kbGUgdGhpcywgZG8g
-d2Ugd2FudCB0byAKPj4+PiBjby1vcmRpbmF0ZSB0aGUgdHdvIGFuZCBhdm9pZCBoYXZpbmcgdG8g
-YWRkIHRoaXMgcXVpcmsgYW5kIHRoZW4gCj4+Pj4gbGF0ZXIgcmVtb3ZlIGl0PyBPciB5b3Ugd2Fu
-dCB0byBnbyB0aGUgc3RhZ2VkIGFwcHJvYWNoPwo+Pj4KPj4+IEkgaGF2ZSBubyBwcmVmZXJlbmNl
-LiBJdCBkZXBlbmRzIG9uIHdoaWNoIHBhdGNoIGdvZXMgZmlyc3QuIExldCB0aGUKPj4+IG1haW50
-YWluZXJzIGhlbHAgaGVyZS4KPj4KPj4gRllJIHdlIGhhdmUgbWVyZ2VkIHRoZSByZXF1aXJlZCBp
-OTE1IHBhdGNoZXMgdG8gb3V0IHRyZWUgbGFzdCB3ZWVrIG9yIAo+PiBzby4gSSAqdGhpbmsqIHRo
-aXMgbWVhbnMgdGhleSB3aWxsIGdvIGludG8gNS4xMS4gU28gdGhlIGk5MTUgc3BlY2lmaWMgCj4+
-IHdvcmthcm91bmQgcGF0Y2ggd2lsbCBub3QgYmUgbmVlZGVkIGluIEludGVsIElPTU1VLgo+IAo+
-IERvIHlvdSBtaW5kIHRlbGxpbmcgbWUgd2hhdCdzIHRoZSBzdGF0dXMgb2YgdGhpcyBmaXggcGF0
-Y2g/IEkgdHJpZWQgdGhpcwo+IHNlcmllcyBvbiB2NS4xMC1yYzEgd2l0aCB0aGUgZ3JhcGhpYyBx
-dWlyayBwYXRjaCBkcm9wcGVkLiBJIGFtIHN0aWxsCj4gc2VlaW5nIGRtYSBmYXVsdHMgZnJvbSBn
-cmFwaGljIGRldmljZS4KCkhtbSBiYWNrIHRoZW4gSSB0aG91Z2h0IGk5MTUgZml4ZXMgZm9yIHRo
-aXMgd291bGQgbGFuZCBpbiA1LjExIHNvIEkgd2lsbCAKc3RpY2sgd2l0aCB0aGF0LiA6KSAoU2Vl
-IG15IHF1b3RlZCB0ZXh0IGEgcGFyYWdyYXBoIGFib3ZlIHlvdXJzLikKClJlZ2FyZHMsCgpUdnJ0
-a28KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwt
-Z2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8v
-bGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
+Hello Ville Syrj=E4l=E4,
+
+This is a semi-automatic email about new static checker warnings.
+
+The patch 7852ddd5d60a: "drm/i915: Replace some gamma_mode ifs with =
+
+switches" from Sep 25, 2020, leads to the following Smatch complaint:
+
+    drivers/gpu/drm/i915/display/intel_color.c:765 ivb_load_luts()
+    error: we previously assumed 'gamma_lut' could be null (see line 755)
+
+drivers/gpu/drm/i915/display/intel_color.c
+   754		const struct drm_property_blob *degamma_lut =3D crtc_state->hw.dega=
+mma_lut;
+   755		const struct drm_property_blob *blob =3D gamma_lut ?: degamma_lut;
+                                                       ^^^^^^^^^^^^
+Check for NULL
+
+   756	=
+
+   757		switch (crtc_state->gamma_mode) {
+   758		case GAMMA_MODE_MODE_8BIT:
+   759			ilk_load_lut_8(crtc, blob);
+   760			break;
+   761		case GAMMA_MODE_MODE_SPLIT:
+   762			ivb_load_lut_10(crtc, degamma_lut, PAL_PREC_SPLIT_MODE |
+   763					PAL_PREC_INDEX_VALUE(0));
+   764			ivb_load_lut_ext_max(crtc_state);
+   765			ivb_load_lut_10(crtc, gamma_lut, PAL_PREC_SPLIT_MODE |
+                                              ^^^^^^^^^
+Unchecked dereference.  Possibly pass "blob" here?
+
+   766					PAL_PREC_INDEX_VALUE(512));
+   767			break;
+
+regards,
+dan carpenter
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
