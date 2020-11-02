@@ -2,39 +2,64 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9F8252A258F
-	for <lists+intel-gfx@lfdr.de>; Mon,  2 Nov 2020 08:48:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A63CB2A2580
+	for <lists+intel-gfx@lfdr.de>; Mon,  2 Nov 2020 08:45:11 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F22646E3FE;
-	Mon,  2 Nov 2020 07:48:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 183276E372;
+	Mon,  2 Nov 2020 07:45:09 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DBB4A6E3FE
- for <intel-gfx@lists.freedesktop.org>; Mon,  2 Nov 2020 07:48:24 +0000 (UTC)
-IronPort-SDR: 4/2xaNX1YlZNk7VqcPsspc9dY7kXef+OduwHLJaZmIf7MIkNuDNFoNwWS76bGa2DmFKEbGDSQH
- weqgeRrCON4w==
-X-IronPort-AV: E=McAfee;i="6000,8403,9792"; a="155835310"
-X-IronPort-AV: E=Sophos;i="5.77,444,1596524400"; d="scan'208";a="155835310"
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2D3076E372;
+ Mon,  2 Nov 2020 07:45:08 +0000 (UTC)
+IronPort-SDR: /sjdp67yU3YlryuNc1tOeFyA96R68JSpZaDBYPRvlSxGU2dm1JO6yu0JZPF3cQOds2/ershUYi
+ 2RGZKxMhntiQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9792"; a="186677923"
+X-IronPort-AV: E=Sophos;i="5.77,444,1596524400"; d="scan'208";a="186677923"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Nov 2020 23:48:24 -0800
-IronPort-SDR: wS6ivVgDW2yeAbRCIBzJV0spdj9WpS+EuLE2t4yXmaz3VnViZuvVk6aYDkJ3WydbK4RCxEqjwC
- kloFLKaSVtAg==
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Nov 2020 23:45:07 -0800
+IronPort-SDR: Oc7Q1HmUABtMr9yhbk6hxAlNQOxHrlv9wZlz9WHt0Q7JNJMFHytGecb5KY5uf1z6pQAs/M54Nr
+ 56FRhG+u6WSQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.77,444,1596524400"; d="scan'208";a="352665926"
-Received: from tejas-system-product-name.iind.intel.com ([10.145.162.130])
- by fmsmga004.fm.intel.com with ESMTP; 01 Nov 2020 23:48:22 -0800
-From: Tejas Upadhyay <tejaskumarx.surendrakumar.upadhyay@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Mon,  2 Nov 2020 13:09:46 +0530
-Message-Id: <20201102073946.158633-1-tejaskumarx.surendrakumar.upadhyay@intel.com>
-X-Mailer: git-send-email 2.28.0
+X-IronPort-AV: E=Sophos;i="5.77,444,1596524400"; d="scan'208";a="351928181"
+Received: from fmsmsx604.amr.corp.intel.com ([10.18.126.84])
+ by orsmga008.jf.intel.com with ESMTP; 01 Nov 2020 23:45:07 -0800
+Received: from bgsmsx604.gar.corp.intel.com (10.67.234.6) by
+ fmsmsx604.amr.corp.intel.com (10.18.126.84) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1713.5; Sun, 1 Nov 2020 23:45:06 -0800
+Received: from bgsmsx604.gar.corp.intel.com (10.67.234.6) by
+ BGSMSX604.gar.corp.intel.com (10.67.234.6) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1713.5; Mon, 2 Nov 2020 13:15:04 +0530
+Received: from bgsmsx604.gar.corp.intel.com ([10.67.234.6]) by
+ BGSMSX604.gar.corp.intel.com ([10.67.234.6]) with mapi id 15.01.1713.004;
+ Mon, 2 Nov 2020 13:15:03 +0530
+From: "Shankar, Uma" <uma.shankar@intel.com>
+To: "Gupta, Anshuman" <anshuman.gupta@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
+Thread-Topic: [PATCH v4 01/16] drm/i915/hdcp: Update CP property in update_pipe
+Thread-Index: AQHWrIIOZ3bWs4Tv/kKcY+GJjlJ/JKm0fu3Q
+Date: Mon, 2 Nov 2020 07:45:03 +0000
+Message-ID: <e662833055df4b8cacf999b2f6ec603b@intel.com>
+References: <20201027164208.10026-1-anshuman.gupta@intel.com>
+ <20201027164208.10026-2-anshuman.gupta@intel.com>
+In-Reply-To: <20201027164208.10026-2-anshuman.gupta@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+dlp-product: dlpe-windows
+dlp-reaction: no-action
+dlp-version: 11.5.1.3
+x-originating-ip: [10.223.10.1]
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH V2] drm/i915/jsl: Disable cursor clock gating in
- HDR mode
+Subject: Re: [Intel-gfx] [PATCH v4 01/16] drm/i915/hdcp: Update CP property
+ in update_pipe
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,106 +72,83 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: hariom.pandey@intel.com
+Cc: "Nikula, Jani" <jani.nikula@intel.com>,
+ "seanpaul@chromium.org" <seanpaul@chromium.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Display underrun in HDR mode when cursor is enabled.
-RTL fix will be implemented CLKGATE_DIS_PSL_A bit 28-46520h.
-As per W/A 1604331009, Disable cursor clock gating in HDR mode.
 
-Bspec : 33451
 
-Changes since V1:
-	- Modified way CLKGATE_DIS_PSL bit 28 was modified
+> -----Original Message-----
+> From: Anshuman Gupta <anshuman.gupta@intel.com>
+> Sent: Tuesday, October 27, 2020 10:12 PM
+> To: intel-gfx@lists.freedesktop.org; dri-devel@lists.freedesktop.org
+> Cc: seanpaul@chromium.org; Nikula, Jani <jani.nikula@intel.com>; C,
+> Ramalingam <ramalingam.c@intel.com>; Li, Juston <juston.li@intel.com>;
+> Shankar, Uma <uma.shankar@intel.com>; Gupta, Anshuman
+> <anshuman.gupta@intel.com>
+> Subject: [PATCH v4 01/16] drm/i915/hdcp: Update CP property in update_pipe
+> 
+> When crtc state need_modeset is true it is not necessary it is going to be a real
+> modeset, it can turns to be a fastset instead of modeset.
+> This turns content protection property to be DESIRED and hdcp update_pipe left
+> with property to be in DESIRED state but actual hdcp->value was ENABLED.
+> 
+> This issue is caught with DP MST setup, where we have multiple connector in
+> same DP_MST topology. When disabling HDCP on one of DP MST connector leads
+> to set the crtc state need_modeset to true for all other crtc driving the other DP-
+> MST topology connectors.
+> This turns up other DP MST connectors CP property to be DESIRED despite the
+> actual hdcp->value is ENABLED.
+> Above scenario fails the DP MST HDCP IGT test, disabling HDCP on one MST
+> stream should not cause to disable HDCP on another MST stream on same DP
+> MST topology.
+> 
+> v2:
+> Fix WARN_ON(connector->base.registration_state ==
+> DRM_CONNECTOR_REGISTERED)
+> v3:
+> Commit log improvement. [Uma]
+> Added a comment before scheduling prop_work. [Uma]
 
-Cc: Souza Jose <jose.souza@intel.com>
-Signed-off-by: Tejas Upadhyay <tejaskumarx.surendrakumar.upadhyay@intel.com>
----
- drivers/gpu/drm/i915/display/intel_display.c | 28 ++++++++++++++++++++
- drivers/gpu/drm/i915/i915_reg.h              |  5 ++++
- 2 files changed, 33 insertions(+)
-
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index cddbda5303ff..b132585d9e78 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -541,6 +541,15 @@ icl_wa_scalerclkgating(struct drm_i915_private *dev_priv, enum pipe pipe,
- 		               intel_de_read(dev_priv, CLKGATE_DIS_PSL(pipe)) & ~DPFR_GATING_DIS);
- }
+Looks Good to me.
+Reviewed-by: Uma Shankar <uma.shankar@intel.com>
  
-+/* Wa_1604331009:jsl */
-+static void
-+jsl_wa_cursorclkgating(struct drm_i915_private *dev_priv, enum pipe pipe,
-+		       bool enable)
-+{
-+	intel_de_rmw(dev_priv, CLKGATE_DIS_PSL(pipe),
-+		     CURSOR_GATING_DIS, enable ? CURSOR_GATING_DIS : 0);
-+}
-+
- static bool
- needs_modeset(const struct intel_crtc_state *state)
- {
-@@ -6637,6 +6646,16 @@ static bool needs_scalerclk_wa(const struct intel_crtc_state *crtc_state)
- 	return false;
- }
- 
-+static bool needs_cursorclk_wa(const struct intel_crtc_state *crtc_state)
-+{
-+	struct drm_i915_private *dev_priv = to_i915(crtc_state->uapi.crtc->dev);
-+	/* Wa_1604331009:jsl */
-+	if (crtc_state->active_planes & icl_hdr_plane_mask() &&
-+	    IS_GEN(dev_priv, 11))
-+		return true;
-+	return false;
-+}
-+
- static bool planes_enabling(const struct intel_crtc_state *old_crtc_state,
- 			    const struct intel_crtc_state *new_crtc_state)
- {
-@@ -6678,6 +6697,10 @@ static void intel_post_plane_update(struct intel_atomic_state *state,
- 	if (needs_scalerclk_wa(old_crtc_state) &&
- 	    !needs_scalerclk_wa(new_crtc_state))
- 		icl_wa_scalerclkgating(dev_priv, pipe, false);
-+
-+	if (needs_cursorclk_wa(old_crtc_state) &&
-+	    !needs_cursorclk_wa(new_crtc_state))
-+		jsl_wa_cursorclkgating(dev_priv, pipe, false);
- }
- 
- static void skl_disable_async_flip_wa(struct intel_atomic_state *state,
-@@ -6743,6 +6766,11 @@ static void intel_pre_plane_update(struct intel_atomic_state *state,
- 	    needs_scalerclk_wa(new_crtc_state))
- 		icl_wa_scalerclkgating(dev_priv, pipe, true);
- 
-+	/* Wa_1604331009:jsl */
-+	if (!needs_cursorclk_wa(old_crtc_state) &&
-+	    needs_cursorclk_wa(new_crtc_state))
-+		jsl_wa_cursorclkgating(dev_priv, pipe, true);
-+
- 	/*
- 	 * Vblank time updates from the shadow to live plane control register
- 	 * are blocked if the memory self-refresh mode is active at that
-diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-index bb0656875697..f81a503c5d4b 100644
---- a/drivers/gpu/drm/i915/i915_reg.h
-+++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -4194,6 +4194,11 @@ enum {
- #define INF_UNIT_LEVEL_CLKGATE		_MMIO(0x9560)
- #define   CGPSF_CLKGATE_DIS		(1 << 3)
- 
-+/*
-+ * GEN11 clock gating regs
-+ */
-+#define   CURSOR_GATING_DIS		BIT(28)
-+
- /*
-  * Display engine regs
-  */
--- 
-2.28.0
+> Fixes: 33f9a623bfc6 ("drm/i915/hdcp: Update CP as per the kernel internal
+> state")
+> Cc: Ramalingam C <ramalingam.c@intel.com>
+> Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_hdcp.c | 8 ++++++++
+>  1 file changed, 8 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c
+> b/drivers/gpu/drm/i915/display/intel_hdcp.c
+> index b2a4bbcfdcd2..eee8263405b9 100644
+> --- a/drivers/gpu/drm/i915/display/intel_hdcp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
+> @@ -2221,6 +2221,14 @@ void intel_hdcp_update_pipe(struct
+> intel_atomic_state *state,
+>  		desired_and_not_enabled =
+>  			hdcp->value !=
+> DRM_MODE_CONTENT_PROTECTION_ENABLED;
+>  		mutex_unlock(&hdcp->mutex);
+> +		/*
+> +		 * If HDCP already ENABLED and CP property is DESIRED, schedule
+> +		 * prop_work to update correct CP property to user space.
+> +		 */
+> +		if (!desired_and_not_enabled &&
+> !content_protection_type_changed) {
+> +			drm_connector_get(&connector->base);
+> +			schedule_work(&hdcp->prop_work);
+> +		}
+>  	}
+> 
+>  	if (desired_and_not_enabled || content_protection_type_changed)
+> --
+> 2.26.2
 
 _______________________________________________
 Intel-gfx mailing list
