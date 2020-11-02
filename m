@@ -1,34 +1,59 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id BC59E2A32A2
-	for <lists+intel-gfx@lfdr.de>; Mon,  2 Nov 2020 19:14:00 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id B532E2A33E8
+	for <lists+intel-gfx@lfdr.de>; Mon,  2 Nov 2020 20:18:32 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F32F66E11C;
-	Mon,  2 Nov 2020 18:13:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2CAE36E2D1;
+	Mon,  2 Nov 2020 19:18:31 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0F87B6E117;
- Mon,  2 Nov 2020 18:13:55 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 22873046-1500050 for multiple; Mon, 02 Nov 2020 18:13:55 +0000
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D5B456E2D1
+ for <intel-gfx@lists.freedesktop.org>; Mon,  2 Nov 2020 19:18:29 +0000 (UTC)
+IronPort-SDR: BIr0hsMgcXS6bVkUKqkxTdEbX2rF3sSahR+VFoA4asX+4S8AthLlh8CprshKyLk4SeqfwLpvUe
+ Ditt9J7AHOTg==
+X-IronPort-AV: E=McAfee;i="6000,8403,9793"; a="148792609"
+X-IronPort-AV: E=Sophos;i="5.77,445,1596524400"; d="scan'208";a="148792609"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Nov 2020 11:18:29 -0800
+IronPort-SDR: OKLVrlGyXRt1SvSbC1MEGcgk4lP93zGBC+8yOsHxW5dZ3TVFFwRolmUfgYDKnblDQg/3O5uU2p
+ kIvXSs3nzHYg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.77,445,1596524400"; d="scan'208";a="352915215"
+Received: from irsmsx601.ger.corp.intel.com ([163.33.146.7])
+ by fmsmga004.fm.intel.com with ESMTP; 02 Nov 2020 11:18:28 -0800
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ irsmsx601.ger.corp.intel.com (163.33.146.7) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1713.5; Mon, 2 Nov 2020 19:18:27 +0000
+Received: from orsmsx610.amr.corp.intel.com ([10.22.229.23]) by
+ ORSMSX610.amr.corp.intel.com ([10.22.229.23]) with mapi id 15.01.1713.004;
+ Mon, 2 Nov 2020 11:18:25 -0800
+From: "Souza, Jose" <jose.souza@intel.com>
+To: "Mun, Gwan-gyeong" <gwan-gyeong.mun@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Thread-Topic: [PATCH v2 1/6] drm/i915/display/psr: Calculate selective fetch
+ plane registers
+Thread-Index: AQHWrLtMeP/0ovESfU2kf3LDU8jOaamvkzOAgAYzRAA=
+Date: Mon, 2 Nov 2020 19:18:25 +0000
+Message-ID: <311921d77082b42f2756a7c00eac643c7ed25665.camel@intel.com>
+References: <20201027234526.33043-1-jose.souza@intel.com>
+ <f351a96f67f178cc05367abf4f69ff8d7f46827a.camel@intel.com>
+In-Reply-To: <f351a96f67f178cc05367abf4f69ff8d7f46827a.camel@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.132]
+Content-ID: <5AC2B3E7B75E854380E891DB0EAB91A2@intel.com>
 MIME-Version: 1.0
-In-Reply-To: <966e4a04-0388-a555-5029-c9b5efb4a2c0@linux.intel.com>
-References: <20201102153334.3732960-1-chris@chris-wilson.co.uk>
- <966e4a04-0388-a555-5029-c9b5efb4a2c0@linux.intel.com>
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- igt-dev@lists.freedesktop.org
-Date: Mon, 02 Nov 2020 18:13:51 +0000
-Message-ID: <160434083191.12427.6074581032641222176@build.alporthouse.com>
-User-Agent: alot/0.9
-Subject: Re: [Intel-gfx] [PATCH i-g-t] gem_wsim: Use CTX_TIMESTAMP for timed
- spinners
+Subject: Re: [Intel-gfx] [PATCH v2 1/6] drm/i915/display/psr: Calculate
+ selective fetch plane registers
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,207 +66,127 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Tvrtko Ursulin (2020-11-02 17:14:24)
-> 
-> On 02/11/2020 15:33, Chris Wilson wrote:
-> > +     if (!f) {
-> > +             f = read_timestamp_frequency(fd);
-> > +             if (intel_gen(intel_get_drm_devid(fd)) == 11)
-> > +                     f = 12500000; /* icl!!! are you feeling alright? */
-> 
-> What does the comment refer to?
-
-Icelake seems to be using a constant clock for the timestamp that is not
-related to the GT clock. This feature is undocumented, but consistent
-across all 3 of the icl I have access to. There's a selftest kicking
-around for the issue.
- 
-> Should there be an assert here if < gen11?
-
-CTX_TIMESTAMP is present on gen8+, and so long as we don't use a load
-balancer, the tests should run. There's a bail for gen11 +
-load-balancing later on.
-
-> > +     return gem_engine_mmio_base(i915, name);
-> 
-> Why is mmio base needed if relative addressing is used? Maybe I'll 
-> figure it out after reading further.
-
-If we are not using relative addressing, we need the mmio base (and the
-bit is ignored).
-
-If we are using relative addressing, the offset must be 0.
-
-The intention is to keep working on older platforms, for simple tests at
-least. (Quite useful for verifying the logic.)
-
-> > -static unsigned int terminate_bb(struct w_step *w)
-> > +static unsigned int create_bb(struct w_step *w, int self)
-> >   {
-> > -     const uint32_t bbe = 0xa << 23;
-> > -     unsigned long mmap_start, mmap_len;
-> > -     unsigned long batch_start = w->bb_sz;
-> > +     const int gen = intel_gen(intel_get_drm_devid(fd));
-> > +     const uint32_t base = mmio_base(fd, w->engine, gen);
-> > +#define CS_GPR(x) (base + 0x600 + 8 * (x))
-> > +#define TIMESTAMP (base + 0x3a8)
-> > +     const int use_64b = gen >= 8;
-> > +     enum { START_TS, NOW_TS };
-> > +     uint32_t *ptr, *cs, *jmp;
-> >       unsigned int r = 0;
-> > -     uint32_t *ptr, *cs;
-> > -
-> > -     batch_start -= sizeof(uint32_t); /* bbend */
-> > -
-> > -     if (w->unbound_duration)
-> > -             batch_start -= 4 * sizeof(uint32_t); /* MI_ARB_CHK + MI_BATCH_BUFFER_START */
-> > -
-> > -     mmap_start = rounddown(batch_start, PAGE_SIZE);
-> > -     mmap_len = ALIGN(w->bb_sz - mmap_start, PAGE_SIZE);
-> >   
-> >       gem_set_domain(fd, w->bb_handle,
-> >                      I915_GEM_DOMAIN_WC, I915_GEM_DOMAIN_WC);
-> >   
-> > -     ptr = gem_mmap__wc(fd, w->bb_handle, mmap_start, mmap_len, PROT_WRITE);
-> > -     cs = (uint32_t *)((char *)ptr + batch_start - mmap_start);
-> > +     cs = ptr = gem_mmap__wc(fd, w->bb_handle, 0, 4096, PROT_WRITE);
-> >   
-> > -     if (w->unbound_duration) {
-> > -             w->reloc[r++].offset = batch_start + 2 * sizeof(uint32_t);
-> > -             batch_start += 4 * sizeof(uint32_t);
-> > +     *cs++ = MI_LOAD_REGISTER_IMM | MI_CS_MMIO_DST;
-> > +     *cs++ = CS_GPR(START_TS) + 4;
-> 
-> What is "+ 4"?
-
-The MI_MATH is 64b, so we need to do 2 dword writes into each GPR.
-
-> > +     *cs++ = 0;
-> > +     *cs++ = MI_LOAD_REGISTER_REG | MI_CS_MMIO_DST | MI_CS_MMIO_SRC;
-> > +     *cs++ = TIMESTAMP;
-> > +     *cs++ = CS_GPR(START_TS);
-> >   
-> > -             *cs++ = w->preempt_us ? 0x5 << 23 /* MI_ARB_CHK; */ : MI_NOOP;
-> > -             w->recursive_bb_start = cs;
-> > -             *cs++ = MI_BATCH_BUFFER_START | 1 << 8 | 1;
-> > +     if (offset_in_page(cs) & 4)
-> >               *cs++ = 0;
-> > +     jmp = cs;
-> > +
-> > +     if (w->preempt_us)
-> > +             *cs++ = 0x5 << 23; /* MI_ARB_CHECK */
-> > +
-> > +     *cs++ = MI_LOAD_REGISTER_IMM | MI_CS_MMIO_DST;
-> > +     *cs++ = CS_GPR(NOW_TS) + 4;
-> > +     *cs++ = 0;
-> > +     *cs++ = MI_LOAD_REGISTER_REG | MI_CS_MMIO_DST | MI_CS_MMIO_SRC;
-> > +     *cs++ = TIMESTAMP;
-> > +     *cs++ = CS_GPR(NOW_TS);
-> > +
-> > +     *cs++ = MI_MATH(4);
-> > +     *cs++ = MI_MATH_LOAD(MI_MATH_REG_SRCA, MI_MATH_REG(NOW_TS));
-> > +     *cs++ = MI_MATH_LOAD(MI_MATH_REG_SRCB, MI_MATH_REG(START_TS));
-> 
-> MI_MATH_REG is aliased to CS_GPR?
-
-Yes.
-
-> > +     *cs++ = MI_MATH_SUB;
-> > +     *cs++ = MI_MATH_STOREINV(MI_MATH_REG(NOW_TS), MI_MATH_REG_ACCU);
-> > +
-> > +     *cs++ = 0x24 << 23 | (1 + use_64b) | MI_CS_MMIO_DST; /* SRM */
-> 
-> All others have nice defines but SRM, any special reason?
-
-Once upon a time I was lazy, and since then copy'n'pasted.
-
-> > +     *cs++ = CS_GPR(NOW_TS);
-> > +     w->reloc[r].target_handle = self;
-> > +     w->reloc[r].offset = offset_in_page(cs);
-> > +     *cs++ = w->reloc[r].delta = 4000;
-> > +     *cs++ = 0;
-> > +     r++;
-> > +
-> > +     /* Delay between SRM and COND_BBE to post the writes */
-> > +     for (int n = 0; n < 8; n++) {
-> > +             *cs++ = MI_INSTR(0x21, 1);
-> > +             *cs++ = 2048;
-> >               *cs++ = 0;
-> 
-> Whats this instruction? Add a define so it is self-documenting?
-
-STORE_INDEX.
-
-> > -     *cs = bbe;
-> > +     *cs++ = MI_COND_BATCH_BUFFER_END | MI_DO_COMPARE | (1 + use_64b);
-> > +     w->bb_duration = cs;
-> > +     *cs++ = 0;
-> > +     w->reloc[r].target_handle = self;
-> > +     w->reloc[r].offset = offset_in_page(cs);
-> > +     *cs++ = w->reloc[r].delta = 4000;
-> > +     *cs++ = 0;
-> > +     r++;
-> > +
-> > +     *cs++ = MI_BATCH_BUFFER_START | 1 << 8 | use_64b;
-> > +     w->reloc[r].target_handle = self;
-> > +     w->reloc[r].offset = offset_in_page(cs);
-> > +     *cs++ = w->reloc[r].delta = offset_in_page(jmp);
-> 
-> Presumably MI_MATH stuff relaxed the loop enough and we don't need any 
-> extra noops?
-
-More than enough.
- 
-> I would appreaciate a banner style comment explaining the batch layout 
-> mentioning the interesting offsets and high-level logic.
-
-There's another variant out there with the block comments. More
-copy'n'pasting to come.
-
-> >   static void
-> > -update_bb_start(struct w_step *w)
-> > +update_bb_start(struct workload *wrk, struct w_step *w)
-> 
-> I think there is w->wrk if you find it easier but it's only one callsite 
-> so it's probably even better like this.
-> 
-> >   {
-> > -     if (!w->unbound_duration)
-> > -             return;
-> > +     uint32_t ticks;
-> >   
-> > -     gem_set_domain(fd, w->bb_handle,
-> > -                    I915_GEM_DOMAIN_WC, I915_GEM_DOMAIN_WC);
-> > +     ticks = 0;
-> > +     if (!w->unbound_duration)
-> > +             ticks = ~ns_to_ctx_ticks(1000 * get_duration(wrk, w));
-> 
-> Hm inverted ticks, why? And since it is not obvious I think it deserves 
-> a comment.
-
-We do not get a choice in the MI_DO_COMPARE operation, so need to
-convert the values to work with a less-than.
-
-> > @@ -2812,6 +2640,9 @@ int main(int argc, char **argv)
-> >               case 'F':
-> >                       scale_time = atof(optarg);
-> >                       break;
-> > +             case 'n':
-> > +                     /* ignored; using HW timers */
-> > +                     break;
-> 
-> For what user? I deleted media-bench.pl but maybe you are using it locally?
-
-Yeah, it was still in my scripts. There's no great need to keep it, I
-just thought it was convenient to ignore.
--Chris
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+T24gVGh1LCAyMDIwLTEwLTI5IGF0IDIxOjM3ICswMDAwLCBNdW4sIEd3YW4tZ3llb25nIHdyb3Rl
+Og0KPiBPbiBUdWUsIDIwMjAtMTAtMjcgYXQgMTY6NDUgLTA3MDAsIEpvc8OpIFJvYmVydG8gZGUg
+U291emEgd3JvdGU6DQo+ID4gQWRkIHRoZSBjYWxjdWxhdGlvbnMgdG8gc2V0IHBsYW5lIHNlbGVj
+dGl2ZSBmZXRjaCByZWdpc3RlcnMgZGVwZW5kaW5nDQo+ID4gaW4gdGhlIHZhbHVlIG9mIHRoZSBh
+cmVhIGRhbWFnZWQuDQo+ID4gSXQgaXMgc3RpbGwgdXNpbmcgdGhlIHdob2xlIHBsYW5lIGFyZWEg
+YXMgZGFtYWdlZCBidXQgdGhhdCB3aWxsDQo+ID4gY2hhbmdlDQo+ID4gaW4gbmV4dCBwYXRjaGVz
+Lg0KPiA+IA0KPiA+IHYyOg0KPiA+IC0gZml4ZWQgbmV3X3BsYW5lX3N0YXRlLT51YXBpLmRzdC55
+MiB0eXBvIGluDQo+ID4gaW50ZWxfcHNyMl9zZWxfZmV0Y2hfdXBkYXRlKCkNCj4gPiAtIGRvIG5v
+dCBzaGlmdGhpbmcgbmV3X3BsYW5lX3N0YXRlLT51YXBpLmRzdCBvbmx5IHNyYyBpcyBpbiAxNi4x
+Ng0KPiA+IGZvcm1hdA0KPiA+IA0KPiA+IEJTcGVjOiA1NTIyOQ0KPiA+IENjOiBHd2FuLWd5ZW9u
+ZyBNdW4gPGd3YW4tZ3llb25nLm11bkBpbnRlbC5jb20+DQo+ID4gQ2M6IFZpbGxlIFN5cmrDpGzD
+pCA8dmlsbGUuc3lyamFsYUBsaW51eC5pbnRlbC5jb20+DQo+ID4gU2lnbmVkLW9mZi1ieTogSm9z
+w6kgUm9iZXJ0byBkZSBTb3V6YSA8am9zZS5zb3V6YUBpbnRlbC5jb20+DQo+ID4gLS0tDQo+ID4g
+wqAuLi4vZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5X3R5cGVzLmggICAgfCAgMiArKw0K
+PiA+IMKgZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9wc3IuYyAgICAgIHwgMjIg
+KysrKysrKysrKysrKystLS0NCj4gPiAtLQ0KPiA+IMKgMiBmaWxlcyBjaGFuZ2VkLCAxOCBpbnNl
+cnRpb25zKCspLCA2IGRlbGV0aW9ucygtKQ0KPiA+IA0KPiA+IGRpZmYgLS1naXQgYS9kcml2ZXJz
+L2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXlfdHlwZXMuaA0KPiA+IGIvZHJpdmVy
+cy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5X3R5cGVzLmgNCj4gPiBpbmRleCBm
+NmYwNjI2NjQ5ZTAuLjNmMjcwN2Q4ODJjYyAxMDA2NDQNCj4gPiAtLS0gYS9kcml2ZXJzL2dwdS9k
+cm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXlfdHlwZXMuaA0KPiA+ICsrKyBiL2RyaXZlcnMv
+Z3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheV90eXBlcy5oDQo+ID4gQEAgLTYwNCw2
+ICs2MDQsOCBAQCBzdHJ1Y3QgaW50ZWxfcGxhbmVfc3RhdGUgew0KPiA+IMKgCXUzMiBwbGFuYXJf
+c2xhdmU7DQo+ID4gwqANCj4gPiANCj4gPiANCj4gPiANCj4gPiANCj4gPiANCj4gPiANCj4gPiAN
+Cj4gPiANCj4gPiANCj4gPiANCj4gPiANCj4gPiANCj4gPiANCj4gPiANCj4gPiANCj4gPiDCoAlz
+dHJ1Y3QgZHJtX2ludGVsX3Nwcml0ZV9jb2xvcmtleSBja2V5Ow0KPiA+ICsNCj4gPiArCXN0cnVj
+dCBkcm1fcmVjdCBwc3IyX3NlbF9mZXRjaF9hcmVhOw0KPiA+IMKgfTsNCj4gPiDCoA0KPiA+IA0K
+PiA+IA0KPiA+IA0KPiA+IA0KPiA+IA0KPiA+IA0KPiA+IA0KPiA+IA0KPiA+IA0KPiA+IA0KPiA+
+IA0KPiA+IA0KPiA+IA0KPiA+IA0KPiA+IA0KPiA+IMKgc3RydWN0IGludGVsX2luaXRpYWxfcGxh
+bmVfY29uZmlnIHsNCj4gPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxh
+eS9pbnRlbF9wc3IuYw0KPiA+IGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9w
+c3IuYw0KPiA+IGluZGV4IGIyNTQ0MTAyZTdiMS4uNmRlYWQ1MWQ3YTgxIDEwMDY0NA0KPiA+IC0t
+LSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfcHNyLmMNCj4gPiArKysgYi9k
+cml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX3Bzci5jDQo+ID4gQEAgLTExODcsNiAr
+MTE4Nyw3IEBAIHZvaWQgaW50ZWxfcHNyMl9wcm9ncmFtX3BsYW5lX3NlbF9mZXRjaChzdHJ1Y3QN
+Cj4gPiBpbnRlbF9wbGFuZSAqcGxhbmUsDQo+ID4gwqB7DQo+ID4gwqAJc3RydWN0IGRybV9pOTE1
+X3ByaXZhdGUgKmRldl9wcml2ID0gdG9faTkxNShwbGFuZS0+YmFzZS5kZXYpOw0KPiA+IMKgCWVu
+dW0gcGlwZSBwaXBlID0gcGxhbmUtPnBpcGU7DQo+ID4gKwljb25zdCBzdHJ1Y3QgZHJtX3JlY3Qg
+KmNsaXA7DQo+ID4gwqAJdTMyIHZhbDsNCj4gPiDCoA0KPiA+IA0KPiA+IA0KPiA+IA0KPiA+IA0K
+PiA+IA0KPiA+IA0KPiA+IA0KPiA+IA0KPiA+IA0KPiA+IA0KPiA+IA0KPiA+IA0KPiA+IA0KPiA+
+IA0KPiA+IA0KPiA+IMKgCWlmICghY3J0Y19zdGF0ZS0+ZW5hYmxlX3BzcjJfc2VsX2ZldGNoKQ0K
+PiA+IEBAIC0xMTk4LDE2ICsxMTk5LDIwIEBAIHZvaWQNCj4gPiBpbnRlbF9wc3IyX3Byb2dyYW1f
+cGxhbmVfc2VsX2ZldGNoKHN0cnVjdCBpbnRlbF9wbGFuZSAqcGxhbmUsDQo+ID4gwqAJaWYgKCF2
+YWwgfHwgcGxhbmUtPmlkID09IFBMQU5FX0NVUlNPUikNCj4gPiDCoAkJcmV0dXJuOw0KPiA+IMKg
+DQo+ID4gDQo+ID4gDQo+ID4gDQo+ID4gDQo+ID4gDQo+ID4gDQo+ID4gDQo+ID4gDQo+ID4gDQo+
+ID4gDQo+ID4gDQo+ID4gDQo+ID4gDQo+ID4gDQo+ID4gDQo+ID4gLQl2YWwgPSBwbGFuZV9zdGF0
+ZS0+dWFwaS5kc3QueTEgPDwgMTYgfCBwbGFuZV9zdGF0ZS0NCj4gPiA+IHVhcGkuZHN0LngxOw0K
+PiA+ICsJY2xpcCA9ICZwbGFuZV9zdGF0ZS0+cHNyMl9zZWxfZmV0Y2hfYXJlYTsNCj4gPiArDQo+
+ID4gKwl2YWwgPSAoY2xpcC0+eTEgKyBwbGFuZV9zdGF0ZS0+dWFwaS5kc3QueTEpIDw8IDE2Ow0K
+PiA+ICsJdmFsIHw9IHBsYW5lX3N0YXRlLT51YXBpLmRzdC54MTsNCj4gPiDCoAlpbnRlbF9kZV93
+cml0ZV9mdyhkZXZfcHJpdiwgUExBTkVfU0VMX0ZFVENIX1BPUyhwaXBlLCBwbGFuZS0NCj4gPiA+
+IGlkKSwgdmFsKTsNCj4gPiDCoA0KPiA+IA0KPiA+IA0KPiA+IA0KPiA+IA0KPiA+IA0KPiA+IA0K
+PiA+IA0KPiA+IA0KPiA+IA0KPiA+IA0KPiA+IA0KPiA+IA0KPiA+IA0KPiA+IA0KPiA+IA0KPiA+
+IC0JdmFsID0gcGxhbmVfc3RhdGUtPmNvbG9yX3BsYW5lW2NvbG9yX3BsYW5lXS55IDw8IDE2Ow0K
+PiA+ICsJLyogVE9ETzogY29uc2lkZXIgdGlsaW5nIGFuZCBhdXhpbGlhcnkgc3VyZmFjZXMgKi8N
+Cj4gPiArCXZhbCA9IChjbGlwLT55MSArIHBsYW5lX3N0YXRlLT5jb2xvcl9wbGFuZVtjb2xvcl9w
+bGFuZV0ueSkgPDwNCj4gPiAxNjsNCj4gPiDCoAl2YWwgfD0gcGxhbmVfc3RhdGUtPmNvbG9yX3Bs
+YW5lW2NvbG9yX3BsYW5lXS54Ow0KPiA+IMKgCWludGVsX2RlX3dyaXRlX2Z3KGRldl9wcml2LCBQ
+TEFORV9TRUxfRkVUQ0hfT0ZGU0VUKHBpcGUsIHBsYW5lLQ0KPiA+ID4gaWQpLA0KPiA+IMKgCQkJ
+ICB2YWwpOw0KPiA+IMKgDQo+ID4gDQo+ID4gDQo+ID4gDQo+ID4gDQo+ID4gDQo+ID4gDQo+ID4g
+DQo+ID4gDQo+ID4gDQo+ID4gDQo+ID4gDQo+ID4gDQo+ID4gDQo+ID4gDQo+ID4gDQo+ID4gwqAJ
+LyogU2l6ZXMgYXJlIDAgYmFzZWQgKi8NCj4gPiAtCXZhbCA9ICgoZHJtX3JlY3RfaGVpZ2h0KCZw
+bGFuZV9zdGF0ZS0+dWFwaS5zcmMpID4+IDE2KSAtIDEpIDw8DQo+ID4gMTY7DQo+ID4gKwl2YWwg
+PSAoZHJtX3JlY3RfaGVpZ2h0KGNsaXApIC0gMSkgPDwgMTY7DQo+ID4gwqAJdmFsIHw9IChkcm1f
+cmVjdF93aWR0aCgmcGxhbmVfc3RhdGUtPnVhcGkuc3JjKSA+PiAxNikgLSAxOw0KPiA+IMKgCWlu
+dGVsX2RlX3dyaXRlX2Z3KGRldl9wcml2LCBQTEFORV9TRUxfRkVUQ0hfU0laRShwaXBlLCBwbGFu
+ZS0NCj4gPiA+IGlkKSwgdmFsKTsNCj4gPiDCoH0NCj4gPiBAQCAtMTI4MSw3ICsxMjg2LDcgQEAg
+aW50IGludGVsX3BzcjJfc2VsX2ZldGNoX3VwZGF0ZShzdHJ1Y3QNCj4gPiBpbnRlbF9hdG9taWNf
+c3RhdGUgKnN0YXRlLA0KPiA+IMKgDQo+ID4gDQo+ID4gDQo+ID4gDQo+ID4gDQo+ID4gDQo+ID4g
+DQo+ID4gDQo+ID4gDQo+ID4gDQo+ID4gDQo+ID4gDQo+ID4gDQo+ID4gDQo+ID4gDQo+ID4gDQo+
+ID4gwqAJZm9yX2VhY2hfb2xkbmV3X2ludGVsX3BsYW5lX2luX3N0YXRlKHN0YXRlLCBwbGFuZSwN
+Cj4gPiBvbGRfcGxhbmVfc3RhdGUsDQo+ID4gwqAJCQkJCSAgICAgbmV3X3BsYW5lX3N0YXRlLCBp
+KSB7DQo+ID4gLQkJc3RydWN0IGRybV9yZWN0IHRlbXA7DQo+ID4gKwkJc3RydWN0IGRybV9yZWN0
+ICpzZWxfZmV0Y2hfYXJlYSwgdGVtcDsNCj4gPiDCoA0KPiA+IA0KPiA+IA0KPiA+IA0KPiA+IA0K
+PiA+IA0KPiA+IA0KPiA+IA0KPiA+IA0KPiA+IA0KPiA+IA0KPiA+IA0KPiA+IA0KPiA+IA0KPiA+
+IA0KPiA+IA0KPiA+IMKgCQlpZiAobmV3X3BsYW5lX3N0YXRlLT51YXBpLmNydGMgIT0gY3J0Y19z
+dGF0ZS0NCj4gPiA+IHVhcGkuY3J0YykNCj4gPiDCoAkJCWNvbnRpbnVlOw0KPiA+IEBAIC0xMzA0
+LDggKzEzMDksMTMgQEAgaW50IGludGVsX3BzcjJfc2VsX2ZldGNoX3VwZGF0ZShzdHJ1Y3QNCj4g
+PiBpbnRlbF9hdG9taWNfc3RhdGUgKnN0YXRlLA0KPiA+IMKgCQkgKiBGb3Igbm93IGRvaW5nIGEg
+c2VsZWN0aXZlIGZldGNoIGluIHRoZSB3aG9sZSBwbGFuZQ0KPiA+IGFyZWEsDQo+ID4gwqAJCSAq
+IG9wdGltaXphdGlvbnMgd2lsbCBjb21lIGluIHRoZSBmdXR1cmUuDQo+ID4gwqAJCSAqLw0KPiA+
+IC0JCXRlbXAueTEgPSBuZXdfcGxhbmVfc3RhdGUtPnVhcGkuZHN0LnkxOw0KPiA+IC0JCXRlbXAu
+eTIgPSBuZXdfcGxhbmVfc3RhdGUtPnVhcGkuZHN0LnkyOw0KPiA+ICsJCXNlbF9mZXRjaF9hcmVh
+ID0gJm5ld19wbGFuZV9zdGF0ZS0+cHNyMl9zZWxfZmV0Y2hfYXJlYTsNCj4gPiArCQlzZWxfZmV0
+Y2hfYXJlYS0+eTEgPSBuZXdfcGxhbmVfc3RhdGUtPnVhcGkuc3JjLnkxID4+DQo+ID4gMTY7DQo+
+ID4gKwkJc2VsX2ZldGNoX2FyZWEtPnkyID0gbmV3X3BsYW5lX3N0YXRlLT51YXBpLnNyYy55MiA+
+Pg0KPiA+IDE2Ow0KPiA+ICsNCj4gPiArCQl0ZW1wID0gKnNlbF9mZXRjaF9hcmVhOw0KPiA+ICsJ
+CXRlbXAueTEgKz0gbmV3X3BsYW5lX3N0YXRlLT51YXBpLmRzdC55MTsNCj4gPiArCQl0ZW1wLnky
+ICs9IG5ld19wbGFuZV9zdGF0ZS0+dWFwaS5kc3QueTI7DQo+IHdoZW4gdGhlIHVzZXJzcGFjZSBj
+YWxsIGRybU1vZGVTZXRQbGFuZSgpLCBzcmNfeSBhbmQgY3J0Y195IGNhbiBiZQ0KPiBkaWZmZXIu
+DQo+IChkcm0gY29yZSB1c2VzIGRybV9yZWN0X3RyYW5zbGF0ZV90bygpIHV0aWxpdHkgZnVuY3Rp
+b24gZm9yIGFwcGx5DQo+IGNvb3JkaW5hdGUgdHJhc2xhdGUgdG8gZHN0IGZyb20gc3JjLiApDQoN
+CkNoZWNraW5nIGRybV9hdG9taWNfaGVscGVyX3VwZGF0ZV9wbGFuZSgpIGl0IHNldHMgdXNlcnNw
+YWNlIHZhbHVlcyB0byBwbGFuZV9zdGF0ZS0+Y3J0Y18gYW5kIHBsYW5lX3N0YXRlLT5zcmNfLCB0
+aGVuIGF0b21pYyBjb2RlIHdpbGwgc2V0IHRoZSByaWdodA0KdmFsdWVzIGJhY2sgdG8gdWFwaS5k
+c3QgYW5kIHVhcGkuc3JjLg0KDQo+IA0KPiBJbiBteSBvcGluaW9uLCB3ZSBjYW4gY2FsY3VsYXRl
+IGxpa2UgYXMsDQo+IGludCBjb29yZF90cmFucyA9IG5ld19wbGFuZV9zdGF0ZS0+dWFwaS5kc3Qu
+eTEgLSBuZXdfcGxhbmVfc3RhdGUtDQo+ID4gdWFwaS5zcmMueTEgPj4gMTY7DQo+IHRlbXAgPSAq
+c2VsX2ZldGNoX2FyZWE7IC8vIGFzc3VuZXMgdGhhdCBzZWxfZmV0Y2hfYXJlYSBoYXMgZGFtYWdl
+IGFyZWEuDQo+IHRlbXAueTEgKz0gY29vcmRfdHJhbnM7DQo+IHRlbXAueTIgKz0gY29vcmRfdHJh
+bnM7DQoNCnVhcGkuZHN0LngxL3kxIGlzIHRoZSBjb29yZGluYXRlcyB3aGVyZSBwbGFuZSBzaG91
+bGQgYmUgcGxhY2VkIGluIHBpcGUgdG8gYmUgY29tYmluZWQgd2l0aCBvdGhlciBwbGFuZXMoc2ts
+X3Byb2dyYW1fcGxhbmUoKSksIHRoYXQgZXhhY3RseSB3aGF0IHdlDQpuZWVkIHRvIGNvbXB1dGUg
+dGhlIGRhbWFnZWQgYXJlYXMgb2YgdGhlIHdob2xlIHBpcGUuDQoNCj4gDQo+ID4gwqAJCWNsaXBf
+YXJlYV91cGRhdGUoJnBpcGVfY2xpcCwgJnRlbXApOw0KPiANCj4gQXMgd2UgZG9uJ3QgY2hlY2sg
+YW5kIGNhbGN1bGF0ZSBwbGFuZSByb3RhdGlvbiBhbmQgc2NhbGUgZm9yIGRzdA0KPiBjb29yZGlu
+YXRlcyBoZXJlLg0KPiBzbyBjYW4geW91IGFkZCBjaGVja2luZyBvZiBwbGFuZSBzY2FsZSBvciBy
+b3RhdGlvbj8gYW5kIGlmIHRoZSBwbGFuZQ0KPiBoYXMgYSBzY2FsZSBmYWN0b3Igb3Igcm90YXRp
+b24sIGZvciBub3csIHdlIHNob3VsZCBub3QgYXBwbHkgUFNSIFNVLg0KPiAoaWYgcGxhbmUgc2Nh
+bGUgb3Igcm90YXRpb24gYXJlIHVzZWQsIGRzdCBtaWdodCBkaWZmZXIuIGlmIHdlIGRvbid0DQo+
+IGFwcGx5IFBTUiBTVSwgd2UgZG9uJ3QgbmVlZCB0byBjYWxsIGNsaXBfYXJlYV91cGRhdGUoKSBo
+ZXJlLiApDQoNClJvdGF0aW9uIGlzIG5vdCBzdXBwb3J0ZWQgYnkgc2VsZWN0aXZlIGZldGNoKGlu
+dGVsX3BzcjJfc2VsX2ZldGNoX2NvbmZpZ192YWxpZCgpKSBhYm91dCBzY2FsZSwgdGhlIHNjYWxl
+ciBIVyB3aWxsIHRha2UgY2FyZSBvZiBhZGp1c3QgdGhlIG9yaWdpbmFsDQpzaXplIGJ1dCBJIGRv
+dWJ0IHRoYXQgc2NhbGUgd29ya3Mgd2l0aCBQU1IgcGFuZWxzLg0KDQo+ID4gwqAJfQ0KPiA+IMKg
+DQo+ID4gDQo+ID4gDQo+ID4gDQoNCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVk
+ZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZv
+L2ludGVsLWdmeAo=
