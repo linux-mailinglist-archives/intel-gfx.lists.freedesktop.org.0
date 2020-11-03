@@ -1,42 +1,42 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 45C4F2A48AE
-	for <lists+intel-gfx@lfdr.de>; Tue,  3 Nov 2020 15:54:33 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3E40C2A48AF
+	for <lists+intel-gfx@lfdr.de>; Tue,  3 Nov 2020 15:54:35 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A4CBA6ECCA;
-	Tue,  3 Nov 2020 14:54:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9E30B6ECCC;
+	Tue,  3 Nov 2020 14:54:33 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8CA7F6ECCA
- for <intel-gfx@lists.freedesktop.org>; Tue,  3 Nov 2020 14:54:30 +0000 (UTC)
-IronPort-SDR: 2CYX+3Z3MeJsZnNyBvxrn8lRmQOlXkVo5yQwZTN6LS/0CEeOxXpqlnZ1/O9cko8ziedH4gcpTD
- uYONFRurv30w==
-X-IronPort-AV: E=McAfee;i="6000,8403,9793"; a="230690855"
-X-IronPort-AV: E=Sophos;i="5.77,448,1596524400"; d="scan'208";a="230690855"
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 472346ECCF
+ for <intel-gfx@lists.freedesktop.org>; Tue,  3 Nov 2020 14:54:32 +0000 (UTC)
+IronPort-SDR: fUlZYyr6QBArQp4FUXSPRVHeiY6qhxTG7z310UNORBE34CPwTJ6o+DGujV3W4ornpPlSYrnTPS
+ bBTi3syReq1A==
+X-IronPort-AV: E=McAfee;i="6000,8403,9793"; a="230690857"
+X-IronPort-AV: E=Sophos;i="5.77,448,1596524400"; d="scan'208";a="230690857"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from orsmga004.jf.intel.com ([10.7.209.38])
  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Nov 2020 06:54:30 -0800
-IronPort-SDR: HTDp7Tbirf5Qg288PHizLac4LqPz23i5usiUV5b3HeRAjk+uAb8C7xir9bccPk83YV5QNAYztX
- qXZmEv8i9ExQ==
-X-IronPort-AV: E=Sophos;i="5.77,448,1596524400"; d="scan'208";a="470824365"
+ 03 Nov 2020 06:54:32 -0800
+IronPort-SDR: GKi2Kqq/sK6vKbkaa2I+NXFZHOCcfvYCBKgVVFi4E6xrypM4QwGlONl761LU5IsO/P/Mk2H+3a
+ EYxCm+T33jBA==
+X-IronPort-AV: E=Sophos;i="5.77,448,1596524400"; d="scan'208";a="470824375"
 Received: from linux-desktop.iind.intel.com ([10.223.34.173])
  by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Nov 2020 06:54:28 -0800
+ 03 Nov 2020 06:54:30 -0800
 From: Uma Shankar <uma.shankar@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Tue,  3 Nov 2020 20:58:32 +0530
-Message-Id: <20201103152834.12727-11-uma.shankar@intel.com>
+Date: Tue,  3 Nov 2020 20:58:33 +0530
+Message-Id: <20201103152834.12727-12-uma.shankar@intel.com>
 X-Mailer: git-send-email 2.26.2
 In-Reply-To: <20201103152834.12727-1-uma.shankar@intel.com>
 References: <20201103152834.12727-1-uma.shankar@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [v9 10/12] drm/i915/lspcon: Create separate
- infoframe_enabled helper
+Subject: [Intel-gfx] [v9 11/12] drm/i915/lspcon: Do not send DRM infoframes
+ to non-HDMI sinks
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,73 +49,51 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-THNwY29uIGhhcyBJbmZvZnJhbWVzIGFzIHdlbGwgYXMgRElQIGZvciBIRFIgbWV0YWRhdGEoRFJN
-IEluZm9mcmFtZSkuCkNyZWF0ZSBhIHNlcGFyYXRlIG1lY2hhbmlzbSBmb3IgbHNwY29uIGNvbXBh
-cmVkIHRvIEhETUkgaW4gb3JkZXIgdG8KYWRkcmVzcyB0aGUgc2FtZSBhbmQgZW5zdXJlIGZ1dHVy
-ZSBzY2FsYWJpbGl0eS4KClN1Z2dlc3RlZC1ieTogVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJq
-YWxhQGxpbnV4LmludGVsLmNvbT4KU2lnbmVkLW9mZi1ieTogVW1hIFNoYW5rYXIgPHVtYS5zaGFu
-a2FyQGludGVsLmNvbT4KLS0tCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rk
-aS5jICAgIHwgMTAgKysrKysrKy0tLQogZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRl
-bF9sc3Bjb24uYyB8IDE4ICsrKysrKysrKysrKysrKysrKwogZHJpdmVycy9ncHUvZHJtL2k5MTUv
-ZGlzcGxheS9pbnRlbF9sc3Bjb24uaCB8ICAyICsrCiAzIGZpbGVzIGNoYW5nZWQsIDI3IGluc2Vy
-dGlvbnMoKyksIDMgZGVsZXRpb25zKC0pCgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5
-MTUvZGlzcGxheS9pbnRlbF9kZGkuYyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50
-ZWxfZGRpLmMKaW5kZXggMTliMTY1MTdhNTAyLi5kNTBkZDFmMTI5MmEgMTAwNjQ0Ci0tLSBhL2Ry
-aXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGRpLmMKKysrIGIvZHJpdmVycy9ncHUv
-ZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kZGkuYwpAQCAtNDQwMiw2ICs0NDAyLDcgQEAgdm9pZCBp
-bnRlbF9kZGlfZ2V0X2NvbmZpZyhzdHJ1Y3QgaW50ZWxfZW5jb2RlciAqZW5jb2RlciwKIAlzdHJ1
-Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqZGV2X3ByaXYgPSB0b19pOTE1KGVuY29kZXItPmJhc2UuZGV2
-KTsKIAlzdHJ1Y3QgaW50ZWxfY3J0YyAqaW50ZWxfY3J0YyA9IHRvX2ludGVsX2NydGMocGlwZV9j
-b25maWctPnVhcGkuY3J0Yyk7CiAJZW51bSB0cmFuc2NvZGVyIGNwdV90cmFuc2NvZGVyID0gcGlw
-ZV9jb25maWctPmNwdV90cmFuc2NvZGVyOworCXN0cnVjdCBpbnRlbF9kaWdpdGFsX3BvcnQgKmRp
-Z19wb3J0ID0gZW5jX3RvX2RpZ19wb3J0KGVuY29kZXIpOwogCXUzMiB0ZW1wLCBmbGFncyA9IDA7
-CiAKIAkvKiBYWFg6IERTSSB0cmFuc2NvZGVyIHBhcmFub2lhICovCkBAIC00NDgyLDkgKzQ0ODMs
-MTIgQEAgdm9pZCBpbnRlbF9kZGlfZ2V0X2NvbmZpZyhzdHJ1Y3QgaW50ZWxfZW5jb2RlciAqZW5j
-b2RlciwKIAkJCQkgICAgcGlwZV9jb25maWctPmZlY19lbmFibGUpOwogCQl9CiAKLQkJcGlwZV9j
-b25maWctPmluZm9mcmFtZXMuZW5hYmxlIHw9Ci0JCQlpbnRlbF9oZG1pX2luZm9mcmFtZXNfZW5h
-YmxlZChlbmNvZGVyLCBwaXBlX2NvbmZpZyk7Ci0KKwkJaWYgKGRpZ19wb3J0LT5sc3Bjb24uYWN0
-aXZlICYmIGRpZ19wb3J0LT5kcC5oYXNfaGRtaV9zaW5rKQorCQkJcGlwZV9jb25maWctPmluZm9m
-cmFtZXMuZW5hYmxlIHw9CisJCQkJaW50ZWxfbHNwY29uX2luZm9mcmFtZXNfZW5hYmxlZChlbmNv
-ZGVyLCBwaXBlX2NvbmZpZyk7CisJCWVsc2UKKwkJCXBpcGVfY29uZmlnLT5pbmZvZnJhbWVzLmVu
-YWJsZSB8PQorCQkJCWludGVsX2hkbWlfaW5mb2ZyYW1lc19lbmFibGVkKGVuY29kZXIsIHBpcGVf
-Y29uZmlnKTsKIAkJYnJlYWs7CiAJY2FzZSBUUkFOU19ERElfTU9ERV9TRUxFQ1RfRFBfTVNUOgog
-CQlwaXBlX2NvbmZpZy0+b3V0cHV0X3R5cGVzIHw9IEJJVChJTlRFTF9PVVRQVVRfRFBfTVNUKTsK
-ZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfbHNwY29uLmMg
-Yi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2xzcGNvbi5jCmluZGV4IDhhNGZk
-OGNhODAxNi4uOWM4ZGZkMmZiOTQ5IDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9k
-aXNwbGF5L2ludGVsX2xzcGNvbi5jCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkv
-aW50ZWxfbHNwY29uLmMKQEAgLTMwLDYgKzMwLDcgQEAKICNpbmNsdWRlICJpbnRlbF9kaXNwbGF5
-X3R5cGVzLmgiCiAjaW5jbHVkZSAiaW50ZWxfZHAuaCIKICNpbmNsdWRlICJpbnRlbF9sc3Bjb24u
-aCIKKyNpbmNsdWRlICJpbnRlbF9oZG1pLmgiCiAKIC8qIExTUENPTiBPVUkgVmVuZG9yIElEKHNp
-Z25hdHVyZXMpICovCiAjZGVmaW5lIExTUENPTl9WRU5ET1JfUEFSQURFX09VSSAweDAwMUNGOApA
-QCAtNjY3LDYgKzY2OCwyMyBAQCBib29sIGxzcGNvbl9pbml0KHN0cnVjdCBpbnRlbF9kaWdpdGFs
-X3BvcnQgKmRpZ19wb3J0KQogCXJldHVybiB0cnVlOwogfQogCit1MzIgaW50ZWxfbHNwY29uX2lu
-Zm9mcmFtZXNfZW5hYmxlZChzdHJ1Y3QgaW50ZWxfZW5jb2RlciAqZW5jb2RlciwKKwkJCQkgICAg
-Y29uc3Qgc3RydWN0IGludGVsX2NydGNfc3RhdGUgKnBpcGVfY29uZmlnKQoreworCXN0cnVjdCBp
-bnRlbF9kaWdpdGFsX3BvcnQgKmRpZ19wb3J0ID0gZW5jX3RvX2RpZ19wb3J0KGVuY29kZXIpOwor
-CXUzMiB2YWwsIGVuYWJsZWQgPSAwOworCisJdmFsID0gZGlnX3BvcnQtPmluZm9mcmFtZXNfZW5h
-YmxlZChlbmNvZGVyLCBwaXBlX2NvbmZpZyk7CisKKwlpZiAodmFsICYgVklERU9fRElQX0VOQUJM
-RV9BVklfSFNXKQorCQllbmFibGVkIHw9IGludGVsX2hkbWlfaW5mb2ZyYW1lX2VuYWJsZShIRE1J
-X0lORk9GUkFNRV9UWVBFX0FWSSk7CisKKwlpZiAodmFsICYgVklERU9fRElQX0VOQUJMRV9HTVBf
-SFNXKQorCQllbmFibGVkIHw9IGludGVsX2hkbWlfaW5mb2ZyYW1lX2VuYWJsZShIRE1JX1BBQ0tF
-VF9UWVBFX0dBTVVUX01FVEFEQVRBKTsKKworCXJldHVybiBlbmFibGVkOworfQorCiB2b2lkIGxz
-cGNvbl9yZXN1bWUoc3RydWN0IGludGVsX2RpZ2l0YWxfcG9ydCAqZGlnX3BvcnQpCiB7CiAJc3Ry
-dWN0IGludGVsX2xzcGNvbiAqbHNwY29uID0gJmRpZ19wb3J0LT5sc3Bjb247CmRpZmYgLS1naXQg
-YS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2xzcGNvbi5oIGIvZHJpdmVycy9n
-cHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9sc3Bjb24uaAppbmRleCBkNjIyMTU2ZDBjNGUuLmU5
-MjczNTQwODQ0MyAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRl
-bF9sc3Bjb24uaAorKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2xzcGNv
-bi5oCkBAIC00MSw1ICs0MSw3IEBAIHZvaWQgaHN3X3JlYWRfaW5mb2ZyYW1lKHN0cnVjdCBpbnRl
-bF9lbmNvZGVyICplbmNvZGVyLAogCQkJY29uc3Qgc3RydWN0IGludGVsX2NydGNfc3RhdGUgKmNy
-dGNfc3RhdGUsCiAJCQl1bnNpZ25lZCBpbnQgdHlwZSwKIAkJCXZvaWQgKmZyYW1lLCBzc2l6ZV90
-IGxlbik7Cit1MzIgaW50ZWxfbHNwY29uX2luZm9mcmFtZXNfZW5hYmxlZChzdHJ1Y3QgaW50ZWxf
-ZW5jb2RlciAqZW5jb2RlciwKKwkJCQkgICAgY29uc3Qgc3RydWN0IGludGVsX2NydGNfc3RhdGUg
-KnBpcGVfY29uZmlnKTsKIAogI2VuZGlmIC8qIF9fSU5URUxfTFNQQ09OX0hfXyAqLwotLSAKMi4y
-Ni4yCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRl
-bC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6
-Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
+Non-HDMI sinks shouldn't be sent Dynamic Range and Mastering infoframes.
+Check for that when using LSPCON.
+
+Signed-off-by: Uma Shankar <uma.shankar@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_ddi.c | 10 +++++++++-
+ 1 file changed, 9 insertions(+), 1 deletion(-)
+
+diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
+index d50dd1f1292a..5993c49824d2 100644
+--- a/drivers/gpu/drm/i915/display/intel_ddi.c
++++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+@@ -3938,6 +3938,7 @@ static void intel_enable_ddi_dp(struct intel_atomic_state *state,
+ {
+ 	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
+ 	struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
++	struct intel_digital_port *dig_port = enc_to_dig_port(encoder);
+ 	enum port port = encoder->port;
+ 
+ 	if (port == PORT_A && INTEL_GEN(dev_priv) < 9)
+@@ -3945,7 +3946,14 @@ static void intel_enable_ddi_dp(struct intel_atomic_state *state,
+ 
+ 	intel_edp_backlight_on(crtc_state, conn_state);
+ 	intel_psr_enable(intel_dp, crtc_state, conn_state);
+-	intel_dp_set_infoframes(encoder, true, crtc_state, conn_state);
++
++	if (dig_port->lspcon.active) {
++		if (dig_port->dp.has_hdmi_sink)
++			intel_dp_set_infoframes(encoder, true, crtc_state, conn_state);
++	} else {
++		intel_dp_set_infoframes(encoder, true, crtc_state, conn_state);
++	}
++
+ 	intel_edp_drrs_enable(intel_dp, crtc_state);
+ 
+ 	if (crtc_state->has_audio)
+-- 
+2.26.2
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
