@@ -1,32 +1,44 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 700D22A4C07
-	for <lists+intel-gfx@lfdr.de>; Tue,  3 Nov 2020 17:53:43 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 66BB42A4C09
+	for <lists+intel-gfx@lfdr.de>; Tue,  3 Nov 2020 17:54:27 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D0C456ECDB;
-	Tue,  3 Nov 2020 16:53:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CCA176ECE1;
+	Tue,  3 Nov 2020 16:54:25 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 4E33A6ECDB;
- Tue,  3 Nov 2020 16:53:37 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 463DAA0091;
- Tue,  3 Nov 2020 16:53:37 +0000 (UTC)
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E59AE6ECE1
+ for <intel-gfx@lists.freedesktop.org>; Tue,  3 Nov 2020 16:54:23 +0000 (UTC)
+IronPort-SDR: fUpoAucN8UHLqgtgoAUQHPwF3LmH8iIeR0a2DsONdTQ4RLtIjQsFE3NkRjcr0+yw0RvwBbAAJM
+ b9nFZmk6/gYg==
+X-IronPort-AV: E=McAfee;i="6000,8403,9794"; a="169219716"
+X-IronPort-AV: E=Sophos;i="5.77,448,1596524400"; d="scan'208";a="169219716"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Nov 2020 08:54:23 -0800
+IronPort-SDR: MzVXNylgRJX+Vdg3xEqriFRXtlB2p9eKEf88E1sop8IG1+tcD6bLBmK/NoaWulQJue1geoxY5P
+ Mpv+4TAG+Tiw==
+X-IronPort-AV: E=Sophos;i="5.77,448,1596524400"; d="scan'208";a="470866341"
+Received: from ideak-desk.fi.intel.com ([10.237.68.141])
+ by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Nov 2020 08:54:22 -0800
+Date: Tue, 3 Nov 2020 18:54:18 +0200
+From: Imre Deak <imre.deak@intel.com>
+To: "Surendrakumar Upadhyay,
+ TejaskumarX" <tejaskumarx.surendrakumar.upadhyay@intel.com>
+Message-ID: <20201103165418.GD3990501@ideak-desk.fi.intel.com>
+References: <20201103134651.165527-1-tejaskumarx.surendrakumar.upadhyay@intel.com>
+ <20201103154251.GC3990501@ideak-desk.fi.intel.com>
+ <SN6PR11MB3421F9D19E654913226FCE67DF110@SN6PR11MB3421.namprd11.prod.outlook.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Manasi Navare" <manasi.d.navare@intel.com>
-Date: Tue, 03 Nov 2020 16:53:37 -0000
-Message-ID: <160442241725.25742.1263144903945672723@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20201102211906.4893-1-manasi.d.navare@intel.com>
-In-Reply-To: <20201102211906.4893-1-manasi.d.navare@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
- =?utf-8?q?ies_starting_with_=5Bv5=2C1/6=5D_drm/i915/dp=3A_Some_reshufflin?=
- =?utf-8?q?g_in_mode=5Fvalid_as_prep_for_bigjoiner_modes_=28rev3=29?=
+Content-Disposition: inline
+In-Reply-To: <SN6PR11MB3421F9D19E654913226FCE67DF110@SN6PR11MB3421.namprd11.prod.outlook.com>
+Subject: Re: [Intel-gfx] [PATCH V2] drm/i915/ehl: Implement W/A 22010492432
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,241 +51,125 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============0223540677=="
+Reply-To: imre.deak@intel.com
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "Pandey, Hariom" <hariom.pandey@intel.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0223540677==
-Content-Type: multipart/alternative;
- boundary="===============6862575793971489835=="
+On Tue, Nov 03, 2020 at 06:31:58PM +0200, Surendrakumar Upadhyay, TejaskumarX wrote:
+> > -----Original Message-----
+> > From: Imre Deak <imre.deak@intel.com>
+> > Sent: 03 November 2020 21:13
+> > To: Surendrakumar Upadhyay, TejaskumarX
+> > <tejaskumarx.surendrakumar.upadhyay@intel.com>
+> > Cc: intel-gfx@lists.freedesktop.org; Pandey, Hariom
+> > <hariom.pandey@intel.com>
+> > Subject: Re: [PATCH V2] drm/i915/ehl: Implement W/A 22010492432
+> >
+> > On Tue, Nov 03, 2020 at 07:16:51PM +0530, Tejas Upadhyay wrote:
+> > > As per W/A implemented for TGL to program half of the nominal DCO
+> > > divider fraction value which is also applicable on EHL.
+> > >
+> > > Changes since V1:
+> > > - ehl_ used as to keep earliest platform prefix
+> > > - WA required B0 stepping onwards
+> > >
+> > > Cc: Deak Imre <imre.deak@intel.com>
+> > > Signed-off-by: Tejas Upadhyay
+> > > <tejaskumarx.surendrakumar.upadhyay@intel.com>
+> > > ---
+> > >  drivers/gpu/drm/i915/display/intel_dpll_mgr.c | 13 ++++++++-----
+> > >  drivers/gpu/drm/i915/i915_drv.h               |  1 +
+> > >  2 files changed, 9 insertions(+), 5 deletions(-)
+> > >
+> > > diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
+> > > b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
+> > > index eaef7a2d041f..cb6ebf627c04 100644
+> > > --- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
+> > > +++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
+> > > @@ -2636,13 +2636,16 @@ static bool cnl_ddi_hdmi_pll_dividers(struct
+> > > intel_crtc_state *crtc_state)  }
+> > >
+> > >  /*
+> > > - * Display WA #22010492432: tgl
+> > > + * Display WA #22010492432: ehl, tgl
+> > >   * Program half of the nominal DCO divider fraction value.
+> > >   */
+> > >  static bool
+> > > -tgl_combo_pll_div_frac_wa_needed(struct drm_i915_private *i915)
+> > > +ehl_combo_pll_div_frac_wa_needed(struct drm_i915_private *i915)
+> > >  {
+> > > -return IS_TIGERLAKE(i915) && i915->dpll.ref_clks.nssc == 38400;
+> > > +return ((IS_PLATFORM(i915, INTEL_ELKHARTLAKE) &&
+> > > +IS_JSL_EHL_REVID(i915, EHL_REVID_B0, EHL_REVID_B0)) ||
+> >
+> > Imo, better to add a definition for IS_ELKHARTLAKE() and IS_EHL_REVID().
+> >
+> It has been already discussed in previous EHL/JSL PCI id split patch
+> (between Matt Roper/Ville/Me) that we will not keep IS_ELKHARTLAKE()
+> and IS_EHL_REVID() instead we will replace with IS_PLATFORM(i915,
+> INTEL_ELKHARTLAKE) and IS_JSL_EHL_REVID .
 
---===============6862575793971489835==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Ok, missed that discussion.
 
-== Series Details ==
+> > It also applies after B0, so it'd be
+> > IS_EHL_REVID(EHL_REVID_B0, REVID_FOREVER);
+>
+> B0 is latest revision. So current logic should be fine.
 
-Series: series starting with [v5,1/6] drm/i915/dp: Some reshuffling in mode_valid as prep for bigjoiner modes (rev3)
-URL   : https://patchwork.freedesktop.org/series/83373/
-State : success
+Until a new revision appears. The spec says to apply the WA on all
+steppings starting with B0, I don't see a reason to do otherwise.
 
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_9255 -> Patchwork_18843
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18843/index.html
-
-New tests
----------
-
-  New tests have been introduced between CI_DRM_9255 and Patchwork_18843:
-
-### New CI tests (1) ###
-
-  * boot:
-    - Statuses : 38 pass(s)
-    - Exec time: [0.0] s
-
-  
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_18843 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_module_load@reload:
-    - fi-tgl-u2:          [PASS][1] -> [DMESG-WARN][2] ([i915#1982] / [k.org#205379])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9255/fi-tgl-u2/igt@i915_module_load@reload.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18843/fi-tgl-u2/igt@i915_module_load@reload.html
-
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:
-    - fi-bsw-kefka:       [PASS][3] -> [DMESG-WARN][4] ([i915#1982]) +1 similar issue
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9255/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18843/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_module_load@reload:
-    - fi-icl-y:           [DMESG-WARN][5] ([i915#1982]) -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9255/fi-icl-y/igt@i915_module_load@reload.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18843/fi-icl-y/igt@i915_module_load@reload.html
-
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:
-    - fi-byt-j1900:       [DMESG-WARN][7] ([i915#1982]) -> [PASS][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9255/fi-byt-j1900/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18843/fi-byt-j1900/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-
-  * igt@kms_cursor_legacy@basic-flip-before-cursor-atomic:
-    - fi-icl-u2:          [DMESG-WARN][9] ([i915#1982]) -> [PASS][10]
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9255/fi-icl-u2/igt@kms_cursor_legacy@basic-flip-before-cursor-atomic.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18843/fi-icl-u2/igt@kms_cursor_legacy@basic-flip-before-cursor-atomic.html
-
-  
-  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
-  [k.org#205379]: https://bugzilla.kernel.org/show_bug.cgi?id=205379
-
-
-Participating hosts (42 -> 38)
-------------------------------
-
-  Missing    (4): fi-ilk-m540 fi-bsw-cyan fi-bdw-samus fi-hsw-4200u 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_9255 -> Patchwork_18843
-
-  CI-20190529: 20190529
-  CI_DRM_9255: 10bed1eeb88d1ebe8f7b00b57c37329068b06ca4 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5830: 12d370cb57e0cfcb781c87ad9e15e68b17a1f41f @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_18843: d4ce6b762592e81747632f613162cff88a1bdf26 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-d4ce6b762592 drm/i915/dp: Allow big joiner modes in intel_dp_mode_valid(), v3.
-7004b13da2f6 drm/i915/dp: Prep for bigjoiner atomic check
-bd6d793e3861 drm/i915: Pass intel_atomic_state instead of drm_atomic_state
-fa9cc802e92e drm/i915: Add hw.pipe_mode to allow bigjoiner pipe/transcoder split
-54c92c312833 drm/i915: Move encoder->get_config to a new function
-ef45baae1b4d drm/i915/dp: Some reshuffling in mode_valid as prep for bigjoiner modes
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18843/index.html
-
---===============6862575793971489835==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>series starting with [v5,1/6] drm/i915/dp: Some reshuffling in mode_valid as prep for bigjoiner modes (rev3)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/83373/">https://patchwork.freedesktop.org/series/83373/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18843/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18843/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_9255 -&gt; Patchwork_18843</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18843/index.html</p>
-<h2>New tests</h2>
-<p>New tests have been introduced between CI_DRM_9255 and Patchwork_18843:</p>
-<h3>New CI tests (1)</h3>
-<ul>
-<li>boot:<ul>
-<li>Statuses : 38 pass(s)</li>
-<li>Exec time: [0.0] s</li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_18843 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@i915_module_load@reload:</p>
-<ul>
-<li>fi-tgl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9255/fi-tgl-u2/igt@i915_module_load@reload.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18843/fi-tgl-u2/igt@i915_module_load@reload.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a> / <a href="https://bugzilla.kernel.org/show_bug.cgi?id=205379">k.org#205379</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:</p>
-<ul>
-<li>fi-bsw-kefka:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9255/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18843/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>) +1 similar issue</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@i915_module_load@reload:</p>
-<ul>
-<li>fi-icl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9255/fi-icl-y/igt@i915_module_load@reload.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18843/fi-icl-y/igt@i915_module_load@reload.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:</p>
-<ul>
-<li>fi-byt-j1900:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9255/fi-byt-j1900/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18843/fi-byt-j1900/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@basic-flip-before-cursor-atomic:</p>
-<ul>
-<li>fi-icl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9255/fi-icl-u2/igt@kms_cursor_legacy@basic-flip-before-cursor-atomic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18843/fi-icl-u2/igt@kms_cursor_legacy@basic-flip-before-cursor-atomic.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Participating hosts (42 -&gt; 38)</h2>
-<p>Missing    (4): fi-ilk-m540 fi-bsw-cyan fi-bdw-samus fi-hsw-4200u </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_9255 -&gt; Patchwork_18843</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_9255: 10bed1eeb88d1ebe8f7b00b57c37329068b06ca4 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_5830: 12d370cb57e0cfcb781c87ad9e15e68b17a1f41f @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
-  Patchwork_18843: d4ce6b762592e81747632f613162cff88a1bdf26 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>d4ce6b762592 drm/i915/dp: Allow big joiner modes in intel_dp_mode_valid(), v3.<br />
-7004b13da2f6 drm/i915/dp: Prep for bigjoiner atomic check<br />
-bd6d793e3861 drm/i915: Pass intel_atomic_state instead of drm_atomic_state<br />
-fa9cc802e92e drm/i915: Add hw.pipe_mode to allow bigjoiner pipe/transcoder split<br />
-54c92c312833 drm/i915: Move encoder-&gt;get_config to a new function<br />
-ef45baae1b4d drm/i915/dp: Some reshuffling in mode_valid as prep for bigjoiner modes</p>
-
-</body>
-</html>
-
---===============6862575793971489835==--
-
---===============0223540677==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
+> > > +IS_TIGERLAKE(i915)) &&
+> > > +i915->dpll.ref_clks.nssc == 38400;
+> > >  }
+> > >
+> > >  static int __cnl_ddi_wrpll_get_freq(struct drm_i915_private
+> > > *dev_priv, @@ -2696,7 +2699,7 @@ static int
+> > __cnl_ddi_wrpll_get_freq(struct drm_i915_private *dev_priv,
+> > >  dco_fraction = (pll_state->cfgcr0 &
+> > DPLL_CFGCR0_DCO_FRACTION_MASK) >>
+> > >         DPLL_CFGCR0_DCO_FRACTION_SHIFT;
+> > >
+> > > -if (tgl_combo_pll_div_frac_wa_needed(dev_priv))
+> > > +if (ehl_combo_pll_div_frac_wa_needed(dev_priv))
+> > >  dco_fraction *= 2;
+> > >
+> > >  dco_freq += (dco_fraction * ref_clock) / 0x8000; @@ -3086,7 +3089,7
+> > > @@ static void icl_calc_dpll_state(struct drm_i915_private *i915,
+> > >
+> > >  memset(pll_state, 0, sizeof(*pll_state));
+> > >
+> > > -if (tgl_combo_pll_div_frac_wa_needed(i915))
+> > > +if (ehl_combo_pll_div_frac_wa_needed(i915))
+> > >  dco_fraction = DIV_ROUND_CLOSEST(dco_fraction, 2);
+> > >
+> > >  pll_state->cfgcr0 = DPLL_CFGCR0_DCO_FRACTION(dco_fraction) | diff
+> > > --git a/drivers/gpu/drm/i915/i915_drv.h
+> > > b/drivers/gpu/drm/i915/i915_drv.h index d548e10e1600..8bf59b57efc9
+> > > 100644
+> > > --- a/drivers/gpu/drm/i915/i915_drv.h
+> > > +++ b/drivers/gpu/drm/i915/i915_drv.h
+> > > @@ -1560,6 +1560,7 @@ extern const struct i915_rev_steppings
+> > kbl_revids[];
+> > >  (IS_ICELAKE(p) && IS_REVID(p, since, until))
+> > >
+> > >  #define EHL_REVID_A0            0x0
+> > > +#define EHL_REVID_B0            0x2
+> >
+> > Where are the steppings specified for EHL? At least on the BSpec/29153 page
+> > I see EHL/B0 being 1.
+> >
+> > >
+> > >  #define IS_JSL_EHL_REVID(p, since, until) \
+> > >  (IS_JSL_EHL(p) && IS_REVID(p, since, until))
+> > > --
+> > > 2.28.0
+> > >
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============0223540677==--
