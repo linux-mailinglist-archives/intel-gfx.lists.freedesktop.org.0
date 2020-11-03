@@ -1,42 +1,42 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2B9552A3AFC
-	for <lists+intel-gfx@lfdr.de>; Tue,  3 Nov 2020 04:21:18 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3DC1C2A3CE7
+	for <lists+intel-gfx@lfdr.de>; Tue,  3 Nov 2020 07:40:42 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8355C6E483;
-	Tue,  3 Nov 2020 03:21:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1961D6E593;
+	Tue,  3 Nov 2020 06:40:40 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from ozlabs.org (bilbo.ozlabs.org [203.11.71.1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0941C6E483;
- Tue,  3 Nov 2020 03:21:13 +0000 (UTC)
-Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest
- SHA256) (No client certificate requested)
- by mail.ozlabs.org (Postfix) with ESMTPSA id 4CQFRp2NgSz9sTL;
- Tue,  3 Nov 2020 14:21:09 +1100 (AEDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=canb.auug.org.au;
- s=201702; t=1604373671;
- bh=0i7bKmueBR4uQHiGXA3iF8NKg7TqS2wm+4YVrKH6fvk=;
- h=Date:From:To:Cc:Subject:From;
- b=bIoTxi396cMOEWHHJSc2eP3fCptQSrLw9g372pbo+YWATGp4s3+5zGXNhBzf0fUOD
- OzEJk7zO3NiSp0KDPQ0sRaQy1BL/mrlcFKghuoKOVu5jHDjoVpVo7kPSLz+s+P8Gu/
- +o5FNTfs9VSNdiwWw9j+cjudSZLe0ox4vU2ymrOEcEsaR7hnMbpjWhjGjxTNgeg0Ev
- l+rQjF7To+2ZwDDyZps3hHFAK3Xhg+ZjvmJKiLXPCAN/7of2/ybgOleuqeuGDkGwTQ
- hWZhoEQgUy4Fr5VneCqxBKFzU5KIWX4cfgfdXylwtv8+ctIhqLEdmHmKSeBj4+zUpo
- IlBJaFALHXD3w==
-Date: Tue, 3 Nov 2020 14:21:08 +1100
-From: Stephen Rothwell <sfr@canb.auug.org.au>
-To: Daniel Vetter <daniel.vetter@ffwll.ch>, Intel Graphics
- <intel-gfx@lists.freedesktop.org>, DRI <dri-devel@lists.freedesktop.org>,
- Alex Deucher <alexander.deucher@amd.com>
-Message-ID: <20201103142108.129da15c@canb.auug.org.au>
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6BA8F6E593
+ for <intel-gfx@lists.freedesktop.org>; Tue,  3 Nov 2020 06:40:38 +0000 (UTC)
+IronPort-SDR: G6v/tVKrCYaF8nENV+dDmnoTY8JQxwi/cSaTsyoTjtLlqXbiVKrsOqckPj9C0eszSbq0pcJB7C
+ Gx4RaEAtW5/A==
+X-IronPort-AV: E=McAfee;i="6000,8403,9793"; a="169111498"
+X-IronPort-AV: E=Sophos;i="5.77,447,1596524400"; d="scan'208";a="169111498"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Nov 2020 22:40:37 -0800
+IronPort-SDR: Z5Z/rSo6RJ1tcuo1+tBb9FPH9aznOMTVYCGfEJ4u9pt8bwQak5QR8wdw392Vd8EahCZndGEmrd
+ HTCD+i+ckfAA==
+X-IronPort-AV: E=Sophos;i="5.77,447,1596524400"; d="scan'208";a="320322683"
+Received: from genxfsim-desktop.iind.intel.com ([10.223.74.178])
+ by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Nov 2020 22:40:35 -0800
+From: Anshuman Gupta <anshuman.gupta@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Tue,  3 Nov 2020 11:57:00 +0530
+Message-Id: <20201103062700.5416-1-anshuman.gupta@intel.com>
+X-Mailer: git-send-email 2.26.2
+In-Reply-To: <20201027164208.10026-16-anshuman.gupta@intel.com>
+References: <20201027164208.10026-16-anshuman.gupta@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] linux-next: manual merge of the drm-misc tree with the
- amdgpu tree
+Subject: [Intel-gfx] [PATCH v4 15/16] drm/i915/hdcp: Support for HDCP 2.2
+ MST shim callbacks
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,109 +49,157 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Linux Next Mailing List <linux-next@vger.kernel.org>,
- Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
- Maxime Ripard <maxime@cerno.tech>
-Content-Type: multipart/mixed; boundary="===============1545708792=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============1545708792==
-Content-Type: multipart/signed; boundary="Sig_/v_VTF3=V=ZLQ0Zhu5lDpUs9";
- protocol="application/pgp-signature"; micalg=pgp-sha256
+Add support for HDCP 2.2 DP MST shim callback.
+This adds existing DP HDCP shim callback for Link Authentication
+and Encryption and HDCP 2.2 stream encryption
+callback.
 
---Sig_/v_VTF3=V=ZLQ0Zhu5lDpUs9
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: quoted-printable
+v2:
+Added a WARN_ON() instead of drm_err. [Uma]
+Cosmetic changes. [Uma]
 
-Hi all,
+Cc: Ramalingam C <ramalingam.c@intel.com>
+Reviewed-by: Uma Shankar <uma.shankar@intel.com>
+Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
+---
+ .../drm/i915/display/intel_display_types.h    |  4 +
+ drivers/gpu/drm/i915/display/intel_dp_hdcp.c  | 80 +++++++++++++++++--
+ 2 files changed, 76 insertions(+), 8 deletions(-)
 
-Today's linux-next merge of the drm-misc tree got a conflict in:
-
-  drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-
-between commit:
-
-  e8a982355f96 ("drm/amd/display: Add tracepoint for amdgpu_dm")
-
-from the amdgpu tree and commit:
-
-  29b77ad7b9ca ("drm/atomic: Pass the full state to CRTC atomic_check")
-
-from the drm-misc tree.
-
-I fixed it up (see below) and can carry the fix as necessary. This
-is now fixed as far as linux-next is concerned, but any non trivial
-conflicts should be mentioned to your upstream maintainer when your tree
-is submitted for merging.  You may also want to consider cooperating
-with the maintainer of the conflicting tree to minimise any particularly
-complex conflicts.
-
---=20
-Cheers,
-Stephen Rothwell
-
-diff --cc drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-index 28dcaae06993,86fd4420f128..000000000000
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-@@@ -6003,19 -5514,19 +6003,21 @@@ static void dm_update_crtc_active_plane
-  }
- =20
-  static int dm_crtc_helper_atomic_check(struct drm_crtc *crtc,
-- 				       struct drm_crtc_state *state)
-+ 				       struct drm_atomic_state *state)
-  {
-+ 	struct drm_crtc_state *crtc_state =3D drm_atomic_get_new_crtc_state(stat=
-e,
-+ 									  crtc);
-  	struct amdgpu_device *adev =3D drm_to_adev(crtc->dev);
-  	struct dc *dc =3D adev->dm.dc;
-- 	struct dm_crtc_state *dm_crtc_state =3D to_dm_crtc_state(state);
-+ 	struct dm_crtc_state *dm_crtc_state =3D to_dm_crtc_state(crtc_state);
-  	int ret =3D -EINVAL;
- =20
-- 	trace_amdgpu_dm_crtc_atomic_check(state);
-++	trace_amdgpu_dm_crtc_atomic_check(crtc_state);
- +
-- 	dm_update_crtc_active_planes(crtc, state);
-+ 	dm_update_crtc_active_planes(crtc, crtc_state);
- =20
-  	if (unlikely(!dm_crtc_state->stream &&
-- 		     modeset_required(state, NULL, dm_crtc_state->stream))) {
-+ 		     modeset_required(crtc_state, NULL, dm_crtc_state->stream))) {
-  		WARN_ON(1);
-  		return ret;
-  	}
-
---Sig_/v_VTF3=V=ZLQ0Zhu5lDpUs9
-Content-Type: application/pgp-signature
-Content-Description: OpenPGP digital signature
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAEBCAAdFiEENIC96giZ81tWdLgKAVBC80lX0GwFAl+gzKQACgkQAVBC80lX
-0GzNXAf/W9AAIlNh1aTu47i1Eol536395rKOnzvFj7a8svfEPluVkkQ5POy/bLqi
-CUarxu7zj6dkQG3t6qTi/z31MH4DwTh5cbyPoJnLWmZWFjmeU7qVdL/w7v2Q69fk
-nt7x18peGZ33SHHrmEbIZ1ehfcMHwwDsFt2z6yg+3/XddCN9RKIGTRQVNafmUQIE
-9d4pJ/43R6a0Mwk3TQq15UIJ4Gvsu090kUMISDMJJV2n+08WER2pSkiQ4PrHTa1e
-jeqirtWcUNGI65CfEl0KcKMMG6zt9eRb10WpoVLX2ctffX/60NxxHalv08VkPe5n
-gvlOBYB/ryj7vQWncjMvhn7bR1Y07g==
-=sIKW
------END PGP SIGNATURE-----
-
---Sig_/v_VTF3=V=ZLQ0Zhu5lDpUs9--
-
---===============1545708792==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
+index dfb5be64e03a..4cbb151ff3cf 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_types.h
++++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+@@ -374,6 +374,10 @@ struct intel_hdcp_shim {
+ 	int (*config_stream_type)(struct intel_digital_port *dig_port,
+ 				  bool is_repeater, u8 type);
+ 
++	/* Enable/Disable HDCP 2.2 stream encryption on DP MST Transport Link */
++	int (*stream_2_2_encryption)(struct intel_digital_port *dig_port,
++				     bool enable);
++
+ 	/* HDCP2.2 Link Integrity Check */
+ 	int (*check_2_2_link)(struct intel_digital_port *dig_port,
+ 			      struct intel_connector *connector);
+diff --git a/drivers/gpu/drm/i915/display/intel_dp_hdcp.c b/drivers/gpu/drm/i915/display/intel_dp_hdcp.c
+index 4be61e7fde4e..35c1543fe0e2 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp_hdcp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp_hdcp.c
+@@ -698,18 +698,14 @@ intel_dp_mst_hdcp_stream_encryption(struct intel_digital_port *dig_port,
+ 	return 0;
+ }
+ 
+-static
+-bool intel_dp_mst_hdcp_check_link(struct intel_digital_port *dig_port,
+-				  struct intel_connector *connector)
++static bool intel_dp_mst_get_qses_status(struct intel_digital_port *dig_port,
++					 struct intel_connector *connector)
+ {
+ 	struct drm_i915_private *i915 = to_i915(dig_port->base.base.dev);
+-	struct intel_dp *intel_dp = &dig_port->dp;
+ 	struct drm_dp_query_stream_enc_status_ack_reply reply;
++	struct intel_dp *intel_dp = &dig_port->dp;
+ 	int ret;
+ 
+-	if (!intel_dp_hdcp_check_link(dig_port, connector))
+-		return false;
+-
+ 	ret = drm_dp_send_query_stream_enc_status(&intel_dp->mst_mgr,
+ 						  connector->port, &reply);
+ 	if (ret) {
+@@ -722,6 +718,69 @@ bool intel_dp_mst_hdcp_check_link(struct intel_digital_port *dig_port,
+ 	return reply.auth_completed && reply.encryption_enabled;
+ }
+ 
++static
++bool intel_dp_mst_hdcp_check_link(struct intel_digital_port *dig_port,
++				  struct intel_connector *connector)
++{
++	if (!intel_dp_hdcp_check_link(dig_port, connector))
++		return false;
++
++	return intel_dp_mst_get_qses_status(dig_port, connector);
++}
++
++static int
++intel_dp_mst_hdcp2_stream_encryption(struct intel_digital_port *dig_port,
++				     bool enable)
++{
++	struct drm_i915_private *i915 = to_i915(dig_port->base.base.dev);
++	struct hdcp_port_data *data = &dig_port->port_data;
++	struct intel_dp *dp = &dig_port->dp;
++	struct intel_hdcp *hdcp = &dp->attached_connector->hdcp;
++	enum port port = dig_port->base.port;
++	/* HDCP2.x register uses stream transcoder */
++	enum transcoder cpu_transcoder = hdcp->stream_transcoder;
++	int ret;
++
++	drm_WARN_ON(&i915->drm, enable &&
++		    !!(intel_de_read(i915, HDCP2_AUTH_STREAM(i915, cpu_transcoder, port))
++		    & AUTH_STREAM_TYPE) != data->streams[0].stream_type);
++
++	ret = intel_dp_mst_toggle_hdcp_stream_select(dig_port, enable);
++	if (ret)
++		return ret;
++
++	/* Wait for encryption confirmation */
++	if (intel_de_wait_for_register(i915,
++				       HDCP2_STREAM_STATUS(i915, cpu_transcoder, port),
++				       STREAM_ENCRYPTION_STATUS,
++				       enable ? STREAM_ENCRYPTION_STATUS : 0,
++				       HDCP_ENCRYPT_STATUS_CHANGE_TIMEOUT_MS)) {
++		drm_err(&i915->drm, "Timed out waiting for stream encryption %s\n",
++			enable ? "enabled" : "disabled");
++		return -ETIMEDOUT;
++	}
++
++	return 0;
++}
++
++/*
++ * DP v2.0 I.3.3 ignore the stream signature L' in QSES reply msg reply.
++ * I.3.5 MST source device may use a QSES msg to query downstream status
++ * for a particular stream.
++ */
++static
++int intel_dp_mst_hdcp2_check_link(struct intel_digital_port *dig_port,
++				  struct intel_connector *connector)
++{
++	int ret;
++
++	ret = intel_dp_hdcp2_check_link(dig_port, connector);
++	if (ret)
++		return ret;
++
++	return intel_dp_mst_get_qses_status(dig_port, connector) ? 0 : -EINVAL;
++}
++
+ static const struct intel_hdcp_shim intel_dp_mst_hdcp_shim = {
+ 	.write_an_aksv = intel_dp_hdcp_write_an_aksv,
+ 	.read_bksv = intel_dp_hdcp_read_bksv,
+@@ -735,7 +794,12 @@ static const struct intel_hdcp_shim intel_dp_mst_hdcp_shim = {
+ 	.stream_encryption = intel_dp_mst_hdcp_stream_encryption,
+ 	.check_link = intel_dp_mst_hdcp_check_link,
+ 	.hdcp_capable = intel_dp_hdcp_capable,
+-
++	.write_2_2_msg = intel_dp_hdcp2_write_msg,
++	.read_2_2_msg = intel_dp_hdcp2_read_msg,
++	.config_stream_type = intel_dp_hdcp2_config_stream_type,
++	.stream_2_2_encryption = intel_dp_mst_hdcp2_stream_encryption,
++	.check_2_2_link = intel_dp_mst_hdcp2_check_link,
++	.hdcp_2_2_capable = intel_dp_hdcp2_capable,
+ 	.protocol = HDCP_PROTOCOL_DP,
+ };
+ 
+-- 
+2.26.2
 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============1545708792==--
