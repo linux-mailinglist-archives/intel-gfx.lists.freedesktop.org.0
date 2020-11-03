@@ -2,41 +2,40 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id ED40F2A379F
-	for <lists+intel-gfx@lfdr.de>; Tue,  3 Nov 2020 01:17:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 367772A37C5
+	for <lists+intel-gfx@lfdr.de>; Tue,  3 Nov 2020 01:31:48 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5E36C6E5C3;
-	Tue,  3 Nov 2020 00:17:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B11136E3D8;
+	Tue,  3 Nov 2020 00:31:41 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 195396E563
- for <intel-gfx@lists.freedesktop.org>; Tue,  3 Nov 2020 00:17:35 +0000 (UTC)
-IronPort-SDR: mFp+skx7aGXgUX5cTK2J25SUtNTL2mt++UGc8DdoszrSmq1+2+U1DikryDHfDjaTH/KgxHKL2w
- GA6IjLKIotjA==
-X-IronPort-AV: E=McAfee;i="6000,8403,9793"; a="155962138"
-X-IronPort-AV: E=Sophos;i="5.77,446,1596524400"; d="scan'208";a="155962138"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Nov 2020 16:17:33 -0800
-IronPort-SDR: A4OLoODyHsolt+MbvMTQMZosSNy9NyqvfLi1ZwRfQ21cPYU7A/32JplSOkOayqCjrQcHw2WTMu
- fV6YrpDNJenQ==
-X-IronPort-AV: E=Sophos;i="5.77,446,1596524400"; d="scan'208";a="470573481"
-Received: from labuser-z97x-ud5h.jf.intel.com ([10.165.21.211])
- by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-SHA;
- 02 Nov 2020 16:17:32 -0800
-From: Manasi Navare <manasi.d.navare@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Mon,  2 Nov 2020 16:19:32 -0800
-Message-Id: <20201103001932.11286-14-manasi.d.navare@intel.com>
-X-Mailer: git-send-email 2.19.1
-In-Reply-To: <20201103001932.11286-1-manasi.d.navare@intel.com>
-References: <20201103001932.11286-1-manasi.d.navare@intel.com>
+Received: from ozlabs.org (bilbo.ozlabs.org [IPv6:2401:3900:2:1::2])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F22CF6E0D0;
+ Tue,  3 Nov 2020 00:31:39 +0000 (UTC)
+Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest
+ SHA256) (No client certificate requested)
+ by mail.ozlabs.org (Postfix) with ESMTPSA id 4CQ9gy0WJCz9sRR;
+ Tue,  3 Nov 2020 11:31:22 +1100 (AEDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=canb.auug.org.au;
+ s=201702; t=1604363497;
+ bh=abFiyo/RifuMQVqMIhH00amB1yormpJhfqr9G5pJa74=;
+ h=Date:From:To:Cc:Subject:From;
+ b=EHYEdXwcf9uUh/CupNFo4xDhY0prmaZWJFlUYvdZu1Gl304yd0qg4NLSlfoXalgwK
+ yzAgrU4ad8RGQ6PiQQBYNlnRTSGgeEgvdFBEpYGsn/jz3VVf8OhuH0vvBgsbWk3cej
+ XnExO0LBywlM15X4Njrsbfh+fUzZ4YRzHuSrjB/xWyeCzBVOns+rO64v5XxOair4Y3
+ QMXci3CAooj0g1YbrdjSziALvJPriaDmgCZltLqOc7o0pItQ1GTSEF0f+rpzs1/NQR
+ 9mxYltd0HTm7XdbDyq7HaspwW5Ij44XSBRsSY4qCcSKAvMMd9eoFmc8YE8EusGaFcN
+ WPBgvllj6aDGA==
+Date: Tue, 3 Nov 2020 11:31:21 +1100
+From: Stephen Rothwell <sfr@canb.auug.org.au>
+To: Daniel Vetter <daniel.vetter@ffwll.ch>, Intel Graphics
+ <intel-gfx@lists.freedesktop.org>, DRI <dri-devel@lists.freedesktop.org>
+Message-ID: <20201103113121.4f1ffe17@canb.auug.org.au>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v14 13/13] drm/i915: Add debugfs dumping for
- bigjoiner, v3.
+Subject: [Intel-gfx] linux-next: build warning after merge of the
+ drm-misc-fixes tree
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,92 +48,67 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: Linux Next Mailing List <linux-next@vger.kernel.org>,
+ Maxime Ripard <maxime@cerno.tech>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: multipart/mixed; boundary="===============1091403382=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+--===============1091403382==
+Content-Type: multipart/signed; boundary="Sig_/gJqgW8ibeandfWFBKfAJJxB";
+ protocol="application/pgp-signature"; micalg=pgp-sha256
 
-Dump debugfs and planar links as well, this will make it easier to debug
-when things go wrong.
+--Sig_/gJqgW8ibeandfWFBKfAJJxB
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: quoted-printable
 
-v4:
-* Rebase
-Changes since v1:
-- Report planar slaves as such, now that we have the plane_state switch.
-Changes since v2:
-- Rebase on top of the new plane format dumping
+Hi all,
 
-Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Signed-off-by: Manasi Navare <manasi.d.navare@intel.com>
----
- .../drm/i915/display/intel_display_debugfs.c  | 29 ++++++++++++++++++-
- 1 file changed, 28 insertions(+), 1 deletion(-)
+After merging the drm-misc-fixes tree, today's linux-next build (arm
+multi_v7_defconfig) produced this warning:
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-index cfb4c1474982..963069b266ab 100644
---- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-@@ -755,6 +755,17 @@ static void plane_rotation(char *buf, size_t bufsize, unsigned int rotation)
- 		 rotation);
- }
- 
-+static const char *plane_visibility(const struct intel_plane_state *plane_state)
-+{
-+	if (plane_state->uapi.visible)
-+		return "visible";
-+
-+	if (plane_state->planar_slave)
-+		return "planar-slave";
-+
-+	return "hidden";
-+}
-+
- static void intel_plane_uapi_info(struct seq_file *m, struct intel_plane *plane)
- {
- 	const struct intel_plane_state *plane_state =
-@@ -773,12 +784,22 @@ static void intel_plane_uapi_info(struct seq_file *m, struct intel_plane *plane)
- 	plane_rotation(rot_str, sizeof(rot_str),
- 		       plane_state->uapi.rotation);
- 
--	seq_printf(m, "\t\tuapi: fb=%d,%s,%dx%d, src=" DRM_RECT_FP_FMT ", dst=" DRM_RECT_FMT ", rotation=%s\n",
-+	seq_printf(m, "\t\tuapi: fb=%d,%s,%dx%d, visible=%s, src=" DRM_RECT_FP_FMT ", dst=" DRM_RECT_FMT ", rotation=%s\n",
- 		   fb ? fb->base.id : 0, fb ? format_name.str : "n/a",
- 		   fb ? fb->width : 0, fb ? fb->height : 0,
-+		   plane_visibility(plane_state),
- 		   DRM_RECT_FP_ARG(&src),
- 		   DRM_RECT_ARG(&dst),
- 		   rot_str);
-+
-+	if (plane_state->planar_linked_plane)
-+		seq_printf(m, "\t\tplanar: Linked to [PLANE:%d:%s] as a %s\n",
-+			   plane_state->planar_linked_plane->base.base.id, plane_state->planar_linked_plane->base.name,
-+			   plane_state->planar_slave ? "slave" : "master");
-+	if (plane_state->bigjoiner_plane)
-+		seq_printf(m, "\t\tbigjoiner: Linked to [PLANE:%d:%s] as a %s\n",
-+			   plane_state->bigjoiner_plane->base.base.id, plane_state->bigjoiner_plane->base.name,
-+			   plane_state->bigjoiner_slave ? "slave" : "master");
- }
- 
- static void intel_plane_hw_info(struct seq_file *m, struct intel_plane *plane)
-@@ -874,6 +895,12 @@ static void intel_crtc_info(struct seq_file *m, struct intel_crtc *crtc)
- 		intel_scaler_info(m, crtc);
- 	}
- 
-+	if (crtc_state->bigjoiner)
-+		seq_printf(m, "\tLinked to [CRTC:%d:%s] as a %s\n",
-+			   crtc_state->bigjoiner_linked_crtc->base.base.id,
-+			   crtc_state->bigjoiner_linked_crtc->base.name,
-+			   crtc_state->bigjoiner_slave ? "slave" : "master");
-+
- 	for_each_intel_encoder_mask(&dev_priv->drm, encoder,
- 				    crtc_state->uapi.encoder_mask)
- 		intel_encoder_info(m, crtc, encoder);
--- 
-2.19.1
+drivers/gpu/drm/vc4/vc4_drv.c: In function 'vc4_drm_unbind':
+drivers/gpu/drm/vc4/vc4_drv.c:322:18: warning: unused variable 'vc4' [-Wunu=
+sed-variable]
+  322 |  struct vc4_dev *vc4 =3D to_vc4_dev(drm);
+      |                  ^~~
+
+Introduced by commit
+
+  dcda7c28bff2 ("drm/vc4: kms: Add functions to create the state objects")
+
+--=20
+Cheers,
+Stephen Rothwell
+
+--Sig_/gJqgW8ibeandfWFBKfAJJxB
+Content-Type: application/pgp-signature
+Content-Description: OpenPGP digital signature
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCAAdFiEENIC96giZ81tWdLgKAVBC80lX0GwFAl+gpNkACgkQAVBC80lX
+0GzObAf9ELauIfurBLxpumwv/j7hYeA/o36O9sxR7KMYt/GU0Wf6N2v9s5jxS8nP
+kECfAc743DU2tB6ruz4LhM5Ftz/Bl1gIP0fkgjN9dx3dvBUSN17iyVJTkriSm+Pw
+wEHzVUhbZA0jDRL6+KceMBRbiijlrnjfeQ41yiEbLt7NX7zKoOwXwN/yXAAF11/Y
+z/urYPtssjKfOXTca/DbC27hE9N/voIII80qODgj4zDFD4N4UY5n/UBMyDrEUcc4
+BqF7pshekl9aSlRKODh3NIRP9D7CXij4ClP/Oz3mnX9F8ZiD0ma/SKBBoD6Vbqwi
+XIPcQ0x9tC6LyjM3EEuhtsHOgLE5yQ==
+=23z8
+-----END PGP SIGNATURE-----
+
+--Sig_/gJqgW8ibeandfWFBKfAJJxB--
+
+--===============1091403382==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============1091403382==--
