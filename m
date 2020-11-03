@@ -1,52 +1,42 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id F3B542A4E73
-	for <lists+intel-gfx@lfdr.de>; Tue,  3 Nov 2020 19:21:57 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 49B7E2A4EF5
+	for <lists+intel-gfx@lfdr.de>; Tue,  3 Nov 2020 19:34:41 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3F6B86E8BF;
-	Tue,  3 Nov 2020 18:21:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DA6116E02A;
+	Tue,  3 Nov 2020 18:34:38 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [63.128.21.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CB7556E8BF
- for <intel-gfx@lists.freedesktop.org>; Tue,  3 Nov 2020 18:21:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1604427712;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=5HaZF0HHG9oO3e49yeD9DsV0qAb3GYn1OcgqbvDseMU=;
- b=BdxVk8lFbdp/s0LgShY3NbVDtYnEyiDq21iZl37YcIyZXmh60DF3OL3UbWpLjGHWM/BlXi
- oM+Y21VmaX3BLWYgK7idQdXq5zVb2GC6PZtG0GrNtDBNb43/SVJ1epYDZPa6XAkcbcLnlz
- F7vVg94qVWBhAz0Ce1B8HfUrcluKM/w=
-Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
- [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-70-y6tC8vg3OimS9rP6mtrDrw-1; Tue, 03 Nov 2020 13:21:46 -0500
-X-MC-Unique: y6tC8vg3OimS9rP6mtrDrw-1
-Received: from smtp.corp.redhat.com (int-mx07.intmail.prod.int.phx2.redhat.com
- [10.5.11.22])
- (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
- (No client certificate requested)
- by mimecast-mx01.redhat.com (Postfix) with ESMTPS id B6E8B1009E23;
- Tue,  3 Nov 2020 18:21:44 +0000 (UTC)
-Received: from w520.home (ovpn-112-213.phx2.redhat.com [10.3.112.213])
- by smtp.corp.redhat.com (Postfix) with ESMTP id 13B251002D46;
- Tue,  3 Nov 2020 18:21:44 +0000 (UTC)
-Date: Tue, 3 Nov 2020 11:21:43 -0700
-From: Alex Williamson <alex.williamson@redhat.com>
-To: Fred Gao <fred.gao@intel.com>
-Message-ID: <20201103112143.07682d41@w520.home>
-In-Reply-To: <20201102180120.25319-1-fred.gao@intel.com>
-References: <20200929161038.15465-1-fred.gao@intel.com>
- <20201102180120.25319-1-fred.gao@intel.com>
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9729B6E02A
+ for <intel-gfx@lists.freedesktop.org>; Tue,  3 Nov 2020 18:34:37 +0000 (UTC)
+IronPort-SDR: PY6rrU9/6BAYEhD2K94ZjkieA43hLjrkCyy648askH1i5J8dBN4wzcZzJAMukRbZrEtnUQVHwQ
+ uh1r1nH0HeHQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9794"; a="168317312"
+X-IronPort-AV: E=Sophos;i="5.77,448,1596524400"; d="scan'208";a="168317312"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Nov 2020 10:34:36 -0800
+IronPort-SDR: XGUxtm89DLGCXNLK/IUP1rYakQjuEYQrTrjdt96/TpJfDGXaqmtlokg3qwmthlqK0naac8v8GZ
+ 5bn6PCNFxcwQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.77,448,1596524400"; d="scan'208";a="363714526"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
+ by orsmga007.jf.intel.com with SMTP; 03 Nov 2020 10:34:34 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Tue, 03 Nov 2020 20:34:34 +0200
+From: Ville Syrjala <ville.syrjala@linux.intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Tue,  3 Nov 2020 20:34:32 +0200
+Message-Id: <20201103183434.10677-1-ville.syrjala@linux.intel.com>
+X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
-X-Scanned-By: MIMEDefang 2.84 on 10.5.11.22
-Subject: Re: [Intel-gfx] [PATCH v3] vfio/pci: Bypass IGD init in case of
- -ENODEV
+Subject: [Intel-gfx] [PATCH 1/3] drm/i915: Pass intel_atomic_state to
+ skl_build_pipe_wm()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,54 +49,53 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Hang Yuan <hang.yuan@linux.intel.com>, kvm@vger.kernel.org,
- intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue,  3 Nov 2020 02:01:20 +0800
-Fred Gao <fred.gao@intel.com> wrote:
-
-> Bypass the IGD initialization when -ENODEV returns,
-> that should be the case if opregion is not available for IGD
-> or within discrete graphics device's option ROM,
-> or host/lpc bridge is not found.
-> 
-> Then use of -ENODEV here means no special device resources found
-> which needs special care for VFIO, but we still allow other normal
-> device resource access.
-> 
-> Cc: Zhenyu Wang <zhenyuw@linux.intel.com>
-> Cc: Xiong Zhang <xiong.y.zhang@intel.com>
-> Cc: Hang Yuan <hang.yuan@linux.intel.com>
-> Cc: Stuart Summers <stuart.summers@intel.com>
-> Signed-off-by: Fred Gao <fred.gao@intel.com>
-> ---
->  drivers/vfio/pci/vfio_pci.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-
-Applied to vfio for-linus branch for v5.10.  Thanks,
-
-Alex
-
-> 
-> diff --git a/drivers/vfio/pci/vfio_pci.c b/drivers/vfio/pci/vfio_pci.c
-> index f634c81998bb..c88cf9937469 100644
-> --- a/drivers/vfio/pci/vfio_pci.c
-> +++ b/drivers/vfio/pci/vfio_pci.c
-> @@ -341,7 +341,7 @@ static int vfio_pci_enable(struct vfio_pci_device *vdev)
->  	    pdev->vendor == PCI_VENDOR_ID_INTEL &&
->  	    IS_ENABLED(CONFIG_VFIO_PCI_IGD)) {
->  		ret = vfio_pci_igd_init(vdev);
-> -		if (ret) {
-> +		if (ret && ret != -ENODEV) {
->  			pci_warn(pdev, "Failed to setup Intel IGD regions\n");
->  			goto disable_exit;
->  		}
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+RnJvbTogVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4KClBh
+c3MgdGhlIHdob2xlIGludGVsX2F0b21pY19zdGF0ZSB0byBza2xfYnVpbGRfcGlwZV93bSgpIHNv
+IHdlCmNhbiBzdGFydCB0byBpdGVyYXRlIHN0dWZmIGNvbnRhaW5lcmQgaW4gdGhlIGNvbW1pdC4K
+ClNpZ25lZC1vZmYtYnk6IFZpbGxlIFN5cmrDpGzDpCA8dmlsbGUuc3lyamFsYUBsaW51eC5pbnRl
+bC5jb20+Ci0tLQogZHJpdmVycy9ncHUvZHJtL2k5MTUvaW50ZWxfcG0uYyB8IDE2ICsrKysrKysr
+LS0tLS0tLS0KIDEgZmlsZSBjaGFuZ2VkLCA4IGluc2VydGlvbnMoKyksIDggZGVsZXRpb25zKC0p
+CgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvaW50ZWxfcG0uYyBiL2RyaXZlcnMv
+Z3B1L2RybS9pOTE1L2ludGVsX3BtLmMKaW5kZXggZjU0Mzc1YjExOTY0Li40N2IyN2VlNTQ1Njgg
+MTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2ludGVsX3BtLmMKKysrIGIvZHJpdmVy
+cy9ncHUvZHJtL2k5MTUvaW50ZWxfcG0uYwpAQCAtNTU4Myw5ICs1NTgzLDEyIEBAIHN0YXRpYyBp
+bnQgaWNsX2J1aWxkX3BsYW5lX3dtKHN0cnVjdCBpbnRlbF9jcnRjX3N0YXRlICpjcnRjX3N0YXRl
+LAogCXJldHVybiAwOwogfQogCi1zdGF0aWMgaW50IHNrbF9idWlsZF9waXBlX3dtKHN0cnVjdCBp
+bnRlbF9jcnRjX3N0YXRlICpjcnRjX3N0YXRlKQorc3RhdGljIGludCBza2xfYnVpbGRfcGlwZV93
+bShzdHJ1Y3QgaW50ZWxfYXRvbWljX3N0YXRlICpzdGF0ZSwKKwkJCSAgICAgc3RydWN0IGludGVs
+X2NydGMgKmNydGMpCiB7Ci0Jc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmRldl9wcml2ID0gdG9f
+aTkxNShjcnRjX3N0YXRlLT51YXBpLmNydGMtPmRldik7CisJc3RydWN0IGRybV9pOTE1X3ByaXZh
+dGUgKmRldl9wcml2ID0gdG9faTkxNShjcnRjLT5iYXNlLmRldik7CisJc3RydWN0IGludGVsX2Ny
+dGNfc3RhdGUgKmNydGNfc3RhdGUgPQorCQlpbnRlbF9hdG9taWNfZ2V0X25ld19jcnRjX3N0YXRl
+KHN0YXRlLCBjcnRjKTsKIAlzdHJ1Y3Qgc2tsX3BpcGVfd20gKnBpcGVfd20gPSAmY3J0Y19zdGF0
+ZS0+d20uc2tsLm9wdGltYWw7CiAJc3RydWN0IGludGVsX3BsYW5lICpwbGFuZTsKIAljb25zdCBz
+dHJ1Y3QgaW50ZWxfcGxhbmVfc3RhdGUgKnBsYW5lX3N0YXRlOwpAQCAtNjA5Miw3ICs2MDk1LDYg
+QEAgc2tsX2NvbXB1dGVfd20oc3RydWN0IGludGVsX2F0b21pY19zdGF0ZSAqc3RhdGUpCiB7CiAJ
+c3RydWN0IGludGVsX2NydGMgKmNydGM7CiAJc3RydWN0IGludGVsX2NydGNfc3RhdGUgKm5ld19j
+cnRjX3N0YXRlOwotCXN0cnVjdCBpbnRlbF9jcnRjX3N0YXRlICpvbGRfY3J0Y19zdGF0ZTsKIAlp
+bnQgcmV0LCBpOwogCiAJcmV0ID0gc2tsX2RkYl9hZGRfYWZmZWN0ZWRfcGlwZXMoc3RhdGUpOwpA
+QCAtNjEwNCw5ICs2MTA2LDggQEAgc2tsX2NvbXB1dGVfd20oc3RydWN0IGludGVsX2F0b21pY19z
+dGF0ZSAqc3RhdGUpCiAJICogTm90ZSB0aGF0IHNrbF9kZGJfYWRkX2FmZmVjdGVkX3BpcGVzIG1h
+eSBoYXZlIGFkZGVkIG1vcmUgQ1JUQydzIHRoYXQKIAkgKiB3ZXJlbid0IG90aGVyd2lzZSBiZWlu
+ZyBtb2RpZmllZCBpZiBwaXBlIGFsbG9jYXRpb25zIGhhZCB0byBjaGFuZ2UuCiAJICovCi0JZm9y
+X2VhY2hfb2xkbmV3X2ludGVsX2NydGNfaW5fc3RhdGUoc3RhdGUsIGNydGMsIG9sZF9jcnRjX3N0
+YXRlLAotCQkJCQkgICAgbmV3X2NydGNfc3RhdGUsIGkpIHsKLQkJcmV0ID0gc2tsX2J1aWxkX3Bp
+cGVfd20obmV3X2NydGNfc3RhdGUpOworCWZvcl9lYWNoX25ld19pbnRlbF9jcnRjX2luX3N0YXRl
+KHN0YXRlLCBjcnRjLCBuZXdfY3J0Y19zdGF0ZSwgaSkgeworCQlyZXQgPSBza2xfYnVpbGRfcGlw
+ZV93bShzdGF0ZSwgY3J0Yyk7CiAJCWlmIChyZXQpCiAJCQlyZXR1cm4gcmV0OwogCX0KQEAgLTYx
+MjQsOCArNjEyNSw3IEBAIHNrbF9jb21wdXRlX3dtKHN0cnVjdCBpbnRlbF9hdG9taWNfc3RhdGUg
+KnN0YXRlKQogCSAqIGJhc2VkIG9uIGhvdyBtdWNoIGRkYiBpcyBhdmFpbGFibGUuIE5vdyB3ZSBj
+YW4gYWN0dWFsbHkKIAkgKiBjaGVjayBpZiB0aGUgZmluYWwgd2F0ZXJtYXJrcyBjaGFuZ2VkLgog
+CSAqLwotCWZvcl9lYWNoX29sZG5ld19pbnRlbF9jcnRjX2luX3N0YXRlKHN0YXRlLCBjcnRjLCBv
+bGRfY3J0Y19zdGF0ZSwKLQkJCQkJICAgIG5ld19jcnRjX3N0YXRlLCBpKSB7CisJZm9yX2VhY2hf
+bmV3X2ludGVsX2NydGNfaW5fc3RhdGUoc3RhdGUsIGNydGMsIG5ld19jcnRjX3N0YXRlLCBpKSB7
+CiAJCXJldCA9IHNrbF93bV9hZGRfYWZmZWN0ZWRfcGxhbmVzKHN0YXRlLCBjcnRjKTsKIAkJaWYg
+KHJldCkKIAkJCXJldHVybiByZXQ7Ci0tIAoyLjI2LjIKCl9fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4
+QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWls
+bWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
