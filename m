@@ -2,70 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 822512A405D
-	for <lists+intel-gfx@lfdr.de>; Tue,  3 Nov 2020 10:36:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D9C162A40E4
+	for <lists+intel-gfx@lfdr.de>; Tue,  3 Nov 2020 10:58:35 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A869C6E865;
-	Tue,  3 Nov 2020 09:36:08 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from wout2-smtp.messagingengine.com (wout2-smtp.messagingengine.com
- [64.147.123.25])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 655236E865;
- Tue,  3 Nov 2020 09:36:07 +0000 (UTC)
-Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
- by mailout.west.internal (Postfix) with ESMTP id 9F2B647B;
- Tue,  3 Nov 2020 04:36:06 -0500 (EST)
-Received: from mailfrontend1 ([10.202.2.162])
- by compute6.internal (MEProxy); Tue, 03 Nov 2020 04:36:07 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
- date:from:to:cc:subject:message-id:references:mime-version
- :content-type:in-reply-to; s=fm1; bh=JxU4guRP0kokkXgNKXrKatN5k3v
- smVhnFnCYvoqD/QA=; b=CTkd6WvjWIpgaP7CXxIemCJLc9bT8akFL3sq1vB4oiT
- QW7ILahxaxyJ2dhPmQ1JF6bJ/I+e56o23kBcKeT1Pl15ylnJB6yvoWCVQZMctDzG
- CLPNFfP+s3bqzk1B4mWDAlgKl27n+uZNqPqEmVKc2IBZwMkshOG9nzbIi2yaf4Wk
- TVfk57WnuO2RfNMD/DVre2yEf7j8Ojhmq3AhhhYBxfJI5KPLXJ3tQU6GmVy/cAwA
- eeVG77Y+1oBhgUltmV+dfMPjgWNhYOlLhJj+D9mvQXhTzAOT93SSVwSjoPrKCWmi
- fe/GmMRZInwrR9/VW5w2LDLKOCMZnhOSs/RdIGJocCQ==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
- messagingengine.com; h=cc:content-type:date:from:in-reply-to
- :message-id:mime-version:references:subject:to:x-me-proxy
- :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=JxU4gu
- RP0kokkXgNKXrKatN5k3vsmVhnFnCYvoqD/QA=; b=ddJQ9Rb9k3rT2qSgeD+nJQ
- nYOEqWxfs5PqONCgtfnGpsYQDbbyV7SHzngtorMVKDstddeVARRXBzyXNAvf56lv
- QEyWdWXhlxUsssUkdhiGmq8tzJfsHBkraqyo4M48DZ6/rClGI3FlouaLSYx6DVBU
- QzCP89u5660+8kEjgSzzyQG1aHZcQl1GaICpEMPxqivePD+WBIeZrVPieONg60vc
- 4oWqDxTUTX0VqCxt6gVCP5IsMZxNZvOSslSiRYHZzDqcnO7U2plo9RFKsBg3ba6E
- mE19IrN+G7h4Uk1icEovu4J3UPCmldQxgJn/lg7gl5ui8VW+kfn7N4Ju6xXXQ4LA
- ==
-X-ME-Sender: <xms:hSShX-9JqxH3mzEIKNwd5Wi0aNl4YxGJ7qoDfDLmWNuq5KSvlBD0RA>
- <xme:hSShX-tQpRzQzNjsYVZixEJqtz8dTfEWhW2t5ukaCEJ8HwIc06MyLNvpXus269KBr
- lx5lxU8FFtABR8seCc>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedujedruddtfedgtdeiucetufdoteggodetrfdotf
- fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
- uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
- cujfgurhepfffhvffukfhfgggtuggjsehgtderredttddvnecuhfhrohhmpeforgigihhm
- vgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrth
- htvghrnhepleekgeehhfdutdeljefgleejffehfffgieejhffgueefhfdtveetgeehieeh
- gedunecukfhppeeltddrkeelrdeikedrjeeinecuvehluhhsthgvrhfuihiivgeptdenuc
- frrghrrghmpehmrghilhhfrhhomhepmhgrgihimhgvsegtvghrnhhordhtvggthh
-X-ME-Proxy: <xmx:hSShX0DuGhN4hN75UK9w7o6-RYGaQiGZ5xSDKkRGVpcd_WStCDOtPA>
- <xmx:hSShX2ddaLxlo4K16R5o3m5srECuuEeqbFIDFcwSBelLMA1gXQlv0Q>
- <xmx:hSShXzMTkqWqVhuvg-cM72ck0Tj5cgqtP89OdHgz3nKMBshKRYuGMg>
- <xmx:hiShX8r4L9_4OYfjp2n-brspBy4QnC9A0-bIyJLvUoqgnn7iOF7g4w>
-Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr
- [90.89.68.76])
- by mail.messagingengine.com (Postfix) with ESMTPA id 0F7ED3280065;
- Tue,  3 Nov 2020 04:36:04 -0500 (EST)
-Date: Tue, 3 Nov 2020 10:36:03 +0100
-From: Maxime Ripard <maxime@cerno.tech>
-To: Stephen Rothwell <sfr@canb.auug.org.au>
-Message-ID: <20201103093603.mzmcvbzmna77vh4r@gilmour.lan>
-References: <20201103113121.4f1ffe17@canb.auug.org.au>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 496A76E85A;
+	Tue,  3 Nov 2020 09:58:34 +0000 (UTC)
+X-Original-To: Intel-gfx@lists.freedesktop.org
+Delivered-To: Intel-gfx@lists.freedesktop.org
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EDFB06E85A
+ for <Intel-gfx@lists.freedesktop.org>; Tue,  3 Nov 2020 09:58:32 +0000 (UTC)
+IronPort-SDR: hcaEySASonghpw5IWeqyxnoa8TnZ2h92tISTnyle5GthWzqZ9+AkxFt4DMz9Kwh2Y9Qs7/KjBX
+ MdOU/1X6tldA==
+X-IronPort-AV: E=McAfee;i="6000,8403,9793"; a="230656685"
+X-IronPort-AV: E=Sophos;i="5.77,447,1596524400"; d="scan'208";a="230656685"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Nov 2020 01:58:32 -0800
+IronPort-SDR: qXZ3CdVSYmts5JPldn4hVxPQrAnAqM0Gp50/FrVIsGpM55HmGd9I+qH+0dA28fc+ZNECT9313p
+ hjOw5WMKj6fQ==
+X-IronPort-AV: E=Sophos;i="5.77,447,1596524400"; d="scan'208";a="528363463"
+Received: from stevenro-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.252.23.13])
+ by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Nov 2020 01:58:28 -0800
 MIME-Version: 1.0
-In-Reply-To: <20201103113121.4f1ffe17@canb.auug.org.au>
-Subject: Re: [Intel-gfx] linux-next: build warning after merge of the
- drm-misc-fixes tree
+In-Reply-To: <99a0d1eb-7fde-dff4-225f-92b68fbf7620@linux.intel.com>
+References: <20200927063437.13988-1-baolu.lu@linux.intel.com>
+ <e999e371-6d36-ffea-542f-a5f4b230b0ed@linux.intel.com>
+ <c2af9a9d-1cae-b8f7-a0b3-880574060a23@linux.intel.com>
+ <8bac9e91-36a0-c1d6-a887-4d60567ac75a@linux.intel.com>
+ <3f5694f3-62f9-cc2b-1c2b-f9e99a4788c1@linux.intel.com>
+ <1ce5b94a-38b3-548e-3b1a-a68390b93953@linux.intel.com>
+ <82dab98e-0761-8946-c31c-92f19a0615b4@linux.intel.com>
+ <99a0d1eb-7fde-dff4-225f-92b68fbf7620@linux.intel.com>
+To: Christoph Hellwig <hch@infradead.org>,
+ David Woodhouse <dwmw2@infradead.org>, Joerg Roedel <joro@8bytes.org>,
+ Lu Baolu <baolu.lu@linux.intel.com>, Tom Murphy <murphyt7@tcd.ie>,
+ Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+From: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Message-ID: <160439750572.8460.14782978404889004150@jlahtine-mobl.ger.corp.intel.com>
+User-Agent: alot/0.8.1
+Date: Tue, 03 Nov 2020 11:58:26 +0200
+Subject: Re: [Intel-gfx] [PATCH v4 0/7] Convert the intel iommu driver to
+ the dma-iommu api
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -78,72 +61,68 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Daniel Vetter <daniel.vetter@ffwll.ch>,
- Intel Graphics <intel-gfx@lists.freedesktop.org>,
- Linux Next Mailing List <linux-next@vger.kernel.org>,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
- DRI <dri-devel@lists.freedesktop.org>
-Content-Type: multipart/mixed; boundary="===============1320129634=="
+Cc: Intel-gfx@lists.freedesktop.org, Ashok Raj <ashok.raj@intel.com>,
+ iommu@lists.linux-foundation.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+Quoting Tvrtko Ursulin (2020-11-03 11:14:32)
+> 
+> 
+> On 03/11/2020 02:53, Lu Baolu wrote:
+> > On 11/2/20 7:52 PM, Tvrtko Ursulin wrote:
+> >>
+> >> On 02/11/2020 02:00, Lu Baolu wrote:
+> >>> Hi Tvrtko,
+> >>> On 10/12/20 4:44 PM, Tvrtko Ursulin wrote:
+> >>>>
+> >>>> On 29/09/2020 01:11, Lu Baolu wrote:
 
---===============1320129634==
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="gk5a7k24qfabtq46"
-Content-Disposition: inline
+<SNIP>
 
+> >>>> FYI we have merged the required i915 patches to out tree last week 
+> >>>> or so. I *think* this means they will go into 5.11. So the i915 
+> >>>> specific workaround patch will not be needed in Intel IOMMU.
+> >>>
+> >>> Do you mind telling me what's the status of this fix patch? I tried this
+> >>> series on v5.10-rc1 with the graphic quirk patch dropped. I am still
+> >>> seeing dma faults from graphic device.
+> >>
+> >> Hmm back then I thought i915 fixes for this would land in 5.11 so I 
+> >> will stick with that. :) (See my quoted text a paragraph above yours.)
+> > 
+> > What size are those fixes? I am considering pushing this series for
+> > v5.11. Is it possible to get some acks for those patches and let them
+> > go to Linus through iommu tree?
+> 
+> For 5.10 you mean? They feel a bit too large for comfort to go via a 
+> non-i915/drm tree. These are the two patches required:
+> 
+> https://cgit.freedesktop.org/drm-intel/commit/?h=drm-intel-gt-next&id=8a473dbadccfc6206150de3db3223c40785da348
+> https://cgit.freedesktop.org/drm-intel/commit/?h=drm-intel-gt-next&id=934941ed5a3070a7833c688c9b1d71484fc01a68
+> 
+> I'll copy Joonas as our maintainer - how does the idea of taking the 
+> above two patches through the iommu tree sound to you?
 
---gk5a7k24qfabtq46
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Hi Lu,
 
-Hi Stephen,
+The patches have already been merged into our tree and are heading
+towards 5.11, so I don't think we should merge them elsewhere. DRM
+subsystem had the feature freeze for 5.10 at the time of 5.9-rc5
+and only drm-intel-fixes pull requests are sent after that.
 
-On Tue, Nov 03, 2020 at 11:31:21AM +1100, Stephen Rothwell wrote:
-> Hi all,
->=20
-> After merging the drm-misc-fixes tree, today's linux-next build (arm
-> multi_v7_defconfig) produced this warning:
->=20
-> drivers/gpu/drm/vc4/vc4_drv.c: In function 'vc4_drm_unbind':
-> drivers/gpu/drm/vc4/vc4_drv.c:322:18: warning: unused variable 'vc4' [-Wu=
-nused-variable]
->   322 |  struct vc4_dev *vc4 =3D to_vc4_dev(drm);
->       |                  ^~~
->=20
-> Introduced by commit
->=20
->   dcda7c28bff2 ("drm/vc4: kms: Add functions to create the state objects")
+The patches seem to target to eliminate need for a previously used
+workaround. To me it seems more appropriate for the patches to follow
+the regular process as new feature for 5.11 to make sure the changes
+get validated as part of linux-next.
 
-I just pushed a fix for that one, it should be resolved tomorrow
+Would that work for you? We intend to send the feature pull requests
+to DRM for 5.11 in the upcoming weeks.
 
-Thanks!
-Maxime
-
---gk5a7k24qfabtq46
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCX6EkgwAKCRDj7w1vZxhR
-xa7EAP4/4A3YLK6xqMRbgjbgjleRIoIpCAk2DyiaUKp0KsvDhAEApKtHtdCXkKBK
-6850n4kdukU0vDfZRT+HksVQqxlitAo=
-=5/0a
------END PGP SIGNATURE-----
-
---gk5a7k24qfabtq46--
-
---===============1320129634==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
+Regards, Joonas
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============1320129634==--
