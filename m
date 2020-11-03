@@ -1,40 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8CB8D2A3A42
-	for <lists+intel-gfx@lfdr.de>; Tue,  3 Nov 2020 03:11:37 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6C4582A3A50
+	for <lists+intel-gfx@lfdr.de>; Tue,  3 Nov 2020 03:18:09 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8FED36E82B;
-	Tue,  3 Nov 2020 02:11:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 43F096E47A;
+	Tue,  3 Nov 2020 02:18:06 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 769256E82B
- for <intel-gfx@lists.freedesktop.org>; Tue,  3 Nov 2020 02:11:33 +0000 (UTC)
-IronPort-SDR: SeDPIoUqcZWJ/K+d6cjvlGvAp/MgpKTwK7YpYwqQVMC0lwkJ51lM/NK05NfQVq17sI7Qd+lWTz
- zz1tqcrxDxvA==
-X-IronPort-AV: E=McAfee;i="6000,8403,9793"; a="186827079"
-X-IronPort-AV: E=Sophos;i="5.77,446,1596524400"; d="scan'208";a="186827079"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Nov 2020 18:11:33 -0800
-IronPort-SDR: 0iIEkaclcNiY1wftzZwpTphLUPGsUpG5FbaycaPvdNmic+ReB2uWjXDMwpbrw4dpCuxVMCEOnr
- NJwehiB58+xg==
-X-IronPort-AV: E=Sophos;i="5.77,446,1596524400"; d="scan'208";a="362810118"
-Received: from sdhanava-desk2.jf.intel.com ([10.165.21.144])
- by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Nov 2020 18:11:33 -0800
-From: Swathi Dhanavanthri <swathi.dhanavanthri@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Mon,  2 Nov 2020 17:59:35 -0800
-Message-Id: <20201103015935.3398-1-swathi.dhanavanthri@intel.com>
-X-Mailer: git-send-email 2.20.1
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 64E956E47A;
+ Tue,  3 Nov 2020 02:18:05 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 5E7C7A8832;
+ Tue,  3 Nov 2020 02:18:05 +0000 (UTC)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915/tgl, rkl,
- dg1: Apply WA_1406941453 to TGL, RKL and DG1
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Gwan-gyeong Mun" <gwan-gyeong.mun@intel.com>
+Date: Tue, 03 Nov 2020 02:18:05 -0000
+Message-ID: <160436988536.25741.9018335017582378680@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20201103015045.109306-1-gwan-gyeong.mun@intel.com>
+In-Reply-To: <20201103015045.109306-1-gwan-gyeong.mun@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_series_starting_with_=5B1/2=5D_drm/i915/display=3A_Support_?=
+ =?utf-8?q?PSR_Multiple_Transcoders?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,52 +39,65 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This workaround is applicable only for tgl,rkl and dg1.
+== Series Details ==
 
-Bspec: 52890, 53273, 53508.
+Series: series starting with [1/2] drm/i915/display: Support PSR Multiple Transcoders
+URL   : https://patchwork.freedesktop.org/series/83382/
+State : warning
 
-Signed-off-by: Swathi Dhanavanthri <swathi.dhanavanthri@intel.com>
----
- drivers/gpu/drm/i915/gt/intel_workarounds.c | 12 +++++-------
- 1 file changed, 5 insertions(+), 7 deletions(-)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-index fed9503a7c4e..45c082070bd9 100644
---- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
-+++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-@@ -1768,6 +1768,11 @@ rcs_engine_wa_init(struct intel_engine_cs *engine, struct i915_wa_list *wal)
- 		 */
- 		wa_write_or(wal, GEN7_FF_THREAD_MODE,
- 			    GEN12_FF_TESSELATION_DOP_GATE_DISABLE);
-+
-+		/* Wa_1406941453:tgl,rkl,dg1 */
-+		wa_masked_en(wal,
-+			     GEN10_SAMPLER_MODE,
-+			     ENABLE_SMALLPL);
- 	}
- 
- 	if (IS_DG1_REVID(i915, DG1_REVID_A0, DG1_REVID_A0) ||
-@@ -1806,13 +1811,6 @@ rcs_engine_wa_init(struct intel_engine_cs *engine, struct i915_wa_list *wal)
- 			     FF_DOP_CLOCK_GATE_DISABLE);
- 	}
- 
--	if (IS_GEN(i915, 12)) {
--		/* Wa_1406941453:gen12 */
--		wa_masked_en(wal,
--			     GEN10_SAMPLER_MODE,
--			     ENABLE_SMALLPL);
--	}
--
- 	if (IS_GEN(i915, 11)) {
- 		/* This is not an Wa. Enable for better image quality */
- 		wa_masked_en(wal,
--- 
-2.20.1
+$ dim checkpatch origin/drm-tip
+4a0e36485e2f drm/i915/display: Support PSR Multiple Transcoders
+-:207: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#207: FILE: drivers/gpu/drm/i915/display/intel_display_debugfs.c:428:
+ }
++static int i915_edp_psr_status(struct seq_file *m, void *data)
+
+-:247: WARNING:LINE_SPACING: Missing a blank line after declarations
+#247: FILE: drivers/gpu/drm/i915/display/intel_display_debugfs.c:464:
++		struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
++		if (!CAN_PSR(intel_dp))
+
+-:315: CHECK:UNCOMMENTED_DEFINITION: struct mutex definition without comment
+#315: FILE: drivers/gpu/drm/i915/display/intel_display_types.h:1290:
++	struct mutex lock;
+
+-:331: WARNING:UNSPECIFIED_INT: Prefer 'unsigned int' to bare use of 'unsigned'
+#331: FILE: drivers/gpu/drm/i915/display/intel_display_types.h:1306:
++	unsigned busy_frontbuffer_bits;
+
+-:852: WARNING:LONG_LINE: line length of 111 exceeds 100 columns
+#852: FILE: drivers/gpu/drm/i915/display/intel_psr.c:870:
++			    intel_de_read(dev_priv, EDP_PSR2_CTL(intel_dp->psr.transcoder)) & EDP_PSR2_ENABLE);
+
+-:858: WARNING:LONG_LINE: line length of 101 exceeds 100 columns
+#858: FILE: drivers/gpu/drm/i915/display/intel_psr.c:873:
++		    intel_de_read(dev_priv, EDP_PSR_CTL(intel_dp->psr.transcoder)) & EDP_PSR_ENABLE);
+
+-:1748: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'intel_dp' - possible side-effects?
+#1748: FILE: drivers/gpu/drm/i915/display/intel_psr.h:21:
++#define CAN_PSR(intel_dp) (HAS_PSR(dp_to_i915(intel_dp)) && intel_dp->psr.sink_support)
+
+-:1757: ERROR:POINTER_LOCATION: "foo* bar" should be "foo *bar"
+#1757: FILE: drivers/gpu/drm/i915/display/intel_psr.h:31:
++int intel_psr_debug_set(struct intel_dp* intel_dp, u64 value);
+
+total: 1 errors, 4 warnings, 3 checks, 1789 lines checked
+7018d6e83b98 drm/i915/display: Support Multiple Transcoders' PSR status on debugfs
+-:50: WARNING:SYMBOLIC_PERMS: Symbolic permissions 'S_IRUGO' are not preferred. Consider using octal permissions '0444'.
+#50: FILE: drivers/gpu/drm/i915/display/intel_display_debugfs.c:2288:
++		debugfs_create_file("i915_psr_status", S_IRUGO, root,
+
+total: 0 errors, 1 warnings, 0 checks, 35 lines checked
+
 
 _______________________________________________
 Intel-gfx mailing list
