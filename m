@@ -1,54 +1,43 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D9C162A40E4
-	for <lists+intel-gfx@lfdr.de>; Tue,  3 Nov 2020 10:58:35 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id EAD592A416A
+	for <lists+intel-gfx@lfdr.de>; Tue,  3 Nov 2020 11:14:29 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 496A76E85A;
-	Tue,  3 Nov 2020 09:58:34 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EDFB06E85A
- for <Intel-gfx@lists.freedesktop.org>; Tue,  3 Nov 2020 09:58:32 +0000 (UTC)
-IronPort-SDR: hcaEySASonghpw5IWeqyxnoa8TnZ2h92tISTnyle5GthWzqZ9+AkxFt4DMz9Kwh2Y9Qs7/KjBX
- MdOU/1X6tldA==
-X-IronPort-AV: E=McAfee;i="6000,8403,9793"; a="230656685"
-X-IronPort-AV: E=Sophos;i="5.77,447,1596524400"; d="scan'208";a="230656685"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5E0646E89A;
+	Tue,  3 Nov 2020 10:14:28 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0A7056E89A
+ for <intel-gfx@lists.freedesktop.org>; Tue,  3 Nov 2020 10:14:26 +0000 (UTC)
+IronPort-SDR: tSrxQqoT8ljeLokMsqZdGFEYIHvAJs2NaUVIx6itkf0wOA8NS5iCQ5M4Cc41E3g2GtF3UoMv0X
+ Q6liUvDsTFlw==
+X-IronPort-AV: E=McAfee;i="6000,8403,9793"; a="169134946"
+X-IronPort-AV: E=Sophos;i="5.77,447,1596524400"; d="scan'208";a="169134946"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Nov 2020 01:58:32 -0800
-IronPort-SDR: qXZ3CdVSYmts5JPldn4hVxPQrAnAqM0Gp50/FrVIsGpM55HmGd9I+qH+0dA28fc+ZNECT9313p
- hjOw5WMKj6fQ==
-X-IronPort-AV: E=Sophos;i="5.77,447,1596524400"; d="scan'208";a="528363463"
-Received: from stevenro-mobl.ger.corp.intel.com (HELO localhost)
- ([10.252.23.13])
- by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Nov 2020 01:58:28 -0800
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Nov 2020 02:14:26 -0800
+IronPort-SDR: BLdmefsmpACf2OF+l6d8q4dZYMDt+IsSIc7s+EDh7fqxrjoRcWmVIen+ZPA7GhPq17UeF6FErd
+ 29GkHuMsHBsw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.77,447,1596524400"; d="scan'208";a="396518950"
+Received: from gaia.fi.intel.com ([10.237.72.192])
+ by orsmga001.jf.intel.com with ESMTP; 03 Nov 2020 02:14:25 -0800
+Received: by gaia.fi.intel.com (Postfix, from userid 1000)
+ id 7C5D25C2054; Tue,  3 Nov 2020 12:12:37 +0200 (EET)
+From: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
+In-Reply-To: <20201102221057.29626-1-chris@chris-wilson.co.uk>
+References: <20201102221057.29626-1-chris@chris-wilson.co.uk>
+Date: Tue, 03 Nov 2020 12:12:37 +0200
+Message-ID: <877dr2g356.fsf@gaia.fi.intel.com>
 MIME-Version: 1.0
-In-Reply-To: <99a0d1eb-7fde-dff4-225f-92b68fbf7620@linux.intel.com>
-References: <20200927063437.13988-1-baolu.lu@linux.intel.com>
- <e999e371-6d36-ffea-542f-a5f4b230b0ed@linux.intel.com>
- <c2af9a9d-1cae-b8f7-a0b3-880574060a23@linux.intel.com>
- <8bac9e91-36a0-c1d6-a887-4d60567ac75a@linux.intel.com>
- <3f5694f3-62f9-cc2b-1c2b-f9e99a4788c1@linux.intel.com>
- <1ce5b94a-38b3-548e-3b1a-a68390b93953@linux.intel.com>
- <82dab98e-0761-8946-c31c-92f19a0615b4@linux.intel.com>
- <99a0d1eb-7fde-dff4-225f-92b68fbf7620@linux.intel.com>
-To: Christoph Hellwig <hch@infradead.org>,
- David Woodhouse <dwmw2@infradead.org>, Joerg Roedel <joro@8bytes.org>,
- Lu Baolu <baolu.lu@linux.intel.com>, Tom Murphy <murphyt7@tcd.ie>,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-From: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Message-ID: <160439750572.8460.14782978404889004150@jlahtine-mobl.ger.corp.intel.com>
-User-Agent: alot/0.8.1
-Date: Tue, 03 Nov 2020 11:58:26 +0200
-Subject: Re: [Intel-gfx] [PATCH v4 0/7] Convert the intel iommu driver to
- the dma-iommu api
+Subject: Re: [Intel-gfx] [PATCH 1/2] drm/i915/gt: Expose more parameters for
+ emitting writes into the ring
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,67 +50,124 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel-gfx@lists.freedesktop.org, Ashok Raj <ashok.raj@intel.com>,
- iommu@lists.linux-foundation.org, linux-kernel@vger.kernel.org
+Cc: Chris Wilson <chris@chris-wilson.co.uk>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Tvrtko Ursulin (2020-11-03 11:14:32)
-> 
-> 
-> On 03/11/2020 02:53, Lu Baolu wrote:
-> > On 11/2/20 7:52 PM, Tvrtko Ursulin wrote:
-> >>
-> >> On 02/11/2020 02:00, Lu Baolu wrote:
-> >>> Hi Tvrtko,
-> >>> On 10/12/20 4:44 PM, Tvrtko Ursulin wrote:
-> >>>>
-> >>>> On 29/09/2020 01:11, Lu Baolu wrote:
+Chris Wilson <chris@chris-wilson.co.uk> writes:
 
-<SNIP>
+> Add another lower level to emit_ggtt_write so that the GGTT nature of
+> the write is not hardcoded into the emitter.
+>
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> ---
+>  drivers/gpu/drm/i915/gt/intel_engine.h | 55 ++++++++++++++++----------
+>  1 file changed, 35 insertions(+), 20 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/gt/intel_engine.h b/drivers/gpu/drm/i915/gt/intel_engine.h
+> index 7c3a1012e702..760fefdfe392 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_engine.h
+> +++ b/drivers/gpu/drm/i915/gt/intel_engine.h
+> @@ -245,22 +245,14 @@ static inline u32 *gen12_emit_pipe_control(u32 *batch, u32 flags0, u32 flags1, u
+>  }
+>  
+>  static inline u32 *
+> -__gen8_emit_ggtt_write_rcs(u32 *cs, u32 value, u32 gtt_offset, u32 flags0, u32 flags1)
+> +__gen8_emit_write_rcs(u32 *cs, u32 value, u32 offset, u32 flags0, u32 flags1)
 
-> >>>> FYI we have merged the required i915 patches to out tree last week 
-> >>>> or so. I *think* this means they will go into 5.11. So the i915 
-> >>>> specific workaround patch will not be needed in Intel IOMMU.
-> >>>
-> >>> Do you mind telling me what's the status of this fix patch? I tried this
-> >>> series on v5.10-rc1 with the graphic quirk patch dropped. I am still
-> >>> seeing dma faults from graphic device.
-> >>
-> >> Hmm back then I thought i915 fixes for this would land in 5.11 so I 
-> >> will stick with that. :) (See my quoted text a paragraph above yours.)
-> > 
-> > What size are those fixes? I am considering pushing this series for
-> > v5.11. Is it possible to get some acks for those patches and let them
-> > go to Linus through iommu tree?
-> 
-> For 5.10 you mean? They feel a bit too large for comfort to go via a 
-> non-i915/drm tree. These are the two patches required:
-> 
-> https://cgit.freedesktop.org/drm-intel/commit/?h=drm-intel-gt-next&id=8a473dbadccfc6206150de3db3223c40785da348
-> https://cgit.freedesktop.org/drm-intel/commit/?h=drm-intel-gt-next&id=934941ed5a3070a7833c688c9b1d71484fc01a68
-> 
-> I'll copy Joonas as our maintainer - how does the idea of taking the 
-> above two patches through the iommu tree sound to you?
+Opportunity to swap the offset/value to be in line with the actual qw
+write. Just an observation rather than a value add proposal.
 
-Hi Lu,
+Reviewed-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
 
-The patches have already been merged into our tree and are heading
-towards 5.11, so I don't think we should merge them elsewhere. DRM
-subsystem had the feature freeze for 5.10 at the time of 5.9-rc5
-and only drm-intel-fixes pull requests are sent after that.
-
-The patches seem to target to eliminate need for a previously used
-workaround. To me it seems more appropriate for the patches to follow
-the regular process as new feature for 5.11 to make sure the changes
-get validated as part of linux-next.
-
-Would that work for you? We intend to send the feature pull requests
-to DRM for 5.11 in the upcoming weeks.
-
-Regards, Joonas
+>  {
+> -	/* We're using qword write, offset should be aligned to 8 bytes. */
+> -	GEM_BUG_ON(!IS_ALIGNED(gtt_offset, 8));
+> -
+> -	/* w/a for post sync ops following a GPGPU operation we
+> -	 * need a prior CS_STALL, which is emitted by the flush
+> -	 * following the batch.
+> -	 */
+>  	*cs++ = GFX_OP_PIPE_CONTROL(6) | flags0;
+> -	*cs++ = flags1 | PIPE_CONTROL_QW_WRITE | PIPE_CONTROL_GLOBAL_GTT_IVB;
+> -	*cs++ = gtt_offset;
+> +	*cs++ = flags1 | PIPE_CONTROL_QW_WRITE;
+> +	*cs++ = offset;
+>  	*cs++ = 0;
+>  	*cs++ = value;
+> -	/* We're thrashing one dword of HWS. */
+> -	*cs++ = 0;
+> +	*cs++ = 0; /* We're thrashing one extra dword. */
+>  
+>  	return cs;
+>  }
+> @@ -268,13 +260,38 @@ __gen8_emit_ggtt_write_rcs(u32 *cs, u32 value, u32 gtt_offset, u32 flags0, u32 f
+>  static inline u32*
+>  gen8_emit_ggtt_write_rcs(u32 *cs, u32 value, u32 gtt_offset, u32 flags)
+>  {
+> -	return __gen8_emit_ggtt_write_rcs(cs, value, gtt_offset, 0, flags);
+> +	/* We're using qword write, offset should be aligned to 8 bytes. */
+> +	GEM_BUG_ON(!IS_ALIGNED(gtt_offset, 8));
+> +
+> +	return __gen8_emit_write_rcs(cs,
+> +				     value,
+> +				     gtt_offset,
+> +				     0,
+> +				     flags | PIPE_CONTROL_GLOBAL_GTT_IVB);
+>  }
+>  
+>  static inline u32*
+>  gen12_emit_ggtt_write_rcs(u32 *cs, u32 value, u32 gtt_offset, u32 flags0, u32 flags1)
+>  {
+> -	return __gen8_emit_ggtt_write_rcs(cs, value, gtt_offset, flags0, flags1);
+> +	/* We're using qword write, offset should be aligned to 8 bytes. */
+> +	GEM_BUG_ON(!IS_ALIGNED(gtt_offset, 8));
+> +
+> +	return __gen8_emit_write_rcs(cs,
+> +				     value,
+> +				     gtt_offset,
+> +				     flags0,
+> +				     flags1 | PIPE_CONTROL_GLOBAL_GTT_IVB);
+> +}
+> +
+> +static inline u32 *
+> +__gen8_emit_flush_dw(u32 *cs, u32 value, u32 gtt_offset, u32 flags)
+> +{
+> +	*cs++ = (MI_FLUSH_DW + 1) | flags;
+> +	*cs++ = gtt_offset;
+> +	*cs++ = 0;
+> +	*cs++ = value;
+> +
+> +	return cs;
+>  }
+>  
+>  static inline u32 *
+> @@ -285,12 +302,10 @@ gen8_emit_ggtt_write(u32 *cs, u32 value, u32 gtt_offset, u32 flags)
+>  	/* Offset should be aligned to 8 bytes for both (QW/DW) write types */
+>  	GEM_BUG_ON(!IS_ALIGNED(gtt_offset, 8));
+>  
+> -	*cs++ = (MI_FLUSH_DW + 1) | MI_FLUSH_DW_OP_STOREDW | flags;
+> -	*cs++ = gtt_offset | MI_FLUSH_DW_USE_GTT;
+> -	*cs++ = 0;
+> -	*cs++ = value;
+> -
+> -	return cs;
+> +	return __gen8_emit_flush_dw(cs,
+> +				    value,
+> +				    gtt_offset | MI_FLUSH_DW_USE_GTT,
+> +				    flags | MI_FLUSH_DW_OP_STOREDW);
+>  }
+>  
+>  static inline void __intel_engine_reset(struct intel_engine_cs *engine,
+> -- 
+> 2.20.1
+>
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
