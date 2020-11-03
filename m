@@ -1,44 +1,64 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 66BB42A4C09
-	for <lists+intel-gfx@lfdr.de>; Tue,  3 Nov 2020 17:54:27 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 882572A4D8A
+	for <lists+intel-gfx@lfdr.de>; Tue,  3 Nov 2020 18:53:41 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CCA176ECE1;
-	Tue,  3 Nov 2020 16:54:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8D53A6E8DE;
+	Tue,  3 Nov 2020 17:53:38 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E59AE6ECE1
- for <intel-gfx@lists.freedesktop.org>; Tue,  3 Nov 2020 16:54:23 +0000 (UTC)
-IronPort-SDR: fUpoAucN8UHLqgtgoAUQHPwF3LmH8iIeR0a2DsONdTQ4RLtIjQsFE3NkRjcr0+yw0RvwBbAAJM
- b9nFZmk6/gYg==
-X-IronPort-AV: E=McAfee;i="6000,8403,9794"; a="169219716"
-X-IronPort-AV: E=Sophos;i="5.77,448,1596524400"; d="scan'208";a="169219716"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Nov 2020 08:54:23 -0800
-IronPort-SDR: MzVXNylgRJX+Vdg3xEqriFRXtlB2p9eKEf88E1sop8IG1+tcD6bLBmK/NoaWulQJue1geoxY5P
- Mpv+4TAG+Tiw==
-X-IronPort-AV: E=Sophos;i="5.77,448,1596524400"; d="scan'208";a="470866341"
-Received: from ideak-desk.fi.intel.com ([10.237.68.141])
- by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Nov 2020 08:54:22 -0800
-Date: Tue, 3 Nov 2020 18:54:18 +0200
-From: Imre Deak <imre.deak@intel.com>
-To: "Surendrakumar Upadhyay,
- TejaskumarX" <tejaskumarx.surendrakumar.upadhyay@intel.com>
-Message-ID: <20201103165418.GD3990501@ideak-desk.fi.intel.com>
-References: <20201103134651.165527-1-tejaskumarx.surendrakumar.upadhyay@intel.com>
- <20201103154251.GC3990501@ideak-desk.fi.intel.com>
- <SN6PR11MB3421F9D19E654913226FCE67DF110@SN6PR11MB3421.namprd11.prod.outlook.com>
+Received: from mail-ed1-x544.google.com (mail-ed1-x544.google.com
+ [IPv6:2a00:1450:4864:20::544])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 010C96E8DA
+ for <intel-gfx@lists.freedesktop.org>; Tue,  3 Nov 2020 17:53:36 +0000 (UTC)
+Received: by mail-ed1-x544.google.com with SMTP id a71so13911154edf.9
+ for <intel-gfx@lists.freedesktop.org>; Tue, 03 Nov 2020 09:53:36 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=linux-foundation.org; s=google;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=o0HUqTtrB0uneYNpLQNhQJ6FusME7LjWI9KZLqRyy8M=;
+ b=HlBdVjW42hUSJkakIiVHCgxY07l6tlPx/MKTOg49MQqEt9fKpSl2tO6bNlSfEMf3/D
+ yOb2ZUXxHpDZzPlQCZuCKgGgj4iIodCB3C8y4WCLAE53N4IY/fO4MumxqPXGllxVBzjJ
+ AuMTxQdvsElAjMkZERbVlQwjny9JwixE30+4I=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=o0HUqTtrB0uneYNpLQNhQJ6FusME7LjWI9KZLqRyy8M=;
+ b=ows4O+5yY+zAqCnyGy/zAco3vp5cqRgY2mwYN1SY99kojKzG5Rk8r67id3ib2HkgP3
+ pivCK8yOdiD4aumSFU3WMjtoud/2+s0xjMdBjZqNrv+MfvlU9QRD7M7zgl9l/XeONHMn
+ ke62EMgySgLVkGiXgiVelrmIx5rbpqiEGtBr9cTlYq4iP2ma0tEU8OogjvnDZpAwn2q3
+ 8gLb4iEjdIJFX/iAwmdJ6Pid1fByy4o0CAokJ23ZiNN0rd9uZj4zdn4vc4yN7zteWgZb
+ Y8BNYAp9zTNL4T5O5QPjFu31xheMpGim4f0jUbTfhNM6WVIQFI5GHPYDsHlzwXOQDLtF
+ WWWg==
+X-Gm-Message-State: AOAM533XmZQHJsyko/K7V9U+RxKHcTpob0rV+ChJK+og2dHwnlXtq8AU
+ Y3fUGJOZ+YZ32oRPNJ3YHX9tZDCB9nJSHw==
+X-Google-Smtp-Source: ABdhPJxJiBIa7T355hT/T6D4z+TgL94RqP10HGavVo4LWLFa+bxY+l08YIl7KVlCe4YkvBeWsNtE+w==
+X-Received: by 2002:aa7:c889:: with SMTP id p9mr8104074eds.110.1604426015405; 
+ Tue, 03 Nov 2020 09:53:35 -0800 (PST)
+Received: from mail-ed1-f46.google.com (mail-ed1-f46.google.com.
+ [209.85.208.46])
+ by smtp.gmail.com with ESMTPSA id x2sm9229928ejb.86.2020.11.03.09.53.35
+ for <intel-gfx@lists.freedesktop.org>
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Tue, 03 Nov 2020 09:53:35 -0800 (PST)
+Received: by mail-ed1-f46.google.com with SMTP id k9so19299121edo.5
+ for <intel-gfx@lists.freedesktop.org>; Tue, 03 Nov 2020 09:53:35 -0800 (PST)
+X-Received: by 2002:a19:4815:: with SMTP id v21mr8859386lfa.603.1604425706752; 
+ Tue, 03 Nov 2020 09:48:26 -0800 (PST)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <SN6PR11MB3421F9D19E654913226FCE67DF110@SN6PR11MB3421.namprd11.prod.outlook.com>
-Subject: Re: [Intel-gfx] [PATCH V2] drm/i915/ehl: Implement W/A 22010492432
+References: <20201103092712.714480842@linutronix.de>
+ <20201103095858.827582066@linutronix.de>
+In-Reply-To: <20201103095858.827582066@linutronix.de>
+From: Linus Torvalds <torvalds@linux-foundation.org>
+Date: Tue, 3 Nov 2020 09:48:10 -0800
+X-Gmail-Original-Message-ID: <CAHk-=wg2D_yjgKYkXCybD3uf0dtwYh6HxZ9BQJfV5t+EBqLGQQ@mail.gmail.com>
+Message-ID: <CAHk-=wg2D_yjgKYkXCybD3uf0dtwYh6HxZ9BQJfV5t+EBqLGQQ@mail.gmail.com>
+To: Thomas Gleixner <tglx@linutronix.de>
+Subject: Re: [Intel-gfx] [patch V3 22/37] highmem: High implementation
+ details and document API
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,124 +71,99 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: imre.deak@intel.com
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "Pandey, Hariom" <hariom.pandey@intel.com>
+Cc: Juri Lelli <juri.lelli@redhat.com>, linux-aio@kvack.org,
+ Peter Zijlstra <peterz@infradead.org>,
+ Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+ Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
+ dri-devel <dri-devel@lists.freedesktop.org>, linux-mips@vger.kernel.org,
+ Ben Segall <bsegall@google.com>, Chris Mason <clm@fb.com>,
+ Huang Rui <ray.huang@amd.com>, Paul Mackerras <paulus@samba.org>,
+ Gerd Hoffmann <kraxel@redhat.com>,
+ Daniel Bristot de Oliveira <bristot@redhat.com>,
+ linux-sparc <sparclinux@vger.kernel.org>, Vincent Chen <deanbo422@gmail.com>,
+ Christoph Hellwig <hch@lst.de>, Paul McKenney <paulmck@kernel.org>,
+ Max Filippov <jcmvbkbc@gmail.com>, Michael Ellerman <mpe@ellerman.id.au>,
+ the arch/x86 maintainers <x86@kernel.org>,
+ Russell King <linux@armlinux.org.uk>, linux-csky@vger.kernel.org,
+ Ingo Molnar <mingo@kernel.org>, David Airlie <airlied@linux.ie>,
+ VMware Graphics <linux-graphics-maintainer@vmware.com>,
+ Mel Gorman <mgorman@suse.de>, nouveau@lists.freedesktop.org,
+ Dave Airlie <airlied@redhat.com>,
+ "open list:SYNOPSYS ARC ARCHITECTURE" <linux-snps-arc@lists.infradead.org>,
+ Ben Skeggs <bskeggs@redhat.com>, linux-xtensa@linux-xtensa.org,
+ Arnd Bergmann <arnd@arndb.de>, intel-gfx <intel-gfx@lists.freedesktop.org>,
+ Roland Scheidegger <sroland@vmware.com>, Josef Bacik <josef@toxicpanda.com>,
+ Steven Rostedt <rostedt@goodmis.org>, Alexander Viro <viro@zeniv.linux.org.uk>,
+ spice-devel@lists.freedesktop.org, David Sterba <dsterba@suse.com>,
+ virtualization@lists.linux-foundation.org,
+ Dietmar Eggemann <dietmar.eggemann@arm.com>,
+ Linux ARM <linux-arm-kernel@lists.infradead.org>,
+ Chris Zankel <chris@zankel.net>, Michal Simek <monstr@monstr.eu>,
+ Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+ Nick Hu <nickhu@andestech.com>, Linux-MM <linux-mm@kvack.org>,
+ Vineet Gupta <vgupta@synopsys.com>, LKML <linux-kernel@vger.kernel.org>,
+ Christian Koenig <christian.koenig@amd.com>, Benjamin LaHaise <bcrl@kvack.org>,
+ linux-fsdevel <linux-fsdevel@vger.kernel.org>,
+ Andrew Morton <akpm@linux-foundation.org>,
+ linuxppc-dev <linuxppc-dev@lists.ozlabs.org>,
+ "David S. Miller" <davem@davemloft.net>,
+ linux-btrfs <linux-btrfs@vger.kernel.org>, Greentime Hu <green.hu@gmail.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Nov 03, 2020 at 06:31:58PM +0200, Surendrakumar Upadhyay, TejaskumarX wrote:
-> > -----Original Message-----
-> > From: Imre Deak <imre.deak@intel.com>
-> > Sent: 03 November 2020 21:13
-> > To: Surendrakumar Upadhyay, TejaskumarX
-> > <tejaskumarx.surendrakumar.upadhyay@intel.com>
-> > Cc: intel-gfx@lists.freedesktop.org; Pandey, Hariom
-> > <hariom.pandey@intel.com>
-> > Subject: Re: [PATCH V2] drm/i915/ehl: Implement W/A 22010492432
-> >
-> > On Tue, Nov 03, 2020 at 07:16:51PM +0530, Tejas Upadhyay wrote:
-> > > As per W/A implemented for TGL to program half of the nominal DCO
-> > > divider fraction value which is also applicable on EHL.
-> > >
-> > > Changes since V1:
-> > > - ehl_ used as to keep earliest platform prefix
-> > > - WA required B0 stepping onwards
-> > >
-> > > Cc: Deak Imre <imre.deak@intel.com>
-> > > Signed-off-by: Tejas Upadhyay
-> > > <tejaskumarx.surendrakumar.upadhyay@intel.com>
-> > > ---
-> > >  drivers/gpu/drm/i915/display/intel_dpll_mgr.c | 13 ++++++++-----
-> > >  drivers/gpu/drm/i915/i915_drv.h               |  1 +
-> > >  2 files changed, 9 insertions(+), 5 deletions(-)
-> > >
-> > > diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-> > > b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-> > > index eaef7a2d041f..cb6ebf627c04 100644
-> > > --- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-> > > +++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-> > > @@ -2636,13 +2636,16 @@ static bool cnl_ddi_hdmi_pll_dividers(struct
-> > > intel_crtc_state *crtc_state)  }
-> > >
-> > >  /*
-> > > - * Display WA #22010492432: tgl
-> > > + * Display WA #22010492432: ehl, tgl
-> > >   * Program half of the nominal DCO divider fraction value.
-> > >   */
-> > >  static bool
-> > > -tgl_combo_pll_div_frac_wa_needed(struct drm_i915_private *i915)
-> > > +ehl_combo_pll_div_frac_wa_needed(struct drm_i915_private *i915)
-> > >  {
-> > > -return IS_TIGERLAKE(i915) && i915->dpll.ref_clks.nssc == 38400;
-> > > +return ((IS_PLATFORM(i915, INTEL_ELKHARTLAKE) &&
-> > > +IS_JSL_EHL_REVID(i915, EHL_REVID_B0, EHL_REVID_B0)) ||
-> >
-> > Imo, better to add a definition for IS_ELKHARTLAKE() and IS_EHL_REVID().
-> >
-> It has been already discussed in previous EHL/JSL PCI id split patch
-> (between Matt Roper/Ville/Me) that we will not keep IS_ELKHARTLAKE()
-> and IS_EHL_REVID() instead we will replace with IS_PLATFORM(i915,
-> INTEL_ELKHARTLAKE) and IS_JSL_EHL_REVID .
-
-Ok, missed that discussion.
-
-> > It also applies after B0, so it'd be
-> > IS_EHL_REVID(EHL_REVID_B0, REVID_FOREVER);
+On Tue, Nov 3, 2020 at 2:33 AM Thomas Gleixner <tglx@linutronix.de> wrote:
 >
-> B0 is latest revision. So current logic should be fine.
+> +static inline void *kmap(struct page *page)
+> +{
+> +       void *addr;
+> +
+> +       might_sleep();
+> +       if (!PageHighMem(page))
+> +               addr = page_address(page);
+> +       else
+> +               addr = kmap_high(page);
+> +       kmap_flush_tlb((unsigned long)addr);
+> +       return addr;
+> +}
+> +
+> +static inline void kunmap(struct page *page)
+> +{
+> +       might_sleep();
+> +       if (!PageHighMem(page))
+> +               return;
+> +       kunmap_high(page);
+> +}
 
-Until a new revision appears. The spec says to apply the WA on all
-steppings starting with B0, I don't see a reason to do otherwise.
+I have no complaints about the patch, but it strikes me that if people
+want to actually have much better debug coverage, this is where it
+should be (I like the "every other address" thing too, don't get me
+wrong).
 
-> > > +IS_TIGERLAKE(i915)) &&
-> > > +i915->dpll.ref_clks.nssc == 38400;
-> > >  }
-> > >
-> > >  static int __cnl_ddi_wrpll_get_freq(struct drm_i915_private
-> > > *dev_priv, @@ -2696,7 +2699,7 @@ static int
-> > __cnl_ddi_wrpll_get_freq(struct drm_i915_private *dev_priv,
-> > >  dco_fraction = (pll_state->cfgcr0 &
-> > DPLL_CFGCR0_DCO_FRACTION_MASK) >>
-> > >         DPLL_CFGCR0_DCO_FRACTION_SHIFT;
-> > >
-> > > -if (tgl_combo_pll_div_frac_wa_needed(dev_priv))
-> > > +if (ehl_combo_pll_div_frac_wa_needed(dev_priv))
-> > >  dco_fraction *= 2;
-> > >
-> > >  dco_freq += (dco_fraction * ref_clock) / 0x8000; @@ -3086,7 +3089,7
-> > > @@ static void icl_calc_dpll_state(struct drm_i915_private *i915,
-> > >
-> > >  memset(pll_state, 0, sizeof(*pll_state));
-> > >
-> > > -if (tgl_combo_pll_div_frac_wa_needed(i915))
-> > > +if (ehl_combo_pll_div_frac_wa_needed(i915))
-> > >  dco_fraction = DIV_ROUND_CLOSEST(dco_fraction, 2);
-> > >
-> > >  pll_state->cfgcr0 = DPLL_CFGCR0_DCO_FRACTION(dco_fraction) | diff
-> > > --git a/drivers/gpu/drm/i915/i915_drv.h
-> > > b/drivers/gpu/drm/i915/i915_drv.h index d548e10e1600..8bf59b57efc9
-> > > 100644
-> > > --- a/drivers/gpu/drm/i915/i915_drv.h
-> > > +++ b/drivers/gpu/drm/i915/i915_drv.h
-> > > @@ -1560,6 +1560,7 @@ extern const struct i915_rev_steppings
-> > kbl_revids[];
-> > >  (IS_ICELAKE(p) && IS_REVID(p, since, until))
-> > >
-> > >  #define EHL_REVID_A0            0x0
-> > > +#define EHL_REVID_B0            0x2
-> >
-> > Where are the steppings specified for EHL? At least on the BSpec/29153 page
-> > I see EHL/B0 being 1.
-> >
-> > >
-> > >  #define IS_JSL_EHL_REVID(p, since, until) \
-> > >  (IS_JSL_EHL(p) && IS_REVID(p, since, until))
-> > > --
-> > > 2.28.0
-> > >
+In particular, instead of these PageHighMem(page) tests, I think
+something like this would be better:
+
+   #ifdef CONFIG_DEBUG_HIGHMEM
+     #define page_use_kmap(page) ((page),1)
+   #else
+     #define page_use_kmap(page) PageHighMem(page)
+   #endif
+
+adn then replace those "if (!PageHighMem(page))" tests with "if
+(!page_use_kmap())" instead.
+
+IOW, in debug mode, it would _always_ remap the page, whether it's
+highmem or not. That would really stress the highmem code and find any
+fragilities.
+
+No?
+
+Anyway, this is all sepatrate from the series, which still looks fine
+to me. Just a reaction to seeing the patch, and Thomas' earlier
+mention that the highmem debugging doesn't actually do much.
+
+               Linus
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
