@@ -2,46 +2,44 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B1C1C2A46D0
-	for <lists+intel-gfx@lfdr.de>; Tue,  3 Nov 2020 14:49:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B054E2A46DC
+	for <lists+intel-gfx@lfdr.de>; Tue,  3 Nov 2020 14:51:29 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0E70D6EC85;
-	Tue,  3 Nov 2020 13:49:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E38A86ECAB;
+	Tue,  3 Nov 2020 13:51:27 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6A1476EC85
- for <intel-gfx@lists.freedesktop.org>; Tue,  3 Nov 2020 13:49:51 +0000 (UTC)
-IronPort-SDR: 2CdgIlVc1AjzSd5DEtKklfaWZW/lxxoaHHI8uadLHh5g3qlMgHL/ZnCfuQfKsKeo8ik0qgFvJt
- caxX6H+BUlCA==
-X-IronPort-AV: E=McAfee;i="6000,8403,9793"; a="253762581"
-X-IronPort-AV: E=Sophos;i="5.77,448,1596524400"; d="scan'208";a="253762581"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Nov 2020 05:49:51 -0800
-IronPort-SDR: q0MYsD47oMvi0U2SWamAr33aV3xwsTjTYU4w9ebdFqjfypip7EFfOqhBs/J29xq0oSVJvNxDRt
- EnNV/q6W4H+Q==
-X-IronPort-AV: E=Sophos;i="5.77,448,1596524400"; d="scan'208";a="528488506"
-Received: from emalinow-mobl.ger.corp.intel.com (HELO
- W10-45-itb-64.SSPE.ch.intel.com) ([10.249.254.149])
- by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Nov 2020 05:49:50 -0800
-To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-References: <20201016104444.1492028-1-maarten.lankhorst@linux.intel.com>
- <20201016104444.1492028-2-maarten.lankhorst@linux.intel.com>
-From: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>
-Message-ID: <46d22456-dce4-1880-de27-925056d3e4b7@linux.intel.com>
-Date: Tue, 3 Nov 2020 14:49:46 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.3.1
+X-Greylist: delayed 11881 seconds by postgrey-1.36 at gabe;
+ Tue, 03 Nov 2020 13:51:26 UTC
+Received: from galois.linutronix.de (Galois.linutronix.de
+ [IPv6:2a0a:51c0:0:12e:550::1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A7A0C6ECAD;
+ Tue,  3 Nov 2020 13:51:26 +0000 (UTC)
+From: Thomas Gleixner <tglx@linutronix.de>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
+ s=2020; t=1604411485;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to; bh=IS0H0PmYwF+g21mCG5Xo/19/WQ/0DRdzMedmtdA3coA=;
+ b=HrIvto5PjENGZ2sJaNLHD5fU5x7ktTkUsQiiDyfOlfNVG6i2QfDeoLNWiuBZ8UuMqdNhX2
+ fB4hQZYW9XLjZyQzXu32J97iL+4BOXERJUUmfYUCqJbELJ/WBmwK+DuqZ6BSQGoZXks/KC
+ aDoQ57uSGJVq4g4B3MLZakzs1shvqXk/dnG4UwyHY3B13uTe41oYG3HvCVER6K38Ja+gJt
+ 7Usp+noPsRZGIC1+DKDd7s1qqy+Nv55wtBL5RImMxzkF+RjknCJjAvMn0ydLpnI8IyVMmU
+ hhwOYGNoGIQLOU3q/1OXFTFUdc4C4oO5CKnfyMrPpfB98PwG0AkBsHS1Z2hGyg==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
+ s=2020e; t=1604411485;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to; bh=IS0H0PmYwF+g21mCG5Xo/19/WQ/0DRdzMedmtdA3coA=;
+ b=66P0BI0kspaCcqHZR5ZhOyEE21HuNZfhFXd12L2xM9Ri7Lmpu3Br/scECIFCm7xMgiFzUo
+ sskAL7tUf7GfYKDg==
+To: LKML <linux-kernel@vger.kernel.org>
+In-Reply-To: <20201103095859.038791330@linutronix.de>
+Date: Tue, 03 Nov 2020 14:51:24 +0100
+Message-ID: <877dr235wj.fsf@nanos.tec.linutronix.de>
 MIME-Version: 1.0
-In-Reply-To: <20201016104444.1492028-2-maarten.lankhorst@linux.intel.com>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH v4 01/61] drm/i915: Move cmd parser pinning
- to execbuffer
+Subject: [Intel-gfx] [patch V4 24/37] sched: highmem: Store local kmaps in
+ task struct
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,28 +52,336 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Cc: Juri Lelli <juri.lelli@redhat.com>, linux-aio@kvack.org,
+ Peter Zijlstra <peterz@infradead.org>,
+ Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+ Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
+ dri-devel@lists.freedesktop.org, virtualization@lists.linux-foundation.org,
+ Ben Segall <bsegall@google.com>, Chris Mason <clm@fb.com>,
+ Huang Rui <ray.huang@amd.com>, Paul Mackerras <paulus@samba.org>,
+ Gerd Hoffmann <kraxel@redhat.com>,
+ Daniel Bristot de Oliveira <bristot@redhat.com>, sparclinux@vger.kernel.org,
+ Vincent Chen <deanbo422@gmail.com>, Christoph Hellwig <hch@lst.de>,
+ Paul McKenney <paulmck@kernel.org>, Max Filippov <jcmvbkbc@gmail.com>,
+ Michael Ellerman <mpe@ellerman.id.au>, x86@kernel.org,
+ Russell King <linux@armlinux.org.uk>, linux-csky@vger.kernel.org,
+ Ingo Molnar <mingo@kernel.org>, David Airlie <airlied@linux.ie>,
+ VMware Graphics <linux-graphics-maintainer@vmware.com>,
+ Mel Gorman <mgorman@suse.de>, nouveau@lists.freedesktop.org,
+ Dave Airlie <airlied@redhat.com>, linux-snps-arc@lists.infradead.org,
+ Ben Skeggs <bskeggs@redhat.com>, linux-xtensa@linux-xtensa.org,
+ Arnd Bergmann <arnd@arndb.de>, intel-gfx@lists.freedesktop.org,
+ Roland Scheidegger <sroland@vmware.com>, Josef Bacik <josef@toxicpanda.com>,
+ Steven Rostedt <rostedt@goodmis.org>,
+ Linus Torvalds <torvalds@linuxfoundation.org>,
+ Alexander Viro <viro@zeniv.linux.org.uk>, spice-devel@lists.freedesktop.org,
+ David Sterba <dsterba@suse.com>, Dietmar Eggemann <dietmar.eggemann@arm.com>,
+ linux-arm-kernel@lists.infradead.org, Chris Zankel <chris@zankel.net>,
+ Michal Simek <monstr@monstr.eu>,
+ Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+ Nick Hu <nickhu@andestech.com>, linux-mm@kvack.org,
+ Vineet Gupta <vgupta@synopsys.com>, linux-mips@vger.kernel.org,
+ Christian Koenig <christian.koenig@amd.com>, Benjamin LaHaise <bcrl@kvack.org>,
+ linux-fsdevel@vger.kernel.org, Andrew Morton <akpm@linux-foundation.org>,
+ linuxppc-dev@lists.ozlabs.org, "David
+ S. Miller" <davem@davemloft.net>, linux-btrfs@vger.kernel.org,
+ Greentime Hu <green.hu@gmail.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Ck9uIDEwLzE2LzIwIDEyOjQzIFBNLCBNYWFydGVuIExhbmtob3JzdCB3cm90ZToKPiBXZSBuZWVk
-IHRvIGdldCByaWQgb2YgYWxsb2NhdGlvbnMgaW4gdGhlIGNtZCBwYXJzZXIsIGJlY2F1c2UgaXQg
-bmVlZHMKPiB0byBiZSBjYWxsZWQgZnJvbSBhIHNpZ25hbGluZyBjb250ZXh0LCBmaXJzdCBtb3Zl
-IGFsbCBwaW5uaW5nIHRvCj4gZXhlY2J1Ziwgd2hlcmUgd2UgYWxyZWFkeSBob2xkIGFsbCBsb2Nr
-cy4KPgo+IEFsbG9jYXRlIGp1bXBfd2hpdGVsaXN0IGluIHRoZSBleGVjYnVmZmVyLCBhbmQgYWRk
-IGFubm90YXRpb25zIGFyb3VuZAo+IGludGVsX2VuZ2luZV9jbWRfcGFyc2VyKCksIHRvIGVuc3Vy
-ZSB3ZSBvbmx5IGNhbGwgdGhlIGNvbW1hbmQgcGFyc2VyCj4gd2l0aG91dCBhbGxvY2F0aW5nIGFu
-eSBtZW1vcnksIG9yIHRha2luZyBhbnkgbG9ja3Mgd2UncmUgbm90IHN1cHBvc2VkIHRvLgo+Cj4g
-QmVjYXVzZSBpOTE1X2dlbV9vYmplY3RfZ2V0X3BhZ2UoKSBtYXkgYWxzbyBhbGxvY2F0ZSBtZW1v
-cnksIGFkZCBhCj4gcGF0aCB0byBpOTE1X2dlbV9vYmplY3RfZ2V0X3NnKCkgdGhhdCBwcmV2ZW50
-cyBtZW1vcnkgYWxsb2NhdGlvbnMsCj4gYW5kIHdhbGsgdGhlIHNnIGxpc3QgbWFudWFsbHkuIEl0
-IHNob3VsZCBiZSBzaW1pbGFybHkgZmFzdC4KPgo+IFRoaXMgaGFzIHRoZSBhZGRlZCBiZW5lZml0
-IG9mIGJlaW5nIGFibGUgdG8gY2F0Y2ggYWxsIG1lbW9yeSBhbGxvY2F0aW9uCj4gZXJyb3JzIGJl
-Zm9yZSB0aGUgcG9pbnQgb2Ygbm8gcmV0dXJuLCBhbmQgcmV0dXJuIC1FTk9NRU0gc2FmZWx5IHRv
-IHRoZQo+IGV4ZWNidWYgc3VibWl0dGVyLgo+Cj4gU2lnbmVkLW9mZi1ieTogTWFhcnRlbiBMYW5r
-aG9yc3QgPG1hYXJ0ZW4ubGFua2hvcnN0QGxpbnV4LmludGVsLmNvbT4KCkFja2VkLWJ5OiBUaG9t
-YXMgSGVsbHN0csO2bSA8dGhvbWFzLmhlbGxzdHJvbUBsaW51eC5pbnRlbC5jb20+CgoKX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxp
-bmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJl
-ZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
+Instead of storing the map per CPU provide and use per task storage. That
+prepares for local kmaps which are preemptible.
+
+The context switch code is preparatory and not yet in use because
+kmap_atomic() runs with preemption disabled. Will be made usable in the
+next step.
+
+The context switch logic is safe even when an interrupt happens after
+clearing or before restoring the kmaps. The kmap index in task struct is
+not modified so any nesting kmap in an interrupt will use unused indices
+and on return the counter is the same as before.
+
+Also add an assert into the return to user space code. Going back to user
+space with an active kmap local is a nono.
+
+Signed-off-by: Thomas Gleixner <tglx@linutronix.de>
+---
+V4: Use the version which actually compiles and works
+V3: Handle the debug case correctly
+---
+ include/linux/highmem-internal.h |   10 +++
+ include/linux/sched.h            |    9 +++
+ kernel/entry/common.c            |    2 
+ kernel/fork.c                    |    1 
+ kernel/sched/core.c              |   18 +++++++
+ mm/highmem.c                     |   99 +++++++++++++++++++++++++++++++++++----
+ 6 files changed, 129 insertions(+), 10 deletions(-)
+
+--- a/include/linux/highmem-internal.h
++++ b/include/linux/highmem-internal.h
+@@ -9,6 +9,16 @@
+ void *__kmap_local_pfn_prot(unsigned long pfn, pgprot_t prot);
+ void *__kmap_local_page_prot(struct page *page, pgprot_t prot);
+ void kunmap_local_indexed(void *vaddr);
++void kmap_local_fork(struct task_struct *tsk);
++void __kmap_local_sched_out(void);
++void __kmap_local_sched_in(void);
++static inline void kmap_assert_nomap(void)
++{
++	DEBUG_LOCKS_WARN_ON(current->kmap_ctrl.idx);
++}
++#else
++static inline void kmap_local_fork(struct task_struct *tsk) { }
++static inline void kmap_assert_nomap(void) { }
+ #endif
+ 
+ #ifdef CONFIG_HIGHMEM
+--- a/include/linux/sched.h
++++ b/include/linux/sched.h
+@@ -34,6 +34,7 @@
+ #include <linux/rseq.h>
+ #include <linux/seqlock.h>
+ #include <linux/kcsan.h>
++#include <asm/kmap_size.h>
+ 
+ /* task_struct member predeclarations (sorted alphabetically): */
+ struct audit_context;
+@@ -629,6 +630,13 @@ struct wake_q_node {
+ 	struct wake_q_node *next;
+ };
+ 
++struct kmap_ctrl {
++#ifdef CONFIG_KMAP_LOCAL
++	int				idx;
++	pte_t				pteval[KM_MAX_IDX];
++#endif
++};
++
+ struct task_struct {
+ #ifdef CONFIG_THREAD_INFO_IN_TASK
+ 	/*
+@@ -1294,6 +1302,7 @@ struct task_struct {
+ 	unsigned int			sequential_io;
+ 	unsigned int			sequential_io_avg;
+ #endif
++	struct kmap_ctrl		kmap_ctrl;
+ #ifdef CONFIG_DEBUG_ATOMIC_SLEEP
+ 	unsigned long			task_state_change;
+ #endif
+--- a/kernel/entry/common.c
++++ b/kernel/entry/common.c
+@@ -2,6 +2,7 @@
+ 
+ #include <linux/context_tracking.h>
+ #include <linux/entry-common.h>
++#include <linux/highmem.h>
+ #include <linux/livepatch.h>
+ #include <linux/audit.h>
+ 
+@@ -194,6 +195,7 @@ static void exit_to_user_mode_prepare(st
+ 
+ 	/* Ensure that the address limit is intact and no locks are held */
+ 	addr_limit_user_check();
++	kmap_assert_nomap();
+ 	lockdep_assert_irqs_disabled();
+ 	lockdep_sys_exit();
+ }
+--- a/kernel/fork.c
++++ b/kernel/fork.c
+@@ -930,6 +930,7 @@ static struct task_struct *dup_task_stru
+ 	account_kernel_stack(tsk, 1);
+ 
+ 	kcov_task_init(tsk);
++	kmap_local_fork(tsk);
+ 
+ #ifdef CONFIG_FAULT_INJECTION
+ 	tsk->fail_nth = 0;
+--- a/kernel/sched/core.c
++++ b/kernel/sched/core.c
+@@ -4053,6 +4053,22 @@ static inline void finish_lock_switch(st
+ # define finish_arch_post_lock_switch()	do { } while (0)
+ #endif
+ 
++static inline void kmap_local_sched_out(void)
++{
++#ifdef CONFIG_KMAP_LOCAL
++	if (unlikely(current->kmap_ctrl.idx))
++		__kmap_local_sched_out();
++#endif
++}
++
++static inline void kmap_local_sched_in(void)
++{
++#ifdef CONFIG_KMAP_LOCAL
++	if (unlikely(current->kmap_ctrl.idx))
++		__kmap_local_sched_in();
++#endif
++}
++
+ /**
+  * prepare_task_switch - prepare to switch tasks
+  * @rq: the runqueue preparing to switch
+@@ -4075,6 +4091,7 @@ prepare_task_switch(struct rq *rq, struc
+ 	perf_event_task_sched_out(prev, next);
+ 	rseq_preempt(prev);
+ 	fire_sched_out_preempt_notifiers(prev, next);
++	kmap_local_sched_out();
+ 	prepare_task(next);
+ 	prepare_arch_switch(next);
+ }
+@@ -4141,6 +4158,7 @@ static struct rq *finish_task_switch(str
+ 	finish_lock_switch(rq);
+ 	finish_arch_post_lock_switch();
+ 	kcov_finish_switch(current);
++	kmap_local_sched_in();
+ 
+ 	fire_sched_in_preempt_notifiers(current);
+ 	/*
+--- a/mm/highmem.c
++++ b/mm/highmem.c
+@@ -365,8 +365,6 @@ EXPORT_SYMBOL(kunmap_high);
+ 
+ #include <asm/kmap_size.h>
+ 
+-static DEFINE_PER_CPU(int, __kmap_local_idx);
+-
+ /*
+  * With DEBUG_HIGHMEM the stack depth is doubled and every second
+  * slot is unused which acts as a guard page
+@@ -379,23 +377,21 @@ static DEFINE_PER_CPU(int, __kmap_local_
+ 
+ static inline int kmap_local_idx_push(void)
+ {
+-	int idx = __this_cpu_add_return(__kmap_local_idx, KM_INCR) - 1;
+-
+ 	WARN_ON_ONCE(in_irq() && !irqs_disabled());
+-	BUG_ON(idx >= KM_MAX_IDX);
+-	return idx;
++	current->kmap_ctrl.idx += KM_INCR;
++	BUG_ON(current->kmap_ctrl.idx >= KM_MAX_IDX);
++	return current->kmap_ctrl.idx - 1;
+ }
+ 
+ static inline int kmap_local_idx(void)
+ {
+-	return __this_cpu_read(__kmap_local_idx) - 1;
++	return current->kmap_ctrl.idx - 1;
+ }
+ 
+ static inline void kmap_local_idx_pop(void)
+ {
+-	int idx = __this_cpu_sub_return(__kmap_local_idx, KM_INCR);
+-
+-	BUG_ON(idx < 0);
++	current->kmap_ctrl.idx -= KM_INCR;
++	BUG_ON(current->kmap_ctrl.idx < 0);
+ }
+ 
+ #ifndef arch_kmap_local_post_map
+@@ -461,6 +457,7 @@ void *__kmap_local_pfn_prot(unsigned lon
+ 	pteval = pfn_pte(pfn, prot);
+ 	set_pte_at(&init_mm, vaddr, kmap_pte - idx, pteval);
+ 	arch_kmap_local_post_map(vaddr, pteval);
++	current->kmap_ctrl.pteval[kmap_local_idx()] = pteval;
+ 	preempt_enable();
+ 
+ 	return (void *)vaddr;
+@@ -505,10 +502,92 @@ void kunmap_local_indexed(void *vaddr)
+ 	arch_kmap_local_pre_unmap(addr);
+ 	pte_clear(&init_mm, addr, kmap_pte - idx);
+ 	arch_kmap_local_post_unmap(addr);
++	current->kmap_ctrl.pteval[kmap_local_idx()] = __pte(0);
+ 	kmap_local_idx_pop();
+ 	preempt_enable();
+ }
+ EXPORT_SYMBOL(kunmap_local_indexed);
++
++/*
++ * Invoked before switch_to(). This is safe even when during or after
++ * clearing the maps an interrupt which needs a kmap_local happens because
++ * the task::kmap_ctrl.idx is not modified by the unmapping code so a
++ * nested kmap_local will use the next unused index and restore the index
++ * on unmap. The already cleared kmaps of the outgoing task are irrelevant
++ * because the interrupt context does not know about them. The same applies
++ * when scheduling back in for an interrupt which happens before the
++ * restore is complete.
++ */
++void __kmap_local_sched_out(void)
++{
++	struct task_struct *tsk = current;
++	pte_t *kmap_pte = kmap_get_pte();
++	int i;
++
++	/* Clear kmaps */
++	for (i = 0; i < tsk->kmap_ctrl.idx; i++) {
++		pte_t pteval = tsk->kmap_ctrl.pteval[i];
++		unsigned long addr;
++		int idx;
++
++		/* With debug all even slots are unmapped and act as guard */
++		if (IS_ENABLED(CONFIG_DEBUG_HIGHMEM) && !(i & 0x01)) {
++			WARN_ON_ONCE(!pte_none(pteval));
++			continue;
++		}
++		if (WARN_ON_ONCE(pte_none(pteval)))
++			continue;
++
++		/*
++		 * This is a horrible hack for XTENSA to calculate the
++		 * coloured PTE index. Uses the PFN encoded into the pteval
++		 * and the map index calculation because the actual mapped
++		 * virtual address is not stored in task::kmap_ctrl.
++		 * For any sane architecture this is optimized out.
++		 */
++		idx = arch_kmap_local_map_idx(i, pte_pfn(pteval));
++
++		addr = __fix_to_virt(FIX_KMAP_BEGIN + idx);
++		arch_kmap_local_pre_unmap(addr);
++		pte_clear(&init_mm, addr, kmap_pte - idx);
++		arch_kmap_local_post_unmap(addr);
++	}
++}
++
++void __kmap_local_sched_in(void)
++{
++	struct task_struct *tsk = current;
++	pte_t *kmap_pte = kmap_get_pte();
++	int i;
++
++	/* Restore kmaps */
++	for (i = 0; i < tsk->kmap_ctrl.idx; i++) {
++		pte_t pteval = tsk->kmap_ctrl.pteval[i];
++		unsigned long addr;
++		int idx;
++
++		/* With debug all even slots are unmapped and act as guard */
++		if (IS_ENABLED(CONFIG_DEBUG_HIGHMEM) && !(i & 0x01)) {
++			WARN_ON_ONCE(!pte_none(pteval));
++			continue;
++		}
++		if (WARN_ON_ONCE(pte_none(pteval)))
++			continue;
++
++		/* See comment in __kmap_local_sched_out() */
++		idx = arch_kmap_local_map_idx(i, pte_pfn(pteval));
++		addr = __fix_to_virt(FIX_KMAP_BEGIN + idx);
++		set_pte_at(&init_mm, addr, kmap_pte - idx, pteval);
++		arch_kmap_local_post_map(addr, pteval);
++	}
++}
++
++void kmap_local_fork(struct task_struct *tsk)
++{
++	if (WARN_ON_ONCE(tsk->kmap_ctrl.idx))
++		memset(&tsk->kmap_ctrl, 0, sizeof(tsk->kmap_ctrl));
++}
++
+ #endif
+ 
+ #if defined(HASHED_PAGE_VIRTUAL)
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
