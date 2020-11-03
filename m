@@ -2,53 +2,70 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B12A82A3FC0
-	for <lists+intel-gfx@lfdr.de>; Tue,  3 Nov 2020 10:14:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 822512A405D
+	for <lists+intel-gfx@lfdr.de>; Tue,  3 Nov 2020 10:36:10 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0B54F6E862;
-	Tue,  3 Nov 2020 09:14:41 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A6B4E6E862
- for <Intel-gfx@lists.freedesktop.org>; Tue,  3 Nov 2020 09:14:39 +0000 (UTC)
-IronPort-SDR: aIzPffjDdQaWBrUtvnOPg1BkVB4maacp+deJjNqC9OgDHyrmnhV+SKaDGK1UGe35k1URjC5N5S
- p5GJfkOcefvg==
-X-IronPort-AV: E=McAfee;i="6000,8403,9793"; a="165519544"
-X-IronPort-AV: E=Sophos;i="5.77,447,1596524400"; d="scan'208";a="165519544"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Nov 2020 01:14:39 -0800
-IronPort-SDR: eFTHNZBxqYN5dcGuDSmldVZPzDXE44+XDO/whjJgYBwHJ7nuOWNzglzewY25fZHYRAKFkkk21v
- lfzYIUGSFTkg==
-X-IronPort-AV: E=Sophos;i="5.77,447,1596524400"; d="scan'208";a="538418690"
-Received: from vfarcas-mobl.ger.corp.intel.com (HELO [10.214.241.76])
- ([10.214.241.76])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Nov 2020 01:14:35 -0800
-To: Lu Baolu <baolu.lu@linux.intel.com>, Joerg Roedel <joro@8bytes.org>,
- Tom Murphy <murphyt7@tcd.ie>, David Woodhouse <dwmw2@infradead.org>,
- Christoph Hellwig <hch@infradead.org>
-References: <20200927063437.13988-1-baolu.lu@linux.intel.com>
- <e999e371-6d36-ffea-542f-a5f4b230b0ed@linux.intel.com>
- <c2af9a9d-1cae-b8f7-a0b3-880574060a23@linux.intel.com>
- <8bac9e91-36a0-c1d6-a887-4d60567ac75a@linux.intel.com>
- <3f5694f3-62f9-cc2b-1c2b-f9e99a4788c1@linux.intel.com>
- <1ce5b94a-38b3-548e-3b1a-a68390b93953@linux.intel.com>
- <82dab98e-0761-8946-c31c-92f19a0615b4@linux.intel.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-Message-ID: <99a0d1eb-7fde-dff4-225f-92b68fbf7620@linux.intel.com>
-Date: Tue, 3 Nov 2020 09:14:32 +0000
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id A869C6E865;
+	Tue,  3 Nov 2020 09:36:08 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from wout2-smtp.messagingengine.com (wout2-smtp.messagingengine.com
+ [64.147.123.25])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 655236E865;
+ Tue,  3 Nov 2020 09:36:07 +0000 (UTC)
+Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
+ by mailout.west.internal (Postfix) with ESMTP id 9F2B647B;
+ Tue,  3 Nov 2020 04:36:06 -0500 (EST)
+Received: from mailfrontend1 ([10.202.2.162])
+ by compute6.internal (MEProxy); Tue, 03 Nov 2020 04:36:07 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
+ date:from:to:cc:subject:message-id:references:mime-version
+ :content-type:in-reply-to; s=fm1; bh=JxU4guRP0kokkXgNKXrKatN5k3v
+ smVhnFnCYvoqD/QA=; b=CTkd6WvjWIpgaP7CXxIemCJLc9bT8akFL3sq1vB4oiT
+ QW7ILahxaxyJ2dhPmQ1JF6bJ/I+e56o23kBcKeT1Pl15ylnJB6yvoWCVQZMctDzG
+ CLPNFfP+s3bqzk1B4mWDAlgKl27n+uZNqPqEmVKc2IBZwMkshOG9nzbIi2yaf4Wk
+ TVfk57WnuO2RfNMD/DVre2yEf7j8Ojhmq3AhhhYBxfJI5KPLXJ3tQU6GmVy/cAwA
+ eeVG77Y+1oBhgUltmV+dfMPjgWNhYOlLhJj+D9mvQXhTzAOT93SSVwSjoPrKCWmi
+ fe/GmMRZInwrR9/VW5w2LDLKOCMZnhOSs/RdIGJocCQ==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+ messagingengine.com; h=cc:content-type:date:from:in-reply-to
+ :message-id:mime-version:references:subject:to:x-me-proxy
+ :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=JxU4gu
+ RP0kokkXgNKXrKatN5k3vsmVhnFnCYvoqD/QA=; b=ddJQ9Rb9k3rT2qSgeD+nJQ
+ nYOEqWxfs5PqONCgtfnGpsYQDbbyV7SHzngtorMVKDstddeVARRXBzyXNAvf56lv
+ QEyWdWXhlxUsssUkdhiGmq8tzJfsHBkraqyo4M48DZ6/rClGI3FlouaLSYx6DVBU
+ QzCP89u5660+8kEjgSzzyQG1aHZcQl1GaICpEMPxqivePD+WBIeZrVPieONg60vc
+ 4oWqDxTUTX0VqCxt6gVCP5IsMZxNZvOSslSiRYHZzDqcnO7U2plo9RFKsBg3ba6E
+ mE19IrN+G7h4Uk1icEovu4J3UPCmldQxgJn/lg7gl5ui8VW+kfn7N4Ju6xXXQ4LA
+ ==
+X-ME-Sender: <xms:hSShX-9JqxH3mzEIKNwd5Wi0aNl4YxGJ7qoDfDLmWNuq5KSvlBD0RA>
+ <xme:hSShX-tQpRzQzNjsYVZixEJqtz8dTfEWhW2t5ukaCEJ8HwIc06MyLNvpXus269KBr
+ lx5lxU8FFtABR8seCc>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedujedruddtfedgtdeiucetufdoteggodetrfdotf
+ fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+ uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+ cujfgurhepfffhvffukfhfgggtuggjsehgtderredttddvnecuhfhrohhmpeforgigihhm
+ vgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrth
+ htvghrnhepleekgeehhfdutdeljefgleejffehfffgieejhffgueefhfdtveetgeehieeh
+ gedunecukfhppeeltddrkeelrdeikedrjeeinecuvehluhhsthgvrhfuihiivgeptdenuc
+ frrghrrghmpehmrghilhhfrhhomhepmhgrgihimhgvsegtvghrnhhordhtvggthh
+X-ME-Proxy: <xmx:hSShX0DuGhN4hN75UK9w7o6-RYGaQiGZ5xSDKkRGVpcd_WStCDOtPA>
+ <xmx:hSShX2ddaLxlo4K16R5o3m5srECuuEeqbFIDFcwSBelLMA1gXQlv0Q>
+ <xmx:hSShXzMTkqWqVhuvg-cM72ck0Tj5cgqtP89OdHgz3nKMBshKRYuGMg>
+ <xmx:hiShX8r4L9_4OYfjp2n-brspBy4QnC9A0-bIyJLvUoqgnn7iOF7g4w>
+Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr
+ [90.89.68.76])
+ by mail.messagingengine.com (Postfix) with ESMTPA id 0F7ED3280065;
+ Tue,  3 Nov 2020 04:36:04 -0500 (EST)
+Date: Tue, 3 Nov 2020 10:36:03 +0100
+From: Maxime Ripard <maxime@cerno.tech>
+To: Stephen Rothwell <sfr@canb.auug.org.au>
+Message-ID: <20201103093603.mzmcvbzmna77vh4r@gilmour.lan>
+References: <20201103113121.4f1ffe17@canb.auug.org.au>
 MIME-Version: 1.0
-In-Reply-To: <82dab98e-0761-8946-c31c-92f19a0615b4@linux.intel.com>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH v4 0/7] Convert the intel iommu driver to
- the dma-iommu api
+In-Reply-To: <20201103113121.4f1ffe17@canb.auug.org.au>
+Subject: Re: [Intel-gfx] linux-next: build warning after merge of the
+ drm-misc-fixes tree
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,58 +78,72 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel-gfx@lists.freedesktop.org, Ashok Raj <ashok.raj@intel.com>,
- iommu@lists.linux-foundation.org, linux-kernel@vger.kernel.org
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Cc: Daniel Vetter <daniel.vetter@ffwll.ch>,
+ Intel Graphics <intel-gfx@lists.freedesktop.org>,
+ Linux Next Mailing List <linux-next@vger.kernel.org>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+ DRI <dri-devel@lists.freedesktop.org>
+Content-Type: multipart/mixed; boundary="===============1320129634=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-CgpPbiAwMy8xMS8yMDIwIDAyOjUzLCBMdSBCYW9sdSB3cm90ZToKPiBPbiAxMS8yLzIwIDc6NTIg
-UE0sIFR2cnRrbyBVcnN1bGluIHdyb3RlOgo+Pgo+PiBPbiAwMi8xMS8yMDIwIDAyOjAwLCBMdSBC
-YW9sdSB3cm90ZToKPj4+IEhpIFR2cnRrbywKPj4+IE9uIDEwLzEyLzIwIDQ6NDQgUE0sIFR2cnRr
-byBVcnN1bGluIHdyb3RlOgo+Pj4+Cj4+Pj4gT24gMjkvMDkvMjAyMCAwMToxMSwgTHUgQmFvbHUg
-d3JvdGU6Cj4+Pj4+IEhpIFR2cnRrbywKPj4+Pj4KPj4+Pj4gT24gOS8yOC8yMCA1OjQ0IFBNLCBU
-dnJ0a28gVXJzdWxpbiB3cm90ZToKPj4+Pj4+Cj4+Pj4+PiBPbiAyNy8wOS8yMDIwIDA3OjM0LCBM
-dSBCYW9sdSB3cm90ZToKPj4+Pj4+PiBIaSwKPj4+Pj4+Pgo+Pj4+Pj4+IFRoZSBwcmV2aW91cyBw
-b3N0IG9mIHRoaXMgc2VyaWVzIGNvdWxkIGJlIGZvdW5kIGhlcmUuCj4+Pj4+Pj4KPj4+Pj4+PiBo
-dHRwczovL2xvcmUua2VybmVsLm9yZy9saW51eC1pb21tdS8yMDIwMDkxMjAzMjIwMC4xMTQ4OS0x
-LWJhb2x1Lmx1QGxpbnV4LmludGVsLmNvbS8gCj4+Pj4+Pj4KPj4+Pj4+Pgo+Pj4+Pj4+IFRoaXMg
-dmVyc2lvbiBpbnRyb2R1Y2UgYSBuZXcgcGF0Y2ggWzQvN10gdG8gZml4IGFuIGlzc3VlIHJlcG9y
-dGVkIAo+Pj4+Pj4+IGhlcmUuCj4+Pj4+Pj4KPj4+Pj4+PiBodHRwczovL2xvcmUua2VybmVsLm9y
-Zy9saW51eC1pb21tdS81MWExYmFlYy00OGQxLWMwYWMtMTgxYi0xZmJhOTJhYTQyOGRAbGludXgu
-aW50ZWwuY29tLyAKPj4+Pj4+Pgo+Pj4+Pj4+Cj4+Pj4+Pj4gVGhlcmUgYXJlbid0IGFueSBvdGhl
-ciBjaGFuZ2VzLgo+Pj4+Pj4+Cj4+Pj4+Pj4gUGxlYXNlIGhlbHAgdG8gdGVzdCBhbmQgcmV2aWV3
-Lgo+Pj4+Pj4+Cj4+Pj4+Pj4gQmVzdCByZWdhcmRzLAo+Pj4+Pj4+IGJhb2x1Cj4+Pj4+Pj4KPj4+
-Pj4+PiBMdSBCYW9sdSAoMyk6Cj4+Pj4+Pj4gwqDCoCBpb21tdTogQWRkIHF1aXJrIGZvciBJbnRl
-bCBncmFwaGljIGRldmljZXMgaW4gbWFwX3NnCj4+Pj4+Pgo+Pj4+Pj4gU2luY2UgSSBkbyBoYXZl
-IHBhdGNoZXMgdG8gZml4IGk5MTUgdG8gaGFuZGxlIHRoaXMsIGRvIHdlIHdhbnQgdG8gCj4+Pj4+
-PiBjby1vcmRpbmF0ZSB0aGUgdHdvIGFuZCBhdm9pZCBoYXZpbmcgdG8gYWRkIHRoaXMgcXVpcmsg
-YW5kIHRoZW4gCj4+Pj4+PiBsYXRlciByZW1vdmUgaXQ/IE9yIHlvdSB3YW50IHRvIGdvIHRoZSBz
-dGFnZWQgYXBwcm9hY2g/Cj4+Pj4+Cj4+Pj4+IEkgaGF2ZSBubyBwcmVmZXJlbmNlLiBJdCBkZXBl
-bmRzIG9uIHdoaWNoIHBhdGNoIGdvZXMgZmlyc3QuIExldCB0aGUKPj4+Pj4gbWFpbnRhaW5lcnMg
-aGVscCBoZXJlLgo+Pj4+Cj4+Pj4gRllJIHdlIGhhdmUgbWVyZ2VkIHRoZSByZXF1aXJlZCBpOTE1
-IHBhdGNoZXMgdG8gb3V0IHRyZWUgbGFzdCB3ZWVrIAo+Pj4+IG9yIHNvLiBJICp0aGluayogdGhp
-cyBtZWFucyB0aGV5IHdpbGwgZ28gaW50byA1LjExLiBTbyB0aGUgaTkxNSAKPj4+PiBzcGVjaWZp
-YyB3b3JrYXJvdW5kIHBhdGNoIHdpbGwgbm90IGJlIG5lZWRlZCBpbiBJbnRlbCBJT01NVS4KPj4+
-Cj4+PiBEbyB5b3UgbWluZCB0ZWxsaW5nIG1lIHdoYXQncyB0aGUgc3RhdHVzIG9mIHRoaXMgZml4
-IHBhdGNoPyBJIHRyaWVkIHRoaXMKPj4+IHNlcmllcyBvbiB2NS4xMC1yYzEgd2l0aCB0aGUgZ3Jh
-cGhpYyBxdWlyayBwYXRjaCBkcm9wcGVkLiBJIGFtIHN0aWxsCj4+PiBzZWVpbmcgZG1hIGZhdWx0
-cyBmcm9tIGdyYXBoaWMgZGV2aWNlLgo+Pgo+PiBIbW0gYmFjayB0aGVuIEkgdGhvdWdodCBpOTE1
-IGZpeGVzIGZvciB0aGlzIHdvdWxkIGxhbmQgaW4gNS4xMSBzbyBJIAo+PiB3aWxsIHN0aWNrIHdp
-dGggdGhhdC4gOikgKFNlZSBteSBxdW90ZWQgdGV4dCBhIHBhcmFncmFwaCBhYm92ZSB5b3Vycy4p
-Cj4gCj4gV2hhdCBzaXplIGFyZSB0aG9zZSBmaXhlcz8gSSBhbSBjb25zaWRlcmluZyBwdXNoaW5n
-IHRoaXMgc2VyaWVzIGZvcgo+IHY1LjExLiBJcyBpdCBwb3NzaWJsZSB0byBnZXQgc29tZSBhY2tz
-IGZvciB0aG9zZSBwYXRjaGVzIGFuZCBsZXQgdGhlbQo+IGdvIHRvIExpbnVzIHRocm91Z2ggaW9t
-bXUgdHJlZT8KCkZvciA1LjEwIHlvdSBtZWFuPyBUaGV5IGZlZWwgYSBiaXQgdG9vIGxhcmdlIGZv
-ciBjb21mb3J0IHRvIGdvIHZpYSBhIApub24taTkxNS9kcm0gdHJlZS4gVGhlc2UgYXJlIHRoZSB0
-d28gcGF0Y2hlcyByZXF1aXJlZDoKCmh0dHBzOi8vY2dpdC5mcmVlZGVza3RvcC5vcmcvZHJtLWlu
-dGVsL2NvbW1pdC8/aD1kcm0taW50ZWwtZ3QtbmV4dCZpZD04YTQ3M2RiYWRjY2ZjNjIwNjE1MGRl
-M2RiMzIyM2M0MDc4NWRhMzQ4Cmh0dHBzOi8vY2dpdC5mcmVlZGVza3RvcC5vcmcvZHJtLWludGVs
-L2NvbW1pdC8/aD1kcm0taW50ZWwtZ3QtbmV4dCZpZD05MzQ5NDFlZDVhMzA3MGE3ODMzYzY4OGM5
-YjFkNzE0ODRmYzAxYTY4CgpJJ2xsIGNvcHkgSm9vbmFzIGFzIG91ciBtYWludGFpbmVyIC0gaG93
-IGRvZXMgdGhlIGlkZWEgb2YgdGFraW5nIHRoZSAKYWJvdmUgdHdvIHBhdGNoZXMgdGhyb3VnaCB0
-aGUgaW9tbXUgdHJlZSBzb3VuZCB0byB5b3U/CgpSZWdhcmRzLAoKVHZydGtvCl9fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxp
-c3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNr
-dG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
+
+--===============1320129634==
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="gk5a7k24qfabtq46"
+Content-Disposition: inline
+
+
+--gk5a7k24qfabtq46
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+Hi Stephen,
+
+On Tue, Nov 03, 2020 at 11:31:21AM +1100, Stephen Rothwell wrote:
+> Hi all,
+>=20
+> After merging the drm-misc-fixes tree, today's linux-next build (arm
+> multi_v7_defconfig) produced this warning:
+>=20
+> drivers/gpu/drm/vc4/vc4_drv.c: In function 'vc4_drm_unbind':
+> drivers/gpu/drm/vc4/vc4_drv.c:322:18: warning: unused variable 'vc4' [-Wu=
+nused-variable]
+>   322 |  struct vc4_dev *vc4 =3D to_vc4_dev(drm);
+>       |                  ^~~
+>=20
+> Introduced by commit
+>=20
+>   dcda7c28bff2 ("drm/vc4: kms: Add functions to create the state objects")
+
+I just pushed a fix for that one, it should be resolved tomorrow
+
+Thanks!
+Maxime
+
+--gk5a7k24qfabtq46
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCX6EkgwAKCRDj7w1vZxhR
+xa7EAP4/4A3YLK6xqMRbgjbgjleRIoIpCAk2DyiaUKp0KsvDhAEApKtHtdCXkKBK
+6850n4kdukU0vDfZRT+HksVQqxlitAo=
+=5/0a
+-----END PGP SIGNATURE-----
+
+--gk5a7k24qfabtq46--
+
+--===============1320129634==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============1320129634==--
