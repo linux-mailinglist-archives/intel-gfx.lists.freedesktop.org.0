@@ -2,30 +2,34 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5E21C2A4732
-	for <lists+intel-gfx@lfdr.de>; Tue,  3 Nov 2020 15:04:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 95E2B2A47CA
+	for <lists+intel-gfx@lfdr.de>; Tue,  3 Nov 2020 15:16:07 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6AA096ECA9;
-	Tue,  3 Nov 2020 14:04:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0428F6ECB2;
+	Tue,  3 Nov 2020 14:16:06 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 9352D6E0A6;
- Tue,  3 Nov 2020 14:04:53 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 8C593A0091;
- Tue,  3 Nov 2020 14:04:53 +0000 (UTC)
+Received: from fireflyinternet.com (unknown [77.68.26.236])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7DD106ECB2
+ for <intel-gfx@lists.freedesktop.org>; Tue,  3 Nov 2020 14:16:04 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from localhost (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
+ 22881066-1500050 for multiple; Tue, 03 Nov 2020 14:16:03 +0000
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Tejas Upadhyay" <tejaskumarx.surendrakumar.upadhyay@intel.com>
-Date: Tue, 03 Nov 2020 14:04:53 -0000
-Message-ID: <160441229354.25742.15354184225197224097@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20201103134651.165527-1-tejaskumarx.surendrakumar.upadhyay@intel.com>
-In-Reply-To: <20201103134651.165527-1-tejaskumarx.surendrakumar.upadhyay@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_drm/i915/ehl=3A_Implement_W/A_22010492432_=28rev2=29?=
+In-Reply-To: <87361qfw3e.fsf@gaia.fi.intel.com>
+References: <20201102221057.29626-1-chris@chris-wilson.co.uk>
+ <20201102221057.29626-2-chris@chris-wilson.co.uk>
+ <87361qfw3e.fsf@gaia.fi.intel.com>
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: Mika Kuoppala <mika.kuoppala@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
+Date: Tue, 03 Nov 2020 14:16:00 +0000
+Message-ID: <160441296035.21466.9227014206344926879@build.alporthouse.com>
+User-Agent: alot/0.9
+Subject: Re: [Intel-gfx] [PATCH 2/2] drm/i915/gt: Flush xcs before tgl
+ breadcrumbs
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,31 +42,31 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: stable@vger.kernel.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Quoting Mika Kuoppala (2020-11-03 12:44:53)
+> Chris Wilson <chris@chris-wilson.co.uk> writes:
+> 
+> > In a simple test case that writes to scratch and then busy-waits for the
+> > batch to be signaled, we observe that the signal is before the write is
+> > posted. That is bad news.
+> >
+> > Splitting the flush + write_dword into two separate flush_dw prevents
+> > the issue from being reproduced, we can presume the post-sync op is not
+> > so post-sync.
+> >
+> 
+> Only thing that is mildly surpricing is that first one doesnt
+> need postop write.
 
-Series: drm/i915/ehl: Implement W/A 22010492432 (rev2)
-URL   : https://patchwork.freedesktop.org/series/83135/
-State : warning
-
-== Summary ==
-
-$ dim checkpatch origin/drm-tip
-003c5f8bf5bd drm/i915/ehl: Implement W/A 22010492432
--:34: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#34: FILE: drivers/gpu/drm/i915/display/intel_dpll_mgr.c:2646:
-+	return ((IS_PLATFORM(i915, INTEL_ELKHARTLAKE) &&
-+		IS_JSL_EHL_REVID(i915, EHL_REVID_B0, EHL_REVID_B0)) ||
-
-total: 0 errors, 0 warnings, 1 checks, 42 lines checked
-
-
+The MI_FLUSH_DW is stalling, so the second will^W should wait for the
+first to complete. (And we don't want to do the write from the first as
+we observe that write is too early.)
+-Chris
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
