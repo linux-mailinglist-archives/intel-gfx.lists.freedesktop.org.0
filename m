@@ -2,42 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 10F9B2A6582
-	for <lists+intel-gfx@lfdr.de>; Wed,  4 Nov 2020 14:48:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0B2EC2A6591
+	for <lists+intel-gfx@lfdr.de>; Wed,  4 Nov 2020 14:54:14 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 577656ED10;
-	Wed,  4 Nov 2020 13:47:59 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8F5626ED0F
- for <Intel-gfx@lists.freedesktop.org>; Wed,  4 Nov 2020 13:47:57 +0000 (UTC)
-IronPort-SDR: EV+pKbAa5Pm1bEJDy7tvWg4tYVu4wfs7G313g2KSkrYdDyyWGEJbqxWQIehYJpipXk39KwmVR0
- 9Bfep/hpSYCQ==
-X-IronPort-AV: E=McAfee;i="6000,8403,9794"; a="169361300"
-X-IronPort-AV: E=Sophos;i="5.77,451,1596524400"; d="scan'208";a="169361300"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Nov 2020 05:47:57 -0800
-IronPort-SDR: 7eS6ioeIV/c2vVxXcbBQw8Fj8HkDs4ZgTt2LtRin7YoSmzr4OAZ2FblfiPosFpH60gHMd7xv64
- xcUB8LhEGt9g==
-X-IronPort-AV: E=Sophos;i="5.77,451,1596524400"; d="scan'208";a="471228724"
-Received: from marak-mobl1.ger.corp.intel.com (HELO localhost.localdomain)
- ([10.249.42.32])
- by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Nov 2020 05:47:56 -0800
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-To: Intel-gfx@lists.freedesktop.org
-Date: Wed,  4 Nov 2020 13:47:43 +0000
-Message-Id: <20201104134743.916027-2-tvrtko.ursulin@linux.intel.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20201104134743.916027-1-tvrtko.ursulin@linux.intel.com>
-References: <20201104134743.916027-1-tvrtko.ursulin@linux.intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6C9336ED13;
+	Wed,  4 Nov 2020 13:54:12 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 4B21E6ED08;
+ Wed,  4 Nov 2020 13:54:11 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 421D7A8830;
+ Wed,  4 Nov 2020 13:54:11 +0000 (UTC)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [RFC 2/2] drm/i915: Use ABI engine class in error state
- ecode
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Gwan-gyeong Mun" <gwan-gyeong.mun@intel.com>
+Date: Wed, 04 Nov 2020 13:54:11 -0000
+Message-ID: <160449805126.21430.17347833216802547120@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20201104130159.200874-1-gwan-gyeong.mun@intel.com>
+In-Reply-To: <20201104130159.200874-1-gwan-gyeong.mun@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
+ =?utf-8?q?ies_starting_with_=5Bv3=2C1/2=5D_drm/i915/display=3A_Support_PS?=
+ =?utf-8?q?R_Multiple_Transcoders?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,74 +39,289 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============1698234179=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+--===============1698234179==
+Content-Type: multipart/alternative;
+ boundary="===============1037585068958728571=="
 
-Instead of printing out the internal engine mask, which can change between
-kernel versions making it difficult to map to actual engines, present a
-bitmask of hanging engines ABI classes. For example:
+--===============1037585068958728571==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-  [drm] GPU HANG: ecode 9:24dffffd:8, in gem_exec_schedu [1334]
+== Series Details ==
 
-Notice the swapped the order of ecode and bitmask which makes the new
-versus old bug reports are obvious.
+Series: series starting with [v3,1/2] drm/i915/display: Support PSR Multiple Transcoders
+URL   : https://patchwork.freedesktop.org/series/83495/
+State : success
 
-Engine ABI class is useful to quickly categorize render vs media etc hangs
-in bug reports. Considering virtual engine even more so than the current
-scheme.
+== Summary ==
 
-Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
----
- drivers/gpu/drm/i915/i915_gpu_error.c | 13 +++++++------
- 1 file changed, 7 insertions(+), 6 deletions(-)
+CI Bug Log - changes from CI_DRM_9263 -> Patchwork_18851
+====================================================
 
-diff --git a/drivers/gpu/drm/i915/i915_gpu_error.c b/drivers/gpu/drm/i915/i915_gpu_error.c
-index 857db66cc4a3..e7d9af184d58 100644
---- a/drivers/gpu/drm/i915/i915_gpu_error.c
-+++ b/drivers/gpu/drm/i915/i915_gpu_error.c
-@@ -1659,17 +1659,16 @@ static u32 generate_ecode(const struct intel_engine_coredump *ee)
- static const char *error_msg(struct i915_gpu_coredump *error)
- {
- 	struct intel_engine_coredump *first = NULL;
-+	unsigned int hung_classes = 0;
- 	struct intel_gt_coredump *gt;
--	intel_engine_mask_t engines;
- 	int len;
- 
--	engines = 0;
- 	for (gt = error->gt; gt; gt = gt->next) {
- 		struct intel_engine_coredump *cs;
- 
- 		for (cs = gt->engine; cs; cs = cs->next) {
- 			if (cs->hung) {
--				engines |= cs->engine->mask;
-+				hung_classes |= BIT(cs->engine->uabi_class);
- 				if (!first)
- 					first = cs;
- 			}
-@@ -1677,9 +1676,11 @@ static const char *error_msg(struct i915_gpu_coredump *error)
- 	}
- 
- 	len = scnprintf(error->error_msg, sizeof(error->error_msg),
--			"GPU HANG: ecode %d:%x:%08x",
--			INTEL_GEN(error->i915), engines,
--			generate_ecode(first));
-+			"GPU HANG: ecode %d:%08x:%x",
-+			INTEL_GEN(error->i915),
-+			generate_ecode(first),
-+			hung_classes);
-+
- 	if (first && first->context.pid) {
- 		/* Just show the first executing process, more is confusing */
- 		len += scnprintf(error->error_msg + len,
--- 
-2.25.1
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18851/index.html
+
+New tests
+---------
+
+  New tests have been introduced between CI_DRM_9263 and Patchwork_18851:
+
+### New CI tests (1) ###
+
+  * boot:
+    - Statuses : 1 fail(s) 35 pass(s)
+    - Exec time: [0.0] s
+
+  
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_18851 that come from known issues:
+
+### CI changes ###
+
+#### Issues hit ####
+
+  * boot (NEW):
+    - {fi-tgl-dsi}:       [PASS][1] -> [FAIL][2] ([i915#2448])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9263/fi-tgl-dsi/boot.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18851/fi-tgl-dsi/boot.html
+
+  
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_hangman@error-state-basic:
+    - fi-gdg-551:         [PASS][3] -> [INCOMPLETE][4] ([i915#172])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9263/fi-gdg-551/igt@i915_hangman@error-state-basic.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18851/fi-gdg-551/igt@i915_hangman@error-state-basic.html
+
+  * igt@i915_module_load@reload:
+    - fi-icl-u2:          [PASS][5] -> [DMESG-WARN][6] ([i915#1982])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9263/fi-icl-u2/igt@i915_module_load@reload.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18851/fi-icl-u2/igt@i915_module_load@reload.html
+
+  * igt@i915_pm_rpm@basic-pci-d3-state:
+    - fi-bsw-kefka:       [PASS][7] -> [DMESG-WARN][8] ([i915#1982])
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9263/fi-bsw-kefka/igt@i915_pm_rpm@basic-pci-d3-state.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18851/fi-bsw-kefka/igt@i915_pm_rpm@basic-pci-d3-state.html
+
+  
+#### Possible fixes ####
+
+  * igt@core_hotunplug@unbind-rebind:
+    - fi-tgl-u2:          [DMESG-WARN][9] ([i915#1982]) -> [PASS][10]
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9263/fi-tgl-u2/igt@core_hotunplug@unbind-rebind.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18851/fi-tgl-u2/igt@core_hotunplug@unbind-rebind.html
+    - fi-icl-u2:          [DMESG-WARN][11] ([i915#1982]) -> [PASS][12]
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9263/fi-icl-u2/igt@core_hotunplug@unbind-rebind.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18851/fi-icl-u2/igt@core_hotunplug@unbind-rebind.html
+
+  * igt@i915_pm_rpm@basic-pci-d3-state:
+    - {fi-ehl-1}:         [DMESG-WARN][13] ([i915#1982]) -> [PASS][14]
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9263/fi-ehl-1/igt@i915_pm_rpm@basic-pci-d3-state.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18851/fi-ehl-1/igt@i915_pm_rpm@basic-pci-d3-state.html
+
+  * igt@i915_pm_rpm@module-reload:
+    - fi-apl-guc:         [DMESG-WARN][15] ([i915#1635] / [i915#1982]) -> [PASS][16]
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9263/fi-apl-guc/igt@i915_pm_rpm@module-reload.html
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18851/fi-apl-guc/igt@i915_pm_rpm@module-reload.html
+
+  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:
+    - fi-byt-j1900:       [DMESG-WARN][17] ([i915#1982]) -> [PASS][18] +1 similar issue
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9263/fi-byt-j1900/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18851/fi-byt-j1900/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [i915#1635]: https://gitlab.freedesktop.org/drm/intel/issues/1635
+  [i915#172]: https://gitlab.freedesktop.org/drm/intel/issues/172
+  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
+  [i915#2448]: https://gitlab.freedesktop.org/drm/intel/issues/2448
+
+
+Participating hosts (45 -> 36)
+------------------------------
+
+  Missing    (9): fi-ilk-m540 fi-bxt-dsi fi-hsw-4200u fi-glk-dsi fi-bsw-cyan fi-bwr-2160 fi-snb-2520m fi-ctg-p8600 fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_9263 -> Patchwork_18851
+
+  CI-20190529: 20190529
+  CI_DRM_9263: d024f57bbf34cd9dedaff4d026a7ed8f58325bad @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5832: 9c583f7e2a6638b5ff6a3682fea548a1313512e7 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_18851: f422291bce21ca09a3981d89940896b5e2f9af28 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+f422291bce21 drm/i915/display: Support Multiple Transcoders' PSR status on debugfs
+215ae488cdd7 drm/i915/display: Support PSR Multiple Transcoders
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18851/index.html
+
+--===============1037585068958728571==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>series starting with [v3,1/2] drm/i915/display: Support PSR Multiple Transcoders</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/83495/">https://patchwork.freedesktop.org/series/83495/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18851/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18851/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_9263 -&gt; Patchwork_18851</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18851/index.html</p>
+<h2>New tests</h2>
+<p>New tests have been introduced between CI_DRM_9263 and Patchwork_18851:</p>
+<h3>New CI tests (1)</h3>
+<ul>
+<li>boot:<ul>
+<li>Statuses : 1 fail(s) 35 pass(s)</li>
+<li>Exec time: [0.0] s</li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_18851 that come from known issues:</p>
+<h3>CI changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>boot (NEW):<ul>
+<li>{fi-tgl-dsi}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9263/fi-tgl-dsi/boot.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18851/fi-tgl-dsi/boot.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2448">i915#2448</a>)</li>
+</ul>
+</li>
+</ul>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@i915_hangman@error-state-basic:</p>
+<ul>
+<li>fi-gdg-551:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9263/fi-gdg-551/igt@i915_hangman@error-state-basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18851/fi-gdg-551/igt@i915_hangman@error-state-basic.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/172">i915#172</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_module_load@reload:</p>
+<ul>
+<li>fi-icl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9263/fi-icl-u2/igt@i915_module_load@reload.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18851/fi-icl-u2/igt@i915_module_load@reload.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_pm_rpm@basic-pci-d3-state:</p>
+<ul>
+<li>fi-bsw-kefka:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9263/fi-bsw-kefka/igt@i915_pm_rpm@basic-pci-d3-state.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18851/fi-bsw-kefka/igt@i915_pm_rpm@basic-pci-d3-state.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@core_hotunplug@unbind-rebind:</p>
+<ul>
+<li>
+<p>fi-tgl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9263/fi-tgl-u2/igt@core_hotunplug@unbind-rebind.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18851/fi-tgl-u2/igt@core_hotunplug@unbind-rebind.html">PASS</a></p>
+</li>
+<li>
+<p>fi-icl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9263/fi-icl-u2/igt@core_hotunplug@unbind-rebind.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18851/fi-icl-u2/igt@core_hotunplug@unbind-rebind.html">PASS</a></p>
+</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_pm_rpm@basic-pci-d3-state:</p>
+<ul>
+<li>{fi-ehl-1}:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9263/fi-ehl-1/igt@i915_pm_rpm@basic-pci-d3-state.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18851/fi-ehl-1/igt@i915_pm_rpm@basic-pci-d3-state.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_pm_rpm@module-reload:</p>
+<ul>
+<li>fi-apl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9263/fi-apl-guc/igt@i915_pm_rpm@module-reload.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1635">i915#1635</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18851/fi-apl-guc/igt@i915_pm_rpm@module-reload.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:</p>
+<ul>
+<li>fi-byt-j1900:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9263/fi-byt-j1900/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18851/fi-byt-j1900/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html">PASS</a> +1 similar issue</li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Participating hosts (45 -&gt; 36)</h2>
+<p>Missing    (9): fi-ilk-m540 fi-bxt-dsi fi-hsw-4200u fi-glk-dsi fi-bsw-cyan fi-bwr-2160 fi-snb-2520m fi-ctg-p8600 fi-bdw-samus </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_9263 -&gt; Patchwork_18851</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_9263: d024f57bbf34cd9dedaff4d026a7ed8f58325bad @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_5832: 9c583f7e2a6638b5ff6a3682fea548a1313512e7 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
+  Patchwork_18851: f422291bce21ca09a3981d89940896b5e2f9af28 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>f422291bce21 drm/i915/display: Support Multiple Transcoders' PSR status on debugfs<br />
+215ae488cdd7 drm/i915/display: Support PSR Multiple Transcoders</p>
+
+</body>
+</html>
+
+--===============1037585068958728571==--
+
+--===============1698234179==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============1698234179==--
