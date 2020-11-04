@@ -1,45 +1,41 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 168872A61DE
-	for <lists+intel-gfx@lfdr.de>; Wed,  4 Nov 2020 11:38:08 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3A0DF2A6425
+	for <lists+intel-gfx@lfdr.de>; Wed,  4 Nov 2020 13:21:00 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 711196E99C;
-	Wed,  4 Nov 2020 10:38:06 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A3DF46E99C
- for <intel-gfx@lists.freedesktop.org>; Wed,  4 Nov 2020 10:38:05 +0000 (UTC)
-IronPort-SDR: m9fDSkN6SfrjsV2TJYwl0WwK/JFDpzJKqIvZAHL0Y4uTt1kv2Evau7qzy7qr5/Bl5jyjMgLV27
- RUidvrIajm0A==
-X-IronPort-AV: E=McAfee;i="6000,8403,9794"; a="169304855"
-X-IronPort-AV: E=Sophos;i="5.77,450,1596524400"; d="scan'208";a="169304855"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 88AB46ECF7;
+	Wed,  4 Nov 2020 12:20:58 +0000 (UTC)
+X-Original-To: Intel-gfx@lists.freedesktop.org
+Delivered-To: Intel-gfx@lists.freedesktop.org
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4A7246ECF7
+ for <Intel-gfx@lists.freedesktop.org>; Wed,  4 Nov 2020 12:20:57 +0000 (UTC)
+IronPort-SDR: NEWtF1NFfQWf75wnU6gC8u/WvvynXt0+4842iK99gPpC+B4iZ6tFPf5O3dvVGQYjMHE0AwkR+K
+ PfYP43dM1F5A==
+X-IronPort-AV: E=McAfee;i="6000,8403,9794"; a="156196393"
+X-IronPort-AV: E=Sophos;i="5.77,450,1596524400"; d="scan'208";a="156196393"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Nov 2020 02:38:05 -0800
-IronPort-SDR: Nbhg4BWJXnDZmpstpnVshDR37B8kKzYof+TsKQyQ2pgbt19+Wzb64xb0JrUg34Oqk4jXHGcCXQ
- H5dn/3ppa5fw==
-X-IronPort-AV: E=Sophos;i="5.77,450,1596524400"; d="scan'208";a="471173578"
-Received: from alexlewi-mobl.ger.corp.intel.com (HELO localhost)
- ([10.251.89.129])
- by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Nov 2020 02:38:03 -0800
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Nov 2020 04:20:55 -0800
+IronPort-SDR: LkA+1UO8RJ0ua4Iu+trsypEkmLbwXOPxiF0MFqQgIIiZRkKXuFfVtWoYkw7q+iyt++gPRp0Xr9
+ KCOs4oeNVmRA==
+X-IronPort-AV: E=Sophos;i="5.77,450,1596524400"; d="scan'208";a="538901762"
+Received: from marak-mobl1.ger.corp.intel.com (HELO localhost.localdomain)
+ ([10.249.42.32])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Nov 2020 04:20:54 -0800
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+To: Intel-gfx@lists.freedesktop.org
+Date: Wed,  4 Nov 2020 12:20:42 +0000
+Message-Id: <20201104122043.876567-1-tvrtko.ursulin@linux.intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-In-Reply-To: <20201021133213.328994-14-aditya.swarup@intel.com>
-References: <20201021133213.328994-1-aditya.swarup@intel.com>
- <20201021133213.328994-14-aditya.swarup@intel.com>
-To: Aditya Swarup <aditya.swarup@intel.com>, intel-gfx@lists.freedesktop.org
-From: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Message-ID: <160448628006.10179.17243428415920116427@jlahtine-mobl.ger.corp.intel.com>
-User-Agent: alot/0.8.1
-Date: Wed, 04 Nov 2020 12:38:00 +0200
-Subject: Re: [Intel-gfx] [PATCH 13/18] drm/i915/adl_s: Add display, gt,
- ctx and ADL-S whitelist WA
+Subject: [Intel-gfx] [RFC 1/2] drm/i915: Improve record of hung engines in
+ error state
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,158 +48,205 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jani Nikula <jani.nikula@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-KyBSb2RyaWdvLAoKUXVvdGluZyBBZGl0eWEgU3dhcnVwICgyMDIwLTEwLTIxIDE2OjMyOjA4KQo+
-IEZyb206IEFudXNoYSBTcml2YXRzYSA8YW51c2hhLnNyaXZhdHNhQGludGVsLmNvbT4KPiAKPiAt
-IEluaGVyaXQgdGhlIGdlbjEyIHdvcmthcm91bmRzLgo+IC0gQWRkIHBsYWNlaG9sZGVycyB0byBz
-ZXR1cCBHVCBXQS4KPiAtIEV4dGVuZCBwZXJtYW5lbnQgZHJpdmVyIFdBIFdhXzE0MDk3NjcxMDgg
-dG8gYWRsLXMgYW5kCj4gICBXYV8xNDAxMDY4NTMzMiB0byBhZGwtcy4KPiAtIEV4dGVuZCBwZXJt
-YW5lbnQgZHJpdmVyIFdBIFdhXzE2MDYwNTQxODggdG8gYWRsLXMKPiAtIEFkZCBXYV8xNDAxMTc2
-NTI0MiBmb3IgYWRsLXMgQTAgc3RlcHBpbmcuCgpSb2RyaWdvLCBKYW5pLCBhbnkgdGhvdWdodHMg
-b24gaWYgdGhpcyBwYXRjaCBzaG91bGQgYmUgc3BsaXQKYmV0d2VlbiBkaXNwbGF5IGFuZCBHVD8g
-SW4gbXkgdGhpbmtpbmcgd2Ugc2hvdWxkIGhhdmUgYSBzbWFsbAp0b3BpYyBicmFuY2ggdGhhdCBp
-bnRyb2R1Y2VzIHRoZSBiYXNlIHBsYXRmb3JtIHN1cHBvcnQsIHdoaWNoCmlzIG1lcmdlZCB0byBi
-b3RoIHRyZWVzLiBUaGVuIHRoZSByZXNwZWN0aXZlIHBhdGNoZXMgc3BsaXQgYW5kCm1lcmdlZCB0
-byAtbmV4dCBhbmQgLWd0LW5leHQuIFRoYXQgd2F5IHdlIHdvdWxkIGF2b2lkIHRoZQpjb25mbGlj
-dHMgdGhhdCBjYW1lIGZyb20gdGhlIEphc3Blcmxha2UgcGF0Y2hlcy4KCkFsdGhvdWdoLCBJJ20g
-bm90IHN1cmUgaWYgb3VyIGNvZGUgc3BsaXR0aW5nIGlzIHlldCBhcyBmYXIgdGhhdAp3ZSBjb3Vs
-ZCBlbmFibGUgdGhlIGRpc3BsYXkgd2l0aCBzZXBhcmF0ZSBzZXQgb2YgcGF0Y2hlcy4gSSBndWVz
-cwppdCB3b3VsZCBiZSB3b3J0aHkgdGVzdGluZyBpZiB0aGF0IGNhbiBoYXBwZW4uCgpSZWdhcmRz
-LCBKb29uYXMKCj4gQ2M6IEphbmkgTmlrdWxhIDxqYW5pLm5pa3VsYUBpbnRlbC5jb20+Cj4gQ2M6
-IFZpbGxlIFN5cmrDpGzDpCA8dmlsbGUuc3lyamFsYUBsaW51eC5pbnRlbC5jb20+Cj4gQ2M6IElt
-cmUgRGVhayA8aW1yZS5kZWFrQGludGVsLmNvbT4KPiBDYzogTWF0dCBSb3BlciA8bWF0dGhldy5k
-LnJvcGVyQGludGVsLmNvbT4KPiBDYzogTHVjYXMgRGUgTWFyY2hpIDxsdWNhcy5kZW1hcmNoaUBp
-bnRlbC5jb20+Cj4gQ2M6IEFudXNoYSBTcml2YXRzYSA8YW51c2hhLnNyaXZhdHNhQGludGVsLmNv
-bT4KPiBTaWduZWQtb2ZmLWJ5OiBBZGl0eWEgU3dhcnVwIDxhZGl0eWEuc3dhcnVwQGludGVsLmNv
-bT4KPiAtLS0KPiAgLi4uL2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheV9wb3dlci5jICAg
-IHwgIDcgKysrLS0KPiAgZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9zcHJpdGUu
-YyAgIHwgIDIgKy0KPiAgZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvaW50ZWxfd29ya2Fyb3VuZHMu
-YyAgIHwgMjkgKysrKysrKysrKysrKysrKystLQo+ICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1
-X2lycS5jICAgICAgICAgICAgICAgfCAgMiArLQo+ICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9pbnRl
-bF9kZXZpY2VfaW5mby5jICAgICAgfCAgNiArKystCj4gIDUgZmlsZXMgY2hhbmdlZCwgMzcgaW5z
-ZXJ0aW9ucygrKSwgOSBkZWxldGlvbnMoLSkKPiAKPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUv
-ZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5X3Bvd2VyLmMgYi9kcml2ZXJzL2dwdS9kcm0v
-aTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXlfcG93ZXIuYwo+IGluZGV4IDY4OTkyMjQ4MDY2MS4u
-YWNjNjNhYjJiYzc4IDEwMDY0NAo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkv
-aW50ZWxfZGlzcGxheV9wb3dlci5jCj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxh
-eS9pbnRlbF9kaXNwbGF5X3Bvd2VyLmMKPiBAQCAtNTI4OCw5ICs1Mjg4LDEwIEBAIHN0YXRpYyB2
-b2lkIHRnbF9id19idWRkeV9pbml0KHN0cnVjdCBkcm1faTkxNV9wcml2YXRlICpkZXZfcHJpdikK
-PiAgICAgICAgIHVuc2lnbmVkIGxvbmcgYWJveF9tYXNrID0gSU5URUxfSU5GTyhkZXZfcHJpdikt
-PmFib3hfbWFzazsKPiAgICAgICAgIGludCBjb25maWcsIGk7Cj4gIAo+IC0gICAgICAgaWYgKElT
-X0RHMV9SRVZJRChkZXZfcHJpdiwgREcxX1JFVklEX0EwLCBERzFfUkVWSURfQTApIHx8Cj4gKyAg
-ICAgICBpZiAoSVNfQUxERVJMQUtFX1MoZGV2X3ByaXYpIHx8Cj4gKyAgICAgICAgICAgSVNfREcx
-X1JFVklEKGRldl9wcml2LCBERzFfUkVWSURfQTAsIERHMV9SRVZJRF9BMCkgfHwKPiAgICAgICAg
-ICAgICBJU19UR0xfRElTUF9SRVZJRChkZXZfcHJpdiwgVEdMX1JFVklEX0EwLCBUR0xfUkVWSURf
-QjApKQo+IC0gICAgICAgICAgICAgICAvKiBXYV8xNDA5NzY3MTA4OnRnbCxkZzEgKi8KPiArICAg
-ICAgICAgICAgICAgLyogV2FfMTQwOTc2NzEwODp0Z2wsZGcxLGFkbC1zICovCj4gICAgICAgICAg
-ICAgICAgIHRhYmxlID0gd2FfMTQwOTc2NzEwOF9idWRkeV9wYWdlX21hc2tzOwo+ICAgICAgICAg
-ZWxzZQo+ICAgICAgICAgICAgICAgICB0YWJsZSA9IHRnbF9idWRkeV9wYWdlX21hc2tzOwo+IEBA
-IC01MzI4LDcgKzUzMjksNyBAQCBzdGF0aWMgdm9pZCBpY2xfZGlzcGxheV9jb3JlX2luaXQoc3Ry
-dWN0IGRybV9pOTE1X3ByaXZhdGUgKmRldl9wcml2LAo+ICAKPiAgICAgICAgIGdlbjlfc2V0X2Rj
-X3N0YXRlKGRldl9wcml2LCBEQ19TVEFURV9ESVNBQkxFKTsKPiAgCj4gLSAgICAgICAvKiBXYV8x
-NDAxMTI5NDE4ODplaGwsanNsLHRnbCxya2wgKi8KPiArICAgICAgIC8qIFdhXzE0MDExMjk0MTg4
-OmVobCxqc2wsdGdsLHJrbCxhZGwtcyAqLwo+ICAgICAgICAgaWYgKElOVEVMX1BDSF9UWVBFKGRl
-dl9wcml2KSA+PSBQQ0hfSlNQICYmCj4gICAgICAgICAgICAgSU5URUxfUENIX1RZUEUoZGV2X3By
-aXYpIDwgUENIX0RHMSkKPiAgICAgICAgICAgICAgICAgaW50ZWxfZGVfcm13KGRldl9wcml2LCBT
-T1VUSF9EU1BDTEtfR0FURV9ELCAwLAo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkx
-NS9kaXNwbGF5L2ludGVsX3Nwcml0ZS5jIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9p
-bnRlbF9zcHJpdGUuYwo+IGluZGV4IDg4YmZlYmRmOTIyOC4uZDRiNWZjOWUyNzA0IDEwMDY0NAo+
-IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfc3ByaXRlLmMKPiArKysg
-Yi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX3Nwcml0ZS5jCj4gQEAgLTIyMjYs
-NyArMjIyNiw3IEBAIHN0YXRpYyBpbnQgc2tsX3BsYW5lX2NoZWNrX2ZiKGNvbnN0IHN0cnVjdCBp
-bnRlbF9jcnRjX3N0YXRlICpjcnRjX3N0YXRlLAo+ICAgICAgICAgfQo+ICAKPiAgICAgICAgIC8q
-IFdhXzE2MDYwNTQxODg6dGdsICovCj4gLSAgICAgICBpZiAoSVNfVElHRVJMQUtFKGRldl9wcml2
-KSAmJgo+ICsgICAgICAgaWYgKChJU19USUdFUkxBS0UoZGV2X3ByaXYpIHx8IElTX0FMREVSTEFL
-RV9TKGRldl9wcml2KSkgJiYKPiAgICAgICAgICAgICBwbGFuZV9zdGF0ZS0+Y2tleS5mbGFncyAm
-IEk5MTVfU0VUX0NPTE9SS0VZX1NPVVJDRSAmJgo+ICAgICAgICAgICAgIGludGVsX2Zvcm1hdF9p
-c19wMDF4KGZiLT5mb3JtYXQtPmZvcm1hdCkpIHsKPiAgICAgICAgICAgICAgICAgZHJtX2RiZ19r
-bXMoJmRldl9wcml2LT5kcm0sCj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2d0
-L2ludGVsX3dvcmthcm91bmRzLmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC9pbnRlbF93b3Jr
-YXJvdW5kcy5jCj4gaW5kZXggZmVkOTUwM2E3YzRlLi44MTM2ZDEzNDYyYjUgMTAwNjQ0Cj4gLS0t
-IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvaW50ZWxfd29ya2Fyb3VuZHMuYwo+ICsrKyBiL2Ry
-aXZlcnMvZ3B1L2RybS9pOTE1L2d0L2ludGVsX3dvcmthcm91bmRzLmMKPiBAQCAtNjg2LDYgKzY4
-NiwxMiBAQCBzdGF0aWMgdm9pZCBkZzFfY3R4X3dvcmthcm91bmRzX2luaXQoc3RydWN0IGludGVs
-X2VuZ2luZV9jcyAqZW5naW5lLAo+ICAgICAgICAgICAgICAgICAgICAgICAgICAgREcxX0haX1JF
-QURfU1VQUFJFU1NJT05fT1BUSU1JWkFUSU9OX0RJU0FCTEUpOwo+ICB9Cj4gIAo+ICtzdGF0aWMg
-dm9pZCBhZGxzX2N0eF93b3JrYXJvdW5kc19pbml0KHN0cnVjdCBpbnRlbF9lbmdpbmVfY3MgKmVu
-Z2luZSwKPiArICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHN0cnVjdCBpOTE1
-X3dhX2xpc3QgKndhbCkKPiArewo+ICsgICAgICAgZ2VuMTJfY3R4X3dvcmthcm91bmRzX2luaXQo
-ZW5naW5lLCB3YWwpOwo+ICt9Cj4gKwo+ICBzdGF0aWMgdm9pZAo+ICBfX2ludGVsX2VuZ2luZV9p
-bml0X2N0eF93YShzdHJ1Y3QgaW50ZWxfZW5naW5lX2NzICplbmdpbmUsCj4gICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgc3RydWN0IGk5MTVfd2FfbGlzdCAqd2FsLAo+IEBAIC02OTgsNyArNzA0
-LDkgQEAgX19pbnRlbF9lbmdpbmVfaW5pdF9jdHhfd2Eoc3RydWN0IGludGVsX2VuZ2luZV9jcyAq
-ZW5naW5lLAo+ICAKPiAgICAgICAgIHdhX2luaXRfc3RhcnQod2FsLCBuYW1lLCBlbmdpbmUtPm5h
-bWUpOwo+ICAKPiAtICAgICAgIGlmIChJU19ERzEoaTkxNSkpCj4gKyAgICAgICBpZiAoSVNfQUxE
-RVJMQUtFX1MoaTkxNSkpCj4gKyAgICAgICAgICAgICAgIGFkbHNfY3R4X3dvcmthcm91bmRzX2lu
-aXQoZW5naW5lLCB3YWwpOwo+ICsgICAgICAgZWxzZSBpZiAoSVNfREcxKGk5MTUpKQo+ICAgICAg
-ICAgICAgICAgICBkZzFfY3R4X3dvcmthcm91bmRzX2luaXQoZW5naW5lLCB3YWwpOwo+ICAgICAg
-ICAgZWxzZSBpZiAoSVNfUk9DS0VUTEFLRShpOTE1KSB8fCBJU19USUdFUkxBS0UoaTkxNSkpCj4g
-ICAgICAgICAgICAgICAgIHRnbF9jdHhfd29ya2Fyb3VuZHNfaW5pdChlbmdpbmUsIHdhbCk7Cj4g
-QEAgLTEyODQsMTAgKzEyOTIsMTggQEAgZGcxX2d0X3dvcmthcm91bmRzX2luaXQoc3RydWN0IGRy
-bV9pOTE1X3ByaXZhdGUgKmk5MTUsIHN0cnVjdCBpOTE1X3dhX2xpc3QgKndhbCkKPiAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgVlNVTklUX0NMS0dBVEVfRElTX1RHTCk7Cj4gIH0KPiAgCj4g
-K3N0YXRpYyB2b2lkCj4gK2FkbHNfZ3Rfd29ya2Fyb3VuZHNfaW5pdChzdHJ1Y3QgZHJtX2k5MTVf
-cHJpdmF0ZSAqaTkxNSwgc3RydWN0IGk5MTVfd2FfbGlzdCAqd2FsKQo+ICt7Cj4gKyAgICAgICBn
-ZW4xMl9ndF93b3JrYXJvdW5kc19pbml0KGk5MTUsIHdhbCk7Cj4gK30KPiArCj4gIHN0YXRpYyB2
-b2lkCj4gIGd0X2luaXRfd29ya2Fyb3VuZHMoc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmk5MTUs
-IHN0cnVjdCBpOTE1X3dhX2xpc3QgKndhbCkKPiAgewo+IC0gICAgICAgaWYgKElTX0RHMShpOTE1
-KSkKPiArICAgICAgIGlmIChJU19BTERFUkxBS0VfUyhpOTE1KSkKPiArICAgICAgICAgICAgICAg
-YWRsc19ndF93b3JrYXJvdW5kc19pbml0KGk5MTUsIHdhbCk7Cj4gKyAgICAgICBlbHNlIGlmIChJ
-U19ERzEoaTkxNSkpCj4gICAgICAgICAgICAgICAgIGRnMV9ndF93b3JrYXJvdW5kc19pbml0KGk5
-MTUsIHdhbCk7Cj4gICAgICAgICBlbHNlIGlmIChJU19USUdFUkxBS0UoaTkxNSkpCj4gICAgICAg
-ICAgICAgICAgIHRnbF9ndF93b3JrYXJvdW5kc19pbml0KGk5MTUsIHdhbCk7Cj4gQEAgLTE2Njgs
-NiArMTY4NCwxMSBAQCBzdGF0aWMgdm9pZCBkZzFfd2hpdGVsaXN0X2J1aWxkKHN0cnVjdCBpbnRl
-bF9lbmdpbmVfY3MgKmVuZ2luZSkKPiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
-UklOR19GT1JDRV9UT19OT05QUklWX0FDQ0VTU19SRCk7Cj4gIH0KPiAgCj4gK3N0YXRpYyB2b2lk
-IGFkbHNfd2hpdGVsaXN0X2J1aWxkKHN0cnVjdCBpbnRlbF9lbmdpbmVfY3MgKmVuZ2luZSkKPiAr
-ewo+ICsgICAgICAgdGdsX3doaXRlbGlzdF9idWlsZChlbmdpbmUpOwo+ICt9Cj4gKwo+ICB2b2lk
-IGludGVsX2VuZ2luZV9pbml0X3doaXRlbGlzdChzdHJ1Y3QgaW50ZWxfZW5naW5lX2NzICplbmdp
-bmUpCj4gIHsKPiAgICAgICAgIHN0cnVjdCBkcm1faTkxNV9wcml2YXRlICppOTE1ID0gZW5naW5l
-LT5pOTE1Owo+IEBAIC0xNjc1LDcgKzE2OTYsOSBAQCB2b2lkIGludGVsX2VuZ2luZV9pbml0X3do
-aXRlbGlzdChzdHJ1Y3QgaW50ZWxfZW5naW5lX2NzICplbmdpbmUpCj4gIAo+ICAgICAgICAgd2Ff
-aW5pdF9zdGFydCh3LCAid2hpdGVsaXN0IiwgZW5naW5lLT5uYW1lKTsKPiAgCj4gLSAgICAgICBp
-ZiAoSVNfREcxKGk5MTUpKQo+ICsgICAgICAgaWYgKElTX0FMREVSTEFLRV9TKGk5MTUpKQo+ICsg
-ICAgICAgICAgICAgICBhZGxzX3doaXRlbGlzdF9idWlsZChlbmdpbmUpOwo+ICsgICAgICAgZWxz
-ZSBpZiAoSVNfREcxKGk5MTUpKQo+ICAgICAgICAgICAgICAgICBkZzFfd2hpdGVsaXN0X2J1aWxk
-KGVuZ2luZSk7Cj4gICAgICAgICBlbHNlIGlmIChJU19HRU4oaTkxNSwgMTIpKQo+ICAgICAgICAg
-ICAgICAgICB0Z2xfd2hpdGVsaXN0X2J1aWxkKGVuZ2luZSk7Cj4gZGlmZiAtLWdpdCBhL2RyaXZl
-cnMvZ3B1L2RybS9pOTE1L2k5MTVfaXJxLmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2ly
-cS5jCj4gaW5kZXggOTAzMzIyMTk5NWFkLi4zMmNiMTJjNGI2ZGQgMTAwNjQ0Cj4gLS0tIGEvZHJp
-dmVycy9ncHUvZHJtL2k5MTUvaTkxNV9pcnEuYwo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1
-L2k5MTVfaXJxLmMKPiBAQCAtMzA0NSw3ICszMDQ1LDcgQEAgc3RhdGljIHZvaWQgZ2VuMTFfZGlz
-cGxheV9pcnFfcmVzZXQoc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmRldl9wcml2KQo+ICAgICAg
-ICAgaWYgKElOVEVMX1BDSF9UWVBFKGRldl9wcml2KSA+PSBQQ0hfSUNQKQo+ICAgICAgICAgICAg
-ICAgICBHRU4zX0lSUV9SRVNFVCh1bmNvcmUsIFNERSk7Cj4gIAo+IC0gICAgICAgLyogV2FfMTQw
-MTA2ODUzMzI6aWNsLGpzbCxlaGwsdGdsLHJrbCAqLwo+ICsgICAgICAgLyogV2FfMTQwMTA2ODUz
-MzI6aWNsLGpzbCxlaGwsdGdsLHJrbCxhZGwtcyBBMCAqLwo+ICAgICAgICAgaWYgKElOVEVMX1BD
-SF9UWVBFKGRldl9wcml2KSA+PSBQQ0hfSUNQKSB7Cj4gICAgICAgICAgICAgICAgIGludGVsX3Vu
-Y29yZV9ybXcodW5jb3JlLCBTT1VUSF9DSElDS0VOMSwKPiAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICBTQkNMS19SVU5fUkVGQ0xLX0RJUywgU0JDTEtfUlVOX1JFRkNMS19ESVMpOwo+
-IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pbnRlbF9kZXZpY2VfaW5mby5jIGIv
-ZHJpdmVycy9ncHUvZHJtL2k5MTUvaW50ZWxfZGV2aWNlX2luZm8uYwo+IGluZGV4IDczMTBlMDE5
-YzYxMS4uNGZmZmE4Mjk1ZDA2IDEwMDY0NAo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2lu
-dGVsX2RldmljZV9pbmZvLmMKPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pbnRlbF9kZXZp
-Y2VfaW5mby5jCj4gQEAgLTM5NCw3ICszOTQsMTEgQEAgdm9pZCBpbnRlbF9kZXZpY2VfaW5mb19y
-dW50aW1lX2luaXQoc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmRldl9wcml2KQo+ICAgICAgICAg
-c3RydWN0IGludGVsX3J1bnRpbWVfaW5mbyAqcnVudGltZSA9IFJVTlRJTUVfSU5GTyhkZXZfcHJp
-dik7Cj4gICAgICAgICBlbnVtIHBpcGUgcGlwZTsKPiAgCj4gLSAgICAgICBpZiAoSU5URUxfR0VO
-KGRldl9wcml2KSA+PSAxMCkgewo+ICsgICAgICAgLyogV2FfMTQwMTE3NjUyNDI6IGFkbC1zIEEw
-ICovCj4gKyAgICAgICBpZiAoSVNfQURMU19SRVZJRChkZXZfcHJpdiwgQURMU19SRVZJRF9BMCwg
-QURMU19SRVZJRF9BMCkpCj4gKyAgICAgICAgICAgICAgIGZvcl9lYWNoX3BpcGUoZGV2X3ByaXYs
-IHBpcGUpCj4gKyAgICAgICAgICAgICAgICAgICAgICAgcnVudGltZS0+bnVtX3NjYWxlcnNbcGlw
-ZV0gPSAwOwo+ICsgICAgICAgZWxzZSBpZiAoSU5URUxfR0VOKGRldl9wcml2KSA+PSAxMCkgewo+
-ICAgICAgICAgICAgICAgICBmb3JfZWFjaF9waXBlKGRldl9wcml2LCBwaXBlKQo+ICAgICAgICAg
-ICAgICAgICAgICAgICAgIHJ1bnRpbWUtPm51bV9zY2FsZXJzW3BpcGVdID0gMjsKPiAgICAgICAg
-IH0gZWxzZSBpZiAoSVNfR0VOKGRldl9wcml2LCA5KSkgewo+IC0tIAo+IDIuMjcuMAo+IAo+IF9f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCj4gSW50ZWwtZ2Z4
-IG1haWxpbmcgbGlzdAo+IEludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKPiBodHRwczov
-L2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeApfX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGlu
-ZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVl
-ZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
+From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+
+Between events which trigger engine and GPU resets and capturing the error
+state we lose information on which engine triggered the reset. Improve
+this by passing in the hung engine mask down to error capture.
+
+Result is that the list of engines in user visible "GPU HANG: ecode
+<gen>:<engines>:<ecode>, <process>" is now a list of hanging and not just
+active engines. Most importantly the displayed process is now the one
+which was actually hung.
+
+Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+---
+ drivers/gpu/drm/i915/gt/intel_lrc.c   |  2 ++
+ drivers/gpu/drm/i915/gt/intel_reset.c |  2 +-
+ drivers/gpu/drm/i915/i915_debugfs.c   |  2 +-
+ drivers/gpu/drm/i915/i915_gpu_error.c | 35 ++++++++++++++++++---------
+ drivers/gpu/drm/i915/i915_gpu_error.h |  7 ++++--
+ 5 files changed, 32 insertions(+), 16 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
+index f3eb68a76a25..8a51c1c3a091 100644
+--- a/drivers/gpu/drm/i915/gt/intel_lrc.c
++++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
+@@ -3037,6 +3037,8 @@ static struct execlists_capture *capture_regs(struct intel_engine_cs *engine)
+ 	if (!cap->error->gt->engine)
+ 		goto err_gt;
+ 
++	cap->error->gt->engine->hung = true;
++
+ 	return cap;
+ 
+ err_gt:
+diff --git a/drivers/gpu/drm/i915/gt/intel_reset.c b/drivers/gpu/drm/i915/gt/intel_reset.c
+index 4e5e13dc95da..9fb4306b2900 100644
+--- a/drivers/gpu/drm/i915/gt/intel_reset.c
++++ b/drivers/gpu/drm/i915/gt/intel_reset.c
+@@ -1251,7 +1251,7 @@ void intel_gt_handle_error(struct intel_gt *gt,
+ 	engine_mask &= gt->info.engine_mask;
+ 
+ 	if (flags & I915_ERROR_CAPTURE) {
+-		i915_capture_error_state(gt->i915);
++		i915_capture_error_state(gt, engine_mask);
+ 		intel_gt_clear_error_registers(gt, engine_mask);
+ 	}
+ 
+diff --git a/drivers/gpu/drm/i915/i915_debugfs.c b/drivers/gpu/drm/i915/i915_debugfs.c
+index 200f6b86f864..77e76b665098 100644
+--- a/drivers/gpu/drm/i915/i915_debugfs.c
++++ b/drivers/gpu/drm/i915/i915_debugfs.c
+@@ -725,7 +725,7 @@ static int i915_gpu_info_open(struct inode *inode, struct file *file)
+ 
+ 	gpu = NULL;
+ 	with_intel_runtime_pm(&i915->runtime_pm, wakeref)
+-		gpu = i915_gpu_coredump(i915);
++		gpu = i915_gpu_coredump(&i915->gt, ALL_ENGINES);
+ 	if (IS_ERR(gpu))
+ 		return PTR_ERR(gpu);
+ 
+diff --git a/drivers/gpu/drm/i915/i915_gpu_error.c b/drivers/gpu/drm/i915/i915_gpu_error.c
+index b3f3a2e07408..857db66cc4a3 100644
+--- a/drivers/gpu/drm/i915/i915_gpu_error.c
++++ b/drivers/gpu/drm/i915/i915_gpu_error.c
+@@ -570,6 +570,7 @@ static void error_print_engine(struct drm_i915_error_state_buf *m,
+ 				   ee->vm_info.pp_dir_base);
+ 		}
+ 	}
++	err_printf(m, "  hung: %u\n", ee->hung);
+ 	err_printf(m, "  engine reset count: %u\n", ee->reset_count);
+ 
+ 	for (n = 0; n < ee->num_ports; n++) {
+@@ -1456,6 +1457,7 @@ capture_engine(struct intel_engine_cs *engine,
+ 
+ static void
+ gt_record_engines(struct intel_gt_coredump *gt,
++		  intel_engine_mask_t engine_mask,
+ 		  struct i915_vma_compress *compress)
+ {
+ 	struct intel_engine_cs *engine;
+@@ -1471,6 +1473,8 @@ gt_record_engines(struct intel_gt_coredump *gt,
+ 		if (!ee)
+ 			continue;
+ 
++		ee->hung = engine->mask & engine_mask;
++
+ 		gt->simulated |= ee->simulated;
+ 		if (ee->simulated) {
+ 			kfree(ee);
+@@ -1663,11 +1667,13 @@ static const char *error_msg(struct i915_gpu_coredump *error)
+ 	for (gt = error->gt; gt; gt = gt->next) {
+ 		struct intel_engine_coredump *cs;
+ 
+-		if (gt->engine && !first)
+-			first = gt->engine;
+-
+-		for (cs = gt->engine; cs; cs = cs->next)
+-			engines |= cs->engine->mask;
++		for (cs = gt->engine; cs; cs = cs->next) {
++			if (cs->hung) {
++				engines |= cs->engine->mask;
++				if (!first)
++					first = cs;
++			}
++		}
+ 	}
+ 
+ 	len = scnprintf(error->error_msg, sizeof(error->error_msg),
+@@ -1781,8 +1787,10 @@ void i915_vma_capture_finish(struct intel_gt_coredump *gt,
+ 	kfree(compress);
+ }
+ 
+-struct i915_gpu_coredump *i915_gpu_coredump(struct drm_i915_private *i915)
++struct i915_gpu_coredump *
++i915_gpu_coredump(struct intel_gt *gt, intel_engine_mask_t engine_mask)
+ {
++	struct drm_i915_private *i915 = gt->i915;
+ 	struct i915_gpu_coredump *error;
+ 
+ 	/* Check if GPU capture has been disabled */
+@@ -1794,7 +1802,7 @@ struct i915_gpu_coredump *i915_gpu_coredump(struct drm_i915_private *i915)
+ 	if (!error)
+ 		return ERR_PTR(-ENOMEM);
+ 
+-	error->gt = intel_gt_coredump_alloc(&i915->gt, ALLOW_FAIL);
++	error->gt = intel_gt_coredump_alloc(gt, ALLOW_FAIL);
+ 	if (error->gt) {
+ 		struct i915_vma_compress *compress;
+ 
+@@ -1806,7 +1814,7 @@ struct i915_gpu_coredump *i915_gpu_coredump(struct drm_i915_private *i915)
+ 		}
+ 
+ 		gt_record_info(error->gt);
+-		gt_record_engines(error->gt, compress);
++		gt_record_engines(error->gt, engine_mask, compress);
+ 
+ 		if (INTEL_INFO(i915)->has_gt_uc)
+ 			error->gt->uc = gt_record_uc(error->gt, compress);
+@@ -1853,20 +1861,23 @@ void i915_error_state_store(struct i915_gpu_coredump *error)
+ 
+ /**
+  * i915_capture_error_state - capture an error record for later analysis
+- * @i915: i915 device
++ * @gt: intel_gt which originated the hang
++ * @engine_mask: hung engines
++ *
+  *
+  * Should be called when an error is detected (either a hang or an error
+  * interrupt) to capture error state from the time of the error.  Fills
+  * out a structure which becomes available in debugfs for user level tools
+  * to pick up.
+  */
+-void i915_capture_error_state(struct drm_i915_private *i915)
++void i915_capture_error_state(struct intel_gt *gt,
++			      intel_engine_mask_t engine_mask)
+ {
+ 	struct i915_gpu_coredump *error;
+ 
+-	error = i915_gpu_coredump(i915);
++	error = i915_gpu_coredump(gt, engine_mask);
+ 	if (IS_ERR(error)) {
+-		cmpxchg(&i915->gpu_error.first_error, NULL, error);
++		cmpxchg(&gt->i915->gpu_error.first_error, NULL, error);
+ 		return;
+ 	}
+ 
+diff --git a/drivers/gpu/drm/i915/i915_gpu_error.h b/drivers/gpu/drm/i915/i915_gpu_error.h
+index 0220b0992808..3a7ca90a3436 100644
+--- a/drivers/gpu/drm/i915/i915_gpu_error.h
++++ b/drivers/gpu/drm/i915/i915_gpu_error.h
+@@ -59,6 +59,7 @@ struct i915_request_coredump {
+ struct intel_engine_coredump {
+ 	const struct intel_engine_cs *engine;
+ 
++	bool hung;
+ 	bool simulated;
+ 	u32 reset_count;
+ 
+@@ -218,8 +219,10 @@ struct drm_i915_error_state_buf {
+ __printf(2, 3)
+ void i915_error_printf(struct drm_i915_error_state_buf *e, const char *f, ...);
+ 
+-struct i915_gpu_coredump *i915_gpu_coredump(struct drm_i915_private *i915);
+-void i915_capture_error_state(struct drm_i915_private *i915);
++struct i915_gpu_coredump *i915_gpu_coredump(struct intel_gt *gt,
++					    intel_engine_mask_t engine_mask);
++void i915_capture_error_state(struct intel_gt *gt,
++			      intel_engine_mask_t engine_mask);
+ 
+ struct i915_gpu_coredump *
+ i915_gpu_coredump_alloc(struct drm_i915_private *i915, gfp_t gfp);
+-- 
+2.25.1
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
