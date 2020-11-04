@@ -1,45 +1,39 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3DAA02A5D71
-	for <lists+intel-gfx@lfdr.de>; Wed,  4 Nov 2020 05:56:28 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 894202A5D9B
+	for <lists+intel-gfx@lfdr.de>; Wed,  4 Nov 2020 06:15:34 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0E5A96E937;
-	Wed,  4 Nov 2020 04:56:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A9B4E6E949;
+	Wed,  4 Nov 2020 05:15:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C16646E937
- for <intel-gfx@lists.freedesktop.org>; Wed,  4 Nov 2020 04:56:24 +0000 (UTC)
-IronPort-SDR: FsWRSd7LLFBFbsneNFgAhbOREW3XE8UUNchdtd9w+qFTYHf2LAQgL+hTsjOjhpHdDvcafomnzF
- aVD6bPtOh0Qg==
-X-IronPort-AV: E=McAfee;i="6000,8403,9794"; a="149017067"
-X-IronPort-AV: E=Sophos;i="5.77,449,1596524400"; 
- d="asc'?scan'208";a="149017067"
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 50ADF6E93E
+ for <intel-gfx@lists.freedesktop.org>; Wed,  4 Nov 2020 05:15:31 +0000 (UTC)
+IronPort-SDR: mN0PQ+ngHpq7UJ9VUUtHdmouhuiyzsU2zh8cqlfgttQolJu7BuLFQIHZFYBtXztKyGGj/hyyNn
+ ApFx8MuSkMQA==
+X-IronPort-AV: E=McAfee;i="6000,8403,9794"; a="253877932"
+X-IronPort-AV: E=Sophos;i="5.77,450,1596524400"; d="scan'208";a="253877932"
+X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Nov 2020 20:56:24 -0800
-IronPort-SDR: yvLSFPH9CRX//6Va2fLDfmgS7ygfdbCzFgsp80MdQmeW0uC3KVFBIZRiCD3dNtWxTDk4fLK+wA
- oL0MIf2X1UCg==
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Nov 2020 21:15:30 -0800
+IronPort-SDR: zoYe12VVTmsxL+Syqbrmmcw8yv/lmz9nmAfawwkoP/LwPwVic1Dl//8HAYEQUIfva9aCtGVrqq
+ RfiPtklrR2wg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.77,449,1596524400"; 
- d="asc'?scan'208";a="320676868"
-Received: from zhen-hp.sh.intel.com (HELO zhen-hp) ([10.239.160.147])
- by orsmga003.jf.intel.com with ESMTP; 03 Nov 2020 20:56:23 -0800
-Date: Wed, 4 Nov 2020 12:35:02 +0800
-From: Zhenyu Wang <zhenyuw@linux.intel.com>
-To: Chris Wilson <chris@chris-wilson.co.uk>
-Message-ID: <20201104043502.GL27141@zhen-hp.sh.intel.com>
-References: <20201103204307.15723-1-chris@chris-wilson.co.uk>
+X-IronPort-AV: E=Sophos;i="5.77,450,1596524400"; d="scan'208";a="363281460"
+Received: from tejas-system-product-name.iind.intel.com ([10.145.162.130])
+ by FMSMGA003.fm.intel.com with ESMTP; 03 Nov 2020 21:15:29 -0800
+From: Tejas Upadhyay <tejaskumarx.surendrakumar.upadhyay@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Wed,  4 Nov 2020 10:36:55 +0530
+Message-Id: <20201104050655.171185-1-tejaskumarx.surendrakumar.upadhyay@intel.com>
+X-Mailer: git-send-email 2.28.0
 MIME-Version: 1.0
-In-Reply-To: <20201103204307.15723-1-chris@chris-wilson.co.uk>
-User-Agent: Mutt/1.10.0 (2018-05-17)
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/gvt: Remove incorrect kerneldoc
- marking
+Subject: [Intel-gfx] [PATCH V3] drm/i915/ehl: Implement W/A 22010492432
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,92 +46,87 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: Zhenyu Wang <zhenyuw@linux.intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============0589590974=="
+Cc: hariom.pandey@intel.com
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+As per W/A implemented for TGL to program half of the nominal
+DCO divider fraction value which is also applicable on EHL.
 
---===============0589590974==
-Content-Type: multipart/signed; micalg=pgp-sha1;
-	protocol="application/pgp-signature"; boundary="oqiVxqbeHx5cy56u"
-Content-Disposition: inline
+Changes since V2:
+	- Apply stepping B0 till FOREVER
+	- B0 - revid update as per Bspec 29153
+Changes since V1:
+        - ehl_ used as to keep earliest platform prefix
+        - WA required B0 stepping onwards
 
+Cc: Deak Imre <imre.deak@intel.com>
+Signed-off-by: Tejas Upadhyay <tejaskumarx.surendrakumar.upadhyay@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_dpll_mgr.c | 13 ++++++++-----
+ drivers/gpu/drm/i915/i915_drv.h               |  1 +
+ 2 files changed, 9 insertions(+), 5 deletions(-)
 
---oqiVxqbeHx5cy56u
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On 2020.11.03 20:43:07 +0000, Chris Wilson wrote:
-> Just a normal comment, not a kerneldoc function description.
->=20
-> drivers/gpu/drm/i915/gvt/handlers.c:1666: warning: Function parameter or =
-member 'vgpu' not described in 'bxt_ppat_low_write'
-> drivers/gpu/drm/i915/gvt/handlers.c:1666: warning: Function parameter or =
-member 'offset' not described in 'bxt_ppat_low_write'
-> drivers/gpu/drm/i915/gvt/handlers.c:1666: warning: Function parameter or =
-member 'p_data' not described in 'bxt_ppat_low_write'
-> drivers/gpu/drm/i915/gvt/handlers.c:1666: warning: Function parameter or =
-member 'bytes' not described in 'bxt_ppat_low_write'
->=20
-> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-> ---
->  drivers/gpu/drm/i915/gvt/handlers.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
->=20
-> diff --git a/drivers/gpu/drm/i915/gvt/handlers.c b/drivers/gpu/drm/i915/g=
-vt/handlers.c
-> index ce93079cf933..4ddc9c847470 100644
-> --- a/drivers/gpu/drm/i915/gvt/handlers.c
-> +++ b/drivers/gpu/drm/i915/gvt/handlers.c
-> @@ -1651,7 +1651,7 @@ static int edp_psr_imr_iir_write(struct intel_vgpu =
-*vgpu,
->  	return 0;
->  }
-> =20
-> -/**
-> +/*
->   * FixMe:
->   * If guest fills non-priv batch buffer on ApolloLake/Broxton as Mesa i9=
-65 did:
->   * 717e7539124d (i965: Use a WC map and memcpy for the batch instead of =
-pwrite.)
-> --=20
-> 2.20.1
->
-
-I'd need to run more checks...btw, please also include intel-gvt-dev list
-for any gvt changes. Thanks
-
-Acked-by: Zhenyu Wang <zhenyuw@linux.intel.com>
-
---=20
-
-$gpg --keyserver wwwkeys.pgp.net --recv-keys 4D781827
-
---oqiVxqbeHx5cy56u
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iF0EARECAB0WIQTXuabgHDW6LPt9CICxBBozTXgYJwUCX6IvdgAKCRCxBBozTXgY
-J2liAKCCQm43G6OqMK6FZfpr7BYtAvvTOgCeP3vrdbRC+j9FW4zOoC/waCkxztk=
-=CP2W
------END PGP SIGNATURE-----
-
---oqiVxqbeHx5cy56u--
-
---===============0589590974==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
+index eaef7a2d041f..a95e6a2ac698 100644
+--- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
++++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
+@@ -2636,13 +2636,16 @@ static bool cnl_ddi_hdmi_pll_dividers(struct intel_crtc_state *crtc_state)
+ }
+ 
+ /*
+- * Display WA #22010492432: tgl
++ * Display WA #22010492432: ehl, tgl
+  * Program half of the nominal DCO divider fraction value.
+  */
+ static bool
+-tgl_combo_pll_div_frac_wa_needed(struct drm_i915_private *i915)
++ehl_combo_pll_div_frac_wa_needed(struct drm_i915_private *i915)
+ {
+-	return IS_TIGERLAKE(i915) && i915->dpll.ref_clks.nssc == 38400;
++	return ((IS_PLATFORM(i915, INTEL_ELKHARTLAKE) &&
++		 IS_JSL_EHL_REVID(i915, EHL_REVID_B0, REVID_FOREVER)) ||
++		 IS_TIGERLAKE(i915)) &&
++		 i915->dpll.ref_clks.nssc == 38400;
+ }
+ 
+ static int __cnl_ddi_wrpll_get_freq(struct drm_i915_private *dev_priv,
+@@ -2696,7 +2699,7 @@ static int __cnl_ddi_wrpll_get_freq(struct drm_i915_private *dev_priv,
+ 	dco_fraction = (pll_state->cfgcr0 & DPLL_CFGCR0_DCO_FRACTION_MASK) >>
+ 		       DPLL_CFGCR0_DCO_FRACTION_SHIFT;
+ 
+-	if (tgl_combo_pll_div_frac_wa_needed(dev_priv))
++	if (ehl_combo_pll_div_frac_wa_needed(dev_priv))
+ 		dco_fraction *= 2;
+ 
+ 	dco_freq += (dco_fraction * ref_clock) / 0x8000;
+@@ -3086,7 +3089,7 @@ static void icl_calc_dpll_state(struct drm_i915_private *i915,
+ 
+ 	memset(pll_state, 0, sizeof(*pll_state));
+ 
+-	if (tgl_combo_pll_div_frac_wa_needed(i915))
++	if (ehl_combo_pll_div_frac_wa_needed(i915))
+ 		dco_fraction = DIV_ROUND_CLOSEST(dco_fraction, 2);
+ 
+ 	pll_state->cfgcr0 = DPLL_CFGCR0_DCO_FRACTION(dco_fraction) |
+diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
+index d548e10e1600..1a5645498cb7 100644
+--- a/drivers/gpu/drm/i915/i915_drv.h
++++ b/drivers/gpu/drm/i915/i915_drv.h
+@@ -1560,6 +1560,7 @@ extern const struct i915_rev_steppings kbl_revids[];
+ 	(IS_ICELAKE(p) && IS_REVID(p, since, until))
+ 
+ #define EHL_REVID_A0            0x0
++#define EHL_REVID_B0            0x1
+ 
+ #define IS_JSL_EHL_REVID(p, since, until) \
+ 	(IS_JSL_EHL(p) && IS_REVID(p, since, until))
+-- 
+2.28.0
 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============0589590974==--
