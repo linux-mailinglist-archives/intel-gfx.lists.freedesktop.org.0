@@ -1,31 +1,42 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5EC652A5DFD
-	for <lists+intel-gfx@lfdr.de>; Wed,  4 Nov 2020 07:01:20 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4191F2A5E68
+	for <lists+intel-gfx@lfdr.de>; Wed,  4 Nov 2020 07:56:39 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B87E06E946;
-	Wed,  4 Nov 2020 06:01:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 11C596E94B;
+	Wed,  4 Nov 2020 06:56:36 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id D95F56E93A;
- Wed,  4 Nov 2020 06:01:16 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id D155CA47EA;
- Wed,  4 Nov 2020 06:01:16 +0000 (UTC)
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CF6C46E94B
+ for <intel-gfx@lists.freedesktop.org>; Wed,  4 Nov 2020 06:56:34 +0000 (UTC)
+IronPort-SDR: eRW1dppf34RxS5svDfCfuEpRrrGLLev3nZ35cvO4R7FYOLAzfh6lMiGMcDOWe4xZSbqlzmyGtH
+ 2B5x267hCFBQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9794"; a="187033347"
+X-IronPort-AV: E=Sophos;i="5.77,450,1596524400"; d="scan'208";a="187033347"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Nov 2020 22:56:34 -0800
+IronPort-SDR: a/rs+zA9plxzM6W/jDiao2sUZpeT+LSo4NNqn7N9oc//DPSIhLLg0EcvyfQNt2ZAyUc+LPfXqx
+ yy3+MirCo3Bw==
+X-IronPort-AV: E=Sophos;i="5.77,450,1596524400"; d="scan'208";a="353646291"
+Received: from linux-desktop.iind.intel.com ([10.223.34.173])
+ by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Nov 2020 22:56:32 -0800
+From: Uma Shankar <uma.shankar@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Wed,  4 Nov 2020 13:00:53 +0530
+Message-Id: <20201104073053.32318-1-uma.shankar@intel.com>
+X-Mailer: git-send-email 2.26.2
+In-Reply-To: <20201103152834.12727-4-uma.shankar@intel.com>
+References: <20201103152834.12727-4-uma.shankar@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Tejas Upadhyay" <tejaskumarx.surendrakumar.upadhyay@intel.com>
-Date: Wed, 04 Nov 2020 06:01:16 -0000
-Message-ID: <160446967682.21427.2758646834648222905@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20201104050655.171185-1-tejaskumarx.surendrakumar.upadhyay@intel.com>
-In-Reply-To: <20201104050655.171185-1-tejaskumarx.surendrakumar.upadhyay@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/ehl=3A_Implement_W/A_22010492432_=28rev3=29?=
+Subject: [Intel-gfx] [v10 03/12] drm/i915/display: Attach HDR property for
+ capable Gen9 devices
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,227 +49,93 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============1630741059=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============1630741059==
-Content-Type: multipart/alternative;
- boundary="===============8329106639686075245=="
+Attach HDR property for Gen9 devices with MCA LSPCON
+chips.
 
---===============8329106639686075245==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+v2: Cleaned HDR property attachment logic based on capability
+as per Jani Nikula's suggestion.
 
-== Series Details ==
+v3: Fixed the HDR property attachment logic as per the new changes
+by Kai-Feng to align with lspcon detection failure on some devices.
 
-Series: drm/i915/ehl: Implement W/A 22010492432 (rev3)
-URL   : https://patchwork.freedesktop.org/series/83135/
-State : success
+v4: Add HDR proprty in late_register to handle lspcon detection,
+as suggested by Ville.
 
-== Summary ==
+v5: Init Lspcon only if advertized from BIOS.
 
-CI Bug Log - changes from CI_DRM_9260 -> Patchwork_18848
-====================================================
+Signed-off-by: Uma Shankar <uma.shankar@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_dp.c     | 14 ++++++++++++++
+ drivers/gpu/drm/i915/display/intel_lspcon.c |  2 +-
+ drivers/gpu/drm/i915/display/intel_lspcon.h |  1 +
+ 3 files changed, 16 insertions(+), 1 deletion(-)
 
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18848/index.html
-
-New tests
----------
-
-  New tests have been introduced between CI_DRM_9260 and Patchwork_18848:
-
-### New CI tests (1) ###
-
-  * boot:
-    - Statuses : 38 pass(s)
-    - Exec time: [0.0] s
-
-  
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_18848 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@core_hotunplug@unbind-rebind:
-    - fi-tgl-u2:          [PASS][1] -> [DMESG-WARN][2] ([i915#1982])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9260/fi-tgl-u2/igt@core_hotunplug@unbind-rebind.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18848/fi-tgl-u2/igt@core_hotunplug@unbind-rebind.html
-
-  * igt@i915_module_load@reload:
-    - fi-tgl-u2:          [PASS][3] -> [DMESG-WARN][4] ([i915#1982] / [k.org#205379])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9260/fi-tgl-u2/igt@i915_module_load@reload.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18848/fi-tgl-u2/igt@i915_module_load@reload.html
-
-  
-#### Possible fixes ####
-
-  * igt@kms_chamelium@dp-crc-fast:
-    - fi-kbl-7500u:       [FAIL][5] ([i915#1161] / [i915#262]) -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9260/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18848/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html
-
-  * igt@kms_cursor_legacy@basic-flip-after-cursor-atomic:
-    - fi-icl-u2:          [DMESG-WARN][7] ([i915#1982]) -> [PASS][8] +2 similar issues
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9260/fi-icl-u2/igt@kms_cursor_legacy@basic-flip-after-cursor-atomic.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18848/fi-icl-u2/igt@kms_cursor_legacy@basic-flip-after-cursor-atomic.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [i915#1161]: https://gitlab.freedesktop.org/drm/intel/issues/1161
-  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
-  [i915#262]: https://gitlab.freedesktop.org/drm/intel/issues/262
-  [k.org#205379]: https://bugzilla.kernel.org/show_bug.cgi?id=205379
-
-
-Participating hosts (43 -> 38)
-------------------------------
-
-  Missing    (5): fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_9260 -> Patchwork_18848
-
-  CI-20190529: 20190529
-  CI_DRM_9260: ac7c5c0c0d9c3475169572ccbd5f28f612a2c5a0 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5831: b6247cc06d76b48ec2a3a0b13ffbd25aec8a42ff @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_18848: 22008c258ae8af75c6d146a390fa7345aca56d1b @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-22008c258ae8 drm/i915/ehl: Implement W/A 22010492432
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18848/index.html
-
---===============8329106639686075245==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/ehl: Implement W/A 22010492432 (rev3)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/83135/">https://patchwork.freedesktop.org/series/83135/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18848/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18848/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_9260 -&gt; Patchwork_18848</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18848/index.html</p>
-<h2>New tests</h2>
-<p>New tests have been introduced between CI_DRM_9260 and Patchwork_18848:</p>
-<h3>New CI tests (1)</h3>
-<ul>
-<li>boot:<ul>
-<li>Statuses : 38 pass(s)</li>
-<li>Exec time: [0.0] s</li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_18848 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@core_hotunplug@unbind-rebind:</p>
-<ul>
-<li>fi-tgl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9260/fi-tgl-u2/igt@core_hotunplug@unbind-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18848/fi-tgl-u2/igt@core_hotunplug@unbind-rebind.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_module_load@reload:</p>
-<ul>
-<li>fi-tgl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9260/fi-tgl-u2/igt@i915_module_load@reload.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18848/fi-tgl-u2/igt@i915_module_load@reload.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a> / <a href="https://bugzilla.kernel.org/show_bug.cgi?id=205379">k.org#205379</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@kms_chamelium@dp-crc-fast:</p>
-<ul>
-<li>fi-kbl-7500u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9260/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1161">i915#1161</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/262">i915#262</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18848/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@basic-flip-after-cursor-atomic:</p>
-<ul>
-<li>fi-icl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9260/fi-icl-u2/igt@kms_cursor_legacy@basic-flip-after-cursor-atomic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18848/fi-icl-u2/igt@kms_cursor_legacy@basic-flip-after-cursor-atomic.html">PASS</a> +2 similar issues</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Participating hosts (43 -&gt; 38)</h2>
-<p>Missing    (5): fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-bdw-samus </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_9260 -&gt; Patchwork_18848</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_9260: ac7c5c0c0d9c3475169572ccbd5f28f612a2c5a0 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_5831: b6247cc06d76b48ec2a3a0b13ffbd25aec8a42ff @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
-  Patchwork_18848: 22008c258ae8af75c6d146a390fa7345aca56d1b @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>22008c258ae8 drm/i915/ehl: Implement W/A 22010492432</p>
-
-</body>
-</html>
-
---===============8329106639686075245==--
-
---===============1630741059==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+index cf09aca7607b..07eda10f8add 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp.c
+@@ -6714,6 +6714,8 @@ intel_dp_connector_register(struct drm_connector *connector)
+ {
+ 	struct drm_i915_private *i915 = to_i915(connector->dev);
+ 	struct intel_dp *intel_dp = intel_attached_dp(to_intel_connector(connector));
++	struct intel_digital_port *dig_port = dp_to_dig_port(intel_dp);
++	struct intel_lspcon *lspcon = &dig_port->lspcon;
+ 	int ret;
+ 
+ 	ret = intel_connector_register(connector);
+@@ -6727,6 +6729,18 @@ intel_dp_connector_register(struct drm_connector *connector)
+ 	ret = drm_dp_aux_register(&intel_dp->aux);
+ 	if (!ret)
+ 		drm_dp_cec_register_connector(&intel_dp->aux, connector);
++
++	if (!intel_bios_is_lspcon_present(i915, dig_port->base.port))
++		return ret;
++
++	if (lspcon_init(dig_port)) {
++		lspcon_detect_hdr_capability(lspcon);
++		if (lspcon->hdr_supported)
++			drm_object_attach_property(&connector->base,
++						   connector->dev->mode_config.hdr_output_metadata_property,
++						   0);
++	}
++
+ 	return ret;
+ }
+ 
+diff --git a/drivers/gpu/drm/i915/display/intel_lspcon.c b/drivers/gpu/drm/i915/display/intel_lspcon.c
+index 46565ae555b1..336494b60d11 100644
+--- a/drivers/gpu/drm/i915/display/intel_lspcon.c
++++ b/drivers/gpu/drm/i915/display/intel_lspcon.c
+@@ -553,7 +553,7 @@ void lspcon_wait_pcon_mode(struct intel_lspcon *lspcon)
+ 	lspcon_wait_mode(lspcon, DRM_LSPCON_MODE_PCON);
+ }
+ 
+-static bool lspcon_init(struct intel_digital_port *dig_port)
++bool lspcon_init(struct intel_digital_port *dig_port)
+ {
+ 	struct intel_dp *dp = &dig_port->dp;
+ 	struct intel_lspcon *lspcon = &dig_port->lspcon;
+diff --git a/drivers/gpu/drm/i915/display/intel_lspcon.h b/drivers/gpu/drm/i915/display/intel_lspcon.h
+index 98043ba50dd4..42ccb21c908f 100644
+--- a/drivers/gpu/drm/i915/display/intel_lspcon.h
++++ b/drivers/gpu/drm/i915/display/intel_lspcon.h
+@@ -15,6 +15,7 @@ struct intel_digital_port;
+ struct intel_encoder;
+ struct intel_lspcon;
+ 
++bool lspcon_init(struct intel_digital_port *dig_port);
+ void lspcon_detect_hdr_capability(struct intel_lspcon *lspcon);
+ void lspcon_resume(struct intel_digital_port *dig_port);
+ void lspcon_wait_pcon_mode(struct intel_lspcon *lspcon);
+-- 
+2.26.2
 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============1630741059==--
