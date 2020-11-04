@@ -1,43 +1,62 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E98C92A5AFF
-	for <lists+intel-gfx@lfdr.de>; Wed,  4 Nov 2020 01:23:49 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id CECDC2A5B38
+	for <lists+intel-gfx@lfdr.de>; Wed,  4 Nov 2020 01:52:37 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A9CEF6E91C;
-	Wed,  4 Nov 2020 00:23:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D6C136E91A;
+	Wed,  4 Nov 2020 00:52:33 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B431C6E91C;
- Wed,  4 Nov 2020 00:23:45 +0000 (UTC)
-IronPort-SDR: p4/ovvuhyWCppEWw+TAAeh1wljK/MF+ktTCqa5Mgo9t6qNsB//PsPzFhliO5XARlRoZ1YYAgoQ
- oBbCJ9jjpeKQ==
-X-IronPort-AV: E=McAfee;i="6000,8403,9794"; a="156920786"
-X-IronPort-AV: E=Sophos;i="5.77,449,1596524400"; d="scan'208";a="156920786"
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5CF766E91A
+ for <intel-gfx@lists.freedesktop.org>; Wed,  4 Nov 2020 00:52:32 +0000 (UTC)
+IronPort-SDR: FNUQGQ+QQiDKd7E1eN/Kl44mYQrjZ5RJDVqoPLD8ylMaDOehToP6afxtFmZcT40TPz52U3XFVp
+ wX8AdGjStNUg==
+X-IronPort-AV: E=McAfee;i="6000,8403,9794"; a="169284372"
+X-IronPort-AV: E=Sophos;i="5.77,449,1596524400"; d="scan'208";a="169284372"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Nov 2020 16:23:44 -0800
-IronPort-SDR: Jff7IlV79j1jQMkLh8k4p93F+1d+yFxSliiIUcZ8FDi862LIN4rimgC7/+CQJyDIYYqiuOhgqh
- lYdPC5Llv4yA==
-X-IronPort-AV: E=Sophos;i="5.77,449,1596524400"; d="scan'208";a="538691531"
-Received: from rdvivi-losangeles.jf.intel.com (HELO intel.com)
- ([10.165.21.201])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Nov 2020 16:23:44 -0800
-Date: Tue, 3 Nov 2020 19:25:08 -0500
-From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-To: Stephen Rothwell <sfr@canb.auug.org.au>
-Message-ID: <20201104002508.GG30349@intel.com>
-References: <20201104093705.10b43959@canb.auug.org.au>
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Nov 2020 16:52:31 -0800
+IronPort-SDR: rgkLJq+Ur3JJjCouIZBP8ebCKItAyjSWo2PUn6H+RBxFRZvmiAvDbQrNcObMdhqGvmxATPapth
+ uClx4bYPwyPA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.77,449,1596524400"; d="scan'208";a="320622955"
+Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
+ by orsmga003.jf.intel.com with ESMTP; 03 Nov 2020 16:52:31 -0800
+Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1713.5; Tue, 3 Nov 2020 16:52:31 -0800
+Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1713.5; Tue, 3 Nov 2020 16:52:30 -0800
+Received: from fmsmsx611.amr.corp.intel.com ([10.18.126.91]) by
+ fmsmsx611.amr.corp.intel.com ([10.18.126.91]) with mapi id 15.01.1713.004;
+ Tue, 3 Nov 2020 16:52:30 -0800
+From: "Srivatsa, Anusha" <anusha.srivatsa@intel.com>
+To: =?iso-8859-1?Q?Ville_Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+Thread-Topic: [PATCH] drm/i915/ehl: Remove invalid PCI ID
+Thread-Index: AQHWrwNNBD5VdYAqxUaCCvE8M11lzKm1o36AgAGEZOA=
+Date: Wed, 4 Nov 2020 00:52:30 +0000
+Message-ID: <3a0f61ae1ddf4c0cb1408ddb8d7ddf2d@intel.com>
+References: <20201030212614.10595-1-anusha.srivatsa@intel.com>
+ <20201102172923.GQ6112@intel.com>
+In-Reply-To: <20201102172923.GQ6112@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+dlp-version: 11.5.1.3
+dlp-product: dlpe-windows
+dlp-reaction: no-action
+x-originating-ip: [10.22.254.132]
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20201104093705.10b43959@canb.auug.org.au>
-Subject: Re: [Intel-gfx] linux-next: build failure after merge of the
- drm-intel-fixes tree
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/ehl: Remove invalid PCI ID
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,59 +69,63 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Daniel Vetter <daniel.vetter@ffwll.ch>,
- Intel Graphics <intel-gfx@lists.freedesktop.org>,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
- DRI <dri-devel@lists.freedesktop.org>, Chris Wilson <chris@chris-wilson.co.uk>,
- Linux Next Mailing List <linux-next@vger.kernel.org>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Nov 04, 2020 at 09:37:05AM +1100, Stephen Rothwell wrote:
-> Hi all,
-> 
-> After merging the drm-intel-fixes tree, today's linux-next build (x86_64
-> allmodconfig) failed like this:
-> 
-> drivers/gpu/drm/i915/gt/intel_lrc.c: In function 'gen12_emit_fini_breadcrumb':
-> drivers/gpu/drm/i915/gt/intel_lrc.c:4998:31: error: implicit declaration of function '__gen8_emit_flush_dw'; did you mean 'gen8_emit_flush'? [-Werror=implicit-function-declaration]
->  4998 |  cs = emit_xcs_breadcrumb(rq, __gen8_emit_flush_dw(cs, 0, 0, 0));
->       |                               ^~~~~~~~~~~~~~~~~~~~
->       |                               gen8_emit_flush
-> drivers/gpu/drm/i915/gt/intel_lrc.c:4998:31: warning: passing argument 2 of 'emit_xcs_breadcrumb' makes pointer from integer without a cast [-Wint-conversion]
->  4998 |  cs = emit_xcs_breadcrumb(rq, __gen8_emit_flush_dw(cs, 0, 0, 0));
->       |                               ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
->       |                               |
->       |                               int
-> drivers/gpu/drm/i915/gt/intel_lrc.c:4902:63: note: expected 'u32 *' {aka 'unsigned int *'} but argument is of type 'int'
->  4902 | static u32 *emit_xcs_breadcrumb(struct i915_request *rq, u32 *cs)
->       |                                                          ~~~~~^~
-> 
-> Caused by commit
-> 
->   c94d65d2ff6d ("drm/i915/gt: Flush xcs before tgl breadcrumbs")
-> 
-> I have reverted that commit for today.
-
-Sorry for the trouble. Dependency picked to drm-intel-fixes now.
-
-Thanks for reporting,
-Rodrigo.
-
-> 
-> -- 
-> Cheers,
-> Stephen Rothwell
 
 
+> -----Original Message-----
+> From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> Sent: Monday, November 2, 2020 9:29 AM
+> To: Srivatsa, Anusha <anusha.srivatsa@intel.com>
+> Cc: intel-gfx@lists.freedesktop.org
+> Subject: Re: [PATCH] drm/i915/ehl: Remove invalid PCI ID
+> =
 
-> _______________________________________________
-> dri-devel mailing list
-> dri-devel@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/dri-devel
+> On Fri, Oct 30, 2020 at 02:26:14PM -0700, Anusha Srivatsa wrote:
+> > Update the EHL PCI IDs from BSpec.
+> > Remove the invalid ones.
+> >
+> > Cc: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> > Signed-off-by: Anusha Srivatsa <anusha.srivatsa@intel.com>
+> =
 
+> Reviewed-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> =
+
+> Pls sort out the ci fail so we can merge this.
+
+Merged.
+
+Anusha =
+
+
+> > ---
+> >  include/drm/i915_pciids.h | 1 -
+> >  1 file changed, 1 deletion(-)
+> >
+> > diff --git a/include/drm/i915_pciids.h b/include/drm/i915_pciids.h
+> > index 3b5ed1e4f3ec..28428e08a8d3 100644
+> > --- a/include/drm/i915_pciids.h
+> > +++ b/include/drm/i915_pciids.h
+> > @@ -584,7 +584,6 @@
+> >
+> >  /* EHL */
+> >  #define INTEL_EHL_IDS(info) \
+> > -	INTEL_VGA_DEVICE(0x4500, info),	\
+> >  	INTEL_VGA_DEVICE(0x4571, info), \
+> >  	INTEL_VGA_DEVICE(0x4551, info), \
+> >  	INTEL_VGA_DEVICE(0x4541, info), \
+> > --
+> > 2.25.0
+> =
+
+> --
+> Ville Syrj=E4l=E4
+> Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
