@@ -1,30 +1,64 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5C38C2A6B6E
-	for <lists+intel-gfx@lfdr.de>; Wed,  4 Nov 2020 18:10:27 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 97EDF2A6BE2
+	for <lists+intel-gfx@lfdr.de>; Wed,  4 Nov 2020 18:38:28 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A52F36E196;
-	Wed,  4 Nov 2020 17:10:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DD00D6E217;
+	Wed,  4 Nov 2020 17:38:26 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2CE526E1B2
- for <intel-gfx@lists.freedesktop.org>; Wed,  4 Nov 2020 17:10:23 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 22893795-1500050 
- for multiple; Wed, 04 Nov 2020 17:10:19 +0000
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Wed,  4 Nov 2020 17:10:16 +0000
-Message-Id: <20201104171016.18102-1-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.20.1
+Received: from mail-pf1-x442.google.com (mail-pf1-x442.google.com
+ [IPv6:2607:f8b0:4864:20::442])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AB87689E11;
+ Wed,  4 Nov 2020 15:03:47 +0000 (UTC)
+Received: by mail-pf1-x442.google.com with SMTP id j18so17513728pfa.0;
+ Wed, 04 Nov 2020 07:03:47 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=date:from:to:cc:subject:message-id:mime-version:content-disposition;
+ bh=Cpcyf2os5AGZUKltjzw6mmvdqbBSobD8RORnek/XVyo=;
+ b=D8ncMu08T1OvGeBwqUDALGzrifbn52YuhJiLosvBbOamy07+NM4aRofAi6wpZhFu7o
+ h6+vsSgcuCac+V2pdkw8jQUXQO4fMMNMHJJYkr1bwJqmmZZICd+PzKySiGcaGb2iIoVr
+ OBL0dalld+I48UA6Fx5fpYfVGzZ+KxU9rUqlwKfiRqWvuX2vZLeEDrl4vLNaHUYCvLhj
+ DcCQXPJTYd0UjGjzrFXenLrwgbyNDEncChAJ31m+CXLgt6Kbx6vYJZa5FkLttq8S07Lk
+ ySRi1mkBE+5tARxbwx6uKCIV9dFa2jCUNVrB2IpckikzQVS81JiZdJvQO7401/mfHR/8
+ vWPA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:mime-version
+ :content-disposition;
+ bh=Cpcyf2os5AGZUKltjzw6mmvdqbBSobD8RORnek/XVyo=;
+ b=p23rT2Qb9xRwV+9tNZsQRWlLbBRYdnBfdIFQEyAyWRh7VO6XSl0Np9mbJyNlInS/Qz
+ hRbWUL4AuWPcJ914K20uDCWL4LHoooHz6u0+w6lw9gZ5ESXcdS2f0JRX+mCvRqvVvI1R
+ U0mJhNXpR+qfB8ZXEqpXwLUaq8XZ9LvfCKfUuLKgBR0JGax0EBxGjtieLxiF/3IcLhpX
+ /5+D5SWmtYZq5CtiM3Ul+cRpBqfMxu9I1zT46iFOOalI2nXSDdg2BErAtEeUoctQOdIT
+ ld8QS1ShaJK+4XM0gil5gCGjjrnmJ6jOSxLKOZBmmkrHWR4eFt46bQBkl6FnvEMpTj55
+ Eq8A==
+X-Gm-Message-State: AOAM530nVpJdSW8BbFjvjEdJWL40NfGt6m0ZZgj7T6+ygXXum8AV/khb
+ XL5XcHrJFeaMgwNFTpkGBPE=
+X-Google-Smtp-Source: ABdhPJwAnv8VuhxZLOh69pT/O6WNOFA7xnF9jPLzCeTgfTiii/Zr65gXy4oBF1C/+g76XjU5+oip1w==
+X-Received: by 2002:a17:90b:30d2:: with SMTP id
+ hi18mr4834398pjb.186.1604502227223; 
+ Wed, 04 Nov 2020 07:03:47 -0800 (PST)
+Received: from localhost ([160.202.157.3])
+ by smtp.gmail.com with ESMTPSA id 21sm2831827pfv.122.2020.11.04.07.03.43
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 04 Nov 2020 07:03:46 -0800 (PST)
+Date: Wed, 4 Nov 2020 20:33:39 +0530
+From: Deepak R Varma <mh12gx2825@gmail.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org
+Message-ID: <20201104150339.GA68663@localhost>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915: Prevent GGTT access if not available
- for pread/pwrite
+Content-Disposition: inline
+X-Mailman-Approved-At: Wed, 04 Nov 2020 17:38:25 +0000
+Subject: [Intel-gfx] [PATCH] drm/i915/perf: replace idr_init() by
+ idr_init_base()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,37 +71,38 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: mh12gx2825@gmail.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-If there is no mappable GGTT aperture, trying to use it for
-copy_(from|to)_user is a dangerous experience. Report ENODEV to indicate
-the operation is not supported to the upper layer.
+idr_init() uses base 0 which is an invalid identifier. The new function
+idr_init_base allows IDR to set the ID lookup from base 1. This avoids
+all lookups that otherwise starts from 0 since 0 is always unused.
 
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+References: commit 6ce711f27500 ("idr: Make 1-based IDRs more efficient")
+
+Signed-off-by: Deepak R Varma <mh12gx2825@gmail.com>
 ---
- drivers/gpu/drm/i915/i915_gem.c | 3 +++
- 1 file changed, 3 insertions(+)
+ drivers/gpu/drm/i915/i915_perf.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/i915_gem.c b/drivers/gpu/drm/i915/i915_gem.c
-index bb0c12975f38..a1f1ffe18682 100644
---- a/drivers/gpu/drm/i915/i915_gem.c
-+++ b/drivers/gpu/drm/i915/i915_gem.c
-@@ -61,6 +61,9 @@ insert_mappable_node(struct i915_ggtt *ggtt, struct drm_mm_node *node, u32 size)
- {
- 	int err;
+diff --git a/drivers/gpu/drm/i915/i915_perf.c b/drivers/gpu/drm/i915/i915_perf.c
+index e94976976571..2d033255b7cf 100644
+--- a/drivers/gpu/drm/i915/i915_perf.c
++++ b/drivers/gpu/drm/i915/i915_perf.c
+@@ -4367,7 +4367,7 @@ void i915_perf_init(struct drm_i915_private *i915)
+ 			RUNTIME_INFO(i915)->cs_timestamp_frequency_hz / 2;
  
-+	if (!i915_ggtt_has_aperture(ggtt))
-+		return -ENODEV;
-+
- 	err = mutex_lock_interruptible(&ggtt->vm.mutex);
- 	if (err)
- 		return err;
+ 		mutex_init(&perf->metrics_lock);
+-		idr_init(&perf->metrics_idr);
++		idr_init_base(&perf->metrics_idr, 1);
+ 
+ 		/* We set up some ratelimit state to potentially throttle any
+ 		 * _NOTES about spurious, invalid OA reports which we don't
 -- 
-2.20.1
+2.25.1
 
 _______________________________________________
 Intel-gfx mailing list
