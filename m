@@ -1,62 +1,39 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id CECDC2A5B38
-	for <lists+intel-gfx@lfdr.de>; Wed,  4 Nov 2020 01:52:37 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 16BE62A5B68
+	for <lists+intel-gfx@lfdr.de>; Wed,  4 Nov 2020 02:00:13 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D6C136E91A;
-	Wed,  4 Nov 2020 00:52:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CF9356E921;
+	Wed,  4 Nov 2020 01:00:05 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5CF766E91A
- for <intel-gfx@lists.freedesktop.org>; Wed,  4 Nov 2020 00:52:32 +0000 (UTC)
-IronPort-SDR: FNUQGQ+QQiDKd7E1eN/Kl44mYQrjZ5RJDVqoPLD8ylMaDOehToP6afxtFmZcT40TPz52U3XFVp
- wX8AdGjStNUg==
-X-IronPort-AV: E=McAfee;i="6000,8403,9794"; a="169284372"
-X-IronPort-AV: E=Sophos;i="5.77,449,1596524400"; d="scan'208";a="169284372"
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DDBA26E921
+ for <intel-gfx@lists.freedesktop.org>; Wed,  4 Nov 2020 01:00:04 +0000 (UTC)
+IronPort-SDR: 36P8ZSBuObGHcWN7nF2UpCtLX69Q2psZOLK+MzSwL7/Y+aYqg7JJOmd5YSuN2GCKfnoZocCKEF
+ t+U3Epe457Tw==
+X-IronPort-AV: E=McAfee;i="6000,8403,9794"; a="149000105"
+X-IronPort-AV: E=Sophos;i="5.77,449,1596524400"; d="scan'208";a="149000105"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Nov 2020 16:52:31 -0800
-IronPort-SDR: rgkLJq+Ur3JJjCouIZBP8ebCKItAyjSWo2PUn6H+RBxFRZvmiAvDbQrNcObMdhqGvmxATPapth
- uClx4bYPwyPA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.77,449,1596524400"; d="scan'208";a="320622955"
-Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
- by orsmga003.jf.intel.com with ESMTP; 03 Nov 2020 16:52:31 -0800
-Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
- fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1713.5; Tue, 3 Nov 2020 16:52:31 -0800
-Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
- fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1713.5; Tue, 3 Nov 2020 16:52:30 -0800
-Received: from fmsmsx611.amr.corp.intel.com ([10.18.126.91]) by
- fmsmsx611.amr.corp.intel.com ([10.18.126.91]) with mapi id 15.01.1713.004;
- Tue, 3 Nov 2020 16:52:30 -0800
-From: "Srivatsa, Anusha" <anusha.srivatsa@intel.com>
-To: =?iso-8859-1?Q?Ville_Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-Thread-Topic: [PATCH] drm/i915/ehl: Remove invalid PCI ID
-Thread-Index: AQHWrwNNBD5VdYAqxUaCCvE8M11lzKm1o36AgAGEZOA=
-Date: Wed, 4 Nov 2020 00:52:30 +0000
-Message-ID: <3a0f61ae1ddf4c0cb1408ddb8d7ddf2d@intel.com>
-References: <20201030212614.10595-1-anusha.srivatsa@intel.com>
- <20201102172923.GQ6112@intel.com>
-In-Reply-To: <20201102172923.GQ6112@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-version: 11.5.1.3
-dlp-product: dlpe-windows
-dlp-reaction: no-action
-x-originating-ip: [10.22.254.132]
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Nov 2020 17:00:04 -0800
+IronPort-SDR: Np0EztuptraTRoN94lqWw9Y57VOUN9rO2wzLIE5KA7AV8jPEa6+MjhQiM+fgGvnEzdYFxLjxsE
+ Cr6u9PSlV1Hg==
+X-IronPort-AV: E=Sophos;i="5.77,449,1596524400"; d="scan'208";a="471010731"
+Received: from ideak-desk.fi.intel.com ([10.237.68.141])
+ by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Nov 2020 17:00:02 -0800
+From: Imre Deak <imre.deak@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Wed,  4 Nov 2020 03:00:00 +0200
+Message-Id: <20201104010000.4165574-1-imre.deak@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/ehl: Remove invalid PCI ID
+Subject: [Intel-gfx] [PATCH] drm/i915/tgl: Fix typo during output setup
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,64 +46,32 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-
-
-> -----Original Message-----
-> From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> Sent: Monday, November 2, 2020 9:29 AM
-> To: Srivatsa, Anusha <anusha.srivatsa@intel.com>
-> Cc: intel-gfx@lists.freedesktop.org
-> Subject: Re: [PATCH] drm/i915/ehl: Remove invalid PCI ID
-> =
-
-> On Fri, Oct 30, 2020 at 02:26:14PM -0700, Anusha Srivatsa wrote:
-> > Update the EHL PCI IDs from BSpec.
-> > Remove the invalid ones.
-> >
-> > Cc: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> > Signed-off-by: Anusha Srivatsa <anusha.srivatsa@intel.com>
-> =
-
-> Reviewed-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> =
-
-> Pls sort out the ci fail so we can merge this.
-
-Merged.
-
-Anusha =
-
-
-> > ---
-> >  include/drm/i915_pciids.h | 1 -
-> >  1 file changed, 1 deletion(-)
-> >
-> > diff --git a/include/drm/i915_pciids.h b/include/drm/i915_pciids.h
-> > index 3b5ed1e4f3ec..28428e08a8d3 100644
-> > --- a/include/drm/i915_pciids.h
-> > +++ b/include/drm/i915_pciids.h
-> > @@ -584,7 +584,6 @@
-> >
-> >  /* EHL */
-> >  #define INTEL_EHL_IDS(info) \
-> > -	INTEL_VGA_DEVICE(0x4500, info),	\
-> >  	INTEL_VGA_DEVICE(0x4571, info), \
-> >  	INTEL_VGA_DEVICE(0x4551, info), \
-> >  	INTEL_VGA_DEVICE(0x4541, info), \
-> > --
-> > 2.25.0
-> =
-
-> --
-> Ville Syrj=E4l=E4
-> Intel
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+Rml4IGEgdHlwbyB0aGF0IGxlZCB0byBzb21lIE1TVCBzaG9ydCBwdWxzZSBldmVudCBoYW5kbGlu
+ZyBpc3N1ZSAodGhlCnNob3J0IHB1bHNlIGV2ZW50IHdhcyBoYW5kbGVkIGZvciBib3RoIGVuY29k
+ZXIgaW5zdGFuY2VzLCBlYWNoIGhhdmluZwppdHMgb3duIHN0YXRlKS4KCkZpeGVzOiAxZDhjYTAw
+MjQ1NmI2ICgiZHJtL2k5MTU6IEFkZCBQT1JUX1RDbiBhbGlhc2VzIHRvIGVudW0gcG9ydCIpCkNj
+OiBWaWxsZSBTeXJqw6Rsw6QgPHZpbGxlLnN5cmphbGFAbGludXguaW50ZWwuY29tPgpDYzogTHVj
+YXMgRGUgTWFyY2hpIDxsdWNhcy5kZW1hcmNoaUBpbnRlbC5jb20+ClNpZ25lZC1vZmYtYnk6IElt
+cmUgRGVhayA8aW1yZS5kZWFrQGludGVsLmNvbT4KLS0tCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9k
+aXNwbGF5L2ludGVsX2Rpc3BsYXkuYyB8IDIgKy0KIDEgZmlsZSBjaGFuZ2VkLCAxIGluc2VydGlv
+bigrKSwgMSBkZWxldGlvbigtKQoKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rp
+c3BsYXkvaW50ZWxfZGlzcGxheS5jIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRl
+bF9kaXNwbGF5LmMKaW5kZXggY2RkYmRhNTMwM2ZmLi4xOWE0ZDgxNTU4YzUgMTAwNjQ0Ci0tLSBh
+L2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheS5jCisrKyBiL2RyaXZl
+cnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheS5jCkBAIC0xNzIyMyw3ICsxNzIy
+Myw3IEBAIHN0YXRpYyB2b2lkIGludGVsX3NldHVwX291dHB1dHMoc3RydWN0IGRybV9pOTE1X3By
+aXZhdGUgKmRldl9wcml2KQogCQlpbnRlbF9kZGlfaW5pdChkZXZfcHJpdiwgUE9SVF9CKTsKIAkJ
+aW50ZWxfZGRpX2luaXQoZGV2X3ByaXYsIFBPUlRfVEMxKTsKIAkJaW50ZWxfZGRpX2luaXQoZGV2
+X3ByaXYsIFBPUlRfVEMyKTsKLQkJaW50ZWxfZGRpX2luaXQoZGV2X3ByaXYsIFBPUlRfVEMyKTsK
+KwkJaW50ZWxfZGRpX2luaXQoZGV2X3ByaXYsIFBPUlRfVEMzKTsKIAkJaW50ZWxfZGRpX2luaXQo
+ZGV2X3ByaXYsIFBPUlRfVEM0KTsKIAkJaW50ZWxfZGRpX2luaXQoZGV2X3ByaXYsIFBPUlRfVEM1
+KTsKIAkJaW50ZWxfZGRpX2luaXQoZGV2X3ByaXYsIFBPUlRfVEM2KTsKLS0gCjIuMjUuMQoKX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1h
+aWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMu
+ZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
