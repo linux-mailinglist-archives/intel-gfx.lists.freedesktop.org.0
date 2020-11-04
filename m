@@ -2,35 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 598EC2A64F8
-	for <lists+intel-gfx@lfdr.de>; Wed,  4 Nov 2020 14:22:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 178DB2A650B
+	for <lists+intel-gfx@lfdr.de>; Wed,  4 Nov 2020 14:24:46 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B09D36E171;
-	Wed,  4 Nov 2020 13:21:58 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B82396E171
- for <Intel-gfx@lists.freedesktop.org>; Wed,  4 Nov 2020 13:21:56 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 22892245-1500050 for multiple; Wed, 04 Nov 2020 13:21:52 +0000
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4B0726ED0B;
+	Wed,  4 Nov 2020 13:24:44 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id E19086ED0B;
+ Wed,  4 Nov 2020 13:24:42 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id D8C28A0094;
+ Wed,  4 Nov 2020 13:24:42 +0000 (UTC)
 MIME-Version: 1.0
-In-Reply-To: <0651e52b-6840-b481-d3bc-3d36db1c8834@linux.intel.com>
-References: <20201104122043.876567-1-tvrtko.ursulin@linux.intel.com>
- <20201104122043.876567-2-tvrtko.ursulin@linux.intel.com>
- <160449323247.15691.17140244371195703868@build.alporthouse.com>
- <0651e52b-6840-b481-d3bc-3d36db1c8834@linux.intel.com>
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: Intel-gfx@lists.freedesktop.org,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Date: Wed, 04 Nov 2020 13:21:49 +0000
-Message-ID: <160449610918.15691.15844478693773992392@build.alporthouse.com>
-User-Agent: alot/0.9
-Subject: Re: [Intel-gfx] [RFC 2/2] drm/i915: Use user engine names in error
- state ecode
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Gwan-gyeong Mun" <gwan-gyeong.mun@intel.com>
+Date: Wed, 04 Nov 2020 13:24:42 -0000
+Message-ID: <160449628287.21428.8740337383152573644@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20201104130159.200874-1-gwan-gyeong.mun@intel.com>
+In-Reply-To: <20201104130159.200874-1-gwan-gyeong.mun@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_series_starting_with_=5Bv3=2C1/2=5D_drm/i915/display=3A_Sup?=
+ =?utf-8?q?port_PSR_Multiple_Transcoders?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -43,46 +39,31 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Tvrtko Ursulin (2020-11-04 13:06:43)
-> 
-> On 04/11/2020 12:33, Chris Wilson wrote:
-> > Quoting Tvrtko Ursulin (2020-11-04 12:20:43)
-> >> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-> >>
-> >> Instead of printing out the internal engine mask, which can change between
-> >> kernel versions making it difficult to map to actual engines, list user
-> >> friendly engine names in the ecode string. For example:
-> > 
-> > Nah. It's a nonsense number, just exists for quick and futile discrimination.
-> > Trying to interpret it is pointless.
-> > 
-> > There's very little value to be gained from it, it should just serve as a
-> > tale-tell that we have captured an error state. The action and impact of
-> > the reset should be separately recorded.
-> 
-> My problem with the nonsense number is that we have it, but that is is 
-> unstable and people are interpreting it.
-> 
-> How about a bitmask of uabi classes instead? As you can see I really 
-> want something from the ABI-land, or not at all. Classes might be just 
-> the thing for the purpose of a signature.
+== Series Details ==
 
-You can probably tell I've been pushing for the not-at-all :)
+Series: series starting with [v3,1/2] drm/i915/display: Support PSR Multiple Transcoders
+URL   : https://patchwork.freedesktop.org/series/83495/
+State : warning
 
-I've personally not found it helpful, it's too simplistic and unstable
-even for repeated GL hangs. The concept of having a hash that can
-summarise the hang is definitely a good idea, but the input to that hash
-is flawed.
+== Summary ==
 
-Given that we record the reset action, and the context that was
-impacted, I wonder how much we need to say here. Just announce a new
-error state has been captured?
--Chris
+$ dim checkpatch origin/drm-tip
+215ae488cdd7 drm/i915/display: Support PSR Multiple Transcoders
+-:1764: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'intel_dp' - possible side-effects?
+#1764: FILE: drivers/gpu/drm/i915/display/intel_psr.h:21:
++#define CAN_PSR(intel_dp) (HAS_PSR(dp_to_i915(intel_dp)) && intel_dp->psr.sink_support)
+
+total: 0 errors, 0 warnings, 1 checks, 1803 lines checked
+f422291bce21 drm/i915/display: Support Multiple Transcoders' PSR status on debugfs
+
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
