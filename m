@@ -1,43 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F29202A6427
-	for <lists+intel-gfx@lfdr.de>; Wed,  4 Nov 2020 13:21:00 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id D9B582A6459
+	for <lists+intel-gfx@lfdr.de>; Wed,  4 Nov 2020 13:31:06 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2FD906ECF9;
-	Wed,  4 Nov 2020 12:20:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 48D256ECFA;
+	Wed,  4 Nov 2020 12:31:05 +0000 (UTC)
 X-Original-To: Intel-gfx@lists.freedesktop.org
 Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 950F46ECF8
- for <Intel-gfx@lists.freedesktop.org>; Wed,  4 Nov 2020 12:20:57 +0000 (UTC)
-IronPort-SDR: tWwqq0WtcyRD2hnh4C6FpFIrvqX4Tw+MpI39Z7Hew6y0kyx0OOgSJ15KcS0iqGY5H5Let6yjqu
- uQa2Hv03MXkw==
-X-IronPort-AV: E=McAfee;i="6000,8403,9794"; a="156196396"
-X-IronPort-AV: E=Sophos;i="5.77,450,1596524400"; d="scan'208";a="156196396"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Nov 2020 04:20:56 -0800
-IronPort-SDR: zWtfKkhh89DxsdpPWRXQe5mO2isEFgzAQGdQrW3T/GBN7b2JeQ0bAdHmiikh9uMCyRnrXKkDJu
- u5ArSa1B3qZw==
-X-IronPort-AV: E=Sophos;i="5.77,450,1596524400"; d="scan'208";a="538901768"
-Received: from marak-mobl1.ger.corp.intel.com (HELO localhost.localdomain)
- ([10.249.42.32])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Nov 2020 04:20:55 -0800
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-To: Intel-gfx@lists.freedesktop.org
-Date: Wed,  4 Nov 2020 12:20:43 +0000
-Message-Id: <20201104122043.876567-2-tvrtko.ursulin@linux.intel.com>
-X-Mailer: git-send-email 2.25.1
+Received: from fireflyinternet.com (unknown [77.68.26.236])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 360076ECFA
+ for <Intel-gfx@lists.freedesktop.org>; Wed,  4 Nov 2020 12:31:04 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from localhost (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
+ 22891629-1500050 for multiple; Wed, 04 Nov 2020 12:30:58 +0000
+MIME-Version: 1.0
 In-Reply-To: <20201104122043.876567-1-tvrtko.ursulin@linux.intel.com>
 References: <20201104122043.876567-1-tvrtko.ursulin@linux.intel.com>
-MIME-Version: 1.0
-Subject: [Intel-gfx] [RFC 2/2] drm/i915: Use user engine names in error
- state ecode
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: Intel-gfx@lists.freedesktop.org,
+ Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Date: Wed, 04 Nov 2020 12:30:55 +0000
+Message-ID: <160449305596.15691.8814203162337051600@build.alporthouse.com>
+User-Agent: alot/0.9
+Subject: Re: [Intel-gfx] [RFC 1/2] drm/i915: Improve record of hung engines
+ in error state
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,96 +45,46 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+Quoting Tvrtko Ursulin (2020-11-04 12:20:42)
+> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+> 
+> Between events which trigger engine and GPU resets and capturing the error
+> state we lose information on which engine triggered the reset. Improve
+> this by passing in the hung engine mask down to error capture.
+> 
+> Result is that the list of engines in user visible "GPU HANG: ecode
+> <gen>:<engines>:<ecode>, <process>" is now a list of hanging and not just
+> active engines. Most importantly the displayed process is now the one
+> which was actually hung.
 
-Instead of printing out the internal engine mask, which can change between
-kernel versions making it difficult to map to actual engines, list user
-friendly engine names in the ecode string. For example:
+You could also suggest to only include the hanging engine in the report,
+as is intended to be the normal means of generating the report
 
-  [drm] GPU HANG: ecode 9:vcs1:a77ffefe, in gem_exec_captur [929]
+> diff --git a/drivers/gpu/drm/i915/i915_gpu_error.h b/drivers/gpu/drm/i915/i915_gpu_error.h
+> index 0220b0992808..3a7ca90a3436 100644
+> --- a/drivers/gpu/drm/i915/i915_gpu_error.h
+> +++ b/drivers/gpu/drm/i915/i915_gpu_error.h
+> @@ -59,6 +59,7 @@ struct i915_request_coredump {
+>  struct intel_engine_coredump {
+>         const struct intel_engine_cs *engine;
+>  
+> +       bool hung;
+>         bool simulated;
+>         u32 reset_count;
+>  
+> @@ -218,8 +219,10 @@ struct drm_i915_error_state_buf {
+>  __printf(2, 3)
+>  void i915_error_printf(struct drm_i915_error_state_buf *e, const char *f, ...);
+>  
+> -struct i915_gpu_coredump *i915_gpu_coredump(struct drm_i915_private *i915);
+> -void i915_capture_error_state(struct drm_i915_private *i915);
+> +struct i915_gpu_coredump *i915_gpu_coredump(struct intel_gt *gt,
+> +                                           intel_engine_mask_t engine_mask);
+> +void i915_capture_error_state(struct intel_gt *gt,
+> +                             intel_engine_mask_t engine_mask);
 
-Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
----
- drivers/gpu/drm/i915/i915_gpu_error.c | 38 ++++++++++++++++-----------
- drivers/gpu/drm/i915/i915_gpu_error.h |  2 +-
- 2 files changed, 24 insertions(+), 16 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/i915_gpu_error.c b/drivers/gpu/drm/i915/i915_gpu_error.c
-index 857db66cc4a3..ce876e3f3ec5 100644
---- a/drivers/gpu/drm/i915/i915_gpu_error.c
-+++ b/drivers/gpu/drm/i915/i915_gpu_error.c
-@@ -1659,32 +1659,40 @@ static u32 generate_ecode(const struct intel_engine_coredump *ee)
- static const char *error_msg(struct i915_gpu_coredump *error)
- {
- 	struct intel_engine_coredump *first = NULL;
-+	int space = sizeof(error->error_msg) - 1, len;
- 	struct intel_gt_coredump *gt;
--	intel_engine_mask_t engines;
--	int len;
-+	char *p = error->error_msg;
-+
-+	len = scnprintf(p, space, "GPU HANG: ecode %d:",
-+			INTEL_GEN(error->i915));
-+	p += len;
-+	space -= len;
- 
--	engines = 0;
- 	for (gt = error->gt; gt; gt = gt->next) {
- 		struct intel_engine_coredump *cs;
- 
- 		for (cs = gt->engine; cs; cs = cs->next) {
--			if (cs->hung) {
--				engines |= cs->engine->mask;
--				if (!first)
--					first = cs;
--			}
-+			if (!cs->hung)
-+				continue;
-+
-+			len = scnprintf(p, space, "%s%s",
-+					first ? "," : "",
-+					cs->engine->name);
-+			p += len;
-+			space -= len;
-+
-+			if (!first)
-+				first = cs;
- 		}
- 	}
- 
--	len = scnprintf(error->error_msg, sizeof(error->error_msg),
--			"GPU HANG: ecode %d:%x:%08x",
--			INTEL_GEN(error->i915), engines,
--			generate_ecode(first));
-+	len = scnprintf(p, space, ":%08x", generate_ecode(first));
-+	p += len;
-+	space -= len;
-+
- 	if (first && first->context.pid) {
- 		/* Just show the first executing process, more is confusing */
--		len += scnprintf(error->error_msg + len,
--				 sizeof(error->error_msg) - len,
--				 ", in %s [%d]",
-+		len += scnprintf(p, space, ", in %s [%d]",
- 				 first->context.comm, first->context.pid);
- 	}
- 
-diff --git a/drivers/gpu/drm/i915/i915_gpu_error.h b/drivers/gpu/drm/i915/i915_gpu_error.h
-index 3a7ca90a3436..6b8573ddbe67 100644
---- a/drivers/gpu/drm/i915/i915_gpu_error.h
-+++ b/drivers/gpu/drm/i915/i915_gpu_error.h
-@@ -168,7 +168,7 @@ struct i915_gpu_coredump {
- 
- 	struct intel_gt_coredump *gt;
- 
--	char error_msg[128];
-+	char error_msg[256];
- 	bool simulated;
- 	bool wakelock;
- 	bool suspended;
--- 
-2.25.1
-
+Don't forget the stubs.
+-Chris
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
