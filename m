@@ -1,36 +1,30 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E9E9B2A7AFF
-	for <lists+intel-gfx@lfdr.de>; Thu,  5 Nov 2020 10:49:49 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2A8FD2A7B6B
+	for <lists+intel-gfx@lfdr.de>; Thu,  5 Nov 2020 11:12:09 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3F2636E071;
-	Thu,  5 Nov 2020 09:49:48 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7F2396EA4F;
+	Thu,  5 Nov 2020 10:11:50 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ADCC36E071
- for <Intel-gfx@lists.freedesktop.org>; Thu,  5 Nov 2020 09:49:46 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0AD2E6EA34
+ for <intel-gfx@lists.freedesktop.org>; Thu,  5 Nov 2020 10:11:47 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 22899810-1500050 for multiple; Thu, 05 Nov 2020 09:49:40 +0000
-MIME-Version: 1.0
-In-Reply-To: <19d84410-f2a9-58a7-a60e-bd03161c4078@linux.intel.com>
-References: <20201104134743.916027-1-tvrtko.ursulin@linux.intel.com>
- <20201104134743.916027-2-tvrtko.ursulin@linux.intel.com>
- <160453261800.17472.1591297091381831846@build.alporthouse.com>
- <19d84410-f2a9-58a7-a60e-bd03161c4078@linux.intel.com>
+Received: from build.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 22900134-1500050 
+ for multiple; Thu, 05 Nov 2020 10:11:37 +0000
 From: Chris Wilson <chris@chris-wilson.co.uk>
-To: Intel-gfx@lists.freedesktop.org,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Date: Thu, 05 Nov 2020 09:49:37 +0000
-Message-ID: <160456977798.17472.14781835087218905341@build.alporthouse.com>
-User-Agent: alot/0.9
-Subject: Re: [Intel-gfx] [RFC 2/2] drm/i915: Use ABI engine class in error
- state ecode
+To: intel-gfx@lists.freedesktop.org
+Date: Thu,  5 Nov 2020 10:11:13 +0000
+Message-Id: <20201105101134.19716-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.20.1
+MIME-Version: 1.0
+Subject: [Intel-gfx] [PATCH 01/22] drm/i915/gem: Allow backends to override
+ pread implementation
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -43,89 +37,59 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Matthew Auld <matthew.auld@intel.com>,
+ Chris Wilson <chris@chris-wilson.co.uk>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Tvrtko Ursulin (2020-11-05 09:31:07)
-> 
-> On 04/11/2020 23:30, Chris Wilson wrote:
-> > Quoting Tvrtko Ursulin (2020-11-04 13:47:43)
-> >> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-> >>
-> >> Instead of printing out the internal engine mask, which can change between
-> >> kernel versions making it difficult to map to actual engines, present a
-> >> bitmask of hanging engines ABI classes. For example:
-> >>
-> >>    [drm] GPU HANG: ecode 9:24dffffd:8, in gem_exec_schedu [1334]
-> >>
-> >> Notice the swapped the order of ecode and bitmask which makes the new
-> >> versus old bug reports are obvious.
-> >>
-> >> Engine ABI class is useful to quickly categorize render vs media etc hangs
-> >> in bug reports. Considering virtual engine even more so than the current
-> >> scheme.
-> >>
-> >> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-> >> ---
-> >>   drivers/gpu/drm/i915/i915_gpu_error.c | 13 +++++++------
-> >>   1 file changed, 7 insertions(+), 6 deletions(-)
-> >>
-> >> diff --git a/drivers/gpu/drm/i915/i915_gpu_error.c b/drivers/gpu/drm/i915/i915_gpu_error.c
-> >> index 857db66cc4a3..e7d9af184d58 100644
-> >> --- a/drivers/gpu/drm/i915/i915_gpu_error.c
-> >> +++ b/drivers/gpu/drm/i915/i915_gpu_error.c
-> >> @@ -1659,17 +1659,16 @@ static u32 generate_ecode(const struct intel_engine_coredump *ee)
-> >>   static const char *error_msg(struct i915_gpu_coredump *error)
-> >>   {
-> >>          struct intel_engine_coredump *first = NULL;
-> >> +       unsigned int hung_classes = 0;
-> >>          struct intel_gt_coredump *gt;
-> >> -       intel_engine_mask_t engines;
-> >>          int len;
-> >>   
-> >> -       engines = 0;
-> >>          for (gt = error->gt; gt; gt = gt->next) {
-> >>                  struct intel_engine_coredump *cs;
-> >>   
-> >>                  for (cs = gt->engine; cs; cs = cs->next) {
-> >>                          if (cs->hung) {
-> >> -                               engines |= cs->engine->mask;
-> >> +                               hung_classes |= BIT(cs->engine->uabi_class);
-> > 
-> > Your argument makes sense.
-> > 
-> >>                                  if (!first)
-> >>                                          first = cs;
-> >>                          }
-> >> @@ -1677,9 +1676,11 @@ static const char *error_msg(struct i915_gpu_coredump *error)
-> >>          }
-> >>   
-> >>          len = scnprintf(error->error_msg, sizeof(error->error_msg),
-> >> -                       "GPU HANG: ecode %d:%x:%08x",
-> >> -                       INTEL_GEN(error->i915), engines,
-> >> -                       generate_ecode(first));
-> >> +                       "GPU HANG: ecode %d:%08x:%x",
-> >> +                       INTEL_GEN(error->i915),
-> >> +                       generate_ecode(first),
-> >> +                       hung_classes);
-> > 
-> > I vote for keeping gen:engines:ecode order, for me that is biggest to
-> > smallest.
-> 
-> It would not be obvious what kind of bits are in the mask then, say 
-> looking from the ecode in maybe bugzilla titles and two different bugs 
-> may be incorrectly marked as duplicate.
+From: Matthew Auld <matthew.auld@intel.com>
 
-No one should be marking bugs as duplicate based on this string. It
-really is that useless.
+As there are more complicated interactions between the different backing
+stores and userspace, push the control into the backends rather than
+accumulate them all inside the ioctl handlers.
 
-> Maybe instead of the order we 
-> could change the separator(s)? Or add prefix/suffix to the mask?
+Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+---
+ drivers/gpu/drm/i915/gem/i915_gem_object_types.h | 2 ++
+ drivers/gpu/drm/i915/i915_gem.c                  | 6 ++++++
+ 2 files changed, 8 insertions(+)
 
-I don't see the point; we've changed the construction several times.
--Chris
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object_types.h b/drivers/gpu/drm/i915/gem/i915_gem_object_types.h
+index fedfebf13344..e2d9b7e1e152 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_object_types.h
++++ b/drivers/gpu/drm/i915/gem/i915_gem_object_types.h
+@@ -56,6 +56,8 @@ struct drm_i915_gem_object_ops {
+ 	void (*truncate)(struct drm_i915_gem_object *obj);
+ 	void (*writeback)(struct drm_i915_gem_object *obj);
+ 
++	int (*pread)(struct drm_i915_gem_object *obj,
++		     const struct drm_i915_gem_pread *arg);
+ 	int (*pwrite)(struct drm_i915_gem_object *obj,
+ 		      const struct drm_i915_gem_pwrite *arg);
+ 
+diff --git a/drivers/gpu/drm/i915/i915_gem.c b/drivers/gpu/drm/i915/i915_gem.c
+index bb0c12975f38..d58fe1ddc3e1 100644
+--- a/drivers/gpu/drm/i915/i915_gem.c
++++ b/drivers/gpu/drm/i915/i915_gem.c
+@@ -527,6 +527,12 @@ i915_gem_pread_ioctl(struct drm_device *dev, void *data,
+ 
+ 	trace_i915_gem_object_pread(obj, args->offset, args->size);
+ 
++	ret = -ENODEV;
++	if (obj->ops->pread)
++		ret = obj->ops->pread(obj, args);
++	if (ret != -ENODEV)
++		goto out;
++
+ 	ret = i915_gem_object_wait(obj,
+ 				   I915_WAIT_INTERRUPTIBLE,
+ 				   MAX_SCHEDULE_TIMEOUT);
+-- 
+2.20.1
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
