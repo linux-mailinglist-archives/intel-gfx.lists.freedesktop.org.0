@@ -1,44 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E11D52A83DB
-	for <lists+intel-gfx@lfdr.de>; Thu,  5 Nov 2020 17:46:56 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id C43E42A84E1
+	for <lists+intel-gfx@lfdr.de>; Thu,  5 Nov 2020 18:29:18 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4504A6EDCC;
-	Thu,  5 Nov 2020 16:46:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2F3296E187;
+	Thu,  5 Nov 2020 17:29:17 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 895666EDCC;
- Thu,  5 Nov 2020 16:46:54 +0000 (UTC)
-IronPort-SDR: iBUsovQtDvSQyooNfprn62s9heU+gyXVppPTMH50qe+JuHoZwE1TYu1eTkawyariArVd7M3T6G
- kXP0A5eW3Txg==
-X-IronPort-AV: E=McAfee;i="6000,8403,9796"; a="157196978"
-X-IronPort-AV: E=Sophos;i="5.77,453,1596524400"; d="scan'208";a="157196978"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Nov 2020 08:46:54 -0800
-IronPort-SDR: yLVrxO75Msb2B03iQ1DKOVDppsRQb51XpKnGlh8ITG+fU7KNGFlU4iaG/YWNUgN0P26k5aVdKa
- xkt/kd2GiM9A==
-X-IronPort-AV: E=Sophos;i="5.77,453,1596524400"; d="scan'208";a="326086841"
-Received: from unknown (HELO intel.com) ([10.99.66.154])
- by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Nov 2020 08:46:51 -0800
-Date: Thu, 5 Nov 2020 22:17:35 +0530
-From: Ramalingam C <ramalingam.c@intel.com>
-To: Anshuman Gupta <anshuman.gupta@intel.com>
-Message-ID: <20201105164735.GN3242@intel.com>
-References: <20201027164208.10026-1-anshuman.gupta@intel.com>
- <20201027164208.10026-15-anshuman.gupta@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 2E0E36EDD7;
+ Thu,  5 Nov 2020 17:29:15 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 25A82A47EA;
+ Thu,  5 Nov 2020 17:29:15 +0000 (UTC)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20201027164208.10026-15-anshuman.gupta@intel.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH v4 14/16] drm/i915/hdcp: Add HDCP 2.2 stream
- register
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Thu, 05 Nov 2020 17:29:15 -0000
+Message-ID: <160459735515.14959.7957589376637718791@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20201105154934.16022-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20201105154934.16022-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
+ =?utf-8?q?series_starting_with_=5BCI=2C1/2=5D_drm/i915/gem=3A_Allow_backe?=
+ =?utf-8?q?nds_to_override_pread_implementation?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,77 +39,80 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jani.nikula@intel.com, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, seanpaul@chromium.org
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 2020-10-27 at 22:12:06 +0530, Anshuman Gupta wrote:
-> Add HDCP 2.2 DP MST HDCP2_STREAM_STATUS
-> and HDCP2_AUTH_STREAM register in i915_reg header.
+== Series Details ==
 
-Reviewed-by: Ramalingam C <ramalingam.c@intel.com>
-> 
-> Cc: Ramalingam C <ramalingam.c@intel.com>
-> Reviewed-by: Uma Shankar <uma.shankar@intel.com>
-> Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
-> ---
->  drivers/gpu/drm/i915/i915_reg.h | 30 ++++++++++++++++++++++++++++++
->  1 file changed, 30 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-> index 77461cde6549..c9678c77883d 100644
-> --- a/drivers/gpu/drm/i915/i915_reg.h
-> +++ b/drivers/gpu/drm/i915/i915_reg.h
-> @@ -9894,6 +9894,7 @@ enum skl_power_gate {
->  					  _PORTD_HDCP2_BASE, \
->  					  _PORTE_HDCP2_BASE, \
->  					  _PORTF_HDCP2_BASE) + (x))
-> +
->  #define PORT_HDCP2_AUTH(port)		_PORT_HDCP2_BASE(port, 0x98)
->  #define _TRANSA_HDCP2_AUTH		0x66498
->  #define _TRANSB_HDCP2_AUTH		0x66598
-> @@ -9933,6 +9934,35 @@ enum skl_power_gate {
->  					 TRANS_HDCP2_STATUS(trans) : \
->  					 PORT_HDCP2_STATUS(port))
->  
-> +#define PORT_HDCP2_STREAM_STATUS(port)		_PORT_HDCP2_BASE(port, 0xC0)
-> +#define _TRANSA_HDCP2_STREAM_STATUS		0x664C0
-> +#define _TRANSB_HDCP2_STREAM_STATUS		0x665C0
-> +#define TRANS_HDCP2_STREAM_STATUS(trans)	_MMIO_TRANS(trans, \
-> +						    _TRANSA_HDCP2_STREAM_STATUS, \
-> +						    _TRANSB_HDCP2_STREAM_STATUS)
-> +#define   STREAM_ENCRYPTION_STATUS	BIT(31)
-> +#define   STREAM_TYPE_STATUS		BIT(30)
-> +#define HDCP2_STREAM_STATUS(dev_priv, trans, port) \
-> +					(INTEL_GEN(dev_priv) >= 12 ? \
-> +					 TRANS_HDCP2_STREAM_STATUS(trans) : \
-> +					 PORT_HDCP2_STREAM_STATUS(port))
-> +
-> +#define _PORTA_HDCP2_AUTH_STREAM		0x66F00
-> +#define _PORTB_HDCP2_AUTH_STREAM		0x66F04
-> +#define PORT_HDCP2_AUTH_STREAM(port)	_MMIO_PORT(port, \
-> +						   _PORTA_HDCP2_AUTH_STREAM, \
-> +						   _PORTB_HDCP2_AUTH_STREAM)
-> +#define _TRANSA_HDCP2_AUTH_STREAM		0x66F00
-> +#define _TRANSB_HDCP2_AUTH_STREAM		0x66F04
-> +#define TRANS_HDCP2_AUTH_STREAM(trans)	_MMIO_TRANS(trans, \
-> +						    _TRANSA_HDCP2_AUTH_STREAM, \
-> +						    _TRANSB_HDCP2_AUTH_STREAM)
-> +#define   AUTH_STREAM_TYPE		BIT(31)
-> +#define HDCP2_AUTH_STREAM(dev_priv, trans, port) \
-> +					(INTEL_GEN(dev_priv) >= 12 ? \
-> +					 TRANS_HDCP2_AUTH_STREAM(trans) : \
-> +					 PORT_HDCP2_AUTH_STREAM(port))
-> +
->  /* Per-pipe DDI Function Control */
->  #define _TRANS_DDI_FUNC_CTL_A		0x60400
->  #define _TRANS_DDI_FUNC_CTL_B		0x61400
-> -- 
-> 2.26.2
-> 
+Series: series starting with [CI,1/2] drm/i915/gem: Allow backends to override pread implementation
+URL   : https://patchwork.freedesktop.org/series/83541/
+State : warning
+
+== Summary ==
+
+$ dim sparse --fast origin/drm-tip
+Sparse version: v0.6.2
+Fast mode used, each commit won't be checked separately.
+-
++drivers/gpu/drm/i915/gt/intel_reset.c:1312:5: warning: context imbalance in 'intel_gt_reset_trylock' - different lock contexts for basic block
++drivers/gpu/drm/i915/gt/selftest_reset.c:100:20:    expected void *in
++drivers/gpu/drm/i915/gt/selftest_reset.c:100:20:    got void [noderef] __iomem *[assigned] s
++drivers/gpu/drm/i915/gt/selftest_reset.c:100:20: warning: incorrect type in assignment (different address spaces)
++drivers/gpu/drm/i915/gt/selftest_reset.c:101:46:    expected void const *src
++drivers/gpu/drm/i915/gt/selftest_reset.c:101:46:    got void [noderef] __iomem *[assigned] s
++drivers/gpu/drm/i915/gt/selftest_reset.c:101:46: warning: incorrect type in argument 2 (different address spaces)
++drivers/gpu/drm/i915/gt/selftest_reset.c:136:20:    expected void *in
++drivers/gpu/drm/i915/gt/selftest_reset.c:136:20:    got void [noderef] __iomem *[assigned] s
++drivers/gpu/drm/i915/gt/selftest_reset.c:136:20: warning: incorrect type in assignment (different address spaces)
++drivers/gpu/drm/i915/gt/selftest_reset.c:137:46:    expected void const *src
++drivers/gpu/drm/i915/gt/selftest_reset.c:137:46:    got void [noderef] __iomem *[assigned] s
++drivers/gpu/drm/i915/gt/selftest_reset.c:137:46: warning: incorrect type in argument 2 (different address spaces)
++drivers/gpu/drm/i915/gt/selftest_reset.c:98:34:    expected unsigned int [usertype] *s
++drivers/gpu/drm/i915/gt/selftest_reset.c:98:34:    got void [noderef] __iomem *[assigned] s
++drivers/gpu/drm/i915/gt/selftest_reset.c:98:34: warning: incorrect type in argument 1 (different address spaces)
++drivers/gpu/drm/i915/gvt/mmio.c:290:23: warning: memcpy with byte count of 279040
++drivers/gpu/drm/i915/i915_perf.c:1440:15: warning: memset with byte count of 16777216
++drivers/gpu/drm/i915/i915_perf.c:1494:15: warning: memset with byte count of 16777216
++./include/linux/seqlock.h:838:24: warning: trying to copy expression type 31
++./include/linux/seqlock.h:838:24: warning: trying to copy expression type 31
++./include/linux/seqlock.h:864:16: warning: trying to copy expression type 31
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_read16' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_read32' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_read64' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_read8' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_write16' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_write32' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_write8' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_read16' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_read32' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_read64' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_read8' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_write16' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_write32' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_write8' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_read16' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_read32' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_read64' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_read8' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_write16' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_write32' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_write8' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_read16' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_read32' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_read64' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_read8' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_write16' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_write32' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_write8' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen8_write16' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen8_write32' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen8_write8' - different lock contexts for basic block
+
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
