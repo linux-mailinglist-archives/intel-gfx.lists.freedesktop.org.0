@@ -1,58 +1,44 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C75722A82F3
-	for <lists+intel-gfx@lfdr.de>; Thu,  5 Nov 2020 17:03:08 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id DA8A22A8306
+	for <lists+intel-gfx@lfdr.de>; Thu,  5 Nov 2020 17:06:38 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 325126EB5B;
-	Thu,  5 Nov 2020 16:03:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2F1646EDBA;
+	Thu,  5 Nov 2020 16:06:36 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ua1-x943.google.com (mail-ua1-x943.google.com
- [IPv6:2607:f8b0:4864:20::943])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 442B06EB5B
- for <intel-gfx@lists.freedesktop.org>; Thu,  5 Nov 2020 16:03:06 +0000 (UTC)
-Received: by mail-ua1-x943.google.com with SMTP id h26so649967uan.10
- for <intel-gfx@lists.freedesktop.org>; Thu, 05 Nov 2020 08:03:06 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=iH3csmwHS1qbgABZNFjlBcAXNLBxhLKOXICvl5E/WGU=;
- b=CdbUoSJ4owDpQL64C30974C7uGAxvLnJYrR1TS8H3RER0vvt3W3nnOxdPfnX25tK3V
- iV9iSBrljdiJPtKqX3+q2JvEnxWNew9s8DT7iSK0ol4YG3sEDs2Pn1tjPrVy1mn0FW6q
- c4xMHvklvqdqgzs8Bkyfh10AwsOujcA2qk87kKse2w7aM+t6N01WaQqqhQBVURUDDNSK
- UQufonwvJPXoeLewyqelgd5Vbet47qS+9l4rijKLKwIrxe7767NX56TClWdN69CjKMcs
- KrhWWHa7A2mJeIJlVXEi+pVCzFWAMyqQ9mTeo5vk6TWwUGHoebqSulai8xBxQuqAius8
- EWlA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=iH3csmwHS1qbgABZNFjlBcAXNLBxhLKOXICvl5E/WGU=;
- b=s4pIOv0aBdRoBe/R8NYeDKMBlTgWajU+zRt28OokajWIUBIdZcEyeiJs494KUQDyG3
- t65hsJL8gtPoBe1reFh4FSopzOuBvr7iyo1jhcXgE8E0MzhzpDePZD+yGNfFh4X7IWNw
- eej7j1bSYzFqP7R/8/H/Cwn1XPSd6xxIx22rBIeQ5LCE4IzivD3bafQdDaxRz0fnoDk/
- VkHfr68bh7OonDbsfpk88IF+pZgWOG2IL33fwUUzloc7aaLae6NcOK7BXkwklpGFyki7
- H+kBW2qwjpmth9YCHSd7/dJ8oTZ50XdKsdCuKGWJu4HaQclGy7h68XBlfHL7au/sbrxi
- hs1g==
-X-Gm-Message-State: AOAM532ue4Aen1LN8CV4fISyIZ3v/yGOhmjUPTuk1xKuX5lwgzuxhMWY
- YHMzNaRnNoWSNMJsBRwvW1XecpRYFbMaTtBhUeY=
-X-Google-Smtp-Source: ABdhPJylEfn4EW8Qd3kBvhCVjt8iyIRKY/HA/ziwanO+EMXdL8hTkaB147y6gbmZ3pUkymvnNubUYxx7/O8CMCV/yNE=
-X-Received: by 2002:a9f:2f15:: with SMTP id x21mr1549304uaj.104.1604592185431; 
- Thu, 05 Nov 2020 08:03:05 -0800 (PST)
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A43EE6EDAC;
+ Thu,  5 Nov 2020 16:06:34 +0000 (UTC)
+IronPort-SDR: r/k8TRbuo8AZaKTXtd4mTg9b5F1Dl5fmQGLsApOrIZj1QrQIdO8olEQk4joMrgVvcZ3kRkI/mA
+ 219WpEwSktPQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9795"; a="187315921"
+X-IronPort-AV: E=Sophos;i="5.77,453,1596524400"; d="scan'208";a="187315921"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Nov 2020 08:06:33 -0800
+IronPort-SDR: EqPF3dvwKv8chaind/tqDCt0+eWn46OEOXgczqol3J2F/WSqTL1cgy7Ic7vbOkXiKiA4ur/nov
+ 1Jtr45Uo1zoQ==
+X-IronPort-AV: E=Sophos;i="5.77,453,1596524400"; d="scan'208";a="337280203"
+Received: from unknown (HELO intel.com) ([10.99.66.154])
+ by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Nov 2020 08:06:30 -0800
+Date: Thu, 5 Nov 2020 21:37:13 +0530
+From: Ramalingam C <ramalingam.c@intel.com>
+To: Anshuman Gupta <anshuman.gupta@intel.com>
+Message-ID: <20201105160712.GI3242@intel.com>
+References: <20201027164208.10026-1-anshuman.gupta@intel.com>
+ <20201027164208.10026-11-anshuman.gupta@intel.com>
 MIME-Version: 1.0
-References: <20201105101134.19716-1-chris@chris-wilson.co.uk>
- <20201105101134.19716-2-chris@chris-wilson.co.uk>
- <CAM0jSHOKQX3GU3UNf=LydCPYCXaL4BXecTC5M_7qSwj3hBVmEw@mail.gmail.com>
- <CAM0jSHPLnY4zoAPLav0W5-g18=dJi8XcUud6xww2O6-kE+BOfQ@mail.gmail.com>
- <160459112079.19889.15043622583499008479@build.alporthouse.com>
-In-Reply-To: <160459112079.19889.15043622583499008479@build.alporthouse.com>
-From: Matthew Auld <matthew.william.auld@gmail.com>
-Date: Thu, 5 Nov 2020 16:02:38 +0000
-Message-ID: <CAM0jSHPOLeNPfuibTd52Sn=W++QYBCPAix543Dtj6Su7LB_Qxg@mail.gmail.com>
-To: Chris Wilson <chris@chris-wilson.co.uk>
-Subject: Re: [Intel-gfx] [PATCH 02/22] drm/i915/gem: Pull phys pread/pwrite
- implementations to the backend
+Content-Disposition: inline
+In-Reply-To: <20201027164208.10026-11-anshuman.gupta@intel.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: Re: [Intel-gfx] [PATCH v4 10/16] misc/mei/hdcp: Fix AUTH_STREAM_REQ
+ cmd buffer len
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,42 +51,53 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>
+Cc: jani.nikula@intel.com, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, seanpaul@chromium.org,
+ Tomas Winkler <tomas.winkler@intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 5 Nov 2020 at 15:45, Chris Wilson <chris@chris-wilson.co.uk> wrote:
->
-> Quoting Matthew Auld (2020-11-05 15:40:20)
-> > On Thu, 5 Nov 2020 at 15:39, Matthew Auld
-> > <matthew.william.auld@gmail.com> wrote:
-> > >
-> > > On Thu, 5 Nov 2020 at 10:11, Chris Wilson <chris@chris-wilson.co.uk> wrote:
-> > > >
-> > > > More the specialised interation with the physical GEM object from the
-> > >
-> > > Move                           interaction
-> > >
-> > > > pread/pwrite ioctl handler into the phys backend.
-> > > >
-> > > > Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-> > > Reviewed-by: Matthew Auld <matthew.auld@intel.com>
-> >
-> > Does  this need  Fixes btw?
->
-> I was thinking so long as we land before dg1 it would be fine. If we did
-> a fake lmem with no aperture, we would have problems already. But there's
-> no user exposure, so no pressing need for cc:stable.
+On 2020-10-27 at 22:12:02 +0530, Anshuman Gupta wrote:
+> Fix the size of WIRED_REPEATER_AUTH_STREAM_REQ cmd buffer size.
+> It is based upon the actual number of MST streams and size
+> of wired_cmd_repeater_auth_stream_req_in.
+> Excluding the size of hdcp_cmd_header.
+> 
+> v2:
+> hdcp_cmd_header size annotation nitpick. [Tomas]
+> 
+> Cc: Tomas Winkler <tomas.winkler@intel.com>
+> Cc: Ramalingam C <ramalingam.c@intel.com>
+> Acked-by: Tomas Winkler <tomas.winkler@intel.com>
+> Reviewed-by: Uma Shankar <uma.shankar@intel.com>
+> Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
+> ---
+>  drivers/misc/mei/hdcp/mei_hdcp.c | 3 +--
+>  1 file changed, 1 insertion(+), 2 deletions(-)
+> 
+> diff --git a/drivers/misc/mei/hdcp/mei_hdcp.c b/drivers/misc/mei/hdcp/mei_hdcp.c
+> index 9ae9669e46ea..3506a3534294 100644
+> --- a/drivers/misc/mei/hdcp/mei_hdcp.c
+> +++ b/drivers/misc/mei/hdcp/mei_hdcp.c
+> @@ -569,8 +569,7 @@ static int mei_hdcp_verify_mprime(struct device *dev,
+>  	verify_mprime_in->header.api_version = HDCP_API_VERSION;
+>  	verify_mprime_in->header.command_id = WIRED_REPEATER_AUTH_STREAM_REQ;
+>  	verify_mprime_in->header.status = ME_HDCP_STATUS_SUCCESS;
+> -	verify_mprime_in->header.buffer_len =
+> -			WIRED_CMD_BUF_LEN_REPEATER_AUTH_STREAM_REQ_MIN_IN;
+> +	verify_mprime_in->header.buffer_len = cmd_size  - sizeof(verify_mprime_in->header);
+since only this packet is varying in size we need to calculate in
+runtime.
 
-I was thinking we could maybe be evil and achieve the same thing with
-existing userspace, just requires the use of gtt_mmap to steal all of
-the mappable aperture at the opportune time, such that
-insert_mappable_node() still returns -ENOSPC? Or maybe I am
-misunderstanding something.
-
-> -Chris
+Reviewed-by: Ramalingam C <ramalingam.c@intel.com>
+>  
+>  	verify_mprime_in->port.integrated_port_type = data->port_type;
+>  	verify_mprime_in->port.physical_port = (u8)data->fw_ddi;
+> -- 
+> 2.26.2
+> 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
