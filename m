@@ -2,31 +2,43 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 51F102A7F76
-	for <lists+intel-gfx@lfdr.de>; Thu,  5 Nov 2020 14:09:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 883202A7F85
+	for <lists+intel-gfx@lfdr.de>; Thu,  5 Nov 2020 14:17:27 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3D87A6E214;
-	Thu,  5 Nov 2020 13:09:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9FBB26E0FB;
+	Thu,  5 Nov 2020 13:17:24 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 650F36E20F;
- Thu,  5 Nov 2020 13:09:09 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 5AE43A73C9;
- Thu,  5 Nov 2020 13:09:09 +0000 (UTC)
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8CF6A6E0FB;
+ Thu,  5 Nov 2020 13:17:23 +0000 (UTC)
+IronPort-SDR: WhOp64pF2ZmboMtlndiHj09lKZJXnimWg6Qd9ax88EyS9EDoULJjpSXS5ok2UHL2Z4tzDBkt/e
+ DwE0O25EOvCA==
+X-IronPort-AV: E=McAfee;i="6000,8403,9795"; a="148658040"
+X-IronPort-AV: E=Sophos;i="5.77,453,1596524400"; d="scan'208";a="148658040"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Nov 2020 05:17:22 -0800
+IronPort-SDR: RUIEHoR6t6TDPz86zBN3w7l8t3pGtLY42yO7HIo/6QUu02bBZDUbldB85Yw7xZgd3R2n7nO4pb
+ tFYtxoN9hZxA==
+X-IronPort-AV: E=Sophos;i="5.77,453,1596524400"; d="scan'208";a="539395183"
+Received: from unknown (HELO intel.com) ([10.99.66.154])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Nov 2020 05:17:20 -0800
+Date: Thu, 5 Nov 2020 18:48:02 +0530
+From: Ramalingam C <ramalingam.c@intel.com>
+To: Anshuman Gupta <anshuman.gupta@intel.com>
+Message-ID: <20201105131801.GA3242@intel.com>
+References: <20201027164208.10026-1-anshuman.gupta@intel.com>
+ <20201027164208.10026-2-anshuman.gupta@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Thu, 05 Nov 2020 13:09:09 -0000
-Message-ID: <160458174934.14956.17513203433315721711@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20201105101134.19716-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20201105101134.19716-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_series_starting_with_=5B01/22=5D_drm/i915/gem=3A_Allow_back?=
- =?utf-8?q?ends_to_override_pread_implementation?=
+Content-Disposition: inline
+In-Reply-To: <20201027164208.10026-2-anshuman.gupta@intel.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: Re: [Intel-gfx] [PATCH v4 01/16] drm/i915/hdcp: Update CP property
+ in update_pipe
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,56 +51,71 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: jani.nikula@intel.com, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, seanpaul@chromium.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On 2020-10-27 at 22:11:53 +0530, Anshuman Gupta wrote:
+> When crtc state need_modeset is true it is not necessary
+> it is going to be a real modeset, it can turns to be a
+> fastset instead of modeset.
+> This turns content protection property to be DESIRED and hdcp
+> update_pipe left with property to be in DESIRED state but
+> actual hdcp->value was ENABLED.
+> 
+> This issue is caught with DP MST setup, where we have multiple
+> connector in same DP_MST topology. When disabling HDCP on one of
+> DP MST connector leads to set the crtc state need_modeset to true
+> for all other crtc driving the other DP-MST topology connectors.
+> This turns up other DP MST connectors CP property to be DESIRED
+> despite the actual hdcp->value is ENABLED.
+> Above scenario fails the DP MST HDCP IGT test, disabling HDCP on
+> one MST stream should not cause to disable HDCP on another MST
+> stream on same DP MST topology.
+> 
+> v2:
+> Fix WARN_ON(connector->base.registration_state == DRM_CONNECTOR_REGISTERED)
+> v3:
+> Commit log improvement. [Uma]
+> Added a comment before scheduling prop_work. [Uma]
+> 
+> Fixes: 33f9a623bfc6 ("drm/i915/hdcp: Update CP as per the kernel internal state")
+> Cc: Ramalingam C <ramalingam.c@intel.com>
+> Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_hdcp.c | 8 ++++++++
+>  1 file changed, 8 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c b/drivers/gpu/drm/i915/display/intel_hdcp.c
+> index b2a4bbcfdcd2..eee8263405b9 100644
+> --- a/drivers/gpu/drm/i915/display/intel_hdcp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
+> @@ -2221,6 +2221,14 @@ void intel_hdcp_update_pipe(struct intel_atomic_state *state,
+>  		desired_and_not_enabled =
+>  			hdcp->value != DRM_MODE_CONTENT_PROTECTION_ENABLED;
+>  		mutex_unlock(&hdcp->mutex);
+> +		/*
+> +		 * If HDCP already ENABLED and CP property is DESIRED, schedule
+> +		 * prop_work to update correct CP property to user space.
+> +		 */
+> +		if (!desired_and_not_enabled && !content_protection_type_changed) {
+> +			drm_connector_get(&connector->base);
+Sorry for late review.
 
-Series: series starting with [01/22] drm/i915/gem: Allow backends to override pread implementation
-URL   : https://patchwork.freedesktop.org/series/83531/
-State : warning
+why do we need this? and where do we release the connector ref?
 
-== Summary ==
-
-$ dim checkpatch origin/drm-tip
-6fbdba27ca31 drm/i915/gem: Allow backends to override pread implementation
-a5de1d267d9a drm/i915/gem: Pull phys pread/pwrite implementations to the backend
-d3521ebb911c drm/i915/gt: Limit VFE threads based on GT
--:20: WARNING:BAD_SIGN_OFF: email address 'stable@vger.kernel.org # v5.7+' might be better as 'stable@vger.kernel.org# v5.7+'
-#20: 
-Cc: stable@vger.kernel.org # v5.7+
-
-total: 0 errors, 1 warnings, 0 checks, 72 lines checked
-ce4a05929791 drm/i915/gt: Ignore dt==0 for reporting underflows
-a8d43b6134c8 drm/i915/gt: Defer enabling the breadcrumb interrupt to after submission
-8fe2236ab09e drm/i915/gt: Track signaled breadcrumbs outside of the breadcrumb spinlock
-8f3f2649e621 drm/i915/gt: Don't cancel the interrupt shadow too early
-fe466f1ae1c7 drm/i915/gt: Free stale request on destroying the virtual engine
-9956bfd7f969 drm/i915/gt: Protect context lifetime with RCU
-57c8a538c2bd drm/i915/gt: Split the breadcrumb spinlock between global and contexts
--:21: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
-#21: 
-<4>[  416.208555] list_add corruption. prev->next should be next (ffff8881951d5910), but was dead000000000100. (prev=ffff8882781bb870).
-
-total: 0 errors, 1 warnings, 0 checks, 354 lines checked
-a2af308523e1 drm/i915/gt: Move the breadcrumb to the signaler if completed upon cancel
-46e3d7cf0454 drm/i915/gt: Decouple completed requests on unwind
-80e49f36feb1 drm/i915/gt: Check for a completed last request once
-9dd42269640d drm/i915/gt: Replace direct submit with direct call to tasklet
-53590b6123f7 drm/i915/gt: ce->inflight updates are now serialised
-b02c7a5ab8b2 drm/i915/gt: Use virtual_engine during execlists_dequeue
-2bf8f8bb9f43 drm/i915/gt: Decouple inflight virtual engines
-0b708fefe4ea drm/i915/gt: Defer schedule_out until after the next dequeue
-91b5785b110b drm/i915/gt: Remove virtual breadcrumb before transfer
-59e8cd29cfb0 drm/i915/gt: Shrink the critical section for irq signaling
-73cad7374c56 drm/i915/gt: Resubmit the virtual engine on schedule-out
-7021e5096ff6 drm/i915/gt: Simplify virtual engine handling for execlists_hold()
-
-
+-Ram
+> +			schedule_work(&hdcp->prop_work);
+> +		}
+>  	}
+>  
+>  	if (desired_and_not_enabled || content_protection_type_changed)
+> -- 
+> 2.26.2
+> 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
