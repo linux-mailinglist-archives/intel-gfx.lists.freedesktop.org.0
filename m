@@ -1,32 +1,44 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 95DA82A8222
-	for <lists+intel-gfx@lfdr.de>; Thu,  5 Nov 2020 16:24:03 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6062B2A823F
+	for <lists+intel-gfx@lfdr.de>; Thu,  5 Nov 2020 16:33:26 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E439B6EABE;
-	Thu,  5 Nov 2020 15:24:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C30966ED7E;
+	Thu,  5 Nov 2020 15:33:24 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 325686EABE;
- Thu,  5 Nov 2020 15:24:01 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 2BFA4A8830;
- Thu,  5 Nov 2020 15:24:01 +0000 (UTC)
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 926506E237;
+ Thu,  5 Nov 2020 15:33:23 +0000 (UTC)
+IronPort-SDR: bk2Rv9RspOFWTEIXu4TPxgAXF7dfOHxDdZWXFenmzqWXbjSN3WQ9EQZHTANeNUz5NKEnh/xQyb
+ G3RSc/SibXpg==
+X-IronPort-AV: E=McAfee;i="6000,8403,9795"; a="157179512"
+X-IronPort-AV: E=Sophos;i="5.77,453,1596524400"; d="scan'208";a="157179512"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Nov 2020 07:33:22 -0800
+IronPort-SDR: 0mPnJbOf4+8Ua1KWDXhwOKESx7vCofzk3+7dH2WxHILSPnzzDzIYd7opFITRSxi1HM6i2A8tco
+ +FHTeiCsZKGQ==
+X-IronPort-AV: E=Sophos;i="5.77,453,1596524400"; d="scan'208";a="539446009"
+Received: from unknown (HELO intel.com) ([10.99.66.154])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Nov 2020 07:33:20 -0800
+Date: Thu, 5 Nov 2020 21:04:03 +0530
+From: Ramalingam C <ramalingam.c@intel.com>
+To: Anshuman Gupta <anshuman.gupta@intel.com>
+Message-ID: <20201105153400.GG3242@intel.com>
+References: <20201027164208.10026-1-anshuman.gupta@intel.com>
+ <20201027164208.10026-7-anshuman.gupta@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Tvrtko Ursulin" <tvrtko.ursulin@linux.intel.com>
-Date: Thu, 05 Nov 2020 15:24:01 -0000
-Message-ID: <160458984117.14959.3501662663956479084@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20201104134743.916027-1-tvrtko.ursulin@linux.intel.com>
-In-Reply-To: <20201104134743.916027-1-tvrtko.ursulin@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
- =?utf-8?q?series_starting_with_=5BRFC=2C1/2=5D_drm/i915=3A_Improve_record?=
- =?utf-8?q?_of_hung_engines_in_error_state_=28rev2=29?=
+Content-Disposition: inline
+In-Reply-To: <20201027164208.10026-7-anshuman.gupta@intel.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: Re: [Intel-gfx] [PATCH v4 06/16] drm/i915/hdcp: HDCP stream
+ encryption support
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,80 +51,270 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: jani.nikula@intel.com, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, seanpaul@chromium.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On 2020-10-27 at 22:11:58 +0530, Anshuman Gupta wrote:
+> Both HDCP_{1.x,2.x} requires to select/deselect Multistream HDCP bit
+> in TRANS_DDI_FUNC_CTL in order to enable/disable stream HDCP
+> encryption over DP MST Transport Link.
+> 
+> HDCP 1.4 stream encryption requires to validate the stream encryption
+> status in HDCP_STATUS_{TRANSCODER,PORT} register driving that link
+> in order to enable/disable the stream encryption.
+> 
+> Both of above requirement are same for all Gen with respect to
+> B.Spec Documentation.
+> 
+> v2:
+> Cosmetic changes function name, error msg print and
+> stream typo fixes. [Uma]
+> 
+> Cc: Ramalingam C <ramalingam.c@intel.com>
+> Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_ddi.c      | 10 +--
+>  drivers/gpu/drm/i915/display/intel_ddi.h      |  6 +-
+>  .../drm/i915/display/intel_display_types.h    |  4 +
+>  drivers/gpu/drm/i915/display/intel_dp_hdcp.c  | 80 ++++++++++++++++---
+>  drivers/gpu/drm/i915/display/intel_hdmi.c     | 14 ++--
+>  drivers/gpu/drm/i915/i915_reg.h               |  1 +
+>  6 files changed, 90 insertions(+), 25 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
+> index 9fce623e951e..779603a38cfc 100644
+> --- a/drivers/gpu/drm/i915/display/intel_ddi.c
+> +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+> @@ -1948,9 +1948,9 @@ void intel_ddi_disable_transcoder_func(const struct intel_crtc_state *crtc_state
+>  	}
+>  }
+>  
+> -int intel_ddi_toggle_hdcp_signalling(struct intel_encoder *intel_encoder,
+> -				     enum transcoder cpu_transcoder,
+> -				     bool enable)
+> +int intel_ddi_toggle_hdcp_bits(struct intel_encoder *intel_encoder,
+> +			       enum transcoder cpu_transcoder,
+> +			       bool enable, u32 hdcp_mask)
+>  {
+>  	struct drm_device *dev = intel_encoder->base.dev;
+>  	struct drm_i915_private *dev_priv = to_i915(dev);
+> @@ -1965,9 +1965,9 @@ int intel_ddi_toggle_hdcp_signalling(struct intel_encoder *intel_encoder,
+>  
+>  	tmp = intel_de_read(dev_priv, TRANS_DDI_FUNC_CTL(cpu_transcoder));
+>  	if (enable)
+> -		tmp |= TRANS_DDI_HDCP_SIGNALLING;
+> +		tmp |= hdcp_mask;
+>  	else
+> -		tmp &= ~TRANS_DDI_HDCP_SIGNALLING;
+> +		tmp &= ~hdcp_mask;
+>  	intel_de_write(dev_priv, TRANS_DDI_FUNC_CTL(cpu_transcoder), tmp);
+>  	intel_display_power_put(dev_priv, intel_encoder->power_domain, wakeref);
+>  	return ret;
+> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.h b/drivers/gpu/drm/i915/display/intel_ddi.h
+> index dcc711cfe4fe..a4dd815c0000 100644
+> --- a/drivers/gpu/drm/i915/display/intel_ddi.h
+> +++ b/drivers/gpu/drm/i915/display/intel_ddi.h
+> @@ -50,9 +50,9 @@ u32 bxt_signal_levels(struct intel_dp *intel_dp,
+>  		      const struct intel_crtc_state *crtc_state);
+>  u32 ddi_signal_levels(struct intel_dp *intel_dp,
+>  		      const struct intel_crtc_state *crtc_state);
+> -int intel_ddi_toggle_hdcp_signalling(struct intel_encoder *intel_encoder,
+> -				     enum transcoder cpu_transcoder,
+> -				     bool enable);
+> +int intel_ddi_toggle_hdcp_bits(struct intel_encoder *intel_encoder,
+> +			       enum transcoder cpu_transcoder,
+> +			       bool enable, u32 hdcp_mask);
+>  void icl_sanitize_encoder_pll_mapping(struct intel_encoder *encoder);
+>  
+>  #endif /* __INTEL_DDI_H__ */
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
+> index c47124a679b6..59b8fc21e3e8 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+> @@ -339,6 +339,10 @@ struct intel_hdcp_shim {
+>  				 enum transcoder cpu_transcoder,
+>  				 bool enable);
+>  
+> +	/* Enable/Disable stream encryption on DP MST Transport Link */
+> +	int (*stream_encryption)(struct intel_digital_port *dig_port,
+> +				 bool enable);
+> +
+>  	/* Ensures the link is still protected */
+>  	bool (*check_link)(struct intel_digital_port *dig_port,
+>  			   struct intel_connector *connector);
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp_hdcp.c b/drivers/gpu/drm/i915/display/intel_dp_hdcp.c
+> index 03424d20e9f7..6dcbfaffd2c5 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp_hdcp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp_hdcp.c
+> @@ -16,6 +16,30 @@
+>  #include "intel_dp.h"
+>  #include "intel_hdcp.h"
+>  
+> +static unsigned int transcoder_to_stream_enc_status(enum transcoder cpu_transcoder)
+> +{
+> +	u32 stream_enc_mask;
+> +
+> +	switch (cpu_transcoder) {
+> +	case TRANSCODER_A:
+> +		stream_enc_mask = HDCP_STATUS_STREAM_A_ENC;
+> +		break;
+> +	case TRANSCODER_B:
+> +		stream_enc_mask = HDCP_STATUS_STREAM_B_ENC;
+> +		break;
+> +	case TRANSCODER_C:
+> +		stream_enc_mask = HDCP_STATUS_STREAM_C_ENC;
+> +		break;
+> +	case TRANSCODER_D:
+> +		stream_enc_mask = HDCP_STATUS_STREAM_D_ENC;
+> +		break;
+> +	default:
+> +		stream_enc_mask = 0;
+> +	}
+> +
+> +	return stream_enc_mask;
+> +}
+> +
+>  static void intel_dp_hdcp_wait_for_cp_irq(struct intel_hdcp *hdcp, int timeout)
+>  {
+>  	long ret;
+> @@ -622,24 +646,57 @@ static const struct intel_hdcp_shim intel_dp_hdcp_shim = {
+>  };
+>  
+>  static int
+> -intel_dp_mst_hdcp_toggle_signalling(struct intel_digital_port *dig_port,
+> -				    enum transcoder cpu_transcoder,
+> -				    bool enable)
+> +intel_dp_mst_toggle_hdcp_stream_select(struct intel_digital_port *dig_port,
+> +				       bool enable)
+>  {
+>  	struct drm_i915_private *i915 = to_i915(dig_port->base.base.dev);
+> +	struct intel_dp *dp = &dig_port->dp;
+> +	struct intel_hdcp *hdcp = &dp->attached_connector->hdcp;
+>  	int ret;
+>  
+> -	if (!enable)
+> -		usleep_range(6, 60); /* Bspec says >= 6us */
+Any reason why this is removed from disable path? Or i am missing the
+movement?
 
-Series: series starting with [RFC,1/2] drm/i915: Improve record of hung engines in error state (rev2)
-URL   : https://patchwork.freedesktop.org/series/83497/
-State : warning
-
-== Summary ==
-
-$ dim sparse --fast origin/drm-tip
-Sparse version: v0.6.2
-Fast mode used, each commit won't be checked separately.
--
-+drivers/gpu/drm/i915/gt/intel_reset.c:1312:5: warning: context imbalance in 'intel_gt_reset_trylock' - different lock contexts for basic block
-+drivers/gpu/drm/i915/gt/selftest_reset.c:100:20:    expected void *in
-+drivers/gpu/drm/i915/gt/selftest_reset.c:100:20:    got void [noderef] __iomem *[assigned] s
-+drivers/gpu/drm/i915/gt/selftest_reset.c:100:20: warning: incorrect type in assignment (different address spaces)
-+drivers/gpu/drm/i915/gt/selftest_reset.c:101:46:    expected void const *src
-+drivers/gpu/drm/i915/gt/selftest_reset.c:101:46:    got void [noderef] __iomem *[assigned] s
-+drivers/gpu/drm/i915/gt/selftest_reset.c:101:46: warning: incorrect type in argument 2 (different address spaces)
-+drivers/gpu/drm/i915/gt/selftest_reset.c:136:20:    expected void *in
-+drivers/gpu/drm/i915/gt/selftest_reset.c:136:20:    got void [noderef] __iomem *[assigned] s
-+drivers/gpu/drm/i915/gt/selftest_reset.c:136:20: warning: incorrect type in assignment (different address spaces)
-+drivers/gpu/drm/i915/gt/selftest_reset.c:137:46:    expected void const *src
-+drivers/gpu/drm/i915/gt/selftest_reset.c:137:46:    got void [noderef] __iomem *[assigned] s
-+drivers/gpu/drm/i915/gt/selftest_reset.c:137:46: warning: incorrect type in argument 2 (different address spaces)
-+drivers/gpu/drm/i915/gt/selftest_reset.c:98:34:    expected unsigned int [usertype] *s
-+drivers/gpu/drm/i915/gt/selftest_reset.c:98:34:    got void [noderef] __iomem *[assigned] s
-+drivers/gpu/drm/i915/gt/selftest_reset.c:98:34: warning: incorrect type in argument 1 (different address spaces)
-+drivers/gpu/drm/i915/gvt/mmio.c:290:23: warning: memcpy with byte count of 279040
-+drivers/gpu/drm/i915/i915_perf.c:1440:15: warning: memset with byte count of 16777216
-+drivers/gpu/drm/i915/i915_perf.c:1494:15: warning: memset with byte count of 16777216
-+./include/linux/seqlock.h:838:24: warning: trying to copy expression type 31
-+./include/linux/seqlock.h:838:24: warning: trying to copy expression type 31
-+./include/linux/seqlock.h:864:16: warning: trying to copy expression type 31
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_read16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_read32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_read64' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_read8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_write8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_read16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_read32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_read64' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_read8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_write8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_read16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_read32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_read64' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_read8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_write8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_read16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_read32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_read64' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_read8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_write8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen8_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen8_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen8_write8' - different lock contexts for basic block
-
-
+-Ram
+> -
+> -	ret = intel_ddi_toggle_hdcp_signalling(&dig_port->base,
+> -					       cpu_transcoder, enable);
+> +	ret = intel_ddi_toggle_hdcp_bits(&dig_port->base,
+> +					 hdcp->stream_transcoder, enable,
+> +					 TRANS_DDI_HDCP_SELECT);
+>  	if (ret)
+> -		drm_dbg_kms(&i915->drm, "%s HDCP signalling failed (%d)\n",
+> -			      enable ? "Enable" : "Disable", ret);
+> +		drm_err(&i915->drm, "%s HDCP stream select failed (%d)\n",
+> +			enable ? "Enable" : "Disable", ret);
+>  	return ret;
+>  }
+>  
+> +static int
+> +intel_dp_mst_hdcp_stream_encryption(struct intel_digital_port *dig_port,
+> +				    bool enable)
+> +{
+> +	struct drm_i915_private *i915 = to_i915(dig_port->base.base.dev);
+> +	struct intel_dp *dp = &dig_port->dp;
+> +	struct intel_hdcp *hdcp = &dp->attached_connector->hdcp;
+> +	enum port port = dig_port->base.port;
+> +	enum transcoder cpu_transcoder = hdcp->cpu_transcoder;
+> +	u32 stream_enc_status;
+> +	int ret;
+> +
+> +	ret = intel_dp_mst_toggle_hdcp_stream_select(dig_port, enable);
+> +	if (ret)
+> +		return ret;
+> +
+> +	stream_enc_status =  transcoder_to_stream_enc_status(hdcp->stream_transcoder);
+> +	if (!stream_enc_status)
+> +		return -EINVAL;
+> +
+> +	/* Wait for encryption confirmation */
+> +	if (intel_de_wait_for_register(i915,
+> +				       HDCP_STATUS(i915, cpu_transcoder, port),
+> +				       stream_enc_status,
+> +				       enable ? stream_enc_status : 0,
+> +				       HDCP_ENCRYPT_STATUS_CHANGE_TIMEOUT_MS)) {
+> +		drm_err(&i915->drm, "Timed out waiting for stream encryption %s\n",
+> +			enable ? "enabled" : "disabled");
+> +		return -ETIMEDOUT;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+>  static
+>  bool intel_dp_mst_hdcp_check_link(struct intel_digital_port *dig_port,
+>  				  struct intel_connector *connector)
+> @@ -673,7 +730,8 @@ static const struct intel_hdcp_shim intel_dp_mst_hdcp_shim = {
+>  	.read_ksv_ready = intel_dp_hdcp_read_ksv_ready,
+>  	.read_ksv_fifo = intel_dp_hdcp_read_ksv_fifo,
+>  	.read_v_prime_part = intel_dp_hdcp_read_v_prime_part,
+> -	.toggle_signalling = intel_dp_mst_hdcp_toggle_signalling,
+> +	.toggle_signalling = intel_dp_hdcp_toggle_signalling,
+> +	.stream_encryption = intel_dp_mst_hdcp_stream_encryption,
+>  	.check_link = intel_dp_mst_hdcp_check_link,
+>  	.hdcp_capable = intel_dp_hdcp_capable,
+>  
+> diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/i915/display/intel_hdmi.c
+> index f90838bc74fb..f58469226694 100644
+> --- a/drivers/gpu/drm/i915/display/intel_hdmi.c
+> +++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
+> @@ -1495,15 +1495,16 @@ static int kbl_repositioning_enc_en_signal(struct intel_connector *connector,
+>  		usleep_range(25, 50);
+>  	}
+>  
+> -	ret = intel_ddi_toggle_hdcp_signalling(&dig_port->base, cpu_transcoder,
+> -					       false);
+> +	ret = intel_ddi_toggle_hdcp_bits(&dig_port->base, cpu_transcoder,
+> +					 false, TRANS_DDI_HDCP_SIGNALLING);
+>  	if (ret) {
+>  		drm_err(&dev_priv->drm,
+>  			"Disable HDCP signalling failed (%d)\n", ret);
+>  		return ret;
+>  	}
+> -	ret = intel_ddi_toggle_hdcp_signalling(&dig_port->base, cpu_transcoder,
+> -					       true);
+> +
+> +	ret = intel_ddi_toggle_hdcp_bits(&dig_port->base, cpu_transcoder,
+> +					 true, TRANS_DDI_HDCP_SIGNALLING);
+>  	if (ret) {
+>  		drm_err(&dev_priv->drm,
+>  			"Enable HDCP signalling failed (%d)\n", ret);
+> @@ -1526,8 +1527,9 @@ int intel_hdmi_hdcp_toggle_signalling(struct intel_digital_port *dig_port,
+>  	if (!enable)
+>  		usleep_range(6, 60); /* Bspec says >= 6us */
+>  
+> -	ret = intel_ddi_toggle_hdcp_signalling(&dig_port->base, cpu_transcoder,
+> -					       enable);
+> +	ret = intel_ddi_toggle_hdcp_bits(&dig_port->base,
+> +					 cpu_transcoder, enable,
+> +					 TRANS_DDI_HDCP_SIGNALLING);
+>  	if (ret) {
+>  		drm_err(&dev_priv->drm, "%s HDCP signalling failed (%d)\n",
+>  			enable ? "Enable" : "Disable", ret);
+> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+> index 8b021f77cb1f..77461cde6549 100644
+> --- a/drivers/gpu/drm/i915/i915_reg.h
+> +++ b/drivers/gpu/drm/i915/i915_reg.h
+> @@ -9982,6 +9982,7 @@ enum skl_power_gate {
+>  #define  TRANS_DDI_DP_VC_PAYLOAD_ALLOC	(1 << 8)
+>  #define  TRANS_DDI_HDMI_SCRAMBLER_CTS_ENABLE (1 << 7)
+>  #define  TRANS_DDI_HDMI_SCRAMBLER_RESET_FREQ (1 << 6)
+> +#define  TRANS_DDI_HDCP_SELECT		REG_BIT(5)
+>  #define  TRANS_DDI_BFI_ENABLE		(1 << 4)
+>  #define  TRANS_DDI_HIGH_TMDS_CHAR_RATE	(1 << 4)
+>  #define  TRANS_DDI_HDMI_SCRAMBLING	(1 << 0)
+> -- 
+> 2.26.2
+> 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
