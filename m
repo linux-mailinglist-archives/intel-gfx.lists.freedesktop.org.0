@@ -2,34 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 936D12A827A
-	for <lists+intel-gfx@lfdr.de>; Thu,  5 Nov 2020 16:45:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4EA232A8298
+	for <lists+intel-gfx@lfdr.de>; Thu,  5 Nov 2020 16:49:42 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 18EE86EDA8;
-	Thu,  5 Nov 2020 15:45:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7279B89468;
+	Thu,  5 Nov 2020 15:49:40 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2530A6EDA8
- for <intel-gfx@lists.freedesktop.org>; Thu,  5 Nov 2020 15:45:25 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 47918882DF
+ for <intel-gfx@lists.freedesktop.org>; Thu,  5 Nov 2020 15:49:38 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 22904447-1500050 for multiple; Thu, 05 Nov 2020 15:45:23 +0000
-MIME-Version: 1.0
-In-Reply-To: <CAM0jSHPLnY4zoAPLav0W5-g18=dJi8XcUud6xww2O6-kE+BOfQ@mail.gmail.com>
-References: <20201105101134.19716-1-chris@chris-wilson.co.uk>
- <20201105101134.19716-2-chris@chris-wilson.co.uk>
- <CAM0jSHOKQX3GU3UNf=LydCPYCXaL4BXecTC5M_7qSwj3hBVmEw@mail.gmail.com>
- <CAM0jSHPLnY4zoAPLav0W5-g18=dJi8XcUud6xww2O6-kE+BOfQ@mail.gmail.com>
+Received: from build.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 22904496-1500050 
+ for <intel-gfx@lists.freedesktop.org>; Thu, 05 Nov 2020 15:49:36 +0000
 From: Chris Wilson <chris@chris-wilson.co.uk>
-To: Matthew Auld <matthew.william.auld@gmail.com>
-Date: Thu, 05 Nov 2020 15:45:20 +0000
-Message-ID: <160459112079.19889.15043622583499008479@build.alporthouse.com>
-User-Agent: alot/0.9
-Subject: Re: [Intel-gfx] [PATCH 02/22] drm/i915/gem: Pull phys pread/pwrite
- implementations to the backend
+To: intel-gfx@lists.freedesktop.org
+Date: Thu,  5 Nov 2020 15:49:33 +0000
+Message-Id: <20201105154934.16022-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.20.1
+MIME-Version: 1.0
+Subject: [Intel-gfx] [CI 1/2] drm/i915/gem: Allow backends to override pread
+ implementation
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,33 +37,58 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Matthew Auld (2020-11-05 15:40:20)
-> On Thu, 5 Nov 2020 at 15:39, Matthew Auld
-> <matthew.william.auld@gmail.com> wrote:
-> >
-> > On Thu, 5 Nov 2020 at 10:11, Chris Wilson <chris@chris-wilson.co.uk> wrote:
-> > >
-> > > More the specialised interation with the physical GEM object from the
-> >
-> > Move                           interaction
-> >
-> > > pread/pwrite ioctl handler into the phys backend.
-> > >
-> > > Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-> > Reviewed-by: Matthew Auld <matthew.auld@intel.com>
-> 
-> Does  this need  Fixes btw?
+From: Matthew Auld <matthew.auld@intel.com>
 
-I was thinking so long as we land before dg1 it would be fine. If we did
-a fake lmem with no aperture, we would have problems already. But there's
-no user exposure, so no pressing need for cc:stable.
--Chris
+As there are more and more complicated interactions between the different
+backing stores and userspace, push the control into the backends rather
+than accumulate them all inside the ioctl handlers.
+
+Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+Reviewed-by: Chris Wilson <chris@chris-wilson.co.uk>
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+---
+ drivers/gpu/drm/i915/gem/i915_gem_object_types.h | 2 ++
+ drivers/gpu/drm/i915/i915_gem.c                  | 6 ++++++
+ 2 files changed, 8 insertions(+)
+
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object_types.h b/drivers/gpu/drm/i915/gem/i915_gem_object_types.h
+index fedfebf13344..e2d9b7e1e152 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_object_types.h
++++ b/drivers/gpu/drm/i915/gem/i915_gem_object_types.h
+@@ -56,6 +56,8 @@ struct drm_i915_gem_object_ops {
+ 	void (*truncate)(struct drm_i915_gem_object *obj);
+ 	void (*writeback)(struct drm_i915_gem_object *obj);
+ 
++	int (*pread)(struct drm_i915_gem_object *obj,
++		     const struct drm_i915_gem_pread *arg);
+ 	int (*pwrite)(struct drm_i915_gem_object *obj,
+ 		      const struct drm_i915_gem_pwrite *arg);
+ 
+diff --git a/drivers/gpu/drm/i915/i915_gem.c b/drivers/gpu/drm/i915/i915_gem.c
+index bb0c12975f38..d58fe1ddc3e1 100644
+--- a/drivers/gpu/drm/i915/i915_gem.c
++++ b/drivers/gpu/drm/i915/i915_gem.c
+@@ -527,6 +527,12 @@ i915_gem_pread_ioctl(struct drm_device *dev, void *data,
+ 
+ 	trace_i915_gem_object_pread(obj, args->offset, args->size);
+ 
++	ret = -ENODEV;
++	if (obj->ops->pread)
++		ret = obj->ops->pread(obj, args);
++	if (ret != -ENODEV)
++		goto out;
++
+ 	ret = i915_gem_object_wait(obj,
+ 				   I915_WAIT_INTERRUPTIBLE,
+ 				   MAX_SCHEDULE_TIMEOUT);
+-- 
+2.20.1
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
