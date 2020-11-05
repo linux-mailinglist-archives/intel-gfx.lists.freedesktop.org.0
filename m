@@ -2,27 +2,43 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2B3E42A7B7C
-	for <lists+intel-gfx@lfdr.de>; Thu,  5 Nov 2020 11:16:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8AD822A7CCF
+	for <lists+intel-gfx@lfdr.de>; Thu,  5 Nov 2020 12:20:28 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BB96B6EA49;
-	Thu,  5 Nov 2020 10:16:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 97F166E209;
+	Thu,  5 Nov 2020 11:20:26 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mx2.suse.de (mx2.suse.de [195.135.220.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 328446EA2C;
- Thu,  5 Nov 2020 10:16:47 +0000 (UTC)
-X-Virus-Scanned: by amavisd-new at test-mx.suse.de
-Received: from relay2.suse.de (unknown [195.135.221.27])
- by mx2.suse.de (Postfix) with ESMTP id D9008AFF9;
- Thu,  5 Nov 2020 10:16:44 +0000 (UTC)
-Date: Thu, 5 Nov 2020 11:16:41 +0100
-From: Thomas Zimmermann <tzimmermann@suse.de>
-To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
-Message-ID: <20201105101641.GA13099@linux-uq9g>
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0F2BE6E209
+ for <intel-gfx@lists.freedesktop.org>; Thu,  5 Nov 2020 11:20:26 +0000 (UTC)
+IronPort-SDR: ftrYd/pVEJhfUIf+oEFE7EOmMImNG3QO/JHRISH883uXE0LxROc+D8aOpceI/WYJQVZd6wQCG3
+ zYWOAvK0m72Q==
+X-IronPort-AV: E=McAfee;i="6000,8403,9795"; a="166774999"
+X-IronPort-AV: E=Sophos;i="5.77,453,1596524400"; d="scan'208";a="166774999"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Nov 2020 03:20:24 -0800
+IronPort-SDR: CHTd6ne9pPMVU/3Pc8996tnAojXc4mZNbyFE1igmNfcgeqvqIdkWboDIT4VW6LItu0k9707f6E
+ sZa/qlGJwqDg==
+X-IronPort-AV: E=Sophos;i="5.77,453,1596524400"; d="scan'208";a="354241450"
+Received: from unknown (HELO intel.com) ([10.237.72.91])
+ by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Nov 2020 03:20:23 -0800
+Date: Thu, 5 Nov 2020 13:20:18 +0200
+From: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>
+Message-ID: <20201105112018.GA27558@intel.com>
+References: <20201027203955.28032-1-ville.syrjala@linux.intel.com>
+ <20201027203955.28032-4-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-Subject: [Intel-gfx] [PULL] drm-misc-next
+In-Reply-To: <20201027203955.28032-4-ville.syrjala@linux.intel.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
+Subject: Re: [Intel-gfx] [PATCH 3/8] drm/i915: Introduce
+ intel_dbuf_slice_size()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -35,540 +51,124 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dim-tools@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Maxime Ripard <mripard@kernel.org>, intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Dave and Daniel,
+On Tue, Oct 27, 2020 at 10:39:50PM +0200, Ville Syrjala wrote:
+> From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> =
 
-here's this week's PR for drm-misc-next. Significant changes are in the
-continuing rework of the TTM code. The atomic functions for CRTCs now get
-the full atomic state. It's simple, but touches a number of drivers.
+> Put the code into a function with a descriptive name. Also relocate
+> the code a bit help future work.
+> =
 
-Best regards
-Thomas
+> Cc: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+> Signed-off-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
 
-drm-misc-next-2020-11-05:
-drm-misc-next for v5.11:
+Reviewed-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
 
-UAPI Changes:
+> ---
+>  drivers/gpu/drm/i915/intel_pm.c | 36 +++++++++++++++++++--------------
+>  drivers/gpu/drm/i915/intel_pm.h |  1 -
+>  2 files changed, 21 insertions(+), 16 deletions(-)
+> =
 
-Cross-subsystem Changes:
+> diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/intel=
+_pm.c
+> index 260d3cf24db3..8083785237ba 100644
+> --- a/drivers/gpu/drm/i915/intel_pm.c
+> +++ b/drivers/gpu/drm/i915/intel_pm.c
+> @@ -4024,6 +4024,24 @@ static int intel_compute_sagv_mask(struct intel_at=
+omic_state *state)
+>  	return 0;
+>  }
+>  =
 
- - arch/arm64: Describe G12b GPU as coherent
- - iommu: Support coherency for Mali LPAE
+> +static int intel_dbuf_size(struct drm_i915_private *dev_priv)
+> +{
+> +	int ddb_size =3D INTEL_INFO(dev_priv)->ddb_size;
+> +
+> +	drm_WARN_ON(&dev_priv->drm, ddb_size =3D=3D 0);
+> +
+> +	if (INTEL_GEN(dev_priv) < 11)
+> +		return ddb_size - 4; /* 4 blocks for bypass path allocation */
+> +
+> +	return ddb_size;
+> +}
+> +
+> +static int intel_dbuf_slice_size(struct drm_i915_private *dev_priv)
+> +{
+> +	return intel_dbuf_size(dev_priv) /
+> +		INTEL_INFO(dev_priv)->num_supported_dbuf_slices;
+> +}
+> +
+>  /*
+>   * Calculate initial DBuf slice offset, based on slice size
+>   * and mask(i.e if slice size is 1024 and second slice is enabled
+> @@ -4045,22 +4063,11 @@ icl_get_first_dbuf_slice_offset(u32 dbuf_slice_ma=
+sk,
+>  	return offset;
+>  }
+>  =
 
-Core Changes:
+> -u16 intel_get_ddb_size(struct drm_i915_private *dev_priv)
+> -{
+> -	u16 ddb_size =3D INTEL_INFO(dev_priv)->ddb_size;
+> -	drm_WARN_ON(&dev_priv->drm, ddb_size =3D=3D 0);
+> -
+> -	if (INTEL_GEN(dev_priv) < 11)
+> -		return ddb_size - 4; /* 4 blocks for bypass path allocation */
+> -
+> -	return ddb_size;
+> -}
+> -
+>  u32 skl_ddb_dbuf_slice_mask(struct drm_i915_private *dev_priv,
+>  			    const struct skl_ddb_entry *entry)
+>  {
+>  	u32 slice_mask =3D 0;
+> -	u16 ddb_size =3D intel_get_ddb_size(dev_priv);
+> +	u16 ddb_size =3D intel_dbuf_size(dev_priv);
+>  	u16 num_supported_slices =3D INTEL_INFO(dev_priv)->num_supported_dbuf_s=
+lices;
+>  	u16 slice_size =3D ddb_size / num_supported_slices;
+>  	u16 start_slice;
+> @@ -4142,9 +4149,8 @@ skl_ddb_get_pipe_allocation_limits(struct drm_i915_=
+private *dev_priv,
+>  		return 0;
+>  	}
+>  =
 
- - atomic: Pass full state to CRTC atomic_{check, begin, flush}(); Use
-   atomic-state pointers
- - drm: Remove SCATTER_LIST_MAX_SEGMENT; Cleanups
- - doc: Document legacy_cursor_update better; cleanups
- - edid: Don't warn n EDIDs of zero
- - ttm: New backend allocation pool; Remove old page allocator; Rework
-   no_retry handling; Replace flags with booleans in struct ttm_operation_c=
-tx
- - vram-helper: Cleanups
+> -	ddb_size =3D intel_get_ddb_size(dev_priv);
+> -
+> -	slice_size =3D ddb_size / INTEL_INFO(dev_priv)->num_supported_dbuf_slic=
+es;
+> +	ddb_size =3D intel_dbuf_size(dev_priv);
+> +	slice_size =3D intel_dbuf_slice_size(dev_priv);
+>  =
 
- - fbdev: Cleanups
- - console: Store font size as unsigned value
+>  	/*
+>  	 * If the state doesn't change the active CRTC's or there is no
+> diff --git a/drivers/gpu/drm/i915/intel_pm.h b/drivers/gpu/drm/i915/intel=
+_pm.h
+> index eab83e251dd5..00910bc01407 100644
+> --- a/drivers/gpu/drm/i915/intel_pm.h
+> +++ b/drivers/gpu/drm/i915/intel_pm.h
+> @@ -40,7 +40,6 @@ void skl_pipe_ddb_get_hw_state(struct intel_crtc *crtc,
+>  			       struct skl_ddb_entry *ddb_y,
+>  			       struct skl_ddb_entry *ddb_uv);
+>  void skl_ddb_get_hw_state(struct drm_i915_private *dev_priv);
+> -u16 intel_get_ddb_size(struct drm_i915_private *dev_priv);
+>  u32 skl_ddb_dbuf_slice_mask(struct drm_i915_private *dev_priv,
+>  			    const struct skl_ddb_entry *entry);
+>  void skl_pipe_wm_get_hw_state(struct intel_crtc *crtc,
+> -- =
 
-Driver Changes:
+> 2.26.2
+> =
 
- - ast: Support new display mode
- - amdgpu: Switch to new TTM allocator
- - hisilicon: Cleanups
- - nouveau: Switch to new TTM allocator; Fix include of swiotbl.h and
-   limits.h; Use state helper instead of CRTC state pointer
- - panfrost: Support cache-coherent integrations; Fix mutex corruption on
-   open/close; Cleanups
- - qxl: Cleanups
- - radeon: Switch to new TTM allocator
- - ticdc: Fix build failure
- - vmwgfx: Switch to new TTM allocator
- - xlnx: Use dma_request_chan
-
- - fbdev/sh_mobile: Cleanups
-
-The following changes since commit 3cea11cd5e3b00d91caf0b4730194039b45c5891:
-
-  Linux 5.10-rc2 (2020-11-01 14:43:51 -0800)
-
-are available in the Git repository at:
-
-  git://anongit.freedesktop.org/drm/drm-misc tags/drm-misc-next-2020-11-05
-
-for you to fetch changes up to 24e146cdf9f5a8fb464dd98ba8357d662d37d22f:
-
-  drm: unify formatting for color management documentation (2020-11-04 17:4=
-7:57 +0100)
-
-----------------------------------------------------------------
-drm-misc-next for $kernel-version:
-
-UAPI Changes:
-
-Cross-subsystem Changes:
-
- - arch/arm64: Describe G12b GPU as coherent
- - iommu: Support coherency for Mali LPAE
-
-Core Changes:
-
- - atomic: Pass full state to CRTC atomic_{check, begin, flush}(); Use
-   atomic-state pointers
- - drm: Remove SCATTER_LIST_MAX_SEGMENT; Cleanups
- - doc: Document legacy_cursor_update better; cleanups
- - edid: Don't warn n EDIDs of zero
- - ttm: New backend allocation pool; Remove old page allocator; Rework
-   no_retry handling; Replace flags with booleans in struct ttm_operation_c=
-tx
- - vram-helper: Cleanups
-
- - fbdev: Cleanups
- - console: Store font size as unsigned value
-
-Driver Changes:
-
- - ast: Support new display mode
- - amdgpu: Switch to new TTM allocator
- - hisilicon: Cleanups
- - nouveau: Switch to new TTM allocator; Fix include of swiotbl.h and
-   limits.h; Use state helper instead of CRTC state pointer
- - panfrost: Support cache-coherent integrations; Fix mutex corruption on
-   open/close; Cleanupse
- - qxl: Cleanups
- - radeon: Switch to new TTM allocator
- - ticdc: Fix build failure
- - vmwgfx: Switch to new TTM allocator
- - xlnx: Use dma_request_chan
-
- - fbdev/sh_mobile: Cleanups
-
-----------------------------------------------------------------
-Arnd Bergmann (1):
-      drm/tilcdc: avoid 'make W=3D2' build failure
-
-Bernard Zhao (1):
-      gpu/drm: delete same check in if condition
-
-Boris Brezillon (1):
-      drm/panfrost: Remove unused variables in panfrost_job_close()
-
-Chris Wilson (1):
-      drm: Quieten [zero] EDID carping
-
-Christian K=F6nig (12):
-      drm/ttm: new TT backend allocation pool v3
-      drm/ttm: wire up the new pool as default one v2
-      drm/amdgpu: switch to new allocator v2
-      drm/radeon: switch to new allocator v2
-      drm/nouveau: switch to new allocator
-      drm/vmwgfx: switch to new allocator
-      drm/qxl: drop ttm_page_alloc.h include
-      drm/vram_helpers: drop ttm_page_alloc.h include
-      drm/ttm: nuke old page allocator
-      drm/nouveu: fix swiotlb include
-      drm/ttm: rework no_retry handling v2
-      drm/ttm: replace context flags with bools v2
-
-Daniel Vetter (1):
-      drm/doc: Document legacy_cursor_update better
-
-Jason Gunthorpe (1):
-      drm: Remove SCATTERLIST_MAX_SEGMENT
-
-KuoHsiang Chou (1):
-      drm/ast: Support 1600x900 with 108MHz PCLK
-
-Linus Walleij (1):
-      fbdev/sh_mobile: Drop unused include
-
-Maxime Ripard (6):
-      Merge drm/drm-next into drm-misc-next
-      drm/nouveau/ttm: Add limits.h
-      drm/atomic: Pass the full state to CRTC atomic_check
-      drm/atomic: Pass the full state to CRTC atomic begin and flush
-      drm/nouveau/kms/nv50-: Use state helper instead of crtc pointer
-      drm: Use the state pointer directly in atomic_check
-
-Peilin Ye (2):
-      fbdev/atafb: Remove unused extern variables
-      Fonts: Make font size unsigned in font_desc
-
-Peter Ujfalusi (1):
-      drm: xlnx: Use dma_request_chan for DMA channel request
-
-Robin Murphy (3):
-      iommu/io-pgtable-arm: Support coherency for Mali LPAE
-      drm/panfrost: Support cache-coherent integrations
-      arm64: dts: meson: Describe G12b GPU as coherent
-
-Simon Ser (1):
-      drm: unify formatting for color management documentation
-
-Steven Price (1):
-      drm/panfrost: Don't corrupt the queue mutex on open/close
-
-Thomas Zimmermann (1):
-      drivers/video: Fix -Wstringop-truncation in hdmi.c
-
-Tian Tao (1):
-      drm/hisilicon: Adding a const declaration to an invariant construct
-
-Yejune Deng (1):
-      drm/panfrost: Replace devm_reset_control_array_get()
-
- .../bindings/display/bridge/analogix,anx7625.yaml  |   95 +
- .../bindings/display/panel/novatek,nt36672a.yaml   |   87 +
- .../bindings/display/panel/panel-simple-dsi.yaml   |    3 +
- .../bindings/display/panel/panel-simple.yaml       |    2 +
- .../bindings/display/ti/ti,am65x-dss.yaml          |   11 +
- .../bindings/display/ti/ti,j721e-dss.yaml          |   11 +
- .../devicetree/bindings/vendor-prefixes.yaml       |    4 +
- Documentation/driver-api/dma-buf.rst               |    9 +
- Documentation/gpu/drm-mm.rst                       |    4 +-
- Documentation/gpu/todo.rst                         |   16 +-
- Documentation/gpu/vkms.rst                         |   99 +-
- MAINTAINERS                                        |   11 +-
- arch/arm64/boot/dts/amlogic/meson-g12b.dtsi        |    4 +
- drivers/dma-buf/dma-buf.c                          |   63 +-
- drivers/dma-buf/dma-resv.c                         |    2 +-
- drivers/dma-buf/heaps/heap-helpers.c               |   10 +-
- drivers/gpu/drm/Kconfig                            |    8 +-
- drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c   |    5 +-
- drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c             |    5 +-
- drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c        |    5 +-
- drivers/gpu/drm/amd/amdgpu/amdgpu_display.c        |    8 +-
- drivers/gpu/drm/amd/amdgpu/amdgpu_dma_buf.c        |    5 +-
- drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c            |    6 -
- drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c            |   25 +-
- drivers/gpu/drm/amd/amdgpu/amdgpu_gem.h            |    5 -
- drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c            |   12 +-
- drivers/gpu/drm/amd/amdgpu/amdgpu_gtt_mgr.c        |    2 +-
- drivers/gpu/drm/amd/amdgpu/amdgpu_object.c         |   94 +-
- drivers/gpu/drm/amd/amdgpu/amdgpu_object.h         |    5 +-
- drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c            |  209 ++-
- drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c             |    9 +-
- drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c       |    2 +-
- drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c  |   14 +-
- drivers/gpu/drm/arc/arcpgu_crtc.c                  |    4 +-
- drivers/gpu/drm/arm/display/komeda/komeda_crtc.c   |   22 +-
- drivers/gpu/drm/arm/display/komeda/komeda_dev.c    |   16 +-
- drivers/gpu/drm/arm/display/komeda/komeda_dev.h    |    2 -
- drivers/gpu/drm/arm/hdlcd_crtc.c                   |    6 +-
- drivers/gpu/drm/arm/malidp_crtc.c                  |   26 +-
- drivers/gpu/drm/armada/armada_crtc.c               |   22 +-
- drivers/gpu/drm/armada/armada_drv.c                |    3 -
- drivers/gpu/drm/armada/armada_gem.c                |   12 +-
- drivers/gpu/drm/armada/armada_gem.h                |    2 -
- drivers/gpu/drm/aspeed/Kconfig                     |    1 +
- drivers/gpu/drm/aspeed/aspeed_gfx.h                |    2 +-
- drivers/gpu/drm/aspeed/aspeed_gfx_drv.c            |   78 +-
- drivers/gpu/drm/ast/ast_mode.c                     |   38 +-
- drivers/gpu/drm/ast/ast_tables.h                   |    2 +
- drivers/gpu/drm/atmel-hlcdc/atmel_hlcdc_crtc.c     |   11 +-
- drivers/gpu/drm/bridge/adv7511/adv7511_audio.c     |    6 +-
- drivers/gpu/drm/bridge/analogix/Kconfig            |    9 +
- drivers/gpu/drm/bridge/analogix/Makefile           |    1 +
- drivers/gpu/drm/bridge/analogix/analogix_dp_reg.c  |    2 +-
- drivers/gpu/drm/bridge/analogix/anx7625.c          | 1850 ++++++++++++++++=
-++++
- drivers/gpu/drm/bridge/analogix/anx7625.h          |  390 +++++
- .../gpu/drm/bridge/synopsys/dw-hdmi-i2s-audio.c    |    2 +-
- drivers/gpu/drm/bridge/tc358764.c                  |  107 +-
- drivers/gpu/drm/bridge/ti-sn65dsi86.c              |   43 +-
- drivers/gpu/drm/drm_atomic.c                       |   39 +-
- drivers/gpu/drm/drm_atomic_helper.c                |   34 +-
- drivers/gpu/drm/drm_bridge_connector.c             |    2 +-
- drivers/gpu/drm/drm_color_mgmt.c                   |    4 +-
- drivers/gpu/drm/drm_connector.c                    |    5 +
- drivers/gpu/drm/drm_dp_aux_dev.c                   |    2 +-
- drivers/gpu/drm/drm_dp_mst_topology.c              |    7 +-
- drivers/gpu/drm/drm_edid.c                         |    4 +-
- drivers/gpu/drm/drm_fb_helper.c                    |   26 +-
- drivers/gpu/drm/drm_fourcc.c                       |    1 +
- drivers/gpu/drm/drm_gem.c                          |   53 +-
- drivers/gpu/drm/drm_gem_cma_helper.c               |   28 +-
- drivers/gpu/drm/drm_gem_shmem_helper.c             |   17 +-
- drivers/gpu/drm/drm_gem_vram_helper.c              |  180 +-
- drivers/gpu/drm/drm_internal.h                     |    8 +-
- drivers/gpu/drm/drm_ioctl.c                        |    2 +-
- drivers/gpu/drm/drm_pci.c                          |    6 +-
- drivers/gpu/drm/drm_prime.c                        |   33 +-
- drivers/gpu/drm/drm_simple_kms_helper.c            |   14 +-
- drivers/gpu/drm/etnaviv/etnaviv_drv.c              |   13 -
- drivers/gpu/drm/etnaviv/etnaviv_drv.h              |    1 -
- drivers/gpu/drm/etnaviv/etnaviv_gem.c              |   19 +-
- drivers/gpu/drm/etnaviv/etnaviv_gem_prime.c        |   13 +-
- drivers/gpu/drm/exynos/exynos_drm_crtc.c           |   16 +-
- drivers/gpu/drm/exynos/exynos_drm_drv.c            |   10 -
- drivers/gpu/drm/exynos/exynos_drm_gem.c            |   15 +
- drivers/gpu/drm/fsl-dcu/fsl_dcu_drm_crtc.c         |    8 +-
- drivers/gpu/drm/gma500/cdv_intel_dp.c              |    7 +-
- drivers/gpu/drm/gma500/framebuffer.c               |    2 +
- drivers/gpu/drm/gma500/gem.c                       |   18 +-
- drivers/gpu/drm/gma500/gem.h                       |    3 +
- drivers/gpu/drm/gma500/psb_drv.c                   |    9 -
- drivers/gpu/drm/gma500/psb_drv.h                   |    2 -
- drivers/gpu/drm/hisilicon/hibmc/Makefile           |    2 +-
- drivers/gpu/drm/hisilicon/hibmc/hibmc_drm_de.c     |   93 +-
- drivers/gpu/drm/hisilicon/hibmc/hibmc_drm_drv.c    |   20 +-
- drivers/gpu/drm/hisilicon/hibmc/hibmc_drm_drv.h    |   33 +-
- drivers/gpu/drm/hisilicon/hibmc/hibmc_drm_i2c.c    |   99 ++
- drivers/gpu/drm/hisilicon/hibmc/hibmc_drm_vdac.c   |   42 +-
- drivers/gpu/drm/hisilicon/kirin/kirin_drm_ade.c    |    8 +-
- drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c         |   13 +-
- drivers/gpu/drm/i915/gem/i915_gem_object.c         |   21 +-
- drivers/gpu/drm/i915/gem/i915_gem_object.h         |    3 -
- .../gpu/drm/i915/gem/selftests/i915_gem_dmabuf.c   |   18 +-
- drivers/gpu/drm/i915/gem/selftests/mock_dmabuf.c   |   14 +-
- drivers/gpu/drm/i915/i915_drv.c                    |    4 -
- drivers/gpu/drm/i915/i915_scatterlist.h            |    2 +-
- drivers/gpu/drm/i915/selftests/mock_gem_device.c   |    3 -
- drivers/gpu/drm/imx/dcss/dcss-crtc.c               |   13 +-
- drivers/gpu/drm/imx/dcss/dcss-kms.c                |   14 +-
- drivers/gpu/drm/imx/dcss/dcss-plane.c              |    2 -
- drivers/gpu/drm/imx/ipuv3-crtc.c                   |   16 +-
- drivers/gpu/drm/ingenic/ingenic-drm-drv.c          |  304 +++-
- drivers/gpu/drm/ingenic/ingenic-drm.h              |    3 +
- drivers/gpu/drm/mcde/mcde_drv.c                    |    4 +-
- drivers/gpu/drm/mediatek/mtk_drm_crtc.c            |   20 +-
- drivers/gpu/drm/mediatek/mtk_drm_drv.c             |    5 -
- drivers/gpu/drm/mediatek/mtk_drm_gem.c             |   11 +
- drivers/gpu/drm/meson/meson_crtc.c                 |   12 +-
- drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.c           |   34 +-
- drivers/gpu/drm/msm/disp/mdp4/mdp4_crtc.c          |   10 +-
- drivers/gpu/drm/msm/disp/mdp5/mdp5_crtc.c          |   21 +-
- drivers/gpu/drm/msm/msm_drv.c                      |   13 -
- drivers/gpu/drm/msm/msm_drv.h                      |    1 -
- drivers/gpu/drm/msm/msm_gem.c                      |   19 +-
- drivers/gpu/drm/mxsfb/mxsfb_kms.c                  |   16 +-
- drivers/gpu/drm/nouveau/dispnv50/head.c            |   11 +-
- drivers/gpu/drm/nouveau/nouveau_bo.c               |  295 ++--
- drivers/gpu/drm/nouveau/nouveau_bo.h               |    4 +-
- drivers/gpu/drm/nouveau/nouveau_chan.c             |    2 +-
- drivers/gpu/drm/nouveau/nouveau_drm.c              |   14 +-
- drivers/gpu/drm/nouveau/nouveau_drv.h              |    1 -
- drivers/gpu/drm/nouveau/nouveau_gem.c              |   14 +-
- drivers/gpu/drm/nouveau/nouveau_gem.h              |    2 +
- drivers/gpu/drm/nouveau/nouveau_mem.c              |    8 +-
- drivers/gpu/drm/nouveau/nouveau_mem.h              |    4 +-
- drivers/gpu/drm/nouveau/nouveau_prime.c            |    2 +
- drivers/gpu/drm/nouveau/nouveau_sgdma.c            |   19 +-
- drivers/gpu/drm/nouveau/nouveau_ttm.c              |   34 +-
- drivers/gpu/drm/omapdrm/omap_crtc.c                |   21 +-
- drivers/gpu/drm/omapdrm/omap_drv.c                 |    9 -
- drivers/gpu/drm/omapdrm/omap_gem.c                 |   18 +-
- drivers/gpu/drm/omapdrm/omap_gem.h                 |    2 -
- drivers/gpu/drm/panel/Kconfig                      |   21 +
- drivers/gpu/drm/panel/Makefile                     |    2 +
- drivers/gpu/drm/panel/panel-novatek-nt36672a.c     |  711 ++++++++
- drivers/gpu/drm/panel/panel-orisetech-otm8009a.c   |   20 +-
- drivers/gpu/drm/panel/panel-raydium-rm68200.c      |   14 +-
- drivers/gpu/drm/panel/panel-ronbo-rb070d30.c       |    7 +-
- drivers/gpu/drm/panel/panel-samsung-s6e3ha2.c      |    2 +-
- drivers/gpu/drm/panel/panel-simple.c               |   29 +
- drivers/gpu/drm/panel/panel-sitronix-st7703.c      |    2 +-
- drivers/gpu/drm/panel/panel-tdo-tl070wsh30.c       |  250 +++
- drivers/gpu/drm/panel/panel-tpo-td028ttec1.c       |    7 +-
- drivers/gpu/drm/panfrost/panfrost_devfreq.c        |    7 +-
- drivers/gpu/drm/panfrost/panfrost_device.c         |   10 +-
- drivers/gpu/drm/panfrost/panfrost_device.h         |    1 +
- drivers/gpu/drm/panfrost/panfrost_drv.c            |    2 +
- drivers/gpu/drm/panfrost/panfrost_gem.c            |    2 +
- drivers/gpu/drm/panfrost/panfrost_job.c            |   61 +-
- drivers/gpu/drm/panfrost/panfrost_mmu.c            |    1 +
- drivers/gpu/drm/pl111/pl111_drv.c                  |    5 +-
- drivers/gpu/drm/qxl/qxl_debugfs.c                  |    2 +-
- drivers/gpu/drm/qxl/qxl_display.c                  |   13 +-
- drivers/gpu/drm/qxl/qxl_drv.h                      |    1 -
- drivers/gpu/drm/qxl/qxl_ioctl.c                    |    4 +-
- drivers/gpu/drm/qxl/qxl_object.c                   |   72 +-
- drivers/gpu/drm/qxl/qxl_object.h                   |   25 +-
- drivers/gpu/drm/qxl/qxl_release.c                  |    4 +-
- drivers/gpu/drm/qxl/qxl_ttm.c                      |  110 +-
- drivers/gpu/drm/radeon/radeon.h                    |    1 -
- drivers/gpu/drm/radeon/radeon_display.c            |    9 +-
- drivers/gpu/drm/radeon/radeon_drv.c                |   23 +-
- drivers/gpu/drm/radeon/radeon_gem.c                |   31 +-
- drivers/gpu/drm/radeon/radeon_object.c             |  126 +-
- drivers/gpu/drm/radeon/radeon_object.h             |    7 +-
- drivers/gpu/drm/radeon/radeon_ttm.c                |  232 +--
- drivers/gpu/drm/rcar-du/rcar_du_crtc.c             |   21 +-
- drivers/gpu/drm/rockchip/rockchip_drm_drv.c        |    5 -
- drivers/gpu/drm/rockchip/rockchip_drm_gem.c        |   13 +-
- drivers/gpu/drm/rockchip/rockchip_drm_vop.c        |   18 +-
- drivers/gpu/drm/scheduler/sched_entity.c           |    3 +
- drivers/gpu/drm/sti/sti_crtc.c                     |    6 +-
- drivers/gpu/drm/stm/ltdc.c                         |    6 +-
- drivers/gpu/drm/sun4i/sun4i_crtc.c                 |   17 +-
- drivers/gpu/drm/tegra/dc.c                         |   18 +-
- drivers/gpu/drm/tegra/drm.c                        |    4 -
- drivers/gpu/drm/tegra/gem.c                        |   31 +-
- drivers/gpu/drm/tidss/tidss_crtc.c                 |   20 +-
- drivers/gpu/drm/tidss/tidss_plane.c                |    2 +
- drivers/gpu/drm/tilcdc/tilcdc_crtc.c               |   70 +-
- drivers/gpu/drm/tilcdc/tilcdc_drv.c                |   42 +-
- drivers/gpu/drm/tilcdc/tilcdc_drv.h                |    7 +-
- drivers/gpu/drm/ttm/Makefile                       |    5 +-
- drivers/gpu/drm/ttm/ttm_agp_backend.c              |    5 +-
- drivers/gpu/drm/ttm/ttm_bo.c                       |  201 +--
- drivers/gpu/drm/ttm/ttm_bo_util.c                  |  103 +-
- drivers/gpu/drm/ttm/ttm_bo_vm.c                    |   43 +-
- drivers/gpu/drm/ttm/ttm_memory.c                   |   13 +-
- drivers/gpu/drm/ttm/ttm_page_alloc.c               | 1189 -------------
- drivers/gpu/drm/ttm/ttm_page_alloc_dma.c           | 1239 -------------
- drivers/gpu/drm/ttm/ttm_pool.c                     |  667 +++++++
- drivers/gpu/drm/ttm/ttm_range_manager.c            |    2 +-
- drivers/gpu/drm/ttm/ttm_resource.c                 |   12 +-
- drivers/gpu/drm/ttm/ttm_tt.c                       |  256 +--
- drivers/gpu/drm/tve200/tve200_drv.c                |    4 +-
- drivers/gpu/drm/vboxvideo/vbox_mode.c              |    6 +-
- drivers/gpu/drm/vc4/vc4_bo.c                       |   21 +-
- drivers/gpu/drm/vc4/vc4_crtc.c                     |   19 +-
- drivers/gpu/drm/vc4/vc4_drv.c                      |   12 -
- drivers/gpu/drm/vc4/vc4_drv.h                      |    4 +-
- drivers/gpu/drm/vc4/vc4_dsi.c                      |   25 +-
- drivers/gpu/drm/vc4/vc4_hvs.c                      |    4 +-
- drivers/gpu/drm/vc4/vc4_txp.c                      |   19 +-
- drivers/gpu/drm/vgem/vgem_drv.c                    |   21 +-
- drivers/gpu/drm/via/via_mm.c                       |    2 +-
- drivers/gpu/drm/virtio/Makefile                    |    2 +-
- drivers/gpu/drm/virtio/virtgpu_debugfs.c           |   26 +-
- drivers/gpu/drm/virtio/virtgpu_display.c           |    8 +-
- drivers/gpu/drm/virtio/virtgpu_drv.c               |    2 +-
- drivers/gpu/drm/virtio/virtgpu_drv.h               |   79 +-
- drivers/gpu/drm/virtio/virtgpu_ioctl.c             |  185 +-
- drivers/gpu/drm/virtio/virtgpu_kms.c               |   34 +-
- drivers/gpu/drm/virtio/virtgpu_object.c            |   37 +-
- drivers/gpu/drm/virtio/virtgpu_plane.c             |   23 +-
- drivers/gpu/drm/virtio/virtgpu_prime.c             |   46 +-
- drivers/gpu/drm/virtio/virtgpu_vq.c                |  156 +-
- drivers/gpu/drm/virtio/virtgpu_vram.c              |  164 ++
- drivers/gpu/drm/vkms/Makefile                      |    1 -
- drivers/gpu/drm/vkms/vkms_composer.c               |   17 +-
- drivers/gpu/drm/vkms/vkms_crtc.c                   |   24 +-
- drivers/gpu/drm/vkms/vkms_drv.c                    |   30 +-
- drivers/gpu/drm/vkms/vkms_drv.h                    |   29 -
- drivers/gpu/drm/vkms/vkms_gem.c                    |  248 ---
- drivers/gpu/drm/vkms/vkms_plane.c                  |   13 +-
- drivers/gpu/drm/vkms/vkms_writeback.c              |   17 +-
- drivers/gpu/drm/vmwgfx/vmwgfx_blit.c               |    8 +-
- drivers/gpu/drm/vmwgfx/vmwgfx_bo.c                 |   95 +-
- drivers/gpu/drm/vmwgfx/vmwgfx_cmdbuf.c             |    6 +-
- drivers/gpu/drm/vmwgfx/vmwgfx_cotable.c            |    4 +-
- drivers/gpu/drm/vmwgfx/vmwgfx_drv.c                |   32 +-
- drivers/gpu/drm/vmwgfx/vmwgfx_drv.h                |   12 +-
- drivers/gpu/drm/vmwgfx/vmwgfx_fb.c                 |    2 +-
- drivers/gpu/drm/vmwgfx/vmwgfx_gmrid_manager.c      |    2 +-
- drivers/gpu/drm/vmwgfx/vmwgfx_kms.c                |    8 +-
- drivers/gpu/drm/vmwgfx/vmwgfx_kms.h                |    6 +-
- drivers/gpu/drm/vmwgfx/vmwgfx_ldu.c                |    4 +-
- drivers/gpu/drm/vmwgfx/vmwgfx_page_dirty.c         |    2 +-
- drivers/gpu/drm/vmwgfx/vmwgfx_resource.c           |    6 +-
- drivers/gpu/drm/vmwgfx/vmwgfx_scrn.c               |    8 +-
- drivers/gpu/drm/vmwgfx/vmwgfx_shader.c             |    4 +-
- drivers/gpu/drm/vmwgfx/vmwgfx_stdu.c               |    4 +-
- drivers/gpu/drm/vmwgfx/vmwgfx_thp.c                |    2 +-
- drivers/gpu/drm/vmwgfx/vmwgfx_ttm_buffer.c         |  231 +--
- drivers/gpu/drm/vmwgfx/vmwgfx_validation.c         |    2 +-
- drivers/gpu/drm/xen/xen_drm_front.c                |   44 +-
- drivers/gpu/drm/xen/xen_drm_front.h                |    2 +
- drivers/gpu/drm/xen/xen_drm_front_gem.c            |   15 +
- drivers/gpu/drm/xlnx/zynqmp_disp.c                 |   18 +-
- drivers/gpu/drm/xlnx/zynqmp_dpsub.c                |   14 +-
- drivers/gpu/drm/zte/zx_vou.c                       |    6 +-
- drivers/gpu/vga/vga_switcheroo.c                   |    7 +-
- drivers/iommu/io-pgtable-arm.c                     |   11 +-
- .../media/common/videobuf2/videobuf2-dma-contig.c  |   17 +-
- drivers/media/common/videobuf2/videobuf2-dma-sg.c  |   19 +-
- drivers/media/common/videobuf2/videobuf2-vmalloc.c |   21 +-
- drivers/misc/fastrpc.c                             |    6 +-
- drivers/video/console/sticore.c                    |    2 +-
- drivers/video/fbdev/atafb.c                        |    8 -
- drivers/video/fbdev/aty/radeon_base.c              |    4 +-
- drivers/video/fbdev/cirrusfb.c                     |    3 +-
- drivers/video/fbdev/core/fbmem.c                   |   44 +-
- drivers/video/fbdev/fsl-diu-fb.c                   |    3 +-
- drivers/video/fbdev/matrox/matroxfb_base.c         |    8 +-
- drivers/video/fbdev/mx3fb.c                        |    2 -
- drivers/video/fbdev/nvidia/nv_of.c                 |    3 +-
- .../omap2/omapfb/displays/connector-analog-tv.c    |    7 +-
- .../fbdev/omap2/omapfb/displays/connector-dvi.c    |    7 +-
- .../fbdev/omap2/omapfb/displays/connector-hdmi.c   |    7 +-
- .../video/fbdev/omap2/omapfb/displays/panel-dpi.c  |    7 +-
- .../omapfb/displays/panel-sharp-ls037v7dw01.c      |    7 +-
- .../omap2/omapfb/displays/panel-sony-acx565akm.c   |    7 +-
- .../omap2/omapfb/displays/panel-tpo-td043mtea1.c   |    7 +-
- drivers/video/fbdev/omap2/omapfb/dss/hdmi4_core.c  |   10 +-
- drivers/video/fbdev/omap2/omapfb/dss/hdmi5_core.c  |   10 +-
- drivers/video/fbdev/omap2/omapfb/dss/hdmi_phy.c    |   10 +-
- drivers/video/fbdev/omap2/omapfb/dss/hdmi_pll.c    |   16 +-
- drivers/video/fbdev/omap2/omapfb/dss/venc.c        |    6 +-
- drivers/video/fbdev/omap2/omapfb/dss/video-pll.c   |   20 +-
- drivers/video/fbdev/sbuslib.c                      |  124 +-
- drivers/video/fbdev/sh_mobile_lcdcfb.c             |    7 +-
- drivers/video/fbdev/sis/300vtbl.h                  |    2 -
- drivers/video/fbdev/sis/sis_accel.h                |   14 +-
- drivers/video/hdmi.c                               |    8 +-
- include/drm/drm_atomic.h                           |   12 +-
- include/drm/drm_dp_helper.h                        |   72 +-
- include/drm/drm_drv.h                              |   85 +-
- include/drm/drm_gem.h                              |    2 +-
- include/drm/drm_gem_vram_helper.h                  |    3 -
- include/drm/drm_mode_config.h                      |   13 +
- include/drm/drm_modeset_helper_vtables.h           |   22 +-
- include/drm/drm_prime.h                            |    5 +-
- include/drm/ttm/ttm_bo_api.h                       |   98 +-
- include/drm/ttm/ttm_bo_driver.h                    |  107 +-
- include/drm/ttm/ttm_caching.h                      |   36 +
- include/drm/ttm/ttm_page_alloc.h                   |  122 --
- include/drm/ttm/ttm_placement.h                    |   15 -
- include/drm/ttm/ttm_pool.h                         |   91 +
- include/drm/ttm/ttm_resource.h                     |   12 +-
- include/drm/ttm/ttm_set_memory.h                   |  150 --
- include/drm/ttm/ttm_tt.h                           |   82 +-
- include/linux/dma-buf-map.h                        |  193 ++
- include/linux/dma-buf.h                            |   14 +-
- include/linux/font.h                               |    2 +-
- include/linux/platform_data/shmob_drm.h            |    2 -
- include/linux/scatterlist.h                        |    6 -
- include/uapi/drm/drm_fourcc.h                      |   41 +-
- include/uapi/drm/virtgpu_drm.h                     |   39 +-
- include/uapi/linux/virtio_gpu.h                    |   78 +
- tools/testing/scatterlist/main.c                   |    2 +-
- 318 files changed, 8618 insertions(+), 6228 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/display/bridge/analog=
-ix,anx7625.yaml
- create mode 100644 Documentation/devicetree/bindings/display/panel/novatek=
-,nt36672a.yaml
- create mode 100644 drivers/gpu/drm/bridge/analogix/anx7625.c
- create mode 100644 drivers/gpu/drm/bridge/analogix/anx7625.h
- create mode 100644 drivers/gpu/drm/hisilicon/hibmc/hibmc_drm_i2c.c
- create mode 100644 drivers/gpu/drm/panel/panel-novatek-nt36672a.c
- create mode 100644 drivers/gpu/drm/panel/panel-tdo-tl070wsh30.c
- delete mode 100644 drivers/gpu/drm/ttm/ttm_page_alloc.c
- delete mode 100644 drivers/gpu/drm/ttm/ttm_page_alloc_dma.c
- create mode 100644 drivers/gpu/drm/ttm/ttm_pool.c
- create mode 100644 drivers/gpu/drm/virtio/virtgpu_vram.c
- delete mode 100644 drivers/gpu/drm/vkms/vkms_gem.c
- create mode 100644 include/drm/ttm/ttm_caching.h
- delete mode 100644 include/drm/ttm/ttm_page_alloc.h
- create mode 100644 include/drm/ttm/ttm_pool.h
- delete mode 100644 include/drm/ttm/ttm_set_memory.h
- create mode 100644 include/linux/dma-buf-map.h
-
---
-Thomas Zimmermann
-Graphics Driver Developer
-SUSE Software Solutions Germany GmbH
-Maxfeldstr. 5, 90409 N=FCrnberg, Germany
-(HRB 36809, AG N=FCrnberg)
-Gesch=E4ftsf=FChrer: Felix Imend=F6rffer
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
