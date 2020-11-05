@@ -2,44 +2,43 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 657882A7F8B
-	for <lists+intel-gfx@lfdr.de>; Thu,  5 Nov 2020 14:21:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6B2CC2A7F97
+	for <lists+intel-gfx@lfdr.de>; Thu,  5 Nov 2020 14:23:19 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C40B96E223;
-	Thu,  5 Nov 2020 13:21:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DF01C6ED0A;
+	Thu,  5 Nov 2020 13:23:17 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 928A06E223;
- Thu,  5 Nov 2020 13:21:15 +0000 (UTC)
-IronPort-SDR: 4aVimAzF3d6HlU4L1Z5XzX5HzidhOqw9wlCK9qDuoqIJl8w7bLdjtVO0CiCe+R+sGkc9aXOX+B
- iOvHEXYyFrrw==
-X-IronPort-AV: E=McAfee;i="6000,8403,9795"; a="254085357"
-X-IronPort-AV: E=Sophos;i="5.77,453,1596524400"; d="scan'208";a="254085357"
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 385F26ED0A;
+ Thu,  5 Nov 2020 13:23:17 +0000 (UTC)
+IronPort-SDR: 9WwfDfIwIgJX/G5h0h6EBdwTCfadze6JgWcc50uyG+3vx0R3kVQC4jADZtb1BeKfT7KFTRlM6e
+ kbCjx/tZmJUg==
+X-IronPort-AV: E=McAfee;i="6000,8403,9795"; a="156369568"
+X-IronPort-AV: E=Sophos;i="5.77,453,1596524400"; d="scan'208";a="156369568"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Nov 2020 05:21:15 -0800
-IronPort-SDR: T4YbO7bz+/N97Ao/JJHVal9Iw4xz8bL0aV/iwG1DU5hwaUw3AbEbSVoJ+D3Ymc1I5sbGvkZsIq
- x+XCNuKBb+zQ==
-X-IronPort-AV: E=Sophos;i="5.77,453,1596524400"; d="scan'208";a="306511080"
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Nov 2020 05:23:16 -0800
+IronPort-SDR: ddTzpfxRWGdGynZ2C+SgowXVFlOyPfIKq76kqZPoQuQNfVxbIIT9fCd0lwdyXVwAeWclY8BctI
+ BPw3lQtZth6g==
+X-IronPort-AV: E=Sophos;i="5.77,453,1596524400"; d="scan'208";a="306511514"
 Received: from unknown (HELO intel.com) ([10.99.66.154])
  by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Nov 2020 05:21:13 -0800
-Date: Thu, 5 Nov 2020 18:51:57 +0530
+ 05 Nov 2020 05:23:14 -0800
+Date: Thu, 5 Nov 2020 18:53:58 +0530
 From: Ramalingam C <ramalingam.c@intel.com>
 To: Anshuman Gupta <anshuman.gupta@intel.com>
-Message-ID: <20201105132157.GB3242@intel.com>
+Message-ID: <20201105132358.GC3242@intel.com>
 References: <20201027164208.10026-1-anshuman.gupta@intel.com>
- <20201027164208.10026-2-anshuman.gupta@intel.com>
- <20201105131801.GA3242@intel.com>
+ <20201027164208.10026-3-anshuman.gupta@intel.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20201105131801.GA3242@intel.com>
+In-Reply-To: <20201027164208.10026-3-anshuman.gupta@intel.com>
 User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH v4 01/16] drm/i915/hdcp: Update CP property
- in update_pipe
+Subject: Re: [Intel-gfx] [PATCH v4 02/16] drm/i915/hdcp: Get conn while
+ content_type changed
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,80 +52,46 @@ List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: jani.nikula@intel.com, intel-gfx@lists.freedesktop.org,
- seanpaul@chromium.org, dri-devel@lists.freedesktop.org
+ dri-devel@lists.freedesktop.org, seanpaul@chromium.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 2020-11-05 at 18:48:02 +0530, Ramalingam C wrote:
-> On 2020-10-27 at 22:11:53 +0530, Anshuman Gupta wrote:
-> > When crtc state need_modeset is true it is not necessary
-> > it is going to be a real modeset, it can turns to be a
-> > fastset instead of modeset.
-> > This turns content protection property to be DESIRED and hdcp
-> > update_pipe left with property to be in DESIRED state but
-> > actual hdcp->value was ENABLED.
-> > 
-> > This issue is caught with DP MST setup, where we have multiple
-> > connector in same DP_MST topology. When disabling HDCP on one of
-> > DP MST connector leads to set the crtc state need_modeset to true
-> > for all other crtc driving the other DP-MST topology connectors.
-> > This turns up other DP MST connectors CP property to be DESIRED
-> > despite the actual hdcp->value is ENABLED.
-> > Above scenario fails the DP MST HDCP IGT test, disabling HDCP on
-> > one MST stream should not cause to disable HDCP on another MST
-> > stream on same DP MST topology.
-> > 
-> > v2:
-> > Fix WARN_ON(connector->base.registration_state == DRM_CONNECTOR_REGISTERED)
-> > v3:
-> > Commit log improvement. [Uma]
-> > Added a comment before scheduling prop_work. [Uma]
-> > 
-> > Fixes: 33f9a623bfc6 ("drm/i915/hdcp: Update CP as per the kernel internal state")
-> > Cc: Ramalingam C <ramalingam.c@intel.com>
-> > Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
-> > ---
-> >  drivers/gpu/drm/i915/display/intel_hdcp.c | 8 ++++++++
-> >  1 file changed, 8 insertions(+)
-> > 
-> > diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c b/drivers/gpu/drm/i915/display/intel_hdcp.c
-> > index b2a4bbcfdcd2..eee8263405b9 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_hdcp.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
-> > @@ -2221,6 +2221,14 @@ void intel_hdcp_update_pipe(struct intel_atomic_state *state,
-> >  		desired_and_not_enabled =
-> >  			hdcp->value != DRM_MODE_CONTENT_PROTECTION_ENABLED;
-> >  		mutex_unlock(&hdcp->mutex);
-> > +		/*
-> > +		 * If HDCP already ENABLED and CP property is DESIRED, schedule
-> > +		 * prop_work to update correct CP property to user space.
-> > +		 */
-> > +		if (!desired_and_not_enabled && !content_protection_type_changed) {
-> > +			drm_connector_get(&connector->base);
-> Sorry for late review.
+On 2020-10-27 at 22:11:54 +0530, Anshuman Gupta wrote:
+> Get DRM connector reference count while scheduling a prop work
+> to avoid any possible destroy of DRM connector when it is in
+> DRM_CONNECTOR_REGISTERED state.
 > 
-> why do we need this? and where do we release the connector ref?
-ignore it seems like prop work is expecting the caller to get ref.
-In that case in intel_hdcp_update_pipe() previous scheduling of
-prop_work needs to take a ref. Missing?
+> Fixes: a6597faa2d59 ("drm/i915: Protect workers against disappearing connectors")
+> Cc: Sean Paul <seanpaul@chromium.org>
+> Cc: Ramalingam C <ramalingam.c@intel.com>
+> Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_hdcp.c | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c b/drivers/gpu/drm/i915/display/intel_hdcp.c
+> index eee8263405b9..b9d8825e2bb1 100644
+> --- a/drivers/gpu/drm/i915/display/intel_hdcp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
+> @@ -2210,6 +2210,7 @@ void intel_hdcp_update_pipe(struct intel_atomic_state *state,
+>  	if (content_protection_type_changed) {
+>  		mutex_lock(&hdcp->mutex);
+>  		hdcp->value = DRM_MODE_CONTENT_PROTECTION_DESIRED;
+> +		drm_connector_get(&connector->base);
+haa... just commented about missing of this get ref in previous patch.
+ignore it.
+
+Reviewed-by: Ramalingam C <ramalingam.c@intel.com>
 
 -Ram
+>  		schedule_work(&hdcp->prop_work);
+>  		mutex_unlock(&hdcp->mutex);
+>  	}
+> -- 
+> 2.26.2
 > 
-> -Ram
-> > +			schedule_work(&hdcp->prop_work);
-> > +		}
-> >  	}
-> >  
-> >  	if (desired_and_not_enabled || content_protection_type_changed)
-> > -- 
-> > 2.26.2
-> > 
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
