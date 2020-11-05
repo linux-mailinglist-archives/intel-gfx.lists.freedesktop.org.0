@@ -1,65 +1,44 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2FD312A7FDF
-	for <lists+intel-gfx@lfdr.de>; Thu,  5 Nov 2020 14:46:39 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 67B852A8006
+	for <lists+intel-gfx@lfdr.de>; Thu,  5 Nov 2020 14:52:21 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AE1436EB69;
-	Thu,  5 Nov 2020 13:46:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8E1386ED23;
+	Thu,  5 Nov 2020 13:52:18 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ECD486EB69
- for <intel-gfx@lists.freedesktop.org>; Thu,  5 Nov 2020 13:46:35 +0000 (UTC)
-IronPort-SDR: 7+Llt3DpMtUOzrfH/Tb2gmTDGFrysQWC6EZ0AnZ3RoEePkdtugk3cS9vei3ObhpgXfnIaU663x
- kfYUGH2TSqiQ==
-X-IronPort-AV: E=McAfee;i="6000,8403,9795"; a="156372283"
-X-IronPort-AV: E=Sophos;i="5.77,453,1596524400"; d="scan'208";a="156372283"
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4BD736ED23;
+ Thu,  5 Nov 2020 13:52:17 +0000 (UTC)
+IronPort-SDR: 5FwFoBLNEIKs+wEZBpFNtxkNgp6Q5RxmaORspUCghtHwxiA6enHs+FxFl4VauUyscbGgdbTZhl
+ jRXH2VO5jahw==
+X-IronPort-AV: E=McAfee;i="6000,8403,9795"; a="168600972"
+X-IronPort-AV: E=Sophos;i="5.77,453,1596524400"; d="scan'208";a="168600972"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Nov 2020 05:46:35 -0800
-IronPort-SDR: MLEB5Zwu1BKOkB/L7+PFNXMocXfRj32MRg5doazzaMMmXbm6LOwsxEQE6WT6itZnh2x9jWyW1t
- 24k0+tjxfveQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.77,453,1596524400"; d="scan'208";a="539405321"
-Received: from orsmsx605.amr.corp.intel.com ([10.22.229.18])
- by orsmga005.jf.intel.com with ESMTP; 05 Nov 2020 05:46:34 -0800
-Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
- ORSMSX605.amr.corp.intel.com (10.22.229.18) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1713.5; Thu, 5 Nov 2020 05:46:34 -0800
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1713.5; Thu, 5 Nov 2020 05:46:33 -0800
-Received: from orsmsx610.amr.corp.intel.com ([10.22.229.23]) by
- ORSMSX610.amr.corp.intel.com ([10.22.229.23]) with mapi id 15.01.1713.004;
- Thu, 5 Nov 2020 05:46:33 -0800
-From: "Souza, Jose" <jose.souza@intel.com>
-To: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Thread-Topic: =?utf-8?B?4pyTIEZpLkNJLklHVDogc3VjY2VzcyBmb3IgZHJtL2k5MTUvZGlzcGxheTog?=
- =?utf-8?B?VXNlIGluaXRpYWxfZmFzdHNldF9jaGVjaygpIHRvIGNvbXB1dGUgYW5kIGFw?=
- =?utf-8?Q?ply_the_initial_PSR_state?=
-Thread-Index: AQHWsa/+V8TAu1r4rk6GHB9Pq7qBbam6FteA
-Date: Thu, 5 Nov 2020 13:46:33 +0000
-Message-ID: <6e9dcd5c8e55060f97c8ae73c4c4363ae5c918f1.camel@intel.com>
-References: <20201102221048.104294-1-jose.souza@intel.com>
- <160438724689.25739.1583603567094470514@emeril.freedesktop.org>
-In-Reply-To: <160438724689.25739.1583603567094470514@emeril.freedesktop.org>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.132]
-Content-ID: <44A7464D355B1847838E30CD65591B5A@intel.com>
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Nov 2020 05:52:16 -0800
+IronPort-SDR: 1DabSkTvUv6oDq+nLca8W0Kku9Rm1o/FaM9/mq8xe94KXsbjwCd/UgUlVGYDZuysfr9+Uvdced
+ 26gBJsXKDqHg==
+X-IronPort-AV: E=Sophos;i="5.77,453,1596524400"; d="scan'208";a="471655623"
+Received: from unknown (HELO intel.com) ([10.99.66.154])
+ by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Nov 2020 05:52:13 -0800
+Date: Thu, 5 Nov 2020 19:22:57 +0530
+From: Ramalingam C <ramalingam.c@intel.com>
+To: Anshuman Gupta <anshuman.gupta@intel.com>
+Message-ID: <20201105135256.GE3242@intel.com>
+References: <20201027164208.10026-1-anshuman.gupta@intel.com>
+ <20201027164208.10026-5-anshuman.gupta@intel.com>
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] 
- =?utf-8?b?4pyTIEZpLkNJLklHVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/display=3A_Use_initial=5Ffastset=5Fcheck=28=29_to_compute?=
- =?utf-8?q?_and_apply_the_initial_PSR_state?=
+Content-Disposition: inline
+In-Reply-To: <20201027164208.10026-5-anshuman.gupta@intel.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: Re: [Intel-gfx] [PATCH v4 04/16] drm/i915/hdcp: DP MST transcoder
+ for link and stream
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,110 +51,134 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: jani.nikula@intel.com, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, seanpaul@chromium.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gVHVlLCAyMDIwLTExLTAzIGF0IDA3OjA3ICswMDAwLCBQYXRjaHdvcmsgd3JvdGU6DQo+IFBh
-dGNoIERldGFpbHMNCj4gU2VyaWVzOiBkcm0vaTkxNS9kaXNwbGF5OiBVc2UgaW5pdGlhbF9mYXN0
-c2V0X2NoZWNrKCkgdG8gY29tcHV0ZSBhbmQgYXBwbHkgdGhlIGluaXRpYWwgUFNSIHN0YXRlIFVS
-TDoNCj4gaHR0cHM6Ly9wYXRjaHdvcmsuZnJlZWRlc2t0b3Aub3JnL3Nlcmllcy84MzM3NS8gU3Rh
-dGU6IHN1Y2Nlc3MgRGV0YWlsczogaHR0cHM6Ly9pbnRlbC1nZngtY2kuMDEub3JnL3RyZWUvZHJt
-LXRpcC9QYXRjaHdvcmtfMTg4MzEvaW5kZXguaHRtbCANCj4gQ0kgQnVnIExvZyAtIGNoYW5nZXMg
-ZnJvbSBDSV9EUk1fOTI0N19mdWxsIC0+IFBhdGNod29ya18xODgzMV9mdWxsU3VtbWFyeVNVQ0NF
-U1MNCj4gTm8gcmVncmVzc2lvbnMgZm91bmQuDQoNClRoYW5rcyBmb3IgdGhlIHJldmlldyBJbXJl
-LCBwdXNoZWQgdG8gZGlucS4NCg0KPiBOZXcgdGVzdHNOZXcgdGVzdHMgaGF2ZSBiZWVuIGludHJv
-ZHVjZWQgYmV0d2VlbiBDSV9EUk1fOTI0N19mdWxsIGFuZCBQYXRjaHdvcmtfMTg4MzFfZnVsbDoN
-Cj4gTmV3IENJIHRlc3RzICgxKSAqIGJvb3Q6U3RhdHVzZXMgOiAxNzUgcGFzcyhzKUV4ZWMgdGlt
-ZTogWzAuMF0gcw0KPiBLbm93biBpc3N1ZXNIZXJlIGFyZSB0aGUgY2hhbmdlcyBmb3VuZCBpbiBQ
-YXRjaHdvcmtfMTg4MzFfZnVsbCB0aGF0IGNvbWUgZnJvbSBrbm93biBpc3N1ZXM6DQo+IElHVCBj
-aGFuZ2VzSXNzdWVzIGhpdCAqIGlndEBrbXNfY3Vyc29yX2NyY0BwaXBlLWEtY3Vyc29yLXN1c3Bl
-bmQ6c2hhcmQtc2tsOiBQQVNTIC0+IElOQ09NUExFVEUgKGk5MTUjMzAwKQ0KPiDCoCogaWd0QGtt
-c19jdXJzb3JfY3JjQHBpcGUtYi1jdXJzb3ItNjR4MjEtb2Zmc2NyZWVuOnNoYXJkLXNrbDogUEFT
-UyAtPiBGQUlMIChpOTE1IzU0KSArMSBzaW1pbGFyIGlzc3VlDQo+IMKgKiBpZ3RAa21zX2N1cnNv
-cl9lZGdlX3dhbGtAcGlwZS1jLTI1NngyNTYtcmlnaHQtZWRnZTpzaGFyZC1nbGs6IFBBU1MgLT4g
-RE1FU0ctV0FSTiAoaTkxNSMxOTgyKQ0KPiDCoCogaWd0QGttc19jdXJzb3JfbGVnYWN5QDJ4LWxv
-bmctZmxpcC12cy1jdXJzb3ItbGVnYWN5OnNoYXJkLWdsazogUEFTUyAtPiBGQUlMIChpOTE1Izcy
-KQ0KPiDCoCogaWd0QGttc19jdXJzb3JfbGVnYWN5QGN1cnNvci12cy1mbGlwLWF0b21pYy10cmFu
-c2l0aW9ucy12YXJ5aW5nLXNpemU6c2hhcmQtc2tsOiBQQVNTIC0+IERNRVNHLVdBUk4gKGk5MTUj
-MTk4MikgKzcgc2ltaWxhciBpc3N1ZXMNCj4gwqAqIGlndEBrbXNfZHJhd19jcmNAZHJhdy1tZXRo
-b2QteHJnYjIxMDEwMTAtbW1hcC1ndHQtdW50aWxlZDpzaGFyZC1hcGw6IFBBU1MgLT4gRE1FU0ct
-V0FSTiAoaTkxNSMxNjM1IC8gaTkxNSMxOTgyKQ0KPiDCoCogaWd0QGttc19kcmF3X2NyY0BkcmF3
-LW1ldGhvZC14cmdiODg4OC1tbWFwLXdjLXVudGlsZWQ6c2hhcmQta2JsOiBQQVNTIC0+IERNRVNH
-LVdBUk4gKGk5MTUjMTk4MikgKzIgc2ltaWxhciBpc3N1ZXMNCj4gwqAqIGlndEBrbXNfZmxpcEBm
-bGlwLXZzLWV4cGlyZWQtdmJsYW5rLWludGVycnVwdGlibGVAYS1kcDE6c2hhcmQtYXBsOiBQQVNT
-IC0+IEZBSUwgKGk5MTUjMTYzNSAvIGk5MTUjNzkpDQo+IMKgKiBpZ3RAa21zX2Zyb250YnVmZmVy
-X3RyYWNraW5nQGZiYy1yZ2IxMDEwMTAtZHJhdy1yZW5kZXI6c2hhcmQtc25iOiBQQVNTIC0+IEZB
-SUwgKGk5MTUjMjU0NikNCj4gwqAqIGlndEBrbXNfZnJvbnRidWZmZXJfdHJhY2tpbmdAZmJjcHNy
-LXJnYjEwMTAxMC1kcmF3LW1tYXAtd2M6c2hhcmQtdGdsYjogUEFTUyAtPiBETUVTRy1XQVJOIChp
-OTE1IzE5ODIpDQo+IMKgKiBpZ3RAa21zX3BpcGVfY3JjX2Jhc2ljQHN1c3BlbmQtcmVhZC1jcmMt
-cGlwZS1jOnNoYXJkLWtibDogUEFTUyAtPiBETUVTRy1XQVJOIChpOTE1IzE4MCkNCj4gwqAqIGln
-dEBrbXNfcGxhbmVfYWxwaGFfYmxlbmRAcGlwZS1iLWNvdmVyYWdlLTdlZmM6c2hhcmQtc2tsOiBQ
-QVNTIC0+IEZBSUwgKGZkbyMxMDgxNDUgLyBpOTE1IzI2NSkNCj4gwqAqIGlndEBrbXNfcHNyQHBz
-cjJfcHJpbWFyeV9tbWFwX2NwdTpzaGFyZC1pY2xiOiBQQVNTIC0+IFNLSVAgKGZkbyMxMDk0NDEp
-ICsxIHNpbWlsYXIgaXNzdWUNCj4gUG9zc2libGUgZml4ZXMgKiBpZ3RAY29yZV9ob3R1bnBsdWdA
-dW5iaW5kLXJlYmluZDpzaGFyZC1za2w6IERNRVNHLVdBUk4gKGk5MTUjMTk4MikgLT4gUEFTUyAr
-MSBzaW1pbGFyIGlzc3VlDQo+IMKgKiBpZ3RAZ2VtX2V4ZWNfc2NoZWR1bGVAZGVlcEB2ZWNzMDpz
-aGFyZC1za2w6IElOQ09NUExFVEUgLT4gUEFTUw0KPiDCoCogaWd0QGdlbV9wYXJ0aWFsX3B3cml0
-ZV9wcmVhZEB3cml0ZXMtYWZ0ZXItcmVhZHMtdW5jYWNoZWQ6c2hhcmQtc25iOiBGQUlMIC0+IFBB
-U1MNCj4gwqAqIGlndEBnZW1fcGlwZV9jb250cm9sX3N0b3JlX2xvb3BAZnJlc2gtYnVmZmVyOnNo
-YXJkLXRnbGI6IElOQ09NUExFVEUgLT4gUEFTUw0KPiDCoCoge2lndEBrbXNfYXN5bmNfZmxpcHNA
-YXN5bmMtZmxpcC13aXRoLXBhZ2UtZmxpcC1ldmVudHN9OnNoYXJkLWtibDogRkFJTCAoaTkxNSMy
-NTIxKSAtPiBQQVNTc2hhcmQtdGdsYjogRkFJTCAoaTkxNSMyNTIxKSAtPiBQQVNTDQo+IMKgKiBp
-Z3RAa21zX2F0b21pY190cmFuc2l0aW9uQHBsYW5lLXVzZS1hZnRlci1ub25ibG9ja2luZy11bmJp
-bmQtZmVuY2luZ0BoZG1pLWEtMS1waXBlLWE6c2hhcmQtZ2xrOiBETUVTRy1XQVJOIChpOTE1IzE5
-ODIpIC0+IFBBU1MgKzEgc2ltaWxhciBpc3N1ZQ0KPiDCoCogaWd0QGttc19jdXJzb3JfY3JjQHBp
-cGUtYi1jdXJzb3ItMTI4eDEyOC1yYW5kb206c2hhcmQtc2tsOiBGQUlMIChpOTE1IzU0KSAtPiBQ
-QVNTICs1IHNpbWlsYXIgaXNzdWVzDQo+IMKgKiBpZ3RAa21zX2N1cnNvcl9sZWdhY3lAZmxpcC12
-cy1jdXJzb3ItYXRvbWljLXRyYW5zaXRpb25zLXZhcnlpbmctc2l6ZTpzaGFyZC1za2w6IEZBSUwg
-KGk5MTUjMjM0NikgLT4gUEFTUw0KPiDCoCogaWd0QGttc19kcmF3X2NyY0BkcmF3LW1ldGhvZC1y
-Z2I1NjUtbW1hcC1ndHQtdW50aWxlZDpzaGFyZC1za2w6IEZBSUwgKGk5MTUjNTIgLyBpOTE1IzU0
-KSAtPiBQQVNTDQo+IMKgKiBpZ3RAa21zX2ZsaXBAMngtZmxpcC12cy1leHBpcmVkLXZibGFua0Bh
-Yi1oZG1pLWExLWhkbWktYTI6c2hhcmQtZ2xrOiBGQUlMIChpOTE1Izc5KSAtPiBQQVNTDQo+IMKg
-KiBpZ3RAa21zX2ZsaXBAMngtcGxhaW4tZmxpcC1mYi1yZWNyZWF0ZS1pbnRlcnJ1cHRpYmxlQGJj
-LWhkbWktYTEtaGRtaS1hMjpzaGFyZC1nbGs6IEZBSUwgKGk5MTUjMjEyMikgLT4gUEFTUw0KPiDC
-oCogaWd0QGttc19mbGlwQGRwbXMtdnMtdmJsYW5rLXJhY2VAYi1kcDE6c2hhcmQta2JsOiBJTkNP
-TVBMRVRFIC0+IFBBU1MNCj4gwqAqIGlndEBrbXNfZmxpcEBmbGlwLXZzLWV4cGlyZWQtdmJsYW5r
-QGMtZWRwMTpzaGFyZC1za2w6IEZBSUwgKGk5MTUjNzkpIC0+IFBBU1MNCj4gwqAqIGlndEBrbXNf
-ZmxpcF90aWxpbmdAZmxpcC10by15Zi10aWxlZDpzaGFyZC1rYmw6IERNRVNHLVdBUk4gKGk5MTUj
-MTk4MikgLT4gUEFTUw0KPiDCoCogaWd0QGttc19mcm9udGJ1ZmZlcl90cmFja2luZ0Bwc3Itcmdi
-MTAxMDEwLWRyYXctbW1hcC13YzpzaGFyZC1pY2xiOiBETUVTRy1XQVJOIChpOTE1IzE5ODIpIC0+
-IFBBU1MNCj4gwqAqIGlndEBrbXNfZnJvbnRidWZmZXJfdHJhY2tpbmdAcHNyLXJnYjU2NS1kcmF3
-LXB3cml0ZTpzaGFyZC10Z2xiOiBETUVTRy1XQVJOIChpOTE1IzE5ODIpIC0+IFBBU1MgKzEgc2lt
-aWxhciBpc3N1ZQ0KPiDCoCogaWd0QGttc19oZHJAYnBjLXN3aXRjaC1zdXNwZW5kOnNoYXJkLXNr
-bDogRkFJTCAoaTkxNSMxMTg4KSAtPiBQQVNTDQo+IMKgKiBpZ3RAa21zX3BsYW5lQHBsYW5lLXBh
-bm5pbmctYm90dG9tLXJpZ2h0LXN1c3BlbmQtcGlwZS1hLXBsYW5lczpzaGFyZC1pY2xiOiBJTkNP
-TVBMRVRFIChpOTE1IzExODUgLyBpOTE1IzI1MCkgLT4gUEFTUw0KPiDCoCogaWd0QGttc19wbGFu
-ZV9hbHBoYV9ibGVuZEBwaXBlLWEtY29uc3RhbnQtYWxwaGEtbWluOnNoYXJkLXNrbDogRkFJTCAo
-ZmRvIzEwODE0NSAvIGk5MTUjMjY1KSAtPiBQQVNTDQo+IMKgKiBpZ3RAa21zX3BzckBwc3IyX3Nw
-cml0ZV9tbWFwX2d0dDpzaGFyZC1pY2xiOiBTS0lQIChmZG8jMTA5NDQxKSAtPiBQQVNTICsxIHNp
-bWlsYXIgaXNzdWUNCj4gwqAqIGlndEBrbXNfc2VxdWVuY2VAcXVldWUtaWRsZTpzaGFyZC1za2w6
-IEZBSUwgKGk5MTUjMjQ0MSkgLT4gUEFTUw0KPiDCoCogaWd0QGttc192YmxhbmtAcGlwZS1iLXdh
-aXQtZm9ya2VkLWJ1c3ktaGFuZzpzaGFyZC1hcGw6IERNRVNHLVdBUk4gKGk5MTUjMTYzNSAvIGk5
-MTUjMTk4MikgLT4gUEFTUyArMiBzaW1pbGFyIGlzc3Vlcw0KPiDCoCogaWd0QHN5c2ZzX2hlYXJ0
-YmVhdF9pbnRlcnZhbEBtaXhlZEBiY3MwOnNoYXJkLXNrbDogRkFJTCAoaTkxNSMxNzMxKSAtPiBQ
-QVNTDQo+IFdhcm5pbmdzICogaWd0QGttc19jb2xvckBwaXBlLWEtY3RtLXJlZC10by1ibHVlOnNo
-YXJkLXNrbDogRE1FU0ctRkFJTCAoaTkxNSMxOTgyKSAtPiBETUVTRy1XQVJOIChpOTE1IzE5ODIp
-DQo+IMKgKiBpZ3RAa21zX2ZsaXBAZmxpcC12cy1zdXNwZW5kLWludGVycnVwdGlibGVAYS1lZHAx
-OnNoYXJkLXRnbGI6IERNRVNHLVdBUk4gKGk5MTUjMjQxMSkgLT4gSU5DT01QTEVURSAoaTkxNSMx
-NDM2IC8gaTkxNSM0NTYpDQo+IMKgKiBpZ3RAa21zX2ZsaXBfdGlsaW5nQGZsaXAteC10aWxlZDpz
-aGFyZC1za2w6IERNRVNHLUZBSUwgKGZkbyMxMDgxNDUgLyBpOTE1IzE5ODIpIC0+IERNRVNHLVdB
-Uk4gKGk5MTUjMTk4MikNCj4gwqAqIGlndEBydW5uZXJAYWJvcnRlZDpzaGFyZC10Z2xiOiAoRkFJ
-TCwgRkFJTCkgKGk5MTUjMjQzOSkgLT4gKEZBSUwsIEZBSUwpIChpOTE1IzIyNDggLyBpOTE1IzI0
-MzkpDQo+IHtuYW1lfTogVGhpcyBlbGVtZW50IGlzIHN1cHByZXNzZWQuIFRoaXMgbWVhbnMgaXQg
-aXMgaWdub3JlZCB3aGVuIGNvbXB1dGluZw0KPiDCoHRoZSBzdGF0dXMgb2YgdGhlIGRpZmZlcmVu
-Y2UgKFNVQ0NFU1MsIFdBUk5JTkcsIG9yIEZBSUxVUkUpLg0KPiBQYXJ0aWNpcGF0aW5nIGhvc3Rz
-ICgxMSAtPiAxMSlObyBjaGFuZ2VzIGluIHBhcnRpY2lwYXRpbmcgaG9zdHMNCj4gQnVpbGQgY2hh
-bmdlcyAqIExpbnV4OiBDSV9EUk1fOTI0NyAtPiBQYXRjaHdvcmtfMTg4MzENCj4gQ0ktMjAxOTA1
-Mjk6IDIwMTkwNTI5DQo+IMKgQ0lfRFJNXzkyNDc6IDAwOWE5OWU5YmUzOTNkMzJlZDU3YmNhYzM0
-ZDZiMWZiMzdjMjhjZGYgQCBnaXQ6Ly9hbm9uZ2l0LmZyZWVkZXNrdG9wLm9yZy9nZngtY2kvbGlu
-dXgNCj4gwqBJR1RfNTgzMDogMTJkMzcwY2I1N2UwY2ZjYjc4MWM4N2FkOWUxNWU2OGIxN2ExZjQx
-ZiBAIGdpdDovL2Fub25naXQuZnJlZWRlc2t0b3Aub3JnL3hvcmcvYXBwL2ludGVsLWdwdS10b29s
-cw0KPiDCoFBhdGNod29ya18xODgzMTogMDczZGRlOWYxMDA5ZTcyZTU0NTY5NmY3MjU3OGFjODJh
-ODM0ZjljYyBAIGdpdDovL2Fub25naXQuZnJlZWRlc2t0b3Aub3JnL2dmeC1jaS9saW51eA0KPiDC
-oHBpZ2xpdF80NTA5OiBmZGM1YTRjYTExMTI0YWI4NDEzYzc5ODg4OTZlZWM0Yzk3MzM2Njk0IEAg
-Z2l0Oi8vYW5vbmdpdC5mcmVlZGVza3RvcC5vcmcvcGlnbGl0DQoNCl9fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50
-ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9y
-Zy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
+On 2020-10-27 at 22:11:56 +0530, Anshuman Gupta wrote:
+> Gen12 has H/W delta with respect to HDCP{1.x,2.x} display engine
+> instances lies in Transcoder instead of DDI as in Gen11.
+> 
+> This requires hdcp driver to use mst_master_transcoder for link
+> authentication and stream transcoder for stream encryption
+> separately.
+> 
+> This will be used for both HDCP 1.4 and HDCP 2.2 over DP MST
+> on Gen12.
+Reviewed-by: Ramalingam C <ramalingam.c@intel.com>
+> 
+> Cc: Ramalingam C <ramalingam.c@intel.com>
+> Reviewed-by: Uma Shankar <uma.shankar@intel.com>
+> Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_ddi.c          |  2 +-
+>  .../gpu/drm/i915/display/intel_display_types.h    |  2 ++
+>  drivers/gpu/drm/i915/display/intel_dp_mst.c       |  2 +-
+>  drivers/gpu/drm/i915/display/intel_hdcp.c         | 15 +++++++++++----
+>  drivers/gpu/drm/i915/display/intel_hdcp.h         |  2 +-
+>  5 files changed, 16 insertions(+), 7 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
+> index 63380b166c25..9fce623e951e 100644
+> --- a/drivers/gpu/drm/i915/display/intel_ddi.c
+> +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+> @@ -4059,7 +4059,7 @@ static void intel_enable_ddi(struct intel_atomic_state *state,
+>  	if (conn_state->content_protection ==
+>  	    DRM_MODE_CONTENT_PROTECTION_DESIRED)
+>  		intel_hdcp_enable(to_intel_connector(conn_state->connector),
+> -				  crtc_state->cpu_transcoder,
+> +				  crtc_state,
+>  				  (u8)conn_state->hdcp_content_type);
+>  }
+>  
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
+> index f6f0626649e0..c47124a679b6 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+> @@ -432,6 +432,8 @@ struct intel_hdcp {
+>  	 * Hence caching the transcoder here.
+>  	 */
+>  	enum transcoder cpu_transcoder;
+> +	/* Only used for DP MST stream encryption */
+> +	enum transcoder stream_transcoder;
+>  };
+>  
+>  struct intel_connector {
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> index c8fcec4d0788..16865b200062 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> @@ -568,7 +568,7 @@ static void intel_mst_enable_dp(struct intel_atomic_state *state,
+>  	if (conn_state->content_protection ==
+>  	    DRM_MODE_CONTENT_PROTECTION_DESIRED)
+>  		intel_hdcp_enable(to_intel_connector(conn_state->connector),
+> -				  pipe_config->cpu_transcoder,
+> +				  pipe_config,
+>  				  (u8)conn_state->hdcp_content_type);
+>  }
+>  
+> diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c b/drivers/gpu/drm/i915/display/intel_hdcp.c
+> index b9d8825e2bb1..fc5de48456ad 100644
+> --- a/drivers/gpu/drm/i915/display/intel_hdcp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
+> @@ -2095,7 +2095,7 @@ int intel_hdcp_init(struct intel_connector *connector,
+>  }
+>  
+>  int intel_hdcp_enable(struct intel_connector *connector,
+> -		      enum transcoder cpu_transcoder, u8 content_type)
+> +		      const struct intel_crtc_state *pipe_config, u8 content_type)
+>  {
+>  	struct drm_i915_private *dev_priv = to_i915(connector->base.dev);
+>  	struct intel_digital_port *dig_port = intel_attached_dig_port(connector);
+> @@ -2111,10 +2111,17 @@ int intel_hdcp_enable(struct intel_connector *connector,
+>  	drm_WARN_ON(&dev_priv->drm,
+>  		    hdcp->value == DRM_MODE_CONTENT_PROTECTION_ENABLED);
+>  	hdcp->content_type = content_type;
+> -	hdcp->cpu_transcoder = cpu_transcoder;
+> +
+> +	if (intel_crtc_has_type(pipe_config, INTEL_OUTPUT_DP_MST)) {
+> +		hdcp->cpu_transcoder = pipe_config->mst_master_transcoder;
+> +		hdcp->stream_transcoder = pipe_config->cpu_transcoder;
+> +	} else {
+> +		hdcp->cpu_transcoder = pipe_config->cpu_transcoder;
+> +		hdcp->stream_transcoder = INVALID_TRANSCODER;
+> +	}
+>  
+>  	if (INTEL_GEN(dev_priv) >= 12)
+> -		hdcp->port_data.fw_tc = intel_get_mei_fw_tc(cpu_transcoder);
+> +		hdcp->port_data.fw_tc = intel_get_mei_fw_tc(hdcp->cpu_transcoder);
+>  
+>  	/*
+>  	 * Considering that HDCP2.2 is more secure than HDCP1.4, If the setup
+> @@ -2234,7 +2241,7 @@ void intel_hdcp_update_pipe(struct intel_atomic_state *state,
+>  
+>  	if (desired_and_not_enabled || content_protection_type_changed)
+>  		intel_hdcp_enable(connector,
+> -				  crtc_state->cpu_transcoder,
+> +				  crtc_state,
+>  				  (u8)conn_state->hdcp_content_type);
+>  }
+>  
+> diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.h b/drivers/gpu/drm/i915/display/intel_hdcp.h
+> index 1bbf5b67ed0a..bc51c1e9b481 100644
+> --- a/drivers/gpu/drm/i915/display/intel_hdcp.h
+> +++ b/drivers/gpu/drm/i915/display/intel_hdcp.h
+> @@ -25,7 +25,7 @@ void intel_hdcp_atomic_check(struct drm_connector *connector,
+>  int intel_hdcp_init(struct intel_connector *connector, enum port port,
+>  		    const struct intel_hdcp_shim *hdcp_shim);
+>  int intel_hdcp_enable(struct intel_connector *connector,
+> -		      enum transcoder cpu_transcoder, u8 content_type);
+> +		      const struct intel_crtc_state *pipe_config, u8 content_type);
+>  int intel_hdcp_disable(struct intel_connector *connector);
+>  void intel_hdcp_update_pipe(struct intel_atomic_state *state,
+>  			    struct intel_encoder *encoder,
+> -- 
+> 2.26.2
+> 
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
