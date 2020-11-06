@@ -2,41 +2,41 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 352D02AA091
-	for <lists+intel-gfx@lfdr.de>; Fri,  6 Nov 2020 23:56:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5D27F2AA08E
+	for <lists+intel-gfx@lfdr.de>; Fri,  6 Nov 2020 23:55:56 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 437A16EB43;
-	Fri,  6 Nov 2020 22:55:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6CF046EB40;
+	Fri,  6 Nov 2020 22:55:54 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 555826EB43
- for <intel-gfx@lists.freedesktop.org>; Fri,  6 Nov 2020 22:55:54 +0000 (UTC)
-IronPort-SDR: NgnwxmsY5vhWWlJiLJuIwAfndr0FQtORGLjyTw6E8mGiBOhRKecxTRLryk7fFqkFmSu7rAhr2n
- CpW5A2MpS+ZQ==
-X-IronPort-AV: E=McAfee;i="6000,8403,9797"; a="167022953"
-X-IronPort-AV: E=Sophos;i="5.77,457,1596524400"; d="scan'208";a="167022953"
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BC3EA6EB40
+ for <intel-gfx@lists.freedesktop.org>; Fri,  6 Nov 2020 22:55:53 +0000 (UTC)
+IronPort-SDR: NDvmuZFY7HAmxLXuX4xY5G2yJ5Qa/zHV0GbJYnuadwEaiCQWE6D61TexPJNPCQSgflIjKvMwkg
+ NLuiEWSOuPNA==
+X-IronPort-AV: E=McAfee;i="6000,8403,9797"; a="167022947"
+X-IronPort-AV: E=Sophos;i="5.77,457,1596524400"; d="scan'208";a="167022947"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from orsmga005.jf.intel.com ([10.7.209.41])
  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  06 Nov 2020 14:55:53 -0800
-IronPort-SDR: bx1hKyLEf/p8LE+N1EatYkpLSGteymGRsC9JURj2CiUR0z96I7K85+I1rlj2sno2WZtofrdJGU
- Gk/0IbYmBvHQ==
-X-IronPort-AV: E=Sophos;i="5.77,457,1596524400"; d="scan'208";a="540022756"
+IronPort-SDR: uCGfYxAFYTe9JyW1klJzuyXpHnh7ZfkZ//kLjwF3gWulC8aaSa1/ms3qkLWXAikB42zSC8Cnl2
+ 0+iA5l2PiqRg==
+X-IronPort-AV: E=Sophos;i="5.77,457,1596524400"; d="scan'208";a="540022750"
 Received: from lucas-s2600cw.jf.intel.com ([10.165.21.202])
  by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  06 Nov 2020 14:55:52 -0800
 From: Lucas De Marchi <lucas.demarchi@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Fri,  6 Nov 2020 14:55:28 -0800
-Message-Id: <20201106225531.920641-5-lucas.demarchi@intel.com>
+Date: Fri,  6 Nov 2020 14:55:29 -0800
+Message-Id: <20201106225531.920641-6-lucas.demarchi@intel.com>
 X-Mailer: git-send-email 2.29.0
 In-Reply-To: <20201106225531.920641-1-lucas.demarchi@intel.com>
 References: <20201106225531.920641-1-lucas.demarchi@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 5/8] drm/i915/display: Do not set any power
- wells when there is no display
+Subject: [Intel-gfx] [PATCH 6/8] drm/i915: re-order if/else ladder for
+ hpd_irq_setup
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,30 +49,62 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jani Nikula <jani.nikula@intel.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-RnJvbTogSm9zw6kgUm9iZXJ0byBkZSBTb3V6YSA8am9zZS5zb3V6YUBpbnRlbC5jb20+CgpQb3dl
-ciB3ZWxscyBhcmUgb25seSBwYXJ0IG9mIGRpc3BsYXkgYmxvY2sgYW5kIG5vdCBuZWNlc3Nhcnkg
-d2hlbgp3ZSBkb24ndCBoYXZlIGRpc3BsYXkuCgpDYzogSmFuaSBOaWt1bGEgPGphbmkubmlrdWxh
-QGludGVsLmNvbT4KU2lnbmVkLW9mZi1ieTogSm9zw6kgUm9iZXJ0byBkZSBTb3V6YSA8am9zZS5z
-b3V6YUBpbnRlbC5jb20+ClNpZ25lZC1vZmYtYnk6IEx1Y2FzIERlIE1hcmNoaSA8bHVjYXMuZGVt
-YXJjaGlAaW50ZWwuY29tPgotLS0KIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxf
-ZGlzcGxheV9wb3dlci5jIHwgNSArKysrKwogMSBmaWxlIGNoYW5nZWQsIDUgaW5zZXJ0aW9ucygr
-KQoKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxh
-eV9wb3dlci5jIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5X3Bv
-d2VyLmMKaW5kZXggNjg5OTIyNDgwNjYxLi4xOWEzYzkzYzU0ODkgMTAwNjQ0Ci0tLSBhL2RyaXZl
-cnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheV9wb3dlci5jCisrKyBiL2RyaXZl
-cnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheV9wb3dlci5jCkBAIC00NTY3LDYg
-KzQ1NjcsMTEgQEAgX19zZXRfcG93ZXJfd2VsbHMoc3RydWN0IGk5MTVfcG93ZXJfZG9tYWlucyAq
-cG93ZXJfZG9tYWlucywKIAlpbnQgcG93ZXJfd2VsbF9jb3VudCA9IDA7CiAJaW50IGksIHBsdF9p
-ZHggPSAwOwogCisJaWYgKCFIQVNfRElTUExBWShpOTE1KSkgeworCQlwb3dlcl9kb21haW5zLT5w
-b3dlcl93ZWxsX2NvdW50ID0gMDsKKwkJcmV0dXJuIDA7CisJfQorCiAJZm9yIChpID0gMDsgaSA8
-IHBvd2VyX3dlbGxfZGVzY3Nfc3o7IGkrKykKIAkJaWYgKCEoQklUX1VMTChwb3dlcl93ZWxsX2Rl
-c2NzW2ldLmlkKSAmIHNraXBfbWFzaykpCiAJCQlwb3dlcl93ZWxsX2NvdW50Kys7Ci0tIAoyLjI5
-LjAKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVs
-LWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczov
-L2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
+Use the convention of new platforms first. No need to special case
+HAS_GMCH() since that stopped being true at the lattest on gen8 (for
+cherryview).
+
+Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+---
+ drivers/gpu/drm/i915/i915_irq.c | 27 ++++++++++++---------------
+ 1 file changed, 12 insertions(+), 15 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/i915_irq.c b/drivers/gpu/drm/i915/i915_irq.c
+index e0eb32bd9607..2ab4edf7f25c 100644
+--- a/drivers/gpu/drm/i915/i915_irq.c
++++ b/drivers/gpu/drm/i915/i915_irq.c
+@@ -4237,21 +4237,18 @@ void intel_irq_init(struct drm_i915_private *dev_priv)
+ 	 */
+ 	dev_priv->hotplug.hpd_short_storm_enabled = !HAS_DP_MST(dev_priv);
+ 
+-	if (HAS_GMCH(dev_priv)) {
+-		if (I915_HAS_HOTPLUG(dev_priv))
+-			dev_priv->display.hpd_irq_setup = i915_hpd_irq_setup;
+-	} else {
+-		if (HAS_PCH_DG1(dev_priv))
+-			dev_priv->display.hpd_irq_setup = dg1_hpd_irq_setup;
+-		else if (INTEL_GEN(dev_priv) >= 11)
+-			dev_priv->display.hpd_irq_setup = gen11_hpd_irq_setup;
+-		else if (IS_GEN9_LP(dev_priv))
+-			dev_priv->display.hpd_irq_setup = bxt_hpd_irq_setup;
+-		else if (INTEL_PCH_TYPE(dev_priv) >= PCH_SPT)
+-			dev_priv->display.hpd_irq_setup = spt_hpd_irq_setup;
+-		else
+-			dev_priv->display.hpd_irq_setup = ilk_hpd_irq_setup;
+-	}
++	if (HAS_PCH_DG1(dev_priv))
++		dev_priv->display.hpd_irq_setup = dg1_hpd_irq_setup;
++	else if (INTEL_GEN(dev_priv) >= 11)
++		dev_priv->display.hpd_irq_setup = gen11_hpd_irq_setup;
++	else if (IS_GEN9_LP(dev_priv))
++		dev_priv->display.hpd_irq_setup = bxt_hpd_irq_setup;
++	else if (INTEL_PCH_TYPE(dev_priv) >= PCH_SPT)
++		dev_priv->display.hpd_irq_setup = spt_hpd_irq_setup;
++	else if (HAS_GMCH(dev_priv) && I915_HAS_HOTPLUG(dev_priv))
++		dev_priv->display.hpd_irq_setup = i915_hpd_irq_setup;
++	else
++		dev_priv->display.hpd_irq_setup = ilk_hpd_irq_setup;
+ }
+ 
+ /**
+-- 
+2.29.0
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
