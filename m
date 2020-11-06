@@ -1,44 +1,46 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8B9812A9513
-	for <lists+intel-gfx@lfdr.de>; Fri,  6 Nov 2020 12:15:03 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id C64222A953C
+	for <lists+intel-gfx@lfdr.de>; Fri,  6 Nov 2020 12:27:46 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BEE4F6E1B8;
-	Fri,  6 Nov 2020 11:15:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 45EEF6E19A;
+	Fri,  6 Nov 2020 11:27:39 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E13026E1B8
- for <intel-gfx@lists.freedesktop.org>; Fri,  6 Nov 2020 11:14:59 +0000 (UTC)
-IronPort-SDR: 2thDorT/usTDGX18tTXgLD19sdoVhCfnvbOS5ZhXQh9fVrsH5IKI7TngmoV3QeBZGiwJlzS90o
- +E1RBOnbfv5A==
-X-IronPort-AV: E=McAfee;i="6000,8403,9796"; a="157313415"
-X-IronPort-AV: E=Sophos;i="5.77,456,1596524400"; d="scan'208";a="157313415"
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F364A6E046;
+ Fri,  6 Nov 2020 11:27:37 +0000 (UTC)
+IronPort-SDR: wmj/Em8bdZ541z+aCbIU7yPxrIXWOY4/DAnjhiKTFVy1826EmqotKBrokzuayU+mRNKAjhRw4Y
+ Dc6RISkSKPYQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9796"; a="187456593"
+X-IronPort-AV: E=Sophos;i="5.77,456,1596524400"; d="scan'208";a="187456593"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Nov 2020 03:14:59 -0800
-IronPort-SDR: fN+W92jMtJwwTPJUXyd0AyPMegkJqgxxURdylm2NuGISsxpsqLP0AgRcK1mkv7pN6Xb+A31sZw
- RkZjjnbjJoDw==
-X-IronPort-AV: E=Sophos;i="5.77,456,1596524400"; d="scan'208";a="306827481"
-Received: from unknown (HELO intel.com) ([10.237.72.91])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Nov 2020 03:14:58 -0800
-Date: Fri, 6 Nov 2020 13:15:34 +0200
-From: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>
-Message-ID: <20201106111534.GB31774@intel.com>
-References: <20201027203955.28032-1-ville.syrjala@linux.intel.com>
- <20201027203955.28032-7-ville.syrjala@linux.intel.com>
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Nov 2020 03:27:37 -0800
+IronPort-SDR: z6YXn1IXZDQHnNZ7juQL4ghOFoZwrW2tilq9gCEL2wahKONHUtn4UtcXmgH4fkswcLoSNB+oz0
+ +3HVqWc8NWMg==
+X-IronPort-AV: E=Sophos;i="5.77,456,1596524400"; d="scan'208";a="529778908"
+Received: from unknown (HELO intel.com) ([10.99.66.154])
+ by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Nov 2020 03:27:35 -0800
+Date: Fri, 6 Nov 2020 16:58:20 +0530
+From: Ramalingam C <ramalingam.c@intel.com>
+To: Anshuman Gupta <anshuman.gupta@intel.com>
+Message-ID: <20201106112820.GA13128@intel.com>
+References: <20201027164208.10026-1-anshuman.gupta@intel.com>
+ <20201027164208.10026-13-anshuman.gupta@intel.com>
+ <20201105163414.GK3242@intel.com>
+ <20201106063514.GT29526@intel.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20201027203955.28032-7-ville.syrjala@linux.intel.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
-Subject: Re: [Intel-gfx] [PATCH 6/8] drm/i915: Extract
- intel_crtc_dbuf_weights()
+In-Reply-To: <20201106063514.GT29526@intel.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: Re: [Intel-gfx] [PATCH v4 12/16] drm/i915/hdcp: MST streams support
+ in hdcp port_data
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,238 +53,267 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Cc: jani.nikula@intel.com, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, seanpaul@chromium.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Oct 27, 2020 at 10:39:53PM +0200, Ville Syrjala wrote:
-> From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> =
+On 2020-11-06 at 12:05:14 +0530, Anshuman Gupta wrote:
+> On 2020-11-05 at 22:04:15 +0530, Ramalingam C wrote:
+> > On 2020-10-27 at 22:12:04 +0530, Anshuman Gupta wrote:
+> > > Add support for multiple mst stream in hdcp port data
+> > > which will be used by RepeaterAuthStreamManage msg and
+> > > HDCP 2.2 security f/w for m' validation.
+> > > 
+> > > v2:
+> > > Init the hdcp port data k for HDMI/DP SST strem.
+> > > 
+> > > v3:
+> > > Cosmetic changes. [Uma]
+> > > 
+> > > Cc: Ramalingam C <ramalingam.c@intel.com>
+> > > Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
+> > > ---
+> > >  .../drm/i915/display/intel_display_types.h    |   4 +-
+> > >  drivers/gpu/drm/i915/display/intel_hdcp.c     | 103 +++++++++++++++---
+> > >  2 files changed, 92 insertions(+), 15 deletions(-)
+> > > 
+> > > diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
+> > > index 749c3a7e0b45..24e0067c2e7c 100644
+> > > --- a/drivers/gpu/drm/i915/display/intel_display_types.h
+> > > +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+> > > @@ -1445,10 +1445,12 @@ struct intel_digital_port {
+> > >  	enum phy_fia tc_phy_fia;
+> > >  	u8 tc_phy_fia_idx;
+> > >  
+> > > -	/* protects num_hdcp_streams reference count, port_data */
+> > > +	/* protects num_hdcp_streams reference count, port_data and port_auth */
+> > >  	struct mutex hdcp_mutex;
+> > >  	/* the number of pipes using HDCP signalling out of this port */
+> > >  	unsigned int num_hdcp_streams;
+> > > +	/* port HDCP auth status */
+> > > +	bool port_auth;
+> > >  	/* HDCP port data need to pass to security f/w */
+> > >  	struct hdcp_port_data port_data;
+> > since this is no more in hdcp related struct, it will be better to be named as
+> > hdcp_auth_status and hdcp_port_data !?
+> sure i will do this chnage.
+> Thanks,
+> Anshuman Gupta.
+> > 
+> > -Ram
+> > >  
+> > > diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c b/drivers/gpu/drm/i915/display/intel_hdcp.c
+> > > index a5ec4f72f50f..1df6d4a23476 100644
+> > > --- a/drivers/gpu/drm/i915/display/intel_hdcp.c
+> > > +++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
+> > > @@ -26,6 +26,64 @@
+> > >  #define KEY_LOAD_TRIES	5
+> > >  #define HDCP2_LC_RETRY_CNT			3
+> > >  
+> > > +static int intel_conn_to_vcpi(struct intel_connector *connector)
+> > > +{
+> > > +	/* For HDMI this is forced to be 0x0. For DP SST also this is 0x0. */
+> > > +	return connector->port	? connector->port->vcpi.vcpi : 0;
+> > > +}
+> > > +
+> > > +static int
+> > > +intel_hdcp_required_content_stream(struct intel_digital_port *dig_port)
+> > > +{
+> > > +	struct drm_connector_list_iter conn_iter;
+> > > +	struct intel_digital_port *conn_dig_port;
+> > > +	struct intel_connector *connector;
+> > > +	struct drm_i915_private *i915 = to_i915(dig_port->base.base.dev);
+> > > +	struct hdcp_port_data *data = &dig_port->port_data;
+> > > +	bool enforce_type0 = false;
+> > > +	int k;
+> > > +
+> > > +	if (dig_port->port_auth)
+> > > +		return 0;
+> > > +
+> > > +	drm_connector_list_iter_begin(&i915->drm, &conn_iter);
+> > > +	for_each_intel_connector_iter(connector, &conn_iter) {
+> > > +		if (!intel_encoder_is_mst(intel_attached_encoder(connector)))
+> > > +			continue;
+> > > +
+> > > +		conn_dig_port = intel_attached_dig_port(connector);
+> > > +		if (conn_dig_port != dig_port)
+> > > +			continue;
+> > > +
+> > > +		if (connector->base.status == connector_status_disconnected)
+> > > +			continue;
+> > > +
+> > > +		if (!enforce_type0 && !intel_hdcp2_capable(connector))
+> > > +			enforce_type0 = true;
+> > > +
+> > > +		data->streams[data->k].stream_id = intel_conn_to_vcpi(connector);
+> > > +		data->k++;
+> > > +
+> > > +		/* if there is only one active stream */
+> > > +		if (dig_port->dp.active_mst_links <= 1)
+> > > +			break;
+> > > +	}
+> > > +	drm_connector_list_iter_end(&conn_iter);
+> > > +
+> > > +	if (drm_WARN_ON(&i915->drm, data->k > INTEL_NUM_PIPES(i915) || data->k == 0))
+> > > +		return -EINVAL;
+> > > +
+> > > +	/*
+> > > +	 * Apply common protection level across all streams in DP MST Topology.
+> > > +	 * Use highest supported content type for all streams in DP MST Topology.
+> > > +	 */
+> > > +	for (k = 0; k < data->k; k++)
+> > > +		data->streams[k].stream_type =
+> > > +			enforce_type0 ? DRM_MODE_HDCP_CONTENT_TYPE0 : DRM_MODE_HDCP_CONTENT_TYPE1;
+> > > +
+> > > +	return 0;
+> > > +}
+This will force userspace to use most highest common possible HDCP type
+on all streams. On MST if one sink is HDCP2.2 capable and where others
+are not, this will prohibit the owner of the stream corresponding to the
+HDCP2.2 capable sink from using the content type1, just bacuse other
+sinks are not HDCP2.2 capable. ME FW should change its rules and allow
+the different content type on different streams. And also dynamic update
+of the stream type support will be ideal.
 
-> Extract the code to calculate the weights used to chunk up the dbuf
-> between pipes. There's still extra stuff in there that shouldn't be
-> there and must be moved out, but that requires a bit more state to
-> be tracked in the dbuf state.
-> =
-
-> Cc: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
-> Signed-off-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-
-Reviewed-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
-
-> ---
->  drivers/gpu/drm/i915/intel_pm.c | 145 ++++++++++++++++++++------------
->  1 file changed, 89 insertions(+), 56 deletions(-)
-> =
-
-> diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/intel=
-_pm.c
-> index 2ec48d9522e8..bc4d7ce5fd7c 100644
-> --- a/drivers/gpu/drm/i915/intel_pm.c
-> +++ b/drivers/gpu/drm/i915/intel_pm.c
-> @@ -4111,62 +4111,35 @@ static unsigned int intel_crtc_ddb_weight(const s=
-truct intel_crtc_state *crtc_st
->  static u8 skl_compute_dbuf_slices(struct intel_crtc *crtc,
->  				  u8 active_pipes);
->  =
-
-> -static int
-> -skl_ddb_get_pipe_allocation_limits(struct drm_i915_private *dev_priv,
-> -				   const struct intel_crtc_state *crtc_state,
-> -				   const u64 total_data_rate,
-> -				   struct skl_ddb_entry *alloc, /* out */
-> -				   int *num_active /* out */)
-> +static int intel_crtc_dbuf_weights(struct intel_atomic_state *state,
-> +				   struct intel_crtc *for_crtc,
-> +				   unsigned int *weight_start,
-> +				   unsigned int *weight_end,
-> +				   unsigned int *weight_total)
->  {
-> -	struct drm_atomic_state *state =3D crtc_state->uapi.state;
-> -	struct intel_atomic_state *intel_state =3D to_intel_atomic_state(state);
-> -	struct intel_crtc *for_crtc =3D to_intel_crtc(crtc_state->uapi.crtc);
-> -	struct intel_crtc *crtc;
-> -	unsigned int pipe_weight =3D 0, total_weight =3D 0, weight_before_pipe =
-=3D 0;
-> +	const struct intel_dbuf_state *old_dbuf_state =3D
-> +		intel_atomic_get_old_dbuf_state(state);
-> +	struct intel_dbuf_state *new_dbuf_state =3D
-> +		intel_atomic_get_new_dbuf_state(state);
-> +	u8 active_pipes =3D new_dbuf_state->active_pipes;
->  	enum pipe for_pipe =3D for_crtc->pipe;
-> -	struct intel_dbuf_state *new_dbuf_state =3D
-> -		intel_atomic_get_new_dbuf_state(intel_state);
-> -	const struct intel_dbuf_state *old_dbuf_state =3D
-> -		intel_atomic_get_old_dbuf_state(intel_state);
-> -	u8 active_pipes =3D new_dbuf_state->active_pipes;
-> -	struct skl_ddb_entry ddb_slices;
-> -	u32 ddb_range_size;
-> -	u32 i;
-> -	u32 dbuf_slice_mask;
-> -	u32 total_slice_mask;
-> -	u32 start, end;
-> -	int ret;
-> -
-> -	*num_active =3D hweight8(active_pipes);
-> -
-> -	if (!crtc_state->hw.active) {
-> -		alloc->start =3D 0;
-> -		alloc->end =3D 0;
-> -		return 0;
-> -	}
-> -
-> -	/*
-> -	 * If the state doesn't change the active CRTC's or there is no
-> -	 * modeset request, then there's no need to recalculate;
-> -	 * the existing pipe allocation limits should remain unchanged.
-> -	 * Note that we're safe from racing commits since any racing commit
-> -	 * that changes the active CRTC list or do modeset would need to
-> -	 * grab _all_ crtc locks, including the one we currently hold.
-> -	 */
-> -	if (old_dbuf_state->active_pipes =3D=3D new_dbuf_state->active_pipes &&
-> -	    !dev_priv->wm.distrust_bios_wm)
-> -		return 0;
-> +	const struct intel_crtc_state *crtc_state;
-> +	struct intel_crtc *crtc;
-> +	u8 dbuf_slice_mask;
-> +	u8 total_slice_mask;
-> +	int i, ret;
->  =
-
->  	/*
->  	 * Get allowed DBuf slices for correspondent pipe and platform.
->  	 */
->  	dbuf_slice_mask =3D skl_compute_dbuf_slices(for_crtc, active_pipes);
-> -
-> -	skl_ddb_entry_for_slices(dev_priv, dbuf_slice_mask, &ddb_slices);
-> -	ddb_range_size =3D skl_ddb_entry_size(&ddb_slices);
-> -
->  	total_slice_mask =3D dbuf_slice_mask;
-> -	for_each_new_intel_crtc_in_state(intel_state, crtc, crtc_state, i) {
-> +
-> +	*weight_start =3D 0;
-> +	*weight_end =3D 0;
-> +	*weight_total =3D 0;
-> +
-> +	for_each_new_intel_crtc_in_state(state, crtc, crtc_state, i) {
->  		enum pipe pipe =3D crtc->pipe;
->  		unsigned int weight;
->  		u8 pipe_dbuf_slice_mask;
-> @@ -4197,12 +4170,14 @@ skl_ddb_get_pipe_allocation_limits(struct drm_i91=
-5_private *dev_priv,
->  			continue;
->  =
-
->  		weight =3D intel_crtc_ddb_weight(crtc_state);
-> -		total_weight +=3D weight;
-> +		*weight_total +=3D weight;
->  =
-
-> -		if (pipe < for_pipe)
-> -			weight_before_pipe +=3D weight;
-> -		else if (pipe =3D=3D for_pipe)
-> -			pipe_weight =3D weight;
-> +		if (pipe < for_pipe) {
-> +			*weight_start +=3D weight;
-> +			*weight_end +=3D weight;
-> +		} else if (pipe =3D=3D for_pipe) {
-> +			*weight_end +=3D weight;
-> +		}
->  	}
->  =
-
->  	/*
-> @@ -4217,15 +4192,73 @@ skl_ddb_get_pipe_allocation_limits(struct drm_i91=
-5_private *dev_priv,
->  			return ret;
->  	}
->  =
-
-> -	start =3D ddb_range_size * weight_before_pipe / total_weight;
-> -	end =3D ddb_range_size * (weight_before_pipe + pipe_weight) / total_wei=
-ght;
-> +	return 0;
-> +}
-> +
-> +static int
-> +skl_ddb_get_pipe_allocation_limits(struct drm_i915_private *dev_priv,
-> +				   const struct intel_crtc_state *crtc_state,
-> +				   const u64 total_data_rate,
-> +				   struct skl_ddb_entry *alloc, /* out */
-> +				   int *num_active /* out */)
-> +{
-> +	struct intel_atomic_state *state =3D
-> +		to_intel_atomic_state(crtc_state->uapi.state);
-> +	struct intel_crtc *crtc =3D to_intel_crtc(crtc_state->uapi.crtc);
-> +	unsigned int weight_start, weight_end, weight_total;
-> +	const struct intel_dbuf_state *old_dbuf_state =3D
-> +		intel_atomic_get_old_dbuf_state(state);
-> +	struct intel_dbuf_state *new_dbuf_state =3D
-> +		intel_atomic_get_new_dbuf_state(state);
-> +	u8 active_pipes =3D new_dbuf_state->active_pipes;
-> +	struct skl_ddb_entry ddb_slices;
-> +	u32 ddb_range_size;
-> +	u32 dbuf_slice_mask;
-> +	u32 start, end;
-> +	int ret;
-> +
-> +	*num_active =3D hweight8(active_pipes);
-> +
-> +	if (!crtc_state->hw.active) {
-> +		alloc->start =3D 0;
-> +		alloc->end =3D 0;
-> +		return 0;
-> +	}
-> +
-> +	/*
-> +	 * If the state doesn't change the active CRTC's or there is no
-> +	 * modeset request, then there's no need to recalculate;
-> +	 * the existing pipe allocation limits should remain unchanged.
-> +	 * Note that we're safe from racing commits since any racing commit
-> +	 * that changes the active CRTC list or do modeset would need to
-> +	 * grab _all_ crtc locks, including the one we currently hold.
-> +	 */
-> +	if (old_dbuf_state->active_pipes =3D=3D new_dbuf_state->active_pipes &&
-> +	    !dev_priv->wm.distrust_bios_wm)
-> +		return 0;
-> +
-> +	/*
-> +	 * Get allowed DBuf slices for correspondent pipe and platform.
-> +	 */
-> +	dbuf_slice_mask =3D skl_compute_dbuf_slices(crtc, active_pipes);
-> +
-> +	skl_ddb_entry_for_slices(dev_priv, dbuf_slice_mask, &ddb_slices);
-> +	ddb_range_size =3D skl_ddb_entry_size(&ddb_slices);
-> +
-> +	ret =3D intel_crtc_dbuf_weights(state, crtc,
-> +				      &weight_start, &weight_end, &weight_total);
-> +	if (ret)
-> +		return ret;
-> +
-> +	start =3D ddb_range_size * weight_start / weight_total;
-> +	end =3D ddb_range_size * weight_end / weight_total;
->  =
-
->  	alloc->start =3D ddb_slices.start + start;
->  	alloc->end =3D ddb_slices.start + end;
->  =
-
->  	drm_dbg_kms(&dev_priv->drm,
->  		    "[CRTC:%d:%s] dbuf slices 0x%x, ddb (%d - %d), active pipes 0x%x\n=
-",
-> -		    for_crtc->base.base.id, for_crtc->base.name,
-> +		    crtc->base.base.id, crtc->base.name,
->  		    dbuf_slice_mask, alloc->start, alloc->end, active_pipes);
->  =
-
->  	return 0;
-> -- =
-
-> 2.26.2
-> =
-
+-Ram
+> > > +
+> > >  static
+> > >  bool intel_hdcp_is_ksv_valid(u8 *ksv)
+> > >  {
+> > > @@ -1474,13 +1532,14 @@ static
+> > >  int _hdcp2_propagate_stream_management_info(struct intel_connector *connector)
+> > >  {
+> > >  	struct intel_digital_port *dig_port = intel_attached_dig_port(connector);
+> > > +	struct hdcp_port_data *data = &dig_port->port_data;
+> > >  	struct intel_hdcp *hdcp = &connector->hdcp;
+> > >  	union {
+> > >  		struct hdcp2_rep_stream_manage stream_manage;
+> > >  		struct hdcp2_rep_stream_ready stream_ready;
+> > >  	} msgs;
+> > >  	const struct intel_hdcp_shim *shim = hdcp->shim;
+> > > -	int ret;
+> > > +	int ret, streams_size_delta, i;
+> > >  
+> > >  	if (connector->hdcp.seq_num_m > HDCP_2_2_SEQ_NUM_MAX)
+> > >  		return -ERANGE;
+> > > @@ -1489,16 +1548,18 @@ int _hdcp2_propagate_stream_management_info(struct intel_connector *connector)
+> > >  	msgs.stream_manage.msg_id = HDCP_2_2_REP_STREAM_MANAGE;
+> > >  	drm_hdcp_cpu_to_be24(msgs.stream_manage.seq_num_m, hdcp->seq_num_m);
+> > >  
+> > > -	/* K no of streams is fixed as 1. Stored as big-endian. */
+> > > -	msgs.stream_manage.k = cpu_to_be16(1);
+> > > +	msgs.stream_manage.k = cpu_to_be16(data->k);
+> > >  
+> > > -	/* For HDMI this is forced to be 0x0. For DP SST also this is 0x0. */
+> > > -	msgs.stream_manage.streams[0].stream_id = 0;
+> > > -	msgs.stream_manage.streams[0].stream_type = hdcp->content_type;
+> > > +	for (i = 0; i < data->k; i++) {
+> > > +		msgs.stream_manage.streams[i].stream_id = data->streams[i].stream_id;
+> > > +		msgs.stream_manage.streams[i].stream_type = data->streams[i].stream_type;
+> > > +	}
+> > >  
+> > > +	streams_size_delta = (HDCP_2_2_MAX_CONTENT_STREAMS_CNT - data->k) *
+> > > +				sizeof(struct hdcp2_streamid_type);
+> > >  	/* Send it to Repeater */
+> > >  	ret = shim->write_2_2_msg(dig_port, &msgs.stream_manage,
+> > > -				  sizeof(msgs.stream_manage));
+> > > +				  sizeof(msgs.stream_manage) - streams_size_delta);
+> > >  	if (ret < 0)
+> > >  		goto out;
+> > >  
+> > > @@ -1507,8 +1568,7 @@ int _hdcp2_propagate_stream_management_info(struct intel_connector *connector)
+> > >  	if (ret < 0)
+> > >  		goto out;
+> > >  
+> > > -	dig_port->port_data.seq_num_m = hdcp->seq_num_m;
+> > > -	dig_port->port_data.streams[0].stream_type = hdcp->content_type;
+> > > +	data->seq_num_m = hdcp->seq_num_m;
+> > >  
+> > >  	ret = hdcp2_verify_mprime(connector, &msgs.stream_ready);
+> > >  
+> > > @@ -1669,6 +1729,7 @@ static int hdcp2_enable_encryption(struct intel_connector *connector)
+> > >  						 port),
+> > >  				    LINK_ENCRYPTION_STATUS,
+> > >  				    HDCP_ENCRYPT_STATUS_CHANGE_TIMEOUT_MS);
+> > > +	dig_port->port_auth = true;
+> > >  
+> > >  	return ret;
+> > >  }
+> > > @@ -1743,11 +1804,9 @@ static int hdcp2_authenticate_and_encrypt(struct intel_connector *connector)
+> > >  {
+> > >  	struct intel_digital_port *dig_port = intel_attached_dig_port(connector);
+> > >  	struct drm_i915_private *i915 = to_i915(connector->base.dev);
+> > > -	struct hdcp_port_data *data = &dig_port->port_data;
+> > > -	struct intel_hdcp *hdcp = &connector->hdcp;
+> > > -	int ret, i, tries = 3;
+> > > +	int ret = 0, i, tries = 3;
+> > >  
+> > > -	for (i = 0; i < tries; i++) {
+> > > +	for (i = 0; i < tries && !dig_port->port_auth; i++) {
+> > >  		ret = hdcp2_authenticate_sink(connector);
+> > >  		if (!ret) {
+> > >  			ret = hdcp2_propagate_stream_management_info(connector);
+> > > @@ -1757,7 +1816,7 @@ static int hdcp2_authenticate_and_encrypt(struct intel_connector *connector)
+> > >  					    ret);
+> > >  				break;
+> > >  			}
+> > > -			data->streams[0].stream_type = hdcp->content_type;
+> > > +
+> > >  			ret = hdcp2_authenticate_port(connector);
+> > >  			if (!ret)
+> > >  				break;
+> > > @@ -1792,7 +1851,9 @@ static int hdcp2_authenticate_and_encrypt(struct intel_connector *connector)
+> > >  
+> > >  static int _intel_hdcp2_enable(struct intel_connector *connector)
+> > >  {
+> > > +	struct intel_digital_port *dig_port = intel_attached_dig_port(connector);
+> > >  	struct drm_i915_private *i915 = to_i915(connector->base.dev);
+> > > +	struct hdcp_port_data *data = &dig_port->port_data;
+> > >  	struct intel_hdcp *hdcp = &connector->hdcp;
+> > >  	int ret;
+> > >  
+> > > @@ -1800,6 +1861,16 @@ static int _intel_hdcp2_enable(struct intel_connector *connector)
+> > >  		    connector->base.name, connector->base.base.id,
+> > >  		    hdcp->content_type);
+> > >  
+> > > +	/* Stream which requires encryption */
+> > > +	if (!intel_encoder_is_mst(intel_attached_encoder(connector))) {
+> > > +		data->k = 1;
+> > > +		data->streams[0].stream_type = hdcp->content_type;
+> > > +	} else {
+> > > +		ret = intel_hdcp_required_content_stream(dig_port);
+> > > +		if (ret)
+> > > +			return ret;
+> > > +	}
+> > > +
+> > >  	ret = hdcp2_authenticate_and_encrypt(connector);
+> > >  	if (ret) {
+> > >  		drm_dbg_kms(&i915->drm, "HDCP2 Type%d  Enabling Failed. (%d)\n",
+> > > @@ -1817,7 +1888,9 @@ static int _intel_hdcp2_enable(struct intel_connector *connector)
+> > >  
+> > >  static int _intel_hdcp2_disable(struct intel_connector *connector)
+> > >  {
+> > > +	struct intel_digital_port *dig_port = intel_attached_dig_port(connector);
+> > >  	struct drm_i915_private *i915 = to_i915(connector->base.dev);
+> > > +	struct hdcp_port_data *data = &dig_port->port_data;
+> > >  	int ret;
+> > >  
+> > >  	drm_dbg_kms(&i915->drm, "[%s:%d] HDCP2.2 is being Disabled\n",
+> > > @@ -1829,6 +1902,8 @@ static int _intel_hdcp2_disable(struct intel_connector *connector)
+> > >  		drm_dbg_kms(&i915->drm, "Port deauth failed.\n");
+> > >  
+> > >  	connector->hdcp.hdcp2_encrypted = false;
+> > > +	dig_port->port_auth = false;
+> > > +	data->k = 0;
+> > >  
+> > >  	return ret;
+> > >  }
+> > > -- 
+> > > 2.26.2
+> > > 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
