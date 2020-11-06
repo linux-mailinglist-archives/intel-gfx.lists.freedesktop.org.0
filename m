@@ -1,46 +1,46 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id CFEBB2A8EEF
-	for <lists+intel-gfx@lfdr.de>; Fri,  6 Nov 2020 06:35:33 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 935902A8F25
+	for <lists+intel-gfx@lfdr.de>; Fri,  6 Nov 2020 07:03:25 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3EA326EA90;
-	Fri,  6 Nov 2020 05:35:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7B6DF6E041;
+	Fri,  6 Nov 2020 06:03:22 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 58FC16EA90;
- Fri,  6 Nov 2020 05:35:31 +0000 (UTC)
-IronPort-SDR: wYF6TQ53MGfmPLPBDoYzoE9FpicpV1gvxEjQxFdRlaOVGupfPWn4d6/lGK0K1JY3cSldaQQ/2J
- ZdwJ4NfLfxAw==
-X-IronPort-AV: E=McAfee;i="6000,8403,9796"; a="165995461"
-X-IronPort-AV: E=Sophos;i="5.77,455,1596524400"; d="scan'208";a="165995461"
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 07F2D6E041
+ for <intel-gfx@lists.freedesktop.org>; Fri,  6 Nov 2020 06:03:21 +0000 (UTC)
+IronPort-SDR: F6lHXBogkAf+BTY74MRbRrzKJco7obDO72Q1eOhhpg4zip+KfWSsdR8EO8KBv3BFBQa1++77tq
+ P+7iwR0i2Z7A==
+X-IronPort-AV: E=McAfee;i="6000,8403,9796"; a="157286170"
+X-IronPort-AV: E=Sophos;i="5.77,455,1596524400"; d="scan'208";a="157286170"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Nov 2020 21:35:30 -0800
-IronPort-SDR: bR/yFkBF5HoJR4sunb3dzscpOnzuhyeLyPPoyROlhGk37lwJrmVDN6l5xdPRP3PkwC5uCFd5+1
- 4C89n1VJGX9A==
-X-IronPort-AV: E=Sophos;i="5.77,455,1596524400"; d="scan'208";a="364071903"
-Received: from genxfsim-desktop.iind.intel.com (HELO intel.com)
- ([10.223.74.178])
- by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Nov 2020 21:35:27 -0800
-Date: Fri, 6 Nov 2020 10:52:03 +0530
-From: Anshuman Gupta <anshuman.gupta@intel.com>
-To: Ramalingam C <ramalingam.c@intel.com>
-Message-ID: <20201106052200.GS29526@intel.com>
-References: <20201027164208.10026-1-anshuman.gupta@intel.com>
- <20201027164208.10026-7-anshuman.gupta@intel.com>
- <20201105153400.GG3242@intel.com>
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Nov 2020 22:03:20 -0800
+IronPort-SDR: h0zXdRdRUhVlD4YDc5yCTlK+bIytJxhejjtXM6UHfKmAi4kNU4WCAycc/5aHpUZIzwSGYxR0bB
+ 1DPlw5YyEgOQ==
+X-IronPort-AV: E=Sophos;i="5.77,455,1596524400"; d="scan'208";a="539715701"
+Received: from fjkilken-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.251.91.45])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Nov 2020 22:03:18 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Lucas De Marchi <lucas.demarchi@intel.com>,
+ Anshuman Gupta <anshuman.gupta@intel.com>
+In-Reply-To: <20201105231040.ojtxm3vpyoqttbg4@ldmartin-desk1>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20201030061658.11435-1-anshuman.gupta@intel.com>
+ <20201103220642.GF30349@intel.com> <20201105051711.GO29526@intel.com>
+ <20201105231040.ojtxm3vpyoqttbg4@ldmartin-desk1>
+Date: Fri, 06 Nov 2020 08:03:15 +0200
+Message-ID: <87pn4rt42k.fsf@intel.com>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20201105153400.GG3242@intel.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
-Subject: Re: [Intel-gfx] [PATCH v4 06/16] drm/i915/hdcp: HDCP stream
- encryption support
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Tweaked Wa_14010685332 for PCHs
+ used on gen11 platforms
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,277 +53,164 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jani.nikula@intel.com, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, seanpaul@chromium.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 2020-11-05 at 21:04:03 +0530, Ramalingam C wrote:
-> On 2020-10-27 at 22:11:58 +0530, Anshuman Gupta wrote:
-> > Both HDCP_{1.x,2.x} requires to select/deselect Multistream HDCP bit
-> > in TRANS_DDI_FUNC_CTL in order to enable/disable stream HDCP
-> > encryption over DP MST Transport Link.
-> > 
-> > HDCP 1.4 stream encryption requires to validate the stream encryption
-> > status in HDCP_STATUS_{TRANSCODER,PORT} register driving that link
-> > in order to enable/disable the stream encryption.
-> > 
-> > Both of above requirement are same for all Gen with respect to
-> > B.Spec Documentation.
-> > 
-> > v2:
-> > Cosmetic changes function name, error msg print and
-> > stream typo fixes. [Uma]
-> > 
-> > Cc: Ramalingam C <ramalingam.c@intel.com>
-> > Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
-> > ---
-> >  drivers/gpu/drm/i915/display/intel_ddi.c      | 10 +--
-> >  drivers/gpu/drm/i915/display/intel_ddi.h      |  6 +-
-> >  .../drm/i915/display/intel_display_types.h    |  4 +
-> >  drivers/gpu/drm/i915/display/intel_dp_hdcp.c  | 80 ++++++++++++++++---
-> >  drivers/gpu/drm/i915/display/intel_hdmi.c     | 14 ++--
-> >  drivers/gpu/drm/i915/i915_reg.h               |  1 +
-> >  6 files changed, 90 insertions(+), 25 deletions(-)
-> > 
-> > diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
-> > index 9fce623e951e..779603a38cfc 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_ddi.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-> > @@ -1948,9 +1948,9 @@ void intel_ddi_disable_transcoder_func(const struct intel_crtc_state *crtc_state
-> >  	}
-> >  }
-> >  
-> > -int intel_ddi_toggle_hdcp_signalling(struct intel_encoder *intel_encoder,
-> > -				     enum transcoder cpu_transcoder,
-> > -				     bool enable)
-> > +int intel_ddi_toggle_hdcp_bits(struct intel_encoder *intel_encoder,
-> > +			       enum transcoder cpu_transcoder,
-> > +			       bool enable, u32 hdcp_mask)
-> >  {
-> >  	struct drm_device *dev = intel_encoder->base.dev;
-> >  	struct drm_i915_private *dev_priv = to_i915(dev);
-> > @@ -1965,9 +1965,9 @@ int intel_ddi_toggle_hdcp_signalling(struct intel_encoder *intel_encoder,
-> >  
-> >  	tmp = intel_de_read(dev_priv, TRANS_DDI_FUNC_CTL(cpu_transcoder));
-> >  	if (enable)
-> > -		tmp |= TRANS_DDI_HDCP_SIGNALLING;
-> > +		tmp |= hdcp_mask;
-> >  	else
-> > -		tmp &= ~TRANS_DDI_HDCP_SIGNALLING;
-> > +		tmp &= ~hdcp_mask;
-> >  	intel_de_write(dev_priv, TRANS_DDI_FUNC_CTL(cpu_transcoder), tmp);
-> >  	intel_display_power_put(dev_priv, intel_encoder->power_domain, wakeref);
-> >  	return ret;
-> > diff --git a/drivers/gpu/drm/i915/display/intel_ddi.h b/drivers/gpu/drm/i915/display/intel_ddi.h
-> > index dcc711cfe4fe..a4dd815c0000 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_ddi.h
-> > +++ b/drivers/gpu/drm/i915/display/intel_ddi.h
-> > @@ -50,9 +50,9 @@ u32 bxt_signal_levels(struct intel_dp *intel_dp,
-> >  		      const struct intel_crtc_state *crtc_state);
-> >  u32 ddi_signal_levels(struct intel_dp *intel_dp,
-> >  		      const struct intel_crtc_state *crtc_state);
-> > -int intel_ddi_toggle_hdcp_signalling(struct intel_encoder *intel_encoder,
-> > -				     enum transcoder cpu_transcoder,
-> > -				     bool enable);
-> > +int intel_ddi_toggle_hdcp_bits(struct intel_encoder *intel_encoder,
-> > +			       enum transcoder cpu_transcoder,
-> > +			       bool enable, u32 hdcp_mask);
-> >  void icl_sanitize_encoder_pll_mapping(struct intel_encoder *encoder);
-> >  
-> >  #endif /* __INTEL_DDI_H__ */
-> > diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-> > index c47124a679b6..59b8fc21e3e8 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_display_types.h
-> > +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-> > @@ -339,6 +339,10 @@ struct intel_hdcp_shim {
-> >  				 enum transcoder cpu_transcoder,
-> >  				 bool enable);
-> >  
-> > +	/* Enable/Disable stream encryption on DP MST Transport Link */
-> > +	int (*stream_encryption)(struct intel_digital_port *dig_port,
-> > +				 bool enable);
-> > +
-> >  	/* Ensures the link is still protected */
-> >  	bool (*check_link)(struct intel_digital_port *dig_port,
-> >  			   struct intel_connector *connector);
-> > diff --git a/drivers/gpu/drm/i915/display/intel_dp_hdcp.c b/drivers/gpu/drm/i915/display/intel_dp_hdcp.c
-> > index 03424d20e9f7..6dcbfaffd2c5 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_dp_hdcp.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_dp_hdcp.c
-> > @@ -16,6 +16,30 @@
-> >  #include "intel_dp.h"
-> >  #include "intel_hdcp.h"
-> >  
-> > +static unsigned int transcoder_to_stream_enc_status(enum transcoder cpu_transcoder)
-> > +{
-> > +	u32 stream_enc_mask;
-> > +
-> > +	switch (cpu_transcoder) {
-> > +	case TRANSCODER_A:
-> > +		stream_enc_mask = HDCP_STATUS_STREAM_A_ENC;
-> > +		break;
-> > +	case TRANSCODER_B:
-> > +		stream_enc_mask = HDCP_STATUS_STREAM_B_ENC;
-> > +		break;
-> > +	case TRANSCODER_C:
-> > +		stream_enc_mask = HDCP_STATUS_STREAM_C_ENC;
-> > +		break;
-> > +	case TRANSCODER_D:
-> > +		stream_enc_mask = HDCP_STATUS_STREAM_D_ENC;
-> > +		break;
-> > +	default:
-> > +		stream_enc_mask = 0;
-> > +	}
-> > +
-> > +	return stream_enc_mask;
-> > +}
-> > +
-> >  static void intel_dp_hdcp_wait_for_cp_irq(struct intel_hdcp *hdcp, int timeout)
-> >  {
-> >  	long ret;
-> > @@ -622,24 +646,57 @@ static const struct intel_hdcp_shim intel_dp_hdcp_shim = {
-> >  };
-> >  
-> >  static int
-> > -intel_dp_mst_hdcp_toggle_signalling(struct intel_digital_port *dig_port,
-> > -				    enum transcoder cpu_transcoder,
-> > -				    bool enable)
-> > +intel_dp_mst_toggle_hdcp_stream_select(struct intel_digital_port *dig_port,
-> > +				       bool enable)
-> >  {
-> >  	struct drm_i915_private *i915 = to_i915(dig_port->base.base.dev);
-> > +	struct intel_dp *dp = &dig_port->dp;
-> > +	struct intel_hdcp *hdcp = &dp->attached_connector->hdcp;
-> >  	int ret;
-> >  
-> > -	if (!enable)
-> > -		usleep_range(6, 60); /* Bspec says >= 6us */
-> Any reason why this is removed from disable path? Or i am missing the
-> movement?
-It is required for HDMI when disabling HDCP signalling, not for HDCP 
-stream select.
-According to B.Spec 
-"If using HDMI or DVI, wait for at least 6 microseconds after the previous step, then disable HDCP signaling in the Transcoder DDI Function Control register."
-Thanks,
-Anshuman Gupta.
-> 
-> -Ram
-> > -
-> > -	ret = intel_ddi_toggle_hdcp_signalling(&dig_port->base,
-> > -					       cpu_transcoder, enable);
-> > +	ret = intel_ddi_toggle_hdcp_bits(&dig_port->base,
-> > +					 hdcp->stream_transcoder, enable,
-> > +					 TRANS_DDI_HDCP_SELECT);
-> >  	if (ret)
-> > -		drm_dbg_kms(&i915->drm, "%s HDCP signalling failed (%d)\n",
-> > -			      enable ? "Enable" : "Disable", ret);
-> > +		drm_err(&i915->drm, "%s HDCP stream select failed (%d)\n",
-> > +			enable ? "Enable" : "Disable", ret);
-> >  	return ret;
-> >  }
-> >  
-> > +static int
-> > +intel_dp_mst_hdcp_stream_encryption(struct intel_digital_port *dig_port,
-> > +				    bool enable)
-> > +{
-> > +	struct drm_i915_private *i915 = to_i915(dig_port->base.base.dev);
-> > +	struct intel_dp *dp = &dig_port->dp;
-> > +	struct intel_hdcp *hdcp = &dp->attached_connector->hdcp;
-> > +	enum port port = dig_port->base.port;
-> > +	enum transcoder cpu_transcoder = hdcp->cpu_transcoder;
-> > +	u32 stream_enc_status;
-> > +	int ret;
-> > +
-> > +	ret = intel_dp_mst_toggle_hdcp_stream_select(dig_port, enable);
-> > +	if (ret)
-> > +		return ret;
-> > +
-> > +	stream_enc_status =  transcoder_to_stream_enc_status(hdcp->stream_transcoder);
-> > +	if (!stream_enc_status)
-> > +		return -EINVAL;
-> > +
-> > +	/* Wait for encryption confirmation */
-> > +	if (intel_de_wait_for_register(i915,
-> > +				       HDCP_STATUS(i915, cpu_transcoder, port),
-> > +				       stream_enc_status,
-> > +				       enable ? stream_enc_status : 0,
-> > +				       HDCP_ENCRYPT_STATUS_CHANGE_TIMEOUT_MS)) {
-> > +		drm_err(&i915->drm, "Timed out waiting for stream encryption %s\n",
-> > +			enable ? "enabled" : "disabled");
-> > +		return -ETIMEDOUT;
-> > +	}
-> > +
-> > +	return 0;
-> > +}
-> > +
-> >  static
-> >  bool intel_dp_mst_hdcp_check_link(struct intel_digital_port *dig_port,
-> >  				  struct intel_connector *connector)
-> > @@ -673,7 +730,8 @@ static const struct intel_hdcp_shim intel_dp_mst_hdcp_shim = {
-> >  	.read_ksv_ready = intel_dp_hdcp_read_ksv_ready,
-> >  	.read_ksv_fifo = intel_dp_hdcp_read_ksv_fifo,
-> >  	.read_v_prime_part = intel_dp_hdcp_read_v_prime_part,
-> > -	.toggle_signalling = intel_dp_mst_hdcp_toggle_signalling,
-> > +	.toggle_signalling = intel_dp_hdcp_toggle_signalling,
-> > +	.stream_encryption = intel_dp_mst_hdcp_stream_encryption,
-> >  	.check_link = intel_dp_mst_hdcp_check_link,
-> >  	.hdcp_capable = intel_dp_hdcp_capable,
-> >  
-> > diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/i915/display/intel_hdmi.c
-> > index f90838bc74fb..f58469226694 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_hdmi.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
-> > @@ -1495,15 +1495,16 @@ static int kbl_repositioning_enc_en_signal(struct intel_connector *connector,
-> >  		usleep_range(25, 50);
-> >  	}
-> >  
-> > -	ret = intel_ddi_toggle_hdcp_signalling(&dig_port->base, cpu_transcoder,
-> > -					       false);
-> > +	ret = intel_ddi_toggle_hdcp_bits(&dig_port->base, cpu_transcoder,
-> > +					 false, TRANS_DDI_HDCP_SIGNALLING);
-> >  	if (ret) {
-> >  		drm_err(&dev_priv->drm,
-> >  			"Disable HDCP signalling failed (%d)\n", ret);
-> >  		return ret;
-> >  	}
-> > -	ret = intel_ddi_toggle_hdcp_signalling(&dig_port->base, cpu_transcoder,
-> > -					       true);
-> > +
-> > +	ret = intel_ddi_toggle_hdcp_bits(&dig_port->base, cpu_transcoder,
-> > +					 true, TRANS_DDI_HDCP_SIGNALLING);
-> >  	if (ret) {
-> >  		drm_err(&dev_priv->drm,
-> >  			"Enable HDCP signalling failed (%d)\n", ret);
-> > @@ -1526,8 +1527,9 @@ int intel_hdmi_hdcp_toggle_signalling(struct intel_digital_port *dig_port,
-> >  	if (!enable)
-> >  		usleep_range(6, 60); /* Bspec says >= 6us */
-> >  
-> > -	ret = intel_ddi_toggle_hdcp_signalling(&dig_port->base, cpu_transcoder,
-> > -					       enable);
-> > +	ret = intel_ddi_toggle_hdcp_bits(&dig_port->base,
-> > +					 cpu_transcoder, enable,
-> > +					 TRANS_DDI_HDCP_SIGNALLING);
-> >  	if (ret) {
-> >  		drm_err(&dev_priv->drm, "%s HDCP signalling failed (%d)\n",
-> >  			enable ? "Enable" : "Disable", ret);
-> > diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-> > index 8b021f77cb1f..77461cde6549 100644
-> > --- a/drivers/gpu/drm/i915/i915_reg.h
-> > +++ b/drivers/gpu/drm/i915/i915_reg.h
-> > @@ -9982,6 +9982,7 @@ enum skl_power_gate {
-> >  #define  TRANS_DDI_DP_VC_PAYLOAD_ALLOC	(1 << 8)
-> >  #define  TRANS_DDI_HDMI_SCRAMBLER_CTS_ENABLE (1 << 7)
-> >  #define  TRANS_DDI_HDMI_SCRAMBLER_RESET_FREQ (1 << 6)
-> > +#define  TRANS_DDI_HDCP_SELECT		REG_BIT(5)
-> >  #define  TRANS_DDI_BFI_ENABLE		(1 << 4)
-> >  #define  TRANS_DDI_HIGH_TMDS_CHAR_RATE	(1 << 4)
-> >  #define  TRANS_DDI_HDMI_SCRAMBLING	(1 << 0)
-> > -- 
-> > 2.26.2
-> > 
+On Thu, 05 Nov 2020, Lucas De Marchi <lucas.demarchi@intel.com> wrote:
+> On Thu, Nov 05, 2020 at 10:47:15AM +0530, Anshuman Gupta wrote:
+>>On 2020-11-03 at 17:06:42 -0500, Rodrigo Vivi wrote:
+>>> On Fri, Oct 30, 2020 at 11:46:58AM +0530, Anshuman Gupta wrote:
+>>> > From: Bob Paauwe <bob.j.paauwe@intel.com>
+>>> >
+>>> > The WA specifies that we need to toggle a SDE chicken bit on and then
+>>> > off as the final step in preparation for s0ix entry.
+>>> >
+>>> >     Bspec: 33450
+>>> >     Bspec: 8402
+>>> >
+>>> > However, something is happening after we toggle the bit that causes
+>>> > the WA to be invalidated. This makes dispcnlunit1_cp_xosc_clkreq
+>>> > active being already in s0ix state i.e SLP_S0 counter incremented.
+>>> > Tweaking the Wa_14010685332 by setting the bit on suspend and clearing
+>>> > it on resume turns down the dispcnlunit1_cp_xosc_clkreq.
+>>> > B.Spec has Documented this tweaked sequence of WA as an alternative.
+>>> > Let keep this tweaked WA for Gen11 platforms and keep untweaked WA for
+>>> > other platforms which never observed this issue.
+>>> >
+>>> > v2 (MattR):
+>>> >  - Change the comment on the workaround to give PCH names rather than
+>>> >    platform names.  Although the bspec is setup to list workarounds by
+>>> >    platform, the hardware team has confirmed that the actual issue being
+>>> >    worked around here is something that was introduced back in the
+>>> >    Cannon Lake PCH and carried forward to subsequent PCH's.
+>>> >  - Extend the untweaked version of the workaround to include  PCH_CNP as
+>>> >    well.  Note that since PCH_CNP is used to represent CMP, this will
+>>> >    apply on CML and some variants of RKL too.
+>>> >  - Cap the untweaked version of the workaround so that it won't apply to
+>>> >    "fake" PCH's (i.e., DG1).  The issue we're working around really is
+>>> >    an issue in the PCH itself, not the South Display, so it shouldn't
+>>> >    apply when there isn't a real PCH.
+>>> >
+>>> > Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+>>> > Signed-off-by: Bob Paauwe <bob.j.paauwe@intel.com>
+>>> > Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
+>>> > Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+>>> > ---
+>>> >  .../drm/i915/display/intel_display_power.c    | 21 +++++++++++++++++--
+>>> >  drivers/gpu/drm/i915/i915_irq.c               |  6 ++++--
+>>> >  2 files changed, 23 insertions(+), 4 deletions(-)
+>>> >
+>>> > diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
+>>> > index 689922480661..d2a6518329d7 100644
+>>> > --- a/drivers/gpu/drm/i915/display/intel_display_power.c
+>>> > +++ b/drivers/gpu/drm/i915/display/intel_display_power.c
+>>> > @@ -5858,17 +5858,34 @@ static void intel_power_domains_verify_state(struct drm_i915_private *i915)
+>>> >
+>>> >  void intel_display_power_suspend_late(struct drm_i915_private *i915)
+>>> >  {
+>>> > -	if (INTEL_GEN(i915) >= 11 || IS_GEN9_LP(i915))
+>>> > +	u32 val;
+>>> > +
+>>> > +	if (INTEL_GEN(i915) >= 11 || IS_GEN9_LP(i915)) {
+>>> >  		bxt_enable_dc9(i915);
+>>> > -	else if (IS_HASWELL(i915) || IS_BROADWELL(i915))
+>>> > +		/* Tweaked Wa_14010685332:icp,jsp,mcc */
+>>> > +		if (INTEL_PCH_TYPE(i915) >= PCH_ICP && INTEL_PCH_TYPE(i915) <= PCH_MCC) {
+>>> > +			val = intel_de_read(i915, SOUTH_CHICKEN1);
+>>> > +			val |= SBCLK_RUN_REFCLK_DIS;
+>>> > +			intel_de_write(i915, SOUTH_CHICKEN1, val);
+>>>
+>>> could we use intel_de_rmw here?
+>>May be i had misunderstod it earlier, i thought it was your recommendation
+>>to use manual read, modify write without using intel_uncore_rmw(),
+>>Was the actual idea to use intel_de_rmw flavour of API instead of intel_uncore_rmw?
+>
+> intel_de_rmw() is the exact equivalent of what's done above. As this is
+> a PCH register I think it would be appropriate to use intel_de_*
+>
+> Jani, is intel_de_* meant to be only a shortcut or are we going to
+> enforce accessing only DE registers with it?
+
+The intel_de_* family of functions should only be used for DE registers,
+and you should assume it'll be enforced in the future.
+
+BR,
+Jani.
+
+
+>
+>>Also would it require to use at original Wa in gen11_display_irq_reset as well?
+>
+> since that file is outside display/ we'd need to be very careful in using
+> intel_de_* there.
+>
+> thanks
+> Lucas De Marchi
+>
+>>Thanks,
+>>Anshuman Gupta.
+>>>
+>>> > +		}
+>>> > +	} else if (IS_HASWELL(i915) || IS_BROADWELL(i915)) {
+>>> >  		hsw_enable_pc8(i915);
+>>> > +	}
+>>> >  }
+>>> >
+>>> >  void intel_display_power_resume_early(struct drm_i915_private *i915)
+>>> >  {
+>>> > +	u32 val;
+>>> > +
+>>> >  	if (INTEL_GEN(i915) >= 11 || IS_GEN9_LP(i915)) {
+>>> >  		gen9_sanitize_dc_state(i915);
+>>> >  		bxt_disable_dc9(i915);
+>>> > +		/* Tweaked Wa_14010685332:icp,jsp,mcc */
+>>> > +		if (INTEL_PCH_TYPE(i915) >= PCH_ICP && INTEL_PCH_TYPE(i915) <= PCH_MCC) {
+>>> > +			val = intel_de_read(i915, SOUTH_CHICKEN1);
+>>> > +			val &= ~SBCLK_RUN_REFCLK_DIS;
+>>> > +			intel_de_write(i915, SOUTH_CHICKEN1, val);
+>>>
+>>> and here?
+>>>
+>>> sorry for not having spotted that sooner.
+>>>
+>>> > +		}
+>>> >  	} else if (IS_HASWELL(i915) || IS_BROADWELL(i915)) {
+>>> >  		hsw_disable_pc8(i915);
+>>> >  	}
+>>> > diff --git a/drivers/gpu/drm/i915/i915_irq.c b/drivers/gpu/drm/i915/i915_irq.c
+>>> > index dc33c96d741d..410c03624c6a 100644
+>>> > --- a/drivers/gpu/drm/i915/i915_irq.c
+>>> > +++ b/drivers/gpu/drm/i915/i915_irq.c
+>>> > @@ -3055,8 +3055,10 @@ static void gen11_display_irq_reset(struct drm_i915_private *dev_priv)
+>>> >  	if (INTEL_PCH_TYPE(dev_priv) >= PCH_ICP)
+>>> >  		GEN3_IRQ_RESET(uncore, SDE);
+>>> >
+>>> > -	/* Wa_14010685332:icl,jsl,ehl,tgl,rkl */
+>>> > -	if (INTEL_PCH_TYPE(dev_priv) >= PCH_ICP) {
+>>> > +	/* Wa_14010685332:cnp/cmp,tgp,adp */
+>>> > +	if (INTEL_PCH_TYPE(dev_priv) == PCH_CNP ||
+>>> > +	    (INTEL_PCH_TYPE(dev_priv) >= PCH_TGP &&
+>>> > +	     INTEL_PCH_TYPE(dev_priv) < PCH_DG1)) {
+>>> >  		intel_uncore_rmw(uncore, SOUTH_CHICKEN1,
+>>> >  				 SBCLK_RUN_REFCLK_DIS, SBCLK_RUN_REFCLK_DIS);
+>>> >  		intel_uncore_rmw(uncore, SOUTH_CHICKEN1,
+>>> > --
+>>> > 2.26.2
+>>> >
+>>> > _______________________________________________
+>>> > Intel-gfx mailing list
+>>> > Intel-gfx@lists.freedesktop.org
+>>> > https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+>>_______________________________________________
+>>Intel-gfx mailing list
+>>Intel-gfx@lists.freedesktop.org
+>>https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+-- 
+Jani Nikula, Intel Open Source Graphics Center
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
