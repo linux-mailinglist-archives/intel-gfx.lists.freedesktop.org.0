@@ -1,43 +1,40 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4CDE02A9FD0
-	for <lists+intel-gfx@lfdr.de>; Fri,  6 Nov 2020 23:19:40 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 833062AA08F
+	for <lists+intel-gfx@lfdr.de>; Fri,  6 Nov 2020 23:55:58 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2FBED6EB22;
-	Fri,  6 Nov 2020 22:19:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C5E1B6EB44;
+	Fri,  6 Nov 2020 22:55:54 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 969AD6EB22
- for <intel-gfx@lists.freedesktop.org>; Fri,  6 Nov 2020 22:19:36 +0000 (UTC)
-IronPort-SDR: +nOK4HseqhFDfM10AqONTomcnXbcUKWwhHO9IAHp9obUmH/TfEGZuXq1t4N8hnGlz3MnGORX6G
- Bcbf9KPTglaQ==
-X-IronPort-AV: E=McAfee;i="6000,8403,9797"; a="254315303"
-X-IronPort-AV: E=Sophos;i="5.77,457,1596524400"; d="scan'208";a="254315303"
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 894116EB40
+ for <intel-gfx@lists.freedesktop.org>; Fri,  6 Nov 2020 22:55:53 +0000 (UTC)
+IronPort-SDR: YEcBD6ek/vwmfhQ0HMBm0qxQTG1M0HQr2UI8utAY+iltN2hIySXk3XyBIJL/smtVg98Ea0UP3L
+ CVWN2N37K8Rw==
+X-IronPort-AV: E=McAfee;i="6000,8403,9797"; a="167022945"
+X-IronPort-AV: E=Sophos;i="5.77,457,1596524400"; d="scan'208";a="167022945"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Nov 2020 14:19:36 -0800
-IronPort-SDR: uyU6H8JfGARCqHu1xjZQpdAl+gzjNZus/WA5nPJe1IE0FwJ1BbocvbAxs7qL1C40P3DbrnfPZU
- qOUVGoi8gPgw==
-X-IronPort-AV: E=Sophos;i="5.77,457,1596524400"; d="scan'208";a="358938776"
-Received: from mdroper-desk1.fm.intel.com (HELO
- mdroper-desk1.amr.corp.intel.com) ([10.1.27.168])
- by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Nov 2020 14:19:36 -0800
-Date: Fri, 6 Nov 2020 14:19:35 -0800
-From: Matt Roper <matthew.d.roper@intel.com>
-To: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-Message-ID: <20201106221935.GE627052@mdroper-desk1.amr.corp.intel.com>
-References: <20201106011842.36203-1-daniele.ceraolospurio@intel.com>
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Nov 2020 14:55:53 -0800
+IronPort-SDR: xk58dtiZFagK/buMYNjdsurwoN5oxf94huSUmdM99AH2/X9uuo7Z9HCYL34+nlDJoDvvKVb+OK
+ 6+RPvqjpaU4w==
+X-IronPort-AV: E=Sophos;i="5.77,457,1596524400"; d="scan'208";a="540022737"
+Received: from lucas-s2600cw.jf.intel.com ([10.165.21.202])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Nov 2020 14:55:52 -0800
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Fri,  6 Nov 2020 14:55:24 -0800
+Message-Id: <20201106225531.920641-1-lucas.demarchi@intel.com>
+X-Mailer: git-send-email 2.29.0
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20201106011842.36203-1-daniele.ceraolospurio@intel.com>
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Correctly set SFC capability for
- video engines
+Subject: [Intel-gfx] [PATCH 1/8] drm/i915/display: add namespace to
+ intel_prepare_reset
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,59 +47,63 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Nov 05, 2020 at 05:18:42PM -0800, Daniele Ceraolo Spurio wrote:
-> From: Venkata Sandeep Dhanalakota <venkata.s.dhanalakota@intel.com>
-> 
-> SFC capability of video engines is not set correctly because i915
-> is testing for incorrect bits.
-> 
-> Fixes: c5d3e39caa45 ("drm/i915: Engine discovery query")
-> Cc: Matt Roper <matthew.d.roper@intel.com>
-> Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-> Signed-off-by: Venkata Sandeep Dhanalakota <venkata.s.dhanalakota@intel.com>
-> Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+Rename intel_prepare_reset to intel_display_prepare_reset, so it's clear
+from gt/ that we are calling out the display code.
 
-Yeah, engine->mask (aka BIT(engine->id)) would reflect the engine's
-position in the overall engine list, whereas what we really want here is
-to just identify which specific VDBOX instance we're dealing with.  Your
-change here matches how the field is used through the rest of the code.
+Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_display.c | 2 +-
+ drivers/gpu/drm/i915/display/intel_display.h | 2 +-
+ drivers/gpu/drm/i915/gt/intel_reset.c        | 2 +-
+ 3 files changed, 3 insertions(+), 3 deletions(-)
 
-Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
-
-> ---
->  drivers/gpu/drm/i915/gt/intel_engine_cs.c | 3 ++-
->  1 file changed, 2 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/gt/intel_engine_cs.c b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-> index 3fb52fac0d5d..0b31670343f5 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-> @@ -372,7 +372,8 @@ static void __setup_engine_capabilities(struct intel_engine_cs *engine)
->  		 * instances.
->  		 */
->  		if ((INTEL_GEN(i915) >= 11 &&
-> -		     engine->gt->info.vdbox_sfc_access & engine->mask) ||
-> +		     (engine->gt->info.vdbox_sfc_access &
-> +		      BIT(engine->instance))) ||
->  		    (INTEL_GEN(i915) >= 9 && engine->instance == 0))
->  			engine->uabi_capabilities |=
->  				I915_VIDEO_AND_ENHANCE_CLASS_CAPABILITY_SFC;
-> -- 
-> 2.24.1
-> 
-
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index 6faca1e739c8..4050bc60f632 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -4951,7 +4951,7 @@ static bool gpu_reset_clobbers_display(struct drm_i915_private *dev_priv)
+ 		intel_has_gpu_reset(&dev_priv->gt));
+ }
+ 
+-void intel_prepare_reset(struct drm_i915_private *dev_priv)
++void intel_display_prepare_reset(struct drm_i915_private *dev_priv)
+ {
+ 	struct drm_device *dev = &dev_priv->drm;
+ 	struct drm_modeset_acquire_ctx *ctx = &dev_priv->reset_ctx;
+diff --git a/drivers/gpu/drm/i915/display/intel_display.h b/drivers/gpu/drm/i915/display/intel_display.h
+index be774f216065..30960cc8b8a6 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.h
++++ b/drivers/gpu/drm/i915/display/intel_display.h
+@@ -590,7 +590,7 @@ void vlv_force_pll_off(struct drm_i915_private *dev_priv, enum pipe pipe);
+ int lpt_get_iclkip(struct drm_i915_private *dev_priv);
+ bool intel_fuzzy_clock_check(int clock1, int clock2);
+ 
+-void intel_prepare_reset(struct drm_i915_private *dev_priv);
++void intel_display_prepare_reset(struct drm_i915_private *dev_priv);
+ void intel_finish_reset(struct drm_i915_private *dev_priv);
+ void intel_dp_get_m_n(struct intel_crtc *crtc,
+ 		      struct intel_crtc_state *pipe_config);
+diff --git a/drivers/gpu/drm/i915/gt/intel_reset.c b/drivers/gpu/drm/i915/gt/intel_reset.c
+index 4e5e13dc95da..d71bad8c07b7 100644
+--- a/drivers/gpu/drm/i915/gt/intel_reset.c
++++ b/drivers/gpu/drm/i915/gt/intel_reset.c
+@@ -1191,7 +1191,7 @@ static void intel_gt_reset_global(struct intel_gt *gt,
+ 
+ 	/* Use a watchdog to ensure that our reset completes */
+ 	intel_wedge_on_timeout(&w, gt, 5 * HZ) {
+-		intel_prepare_reset(gt->i915);
++		intel_display_prepare_reset(gt->i915);
+ 
+ 		/* Flush everyone using a resource about to be clobbered */
+ 		synchronize_srcu_expedited(&gt->reset.backoff_srcu);
 -- 
-Matt Roper
-Graphics Software Engineer
-VTT-OSGC Platform Enablement
-Intel Corporation
-(916) 356-2795
+2.29.0
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
