@@ -2,43 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 177AB2A95E4
-	for <lists+intel-gfx@lfdr.de>; Fri,  6 Nov 2020 12:59:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 061062A9605
+	for <lists+intel-gfx@lfdr.de>; Fri,  6 Nov 2020 13:13:00 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 66EC16EA6D;
-	Fri,  6 Nov 2020 11:59:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 226926EA5A;
+	Fri,  6 Nov 2020 12:12:57 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 40E0D6EA6D;
- Fri,  6 Nov 2020 11:59:22 +0000 (UTC)
-IronPort-SDR: WTKtVKM6ov/ggVH6sPmgRunwwsGEIiLpvwMMMRdg8TUq0GG0c6MKrGjIsspCoipycn0cga3LLI
- HYPcFcn2f/oA==
-X-IronPort-AV: E=McAfee;i="6000,8403,9796"; a="231163603"
-X-IronPort-AV: E=Sophos;i="5.77,456,1596524400"; d="scan'208";a="231163603"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Nov 2020 03:59:21 -0800
-IronPort-SDR: YTqXGmH3rKRZw8Fd4y8xdm4gy7IVdeoPghd6DMBZ4AWFliAARFyJrmexBnH7XfS1WNQ9P2OV8D
- L/IwAU8OV3Xg==
-X-IronPort-AV: E=Sophos;i="5.77,456,1596524400"; d="scan'208";a="326393170"
-Received: from unknown (HELO intel.com) ([10.99.66.154])
- by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Nov 2020 03:59:18 -0800
-Date: Fri, 6 Nov 2020 17:30:03 +0530
-From: Ramalingam C <ramalingam.c@intel.com>
-To: Anshuman Gupta <anshuman.gupta@intel.com>
-Message-ID: <20201106120003.GD13128@intel.com>
-References: <20201027164208.10026-1-anshuman.gupta@intel.com>
- <20201027164208.10026-4-anshuman.gupta@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 084DA6EA5A;
+ Fri,  6 Nov 2020 12:12:56 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id F014DA8835;
+ Fri,  6 Nov 2020 12:12:55 +0000 (UTC)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20201027164208.10026-4-anshuman.gupta@intel.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH v4 03/16] drm/i915/hotplug: Handle CP_IRQ
- for DP-MST
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Gwan-gyeong Mun" <gwan-gyeong.mun@intel.com>
+Date: Fri, 06 Nov 2020 12:12:55 -0000
+Message-ID: <160466477595.19146.13812419507232275123@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20201106101443.686053-1-gwan-gyeong.mun@intel.com>
+In-Reply-To: <20201106101443.686053-1-gwan-gyeong.mun@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_series_starting_with_=5Bv4=2C1/2=5D_drm/i915/display=3A_Sup?=
+ =?utf-8?q?port_PSR_Multiple_Transcoders?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,43 +39,32 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jani.nikula@intel.com, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, seanpaul@chromium.org
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gMjAyMC0xMC0yNyBhdCAyMjoxMTo1NSArMDUzMCwgQW5zaHVtYW4gR3VwdGEgd3JvdGU6Cj4g
-SGFuZGxlIENQX0lSUSBpbiBERVZJQ0VfU0VSVklDRV9JUlFfVkVDVE9SX0VTSTAKPiBJdCByZXF1
-aXJlcyB0byBjYWxsIGludGVsX2hkY3BfaGFuZGxlX2NwX2lycSgpIGluIGNhc2UKPiBvZiBDUF9J
-UlEgaXMgdHJpZ2dlcmVkIGJ5IGEgc2luayBpbiBEUC1NU1QgdG9wb2xvZ3kuCj4gCj4gQ2M6ICJW
-aWxsZSBTeXJqw6Rsw6QiIDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4KPiBDYzogUmFt
-YWxpbmdhbSBDIDxyYW1hbGluZ2FtLmNAaW50ZWwuY29tPgo+IFJldmlld2VkLWJ5OiBVbWEgU2hh
-bmthciA8dW1hLnNoYW5rYXJAaW50ZWwuY29tPgpSZXZpZXdlZC1ieTogUmFtYWxpbmdhbSBDIDxy
-YW1hbGluZ2FtLmNAaW50ZWwuY29tPgo+IFNpZ25lZC1vZmYtYnk6IEFuc2h1bWFuIEd1cHRhIDxh
-bnNodW1hbi5ndXB0YUBpbnRlbC5jb20+Cj4gLS0tCj4gIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rp
-c3BsYXkvaW50ZWxfZHAuYyB8IDE0ICsrKysrKysrKysrKystCj4gIDEgZmlsZSBjaGFuZ2VkLCAx
-MyBpbnNlcnRpb25zKCspLCAxIGRlbGV0aW9uKC0pCj4gCj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMv
-Z3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZHAuYyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rp
-c3BsYXkvaW50ZWxfZHAuYwo+IGluZGV4IDgxOGRhYWIyNTJmMy4uMjFjNmM5ODI4Y2Q3IDEwMDY0
-NAo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZHAuYwo+ICsrKyBi
-L2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZHAuYwo+IEBAIC01NjU3LDYgKzU2
-NTcsMTcgQEAgc3RhdGljIHZvaWQgaW50ZWxfZHBfaGFuZGxlX3Rlc3RfcmVxdWVzdChzdHJ1Y3Qg
-aW50ZWxfZHAgKmludGVsX2RwKQo+ICAJCQkgICAgIkNvdWxkIG5vdCB3cml0ZSB0ZXN0IHJlc3Bv
-bnNlIHRvIHNpbmtcbiIpOwo+ICB9Cj4gIAo+ICtzdGF0aWMgdm9pZAo+ICtpbnRlbF9kcF9tc3Rf
-aHBkX2lycShzdHJ1Y3QgaW50ZWxfZHAgKmludGVsX2RwLCB1OCAqZXNpLCBib29sICpoYW5kbGVk
-KQo+ICt7Cj4gKwkJZHJtX2RwX21zdF9ocGRfaXJxKCZpbnRlbF9kcC0+bXN0X21nciwgZXNpLCBo
-YW5kbGVkKTsKPiArCj4gKwkJaWYgKGVzaVsxXSAmIERQX0NQX0lSUSkgewo+ICsJCQlpbnRlbF9o
-ZGNwX2hhbmRsZV9jcF9pcnEoaW50ZWxfZHAtPmF0dGFjaGVkX2Nvbm5lY3Rvcik7Cj4gKwkJCSpo
-YW5kbGVkID0gdHJ1ZTsKPiArCQl9Cj4gK30KPiArCj4gIC8qKgo+ICAgKiBpbnRlbF9kcF9jaGVj
-a19tc3Rfc3RhdHVzIC0gc2VydmljZSBhbnkgcGVuZGluZyBNU1QgaW50ZXJydXB0cywgY2hlY2sg
-bGluayBzdGF0dXMKPiAgICogQGludGVsX2RwOiBJbnRlbCBEUCBzdHJ1Y3QKPiBAQCAtNTcwMSw3
-ICs1NzEyLDggQEAgaW50ZWxfZHBfY2hlY2tfbXN0X3N0YXR1cyhzdHJ1Y3QgaW50ZWxfZHAgKmlu
-dGVsX2RwKQo+ICAKPiAgCQlkcm1fZGJnX2ttcygmaTkxNS0+ZHJtLCAiZ290IGVzaSAlM3BoXG4i
-LCBlc2kpOwo+ICAKPiAtCQlkcm1fZHBfbXN0X2hwZF9pcnEoJmludGVsX2RwLT5tc3RfbWdyLCBl
-c2ksICZoYW5kbGVkKTsKPiArCQlpbnRlbF9kcF9tc3RfaHBkX2lycShpbnRlbF9kcCwgZXNpLCAm
-aGFuZGxlZCk7Cj4gKwo+ICAJCWlmICghaGFuZGxlZCkKPiAgCQkJYnJlYWs7Cj4gIAo+IC0tIAo+
-IDIuMjYuMgo+IApfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-XwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcK
-aHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
+== Series Details ==
+
+Series: series starting with [v4,1/2] drm/i915/display: Support PSR Multiple Transcoders
+URL   : https://patchwork.freedesktop.org/series/83577/
+State : warning
+
+== Summary ==
+
+$ dim checkpatch origin/drm-tip
+389cbe50c345 drm/i915/display: Support PSR Multiple Transcoders
+-:1710: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'intel_dp' - possible side-effects?
+#1710: FILE: drivers/gpu/drm/i915/display/intel_psr.h:21:
++#define CAN_PSR(intel_dp) (HAS_PSR(dp_to_i915(intel_dp)) && intel_dp->psr.sink_support)
+
+total: 0 errors, 0 warnings, 1 checks, 1743 lines checked
+3c1636027258 drm/i915/display: Support Multiple Transcoders' PSR status on debugfs
+
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
