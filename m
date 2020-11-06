@@ -2,43 +2,43 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 15DE52A950B
-	for <lists+intel-gfx@lfdr.de>; Fri,  6 Nov 2020 12:13:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8B9812A9513
+	for <lists+intel-gfx@lfdr.de>; Fri,  6 Nov 2020 12:15:03 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 82E8D6E03F;
-	Fri,  6 Nov 2020 11:13:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BEE4F6E1B8;
+	Fri,  6 Nov 2020 11:15:01 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B4B5A6E03F
- for <intel-gfx@lists.freedesktop.org>; Fri,  6 Nov 2020 11:13:14 +0000 (UTC)
-IronPort-SDR: exmqeCVX17Uv8Sb4wR9cUlmcn5LPYZi8h8d0XRAEAFpQzCeN6dj/0iJbzlxpF1zJSprhkKS9OF
- MQiswsledGyw==
-X-IronPort-AV: E=McAfee;i="6000,8403,9796"; a="231160634"
-X-IronPort-AV: E=Sophos;i="5.77,456,1596524400"; d="scan'208";a="231160634"
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E13026E1B8
+ for <intel-gfx@lists.freedesktop.org>; Fri,  6 Nov 2020 11:14:59 +0000 (UTC)
+IronPort-SDR: 2thDorT/usTDGX18tTXgLD19sdoVhCfnvbOS5ZhXQh9fVrsH5IKI7TngmoV3QeBZGiwJlzS90o
+ +E1RBOnbfv5A==
+X-IronPort-AV: E=McAfee;i="6000,8403,9796"; a="157313415"
+X-IronPort-AV: E=Sophos;i="5.77,456,1596524400"; d="scan'208";a="157313415"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Nov 2020 03:13:14 -0800
-IronPort-SDR: l9aDlDn82YBJZVS5ty8cjSR1fnIFLJZ3n6h9CKSogFJoq8540oxEpXGn1cDVOlshA8caulwPPG
- bwGFmqWMaAxw==
-X-IronPort-AV: E=Sophos;i="5.77,456,1596524400"; d="scan'208";a="539803354"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Nov 2020 03:14:59 -0800
+IronPort-SDR: fN+W92jMtJwwTPJUXyd0AyPMegkJqgxxURdylm2NuGISsxpsqLP0AgRcK1mkv7pN6Xb+A31sZw
+ RkZjjnbjJoDw==
+X-IronPort-AV: E=Sophos;i="5.77,456,1596524400"; d="scan'208";a="306827481"
 Received: from unknown (HELO intel.com) ([10.237.72.91])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Nov 2020 03:13:13 -0800
-Date: Fri, 6 Nov 2020 13:13:45 +0200
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Nov 2020 03:14:58 -0800
+Date: Fri, 6 Nov 2020 13:15:34 +0200
 From: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
 To: Ville Syrjala <ville.syrjala@linux.intel.com>
-Message-ID: <20201106111345.GA31774@intel.com>
+Message-ID: <20201106111534.GB31774@intel.com>
 References: <20201027203955.28032-1-ville.syrjala@linux.intel.com>
- <20201027203955.28032-6-ville.syrjala@linux.intel.com>
+ <20201027203955.28032-7-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20201027203955.28032-6-ville.syrjala@linux.intel.com>
+In-Reply-To: <20201027203955.28032-7-ville.syrjala@linux.intel.com>
 User-Agent: Mutt/1.9.4 (2018-02-28)
-Subject: Re: [Intel-gfx] [PATCH 5/8] drm/i915: Move pipe ddb entries into
- the dbuf state
+Subject: Re: [Intel-gfx] [PATCH 6/8] drm/i915: Extract
+ intel_crtc_dbuf_weights()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,16 +57,14 @@ Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Oct 27, 2020 at 10:39:52PM +0200, Ville Syrjala wrote:
+On Tue, Oct 27, 2020 at 10:39:53PM +0200, Ville Syrjala wrote:
 > From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
 > =
 
-> The dbuf state will be where we collect all the inter-pipe dbuf
-> allocation stuff. Start by moving the actual per-pipe ddb entries
-> there.
-> =
-
-> v2: Rebase
+> Extract the code to calculate the weights used to chunk up the dbuf
+> between pipes. There's still extra stuff in there that shouldn't be
+> there and must be moved out, but that requires a bit more state to
+> be tracked in the dbuf state.
 > =
 
 > Cc: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
@@ -75,173 +73,211 @@ On Tue, Oct 27, 2020 at 10:39:52PM +0200, Ville Syrjala wrote:
 Reviewed-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
 
 > ---
->  drivers/gpu/drm/i915/display/intel_display.c  | 21 ++++++++++++-------
->  .../drm/i915/display/intel_display_types.h    |  1 -
->  drivers/gpu/drm/i915/intel_pm.c               | 16 ++++++--------
->  drivers/gpu/drm/i915/intel_pm.h               |  4 ++++
->  4 files changed, 23 insertions(+), 19 deletions(-)
+>  drivers/gpu/drm/i915/intel_pm.c | 145 ++++++++++++++++++++------------
+>  1 file changed, 89 insertions(+), 56 deletions(-)
 > =
 
-> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/d=
-rm/i915/display/intel_display.c
-> index f41b6f8b5618..cb2f06fc1123 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> @@ -15673,6 +15673,10 @@ static void intel_commit_modeset_enables(struct =
-intel_atomic_state *state)
->  static void skl_commit_modeset_enables(struct intel_atomic_state *state)
->  {
->  	struct drm_i915_private *dev_priv =3D to_i915(state->base.dev);
-> +	const struct intel_dbuf_state *old_dbuf_state =3D
-> +		intel_atomic_get_old_dbuf_state(state);
-> +	const struct intel_dbuf_state *new_dbuf_state =3D
-> +		intel_atomic_get_new_dbuf_state(state);
->  	struct intel_crtc *crtc;
->  	struct intel_crtc_state *old_crtc_state, *new_crtc_state;
->  	struct skl_ddb_entry entries[I915_MAX_PIPES] =3D {};
-> @@ -15687,7 +15691,7 @@ static void skl_commit_modeset_enables(struct int=
-el_atomic_state *state)
->  =
-
->  		/* ignore allocations for crtc's that have been turned off. */
->  		if (!needs_modeset(new_crtc_state)) {
-> -			entries[pipe] =3D old_crtc_state->wm.skl.ddb;
-> +			entries[pipe] =3D old_dbuf_state->ddb[pipe];
->  			update_pipes |=3D BIT(pipe);
->  		} else {
->  			modeset_pipes |=3D BIT(pipe);
-> @@ -15711,11 +15715,11 @@ static void skl_commit_modeset_enables(struct i=
-ntel_atomic_state *state)
->  			if ((update_pipes & BIT(pipe)) =3D=3D 0)
->  				continue;
->  =
-
-> -			if (skl_ddb_allocation_overlaps(&new_crtc_state->wm.skl.ddb,
-> +			if (skl_ddb_allocation_overlaps(&new_dbuf_state->ddb[pipe],
->  							entries, I915_MAX_PIPES, pipe))
->  				continue;
->  =
-
-> -			entries[pipe] =3D new_crtc_state->wm.skl.ddb;
-> +			entries[pipe] =3D new_dbuf_state->ddb[pipe];
->  			update_pipes &=3D ~BIT(pipe);
->  =
-
->  			intel_update_crtc(state, crtc);
-> @@ -15726,8 +15730,8 @@ static void skl_commit_modeset_enables(struct int=
-el_atomic_state *state)
->  			 * then we need to wait for a vblank to pass for the
->  			 * new ddb allocation to take effect.
->  			 */
-> -			if (!skl_ddb_entry_equal(&new_crtc_state->wm.skl.ddb,
-> -						 &old_crtc_state->wm.skl.ddb) &&
-> +			if (!skl_ddb_entry_equal(&new_dbuf_state->ddb[pipe],
-> +						 &old_dbuf_state->ddb[pipe]) &&
->  			    (update_pipes | modeset_pipes))
->  				intel_wait_for_vblank(dev_priv, pipe);
->  		}
-> @@ -15778,10 +15782,11 @@ static void skl_commit_modeset_enables(struct i=
-ntel_atomic_state *state)
->  		if ((update_pipes & BIT(pipe)) =3D=3D 0)
->  			continue;
->  =
-
-> -		drm_WARN_ON(&dev_priv->drm, skl_ddb_allocation_overlaps(&new_crtc_stat=
-e->wm.skl.ddb,
-> -									entries, I915_MAX_PIPES, pipe));
-> +		drm_WARN_ON(&dev_priv->drm,
-> +			    skl_ddb_allocation_overlaps(&new_dbuf_state->ddb[pipe],
-> +							entries, I915_MAX_PIPES, pipe));
->  =
-
-> -		entries[pipe] =3D new_crtc_state->wm.skl.ddb;
-> +		entries[pipe] =3D new_dbuf_state->ddb[pipe];
->  		update_pipes &=3D ~BIT(pipe);
->  =
-
->  		intel_update_crtc(state, crtc);
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers=
-/gpu/drm/i915/display/intel_display_types.h
-> index f6f0626649e0..a4b5c06a1181 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
-> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-> @@ -757,7 +757,6 @@ struct intel_crtc_wm_state {
->  		struct {
->  			/* gen9+ only needs 1-step wm programming */
->  			struct skl_pipe_wm optimal;
-> -			struct skl_ddb_entry ddb;
->  			struct skl_ddb_entry plane_ddb_y[I915_MAX_PLANES];
->  			struct skl_ddb_entry plane_ddb_uv[I915_MAX_PLANES];
->  		} skl;
 > diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/intel=
 _pm.c
-> index e4917454ec07..2ec48d9522e8 100644
+> index 2ec48d9522e8..bc4d7ce5fd7c 100644
 > --- a/drivers/gpu/drm/i915/intel_pm.c
 > +++ b/drivers/gpu/drm/i915/intel_pm.c
-> @@ -4154,16 +4154,8 @@ skl_ddb_get_pipe_allocation_limits(struct drm_i915=
-_private *dev_priv,
->  	 * grab _all_ crtc locks, including the one we currently hold.
->  	 */
->  	if (old_dbuf_state->active_pipes =3D=3D new_dbuf_state->active_pipes &&
-> -	    !dev_priv->wm.distrust_bios_wm) {
-> -		/*
-> -		 * alloc may be cleared by clear_intel_crtc_state,
-> -		 * copy from old state to be sure
-> -		 *
-> -		 * FIXME get rid of this mess
-> -		 */
-> -		*alloc =3D to_intel_crtc_state(for_crtc->base.state)->wm.skl.ddb;
-> +	    !dev_priv->wm.distrust_bios_wm)
->  		return 0;
+> @@ -4111,62 +4111,35 @@ static unsigned int intel_crtc_ddb_weight(const s=
+truct intel_crtc_state *crtc_st
+>  static u8 skl_compute_dbuf_slices(struct intel_crtc *crtc,
+>  				  u8 active_pipes);
+>  =
+
+> -static int
+> -skl_ddb_get_pipe_allocation_limits(struct drm_i915_private *dev_priv,
+> -				   const struct intel_crtc_state *crtc_state,
+> -				   const u64 total_data_rate,
+> -				   struct skl_ddb_entry *alloc, /* out */
+> -				   int *num_active /* out */)
+> +static int intel_crtc_dbuf_weights(struct intel_atomic_state *state,
+> +				   struct intel_crtc *for_crtc,
+> +				   unsigned int *weight_start,
+> +				   unsigned int *weight_end,
+> +				   unsigned int *weight_total)
+>  {
+> -	struct drm_atomic_state *state =3D crtc_state->uapi.state;
+> -	struct intel_atomic_state *intel_state =3D to_intel_atomic_state(state);
+> -	struct intel_crtc *for_crtc =3D to_intel_crtc(crtc_state->uapi.crtc);
+> -	struct intel_crtc *crtc;
+> -	unsigned int pipe_weight =3D 0, total_weight =3D 0, weight_before_pipe =
+=3D 0;
+> +	const struct intel_dbuf_state *old_dbuf_state =3D
+> +		intel_atomic_get_old_dbuf_state(state);
+> +	struct intel_dbuf_state *new_dbuf_state =3D
+> +		intel_atomic_get_new_dbuf_state(state);
+> +	u8 active_pipes =3D new_dbuf_state->active_pipes;
+>  	enum pipe for_pipe =3D for_crtc->pipe;
+> -	struct intel_dbuf_state *new_dbuf_state =3D
+> -		intel_atomic_get_new_dbuf_state(intel_state);
+> -	const struct intel_dbuf_state *old_dbuf_state =3D
+> -		intel_atomic_get_old_dbuf_state(intel_state);
+> -	u8 active_pipes =3D new_dbuf_state->active_pipes;
+> -	struct skl_ddb_entry ddb_slices;
+> -	u32 ddb_range_size;
+> -	u32 i;
+> -	u32 dbuf_slice_mask;
+> -	u32 total_slice_mask;
+> -	u32 start, end;
+> -	int ret;
+> -
+> -	*num_active =3D hweight8(active_pipes);
+> -
+> -	if (!crtc_state->hw.active) {
+> -		alloc->start =3D 0;
+> -		alloc->end =3D 0;
+> -		return 0;
 > -	}
+> -
+> -	/*
+> -	 * If the state doesn't change the active CRTC's or there is no
+> -	 * modeset request, then there's no need to recalculate;
+> -	 * the existing pipe allocation limits should remain unchanged.
+> -	 * Note that we're safe from racing commits since any racing commit
+> -	 * that changes the active CRTC list or do modeset would need to
+> -	 * grab _all_ crtc locks, including the one we currently hold.
+> -	 */
+> -	if (old_dbuf_state->active_pipes =3D=3D new_dbuf_state->active_pipes &&
+> -	    !dev_priv->wm.distrust_bios_wm)
+> -		return 0;
+> +	const struct intel_crtc_state *crtc_state;
+> +	struct intel_crtc *crtc;
+> +	u8 dbuf_slice_mask;
+> +	u8 total_slice_mask;
+> +	int i, ret;
 >  =
 
 >  	/*
 >  	 * Get allowed DBuf slices for correspondent pipe and platform.
-> @@ -4790,7 +4782,11 @@ skl_allocate_pipe_ddb(struct intel_crtc_state *crt=
-c_state)
->  {
->  	struct intel_crtc *crtc =3D to_intel_crtc(crtc_state->uapi.crtc);
->  	struct drm_i915_private *dev_priv =3D to_i915(crtc->base.dev);
-> -	struct skl_ddb_entry *alloc =3D &crtc_state->wm.skl.ddb;
+>  	 */
+>  	dbuf_slice_mask =3D skl_compute_dbuf_slices(for_crtc, active_pipes);
+> -
+> -	skl_ddb_entry_for_slices(dev_priv, dbuf_slice_mask, &ddb_slices);
+> -	ddb_range_size =3D skl_ddb_entry_size(&ddb_slices);
+> -
+>  	total_slice_mask =3D dbuf_slice_mask;
+> -	for_each_new_intel_crtc_in_state(intel_state, crtc, crtc_state, i) {
+> +
+> +	*weight_start =3D 0;
+> +	*weight_end =3D 0;
+> +	*weight_total =3D 0;
+> +
+> +	for_each_new_intel_crtc_in_state(state, crtc, crtc_state, i) {
+>  		enum pipe pipe =3D crtc->pipe;
+>  		unsigned int weight;
+>  		u8 pipe_dbuf_slice_mask;
+> @@ -4197,12 +4170,14 @@ skl_ddb_get_pipe_allocation_limits(struct drm_i91=
+5_private *dev_priv,
+>  			continue;
+>  =
+
+>  		weight =3D intel_crtc_ddb_weight(crtc_state);
+> -		total_weight +=3D weight;
+> +		*weight_total +=3D weight;
+>  =
+
+> -		if (pipe < for_pipe)
+> -			weight_before_pipe +=3D weight;
+> -		else if (pipe =3D=3D for_pipe)
+> -			pipe_weight =3D weight;
+> +		if (pipe < for_pipe) {
+> +			*weight_start +=3D weight;
+> +			*weight_end +=3D weight;
+> +		} else if (pipe =3D=3D for_pipe) {
+> +			*weight_end +=3D weight;
+> +		}
+>  	}
+>  =
+
+>  	/*
+> @@ -4217,15 +4192,73 @@ skl_ddb_get_pipe_allocation_limits(struct drm_i91=
+5_private *dev_priv,
+>  			return ret;
+>  	}
+>  =
+
+> -	start =3D ddb_range_size * weight_before_pipe / total_weight;
+> -	end =3D ddb_range_size * (weight_before_pipe + pipe_weight) / total_wei=
+ght;
+> +	return 0;
+> +}
+> +
+> +static int
+> +skl_ddb_get_pipe_allocation_limits(struct drm_i915_private *dev_priv,
+> +				   const struct intel_crtc_state *crtc_state,
+> +				   const u64 total_data_rate,
+> +				   struct skl_ddb_entry *alloc, /* out */
+> +				   int *num_active /* out */)
+> +{
 > +	struct intel_atomic_state *state =3D
 > +		to_intel_atomic_state(crtc_state->uapi.state);
-> +	struct intel_dbuf_state *dbuf_state =3D
+> +	struct intel_crtc *crtc =3D to_intel_crtc(crtc_state->uapi.crtc);
+> +	unsigned int weight_start, weight_end, weight_total;
+> +	const struct intel_dbuf_state *old_dbuf_state =3D
+> +		intel_atomic_get_old_dbuf_state(state);
+> +	struct intel_dbuf_state *new_dbuf_state =3D
 > +		intel_atomic_get_new_dbuf_state(state);
-> +	struct skl_ddb_entry *alloc =3D &dbuf_state->ddb[crtc->pipe];
->  	u16 alloc_size, start =3D 0;
->  	u16 total[I915_MAX_PLANES] =3D {};
->  	u16 uv_total[I915_MAX_PLANES] =3D {};
-> diff --git a/drivers/gpu/drm/i915/intel_pm.h b/drivers/gpu/drm/i915/intel=
-_pm.h
-> index 00910bc01407..724204bb8442 100644
-> --- a/drivers/gpu/drm/i915/intel_pm.h
-> +++ b/drivers/gpu/drm/i915/intel_pm.h
-> @@ -9,8 +9,10 @@
->  #include <linux/types.h>
->  =
-
->  #include "display/intel_bw.h"
-> +#include "display/intel_display.h"
->  #include "display/intel_global_state.h"
->  =
-
-> +#include "i915_drv.h"
->  #include "i915_reg.h"
->  =
-
->  struct drm_device;
-> @@ -68,6 +70,8 @@ bool intel_set_memory_cxsr(struct drm_i915_private *dev=
-_priv, bool enable);
->  struct intel_dbuf_state {
->  	struct intel_global_state base;
->  =
-
-> +	struct skl_ddb_entry ddb[I915_MAX_PIPES];
+> +	u8 active_pipes =3D new_dbuf_state->active_pipes;
+> +	struct skl_ddb_entry ddb_slices;
+> +	u32 ddb_range_size;
+> +	u32 dbuf_slice_mask;
+> +	u32 start, end;
+> +	int ret;
 > +
->  	u8 enabled_slices;
->  	u8 active_pipes;
->  };
+> +	*num_active =3D hweight8(active_pipes);
+> +
+> +	if (!crtc_state->hw.active) {
+> +		alloc->start =3D 0;
+> +		alloc->end =3D 0;
+> +		return 0;
+> +	}
+> +
+> +	/*
+> +	 * If the state doesn't change the active CRTC's or there is no
+> +	 * modeset request, then there's no need to recalculate;
+> +	 * the existing pipe allocation limits should remain unchanged.
+> +	 * Note that we're safe from racing commits since any racing commit
+> +	 * that changes the active CRTC list or do modeset would need to
+> +	 * grab _all_ crtc locks, including the one we currently hold.
+> +	 */
+> +	if (old_dbuf_state->active_pipes =3D=3D new_dbuf_state->active_pipes &&
+> +	    !dev_priv->wm.distrust_bios_wm)
+> +		return 0;
+> +
+> +	/*
+> +	 * Get allowed DBuf slices for correspondent pipe and platform.
+> +	 */
+> +	dbuf_slice_mask =3D skl_compute_dbuf_slices(crtc, active_pipes);
+> +
+> +	skl_ddb_entry_for_slices(dev_priv, dbuf_slice_mask, &ddb_slices);
+> +	ddb_range_size =3D skl_ddb_entry_size(&ddb_slices);
+> +
+> +	ret =3D intel_crtc_dbuf_weights(state, crtc,
+> +				      &weight_start, &weight_end, &weight_total);
+> +	if (ret)
+> +		return ret;
+> +
+> +	start =3D ddb_range_size * weight_start / weight_total;
+> +	end =3D ddb_range_size * weight_end / weight_total;
+>  =
+
+>  	alloc->start =3D ddb_slices.start + start;
+>  	alloc->end =3D ddb_slices.start + end;
+>  =
+
+>  	drm_dbg_kms(&dev_priv->drm,
+>  		    "[CRTC:%d:%s] dbuf slices 0x%x, ddb (%d - %d), active pipes 0x%x\n=
+",
+> -		    for_crtc->base.base.id, for_crtc->base.name,
+> +		    crtc->base.base.id, crtc->base.name,
+>  		    dbuf_slice_mask, alloc->start, alloc->end, active_pipes);
+>  =
+
+>  	return 0;
 > -- =
 
 > 2.26.2
