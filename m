@@ -1,33 +1,40 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B3FF42AB500
-	for <lists+intel-gfx@lfdr.de>; Mon,  9 Nov 2020 11:33:04 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id CDCC22AB554
+	for <lists+intel-gfx@lfdr.de>; Mon,  9 Nov 2020 11:48:29 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1AEA989875;
-	Mon,  9 Nov 2020 10:33:03 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 497 seconds by postgrey-1.36 at gabe;
- Mon, 09 Nov 2020 10:33:01 UTC
-Received: from jabberwock.ucw.cz (jabberwock.ucw.cz [46.255.230.98])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D9F6B89875
- for <intel-gfx@lists.freedesktop.org>; Mon,  9 Nov 2020 10:33:01 +0000 (UTC)
-Received: by jabberwock.ucw.cz (Postfix, from userid 1017)
- id 25B7E1C0B88; Mon,  9 Nov 2020 11:24:39 +0100 (CET)
-Date: Mon, 9 Nov 2020 11:24:37 +0100
-From: Pavel Machek <pavel@ucw.cz>
-To: Chris Wilson <chris@chris-wilson.co.uk>,
- kernel list <linux-kernel@vger.kernel.org>
-Message-ID: <20201109102437.GA15835@amd>
-References: <20200916090059.3189-1-chris@chris-wilson.co.uk>
- <20200916090059.3189-2-chris@chris-wilson.co.uk>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 265EB898C4;
+	Mon,  9 Nov 2020 10:48:28 +0000 (UTC)
+X-Original-To: Intel-gfx@lists.freedesktop.org
+Delivered-To: Intel-gfx@lists.freedesktop.org
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 59661898BF;
+ Mon,  9 Nov 2020 10:48:26 +0000 (UTC)
+IronPort-SDR: OS/nqU+NRJIGPIzfouB+Tua/ZGhWhEwCVM1Bju8Bp6wyOnBxVtYR0KHv0ZuOexJlBXJnhLgjXu
+ lMNWOzh1oP/w==
+X-IronPort-AV: E=McAfee;i="6000,8403,9799"; a="254488940"
+X-IronPort-AV: E=Sophos;i="5.77,463,1596524400"; d="scan'208";a="254488940"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Nov 2020 02:48:25 -0800
+IronPort-SDR: fNdA/geM9xc9vuSdQ4vh6bjMfvsxU5djA3g5ekLmeYaQAuP9ZSLeAjjFAN22YV1ixq45PCO+OT
+ v+AA+pRKKW5w==
+X-IronPort-AV: E=Sophos;i="5.77,463,1596524400"; d="scan'208";a="327227164"
+Received: from staskuzm-mobl1.ger.corp.intel.com (HELO localhost.localdomain)
+ ([10.255.196.231])
+ by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Nov 2020 02:48:23 -0800
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+To: igt-dev@lists.freedesktop.org
+Date: Mon,  9 Nov 2020 10:48:08 +0000
+Message-Id: <20201109104811.3773962-1-tvrtko.ursulin@linux.intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-In-Reply-To: <20200916090059.3189-2-chris@chris-wilson.co.uk>
-User-Agent: Mutt/1.5.23 (2014-03-12)
-Subject: [Intel-gfx] 4.19-stable: Re: [PATCH 2/3] drm/i915: Break up error
- capture compression loops with cond_resched()
+Subject: [Intel-gfx] [RFC 0/3] User friendly lsgpu default output
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,88 +47,29 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, stable@vger.kernel.org
-Content-Type: multipart/mixed; boundary="===============0965905314=="
+Cc: Intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-
---===============0965905314==
-Content-Type: multipart/signed; micalg=pgp-sha1;
-	protocol="application/pgp-signature"; boundary="liOOAslEiF7prFVr"
-Content-Disposition: inline
-
-
---liOOAslEiF7prFVr
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-Hi!
-
-> As the error capture will compress user buffers as directed to by the
-> user, it can take an arbitrary amount of time and space. Break up the
-> compression loops with a call to cond_resched(), that will allow other
-> processes to schedule (avoiding the soft lockups) and also serve as a
-> warning should we try to make this loop atomic in the future.
->=20
-> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-> Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
-> Cc: stable@vger.kernel.org
-> Reviewed-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
-
-This was queued for 4.19-stable, but is very likely wrong.
-
-> @@ -397,6 +399,7 @@ static int compress_page(struct i915_vma_compress *c,
->  	if (!(wc && i915_memcpy_from_wc(ptr, src, PAGE_SIZE)))
->  		memcpy(ptr, src, PAGE_SIZE);
->  	dst->pages[dst->page_count++] =3D ptr;
-> +	cond_resched();
-> =20
->  	return 0;
->  }
-
-4.19 compress_page begins with
-
-static int compress_page(struct compress *c,
-=2E..
-        page =3D __get_free_page(GFP_ATOMIC | __GFP_NOWARN);
-
-and likely may not sleep. That changed with commit
-a42f45a2a85998453078, but that one is not present in 4.19..
-
-I believe we don't need this in stable: dumping of error file will not
-take so long to trigger softlockup detectors... and if userland access
-blocked, we would be able to reschedule, anyway.
-
-Best regards,
-								Pavel
---=20
-http://www.livejournal.com/~pavelmachek
-
---liOOAslEiF7prFVr
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: Digital signature
-
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v1
-
-iEYEARECAAYFAl+pGOUACgkQMOfwapXb+vIvQgCcDwo9ICEQfTFKE7D+KQj2Ngzp
-v9sAnjFdQRjvjH8ijc41QciyP5sDpOWb
-=rh9u
------END PGP SIGNATURE-----
-
---liOOAslEiF7prFVr--
-
---===============0965905314==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============0965905314==--
+RnJvbTogVHZydGtvIFVyc3VsaW4gPHR2cnRrby51cnN1bGluQGludGVsLmNvbT4KCkFzIHBlciBp
+bmRpdmlkdWFsIGNoYW5nZWxvZ3MgZW5kIHJlc3VsdCBpczoKCiAgICAkIGxzZ3B1CiAgICBjYXJk
+MCAgICAgICAgICAgICAgICAgICA4MDg2OjE5M0IgICAgZHJtOi9kZXYvZHJpL2NhcmQwCiAgICDi
+lJTilIByZW5kZXJEMTI4ICAgICAgICAgICAgICAgICAgICAgICAgIGRybTovZGV2L2RyaS9yZW5k
+ZXJEMTI4CgogICAgJCBsc2dwdSAtLXN5c2ZzCiAgICBjYXJkMCAgICAgICAgICAgICAgICAgICA4
+MDg2OjE5M0IgICAgc3lzOi9zeXMvZGV2aWNlcy9wY2kwMDAwOjAwLzAwMDA6MDA6MDIuMC9kcm0v
+Y2FyZDAKICAgIOKUlOKUgHJlbmRlckQxMjggICAgICAgICAgICAgICAgICAgICAgICAgc3lzOi9z
+eXMvZGV2aWNlcy9wY2kwMDAwOjAwLzAwMDA6MDA6MDIuMC9kcm0vcmVuZGVyRDEyOAoKICAgICQg
+bHNncHUgLS1wY2kKICAgIGNhcmQwICAgICAgICAgICAgICAgICAgIDgwODY6MTkzQiAgICBwY2k6
+L3N5cy9kZXZpY2VzL3BjaTAwMDA6MDAvMDAwMDowMDowMi4wCiAgICDilJTilIByZW5kZXJEMTI4
+CgpUdnJ0a28gVXJzdWxpbiAoMyk6CiAgaW50ZWxfZ3B1X3RvcDogVXNlciBmcmllbmRseSBkZXZp
+Y2UgbGlzdGluZwogIGxzZ3B1OiBVc2VyIGZyaWVuZGx5IGRldmljZSBsaXN0aW5nCiAgbHNncHU6
+IEFkZCBmaWx0ZXIgdHlwZSBwcmludC1vdXQgc2VsZWN0aW9uCgogbGliL2lndF9kZXZpY2Vfc2Nh
+bi5jIHwgMTU0ICsrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKystLS0tLQogbGli
+L2lndF9kZXZpY2Vfc2Nhbi5oIHwgIDE2ICsrKystCiB0b29scy9pbnRlbF9ncHVfdG9wLmMgfCAg
+IDcgKy0KIHRvb2xzL2xzZ3B1LmMgICAgICAgICB8ICAzOCArKysrKysrKystLQogNCBmaWxlcyBj
+aGFuZ2VkLCAxODggaW5zZXJ0aW9ucygrKSwgMjcgZGVsZXRpb25zKC0pCgotLSAKMi4yNS4xCgpf
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZngg
+bWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0
+cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
