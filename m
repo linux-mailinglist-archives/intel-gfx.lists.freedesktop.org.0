@@ -1,29 +1,63 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3B84D2AC5D1
-	for <lists+intel-gfx@lfdr.de>; Mon,  9 Nov 2020 21:16:39 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id ECF532AC622
+	for <lists+intel-gfx@lfdr.de>; Mon,  9 Nov 2020 21:46:13 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 944608928D;
-	Mon,  9 Nov 2020 20:16:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E0C1289298;
+	Mon,  9 Nov 2020 20:46:11 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E85ED8928D
- for <intel-gfx@lists.freedesktop.org>; Mon,  9 Nov 2020 20:16:35 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 22943195-1500050 
- for <intel-gfx@lists.freedesktop.org>; Mon, 09 Nov 2020 20:16:33 +0000
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Mon,  9 Nov 2020 20:16:32 +0000
-Message-Id: <20201109201632.30733-1-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.20.1
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8111A89298
+ for <intel-gfx@lists.freedesktop.org>; Mon,  9 Nov 2020 20:46:10 +0000 (UTC)
+IronPort-SDR: JWVFQehGBnDAy7ZqM+F4DyoroIVdIZtiDzc3iYy78uBRjbch0Edl+CuyaLUvtjikgR6PR6CNfQ
+ YXAgWcsloxPQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9800"; a="254576844"
+X-IronPort-AV: E=Sophos;i="5.77,464,1596524400"; d="scan'208";a="254576844"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Nov 2020 12:46:09 -0800
+IronPort-SDR: g3bLY+Qi2NOmP4Es8UEpuO4n3whOk1jBYaASiw5dup6jL6WeoK8KBNlk/5bKi6olZv+6Toxpr2
+ mB9RIE32UtgA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.77,464,1596524400"; d="scan'208";a="541017847"
+Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
+ by orsmga005.jf.intel.com with ESMTP; 09 Nov 2020 12:46:08 -0800
+Received: from orsmsx612.amr.corp.intel.com (10.22.229.25) by
+ ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1713.5; Mon, 9 Nov 2020 12:46:07 -0800
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX612.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1713.5; Mon, 9 Nov 2020 12:46:07 -0800
+Received: from orsmsx610.amr.corp.intel.com ([10.22.229.23]) by
+ ORSMSX610.amr.corp.intel.com ([10.22.229.23]) with mapi id 15.01.1713.004;
+ Mon, 9 Nov 2020 12:46:07 -0800
+From: "Souza, Jose" <jose.souza@intel.com>
+To: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>, "De
+ Marchi, Lucas" <lucas.demarchi@intel.com>
+Thread-Topic: [PATCH 4/8] drm/i915/display: return earlier from
+ intel_modeset_init() without display
+Thread-Index: AQHWtI/7prufe4BpG0+e1PKWa5dOIanAz6mA
+Date: Mon, 9 Nov 2020 20:46:06 +0000
+Message-ID: <073d022f5d455fd8bf3b7490054800f4f86f0149.camel@intel.com>
+References: <20201106225531.920641-1-lucas.demarchi@intel.com>
+ <20201106225531.920641-4-lucas.demarchi@intel.com>
+In-Reply-To: <20201106225531.920641-4-lucas.demarchi@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.1.200.100]
+Content-ID: <719891FB22F4394A891463362D8107FB@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [CI] drm/i915: Disable atomics in L3 for gen9
+Subject: Re: [Intel-gfx] [PATCH 4/8] drm/i915/display: return earlier from
+ intel_modeset_init() without display
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,76 +70,34 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: "Nikula,
+ Jani" <jani.nikula@intel.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Enabling atomic operations in L3 leads to unrecoverable GPU hangs, as
-the machine stops responding milliseconds after receipt of the reset
-request [GDRT]. By disabling the cached atomics, the hang do not occur
-and we presume the GPU would reset normally for similar hangs.
-
-Reported-by: Jason Ekstrand <jason@jlekstrand.net>
-Bugzilla: https://bugs.freedesktop.org/show_bug.cgi?id=110998
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: Jason Ekstrand <jason@jlekstrand.net>
-Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
-Cc: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Reviewed-by: Jason Ekstrand <jason@jlesktrand.net>
----
- drivers/gpu/drm/i915/gt/intel_workarounds.c | 8 ++++++++
- drivers/gpu/drm/i915/i915_reg.h             | 7 +++++++
- 2 files changed, 15 insertions(+)
-
-diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-index fed9503a7c4e..dc20b0344f17 100644
---- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
-+++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-@@ -1959,6 +1959,14 @@ rcs_engine_wa_init(struct intel_engine_cs *engine, struct i915_wa_list *wal)
- 		wa_write_or(wal,
- 			    GEN8_L3SQCREG4,
- 			    GEN8_LQSC_FLUSH_COHERENT_LINES);
-+
-+		/* Disable atomics in L3 to prevent unrecoverable hangs */
-+		wa_write_masked_or(wal, GEN9_SCRATCH_LNCF1,
-+				   GEN9_LNCF_NONIA_COHERENT_ATOMICS_ENABLE, 0);
-+		wa_write_masked_or(wal, GEN8_L3SQCREG4,
-+				   GEN8_LQSQ_NONIA_COHERENT_ATOMICS_ENABLE, 0);
-+		wa_write_masked_or(wal, GEN9_SCRATCH1,
-+				   EVICTION_PERF_FIX_ENABLE, 0);
- 	}
- 
- 	if (IS_GEN(i915, 7))
-diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-index bb0656875697..c9646dca6ed0 100644
---- a/drivers/gpu/drm/i915/i915_reg.h
-+++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -8209,6 +8209,7 @@ enum {
- #define  GEN11_LQSC_CLEAN_EVICT_DISABLE		(1 << 6)
- #define  GEN8_LQSC_RO_PERF_DIS			(1 << 27)
- #define  GEN8_LQSC_FLUSH_COHERENT_LINES		(1 << 21)
-+#define  GEN8_LQSQ_NONIA_COHERENT_ATOMICS_ENABLE REG_BIT(22)
- 
- /* GEN8 chicken */
- #define HDC_CHICKEN0				_MMIO(0x7300)
-@@ -12029,6 +12030,12 @@ enum skl_power_gate {
- #define __GEN11_VCS2_MOCS0	0x10000
- #define GEN11_MFX2_MOCS(i)	_MMIO(__GEN11_VCS2_MOCS0 + (i) * 4)
- 
-+#define GEN9_SCRATCH_LNCF1		_MMIO(0xb008)
-+#define   GEN9_LNCF_NONIA_COHERENT_ATOMICS_ENABLE REG_BIT(0)
-+
-+#define GEN9_SCRATCH1			_MMIO(0xb11c)
-+#define   EVICTION_PERF_FIX_ENABLE	REG_BIT(8)
-+
- #define GEN10_SCRATCH_LNCF2		_MMIO(0xb0a0)
- #define   PMFLUSHDONE_LNICRSDROP	(1 << 20)
- #define   PMFLUSH_GAPL3UNBLOCK		(1 << 21)
--- 
-2.20.1
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+T24gRnJpLCAyMDIwLTExLTA2IGF0IDE0OjU1IC0wODAwLCBMdWNhcyBEZSBNYXJjaGkgd3JvdGU6
+DQo+IEZyb206IEphbmkgTmlrdWxhIDxqYW5pLm5pa3VsYUBpbnRlbC5jb20+DQo+IA0KPiAhSEFT
+X0RJU1BMQVkoKSBpbXBsaWVzICFIQVNfT1ZFUkxBWSgpLCBza2lwcGluZyBvdmVybGF5IHNldHVw
+IGFueXdheSwgc28NCj4gcmV0dXJuIGVhcmxpZXIgZnJvbSBpbnRlbF9tb2Rlc2V0X2luaXQoKSBm
+b3IgY2xhcml0eS4NCg0KUmV2aWV3ZWQtYnk6IEpvc8OpIFJvYmVydG8gZGUgU291emEgPGpvc2Uu
+c291emFAaW50ZWwuY29tPg0KDQo+IA0KPiBDYzogVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJq
+YWxhQGxpbnV4LmludGVsLmNvbT4NCj4gU2lnbmVkLW9mZi1ieTogSmFuaSBOaWt1bGEgPGphbmku
+bmlrdWxhQGludGVsLmNvbT4NCj4gU2lnbmVkLW9mZi1ieTogTHVjYXMgRGUgTWFyY2hpIDxsdWNh
+cy5kZW1hcmNoaUBpbnRlbC5jb20+DQo+IC0tLQ0KPiDCoGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rp
+c3BsYXkvaW50ZWxfZGlzcGxheS5jIHwgNCArKy0tDQo+IMKgMSBmaWxlIGNoYW5nZWQsIDIgaW5z
+ZXJ0aW9ucygrKSwgMiBkZWxldGlvbnMoLSkNCj4gDQo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dw
+dS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXkuYyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1
+L2Rpc3BsYXkvaW50ZWxfZGlzcGxheS5jDQo+IGluZGV4IGI2YTlkNDFhMDQzZS4uYjNlNmM0M2Yw
+Y2IyIDEwMDY0NA0KPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rp
+c3BsYXkuYw0KPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3Bs
+YXkuYw0KPiBAQCAtMTgzNjQsMTEgKzE4MzY0LDExIEBAIGludCBpbnRlbF9tb2Rlc2V0X2luaXQo
+c3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmk5MTUpDQo+IMKgew0KPiDCoAlpbnQgcmV0Ow0KPiDC
+oA0KPiANCj4gDQo+IA0KPiAtCWludGVsX292ZXJsYXlfc2V0dXAoaTkxNSk7DQo+IC0NCj4gwqAJ
+aWYgKCFIQVNfRElTUExBWShpOTE1KSkNCj4gwqAJCXJldHVybiAwOw0KPiDCoA0KPiANCj4gDQo+
+IA0KPiArCWludGVsX292ZXJsYXlfc2V0dXAoaTkxNSk7DQo+ICsNCj4gwqAJcmV0ID0gaW50ZWxf
+ZmJkZXZfaW5pdCgmaTkxNS0+ZHJtKTsNCj4gwqAJaWYgKHJldCkNCj4gwqAJCXJldHVybiByZXQ7
+DQoNCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVs
+LWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczov
+L2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
