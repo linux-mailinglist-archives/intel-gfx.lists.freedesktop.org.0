@@ -2,42 +2,63 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A0E2B2AC920
-	for <lists+intel-gfx@lfdr.de>; Tue, 10 Nov 2020 00:12:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3CFB52AC9B7
+	for <lists+intel-gfx@lfdr.de>; Tue, 10 Nov 2020 01:32:47 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9BB9589789;
-	Mon,  9 Nov 2020 23:12:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 89DAD897AC;
+	Tue, 10 Nov 2020 00:32:44 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E8DA289798
- for <intel-gfx@lists.freedesktop.org>; Mon,  9 Nov 2020 23:12:50 +0000 (UTC)
-IronPort-SDR: i6EKiCBZbRTc4Kp15TMZjkqz2r2q2FJR/rpTvL7oKxOahRNKWWRN0hMTfA92vvVn5qrweNmdsl
- HhHBdDXT9jCw==
-X-IronPort-AV: E=McAfee;i="6000,8403,9800"; a="167300882"
-X-IronPort-AV: E=Sophos;i="5.77,464,1596524400"; d="scan'208";a="167300882"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Nov 2020 15:12:50 -0800
-IronPort-SDR: TM31CrUzff3uK91Es5kdxjkC0rp5eYbWnBri35CWzaevcI6c5DjmQ3+hkSQqJyoETJjDwoz1Q1
- LNTXHqufTCaQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.77,464,1596524400"; d="scan'208";a="365250572"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by FMSMGA003.fm.intel.com with SMTP; 09 Nov 2020 15:12:48 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 10 Nov 2020 01:12:48 +0200
-From: Ville Syrjala <ville.syrjala@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Tue, 10 Nov 2020 01:12:39 +0200
-Message-Id: <20201109231239.17002-4-ville.syrjala@linux.intel.com>
-X-Mailer: git-send-email 2.26.2
-In-Reply-To: <20201109231239.17002-1-ville.syrjala@linux.intel.com>
-References: <20201109231239.17002-1-ville.syrjala@linux.intel.com>
+Received: from mx0a-002e3701.pphosted.com (mx0a-002e3701.pphosted.com
+ [148.163.147.86])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 65242897AC
+ for <intel-gfx@lists.freedesktop.org>; Tue, 10 Nov 2020 00:32:43 +0000 (UTC)
+Received: from pps.filterd (m0150241.ppops.net [127.0.0.1])
+ by mx0a-002e3701.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id
+ 0AA0SeA8027951; Tue, 10 Nov 2020 00:32:34 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hpe.com;
+ h=date : from : to : cc :
+ subject : message-id : reply-to : references : content-type : in-reply-to
+ : mime-version; s=pps0720;
+ bh=2zjEMjLOhNeoaS4wl1OzUD+rrN6El5yihwd2og3gOZw=;
+ b=npjhWvz9qKuD5XdFgETcKMcXetr+XWRxD+d8hK3Le1xAm0DqVJ/zgE8yunCYYAEvSIwO
+ js+V/T49t/tYod72paGJDWuXtbpwNaXQqT0oQS/D8RzRU7UOT43jstA0DoUzpAGsStb0
+ jARw+nqHneCltGtHk+KL+V5ii4azSVSTGdOl/CCaU5hbnRvYNpdEUxp7qgeVZE2NsVV4
+ sJC93E9zJ9JzmGy1Mt131CT+CrzYS7rNyz627vG3Pec0LJgzFmuZuPyOZABythy5F0VB
+ rYc/fzGarO876a3bNxK04brIXk2aB70oMmruGqRAG1B+VTNo5OPTVpZju8qCX2bt085J cQ== 
+Received: from g4t3427.houston.hpe.com (g4t3427.houston.hpe.com
+ [15.241.140.73])
+ by mx0a-002e3701.pphosted.com with ESMTP id 34p4ywdygd-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+ Tue, 10 Nov 2020 00:32:34 +0000
+Received: from g9t2301.houston.hpecorp.net (g9t2301.houston.hpecorp.net
+ [16.220.97.129])
+ by g4t3427.houston.hpe.com (Postfix) with ESMTP id C390F66;
+ Tue, 10 Nov 2020 00:32:33 +0000 (UTC)
+Received: from rfwz62 (rfwz62.americas.hpqcorp.net [10.33.237.8])
+ by g9t2301.houston.hpecorp.net (Postfix) with ESMTP id 3D59475;
+ Tue, 10 Nov 2020 00:32:33 +0000 (UTC)
+Date: Mon, 9 Nov 2020 17:32:32 -0700
+From: rwright@hpe.com
+To: chris@chris-wilson.co.uk
+Message-ID: <20201110003121.GA17715@rfwz62>
+References: <20201016175411.30406-1-chris@chris-wilson.co.uk>
+Content-Disposition: inline
+In-Reply-To: <20201016175411.30406-1-chris@chris-wilson.co.uk>
+User-Agent: Mutt/1.9.4 (2018-02-28)
+X-Proofpoint-UnRewURL: 0 URL was un-rewritten
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 4/4] drm/i915: Relocate cnl_get_ddi_pll()
+X-HPE-SCL: -1
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.312, 18.0.737
+ definitions=2020-11-09_15:2020-11-05,
+ 2020-11-09 signatures=0
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ clxscore=1011 adultscore=0
+ phishscore=0 mlxscore=0 bulkscore=0 spamscore=0 malwarescore=0
+ lowpriorityscore=0 suspectscore=0 priorityscore=1501 impostorscore=0
+ mlxlogscore=999 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2009150000 definitions=main-2011100002
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/gt: Limit VFE threads based on GT
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,66 +71,56 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Reply-To: rwright@hpe.com
+Cc: intel-gfx@lists.freedesktop.org, stable@vger.kernel.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-RnJvbTogVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4KCk1v
-dmUgY25sX2dldF9kZGlfcGxsKCkgaW50byBhIGJldHRlciBzcG90IGZyb20gYmV0d2VlbgppY2xf
-Z2V0X2RkaV9wbGwoKSBhbmQgZGcxX2dldF9kZGlfcGxsKCkuIEFsc28gcmVvcmRlcgp0aGUgY2Fs
-bHMgdG8gdGhlIHNrbCBhbmQgYnh0IGZ1bmN0aW9ucyBiZWNhdXNlIG9jZC4KClNpZ25lZC1vZmYt
-Ynk6IFZpbGxlIFN5cmrDpGzDpCA8dmlsbGUuc3lyamFsYUBsaW51eC5pbnRlbC5jb20+Ci0tLQog
-ZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5LmMgfCA0OCArKysrKysr
-KysrLS0tLS0tLS0tLQogMSBmaWxlIGNoYW5nZWQsIDI0IGluc2VydGlvbnMoKyksIDI0IGRlbGV0
-aW9ucygtKQoKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxf
-ZGlzcGxheS5jIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5LmMK
-aW5kZXggOGFiNjIyYzAxODZlLi4zMjJkYjBmM2JiYzYgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1
-L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheS5jCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9p
-OTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheS5jCkBAIC0xMTAzMywyOCArMTEwMzMsNiBAQCBzdGF0
-aWMgdm9pZCBkZzFfZ2V0X2RkaV9wbGwoc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmRldl9wcml2
-LCBlbnVtIHBvcnQgcG9ydCwKIAlpY2xfc2V0X2FjdGl2ZV9wb3J0X2RwbGwocGlwZV9jb25maWcs
-IHBvcnRfZHBsbF9pZCk7CiB9CiAKLXN0YXRpYyB2b2lkIGNubF9nZXRfZGRpX3BsbChzdHJ1Y3Qg
-ZHJtX2k5MTVfcHJpdmF0ZSAqZGV2X3ByaXYsIGVudW0gcG9ydCBwb3J0LAotCQkJICAgIHN0cnVj
-dCBpbnRlbF9jcnRjX3N0YXRlICpwaXBlX2NvbmZpZykKLXsKLQlzdHJ1Y3QgaW50ZWxfc2hhcmVk
-X2RwbGwgKnBsbDsKLQllbnVtIGludGVsX2RwbGxfaWQgaWQ7Ci0JYm9vbCBwbGxfYWN0aXZlOwot
-CXUzMiB0ZW1wOwotCi0JdGVtcCA9IGludGVsX2RlX3JlYWQoZGV2X3ByaXYsIERQQ0xLQV9DRkdD
-UjApICYgRFBDTEtBX0NGR0NSMF9ERElfQ0xLX1NFTF9NQVNLKHBvcnQpOwotCWlkID0gdGVtcCA+
-PiBEUENMS0FfQ0ZHQ1IwX0RESV9DTEtfU0VMX1NISUZUKHBvcnQpOwotCi0JaWYgKGRybV9XQVJO
-X09OKCZkZXZfcHJpdi0+ZHJtLCBpZCA8IFNLTF9EUExMMCB8fCBpZCA+IFNLTF9EUExMMikpCi0J
-CXJldHVybjsKLQotCXBsbCA9IGludGVsX2dldF9zaGFyZWRfZHBsbF9ieV9pZChkZXZfcHJpdiwg
-aWQpOwotCi0JcGlwZV9jb25maWctPnNoYXJlZF9kcGxsID0gcGxsOwotCXBsbF9hY3RpdmUgPSBp
-bnRlbF9kcGxsX2dldF9od19zdGF0ZShkZXZfcHJpdiwgcGxsLAotCQkJCQkgICAgICZwaXBlX2Nv
-bmZpZy0+ZHBsbF9od19zdGF0ZSk7Ci0JZHJtX1dBUk5fT04oJmRldl9wcml2LT5kcm0sICFwbGxf
-YWN0aXZlKTsKLX0KLQogc3RhdGljIHZvaWQgaWNsX2dldF9kZGlfcGxsKHN0cnVjdCBkcm1faTkx
-NV9wcml2YXRlICpkZXZfcHJpdiwgZW51bSBwb3J0IHBvcnQsCiAJCQkgICAgc3RydWN0IGludGVs
-X2NydGNfc3RhdGUgKnBpcGVfY29uZmlnKQogewpAQCAtMTExMDksNiArMTEwODcsMjggQEAgc3Rh
-dGljIHZvaWQgaWNsX2dldF9kZGlfcGxsKHN0cnVjdCBkcm1faTkxNV9wcml2YXRlICpkZXZfcHJp
-diwgZW51bSBwb3J0IHBvcnQsCiAJaWNsX3NldF9hY3RpdmVfcG9ydF9kcGxsKHBpcGVfY29uZmln
-LCBwb3J0X2RwbGxfaWQpOwogfQogCitzdGF0aWMgdm9pZCBjbmxfZ2V0X2RkaV9wbGwoc3RydWN0
-IGRybV9pOTE1X3ByaXZhdGUgKmRldl9wcml2LCBlbnVtIHBvcnQgcG9ydCwKKwkJCSAgICBzdHJ1
-Y3QgaW50ZWxfY3J0Y19zdGF0ZSAqcGlwZV9jb25maWcpCit7CisJc3RydWN0IGludGVsX3NoYXJl
-ZF9kcGxsICpwbGw7CisJZW51bSBpbnRlbF9kcGxsX2lkIGlkOworCWJvb2wgcGxsX2FjdGl2ZTsK
-Kwl1MzIgdGVtcDsKKworCXRlbXAgPSBpbnRlbF9kZV9yZWFkKGRldl9wcml2LCBEUENMS0FfQ0ZH
-Q1IwKSAmIERQQ0xLQV9DRkdDUjBfRERJX0NMS19TRUxfTUFTSyhwb3J0KTsKKwlpZCA9IHRlbXAg
-Pj4gRFBDTEtBX0NGR0NSMF9ERElfQ0xLX1NFTF9TSElGVChwb3J0KTsKKworCWlmIChkcm1fV0FS
-Tl9PTigmZGV2X3ByaXYtPmRybSwgaWQgPCBTS0xfRFBMTDAgfHwgaWQgPiBTS0xfRFBMTDIpKQor
-CQlyZXR1cm47CisKKwlwbGwgPSBpbnRlbF9nZXRfc2hhcmVkX2RwbGxfYnlfaWQoZGV2X3ByaXYs
-IGlkKTsKKworCXBpcGVfY29uZmlnLT5zaGFyZWRfZHBsbCA9IHBsbDsKKwlwbGxfYWN0aXZlID0g
-aW50ZWxfZHBsbF9nZXRfaHdfc3RhdGUoZGV2X3ByaXYsIHBsbCwKKwkJCQkJICAgICAmcGlwZV9j
-b25maWctPmRwbGxfaHdfc3RhdGUpOworCWRybV9XQVJOX09OKCZkZXZfcHJpdi0+ZHJtLCAhcGxs
-X2FjdGl2ZSk7Cit9CisKIHN0YXRpYyB2b2lkIGJ4dF9nZXRfZGRpX3BsbChzdHJ1Y3QgZHJtX2k5
-MTVfcHJpdmF0ZSAqZGV2X3ByaXYsCiAJCQkJZW51bSBwb3J0IHBvcnQsCiAJCQkJc3RydWN0IGlu
-dGVsX2NydGNfc3RhdGUgKnBpcGVfY29uZmlnKQpAQCAtMTEzODIsMTAgKzExMzgyLDEwIEBAIHN0
-YXRpYyB2b2lkIGhzd19nZXRfZGRpX3BvcnRfc3RhdGUoc3RydWN0IGludGVsX2NydGMgKmNydGMs
-CiAJCWljbF9nZXRfZGRpX3BsbChkZXZfcHJpdiwgcG9ydCwgcGlwZV9jb25maWcpOwogCWVsc2Ug
-aWYgKElTX0NBTk5PTkxBS0UoZGV2X3ByaXYpKQogCQljbmxfZ2V0X2RkaV9wbGwoZGV2X3ByaXYs
-IHBvcnQsIHBpcGVfY29uZmlnKTsKLQllbHNlIGlmIChJU19HRU45X0JDKGRldl9wcml2KSkKLQkJ
-c2tsX2dldF9kZGlfcGxsKGRldl9wcml2LCBwb3J0LCBwaXBlX2NvbmZpZyk7CiAJZWxzZSBpZiAo
-SVNfR0VOOV9MUChkZXZfcHJpdikpCiAJCWJ4dF9nZXRfZGRpX3BsbChkZXZfcHJpdiwgcG9ydCwg
-cGlwZV9jb25maWcpOworCWVsc2UgaWYgKElTX0dFTjlfQkMoZGV2X3ByaXYpKQorCQlza2xfZ2V0
-X2RkaV9wbGwoZGV2X3ByaXYsIHBvcnQsIHBpcGVfY29uZmlnKTsKIAllbHNlCiAJCWhzd19nZXRf
-ZGRpX3BsbChkZXZfcHJpdiwgcG9ydCwgcGlwZV9jb25maWcpOwogCi0tIAoyLjI2LjIKCl9fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWls
-aW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
+On Fri, Oct 16, 2020 at 06:54:11PM +0100, Chris Wilson wrote:
+
+> MEDIA_STATE_VFE only accepts the 'maximum number of threads' in the
+> range [0, n-1] where n is #EU * (#threads/EU) with the number of threads
+> based on plaform and the number of EU based on the number of slices and
+> subslices. This is a fixed number per platform/gt, so appropriately
+> limit the number of threads we spawn to match the device.
+> 
+> Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/2024
+> Fixes: 47f8253d2b89 ("drm/i915/gen7: Clear all EU/L3 residual contexts")
+> Signed-off-by: Chris Wilson <chris at chris-wilson.co.uk>
+> Cc: Mika Kuoppala <mika.kuoppala at linux.intel.com>
+> Cc: Prathap Kumar Valsan <prathap.kumar.valsan at intel.com>
+> Cc: Akeem G Abodunrin <akeem.g.abodunrin at intel.com>
+> Cc: Balestrieri Francesco <francesco.balestrieri at intel.com>
+> Cc: Bloomfield Jon <jon.bloomfield at intel.com>
+> Cc: <stable at vger.kernel.org> # v5.7+
+> ---
+> ...
+
+I tested this patch and found that it prevents the GPU hang I had
+reported on the HP Pavilion Mini 300-020 in
+https://gitlab.freedesktop.org/drm/intel/-/issues/2413.
+
+In more detail: I built linux-next at tag next-20201106 without
+the patch, and booted the result on an Ubuntu 20.04 base system.  As
+expected, I observed the hang that I had previously reported as soon as
+Cinnnamon started when I entered graphical.target.
+
+I then applied this patch - that being the only change to my kernel -
+and I was able to boot to graphical.target 5 times consecutively without
+any GPU hang.
+
+You may add my endorsements:
+
+Tested-by: Randy Wright <rwright@hpe.com>
+Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/2413
+Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/2106
+
+-- 
+Randy Wright            Hewlett Packard Enterprise
+Phone: (970) 898-0998   Mail: rwright@hpe.com
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
