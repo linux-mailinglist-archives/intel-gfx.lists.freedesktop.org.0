@@ -2,63 +2,47 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3CFB52AC9B7
-	for <lists+intel-gfx@lfdr.de>; Tue, 10 Nov 2020 01:32:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 084F62ACA23
+	for <lists+intel-gfx@lfdr.de>; Tue, 10 Nov 2020 02:14:05 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 89DAD897AC;
-	Tue, 10 Nov 2020 00:32:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0F8B789623;
+	Tue, 10 Nov 2020 01:14:02 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mx0a-002e3701.pphosted.com (mx0a-002e3701.pphosted.com
- [148.163.147.86])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 65242897AC
- for <intel-gfx@lists.freedesktop.org>; Tue, 10 Nov 2020 00:32:43 +0000 (UTC)
-Received: from pps.filterd (m0150241.ppops.net [127.0.0.1])
- by mx0a-002e3701.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id
- 0AA0SeA8027951; Tue, 10 Nov 2020 00:32:34 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hpe.com;
- h=date : from : to : cc :
- subject : message-id : reply-to : references : content-type : in-reply-to
- : mime-version; s=pps0720;
- bh=2zjEMjLOhNeoaS4wl1OzUD+rrN6El5yihwd2og3gOZw=;
- b=npjhWvz9qKuD5XdFgETcKMcXetr+XWRxD+d8hK3Le1xAm0DqVJ/zgE8yunCYYAEvSIwO
- js+V/T49t/tYod72paGJDWuXtbpwNaXQqT0oQS/D8RzRU7UOT43jstA0DoUzpAGsStb0
- jARw+nqHneCltGtHk+KL+V5ii4azSVSTGdOl/CCaU5hbnRvYNpdEUxp7qgeVZE2NsVV4
- sJC93E9zJ9JzmGy1Mt131CT+CrzYS7rNyz627vG3Pec0LJgzFmuZuPyOZABythy5F0VB
- rYc/fzGarO876a3bNxK04brIXk2aB70oMmruGqRAG1B+VTNo5OPTVpZju8qCX2bt085J cQ== 
-Received: from g4t3427.houston.hpe.com (g4t3427.houston.hpe.com
- [15.241.140.73])
- by mx0a-002e3701.pphosted.com with ESMTP id 34p4ywdygd-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
- Tue, 10 Nov 2020 00:32:34 +0000
-Received: from g9t2301.houston.hpecorp.net (g9t2301.houston.hpecorp.net
- [16.220.97.129])
- by g4t3427.houston.hpe.com (Postfix) with ESMTP id C390F66;
- Tue, 10 Nov 2020 00:32:33 +0000 (UTC)
-Received: from rfwz62 (rfwz62.americas.hpqcorp.net [10.33.237.8])
- by g9t2301.houston.hpecorp.net (Postfix) with ESMTP id 3D59475;
- Tue, 10 Nov 2020 00:32:33 +0000 (UTC)
-Date: Mon, 9 Nov 2020 17:32:32 -0700
-From: rwright@hpe.com
-To: chris@chris-wilson.co.uk
-Message-ID: <20201110003121.GA17715@rfwz62>
-References: <20201016175411.30406-1-chris@chris-wilson.co.uk>
-Content-Disposition: inline
-In-Reply-To: <20201016175411.30406-1-chris@chris-wilson.co.uk>
-User-Agent: Mutt/1.9.4 (2018-02-28)
-X-Proofpoint-UnRewURL: 0 URL was un-rewritten
+Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D786189623;
+ Tue, 10 Nov 2020 01:13:59 +0000 (UTC)
+From: Thomas Gleixner <tglx@linutronix.de>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
+ s=2020; t=1604970836;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=UkwosGD4CNwpr5O4mn7FToWEjHCGounmVIqa5vjwzhQ=;
+ b=DRjXCHfaWTV+37wSriT1BjBgrVPE6jdQ5QSgYOIapfxJkFIwaFOAyxB9axkmnF7jwFoYyj
+ IwVALzvZ0PuA7RxNph9leDCS6B9rTa4rL3nKcIBy/Am24PTMh01e/A2SQWp6LTkOQfBaj6
+ TPNYDFf29DCqNiv3sgD8nE6enYeIlsYkCGyKDzwB1FGN01/Y3vKoJQtpchwkYWrvNb9W70
+ 4PCnBA8S0oYM/XwkwwZotKzR9vmT9oC6FdGvh5lMI1bLUaS0qdB+ZPTGprUeJSBjnvH0Xv
+ xyRk7zOTS6b0OUuDBNt+X1xYcMB1KSB7gGowiPoSA5hPR5omsqQ5g20Kt4+uKg==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
+ s=2020e; t=1604970836;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=UkwosGD4CNwpr5O4mn7FToWEjHCGounmVIqa5vjwzhQ=;
+ b=acv/dHWHYYmtT1/z0brDNSAmBtlvEk8c07ItXmS/RUDap25yEm8biO9jTMWItRsTlNRTeF
+ x/KI3sqvslL8SkDg==
+To: ira.weiny@intel.com, Andrew Morton <akpm@linux-foundation.org>,
+ Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>,
+ Andy Lutomirski <luto@kernel.org>, Peter Zijlstra <peterz@infradead.org>
+In-Reply-To: <20201009195033.3208459-6-ira.weiny@intel.com>
+References: <20201009195033.3208459-1-ira.weiny@intel.com>
+ <20201009195033.3208459-6-ira.weiny@intel.com>
+Date: Tue, 10 Nov 2020 02:13:56 +0100
+Message-ID: <87h7pyhv3f.fsf@nanos.tec.linutronix.de>
 MIME-Version: 1.0
-X-HPE-SCL: -1
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.312, 18.0.737
- definitions=2020-11-09_15:2020-11-05,
- 2020-11-09 signatures=0
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- clxscore=1011 adultscore=0
- phishscore=0 mlxscore=0 bulkscore=0 spamscore=0 malwarescore=0
- lowpriorityscore=0 suspectscore=0 priorityscore=1501 impostorscore=0
- mlxlogscore=999 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2009150000 definitions=main-2011100002
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/gt: Limit VFE threads based on GT
+Subject: Re: [Intel-gfx] [PATCH RFC PKS/PMEM 05/58] kmap: Introduce
+ k[un]map_thread
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,55 +55,107 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: rwright@hpe.com
-Cc: intel-gfx@lists.freedesktop.org, stable@vger.kernel.org
+Cc: linux-aio@kvack.org, linux-efi@vger.kernel.org, kvm@vger.kernel.org,
+ linux-doc@vger.kernel.org, linux-mmc@vger.kernel.org,
+ Dave Hansen <dave.hansen@linux.intel.com>, dri-devel@lists.freedesktop.org,
+ linux-mm@kvack.org, target-devel@vger.kernel.org,
+ linux-mtd@lists.infradead.org, linux-kselftest@vger.kernel.org,
+ samba-technical@lists.samba.org, Ira Weiny <ira.weiny@intel.com>,
+ ceph-devel@vger.kernel.org, drbd-dev@lists.linbit.com,
+ devel@driverdev.osuosl.org, linux-cifs@vger.kernel.org,
+ linux-nilfs@vger.kernel.org, linux-scsi@vger.kernel.org,
+ linux-nvdimm@lists.01.org, linux-rdma@vger.kernel.org, x86@kernel.org,
+ amd-gfx@lists.freedesktop.org, linux-afs@lists.infradead.org,
+ cluster-devel@redhat.com, linux-cachefs@redhat.com,
+ intel-wired-lan@lists.osuosl.org, xen-devel@lists.xenproject.org,
+ linux-ext4@vger.kernel.org, Fenghua Yu <fenghua.yu@intel.com>,
+ linux-um@lists.infradead.org, intel-gfx@lists.freedesktop.org,
+ ecryptfs@vger.kernel.org, linux-erofs@lists.ozlabs.org,
+ reiserfs-devel@vger.kernel.org, linux-block@vger.kernel.org,
+ linux-bcache@vger.kernel.org, Dan Williams <dan.j.williams@intel.com>,
+ io-uring@vger.kernel.org, linux-nfs@vger.kernel.org,
+ linux-ntfs-dev@lists.sourceforge.net, netdev@vger.kernel.org,
+ Randy Dunlap <rdunlap@infradead.org>, kexec@lists.infradead.org,
+ linux-kernel@vger.kernel.org, linux-f2fs-devel@lists.sourceforge.net,
+ linux-fsdevel@vger.kernel.org, bpf@vger.kernel.org,
+ linuxppc-dev@lists.ozlabs.org, linux-btrfs@vger.kernel.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Oct 16, 2020 at 06:54:11PM +0100, Chris Wilson wrote:
+Ira,
 
-> MEDIA_STATE_VFE only accepts the 'maximum number of threads' in the
-> range [0, n-1] where n is #EU * (#threads/EU) with the number of threads
-> based on plaform and the number of EU based on the number of slices and
-> subslices. This is a fixed number per platform/gt, so appropriately
-> limit the number of threads we spawn to match the device.
-> 
-> Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/2024
-> Fixes: 47f8253d2b89 ("drm/i915/gen7: Clear all EU/L3 residual contexts")
-> Signed-off-by: Chris Wilson <chris at chris-wilson.co.uk>
-> Cc: Mika Kuoppala <mika.kuoppala at linux.intel.com>
-> Cc: Prathap Kumar Valsan <prathap.kumar.valsan at intel.com>
-> Cc: Akeem G Abodunrin <akeem.g.abodunrin at intel.com>
-> Cc: Balestrieri Francesco <francesco.balestrieri at intel.com>
-> Cc: Bloomfield Jon <jon.bloomfield at intel.com>
-> Cc: <stable at vger.kernel.org> # v5.7+
-> ---
-> ...
+On Fri, Oct 09 2020 at 12:49, ira weiny wrote:
+> From: Ira Weiny <ira.weiny@intel.com>
+>
+> To correctly support the semantics of kmap() with Kernel protection keys
+> (PKS), kmap() may be required to set the protections on multiple
+> processors (globally).  Enabling PKS globally can be very expensive
+> depending on the requested operation.  Furthermore, enabling a domain
+> globally reduces the protection afforded by PKS.
+>
+> Most kmap() (Aprox 209 of 229) callers use the map within a single thread and
+> have no need for the protection domain to be enabled globally.  However, the
+> remaining callers do not follow this pattern and, as best I can tell, expect
+> the mapping to be 'global' and available to any thread who may access the
+> mapping.[1]
+>
+> We don't anticipate global mappings to pmem, however in general there is a
+> danger in changing the semantics of kmap().  Effectively, this would cause an
+> unresolved page fault with little to no information about why the failure
+> occurred.
+>
+> To resolve this a number of options were considered.
+>
+> 1) Attempt to change all the thread local kmap() calls to kmap_atomic()[2]
+> 2) Introduce a flags parameter to kmap() to indicate if the mapping should be
+>    global or not
+> 3) Change ~20 call sites to 'kmap_global()' to indicate that they require a
+>    global enablement of the pages.
+> 4) Change ~209 call sites to 'kmap_thread()' to indicate that the mapping is to
+>    be used within that thread of execution only
+>
+> Option 1 is simply not feasible.  Option 2 would require all of the call sites
+> of kmap() to change.  Option 3 seems like a good minimal change but there is a
+> danger that new code may miss the semantic change of kmap() and not get the
+> behavior the developer intended.  Therefore, #4 was chosen.
 
-I tested this patch and found that it prevents the GPU hang I had
-reported on the HP Pavilion Mini 300-020 in
-https://gitlab.freedesktop.org/drm/intel/-/issues/2413.
+There is Option #5:
 
-In more detail: I built linux-next at tag next-20201106 without
-the patch, and booted the result on an Ubuntu 20.04 base system.  As
-expected, I observed the hang that I had previously reported as soon as
-Cinnnamon started when I entered graphical.target.
+Convert the thread local kmap() invocations to the proposed kmap_local()
+interface which is coming along [1].
 
-I then applied this patch - that being the only change to my kernel -
-and I was able to boot to graphical.target 5 times consecutively without
-any GPU hang.
+That solves a couple of issues:
 
-You may add my endorsements:
+ 1) It relieves the current kmap_atomic() usage sites from the implict
+    pagefault/preempt disable semantics which apply even when
+    CONFIG_HIGHMEM is disabled. kmap_local() still can be invoked from
+    atomic context.
 
-Tested-by: Randy Wright <rwright@hpe.com>
-Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/2413
-Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/2106
+ 2) Due to #1 it allows to replace the conditional usage of kmap() and
+    kmap_atomic() for purely thread local mappings.
 
--- 
-Randy Wright            Hewlett Packard Enterprise
-Phone: (970) 898-0998   Mail: rwright@hpe.com
+ 3) It puts the burden on the HIGHMEM inflicted systems
+
+ 4) It is actually more efficient for most of the pure thread local use
+    cases on HIGHMEM inflicted systems because it avoids the overhead of
+    the global lock and the potential kmap slot exhaustion. A potential
+    preemption will be more expensive, but that's not really the case we
+    want to optimize for.
+
+ 5) It solves the RT issue vs. kmap_atomic()
+
+So instead of creating yet another variety of kmap() which is just
+scratching the particular PKRS itch, can we please consolidate all of
+that on the wider reaching kmap_local() approach?
+
+Thanks,
+
+        tglx
+     
+[1] https://lore.kernel.org/lkml/20201103092712.714480842@linutronix.de/
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
