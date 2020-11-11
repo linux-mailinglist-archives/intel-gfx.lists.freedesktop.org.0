@@ -1,45 +1,43 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E6C0C2AE669
-	for <lists+intel-gfx@lfdr.de>; Wed, 11 Nov 2020 03:29:17 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 02FDA2AE8A1
+	for <lists+intel-gfx@lfdr.de>; Wed, 11 Nov 2020 07:10:28 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BCBF989C19;
-	Wed, 11 Nov 2020 02:29:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D1FF989C1E;
+	Wed, 11 Nov 2020 06:10:26 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BDDC289BE8;
- Wed, 11 Nov 2020 02:29:13 +0000 (UTC)
-IronPort-SDR: dPPwmPiC6kRaXllHx+EfOXZpgXpQohiCYLhnl0RHBi+FYxO0j2UkLf2BkEW7CjCp8Cq8S4A+bi
- 61gVe9vL26Cg==
-X-IronPort-AV: E=McAfee;i="6000,8403,9801"; a="188059601"
-X-IronPort-AV: E=Sophos;i="5.77,468,1596524400"; 
- d="asc'?scan'208";a="188059601"
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-X-Amp-File-Uploaded: False
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Nov 2020 18:29:11 -0800
-IronPort-SDR: 5X9dokFnhpEvAFBUB2K5/8AZV96m5qV4k5OKyjc2wLc4dd3Z3lIL1Lg2SzwpqMV5ZFmVXPMvMZ
- /3tQpWRC4wKg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.77,468,1596524400"; 
- d="asc'?scan'208";a="356431843"
-Received: from zhen-hp.sh.intel.com (HELO zhen-hp) ([10.239.160.147])
- by fmsmga004.fm.intel.com with ESMTP; 10 Nov 2020 18:29:09 -0800
-Date: Wed, 11 Nov 2020 10:14:54 +0800
-From: Zhenyu Wang <zhenyuw@linux.intel.com>
-To: Deepak R Varma <mh12gx2825@gmail.com>
-Message-ID: <20201111021454.GP1239@zhen-hp.sh.intel.com>
-References: <20201104121532.GA48202@localhost>
+Received: from ozlabs.org (ozlabs.org [203.11.71.1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2787D89C1E;
+ Wed, 11 Nov 2020 06:10:25 +0000 (UTC)
+Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest
+ SHA256) (No client certificate requested)
+ by mail.ozlabs.org (Postfix) with ESMTPSA id 4CWDqJ0lPHz9sRK;
+ Wed, 11 Nov 2020 17:10:20 +1100 (AEDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=canb.auug.org.au;
+ s=201702; t=1605075024;
+ bh=yKV3u/MqYNaME4dLCEtSbbFjVIZ++iGA2iYh5KcMQlA=;
+ h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+ b=NZeRFYOvmu/e4bx+uB83TqamgV2EJNMS7oBtocp2O74zLnyrEz5I3xVr/0FqMKnel
+ IaOs0uafbgMP9CJvYLmdPpZsIuys9lO/aAoewdDrMBMa6Nyp3DINhlE1uF1r8r+wla
+ A3omPPz4KKGd833Ihq1wrOst5tSUtsqLLxIjayrnniOZ7EcUu1Gc2HC9M1zyMuJjjg
+ b8nVSyZMABtrQXIwwg1HR7Xxsv7Jmlruxqzc1Q87Xa9M8FgnvknYWL8r5vP0Kcxy0k
+ M+ZZxS3j7LXWdwLpS33tC6dVk54qezTEPCWBqRNaQEqcRW+7bpAo1pi3JWhdcha5N1
+ H5kgryLSqe0wA==
+Date: Wed, 11 Nov 2020 17:10:15 +1100
+From: Stephen Rothwell <sfr@canb.auug.org.au>
+To: "Michael S. Tsirkin" <mst@redhat.com>
+Message-ID: <20201111171015.631ffd0e@canb.auug.org.au>
+In-Reply-To: <20201102051822-mutt-send-email-mst@kernel.org>
+References: <20201102124327.2f82b2a7@canb.auug.org.au>
+ <20201102051822-mutt-send-email-mst@kernel.org>
 MIME-Version: 1.0
-In-Reply-To: <20201104121532.GA48202@localhost>
-User-Agent: Mutt/1.10.0 (2018-05-17)
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/gvt: replace idr_init() by
- idr_init_base()
+Subject: Re: [Intel-gfx] linux-next: build failure after merge of the
+ drm-misc tree
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,92 +50,98 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: Zhenyu Wang <zhenyuw@linux.intel.com>
-Cc: David Airlie <airlied@linux.ie>, intel-gfx@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- intel-gvt-dev@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============1817607847=="
+Cc: Joerg Roedel <jroedel@suse.de>, Daniel Vetter <daniel.vetter@ffwll.ch>,
+ Intel Graphics <intel-gfx@lists.freedesktop.org>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+ DRI <dri-devel@lists.freedesktop.org>,
+ Linux Next Mailing List <linux-next@vger.kernel.org>,
+ Christian =?UTF-8?B?S8O2bmln?= <christian.koenig@amd.com>
+Content-Type: multipart/mixed; boundary="===============0199784313=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+--===============0199784313==
+Content-Type: multipart/signed; boundary="Sig_/I+N15pMdX+kqDfWV159qK9v";
+ protocol="application/pgp-signature"; micalg=pgp-sha256
 
---===============1817607847==
-Content-Type: multipart/signed; micalg=pgp-sha1;
-	protocol="application/pgp-signature"; boundary="EdRE1UL8d3mMOE6m"
-Content-Disposition: inline
-
-
---EdRE1UL8d3mMOE6m
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+--Sig_/I+N15pMdX+kqDfWV159qK9v
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: quoted-printable
 
-On 2020.11.04 17:45:32 +0530, Deepak R Varma wrote:
-> idr_init() uses base 0 which is an invalid identifier. The new function
-> idr_init_base allows IDR to set the ID lookup from base 1. This avoids
-> all lookups that otherwise starts from 0 since 0 is always unused.
->=20
-> References: commit 6ce711f27500 ("idr: Make 1-based IDRs more efficient")
->=20
-> Signed-off-by: Deepak R Varma <mh12gx2825@gmail.com>
-> ---
->  drivers/gpu/drm/i915/gvt/gvt.c  | 2 +-
->  drivers/gpu/drm/i915/gvt/vgpu.c | 2 +-
->  2 files changed, 2 insertions(+), 2 deletions(-)
->=20
-> diff --git a/drivers/gpu/drm/i915/gvt/gvt.c b/drivers/gpu/drm/i915/gvt/gv=
-t.c
-> index c7c561237883..45b492edbb19 100644
-> --- a/drivers/gpu/drm/i915/gvt/gvt.c
-> +++ b/drivers/gpu/drm/i915/gvt/gvt.c
-> @@ -312,7 +312,7 @@ int intel_gvt_init_device(struct drm_i915_private *i9=
-15)
-> =20
->  	gvt_dbg_core("init gvt device\n");
-> =20
-> -	idr_init(&gvt->vgpu_idr);
-> +	idr_init_base(&gvt->vgpu_idr, 1);
->  	spin_lock_init(&gvt->scheduler.mmio_context_lock);
->  	mutex_init(&gvt->lock);
->  	mutex_init(&gvt->sched_lock);
-> diff --git a/drivers/gpu/drm/i915/gvt/vgpu.c b/drivers/gpu/drm/i915/gvt/v=
-gpu.c
-> index f6d7e33c7099..1c8e63f84134 100644
-> --- a/drivers/gpu/drm/i915/gvt/vgpu.c
-> +++ b/drivers/gpu/drm/i915/gvt/vgpu.c
-> @@ -393,7 +393,7 @@ static struct intel_vgpu *__intel_gvt_create_vgpu(str=
-uct intel_gvt *gvt,
->  	mutex_init(&vgpu->dmabuf_lock);
->  	INIT_LIST_HEAD(&vgpu->dmabuf_obj_list_head);
->  	INIT_RADIX_TREE(&vgpu->page_track_tree, GFP_KERNEL);
-> -	idr_init(&vgpu->object_idr);
-> +	idr_init_base(&vgpu->object_idr, 1);
->  	intel_vgpu_init_cfg_space(vgpu, param->primary);
->  	vgpu->d3_entered =3D false;
-> =20
-> --=20
+Hi Michael,
 
-Looks good to me. Thanks!
+On Mon, 2 Nov 2020 05:19:06 -0500 "Michael S. Tsirkin" <mst@redhat.com> wro=
+te:
+>
+> On Mon, Nov 02, 2020 at 12:43:27PM +1100, Stephen Rothwell wrote:
+> >=20
+> > After merging the drm-misc tree, today's linux-next build (arm
+> > multi_v7_defconfig) failed like this:
+> >=20
+> > In file included from drivers/gpu/drm/nouveau/nouveau_ttm.c:26:
+> > include/linux/swiotlb.h: In function 'swiotlb_max_mapping_size':
+> > include/linux/swiotlb.h:99:9: error: 'SIZE_MAX' undeclared (first use i=
+n this function)
+> >    99 |  return SIZE_MAX;
+> >       |         ^~~~~~~~
+> > include/linux/swiotlb.h:7:1: note: 'SIZE_MAX' is defined in header '<st=
+dint.h>'; did you forget to '#include <stdint.h>'?
+> >     6 | #include <linux/init.h>
+> >   +++ |+#include <stdint.h>
+> >     7 | #include <linux/types.h>
+> > include/linux/swiotlb.h:99:9: note: each undeclared identifier is repor=
+ted only once for each function it appears in
+> >    99 |  return SIZE_MAX;
+> >       |         ^~~~~~~~
+> >=20
+> > Caused by commit
+> >=20
+> >   abe420bfae52 ("swiotlb: Introduce swiotlb_max_mapping_size()")
+> >=20
+> > but only exposed by commit
+> >=20
+> >   4dbafbd30aef ("drm/nouveu: fix swiotlb include")
+> >=20
+> > I applied the following fix for today:
+> >=20
+> > From: Stephen Rothwell <sfr@canb.auug.org.au>
+> > Date: Mon, 2 Nov 2020 12:34:57 +1100
+> > Subject: [PATCH] swiotlb: using SIZE_MAX needs limits.h included
+> >=20
+> > Fixes: abe420bfae52 ("swiotlb: Introduce swiotlb_max_mapping_size()")
+> > Signed-off-by: Stephen Rothwell <sfr@canb.auug.org.au> =20
+>=20
+> Acked-by: Michael S. Tsirkin <mst@redhat.com>
+>=20
+> I guess it makes sense to pick this up for this release directly.
+> I'll merge this unless there are any objections.
 
-Reviewed-by: Zhenyu Wang <zhenyuw@linux.intel.com>
+Christoph is right that the include should not be conditional.  But I
+have not tested that that does not introduce some other problems.
 
 --=20
+Cheers,
+Stephen Rothwell
 
-$gpg --keyserver wwwkeys.pgp.net --recv-keys 4D781827
-
---EdRE1UL8d3mMOE6m
-Content-Type: application/pgp-signature; name="signature.asc"
+--Sig_/I+N15pMdX+kqDfWV159qK9v
+Content-Type: application/pgp-signature
+Content-Description: OpenPGP digital signature
 
 -----BEGIN PGP SIGNATURE-----
 
-iF0EARECAB0WIQTXuabgHDW6LPt9CICxBBozTXgYJwUCX6tJHgAKCRCxBBozTXgY
-Jyv8AJ0ZLKM2ez02e517XOPfJGtsLxANrwCeITSsq29wK0WjSZLfMr4lr6t1kwA=
-=0VA9
+iQEzBAEBCAAdFiEENIC96giZ81tWdLgKAVBC80lX0GwFAl+rgEcACgkQAVBC80lX
+0GwJ+wf/Upt8VmibWkOP6DcrxQ6kKq81c4GyROE6dRtbHPfgTWkGq9whjE3uc6rZ
+yyDStMrlbOIMvru7hbqkkhulZy0BUTznzvtaB3+WmlnLlIpbpVhcktqXzB+Tn1Bx
+POgIPnGKa1wvWAjo9qXiXrcVwZbyUaDkLgYSBz4WUJkStZLI3mjiq5qp+nk3tEYP
+SJE0IuV/+TR4nSYr6TQRkZwEwBPEJCibChEOQQb7Ra1NGPCvvcefet11I1oJKX4S
+JHZCHGcaEiiVfm6BQbozc4sdSnO6hfhsJ85a2Z1zaJO/u1S1REORWdGW6+T/wzPz
+Qi661bDkIgKvyD7/DXeQu78KbfdTtQ==
+=IgWG
 -----END PGP SIGNATURE-----
 
---EdRE1UL8d3mMOE6m--
+--Sig_/I+N15pMdX+kqDfWV159qK9v--
 
---===============1817607847==
+--===============0199784313==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -148,4 +152,4 @@ Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 
---===============1817607847==--
+--===============0199784313==--
