@@ -2,31 +2,42 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1412D2AF288
-	for <lists+intel-gfx@lfdr.de>; Wed, 11 Nov 2020 14:50:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9FAC52AF2C3
+	for <lists+intel-gfx@lfdr.de>; Wed, 11 Nov 2020 14:59:01 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 13A958925A;
-	Wed, 11 Nov 2020 13:50:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F1E1389E98;
+	Wed, 11 Nov 2020 13:58:59 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 549B38925A
- for <intel-gfx@lists.freedesktop.org>; Wed, 11 Nov 2020 13:50:39 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 22962162-1500050 
- for multiple; Wed, 11 Nov 2020 13:50:25 +0000
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Wed, 11 Nov 2020 13:50:24 +0000
-Message-Id: <20201111135024.28794-1-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20201111132525.3751-1-chris@chris-wilson.co.uk>
-References: <20201111132525.3751-1-chris@chris-wilson.co.uk>
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3097889E98
+ for <intel-gfx@lists.freedesktop.org>; Wed, 11 Nov 2020 13:58:58 +0000 (UTC)
+IronPort-SDR: QVmmtvlGFAfn7RUHlDhHq9ptTC/av/bO4CrMSOCdMdPOlRIOGr1aodkziNXMA7hCbO0gZMAnTY
+ GhOLCNyYWFbg==
+X-IronPort-AV: E=McAfee;i="6000,8403,9801"; a="169363888"
+X-IronPort-AV: E=Sophos;i="5.77,469,1596524400"; d="scan'208";a="169363888"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Nov 2020 05:58:55 -0800
+IronPort-SDR: pFHfDGXKbjV9D5+ZBdAPSix55OYsa+x4tAWEnXpSuoRMzRBp5fnon87V8v1HVHg0fOrzBmvGHo
+ 1VbzlH+NNmdQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.77,469,1596524400"; d="scan'208";a="365935542"
+Received: from gaia.fi.intel.com ([10.237.72.192])
+ by FMSMGA003.fm.intel.com with ESMTP; 11 Nov 2020 05:58:54 -0800
+Received: by gaia.fi.intel.com (Postfix, from userid 1000)
+ id 0C40F5C0D57; Wed, 11 Nov 2020 15:57:00 +0200 (EET)
+From: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
+In-Reply-To: <20201111123726.4158-1-chris@chris-wilson.co.uk>
+References: <20201111123726.4158-1-chris@chris-wilson.co.uk>
+Date: Wed, 11 Nov 2020 15:57:00 +0200
+Message-ID: <87imacdmj7.fsf@gaia.fi.intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v2] drm/i915/gt: Show all active timelines for
- debugging
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/gt: Include semaphore status in
+ print_request()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,173 +56,41 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Include the active timelines for debugfs/i915_engine_info, so that we
-can see which have unready requests inflight which are not shown
-otherwise.
+Chris Wilson <chris@chris-wilson.co.uk> writes:
 
-Suggested-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
----
- drivers/gpu/drm/i915/gt/intel_timeline.c | 79 ++++++++++++++++++++++++
- drivers/gpu/drm/i915/gt/intel_timeline.h |  8 +++
- drivers/gpu/drm/i915/i915_debugfs.c      | 16 ++---
- 3 files changed, 96 insertions(+), 7 deletions(-)
+> When pretty-printing the requests for debug, also so the status of any
+s/so/show
+> semaphore waits as part of its runnable status.
+>
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> ---
+>  drivers/gpu/drm/i915/gt/intel_engine_cs.c | 1 +
+>  1 file changed, 1 insertion(+)
+>
+> diff --git a/drivers/gpu/drm/i915/gt/intel_engine_cs.c b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+> index 0b31670343f5..1ed84ee8ce41 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+> @@ -1321,6 +1321,7 @@ static void print_request(struct drm_printer *m,
+>  		   rq->fence.context, rq->fence.seqno,
+>  		   i915_request_completed(rq) ? "!" :
+>  		   i915_request_started(rq) ? "*" :
+> +		   !i915_sw_fence_signaled(&rq->semaphore) ? "&" :
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_timeline.c b/drivers/gpu/drm/i915/gt/intel_timeline.c
-index 7ea94d201fe6..b0037d09589a 100644
---- a/drivers/gpu/drm/i915/gt/intel_timeline.c
-+++ b/drivers/gpu/drm/i915/gt/intel_timeline.c
-@@ -617,6 +617,85 @@ void intel_gt_fini_timelines(struct intel_gt *gt)
- 	GEM_BUG_ON(!list_empty(&timelines->hwsp_free_list));
- }
- 
-+void intel_gt_show_timelines(struct intel_gt *gt,
-+			     struct drm_printer *m,
-+			     void (*show_request)(struct drm_printer *m,
-+						  struct i915_request *rq,
-+						  const char *prefix))
-+{
-+	struct intel_gt_timelines *timelines = &gt->timelines;
-+	struct intel_timeline *tl, *tn;
-+	LIST_HEAD(free);
-+
-+	spin_lock(&timelines->lock);
-+	list_for_each_entry_safe(tl, tn, &timelines->active_list, link) {
-+		unsigned long count, ready, inflight;
-+		struct i915_request *rq, *rn;
-+		struct dma_fence *fence;
-+
-+		if (!mutex_trylock(&tl->mutex))
-+			continue;
-+
-+		intel_timeline_get(tl);
-+		GEM_BUG_ON(!atomic_read(&tl->active_count));
-+		atomic_inc(&tl->active_count); /* pin the list element */
-+		spin_unlock(&timelines->lock);
-+
-+		count = 0;
-+		ready = 0;
-+		inflight = 0;
-+		list_for_each_entry_safe(rq, rn, &tl->requests, link) {
-+			if (i915_request_completed(rq))
-+				continue;
-+
-+			count++;
-+			if (i915_request_is_ready(rq))
-+				ready++;
-+			if (i915_request_is_active(rq))
-+				inflight++;
-+		}
-+
-+		drm_printf(m, "Timeline %llx: { ", tl->fence_context);
-+		drm_printf(m, "count %lu, ready: %lu, inflight: %lu",
-+			   count, ready, inflight);
-+		drm_printf(m, ", seqno: { current: %d, last: %d }",
-+			   *tl->hwsp_seqno, tl->seqno);
-+		fence = i915_active_fence_get(&tl->last_request);
-+		if (fence) {
-+			drm_printf(m, ", engine: %s",
-+				   to_request(fence)->engine->name);
-+			dma_fence_put(fence);
-+		}
-+		drm_printf(m, " }\n");
-+
-+		if (show_request) {
-+			list_for_each_entry_safe(rq, rn, &tl->requests, link)
-+				show_request(m, rq,
-+					     i915_request_is_active(rq) ? "  E" :
-+					     i915_request_is_ready(rq) ? "  Q" :
-+					     "  U");
-+		}
-+
-+		mutex_unlock(&tl->mutex);
-+		spin_lock(&timelines->lock);
-+
-+		/* Resume list iteration after reacquiring spinlock */
-+		list_safe_reset_next(tl, tn, link);
-+		if (atomic_dec_and_test(&tl->active_count))
-+			list_del(&tl->link);
-+
-+		/* Defer the final release to after the spinlock */
-+		if (refcount_dec_and_test(&tl->kref.refcount)) {
-+			GEM_BUG_ON(atomic_read(&tl->active_count));
-+			list_add(&tl->link, &free);
-+		}
-+	}
-+	spin_unlock(&timelines->lock);
-+
-+	list_for_each_entry_safe(tl, tn, &free, link)
-+		__intel_timeline_free(&tl->kref);
-+}
-+
- #if IS_ENABLED(CONFIG_DRM_I915_SELFTEST)
- #include "gt/selftests/mock_timeline.c"
- #include "gt/selftest_timeline.c"
-diff --git a/drivers/gpu/drm/i915/gt/intel_timeline.h b/drivers/gpu/drm/i915/gt/intel_timeline.h
-index 9882cd911d8e..4a4c9a18e0b4 100644
---- a/drivers/gpu/drm/i915/gt/intel_timeline.h
-+++ b/drivers/gpu/drm/i915/gt/intel_timeline.h
-@@ -31,6 +31,8 @@
- #include "i915_syncmap.h"
- #include "intel_timeline_types.h"
- 
-+struct drm_printer;
-+
- struct intel_timeline *
- __intel_timeline_create(struct intel_gt *gt,
- 			struct i915_vma *global_hwsp,
-@@ -106,4 +108,10 @@ int intel_timeline_read_hwsp(struct i915_request *from,
- void intel_gt_init_timelines(struct intel_gt *gt);
- void intel_gt_fini_timelines(struct intel_gt *gt);
- 
-+void intel_gt_show_timelines(struct intel_gt *gt,
-+			     struct drm_printer *m,
-+			     void (*show_request)(struct drm_printer *m,
-+						  struct i915_request *rq,
-+						  const char *prefix));
-+
- #endif
-diff --git a/drivers/gpu/drm/i915/i915_debugfs.c b/drivers/gpu/drm/i915/i915_debugfs.c
-index 77e76b665098..354b95c438d0 100644
---- a/drivers/gpu/drm/i915/i915_debugfs.c
-+++ b/drivers/gpu/drm/i915/i915_debugfs.c
-@@ -1306,24 +1306,26 @@ static int i915_runtime_pm_status(struct seq_file *m, void *unused)
- 
- static int i915_engine_info(struct seq_file *m, void *unused)
- {
--	struct drm_i915_private *dev_priv = node_to_i915(m->private);
-+	struct drm_i915_private *i915 = node_to_i915(m->private);
- 	struct intel_engine_cs *engine;
- 	intel_wakeref_t wakeref;
- 	struct drm_printer p;
- 
--	wakeref = intel_runtime_pm_get(&dev_priv->runtime_pm);
-+	wakeref = intel_runtime_pm_get(&i915->runtime_pm);
- 
- 	seq_printf(m, "GT awake? %s [%d]\n",
--		   yesno(dev_priv->gt.awake),
--		   atomic_read(&dev_priv->gt.wakeref.count));
-+		   yesno(i915->gt.awake),
-+		   atomic_read(&i915->gt.wakeref.count));
- 	seq_printf(m, "CS timestamp frequency: %u Hz\n",
--		   RUNTIME_INFO(dev_priv)->cs_timestamp_frequency_hz);
-+		   RUNTIME_INFO(i915)->cs_timestamp_frequency_hz);
- 
- 	p = drm_seq_file_printer(m);
--	for_each_uabi_engine(engine, dev_priv)
-+	for_each_uabi_engine(engine, i915)
- 		intel_engine_dump(engine, &p, "%s\n", engine->name);
- 
--	intel_runtime_pm_put(&dev_priv->runtime_pm, wakeref);
-+	intel_gt_show_timelines(&i915->gt, &p, NULL);
-+
-+	intel_runtime_pm_put(&i915->runtime_pm, wakeref);
- 
- 	return 0;
- }
--- 
-2.20.1
+major demon it is then.
 
+Reviewed-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+
+>  		   "",
+>  		   test_bit(DMA_FENCE_FLAG_SIGNALED_BIT,
+>  			    &rq->fence.flags) ? "+" :
+> -- 
+> 2.20.1
+>
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
