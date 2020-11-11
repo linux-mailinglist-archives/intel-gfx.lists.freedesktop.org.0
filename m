@@ -1,43 +1,39 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4927C2AE922
-	for <lists+intel-gfx@lfdr.de>; Wed, 11 Nov 2020 07:36:05 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id CD8EB2AEA26
+	for <lists+intel-gfx@lfdr.de>; Wed, 11 Nov 2020 08:27:53 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CCC7489ECB;
-	Wed, 11 Nov 2020 06:36:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BFA1B89DEC;
+	Wed, 11 Nov 2020 07:27:50 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1A9BB89EB8;
- Wed, 11 Nov 2020 06:36:01 +0000 (UTC)
-IronPort-SDR: +rOsKTkBzjXX+/jjeuFTX7mAt+3B1ANMwqfTEpqEJPVR51MT1G20S5PR0MXqOmyDYCKmIdnnE0
- J5aghDEf5d7A==
-X-IronPort-AV: E=McAfee;i="6000,8403,9801"; a="166593761"
-X-IronPort-AV: E=Sophos;i="5.77,468,1596524400"; d="scan'208";a="166593761"
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1E3E289DEC
+ for <intel-gfx@lists.freedesktop.org>; Wed, 11 Nov 2020 07:27:49 +0000 (UTC)
+IronPort-SDR: vplybNzsEd0Fzn9lYC+ZWvdxnaAbUMhQH73WhxE3f01iFP2tbyjmrPfXxltGYZ6jkNey/d4tIc
+ Q9mSuhN9cHVw==
+X-IronPort-AV: E=McAfee;i="6000,8403,9801"; a="188085666"
+X-IronPort-AV: E=Sophos;i="5.77,468,1596524400"; d="scan'208";a="188085666"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Nov 2020 22:36:00 -0800
-IronPort-SDR: wmglir2IY2V/eAhvspz7QmZtonDnXit/yQxYLH1FldL1p7l/sPJmj1axkUvlanTbz22D/125LB
- BYWxZstfDl7Q==
-X-IronPort-AV: E=Sophos;i="5.77,468,1596524400"; d="scan'208";a="366139473"
-Received: from genxfsim-desktop.iind.intel.com ([10.223.74.178])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Nov 2020 22:35:57 -0800
-From: Anshuman Gupta <anshuman.gupta@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	dri-devel@lists.freedesktop.org
-Date: Wed, 11 Nov 2020 11:50:51 +0530
-Message-Id: <20201111062051.11529-18-anshuman.gupta@intel.com>
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Nov 2020 23:27:48 -0800
+IronPort-SDR: QUByhohdeG4B/IIgElLqxIDx6QHdYTlTbF/a6QQlFMyFcapd+kI+y3QoEllnimTA8Pkt+R51+w
+ GnubD815jF0g==
+X-IronPort-AV: E=Sophos;i="5.77,468,1596524400"; d="scan'208";a="360443653"
+Received: from rdvivi-losangeles.jf.intel.com ([10.165.21.201])
+ by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Nov 2020 23:27:48 -0800
+From: Rodrigo Vivi <rodrigo.vivi@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Wed, 11 Nov 2020 02:28:59 -0500
+Message-Id: <20201111072859.1186070-1-rodrigo.vivi@intel.com>
 X-Mailer: git-send-email 2.26.2
-In-Reply-To: <20201111062051.11529-1-anshuman.gupta@intel.com>
-References: <20201111062051.11529-1-anshuman.gupta@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v5 17/17] drm/i915/hdcp: Enable HDCP 2.2 MST
- support
+Subject: [Intel-gfx] [PATCH] drm/i915/tgl: Fix Media power gate sequence.
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,145 +46,138 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jani.nikula@intel.com, seanpaul@chromium.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Enable HDCP 2.2 over DP MST.
-Authenticate and enable port encryption only once for
-an active HDCP 2.2 session, once port is authenticated
-and encrypted enable encryption for each stream that
-requires encryption on this port.
+Some media power gates are disabled by default. commit 5d86923060fc
+("drm/i915/tgl: Enable VD HCP/MFX sub-pipe power gating")
+tried to enable it, but it duplicated an existent register. So, RC6
+sequences ended up overwriting it.
 
-Similarly disable the stream encryption for each encrypted
-stream, once all encrypted stream encryption is disabled,
-disable the port HDCP encryption and deauthenticate the port.
+The open question now is it should be independent of RC6 sequence,
+but anyway this power gating control for now is very tied to the
+RC6 sequence, so let's keep it that way for now.
 
-v2:
-- Add connector details in drm_err. [Ram]
-- 's/port_auth/hdcp_auth_status'. [Ram]
-- Added a debug print for stream enc.
-
-Cc: Ramalingam C <ramalingam.c@intel.com>
-Reviewed-by: Uma Shankar <uma.shankar@intel.com>
-Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
+Fixes: 5d86923060fc ("drm/i915/tgl: Enable VD HCP/MFX sub-pipe power gating")
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+Cc: stable@vger.kernel.org#v5.5+
+Cc: Dale B Stimson <dale.b.stimson@intel.com>
+Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_hdcp.c | 53 ++++++++++++++++++++++-
- 1 file changed, 51 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/i915/gt/intel_rc6.c | 20 ++++++++++++++++----
+ drivers/gpu/drm/i915/i915_reg.h     | 12 +++++-------
+ drivers/gpu/drm/i915/intel_pm.c     | 16 ----------------
+ 3 files changed, 21 insertions(+), 27 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c b/drivers/gpu/drm/i915/display/intel_hdcp.c
-index 0c10afc42f01..95f544564fb1 100644
---- a/drivers/gpu/drm/i915/display/intel_hdcp.c
-+++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
-@@ -1695,6 +1695,36 @@ static int hdcp2_authenticate_sink(struct intel_connector *connector)
- 	return ret;
- }
+diff --git a/drivers/gpu/drm/i915/gt/intel_rc6.c b/drivers/gpu/drm/i915/gt/intel_rc6.c
+index ab675d35030d..b9e56859daf6 100644
+--- a/drivers/gpu/drm/i915/gt/intel_rc6.c
++++ b/drivers/gpu/drm/i915/gt/intel_rc6.c
+@@ -56,9 +56,12 @@ static inline void set(struct intel_uncore *uncore, i915_reg_t reg, u32 val)
  
-+static int hdcp2_enable_stream_encryption(struct intel_connector *connector)
-+{
-+	struct intel_digital_port *dig_port = intel_attached_dig_port(connector);
-+	struct drm_i915_private *dev_priv = to_i915(connector->base.dev);
-+	struct intel_hdcp *hdcp = &connector->hdcp;
-+	enum transcoder cpu_transcoder = hdcp->cpu_transcoder;
-+	enum port port = dig_port->base.port;
-+	int ret = 0;
-+
-+	if (!(intel_de_read(dev_priv, HDCP2_STATUS(dev_priv, cpu_transcoder, port)) &
-+			    LINK_ENCRYPTION_STATUS)) {
-+		drm_err(&dev_priv->drm, "[CONNECTOR:%d:%s] HDCP 2.2 Link is not encrypted\n",
-+			connector->base.base.id, connector->base.name);
-+		return -EPERM;
-+	}
-+
-+	if (hdcp->shim->stream_2_2_encryption) {
-+		ret = hdcp->shim->stream_2_2_encryption(connector, true);
-+		if (ret) {
-+			drm_err(&dev_priv->drm, "[CONNECTOR:%d:%s] Failed to enable HDCP 2.2 stream enc\n",
-+				connector->base.base.id, connector->base.name);
-+			return ret;
-+		}
-+		drm_dbg_kms(&dev_priv->drm, "HDCP 2.2 transcoder: %s stream encrypted\n",
-+			    transcoder_name(hdcp->stream_transcoder));
-+	}
-+
-+	return ret;
-+}
-+
- static int hdcp2_enable_encryption(struct intel_connector *connector)
+ static void gen11_rc6_enable(struct intel_rc6 *rc6)
  {
- 	struct intel_digital_port *dig_port = intel_attached_dig_port(connector);
-@@ -1833,7 +1863,7 @@ static int hdcp2_authenticate_and_encrypt(struct intel_connector *connector)
- 			drm_dbg_kms(&i915->drm, "Port deauth failed.\n");
- 	}
++	struct drm_i915_private *i915 = rc6_to_i915(rc6);
+ 	struct intel_uncore *uncore = rc6_to_uncore(rc6);
+ 	struct intel_engine_cs *engine;
+ 	enum intel_engine_id id;
++	u32 pg_enable = 0;
++	int i;
  
--	if (!ret) {
-+	if (!ret && !dig_port->hdcp_auth_status) {
- 		/*
- 		 * Ensuring the required 200mSec min time interval between
- 		 * Session Key Exchange and encryption.
-@@ -1848,6 +1878,8 @@ static int hdcp2_authenticate_and_encrypt(struct intel_connector *connector)
- 		}
- 	}
+ 	/* 2b: Program RC6 thresholds.*/
+ 	set(uncore, GEN6_RC6_WAKE_RATE_LIMIT, 54 << 16 | 85);
+@@ -102,10 +105,19 @@ static void gen11_rc6_enable(struct intel_rc6 *rc6)
+ 		GEN6_RC_CTL_RC6_ENABLE |
+ 		GEN6_RC_CTL_EI_MODE(1);
  
-+	ret = hdcp2_enable_stream_encryption(connector);
+-	set(uncore, GEN9_PG_ENABLE,
+-	    GEN9_RENDER_PG_ENABLE |
+-	    GEN9_MEDIA_PG_ENABLE |
+-	    GEN11_MEDIA_SAMPLER_PG_ENABLE);
++	pg_enable = GEN9_RENDER_PG_ENABLE |
++		GEN9_MEDIA_PG_ENABLE |
++		GEN11_MEDIA_SAMPLER_PG_ENABLE;
 +
- 	return ret;
- }
- 
-@@ -1893,11 +1925,26 @@ static int _intel_hdcp2_disable(struct intel_connector *connector)
- 	struct intel_digital_port *dig_port = intel_attached_dig_port(connector);
- 	struct drm_i915_private *i915 = to_i915(connector->base.dev);
- 	struct hdcp_port_data *data = &dig_port->hdcp_port_data;
-+	struct intel_hdcp *hdcp = &connector->hdcp;
- 	int ret;
- 
- 	drm_dbg_kms(&i915->drm, "[%s:%d] HDCP2.2 is being Disabled\n",
- 		    connector->base.name, connector->base.base.id);
- 
-+	if (hdcp->shim->stream_2_2_encryption) {
-+		ret = hdcp->shim->stream_2_2_encryption(connector, false);
-+		if (ret) {
-+			drm_err(&i915->drm, "[CONNECTOR:%d:%s] Failed to disable HDCP 2.2 stream enc\n",
-+				connector->base.base.id, connector->base.name);
-+			return ret;
-+		}
-+		drm_dbg_kms(&i915->drm, "HDCP 2.2 transcoder: %s stream encryption disabled\n",
-+			    transcoder_name(hdcp->stream_transcoder));
++	if (INTEL_GEN(i915) >= 12) {
++		/* Enable VD HCP & MFX_ENC powergate */
++		for (i = 0; i < I915_MAX_VCS; i++)
++			if (HAS_ENGINE(&i915->gt, _VCS(i)))
++				pg_enable |= VDN_HCP_POWERGATE_ENABLE(i) |
++					VDN_MFX_POWERGATE_ENABLE(i);
 +	}
 +
-+	if (dig_port->num_hdcp_streams > 0)
-+		return ret;
-+
- 	ret = hdcp2_disable_encryption(connector);
- 
- 	if (hdcp2_deauthenticate_port(connector) < 0)
-@@ -1921,6 +1968,7 @@ static int intel_hdcp2_check_link(struct intel_connector *connector)
- 	int ret = 0;
- 
- 	mutex_lock(&hdcp->mutex);
-+	mutex_lock(&dig_port->hdcp_mutex);
- 	cpu_transcoder = hdcp->cpu_transcoder;
- 
- 	/* hdcp2_check_link is expected only when HDCP2.2 is Enabled */
-@@ -1998,6 +2046,7 @@ static int intel_hdcp2_check_link(struct intel_connector *connector)
- 	}
- 
- out:
-+	mutex_unlock(&dig_port->hdcp_mutex);
- 	mutex_unlock(&hdcp->mutex);
- 	return ret;
++	set(uncore, GEN9_PG_ENABLE, pg_enable);
  }
-@@ -2179,7 +2228,7 @@ int intel_hdcp_init(struct intel_connector *connector,
- 	if (!shim)
- 		return -EINVAL;
  
--	if (is_hdcp2_supported(dev_priv) && !connector->mst_port)
-+	if (is_hdcp2_supported(dev_priv))
- 		intel_hdcp2_init(connector, dig_port, shim);
+ static void gen9_rc6_enable(struct intel_rc6 *rc6)
+diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+index 39664ba553ec..28d02ec53573 100644
+--- a/drivers/gpu/drm/i915/i915_reg.h
++++ b/drivers/gpu/drm/i915/i915_reg.h
+@@ -8996,10 +8996,6 @@ enum {
+ #define   GEN9_PWRGT_MEDIA_STATUS_MASK		(1 << 0)
+ #define   GEN9_PWRGT_RENDER_STATUS_MASK		(1 << 1)
  
- 	ret =
+-#define POWERGATE_ENABLE			_MMIO(0xa210)
+-#define    VDN_HCP_POWERGATE_ENABLE(n)		BIT(((n) * 2) + 3)
+-#define    VDN_MFX_POWERGATE_ENABLE(n)		BIT(((n) * 2) + 4)
+-
+ #define  GTFIFODBG				_MMIO(0x120000)
+ #define    GT_FIFO_SBDEDICATE_FREE_ENTRY_CHV	(0x1f << 20)
+ #define    GT_FIFO_FREE_ENTRIES_CHV		(0x7f << 13)
+@@ -9139,9 +9135,11 @@ enum {
+ #define GEN9_MEDIA_PG_IDLE_HYSTERESIS		_MMIO(0xA0C4)
+ #define GEN9_RENDER_PG_IDLE_HYSTERESIS		_MMIO(0xA0C8)
+ #define GEN9_PG_ENABLE				_MMIO(0xA210)
+-#define GEN9_RENDER_PG_ENABLE			REG_BIT(0)
+-#define GEN9_MEDIA_PG_ENABLE			REG_BIT(1)
+-#define GEN11_MEDIA_SAMPLER_PG_ENABLE		REG_BIT(2)
++#define   GEN9_RENDER_PG_ENABLE			REG_BIT(0)
++#define   GEN9_MEDIA_PG_ENABLE			REG_BIT(1)
++#define   GEN11_MEDIA_SAMPLER_PG_ENABLE		REG_BIT(2)
++#define   VDN_HCP_POWERGATE_ENABLE(n)		BIT(((n) * 2) + 3)
++#define   VDN_MFX_POWERGATE_ENABLE(n)		BIT(((n) * 2) + 4)
+ #define GEN8_PUSHBUS_CONTROL			_MMIO(0xA248)
+ #define GEN8_PUSHBUS_ENABLE			_MMIO(0xA250)
+ #define GEN8_PUSHBUS_SHIFT			_MMIO(0xA25C)
+diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/intel_pm.c
+index f54375b11964..bbec56f97832 100644
+--- a/drivers/gpu/drm/i915/intel_pm.c
++++ b/drivers/gpu/drm/i915/intel_pm.c
+@@ -7111,22 +7111,8 @@ static void icl_init_clock_gating(struct drm_i915_private *dev_priv)
+ 			 0, CNL_DELAY_PMRSP);
+ }
+ 
+-static void gen12_init_clock_gating(struct drm_i915_private *i915)
+-{
+-	unsigned int i;
+-
+-	/* This is not a WA. Enable VD HCP & MFX_ENC powergate */
+-	for (i = 0; i < I915_MAX_VCS; i++)
+-		if (HAS_ENGINE(&i915->gt, _VCS(i)))
+-			intel_uncore_rmw(&i915->uncore, POWERGATE_ENABLE, 0,
+-					 VDN_HCP_POWERGATE_ENABLE(i) |
+-					 VDN_MFX_POWERGATE_ENABLE(i));
+-}
+-
+ static void tgl_init_clock_gating(struct drm_i915_private *dev_priv)
+ {
+-	gen12_init_clock_gating(dev_priv);
+-
+ 	/* Wa_1409120013:tgl */
+ 	I915_WRITE(ILK_DPFC_CHICKEN,
+ 		   ILK_DPFC_CHICKEN_COMP_DUMMY_PIXEL);
+@@ -7143,8 +7129,6 @@ static void tgl_init_clock_gating(struct drm_i915_private *dev_priv)
+ 
+ static void dg1_init_clock_gating(struct drm_i915_private *dev_priv)
+ {
+-	gen12_init_clock_gating(dev_priv);
+-
+ 	/* Wa_1409836686:dg1[a0] */
+ 	if (IS_DG1_REVID(dev_priv, DG1_REVID_A0, DG1_REVID_A0))
+ 		I915_WRITE(GEN9_CLKGATE_DIS_3, I915_READ(GEN9_CLKGATE_DIS_3) |
 -- 
 2.26.2
 
