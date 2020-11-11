@@ -1,32 +1,45 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BDEFB2AFB8C
-	for <lists+intel-gfx@lfdr.de>; Wed, 11 Nov 2020 23:47:00 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 077FB2AFB8E
+	for <lists+intel-gfx@lfdr.de>; Wed, 11 Nov 2020 23:49:35 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 463296E0C2;
-	Wed, 11 Nov 2020 22:46:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 199CC89FEA;
+	Wed, 11 Nov 2020 22:49:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 0E8716E0C2;
- Wed, 11 Nov 2020 22:46:57 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 07543A363B;
- Wed, 11 Nov 2020 22:46:57 +0000 (UTC)
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B6FB589FEA
+ for <intel-gfx@lists.freedesktop.org>; Wed, 11 Nov 2020 22:49:30 +0000 (UTC)
+IronPort-SDR: W5OPDzHdF7NrOom9fMTR/1gKHychFJ2EUEqzovjke4ei3CGldHDHvMBraQwb7cddhpXZBJ8tK6
+ Q8221v5RTJXA==
+X-IronPort-AV: E=McAfee;i="6000,8403,9802"; a="231850665"
+X-IronPort-AV: E=Sophos;i="5.77,470,1596524400"; d="scan'208";a="231850665"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Nov 2020 14:49:30 -0800
+IronPort-SDR: hDchX5zNhSveCS0kqvFBc5hbb21g5GnnJ2vtEzG1CMtqPtNdXvOStwtQO/YiFJH5VoZNHr627T
+ Q7Wiz8enIgTQ==
+X-IronPort-AV: E=Sophos;i="5.77,470,1596524400"; d="scan'208";a="328282587"
+Received: from labuser-z97x-ud5h.jf.intel.com (HELO labuser-Z97X-UD5H)
+ ([10.165.21.211])
+ by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Nov 2020 14:49:30 -0800
+Date: Wed, 11 Nov 2020 14:51:50 -0800
+From: "Navare, Manasi" <manasi.d.navare@intel.com>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>
+Message-ID: <20201111225150.GA14371@labuser-Z97X-UD5H>
+References: <20201106173042.7534-1-ville.syrjala@linux.intel.com>
+ <20201106173042.7534-4-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Manasi Navare" <manasi.d.navare@intel.com>
-Date: Wed, 11 Nov 2020 22:46:56 -0000
-Message-ID: <160513481699.4720.12084150273597529361@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20201111000819.29809-1-manasi.d.navare@intel.com>
-In-Reply-To: <20201111000819.29809-1-manasi.d.navare@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3Igc2Vy?=
- =?utf-8?q?ies_starting_with_=5Bv9=2C1/7=5D_drm/i915/dp=3A_Some_reshufflin?=
- =?utf-8?q?g_in_mode=5Fvalid_as_prep_for_bigjoiner_modes_=28rev2=29?=
+Content-Disposition: inline
+In-Reply-To: <20201106173042.7534-4-ville.syrjala@linux.intel.com>
+User-Agent: Mutt/1.5.24 (2015-08-30)
+Subject: Re: [Intel-gfx] [PATCH 3/6] drm/i915: Pimp the watermark
+ documentation a bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,359 +52,126 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============0438902647=="
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0438902647==
-Content-Type: multipart/alternative;
- boundary="===============2061228771952653060=="
+On Fri, Nov 06, 2020 at 07:30:39PM +0200, Ville Syrjala wrote:
+> From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> =
 
---===============2061228771952653060==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+> Document what each of the "raw" vs. "optimal" vs. "intermediate"
+> watermarks do.
+> =
 
-== Series Details ==
+> Signed-off-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
 
-Series: series starting with [v9,1/7] drm/i915/dp: Some reshuffling in mode_valid as prep for bigjoiner modes (rev2)
-URL   : https://patchwork.freedesktop.org/series/83716/
-State : failure
+Looks good to me
 
-== Summary ==
+Reviewed-by: Manasi Navare <manasi.d.navare@intel.com>
 
-CI Bug Log - changes from CI_DRM_9312 -> Patchwork_18890
-====================================================
+Manasi
 
-Summary
--------
+> ---
+>  .../drm/i915/display/intel_display_types.h    | 48 ++++++++++---------
+>  1 file changed, 25 insertions(+), 23 deletions(-)
+> =
 
-  **FAILURE**
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers=
+/gpu/drm/i915/display/intel_display_types.h
+> index 6b249969c394..b977e70e34d7 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+> @@ -737,25 +737,34 @@ struct g4x_wm_state {
+>  =
 
-  Serious unknown changes coming with Patchwork_18890 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_18890, please notify your bug team to allow them
-  to document this new failure mode, which will reduce false positives in CI.
+>  struct intel_crtc_wm_state {
+>  	union {
+> +		/*
+> +		 * raw:
+> +		 * The "raw" watermark values produced by the formula
+> +		 * given the plane's current state. They do not consider
+> +		 * how much FIFO is actually allocated for each plane.
+> +		 *
+> +		 * optimal:
+> +		 * The "optimal" watermark values given the current
+> +		 * state of the planes and the amount of FIFO
+> +		 * allocated to each, ignoring any previous state
+> +		 * of the planes.
+> +		 *
+> +		 * intermediate:
+> +		 * The "intermediate" watermark values when transitioning
+> +		 * between the old and new "optimal" values. Used when
+> +		 * the watermark registers are single buffered and hence
+> +		 * their state changes asynchronously with regards to the
+> +		 * actual plane registers. These are essentially the
+> +		 * worst case combination of the old and new "optimal"
+> +		 * watermarks, which are therefore safe to use when the
+> +		 * plane is in either its old or new state.
+> +		 */
+>  		struct {
+> -			/*
+> -			 * Intermediate watermarks; these can be
+> -			 * programmed immediately since they satisfy
+> -			 * both the current configuration we're
+> -			 * switching away from and the new
+> -			 * configuration we're switching to.
+> -			 */
+>  			struct intel_pipe_wm intermediate;
+> -
+> -			/*
+> -			 * Optimal watermarks, programmed post-vblank
+> -			 * when this state is committed.
+> -			 */
+>  			struct intel_pipe_wm optimal;
+>  		} ilk;
+>  =
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18890/index.html
+>  		struct {
+> -			/* "raw" watermarks */
+>  			struct skl_pipe_wm raw;
+>  			/* gen9+ only needs 1-step wm programming */
+>  			struct skl_pipe_wm optimal;
+> @@ -765,22 +774,15 @@ struct intel_crtc_wm_state {
+>  		} skl;
+>  =
 
-Possible new issues
--------------------
+>  		struct {
+> -			/* "raw" watermarks (not inverted) */
+> -			struct g4x_pipe_wm raw[NUM_VLV_WM_LEVELS];
+> -			/* intermediate watermarks (inverted) */
+> -			struct vlv_wm_state intermediate;
+> -			/* optimal watermarks (inverted) */
+> -			struct vlv_wm_state optimal;
+> -			/* display FIFO split */
+> +			struct g4x_pipe_wm raw[NUM_VLV_WM_LEVELS]; /* not inverted */
+> +			struct vlv_wm_state intermediate; /* inverted */
+> +			struct vlv_wm_state optimal; /* inverted */
+>  			struct vlv_fifo_state fifo_state;
+>  		} vlv;
+>  =
 
-  Here are the unknown changes that may have been introduced in Patchwork_18890:
+>  		struct {
+> -			/* "raw" watermarks */
+>  			struct g4x_pipe_wm raw[NUM_G4X_WM_LEVELS];
+> -			/* intermediate watermarks */
+>  			struct g4x_wm_state intermediate;
+> -			/* optimal watermarks */
+>  			struct g4x_wm_state optimal;
+>  		} g4x;
+>  	};
+> -- =
 
-### CI changes ###
+> 2.26.2
+> =
 
-#### Possible regressions ####
-
-  * boot (NEW):
-    - fi-icl-y:           [PASS][1] -> [FAIL][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9312/fi-icl-y/boot.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18890/fi-icl-y/boot.html
-    - fi-cfl-8109u:       [PASS][3] -> [FAIL][4]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9312/fi-cfl-8109u/boot.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18890/fi-cfl-8109u/boot.html
-    - fi-cfl-8700k:       [PASS][5] -> [FAIL][6]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9312/fi-cfl-8700k/boot.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18890/fi-cfl-8700k/boot.html
-    - {fi-ehl-1}:         [PASS][7] -> [FAIL][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9312/fi-ehl-1/boot.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18890/fi-ehl-1/boot.html
-    - fi-skl-6700k2:      [PASS][9] -> [FAIL][10]
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9312/fi-skl-6700k2/boot.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18890/fi-skl-6700k2/boot.html
-    - fi-cfl-guc:         [PASS][11] -> [FAIL][12]
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9312/fi-cfl-guc/boot.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18890/fi-cfl-guc/boot.html
-    - fi-skl-lmem:        [PASS][13] -> [FAIL][14]
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9312/fi-skl-lmem/boot.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18890/fi-skl-lmem/boot.html
-    - fi-glk-dsi:         [PASS][15] -> [FAIL][16]
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9312/fi-glk-dsi/boot.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18890/fi-glk-dsi/boot.html
-    - fi-kbl-7500u:       [PASS][17] -> [FAIL][18]
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9312/fi-kbl-7500u/boot.html
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18890/fi-kbl-7500u/boot.html
-    - fi-skl-guc:         [PASS][19] -> [FAIL][20]
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9312/fi-skl-guc/boot.html
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18890/fi-skl-guc/boot.html
-
-  
-New tests
----------
-
-  New tests have been introduced between CI_DRM_9312 and Patchwork_18890:
-
-### New CI tests (1) ###
-
-  * boot:
-    - Statuses : 12 fail(s) 28 pass(s)
-    - Exec time: [0.0] s
-
-  
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_18890 that come from known issues:
-
-### CI changes ###
-
-#### Issues hit ####
-
-  * boot (NEW):
-    - fi-apl-guc:         [PASS][21] -> [FAIL][22] ([i915#1635] / [i915#348])
-   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9312/fi-apl-guc/boot.html
-   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18890/fi-apl-guc/boot.html
-    - fi-bxt-dsi:         [PASS][23] -> [FAIL][24] ([i915#1635])
-   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9312/fi-bxt-dsi/boot.html
-   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18890/fi-bxt-dsi/boot.html
-
-  
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy:
-    - fi-icl-u2:          [PASS][25] -> [DMESG-WARN][26] ([i915#1982]) +1 similar issue
-   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9312/fi-icl-u2/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html
-   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18890/fi-icl-u2/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html
-
-  
-#### Possible fixes ####
-
-  * igt@kms_busy@basic@flip:
-    - {fi-tgl-dsi}:       [DMESG-WARN][27] ([i915#1982]) -> [PASS][28]
-   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9312/fi-tgl-dsi/igt@kms_busy@basic@flip.html
-   [28]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18890/fi-tgl-dsi/igt@kms_busy@basic@flip.html
-
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:
-    - fi-byt-j1900:       [DMESG-WARN][29] ([i915#1982]) -> [PASS][30]
-   [29]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9312/fi-byt-j1900/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-   [30]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18890/fi-byt-j1900/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-
-  * igt@kms_cursor_legacy@basic-flip-after-cursor-atomic:
-    - fi-icl-u2:          [DMESG-WARN][31] ([i915#1982]) -> [PASS][32]
-   [31]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9312/fi-icl-u2/igt@kms_cursor_legacy@basic-flip-after-cursor-atomic.html
-   [32]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18890/fi-icl-u2/igt@kms_cursor_legacy@basic-flip-after-cursor-atomic.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [i915#1635]: https://gitlab.freedesktop.org/drm/intel/issues/1635
-  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
-  [i915#348]: https://gitlab.freedesktop.org/drm/intel/issues/348
-
-
-Participating hosts (44 -> 40)
-------------------------------
-
-  Additional (1): fi-tgl-y 
-  Missing    (5): fi-cml-u2 fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_9312 -> Patchwork_18890
-
-  CI-20190529: 20190529
-  CI_DRM_9312: 88b74d59a27aa168f7cd2dec199c33ee71fe8bb0 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5847: 8cffaebec5228a5042cc6928ac582a0589e2de3e @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_18890: 74290180d2662a6d0f7c70eacb1c34e950f2a45e @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-74290180d266 drm/i915/dp: Allow big joiner modes in intel_dp_mode_valid(), v3.
-53b9f20a5e2a drm/i915/dp: Add from_crtc_state to copy color blobs
-e40ad8303a92 drm/i915: Pass intel_atomic_state instead of drm_atomic_state
-5e5e3dbf3ce4 drm/i915: Add hw.pipe_mode to allow bigjoiner pipe/transcoder split
-86d2442cbabe drm/i915/dp: Add a wrapper function around get_pipe_config
-3322a554f588 drm/i915: Move encoder->get_config to a new function
-bceebc3f06d1 drm/i915/dp: Some reshuffling in mode_valid as prep for bigjoiner modes
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18890/index.html
-
---===============2061228771952653060==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>series starting with [v9,1/7] drm/i915/dp: Some reshuffling in mode_valid as prep for bigjoiner modes (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/83716/">https://patchwork.freedesktop.org/series/83716/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18890/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18890/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_9312 -&gt; Patchwork_18890</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with Patchwork_18890 absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in Patchwork_18890, please notify your bug team to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18890/index.html</p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in Patchwork_18890:</p>
-<h3>CI changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>
-<p>boot (NEW):</p>
-<ul>
-<li>
-<p>fi-icl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9312/fi-icl-y/boot.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18890/fi-icl-y/boot.html">FAIL</a></p>
-</li>
-<li>
-<p>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9312/fi-cfl-8109u/boot.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18890/fi-cfl-8109u/boot.html">FAIL</a></p>
-</li>
-<li>
-<p>fi-cfl-8700k:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9312/fi-cfl-8700k/boot.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18890/fi-cfl-8700k/boot.html">FAIL</a></p>
-</li>
-<li>
-<p>{fi-ehl-1}:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9312/fi-ehl-1/boot.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18890/fi-ehl-1/boot.html">FAIL</a></p>
-</li>
-<li>
-<p>fi-skl-6700k2:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9312/fi-skl-6700k2/boot.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18890/fi-skl-6700k2/boot.html">FAIL</a></p>
-</li>
-<li>
-<p>fi-cfl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9312/fi-cfl-guc/boot.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18890/fi-cfl-guc/boot.html">FAIL</a></p>
-</li>
-<li>
-<p>fi-skl-lmem:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9312/fi-skl-lmem/boot.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18890/fi-skl-lmem/boot.html">FAIL</a></p>
-</li>
-<li>
-<p>fi-glk-dsi:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9312/fi-glk-dsi/boot.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18890/fi-glk-dsi/boot.html">FAIL</a></p>
-</li>
-<li>
-<p>fi-kbl-7500u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9312/fi-kbl-7500u/boot.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18890/fi-kbl-7500u/boot.html">FAIL</a></p>
-</li>
-<li>
-<p>fi-skl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9312/fi-skl-guc/boot.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18890/fi-skl-guc/boot.html">FAIL</a></p>
-</li>
-</ul>
-</li>
-</ul>
-<h2>New tests</h2>
-<p>New tests have been introduced between CI_DRM_9312 and Patchwork_18890:</p>
-<h3>New CI tests (1)</h3>
-<ul>
-<li>boot:<ul>
-<li>Statuses : 12 fail(s) 28 pass(s)</li>
-<li>Exec time: [0.0] s</li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_18890 that come from known issues:</p>
-<h3>CI changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>boot (NEW):</p>
-<ul>
-<li>
-<p>fi-apl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9312/fi-apl-guc/boot.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18890/fi-apl-guc/boot.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1635">i915#1635</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/348">i915#348</a>)</p>
-</li>
-<li>
-<p>fi-bxt-dsi:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9312/fi-bxt-dsi/boot.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18890/fi-bxt-dsi/boot.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1635">i915#1635</a>)</p>
-</li>
-</ul>
-</li>
-</ul>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy:<ul>
-<li>fi-icl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9312/fi-icl-u2/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18890/fi-icl-u2/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>) +1 similar issue</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@kms_busy@basic@flip:</p>
-<ul>
-<li>{fi-tgl-dsi}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9312/fi-tgl-dsi/igt@kms_busy@basic@flip.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18890/fi-tgl-dsi/igt@kms_busy@basic@flip.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:</p>
-<ul>
-<li>fi-byt-j1900:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9312/fi-byt-j1900/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18890/fi-byt-j1900/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@basic-flip-after-cursor-atomic:</p>
-<ul>
-<li>fi-icl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9312/fi-icl-u2/igt@kms_cursor_legacy@basic-flip-after-cursor-atomic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18890/fi-icl-u2/igt@kms_cursor_legacy@basic-flip-after-cursor-atomic.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Participating hosts (44 -&gt; 40)</h2>
-<p>Additional (1): fi-tgl-y <br />
-  Missing    (5): fi-cml-u2 fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-bdw-samus </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_9312 -&gt; Patchwork_18890</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_9312: 88b74d59a27aa168f7cd2dec199c33ee71fe8bb0 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_5847: 8cffaebec5228a5042cc6928ac582a0589e2de3e @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
-  Patchwork_18890: 74290180d2662a6d0f7c70eacb1c34e950f2a45e @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>74290180d266 drm/i915/dp: Allow big joiner modes in intel_dp_mode_valid(), v3.<br />
-53b9f20a5e2a drm/i915/dp: Add from_crtc_state to copy color blobs<br />
-e40ad8303a92 drm/i915: Pass intel_atomic_state instead of drm_atomic_state<br />
-5e5e3dbf3ce4 drm/i915: Add hw.pipe_mode to allow bigjoiner pipe/transcoder split<br />
-86d2442cbabe drm/i915/dp: Add a wrapper function around get_pipe_config<br />
-3322a554f588 drm/i915: Move encoder-&gt;get_config to a new function<br />
-bceebc3f06d1 drm/i915/dp: Some reshuffling in mode_valid as prep for bigjoiner modes</p>
-
-</body>
-</html>
-
---===============2061228771952653060==--
-
---===============0438902647==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============0438902647==--
