@@ -2,42 +2,47 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9FAC52AF2C3
-	for <lists+intel-gfx@lfdr.de>; Wed, 11 Nov 2020 14:59:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E43EA2AF2BC
+	for <lists+intel-gfx@lfdr.de>; Wed, 11 Nov 2020 14:58:06 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F1E1389E98;
-	Wed, 11 Nov 2020 13:58:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ED00689E86;
+	Wed, 11 Nov 2020 13:58:03 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3097889E98
- for <intel-gfx@lists.freedesktop.org>; Wed, 11 Nov 2020 13:58:58 +0000 (UTC)
-IronPort-SDR: QVmmtvlGFAfn7RUHlDhHq9ptTC/av/bO4CrMSOCdMdPOlRIOGr1aodkziNXMA7hCbO0gZMAnTY
- GhOLCNyYWFbg==
-X-IronPort-AV: E=McAfee;i="6000,8403,9801"; a="169363888"
-X-IronPort-AV: E=Sophos;i="5.77,469,1596524400"; d="scan'208";a="169363888"
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2981A89E86
+ for <intel-gfx@lists.freedesktop.org>; Wed, 11 Nov 2020 13:58:03 +0000 (UTC)
+IronPort-SDR: mW23/75ZYbyeWr/VF60WQ/wGp7UWXhwhjKq1eb3A+GTjhoisOO0mPvr4vsS7PHUIFZ7vQxfdZe
+ 7z5bnjBiZzHQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9801"; a="157926388"
+X-IronPort-AV: E=Sophos;i="5.77,469,1596524400"; d="scan'208";a="157926388"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Nov 2020 05:58:55 -0800
-IronPort-SDR: pFHfDGXKbjV9D5+ZBdAPSix55OYsa+x4tAWEnXpSuoRMzRBp5fnon87V8v1HVHg0fOrzBmvGHo
- 1VbzlH+NNmdQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.77,469,1596524400"; d="scan'208";a="365935542"
-Received: from gaia.fi.intel.com ([10.237.72.192])
- by FMSMGA003.fm.intel.com with ESMTP; 11 Nov 2020 05:58:54 -0800
-Received: by gaia.fi.intel.com (Postfix, from userid 1000)
- id 0C40F5C0D57; Wed, 11 Nov 2020 15:57:00 +0200 (EET)
-From: Mika Kuoppala <mika.kuoppala@linux.intel.com>
-To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
-In-Reply-To: <20201111123726.4158-1-chris@chris-wilson.co.uk>
-References: <20201111123726.4158-1-chris@chris-wilson.co.uk>
-Date: Wed, 11 Nov 2020 15:57:00 +0200
-Message-ID: <87imacdmj7.fsf@gaia.fi.intel.com>
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Nov 2020 05:57:59 -0800
+IronPort-SDR: pk5exVAGDcjvWCR/+3pT2dIH4dsZd4cNiw9AA/X4MHOp4zboPCohQVr6RBjVmBNImGpbGzUNS1
+ KFXHBazhXY5g==
+X-IronPort-AV: E=Sophos;i="5.77,469,1596524400"; d="scan'208";a="531709553"
+Received: from cwatters-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.251.80.153])
+ by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Nov 2020 05:57:57 -0800
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/gt: Include semaphore status in
- print_request()
+In-Reply-To: <5a9ed343-b73c-34cb-6420-1acdb9aeb202@jguk.org>
+References: <7730fe97-f906-4dd9-df96-9d722ed6ad11@jguk.org>
+ <160405294406.7917.4399095853364861325@jlahtine-mobl.ger.corp.intel.com>
+ <160405303686.7917.12971155325318156066@jlahtine-mobl.ger.corp.intel.com>
+ <160405525007.15070.2337887176301828625@build.alporthouse.com>
+ <5a9ed343-b73c-34cb-6420-1acdb9aeb202@jguk.org>
+From: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+To: Chris Wilson <chris@chris-wilson.co.uk>, Jonny Grant <jg@jguk.org>,
+ intel-gfx@lists.freedesktop.org, jani.nikula@linux.intel.com
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Message-ID: <160510307375.12900.12830853398871603700@jlahtine-mobl.ger.corp.intel.com>
+User-Agent: alot/0.8.1
+Date: Wed, 11 Nov 2020 15:57:54 +0200
+Subject: Re: [Intel-gfx] Intel i915 corruption issue Gnome EOG #146
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,47 +55,73 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Chris Wilson <chris@chris-wilson.co.uk>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Chris Wilson <chris@chris-wilson.co.uk> writes:
+Quoting Jonny Grant (2020-10-30 16:05:02)
+> 
+> 
+> On 30/10/2020 10:54, Chris Wilson wrote:
+> > Quoting Joonas Lahtinen (2020-10-30 10:17:17)
+> >> + intel-gfx mailing list
+> >>
+> >> Quoting Joonas Lahtinen (2020-10-30 12:15:44)
+> >>> Quoting Jonny Grant (2020-10-27 22:42:19)
+> >>>> Hello Jani, Joonas
+> >>>>
+> >>>> https://gitlab.gnome.org/GNOME/eog/-/issues/146
+> >>>>
+> >>>> Is this issue something you could debug?
+> >>>
+> >>> Can you file a bug according to the instructions here with details
+> >>> about the hardware:
+> >>>
+> >>> https://gitlab.freedesktop.org/drm/intel/-/wikis/How-to-file-i915-bugs
+> >>>
+> >>>> I've got some screenshots
+> >>>>
+> >>>>
+> >>>>
+> >>>> Seems to be above 32bit.
+> >>>>
+> >>>> https://gitlab.gnome.org/GNOME/eog/-/issues/150#note_946421
+> >>>>
+> >>>> If you don't think it is an i915 issue, could you post a comment?
+> >>>> It only reproduces on intel i915 chipset laptops
+> >>>
+> >>> Quite a few components are involved, so it might also be a bug in the
+> >>> Mesa 3D side.
+> >>>
+> >>> An useful excercise would be to figure out the exact pixel width after
+> >>> which the contents is clipped. I noticed one reporting user is using
+> >>> Thinkpad X220, have any users of more modern hardware reported similar
+> >>> issue?
+> > 
+> > Large pixmap support was dropped from glamor, -modesetting can only
+> > support images up to the HW surface limit. It is a functional
+> > regression.
+> > -Chris
+> > 
+> 
+> Hell Chris, Joonas
+> 
+> Thank you for your reply.
+> 
+> May I ask if you can reproduce the issue on one of your developer machines at Intel? so we can rule in/out intel graphics...
 
-> When pretty-printing the requests for debug, also so the status of any
-s/so/show
-> semaphore waits as part of its runnable status.
->
-> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-> ---
->  drivers/gpu/drm/i915/gt/intel_engine_cs.c | 1 +
->  1 file changed, 1 insertion(+)
->
-> diff --git a/drivers/gpu/drm/i915/gt/intel_engine_cs.c b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-> index 0b31670343f5..1ed84ee8ce41 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-> @@ -1321,6 +1321,7 @@ static void print_request(struct drm_printer *m,
->  		   rq->fence.context, rq->fence.seqno,
->  		   i915_request_completed(rq) ? "!" :
->  		   i915_request_started(rq) ? "*" :
-> +		   !i915_sw_fence_signaled(&rq->semaphore) ? "&" :
+Chris's reply indicates that this is a problem in the higher software
+layers. There is a maximum texture size the HW can support, and
+previously it has been overcome by splitting the image into portions.
 
-major demon it is then.
+I think such image splitting needs to be re-introduced in the upper
+software layers.
 
-Reviewed-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+Regards, Joonas
 
->  		   "",
->  		   test_bit(DMA_FENCE_FLAG_SIGNALED_BIT,
->  			    &rq->fence.flags) ? "+" :
-> -- 
-> 2.20.1
->
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+> Let me know if you have a Gnome desktop with EOG. Let me know if you'd like me to email the image
+> Jonny
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
