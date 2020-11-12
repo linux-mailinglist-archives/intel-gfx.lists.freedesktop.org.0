@@ -2,43 +2,43 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0B2942B0EF2
-	for <lists+intel-gfx@lfdr.de>; Thu, 12 Nov 2020 21:19:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D03CC2B0EF3
+	for <lists+intel-gfx@lfdr.de>; Thu, 12 Nov 2020 21:19:53 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6DAC36E425;
-	Thu, 12 Nov 2020 20:19:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4A3BF6E427;
+	Thu, 12 Nov 2020 20:19:52 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C6B696E425
- for <intel-gfx@lists.freedesktop.org>; Thu, 12 Nov 2020 20:19:16 +0000 (UTC)
-IronPort-SDR: KYnUyxFnmR1YoDGC2ihJe+lhpcZrdH8ehh76/aU29bt+lAKi+cOk1lnE8jEUdgprq7skDg29ll
- osPv/DdQDtSg==
-X-IronPort-AV: E=McAfee;i="6000,8403,9803"; a="231993676"
-X-IronPort-AV: E=Sophos;i="5.77,472,1596524400"; d="scan'208";a="231993676"
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4240A6E427
+ for <intel-gfx@lists.freedesktop.org>; Thu, 12 Nov 2020 20:19:51 +0000 (UTC)
+IronPort-SDR: u9n6uiAotvEZhF5jdRmljEP3jjL5MljTMX75ZYhvHhd0Nv8skR+rLJVBLBgs5X98n4YAZuehYm
+ K2NMvJS7RyjA==
+X-IronPort-AV: E=McAfee;i="6000,8403,9803"; a="170543815"
+X-IronPort-AV: E=Sophos;i="5.77,472,1596524400"; d="scan'208";a="170543815"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Nov 2020 12:19:15 -0800
-IronPort-SDR: i9Le1pfssE675Q1CZKMpTj/vRbvFDnqD3rdNlmMuc97Hddf/LvDw+m3RGivArH1M6soJbyJCKl
- mcYZ2cqJ5yOw==
-X-IronPort-AV: E=Sophos;i="5.77,472,1596524400"; d="scan'208";a="532307073"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Nov 2020 12:19:49 -0800
+IronPort-SDR: SpjITJ+8ViFd1wLwGbDsWDdWxssurLxE9c33TyrNRBPdSeggu2X5lt4o2U8aCYCUoH0QCLxrQX
+ z/Zb/nGakPiA==
+X-IronPort-AV: E=Sophos;i="5.77,472,1596524400"; d="scan'208";a="357227191"
 Received: from rdvivi-losangeles.jf.intel.com (HELO intel.com)
  ([10.165.21.201])
- by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Nov 2020 12:19:15 -0800
-Date: Thu, 12 Nov 2020 15:20:29 -0500
+ by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Nov 2020 12:19:49 -0800
+Date: Thu, 12 Nov 2020 15:21:03 -0500
 From: Rodrigo Vivi <rodrigo.vivi@intel.com>
 To: Jani Nikula <jani.nikula@intel.com>
-Message-ID: <20201112202029.GD1198919@intel.com>
+Message-ID: <20201112202103.GE1198919@intel.com>
 References: <cover.1605181350.git.jani.nikula@intel.com>
- <4b7bae47d444f1ef779a3ede481a5dfd4667513d.1605181350.git.jani.nikula@intel.com>
+ <6bd3045daa74b5789881b690ff0908bb486f34ce.1605181350.git.jani.nikula@intel.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <4b7bae47d444f1ef779a3ede481a5dfd4667513d.1605181350.git.jani.nikula@intel.com>
-Subject: Re: [Intel-gfx] [PATCH 3/9] drm/i915/cdclk: prefer intel_de_write()
- over I915_WRITE()
+In-Reply-To: <6bd3045daa74b5789881b690ff0908bb486f34ce.1605181350.git.jani.nikula@intel.com>
+Subject: Re: [Intel-gfx] [PATCH 4/9] drm/i915/debugfs: replace
+ I915_READ()+I915_WRITE() with intel_uncore_rmw()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,34 +57,37 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Nov 12, 2020 at 01:44:36PM +0200, Jani Nikula wrote:
-> Let's try to not add new ones while we're phasing out I915_READ() and
-> I915_WRITE().
+On Thu, Nov 12, 2020 at 01:44:37PM +0200, Jani Nikula wrote:
+> Remove the last I915_WRITE() use in i915_debugfs.c.
 > 
-> Fixes: 27a6bc802bd9 ("drm/i915/dg1: Initialize RAWCLK properly")
 > Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 
 Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 
 > ---
->  drivers/gpu/drm/i915/display/intel_cdclk.c | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
+>  drivers/gpu/drm/i915/i915_debugfs.c | 8 ++------
+>  1 file changed, 2 insertions(+), 6 deletions(-)
 > 
-> diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm/i915/display/intel_cdclk.c
-> index c449d28d0560..088d5908176c 100644
-> --- a/drivers/gpu/drm/i915/display/intel_cdclk.c
-> +++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
-> @@ -2710,8 +2710,8 @@ static int dg1_rawclk(struct drm_i915_private *dev_priv)
->  	 * DG1 always uses a 38.4 MHz rawclk.  The bspec tells us
->  	 * "Program Numerator=2, Denominator=4, Divider=37 decimal."
->  	 */
-> -	I915_WRITE(PCH_RAWCLK_FREQ,
-> -		   CNP_RAWCLK_DEN(4) | CNP_RAWCLK_DIV(37) | ICP_RAWCLK_NUM(2));
-> +	intel_de_write(dev_priv, PCH_RAWCLK_FREQ,
-> +		       CNP_RAWCLK_DEN(4) | CNP_RAWCLK_DIV(37) | ICP_RAWCLK_NUM(2));
+> diff --git a/drivers/gpu/drm/i915/i915_debugfs.c b/drivers/gpu/drm/i915/i915_debugfs.c
+> index 7cbca268cb61..151734a1a496 100644
+> --- a/drivers/gpu/drm/i915/i915_debugfs.c
+> +++ b/drivers/gpu/drm/i915/i915_debugfs.c
+> @@ -1562,13 +1562,9 @@ i915_cache_sharing_set(void *data, u64 val)
+>  	drm_dbg(&dev_priv->drm,
+>  		"Manually setting uncore sharing to %llu\n", val);
+>  	with_intel_runtime_pm(&dev_priv->runtime_pm, wakeref) {
+> -		u32 snpcr;
+> -
+>  		/* Update the cache sharing policy here as well */
+> -		snpcr = I915_READ(GEN6_MBCUNIT_SNPCR);
+> -		snpcr &= ~GEN6_MBC_SNPCR_MASK;
+> -		snpcr |= val << GEN6_MBC_SNPCR_SHIFT;
+> -		I915_WRITE(GEN6_MBCUNIT_SNPCR, snpcr);
+> +		intel_uncore_rmw(&dev_priv->uncore, GEN6_MBCUNIT_SNPCR,
+> +				 GEN6_MBC_SNPCR_MASK, val << GEN6_MBC_SNPCR_SHIFT);
+>  	}
 >  
->  	return 38400;
->  }
+>  	return 0;
 > -- 
 > 2.20.1
 > 
