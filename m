@@ -2,67 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 99DF12B05F6
-	for <lists+intel-gfx@lfdr.de>; Thu, 12 Nov 2020 14:07:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5ACD72B0657
+	for <lists+intel-gfx@lfdr.de>; Thu, 12 Nov 2020 14:22:58 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D6DE66E1F3;
-	Thu, 12 Nov 2020 13:07:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9F83C6E226;
+	Thu, 12 Nov 2020 13:22:56 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from wnew4-smtp.messagingengine.com (wnew4-smtp.messagingengine.com
- [64.147.123.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 20BBC6E1F3;
- Thu, 12 Nov 2020 13:07:33 +0000 (UTC)
-Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
- by mailnew.west.internal (Postfix) with ESMTP id 2F0E8D41;
- Thu, 12 Nov 2020 08:07:30 -0500 (EST)
-Received: from mailfrontend1 ([10.202.2.162])
- by compute6.internal (MEProxy); Thu, 12 Nov 2020 08:07:30 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
- date:from:to:cc:subject:message-id:mime-version:content-type; s=
- fm1; bh=OPUCsR3Smh2adGdPwnfvJyElgjO1Jgi203euJDpcUGM=; b=ek6t71Q6
- 6gzUpNL/Oc9g/KRI49ClOtkSP8vknFq5kHMmEpOfYWuB6q5oioLevKym40KzDo4u
- OJzBbWSfEtQTbHC9l5f1/d+C5eyj0qxov/xrlMCm7xwm4QzSxbPGZjxO2m7fplHJ
- eebnQNy/BexRbYkVg/OLJdCc3IwH0NrMtsmeIc7oHq/SFnpb5e7UILVboHnVpC+J
- te/HPT0u2sZMNT9iWrYotj3vykiqnHYutrK+RfppI5kTx4SGlQ34V422EuPkL7uc
- Iohsx1srf9q95/J+AhECGmgzxF3STJSnDWSwo8MqA3jpWRjNsehQqnr+MvmlJ1wC
- 7kp70l+r2HHFwQ==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
- messagingengine.com; h=cc:content-type:date:from:message-id
- :mime-version:subject:to:x-me-proxy:x-me-proxy:x-me-sender
- :x-me-sender:x-sasl-enc; s=fm1; bh=OPUCsR3Smh2adGdPwnfvJyElgjO1J
- gi203euJDpcUGM=; b=UF9MhKe25fOzFKl8cmFHdT26U+62NEUn8J8a7+oOCMB5m
- n/qYUAruiw32g8NUR478hrqfrXH/PCNdHKOz2vkf0QcIiiE3z/HbZ4lCVmRhih1Y
- oPJkyY0oPpDueiNgCrPAcm21oAnq+Pwz2VHl10MAR6CFACes1pA0Bc9LRKn0pR91
- aA8ibjY3gNPDco//Uw9/QSyzzmjc8KSxGJAmk7WTjza5HEcIcA+k3s/qBwkaH7e1
- Cb8q2POFpBD3EYSidGKLuMtX2xPwTNMR2Yidt/fheQp5rpOAbNJ5ljqSxl5tCZqe
- rYVNT9bai6nQjth09NE2PEP8779kGpTa2EPwi1xug==
-X-ME-Sender: <xms:kDOtX6VqZv39QdbEu9JPQhrQm0X1PCp7J5kXjt0oP0b1RCUcgxAU_Q>
- <xme:kDOtX2nCfZbm20dh0WJOB_GyGjizUy6gxq0ZrE93uQX3igY9iQhRqhiuHvELQtM4E
- v3kpgsgxDn5f_OJTt0>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedujedruddvfedgvdefucetufdoteggodetrfdotf
- fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
- uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
- cujfgurhepfffhvffukfggtggusehgtderredttddvnecuhfhrohhmpeforgigihhmvgcu
- tfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrthhtvg
- hrnhepgeeuvddtheeggeehhfeigeetffeufeelveeggfekveegieevudeljeeugedviefg
- necuffhomhgrihhnpehfrhgvvgguvghskhhtohhprdhorhhgnecukfhppeeltddrkeelrd
- eikedrjeeinecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhho
- mhepmhgrgihimhgvsegtvghrnhhordhtvggthh
-X-ME-Proxy: <xmx:kDOtX-Z0Yk4aQ9NVF1xeG5CVxJ2MoruF5qJRqltSK57N0sLxRMrFyw>
- <xmx:kDOtXxXW3VFSLLKVUmFnIa8qsAEYwnSs25KVE2jdF6FqFDXg3rKsmw>
- <xmx:kDOtX0nJavcuc8vMYlDtbR_ytobI-V4F7VOc_ywW9mlxjF3J1R8rsw>
- <xmx:kTOtX-5i0BvpeGvODuj_NJGu_Mk4SRdFtGEQI4rQKJ8M7Xt7u_LaDwVAtUk>
-Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr
- [90.89.68.76])
- by mail.messagingengine.com (Postfix) with ESMTPA id 129EF3280063;
- Thu, 12 Nov 2020 08:07:27 -0500 (EST)
-Date: Thu, 12 Nov 2020 14:07:26 +0100
-From: Maxime Ripard <maxime@cerno.tech>
-To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
-Message-ID: <20201112130726.qwtryqvgspmljkax@gilmour.lan>
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 672476E226
+ for <intel-gfx@lists.freedesktop.org>; Thu, 12 Nov 2020 13:22:55 +0000 (UTC)
+IronPort-SDR: MJT856w4P393a7R5fj5yV0CUSH0Qg4fUPHIOI3vk4E/0QCuY6ky7JlP2mc5Fr1YW3HcxesJy8F
+ Cw8jSmm5ziiA==
+X-IronPort-AV: E=McAfee;i="6000,8403,9802"; a="166798926"
+X-IronPort-AV: E=Sophos;i="5.77,472,1596524400"; d="scan'208";a="166798926"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Nov 2020 05:22:54 -0800
+IronPort-SDR: Sh9p6Be9zP2WgXkknZCoLuuHfUsYysAg04bxjJBz/Ft1BdJ8cb3oRW6jT0Qf8AmCJz/CTFIDzC
+ mJqmY0SFBO9A==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.77,472,1596524400"; d="scan'208";a="357087200"
+Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
+ by fmsmga004.fm.intel.com with ESMTP; 12 Nov 2020 05:22:54 -0800
+Received: from orsmsx612.amr.corp.intel.com (10.22.229.25) by
+ ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1713.5; Thu, 12 Nov 2020 05:22:54 -0800
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX612.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1713.5; Thu, 12 Nov 2020 05:22:53 -0800
+Received: from orsmsx610.amr.corp.intel.com ([10.22.229.23]) by
+ ORSMSX610.amr.corp.intel.com ([10.22.229.23]) with mapi id 15.01.1713.004;
+ Thu, 12 Nov 2020 05:22:53 -0800
+From: "Souza, Jose" <jose.souza@intel.com>
+To: "De Marchi, Lucas" <lucas.demarchi@intel.com>
+Thread-Topic: [PATCH 1/2] drm/i915/display: Group DC9 mask set
+Thread-Index: AQHWuEccZQGFgOxozEeO5h1KmxIh0KnD9EsAgAEPGwA=
+Date: Thu, 12 Nov 2020 13:22:53 +0000
+Message-ID: <3243c71ee30de3f9d87a5e8267d5c9ab7a3bff0e.camel@intel.com>
+References: <20201111162408.98002-1-jose.souza@intel.com>
+ <20201111211232.btab3cuyde6elhbq@ldmartin-desk1>
+In-Reply-To: <20201111211232.btab3cuyde6elhbq@ldmartin-desk1>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.132]
+Content-ID: <670DDB9E086A114994C349BDFAFA15C4@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PULL] drm-misc-fixes
+Subject: Re: [Intel-gfx] [PATCH 1/2] drm/i915/display: Group DC9 mask set
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,92 +67,61 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dim-tools@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Maxime Ripard <mripard@kernel.org>, intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============2143948078=="
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-
---===============2143948078==
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="7uaw3bv46dovgufw"
-Content-Disposition: inline
-
-
---7uaw3bv46dovgufw
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-
-Hi Daniel, Dave,
-
-Here's this week (quite small) round of fixes for drm-misc.
-
-Thanks!
-Maxime
-
-drm-misc-fixes-2020-11-12:
-One Kconfig fix for bridge/cdns, a missing include for hypervb_fb, an
-out-of-bound access fix for gma500 and a unbalanced regulator fix for
-mcde.
-The following changes since commit 9522750c66c689b739e151fcdf895420dc81efc0:
-
-  Fonts: Replace discarded const qualifier (2020-11-03 10:51:34 +0100)
-
-are available in the Git repository at:
-
-  git://anongit.freedesktop.org/drm/drm-misc tags/drm-misc-fixes-2020-11-12
-
-for you to fetch changes up to a6c40b8032b845f132abfcbcbed6bddebbcc3b4a:
-
-  drm/mcde: Fix unbalanced regulator (2020-11-11 00:27:53 +0100)
-
-----------------------------------------------------------------
-One Kconfig fix for bridge/cdns, a missing include for hypervb_fb, an
-out-of-bound access fix for gma500 and a unbalanced regulator fix for
-mcde.
-
-----------------------------------------------------------------
-Linus Walleij (1):
-      drm/mcde: Fix unbalanced regulator
-
-Nishanth Menon (1):
-      drm: bridge: cdns: Kconfig: Switch over dependency to ARCH_K3
-
-Olaf Hering (1):
-      video: hyperv_fb: include vmalloc.h
-
-Thomas Zimmermann (1):
-      drm/gma500: Fix out-of-bounds access to struct drm_device.vblank[]
-
- drivers/gpu/drm/bridge/cadence/Kconfig |  2 +-
- drivers/gpu/drm/gma500/psb_irq.c       | 34 ++++++++++++----------------------
- drivers/gpu/drm/mcde/mcde_drv.c        |  8 +++++++-
- drivers/video/fbdev/hyperv_fb.c        |  1 +
- 4 files changed, 21 insertions(+), 24 deletions(-)
-
---7uaw3bv46dovgufw
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCX60zjgAKCRDj7w1vZxhR
-xZ0rAP0Y7D1rieBs98/DNaEeA4gJ9ynGPrrLJSkp2bNJLh4BzAEAt6Ah8OxnSGVJ
-VAC4cbL6h+tOFkctVwmMx5zM3NXxPw0=
-=1jrq
------END PGP SIGNATURE-----
-
---7uaw3bv46dovgufw--
-
---===============2143948078==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============2143948078==--
+T24gV2VkLCAyMDIwLTExLTExIGF0IDEzOjEyIC0wODAwLCBMdWNhcyBEZSBNYXJjaGkgd3JvdGU6
+DQo+IE9uIFdlZCwgTm92IDExLCAyMDIwIGF0IDA4OjI0OjA3QU0gLTA4MDAsIEpvc2UgU291emEg
+d3JvdGU6DQo+ID4gREM5IGhhcyBhIHNlcGFyYXRlIEhXIGZsb3cgZnJvbSB0aGUgcmVzdCBvZiB0
+aGUgREMgc3RhdGVzIGFuZCBpdCBpcw0KPiA+IGF2YWlsYWJsZSBpbiBHRU45IExQIHBsYXRmb3Jt
+cyBhbmQgb24gR0VOMTEgYW5kIG5ld2VyLCBzbyBoZXJlDQo+ID4gbW92aW5nIHRoZSBhc3NpZ25t
+ZW50IG9mIHRoZSBtYXNrIHRvIGEgc2luZ2xlIGNvbmRpdGlvbmFsIGJsb2NrIHRvDQo+ID4gc2lt
+cGxpZmx5IGNvZGUuDQo+ID4gDQo+ID4gQ2M6IEx1Y2FzIERlIE1hcmNoaSA8bHVjYXMuZGVtYXJj
+aGlAaW50ZWwuY29tPg0KPiA+IENjOiBBbnVzaGEgU3JpdmF0c2EgPGFudXNoYS5zcml2YXRzYUBp
+bnRlbC5jb20+DQo+ID4gU2lnbmVkLW9mZi1ieTogSm9zw6kgUm9iZXJ0byBkZSBTb3V6YSA8am9z
+ZS5zb3V6YUBpbnRlbC5jb20+DQo+ID4gLS0tDQo+ID4gLi4uL2dwdS9kcm0vaTkxNS9kaXNwbGF5
+L2ludGVsX2Rpc3BsYXlfcG93ZXIuYyB8IDE4ICsrKysrKysrLS0tLS0tLS0tLQ0KPiA+IDEgZmls
+ZSBjaGFuZ2VkLCA4IGluc2VydGlvbnMoKyksIDEwIGRlbGV0aW9ucygtKQ0KPiA+IA0KPiA+IGRp
+ZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXlfcG93
+ZXIuYyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheV9wb3dlci5j
+DQo+ID4gaW5kZXggNjg5OTIyNDgwNjYxLi40OGQ0MWE0M2ZiYjIgMTAwNjQ0DQo+ID4gLS0tIGEv
+ZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5X3Bvd2VyLmMNCj4gPiAr
+KysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXlfcG93ZXIuYw0K
+PiA+IEBAIC00NDk3LDI2ICs0NDk3LDI0IEBAIHN0YXRpYyB1MzIgZ2V0X2FsbG93ZWRfZGNfbWFz
+ayhjb25zdCBzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqZGV2X3ByaXYsDQo+ID4gCQkJbWF4X2Rj
+ID0gMzsNCj4gPiAJCWVsc2UNCj4gPiAJCQltYXhfZGMgPSA0Ow0KPiA+IC0JCS8qDQo+ID4gLQkJ
+ICogREM5IGhhcyBhIHNlcGFyYXRlIEhXIGZsb3cgZnJvbSB0aGUgcmVzdCBvZiB0aGUgREMgc3Rh
+dGVzLA0KPiA+IC0JCSAqIG5vdCBkZXBlbmRpbmcgb24gdGhlIERNQyBmaXJtd2FyZS4gSXQncyBu
+ZWVkZWQgYnkgc3lzdGVtDQo+ID4gLQkJICogc3VzcGVuZC9yZXN1bWUsIHNvIGFsbG93IGl0IHVu
+Y29uZGl0aW9uYWxseS4NCj4gPiAtCQkgKi8NCj4gPiAtCQltYXNrID0gRENfU1RBVEVfRU5fREM5
+Ow0KPiA+IAl9IGVsc2UgaWYgKElTX0dFTihkZXZfcHJpdiwgMTEpKSB7DQo+ID4gCQltYXhfZGMg
+PSAyOw0KPiA+IC0JCW1hc2sgPSBEQ19TVEFURV9FTl9EQzk7DQo+ID4gCX0gZWxzZSBpZiAoSVNf
+R0VOKGRldl9wcml2LCAxMCkgfHwgSVNfR0VOOV9CQyhkZXZfcHJpdikpIHsNCj4gPiAJCW1heF9k
+YyA9IDI7DQo+ID4gLQkJbWFzayA9IDA7DQo+ID4gCX0gZWxzZSBpZiAoSVNfR0VOOV9MUChkZXZf
+cHJpdikpIHsNCj4gPiAJCW1heF9kYyA9IDE7DQo+ID4gLQkJbWFzayA9IERDX1NUQVRFX0VOX0RD
+OTsNCj4gPiAJfSBlbHNlIHsNCj4gPiAJCW1heF9kYyA9IDA7DQo+ID4gLQkJbWFzayA9IDA7DQo+
+ID4gCX0NCj4gPiANCj4gPiArCS8qDQo+ID4gKwkgKiBEQzkgaGFzIGEgc2VwYXJhdGUgSFcgZmxv
+dyBmcm9tIHRoZSByZXN0IG9mIHRoZSBEQyBzdGF0ZXMsDQo+ID4gKwkgKiBub3QgZGVwZW5kaW5n
+IG9uIHRoZSBETUMgZmlybXdhcmUuIEl0J3MgbmVlZGVkIGJ5IHN5c3RlbQ0KPiA+ICsJICogc3Vz
+cGVuZC9yZXN1bWUsIHNvIGFsbG93IGl0IHVuY29uZGl0aW9uYWxseS4NCj4gPiArCSAqLw0KPiA+
+ICsJbWFzayA9IElTX0dFTjlfTFAoZGV2X3ByaXYpIHx8IElOVEVMX0dFTihkZXZfcHJpdikgPj0g
+MTEgPw0KPiA+ICsJICAgICAgIERDX1NUQVRFX0VOX0RDOSA6IDA7DQo+IA0KPiBodW1uLi4uIHRo
+ZXNlIDIgY29uZGl0aW9ucyBoZXJlIGluIGEgdGVybmFyeSBvcGVyYXRvciBpcyBzb21ldGhpbmcg
+dGhhdA0KPiB3aWxsIHByb2JhYmx5IGdldCBldmVuIGhhcmRlciB0byByZWFkIGlmIHdlIGhhdmUg
+dG8gYWRkIG1vcmUgY29uZGl0aW9ucy4NCj4gTWF5YmUganVzdCBtb3ZlIHRoZSBkZWZhdWx0IHZh
+bHVlIHRvIHRoZSBkZWNsYXJhdGlvbiAobWFzayA9IDApIGFuZCBoZXJlDQo+IHlvdSBkbzoNCj4g
+DQo+IGlmIChJU19HRU45X0xQKGRldl9wcml2KSB8fCBJTlRFTF9HRU4oZGV2X3ByaXYpID49IDEx
+KQ0KPiAJbWFzayA9IERDX1NUQVRFX0VOX0RDOTsNCj4gDQo+ID8NCj4gDQo+IFVwIHRvIHlvdS4g
+Q2hhbmdlIGxvb2tzIGNvcnJlY3QNCg0KV2lsbCBrZWVwIHRoZSB3YXkgdGhpcyBwYXRjaCBpcyBh
+cyBJIGJlbGlldmUgdGhhdCBhbGwgbmV3IHBsYXRmb3JtcyB3aWxsIHN1cHBvcnQgREM5IHNvIHRo
+aXMgYmxvY2sgd2lsbCBub3QgY2hhbmdlIGJ1dCBpZiBpdCBoYXBwZW5zIHdlIHNob3VsZCBkbyBs
+aWtlDQp5b3Ugc3VnZ2VzdGVkLg0KDQo+IA0KPiANCj4gUmV2aWV3ZWQtYnk6IEx1Y2FzIERlIE1h
+cmNoaSA8bHVjYXMuZGVtYXJjaGlAaW50ZWwuY29tPg0KDQp0aGFua3MNCg0KPiANCj4gTHVjYXMg
+RGUgTWFyY2hpDQo+IA0KPiA+ICsNCj4gPiAJaWYgKCFkZXZfcHJpdi0+cGFyYW1zLmRpc2FibGVf
+cG93ZXJfd2VsbCkNCj4gPiAJCW1heF9kYyA9IDA7DQo+ID4gDQo+ID4gLS0gDQo+ID4gMi4yOS4y
+DQo+ID4gDQoNCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+CkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpo
+dHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
