@@ -1,41 +1,41 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 12E502B0431
-	for <lists+intel-gfx@lfdr.de>; Thu, 12 Nov 2020 12:45:28 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0D38D2B0432
+	for <lists+intel-gfx@lfdr.de>; Thu, 12 Nov 2020 12:45:33 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6AA506E209;
-	Thu, 12 Nov 2020 11:45:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5BC996E20E;
+	Thu, 12 Nov 2020 11:45:31 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 00BA46E20B
- for <intel-gfx@lists.freedesktop.org>; Thu, 12 Nov 2020 11:45:24 +0000 (UTC)
-IronPort-SDR: Jr0zjjV+HMUpekSAF9gSpIwzrbhjIdkFtcxhUs6u1cWJvfNnWB2O8ruCuSV/8nVW4y9uvnb/iE
- 8BUjd+Ppy9Gg==
-X-IronPort-AV: E=McAfee;i="6000,8403,9802"; a="150145697"
-X-IronPort-AV: E=Sophos;i="5.77,471,1596524400"; d="scan'208";a="150145697"
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B2F086E20C
+ for <intel-gfx@lists.freedesktop.org>; Thu, 12 Nov 2020 11:45:29 +0000 (UTC)
+IronPort-SDR: dI/rjfbPHfplhYfk6QRRnPl9AlxCfyO2oDK1Lrak+dBVkmTaeZSVh9AkOVbZSZ/NHV3s/9rRmJ
+ aHcd3zl5EttA==
+X-IronPort-AV: E=McAfee;i="6000,8403,9802"; a="255003492"
+X-IronPort-AV: E=Sophos;i="5.77,471,1596524400"; d="scan'208";a="255003492"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Nov 2020 03:45:24 -0800
-IronPort-SDR: MHGn23W6l2B6uyt9hHNmLs0Xhb3eP+e8wZHPWd5o8B3r/vwUHLJFntS/nT7fjq+v8bUyk/HOgJ
- KHgtmY9v7MWA==
-X-IronPort-AV: E=Sophos;i="5.77,471,1596524400"; d="scan'208";a="328470201"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Nov 2020 03:45:29 -0800
+IronPort-SDR: tJatNG+3iu6pEqycszHHmn8dAMwbTScmgod21yrHcQFvgfa984Q4jAYJoXnKlSuvSDsSGb5g0Z
+ bOH7ajus6IuA==
+X-IronPort-AV: E=Sophos;i="5.77,471,1596524400"; d="scan'208";a="323610375"
 Received: from mghidovi-mobl1.ti.intel.com (HELO localhost) ([10.251.81.155])
- by orsmga006-auth.jf.intel.com with
- ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Nov 2020 03:45:22 -0800
+ by orsmga003-auth.jf.intel.com with
+ ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Nov 2020 03:45:27 -0800
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Thu, 12 Nov 2020 13:44:40 +0200
-Message-Id: <8958ee8e04ed16503b35f236fb6bb92a428358e8.1605181350.git.jani.nikula@intel.com>
+Date: Thu, 12 Nov 2020 13:44:41 +0200
+Message-Id: <9d8f6d14d4184ef55b2e4260f753101fdf5dca2e.1605181350.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <cover.1605181350.git.jani.nikula@intel.com>
 References: <cover.1605181350.git.jani.nikula@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 7/9] drm/i915/pm: replace I915_READ()/WRITE()
+Subject: [Intel-gfx] [PATCH 8/9] drm/i915/irq: replace I915_READ()/WRITE()
  with intel_uncore_read()/write()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -62,1528 +62,1081 @@ away.
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/intel_pm.c | 552 ++++++++++++++++----------------
- 1 file changed, 276 insertions(+), 276 deletions(-)
+ drivers/gpu/drm/i915/i915_irq.c | 336 ++++++++++++++++----------------
+ 1 file changed, 168 insertions(+), 168 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/intel_pm.c
-index bbec56f97832..c0ed82665706 100644
---- a/drivers/gpu/drm/i915/intel_pm.c
-+++ b/drivers/gpu/drm/i915/intel_pm.c
-@@ -81,24 +81,24 @@ static void gen9_init_clock_gating(struct drm_i915_private *dev_priv)
- 		 * Must match Sampler, Pixel Back End, and Media. See
- 		 * WaCompressedResourceSamplerPbeMediaNewHashMode.
- 		 */
--		I915_WRITE(CHICKEN_PAR1_1,
--			   I915_READ(CHICKEN_PAR1_1) |
-+		intel_uncore_write(&dev_priv->uncore, CHICKEN_PAR1_1,
-+			   intel_uncore_read(&dev_priv->uncore, CHICKEN_PAR1_1) |
- 			   SKL_DE_COMPRESSED_HASH_MODE);
- 	}
- 
- 	/* See Bspec note for PSR2_CTL bit 31, Wa#828:skl,bxt,kbl,cfl */
--	I915_WRITE(CHICKEN_PAR1_1,
--		   I915_READ(CHICKEN_PAR1_1) | SKL_EDP_PSR_FIX_RDWRAP);
-+	intel_uncore_write(&dev_priv->uncore, CHICKEN_PAR1_1,
-+		   intel_uncore_read(&dev_priv->uncore, CHICKEN_PAR1_1) | SKL_EDP_PSR_FIX_RDWRAP);
- 
- 	/* WaEnableChickenDCPR:skl,bxt,kbl,glk,cfl */
--	I915_WRITE(GEN8_CHICKEN_DCPR_1,
--		   I915_READ(GEN8_CHICKEN_DCPR_1) | MASK_WAKEMEM);
-+	intel_uncore_write(&dev_priv->uncore, GEN8_CHICKEN_DCPR_1,
-+		   intel_uncore_read(&dev_priv->uncore, GEN8_CHICKEN_DCPR_1) | MASK_WAKEMEM);
- 
- 	/*
- 	 * WaFbcWakeMemOn:skl,bxt,kbl,glk,cfl
- 	 * Display WA #0859: skl,bxt,kbl,glk,cfl
- 	 */
--	I915_WRITE(DISP_ARB_CTL, I915_READ(DISP_ARB_CTL) |
-+	intel_uncore_write(&dev_priv->uncore, DISP_ARB_CTL, intel_uncore_read(&dev_priv->uncore, DISP_ARB_CTL) |
- 		   DISP_FBC_MEMORY_WAKE);
- }
- 
-@@ -107,21 +107,21 @@ static void bxt_init_clock_gating(struct drm_i915_private *dev_priv)
- 	gen9_init_clock_gating(dev_priv);
- 
- 	/* WaDisableSDEUnitClockGating:bxt */
--	I915_WRITE(GEN8_UCGCTL6, I915_READ(GEN8_UCGCTL6) |
-+	intel_uncore_write(&dev_priv->uncore, GEN8_UCGCTL6, intel_uncore_read(&dev_priv->uncore, GEN8_UCGCTL6) |
- 		   GEN8_SDEUNIT_CLOCK_GATE_DISABLE);
- 
- 	/*
- 	 * FIXME:
- 	 * GEN8_HDCUNIT_CLOCK_GATE_DISABLE_HDCREQ applies on 3x6 GT SKUs only.
- 	 */
--	I915_WRITE(GEN8_UCGCTL6, I915_READ(GEN8_UCGCTL6) |
-+	intel_uncore_write(&dev_priv->uncore, GEN8_UCGCTL6, intel_uncore_read(&dev_priv->uncore, GEN8_UCGCTL6) |
- 		   GEN8_HDCUNIT_CLOCK_GATE_DISABLE_HDCREQ);
- 
- 	/*
- 	 * Wa: Backlight PWM may stop in the asserted state, causing backlight
- 	 * to stay fully on.
- 	 */
--	I915_WRITE(GEN9_CLKGATE_DIS_0, I915_READ(GEN9_CLKGATE_DIS_0) |
-+	intel_uncore_write(&dev_priv->uncore, GEN9_CLKGATE_DIS_0, intel_uncore_read(&dev_priv->uncore, GEN9_CLKGATE_DIS_0) |
- 		   PWM1_GATING_DIS | PWM2_GATING_DIS);
- 
- 	/*
-@@ -130,20 +130,20 @@ static void bxt_init_clock_gating(struct drm_i915_private *dev_priv)
- 	 * is off and a MMIO access is attempted by any privilege
- 	 * application, using batch buffers or any other means.
- 	 */
--	I915_WRITE(RM_TIMEOUT, MMIO_TIMEOUT_US(950));
-+	intel_uncore_write(&dev_priv->uncore, RM_TIMEOUT, MMIO_TIMEOUT_US(950));
- 
- 	/*
- 	 * WaFbcTurnOffFbcWatermark:bxt
- 	 * Display WA #0562: bxt
- 	 */
--	I915_WRITE(DISP_ARB_CTL, I915_READ(DISP_ARB_CTL) |
-+	intel_uncore_write(&dev_priv->uncore, DISP_ARB_CTL, intel_uncore_read(&dev_priv->uncore, DISP_ARB_CTL) |
- 		   DISP_FBC_WM_DIS);
- 
- 	/*
- 	 * WaFbcHighMemBwCorruptionAvoidance:bxt
- 	 * Display WA #0883: bxt
- 	 */
--	I915_WRITE(ILK_DPFC_CHICKEN, I915_READ(ILK_DPFC_CHICKEN) |
-+	intel_uncore_write(&dev_priv->uncore, ILK_DPFC_CHICKEN, intel_uncore_read(&dev_priv->uncore, ILK_DPFC_CHICKEN) |
- 		   ILK_DPFC_DISABLE_DUMMY0);
- }
- 
-@@ -156,7 +156,7 @@ static void glk_init_clock_gating(struct drm_i915_private *dev_priv)
- 	 * Backlight PWM may stop in the asserted state, causing backlight
- 	 * to stay fully on.
- 	 */
--	I915_WRITE(GEN9_CLKGATE_DIS_0, I915_READ(GEN9_CLKGATE_DIS_0) |
-+	intel_uncore_write(&dev_priv->uncore, GEN9_CLKGATE_DIS_0, intel_uncore_read(&dev_priv->uncore, GEN9_CLKGATE_DIS_0) |
- 		   PWM1_GATING_DIS | PWM2_GATING_DIS);
- }
- 
-@@ -164,7 +164,7 @@ static void pnv_get_mem_freq(struct drm_i915_private *dev_priv)
- {
- 	u32 tmp;
- 
--	tmp = I915_READ(CLKCFG);
-+	tmp = intel_uncore_read(&dev_priv->uncore, CLKCFG);
- 
- 	switch (tmp & CLKCFG_FSB_MASK) {
- 	case CLKCFG_FSB_533:
-@@ -194,7 +194,7 @@ static void pnv_get_mem_freq(struct drm_i915_private *dev_priv)
- 	}
- 
- 	/* detect pineview DDR3 setting */
--	tmp = I915_READ(CSHRDDR3CTL);
-+	tmp = intel_uncore_read(&dev_priv->uncore, CSHRDDR3CTL);
- 	dev_priv->is_ddr3 = (tmp & CSHRDDR3CTL_DDR3) ? 1 : 0;
- }
- 
-@@ -365,39 +365,39 @@ static bool _intel_set_memory_cxsr(struct drm_i915_private *dev_priv, bool enabl
- 	u32 val;
- 
- 	if (IS_VALLEYVIEW(dev_priv) || IS_CHERRYVIEW(dev_priv)) {
--		was_enabled = I915_READ(FW_BLC_SELF_VLV) & FW_CSPWRDWNEN;
--		I915_WRITE(FW_BLC_SELF_VLV, enable ? FW_CSPWRDWNEN : 0);
--		POSTING_READ(FW_BLC_SELF_VLV);
-+		was_enabled = intel_uncore_read(&dev_priv->uncore, FW_BLC_SELF_VLV) & FW_CSPWRDWNEN;
-+		intel_uncore_write(&dev_priv->uncore, FW_BLC_SELF_VLV, enable ? FW_CSPWRDWNEN : 0);
-+		intel_uncore_posting_read(&dev_priv->uncore, FW_BLC_SELF_VLV);
- 	} else if (IS_G4X(dev_priv) || IS_I965GM(dev_priv)) {
--		was_enabled = I915_READ(FW_BLC_SELF) & FW_BLC_SELF_EN;
--		I915_WRITE(FW_BLC_SELF, enable ? FW_BLC_SELF_EN : 0);
--		POSTING_READ(FW_BLC_SELF);
-+		was_enabled = intel_uncore_read(&dev_priv->uncore, FW_BLC_SELF) & FW_BLC_SELF_EN;
-+		intel_uncore_write(&dev_priv->uncore, FW_BLC_SELF, enable ? FW_BLC_SELF_EN : 0);
-+		intel_uncore_posting_read(&dev_priv->uncore, FW_BLC_SELF);
- 	} else if (IS_PINEVIEW(dev_priv)) {
--		val = I915_READ(DSPFW3);
-+		val = intel_uncore_read(&dev_priv->uncore, DSPFW3);
- 		was_enabled = val & PINEVIEW_SELF_REFRESH_EN;
- 		if (enable)
- 			val |= PINEVIEW_SELF_REFRESH_EN;
- 		else
- 			val &= ~PINEVIEW_SELF_REFRESH_EN;
--		I915_WRITE(DSPFW3, val);
--		POSTING_READ(DSPFW3);
-+		intel_uncore_write(&dev_priv->uncore, DSPFW3, val);
-+		intel_uncore_posting_read(&dev_priv->uncore, DSPFW3);
- 	} else if (IS_I945G(dev_priv) || IS_I945GM(dev_priv)) {
--		was_enabled = I915_READ(FW_BLC_SELF) & FW_BLC_SELF_EN;
-+		was_enabled = intel_uncore_read(&dev_priv->uncore, FW_BLC_SELF) & FW_BLC_SELF_EN;
- 		val = enable ? _MASKED_BIT_ENABLE(FW_BLC_SELF_EN) :
- 			       _MASKED_BIT_DISABLE(FW_BLC_SELF_EN);
--		I915_WRITE(FW_BLC_SELF, val);
--		POSTING_READ(FW_BLC_SELF);
-+		intel_uncore_write(&dev_priv->uncore, FW_BLC_SELF, val);
-+		intel_uncore_posting_read(&dev_priv->uncore, FW_BLC_SELF);
- 	} else if (IS_I915GM(dev_priv)) {
- 		/*
- 		 * FIXME can't find a bit like this for 915G, and
- 		 * and yet it does have the related watermark in
- 		 * FW_BLC_SELF. What's going on?
- 		 */
--		was_enabled = I915_READ(INSTPM) & INSTPM_SELF_EN;
-+		was_enabled = intel_uncore_read(&dev_priv->uncore, INSTPM) & INSTPM_SELF_EN;
- 		val = enable ? _MASKED_BIT_ENABLE(INSTPM_SELF_EN) :
- 			       _MASKED_BIT_DISABLE(INSTPM_SELF_EN);
--		I915_WRITE(INSTPM, val);
--		POSTING_READ(INSTPM);
-+		intel_uncore_write(&dev_priv->uncore, INSTPM, val);
-+		intel_uncore_posting_read(&dev_priv->uncore, INSTPM);
- 	} else {
- 		return false;
- 	}
-@@ -493,20 +493,20 @@ static void vlv_get_fifo_size(struct intel_crtc_state *crtc_state)
- 
- 	switch (pipe) {
- 	case PIPE_A:
--		dsparb = I915_READ(DSPARB);
--		dsparb2 = I915_READ(DSPARB2);
-+		dsparb = intel_uncore_read(&dev_priv->uncore, DSPARB);
-+		dsparb2 = intel_uncore_read(&dev_priv->uncore, DSPARB2);
- 		sprite0_start = VLV_FIFO_START(dsparb, dsparb2, 0, 0);
- 		sprite1_start = VLV_FIFO_START(dsparb, dsparb2, 8, 4);
- 		break;
- 	case PIPE_B:
--		dsparb = I915_READ(DSPARB);
--		dsparb2 = I915_READ(DSPARB2);
-+		dsparb = intel_uncore_read(&dev_priv->uncore, DSPARB);
-+		dsparb2 = intel_uncore_read(&dev_priv->uncore, DSPARB2);
- 		sprite0_start = VLV_FIFO_START(dsparb, dsparb2, 16, 8);
- 		sprite1_start = VLV_FIFO_START(dsparb, dsparb2, 24, 12);
- 		break;
- 	case PIPE_C:
--		dsparb2 = I915_READ(DSPARB2);
--		dsparb3 = I915_READ(DSPARB3);
-+		dsparb2 = intel_uncore_read(&dev_priv->uncore, DSPARB2);
-+		dsparb3 = intel_uncore_read(&dev_priv->uncore, DSPARB3);
- 		sprite0_start = VLV_FIFO_START(dsparb3, dsparb2, 0, 16);
- 		sprite1_start = VLV_FIFO_START(dsparb3, dsparb2, 8, 20);
- 		break;
-@@ -524,7 +524,7 @@ static void vlv_get_fifo_size(struct intel_crtc_state *crtc_state)
- static int i9xx_get_fifo_size(struct drm_i915_private *dev_priv,
- 			      enum i9xx_plane_id i9xx_plane)
- {
--	u32 dsparb = I915_READ(DSPARB);
-+	u32 dsparb = intel_uncore_read(&dev_priv->uncore, DSPARB);
- 	int size;
- 
- 	size = dsparb & 0x7f;
-@@ -540,7 +540,7 @@ static int i9xx_get_fifo_size(struct drm_i915_private *dev_priv,
- static int i830_get_fifo_size(struct drm_i915_private *dev_priv,
- 			      enum i9xx_plane_id i9xx_plane)
- {
--	u32 dsparb = I915_READ(DSPARB);
-+	u32 dsparb = intel_uncore_read(&dev_priv->uncore, DSPARB);
- 	int size;
- 
- 	size = dsparb & 0x1ff;
-@@ -557,7 +557,7 @@ static int i830_get_fifo_size(struct drm_i915_private *dev_priv,
- static int i845_get_fifo_size(struct drm_i915_private *dev_priv,
- 			      enum i9xx_plane_id i9xx_plane)
- {
--	u32 dsparb = I915_READ(DSPARB);
-+	u32 dsparb = intel_uncore_read(&dev_priv->uncore, DSPARB);
- 	int size;
- 
- 	size = dsparb & 0x7f;
-@@ -910,38 +910,38 @@ static void pnv_update_wm(struct intel_crtc *unused_crtc)
- 		wm = intel_calculate_wm(clock, &pnv_display_wm,
- 					pnv_display_wm.fifo_size,
- 					cpp, latency->display_sr);
--		reg = I915_READ(DSPFW1);
-+		reg = intel_uncore_read(&dev_priv->uncore, DSPFW1);
- 		reg &= ~DSPFW_SR_MASK;
- 		reg |= FW_WM(wm, SR);
--		I915_WRITE(DSPFW1, reg);
-+		intel_uncore_write(&dev_priv->uncore, DSPFW1, reg);
- 		drm_dbg_kms(&dev_priv->drm, "DSPFW1 register is %x\n", reg);
- 
- 		/* cursor SR */
- 		wm = intel_calculate_wm(clock, &pnv_cursor_wm,
- 					pnv_display_wm.fifo_size,
- 					4, latency->cursor_sr);
--		reg = I915_READ(DSPFW3);
-+		reg = intel_uncore_read(&dev_priv->uncore, DSPFW3);
- 		reg &= ~DSPFW_CURSOR_SR_MASK;
- 		reg |= FW_WM(wm, CURSOR_SR);
--		I915_WRITE(DSPFW3, reg);
-+		intel_uncore_write(&dev_priv->uncore, DSPFW3, reg);
- 
- 		/* Display HPLL off SR */
- 		wm = intel_calculate_wm(clock, &pnv_display_hplloff_wm,
- 					pnv_display_hplloff_wm.fifo_size,
- 					cpp, latency->display_hpll_disable);
--		reg = I915_READ(DSPFW3);
-+		reg = intel_uncore_read(&dev_priv->uncore, DSPFW3);
- 		reg &= ~DSPFW_HPLL_SR_MASK;
- 		reg |= FW_WM(wm, HPLL_SR);
--		I915_WRITE(DSPFW3, reg);
-+		intel_uncore_write(&dev_priv->uncore, DSPFW3, reg);
- 
- 		/* cursor HPLL off SR */
- 		wm = intel_calculate_wm(clock, &pnv_cursor_hplloff_wm,
- 					pnv_display_hplloff_wm.fifo_size,
- 					4, latency->cursor_hpll_disable);
--		reg = I915_READ(DSPFW3);
-+		reg = intel_uncore_read(&dev_priv->uncore, DSPFW3);
- 		reg &= ~DSPFW_HPLL_CURSOR_MASK;
- 		reg |= FW_WM(wm, HPLL_CURSOR);
--		I915_WRITE(DSPFW3, reg);
-+		intel_uncore_write(&dev_priv->uncore, DSPFW3, reg);
- 		drm_dbg_kms(&dev_priv->drm, "DSPFW3 register is %x\n", reg);
- 
- 		intel_set_memory_cxsr(dev_priv, true);
-@@ -975,25 +975,25 @@ static void g4x_write_wm_values(struct drm_i915_private *dev_priv,
- 	for_each_pipe(dev_priv, pipe)
- 		trace_g4x_wm(intel_get_crtc_for_pipe(dev_priv, pipe), wm);
- 
--	I915_WRITE(DSPFW1,
-+	intel_uncore_write(&dev_priv->uncore, DSPFW1,
- 		   FW_WM(wm->sr.plane, SR) |
- 		   FW_WM(wm->pipe[PIPE_B].plane[PLANE_CURSOR], CURSORB) |
- 		   FW_WM(wm->pipe[PIPE_B].plane[PLANE_PRIMARY], PLANEB) |
- 		   FW_WM(wm->pipe[PIPE_A].plane[PLANE_PRIMARY], PLANEA));
--	I915_WRITE(DSPFW2,
-+	intel_uncore_write(&dev_priv->uncore, DSPFW2,
- 		   (wm->fbc_en ? DSPFW_FBC_SR_EN : 0) |
- 		   FW_WM(wm->sr.fbc, FBC_SR) |
- 		   FW_WM(wm->hpll.fbc, FBC_HPLL_SR) |
- 		   FW_WM(wm->pipe[PIPE_B].plane[PLANE_SPRITE0], SPRITEB) |
- 		   FW_WM(wm->pipe[PIPE_A].plane[PLANE_CURSOR], CURSORA) |
- 		   FW_WM(wm->pipe[PIPE_A].plane[PLANE_SPRITE0], SPRITEA));
--	I915_WRITE(DSPFW3,
-+	intel_uncore_write(&dev_priv->uncore, DSPFW3,
- 		   (wm->hpll_en ? DSPFW_HPLL_SR_EN : 0) |
- 		   FW_WM(wm->sr.cursor, CURSOR_SR) |
- 		   FW_WM(wm->hpll.cursor, HPLL_CURSOR) |
- 		   FW_WM(wm->hpll.plane, HPLL_SR));
- 
--	POSTING_READ(DSPFW1);
-+	intel_uncore_posting_read(&dev_priv->uncore, DSPFW1);
- }
- 
- #define FW_WM_VLV(value, plane) \
-@@ -1007,7 +1007,7 @@ static void vlv_write_wm_values(struct drm_i915_private *dev_priv,
- 	for_each_pipe(dev_priv, pipe) {
- 		trace_vlv_wm(intel_get_crtc_for_pipe(dev_priv, pipe), wm);
- 
--		I915_WRITE(VLV_DDL(pipe),
-+		intel_uncore_write(&dev_priv->uncore, VLV_DDL(pipe),
- 			   (wm->ddl[pipe].plane[PLANE_CURSOR] << DDL_CURSOR_SHIFT) |
- 			   (wm->ddl[pipe].plane[PLANE_SPRITE1] << DDL_SPRITE_SHIFT(1)) |
- 			   (wm->ddl[pipe].plane[PLANE_SPRITE0] << DDL_SPRITE_SHIFT(0)) |
-@@ -1019,35 +1019,35 @@ static void vlv_write_wm_values(struct drm_i915_private *dev_priv,
- 	 * high order bits so that there are no out of bounds values
- 	 * present in the registers during the reprogramming.
- 	 */
--	I915_WRITE(DSPHOWM, 0);
--	I915_WRITE(DSPHOWM1, 0);
--	I915_WRITE(DSPFW4, 0);
--	I915_WRITE(DSPFW5, 0);
--	I915_WRITE(DSPFW6, 0);
-+	intel_uncore_write(&dev_priv->uncore, DSPHOWM, 0);
-+	intel_uncore_write(&dev_priv->uncore, DSPHOWM1, 0);
-+	intel_uncore_write(&dev_priv->uncore, DSPFW4, 0);
-+	intel_uncore_write(&dev_priv->uncore, DSPFW5, 0);
-+	intel_uncore_write(&dev_priv->uncore, DSPFW6, 0);
- 
--	I915_WRITE(DSPFW1,
-+	intel_uncore_write(&dev_priv->uncore, DSPFW1,
- 		   FW_WM(wm->sr.plane, SR) |
- 		   FW_WM(wm->pipe[PIPE_B].plane[PLANE_CURSOR], CURSORB) |
- 		   FW_WM_VLV(wm->pipe[PIPE_B].plane[PLANE_PRIMARY], PLANEB) |
- 		   FW_WM_VLV(wm->pipe[PIPE_A].plane[PLANE_PRIMARY], PLANEA));
--	I915_WRITE(DSPFW2,
-+	intel_uncore_write(&dev_priv->uncore, DSPFW2,
- 		   FW_WM_VLV(wm->pipe[PIPE_A].plane[PLANE_SPRITE1], SPRITEB) |
- 		   FW_WM(wm->pipe[PIPE_A].plane[PLANE_CURSOR], CURSORA) |
- 		   FW_WM_VLV(wm->pipe[PIPE_A].plane[PLANE_SPRITE0], SPRITEA));
--	I915_WRITE(DSPFW3,
-+	intel_uncore_write(&dev_priv->uncore, DSPFW3,
- 		   FW_WM(wm->sr.cursor, CURSOR_SR));
- 
- 	if (IS_CHERRYVIEW(dev_priv)) {
--		I915_WRITE(DSPFW7_CHV,
-+		intel_uncore_write(&dev_priv->uncore, DSPFW7_CHV,
- 			   FW_WM_VLV(wm->pipe[PIPE_B].plane[PLANE_SPRITE1], SPRITED) |
- 			   FW_WM_VLV(wm->pipe[PIPE_B].plane[PLANE_SPRITE0], SPRITEC));
--		I915_WRITE(DSPFW8_CHV,
-+		intel_uncore_write(&dev_priv->uncore, DSPFW8_CHV,
- 			   FW_WM_VLV(wm->pipe[PIPE_C].plane[PLANE_SPRITE1], SPRITEF) |
- 			   FW_WM_VLV(wm->pipe[PIPE_C].plane[PLANE_SPRITE0], SPRITEE));
--		I915_WRITE(DSPFW9_CHV,
-+		intel_uncore_write(&dev_priv->uncore, DSPFW9_CHV,
- 			   FW_WM_VLV(wm->pipe[PIPE_C].plane[PLANE_PRIMARY], PLANEC) |
- 			   FW_WM(wm->pipe[PIPE_C].plane[PLANE_CURSOR], CURSORC));
--		I915_WRITE(DSPHOWM,
-+		intel_uncore_write(&dev_priv->uncore, DSPHOWM,
- 			   FW_WM(wm->sr.plane >> 9, SR_HI) |
- 			   FW_WM(wm->pipe[PIPE_C].plane[PLANE_SPRITE1] >> 8, SPRITEF_HI) |
- 			   FW_WM(wm->pipe[PIPE_C].plane[PLANE_SPRITE0] >> 8, SPRITEE_HI) |
-@@ -1059,10 +1059,10 @@ static void vlv_write_wm_values(struct drm_i915_private *dev_priv,
- 			   FW_WM(wm->pipe[PIPE_A].plane[PLANE_SPRITE0] >> 8, SPRITEA_HI) |
- 			   FW_WM(wm->pipe[PIPE_A].plane[PLANE_PRIMARY] >> 8, PLANEA_HI));
- 	} else {
--		I915_WRITE(DSPFW7,
-+		intel_uncore_write(&dev_priv->uncore, DSPFW7,
- 			   FW_WM_VLV(wm->pipe[PIPE_B].plane[PLANE_SPRITE1], SPRITED) |
- 			   FW_WM_VLV(wm->pipe[PIPE_B].plane[PLANE_SPRITE0], SPRITEC));
--		I915_WRITE(DSPHOWM,
-+		intel_uncore_write(&dev_priv->uncore, DSPHOWM,
- 			   FW_WM(wm->sr.plane >> 9, SR_HI) |
- 			   FW_WM(wm->pipe[PIPE_B].plane[PLANE_SPRITE1] >> 8, SPRITED_HI) |
- 			   FW_WM(wm->pipe[PIPE_B].plane[PLANE_SPRITE0] >> 8, SPRITEC_HI) |
-@@ -1072,7 +1072,7 @@ static void vlv_write_wm_values(struct drm_i915_private *dev_priv,
- 			   FW_WM(wm->pipe[PIPE_A].plane[PLANE_PRIMARY] >> 8, PLANEA_HI));
- 	}
- 
--	POSTING_READ(DSPFW1);
-+	intel_uncore_posting_read(&dev_priv->uncore, DSPFW1);
- }
- 
- #undef FW_WM_VLV
-@@ -2309,14 +2309,14 @@ static void i965_update_wm(struct intel_crtc *unused_crtc)
- 		    srwm);
- 
- 	/* 965 has limitations... */
--	I915_WRITE(DSPFW1, FW_WM(srwm, SR) |
-+	intel_uncore_write(&dev_priv->uncore, DSPFW1, FW_WM(srwm, SR) |
- 		   FW_WM(8, CURSORB) |
- 		   FW_WM(8, PLANEB) |
- 		   FW_WM(8, PLANEA));
--	I915_WRITE(DSPFW2, FW_WM(8, CURSORA) |
-+	intel_uncore_write(&dev_priv->uncore, DSPFW2, FW_WM(8, CURSORA) |
- 		   FW_WM(8, PLANEC_OLD));
- 	/* update cursor SR watermark */
--	I915_WRITE(DSPFW3, FW_WM(cursor_sr, CURSOR_SR));
-+	intel_uncore_write(&dev_priv->uncore, DSPFW3, FW_WM(cursor_sr, CURSOR_SR));
- 
- 	if (cxsr_enabled)
- 		intel_set_memory_cxsr(dev_priv, true);
-@@ -2446,10 +2446,10 @@ static void i9xx_update_wm(struct intel_crtc *unused_crtc)
- 			srwm = 1;
- 
- 		if (IS_I945G(dev_priv) || IS_I945GM(dev_priv))
--			I915_WRITE(FW_BLC_SELF,
-+			intel_uncore_write(&dev_priv->uncore, FW_BLC_SELF,
- 				   FW_BLC_SELF_FIFO_MASK | (srwm & 0xff));
- 		else
--			I915_WRITE(FW_BLC_SELF, srwm & 0x3f);
-+			intel_uncore_write(&dev_priv->uncore, FW_BLC_SELF, srwm & 0x3f);
- 	}
- 
- 	drm_dbg_kms(&dev_priv->drm,
-@@ -2463,8 +2463,8 @@ static void i9xx_update_wm(struct intel_crtc *unused_crtc)
- 	fwater_lo = fwater_lo | (1 << 24) | (1 << 8);
- 	fwater_hi = fwater_hi | (1 << 8);
- 
--	I915_WRITE(FW_BLC, fwater_lo);
--	I915_WRITE(FW_BLC2, fwater_hi);
-+	intel_uncore_write(&dev_priv->uncore, FW_BLC, fwater_lo);
-+	intel_uncore_write(&dev_priv->uncore, FW_BLC2, fwater_hi);
- 
- 	if (enabled)
- 		intel_set_memory_cxsr(dev_priv, true);
-@@ -2487,13 +2487,13 @@ static void i845_update_wm(struct intel_crtc *unused_crtc)
- 				       &i845_wm_info,
- 				       dev_priv->display.get_fifo_size(dev_priv, PLANE_A),
- 				       4, pessimal_latency_ns);
--	fwater_lo = I915_READ(FW_BLC) & ~0xfff;
-+	fwater_lo = intel_uncore_read(&dev_priv->uncore, FW_BLC) & ~0xfff;
- 	fwater_lo |= (3<<8) | planea_wm;
- 
- 	drm_dbg_kms(&dev_priv->drm,
- 		    "Setting FIFO watermarks - A: %d\n", planea_wm);
- 
--	I915_WRITE(FW_BLC, fwater_lo);
-+	intel_uncore_write(&dev_priv->uncore, FW_BLC, fwater_lo);
- }
- 
- /* latency must be in 0.1us units. */
-@@ -3533,17 +3533,17 @@ static bool _ilk_disable_lp_wm(struct drm_i915_private *dev_priv,
- 
- 	if (dirty & WM_DIRTY_LP(3) && previous->wm_lp[2] & WM1_LP_SR_EN) {
- 		previous->wm_lp[2] &= ~WM1_LP_SR_EN;
--		I915_WRITE(WM3_LP_ILK, previous->wm_lp[2]);
-+		intel_uncore_write(&dev_priv->uncore, WM3_LP_ILK, previous->wm_lp[2]);
- 		changed = true;
- 	}
- 	if (dirty & WM_DIRTY_LP(2) && previous->wm_lp[1] & WM1_LP_SR_EN) {
- 		previous->wm_lp[1] &= ~WM1_LP_SR_EN;
--		I915_WRITE(WM2_LP_ILK, previous->wm_lp[1]);
-+		intel_uncore_write(&dev_priv->uncore, WM2_LP_ILK, previous->wm_lp[1]);
- 		changed = true;
- 	}
- 	if (dirty & WM_DIRTY_LP(1) && previous->wm_lp[0] & WM1_LP_SR_EN) {
- 		previous->wm_lp[0] &= ~WM1_LP_SR_EN;
--		I915_WRITE(WM1_LP_ILK, previous->wm_lp[0]);
-+		intel_uncore_write(&dev_priv->uncore, WM1_LP_ILK, previous->wm_lp[0]);
- 		changed = true;
- 	}
- 
-@@ -3573,56 +3573,56 @@ static void ilk_write_wm_values(struct drm_i915_private *dev_priv,
- 	_ilk_disable_lp_wm(dev_priv, dirty);
- 
- 	if (dirty & WM_DIRTY_PIPE(PIPE_A))
--		I915_WRITE(WM0_PIPE_ILK(PIPE_A), results->wm_pipe[0]);
-+		intel_uncore_write(&dev_priv->uncore, WM0_PIPE_ILK(PIPE_A), results->wm_pipe[0]);
- 	if (dirty & WM_DIRTY_PIPE(PIPE_B))
--		I915_WRITE(WM0_PIPE_ILK(PIPE_B), results->wm_pipe[1]);
-+		intel_uncore_write(&dev_priv->uncore, WM0_PIPE_ILK(PIPE_B), results->wm_pipe[1]);
- 	if (dirty & WM_DIRTY_PIPE(PIPE_C))
--		I915_WRITE(WM0_PIPE_ILK(PIPE_C), results->wm_pipe[2]);
-+		intel_uncore_write(&dev_priv->uncore, WM0_PIPE_ILK(PIPE_C), results->wm_pipe[2]);
- 
- 	if (dirty & WM_DIRTY_DDB) {
- 		if (IS_HASWELL(dev_priv) || IS_BROADWELL(dev_priv)) {
--			val = I915_READ(WM_MISC);
-+			val = intel_uncore_read(&dev_priv->uncore, WM_MISC);
- 			if (results->partitioning == INTEL_DDB_PART_1_2)
- 				val &= ~WM_MISC_DATA_PARTITION_5_6;
- 			else
- 				val |= WM_MISC_DATA_PARTITION_5_6;
--			I915_WRITE(WM_MISC, val);
-+			intel_uncore_write(&dev_priv->uncore, WM_MISC, val);
- 		} else {
--			val = I915_READ(DISP_ARB_CTL2);
-+			val = intel_uncore_read(&dev_priv->uncore, DISP_ARB_CTL2);
- 			if (results->partitioning == INTEL_DDB_PART_1_2)
- 				val &= ~DISP_DATA_PARTITION_5_6;
- 			else
- 				val |= DISP_DATA_PARTITION_5_6;
--			I915_WRITE(DISP_ARB_CTL2, val);
-+			intel_uncore_write(&dev_priv->uncore, DISP_ARB_CTL2, val);
- 		}
- 	}
- 
- 	if (dirty & WM_DIRTY_FBC) {
--		val = I915_READ(DISP_ARB_CTL);
-+		val = intel_uncore_read(&dev_priv->uncore, DISP_ARB_CTL);
- 		if (results->enable_fbc_wm)
- 			val &= ~DISP_FBC_WM_DIS;
- 		else
- 			val |= DISP_FBC_WM_DIS;
--		I915_WRITE(DISP_ARB_CTL, val);
-+		intel_uncore_write(&dev_priv->uncore, DISP_ARB_CTL, val);
- 	}
- 
- 	if (dirty & WM_DIRTY_LP(1) &&
- 	    previous->wm_lp_spr[0] != results->wm_lp_spr[0])
--		I915_WRITE(WM1S_LP_ILK, results->wm_lp_spr[0]);
-+		intel_uncore_write(&dev_priv->uncore, WM1S_LP_ILK, results->wm_lp_spr[0]);
- 
- 	if (INTEL_GEN(dev_priv) >= 7) {
- 		if (dirty & WM_DIRTY_LP(2) && previous->wm_lp_spr[1] != results->wm_lp_spr[1])
--			I915_WRITE(WM2S_LP_IVB, results->wm_lp_spr[1]);
-+			intel_uncore_write(&dev_priv->uncore, WM2S_LP_IVB, results->wm_lp_spr[1]);
- 		if (dirty & WM_DIRTY_LP(3) && previous->wm_lp_spr[2] != results->wm_lp_spr[2])
--			I915_WRITE(WM3S_LP_IVB, results->wm_lp_spr[2]);
-+			intel_uncore_write(&dev_priv->uncore, WM3S_LP_IVB, results->wm_lp_spr[2]);
- 	}
- 
- 	if (dirty & WM_DIRTY_LP(1) && previous->wm_lp[0] != results->wm_lp[0])
--		I915_WRITE(WM1_LP_ILK, results->wm_lp[0]);
-+		intel_uncore_write(&dev_priv->uncore, WM1_LP_ILK, results->wm_lp[0]);
- 	if (dirty & WM_DIRTY_LP(2) && previous->wm_lp[1] != results->wm_lp[1])
--		I915_WRITE(WM2_LP_ILK, results->wm_lp[1]);
-+		intel_uncore_write(&dev_priv->uncore, WM2_LP_ILK, results->wm_lp[1]);
- 	if (dirty & WM_DIRTY_LP(3) && previous->wm_lp[2] != results->wm_lp[2])
--		I915_WRITE(WM3_LP_ILK, results->wm_lp[2]);
-+		intel_uncore_write(&dev_priv->uncore, WM3_LP_ILK, results->wm_lp[2]);
- 
- 	dev_priv->wm.hw = *results;
- }
-@@ -3639,7 +3639,7 @@ u8 intel_enabled_dbuf_slices_mask(struct drm_i915_private *dev_priv)
- 	u8 enabled_slices_mask = 0;
- 
- 	for (i = 0; i < max_slices; i++) {
--		if (I915_READ(DBUF_CTL_S(i)) & DBUF_POWER_STATE)
-+		if (intel_uncore_read(&dev_priv->uncore, DBUF_CTL_S(i)) & DBUF_POWER_STATE)
- 			enabled_slices_mask |= BIT(i);
- 	}
- 
-@@ -4307,12 +4307,12 @@ skl_ddb_get_hw_plane_state(struct drm_i915_private *dev_priv,
- 
- 	/* Cursor doesn't support NV12/planar, so no extra calculation needed */
- 	if (plane_id == PLANE_CURSOR) {
--		val = I915_READ(CUR_BUF_CFG(pipe));
-+		val = intel_uncore_read(&dev_priv->uncore, CUR_BUF_CFG(pipe));
- 		skl_ddb_entry_init_from_hw(dev_priv, ddb_y, val);
- 		return;
- 	}
- 
--	val = I915_READ(PLANE_CTL(pipe, plane_id));
-+	val = intel_uncore_read(&dev_priv->uncore, PLANE_CTL(pipe, plane_id));
- 
- 	/* No DDB allocated for disabled planes */
- 	if (val & PLANE_CTL_ENABLE)
-@@ -4321,11 +4321,11 @@ skl_ddb_get_hw_plane_state(struct drm_i915_private *dev_priv,
- 					      val & PLANE_CTL_ALPHA_MASK);
- 
- 	if (INTEL_GEN(dev_priv) >= 11) {
--		val = I915_READ(PLANE_BUF_CFG(pipe, plane_id));
-+		val = intel_uncore_read(&dev_priv->uncore, PLANE_BUF_CFG(pipe, plane_id));
- 		skl_ddb_entry_init_from_hw(dev_priv, ddb_y, val);
- 	} else {
--		val = I915_READ(PLANE_BUF_CFG(pipe, plane_id));
--		val2 = I915_READ(PLANE_NV12_BUF_CFG(pipe, plane_id));
-+		val = intel_uncore_read(&dev_priv->uncore, PLANE_BUF_CFG(pipe, plane_id));
-+		val2 = intel_uncore_read(&dev_priv->uncore, PLANE_NV12_BUF_CFG(pipe, plane_id));
- 
- 		if (fourcc &&
- 		    drm_format_info_is_yuv_semiplanar(drm_format_info(fourcc)))
-@@ -6240,9 +6240,9 @@ void skl_pipe_wm_get_hw_state(struct intel_crtc *crtc,
- 
- 		for (level = 0; level <= max_level; level++) {
- 			if (plane_id != PLANE_CURSOR)
--				val = I915_READ(PLANE_WM(pipe, plane_id, level));
-+				val = intel_uncore_read(&dev_priv->uncore, PLANE_WM(pipe, plane_id, level));
- 			else
--				val = I915_READ(CUR_WM(pipe, level));
-+				val = intel_uncore_read(&dev_priv->uncore, CUR_WM(pipe, level));
- 
- 			skl_wm_level_from_reg_val(val, &wm->wm[level]);
- 		}
-@@ -6251,9 +6251,9 @@ void skl_pipe_wm_get_hw_state(struct intel_crtc *crtc,
- 			wm->sagv_wm0 = wm->wm[0];
- 
- 		if (plane_id != PLANE_CURSOR)
--			val = I915_READ(PLANE_WM_TRANS(pipe, plane_id));
-+			val = intel_uncore_read(&dev_priv->uncore, PLANE_WM_TRANS(pipe, plane_id));
- 		else
--			val = I915_READ(CUR_WM_TRANS(pipe));
-+			val = intel_uncore_read(&dev_priv->uncore, CUR_WM_TRANS(pipe));
- 
- 		skl_wm_level_from_reg_val(val, &wm->trans_wm);
- 	}
-@@ -6288,7 +6288,7 @@ static void ilk_pipe_wm_get_hw_state(struct intel_crtc *crtc)
- 	struct intel_pipe_wm *active = &crtc_state->wm.ilk.optimal;
- 	enum pipe pipe = crtc->pipe;
- 
--	hw->wm_pipe[pipe] = I915_READ(WM0_PIPE_ILK(pipe));
-+	hw->wm_pipe[pipe] = intel_uncore_read(&dev_priv->uncore, WM0_PIPE_ILK(pipe));
- 
- 	memset(active, 0, sizeof(*active));
- 
-@@ -6332,13 +6332,13 @@ static void g4x_read_wm_values(struct drm_i915_private *dev_priv,
- {
- 	u32 tmp;
- 
--	tmp = I915_READ(DSPFW1);
-+	tmp = intel_uncore_read(&dev_priv->uncore, DSPFW1);
- 	wm->sr.plane = _FW_WM(tmp, SR);
- 	wm->pipe[PIPE_B].plane[PLANE_CURSOR] = _FW_WM(tmp, CURSORB);
- 	wm->pipe[PIPE_B].plane[PLANE_PRIMARY] = _FW_WM(tmp, PLANEB);
- 	wm->pipe[PIPE_A].plane[PLANE_PRIMARY] = _FW_WM(tmp, PLANEA);
- 
--	tmp = I915_READ(DSPFW2);
-+	tmp = intel_uncore_read(&dev_priv->uncore, DSPFW2);
- 	wm->fbc_en = tmp & DSPFW_FBC_SR_EN;
- 	wm->sr.fbc = _FW_WM(tmp, FBC_SR);
- 	wm->hpll.fbc = _FW_WM(tmp, FBC_HPLL_SR);
-@@ -6346,7 +6346,7 @@ static void g4x_read_wm_values(struct drm_i915_private *dev_priv,
- 	wm->pipe[PIPE_A].plane[PLANE_CURSOR] = _FW_WM(tmp, CURSORA);
- 	wm->pipe[PIPE_A].plane[PLANE_SPRITE0] = _FW_WM(tmp, SPRITEA);
- 
--	tmp = I915_READ(DSPFW3);
-+	tmp = intel_uncore_read(&dev_priv->uncore, DSPFW3);
- 	wm->hpll_en = tmp & DSPFW_HPLL_SR_EN;
- 	wm->sr.cursor = _FW_WM(tmp, CURSOR_SR);
- 	wm->hpll.cursor = _FW_WM(tmp, HPLL_CURSOR);
-@@ -6360,7 +6360,7 @@ static void vlv_read_wm_values(struct drm_i915_private *dev_priv,
- 	u32 tmp;
- 
- 	for_each_pipe(dev_priv, pipe) {
--		tmp = I915_READ(VLV_DDL(pipe));
-+		tmp = intel_uncore_read(&dev_priv->uncore, VLV_DDL(pipe));
- 
- 		wm->ddl[pipe].plane[PLANE_PRIMARY] =
- 			(tmp >> DDL_PLANE_SHIFT) & (DDL_PRECISION_HIGH | DRAIN_LATENCY_MASK);
-@@ -6372,34 +6372,34 @@ static void vlv_read_wm_values(struct drm_i915_private *dev_priv,
- 			(tmp >> DDL_SPRITE_SHIFT(1)) & (DDL_PRECISION_HIGH | DRAIN_LATENCY_MASK);
- 	}
- 
--	tmp = I915_READ(DSPFW1);
-+	tmp = intel_uncore_read(&dev_priv->uncore, DSPFW1);
- 	wm->sr.plane = _FW_WM(tmp, SR);
- 	wm->pipe[PIPE_B].plane[PLANE_CURSOR] = _FW_WM(tmp, CURSORB);
- 	wm->pipe[PIPE_B].plane[PLANE_PRIMARY] = _FW_WM_VLV(tmp, PLANEB);
- 	wm->pipe[PIPE_A].plane[PLANE_PRIMARY] = _FW_WM_VLV(tmp, PLANEA);
- 
--	tmp = I915_READ(DSPFW2);
-+	tmp = intel_uncore_read(&dev_priv->uncore, DSPFW2);
- 	wm->pipe[PIPE_A].plane[PLANE_SPRITE1] = _FW_WM_VLV(tmp, SPRITEB);
- 	wm->pipe[PIPE_A].plane[PLANE_CURSOR] = _FW_WM(tmp, CURSORA);
- 	wm->pipe[PIPE_A].plane[PLANE_SPRITE0] = _FW_WM_VLV(tmp, SPRITEA);
- 
--	tmp = I915_READ(DSPFW3);
-+	tmp = intel_uncore_read(&dev_priv->uncore, DSPFW3);
- 	wm->sr.cursor = _FW_WM(tmp, CURSOR_SR);
- 
- 	if (IS_CHERRYVIEW(dev_priv)) {
--		tmp = I915_READ(DSPFW7_CHV);
-+		tmp = intel_uncore_read(&dev_priv->uncore, DSPFW7_CHV);
- 		wm->pipe[PIPE_B].plane[PLANE_SPRITE1] = _FW_WM_VLV(tmp, SPRITED);
- 		wm->pipe[PIPE_B].plane[PLANE_SPRITE0] = _FW_WM_VLV(tmp, SPRITEC);
- 
--		tmp = I915_READ(DSPFW8_CHV);
-+		tmp = intel_uncore_read(&dev_priv->uncore, DSPFW8_CHV);
- 		wm->pipe[PIPE_C].plane[PLANE_SPRITE1] = _FW_WM_VLV(tmp, SPRITEF);
- 		wm->pipe[PIPE_C].plane[PLANE_SPRITE0] = _FW_WM_VLV(tmp, SPRITEE);
- 
--		tmp = I915_READ(DSPFW9_CHV);
-+		tmp = intel_uncore_read(&dev_priv->uncore, DSPFW9_CHV);
- 		wm->pipe[PIPE_C].plane[PLANE_PRIMARY] = _FW_WM_VLV(tmp, PLANEC);
- 		wm->pipe[PIPE_C].plane[PLANE_CURSOR] = _FW_WM(tmp, CURSORC);
- 
--		tmp = I915_READ(DSPHOWM);
-+		tmp = intel_uncore_read(&dev_priv->uncore, DSPHOWM);
- 		wm->sr.plane |= _FW_WM(tmp, SR_HI) << 9;
- 		wm->pipe[PIPE_C].plane[PLANE_SPRITE1] |= _FW_WM(tmp, SPRITEF_HI) << 8;
- 		wm->pipe[PIPE_C].plane[PLANE_SPRITE0] |= _FW_WM(tmp, SPRITEE_HI) << 8;
-@@ -6411,11 +6411,11 @@ static void vlv_read_wm_values(struct drm_i915_private *dev_priv,
- 		wm->pipe[PIPE_A].plane[PLANE_SPRITE0] |= _FW_WM(tmp, SPRITEA_HI) << 8;
- 		wm->pipe[PIPE_A].plane[PLANE_PRIMARY] |= _FW_WM(tmp, PLANEA_HI) << 8;
- 	} else {
--		tmp = I915_READ(DSPFW7);
-+		tmp = intel_uncore_read(&dev_priv->uncore, DSPFW7);
- 		wm->pipe[PIPE_B].plane[PLANE_SPRITE1] = _FW_WM_VLV(tmp, SPRITED);
- 		wm->pipe[PIPE_B].plane[PLANE_SPRITE0] = _FW_WM_VLV(tmp, SPRITEC);
- 
--		tmp = I915_READ(DSPHOWM);
-+		tmp = intel_uncore_read(&dev_priv->uncore, DSPHOWM);
- 		wm->sr.plane |= _FW_WM(tmp, SR_HI) << 9;
- 		wm->pipe[PIPE_B].plane[PLANE_SPRITE1] |= _FW_WM(tmp, SPRITED_HI) << 8;
- 		wm->pipe[PIPE_B].plane[PLANE_SPRITE0] |= _FW_WM(tmp, SPRITEC_HI) << 8;
-@@ -6436,7 +6436,7 @@ void g4x_wm_get_hw_state(struct drm_i915_private *dev_priv)
- 
- 	g4x_read_wm_values(dev_priv, wm);
- 
--	wm->cxsr = I915_READ(FW_BLC_SELF) & FW_BLC_SELF_EN;
-+	wm->cxsr = intel_uncore_read(&dev_priv->uncore, FW_BLC_SELF) & FW_BLC_SELF_EN;
- 
- 	for_each_intel_crtc(&dev_priv->drm, crtc) {
- 		struct intel_crtc_state *crtc_state =
-@@ -6580,7 +6580,7 @@ void vlv_wm_get_hw_state(struct drm_i915_private *dev_priv)
- 
- 	vlv_read_wm_values(dev_priv, wm);
- 
--	wm->cxsr = I915_READ(FW_BLC_SELF_VLV) & FW_CSPWRDWNEN;
-+	wm->cxsr = intel_uncore_read(&dev_priv->uncore, FW_BLC_SELF_VLV) & FW_CSPWRDWNEN;
- 	wm->level = VLV_WM_LEVEL_PM2;
- 
- 	if (IS_CHERRYVIEW(dev_priv)) {
-@@ -6727,9 +6727,9 @@ void vlv_wm_sanitize(struct drm_i915_private *dev_priv)
-  */
- static void ilk_init_lp_watermarks(struct drm_i915_private *dev_priv)
- {
--	I915_WRITE(WM3_LP_ILK, I915_READ(WM3_LP_ILK) & ~WM1_LP_SR_EN);
--	I915_WRITE(WM2_LP_ILK, I915_READ(WM2_LP_ILK) & ~WM1_LP_SR_EN);
--	I915_WRITE(WM1_LP_ILK, I915_READ(WM1_LP_ILK) & ~WM1_LP_SR_EN);
-+	intel_uncore_write(&dev_priv->uncore, WM3_LP_ILK, intel_uncore_read(&dev_priv->uncore, WM3_LP_ILK) & ~WM1_LP_SR_EN);
-+	intel_uncore_write(&dev_priv->uncore, WM2_LP_ILK, intel_uncore_read(&dev_priv->uncore, WM2_LP_ILK) & ~WM1_LP_SR_EN);
-+	intel_uncore_write(&dev_priv->uncore, WM1_LP_ILK, intel_uncore_read(&dev_priv->uncore, WM1_LP_ILK) & ~WM1_LP_SR_EN);
- 
- 	/*
- 	 * Don't touch WM1S_LP_EN here.
-@@ -6747,25 +6747,25 @@ void ilk_wm_get_hw_state(struct drm_i915_private *dev_priv)
- 	for_each_intel_crtc(&dev_priv->drm, crtc)
- 		ilk_pipe_wm_get_hw_state(crtc);
- 
--	hw->wm_lp[0] = I915_READ(WM1_LP_ILK);
--	hw->wm_lp[1] = I915_READ(WM2_LP_ILK);
--	hw->wm_lp[2] = I915_READ(WM3_LP_ILK);
-+	hw->wm_lp[0] = intel_uncore_read(&dev_priv->uncore, WM1_LP_ILK);
-+	hw->wm_lp[1] = intel_uncore_read(&dev_priv->uncore, WM2_LP_ILK);
-+	hw->wm_lp[2] = intel_uncore_read(&dev_priv->uncore, WM3_LP_ILK);
- 
--	hw->wm_lp_spr[0] = I915_READ(WM1S_LP_ILK);
-+	hw->wm_lp_spr[0] = intel_uncore_read(&dev_priv->uncore, WM1S_LP_ILK);
- 	if (INTEL_GEN(dev_priv) >= 7) {
--		hw->wm_lp_spr[1] = I915_READ(WM2S_LP_IVB);
--		hw->wm_lp_spr[2] = I915_READ(WM3S_LP_IVB);
-+		hw->wm_lp_spr[1] = intel_uncore_read(&dev_priv->uncore, WM2S_LP_IVB);
-+		hw->wm_lp_spr[2] = intel_uncore_read(&dev_priv->uncore, WM3S_LP_IVB);
- 	}
- 
- 	if (IS_HASWELL(dev_priv) || IS_BROADWELL(dev_priv))
--		hw->partitioning = (I915_READ(WM_MISC) & WM_MISC_DATA_PARTITION_5_6) ?
-+		hw->partitioning = (intel_uncore_read(&dev_priv->uncore, WM_MISC) & WM_MISC_DATA_PARTITION_5_6) ?
- 			INTEL_DDB_PART_5_6 : INTEL_DDB_PART_1_2;
- 	else if (IS_IVYBRIDGE(dev_priv))
--		hw->partitioning = (I915_READ(DISP_ARB_CTL2) & DISP_DATA_PARTITION_5_6) ?
-+		hw->partitioning = (intel_uncore_read(&dev_priv->uncore, DISP_ARB_CTL2) & DISP_DATA_PARTITION_5_6) ?
- 			INTEL_DDB_PART_5_6 : INTEL_DDB_PART_1_2;
- 
- 	hw->enable_fbc_wm =
--		!(I915_READ(DISP_ARB_CTL) & DISP_FBC_WM_DIS);
-+		!(intel_uncore_read(&dev_priv->uncore, DISP_ARB_CTL) & DISP_FBC_WM_DIS);
+diff --git a/drivers/gpu/drm/i915/i915_irq.c b/drivers/gpu/drm/i915/i915_irq.c
+index 01f5749a5905..3f43dfe5fffa 100644
+--- a/drivers/gpu/drm/i915/i915_irq.c
++++ b/drivers/gpu/drm/i915/i915_irq.c
+@@ -309,10 +309,10 @@ i915_hotplug_interrupt_update_locked(struct drm_i915_private *dev_priv,
+ 	lockdep_assert_held(&dev_priv->irq_lock);
+ 	drm_WARN_ON(&dev_priv->drm, bits & ~mask);
+ 
+-	val = I915_READ(PORT_HOTPLUG_EN);
++	val = intel_uncore_read(&dev_priv->uncore, PORT_HOTPLUG_EN);
+ 	val &= ~mask;
+ 	val |= bits;
+-	I915_WRITE(PORT_HOTPLUG_EN, val);
++	intel_uncore_write(&dev_priv->uncore, PORT_HOTPLUG_EN, val);
  }
  
  /**
-@@ -6816,14 +6816,14 @@ void intel_enable_ipc(struct drm_i915_private *dev_priv)
- 	if (!HAS_IPC(dev_priv))
+@@ -358,8 +358,8 @@ void ilk_update_display_irq(struct drm_i915_private *dev_priv,
+ 	if (new_val != dev_priv->irq_mask &&
+ 	    !drm_WARN_ON(&dev_priv->drm, !intel_irqs_enabled(dev_priv))) {
+ 		dev_priv->irq_mask = new_val;
+-		I915_WRITE(DEIMR, dev_priv->irq_mask);
+-		POSTING_READ(DEIMR);
++		intel_uncore_write(&dev_priv->uncore, DEIMR, dev_priv->irq_mask);
++		intel_uncore_posting_read(&dev_priv->uncore, DEIMR);
+ 	}
+ }
+ 
+@@ -383,15 +383,15 @@ static void bdw_update_port_irq(struct drm_i915_private *dev_priv,
+ 	if (drm_WARN_ON(&dev_priv->drm, !intel_irqs_enabled(dev_priv)))
  		return;
  
--	val = I915_READ(DISP_ARB_CTL2);
-+	val = intel_uncore_read(&dev_priv->uncore, DISP_ARB_CTL2);
+-	old_val = I915_READ(GEN8_DE_PORT_IMR);
++	old_val = intel_uncore_read(&dev_priv->uncore, GEN8_DE_PORT_IMR);
  
- 	if (dev_priv->ipc_enabled)
- 		val |= DISP_IPC_ENABLE;
- 	else
- 		val &= ~DISP_IPC_ENABLE;
+ 	new_val = old_val;
+ 	new_val &= ~interrupt_mask;
+ 	new_val |= (~enabled_irq_mask & interrupt_mask);
  
--	I915_WRITE(DISP_ARB_CTL2, val);
-+	intel_uncore_write(&dev_priv->uncore, DISP_ARB_CTL2, val);
- }
- 
- static bool intel_can_enable_ipc(struct drm_i915_private *dev_priv)
-@@ -6858,7 +6858,7 @@ static void ibx_init_clock_gating(struct drm_i915_private *dev_priv)
- 	 * gating for the panel power sequencer or it will fail to
- 	 * start up when no ports are active.
- 	 */
--	I915_WRITE(SOUTH_DSPCLK_GATE_D, PCH_DPLSUNIT_CLOCK_GATE_DISABLE);
-+	intel_uncore_write(&dev_priv->uncore, SOUTH_DSPCLK_GATE_D, PCH_DPLSUNIT_CLOCK_GATE_DISABLE);
- }
- 
- static void g4x_disable_trickle_feed(struct drm_i915_private *dev_priv)
-@@ -6866,12 +6866,12 @@ static void g4x_disable_trickle_feed(struct drm_i915_private *dev_priv)
- 	enum pipe pipe;
- 
- 	for_each_pipe(dev_priv, pipe) {
--		I915_WRITE(DSPCNTR(pipe),
--			   I915_READ(DSPCNTR(pipe)) |
-+		intel_uncore_write(&dev_priv->uncore, DSPCNTR(pipe),
-+			   intel_uncore_read(&dev_priv->uncore, DSPCNTR(pipe)) |
- 			   DISPPLANE_TRICKLE_FEED_DISABLE);
- 
--		I915_WRITE(DSPSURF(pipe), I915_READ(DSPSURF(pipe)));
--		POSTING_READ(DSPSURF(pipe));
-+		intel_uncore_write(&dev_priv->uncore, DSPSURF(pipe), intel_uncore_read(&dev_priv->uncore, DSPSURF(pipe)));
-+		intel_uncore_posting_read(&dev_priv->uncore, DSPSURF(pipe));
+ 	if (new_val != old_val) {
+-		I915_WRITE(GEN8_DE_PORT_IMR, new_val);
+-		POSTING_READ(GEN8_DE_PORT_IMR);
++		intel_uncore_write(&dev_priv->uncore, GEN8_DE_PORT_IMR, new_val);
++		intel_uncore_posting_read(&dev_priv->uncore, GEN8_DE_PORT_IMR);
  	}
  }
  
-@@ -6887,10 +6887,10 @@ static void ilk_init_clock_gating(struct drm_i915_private *dev_priv)
- 		   ILK_DPFCUNIT_CLOCK_GATE_DISABLE |
- 		   ILK_DPFDUNIT_CLOCK_GATE_ENABLE;
+@@ -422,8 +422,8 @@ void bdw_update_pipe_irq(struct drm_i915_private *dev_priv,
  
--	I915_WRITE(PCH_3DCGDIS0,
-+	intel_uncore_write(&dev_priv->uncore, PCH_3DCGDIS0,
- 		   MARIUNIT_CLOCK_GATE_DISABLE |
- 		   SVSMUNIT_CLOCK_GATE_DISABLE);
--	I915_WRITE(PCH_3DCGDIS1,
-+	intel_uncore_write(&dev_priv->uncore, PCH_3DCGDIS1,
- 		   VFMUNIT_CLOCK_GATE_DISABLE);
- 
- 	/*
-@@ -6900,12 +6900,12 @@ static void ilk_init_clock_gating(struct drm_i915_private *dev_priv)
- 	 * The bit 5 of 0x42020
- 	 * The bit 15 of 0x45000
- 	 */
--	I915_WRITE(ILK_DISPLAY_CHICKEN2,
--		   (I915_READ(ILK_DISPLAY_CHICKEN2) |
-+	intel_uncore_write(&dev_priv->uncore, ILK_DISPLAY_CHICKEN2,
-+		   (intel_uncore_read(&dev_priv->uncore, ILK_DISPLAY_CHICKEN2) |
- 		    ILK_DPARB_GATE | ILK_VSDPFD_FULL));
- 	dspclk_gate |= ILK_DPARBUNIT_CLOCK_GATE_ENABLE;
--	I915_WRITE(DISP_ARB_CTL,
--		   (I915_READ(DISP_ARB_CTL) |
-+	intel_uncore_write(&dev_priv->uncore, DISP_ARB_CTL,
-+		   (intel_uncore_read(&dev_priv->uncore, DISP_ARB_CTL) |
- 		    DISP_FBC_WM_DIS));
- 
- 	/*
-@@ -6917,18 +6917,18 @@ static void ilk_init_clock_gating(struct drm_i915_private *dev_priv)
- 	 */
- 	if (IS_IRONLAKE_M(dev_priv)) {
- 		/* WaFbcAsynchFlipDisableFbcQueue:ilk */
--		I915_WRITE(ILK_DISPLAY_CHICKEN1,
--			   I915_READ(ILK_DISPLAY_CHICKEN1) |
-+		intel_uncore_write(&dev_priv->uncore, ILK_DISPLAY_CHICKEN1,
-+			   intel_uncore_read(&dev_priv->uncore, ILK_DISPLAY_CHICKEN1) |
- 			   ILK_FBCQ_DIS);
--		I915_WRITE(ILK_DISPLAY_CHICKEN2,
--			   I915_READ(ILK_DISPLAY_CHICKEN2) |
-+		intel_uncore_write(&dev_priv->uncore, ILK_DISPLAY_CHICKEN2,
-+			   intel_uncore_read(&dev_priv->uncore, ILK_DISPLAY_CHICKEN2) |
- 			   ILK_DPARB_GATE);
- 	}
- 
--	I915_WRITE(ILK_DSPCLK_GATE_D, dspclk_gate);
-+	intel_uncore_write(&dev_priv->uncore, ILK_DSPCLK_GATE_D, dspclk_gate);
- 
--	I915_WRITE(ILK_DISPLAY_CHICKEN2,
--		   I915_READ(ILK_DISPLAY_CHICKEN2) |
-+	intel_uncore_write(&dev_priv->uncore, ILK_DISPLAY_CHICKEN2,
-+		   intel_uncore_read(&dev_priv->uncore, ILK_DISPLAY_CHICKEN2) |
- 		   ILK_ELPIN_409_SELECT);
- 
- 	g4x_disable_trickle_feed(dev_priv);
-@@ -6946,27 +6946,27 @@ static void cpt_init_clock_gating(struct drm_i915_private *dev_priv)
- 	 * gating for the panel power sequencer or it will fail to
- 	 * start up when no ports are active.
- 	 */
--	I915_WRITE(SOUTH_DSPCLK_GATE_D, PCH_DPLSUNIT_CLOCK_GATE_DISABLE |
-+	intel_uncore_write(&dev_priv->uncore, SOUTH_DSPCLK_GATE_D, PCH_DPLSUNIT_CLOCK_GATE_DISABLE |
- 		   PCH_DPLUNIT_CLOCK_GATE_DISABLE |
- 		   PCH_CPUNIT_CLOCK_GATE_DISABLE);
--	I915_WRITE(SOUTH_CHICKEN2, I915_READ(SOUTH_CHICKEN2) |
-+	intel_uncore_write(&dev_priv->uncore, SOUTH_CHICKEN2, intel_uncore_read(&dev_priv->uncore, SOUTH_CHICKEN2) |
- 		   DPLS_EDP_PPS_FIX_DIS);
- 	/* The below fixes the weird display corruption, a few pixels shifted
- 	 * downward, on (only) LVDS of some HP laptops with IVY.
- 	 */
- 	for_each_pipe(dev_priv, pipe) {
--		val = I915_READ(TRANS_CHICKEN2(pipe));
-+		val = intel_uncore_read(&dev_priv->uncore, TRANS_CHICKEN2(pipe));
- 		val |= TRANS_CHICKEN2_TIMING_OVERRIDE;
- 		val &= ~TRANS_CHICKEN2_FDI_POLARITY_REVERSED;
- 		if (dev_priv->vbt.fdi_rx_polarity_inverted)
- 			val |= TRANS_CHICKEN2_FDI_POLARITY_REVERSED;
- 		val &= ~TRANS_CHICKEN2_DISABLE_DEEP_COLOR_COUNTER;
- 		val &= ~TRANS_CHICKEN2_DISABLE_DEEP_COLOR_MODESWITCH;
--		I915_WRITE(TRANS_CHICKEN2(pipe), val);
-+		intel_uncore_write(&dev_priv->uncore, TRANS_CHICKEN2(pipe), val);
- 	}
- 	/* WADP0ClockGatingDisable */
- 	for_each_pipe(dev_priv, pipe) {
--		I915_WRITE(TRANS_CHICKEN1(pipe),
-+		intel_uncore_write(&dev_priv->uncore, TRANS_CHICKEN1(pipe),
- 			   TRANS_CHICKEN1_DP0UNIT_GC_DISABLE);
+ 	if (new_val != dev_priv->de_irq_mask[pipe]) {
+ 		dev_priv->de_irq_mask[pipe] = new_val;
+-		I915_WRITE(GEN8_DE_PIPE_IMR(pipe), dev_priv->de_irq_mask[pipe]);
+-		POSTING_READ(GEN8_DE_PIPE_IMR(pipe));
++		intel_uncore_write(&dev_priv->uncore, GEN8_DE_PIPE_IMR(pipe), dev_priv->de_irq_mask[pipe]);
++		intel_uncore_posting_read(&dev_priv->uncore, GEN8_DE_PIPE_IMR(pipe));
  	}
  }
-@@ -6975,7 +6975,7 @@ static void gen6_check_mch_setup(struct drm_i915_private *dev_priv)
+ 
+@@ -437,7 +437,7 @@ void ibx_display_interrupt_update(struct drm_i915_private *dev_priv,
+ 				  u32 interrupt_mask,
+ 				  u32 enabled_irq_mask)
  {
- 	u32 tmp;
+-	u32 sdeimr = I915_READ(SDEIMR);
++	u32 sdeimr = intel_uncore_read(&dev_priv->uncore, SDEIMR);
+ 	sdeimr &= ~interrupt_mask;
+ 	sdeimr |= (~enabled_irq_mask & interrupt_mask);
  
--	tmp = I915_READ(MCH_SSKPD);
-+	tmp = intel_uncore_read(&dev_priv->uncore, MCH_SSKPD);
- 	if ((tmp & MCH_SSKPD_WM0_MASK) != MCH_SSKPD_WM0_VAL)
- 		drm_dbg_kms(&dev_priv->drm,
- 			    "Wrong MCH_SSKPD value: 0x%08x This can cause underruns.\n",
-@@ -6986,14 +6986,14 @@ static void gen6_init_clock_gating(struct drm_i915_private *dev_priv)
- {
- 	u32 dspclk_gate = ILK_VRHUNIT_CLOCK_GATE_DISABLE;
+@@ -448,8 +448,8 @@ void ibx_display_interrupt_update(struct drm_i915_private *dev_priv,
+ 	if (drm_WARN_ON(&dev_priv->drm, !intel_irqs_enabled(dev_priv)))
+ 		return;
  
--	I915_WRITE(ILK_DSPCLK_GATE_D, dspclk_gate);
-+	intel_uncore_write(&dev_priv->uncore, ILK_DSPCLK_GATE_D, dspclk_gate);
- 
--	I915_WRITE(ILK_DISPLAY_CHICKEN2,
--		   I915_READ(ILK_DISPLAY_CHICKEN2) |
-+	intel_uncore_write(&dev_priv->uncore, ILK_DISPLAY_CHICKEN2,
-+		   intel_uncore_read(&dev_priv->uncore, ILK_DISPLAY_CHICKEN2) |
- 		   ILK_ELPIN_409_SELECT);
- 
--	I915_WRITE(GEN6_UCGCTL1,
--		   I915_READ(GEN6_UCGCTL1) |
-+	intel_uncore_write(&dev_priv->uncore, GEN6_UCGCTL1,
-+		   intel_uncore_read(&dev_priv->uncore, GEN6_UCGCTL1) |
- 		   GEN6_BLBUNIT_CLOCK_GATE_DISABLE |
- 		   GEN6_CSUNIT_CLOCK_GATE_DISABLE);
- 
-@@ -7010,7 +7010,7 @@ static void gen6_init_clock_gating(struct drm_i915_private *dev_priv)
- 	 * WaDisableRCCUnitClockGating:snb
- 	 * WaDisableRCPBUnitClockGating:snb
- 	 */
--	I915_WRITE(GEN6_UCGCTL2,
-+	intel_uncore_write(&dev_priv->uncore, GEN6_UCGCTL2,
- 		   GEN6_RCPBUNIT_CLOCK_GATE_DISABLE |
- 		   GEN6_RCCUNIT_CLOCK_GATE_DISABLE);
- 
-@@ -7025,14 +7025,14 @@ static void gen6_init_clock_gating(struct drm_i915_private *dev_priv)
- 	 *
- 	 * WaFbcAsynchFlipDisableFbcQueue:snb
- 	 */
--	I915_WRITE(ILK_DISPLAY_CHICKEN1,
--		   I915_READ(ILK_DISPLAY_CHICKEN1) |
-+	intel_uncore_write(&dev_priv->uncore, ILK_DISPLAY_CHICKEN1,
-+		   intel_uncore_read(&dev_priv->uncore, ILK_DISPLAY_CHICKEN1) |
- 		   ILK_FBCQ_DIS | ILK_PABSTRETCH_DIS);
--	I915_WRITE(ILK_DISPLAY_CHICKEN2,
--		   I915_READ(ILK_DISPLAY_CHICKEN2) |
-+	intel_uncore_write(&dev_priv->uncore, ILK_DISPLAY_CHICKEN2,
-+		   intel_uncore_read(&dev_priv->uncore, ILK_DISPLAY_CHICKEN2) |
- 		   ILK_DPARB_GATE | ILK_VSDPFD_FULL);
--	I915_WRITE(ILK_DSPCLK_GATE_D,
--		   I915_READ(ILK_DSPCLK_GATE_D) |
-+	intel_uncore_write(&dev_priv->uncore, ILK_DSPCLK_GATE_D,
-+		   intel_uncore_read(&dev_priv->uncore, ILK_DSPCLK_GATE_D) |
- 		   ILK_DPARBUNIT_CLOCK_GATE_ENABLE  |
- 		   ILK_DPFDUNIT_CLOCK_GATE_ENABLE);
- 
-@@ -7050,23 +7050,23 @@ static void lpt_init_clock_gating(struct drm_i915_private *dev_priv)
- 	 * disabled when not needed anymore in order to save power.
- 	 */
- 	if (HAS_PCH_LPT_LP(dev_priv))
--		I915_WRITE(SOUTH_DSPCLK_GATE_D,
--			   I915_READ(SOUTH_DSPCLK_GATE_D) |
-+		intel_uncore_write(&dev_priv->uncore, SOUTH_DSPCLK_GATE_D,
-+			   intel_uncore_read(&dev_priv->uncore, SOUTH_DSPCLK_GATE_D) |
- 			   PCH_LP_PARTITION_LEVEL_DISABLE);
- 
- 	/* WADPOClockGatingDisable:hsw */
--	I915_WRITE(TRANS_CHICKEN1(PIPE_A),
--		   I915_READ(TRANS_CHICKEN1(PIPE_A)) |
-+	intel_uncore_write(&dev_priv->uncore, TRANS_CHICKEN1(PIPE_A),
-+		   intel_uncore_read(&dev_priv->uncore, TRANS_CHICKEN1(PIPE_A)) |
- 		   TRANS_CHICKEN1_DP0UNIT_GC_DISABLE);
+-	I915_WRITE(SDEIMR, sdeimr);
+-	POSTING_READ(SDEIMR);
++	intel_uncore_write(&dev_priv->uncore, SDEIMR, sdeimr);
++	intel_uncore_posting_read(&dev_priv->uncore, SDEIMR);
  }
  
- static void lpt_suspend_hw(struct drm_i915_private *dev_priv)
- {
- 	if (HAS_PCH_LPT_LP(dev_priv)) {
--		u32 val = I915_READ(SOUTH_DSPCLK_GATE_D);
-+		u32 val = intel_uncore_read(&dev_priv->uncore, SOUTH_DSPCLK_GATE_D);
+ u32 i915_pipestat_enable_mask(struct drm_i915_private *dev_priv,
+@@ -515,8 +515,8 @@ void i915_enable_pipestat(struct drm_i915_private *dev_priv,
+ 	dev_priv->pipestat_irq_mask[pipe] |= status_mask;
+ 	enable_mask = i915_pipestat_enable_mask(dev_priv, pipe);
  
- 		val &= ~PCH_LP_PARTITION_LEVEL_DISABLE;
--		I915_WRITE(SOUTH_DSPCLK_GATE_D, val);
-+		intel_uncore_write(&dev_priv->uncore, SOUTH_DSPCLK_GATE_D, val);
- 	}
+-	I915_WRITE(reg, enable_mask | status_mask);
+-	POSTING_READ(reg);
++	intel_uncore_write(&dev_priv->uncore, reg, enable_mask | status_mask);
++	intel_uncore_posting_read(&dev_priv->uncore, reg);
  }
  
-@@ -7078,33 +7078,33 @@ static void gen8_set_l3sqc_credits(struct drm_i915_private *dev_priv,
- 	u32 val;
+ void i915_disable_pipestat(struct drm_i915_private *dev_priv,
+@@ -538,8 +538,8 @@ void i915_disable_pipestat(struct drm_i915_private *dev_priv,
+ 	dev_priv->pipestat_irq_mask[pipe] &= ~status_mask;
+ 	enable_mask = i915_pipestat_enable_mask(dev_priv, pipe);
  
- 	/* WaTempDisableDOPClkGating:bdw */
+-	I915_WRITE(reg, enable_mask | status_mask);
+-	POSTING_READ(reg);
++	intel_uncore_write(&dev_priv->uncore, reg, enable_mask | status_mask);
++	intel_uncore_posting_read(&dev_priv->uncore, reg);
+ }
+ 
+ static bool i915_has_asle(struct drm_i915_private *dev_priv)
+@@ -697,7 +697,7 @@ u32 g4x_get_vblank_counter(struct drm_crtc *crtc)
+ 	if (!vblank->max_vblank_count)
+ 		return 0;
+ 
+-	return I915_READ(PIPE_FRMCOUNT_G4X(pipe));
++	return intel_uncore_read(&dev_priv->uncore, PIPE_FRMCOUNT_G4X(pipe));
+ }
+ 
+ /*
+@@ -986,9 +986,9 @@ static void ivb_parity_work(struct work_struct *work)
+ 	if (drm_WARN_ON(&dev_priv->drm, !dev_priv->l3_parity.which_slice))
+ 		goto out;
+ 
 -	misccpctl = I915_READ(GEN7_MISCCPCTL);
 -	I915_WRITE(GEN7_MISCCPCTL, misccpctl & ~GEN7_DOP_CLOCK_GATE_ENABLE);
+-	POSTING_READ(GEN7_MISCCPCTL);
 +	misccpctl = intel_uncore_read(&dev_priv->uncore, GEN7_MISCCPCTL);
 +	intel_uncore_write(&dev_priv->uncore, GEN7_MISCCPCTL, misccpctl & ~GEN7_DOP_CLOCK_GATE_ENABLE);
++	intel_uncore_posting_read(&dev_priv->uncore, GEN7_MISCCPCTL);
  
--	val = I915_READ(GEN8_L3SQCREG1);
-+	val = intel_uncore_read(&dev_priv->uncore, GEN8_L3SQCREG1);
- 	val &= ~L3_PRIO_CREDITS_MASK;
- 	val |= L3_GENERAL_PRIO_CREDITS(general_prio_credits);
- 	val |= L3_HIGH_PRIO_CREDITS(high_prio_credits);
--	I915_WRITE(GEN8_L3SQCREG1, val);
-+	intel_uncore_write(&dev_priv->uncore, GEN8_L3SQCREG1, val);
+ 	while ((slice = ffs(dev_priv->l3_parity.which_slice)) != 0) {
+ 		i915_reg_t reg;
+@@ -1002,13 +1002,13 @@ static void ivb_parity_work(struct work_struct *work)
  
- 	/*
- 	 * Wait at least 100 clocks before re-enabling clock gating.
- 	 * See the definition of L3SQCREG1 in BSpec.
- 	 */
--	POSTING_READ(GEN8_L3SQCREG1);
-+	intel_uncore_posting_read(&dev_priv->uncore, GEN8_L3SQCREG1);
- 	udelay(1);
+ 		reg = GEN7_L3CDERRST1(slice);
+ 
+-		error_status = I915_READ(reg);
++		error_status = intel_uncore_read(&dev_priv->uncore, reg);
+ 		row = GEN7_PARITY_ERROR_ROW(error_status);
+ 		bank = GEN7_PARITY_ERROR_BANK(error_status);
+ 		subbank = GEN7_PARITY_ERROR_SUBBANK(error_status);
+ 
+-		I915_WRITE(reg, GEN7_PARITY_ERROR_VALID | GEN7_L3CDERRST1_ENABLE);
+-		POSTING_READ(reg);
++		intel_uncore_write(&dev_priv->uncore, reg, GEN7_PARITY_ERROR_VALID | GEN7_L3CDERRST1_ENABLE);
++		intel_uncore_posting_read(&dev_priv->uncore, reg);
+ 
+ 		parity_event[0] = I915_L3_PARITY_UEVENT "=1";
+ 		parity_event[1] = kasprintf(GFP_KERNEL, "ROW=%d", row);
+@@ -1029,7 +1029,7 @@ static void ivb_parity_work(struct work_struct *work)
+ 		kfree(parity_event[1]);
+ 	}
+ 
 -	I915_WRITE(GEN7_MISCCPCTL, misccpctl);
 +	intel_uncore_write(&dev_priv->uncore, GEN7_MISCCPCTL, misccpctl);
- }
  
- static void icl_init_clock_gating(struct drm_i915_private *dev_priv)
+ out:
+ 	drm_WARN_ON(&dev_priv->drm, dev_priv->l3_parity.which_slice);
+@@ -1319,7 +1319,7 @@ static void hsw_pipe_crc_irq_handler(struct drm_i915_private *dev_priv,
+ 				     enum pipe pipe)
  {
- 	/* Wa_1409120013:icl,ehl */
--	I915_WRITE(ILK_DPFC_CHICKEN,
-+	intel_uncore_write(&dev_priv->uncore, ILK_DPFC_CHICKEN,
- 		   ILK_DPFC_CHICKEN_COMP_DUMMY_PIXEL);
+ 	display_pipe_crc_irq_handler(dev_priv, pipe,
+-				     I915_READ(PIPE_CRC_RES_1_IVB(pipe)),
++				     intel_uncore_read(&dev_priv->uncore, PIPE_CRC_RES_1_IVB(pipe)),
+ 				     0, 0, 0, 0);
+ }
  
- 	/* This is not an Wa. Enable to reduce Sampler power */
--	I915_WRITE(GEN10_DFR_RATIO_EN_AND_CHICKEN,
--		   I915_READ(GEN10_DFR_RATIO_EN_AND_CHICKEN) & ~DFR_DISABLE);
-+	intel_uncore_write(&dev_priv->uncore, GEN10_DFR_RATIO_EN_AND_CHICKEN,
-+		   intel_uncore_read(&dev_priv->uncore, GEN10_DFR_RATIO_EN_AND_CHICKEN) & ~DFR_DISABLE);
- 
- 	/*Wa_14010594013:icl, ehl */
- 	intel_uncore_rmw(&dev_priv->uncore, GEN8_CHICKEN_DCPR_1,
-@@ -7114,12 +7114,12 @@ static void icl_init_clock_gating(struct drm_i915_private *dev_priv)
- static void tgl_init_clock_gating(struct drm_i915_private *dev_priv)
+@@ -1327,11 +1327,11 @@ static void ivb_pipe_crc_irq_handler(struct drm_i915_private *dev_priv,
+ 				     enum pipe pipe)
  {
- 	/* Wa_1409120013:tgl */
--	I915_WRITE(ILK_DPFC_CHICKEN,
-+	intel_uncore_write(&dev_priv->uncore, ILK_DPFC_CHICKEN,
- 		   ILK_DPFC_CHICKEN_COMP_DUMMY_PIXEL);
- 
- 	/* Wa_1409825376:tgl (pre-prod)*/
- 	if (IS_TGL_DISP_REVID(dev_priv, TGL_REVID_A0, TGL_REVID_B1))
--		I915_WRITE(GEN9_CLKGATE_DIS_3, I915_READ(GEN9_CLKGATE_DIS_3) |
-+		intel_uncore_write(&dev_priv->uncore, GEN9_CLKGATE_DIS_3, intel_uncore_read(&dev_priv->uncore, GEN9_CLKGATE_DIS_3) |
- 			   TGL_VRH_GATING_DIS);
- 
- 	/* Wa_14011059788:tgl */
-@@ -7131,7 +7131,7 @@ static void dg1_init_clock_gating(struct drm_i915_private *dev_priv)
- {
- 	/* Wa_1409836686:dg1[a0] */
- 	if (IS_DG1_REVID(dev_priv, DG1_REVID_A0, DG1_REVID_A0))
--		I915_WRITE(GEN9_CLKGATE_DIS_3, I915_READ(GEN9_CLKGATE_DIS_3) |
-+		intel_uncore_write(&dev_priv->uncore, GEN9_CLKGATE_DIS_3, intel_uncore_read(&dev_priv->uncore, GEN9_CLKGATE_DIS_3) |
- 			   DPT_GATING_DIS);
+ 	display_pipe_crc_irq_handler(dev_priv, pipe,
+-				     I915_READ(PIPE_CRC_RES_1_IVB(pipe)),
+-				     I915_READ(PIPE_CRC_RES_2_IVB(pipe)),
+-				     I915_READ(PIPE_CRC_RES_3_IVB(pipe)),
+-				     I915_READ(PIPE_CRC_RES_4_IVB(pipe)),
+-				     I915_READ(PIPE_CRC_RES_5_IVB(pipe)));
++				     intel_uncore_read(&dev_priv->uncore, PIPE_CRC_RES_1_IVB(pipe)),
++				     intel_uncore_read(&dev_priv->uncore, PIPE_CRC_RES_2_IVB(pipe)),
++				     intel_uncore_read(&dev_priv->uncore, PIPE_CRC_RES_3_IVB(pipe)),
++				     intel_uncore_read(&dev_priv->uncore, PIPE_CRC_RES_4_IVB(pipe)),
++				     intel_uncore_read(&dev_priv->uncore, PIPE_CRC_RES_5_IVB(pipe)));
  }
  
-@@ -7141,7 +7141,7 @@ static void cnp_init_clock_gating(struct drm_i915_private *dev_priv)
- 		return;
+ static void i9xx_pipe_crc_irq_handler(struct drm_i915_private *dev_priv,
+@@ -1340,19 +1340,19 @@ static void i9xx_pipe_crc_irq_handler(struct drm_i915_private *dev_priv,
+ 	u32 res1, res2;
  
- 	/* Display WA #1181 WaSouthDisplayDisablePWMCGEGating: cnp */
--	I915_WRITE(SOUTH_DSPCLK_GATE_D, I915_READ(SOUTH_DSPCLK_GATE_D) |
-+	intel_uncore_write(&dev_priv->uncore, SOUTH_DSPCLK_GATE_D, intel_uncore_read(&dev_priv->uncore, SOUTH_DSPCLK_GATE_D) |
- 		   CNP_PWM_CGE_GATING_DISABLE);
+ 	if (INTEL_GEN(dev_priv) >= 3)
+-		res1 = I915_READ(PIPE_CRC_RES_RES1_I915(pipe));
++		res1 = intel_uncore_read(&dev_priv->uncore, PIPE_CRC_RES_RES1_I915(pipe));
+ 	else
+ 		res1 = 0;
+ 
+ 	if (INTEL_GEN(dev_priv) >= 5 || IS_G4X(dev_priv))
+-		res2 = I915_READ(PIPE_CRC_RES_RES2_G4X(pipe));
++		res2 = intel_uncore_read(&dev_priv->uncore, PIPE_CRC_RES_RES2_G4X(pipe));
+ 	else
+ 		res2 = 0;
+ 
+ 	display_pipe_crc_irq_handler(dev_priv, pipe,
+-				     I915_READ(PIPE_CRC_RES_RED(pipe)),
+-				     I915_READ(PIPE_CRC_RES_GREEN(pipe)),
+-				     I915_READ(PIPE_CRC_RES_BLUE(pipe)),
++				     intel_uncore_read(&dev_priv->uncore, PIPE_CRC_RES_RED(pipe)),
++				     intel_uncore_read(&dev_priv->uncore, PIPE_CRC_RES_GREEN(pipe)),
++				     intel_uncore_read(&dev_priv->uncore, PIPE_CRC_RES_BLUE(pipe)),
+ 				     res1, res2);
  }
  
-@@ -7151,35 +7151,35 @@ static void cnl_init_clock_gating(struct drm_i915_private *dev_priv)
- 	cnp_init_clock_gating(dev_priv);
- 
- 	/* This is not an Wa. Enable for better image quality */
--	I915_WRITE(_3D_CHICKEN3,
-+	intel_uncore_write(&dev_priv->uncore, _3D_CHICKEN3,
- 		   _MASKED_BIT_ENABLE(_3D_CHICKEN3_AA_LINE_QUALITY_FIX_ENABLE));
- 
- 	/* WaEnableChickenDCPR:cnl */
--	I915_WRITE(GEN8_CHICKEN_DCPR_1,
--		   I915_READ(GEN8_CHICKEN_DCPR_1) | MASK_WAKEMEM);
-+	intel_uncore_write(&dev_priv->uncore, GEN8_CHICKEN_DCPR_1,
-+		   intel_uncore_read(&dev_priv->uncore, GEN8_CHICKEN_DCPR_1) | MASK_WAKEMEM);
- 
- 	/*
- 	 * WaFbcWakeMemOn:cnl
- 	 * Display WA #0859: cnl
- 	 */
--	I915_WRITE(DISP_ARB_CTL, I915_READ(DISP_ARB_CTL) |
-+	intel_uncore_write(&dev_priv->uncore, DISP_ARB_CTL, intel_uncore_read(&dev_priv->uncore, DISP_ARB_CTL) |
- 		   DISP_FBC_MEMORY_WAKE);
- 
--	val = I915_READ(SLICE_UNIT_LEVEL_CLKGATE);
-+	val = intel_uncore_read(&dev_priv->uncore, SLICE_UNIT_LEVEL_CLKGATE);
- 	/* ReadHitWriteOnlyDisable:cnl */
- 	val |= RCCUNIT_CLKGATE_DIS;
--	I915_WRITE(SLICE_UNIT_LEVEL_CLKGATE, val);
-+	intel_uncore_write(&dev_priv->uncore, SLICE_UNIT_LEVEL_CLKGATE, val);
- 
- 	/* Wa_2201832410:cnl */
--	val = I915_READ(SUBSLICE_UNIT_LEVEL_CLKGATE);
-+	val = intel_uncore_read(&dev_priv->uncore, SUBSLICE_UNIT_LEVEL_CLKGATE);
- 	val |= GWUNIT_CLKGATE_DIS;
--	I915_WRITE(SUBSLICE_UNIT_LEVEL_CLKGATE, val);
-+	intel_uncore_write(&dev_priv->uncore, SUBSLICE_UNIT_LEVEL_CLKGATE, val);
- 
- 	/* WaDisableVFclkgate:cnl */
- 	/* WaVFUnitClockGatingDisable:cnl */
--	val = I915_READ(UNSLICE_UNIT_LEVEL_CLKGATE);
-+	val = intel_uncore_read(&dev_priv->uncore, UNSLICE_UNIT_LEVEL_CLKGATE);
- 	val |= VFUNIT_CLKGATE_DIS;
--	I915_WRITE(UNSLICE_UNIT_LEVEL_CLKGATE, val);
-+	intel_uncore_write(&dev_priv->uncore, UNSLICE_UNIT_LEVEL_CLKGATE, val);
- }
- 
- static void cfl_init_clock_gating(struct drm_i915_private *dev_priv)
-@@ -7188,21 +7188,21 @@ static void cfl_init_clock_gating(struct drm_i915_private *dev_priv)
- 	gen9_init_clock_gating(dev_priv);
- 
- 	/* WAC6entrylatency:cfl */
--	I915_WRITE(FBC_LLC_READ_CTRL, I915_READ(FBC_LLC_READ_CTRL) |
-+	intel_uncore_write(&dev_priv->uncore, FBC_LLC_READ_CTRL, intel_uncore_read(&dev_priv->uncore, FBC_LLC_READ_CTRL) |
- 		   FBC_LLC_FULLY_OPEN);
- 
- 	/*
- 	 * WaFbcTurnOffFbcWatermark:cfl
- 	 * Display WA #0562: cfl
- 	 */
--	I915_WRITE(DISP_ARB_CTL, I915_READ(DISP_ARB_CTL) |
-+	intel_uncore_write(&dev_priv->uncore, DISP_ARB_CTL, intel_uncore_read(&dev_priv->uncore, DISP_ARB_CTL) |
- 		   DISP_FBC_WM_DIS);
- 
- 	/*
- 	 * WaFbcNukeOnHostModify:cfl
- 	 * Display WA #0873: cfl
- 	 */
--	I915_WRITE(ILK_DPFC_CHICKEN, I915_READ(ILK_DPFC_CHICKEN) |
-+	intel_uncore_write(&dev_priv->uncore, ILK_DPFC_CHICKEN, intel_uncore_read(&dev_priv->uncore, ILK_DPFC_CHICKEN) |
- 		   ILK_DPFC_NUKE_ON_ANY_MODIFICATION);
- }
- 
-@@ -7211,31 +7211,31 @@ static void kbl_init_clock_gating(struct drm_i915_private *dev_priv)
- 	gen9_init_clock_gating(dev_priv);
- 
- 	/* WAC6entrylatency:kbl */
--	I915_WRITE(FBC_LLC_READ_CTRL, I915_READ(FBC_LLC_READ_CTRL) |
-+	intel_uncore_write(&dev_priv->uncore, FBC_LLC_READ_CTRL, intel_uncore_read(&dev_priv->uncore, FBC_LLC_READ_CTRL) |
- 		   FBC_LLC_FULLY_OPEN);
- 
- 	/* WaDisableSDEUnitClockGating:kbl */
- 	if (IS_KBL_GT_REVID(dev_priv, 0, KBL_REVID_B0))
--		I915_WRITE(GEN8_UCGCTL6, I915_READ(GEN8_UCGCTL6) |
-+		intel_uncore_write(&dev_priv->uncore, GEN8_UCGCTL6, intel_uncore_read(&dev_priv->uncore, GEN8_UCGCTL6) |
- 			   GEN8_SDEUNIT_CLOCK_GATE_DISABLE);
- 
- 	/* WaDisableGamClockGating:kbl */
- 	if (IS_KBL_GT_REVID(dev_priv, 0, KBL_REVID_B0))
--		I915_WRITE(GEN6_UCGCTL1, I915_READ(GEN6_UCGCTL1) |
-+		intel_uncore_write(&dev_priv->uncore, GEN6_UCGCTL1, intel_uncore_read(&dev_priv->uncore, GEN6_UCGCTL1) |
- 			   GEN6_GAMUNIT_CLOCK_GATE_DISABLE);
- 
- 	/*
- 	 * WaFbcTurnOffFbcWatermark:kbl
- 	 * Display WA #0562: kbl
- 	 */
--	I915_WRITE(DISP_ARB_CTL, I915_READ(DISP_ARB_CTL) |
-+	intel_uncore_write(&dev_priv->uncore, DISP_ARB_CTL, intel_uncore_read(&dev_priv->uncore, DISP_ARB_CTL) |
- 		   DISP_FBC_WM_DIS);
- 
- 	/*
- 	 * WaFbcNukeOnHostModify:kbl
- 	 * Display WA #0873: kbl
- 	 */
--	I915_WRITE(ILK_DPFC_CHICKEN, I915_READ(ILK_DPFC_CHICKEN) |
-+	intel_uncore_write(&dev_priv->uncore, ILK_DPFC_CHICKEN, intel_uncore_read(&dev_priv->uncore, ILK_DPFC_CHICKEN) |
- 		   ILK_DPFC_NUKE_ON_ANY_MODIFICATION);
- }
- 
-@@ -7244,32 +7244,32 @@ static void skl_init_clock_gating(struct drm_i915_private *dev_priv)
- 	gen9_init_clock_gating(dev_priv);
- 
- 	/* WaDisableDopClockGating:skl */
--	I915_WRITE(GEN7_MISCCPCTL, I915_READ(GEN7_MISCCPCTL) &
-+	intel_uncore_write(&dev_priv->uncore, GEN7_MISCCPCTL, intel_uncore_read(&dev_priv->uncore, GEN7_MISCCPCTL) &
- 		   ~GEN7_DOP_CLOCK_GATE_ENABLE);
- 
- 	/* WAC6entrylatency:skl */
--	I915_WRITE(FBC_LLC_READ_CTRL, I915_READ(FBC_LLC_READ_CTRL) |
-+	intel_uncore_write(&dev_priv->uncore, FBC_LLC_READ_CTRL, intel_uncore_read(&dev_priv->uncore, FBC_LLC_READ_CTRL) |
- 		   FBC_LLC_FULLY_OPEN);
- 
- 	/*
- 	 * WaFbcTurnOffFbcWatermark:skl
- 	 * Display WA #0562: skl
- 	 */
--	I915_WRITE(DISP_ARB_CTL, I915_READ(DISP_ARB_CTL) |
-+	intel_uncore_write(&dev_priv->uncore, DISP_ARB_CTL, intel_uncore_read(&dev_priv->uncore, DISP_ARB_CTL) |
- 		   DISP_FBC_WM_DIS);
- 
- 	/*
- 	 * WaFbcNukeOnHostModify:skl
- 	 * Display WA #0873: skl
- 	 */
--	I915_WRITE(ILK_DPFC_CHICKEN, I915_READ(ILK_DPFC_CHICKEN) |
-+	intel_uncore_write(&dev_priv->uncore, ILK_DPFC_CHICKEN, intel_uncore_read(&dev_priv->uncore, ILK_DPFC_CHICKEN) |
- 		   ILK_DPFC_NUKE_ON_ANY_MODIFICATION);
- 
- 	/*
- 	 * WaFbcHighMemBwCorruptionAvoidance:skl
- 	 * Display WA #0883: skl
- 	 */
--	I915_WRITE(ILK_DPFC_CHICKEN, I915_READ(ILK_DPFC_CHICKEN) |
-+	intel_uncore_write(&dev_priv->uncore, ILK_DPFC_CHICKEN, intel_uncore_read(&dev_priv->uncore, ILK_DPFC_CHICKEN) |
- 		   ILK_DPFC_DISABLE_DUMMY0);
- }
- 
-@@ -7278,42 +7278,42 @@ static void bdw_init_clock_gating(struct drm_i915_private *dev_priv)
+@@ -1361,7 +1361,7 @@ static void i9xx_pipestat_irq_reset(struct drm_i915_private *dev_priv)
  	enum pipe pipe;
  
- 	/* WaFbcAsynchFlipDisableFbcQueue:hsw,bdw */
--	I915_WRITE(CHICKEN_PIPESL_1(PIPE_A),
--		   I915_READ(CHICKEN_PIPESL_1(PIPE_A)) |
-+	intel_uncore_write(&dev_priv->uncore, CHICKEN_PIPESL_1(PIPE_A),
-+		   intel_uncore_read(&dev_priv->uncore, CHICKEN_PIPESL_1(PIPE_A)) |
- 		   HSW_FBCQ_DIS);
- 
- 	/* WaSwitchSolVfFArbitrationPriority:bdw */
--	I915_WRITE(GAM_ECOCHK, I915_READ(GAM_ECOCHK) | HSW_ECOCHK_ARB_PRIO_SOL);
-+	intel_uncore_write(&dev_priv->uncore, GAM_ECOCHK, intel_uncore_read(&dev_priv->uncore, GAM_ECOCHK) | HSW_ECOCHK_ARB_PRIO_SOL);
- 
- 	/* WaPsrDPAMaskVBlankInSRD:bdw */
--	I915_WRITE(CHICKEN_PAR1_1,
--		   I915_READ(CHICKEN_PAR1_1) | DPA_MASK_VBLANK_SRD);
-+	intel_uncore_write(&dev_priv->uncore, CHICKEN_PAR1_1,
-+		   intel_uncore_read(&dev_priv->uncore, CHICKEN_PAR1_1) | DPA_MASK_VBLANK_SRD);
- 
- 	/* WaPsrDPRSUnmaskVBlankInSRD:bdw */
  	for_each_pipe(dev_priv, pipe) {
--		I915_WRITE(CHICKEN_PIPESL_1(pipe),
--			   I915_READ(CHICKEN_PIPESL_1(pipe)) |
-+		intel_uncore_write(&dev_priv->uncore, CHICKEN_PIPESL_1(pipe),
-+			   intel_uncore_read(&dev_priv->uncore, CHICKEN_PIPESL_1(pipe)) |
- 			   BDW_DPRS_MASK_VBLANK_SRD);
+-		I915_WRITE(PIPESTAT(pipe),
++		intel_uncore_write(&dev_priv->uncore, PIPESTAT(pipe),
+ 			   PIPESTAT_INT_STATUS_MASK |
+ 			   PIPE_FIFO_UNDERRUN_STATUS);
+ 
+@@ -1415,7 +1415,7 @@ static void i9xx_pipestat_irq_ack(struct drm_i915_private *dev_priv,
+ 			continue;
+ 
+ 		reg = PIPESTAT(pipe);
+-		pipe_stats[pipe] = I915_READ(reg) & status_mask;
++		pipe_stats[pipe] = intel_uncore_read(&dev_priv->uncore, reg) & status_mask;
+ 		enable_mask = i915_pipestat_enable_mask(dev_priv, pipe);
+ 
+ 		/*
+@@ -1428,8 +1428,8 @@ static void i9xx_pipestat_irq_ack(struct drm_i915_private *dev_priv,
+ 		 * an interrupt is still pending.
+ 		 */
+ 		if (pipe_stats[pipe]) {
+-			I915_WRITE(reg, pipe_stats[pipe]);
+-			I915_WRITE(reg, enable_mask);
++			intel_uncore_write(&dev_priv->uncore, reg, pipe_stats[pipe]);
++			intel_uncore_write(&dev_priv->uncore, reg, enable_mask);
+ 		}
+ 	}
+ 	spin_unlock(&dev_priv->irq_lock);
+@@ -1545,18 +1545,18 @@ static u32 i9xx_hpd_irq_ack(struct drm_i915_private *dev_priv)
+ 	 * bits can itself generate a new hotplug interrupt :(
+ 	 */
+ 	for (i = 0; i < 10; i++) {
+-		u32 tmp = I915_READ(PORT_HOTPLUG_STAT) & hotplug_status_mask;
++		u32 tmp = intel_uncore_read(&dev_priv->uncore, PORT_HOTPLUG_STAT) & hotplug_status_mask;
+ 
+ 		if (tmp == 0)
+ 			return hotplug_status;
+ 
+ 		hotplug_status |= tmp;
+-		I915_WRITE(PORT_HOTPLUG_STAT, hotplug_status);
++		intel_uncore_write(&dev_priv->uncore, PORT_HOTPLUG_STAT, hotplug_status);
  	}
  
- 	/* WaVSRefCountFullforceMissDisable:bdw */
- 	/* WaDSRefCountFullforceMissDisable:bdw */
--	I915_WRITE(GEN7_FF_THREAD_MODE,
--		   I915_READ(GEN7_FF_THREAD_MODE) &
-+	intel_uncore_write(&dev_priv->uncore, GEN7_FF_THREAD_MODE,
-+		   intel_uncore_read(&dev_priv->uncore, GEN7_FF_THREAD_MODE) &
- 		   ~(GEN8_FF_DS_REF_CNT_FFME | GEN7_FF_VS_REF_CNT_FFME));
+ 	drm_WARN_ONCE(&dev_priv->drm, 1,
+ 		      "PORT_HOTPLUG_STAT did not clear (0x%08x)\n",
+-		      I915_READ(PORT_HOTPLUG_STAT));
++		      intel_uncore_read(&dev_priv->uncore, PORT_HOTPLUG_STAT));
  
--	I915_WRITE(GEN6_RC_SLEEP_PSMI_CONTROL,
-+	intel_uncore_write(&dev_priv->uncore, GEN6_RC_SLEEP_PSMI_CONTROL,
- 		   _MASKED_BIT_ENABLE(GEN8_RC_SEMA_IDLE_MSG_DISABLE));
+ 	return hotplug_status;
+ }
+@@ -1605,9 +1605,9 @@ static irqreturn_t valleyview_irq_handler(int irq, void *arg)
+ 		u32 hotplug_status = 0;
+ 		u32 ier = 0;
  
- 	/* WaDisableSDEUnitClockGating:bdw */
--	I915_WRITE(GEN8_UCGCTL6, I915_READ(GEN8_UCGCTL6) |
-+	intel_uncore_write(&dev_priv->uncore, GEN8_UCGCTL6, intel_uncore_read(&dev_priv->uncore, GEN8_UCGCTL6) |
- 		   GEN8_SDEUNIT_CLOCK_GATE_DISABLE);
+-		gt_iir = I915_READ(GTIIR);
+-		pm_iir = I915_READ(GEN6_PMIIR);
+-		iir = I915_READ(VLV_IIR);
++		gt_iir = intel_uncore_read(&dev_priv->uncore, GTIIR);
++		pm_iir = intel_uncore_read(&dev_priv->uncore, GEN6_PMIIR);
++		iir = intel_uncore_read(&dev_priv->uncore, VLV_IIR);
  
- 	/* WaProgramL3SqcReg1Default:bdw */
- 	gen8_set_l3sqc_credits(dev_priv, 30, 2);
+ 		if (gt_iir == 0 && pm_iir == 0 && iir == 0)
+ 			break;
+@@ -1627,14 +1627,14 @@ static irqreturn_t valleyview_irq_handler(int irq, void *arg)
+ 		 * don't end up clearing all the VLV_IIR, GT_IIR, GEN6_PMIIR
+ 		 * bits this time around.
+ 		 */
+-		I915_WRITE(VLV_MASTER_IER, 0);
+-		ier = I915_READ(VLV_IER);
+-		I915_WRITE(VLV_IER, 0);
++		intel_uncore_write(&dev_priv->uncore, VLV_MASTER_IER, 0);
++		ier = intel_uncore_read(&dev_priv->uncore, VLV_IER);
++		intel_uncore_write(&dev_priv->uncore, VLV_IER, 0);
  
- 	/* WaKVMNotificationOnConfigChange:bdw */
--	I915_WRITE(CHICKEN_PAR2_1, I915_READ(CHICKEN_PAR2_1)
-+	intel_uncore_write(&dev_priv->uncore, CHICKEN_PAR2_1, intel_uncore_read(&dev_priv->uncore, CHICKEN_PAR2_1)
- 		   | KVM_CONFIG_CHANGE_NOTIFICATION_SELECT);
+ 		if (gt_iir)
+-			I915_WRITE(GTIIR, gt_iir);
++			intel_uncore_write(&dev_priv->uncore, GTIIR, gt_iir);
+ 		if (pm_iir)
+-			I915_WRITE(GEN6_PMIIR, pm_iir);
++			intel_uncore_write(&dev_priv->uncore, GEN6_PMIIR, pm_iir);
  
- 	lpt_init_clock_gating(dev_priv);
-@@ -7323,24 +7323,24 @@ static void bdw_init_clock_gating(struct drm_i915_private *dev_priv)
- 	 * Also see the CHICKEN2 write in bdw_init_workarounds() to disable DOP
- 	 * clock gating.
+ 		if (iir & I915_DISPLAY_PORT_INTERRUPT)
+ 			hotplug_status = i9xx_hpd_irq_ack(dev_priv);
+@@ -1652,10 +1652,10 @@ static irqreturn_t valleyview_irq_handler(int irq, void *arg)
+ 		 * from PIPESTAT/PORT_HOTPLUG_STAT, hence clear it last.
+ 		 */
+ 		if (iir)
+-			I915_WRITE(VLV_IIR, iir);
++			intel_uncore_write(&dev_priv->uncore, VLV_IIR, iir);
+ 
+-		I915_WRITE(VLV_IER, ier);
+-		I915_WRITE(VLV_MASTER_IER, MASTER_INTERRUPT_ENABLE);
++		intel_uncore_write(&dev_priv->uncore, VLV_IER, ier);
++		intel_uncore_write(&dev_priv->uncore, VLV_MASTER_IER, MASTER_INTERRUPT_ENABLE);
+ 
+ 		if (gt_iir)
+ 			gen6_gt_irq_handler(&dev_priv->gt, gt_iir);
+@@ -1690,8 +1690,8 @@ static irqreturn_t cherryview_irq_handler(int irq, void *arg)
+ 		u32 hotplug_status = 0;
+ 		u32 ier = 0;
+ 
+-		master_ctl = I915_READ(GEN8_MASTER_IRQ) & ~GEN8_MASTER_IRQ_CONTROL;
+-		iir = I915_READ(VLV_IIR);
++		master_ctl = intel_uncore_read(&dev_priv->uncore, GEN8_MASTER_IRQ) & ~GEN8_MASTER_IRQ_CONTROL;
++		iir = intel_uncore_read(&dev_priv->uncore, VLV_IIR);
+ 
+ 		if (master_ctl == 0 && iir == 0)
+ 			break;
+@@ -1711,9 +1711,9 @@ static irqreturn_t cherryview_irq_handler(int irq, void *arg)
+ 		 * don't end up clearing all the VLV_IIR and GEN8_MASTER_IRQ_CONTROL
+ 		 * bits this time around.
+ 		 */
+-		I915_WRITE(GEN8_MASTER_IRQ, 0);
+-		ier = I915_READ(VLV_IER);
+-		I915_WRITE(VLV_IER, 0);
++		intel_uncore_write(&dev_priv->uncore, GEN8_MASTER_IRQ, 0);
++		ier = intel_uncore_read(&dev_priv->uncore, VLV_IER);
++		intel_uncore_write(&dev_priv->uncore, VLV_IER, 0);
+ 
+ 		gen8_gt_irq_handler(&dev_priv->gt, master_ctl);
+ 
+@@ -1734,10 +1734,10 @@ static irqreturn_t cherryview_irq_handler(int irq, void *arg)
+ 		 * from PIPESTAT/PORT_HOTPLUG_STAT, hence clear it last.
+ 		 */
+ 		if (iir)
+-			I915_WRITE(VLV_IIR, iir);
++			intel_uncore_write(&dev_priv->uncore, VLV_IIR, iir);
+ 
+-		I915_WRITE(VLV_IER, ier);
+-		I915_WRITE(GEN8_MASTER_IRQ, GEN8_MASTER_IRQ_CONTROL);
++		intel_uncore_write(&dev_priv->uncore, VLV_IER, ier);
++		intel_uncore_write(&dev_priv->uncore, GEN8_MASTER_IRQ, GEN8_MASTER_IRQ_CONTROL);
+ 
+ 		if (hotplug_status)
+ 			i9xx_hpd_irq_handler(dev_priv, hotplug_status);
+@@ -1761,7 +1761,7 @@ static void ibx_hpd_irq_handler(struct drm_i915_private *dev_priv,
+ 	 * zero. Not acking leads to "The master control interrupt lied (SDE)!"
+ 	 * errors.
  	 */
--	I915_WRITE(GEN6_UCGCTL1,
--		   I915_READ(GEN6_UCGCTL1) | GEN6_EU_TCUNIT_CLOCK_GATE_DISABLE);
-+	intel_uncore_write(&dev_priv->uncore, GEN6_UCGCTL1,
-+		   intel_uncore_read(&dev_priv->uncore, GEN6_UCGCTL1) | GEN6_EU_TCUNIT_CLOCK_GATE_DISABLE);
- }
- 
- static void hsw_init_clock_gating(struct drm_i915_private *dev_priv)
- {
- 	/* WaFbcAsynchFlipDisableFbcQueue:hsw,bdw */
--	I915_WRITE(CHICKEN_PIPESL_1(PIPE_A),
--		   I915_READ(CHICKEN_PIPESL_1(PIPE_A)) |
-+	intel_uncore_write(&dev_priv->uncore, CHICKEN_PIPESL_1(PIPE_A),
-+		   intel_uncore_read(&dev_priv->uncore, CHICKEN_PIPESL_1(PIPE_A)) |
- 		   HSW_FBCQ_DIS);
- 
- 	/* This is required by WaCatErrorRejectionIssue:hsw */
--	I915_WRITE(GEN7_SQ_CHICKEN_MBCUNIT_CONFIG,
--		   I915_READ(GEN7_SQ_CHICKEN_MBCUNIT_CONFIG) |
-+	intel_uncore_write(&dev_priv->uncore, GEN7_SQ_CHICKEN_MBCUNIT_CONFIG,
-+		   intel_uncore_read(&dev_priv->uncore, GEN7_SQ_CHICKEN_MBCUNIT_CONFIG) |
- 		   GEN7_SQ_CHICKEN_MBCUNIT_SQINTMOB);
- 
- 	/* WaSwitchSolVfFArbitrationPriority:hsw */
--	I915_WRITE(GAM_ECOCHK, I915_READ(GAM_ECOCHK) | HSW_ECOCHK_ARB_PRIO_SOL);
-+	intel_uncore_write(&dev_priv->uncore, GAM_ECOCHK, intel_uncore_read(&dev_priv->uncore, GAM_ECOCHK) | HSW_ECOCHK_ARB_PRIO_SOL);
- 
- 	lpt_init_clock_gating(dev_priv);
- }
-@@ -7349,26 +7349,26 @@ static void ivb_init_clock_gating(struct drm_i915_private *dev_priv)
- {
- 	u32 snpcr;
- 
--	I915_WRITE(ILK_DSPCLK_GATE_D, ILK_VRHUNIT_CLOCK_GATE_DISABLE);
-+	intel_uncore_write(&dev_priv->uncore, ILK_DSPCLK_GATE_D, ILK_VRHUNIT_CLOCK_GATE_DISABLE);
- 
- 	/* WaFbcAsynchFlipDisableFbcQueue:ivb */
--	I915_WRITE(ILK_DISPLAY_CHICKEN1,
--		   I915_READ(ILK_DISPLAY_CHICKEN1) |
-+	intel_uncore_write(&dev_priv->uncore, ILK_DISPLAY_CHICKEN1,
-+		   intel_uncore_read(&dev_priv->uncore, ILK_DISPLAY_CHICKEN1) |
- 		   ILK_FBCQ_DIS);
- 
- 	/* WaDisableBackToBackFlipFix:ivb */
--	I915_WRITE(IVB_CHICKEN3,
-+	intel_uncore_write(&dev_priv->uncore, IVB_CHICKEN3,
- 		   CHICKEN3_DGMG_REQ_OUT_FIX_DISABLE |
- 		   CHICKEN3_DGMG_DONE_FIX_DISABLE);
- 
- 	if (IS_IVB_GT1(dev_priv))
--		I915_WRITE(GEN7_ROW_CHICKEN2,
-+		intel_uncore_write(&dev_priv->uncore, GEN7_ROW_CHICKEN2,
- 			   _MASKED_BIT_ENABLE(DOP_CLOCK_GATING_DISABLE));
- 	else {
- 		/* must write both registers */
--		I915_WRITE(GEN7_ROW_CHICKEN2,
-+		intel_uncore_write(&dev_priv->uncore, GEN7_ROW_CHICKEN2,
- 			   _MASKED_BIT_ENABLE(DOP_CLOCK_GATING_DISABLE));
--		I915_WRITE(GEN7_ROW_CHICKEN2_GT2,
-+		intel_uncore_write(&dev_priv->uncore, GEN7_ROW_CHICKEN2_GT2,
- 			   _MASKED_BIT_ENABLE(DOP_CLOCK_GATING_DISABLE));
+-	dig_hotplug_reg = I915_READ(PCH_PORT_HOTPLUG);
++	dig_hotplug_reg = intel_uncore_read(&dev_priv->uncore, PCH_PORT_HOTPLUG);
+ 	if (!hotplug_trigger) {
+ 		u32 mask = PORTA_HOTPLUG_STATUS_MASK |
+ 			PORTD_HOTPLUG_STATUS_MASK |
+@@ -1770,7 +1770,7 @@ static void ibx_hpd_irq_handler(struct drm_i915_private *dev_priv,
+ 		dig_hotplug_reg &= ~mask;
  	}
  
-@@ -7376,20 +7376,20 @@ static void ivb_init_clock_gating(struct drm_i915_private *dev_priv)
- 	 * According to the spec, bit 13 (RCZUNIT) must be set on IVB.
- 	 * This implements the WaDisableRCZUnitClockGating:ivb workaround.
- 	 */
--	I915_WRITE(GEN6_UCGCTL2,
-+	intel_uncore_write(&dev_priv->uncore, GEN6_UCGCTL2,
- 		   GEN6_RCZUNIT_CLOCK_GATE_DISABLE);
+-	I915_WRITE(PCH_PORT_HOTPLUG, dig_hotplug_reg);
++	intel_uncore_write(&dev_priv->uncore, PCH_PORT_HOTPLUG, dig_hotplug_reg);
+ 	if (!hotplug_trigger)
+ 		return;
  
- 	/* This is required by WaCatErrorRejectionIssue:ivb */
--	I915_WRITE(GEN7_SQ_CHICKEN_MBCUNIT_CONFIG,
--			I915_READ(GEN7_SQ_CHICKEN_MBCUNIT_CONFIG) |
-+	intel_uncore_write(&dev_priv->uncore, GEN7_SQ_CHICKEN_MBCUNIT_CONFIG,
-+			intel_uncore_read(&dev_priv->uncore, GEN7_SQ_CHICKEN_MBCUNIT_CONFIG) |
- 			GEN7_SQ_CHICKEN_MBCUNIT_SQINTMOB);
+@@ -1815,7 +1815,7 @@ static void ibx_irq_handler(struct drm_i915_private *dev_priv, u32 pch_iir)
+ 		for_each_pipe(dev_priv, pipe)
+ 			drm_dbg(&dev_priv->drm, "  pipe %c FDI IIR: 0x%08x\n",
+ 				pipe_name(pipe),
+-				I915_READ(FDI_RX_IIR(pipe)));
++				intel_uncore_read(&dev_priv->uncore, FDI_RX_IIR(pipe)));
+ 	}
  
- 	g4x_disable_trickle_feed(dev_priv);
+ 	if (pch_iir & (SDE_TRANSB_CRC_DONE | SDE_TRANSA_CRC_DONE))
+@@ -1834,7 +1834,7 @@ static void ibx_irq_handler(struct drm_i915_private *dev_priv, u32 pch_iir)
  
--	snpcr = I915_READ(GEN6_MBCUNIT_SNPCR);
-+	snpcr = intel_uncore_read(&dev_priv->uncore, GEN6_MBCUNIT_SNPCR);
- 	snpcr &= ~GEN6_MBC_SNPCR_MASK;
- 	snpcr |= GEN6_MBC_SNPCR_MED;
--	I915_WRITE(GEN6_MBCUNIT_SNPCR, snpcr);
-+	intel_uncore_write(&dev_priv->uncore, GEN6_MBCUNIT_SNPCR, snpcr);
- 
- 	if (!HAS_PCH_NOP(dev_priv))
- 		cpt_init_clock_gating(dev_priv);
-@@ -7400,58 +7400,58 @@ static void ivb_init_clock_gating(struct drm_i915_private *dev_priv)
- static void vlv_init_clock_gating(struct drm_i915_private *dev_priv)
+ static void ivb_err_int_handler(struct drm_i915_private *dev_priv)
  {
- 	/* WaDisableBackToBackFlipFix:vlv */
--	I915_WRITE(IVB_CHICKEN3,
-+	intel_uncore_write(&dev_priv->uncore, IVB_CHICKEN3,
- 		   CHICKEN3_DGMG_REQ_OUT_FIX_DISABLE |
- 		   CHICKEN3_DGMG_DONE_FIX_DISABLE);
+-	u32 err_int = I915_READ(GEN7_ERR_INT);
++	u32 err_int = intel_uncore_read(&dev_priv->uncore, GEN7_ERR_INT);
+ 	enum pipe pipe;
  
- 	/* WaDisableDopClockGating:vlv */
--	I915_WRITE(GEN7_ROW_CHICKEN2,
-+	intel_uncore_write(&dev_priv->uncore, GEN7_ROW_CHICKEN2,
- 		   _MASKED_BIT_ENABLE(DOP_CLOCK_GATING_DISABLE));
+ 	if (err_int & ERR_INT_POISON)
+@@ -1852,12 +1852,12 @@ static void ivb_err_int_handler(struct drm_i915_private *dev_priv)
+ 		}
+ 	}
  
- 	/* This is required by WaCatErrorRejectionIssue:vlv */
--	I915_WRITE(GEN7_SQ_CHICKEN_MBCUNIT_CONFIG,
--		   I915_READ(GEN7_SQ_CHICKEN_MBCUNIT_CONFIG) |
-+	intel_uncore_write(&dev_priv->uncore, GEN7_SQ_CHICKEN_MBCUNIT_CONFIG,
-+		   intel_uncore_read(&dev_priv->uncore, GEN7_SQ_CHICKEN_MBCUNIT_CONFIG) |
- 		   GEN7_SQ_CHICKEN_MBCUNIT_SQINTMOB);
+-	I915_WRITE(GEN7_ERR_INT, err_int);
++	intel_uncore_write(&dev_priv->uncore, GEN7_ERR_INT, err_int);
+ }
+ 
+ static void cpt_serr_int_handler(struct drm_i915_private *dev_priv)
+ {
+-	u32 serr_int = I915_READ(SERR_INT);
++	u32 serr_int = intel_uncore_read(&dev_priv->uncore, SERR_INT);
+ 	enum pipe pipe;
+ 
+ 	if (serr_int & SERR_INT_POISON)
+@@ -1867,7 +1867,7 @@ static void cpt_serr_int_handler(struct drm_i915_private *dev_priv)
+ 		if (serr_int & SERR_INT_TRANS_FIFO_UNDERRUN(pipe))
+ 			intel_pch_fifo_underrun_irq_handler(dev_priv, pipe);
+ 
+-	I915_WRITE(SERR_INT, serr_int);
++	intel_uncore_write(&dev_priv->uncore, SERR_INT, serr_int);
+ }
+ 
+ static void cpt_irq_handler(struct drm_i915_private *dev_priv, u32 pch_iir)
+@@ -1900,7 +1900,7 @@ static void cpt_irq_handler(struct drm_i915_private *dev_priv, u32 pch_iir)
+ 		for_each_pipe(dev_priv, pipe)
+ 			drm_dbg(&dev_priv->drm, "  pipe %c FDI IIR: 0x%08x\n",
+ 				pipe_name(pipe),
+-				I915_READ(FDI_RX_IIR(pipe)));
++				intel_uncore_read(&dev_priv->uncore, FDI_RX_IIR(pipe)));
+ 	}
+ 
+ 	if (pch_iir & SDE_ERROR_CPT)
+@@ -1916,8 +1916,8 @@ static void icp_irq_handler(struct drm_i915_private *dev_priv, u32 pch_iir)
+ 	if (ddi_hotplug_trigger) {
+ 		u32 dig_hotplug_reg;
+ 
+-		dig_hotplug_reg = I915_READ(SHOTPLUG_CTL_DDI);
+-		I915_WRITE(SHOTPLUG_CTL_DDI, dig_hotplug_reg);
++		dig_hotplug_reg = intel_uncore_read(&dev_priv->uncore, SHOTPLUG_CTL_DDI);
++		intel_uncore_write(&dev_priv->uncore, SHOTPLUG_CTL_DDI, dig_hotplug_reg);
+ 
+ 		intel_get_hpd_pins(dev_priv, &pin_mask, &long_mask,
+ 				   ddi_hotplug_trigger, dig_hotplug_reg,
+@@ -1928,8 +1928,8 @@ static void icp_irq_handler(struct drm_i915_private *dev_priv, u32 pch_iir)
+ 	if (tc_hotplug_trigger) {
+ 		u32 dig_hotplug_reg;
+ 
+-		dig_hotplug_reg = I915_READ(SHOTPLUG_CTL_TC);
+-		I915_WRITE(SHOTPLUG_CTL_TC, dig_hotplug_reg);
++		dig_hotplug_reg = intel_uncore_read(&dev_priv->uncore, SHOTPLUG_CTL_TC);
++		intel_uncore_write(&dev_priv->uncore, SHOTPLUG_CTL_TC, dig_hotplug_reg);
+ 
+ 		intel_get_hpd_pins(dev_priv, &pin_mask, &long_mask,
+ 				   tc_hotplug_trigger, dig_hotplug_reg,
+@@ -1954,8 +1954,8 @@ static void spt_irq_handler(struct drm_i915_private *dev_priv, u32 pch_iir)
+ 	if (hotplug_trigger) {
+ 		u32 dig_hotplug_reg;
+ 
+-		dig_hotplug_reg = I915_READ(PCH_PORT_HOTPLUG);
+-		I915_WRITE(PCH_PORT_HOTPLUG, dig_hotplug_reg);
++		dig_hotplug_reg = intel_uncore_read(&dev_priv->uncore, PCH_PORT_HOTPLUG);
++		intel_uncore_write(&dev_priv->uncore, PCH_PORT_HOTPLUG, dig_hotplug_reg);
+ 
+ 		intel_get_hpd_pins(dev_priv, &pin_mask, &long_mask,
+ 				   hotplug_trigger, dig_hotplug_reg,
+@@ -1966,8 +1966,8 @@ static void spt_irq_handler(struct drm_i915_private *dev_priv, u32 pch_iir)
+ 	if (hotplug2_trigger) {
+ 		u32 dig_hotplug_reg;
+ 
+-		dig_hotplug_reg = I915_READ(PCH_PORT_HOTPLUG2);
+-		I915_WRITE(PCH_PORT_HOTPLUG2, dig_hotplug_reg);
++		dig_hotplug_reg = intel_uncore_read(&dev_priv->uncore, PCH_PORT_HOTPLUG2);
++		intel_uncore_write(&dev_priv->uncore, PCH_PORT_HOTPLUG2, dig_hotplug_reg);
+ 
+ 		intel_get_hpd_pins(dev_priv, &pin_mask, &long_mask,
+ 				   hotplug2_trigger, dig_hotplug_reg,
+@@ -1987,8 +1987,8 @@ static void ilk_hpd_irq_handler(struct drm_i915_private *dev_priv,
+ {
+ 	u32 dig_hotplug_reg, pin_mask = 0, long_mask = 0;
+ 
+-	dig_hotplug_reg = I915_READ(DIGITAL_PORT_HOTPLUG_CNTRL);
+-	I915_WRITE(DIGITAL_PORT_HOTPLUG_CNTRL, dig_hotplug_reg);
++	dig_hotplug_reg = intel_uncore_read(&dev_priv->uncore, DIGITAL_PORT_HOTPLUG_CNTRL);
++	intel_uncore_write(&dev_priv->uncore, DIGITAL_PORT_HOTPLUG_CNTRL, dig_hotplug_reg);
+ 
+ 	intel_get_hpd_pins(dev_priv, &pin_mask, &long_mask,
+ 			   hotplug_trigger, dig_hotplug_reg,
+@@ -2029,7 +2029,7 @@ static void ilk_display_irq_handler(struct drm_i915_private *dev_priv,
+ 
+ 	/* check event from PCH */
+ 	if (de_iir & DE_PCH_EVENT) {
+-		u32 pch_iir = I915_READ(SDEIIR);
++		u32 pch_iir = intel_uncore_read(&dev_priv->uncore, SDEIIR);
+ 
+ 		if (HAS_PCH_CPT(dev_priv))
+ 			cpt_irq_handler(dev_priv, pch_iir);
+@@ -2037,7 +2037,7 @@ static void ilk_display_irq_handler(struct drm_i915_private *dev_priv,
+ 			ibx_irq_handler(dev_priv, pch_iir);
+ 
+ 		/* should clear PCH hotplug event before clear CPU irq */
+-		I915_WRITE(SDEIIR, pch_iir);
++		intel_uncore_write(&dev_priv->uncore, SDEIIR, pch_iir);
+ 	}
+ 
+ 	if (IS_GEN(dev_priv, 5) && de_iir & DE_PCU_EVENT)
+@@ -2057,10 +2057,10 @@ static void ivb_display_irq_handler(struct drm_i915_private *dev_priv,
+ 		ivb_err_int_handler(dev_priv);
+ 
+ 	if (de_iir & DE_EDP_PSR_INT_HSW) {
+-		u32 psr_iir = I915_READ(EDP_PSR_IIR);
++		u32 psr_iir = intel_uncore_read(&dev_priv->uncore, EDP_PSR_IIR);
+ 
+ 		intel_psr_irq_handler(dev_priv, psr_iir);
+-		I915_WRITE(EDP_PSR_IIR, psr_iir);
++		intel_uncore_write(&dev_priv->uncore, EDP_PSR_IIR, psr_iir);
+ 	}
+ 
+ 	if (de_iir & DE_AUX_CHANNEL_A_IVB)
+@@ -2076,12 +2076,12 @@ static void ivb_display_irq_handler(struct drm_i915_private *dev_priv,
+ 
+ 	/* check event from PCH */
+ 	if (!HAS_PCH_NOP(dev_priv) && (de_iir & DE_PCH_EVENT_IVB)) {
+-		u32 pch_iir = I915_READ(SDEIIR);
++		u32 pch_iir = intel_uncore_read(&dev_priv->uncore, SDEIIR);
+ 
+ 		cpt_irq_handler(dev_priv, pch_iir);
+ 
+ 		/* clear PCH hotplug event before clear CPU irq */
+-		I915_WRITE(SDEIIR, pch_iir);
++		intel_uncore_write(&dev_priv->uncore, SDEIIR, pch_iir);
+ 	}
+ }
+ 
+@@ -2166,8 +2166,8 @@ static void bxt_hpd_irq_handler(struct drm_i915_private *dev_priv,
+ {
+ 	u32 dig_hotplug_reg, pin_mask = 0, long_mask = 0;
+ 
+-	dig_hotplug_reg = I915_READ(PCH_PORT_HOTPLUG);
+-	I915_WRITE(PCH_PORT_HOTPLUG, dig_hotplug_reg);
++	dig_hotplug_reg = intel_uncore_read(&dev_priv->uncore, PCH_PORT_HOTPLUG);
++	intel_uncore_write(&dev_priv->uncore, PCH_PORT_HOTPLUG, dig_hotplug_reg);
+ 
+ 	intel_get_hpd_pins(dev_priv, &pin_mask, &long_mask,
+ 			   hotplug_trigger, dig_hotplug_reg,
+@@ -2186,8 +2186,8 @@ static void gen11_hpd_irq_handler(struct drm_i915_private *dev_priv, u32 iir)
+ 	if (trigger_tc) {
+ 		u32 dig_hotplug_reg;
+ 
+-		dig_hotplug_reg = I915_READ(GEN11_TC_HOTPLUG_CTL);
+-		I915_WRITE(GEN11_TC_HOTPLUG_CTL, dig_hotplug_reg);
++		dig_hotplug_reg = intel_uncore_read(&dev_priv->uncore, GEN11_TC_HOTPLUG_CTL);
++		intel_uncore_write(&dev_priv->uncore, GEN11_TC_HOTPLUG_CTL, dig_hotplug_reg);
+ 
+ 		intel_get_hpd_pins(dev_priv, &pin_mask, &long_mask,
+ 				   trigger_tc, dig_hotplug_reg,
+@@ -2198,8 +2198,8 @@ static void gen11_hpd_irq_handler(struct drm_i915_private *dev_priv, u32 iir)
+ 	if (trigger_tbt) {
+ 		u32 dig_hotplug_reg;
+ 
+-		dig_hotplug_reg = I915_READ(GEN11_TBT_HOTPLUG_CTL);
+-		I915_WRITE(GEN11_TBT_HOTPLUG_CTL, dig_hotplug_reg);
++		dig_hotplug_reg = intel_uncore_read(&dev_priv->uncore, GEN11_TBT_HOTPLUG_CTL);
++		intel_uncore_write(&dev_priv->uncore, GEN11_TBT_HOTPLUG_CTL, dig_hotplug_reg);
+ 
+ 		intel_get_hpd_pins(dev_priv, &pin_mask, &long_mask,
+ 				   trigger_tbt, dig_hotplug_reg,
+@@ -2276,8 +2276,8 @@ gen8_de_misc_irq_handler(struct drm_i915_private *dev_priv, u32 iir)
+ 		else
+ 			iir_reg = EDP_PSR_IIR;
+ 
+-		psr_iir = I915_READ(iir_reg);
+-		I915_WRITE(iir_reg, psr_iir);
++		psr_iir = intel_uncore_read(&dev_priv->uncore, iir_reg);
++		intel_uncore_write(&dev_priv->uncore, iir_reg, psr_iir);
+ 
+ 		if (psr_iir)
+ 			found = true;
+@@ -2301,7 +2301,7 @@ static void gen11_dsi_te_interrupt_handler(struct drm_i915_private *dev_priv,
+ 	 * Incase of dual link, TE comes from DSI_1
+ 	 * this is to check if dual link is enabled
+ 	 */
+-	val = I915_READ(TRANS_DDI_FUNC_CTL2(TRANSCODER_DSI_0));
++	val = intel_uncore_read(&dev_priv->uncore, TRANS_DDI_FUNC_CTL2(TRANSCODER_DSI_0));
+ 	val &= PORT_SYNC_MODE_ENABLE;
  
  	/*
- 	 * According to the spec, bit 13 (RCZUNIT) must be set on IVB.
- 	 * This implements the WaDisableRCZUnitClockGating:vlv workaround.
+@@ -2313,7 +2313,7 @@ static void gen11_dsi_te_interrupt_handler(struct drm_i915_private *dev_priv,
+ 	dsi_trans = (port == PORT_A) ? TRANSCODER_DSI_0 : TRANSCODER_DSI_1;
+ 
+ 	/* Check if DSI configured in command mode */
+-	val = I915_READ(DSI_TRANS_FUNC_CONF(dsi_trans));
++	val = intel_uncore_read(&dev_priv->uncore, DSI_TRANS_FUNC_CONF(dsi_trans));
+ 	val = val & OP_MODE_MASK;
+ 
+ 	if (val != CMD_MODE_NO_GATE && val != CMD_MODE_TE_GATE) {
+@@ -2322,7 +2322,7 @@ static void gen11_dsi_te_interrupt_handler(struct drm_i915_private *dev_priv,
+ 	}
+ 
+ 	/* Get PIPE for handling VBLANK event */
+-	val = I915_READ(TRANS_DDI_FUNC_CTL(dsi_trans));
++	val = intel_uncore_read(&dev_priv->uncore, TRANS_DDI_FUNC_CTL(dsi_trans));
+ 	switch (val & TRANS_DDI_EDP_INPUT_MASK) {
+ 	case TRANS_DDI_EDP_INPUT_A_ON:
+ 		pipe = PIPE_A;
+@@ -2342,8 +2342,8 @@ static void gen11_dsi_te_interrupt_handler(struct drm_i915_private *dev_priv,
+ 
+ 	/* clear TE in dsi IIR */
+ 	port = (te_trigger & DSI1_TE) ? PORT_B : PORT_A;
+-	tmp = I915_READ(DSI_INTR_IDENT_REG(port));
+-	I915_WRITE(DSI_INTR_IDENT_REG(port), tmp);
++	tmp = intel_uncore_read(&dev_priv->uncore, DSI_INTR_IDENT_REG(port));
++	intel_uncore_write(&dev_priv->uncore, DSI_INTR_IDENT_REG(port), tmp);
+ }
+ 
+ static irqreturn_t
+@@ -2354,9 +2354,9 @@ gen8_de_irq_handler(struct drm_i915_private *dev_priv, u32 master_ctl)
+ 	enum pipe pipe;
+ 
+ 	if (master_ctl & GEN8_DE_MISC_IRQ) {
+-		iir = I915_READ(GEN8_DE_MISC_IIR);
++		iir = intel_uncore_read(&dev_priv->uncore, GEN8_DE_MISC_IIR);
+ 		if (iir) {
+-			I915_WRITE(GEN8_DE_MISC_IIR, iir);
++			intel_uncore_write(&dev_priv->uncore, GEN8_DE_MISC_IIR, iir);
+ 			ret = IRQ_HANDLED;
+ 			gen8_de_misc_irq_handler(dev_priv, iir);
+ 		} else {
+@@ -2366,9 +2366,9 @@ gen8_de_irq_handler(struct drm_i915_private *dev_priv, u32 master_ctl)
+ 	}
+ 
+ 	if (INTEL_GEN(dev_priv) >= 11 && (master_ctl & GEN11_DE_HPD_IRQ)) {
+-		iir = I915_READ(GEN11_DE_HPD_IIR);
++		iir = intel_uncore_read(&dev_priv->uncore, GEN11_DE_HPD_IIR);
+ 		if (iir) {
+-			I915_WRITE(GEN11_DE_HPD_IIR, iir);
++			intel_uncore_write(&dev_priv->uncore, GEN11_DE_HPD_IIR, iir);
+ 			ret = IRQ_HANDLED;
+ 			gen11_hpd_irq_handler(dev_priv, iir);
+ 		} else {
+@@ -2378,11 +2378,11 @@ gen8_de_irq_handler(struct drm_i915_private *dev_priv, u32 master_ctl)
+ 	}
+ 
+ 	if (master_ctl & GEN8_DE_PORT_IRQ) {
+-		iir = I915_READ(GEN8_DE_PORT_IIR);
++		iir = intel_uncore_read(&dev_priv->uncore, GEN8_DE_PORT_IIR);
+ 		if (iir) {
+ 			bool found = false;
+ 
+-			I915_WRITE(GEN8_DE_PORT_IIR, iir);
++			intel_uncore_write(&dev_priv->uncore, GEN8_DE_PORT_IIR, iir);
+ 			ret = IRQ_HANDLED;
+ 
+ 			if (iir & gen8_de_port_aux_mask(dev_priv)) {
+@@ -2435,7 +2435,7 @@ gen8_de_irq_handler(struct drm_i915_private *dev_priv, u32 master_ctl)
+ 		if (!(master_ctl & GEN8_DE_PIPE_IRQ(pipe)))
+ 			continue;
+ 
+-		iir = I915_READ(GEN8_DE_PIPE_IIR(pipe));
++		iir = intel_uncore_read(&dev_priv->uncore, GEN8_DE_PIPE_IIR(pipe));
+ 		if (!iir) {
+ 			drm_err(&dev_priv->drm,
+ 				"The master control interrupt lied (DE PIPE)!\n");
+@@ -2443,7 +2443,7 @@ gen8_de_irq_handler(struct drm_i915_private *dev_priv, u32 master_ctl)
+ 		}
+ 
+ 		ret = IRQ_HANDLED;
+-		I915_WRITE(GEN8_DE_PIPE_IIR(pipe), iir);
++		intel_uncore_write(&dev_priv->uncore, GEN8_DE_PIPE_IIR(pipe), iir);
+ 
+ 		if (iir & GEN8_PIPE_VBLANK)
+ 			intel_handle_vblank(dev_priv, pipe);
+@@ -2472,9 +2472,9 @@ gen8_de_irq_handler(struct drm_i915_private *dev_priv, u32 master_ctl)
+ 		 * scheme also closed the SDE interrupt handling race we've seen
+ 		 * on older pch-split platforms. But this needs testing.
+ 		 */
+-		iir = I915_READ(SDEIIR);
++		iir = intel_uncore_read(&dev_priv->uncore, SDEIIR);
+ 		if (iir) {
+-			I915_WRITE(SDEIIR, iir);
++			intel_uncore_write(&dev_priv->uncore, SDEIIR, iir);
+ 			ret = IRQ_HANDLED;
+ 
+ 			if (INTEL_PCH_TYPE(dev_priv) >= PCH_ICP)
+@@ -2713,7 +2713,7 @@ int i915gm_enable_vblank(struct drm_crtc *crtc)
+ 	 * only when vblank interrupts are actually enabled.
  	 */
--	I915_WRITE(GEN6_UCGCTL2,
-+	intel_uncore_write(&dev_priv->uncore, GEN6_UCGCTL2,
- 		   GEN6_RCZUNIT_CLOCK_GATE_DISABLE);
+ 	if (dev_priv->vblank_enabled++ == 0)
+-		I915_WRITE(SCPD0, _MASKED_BIT_ENABLE(CSTATE_RENDER_CLOCK_GATE_DISABLE));
++		intel_uncore_write(&dev_priv->uncore, SCPD0, _MASKED_BIT_ENABLE(CSTATE_RENDER_CLOCK_GATE_DISABLE));
  
- 	/* WaDisableL3Bank2xClockGate:vlv
- 	 * Disabling L3 clock gating- MMIO 940c[25] = 1
- 	 * Set bit 25, to disable L3_BANK_2x_CLK_GATING */
--	I915_WRITE(GEN7_UCGCTL4,
--		   I915_READ(GEN7_UCGCTL4) | GEN7_L3BANK2X_CLOCK_GATE_DISABLE);
-+	intel_uncore_write(&dev_priv->uncore, GEN7_UCGCTL4,
-+		   intel_uncore_read(&dev_priv->uncore, GEN7_UCGCTL4) | GEN7_L3BANK2X_CLOCK_GATE_DISABLE);
+ 	return i8xx_enable_vblank(crtc);
+ }
+@@ -2770,16 +2770,16 @@ static bool gen11_dsi_configure_te(struct intel_crtc *intel_crtc,
+ 	else
+ 		port = PORT_A;
  
- 	/*
- 	 * WaDisableVLVClockGating_VBIIssue:vlv
- 	 * Disable clock gating on th GCFG unit to prevent a delay
- 	 * in the reporting of vblank events.
+-	tmp =  I915_READ(DSI_INTR_MASK_REG(port));
++	tmp =  intel_uncore_read(&dev_priv->uncore, DSI_INTR_MASK_REG(port));
+ 	if (enable)
+ 		tmp &= ~DSI_TE_EVENT;
+ 	else
+ 		tmp |= DSI_TE_EVENT;
+ 
+-	I915_WRITE(DSI_INTR_MASK_REG(port), tmp);
++	intel_uncore_write(&dev_priv->uncore, DSI_INTR_MASK_REG(port), tmp);
+ 
+-	tmp = I915_READ(DSI_INTR_IDENT_REG(port));
+-	I915_WRITE(DSI_INTR_IDENT_REG(port), tmp);
++	tmp = intel_uncore_read(&dev_priv->uncore, DSI_INTR_IDENT_REG(port));
++	intel_uncore_write(&dev_priv->uncore, DSI_INTR_IDENT_REG(port), tmp);
+ 
+ 	return true;
+ }
+@@ -2841,7 +2841,7 @@ void i915gm_disable_vblank(struct drm_crtc *crtc)
+ 	i8xx_disable_vblank(crtc);
+ 
+ 	if (--dev_priv->vblank_enabled == 0)
+-		I915_WRITE(SCPD0, _MASKED_BIT_DISABLE(CSTATE_RENDER_CLOCK_GATE_DISABLE));
++		intel_uncore_write(&dev_priv->uncore, SCPD0, _MASKED_BIT_DISABLE(CSTATE_RENDER_CLOCK_GATE_DISABLE));
+ }
+ 
+ void i965_disable_vblank(struct drm_crtc *crtc)
+@@ -2907,7 +2907,7 @@ static void ibx_irq_reset(struct drm_i915_private *dev_priv)
+ 	GEN3_IRQ_RESET(uncore, SDE);
+ 
+ 	if (HAS_PCH_CPT(dev_priv) || HAS_PCH_LPT(dev_priv))
+-		I915_WRITE(SERR_INT, 0xffffffff);
++		intel_uncore_write(&dev_priv->uncore, SERR_INT, 0xffffffff);
+ }
+ 
+ static void vlv_display_irq_reset(struct drm_i915_private *dev_priv)
+@@ -2920,7 +2920,7 @@ static void vlv_display_irq_reset(struct drm_i915_private *dev_priv)
+ 		intel_uncore_write(uncore, DPINVGTT, DPINVGTT_STATUS_MASK);
+ 
+ 	i915_hotplug_interrupt_update_locked(dev_priv, 0xffffffff, 0);
+-	intel_uncore_write(uncore, PORT_HOTPLUG_STAT, I915_READ(PORT_HOTPLUG_STAT));
++	intel_uncore_write(uncore, PORT_HOTPLUG_STAT, intel_uncore_read(&dev_priv->uncore, PORT_HOTPLUG_STAT));
+ 
+ 	i9xx_pipestat_irq_reset(dev_priv);
+ 
+@@ -2983,8 +2983,8 @@ static void ilk_irq_reset(struct drm_i915_private *dev_priv)
+ 
+ static void valleyview_irq_reset(struct drm_i915_private *dev_priv)
+ {
+-	I915_WRITE(VLV_MASTER_IER, 0);
+-	POSTING_READ(VLV_MASTER_IER);
++	intel_uncore_write(&dev_priv->uncore, VLV_MASTER_IER, 0);
++	intel_uncore_posting_read(&dev_priv->uncore, VLV_MASTER_IER);
+ 
+ 	gen5_gt_irq_reset(&dev_priv->gt);
+ 
+@@ -3135,8 +3135,8 @@ static void cherryview_irq_reset(struct drm_i915_private *dev_priv)
+ {
+ 	struct intel_uncore *uncore = &dev_priv->uncore;
+ 
+-	I915_WRITE(GEN8_MASTER_IRQ, 0);
+-	POSTING_READ(GEN8_MASTER_IRQ);
++	intel_uncore_write(&dev_priv->uncore, GEN8_MASTER_IRQ, 0);
++	intel_uncore_posting_read(&dev_priv->uncore, GEN8_MASTER_IRQ);
+ 
+ 	gen8_gt_irq_reset(&dev_priv->gt);
+ 
+@@ -3182,7 +3182,7 @@ static void ibx_hpd_detection_setup(struct drm_i915_private *dev_priv)
+ 	 * duration to 2ms (which is the minimum in the Display Port spec).
+ 	 * The pulse duration bits are reserved on LPT+.
  	 */
--	I915_WRITE(VLV_GUNIT_CLOCK_GATE, GCFG_DIS);
-+	intel_uncore_write(&dev_priv->uncore, VLV_GUNIT_CLOCK_GATE, GCFG_DIS);
+-	hotplug = I915_READ(PCH_PORT_HOTPLUG);
++	hotplug = intel_uncore_read(&dev_priv->uncore, PCH_PORT_HOTPLUG);
+ 	hotplug &= ~(PORTA_HOTPLUG_ENABLE |
+ 		     PORTB_HOTPLUG_ENABLE |
+ 		     PORTC_HOTPLUG_ENABLE |
+@@ -3191,7 +3191,7 @@ static void ibx_hpd_detection_setup(struct drm_i915_private *dev_priv)
+ 		     PORTC_PULSE_DURATION_MASK |
+ 		     PORTD_PULSE_DURATION_MASK);
+ 	hotplug |= intel_hpd_hotplug_enables(dev_priv, ibx_hotplug_enables);
+-	I915_WRITE(PCH_PORT_HOTPLUG, hotplug);
++	intel_uncore_write(&dev_priv->uncore, PCH_PORT_HOTPLUG, hotplug);
  }
  
- static void chv_init_clock_gating(struct drm_i915_private *dev_priv)
+ static void ibx_hpd_irq_setup(struct drm_i915_private *dev_priv)
+@@ -3240,20 +3240,20 @@ static void icp_ddi_hpd_detection_setup(struct drm_i915_private *dev_priv)
  {
- 	/* WaVSRefCountFullforceMissDisable:chv */
- 	/* WaDSRefCountFullforceMissDisable:chv */
--	I915_WRITE(GEN7_FF_THREAD_MODE,
--		   I915_READ(GEN7_FF_THREAD_MODE) &
-+	intel_uncore_write(&dev_priv->uncore, GEN7_FF_THREAD_MODE,
-+		   intel_uncore_read(&dev_priv->uncore, GEN7_FF_THREAD_MODE) &
- 		   ~(GEN8_FF_DS_REF_CNT_FFME | GEN7_FF_VS_REF_CNT_FFME));
+ 	u32 hotplug;
  
- 	/* WaDisableSemaphoreAndSyncFlipWait:chv */
--	I915_WRITE(GEN6_RC_SLEEP_PSMI_CONTROL,
-+	intel_uncore_write(&dev_priv->uncore, GEN6_RC_SLEEP_PSMI_CONTROL,
- 		   _MASKED_BIT_ENABLE(GEN8_RC_SEMA_IDLE_MSG_DISABLE));
- 
- 	/* WaDisableCSUnitClockGating:chv */
--	I915_WRITE(GEN6_UCGCTL1, I915_READ(GEN6_UCGCTL1) |
-+	intel_uncore_write(&dev_priv->uncore, GEN6_UCGCTL1, intel_uncore_read(&dev_priv->uncore, GEN6_UCGCTL1) |
- 		   GEN6_CSUNIT_CLOCK_GATE_DISABLE);
- 
- 	/* WaDisableSDEUnitClockGating:chv */
--	I915_WRITE(GEN8_UCGCTL6, I915_READ(GEN8_UCGCTL6) |
-+	intel_uncore_write(&dev_priv->uncore, GEN8_UCGCTL6, intel_uncore_read(&dev_priv->uncore, GEN8_UCGCTL6) |
- 		   GEN8_SDEUNIT_CLOCK_GATE_DISABLE);
- 
- 	/*
-@@ -7466,17 +7466,17 @@ static void g4x_init_clock_gating(struct drm_i915_private *dev_priv)
- {
- 	u32 dspclk_gate;
- 
--	I915_WRITE(RENCLK_GATE_D1, 0);
--	I915_WRITE(RENCLK_GATE_D2, VF_UNIT_CLOCK_GATE_DISABLE |
-+	intel_uncore_write(&dev_priv->uncore, RENCLK_GATE_D1, 0);
-+	intel_uncore_write(&dev_priv->uncore, RENCLK_GATE_D2, VF_UNIT_CLOCK_GATE_DISABLE |
- 		   GS_UNIT_CLOCK_GATE_DISABLE |
- 		   CL_UNIT_CLOCK_GATE_DISABLE);
--	I915_WRITE(RAMCLK_GATE_D, 0);
-+	intel_uncore_write(&dev_priv->uncore, RAMCLK_GATE_D, 0);
- 	dspclk_gate = VRHUNIT_CLOCK_GATE_DISABLE |
- 		OVRUNIT_CLOCK_GATE_DISABLE |
- 		OVCUNIT_CLOCK_GATE_DISABLE;
- 	if (IS_GM45(dev_priv))
- 		dspclk_gate |= DSSUNIT_CLOCK_GATE_DISABLE;
--	I915_WRITE(DSPCLK_GATE_D, dspclk_gate);
-+	intel_uncore_write(&dev_priv->uncore, DSPCLK_GATE_D, dspclk_gate);
- 
- 	g4x_disable_trickle_feed(dev_priv);
- }
-@@ -7497,49 +7497,49 @@ static void i965gm_init_clock_gating(struct drm_i915_private *dev_priv)
- 
- static void i965g_init_clock_gating(struct drm_i915_private *dev_priv)
- {
--	I915_WRITE(RENCLK_GATE_D1, I965_RCZ_CLOCK_GATE_DISABLE |
-+	intel_uncore_write(&dev_priv->uncore, RENCLK_GATE_D1, I965_RCZ_CLOCK_GATE_DISABLE |
- 		   I965_RCC_CLOCK_GATE_DISABLE |
- 		   I965_RCPB_CLOCK_GATE_DISABLE |
- 		   I965_ISC_CLOCK_GATE_DISABLE |
- 		   I965_FBC_CLOCK_GATE_DISABLE);
--	I915_WRITE(RENCLK_GATE_D2, 0);
--	I915_WRITE(MI_ARB_STATE,
-+	intel_uncore_write(&dev_priv->uncore, RENCLK_GATE_D2, 0);
-+	intel_uncore_write(&dev_priv->uncore, MI_ARB_STATE,
- 		   _MASKED_BIT_ENABLE(MI_ARB_DISPLAY_TRICKLE_FEED_DISABLE));
+-	hotplug = I915_READ(SHOTPLUG_CTL_DDI);
++	hotplug = intel_uncore_read(&dev_priv->uncore, SHOTPLUG_CTL_DDI);
+ 	hotplug &= ~(SHOTPLUG_CTL_DDI_HPD_ENABLE(HPD_PORT_A) |
+ 		     SHOTPLUG_CTL_DDI_HPD_ENABLE(HPD_PORT_B) |
+ 		     SHOTPLUG_CTL_DDI_HPD_ENABLE(HPD_PORT_C) |
+ 		     SHOTPLUG_CTL_DDI_HPD_ENABLE(HPD_PORT_D));
+ 	hotplug |= intel_hpd_hotplug_enables(dev_priv, icp_ddi_hotplug_enables);
+-	I915_WRITE(SHOTPLUG_CTL_DDI, hotplug);
++	intel_uncore_write(&dev_priv->uncore, SHOTPLUG_CTL_DDI, hotplug);
  }
  
- static void gen3_init_clock_gating(struct drm_i915_private *dev_priv)
+ static void icp_tc_hpd_detection_setup(struct drm_i915_private *dev_priv)
  {
--	u32 dstate = I915_READ(D_STATE);
-+	u32 dstate = intel_uncore_read(&dev_priv->uncore, D_STATE);
+ 	u32 hotplug;
  
- 	dstate |= DSTATE_PLL_D3_OFF | DSTATE_GFX_CLOCK_GATING |
- 		DSTATE_DOT_CLOCK_GATING;
--	I915_WRITE(D_STATE, dstate);
-+	intel_uncore_write(&dev_priv->uncore, D_STATE, dstate);
- 
- 	if (IS_PINEVIEW(dev_priv))
--		I915_WRITE(ECOSKPD, _MASKED_BIT_ENABLE(ECO_GATING_CX_ONLY));
-+		intel_uncore_write(&dev_priv->uncore, ECOSKPD, _MASKED_BIT_ENABLE(ECO_GATING_CX_ONLY));
- 
- 	/* IIR "flip pending" means done if this bit is set */
--	I915_WRITE(ECOSKPD, _MASKED_BIT_DISABLE(ECO_FLIP_DONE));
-+	intel_uncore_write(&dev_priv->uncore, ECOSKPD, _MASKED_BIT_DISABLE(ECO_FLIP_DONE));
- 
- 	/* interrupts should cause a wake up from C3 */
--	I915_WRITE(INSTPM, _MASKED_BIT_ENABLE(INSTPM_AGPBUSY_INT_EN));
-+	intel_uncore_write(&dev_priv->uncore, INSTPM, _MASKED_BIT_ENABLE(INSTPM_AGPBUSY_INT_EN));
- 
- 	/* On GEN3 we really need to make sure the ARB C3 LP bit is set */
--	I915_WRITE(MI_ARB_STATE, _MASKED_BIT_ENABLE(MI_ARB_C3_LP_WRITE_ENABLE));
-+	intel_uncore_write(&dev_priv->uncore, MI_ARB_STATE, _MASKED_BIT_ENABLE(MI_ARB_C3_LP_WRITE_ENABLE));
- 
--	I915_WRITE(MI_ARB_STATE,
-+	intel_uncore_write(&dev_priv->uncore, MI_ARB_STATE,
- 		   _MASKED_BIT_ENABLE(MI_ARB_DISPLAY_TRICKLE_FEED_DISABLE));
+-	hotplug = I915_READ(SHOTPLUG_CTL_TC);
++	hotplug = intel_uncore_read(&dev_priv->uncore, SHOTPLUG_CTL_TC);
+ 	hotplug &= ~(ICP_TC_HPD_ENABLE(HPD_PORT_TC1) |
+ 		     ICP_TC_HPD_ENABLE(HPD_PORT_TC2) |
+ 		     ICP_TC_HPD_ENABLE(HPD_PORT_TC3) |
+@@ -3261,7 +3261,7 @@ static void icp_tc_hpd_detection_setup(struct drm_i915_private *dev_priv)
+ 		     ICP_TC_HPD_ENABLE(HPD_PORT_TC5) |
+ 		     ICP_TC_HPD_ENABLE(HPD_PORT_TC6));
+ 	hotplug |= intel_hpd_hotplug_enables(dev_priv, icp_tc_hotplug_enables);
+-	I915_WRITE(SHOTPLUG_CTL_TC, hotplug);
++	intel_uncore_write(&dev_priv->uncore, SHOTPLUG_CTL_TC, hotplug);
  }
  
- static void i85x_init_clock_gating(struct drm_i915_private *dev_priv)
+ static void icp_hpd_irq_setup(struct drm_i915_private *dev_priv)
+@@ -3272,7 +3272,7 @@ static void icp_hpd_irq_setup(struct drm_i915_private *dev_priv)
+ 	hotplug_irqs = intel_hpd_hotplug_irqs(dev_priv, dev_priv->hotplug.pch_hpd);
+ 
+ 	if (INTEL_PCH_TYPE(dev_priv) <= PCH_TGP)
+-		I915_WRITE(SHPD_FILTER_CNT, SHPD_FILTER_CNT_500_ADJ);
++		intel_uncore_write(&dev_priv->uncore, SHPD_FILTER_CNT, SHPD_FILTER_CNT_500_ADJ);
+ 
+ 	ibx_display_interrupt_update(dev_priv, hotplug_irqs, enabled_irqs);
+ 
+@@ -3300,12 +3300,12 @@ static void dg1_hpd_irq_setup(struct drm_i915_private *dev_priv)
  {
--	I915_WRITE(RENCLK_GATE_D1, SV_CLOCK_GATE_DISABLE);
-+	intel_uncore_write(&dev_priv->uncore, RENCLK_GATE_D1, SV_CLOCK_GATE_DISABLE);
+ 	u32 val;
  
- 	/* interrupts should cause a wake up from C3 */
--	I915_WRITE(MI_STATE, _MASKED_BIT_ENABLE(MI_AGPBUSY_INT_EN) |
-+	intel_uncore_write(&dev_priv->uncore, MI_STATE, _MASKED_BIT_ENABLE(MI_AGPBUSY_INT_EN) |
- 		   _MASKED_BIT_DISABLE(MI_AGPBUSY_830_MODE));
+-	val = I915_READ(SOUTH_CHICKEN1);
++	val = intel_uncore_read(&dev_priv->uncore, SOUTH_CHICKEN1);
+ 	val |= (INVERT_DDIA_HPD |
+ 		INVERT_DDIB_HPD |
+ 		INVERT_DDIC_HPD |
+ 		INVERT_DDID_HPD);
+-	I915_WRITE(SOUTH_CHICKEN1, val);
++	intel_uncore_write(&dev_priv->uncore, SOUTH_CHICKEN1, val);
  
--	I915_WRITE(MEM_MODE,
-+	intel_uncore_write(&dev_priv->uncore, MEM_MODE,
- 		   _MASKED_BIT_ENABLE(MEM_DISPLAY_TRICKLE_FEED_DISABLE));
+ 	icp_hpd_irq_setup(dev_priv);
+ }
+@@ -3314,7 +3314,7 @@ static void gen11_tc_hpd_detection_setup(struct drm_i915_private *dev_priv)
+ {
+ 	u32 hotplug;
  
- 	/*
-@@ -7549,13 +7549,13 @@ static void i85x_init_clock_gating(struct drm_i915_private *dev_priv)
- 	 * abosultely nothing) would not allow FBC to recompress
- 	 * until a 2D blit occurs.
+-	hotplug = I915_READ(GEN11_TC_HOTPLUG_CTL);
++	hotplug = intel_uncore_read(&dev_priv->uncore, GEN11_TC_HOTPLUG_CTL);
+ 	hotplug &= ~(GEN11_HOTPLUG_CTL_ENABLE(HPD_PORT_TC1) |
+ 		     GEN11_HOTPLUG_CTL_ENABLE(HPD_PORT_TC2) |
+ 		     GEN11_HOTPLUG_CTL_ENABLE(HPD_PORT_TC3) |
+@@ -3322,14 +3322,14 @@ static void gen11_tc_hpd_detection_setup(struct drm_i915_private *dev_priv)
+ 		     GEN11_HOTPLUG_CTL_ENABLE(HPD_PORT_TC5) |
+ 		     GEN11_HOTPLUG_CTL_ENABLE(HPD_PORT_TC6));
+ 	hotplug |= intel_hpd_hotplug_enables(dev_priv, gen11_hotplug_enables);
+-	I915_WRITE(GEN11_TC_HOTPLUG_CTL, hotplug);
++	intel_uncore_write(&dev_priv->uncore, GEN11_TC_HOTPLUG_CTL, hotplug);
+ }
+ 
+ static void gen11_tbt_hpd_detection_setup(struct drm_i915_private *dev_priv)
+ {
+ 	u32 hotplug;
+ 
+-	hotplug = I915_READ(GEN11_TBT_HOTPLUG_CTL);
++	hotplug = intel_uncore_read(&dev_priv->uncore, GEN11_TBT_HOTPLUG_CTL);
+ 	hotplug &= ~(GEN11_HOTPLUG_CTL_ENABLE(HPD_PORT_TC1) |
+ 		     GEN11_HOTPLUG_CTL_ENABLE(HPD_PORT_TC2) |
+ 		     GEN11_HOTPLUG_CTL_ENABLE(HPD_PORT_TC3) |
+@@ -3337,7 +3337,7 @@ static void gen11_tbt_hpd_detection_setup(struct drm_i915_private *dev_priv)
+ 		     GEN11_HOTPLUG_CTL_ENABLE(HPD_PORT_TC5) |
+ 		     GEN11_HOTPLUG_CTL_ENABLE(HPD_PORT_TC6));
+ 	hotplug |= intel_hpd_hotplug_enables(dev_priv, gen11_hotplug_enables);
+-	I915_WRITE(GEN11_TBT_HOTPLUG_CTL, hotplug);
++	intel_uncore_write(&dev_priv->uncore, GEN11_TBT_HOTPLUG_CTL, hotplug);
+ }
+ 
+ static void gen11_hpd_irq_setup(struct drm_i915_private *dev_priv)
+@@ -3348,11 +3348,11 @@ static void gen11_hpd_irq_setup(struct drm_i915_private *dev_priv)
+ 	enabled_irqs = intel_hpd_enabled_irqs(dev_priv, dev_priv->hotplug.hpd);
+ 	hotplug_irqs = intel_hpd_hotplug_irqs(dev_priv, dev_priv->hotplug.hpd);
+ 
+-	val = I915_READ(GEN11_DE_HPD_IMR);
++	val = intel_uncore_read(&dev_priv->uncore, GEN11_DE_HPD_IMR);
+ 	val &= ~hotplug_irqs;
+ 	val |= ~enabled_irqs & hotplug_irqs;
+-	I915_WRITE(GEN11_DE_HPD_IMR, val);
+-	POSTING_READ(GEN11_DE_HPD_IMR);
++	intel_uncore_write(&dev_priv->uncore, GEN11_DE_HPD_IMR, val);
++	intel_uncore_posting_read(&dev_priv->uncore, GEN11_DE_HPD_IMR);
+ 
+ 	gen11_tc_hpd_detection_setup(dev_priv);
+ 	gen11_tbt_hpd_detection_setup(dev_priv);
+@@ -3395,25 +3395,25 @@ static void spt_hpd_detection_setup(struct drm_i915_private *dev_priv)
+ 
+ 	/* Display WA #1179 WaHardHangonHotPlug: cnp */
+ 	if (HAS_PCH_CNP(dev_priv)) {
+-		val = I915_READ(SOUTH_CHICKEN1);
++		val = intel_uncore_read(&dev_priv->uncore, SOUTH_CHICKEN1);
+ 		val &= ~CHASSIS_CLK_REQ_DURATION_MASK;
+ 		val |= CHASSIS_CLK_REQ_DURATION(0xf);
+-		I915_WRITE(SOUTH_CHICKEN1, val);
++		intel_uncore_write(&dev_priv->uncore, SOUTH_CHICKEN1, val);
+ 	}
+ 
+ 	/* Enable digital hotplug on the PCH */
+-	hotplug = I915_READ(PCH_PORT_HOTPLUG);
++	hotplug = intel_uncore_read(&dev_priv->uncore, PCH_PORT_HOTPLUG);
+ 	hotplug &= ~(PORTA_HOTPLUG_ENABLE |
+ 		     PORTB_HOTPLUG_ENABLE |
+ 		     PORTC_HOTPLUG_ENABLE |
+ 		     PORTD_HOTPLUG_ENABLE);
+ 	hotplug |= intel_hpd_hotplug_enables(dev_priv, spt_hotplug_enables);
+-	I915_WRITE(PCH_PORT_HOTPLUG, hotplug);
++	intel_uncore_write(&dev_priv->uncore, PCH_PORT_HOTPLUG, hotplug);
+ 
+-	hotplug = I915_READ(PCH_PORT_HOTPLUG2);
++	hotplug = intel_uncore_read(&dev_priv->uncore, PCH_PORT_HOTPLUG2);
+ 	hotplug &= ~PORTE_HOTPLUG_ENABLE;
+ 	hotplug |= intel_hpd_hotplug_enables(dev_priv, spt_hotplug2_enables);
+-	I915_WRITE(PCH_PORT_HOTPLUG2, hotplug);
++	intel_uncore_write(&dev_priv->uncore, PCH_PORT_HOTPLUG2, hotplug);
+ }
+ 
+ static void spt_hpd_irq_setup(struct drm_i915_private *dev_priv)
+@@ -3421,7 +3421,7 @@ static void spt_hpd_irq_setup(struct drm_i915_private *dev_priv)
+ 	u32 hotplug_irqs, enabled_irqs;
+ 
+ 	if (INTEL_PCH_TYPE(dev_priv) >= PCH_CNP)
+-		I915_WRITE(SHPD_FILTER_CNT, SHPD_FILTER_CNT_500_ADJ);
++		intel_uncore_write(&dev_priv->uncore, SHPD_FILTER_CNT, SHPD_FILTER_CNT_500_ADJ);
+ 
+ 	enabled_irqs = intel_hpd_enabled_irqs(dev_priv, dev_priv->hotplug.pch_hpd);
+ 	hotplug_irqs = intel_hpd_hotplug_irqs(dev_priv, dev_priv->hotplug.pch_hpd);
+@@ -3452,11 +3452,11 @@ static void ilk_hpd_detection_setup(struct drm_i915_private *dev_priv)
+ 	 * duration to 2ms (which is the minimum in the Display Port spec)
+ 	 * The pulse duration bits are reserved on HSW+.
  	 */
--	I915_WRITE(SCPD0,
-+	intel_uncore_write(&dev_priv->uncore, SCPD0,
- 		   _MASKED_BIT_ENABLE(SCPD_FBC_IGNORE_3D));
+-	hotplug = I915_READ(DIGITAL_PORT_HOTPLUG_CNTRL);
++	hotplug = intel_uncore_read(&dev_priv->uncore, DIGITAL_PORT_HOTPLUG_CNTRL);
+ 	hotplug &= ~(DIGITAL_PORTA_HOTPLUG_ENABLE |
+ 		     DIGITAL_PORTA_PULSE_DURATION_MASK);
+ 	hotplug |= intel_hpd_hotplug_enables(dev_priv, ilk_hotplug_enables);
+-	I915_WRITE(DIGITAL_PORT_HOTPLUG_CNTRL, hotplug);
++	intel_uncore_write(&dev_priv->uncore, DIGITAL_PORT_HOTPLUG_CNTRL, hotplug);
  }
  
- static void i830_init_clock_gating(struct drm_i915_private *dev_priv)
+ static void ilk_hpd_irq_setup(struct drm_i915_private *dev_priv)
+@@ -3506,7 +3506,7 @@ static void bxt_hpd_detection_setup(struct drm_i915_private *dev_priv)
  {
--	I915_WRITE(MEM_MODE,
-+	intel_uncore_write(&dev_priv->uncore, MEM_MODE,
- 		   _MASKED_BIT_ENABLE(MEM_DISPLAY_A_TRICKLE_FEED_DISABLE) |
- 		   _MASKED_BIT_ENABLE(MEM_DISPLAY_B_TRICKLE_FEED_DISABLE));
+ 	u32 hotplug;
+ 
+-	hotplug = I915_READ(PCH_PORT_HOTPLUG);
++	hotplug = intel_uncore_read(&dev_priv->uncore, PCH_PORT_HOTPLUG);
+ 	hotplug &= ~(PORTA_HOTPLUG_ENABLE |
+ 		     PORTB_HOTPLUG_ENABLE |
+ 		     PORTC_HOTPLUG_ENABLE |
+@@ -3514,7 +3514,7 @@ static void bxt_hpd_detection_setup(struct drm_i915_private *dev_priv)
+ 		     BXT_DDIB_HPD_INVERT |
+ 		     BXT_DDIC_HPD_INVERT);
+ 	hotplug |= intel_hpd_hotplug_enables(dev_priv, bxt_hotplug_enables);
+-	I915_WRITE(PCH_PORT_HOTPLUG, hotplug);
++	intel_uncore_write(&dev_priv->uncore, PCH_PORT_HOTPLUG, hotplug);
  }
+ 
+ static void bxt_hpd_irq_setup(struct drm_i915_private *dev_priv)
+@@ -3634,8 +3634,8 @@ static void valleyview_irq_postinstall(struct drm_i915_private *dev_priv)
+ 		vlv_display_irq_postinstall(dev_priv);
+ 	spin_unlock_irq(&dev_priv->irq_lock);
+ 
+-	I915_WRITE(VLV_MASTER_IER, MASTER_INTERRUPT_ENABLE);
+-	POSTING_READ(VLV_MASTER_IER);
++	intel_uncore_write(&dev_priv->uncore, VLV_MASTER_IER, MASTER_INTERRUPT_ENABLE);
++	intel_uncore_posting_read(&dev_priv->uncore, VLV_MASTER_IER);
+ }
+ 
+ static void gen8_de_irq_postinstall(struct drm_i915_private *dev_priv)
+@@ -3748,14 +3748,14 @@ static void gen11_irq_postinstall(struct drm_i915_private *dev_priv)
+ 
+ 	GEN3_IRQ_INIT(uncore, GEN11_GU_MISC_, ~gu_misc_masked, gu_misc_masked);
+ 
+-	I915_WRITE(GEN11_DISPLAY_INT_CTL, GEN11_DISPLAY_IRQ_ENABLE);
++	intel_uncore_write(&dev_priv->uncore, GEN11_DISPLAY_INT_CTL, GEN11_DISPLAY_IRQ_ENABLE);
+ 
+ 	if (HAS_MASTER_UNIT_IRQ(dev_priv)) {
+ 		dg1_master_intr_enable(uncore->regs);
+-		POSTING_READ(DG1_MSTR_UNIT_INTR);
++		intel_uncore_posting_read(&dev_priv->uncore, DG1_MSTR_UNIT_INTR);
+ 	} else {
+ 		gen11_master_intr_enable(uncore->regs);
+-		POSTING_READ(GEN11_GFX_MSTR_IRQ);
++		intel_uncore_posting_read(&dev_priv->uncore, GEN11_GFX_MSTR_IRQ);
+ 	}
+ }
+ 
+@@ -3768,8 +3768,8 @@ static void cherryview_irq_postinstall(struct drm_i915_private *dev_priv)
+ 		vlv_display_irq_postinstall(dev_priv);
+ 	spin_unlock_irq(&dev_priv->irq_lock);
+ 
+-	I915_WRITE(GEN8_MASTER_IRQ, GEN8_MASTER_IRQ_CONTROL);
+-	POSTING_READ(GEN8_MASTER_IRQ);
++	intel_uncore_write(&dev_priv->uncore, GEN8_MASTER_IRQ, GEN8_MASTER_IRQ_CONTROL);
++	intel_uncore_posting_read(&dev_priv->uncore, GEN8_MASTER_IRQ);
+ }
+ 
+ static void i8xx_irq_reset(struct drm_i915_private *dev_priv)
+@@ -3859,11 +3859,11 @@ static void i9xx_error_irq_ack(struct drm_i915_private *dev_priv,
+ {
+ 	u32 emr;
+ 
+-	*eir = I915_READ(EIR);
++	*eir = intel_uncore_read(&dev_priv->uncore, EIR);
+ 
+-	I915_WRITE(EIR, *eir);
++	intel_uncore_write(&dev_priv->uncore, EIR, *eir);
+ 
+-	*eir_stuck = I915_READ(EIR);
++	*eir_stuck = intel_uncore_read(&dev_priv->uncore, EIR);
+ 	if (*eir_stuck == 0)
+ 		return;
+ 
+@@ -3877,9 +3877,9 @@ static void i9xx_error_irq_ack(struct drm_i915_private *dev_priv,
+ 	 * (or by a GPU reset) so we mask any bit that
+ 	 * remains set.
+ 	 */
+-	emr = I915_READ(EMR);
+-	I915_WRITE(EMR, 0xffffffff);
+-	I915_WRITE(EMR, emr | *eir_stuck);
++	emr = intel_uncore_read(&dev_priv->uncore, EMR);
++	intel_uncore_write(&dev_priv->uncore, EMR, 0xffffffff);
++	intel_uncore_write(&dev_priv->uncore, EMR, emr | *eir_stuck);
+ }
+ 
+ static void i9xx_error_irq_handler(struct drm_i915_private *dev_priv,
+@@ -3943,7 +3943,7 @@ static void i915_irq_reset(struct drm_i915_private *dev_priv)
+ 
+ 	if (I915_HAS_HOTPLUG(dev_priv)) {
+ 		i915_hotplug_interrupt_update(dev_priv, 0xffffffff, 0);
+-		I915_WRITE(PORT_HOTPLUG_STAT, I915_READ(PORT_HOTPLUG_STAT));
++		intel_uncore_write(&dev_priv->uncore, PORT_HOTPLUG_STAT, intel_uncore_read(&dev_priv->uncore, PORT_HOTPLUG_STAT));
+ 	}
+ 
+ 	i9xx_pipestat_irq_reset(dev_priv);
+@@ -3957,7 +3957,7 @@ static void i915_irq_postinstall(struct drm_i915_private *dev_priv)
+ 	struct intel_uncore *uncore = &dev_priv->uncore;
+ 	u32 enable_mask;
+ 
+-	I915_WRITE(EMR, ~(I915_ERROR_PAGE_TABLE |
++	intel_uncore_write(&dev_priv->uncore, EMR, ~(I915_ERROR_PAGE_TABLE |
+ 			  I915_ERROR_MEMORY_REFRESH));
+ 
+ 	/* Unmask the interrupts that we always want on. */
+@@ -4010,7 +4010,7 @@ static irqreturn_t i915_irq_handler(int irq, void *arg)
+ 		u32 hotplug_status = 0;
+ 		u32 iir;
+ 
+-		iir = I915_READ(GEN2_IIR);
++		iir = intel_uncore_read(&dev_priv->uncore, GEN2_IIR);
+ 		if (iir == 0)
+ 			break;
+ 
+@@ -4027,7 +4027,7 @@ static irqreturn_t i915_irq_handler(int irq, void *arg)
+ 		if (iir & I915_MASTER_ERROR_INTERRUPT)
+ 			i9xx_error_irq_ack(dev_priv, &eir, &eir_stuck);
+ 
+-		I915_WRITE(GEN2_IIR, iir);
++		intel_uncore_write(&dev_priv->uncore, GEN2_IIR, iir);
+ 
+ 		if (iir & I915_USER_INTERRUPT)
+ 			intel_engine_signal_breadcrumbs(dev_priv->gt.engine[RCS0]);
+@@ -4051,7 +4051,7 @@ static void i965_irq_reset(struct drm_i915_private *dev_priv)
+ 	struct intel_uncore *uncore = &dev_priv->uncore;
+ 
+ 	i915_hotplug_interrupt_update(dev_priv, 0xffffffff, 0);
+-	I915_WRITE(PORT_HOTPLUG_STAT, I915_READ(PORT_HOTPLUG_STAT));
++	intel_uncore_write(&dev_priv->uncore, PORT_HOTPLUG_STAT, intel_uncore_read(&dev_priv->uncore, PORT_HOTPLUG_STAT));
+ 
+ 	i9xx_pipestat_irq_reset(dev_priv);
+ 
+@@ -4078,7 +4078,7 @@ static void i965_irq_postinstall(struct drm_i915_private *dev_priv)
+ 		error_mask = ~(I915_ERROR_PAGE_TABLE |
+ 			       I915_ERROR_MEMORY_REFRESH);
+ 	}
+-	I915_WRITE(EMR, error_mask);
++	intel_uncore_write(&dev_priv->uncore, EMR, error_mask);
+ 
+ 	/* Unmask the interrupts that we always want on. */
+ 	dev_priv->irq_mask =
+@@ -4154,7 +4154,7 @@ static irqreturn_t i965_irq_handler(int irq, void *arg)
+ 		u32 hotplug_status = 0;
+ 		u32 iir;
+ 
+-		iir = I915_READ(GEN2_IIR);
++		iir = intel_uncore_read(&dev_priv->uncore, GEN2_IIR);
+ 		if (iir == 0)
+ 			break;
+ 
+@@ -4170,7 +4170,7 @@ static irqreturn_t i965_irq_handler(int irq, void *arg)
+ 		if (iir & I915_MASTER_ERROR_INTERRUPT)
+ 			i9xx_error_irq_ack(dev_priv, &eir, &eir_stuck);
+ 
+-		I915_WRITE(GEN2_IIR, iir);
++		intel_uncore_write(&dev_priv->uncore, GEN2_IIR, iir);
+ 
+ 		if (iir & I915_USER_INTERRUPT)
+ 			intel_engine_signal_breadcrumbs(dev_priv->gt.engine[RCS0]);
 -- 
 2.20.1
 
