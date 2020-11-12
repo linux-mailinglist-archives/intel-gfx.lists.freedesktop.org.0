@@ -2,43 +2,39 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id AD2F22B0FB7
-	for <lists+intel-gfx@lfdr.de>; Thu, 12 Nov 2020 22:01:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 92DFF2B127E
+	for <lists+intel-gfx@lfdr.de>; Fri, 13 Nov 2020 00:08:19 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 145C06E43A;
-	Thu, 12 Nov 2020 21:01:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A29C36E210;
+	Thu, 12 Nov 2020 23:08:13 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E89F86E43A
- for <intel-gfx@lists.freedesktop.org>; Thu, 12 Nov 2020 21:01:42 +0000 (UTC)
-IronPort-SDR: vCI33qPk7WSPITdC8UxzQDtE83DLk4DfQAbKtNlkeOomItEcUfll+qP2dufFW/M+i6UL6DhOma
- LpK8BWyhzhfQ==
-X-IronPort-AV: E=McAfee;i="6000,8403,9803"; a="188387055"
-X-IronPort-AV: E=Sophos;i="5.77,472,1596524400"; d="scan'208";a="188387055"
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C74806E11C;
+ Thu, 12 Nov 2020 23:08:11 +0000 (UTC)
+IronPort-SDR: Mxn4CMPyJrpiN19ZLUQhwFILgAaanXXkK+HkZTYGGogij9Js2XDFZS7oRGxYevu1keMtzYmqGM
+ Tpc+yVPo4AJw==
+X-IronPort-AV: E=McAfee;i="6000,8403,9803"; a="170502788"
+X-IronPort-AV: E=Sophos;i="5.77,473,1596524400"; d="scan'208";a="170502788"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Nov 2020 13:01:42 -0800
-IronPort-SDR: 9HgVzyuwEYg2wjCMZ3w333RdAfJP31ansSAD4hrokY1K5Fk/Gi9lkLzW+SYecbutuLcXZl/Lz0
- 3wg/orGdnuzw==
-X-IronPort-AV: E=Sophos;i="5.77,472,1596524400"; d="scan'208";a="323768758"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Nov 2020 15:08:11 -0800
+IronPort-SDR: +60xKw88dSdNB7zWdJnzxRFxnaun3KryWmUxYxTUO6hOtip6pDWRSMTBpz3rrTpydODdZxZOpj
+ 1Ao4gEBQjzZg==
+X-IronPort-AV: E=Sophos;i="5.77,473,1596524400"; d="scan'208";a="308985666"
 Received: from rdvivi-losangeles.jf.intel.com (HELO intel.com)
  ([10.165.21.201])
- by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Nov 2020 13:01:41 -0800
-Date: Thu, 12 Nov 2020 16:02:55 -0500
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Nov 2020 15:08:10 -0800
+Date: Thu, 12 Nov 2020 18:09:24 -0500
 From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-To: Jani Nikula <jani.nikula@intel.com>
-Message-ID: <20201112210255.GI1198919@intel.com>
-References: <cover.1605181350.git.jani.nikula@intel.com>
- <1406131e49c6f0d74e00b4ac362cc138b3208f8b.1605181350.git.jani.nikula@intel.com>
+To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
+Message-ID: <20201112230924.GA1283868@intel.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <1406131e49c6f0d74e00b4ac362cc138b3208f8b.1605181350.git.jani.nikula@intel.com>
-Subject: Re: [Intel-gfx] [PATCH 9/9] drm/i915: remove last traces of
- I915_READ(), I915_WRITE() and POSTING_READ()
+Subject: [Intel-gfx] [PULL] drm-intel-fixes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,139 +47,87 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: dim-tools@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Maxime Ripard <mripard@kernel.org>, intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Nov 12, 2020 at 01:44:42PM +0200, Jani Nikula wrote:
-> Good riddance! Remove the macros and their remaining references in
-> comments.
-> 
-> The following functions should be used instead, depending on the use
-> case:
-> 
-> - intel_uncore_read(), intel_uncore_write(), intel_uncore_posting_read()
-> 
-> - intel_de_read(), intel_de_write(), intel_de_posting_read()
-> 
-> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+Hi Dave and Daniel,
 
-Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+This is the same set as last week + couple new fixes targeting stable.
 
-> ---
->  drivers/gpu/drm/i915/display/intel_dvo.c | 4 ----
->  drivers/gpu/drm/i915/i915_drv.h          | 8 --------
->  drivers/gpu/drm/i915/i915_reg.h          | 6 ++++--
->  drivers/gpu/drm/i915/intel_sideband.c    | 4 ++--
->  drivers/gpu/drm/i915/intel_uncore.c      | 2 +-
->  drivers/gpu/drm/i915/intel_uncore.h      | 4 ++--
->  6 files changed, 9 insertions(+), 19 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_dvo.c b/drivers/gpu/drm/i915/display/intel_dvo.c
-> index 237dbb1ba0ee..090cd76266c6 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dvo.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dvo.c
-> @@ -301,12 +301,8 @@ static void intel_dvo_pre_enable(struct intel_atomic_state *state,
->  	if (adjusted_mode->flags & DRM_MODE_FLAG_PVSYNC)
->  		dvo_val |= DVO_VSYNC_ACTIVE_HIGH;
->  
-> -	/*I915_WRITE(DVOB_SRCDIM,
-> -	  (adjusted_mode->crtc_hdisplay << DVO_SRCDIM_HORIZONTAL_SHIFT) |
-> -	  (adjusted_mode->crtc_vdisplay << DVO_SRCDIM_VERTICAL_SHIFT));*/
->  	intel_de_write(dev_priv, dvo_srcdim_reg,
->  		       (adjusted_mode->crtc_hdisplay << DVO_SRCDIM_HORIZONTAL_SHIFT) | (adjusted_mode->crtc_vdisplay << DVO_SRCDIM_VERTICAL_SHIFT));
-> -	/*I915_WRITE(DVOB, dvo_val);*/
->  	intel_de_write(dev_priv, dvo_reg, dvo_val);
->  }
->  
-> diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
-> index fecb5899cbac..42f60b112436 100644
-> --- a/drivers/gpu/drm/i915/i915_drv.h
-> +++ b/drivers/gpu/drm/i915/i915_drv.h
-> @@ -1970,14 +1970,6 @@ mkwrite_device_info(struct drm_i915_private *dev_priv)
->  int i915_reg_read_ioctl(struct drm_device *dev, void *data,
->  			struct drm_file *file);
->  
-> -#define __I915_REG_OP(op__, dev_priv__, ...) \
-> -	intel_uncore_##op__(&(dev_priv__)->uncore, __VA_ARGS__)
-> -
-> -#define I915_READ(reg__)	 __I915_REG_OP(read, dev_priv, (reg__))
-> -#define I915_WRITE(reg__, val__) __I915_REG_OP(write, dev_priv, (reg__), (val__))
-> -
-> -#define POSTING_READ(reg__)	__I915_REG_OP(posting_read, dev_priv, (reg__))
-> -
->  /* i915_mm.c */
->  int remap_io_mapping(struct vm_area_struct *vma,
->  		     unsigned long addr, unsigned long pfn, unsigned long size,
-> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-> index 7ea70b7ffcc6..568633448202 100644
-> --- a/drivers/gpu/drm/i915/i915_reg.h
-> +++ b/drivers/gpu/drm/i915/i915_reg.h
-> @@ -10849,8 +10849,10 @@ enum skl_power_gate {
->  #define  CNL_DRAM_RANK_3			(0x2 << 9)
->  #define  CNL_DRAM_RANK_4			(0x3 << 9)
->  
-> -/* Please see hsw_read_dcomp() and hsw_write_dcomp() before using this register,
-> - * since on HSW we can't write to it using I915_WRITE. */
-> +/*
-> + * Please see hsw_read_dcomp() and hsw_write_dcomp() before using this register,
-> + * since on HSW we can't write to it using intel_uncore_write.
-> + */
->  #define D_COMP_HSW			_MMIO(MCHBAR_MIRROR_BASE_SNB + 0x5F0C)
->  #define D_COMP_BDW			_MMIO(0x138144)
->  #define  D_COMP_RCOMP_IN_PROGRESS	(1 << 9)
-> diff --git a/drivers/gpu/drm/i915/intel_sideband.c b/drivers/gpu/drm/i915/intel_sideband.c
-> index 02ebf5a04a9b..0ec0cf191955 100644
-> --- a/drivers/gpu/drm/i915/intel_sideband.c
-> +++ b/drivers/gpu/drm/i915/intel_sideband.c
-> @@ -404,8 +404,8 @@ static int __sandybridge_pcode_rw(struct drm_i915_private *i915,
->  	lockdep_assert_held(&i915->sb_lock);
->  
->  	/*
-> -	 * GEN6_PCODE_* are outside of the forcewake domain, we can
-> -	 * use te fw I915_READ variants to reduce the amount of work
-> +	 * GEN6_PCODE_* are outside of the forcewake domain, we can use
-> +	 * intel_uncore_read/write_fw variants to reduce the amount of work
->  	 * required when reading/writing.
->  	 */
->  
-> diff --git a/drivers/gpu/drm/i915/intel_uncore.c b/drivers/gpu/drm/i915/intel_uncore.c
-> index ef40edfff412..9ac501bcfdad 100644
-> --- a/drivers/gpu/drm/i915/intel_uncore.c
-> +++ b/drivers/gpu/drm/i915/intel_uncore.c
-> @@ -2126,7 +2126,7 @@ int __intel_wait_for_register_fw(struct intel_uncore *uncore,
->   * This routine waits until the target register @reg contains the expected
->   * @value after applying the @mask, i.e. it waits until ::
->   *
-> - *     (I915_READ(reg) & mask) == value
-> + *     (intel_uncore_read(uncore, reg) & mask) == value
->   *
->   * Otherwise, the wait will timeout after @timeout_ms milliseconds.
->   *
-> diff --git a/drivers/gpu/drm/i915/intel_uncore.h b/drivers/gpu/drm/i915/intel_uncore.h
-> index 5dcb7f4183b2..59f0da8f1fbb 100644
-> --- a/drivers/gpu/drm/i915/intel_uncore.h
-> +++ b/drivers/gpu/drm/i915/intel_uncore.h
-> @@ -318,8 +318,8 @@ __uncore_write(write_notrace, 32, l, false)
->   * will be implemented using 2 32-bit writes in an arbitrary order with
->   * an arbitrary delay between them. This can cause the hardware to
->   * act upon the intermediate value, possibly leading to corruption and
-> - * machine death. For this reason we do not support I915_WRITE64, or
-> - * uncore->funcs.mmio_writeq.
-> + * machine death. For this reason we do not support intel_uncore_write64,
-> + * or uncore->funcs.mmio_writeq.
->   *
->   * When reading a 64-bit value as two 32-bit values, the delay may cause
->   * the two reads to mismatch, e.g. a timestamp overflowing. Also note that
-> -- 
-> 2.20.1
-> 
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+Thanks,
+Rodrigo.
+
+drm-intel-fixes-2020-11-12-1:
+- GVT fixes including vGPU suspend/resume fixes and workaround for APL guest GPU hang.
+- Fix set domain's cache coherency (Chris)
+- Fixes around breadcrumbs (Chris)
+- Fix encoder lookup during PSR atomic (Imre)
+- Hold onto an explicit ref to i915_vma_work.pinned (Chris)
+- Pull phys pread/pwrite implementations to the backend (Chris)
+- Correctly set SFC capability for video engines
+The following changes since commit 3cea11cd5e3b00d91caf0b4730194039b45c5891:
+
+  Linux 5.10-rc2 (2020-11-01 14:43:51 -0800)
+
+are available in the Git repository at:
+
+  git://anongit.freedesktop.org/drm/drm-intel tags/drm-intel-fixes-2020-11-12-1
+
+for you to fetch changes up to a4264790f4c2f0062d27d8173344c914bc7884e0:
+
+  drm/i915: Correctly set SFC capability for video engines (2020-11-12 16:41:54 -0500)
+
+----------------------------------------------------------------
+- GVT fixes including vGPU suspend/resume fixes and workaround for APL guest GPU hang.
+- Fix set domain's cache coherency (Chris)
+- Fixes around breadcrumbs (Chris)
+- Fix encoder lookup during PSR atomic (Imre)
+- Hold onto an explicit ref to i915_vma_work.pinned (Chris)
+- Pull phys pread/pwrite implementations to the backend (Chris)
+- Correctly set SFC capability for video engines
+
+----------------------------------------------------------------
+Chris Wilson (6):
+      drm/i915/gem: Flush coherency domains on first set-domain-ioctl
+      drm/i915/gt: Use the local HWSP offset during submission
+      drm/i915/gt: Expose more parameters for emitting writes into the ring
+      drm/i915/gt: Flush xcs before tgl breadcrumbs
+      drm/i915: Hold onto an explicit ref to i915_vma_work.pinned
+      drm/i915/gem: Pull phys pread/pwrite implementations to the backend
+
+Colin Xu (4):
+      drm/i915/gvt: Allow zero out HWSP addr on hws_pga_write
+      drm/i915/gvt: Set SNOOP for PAT3 on BXT/APL to workaround GPU BB hang
+      drm/i915/gvt: Only pin/unpin intel_context along with workload
+      drm/i915/gvt: Fix mmio handler break on BXT/APL.
+
+Imre Deak (1):
+      drm/i915: Fix encoder lookup during PSR atomic check
+
+Matthew Auld (1):
+      drm/i915/gem: Allow backends to override pread implementation
+
+Venkata Sandeep Dhanalakota (1):
+      drm/i915: Correctly set SFC capability for video engines
+
+ drivers/gpu/drm/i915/display/intel_psr.c         |  2 +-
+ drivers/gpu/drm/i915/gem/i915_gem_domain.c       | 28 ++++++------
+ drivers/gpu/drm/i915/gem/i915_gem_object_types.h |  2 +
+ drivers/gpu/drm/i915/gem/i915_gem_phys.c         | 55 ++++++++++++++++++++++++
+ drivers/gpu/drm/i915/gt/intel_engine.h           | 55 +++++++++++++++---------
+ drivers/gpu/drm/i915/gt/intel_engine_cs.c        |  3 +-
+ drivers/gpu/drm/i915/gt/intel_lrc.c              | 31 +++++++++----
+ drivers/gpu/drm/i915/gt/intel_timeline.c         | 18 ++++----
+ drivers/gpu/drm/i915/gt/intel_timeline_types.h   |  2 +
+ drivers/gpu/drm/i915/gvt/handlers.c              | 47 ++++++++++++++++++--
+ drivers/gpu/drm/i915/gvt/scheduler.c             | 15 ++++---
+ drivers/gpu/drm/i915/i915_gem.c                  | 32 +++-----------
+ drivers/gpu/drm/i915/i915_vma.c                  |  6 ++-
+ 13 files changed, 204 insertions(+), 92 deletions(-)
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
