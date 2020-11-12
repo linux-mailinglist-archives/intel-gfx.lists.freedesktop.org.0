@@ -2,31 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 70DEA2B04FF
-	for <lists+intel-gfx@lfdr.de>; Thu, 12 Nov 2020 13:35:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 66C7C2B0511
+	for <lists+intel-gfx@lfdr.de>; Thu, 12 Nov 2020 13:40:10 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DA7E66E218;
-	Thu, 12 Nov 2020 12:35:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A0B376E20B;
+	Thu, 12 Nov 2020 12:40:07 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id BCEB16E20B;
- Thu, 12 Nov 2020 12:35:43 +0000 (UTC)
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 0BB776E1F3;
+ Thu, 12 Nov 2020 12:40:06 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id B3798A0094;
- Thu, 12 Nov 2020 12:35:43 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id EA72DA9932;
+ Thu, 12 Nov 2020 12:40:05 +0000 (UTC)
 MIME-Version: 1.0
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jani Nikula" <jani.nikula@intel.com>
-Date: Thu, 12 Nov 2020 12:35:43 -0000
-Message-ID: <160518454370.29793.3009862997571984067@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Thu, 12 Nov 2020 12:40:05 -0000
+Message-ID: <160518480592.29795.10486318334061189322@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <cover.1605181350.git.jani.nikula@intel.com>
-In-Reply-To: <cover.1605181350.git.jani.nikula@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_drm/i915=3A_nuke_remaining_legacy_reg_helpers_=28I915=5FREA?=
- =?utf-8?q?D/WRITE_etc=2E=29?=
+References: <20201112104336.20557-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20201112104336.20557-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLklHVDogZmFpbHVyZSBmb3Igc2Vy?=
+ =?utf-8?q?ies_starting_with_=5B1/5=5D_drm/i915/gt=3A_Include_semaphore_st?=
+ =?utf-8?q?atus_in_print=5Frequest=28=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,601 +41,830 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============1886822932=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+--===============1886822932==
+Content-Type: multipart/alternative;
+ boundary="===============7590762647683019288=="
+
+--===============7590762647683019288==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
 == Series Details ==
 
-Series: drm/i915: nuke remaining legacy reg helpers (I915_READ/WRITE etc.)
-URL   : https://patchwork.freedesktop.org/series/83762/
-State : warning
+Series: series starting with [1/5] drm/i915/gt: Include semaphore status in print_request()
+URL   : https://patchwork.freedesktop.org/series/83760/
+State : failure
 
 == Summary ==
 
-$ dim checkpatch origin/drm-tip
-9851f04c829b drm/i915: remove last users of I915_READ_FW()
--:23: WARNING:LONG_LINE: line length of 102 exceeds 100 columns
-#23: FILE: drivers/gpu/drm/i915/i915_debugfs.c:1242:
-+		rpupei = intel_uncore_read_fw(&dev_priv->uncore, GEN6_RP_CUR_UP_EI) & GEN6_RP_EI_MASK;
-
--:24: WARNING:LONG_LINE: line length of 101 exceeds 100 columns
-#24: FILE: drivers/gpu/drm/i915/i915_debugfs.c:1243:
-+		rpdown = intel_uncore_read_fw(&dev_priv->uncore, GEN6_RP_CUR_DOWN) & GEN6_RP_EI_MASK;
-
--:25: WARNING:LONG_LINE: line length of 106 exceeds 100 columns
-#25: FILE: drivers/gpu/drm/i915/i915_debugfs.c:1244:
-+		rpdownei = intel_uncore_read_fw(&dev_priv->uncore, GEN6_RP_CUR_DOWN_EI) & GEN6_RP_EI_MASK;
-
-total: 0 errors, 3 warnings, 0 checks, 14 lines checked
-d38df7d26218 drm/i915: remove last traces of I915_READ_FW() and I915_WRITE_FW()
-9513480437b3 drm/i915/cdclk: prefer intel_de_write() over I915_WRITE()
-301253565834 drm/i915/debugfs: replace I915_READ()+I915_WRITE() with intel_uncore_rmw()
-a62091be81ec drm/i915/debugfs: replace I915_READ() with intel_uncore_read()
--:380: WARNING:LONG_LINE: line length of 102 exceeds 100 columns
-#380: FILE: drivers/gpu/drm/i915/i915_debugfs.c:879:
-+		rpupei = intel_uncore_read(&dev_priv->uncore, GEN6_RP_CUR_UP_EI) & GEN6_CURICONT_MASK;
-
--:381: WARNING:LONG_LINE: line length of 102 exceeds 100 columns
-#381: FILE: drivers/gpu/drm/i915/i915_debugfs.c:880:
-+		rpcurup = intel_uncore_read(&dev_priv->uncore, GEN6_RP_CUR_UP) & GEN6_CURBSYTAVG_MASK;
-
--:382: WARNING:LONG_LINE: line length of 104 exceeds 100 columns
-#382: FILE: drivers/gpu/drm/i915/i915_debugfs.c:881:
-+		rpprevup = intel_uncore_read(&dev_priv->uncore, GEN6_RP_PREV_UP) & GEN6_CURBSYTAVG_MASK;
-
--:383: WARNING:LONG_LINE: line length of 105 exceeds 100 columns
-#383: FILE: drivers/gpu/drm/i915/i915_debugfs.c:882:
-+		rpdownei = intel_uncore_read(&dev_priv->uncore, GEN6_RP_CUR_DOWN_EI) & GEN6_CURIAVG_MASK;
-
--:384: WARNING:LONG_LINE: line length of 106 exceeds 100 columns
-#384: FILE: drivers/gpu/drm/i915/i915_debugfs.c:883:
-+		rpcurdown = intel_uncore_read(&dev_priv->uncore, GEN6_RP_CUR_DOWN) & GEN6_CURBSYTAVG_MASK;
-
--:385: WARNING:LONG_LINE: line length of 108 exceeds 100 columns
-#385: FILE: drivers/gpu/drm/i915/i915_debugfs.c:884:
-+		rpprevdown = intel_uncore_read(&dev_priv->uncore, GEN6_RP_PREV_DOWN) & GEN6_CURBSYTAVG_MASK;
-
--:393: WARNING:LONG_LINE: line length of 103 exceeds 100 columns
-#393: FILE: drivers/gpu/drm/i915/i915_debugfs.c:890:
-+			pm_ier = intel_uncore_read(&dev_priv->uncore, GEN11_GPM_WGBOXPERF_INTR_ENABLE);
-
--:394: WARNING:LONG_LINE: line length of 101 exceeds 100 columns
-#394: FILE: drivers/gpu/drm/i915/i915_debugfs.c:891:
-+			pm_imr = intel_uncore_read(&dev_priv->uncore, GEN11_GPM_WGBOXPERF_INTR_MASK);
-
-total: 0 errors, 8 warnings, 0 checks, 405 lines checked
-0ea2a583a565 drm/i915/suspend: replace I915_READ()/WRITE() with intel_de_read()/write()
--:29: CHECK:CAMELCASE: Avoid CamelCase: <saveSWF0>
-#29: FILE: drivers/gpu/drm/i915/i915_suspend.c:43:
-+			dev_priv->regfile.saveSWF0[i] = intel_de_read(dev_priv, SWF0(i));
-
--:30: CHECK:CAMELCASE: Avoid CamelCase: <saveSWF1>
-#30: FILE: drivers/gpu/drm/i915/i915_suspend.c:44:
-+			dev_priv->regfile.saveSWF1[i] = intel_de_read(dev_priv, SWF1(i));
-
--:34: CHECK:CAMELCASE: Avoid CamelCase: <saveSWF3>
-#34: FILE: drivers/gpu/drm/i915/i915_suspend.c:47:
-+			dev_priv->regfile.saveSWF3[i] = intel_de_read(dev_priv, SWF3(i));
-
--:86: CHECK:CAMELCASE: Avoid CamelCase: <saveDSPARB>
-#86: FILE: drivers/gpu/drm/i915/i915_suspend.c:92:
-+		dev_priv->regfile.saveDSPARB = intel_de_read(dev_priv, DSPARB);
-
-total: 0 errors, 0 warnings, 4 checks, 79 lines checked
-67149b9d146a drm/i915/pm: replace I915_READ()/WRITE() with intel_uncore_read()/write()
--:25: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#25: FILE: drivers/gpu/drm/i915/intel_pm.c:85:
-+		intel_uncore_write(&dev_priv->uncore, CHICKEN_PAR1_1,
-+			   intel_uncore_read(&dev_priv->uncore, CHICKEN_PAR1_1) |
-
--:33: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#33: FILE: drivers/gpu/drm/i915/intel_pm.c:91:
-+	intel_uncore_write(&dev_priv->uncore, CHICKEN_PAR1_1,
-+		   intel_uncore_read(&dev_priv->uncore, CHICKEN_PAR1_1) | SKL_EDP_PSR_FIX_RDWRAP);
-
--:39: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#39: FILE: drivers/gpu/drm/i915/intel_pm.c:95:
-+	intel_uncore_write(&dev_priv->uncore, GEN8_CHICKEN_DCPR_1,
-+		   intel_uncore_read(&dev_priv->uncore, GEN8_CHICKEN_DCPR_1) | MASK_WAKEMEM);
-
--:46: WARNING:LONG_LINE: line length of 112 exceeds 100 columns
-#46: FILE: drivers/gpu/drm/i915/intel_pm.c:101:
-+	intel_uncore_write(&dev_priv->uncore, DISP_ARB_CTL, intel_uncore_read(&dev_priv->uncore, DISP_ARB_CTL) |
-
--:55: WARNING:LONG_LINE: line length of 112 exceeds 100 columns
-#55: FILE: drivers/gpu/drm/i915/intel_pm.c:110:
-+	intel_uncore_write(&dev_priv->uncore, GEN8_UCGCTL6, intel_uncore_read(&dev_priv->uncore, GEN8_UCGCTL6) |
-
--:63: WARNING:LONG_LINE: line length of 112 exceeds 100 columns
-#63: FILE: drivers/gpu/drm/i915/intel_pm.c:117:
-+	intel_uncore_write(&dev_priv->uncore, GEN8_UCGCTL6, intel_uncore_read(&dev_priv->uncore, GEN8_UCGCTL6) |
-
--:71: WARNING:LONG_LINE: line length of 124 exceeds 100 columns
-#71: FILE: drivers/gpu/drm/i915/intel_pm.c:124:
-+	intel_uncore_write(&dev_priv->uncore, GEN9_CLKGATE_DIS_0, intel_uncore_read(&dev_priv->uncore, GEN9_CLKGATE_DIS_0) |
-
--:87: WARNING:LONG_LINE: line length of 112 exceeds 100 columns
-#87: FILE: drivers/gpu/drm/i915/intel_pm.c:139:
-+	intel_uncore_write(&dev_priv->uncore, DISP_ARB_CTL, intel_uncore_read(&dev_priv->uncore, DISP_ARB_CTL) |
-
--:95: WARNING:LONG_LINE: line length of 120 exceeds 100 columns
-#95: FILE: drivers/gpu/drm/i915/intel_pm.c:146:
-+	intel_uncore_write(&dev_priv->uncore, ILK_DPFC_CHICKEN, intel_uncore_read(&dev_priv->uncore, ILK_DPFC_CHICKEN) |
-
--:104: WARNING:LONG_LINE: line length of 124 exceeds 100 columns
-#104: FILE: drivers/gpu/drm/i915/intel_pm.c:159:
-+	intel_uncore_write(&dev_priv->uncore, GEN9_CLKGATE_DIS_0, intel_uncore_read(&dev_priv->uncore, GEN9_CLKGATE_DIS_0) |
-
--:288: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#288: FILE: drivers/gpu/drm/i915/intel_pm.c:979:
-+	intel_uncore_write(&dev_priv->uncore, DSPFW1,
- 		   FW_WM(wm->sr.plane, SR) |
-
--:294: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#294: FILE: drivers/gpu/drm/i915/intel_pm.c:984:
-+	intel_uncore_write(&dev_priv->uncore, DSPFW2,
- 		   (wm->fbc_en ? DSPFW_FBC_SR_EN : 0) |
-
--:302: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#302: FILE: drivers/gpu/drm/i915/intel_pm.c:991:
-+	intel_uncore_write(&dev_priv->uncore, DSPFW3,
- 		   (wm->hpll_en ? DSPFW_HPLL_SR_EN : 0) |
-
--:318: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#318: FILE: drivers/gpu/drm/i915/intel_pm.c:1011:
-+		intel_uncore_write(&dev_priv->uncore, VLV_DDL(pipe),
- 			   (wm->ddl[pipe].plane[PLANE_CURSOR] << DDL_CURSOR_SHIFT) |
-
--:338: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#338: FILE: drivers/gpu/drm/i915/intel_pm.c:1029:
-+	intel_uncore_write(&dev_priv->uncore, DSPFW1,
- 		   FW_WM(wm->sr.plane, SR) |
-
--:344: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#344: FILE: drivers/gpu/drm/i915/intel_pm.c:1034:
-+	intel_uncore_write(&dev_priv->uncore, DSPFW2,
- 		   FW_WM_VLV(wm->pipe[PIPE_A].plane[PLANE_SPRITE1], SPRITEB) |
-
--:349: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#349: FILE: drivers/gpu/drm/i915/intel_pm.c:1038:
-+	intel_uncore_write(&dev_priv->uncore, DSPFW3,
- 		   FW_WM(wm->sr.cursor, CURSOR_SR));
-
--:354: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#354: FILE: drivers/gpu/drm/i915/intel_pm.c:1042:
-+		intel_uncore_write(&dev_priv->uncore, DSPFW7_CHV,
- 			   FW_WM_VLV(wm->pipe[PIPE_B].plane[PLANE_SPRITE1], SPRITED) |
-
--:358: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#358: FILE: drivers/gpu/drm/i915/intel_pm.c:1045:
-+		intel_uncore_write(&dev_priv->uncore, DSPFW8_CHV,
- 			   FW_WM_VLV(wm->pipe[PIPE_C].plane[PLANE_SPRITE1], SPRITEF) |
-
--:362: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#362: FILE: drivers/gpu/drm/i915/intel_pm.c:1048:
-+		intel_uncore_write(&dev_priv->uncore, DSPFW9_CHV,
- 			   FW_WM_VLV(wm->pipe[PIPE_C].plane[PLANE_PRIMARY], PLANEC) |
-
--:366: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#366: FILE: drivers/gpu/drm/i915/intel_pm.c:1051:
-+		intel_uncore_write(&dev_priv->uncore, DSPHOWM,
- 			   FW_WM(wm->sr.plane >> 9, SR_HI) |
-
--:375: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#375: FILE: drivers/gpu/drm/i915/intel_pm.c:1063:
-+		intel_uncore_write(&dev_priv->uncore, DSPFW7,
- 			   FW_WM_VLV(wm->pipe[PIPE_B].plane[PLANE_SPRITE1], SPRITED) |
-
--:379: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#379: FILE: drivers/gpu/drm/i915/intel_pm.c:1066:
-+		intel_uncore_write(&dev_priv->uncore, DSPHOWM,
- 			   FW_WM(wm->sr.plane >> 9, SR_HI) |
-
--:415: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#415: FILE: drivers/gpu/drm/i915/intel_pm.c:2450:
-+			intel_uncore_write(&dev_priv->uncore, FW_BLC_SELF,
- 				   FW_BLC_SELF_FIFO_MASK | (srwm & 0xff));
-
--:586: WARNING:LONG_LINE: line length of 108 exceeds 100 columns
-#586: FILE: drivers/gpu/drm/i915/intel_pm.c:6243:
-+				val = intel_uncore_read(&dev_priv->uncore, PLANE_WM(pipe, plane_id, level));
-
--:729: WARNING:LONG_LINE: line length of 124 exceeds 100 columns
-#729: FILE: drivers/gpu/drm/i915/intel_pm.c:6730:
-+	intel_uncore_write(&dev_priv->uncore, WM3_LP_ILK, intel_uncore_read(&dev_priv->uncore, WM3_LP_ILK) & ~WM1_LP_SR_EN);
-
--:730: WARNING:LONG_LINE: line length of 124 exceeds 100 columns
-#730: FILE: drivers/gpu/drm/i915/intel_pm.c:6731:
-+	intel_uncore_write(&dev_priv->uncore, WM2_LP_ILK, intel_uncore_read(&dev_priv->uncore, WM2_LP_ILK) & ~WM1_LP_SR_EN);
-
--:731: WARNING:LONG_LINE: line length of 124 exceeds 100 columns
-#731: FILE: drivers/gpu/drm/i915/intel_pm.c:6732:
-+	intel_uncore_write(&dev_priv->uncore, WM1_LP_ILK, intel_uncore_read(&dev_priv->uncore, WM1_LP_ILK) & ~WM1_LP_SR_EN);
-
--:757: WARNING:LONG_LINE: line length of 113 exceeds 100 columns
-#757: FILE: drivers/gpu/drm/i915/intel_pm.c:6761:
-+		hw->partitioning = (intel_uncore_read(&dev_priv->uncore, WM_MISC) & WM_MISC_DATA_PARTITION_5_6) ?
-
--:761: WARNING:LONG_LINE: line length of 116 exceeds 100 columns
-#761: FILE: drivers/gpu/drm/i915/intel_pm.c:6764:
-+		hw->partitioning = (intel_uncore_read(&dev_priv->uncore, DISP_ARB_CTL2) & DISP_DATA_PARTITION_5_6) ?
-
--:803: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#803: FILE: drivers/gpu/drm/i915/intel_pm.c:6870:
-+		intel_uncore_write(&dev_priv->uncore, DSPCNTR(pipe),
-+			   intel_uncore_read(&dev_priv->uncore, DSPCNTR(pipe)) |
-
--:808: WARNING:LONG_LINE: line length of 122 exceeds 100 columns
-#808: FILE: drivers/gpu/drm/i915/intel_pm.c:6873:
-+		intel_uncore_write(&dev_priv->uncore, DSPSURF(pipe), intel_uncore_read(&dev_priv->uncore, DSPSURF(pipe)));
-
--:819: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#819: FILE: drivers/gpu/drm/i915/intel_pm.c:6891:
-+	intel_uncore_write(&dev_priv->uncore, PCH_3DCGDIS0,
- 		   MARIUNIT_CLOCK_GATE_DISABLE |
-
--:823: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#823: FILE: drivers/gpu/drm/i915/intel_pm.c:6894:
-+	intel_uncore_write(&dev_priv->uncore, PCH_3DCGDIS1,
- 		   VFMUNIT_CLOCK_GATE_DISABLE);
-
--:833: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#833: FILE: drivers/gpu/drm/i915/intel_pm.c:6904:
-+	intel_uncore_write(&dev_priv->uncore, ILK_DISPLAY_CHICKEN2,
-+		   (intel_uncore_read(&dev_priv->uncore, ILK_DISPLAY_CHICKEN2) |
-
--:839: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#839: FILE: drivers/gpu/drm/i915/intel_pm.c:6908:
-+	intel_uncore_write(&dev_priv->uncore, DISP_ARB_CTL,
-+		   (intel_uncore_read(&dev_priv->uncore, DISP_ARB_CTL) |
-
--:850: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#850: FILE: drivers/gpu/drm/i915/intel_pm.c:6921:
-+		intel_uncore_write(&dev_priv->uncore, ILK_DISPLAY_CHICKEN1,
-+			   intel_uncore_read(&dev_priv->uncore, ILK_DISPLAY_CHICKEN1) |
-
--:855: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#855: FILE: drivers/gpu/drm/i915/intel_pm.c:6924:
-+		intel_uncore_write(&dev_priv->uncore, ILK_DISPLAY_CHICKEN2,
-+			   intel_uncore_read(&dev_priv->uncore, ILK_DISPLAY_CHICKEN2) |
-
--:865: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#865: FILE: drivers/gpu/drm/i915/intel_pm.c:6931:
-+	intel_uncore_write(&dev_priv->uncore, ILK_DISPLAY_CHICKEN2,
-+		   intel_uncore_read(&dev_priv->uncore, ILK_DISPLAY_CHICKEN2) |
-
--:878: WARNING:LONG_LINE: line length of 116 exceeds 100 columns
-#878: FILE: drivers/gpu/drm/i915/intel_pm.c:6952:
-+	intel_uncore_write(&dev_priv->uncore, SOUTH_CHICKEN2, intel_uncore_read(&dev_priv->uncore, SOUTH_CHICKEN2) |
-
--:899: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#899: FILE: drivers/gpu/drm/i915/intel_pm.c:6970:
-+		intel_uncore_write(&dev_priv->uncore, TRANS_CHICKEN1(pipe),
- 			   TRANS_CHICKEN1_DP0UNIT_GC_DISABLE);
-
--:921: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#921: FILE: drivers/gpu/drm/i915/intel_pm.c:6992:
-+	intel_uncore_write(&dev_priv->uncore, ILK_DISPLAY_CHICKEN2,
-+		   intel_uncore_read(&dev_priv->uncore, ILK_DISPLAY_CHICKEN2) |
-
--:927: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#927: FILE: drivers/gpu/drm/i915/intel_pm.c:6996:
-+	intel_uncore_write(&dev_priv->uncore, GEN6_UCGCTL1,
-+		   intel_uncore_read(&dev_priv->uncore, GEN6_UCGCTL1) |
-
--:937: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#937: FILE: drivers/gpu/drm/i915/intel_pm.c:7014:
-+	intel_uncore_write(&dev_priv->uncore, GEN6_UCGCTL2,
- 		   GEN6_RCPBUNIT_CLOCK_GATE_DISABLE |
-
--:947: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#947: FILE: drivers/gpu/drm/i915/intel_pm.c:7029:
-+	intel_uncore_write(&dev_priv->uncore, ILK_DISPLAY_CHICKEN1,
-+		   intel_uncore_read(&dev_priv->uncore, ILK_DISPLAY_CHICKEN1) |
-
--:952: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#952: FILE: drivers/gpu/drm/i915/intel_pm.c:7032:
-+	intel_uncore_write(&dev_priv->uncore, ILK_DISPLAY_CHICKEN2,
-+		   intel_uncore_read(&dev_priv->uncore, ILK_DISPLAY_CHICKEN2) |
-
--:957: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#957: FILE: drivers/gpu/drm/i915/intel_pm.c:7035:
-+	intel_uncore_write(&dev_priv->uncore, ILK_DSPCLK_GATE_D,
-+		   intel_uncore_read(&dev_priv->uncore, ILK_DSPCLK_GATE_D) |
-
--:968: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#968: FILE: drivers/gpu/drm/i915/intel_pm.c:7054:
-+		intel_uncore_write(&dev_priv->uncore, SOUTH_DSPCLK_GATE_D,
-+			   intel_uncore_read(&dev_priv->uncore, SOUTH_DSPCLK_GATE_D) |
-
--:975: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#975: FILE: drivers/gpu/drm/i915/intel_pm.c:7059:
-+	intel_uncore_write(&dev_priv->uncore, TRANS_CHICKEN1(PIPE_A),
-+		   intel_uncore_read(&dev_priv->uncore, TRANS_CHICKEN1(PIPE_A)) |
-
--:998: WARNING:LONG_LINE: line length of 103 exceeds 100 columns
-#998: FILE: drivers/gpu/drm/i915/intel_pm.c:7082:
-+	intel_uncore_write(&dev_priv->uncore, GEN7_MISCCPCTL, misccpctl & ~GEN7_DOP_CLOCK_GATE_ENABLE);
-
--:1024: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#1024: FILE: drivers/gpu/drm/i915/intel_pm.c:7103:
-+	intel_uncore_write(&dev_priv->uncore, ILK_DPFC_CHICKEN,
- 		   ILK_DPFC_CHICKEN_COMP_DUMMY_PIXEL);
-
--:1030: WARNING:LONG_LINE: line length of 104 exceeds 100 columns
-#1030: FILE: drivers/gpu/drm/i915/intel_pm.c:7107:
-+		   intel_uncore_read(&dev_priv->uncore, GEN10_DFR_RATIO_EN_AND_CHICKEN) & ~DFR_DISABLE);
-
--:1030: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#1030: FILE: drivers/gpu/drm/i915/intel_pm.c:7107:
-+	intel_uncore_write(&dev_priv->uncore, GEN10_DFR_RATIO_EN_AND_CHICKEN,
-+		   intel_uncore_read(&dev_priv->uncore, GEN10_DFR_RATIO_EN_AND_CHICKEN) & ~DFR_DISABLE);
-
--:1040: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#1040: FILE: drivers/gpu/drm/i915/intel_pm.c:7118:
-+	intel_uncore_write(&dev_priv->uncore, ILK_DPFC_CHICKEN,
- 		   ILK_DPFC_CHICKEN_COMP_DUMMY_PIXEL);
-
--:1045: WARNING:LONG_LINE: line length of 132 exceeds 100 columns
-#1045: FILE: drivers/gpu/drm/i915/intel_pm.c:7122:
-+		intel_uncore_write(&dev_priv->uncore, GEN9_CLKGATE_DIS_3, intel_uncore_read(&dev_priv->uncore, GEN9_CLKGATE_DIS_3) |
-
--:1054: WARNING:LONG_LINE: line length of 132 exceeds 100 columns
-#1054: FILE: drivers/gpu/drm/i915/intel_pm.c:7134:
-+		intel_uncore_write(&dev_priv->uncore, GEN9_CLKGATE_DIS_3, intel_uncore_read(&dev_priv->uncore, GEN9_CLKGATE_DIS_3) |
-
--:1063: WARNING:LONG_LINE: line length of 126 exceeds 100 columns
-#1063: FILE: drivers/gpu/drm/i915/intel_pm.c:7144:
-+	intel_uncore_write(&dev_priv->uncore, SOUTH_DSPCLK_GATE_D, intel_uncore_read(&dev_priv->uncore, SOUTH_DSPCLK_GATE_D) |
-
--:1073: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#1073: FILE: drivers/gpu/drm/i915/intel_pm.c:7155:
-+	intel_uncore_write(&dev_priv->uncore, _3D_CHICKEN3,
- 		   _MASKED_BIT_ENABLE(_3D_CHICKEN3_AA_LINE_QUALITY_FIX_ENABLE));
-
--:1079: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#1079: FILE: drivers/gpu/drm/i915/intel_pm.c:7159:
-+	intel_uncore_write(&dev_priv->uncore, GEN8_CHICKEN_DCPR_1,
-+		   intel_uncore_read(&dev_priv->uncore, GEN8_CHICKEN_DCPR_1) | MASK_WAKEMEM);
-
--:1086: WARNING:LONG_LINE: line length of 112 exceeds 100 columns
-#1086: FILE: drivers/gpu/drm/i915/intel_pm.c:7165:
-+	intel_uncore_write(&dev_priv->uncore, DISP_ARB_CTL, intel_uncore_read(&dev_priv->uncore, DISP_ARB_CTL) |
-
--:1118: WARNING:LONG_LINE: line length of 122 exceeds 100 columns
-#1118: FILE: drivers/gpu/drm/i915/intel_pm.c:7191:
-+	intel_uncore_write(&dev_priv->uncore, FBC_LLC_READ_CTRL, intel_uncore_read(&dev_priv->uncore, FBC_LLC_READ_CTRL) |
-
--:1126: WARNING:LONG_LINE: line length of 112 exceeds 100 columns
-#1126: FILE: drivers/gpu/drm/i915/intel_pm.c:7198:
-+	intel_uncore_write(&dev_priv->uncore, DISP_ARB_CTL, intel_uncore_read(&dev_priv->uncore, DISP_ARB_CTL) |
-
--:1134: WARNING:LONG_LINE: line length of 120 exceeds 100 columns
-#1134: FILE: drivers/gpu/drm/i915/intel_pm.c:7205:
-+	intel_uncore_write(&dev_priv->uncore, ILK_DPFC_CHICKEN, intel_uncore_read(&dev_priv->uncore, ILK_DPFC_CHICKEN) |
-
--:1143: WARNING:LONG_LINE: line length of 122 exceeds 100 columns
-#1143: FILE: drivers/gpu/drm/i915/intel_pm.c:7214:
-+	intel_uncore_write(&dev_priv->uncore, FBC_LLC_READ_CTRL, intel_uncore_read(&dev_priv->uncore, FBC_LLC_READ_CTRL) |
-
--:1149: WARNING:LONG_LINE: line length of 120 exceeds 100 columns
-#1149: FILE: drivers/gpu/drm/i915/intel_pm.c:7219:
-+		intel_uncore_write(&dev_priv->uncore, GEN8_UCGCTL6, intel_uncore_read(&dev_priv->uncore, GEN8_UCGCTL6) |
-
--:1155: WARNING:LONG_LINE: line length of 120 exceeds 100 columns
-#1155: FILE: drivers/gpu/drm/i915/intel_pm.c:7224:
-+		intel_uncore_write(&dev_priv->uncore, GEN6_UCGCTL1, intel_uncore_read(&dev_priv->uncore, GEN6_UCGCTL1) |
-
--:1163: WARNING:LONG_LINE: line length of 112 exceeds 100 columns
-#1163: FILE: drivers/gpu/drm/i915/intel_pm.c:7231:
-+	intel_uncore_write(&dev_priv->uncore, DISP_ARB_CTL, intel_uncore_read(&dev_priv->uncore, DISP_ARB_CTL) |
-
--:1171: WARNING:LONG_LINE: line length of 120 exceeds 100 columns
-#1171: FILE: drivers/gpu/drm/i915/intel_pm.c:7238:
-+	intel_uncore_write(&dev_priv->uncore, ILK_DPFC_CHICKEN, intel_uncore_read(&dev_priv->uncore, ILK_DPFC_CHICKEN) |
-
--:1180: WARNING:LONG_LINE: line length of 116 exceeds 100 columns
-#1180: FILE: drivers/gpu/drm/i915/intel_pm.c:7247:
-+	intel_uncore_write(&dev_priv->uncore, GEN7_MISCCPCTL, intel_uncore_read(&dev_priv->uncore, GEN7_MISCCPCTL) &
-
--:1185: WARNING:LONG_LINE: line length of 122 exceeds 100 columns
-#1185: FILE: drivers/gpu/drm/i915/intel_pm.c:7251:
-+	intel_uncore_write(&dev_priv->uncore, FBC_LLC_READ_CTRL, intel_uncore_read(&dev_priv->uncore, FBC_LLC_READ_CTRL) |
-
--:1193: WARNING:LONG_LINE: line length of 112 exceeds 100 columns
-#1193: FILE: drivers/gpu/drm/i915/intel_pm.c:7258:
-+	intel_uncore_write(&dev_priv->uncore, DISP_ARB_CTL, intel_uncore_read(&dev_priv->uncore, DISP_ARB_CTL) |
-
--:1201: WARNING:LONG_LINE: line length of 120 exceeds 100 columns
-#1201: FILE: drivers/gpu/drm/i915/intel_pm.c:7265:
-+	intel_uncore_write(&dev_priv->uncore, ILK_DPFC_CHICKEN, intel_uncore_read(&dev_priv->uncore, ILK_DPFC_CHICKEN) |
-
--:1209: WARNING:LONG_LINE: line length of 120 exceeds 100 columns
-#1209: FILE: drivers/gpu/drm/i915/intel_pm.c:7272:
-+	intel_uncore_write(&dev_priv->uncore, ILK_DPFC_CHICKEN, intel_uncore_read(&dev_priv->uncore, ILK_DPFC_CHICKEN) |
-
--:1220: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#1220: FILE: drivers/gpu/drm/i915/intel_pm.c:7282:
-+	intel_uncore_write(&dev_priv->uncore, CHICKEN_PIPESL_1(PIPE_A),
-+		   intel_uncore_read(&dev_priv->uncore, CHICKEN_PIPESL_1(PIPE_A)) |
-
--:1225: WARNING:LONG_LINE: line length of 134 exceeds 100 columns
-#1225: FILE: drivers/gpu/drm/i915/intel_pm.c:7286:
-+	intel_uncore_write(&dev_priv->uncore, GAM_ECOCHK, intel_uncore_read(&dev_priv->uncore, GAM_ECOCHK) | HSW_ECOCHK_ARB_PRIO_SOL);
-
--:1231: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#1231: FILE: drivers/gpu/drm/i915/intel_pm.c:7290:
-+	intel_uncore_write(&dev_priv->uncore, CHICKEN_PAR1_1,
-+		   intel_uncore_read(&dev_priv->uncore, CHICKEN_PAR1_1) | DPA_MASK_VBLANK_SRD);
-
--:1238: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#1238: FILE: drivers/gpu/drm/i915/intel_pm.c:7295:
-+		intel_uncore_write(&dev_priv->uncore, CHICKEN_PIPESL_1(pipe),
-+			   intel_uncore_read(&dev_priv->uncore, CHICKEN_PIPESL_1(pipe)) |
-
--:1247: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#1247: FILE: drivers/gpu/drm/i915/intel_pm.c:7302:
-+	intel_uncore_write(&dev_priv->uncore, GEN7_FF_THREAD_MODE,
-+		   intel_uncore_read(&dev_priv->uncore, GEN7_FF_THREAD_MODE) &
-
--:1252: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#1252: FILE: drivers/gpu/drm/i915/intel_pm.c:7306:
-+	intel_uncore_write(&dev_priv->uncore, GEN6_RC_SLEEP_PSMI_CONTROL,
- 		   _MASKED_BIT_ENABLE(GEN8_RC_SEMA_IDLE_MSG_DISABLE));
-
--:1256: WARNING:LONG_LINE: line length of 112 exceeds 100 columns
-#1256: FILE: drivers/gpu/drm/i915/intel_pm.c:7309:
-+	intel_uncore_write(&dev_priv->uncore, GEN8_UCGCTL6, intel_uncore_read(&dev_priv->uncore, GEN8_UCGCTL6) |
-
--:1264: WARNING:LONG_LINE: line length of 114 exceeds 100 columns
-#1264: FILE: drivers/gpu/drm/i915/intel_pm.c:7316:
-+	intel_uncore_write(&dev_priv->uncore, CHICKEN_PAR2_1, intel_uncore_read(&dev_priv->uncore, CHICKEN_PAR2_1)
-
--:1275: WARNING:LONG_LINE: line length of 107 exceeds 100 columns
-#1275: FILE: drivers/gpu/drm/i915/intel_pm.c:7327:
-+		   intel_uncore_read(&dev_priv->uncore, GEN6_UCGCTL1) | GEN6_EU_TCUNIT_CLOCK_GATE_DISABLE);
-
--:1275: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#1275: FILE: drivers/gpu/drm/i915/intel_pm.c:7327:
-+	intel_uncore_write(&dev_priv->uncore, GEN6_UCGCTL1,
-+		   intel_uncore_read(&dev_priv->uncore, GEN6_UCGCTL1) | GEN6_EU_TCUNIT_CLOCK_GATE_DISABLE);
-
--:1284: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#1284: FILE: drivers/gpu/drm/i915/intel_pm.c:7334:
-+	intel_uncore_write(&dev_priv->uncore, CHICKEN_PIPESL_1(PIPE_A),
-+		   intel_uncore_read(&dev_priv->uncore, CHICKEN_PIPESL_1(PIPE_A)) |
-
--:1291: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#1291: FILE: drivers/gpu/drm/i915/intel_pm.c:7339:
-+	intel_uncore_write(&dev_priv->uncore, GEN7_SQ_CHICKEN_MBCUNIT_CONFIG,
-+		   intel_uncore_read(&dev_priv->uncore, GEN7_SQ_CHICKEN_MBCUNIT_CONFIG) |
-
--:1296: WARNING:LONG_LINE: line length of 134 exceeds 100 columns
-#1296: FILE: drivers/gpu/drm/i915/intel_pm.c:7343:
-+	intel_uncore_write(&dev_priv->uncore, GAM_ECOCHK, intel_uncore_read(&dev_priv->uncore, GAM_ECOCHK) | HSW_ECOCHK_ARB_PRIO_SOL);
-
--:1311: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#1311: FILE: drivers/gpu/drm/i915/intel_pm.c:7356:
-+	intel_uncore_write(&dev_priv->uncore, ILK_DISPLAY_CHICKEN1,
-+		   intel_uncore_read(&dev_priv->uncore, ILK_DISPLAY_CHICKEN1) |
-
--:1317: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#1317: FILE: drivers/gpu/drm/i915/intel_pm.c:7361:
-+	intel_uncore_write(&dev_priv->uncore, IVB_CHICKEN3,
- 		   CHICKEN3_DGMG_REQ_OUT_FIX_DISABLE |
-
--:1323: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#1323: FILE: drivers/gpu/drm/i915/intel_pm.c:7366:
-+		intel_uncore_write(&dev_priv->uncore, GEN7_ROW_CHICKEN2,
- 			   _MASKED_BIT_ENABLE(DOP_CLOCK_GATING_DISABLE));
-
--:1328: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#1328: FILE: drivers/gpu/drm/i915/intel_pm.c:7370:
-+		intel_uncore_write(&dev_priv->uncore, GEN7_ROW_CHICKEN2,
- 			   _MASKED_BIT_ENABLE(DOP_CLOCK_GATING_DISABLE));
-
--:1331: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#1331: FILE: drivers/gpu/drm/i915/intel_pm.c:7372:
-+		intel_uncore_write(&dev_priv->uncore, GEN7_ROW_CHICKEN2_GT2,
- 			   _MASKED_BIT_ENABLE(DOP_CLOCK_GATING_DISABLE));
-
--:1340: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#1340: FILE: drivers/gpu/drm/i915/intel_pm.c:7380:
-+	intel_uncore_write(&dev_priv->uncore, GEN6_UCGCTL2,
- 		   GEN6_RCZUNIT_CLOCK_GATE_DISABLE);
-
--:1346: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#1346: FILE: drivers/gpu/drm/i915/intel_pm.c:7384:
-+	intel_uncore_write(&dev_priv->uncore, GEN7_SQ_CHICKEN_MBCUNIT_CONFIG,
-+			intel_uncore_read(&dev_priv->uncore, GEN7_SQ_CHICKEN_MBCUNIT_CONFIG) |
-
--:1366: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#1366: FILE: drivers/gpu/drm/i915/intel_pm.c:7404:
-+	intel_uncore_write(&dev_priv->uncore, IVB_CHICKEN3,
- 		   CHICKEN3_DGMG_REQ_OUT_FIX_DISABLE |
-
--:1372: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#1372: FILE: drivers/gpu/drm/i915/intel_pm.c:7409:
-+	intel_uncore_write(&dev_priv->uncore, GEN7_ROW_CHICKEN2,
- 		   _MASKED_BIT_ENABLE(DOP_CLOCK_GATING_DISABLE));
-
--:1378: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#1378: FILE: drivers/gpu/drm/i915/intel_pm.c:7413:
-+	intel_uncore_write(&dev_priv->uncore, GEN7_SQ_CHICKEN_MBCUNIT_CONFIG,
-+		   intel_uncore_read(&dev_priv->uncore, GEN7_SQ_CHICKEN_MBCUNIT_CONFIG) |
-
--:1387: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#1387: FILE: drivers/gpu/drm/i915/intel_pm.c:7421:
-+	intel_uncore_write(&dev_priv->uncore, GEN6_UCGCTL2,
- 		   GEN6_RCZUNIT_CLOCK_GATE_DISABLE);
-
--:1395: WARNING:LONG_LINE: line length of 106 exceeds 100 columns
-#1395: FILE: drivers/gpu/drm/i915/intel_pm.c:7427:
-+		   intel_uncore_read(&dev_priv->uncore, GEN7_UCGCTL4) | GEN7_L3BANK2X_CLOCK_GATE_DISABLE);
-
--:1395: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#1395: FILE: drivers/gpu/drm/i915/intel_pm.c:7427:
-+	intel_uncore_write(&dev_priv->uncore, GEN7_UCGCTL4,
-+		   intel_uncore_read(&dev_priv->uncore, GEN7_UCGCTL4) | GEN7_L3BANK2X_CLOCK_GATE_DISABLE);
-
--:1413: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#1413: FILE: drivers/gpu/drm/i915/intel_pm.c:7442:
-+	intel_uncore_write(&dev_priv->uncore, GEN7_FF_THREAD_MODE,
-+		   intel_uncore_read(&dev_priv->uncore, GEN7_FF_THREAD_MODE) &
-
--:1419: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#1419: FILE: drivers/gpu/drm/i915/intel_pm.c:7447:
-+	intel_uncore_write(&dev_priv->uncore, GEN6_RC_SLEEP_PSMI_CONTROL,
- 		   _MASKED_BIT_ENABLE(GEN8_RC_SEMA_IDLE_MSG_DISABLE));
-
--:1423: WARNING:LONG_LINE: line length of 112 exceeds 100 columns
-#1423: FILE: drivers/gpu/drm/i915/intel_pm.c:7450:
-+	intel_uncore_write(&dev_priv->uncore, GEN6_UCGCTL1, intel_uncore_read(&dev_priv->uncore, GEN6_UCGCTL1) |
-
--:1428: WARNING:LONG_LINE: line length of 112 exceeds 100 columns
-#1428: FILE: drivers/gpu/drm/i915/intel_pm.c:7454:
-+	intel_uncore_write(&dev_priv->uncore, GEN8_UCGCTL6, intel_uncore_read(&dev_priv->uncore, GEN8_UCGCTL6) |
-
--:1468: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#1468: FILE: drivers/gpu/drm/i915/intel_pm.c:7507:
-+	intel_uncore_write(&dev_priv->uncore, MI_ARB_STATE,
- 		   _MASKED_BIT_ENABLE(MI_ARB_DISPLAY_TRICKLE_FEED_DISABLE));
-
--:1483: WARNING:LONG_LINE: line length of 103 exceeds 100 columns
-#1483: FILE: drivers/gpu/drm/i915/intel_pm.c:7519:
-+		intel_uncore_write(&dev_priv->uncore, ECOSKPD, _MASKED_BIT_ENABLE(ECO_GATING_CX_ONLY));
-
--:1495: WARNING:LONG_LINE: line length of 107 exceeds 100 columns
-#1495: FILE: drivers/gpu/drm/i915/intel_pm.c:7528:
-+	intel_uncore_write(&dev_priv->uncore, MI_ARB_STATE, _MASKED_BIT_ENABLE(MI_ARB_C3_LP_WRITE_ENABLE));
-
--:1499: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#1499: FILE: drivers/gpu/drm/i915/intel_pm.c:7531:
-+	intel_uncore_write(&dev_priv->uncore, MI_ARB_STATE,
- 		   _MASKED_BIT_ENABLE(MI_ARB_DISPLAY_TRICKLE_FEED_DISABLE));
-
--:1514: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#1514: FILE: drivers/gpu/drm/i915/intel_pm.c:7543:
-+	intel_uncore_write(&dev_priv->uncore, MEM_MODE,
- 		   _MASKED_BIT_ENABLE(MEM_DISPLAY_TRICKLE_FEED_DISABLE));
-
--:1523: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#1523: FILE: drivers/gpu/drm/i915/intel_pm.c:7553:
-+	intel_uncore_write(&dev_priv->uncore, SCPD0,
- 		   _MASKED_BIT_ENABLE(SCPD_FBC_IGNORE_3D));
-
--:1530: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#1530: FILE: drivers/gpu/drm/i915/intel_pm.c:7559:
-+	intel_uncore_write(&dev_priv->uncore, MEM_MODE,
- 		   _MASKED_BIT_ENABLE(MEM_DISPLAY_A_TRICKLE_FEED_DISABLE) |
-
-total: 0 errors, 44 warnings, 66 checks, 1449 lines checked
-3b
+CI Bug Log - changes from CI_DRM_9312_full -> Patchwork_18893_full
+====================================================
 
+Summary
+-------
+
+  **FAILURE**
+
+  Serious unknown changes coming with Patchwork_18893_full absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in Patchwork_18893_full, please notify your bug team to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_18893_full:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@gem_fenced_exec_thrash@no-spare-fences-interruptible:
+    - shard-snb:          [PASS][1] -> [INCOMPLETE][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9312/shard-snb4/igt@gem_fenced_exec_thrash@no-spare-fences-interruptible.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18893/shard-snb4/igt@gem_fenced_exec_thrash@no-spare-fences-interruptible.html
+
+  * igt@kms_frontbuffer_tracking@fbc-1p-shrfb-fliptrack:
+    - shard-snb:          [PASS][3] -> [FAIL][4]
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9312/shard-snb7/igt@kms_frontbuffer_tracking@fbc-1p-shrfb-fliptrack.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18893/shard-snb2/igt@kms_frontbuffer_tracking@fbc-1p-shrfb-fliptrack.html
+
+  
+New tests
+---------
+
+  New tests have been introduced between CI_DRM_9312_full and Patchwork_18893_full:
+
+### New CI tests (1) ###
+
+  * boot:
+    - Statuses : 197 pass(s)
+    - Exec time: [0.0] s
+
+  
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_18893_full that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@gem_exec_create@basic:
+    - shard-glk:          [PASS][5] -> [FAIL][6] ([i915#1888])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9312/shard-glk8/igt@gem_exec_create@basic.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18893/shard-glk1/igt@gem_exec_create@basic.html
+
+  * igt@gem_render_copy_redux@flink-interruptible:
+    - shard-glk:          [PASS][7] -> [INCOMPLETE][8] ([i915#1888])
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9312/shard-glk8/igt@gem_render_copy_redux@flink-interruptible.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18893/shard-glk1/igt@gem_render_copy_redux@flink-interruptible.html
+
+  * igt@i915_pm_dc@dc6-psr:
+    - shard-iclb:         [PASS][9] -> [FAIL][10] ([i915#454])
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9312/shard-iclb5/igt@i915_pm_dc@dc6-psr.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18893/shard-iclb4/igt@i915_pm_dc@dc6-psr.html
+
+  * igt@kms_big_fb@linear-32bpp-rotate-180:
+    - shard-glk:          [PASS][11] -> [DMESG-WARN][12] ([i915#1982]) +2 similar issues
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9312/shard-glk3/igt@kms_big_fb@linear-32bpp-rotate-180.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18893/shard-glk3/igt@kms_big_fb@linear-32bpp-rotate-180.html
+
+  * igt@kms_cursor_crc@pipe-c-cursor-256x85-sliding:
+    - shard-skl:          [PASS][13] -> [FAIL][14] ([i915#54]) +1 similar issue
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9312/shard-skl1/igt@kms_cursor_crc@pipe-c-cursor-256x85-sliding.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18893/shard-skl1/igt@kms_cursor_crc@pipe-c-cursor-256x85-sliding.html
+
+  * igt@kms_cursor_legacy@flip-vs-cursor-atomic-transitions:
+    - shard-skl:          [PASS][15] -> [FAIL][16] ([i915#2346])
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9312/shard-skl4/igt@kms_cursor_legacy@flip-vs-cursor-atomic-transitions.html
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18893/shard-skl5/igt@kms_cursor_legacy@flip-vs-cursor-atomic-transitions.html
+
+  * igt@kms_cursor_legacy@flip-vs-cursor-crc-atomic:
+    - shard-tglb:         [PASS][17] -> [FAIL][18] ([i915#2346])
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9312/shard-tglb3/igt@kms_cursor_legacy@flip-vs-cursor-crc-atomic.html
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18893/shard-tglb3/igt@kms_cursor_legacy@flip-vs-cursor-crc-atomic.html
+
+  * igt@kms_flip@absolute-wf_vblank-interruptible@a-dp1:
+    - shard-apl:          [PASS][19] -> [DMESG-WARN][20] ([i915#1635] / [i915#1982]) +2 similar issues
+   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9312/shard-apl4/igt@kms_flip@absolute-wf_vblank-interruptible@a-dp1.html
+   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18893/shard-apl3/igt@kms_flip@absolute-wf_vblank-interruptible@a-dp1.html
+
+  * igt@kms_flip@flip-vs-absolute-wf_vblank-interruptible@b-edp1:
+    - shard-tglb:         [PASS][21] -> [DMESG-WARN][22] ([i915#1982])
+   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9312/shard-tglb2/igt@kms_flip@flip-vs-absolute-wf_vblank-interruptible@b-edp1.html
+   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18893/shard-tglb2/igt@kms_flip@flip-vs-absolute-wf_vblank-interruptible@b-edp1.html
+
+  * igt@kms_flip@plain-flip-fb-recreate-interruptible@c-edp1:
+    - shard-skl:          [PASS][23] -> [FAIL][24] ([i915#2122]) +1 similar issue
+   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9312/shard-skl5/igt@kms_flip@plain-flip-fb-recreate-interruptible@c-edp1.html
+   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18893/shard-skl6/igt@kms_flip@plain-flip-fb-recreate-interruptible@c-edp1.html
+
+  * igt@kms_flip@plain-flip-ts-check@a-dp1:
+    - shard-kbl:          [PASS][25] -> [DMESG-WARN][26] ([i915#1982]) +2 similar issues
+   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9312/shard-kbl3/igt@kms_flip@plain-flip-ts-check@a-dp1.html
+   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18893/shard-kbl4/igt@kms_flip@plain-flip-ts-check@a-dp1.html
+
+  * igt@kms_hdr@bpc-switch-dpms:
+    - shard-skl:          [PASS][27] -> [FAIL][28] ([i915#1188]) +1 similar issue
+   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9312/shard-skl2/igt@kms_hdr@bpc-switch-dpms.html
+   [28]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18893/shard-skl4/igt@kms_hdr@bpc-switch-dpms.html
+
+  * igt@kms_plane_lowres@pipe-a-tiling-yf:
+    - shard-skl:          [PASS][29] -> [DMESG-WARN][30] ([i915#1982]) +8 similar issues
+   [29]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9312/shard-skl5/igt@kms_plane_lowres@pipe-a-tiling-yf.html
+   [30]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18893/shard-skl9/igt@kms_plane_lowres@pipe-a-tiling-yf.html
+
+  * igt@kms_psr@psr2_cursor_plane_move:
+    - shard-iclb:         [PASS][31] -> [SKIP][32] ([fdo#109441]) +1 similar issue
+   [31]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9312/shard-iclb2/igt@kms_psr@psr2_cursor_plane_move.html
+   [32]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18893/shard-iclb5/igt@kms_psr@psr2_cursor_plane_move.html
+
+  * igt@perf@blocking:
+    - shard-skl:          [PASS][33] -> [FAIL][34] ([i915#1542])
+   [33]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9312/shard-skl7/igt@perf@blocking.html
+   [34]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18893/shard-skl9/igt@perf@blocking.html
+
+  
+#### Possible fixes ####
+
+  * igt@gem_exec_create@basic:
+    - shard-hsw:          [FAIL][35] ([i915#1888]) -> [PASS][36]
+   [35]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9312/shard-hsw8/igt@gem_exec_create@basic.html
+   [36]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18893/shard-hsw2/igt@gem_exec_create@basic.html
+
+  * igt@gem_softpin@noreloc-s3:
+    - shard-skl:          [INCOMPLETE][37] ([i915#198]) -> [PASS][38]
+   [37]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9312/shard-skl5/igt@gem_softpin@noreloc-s3.html
+   [38]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18893/shard-skl3/igt@gem_softpin@noreloc-s3.html
+
+  * igt@i915_pm_rpm@i2c:
+    - shard-skl:          [DMESG-WARN][39] ([i915#1982]) -> [PASS][40] +3 similar issues
+   [39]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9312/shard-skl1/igt@i915_pm_rpm@i2c.html
+   [40]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18893/shard-skl1/igt@i915_pm_rpm@i2c.html
+
+  * {igt@kms_async_flips@alternate-sync-async-flip}:
+    - shard-tglb:         [FAIL][41] ([i915#2521]) -> [PASS][42]
+   [41]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9312/shard-tglb1/igt@kms_async_flips@alternate-sync-async-flip.html
+   [42]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18893/shard-tglb6/igt@kms_async_flips@alternate-sync-async-flip.html
+
+  * igt@kms_cursor_crc@pipe-c-cursor-64x21-random:
+    - shard-skl:          [FAIL][43] ([i915#54]) -> [PASS][44] +1 similar issue
+   [43]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9312/shard-skl1/igt@kms_cursor_crc@pipe-c-cursor-64x21-random.html
+   [44]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18893/shard-skl5/igt@kms_cursor_crc@pipe-c-cursor-64x21-random.html
+
+  * igt@kms_cursor_legacy@flip-vs-cursor-atomic-transitions-varying-size:
+    - shard-skl:          [FAIL][45] ([i915#2346]) -> [PASS][46]
+   [45]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9312/shard-skl3/igt@kms_cursor_legacy@flip-vs-cursor-atomic-transitions-varying-size.html
+   [46]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18893/shard-skl6/igt@kms_cursor_legacy@flip-vs-cursor-atomic-transitions-varying-size.html
+
+  * igt@kms_cursor_legacy@short-flip-before-cursor-toggle:
+    - shard-apl:          [DMESG-WARN][47] ([i915#1635] / [i915#1982]) -> [PASS][48] +1 similar issue
+   [47]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9312/shard-apl7/igt@kms_cursor_legacy@short-flip-before-cursor-toggle.html
+   [48]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18893/shard-apl2/igt@kms_cursor_legacy@short-flip-before-cursor-toggle.html
+
+  * igt@kms_flip@plain-flip-ts-check-interruptible@c-edp1:
+    - shard-skl:          [FAIL][49] ([i915#2122]) -> [PASS][50]
+   [49]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9312/shard-skl3/igt@kms_flip@plain-flip-ts-check-interruptible@c-edp1.html
+   [50]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18893/shard-skl6/igt@kms_flip@plain-flip-ts-check-interruptible@c-edp1.html
+
+  * igt@kms_frontbuffer_tracking@fbc-1p-offscren-pri-indfb-draw-pwrite:
+    - shard-kbl:          [DMESG-WARN][51] ([i915#1982]) -> [PASS][52]
+   [51]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9312/shard-kbl1/igt@kms_frontbuffer_tracking@fbc-1p-offscren-pri-indfb-draw-pwrite.html
+   [52]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18893/shard-kbl7/igt@kms_frontbuffer_tracking@fbc-1p-offscren-pri-indfb-draw-pwrite.html
+
+  * igt@kms_frontbuffer_tracking@fbc-rgb565-draw-mmap-cpu:
+    - shard-snb:          [FAIL][53] ([i915#2546]) -> [PASS][54]
+   [53]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9312/shard-snb7/igt@kms_frontbuffer_tracking@fbc-rgb565-draw-mmap-cpu.html
+   [54]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18893/shard-snb2/igt@kms_frontbuffer_tracking@fbc-rgb565-draw-mmap-cpu.html
+
+  * igt@kms_frontbuffer_tracking@fbc-stridechange:
+    - shard-tglb:         [DMESG-WARN][55] ([i915#1982]) -> [PASS][56] +1 similar issue
+   [55]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9312/shard-tglb1/igt@kms_frontbuffer_tracking@fbc-stridechange.html
+   [56]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18893/shard-tglb6/igt@kms_frontbuffer_tracking@fbc-stridechange.html
+
+  * igt@kms_plane_alpha_blend@pipe-a-constant-alpha-min:
+    - shard-skl:          [FAIL][57] ([fdo#108145] / [i915#265]) -> [PASS][58]
+   [57]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9312/shard-skl7/igt@kms_plane_alpha_blend@pipe-a-constant-alpha-min.html
+   [58]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18893/shard-skl9/igt@kms_plane_alpha_blend@pipe-a-constant-alpha-min.html
+
+  * igt@kms_vblank@pipe-c-query-forked-busy:
+    - shard-hsw:          [DMESG-WARN][59] ([i915#1982]) -> [PASS][60] +2 similar issues
+   [59]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9312/shard-hsw6/igt@kms_vblank@pipe-c-query-forked-busy.html
+   [60]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18893/shard-hsw2/igt@kms_vblank@pipe-c-query-forked-busy.html
+    - shard-iclb:         [DMESG-WARN][61] ([i915#1982]) -> [PASS][62] +1 similar issue
+   [61]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9312/shard-iclb7/igt@kms_vblank@pipe-c-query-forked-busy.html
+   [62]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18893/shard-iclb3/igt@kms_vblank@pipe-c-query-forked-busy.html
+
+  * igt@perf@short-reads:
+    - shard-skl:          [FAIL][63] ([i915#51]) -> [PASS][64]
+   [63]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9312/shard-skl4/igt@perf@short-reads.html
+   [64]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18893/shard-skl5/igt@perf@short-reads.html
+
+  
+#### Warnings ####
+
+  * igt@gem_eio@in-flight-suspend:
+    - shard-glk:          [DMESG-WARN][65] ([i915#2635]) -> [INCOMPLETE][66] ([i915#2635])
+   [65]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9312/shard-glk4/igt@gem_eio@in-flight-suspend.html
+   [66]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18893/shard-glk1/igt@gem_eio@in-flight-suspend.html
+
+  * igt@gem_exec_create@forked:
+    - shard-hsw:          [FAIL][67] -> [FAIL][68] ([i915#1888])
+   [67]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9312/shard-hsw8/igt@gem_exec_create@forked.html
+   [68]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18893/shard-hsw2/igt@gem_exec_create@forked.html
+
+  * igt@runner@aborted:
+    - shard-glk:          ([FAIL][69], [FAIL][70], [FAIL][71]) ([i915#1611] / [i915#1814] / [i915#2439] / [k.org#202321]) -> ([FAIL][72], [FAIL][73], [FAIL][74]) ([i915#1611] / [i915#1814] / [i915#2439] / [i915#483] / [k.org#202321])
+   [69]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9312/shard-glk4/igt@runner@aborted.html
+   [70]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9312/shard-glk2/igt@runner@aborted.html
+   [71]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9312/shard-glk6/igt@runner@aborted.html
+   [72]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18893/shard-glk1/igt@runner@aborted.html
+   [73]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18893/shard-glk5/igt@runner@aborted.html
+   [74]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18893/shard-glk3/igt@runner@aborted.html
+    - shard-skl:          ([FAIL][75], [FAIL][76]) ([i915#1436] / [i915#1611] / [i915#2439] / [i915#483]) -> [FAIL][77] ([i915#1611] / [i915#2439])
+   [75]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9312/shard-skl5/igt@runner@aborted.html
+   [76]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9312/shard-skl6/igt@runner@aborted.html
+   [77]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18893/shard-skl1/igt@runner@aborted.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#108145]: https://bugs.freedesktop.org/show_bug.cgi?id=108145
+  [fdo#109441]: https://bugs.freedesktop.org/show_bug.cgi?id=109441
+  [i915#1188]: https://gitlab.freedesktop.org/drm/intel/issues/1188
+  [i915#1436]: https://gitlab.freedesktop.org/drm/intel/issues/1436
+  [i915#1542]: https://gitlab.freedesktop.org/drm/intel/issues/1542
+  [i915#1611]: https://gitlab.freedesktop.org/drm/intel/issues/1611
+  [i915#1635]: https://gitlab.freedesktop.org/drm/intel/issues/1635
+  [i915#1814]: https://gitlab.freedesktop.org/drm/intel/issues/1814
+  [i915#1888]: https://gitlab.freedesktop.org/drm/intel/issues/1888
+  [i915#198]: https://gitlab.freedesktop.org/drm/intel/issues/198
+  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
+  [i915#2122]: https://gitlab.freedesktop.org/drm/intel/issues/2122
+  [i915#2346]: https://gitlab.freedesktop.org/drm/intel/issues/2346
+  [i915#2439]: https://gitlab.freedesktop.org/drm/intel/issues/2439
+  [i915#2521]: https://gitlab.freedesktop.org/drm/intel/issues/2521
+  [i915#2546]: https://gitlab.freedesktop.org/drm/intel/issues/2546
+  [i915#2635]: https://gitlab.freedesktop.org/drm/intel/issues/2635
+  [i915#265]: https://gitlab.freedesktop.org/drm/intel/issues/265
+  [i915#454]: https://gitlab.freedesktop.org/drm/intel/issues/454
+  [i915#483]: https://gitlab.freedesktop.org/drm/intel/issues/483
+  [i915#51]: https://gitlab.freedesktop.org/drm/intel/issues/51
+  [i915#54]: https://gitlab.freedesktop.org/drm/intel/issues/54
+  [k.org#202321]: https://bugzilla.kernel.org/show_bug.cgi?id=202321
+
+
+Participating hosts (11 -> 11)
+------------------------------
+
+  No changes in participating hosts
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_9312 -> Patchwork_18893
+
+  CI-20190529: 20190529
+  CI_DRM_9312: 88b74d59a27aa168f7cd2dec199c33ee71fe8bb0 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5847: 8cffaebec5228a5042cc6928ac582a0589e2de3e @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_18893: 8e3b94cbff61935a9776a74cdda6344b597ac562 @ git://anongit.freedesktop.org/gfx-ci/linux
+  piglit_4509: fdc5a4ca11124ab8413c7988896eec4c97336694 @ git://anongit.freedesktop.org/piglit
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18893/index.html
+
+--===============7590762647683019288==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+
+
+<!DOCTYPE html>
+<html xmlns=3D"http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id=3D"css-table-select" type=3D"text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>series starting with [1/5] drm/i915/gt: Incl=
+ude semaphore status in print_request()</td></tr>
+<tr><td><b>URL:</b></td><td><a href=3D"https://patchwork.freedesktop.org/se=
+ries/83760/">https://patchwork.freedesktop.org/series/83760/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href=3D"https://intel-gfx-ci.01.org/=
+tree/drm-tip/Patchwork_18893/index.html">https://intel-gfx-ci.01.org/tree/d=
+rm-tip/Patchwork_18893/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_9312_full -&gt; Patchwork_18893_fu=
+ll</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with Patchwork_18893_full absolutely need=
+ to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br=
+ />
+  introduced in Patchwork_18893_full, please notify your bug team to allow =
+them<br />
+  to document this new failure mode, which will reduce false positives in C=
+I.</p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in Patchwork_=
+18893_full:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>
+<p>igt@gem_fenced_exec_thrash@no-spare-fences-interruptible:</p>
+<ul>
+<li>shard-snb:          <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
+/CI_DRM_9312/shard-snb4/igt@gem_fenced_exec_thrash@no-spare-fences-interrup=
+tible.html">PASS</a> -&gt; <a href=3D"https://intel-gfx-ci.01.org/tree/drm-=
+tip/Patchwork_18893/shard-snb4/igt@gem_fenced_exec_thrash@no-spare-fences-i=
+nterruptible.html">INCOMPLETE</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_frontbuffer_tracking@fbc-1p-shrfb-fliptrack:</p>
+<ul>
+<li>shard-snb:          <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
+/CI_DRM_9312/shard-snb7/igt@kms_frontbuffer_tracking@fbc-1p-shrfb-fliptrack=
+.html">PASS</a> -&gt; <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/P=
+atchwork_18893/shard-snb2/igt@kms_frontbuffer_tracking@fbc-1p-shrfb-fliptra=
+ck.html">FAIL</a></li>
+</ul>
+</li>
+</ul>
+<h2>New tests</h2>
+<p>New tests have been introduced between CI_DRM_9312_full and Patchwork_18=
+893_full:</p>
+<h3>New CI tests (1)</h3>
+<ul>
+<li>boot:<ul>
+<li>Statuses : 197 pass(s)</li>
+<li>Exec time: [0.0] s</li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_18893_full that come from known =
+issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@gem_exec_create@basic:</p>
+<ul>
+<li>shard-glk:          <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
+/CI_DRM_9312/shard-glk8/igt@gem_exec_create@basic.html">PASS</a> -&gt; <a h=
+ref=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18893/shard-glk1/=
+igt@gem_exec_create@basic.html">FAIL</a> (<a href=3D"https://gitlab.freedes=
+ktop.org/drm/intel/issues/1888">i915#1888</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_render_copy_redux@flink-interruptible:</p>
+<ul>
+<li>shard-glk:          <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
+/CI_DRM_9312/shard-glk8/igt@gem_render_copy_redux@flink-interruptible.html"=
+>PASS</a> -&gt; <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwo=
+rk_18893/shard-glk1/igt@gem_render_copy_redux@flink-interruptible.html">INC=
+OMPLETE</a> (<a href=3D"https://gitlab.freedesktop.org/drm/intel/issues/188=
+8">i915#1888</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_pm_dc@dc6-psr:</p>
+<ul>
+<li>shard-iclb:         <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
+/CI_DRM_9312/shard-iclb5/igt@i915_pm_dc@dc6-psr.html">PASS</a> -&gt; <a hre=
+f=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18893/shard-iclb4/i=
+gt@i915_pm_dc@dc6-psr.html">FAIL</a> (<a href=3D"https://gitlab.freedesktop=
+.org/drm/intel/issues/454">i915#454</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_big_fb@linear-32bpp-rotate-180:</p>
+<ul>
+<li>shard-glk:          <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
+/CI_DRM_9312/shard-glk3/igt@kms_big_fb@linear-32bpp-rotate-180.html">PASS</=
+a> -&gt; <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_1889=
+3/shard-glk3/igt@kms_big_fb@linear-32bpp-rotate-180.html">DMESG-WARN</a> (<=
+a href=3D"https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</=
+a>) +2 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_crc@pipe-c-cursor-256x85-sliding:</p>
+<ul>
+<li>shard-skl:          <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
+/CI_DRM_9312/shard-skl1/igt@kms_cursor_crc@pipe-c-cursor-256x85-sliding.htm=
+l">PASS</a> -&gt; <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patch=
+work_18893/shard-skl1/igt@kms_cursor_crc@pipe-c-cursor-256x85-sliding.html"=
+>FAIL</a> (<a href=3D"https://gitlab.freedesktop.org/drm/intel/issues/54">i=
+915#54</a>) +1 similar issue</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_legacy@flip-vs-cursor-atomic-transitions:</p>
+<ul>
+<li>shard-skl:          <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
+/CI_DRM_9312/shard-skl4/igt@kms_cursor_legacy@flip-vs-cursor-atomic-transit=
+ions.html">PASS</a> -&gt; <a href=3D"https://intel-gfx-ci.01.org/tree/drm-t=
+ip/Patchwork_18893/shard-skl5/igt@kms_cursor_legacy@flip-vs-cursor-atomic-t=
+ransitions.html">FAIL</a> (<a href=3D"https://gitlab.freedesktop.org/drm/in=
+tel/issues/2346">i915#2346</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_legacy@flip-vs-cursor-crc-atomic:</p>
+<ul>
+<li>shard-tglb:         <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
+/CI_DRM_9312/shard-tglb3/igt@kms_cursor_legacy@flip-vs-cursor-crc-atomic.ht=
+ml">PASS</a> -&gt; <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patc=
+hwork_18893/shard-tglb3/igt@kms_cursor_legacy@flip-vs-cursor-crc-atomic.htm=
+l">FAIL</a> (<a href=3D"https://gitlab.freedesktop.org/drm/intel/issues/234=
+6">i915#2346</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_flip@absolute-wf_vblank-interruptible@a-dp1:</p>
+<ul>
+<li>shard-apl:          <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
+/CI_DRM_9312/shard-apl4/igt@kms_flip@absolute-wf_vblank-interruptible@a-dp1=
+.html">PASS</a> -&gt; <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/P=
+atchwork_18893/shard-apl3/igt@kms_flip@absolute-wf_vblank-interruptible@a-d=
+p1.html">DMESG-WARN</a> (<a href=3D"https://gitlab.freedesktop.org/drm/inte=
+l/issues/1635">i915#1635</a> / <a href=3D"https://gitlab.freedesktop.org/dr=
+m/intel/issues/1982">i915#1982</a>) +2 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_flip@flip-vs-absolute-wf_vblank-interruptible@b-edp1:</p>
+<ul>
+<li>shard-tglb:         <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
+/CI_DRM_9312/shard-tglb2/igt@kms_flip@flip-vs-absolute-wf_vblank-interrupti=
+ble@b-edp1.html">PASS</a> -&gt; <a href=3D"https://intel-gfx-ci.01.org/tree=
+/drm-tip/Patchwork_18893/shard-tglb2/igt@kms_flip@flip-vs-absolute-wf_vblan=
+k-interruptible@b-edp1.html">DMESG-WARN</a> (<a href=3D"https://gitlab.free=
+desktop.org/drm/intel/issues/1982">i915#1982</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_flip@plain-flip-fb-recreate-interruptible@c-edp1:</p>
+<ul>
+<li>shard-skl:          <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
+/CI_DRM_9312/shard-skl5/igt@kms_flip@plain-flip-fb-recreate-interruptible@c=
+-edp1.html">PASS</a> -&gt; <a href=3D"https://intel-gfx-ci.01.org/tree/drm-=
+tip/Patchwork_18893/shard-skl6/igt@kms_flip@plain-flip-fb-recreate-interrup=
+tible@c-edp1.html">FAIL</a> (<a href=3D"https://gitlab.freedesktop.org/drm/=
+intel/issues/2122">i915#2122</a>) +1 similar issue</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_flip@plain-flip-ts-check@a-dp1:</p>
+<ul>
+<li>shard-kbl:          <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
+/CI_DRM_9312/shard-kbl3/igt@kms_flip@plain-flip-ts-check@a-dp1.html">PASS</=
+a> -&gt; <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_1889=
+3/shard-kbl4/igt@kms_flip@plain-flip-ts-check@a-dp1.html">DMESG-WARN</a> (<=
+a href=3D"https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</=
+a>) +2 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_hdr@bpc-switch-dpms:</p>
+<ul>
+<li>shard-skl:          <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
+/CI_DRM_9312/shard-skl2/igt@kms_hdr@bpc-switch-dpms.html">PASS</a> -&gt; <a=
+ href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18893/shard-skl=
+4/igt@kms_hdr@bpc-switch-dpms.html">FAIL</a> (<a href=3D"https://gitlab.fre=
+edesktop.org/drm/intel/issues/1188">i915#1188</a>) +1 similar issue</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_plane_lowres@pipe-a-tiling-yf:</p>
+<ul>
+<li>shard-skl:          <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
+/CI_DRM_9312/shard-skl5/igt@kms_plane_lowres@pipe-a-tiling-yf.html">PASS</a=
+> -&gt; <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18893=
+/shard-skl9/igt@kms_plane_lowres@pipe-a-tiling-yf.html">DMESG-WARN</a> (<a =
+href=3D"https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>=
+) +8 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_psr@psr2_cursor_plane_move:</p>
+<ul>
+<li>shard-iclb:         <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
+/CI_DRM_9312/shard-iclb2/igt@kms_psr@psr2_cursor_plane_move.html">PASS</a> =
+-&gt; <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18893/s=
+hard-iclb5/igt@kms_psr@psr2_cursor_plane_move.html">SKIP</a> (<a href=3D"ht=
+tps://bugs.freedesktop.org/show_bug.cgi?id=3D109441">fdo#109441</a>) +1 sim=
+ilar issue</li>
+</ul>
+</li>
+<li>
+<p>igt@perf@blocking:</p>
+<ul>
+<li>shard-skl:          <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
+/CI_DRM_9312/shard-skl7/igt@perf@blocking.html">PASS</a> -&gt; <a href=3D"h=
+ttps://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18893/shard-skl9/igt@perf=
+@blocking.html">FAIL</a> (<a href=3D"https://gitlab.freedesktop.org/drm/int=
+el/issues/1542">i915#1542</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@gem_exec_create@basic:</p>
+<ul>
+<li>shard-hsw:          <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
+/CI_DRM_9312/shard-hsw8/igt@gem_exec_create@basic.html">FAIL</a> (<a href=
+=3D"https://gitlab.freedesktop.org/drm/intel/issues/1888">i915#1888</a>) -&=
+gt; <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18893/sha=
+rd-hsw2/igt@gem_exec_create@basic.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@gem_softpin@noreloc-s3:</p>
+<ul>
+<li>shard-skl:          <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
+/CI_DRM_9312/shard-skl5/igt@gem_softpin@noreloc-s3.html">INCOMPLETE</a> (<a=
+ href=3D"https://gitlab.freedesktop.org/drm/intel/issues/198">i915#198</a>)=
+ -&gt; <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18893/=
+shard-skl3/igt@gem_softpin@noreloc-s3.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_pm_rpm@i2c:</p>
+<ul>
+<li>shard-skl:          <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
+/CI_DRM_9312/shard-skl1/igt@i915_pm_rpm@i2c.html">DMESG-WARN</a> (<a href=
+=3D"https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>) -&=
+gt; <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18893/sha=
+rd-skl1/igt@i915_pm_rpm@i2c.html">PASS</a> +3 similar issues</li>
+</ul>
+</li>
+<li>
+<p>{igt@kms_async_flips@alternate-sync-async-flip}:</p>
+<ul>
+<li>shard-tglb:         <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
+/CI_DRM_9312/shard-tglb1/igt@kms_async_flips@alternate-sync-async-flip.html=
+">FAIL</a> (<a href=3D"https://gitlab.freedesktop.org/drm/intel/issues/2521=
+">i915#2521</a>) -&gt; <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/=
+Patchwork_18893/shard-tglb6/igt@kms_async_flips@alternate-sync-async-flip.h=
+tml">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_crc@pipe-c-cursor-64x21-random:</p>
+<ul>
+<li>shard-skl:          <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
+/CI_DRM_9312/shard-skl1/igt@kms_cursor_crc@pipe-c-cursor-64x21-random.html"=
+>FAIL</a> (<a href=3D"https://gitlab.freedesktop.org/drm/intel/issues/54">i=
+915#54</a>) -&gt; <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patch=
+work_18893/shard-skl5/igt@kms_cursor_crc@pipe-c-cursor-64x21-random.html">P=
+ASS</a> +1 similar issue</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_legacy@flip-vs-cursor-atomic-transitions-varying-size:</p>
+<ul>
+<li>shard-skl:          <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
+/CI_DRM_9312/shard-skl3/igt@kms_cursor_legacy@flip-vs-cursor-atomic-transit=
+ions-varying-size.html">FAIL</a> (<a href=3D"https://gitlab.freedesktop.org=
+/drm/intel/issues/2346">i915#2346</a>) -&gt; <a href=3D"https://intel-gfx-c=
+i.01.org/tree/drm-tip/Patchwork_18893/shard-skl6/igt@kms_cursor_legacy@flip=
+-vs-cursor-atomic-transitions-varying-size.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_legacy@short-flip-before-cursor-toggle:</p>
+<ul>
+<li>shard-apl:          <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
+/CI_DRM_9312/shard-apl7/igt@kms_cursor_legacy@short-flip-before-cursor-togg=
+le.html">DMESG-WARN</a> (<a href=3D"https://gitlab.freedesktop.org/drm/inte=
+l/issues/1635">i915#1635</a> / <a href=3D"https://gitlab.freedesktop.org/dr=
+m/intel/issues/1982">i915#1982</a>) -&gt; <a href=3D"https://intel-gfx-ci.0=
+1.org/tree/drm-tip/Patchwork_18893/shard-apl2/igt@kms_cursor_legacy@short-f=
+lip-before-cursor-toggle.html">PASS</a> +1 similar issue</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_flip@plain-flip-ts-check-interruptible@c-edp1:</p>
+<ul>
+<li>shard-skl:          <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
+/CI_DRM_9312/shard-skl3/igt@kms_flip@plain-flip-ts-check-interruptible@c-ed=
+p1.html">FAIL</a> (<a href=3D"https://gitlab.freedesktop.org/drm/intel/issu=
+es/2122">i915#2122</a>) -&gt; <a href=3D"https://intel-gfx-ci.01.org/tree/d=
+rm-tip/Patchwork_18893/shard-skl6/igt@kms_flip@plain-flip-ts-check-interrup=
+tible@c-edp1.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_frontbuffer_tracking@fbc-1p-offscren-pri-indfb-draw-pwrite:</p>
+<ul>
+<li>shard-kbl:          <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
+/CI_DRM_9312/shard-kbl1/igt@kms_frontbuffer_tracking@fbc-1p-offscren-pri-in=
+dfb-draw-pwrite.html">DMESG-WARN</a> (<a href=3D"https://gitlab.freedesktop=
+.org/drm/intel/issues/1982">i915#1982</a>) -&gt; <a href=3D"https://intel-g=
+fx-ci.01.org/tree/drm-tip/Patchwork_18893/shard-kbl7/igt@kms_frontbuffer_tr=
+acking@fbc-1p-offscren-pri-indfb-draw-pwrite.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_frontbuffer_tracking@fbc-rgb565-draw-mmap-cpu:</p>
+<ul>
+<li>shard-snb:          <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
+/CI_DRM_9312/shard-snb7/igt@kms_frontbuffer_tracking@fbc-rgb565-draw-mmap-c=
+pu.html">FAIL</a> (<a href=3D"https://gitlab.freedesktop.org/drm/intel/issu=
+es/2546">i915#2546</a>) -&gt; <a href=3D"https://intel-gfx-ci.01.org/tree/d=
+rm-tip/Patchwork_18893/shard-snb2/igt@kms_frontbuffer_tracking@fbc-rgb565-d=
+raw-mmap-cpu.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_frontbuffer_tracking@fbc-stridechange:</p>
+<ul>
+<li>shard-tglb:         <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
+/CI_DRM_9312/shard-tglb1/igt@kms_frontbuffer_tracking@fbc-stridechange.html=
+">DMESG-WARN</a> (<a href=3D"https://gitlab.freedesktop.org/drm/intel/issue=
+s/1982">i915#1982</a>) -&gt; <a href=3D"https://intel-gfx-ci.01.org/tree/dr=
+m-tip/Patchwork_18893/shard-tglb6/igt@kms_frontbuffer_tracking@fbc-stridech=
+ange.html">PASS</a> +1 similar issue</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_plane_alpha_blend@pipe-a-constant-alpha-min:</p>
+<ul>
+<li>shard-skl:          <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
+/CI_DRM_9312/shard-skl7/igt@kms_plane_alpha_blend@pipe-a-constant-alpha-min=
+.html">FAIL</a> (<a href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D=
+108145">fdo#108145</a> / <a href=3D"https://gitlab.freedesktop.org/drm/inte=
+l/issues/265">i915#265</a>) -&gt; <a href=3D"https://intel-gfx-ci.01.org/tr=
+ee/drm-tip/Patchwork_18893/shard-skl9/igt@kms_plane_alpha_blend@pipe-a-cons=
+tant-alpha-min.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_vblank@pipe-c-query-forked-busy:</p>
+<ul>
+<li>
+<p>shard-hsw:          <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/=
+CI_DRM_9312/shard-hsw6/igt@kms_vblank@pipe-c-query-forked-busy.html">DMESG-=
+WARN</a> (<a href=3D"https://gitlab.freedesktop.org/drm/intel/issues/1982">=
+i915#1982</a>) -&gt; <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Pa=
+tchwork_18893/shard-hsw2/igt@kms_vblank@pipe-c-query-forked-busy.html">PASS=
+</a> +2 similar issues</p>
+</li>
+<li>
+<p>shard-iclb:         <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/=
+CI_DRM_9312/shard-iclb7/igt@kms_vblank@pipe-c-query-forked-busy.html">DMESG=
+-WARN</a> (<a href=3D"https://gitlab.freedesktop.org/drm/intel/issues/1982"=
+>i915#1982</a>) -&gt; <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/P=
+atchwork_18893/shard-iclb3/igt@kms_vblank@pipe-c-query-forked-busy.html">PA=
+SS</a> +1 similar issue</p>
+</li>
+</ul>
+</li>
+<li>
+<p>igt@perf@short-reads:</p>
+<ul>
+<li>shard-skl:          <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
+/CI_DRM_9312/shard-skl4/igt@perf@short-reads.html">FAIL</a> (<a href=3D"htt=
+ps://gitlab.freedesktop.org/drm/intel/issues/51">i915#51</a>) -&gt; <a href=
+=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18893/shard-skl5/igt=
+@perf@short-reads.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h4>Warnings</h4>
+<ul>
+<li>
+<p>igt@gem_eio@in-flight-suspend:</p>
+<ul>
+<li>shard-glk:          <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
+/CI_DRM_9312/shard-glk4/igt@gem_eio@in-flight-suspend.html">DMESG-WARN</a> =
+(<a href=3D"https://gitlab.freedesktop.org/drm/intel/issues/2635">i915#2635=
+</a>) -&gt; <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_1=
+8893/shard-glk1/igt@gem_eio@in-flight-suspend.html">INCOMPLETE</a> (<a href=
+=3D"https://gitlab.freedesktop.org/drm/intel/issues/2635">i915#2635</a>)</l=
+i>
+</ul>
+</li>
+<li>
+<p>igt@gem_exec_create@forked:</p>
+<ul>
+<li>shard-hsw:          <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
+/CI_DRM_9312/shard-hsw8/igt@gem_exec_create@forked.html">FAIL</a> -&gt; <a =
+href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18893/shard-hsw2=
+/igt@gem_exec_create@forked.html">FAIL</a> (<a href=3D"https://gitlab.freed=
+esktop.org/drm/intel/issues/1888">i915#1888</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@runner@aborted:</p>
+<ul>
+<li>
+<p>shard-glk:          (<a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
+/CI_DRM_9312/shard-glk4/igt@runner@aborted.html">FAIL</a>, <a href=3D"https=
+://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9312/shard-glk2/igt@runner@abort=
+ed.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/CI_D=
+RM_9312/shard-glk6/igt@runner@aborted.html">FAIL</a>) (<a href=3D"https://g=
+itlab.freedesktop.org/drm/intel/issues/1611">i915#1611</a> / <a href=3D"htt=
+ps://gitlab.freedesktop.org/drm/intel/issues/1814">i915#1814</a> / <a href=
+=3D"https://gitlab.freedesktop.org/drm/intel/issues/2439">i915#2439</a> / <=
+a href=3D"https://bugzilla.kernel.org/show_bug.cgi?id=3D202321">k.org#20232=
+1</a>) -&gt; (<a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork=
+_18893/shard-glk1/igt@runner@aborted.html">FAIL</a>, <a href=3D"https://int=
+el-gfx-ci.01.org/tree/drm-tip/Patchwork_18893/shard-glk5/igt@runner@aborted=
+.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchw=
+ork_18893/shard-glk3/igt@runner@aborted.html">FAIL</a>) (<a href=3D"https:/=
+/gitlab.freedesktop.org/drm/intel/issues/1611">i915#1611</a> / <a href=3D"h=
+ttps://gitlab.freedesktop.org/drm/intel/issues/1814">i915#1814</a> / <a hre=
+f=3D"https://gitlab.freedesktop.org/drm/intel/issues/2439">i915#2439</a> / =
+<a href=3D"https://gitlab.freedesktop.org/drm/intel/issues/483">i915#483</a=
+> / <a href=3D"https://bugzilla.kernel.org/show_bug.cgi?id=3D202321">k.org#=
+202321</a>)</p>
+</li>
+<li>
+<p>shard-skl:          (<a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
+/CI_DRM_9312/shard-skl5/igt@runner@aborted.html">FAIL</a>, <a href=3D"https=
+://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9312/shard-skl6/igt@runner@abort=
+ed.html">FAIL</a>) (<a href=3D"https://gitlab.freedesktop.org/drm/intel/iss=
+ues/1436">i915#1436</a> / <a href=3D"https://gitlab.freedesktop.org/drm/int=
+el/issues/1611">i915#1611</a> / <a href=3D"https://gitlab.freedesktop.org/d=
+rm/intel/issues/2439">i915#2439</a> / <a href=3D"https://gitlab.freedesktop=
+.org/drm/intel/issues/483">i915#483</a>) -&gt; <a href=3D"https://intel-gfx=
+-ci.01.org/tree/drm-tip/Patchwork_18893/shard-skl1/igt@runner@aborted.html"=
+>FAIL</a> (<a href=3D"https://gitlab.freedesktop.org/drm/intel/issues/1611"=
+>i915#1611</a> / <a href=3D"https://gitlab.freedesktop.org/drm/intel/issues=
+/2439">i915#2439</a>)</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when comput=
+ing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Participating hosts (11 -&gt; 11)</h2>
+<p>No changes in participating hosts</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_9312 -&gt; Patchwork_18893</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_9312: 88b74d59a27aa168f7cd2dec199c33ee71fe8bb0 @ git://anongit.fre=
+edesktop.org/gfx-ci/linux<br />
+  IGT_5847: 8cffaebec5228a5042cc6928ac582a0589e2de3e @ git://anongit.freede=
+sktop.org/xorg/app/intel-gpu-tools<br />
+  Patchwork_18893: 8e3b94cbff61935a9776a74cdda6344b597ac562 @ git://anongit=
+.freedesktop.org/gfx-ci/linux<br />
+  piglit_4509: fdc5a4ca11124ab8413c7988896eec4c97336694 @ git://anongit.fre=
+edesktop.org/piglit</p>
+
+</body>
+</html>
+
+--===============7590762647683019288==--
+
+--===============1886822932==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============1886822932==--
