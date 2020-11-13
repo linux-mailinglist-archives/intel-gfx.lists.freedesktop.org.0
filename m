@@ -1,61 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2B44C2B1376
-	for <lists+intel-gfx@lfdr.de>; Fri, 13 Nov 2020 01:47:30 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id AD0D32B137A
+	for <lists+intel-gfx@lfdr.de>; Fri, 13 Nov 2020 01:48:52 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6B09E6E303;
-	Fri, 13 Nov 2020 00:47:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1F2C56E2D7;
+	Fri, 13 Nov 2020 00:48:51 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7CCBD6E284;
- Fri, 13 Nov 2020 00:47:21 +0000 (UTC)
-IronPort-SDR: nKbWImffx14UCZEsZMDaZS1HqzXhHcKrXLkML2lx3UuOYL87Drx2ldyUCVWS70jIqtuDNRo5sF
- 9lhrsQOPC8KQ==
-X-IronPort-AV: E=McAfee;i="6000,8403,9803"; a="170575188"
-X-IronPort-AV: E=Sophos;i="5.77,473,1596524400"; d="scan'208";a="170575188"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Nov 2020 16:47:20 -0800
-IronPort-SDR: kX2LEku8J9jEs/UQob+SMs5I56aQTLBpHtbQO6u7n4XI/ywqfJQl+wSx648VGFH2ia4/tEJtXp
- FLOasoDnU/gQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.77,473,1596524400"; d="scan'208";a="355385711"
-Received: from fmsmsx604.amr.corp.intel.com ([10.18.126.84])
- by orsmga008.jf.intel.com with ESMTP; 12 Nov 2020 16:47:20 -0800
-Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
- fmsmsx604.amr.corp.intel.com (10.18.126.84) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1713.5; Thu, 12 Nov 2020 16:47:19 -0800
-Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
- fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1713.5; Thu, 12 Nov 2020 16:47:19 -0800
-Received: from fmsmsx610.amr.corp.intel.com ([10.18.126.90]) by
- fmsmsx610.amr.corp.intel.com ([10.18.126.90]) with mapi id 15.01.1713.004;
- Thu, 12 Nov 2020 16:47:18 -0800
-From: "Vivi, Rodrigo" <rodrigo.vivi@intel.com>
-To: Dave Airlie <airlied@gmail.com>
-Thread-Topic: [PULL] drm-intel-fixes
-Thread-Index: AQHWuUix0fAXKxh7cESlsTPr58ws0KnFvIwAgAAEDoA=
-Date: Fri, 13 Nov 2020 00:47:18 +0000
-Message-ID: <EE02662F-2EFA-43FD-B829-BCD95DA1588D@intel.com>
-References: <20201112230924.GA1283868@intel.com>
- <CAPM=9twOzjdgcQxXR3K6f_aYcasnB-DyQ=3qZey=v3VeqGjjsg@mail.gmail.com>
-In-Reply-To: <CAPM=9twOzjdgcQxXR3K6f_aYcasnB-DyQ=3qZey=v3VeqGjjsg@mail.gmail.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-mailer: Apple Mail (2.3608.120.23.2.4)
-x-originating-ip: [10.22.254.132]
-Content-ID: <F47CF53A48BA344095C1486074668350@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 1184B6E2D1;
+ Fri, 13 Nov 2020 00:48:50 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 0A1F6A008A;
+ Fri, 13 Nov 2020 00:48:50 +0000 (UTC)
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PULL] drm-intel-fixes
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Xiongfeng Wang" <wangxiongfeng2@huawei.com>
+Date: Fri, 13 Nov 2020 00:48:50 -0000
+Message-ID: <160522853003.20635.15500830175849802873@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <1605187352-51761-1-git-send-email-wangxiongfeng2@huawei.com>
+In-Reply-To: <1605187352-51761-1-git-send-email-wangxiongfeng2@huawei.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/gvt=3A_return_error_when_failing_to_take_the_module_refer?=
+ =?utf-8?q?ence?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,110 +39,223 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "DRM maintainer tools announcements, discussion,
- and development" <dim-tools@lists.freedesktop.org>,
- Daniel Vetter <daniel.vetter@ffwll.ch>,
- dri-devel <dri-devel@lists.freedesktop.org>,
- Maxime Ripard <mripard@kernel.org>, Intel
- Graphics Development <intel-gfx@lists.freedesktop.org>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============1700137458=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+--===============1700137458==
+Content-Type: multipart/alternative;
+ boundary="===============2929294610242988582=="
+
+--===============2929294610242988582==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+== Series Details ==
+
+Series: drm/i915/gvt: return error when failing to take the module reference
+URL   : https://patchwork.freedesktop.org/series/83782/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_9318 -> Patchwork_18896
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18896/index.html
+
+New tests
+---------
+
+  New tests have been introduced between CI_DRM_9318 and Patchwork_18896:
+
+### New CI tests (1) ###
+
+  * boot:
+    - Statuses : 40 pass(s)
+    - Exec time: [0.0] s
+
+  
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_18896 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_pm_rpm@basic-pci-d3-state:
+    - fi-bsw-kefka:       [PASS][1] -> [DMESG-WARN][2] ([i915#1982])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9318/fi-bsw-kefka/igt@i915_pm_rpm@basic-pci-d3-state.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18896/fi-bsw-kefka/igt@i915_pm_rpm@basic-pci-d3-state.html
+
+  
+#### Possible fixes ####
+
+  * igt@debugfs_test@read_all_entries:
+    - {fi-kbl-7560u}:     [INCOMPLETE][3] ([i915#2417]) -> [PASS][4]
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9318/fi-kbl-7560u/igt@debugfs_test@read_all_entries.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18896/fi-kbl-7560u/igt@debugfs_test@read_all_entries.html
+
+  * igt@kms_busy@basic@flip:
+    - fi-kbl-soraka:      [DMESG-WARN][5] ([i915#1982]) -> [PASS][6]
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9318/fi-kbl-soraka/igt@kms_busy@basic@flip.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18896/fi-kbl-soraka/igt@kms_busy@basic@flip.html
+
+  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:
+    - fi-icl-u2:          [DMESG-WARN][7] ([i915#1982]) -> [PASS][8]
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9318/fi-icl-u2/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18896/fi-icl-u2/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
+  [i915#2417]: https://gitlab.freedesktop.org/drm/intel/issues/2417
 
 
-> On Nov 12, 2020, at 4:32 PM, Dave Airlie <airlied@gmail.com> wrote:
-> 
-> On Fri, 13 Nov 2020 at 09:08, Rodrigo Vivi <rodrigo.vivi@intel.com> wrote:
->> 
->> Hi Dave and Daniel,
->> 
->> This is the same set as last week + couple new fixes targeting stable.
->> 
-> 
-> But I merged last weeks set and it's in rc3, maybe you can generate
-> the pull request relative to origin/master or drm/drm-fixes because
-> I'm not sure which bits to edit out here.
+Participating hosts (46 -> 40)
+------------------------------
 
-oh, of course... bad rebase on my part. Sorry...
-Please ignore this one. I'm going to generate another one soon.
+  Missing    (6): fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-tgl-y fi-bdw-samus 
 
-> 
-> Dave.
-> 
->> Thanks,
->> Rodrigo.
->> 
->> drm-intel-fixes-2020-11-12-1:
->> - GVT fixes including vGPU suspend/resume fixes and workaround for APL guest GPU hang.
->> - Fix set domain's cache coherency (Chris)
->> - Fixes around breadcrumbs (Chris)
->> - Fix encoder lookup during PSR atomic (Imre)
->> - Hold onto an explicit ref to i915_vma_work.pinned (Chris)
->> - Pull phys pread/pwrite implementations to the backend (Chris)
->> - Correctly set SFC capability for video engines
->> The following changes since commit 3cea11cd5e3b00d91caf0b4730194039b45c5891:
->> 
->>  Linux 5.10-rc2 (2020-11-01 14:43:51 -0800)
->> 
->> are available in the Git repository at:
->> 
->>  git://anongit.freedesktop.org/drm/drm-intel tags/drm-intel-fixes-2020-11-12-1
->> 
->> for you to fetch changes up to a4264790f4c2f0062d27d8173344c914bc7884e0:
->> 
->>  drm/i915: Correctly set SFC capability for video engines (2020-11-12 16:41:54 -0500)
->> 
->> ----------------------------------------------------------------
->> - GVT fixes including vGPU suspend/resume fixes and workaround for APL guest GPU hang.
->> - Fix set domain's cache coherency (Chris)
->> - Fixes around breadcrumbs (Chris)
->> - Fix encoder lookup during PSR atomic (Imre)
->> - Hold onto an explicit ref to i915_vma_work.pinned (Chris)
->> - Pull phys pread/pwrite implementations to the backend (Chris)
->> - Correctly set SFC capability for video engines
->> 
->> ----------------------------------------------------------------
->> Chris Wilson (6):
->>      drm/i915/gem: Flush coherency domains on first set-domain-ioctl
->>      drm/i915/gt: Use the local HWSP offset during submission
->>      drm/i915/gt: Expose more parameters for emitting writes into the ring
->>      drm/i915/gt: Flush xcs before tgl breadcrumbs
->>      drm/i915: Hold onto an explicit ref to i915_vma_work.pinned
->>      drm/i915/gem: Pull phys pread/pwrite implementations to the backend
->> 
->> Colin Xu (4):
->>      drm/i915/gvt: Allow zero out HWSP addr on hws_pga_write
->>      drm/i915/gvt: Set SNOOP for PAT3 on BXT/APL to workaround GPU BB hang
->>      drm/i915/gvt: Only pin/unpin intel_context along with workload
->>      drm/i915/gvt: Fix mmio handler break on BXT/APL.
->> 
->> Imre Deak (1):
->>      drm/i915: Fix encoder lookup during PSR atomic check
->> 
->> Matthew Auld (1):
->>      drm/i915/gem: Allow backends to override pread implementation
->> 
->> Venkata Sandeep Dhanalakota (1):
->>      drm/i915: Correctly set SFC capability for video engines
->> 
->> drivers/gpu/drm/i915/display/intel_psr.c         |  2 +-
->> drivers/gpu/drm/i915/gem/i915_gem_domain.c       | 28 ++++++------
->> drivers/gpu/drm/i915/gem/i915_gem_object_types.h |  2 +
->> drivers/gpu/drm/i915/gem/i915_gem_phys.c         | 55 ++++++++++++++++++++++++
->> drivers/gpu/drm/i915/gt/intel_engine.h           | 55 +++++++++++++++---------
->> drivers/gpu/drm/i915/gt/intel_engine_cs.c        |  3 +-
->> drivers/gpu/drm/i915/gt/intel_lrc.c              | 31 +++++++++----
->> drivers/gpu/drm/i915/gt/intel_timeline.c         | 18 ++++----
->> drivers/gpu/drm/i915/gt/intel_timeline_types.h   |  2 +
->> drivers/gpu/drm/i915/gvt/handlers.c              | 47 ++++++++++++++++++--
->> drivers/gpu/drm/i915/gvt/scheduler.c             | 15 ++++---
->> drivers/gpu/drm/i915/i915_gem.c                  | 32 +++-----------
->> drivers/gpu/drm/i915/i915_vma.c                  |  6 ++-
->> 13 files changed, 204 insertions(+), 92 deletions(-)
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_9318 -> Patchwork_18896
+
+  CI-20190529: 20190529
+  CI_DRM_9318: f5a3bbb80f537996ecfaacb3593c0f2a290efe53 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5848: 1e2525da258aab5e0e3a7705ea8e89b521d5bf88 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_18896: 8e16f3968408fc5960374211f603d3c0af9f30f7 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+8e16f3968408 drm/i915/gvt: return error when failing to take the module reference
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18896/index.html
+
+--===============2929294610242988582==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/gvt: return error when failing to take the module reference</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/83782/">https://patchwork.freedesktop.org/series/83782/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18896/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18896/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_9318 -&gt; Patchwork_18896</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18896/index.html</p>
+<h2>New tests</h2>
+<p>New tests have been introduced between CI_DRM_9318 and Patchwork_18896:</p>
+<h3>New CI tests (1)</h3>
+<ul>
+<li>boot:<ul>
+<li>Statuses : 40 pass(s)</li>
+<li>Exec time: [0.0] s</li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_18896 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@i915_pm_rpm@basic-pci-d3-state:<ul>
+<li>fi-bsw-kefka:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9318/fi-bsw-kefka/igt@i915_pm_rpm@basic-pci-d3-state.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18896/fi-bsw-kefka/igt@i915_pm_rpm@basic-pci-d3-state.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@debugfs_test@read_all_entries:</p>
+<ul>
+<li>{fi-kbl-7560u}:     <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9318/fi-kbl-7560u/igt@debugfs_test@read_all_entries.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2417">i915#2417</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18896/fi-kbl-7560u/igt@debugfs_test@read_all_entries.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_busy@basic@flip:</p>
+<ul>
+<li>fi-kbl-soraka:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9318/fi-kbl-soraka/igt@kms_busy@basic@flip.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18896/fi-kbl-soraka/igt@kms_busy@basic@flip.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:</p>
+<ul>
+<li>fi-icl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9318/fi-icl-u2/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18896/fi-icl-u2/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Participating hosts (46 -&gt; 40)</h2>
+<p>Missing    (6): fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-tgl-y fi-bdw-samus </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_9318 -&gt; Patchwork_18896</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_9318: f5a3bbb80f537996ecfaacb3593c0f2a290efe53 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_5848: 1e2525da258aab5e0e3a7705ea8e89b521d5bf88 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
+  Patchwork_18896: 8e16f3968408fc5960374211f603d3c0af9f30f7 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>8e16f3968408 drm/i915/gvt: return error when failing to take the module reference</p>
+
+</body>
+</html>
+
+--===============2929294610242988582==--
+
+--===============1700137458==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============1700137458==--
