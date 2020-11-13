@@ -2,54 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 101CE2B179D
-	for <lists+intel-gfx@lfdr.de>; Fri, 13 Nov 2020 09:56:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 89B692B17A2
+	for <lists+intel-gfx@lfdr.de>; Fri, 13 Nov 2020 09:58:49 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D57176E405;
-	Fri, 13 Nov 2020 08:56:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 49CAB6E446;
+	Fri, 13 Nov 2020 08:58:47 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8055E6E3DF
- for <intel-gfx@lists.freedesktop.org>; Fri, 13 Nov 2020 08:56:51 +0000 (UTC)
-IronPort-SDR: xhq7w8VsAID4/twOP31/NNdgmstl/+CMP+vTAgke2AzpEo2SGPw4MdJKbTK2Bn6jmFMUSUEjsa
- qDVtKzLb7WkA==
-X-IronPort-AV: E=McAfee;i="6000,8403,9803"; a="170614853"
-X-IronPort-AV: E=Sophos;i="5.77,475,1596524400"; d="scan'208";a="170614853"
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 673456E446
+ for <intel-gfx@lists.freedesktop.org>; Fri, 13 Nov 2020 08:58:45 +0000 (UTC)
+IronPort-SDR: W0HosjWYtefwcFydgePjQSI1XNZyVgBzs7J+1izQYAIGdI9s2DJbPCdpJIw2xhnmi8OTHxf60X
+ GZP2H7X79B8w==
+X-IronPort-AV: E=McAfee;i="6000,8403,9803"; a="167865941"
+X-IronPort-AV: E=Sophos;i="5.77,475,1596524400"; d="scan'208";a="167865941"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Nov 2020 00:56:48 -0800
-IronPort-SDR: kb/JS8h0yhS9olFXT3U3aC1ED4hY54HEpJX2d6hCMSIEQ89fRZ/xpYeOjuiLU63Nn5VH+ct/Oi
- u7pxgfaqoCWw==
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Nov 2020 00:58:43 -0800
+IronPort-SDR: 0Z0DnjpIZZWMA0c0i4gW9iNQXVYlsIlrKOvB2ucG3MYGmtOow9z92bER7LHlO4x0TPrr3wb6sK
+ 68Sf78gh9h6A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.77,475,1596524400"; d="scan'208";a="366878953"
-Received: from orsmsx604.amr.corp.intel.com ([10.22.229.17])
- by orsmga007.jf.intel.com with ESMTP; 13 Nov 2020 00:56:47 -0800
-Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
- ORSMSX604.amr.corp.intel.com (10.22.229.17) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="5.77,475,1596524400"; d="scan'208";a="530987097"
+Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
+ by fmsmga006.fm.intel.com with ESMTP; 13 Nov 2020 00:58:42 -0800
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1713.5; Fri, 13 Nov 2020 00:56:47 -0800
+ 15.1.1713.5; Fri, 13 Nov 2020 00:58:41 -0800
 Received: from bgsmsx606.gar.corp.intel.com (10.67.234.8) by
- ORSMSX611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ ORSMSX610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1713.5; Fri, 13 Nov 2020 00:56:45 -0800
+ 15.1.1713.5; Fri, 13 Nov 2020 00:58:40 -0800
 Received: from bgsmsx606.gar.corp.intel.com ([10.67.234.8]) by
  BGSMSX606.gar.corp.intel.com ([10.67.234.8]) with mapi id 15.01.1713.004;
- Fri, 13 Nov 2020 14:26:43 +0530
+ Fri, 13 Nov 2020 14:28:37 +0530
 From: "Manna, Animesh" <animesh.manna@intel.com>
 To: "Navare, Manasi D" <manasi.d.navare@intel.com>, Ville Syrjala
  <ville.syrjala@linux.intel.com>
-Thread-Topic: [Intel-gfx] [PATCH 1/6] drm/i915: Move encoder->get_config to a
- new function
-Thread-Index: AQHWuSiB1XZEs8OUqkS+VJSyFqwlZqnEijGAgAE4o9A=
-Date: Fri, 13 Nov 2020 08:56:43 +0000
-Message-ID: <32ece20a2d6245209ab496e77eba70a8@intel.com>
+Thread-Topic: [Intel-gfx] [PATCH 2/6] drm/i915: Add a wrapper function around
+ get_pipe_config
+Thread-Index: AQHWuSh/ZvtTk96vREiVZAbnyrROJKnEioSAgAE5S8A=
+Date: Fri, 13 Nov 2020 08:58:37 +0000
+Message-ID: <be2cdf89ba83453592140abda44f7c4b@intel.com>
 References: <20201112191718.16683-1-ville.syrjala@linux.intel.com>
- <20201112191718.16683-2-ville.syrjala@linux.intel.com>
- <20201112194521.GA15399@labuser-Z97X-UD5H>
-In-Reply-To: <20201112194521.GA15399@labuser-Z97X-UD5H>
+ <20201112191718.16683-3-ville.syrjala@linux.intel.com>
+ <20201112194631.GB15399@labuser-Z97X-UD5H>
+In-Reply-To: <20201112194631.GB15399@labuser-Z97X-UD5H>
 Accept-Language: en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
@@ -59,8 +59,8 @@ dlp-product: dlpe-windows
 dlp-reaction: no-action
 x-originating-ip: [10.223.10.1]
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH 1/6] drm/i915: Move encoder->get_config to a
- new function
+Subject: Re: [Intel-gfx] [PATCH 2/6] drm/i915: Add a wrapper function around
+ get_pipe_config
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -85,90 +85,85 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 > From: Intel-gfx <intel-gfx-bounces@lists.freedesktop.org> On Behalf Of Na=
 vare,
 > Manasi
-> Sent: Friday, November 13, 2020 1:15 AM
+> Sent: Friday, November 13, 2020 1:17 AM
 > To: Ville Syrjala <ville.syrjala@linux.intel.com>
 > Cc: intel-gfx@lists.freedesktop.org
-> Subject: Re: [Intel-gfx] [PATCH 1/6] drm/i915: Move encoder->get_config t=
-o a
-> new function
+> Subject: Re: [Intel-gfx] [PATCH 2/6] drm/i915: Add a wrapper function aro=
+und
+> get_pipe_config
 > =
 
-> On Thu, Nov 12, 2020 at 09:17:13PM +0200, Ville Syrjala wrote:
+> On Thu, Nov 12, 2020 at 09:17:14PM +0200, Ville Syrjala wrote:
 > > From: Manasi Navare <manasi.d.navare@intel.com>
 > >
-> > No functional changes, create a separate intel_encoder_get_config()
-> > function that calls encoder->get_config hook.
-> > This is needed so that later we can add beigjoienr related readout
-> > here.
-> =
-
-> bigjoiner misspelled
-> =
-
-> Other than that
+> > Create a new function intel_crtc_get_pipe_config() that calls platform
+> > specific hooks for get_pipe_config() No functional change here.
+> >
+> > Suggested-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> > Signed-off-by: Manasi Navare <manasi.d.navare@intel.com>
+> > [vsyrjala: Conform to modern i915 coding style, fix patch subject]
+> > Signed-off-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
 > =
 
 > Reviewed-by: Manasi Navare <manasi.d.navare@intel.com>
 
-
 Reviewed-by: Animesh Manna <animesh.manna@intel.com>
-
 > =
 
-> Manasi
-> >
-> > Signed-off-by: Manasi Navare <manasi.d.navare@intel.com>
-> > [vsyrjala: Move the code around for the future]
-> > Signed-off-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
 > > ---
-> >  drivers/gpu/drm/i915/display/intel_display.c | 12 +++++++++---
-> >  1 file changed, 9 insertions(+), 3 deletions(-)
+> >  drivers/gpu/drm/i915/display/intel_display.c | 15 +++++++++++----
+> >  1 file changed, 11 insertions(+), 4 deletions(-)
 > >
 > > diff --git a/drivers/gpu/drm/i915/display/intel_display.c
 > > b/drivers/gpu/drm/i915/display/intel_display.c
-> > index 9566a8d1f470..110d08f2a5c5 100644
+> > index 110d08f2a5c5..a8287414937c 100644
 > > --- a/drivers/gpu/drm/i915/display/intel_display.c
 > > +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> > @@ -8141,6 +8141,12 @@ static void intel_crtc_compute_pixel_rate(struct
-> intel_crtc_state *crtc_state)
-> >  			ilk_pipe_pixel_rate(crtc_state);
+> > @@ -11407,6 +11407,14 @@ static bool hsw_get_pipe_config(struct
+> intel_crtc *crtc,
+> >  	return active;
 > >  }
 > >
-> > +static void intel_encoder_get_config(struct intel_encoder *encoder,
-> > +				     struct intel_crtc_state *crtc_state) {
-> > +	encoder->get_config(encoder, crtc_state); }
+> > +static bool intel_crtc_get_pipe_config(struct intel_crtc_state
+> > +*crtc_state) {
+> > +	struct intel_crtc *crtc =3D to_intel_crtc(crtc_state->uapi.crtc);
+> > +	struct drm_i915_private *i915 =3D to_i915(crtc->base.dev);
 > > +
-> >  static int intel_crtc_compute_config(struct intel_crtc *crtc,
-> >  				     struct intel_crtc_state *pipe_config)  { @@ -
-> 12403,7
-> > +12409,7 @@ intel_encoder_current_mode(struct intel_encoder *encoder)
+> > +	return i915->display.get_pipe_config(crtc, crtc_state); }
+> > +
+> >  static u32 intel_cursor_base(const struct intel_plane_state
+> > *plane_state)  {
+> >  	struct drm_i915_private *dev_priv =3D
+> > @@ -12403,7 +12411,7 @@ intel_encoder_current_mode(struct
+> intel_encoder *encoder)
 > >  		return NULL;
 > >  	}
 > >
-> > -	encoder->get_config(encoder, crtc_state);
-> > +	intel_encoder_get_config(encoder, crtc_state);
+> > -	if (!dev_priv->display.get_pipe_config(crtc, crtc_state)) {
+> > +	if (!intel_crtc_get_pipe_config(crtc_state)) {
+> >  		kfree(crtc_state);
+> >  		kfree(mode);
+> >  		return NULL;
+> > @@ -14422,8 +14430,7 @@ verify_crtc_state(struct intel_crtc *crtc,
 > >
-> >  	intel_mode_from_pipe_config(mode, crtc_state);
+> >  	pipe_config->hw.enable =3D new_crtc_state->hw.enable;
 > >
-> > @@ -14448,7 +14454,7 @@ verify_crtc_state(struct intel_crtc *crtc,
-> >  				pipe_name(pipe));
+> > -	pipe_config->hw.active =3D
+> > -		dev_priv->display.get_pipe_config(crtc, pipe_config);
+> > +	pipe_config->hw.active =3D intel_crtc_get_pipe_config(pipe_config);
 > >
-> >  		if (active)
-> > -			encoder->get_config(encoder, pipe_config);
-> > +			intel_encoder_get_config(encoder, pipe_config);
-> >  	}
+> >  	/* we keep both pipes enabled on 830 */
+> >  	if (IS_I830(dev_priv) && pipe_config->hw.active) @@ -18736,7
+> > +18743,7 @@ static void intel_modeset_readout_hw_state(struct drm_device
+> *dev)
+> >  		intel_crtc_state_reset(crtc_state, crtc);
 > >
-> >  	intel_crtc_compute_pixel_rate(pipe_config);
-> > @@ -18761,7 +18767,7 @@ static void
-> intel_modeset_readout_hw_state(struct drm_device *dev)
-> >  			crtc_state =3D to_intel_crtc_state(crtc->base.state);
+> >  		crtc_state->hw.active =3D crtc_state->hw.enable =3D
+> > -			dev_priv->display.get_pipe_config(crtc, crtc_state);
+> > +			intel_crtc_get_pipe_config(crtc_state);
 > >
-> >  			encoder->base.crtc =3D &crtc->base;
-> > -			encoder->get_config(encoder, crtc_state);
-> > +			intel_encoder_get_config(encoder, crtc_state);
-> >  			if (encoder->sync_state)
-> >  				encoder->sync_state(encoder, crtc_state);
-> >  		} else {
+> >  		crtc->base.enabled =3D crtc_state->hw.enable;
+> >  		crtc->active =3D crtc_state->hw.active;
 > > --
 > > 2.26.2
 > >
