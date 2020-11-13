@@ -1,44 +1,44 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B35982B27BC
-	for <lists+intel-gfx@lfdr.de>; Fri, 13 Nov 2020 23:04:39 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7E9992B27BD
+	for <lists+intel-gfx@lfdr.de>; Fri, 13 Nov 2020 23:04:43 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 164016E865;
-	Fri, 13 Nov 2020 22:04:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BEA6D6E867;
+	Fri, 13 Nov 2020 22:04:41 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1FFCF6E865
- for <intel-gfx@lists.freedesktop.org>; Fri, 13 Nov 2020 22:04:37 +0000 (UTC)
-IronPort-SDR: 3HGNYMJNy/IuMmFCWDJBioLyIGbHsv2X1ICHBuLGHQBSrQt8CWdWM5eiv0L3W1uiLCLx2mrxmy
- 7LndZ4WBwgPA==
-X-IronPort-AV: E=McAfee;i="6000,8403,9804"; a="157559160"
-X-IronPort-AV: E=Sophos;i="5.77,476,1596524400"; d="scan'208";a="157559160"
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 16C006E868
+ for <intel-gfx@lists.freedesktop.org>; Fri, 13 Nov 2020 22:04:41 +0000 (UTC)
+IronPort-SDR: uNh11Ukth6+vDasNr8eeErYSJYGUlOPJwQT/4gI0bvLh/PRz70/rgD2ZkWwLarN+2stE2D+l7C
+ k0qk6VZXTq6Q==
+X-IronPort-AV: E=McAfee;i="6000,8403,9804"; a="234696387"
+X-IronPort-AV: E=Sophos;i="5.77,476,1596524400"; d="scan'208";a="234696387"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Nov 2020 14:04:36 -0800
-IronPort-SDR: F3VncpWu43eouf2I+Lu1prLMraskzy12Ia9Mowml5hcFk4cgOMrVmw8dlMcD1QYtOrz69gIEED
- dhGZVpviGzOw==
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Nov 2020 14:04:40 -0800
+IronPort-SDR: DWAnju1qwixlyanpXx1sZtuFTiEx8rpIeB3WJey4TOrxXOqdJqR8Pua+qE7omu4/ZcmrClf0qw
+ kd8z9RUq1xPQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.77,476,1596524400"; d="scan'208";a="309297046"
+X-IronPort-AV: E=Sophos;i="5.77,476,1596524400"; d="scan'208";a="329011645"
 Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by fmsmga008.fm.intel.com with SMTP; 13 Nov 2020 14:04:34 -0800
+ by orsmga006.jf.intel.com with SMTP; 13 Nov 2020 14:04:37 -0800
 Received: by stinkbox (sSMTP sendmail emulation);
- Sat, 14 Nov 2020 00:04:33 +0200
+ Sat, 14 Nov 2020 00:04:36 +0200
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Sat, 14 Nov 2020 00:03:47 +0200
-Message-Id: <20201113220358.24794-13-ville.syrjala@linux.intel.com>
+Date: Sat, 14 Nov 2020 00:03:48 +0200
+Message-Id: <20201113220358.24794-14-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.26.2
 In-Reply-To: <20201113220358.24794-1-ville.syrjala@linux.intel.com>
 References: <20201113220358.24794-1-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 12/23] drm/i915/dp: Modify VDSC helpers to
- configure DSC for Bigjoiner slave
+Subject: [Intel-gfx] [PATCH 13/23] drm/i915/dp: Master/Slave enable/disable
+ sequence for bigjoiner
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,394 +51,186 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Manasi Navare <manasi.d.navare@intel.com>
-
-Make vdsc work when no output is enabled. The big joiner needs VDSC
-on the slave, so enable it and set the appropriate bits.
-So remove encoder usage from dsc functions.
-
-Signed-off-by: Manasi Navare <manasi.d.navare@intel.com>
----
- drivers/gpu/drm/i915/display/icl_dsi.c       |   2 +-
- drivers/gpu/drm/i915/display/intel_ddi.c     |   9 +-
- drivers/gpu/drm/i915/display/intel_display.c |   3 +
- drivers/gpu/drm/i915/display/intel_dp.c      |   6 +-
- drivers/gpu/drm/i915/display/intel_vdsc.c    | 197 ++++++++++---------
- drivers/gpu/drm/i915/display/intel_vdsc.h    |   6 +-
- 6 files changed, 108 insertions(+), 115 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/display/icl_dsi.c b/drivers/gpu/drm/i915/display/icl_dsi.c
-index 096652921453..0fecf372be11 100644
---- a/drivers/gpu/drm/i915/display/icl_dsi.c
-+++ b/drivers/gpu/drm/i915/display/icl_dsi.c
-@@ -1492,7 +1492,7 @@ static void gen11_dsi_get_config(struct intel_encoder *encoder,
- 	struct intel_crtc *crtc = to_intel_crtc(pipe_config->uapi.crtc);
- 	struct intel_dsi *intel_dsi = enc_to_intel_dsi(encoder);
- 
--	intel_dsc_get_config(encoder, pipe_config);
-+	intel_dsc_get_config(pipe_config);
- 
- 	/* FIXME: adapt icl_ddi_clock_get() for DSI and use that? */
- 	pipe_config->port_clock = intel_dpll_get_freq(i915,
-diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
-index d4b1b73c7aab..439b92710fe6 100644
---- a/drivers/gpu/drm/i915/display/intel_ddi.c
-+++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-@@ -2295,13 +2295,6 @@ static void intel_ddi_get_power_domains(struct intel_encoder *encoder,
- 	    intel_phy_is_tc(dev_priv, phy))
- 		intel_display_power_get(dev_priv,
- 					intel_ddi_main_link_aux_domain(dig_port));
--
--	/*
--	 * VDSC power is needed when DSC is enabled
--	 */
--	if (crtc_state->dsc.compression_enable)
--		intel_display_power_get(dev_priv,
--					intel_dsc_power_domain(crtc_state));
- }
- 
- void intel_ddi_enable_pipe_clock(struct intel_encoder *encoder,
-@@ -4576,7 +4569,7 @@ void intel_ddi_get_config(struct intel_encoder *encoder,
- 	if (drm_WARN_ON(&dev_priv->drm, transcoder_is_dsi(cpu_transcoder)))
- 		return;
- 
--	intel_dsc_get_config(encoder, pipe_config);
-+	intel_dsc_get_config(pipe_config);
- 
- 	temp = intel_de_read(dev_priv, TRANS_DDI_FUNC_CTL(cpu_transcoder));
- 	if (temp & TRANS_DDI_PHSYNC)
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index e2baf342a112..aea2ff3ef8c4 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -7508,6 +7508,9 @@ static u64 get_crtc_power_domains(struct intel_crtc_state *crtc_state)
- 	if (crtc_state->shared_dpll)
- 		mask |= BIT_ULL(POWER_DOMAIN_DISPLAY_CORE);
- 
-+	if (crtc_state->dsc.compression_enable)
-+		mask |= BIT_ULL(intel_dsc_power_domain(crtc_state));
-+
- 	return mask;
- }
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index 9430caf053cd..857f39779654 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -2103,12 +2103,10 @@ static bool intel_dp_supports_fec(struct intel_dp *intel_dp,
- static bool intel_dp_supports_dsc(struct intel_dp *intel_dp,
- 				  const struct intel_crtc_state *crtc_state)
- {
--	struct intel_encoder *encoder = &dp_to_dig_port(intel_dp)->base;
--
--	if (!intel_dp_is_edp(intel_dp) && !crtc_state->fec_enable)
-+	if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_DP) && !crtc_state->fec_enable)
- 		return false;
- 
--	return intel_dsc_source_support(encoder, crtc_state) &&
-+	return intel_dsc_source_support(crtc_state) &&
- 		drm_dp_sink_supports_dsc(intel_dp->dsc_dpcd);
- }
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_vdsc.c b/drivers/gpu/drm/i915/display/intel_vdsc.c
-index c5735c365659..e2716a67b281 100644
---- a/drivers/gpu/drm/i915/display/intel_vdsc.c
-+++ b/drivers/gpu/drm/i915/display/intel_vdsc.c
-@@ -332,11 +332,10 @@ static const struct rc_parameters *get_rc_params(u16 compressed_bpp,
- 	return &rc_parameters[row_index][column_index];
- }
- 
--bool intel_dsc_source_support(struct intel_encoder *encoder,
--			      const struct intel_crtc_state *crtc_state)
-+bool intel_dsc_source_support(const struct intel_crtc_state *crtc_state)
- {
- 	const struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
--	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
-+	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
- 	enum transcoder cpu_transcoder = crtc_state->cpu_transcoder;
- 	enum pipe pipe = crtc->pipe;
- 
-@@ -490,11 +489,10 @@ intel_dsc_power_domain(const struct intel_crtc_state *crtc_state)
- 		return POWER_DOMAIN_TRANSCODER_VDSC_PW2;
- }
- 
--static void intel_dsc_pps_configure(struct intel_encoder *encoder,
--				    const struct intel_crtc_state *crtc_state)
-+static void intel_dsc_pps_configure(const struct intel_crtc_state *crtc_state)
- {
- 	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
--	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
-+	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
- 	const struct drm_dsc_config *vdsc_cfg = &crtc_state->dsc.config;
- 	enum pipe pipe = crtc->pipe;
- 	u32 pps_val = 0;
-@@ -503,6 +501,9 @@ static void intel_dsc_pps_configure(struct intel_encoder *encoder,
- 	u8 num_vdsc_instances = (crtc_state->dsc.dsc_split) ? 2 : 1;
- 	int i = 0;
- 
-+	if (crtc_state->bigjoiner)
-+		num_vdsc_instances *= 2;
-+
- 	/* Populate PICTURE_PARAMETER_SET_0 registers */
- 	pps_val = DSC_VER_MAJ | vdsc_cfg->dsc_version_minor <<
- 		DSC_VER_MIN_SHIFT |
-@@ -973,55 +974,6 @@ static void intel_dsc_pps_configure(struct intel_encoder *encoder,
- 	}
- }
- 
--void intel_dsc_get_config(struct intel_encoder *encoder,
--			  struct intel_crtc_state *crtc_state)
--{
--	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
--	struct drm_dsc_config *vdsc_cfg = &crtc_state->dsc.config;
--	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
--	enum pipe pipe = crtc->pipe;
--	enum intel_display_power_domain power_domain;
--	intel_wakeref_t wakeref;
--	u32 dss_ctl1, dss_ctl2, val;
--
--	if (!intel_dsc_source_support(encoder, crtc_state))
--		return;
--
--	power_domain = intel_dsc_power_domain(crtc_state);
--
--	wakeref = intel_display_power_get_if_enabled(dev_priv, power_domain);
--	if (!wakeref)
--		return;
--
--	if (!is_pipe_dsc(crtc_state)) {
--		dss_ctl1 = intel_de_read(dev_priv, DSS_CTL1);
--		dss_ctl2 = intel_de_read(dev_priv, DSS_CTL2);
--	} else {
--		dss_ctl1 = intel_de_read(dev_priv, ICL_PIPE_DSS_CTL1(pipe));
--		dss_ctl2 = intel_de_read(dev_priv, ICL_PIPE_DSS_CTL2(pipe));
--	}
--
--	crtc_state->dsc.compression_enable = dss_ctl2 & LEFT_BRANCH_VDSC_ENABLE;
--	if (!crtc_state->dsc.compression_enable)
--		goto out;
--
--	crtc_state->dsc.dsc_split = (dss_ctl2 & RIGHT_BRANCH_VDSC_ENABLE) &&
--		(dss_ctl1 & JOINER_ENABLE);
--
--	/* FIXME: add more state readout as needed */
--
--	/* PPS1 */
--	if (!is_pipe_dsc(crtc_state))
--		val = intel_de_read(dev_priv, DSCA_PICTURE_PARAMETER_SET_1);
--	else
--		val = intel_de_read(dev_priv,
--				    ICL_DSC0_PICTURE_PARAMETER_SET_1(pipe));
--	vdsc_cfg->bits_per_pixel = val;
--	crtc_state->dsc.compressed_bpp = vdsc_cfg->bits_per_pixel >> 4;
--out:
--	intel_display_power_put(dev_priv, power_domain, wakeref);
--}
--
- static void intel_dsc_dsi_pps_write(struct intel_encoder *encoder,
- 				    const struct intel_crtc_state *crtc_state)
- {
-@@ -1060,77 +1012,126 @@ static void intel_dsc_dp_pps_write(struct intel_encoder *encoder,
- 				  sizeof(dp_dsc_pps_sdp));
- }
- 
-+static i915_reg_t dss_ctl1_reg(const struct intel_crtc_state *crtc_state)
-+{
-+	enum pipe pipe = to_intel_crtc(crtc_state->uapi.crtc)->pipe;
-+
-+	if (crtc_state->cpu_transcoder == TRANSCODER_EDP)
-+		return DSS_CTL1;
-+
-+	return ICL_PIPE_DSS_CTL1(pipe);
-+}
-+
-+static i915_reg_t dss_ctl2_reg(const struct intel_crtc_state *crtc_state)
-+{
-+	enum pipe pipe = to_intel_crtc(crtc_state->uapi.crtc)->pipe;
-+
-+	if (crtc_state->cpu_transcoder == TRANSCODER_EDP)
-+		return DSS_CTL2;
-+
-+	return ICL_PIPE_DSS_CTL2(pipe);
-+}
-+
- void intel_dsc_enable(struct intel_encoder *encoder,
- 		      const struct intel_crtc_state *crtc_state)
- {
- 	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
--	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
--	enum pipe pipe = crtc->pipe;
--	i915_reg_t dss_ctl1_reg, dss_ctl2_reg;
-+	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
- 	u32 dss_ctl1_val = 0;
- 	u32 dss_ctl2_val = 0;
- 
- 	if (!crtc_state->dsc.compression_enable)
- 		return;
- 
--	/* Enable Power wells for VDSC/joining */
--	intel_display_power_get(dev_priv,
--				intel_dsc_power_domain(crtc_state));
-+	intel_dsc_pps_configure(crtc_state);
- 
--	intel_dsc_pps_configure(encoder, crtc_state);
--
--	if (encoder->type == INTEL_OUTPUT_DSI)
--		intel_dsc_dsi_pps_write(encoder, crtc_state);
--	else
--		intel_dsc_dp_pps_write(encoder, crtc_state);
--
--	if (!is_pipe_dsc(crtc_state)) {
--		dss_ctl1_reg = DSS_CTL1;
--		dss_ctl2_reg = DSS_CTL2;
--	} else {
--		dss_ctl1_reg = ICL_PIPE_DSS_CTL1(pipe);
--		dss_ctl2_reg = ICL_PIPE_DSS_CTL2(pipe);
-+	if (!crtc_state->bigjoiner_slave) {
-+		if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_DSI))
-+			intel_dsc_dsi_pps_write(encoder, crtc_state);
-+		else
-+			intel_dsc_dp_pps_write(encoder, crtc_state);
- 	}
-+
- 	dss_ctl2_val |= LEFT_BRANCH_VDSC_ENABLE;
- 	if (crtc_state->dsc.dsc_split) {
- 		dss_ctl2_val |= RIGHT_BRANCH_VDSC_ENABLE;
- 		dss_ctl1_val |= JOINER_ENABLE;
- 	}
--	intel_de_write(dev_priv, dss_ctl1_reg, dss_ctl1_val);
--	intel_de_write(dev_priv, dss_ctl2_reg, dss_ctl2_val);
-+	if (crtc_state->bigjoiner) {
-+		dss_ctl1_val |= BIG_JOINER_ENABLE;
-+		if (!crtc_state->bigjoiner_slave)
-+			dss_ctl1_val |= MASTER_BIG_JOINER_ENABLE;
-+	}
-+	intel_de_write(dev_priv, dss_ctl1_reg(crtc_state), dss_ctl1_val);
-+	intel_de_write(dev_priv, dss_ctl2_reg(crtc_state), dss_ctl2_val);
- }
- 
- void intel_dsc_disable(const struct intel_crtc_state *old_crtc_state)
- {
- 	struct intel_crtc *crtc = to_intel_crtc(old_crtc_state->uapi.crtc);
- 	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
--	enum pipe pipe = crtc->pipe;
--	i915_reg_t dss_ctl1_reg, dss_ctl2_reg;
--	u32 dss_ctl1_val = 0, dss_ctl2_val = 0;
- 
- 	if (!old_crtc_state->dsc.compression_enable)
- 		return;
- 
--	if (!is_pipe_dsc(old_crtc_state)) {
--		dss_ctl1_reg = DSS_CTL1;
--		dss_ctl2_reg = DSS_CTL2;
--	} else {
--		dss_ctl1_reg = ICL_PIPE_DSS_CTL1(pipe);
--		dss_ctl2_reg = ICL_PIPE_DSS_CTL2(pipe);
-+	intel_de_write(dev_priv, dss_ctl1_reg(old_crtc_state), 0);
-+	intel_de_write(dev_priv, dss_ctl2_reg(old_crtc_state), 0);
-+}
-+
-+void intel_dsc_get_config(struct intel_crtc_state *crtc_state)
-+{
-+	struct drm_dsc_config *vdsc_cfg = &crtc_state->dsc.config;
-+	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
-+	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
-+	enum pipe pipe = crtc->pipe;
-+	enum intel_display_power_domain power_domain;
-+	intel_wakeref_t wakeref;
-+	u32 dss_ctl1, dss_ctl2, val;
-+
-+	if (!intel_dsc_source_support(crtc_state))
-+		return;
-+
-+	power_domain = intel_dsc_power_domain(crtc_state);
-+
-+	wakeref = intel_display_power_get_if_enabled(dev_priv, power_domain);
-+	if (!wakeref)
-+		return;
-+
-+	dss_ctl1 = intel_de_read(dev_priv, dss_ctl1_reg(crtc_state));
-+	dss_ctl2 = intel_de_read(dev_priv, dss_ctl2_reg(crtc_state));
-+
-+	crtc_state->dsc.compression_enable = dss_ctl2 & LEFT_BRANCH_VDSC_ENABLE;
-+	if (!crtc_state->dsc.compression_enable)
-+		goto out;
-+
-+	crtc_state->dsc.dsc_split = (dss_ctl2 & RIGHT_BRANCH_VDSC_ENABLE) &&
-+		(dss_ctl1 & JOINER_ENABLE);
-+
-+	if (dss_ctl1 & BIG_JOINER_ENABLE) {
-+		crtc_state->bigjoiner = true;
-+
-+		if (!(dss_ctl1 & MASTER_BIG_JOINER_ENABLE)) {
-+			crtc_state->bigjoiner_slave = true;
-+			if (!WARN_ON(crtc->pipe == PIPE_A))
-+				crtc_state->bigjoiner_linked_crtc =
-+					intel_get_crtc_for_pipe(dev_priv, crtc->pipe - 1);
-+		} else {
-+			if (!WARN_ON(INTEL_NUM_PIPES(dev_priv) == crtc->pipe + 1))
-+				crtc_state->bigjoiner_linked_crtc =
-+					intel_get_crtc_for_pipe(dev_priv, crtc->pipe + 1);
-+		}
- 	}
--	dss_ctl1_val = intel_de_read(dev_priv, dss_ctl1_reg);
--	if (dss_ctl1_val & JOINER_ENABLE)
--		dss_ctl1_val &= ~JOINER_ENABLE;
--	intel_de_write(dev_priv, dss_ctl1_reg, dss_ctl1_val);
- 
--	dss_ctl2_val = intel_de_read(dev_priv, dss_ctl2_reg);
--	if (dss_ctl2_val & LEFT_BRANCH_VDSC_ENABLE ||
--	    dss_ctl2_val & RIGHT_BRANCH_VDSC_ENABLE)
--		dss_ctl2_val &= ~(LEFT_BRANCH_VDSC_ENABLE |
--				  RIGHT_BRANCH_VDSC_ENABLE);
--	intel_de_write(dev_priv, dss_ctl2_reg, dss_ctl2_val);
-+	/* FIXME: add more state readout as needed */
- 
--	/* Disable Power wells for VDSC/joining */
--	intel_display_power_put_unchecked(dev_priv,
--					  intel_dsc_power_domain(old_crtc_state));
-+	/* PPS1 */
-+	if (!is_pipe_dsc(crtc_state))
-+		val = intel_de_read(dev_priv, DSCA_PICTURE_PARAMETER_SET_1);
-+	else
-+		val = intel_de_read(dev_priv,
-+				    ICL_DSC0_PICTURE_PARAMETER_SET_1(pipe));
-+	vdsc_cfg->bits_per_pixel = val;
-+	crtc_state->dsc.compressed_bpp = vdsc_cfg->bits_per_pixel >> 4;
-+out:
-+	intel_display_power_put(dev_priv, power_domain, wakeref);
- }
-diff --git a/drivers/gpu/drm/i915/display/intel_vdsc.h b/drivers/gpu/drm/i915/display/intel_vdsc.h
-index e56a3254c214..65d301c23580 100644
---- a/drivers/gpu/drm/i915/display/intel_vdsc.h
-+++ b/drivers/gpu/drm/i915/display/intel_vdsc.h
-@@ -11,15 +11,13 @@
- struct intel_encoder;
- struct intel_crtc_state;
- 
--bool intel_dsc_source_support(struct intel_encoder *encoder,
--			      const struct intel_crtc_state *crtc_state);
-+bool intel_dsc_source_support(const struct intel_crtc_state *crtc_state);
- void intel_dsc_enable(struct intel_encoder *encoder,
- 		      const struct intel_crtc_state *crtc_state);
- void intel_dsc_disable(const struct intel_crtc_state *crtc_state);
- int intel_dsc_compute_params(struct intel_encoder *encoder,
- 			     struct intel_crtc_state *pipe_config);
--void intel_dsc_get_config(struct intel_encoder *encoder,
--			  struct intel_crtc_state *crtc_state);
-+void intel_dsc_get_config(struct intel_crtc_state *crtc_state);
- enum intel_display_power_domain
- intel_dsc_power_domain(const struct intel_crtc_state *crtc_state);
- 
--- 
-2.26.2
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+RnJvbTogTWFuYXNpIE5hdmFyZSA8bWFuYXNpLmQubmF2YXJlQGludGVsLmNvbT4KCkVuYWJsaW5n
+IGlzIGRvbmUgaW4gYSBzcGVjaWFsIHNlcXVlbmNlIGFuZCBzbyBzaG91bGQgcGxhbmUgdXBkYXRl
+cwpiZS4gSWRlYWxseSB0aGUgZW5kIHVzZXIgbmV2ZXIgbm90aWNlcyB0aGUgc2Vjb25kIHBpcGUg
+aXMgdXNlZC4KClRoaXMgd2F5IGlkZWFsbHkgZXZlcnl0aGluZyB3aWxsIGJlIHRlYXIgZnJlZSwg
+YW5kIHVwZGF0ZXMgYXJlCnJlYWxseSBhdG9taWMgYXMgdXNlcnNwYWNlIGV4cGVjdHMgaXQuCgpU
+aGlzIHVzZXMgZ2VuZXJpYyBtb2Rlc2V0X2VuYWJsZXMoKSBjYWxscyBsaWtlIHRyYW5zIHBvcnQg
+c3luYwpidXQgc3RpbGwgaGFzIHNwZWNpYWwgaGFuZGxpbmcgZm9yIGRpc2FibGUgc2luY2UgZm9y
+IHNsYXZlIHdlCnNob3VsZCBub3QgZGlzYWJsZSB0aGluZ3MgbGlrZSBlbmNvZGVyLCBwbGxzIHRo
+YXQgYXJlIG5vdCBlbmFibGVkCmZvciAgc2xhdmUuCgpTaWduZWQtb2ZmLWJ5OiBNYW5hc2kgTmF2
+YXJlIDxtYW5hc2kuZC5uYXZhcmVAaW50ZWwuY29tPgpbdnN5cmphbGE6IEFwcGVhc2UgY2hlY2tw
+YXRjaF0KU2lnbmVkLW9mZi1ieTogVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4
+LmludGVsLmNvbT4KLS0tCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RkaS5j
+ICAgICB8ICAyNSArKystCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3Bs
+YXkuYyB8IDEyNiArKysrKysrKysrKysrKystLS0tCiAyIGZpbGVzIGNoYW5nZWQsIDEyMiBpbnNl
+cnRpb25zKCspLCAyOSBkZWxldGlvbnMoLSkKCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0v
+aTkxNS9kaXNwbGF5L2ludGVsX2RkaS5jIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9p
+bnRlbF9kZGkuYwppbmRleCA0MzliOTI3MTBmZTYuLjljNGFkMDM5MjAyNSAxMDA2NDQKLS0tIGEv
+ZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kZGkuYworKysgYi9kcml2ZXJzL2dw
+dS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RkaS5jCkBAIC0yOCw2ICsyOCw3IEBACiAjaW5jbHVk
+ZSA8ZHJtL2RybV9zY2RjX2hlbHBlci5oPgogCiAjaW5jbHVkZSAiaTkxNV9kcnYuaCIKKyNpbmNs
+dWRlICJpOTE1X3RyYWNlLmgiCiAjaW5jbHVkZSAiaW50ZWxfYXVkaW8uaCIKICNpbmNsdWRlICJp
+bnRlbF9jb21ib19waHkuaCIKICNpbmNsdWRlICJpbnRlbF9jb25uZWN0b3IuaCIKQEAgLTM2NjQs
+NyArMzY2NSw4IEBAIHN0YXRpYyB2b2lkIHRnbF9kZGlfcHJlX2VuYWJsZV9kcChzdHJ1Y3QgaW50
+ZWxfYXRvbWljX3N0YXRlICpzdGF0ZSwKIAogCS8qIDcubCBDb25maWd1cmUgYW5kIGVuYWJsZSBG
+RUMgaWYgbmVlZGVkICovCiAJaW50ZWxfZGRpX2VuYWJsZV9mZWMoZW5jb2RlciwgY3J0Y19zdGF0
+ZSk7Ci0JaW50ZWxfZHNjX2VuYWJsZShlbmNvZGVyLCBjcnRjX3N0YXRlKTsKKwlpZiAoIWNydGNf
+c3RhdGUtPmJpZ2pvaW5lcikKKwkJaW50ZWxfZHNjX2VuYWJsZShlbmNvZGVyLCBjcnRjX3N0YXRl
+KTsKIH0KIAogc3RhdGljIHZvaWQgaHN3X2RkaV9wcmVfZW5hYmxlX2RwKHN0cnVjdCBpbnRlbF9h
+dG9taWNfc3RhdGUgKnN0YXRlLApAQCAtMzczNiw3ICszNzM4LDggQEAgc3RhdGljIHZvaWQgaHN3
+X2RkaV9wcmVfZW5hYmxlX2RwKHN0cnVjdCBpbnRlbF9hdG9taWNfc3RhdGUgKnN0YXRlLAogCWlm
+ICghaXNfbXN0KQogCQlpbnRlbF9kZGlfZW5hYmxlX3BpcGVfY2xvY2soZW5jb2RlciwgY3J0Y19z
+dGF0ZSk7CiAKLQlpbnRlbF9kc2NfZW5hYmxlKGVuY29kZXIsIGNydGNfc3RhdGUpOworCWlmICgh
+Y3J0Y19zdGF0ZS0+Ymlnam9pbmVyKQorCQlpbnRlbF9kc2NfZW5hYmxlKGVuY29kZXIsIGNydGNf
+c3RhdGUpOwogfQogCiBzdGF0aWMgdm9pZCBpbnRlbF9kZGlfcHJlX2VuYWJsZV9kcChzdHJ1Y3Qg
+aW50ZWxfYXRvbWljX3N0YXRlICpzdGF0ZSwKQEAgLTM5ODcsNiArMzk5MCwyMSBAQCBzdGF0aWMg
+dm9pZCBpbnRlbF9kZGlfcG9zdF9kaXNhYmxlKHN0cnVjdCBpbnRlbF9hdG9taWNfc3RhdGUgKnN0
+YXRlLAogCQkJaWxrX3BmaXRfZGlzYWJsZShvbGRfY3J0Y19zdGF0ZSk7CiAJfQogCisJaWYgKG9s
+ZF9jcnRjX3N0YXRlLT5iaWdqb2luZXJfbGlua2VkX2NydGMpIHsKKwkJc3RydWN0IGludGVsX2F0
+b21pY19zdGF0ZSAqc3RhdGUgPQorCQkJdG9faW50ZWxfYXRvbWljX3N0YXRlKG9sZF9jcnRjX3N0
+YXRlLT51YXBpLnN0YXRlKTsKKwkJc3RydWN0IGludGVsX2NydGMgKnNsYXZlID0KKwkJCW9sZF9j
+cnRjX3N0YXRlLT5iaWdqb2luZXJfbGlua2VkX2NydGM7CisJCWNvbnN0IHN0cnVjdCBpbnRlbF9j
+cnRjX3N0YXRlICpvbGRfc2xhdmVfY3J0Y19zdGF0ZSA9CisJCQlpbnRlbF9hdG9taWNfZ2V0X29s
+ZF9jcnRjX3N0YXRlKHN0YXRlLCBzbGF2ZSk7CisKKwkJaW50ZWxfY3J0Y192Ymxhbmtfb2ZmKG9s
+ZF9zbGF2ZV9jcnRjX3N0YXRlKTsKKwkJdHJhY2VfaW50ZWxfcGlwZV9kaXNhYmxlKHNsYXZlKTsK
+KworCQlpbnRlbF9kc2NfZGlzYWJsZShvbGRfc2xhdmVfY3J0Y19zdGF0ZSk7CisJCXNrbF9zY2Fs
+ZXJfZGlzYWJsZShvbGRfc2xhdmVfY3J0Y19zdGF0ZSk7CisJfQorCiAJLyoKIAkgKiBXaGVuIGNh
+bGxlZCBmcm9tIERQIE1TVCBjb2RlOgogCSAqIC0gb2xkX2Nvbm5fc3RhdGUgd2lsbCBiZSBOVUxM
+CkBAIC00MjA1LDcgKzQyMjMsOCBAQCBzdGF0aWMgdm9pZCBpbnRlbF9lbmFibGVfZGRpKHN0cnVj
+dCBpbnRlbF9hdG9taWNfc3RhdGUgKnN0YXRlLAogewogCWRybV9XQVJOX09OKHN0YXRlLT5iYXNl
+LmRldiwgY3J0Y19zdGF0ZS0+aGFzX3BjaF9lbmNvZGVyKTsKIAotCWludGVsX2RkaV9lbmFibGVf
+dHJhbnNjb2Rlcl9mdW5jKGVuY29kZXIsIGNydGNfc3RhdGUpOworCWlmICghY3J0Y19zdGF0ZS0+
+Ymlnam9pbmVyX3NsYXZlKQorCQlpbnRlbF9kZGlfZW5hYmxlX3RyYW5zY29kZXJfZnVuYyhlbmNv
+ZGVyLCBjcnRjX3N0YXRlKTsKIAogCWludGVsX2VuYWJsZV9waXBlKGNydGNfc3RhdGUpOwogCmRp
+ZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXkuYyBi
+L2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheS5jCmluZGV4IGFlYTJm
+ZjNlZjhjNC4uNjA2NjliZWY2NTlmIDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9k
+aXNwbGF5L2ludGVsX2Rpc3BsYXkuYworKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5
+L2ludGVsX2Rpc3BsYXkuYwpAQCAtNzEzOCw2ICs3MTM4LDQ1IEBAIHN0YXRpYyB2b2lkIGhzd19z
+ZXRfZnJhbWVfc3RhcnRfZGVsYXkoY29uc3Qgc3RydWN0IGludGVsX2NydGNfc3RhdGUgKmNydGNf
+c3RhdGUpCiAJaW50ZWxfZGVfd3JpdGUoZGV2X3ByaXYsIHJlZywgdmFsKTsKIH0KIAorc3RhdGlj
+IHZvaWQgaWNsX2RkaV9iaWdqb2luZXJfcHJlX2VuYWJsZShzdHJ1Y3QgaW50ZWxfYXRvbWljX3N0
+YXRlICpzdGF0ZSwKKwkJCQkJIGNvbnN0IHN0cnVjdCBpbnRlbF9jcnRjX3N0YXRlICpjcnRjX3N0
+YXRlKQoreworCXN0cnVjdCBpbnRlbF9jcnRjICptYXN0ZXIgPSB0b19pbnRlbF9jcnRjKGNydGNf
+c3RhdGUtPnVhcGkuY3J0Yyk7CisJc3RydWN0IGludGVsX2NydGNfc3RhdGUgKm1hc3Rlcl9jcnRj
+X3N0YXRlOworCXN0cnVjdCBkcm1fY29ubmVjdG9yX3N0YXRlICpjb25uX3N0YXRlOworCXN0cnVj
+dCBkcm1fY29ubmVjdG9yICpjb25uOworCXN0cnVjdCBpbnRlbF9lbmNvZGVyICplbmNvZGVyID0g
+TlVMTDsKKwlpbnQgaTsKKworCWlmIChjcnRjX3N0YXRlLT5iaWdqb2luZXJfc2xhdmUpCisJCW1h
+c3RlciA9IGNydGNfc3RhdGUtPmJpZ2pvaW5lcl9saW5rZWRfY3J0YzsKKworCW1hc3Rlcl9jcnRj
+X3N0YXRlID0gaW50ZWxfYXRvbWljX2dldF9uZXdfY3J0Y19zdGF0ZShzdGF0ZSwgbWFzdGVyKTsK
+KworCWZvcl9lYWNoX25ld19jb25uZWN0b3JfaW5fc3RhdGUoJnN0YXRlLT5iYXNlLCBjb25uLCBj
+b25uX3N0YXRlLCBpKSB7CisJCWlmIChjb25uX3N0YXRlLT5jcnRjICE9ICZtYXN0ZXItPmJhc2Up
+CisJCQljb250aW51ZTsKKworCQllbmNvZGVyID0gdG9faW50ZWxfZW5jb2Rlcihjb25uX3N0YXRl
+LT5iZXN0X2VuY29kZXIpOworCQlicmVhazsKKwl9CisKKwlpZiAoIWNydGNfc3RhdGUtPmJpZ2pv
+aW5lcl9zbGF2ZSkgeworCQkvKiBuZWVkIHRvIGVuYWJsZSBWRFNDLCB3aGljaCB3ZSBza2lwcGVk
+IGluIHByZS1lbmFibGUgKi8KKwkJaW50ZWxfZHNjX2VuYWJsZShlbmNvZGVyLCBjcnRjX3N0YXRl
+KTsKKwl9IGVsc2UgeworCQkvKgorCQkgKiBFbmFibGUgc2VxdWVuY2Ugc3RlcHMgMS03IG9uIGJp
+Z2pvaW5lciBtYXN0ZXIKKwkJICovCisJCWludGVsX2VuY29kZXJzX3ByZV9wbGxfZW5hYmxlKHN0
+YXRlLCBtYXN0ZXIpOworCQlpbnRlbF9lbmFibGVfc2hhcmVkX2RwbGwobWFzdGVyX2NydGNfc3Rh
+dGUpOworCQlpbnRlbF9lbmNvZGVyc19wcmVfZW5hYmxlKHN0YXRlLCBtYXN0ZXIpOworCisJCS8q
+IGFuZCBEU0Mgb24gc2xhdmUgKi8KKwkJaW50ZWxfZHNjX2VuYWJsZShOVUxMLCBjcnRjX3N0YXRl
+KTsKKwl9Cit9CisKIHN0YXRpYyB2b2lkIGhzd19jcnRjX2VuYWJsZShzdHJ1Y3QgaW50ZWxfYXRv
+bWljX3N0YXRlICpzdGF0ZSwKIAkJCSAgICBzdHJ1Y3QgaW50ZWxfY3J0YyAqY3J0YykKIHsKQEAg
+LTcxNTEsMzUgKzcxOTAsNDAgQEAgc3RhdGljIHZvaWQgaHN3X2NydGNfZW5hYmxlKHN0cnVjdCBp
+bnRlbF9hdG9taWNfc3RhdGUgKnN0YXRlLAogCWlmIChkcm1fV0FSTl9PTigmZGV2X3ByaXYtPmRy
+bSwgY3J0Yy0+YWN0aXZlKSkKIAkJcmV0dXJuOwogCi0JaW50ZWxfZW5jb2RlcnNfcHJlX3BsbF9l
+bmFibGUoc3RhdGUsIGNydGMpOworCWlmICghbmV3X2NydGNfc3RhdGUtPmJpZ2pvaW5lcikgewor
+CQlpbnRlbF9lbmNvZGVyc19wcmVfcGxsX2VuYWJsZShzdGF0ZSwgY3J0Yyk7CiAKLQlpZiAobmV3
+X2NydGNfc3RhdGUtPnNoYXJlZF9kcGxsKQotCQlpbnRlbF9lbmFibGVfc2hhcmVkX2RwbGwobmV3
+X2NydGNfc3RhdGUpOworCQlpZiAobmV3X2NydGNfc3RhdGUtPnNoYXJlZF9kcGxsKQorCQkJaW50
+ZWxfZW5hYmxlX3NoYXJlZF9kcGxsKG5ld19jcnRjX3N0YXRlKTsKIAotCWludGVsX2VuY29kZXJz
+X3ByZV9lbmFibGUoc3RhdGUsIGNydGMpOwotCi0JaWYgKCF0cmFuc2NvZGVyX2lzX2RzaShjcHVf
+dHJhbnNjb2RlcikpCi0JCWludGVsX3NldF90cmFuc2NvZGVyX3RpbWluZ3MobmV3X2NydGNfc3Rh
+dGUpOwotCi0JaW50ZWxfc2V0X3BpcGVfc3JjX3NpemUobmV3X2NydGNfc3RhdGUpOwotCi0JaWYg
+KGNwdV90cmFuc2NvZGVyICE9IFRSQU5TQ09ERVJfRURQICYmCi0JICAgICF0cmFuc2NvZGVyX2lz
+X2RzaShjcHVfdHJhbnNjb2RlcikpCi0JCWludGVsX2RlX3dyaXRlKGRldl9wcml2LCBQSVBFX01V
+TFQoY3B1X3RyYW5zY29kZXIpLAotCQkJICAgICAgIG5ld19jcnRjX3N0YXRlLT5waXhlbF9tdWx0
+aXBsaWVyIC0gMSk7Ci0KLQlpZiAobmV3X2NydGNfc3RhdGUtPmhhc19wY2hfZW5jb2RlcikKLQkJ
+aW50ZWxfY3B1X3RyYW5zY29kZXJfc2V0X21fbihuZXdfY3J0Y19zdGF0ZSwKLQkJCQkJICAgICAm
+bmV3X2NydGNfc3RhdGUtPmZkaV9tX24sIE5VTEwpOwotCi0JaWYgKCF0cmFuc2NvZGVyX2lzX2Rz
+aShjcHVfdHJhbnNjb2RlcikpIHsKLQkJaHN3X3NldF9mcmFtZV9zdGFydF9kZWxheShuZXdfY3J0
+Y19zdGF0ZSk7Ci0JCWhzd19zZXRfcGlwZWNvbmYobmV3X2NydGNfc3RhdGUpOworCQlpbnRlbF9l
+bmNvZGVyc19wcmVfZW5hYmxlKHN0YXRlLCBjcnRjKTsKKwl9IGVsc2UgeworCQlpY2xfZGRpX2Jp
+Z2pvaW5lcl9wcmVfZW5hYmxlKHN0YXRlLCBuZXdfY3J0Y19zdGF0ZSk7CiAJfQogCisJaW50ZWxf
+c2V0X3BpcGVfc3JjX3NpemUobmV3X2NydGNfc3RhdGUpOwogCWlmIChJTlRFTF9HRU4oZGV2X3By
+aXYpID49IDkgfHwgSVNfQlJPQURXRUxMKGRldl9wcml2KSkKIAkJYmR3X3NldF9waXBlbWlzYyhu
+ZXdfY3J0Y19zdGF0ZSk7CiAKKwlpZiAoIW5ld19jcnRjX3N0YXRlLT5iaWdqb2luZXJfc2xhdmUg
+fHwgIXRyYW5zY29kZXJfaXNfZHNpKGNwdV90cmFuc2NvZGVyKSkgeworCQlpZiAoIXRyYW5zY29k
+ZXJfaXNfZHNpKGNwdV90cmFuc2NvZGVyKSkKKwkJCWludGVsX3NldF90cmFuc2NvZGVyX3RpbWlu
+Z3MobmV3X2NydGNfc3RhdGUpOworCisJCWlmIChjcHVfdHJhbnNjb2RlciAhPSBUUkFOU0NPREVS
+X0VEUCAmJgorCQkgICAgIXRyYW5zY29kZXJfaXNfZHNpKGNwdV90cmFuc2NvZGVyKSkKKwkJCWlu
+dGVsX2RlX3dyaXRlKGRldl9wcml2LCBQSVBFX01VTFQoY3B1X3RyYW5zY29kZXIpLAorCQkJCSAg
+ICAgICBuZXdfY3J0Y19zdGF0ZS0+cGl4ZWxfbXVsdGlwbGllciAtIDEpOworCisJCWlmIChuZXdf
+Y3J0Y19zdGF0ZS0+aGFzX3BjaF9lbmNvZGVyKQorCQkJaW50ZWxfY3B1X3RyYW5zY29kZXJfc2V0
+X21fbihuZXdfY3J0Y19zdGF0ZSwKKwkJCQkJCSAgICAgJm5ld19jcnRjX3N0YXRlLT5mZGlfbV9u
+LCBOVUxMKTsKKworCQloc3dfc2V0X2ZyYW1lX3N0YXJ0X2RlbGF5KG5ld19jcnRjX3N0YXRlKTsK
+Kwl9CisKKwlpZiAoIXRyYW5zY29kZXJfaXNfZHNpKGNwdV90cmFuc2NvZGVyKSkKKwkJaHN3X3Nl
+dF9waXBlY29uZihuZXdfY3J0Y19zdGF0ZSk7CisKIAljcnRjLT5hY3RpdmUgPSB0cnVlOwogCiAJ
+LyogRGlzcGxheSBXQSAjMTE4MDogV2FEaXNhYmxlU2NhbGFyQ2xvY2tHYXRpbmc6IGdsaywgY25s
+ICovCkBAIC03MjE0LDYgKzcyNTgsMTEgQEAgc3RhdGljIHZvaWQgaHN3X2NydGNfZW5hYmxlKHN0
+cnVjdCBpbnRlbF9hdG9taWNfc3RhdGUgKnN0YXRlLAogCWlmIChJTlRFTF9HRU4oZGV2X3ByaXYp
+ID49IDExKQogCQlpY2xfcGlwZV9tYnVzX2VuYWJsZShjcnRjKTsKIAorCWlmIChuZXdfY3J0Y19z
+dGF0ZS0+Ymlnam9pbmVyX3NsYXZlKSB7CisJCXRyYWNlX2ludGVsX3BpcGVfZW5hYmxlKGNydGMp
+OworCQlpbnRlbF9jcnRjX3ZibGFua19vbihuZXdfY3J0Y19zdGF0ZSk7CisJfQorCiAJaW50ZWxf
+ZW5jb2RlcnNfZW5hYmxlKHN0YXRlLCBjcnRjKTsKIAogCWlmIChwc2xfY2xrZ2F0ZV93YSkgewpA
+QCAtMTU2NjksNiArMTU3MTgsOSBAQCBzdGF0aWMgdm9pZCBpbnRlbF9lbmFibGVfY3J0YyhzdHJ1
+Y3QgaW50ZWxfYXRvbWljX3N0YXRlICpzdGF0ZSwKIAogCWRldl9wcml2LT5kaXNwbGF5LmNydGNf
+ZW5hYmxlKHN0YXRlLCBjcnRjKTsKIAorCWlmIChuZXdfY3J0Y19zdGF0ZS0+Ymlnam9pbmVyX3Ns
+YXZlKQorCQlyZXR1cm47CisKIAkvKiB2YmxhbmtzIHdvcmsgYWdhaW4sIHJlLWVuYWJsZSBwaXBl
+IENSQy4gKi8KIAlpbnRlbF9jcnRjX2VuYWJsZV9waXBlX2NyYyhjcnRjKTsKIH0KQEAgLTE1NzMx
+LDggKzE1NzgzLDIxIEBAIHN0YXRpYyB2b2lkIGludGVsX29sZF9jcnRjX3N0YXRlX2Rpc2FibGVz
+KHN0cnVjdCBpbnRlbF9hdG9taWNfc3RhdGUgKnN0YXRlLAogewogCXN0cnVjdCBkcm1faTkxNV9w
+cml2YXRlICpkZXZfcHJpdiA9IHRvX2k5MTUoc3RhdGUtPmJhc2UuZGV2KTsKIAorCWRybV9XQVJO
+X09OKCZkZXZfcHJpdi0+ZHJtLCBvbGRfY3J0Y19zdGF0ZS0+Ymlnam9pbmVyX3NsYXZlKTsKKwog
+CWludGVsX2NydGNfZGlzYWJsZV9wbGFuZXMoc3RhdGUsIGNydGMpOwogCisJLyoKKwkgKiBXZSBz
+dGlsbCBuZWVkIHNwZWNpYWwgaGFuZGxpbmcgZm9yIGRpc2FibGluZyBiaWdqb2luZXIgbWFzdGVy
+CisJICogYW5kIHNsYXZlcyBzaW5jZSBmb3Igc2xhdmUgd2UgZG8gbm90IGhhdmUgZW5jb2RlciBv
+ciBwbGxzCisJICogc28gd2UgZG9udCBuZWVkIHRvIGRpc2FibGUgdGhvc2UuCisJICovCisJaWYg
+KG9sZF9jcnRjX3N0YXRlLT5iaWdqb2luZXIpIHsKKwkJaW50ZWxfY3J0Y19kaXNhYmxlX3BsYW5l
+cyhzdGF0ZSwKKwkJCQkJICBvbGRfY3J0Y19zdGF0ZS0+Ymlnam9pbmVyX2xpbmtlZF9jcnRjKTsK
+KwkJb2xkX2NydGNfc3RhdGUtPmJpZ2pvaW5lcl9saW5rZWRfY3J0Yy0+YWN0aXZlID0gZmFsc2U7
+CisJfQorCiAJLyoKIAkgKiBXZSBuZWVkIHRvIGRpc2FibGUgcGlwZSBDUkMgYmVmb3JlIGRpc2Fi
+bGluZyB0aGUgcGlwZSwKIAkgKiBvciB3ZSByYWNlIGFnYWluc3QgdmJsYW5rIG9mZi4KQEAgLTE1
+NzYxLDcgKzE1ODI2LDcgQEAgc3RhdGljIHZvaWQgaW50ZWxfY29tbWl0X21vZGVzZXRfZGlzYWJs
+ZXMoc3RydWN0IGludGVsX2F0b21pY19zdGF0ZSAqc3RhdGUpCiAJLyogT25seSBkaXNhYmxlIHBv
+cnQgc3luYyBhbmQgTVNUIHNsYXZlcyAqLwogCWZvcl9lYWNoX29sZG5ld19pbnRlbF9jcnRjX2lu
+X3N0YXRlKHN0YXRlLCBjcnRjLCBvbGRfY3J0Y19zdGF0ZSwKIAkJCQkJICAgIG5ld19jcnRjX3N0
+YXRlLCBpKSB7Ci0JCWlmICghbmVlZHNfbW9kZXNldChuZXdfY3J0Y19zdGF0ZSkpCisJCWlmICgh
+bmVlZHNfbW9kZXNldChuZXdfY3J0Y19zdGF0ZSkgfHwgb2xkX2NydGNfc3RhdGUtPmJpZ2pvaW5l
+cikKIAkJCWNvbnRpbnVlOwogCiAJCWlmICghb2xkX2NydGNfc3RhdGUtPmh3LmFjdGl2ZSkKQEAg
+LTE1Nzg2LDEwICsxNTg1MSwxOCBAQCBzdGF0aWMgdm9pZCBpbnRlbF9jb21taXRfbW9kZXNldF9k
+aXNhYmxlcyhzdHJ1Y3QgaW50ZWxfYXRvbWljX3N0YXRlICpzdGF0ZSkKIAlmb3JfZWFjaF9vbGRu
+ZXdfaW50ZWxfY3J0Y19pbl9zdGF0ZShzdGF0ZSwgY3J0Yywgb2xkX2NydGNfc3RhdGUsCiAJCQkJ
+CSAgICBuZXdfY3J0Y19zdGF0ZSwgaSkgewogCQlpZiAoIW5lZWRzX21vZGVzZXQobmV3X2NydGNf
+c3RhdGUpIHx8Ci0JCSAgICAoaGFuZGxlZCAmIEJJVChjcnRjLT5waXBlKSkpCisJCSAgICAoaGFu
+ZGxlZCAmIEJJVChjcnRjLT5waXBlKSkgfHwKKwkJICAgIG9sZF9jcnRjX3N0YXRlLT5iaWdqb2lu
+ZXJfc2xhdmUpCiAJCQljb250aW51ZTsKIAogCQlpbnRlbF9wcmVfcGxhbmVfdXBkYXRlKHN0YXRl
+LCBjcnRjKTsKKwkJaWYgKG9sZF9jcnRjX3N0YXRlLT5iaWdqb2luZXIpIHsKKwkJCXN0cnVjdCBp
+bnRlbF9jcnRjICpzbGF2ZSA9CisJCQkJb2xkX2NydGNfc3RhdGUtPmJpZ2pvaW5lcl9saW5rZWRf
+Y3J0YzsKKworCQkJaW50ZWxfcHJlX3BsYW5lX3VwZGF0ZShzdGF0ZSwgc2xhdmUpOworCQl9CisK
+IAkJaWYgKG9sZF9jcnRjX3N0YXRlLT5ody5hY3RpdmUpCiAJCQlpbnRlbF9vbGRfY3J0Y19zdGF0
+ZV9kaXNhYmxlcyhzdGF0ZSwgb2xkX2NydGNfc3RhdGUsCiAJCQkJCQkgICAgICBuZXdfY3J0Y19z
+dGF0ZSwgY3J0Yyk7CkBAIC0xNTg4Nyw3ICsxNTk2MCw4IEBAIHN0YXRpYyB2b2lkIHNrbF9jb21t
+aXRfbW9kZXNldF9lbmFibGVzKHN0cnVjdCBpbnRlbF9hdG9taWNfc3RhdGUgKnN0YXRlKQogCQkJ
+Y29udGludWU7CiAKIAkJaWYgKGludGVsX2RwX21zdF9pc19zbGF2ZV90cmFucyhuZXdfY3J0Y19z
+dGF0ZSkgfHwKLQkJICAgIGlzX3RyYW5zX3BvcnRfc3luY19tYXN0ZXIobmV3X2NydGNfc3RhdGUp
+KQorCQkgICAgaXNfdHJhbnNfcG9ydF9zeW5jX21hc3RlcihuZXdfY3J0Y19zdGF0ZSkgfHwKKwkJ
+ICAgIChuZXdfY3J0Y19zdGF0ZS0+Ymlnam9pbmVyICYmICFuZXdfY3J0Y19zdGF0ZS0+Ymlnam9p
+bmVyX3NsYXZlKSkKIAkJCWNvbnRpbnVlOwogCiAJCW1vZGVzZXRfcGlwZXMgJj0gfkJJVChwaXBl
+KTsKQEAgLTE1ODk3LDcgKzE1OTcxLDcgQEAgc3RhdGljIHZvaWQgc2tsX2NvbW1pdF9tb2Rlc2V0
+X2VuYWJsZXMoc3RydWN0IGludGVsX2F0b21pY19zdGF0ZSAqc3RhdGUpCiAKIAkvKgogCSAqIFRo
+ZW4gd2UgZW5hYmxlIGFsbCByZW1haW5pbmcgcGlwZXMgdGhhdCBkZXBlbmQgb24gb3RoZXIKLQkg
+KiBwaXBlczogTVNUIHNsYXZlcyBhbmQgcG9ydCBzeW5jIG1hc3RlcnMuCisJICogcGlwZXM6IE1T
+VCBzbGF2ZXMgYW5kIHBvcnQgc3luYyBtYXN0ZXJzLCBiaWcgam9pbmVyIG1hc3RlcgogCSAqLwog
+CWZvcl9lYWNoX25ld19pbnRlbF9jcnRjX2luX3N0YXRlKHN0YXRlLCBjcnRjLCBuZXdfY3J0Y19z
+dGF0ZSwgaSkgewogCQllbnVtIHBpcGUgcGlwZSA9IGNydGMtPnBpcGU7Ci0tIAoyLjI2LjIKCl9f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBt
+YWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3Rz
+LmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
