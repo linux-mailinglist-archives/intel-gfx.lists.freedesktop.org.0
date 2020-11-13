@@ -1,31 +1,53 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 884932B1315
-	for <lists+intel-gfx@lfdr.de>; Fri, 13 Nov 2020 01:15:23 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 16BC72B1344
+	for <lists+intel-gfx@lfdr.de>; Fri, 13 Nov 2020 01:33:07 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D19DE6E255;
-	Fri, 13 Nov 2020 00:15:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 085B46E2B4;
+	Fri, 13 Nov 2020 00:32:59 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id B65766E255;
- Fri, 13 Nov 2020 00:15:20 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id AE56AA363B;
- Fri, 13 Nov 2020 00:15:20 +0000 (UTC)
+Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com
+ [IPv6:2a00:1450:4864:20::336])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5B4FB6E284;
+ Fri, 13 Nov 2020 00:32:57 +0000 (UTC)
+Received: by mail-wm1-x336.google.com with SMTP id a65so7026061wme.1;
+ Thu, 12 Nov 2020 16:32:57 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=5Ra2hbbJlM1B22w2OajwI2CvpXY6aPxc/8njNnw7VVg=;
+ b=G92lftosSwgFZW7l+vVZeLpPW5lz7dKrEhorvuXcd5iNX9vPtbn0K6CY3NkzfFdnec
+ emgd+ofw18NqCdmogUKNC0qYLrpjtgsazYqoY5CIRnNU/6Tl4Y8RUcLaj4JXTXn6KeSl
+ RjfGFJjRi4M5phOtfTW1S8CCD8BYOlJzWBRJ6lShFjfbuNIdnLXhpMz9Qo0o4xlwuPzP
+ rScJCbDB0yo2oWU+tBYARp0BlHrDW7tZxqKSCafHjqTLqki/eivaAhxHrdMStNo8mh8Q
+ wiApOcVgi8opyUCJv9tEHFzCdi2ryX9Qa1SyY6ceatI1ioMFs+1u7DD0mhOCBU8wZAWb
+ pv/g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=5Ra2hbbJlM1B22w2OajwI2CvpXY6aPxc/8njNnw7VVg=;
+ b=fjhAPN8JW0YGIdAKAu7rDktDV3OXe/tlAEZwf3bCjzfDwlQZtDI92DZ0iaU675v9ki
+ tRwSs0R22EPa4l+T1ACprLRiAL7SJLBp6Y6mKqNfKJZf0DGBuNnyWxiuOH6bPkYp2xma
+ 6qJVKXHYxrkq8FQp2H2R88S1c3jbaQmZySoXuzp2npvaazDlxa0ZhekwAfzDFrI1Ci/O
+ gtBUTJ1mVRrBpIEn8V7UBckOEOXv2R3MQTybwDo9tBSKYdR5KnXb4T3Yp3jsxlFlelCv
+ kmqLG7LpdTGJcDe1cRgQFVw/SbFaa9yv5YvE7AUzeS+qP7nckppLGY5vJ3a+u51JZ1HY
+ 7aAQ==
+X-Gm-Message-State: AOAM530MQ9bwRJw/eqDNYTJw5IXMPoAZ2CfpR6IP514uEn/v1KO6BFnS
+ OV5laUB4fyZyJiHo/fDOa5kBJ59RaHRotdmfbj4=
+X-Google-Smtp-Source: ABdhPJxexGRX+3wB2vjPqGy9i9oHPPe55ZJDl5uqPtHcivXlll+k9Y0TSny2shqL9Kx4ADoWdOEQZ46CKpSqN/DJ7CU=
+X-Received: by 2002:a7b:c846:: with SMTP id c6mr369583wml.143.1605227575864;
+ Thu, 12 Nov 2020 16:32:55 -0800 (PST)
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
-Date: Fri, 13 Nov 2020 00:15:20 -0000
-Message-ID: <160522652070.20637.16715080499074089687@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20201112191718.16683-1-ville.syrjala@linux.intel.com>
-In-Reply-To: <20201112191718.16683-1-ville.syrjala@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915=3A_Introduce_crtc=5Fstate=2Ehw=2Epipe=5Fmode?=
+References: <20201112230924.GA1283868@intel.com>
+In-Reply-To: <20201112230924.GA1283868@intel.com>
+From: Dave Airlie <airlied@gmail.com>
+Date: Fri, 13 Nov 2020 10:32:44 +1000
+Message-ID: <CAPM=9twOzjdgcQxXR3K6f_aYcasnB-DyQ=3qZey=v3VeqGjjsg@mail.gmail.com>
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Subject: Re: [Intel-gfx] [PULL] drm-intel-fixes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,257 +60,101 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============0843073537=="
+Cc: "DRM maintainer tools announcements, discussion,
+ and development" <dim-tools@lists.freedesktop.org>,
+ Daniel Vetter <daniel.vetter@ffwll.ch>,
+ dri-devel <dri-devel@lists.freedesktop.org>,
+ Maxime Ripard <mripard@kernel.org>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0843073537==
-Content-Type: multipart/alternative;
- boundary="===============1398614922253868882=="
+On Fri, 13 Nov 2020 at 09:08, Rodrigo Vivi <rodrigo.vivi@intel.com> wrote:
+>
+> Hi Dave and Daniel,
+>
+> This is the same set as last week + couple new fixes targeting stable.
+>
 
---===============1398614922253868882==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+But I merged last weeks set and it's in rc3, maybe you can generate
+the pull request relative to origin/master or drm/drm-fixes because
+I'm not sure which bits to edit out here.
 
-== Series Details ==
+Dave.
 
-Series: drm/i915: Introduce crtc_state.hw.pipe_mode
-URL   : https://patchwork.freedesktop.org/series/83780/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_9318 -> Patchwork_18895
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18895/index.html
-
-New tests
----------
-
-  New tests have been introduced between CI_DRM_9318 and Patchwork_18895:
-
-### New CI tests (1) ###
-
-  * boot:
-    - Statuses : 40 pass(s)
-    - Exec time: [0.0] s
-
-  
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_18895 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_pm_rpm@basic-pci-d3-state:
-    - fi-bsw-kefka:       [PASS][1] -> [DMESG-WARN][2] ([i915#1982])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9318/fi-bsw-kefka/igt@i915_pm_rpm@basic-pci-d3-state.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18895/fi-bsw-kefka/igt@i915_pm_rpm@basic-pci-d3-state.html
-
-  * igt@i915_pm_rpm@module-reload:
-    - fi-byt-j1900:       [PASS][3] -> [DMESG-WARN][4] ([i915#1982])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9318/fi-byt-j1900/igt@i915_pm_rpm@module-reload.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18895/fi-byt-j1900/igt@i915_pm_rpm@module-reload.html
-
-  * igt@kms_chamelium@dp-crc-fast:
-    - fi-kbl-7500u:       [PASS][5] -> [DMESG-WARN][6] ([i915#1982])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9318/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18895/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html
-
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy:
-    - fi-icl-u2:          [PASS][7] -> [DMESG-WARN][8] ([i915#1982]) +1 similar issue
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9318/fi-icl-u2/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18895/fi-icl-u2/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html
-
-  
-#### Possible fixes ####
-
-  * igt@core_hotunplug@unbind-rebind:
-    - fi-icl-u2:          [DMESG-WARN][9] ([i915#1982]) -> [PASS][10] +1 similar issue
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9318/fi-icl-u2/igt@core_hotunplug@unbind-rebind.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18895/fi-icl-u2/igt@core_hotunplug@unbind-rebind.html
-
-  * igt@debugfs_test@read_all_entries:
-    - {fi-kbl-7560u}:     [INCOMPLETE][11] ([i915#2417]) -> [PASS][12]
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9318/fi-kbl-7560u/igt@debugfs_test@read_all_entries.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18895/fi-kbl-7560u/igt@debugfs_test@read_all_entries.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
-  [i915#2417]: https://gitlab.freedesktop.org/drm/intel/issues/2417
-
-
-Participating hosts (46 -> 40)
-------------------------------
-
-  Missing    (6): fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-tgl-y fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_9318 -> Patchwork_18895
-
-  CI-20190529: 20190529
-  CI_DRM_9318: f5a3bbb80f537996ecfaacb3593c0f2a290efe53 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5848: 1e2525da258aab5e0e3a7705ea8e89b521d5bf88 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_18895: dd0748ed19838d3f7eed623d1a1603f3535df4c6 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-dd0748ed1983 drm/i915: Add hw.pipe_mode to allow bigjoiner pipe/transcoder split
-3a4c38a29fd4 drm/i915: Introduce intel_crtc_readout_derived_state()
-0e26d753eb5e drm/i915: s/intel_mode_from_pipe_config/intel_mode_from_crtc_timings/
-5e71b4304bf7 drm/i915: Move hw.active assignment into intel_crtc_get_pipe_config()
-f142f4b8aade drm/i915: Add a wrapper function around get_pipe_config
-131daee89b68 drm/i915: Move encoder->get_config to a new function
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18895/index.html
-
---===============1398614922253868882==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915: Introduce crtc_state.hw.pipe_mode</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/83780/">https://patchwork.freedesktop.org/series/83780/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18895/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18895/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_9318 -&gt; Patchwork_18895</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18895/index.html</p>
-<h2>New tests</h2>
-<p>New tests have been introduced between CI_DRM_9318 and Patchwork_18895:</p>
-<h3>New CI tests (1)</h3>
-<ul>
-<li>boot:<ul>
-<li>Statuses : 40 pass(s)</li>
-<li>Exec time: [0.0] s</li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_18895 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@i915_pm_rpm@basic-pci-d3-state:</p>
-<ul>
-<li>fi-bsw-kefka:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9318/fi-bsw-kefka/igt@i915_pm_rpm@basic-pci-d3-state.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18895/fi-bsw-kefka/igt@i915_pm_rpm@basic-pci-d3-state.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_pm_rpm@module-reload:</p>
-<ul>
-<li>fi-byt-j1900:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9318/fi-byt-j1900/igt@i915_pm_rpm@module-reload.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18895/fi-byt-j1900/igt@i915_pm_rpm@module-reload.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@dp-crc-fast:</p>
-<ul>
-<li>fi-kbl-7500u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9318/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18895/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy:</p>
-<ul>
-<li>fi-icl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9318/fi-icl-u2/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18895/fi-icl-u2/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>) +1 similar issue</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@core_hotunplug@unbind-rebind:</p>
-<ul>
-<li>fi-icl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9318/fi-icl-u2/igt@core_hotunplug@unbind-rebind.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18895/fi-icl-u2/igt@core_hotunplug@unbind-rebind.html">PASS</a> +1 similar issue</li>
-</ul>
-</li>
-<li>
-<p>igt@debugfs_test@read_all_entries:</p>
-<ul>
-<li>{fi-kbl-7560u}:     <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9318/fi-kbl-7560u/igt@debugfs_test@read_all_entries.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2417">i915#2417</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18895/fi-kbl-7560u/igt@debugfs_test@read_all_entries.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Participating hosts (46 -&gt; 40)</h2>
-<p>Missing    (6): fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-tgl-y fi-bdw-samus </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_9318 -&gt; Patchwork_18895</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_9318: f5a3bbb80f537996ecfaacb3593c0f2a290efe53 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_5848: 1e2525da258aab5e0e3a7705ea8e89b521d5bf88 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
-  Patchwork_18895: dd0748ed19838d3f7eed623d1a1603f3535df4c6 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>dd0748ed1983 drm/i915: Add hw.pipe_mode to allow bigjoiner pipe/transcoder split<br />
-3a4c38a29fd4 drm/i915: Introduce intel_crtc_readout_derived_state()<br />
-0e26d753eb5e drm/i915: s/intel_mode_from_pipe_config/intel_mode_from_crtc_timings/<br />
-5e71b4304bf7 drm/i915: Move hw.active assignment into intel_crtc_get_pipe_config()<br />
-f142f4b8aade drm/i915: Add a wrapper function around get_pipe_config<br />
-131daee89b68 drm/i915: Move encoder-&gt;get_config to a new function</p>
-
-</body>
-</html>
-
---===============1398614922253868882==--
-
---===============0843073537==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
+> Thanks,
+> Rodrigo.
+>
+> drm-intel-fixes-2020-11-12-1:
+> - GVT fixes including vGPU suspend/resume fixes and workaround for APL guest GPU hang.
+> - Fix set domain's cache coherency (Chris)
+> - Fixes around breadcrumbs (Chris)
+> - Fix encoder lookup during PSR atomic (Imre)
+> - Hold onto an explicit ref to i915_vma_work.pinned (Chris)
+> - Pull phys pread/pwrite implementations to the backend (Chris)
+> - Correctly set SFC capability for video engines
+> The following changes since commit 3cea11cd5e3b00d91caf0b4730194039b45c5891:
+>
+>   Linux 5.10-rc2 (2020-11-01 14:43:51 -0800)
+>
+> are available in the Git repository at:
+>
+>   git://anongit.freedesktop.org/drm/drm-intel tags/drm-intel-fixes-2020-11-12-1
+>
+> for you to fetch changes up to a4264790f4c2f0062d27d8173344c914bc7884e0:
+>
+>   drm/i915: Correctly set SFC capability for video engines (2020-11-12 16:41:54 -0500)
+>
+> ----------------------------------------------------------------
+> - GVT fixes including vGPU suspend/resume fixes and workaround for APL guest GPU hang.
+> - Fix set domain's cache coherency (Chris)
+> - Fixes around breadcrumbs (Chris)
+> - Fix encoder lookup during PSR atomic (Imre)
+> - Hold onto an explicit ref to i915_vma_work.pinned (Chris)
+> - Pull phys pread/pwrite implementations to the backend (Chris)
+> - Correctly set SFC capability for video engines
+>
+> ----------------------------------------------------------------
+> Chris Wilson (6):
+>       drm/i915/gem: Flush coherency domains on first set-domain-ioctl
+>       drm/i915/gt: Use the local HWSP offset during submission
+>       drm/i915/gt: Expose more parameters for emitting writes into the ring
+>       drm/i915/gt: Flush xcs before tgl breadcrumbs
+>       drm/i915: Hold onto an explicit ref to i915_vma_work.pinned
+>       drm/i915/gem: Pull phys pread/pwrite implementations to the backend
+>
+> Colin Xu (4):
+>       drm/i915/gvt: Allow zero out HWSP addr on hws_pga_write
+>       drm/i915/gvt: Set SNOOP for PAT3 on BXT/APL to workaround GPU BB hang
+>       drm/i915/gvt: Only pin/unpin intel_context along with workload
+>       drm/i915/gvt: Fix mmio handler break on BXT/APL.
+>
+> Imre Deak (1):
+>       drm/i915: Fix encoder lookup during PSR atomic check
+>
+> Matthew Auld (1):
+>       drm/i915/gem: Allow backends to override pread implementation
+>
+> Venkata Sandeep Dhanalakota (1):
+>       drm/i915: Correctly set SFC capability for video engines
+>
+>  drivers/gpu/drm/i915/display/intel_psr.c         |  2 +-
+>  drivers/gpu/drm/i915/gem/i915_gem_domain.c       | 28 ++++++------
+>  drivers/gpu/drm/i915/gem/i915_gem_object_types.h |  2 +
+>  drivers/gpu/drm/i915/gem/i915_gem_phys.c         | 55 ++++++++++++++++++++++++
+>  drivers/gpu/drm/i915/gt/intel_engine.h           | 55 +++++++++++++++---------
+>  drivers/gpu/drm/i915/gt/intel_engine_cs.c        |  3 +-
+>  drivers/gpu/drm/i915/gt/intel_lrc.c              | 31 +++++++++----
+>  drivers/gpu/drm/i915/gt/intel_timeline.c         | 18 ++++----
+>  drivers/gpu/drm/i915/gt/intel_timeline_types.h   |  2 +
+>  drivers/gpu/drm/i915/gvt/handlers.c              | 47 ++++++++++++++++++--
+>  drivers/gpu/drm/i915/gvt/scheduler.c             | 15 ++++---
+>  drivers/gpu/drm/i915/i915_gem.c                  | 32 +++-----------
+>  drivers/gpu/drm/i915/i915_vma.c                  |  6 ++-
+>  13 files changed, 204 insertions(+), 92 deletions(-)
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============0843073537==--
