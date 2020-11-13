@@ -2,43 +2,43 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 092C22B27C4
-	for <lists+intel-gfx@lfdr.de>; Fri, 13 Nov 2020 23:04:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8FF9E2B27C6
+	for <lists+intel-gfx@lfdr.de>; Fri, 13 Nov 2020 23:04:58 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4E8606E86B;
-	Fri, 13 Nov 2020 22:04:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E10CA6E86C;
+	Fri, 13 Nov 2020 22:04:56 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3C22D6E86B
- for <intel-gfx@lists.freedesktop.org>; Fri, 13 Nov 2020 22:04:52 +0000 (UTC)
-IronPort-SDR: rYP6apvX7eSYLxrVgODLMtBJmXaRu0qidyClzMWs3DCh0YD4ggTLDI3ZiDwR3MUL4jT4IvT9IU
- SDla0DXHHVCQ==
-X-IronPort-AV: E=McAfee;i="6000,8403,9804"; a="149808352"
-X-IronPort-AV: E=Sophos;i="5.77,476,1596524400"; d="scan'208";a="149808352"
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E63566E86C
+ for <intel-gfx@lists.freedesktop.org>; Fri, 13 Nov 2020 22:04:54 +0000 (UTC)
+IronPort-SDR: As1lrcakDqyOrBF2i1uqkeuSGlCXWYm2Qbm9VuRuVhs97akuNKF/LYADyWOasXIelOwnGdXopM
+ SD6us0Rne+yA==
+X-IronPort-AV: E=McAfee;i="6000,8403,9804"; a="188559547"
+X-IronPort-AV: E=Sophos;i="5.77,476,1596524400"; d="scan'208";a="188559547"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Nov 2020 14:04:51 -0800
-IronPort-SDR: 4odymPllplWjW/G0ELe/H1i1JW0WfQw7ClV+4l/FDWGbdi0YpCJDBdzti5DiGLCs8G9sG4dAv1
- B/ThLKUv5Ceg==
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Nov 2020 14:04:54 -0800
+IronPort-SDR: htGzqJIHALdGRg/jyuLAJTu6qjXs3bQoIaiQN4QTzqHVUGWHPchwNwdlZNdEUXhe7i4R7JMMjg
+ rW5Kveyl8j4Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.77,476,1596524400"; d="scan'208";a="309746477"
+X-IronPort-AV: E=Sophos;i="5.77,476,1596524400"; d="scan'208";a="361481066"
 Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by fmsmga007.fm.intel.com with SMTP; 13 Nov 2020 14:04:50 -0800
+ by fmsmga002.fm.intel.com with SMTP; 13 Nov 2020 14:04:52 -0800
 Received: by stinkbox (sSMTP sendmail emulation);
- Sat, 14 Nov 2020 00:04:49 +0200
+ Sat, 14 Nov 2020 00:04:52 +0200
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Sat, 14 Nov 2020 00:03:52 +0200
-Message-Id: <20201113220358.24794-18-ville.syrjala@linux.intel.com>
+Date: Sat, 14 Nov 2020 00:03:53 +0200
+Message-Id: <20201113220358.24794-19-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.26.2
 In-Reply-To: <20201113220358.24794-1-ville.syrjala@linux.intel.com>
 References: <20201113220358.24794-1-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 17/23] drm/i915: Get the uapi state from the
- correct plane when bigjoiner is used
+Subject: [Intel-gfx] [PATCH 18/23] drm/i915: Add bigjoiner aware plane
+ clipping checks
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,126 +51,213 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-RnJvbTogVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4KCldo
-ZW4gdXNpbmcgYmlnam9pbmVyIHVzZXJzcGFjZSBpcyBvbmx5IGNvbnRyb2xsaW5nIHRoZSAibWFz
-dGVyIgpwbGFuZSwgc28gdXNlIGl0cyB1YXBpIHN0YXRlIGZvciB0aGUgInNsYXZlIiBwbGFuZSBh
-cyB3ZWxsLgoKaHcuY3J0YyBuZWVkcyBhIGJpdCBvZiBtYWdpYyBzaW5jZSB3ZSBkb24ndCB3YW50
-IHRvIGNvcHkgdGhhdCBmcm9tCnRoZSB1YXBpIHN0YXRlIChhcyBpdCBwb2ludHMgdG8gdGhlIHdy
-b25nIHBpcGUgZm9yIHRoZSAic2xhdmUKIiBwbGFuZSkuIEluc3RlYWQgd2UgcGFzcyB0aGUgcmln
-aHQgY3J0YyBpbiBleHBsaWNpdGx5IGJ1dCBvbmx5CmFzc2lnbiBpdCB3aGVuIHRoZSB1YXBpIHN0
-YXRlIGluZGljYXRlcyB0aGUgcGxhbmUgdG8gYmUgbG9naWNhbGx5CmVuYWJsZWQgKGllLiB1YXBp
-LmNydGMgIT0gTlVMTCkuCgpTaWduZWQtb2ZmLWJ5OiBWaWxsZSBTeXJqw6Rsw6QgPHZpbGxlLnN5
-cmphbGFAbGludXguaW50ZWwuY29tPgotLS0KIC4uLi9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRl
-bF9hdG9taWNfcGxhbmUuYyB8IDU5ICsrKysrKysrKysrKystLS0tLS0KIC4uLi9ncHUvZHJtL2k5
-MTUvZGlzcGxheS9pbnRlbF9hdG9taWNfcGxhbmUuaCB8ICAzICstCiBkcml2ZXJzL2dwdS9kcm0v
-aTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXkuYyAgfCAgNSArLQogMyBmaWxlcyBjaGFuZ2VkLCA0
-NiBpbnNlcnRpb25zKCspLCAyMSBkZWxldGlvbnMoLSkKCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dw
-dS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2F0b21pY19wbGFuZS5jIGIvZHJpdmVycy9ncHUvZHJt
-L2k5MTUvZGlzcGxheS9pbnRlbF9hdG9taWNfcGxhbmUuYwppbmRleCBmNDc1NThlZmIzYzIuLjdh
-YmIwZTNkNmMwYiAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRl
-bF9hdG9taWNfcGxhbmUuYworKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVs
-X2F0b21pY19wbGFuZS5jCkBAIC0yNDcsMTEgKzI0NywxOSBAQCBzdGF0aWMgdm9pZCBpbnRlbF9w
-bGFuZV9jbGVhcl9od19zdGF0ZShzdHJ1Y3QgaW50ZWxfcGxhbmVfc3RhdGUgKnBsYW5lX3N0YXRl
-KQogfQogCiB2b2lkIGludGVsX3BsYW5lX2NvcHlfdWFwaV90b19od19zdGF0ZShzdHJ1Y3QgaW50
-ZWxfcGxhbmVfc3RhdGUgKnBsYW5lX3N0YXRlLAotCQkJCSAgICAgICBjb25zdCBzdHJ1Y3QgaW50
-ZWxfcGxhbmVfc3RhdGUgKmZyb21fcGxhbmVfc3RhdGUpCisJCQkJICAgICAgIGNvbnN0IHN0cnVj
-dCBpbnRlbF9wbGFuZV9zdGF0ZSAqZnJvbV9wbGFuZV9zdGF0ZSwKKwkJCQkgICAgICAgc3RydWN0
-IGludGVsX2NydGMgKmNydGMpCiB7CiAJaW50ZWxfcGxhbmVfY2xlYXJfaHdfc3RhdGUocGxhbmVf
-c3RhdGUpOwogCi0JcGxhbmVfc3RhdGUtPmh3LmNydGMgPSBmcm9tX3BsYW5lX3N0YXRlLT51YXBp
-LmNydGM7CisJLyoKKwkgKiBGb3IgdGhlIGJpZ2pvaW5lciBzbGF2ZSB1YXBpLmNydGMgd2lsbCBw
-b2ludCBhdAorCSAqIHRoZSBtYXN0ZXIgY3J0Yy4gU28gd2UgZXhwbGljaXRseSBhc3NpZ24gdGhl
-IHJpZ2h0CisJICogc2xhdmUgY3J0YyB0byBody5jcnRjLiB1YXBpLmNydGMhPU5VTEwgc2ltcGx5
-IGluZGljYXRlcworCSAqIHRoZSBwbGFuZSBpcyBsb2dpY2FsbHkgZW5hYmxlZCBvbiB0aGUgdWFw
-aSBsZXZlbC4KKwkgKi8KKwlwbGFuZV9zdGF0ZS0+aHcuY3J0YyA9IGZyb21fcGxhbmVfc3RhdGUt
-PnVhcGkuY3J0YyA/ICZjcnRjLT5iYXNlIDogTlVMTDsKKwogCXBsYW5lX3N0YXRlLT5ody5mYiA9
-IGZyb21fcGxhbmVfc3RhdGUtPnVhcGkuZmI7CiAJaWYgKHBsYW5lX3N0YXRlLT5ody5mYikKIAkJ
-ZHJtX2ZyYW1lYnVmZmVyX2dldChwbGFuZV9zdGF0ZS0+aHcuZmIpOwpAQCAtMzMxLDE1ICszMzks
-MTYgQEAgaW50IGludGVsX3BsYW5lX2F0b21pY19jaGVja193aXRoX3N0YXRlKGNvbnN0IHN0cnVj
-dCBpbnRlbF9jcnRjX3N0YXRlICpvbGRfY3J0Y18KIAkJCQkJICAgICAgIG9sZF9wbGFuZV9zdGF0
-ZSwgbmV3X3BsYW5lX3N0YXRlKTsKIH0KIAotc3RhdGljIHN0cnVjdCBpbnRlbF9jcnRjICoKLWdl
-dF9jcnRjX2Zyb21fc3RhdGVzKGNvbnN0IHN0cnVjdCBpbnRlbF9wbGFuZV9zdGF0ZSAqb2xkX3Bs
-YW5lX3N0YXRlLAotCQkgICAgIGNvbnN0IHN0cnVjdCBpbnRlbF9wbGFuZV9zdGF0ZSAqbmV3X3Bs
-YW5lX3N0YXRlKQorc3RhdGljIHN0cnVjdCBpbnRlbF9wbGFuZSAqCitpbnRlbF9jcnRjX2dldF9w
-bGFuZShzdHJ1Y3QgaW50ZWxfY3J0YyAqY3J0YywgZW51bSBwbGFuZV9pZCBwbGFuZV9pZCkKIHsK
-LQlpZiAobmV3X3BsYW5lX3N0YXRlLT51YXBpLmNydGMpCi0JCXJldHVybiB0b19pbnRlbF9jcnRj
-KG5ld19wbGFuZV9zdGF0ZS0+dWFwaS5jcnRjKTsKKwlzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAq
-aTkxNSA9IHRvX2k5MTUoY3J0Yy0+YmFzZS5kZXYpOworCXN0cnVjdCBpbnRlbF9wbGFuZSAqcGxh
-bmU7CiAKLQlpZiAob2xkX3BsYW5lX3N0YXRlLT51YXBpLmNydGMpCi0JCXJldHVybiB0b19pbnRl
-bF9jcnRjKG9sZF9wbGFuZV9zdGF0ZS0+dWFwaS5jcnRjKTsKKwlmb3JfZWFjaF9pbnRlbF9wbGFu
-ZV9vbl9jcnRjKCZpOTE1LT5kcm0sIGNydGMsIHBsYW5lKSB7CisJCWlmIChwbGFuZS0+aWQgPT0g
-cGxhbmVfaWQpCisJCQlyZXR1cm4gcGxhbmU7CisJfQogCiAJcmV0dXJuIE5VTEw7CiB9CkBAIC0z
-NDcsMjMgKzM1NiwzNyBAQCBnZXRfY3J0Y19mcm9tX3N0YXRlcyhjb25zdCBzdHJ1Y3QgaW50ZWxf
-cGxhbmVfc3RhdGUgKm9sZF9wbGFuZV9zdGF0ZSwKIGludCBpbnRlbF9wbGFuZV9hdG9taWNfY2hl
-Y2soc3RydWN0IGludGVsX2F0b21pY19zdGF0ZSAqc3RhdGUsCiAJCQkgICAgIHN0cnVjdCBpbnRl
-bF9wbGFuZSAqcGxhbmUpCiB7CisJc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmk5MTUgPSB0b19p
-OTE1KHN0YXRlLT5iYXNlLmRldik7CiAJc3RydWN0IGludGVsX3BsYW5lX3N0YXRlICpuZXdfcGxh
-bmVfc3RhdGUgPQogCQlpbnRlbF9hdG9taWNfZ2V0X25ld19wbGFuZV9zdGF0ZShzdGF0ZSwgcGxh
-bmUpOwogCWNvbnN0IHN0cnVjdCBpbnRlbF9wbGFuZV9zdGF0ZSAqb2xkX3BsYW5lX3N0YXRlID0K
-IAkJaW50ZWxfYXRvbWljX2dldF9vbGRfcGxhbmVfc3RhdGUoc3RhdGUsIHBsYW5lKTsKLQlzdHJ1
-Y3QgaW50ZWxfY3J0YyAqY3J0YyA9Ci0JCWdldF9jcnRjX2Zyb21fc3RhdGVzKG9sZF9wbGFuZV9z
-dGF0ZSwgbmV3X3BsYW5lX3N0YXRlKTsKLQljb25zdCBzdHJ1Y3QgaW50ZWxfY3J0Y19zdGF0ZSAq
-b2xkX2NydGNfc3RhdGU7Ci0Jc3RydWN0IGludGVsX2NydGNfc3RhdGUgKm5ld19jcnRjX3N0YXRl
-OworCWNvbnN0IHN0cnVjdCBpbnRlbF9wbGFuZV9zdGF0ZSAqbmV3X21hc3Rlcl9wbGFuZV9zdGF0
-ZTsKKwlzdHJ1Y3QgaW50ZWxfY3J0YyAqY3J0YyA9IGludGVsX2dldF9jcnRjX2Zvcl9waXBlKGk5
-MTUsIHBsYW5lLT5waXBlKTsKKwljb25zdCBzdHJ1Y3QgaW50ZWxfY3J0Y19zdGF0ZSAqb2xkX2Ny
-dGNfc3RhdGUgPQorCQlpbnRlbF9hdG9taWNfZ2V0X29sZF9jcnRjX3N0YXRlKHN0YXRlLCBjcnRj
-KTsKKwlzdHJ1Y3QgaW50ZWxfY3J0Y19zdGF0ZSAqbmV3X2NydGNfc3RhdGUgPQorCQlpbnRlbF9h
-dG9taWNfZ2V0X25ld19jcnRjX3N0YXRlKHN0YXRlLCBjcnRjKTsKKworCWlmIChuZXdfY3J0Y19z
-dGF0ZSAmJiBuZXdfY3J0Y19zdGF0ZS0+Ymlnam9pbmVyX3NsYXZlKSB7CisJCXN0cnVjdCBpbnRl
-bF9wbGFuZSAqbWFzdGVyX3BsYW5lID0KKwkJCWludGVsX2NydGNfZ2V0X3BsYW5lKG5ld19jcnRj
-X3N0YXRlLT5iaWdqb2luZXJfbGlua2VkX2NydGMsCisJCQkJCSAgICAgcGxhbmUtPmlkKTsKKwor
-CQluZXdfbWFzdGVyX3BsYW5lX3N0YXRlID0KKwkJCWludGVsX2F0b21pY19nZXRfbmV3X3BsYW5l
-X3N0YXRlKHN0YXRlLCBtYXN0ZXJfcGxhbmUpOworCX0gZWxzZSB7CisJCW5ld19tYXN0ZXJfcGxh
-bmVfc3RhdGUgPSBuZXdfcGxhbmVfc3RhdGU7CisJfQorCisJaW50ZWxfcGxhbmVfY29weV91YXBp
-X3RvX2h3X3N0YXRlKG5ld19wbGFuZV9zdGF0ZSwKKwkJCQkJICBuZXdfbWFzdGVyX3BsYW5lX3N0
-YXRlLAorCQkJCQkgIGNydGMpOwogCi0JaW50ZWxfcGxhbmVfY29weV91YXBpX3RvX2h3X3N0YXRl
-KG5ld19wbGFuZV9zdGF0ZSwgbmV3X3BsYW5lX3N0YXRlKTsKIAluZXdfcGxhbmVfc3RhdGUtPnVh
-cGkudmlzaWJsZSA9IGZhbHNlOwotCWlmICghY3J0YykKKwlpZiAoIW5ld19jcnRjX3N0YXRlKQog
-CQlyZXR1cm4gMDsKIAotCW9sZF9jcnRjX3N0YXRlID0gaW50ZWxfYXRvbWljX2dldF9vbGRfY3J0
-Y19zdGF0ZShzdGF0ZSwgY3J0Yyk7Ci0JbmV3X2NydGNfc3RhdGUgPSBpbnRlbF9hdG9taWNfZ2V0
-X25ld19jcnRjX3N0YXRlKHN0YXRlLCBjcnRjKTsKLQogCXJldHVybiBpbnRlbF9wbGFuZV9hdG9t
-aWNfY2hlY2tfd2l0aF9zdGF0ZShvbGRfY3J0Y19zdGF0ZSwKIAkJCQkJCSAgIG5ld19jcnRjX3N0
-YXRlLAogCQkJCQkJICAgb2xkX3BsYW5lX3N0YXRlLApkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUv
-ZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9hdG9taWNfcGxhbmUuaCBiL2RyaXZlcnMvZ3B1L2RybS9p
-OTE1L2Rpc3BsYXkvaW50ZWxfYXRvbWljX3BsYW5lLmgKaW5kZXggMjRhM2ExNDhhYTYyLi41Y2Fl
-OWRiNDEwNjIgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxf
-YXRvbWljX3BsYW5lLmgKKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9h
-dG9taWNfcGxhbmUuaApAQCAtMjQsNyArMjQsOCBAQCB1bnNpZ25lZCBpbnQgaW50ZWxfcGxhbmVf
-cGl4ZWxfcmF0ZShjb25zdCBzdHJ1Y3QgaW50ZWxfY3J0Y19zdGF0ZSAqY3J0Y19zdGF0ZSwKIHVu
-c2lnbmVkIGludCBpbnRlbF9wbGFuZV9kYXRhX3JhdGUoY29uc3Qgc3RydWN0IGludGVsX2NydGNf
-c3RhdGUgKmNydGNfc3RhdGUsCiAJCQkJICAgY29uc3Qgc3RydWN0IGludGVsX3BsYW5lX3N0YXRl
-ICpwbGFuZV9zdGF0ZSk7CiB2b2lkIGludGVsX3BsYW5lX2NvcHlfdWFwaV90b19od19zdGF0ZShz
-dHJ1Y3QgaW50ZWxfcGxhbmVfc3RhdGUgKnBsYW5lX3N0YXRlLAotCQkJCSAgICAgICBjb25zdCBz
-dHJ1Y3QgaW50ZWxfcGxhbmVfc3RhdGUgKmZyb21fcGxhbmVfc3RhdGUpOworCQkJCSAgICAgICBj
-b25zdCBzdHJ1Y3QgaW50ZWxfcGxhbmVfc3RhdGUgKmZyb21fcGxhbmVfc3RhdGUsCisJCQkJICAg
-ICAgIHN0cnVjdCBpbnRlbF9jcnRjICpjcnRjKTsKIHZvaWQgaW50ZWxfcGxhbmVfY29weV9od19z
-dGF0ZShzdHJ1Y3QgaW50ZWxfcGxhbmVfc3RhdGUgKnBsYW5lX3N0YXRlLAogCQkJICAgICAgIGNv
-bnN0IHN0cnVjdCBpbnRlbF9wbGFuZV9zdGF0ZSAqZnJvbV9wbGFuZV9zdGF0ZSk7CiB2b2lkIGlu
-dGVsX3VwZGF0ZV9wbGFuZShzdHJ1Y3QgaW50ZWxfcGxhbmUgKnBsYW5lLApkaWZmIC0tZ2l0IGEv
-ZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5LmMgYi9kcml2ZXJzL2dw
-dS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXkuYwppbmRleCAxMTE4ZmY3M2MwZDQuLjU1
-ZTBhMmYyMWQ5OCAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRl
-bF9kaXNwbGF5LmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNw
-bGF5LmMKQEAgLTM3MTgsNyArMzcxOCw4IEBAIGludGVsX2ZpbmRfaW5pdGlhbF9wbGFuZV9vYmoo
-c3RydWN0IGludGVsX2NydGMgKmludGVsX2NydGMsCiAJZHJtX2ZyYW1lYnVmZmVyX2dldChmYik7
-CiAKIAlwbGFuZV9zdGF0ZS0+Y3J0YyA9ICZpbnRlbF9jcnRjLT5iYXNlOwotCWludGVsX3BsYW5l
-X2NvcHlfdWFwaV90b19od19zdGF0ZShpbnRlbF9zdGF0ZSwgaW50ZWxfc3RhdGUpOworCWludGVs
-X3BsYW5lX2NvcHlfdWFwaV90b19od19zdGF0ZShpbnRlbF9zdGF0ZSwgaW50ZWxfc3RhdGUsCisJ
-CQkJCSAgaW50ZWxfY3J0Yyk7CiAKIAlpbnRlbF9mcm9udGJ1ZmZlcl9mbHVzaCh0b19pbnRlbF9m
-cm9udGJ1ZmZlcihmYiksIE9SSUdJTl9ESVJUWUZCKTsKIApAQCAtMTY5NDIsNyArMTY5NDMsNyBA
-QCBpbnRlbF9sZWdhY3lfY3Vyc29yX3VwZGF0ZShzdHJ1Y3QgZHJtX3BsYW5lICpfcGxhbmUsCiAJ
-bmV3X3BsYW5lX3N0YXRlLT51YXBpLmNydGNfdyA9IGNydGNfdzsKIAluZXdfcGxhbmVfc3RhdGUt
-PnVhcGkuY3J0Y19oID0gY3J0Y19oOwogCi0JaW50ZWxfcGxhbmVfY29weV91YXBpX3RvX2h3X3N0
-YXRlKG5ld19wbGFuZV9zdGF0ZSwgbmV3X3BsYW5lX3N0YXRlKTsKKwlpbnRlbF9wbGFuZV9jb3B5
-X3VhcGlfdG9faHdfc3RhdGUobmV3X3BsYW5lX3N0YXRlLCBuZXdfcGxhbmVfc3RhdGUsIGNydGMp
-OwogCiAJcmV0ID0gaW50ZWxfcGxhbmVfYXRvbWljX2NoZWNrX3dpdGhfc3RhdGUoY3J0Y19zdGF0
-ZSwgbmV3X2NydGNfc3RhdGUsCiAJCQkJCQkgIG9sZF9wbGFuZV9zdGF0ZSwgbmV3X3BsYW5lX3N0
-YXRlKTsKLS0gCjIuMjYuMgoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0
-b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50
-ZWwtZ2Z4Cg==
+From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+
+We need to look at hw.fb for the framebuffer, and add the translation
+for the slave_plane_state. With these changes we set the correct
+rectangle on the bigjoiner slave, and don't set incorrect
+src/dst/visibility on the slave plane.
+
+v2:
+* Manual rebase (Manasi)
+
+v3:
+* hw.rotation instead of uapi.rotation (Ville)
+
+Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Signed-off-by: Manasi Navare <manasi.d.navare@intel.com>
+---
+ .../gpu/drm/i915/display/intel_atomic_plane.c | 60 +++++++++++++++++++
+ .../gpu/drm/i915/display/intel_atomic_plane.h |  4 ++
+ drivers/gpu/drm/i915/display/intel_display.c  | 19 +++---
+ drivers/gpu/drm/i915/display/intel_sprite.c   | 21 +++----
+ 4 files changed, 80 insertions(+), 24 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/display/intel_atomic_plane.c b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
+index 7abb0e3d6c0b..7e9f84b00859 100644
+--- a/drivers/gpu/drm/i915/display/intel_atomic_plane.c
++++ b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
+@@ -271,6 +271,9 @@ void intel_plane_copy_uapi_to_hw_state(struct intel_plane_state *plane_state,
+ 	plane_state->hw.color_encoding = from_plane_state->uapi.color_encoding;
+ 	plane_state->hw.color_range = from_plane_state->uapi.color_range;
+ 	plane_state->hw.scaling_filter = from_plane_state->uapi.scaling_filter;
++
++	plane_state->uapi.src = drm_plane_state_src(&from_plane_state->uapi);
++	plane_state->uapi.dst = drm_plane_state_dest(&from_plane_state->uapi);
+ }
+ 
+ void intel_plane_copy_hw_state(struct intel_plane_state *plane_state,
+@@ -514,6 +517,63 @@ void i9xx_update_planes_on_crtc(struct intel_atomic_state *state,
+ 	}
+ }
+ 
++int intel_atomic_plane_check_clipping(struct intel_plane_state *plane_state,
++				      struct intel_crtc_state *crtc_state,
++				      int min_scale, int max_scale,
++				      bool can_position)
++{
++	struct drm_framebuffer *fb = plane_state->hw.fb;
++	struct drm_rect *src = &plane_state->uapi.src;
++	struct drm_rect *dst = &plane_state->uapi.dst;
++	unsigned int rotation = plane_state->hw.rotation;
++	struct drm_rect clip = {};
++	int hscale, vscale;
++
++	if (!fb) {
++		plane_state->uapi.visible = false;
++		return 0;
++	}
++
++	drm_rect_rotate(src, fb->width << 16, fb->height << 16, rotation);
++
++	/* Check scaling */
++	hscale = drm_rect_calc_hscale(src, dst, min_scale, max_scale);
++	vscale = drm_rect_calc_vscale(src, dst, min_scale, max_scale);
++	if (hscale < 0 || vscale < 0) {
++		DRM_DEBUG_KMS("Invalid scaling of plane\n");
++		drm_rect_debug_print("src: ", src, true);
++		drm_rect_debug_print("dst: ", dst, false);
++		return -ERANGE;
++	}
++
++	if (crtc_state->hw.enable) {
++		clip.x2 = crtc_state->pipe_src_w;
++		clip.y2 = crtc_state->pipe_src_h;
++	}
++
++	/* right side of the image is on the slave crtc, adjust dst to match */
++	if (crtc_state->bigjoiner_slave)
++		drm_rect_translate(dst, -crtc_state->pipe_src_w, 0);
++
++	/*
++	 * FIXME: This might need further adjustment for seamless scaling
++	 * with phase information, for the 2p2 and 2p1 scenarios.
++	 */
++	plane_state->uapi.visible = drm_rect_clip_scaled(src, dst, &clip);
++
++	drm_rect_rotate_inv(src, fb->width << 16, fb->height << 16, rotation);
++
++	if (!can_position && plane_state->uapi.visible &&
++	    !drm_rect_equals(dst, &clip)) {
++		DRM_DEBUG_KMS("Plane must cover entire CRTC\n");
++		drm_rect_debug_print("dst: ", dst, false);
++		drm_rect_debug_print("clip: ", &clip, false);
++		return -EINVAL;
++	}
++
++	return 0;
++}
++
+ const struct drm_plane_helper_funcs intel_plane_helper_funcs = {
+ 	.prepare_fb = intel_prepare_plane_fb,
+ 	.cleanup_fb = intel_cleanup_plane_fb,
+diff --git a/drivers/gpu/drm/i915/display/intel_atomic_plane.h b/drivers/gpu/drm/i915/display/intel_atomic_plane.h
+index 5cae9db41062..5c78a087ed86 100644
+--- a/drivers/gpu/drm/i915/display/intel_atomic_plane.h
++++ b/drivers/gpu/drm/i915/display/intel_atomic_plane.h
+@@ -55,6 +55,10 @@ int intel_plane_atomic_calc_changes(const struct intel_crtc_state *old_crtc_stat
+ int intel_plane_calc_min_cdclk(struct intel_atomic_state *state,
+ 			       struct intel_plane *plane,
+ 			       bool *need_cdclk_calc);
++int intel_atomic_plane_check_clipping(struct intel_plane_state *plane_state,
++				      struct intel_crtc_state *crtc_state,
++				      int min_scale, int max_scale,
++				      bool can_position);
+ void intel_plane_set_invisible(struct intel_crtc_state *crtc_state,
+ 			       struct intel_plane_state *plane_state);
+ 
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index 55e0a2f21d98..eeb50413fc8e 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -4315,12 +4315,10 @@ i9xx_plane_check(struct intel_crtc_state *crtc_state,
+ 	if (ret)
+ 		return ret;
+ 
+-	ret = drm_atomic_helper_check_plane_state(&plane_state->uapi,
+-						  &crtc_state->uapi,
+-						  DRM_PLANE_HELPER_NO_SCALING,
+-						  DRM_PLANE_HELPER_NO_SCALING,
+-						  i9xx_plane_has_windowing(plane),
+-						  true);
++	ret = intel_atomic_plane_check_clipping(plane_state, crtc_state,
++						DRM_PLANE_HELPER_NO_SCALING,
++						DRM_PLANE_HELPER_NO_SCALING,
++						i9xx_plane_has_windowing(plane));
+ 	if (ret)
+ 		return ret;
+ 
+@@ -11660,11 +11658,10 @@ static int intel_check_cursor(struct intel_crtc_state *crtc_state,
+ 		return -EINVAL;
+ 	}
+ 
+-	ret = drm_atomic_helper_check_plane_state(&plane_state->uapi,
+-						  &crtc_state->uapi,
+-						  DRM_PLANE_HELPER_NO_SCALING,
+-						  DRM_PLANE_HELPER_NO_SCALING,
+-						  true, true);
++	ret = intel_atomic_plane_check_clipping(plane_state, crtc_state,
++						DRM_PLANE_HELPER_NO_SCALING,
++						DRM_PLANE_HELPER_NO_SCALING,
++						true);
+ 	if (ret)
+ 		return ret;
+ 
+diff --git a/drivers/gpu/drm/i915/display/intel_sprite.c b/drivers/gpu/drm/i915/display/intel_sprite.c
+index a3ab44694118..019a2d6d807a 100644
+--- a/drivers/gpu/drm/i915/display/intel_sprite.c
++++ b/drivers/gpu/drm/i915/display/intel_sprite.c
+@@ -2187,10 +2187,8 @@ g4x_sprite_check(struct intel_crtc_state *crtc_state,
+ 		}
+ 	}
+ 
+-	ret = drm_atomic_helper_check_plane_state(&plane_state->uapi,
+-						  &crtc_state->uapi,
+-						  min_scale, max_scale,
+-						  true, true);
++	ret = intel_atomic_plane_check_clipping(plane_state, crtc_state,
++						min_scale, max_scale, true);
+ 	if (ret)
+ 		return ret;
+ 
+@@ -2245,11 +2243,10 @@ vlv_sprite_check(struct intel_crtc_state *crtc_state,
+ 	if (ret)
+ 		return ret;
+ 
+-	ret = drm_atomic_helper_check_plane_state(&plane_state->uapi,
+-						  &crtc_state->uapi,
+-						  DRM_PLANE_HELPER_NO_SCALING,
+-						  DRM_PLANE_HELPER_NO_SCALING,
+-						  true, true);
++	ret = intel_atomic_plane_check_clipping(plane_state, crtc_state,
++						DRM_PLANE_HELPER_NO_SCALING,
++						DRM_PLANE_HELPER_NO_SCALING,
++						true);
+ 	if (ret)
+ 		return ret;
+ 
+@@ -2456,10 +2453,8 @@ static int skl_plane_check(struct intel_crtc_state *crtc_state,
+ 		max_scale = skl_plane_max_scale(dev_priv, fb);
+ 	}
+ 
+-	ret = drm_atomic_helper_check_plane_state(&plane_state->uapi,
+-						  &crtc_state->uapi,
+-						  min_scale, max_scale,
+-						  true, true);
++	ret = intel_atomic_plane_check_clipping(plane_state, crtc_state,
++						min_scale, max_scale, true);
+ 	if (ret)
+ 		return ret;
+ 
+-- 
+2.26.2
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
