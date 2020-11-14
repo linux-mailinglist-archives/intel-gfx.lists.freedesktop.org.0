@@ -1,31 +1,40 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1647F2B2991
-	for <lists+intel-gfx@lfdr.de>; Sat, 14 Nov 2020 01:14:48 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3012E2B29F1
+	for <lists+intel-gfx@lfdr.de>; Sat, 14 Nov 2020 01:37:38 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F0A5C6E88A;
-	Sat, 14 Nov 2020 00:14:45 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id DAF146E88A;
- Sat, 14 Nov 2020 00:14:43 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id D705FA0003;
- Sat, 14 Nov 2020 00:14:43 +0000 (UTC)
-MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
-Date: Sat, 14 Nov 2020 00:14:43 -0000
-Message-ID: <160531288387.18246.8084979575671351858@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20201113220358.24794-1-ville.syrjala@linux.intel.com>
-In-Reply-To: <20201113220358.24794-1-ville.syrjala@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
- =?utf-8?q?drm/i915=3A_Big_bigjoiner_series?=
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5FF376E8A9;
+	Sat, 14 Nov 2020 00:37:32 +0000 (UTC)
+X-Original-To: Intel-gfx@lists.freedesktop.org
+Delivered-To: Intel-gfx@lists.freedesktop.org
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 73BF16E8AE
+ for <Intel-gfx@lists.freedesktop.org>; Sat, 14 Nov 2020 00:37:28 +0000 (UTC)
+IronPort-SDR: gO+okiUztYHZeBx+HQVum1yKKVHlwm1GKR4wb5tupma3/65/d6fZoeiFSmDYc/hUxBA5xkeARv
+ 7UG3V017OX1w==
+X-IronPort-AV: E=McAfee;i="6000,8403,9804"; a="169768621"
+X-IronPort-AV: E=Sophos;i="5.77,477,1596524400"; d="scan'208";a="169768621"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Nov 2020 16:37:18 -0800
+IronPort-SDR: Y5U/i1QAKelMNebK9lLhLuQrkY3jdEqFJhxKW5zX/kFZsMYPsqDXizexVy7oBA9iuMqgNVol+b
+ 9RLVpCFeGLwQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.77,477,1596524400"; d="scan'208";a="474848546"
+Received: from sean-virtualbox.fm.intel.com ([10.105.158.96])
+ by orsmga004.jf.intel.com with ESMTP; 13 Nov 2020 16:37:16 -0800
+From: Sean Z Huang <sean.z.huang@intel.com>
+To: sean.z.huang@intel.com,
+	Intel-gfx@lists.freedesktop.org
+Date: Fri, 13 Nov 2020 16:36:50 -0800
+Message-Id: <20201114003716.4875-1-sean.z.huang@intel.com>
+X-Mailer: git-send-email 2.17.1
+Subject: [Intel-gfx] [PXP CLEAN PATCH v06 01/27] drm/i915/pxp: Introduce
+ Intel PXP component
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,80 +47,167 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+From: "Huang, Sean Z" <sean.z.huang@intel.com>
 
-Series: drm/i915: Big bigjoiner series
-URL   : https://patchwork.freedesktop.org/series/83837/
-State : warning
+PXP (Protected Xe Path) is an i915 componment, that
+helps ring3 to establish the hardware protected session and
+manage the status of each alive software session, as well as
+the life cycle of each session.
 
-== Summary ==
+By design PXP will expose ioctl so allow ring3 to create, set,
+and destroy each session. It will also provide the communication
+chanel to TEE (Trusted Execution Environment) for the protected
+hardware session creation.
 
-$ dim sparse --fast origin/drm-tip
-Sparse version: v0.6.2
-Fast mode used, each commit won't be checked separately.
--
-+drivers/gpu/drm/i915/gt/intel_reset.c:1312:5: warning: context imbalance in 'intel_gt_reset_trylock' - different lock contexts for basic block
-+drivers/gpu/drm/i915/gt/selftest_reset.c:100:20:    expected void *in
-+drivers/gpu/drm/i915/gt/selftest_reset.c:100:20:    got void [noderef] __iomem *[assigned] s
-+drivers/gpu/drm/i915/gt/selftest_reset.c:100:20: warning: incorrect type in assignment (different address spaces)
-+drivers/gpu/drm/i915/gt/selftest_reset.c:101:46:    expected void const *src
-+drivers/gpu/drm/i915/gt/selftest_reset.c:101:46:    got void [noderef] __iomem *[assigned] s
-+drivers/gpu/drm/i915/gt/selftest_reset.c:101:46: warning: incorrect type in argument 2 (different address spaces)
-+drivers/gpu/drm/i915/gt/selftest_reset.c:136:20:    expected void *in
-+drivers/gpu/drm/i915/gt/selftest_reset.c:136:20:    got void [noderef] __iomem *[assigned] s
-+drivers/gpu/drm/i915/gt/selftest_reset.c:136:20: warning: incorrect type in assignment (different address spaces)
-+drivers/gpu/drm/i915/gt/selftest_reset.c:137:46:    expected void const *src
-+drivers/gpu/drm/i915/gt/selftest_reset.c:137:46:    got void [noderef] __iomem *[assigned] s
-+drivers/gpu/drm/i915/gt/selftest_reset.c:137:46: warning: incorrect type in argument 2 (different address spaces)
-+drivers/gpu/drm/i915/gt/selftest_reset.c:98:34:    expected unsigned int [usertype] *s
-+drivers/gpu/drm/i915/gt/selftest_reset.c:98:34:    got void [noderef] __iomem *[assigned] s
-+drivers/gpu/drm/i915/gt/selftest_reset.c:98:34: warning: incorrect type in argument 1 (different address spaces)
-+drivers/gpu/drm/i915/gvt/mmio.c:290:23: warning: memcpy with byte count of 279040
-+drivers/gpu/drm/i915/i915_perf.c:1440:15: warning: memset with byte count of 16777216
-+drivers/gpu/drm/i915/i915_perf.c:1494:15: warning: memset with byte count of 16777216
-+drivers/gpu/drm/i915/intel_wakeref.c:137:19: warning: context imbalance in 'wakeref_auto_timeout' - unexpected unlock
-+./include/linux/seqlock.h:838:24: warning: trying to copy expression type 31
-+./include/linux/seqlock.h:838:24: warning: trying to copy expression type 31
-+./include/linux/seqlock.h:864:16: warning: trying to copy expression type 31
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_read16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_read32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_read64' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_read8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_write8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_read16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_read32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_read64' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_read8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_write8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_read16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_read32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_read64' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_read8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_write8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_read16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_read32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_read64' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_read8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_write8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen8_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen8_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen8_write8' - different lock contexts for basic block
+Signed-off-by: Huang, Sean Z <sean.z.huang@intel.com>
+---
+ drivers/gpu/drm/i915/Makefile        |  4 ++++
+ drivers/gpu/drm/i915/i915_drv.c      |  4 ++++
+ drivers/gpu/drm/i915/i915_drv.h      |  4 ++++
+ drivers/gpu/drm/i915/pxp/intel_pxp.c | 20 ++++++++++++++++++++
+ drivers/gpu/drm/i915/pxp/intel_pxp.h | 22 ++++++++++++++++++++++
+ include/uapi/drm/i915_drm.h          |  5 +++++
+ 6 files changed, 59 insertions(+)
+ create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp.c
+ create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp.h
 
+diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefile
+index e5574e506a5c..8274fea96009 100644
+--- a/drivers/gpu/drm/i915/Makefile
++++ b/drivers/gpu/drm/i915/Makefile
+@@ -254,6 +254,10 @@ i915-y += \
+ 
+ i915-y += i915_perf.o
+ 
++# Protected execution platform (PXP) support
++i915-y += \
++	pxp/intel_pxp.o
++
+ # Post-mortem debug and GPU hang state capture
+ i915-$(CONFIG_DRM_I915_CAPTURE_ERROR) += i915_gpu_error.o
+ i915-$(CONFIG_DRM_I915_SELFTEST) += \
+diff --git a/drivers/gpu/drm/i915/i915_drv.c b/drivers/gpu/drm/i915/i915_drv.c
+index f2389ba49c69..c8b9c42fcbd6 100644
+--- a/drivers/gpu/drm/i915/i915_drv.c
++++ b/drivers/gpu/drm/i915/i915_drv.c
+@@ -889,6 +889,8 @@ int i915_driver_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
+ 	if (ret)
+ 		goto out_cleanup_gem;
+ 
++	intel_pxp_init(i915);
++
+ 	i915_driver_register(i915);
+ 
+ 	enable_rpm_wakeref_asserts(&i915->runtime_pm);
+@@ -938,6 +940,8 @@ void i915_driver_remove(struct drm_i915_private *i915)
+ 	/* Flush any external code that still may be under the RCU lock */
+ 	synchronize_rcu();
+ 
++	intel_pxp_uninit(i915);
++
+ 	i915_gem_suspend(i915);
+ 
+ 	drm_atomic_helper_shutdown(&i915->drm);
+diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
+index 15be8debae54..f34ed07a68ee 100644
+--- a/drivers/gpu/drm/i915/i915_drv.h
++++ b/drivers/gpu/drm/i915/i915_drv.h
+@@ -105,6 +105,8 @@
+ 
+ #include "intel_region_lmem.h"
+ 
++#include "pxp/intel_pxp.h"
++
+ /* General customization:
+  */
+ 
+@@ -1215,6 +1217,8 @@ struct drm_i915_private {
+ 	/* Mutex to protect the above hdcp component related values. */
+ 	struct mutex hdcp_comp_mutex;
+ 
++	struct intel_pxp pxp;
++
+ 	I915_SELFTEST_DECLARE(struct i915_selftest_stash selftest;)
+ 
+ 	/*
+diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp.c b/drivers/gpu/drm/i915/pxp/intel_pxp.c
+new file mode 100644
+index 000000000000..a469c55e3e54
+--- /dev/null
++++ b/drivers/gpu/drm/i915/pxp/intel_pxp.c
+@@ -0,0 +1,20 @@
++/* SPDX-License-Identifier: MIT */
++/*
++ * Copyright(c) 2020 Intel Corporation.
++ */
++
++#include "i915_drv.h"
++#include "intel_pxp.h"
++
++int intel_pxp_init(struct drm_i915_private *i915)
++{
++	int ret;
++
++	drm_info(&i915->drm, "i915_pxp_init\n");
++
++	return ret;
++}
++
++void intel_pxp_uninit(struct drm_i915_private *i915)
++{
++}
+diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp.h b/drivers/gpu/drm/i915/pxp/intel_pxp.h
+new file mode 100644
+index 000000000000..578f1126bada
+--- /dev/null
++++ b/drivers/gpu/drm/i915/pxp/intel_pxp.h
+@@ -0,0 +1,22 @@
++/* SPDX-License-Identifier: MIT */
++/*
++ * Copyright(c) 2020, Intel Corporation. All rights reserved.
++ */
++
++#ifndef __INTEL_PXP_H__
++#define __INTEL_PXP_H__
++
++#include <drm/drm_file.h>
++
++struct pxp_context;
++
++struct intel_pxp {
++	struct pxp_context *r0ctx;
++};
++
++struct drm_i915_private;
++
++int intel_pxp_init(struct drm_i915_private *i915);
++void intel_pxp_uninit(struct drm_i915_private *i915);
++
++#endif
+diff --git a/include/uapi/drm/i915_drm.h b/include/uapi/drm/i915_drm.h
+index fa1f3d62f9a6..dc101264176b 100644
+--- a/include/uapi/drm/i915_drm.h
++++ b/include/uapi/drm/i915_drm.h
+@@ -1898,6 +1898,11 @@ struct drm_i915_gem_vm_control {
+ 	__u32 vm_id;
+ };
+ 
++struct drm_i915_pxp_ops {
++	__u64 pxp_info_ptr;
++	__u32 pxp_info_size;
++};
++
+ struct drm_i915_reg_read {
+ 	/*
+ 	 * Register offset.
+-- 
+2.17.1
 
 _______________________________________________
 Intel-gfx mailing list
