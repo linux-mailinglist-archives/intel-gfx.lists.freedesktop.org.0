@@ -2,37 +2,35 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 464852B3016
-	for <lists+intel-gfx@lfdr.de>; Sat, 14 Nov 2020 20:20:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2BDCE2B3017
+	for <lists+intel-gfx@lfdr.de>; Sat, 14 Nov 2020 20:20:04 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7B6B56E94B;
-	Sat, 14 Nov 2020 19:19:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7D4756E94A;
+	Sat, 14 Nov 2020 19:20:02 +0000 (UTC)
 X-Original-To: Intel-gfx@lists.freedesktop.org
 Delivered-To: Intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 429 seconds by postgrey-1.36 at gabe;
- Sat, 14 Nov 2020 16:50:46 UTC
 Received: from mail2-relais-roc.national.inria.fr
  (mail2-relais-roc.national.inria.fr [192.134.164.83])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C69E36E935
- for <Intel-gfx@lists.freedesktop.org>; Sat, 14 Nov 2020 16:50:46 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C9E9B6E926
+ for <Intel-gfx@lists.freedesktop.org>; Sat, 14 Nov 2020 18:03:37 +0000 (UTC)
 X-IronPort-AV: E=Sophos;i="5.77,478,1596492000"; 
- d="gz'50?scan'50,208,50";a="477534856"
+ d="gz'50?scan'50,208,50";a="477538768"
 Received: from 173.121.68.85.rev.sfr.net (HELO hadrien) ([85.68.121.173])
  by mail2-relais-roc.national.inria.fr with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 14 Nov 2020 17:43:34 +0100
-Date: Sat, 14 Nov 2020 17:43:34 +0100 (CET)
+ 14 Nov 2020 19:03:36 +0100
+Date: Sat, 14 Nov 2020 19:03:36 +0100 (CET)
 From: Julia Lawall <julia.lawall@inria.fr>
 X-X-Sender: jll@hadrien
-To: Sean Z Huang <sean.z.huang@intel.com>, kbuild-all@lists.01.org
-Message-ID: <alpine.DEB.2.22.394.2011141742360.2821@hadrien>
+To: Sean Z Huang <sean.z.huang@intel.com>
+Message-ID: <alpine.DEB.2.22.394.2011141902510.2821@hadrien>
 User-Agent: Alpine 2.22 (DEB 394 2020-01-19)
 MIME-Version: 1.0
-Content-Type: multipart/mixed; boundary=Dxnq1zWXvFF0Q93v
-Content-ID: <alpine.DEB.2.22.394.2011141742361.2821@hadrien>
+Content-Type: multipart/mixed; boundary=bg08WKrSYDhXBjb5
+Content-ID: <alpine.DEB.2.22.394.2011141902511.2821@hadrien>
 Content-Disposition: inline
 X-Mailman-Approved-At: Sat, 14 Nov 2020 19:19:58 +0000
-Subject: Re: [Intel-gfx] [PATCH 05/27] drm/i915/pxp: Enable ioctl action to
- set the ring3 context (fwd)
+Subject: Re: [Intel-gfx] [PATCH 08/27] drm/i915/pxp: Read register to check
+ hardware session state (fwd)
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,35 +43,36 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel-gfx@lists.freedesktop.org
+Cc: Intel-gfx@lists.freedesktop.org, kbuild-all@lists.01.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
   This message is in MIME format.  The first part should be readable text,
   while the remaining parts are likely unreadable without MIME-aware tools.
 
---Dxnq1zWXvFF0Q93v
+--bg08WKrSYDhXBjb5
 Content-Type: text/plain; charset=US-ASCII
-Content-ID: <alpine.DEB.2.22.394.2011141742362.2821@hadrien>
+Content-ID: <alpine.DEB.2.22.394.2011141902512.2821@hadrien>
 Content-Disposition: inline
 
 Hello,
 
-There is a problem on line 21 if i915 can actually be NULL.
+Line 203 is clearly incorrect.  Please check lines 97, 123, and 171 as
+well.
 
 julia
 
 ---------- Forwarded message ----------
-Date: Sat, 14 Nov 2020 19:03:47 +0800
+Date: Sun, 15 Nov 2020 01:12:07 +0800
 From: kernel test robot <lkp@intel.com>
 To: kbuild@lists.01.org
 Cc: lkp@intel.com, Julia Lawall <julia.lawall@lip6.fr>
-Subject: Re: [Intel-gfx] [PATCH 05/27] drm/i915/pxp: Enable ioctl action to set
-    the ring3 context
+Subject: Re: [Intel-gfx] [PATCH 08/27] drm/i915/pxp: Read register to check
+    hardware session state
 
 CC: kbuild-all@lists.01.org
-In-Reply-To: <20201114014537.25495-5-sean.z.huang@intel.com>
-References: <20201114014537.25495-5-sean.z.huang@intel.com>
+In-Reply-To: <20201114014537.25495-8-sean.z.huang@intel.com>
+References: <20201114014537.25495-8-sean.z.huang@intel.com>
 TO: Sean Z Huang <sean.z.huang@intel.com>
 TO: Intel-gfx@lists.freedesktop.org
 CC: "Huang, Sean Z" <sean.z.huang@intel.com>
@@ -91,8 +90,8 @@ https://git-scm.com/docs/git-format-patch]
 
 url:    https://github.com/0day-ci/linux/commits/Sean-Z-Huang/drm-i915-pxp-Introduce-Intel-PXP-component/20201114-094926
 base:    92edc4aef86780a8ad01b092c6d6630bb3cb423d
-:::::: branch date: 9 hours ago
-:::::: commit date: 9 hours ago
+:::::: branch date: 15 hours ago
+:::::: commit date: 15 hours ago
 config: i386-randconfig-c001-20201113 (attached as .config)
 compiler: gcc-9 (Debian 9.3.0-15) 9.3.0
 
@@ -102,87 +101,59 @@ Reported-by: Julia Lawall <julia.lawall@lip6.fr>
 
 
 "coccinelle warnings: (new ones prefixed by >>)"
->> drivers/gpu/drm/i915/pxp/intel_pxp.c:21:17-20: ERROR: i915 is NULL but dereferenced.
+>> drivers/gpu/drm/i915/pxp/intel_pxp_sm.c:203:17-20: ERROR: i915 is NULL but dereferenced.
+   drivers/gpu/drm/i915/pxp/intel_pxp_sm.c:97:17-20: ERROR: i915 is NULL but dereferenced.
+   drivers/gpu/drm/i915/pxp/intel_pxp_sm.c:123:17-20: ERROR: i915 is NULL but dereferenced.
+   drivers/gpu/drm/i915/pxp/intel_pxp_sm.c:171:17-20: ERROR: i915 is NULL but dereferenced.
 
-vim +21 drivers/gpu/drm/i915/pxp/intel_pxp.c
+vim +203 drivers/gpu/drm/i915/pxp/intel_pxp_sm.c
 
-a9c9ffc6ce4f8b0 Huang, Sean Z 2020-11-13  10
-1d109ada10e82c3 Huang, Sean Z 2020-11-13  11  int i915_pxp_ops_ioctl(struct drm_device *dev, void *data, struct drm_file *drmfile)
-1d109ada10e82c3 Huang, Sean Z 2020-11-13  12  {
-1d109ada10e82c3 Huang, Sean Z 2020-11-13  13  	int ret;
-1d109ada10e82c3 Huang, Sean Z 2020-11-13  14  	struct pxp_info pxp_info = {0};
-1d109ada10e82c3 Huang, Sean Z 2020-11-13  15  	struct drm_i915_pxp_ops *pxp_ops = data;
-1d109ada10e82c3 Huang, Sean Z 2020-11-13  16  	struct drm_i915_private *i915 = to_i915(dev);
-1d109ada10e82c3 Huang, Sean Z 2020-11-13  17
-1d109ada10e82c3 Huang, Sean Z 2020-11-13  18  	drm_dbg(&i915->drm, ">>> %s\n", __func__);
-1d109ada10e82c3 Huang, Sean Z 2020-11-13  19
-1d109ada10e82c3 Huang, Sean Z 2020-11-13  20  	if (!i915 || !drmfile || !pxp_ops || pxp_ops->pxp_info_size != sizeof(pxp_info)) {
-1d109ada10e82c3 Huang, Sean Z 2020-11-13 @21  		drm_dbg(&i915->drm, "Failed to %s, invalid params\n", __func__);
-1d109ada10e82c3 Huang, Sean Z 2020-11-13  22  		ret = -EINVAL;
-1d109ada10e82c3 Huang, Sean Z 2020-11-13  23  		goto end;
-1d109ada10e82c3 Huang, Sean Z 2020-11-13  24  	}
-1d109ada10e82c3 Huang, Sean Z 2020-11-13  25
-1d109ada10e82c3 Huang, Sean Z 2020-11-13  26  	if (copy_from_user(&pxp_info, (void __user *)pxp_ops->pxp_info_ptr, sizeof(pxp_info)) != 0) {
-1d109ada10e82c3 Huang, Sean Z 2020-11-13  27  		ret = -EFAULT;
-1d109ada10e82c3 Huang, Sean Z 2020-11-13  28  		goto end;
-1d109ada10e82c3 Huang, Sean Z 2020-11-13  29  	}
-1d109ada10e82c3 Huang, Sean Z 2020-11-13  30
-1d109ada10e82c3 Huang, Sean Z 2020-11-13  31  	drm_dbg(&i915->drm, "i915 pxp ioctl call with action=[%d]\n", pxp_info.action);
-1d109ada10e82c3 Huang, Sean Z 2020-11-13  32
-1d109ada10e82c3 Huang, Sean Z 2020-11-13  33  	mutex_lock(&i915->pxp.r0ctx->ctx_mutex);
-1d109ada10e82c3 Huang, Sean Z 2020-11-13  34
-1d109ada10e82c3 Huang, Sean Z 2020-11-13  35  	if (i915->pxp.r0ctx->global_state_in_suspend) {
-1d109ada10e82c3 Huang, Sean Z 2020-11-13  36  		drm_dbg(&i915->drm, "Return failure due to state in suspend\n");
-1d109ada10e82c3 Huang, Sean Z 2020-11-13  37  		pxp_info.sm_status = PXP_SM_STATUS_SESSION_NOT_AVAILABLE;
-1d109ada10e82c3 Huang, Sean Z 2020-11-13  38  		ret = 0;
-1d109ada10e82c3 Huang, Sean Z 2020-11-13  39  		goto end;
-1d109ada10e82c3 Huang, Sean Z 2020-11-13  40  	}
-1d109ada10e82c3 Huang, Sean Z 2020-11-13  41
-1d109ada10e82c3 Huang, Sean Z 2020-11-13  42  	if (i915->pxp.r0ctx->global_state_attacked) {
-1d109ada10e82c3 Huang, Sean Z 2020-11-13  43  		drm_dbg(&i915->drm, "Retry required due to state attacked\n");
-1d109ada10e82c3 Huang, Sean Z 2020-11-13  44  		pxp_info.sm_status = PXP_SM_STATUS_RETRY_REQUIRED;
-1d109ada10e82c3 Huang, Sean Z 2020-11-13  45  		ret = 0;
-1d109ada10e82c3 Huang, Sean Z 2020-11-13  46  		goto end;
-1d109ada10e82c3 Huang, Sean Z 2020-11-13  47  	}
-1d109ada10e82c3 Huang, Sean Z 2020-11-13  48
-1d109ada10e82c3 Huang, Sean Z 2020-11-13  49  	switch (pxp_info.action) {
-1d109ada10e82c3 Huang, Sean Z 2020-11-13  50  	case PXP_ACTION_SET_R3_CONTEXT:
-1d109ada10e82c3 Huang, Sean Z 2020-11-13  51  	{
-1d109ada10e82c3 Huang, Sean Z 2020-11-13  52  		ret = intel_pxp_set_r3ctx(i915, pxp_info.set_r3ctx);
-1d109ada10e82c3 Huang, Sean Z 2020-11-13  53  		break;
-1d109ada10e82c3 Huang, Sean Z 2020-11-13  54  	}
-1d109ada10e82c3 Huang, Sean Z 2020-11-13  55  	default:
-1d109ada10e82c3 Huang, Sean Z 2020-11-13  56  		drm_dbg(&i915->drm, "Failed to %s due to bad params\n", __func__);
-1d109ada10e82c3 Huang, Sean Z 2020-11-13  57  		ret = -EINVAL;
-1d109ada10e82c3 Huang, Sean Z 2020-11-13  58  		goto end;
-1d109ada10e82c3 Huang, Sean Z 2020-11-13  59  	}
-1d109ada10e82c3 Huang, Sean Z 2020-11-13  60
-1d109ada10e82c3 Huang, Sean Z 2020-11-13  61  end:
-1d109ada10e82c3 Huang, Sean Z 2020-11-13  62  	mutex_unlock(&i915->pxp.r0ctx->ctx_mutex);
-1d109ada10e82c3 Huang, Sean Z 2020-11-13  63
-1d109ada10e82c3 Huang, Sean Z 2020-11-13  64  	if (ret == 0)
-1d109ada10e82c3 Huang, Sean Z 2020-11-13  65  		if (copy_to_user((void __user *)pxp_ops->pxp_info_ptr, &pxp_info, sizeof(pxp_info)) != 0)
-1d109ada10e82c3 Huang, Sean Z 2020-11-13  66  			ret = -EFAULT;
-1d109ada10e82c3 Huang, Sean Z 2020-11-13  67
-1d109ada10e82c3 Huang, Sean Z 2020-11-13  68  	if (ret)
-1d109ada10e82c3 Huang, Sean Z 2020-11-13  69  		dev_err(&dev->pdev->dev, "pid=%d, ret = %d\n", task_pid_nr(current), ret);
-1d109ada10e82c3 Huang, Sean Z 2020-11-13  70
-1d109ada10e82c3 Huang, Sean Z 2020-11-13  71  	drm_dbg(&i915->drm, "<<< %s\n", __func__);
-1d109ada10e82c3 Huang, Sean Z 2020-11-13  72  	return ret;
-1d109ada10e82c3 Huang, Sean Z 2020-11-13  73  }
-1d109ada10e82c3 Huang, Sean Z 2020-11-13  74
+c0c82470e52f958 Huang, Sean Z 2020-11-13  188
+c0c82470e52f958 Huang, Sean Z 2020-11-13  189  /**
+c0c82470e52f958 Huang, Sean Z 2020-11-13  190   * check_if_protected_type0_sessions_are_attacked - To check if type0 active sessions are attacked.
+c0c82470e52f958 Huang, Sean Z 2020-11-13  191   * @i915: i915 device handle.
+c0c82470e52f958 Huang, Sean Z 2020-11-13  192   *
+c0c82470e52f958 Huang, Sean Z 2020-11-13  193   * Return: true if HW shows protected sessions are attacked, false otherwise.
+c0c82470e52f958 Huang, Sean Z 2020-11-13  194   */
+c0c82470e52f958 Huang, Sean Z 2020-11-13  195  static bool check_if_protected_type0_sessions_are_attacked(struct drm_i915_private *i915)
+c0c82470e52f958 Huang, Sean Z 2020-11-13  196  {
+c0c82470e52f958 Huang, Sean Z 2020-11-13  197  	i915_reg_t kcr_status_reg = KCR_STATUS_1;
+c0c82470e52f958 Huang, Sean Z 2020-11-13  198  	u32 reg_value = 0;
+c0c82470e52f958 Huang, Sean Z 2020-11-13  199  	u32 mask = 0x80000000;
+c0c82470e52f958 Huang, Sean Z 2020-11-13  200  	int ret;
+c0c82470e52f958 Huang, Sean Z 2020-11-13  201
+c0c82470e52f958 Huang, Sean Z 2020-11-13  202  	if (!i915) {
+c0c82470e52f958 Huang, Sean Z 2020-11-13 @203  		drm_dbg(&i915->drm, "Failed to %s, bad params\n", __func__);
+c0c82470e52f958 Huang, Sean Z 2020-11-13  204  		goto end;
+c0c82470e52f958 Huang, Sean Z 2020-11-13  205  	}
+c0c82470e52f958 Huang, Sean Z 2020-11-13  206
+c0c82470e52f958 Huang, Sean Z 2020-11-13  207  	if (i915->pxp.r0ctx->global_state_attacked)
+c0c82470e52f958 Huang, Sean Z 2020-11-13  208  		return true;
+c0c82470e52f958 Huang, Sean Z 2020-11-13  209
+c0c82470e52f958 Huang, Sean Z 2020-11-13  210  	ret = pxp_sm_reg_read(i915, kcr_status_reg.reg, &reg_value);
+c0c82470e52f958 Huang, Sean Z 2020-11-13  211  	if (ret) {
+c0c82470e52f958 Huang, Sean Z 2020-11-13  212  		drm_dbg(&i915->drm, "Failed to pxp_sm_reg_read\n");
+c0c82470e52f958 Huang, Sean Z 2020-11-13  213  		goto end;
+c0c82470e52f958 Huang, Sean Z 2020-11-13  214  	}
+c0c82470e52f958 Huang, Sean Z 2020-11-13  215
+c0c82470e52f958 Huang, Sean Z 2020-11-13  216  	if (reg_value & mask)
+c0c82470e52f958 Huang, Sean Z 2020-11-13  217  		return true;
+c0c82470e52f958 Huang, Sean Z 2020-11-13  218  end:
+c0c82470e52f958 Huang, Sean Z 2020-11-13  219  	return false;
+c0c82470e52f958 Huang, Sean Z 2020-11-13  220  }
+c0c82470e52f958 Huang, Sean Z 2020-11-13  221
 
 ---
 0-DAY CI Kernel Test Service, Intel Corporation
 https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
---Dxnq1zWXvFF0Q93v
+--bg08WKrSYDhXBjb5
 Content-Type: application/gzip; CHARSET=US-ASCII
 Content-Transfer-Encoding: BASE64
-Content-ID: <alpine.DEB.2.22.394.2011141742363.2821@hadrien>
+Content-ID: <alpine.DEB.2.22.394.2011141902513.2821@hadrien>
 Content-Description: 
 Content-Disposition: attachment; filename=.config.gz
 
-H4sICGyDr18AAy5jb25maWcAlDzJdty2svt8RR9nkyySq5ZkxTnvaAGCIBtpkqABsAdteBS5
+H4sICPfmr18AAy5jb25maWcAlDzJdty2svt8RR9nkyySq5ZkxTnvaAGCIBtpkqABsAdteBS5
 7ehcDX4t6d74718VwAEAwXZeFo4aVZgKNaPAH3/4cUHeXp8fb1/v724fHr4tvhyeDsfb18On
 xef7h8P/LFKxqIResJTrXwG5uH96+/tf9xcfrhbvf12e/Xr2y/HuYrE+HJ8ODwv6/PT5/ssb
 dL9/fvrhxx+oqDKet5S2GyYVF1Wr2U5fv/tyd/fL74uf0sOf97dPi99/vYBhlu9/tn+9c7px
@@ -861,7 +832,7 @@ MQyKgGmqp2g8455L4abp6tgN2QdFKQJiRFSIPQxSlYEudAG7ojq1Fsm+i0c1YGSrKKwXa9Ub
 bSifBA2TTbZUaex9O1PHl+3VbRp66/V2h+IEisjR8/+uX1f3a3P5nzeh/aiPYTR5ws74Q9bc
 cGZdWwkD1SvKL7vtUtj3t8CH0GiPI4jMxn2OtiOD3d3LV3bUFN9XL7RKWb7/D9zi8eVGNQIA
 
---Dxnq1zWXvFF0Q93v
+--bg08WKrSYDhXBjb5
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -872,4 +843,4 @@ Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 
---Dxnq1zWXvFF0Q93v--
+--bg08WKrSYDhXBjb5--
