@@ -2,39 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 79D2E2B2A97
-	for <lists+intel-gfx@lfdr.de>; Sat, 14 Nov 2020 02:46:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C94942B2AB8
+	for <lists+intel-gfx@lfdr.de>; Sat, 14 Nov 2020 02:59:45 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9402F6E8C4;
-	Sat, 14 Nov 2020 01:45:48 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8DDEF6E8BF
- for <Intel-gfx@lists.freedesktop.org>; Sat, 14 Nov 2020 01:45:41 +0000 (UTC)
-IronPort-SDR: k4J/P4k90PxpaABJp84toMBoofsnKzbQydj9YVS2cS4r8RgK3tRTHpfo5A7cguRzrCpRo3vvz9
- 1SaJXBW95Cxw==
-X-IronPort-AV: E=McAfee;i="6000,8403,9804"; a="149824105"
-X-IronPort-AV: E=Sophos;i="5.77,477,1596524400"; d="scan'208";a="149824105"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Nov 2020 17:45:40 -0800
-IronPort-SDR: 2kE2CIcQx1e7SpC2OZSAM0lEZevZTY+o4aYeTNYXgezInHcbHlyzbw2GMEwUGQQ5eTPHp3Ftno
- Pyclcq9KXMfQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.77,477,1596524400"; d="scan'208";a="361524829"
-Received: from sean-virtualbox.fm.intel.com ([10.105.158.96])
- by fmsmga002.fm.intel.com with ESMTP; 13 Nov 2020 17:45:39 -0800
-From: Sean Z Huang <sean.z.huang@intel.com>
-To: Intel-gfx@lists.freedesktop.org
-Date: Fri, 13 Nov 2020 17:45:37 -0800
-Message-Id: <20201114014537.25495-27-sean.z.huang@intel.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20201114014537.25495-1-sean.z.huang@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 74B656E8D1;
+	Sat, 14 Nov 2020 01:59:43 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 418266E8CF;
+ Sat, 14 Nov 2020 01:59:42 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 37B91A7DFC;
+ Sat, 14 Nov 2020 01:59:42 +0000 (UTC)
+MIME-Version: 1.0
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Sean Z Huang" <sean.z.huang@intel.com>
+Date: Sat, 14 Nov 2020 01:59:42 -0000
+Message-ID: <160531918219.18246.16235871892807728062@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
 References: <20201114014537.25495-1-sean.z.huang@intel.com>
-Subject: [Intel-gfx] [PATCH 27/27] drm/i915/pxp: Add plane decryption support
+In-Reply-To: <20201114014537.25495-1-sean.z.huang@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciBz?=
+ =?utf-8?q?eries_starting_with_=5B01/27=5D_drm/i915/pxp=3A_Introduce_Intel?=
+ =?utf-8?q?_PXP_component?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,110 +39,48 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Sean Z <sean.z.huang@intel.com>, Huang@freedesktop.org,
-	Bommu Krishnaiah <krishnaiah.bommu@intel.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Anshuman Gupta <anshuman.gupta@intel.com>
-
-Add support to enable/disable PLANE_SURF Decryption Request bit.
-It requires only to enable plane decryption support when following
-condition met.
-1. PAVP session is enabled.
-2. Buffer object is protected.
-
-v2:
-- Rebased to libva_cp-drm-tip_tgl_cp tree.
-- Used gen fb obj user_flags instead gem_object_metadata. [Krishna]
-
-Cc: Bommu Krishnaiah <krishnaiah.bommu@intel.com>
-Cc: Huang, Sean Z <sean.z.huang@intel.com>
-Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
----
- drivers/gpu/drm/i915/display/intel_sprite.c | 21 ++++++++++++++++++---
- drivers/gpu/drm/i915/i915_reg.h             |  1 +
- 2 files changed, 19 insertions(+), 3 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/display/intel_sprite.c b/drivers/gpu/drm/i915/display/intel_sprite.c
-index a3ab44694118..12c549beb05f 100644
---- a/drivers/gpu/drm/i915/display/intel_sprite.c
-+++ b/drivers/gpu/drm/i915/display/intel_sprite.c
-@@ -39,6 +39,8 @@
- #include <drm/drm_plane_helper.h>
- #include <drm/drm_rect.h>
- 
-+#include "pxp/intel_pxp.h"
-+
- #include "i915_drv.h"
- #include "i915_trace.h"
- #include "i915_vgpu.h"
-@@ -752,6 +754,11 @@ icl_program_input_csc(struct intel_plane *plane,
- 			  PLANE_INPUT_CSC_POSTOFF(pipe, plane_id, 2), 0x0);
- }
- 
-+static bool intel_fb_obj_protected(const struct drm_i915_gem_object *obj)
-+{
-+	return obj->user_flags & I915_BO_PROTECTED ? true : false;
-+}
-+
- static void
- skl_plane_async_flip(struct intel_plane *plane,
- 		     const struct intel_crtc_state *crtc_state,
-@@ -788,6 +795,7 @@ skl_program_plane(struct intel_plane *plane,
- 	u32 surf_addr = plane_state->color_plane[color_plane].offset;
- 	u32 stride = skl_plane_stride(plane_state, color_plane);
- 	const struct drm_framebuffer *fb = plane_state->hw.fb;
-+	const struct drm_i915_gem_object *obj = intel_fb_obj(fb);
- 	int aux_plane = intel_main_to_aux_plane(fb, color_plane);
- 	int crtc_x = plane_state->uapi.dst.x1;
- 	int crtc_y = plane_state->uapi.dst.y1;
-@@ -798,7 +806,7 @@ skl_program_plane(struct intel_plane *plane,
- 	u8 alpha = plane_state->hw.alpha >> 8;
- 	u32 plane_color_ctl = 0, aux_dist = 0;
- 	unsigned long irqflags;
--	u32 keymsk, keymax;
-+	u32 keymsk, keymax, plane_surf;
- 	u32 plane_ctl = plane_state->ctl;
- 
- 	plane_ctl |= skl_plane_ctl_crtc(crtc_state);
-@@ -874,8 +882,15 @@ skl_program_plane(struct intel_plane *plane,
- 	 * the control register just before the surface register.
- 	 */
- 	intel_de_write_fw(dev_priv, PLANE_CTL(pipe, plane_id), plane_ctl);
--	intel_de_write_fw(dev_priv, PLANE_SURF(pipe, plane_id),
--			  intel_plane_ggtt_offset(plane_state) + surf_addr);
-+	plane_surf = intel_plane_ggtt_offset(plane_state) + surf_addr;
-+
-+	if (intel_pxp_gem_object_status(dev_priv, obj->user_flags) &&
-+	    intel_fb_obj_protected(obj))
-+		plane_surf |= PLANE_SURF_DECRYPTION_ENABLED;
-+	else
-+		plane_surf &= ~PLANE_SURF_DECRYPTION_ENABLED;
-+
-+	intel_de_write_fw(dev_priv, PLANE_SURF(pipe, plane_id), plane_surf);
- 
- 	if (plane_state->scaler_id >= 0)
- 		skl_program_scaler(plane, crtc_state, plane_state);
-diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-index 5c51c9df8b28..0ac7678cd6ba 100644
---- a/drivers/gpu/drm/i915/i915_reg.h
-+++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -7206,6 +7206,7 @@ enum {
- #define _PLANE_SURF_3(pipe)	_PIPE(pipe, _PLANE_SURF_3_A, _PLANE_SURF_3_B)
- #define PLANE_SURF(pipe, plane)	\
- 	_MMIO_PLANE(plane, _PLANE_SURF_1(pipe), _PLANE_SURF_2(pipe))
-+#define   PLANE_SURF_DECRYPTION_ENABLED		REG_BIT(2)
- 
- #define _PLANE_OFFSET_1_B			0x711a4
- #define _PLANE_OFFSET_2_B			0x712a4
--- 
-2.17.1
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+PT0gU2VyaWVzIERldGFpbHMgPT0KClNlcmllczogc2VyaWVzIHN0YXJ0aW5nIHdpdGggWzAxLzI3
+XSBkcm0vaTkxNS9weHA6IEludHJvZHVjZSBJbnRlbCBQWFAgY29tcG9uZW50ClVSTCAgIDogaHR0
+cHM6Ly9wYXRjaHdvcmsuZnJlZWRlc2t0b3Aub3JnL3Nlcmllcy84Mzg0NS8KU3RhdGUgOiBmYWls
+dXJlCgo9PSBTdW1tYXJ5ID09CgpDQUxMICAgIHNjcmlwdHMvY2hlY2tzeXNjYWxscy5zaAogIENB
+TEwgICAgc2NyaXB0cy9hdG9taWMvY2hlY2stYXRvbWljcy5zaAogIERFU0NFTkQgIG9ianRvb2wK
+ICBDSEsgICAgIGluY2x1ZGUvZ2VuZXJhdGVkL2NvbXBpbGUuaAogIEhEUlRFU1QgZHJpdmVycy9n
+cHUvZHJtL2k5MTUvcHhwL2ludGVsX3B4cF9wbS5oCkluIGZpbGUgaW5jbHVkZWQgZnJvbSA8Y29t
+bWFuZC1saW5lPjoKLi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9weHAvaW50ZWxfcHhwX3BtLmg6OTo0
+MjogZXJyb3I6IOKAmHN0cnVjdCBkcm1faTkxNV9wcml2YXRl4oCZIGRlY2xhcmVkIGluc2lkZSBw
+YXJhbWV0ZXIgbGlzdCB3aWxsIG5vdCBiZSB2aXNpYmxlIG91dHNpZGUgb2YgdGhpcyBkZWZpbml0
+aW9uIG9yIGRlY2xhcmF0aW9uIFstV2Vycm9yXQogdm9pZCBpbnRlbF9weHBfcG1fcHJlcGFyZV9z
+dXNwZW5kKHN0cnVjdCBkcm1faTkxNV9wcml2YXRlICppOTE1KTsKICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgXn5+fn5+fn5+fn5+fn5+fgouL2RyaXZlcnMvZ3B1L2Ry
+bS9pOTE1L3B4cC9pbnRlbF9weHBfcG0uaDoxMTozOTogZXJyb3I6IOKAmHN0cnVjdCBkcm1faTkx
+NV9wcml2YXRl4oCZIGRlY2xhcmVkIGluc2lkZSBwYXJhbWV0ZXIgbGlzdCB3aWxsIG5vdCBiZSB2
+aXNpYmxlIG91dHNpZGUgb2YgdGhpcyBkZWZpbml0aW9uIG9yIGRlY2xhcmF0aW9uIFstV2Vycm9y
+XQogdm9pZCBpbnRlbF9weHBfcG1fcmVzdW1lX2Vhcmx5KHN0cnVjdCBkcm1faTkxNV9wcml2YXRl
+ICppOTE1KTsKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgXn5+fn5+fn5+
+fn5+fn5+fgouL2RyaXZlcnMvZ3B1L2RybS9pOTE1L3B4cC9pbnRlbF9weHBfcG0uaDoxMjozMjog
+ZXJyb3I6IOKAmHN0cnVjdCBkcm1faTkxNV9wcml2YXRl4oCZIGRlY2xhcmVkIGluc2lkZSBwYXJh
+bWV0ZXIgbGlzdCB3aWxsIG5vdCBiZSB2aXNpYmxlIG91dHNpZGUgb2YgdGhpcyBkZWZpbml0aW9u
+IG9yIGRlY2xhcmF0aW9uIFstV2Vycm9yXQogaW50IGludGVsX3B4cF9wbV9yZXN1bWUoc3RydWN0
+IGRybV9pOTE1X3ByaXZhdGUgKmk5MTUpOwogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+IF5+fn5+fn5+fn5+fn5+fn4KY2MxOiBhbGwgd2FybmluZ3MgYmVpbmcgdHJlYXRlZCBhcyBlcnJv
+cnMKZHJpdmVycy9ncHUvZHJtL2k5MTUvTWFrZWZpbGU6MzEyOiByZWNpcGUgZm9yIHRhcmdldCAn
+ZHJpdmVycy9ncHUvZHJtL2k5MTUvcHhwL2ludGVsX3B4cF9wbS5oZHJ0ZXN0JyBmYWlsZWQKbWFr
+ZVs0XTogKioqIFtkcml2ZXJzL2dwdS9kcm0vaTkxNS9weHAvaW50ZWxfcHhwX3BtLmhkcnRlc3Rd
+IEVycm9yIDEKc2NyaXB0cy9NYWtlZmlsZS5idWlsZDo1MDA6IHJlY2lwZSBmb3IgdGFyZ2V0ICdk
+cml2ZXJzL2dwdS9kcm0vaTkxNScgZmFpbGVkCm1ha2VbM106ICoqKiBbZHJpdmVycy9ncHUvZHJt
+L2k5MTVdIEVycm9yIDIKc2NyaXB0cy9NYWtlZmlsZS5idWlsZDo1MDA6IHJlY2lwZSBmb3IgdGFy
+Z2V0ICdkcml2ZXJzL2dwdS9kcm0nIGZhaWxlZAptYWtlWzJdOiAqKiogW2RyaXZlcnMvZ3B1L2Ry
+bV0gRXJyb3IgMgpzY3JpcHRzL01ha2VmaWxlLmJ1aWxkOjUwMDogcmVjaXBlIGZvciB0YXJnZXQg
+J2RyaXZlcnMvZ3B1JyBmYWlsZWQKbWFrZVsxXTogKioqIFtkcml2ZXJzL2dwdV0gRXJyb3IgMgpN
+YWtlZmlsZToxNzk5OiByZWNpcGUgZm9yIHRhcmdldCAnZHJpdmVycycgZmFpbGVkCm1ha2U6ICoq
+KiBbZHJpdmVyc10gRXJyb3IgMgoKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVk
+ZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZv
+L2ludGVsLWdmeAo=
