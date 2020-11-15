@@ -1,114 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6D9ED2B396B
-	for <lists+intel-gfx@lfdr.de>; Sun, 15 Nov 2020 22:14:55 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id ABA292B397D
+	for <lists+intel-gfx@lfdr.de>; Sun, 15 Nov 2020 22:30:59 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C7A766E9E2;
-	Sun, 15 Nov 2020 21:14:53 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A9D4189C63
- for <Intel-gfx@lists.freedesktop.org>; Sun, 15 Nov 2020 21:14:52 +0000 (UTC)
-IronPort-SDR: vraRPgJ/qTlXjTfJdatWB5rz/LcM0LyIBf1bk8bNVqKgYs+QPgr08uu6e9MD6FvqWrZ+FoF8eE
- kS9FcXGiThKQ==
-X-IronPort-AV: E=McAfee;i="6000,8403,9806"; a="149947486"
-X-IronPort-AV: E=Sophos;i="5.77,481,1596524400"; d="scan'208";a="149947486"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Nov 2020 13:14:52 -0800
-IronPort-SDR: EA+TqEoGGm4xNUlhOWqmwnXWQn21bKjk6jyiuxvqWD/SKSL83apjN6vqU4IB9B5F4kFmWhtWax
- yR1MvrAxSe/g==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.77,481,1596524400"; d="scan'208";a="367305282"
-Received: from orsmsx605.amr.corp.intel.com ([10.22.229.18])
- by FMSMGA003.fm.intel.com with ESMTP; 15 Nov 2020 13:14:52 -0800
-Received: from orsmsx606.amr.corp.intel.com (10.22.229.19) by
- ORSMSX605.amr.corp.intel.com (10.22.229.18) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1713.5; Sun, 15 Nov 2020 13:14:51 -0800
-Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
- orsmsx606.amr.corp.intel.com (10.22.229.19) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1713.5
- via Frontend Transport; Sun, 15 Nov 2020 13:14:51 -0800
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com (104.47.55.106)
- by edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.1713.5; Sun, 15 Nov 2020 13:14:51 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=AwK2tUxVMC1EEL9E0NRwoi+gwxBT0kOVIOLkR2xql6yVP+a1mnn/ymD2E97VEY8R3znNCEjsX/TvhaFDM7Qfn3AsDoJdyLHt3QNpM2lSu23/R72Gebc9Y9ax5j323Lu6mJ8lklhuKxu3fl+vu3nr6NagP+bFaH/CAWUv0LlxC9hpLhfWjM+NrE1ygpgXBszgwFMUZ9qoXC2VBlfAaq/BHSGo6Nd0ACiF71FtCxiGCu77e3sy/8vr6fYoHA3rniSIEY81oSOOX5VoMWluPZ1bEk0obknLwRzjp5JNmtIzKTEFvYNoLdyc6MW2Ulco+wjRuqyLpPbC79Va7g0IG+5VQA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Rf2qS1FCHNQU2rCvRyK8w2CSOn5q8NB/jXKBuL3QM10=;
- b=cOAMeFfQFyQA0kuLTKb/cg8WxeceYuRvQKCQ0Ssl4g4dPVyhuhLijr34yMJfMu0Q4BATEmhAJGRMHTxBx1PBHzJg2u/S+J8RKIKrnTrNahYygcg/rO0fRYYnCRL6bCCLRmARrhuT+q2l/TdWjWIkrrPV8smt/aQfnPkf/ga6/7nyWFcA+icBiXOb1ZoRTPg1tUI8CZQx3a1KcsbFQ/ZdHSdty0palPzCAsxWQOST4j5+jHUrPx2dpTkZQ2cJ6cur88Ulx1xOGsO57cy36D7FgmLinGl8RDiB48Fw0UCG7j7eX5++UMSMiPV24k0nJcWsxCeL6X095XnPhwUY56ArOg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=intel.onmicrosoft.com; 
- s=selector2-intel-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Rf2qS1FCHNQU2rCvRyK8w2CSOn5q8NB/jXKBuL3QM10=;
- b=irgCKg3f2iS/vlMBbJ1FyIVZTCbF/G0H8yKEcdJW5bHSRUfiq6SkJR2dJ/wcvU9HNkChl3vORlIO5yhVfFjhkOWI2HRFhxzG8/u9asU0ZDVK6EM4CCerOyyKyN/tmozAXEse0lg+wv6SEmJbFArTNEomUlaO53McR6MFUF+6ass=
-Received: from DM6PR11MB4531.namprd11.prod.outlook.com (2603:10b6:5:2a5::19)
- by DM5PR1101MB2249.namprd11.prod.outlook.com (2603:10b6:4:5a::12) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3564.25; Sun, 15 Nov
- 2020 21:14:50 +0000
-Received: from DM6PR11MB4531.namprd11.prod.outlook.com
- ([fe80::78db:6406:7820:1071]) by DM6PR11MB4531.namprd11.prod.outlook.com
- ([fe80::78db:6406:7820:1071%5]) with mapi id 15.20.3564.028; Sun, 15 Nov 2020
- 21:14:50 +0000
-From: "Huang, Sean Z" <sean.z.huang@intel.com>
-To: Julia Lawall <julia.lawall@inria.fr>
-Thread-Topic: [Intel-gfx] [PATCH 18/27] drm/i915/pxp: Implement funcs to
- create the TEE channel (fwd)
-Thread-Index: AQHWu20Q3gsnwnt+QESodZJ731Z6ZKnJsDcQ
-Date: Sun, 15 Nov 2020 21:14:50 +0000
-Message-ID: <DM6PR11MB453154E27CE3EAE23CC26AB2D9E40@DM6PR11MB4531.namprd11.prod.outlook.com>
-References: <alpine.DEB.2.22.394.2011151732270.35728@hadrien>
-In-Reply-To: <alpine.DEB.2.22.394.2011151732270.35728@hadrien>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-version: 11.5.1.3
-dlp-product: dlpe-windows
-dlp-reaction: no-action
-authentication-results: inria.fr; dkim=none (message not signed)
- header.d=none;inria.fr; dmarc=none action=none header.from=intel.com;
-x-originating-ip: [73.220.16.43]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 4637cc1b-bf7e-4bbb-676b-08d889ab7d45
-x-ms-traffictypediagnostic: DM5PR1101MB2249:
-x-microsoft-antispam-prvs: <DM5PR1101MB2249B9C71E874E47DD529541D9E40@DM5PR1101MB2249.namprd11.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:7219;
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 1B560rCnZb+sD/ZyFuoure5fek3Uv0jUsHCzj5yNTtoMSNk/DtPH9ncB8ZDPUU04ViK/LVJHFospwBhw/W3hr2ofSJv01YRHWvuBVD9Q9DtHk43V6h3Q2HhPkTh85uT2aM6+iF75xsUPzlG5gWrSOhQZ6PIo1zT6F7uMa6fYceh/mF2tzakWMetVWefwwyIOr1q7XilZ9/lLPA1JGaLUydI+nGXNNZexzl0UNPpn598bidjECw374MtC71Dg10j3OOEIIdXnHPkDC5gCAgV78cl+dfD+EYGS5gx6UT932JhnocEDj79T9EWGde9NJvRx2PaJSEDTshxIpyNzNlF+d6a+eUfIICUgBhG1y5I1K0677MuvdwWj/4bfPBQKbc/EjQuGnaR1/EFBQuGgLl0oKw==
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM6PR11MB4531.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(4636009)(346002)(396003)(366004)(39860400002)(376002)(136003)(4001150100001)(8936002)(5660300002)(86362001)(186003)(52536014)(316002)(83380400001)(54906003)(2906002)(4326008)(6506007)(6916009)(478600001)(71200400001)(26005)(8676002)(55016002)(53546011)(76116006)(9686003)(66446008)(33656002)(7696005)(66476007)(64756008)(66556008)(66946007)(966005);
- DIR:OUT; SFP:1102; 
-x-ms-exchange-antispam-messagedata: 2cl6Xz1q/sin9+19aUY6i4o26gbTnvhl6gxcwTIL18xCp2kkKhB92pRunfG27g1BIMiJlt5fepttCEOUMqQ95WwCsLDK5aTwprzk23QNIdXvs96eNVjjoVaWEvEcGwV56+D2OzvLpVHTj/Q90oUlXFpa9iqHHyDUWg5SZN9+7ySO6C70M3G8VwdNr6FvvTnT2kNl2VwwvsOQ1IxeaaUCXLUB59hFd6NWDF1pfjK5RQTJryV5JPazcDzUBi7Gxk84cNjdG3elsKOTKmsa9WLoLcUvbetB+fccfHPaPq9zO3sqyLSJSBxHKGmiiAsmDnhu3I8kDhbKjDZBhvbEZOMbkOjYqzLAimBx3cjAO0fLHpYQGy0YEJSzdSEYqzbZqGFPw5AdQxqov05t3rnPIEpLjofgMTZSs5Wap8HMAR8iMwPrFoKtg+bwGbOB+HMZBkcnpN7dZyCdDirtR3GIsES6H7fZ4v0VHYD3u3p0CoGKruNA7DFSTF/swPzjWBXvgu2bzTWB9PzvtDw50fUPb3nhZ7kAxVyLIK835isIG1+bxfLMDuHiS51jUYKj+h6bPCNPPjXeWSjIxLq6mkN8C7jgpW4vsN/nS6PzcxBGtwPPFLIaYzfBhVAsU3XzuPHmbzOZvSZFmSkQcCK2xcYzMjriBQ==
-x-ms-exchange-transport-forked: True
+	by gabe.freedesktop.org (Postfix) with ESMTP id E39C16E9DA;
+	Sun, 15 Nov 2020 21:30:57 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 60B9889EB4;
+ Sun, 15 Nov 2020 21:30:56 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 572E8A0003;
+ Sun, 15 Nov 2020 21:30:56 +0000 (UTC)
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DM6PR11MB4531.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 4637cc1b-bf7e-4bbb-676b-08d889ab7d45
-X-MS-Exchange-CrossTenant-originalarrivaltime: 15 Nov 2020 21:14:50.6381 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: oG1FTulRYHi6nNyCiqa1tpGKz89V+ozGBddQXkWuTN23lwegIwW5qz7azsXDpIQ990mzfEQhk7rsUxc4yplXsw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR1101MB2249
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH 18/27] drm/i915/pxp: Implement funcs to
- create the TEE channel (fwd)
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Huang, Sean Z" <sean.z.huang@intel.com>
+Date: Sun, 15 Nov 2020 21:30:56 -0000
+Message-ID: <160547585632.9577.11893099418495214598@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20201115210815.5272-1-sean.z.huang@intel.com>
+In-Reply-To: <20201115210815.5272-1-sean.z.huang@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_series_starting_with_=5B01/27=5D_drm/i915/pxp=3A_Introduce_?=
+ =?utf-8?q?Intel_PXP_component?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -121,111 +39,334 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Intel-gfx@lists.freedesktop.org" <Intel-gfx@lists.freedesktop.org>,
- "kbuild-all@lists.01.org" <kbuild-all@lists.01.org>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Julia,
+== Series Details ==
 
-Many thanks for your feedback!
+Series: series starting with [01/27] drm/i915/pxp: Introduce Intel PXP component
+URL   : https://patchwork.freedesktop.org/series/83863/
+State : warning
 
-I'm still new and not so familiar with this patchwork system on the freedesktop server.
+== Summary ==
 
-I tried to upload the original patch serial as "rev 2", with the fixed version, but somehow it created a new patch serial https://patchwork.freedesktop.org/series/83863/ 
+$ dim checkpatch origin/drm-tip
+ec0a75ce495b drm/i915/pxp: Introduce Intel PXP component
+-:78: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#78: 
+new file mode 100644
 
-I will check my colleagues to see if I missed something during the weekday.
+-:83: WARNING:SPDX_LICENSE_TAG: Improper SPDX comment style for 'drivers/gpu/drm/i915/pxp/intel_pxp.c', please use '//' instead
+#83: FILE: drivers/gpu/drm/i915/pxp/intel_pxp.c:1:
++/* SPDX-License-Identifier: MIT */
 
-Best regards,
-Sean
+-:83: WARNING:SPDX_LICENSE_TAG: Missing or malformed SPDX-License-Identifier tag in line 1
+#83: FILE: drivers/gpu/drm/i915/pxp/intel_pxp.c:1:
++/* SPDX-License-Identifier: MIT */
 
------Original Message-----
-From: Julia Lawall <julia.lawall@inria.fr> 
-Sent: Sunday, November 15, 2020 8:33 AM
-To: Huang, Sean Z <sean.z.huang@intel.com>
-Cc: Intel-gfx@lists.freedesktop.org; kbuild-all@lists.01.org
-Subject: Re: [Intel-gfx] [PATCH 18/27] drm/i915/pxp: Implement funcs to create the TEE channel (fwd)
+total: 0 errors, 3 warnings, 0 checks, 95 lines checked
+cedefd9b5595 drm/i915/pxp: Enable PXP irq worker and callback stub
+3dce6e2b5551 drm/i915/pxp: Add PXP context for logical hardware states.
+-:116: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#116: 
+new file mode 100644
 
-See line 81.
+-:121: WARNING:SPDX_LICENSE_TAG: Improper SPDX comment style for 'drivers/gpu/drm/i915/pxp/intel_pxp_context.c', please use '//' instead
+#121: FILE: drivers/gpu/drm/i915/pxp/intel_pxp_context.c:1:
++/* SPDX-License-Identifier: MIT */
 
-julia
+-:121: WARNING:SPDX_LICENSE_TAG: Missing or malformed SPDX-License-Identifier tag in line 1
+#121: FILE: drivers/gpu/drm/i915/pxp/intel_pxp_context.c:1:
++/* SPDX-License-Identifier: MIT */
 
----------- Forwarded message ----------
-Date: Sun, 15 Nov 2020 06:48:16 +0800
-From: kernel test robot <lkp@intel.com>
-To: kbuild@lists.01.org
-Cc: lkp@intel.com, Julia Lawall <julia.lawall@lip6.fr>
-Subject: Re: [Intel-gfx] [PATCH 18/27] drm/i915/pxp: Implement funcs to create
-    the TEE channel
+-:142: WARNING:OOM_MESSAGE: Possible unnecessary 'out of memory' message
+#142: FILE: drivers/gpu/drm/i915/pxp/intel_pxp_context.c:22:
++	if (!new_ctx) {
++		drm_dbg(&i915->drm, "unable to allocate new pxp context!\n");
 
-CC: kbuild-all@lists.01.org
-In-Reply-To: <20201114014537.25495-18-sean.z.huang@intel.com>
-References: <20201114014537.25495-18-sean.z.huang@intel.com>
-TO: Sean Z Huang <sean.z.huang@intel.com>
-TO: Intel-gfx@lists.freedesktop.org
-CC: "Huang, Sean Z" <sean.z.huang@intel.com>
+total: 0 errors, 4 warnings, 0 checks, 182 lines checked
+1414cf460ee9 drm/i915/pxp: set KCR reg init during the boot time
+-:67: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#67: 
+new file mode 100644
 
-Hi Sean,
+-:72: WARNING:SPDX_LICENSE_TAG: Improper SPDX comment style for 'drivers/gpu/drm/i915/pxp/intel_pxp_sm.c', please use '//' instead
+#72: FILE: drivers/gpu/drm/i915/pxp/intel_pxp_sm.c:1:
++/* SPDX-License-Identifier: MIT */
 
-Thank you for the patch! Perhaps something to improve:
+-:72: WARNING:SPDX_LICENSE_TAG: Missing or malformed SPDX-License-Identifier tag in line 1
+#72: FILE: drivers/gpu/drm/i915/pxp/intel_pxp_sm.c:1:
++/* SPDX-License-Identifier: MIT */
 
-[auto build test WARNING on next-20201113] [also build test WARNING on v5.10-rc3] [cannot apply to drm-intel/for-linux-next char-misc/char-misc-testing v5.10-rc3 v5.10-rc2 v5.10-rc1] [If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in https://git-scm.com/docs/git-format-patch]
+total: 0 errors, 3 warnings, 0 checks, 106 lines checked
+403845f7ffbd drm/i915/pxp: Enable ioctl action to set the ring3 context
+-:42: WARNING:LONG_LINE: line length of 101 exceeds 100 columns
+#42: FILE: drivers/gpu/drm/i915/pxp/intel_pxp.c:21:
++	if (copy_from_user(&pxp_info, u64_to_user_ptr(pxp_ops->pxp_info_ptr), sizeof(pxp_info)) != 0)
 
-url:    https://github.com/0day-ci/linux/commits/Sean-Z-Huang/drm-i915-pxp-Introduce-Intel-PXP-component/20201114-094926
-base:    92edc4aef86780a8ad01b092c6d6630bb3cb423d
-:::::: branch date: 21 hours ago
-:::::: commit date: 21 hours ago
-config: i386-randconfig-c001-20201113 (attached as .config)
-compiler: gcc-9 (Debian 9.3.0-15) 9.3.0
+-:79: WARNING:LONG_LINE: line length of 107 exceeds 100 columns
+#79: FILE: drivers/gpu/drm/i915/pxp/intel_pxp.c:58:
++		if (copy_to_user(u64_to_user_ptr(pxp_ops->pxp_info_ptr), &pxp_info, sizeof(pxp_info)) != 0)
 
-If you fix the issue, kindly add following tag as appropriate
-Reported-by: kernel test robot <lkp@intel.com>
-Reported-by: Julia Lawall <julia.lawall@lip6.fr>
+-:152: WARNING:OOM_MESSAGE: Possible unnecessary 'out of memory' message
+#152: FILE: drivers/gpu/drm/i915/pxp/intel_pxp_context.c:61:
++	if (!r3ctx) {
++		drm_dbg(&i915->drm, "Failed to kzalloc()\n");
+
+-:205: WARNING:LONG_LINE: line length of 110 exceeds 100 columns
+#205: FILE: include/uapi/drm/i915_drm.h:426:
++#define DRM_IOCTL_I915_PXP_OPS		DRM_IOWR(DRM_COMMAND_BASE + DRM_I915_PXP_OPS, struct drm_i915_pxp_ops)
+
+total: 0 errors, 4 warnings, 0 checks, 164 lines checked
+e45885b5b387 drm/i915: Rename the whitelist to allowlist
+309be6f34e3c drm/i915/pxp: Add PXP-related registers into allowlist
+b8289b5f361b drm/i915/pxp: Read register to check hardware session state
+-:19: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'i915' - possible side-effects?
+#19: FILE: drivers/gpu/drm/i915/pxp/intel_pxp.h:15:
++#define pxp_session_list(i915, session_type) (((session_type) == SESSION_TYPE_TYPE0) ? \
++	&(i915)->pxp.r0ctx->active_pxp_type0_sessions : &(i915)->pxp.r0ctx->active_pxp_type1_sessions)
+
+-:20: WARNING:LONG_LINE: line length of 102 exceeds 100 columns
+#20: FILE: drivers/gpu/drm/i915/pxp/intel_pxp.h:16:
++	&(i915)->pxp.r0ctx->active_pxp_type0_sessions : &(i915)->pxp.r0ctx->active_pxp_type1_sessions)
+
+-:155: WARNING:LONG_LINE: line length of 104 exceeds 100 columns
+#155: FILE: drivers/gpu/drm/i915/pxp/intel_pxp_sm.c:144:
++		drm_dbg(&i915->drm, "Failed to %s invalid session_type=[%d]\n", __func__, session_type);
+
+total: 0 errors, 2 warnings, 1 checks, 254 lines checked
+e34ed97f0df9 drm/i915/pxp: Implement funcs to get/set PXP tag
+333c15e61776 drm/i915/pxp: Enable ioctl action to reserve session slot
+-:216: WARNING:LONG_LINE: line length of 108 exceeds 100 columns
+#216: FILE: drivers/gpu/drm/i915/pxp/intel_pxp_sm.c:422:
++		drm_dbg(&i915->drm, "Failed to %s, invalid session mode=[%d]\n", __func__, protection_mode);
+
+total: 0 errors, 1 warnings, 0 checks, 254 lines checked
+668f4968e125 drm/i915/pxp: Enable ioctl action to set session in play
+-:98: WARNING:LONG_LINE: line length of 113 exceeds 100 columns
+#98: FILE: drivers/gpu/drm/i915/pxp/intel_pxp_sm.c:532:
++		list_for_each_entry(current_session, &i915->pxp.r0ctx->active_pxp_type0_sessions, session_list) {
+
+-:99: WARNING:LONG_LINE: line length of 122 exceeds 100 columns
+#99: FILE: drivers/gpu/drm/i915/pxp/intel_pxp_sm.c:533:
++			DRM_DEBUG("Traverse the active type0 list, session_index=[%d]\n", current_session->session_index);
+
+-:100: WARNING:LONG_LINE: line length of 132 exceeds 100 columns
+#100: FILE: drivers/gpu/drm/i915/pxp/intel_pxp_sm.c:534:
++			drm_dbg(&i915->drm, "Traverse the active type0 list, session_index=[%d]\n", current_session->session_index);
+
+-:113: WARNING:LONG_LINE: line length of 113 exceeds 100 columns
+#113: FILE: drivers/gpu/drm/i915/pxp/intel_pxp_sm.c:547:
++		list_for_each_entry(current_session, &i915->pxp.r0ctx->active_pxp_type1_sessions, session_list) {
+
+-:114: WARNING:LONG_LINE: line length of 132 exceeds 100 columns
+#114: FILE: drivers/gpu/drm/i915/pxp/intel_pxp_sm.c:548:
++			drm_dbg(&i915->drm, "Traverse the active type1 list, session_index=[%d]\n", current_session->session_index);
+
+total: 0 errors, 5 warnings, 0 checks, 122 lines checked
+429636cac96a drm/i915/pxp: Func to send hardware session termination
+-:38: WARNING:LONG_LINE: line length of 108 exceeds 100 columns
+#38: FILE: drivers/gpu/drm/i915/pxp/intel_pxp_sm.c:24:
++	drm_dbg(&i915->drm, ">>> %s cmd_buf=[%p] cmd_size_in_dw=[%d]\n", __func__, cmd_buf, cmd_size_in_dw);
+
+-:196: WARNING:LONG_LINE: line length of 103 exceeds 100 columns
+#196: FILE: drivers/gpu/drm/i915/pxp/intel_pxp_sm.c:732:
++static int add_pxp_prolog(struct drm_i915_private *i915, u32 *cmd, int session_type, int session_index)
+
+-:206: WARNING:LONG_LINE: line length of 109 exceeds 100 columns
+#206: FILE: drivers/gpu/drm/i915/pxp/intel_pxp_sm.c:742:
++	*cmd_prolog++ = (MFX_WAIT | MFX_WAIT_DW0_PXP_SYNC_CONTROL_FLAG | MFX_WAIT_DW0_MFX_SYNC_CONTROL_FLAG);
+
+-:220: WARNING:LONG_LINE: line length of 113 exceeds 100 columns
+#220: FILE: drivers/gpu/drm/i915/pxp/intel_pxp_sm.c:756:
++		*cmd_prolog++ = (MI_SET_APPID | MI_SET_APPID_TYPE1_APP | MI_SET_APPID_SESSION_ID(session_index));
+
+-:231: WARNING:LONG_LINE: line length of 109 exceeds 100 columns
+#231: FILE: drivers/gpu/drm/i915/pxp/intel_pxp_sm.c:767:
++	*cmd_prolog++ = (MFX_WAIT | MFX_WAIT_DW0_PXP_SYNC_CONTROL_FLAG | MFX_WAIT_DW0_MFX_SYNC_CONTROL_FLAG);
+
+-:239: WARNING:LONG_LINE: line length of 109 exceeds 100 columns
+#239: FILE: drivers/gpu/drm/i915/pxp/intel_pxp_sm.c:775:
++	*cmd_prolog++ = (MFX_WAIT | MFX_WAIT_DW0_PXP_SYNC_CONTROL_FLAG | MFX_WAIT_DW0_MFX_SYNC_CONTROL_FLAG);
+
+-:261: WARNING:LONG_LINE: line length of 109 exceeds 100 columns
+#261: FILE: drivers/gpu/drm/i915/pxp/intel_pxp_sm.c:797:
++	*cmd_epilog++ = (MFX_WAIT | MFX_WAIT_DW0_PXP_SYNC_CONTROL_FLAG | MFX_WAIT_DW0_MFX_SYNC_CONTROL_FLAG);
+
+total: 0 errors, 7 warnings, 0 checks, 350 lines checked
+049827bba4b3 drm/i915/pxp: Enable ioctl action to terminate the session
+-:65: WARNING:LONG_LINE: line length of 121 exceeds 100 columns
+#65: FILE: drivers/gpu/drm/i915/pxp/intel_pxp_sm.c:905:
++		list_for_each_entry_safe(current_session, n, &i915->pxp.r0ctx->active_pxp_type0_sessions, session_list) {
+
+-:69: WARNING:LONG_LINE: line length of 131 exceeds 100 columns
+#69: FILE: drivers/gpu/drm/i915/pxp/intel_pxp_sm.c:909:
++					drm_dbg(&i915->drm, "Failed to %s due to invalid context_id=[%d]\n", __func__, context_id);
+
+-:73: WARNING:LONG_LINE: line length of 104 exceeds 100 columns
+#73: FILE: drivers/gpu/drm/i915/pxp/intel_pxp_sm.c:913:
++				ret = issue_hw_terminate_for_session(i915, session_type, session_index);
+
+-:79: WARNING:LONG_LINE: line length of 111 exceeds 100 columns
+#79: FILE: drivers/gpu/drm/i915/pxp/intel_pxp_sm.c:919:
++				ret = pxp_set_pxp_tag(i915, session_type, session_index, PROTECTION_MODE_NONE);
+
+-:98: WARNING:LONG_LINE: line length of 113 exceeds 100 columns
+#98: FILE: drivers/gpu/drm/i915/pxp/intel_pxp_sm.c:938:
++		drm_dbg(&i915->drm, "Warning - Couldn't find the type0 session_index=[0x%08x]\n", session_index);
+
+-:103: WARNING:LONG_LINE: line length of 121 exceeds 100 columns
+#103: FILE: drivers/gpu/drm/i915/pxp/intel_pxp_sm.c:943:
++		list_for_each_entry_safe(current_session, n, &i915->pxp.r0ctx->active_pxp_type1_sessions, session_list) {
+
+-:107: WARNING:LONG_LINE: line length of 131 exceeds 100 columns
+#107: FILE: drivers/gpu/drm/i915/pxp/intel_pxp_sm.c:947:
++					drm_dbg(&i915->drm, "Failed to %s due to invalid context_id=[%d]\n", __func__, context_id);
+
+-:111: WARNING:LONG_LINE: line length of 104 exceeds 100 columns
+#111: FILE: drivers/gpu/drm/i915/pxp/intel_pxp_sm.c:951:
++				ret = issue_hw_terminate_for_session(i915, session_type, session_index);
+
+-:117: WARNING:LONG_LINE: line length of 111 exceeds 100 columns
+#117: FILE: drivers/gpu/drm/i915/pxp/intel_pxp_sm.c:957:
++				ret = pxp_set_pxp_tag(i915, session_type, session_index, PROTECTION_MODE_NONE);
+
+-:134: WARNING:LONG_LINE: line length of 113 exceeds 100 columns
+#134: FILE: drivers/gpu/drm/i915/pxp/intel_pxp_sm.c:974:
++		drm_dbg(&i915->drm, "Warning - Couldn't find the type1 session_index=[0x%08x]\n", session_index);
+
+-:199: WARNING:LONG_LINE: line length of 110 exceeds 100 columns
+#199: FILE: drivers/gpu/drm/i915/pxp/intel_pxp_sm.c:1039:
++int pxp_sm_terminate_protected_session_unsafe(struct drm_i915_private *i915, int session_type, int session_id)
+
+total: 0 errors, 11 warnings, 0 checks, 238 lines checked
+72b155e8c9fa drm/i915/pxp: Enable ioctl action to query PXP tag
+2f7b05c73063 drm/i915/pxp: Destroy all type0 sessions upon teardown
+-:128: WARNING:LONG_LINE: line length of 106 exceeds 100 columns
+#128: FILE: drivers/gpu/drm/i915/pxp/intel_pxp_sm.c:1134:
++	list_for_each_entry_safe(current_session, n, pxp_session_list(i915, session_type), session_list) {
+
+-:129: WARNING:LONG_LINE: line length of 112 exceeds 100 columns
+#129: FILE: drivers/gpu/drm/i915/pxp/intel_pxp_sm.c:1135:
++		ret = pxp_set_pxp_tag(i915, session_type, current_session->session_index, PROTECTION_MODE_NONE);
+
+total: 0 errors, 2 warnings, 0 checks, 159 lines checked
+3270a1c64c4e drm/i915/pxp: Termiante the session upon app crash
+-:82: WARNING:LONG_LINE: line length of 109 exceeds 100 columns
+#82: FILE: drivers/gpu/drm/i915/pxp/intel_pxp_sm.c:1256:
++			ret = terminate_protected_session(i915, 0, s->session_type, s->session_index, false);
+
+total: 0 errors, 1 warnings, 0 checks, 66 lines checked
+3bab939267e5 drm/i915/pxp: Enable PXP power management
+-:69: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#69: 
+new file mode 100644
+
+-:74: WARNING:SPDX_LICENSE_TAG: Improper SPDX comment style for 'drivers/gpu/drm/i915/pxp/intel_pxp_pm.c', please use '//' instead
+#74: FILE: drivers/gpu/drm/i915/pxp/intel_pxp_pm.c:1:
++/* SPDX-License-Identifier: MIT */
+
+-:74: WARNING:SPDX_LICENSE_TAG: Missing or malformed SPDX-License-Identifier tag in line 1
+#74: FILE: drivers/gpu/drm/i915/pxp/intel_pxp_pm.c:1:
++/* SPDX-License-Identifier: MIT */
+
+total: 0 errors, 3 warnings, 0 checks, 139 lines checked
+12a97546fb0c drm/i915/pxp: Implement funcs to create the TEE channel
+-:11: WARNING:BAD_SIGN_OFF: Co-developed-by: must be immediately followed by Signed-off-by:
+#11: 
+Co-developed-by: Vitaly Lubart <vitaly.lubart@intel.com>
+Co-developed-by: Tomas Winkler <tomas.winkler@intel.com>
+-:12: WARNING:BAD_SIGN_OFF: Co-developed-by and Signed-off-by: name/email do not match 
+#12: 
+Co-developed-by: Tomas Winkler <tomas.winkler@intel.com>
+Signed-off-by: Huang, Sean Z <sean.z.huang@intel.com>
+-:87: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#87: 
+new file mode 100644
+
+-:92: WARNING:SPDX_LICENSE_TAG: Improper SPDX comment style for 'drivers/gpu/drm/i915/pxp/intel_pxp_tee.c', please use '//' instead
+#92: FILE: drivers/gpu/drm/i915/pxp/intel_pxp_tee.c:1:
++/* SPDX-License-Identifier: MIT */
+
+-:92: WARNING:SPDX_LICENSE_TAG: Missing or malformed SPDX-License-Identifier tag in line 1
+#92: FILE: drivers/gpu/drm/i915/pxp/intel_pxp_tee.c:1:
++/* SPDX-License-Identifier: MIT */
+
+total: 0 errors, 5 warnings, 0 checks, 251 lines checked
+b68da9355145 drm/i915/pxp: Enable ioctl action to send TEE commands
+a7c6e8e4af8e drm/i915/pxp: Create the arbitrary session after boot
+-:234: WARNING:LONG_LINE: line length of 101 exceeds 100 columns
+#234: FILE: drivers/gpu/drm/i915/pxp/intel_pxp_tee.h:22:
++#define PXP_TEE_ARB_CMD_BIN  {0x00040000, 0x0000001e, 0x00000000, 0x00000008, 0x00000002, 0x0000000f}
+
+total: 0 errors, 1 warnings, 0 checks, 188 lines checked
+3d82e578d4c8 drm/i915/pxp: Add i915 trace logs for PXP operations
+-:11: WARNING:TYPO_SPELLING: 'trun' may be misspelled - perhaps 'turn'?
+#11: 
+To trun on this feature, we need to set
+
+-:29: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#29: FILE: drivers/gpu/drm/i915/i915_trace.h:1038:
++	    TP_STRUCT__entry(
+
+-:36: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#36: FILE: drivers/gpu/drm/i915/i915_trace.h:1045:
++	    TP_fast_assign(
+
+total: 0 errors, 1 warnings, 2 checks, 79 lines checked
+dec5cd52eeda drm/i915/pxp: Expose session state for display protection flip
+a944bd332fbb mei: bus: enable pavp device.
+ea45bdd158e3 mei: pxp: export pavp client to me client bus
+-:32: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#32: 
+new file mode 100644
+
+total: 0 errors, 1 warnings, 0 checks, 277 lines checked
+15401e360d14 drm/i915/uapi: introduce drm_i915_gem_create_ext for TGL
+-:11: ERROR:BAD_SIGN_OFF: Unrecognized email address: 'Joonas Lahtinen joonas.lahtinen@linux.intel.com'
+#11: 
+Cc: Joonas Lahtinen joonas.lahtinen@linux.intel.com
+
+-:12: ERROR:BAD_SIGN_OFF: Unrecognized email address: 'Matthew Auld matthew.auld@intel.com'
+#12: 
+Cc: Matthew Auld matthew.auld@intel.com
+
+-:45: ERROR:CODE_INDENT: code indent should use tabs where possible
+#45: FILE: drivers/gpu/drm/i915/i915_gem.c:265:
++        struct drm_i915_private *i915;$
+
+-:45: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#45: FILE: drivers/gpu/drm/i915/i915_gem.c:265:
++        struct drm_i915_private *i915;$
+
+-:49: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#49: FILE: drivers/gpu/drm/i915/i915_gem.c:269:
++static int __create_setparam(struct drm_i915_gem_object_param *args,
++							struct create_ext *ext_data)
+
+-:94: CHECK:LINE_SPACING: Please don't use multiple blank lines
+#94: FILE: drivers/gpu/drm/i915/i915_gem.c:317:
++
++
+
+-:106: WARNING:LONG_LINE: line length of 120 exceeds 100 columns
+#106: FILE: include/uapi/drm/i915_drm.h:395:
++#define DRM_IOCTL_I915_GEM_CREATE_EXT   DRM_IOWR(DRM_COMMAND_BASE + DRM_I915_GEM_CREATE, struct drm_i915_gem_create_ext)
+
+-:154: CHECK:SPACING: spaces preferred around that '<<' (ctx:VxV)
+#154: FILE: include/uapi/drm/i915_drm.h:1737:
++#define I915_OBJECT_PARAM  (1ull<<32)
+                                 ^
+
+total: 3 errors, 2 warnings, 3 checks, 136 lines checked
+125fd8d725ba drm/i915/pavp: User interface for Protected buffer
+c968d500ff19 drm/i915/pxp: Add plane decryption support
 
 
-"coccinelle warnings: (new ones prefixed by >>)"
->> drivers/gpu/drm/i915/pxp/intel_pxp_tee.c:81:17-20: ERROR: i915 is NULL but dereferenced.
-   drivers/gpu/drm/i915/pxp/intel_pxp_tee.c:101:17-20: ERROR: i915 is NULL but dereferenced.
-
-vim +81 drivers/gpu/drm/i915/pxp/intel_pxp_tee.c
-
-8f42c11ed5aac66 Huang, Sean Z 2020-11-13  62
-8f42c11ed5aac66 Huang, Sean Z 2020-11-13  63  /**
-8f42c11ed5aac66 Huang, Sean Z 2020-11-13  64   * i915_pxp_tee_component_bind - bind funciton to pass the function pointers to pxp_tee
-8f42c11ed5aac66 Huang, Sean Z 2020-11-13  65   * @i915_kdev: pointer to i915 kernel device
-8f42c11ed5aac66 Huang, Sean Z 2020-11-13  66   * @tee_kdev: pointer to tee kernel device
-8f42c11ed5aac66 Huang, Sean Z 2020-11-13  67   * @data: pointer to pxp_tee_master containing the function pointers
-8f42c11ed5aac66 Huang, Sean Z 2020-11-13  68   *
-8f42c11ed5aac66 Huang, Sean Z 2020-11-13  69   * This bind function is called during the system boot or resume from system sleep.
-8f42c11ed5aac66 Huang, Sean Z 2020-11-13  70   *
-8f42c11ed5aac66 Huang, Sean Z 2020-11-13  71   * Return: return 0 if successful.
-8f42c11ed5aac66 Huang, Sean Z 2020-11-13  72   */
-8f42c11ed5aac66 Huang, Sean Z 2020-11-13  73  static int i915_pxp_tee_component_bind(struct device *i915_kdev,
-8f42c11ed5aac66 Huang, Sean Z 2020-11-13  74  				       struct device *tee_kdev, void *data)
-8f42c11ed5aac66 Huang, Sean Z 2020-11-13  75  {
-8f42c11ed5aac66 Huang, Sean Z 2020-11-13  76  	struct drm_i915_private *i915 = kdev_to_i915(i915_kdev);
-8f42c11ed5aac66 Huang, Sean Z 2020-11-13  77
-8f42c11ed5aac66 Huang, Sean Z 2020-11-13  78  	drm_dbg(&i915->drm, "i915 PXP TEE component bind\n");
-8f42c11ed5aac66 Huang, Sean Z 2020-11-13  79
-8f42c11ed5aac66 Huang, Sean Z 2020-11-13  80  	if (!i915 || !tee_kdev || !data) {
-8f42c11ed5aac66 Huang, Sean Z 2020-11-13 @81  		drm_dbg(&i915->drm, "Failed to bind for i915 PXP TEE component, invalid params\n");
-8f42c11ed5aac66 Huang, Sean Z 2020-11-13  82  		return -EPERM;
-8f42c11ed5aac66 Huang, Sean Z 2020-11-13  83  	}
-8f42c11ed5aac66 Huang, Sean Z 2020-11-13  84
-8f42c11ed5aac66 Huang, Sean Z 2020-11-13  85  	mutex_lock(&i915->pxp_tee_comp_mutex);
-8f42c11ed5aac66 Huang, Sean Z 2020-11-13  86  	i915->pxp_tee_master = (struct i915_pxp_comp_master *)data;
-8f42c11ed5aac66 Huang, Sean Z 2020-11-13  87  	i915->pxp_tee_master->tee_dev = tee_kdev;
-8f42c11ed5aac66 Huang, Sean Z 2020-11-13  88  	mutex_unlock(&i915->pxp_tee_comp_mutex);
-8f42c11ed5aac66 Huang, Sean Z 2020-11-13  89
-8f42c11ed5aac66 Huang, Sean Z 2020-11-13  90  	return 0;
-8f42c11ed5aac66 Huang, Sean Z 2020-11-13  91  }
-8f42c11ed5aac66 Huang, Sean Z 2020-11-13  92
-
----
-0-DAY CI Kernel Test Service, Intel Corporation https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
