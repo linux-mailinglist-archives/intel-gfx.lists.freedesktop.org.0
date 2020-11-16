@@ -1,46 +1,35 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 59BE92B424D
-	for <lists+intel-gfx@lfdr.de>; Mon, 16 Nov 2020 12:13:09 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id E5E1C2B42DC
+	for <lists+intel-gfx@lfdr.de>; Mon, 16 Nov 2020 12:34:10 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1CE8C89E11;
-	Mon, 16 Nov 2020 11:13:06 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C773189E0E;
- Mon, 16 Nov 2020 11:13:04 +0000 (UTC)
-IronPort-SDR: krEMHiDCc5Yg3thosJmKB81k6PC4dB4r6t5B85LqBdqJDnC+aEghbY0+H9sSpjAZ0biHCoRd4y
- gWMVgFE6M02Q==
-X-IronPort-AV: E=McAfee;i="6000,8403,9806"; a="150000055"
-X-IronPort-AV: E=Sophos;i="5.77,482,1596524400"; d="scan'208";a="150000055"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Nov 2020 03:13:02 -0800
-IronPort-SDR: 2+oRimt8EuIk4yiF9XwDQnTqsvuhvOpA+FlHg2FmB2eUELIVdISdCJpPXmd6cdbgMvl1ymE2k7
- +tZIaXY/APJQ==
-X-IronPort-AV: E=Sophos;i="5.77,482,1596524400"; d="scan'208";a="543564136"
-Received: from abaldovi-mobl.ger.corp.intel.com (HELO [10.252.52.236])
- ([10.252.52.236])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Nov 2020 03:13:01 -0800
-To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
-References: <20201113135618.1235497-1-chris@chris-wilson.co.uk>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-Message-ID: <28e4553d-1ae0-94a8-dc43-a0b4bb19d156@linux.intel.com>
-Date: Mon, 16 Nov 2020 11:12:55 +0000
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3952389E2B;
+	Mon, 16 Nov 2020 11:34:08 +0000 (UTC)
+X-Original-To: Intel-gfx@lists.freedesktop.org
+Delivered-To: Intel-gfx@lists.freedesktop.org
+Received: from fireflyinternet.com (unknown [77.68.26.236])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6B84989E2B
+ for <Intel-gfx@lists.freedesktop.org>; Mon, 16 Nov 2020 11:34:05 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from localhost (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
+ 23004510-1500050 for multiple; Mon, 16 Nov 2020 11:33:55 +0000
 MIME-Version: 1.0
-In-Reply-To: <20201113135618.1235497-1-chris@chris-wilson.co.uk>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [igt-dev] [PATCH i-g-t] tools/intel_gpu_top: Show
- the active device
+In-Reply-To: <160552239111.10586.2399354234735639518@jlahtine-mobl.ger.corp.intel.com>
+References: <20201115210815.5272-1-sean.z.huang@intel.com>
+ <20201115210815.5272-6-sean.z.huang@intel.com>
+ <160552239111.10586.2399354234735639518@jlahtine-mobl.ger.corp.intel.com>
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: "Huang, Sean Z" <sean.z.huang@intel.com>, Intel-gfx@lists.freedesktop.org,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+Date: Mon, 16 Nov 2020 11:33:57 +0000
+Message-ID: <160552643728.29277.16583038978569204292@build.alporthouse.com>
+User-Agent: alot/0.9
+Subject: Re: [Intel-gfx] [PATCH 06/27] drm/i915: Rename the whitelist to
+ allowlist
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,70 +42,26 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: igt-dev@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-
-On 13/11/2020 13:56, Chris Wilson wrote:
-> Include the active device name on the update screen.
+Quoting Joonas Lahtinen (2020-11-16 10:26:31)
+> Quoting Huang, Sean Z (2020-11-15 23:07:54)
+> > Rename the whitelist to allowlist as suggested
 > 
-> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-> ---
->   tools/intel_gpu_top.c | 11 +++++++----
->   1 file changed, 7 insertions(+), 4 deletions(-)
+> This patch should really be a separate series and most likely needs to
+> be done in one go to avoid confusion.
 > 
-> diff --git a/tools/intel_gpu_top.c b/tools/intel_gpu_top.c
-> index 298defa4e..c16e80502 100644
-> --- a/tools/intel_gpu_top.c
-> +++ b/tools/intel_gpu_top.c
-> @@ -1027,7 +1027,8 @@ static bool print_groups(struct cnt_group **groups)
->   }
->   
->   static int
-> -print_header(struct engines *engines, double t,
-> +print_header(const struct igt_device_card *card,
-> +	     struct engines *engines, double t,
->   	     int lines, int con_w, int con_h, bool *consumed)
->   {
->   	struct pmu_counter fake_pmu = {
-> @@ -1106,14 +1107,15 @@ print_header(struct engines *engines, double t,
->   		printf("\033[H\033[J");
->   
->   		if (lines++ < con_h) {
-> +			printf("intel-gpu-top: %s - ", card->card);
->   			if (!engines->discrete)
-> -				printf("intel-gpu-top - %s/%s MHz;  %s%% RC6; %s %s; %s irqs/s\n",
-> +				printf("%s/%s MHz;  %s%% RC6; %s %s; %s irqs/s\n",
->   					freq_items[1].buf, freq_items[0].buf,
->   					rc6_items[0].buf, power_items[0].buf,
->   					engines->rapl_unit,
->   					irq_items[0].buf);
->   			else
-> -				printf("intel-gpu-top - %s/%s MHz;  %s%% RC6; %s irqs/s\n",
-> +				printf("%s/%s MHz;  %s%% RC6; %s irqs/s\n",
->   					freq_items[1].buf, freq_items[0].buf,
->   					rc6_items[0].buf, irq_items[0].buf);
->   		}
-> @@ -1457,7 +1459,8 @@ int main(int argc, char **argv)
->   			break;
->   
->   		while (!consumed) {
-> -			lines = print_header(engines, t, lines, con_w, con_h,
-> +			lines = print_header(&card, engines,
-> +					     t, lines, con_w, con_h,
->   					     &consumed);
->   
->   			if (engines->imc_fd)
+> $ git grep -E '(whitelist|blacklist)' | wc -l
+> 173
 > 
+> The next patch also uses "passlist" terminology, highlighting the need
+> to reach an agreement about which term to use.
 
-Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-
-Regards,
-
-Tvrtko
+(allow|deny)list is the trend.
+-Chris
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
