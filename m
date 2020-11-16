@@ -1,48 +1,35 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0EB4E2B423C
-	for <lists+intel-gfx@lfdr.de>; Mon, 16 Nov 2020 12:08:29 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7837B2B4243
+	for <lists+intel-gfx@lfdr.de>; Mon, 16 Nov 2020 12:10:14 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9CD2D89E01;
-	Mon, 16 Nov 2020 11:08:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D8DBF89D9A;
+	Mon, 16 Nov 2020 11:10:12 +0000 (UTC)
 X-Original-To: Intel-gfx@lists.freedesktop.org
 Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7B95189A1E
- for <Intel-gfx@lists.freedesktop.org>; Mon, 16 Nov 2020 11:08:24 +0000 (UTC)
-IronPort-SDR: uIkmA/Thi6FjfiLdt7JZyP/gPMG+q/wQSSA5UorMG0ztHt63x3dcblTBv3oHbZeKKe4Doeu+I+
- mK150lpEYLbw==
-X-IronPort-AV: E=McAfee;i="6000,8403,9806"; a="169946578"
-X-IronPort-AV: E=Sophos;i="5.77,482,1596524400"; d="scan'208";a="169946578"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Nov 2020 03:08:24 -0800
-IronPort-SDR: 3JaAyPcR93/LK9Bd1kZffE4+k4KnNjq7FmNrKNC0VGCiYKqzBWkBBp6UmWZBT8l2D4eCsgA8HV
- ZujesrO9WRIA==
-X-IronPort-AV: E=Sophos;i="5.77,482,1596524400"; d="scan'208";a="309840261"
-Received: from joejam1x-mobl.ger.corp.intel.com (HELO localhost)
- ([10.252.3.39])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Nov 2020 03:08:22 -0800
+Received: from fireflyinternet.com (unknown [77.68.26.236])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 24EEF89D9A
+ for <Intel-gfx@lists.freedesktop.org>; Mon, 16 Nov 2020 11:10:11 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from localhost (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
+ 23004241-1500050 for multiple; Mon, 16 Nov 2020 11:10:02 +0000
 MIME-Version: 1.0
-In-Reply-To: <13ba7eabd5234380ad3ffdc33a25e150@intel.com>
+In-Reply-To: <160552278752.10586.16763655350466197410@jlahtine-mobl.ger.corp.intel.com>
 References: <20201115210815.5272-1-sean.z.huang@intel.com>
- <20201115210815.5272-23-sean.z.huang@intel.com>
- <160552361446.10586.17624770348766864713@jlahtine-mobl.ger.corp.intel.com>
- <13ba7eabd5234380ad3ffdc33a25e150@intel.com>
-To: "Huang, Sean Z" <sean.z.huang@intel.com>,
- "Intel-gfx@lists.freedesktop.org" <Intel-gfx@lists.freedesktop.org>, "Winkler,
- Tomas" <tomas.winkler@intel.com>
-From: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Message-ID: <160552490039.11557.16875558922475882406@jlahtine-mobl.ger.corp.intel.com>
-User-Agent: alot/0.8.1
-Date: Mon, 16 Nov 2020 13:08:20 +0200
-Subject: Re: [Intel-gfx] [PATCH 23/27] mei: bus: enable pavp device.
+ <20201115210815.5272-7-sean.z.huang@intel.com>
+ <160552278752.10586.16763655350466197410@jlahtine-mobl.ger.corp.intel.com>
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: "Huang, Sean Z" <sean.z.huang@intel.com>, Intel-gfx@lists.freedesktop.org,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+Date: Mon, 16 Nov 2020 11:10:04 +0000
+Message-ID: <160552500432.29277.12450551659374055938@build.alporthouse.com>
+User-Agent: alot/0.9
+Subject: Re: [Intel-gfx] [PATCH 07/27] drm/i915/pxp: Add PXP-related
+ registers into allowlist
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,30 +47,21 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Winkler, Tomas (2020-11-16 12:49:54)
+Quoting Joonas Lahtinen (2020-11-16 10:33:07)
+> Quoting Huang, Sean Z (2020-11-15 23:07:55)
+> > Add several PXP-related reg into allowlist to allow
+> > ring3 driver to read the those register values.
 > 
-> 
-> > -----Original Message-----
-> > From: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-> > Sent: Monday, November 16, 2020 11:47
-> > To: Huang, Sean Z <sean.z.huang@intel.com>; Intel-
-> > gfx@lists.freedesktop.org
-> > Cc: Winkler, Tomas <tomas.winkler@intel.com>
-> > Subject: Re: [Intel-gfx] [PATCH 23/27] mei: bus: enable pavp device.
-> > 
-> > Obviously needs to be reviewed in the right mailing lists and as there don't
-> > seem to be any code dependencies should be merged there too.
-> > 
-> > Regards, Joonas
-> 
-> I will send my patches via GregKH misc tree, but that might create a bit of disconnection. 
+> The individual registers need to be spelled out and their usage on the
+> UMD side needs to be documented.
 
-Right, just indicating that these need at least Acked-by to merge
-through drm. And usually if there are no code-level dependencies
-it's better to merge directly at the right tree to avoid requiring
-backmerges.
-
-Regards, Joonas
+It's a huge block of registers that we need to manually verify for
+mistakes. It also does not bode well for the userspace design as probing
+so many through a single ioctl is going to be ratelimiting, nor why do
+they need to check a entire kilobyte register file. Hence why the
+userspace portion is essential to justify this as being the preferred
+design.
+-Chris
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
