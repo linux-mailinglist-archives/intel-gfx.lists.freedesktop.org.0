@@ -2,28 +2,28 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EC10D2B4470
-	for <lists+intel-gfx@lfdr.de>; Mon, 16 Nov 2020 14:10:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9F04D2B44BE
+	for <lists+intel-gfx@lfdr.de>; Mon, 16 Nov 2020 14:33:58 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4CFA689D7C;
-	Mon, 16 Nov 2020 13:10:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EC12F89E03;
+	Mon, 16 Nov 2020 13:33:56 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C27BA89D7C
- for <intel-gfx@lists.freedesktop.org>; Mon, 16 Nov 2020 13:10:25 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C6BA689E03
+ for <intel-gfx@lists.freedesktop.org>; Mon, 16 Nov 2020 13:33:55 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 23005602-1500050 
- for multiple; Mon, 16 Nov 2020 13:10:14 +0000
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 23005933-1500050 
+ for multiple; Mon, 16 Nov 2020 13:33:45 +0000
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Mon, 16 Nov 2020 13:10:16 +0000
-Message-Id: <20201116131016.2115-1-chris@chris-wilson.co.uk>
+Date: Mon, 16 Nov 2020 13:33:47 +0000
+Message-Id: <20201116133347.2256-1-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915/gt: Track the overall busy time
+Subject: [Intel-gfx] [PATCH v2] drm/i915/gt: Track the overall busy time
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,7 +53,9 @@ Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
  drivers/gpu/drm/i915/gt/intel_gt_pm.h    |  2 ++
  drivers/gpu/drm/i915/gt/intel_gt_types.h | 24 +++++++++++++
  drivers/gpu/drm/i915/i915_debugfs.c      |  2 ++
- 4 files changed, 73 insertions(+)
+ drivers/gpu/drm/i915/i915_pmu.c          |  6 ++++
+ include/uapi/drm/i915_drm.h              |  3 +-
+ 6 files changed, 81 insertions(+), 1 deletion(-)
 
 diff --git a/drivers/gpu/drm/i915/gt/intel_gt_pm.c b/drivers/gpu/drm/i915/gt/intel_gt_pm.c
 index 274aa0dd7050..ed8d7cf16118 100644
@@ -200,6 +202,52 @@ index 77e76b665098..337293c7bb7d 100644
  	seq_printf(m, "CS timestamp frequency: %u Hz\n",
  		   RUNTIME_INFO(dev_priv)->cs_timestamp_frequency_hz);
  
+diff --git a/drivers/gpu/drm/i915/i915_pmu.c b/drivers/gpu/drm/i915/i915_pmu.c
+index cd786ad12be7..36fc60cf5725 100644
+--- a/drivers/gpu/drm/i915/i915_pmu.c
++++ b/drivers/gpu/drm/i915/i915_pmu.c
+@@ -488,6 +488,8 @@ config_status(struct drm_i915_private *i915, u64 config)
+ 		if (!HAS_RC6(i915))
+ 			return -ENODEV;
+ 		break;
++	case I915_PMU_BUSY_TIME:
++		break;
+ 	default:
+ 		return -ENOENT;
+ 	}
+@@ -595,6 +597,9 @@ static u64 __i915_pmu_event_read(struct perf_event *event)
+ 		case I915_PMU_RC6_RESIDENCY:
+ 			val = get_rc6(&i915->gt);
+ 			break;
++		case I915_PMU_BUSY_TIME:
++			val = ktime_to_ns(intel_gt_get_busy_time(&i915->gt));
++			break;
+ 		}
+ 	}
+ 
+@@ -898,6 +903,7 @@ create_event_attributes(struct i915_pmu *pmu)
+ 		__event(I915_PMU_REQUESTED_FREQUENCY, "requested-frequency", "M"),
+ 		__event(I915_PMU_INTERRUPTS, "interrupts", NULL),
+ 		__event(I915_PMU_RC6_RESIDENCY, "rc6-residency", "ns"),
++		__event(I915_PMU_BUSY_TIME, "busy-time", "ns"),
+ 	};
+ 	static const struct {
+ 		enum drm_i915_pmu_engine_sample sample;
+diff --git a/include/uapi/drm/i915_drm.h b/include/uapi/drm/i915_drm.h
+index fa1f3d62f9a6..b66b7c1fd564 100644
+--- a/include/uapi/drm/i915_drm.h
++++ b/include/uapi/drm/i915_drm.h
+@@ -177,8 +177,9 @@ enum drm_i915_pmu_engine_sample {
+ #define I915_PMU_REQUESTED_FREQUENCY	__I915_PMU_OTHER(1)
+ #define I915_PMU_INTERRUPTS		__I915_PMU_OTHER(2)
+ #define I915_PMU_RC6_RESIDENCY		__I915_PMU_OTHER(3)
++#define I915_PMU_BUSY_TIME		__I915_PMU_OTHER(4)
+ 
+-#define I915_PMU_LAST I915_PMU_RC6_RESIDENCY
++#define I915_PMU_LAST I915_PMU_BUSY_TIME
+ 
+ /* Each region is a minimum of 16k, and there are at most 255 of them.
+  */
 -- 
 2.20.1
 
