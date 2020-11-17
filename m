@@ -2,29 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5B4CF2B5E51
-	for <lists+intel-gfx@lfdr.de>; Tue, 17 Nov 2020 12:31:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 759F92B5E50
+	for <lists+intel-gfx@lfdr.de>; Tue, 17 Nov 2020 12:31:31 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D91726E1D8;
+	by gabe.freedesktop.org (Postfix) with ESMTP id A638D6E1CD;
 	Tue, 17 Nov 2020 11:31:26 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 09F8D6E1CF
- for <intel-gfx@lists.freedesktop.org>; Tue, 17 Nov 2020 11:31:16 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E577C6E1B1
+ for <intel-gfx@lists.freedesktop.org>; Tue, 17 Nov 2020 11:31:15 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 23016314-1500050 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 23016315-1500050 
  for multiple; Tue, 17 Nov 2020 11:31:01 +0000
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Tue, 17 Nov 2020 11:30:36 +0000
-Message-Id: <20201117113103.21480-1-chris@chris-wilson.co.uk>
+Date: Tue, 17 Nov 2020 11:30:37 +0000
+Message-Id: <20201117113103.21480-2-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.20.1
+In-Reply-To: <20201117113103.21480-1-chris@chris-wilson.co.uk>
+References: <20201117113103.21480-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 01/28] drm/i915/selftests: Improve granularity
- for mocs reset checks
+Subject: [Intel-gfx] [PATCH 02/28] drm/i915/selftests: Small tweak to put
+ the termination conditions together
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -43,79 +45,47 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Allow us to validate mocs configurations after reset if we have either
-engine or global reset.
+If we run out of ring space, or exceed the desired runtime, we wish to
+stop the subtest. Put these checks together, so that we always keep the
+requests flushed on completion.
 
 Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
 ---
- drivers/gpu/drm/i915/gt/selftest_mocs.c | 40 +++++++++++++------------
- 1 file changed, 21 insertions(+), 19 deletions(-)
+ drivers/gpu/drm/i915/gt/selftest_timeline.c | 12 +++++-------
+ 1 file changed, 5 insertions(+), 7 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gt/selftest_mocs.c b/drivers/gpu/drm/i915/gt/selftest_mocs.c
-index b25eba50c88e..21dcd91cbd62 100644
---- a/drivers/gpu/drm/i915/gt/selftest_mocs.c
-+++ b/drivers/gpu/drm/i915/gt/selftest_mocs.c
-@@ -361,29 +361,34 @@ static int active_engine_reset(struct intel_context *ce,
- static int __live_mocs_reset(struct live_mocs *mocs,
- 			     struct intel_context *ce)
- {
-+	struct intel_gt *gt = ce->engine->gt;
- 	int err;
+diff --git a/drivers/gpu/drm/i915/gt/selftest_timeline.c b/drivers/gpu/drm/i915/gt/selftest_timeline.c
+index 2edf2b15885f..ef7e3ce8c60c 100644
+--- a/drivers/gpu/drm/i915/gt/selftest_timeline.c
++++ b/drivers/gpu/drm/i915/gt/selftest_timeline.c
+@@ -1090,12 +1090,6 @@ static int live_hwsp_read(void *arg)
+ 			}
+ 			count++;
  
--	err = intel_engine_reset(ce->engine, "mocs");
--	if (err)
--		return err;
-+	if (intel_has_reset_engine(gt)) {
-+		err = intel_engine_reset(ce->engine, "mocs");
-+		if (err)
-+			return err;
- 
--	err = check_mocs_engine(mocs, ce);
--	if (err)
--		return err;
-+		err = check_mocs_engine(mocs, ce);
-+		if (err)
-+			return err;
- 
--	err = active_engine_reset(ce, "mocs");
--	if (err)
--		return err;
-+		err = active_engine_reset(ce, "mocs");
-+		if (err)
-+			return err;
- 
--	err = check_mocs_engine(mocs, ce);
--	if (err)
--		return err;
-+		err = check_mocs_engine(mocs, ce);
-+		if (err)
-+			return err;
-+	}
- 
--	intel_gt_reset(ce->engine->gt, ce->engine->mask, "mocs");
-+	if (intel_has_gpu_reset(gt)) {
-+		intel_gt_reset(gt, ce->engine->mask, "mocs");
- 
--	err = check_mocs_engine(mocs, ce);
--	if (err)
--		return err;
-+		err = check_mocs_engine(mocs, ce);
-+		if (err)
-+			return err;
-+	}
- 
- 	return 0;
- }
-@@ -398,9 +403,6 @@ static int live_mocs_reset(void *arg)
- 
- 	/* Check the mocs setup is retained over per-engine and global resets */
- 
--	if (!intel_has_reset_engine(gt))
--		return 0;
+-			if (8 * watcher[1].rq->ring->emit >
+-			    3 * watcher[1].rq->ring->size) {
+-				i915_request_put(rq);
+-				break;
+-			}
 -
- 	err = live_mocs_init(&mocs, gt);
- 	if (err)
- 		return err;
+ 			/* Flush the timeline before manually wrapping again */
+ 			if (i915_request_wait(rq,
+ 					      I915_WAIT_INTERRUPTIBLE,
+@@ -1104,9 +1098,13 @@ static int live_hwsp_read(void *arg)
+ 				i915_request_put(rq);
+ 				goto out;
+ 			}
+-
+ 			retire_requests(tl);
+ 			i915_request_put(rq);
++
++			if (8 * watcher[1].rq->ring->emit >
++			    3 * watcher[1].rq->ring->size)
++				break;
++
+ 		} while (!__igt_timeout(end_time, NULL));
+ 		WRITE_ONCE(*(u32 *)tl->hwsp_seqno, 0xdeadbeef);
+ 
 -- 
 2.20.1
 
