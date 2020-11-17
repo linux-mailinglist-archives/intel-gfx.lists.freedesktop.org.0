@@ -1,46 +1,43 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0391C2B6A03
-	for <lists+intel-gfx@lfdr.de>; Tue, 17 Nov 2020 17:29:57 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id CD1732B6B17
+	for <lists+intel-gfx@lfdr.de>; Tue, 17 Nov 2020 18:09:56 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5DB7489F77;
-	Tue, 17 Nov 2020 16:29:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3206489C68;
+	Tue, 17 Nov 2020 17:09:55 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D52A089F19
- for <intel-gfx@lists.freedesktop.org>; Tue, 17 Nov 2020 16:29:54 +0000 (UTC)
-IronPort-SDR: Exb+7M1lKV99AuaRz2GadpN84qjby6+krdS7/kMP32P5FcZbkdk1o0XiGanz71UbRRqEq3XgRs
- 8DJqGsSmi05A==
-X-IronPort-AV: E=McAfee;i="6000,8403,9808"; a="150228903"
-X-IronPort-AV: E=Sophos;i="5.77,485,1596524400"; d="scan'208";a="150228903"
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0603889186
+ for <intel-gfx@lists.freedesktop.org>; Tue, 17 Nov 2020 17:09:53 +0000 (UTC)
+IronPort-SDR: 5AZthKDTyyQAmvBuy8qeKn7PYR/LHEkzgEH7++twb/rd0dLiTjX9/ln2yaJxZjFJ4wDnshSXCv
+ Ecmsrexejpqw==
+X-IronPort-AV: E=McAfee;i="6000,8403,9808"; a="170183651"
+X-IronPort-AV: E=Sophos;i="5.77,485,1596524400"; d="scan'208";a="170183651"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Nov 2020 08:29:54 -0800
-IronPort-SDR: 1hwZ85gOzqmCKmRrdzCI68J2BjpSHWxe8Krbrm3J0cum5rzd2BmXj+gNII3x0/8+PPCeh8G+Ss
- vtftZIw7Y0Jw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.77,485,1596524400"; d="scan'208";a="368144099"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by orsmga007.jf.intel.com with SMTP; 17 Nov 2020 08:29:51 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 17 Nov 2020 18:29:50 +0200
-Date: Tue, 17 Nov 2020 18:29:50 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Lee Shawn C <shawn.c.lee@intel.com>
-Message-ID: <20201117162950.GG6112@intel.com>
-References: <20201116135913.20782-1-shawn.c.lee@intel.com>
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Nov 2020 09:09:52 -0800
+IronPort-SDR: SVQwOFvOKyOA4ug0qW4/ER6xPd5W6QXsJ+dFnF16/K55jRFkozpfsyj4paeCB3z3xgPnmEvhnR
+ afG1toCUcVOw==
+X-IronPort-AV: E=Sophos;i="5.77,485,1596524400"; d="scan'208";a="532293893"
+Received: from orsosgc001.ra.intel.com ([10.23.184.150])
+ by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Nov 2020 09:09:52 -0800
+Date: Tue, 17 Nov 2020 09:09:47 -0800
+From: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+To: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
+Message-ID: <20201117170947.GA47109@orsosgc001.ra.intel.com>
+References: <20201117130124.829979-1-lionel.g.landwerlin@intel.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20201116135913.20782-1-shawn.c.lee@intel.com>
-X-Patchwork-Hint: comment
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/lspcon: enter standby mode to
- enhance power saving
+In-Reply-To: <20201117130124.829979-1-lionel.g.landwerlin@intel.com>
+User-Agent: Mutt/1.12.1 (2019-06-15)
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/perf: workaround register
+ corruption in OATAILPTR
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,121 +50,78 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Cooper Chiou <cooper.chiou@intel.com>, intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Cc: intel-gfx@lists.freedesktop.org
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Nov 16, 2020 at 09:59:13PM +0800, Lee Shawn C wrote:
-> After system boot up, LSPCON will be configured as PCON mode.
-> But it never go into power saving state. Source driver can
-> do the following. Then LSPCON can enter standby mode
-> automatically to save more power.
-> =
+On Tue, Nov 17, 2020 at 03:01:24PM +0200, Lionel Landwerlin wrote:
+>After having written the entire OA buffer with reports, the HW will
+>write again at the beginning of the OA buffer. It'll indicate it by
+>setting the WRAP bits in the OASTATUS register.
+>
+>When a wrap happens and that at the end of the read vfunc we write the
+>OASTATUS register back to clear the REPORT_LOST bit, we sometimes see
+>that the OATAILPTR register is reset to a previous position on Gen8/9
+>(apparently not the case on Gen11+). This leads the next call to the
+>read vfunc to process reports we've already read. Because we've marked
+>those as read by clearing the reason & timestamp dwords, they're
+>discarded and a "Skipping spurious, invalid OA report" message is
+>emitted.
+>
+>The workaround to avoid this OATAILPTR value reset seems to be to set
+>the wrap bits when writing back OASTATUS.
+>
+>Signed-off-by: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
+>Fixes: 19f81df2859eb1 ("drm/i915/perf: Add OA unit support for Gen 8+")
+>---
+> drivers/gpu/drm/i915/i915_perf.c | 9 +++++++--
+> drivers/gpu/drm/i915/i915_reg.h  | 2 ++
+> 2 files changed, 9 insertions(+), 2 deletions(-)
+>
+>diff --git a/drivers/gpu/drm/i915/i915_perf.c b/drivers/gpu/drm/i915/i915_perf.c
+>index e94976976571..3640d0e229d2 100644
+>--- a/drivers/gpu/drm/i915/i915_perf.c
+>+++ b/drivers/gpu/drm/i915/i915_perf.c
+>@@ -909,8 +909,13 @@ static int gen8_oa_read(struct i915_perf_stream *stream,
+> 				       DRM_I915_PERF_RECORD_OA_REPORT_LOST);
+> 		if (ret)
+> 			return ret;
+>-		intel_uncore_write(uncore, oastatus_reg,
+>-				   oastatus & ~GEN8_OASTATUS_REPORT_LOST);
+>+
+>+		intel_uncore_rmw(uncore, oastatus_reg,
+>+				 GEN8_OASTATUS_COUNTER_OVERFLOW |
+>+				 GEN8_OASTATUS_REPORT_LOST,
+>+				 IS_GEN_RANGE(uncore->i915, 8, 10) ?
+>+				 (GEN8_OASTATUS_HEAD_POINTER_WRAP |
+>+				  GEN8_OASTATUS_TAIL_POINTER_WRAP) : 0);
 
-> 1. At PCON mode, source driver write 0x2 to DPCD 600h.
-> 2. At LS mode, try to disable DP_DUAL_MODE_TMDS_OEN.
-> =
+Great find. Thanks for resolving this.
 
-> Cc: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> Cc: Jani Nikula <jani.nikula@linux.intel.com>
-> Cc: Uma Shankar <uma.shankar@intel.com>
-> Cc: Cooper Chiou <cooper.chiou@intel.com>
-> Cc: Khaled Almahallawy <khaled.almahallawy@intel.com>
-> Signed-off-by: Lee Shawn C <shawn.c.lee@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_dp.c     | 7 ++++++-
->  drivers/gpu/drm/i915/display/intel_lspcon.c | 8 ++++++++
->  drivers/gpu/drm/i915/display/intel_lspcon.h | 1 +
->  3 files changed, 15 insertions(+), 1 deletion(-)
-> =
+Reviewed-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
 
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i9=
-15/display/intel_dp.c
-> index ec8359f03aaf..7dd16d6bd5ba 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> @@ -6536,6 +6536,7 @@ intel_dp_detect(struct drm_connector *connector,
->  	struct drm_i915_private *dev_priv =3D to_i915(connector->dev);
->  	struct intel_dp *intel_dp =3D intel_attached_dp(to_intel_connector(conn=
-ector));
->  	struct intel_digital_port *dig_port =3D dp_to_dig_port(intel_dp);
-> +	struct intel_lspcon *lspcon =3D dp_to_lspcon(intel_dp);
->  	struct intel_encoder *encoder =3D &dig_port->base;
->  	enum drm_connector_status status;
->  =
-
-> @@ -6632,9 +6633,13 @@ intel_dp_detect(struct drm_connector *connector,
->  	intel_dp_check_service_irq(intel_dp);
->  =
-
->  out:
-> -	if (status !=3D connector_status_connected && !intel_dp->is_mst)
-> +	if (status !=3D connector_status_connected && !intel_dp->is_mst) {
->  		intel_dp_unset_edid(intel_dp);
->  =
-
-> +		if (lspcon && lspcon->active)
-> +			lspcon_standby(dp_to_dig_port(intel_dp));
-
-We should proably just do this for all DP devices. But I'm not sure if
-we can just do it uncoditionally like this. We should perhaps first check
-that the connector is not in use. So doing this sort of stuff as part
-of the normal init/resume sanitization process might be the better option.
-
-> +	}
-> +
->  	/*
->  	 * Make sure the refs for power wells enabled during detect are
->  	 * dropped to avoid a new detect cycle triggered by HPD polling.
-> diff --git a/drivers/gpu/drm/i915/display/intel_lspcon.c b/drivers/gpu/dr=
-m/i915/display/intel_lspcon.c
-> index e37d45e531df..4913ff20d7b4 100644
-> --- a/drivers/gpu/drm/i915/display/intel_lspcon.c
-> +++ b/drivers/gpu/drm/i915/display/intel_lspcon.c
-> @@ -550,6 +550,14 @@ static bool lspcon_init(struct intel_digital_port *d=
-ig_port)
->  	return true;
->  }
->  =
-
-> +void lspcon_standby(struct intel_digital_port *dig_port)
-> +{
-> +	struct intel_dp *dp =3D &dig_port->dp;
-> +
-> +	if (drm_dp_dpcd_writeb(&dp->aux, DP_SET_POWER, DP_SET_POWER_D3) <=3D 0)
-> +		DRM_DEBUG_KMS("Failed to write EDID checksum\n");
-
-Eh?
-
-> +}
-> +
->  void lspcon_resume(struct intel_digital_port *dig_port)
->  {
->  	struct intel_lspcon *lspcon =3D &dig_port->lspcon;
-> diff --git a/drivers/gpu/drm/i915/display/intel_lspcon.h b/drivers/gpu/dr=
-m/i915/display/intel_lspcon.h
-> index b03dcb7076d8..658a2e5b22db 100644
-> --- a/drivers/gpu/drm/i915/display/intel_lspcon.h
-> +++ b/drivers/gpu/drm/i915/display/intel_lspcon.h
-> @@ -16,6 +16,7 @@ struct intel_encoder;
->  struct intel_lspcon;
->  =
-
->  void lspcon_resume(struct intel_digital_port *dig_port);
-> +void lspcon_standby(struct intel_digital_port *dig_port);
->  void lspcon_wait_pcon_mode(struct intel_lspcon *lspcon);
->  void lspcon_write_infoframe(struct intel_encoder *encoder,
->  			    const struct intel_crtc_state *crtc_state,
-> -- =
-
-> 2.17.1
-
--- =
-
-Ville Syrj=E4l=E4
-Intel
+Umesh
+> 	}
+>
+> 	return gen8_append_oa_reports(stream, buf, count, offset);
+>diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+>index 7ea70b7ffcc6..5375b219cc3b 100644
+>--- a/drivers/gpu/drm/i915/i915_reg.h
+>+++ b/drivers/gpu/drm/i915/i915_reg.h
+>@@ -679,6 +679,8 @@ static inline bool i915_mmio_reg_valid(i915_reg_t reg)
+> #define  GEN7_OASTATUS2_MEM_SELECT_GGTT     (1 << 0) /* 0: PPGTT, 1: GGTT */
+>
+> #define GEN8_OASTATUS _MMIO(0x2b08)
+>+#define  GEN8_OASTATUS_TAIL_POINTER_WRAP    (1 << 17)
+>+#define  GEN8_OASTATUS_HEAD_POINTER_WRAP    (1 << 16)
+> #define  GEN8_OASTATUS_OVERRUN_STATUS	    (1 << 3)
+> #define  GEN8_OASTATUS_COUNTER_OVERFLOW     (1 << 2)
+> #define  GEN8_OASTATUS_OABUFFER_OVERFLOW    (1 << 1)
+>-- 
+>2.29.2
+>
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
