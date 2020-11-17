@@ -2,47 +2,47 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id AD8882B6867
-	for <lists+intel-gfx@lfdr.de>; Tue, 17 Nov 2020 16:15:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4064B2B6882
+	for <lists+intel-gfx@lfdr.de>; Tue, 17 Nov 2020 16:20:21 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E84F989A92;
-	Tue, 17 Nov 2020 15:15:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A863A6E231;
+	Tue, 17 Nov 2020 15:20:19 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C45A389A92
- for <intel-gfx@lists.freedesktop.org>; Tue, 17 Nov 2020 15:14:59 +0000 (UTC)
-IronPort-SDR: dwZ3a1rzqaq4PGdRq1CWkjppkzSWESpYRLqtZZA8n7AN5jBInXVlBuP5EspJLf15q2vhpSY/G4
- nHlleD2bxgIQ==
-X-IronPort-AV: E=McAfee;i="6000,8403,9808"; a="167429331"
-X-IronPort-AV: E=Sophos;i="5.77,485,1596524400"; d="scan'208";a="167429331"
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8E2BA6E039
+ for <intel-gfx@lists.freedesktop.org>; Tue, 17 Nov 2020 15:20:18 +0000 (UTC)
+IronPort-SDR: +Qnpvp05KFtJxk/nxbtAfDqeGtQjQQTottRKqlpDkJQKPvA2qXjwPzHq/bhWpykn9qssJbvI7g
+ pQeSAg4Ayb1Q==
+X-IronPort-AV: E=McAfee;i="6000,8403,9808"; a="171111168"
+X-IronPort-AV: E=Sophos;i="5.77,485,1596524400"; d="scan'208";a="171111168"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Nov 2020 07:14:59 -0800
-IronPort-SDR: ERKNJySu/MQSXsmKOESCtLRPXfJCziBY/C3VXJn8QITVQ/ZwTTSbTFhUVHiGchDERzjzNhv86s
- SHou1yuof4mw==
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Nov 2020 07:17:18 -0800
+IronPort-SDR: p+T2KGGN7qTdvwtvIhSTRVFLWuG/5vqM0L4l4WQDjsfoRijGqcE8jzQbQM1T/7aj5MqRG37n65
+ p3YjHWHYDvRg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.77,485,1596524400"; d="scan'208";a="330107418"
+X-IronPort-AV: E=Sophos;i="5.77,485,1596524400"; d="scan'208";a="367897264"
 Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by orsmga006.jf.intel.com with SMTP; 17 Nov 2020 07:14:57 -0800
+ by FMSMGA003.fm.intel.com with SMTP; 17 Nov 2020 07:17:16 -0800
 Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 17 Nov 2020 17:14:56 +0200
-Date: Tue, 17 Nov 2020 17:14:56 +0200
+ Tue, 17 Nov 2020 17:17:15 +0200
+Date: Tue, 17 Nov 2020 17:17:15 +0200
 From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
 To: "Navare, Manasi" <manasi.d.navare@intel.com>
-Message-ID: <20201117151456.GC6112@intel.com>
+Message-ID: <20201117151715.GD6112@intel.com>
 References: <20201113220358.24794-1-ville.syrjala@linux.intel.com>
- <20201113220358.24794-17-ville.syrjala@linux.intel.com>
- <20201117000901.GA29250@labuser-Z97X-UD5H>
+ <20201113220358.24794-18-ville.syrjala@linux.intel.com>
+ <20201117002408.GB29250@labuser-Z97X-UD5H>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20201117000901.GA29250@labuser-Z97X-UD5H>
+In-Reply-To: <20201117002408.GB29250@labuser-Z97X-UD5H>
 X-Patchwork-Hint: comment
 User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH 16/23] drm/i915: Add planes affected by
- bigjoiner to the state
+Subject: Re: [Intel-gfx] [PATCH 17/23] drm/i915: Get the uapi state from the
+ correct plane when bigjoiner is used
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,60 +61,69 @@ Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Nov 16, 2020 at 04:09:01PM -0800, Navare, Manasi wrote:
-> On Sat, Nov 14, 2020 at 12:03:51AM +0200, Ville Syrjala wrote:
+On Mon, Nov 16, 2020 at 04:24:15PM -0800, Navare, Manasi wrote:
+> On Sat, Nov 14, 2020 at 12:03:52AM +0200, Ville Syrjala wrote:
 > > From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
 > > =
 
-> > Make sure both the bigjoiner "master" and "slave" plane are
-> > in the state whenever either of them is in the state.
+> > When using bigjoiner userspace is only controlling the "master"
+> > plane, so use its uapi state for the "slave" plane as well.
+> > =
+
+> > hw.crtc needs a bit of magic since we don't want to copy that from
+> > the uapi state (as it points to the wrong pipe for the "slave
+> > " plane). Instead we pass the right crtc in explicitly but only
+> > assign it when the uapi state indicates the plane to be logically
+> > enabled (ie. uapi.crtc !=3D NULL).
 > > =
 
 > > Signed-off-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
 > > ---
-> >  drivers/gpu/drm/i915/display/intel_display.c | 42 ++++++++++++++++++++
-> >  1 file changed, 42 insertions(+)
+> >  .../gpu/drm/i915/display/intel_atomic_plane.c | 59 +++++++++++++------
+> >  .../gpu/drm/i915/display/intel_atomic_plane.h |  3 +-
+> >  drivers/gpu/drm/i915/display/intel_display.c  |  5 +-
+> >  3 files changed, 46 insertions(+), 21 deletions(-)
 > > =
 
-> > diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu=
-/drm/i915/display/intel_display.c
-> > index 465877097582..1118ff73c0d4 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_display.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> > @@ -15069,6 +15069,44 @@ static bool active_planes_affects_min_cdclk(st=
-ruct drm_i915_private *dev_priv)
-> >  		IS_IVYBRIDGE(dev_priv) || (INTEL_GEN(dev_priv) >=3D 11);
+> > diff --git a/drivers/gpu/drm/i915/display/intel_atomic_plane.c b/driver=
+s/gpu/drm/i915/display/intel_atomic_plane.c
+> > index f47558efb3c2..7abb0e3d6c0b 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_atomic_plane.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
+> > @@ -247,11 +247,19 @@ static void intel_plane_clear_hw_state(struct int=
+el_plane_state *plane_state)
 > >  }
 > >  =
 
-> > +static int intel_crtc_add_bigjoiner_planes(struct intel_atomic_state *=
-state,
-> > +					   struct intel_crtc *crtc,
-> > +					   struct intel_crtc *other)
-> > +{
-> > +	const struct intel_plane_state *plane_state;
-> > +	struct intel_plane *plane;
-> > +	u8 plane_ids =3D 0;
-> > +	int i;
-> > +
-> > +	for_each_new_intel_plane_in_state(state, plane, plane_state, i) {
-> > +		if (plane->pipe =3D=3D crtc->pipe)
-> > +			plane_ids |=3D BIT(plane->id);
-> > +	}
-> > +
-> > +	return intel_crtc_add_planes_to_state(state, other, plane_ids);
+> >  void intel_plane_copy_uapi_to_hw_state(struct intel_plane_state *plane=
+_state,
+> > -				       const struct intel_plane_state *from_plane_state)
+> > +				       const struct intel_plane_state *from_plane_state,
+> > +				       struct intel_crtc *crtc)
+> >  {
+> >  	intel_plane_clear_hw_state(plane_state);
+> >  =
+
+> > -	plane_state->hw.crtc =3D from_plane_state->uapi.crtc;
+> > +	/*
+> > +	 * For the bigjoiner slave uapi.crtc will point at
+> > +	 * the master crtc. So we explicitly assign the right
+> > +	 * slave crtc to hw.crtc. uapi.crtc!=3DNULL simply indicates
+> > +	 * the plane is logically enabled on the uapi level.
+> > +	 */
+> > +	plane_state->hw.crtc =3D from_plane_state->uapi.crtc ? &crtc->base : =
+NULL;
 > =
 
-> We call this function intel_crtc_add_planes_to_state again in intel_atomi=
-c_check_planes again at
-> the end, so arent we adding the planes to state twice for both master and=
- slave?
+> But here in case of bigjoiner_slave we actualy compute new_master_plane_s=
+tate from master_plane which is
+> obtained from the slaves linked crtc.
 > =
 
-> Do we need some condition to avoid adding it again at the end of intel_at=
-omic_check_planes ?
+> So here, even for the slave plane's hw.crtc we are using master's uapi.cr=
+tc? Is that what is happening here?
 
-No. That other stuff is there for the min_cdclk calculation.
+Yes.
 
 -- =
 
