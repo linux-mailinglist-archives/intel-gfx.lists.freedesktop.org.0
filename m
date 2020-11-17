@@ -2,31 +2,44 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E1F1D2B6E8F
-	for <lists+intel-gfx@lfdr.de>; Tue, 17 Nov 2020 20:24:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B16852B6E9D
+	for <lists+intel-gfx@lfdr.de>; Tue, 17 Nov 2020 20:29:07 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 45AA76E060;
-	Tue, 17 Nov 2020 19:24:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B21FC8932E;
+	Tue, 17 Nov 2020 19:29:04 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 7D28688C07;
- Tue, 17 Nov 2020 19:24:02 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 757ABA8169;
- Tue, 17 Nov 2020 19:24:02 +0000 (UTC)
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BABCF8932E
+ for <intel-gfx@lists.freedesktop.org>; Tue, 17 Nov 2020 19:29:02 +0000 (UTC)
+IronPort-SDR: CXeD95NvMZF+7l5AdV54USFJ0JUmXSxH38Kd+aLAaW7+dEIs28y6O0DIoo0SoEALUNzHXa8PkO
+ elaEJV9lbfIA==
+X-IronPort-AV: E=McAfee;i="6000,8403,9808"; a="171092119"
+X-IronPort-AV: E=Sophos;i="5.77,486,1596524400"; d="scan'208";a="171092119"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Nov 2020 11:28:59 -0800
+IronPort-SDR: 06akxmZ1XmZFNTJuytHLcdqWrSABLTxINWR7jIOTlXR3WiEwE0V5ju3Ctr6HtWw2Ig4BoFhPh0
+ KEn1c8uod4pA==
+X-IronPort-AV: E=Sophos;i="5.77,486,1596524400"; d="scan'208";a="362614801"
+Received: from dshaukar-mobl.amr.corp.intel.com (HELO ldmartin-desk1)
+ ([10.209.56.95])
+ by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Nov 2020 11:28:55 -0800
+Date: Tue, 17 Nov 2020 11:28:54 -0800
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: "Souza, Jose" <jose.souza@intel.com>
+Message-ID: <20201117192854.57tki3vges6zdenp@ldmartin-desk1>
+References: <20201117185029.22078-1-aditya.swarup@intel.com>
+ <20201117185029.22078-3-aditya.swarup@intel.com>
+ <02ea7d2b7eb151787abe8cf42771db40a7f0ef7d.camel@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Tue, 17 Nov 2020 19:24:02 -0000
-Message-ID: <160564104244.25709.1568983592633128188@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20201117113103.21480-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20201117113103.21480-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
- =?utf-8?q?ies_starting_with_=5B01/28=5D_drm/i915/selftests=3A_Improve_gra?=
- =?utf-8?q?nularity_for_mocs_reset_checks?=
+Content-Disposition: inline
+In-Reply-To: <02ea7d2b7eb151787abe8cf42771db40a7f0ef7d.camel@intel.com>
+Subject: Re: [Intel-gfx] [PATCH 02/21] drm/i915/tgl: Fix macros for TGL SOC
+ based WA
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,325 +52,495 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============0459680559=="
+Cc: "Nikula, Jani" <jani.nikula@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="iso-8859-1"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0459680559==
-Content-Type: multipart/alternative;
- boundary="===============0395297454473304101=="
+On Tue, Nov 17, 2020 at 07:03:05PM +0000, Jose Souza wrote:
+>On Tue, 2020-11-17 at 10:50 -0800, Aditya Swarup wrote:
+>> Fix macros for applying TGL SOC WAs by using INTEL_REVID()
+>> as index to fetch correct revision offset in TGL GT/DISP stepping
+>> table.
+>
+>Please explain what exactly is the issue you are fixing, the change you di=
+d in tgl_revids_get() + IS_TGL_GT_REVID looks a improvement but not a fix.
 
---===============0395297454473304101==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+otherwise it always gets the first entry from the table, regardless
+what' s the revid we are running on... so it does look like a very
+important fix.
 
-== Series Details ==
+>
+>>
+>> Also, remove redundant macros and simplify it to use GT and DISP
+>> macros for getting applicable stepping for TGL.
 
-Series: series starting with [01/28] drm/i915/selftests: Improve granularity for mocs reset checks
-URL   : https://patchwork.freedesktop.org/series/83951/
-State : success
+As a fix, this should not be mixed with the noisy s/TGL_REVID/REVID/, as
+it makes it much more difficult for backports and to review. Please
+split it in another patch (I actually don' t see a reason to do it
+actually... I'd rather try to move away from these tables if possible).
 
-== Summary ==
+Lucas De Marchi
 
-CI Bug Log - changes from CI_DRM_9348 -> Patchwork_18920
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18920/index.html
-
-New tests
----------
-
-  New tests have been introduced between CI_DRM_9348 and Patchwork_18920:
-
-### New CI tests (1) ###
-
-  * boot:
-    - Statuses : 41 pass(s)
-    - Exec time: [0.0] s
-
-  
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_18920 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_module_load@reload:
-    - fi-tgl-u2:          [PASS][1] -> [DMESG-WARN][2] ([i915#1982] / [k.org#205379])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9348/fi-tgl-u2/igt@i915_module_load@reload.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18920/fi-tgl-u2/igt@i915_module_load@reload.html
-
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:
-    - fi-byt-j1900:       [PASS][3] -> [DMESG-WARN][4] ([i915#1982]) +1 similar issue
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9348/fi-byt-j1900/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18920/fi-byt-j1900/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-
-  * igt@kms_cursor_legacy@basic-flip-before-cursor-atomic:
-    - fi-icl-u2:          [PASS][5] -> [DMESG-WARN][6] ([i915#1982]) +1 similar issue
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9348/fi-icl-u2/igt@kms_cursor_legacy@basic-flip-before-cursor-atomic.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18920/fi-icl-u2/igt@kms_cursor_legacy@basic-flip-before-cursor-atomic.html
-
-  
-#### Possible fixes ####
-
-  * igt@core_hotunplug@unbind-rebind:
-    - fi-icl-u2:          [DMESG-WARN][7] ([i915#1982]) -> [PASS][8] +1 similar issue
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9348/fi-icl-u2/igt@core_hotunplug@unbind-rebind.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18920/fi-icl-u2/igt@core_hotunplug@unbind-rebind.html
-
-  * igt@i915_module_load@reload:
-    - fi-byt-j1900:       [DMESG-WARN][9] ([i915#1982]) -> [PASS][10]
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9348/fi-byt-j1900/igt@i915_module_load@reload.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18920/fi-byt-j1900/igt@i915_module_load@reload.html
-
-  * igt@kms_busy@basic@flip:
-    - {fi-kbl-7560u}:     [DMESG-WARN][11] ([i915#1982]) -> [PASS][12]
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9348/fi-kbl-7560u/igt@kms_busy@basic@flip.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18920/fi-kbl-7560u/igt@kms_busy@basic@flip.html
-
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:
-    - fi-bsw-kefka:       [DMESG-WARN][13] ([i915#1982]) -> [PASS][14]
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9348/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18920/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-    - fi-apl-guc:         [DMESG-WARN][15] ([i915#1635] / [i915#1982]) -> [PASS][16]
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9348/fi-apl-guc/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18920/fi-apl-guc/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [i915#1635]: https://gitlab.freedesktop.org/drm/intel/issues/1635
-  [i915#1759]: https://gitlab.freedesktop.org/drm/intel/issues/1759
-  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
-  [i915#2524]: https://gitlab.freedesktop.org/drm/intel/issues/2524
-  [k.org#205379]: https://bugzilla.kernel.org/show_bug.cgi?id=205379
-
-
-Participating hosts (42 -> 41)
-------------------------------
-
-  Additional (3): fi-kbl-soraka fi-blb-e6850 fi-tgl-y 
-  Missing    (4): fi-ilk-m540 fi-bsw-cyan fi-bdw-samus fi-hsw-4200u 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_9348 -> Patchwork_18920
-
-  CI-20190529: 20190529
-  CI_DRM_9348: 8dc6152ada31b8d128be55f1dacc13c2b5b61666 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5855: d9b3c7058efe41e5224dd1e43fac05dc6d049380 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_18920: 239e47e2f68899ae2922c4321ddf8e9983452d96 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-239e47e2f688 drm/i915/gt: Simplify virtual engine handling for execlists_hold()
-5440ca67d640 drm/i915/gt: Resubmit the virtual engine on schedule-out
-063c2759bd5c drm/i915/gt: Shrink the critical section for irq signaling
-3ed0a652501e drm/i915/gt: Remove virtual breadcrumb before transfer
-56b37beddaa4 drm/i915/gt: Defer schedule_out until after the next dequeue
-3af258c2b1e2 drm/i915/gt: Decouple inflight virtual engines
-14776ee687ac drm/i915/gt: Use virtual_engine during execlists_dequeue
-414c9d2c58db drm/i915/gt: ce->inflight updates are now serialised
-c43eabedf48d drm/i915/gt: Replace direct submit with direct call to tasklet
-80ee04c69c11 drm/i915/gt: Check for a completed last request once
-299dfa2c30b7 drm/i915/gt: Decouple completed requests on unwind
-a9d88246410b drm/i915/gt: Move the breadcrumb to the signaler if completed upon cancel
-7ef7a16bb08c drm/i915/gt: Split the breadcrumb spinlock between global and contexts
-25ee818fe9c7 drm/i915/gt: Protect context lifetime with RCU
-edd68892ac79 drm/i915/gt: Free stale request on destroying the virtual engine
-b9ab5ba2ea2d drm/i915/gt: Don't cancel the interrupt shadow too early
-49b7cb3fb2de drm/i915/gt: Track signaled breadcrumbs outside of the breadcrumb spinlock
-5ed9a448fb02 drm/i915/gt: Defer enabling the breadcrumb interrupt to after submission
-45a01d0bdc89 drm/i915: Show timeline dependencies for debug
-471c4d05edc2 drm/i915: Lift waiter/signaler iterators
-38470cc9596c drm/i915/gt: Show all active timelines for debugging
-8e85dabc534e drm/i915: Lift i915_request_show()
-40da0fecec81 drm/i915/gt: Include semaphore status in print_request()
-f6559ba4c7c5 drm/i915/gt: Track the overall busy time
-3d97fa02b2bd drm/i915/gt: Ignore dt==0 for reporting underflows
-b441a9d6dec3 drm/i915/gem: Drop free_work for GEM contexts
-d305f0a2eb8d drm/i915/selftests: Small tweak to put the termination conditions together
-ae32abe5ed3c drm/i915/selftests: Improve granularity for mocs reset checks
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18920/index.html
-
---===============0395297454473304101==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>series starting with [01/28] drm/i915/selftests: Improve granularity for mocs reset checks</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/83951/">https://patchwork.freedesktop.org/series/83951/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18920/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18920/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_9348 -&gt; Patchwork_18920</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18920/index.html</p>
-<h2>New tests</h2>
-<p>New tests have been introduced between CI_DRM_9348 and Patchwork_18920:</p>
-<h3>New CI tests (1)</h3>
-<ul>
-<li>boot:<ul>
-<li>Statuses : 41 pass(s)</li>
-<li>Exec time: [0.0] s</li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_18920 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@i915_module_load@reload:</p>
-<ul>
-<li>fi-tgl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9348/fi-tgl-u2/igt@i915_module_load@reload.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18920/fi-tgl-u2/igt@i915_module_load@reload.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a> / <a href="https://bugzilla.kernel.org/show_bug.cgi?id=205379">k.org#205379</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:</p>
-<ul>
-<li>fi-byt-j1900:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9348/fi-byt-j1900/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18920/fi-byt-j1900/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>) +1 similar issue</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@basic-flip-before-cursor-atomic:</p>
-<ul>
-<li>fi-icl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9348/fi-icl-u2/igt@kms_cursor_legacy@basic-flip-before-cursor-atomic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18920/fi-icl-u2/igt@kms_cursor_legacy@basic-flip-before-cursor-atomic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>) +1 similar issue</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@core_hotunplug@unbind-rebind:</p>
-<ul>
-<li>fi-icl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9348/fi-icl-u2/igt@core_hotunplug@unbind-rebind.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18920/fi-icl-u2/igt@core_hotunplug@unbind-rebind.html">PASS</a> +1 similar issue</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_module_load@reload:</p>
-<ul>
-<li>fi-byt-j1900:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9348/fi-byt-j1900/igt@i915_module_load@reload.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18920/fi-byt-j1900/igt@i915_module_load@reload.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_busy@basic@flip:</p>
-<ul>
-<li>{fi-kbl-7560u}:     <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9348/fi-kbl-7560u/igt@kms_busy@basic@flip.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18920/fi-kbl-7560u/igt@kms_busy@basic@flip.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:</p>
-<ul>
-<li>
-<p>fi-bsw-kefka:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9348/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18920/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html">PASS</a></p>
-</li>
-<li>
-<p>fi-apl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9348/fi-apl-guc/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1635">i915#1635</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18920/fi-apl-guc/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html">PASS</a></p>
-</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Participating hosts (42 -&gt; 41)</h2>
-<p>Additional (3): fi-kbl-soraka fi-blb-e6850 fi-tgl-y <br />
-  Missing    (4): fi-ilk-m540 fi-bsw-cyan fi-bdw-samus fi-hsw-4200u </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_9348 -&gt; Patchwork_18920</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_9348: 8dc6152ada31b8d128be55f1dacc13c2b5b61666 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_5855: d9b3c7058efe41e5224dd1e43fac05dc6d049380 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
-  Patchwork_18920: 239e47e2f68899ae2922c4321ddf8e9983452d96 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>239e47e2f688 drm/i915/gt: Simplify virtual engine handling for execlists_hold()<br />
-5440ca67d640 drm/i915/gt: Resubmit the virtual engine on schedule-out<br />
-063c2759bd5c drm/i915/gt: Shrink the critical section for irq signaling<br />
-3ed0a652501e drm/i915/gt: Remove virtual breadcrumb before transfer<br />
-56b37beddaa4 drm/i915/gt: Defer schedule_out until after the next dequeue<br />
-3af258c2b1e2 drm/i915/gt: Decouple inflight virtual engines<br />
-14776ee687ac drm/i915/gt: Use virtual_engine during execlists_dequeue<br />
-414c9d2c58db drm/i915/gt: ce-&gt;inflight updates are now serialised<br />
-c43eabedf48d drm/i915/gt: Replace direct submit with direct call to tasklet<br />
-80ee04c69c11 drm/i915/gt: Check for a completed last request once<br />
-299dfa2c30b7 drm/i915/gt: Decouple completed requests on unwind<br />
-a9d88246410b drm/i915/gt: Move the breadcrumb to the signaler if completed upon cancel<br />
-7ef7a16bb08c drm/i915/gt: Split the breadcrumb spinlock between global and contexts<br />
-25ee818fe9c7 drm/i915/gt: Protect context lifetime with RCU<br />
-edd68892ac79 drm/i915/gt: Free stale request on destroying the virtual engine<br />
-b9ab5ba2ea2d drm/i915/gt: Don't cancel the interrupt shadow too early<br />
-49b7cb3fb2de drm/i915/gt: Track signaled breadcrumbs outside of the breadcrumb spinlock<br />
-5ed9a448fb02 drm/i915/gt: Defer enabling the breadcrumb interrupt to after submission<br />
-45a01d0bdc89 drm/i915: Show timeline dependencies for debug<br />
-471c4d05edc2 drm/i915: Lift waiter/signaler iterators<br />
-38470cc9596c drm/i915/gt: Show all active timelines for debugging<br />
-8e85dabc534e drm/i915: Lift i915_request_show()<br />
-40da0fecec81 drm/i915/gt: Include semaphore status in print_request()<br />
-f6559ba4c7c5 drm/i915/gt: Track the overall busy time<br />
-3d97fa02b2bd drm/i915/gt: Ignore dt==0 for reporting underflows<br />
-b441a9d6dec3 drm/i915/gem: Drop free_work for GEM contexts<br />
-d305f0a2eb8d drm/i915/selftests: Small tweak to put the termination conditions together<br />
-ae32abe5ed3c drm/i915/selftests: Improve granularity for mocs reset checks</p>
-
-</body>
-</html>
-
---===============0395297454473304101==--
-
---===============0459680559==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
+>>
+>> Fixes: ("drm/i915/tgl: Fix stepping WA matching")
+>> Cc: Jos=E9 Roberto de Souza <jose.souza@intel.com>
+>> Cc: Matt Roper <matthew.d.roper@intel.com>
+>> Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+>> Cc: Jani Nikula <jani.nikula@intel.com>
+>> Cc: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+>> Signed-off-by: Aditya Swarup <aditya.swarup@intel.com>
+>> ---
+>> =A0.../drm/i915/display/intel_display_power.c    |  2 +-
+>> =A0drivers/gpu/drm/i915/display/intel_psr.c      |  4 ++--
+>> =A0drivers/gpu/drm/i915/display/intel_sprite.c   |  2 +-
+>> =A0drivers/gpu/drm/i915/gt/intel_workarounds.c   | 20 ++++++++--------
+>> =A0drivers/gpu/drm/i915/i915_drv.h               | 24 +++++++------------
+>> =A0drivers/gpu/drm/i915/intel_pm.c               |  2 +-
+>> =A06 files changed, 24 insertions(+), 30 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/driver=
+s/gpu/drm/i915/display/intel_display_power.c
+>> index fe2d90bba536..06c036e2092c 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_display_power.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_display_power.c
+>> @@ -5283,7 +5283,7 @@ static void tgl_bw_buddy_init(struct drm_i915_priv=
+ate *dev_priv)
+>> =A0	int config, i;
+>> =A0
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>> =A0	if (IS_DG1_REVID(dev_priv, DG1_REVID_A0, DG1_REVID_A0) ||
+>> -	    IS_TGL_DISP_REVID(dev_priv, TGL_REVID_A0, TGL_REVID_B0))
+>> +	    IS_TGL_DISP_REVID(dev_priv, REVID_A0, REVID_B0))
+>> =A0		/* Wa_1409767108:tgl,dg1 */
+>> =A0		table =3D wa_1409767108_buddy_page_masks;
+>> =A0	else
+>> diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/=
+i915/display/intel_psr.c
+>> index b3631b722de3..c057a03b2ed4 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_psr.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_psr.c
+>> @@ -550,7 +550,7 @@ static void hsw_activate_psr2(struct intel_dp *intel=
+_dp)
+>> =A0
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>> =A0	if (dev_priv->psr.psr2_sel_fetch_enabled) {
+>> =A0		/* WA 1408330847 */
+>> -		if (IS_TGL_DISP_REVID(dev_priv, TGL_REVID_A0, TGL_REVID_A0) ||
+>> +		if (IS_TGL_DISP_REVID(dev_priv, REVID_A0, REVID_A0) ||
+>> =A0		    IS_RKL_REVID(dev_priv, RKL_REVID_A0, RKL_REVID_A0))
+>> =A0			intel_de_rmw(dev_priv, CHICKEN_PAR1_1,
+>> =A0				     DIS_RAM_BYPASS_PSR2_MAN_TRACK,
+>> @@ -1102,7 +1102,7 @@ static void intel_psr_disable_locked(struct intel_=
+dp *intel_dp)
+>> =A0
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>> =A0	/* WA 1408330847 */
+>> =A0	if (dev_priv->psr.psr2_sel_fetch_enabled &&
+>> -	    (IS_TGL_DISP_REVID(dev_priv, TGL_REVID_A0, TGL_REVID_A0) ||
+>> +	    (IS_TGL_DISP_REVID(dev_priv, REVID_A0, REVID_A0) ||
+>> =A0	     IS_RKL_REVID(dev_priv, RKL_REVID_A0, RKL_REVID_A0)))
+>> =A0		intel_de_rmw(dev_priv, CHICKEN_PAR1_1,
+>> =A0			     DIS_RAM_BYPASS_PSR2_MAN_TRACK, 0);
+>> diff --git a/drivers/gpu/drm/i915/display/intel_sprite.c b/drivers/gpu/d=
+rm/i915/display/intel_sprite.c
+>> index a3ab44694118..f7da4a56054e 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_sprite.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_sprite.c
+>> @@ -3022,7 +3022,7 @@ static bool gen12_plane_supports_mc_ccs(struct drm=
+_i915_private *dev_priv,
+>> =A0{
+>> =A0	/* Wa_14010477008:tgl[a0..c0],rkl[all],dg1[all] */
+>> =A0	if (IS_DG1(dev_priv) || IS_ROCKETLAKE(dev_priv) ||
+>> -	    IS_TGL_DISP_REVID(dev_priv, TGL_REVID_A0, TGL_REVID_C0))
+>> +	    IS_TGL_DISP_REVID(dev_priv, REVID_A0, REVID_C0))
+>> =A0		return false;
+>> =A0
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>> =A0	return plane_id < PLANE_SPRITE4;
+>> diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/d=
+rm/i915/gt/intel_workarounds.c
+>> index a82554baa6ac..d756155d82ea 100644
+>> --- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
+>> +++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
+>> @@ -71,16 +71,16 @@ const struct i915_rev_steppings kbl_revids[] =3D {
+>> =A0};
+>> =A0
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>> =A0const struct i915_rev_steppings tgl_uy_revids[] =3D {
+>> -	[0] =3D { .gt_stepping =3D TGL_REVID_A0, .disp_stepping =3D TGL_REVID_=
+A0 },
+>> -	[1] =3D { .gt_stepping =3D TGL_REVID_B0, .disp_stepping =3D TGL_REVID_=
+C0 },
+>> -	[2] =3D { .gt_stepping =3D TGL_REVID_B1, .disp_stepping =3D TGL_REVID_=
+C0 },
+>> -	[3] =3D { .gt_stepping =3D TGL_REVID_C0, .disp_stepping =3D TGL_REVID_=
+D0 },
+>> +	[0] =3D { .gt_stepping =3D REVID_A0, .disp_stepping =3D REVID_A0 },
+>> +	[1] =3D { .gt_stepping =3D REVID_B0, .disp_stepping =3D REVID_C0 },
+>> +	[2] =3D { .gt_stepping =3D REVID_B1, .disp_stepping =3D REVID_C0 },
+>> +	[3] =3D { .gt_stepping =3D REVID_C0, .disp_stepping =3D REVID_D0 },
+>> =A0};
+>> =A0
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>> =A0/* Same GT stepping between tgl_uy_revids and tgl_revids don't mean t=
+he same HW */
+>> =A0const struct i915_rev_steppings tgl_revids[] =3D {
+>> -	[0] =3D { .gt_stepping =3D TGL_REVID_A0, .disp_stepping =3D TGL_REVID_=
+B0 },
+>> -	[1] =3D { .gt_stepping =3D TGL_REVID_B0, .disp_stepping =3D TGL_REVID_=
+D0 },
+>> +	[0] =3D { .gt_stepping =3D REVID_A0, .disp_stepping =3D REVID_B0 },
+>> +	[1] =3D { .gt_stepping =3D REVID_B0, .disp_stepping =3D REVID_D0 },
+>> =A0};
+>> =A0
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>> =A0static void wa_init_start(struct i915_wa_list *wal, const char *name,=
+ const char *engine_name)
+>> @@ -1250,13 +1250,13 @@ tgl_gt_workarounds_init(struct drm_i915_private =
+*i915, struct i915_wa_list *wal)
+>> =A0	gen12_gt_workarounds_init(i915, wal);
+>> =A0
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>> =A0	/* Wa_1409420604:tgl */
+>> -	if (IS_TGL_UY_GT_REVID(i915, TGL_REVID_A0, TGL_REVID_A0))
+>> +	if (IS_TGL_GT_REVID(i915, REVID_A0, REVID_A0))
+>> =A0		wa_write_or(wal,
+>> =A0			    SUBSLICE_UNIT_LEVEL_CLKGATE2,
+>> =A0			    CPSSUNIT_CLKGATE_DIS);
+>> =A0
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>> =A0	/* Wa_1607087056:tgl also know as BUG:1409180338 */
+>> -	if (IS_TGL_UY_GT_REVID(i915, TGL_REVID_A0, TGL_REVID_A0))
+>> +	if (IS_TGL_GT_REVID(i915, REVID_A0, REVID_A0))
+>> =A0		wa_write_or(wal,
+>> =A0			    SLICE_UNIT_LEVEL_CLKGATE,
+>> =A0			    L3_CLKGATE_DIS | L3_CR2X_CLKGATE_DIS);
+>> @@ -1734,7 +1734,7 @@ rcs_engine_wa_init(struct intel_engine_cs *engine,=
+ struct i915_wa_list *wal)
+>> =A0	struct drm_i915_private *i915 =3D engine->i915;
+>> =A0
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>> =A0	if (IS_DG1_REVID(i915, DG1_REVID_A0, DG1_REVID_A0) ||
+>> -	    IS_TGL_UY_GT_REVID(i915, TGL_REVID_A0, TGL_REVID_A0)) {
+>> +	    IS_TGL_GT_REVID(i915, REVID_A0, REVID_A0)) {
+>> =A0		/*
+>> =A0		 * Wa_1607138336:tgl[a0],dg1[a0]
+>> =A0		 * Wa_1607063988:tgl[a0],dg1[a0]
+>> @@ -1744,7 +1744,7 @@ rcs_engine_wa_init(struct intel_engine_cs *engine,=
+ struct i915_wa_list *wal)
+>> =A0			    GEN12_DISABLE_POSH_BUSY_FF_DOP_CG);
+>> =A0	}
+>> =A0
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>> -	if (IS_TGL_UY_GT_REVID(i915, TGL_REVID_A0, TGL_REVID_A0)) {
+>> +	if (IS_TGL_GT_REVID(i915, REVID_A0, REVID_A0)) {
+>> =A0		/*
+>> =A0		 * Wa_1606679103:tgl
+>> =A0		 * (see also Wa_1606682166:icl)
+>> diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915=
+_drv.h
+>> index 15be8debae54..437916aacaa6 100644
+>> --- a/drivers/gpu/drm/i915/i915_drv.h
+>> +++ b/drivers/gpu/drm/i915/i915_drv.h
+>> @@ -1565,11 +1565,11 @@ extern const struct i915_rev_steppings kbl_revid=
+s[];
+>> =A0	(IS_JSL_EHL(p) && IS_REVID(p, since, until))
+>> =A0
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>> =A0enum {
+>> -	TGL_REVID_A0,
+>> -	TGL_REVID_B0,
+>> -	TGL_REVID_B1,
+>> -	TGL_REVID_C0,
+>> -	TGL_REVID_D0,
+>> +	REVID_A0,
+>> +	REVID_B0,
+>> +	REVID_B1,
+>> +	REVID_C0,
+>> +	REVID_D0,
+>
+>Better keep "TGL_" otherwise this could be used in other platforms that ha=
+ve different values for each revision.
+>
+>> =A0};
+>> =A0
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>> =A0extern const struct i915_rev_steppings tgl_uy_revids[];
+>> @@ -1579,9 +1579,9 @@ static inline const struct i915_rev_steppings *
+>> =A0tgl_revids_get(struct drm_i915_private *dev_priv)
+>> =A0{
+>> =A0	if (IS_TGL_U(dev_priv) || IS_TGL_Y(dev_priv))
+>> -		return tgl_uy_revids;
+>> +		return tgl_uy_revids + INTEL_REVID(dev_priv);
+>> =A0	else
+>> -		return tgl_revids;
+>> +		return tgl_revids + INTEL_REVID(dev_priv);
+>
+>better do tgl_revids[INTEL_REVID(dev_priv)] with a array size check first.
+>
+>> =A0}
+>> =A0
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>> =A0#define IS_TGL_DISP_REVID(p, since, until) \
+>> @@ -1589,16 +1589,10 @@ tgl_revids_get(struct drm_i915_private *dev_priv)
+>> =A0	 tgl_revids_get(p)->disp_stepping >=3D (since) && \
+>> =A0	 tgl_revids_get(p)->disp_stepping <=3D (until))
+>> =A0
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>> -#define IS_TGL_UY_GT_REVID(p, since, until) \
+>> -	((IS_TGL_U(p) || IS_TGL_Y(p)) && \
+>> -	 tgl_uy_revids->gt_stepping >=3D (since) && \
+>> -	 tgl_uy_revids->gt_stepping <=3D (until))
+>> -
+>> =A0#define IS_TGL_GT_REVID(p, since, until) \
+>> =A0	(IS_TIGERLAKE(p) && \
+>> -	 !(IS_TGL_U(p) || IS_TGL_Y(p)) && \
+>> -	 tgl_revids->gt_stepping >=3D (since) && \
+>> -	 tgl_revids->gt_stepping <=3D (until))
+>> +	 tgl_revids_get(p)->gt_stepping >=3D (since) && \
+>> +	 tgl_revids_get(p)->gt_stepping <=3D (until))
+>> =A0
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>> =A0#define RKL_REVID_A0		0x0
+>> =A0#define RKL_REVID_B0		0x1
+>> diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/inte=
+l_pm.c
+>> index a20b5051f18c..69840aa0d4db 100644
+>> --- a/drivers/gpu/drm/i915/intel_pm.c
+>> +++ b/drivers/gpu/drm/i915/intel_pm.c
+>> @@ -7110,7 +7110,7 @@ static void tgl_init_clock_gating(struct drm_i915_=
+private *dev_priv)
+>> =A0		   ILK_DPFC_CHICKEN_COMP_DUMMY_PIXEL);
+>> =A0
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>> =A0	/* Wa_1409825376:tgl (pre-prod)*/
+>> -	if (IS_TGL_DISP_REVID(dev_priv, TGL_REVID_A0, TGL_REVID_B1))
+>> +	if (IS_TGL_DISP_REVID(dev_priv, REVID_A0, REVID_B1))
+>> =A0		I915_WRITE(GEN9_CLKGATE_DIS_3, I915_READ(GEN9_CLKGATE_DIS_3) |
+>> =A0			   TGL_VRH_GATING_DIS);
+>> =A0
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>
+>_______________________________________________
+>Intel-gfx mailing list
+>Intel-gfx@lists.freedesktop.org
+>https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============0459680559==--
