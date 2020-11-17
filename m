@@ -2,46 +2,46 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5D5482B6904
-	for <lists+intel-gfx@lfdr.de>; Tue, 17 Nov 2020 16:48:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5E9F32B6909
+	for <lists+intel-gfx@lfdr.de>; Tue, 17 Nov 2020 16:49:33 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3F16289BBE;
-	Tue, 17 Nov 2020 15:48:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9277E89CA4;
+	Tue, 17 Nov 2020 15:49:31 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AD43F89BBE
- for <intel-gfx@lists.freedesktop.org>; Tue, 17 Nov 2020 15:48:18 +0000 (UTC)
-IronPort-SDR: tdUHyYkbCOGROe9ZaAvDJb5//udTZQ++i2arAisBNAUFLEwZiFt0GFzgsuSJnxfpEGTJ0Kx9D2
- 1QipER+G+csA==
-X-IronPort-AV: E=McAfee;i="6000,8403,9808"; a="168370443"
-X-IronPort-AV: E=Sophos;i="5.77,485,1596524400"; d="scan'208";a="168370443"
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ED24A89CA4
+ for <intel-gfx@lists.freedesktop.org>; Tue, 17 Nov 2020 15:49:29 +0000 (UTC)
+IronPort-SDR: Egv0LixToVgTVuZuOSUQOtml+Qk4Rv2lpMWCWcBi45cqD9Pus5nTFktpE+2LAFwEVyDaWmyHHK
+ oywqRpVxbW+A==
+X-IronPort-AV: E=McAfee;i="6000,8403,9808"; a="150217459"
+X-IronPort-AV: E=Sophos;i="5.77,485,1596524400"; d="scan'208";a="150217459"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Nov 2020 07:48:18 -0800
-IronPort-SDR: Box0FZgSICtiRA5g5EICKdpDkwMJphQWsJ5Id4S0FuI+gEicVIuZdC+FE3trjyVGX2v1zXH0Av
- +CVEFRL6TNgw==
-X-IronPort-AV: E=Sophos;i="5.77,485,1596524400"; d="scan'208";a="325206672"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Nov 2020 07:49:29 -0800
+IronPort-SDR: k1vs84nn9KAi27QtGVkU9GmNlFSdG+tihYX/pPx/Tdomge7m1tzSVH5PkYoL6ZxkTCrbhT13a6
+ f7W/3u/w/rxA==
+X-IronPort-AV: E=Sophos;i="5.77,485,1596524400"; d="scan'208";a="367910955"
 Received: from labuser-z97x-ud5h.jf.intel.com (HELO labuser-Z97X-UD5H)
  ([10.165.21.211])
- by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Nov 2020 07:48:17 -0800
-Date: Tue, 17 Nov 2020 07:50:48 -0800
+ by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Nov 2020 07:49:29 -0800
+Date: Tue, 17 Nov 2020 07:52:00 -0800
 From: "Navare, Manasi" <manasi.d.navare@intel.com>
 To: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-Message-ID: <20201117155048.GB31689@labuser-Z97X-UD5H>
+Message-ID: <20201117155200.GC31689@labuser-Z97X-UD5H>
 References: <20201113220358.24794-1-ville.syrjala@linux.intel.com>
- <20201113220358.24794-17-ville.syrjala@linux.intel.com>
- <20201117000901.GA29250@labuser-Z97X-UD5H>
- <20201117151456.GC6112@intel.com>
+ <20201113220358.24794-22-ville.syrjala@linux.intel.com>
+ <20201117003343.GB29332@labuser-Z97X-UD5H>
+ <20201117150906.GB6112@intel.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20201117151456.GC6112@intel.com>
+In-Reply-To: <20201117150906.GB6112@intel.com>
 User-Agent: Mutt/1.5.24 (2015-08-30)
-Subject: Re: [Intel-gfx] [PATCH 16/23] drm/i915: Add planes affected by
- bigjoiner to the state
+Subject: Re: [Intel-gfx] [PATCH 21/23] drm/i915: Fix cursor src/dst
+ rectangle with bigjoiner
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,71 +60,69 @@ Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Nov 17, 2020 at 05:14:56PM +0200, Ville Syrj=E4l=E4 wrote:
-> On Mon, Nov 16, 2020 at 04:09:01PM -0800, Navare, Manasi wrote:
-> > On Sat, Nov 14, 2020 at 12:03:51AM +0200, Ville Syrjala wrote:
+On Tue, Nov 17, 2020 at 05:09:06PM +0200, Ville Syrj=E4l=E4 wrote:
+> On Mon, Nov 16, 2020 at 04:33:50PM -0800, Navare, Manasi wrote:
+> > On Sat, Nov 14, 2020 at 12:03:56AM +0200, Ville Syrjala wrote:
 > > > From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
 > > > =
 
-> > > Make sure both the bigjoiner "master" and "slave" plane are
-> > > in the state whenever either of them is in the state.
+> > > We can't call drm_plane_state_src() this late for the slave plane sin=
+ce
+> > > it would consult the wrong uapi state. We've alreayd done the correct
+> > > uapi->hw copy earlier, so let's just preserve the unclipped src/dst
+> > > rects using a temp copy across the intel_atomic_plane_check_clipping()
+> > > call.
 > > > =
 
 > > > Signed-off-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
 > > > ---
-> > >  drivers/gpu/drm/i915/display/intel_display.c | 42 ++++++++++++++++++=
-++
-> > >  1 file changed, 42 insertions(+)
+> > >  drivers/gpu/drm/i915/display/intel_display.c | 6 ++++--
+> > >  1 file changed, 4 insertions(+), 2 deletions(-)
 > > > =
 
 > > > diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/g=
 pu/drm/i915/display/intel_display.c
-> > > index 465877097582..1118ff73c0d4 100644
+> > > index 19e9c3795265..7607bcd9b7fe 100644
 > > > --- a/drivers/gpu/drm/i915/display/intel_display.c
 > > > +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> > > @@ -15069,6 +15069,44 @@ static bool active_planes_affects_min_cdclk(=
-struct drm_i915_private *dev_priv)
-> > >  		IS_IVYBRIDGE(dev_priv) || (INTEL_GEN(dev_priv) >=3D 11);
-> > >  }
+> > > @@ -11651,6 +11651,8 @@ static int intel_check_cursor(struct intel_cr=
+tc_state *crtc_state,
+> > >  {
+> > >  	const struct drm_framebuffer *fb =3D plane_state->hw.fb;
+> > >  	struct drm_i915_private *i915 =3D to_i915(plane_state->uapi.plane->=
+dev);
+> > > +	const struct drm_rect src =3D plane_state->uapi.src;
+> > > +	const struct drm_rect dst =3D plane_state->uapi.dst;
+> > >  	int ret;
 > > >  =
 
-> > > +static int intel_crtc_add_bigjoiner_planes(struct intel_atomic_state=
- *state,
-> > > +					   struct intel_crtc *crtc,
-> > > +					   struct intel_crtc *other)
-> > > +{
-> > > +	const struct intel_plane_state *plane_state;
-> > > +	struct intel_plane *plane;
-> > > +	u8 plane_ids =3D 0;
-> > > +	int i;
-> > > +
-> > > +	for_each_new_intel_plane_in_state(state, plane, plane_state, i) {
-> > > +		if (plane->pipe =3D=3D crtc->pipe)
-> > > +			plane_ids |=3D BIT(plane->id);
-> > > +	}
-> > > +
-> > > +	return intel_crtc_add_planes_to_state(state, other, plane_ids);
+> > >  	if (fb && fb->modifier !=3D DRM_FORMAT_MOD_LINEAR) {
+> > > @@ -11666,8 +11668,8 @@ static int intel_check_cursor(struct intel_cr=
+tc_state *crtc_state,
+> > >  		return ret;
+> > >  =
+
+> > >  	/* Use the unclipped src/dst rectangles, which we program to hw */
+> > > -	plane_state->uapi.src =3D drm_plane_state_src(&plane_state->uapi);
+> > > -	plane_state->uapi.dst =3D drm_plane_state_dest(&plane_state->uapi);
+> > > +	plane_state->uapi.src =3D src;
+> > > +	plane_state->uapi.dst =3D dst;
 > > =
 
-> > We call this function intel_crtc_add_planes_to_state again in intel_ato=
-mic_check_planes again at
-> > the end, so arent we adding the planes to state twice for both master a=
-nd slave?
-> > =
-
-> > Do we need some condition to avoid adding it again at the end of intel_=
-atomic_check_planes ?
+> > We get this for both slave and master? No slave condition needed?
 > =
 
-> No. That other stuff is there for the min_cdclk calculation.
+> Planes don't know/care about bigjoiner at this stage of the computation
+> anymore. The only bigjoiner thing for planes is the
+> add_affected_planes()+uapi->hw state copy.
+>
 
-ok in that case
+Okay cool,
 
 Reviewed-by: Manasi Navare <manasi.d.navare@intel.com>
 
 Manasi
-
-> =
+ =
 
 > -- =
 
