@@ -2,31 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9D5ED2B5DC5
-	for <lists+intel-gfx@lfdr.de>; Tue, 17 Nov 2020 12:01:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 36EC72B5DBD
+	for <lists+intel-gfx@lfdr.de>; Tue, 17 Nov 2020 12:01:46 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 140F56E185;
-	Tue, 17 Nov 2020 11:01:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A0DA66E18F;
+	Tue, 17 Nov 2020 11:01:43 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9BE196E188
- for <intel-gfx@lists.freedesktop.org>; Tue, 17 Nov 2020 11:01:43 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1619A6E17E
+ for <intel-gfx@lists.freedesktop.org>; Tue, 17 Nov 2020 11:01:40 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 23015798-1500050 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 23015800-1500050 
  for multiple; Tue, 17 Nov 2020 11:01:30 +0000
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Tue, 17 Nov 2020 11:01:26 +0000
-Message-Id: <20201117110132.22267-2-chris@chris-wilson.co.uk>
+Date: Tue, 17 Nov 2020 11:01:27 +0000
+Message-Id: <20201117110132.22267-3-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20201117110132.22267-1-chris@chris-wilson.co.uk>
 References: <20201117110132.22267-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 2/8] drm/i915/gt: Refactor _wa_add to reuse
- wa_index and wa_list_grow
+Subject: [Intel-gfx] [PATCH 3/8] drm/i915/gt: Check for conflicting
+ RING_NONPRIV
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,181 +39,137 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Chris Wilson <chris@chris-wilson.co.uk>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+Strip the encoded bits from the register offset so that we only use the
+address for looking up the RING_NONPRIV entry.
 
-Switch the search and grow code of the _wa_add to use _wa_index and
-_wa_list_grow.
-
-Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
 ---
- drivers/gpu/drm/i915/gt/intel_workarounds.c | 124 +++++++++++---------
- 1 file changed, 71 insertions(+), 53 deletions(-)
+ drivers/gpu/drm/i915/gt/intel_workarounds.c | 64 +++++++++++++--------
+ 1 file changed, 41 insertions(+), 23 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-index c49083957074..e50c72d2b3f1 100644
+index e50c72d2b3f1..290aa277ab10 100644
 --- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
 +++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-@@ -91,20 +91,19 @@ static void wa_init_start(struct i915_wa_list *wal, const char *name, const char
- 
- #define WA_LIST_CHUNK (1 << 4)
- 
--static void wa_init_finish(struct i915_wa_list *wal)
-+static void wa_trim(struct i915_wa_list *wal, gfp_t gfp)
- {
-+	struct i915_wa *list;
-+
- 	/* Trim unused entries. */
--	if (!IS_ALIGNED(wal->count, WA_LIST_CHUNK)) {
--		struct i915_wa *list = kmemdup(wal->list,
--					       wal->count * sizeof(*list),
--					       GFP_KERNEL);
--
--		if (list) {
--			kfree(wal->list);
--			wal->list = list;
--		}
--	}
-+	list = krealloc(wal->list, wal->count * sizeof(*list), gfp);
-+	if (list)
-+		wal->list = list;
-+}
- 
-+static void wa_init_finish(struct i915_wa_list *wal)
-+{
-+	wa_trim(wal, GFP_KERNEL);
- 	if (!wal->count)
- 		return;
- 
-@@ -112,57 +111,60 @@ static void wa_init_finish(struct i915_wa_list *wal)
+@@ -111,18 +111,43 @@ static void wa_init_finish(struct i915_wa_list *wal)
  			 wal->wa_count, wal->name, wal->engine_name);
  }
  
--static void _wa_add(struct i915_wa_list *wal, const struct i915_wa *wa)
-+static int wa_index(struct i915_wa_list *wal, i915_reg_t reg)
++static u32 reg_offset(i915_reg_t reg)
++{
++	return i915_mmio_reg_offset(reg) & RING_FORCE_TO_NONPRIV_ADDRESS_MASK;
++}
++
++static u32 reg_flags(i915_reg_t reg)
++{
++	return i915_mmio_reg_offset(reg) & ~RING_FORCE_TO_NONPRIV_ADDRESS_MASK;
++}
++
++static inline bool is_nonpriv_flags_valid(u32 flags)
++{
++	/* Check only valid flag bits are set */
++	if (flags & ~RING_FORCE_TO_NONPRIV_MASK_VALID)
++		return false;
++
++	/* NB: Only 3 out of 4 enum values are valid for access field */
++	if ((flags & RING_FORCE_TO_NONPRIV_ACCESS_MASK) ==
++	    RING_FORCE_TO_NONPRIV_ACCESS_INVALID)
++		return false;
++
++	return true;
++}
++
+ static int wa_index(struct i915_wa_list *wal, i915_reg_t reg)
  {
--	unsigned int addr = i915_mmio_reg_offset(wa->reg);
--	unsigned int start = 0, end = wal->count;
--	const unsigned int grow = WA_LIST_CHUNK;
--	struct i915_wa *wa_;
-+	unsigned int addr = i915_mmio_reg_offset(reg);
-+	int start = 0, end = wal->count;
+-	unsigned int addr = i915_mmio_reg_offset(reg);
+ 	int start = 0, end = wal->count;
++	u32 addr = reg_offset(reg);
  
--	GEM_BUG_ON(!is_power_of_2(grow));
-+	/* addr and wal->list[].reg, both include the R/W flags */
-+	while (start < end) {
-+		unsigned int mid = start + (end - start) / 2;
+ 	/* addr and wal->list[].reg, both include the R/W flags */
+ 	while (start < end) {
+ 		unsigned int mid = start + (end - start) / 2;
++		u32 pos = reg_offset(wal->list[mid].reg);
  
--	if (IS_ALIGNED(wal->count, grow)) { /* Either uninitialized or full. */
--		struct i915_wa *list;
-+		if (i915_mmio_reg_offset(wal->list[mid].reg) < addr)
-+			start = mid + 1;
-+		else if (i915_mmio_reg_offset(wal->list[mid].reg) > addr)
-+			end = mid;
-+		else
-+			return mid;
-+	}
+-		if (i915_mmio_reg_offset(wal->list[mid].reg) < addr)
++		if (pos < addr)
+ 			start = mid + 1;
+-		else if (i915_mmio_reg_offset(wal->list[mid].reg) > addr)
++		else if (pos > addr)
+ 			end = mid;
+ 		else
+ 			return mid;
+@@ -148,13 +173,22 @@ static void __wa_add(struct i915_wa_list *wal, const struct i915_wa *wa)
+ 	struct i915_wa *wa_;
+ 	int index;
  
--		list = kmalloc_array(ALIGN(wal->count + 1, grow), sizeof(*wa),
--				     GFP_KERNEL);
--		if (!list) {
--			DRM_ERROR("No space for workaround init!\n");
--			return;
--		}
-+	return -ENOENT;
-+}
- 
--		if (wal->list) {
--			memcpy(list, wal->list, sizeof(*wa) * wal->count);
--			kfree(wal->list);
--		}
-+static int wa_list_grow(struct i915_wa_list *wal, size_t count, gfp_t gfp)
-+{
-+	struct i915_wa *list;
- 
--		wal->list = list;
--	}
-+	list = krealloc(wal->list, count * sizeof(*list), gfp);
-+	if (!list)
-+		return -ENOMEM;
- 
--	while (start < end) {
--		unsigned int mid = start + (end - start) / 2;
-+	wal->list = list;
-+	return 0;
-+}
- 
--		if (i915_mmio_reg_offset(wal->list[mid].reg) < addr) {
--			start = mid + 1;
--		} else if (i915_mmio_reg_offset(wal->list[mid].reg) > addr) {
--			end = mid;
--		} else {
--			wa_ = &wal->list[mid];
--
--			if ((wa->clr | wa_->clr) && !(wa->clr & ~wa_->clr)) {
--				DRM_ERROR("Discarding overwritten w/a for reg %04x (clear: %08x, set: %08x)\n",
--					  i915_mmio_reg_offset(wa_->reg),
--					  wa_->clr, wa_->set);
--
--				wa_->set &= ~wa->clr;
--			}
--
--			wal->wa_count++;
--			wa_->set |= wa->set;
--			wa_->clr |= wa->clr;
--			wa_->read |= wa->read;
--			return;
-+static void __wa_add(struct i915_wa_list *wal, const struct i915_wa *wa)
-+{
-+	struct i915_wa *wa_;
-+	int index;
++	GEM_BUG_ON(!is_nonpriv_flags_valid(reg_flags(wa->reg)));
 +
-+	index = wa_index(wal, wa->reg);
-+	if (index >= 0) {
-+		wa_ = &wal->list[index];
+ 	index = wa_index(wal, wa->reg);
+ 	if (index >= 0) {
+ 		wa_ = &wal->list[index];
+ 
++		if (i915_mmio_reg_offset(wa->reg) !=
++		    i915_mmio_reg_offset(wa_->reg)) {
++			DRM_ERROR("Discarding incompatible w/a for reg %04x\n",
++				  reg_offset(wa->reg));
++			return;
++		}
 +
-+		if ((wa->clr | wa_->clr) && !(wa->clr & ~wa_->clr)) {
-+			DRM_ERROR("Discarding overwritten w/a for reg %04x (clear: %08x, set: %08x)\n",
-+				  i915_mmio_reg_offset(wa_->reg),
-+				  wa_->clr, wa_->set);
-+
-+			wa_->set &= ~wa->clr;
- 		}
-+
-+		wal->wa_count++;
-+		wa_->set |= wa->set;
-+		wa_->clr |= wa->clr;
-+		wa_->read |= wa->read;
-+		return;
+ 		if ((wa->clr | wa_->clr) && !(wa->clr & ~wa_->clr)) {
+ 			DRM_ERROR("Discarding overwritten w/a for reg %04x (clear: %08x, set: %08x)\n",
+-				  i915_mmio_reg_offset(wa_->reg),
++				  reg_offset(wa_->reg),
+ 				  wa_->clr, wa_->set);
+ 
+ 			wa_->set &= ~wa->clr;
+@@ -172,10 +206,8 @@ static void __wa_add(struct i915_wa_list *wal, const struct i915_wa *wa)
+ 	*wa_ = *wa;
+ 
+ 	while (wa_-- > wal->list) {
+-		GEM_BUG_ON(i915_mmio_reg_offset(wa_[0].reg) ==
+-			   i915_mmio_reg_offset(wa_[1].reg));
+-		if (i915_mmio_reg_offset(wa_[1].reg) >
+-		    i915_mmio_reg_offset(wa_[0].reg))
++		GEM_BUG_ON(reg_offset(wa_[0].reg) == reg_offset(wa_[1].reg));
++		if (reg_offset(wa_[1].reg) > reg_offset(wa_[0].reg))
+ 			break;
+ 
+ 		swap(wa_[1], wa_[0]);
+@@ -191,7 +223,7 @@ static void _wa_add(struct i915_wa_list *wal, const struct i915_wa *wa)
+ 	if (IS_ALIGNED(wal->count, grow) && /* Either uninitialized or full. */
+ 	    wa_list_grow(wal, ALIGN(wal->count + 1, grow), GFP_KERNEL)) {
+ 		DRM_ERROR("Unable to store w/a for reg %04x\n",
+-			  i915_mmio_reg_offset(wa->reg));
++			  reg_offset(wa->reg));
+ 		return;
  	}
  
- 	wal->wa_count++;
-@@ -180,6 +182,22 @@ static void _wa_add(struct i915_wa_list *wal, const struct i915_wa *wa)
- 	}
+@@ -1443,20 +1475,6 @@ bool intel_gt_verify_workarounds(struct intel_gt *gt, const char *from)
+ 	return wa_list_verify(gt->uncore, &gt->i915->gt_wa_list, from);
  }
  
-+static void _wa_add(struct i915_wa_list *wal, const struct i915_wa *wa)
-+{
-+	const unsigned int grow = WA_LIST_CHUNK;
-+
-+	GEM_BUG_ON(!is_power_of_2(grow));
-+
-+	if (IS_ALIGNED(wal->count, grow) && /* Either uninitialized or full. */
-+	    wa_list_grow(wal, ALIGN(wal->count + 1, grow), GFP_KERNEL)) {
-+		DRM_ERROR("Unable to store w/a for reg %04x\n",
-+			  i915_mmio_reg_offset(wa->reg));
-+		return;
-+	}
-+
-+	__wa_add(wal, wa);
-+}
-+
- static void wa_add(struct i915_wa_list *wal, i915_reg_t reg,
- 		   u32 clear, u32 set, u32 read_mask)
+-static inline bool is_nonpriv_flags_valid(u32 flags)
+-{
+-	/* Check only valid flag bits are set */
+-	if (flags & ~RING_FORCE_TO_NONPRIV_MASK_VALID)
+-		return false;
+-
+-	/* NB: Only 3 out of 4 enum values are valid for access field */
+-	if ((flags & RING_FORCE_TO_NONPRIV_ACCESS_MASK) ==
+-	    RING_FORCE_TO_NONPRIV_ACCESS_INVALID)
+-		return false;
+-
+-	return true;
+-}
+-
+ static void
+ whitelist_reg_ext(struct i915_wa_list *wal, i915_reg_t reg, u32 flags)
  {
 -- 
 2.20.1
