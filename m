@@ -2,46 +2,45 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 075392B5F4A
-	for <lists+intel-gfx@lfdr.de>; Tue, 17 Nov 2020 13:44:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 649562B5F5E
+	for <lists+intel-gfx@lfdr.de>; Tue, 17 Nov 2020 13:51:30 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3D6AE6E1EE;
-	Tue, 17 Nov 2020 12:44:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2F2456E1F4;
+	Tue, 17 Nov 2020 12:51:28 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DFE826E1F1
- for <intel-gfx@lists.freedesktop.org>; Tue, 17 Nov 2020 12:44:04 +0000 (UTC)
-IronPort-SDR: 9fgQ4TWY0TNL4hUo339pw+/5yhnDxrT8BCok7cXORjmLKfA+BWIkKblAfRyc7OXMjDN9Rggy5h
- UaeX12CyVeKw==
-X-IronPort-AV: E=McAfee;i="6000,8403,9807"; a="150184143"
-X-IronPort-AV: E=Sophos;i="5.77,485,1596524400"; d="scan'208";a="150184143"
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8A5596E1F4
+ for <intel-gfx@lists.freedesktop.org>; Tue, 17 Nov 2020 12:51:26 +0000 (UTC)
+IronPort-SDR: KAARWL6yQQ2Gkc4KavKwX2Do+3usy8rCijHPBJYzEo7l9Wvi+QFiJ23eanNC6zO3eTt9QXCynb
+ 4LcyOewMd08Q==
+X-IronPort-AV: E=McAfee;i="6000,8403,9807"; a="255628041"
+X-IronPort-AV: E=Sophos;i="5.77,485,1596524400"; d="scan'208";a="255628041"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Nov 2020 04:44:04 -0800
-IronPort-SDR: 6jLHfOQqlSXbdX2+WG4PfCt86q8N2tkA8+ZtuzeMmhYPGhcvRKVMb3wCHeQQIeMHcwZh4sT/l2
- SwvubO9bzblA==
-X-IronPort-AV: E=Sophos;i="5.77,485,1596524400"; d="scan'208";a="544037590"
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Nov 2020 04:51:26 -0800
+IronPort-SDR: d5GPxuOLgE4cMHfTf3Vs2xPziBrjgaqNUsZ0yy4cVuKn4ZwovA+au2lw5U/mB5/EduLHY9cJou
+ 3DnUJijF6f8g==
+X-IronPort-AV: E=Sophos;i="5.77,485,1596524400"; d="scan'208";a="544040013"
 Received: from jgagatko-mobl1.ger.corp.intel.com (HELO [10.252.50.93])
  ([10.252.50.93])
  by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Nov 2020 04:44:02 -0800
+ 17 Nov 2020 04:51:25 -0800
 To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
 References: <20201117113103.21480-1-chris@chris-wilson.co.uk>
- <20201117113103.21480-5-chris@chris-wilson.co.uk>
+ <20201117113103.21480-7-chris@chris-wilson.co.uk>
 From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
 Organization: Intel Corporation UK Plc
-Message-ID: <f25160b3-0582-40ce-b3fd-9b6edd7fa56f@linux.intel.com>
-Date: Tue, 17 Nov 2020 12:44:00 +0000
+Message-ID: <1d6c5192-cdf5-0550-1c98-acc4f3abca13@linux.intel.com>
+Date: Tue, 17 Nov 2020 12:51:22 +0000
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.10.0
 MIME-Version: 1.0
-In-Reply-To: <20201117113103.21480-5-chris@chris-wilson.co.uk>
+In-Reply-To: <20201117113103.21480-7-chris@chris-wilson.co.uk>
 Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH 05/28] drm/i915/gt: Track the overall busy
- time
+Subject: Re: [Intel-gfx] [PATCH 07/28] drm/i915: Lift i915_request_show()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,232 +60,215 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 
 On 17/11/2020 11:30, Chris Wilson wrote:
-> Since we wake the GT up before executing a request, and go to sleep as
-> soon as it is retired, the GT wake time not only represents how long the
-> device is powered up, but also provides a summary, albeit an overestimate,
-> of the device runtime.
+> Extract i915_request_show for reuse in other request chain pretty
+> printers.
 > 
 > Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
 > ---
->   drivers/gpu/drm/i915/gt/intel_gt_pm.c    | 45 ++++++++++++++++++++++++
->   drivers/gpu/drm/i915/gt/intel_gt_pm.h    |  2 ++
->   drivers/gpu/drm/i915/gt/intel_gt_types.h | 24 +++++++++++++
->   drivers/gpu/drm/i915/i915_debugfs.c      |  2 ++
->   drivers/gpu/drm/i915/i915_pmu.c          |  6 ++++
->   include/uapi/drm/i915_drm.h              |  3 +-
->   6 files changed, 81 insertions(+), 1 deletion(-)
+>   drivers/gpu/drm/i915/gt/intel_engine_cs.c | 47 ++---------------------
+>   drivers/gpu/drm/i915/gt/intel_lrc.c       |  2 +-
+>   drivers/gpu/drm/i915/gt/intel_lrc.h       |  2 +-
+>   drivers/gpu/drm/i915/i915_request.c       | 39 +++++++++++++++++++
+>   drivers/gpu/drm/i915/i915_request.h       |  5 +++
+>   5 files changed, 50 insertions(+), 45 deletions(-)
 > 
-> diff --git a/drivers/gpu/drm/i915/gt/intel_gt_pm.c b/drivers/gpu/drm/i915/gt/intel_gt_pm.c
-> index 274aa0dd7050..dd2f88bed65a 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_gt_pm.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_gt_pm.c
-> @@ -39,6 +39,24 @@ static void user_forcewake(struct intel_gt *gt, bool suspend)
->   	intel_gt_pm_put(gt);
+> diff --git a/drivers/gpu/drm/i915/gt/intel_engine_cs.c b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+> index 1ed84ee8ce41..c3bb2e9546e6 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+> @@ -1294,45 +1294,6 @@ bool intel_engine_can_store_dword(struct intel_engine_cs *engine)
+>   	}
 >   }
 >   
-> +static void runtime_begin(struct intel_gt *gt)
-> +{
-> +	write_seqcount_begin(&gt->stats.lock);
-> +	gt->stats.start = ktime_get();
-> +	gt->stats.active = true;
-> +	write_seqcount_end(&gt->stats.lock);
-> +}
-> +
-> +static void runtime_end(struct intel_gt *gt)
-> +{
-> +	write_seqcount_begin(&gt->stats.lock);
-> +	gt->stats.active = false;
-> +	gt->stats.total =
-> +		ktime_add(gt->stats.total,
-> +			  ktime_sub(ktime_get(), gt->stats.start));
-> +	write_seqcount_end(&gt->stats.lock);
-> +}
-> +
->   static int __gt_unpark(struct intel_wakeref *wf)
+> -static int print_sched_attr(const struct i915_sched_attr *attr,
+> -			    char *buf, int x, int len)
+> -{
+> -	if (attr->priority == I915_PRIORITY_INVALID)
+> -		return x;
+> -
+> -	x += snprintf(buf + x, len - x,
+> -		      " prio=%d", attr->priority);
+> -
+> -	return x;
+> -}
+> -
+> -static void print_request(struct drm_printer *m,
+> -			  struct i915_request *rq,
+> -			  const char *prefix)
+> -{
+> -	const char *name = rq->fence.ops->get_timeline_name(&rq->fence);
+> -	char buf[80] = "";
+> -	int x = 0;
+> -
+> -	x = print_sched_attr(&rq->sched.attr, buf, x, sizeof(buf));
+> -
+> -	drm_printf(m, "%s %llx:%llx%s%s %s @ %dms: %s\n",
+> -		   prefix,
+> -		   rq->fence.context, rq->fence.seqno,
+> -		   i915_request_completed(rq) ? "!" :
+> -		   i915_request_started(rq) ? "*" :
+> -		   !i915_sw_fence_signaled(&rq->semaphore) ? "&" :
+> -		   "",
+> -		   test_bit(DMA_FENCE_FLAG_SIGNALED_BIT,
+> -			    &rq->fence.flags) ? "+" :
+> -		   test_bit(DMA_FENCE_FLAG_ENABLE_SIGNAL_BIT,
+> -			    &rq->fence.flags) ? "-" :
+> -		   "",
+> -		   buf,
+> -		   jiffies_to_msecs(jiffies - rq->emitted_jiffies),
+> -		   name);
+> -}
+> -
+>   static struct intel_timeline *get_timeline(struct i915_request *rq)
 >   {
->   	struct intel_gt *gt = container_of(wf, typeof(*gt), wakeref);
-> @@ -67,6 +85,7 @@ static int __gt_unpark(struct intel_wakeref *wf)
->   	i915_pmu_gt_unparked(i915);
+>   	struct intel_timeline *tl;
+> @@ -1530,7 +1491,7 @@ static void intel_engine_print_registers(struct intel_engine_cs *engine,
+>   					intel_context_is_banned(rq->context) ? "*" : "");
+>   			len += print_ring(hdr + len, sizeof(hdr) - len, rq);
+>   			scnprintf(hdr + len, sizeof(hdr) - len, "rq: ");
+> -			print_request(m, rq, hdr);
+> +			i915_request_show(m, rq, hdr);
+>   		}
+>   		for (port = execlists->pending; (rq = *port); port++) {
+>   			char hdr[160];
+> @@ -1544,7 +1505,7 @@ static void intel_engine_print_registers(struct intel_engine_cs *engine,
+>   					intel_context_is_banned(rq->context) ? "*" : "");
+>   			len += print_ring(hdr + len, sizeof(hdr) - len, rq);
+>   			scnprintf(hdr + len, sizeof(hdr) - len, "rq: ");
+> -			print_request(m, rq, hdr);
+> +			i915_request_show(m, rq, hdr);
+>   		}
+>   		rcu_read_unlock();
+>   		execlists_active_unlock_bh(execlists);
+> @@ -1688,7 +1649,7 @@ void intel_engine_dump(struct intel_engine_cs *engine,
+>   	if (rq) {
+>   		struct intel_timeline *tl = get_timeline(rq);
 >   
->   	intel_gt_unpark_requests(gt);
-> +	runtime_begin(gt);
+> -		print_request(m, rq, "\t\tactive ");
+> +		i915_request_show(m, rq, "\t\tactive ");
 >   
->   	return 0;
->   }
-> @@ -79,6 +98,7 @@ static int __gt_park(struct intel_wakeref *wf)
+>   		drm_printf(m, "\t\tring->start:  0x%08x\n",
+>   			   i915_ggtt_offset(rq->ring->vma));
+> @@ -1726,7 +1687,7 @@ void intel_engine_dump(struct intel_engine_cs *engine,
+>   		drm_printf(m, "\tDevice is asleep; skipping register dump\n");
+>   	}
 >   
->   	GT_TRACE(gt, "\n");
+> -	intel_execlists_show_requests(engine, m, print_request, 8);
+> +	intel_execlists_show_requests(engine, m, i915_request_show, 8);
 >   
-> +	runtime_end(gt);
->   	intel_gt_park_requests(gt);
->   
->   	i915_vma_parked(gt);
-> @@ -106,6 +126,7 @@ static const struct intel_wakeref_ops wf_ops = {
->   void intel_gt_pm_init_early(struct intel_gt *gt)
+>   	drm_printf(m, "HWSP:\n");
+>   	hexdump(m, engine->status_page.addr, PAGE_SIZE);
+> diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
+> index 52b84474f93a..a4b8c20d12a9 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_lrc.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
+> @@ -5980,7 +5980,7 @@ int intel_virtual_engine_attach_bond(struct intel_engine_cs *engine,
+>   void intel_execlists_show_requests(struct intel_engine_cs *engine,
+>   				   struct drm_printer *m,
+>   				   void (*show_request)(struct drm_printer *m,
+> -							struct i915_request *rq,
+> +							const struct i915_request *rq,
+>   							const char *prefix),
+>   				   unsigned int max)
 >   {
->   	intel_wakeref_init(&gt->wakeref, gt->uncore->rpm, &wf_ops);
-> +	seqcount_mutex_init(&gt->stats.lock, &gt->wakeref.mutex);
+> diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.h b/drivers/gpu/drm/i915/gt/intel_lrc.h
+> index c2d287f25497..32e6e204f544 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_lrc.h
+> +++ b/drivers/gpu/drm/i915/gt/intel_lrc.h
+> @@ -106,7 +106,7 @@ void intel_lr_context_reset(struct intel_engine_cs *engine,
+>   void intel_execlists_show_requests(struct intel_engine_cs *engine,
+>   				   struct drm_printer *m,
+>   				   void (*show_request)(struct drm_printer *m,
+> -							struct i915_request *rq,
+> +							const struct i915_request *rq,
+>   							const char *prefix),
+>   				   unsigned int max);
+>   
+> diff --git a/drivers/gpu/drm/i915/i915_request.c b/drivers/gpu/drm/i915/i915_request.c
+> index 0e813819b041..cebe07a85625 100644
+> --- a/drivers/gpu/drm/i915/i915_request.c
+> +++ b/drivers/gpu/drm/i915/i915_request.c
+> @@ -1855,6 +1855,45 @@ long i915_request_wait(struct i915_request *rq,
+>   	return timeout;
 >   }
 >   
->   void intel_gt_pm_init(struct intel_gt *gt)
-> @@ -339,6 +360,30 @@ int intel_gt_runtime_resume(struct intel_gt *gt)
->   	return intel_uc_runtime_resume(&gt->uc);
->   }
->   
-> +static ktime_t __intel_gt_get_busy_time(const struct intel_gt *gt)
+> +static int print_sched_attr(const struct i915_sched_attr *attr,
+> +			    char *buf, int x, int len)
 > +{
-> +	ktime_t total = gt->stats.total;
+> +	if (attr->priority == I915_PRIORITY_INVALID)
+> +		return x;
 > +
-> +	if (gt->stats.active)
-> +		total = ktime_add(total,
-> +				  ktime_sub(ktime_get(), gt->stats.start));
+> +	x += snprintf(buf + x, len - x,
+> +		      " prio=%d", attr->priority);
 > +
-> +	return total;
+> +	return x;
 > +}
 > +
-> +ktime_t intel_gt_get_busy_time(const struct intel_gt *gt)
+> +void i915_request_show(struct drm_printer *m,
+> +		       const struct i915_request *rq,
+> +		       const char *prefix)
 > +{
-> +	unsigned int seq;
-> +	ktime_t total;
+> +	const char *name = rq->fence.ops->get_timeline_name((struct dma_fence *)&rq->fence);
+> +	char buf[80] = "";
+> +	int x = 0;
 > +
-> +	do {
-> +		seq = read_seqcount_begin(&gt->stats.lock);
-
-Any specific reasons for read_seqcount_being vs read_seqbegin etc, the 
-latter being used in engine stats seems to have some kcsan integration 
-and former a bit more low level.
-
-> +		total = __intel_gt_get_busy_time(gt);
-> +	} while (read_seqcount_retry(&gt->stats.lock, seq));
+> +	x = print_sched_attr(&rq->sched.attr, buf, x, sizeof(buf));
 > +
-> +	return total;
+> +	drm_printf(m, "%s %llx:%llx%s%s %s @ %dms: %s\n",
+
+$ grep "llx:%lld" . -r | wc -l
+20
+$ grep "llx:%llx" . -r | wc -l
+3
+
+Bonus points if you make the seqno lld making it 21 to 2, one step 
+closer to bliss. ;)
+
+> +		   prefix,
+> +		   rq->fence.context, rq->fence.seqno,
+> +		   i915_request_completed(rq) ? "!" :
+> +		   i915_request_started(rq) ? "*" :
+> +		   !i915_sw_fence_signaled(&rq->semaphore) ? "&" :
+> +		   "",
+> +		   test_bit(DMA_FENCE_FLAG_SIGNALED_BIT,
+> +			    &rq->fence.flags) ? "+" :
+> +		   test_bit(DMA_FENCE_FLAG_ENABLE_SIGNAL_BIT,
+> +			    &rq->fence.flags) ? "-" :
+> +		   "",
+> +		   buf,
+> +		   jiffies_to_msecs(jiffies - rq->emitted_jiffies),
+> +		   name);
 > +}
-
-I wish there was an easy way to extract some sort of struct stats 
-between engine stats and this and have common helpers, but sadly structs 
-are not exactly identical.
-
 > +
 >   #if IS_ENABLED(CONFIG_DRM_I915_SELFTEST)
->   #include "selftest_gt_pm.c"
->   #endif
-> diff --git a/drivers/gpu/drm/i915/gt/intel_gt_pm.h b/drivers/gpu/drm/i915/gt/intel_gt_pm.h
-> index 60f0e2fbe55c..aa8f2cda946b 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_gt_pm.h
-> +++ b/drivers/gpu/drm/i915/gt/intel_gt_pm.h
-> @@ -58,6 +58,8 @@ int intel_gt_resume(struct intel_gt *gt);
->   void intel_gt_runtime_suspend(struct intel_gt *gt);
->   int intel_gt_runtime_resume(struct intel_gt *gt);
+>   #include "selftests/mock_request.c"
+>   #include "selftests/i915_request.c"
+> diff --git a/drivers/gpu/drm/i915/i915_request.h b/drivers/gpu/drm/i915/i915_request.h
+> index 16b721080195..09609071b725 100644
+> --- a/drivers/gpu/drm/i915/i915_request.h
+> +++ b/drivers/gpu/drm/i915/i915_request.h
+> @@ -43,6 +43,7 @@
 >   
-> +ktime_t intel_gt_get_busy_time(const struct intel_gt *gt);
+>   struct drm_file;
+>   struct drm_i915_gem_object;
+> +struct drm_printer;
+>   struct i915_request;
+>   
+>   struct i915_capture_list {
+> @@ -369,6 +370,10 @@ long i915_request_wait(struct i915_request *rq,
+>   #define I915_WAIT_PRIORITY	BIT(1) /* small priority bump for the request */
+>   #define I915_WAIT_ALL		BIT(2) /* used by i915_gem_object_wait() */
+>   
+> +void i915_request_show(struct drm_printer *m,
+> +		       const struct i915_request *rq,
+> +		       const char *prefix);
 > +
->   static inline bool is_mock_gt(const struct intel_gt *gt)
+>   static inline bool i915_request_signaled(const struct i915_request *rq)
 >   {
->   	return I915_SELFTEST_ONLY(gt->awake == -ENODEV);
-> diff --git a/drivers/gpu/drm/i915/gt/intel_gt_types.h b/drivers/gpu/drm/i915/gt/intel_gt_types.h
-> index 6d39a4a11bf3..c7bde529feab 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_gt_types.h
-> +++ b/drivers/gpu/drm/i915/gt/intel_gt_types.h
-> @@ -87,6 +87,30 @@ struct intel_gt {
->   
->   	u32 pm_guc_events;
->   
-> +	struct {
-> +		bool active;
-> +
-> +		/**
-> +		 * @lock: Lock protecting the below fields.
-> +		 */
-> +		seqcount_mutex_t lock;
-> +
-> +		/**
-> +		 * @total: Total time this engine was busy.
-> +		 *
-> +		 * Accumulated time not counting the most recent block in cases
-> +		 * where engine is currently busy (active > 0).
-> +		 */
-> +		ktime_t total;
-> +
-> +		/**
-> +		 * @start: Timestamp of the last idle to active transition.
-> +		 *
-> +		 * Idle is defined as active == 0, active is active > 0.
-> +		 */
-> +		ktime_t start;
-> +	} stats;
-> +
->   	struct intel_engine_cs *engine[I915_NUM_ENGINES];
->   	struct intel_engine_cs *engine_class[MAX_ENGINE_CLASS + 1]
->   					    [MAX_ENGINE_INSTANCE + 1];
-> diff --git a/drivers/gpu/drm/i915/i915_debugfs.c b/drivers/gpu/drm/i915/i915_debugfs.c
-> index 77e76b665098..337293c7bb7d 100644
-> --- a/drivers/gpu/drm/i915/i915_debugfs.c
-> +++ b/drivers/gpu/drm/i915/i915_debugfs.c
-> @@ -1316,6 +1316,8 @@ static int i915_engine_info(struct seq_file *m, void *unused)
->   	seq_printf(m, "GT awake? %s [%d]\n",
->   		   yesno(dev_priv->gt.awake),
->   		   atomic_read(&dev_priv->gt.wakeref.count));
-> +	seq_printf(m, "GT busy: %llu ms\n",
-> +		   ktime_to_ms(intel_gt_get_busy_time(&dev_priv->gt)));
-
-Would it be worth putting something in debugfs_gt_pm.c as well?
-
->   	seq_printf(m, "CS timestamp frequency: %u Hz\n",
->   		   RUNTIME_INFO(dev_priv)->cs_timestamp_frequency_hz);
->   
-> diff --git a/drivers/gpu/drm/i915/i915_pmu.c b/drivers/gpu/drm/i915/i915_pmu.c
-> index cd786ad12be7..36fc60cf5725 100644
-> --- a/drivers/gpu/drm/i915/i915_pmu.c
-> +++ b/drivers/gpu/drm/i915/i915_pmu.c
-> @@ -488,6 +488,8 @@ config_status(struct drm_i915_private *i915, u64 config)
->   		if (!HAS_RC6(i915))
->   			return -ENODEV;
->   		break;
-> +	case I915_PMU_BUSY_TIME:
-> +		break;
->   	default:
->   		return -ENOENT;
->   	}
-> @@ -595,6 +597,9 @@ static u64 __i915_pmu_event_read(struct perf_event *event)
->   		case I915_PMU_RC6_RESIDENCY:
->   			val = get_rc6(&i915->gt);
->   			break;
-> +		case I915_PMU_BUSY_TIME:
-> +			val = ktime_to_ns(intel_gt_get_busy_time(&i915->gt));
-> +			break;
->   		}
->   	}
->   
-> @@ -898,6 +903,7 @@ create_event_attributes(struct i915_pmu *pmu)
->   		__event(I915_PMU_REQUESTED_FREQUENCY, "requested-frequency", "M"),
->   		__event(I915_PMU_INTERRUPTS, "interrupts", NULL),
->   		__event(I915_PMU_RC6_RESIDENCY, "rc6-residency", "ns"),
-> +		__event(I915_PMU_BUSY_TIME, "busy-time", "ns"),
->   	};
->   	static const struct {
->   		enum drm_i915_pmu_engine_sample sample;
-> diff --git a/include/uapi/drm/i915_drm.h b/include/uapi/drm/i915_drm.h
-> index fa1f3d62f9a6..b66b7c1fd564 100644
-> --- a/include/uapi/drm/i915_drm.h
-> +++ b/include/uapi/drm/i915_drm.h
-> @@ -177,8 +177,9 @@ enum drm_i915_pmu_engine_sample {
->   #define I915_PMU_REQUESTED_FREQUENCY	__I915_PMU_OTHER(1)
->   #define I915_PMU_INTERRUPTS		__I915_PMU_OTHER(2)
->   #define I915_PMU_RC6_RESIDENCY		__I915_PMU_OTHER(3)
-> +#define I915_PMU_BUSY_TIME		__I915_PMU_OTHER(4)
-
-I'd be tempted to call this I915_PMU_GT_BUSY_TIME - or even better awake 
-time?
-
->   
-> -#define I915_PMU_LAST I915_PMU_RC6_RESIDENCY
-> +#define I915_PMU_LAST I915_PMU_BUSY_TIME
->   
->   /* Each region is a minimum of 16k, and there are at most 255 of them.
->    */
+>   	/* The request may live longer than its HWSP, so check flags first! */
 > 
 
-Code looks fine, but should we be adding a pmu counter?
+Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 
 Regards,
 
