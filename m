@@ -2,40 +2,44 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9DCCA2B673E
-	for <lists+intel-gfx@lfdr.de>; Tue, 17 Nov 2020 15:21:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1586E2B6774
+	for <lists+intel-gfx@lfdr.de>; Tue, 17 Nov 2020 15:33:34 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5C6CC6E226;
-	Tue, 17 Nov 2020 14:21:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 122B86EA97;
+	Tue, 17 Nov 2020 14:33:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D4BE26E226
- for <intel-gfx@lists.freedesktop.org>; Tue, 17 Nov 2020 14:21:44 +0000 (UTC)
-IronPort-SDR: m5zrRoMgFvQZnGr2nSJhqM5WhISDacUmFYN5KJmnHbuaVwHRB3eKHHyfFteV3o/xjUDWOVlMvs
- KtxHXAZorjYQ==
-X-IronPort-AV: E=McAfee;i="6000,8403,9807"; a="158705633"
-X-IronPort-AV: E=Sophos;i="5.77,485,1596524400"; d="scan'208";a="158705633"
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6445D6EA97
+ for <intel-gfx@lists.freedesktop.org>; Tue, 17 Nov 2020 14:33:30 +0000 (UTC)
+IronPort-SDR: EMmftJCV++tC5SJW8mMUfk5Juo6TF7pHxV2vtBQ66VMJPm7CcbLVs0uCfD+vpcpp6aOpWuYq1V
+ j58zO0nF04Ag==
+X-IronPort-AV: E=McAfee;i="6000,8403,9807"; a="167421252"
+X-IronPort-AV: E=Sophos;i="5.77,485,1596524400"; d="scan'208";a="167421252"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Nov 2020 06:21:44 -0800
-IronPort-SDR: JwEraXFbruJKn9GTNiBkyW1/3F4UdE08UbQUc298ydAHQnrpsEkRPpNDcVjzvJwBxgrbvG7LEN
- rthg5ymnOP4A==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.77,485,1596524400"; d="scan'208";a="367880075"
-Received: from shawnle1-build-machine.itwn.intel.com ([10.5.253.9])
- by FMSMGA003.fm.intel.com with ESMTP; 17 Nov 2020 06:21:42 -0800
-From: Lee Shawn C <shawn.c.lee@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Tue, 17 Nov 2020 22:26:29 +0800
-Message-Id: <20201117142629.28729-1-shawn.c.lee@intel.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20201028144312.12520-1-shawn.c.lee@intel.com>
-References: <20201028144312.12520-1-shawn.c.lee@intel.com>
-Subject: [Intel-gfx] [PATCH v5] drm/i915/rkl: new rkl ddc map for different
- PCH
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Nov 2020 06:33:29 -0800
+IronPort-SDR: nVTiUEfrUjS7++DZHLWtowOtf9c7iuxi4pKgQQR6uNWGr7bNHxAZ3qeb7K3rpryiWlwULhZX5S
+ b1aNZvhvF0qA==
+X-IronPort-AV: E=Sophos;i="5.77,485,1596524400"; d="scan'208";a="533832635"
+Received: from nlugasi-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.252.19.70])
+ by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Nov 2020 06:33:27 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
+In-Reply-To: <20201028213323.5423-4-ville.syrjala@linux.intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20201028213323.5423-1-ville.syrjala@linux.intel.com>
+ <20201028213323.5423-4-ville.syrjala@linux.intel.com>
+Date: Tue, 17 Nov 2020 16:33:24 +0200
+Message-ID: <87wnykoxxn.fsf@intel.com>
+MIME-Version: 1.0
+Subject: Re: [Intel-gfx] [PATCH v3 03/19] drm/i915: Give DDI encoders even
+ better names
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,86 +52,66 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Cooper Chiou <cooper.chiou@intel.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-After boot into kernel. Driver configured ddc pin mapping based on
-predefined table in parse_ddi_port(). Now driver configure rkl
-ddc pin mapping depends on icp_ddc_pin_map[]. Then this table will
-give incorrect gmbus port number to cause HDMI can't work.
-
-Refer to commit cd0a89527d06 ("drm/i915/rkl: Add DDC pin mapping").
-Create two ddc pin table for rkl TGP and CMP pch. Then HDMI can
-works properly on rkl.
-
-v2: update patch based on latest dinq branch.
-v3: update ddc table for RKL+TGP sku.
-    RKL+CNP sku will load cnp_ddc_pin_map[] setting.
-v4: modify the if/else judgment to avoid nesting.
-v5: fix typo in v4.
-
-Cc: Matt Roper <matthew.d.roper@intel.com>
-Cc: Aditya Swarup <aditya.swarup@intel.com>
-Cc: Anusha Srivatsa <anusha.srivatsa@intel.com>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>
-Cc: Cooper Chiou <cooper.chiou@intel.com>
-Cc: Khaled Almahallawy <khaled.almahallawy@intel.com>
-Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/2577
-Signed-off-by: Lee Shawn C <shawn.c.lee@intel.com>
----
- drivers/gpu/drm/i915/display/intel_bios.c     | 10 ++++++++++
- drivers/gpu/drm/i915/display/intel_vbt_defs.h |  2 ++
- 2 files changed, 12 insertions(+)
-
-diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/i915/display/intel_bios.c
-index 4cc949b228f2..cf2fba490b7b 100644
---- a/drivers/gpu/drm/i915/display/intel_bios.c
-+++ b/drivers/gpu/drm/i915/display/intel_bios.c
-@@ -1623,6 +1623,13 @@ static const u8 icp_ddc_pin_map[] = {
- 	[TGL_DDC_BUS_PORT_6] = GMBUS_PIN_14_TC6_TGP,
- };
- 
-+static const u8 rkl_pch_tgp_ddc_pin_map[] = {
-+	[ICL_DDC_BUS_DDI_A] = GMBUS_PIN_1_BXT,
-+	[ICL_DDC_BUS_DDI_B] = GMBUS_PIN_2_BXT,
-+	[RKL_DDC_BUS_DDI_D] = GMBUS_PIN_9_TC1_ICP,
-+	[RKL_DDC_BUS_DDI_E] = GMBUS_PIN_10_TC2_ICP,
-+};
-+
- static u8 map_ddc_pin(struct drm_i915_private *dev_priv, u8 vbt_pin)
- {
- 	const u8 *ddc_pin_map;
-@@ -1630,6 +1637,9 @@ static u8 map_ddc_pin(struct drm_i915_private *dev_priv, u8 vbt_pin)
- 
- 	if (INTEL_PCH_TYPE(dev_priv) >= PCH_DG1) {
- 		return vbt_pin;
-+	} else if (IS_ROCKETLAKE(dev_priv) && INTEL_PCH_TYPE(dev_priv) == PCH_TGP) {
-+		ddc_pin_map = rkl_pch_tgp_ddc_pin_map;
-+		n_entries = ARRAY_SIZE(rkl_pch_tgp_ddc_pin_map);
- 	} else if (INTEL_PCH_TYPE(dev_priv) >= PCH_ICP) {
- 		ddc_pin_map = icp_ddc_pin_map;
- 		n_entries = ARRAY_SIZE(icp_ddc_pin_map);
-diff --git a/drivers/gpu/drm/i915/display/intel_vbt_defs.h b/drivers/gpu/drm/i915/display/intel_vbt_defs.h
-index 49b4b5fca941..187ec573de59 100644
---- a/drivers/gpu/drm/i915/display/intel_vbt_defs.h
-+++ b/drivers/gpu/drm/i915/display/intel_vbt_defs.h
-@@ -319,6 +319,8 @@ enum vbt_gmbus_ddi {
- 	ICL_DDC_BUS_DDI_A = 0x1,
- 	ICL_DDC_BUS_DDI_B,
- 	TGL_DDC_BUS_DDI_C,
-+	RKL_DDC_BUS_DDI_D = 0x3,
-+	RKL_DDC_BUS_DDI_E,
- 	ICL_DDC_BUS_PORT_1 = 0x4,
- 	ICL_DDC_BUS_PORT_2,
- 	ICL_DDC_BUS_PORT_3,
--- 
-2.17.1
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+T24gV2VkLCAyOCBPY3QgMjAyMCwgVmlsbGUgU3lyamFsYSA8dmlsbGUuc3lyamFsYUBsaW51eC5p
+bnRlbC5jb20+IHdyb3RlOgo+IEZyb206IFZpbGxlIFN5cmrDpGzDpCA8dmlsbGUuc3lyamFsYUBs
+aW51eC5pbnRlbC5jb20+Cj4KPiBMZXQncyBwaW1wIHRoZSBEREkgZW5jb2Rlci0+bmFtZSB0byBy
+ZWZsZWN0IHdoYXQgdGhlIHNwZWMgY2FsbHMgdGhlbS4KPiBJZS4gb24gcHJlLXRnbCBEREkgQS1G
+LCBvbiB0Z2wrIERESSBBLUMgb3IgRERJIFRDMS02Lgo+Cj4gQWxzbyBzaW5jZSBlYWNoIGVuY29k
+ZXIgaXMgcmVhbGx5IGEgY29tYmluYXRpb24gb2YgdGhlIERESSBhbmQgdGhlIFBIWQo+IHdlIGlu
+Y2x1ZGUgdGhlIFBIWSBuYW1lIGFzIHdlbGwuCj4KPiBJQ0wgaXMgYSBiaXQgc3BlY2lhbCBzaW5j
+ZSBpdCBhbHJlYWR5IGhhcyB0aGUgdHdvIGRpZmZlcmVudCB0eXBlcwo+IG9mIERESXMgKGNvbWJv
+IG9yIFRDKSBidXQgaXQgc3RpbGwgY2FsbHMgdGhlbSBqdXN0IERESSBBLUYgcmVnYXJsZXNzCj4g
+b2YgdGhlIHR5cGUuIEZvciB0aGF0IGxldCdzIGFkZCBhbiBleHRyYSAiKFRDKSIgbm90ZSB0byBy
+ZW1pbmQKPiBpcyB3aGljaCB0eXBlIG9mIERESSBpdCByZWFsbHkgaXMuCj4KPiBUaGUgY29kZSBp
+cyBkYXJuIHVnbHksIGJ1dCBub3Qgc3VyZSB0aGVyZSdzIG11Y2ggd2UgY2FuIGRvIGFib3V0IGl0
+Lgo+Cj4gUmV2aWV3ZWQtYnk6IEx1Y2FzIERlIE1hcmNoaSA8bHVjYXMuZGVtYXJjaGlAaW50ZWwu
+Y29tPgo+IFNpZ25lZC1vZmYtYnk6IFZpbGxlIFN5cmrDpGzDpCA8dmlsbGUuc3lyamFsYUBsaW51
+eC5pbnRlbC5jb20+Cj4gLS0tCj4gIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxf
+ZGRpLmMgfCAyNyArKysrKysrKysrKysrKysrKysrKysrLS0KPiAgMSBmaWxlIGNoYW5nZWQsIDI1
+IGluc2VydGlvbnMoKyksIDIgZGVsZXRpb25zKC0pCj4KPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9n
+cHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kZGkuYyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rp
+c3BsYXkvaW50ZWxfZGRpLmMKPiBpbmRleCAyNDI0NTE1N2RjYjkuLjE5YjE2NTE3YTUwMiAxMDA2
+NDQKPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RkaS5jCj4gKysr
+IGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kZGkuYwo+IEBAIC01MTc0LDgg
+KzUxNzQsMzEgQEAgdm9pZCBpbnRlbF9kZGlfaW5pdChzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAq
+ZGV2X3ByaXYsIGVudW0gcG9ydCBwb3J0KQo+ICAKPiAgCWVuY29kZXIgPSAmZGlnX3BvcnQtPmJh
+c2U7Cj4gIAo+IC0JZHJtX2VuY29kZXJfaW5pdCgmZGV2X3ByaXYtPmRybSwgJmVuY29kZXItPmJh
+c2UsICZpbnRlbF9kZGlfZnVuY3MsCj4gLQkJCSBEUk1fTU9ERV9FTkNPREVSX1RNRFMsICJEREkg
+JWMiLCBwb3J0X25hbWUocG9ydCkpOwo+ICsJaWYgKElOVEVMX0dFTihkZXZfcHJpdikgPj0gMTIp
+IHsKPiArCQllbnVtIHRjX3BvcnQgdGNfcG9ydCA9IGludGVsX3BvcnRfdG9fdGMoZGV2X3ByaXYs
+IHBvcnQpOwo+ICsKPiArCQlkcm1fZW5jb2Rlcl9pbml0KCZkZXZfcHJpdi0+ZHJtLCAmZW5jb2Rl
+ci0+YmFzZSwgJmludGVsX2RkaV9mdW5jcywKPiArCQkJCSBEUk1fTU9ERV9FTkNPREVSX1RNRFMs
+Cj4gKwkJCQkgIkRESSAlcyVjL1BIWSAlcyVjIiwKPiArCQkJCSBwb3J0ID49IFBPUlRfVEMxID8g
+IlRDIiA6ICIiLAo+ICsJCQkJIHBvcnQgPj0gUE9SVF9UQzEgPyBwb3J0X25hbWUocG9ydCkgOiBw
+b3J0IC0gUE9SVF9UQzEgKyAnMScsCj4gKwkJCQkgdGNfcG9ydCAhPSBUQ19QT1JUX05PTkUgPyAi
+VEMiIDogIiIsCj4gKwkJCQkgdGNfcG9ydCAhPSBUQ19QT1JUX05PTkUgPyBwaHlfbmFtZShwaHkp
+IDogdGNfcG9ydCAtIFRDX1BPUlRfMSArICcxJyk7CgpGcmFua2x5LCB0aGlzIGlzIGEgcmVhbGx5
+IHVnbHkgd2F5IHRvIGRlZmluZSBlbmNvZGVyIG5hbWVzLCBhbmQgaXQncwpoYXJkIHRvIGRlY2lw
+aGVyIHdoYXQncyBhY3R1YWxseSBnb2luZyBvbi4gRXZlbiBhZnRlciBJIHNlZSBsb2dzIHdpdGgK
+b2J2aW91c2x5IGJvZ3VzIG5hbWVzIHN1Y2ggYXM6CgpbRU5DT0RFUjoyMzU6RERJIC4vUEhZIDBd
+CgpJIGZpbmQgaXQgdGVkaW91cyB0byBkZWNpcGhlciB3aGF0IGV4YWN0bHkgaXMgd3JvbmcgaGVy
+ZS4KCkkgZ3Vlc3MgdGhlIDJuZCBwb3J0ID49IFBPUlRfVEMxIGNoZWNrIHNob3VsZCBiZSByZXZl
+cnNlZCwgYnV0IGl0CmRvZXNuJ3QgZXhhY3RseSBnaXZlIG1lIGNvbmZpZGVuY2UgYWJvdXQgdGhl
+IHJlc3QuCgpCUiwKSmFuaS4KCgo+ICsJfSBlbHNlIGlmIChJTlRFTF9HRU4oZGV2X3ByaXYpID49
+IDExKSB7Cj4gKwkJZW51bSB0Y19wb3J0IHRjX3BvcnQgPSBpbnRlbF9wb3J0X3RvX3RjKGRldl9w
+cml2LCBwb3J0KTsKPiArCj4gKwkJZHJtX2VuY29kZXJfaW5pdCgmZGV2X3ByaXYtPmRybSwgJmVu
+Y29kZXItPmJhc2UsICZpbnRlbF9kZGlfZnVuY3MsCj4gKwkJCQkgRFJNX01PREVfRU5DT0RFUl9U
+TURTLAo+ICsJCQkJICJEREkgJWMlcy9QSFkgJXMlYyIsCj4gKwkJCQkgcG9ydF9uYW1lKHBvcnQp
+LAo+ICsJCQkJIHBvcnQgPj0gUE9SVF9DID8gIiAoVEMpIiA6ICIiLAo+ICsJCQkJIHRjX3BvcnQg
+IT0gVENfUE9SVF9OT05FID8gIlRDIiA6ICIiLAo+ICsJCQkJIHRjX3BvcnQgIT0gVENfUE9SVF9O
+T05FID8gcGh5X25hbWUocGh5KSA6IHRjX3BvcnQgLSBUQ19QT1JUXzEgKyAnMScpOwo+ICsJfSBl
+bHNlIHsKPiArCQlkcm1fZW5jb2Rlcl9pbml0KCZkZXZfcHJpdi0+ZHJtLCAmZW5jb2Rlci0+YmFz
+ZSwgJmludGVsX2RkaV9mdW5jcywKPiArCQkJCSBEUk1fTU9ERV9FTkNPREVSX1RNRFMsCj4gKwkJ
+CQkgIkRESSAlYy9QSFkgJWMiLCBwb3J0X25hbWUocG9ydCksICBwaHlfbmFtZShwaHkpKTsKPiAr
+CX0KPiAgCj4gIAltdXRleF9pbml0KCZkaWdfcG9ydC0+aGRjcF9tdXRleCk7Cj4gIAlkaWdfcG9y
+dC0+bnVtX2hkY3Bfc3RyZWFtcyA9IDA7CgotLSAKSmFuaSBOaWt1bGEsIEludGVsIE9wZW4gU291
+cmNlIEdyYXBoaWNzIENlbnRlcgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVz
+a3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9p
+bnRlbC1nZngK
