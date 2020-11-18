@@ -2,40 +2,40 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 58E9D2B8206
-	for <lists+intel-gfx@lfdr.de>; Wed, 18 Nov 2020 17:38:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id BDAE72B8231
+	for <lists+intel-gfx@lfdr.de>; Wed, 18 Nov 2020 17:53:42 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8AF3C6E457;
-	Wed, 18 Nov 2020 16:38:23 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
+	by gabe.freedesktop.org (Postfix) with ESMTP id CC95A6E453;
+	Wed, 18 Nov 2020 16:53:39 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 666FE6E453;
- Wed, 18 Nov 2020 16:38:22 +0000 (UTC)
-IronPort-SDR: RnvHZsJutmlDEtdsxbjJoOp33QPkfzi8MMNarjwsOapA4M7GUdk3LOFJdLwuds6IEsvJv8ujBl
- wSox8qaEggEQ==
-X-IronPort-AV: E=McAfee;i="6000,8403,9809"; a="255854691"
-X-IronPort-AV: E=Sophos;i="5.77,488,1596524400"; d="scan'208";a="255854691"
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8E5DB6E453
+ for <intel-gfx@lists.freedesktop.org>; Wed, 18 Nov 2020 16:53:38 +0000 (UTC)
+IronPort-SDR: zp0WCBUX4KwBZT+O4QS10ZKQz361XNjbgBKfrB5qyVWlz2uXcheR8MQFmTc0qcZj6E67aiHnrk
+ /1SkWigBCPZQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9809"; a="255857666"
+X-IronPort-AV: E=Sophos;i="5.77,488,1596524400"; d="scan'208";a="255857666"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from fmsmga005.fm.intel.com ([10.253.24.32])
  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Nov 2020 08:38:21 -0800
-IronPort-SDR: 6bQi2YhamrIKRwWdKO0JyYVO5Ly0G8x6h252+O/mcIaYUDW+OmIggVcZzoZKtIFY5hO1OyovDZ
- fbzn6rcYBjBw==
-X-IronPort-AV: E=Sophos;i="5.77,488,1596524400"; d="scan'208";a="534373078"
-Received: from shaid-mobl.ger.corp.intel.com (HELO localhost.localdomain)
- ([10.255.202.56])
+ 18 Nov 2020 08:53:36 -0800
+IronPort-SDR: Ir4GhLDFjPyRr2+EJuG+icvj/Qai9dk1bNDzi1wAON8CBYdO7+8Z6SOXkjdr9DOd+yhZ1+KB1Y
+ WxowBP8oPtUw==
+X-IronPort-AV: E=Sophos;i="5.77,488,1596524400"; d="scan'208";a="534380521"
+Received: from dlmurray-mobl3.ger.corp.intel.com (HELO localhost)
+ ([10.251.82.13])
  by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Nov 2020 08:38:19 -0800
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-To: igt-dev@lists.freedesktop.org
-Date: Wed, 18 Nov 2020 16:38:09 +0000
-Message-Id: <20201118163809.959127-1-tvrtko.ursulin@linux.intel.com>
-X-Mailer: git-send-email 2.25.1
+ 18 Nov 2020 08:53:32 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: linux-kernel@vger.kernel.org
+Date: Wed, 18 Nov 2020 18:53:15 +0200
+Message-Id: <20201118165320.26829-1-jani.nikula@intel.com>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH i-g-t] intel_error_decode: Handle no decoding
- context
+Subject: [Intel-gfx] [PATCH 1/6] relay: allow the use of const callback
+ structs
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,50 +48,327 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel-gfx@lists.freedesktop.org
+Cc: Jens Axboe <axboe@kernel.dk>, jani.nikula@intel.com,
+ intel-gfx@lists.freedesktop.org, linux-wireless@vger.kernel.org,
+ QCA ath9k Development <ath9k-devel@qca.qualcomm.com>,
+ ath10k@lists.infradead.org, linux-block@vger.kernel.org,
+ ath11k@lists.infradead.org, Kalle Valo <kvalo@codeaurora.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+None of the relay users require the use of mutable structs for
+callbacks, however the relay code does. Instead of assigning default
+callbacks when there is none, add callback wrappers to conditionally
+call the client callbacks if available, and fall back to default
+behaviour (typically no-op) otherwise.
 
-If decoding context couldn't be created, say the local libdrm does not
-support the GPU which created the error state, it is much more handy to
-at least decode and dump metadata and rings.
+This lets all relay users make their struct rchan_callbacks const data.
 
-Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+Cc: linux-block@vger.kernel.org
+Cc: Jens Axboe <axboe@kernel.dk>
+Cc: ath11k@lists.infradead.org
+Cc: ath10k@lists.infradead.org
+Cc: Kalle Valo <kvalo@codeaurora.org>
+Cc: linux-wireless@vger.kernel.org
+Cc: QCA ath9k Development <ath9k-devel@qca.qualcomm.com>
+Cc: intel-gfx@lists.freedesktop.org
+Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- tools/intel_error_decode.c | 7 +++++--
- 1 file changed, 5 insertions(+), 2 deletions(-)
+ include/linux/relay.h |   4 +-
+ kernel/relay.c        | 182 +++++++++++++++++++-----------------------
+ 2 files changed, 86 insertions(+), 100 deletions(-)
 
-diff --git a/tools/intel_error_decode.c b/tools/intel_error_decode.c
-index 356ce37274f9..90a18a07ba17 100644
---- a/tools/intel_error_decode.c
-+++ b/tools/intel_error_decode.c
-@@ -465,7 +465,7 @@ static void decode(struct drm_intel_decode *ctx,
- 		       (unsigned)((head_offset + gtt_offset) & 0xffffffff));
- 	printf("\n");
+diff --git a/include/linux/relay.h b/include/linux/relay.h
+index e13a333e7c37..7333909df65a 100644
+--- a/include/linux/relay.h
++++ b/include/linux/relay.h
+@@ -62,7 +62,7 @@ struct rchan
+ 	size_t subbuf_size;		/* sub-buffer size */
+ 	size_t n_subbufs;		/* number of sub-buffers per buffer */
+ 	size_t alloc_size;		/* total buffer size allocated */
+-	struct rchan_callbacks *cb;	/* client callbacks */
++	const struct rchan_callbacks *cb; /* client callbacks, may be NULL */
+ 	struct kref kref;		/* channel refcount */
+ 	void *private_data;		/* for user-defined data */
+ 	size_t last_toobig;		/* tried to log event > subbuf size */
+@@ -170,7 +170,7 @@ struct rchan *relay_open(const char *base_filename,
+ 			 struct dentry *parent,
+ 			 size_t subbuf_size,
+ 			 size_t n_subbufs,
+-			 struct rchan_callbacks *cb,
++			 const struct rchan_callbacks *cb,
+ 			 void *private_data);
+ extern int relay_late_setup_files(struct rchan *chan,
+ 				  const char *base_filename,
+diff --git a/kernel/relay.c b/kernel/relay.c
+index b08d936d5fa7..c53676f2d10f 100644
+--- a/kernel/relay.c
++++ b/kernel/relay.c
+@@ -27,13 +27,86 @@
+ static DEFINE_MUTEX(relay_channels_mutex);
+ static LIST_HEAD(relay_channels);
  
--	if (decode) {
-+	if (decode && ctx) {
- 		drm_intel_decode_set_batch_pointer(ctx, data, gtt_offset,
- 						   *count);
- 		drm_intel_decode(ctx);
-@@ -707,7 +707,10 @@ read_data_file(FILE *file)
- 			matched = sscanf(line, "  ACTHD: 0x%08x\n", &reg);
- 			if (matched == 1) {
- 				print_acthd(reg, ring_length);
--				drm_intel_decode_set_head_tail(decode_ctx, reg, 0xffffffff);
-+				if (decode_ctx)
-+					drm_intel_decode_set_head_tail(decode_ctx,
-+								       reg,
-+								       0xffffffff);
- 			}
++/*
++ * rchan_callback wrappers. Call the callbacks if available, otherwise fall back
++ * to default behaviour.
++ */
++
++/*
++ * subbuf_start() callback.
++ */
++static int cb_subbuf_start(const struct rchan_callbacks *cb,
++			   struct rchan_buf *buf,
++			   void *subbuf,
++			   void *prev_subbuf,
++			   size_t prev_padding)
++{
++	if (cb && cb->subbuf_start)
++		return cb->subbuf_start(buf, subbuf, prev_subbuf, prev_padding);
++
++	if (relay_buf_full(buf))
++		return 0;
++
++	return 1;
++}
++
++/*
++ * buf_mapped() callback.
++ */
++static void cb_buf_mapped(const struct rchan_callbacks *cb,
++			  struct rchan_buf *buf,
++			  struct file *filp)
++{
++	if (cb && cb->buf_mapped)
++		cb->buf_mapped(buf, filp);
++}
++
++/*
++ * buf_unmapped() callback.
++ */
++static void cb_buf_unmapped(const struct rchan_callbacks *cb,
++			    struct rchan_buf *buf,
++			    struct file *filp)
++{
++	if (cb && cb->buf_unmapped)
++		cb->buf_unmapped(buf, filp);
++}
++
++/*
++ * create_buf_file_create() callback.
++ */
++static struct dentry *cb_create_buf_file(const struct rchan_callbacks *cb,
++					 const char *filename,
++					 struct dentry *parent,
++					 umode_t mode,
++					 struct rchan_buf *buf,
++					 int *is_global)
++{
++	if (cb && cb->create_buf_file)
++		return cb->create_buf_file(filename, parent, mode, buf, is_global);
++
++	return NULL;
++}
++
++/*
++ * remove_buf_file() callback.
++ */
++static int cb_remove_buf_file(const struct rchan_callbacks *cb,
++			      struct dentry *dentry)
++{
++	if (cb && cb->remove_buf_file)
++		return cb->remove_buf_file(dentry);
++
++	return -EINVAL;
++}
++
+ /*
+  * close() vm_op implementation for relay file mapping.
+  */
+ static void relay_file_mmap_close(struct vm_area_struct *vma)
+ {
+ 	struct rchan_buf *buf = vma->vm_private_data;
+-	buf->chan->cb->buf_unmapped(buf, vma->vm_file);
++	cb_buf_unmapped(buf->chan->cb, buf, vma->vm_file);
+ }
  
- 			matched = sscanf(line, "  PGTBL_ER: 0x%08x\n", &reg);
+ /*
+@@ -107,7 +180,7 @@ static int relay_mmap_buf(struct rchan_buf *buf, struct vm_area_struct *vma)
+ 	vma->vm_ops = &relay_file_mmap_ops;
+ 	vma->vm_flags |= VM_DONTEXPAND;
+ 	vma->vm_private_data = buf;
+-	buf->chan->cb->buf_mapped(buf, filp);
++	cb_buf_mapped(buf->chan->cb, buf, filp);
+ 
+ 	return 0;
+ }
+@@ -264,70 +337,6 @@ EXPORT_SYMBOL_GPL(relay_buf_full);
+  * High-level relay kernel API and associated functions.
+  */
+ 
+-/*
+- * rchan_callback implementations defining default channel behavior.  Used
+- * in place of corresponding NULL values in client callback struct.
+- */
+-
+-/*
+- * subbuf_start() default callback.  Does nothing.
+- */
+-static int subbuf_start_default_callback (struct rchan_buf *buf,
+-					  void *subbuf,
+-					  void *prev_subbuf,
+-					  size_t prev_padding)
+-{
+-	if (relay_buf_full(buf))
+-		return 0;
+-
+-	return 1;
+-}
+-
+-/*
+- * buf_mapped() default callback.  Does nothing.
+- */
+-static void buf_mapped_default_callback(struct rchan_buf *buf,
+-					struct file *filp)
+-{
+-}
+-
+-/*
+- * buf_unmapped() default callback.  Does nothing.
+- */
+-static void buf_unmapped_default_callback(struct rchan_buf *buf,
+-					  struct file *filp)
+-{
+-}
+-
+-/*
+- * create_buf_file_create() default callback.  Does nothing.
+- */
+-static struct dentry *create_buf_file_default_callback(const char *filename,
+-						       struct dentry *parent,
+-						       umode_t mode,
+-						       struct rchan_buf *buf,
+-						       int *is_global)
+-{
+-	return NULL;
+-}
+-
+-/*
+- * remove_buf_file() default callback.  Does nothing.
+- */
+-static int remove_buf_file_default_callback(struct dentry *dentry)
+-{
+-	return -EINVAL;
+-}
+-
+-/* relay channel default callbacks */
+-static struct rchan_callbacks default_channel_callbacks = {
+-	.subbuf_start = subbuf_start_default_callback,
+-	.buf_mapped = buf_mapped_default_callback,
+-	.buf_unmapped = buf_unmapped_default_callback,
+-	.create_buf_file = create_buf_file_default_callback,
+-	.remove_buf_file = remove_buf_file_default_callback,
+-};
+-
+ /**
+  *	wakeup_readers - wake up readers waiting on a channel
+  *	@work: contains the channel buffer
+@@ -371,7 +380,7 @@ static void __relay_reset(struct rchan_buf *buf, unsigned int init)
+ 	for (i = 0; i < buf->chan->n_subbufs; i++)
+ 		buf->padding[i] = 0;
+ 
+-	buf->chan->cb->subbuf_start(buf, buf->data, NULL, 0);
++	cb_subbuf_start(buf->chan->cb, buf, buf->data, NULL, 0);
+ }
+ 
+ /**
+@@ -426,9 +435,8 @@ static struct dentry *relay_create_buf_file(struct rchan *chan,
+ 	snprintf(tmpname, NAME_MAX, "%s%d", chan->base_filename, cpu);
+ 
+ 	/* Create file in fs */
+-	dentry = chan->cb->create_buf_file(tmpname, chan->parent,
+-					   S_IRUSR, buf,
+-					   &chan->is_global);
++	dentry = cb_create_buf_file(chan->cb, tmpname, chan->parent,
++				    S_IRUSR, buf, &chan->is_global);
+ 	if (IS_ERR(dentry))
+ 		dentry = NULL;
+ 
+@@ -461,9 +469,8 @@ static struct rchan_buf *relay_open_buf(struct rchan *chan, unsigned int cpu)
+ 		relay_set_buf_dentry(buf, dentry);
+ 	} else {
+ 		/* Only retrieve global info, nothing more, nothing less */
+-		dentry = chan->cb->create_buf_file(NULL, NULL,
+-						   S_IRUSR, buf,
+-						   &chan->is_global);
++		dentry = cb_create_buf_file(chan->cb, NULL, NULL,
++					    S_IRUSR, buf, &chan->is_global);
+ 		if (IS_ERR_OR_NULL(dentry))
+ 			goto free_buf;
+ 	}
+@@ -495,31 +502,10 @@ static void relay_close_buf(struct rchan_buf *buf)
+ {
+ 	buf->finalized = 1;
+ 	irq_work_sync(&buf->wakeup_work);
+-	buf->chan->cb->remove_buf_file(buf->dentry);
++	cb_remove_buf_file(buf->chan->cb, buf->dentry);
+ 	kref_put(&buf->kref, relay_remove_buf);
+ }
+ 
+-static void setup_callbacks(struct rchan *chan,
+-				   struct rchan_callbacks *cb)
+-{
+-	if (!cb) {
+-		chan->cb = &default_channel_callbacks;
+-		return;
+-	}
+-
+-	if (!cb->subbuf_start)
+-		cb->subbuf_start = subbuf_start_default_callback;
+-	if (!cb->buf_mapped)
+-		cb->buf_mapped = buf_mapped_default_callback;
+-	if (!cb->buf_unmapped)
+-		cb->buf_unmapped = buf_unmapped_default_callback;
+-	if (!cb->create_buf_file)
+-		cb->create_buf_file = create_buf_file_default_callback;
+-	if (!cb->remove_buf_file)
+-		cb->remove_buf_file = remove_buf_file_default_callback;
+-	chan->cb = cb;
+-}
+-
+ int relay_prepare_cpu(unsigned int cpu)
+ {
+ 	struct rchan *chan;
+@@ -565,7 +551,7 @@ struct rchan *relay_open(const char *base_filename,
+ 			 struct dentry *parent,
+ 			 size_t subbuf_size,
+ 			 size_t n_subbufs,
+-			 struct rchan_callbacks *cb,
++			 const struct rchan_callbacks *cb,
+ 			 void *private_data)
+ {
+ 	unsigned int i;
+@@ -597,7 +583,7 @@ struct rchan *relay_open(const char *base_filename,
+ 		chan->has_base_filename = 1;
+ 		strlcpy(chan->base_filename, base_filename, NAME_MAX);
+ 	}
+-	setup_callbacks(chan, cb);
++	chan->cb = cb;
+ 	kref_init(&chan->kref);
+ 
+ 	mutex_lock(&relay_channels_mutex);
+@@ -780,7 +766,7 @@ size_t relay_switch_subbuf(struct rchan_buf *buf, size_t length)
+ 	new_subbuf = buf->subbufs_produced % buf->chan->n_subbufs;
+ 	new = buf->start + new_subbuf * buf->chan->subbuf_size;
+ 	buf->offset = 0;
+-	if (!buf->chan->cb->subbuf_start(buf, new, old, buf->prev_padding)) {
++	if (!cb_subbuf_start(buf->chan->cb, buf, new, old, buf->prev_padding)) {
+ 		buf->offset = buf->chan->subbuf_size + 1;
+ 		return 0;
+ 	}
 -- 
-2.25.1
+2.20.1
 
 _______________________________________________
 Intel-gfx mailing list
