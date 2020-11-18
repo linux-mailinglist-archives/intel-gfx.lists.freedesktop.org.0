@@ -2,46 +2,44 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id AF3D12B7C0F
-	for <lists+intel-gfx@lfdr.de>; Wed, 18 Nov 2020 12:05:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 457AA2B7C22
+	for <lists+intel-gfx@lfdr.de>; Wed, 18 Nov 2020 12:12:06 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2AD7288843;
-	Wed, 18 Nov 2020 11:05:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B41E889E14;
+	Wed, 18 Nov 2020 11:12:03 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6506588843
- for <intel-gfx@lists.freedesktop.org>; Wed, 18 Nov 2020 11:05:29 +0000 (UTC)
-IronPort-SDR: VPF43e6uJ6Ib8+tTYHph1zy9ktx8QanNNXTxfZv3mpC9UwQcd8kSxvlypVuLsHi+9Rd+k8WBJi
- jYbpZPu/w50g==
-X-IronPort-AV: E=McAfee;i="6000,8403,9808"; a="235246427"
-X-IronPort-AV: E=Sophos;i="5.77,486,1596524400"; d="scan'208";a="235246427"
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4803E89E14
+ for <intel-gfx@lists.freedesktop.org>; Wed, 18 Nov 2020 11:12:02 +0000 (UTC)
+IronPort-SDR: rn67q2/UdY1xdg0DTvf4Gub4ciBV3SVAiNQyXIEv9A5u6j2125enMku5NEW58jvKUtgHyOiPe0
+ XlVCMqr9WttA==
+X-IronPort-AV: E=McAfee;i="6000,8403,9808"; a="171196475"
+X-IronPort-AV: E=Sophos;i="5.77,486,1596524400"; d="scan'208";a="171196475"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Nov 2020 03:05:28 -0800
-IronPort-SDR: z3p9cQEKa55pGQw58DWAqUCQBml1+rjJqwBbjZYmcbGD0p60q5x6EzFnvbKzrH7vGivLam7R3C
- HT7eYzo/bIKw==
-X-IronPort-AV: E=Sophos;i="5.77,486,1596524400"; d="scan'208";a="544467806"
-Received: from shaid-mobl.ger.corp.intel.com (HELO [10.255.202.56])
- ([10.255.202.56])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Nov 2020 03:05:27 -0800
-To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
-References: <20201117113103.21480-1-chris@chris-wilson.co.uk>
- <20201117113103.21480-14-chris@chris-wilson.co.uk>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-Message-ID: <86cb67d0-ac39-7f83-8ff8-eed3ef7c5943@linux.intel.com>
-Date: Wed, 18 Nov 2020 11:05:24 +0000
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Nov 2020 03:12:01 -0800
+IronPort-SDR: siuiPYO3ZtPJiHjzSBT+54IXRoOsTvDIrpKq/SDByrxzzmAqXYlemtKceHk+4qqfAzAdJ0KMgO
+ I9ebgSmCpxzA==
+X-IronPort-AV: E=Sophos;i="5.77,486,1596524400"; d="scan'208";a="476301203"
+Received: from dlmurray-mobl3.ger.corp.intel.com (HELO localhost)
+ ([10.251.82.13])
+ by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Nov 2020 03:11:59 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>,
+ intel-gfx@lists.freedesktop.org
+In-Reply-To: <20201106101443.686053-2-gwan-gyeong.mun@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20201106101443.686053-1-gwan-gyeong.mun@intel.com>
+ <20201106101443.686053-2-gwan-gyeong.mun@intel.com>
+Date: Wed, 18 Nov 2020 13:11:56 +0200
+Message-ID: <878sayq5qb.fsf@intel.com>
 MIME-Version: 1.0
-In-Reply-To: <20201117113103.21480-14-chris@chris-wilson.co.uk>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH 14/28] drm/i915/gt: Free stale request on
- destroying the virtual engine
+Subject: Re: [Intel-gfx] [PATCH v4 2/2] drm/i915/display: Support Multiple
+ Transcoders' PSR status on debugfs
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,155 +52,55 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-
-On 17/11/2020 11:30, Chris Wilson wrote:
-> Since preempt-to-busy, we may unsubmit a request while it is still on
-> the HW and completes asynchronously. That means it may be retired and in
-> the process destroy the virtual engine (as the user has closed their
-> context), but that engine may still be holding onto the unsubmitted
-> compelted request. Therefore we need to potentially cleanup the old
-> request on destroying the virtual engine. We also have to keep the
-> virtual_engine alive until after the sibling's execlists_dequeue() have
-> finished peeking into the virtual engines, for which we serialise with
-> RCU.
-> 
-> v2: Be paranoid and flush the tasklet as well.
-> v3: And flush the tasklet before the engines, as the tasklet may
-> re-attach an rb_node after our removal from the siblings.
-> 
-> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-> Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-> ---
->   drivers/gpu/drm/i915/gt/intel_lrc.c | 61 +++++++++++++++++++++++++----
->   1 file changed, 54 insertions(+), 7 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
-> index 17cb7060eb29..c11433884cf6 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_lrc.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
-> @@ -182,6 +182,7 @@
->   struct virtual_engine {
->   	struct intel_engine_cs base;
->   	struct intel_context context;
-> +	struct rcu_work rcu;
->   
->   	/*
->   	 * We allow only a single request through the virtual engine at a time
-> @@ -5470,44 +5471,90 @@ static struct list_head *virtual_queue(struct virtual_engine *ve)
->   	return &ve->base.execlists.default_priolist.requests[0];
->   }
->   
-> -static void virtual_context_destroy(struct kref *kref)
-> +static void rcu_virtual_context_destroy(struct work_struct *wrk)
->   {
->   	struct virtual_engine *ve =
-> -		container_of(kref, typeof(*ve), context.ref);
-> +		container_of(wrk, typeof(*ve), rcu.work);
->   	unsigned int n;
->   
-> -	GEM_BUG_ON(!list_empty(virtual_queue(ve)));
-> -	GEM_BUG_ON(ve->request);
->   	GEM_BUG_ON(ve->context.inflight);
->   
-> +	/* Preempt-to-busy may leave a stale request behind. */
-> +	if (unlikely(ve->request)) {
-> +		struct i915_request *old;
-> +
-> +		spin_lock_irq(&ve->base.active.lock);
-> +
-> +		old = fetch_and_zero(&ve->request);
-> +		if (old) {
-> +			GEM_BUG_ON(!i915_request_completed(old));
-> +			__i915_request_submit(old);
-> +			i915_request_put(old);
-> +		}
-> +
-> +		spin_unlock_irq(&ve->base.active.lock);
-> +	}
-> +
-> +	/*
-> +	 * Flush the tasklet in case it is still running on another core.
-> +	 *
-> +	 * This needs to be done before we remove ourselves from the siblings'
-> +	 * rbtrees as in the case it is running in parallel, it may reinsert
-> +	 * the rb_node into a sibling.
-> +	 */
-> +	tasklet_kill(&ve->base.execlists.tasklet);
-
-Can it still be running after an RCU period?
-
-> +
-> +	/* Decouple ourselves from the siblings, no more access allowed. */
->   	for (n = 0; n < ve->num_siblings; n++) {
->   		struct intel_engine_cs *sibling = ve->siblings[n];
->   		struct rb_node *node = &ve->nodes[sibling->id].rb;
-> -		unsigned long flags;
->   
->   		if (RB_EMPTY_NODE(node))
->   			continue;
->   
-> -		spin_lock_irqsave(&sibling->active.lock, flags);
-> +		spin_lock_irq(&sibling->active.lock);
->   
->   		/* Detachment is lazily performed in the execlists tasklet */
->   		if (!RB_EMPTY_NODE(node))
->   			rb_erase_cached(node, &sibling->execlists.virtual);
->   
-> -		spin_unlock_irqrestore(&sibling->active.lock, flags);
-> +		spin_unlock_irq(&sibling->active.lock);
->   	}
->   	GEM_BUG_ON(__tasklet_is_scheduled(&ve->base.execlists.tasklet));
-> +	GEM_BUG_ON(!list_empty(virtual_queue(ve)));
->   
->   	if (ve->context.state)
->   		__execlists_context_fini(&ve->context);
->   	intel_context_fini(&ve->context);
->   
->   	intel_engine_free_request_pool(&ve->base);
-> +	intel_breadcrumbs_free(ve->base.breadcrumbs);
-
-This looks to belong to some other patch.
-
-Regards,
-
-Tvrtko
-
->   
->   	kfree(ve->bonds);
->   	kfree(ve);
->   }
->   
-> +static void virtual_context_destroy(struct kref *kref)
-> +{
-> +	struct virtual_engine *ve =
-> +		container_of(kref, typeof(*ve), context.ref);
-> +
-> +	GEM_BUG_ON(!list_empty(&ve->context.signals));
-> +
-> +	/*
-> +	 * When destroying the virtual engine, we have to be aware that
-> +	 * it may still be in use from an hardirq/softirq context causing
-> +	 * the resubmission of a completed request (background completion
-> +	 * due to preempt-to-busy). Before we can free the engine, we need
-> +	 * to flush the submission code and tasklets that are still potentially
-> +	 * accessing the engine. Flushing the tasklets require process context,
-> +	 * and since we can guard the resubmit onto the engine with an RCU read
-> +	 * lock, we can delegate the free of the engine to an RCU worker.
-> +	 */
-> +	INIT_RCU_WORK(&ve->rcu, rcu_virtual_context_destroy);
-> +	queue_rcu_work(system_wq, &ve->rcu);
-> +}
-> +
->   static void virtual_engine_initial_hint(struct virtual_engine *ve)
->   {
->   	int swp;
-> 
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+T24gRnJpLCAwNiBOb3YgMjAyMCwgR3dhbi1neWVvbmcgTXVuIDxnd2FuLWd5ZW9uZy5tdW5AaW50
+ZWwuY29tPiB3cm90ZToKPiBJbiBvcmRlciB0byBzdXBwb3J0IHRoZSBQU1Igc3RhdGUgb2YgZWFj
+aCB0cmFuc2NvZGVyLCBpdCBhZGRzCj4gaTkxNV9wc3Jfc3RhdHVzIHRvIHN1Yi1kaXJlY3Rvcnkg
+b2YgZWFjaCB0cmFuc2NvZGVyLgo+Cj4gdjI6IENoYW5nZSB1c2luZyBvZiBTeW1ib2xpYyBwZXJt
+aXNzaW9ucyAnU19JUlVHTycgdG8gdXNpbmcgb2Ygb2N0YWwKPiAgICAgcGVybWlzc2lvbnMgJzA0
+NDQnCj4KPiBTaWduZWQtb2ZmLWJ5OiBHd2FuLWd5ZW9uZyBNdW4gPGd3YW4tZ3llb25nLm11bkBp
+bnRlbC5jb20+Cj4gQ2M6IEpvc8OpIFJvYmVydG8gZGUgU291emEgPGpvc2Uuc291emFAaW50ZWwu
+Y29tPgo+IC0tLQo+ICAuLi4vZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5X2RlYnVnZnMu
+YyAgfCAyMyArKysrKysrKysrKysrKysrKysrCj4gIDEgZmlsZSBjaGFuZ2VkLCAyMyBpbnNlcnRp
+b25zKCspCj4KPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRl
+bF9kaXNwbGF5X2RlYnVnZnMuYyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxf
+ZGlzcGxheV9kZWJ1Z2ZzLmMKPiBpbmRleCA4NDAyZTZhYzlmNzYuLjM3ODA1NjE1YTIyMSAxMDA2
+NDQKPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXlfZGVi
+dWdmcy5jCj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5
+X2RlYnVnZnMuYwo+IEBAIC0yMDkzLDYgKzIwOTMsMjMgQEAgc3RhdGljIGludCBpOTE1X2hkY3Bf
+c2lua19jYXBhYmlsaXR5X3Nob3coc3RydWN0IHNlcV9maWxlICptLCB2b2lkICpkYXRhKQo+ICB9
+Cj4gIERFRklORV9TSE9XX0FUVFJJQlVURShpOTE1X2hkY3Bfc2lua19jYXBhYmlsaXR5KTsKPiAg
+Cj4gK3N0YXRpYyBpbnQgaTkxNV9wc3Jfc3RhdHVzX3Nob3coc3RydWN0IHNlcV9maWxlICptLCB2
+b2lkICpkYXRhKQo+ICt7Cj4gKwlzdHJ1Y3QgZHJtX2Nvbm5lY3RvciAqY29ubmVjdG9yID0gbS0+
+cHJpdmF0ZTsKPiArCXN0cnVjdCBpbnRlbF9kcCAqaW50ZWxfZHAgPQo+ICsJCWludGVsX2F0dGFj
+aGVkX2RwKHRvX2ludGVsX2Nvbm5lY3Rvcihjb25uZWN0b3IpKTsKPiArCXN0cnVjdCBkcm1faTkx
+NV9wcml2YXRlICpkZXZfcHJpdiA9IGRwX3RvX2k5MTUoaW50ZWxfZHApOwo+ICsKPiArCWlmIChj
+b25uZWN0b3ItPnN0YXR1cyAhPSBjb25uZWN0b3Jfc3RhdHVzX2Nvbm5lY3RlZCkKPiArCQlyZXR1
+cm4gLUVOT0RFVjsKPiArCj4gKwlpZiAoIUhBU19QU1IoZGV2X3ByaXYpKQo+ICsJCXJldHVybiAt
+RU5PREVWOwo+ICsKPiArCXJldHVybiBpbnRlbF9wc3Jfc3RhdHVzKG0sIGludGVsX2RwKTsKPiAr
+fQo+ICtERUZJTkVfU0hPV19BVFRSSUJVVEUoaTkxNV9wc3Jfc3RhdHVzKTsKPiArCj4gICNkZWZp
+bmUgTFBTUF9DQVBBQkxFKENPTkQpIChDT05EID8gc2VxX3B1dHMobSwgIkxQU1A6IGNhcGFibGVc
+biIpIDogXAo+ICAJCQkJc2VxX3B1dHMobSwgIkxQU1A6IGluY2FwYWJsZVxuIikpCj4gIAo+IEBA
+IC0yMjY4LDYgKzIyODUsMTIgQEAgaW50IGludGVsX2Nvbm5lY3Rvcl9kZWJ1Z2ZzX2FkZChzdHJ1
+Y3QgZHJtX2Nvbm5lY3RvciAqY29ubmVjdG9yKQo+ICAJCQkJICAgIGNvbm5lY3RvciwgJmk5MTVf
+cHNyX3Npbmtfc3RhdHVzX2ZvcHMpOwo+ICAJfQo+ICAKPiArCWlmIChJTlRFTF9HRU4oZGV2X3By
+aXYpID49IDEyICYmCgpJJ2QgYWRkIHRoaXMgZm9yIGFsbCBnZW5lcmF0aW9ucyB0byB1bmlmeSB0
+aGUgZGVidWdmcywgYW5kIGV2ZW50dWFsbHkKcGhhc2Ugb3V0IHRoZSBub24gY29ubmVjdG9yIHNw
+ZWNpZmljIGRlYnVnZnMgZmlsZS4KCkFuZCBJJ2QgYWRkIEhBU19QU1IoKSBjaGVjayBoZXJlIHRv
+IG5vdCBjcmVhdGUgdGhlIGZpbGUgaWYgaXQncyBub3QKcG9zc2libGUgaW5zdGVhZCBvZiBoYXZp
+bmcgdGhlIGNoZWNrIGluIGk5MTVfcHNyX3N0YXR1c19zaG93KCkuCgpCUiwKSmFuaS4KCj4gKwkg
+ICAgY29ubmVjdG9yLT5jb25uZWN0b3JfdHlwZSA9PSBEUk1fTU9ERV9DT05ORUNUT1JfZURQKSB7
+Cj4gKwkJZGVidWdmc19jcmVhdGVfZmlsZSgiaTkxNV9wc3Jfc3RhdHVzIiwgMDQ0NCwgcm9vdCwK
+PiArCQkJCSAgICBjb25uZWN0b3IsICZpOTE1X3Bzcl9zdGF0dXNfZm9wcyk7Cj4gKwl9Cj4gKwo+
+ICAJaWYgKGNvbm5lY3Rvci0+Y29ubmVjdG9yX3R5cGUgPT0gRFJNX01PREVfQ09OTkVDVE9SX0Rp
+c3BsYXlQb3J0IHx8Cj4gIAkgICAgY29ubmVjdG9yLT5jb25uZWN0b3JfdHlwZSA9PSBEUk1fTU9E
+RV9DT05ORUNUT1JfSERNSUEgfHwKPiAgCSAgICBjb25uZWN0b3ItPmNvbm5lY3Rvcl90eXBlID09
+IERSTV9NT0RFX0NPTk5FQ1RPUl9IRE1JQikgewoKLS0gCkphbmkgTmlrdWxhLCBJbnRlbCBPcGVu
+IFNvdXJjZSBHcmFwaGljcyBDZW50ZXIKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJl
+ZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGlu
+Zm8vaW50ZWwtZ2Z4Cg==
