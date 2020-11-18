@@ -1,49 +1,41 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id BAA002B8132
-	for <lists+intel-gfx@lfdr.de>; Wed, 18 Nov 2020 16:51:48 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 58E9D2B8206
+	for <lists+intel-gfx@lfdr.de>; Wed, 18 Nov 2020 17:38:26 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2235589DB7;
-	Wed, 18 Nov 2020 15:51:47 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2A2C989DB7
- for <intel-gfx@lists.freedesktop.org>; Wed, 18 Nov 2020 15:51:46 +0000 (UTC)
-IronPort-SDR: ZxcDSTKG587qe6gtqrnza0JidPDvZBGcYpHpkU8ru6tiMqmcbacDQDN6Yaw0UMsxRTf8mV0hZB
- Wje7FPRhA3EA==
-X-IronPort-AV: E=McAfee;i="6000,8403,9808"; a="158908369"
-X-IronPort-AV: E=Sophos;i="5.77,486,1596524400"; d="scan'208";a="158908369"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8AF3C6E457;
+	Wed, 18 Nov 2020 16:38:23 +0000 (UTC)
+X-Original-To: Intel-gfx@lists.freedesktop.org
+Delivered-To: Intel-gfx@lists.freedesktop.org
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 666FE6E453;
+ Wed, 18 Nov 2020 16:38:22 +0000 (UTC)
+IronPort-SDR: RnvHZsJutmlDEtdsxbjJoOp33QPkfzi8MMNarjwsOapA4M7GUdk3LOFJdLwuds6IEsvJv8ujBl
+ wSox8qaEggEQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9809"; a="255854691"
+X-IronPort-AV: E=Sophos;i="5.77,488,1596524400"; d="scan'208";a="255854691"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Nov 2020 07:51:45 -0800
-IronPort-SDR: G2pl0wdoDxafCNaMgtEMfXANse8gzfOKxlqZHIIfoM6F3fAqxbTJmzPeTiPwU8nLezF5tn1aMC
- C9oxtZWvBsGw==
-X-IronPort-AV: E=Sophos;i="5.77,486,1596524400"; d="scan'208";a="544585321"
-Received: from shaid-mobl.ger.corp.intel.com (HELO [10.255.202.56])
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Nov 2020 08:38:21 -0800
+IronPort-SDR: 6bQi2YhamrIKRwWdKO0JyYVO5Ly0G8x6h252+O/mcIaYUDW+OmIggVcZzoZKtIFY5hO1OyovDZ
+ fbzn6rcYBjBw==
+X-IronPort-AV: E=Sophos;i="5.77,488,1596524400"; d="scan'208";a="534373078"
+Received: from shaid-mobl.ger.corp.intel.com (HELO localhost.localdomain)
  ([10.255.202.56])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Nov 2020 07:51:44 -0800
-To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
-References: <20201117113103.21480-1-chris@chris-wilson.co.uk>
- <20201117113103.21480-8-chris@chris-wilson.co.uk>
- <5672a04a-bc05-1d32-e051-b9a5a0fcc82d@linux.intel.com>
- <160561952917.22621.15356472644492375343@build.alporthouse.com>
+ by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Nov 2020 08:38:19 -0800
 From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-Message-ID: <2cf26dcf-7774-1f19-729f-98404607ee77@linux.intel.com>
-Date: Wed, 18 Nov 2020 15:51:41 +0000
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+To: igt-dev@lists.freedesktop.org
+Date: Wed, 18 Nov 2020 16:38:09 +0000
+Message-Id: <20201118163809.959127-1-tvrtko.ursulin@linux.intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-In-Reply-To: <160561952917.22621.15356472644492375343@build.alporthouse.com>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH 08/28] drm/i915/gt: Show all active
- timelines for debugging
+Subject: [Intel-gfx] [PATCH i-g-t] intel_error_decode: Handle no decoding
+ context
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,64 +48,51 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 
-On 17/11/2020 13:25, Chris Wilson wrote:
-> Quoting Tvrtko Ursulin (2020-11-17 12:59:44)
->>
->> On 17/11/2020 11:30, Chris Wilson wrote:
->>> +             if (show_request) {
->>> +                     list_for_each_entry_safe(rq, rn, &tl->requests, link)
->>> +                             show_request(m, rq,
->>> +                                          i915_request_is_active(rq) ? "  E" :
->>> +                                          i915_request_is_ready(rq) ? "  Q" :
->>> +                                          "  U");
->>
->> Can we get some consistency between the category counts and flags.
->>
->> s/count/queued/ -> Q
-> 
-> Hmm, if you are sure. Q would then not match with the engine info.
+If decoding context couldn't be created, say the local libdrm does not
+support the GPU which created the error state, it is much more handy to
+at least decode and dump metadata and rings.
 
-Sure? Not really. What do we have there? You mean "!/*/+/-" flags? Or 
-"E/Q/V" from intel_execlists_show_requests? Right, 'Q' there means 
-runnable and it doesn't show queued at all. Yes, why not change everything.
+Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+---
+ tools/intel_error_decode.c | 7 +++++--
+ 1 file changed, 5 insertions(+), 2 deletions(-)
 
-> Still favouring count over queued; I think count indicates more clearly
-> that it is the superset, but queued may imply it excludes ready and
-> definitely sounds like it should not include inflight.
+diff --git a/tools/intel_error_decode.c b/tools/intel_error_decode.c
+index 356ce37274f9..90a18a07ba17 100644
+--- a/tools/intel_error_decode.c
++++ b/tools/intel_error_decode.c
+@@ -465,7 +465,7 @@ static void decode(struct drm_intel_decode *ctx,
+ 		       (unsigned)((head_offset + gtt_offset) & 0xffffffff));
+ 	printf("\n");
+ 
+-	if (decode) {
++	if (decode && ctx) {
+ 		drm_intel_decode_set_batch_pointer(ctx, data, gtt_offset,
+ 						   *count);
+ 		drm_intel_decode(ctx);
+@@ -707,7 +707,10 @@ read_data_file(FILE *file)
+ 			matched = sscanf(line, "  ACTHD: 0x%08x\n", &reg);
+ 			if (matched == 1) {
+ 				print_acthd(reg, ring_length);
+-				drm_intel_decode_set_head_tail(decode_ctx, reg, 0xffffffff);
++				if (decode_ctx)
++					drm_intel_decode_set_head_tail(decode_ctx,
++								       reg,
++								       0xffffffff);
+ 			}
+ 
+ 			matched = sscanf(line, "  PGTBL_ER: 0x%08x\n", &reg);
+-- 
+2.25.1
 
-I am okay with that.
-
->> ready -> R (also matches with term runnable)
->> active -> E ? hmmm E is consistent with the engine info dump.
->>
->> Not ideal but perhaps every bit of more consistency is good.
-> 
-> Not sold yet, but not happy with the current flags either.
-> 
-> If we go with 'R' for ready, we should also update engine info.
-
-Okay we seem to have plenty of options.
-
-U or Q - queued/unready
-R or Q - ready/queued (to backend) (Rv/Qv for virtual?)
-E or R, or I - executing/running/in-flight
-
-Q -> R -> E
-U -> R -> E
-U -> Q -> E/R/I
-U -> R -> E/I
-
-I don't know.. either one as long as all places use the same.
-
-Regards,
-
-Tvrtko
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
