@@ -1,47 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D90872B7CDB
-	for <lists+intel-gfx@lfdr.de>; Wed, 18 Nov 2020 12:41:15 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1AC1B2B7D02
+	for <lists+intel-gfx@lfdr.de>; Wed, 18 Nov 2020 12:47:57 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A570C6E3F7;
-	Wed, 18 Nov 2020 11:41:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6EB846E3FE;
+	Wed, 18 Nov 2020 11:47:54 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 394A86E3F7
- for <intel-gfx@lists.freedesktop.org>; Wed, 18 Nov 2020 11:41:12 +0000 (UTC)
-IronPort-SDR: xWsae5LGdI6nTmHWi/U3cC29L+xoxkOYV2h5oWPd4djIy8WYOSOUHwqYQBVxbIwR+pXeeoSBCI
- c6rPahIsOr5w==
-X-IronPort-AV: E=McAfee;i="6000,8403,9808"; a="171199396"
-X-IronPort-AV: E=Sophos;i="5.77,486,1596524400"; d="scan'208";a="171199396"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Nov 2020 03:41:11 -0800
-IronPort-SDR: lNrPFYt/iHCYT4A9oX8IWtw+Oga978/eAnhLmcOhnWw1NbNPhrwaLJvJBr+WOa5BmNkiHnKz3t
- A9og1kXALiHw==
-X-IronPort-AV: E=Sophos;i="5.77,486,1596524400"; d="scan'208";a="476311634"
-Received: from smcintyr-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.252.19.232])
- by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Nov 2020 03:41:09 -0800
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id AD1196E3F9;
+ Wed, 18 Nov 2020 11:47:52 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id A5429A41FB;
+ Wed, 18 Nov 2020 11:47:52 +0000 (UTC)
 MIME-Version: 1.0
-In-Reply-To: <20201117110132.22267-8-chris@chris-wilson.co.uk>
-References: <20201117110132.22267-1-chris@chris-wilson.co.uk>
- <20201117110132.22267-8-chris@chris-wilson.co.uk>
-From: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org,
- Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>,
- Lionel Landwerlin <lionel.g.landwerlin@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Message-ID: <160569966633.4294.16743669061444949073@jlahtine-mobl.ger.corp.intel.com>
-User-Agent: alot/0.8.1
-Date: Wed, 18 Nov 2020 13:41:06 +0200
-Subject: Re: [Intel-gfx] [PATCH 8/8] drm/i915/perf: Map OA buffer to user
- space for gen12 performance query
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Date: Wed, 18 Nov 2020 11:47:52 -0000
+Message-ID: <160570007264.24803.10522870366893071864@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <cover.1605273766.git.jani.nikula@intel.com>
+In-Reply-To: <cover.1605273766.git.jani.nikula@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/i915=3A_nuke_remaining_legacy_reg_helpers_=28I915=5FREA?=
+ =?utf-8?q?D/WRITE_etc=2E=29_=28rev3=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,373 +39,600 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Piotr Maciejewski <piotr.maciejewski@intel.com>,
- Chris Wilson <chris@chris-wilson.co.uk>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-+ Umesh, Lionel
+== Series Details ==
 
-Do we have a link to the userspace changes and IGT tests? Those are
-absolutely needed before we can do a final review and merge.
+Series: drm/i915: nuke remaining legacy reg helpers (I915_READ/WRITE etc.) (rev3)
+URL   : https://patchwork.freedesktop.org/series/83762/
+State : warning
 
-We should really test and review the kernel and userspace changes
-together to make sure that we're coming up with a solid uAPI.
+== Summary ==
 
-Regards, Joonas
+$ dim checkpatch origin/drm-tip
+a12a7e1ea3de drm/i915/debugfs: remove RPS autotuning details from i915_rps_boost_info
+419ca697fab7 drm/i915: remove last traces of I915_READ_FW() and I915_WRITE_FW()
+c8a3444ee6ab drm/i915/cdclk: prefer intel_de_write() over I915_WRITE()
+f19ef5c3dbac drm/i915/debugfs: remove the i915_cache_sharing debugfs file
+25c9265e2821 drm/i915/debugfs: replace I915_READ() with intel_uncore_read()
+-:381: WARNING:LONG_LINE: line length of 102 exceeds 100 columns
+#381: FILE: drivers/gpu/drm/i915/i915_debugfs.c:879:
++		rpupei = intel_uncore_read(&dev_priv->uncore, GEN6_RP_CUR_UP_EI) & GEN6_CURICONT_MASK;
 
-Quoting Chris Wilson (2020-11-17 13:01:32)
-> From: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
-> 
-> i915 used to support time based sampling mode which is good for overall
-> system monitoring, but is not enough for query mode used to measure a
-> single draw call or dispatch. Gen9-Gen11 are using current i915 perf
-> implementation for query, but Gen12+ requires a new approach for query
-> based on triggered reports within oa buffer.
-> 
-> Triggering reports into the OA buffer is achieved by writing into a
-> a trigger register. Optionally an unused counter/register is set with a
-> marker value such that a triggered report can be identified in the OA
-> buffer. Reports are usually triggered at the start and end of work that
-> is measured.
-> 
-> Since OA buffer is large and queries can be frequent, an efficient way
-> to look for triggered reports is required. By knowing the current head
-> and tail offsets into the OA buffer, it is easier to determine the
-> locality of the reports of interest.
-> 
-> Current perf OA interface does not expose head/tail information to the
-> user and it filters out invalid reports before sending data to user.
-> Also considering limited size of user buffer used during a query,
-> creating a 1:1 copy of the OA buffer at the user space added undesired
-> complexity.
-> 
-> The solution was to map the OA buffer to user space provided
-> 
-> (1) that it is accessed from a privileged user.
-> (2) OA report filtering is not used.
-> 
-> These 2 conditions would satisfy the safety criteria that the current
-> perf interface addresses.
-> 
-> To enable the query:
-> - Add an ioctl to expose head and tail to the user
-> - Add an ioctl to return size and offset of the OA buffer
-> - Map the OA buffer to the user space
-> 
-> v2:
-> - Improve commit message (Chris)
-> - Do not mmap based on gem object filp. Instead, use perf_fd and support
->   mmap syscall (Chris)
-> - Pass non-zero offset in mmap to enforce the right object is
->   mapped (Chris)
-> - Do not expose gpu_address (Chris)
-> - Verify start and length of vma for page alignment (Lionel)
-> - Move SQNTL config out (Lionel)
-> 
-> v3: (Chris)
-> - Omit redundant checks
-> - Return VM_FAULT_SIGBUS is old stream is closed
-> - Maintain reference counts to stream in vm_open and vm_close
-> - Use switch to identify object to be mapped
-> 
-> v4: Call kref_put on closing perf fd (Chris)
-> v5:
-> - Strip access to OA buffer from unprivileged child of a privileged
->   parent. Use VM_DONTCOPY
-> - Enforce MAP_PRIVATE by checking for VM_MAYSHARE
-> 
-> v6:
-> (Chris)
-> - Use len of -1 in unmap_mapping_range
-> - Don't use stream->oa_buffer.vma->obj in vm_fault_oa
-> - Use kernel block comment style
-> - do_mmap gets a reference to the file and puts it in do_munmap, so
->   no need to maintain a reference to i915_perf_stream. Hence, remove
->   vm_open/vm_close and stream->closed hooks/checks.
-> (Umesh)
-> - Do not allow mmap if SAMPLE_OA_REPORT is not set during
->   i915_perf_open_ioctl.
-> - Drop ioctl returning head/tail since this information is already
->   whitelisted. Remove hooks to read head register.
-> 
-> v7: (Chris)
-> - unmap before destroy
-> - change ioctl argument struct
-> 
-> v8: Documentation and more checks (Chris)
-> 
-> Signed-off-by: Piotr Maciejewski <piotr.maciejewski@intel.com>
-> Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
-> Reviewed-by: Chris Wilson <chris@chris-wilson.co.uk>
-> ---
->  drivers/gpu/drm/i915/gem/i915_gem_mman.c |   2 +-
->  drivers/gpu/drm/i915/gem/i915_gem_mman.h |   2 +
->  drivers/gpu/drm/i915/i915_perf.c         | 126 ++++++++++++++++++++++-
->  include/uapi/drm/i915_drm.h              |  33 ++++++
->  4 files changed, 161 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_mman.c b/drivers/gpu/drm/i915/gem/i915_gem_mman.c
-> index 3d69e51f3e4d..2ab08b152b9d 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_mman.c
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_mman.c
-> @@ -204,7 +204,7 @@ compute_partial_view(const struct drm_i915_gem_object *obj,
->         return view;
->  }
->  
-> -static vm_fault_t i915_error_to_vmf_fault(int err)
-> +vm_fault_t i915_error_to_vmf_fault(int err)
->  {
->         switch (err) {
->         default:
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_mman.h b/drivers/gpu/drm/i915/gem/i915_gem_mman.h
-> index efee9e0d2508..1190a3a228ea 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_mman.h
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_mman.h
-> @@ -29,4 +29,6 @@ void i915_gem_object_release_mmap_gtt(struct drm_i915_gem_object *obj);
->  
->  void i915_gem_object_release_mmap_offset(struct drm_i915_gem_object *obj);
->  
-> +vm_fault_t i915_error_to_vmf_fault(int err);
-> +
->  #endif
-> diff --git a/drivers/gpu/drm/i915/i915_perf.c b/drivers/gpu/drm/i915/i915_perf.c
-> index c91f2da84189..6fd669b520d8 100644
-> --- a/drivers/gpu/drm/i915/i915_perf.c
-> +++ b/drivers/gpu/drm/i915/i915_perf.c
-> @@ -192,10 +192,12 @@
->   */
->  
->  #include <linux/anon_inodes.h>
-> +#include <linux/mman.h>
->  #include <linux/sizes.h>
->  #include <linux/uuid.h>
->  
->  #include "gem/i915_gem_context.h"
-> +#include "gem/i915_gem_mman.h"
->  #include "gt/intel_engine_pm.h"
->  #include "gt/intel_engine_user.h"
->  #include "gt/intel_gt.h"
-> @@ -3291,6 +3293,44 @@ static long i915_perf_config_locked(struct i915_perf_stream *stream,
->         return ret;
->  }
->  
-> +#define I915_PERF_OA_BUFFER_MMAP_OFFSET 1
-> +
-> +/**
-> + * i915_perf_oa_buffer_info_locked - size and offset of the OA buffer
-> + * @stream: i915 perf stream
-> + * @cmd: ioctl command
-> + * @arg: pointer to oa buffer info filled by this function.
-> + */
-> +static int i915_perf_oa_buffer_info_locked(struct i915_perf_stream *stream,
-> +                                          unsigned int cmd,
-> +                                          unsigned long arg)
-> +{
-> +       struct drm_i915_perf_oa_buffer_info info;
-> +       void __user *output = (void __user *)arg;
-> +
-> +       if (i915_perf_stream_paranoid && !perfmon_capable()) {
-> +               DRM_DEBUG("Insufficient privileges to access OA buffer info\n");
-> +               return -EACCES;
-> +       }
-> +
-> +       if (_IOC_SIZE(cmd) != sizeof(info))
-> +               return -EINVAL;
-> +
-> +       if (copy_from_user(&info, output, sizeof(info)))
-> +               return -EFAULT;
-> +
-> +       if (info.type || info.flags || info.rsvd)
-> +               return -EINVAL;
-> +
-> +       info.size = stream->oa_buffer.vma->size;
-> +       info.offset = I915_PERF_OA_BUFFER_MMAP_OFFSET * PAGE_SIZE;
-> +
-> +       if (copy_to_user(output, &info, sizeof(info)))
-> +               return -EFAULT;
-> +
-> +       return 0;
-> +}
-> +
->  /**
->   * i915_perf_ioctl_locked - support ioctl() usage with i915 perf stream FDs
->   * @stream: An i915 perf stream
-> @@ -3316,6 +3356,8 @@ static long i915_perf_ioctl_locked(struct i915_perf_stream *stream,
->                 return 0;
->         case I915_PERF_IOCTL_CONFIG:
->                 return i915_perf_config_locked(stream, arg);
-> +       case I915_PERF_IOCTL_GET_OA_BUFFER_INFO:
-> +               return i915_perf_oa_buffer_info_locked(stream, cmd, arg);
->         }
->  
->         return -EINVAL;
-> @@ -3387,6 +3429,14 @@ static int i915_perf_release(struct inode *inode, struct file *file)
->         struct i915_perf_stream *stream = file->private_data;
->         struct i915_perf *perf = stream->perf;
->  
-> +       /*
-> +        * User could have multiple vmas from multiple mmaps. We want to zap
-> +        * them all here. Note that a fresh fault cannot occur as the mmap holds
-> +        * a reference to the stream via the vma->vm_file, so before user's
-> +        * munmap, the stream cannot be destroyed.
-> +        */
-> +       unmap_mapping_range(file->f_mapping, 0, -1, 1);
-> +
->         mutex_lock(&perf->lock);
->         i915_perf_destroy_locked(stream);
->         mutex_unlock(&perf->lock);
-> @@ -3397,6 +3447,75 @@ static int i915_perf_release(struct inode *inode, struct file *file)
->         return 0;
->  }
->  
-> +static vm_fault_t vm_fault_oa(struct vm_fault *vmf)
-> +{
-> +       struct vm_area_struct *vma = vmf->vma;
-> +       struct i915_perf_stream *stream = vma->vm_private_data;
-> +       int err;
-> +
-> +       err = remap_io_sg(vma,
-> +                         vma->vm_start, vma->vm_end - vma->vm_start,
-> +                         stream->oa_buffer.vma->pages->sgl, -1);
-> +
-> +       return i915_error_to_vmf_fault(err);
-> +}
-> +
-> +static const struct vm_operations_struct vm_ops_oa = {
-> +       .fault = vm_fault_oa,
-> +};
-> +
-> +static int i915_perf_mmap(struct file *file, struct vm_area_struct *vma)
-> +{
-> +       struct i915_perf_stream *stream = file->private_data;
-> +
-> +       /* mmap-ing OA buffer to user space MUST absolutely be privileged */
-> +       if (i915_perf_stream_paranoid && !perfmon_capable()) {
-> +               DRM_DEBUG("Insufficient privileges to map OA buffer\n");
-> +               return -EACCES;
-> +       }
-> +
-> +       switch (vma->vm_pgoff) {
-> +       /*
-> +        * A non-zero offset ensures that we are mapping the right object. Also
-> +        * leaves room for future objects added to this implementation.
-> +        */
-> +       case I915_PERF_OA_BUFFER_MMAP_OFFSET:
-> +               if (!(stream->sample_flags & SAMPLE_OA_REPORT))
-> +                       return -EINVAL;
-> +
-> +               if (vma->vm_end - vma->vm_start > OA_BUFFER_SIZE)
-> +                       return -EINVAL;
-> +
-> +               /*
-> +                * Only support VM_READ. Enforce MAP_PRIVATE by checking for
-> +                * VM_MAYSHARE.
-> +                */
-> +               if (vma->vm_flags & (VM_WRITE | VM_EXEC |
-> +                                    VM_SHARED | VM_MAYSHARE))
-> +                       return -EINVAL;
-> +
-> +               vma->vm_flags &= ~(VM_MAYWRITE | VM_MAYEXEC);
-> +
-> +               /*
-> +                * If the privileged parent forks and child drops root
-> +                * privilege, we do not want the child to retain access to the
-> +                * mapped OA buffer. Explicitly set VM_DONTCOPY to avoid such
-> +                * cases.
-> +                */
-> +               vma->vm_flags |= VM_PFNMAP | VM_DONTEXPAND |
-> +                                VM_DONTDUMP | VM_DONTCOPY;
-> +               break;
-> +
-> +       default:
-> +               return -EINVAL;
-> +       }
-> +
-> +       vma->vm_page_prot = vm_get_page_prot(vma->vm_flags);
-> +       vma->vm_private_data = stream;
-> +       vma->vm_ops = &vm_ops_oa;
-> +
-> +       return 0;
-> +}
->  
->  static const struct file_operations fops = {
->         .owner          = THIS_MODULE,
-> @@ -3409,6 +3528,7 @@ static const struct file_operations fops = {
->          * to handle 32bits compatibility.
->          */
->         .compat_ioctl   = i915_perf_ioctl,
-> +       .mmap           = i915_perf_mmap,
->  };
->  
->  
-> @@ -4559,8 +4679,12 @@ int i915_perf_ioctl_version(void)
->          *
->          *    - OA buffer head/tail/status/buffer registers for read only
->          *    - OA counters A18, A19, A20 for read/write
-> +        *
-> +        * 8: Added an option to map oa buffer at umd driver level and trigger
-> +        *    oa reports within oa buffer from command buffer. See
-> +        *    I915_PERF_IOCTL_GET_OA_BUFFER_INFO.
->          */
-> -       return 7;
-> +       return 8;
->  }
->  
->  #if IS_ENABLED(CONFIG_DRM_I915_SELFTEST)
-> diff --git a/include/uapi/drm/i915_drm.h b/include/uapi/drm/i915_drm.h
-> index fa1f3d62f9a6..cc1702ddc859 100644
-> --- a/include/uapi/drm/i915_drm.h
-> +++ b/include/uapi/drm/i915_drm.h
-> @@ -2101,6 +2101,39 @@ struct drm_i915_perf_open_param {
->   */
->  #define I915_PERF_IOCTL_CONFIG _IO('i', 0x2)
->  
-> +/**
-> + * Returns OA buffer properties to be used with mmap.
-> + *
-> + * This ioctl is available in perf revision 8.
-> + */
-> +#define I915_PERF_IOCTL_GET_OA_BUFFER_INFO _IOWR('i', 0x3, struct drm_i915_perf_oa_buffer_info)
-> +
-> +/**
-> + * OA buffer size and offset.
-> + *
-> + * OA output buffer
-> + *   type: 0
-> + *   flags: mbz
-> + *
-> + *   After querying the info, pass (size,offset) to mmap(),
-> + *
-> + *   mmap(0, info.size, PROT_READ, MAP_PRIVATE, perf_fd, info.offset).
-> + *
-> + *   Note that only a private (not shared between processes, or across fork())
-> + *   read-only mmapping is allowed.
-> + *
-> + *   Userspace must treat the incoming data as tainted, but it conforms to the OA
-> + *   format as specified by user config. The buffer provides reports that have
-> + *   OA counters - A, B and C.
-> + */
-> +struct drm_i915_perf_oa_buffer_info {
-> +       __u32 type;   /* in */
-> +       __u32 flags;  /* in */
-> +       __u64 size;   /* out */
-> +       __u64 offset; /* out */
-> +       __u64 rsvd;   /* mbz */
-> +};
-> +
->  /**
->   * Common to all i915 perf records
->   */
-> -- 
-> 2.20.1
-> 
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+-:382: WARNING:LONG_LINE: line length of 102 exceeds 100 columns
+#382: FILE: drivers/gpu/drm/i915/i915_debugfs.c:880:
++		rpcurup = intel_uncore_read(&dev_priv->uncore, GEN6_RP_CUR_UP) & GEN6_CURBSYTAVG_MASK;
+
+-:383: WARNING:LONG_LINE: line length of 104 exceeds 100 columns
+#383: FILE: drivers/gpu/drm/i915/i915_debugfs.c:881:
++		rpprevup = intel_uncore_read(&dev_priv->uncore, GEN6_RP_PREV_UP) & GEN6_CURBSYTAVG_MASK;
+
+-:384: WARNING:LONG_LINE: line length of 105 exceeds 100 columns
+#384: FILE: drivers/gpu/drm/i915/i915_debugfs.c:882:
++		rpdownei = intel_uncore_read(&dev_priv->uncore, GEN6_RP_CUR_DOWN_EI) & GEN6_CURIAVG_MASK;
+
+-:385: WARNING:LONG_LINE: line length of 106 exceeds 100 columns
+#385: FILE: drivers/gpu/drm/i915/i915_debugfs.c:883:
++		rpcurdown = intel_uncore_read(&dev_priv->uncore, GEN6_RP_CUR_DOWN) & GEN6_CURBSYTAVG_MASK;
+
+-:386: WARNING:LONG_LINE: line length of 108 exceeds 100 columns
+#386: FILE: drivers/gpu/drm/i915/i915_debugfs.c:884:
++		rpprevdown = intel_uncore_read(&dev_priv->uncore, GEN6_RP_PREV_DOWN) & GEN6_CURBSYTAVG_MASK;
+
+-:394: WARNING:LONG_LINE: line length of 103 exceeds 100 columns
+#394: FILE: drivers/gpu/drm/i915/i915_debugfs.c:890:
++			pm_ier = intel_uncore_read(&dev_priv->uncore, GEN11_GPM_WGBOXPERF_INTR_ENABLE);
+
+-:395: WARNING:LONG_LINE: line length of 101 exceeds 100 columns
+#395: FILE: drivers/gpu/drm/i915/i915_debugfs.c:891:
++			pm_imr = intel_uncore_read(&dev_priv->uncore, GEN11_GPM_WGBOXPERF_INTR_MASK);
+
+total: 0 errors, 8 warnings, 0 checks, 397 lines checked
+3e4c818848a6 drm/i915/suspend: replace I915_READ()/WRITE() with intel_de_read()/write()
+-:30: CHECK:CAMELCASE: Avoid CamelCase: <saveSWF0>
+#30: FILE: drivers/gpu/drm/i915/i915_suspend.c:43:
++			dev_priv->regfile.saveSWF0[i] = intel_de_read(dev_priv, SWF0(i));
+
+-:31: CHECK:CAMELCASE: Avoid CamelCase: <saveSWF1>
+#31: FILE: drivers/gpu/drm/i915/i915_suspend.c:44:
++			dev_priv->regfile.saveSWF1[i] = intel_de_read(dev_priv, SWF1(i));
+
+-:35: CHECK:CAMELCASE: Avoid CamelCase: <saveSWF3>
+#35: FILE: drivers/gpu/drm/i915/i915_suspend.c:47:
++			dev_priv->regfile.saveSWF3[i] = intel_de_read(dev_priv, SWF3(i));
+
+-:87: CHECK:CAMELCASE: Avoid CamelCase: <saveDSPARB>
+#87: FILE: drivers/gpu/drm/i915/i915_suspend.c:92:
++		dev_priv->regfile.saveDSPARB = intel_de_read(dev_priv, DSPARB);
+
+total: 0 errors, 0 warnings, 4 checks, 79 lines checked
+23ca221bb2db drm/i915/pm: replace I915_READ()/WRITE() with intel_uncore_read()/write()
+-:26: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#26: FILE: drivers/gpu/drm/i915/intel_pm.c:86:
++		intel_uncore_write(&dev_priv->uncore, CHICKEN_PAR1_1,
++			   intel_uncore_read(&dev_priv->uncore, CHICKEN_PAR1_1) |
+
+-:34: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#34: FILE: drivers/gpu/drm/i915/intel_pm.c:92:
++	intel_uncore_write(&dev_priv->uncore, CHICKEN_PAR1_1,
++		   intel_uncore_read(&dev_priv->uncore, CHICKEN_PAR1_1) | SKL_EDP_PSR_FIX_RDWRAP);
+
+-:40: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#40: FILE: drivers/gpu/drm/i915/intel_pm.c:96:
++	intel_uncore_write(&dev_priv->uncore, GEN8_CHICKEN_DCPR_1,
++		   intel_uncore_read(&dev_priv->uncore, GEN8_CHICKEN_DCPR_1) | MASK_WAKEMEM);
+
+-:47: WARNING:LONG_LINE: line length of 112 exceeds 100 columns
+#47: FILE: drivers/gpu/drm/i915/intel_pm.c:102:
++	intel_uncore_write(&dev_priv->uncore, DISP_ARB_CTL, intel_uncore_read(&dev_priv->uncore, DISP_ARB_CTL) |
+
+-:56: WARNING:LONG_LINE: line length of 112 exceeds 100 columns
+#56: FILE: drivers/gpu/drm/i915/intel_pm.c:111:
++	intel_uncore_write(&dev_priv->uncore, GEN8_UCGCTL6, intel_uncore_read(&dev_priv->uncore, GEN8_UCGCTL6) |
+
+-:64: WARNING:LONG_LINE: line length of 112 exceeds 100 columns
+#64: FILE: drivers/gpu/drm/i915/intel_pm.c:118:
++	intel_uncore_write(&dev_priv->uncore, GEN8_UCGCTL6, intel_uncore_read(&dev_priv->uncore, GEN8_UCGCTL6) |
+
+-:72: WARNING:LONG_LINE: line length of 124 exceeds 100 columns
+#72: FILE: drivers/gpu/drm/i915/intel_pm.c:125:
++	intel_uncore_write(&dev_priv->uncore, GEN9_CLKGATE_DIS_0, intel_uncore_read(&dev_priv->uncore, GEN9_CLKGATE_DIS_0) |
+
+-:88: WARNING:LONG_LINE: line length of 112 exceeds 100 columns
+#88: FILE: drivers/gpu/drm/i915/intel_pm.c:140:
++	intel_uncore_write(&dev_priv->uncore, DISP_ARB_CTL, intel_uncore_read(&dev_priv->uncore, DISP_ARB_CTL) |
+
+-:96: WARNING:LONG_LINE: line length of 120 exceeds 100 columns
+#96: FILE: drivers/gpu/drm/i915/intel_pm.c:147:
++	intel_uncore_write(&dev_priv->uncore, ILK_DPFC_CHICKEN, intel_uncore_read(&dev_priv->uncore, ILK_DPFC_CHICKEN) |
+
+-:105: WARNING:LONG_LINE: line length of 124 exceeds 100 columns
+#105: FILE: drivers/gpu/drm/i915/intel_pm.c:160:
++	intel_uncore_write(&dev_priv->uncore, GEN9_CLKGATE_DIS_0, intel_uncore_read(&dev_priv->uncore, GEN9_CLKGATE_DIS_0) |
+
+-:289: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#289: FILE: drivers/gpu/drm/i915/intel_pm.c:980:
++	intel_uncore_write(&dev_priv->uncore, DSPFW1,
+ 		   FW_WM(wm->sr.plane, SR) |
+
+-:295: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#295: FILE: drivers/gpu/drm/i915/intel_pm.c:985:
++	intel_uncore_write(&dev_priv->uncore, DSPFW2,
+ 		   (wm->fbc_en ? DSPFW_FBC_SR_EN : 0) |
+
+-:303: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#303: FILE: drivers/gpu/drm/i915/intel_pm.c:992:
++	intel_uncore_write(&dev_priv->uncore, DSPFW3,
+ 		   (wm->hpll_en ? DSPFW_HPLL_SR_EN : 0) |
+
+-:319: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#319: FILE: drivers/gpu/drm/i915/intel_pm.c:1012:
++		intel_uncore_write(&dev_priv->uncore, VLV_DDL(pipe),
+ 			   (wm->ddl[pipe].plane[PLANE_CURSOR] << DDL_CURSOR_SHIFT) |
+
+-:339: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#339: FILE: drivers/gpu/drm/i915/intel_pm.c:1030:
++	intel_uncore_write(&dev_priv->uncore, DSPFW1,
+ 		   FW_WM(wm->sr.plane, SR) |
+
+-:345: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#345: FILE: drivers/gpu/drm/i915/intel_pm.c:1035:
++	intel_uncore_write(&dev_priv->uncore, DSPFW2,
+ 		   FW_WM_VLV(wm->pipe[PIPE_A].plane[PLANE_SPRITE1], SPRITEB) |
+
+-:350: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#350: FILE: drivers/gpu/drm/i915/intel_pm.c:1039:
++	intel_uncore_write(&dev_priv->uncore, DSPFW3,
+ 		   FW_WM(wm->sr.cursor, CURSOR_SR));
+
+-:355: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#355: FILE: drivers/gpu/drm/i915/intel_pm.c:1043:
++		intel_uncore_write(&dev_priv->uncore, DSPFW7_CHV,
+ 			   FW_WM_VLV(wm->pipe[PIPE_B].plane[PLANE_SPRITE1], SPRITED) |
+
+-:359: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#359: FILE: drivers/gpu/drm/i915/intel_pm.c:1046:
++		intel_uncore_write(&dev_priv->uncore, DSPFW8_CHV,
+ 			   FW_WM_VLV(wm->pipe[PIPE_C].plane[PLANE_SPRITE1], SPRITEF) |
+
+-:363: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#363: FILE: drivers/gpu/drm/i915/intel_pm.c:1049:
++		intel_uncore_write(&dev_priv->uncore, DSPFW9_CHV,
+ 			   FW_WM_VLV(wm->pipe[PIPE_C].plane[PLANE_PRIMARY], PLANEC) |
+
+-:367: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#367: FILE: drivers/gpu/drm/i915/intel_pm.c:1052:
++		intel_uncore_write(&dev_priv->uncore, DSPHOWM,
+ 			   FW_WM(wm->sr.plane >> 9, SR_HI) |
+
+-:376: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#376: FILE: drivers/gpu/drm/i915/intel_pm.c:1064:
++		intel_uncore_write(&dev_priv->uncore, DSPFW7,
+ 			   FW_WM_VLV(wm->pipe[PIPE_B].plane[PLANE_SPRITE1], SPRITED) |
+
+-:380: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#380: FILE: drivers/gpu/drm/i915/intel_pm.c:1067:
++		intel_uncore_write(&dev_priv->uncore, DSPHOWM,
+ 			   FW_WM(wm->sr.plane >> 9, SR_HI) |
+
+-:416: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#416: FILE: drivers/gpu/drm/i915/intel_pm.c:2451:
++			intel_uncore_write(&dev_priv->uncore, FW_BLC_SELF,
+ 				   FW_BLC_SELF_FIFO_MASK | (srwm & 0xff));
+
+-:587: WARNING:LONG_LINE: line length of 108 exceeds 100 columns
+#587: FILE: drivers/gpu/drm/i915/intel_pm.c:6234:
++				val = intel_uncore_read(&dev_priv->uncore, PLANE_WM(pipe, plane_id, level));
+
+-:730: WARNING:LONG_LINE: line length of 124 exceeds 100 columns
+#730: FILE: drivers/gpu/drm/i915/intel_pm.c:6722:
++	intel_uncore_write(&dev_priv->uncore, WM3_LP_ILK, intel_uncore_read(&dev_priv->uncore, WM3_LP_ILK) & ~WM1_LP_SR_EN);
+
+-:731: WARNING:LONG_LINE: line length of 124 exceeds 100 columns
+#731: FILE: drivers/gpu/drm/i915/intel_pm.c:6723:
++	intel_uncore_write(&dev_priv->uncore, WM2_LP_ILK, intel_uncore_read(&dev_priv->uncore, WM2_LP_ILK) & ~WM1_LP_SR_EN);
+
+-:732: WARNING:LONG_LINE: line length of 124 exceeds 100 columns
+#732: FILE: drivers/gpu/drm/i915/intel_pm.c:6724:
++	intel_uncore_write(&dev_priv->uncore, WM1_LP_ILK, intel_uncore_read(&dev_priv->uncore, WM1_LP_ILK) & ~WM1_LP_SR_EN);
+
+-:758: WARNING:LONG_LINE: line length of 113 exceeds 100 columns
+#758: FILE: drivers/gpu/drm/i915/intel_pm.c:6753:
++		hw->partitioning = (intel_uncore_read(&dev_priv->uncore, WM_MISC) & WM_MISC_DATA_PARTITION_5_6) ?
+
+-:762: WARNING:LONG_LINE: line length of 116 exceeds 100 columns
+#762: FILE: drivers/gpu/drm/i915/intel_pm.c:6756:
++		hw->partitioning = (intel_uncore_read(&dev_priv->uncore, DISP_ARB_CTL2) & DISP_DATA_PARTITION_5_6) ?
+
+-:804: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#804: FILE: drivers/gpu/drm/i915/intel_pm.c:6862:
++		intel_uncore_write(&dev_priv->uncore, DSPCNTR(pipe),
++			   intel_uncore_read(&dev_priv->uncore, DSPCNTR(pipe)) |
+
+-:809: WARNING:LONG_LINE: line length of 122 exceeds 100 columns
+#809: FILE: drivers/gpu/drm/i915/intel_pm.c:6865:
++		intel_uncore_write(&dev_priv->uncore, DSPSURF(pipe), intel_uncore_read(&dev_priv->uncore, DSPSURF(pipe)));
+
+-:820: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#820: FILE: drivers/gpu/drm/i915/intel_pm.c:6883:
++	intel_uncore_write(&dev_priv->uncore, PCH_3DCGDIS0,
+ 		   MARIUNIT_CLOCK_GATE_DISABLE |
+
+-:824: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#824: FILE: drivers/gpu/drm/i915/intel_pm.c:6886:
++	intel_uncore_write(&dev_priv->uncore, PCH_3DCGDIS1,
+ 		   VFMUNIT_CLOCK_GATE_DISABLE);
+
+-:834: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#834: FILE: drivers/gpu/drm/i915/intel_pm.c:6896:
++	intel_uncore_write(&dev_priv->uncore, ILK_DISPLAY_CHICKEN2,
++		   (intel_uncore_read(&dev_priv->uncore, ILK_DISPLAY_CHICKEN2) |
+
+-:840: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#840: FILE: drivers/gpu/drm/i915/intel_pm.c:6900:
++	intel_uncore_write(&dev_priv->uncore, DISP_ARB_CTL,
++		   (intel_uncore_read(&dev_priv->uncore, DISP_ARB_CTL) |
+
+-:851: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#851: FILE: drivers/gpu/drm/i915/intel_pm.c:6913:
++		intel_uncore_write(&dev_priv->uncore, ILK_DISPLAY_CHICKEN1,
++			   intel_uncore_read(&dev_priv->uncore, ILK_DISPLAY_CHICKEN1) |
+
+-:856: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#856: FILE: drivers/gpu/drm/i915/intel_pm.c:6916:
++		intel_uncore_write(&dev_priv->uncore, ILK_DISPLAY_CHICKEN2,
++			   intel_uncore_read(&dev_priv->uncore, ILK_DISPLAY_CHICKEN2) |
+
+-:866: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#866: FILE: drivers/gpu/drm/i915/intel_pm.c:6923:
++	intel_uncore_write(&dev_priv->uncore, ILK_DISPLAY_CHICKEN2,
++		   intel_uncore_read(&dev_priv->uncore, ILK_DISPLAY_CHICKEN2) |
+
+-:879: WARNING:LONG_LINE: line length of 116 exceeds 100 columns
+#879: FILE: drivers/gpu/drm/i915/intel_pm.c:6944:
++	intel_uncore_write(&dev_priv->uncore, SOUTH_CHICKEN2, intel_uncore_read(&dev_priv->uncore, SOUTH_CHICKEN2) |
+
+-:900: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#900: FILE: drivers/gpu/drm/i915/intel_pm.c:6962:
++		intel_uncore_write(&dev_priv->uncore, TRANS_CHICKEN1(pipe),
+ 			   TRANS_CHICKEN1_DP0UNIT_GC_DISABLE);
+
+-:922: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#922: FILE: drivers/gpu/drm/i915/intel_pm.c:6984:
++	intel_uncore_write(&dev_priv->uncore, ILK_DISPLAY_CHICKEN2,
++		   intel_uncore_read(&dev_priv->uncore, ILK_DISPLAY_CHICKEN2) |
+
+-:928: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#928: FILE: drivers/gpu/drm/i915/intel_pm.c:6988:
++	intel_uncore_write(&dev_priv->uncore, GEN6_UCGCTL1,
++		   intel_uncore_read(&dev_priv->uncore, GEN6_UCGCTL1) |
+
+-:938: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#938: FILE: drivers/gpu/drm/i915/intel_pm.c:7006:
++	intel_uncore_write(&dev_priv->uncore, GEN6_UCGCTL2,
+ 		   GEN6_RCPBUNIT_CLOCK_GATE_DISABLE |
+
+-:948: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#948: FILE: drivers/gpu/drm/i915/intel_pm.c:7021:
++	intel_uncore_write(&dev_priv->uncore, ILK_DISPLAY_CHICKEN1,
++		   intel_uncore_read(&dev_priv->uncore, ILK_DISPLAY_CHICKEN1) |
+
+-:953: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#953: FILE: drivers/gpu/drm/i915/intel_pm.c:7024:
++	intel_uncore_write(&dev_priv->uncore, ILK_DISPLAY_CHICKEN2,
++		   intel_uncore_read(&dev_priv->uncore, ILK_DISPLAY_CHICKEN2) |
+
+-:958: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#958: FILE: drivers/gpu/drm/i915/intel_pm.c:7027:
++	intel_uncore_write(&dev_priv->uncore, ILK_DSPCLK_GATE_D,
++		   intel_uncore_read(&dev_priv->uncore, ILK_DSPCLK_GATE_D) |
+
+-:969: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#969: FILE: drivers/gpu/drm/i915/intel_pm.c:7046:
++		intel_uncore_write(&dev_priv->uncore, SOUTH_DSPCLK_GATE_D,
++			   intel_uncore_read(&dev_priv->uncore, SOUTH_DSPCLK_GATE_D) |
+
+-:976: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#976: FILE: drivers/gpu/drm/i915/intel_pm.c:7051:
++	intel_uncore_write(&dev_priv->uncore, TRANS_CHICKEN1(PIPE_A),
++		   intel_uncore_read(&dev_priv->uncore, TRANS_CHICKEN1(PIPE_A)) |
+
+-:999: WARNING:LONG_LINE: line length of 103 exceeds 100 columns
+#999: FILE: drivers/gpu/drm/i915/intel_pm.c:7074:
++	intel_uncore_write(&dev_priv->uncore, GEN7_MISCCPCTL, misccpctl & ~GEN7_DOP_CLOCK_GATE_ENABLE);
+
+-:1025: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#1025: FILE: drivers/gpu/drm/i915/intel_pm.c:7095:
++	intel_uncore_write(&dev_priv->uncore, ILK_DPFC_CHICKEN,
+ 		   ILK_DPFC_CHICKEN_COMP_DUMMY_PIXEL);
+
+-:1031: WARNING:LONG_LINE: line length of 104 exceeds 100 columns
+#1031: FILE: drivers/gpu/drm/i915/intel_pm.c:7099:
++		   intel_uncore_read(&dev_priv->uncore, GEN10_DFR_RATIO_EN_AND_CHICKEN) & ~DFR_DISABLE);
+
+-:1031: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#1031: FILE: drivers/gpu/drm/i915/intel_pm.c:7099:
++	intel_uncore_write(&dev_priv->uncore, GEN10_DFR_RATIO_EN_AND_CHICKEN,
++		   intel_uncore_read(&dev_priv->uncore, GEN10_DFR_RATIO_EN_AND_CHICKEN) & ~DFR_DISABLE);
+
+-:1041: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#1041: FILE: drivers/gpu/drm/i915/intel_pm.c:7110:
++	intel_uncore_write(&dev_priv->uncore, ILK_DPFC_CHICKEN,
+ 		   ILK_DPFC_CHICKEN_COMP_DUMMY_PIXEL);
+
+-:1046: WARNING:LONG_LINE: line length of 132 exceeds 100 columns
+#1046: FILE: drivers/gpu/drm/i915/intel_pm.c:7114:
++		intel_uncore_write(&dev_priv->uncore, GEN9_CLKGATE_DIS_3, intel_uncore_read(&dev_priv->uncore, GEN9_CLKGATE_DIS_3) |
+
+-:1055: WARNING:LONG_LINE: line length of 132 exceeds 100 columns
+#1055: FILE: drivers/gpu/drm/i915/intel_pm.c:7126:
++		intel_uncore_write(&dev_priv->uncore, GEN9_CLKGATE_DIS_3, intel_uncore_read(&dev_priv->uncore, GEN9_CLKGATE_DIS_3) |
+
+-:1064: WARNING:LONG_LINE: line length of 126 exceeds 100 columns
+#1064: FILE: drivers/gpu/drm/i915/intel_pm.c:7136:
++	intel_uncore_write(&dev_priv->uncore, SOUTH_DSPCLK_GATE_D, intel_uncore_read(&dev_priv->uncore, SOUTH_DSPCLK_GATE_D) |
+
+-:1074: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#1074: FILE: drivers/gpu/drm/i915/intel_pm.c:7147:
++	intel_uncore_write(&dev_priv->uncore, _3D_CHICKEN3,
+ 		   _MASKED_BIT_ENABLE(_3D_CHICKEN3_AA_LINE_QUALITY_FIX_ENABLE));
+
+-:1080: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#1080: FILE: drivers/gpu/drm/i915/intel_pm.c:7151:
++	intel_uncore_write(&dev_priv->uncore, GEN8_CHICKEN_DCPR_1,
++		   intel_uncore_read(&dev_priv->uncore, GEN8_CHICKEN_DCPR_1) | MASK_WAKEMEM);
+
+-:1087: WARNING:LONG_LINE: line length of 112 exceeds 100 columns
+#1087: FILE: drivers/gpu/drm/i915/intel_pm.c:7157:
++	intel_uncore_write(&dev_priv->uncore, DISP_ARB_CTL, intel_uncore_read(&dev_priv->uncore, DISP_ARB_CTL) |
+
+-:1119: WARNING:LONG_LINE: line length of 122 exceeds 100 columns
+#1119: FILE: drivers/gpu/drm/i915/intel_pm.c:7183:
++	intel_uncore_write(&dev_priv->uncore, FBC_LLC_READ_CTRL, intel_uncore_read(&dev_priv->uncore, FBC_LLC_READ_CTRL) |
+
+-:1127: WARNING:LONG_LINE: line length of 112 exceeds 100 columns
+#1127: FILE: drivers/gpu/drm/i915/intel_pm.c:7190:
++	intel_uncore_write(&dev_priv->uncore, DISP_ARB_CTL, intel_uncore_read(&dev_priv->uncore, DISP_ARB_CTL) |
+
+-:1135: WARNING:LONG_LINE: line length of 120 exceeds 100 columns
+#1135: FILE: drivers/gpu/drm/i915/intel_pm.c:7197:
++	intel_uncore_write(&dev_priv->uncore, ILK_DPFC_CHICKEN, intel_uncore_read(&dev_priv->uncore, ILK_DPFC_CHICKEN) |
+
+-:1144: WARNING:LONG_LINE: line length of 122 exceeds 100 columns
+#1144: FILE: drivers/gpu/drm/i915/intel_pm.c:7206:
++	intel_uncore_write(&dev_priv->uncore, FBC_LLC_READ_CTRL, intel_uncore_read(&dev_priv->uncore, FBC_LLC_READ_CTRL) |
+
+-:1150: WARNING:LONG_LINE: line length of 120 exceeds 100 columns
+#1150: FILE: drivers/gpu/drm/i915/intel_pm.c:7211:
++		intel_uncore_write(&dev_priv->uncore, GEN8_UCGCTL6, intel_uncore_read(&dev_priv->uncore, GEN8_UCGCTL6) |
+
+-:1156: WARNING:LONG_LINE: line length of 120 exceeds 100 columns
+#1156: FILE: drivers/gpu/drm/i915/intel_pm.c:7216:
++		intel_uncore_write(&dev_priv->uncore, GEN6_UCGCTL1, intel_uncore_read(&dev_priv->uncore, GEN6_UCGCTL1) |
+
+-:1164: WARNING:LONG_LINE: line length of 112 exceeds 100 columns
+#1164: FILE: drivers/gpu/drm/i915/intel_pm.c:7223:
++	intel_uncore_write(&dev_priv->uncore, DISP_ARB_CTL, intel_uncore_read(&dev_priv->uncore, DISP_ARB_CTL) |
+
+-:1172: WARNING:LONG_LINE: line length of 120 exceeds 100 columns
+#1172: FILE: drivers/gpu/drm/i915/intel_pm.c:7230:
++	intel_uncore_write(&dev_priv->uncore, ILK_DPFC_CHICKEN, intel_uncore_read(&dev_priv->uncore, ILK_DPFC_CHICKEN) |
+
+-:1181: WARNING:LONG_LINE: line length of 116 exceeds 100 columns
+#1181: FILE: drivers/gpu/drm/i915/intel_pm.c:7239:
++	intel_uncore_write(&dev_priv->uncore, GEN7_MISCCPCTL, intel_uncore_read(&dev_priv->uncore, GEN7_MISCCPCTL) &
+
+-:1186: WARNING:LONG_LINE: line length of 122 exceeds 100 columns
+#1186: FILE: drivers/gpu/drm/i915/intel_pm.c:7243:
++	intel_uncore_write(&dev_priv->uncore, FBC_LLC_READ_CTRL, intel_uncore_read(&dev_priv->uncore, FBC_LLC_READ_CTRL) |
+
+-:1194: WARNING:LONG_LINE: line length of 112 exceeds 100 columns
+#1194: FILE: drivers/gpu/drm/i915/intel_pm.c:7250:
++	intel_uncore_write(&dev_priv->uncore, DISP_ARB_CTL, intel_uncore_read(&dev_priv->uncore, DISP_ARB_CTL) |
+
+-:1202: WARNING:LONG_LINE: line length of 120 exceeds 100 columns
+#1202: FILE: drivers/gpu/drm/i915/intel_pm.c:7257:
++	intel_uncore_write(&dev_priv->uncore, ILK_DPFC_CHICKEN, intel_uncore_read(&dev_priv->uncore, ILK_DPFC_CHICKEN) |
+
+-:1210: WARNING:LONG_LINE: line length of 120 exceeds 100 columns
+#1210: FILE: drivers/gpu/drm/i915/intel_pm.c:7264:
++	intel_uncore_write(&dev_priv->uncore, ILK_DPFC_CHICKEN, intel_uncore_read(&dev_priv->uncore, ILK_DPFC_CHICKEN) |
+
+-:1221: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#1221: FILE: drivers/gpu/drm/i915/intel_pm.c:7274:
++	intel_uncore_write(&dev_priv->uncore, CHICKEN_PIPESL_1(PIPE_A),
++		   intel_uncore_read(&dev_priv->uncore, CHICKEN_PIPESL_1(PIPE_A)) |
+
+-:1226: WARNING:LONG_LINE: line length of 134 exceeds 100 columns
+#1226: FILE: drivers/gpu/drm/i915/intel_pm.c:7278:
++	intel_uncore_write(&dev_priv->uncore, GAM_ECOCHK, intel_uncore_read(&dev_priv->uncore, GAM_ECOCHK) | HSW_ECOCHK_ARB_PRIO_SOL);
+
+-:1232: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#1232: FILE: drivers/gpu/drm/i915/intel_pm.c:7282:
++	intel_uncore_write(&dev_priv->uncore, CHICKEN_PAR1_1,
++		   intel_uncore_read(&dev_priv->uncore, CHICKEN_PAR1_1) | DPA_MASK_VBLANK_SRD);
+
+-:1239: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#1239: FILE: drivers/gpu/drm/i915/intel_pm.c:7287:
++		intel_uncore_write(&dev_priv->uncore, CHICKEN_PIPESL_1(pipe),
++			   intel_uncore_read(&dev_priv->uncore, CHICKEN_PIPESL_1(pipe)) |
+
+-:1248: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#1248: FILE: drivers/gpu/drm/i915/intel_pm.c:7294:
++	intel_uncore_write(&dev_priv->uncore, GEN7_FF_THREAD_MODE,
++		   intel_uncore_read(&dev_priv->uncore, GEN7_FF_THREAD_MODE) &
+
+-:1253: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#1253: FILE: drivers/gpu/drm/i915/intel_pm.c:7298:
++	intel_uncore_write(&dev_priv->uncore, GEN6_RC_SLEEP_PSMI_CONTROL,
+ 		   _MASKED_BIT_ENABLE(GEN8_RC_SEMA_IDLE_MSG_DISABLE));
+
+-:1257: WARNING:LONG_LINE: line length of 112 exceeds 100 columns
+#1257: FILE: drivers/gpu/drm/i915/intel_pm.c:7301:
++	intel_uncore_write(&dev_priv->uncore, GEN8_UCGCTL6, intel_uncore_read(&dev_priv->uncore, GEN8_UCGCTL6) |
+
+-:1265: WARNING:LONG_LINE: line length of 114 exceeds 100 columns
+#1265: FILE: drivers/gpu/drm/i915/intel_pm.c:7308:
++	intel_uncore_write(&dev_priv->uncore, CHICKEN_PAR2_1, intel_uncore_read(&dev_priv->uncore, CHICKEN_PAR2_1)
+
+-:1276: WARNING:LONG_LINE: line length of 107 exceeds 100 columns
+#1276: FILE: drivers/gpu/drm/i915/intel_pm.c:7319:
++		   intel_uncore_read(&dev_priv->uncore, GEN6_UCGCTL1) | GEN6_EU_TCUNIT_CLOCK_GATE_DISABLE);
+
+-:1276: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#1276: FILE: drivers/gpu/drm/i915/intel_pm.c:7319:
++	intel_uncore_write(&dev_priv->uncore, GEN6_UCGCTL1,
++		   intel_uncore_read(&dev_priv->uncore, GEN6_UCGCTL1) | GEN6_EU_TCUNIT_CLOCK_GATE_DISABLE);
+
+-:1285: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#1285: FILE: drivers/gpu/drm/i915/intel_pm.c:7326:
++	intel_uncore_write(&dev_priv->uncore, CHICKEN_PIPESL_1(PIPE_A),
++		   intel_uncore_read(&dev_priv->uncore, CHICKEN_PIPESL_1(PIPE_A)) |
+
+-:1292: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#1292: FILE: drivers/gpu/drm/i915/intel_pm.c:7331:
++	intel_uncore_write(&dev_priv->uncore, GEN7_SQ_CHICKEN_MBCUNIT_CONFIG,
++		   intel_uncore_read(&dev_priv->uncore, GEN7_SQ_CHICKEN_MBCUNIT_CONFIG) |
+
+-:1297: WARNING:LONG_LINE: line length of 134 exceeds 100 columns
+#1297: FILE: drivers/gpu/drm/i915/intel_pm.c:7335:
++	intel_uncore_write(&dev_priv->uncore, GAM_ECOCHK, intel_uncore_read(&dev_priv->uncore, GAM_ECOCHK) | HSW_ECOCHK_ARB_PRIO_SOL);
+
+-:1312: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#1312: FILE: drivers/gpu/drm/i915/intel_pm.c:7348:
++	intel_uncore_write(&dev_priv->uncore, ILK_DISPLAY_CHICKEN1,
++		   intel_uncore_read(&dev_priv->uncore, ILK_DISPLAY_CHICKEN1) |
+
+-:1318: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#1318: FILE: drivers/gpu/drm/i915/intel_pm.c:7353:
++	intel_uncore_write(&dev_priv->uncore, IVB_CHICKEN3,
+ 		   CHICKEN3_DGMG_REQ_OUT_FIX_DISABLE |
+
+-:1324: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#1324: FILE: drivers/gpu/drm/i915/intel_pm.c:7358:
++		intel_uncore_write(&dev_priv->uncore, GEN7_ROW_CHICKEN2,
+ 			   _MASKED_BIT_ENABLE(DOP_CLOCK_GATING_DISABLE));
+
+-:1329: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#1329: FILE: drivers/gpu/drm/i915/intel_pm.c:7362:
++		intel_uncore_write(&dev_priv->uncore, GEN7_ROW_CHICKEN2,
+ 			   _MASKED_BIT_ENABLE(DOP_CLOCK_GATING_DISABLE));
+
+-:1332: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#1332: FILE: drivers/gpu/drm/i915/intel_pm.c:7364:
++		intel_uncore_write(&dev_priv->uncore, GEN7_ROW_CHICKEN2_GT2,
+ 			   _MASKED_BIT_ENABLE(DOP_CLOCK_GATING_DISABLE));
+
+-:1341: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#1341: FILE: drivers/gpu/drm/i915/intel_pm.c:7372:
++	intel_uncore_write(&dev_priv->uncore, GEN6_UCGCTL2,
+ 		   GEN6_RCZUNIT_CLOCK_GATE_DISABLE);
+
+-:1347: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#1347: FILE: drivers/gpu/drm/i915/intel_pm.c:7376:
++	intel_uncore_write(&dev_priv->uncore, GEN7_SQ_CHICKEN_MBCUNIT_CONFIG,
++			intel_uncore_read(&dev_priv->uncore, GEN7_SQ_CHICKEN_MBCUNIT_CONFIG) |
+
+-:1367: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#1367: FILE: drivers/gpu/drm/i915/intel_pm.c:7396:
++	intel_uncore_write(&dev_priv->uncore, IVB_CHICKEN3,
+ 		   CHICKEN3_DGMG_REQ_OUT_FIX_DISABLE |
+
+-:1373: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#1373: FILE: drivers/gpu/drm/i915/intel_pm.c:7401:
++	intel_uncore_write(&dev_priv->uncore, GEN7_ROW_CHICKEN2,
+ 		   _MASKED_BIT_ENABLE(DOP_CLOCK_GATING_DISABLE));
+
+-:1379: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#1379: FILE: drivers/gpu/drm/i915/intel_pm.c:7405:
++	intel_uncore_write(&dev_priv->uncore, GEN7_SQ_CHICKEN_MBCUNIT_CONFIG,
++		   intel_uncore_read(&dev_priv->uncore, GEN7_SQ_CHICKEN_MBCUNIT_CONFIG) |
+
+-:1388: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#1388: FILE: drivers/gpu/drm/i915/intel_pm.c:7413:
++	intel_uncore_write(&dev_priv->uncore, GEN6_UCGCTL2,
+ 		   GEN6_RCZUNIT_CLOCK_GATE_DISABLE);
+
+-:1396: WARNING:LONG_LINE: line length of 106 exceeds 100 columns
+#1396: FILE: drivers/gpu/drm/i915/intel_pm.c:7419:
++		   intel_uncore_read(&dev_priv->uncore, GEN7_UCGCTL4) | GEN7_L3BANK2X_CLOCK_GATE_DISABLE);
+
+-:1396: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#1396: FILE: drivers/gpu/drm/i915/intel_pm.c:7419:
++	intel_uncore_write(&dev_priv->uncore, GEN7_UCGCTL4,
++		   intel_uncore_read(&dev_priv->uncore, GEN7_UCGCTL4) | GEN7_L3BANK2X_CLOCK_GATE_DISABLE);
+
+-:1414: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#1414: FILE: drivers/gpu/drm/i915/intel_pm.c:7434:
++	intel_uncore_write(&dev_priv->uncore, GEN7_FF_THREAD_MODE,
++		   intel_uncore_read(&dev_priv->uncore, GEN7_FF_THREAD_MODE) &
+
+-:1420: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#1420: FILE: drivers/gpu/drm/i915/intel_pm.c:7439:
++	intel_uncore_write(&dev_priv->uncore, GEN6_RC_SLEEP_PSMI_CONTROL,
+ 		   _MASKED_BIT_ENABLE(GEN8_RC_SEMA_IDLE_MSG_DISABLE));
+
+-:1424: WARNING:LONG_LINE: line length of 112 exceeds 100 columns
+#1424: FILE: drivers/gpu/drm/i915/intel_pm.c:7442:
++	intel_uncore_write(&dev_priv->uncore, GEN6_UCGCTL1, intel_uncore_read(&dev_priv->uncore, GEN6_UCGCTL1) |
+
+-:1429: WARNING:LONG_LINE: line length of 112 exceeds 100 columns
+#1429: FILE: drivers/gpu/drm/i915/intel_pm.c:7446:
++	intel_uncore_write(&dev_priv->uncore, GEN8_UCGCTL6, intel_uncore_read(&dev_priv->uncore, GEN8_UCGCTL6) |
+
+-:1469: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#1469: FILE: drivers/gpu/drm/i915/intel_pm.c:7499:
++	intel_uncore_write(&dev_priv->uncore, MI_ARB_STATE,
+ 		   _MASKED_BIT_ENABLE(MI_ARB_DISPLAY_TRICKLE_FEED_DISABLE));
+
+-:1484: WARNING:LONG_LINE: line length of 103 exceeds 100 columns
+#1484: FILE: drivers/gpu/drm/i915/intel_pm.c:7511:
++		intel_uncore_write(&dev_priv->uncore, ECOSKPD, _MASKED_BIT_ENABLE(ECO_GATING_CX_ONLY));
+
+-:1496: WARNING:LONG_LINE: line length of 107 exceeds 100 columns
+#1496: FILE: drivers/gpu/drm/i915/intel_pm.c:7520:
++	intel_uncore_write(&dev_priv->uncore, MI_ARB_STATE, _MASKED_BIT_ENABLE(MI_ARB_C3_LP_WRITE_ENABLE));
+
+-:1500: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#1500: FILE: drivers/gpu/drm/i915/intel_pm.c:7523:
++	intel_uncore_write(&dev_priv->uncore, MI_ARB_STATE,
+ 		   _MASKED_BIT_ENABLE(MI_ARB_DISPLAY_TRICKLE_FEED_DISABLE));
+
+-:1515: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#1515: FILE: drivers/gpu/drm/i915/intel_pm.c:7535:
++	intel_uncore_write(&dev_priv->uncore, MEM_MODE,
+ 		   _MASKED_BIT_ENABLE(MEM_DISPLAY_TRICKLE_FEED_DISABLE));
+
+-:1524: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#1524: FILE: drivers/gpu/drm/i915/intel_pm.c:7545:
++	intel_uncore_write(&dev_priv->uncore, SCPD0,
+ 		   _MASKED_BIT_ENABLE(SCPD_FBC_IGNORE_3D));
+
+-:1531: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#1531: FILE: drivers/gpu/drm/i915/intel_pm.c:7551:
++	intel_uncore_write(&dev_priv->uncore, MEM_MODE,
+ 		   _MASKED_BIT_ENABLE(MEM_DISPLAY_A_TRICKLE_FEED_DISABLE) |
+
+total: 0 errors, 44 warnings, 66 checks, 1449 lines checked
+0c4d85eb14d2 drm/i915/irq: replace I915_READ()/WRITE() with intel_uncore_read()/write()
+-:68: WARNING:LONG_LINE: line length of 107 exceeds 100 columns
+#68: FILE: drivers/gpu/drm/i915/i915_irq.c:425:
++		intel_uncore_write(&dev_priv->uncore, GEN8_DE_PIPE_IMR(pipe), dev_priv->de_irq_mask[pipe]);
+
+-:132: WARNING:LONG_LINE: line length of 103 exceeds 100 columns
+#132: FILE: drivers/gpu/drm/i915/i915_irq.c:990:
++	intel_uncore_write(&dev_priv->uncore, GEN7_MISCCPCTL, misccpctl & ~GEN7_DOP_CLOCK_GATE_ENABLE);
+
+-:149: WARNING:LONG_LINE: line length of 109 exceeds 100 columns
+#149: FILE: drivers/gpu/drm/i915/i915_irq.c:1010:
++		intel_uncore_write(&dev_priv->uncore, reg, GE
+
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
