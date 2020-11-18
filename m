@@ -1,46 +1,47 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id BC3F22B7A2E
-	for <lists+intel-gfx@lfdr.de>; Wed, 18 Nov 2020 10:18:17 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 95E062B7A3E
+	for <lists+intel-gfx@lfdr.de>; Wed, 18 Nov 2020 10:21:25 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6FBFE6E2DE;
-	Wed, 18 Nov 2020 09:18:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B773489C27;
+	Wed, 18 Nov 2020 09:21:22 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 011256E2DE
- for <intel-gfx@lists.freedesktop.org>; Wed, 18 Nov 2020 09:18:13 +0000 (UTC)
-IronPort-SDR: 7uk3PtkgeP40HZRYPnJH4lHKLAVWXabL2Z53+0j3DHIAMvFGHaWG0FKjakJg8ML1kk/nsUXTQ5
- boST6EiZb5mA==
-X-IronPort-AV: E=McAfee;i="6000,8403,9808"; a="235236284"
-X-IronPort-AV: E=Sophos;i="5.77,486,1596524400"; d="scan'208";a="235236284"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Nov 2020 01:18:13 -0800
-IronPort-SDR: n7k5IkpzFM9mj+ORDCZJLSlHs4l1QH3xuF90J5SzMD65PwJrU41lK8WyMM7DRSU7JfzzlkiRex
- DjaSW2nWBzfA==
-X-IronPort-AV: E=Sophos;i="5.77,486,1596524400"; d="scan'208";a="534177106"
-Received: from dlmurray-mobl3.ger.corp.intel.com (HELO localhost)
- ([10.251.82.13])
- by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Nov 2020 01:18:11 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: Lucas De Marchi <lucas.demarchi@intel.com>,
- Aditya Swarup <aditya.swarup@intel.com>
-In-Reply-To: <20201117193114.ujqf4mgu3z2pzkab@ldmartin-desk1>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20201117185029.22078-1-aditya.swarup@intel.com>
- <20201117185029.22078-3-aditya.swarup@intel.com>
- <20201117193114.ujqf4mgu3z2pzkab@ldmartin-desk1>
-Date: Wed, 18 Nov 2020 11:18:08 +0200
-Message-ID: <87mtzfowfj.fsf@intel.com>
+Received: from mail-oi1-f193.google.com (mail-oi1-f193.google.com
+ [209.85.167.193])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 54DE589BA5;
+ Wed, 18 Nov 2020 09:21:22 +0000 (UTC)
+Received: by mail-oi1-f193.google.com with SMTP id s18so322613oih.1;
+ Wed, 18 Nov 2020 01:21:22 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=rkMlGhBddK4CWlIkq4VYwxC7ANjZVCeqrUa0zy6WU0I=;
+ b=uaoUQCadTyzWP80/vAYoNJZafrq7tbmPor2qMkoaqLVmVbrom0Z6NyriBLZyTcG+eP
+ NbIedEoS6te5An81V6TXEJOPb0Xz793hbV3NsUIHBvetIjzwKcYt4kRIwW7KHP45oViJ
+ iiGnhbF9dWa0AkUsr0FBkfc0agf+NUqjDrt+scbRvGKkXt0wiK/WE07C6Ls8Yvuhyek2
+ 3bFqGS6P4Pz9rnul51tu89va456ce+moRofM7QcI6FI1GO6kTQB+NzVY3dVQmBVSTKMD
+ YGBVIOY1p1qemvowmP/YCn3N5VSqUPZf7ofiFq5hwI3IbQ5r0j19mZKDokYPimaCwQLS
+ kg0A==
+X-Gm-Message-State: AOAM5310T13j3hFbEZYbMK+rL5fDJpCi+x1/hNXc+DXFWw1Y+9WDSIYN
+ /KRrSASP/w2a0rYBxGI6ElnKYv4nUGiP+W7UBsI=
+X-Google-Smtp-Source: ABdhPJyqvIcxUrbL0AaN6gSRNz2wjNs4QkYGhaUKzlP3J9lx3udNRytqjWUm4S6ui6wFImY2T0gEVeBnLueaghIYvhM=
+X-Received: by 2002:aca:4bc3:: with SMTP id y186mr1952687oia.153.1605691281629; 
+ Wed, 18 Nov 2020 01:21:21 -0800 (PST)
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH 02/21] drm/i915/tgl: Fix macros for TGL SOC
- based WA
+References: <20201029101428.4058311-1-daniel.vetter@ffwll.ch>
+ <20201029132229.4068359-1-daniel.vetter@ffwll.ch>
+ <alpine.DEB.2.22.394.2010311116530.379363@ramsan.of.borg>
+ <CAKMK7uH3SQEjhJkcMcZSW6foiDsMKS91StLYcKoyH+h1obKPCA@mail.gmail.com>
+In-Reply-To: <CAKMK7uH3SQEjhJkcMcZSW6foiDsMKS91StLYcKoyH+h1obKPCA@mail.gmail.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Wed, 18 Nov 2020 10:21:10 +0100
+Message-ID: <CAMuHMdWOHgysOYNXWxo6YoqjJRaqAyFrHjDEm7ARLyP=xmnN5g@mail.gmail.com>
+To: Daniel Vetter <daniel.vetter@ffwll.ch>
+Subject: Re: [Intel-gfx] [PATCH] fbcon: Disable accelerated scrolling
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,44 +54,136 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Linux Fbdev development list <linux-fbdev@vger.kernel.org>,
+ Jiri Slaby <jirislaby@kernel.org>,
+ Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
+ Tetsuo Handa <penguin-kernel@i-love.sakura.ne.jp>,
+ Linus Torvalds <torvalds@linux-foundation.org>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ "Gustavo A. R. Silva" <gustavoars@kernel.org>,
+ DRI Development <dri-devel@lists.freedesktop.org>,
+ Peilin Ye <yepeilin.cs@gmail.com>, George Kennedy <george.kennedy@oracle.com>,
+ Tomi Valkeinen <tomi.valkeinen@ti.com>, Ben Skeggs <bskeggs@redhat.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Nouveau Dev <nouveau@lists.freedesktop.org>,
+ Daniel Vetter <daniel.vetter@intel.com>,
+ Nathan Chancellor <natechancellor@gmail.com>, Sam Ravnborg <sam@ravnborg.org>,
+ Peter Rosin <peda@axentia.se>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 17 Nov 2020, Lucas De Marchi <lucas.demarchi@intel.com> wrote:
-> On Tue, Nov 17, 2020 at 10:50:10AM -0800, Aditya Swarup wrote:
->>@@ -1579,9 +1579,9 @@ static inline const struct i915_rev_steppings *
->> tgl_revids_get(struct drm_i915_private *dev_priv)
->> {
->> 	if (IS_TGL_U(dev_priv) || IS_TGL_Y(dev_priv))
->>-		return tgl_uy_revids;
->>+		return tgl_uy_revids + INTEL_REVID(dev_priv);
+Hi Daniel,
+
+Replying "early" (see below), as this was applied to
+drm-misc/for-linux-next.
+
+On Sat, Oct 31, 2020 at 3:17 PM Daniel Vetter <daniel.vetter@ffwll.ch> wrote:
+> On Sat, Oct 31, 2020 at 11:28 AM Geert Uytterhoeven
+> <geert@linux-m68k.org> wrote:
+> > On Thu, 29 Oct 2020, Daniel Vetter wrote:
+> > > So ever since syzbot discovered fbcon, we have solid proof that it's
+> > > full of bugs. And often the solution is to just delete code and remove
+> > > features, e.g.  50145474f6ef ("fbcon: remove soft scrollback code").
+> > >
+> > > Now the problem is that most modern-ish drivers really only treat
+> > > fbcon as an dumb kernel console until userspace takes over, and Oops
+> > > printer for some emergencies. Looking at drm drivers and the basic
+> > > vesa/efi fbdev drivers shows that only 3 drivers support any kind of
+> > > acceleration:
+> > >
+> > > - nouveau, seems to be enabled by default
+> > > - omapdrm, when a DMM remapper exists using remapper rewriting for
+> > >  y/xpanning
+> > > - gma500, but that is getting deleted now for the GTT remapper trick,
+> > >  and the accelerated copyarea never set the FBINFO_HWACCEL_COPYAREA
+> > >  flag, so unused (and could be deleted already I think).
+> > >
+> > > No other driver supportes accelerated fbcon. And fbcon is the only
+> > > user of this accel code (it's not exposed as uapi through ioctls),
+> > > which means we could garbage collect fairly enormous amounts of code
+> > > if we kill this.
+> >
+> > "git grep FBINFO_HWACCEL_COPYAREA" shows me there are 32 more drivers
+> > using acceleration under drivers/video/fbdev/.
+> >
+> > > Plus because syzbot only runs on virtual hardware, and none of the
+> > > drivers for that have acceleration, we'd remove a huge gap in testing.
+> > > And there's no other even remotely comprehensive testing aside from
+> > > syzbot.
+> >
+> > That sounds like a great argument to remove all hardware drivers from
+> > the kernel ;-)
 >
-> oohh, no. You have to at least check you are not accessing out of
-> bounds. New HW running on old kernel should not access create invalid
-> accesses like this.
+> fbdev is unmaintained, has no one volunteering to put in the work (and
+> there's huge amounts of work needed), and there's no test suite. No,
+> fbtest.c doesn't can't, that's not even close. We're not going to
+> delete everything in the kernel, but slowly sunsetting stuff that's
+> just costing and not bringing in up is a good idea.
 
-And this is just one reason why exposing arrays directly as an interface
-to the rest of the driver is a bad idea. Basically I look at *all*
-externs in the driver with suspicion, and they're all exceptions that
-should not be repeated. The revid arrays are a direct invitation to keep
-adding more and more extern arrays. And more ways to go out of bounds.
+The fbcon acceleration code is indeed not tested by fbset, and it is
+purely in-kernel acceleration for the console.
 
-I'd rather we seek for ways to either nuke the revid arrays altogether,
-or encapsulate them within a .c file with static scope.
+> > Seriously, how hard can it be to add "software-accelerated" acceleration
+> > hooks to drivers/video/fbdev/vfb.c, to enable syzbot to exercise the
+> > core acceleration code paths?
+>
+> Just this one is 5 combinations, which means I'd need to convince
+> syzbot to test 5 different machine setups.
 
-And for that .c file... the arrays are now in gt/intel_workarounds.c
-which is a really weird place for stuff that's used for generic stepping
-info, and particularly for *display* stepping info.
+Why 5 combinations?
+Enable vfb (which can be a module) and be done with it?
 
-BR,
-Jani.
+> Plus we're still lacking a test suite, and judging from how much time
+> it took to get something basic going for kms, that's about 2 engineer
+> years of effort that no one is even close to willing to spend.
 
+Sure, writing test suites is hard, and takes time.
+
+> > > This patch here just disables the acceleration code by always
+> > > redrawing when scrolling. The plan is that once this has been merged
+> > > for well over a year in released kernels, we can start to go around
+> > > and delete a lot of code.
+> >
+> > Have you benchmarked the performance impact on traditional fbdev
+> > drivers?
+>
+> There's still some acceleration if you have an image blit engine for
+> redrawing the screen. But the complexity is contained in the old
+> drivers that no one cares about.
+>
+> For anything I have access to the difference is 0.
+
+Sure, you're doing DRM drivers ;-)
+
+> Reality is that fbdev is just there nowadays for Oops printing and
+> emergency usage, and it's plenty good enough for that. If there's
+
+That's true for systems that are supported by a DRM driver.
+
+> anyone who cares beyond that, they're most definitely not able to put
+> in time for upstream work.
+
+There exist actual products using out-of-tree fbdev drivers that never
+got the chance of being merged upstream due to the moratorium on new
+fbdev drivers.
+
+BTW, I'm trying to convert an old fbdev driver to DRM, but don't have it
+working yet. I had hoped to get something working before replying to
+this email, so I could provide more detailed feedback.
+
+Gr{oetje,eeting}s,
+
+                        Geert
 
 -- 
-Jani Nikula, Intel Open Source Graphics Center
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
