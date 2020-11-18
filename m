@@ -2,41 +2,46 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6BB5D2B7755
-	for <lists+intel-gfx@lfdr.de>; Wed, 18 Nov 2020 08:53:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9BF7F2B775F
+	for <lists+intel-gfx@lfdr.de>; Wed, 18 Nov 2020 08:56:39 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B9AFE6E3AA;
-	Wed, 18 Nov 2020 07:53:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 02F0C6E3B7;
+	Wed, 18 Nov 2020 07:56:38 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AA1366E3AA
- for <intel-gfx@lists.freedesktop.org>; Wed, 18 Nov 2020 07:53:43 +0000 (UTC)
-IronPort-SDR: zD+9jAFIeGBiU0ZufvK9C0h//UAcnRX55zXjfosHmRDk+FXwIbhCQ4GjI9KdWn7CZEYl/n1zwr
- /PvjykYkpoFQ==
-X-IronPort-AV: E=McAfee;i="6000,8403,9808"; a="168507629"
-X-IronPort-AV: E=Sophos;i="5.77,486,1596524400"; d="scan'208";a="168507629"
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7DF7E6E3B7
+ for <intel-gfx@lists.freedesktop.org>; Wed, 18 Nov 2020 07:56:36 +0000 (UTC)
+IronPort-SDR: 4HGeo0W9CsYRR0TRXqsLMH8kjYJMpY1aaetzQMETwKq1cYaRdWCG1AlOXC7kCjhNunH4+HcFUx
+ r9Yy0qfYy9Aw==
+X-IronPort-AV: E=McAfee;i="6000,8403,9808"; a="255790171"
+X-IronPort-AV: E=Sophos;i="5.77,486,1596524400"; d="scan'208";a="255790171"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Nov 2020 23:53:42 -0800
-IronPort-SDR: x6M6RN6wbhb7reNes4rLeQ9sCmYFbokY3yvKEQBtGVq6RUCUjHkxFbKxCsxrhhsi+9S5VXnbsB
- zFh+/4uXZX8g==
-X-IronPort-AV: E=Sophos;i="5.77,486,1596524400"; d="scan'208";a="341180317"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Nov 2020 23:56:35 -0800
+IronPort-SDR: EcQIXO271LlNemcP+kr9T57RaXdtZuifZipQT8Oulm7QSSCn6H8ypnxPxHGD6auhk2HGnYDxNT
+ U3GM4HT47z4A==
+X-IronPort-AV: E=Sophos;i="5.77,486,1596524400"; d="scan'208";a="368380161"
 Received: from jalame-mobl1.amr.corp.intel.com (HELO ldmartin-desk1)
  ([10.213.166.181])
- by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Nov 2020 23:53:41 -0800
-Date: Tue, 17 Nov 2020 23:53:40 -0800
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Nov 2020 23:56:34 -0800
+Date: Tue, 17 Nov 2020 23:56:33 -0800
 From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: Aditya Swarup <aditya.swarup@intel.com>
-Message-ID: <20201118075340.did5zvrwa5qhbp6u@ldmartin-desk1>
+To: "Souza, Jose" <jose.souza@intel.com>
+Message-ID: <20201118075633.taw3ld53nntbaroy@ldmartin-desk1>
 References: <20201117185029.22078-1-aditya.swarup@intel.com>
+ <20201117185029.22078-3-aditya.swarup@intel.com>
+ <02ea7d2b7eb151787abe8cf42771db40a7f0ef7d.camel@intel.com>
+ <20201117192854.57tki3vges6zdenp@ldmartin-desk1>
+ <0f2771f59b9d25cf2df7fea347ffbefd353ee44a.camel@intel.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20201117185029.22078-1-aditya.swarup@intel.com>
-Subject: Re: [Intel-gfx] [PATCH 00/21] Introduce Alderlake-S
+In-Reply-To: <0f2771f59b9d25cf2df7fea347ffbefd353ee44a.camel@intel.com>
+Subject: Re: [Intel-gfx] [PATCH 02/21] drm/i915/tgl: Fix macros for TGL SOC
+ based WA
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,98 +54,513 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: "Nikula, Jani" <jani.nikula@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
 Content-Transfer-Encoding: quoted-printable
 Content-Type: text/plain; charset="iso-8859-1"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-+Rodrigo, +Joonas
+On Tue, Nov 17, 2020 at 07:33:11PM +0000, Jose Souza wrote:
+>On Tue, 2020-11-17 at 11:28 -0800, Lucas De Marchi wrote:
+>> On Tue, Nov 17, 2020 at 07:03:05PM +0000, Jose Souza wrote:
+>> > On Tue, 2020-11-17 at 10:50 -0800, Aditya Swarup wrote:
+>> > > Fix macros for applying TGL SOC WAs by using INTEL_REVID()
+>> > > as index to fetch correct revision offset in TGL GT/DISP stepping
+>> > > table.
+>> >
+>> > Please explain what exactly is the issue you are fixing, the change yo=
+u did in tgl_revids_get() + IS_TGL_GT_REVID looks a improvement but not a f=
+ix.
+>>
+>> otherwise it always gets the first entry from the table, regardless
+>> what' s the revid we are running on... so it does look like a very
+>> important fix.
+>
+>Ooh okay, so the fix should only be
+>tgl_uy_revids/tgl_revids->gt_stepping[INTEL_REVID(dev_priv)]
 
-On Tue, Nov 17, 2020 at 10:50:08AM -0800, Aditya Swarup wrote:
->v2 of the patch series to introduce ADL-S.
->
->v1 for the series is posted at:
->https://patchwork.freedesktop.org/series/82917/
->
->This series is rebased after hotplug refactors and review
->comments addressed from v1.
->
->Please ignore the DG1 patch as it is cherry-picked to fix
->conflicts.
->
->Aditya Swarup (8):
->  drm/i915/dg1: Enable ports
->  drm/i915/tgl: Fix macros for TGL SOC based WA
->  drm/i915/adl_s: Configure DPLL for ADL-S
->  drm/i915/adl_s: Configure Port clock registers for ADL-S
->  drm/i915/adl_s: Add HTI support and initialize display for ADL-S
->  drm/i915/adl_s: Add adl-s ddc pin mapping
->  drm/i915/adl_s: Add vbt port and aux channel settings for adls
->  drm/i915/adl_s: Add display, gt, ctx and ADL-S
->
->Anusha Srivatsa (4):
->  drm/i915/adl_s: Add PCH support
->  drm/i915/adl_s: Add Interrupt Support
->  drm/i915/adl_s: Add PHYs for Alderlake S
->  drm/i915/adl_s: Load DMC
->
->Caz Yokoyama (3):
->  drm/i915/adl_s: Add ADL-S platform info and PCI ids
->  x86/gpu: add ADL_S stolen memory support
->  drm/i915/adl_s: MCHBAR memory info registers are moved
->
->Jos=E9 Roberto de Souza (1):
->  drm/i915/display: Add HAS_D12_PLANE_MINIMIZATION
->
->Lucas De Marchi (1):
->  drm/i915/adl_s: Add power wells
->
->Matt Roper (3):
->  drm/i915/adl_s: Update combo PHY master/slave relationships
->  drm/i915/adl_s: Update PHY_MISC programming
->  drm/i915/adl_s: Re-use TGL GuC/HuC firmware
->
->Tejas Upadhyay (1):
->  drm/i915/adl_s: Update memory bandwidth parameters
->
-> arch/x86/kernel/early-quirks.c                |   1 +
-> drivers/gpu/drm/i915/display/intel_bios.c     |  70 +++++++++--
-> drivers/gpu/drm/i915/display/intel_bw.c       |   8 ++
-> .../gpu/drm/i915/display/intel_combo_phy.c    |  23 +++-
-> drivers/gpu/drm/i915/display/intel_csr.c      |  10 +-
-> drivers/gpu/drm/i915/display/intel_ddi.c      |  64 ++++++----
-> drivers/gpu/drm/i915/display/intel_display.c  |  37 +++++-
-> .../drm/i915/display/intel_display_power.c    |  11 +-
-> drivers/gpu/drm/i915/display/intel_dpll_mgr.c |  38 +++++-
-> drivers/gpu/drm/i915/display/intel_hdmi.c     |  20 ++-
-> drivers/gpu/drm/i915/display/intel_psr.c      |   4 +-
-> drivers/gpu/drm/i915/display/intel_sprite.c   |   8 +-
-> drivers/gpu/drm/i915/display/intel_vbt_defs.h |   4 +
-> drivers/gpu/drm/i915/gt/intel_workarounds.c   | 119 ++++++++++++------
-> drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c      |   4 +-
-> drivers/gpu/drm/i915/i915_drv.h               |  47 ++++---
-> drivers/gpu/drm/i915/i915_irq.c               |   5 +-
-> drivers/gpu/drm/i915/i915_pci.c               |  13 ++
-> drivers/gpu/drm/i915/i915_reg.h               |  54 +++++++-
-> drivers/gpu/drm/i915/intel_device_info.c      |   9 +-
-> drivers/gpu/drm/i915/intel_device_info.h      |   1 +
-> drivers/gpu/drm/i915/intel_dram.c             |  18 ++-
-> drivers/gpu/drm/i915/intel_pch.c              |   8 +-
-> drivers/gpu/drm/i915/intel_pch.h              |   3 +
-> drivers/gpu/drm/i915/intel_pm.c               |   2 +-
-> include/drm/i915_pciids.h                     |  13 ++
+as noted in my review to the patch, after checking the array bounds
 
-besides the changes to uC and workarounds, all the rest would go
-through dinq. Should we bother creating a topic branch for adl-s?
+Lucas De marchi
 
-Lucas De Marchi
-
-> 26 files changed, 464 insertions(+), 130 deletions(-)
 >
->-- =
-
->2.27.0
+>Then the improvements in other patches.
+>
+>>
+>> >
+>> > >
+>> > > Also, remove redundant macros and simplify it to use GT and DISP
+>> > > macros for getting applicable stepping for TGL.
+>>
+>> As a fix, this should not be mixed with the noisy s/TGL_REVID/REVID/, as
+>> it makes it much more difficult for backports and to review. Please
+>> split it in another patch (I actually don' t see a reason to do it
+>> actually... I'd rather try to move away from these tables if possible).
+>>
+>> Lucas De Marchi
+>>
+>> > >
+>> > > Fixes: ("drm/i915/tgl: Fix stepping WA matching")
+>> > > Cc: Jos=E9 Roberto de Souza <jose.souza@intel.com>
+>> > > Cc: Matt Roper <matthew.d.roper@intel.com>
+>> > > Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+>> > > Cc: Jani Nikula <jani.nikula@intel.com>
+>> > > Cc: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+>> > > Signed-off-by: Aditya Swarup <aditya.swarup@intel.com>
+>> > > ---
+>> > > =A0.../drm/i915/display/intel_display_power.c    |  2 +-
+>> > > =A0drivers/gpu/drm/i915/display/intel_psr.c      |  4 ++--
+>> > > =A0drivers/gpu/drm/i915/display/intel_sprite.c   |  2 +-
+>> > > =A0drivers/gpu/drm/i915/gt/intel_workarounds.c   | 20 ++++++++------=
+--
+>> > > =A0drivers/gpu/drm/i915/i915_drv.h               | 24 +++++++-------=
+-----
+>> > > =A0drivers/gpu/drm/i915/intel_pm.c               |  2 +-
+>> > > =A06 files changed, 24 insertions(+), 30 deletions(-)
+>> > >
+>> > > diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/dr=
+ivers/gpu/drm/i915/display/intel_display_power.c
+>> > > index fe2d90bba536..06c036e2092c 100644
+>> > > --- a/drivers/gpu/drm/i915/display/intel_display_power.c
+>> > > +++ b/drivers/gpu/drm/i915/display/intel_display_power.c
+>> > > @@ -5283,7 +5283,7 @@ static void tgl_bw_buddy_init(struct drm_i915_=
+private *dev_priv)
+>> > > =A0	int config, i;
+>> > > =A0
+>> > >
+>> > >
+>> > >
+>> > >
+>> > >
+>> > >
+>> > >
+>> > >
+>> > >
+>> > >
+>> > >
+>> > >
+>> > >
+>> > >
+>> > >
+>> > > =A0	if (IS_DG1_REVID(dev_priv, DG1_REVID_A0, DG1_REVID_A0) ||
+>> > > -	    IS_TGL_DISP_REVID(dev_priv, TGL_REVID_A0, TGL_REVID_B0))
+>> > > +	    IS_TGL_DISP_REVID(dev_priv, REVID_A0, REVID_B0))
+>> > > =A0		/* Wa_1409767108:tgl,dg1 */
+>> > > =A0		table =3D wa_1409767108_buddy_page_masks;
+>> > > =A0	else
+>> > > diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/=
+drm/i915/display/intel_psr.c
+>> > > index b3631b722de3..c057a03b2ed4 100644
+>> > > --- a/drivers/gpu/drm/i915/display/intel_psr.c
+>> > > +++ b/drivers/gpu/drm/i915/display/intel_psr.c
+>> > > @@ -550,7 +550,7 @@ static void hsw_activate_psr2(struct intel_dp *i=
+ntel_dp)
+>> > > =A0
+>> > >
+>> > >
+>> > >
+>> > >
+>> > >
+>> > >
+>> > >
+>> > >
+>> > >
+>> > >
+>> > >
+>> > >
+>> > >
+>> > >
+>> > >
+>> > > =A0	if (dev_priv->psr.psr2_sel_fetch_enabled) {
+>> > > =A0		/* WA 1408330847 */
+>> > > -		if (IS_TGL_DISP_REVID(dev_priv, TGL_REVID_A0, TGL_REVID_A0) ||
+>> > > +		if (IS_TGL_DISP_REVID(dev_priv, REVID_A0, REVID_A0) ||
+>> > > =A0		    IS_RKL_REVID(dev_priv, RKL_REVID_A0, RKL_REVID_A0))
+>> > > =A0			intel_de_rmw(dev_priv, CHICKEN_PAR1_1,
+>> > > =A0				     DIS_RAM_BYPASS_PSR2_MAN_TRACK,
+>> > > @@ -1102,7 +1102,7 @@ static void intel_psr_disable_locked(struct in=
+tel_dp *intel_dp)
+>> > > =A0
+>> > >
+>> > >
+>> > >
+>> > >
+>> > >
+>> > >
+>> > >
+>> > >
+>> > >
+>> > >
+>> > >
+>> > >
+>> > >
+>> > >
+>> > >
+>> > > =A0	/* WA 1408330847 */
+>> > > =A0	if (dev_priv->psr.psr2_sel_fetch_enabled &&
+>> > > -	    (IS_TGL_DISP_REVID(dev_priv, TGL_REVID_A0, TGL_REVID_A0) ||
+>> > > +	    (IS_TGL_DISP_REVID(dev_priv, REVID_A0, REVID_A0) ||
+>> > > =A0	     IS_RKL_REVID(dev_priv, RKL_REVID_A0, RKL_REVID_A0)))
+>> > > =A0		intel_de_rmw(dev_priv, CHICKEN_PAR1_1,
+>> > > =A0			     DIS_RAM_BYPASS_PSR2_MAN_TRACK, 0);
+>> > > diff --git a/drivers/gpu/drm/i915/display/intel_sprite.c b/drivers/g=
+pu/drm/i915/display/intel_sprite.c
+>> > > index a3ab44694118..f7da4a56054e 100644
+>> > > --- a/drivers/gpu/drm/i915/display/intel_sprite.c
+>> > > +++ b/drivers/gpu/drm/i915/display/intel_sprite.c
+>> > > @@ -3022,7 +3022,7 @@ static bool gen12_plane_supports_mc_ccs(struct=
+ drm_i915_private *dev_priv,
+>> > > =A0{
+>> > > =A0	/* Wa_14010477008:tgl[a0..c0],rkl[all],dg1[all] */
+>> > > =A0	if (IS_DG1(dev_priv) || IS_ROCKETLAKE(dev_priv) ||
+>> > > -	    IS_TGL_DISP_REVID(dev_priv, TGL_REVID_A0, TGL_REVID_C0))
+>> > > +	    IS_TGL_DISP_REVID(dev_priv, REVID_A0, REVID_C0))
+>> > > =A0		return false;
+>> > > =A0
+>> > >
+>> > >
+>> > >
+>> > >
+>> > >
+>> > >
+>> > >
+>> > >
+>> > >
+>> > >
+>> > >
+>> > >
+>> > >
+>> > >
+>> > >
+>> > > =A0	return plane_id < PLANE_SPRITE4;
+>> > > diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/g=
+pu/drm/i915/gt/intel_workarounds.c
+>> > > index a82554baa6ac..d756155d82ea 100644
+>> > > --- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
+>> > > +++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
+>> > > @@ -71,16 +71,16 @@ const struct i915_rev_steppings kbl_revids[] =3D=
+ {
+>> > > =A0};
+>> > > =A0
+>> > >
+>> > >
+>> > >
+>> > >
+>> > >
+>> > >
+>> > >
+>> > >
+>> > >
+>> > >
+>> > >
+>> > >
+>> > >
+>> > >
+>> > >
+>> > > =A0const struct i915_rev_steppings tgl_uy_revids[] =3D {
+>> > > -	[0] =3D { .gt_stepping =3D TGL_REVID_A0, .disp_stepping =3D TGL_RE=
+VID_A0 },
+>> > > -	[1] =3D { .gt_stepping =3D TGL_REVID_B0, .disp_stepping =3D TGL_RE=
+VID_C0 },
+>> > > -	[2] =3D { .gt_stepping =3D TGL_REVID_B1, .disp_stepping =3D TGL_RE=
+VID_C0 },
+>> > > -	[3] =3D { .gt_stepping =3D TGL_REVID_C0, .disp_stepping =3D TGL_RE=
+VID_D0 },
+>> > > +	[0] =3D { .gt_stepping =3D REVID_A0, .disp_stepping =3D REVID_A0 },
+>> > > +	[1] =3D { .gt_stepping =3D REVID_B0, .disp_stepping =3D REVID_C0 },
+>> > > +	[2] =3D { .gt_stepping =3D REVID_B1, .disp_stepping =3D REVID_C0 },
+>> > > +	[3] =3D { .gt_stepping =3D REVID_C0, .disp_stepping =3D REVID_D0 },
+>> > > =A0};
+>> > > =A0
+>> > >
+>> > >
+>> > >
+>> > >
+>> > >
+>> > >
+>> > >
+>> > >
+>> > >
+>> > >
+>> > >
+>> > >
+>> > >
+>> > >
+>> > >
+>> > > =A0/* Same GT stepping between tgl_uy_revids and tgl_revids don't me=
+an the same HW */
+>> > > =A0const struct i915_rev_steppings tgl_revids[] =3D {
+>> > > -	[0] =3D { .gt_stepping =3D TGL_REVID_A0, .disp_stepping =3D TGL_RE=
+VID_B0 },
+>> > > -	[1] =3D { .gt_stepping =3D TGL_REVID_B0, .disp_stepping =3D TGL_RE=
+VID_D0 },
+>> > > +	[0] =3D { .gt_stepping =3D REVID_A0, .disp_stepping =3D REVID_B0 },
+>> > > +	[1] =3D { .gt_stepping =3D REVID_B0, .disp_stepping =3D REVID_D0 },
+>> > > =A0};
+>> > > =A0
+>> > >
+>> > >
+>> > >
+>> > >
+>> > >
+>> > >
+>> > >
+>> > >
+>> > >
+>> > >
+>> > >
+>> > >
+>> > >
+>> > >
+>> > >
+>> > > =A0static void wa_init_start(struct i915_wa_list *wal, const char *n=
+ame, const char *engine_name)
+>> > > @@ -1250,13 +1250,13 @@ tgl_gt_workarounds_init(struct drm_i915_priv=
+ate *i915, struct i915_wa_list *wal)
+>> > > =A0	gen12_gt_workarounds_init(i915, wal);
+>> > > =A0
+>> > >
+>> > >
+>> > >
+>> > >
+>> > >
+>> > >
+>> > >
+>> > >
+>> > >
+>> > >
+>> > >
+>> > >
+>> > >
+>> > >
+>> > >
+>> > > =A0	/* Wa_1409420604:tgl */
+>> > > -	if (IS_TGL_UY_GT_REVID(i915, TGL_REVID_A0, TGL_REVID_A0))
+>> > > +	if (IS_TGL_GT_REVID(i915, REVID_A0, REVID_A0))
+>> > > =A0		wa_write_or(wal,
+>> > > =A0			    SUBSLICE_UNIT_LEVEL_CLKGATE2,
+>> > > =A0			    CPSSUNIT_CLKGATE_DIS);
+>> > > =A0
+>> > >
+>> > >
+>> > >
+>> > >
+>> > >
+>> > >
+>> > >
+>> > >
+>> > >
+>> > >
+>> > >
+>> > >
+>> > >
+>> > >
+>> > >
+>> > > =A0	/* Wa_1607087056:tgl also know as BUG:1409180338 */
+>> > > -	if (IS_TGL_UY_GT_REVID(i915, TGL_REVID_A0, TGL_REVID_A0))
+>> > > +	if (IS_TGL_GT_REVID(i915, REVID_A0, REVID_A0))
+>> > > =A0		wa_write_or(wal,
+>> > > =A0			    SLICE_UNIT_LEVEL_CLKGATE,
+>> > > =A0			    L3_CLKGATE_DIS | L3_CR2X_CLKGATE_DIS);
+>> > > @@ -1734,7 +1734,7 @@ rcs_engine_wa_init(struct intel_engine_cs *eng=
+ine, struct i915_wa_list *wal)
+>> > > =A0	struct drm_i915_private *i915 =3D engine->i915;
+>> > > =A0
+>> > >
+>> > >
+>> > >
+>> > >
+>> > >
+>> > >
+>> > >
+>> > >
+>> > >
+>> > >
+>> > >
+>> > >
+>> > >
+>> > >
+>> > >
+>> > > =A0	if (IS_DG1_REVID(i915, DG1_REVID_A0, DG1_REVID_A0) ||
+>> > > -	    IS_TGL_UY_GT_REVID(i915, TGL_REVID_A0, TGL_REVID_A0)) {
+>> > > +	    IS_TGL_GT_REVID(i915, REVID_A0, REVID_A0)) {
+>> > > =A0		/*
+>> > > =A0		 * Wa_1607138336:tgl[a0],dg1[a0]
+>> > > =A0		 * Wa_1607063988:tgl[a0],dg1[a0]
+>> > > @@ -1744,7 +1744,7 @@ rcs_engine_wa_init(struct intel_engine_cs *eng=
+ine, struct i915_wa_list *wal)
+>> > > =A0			    GEN12_DISABLE_POSH_BUSY_FF_DOP_CG);
+>> > > =A0	}
+>> > > =A0
+>> > >
+>> > >
+>> > >
+>> > >
+>> > >
+>> > >
+>> > >
+>> > >
+>> > >
+>> > >
+>> > >
+>> > >
+>> > >
+>> > >
+>> > >
+>> > > -	if (IS_TGL_UY_GT_REVID(i915, TGL_REVID_A0, TGL_REVID_A0)) {
+>> > > +	if (IS_TGL_GT_REVID(i915, REVID_A0, REVID_A0)) {
+>> > > =A0		/*
+>> > > =A0		 * Wa_1606679103:tgl
+>> > > =A0		 * (see also Wa_1606682166:icl)
+>> > > diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/=
+i915_drv.h
+>> > > index 15be8debae54..437916aacaa6 100644
+>> > > --- a/drivers/gpu/drm/i915/i915_drv.h
+>> > > +++ b/drivers/gpu/drm/i915/i915_drv.h
+>> > > @@ -1565,11 +1565,11 @@ extern const struct i915_rev_steppings kbl_r=
+evids[];
+>> > > =A0	(IS_JSL_EHL(p) && IS_REVID(p, since, until))
+>> > > =A0
+>> > >
+>> > >
+>> > >
+>> > >
+>> > >
+>> > >
+>> > >
+>> > >
+>> > >
+>> > >
+>> > >
+>> > >
+>> > >
+>> > >
+>> > >
+>> > > =A0enum {
+>> > > -	TGL_REVID_A0,
+>> > > -	TGL_REVID_B0,
+>> > > -	TGL_REVID_B1,
+>> > > -	TGL_REVID_C0,
+>> > > -	TGL_REVID_D0,
+>> > > +	REVID_A0,
+>> > > +	REVID_B0,
+>> > > +	REVID_B1,
+>> > > +	REVID_C0,
+>> > > +	REVID_D0,
+>> >
+>> > Better keep "TGL_" otherwise this could be used in other platforms tha=
+t have different values for each revision.
+>> >
+>> > > =A0};
+>> > > =A0
+>> > >
+>> > >
+>> > >
+>> > >
+>> > >
+>> > >
+>> > >
+>> > >
+>> > >
+>> > >
+>> > >
+>> > >
+>> > >
+>> > >
+>> > >
+>> > > =A0extern const struct i915_rev_steppings tgl_uy_revids[];
+>> > > @@ -1579,9 +1579,9 @@ static inline const struct i915_rev_steppings *
+>> > > =A0tgl_revids_get(struct drm_i915_private *dev_priv)
+>> > > =A0{
+>> > > =A0	if (IS_TGL_U(dev_priv) || IS_TGL_Y(dev_priv))
+>> > > -		return tgl_uy_revids;
+>> > > +		return tgl_uy_revids + INTEL_REVID(dev_priv);
+>> > > =A0	else
+>> > > -		return tgl_revids;
+>> > > +		return tgl_revids + INTEL_REVID(dev_priv);
+>> >
+>> > better do tgl_revids[INTEL_REVID(dev_priv)] with a array size check fi=
+rst.
+>> >
+>> > > =A0}
+>> > > =A0
+>> > >
+>> > >
+>> > >
+>> > >
+>> > >
+>> > >
+>> > >
+>> > > =A0#define IS_TGL_DISP_REVID(p, since, until) \
+>> > > @@ -1589,16 +1589,10 @@ tgl_revids_get(struct drm_i915_private *dev_=
+priv)
+>> > > =A0	 tgl_revids_get(p)->disp_stepping >=3D (since) && \
+>> > > =A0	 tgl_revids_get(p)->disp_stepping <=3D (until))
+>> > > =A0
+>> > >
+>> > >
+>> > >
+>> > >
+>> > >
+>> > >
+>> > >
+>> > > -#define IS_TGL_UY_GT_REVID(p, since, until) \
+>> > > -	((IS_TGL_U(p) || IS_TGL_Y(p)) && \
+>> > > -	 tgl_uy_revids->gt_stepping >=3D (since) && \
+>> > > -	 tgl_uy_revids->gt_stepping <=3D (until))
+>> > > -
+>> > > =A0#define IS_TGL_GT_REVID(p, since, until) \
+>> > > =A0	(IS_TIGERLAKE(p) && \
+>> > > -	 !(IS_TGL_U(p) || IS_TGL_Y(p)) && \
+>> > > -	 tgl_revids->gt_stepping >=3D (since) && \
+>> > > -	 tgl_revids->gt_stepping <=3D (until))
+>> > > +	 tgl_revids_get(p)->gt_stepping >=3D (since) && \
+>> > > +	 tgl_revids_get(p)->gt_stepping <=3D (until))
+>> > > =A0
+>> > >
+>> > >
+>> > >
+>> > >
+>> > >
+>> > >
+>> > >
+>> > > =A0#define RKL_REVID_A0		0x0
+>> > > =A0#define RKL_REVID_B0		0x1
+>> > > diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/=
+intel_pm.c
+>> > > index a20b5051f18c..69840aa0d4db 100644
+>> > > --- a/drivers/gpu/drm/i915/intel_pm.c
+>> > > +++ b/drivers/gpu/drm/i915/intel_pm.c
+>> > > @@ -7110,7 +7110,7 @@ static void tgl_init_clock_gating(struct drm_i=
+915_private *dev_priv)
+>> > > =A0		   ILK_DPFC_CHICKEN_COMP_DUMMY_PIXEL);
+>> > > =A0
+>> > >
+>> > >
+>> > >
+>> > >
+>> > >
+>> > >
+>> > >
+>> > > =A0	/* Wa_1409825376:tgl (pre-prod)*/
+>> > > -	if (IS_TGL_DISP_REVID(dev_priv, TGL_REVID_A0, TGL_REVID_B1))
+>> > > +	if (IS_TGL_DISP_REVID(dev_priv, REVID_A0, REVID_B1))
+>> > > =A0		I915_WRITE(GEN9_CLKGATE_DIS_3, I915_READ(GEN9_CLKGATE_DIS_3) |
+>> > > =A0			   TGL_VRH_GATING_DIS);
+>> > > =A0
+>> > >
+>> > >
+>> > >
+>> > >
+>> > >
+>> > >
+>> > >
+>> >
+>> > _______________________________________________
+>> > Intel-gfx mailing list
+>> > Intel-gfx@lists.freedesktop.org
+>> > https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 >
 >_______________________________________________
 >Intel-gfx mailing list
