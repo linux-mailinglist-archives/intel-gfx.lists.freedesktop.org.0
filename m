@@ -1,47 +1,49 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id CE1902B7CBE
-	for <lists+intel-gfx@lfdr.de>; Wed, 18 Nov 2020 12:36:26 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 54F112B7CC2
+	for <lists+intel-gfx@lfdr.de>; Wed, 18 Nov 2020 12:38:51 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4B1D56E3F2;
-	Wed, 18 Nov 2020 11:36:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B66C46E3F5;
+	Wed, 18 Nov 2020 11:38:48 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5CB416E3F2
- for <intel-gfx@lists.freedesktop.org>; Wed, 18 Nov 2020 11:36:24 +0000 (UTC)
-IronPort-SDR: x8aTo2dyzH2CSrZaMKbjr6FJ8h0xTBut6XjZ3v8wsAjyxD5brQ1sd6Q7nKPigYvZ0V5OFclJoV
- 2VlFSauHfNAg==
-X-IronPort-AV: E=McAfee;i="6000,8403,9808"; a="158875240"
-X-IronPort-AV: E=Sophos;i="5.77,486,1596524400"; d="scan'208";a="158875240"
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E27966E3F5
+ for <intel-gfx@lists.freedesktop.org>; Wed, 18 Nov 2020 11:38:46 +0000 (UTC)
+IronPort-SDR: ragpwL9kGxpDF87EabKX92BnPPqQKFyUqxOe99NhFsJM5kBSj+wgzsmqWW3jkl0uMJsBsbAlNz
+ sL519uVfLCvw==
+X-IronPort-AV: E=McAfee;i="6000,8403,9808"; a="150948398"
+X-IronPort-AV: E=Sophos;i="5.77,486,1596524400"; d="scan'208";a="150948398"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Nov 2020 03:36:23 -0800
-IronPort-SDR: JMnIklF3idm4mhNmoLXAal5ABZ8A1ljumw43nvi+a4EvZ332JUFTBTtKOMAIRqDvdz6m59WrXJ
- FlKE6FII63WQ==
-X-IronPort-AV: E=Sophos;i="5.77,486,1596524400"; d="scan'208";a="544480921"
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Nov 2020 03:38:46 -0800
+IronPort-SDR: 7fk/PxkLE+D9XPpvQ6a+43cslaMgL3mlVkxbUpkBO5+T8WTgSK8NgyxLbVojFd5xQDP8Y7TOAd
+ Op8bbFUJrphw==
+X-IronPort-AV: E=Sophos;i="5.77,486,1596524400"; d="scan'208";a="544481569"
 Received: from shaid-mobl.ger.corp.intel.com (HELO [10.255.202.56])
  ([10.255.202.56])
  by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Nov 2020 03:36:22 -0800
+ 18 Nov 2020 03:38:45 -0800
 To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
 References: <20201117113103.21480-1-chris@chris-wilson.co.uk>
- <20201117113103.21480-15-chris@chris-wilson.co.uk>
+ <20201117113103.21480-14-chris@chris-wilson.co.uk>
+ <86cb67d0-ac39-7f83-8ff8-eed3ef7c5943@linux.intel.com>
+ <160569868396.3553.1145860250763004021@build.alporthouse.com>
 From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
 Organization: Intel Corporation UK Plc
-Message-ID: <69f48f24-abe8-6f69-6ed2-78dbe2fd6eff@linux.intel.com>
-Date: Wed, 18 Nov 2020 11:36:20 +0000
+Message-ID: <ea07e30a-8972-d06b-8d97-f5e7e4228eae@linux.intel.com>
+Date: Wed, 18 Nov 2020 11:38:43 +0000
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.10.0
 MIME-Version: 1.0
-In-Reply-To: <20201117113103.21480-15-chris@chris-wilson.co.uk>
+In-Reply-To: <160569868396.3553.1145860250763004021@build.alporthouse.com>
 Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH 15/28] drm/i915/gt: Protect context lifetime
- with RCU
+Subject: Re: [Intel-gfx] [PATCH 14/28] drm/i915/gt: Free stale request on
+ destroying the virtual engine
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,97 +62,131 @@ Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 
-On 17/11/2020 11:30, Chris Wilson wrote:
-> Allow a brief period for continued access to a dead intel_context by
-> deferring the release of the struct until after an RCU grace period.
-> As we are using a dedicated slab cache for the contexts, we can defer
-> the release of the slab pages via RCU, with the caveat that individual
-> structs may be reused from the freelist within an RCU grace period. To
-> handle that, we have to avoid clearing members of the zombie struct.
+On 18/11/2020 11:24, Chris Wilson wrote:
+> Quoting Tvrtko Ursulin (2020-11-18 11:05:24)
+>>
+>> On 17/11/2020 11:30, Chris Wilson wrote:
+>>> Since preempt-to-busy, we may unsubmit a request while it is still on
+>>> the HW and completes asynchronously. That means it may be retired and in
+>>> the process destroy the virtual engine (as the user has closed their
+>>> context), but that engine may still be holding onto the unsubmitted
+>>> compelted request. Therefore we need to potentially cleanup the old
+>>> request on destroying the virtual engine. We also have to keep the
+>>> virtual_engine alive until after the sibling's execlists_dequeue() have
+>>> finished peeking into the virtual engines, for which we serialise with
+>>> RCU.
+>>>
+>>> v2: Be paranoid and flush the tasklet as well.
+>>> v3: And flush the tasklet before the engines, as the tasklet may
+>>> re-attach an rb_node after our removal from the siblings.
+>>>
+>>> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+>>> Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+>>> ---
+>>>    drivers/gpu/drm/i915/gt/intel_lrc.c | 61 +++++++++++++++++++++++++----
+>>>    1 file changed, 54 insertions(+), 7 deletions(-)
+>>>
+>>> diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
+>>> index 17cb7060eb29..c11433884cf6 100644
+>>> --- a/drivers/gpu/drm/i915/gt/intel_lrc.c
+>>> +++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
+>>> @@ -182,6 +182,7 @@
+>>>    struct virtual_engine {
+>>>        struct intel_engine_cs base;
+>>>        struct intel_context context;
+>>> +     struct rcu_work rcu;
+>>>    
+>>>        /*
+>>>         * We allow only a single request through the virtual engine at a time
+>>> @@ -5470,44 +5471,90 @@ static struct list_head *virtual_queue(struct virtual_engine *ve)
+>>>        return &ve->base.execlists.default_priolist.requests[0];
+>>>    }
+>>>    
+>>> -static void virtual_context_destroy(struct kref *kref)
+>>> +static void rcu_virtual_context_destroy(struct work_struct *wrk)
+>>>    {
+>>>        struct virtual_engine *ve =
+>>> -             container_of(kref, typeof(*ve), context.ref);
+>>> +             container_of(wrk, typeof(*ve), rcu.work);
+>>>        unsigned int n;
+>>>    
+>>> -     GEM_BUG_ON(!list_empty(virtual_queue(ve)));
+>>> -     GEM_BUG_ON(ve->request);
+>>>        GEM_BUG_ON(ve->context.inflight);
+>>>    
+>>> +     /* Preempt-to-busy may leave a stale request behind. */
+>>> +     if (unlikely(ve->request)) {
+>>> +             struct i915_request *old;
+>>> +
+>>> +             spin_lock_irq(&ve->base.active.lock);
+>>> +
+>>> +             old = fetch_and_zero(&ve->request);
+>>> +             if (old) {
+>>> +                     GEM_BUG_ON(!i915_request_completed(old));
+>>> +                     __i915_request_submit(old);
+>>> +                     i915_request_put(old);
+>>> +             }
+>>> +
+>>> +             spin_unlock_irq(&ve->base.active.lock);
+>>> +     }
+>>> +
+>>> +     /*
+>>> +      * Flush the tasklet in case it is still running on another core.
+>>> +      *
+>>> +      * This needs to be done before we remove ourselves from the siblings'
+>>> +      * rbtrees as in the case it is running in parallel, it may reinsert
+>>> +      * the rb_node into a sibling.
+>>> +      */
+>>> +     tasklet_kill(&ve->base.execlists.tasklet);
+>>
+>> Can it still be running after an RCU period?
 > 
-> This is required for a later patch to handle locking around virtual
-> requests in the signaler, as those requests may want to move between
-> engines and be destroyed while we are holding b->irq_lock on a physical
-> engine.
-> 
-> v2: Drop mutex_reinit(), if we never mark the mutex as destroyed we
-> don't need to reset the debug code, at the loss of having the mutex
-> debug code spot us attempting to destroy a locked mutex.
-> v3: As the intended use will remain strongly referenced counted, with
-> very little inflight access across reuse, drop the ctor.
-> v4: Drop the unrequired change to remove the temporary reference around
-> dropping the active context, and add back some more missing ctor
-> operations.
-> v5: The ctor is back. Tvrtko spotted that ce->signal_lock [introduced
-> later] maybe accessed under RCU and so needs special care not to be
-> reinitialised.
-> v6: Don't mix SLAB_TYPESAFE_BY_RCU and RCU list iteration.
-> 
-> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-> ---
->   drivers/gpu/drm/i915/gt/intel_context.c       | 12 +++++++++---
->   drivers/gpu/drm/i915/gt/intel_context_types.h | 11 ++++++++++-
->   2 files changed, 19 insertions(+), 4 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/gt/intel_context.c b/drivers/gpu/drm/i915/gt/intel_context.c
-> index 92a3f25c4006..d3a835212167 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_context.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_context.c
-> @@ -25,11 +25,18 @@ static struct intel_context *intel_context_alloc(void)
->   	return kmem_cache_zalloc(global.slab_ce, GFP_KERNEL);
->   }
->   
-> -void intel_context_free(struct intel_context *ce)
-> +static void rcu_context_free(struct rcu_head *rcu)
->   {
-> +	struct intel_context *ce = container_of(rcu, typeof(*ce), rcu);
-> +
->   	kmem_cache_free(global.slab_ce, ce);
->   }
->   
-> +void intel_context_free(struct intel_context *ce)
-> +{
-> +	call_rcu(&ce->rcu, rcu_context_free);
-> +}
-> +
->   struct intel_context *
->   intel_context_create(struct intel_engine_cs *engine)
->   {
-> @@ -356,8 +363,7 @@ static int __intel_context_active(struct i915_active *active)
->   }
->   
->   void
-> -intel_context_init(struct intel_context *ce,
-> -		   struct intel_engine_cs *engine)
-> +intel_context_init(struct intel_context *ce, struct intel_engine_cs *engine)
->   {
->   	GEM_BUG_ON(!engine->cops);
->   	GEM_BUG_ON(!engine->gt->vm);
-> diff --git a/drivers/gpu/drm/i915/gt/intel_context_types.h b/drivers/gpu/drm/i915/gt/intel_context_types.h
-> index 552cb57a2e8c..20cb5835d1c3 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_context_types.h
-> +++ b/drivers/gpu/drm/i915/gt/intel_context_types.h
-> @@ -44,7 +44,16 @@ struct intel_context_ops {
->   };
->   
->   struct intel_context {
-> -	struct kref ref;
-> +	/*
-> +	 * Note: Some fields may be accessed under RCU.
-> +	 *
-> +	 * Unless otherwise noted a field can safely be assumed to be protected
-> +	 * by strong reference counting.
-> +	 */
-> +	union {
-> +		struct kref ref; /* no kref_get_unless_zero()! */
-> +		struct rcu_head rcu;
-> +	};
->   
->   	struct intel_engine_cs *engine;
->   	struct intel_engine_cs *inflight;
-> 
+> I think there is a window between checking to see if the request is
+> completed and kicking the tasklet, that is not under the rcu lock and
+> opportunity for the request to be retired, and barrier flushed to drop
+> the context references.
 
-Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+ From where would that check come?
+
+> I observed the leaked ve->request, but the tasklet_kill, iirc, is
+> speculation about possible windows. Admittedly all long test runs have
+> been with this patch in place for most of the last year.
+> 
+>>> +     /* Decouple ourselves from the siblings, no more access allowed. */
+>>>        for (n = 0; n < ve->num_siblings; n++) {
+>>>                struct intel_engine_cs *sibling = ve->siblings[n];
+>>>                struct rb_node *node = &ve->nodes[sibling->id].rb;
+>>> -             unsigned long flags;
+>>>    
+>>>                if (RB_EMPTY_NODE(node))
+>>>                        continue;
+>>>    
+>>> -             spin_lock_irqsave(&sibling->active.lock, flags);
+>>> +             spin_lock_irq(&sibling->active.lock);
+>>>    
+>>>                /* Detachment is lazily performed in the execlists tasklet */
+>>>                if (!RB_EMPTY_NODE(node))
+>>>                        rb_erase_cached(node, &sibling->execlists.virtual);
+>>>    
+>>> -             spin_unlock_irqrestore(&sibling->active.lock, flags);
+>>> +             spin_unlock_irq(&sibling->active.lock);
+>>>        }
+>>>        GEM_BUG_ON(__tasklet_is_scheduled(&ve->base.execlists.tasklet));
+>>> +     GEM_BUG_ON(!list_empty(virtual_queue(ve)));
+>>>    
+>>>        if (ve->context.state)
+>>>                __execlists_context_fini(&ve->context);
+>>>        intel_context_fini(&ve->context);
+>>>    
+>>>        intel_engine_free_request_pool(&ve->base);
+>>> +     intel_breadcrumbs_free(ve->base.breadcrumbs);
+>>
+>> This looks to belong to some other patch.
+> 
+> Some might say I was fixing up an earlier oversight.
+
+Separate patch would be good, with Fixes: probably since it is a memory 
+leak and one liner.
 
 Regards,
 
