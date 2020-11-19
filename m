@@ -1,46 +1,42 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6EBC62B8BE6
-	for <lists+intel-gfx@lfdr.de>; Thu, 19 Nov 2020 08:06:08 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id DBF282B8C3A
+	for <lists+intel-gfx@lfdr.de>; Thu, 19 Nov 2020 08:25:00 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2EA9C6E4F3;
-	Thu, 19 Nov 2020 07:06:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 37A0A89FFD;
+	Thu, 19 Nov 2020 07:24:59 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6196A6E4F3
- for <intel-gfx@lists.freedesktop.org>; Thu, 19 Nov 2020 07:06:05 +0000 (UTC)
-IronPort-SDR: NpWKnSw4vunvN4pne5Pq+lLKND4nYUiFdqGLHr2tQBEU9nUOYwcwThD9sek6byv4Zsa03umZVT
- ZDaC7wzuzvmQ==
-X-IronPort-AV: E=McAfee;i="6000,8403,9809"; a="150512933"
-X-IronPort-AV: E=Sophos;i="5.77,489,1596524400"; d="scan'208";a="150512933"
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7D32189FFD
+ for <intel-gfx@lists.freedesktop.org>; Thu, 19 Nov 2020 07:24:57 +0000 (UTC)
+IronPort-SDR: +WtrzfJXIsTFput7r+RHasbgbXRQBKAJPAXK5Sc3hJWWgIz9qIV6CbWZNXU7Mfz9YmrP1JPlh7
+ P79xMqi/H1kw==
+X-IronPort-AV: E=McAfee;i="6000,8403,9809"; a="235391306"
+X-IronPort-AV: E=Sophos;i="5.77,489,1596524400"; d="scan'208";a="235391306"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Nov 2020 23:06:05 -0800
-IronPort-SDR: dMwpwwAbDsFmjME4k+rOxpbx2OFoZr2n4f3zjdBOL57nmGyJY8HnKibfxYczauYR496aIy8fF/
- 57P0qH6OULNw==
-X-IronPort-AV: E=Sophos;i="5.77,489,1596524400"; d="scan'208";a="310959751"
-Received: from xsang-optiplex-9020.sh.intel.com (HELO xsang-OptiPlex-9020)
- ([10.239.159.140])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Nov 2020 23:05:59 -0800
-Date: Thu, 19 Nov 2020 15:20:18 +0800
-From: Oliver Sang <oliver.sang@intel.com>
-To: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-Message-ID: <20201119072018.GA15197@xsang-OptiPlex-9020>
-References: <20201111155811.GB24657@xsang-OptiPlex-9020>
- <160527763346.5566.3471508802857132043@jlahtine-mobl.ger.corp.intel.com>
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Nov 2020 23:24:56 -0800
+IronPort-SDR: qkPkNIdpBhsfvPF0GPurLx8QC1ehfzIK1Q3v4a0Zh4otG60/B2cFGVMUEMPtsYFlAuqPe5Vm6A
+ cLRn1UXex/4Q==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.77,489,1596524400"; d="scan'208";a="368765389"
+Received: from shawnle1-build-machine.itwn.intel.com ([10.5.253.9])
+ by orsmga007.jf.intel.com with ESMTP; 18 Nov 2020 23:24:54 -0800
+From: Lee Shawn C <shawn.c.lee@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Thu, 19 Nov 2020 15:29:41 +0800
+Message-Id: <20201119072941.32316-1-shawn.c.lee@intel.com>
+X-Mailer: git-send-email 2.17.1
+In-Reply-To: <20201116135913.20782-1-shawn.c.lee@intel.com>
+References: <20201116135913.20782-1-shawn.c.lee@intel.com>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <160527763346.5566.3471508802857132043@jlahtine-mobl.ger.corp.intel.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
-Subject: Re: [Intel-gfx] [drm/i915/gem] 59dd13ad31:
- phoronix-test-suite.jxrendermark.RadialGradientPaint.1024x1024.operations_per_second
- -54.0% regression
+Subject: [Intel-gfx] [PATCH v4] drm/i915/lspcon: enter standby mode to
+ enhance power saving
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,251 +49,105 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: feng.tang@intel.com, tiejun.li@intel.com,
- Chris Wilson <chris@chris-wilson.co.uk>, frank.du@intel.com,
- guobing.chen@intel.com, jiebin.sun@intel.com, Shuhua.Fan@intel.com,
- Matthew Auld <matthew.auld@intel.com>, fan.zhao@intel.com,
- ying.huang@intel.com, shan.kang@intel.com, zhengjun.xing@intel.com,
- zhengjun.xing@linux.intel.com, Wenhuan.Huang@intel.com,
- intel-gfx@lists.freedesktop.org, guangli.li@intel.com, gengxin.xie@intel.com,
- ming.a.chen@intel.com, yu.ma@intel.com, jessica.ji@intel.com, lkp@lists.01.org,
- wangyang.guo@intel.com, dapeng1.mi@intel.com,
- LKML <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Cc: Cooper Chiou <cooper.chiou@intel.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Nov 13, 2020 at 04:27:13PM +0200, Joonas Lahtinen wrote:
-> Hi,
-> =
-
-> Could you add intel-gfx@lists.freedesktop.org into reports going
-> forward.
-> =
-
-> Quoting kernel test robot (2020-11-11 17:58:11)
-> > =
-
-> > Greeting,
-> > =
-
-> > FYI, we noticed a -54.0% regression of phoronix-test-suite.jxrendermark=
-.RadialGradientPaint.1024x1024.operations_per_second due to commit:
-> =
-
-> How many runs are there on the bad version to ensure the bisect is
-> repeatable?
-
-test 4 times.
-zxing@inn:/result/phoronix-test-suite/performance-true-Radial_Gradient_Pain=
-t-1024x1024-jxrendermark-1.2.4-ucode=3D0xd6-monitor=3Dda39a3ee/lkp-cfl-d1/d=
-ebian-x86_64-phoronix/x86_64-rhel-8.3/gcc-9/59dd13ad310793757e34afa489dd6fc=
-8544fc3da$ grep -r "operations_per_second" */stats.json
-0/stats.json: "phoronix-test-suite.jxrendermark.RadialGradientPaint.1024x10=
-24.operations_per_second": 4133.487932,
-1/stats.json: "phoronix-test-suite.jxrendermark.RadialGradientPaint.1024x10=
-24.operations_per_second": 4120.421503,
-2/stats.json: "phoronix-test-suite.jxrendermark.RadialGradientPaint.1024x10=
-24.operations_per_second": 4188.414835,
-3/stats.json: "phoronix-test-suite.jxrendermark.RadialGradientPaint.1024x10=
-24.operations_per_second": 4068.549514,
-
-> =
-
-> According to Chris test has various factors affecting why the result
-> could fluctuate and has been known. Reverting the patch did not have
-> an effect on the benchmark and was not expected to do so, either.
-> =
-
-> Is there some mechanism to queue a re-run?
-> =
-
-> Would it make sense to do further runs before sending out the e-mail
-> to avoid false positives.
-> =
-
-> It could of course be also solved by sticking to tests that have less
-> fluctuation in them.
-> =
-
-> Regards, Joonas
-> =
-
-> > =
-
-> > =
-
-> > commit: 59dd13ad310793757e34afa489dd6fc8544fc3da ("drm/i915/gem: Flush =
-coherency domains on first set-domain-ioctl")
-> > https://git.kernel.org/cgit/linux/kernel/git/torvalds/linux.git master
-> > =
-
-> > =
-
-> > in testcase: phoronix-test-suite
-> > on test machine: 12 threads Intel(R) Core(TM) i7-8700 CPU @ 3.20GHz wit=
-h 8G memory
-> > with following parameters:
-> > =
-
-> >         need_x: true
-> >         test: jxrendermark-1.2.4
-> >         option_a: Radial Gradient Paint
-> >         option_b: 1024x1024
-> >         cpufreq_governor: performance
-> >         ucode: 0xd6
-> > =
-
-> > test-description: The Phoronix Test Suite is the most comprehensive tes=
-ting and benchmarking platform available that provides an extensible framew=
-ork for which new tests can be easily added.
-> > test-url: http://www.phoronix-test-suite.com/
-> > =
-
-> > =
-
-> > =
-
-> > If you fix the issue, kindly add following tag
-> > Reported-by: kernel test robot <oliver.sang@intel.com>
-> > =
-
-> > =
-
-> > Details are as below:
-> > -----------------------------------------------------------------------=
---------------------------->
-> > =
-
-> > =
-
-> > To reproduce:
-> > =
-
-> >         git clone https://github.com/intel/lkp-tests.git
-> >         cd lkp-tests
-> >         bin/lkp install job.yaml  # job file is attached in this email
-> >         bin/lkp run     job.yaml
-> > =
-
-> > =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-> > compiler/cpufreq_governor/kconfig/need_x/option_a/option_b/rootfs/tbox_=
-group/test/testcase/ucode:
-> >   gcc-9/performance/x86_64-rhel-8.3/true/Radial Gradient Paint/1024x102=
-4/debian-x86_64-phoronix/lkp-cfl-d1/jxrendermark-1.2.4/phoronix-test-suite/=
-0xd6
-> > =
-
-> > commit: =
-
-> >   0dccdba51e ("Merge tag 'gvt-fixes-2020-10-30' of https://github.com/i=
-ntel/gvt-linux into drm-intel-fixes")
-> >   59dd13ad31 ("drm/i915/gem: Flush coherency domains on first set-domai=
-n-ioctl")
-> > =
-
-> > 0dccdba51e852271 59dd13ad310793757e34afa489d =
-
-> > ---------------- --------------------------- =
-
-> >          %stddev     %change         %stddev
-> >              \          |                \  =
-
-> >       8980 =B1  2%     -54.0%       4127        phoronix-test-suite.jxr=
-endermark.RadialGradientPaint.1024x1024.operations_per_second
-> >       9.00           +13.9%      10.25 =B1  4%  phoronix-test-suite.tim=
-e.percent_of_cpu_this_job_got
-> > =
-
-> > =
-
-> >                                                                        =
-         =
-
-> >                                                                        =
-         =
-
-> >                                                                        =
-         =
-
-> >   10000 +--------------------------------------------------------------=
------+   =
-
-> >         |                                                              =
-     |   =
-
-> >    9000 |-+.+. .+.+.+.+.+.   .+. .+.   .+. .+.+.     .+. .+.   .+. .+.+=
-.   .|   =
-
-> >         |.+   +           +.+   +   +.+   +     +.+.+   +   +.+   +    =
- +.+ |   =
-
-> >         |                                                              =
-     |   =
-
-> >    8000 |-+                                                            =
-     |   =
-
-> >         |                                                              =
-     |   =
-
-> >    7000 |-+                                                            =
-     |   =
-
-> >         |                                                              =
-     |   =
-
-> >    6000 |-+                                                            =
-     |   =
-
-> >         |                                                              =
-     |   =
-
-> >         |                                                              =
-     |   =
-
-> >    5000 |-+                                                            =
-     |   =
-
-> >         |                                 O                            =
-     |   =
-
-> >    4000 +--------------------------------------------------------------=
------+   =
-
-> >                                                                        =
-         =
-
-> >                                                                        =
-         =
-
-> > [*] bisect-good sample
-> > [O] bisect-bad  sample
-> > =
-
-> > =
-
-> > =
-
-> > Disclaimer:
-> > Results have been estimated based on internal Intel analysis and are pr=
-ovided
-> > for informational purposes only. Any difference in system hardware or s=
-oftware
-> > design or configuration may affect actual performance.
-> > =
-
-> > =
-
-> > Thanks,
-> > Oliver Sang
-> > =
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+QWZ0ZXIgc3lzdGVtIGJvb3QgdXAsIExTUENPTiB3aWxsIGJlIGNvbmZpZ3VyZWQgYXMgUENPTiBt
+b2RlLgpCdXQgaXQgbmV2ZXIgZ28gaW50byBwb3dlciBzYXZpbmcgc3RhdGUuIFNvdXJjZSBkcml2
+ZXIgY2FuCmRvIHRoZSBmb2xsb3dpbmcuIFRoZW4gTFNQQ09OIGNhbiBlbnRlciBzdGFuZGJ5IG1v
+ZGUKYXV0b21hdGljYWxseSB0byBzYXZlIG1vcmUgcG93ZXIuCgoxLiBBdCBQQ09OIG1vZGUsIHNv
+dXJjZSBkcml2ZXIgd3JpdGUgMHgyIHRvIERQQ0QgNjAwaC4KMi4gQXQgTFMgbW9kZSwgdHJ5IHRv
+IGRpc2FibGUgRFBfRFVBTF9NT0RFX1RNRFNfT0VOLgoKdjI6IGZpeCB0eXBvCnYzOiBGb3VuZCBw
+YXJ0aWN1bGFyIG1vbml0b3IgdHJpZ2dlciBIUEQgdG8gTFNQQ09OCiAgICBhZnRlciBtYWluIGxp
+bmsgc3RvcHBlZC4gSWYgZHJpdmVyIGRpZCBub3QgZW5hYmxlCiAgICBkaXNwbGF5IG91dHB1dC4g
+U291cmNlIHNob3VsZCByZXF1ZXN0IExTUENPTiB0bwogICAgZW50ZXIgc3RhbmRieSBtb2RlIGFn
+YWluLgp2NDogQmVmb3JlIGVudGVyIEQzLCBtYWtlIHN1cmUgZGlzcGxheSBvdXRwdXQgaXMgbm90
+CiAgICBhY3RpdmUuIEFuZCBzb3VyY2Uvc2luayBhcmUgbm90IGRvaW5nIGxpbmsgdHJhaW5pbmcu
+CgpDYzogVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4KQ2M6
+IEphbmkgTmlrdWxhIDxqYW5pLm5pa3VsYUBsaW51eC5pbnRlbC5jb20+CkNjOiBVbWEgU2hhbmth
+ciA8dW1hLnNoYW5rYXJAaW50ZWwuY29tPgpDYzogQ29vcGVyIENoaW91IDxjb29wZXIuY2hpb3VA
+aW50ZWwuY29tPgpDYzogS2hhbGVkIEFsbWFoYWxsYXd5IDxraGFsZWQuYWxtYWhhbGxhd3lAaW50
+ZWwuY29tPgpTaWduZWQtb2ZmLWJ5OiBMZWUgU2hhd24gQyA8c2hhd24uYy5sZWVAaW50ZWwuY29t
+PgotLS0KIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZHAuYyAgICAgfCAxMyAr
+KysrKystCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2xzcGNvbi5jIHwgMzgg
+KysrKysrKysrKysrKysrKysrKysrCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVs
+X2xzcGNvbi5oIHwgIDEgKwogMyBmaWxlcyBjaGFuZ2VkLCA1MSBpbnNlcnRpb25zKCspLCAxIGRl
+bGV0aW9uKC0pCgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRl
+bF9kcC5jIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kcC5jCmluZGV4IGVj
+ODM1OWYwM2FhZi4uZDI1NjdkYzNiYzVlIDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkx
+NS9kaXNwbGF5L2ludGVsX2RwLmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9p
+bnRlbF9kcC5jCkBAIC02MTg0LDYgKzYxODQsNyBAQCBzdGF0aWMgYm9vbAogaW50ZWxfZHBfc2hv
+cnRfcHVsc2Uoc3RydWN0IGludGVsX2RwICppbnRlbF9kcCkKIHsKIAlzdHJ1Y3QgZHJtX2k5MTVf
+cHJpdmF0ZSAqZGV2X3ByaXYgPSBkcF90b19pOTE1KGludGVsX2RwKTsKKwlzdHJ1Y3QgaW50ZWxf
+bHNwY29uICpsc3Bjb24gPSBkcF90b19sc3Bjb24oaW50ZWxfZHApOwogCXU4IG9sZF9zaW5rX2Nv
+dW50ID0gaW50ZWxfZHAtPnNpbmtfY291bnQ7CiAJYm9vbCByZXQ7CiAKQEAgLTYyMTEsNiArNjIx
+MiwxMSBAQCBpbnRlbF9kcF9zaG9ydF9wdWxzZShzdHJ1Y3QgaW50ZWxfZHAgKmludGVsX2RwKQog
+CS8qIEhhbmRsZSBDRUMgaW50ZXJydXB0cywgaWYgYW55ICovCiAJZHJtX2RwX2NlY19pcnEoJmlu
+dGVsX2RwLT5hdXgpOwogCisJLyogSWYgTFNQQ09OIGNvbm5lY3RlZCwgdHJ5IHRvIHNldCBsc3Bj
+b24gcG93ZXIgc3RhdGUgdG8gRDMgKi8KKwlpZiAobHNwY29uICYmIGxzcGNvbi0+YWN0aXZlKQor
+CQlsc3Bjb25fc3RhbmRieShkcF90b19kaWdfcG9ydChpbnRlbF9kcCksCisJCQkgICAgICAgaW50
+ZWxfZGlnaXRhbF9wb3J0X2Nvbm5lY3RlZCgmZHBfdG9fZGlnX3BvcnQoaW50ZWxfZHApLT5iYXNl
+KSk7CisKIAkvKiBkZWZlciB0byB0aGUgaG90cGx1ZyB3b3JrIGZvciBsaW5rIHJldHJhaW5pbmcg
+aWYgbmVlZGVkICovCiAJaWYgKGludGVsX2RwX25lZWRzX2xpbmtfcmV0cmFpbihpbnRlbF9kcCkp
+CiAJCXJldHVybiBmYWxzZTsKQEAgLTY1MzYsNiArNjU0Miw3IEBAIGludGVsX2RwX2RldGVjdChz
+dHJ1Y3QgZHJtX2Nvbm5lY3RvciAqY29ubmVjdG9yLAogCXN0cnVjdCBkcm1faTkxNV9wcml2YXRl
+ICpkZXZfcHJpdiA9IHRvX2k5MTUoY29ubmVjdG9yLT5kZXYpOwogCXN0cnVjdCBpbnRlbF9kcCAq
+aW50ZWxfZHAgPSBpbnRlbF9hdHRhY2hlZF9kcCh0b19pbnRlbF9jb25uZWN0b3IoY29ubmVjdG9y
+KSk7CiAJc3RydWN0IGludGVsX2RpZ2l0YWxfcG9ydCAqZGlnX3BvcnQgPSBkcF90b19kaWdfcG9y
+dChpbnRlbF9kcCk7CisJc3RydWN0IGludGVsX2xzcGNvbiAqbHNwY29uID0gZHBfdG9fbHNwY29u
+KGludGVsX2RwKTsKIAlzdHJ1Y3QgaW50ZWxfZW5jb2RlciAqZW5jb2RlciA9ICZkaWdfcG9ydC0+
+YmFzZTsKIAllbnVtIGRybV9jb25uZWN0b3Jfc3RhdHVzIHN0YXR1czsKIApAQCAtNjYzMiw5ICs2
+NjM5LDEzIEBAIGludGVsX2RwX2RldGVjdChzdHJ1Y3QgZHJtX2Nvbm5lY3RvciAqY29ubmVjdG9y
+LAogCWludGVsX2RwX2NoZWNrX3NlcnZpY2VfaXJxKGludGVsX2RwKTsKIAogb3V0OgotCWlmIChz
+dGF0dXMgIT0gY29ubmVjdG9yX3N0YXR1c19jb25uZWN0ZWQgJiYgIWludGVsX2RwLT5pc19tc3Qp
+CisJaWYgKHN0YXR1cyAhPSBjb25uZWN0b3Jfc3RhdHVzX2Nvbm5lY3RlZCAmJiAhaW50ZWxfZHAt
+PmlzX21zdCkgewogCQlpbnRlbF9kcF91bnNldF9lZGlkKGludGVsX2RwKTsKIAorCQlpZiAobHNw
+Y29uICYmIGxzcGNvbi0+YWN0aXZlKQorCQkJbHNwY29uX3N0YW5kYnkoZHBfdG9fZGlnX3BvcnQo
+aW50ZWxfZHApLCBmYWxzZSk7CisJfQorCiAJLyoKIAkgKiBNYWtlIHN1cmUgdGhlIHJlZnMgZm9y
+IHBvd2VyIHdlbGxzIGVuYWJsZWQgZHVyaW5nIGRldGVjdCBhcmUKIAkgKiBkcm9wcGVkIHRvIGF2
+b2lkIGEgbmV3IGRldGVjdCBjeWNsZSB0cmlnZ2VyZWQgYnkgSFBEIHBvbGxpbmcuCmRpZmYgLS1n
+aXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2xzcGNvbi5jIGIvZHJpdmVy
+cy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9sc3Bjb24uYwppbmRleCBlMzdkNDVlNTMxZGYu
+Ljk5ZWI2NzI3MjU1MiAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9p
+bnRlbF9sc3Bjb24uYworKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2xz
+cGNvbi5jCkBAIC01NTAsNiArNTUwLDQ0IEBAIHN0YXRpYyBib29sIGxzcGNvbl9pbml0KHN0cnVj
+dCBpbnRlbF9kaWdpdGFsX3BvcnQgKmRpZ19wb3J0KQogCXJldHVybiB0cnVlOwogfQogCit2b2lk
+IGxzcGNvbl9zdGFuZGJ5KHN0cnVjdCBpbnRlbF9kaWdpdGFsX3BvcnQgKmRpZ19wb3J0LCBib29s
+IGNvbm5lY3RlZCkKK3sKKwlzdHJ1Y3QgaW50ZWxfZHAgKmRwID0gJmRpZ19wb3J0LT5kcDsKKwl1
+OCBhbGlnbl9zdGF0dXMgPSAwLCB0cmFpbmluZ19wYXR0ZXJuID0gMCwgaTsKKworCWlmIChjb25u
+ZWN0ZWQpIHsKKwkJZm9yIChpID0gMDsgaSA8IDM7IGkrKykgeworCQkJdXNsZWVwX3JhbmdlKDEw
+MDAwLCAxMTAwMCk7CisKKwkJCWlmIChkcm1fZHBfZHBjZF9yZWFkYigmZHAtPmF1eCwgRFBfTEFO
+RV9BTElHTl9TVEFUVVNfVVBEQVRFRCwKKwkJCQkJICAgICAgJmFsaWduX3N0YXR1cykgPD0gMCkg
+eworCQkJCURSTV9ERUJVR19LTVMoIkxTUENPTiBmYWlsZWQgdG8gcmVhZCBhbGlnbiBzdGF0dXNc
+biIpOworCQkJCXJldHVybjsKKwkJCX0KKworCQkJaWYgKGRybV9kcF9kcGNkX3JlYWRiKCZkcC0+
+YXV4LCBEUF9UUkFJTklOR19QQVRURVJOX1NFVCwKKwkJCQkJICAgICAgJnRyYWluaW5nX3BhdHRl
+cm4pIDw9IDApIHsKKwkJCQlEUk1fREVCVUdfS01TKCJMU1BDT04gZmFpbGVkIHRvIHJlYWQgdHJh
+aW5pbmcgcGF0dGVybiBzZXRcbiIpOworCQkJCXJldHVybjsKKwkJCX0KKworCQkJLyoKKwkJCSAq
+IElmIGxpbmsgdHJhaW5pZyBpcyBvbmdvaW5nLiBPciBzaW5rIHVwZGF0ZWQgbGluayBhbGlnbiBz
+dGF0dXMuCisJCQkgKiBTb3VyY2UgZHJpdmVyIHNob3VsZCBub3Qgc2V0IGxzcGNvbiBwb3dlciBz
+dGF0ZSB0byBEMy4KKwkJCSAqLworCQkJaWYgKGFsaWduX3N0YXR1cyB8fCB0cmFpbmluZ19wYXR0
+ZXJuKSB7CisJCQkJRFJNX0RFQlVHX0tNUygiTFNQQ09OIGxpbmsgdHJhaW5pbmcgb3IgZGlzcGxh
+eSBpcyB3b3JraW5nXG4iKTsKKwkJCQlEUk1fREVCVUdfS01TKCJMU1BDT04gRFBDRCByZWdpc3Rl
+ciAwMTAyaCA9ICV4LCAwMjA0aCA9IDB4JXhcbiIsCisJCQkJCSAgICAgIHRyYWluaW5nX3BhdHRl
+cm4sIGFsaWduX3N0YXR1cyk7CisJCQkJcmV0dXJuOworCQkJfQorCQl9CisJfQorCisJaWYgKGRy
+bV9kcF9kcGNkX3dyaXRlYigmZHAtPmF1eCwgRFBfU0VUX1BPV0VSLCBEUF9TRVRfUE9XRVJfRDMp
+IDw9IDApCisJCURSTV9ERUJVR19LTVMoIkxTUENPTiBmYWlsZWQgdG8gd3JpdGUgcG93ZXIgc3Rh
+dGUgdG8gRDNcbiIpOworfQorCiB2b2lkIGxzcGNvbl9yZXN1bWUoc3RydWN0IGludGVsX2RpZ2l0
+YWxfcG9ydCAqZGlnX3BvcnQpCiB7CiAJc3RydWN0IGludGVsX2xzcGNvbiAqbHNwY29uID0gJmRp
+Z19wb3J0LT5sc3Bjb247CmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5
+L2ludGVsX2xzcGNvbi5oIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9sc3Bj
+b24uaAppbmRleCBiMDNkY2I3MDc2ZDguLmVlZjBlNjliZmYzMiAxMDA2NDQKLS0tIGEvZHJpdmVy
+cy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9sc3Bjb24uaAorKysgYi9kcml2ZXJzL2dwdS9k
+cm0vaTkxNS9kaXNwbGF5L2ludGVsX2xzcGNvbi5oCkBAIC0xNiw2ICsxNiw3IEBAIHN0cnVjdCBp
+bnRlbF9lbmNvZGVyOwogc3RydWN0IGludGVsX2xzcGNvbjsKIAogdm9pZCBsc3Bjb25fcmVzdW1l
+KHN0cnVjdCBpbnRlbF9kaWdpdGFsX3BvcnQgKmRpZ19wb3J0KTsKK3ZvaWQgbHNwY29uX3N0YW5k
+Ynkoc3RydWN0IGludGVsX2RpZ2l0YWxfcG9ydCAqZGlnX3BvcnQsIGJvb2wgY29ubmVjdGVkKTsK
+IHZvaWQgbHNwY29uX3dhaXRfcGNvbl9tb2RlKHN0cnVjdCBpbnRlbF9sc3Bjb24gKmxzcGNvbik7
+CiB2b2lkIGxzcGNvbl93cml0ZV9pbmZvZnJhbWUoc3RydWN0IGludGVsX2VuY29kZXIgKmVuY29k
+ZXIsCiAJCQkgICAgY29uc3Qgc3RydWN0IGludGVsX2NydGNfc3RhdGUgKmNydGNfc3RhdGUsCi0t
+IAoyLjE3LjEKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+CkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpo
+dHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
