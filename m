@@ -2,41 +2,64 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DBF282B8C3A
-	for <lists+intel-gfx@lfdr.de>; Thu, 19 Nov 2020 08:25:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D4F1A2B8C84
+	for <lists+intel-gfx@lfdr.de>; Thu, 19 Nov 2020 08:48:05 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 37A0A89FFD;
-	Thu, 19 Nov 2020 07:24:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 43BCF89DE3;
+	Thu, 19 Nov 2020 07:48:02 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7D32189FFD
- for <intel-gfx@lists.freedesktop.org>; Thu, 19 Nov 2020 07:24:57 +0000 (UTC)
-IronPort-SDR: +WtrzfJXIsTFput7r+RHasbgbXRQBKAJPAXK5Sc3hJWWgIz9qIV6CbWZNXU7Mfz9YmrP1JPlh7
- P79xMqi/H1kw==
-X-IronPort-AV: E=McAfee;i="6000,8403,9809"; a="235391306"
-X-IronPort-AV: E=Sophos;i="5.77,489,1596524400"; d="scan'208";a="235391306"
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E047589DE3;
+ Thu, 19 Nov 2020 07:48:00 +0000 (UTC)
+IronPort-SDR: HZDlrJEsjZVD1mrqNFxFQbFRDY+KHd/fkl2xtZeeSEllAfT6zf3wg/VIWqiDOFITEf1pPaU6eh
+ XaHvhw37DtwQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9809"; a="151096425"
+X-IronPort-AV: E=Sophos;i="5.77,489,1596524400"; d="scan'208";a="151096425"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Nov 2020 23:24:56 -0800
-IronPort-SDR: qkPkNIdpBhsfvPF0GPurLx8QC1ehfzIK1Q3v4a0Zh4otG60/B2cFGVMUEMPtsYFlAuqPe5Vm6A
- cLRn1UXex/4Q==
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Nov 2020 23:48:00 -0800
+IronPort-SDR: jMuwD6fblq0Vj6xvd7TcWHJeK6ZlZi3gRv0lP8+Y6uE0HtQsFkCL4DjxDxYiymWfdWcIDbJOSS
+ jbptnYwNODCg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.77,489,1596524400"; d="scan'208";a="368765389"
-Received: from shawnle1-build-machine.itwn.intel.com ([10.5.253.9])
- by orsmga007.jf.intel.com with ESMTP; 18 Nov 2020 23:24:54 -0800
-From: Lee Shawn C <shawn.c.lee@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Thu, 19 Nov 2020 15:29:41 +0800
-Message-Id: <20201119072941.32316-1-shawn.c.lee@intel.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20201116135913.20782-1-shawn.c.lee@intel.com>
-References: <20201116135913.20782-1-shawn.c.lee@intel.com>
+X-IronPort-AV: E=Sophos;i="5.77,489,1596524400"; d="scan'208";a="368670350"
+Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
+ by FMSMGA003.fm.intel.com with ESMTP; 18 Nov 2020 23:48:00 -0800
+Received: from bgsmsx603.gar.corp.intel.com (10.109.78.82) by
+ fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1713.5; Wed, 18 Nov 2020 23:47:58 -0800
+Received: from bgsmsx604.gar.corp.intel.com (10.67.234.6) by
+ BGSMSX603.gar.corp.intel.com (10.109.78.82) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1713.5; Thu, 19 Nov 2020 13:17:56 +0530
+Received: from bgsmsx604.gar.corp.intel.com ([10.67.234.6]) by
+ BGSMSX604.gar.corp.intel.com ([10.67.234.6]) with mapi id 15.01.1713.004;
+ Thu, 19 Nov 2020 13:17:56 +0530
+From: "Shankar, Uma" <uma.shankar@intel.com>
+To: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Thread-Topic: [PATCH v2 04/13] drm/dp_helper: Add Helpers for FRL Link
+ Training support for DP-HDMI2.1 PCON
+Thread-Index: AQHWsDe0c0JNIRjFUEeIMkrE94kmWanPLtQQ
+Date: Thu, 19 Nov 2020 07:47:56 +0000
+Message-ID: <cddd647a647a459fa06afdf0271314a4@intel.com>
+References: <20201101100657.12087-1-ankit.k.nautiyal@intel.com>
+ <20201101100657.12087-5-ankit.k.nautiyal@intel.com>
+In-Reply-To: <20201101100657.12087-5-ankit.k.nautiyal@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+dlp-product: dlpe-windows
+dlp-reaction: no-action
+dlp-version: 11.5.1.3
+x-originating-ip: [10.223.10.1]
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v4] drm/i915/lspcon: enter standby mode to
- enhance power saving
+Subject: Re: [Intel-gfx] [PATCH v2 04/13] drm/dp_helper: Add Helpers for FRL
+ Link Training support for DP-HDMI2.1 PCON
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,105 +72,469 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Cooper Chiou <cooper.chiou@intel.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-QWZ0ZXIgc3lzdGVtIGJvb3QgdXAsIExTUENPTiB3aWxsIGJlIGNvbmZpZ3VyZWQgYXMgUENPTiBt
-b2RlLgpCdXQgaXQgbmV2ZXIgZ28gaW50byBwb3dlciBzYXZpbmcgc3RhdGUuIFNvdXJjZSBkcml2
-ZXIgY2FuCmRvIHRoZSBmb2xsb3dpbmcuIFRoZW4gTFNQQ09OIGNhbiBlbnRlciBzdGFuZGJ5IG1v
-ZGUKYXV0b21hdGljYWxseSB0byBzYXZlIG1vcmUgcG93ZXIuCgoxLiBBdCBQQ09OIG1vZGUsIHNv
-dXJjZSBkcml2ZXIgd3JpdGUgMHgyIHRvIERQQ0QgNjAwaC4KMi4gQXQgTFMgbW9kZSwgdHJ5IHRv
-IGRpc2FibGUgRFBfRFVBTF9NT0RFX1RNRFNfT0VOLgoKdjI6IGZpeCB0eXBvCnYzOiBGb3VuZCBw
-YXJ0aWN1bGFyIG1vbml0b3IgdHJpZ2dlciBIUEQgdG8gTFNQQ09OCiAgICBhZnRlciBtYWluIGxp
-bmsgc3RvcHBlZC4gSWYgZHJpdmVyIGRpZCBub3QgZW5hYmxlCiAgICBkaXNwbGF5IG91dHB1dC4g
-U291cmNlIHNob3VsZCByZXF1ZXN0IExTUENPTiB0bwogICAgZW50ZXIgc3RhbmRieSBtb2RlIGFn
-YWluLgp2NDogQmVmb3JlIGVudGVyIEQzLCBtYWtlIHN1cmUgZGlzcGxheSBvdXRwdXQgaXMgbm90
-CiAgICBhY3RpdmUuIEFuZCBzb3VyY2Uvc2luayBhcmUgbm90IGRvaW5nIGxpbmsgdHJhaW5pbmcu
-CgpDYzogVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4KQ2M6
-IEphbmkgTmlrdWxhIDxqYW5pLm5pa3VsYUBsaW51eC5pbnRlbC5jb20+CkNjOiBVbWEgU2hhbmth
-ciA8dW1hLnNoYW5rYXJAaW50ZWwuY29tPgpDYzogQ29vcGVyIENoaW91IDxjb29wZXIuY2hpb3VA
-aW50ZWwuY29tPgpDYzogS2hhbGVkIEFsbWFoYWxsYXd5IDxraGFsZWQuYWxtYWhhbGxhd3lAaW50
-ZWwuY29tPgpTaWduZWQtb2ZmLWJ5OiBMZWUgU2hhd24gQyA8c2hhd24uYy5sZWVAaW50ZWwuY29t
-PgotLS0KIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZHAuYyAgICAgfCAxMyAr
-KysrKystCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2xzcGNvbi5jIHwgMzgg
-KysrKysrKysrKysrKysrKysrKysrCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVs
-X2xzcGNvbi5oIHwgIDEgKwogMyBmaWxlcyBjaGFuZ2VkLCA1MSBpbnNlcnRpb25zKCspLCAxIGRl
-bGV0aW9uKC0pCgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRl
-bF9kcC5jIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kcC5jCmluZGV4IGVj
-ODM1OWYwM2FhZi4uZDI1NjdkYzNiYzVlIDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkx
-NS9kaXNwbGF5L2ludGVsX2RwLmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9p
-bnRlbF9kcC5jCkBAIC02MTg0LDYgKzYxODQsNyBAQCBzdGF0aWMgYm9vbAogaW50ZWxfZHBfc2hv
-cnRfcHVsc2Uoc3RydWN0IGludGVsX2RwICppbnRlbF9kcCkKIHsKIAlzdHJ1Y3QgZHJtX2k5MTVf
-cHJpdmF0ZSAqZGV2X3ByaXYgPSBkcF90b19pOTE1KGludGVsX2RwKTsKKwlzdHJ1Y3QgaW50ZWxf
-bHNwY29uICpsc3Bjb24gPSBkcF90b19sc3Bjb24oaW50ZWxfZHApOwogCXU4IG9sZF9zaW5rX2Nv
-dW50ID0gaW50ZWxfZHAtPnNpbmtfY291bnQ7CiAJYm9vbCByZXQ7CiAKQEAgLTYyMTEsNiArNjIx
-MiwxMSBAQCBpbnRlbF9kcF9zaG9ydF9wdWxzZShzdHJ1Y3QgaW50ZWxfZHAgKmludGVsX2RwKQog
-CS8qIEhhbmRsZSBDRUMgaW50ZXJydXB0cywgaWYgYW55ICovCiAJZHJtX2RwX2NlY19pcnEoJmlu
-dGVsX2RwLT5hdXgpOwogCisJLyogSWYgTFNQQ09OIGNvbm5lY3RlZCwgdHJ5IHRvIHNldCBsc3Bj
-b24gcG93ZXIgc3RhdGUgdG8gRDMgKi8KKwlpZiAobHNwY29uICYmIGxzcGNvbi0+YWN0aXZlKQor
-CQlsc3Bjb25fc3RhbmRieShkcF90b19kaWdfcG9ydChpbnRlbF9kcCksCisJCQkgICAgICAgaW50
-ZWxfZGlnaXRhbF9wb3J0X2Nvbm5lY3RlZCgmZHBfdG9fZGlnX3BvcnQoaW50ZWxfZHApLT5iYXNl
-KSk7CisKIAkvKiBkZWZlciB0byB0aGUgaG90cGx1ZyB3b3JrIGZvciBsaW5rIHJldHJhaW5pbmcg
-aWYgbmVlZGVkICovCiAJaWYgKGludGVsX2RwX25lZWRzX2xpbmtfcmV0cmFpbihpbnRlbF9kcCkp
-CiAJCXJldHVybiBmYWxzZTsKQEAgLTY1MzYsNiArNjU0Miw3IEBAIGludGVsX2RwX2RldGVjdChz
-dHJ1Y3QgZHJtX2Nvbm5lY3RvciAqY29ubmVjdG9yLAogCXN0cnVjdCBkcm1faTkxNV9wcml2YXRl
-ICpkZXZfcHJpdiA9IHRvX2k5MTUoY29ubmVjdG9yLT5kZXYpOwogCXN0cnVjdCBpbnRlbF9kcCAq
-aW50ZWxfZHAgPSBpbnRlbF9hdHRhY2hlZF9kcCh0b19pbnRlbF9jb25uZWN0b3IoY29ubmVjdG9y
-KSk7CiAJc3RydWN0IGludGVsX2RpZ2l0YWxfcG9ydCAqZGlnX3BvcnQgPSBkcF90b19kaWdfcG9y
-dChpbnRlbF9kcCk7CisJc3RydWN0IGludGVsX2xzcGNvbiAqbHNwY29uID0gZHBfdG9fbHNwY29u
-KGludGVsX2RwKTsKIAlzdHJ1Y3QgaW50ZWxfZW5jb2RlciAqZW5jb2RlciA9ICZkaWdfcG9ydC0+
-YmFzZTsKIAllbnVtIGRybV9jb25uZWN0b3Jfc3RhdHVzIHN0YXR1czsKIApAQCAtNjYzMiw5ICs2
-NjM5LDEzIEBAIGludGVsX2RwX2RldGVjdChzdHJ1Y3QgZHJtX2Nvbm5lY3RvciAqY29ubmVjdG9y
-LAogCWludGVsX2RwX2NoZWNrX3NlcnZpY2VfaXJxKGludGVsX2RwKTsKIAogb3V0OgotCWlmIChz
-dGF0dXMgIT0gY29ubmVjdG9yX3N0YXR1c19jb25uZWN0ZWQgJiYgIWludGVsX2RwLT5pc19tc3Qp
-CisJaWYgKHN0YXR1cyAhPSBjb25uZWN0b3Jfc3RhdHVzX2Nvbm5lY3RlZCAmJiAhaW50ZWxfZHAt
-PmlzX21zdCkgewogCQlpbnRlbF9kcF91bnNldF9lZGlkKGludGVsX2RwKTsKIAorCQlpZiAobHNw
-Y29uICYmIGxzcGNvbi0+YWN0aXZlKQorCQkJbHNwY29uX3N0YW5kYnkoZHBfdG9fZGlnX3BvcnQo
-aW50ZWxfZHApLCBmYWxzZSk7CisJfQorCiAJLyoKIAkgKiBNYWtlIHN1cmUgdGhlIHJlZnMgZm9y
-IHBvd2VyIHdlbGxzIGVuYWJsZWQgZHVyaW5nIGRldGVjdCBhcmUKIAkgKiBkcm9wcGVkIHRvIGF2
-b2lkIGEgbmV3IGRldGVjdCBjeWNsZSB0cmlnZ2VyZWQgYnkgSFBEIHBvbGxpbmcuCmRpZmYgLS1n
-aXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2xzcGNvbi5jIGIvZHJpdmVy
-cy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9sc3Bjb24uYwppbmRleCBlMzdkNDVlNTMxZGYu
-Ljk5ZWI2NzI3MjU1MiAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9p
-bnRlbF9sc3Bjb24uYworKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2xz
-cGNvbi5jCkBAIC01NTAsNiArNTUwLDQ0IEBAIHN0YXRpYyBib29sIGxzcGNvbl9pbml0KHN0cnVj
-dCBpbnRlbF9kaWdpdGFsX3BvcnQgKmRpZ19wb3J0KQogCXJldHVybiB0cnVlOwogfQogCit2b2lk
-IGxzcGNvbl9zdGFuZGJ5KHN0cnVjdCBpbnRlbF9kaWdpdGFsX3BvcnQgKmRpZ19wb3J0LCBib29s
-IGNvbm5lY3RlZCkKK3sKKwlzdHJ1Y3QgaW50ZWxfZHAgKmRwID0gJmRpZ19wb3J0LT5kcDsKKwl1
-OCBhbGlnbl9zdGF0dXMgPSAwLCB0cmFpbmluZ19wYXR0ZXJuID0gMCwgaTsKKworCWlmIChjb25u
-ZWN0ZWQpIHsKKwkJZm9yIChpID0gMDsgaSA8IDM7IGkrKykgeworCQkJdXNsZWVwX3JhbmdlKDEw
-MDAwLCAxMTAwMCk7CisKKwkJCWlmIChkcm1fZHBfZHBjZF9yZWFkYigmZHAtPmF1eCwgRFBfTEFO
-RV9BTElHTl9TVEFUVVNfVVBEQVRFRCwKKwkJCQkJICAgICAgJmFsaWduX3N0YXR1cykgPD0gMCkg
-eworCQkJCURSTV9ERUJVR19LTVMoIkxTUENPTiBmYWlsZWQgdG8gcmVhZCBhbGlnbiBzdGF0dXNc
-biIpOworCQkJCXJldHVybjsKKwkJCX0KKworCQkJaWYgKGRybV9kcF9kcGNkX3JlYWRiKCZkcC0+
-YXV4LCBEUF9UUkFJTklOR19QQVRURVJOX1NFVCwKKwkJCQkJICAgICAgJnRyYWluaW5nX3BhdHRl
-cm4pIDw9IDApIHsKKwkJCQlEUk1fREVCVUdfS01TKCJMU1BDT04gZmFpbGVkIHRvIHJlYWQgdHJh
-aW5pbmcgcGF0dGVybiBzZXRcbiIpOworCQkJCXJldHVybjsKKwkJCX0KKworCQkJLyoKKwkJCSAq
-IElmIGxpbmsgdHJhaW5pZyBpcyBvbmdvaW5nLiBPciBzaW5rIHVwZGF0ZWQgbGluayBhbGlnbiBz
-dGF0dXMuCisJCQkgKiBTb3VyY2UgZHJpdmVyIHNob3VsZCBub3Qgc2V0IGxzcGNvbiBwb3dlciBz
-dGF0ZSB0byBEMy4KKwkJCSAqLworCQkJaWYgKGFsaWduX3N0YXR1cyB8fCB0cmFpbmluZ19wYXR0
-ZXJuKSB7CisJCQkJRFJNX0RFQlVHX0tNUygiTFNQQ09OIGxpbmsgdHJhaW5pbmcgb3IgZGlzcGxh
-eSBpcyB3b3JraW5nXG4iKTsKKwkJCQlEUk1fREVCVUdfS01TKCJMU1BDT04gRFBDRCByZWdpc3Rl
-ciAwMTAyaCA9ICV4LCAwMjA0aCA9IDB4JXhcbiIsCisJCQkJCSAgICAgIHRyYWluaW5nX3BhdHRl
-cm4sIGFsaWduX3N0YXR1cyk7CisJCQkJcmV0dXJuOworCQkJfQorCQl9CisJfQorCisJaWYgKGRy
-bV9kcF9kcGNkX3dyaXRlYigmZHAtPmF1eCwgRFBfU0VUX1BPV0VSLCBEUF9TRVRfUE9XRVJfRDMp
-IDw9IDApCisJCURSTV9ERUJVR19LTVMoIkxTUENPTiBmYWlsZWQgdG8gd3JpdGUgcG93ZXIgc3Rh
-dGUgdG8gRDNcbiIpOworfQorCiB2b2lkIGxzcGNvbl9yZXN1bWUoc3RydWN0IGludGVsX2RpZ2l0
-YWxfcG9ydCAqZGlnX3BvcnQpCiB7CiAJc3RydWN0IGludGVsX2xzcGNvbiAqbHNwY29uID0gJmRp
-Z19wb3J0LT5sc3Bjb247CmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5
-L2ludGVsX2xzcGNvbi5oIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9sc3Bj
-b24uaAppbmRleCBiMDNkY2I3MDc2ZDguLmVlZjBlNjliZmYzMiAxMDA2NDQKLS0tIGEvZHJpdmVy
-cy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9sc3Bjb24uaAorKysgYi9kcml2ZXJzL2dwdS9k
-cm0vaTkxNS9kaXNwbGF5L2ludGVsX2xzcGNvbi5oCkBAIC0xNiw2ICsxNiw3IEBAIHN0cnVjdCBp
-bnRlbF9lbmNvZGVyOwogc3RydWN0IGludGVsX2xzcGNvbjsKIAogdm9pZCBsc3Bjb25fcmVzdW1l
-KHN0cnVjdCBpbnRlbF9kaWdpdGFsX3BvcnQgKmRpZ19wb3J0KTsKK3ZvaWQgbHNwY29uX3N0YW5k
-Ynkoc3RydWN0IGludGVsX2RpZ2l0YWxfcG9ydCAqZGlnX3BvcnQsIGJvb2wgY29ubmVjdGVkKTsK
-IHZvaWQgbHNwY29uX3dhaXRfcGNvbl9tb2RlKHN0cnVjdCBpbnRlbF9sc3Bjb24gKmxzcGNvbik7
-CiB2b2lkIGxzcGNvbl93cml0ZV9pbmZvZnJhbWUoc3RydWN0IGludGVsX2VuY29kZXIgKmVuY29k
-ZXIsCiAJCQkgICAgY29uc3Qgc3RydWN0IGludGVsX2NydGNfc3RhdGUgKmNydGNfc3RhdGUsCi0t
-IAoyLjE3LjEKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-CkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpo
-dHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
+
+
+> -----Original Message-----
+> From: Nautiyal, Ankit K <ankit.k.nautiyal@intel.com>
+> Sent: Sunday, November 1, 2020 3:37 PM
+> To: intel-gfx@lists.freedesktop.org
+> Cc: dri-devel@lists.freedesktop.org; Shankar, Uma <uma.shankar@intel.com>;
+> Kulkarni, Vandita <vandita.kulkarni@intel.com>; ville.syrjala@linux.intel.com;
+> Sharma, Swati2 <swati2.sharma@intel.com>
+> Subject: [PATCH v2 04/13] drm/dp_helper: Add Helpers for FRL Link Training
+> support for DP-HDMI2.1 PCON
+> 
+> This patch adds support for configuring a PCON device, connected as a DP
+> branched device to enable FRL Link training with a HDMI2.1 + sink.
+> 
+> v2: Fixed typos and addressed other review comments from Uma Shankar.
+> -changed the commit message for better clarity (Uma Shankar) -removed
+> unnecessary argument supplied to a drm helper function.
+> -fixed return value for max frl read from pcon.
+> 
+> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+> ---
+>  drivers/gpu/drm/drm_dp_helper.c | 302 ++++++++++++++++++++++++++++++++
+>  include/drm/drm_dp_helper.h     |  81 +++++++++
+>  2 files changed, 383 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/drm_dp_helper.c
+> b/drivers/gpu/drm/drm_dp_helper.c index 14ddf28ecac0..b67580294c4e 100644
+> --- a/drivers/gpu/drm/drm_dp_helper.c
+> +++ b/drivers/gpu/drm/drm_dp_helper.c
+> @@ -2591,3 +2591,305 @@ void drm_dp_vsc_sdp_log(const char *level, struct
+> device *dev,  #undef DP_SDP_LOG  }  EXPORT_SYMBOL(drm_dp_vsc_sdp_log);
+> +
+> +/**
+> + * drm_dp_get_pcon_max_frl_bw() - maximum frl supported by PCON
+> + * @dpcd: DisplayPort configuration data
+> + * @port_cap: port capabilities
+> + *
+> + * Returns maximum frl bandwidth supported by PCON in GBPS,
+> + * returns 0 if not supported.
+> + **/
+> +int drm_dp_get_pcon_max_frl_bw(const u8 dpcd[DP_RECEIVER_CAP_SIZE],
+> +			       const u8 port_cap[4])
+> +{
+> +	int bw;
+> +	u8 buf;
+> +
+> +	buf = port_cap[2];
+> +	bw = buf & DP_PCON_MAX_FRL_BW;
+> +
+> +	switch (bw) {
+> +	case DP_PCON_MAX_9GBPS:
+> +		return 9;
+> +	case DP_PCON_MAX_18GBPS:
+> +		return 18;
+> +	case DP_PCON_MAX_24GBPS:
+> +		return 24;
+> +	case DP_PCON_MAX_32GBPS:
+> +		return 32;
+> +	case DP_PCON_MAX_40GBPS:
+> +		return 40;
+> +	case DP_PCON_MAX_48GBPS:
+> +		return 48;
+> +	case DP_PCON_MAX_0GBPS:
+> +	default:
+> +		return 0;
+> +	}
+> +
+> +	return 0;
+> +}
+> +EXPORT_SYMBOL(drm_dp_get_pcon_max_frl_bw);
+> +
+> +/**
+> + * drm_dp_get_hdmi_sink_max_frl_bw() - maximum frl supported by HDMI
+> +Sink
+> + * @aux: DisplayPort AUX channel
+> + *
+> + * Returns maximum frl bandwidth supported by HDMI in Gbps on success,
+> + * returns 0, if not supported.
+> + **/
+> +int drm_dp_get_hdmi_sink_max_frl_bw(struct drm_dp_aux *aux) {
+> +	u8 buf;
+> +	int bw, ret;
+> +
+> +	ret = drm_dp_dpcd_readb(aux, DP_PCON_HDMI_SINK, &buf);
+> +	if (ret < 0)
+> +		return 0;
+> +	bw = buf & DP_HDMI_SINK_LINK_BW;
+> +
+> +	switch (bw) {
+> +	case DP_HDMI_SINK_BW_9GBPS:
+> +		return 9;
+> +	case DP_HDMI_SINK_BW_18GBPS:
+> +		return 18;
+> +	case DP_HDMI_SINK_BW_24GBPS:
+> +		return 24;
+> +	case DP_HDMI_SINK_BW_32GBPS:
+> +		return 32;
+> +	case DP_HDMI_SINK_BW_40GBPS:
+> +		return 40;
+> +	case DP_HDMI_SINK_BW_48GBPS:
+> +		return 48;
+> +	case DP_HDMI_SINK_BW_0GBPS:
+> +	default:
+> +		return 0;
+> +	}
+> +
+> +	return 0;
+> +}
+> +EXPORT_SYMBOL(drm_dp_get_hdmi_sink_max_frl_bw);
+> +
+> +/**
+> + * drm_dp_pcon_frl_prepare() - Prepare PCON for FRL.
+> + * @aux: DisplayPort AUX channel
+> + *
+> + * Returns 0 if success, else returns negative error code.
+> + **/
+> +int drm_dp_pcon_frl_prepare(struct drm_dp_aux *aux, bool
+> +enable_frl_ready_hpd) {
+> +	int ret;
+> +	u8 buf = DP_PCON_ENABLE_SOURCE_CTL_MODE |
+> +		 DP_PCON_ENABLE_LINK_FRL_MODE;
+> +
+> +	if (enable_frl_ready_hpd)
+> +		buf |= DP_PCON_ENABLE_HPD_READY;
+> +
+> +	ret = drm_dp_dpcd_writeb(aux, DP_PCON_HDMI_LINK_CONFIG_1, buf);
+> +
+> +	return ret;
+> +}
+> +EXPORT_SYMBOL(drm_dp_pcon_frl_prepare);
+> +
+> +/**
+> + * drm_dp_pcon_is_frl_ready() - Is PCON ready for FRL
+> + * @aux: DisplayPort AUX channel
+> + *
+> + * Returns true if success, else returns false.
+> + **/
+> +bool drm_dp_pcon_is_frl_ready(struct drm_dp_aux *aux) {
+> +	int ret;
+> +	u8 buf;
+> +
+> +	ret = drm_dp_dpcd_readb(aux, DP_PCON_HDMI_TX_LINK_STATUS, &buf);
+> +	if (ret < 0)
+> +		return false;
+> +
+> +	if (buf & DP_PCON_FRL_READY)
+> +		return true;
+> +
+> +	return false;
+> +}
+> +EXPORT_SYMBOL(drm_dp_pcon_is_frl_ready);
+> +
+> +/**
+> + * drm_dp_pcon_frl_configure_1() - Set HDMI LINK Configuration-Step1
+> + * @aux: DisplayPort AUX channel
+> + * @max_frl_gbps: maximum frl bw to be configured between PCON and HDMI
+> +sink
+> + * @concurrent_mode: true if concurrent mode or operation is required,
+> + * false otherwise.
+> + *
+> + * Returns 0 if success, else returns negative error code.
+> + **/
+> +
+> +int drm_dp_pcon_frl_configure_1(struct drm_dp_aux *aux, int max_frl_gbps,
+> +				bool concurrent_mode)
+> +{
+> +	int ret;
+> +	u8 buf;
+> +
+> +	ret = drm_dp_dpcd_readb(aux, DP_PCON_HDMI_LINK_CONFIG_1, &buf);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	if (concurrent_mode)
+> +		buf |= DP_PCON_ENABLE_CONCURRENT_LINK;
+> +	else
+> +		buf &= ~DP_PCON_ENABLE_CONCURRENT_LINK;
+> +
+> +	switch (max_frl_gbps) {
+> +	case 9:
+> +		buf |=  DP_PCON_ENABLE_MAX_BW_9GBPS;
+> +		break;
+> +	case 18:
+> +		buf |=  DP_PCON_ENABLE_MAX_BW_18GBPS;
+> +		break;
+> +	case 24:
+> +		buf |=  DP_PCON_ENABLE_MAX_BW_24GBPS;
+> +		break;
+> +	case 32:
+> +		buf |=  DP_PCON_ENABLE_MAX_BW_32GBPS;
+> +		break;
+> +	case 40:
+> +		buf |=  DP_PCON_ENABLE_MAX_BW_40GBPS;
+> +		break;
+> +	case 48:
+> +		buf |=  DP_PCON_ENABLE_MAX_BW_48GBPS;
+> +		break;
+> +	case 0:
+> +		buf |=  DP_PCON_ENABLE_MAX_BW_0GBPS;
+> +		break;
+> +	default:
+> +		return -EINVAL;
+> +	}
+> +
+> +	ret = drm_dp_dpcd_writeb(aux, DP_PCON_HDMI_LINK_CONFIG_1, buf);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	return 0;
+> +}
+> +EXPORT_SYMBOL(drm_dp_pcon_frl_configure_1);
+> +
+> +/**
+> + * drm_dp_pcon_frl_configure_2() - Set HDMI Link configuration Step-2
+> + * @aux: DisplayPort AUX channel
+> + * @max_frl_mask : Max FRL BW to be tried by the PCON with HDMI Sink
+> + * @extended_train_mode : true for Extended Mode, false for Normal Mode.
+> + * In Normal mode, the PCON tries each frl bw from the max_frl_mask
+> +starting
+> + * from min, and stops when link training is successful. In Extended
+> +mode, all
+> + * frl bw selected in the mask are trained by the PCON.
+> + *
+> + * Returns 0 if success, else returns negative error code.
+> + **/
+> +int drm_dp_pcon_frl_configure_2(struct drm_dp_aux *aux, int max_frl_mask,
+> +				bool extended_train_mode)
+> +{
+> +	int ret;
+> +	u8 buf = max_frl_mask;
+> +
+> +	if (extended_train_mode)
+> +		buf |= DP_PCON_FRL_LINK_TRAIN_EXTENDED;
+> +
+> +	ret = drm_dp_dpcd_writeb(aux, DP_PCON_HDMI_LINK_CONFIG_2, buf);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	return 0;
+> +}
+> +EXPORT_SYMBOL(drm_dp_pcon_frl_configure_2);
+> +
+> +/**
+> + * drm_dp_pcon_reset_frl_config() - Re-Set HDMI Link configuration.
+> + * @aux: DisplayPort AUX channel
+> + *
+> + * Returns 0 if success, else returns negative error code.
+> + **/
+> +int drm_dp_pcon_reset_frl_config(struct drm_dp_aux *aux) {
+> +	int ret;
+> +
+> +	ret = drm_dp_dpcd_writeb(aux, DP_PCON_HDMI_LINK_CONFIG_1, 0x0);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	return 0;
+> +}
+> +EXPORT_SYMBOL(drm_dp_pcon_reset_frl_config);
+> +
+> +/**
+> + * drm_dp_pcon_frl_enable() - Enable HDMI link through FRL
+> + * @aux: DisplayPort AUX channel
+> + *
+> + * Returns 0 if success, else returns negative error code.
+> + **/
+> +int drm_dp_pcon_frl_enable(struct drm_dp_aux *aux) {
+> +	int ret;
+> +	u8 buf = 0;
+> +
+> +	ret = drm_dp_dpcd_readb(aux, DP_PCON_HDMI_LINK_CONFIG_1, &buf);
+> +	if (ret < 0)
+> +		return ret;
+> +	if (!(buf & DP_PCON_ENABLE_SOURCE_CTL_MODE)) {
+> +		DRM_DEBUG_KMS("PCON in Autonomous mode, can't enable
+> FRL\n");
+> +		return -EINVAL;
+> +	}
+> +	buf |= DP_PCON_ENABLE_HDMI_LINK;
+> +	ret = drm_dp_dpcd_writeb(aux, DP_PCON_HDMI_LINK_CONFIG_1, buf);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	return 0;
+> +}
+> +EXPORT_SYMBOL(drm_dp_pcon_frl_enable);
+> +
+> +/**
+> + * drm_dp_pcon_hdmi_link_active() - check if the PCON HDMI LINK status is
+> active.
+> + * @aux: DisplayPort AUX channel
+> + *
+> + * Returns true if link is active else returns false.
+> + **/
+> +bool drm_dp_pcon_hdmi_link_active(struct drm_dp_aux *aux) {
+> +	u8 buf;
+> +	int ret;
+> +
+> +	ret = drm_dp_dpcd_readb(aux, DP_PCON_HDMI_TX_LINK_STATUS, &buf);
+> +	if (ret < 0)
+> +		return false;
+> +
+> +	return buf & DP_PCON_HDMI_TX_LINK_ACTIVE; }
+> +EXPORT_SYMBOL(drm_dp_pcon_hdmi_link_active);
+> +
+> +/**
+> + * drm_dp_pcon_hdmi_link_mode() - get the PCON HDMI LINK MODE
+> + * @aux: DisplayPort AUX channel
+> + * @frl_trained_mask: pointer to store bitmask of the trained bw configuration.
+> + * Valid only if the MODE returned is FRL. For Normal Link training
+> +mode
+> + * only 1 of the bits will be set, but in case of Extended mode, more
+> +than
+> + * one bits can be set.
+> + *
+> + * Returns the link mode : TMDS or FRL on success, else returns
+> +negative error
+> + * code.
+> + **/
+> +int drm_dp_pcon_hdmi_link_mode(struct drm_dp_aux *aux, u8
+> +*frl_trained_mask) {
+> +	u8 buf;
+> +	int mode;
+> +	int ret;
+> +
+> +	ret = drm_dp_dpcd_readb(aux, DP_PCON_HDMI_POST_FRL_STATUS,
+> &buf);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	mode = buf & DP_PCON_HDMI_LINK_MODE;
+> +
+> +	if (frl_trained_mask && DP_PCON_HDMI_MODE_FRL == mode)
+> +		*frl_trained_mask = (buf & DP_PCON_HDMI_FRL_TRAINED_BW)
+> >> 1;
+> +
+> +	return mode;
+> +}
+> +EXPORT_SYMBOL(drm_dp_pcon_hdmi_link_mode);
+> diff --git a/include/drm/drm_dp_helper.h b/include/drm/drm_dp_helper.h index
+> f55a9d1320ca..e2ed6bfaae89 100644
+> --- a/include/drm/drm_dp_helper.h
+> +++ b/include/drm/drm_dp_helper.h
+> @@ -411,6 +411,17 @@ struct drm_device;
+>  # define DP_DS_10BPC		            1
+>  # define DP_DS_12BPC		            2
+>  # define DP_DS_16BPC		            3
+> +/* HDMI2.1 PCON FRL CONFIGURATION */
+> +# define DP_PCON_MAX_FRL_BW                 (7 << 2)
+> +# define DP_PCON_MAX_0GBPS                  (0 << 2)
+> +# define DP_PCON_MAX_9GBPS                  (1 << 2)
+> +# define DP_PCON_MAX_18GBPS                 (2 << 2)
+> +# define DP_PCON_MAX_24GBPS                 (3 << 2)
+> +# define DP_PCON_MAX_32GBPS                 (4 << 2)
+> +# define DP_PCON_MAX_40GBPS                 (5 << 2)
+> +# define DP_PCON_MAX_48GBPS                 (6 << 2)
+> +# define DP_PCON_SOURCE_CTL_MODE            (1 << 5)
+> +
+>  /* offset 3 for DVI */
+>  # define DP_DS_DVI_DUAL_LINK		    (1 << 1)
+>  # define DP_DS_DVI_HIGH_COLOR_DEPTH	    (1 << 2)
+> @@ -1053,6 +1064,61 @@ struct drm_device;
+>  #define DP_CEC_RX_MESSAGE_BUFFER               0x3010
+>  #define DP_CEC_TX_MESSAGE_BUFFER               0x3020
+>  #define DP_CEC_MESSAGE_BUFFER_LENGTH             0x10
+> +/* PROTOCOL CONVERSION HDMI SINK */
+> +#define DP_PCON_HDMI_SINK                      0x3035
+> +# define DP_HDMI_SINK_LINK_BW                  (7 << 0)
+> +# define DP_HDMI_SINK_BW_0GBPS		       0
+> +# define DP_HDMI_SINK_BW_9GBPS		       1
+> +# define DP_HDMI_SINK_BW_18GBPS		       2
+> +# define DP_HDMI_SINK_BW_24GBPS		       3
+> +# define DP_HDMI_SINK_BW_32GBPS		       4
+> +# define DP_HDMI_SINK_BW_40GBPS		       5
+> +# define DP_HDMI_SINK_BW_48GBPS		       6
+> +
+> +/* PCON CONFIGURE-1 FRL FOR HDMI SINK */
+> +#define DP_PCON_HDMI_LINK_CONFIG_1             0x305A
+> +# define DP_PCON_ENABLE_MAX_FRL_BW             (7 << 0)
+> +# define DP_PCON_ENABLE_MAX_BW_0GBPS	       0
+> +# define DP_PCON_ENABLE_MAX_BW_9GBPS	       1
+> +# define DP_PCON_ENABLE_MAX_BW_18GBPS	       2
+> +# define DP_PCON_ENABLE_MAX_BW_24GBPS	       3
+> +# define DP_PCON_ENABLE_MAX_BW_32GBPS	       4
+> +# define DP_PCON_ENABLE_MAX_BW_40GBPS	       5
+> +# define DP_PCON_ENABLE_MAX_BW_48GBPS	       6
+> +# define DP_PCON_ENABLE_SOURCE_CTL_MODE       (1 << 3)
+> +# define DP_PCON_ENABLE_CONCURRENT_LINK       (1 << 4)
+> +# define DP_PCON_ENABLE_LINK_FRL_MODE         (1 << 5)
+> +# define DP_PCON_ENABLE_HPD_READY	      (1 << 6)
+> +# define DP_PCON_ENABLE_HDMI_LINK             (1 << 7)
+> +
+> +/* PCON CONFIGURE-2 FRL FOR HDMI SINK */
+> +#define DP_PCON_HDMI_LINK_CONFIG_2            0x305B
+> +# define DP_PCON_MAX_LINK_BW_MASK             (0x3F << 0)
+> +# define DP_PCON_FRL_BW_MASK_9GBPS            (1 << 0)
+> +# define DP_PCON_FRL_BW_MASK_18GBPS           (1 << 1)
+> +# define DP_PCON_FRL_BW_MASK_24GBPS           (1 << 2)
+> +# define DP_PCON_FRL_BW_MASK_32GBPS           (1 << 3)
+> +# define DP_PCON_FRL_BW_MASK_40GBPS           (1 << 4)
+> +# define DP_PCON_FRL_BW_MASK_48GBPS           (1 << 5)
+> +# define DP_PCON_FRL_LINK_TRAIN_EXTENDED      (1 << 6)
+> +
+> +/* PCON HDMI LINK STATUS */
+> +#define DP_PCON_HDMI_TX_LINK_STATUS           0x303B
+> +# define DP_PCON_HDMI_TX_LINK_ACTIVE          (1 << 0)
+> +# define DP_PCON_FRL_READY		      (1 << 1)
+> +
+> +/* PCON HDMI POST FRL STATUS */
+> +#define DP_PCON_HDMI_POST_FRL_STATUS          0x3036
+> +# define DP_PCON_HDMI_LINK_MODE               (1 << 0)
+> +# define DP_PCON_HDMI_MODE_TMDS               0
+> +# define DP_PCON_HDMI_MODE_FRL                1
+> +# define DP_PCON_HDMI_FRL_TRAINED_BW          (0x3F << 1)
+
+Seems you have missed the comment here. Bit 4:7 are reserved, so adjust this accordingly.
+With this fixed:
+Reviewed-by: Uma Shankar <uma.shankar@intel.com>
+
+> +# define DP_PCON_FRL_TRAINED_BW_9GBPS	      (1 << 1)
+> +# define DP_PCON_FRL_TRAINED_BW_18GBPS	      (1 << 2)
+> +# define DP_PCON_FRL_TRAINED_BW_24GBPS	      (1 << 3)
+> +# define DP_PCON_FRL_TRAINED_BW_32GBPS	      (1 << 4)
+> +# define DP_PCON_FRL_TRAINED_BW_40GBPS	      (1 << 5)
+> +# define DP_PCON_FRL_TRAINED_BW_48GBPS	      (1 << 6)
+> 
+>  #define DP_PROTOCOL_CONVERTER_CONTROL_0		0x3050 /* DP 1.3
+> */
+>  # define DP_HDMI_DVI_OUTPUT_CONFIG		(1 << 0) /* DP 1.3 */
+> @@ -1967,4 +2033,19 @@ int drm_dp_get_phy_test_pattern(struct drm_dp_aux
+> *aux,
+>  				struct drm_dp_phy_test_params *data);  int
+> drm_dp_set_phy_test_pattern(struct drm_dp_aux *aux,
+>  				struct drm_dp_phy_test_params *data, u8
+> dp_rev);
+> +int drm_dp_get_pcon_max_frl_bw(const u8 dpcd[DP_RECEIVER_CAP_SIZE],
+> +			       const u8 port_cap[4]);
+> +int drm_dp_get_hdmi_sink_max_frl_bw(struct drm_dp_aux *aux); int
+> +drm_dp_pcon_frl_prepare(struct drm_dp_aux *aux, bool
+> +enable_frl_ready_hpd); bool drm_dp_pcon_is_frl_ready(struct drm_dp_aux
+> +*aux); int drm_dp_pcon_frl_configure_1(struct drm_dp_aux *aux, int
+> max_frl_gbps,
+> +				bool concurrent_mode);
+> +int drm_dp_pcon_frl_configure_2(struct drm_dp_aux *aux, int max_frl_mask,
+> +				bool extended_train_mode);
+> +int drm_dp_pcon_reset_frl_config(struct drm_dp_aux *aux); int
+> +drm_dp_pcon_frl_enable(struct drm_dp_aux *aux);
+> +
+> +bool drm_dp_pcon_hdmi_link_active(struct drm_dp_aux *aux); int
+> +drm_dp_pcon_hdmi_link_mode(struct drm_dp_aux *aux, u8
+> +*frl_trained_mask);
+> +
+>  #endif /* _DRM_DP_HELPER_H_ */
+> --
+> 2.17.1
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
