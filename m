@@ -1,29 +1,43 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0F8392B8E61
-	for <lists+intel-gfx@lfdr.de>; Thu, 19 Nov 2020 10:07:32 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id A9E832B8ECC
+	for <lists+intel-gfx@lfdr.de>; Thu, 19 Nov 2020 10:31:51 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7124B6E50D;
-	Thu, 19 Nov 2020 09:07:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 101DC89A8B;
+	Thu, 19 Nov 2020 09:31:50 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A6C286E50D
- for <intel-gfx@lists.freedesktop.org>; Thu, 19 Nov 2020 09:07:27 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 23038343-1500050 
- for multiple; Thu, 19 Nov 2020 09:07:19 +0000
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Thu, 19 Nov 2020 09:07:17 +0000
-Message-Id: <20201119090717.30687-1-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.20.1
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C7AA289A8B
+ for <intel-gfx@lists.freedesktop.org>; Thu, 19 Nov 2020 09:31:48 +0000 (UTC)
+IronPort-SDR: wfYcPEDuAWurIILMMsu0C+AqmP991MGEr2JcHvw6+TMl57zAPlKXnjf9kmD8D1SfPEz063SaSf
+ bpcG/ZQZ2I1A==
+X-IronPort-AV: E=McAfee;i="6000,8403,9809"; a="168688859"
+X-IronPort-AV: E=Sophos;i="5.77,490,1596524400"; d="scan'208";a="168688859"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Nov 2020 01:31:48 -0800
+IronPort-SDR: SBk6uKIf0HN15Trt8wcKcBy0DjcTVAn13vX0y9a6L9f8+j/4tXvtvmucJXlVb9jGtqifvdEit7
+ ceOV+Kpi6j9w==
+X-IronPort-AV: E=Sophos;i="5.77,490,1596524400"; d="scan'208";a="341630737"
+Received: from bkeavene-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.251.83.118])
+ by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Nov 2020 01:31:46 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: linux-kernel@vger.kernel.org
+In-Reply-To: <20201118165320.26829-4-jani.nikula@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20201118165320.26829-1-jani.nikula@intel.com>
+ <20201118165320.26829-4-jani.nikula@intel.com>
+Date: Thu, 19 Nov 2020 11:31:43 +0200
+Message-ID: <871rgppu9s.fsf@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915/display: Whitespace cleanups
+Subject: Re: [Intel-gfx] [PATCH 4/6] ath11k: make relay callbacks const
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,73 +50,47 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: intel-gfx@lists.freedesktop.org, ath11k@lists.infradead.org,
+ Kalle Valo <kvalo@codeaurora.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-drivers/gpu/drm/i915/display/intel_display.c:3634 intel_find_initial_plane_obj() warn: inconsistent indenting
-drivers/gpu/drm/i915/display/intel_display.c:15367 kill_bigjoiner_slave() warn: inconsistent indenting
+On Wed, 18 Nov 2020, Jani Nikula <jani.nikula@intel.com> wrote:
+> Now that relay_open() accepts const callbacks, make relay callbacks
+> const.
+>
+> Cc: Kalle Valo <kvalo@codeaurora.org>
+> Cc: ath11k@lists.infradead.org
+> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
----
- drivers/gpu/drm/i915/display/intel_display.c | 23 ++++++++++----------
- 1 file changed, 11 insertions(+), 12 deletions(-)
+Kalle, thanks for the acks on the other two ath patches - can I have
+your ack on this one too please?
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 5c07c74d4397..1a0f00f37ca9 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -3631,8 +3631,8 @@ intel_find_initial_plane_obj(struct intel_crtc *intel_crtc,
- 	struct intel_plane *intel_plane = to_intel_plane(primary);
- 	struct intel_plane_state *intel_state =
- 		to_intel_plane_state(plane_state);
--	 struct intel_crtc_state *crtc_state =
--		 to_intel_crtc_state(intel_crtc->base.state);
-+	struct intel_crtc_state *crtc_state =
-+		to_intel_crtc_state(intel_crtc->base.state);
- 	struct drm_framebuffer *fb;
- 	struct i915_vma *vma;
- 
-@@ -15361,17 +15361,17 @@ static int kill_bigjoiner_slave(struct intel_atomic_state *state,
- 				struct intel_crtc_state *master_crtc_state)
- {
- 	struct intel_crtc_state *slave_crtc_state =
--			intel_atomic_get_crtc_state(&state->base,
--						    master_crtc_state->bigjoiner_linked_crtc);
-+		intel_atomic_get_crtc_state(&state->base,
-+					    master_crtc_state->bigjoiner_linked_crtc);
- 
--		if (IS_ERR(slave_crtc_state))
--			return PTR_ERR(slave_crtc_state);
-+	if (IS_ERR(slave_crtc_state))
-+		return PTR_ERR(slave_crtc_state);
- 
--		slave_crtc_state->bigjoiner = master_crtc_state->bigjoiner = false;
--		slave_crtc_state->bigjoiner_slave = master_crtc_state->bigjoiner_slave = false;
--		slave_crtc_state->bigjoiner_linked_crtc = master_crtc_state->bigjoiner_linked_crtc = NULL;
--		intel_crtc_copy_uapi_to_hw_state(state, slave_crtc_state);
--		return 0;
-+	slave_crtc_state->bigjoiner = master_crtc_state->bigjoiner = false;
-+	slave_crtc_state->bigjoiner_slave = master_crtc_state->bigjoiner_slave = false;
-+	slave_crtc_state->bigjoiner_linked_crtc = master_crtc_state->bigjoiner_linked_crtc = NULL;
-+	intel_crtc_copy_uapi_to_hw_state(state, slave_crtc_state);
-+	return 0;
- }
- 
- /**
-@@ -15949,7 +15949,6 @@ static void intel_update_crtc(struct intel_atomic_state *state,
- 		intel_crtc_arm_fifo_underrun(crtc, new_crtc_state);
- }
- 
--
- static void intel_old_crtc_state_disables(struct intel_atomic_state *state,
- 					  struct intel_crtc_state *old_crtc_state,
- 					  struct intel_crtc_state *new_crtc_state,
+BR,
+Jani.
+
+> ---
+>  drivers/net/wireless/ath/ath11k/spectral.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+>
+> diff --git a/drivers/net/wireless/ath/ath11k/spectral.c b/drivers/net/wireless/ath/ath11k/spectral.c
+> index ac2a8cfdc1c0..1afe67759659 100644
+> --- a/drivers/net/wireless/ath/ath11k/spectral.c
+> +++ b/drivers/net/wireless/ath/ath11k/spectral.c
+> @@ -148,7 +148,7 @@ static int remove_buf_file_handler(struct dentry *dentry)
+>  	return 0;
+>  }
+>  
+> -static struct rchan_callbacks rfs_scan_cb = {
+> +static const struct rchan_callbacks rfs_scan_cb = {
+>  	.create_buf_file = create_buf_file_handler,
+>  	.remove_buf_file = remove_buf_file_handler,
+>  };
+
 -- 
-2.20.1
-
+Jani Nikula, Intel Open Source Graphics Center
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
