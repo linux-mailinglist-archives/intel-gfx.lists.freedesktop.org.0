@@ -2,30 +2,42 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 50E1B2B9B1E
-	for <lists+intel-gfx@lfdr.de>; Thu, 19 Nov 2020 20:08:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0EC5D2B9B53
+	for <lists+intel-gfx@lfdr.de>; Thu, 19 Nov 2020 20:16:40 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8F2766E7D9;
-	Thu, 19 Nov 2020 19:08:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4DAAF6E5B4;
+	Thu, 19 Nov 2020 19:16:38 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 84B866E56A;
- Thu, 19 Nov 2020 19:08:28 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 7D4A2A0003;
- Thu, 19 Nov 2020 19:08:28 +0000 (UTC)
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5C42A6E5B4
+ for <intel-gfx@lists.freedesktop.org>; Thu, 19 Nov 2020 19:16:36 +0000 (UTC)
+IronPort-SDR: Yd1ECPZwiBGkt9ibUttAHvPacZLTLnzkXXVco41ZZ6vJRpHYGfNnng3VuX1yVZsydIr1nt0MNC
+ t1Z4frw1h7yQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9810"; a="151196818"
+X-IronPort-AV: E=Sophos;i="5.78,354,1599548400"; d="scan'208";a="151196818"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Nov 2020 11:16:35 -0800
+IronPort-SDR: IXk7zw69gqpoRsHVXOuZt9S7Qqa9Sb1xPycuq1Xn5haHiu9xEtCg0afMxWqxTPD5ciWIA1bfp2
+ 9vaVYswOOPsQ==
+X-IronPort-AV: E=Sophos;i="5.78,354,1599548400"; d="scan'208";a="368963607"
+Received: from labuser-z97x-ud5h.jf.intel.com (HELO labuser-Z97X-UD5H)
+ ([10.165.21.211])
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Nov 2020 11:16:35 -0800
+Date: Thu, 19 Nov 2020 11:19:09 -0800
+From: "Navare, Manasi" <manasi.d.navare@intel.com>
+To: Chris Wilson <chris@chris-wilson.co.uk>
+Message-ID: <20201119191909.GA13915@labuser-Z97X-UD5H>
+References: <20201119090717.30687-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
-Date: Thu, 19 Nov 2020 19:08:28 -0000
-Message-ID: <160581290848.18187.3052167026007043782@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20201119185401.31883-1-ville.syrjala@linux.intel.com>
-In-Reply-To: <20201119185401.31883-1-ville.syrjala@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_drm/i915=3A_Clean_up_the_plane_data=5Frate_stuff?=
+Content-Disposition: inline
+In-Reply-To: <20201119090717.30687-1-chris@chris-wilson.co.uk>
+User-Agent: Mutt/1.5.24 (2015-08-30)
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/display: Whitespace cleanups
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,42 +50,85 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Thu, Nov 19, 2020 at 09:07:17AM +0000, Chris Wilson wrote:
+> drivers/gpu/drm/i915/display/intel_display.c:3634 intel_find_initial_plane_obj() warn: inconsistent indenting
+> drivers/gpu/drm/i915/display/intel_display.c:15367 kill_bigjoiner_slave() warn: inconsistent indenting
+> 
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
 
-Series: drm/i915: Clean up the plane data_rate stuff
-URL   : https://patchwork.freedesktop.org/series/84075/
-State : warning
+Thank you for the whitespace fixes, probably got introduced in the rebasing
 
-== Summary ==
+Reviewed-by: Manasi Navare <manasi.d.navare@intel.com>
 
-$ dim checkpatch origin/drm-tip
-c0d1ad9d577b drm/i915: Drop pointless total_data_rate argument
-076ed52a6259 drm/i915: Drop pointless dev_priv argument
-cdea900f9957 drm/i915: Extract skl_ddb_entry_init()
-7ff8faaaa6d0 drm/i915: Introduce skl_plane_ddb_iter
-a7add21a42fe drm/i915: Extract skl_allocate_plane_ddb()
-c961619d2c21 drm/i915: Extract skl_crtc_calc_dbuf_bw()
-1f668e243573 drm/i915: Tweak plane ddb allocation tracking
-43279666b42c drm/i915: Split plane data_rate into data_rate+data_rate_y
-36eeeb55b1ed drm/i915: Extract intel_adjusted_rate()
-c2bbd552bb85 drm/i915: Reuse intel_adjusted_rate() for pfit pixel rate adjustment
-571740d244d0 drm/i915: Pre-calculate plane relative data rate
--:454: WARNING:LONG_LINE: line length of 102 exceeds 100 columns
-#454: FILE: drivers/gpu/drm/i915/intel_pm.c:4814:
-+								iter.start + iter.uv_total[plane_id]);
+Manasi
 
-total: 0 errors, 1 warnings, 0 checks, 403 lines checked
-bee9dd701f76 drm/i915: Remove total[] and uv_total[] from ddb allocation
-6837c02a30f5 drm/i915: s/plane_res_b/blocks/ etc.
-
-
+> ---
+>  drivers/gpu/drm/i915/display/intel_display.c | 23 ++++++++++----------
+>  1 file changed, 11 insertions(+), 12 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+> index 5c07c74d4397..1a0f00f37ca9 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> @@ -3631,8 +3631,8 @@ intel_find_initial_plane_obj(struct intel_crtc *intel_crtc,
+>  	struct intel_plane *intel_plane = to_intel_plane(primary);
+>  	struct intel_plane_state *intel_state =
+>  		to_intel_plane_state(plane_state);
+> -	 struct intel_crtc_state *crtc_state =
+> -		 to_intel_crtc_state(intel_crtc->base.state);
+> +	struct intel_crtc_state *crtc_state =
+> +		to_intel_crtc_state(intel_crtc->base.state);
+>  	struct drm_framebuffer *fb;
+>  	struct i915_vma *vma;
+>  
+> @@ -15361,17 +15361,17 @@ static int kill_bigjoiner_slave(struct intel_atomic_state *state,
+>  				struct intel_crtc_state *master_crtc_state)
+>  {
+>  	struct intel_crtc_state *slave_crtc_state =
+> -			intel_atomic_get_crtc_state(&state->base,
+> -						    master_crtc_state->bigjoiner_linked_crtc);
+> +		intel_atomic_get_crtc_state(&state->base,
+> +					    master_crtc_state->bigjoiner_linked_crtc);
+>  
+> -		if (IS_ERR(slave_crtc_state))
+> -			return PTR_ERR(slave_crtc_state);
+> +	if (IS_ERR(slave_crtc_state))
+> +		return PTR_ERR(slave_crtc_state);
+>  
+> -		slave_crtc_state->bigjoiner = master_crtc_state->bigjoiner = false;
+> -		slave_crtc_state->bigjoiner_slave = master_crtc_state->bigjoiner_slave = false;
+> -		slave_crtc_state->bigjoiner_linked_crtc = master_crtc_state->bigjoiner_linked_crtc = NULL;
+> -		intel_crtc_copy_uapi_to_hw_state(state, slave_crtc_state);
+> -		return 0;
+> +	slave_crtc_state->bigjoiner = master_crtc_state->bigjoiner = false;
+> +	slave_crtc_state->bigjoiner_slave = master_crtc_state->bigjoiner_slave = false;
+> +	slave_crtc_state->bigjoiner_linked_crtc = master_crtc_state->bigjoiner_linked_crtc = NULL;
+> +	intel_crtc_copy_uapi_to_hw_state(state, slave_crtc_state);
+> +	return 0;
+>  }
+>  
+>  /**
+> @@ -15949,7 +15949,6 @@ static void intel_update_crtc(struct intel_atomic_state *state,
+>  		intel_crtc_arm_fifo_underrun(crtc, new_crtc_state);
+>  }
+>  
+> -
+>  static void intel_old_crtc_state_disables(struct intel_atomic_state *state,
+>  					  struct intel_crtc_state *old_crtc_state,
+>  					  struct intel_crtc_state *new_crtc_state,
+> -- 
+> 2.20.1
+> 
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
