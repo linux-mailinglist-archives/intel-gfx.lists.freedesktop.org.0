@@ -2,64 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D58272B90E7
-	for <lists+intel-gfx@lfdr.de>; Thu, 19 Nov 2020 12:29:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 748A22B927E
+	for <lists+intel-gfx@lfdr.de>; Thu, 19 Nov 2020 13:24:24 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 96DB089A44;
-	Thu, 19 Nov 2020 11:29:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3D8776E508;
+	Thu, 19 Nov 2020 12:24:21 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3471089A1F;
- Thu, 19 Nov 2020 11:29:33 +0000 (UTC)
-IronPort-SDR: Al8B74i2U15l7W7k9MVNcAOLbuwSw+8XAvTF+7szUC1ZuYgYZRdsDfN33K8PsdV7prIt/AgXvk
- ObVqVVCNy3AA==
-X-IronPort-AV: E=McAfee;i="6000,8403,9809"; a="150542737"
-X-IronPort-AV: E=Sophos;i="5.77,490,1596524400"; d="scan'208";a="150542737"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Nov 2020 03:29:32 -0800
-IronPort-SDR: L4cEPObnkK6VyFCATmMMb0WqTLmDHTDm55lDeB+Wgj1LVcnizksBD2t8UyFfgYrNjJq4K0FzdA
- yyEkm3zdCrrA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.77,490,1596524400"; d="scan'208";a="330902743"
-Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
- by orsmga006.jf.intel.com with ESMTP; 19 Nov 2020 03:29:32 -0800
-Received: from bgsmsx602.gar.corp.intel.com (10.109.78.81) by
- fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1713.5; Thu, 19 Nov 2020 03:29:31 -0800
-Received: from bgsmsx604.gar.corp.intel.com (10.67.234.6) by
- BGSMSX602.gar.corp.intel.com (10.109.78.81) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1713.5; Thu, 19 Nov 2020 16:59:28 +0530
-Received: from bgsmsx604.gar.corp.intel.com ([10.67.234.6]) by
- BGSMSX604.gar.corp.intel.com ([10.67.234.6]) with mapi id 15.01.1713.004;
- Thu, 19 Nov 2020 16:59:28 +0530
-From: "Shankar, Uma" <uma.shankar@intel.com>
-To: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Thread-Topic: [PATCH v2 11/13] drm/i915: Read DSC capabilities of the HDMI2.1
- PCON encoder
-Thread-Index: AQHWsDe+QkZ9JTA55keeGWt424qgvKnPbRgA
-Date: Thu, 19 Nov 2020 11:29:28 +0000
-Message-ID: <cffc77289b9d41078dc4049ad5d5866a@intel.com>
-References: <20201101100657.12087-1-ankit.k.nautiyal@intel.com>
- <20201101100657.12087-12-ankit.k.nautiyal@intel.com>
-In-Reply-To: <20201101100657.12087-12-ankit.k.nautiyal@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-product: dlpe-windows
-dlp-reaction: no-action
-dlp-version: 11.5.1.3
-x-originating-ip: [10.223.10.1]
+Received: from fireflyinternet.com (unknown [77.68.26.236])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8C7266E508
+ for <intel-gfx@lists.freedesktop.org>; Thu, 19 Nov 2020 12:24:18 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from build.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 23041257-1500050 
+ for multiple; Thu, 19 Nov 2020 12:24:07 +0000
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Thu, 19 Nov 2020 12:24:06 +0000
+Message-Id: <20201119122406.32255-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.20.1
+In-Reply-To: <20201119111831.1236-1-chris@chris-wilson.co.uk>
+References: <20201119111831.1236-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH v2 11/13] drm/i915: Read DSC capabilities of
- the HDMI2.1 PCON encoder
+Subject: [Intel-gfx] [PATCH v2] drm/i915/gt: Update request status flags for
+ debug pretty-printer
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,95 +39,284 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
+Cc: Chris Wilson <chris@chris-wilson.co.uk>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+We plan to expand upon the number of available statuses for when we
+pretty-print the requests along the timelines, and so need a new set of
+flags. We have settled upon:
 
+	Unready [U]
+	  - initial status after being submitted, the request is not
+	    ready for execution as it is waiting for external fences
 
-> -----Original Message-----
-> From: Nautiyal, Ankit K <ankit.k.nautiyal@intel.com>
-> Sent: Sunday, November 1, 2020 3:37 PM
-> To: intel-gfx@lists.freedesktop.org
-> Cc: dri-devel@lists.freedesktop.org; Shankar, Uma <uma.shankar@intel.com>;
-> Kulkarni, Vandita <vandita.kulkarni@intel.com>; ville.syrjala@linux.intel.com;
-> Sharma, Swati2 <swati2.sharma@intel.com>
-> Subject: [PATCH v2 11/13] drm/i915: Read DSC capabilities of the HDMI2.1 PCON
-> encoder
-> 
-> This patch adds support to read and store the DSC capabilities of the
-> HDMI2.1 PCon encoder. It also adds a new field to store these caps, The caps are
-> read during dfp update and can later be used to get the PPS parameters for
-> PCON-HDMI2.1 sink pair. Which inturn will be used to take a call to override the
-> existing PPS-metadata, by either writing the entire new PPS metadata, or by
-> writing only the PPS override parameters.
-> 
-> v2: Restructured the code to read all capability DPCDs at once and store in an
-> array in intel_dp structure.
-> 
-> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-> ---
->  .../drm/i915/display/intel_display_types.h    |  1 +
->  drivers/gpu/drm/i915/display/intel_dp.c       | 20 +++++++++++++++++++
->  2 files changed, 21 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h
-> b/drivers/gpu/drm/i915/display/intel_display_types.h
-> index 2c58d63928b8..f43ded030c14 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
-> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-> @@ -1309,6 +1309,7 @@ struct intel_dp {
->  	u8 lttpr_common_caps[DP_LTTPR_COMMON_CAP_SIZE];
->  	u8 lttpr_phy_caps[DP_MAX_LTTPR_COUNT][DP_LTTPR_PHY_CAP_SIZE];
->  	u8 fec_capable;
-> +	u8 pcon_dsc_dpcd[DP_PCON_DSC_ENCODER_CAP_SIZE];
->  	/* source rates */
->  	int num_source_rates;
->  	const int *source_rates;
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c
-> b/drivers/gpu/drm/i915/display/intel_dp.c
-> index 6177169c4401..2e7ddb062efe 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> @@ -3869,6 +3869,24 @@ cpt_set_link_train(struct intel_dp *intel_dp,
->  	intel_de_posting_read(dev_priv, intel_dp->output_reg);  }
-> 
-> +static void intel_dp_get_pcon_dsc_cap(struct intel_dp *intel_dp) {
-> +	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
-> +
-> +	/* Clear the cached register set to avoid using stale values */
-> +
+	Ready [R]
+	  - all fences the request was waiting on have been signaled,
+            and the request is now ready for execution and will be
+	    in a backend queue
 
-Drop this extra line. With this fixed
-Reviewed-by: Uma Shankar <uma.shankar@intel.com>
+	  - a ready request may still need to wait on semaphores
+	    [internal fences]
 
-> +	memset(intel_dp->pcon_dsc_dpcd, 0, sizeof(intel_dp->pcon_dsc_dpcd));
-> +
-> +	if (drm_dp_dpcd_read(&intel_dp->aux, DP_PCON_DSC_ENCODER,
-> +				     intel_dp->pcon_dsc_dpcd,
-> +				     sizeof(intel_dp->pcon_dsc_dpcd)) < 0)
-> +		drm_err(&i915->drm, "Failed to read DPCD register 0x%x\n",
-> +			DP_PCON_DSC_ENCODER);
-> +
-> +	drm_dbg_kms(&i915->drm, "PCON ENCODER DSC DPCD: %*ph\n",
-> +		   (int)sizeof(intel_dp->pcon_dsc_dpcd), intel_dp-
-> >pcon_dsc_dpcd); }
-> +
->  static int intel_dp_get_max_rate_gbps(struct intel_dp *intel_dp)  {
->  	int max_link_clock, max_lanes, max_rate_khz, max_rate_gbps; @@ -
-> 6645,6 +6663,8 @@ intel_dp_update_dfp(struct intel_dp *intel_dp,
->  		    intel_dp->dfp.max_tmds_clock,
->  		    intel_dp->dfp.pcon_max_frl_bw,
->  		    intel_dp->dfp.sink_max_frl_bw);
-> +
-> +	intel_dp_get_pcon_dsc_cap(intel_dp);
->  }
-> 
->  static void
-> --
-> 2.17.1
+	Ready/virtual [V]
+	  - same as ready, but queued over multiple backends
+
+	Executing [E]
+	  - the request has been transferred from the backend queue and
+	    submitted for execution on HW
+
+	  - a completed request may still be regarded as executing, its
+	    status may not be updated until it is retired and removed
+	    from the lists
+
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+---
+ drivers/gpu/drm/i915/gt/intel_engine_cs.c |  6 +-
+ drivers/gpu/drm/i915/gt/intel_lrc.c       | 15 ++--
+ drivers/gpu/drm/i915/gt/intel_lrc.h       |  3 +-
+ drivers/gpu/drm/i915/i915_request.c       | 85 +++++++++++++++++++----
+ drivers/gpu/drm/i915/i915_request.h       |  3 +-
+ 5 files changed, 88 insertions(+), 24 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/gt/intel_engine_cs.c b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+index c3bb2e9546e6..d4e988b2816a 100644
+--- a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
++++ b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+@@ -1491,7 +1491,7 @@ static void intel_engine_print_registers(struct intel_engine_cs *engine,
+ 					intel_context_is_banned(rq->context) ? "*" : "");
+ 			len += print_ring(hdr + len, sizeof(hdr) - len, rq);
+ 			scnprintf(hdr + len, sizeof(hdr) - len, "rq: ");
+-			i915_request_show(m, rq, hdr);
++			i915_request_show(m, rq, hdr, 0);
+ 		}
+ 		for (port = execlists->pending; (rq = *port); port++) {
+ 			char hdr[160];
+@@ -1505,7 +1505,7 @@ static void intel_engine_print_registers(struct intel_engine_cs *engine,
+ 					intel_context_is_banned(rq->context) ? "*" : "");
+ 			len += print_ring(hdr + len, sizeof(hdr) - len, rq);
+ 			scnprintf(hdr + len, sizeof(hdr) - len, "rq: ");
+-			i915_request_show(m, rq, hdr);
++			i915_request_show(m, rq, hdr, 0);
+ 		}
+ 		rcu_read_unlock();
+ 		execlists_active_unlock_bh(execlists);
+@@ -1649,7 +1649,7 @@ void intel_engine_dump(struct intel_engine_cs *engine,
+ 	if (rq) {
+ 		struct intel_timeline *tl = get_timeline(rq);
+ 
+-		i915_request_show(m, rq, "\t\tactive ");
++		i915_request_show(m, rq, "\t\tactive ", 0);
+ 
+ 		drm_printf(m, "\t\tring->start:  0x%08x\n",
+ 			   i915_ggtt_offset(rq->ring->vma));
+diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
+index b6ab1161942a..5257f3c71366 100644
+--- a/drivers/gpu/drm/i915/gt/intel_lrc.c
++++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
+@@ -5982,7 +5982,8 @@ void intel_execlists_show_requests(struct intel_engine_cs *engine,
+ 				   struct drm_printer *m,
+ 				   void (*show_request)(struct drm_printer *m,
+ 							const struct i915_request *rq,
+-							const char *prefix),
++							const char *prefix,
++							int indent),
+ 				   unsigned int max)
+ {
+ 	const struct intel_engine_execlists *execlists = &engine->execlists;
+@@ -5997,7 +5998,7 @@ void intel_execlists_show_requests(struct intel_engine_cs *engine,
+ 	count = 0;
+ 	list_for_each_entry(rq, &engine->active.requests, sched.link) {
+ 		if (count++ < max - 1)
+-			show_request(m, rq, "\t\tE ");
++			show_request(m, rq, "\t\t", 0);
+ 		else
+ 			last = rq;
+ 	}
+@@ -6007,7 +6008,7 @@ void intel_execlists_show_requests(struct intel_engine_cs *engine,
+ 				   "\t\t...skipping %d executing requests...\n",
+ 				   count - max);
+ 		}
+-		show_request(m, last, "\t\tE ");
++		show_request(m, last, "\t\t", 0);
+ 	}
+ 
+ 	if (execlists->switch_priority_hint != INT_MIN)
+@@ -6025,7 +6026,7 @@ void intel_execlists_show_requests(struct intel_engine_cs *engine,
+ 
+ 		priolist_for_each_request(rq, p, i) {
+ 			if (count++ < max - 1)
+-				show_request(m, rq, "\t\tQ ");
++				show_request(m, rq, "\t\t", 0);
+ 			else
+ 				last = rq;
+ 		}
+@@ -6036,7 +6037,7 @@ void intel_execlists_show_requests(struct intel_engine_cs *engine,
+ 				   "\t\t...skipping %d queued requests...\n",
+ 				   count - max);
+ 		}
+-		show_request(m, last, "\t\tQ ");
++		show_request(m, last, "\t\t", 0);
+ 	}
+ 
+ 	last = NULL;
+@@ -6048,7 +6049,7 @@ void intel_execlists_show_requests(struct intel_engine_cs *engine,
+ 
+ 		if (rq) {
+ 			if (count++ < max - 1)
+-				show_request(m, rq, "\t\tV ");
++				show_request(m, rq, "\t\t", 0);
+ 			else
+ 				last = rq;
+ 		}
+@@ -6059,7 +6060,7 @@ void intel_execlists_show_requests(struct intel_engine_cs *engine,
+ 				   "\t\t...skipping %d virtual requests...\n",
+ 				   count - max);
+ 		}
+-		show_request(m, last, "\t\tV ");
++		show_request(m, last, "\t\t", 0);
+ 	}
+ 
+ 	spin_unlock_irqrestore(&engine->active.lock, flags);
+diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.h b/drivers/gpu/drm/i915/gt/intel_lrc.h
+index 32e6e204f544..802585a308e9 100644
+--- a/drivers/gpu/drm/i915/gt/intel_lrc.h
++++ b/drivers/gpu/drm/i915/gt/intel_lrc.h
+@@ -107,7 +107,8 @@ void intel_execlists_show_requests(struct intel_engine_cs *engine,
+ 				   struct drm_printer *m,
+ 				   void (*show_request)(struct drm_printer *m,
+ 							const struct i915_request *rq,
+-							const char *prefix),
++							const char *prefix,
++							int indent),
+ 				   unsigned int max);
+ 
+ struct intel_context *
+diff --git a/drivers/gpu/drm/i915/i915_request.c b/drivers/gpu/drm/i915/i915_request.c
+index 673991718ae6..24d01e8a9210 100644
+--- a/drivers/gpu/drm/i915/i915_request.c
++++ b/drivers/gpu/drm/i915/i915_request.c
+@@ -1867,28 +1867,89 @@ static int print_sched_attr(const struct i915_sched_attr *attr,
+ 	return x;
+ }
+ 
++static char queue_status(const struct i915_request *rq)
++{
++	if (i915_request_is_active(rq))
++		return 'E';
++
++	if (i915_request_is_ready(rq))
++		return intel_engine_is_virtual(rq->engine) ? 'V' : 'R';
++
++	return 'U';
++}
++
++static const char *run_status(const struct i915_request *rq)
++{
++	if (i915_request_completed(rq))
++		return "!";
++
++	if (i915_request_started(rq))
++		return "*";
++
++	if (!i915_sw_fence_signaled(&rq->semaphore))
++		return "&";
++
++	return "";
++}
++
++static const char *fence_status(const struct i915_request *rq)
++{
++	if (test_bit(DMA_FENCE_FLAG_SIGNALED_BIT, &rq->fence.flags))
++		return "+";
++
++	if (test_bit(DMA_FENCE_FLAG_ENABLE_SIGNAL_BIT, &rq->fence.flags))
++		return "-";
++
++	return "";
++}
++
+ void i915_request_show(struct drm_printer *m,
+ 		       const struct i915_request *rq,
+-		       const char *prefix)
++		       const char *prefix,
++		       int indent)
+ {
+ 	const char *name = rq->fence.ops->get_timeline_name((struct dma_fence *)&rq->fence);
+ 	char buf[80] = "";
+ 	int x = 0;
+ 
++	/*
++	 * The prefix is used to show the queue status, for which we use
++	 * the following flags:
++	 *
++	 *  Unready [U]
++	 *    - initial status upon being submitted by the user
++	 *
++	 *    - the request is not ready for execution as it is waiting
++	 *      for external fences
++	 *
++	 *  Ready [R]
++	 *    - all fences the request was waiting on have been signaled,
++	 *      and the request is now ready for execution and will be
++	 *      in a backend queue
++	 *
++	 *    - a ready request may still need to wait on semaphores
++	 *      [internal fences]
++	 *
++	 *  Ready/virtual [V]
++	 *    - same as ready, but queued over multiple backends
++	 *
++	 *  Executing [E]
++	 *    - the request has been transferred from the backend queue and
++	 *      submitted for execution on HW
++	 *
++	 *    - a completed request may still be regarded as executing, its
++	 *      status may not be updated until it is retired and removed
++	 *      from the lists
++	 */
++
+ 	x = print_sched_attr(&rq->sched.attr, buf, x, sizeof(buf));
+ 
+-	drm_printf(m, "%s %llx:%lld%s%s %s @ %dms: %s\n",
+-		   prefix,
++	drm_printf(m, "%s%.*s%c %llx:%lld%s%s %s @ %dms: %s\n",
++		   prefix, indent, "                ",
++		   queue_status(rq),
+ 		   rq->fence.context, rq->fence.seqno,
+-		   i915_request_completed(rq) ? "!" :
+-		   i915_request_started(rq) ? "*" :
+-		   !i915_sw_fence_signaled(&rq->semaphore) ? "&" :
+-		   "",
+-		   test_bit(DMA_FENCE_FLAG_SIGNALED_BIT,
+-			    &rq->fence.flags) ? "+" :
+-		   test_bit(DMA_FENCE_FLAG_ENABLE_SIGNAL_BIT,
+-			    &rq->fence.flags) ? "-" :
+-		   "",
++		   run_status(rq),
++		   fence_status(rq),
+ 		   buf,
+ 		   jiffies_to_msecs(jiffies - rq->emitted_jiffies),
+ 		   name);
+diff --git a/drivers/gpu/drm/i915/i915_request.h b/drivers/gpu/drm/i915/i915_request.h
+index 09609071b725..8f6173b1c3df 100644
+--- a/drivers/gpu/drm/i915/i915_request.h
++++ b/drivers/gpu/drm/i915/i915_request.h
+@@ -372,7 +372,8 @@ long i915_request_wait(struct i915_request *rq,
+ 
+ void i915_request_show(struct drm_printer *m,
+ 		       const struct i915_request *rq,
+-		       const char *prefix);
++		       const char *prefix,
++		       int indent);
+ 
+ static inline bool i915_request_signaled(const struct i915_request *rq)
+ {
+-- 
+2.20.1
 
 _______________________________________________
 Intel-gfx mailing list
