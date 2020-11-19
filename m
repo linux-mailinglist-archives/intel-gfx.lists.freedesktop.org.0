@@ -1,43 +1,41 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0EC5D2B9B53
-	for <lists+intel-gfx@lfdr.de>; Thu, 19 Nov 2020 20:16:40 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9135E2B9B06
+	for <lists+intel-gfx@lfdr.de>; Thu, 19 Nov 2020 20:01:35 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4DAAF6E5B4;
-	Thu, 19 Nov 2020 19:16:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DC8E8898A4;
+	Thu, 19 Nov 2020 19:01:33 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5C42A6E5B4
- for <intel-gfx@lists.freedesktop.org>; Thu, 19 Nov 2020 19:16:36 +0000 (UTC)
-IronPort-SDR: Yd1ECPZwiBGkt9ibUttAHvPacZLTLnzkXXVco41ZZ6vJRpHYGfNnng3VuX1yVZsydIr1nt0MNC
- t1Z4frw1h7yQ==
-X-IronPort-AV: E=McAfee;i="6000,8403,9810"; a="151196818"
-X-IronPort-AV: E=Sophos;i="5.78,354,1599548400"; d="scan'208";a="151196818"
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 229FC898A4
+ for <intel-gfx@lists.freedesktop.org>; Thu, 19 Nov 2020 19:01:32 +0000 (UTC)
+IronPort-SDR: Kj9GJc51z/jHr10rJ99ZF1S8aRTd318zyLolLfMenkJRBov6nlHCbD0fFWJ4DnfqfcitlaLSPs
+ xgt72Q16e95Q==
+X-IronPort-AV: E=McAfee;i="6000,8403,9810"; a="170562735"
+X-IronPort-AV: E=Sophos;i="5.78,354,1599548400"; d="scan'208";a="170562735"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Nov 2020 11:16:35 -0800
-IronPort-SDR: IXk7zw69gqpoRsHVXOuZt9S7Qqa9Sb1xPycuq1Xn5haHiu9xEtCg0afMxWqxTPD5ciWIA1bfp2
- 9vaVYswOOPsQ==
-X-IronPort-AV: E=Sophos;i="5.78,354,1599548400"; d="scan'208";a="368963607"
-Received: from labuser-z97x-ud5h.jf.intel.com (HELO labuser-Z97X-UD5H)
- ([10.165.21.211])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Nov 2020 11:16:35 -0800
-Date: Thu, 19 Nov 2020 11:19:09 -0800
-From: "Navare, Manasi" <manasi.d.navare@intel.com>
-To: Chris Wilson <chris@chris-wilson.co.uk>
-Message-ID: <20201119191909.GA13915@labuser-Z97X-UD5H>
-References: <20201119090717.30687-1-chris@chris-wilson.co.uk>
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Nov 2020 11:01:31 -0800
+IronPort-SDR: hgxR2piAK/Fso/qVH80HRL2JV1WBWUYuJIq5MfxO0iiRI+Vlcr7bQfFAPgHqTlTlMLAFIOX6Wq
+ cGaQL8NCUXmg==
+X-IronPort-AV: E=Sophos;i="5.78,354,1599548400"; d="scan'208";a="368874032"
+Received: from linux-desktop.iind.intel.com ([10.223.34.173])
+ by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Nov 2020 11:01:29 -0800
+From: Uma Shankar <uma.shankar@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Fri, 20 Nov 2020 01:06:14 +0530
+Message-Id: <20201119193614.25914-1-uma.shankar@intel.com>
+X-Mailer: git-send-email 2.26.2
+In-Reply-To: <20201119155050.20328-2-uma.shankar@intel.com>
+References: <20201119155050.20328-2-uma.shankar@intel.com>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20201119090717.30687-1-chris@chris-wilson.co.uk>
-User-Agent: Mutt/1.5.24 (2015-08-30)
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/display: Whitespace cleanups
+Subject: [Intel-gfx] [v3 1/2] drm/i915/display/tgl: Disable FBC with PSR2
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,85 +48,51 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Nov 19, 2020 at 09:07:17AM +0000, Chris Wilson wrote:
-> drivers/gpu/drm/i915/display/intel_display.c:3634 intel_find_initial_plane_obj() warn: inconsistent indenting
-> drivers/gpu/drm/i915/display/intel_display.c:15367 kill_bigjoiner_slave() warn: inconsistent indenting
-> 
-> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+There are some corner cases wrt underrun when we enable
+FBC with PSR2 on TGL. Recommendation from hardware is to
+keep this combination disabled.
 
-Thank you for the whitespace fixes, probably got introduced in the rebasing
+Bspec: 50422 HSD: 14010260002
 
-Reviewed-by: Manasi Navare <manasi.d.navare@intel.com>
+v2: Added psr2 enabled check from crtc_state (Anshuman)
+Added Bspec link and HSD referneces (Jose)
 
-Manasi
+v3: Moved the logic to disable fbc to intel_fbc_update_state_cache
+and removed the crtc->config usages, as per Ville's recommendation.
 
-> ---
->  drivers/gpu/drm/i915/display/intel_display.c | 23 ++++++++++----------
->  1 file changed, 11 insertions(+), 12 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-> index 5c07c74d4397..1a0f00f37ca9 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> @@ -3631,8 +3631,8 @@ intel_find_initial_plane_obj(struct intel_crtc *intel_crtc,
->  	struct intel_plane *intel_plane = to_intel_plane(primary);
->  	struct intel_plane_state *intel_state =
->  		to_intel_plane_state(plane_state);
-> -	 struct intel_crtc_state *crtc_state =
-> -		 to_intel_crtc_state(intel_crtc->base.state);
-> +	struct intel_crtc_state *crtc_state =
-> +		to_intel_crtc_state(intel_crtc->base.state);
->  	struct drm_framebuffer *fb;
->  	struct i915_vma *vma;
->  
-> @@ -15361,17 +15361,17 @@ static int kill_bigjoiner_slave(struct intel_atomic_state *state,
->  				struct intel_crtc_state *master_crtc_state)
->  {
->  	struct intel_crtc_state *slave_crtc_state =
-> -			intel_atomic_get_crtc_state(&state->base,
-> -						    master_crtc_state->bigjoiner_linked_crtc);
-> +		intel_atomic_get_crtc_state(&state->base,
-> +					    master_crtc_state->bigjoiner_linked_crtc);
->  
-> -		if (IS_ERR(slave_crtc_state))
-> -			return PTR_ERR(slave_crtc_state);
-> +	if (IS_ERR(slave_crtc_state))
-> +		return PTR_ERR(slave_crtc_state);
->  
-> -		slave_crtc_state->bigjoiner = master_crtc_state->bigjoiner = false;
-> -		slave_crtc_state->bigjoiner_slave = master_crtc_state->bigjoiner_slave = false;
-> -		slave_crtc_state->bigjoiner_linked_crtc = master_crtc_state->bigjoiner_linked_crtc = NULL;
-> -		intel_crtc_copy_uapi_to_hw_state(state, slave_crtc_state);
-> -		return 0;
-> +	slave_crtc_state->bigjoiner = master_crtc_state->bigjoiner = false;
-> +	slave_crtc_state->bigjoiner_slave = master_crtc_state->bigjoiner_slave = false;
-> +	slave_crtc_state->bigjoiner_linked_crtc = master_crtc_state->bigjoiner_linked_crtc = NULL;
-> +	intel_crtc_copy_uapi_to_hw_state(state, slave_crtc_state);
-> +	return 0;
->  }
->  
->  /**
-> @@ -15949,7 +15949,6 @@ static void intel_update_crtc(struct intel_atomic_state *state,
->  		intel_crtc_arm_fifo_underrun(crtc, new_crtc_state);
->  }
->  
-> -
->  static void intel_old_crtc_state_disables(struct intel_atomic_state *state,
->  					  struct intel_crtc_state *old_crtc_state,
->  					  struct intel_crtc_state *new_crtc_state,
-> -- 
-> 2.20.1
-> 
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+Signed-off-by: Uma Shankar <uma.shankar@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_fbc.c | 9 +++++++++
+ 1 file changed, 9 insertions(+)
+
+diff --git a/drivers/gpu/drm/i915/display/intel_fbc.c b/drivers/gpu/drm/i915/display/intel_fbc.c
+index a5b072816a7b..cb29c6f068f9 100644
+--- a/drivers/gpu/drm/i915/display/intel_fbc.c
++++ b/drivers/gpu/drm/i915/display/intel_fbc.c
+@@ -701,6 +701,15 @@ static void intel_fbc_update_state_cache(struct intel_crtc *crtc,
+ 	struct drm_framebuffer *fb = plane_state->hw.fb;
+ 
+ 	cache->plane.visible = plane_state->uapi.visible;
++
++	/*
++	 * Tigerlake is not supporting FBC with PSR2.
++	 * Recommendation is to keep this combination disabled
++	 * Bspec: 50422 HSD: 14010260002
++	 */
++	if (crtc_state->has_psr2 && IS_TIGERLAKE(dev_priv))
++		cache->plane.visible = false;
++
+ 	if (!cache->plane.visible)
+ 		return;
+ 
+-- 
+2.26.2
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
