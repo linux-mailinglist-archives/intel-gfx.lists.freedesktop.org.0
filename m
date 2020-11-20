@@ -1,43 +1,44 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id BCCA72BB65B
-	for <lists+intel-gfx@lfdr.de>; Fri, 20 Nov 2020 21:18:43 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 70B9A2BB6BE
+	for <lists+intel-gfx@lfdr.de>; Fri, 20 Nov 2020 21:31:45 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DEA6E6E911;
-	Fri, 20 Nov 2020 20:18:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7AE906E91D;
+	Fri, 20 Nov 2020 20:31:42 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B3BFC6E911
- for <intel-gfx@lists.freedesktop.org>; Fri, 20 Nov 2020 20:18:39 +0000 (UTC)
-IronPort-SDR: 3/vts2Yg9zDNCwSaS9gLeULLoV3APXGsgtvZusFrnd56TR/EamgsGL/Ps9gS+nWEkir01sk2iU
- TqjQjvFB8ooQ==
-X-IronPort-AV: E=McAfee;i="6000,8403,9811"; a="159306969"
-X-IronPort-AV: E=Sophos;i="5.78,357,1599548400"; d="scan'208";a="159306969"
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 06E1A6E91D
+ for <intel-gfx@lists.freedesktop.org>; Fri, 20 Nov 2020 20:31:40 +0000 (UTC)
+IronPort-SDR: 5nnUE6LlUw5T3k8DVnYT0enUa4PHGF9+wtiul8mADYk5KG3CA1hMGIVTeaQ3fO7cClYiMTU3Pn
+ JFdK1iQUjDrQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9811"; a="150802897"
+X-IronPort-AV: E=Sophos;i="5.78,357,1599548400"; d="scan'208";a="150802897"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Nov 2020 12:18:38 -0800
-IronPort-SDR: VjK+/npy7cr2P8Xp8jiwN8t6rpJfF6XUXfX3Ohm4G2Qll9ifBKOCFH1xF5JUvGc790EFfBf1qr
- qhg+Idh8BGug==
-X-IronPort-AV: E=Sophos;i="5.78,357,1599548400"; d="scan'208";a="477352348"
-Received: from darohlox-mobl1.amr.corp.intel.com (HELO ldmartin-desk1)
- ([10.212.246.105])
- by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Nov 2020 12:18:37 -0800
-Date: Fri, 20 Nov 2020 12:18:16 -0800
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: Aditya Swarup <aditya.swarup@intel.com>
-Message-ID: <20201120201816.likpgiooyzo4mke3@ldmartin-desk1>
-X-Patchwork-Hint: comment
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Nov 2020 12:31:40 -0800
+IronPort-SDR: RRkkxWtrhRiCN4TKOtfF68/gFN36bmVtg7mU4B64eK1+qoWNrgaCeA5VI/sRuPH4zF/+HVGVb3
+ Iu/B4XYSgf4w==
+X-IronPort-AV: E=Sophos;i="5.78,357,1599548400"; d="scan'208";a="369326742"
+Received: from 5sfe.jf.intel.com ([10.165.21.204])
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Nov 2020 12:31:40 -0800
+Message-ID: <07d008e5c063d2790933b3f01fa0025838d8752b.camel@intel.com>
+From: Caz Yokoyama <Caz.Yokoyama@intel.com>
+To: Lucas De Marchi <lucas.demarchi@intel.com>, Aditya Swarup
+ <aditya.swarup@intel.com>
+Date: Fri, 20 Nov 2020 12:39:41 -0800
+In-Reply-To: <20201120201816.likpgiooyzo4mke3@ldmartin-desk1>
 References: <20201117185029.22078-1-aditya.swarup@intel.com>
  <20201117185029.22078-17-aditya.swarup@intel.com>
-MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20201117185029.22078-17-aditya.swarup@intel.com>
+ <20201120201816.likpgiooyzo4mke3@ldmartin-desk1>
+Organization: Intel
+X-Mailer: Evolution 3.28.5 (3.28.5-2.el7) 
+Mime-Version: 1.0
 Subject: Re: [Intel-gfx] [PATCH 16/21] drm/i915/adl_s: MCHBAR memory info
  registers are moved
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -52,121 +53,84 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jani Nikula <jani.nikula@intel.com>, Yokoyama@ldmartin-desk1,
- intel-gfx@lists.freedesktop.org
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"; Format="flowed"
+Cc: Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org,
+ Yokoyama@ldmartin-desk1
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Nov 17, 2020 at 10:50:24AM -0800, Aditya Swarup wrote:
->From: Caz Yokoyama <caz.yokoyama@intel.com>
->
->The crwebview indicates on ADL-S that some of our MCHBAR
->registers have moved from their traditional 0x50XX offsets to
->new locations. The meaning and bit layout of the registers
->remain same.
->
->Cc: Lucas De Marchi <lucas.demarchi@intel.com>
->Cc: Jani Nikula <jani.nikula@intel.com>
->Cc: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
->Cc: Imre Deak <imre.deak@intel.com>
->Cc: Matt Roper <matthew.d.roper@intel.com>
->Signed-off-by: Yokoyama, Caz <caz.yokoyama@intel.com>
->Signed-off-by: Aditya Swarup <aditya.swarup@intel.com>
->---
-> drivers/gpu/drm/i915/i915_reg.h   |  5 +++++
-> drivers/gpu/drm/i915/intel_dram.c | 18 +++++++++++++++---
-> 2 files changed, 20 insertions(+), 3 deletions(-)
->
->diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_r=
-eg.h
->index 4c8d0d84af6a..6abba59592f7 100644
->--- a/drivers/gpu/drm/i915/i915_reg.h
->+++ b/drivers/gpu/drm/i915/i915_reg.h
->@@ -10863,6 +10863,8 @@ enum skl_power_gate {
-> #define  SKL_DRAM_DDR_TYPE_LPDDR3		(2 << 0)
-> #define  SKL_DRAM_DDR_TYPE_LPDDR4		(3 << 0)
->
->+#define  ADLS_MAD_INTER_CHANNEL_0_0_0_MCHBAR _MMIO(MCHBAR_MIRROR_BASE_SNB=
- + 0x6048)
->+
-> #define SKL_MAD_DIMM_CH0_0_0_0_MCHBAR_MCMAIN	_MMIO(MCHBAR_MIRROR_BASE_SNB=
- + 0x500C)
-> #define SKL_MAD_DIMM_CH1_0_0_0_MCHBAR_MCMAIN	_MMIO(MCHBAR_MIRROR_BASE_SNB=
- + 0x5010)
-> #define  SKL_DRAM_S_SHIFT			16
->@@ -10890,6 +10892,9 @@ enum skl_power_gate {
-> #define  CNL_DRAM_RANK_3			(0x2 << 9)
-> #define  CNL_DRAM_RANK_4			(0x3 << 9)
->
->+#define ADLS_MAD_DIMM_CH0_0_0_0_MCHBAR		_MMIO(MCHBAR_MIRROR_BASE_SNB + 0x=
-6054)
->+#define ADLS_MAD_DIMM_CH1_0_0_0_MCHBAR		_MMIO(MCHBAR_MIRROR_BASE_SNB + 0x=
-6058)
->+
-> /* Please see hsw_read_dcomp() and hsw_write_dcomp() before using this re=
-gister,
->  * since on HSW we can't write to it using I915_WRITE. */
-> #define D_COMP_HSW			_MMIO(MCHBAR_MIRROR_BASE_SNB + 0x5F0C)
->diff --git a/drivers/gpu/drm/i915/intel_dram.c b/drivers/gpu/drm/i915/inte=
-l_dram.c
->index 4754296a250e..e7427e5f4130 100644
->--- a/drivers/gpu/drm/i915/intel_dram.c
->+++ b/drivers/gpu/drm/i915/intel_dram.c
->@@ -184,13 +184,21 @@ skl_dram_get_channels_info(struct drm_i915_private *=
-i915)
-> 	u32 val;
-> 	int ret;
->
->-	val =3D intel_uncore_read(&i915->uncore,
->+	if (IS_ALDERLAKE_S(i915))
->+		val =3D intel_uncore_read(&i915->uncore,
->+				ADLS_MAD_DIMM_CH0_0_0_0_MCHBAR);
->+	else
->+		val =3D intel_uncore_read(&i915->uncore,
-> 				SKL_MAD_DIMM_CH0_0_0_0_MCHBAR_MCMAIN);
-> 	ret =3D skl_dram_get_channel_info(i915, &ch0, 0, val);
-> 	if (ret =3D=3D 0)
-> 		dram_info->num_channels++;
->
->-	val =3D intel_uncore_read(&i915->uncore,
->+	if (IS_ALDERLAKE_S(i915))
->+		val =3D intel_uncore_read(&i915->uncore,
->+				ADLS_MAD_DIMM_CH1_0_0_0_MCHBAR);
->+	else
->+		val =3D intel_uncore_read(&i915->uncore,
-> 				SKL_MAD_DIMM_CH1_0_0_0_MCHBAR_MCMAIN);
-
-probably better to:
-
-u32 ch0, ch1;
-
-and then keep the reads together in a single if/else chain.
-Or use i915_reg_t ch0_reg, ch1_reg
-
-Lucas De Marchi
-
-> 	ret =3D skl_dram_get_channel_info(i915, &ch1, 1, val);
-> 	if (ret =3D=3D 0)
->@@ -231,7 +239,11 @@ skl_get_dram_type(struct drm_i915_private *i915)
-> {
-> 	u32 val;
->
->-	val =3D intel_uncore_read(&i915->uncore,
->+	if (IS_ALDERLAKE_S(i915))
->+		val =3D intel_uncore_read(&i915->uncore,
->+				ADLS_MAD_INTER_CHANNEL_0_0_0_MCHBAR);
->+	else
->+		val =3D intel_uncore_read(&i915->uncore,
-> 				SKL_MAD_INTER_CHANNEL_0_0_0_MCHBAR_MCMAIN);
->
-> 	switch (val & SKL_DRAM_DDR_TYPE_MASK) {
->-- =
-
->2.27.0
->
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+T24gRnJpLCAyMDIwLTExLTIwIGF0IDEyOjE4IC0wODAwLCBMdWNhcyBEZSBNYXJjaGkgd3JvdGU6
+Cj4gT24gVHVlLCBOb3YgMTcsIDIwMjAgYXQgMTA6NTA6MjRBTSAtMDgwMCwgQWRpdHlhIFN3YXJ1
+cCB3cm90ZToKPiA+IEZyb206IENheiBZb2tveWFtYSA8Y2F6Lnlva295YW1hQGludGVsLmNvbT4K
+PiA+IAo+ID4gVGhlIGNyd2VidmlldyBpbmRpY2F0ZXMgb24gQURMLVMgdGhhdCBzb21lIG9mIG91
+ciBNQ0hCQVIKPiA+IHJlZ2lzdGVycyBoYXZlIG1vdmVkIGZyb20gdGhlaXIgdHJhZGl0aW9uYWwg
+MHg1MFhYIG9mZnNldHMgdG8KPiA+IG5ldyBsb2NhdGlvbnMuIFRoZSBtZWFuaW5nIGFuZCBiaXQg
+bGF5b3V0IG9mIHRoZSByZWdpc3RlcnMKPiA+IHJlbWFpbiBzYW1lLgo+ID4gCj4gPiBDYzogTHVj
+YXMgRGUgTWFyY2hpIDxsdWNhcy5kZW1hcmNoaUBpbnRlbC5jb20+Cj4gPiBDYzogSmFuaSBOaWt1
+bGEgPGphbmkubmlrdWxhQGludGVsLmNvbT4KPiA+IENjOiBWaWxsZSBTeXJqw6Rsw6QgPHZpbGxl
+LnN5cmphbGFAbGludXguaW50ZWwuY29tPgo+ID4gQ2M6IEltcmUgRGVhayA8aW1yZS5kZWFrQGlu
+dGVsLmNvbT4KPiA+IENjOiBNYXR0IFJvcGVyIDxtYXR0aGV3LmQucm9wZXJAaW50ZWwuY29tPgo+
+ID4gU2lnbmVkLW9mZi1ieTogWW9rb3lhbWEsIENheiA8Y2F6Lnlva295YW1hQGludGVsLmNvbT4K
+PiA+IFNpZ25lZC1vZmYtYnk6IEFkaXR5YSBTd2FydXAgPGFkaXR5YS5zd2FydXBAaW50ZWwuY29t
+Pgo+ID4gLS0tCj4gPiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X3JlZy5oICAgfCAgNSArKysr
+Kwo+ID4gZHJpdmVycy9ncHUvZHJtL2k5MTUvaW50ZWxfZHJhbS5jIHwgMTggKysrKysrKysrKysr
+KysrLS0tCj4gPiAyIGZpbGVzIGNoYW5nZWQsIDIwIGluc2VydGlvbnMoKyksIDMgZGVsZXRpb25z
+KC0pCj4gPiAKPiA+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X3JlZy5o
+Cj4gPiBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfcmVnLmgKPiA+IGluZGV4IDRjOGQwZDg0
+YWY2YS4uNmFiYmE1OTU5MmY3IDEwMDY0NAo+ID4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUv
+aTkxNV9yZWcuaAo+ID4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9yZWcuaAo+ID4g
+QEAgLTEwODYzLDYgKzEwODYzLDggQEAgZW51bSBza2xfcG93ZXJfZ2F0ZSB7Cj4gPiAjZGVmaW5l
+ICBTS0xfRFJBTV9ERFJfVFlQRV9MUEREUjMJCSgyIDw8IDApCj4gPiAjZGVmaW5lICBTS0xfRFJB
+TV9ERFJfVFlQRV9MUEREUjQJCSgzIDw8IDApCj4gPiAKPiA+ICsjZGVmaW5lICBBRExTX01BRF9J
+TlRFUl9DSEFOTkVMXzBfMF8wX01DSEJBUgo+ID4gX01NSU8oTUNIQkFSX01JUlJPUl9CQVNFX1NO
+QiArIDB4NjA0OCkKPiA+ICsKPiA+ICNkZWZpbmUgU0tMX01BRF9ESU1NX0NIMF8wXzBfMF9NQ0hC
+QVJfTUNNQUlOCV9NTUlPKE1DSEJBUl9NSQo+ID4gUlJPUl9CQVNFX1NOQiArIDB4NTAwQykKPiA+
+ICNkZWZpbmUgU0tMX01BRF9ESU1NX0NIMV8wXzBfMF9NQ0hCQVJfTUNNQUlOCV9NTUlPKE1DSEJB
+Ul9NSQo+ID4gUlJPUl9CQVNFX1NOQiArIDB4NTAxMCkKPiA+ICNkZWZpbmUgIFNLTF9EUkFNX1Nf
+U0hJRlQJCQkxNgo+ID4gQEAgLTEwODkwLDYgKzEwODkyLDkgQEAgZW51bSBza2xfcG93ZXJfZ2F0
+ZSB7Cj4gPiAjZGVmaW5lICBDTkxfRFJBTV9SQU5LXzMJCQkoMHgyIDw8IDkpCj4gPiAjZGVmaW5l
+ICBDTkxfRFJBTV9SQU5LXzQJCQkoMHgzIDw8IDkpCj4gPiAKPiA+ICsjZGVmaW5lIEFETFNfTUFE
+X0RJTU1fQ0gwXzBfMF8wX01DSEJBUgkJX01NSU8oTUNIQkFSX01JCj4gPiBSUk9SX0JBU0VfU05C
+ICsgMHg2MDU0KQo+ID4gKyNkZWZpbmUgQURMU19NQURfRElNTV9DSDFfMF8wXzBfTUNIQkFSCQlf
+TU1JTyhNQ0hCQVJfTUkKPiA+IFJST1JfQkFTRV9TTkIgKyAweDYwNTgpCj4gPiArCj4gPiAvKiBQ
+bGVhc2Ugc2VlIGhzd19yZWFkX2Rjb21wKCkgYW5kIGhzd193cml0ZV9kY29tcCgpIGJlZm9yZSB1
+c2luZwo+ID4gdGhpcyByZWdpc3RlciwKPiA+ICAqIHNpbmNlIG9uIEhTVyB3ZSBjYW4ndCB3cml0
+ZSB0byBpdCB1c2luZyBJOTE1X1dSSVRFLiAqLwo+ID4gI2RlZmluZSBEX0NPTVBfSFNXCQkJX01N
+SU8oTUNIQkFSX01JUlJPUl9CQVNFX1NOQiArCj4gPiAweDVGMEMpCj4gPiBkaWZmIC0tZ2l0IGEv
+ZHJpdmVycy9ncHUvZHJtL2k5MTUvaW50ZWxfZHJhbS5jCj4gPiBiL2RyaXZlcnMvZ3B1L2RybS9p
+OTE1L2ludGVsX2RyYW0uYwo+ID4gaW5kZXggNDc1NDI5NmEyNTBlLi5lNzQyN2U1ZjQxMzAgMTAw
+NjQ0Cj4gPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pbnRlbF9kcmFtLmMKPiA+ICsrKyBi
+L2RyaXZlcnMvZ3B1L2RybS9pOTE1L2ludGVsX2RyYW0uYwo+ID4gQEAgLTE4NCwxMyArMTg0LDIx
+IEBAIHNrbF9kcmFtX2dldF9jaGFubmVsc19pbmZvKHN0cnVjdAo+ID4gZHJtX2k5MTVfcHJpdmF0
+ZSAqaTkxNSkKPiA+IAl1MzIgdmFsOwo+ID4gCWludCByZXQ7Cj4gPiAKPiA+IC0JdmFsID0gaW50
+ZWxfdW5jb3JlX3JlYWQoJmk5MTUtPnVuY29yZSwKPiA+ICsJaWYgKElTX0FMREVSTEFLRV9TKGk5
+MTUpKQo+ID4gKwkJdmFsID0gaW50ZWxfdW5jb3JlX3JlYWQoJmk5MTUtPnVuY29yZSwKPiA+ICsJ
+CQkJQURMU19NQURfRElNTV9DSDBfMF8wXzBfTUNIQkFSKTsKPiA+ICsJZWxzZQo+ID4gKwkJdmFs
+ID0gaW50ZWxfdW5jb3JlX3JlYWQoJmk5MTUtPnVuY29yZSwKPiA+IAkJCQlTS0xfTUFEX0RJTU1f
+Q0gwXzBfMF8wX01DSEJBUl9NQ01BSU4pOwo+ID4gCXJldCA9IHNrbF9kcmFtX2dldF9jaGFubmVs
+X2luZm8oaTkxNSwgJmNoMCwgMCwgdmFsKTsKPiA+IAlpZiAocmV0ID09IDApCj4gPiAJCWRyYW1f
+aW5mby0+bnVtX2NoYW5uZWxzKys7Cj4gPiAKPiA+IC0JdmFsID0gaW50ZWxfdW5jb3JlX3JlYWQo
+Jmk5MTUtPnVuY29yZSwKPiA+ICsJaWYgKElTX0FMREVSTEFLRV9TKGk5MTUpKQo+ID4gKwkJdmFs
+ID0gaW50ZWxfdW5jb3JlX3JlYWQoJmk5MTUtPnVuY29yZSwKPiA+ICsJCQkJQURMU19NQURfRElN
+TV9DSDFfMF8wXzBfTUNIQkFSKTsKPiA+ICsJZWxzZQo+ID4gKwkJdmFsID0gaW50ZWxfdW5jb3Jl
+X3JlYWQoJmk5MTUtPnVuY29yZSwKPiA+IAkJCQlTS0xfTUFEX0RJTU1fQ0gxXzBfMF8wX01DSEJB
+Ul9NQ01BSU4pOwo+IAo+IHByb2JhYmx5IGJldHRlciB0bzoKPiAKPiB1MzIgY2gwLCBjaDE7Cj4g
+Cj4gYW5kIHRoZW4ga2VlcCB0aGUgcmVhZHMgdG9nZXRoZXIgaW4gYSBzaW5nbGUgaWYvZWxzZSBj
+aGFpbi4KPiBPciB1c2UgaTkxNV9yZWdfdCBjaDBfcmVnLCBjaDFfcmVnCkFncmVlL0JldHRlciBp
+ZGVhLiBXaGVuIEkgd29ya2VkIGZvciwgSSBvbmx5IGNvbmNlcm5lZCBob3cgdG8gbWluaW1pemUK
+bXkgcGF0Y2ggYW5kIG5vdCB0aGluayBhYm91dCB3aGV0aGVyIHRoZSBjb2RlIGlzIHNpbXBsZSBh
+bmQgcmVhZGFibGUuIAotY2F6Cgo+IAo+IEx1Y2FzIERlIE1hcmNoaQo+IAo+ID4gCXJldCA9IHNr
+bF9kcmFtX2dldF9jaGFubmVsX2luZm8oaTkxNSwgJmNoMSwgMSwgdmFsKTsKPiA+IAlpZiAocmV0
+ID09IDApCj4gPiBAQCAtMjMxLDcgKzIzOSwxMSBAQCBza2xfZ2V0X2RyYW1fdHlwZShzdHJ1Y3Qg
+ZHJtX2k5MTVfcHJpdmF0ZQo+ID4gKmk5MTUpCj4gPiB7Cj4gPiAJdTMyIHZhbDsKPiA+IAo+ID4g
+LQl2YWwgPSBpbnRlbF91bmNvcmVfcmVhZCgmaTkxNS0+dW5jb3JlLAo+ID4gKwlpZiAoSVNfQUxE
+RVJMQUtFX1MoaTkxNSkpCj4gPiArCQl2YWwgPSBpbnRlbF91bmNvcmVfcmVhZCgmaTkxNS0+dW5j
+b3JlLAo+ID4gKwkJCQlBRExTX01BRF9JTlRFUl9DSEFOTkVMXzBfMF8wX01DSEJBUik7Cj4gPiAr
+CWVsc2UKPiA+ICsJCXZhbCA9IGludGVsX3VuY29yZV9yZWFkKCZpOTE1LT51bmNvcmUsCj4gPiAJ
+CQkJU0tMX01BRF9JTlRFUl9DSEFOTkVMXzBfMF8wX01DSEJBUl9NQ01BCj4gPiBJTik7Cj4gPiAK
+PiA+IAlzd2l0Y2ggKHZhbCAmIFNLTF9EUkFNX0REUl9UWVBFX01BU0spIHsKPiA+IC0tIAo+ID4g
+Mi4yNy4wCj4gPiAKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9y
+ZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdm
+eAo=
