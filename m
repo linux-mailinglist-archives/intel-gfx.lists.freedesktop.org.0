@@ -2,43 +2,42 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id DC1212B9EAB
-	for <lists+intel-gfx@lfdr.de>; Fri, 20 Nov 2020 00:51:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 906F72B9F02
+	for <lists+intel-gfx@lfdr.de>; Fri, 20 Nov 2020 01:09:12 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A67936E82E;
-	Thu, 19 Nov 2020 23:51:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DBBCA6E831;
+	Fri, 20 Nov 2020 00:09:09 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5CA3D6E82E
- for <intel-gfx@lists.freedesktop.org>; Thu, 19 Nov 2020 23:51:22 +0000 (UTC)
-IronPort-SDR: P90tCU7BMPAzlgJyirBURCuK521Na9N72Y5aKdOYGDzZpspZZ8yY07DHqVpFZNKO49Ng0GTf6L
- BrmST3Hv38uw==
-X-IronPort-AV: E=McAfee;i="6000,8403,9810"; a="235532721"
-X-IronPort-AV: E=Sophos;i="5.78,354,1599548400"; d="scan'208";a="235532721"
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 41D2C6E831
+ for <intel-gfx@lists.freedesktop.org>; Fri, 20 Nov 2020 00:09:08 +0000 (UTC)
+IronPort-SDR: JVouggPwlMfMDTnqO2SQw7KOTd0Md13JBJe+Sy9SLvvyj4mwS8pyK96bWpc3WjqCS8aPUmjeVQ
+ rPDPMHjwcJZA==
+X-IronPort-AV: E=McAfee;i="6000,8403,9810"; a="150654414"
+X-IronPort-AV: E=Sophos;i="5.78,354,1599548400"; d="scan'208";a="150654414"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Nov 2020 15:51:19 -0800
-IronPort-SDR: OE/w+PVI1xXy6kdXDMqlQLTdi3Tsx5682FoTfwkCiI6oVmqiOh8HOqkzxnf3i9Z9niebi3MTNy
- WgbVcK2Sl0zw==
-X-IronPort-AV: E=Sophos;i="5.78,354,1599548400"; d="scan'208";a="363561108"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Nov 2020 16:09:07 -0800
+IronPort-SDR: wdguOb9it+m4NeuHaBf6kGd8mtovO9V8KTR+puuI/95BXkIfvddDRk5j62ayT353uUuO3MX/w4
+ +fC7j3NVxURQ==
+X-IronPort-AV: E=Sophos;i="5.78,354,1599548400"; d="scan'208";a="311809631"
 Received: from mdroper-desk1.fm.intel.com (HELO
  mdroper-desk1.amr.corp.intel.com) ([10.1.27.168])
- by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Nov 2020 15:51:18 -0800
-Date: Thu, 19 Nov 2020 15:51:17 -0800
+ by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Nov 2020 16:09:07 -0800
+Date: Thu, 19 Nov 2020 16:09:06 -0800
 From: Matt Roper <matthew.d.roper@intel.com>
-To: Lee Shawn C <shawn.c.lee@intel.com>
-Message-ID: <20201119235117.GY2099117@mdroper-desk1.amr.corp.intel.com>
-References: <20201028144312.12520-1-shawn.c.lee@intel.com>
- <20201117142629.28729-1-shawn.c.lee@intel.com>
+To: Aditya Swarup <aditya.swarup@intel.com>
+Message-ID: <20201120000906.GZ2099117@mdroper-desk1.amr.corp.intel.com>
+References: <20201117185029.22078-1-aditya.swarup@intel.com>
+ <20201117185029.22078-6-aditya.swarup@intel.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20201117142629.28729-1-shawn.c.lee@intel.com>
-Subject: Re: [Intel-gfx] [PATCH v5] drm/i915/rkl: new rkl ddc map for
- different PCH
+In-Reply-To: <20201117185029.22078-6-aditya.swarup@intel.com>
+Subject: Re: [Intel-gfx] [PATCH 05/21] drm/i915/adl_s: Add PCH support
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,97 +50,121 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Cooper Chiou <cooper.chiou@intel.com>, intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org,
+ Lucas De Marchi <lucas.demarchi@intel.com>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Nov 17, 2020 at 10:26:29PM +0800, Lee Shawn C wrote:
-> After boot into kernel. Driver configured ddc pin mapping based on
-> predefined table in parse_ddi_port(). Now driver configure rkl
-> ddc pin mapping depends on icp_ddc_pin_map[]. Then this table will
-> give incorrect gmbus port number to cause HDMI can't work.
-> 
-> Refer to commit cd0a89527d06 ("drm/i915/rkl: Add DDC pin mapping").
-> Create two ddc pin table for rkl TGP and CMP pch. Then HDMI can
-> works properly on rkl.
-> 
-> v2: update patch based on latest dinq branch.
-> v3: update ddc table for RKL+TGP sku.
->     RKL+CNP sku will load cnp_ddc_pin_map[] setting.
-> v4: modify the if/else judgment to avoid nesting.
-> v5: fix typo in v4.
-> 
-> Cc: Matt Roper <matthew.d.roper@intel.com>
-> Cc: Aditya Swarup <aditya.swarup@intel.com>
-> Cc: Anusha Srivatsa <anusha.srivatsa@intel.com>
-> Cc: Jani Nikula <jani.nikula@linux.intel.com>
-> Cc: Cooper Chiou <cooper.chiou@intel.com>
-> Cc: Khaled Almahallawy <khaled.almahallawy@intel.com>
-> Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/2577
-> Signed-off-by: Lee Shawn C <shawn.c.lee@intel.com>
+On Tue, Nov 17, 2020 at 10:50:13AM -0800, Aditya Swarup wrote:
+> From: Anusha Srivatsa <anusha.srivatsa@intel.com>
+> =
+
+> Add support for Alderpoint(ADP) PCH used with Alderlake-S.
+> =
+
+> v2:
+> - Use drm_dbg_kms and drm_WARN_ON based on Jani's feedback.(aswarup)
+> =
+
+
+This patch looks okay, so
 
 Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
 
-Do you plan to follow up with a separate patch to fix the CMP handling
-in rkl_port_to_ddc_pin that I mentioned previously?  I want to make sure
-that part doesn't fall through the cracks.
+but I'll have some comments on later patches which are basing south
+display conditions on a check for ADL-S rather than a check for ADP.
+Even if we anticipate future platforms re-using ADP and needing
+different logic in those areas (like we do with TGP when paired with
+RKL), I think we might want to handle that differently if/when the time
+comes.
 
 
 Matt
 
+> Cc: Matt Roper <matthew.d.roper@intel.com>
+> Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+> Cc: Caz Yokoyama <caz.yokoyama@intel.com>
+> Cc: Jani Nikula <jani.nikula@intel.com>
+> Cc: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> Cc: Imre Deak <imre.deak@intel.com>
+> Signed-off-by: Anusha Srivatsa <anusha.srivatsa@intel.com>
+> Signed-off-by: Aditya Swarup <aditya.swarup@intel.com>
 > ---
->  drivers/gpu/drm/i915/display/intel_bios.c     | 10 ++++++++++
->  drivers/gpu/drm/i915/display/intel_vbt_defs.h |  2 ++
->  2 files changed, 12 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/i915/display/intel_bios.c
-> index 4cc949b228f2..cf2fba490b7b 100644
-> --- a/drivers/gpu/drm/i915/display/intel_bios.c
-> +++ b/drivers/gpu/drm/i915/display/intel_bios.c
-> @@ -1623,6 +1623,13 @@ static const u8 icp_ddc_pin_map[] = {
->  	[TGL_DDC_BUS_PORT_6] = GMBUS_PIN_14_TC6_TGP,
->  };
->  
-> +static const u8 rkl_pch_tgp_ddc_pin_map[] = {
-> +	[ICL_DDC_BUS_DDI_A] = GMBUS_PIN_1_BXT,
-> +	[ICL_DDC_BUS_DDI_B] = GMBUS_PIN_2_BXT,
-> +	[RKL_DDC_BUS_DDI_D] = GMBUS_PIN_9_TC1_ICP,
-> +	[RKL_DDC_BUS_DDI_E] = GMBUS_PIN_10_TC2_ICP,
-> +};
-> +
->  static u8 map_ddc_pin(struct drm_i915_private *dev_priv, u8 vbt_pin)
->  {
->  	const u8 *ddc_pin_map;
-> @@ -1630,6 +1637,9 @@ static u8 map_ddc_pin(struct drm_i915_private *dev_priv, u8 vbt_pin)
->  
->  	if (INTEL_PCH_TYPE(dev_priv) >= PCH_DG1) {
->  		return vbt_pin;
-> +	} else if (IS_ROCKETLAKE(dev_priv) && INTEL_PCH_TYPE(dev_priv) == PCH_TGP) {
-> +		ddc_pin_map = rkl_pch_tgp_ddc_pin_map;
-> +		n_entries = ARRAY_SIZE(rkl_pch_tgp_ddc_pin_map);
->  	} else if (INTEL_PCH_TYPE(dev_priv) >= PCH_ICP) {
->  		ddc_pin_map = icp_ddc_pin_map;
->  		n_entries = ARRAY_SIZE(icp_ddc_pin_map);
-> diff --git a/drivers/gpu/drm/i915/display/intel_vbt_defs.h b/drivers/gpu/drm/i915/display/intel_vbt_defs.h
-> index 49b4b5fca941..187ec573de59 100644
-> --- a/drivers/gpu/drm/i915/display/intel_vbt_defs.h
-> +++ b/drivers/gpu/drm/i915/display/intel_vbt_defs.h
-> @@ -319,6 +319,8 @@ enum vbt_gmbus_ddi {
->  	ICL_DDC_BUS_DDI_A = 0x1,
->  	ICL_DDC_BUS_DDI_B,
->  	TGL_DDC_BUS_DDI_C,
-> +	RKL_DDC_BUS_DDI_D = 0x3,
-> +	RKL_DDC_BUS_DDI_E,
->  	ICL_DDC_BUS_PORT_1 = 0x4,
->  	ICL_DDC_BUS_PORT_2,
->  	ICL_DDC_BUS_PORT_3,
-> -- 
-> 2.17.1
-> 
+>  drivers/gpu/drm/i915/intel_pch.c | 8 +++++++-
+>  drivers/gpu/drm/i915/intel_pch.h | 3 +++
+>  2 files changed, 10 insertions(+), 1 deletion(-)
+> =
 
--- 
+> diff --git a/drivers/gpu/drm/i915/intel_pch.c b/drivers/gpu/drm/i915/inte=
+l_pch.c
+> index f31c0dabd0cc..2a6d70f247e8 100644
+> --- a/drivers/gpu/drm/i915/intel_pch.c
+> +++ b/drivers/gpu/drm/i915/intel_pch.c
+> @@ -128,6 +128,10 @@ intel_pch_type(const struct drm_i915_private *dev_pr=
+iv, unsigned short id)
+>  		drm_dbg_kms(&dev_priv->drm, "Found Jasper Lake PCH\n");
+>  		drm_WARN_ON(&dev_priv->drm, !IS_JSL_EHL(dev_priv));
+>  		return PCH_JSP;
+> +	case INTEL_PCH_ADP_DEVICE_ID_TYPE:
+> +		drm_dbg_kms(&dev_priv->drm, "Found Alder Lake PCH\n");
+> +		drm_WARN_ON(&dev_priv->drm, !IS_ALDERLAKE_S(dev_priv));
+> +		return PCH_ADP;
+>  	default:
+>  		return PCH_NONE;
+>  	}
+> @@ -155,7 +159,9 @@ intel_virt_detect_pch(const struct drm_i915_private *=
+dev_priv)
+>  	 * make an educated guess as to which PCH is really there.
+>  	 */
+>  =
+
+> -	if (IS_TIGERLAKE(dev_priv) || IS_ROCKETLAKE(dev_priv))
+> +	if (IS_ALDERLAKE_S(dev_priv))
+> +		id =3D INTEL_PCH_ADP_DEVICE_ID_TYPE;
+> +	else if (IS_TIGERLAKE(dev_priv) || IS_ROCKETLAKE(dev_priv))
+>  		id =3D INTEL_PCH_TGP_DEVICE_ID_TYPE;
+>  	else if (IS_JSL_EHL(dev_priv))
+>  		id =3D INTEL_PCH_MCC_DEVICE_ID_TYPE;
+> diff --git a/drivers/gpu/drm/i915/intel_pch.h b/drivers/gpu/drm/i915/inte=
+l_pch.h
+> index 06d2cd50af0b..7318377503b0 100644
+> --- a/drivers/gpu/drm/i915/intel_pch.h
+> +++ b/drivers/gpu/drm/i915/intel_pch.h
+> @@ -26,6 +26,7 @@ enum intel_pch {
+>  	PCH_JSP,	/* Jasper Lake PCH */
+>  	PCH_MCC,        /* Mule Creek Canyon PCH */
+>  	PCH_TGP,	/* Tiger Lake PCH */
+> +	PCH_ADP,	/* Alder Lake PCH */
+>  =
+
+>  	/* Fake PCHs, functionality handled on the same PCI dev */
+>  	PCH_DG1 =3D 1024,
+> @@ -53,12 +54,14 @@ enum intel_pch {
+>  #define INTEL_PCH_TGP2_DEVICE_ID_TYPE		0x4380
+>  #define INTEL_PCH_JSP_DEVICE_ID_TYPE		0x4D80
+>  #define INTEL_PCH_JSP2_DEVICE_ID_TYPE		0x3880
+> +#define INTEL_PCH_ADP_DEVICE_ID_TYPE		0x7A80
+>  #define INTEL_PCH_P2X_DEVICE_ID_TYPE		0x7100
+>  #define INTEL_PCH_P3X_DEVICE_ID_TYPE		0x7000
+>  #define INTEL_PCH_QEMU_DEVICE_ID_TYPE		0x2900 /* qemu q35 has 2918 */
+>  =
+
+>  #define INTEL_PCH_TYPE(dev_priv)		((dev_priv)->pch_type)
+>  #define INTEL_PCH_ID(dev_priv)			((dev_priv)->pch_id)
+> +#define HAS_PCH_ADP(dev_priv)			(INTEL_PCH_TYPE(dev_priv) =3D=3D PCH_ADP)
+>  #define HAS_PCH_DG1(dev_priv)			(INTEL_PCH_TYPE(dev_priv) =3D=3D PCH_DG1)
+>  #define HAS_PCH_JSP(dev_priv)			(INTEL_PCH_TYPE(dev_priv) =3D=3D PCH_JSP)
+>  #define HAS_PCH_MCC(dev_priv)			(INTEL_PCH_TYPE(dev_priv) =3D=3D PCH_MCC)
+> -- =
+
+> 2.27.0
+> =
+
+
+-- =
+
 Matt Roper
 Graphics Software Engineer
 VTT-OSGC Platform Enablement
