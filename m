@@ -1,41 +1,45 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 575C02BB626
-	for <lists+intel-gfx@lfdr.de>; Fri, 20 Nov 2020 20:57:54 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id BCCA72BB65B
+	for <lists+intel-gfx@lfdr.de>; Fri, 20 Nov 2020 21:18:43 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 78D6F6E8D3;
-	Fri, 20 Nov 2020 19:57:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DEA6E6E911;
+	Fri, 20 Nov 2020 20:18:40 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3286A6E8D3
- for <intel-gfx@lists.freedesktop.org>; Fri, 20 Nov 2020 19:57:51 +0000 (UTC)
-IronPort-SDR: G7+YzkY/X1RW+LgHUP8fd6hGFGC9MsNdo+vOkLkWHsm6v6hvqmOd/RFvyb63rNtIdZjgJl2p6h
- 60Zd9/JPMkNA==
-X-IronPort-AV: E=McAfee;i="6000,8403,9811"; a="168963920"
-X-IronPort-AV: E=Sophos;i="5.78,357,1599548400"; d="scan'208";a="168963920"
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B3BFC6E911
+ for <intel-gfx@lists.freedesktop.org>; Fri, 20 Nov 2020 20:18:39 +0000 (UTC)
+IronPort-SDR: 3/vts2Yg9zDNCwSaS9gLeULLoV3APXGsgtvZusFrnd56TR/EamgsGL/Ps9gS+nWEkir01sk2iU
+ TqjQjvFB8ooQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9811"; a="159306969"
+X-IronPort-AV: E=Sophos;i="5.78,357,1599548400"; d="scan'208";a="159306969"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Nov 2020 11:57:50 -0800
-IronPort-SDR: d129czfMih+0IMr60PHo+IVITC1TWVH9MBtZDRwvHnaWwgwOX81FVcQAzolU1uZXv6fOA3bj/O
- XnHGryqnN9rw==
-X-IronPort-AV: E=Sophos;i="5.78,357,1599548400"; d="scan'208";a="533672237"
-Received: from ffoarta-mobl1.amr.corp.intel.com (HELO josouza-mobl2.intel.com)
- ([10.212.152.232])
- by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Nov 2020 11:57:49 -0800
-From: =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Fri, 20 Nov 2020 11:57:48 -0800
-Message-Id: <20201120195748.99265-1-jose.souza@intel.com>
-X-Mailer: git-send-email 2.29.2
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Nov 2020 12:18:38 -0800
+IronPort-SDR: VjK+/npy7cr2P8Xp8jiwN8t6rpJfF6XUXfX3Ohm4G2Qll9ifBKOCFH1xF5JUvGc790EFfBf1qr
+ qhg+Idh8BGug==
+X-IronPort-AV: E=Sophos;i="5.78,357,1599548400"; d="scan'208";a="477352348"
+Received: from darohlox-mobl1.amr.corp.intel.com (HELO ldmartin-desk1)
+ ([10.212.246.105])
+ by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Nov 2020 12:18:37 -0800
+Date: Fri, 20 Nov 2020 12:18:16 -0800
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: Aditya Swarup <aditya.swarup@intel.com>
+Message-ID: <20201120201816.likpgiooyzo4mke3@ldmartin-desk1>
+X-Patchwork-Hint: comment
+References: <20201117185029.22078-1-aditya.swarup@intel.com>
+ <20201117185029.22078-17-aditya.swarup@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915/display: Warn about types of backlight
- not handled
+Content-Disposition: inline
+In-Reply-To: <20201117185029.22078-17-aditya.swarup@intel.com>
+Subject: Re: [Intel-gfx] [PATCH 16/21] drm/i915/adl_s: MCHBAR memory info
+ registers are moved
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,42 +52,121 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: Jani Nikula <jani.nikula@intel.com>, Yokoyama@ldmartin-desk1,
+ intel-gfx@lists.freedesktop.org
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="iso-8859-1"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-UmlnaHQgbm93IHdlIGFyZSBvbmx5IGV4cGxpY2l0bHkgaGFuZGxpbmcgdGhlIGJhY2tsaWdodCBv
-ZiB0eXBlcwpJTlRFTF9CQUNLTElHSFRfVkVTQV9FRFBfQVVYX0lOVEVSRkFDRSwgSU5URUxfQkFD
-S0xJR0hUX0RTSV9EQ1MgYW5kCklOVEVMX0JBQ0tMSUdIVF9ESVNQTEFZX0RESSBhbGwgb3RoZXJz
-IGFyZSBiZWluZyBoYW5kbGVkIGFzCklOVEVMX0JBQ0tMSUdIVF9ESVNQTEFZX0RESShzb3V0aCBk
-aXNwbGF5IGVuZ2luZSBQV00pIGJ1dCB0aGF0Cm1pZ2h0IG5vdCBiZSB0aGUgaW50ZW5kZWQgSFcg
-dXNhZ2UsIHNvIGxldHMgd2FybiB0byBpZGVudGlmeSB0aG9zZQpzeXN0ZW1zIGFuZCBpbXBsZW1l
-bnQgaXQgcHJvcGVybHkgaWYgbmVlZGVkLgoKQ2M6IEltcmUgRGVhayA8aW1yZS5kZWFrQGludGVs
-LmNvbT4KU2lnbmVkLW9mZi1ieTogSm9zw6kgUm9iZXJ0byBkZSBTb3V6YSA8am9zZS5zb3V6YUBp
-bnRlbC5jb20+Ci0tLQogZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9wYW5lbC5j
-IHwgMTUgKysrKysrKysrKysrKysrCiAxIGZpbGUgY2hhbmdlZCwgMTUgaW5zZXJ0aW9ucygrKQoK
-ZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfcGFuZWwuYyBi
-L2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfcGFuZWwuYwppbmRleCA5ZjIzYmFj
-MGQ3OTIuLjM2ODcyMjUzNjQ2MiAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlz
-cGxheS9pbnRlbF9wYW5lbC5jCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50
-ZWxfcGFuZWwuYwpAQCAtMjAyMyw2ICsyMDIzLDIxIEBAIGludGVsX3BhbmVsX2luaXRfYmFja2xp
-Z2h0X2Z1bmNzKHN0cnVjdCBpbnRlbF9wYW5lbCAqcGFuZWwpCiAJc3RydWN0IGludGVsX2Nvbm5l
-Y3RvciAqY29ubmVjdG9yID0KIAkJY29udGFpbmVyX29mKHBhbmVsLCBzdHJ1Y3QgaW50ZWxfY29u
-bmVjdG9yLCBwYW5lbCk7CiAJc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmRldl9wcml2ID0gdG9f
-aTkxNShjb25uZWN0b3ItPmJhc2UuZGV2KTsKKwllbnVtIGludGVsX2JhY2tsaWdodF90eXBlIHR5
-cGUgPSBkZXZfcHJpdi0+dmJ0LmJhY2tsaWdodC50eXBlOworCisJaWYgKGRldl9wcml2LT5wYXJh
-bXMuZW5hYmxlX2RwY2RfYmFja2xpZ2h0KQorCQl0eXBlID0gSU5URUxfQkFDS0xJR0hUX1ZFU0Ff
-RURQX0FVWF9JTlRFUkZBQ0U7CisKKwlkcm1fZGJnX2ttcygmZGV2X3ByaXYtPmRybSwKKwkJICAg
-ICJDb25uZWN0b3IgJXMgYmFja2xpZ2h0IHR5cGUgJXUgY29udHJvbGxlciAldVxuIiwKKwkJICAg
-IGNvbm5lY3Rvci0+YmFzZS5uYW1lLCB0eXBlLAorCQkgICAgZGV2X3ByaXYtPnZidC5iYWNrbGln
-aHQuY29udHJvbGxlcik7CisKKwlpZiAodHlwZSAhPSBJTlRFTF9CQUNLTElHSFRfRElTUExBWV9E
-REkgJiYKKwkgICAgdHlwZSAhPSBJTlRFTF9CQUNLTElHSFRfVkVTQV9FRFBfQVVYX0lOVEVSRkFD
-RSAmJgorCSAgICB0eXBlICE9IElOVEVMX0JBQ0tMSUdIVF9EU0lfRENTKQorCQlkcm1fd2Fybigm
-ZGV2X3ByaXYtPmRybSwgIkJhY2tsaWdodCB0eXBlICVpIG5vdCBwcm9wZXJseSBoYW5kbGVkXG4i
-LAorCQkJIHR5cGUpOwogCiAJaWYgKGNvbm5lY3Rvci0+YmFzZS5jb25uZWN0b3JfdHlwZSA9PSBE
-Uk1fTU9ERV9DT05ORUNUT1JfZURQICYmCiAJICAgIGludGVsX2RwX2F1eF9pbml0X2JhY2tsaWdo
-dF9mdW5jcyhjb25uZWN0b3IpID09IDApCi0tIAoyLjI5LjIKCl9fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwt
-Z2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9t
-YWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
+On Tue, Nov 17, 2020 at 10:50:24AM -0800, Aditya Swarup wrote:
+>From: Caz Yokoyama <caz.yokoyama@intel.com>
+>
+>The crwebview indicates on ADL-S that some of our MCHBAR
+>registers have moved from their traditional 0x50XX offsets to
+>new locations. The meaning and bit layout of the registers
+>remain same.
+>
+>Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+>Cc: Jani Nikula <jani.nikula@intel.com>
+>Cc: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+>Cc: Imre Deak <imre.deak@intel.com>
+>Cc: Matt Roper <matthew.d.roper@intel.com>
+>Signed-off-by: Yokoyama, Caz <caz.yokoyama@intel.com>
+>Signed-off-by: Aditya Swarup <aditya.swarup@intel.com>
+>---
+> drivers/gpu/drm/i915/i915_reg.h   |  5 +++++
+> drivers/gpu/drm/i915/intel_dram.c | 18 +++++++++++++++---
+> 2 files changed, 20 insertions(+), 3 deletions(-)
+>
+>diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_r=
+eg.h
+>index 4c8d0d84af6a..6abba59592f7 100644
+>--- a/drivers/gpu/drm/i915/i915_reg.h
+>+++ b/drivers/gpu/drm/i915/i915_reg.h
+>@@ -10863,6 +10863,8 @@ enum skl_power_gate {
+> #define  SKL_DRAM_DDR_TYPE_LPDDR3		(2 << 0)
+> #define  SKL_DRAM_DDR_TYPE_LPDDR4		(3 << 0)
+>
+>+#define  ADLS_MAD_INTER_CHANNEL_0_0_0_MCHBAR _MMIO(MCHBAR_MIRROR_BASE_SNB=
+ + 0x6048)
+>+
+> #define SKL_MAD_DIMM_CH0_0_0_0_MCHBAR_MCMAIN	_MMIO(MCHBAR_MIRROR_BASE_SNB=
+ + 0x500C)
+> #define SKL_MAD_DIMM_CH1_0_0_0_MCHBAR_MCMAIN	_MMIO(MCHBAR_MIRROR_BASE_SNB=
+ + 0x5010)
+> #define  SKL_DRAM_S_SHIFT			16
+>@@ -10890,6 +10892,9 @@ enum skl_power_gate {
+> #define  CNL_DRAM_RANK_3			(0x2 << 9)
+> #define  CNL_DRAM_RANK_4			(0x3 << 9)
+>
+>+#define ADLS_MAD_DIMM_CH0_0_0_0_MCHBAR		_MMIO(MCHBAR_MIRROR_BASE_SNB + 0x=
+6054)
+>+#define ADLS_MAD_DIMM_CH1_0_0_0_MCHBAR		_MMIO(MCHBAR_MIRROR_BASE_SNB + 0x=
+6058)
+>+
+> /* Please see hsw_read_dcomp() and hsw_write_dcomp() before using this re=
+gister,
+>  * since on HSW we can't write to it using I915_WRITE. */
+> #define D_COMP_HSW			_MMIO(MCHBAR_MIRROR_BASE_SNB + 0x5F0C)
+>diff --git a/drivers/gpu/drm/i915/intel_dram.c b/drivers/gpu/drm/i915/inte=
+l_dram.c
+>index 4754296a250e..e7427e5f4130 100644
+>--- a/drivers/gpu/drm/i915/intel_dram.c
+>+++ b/drivers/gpu/drm/i915/intel_dram.c
+>@@ -184,13 +184,21 @@ skl_dram_get_channels_info(struct drm_i915_private *=
+i915)
+> 	u32 val;
+> 	int ret;
+>
+>-	val =3D intel_uncore_read(&i915->uncore,
+>+	if (IS_ALDERLAKE_S(i915))
+>+		val =3D intel_uncore_read(&i915->uncore,
+>+				ADLS_MAD_DIMM_CH0_0_0_0_MCHBAR);
+>+	else
+>+		val =3D intel_uncore_read(&i915->uncore,
+> 				SKL_MAD_DIMM_CH0_0_0_0_MCHBAR_MCMAIN);
+> 	ret =3D skl_dram_get_channel_info(i915, &ch0, 0, val);
+> 	if (ret =3D=3D 0)
+> 		dram_info->num_channels++;
+>
+>-	val =3D intel_uncore_read(&i915->uncore,
+>+	if (IS_ALDERLAKE_S(i915))
+>+		val =3D intel_uncore_read(&i915->uncore,
+>+				ADLS_MAD_DIMM_CH1_0_0_0_MCHBAR);
+>+	else
+>+		val =3D intel_uncore_read(&i915->uncore,
+> 				SKL_MAD_DIMM_CH1_0_0_0_MCHBAR_MCMAIN);
+
+probably better to:
+
+u32 ch0, ch1;
+
+and then keep the reads together in a single if/else chain.
+Or use i915_reg_t ch0_reg, ch1_reg
+
+Lucas De Marchi
+
+> 	ret =3D skl_dram_get_channel_info(i915, &ch1, 1, val);
+> 	if (ret =3D=3D 0)
+>@@ -231,7 +239,11 @@ skl_get_dram_type(struct drm_i915_private *i915)
+> {
+> 	u32 val;
+>
+>-	val =3D intel_uncore_read(&i915->uncore,
+>+	if (IS_ALDERLAKE_S(i915))
+>+		val =3D intel_uncore_read(&i915->uncore,
+>+				ADLS_MAD_INTER_CHANNEL_0_0_0_MCHBAR);
+>+	else
+>+		val =3D intel_uncore_read(&i915->uncore,
+> 				SKL_MAD_INTER_CHANNEL_0_0_0_MCHBAR_MCMAIN);
+>
+> 	switch (val & SKL_DRAM_DDR_TYPE_MASK) {
+>-- =
+
+>2.27.0
+>
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
