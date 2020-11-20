@@ -1,48 +1,47 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4ACE32BAC15
-	for <lists+intel-gfx@lfdr.de>; Fri, 20 Nov 2020 15:43:27 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7841F2BAC24
+	for <lists+intel-gfx@lfdr.de>; Fri, 20 Nov 2020 15:48:24 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0D3E16E8C3;
-	Fri, 20 Nov 2020 14:43:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 91AF96E8DB;
+	Fri, 20 Nov 2020 14:48:22 +0000 (UTC)
 X-Original-To: Intel-gfx@lists.freedesktop.org
 Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A66D46E8C3
- for <Intel-gfx@lists.freedesktop.org>; Fri, 20 Nov 2020 14:43:24 +0000 (UTC)
-IronPort-SDR: vMMNaE1gq5Tklmf1VOShbTlZInw8RpnJQdR2osx8v8gxFYfaOBdw1DKKUeYbJ86WIgNKKAUwAc
- mPjpvwiDyRRA==
-X-IronPort-AV: E=McAfee;i="6000,8403,9810"; a="150747672"
-X-IronPort-AV: E=Sophos;i="5.78,356,1599548400"; d="scan'208";a="150747672"
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8D41A6E8E5
+ for <Intel-gfx@lists.freedesktop.org>; Fri, 20 Nov 2020 14:48:21 +0000 (UTC)
+IronPort-SDR: QX83c4zXGrFfigRP8XkoxQHQN4tqUH0aqoCmnoR8mhs8r+xBg7BPxQM3akyVUhPOAleRdXTblH
+ mKEAZGUZ+wJQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9810"; a="189585099"
+X-IronPort-AV: E=Sophos;i="5.78,356,1599548400"; d="scan'208";a="189585099"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Nov 2020 06:43:24 -0800
-IronPort-SDR: onuZSY9E3NmoSCa9ej2/r9mw9NevxmktxK+A9JwkR2rh1M4mhlSe+1VNYD2JUaO2j4NChCoanB
- z7YJz/HMZc4g==
-X-IronPort-AV: E=Sophos;i="5.78,356,1599548400"; d="scan'208";a="545464409"
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Nov 2020 06:48:21 -0800
+IronPort-SDR: 18iwuM9WNBj7+2dokOmEt/weQ09xqR3dHSb+L9PiVqUuAJs8IgEkyRoN+3zmAEG1CJqJYWZzX/
+ 4G8YGMFNU1OQ==
+X-IronPort-AV: E=Sophos;i="5.78,356,1599548400"; d="scan'208";a="545465386"
 Received: from shilatbx-mobl1.ger.corp.intel.com (HELO [10.255.201.139])
  ([10.255.201.139])
  by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Nov 2020 06:43:22 -0800
+ 20 Nov 2020 06:48:19 -0800
 To: Chris Wilson <chris@chris-wilson.co.uk>, Intel-gfx@lists.freedesktop.org
 References: <20201120095636.1987395-1-tvrtko.ursulin@linux.intel.com>
- <20201120095636.1987395-2-tvrtko.ursulin@linux.intel.com>
- <160588276123.28535.4760687203912180414@build.alporthouse.com>
+ <160588238065.28535.17983138007111557633@build.alporthouse.com>
 From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
 Organization: Intel Corporation UK Plc
-Message-ID: <6ccee2a4-73e4-2a7b-5872-4af19161665d@linux.intel.com>
-Date: Fri, 20 Nov 2020 14:43:19 +0000
+Message-ID: <237a936d-df5e-bf0a-0fdc-e46254806315@linux.intel.com>
+Date: Fri, 20 Nov 2020 14:48:17 +0000
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.10.0
 MIME-Version: 1.0
-In-Reply-To: <160588276123.28535.4760687203912180414@build.alporthouse.com>
+In-Reply-To: <160588238065.28535.17983138007111557633@build.alporthouse.com>
 Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH 2/2] drm/i915/guc: Use correct lock for CT
- event handler
+Subject: Re: [Intel-gfx] [PATCH 1/2] drm/i915/guc: Use correct lock for
+ accessing guc->mmio_msg
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,73 +54,109 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 
-On 20/11/2020 14:32, Chris Wilson wrote:
-> Quoting Tvrtko Ursulin (2020-11-20 09:56:36)
+On 20/11/2020 14:26, Chris Wilson wrote:
+> Quoting Tvrtko Ursulin (2020-11-20 09:56:35)
 >> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 >>
->> CT event handler is called under the gt->irq_lock from the interrupt
->> handling paths so make it the same from the init path. I don't think this
->> mismatch caused any functional issue but we need to wean the code of the
->> global i915->irq_lock.
-> 
-> ct_read definitely wants to be serialised. Is guc->irq_lock the right
-> choice?
-
-Not under my understanding and also confirmed by Daniele off line.
-
+>> Guc->mmio_msg is set under the guc->irq_lock in guc_get_mmio_msg so it
+>> should be consumed under the same lock from guc_handle_mmio_msg.
+>>
+>> I am not sure if the overall flow here makes complete sense but at least
+>> the correct lock is now used.
+>>
 >> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 >> Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
 >> ---
->>   drivers/gpu/drm/i915/gt/uc/intel_uc.c | 7 ++++---
->>   1 file changed, 4 insertions(+), 3 deletions(-)
+>>   drivers/gpu/drm/i915/gt/uc/intel_uc.c | 16 ++++++----------
+>>   1 file changed, 6 insertions(+), 10 deletions(-)
 >>
 >> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_uc.c b/drivers/gpu/drm/i915/gt/uc/intel_uc.c
->> index 220626c3ad81..6a0452815c41 100644
+>> index 4e6070e95fe9..220626c3ad81 100644
 >> --- a/drivers/gpu/drm/i915/gt/uc/intel_uc.c
 >> +++ b/drivers/gpu/drm/i915/gt/uc/intel_uc.c
->> @@ -203,7 +203,8 @@ static void guc_disable_interrupts(struct intel_guc *guc)
+>> @@ -175,19 +175,15 @@ static void guc_get_mmio_msg(struct intel_guc *guc)
 >>   
->>   static int guc_enable_communication(struct intel_guc *guc)
+>>   static void guc_handle_mmio_msg(struct intel_guc *guc)
 >>   {
 >> -       struct drm_i915_private *i915 = guc_to_gt(guc)->i915;
->> +       struct intel_gt *gt = guc_to_gt(guc);
->> +       struct drm_i915_private *i915 = gt->i915;
->>          int ret;
+>> -
+>>          /* we need communication to be enabled to reply to GuC */
+>>          GEM_BUG_ON(!guc_communication_enabled(guc));
 >>   
->>          GEM_BUG_ON(guc_communication_enabled(guc));
->> @@ -223,9 +224,9 @@ static int guc_enable_communication(struct intel_guc *guc)
->>          guc_enable_interrupts(guc);
->>   
->>          /* check for CT messages received before we enabled interrupts */
+>> -       if (!guc->mmio_msg)
+>> -               return;
+>> -
 >> -       spin_lock_irq(&i915->irq_lock);
->> +       spin_lock_irq(&gt->irq_lock);
->>          intel_guc_ct_event_handler(&guc->ct);
+>> -       intel_guc_to_host_process_recv_msg(guc, &guc->mmio_msg, 1);
 >> -       spin_unlock_irq(&i915->irq_lock);
->> +       spin_unlock_irq(&gt->irq_lock);
+>> -
+>> -       guc->mmio_msg = 0;
+>> +       spin_lock_irq(&guc->irq_lock);
+>> +       if (guc->mmio_msg) {
+>> +               intel_guc_to_host_process_recv_msg(guc, &guc->mmio_msg, 1);
+>> +               guc->mmio_msg = 0;
+>> +       }
+>> +       spin_unlock_irq(&guc->irq_lock);
 > 
-> You used guc->irq_lock in the previous patch. I suggest
-> intel_guc_ct_event_handler() should specify what lock it requires.
+> Based on just looking at mmio_msg, the locking should be guc->irq_lock, and
+> guc->mmio_msg = 0 should be pulled under the lock.
+> 
+> Reviewed-by: Chris Wilson <chris@chris-wilson.co.uk>
 
-There are indeed too many locks and too little asserts to help the reader.
+Thanks, the thing which made me say that I am not sure it completely makes sense is that the mmio_msg appears to only be used from guc_enable_communication and 
+guc_disable_communication, which I would assume should be mutually exclusive by itself already. So I was not sure what value is there in the locking around mmio_msg access.
 
-But the other end of the state ct_read needs is updated from the GuC 
-firmware itself, which then send the interrupt, which we process in:
+And even in guc_enable_communication we have a sequence of:
 
-  guc_irq_handler
-    -> intel_guc_to_host_event_handler
-         -> intel_guc_ct_event_handler
+	guc_get_mmio_msg(guc);
+	guc_handle_mmio_msg(guc);
 
-And this side runs under the gt->irq_lock.
+Which expands to:
+
+static void guc_get_mmio_msg(struct intel_guc *guc)
+{
+	u32 val;
+
+	spin_lock_irq(&guc->irq_lock);
+
+	val = intel_uncore_read(guc_to_gt(guc)->uncore, SOFT_SCRATCH(15));
+	guc->mmio_msg |= val & guc->msg_enabled_mask;
+
+	/*
+	 * clear all events, including the ones we're not currently servicing,
+	 * to make sure we don't try to process a stale message if we enable
+	 * handling of more events later.
+	 */
+	guc_clear_mmio_msg(guc);
+
+	spin_unlock_irq(&guc->irq_lock);
+}
+
+static void guc_handle_mmio_msg(struct intel_guc *guc)
+{
+	/* we need communication to be enabled to reply to GuC */
+	GEM_BUG_ON(!guc_communication_enabled(guc));
+
+	spin_lock_irq(&guc->irq_lock);
+	if (guc->mmio_msg) {
+		intel_guc_to_host_process_recv_msg(guc, &guc->mmio_msg, 1);
+		guc->mmio_msg = 0;
+	}
+	spin_unlock_irq(&guc->irq_lock);
+}
+
+So it seems a bit pointless. Nevertheless I only wanted to remove usage of i915->irq_lock.
 
 Regards,
 
 Tvrtko
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
