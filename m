@@ -1,56 +1,57 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A1CD82BA6A9
-	for <lists+intel-gfx@lfdr.de>; Fri, 20 Nov 2020 10:56:24 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id A94B72BA6AB
+	for <lists+intel-gfx@lfdr.de>; Fri, 20 Nov 2020 10:56:27 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 637476E89E;
-	Fri, 20 Nov 2020 09:56:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3FF9F6E8A4;
+	Fri, 20 Nov 2020 09:56:18 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-x441.google.com (mail-wr1-x441.google.com
- [IPv6:2a00:1450:4864:20::441])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 617286E89E
- for <intel-gfx@lists.freedesktop.org>; Fri, 20 Nov 2020 09:56:14 +0000 (UTC)
-Received: by mail-wr1-x441.google.com with SMTP id c17so9339094wrc.11
- for <intel-gfx@lists.freedesktop.org>; Fri, 20 Nov 2020 01:56:14 -0800 (PST)
+Received: from mail-wr1-x444.google.com (mail-wr1-x444.google.com
+ [IPv6:2a00:1450:4864:20::444])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B35926E89C
+ for <intel-gfx@lists.freedesktop.org>; Fri, 20 Nov 2020 09:56:15 +0000 (UTC)
+Received: by mail-wr1-x444.google.com with SMTP id 23so9368375wrc.8
+ for <intel-gfx@lists.freedesktop.org>; Fri, 20 Nov 2020 01:56:15 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=7+q8vKHO3EFjaJ879GkRcmDKHJR9JgE21VUyxKW3mY0=;
- b=NHf9AOhApOcnNW/Sr7K7lwSXd9Ck9Z5/C9QZ4NYblHO1KiG0SUmf/3/kmWsXvPhkQT
- 4FJM/oryQSQIsGzo7RJ1DYRxlHGoSPqMsoUII89W+KZZMQA32qYyL67Mj55nLL5PhTVd
- UhLCk32vlvzz7bBzhH/KI4Qlskc0xIQ5mkZWA=
+ bh=ODWIjSITGhibxiu5sdcf8aVMrj4QUXzG8FJI3RynFGM=;
+ b=abxl7E4wo7jZpAfTzuunphaH5vlt/naI7HAiWaSpvixjFnf4sVbia8Q3BJ+dVpIqSd
+ rzyCZR6pVpoX67iLtk7QN881pKiYydMCbW2tIIk5Y0QHWn5wBSS/BB//JgXsoKgg8fVg
+ rRtlAoYdJtnHk5e8fU/kzRg05Ih+mmmH1kzj4=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=7+q8vKHO3EFjaJ879GkRcmDKHJR9JgE21VUyxKW3mY0=;
- b=hugAp7PYl7vweBGgyvlih6Htnj3ekgGagOuIEyDkC0SeVceYK3WXlBEzA7FOm5ODhh
- lGLp78MaeKKVnWalBIG2sqWSORc+i0tXcH+dyM8zu9+Aw6Dp6zYC4YlTHqBlu6P+hWvl
- 2aiKcDpJb82E2o3snofKod7QvlWPUk/8vsppa2LIntQwAHNyLHUGkai+Go63WAaxXLY+
- GqT1nk3q22MYfUiv2zhWvgluNRBOkisky2OVyDWFeGi40j4UQi1ylve5CI71DudneEA2
- RSlJfbMtbDSwudG/EzVkKslcczJ1qO7HRqsnNhcNeGUUmLdN1/R6tjVnvYodKIROhZIo
- AFKw==
-X-Gm-Message-State: AOAM533PdriNzPuDvQQKsuwuDn2noZW74ZM4I9YrRDPLYiEC9nijP9GZ
- VEICx33/+SZtqRLLFONPrMVlSQ==
-X-Google-Smtp-Source: ABdhPJwJqZ9GhiqgSrImpdEVhjBbuglJqMxiUAwvoL3/huYCtyyfr42+HCgkw04wdaJDXAX4ODo8vQ==
-X-Received: by 2002:a5d:654b:: with SMTP id z11mr14013175wrv.291.1605866173041; 
- Fri, 20 Nov 2020 01:56:13 -0800 (PST)
+ bh=ODWIjSITGhibxiu5sdcf8aVMrj4QUXzG8FJI3RynFGM=;
+ b=LVDJJ8vDJcoa1B4gmAyk2Xr8i/v1PpiUa1PO82bgG1d5JovJAcdd48HyH+Aki7t/+Y
+ 1Op2J5iRzjl/wzgL07F1Afqb30NjZr0aF+nH9uY7BbB458sRkm7ROrxnGnd6ZDosU97Z
+ aDOx7RRW7bDBaxOL7MVCNc+JXbtLsMCUH1o/kTe1CsByLcQmyiNZ7G7us5tliLfPkSNW
+ /YpW/TQ6lWm/ilvcOpN/JSFqXnGUnUArsXMpXPzRzvTWtGxwCgrmt2H/ocfS1fyeNdtY
+ CAqrTczOZAwUezOtGAQ0xGkloZ52wqGaOPBMVrUwZZ+YleBhmn3XgLc6lzukJNbqqJP8
+ /qMw==
+X-Gm-Message-State: AOAM533jhH9tXB5IZCsT68YDjxI5nuMBSB7ZsyWe9Wm2ixda3udytQz7
+ hC/3a+bO8i6DBOzbjAR63XtYkA==
+X-Google-Smtp-Source: ABdhPJxJ2UyLnfvFIWnVmPKRqax6sfQkCZohfTD1sEUpZkqrYbW1bkqO7INNhAf+GB4nJI4JFKC4Ow==
+X-Received: by 2002:a5d:4d87:: with SMTP id b7mr15742781wru.115.1605866174422; 
+ Fri, 20 Nov 2020 01:56:14 -0800 (PST)
 Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id t9sm4500208wrr.49.2020.11.20.01.56.11
+ by smtp.gmail.com with ESMTPSA id t9sm4500208wrr.49.2020.11.20.01.56.13
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 20 Nov 2020 01:56:12 -0800 (PST)
+ Fri, 20 Nov 2020 01:56:13 -0800 (PST)
 From: Daniel Vetter <daniel.vetter@ffwll.ch>
 To: DRI Development <dri-devel@lists.freedesktop.org>
-Date: Fri, 20 Nov 2020 10:54:43 +0100
-Message-Id: <20201120095445.1195585-3-daniel.vetter@ffwll.ch>
+Date: Fri, 20 Nov 2020 10:54:44 +0100
+Message-Id: <20201120095445.1195585-4-daniel.vetter@ffwll.ch>
 X-Mailer: git-send-email 2.29.2
 In-Reply-To: <20201120095445.1195585-1-daniel.vetter@ffwll.ch>
 References: <20201120095445.1195585-1-daniel.vetter@ffwll.ch>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 2/3] mm: Extract might_alloc() debug check
+Subject: [Intel-gfx] [PATCH 3/3] locking/selftests: Add testcases for
+ fs_reclaim
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,153 +64,71 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Peter Zijlstra <peterz@infradead.org>,
+Cc: Will Deacon <will@kernel.org>, linux-rdma@vger.kernel.org,
  Daniel Vetter <daniel.vetter@ffwll.ch>,
- Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
- Dave Chinner <david@fromorbit.com>, linux-mm@kvack.org,
- Daniel Vetter <daniel.vetter@intel.com>, Christoph Lameter <cl@linux.com>,
- Michel Lespinasse <walken@google.com>, Ingo Molnar <mingo@kernel.org>,
- linux-xfs@vger.kernel.org, "Matthew Wilcox \(Oracle\)" <willy@infradead.org>,
- David Rientjes <rientjes@google.com>, Waiman Long <longman@redhat.com>,
- "Paul E . McKenney" <paulmck@kernel.org>,
  Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- Mathieu Desnoyers <mathieu.desnoyers@efficios.com>,
- Thomas Gleixner <tglx@linutronix.de>, Joonsoo Kim <iamjoonsoo.kim@lge.com>,
- Vlastimil Babka <vbabka@suse.cz>, Randy Dunlap <rdunlap@infradead.org>,
- LKML <linux-kernel@vger.kernel.org>, Pekka Enberg <penberg@kernel.org>,
- linux-fsdevel@vger.kernel.org, Qian Cai <cai@lca.pw>,
- Andrew Morton <akpm@linux-foundation.org>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+ Dave Chinner <david@fromorbit.com>, LKML <linux-kernel@vger.kernel.org>,
+ "Matthew Wilcox \(Oracle\)" <willy@infradead.org>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ linux-xfs@vger.kernel.org, linux-mm@kvack.org,
+ Peter Zijlstra <peterz@infradead.org>, Jason Gunthorpe <jgg@mellanox.com>,
+ Qian Cai <cai@lca.pw>, linux-fsdevel@vger.kernel.org,
+ Daniel Vetter <daniel.vetter@intel.com>,
+ Andrew Morton <akpm@linux-foundation.org>, Ingo Molnar <mingo@redhat.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Extracted from slab.h, which seems to have the most complete version
-including the correct might_sleep() check. Roll it out to slob.c.
-
-Motivated by a discussion with Paul about possibly changing call_rcu
-behaviour to allocate memory, but only roughly every 500th call.
-
-There are a lot fewer places in the kernel that care about whether
-allocating memory is allowed or not (due to deadlocks with reclaim
-code) than places that care whether sleeping is allowed. But debugging
-these also tends to be a lot harder, so nice descriptive checks could
-come in handy. I might have some use eventually for annotations in
-drivers/gpu.
-
-Note that unlike fs_reclaim_acquire/release gfpflags_allow_blocking
-does not consult the PF_MEMALLOC flags. But there is no flag
-equivalent for GFP_NOWAIT, hence this check can't go wrong due to
-memalloc_no*_save/restore contexts. Willy is working on a patch series
-which might change this:
-
-https://lore.kernel.org/linux-mm/20200625113122.7540-7-willy@infradead.org/
-
-I think best would be if that updates gfpflags_allow_blocking(), since
-there's a ton of callers all over the place for that already.
-
-Acked-by: Vlastimil Babka <vbabka@suse.cz>
-Acked-by: Paul E. McKenney <paulmck@kernel.org>
-Cc: Paul E. McKenney <paulmck@kernel.org>
-Cc: Christoph Lameter <cl@linux.com>
-Cc: Pekka Enberg <penberg@kernel.org>
-Cc: David Rientjes <rientjes@google.com>
-Cc: Joonsoo Kim <iamjoonsoo.kim@lge.com>
-Cc: Andrew Morton <akpm@linux-foundation.org>
-Cc: Peter Zijlstra <peterz@infradead.org>
-Cc: Ingo Molnar <mingo@kernel.org>
-Cc: Vlastimil Babka <vbabka@suse.cz>
-Cc: Mathieu Desnoyers <mathieu.desnoyers@efficios.com>
-Cc: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
-Cc: Michel Lespinasse <walken@google.com>
-Cc: Daniel Vetter <daniel.vetter@ffwll.ch>
-Cc: Waiman Long <longman@redhat.com>
-Cc: Thomas Gleixner <tglx@linutronix.de>
-Cc: Randy Dunlap <rdunlap@infradead.org>
-Cc: linux-mm@kvack.org
-Cc: linux-fsdevel@vger.kernel.org
-Cc: Dave Chinner <david@fromorbit.com>
-Cc: Qian Cai <cai@lca.pw>
-Cc: linux-xfs@vger.kernel.org
-Cc: "Matthew Wilcox (Oracle)" <willy@infradead.org>
-Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
----
- include/linux/sched/mm.h | 16 ++++++++++++++++
- mm/slab.h                |  5 +----
- mm/slob.c                |  6 ++----
- 3 files changed, 19 insertions(+), 8 deletions(-)
-
-diff --git a/include/linux/sched/mm.h b/include/linux/sched/mm.h
-index d5ece7a9a403..f94405d43fd1 100644
---- a/include/linux/sched/mm.h
-+++ b/include/linux/sched/mm.h
-@@ -180,6 +180,22 @@ static inline void fs_reclaim_acquire(gfp_t gfp_mask) { }
- static inline void fs_reclaim_release(gfp_t gfp_mask) { }
- #endif
- 
-+/**
-+ * might_alloc - Marks possible allocation sites
-+ * @gfp_mask: gfp_t flags that would be use to allocate
-+ *
-+ * Similar to might_sleep() and other annotations this can be used in functions
-+ * that might allocate, but often dont. Compiles to nothing without
-+ * CONFIG_LOCKDEP. Includes a conditional might_sleep() if @gfp allows blocking.
-+ */
-+static inline void might_alloc(gfp_t gfp_mask)
-+{
-+	fs_reclaim_acquire(gfp_mask);
-+	fs_reclaim_release(gfp_mask);
-+
-+	might_sleep_if(gfpflags_allow_blocking(gfp_mask));
-+}
-+
- /**
-  * memalloc_noio_save - Marks implicit GFP_NOIO allocation scope.
-  *
-diff --git a/mm/slab.h b/mm/slab.h
-index 6d7c6a5056ba..37b981247e5d 100644
---- a/mm/slab.h
-+++ b/mm/slab.h
-@@ -500,10 +500,7 @@ static inline struct kmem_cache *slab_pre_alloc_hook(struct kmem_cache *s,
- {
- 	flags &= gfp_allowed_mask;
- 
--	fs_reclaim_acquire(flags);
--	fs_reclaim_release(flags);
--
--	might_sleep_if(gfpflags_allow_blocking(flags));
-+	might_alloc(flags);
- 
- 	if (should_failslab(s, flags))
- 		return NULL;
-diff --git a/mm/slob.c b/mm/slob.c
-index 7cc9805c8091..8d4bfa46247f 100644
---- a/mm/slob.c
-+++ b/mm/slob.c
-@@ -474,8 +474,7 @@ __do_kmalloc_node(size_t size, gfp_t gfp, int node, unsigned long caller)
- 
- 	gfp &= gfp_allowed_mask;
- 
--	fs_reclaim_acquire(gfp);
--	fs_reclaim_release(gfp);
-+	might_alloc(gfp);
- 
- 	if (size < PAGE_SIZE - minalign) {
- 		int align = minalign;
-@@ -597,8 +596,7 @@ static void *slob_alloc_node(struct kmem_cache *c, gfp_t flags, int node)
- 
- 	flags &= gfp_allowed_mask;
- 
--	fs_reclaim_acquire(flags);
--	fs_reclaim_release(flags);
-+	might_alloc(flags);
- 
- 	if (c->size < PAGE_SIZE) {
- 		b = slob_alloc(c->size, flags, c->align, node, 0);
--- 
-2.29.2
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+U2luY2UgSSBidXRjaGVyZWQgdGhpcyBJIGZpZ3VyZWQgYmV0dGVyIHRvIG1ha2Ugc3VyZSB3ZSBo
+YXZlIHRlc3RjYXNlcwpmb3IgdGhpcyBub3cuIFNpbmNlIHdlIG9ubHkgaGF2ZSBhIGxvY2tpbmcg
+Y29udGV4dCBmb3IgX19HRlBfRlMgdGhhdCdzCnRoZSBvbmx5IHRoaW5nIHdlJ3JlIHRlc3Rpbmcg
+cmlnaHQgbm93LgoKQ2M6IGxpbnV4LWZzZGV2ZWxAdmdlci5rZXJuZWwub3JnCkNjOiBEYXZlIENo
+aW5uZXIgPGRhdmlkQGZyb21vcmJpdC5jb20+CkNjOiBRaWFuIENhaSA8Y2FpQGxjYS5wdz4KQ2M6
+IGxpbnV4LXhmc0B2Z2VyLmtlcm5lbC5vcmcKQ2M6IFRob21hcyBIZWxsc3Ryw7ZtIChJbnRlbCkg
+PHRob21hc19vc0BzaGlwbWFpbC5vcmc+CkNjOiBBbmRyZXcgTW9ydG9uIDxha3BtQGxpbnV4LWZv
+dW5kYXRpb24ub3JnPgpDYzogSmFzb24gR3VudGhvcnBlIDxqZ2dAbWVsbGFub3guY29tPgpDYzog
+bGludXgtbW1Aa3ZhY2sub3JnCkNjOiBsaW51eC1yZG1hQHZnZXIua2VybmVsLm9yZwpDYzogTWFh
+cnRlbiBMYW5raG9yc3QgPG1hYXJ0ZW4ubGFua2hvcnN0QGxpbnV4LmludGVsLmNvbT4KQ2M6IENo
+cmlzdGlhbiBLw7ZuaWcgPGNocmlzdGlhbi5rb2VuaWdAYW1kLmNvbT4KQ2M6ICJNYXR0aGV3IFdp
+bGNveCAoT3JhY2xlKSIgPHdpbGx5QGluZnJhZGVhZC5vcmc+ClNpZ25lZC1vZmYtYnk6IERhbmll
+bCBWZXR0ZXIgPGRhbmllbC52ZXR0ZXJAaW50ZWwuY29tPgpDYzogUGV0ZXIgWmlqbHN0cmEgPHBl
+dGVyekBpbmZyYWRlYWQub3JnPgpDYzogSW5nbyBNb2xuYXIgPG1pbmdvQHJlZGhhdC5jb20+CkNj
+OiBXaWxsIERlYWNvbiA8d2lsbEBrZXJuZWwub3JnPgpDYzogbGludXgta2VybmVsQHZnZXIua2Vy
+bmVsLm9yZwotLS0KIGxpYi9sb2NraW5nLXNlbGZ0ZXN0LmMgfCA0NyArKysrKysrKysrKysrKysr
+KysrKysrKysrKysrKysrKysrKysrKysrKysKIDEgZmlsZSBjaGFuZ2VkLCA0NyBpbnNlcnRpb25z
+KCspCgpkaWZmIC0tZ2l0IGEvbGliL2xvY2tpbmctc2VsZnRlc3QuYyBiL2xpYi9sb2NraW5nLXNl
+bGZ0ZXN0LmMKaW5kZXggYTg5OWIzZjBlMmU1Li5hZDQ3YzMzNThlMzAgMTAwNjQ0Ci0tLSBhL2xp
+Yi9sb2NraW5nLXNlbGZ0ZXN0LmMKKysrIGIvbGliL2xvY2tpbmctc2VsZnRlc3QuYwpAQCAtMTUs
+NiArMTUsNyBAQAogI2luY2x1ZGUgPGxpbnV4L211dGV4Lmg+CiAjaW5jbHVkZSA8bGludXgvd3df
+bXV0ZXguaD4KICNpbmNsdWRlIDxsaW51eC9zY2hlZC5oPgorI2luY2x1ZGUgPGxpbnV4L3NjaGVk
+L21tLmg+CiAjaW5jbHVkZSA8bGludXgvZGVsYXkuaD4KICNpbmNsdWRlIDxsaW51eC9sb2NrZGVw
+Lmg+CiAjaW5jbHVkZSA8bGludXgvc3BpbmxvY2suaD4KQEAgLTIzNTcsNiArMjM1OCw1MCBAQCBz
+dGF0aWMgdm9pZCBxdWV1ZWRfcmVhZF9sb2NrX3Rlc3RzKHZvaWQpCiAJcHJfY29udCgiXG4iKTsK
+IH0KIAorc3RhdGljIHZvaWQgZnNfcmVjbGFpbV9jb3JyZWN0X25lc3Rpbmcodm9pZCkKK3sKKwlm
+c19yZWNsYWltX2FjcXVpcmUoR0ZQX0tFUk5FTCk7CisJbWlnaHRfYWxsb2MoR0ZQX05PRlMpOwor
+CWZzX3JlY2xhaW1fcmVsZWFzZShHRlBfS0VSTkVMKTsKK30KKworc3RhdGljIHZvaWQgZnNfcmVj
+bGFpbV93cm9uZ19uZXN0aW5nKHZvaWQpCit7CisJZnNfcmVjbGFpbV9hY3F1aXJlKEdGUF9LRVJO
+RUwpOworCW1pZ2h0X2FsbG9jKEdGUF9LRVJORUwpOworCWZzX3JlY2xhaW1fcmVsZWFzZShHRlBf
+S0VSTkVMKTsKK30KKworc3RhdGljIHZvaWQgZnNfcmVjbGFpbV9wcm90ZWN0ZWRfbmVzdGluZyh2
+b2lkKQoreworCXVuc2lnbmVkIGludCBmbGFnczsKKworCWZzX3JlY2xhaW1fYWNxdWlyZShHRlBf
+S0VSTkVMKTsKKwlmbGFncyA9IG1lbWFsbG9jX25vZnNfc2F2ZSgpOworCW1pZ2h0X2FsbG9jKEdG
+UF9LRVJORUwpOworCW1lbWFsbG9jX25vZnNfcmVzdG9yZShmbGFncyk7CisJZnNfcmVjbGFpbV9y
+ZWxlYXNlKEdGUF9LRVJORUwpOworfQorCitzdGF0aWMgdm9pZCBmc19yZWNsYWltX3Rlc3RzKHZv
+aWQpCit7CisJcHJpbnRrKCIgIC0tLS0tLS0tLS0tLS0tLS0tLS0tXG4iKTsKKwlwcmludGsoIiAg
+fCBmc19yZWNsYWltIHRlc3RzIHxcbiIpOworCXByaW50aygiICAtLS0tLS0tLS0tLS0tLS0tLS0t
+LVxuIik7CisKKwlwcmludF90ZXN0bmFtZSgiY29ycmVjdCBuZXN0aW5nIik7CisJZG90ZXN0KGZz
+X3JlY2xhaW1fY29ycmVjdF9uZXN0aW5nLCBTVUNDRVNTLCAwKTsKKwlwcl9jb250KCJcbiIpOwor
+CisJcHJpbnRfdGVzdG5hbWUoIndyb25nIG5lc3RpbmciKTsKKwlkb3Rlc3QoZnNfcmVjbGFpbV93
+cm9uZ19uZXN0aW5nLCBGQUlMVVJFLCAwKTsKKwlwcl9jb250KCJcbiIpOworCisJcHJpbnRfdGVz
+dG5hbWUoInByb3RlY3RlZCBuZXN0aW5nIik7CisJZG90ZXN0KGZzX3JlY2xhaW1fcHJvdGVjdGVk
+X25lc3RpbmcsIFNVQ0NFU1MsIDApOworCXByX2NvbnQoIlxuIik7Cit9CisKIHZvaWQgbG9ja2lu
+Z19zZWxmdGVzdCh2b2lkKQogewogCS8qCkBAIC0yNDc4LDYgKzI1MjMsOCBAQCB2b2lkIGxvY2tp
+bmdfc2VsZnRlc3Qodm9pZCkKIAlpZiAoSVNfRU5BQkxFRChDT05GSUdfUVVFVUVEX1JXTE9DS1Mp
+KQogCQlxdWV1ZWRfcmVhZF9sb2NrX3Rlc3RzKCk7CiAKKwlmc19yZWNsYWltX3Rlc3RzKCk7CisK
+IAlpZiAodW5leHBlY3RlZF90ZXN0Y2FzZV9mYWlsdXJlcykgewogCQlwcmludGsoIi0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+XG4iKTsKIAkJZGVidWdfbG9ja3MgPSAwOwotLSAKMi4yOS4yCgpfX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVs
+LWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcv
+bWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
