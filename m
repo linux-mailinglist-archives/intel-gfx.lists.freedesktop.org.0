@@ -2,28 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DE1232BAB96
-	for <lists+intel-gfx@lfdr.de>; Fri, 20 Nov 2020 15:03:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0E3EC2BAB98
+	for <lists+intel-gfx@lfdr.de>; Fri, 20 Nov 2020 15:03:26 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 474056E8B7;
-	Fri, 20 Nov 2020 14:03:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 480256E8BA;
+	Fri, 20 Nov 2020 14:03:24 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2BD226E8B6
- for <intel-gfx@lists.freedesktop.org>; Fri, 20 Nov 2020 14:03:17 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0DCA76E8B6
+ for <intel-gfx@lists.freedesktop.org>; Fri, 20 Nov 2020 14:03:18 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 23055881-1500050 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 23055882-1500050 
  for <intel-gfx@lists.freedesktop.org>; Fri, 20 Nov 2020 14:03:14 +0000
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Fri, 20 Nov 2020 14:03:12 +0000
-Message-Id: <20201120140314.24749-1-chris@chris-wilson.co.uk>
+Date: Fri, 20 Nov 2020 14:03:13 +0000
+Message-Id: <20201120140314.24749-2-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.20.1
+In-Reply-To: <20201120140314.24749-1-chris@chris-wilson.co.uk>
+References: <20201120140314.24749-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [CI 1/3] drm/i915/gem: Remove incorrect early dbg print
+Subject: [Intel-gfx] [CI 2/3] drm/i915/selftests: Improve granularity for
+ mocs reset checks
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,30 +44,80 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-We print out the "logical" context support before we discover whether or
-not the engines have logical contexts. No one seems to have noticed the
-error, so the debug message must not be useful to anyone.
+Allow us to validate mocs configurations after reset if we have either
+engine or global reset.
 
 Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
 Reviewed-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/gem/i915_gem_context.c | 3 ---
- 1 file changed, 3 deletions(-)
+ drivers/gpu/drm/i915/gt/selftest_mocs.c | 40 +++++++++++++------------
+ 1 file changed, 21 insertions(+), 19 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.c b/drivers/gpu/drm/i915/gem/i915_gem_context.c
-index 4fd38101bb56..a6299da64de4 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_context.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_context.c
-@@ -904,9 +904,6 @@ static void init_contexts(struct i915_gem_contexts *gc)
- void i915_gem_init__contexts(struct drm_i915_private *i915)
+diff --git a/drivers/gpu/drm/i915/gt/selftest_mocs.c b/drivers/gpu/drm/i915/gt/selftest_mocs.c
+index b25eba50c88e..21dcd91cbd62 100644
+--- a/drivers/gpu/drm/i915/gt/selftest_mocs.c
++++ b/drivers/gpu/drm/i915/gt/selftest_mocs.c
+@@ -361,29 +361,34 @@ static int active_engine_reset(struct intel_context *ce,
+ static int __live_mocs_reset(struct live_mocs *mocs,
+ 			     struct intel_context *ce)
  {
- 	init_contexts(&i915->gem.contexts);
--	drm_dbg(&i915->drm, "%s context support initialized\n",
--		DRIVER_CAPS(i915)->has_logical_contexts ?
--		"logical" : "fake");
- }
++	struct intel_gt *gt = ce->engine->gt;
+ 	int err;
  
- void i915_gem_driver_release__contexts(struct drm_i915_private *i915)
+-	err = intel_engine_reset(ce->engine, "mocs");
+-	if (err)
+-		return err;
++	if (intel_has_reset_engine(gt)) {
++		err = intel_engine_reset(ce->engine, "mocs");
++		if (err)
++			return err;
+ 
+-	err = check_mocs_engine(mocs, ce);
+-	if (err)
+-		return err;
++		err = check_mocs_engine(mocs, ce);
++		if (err)
++			return err;
+ 
+-	err = active_engine_reset(ce, "mocs");
+-	if (err)
+-		return err;
++		err = active_engine_reset(ce, "mocs");
++		if (err)
++			return err;
+ 
+-	err = check_mocs_engine(mocs, ce);
+-	if (err)
+-		return err;
++		err = check_mocs_engine(mocs, ce);
++		if (err)
++			return err;
++	}
+ 
+-	intel_gt_reset(ce->engine->gt, ce->engine->mask, "mocs");
++	if (intel_has_gpu_reset(gt)) {
++		intel_gt_reset(gt, ce->engine->mask, "mocs");
+ 
+-	err = check_mocs_engine(mocs, ce);
+-	if (err)
+-		return err;
++		err = check_mocs_engine(mocs, ce);
++		if (err)
++			return err;
++	}
+ 
+ 	return 0;
+ }
+@@ -398,9 +403,6 @@ static int live_mocs_reset(void *arg)
+ 
+ 	/* Check the mocs setup is retained over per-engine and global resets */
+ 
+-	if (!intel_has_reset_engine(gt))
+-		return 0;
+-
+ 	err = live_mocs_init(&mocs, gt);
+ 	if (err)
+ 		return err;
 -- 
 2.20.1
 
