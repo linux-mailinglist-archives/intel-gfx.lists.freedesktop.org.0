@@ -1,31 +1,56 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 47BE82BC0CD
-	for <lists+intel-gfx@lfdr.de>; Sat, 21 Nov 2020 18:10:25 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id D0DD82BC10F
+	for <lists+intel-gfx@lfdr.de>; Sat, 21 Nov 2020 18:27:54 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AF6646E9D3;
-	Sat, 21 Nov 2020 17:10:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 55C5089FAC;
+	Sat, 21 Nov 2020 17:27:52 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id C56566E9D1;
- Sat, 21 Nov 2020 17:10:22 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id BBA9EA73C9;
- Sat, 21 Nov 2020 17:10:22 +0000 (UTC)
-MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: trix@redhat.com
-Date: Sat, 21 Nov 2020 17:10:22 -0000
-Message-ID: <160597862276.8551.15712777240468577634@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20201121165058.1644182-1-trix@redhat.com>
+X-Greylist: delayed 530 seconds by postgrey-1.36 at gabe;
+ Sat, 21 Nov 2020 17:27:51 UTC
+Received: from bedivere.hansenpartnership.com (bedivere.hansenpartnership.com
+ [96.44.175.130])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 242E689FAC
+ for <intel-gfx@lists.freedesktop.org>; Sat, 21 Nov 2020 17:27:51 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+ by bedivere.hansenpartnership.com (Postfix) with ESMTP id 2C7E2128048D;
+ Sat, 21 Nov 2020 09:19:00 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=hansenpartnership.com; s=20151216; t=1605979140;
+ bh=oKjwoQQYqAGHYIcGa87tH3kfRh6eNDZ11DRWs/5n6Nc=;
+ h=Message-ID:Subject:From:To:Date:In-Reply-To:References:From;
+ b=Lvt0xf0A2UjzBqGR2epCNoE7DN6YV9pUrVXD+f22BVAeiOW2KxZsGCImkMcXBrgh/
+ zD0zBdigF+USoIPaRfSUxU4T/o3yBTwQz1ZuRUKYioWvma2ORezv7XJ+/UVZk14HDg
+ znn3A0Y1A4QkkRvYDhfOKnhgBoH92sfIP7bAjSz4=
+Received: from bedivere.hansenpartnership.com ([127.0.0.1])
+ by localhost (bedivere.hansenpartnership.com [127.0.0.1]) (amavisd-new,
+ port 10024)
+ with ESMTP id dA_Y3gfv-HlR; Sat, 21 Nov 2020 09:19:00 -0800 (PST)
+Received: from jarvis.int.hansenpartnership.com (unknown
+ [IPv6:2601:600:8280:66d1::527])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by bedivere.hansenpartnership.com (Postfix) with ESMTPSA id 584A71280481;
+ Sat, 21 Nov 2020 09:18:58 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=hansenpartnership.com; s=20151216; t=1605979139;
+ bh=oKjwoQQYqAGHYIcGa87tH3kfRh6eNDZ11DRWs/5n6Nc=;
+ h=Message-ID:Subject:From:To:Date:In-Reply-To:References:From;
+ b=qZT/78tSZnguNV1yoYzSSmvqmDGgzNIuIpg2PbOws0zqwE5yu2CoK/DoUP3fxAE7/
+ cwr3zThASX8R91ADl4Ew6X2dNx0rQAVJjUjWHCFXFVZg8s5iaP8BFiZuwsxl12vuws
+ rCw1QQ3k1zT/j95+Y6p1vgihiOvqC5dVUCKPWDl0=
+Message-ID: <5843ef910b0e86c00d9c0143dec20f93823b016b.camel@HansenPartnership.com>
+From: James Bottomley <James.Bottomley@HansenPartnership.com>
+To: trix@redhat.com, joe@perches.com, clang-built-linux@googlegroups.com
+Date: Sat, 21 Nov 2020 09:18:57 -0800
 In-Reply-To: <20201121165058.1644182-1-trix@redhat.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_MAINTAINERS_tag_for_cleanup_robot?=
+References: <20201121165058.1644182-1-trix@redhat.com>
+User-Agent: Evolution 3.34.4 
+MIME-Version: 1.0
+Subject: Re: [Intel-gfx] [RFC] MAINTAINERS tag for cleanup robot
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,30 +63,57 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: linux-hyperv@vger.kernel.org, kvm@vger.kernel.org,
+ linux-fbdev@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ platform-driver-x86@vger.kernel.org, ibm-acpi-devel@lists.sourceforge.net,
+ keyrings@vger.kernel.org, linux-mtd@lists.infradead.org,
+ linux-scsi@vger.kernel.org, amd-gfx@lists.freedesktop.org,
+ cluster-devel@redhat.com, linux-acpi@vger.kernel.org,
+ tboot-devel@lists.sourceforge.net, coreteam@netfilter.org,
+ xen-devel@lists.xenproject.org, MPT-FusionLinux.pdl@broadcom.com,
+ linux-media@vger.kernel.org, alsa-devel@alsa-project.org,
+ intel-gfx@lists.freedesktop.org, ecryptfs@vger.kernel.org,
+ linux-omap@vger.kernel.org, devel@acpica.org, linux-nfs@vger.kernel.org,
+ netdev@vger.kernel.org, linux-usb@vger.kernel.org,
+ linux-wireless@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-bluetooth@vger.kernel.org, netfilter-devel@vger.kernel.org,
+ linux-crypto@vger.kernel.org, patches@opensource.cirrus.com,
+ linux-fsdevel@vger.kernel.org, bpf@vger.kernel.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Sat, 2020-11-21 at 08:50 -0800, trix@redhat.com wrote:
+> A difficult part of automating commits is composing the subsystem
+> preamble in the commit log.  For the ongoing effort of a fixer
+> producing
+> one or two fixes a release the use of 'treewide:' does not seem
+> appropriate.
+> 
+> It would be better if the normal prefix was used.  Unfortunately
+> normal is
+> not consistent across the tree.
+> 
+> 
+> 	D: Commit subsystem prefix
+> 
+> ex/ for FPGA DFL DRIVERS
+> 
+> 	D: fpga: dfl:
+> 
 
-Series: MAINTAINERS tag for cleanup robot
-URL   : https://patchwork.freedesktop.org/series/84147/
-State : warning
+I've got to bet this is going to cause more issues than it solves. 
+SCSI uses scsi: <driver>: for drivers but not every driver has a
+MAINTAINERS entry.  We use either scsi: or scsi: core: for mid layer
+things, but we're not consistent.  Block uses blk-<something>: for all
+of it's stuff but almost no <somtehing>s have a MAINTAINERS entry.  So
+the next thing you're going to cause is an explosion of suggested
+MAINTAINERs entries.
 
-== Summary ==
+Has anyone actually complained about treewide:?
 
-$ dim checkpatch origin/drm-tip
-560145c87e66 MAINTAINERS tag for cleanup robot
--:8: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
-#8: 
-one or two fixes a release the use of 'treewide:' does not seem appropriate.
-
--:137: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email name mismatch: 'From: "trix@redhat.com" <trix@redhat.com>' != 'Signed-off-by: Tom Rix <trix@redhat.com>'
-
-total: 0 errors, 2 warnings, 0 checks, 61 lines checked
+James
 
 
 _______________________________________________
