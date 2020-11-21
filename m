@@ -2,28 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 82FBB2BC1AC
-	for <lists+intel-gfx@lfdr.de>; Sat, 21 Nov 2020 20:04:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 309F92BC1E2
+	for <lists+intel-gfx@lfdr.de>; Sat, 21 Nov 2020 21:01:12 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 55FD489F6E;
-	Sat, 21 Nov 2020 19:03:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0C6CA6E094;
+	Sat, 21 Nov 2020 20:01:10 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6D1C689F6E
- for <intel-gfx@lists.freedesktop.org>; Sat, 21 Nov 2020 19:03:55 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 23065263-1500050 
- for <intel-gfx@lists.freedesktop.org>; Sat, 21 Nov 2020 19:03:52 +0000
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Sat, 21 Nov 2020 19:03:52 +0000
-Message-Id: <20201121190352.15996-1-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.20.1
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 831066E091;
+ Sat, 21 Nov 2020 20:01:08 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 78D7AA73C9;
+ Sat, 21 Nov 2020 20:01:08 +0000 (UTC)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [CI] drm/i915/gt: Plug IPS into intel_rps_set
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Sat, 21 Nov 2020 20:01:08 -0000
+Message-ID: <160598886846.8552.5957343574412958438@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20201121190352.15996-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20201121190352.15996-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/gt=3A_Plug_IPS_into_intel=5Frps=5Fset_=28rev3=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,145 +38,264 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============0822946840=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The old IPS interface did not match the RPS interface that we tried to
-plug it into (bool vs int return). Once repaired, our minimal
-selftesting is finally happy!
+--===============0822946840==
+Content-Type: multipart/alternative;
+ boundary="===============3993842221700632290=="
 
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Reviewed-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
----
- drivers/gpu/drm/i915/gt/intel_rps.c    | 34 +++++++++++++++++---------
- drivers/gpu/drm/i915/gt/selftest_rps.c |  5 +++-
- 2 files changed, 26 insertions(+), 13 deletions(-)
+--===============3993842221700632290==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_rps.c b/drivers/gpu/drm/i915/gt/intel_rps.c
-index 0d88f17799ff..b13e7845d483 100644
---- a/drivers/gpu/drm/i915/gt/intel_rps.c
-+++ b/drivers/gpu/drm/i915/gt/intel_rps.c
-@@ -400,7 +400,7 @@ static unsigned int gen5_invert_freq(struct intel_rps *rps,
- 	return val;
- }
- 
--static bool gen5_rps_set(struct intel_rps *rps, u8 val)
-+static int __gen5_rps_set(struct intel_rps *rps, u8 val)
- {
- 	struct intel_uncore *uncore = rps_to_uncore(rps);
- 	u16 rgvswctl;
-@@ -410,7 +410,7 @@ static bool gen5_rps_set(struct intel_rps *rps, u8 val)
- 	rgvswctl = intel_uncore_read16(uncore, MEMSWCTL);
- 	if (rgvswctl & MEMCTL_CMD_STS) {
- 		DRM_DEBUG("gpu busy, RCS change rejected\n");
--		return false; /* still busy with another command */
-+		return -EBUSY; /* still busy with another command */
- 	}
- 
- 	/* Invert the frequency bin into an ips delay */
-@@ -426,7 +426,18 @@ static bool gen5_rps_set(struct intel_rps *rps, u8 val)
- 	rgvswctl |= MEMCTL_CMD_STS;
- 	intel_uncore_write16(uncore, MEMSWCTL, rgvswctl);
- 
--	return true;
-+	return 0;
-+}
-+
-+static int gen5_rps_set(struct intel_rps *rps, u8 val)
-+{
-+	int err;
-+
-+	spin_lock_irq(&mchdev_lock);
-+	err = __gen5_rps_set(rps, val);
-+	spin_unlock_irq(&mchdev_lock);
-+
-+	return err;
- }
- 
- static unsigned long intel_pxfreq(u32 vidfreq)
-@@ -557,7 +568,7 @@ static bool gen5_rps_enable(struct intel_rps *rps)
- 			"stuck trying to change perf mode\n");
- 	mdelay(1);
- 
--	gen5_rps_set(rps, rps->cur_freq);
-+	__gen5_rps_set(rps, rps->cur_freq);
- 
- 	rps->ips.last_count1 = intel_uncore_read(uncore, DMIEC);
- 	rps->ips.last_count1 += intel_uncore_read(uncore, DDREC);
-@@ -599,7 +610,7 @@ static void gen5_rps_disable(struct intel_rps *rps)
- 	intel_uncore_write(uncore, MEMINTRSTS, MEMINT_EVAL_CHG);
- 
- 	/* Go back to the starting frequency */
--	gen5_rps_set(rps, rps->idle_freq);
-+	__gen5_rps_set(rps, rps->idle_freq);
- 	mdelay(1);
- 	rgvswctl |= MEMCTL_CMD_STS;
- 	intel_uncore_write(uncore, MEMSWCTL, rgvswctl);
-@@ -797,20 +808,19 @@ static int rps_set(struct intel_rps *rps, u8 val, bool update)
- 	struct drm_i915_private *i915 = rps_to_i915(rps);
- 	int err;
- 
--	if (INTEL_GEN(i915) < 6)
--		return 0;
--
- 	if (val == rps->last_freq)
- 		return 0;
- 
- 	if (IS_VALLEYVIEW(i915) || IS_CHERRYVIEW(i915))
- 		err = vlv_rps_set(rps, val);
--	else
-+	else if (INTEL_GEN(i915) >= 6)
- 		err = gen6_rps_set(rps, val);
-+	else
-+		err = gen5_rps_set(rps, val);
- 	if (err)
- 		return err;
- 
--	if (update)
-+	if (update && INTEL_GEN(i915) >= 6)
- 		gen6_rps_set_thresholds(rps, val);
- 	rps->last_freq = val;
- 
-@@ -1794,7 +1804,7 @@ void gen5_rps_irq_handler(struct intel_rps *rps)
- 			 rps->min_freq_softlimit,
- 			 rps->max_freq_softlimit);
- 
--	if (new_freq != rps->cur_freq && gen5_rps_set(rps, new_freq))
-+	if (new_freq != rps->cur_freq && !__gen5_rps_set(rps, new_freq))
- 		rps->cur_freq = new_freq;
- 
- 	spin_unlock(&mchdev_lock);
-@@ -2105,7 +2115,7 @@ bool i915_gpu_turbo_disable(void)
- 
- 	spin_lock_irq(&mchdev_lock);
- 	rps->max_freq_softlimit = rps->min_freq;
--	ret = gen5_rps_set(&i915->gt.rps, rps->min_freq);
-+	ret = !__gen5_rps_set(&i915->gt.rps, rps->min_freq);
- 	spin_unlock_irq(&mchdev_lock);
- 
- 	drm_dev_put(&i915->drm);
-diff --git a/drivers/gpu/drm/i915/gt/selftest_rps.c b/drivers/gpu/drm/i915/gt/selftest_rps.c
-index aa5675ecb5cc..967641fee42a 100644
---- a/drivers/gpu/drm/i915/gt/selftest_rps.c
-+++ b/drivers/gpu/drm/i915/gt/selftest_rps.c
-@@ -185,7 +185,10 @@ static u8 rps_set_check(struct intel_rps *rps, u8 freq)
- {
- 	mutex_lock(&rps->lock);
- 	GEM_BUG_ON(!intel_rps_is_active(rps));
--	intel_rps_set(rps, freq);
-+	if (wait_for(!intel_rps_set(rps, freq), 50)) {
-+		mutex_unlock(&rps->lock);
-+		return 0;
-+	}
- 	GEM_BUG_ON(rps->last_freq != freq);
- 	mutex_unlock(&rps->lock);
- 
--- 
-2.20.1
+== Series Details ==
+
+Series: drm/i915/gt: Plug IPS into intel_rps_set (rev3)
+URL   : https://patchwork.freedesktop.org/series/84081/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_9373 -> Patchwork_18956
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18956/index.html
+
+New tests
+---------
+
+  New tests have been introduced between CI_DRM_9373 and Patchwork_18956:
+
+### New CI tests (1) ###
+
+  * boot:
+    - Statuses : 41 pass(s)
+    - Exec time: [0.0] s
+
+  
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_18956 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@core_hotunplug@unbind-rebind:
+    - fi-blb-e6850:       [PASS][1] -> [INCOMPLETE][2] ([i915#2540])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9373/fi-blb-e6850/igt@core_hotunplug@unbind-rebind.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18956/fi-blb-e6850/igt@core_hotunplug@unbind-rebind.html
+
+  * igt@i915_module_load@reload:
+    - fi-tgl-u2:          [PASS][3] -> [DMESG-WARN][4] ([i915#1982] / [k.org#205379])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9373/fi-tgl-u2/igt@i915_module_load@reload.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18956/fi-tgl-u2/igt@i915_module_load@reload.html
+
+  * igt@i915_pm_rpm@basic-pci-d3-state:
+    - fi-bsw-kefka:       [PASS][5] -> [DMESG-WARN][6] ([i915#1982])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9373/fi-bsw-kefka/igt@i915_pm_rpm@basic-pci-d3-state.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18956/fi-bsw-kefka/igt@i915_pm_rpm@basic-pci-d3-state.html
+
+  * igt@kms_cursor_legacy@basic-flip-after-cursor-atomic:
+    - fi-icl-u2:          [PASS][7] -> [DMESG-WARN][8] ([i915#1982]) +1 similar issue
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9373/fi-icl-u2/igt@kms_cursor_legacy@basic-flip-after-cursor-atomic.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18956/fi-icl-u2/igt@kms_cursor_legacy@basic-flip-after-cursor-atomic.html
+
+  
+#### Possible fixes ####
+
+  * igt@core_hotunplug@unbind-rebind:
+    - fi-skl-lmem:        [DMESG-WARN][9] ([i915#2605]) -> [PASS][10]
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9373/fi-skl-lmem/igt@core_hotunplug@unbind-rebind.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18956/fi-skl-lmem/igt@core_hotunplug@unbind-rebind.html
+
+  * igt@i915_module_load@reload:
+    - fi-bsw-kefka:       [DMESG-WARN][11] ([i915#1982]) -> [PASS][12]
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9373/fi-bsw-kefka/igt@i915_module_load@reload.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18956/fi-bsw-kefka/igt@i915_module_load@reload.html
+
+  * igt@i915_selftest@live@execlists:
+    - fi-kbl-guc:         [INCOMPLETE][13] ([i915#1037] / [i915#794]) -> [PASS][14]
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9373/fi-kbl-guc/igt@i915_selftest@live@execlists.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18956/fi-kbl-guc/igt@i915_selftest@live@execlists.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [i915#1037]: https://gitlab.freedesktop.org/drm/intel/issues/1037
+  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
+  [i915#2540]: https://gitlab.freedesktop.org/drm/intel/issues/2540
+  [i915#2605]: https://gitlab.freedesktop.org/drm/intel/issues/2605
+  [i915#794]: https://gitlab.freedesktop.org/drm/intel/issues/794
+  [k.org#205379]: https://bugzilla.kernel.org/show_bug.cgi?id=205379
+
+
+Participating hosts (45 -> 41)
+------------------------------
+
+  Additional (1): fi-tgl-y 
+  Missing    (5): fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_9373 -> Patchwork_18956
+
+  CI-20190529: 20190529
+  CI_DRM_9373: 9cdf0261b50968252f7775f0de5d34ab8f8b4892 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5864: afc0e559615b791d229ba977f792d04de13a37f7 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_18956: 6e6e3be4c5deb8cdec9c622616af457c5bf9612a @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+6e6e3be4c5de drm/i915/gt: Plug IPS into intel_rps_set
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18956/index.html
+
+--===============3993842221700632290==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/gt: Plug IPS into intel_rps_set (rev3)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/84081/">https://patchwork.freedesktop.org/series/84081/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18956/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18956/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_9373 -&gt; Patchwork_18956</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18956/index.html</p>
+<h2>New tests</h2>
+<p>New tests have been introduced between CI_DRM_9373 and Patchwork_18956:</p>
+<h3>New CI tests (1)</h3>
+<ul>
+<li>boot:<ul>
+<li>Statuses : 41 pass(s)</li>
+<li>Exec time: [0.0] s</li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_18956 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@core_hotunplug@unbind-rebind:</p>
+<ul>
+<li>fi-blb-e6850:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9373/fi-blb-e6850/igt@core_hotunplug@unbind-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18956/fi-blb-e6850/igt@core_hotunplug@unbind-rebind.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2540">i915#2540</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_module_load@reload:</p>
+<ul>
+<li>fi-tgl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9373/fi-tgl-u2/igt@i915_module_load@reload.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18956/fi-tgl-u2/igt@i915_module_load@reload.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a> / <a href="https://bugzilla.kernel.org/show_bug.cgi?id=205379">k.org#205379</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_pm_rpm@basic-pci-d3-state:</p>
+<ul>
+<li>fi-bsw-kefka:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9373/fi-bsw-kefka/igt@i915_pm_rpm@basic-pci-d3-state.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18956/fi-bsw-kefka/igt@i915_pm_rpm@basic-pci-d3-state.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_legacy@basic-flip-after-cursor-atomic:</p>
+<ul>
+<li>fi-icl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9373/fi-icl-u2/igt@kms_cursor_legacy@basic-flip-after-cursor-atomic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18956/fi-icl-u2/igt@kms_cursor_legacy@basic-flip-after-cursor-atomic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>) +1 similar issue</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@core_hotunplug@unbind-rebind:</p>
+<ul>
+<li>fi-skl-lmem:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9373/fi-skl-lmem/igt@core_hotunplug@unbind-rebind.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2605">i915#2605</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18956/fi-skl-lmem/igt@core_hotunplug@unbind-rebind.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_module_load@reload:</p>
+<ul>
+<li>fi-bsw-kefka:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9373/fi-bsw-kefka/igt@i915_module_load@reload.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18956/fi-bsw-kefka/igt@i915_module_load@reload.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@execlists:</p>
+<ul>
+<li>fi-kbl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9373/fi-kbl-guc/igt@i915_selftest@live@execlists.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1037">i915#1037</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/794">i915#794</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18956/fi-kbl-guc/igt@i915_selftest@live@execlists.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Participating hosts (45 -&gt; 41)</h2>
+<p>Additional (1): fi-tgl-y <br />
+  Missing    (5): fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-bdw-samus </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_9373 -&gt; Patchwork_18956</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_9373: 9cdf0261b50968252f7775f0de5d34ab8f8b4892 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_5864: afc0e559615b791d229ba977f792d04de13a37f7 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
+  Patchwork_18956: 6e6e3be4c5deb8cdec9c622616af457c5bf9612a @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>6e6e3be4c5de drm/i915/gt: Plug IPS into intel_rps_set</p>
+
+</body>
+</html>
+
+--===============3993842221700632290==--
+
+--===============0822946840==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============0822946840==--
