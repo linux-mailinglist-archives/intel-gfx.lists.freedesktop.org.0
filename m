@@ -2,73 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B4D0B2BC701
-	for <lists+intel-gfx@lfdr.de>; Sun, 22 Nov 2020 17:33:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id F3CA02BC737
+	for <lists+intel-gfx@lfdr.de>; Sun, 22 Nov 2020 17:49:47 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 597B089D30;
-	Sun, 22 Nov 2020 16:33:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3D5CE89C59;
+	Sun, 22 Nov 2020 16:49:46 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [63.128.21.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0598D89D30
- for <intel-gfx@lists.freedesktop.org>; Sun, 22 Nov 2020 16:33:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1606062804;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=eSFXaX0DZkpNbOwM/RCeF/BEd3n14fz/kurtk7pTmoY=;
- b=StCMHC/HyCDcHG808p/9thQCbNHLB97ek1T9oforhFojh55MW9LfrBZih5vkd7qgZ43dSF
- OZ3JOWRoVWjL7zUSFlP0LDpmoWD2sc3F8Zm34Dd/PaZ0RswUInINC4teeaarn0nRRR/QOI
- +dDEJjm8SJb3l7vs6UWTL1dZHykwyjY=
-Received: from mail-qt1-f197.google.com (mail-qt1-f197.google.com
- [209.85.160.197]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-218-KyjPv1tXP-WPwlAB5tmmkA-1; Sun, 22 Nov 2020 11:33:22 -0500
-X-MC-Unique: KyjPv1tXP-WPwlAB5tmmkA-1
-Received: by mail-qt1-f197.google.com with SMTP id r16so1152518qtn.19
- for <intel-gfx@lists.freedesktop.org>; Sun, 22 Nov 2020 08:33:22 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:subject:to:cc:references:from:message-id:date
- :user-agent:mime-version:in-reply-to:content-transfer-encoding
- :content-language;
- bh=eSFXaX0DZkpNbOwM/RCeF/BEd3n14fz/kurtk7pTmoY=;
- b=jCsxZTB48Il6b+dVtAQ+EgDZ2nwUotuzHgPouHyu0DTpOJwNsvwO+ghtzWdh/QJR29
- FgfqETkR5M1VdfJrE7WFJEzAuEkHXKltxxprxPzHFJ4UIlF/ohUEPYvYGoStG8GHgKrs
- dejytpVn+cqiSUxRfIyHDDdx5UbZwT9/VWpu1GFtvoKfRB1zvtvUlLTEJPqB100pAKhp
- rB3/vU8kuM0Z2Z5XOWsJXrO9NXRCvBMEbZ8/NX6kWtezkxYcRigevYo64B4RRmJhqJ4C
- Z04WgLeLKIpge3cPKcEBxVbmR5hFM/FZ3u6/qx3bbo1e7UY2kPzVpqsWcBxxW8S9i7s4
- oi3Q==
-X-Gm-Message-State: AOAM532PgJj9iKu+P8BnPPeJO4M1fwR+ZL0yvSILIo6XtPgcyXW/C3Vf
- JMQp+PSHun87oHEXnDW3uavnyGiLUPWP+qVLUmYlX0pZn/bZFsuF6iIXWiFYA7U2vIZswriSiI7
- E/CuNAG+xkMcnRpI53ZIMS/psFvx+
-X-Received: by 2002:a37:a783:: with SMTP id q125mr25815216qke.10.1606062801576; 
- Sun, 22 Nov 2020 08:33:21 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJx2n++9V878KrbbQS+4X3uFT/lj12S/EG8yAhFKA6vFd9PzTR06otQkDsZPYmv5N+Hbwviu/A==
-X-Received: by 2002:a37:a783:: with SMTP id q125mr25815168qke.10.1606062801138; 
- Sun, 22 Nov 2020 08:33:21 -0800 (PST)
-Received: from trix.remote.csb (075-142-250-213.res.spectrum.com.
- [75.142.250.213])
- by smtp.gmail.com with ESMTPSA id 9sm7113466qke.6.2020.11.22.08.33.17
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Sun, 22 Nov 2020 08:33:20 -0800 (PST)
-To: Joe Perches <joe@perches.com>, clang-built-linux@googlegroups.com
+X-Greylist: delayed 84645 seconds by postgrey-1.36 at gabe;
+ Sun, 22 Nov 2020 16:49:45 UTC
+Received: from bedivere.hansenpartnership.com (bedivere.hansenpartnership.com
+ [IPv6:2607:fcd0:100:8a00::2])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2F10E89C59;
+ Sun, 22 Nov 2020 16:49:45 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+ by bedivere.hansenpartnership.com (Postfix) with ESMTP id AB0CF1280302;
+ Sun, 22 Nov 2020 08:49:44 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=hansenpartnership.com; s=20151216; t=1606063784;
+ bh=17TrMRtvefoo+nGHR97pCnj/lxz5M0xWRk4mlB4j/j4=;
+ h=Message-ID:Subject:From:To:Date:In-Reply-To:References:From;
+ b=DJQ3WuSCh5ONJkQLvrRDKWjtqFtZT1TAPnAUYm6nnSis8bRSxmxTUdD1PrB7UWicY
+ RxKUvvDgawnlhMMDvZIHrNHIQxzEk4H+L7edJ9WYAgYp3e2Z+uWjpWqDuwMfVruTvK
+ GP/WMd/p5KAU/iZA/nGFhNVXHTmLoWjH8aSdKt9E=
+Received: from bedivere.hansenpartnership.com ([127.0.0.1])
+ by localhost (bedivere.hansenpartnership.com [127.0.0.1]) (amavisd-new,
+ port 10024)
+ with ESMTP id iwIwMm9lBMHQ; Sun, 22 Nov 2020 08:49:44 -0800 (PST)
+Received: from jarvis.int.hansenpartnership.com (unknown
+ [IPv6:2601:600:8280:66d1::527])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by bedivere.hansenpartnership.com (Postfix) with ESMTPSA id CCD1012802EA;
+ Sun, 22 Nov 2020 08:49:42 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=hansenpartnership.com; s=20151216; t=1606063784;
+ bh=17TrMRtvefoo+nGHR97pCnj/lxz5M0xWRk4mlB4j/j4=;
+ h=Message-ID:Subject:From:To:Date:In-Reply-To:References:From;
+ b=DJQ3WuSCh5ONJkQLvrRDKWjtqFtZT1TAPnAUYm6nnSis8bRSxmxTUdD1PrB7UWicY
+ RxKUvvDgawnlhMMDvZIHrNHIQxzEk4H+L7edJ9WYAgYp3e2Z+uWjpWqDuwMfVruTvK
+ GP/WMd/p5KAU/iZA/nGFhNVXHTmLoWjH8aSdKt9E=
+Message-ID: <751803306cd957d0e7ef6a4fc3dbf12ebceaba92.camel@HansenPartnership.com>
+From: James Bottomley <James.Bottomley@HansenPartnership.com>
+To: Tom Rix <trix@redhat.com>, Matthew Wilcox <willy@infradead.org>
+Date: Sun, 22 Nov 2020 08:49:41 -0800
+In-Reply-To: <0819ce06-c462-d4df-d3d9-14931dc5aefc@redhat.com>
 References: <20201121165058.1644182-1-trix@redhat.com>
- <2105f0c05e9eae8bee8e17dcc5314474b3c0bc73.camel@perches.com>
-From: Tom Rix <trix@redhat.com>
-Message-ID: <6e8c1926-4209-8f10-d0f9-72c875a85a88@redhat.com>
-Date: Sun, 22 Nov 2020 08:33:16 -0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.12.0
+ <20201122032304.GE4327@casper.infradead.org>
+ <ddb08a27-3ca1-fb2e-d51f-4b471f1a56a3@redhat.com>
+ <20201122145635.GG4327@casper.infradead.org>
+ <0819ce06-c462-d4df-d3d9-14931dc5aefc@redhat.com>
+User-Agent: Evolution 3.34.4 
 MIME-Version: 1.0
-In-Reply-To: <2105f0c05e9eae8bee8e17dcc5314474b3c0bc73.camel@perches.com>
-Authentication-Results: relay.mimecast.com;
- auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=trix@redhat.com
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
-Content-Language: en-US
 Subject: Re: [Intel-gfx] [RFC] MAINTAINERS tag for cleanup robot
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -86,61 +71,89 @@ Cc: linux-hyperv@vger.kernel.org, kvm@vger.kernel.org,
  linux-fbdev@vger.kernel.org, dri-devel@lists.freedesktop.org,
  platform-driver-x86@vger.kernel.org, ibm-acpi-devel@lists.sourceforge.net,
  keyrings@vger.kernel.org, linux-mtd@lists.infradead.org,
- linux-scsi@vger.kernel.org, amd-gfx@lists.freedesktop.org,
- cluster-devel@redhat.com, linux-acpi@vger.kernel.org,
- tboot-devel@lists.sourceforge.net, coreteam@netfilter.org,
- xen-devel@lists.xenproject.org, MPT-FusionLinux.pdl@broadcom.com,
- linux-media@vger.kernel.org, alsa-devel@alsa-project.org,
- intel-gfx@lists.freedesktop.org, ecryptfs@vger.kernel.org,
+ linux-scsi@vger.kernel.org, clang-built-linux@googlegroups.com,
+ amd-gfx@lists.freedesktop.org, cluster-devel@redhat.com,
+ linux-acpi@vger.kernel.org, tboot-devel@lists.sourceforge.net,
+ coreteam@netfilter.org, xen-devel@lists.xenproject.org,
+ MPT-FusionLinux.pdl@broadcom.com, linux-media@vger.kernel.org,
+ alsa-devel@alsa-project.org, intel-gfx@lists.freedesktop.org,
+ ecryptfs@vger.kernel.org, linux-fsdevel@vger.kernel.org,
  linux-omap@vger.kernel.org, devel@acpica.org, linux-nfs@vger.kernel.org,
  netdev@vger.kernel.org, linux-usb@vger.kernel.org,
  linux-wireless@vger.kernel.org, linux-kernel@vger.kernel.org,
  linux-bluetooth@vger.kernel.org, netfilter-devel@vger.kernel.org,
- linux-crypto@vger.kernel.org, patches@opensource.cirrus.com,
- linux-fsdevel@vger.kernel.org, bpf@vger.kernel.org
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+ linux-crypto@vger.kernel.org, patches@opensource.cirrus.com, joe@perches.com,
+ bpf@vger.kernel.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Ck9uIDExLzIxLzIwIDk6MTAgQU0sIEpvZSBQZXJjaGVzIHdyb3RlOgo+IE9uIFNhdCwgMjAyMC0x
-MS0yMSBhdCAwODo1MCAtMDgwMCwgdHJpeEByZWRoYXQuY29tIHdyb3RlOgo+PiBBIGRpZmZpY3Vs
-dCBwYXJ0IG9mIGF1dG9tYXRpbmcgY29tbWl0cyBpcyBjb21wb3NpbmcgdGhlIHN1YnN5c3RlbQo+
-PiBwcmVhbWJsZSBpbiB0aGUgY29tbWl0IGxvZy4gIEZvciB0aGUgb25nb2luZyBlZmZvcnQgb2Yg
-YSBmaXhlciBwcm9kdWNpbmcKPj4gb25lIG9yIHR3byBmaXhlcyBhIHJlbGVhc2UgdGhlIHVzZSBv
-ZiAndHJlZXdpZGU6JyBkb2VzIG5vdCBzZWVtIGFwcHJvcHJpYXRlLgo+Pgo+PiBJdCB3b3VsZCBi
-ZSBiZXR0ZXIgaWYgdGhlIG5vcm1hbCBwcmVmaXggd2FzIHVzZWQuICBVbmZvcnR1bmF0ZWx5IG5v
-cm1hbCBpcwo+PiBub3QgY29uc2lzdGVudCBhY3Jvc3MgdGhlIHRyZWUuCj4+Cj4+IFNvIEkgYW0g
-bG9va2luZyBmb3IgY29tbWVudHMgZm9yIGFkZGluZyBhIG5ldyB0YWcgdG8gdGhlIE1BSU5UQUlO
-RVJTIGZpbGUKPj4KPj4gCUQ6IENvbW1pdCBzdWJzeXN0ZW0gcHJlZml4Cj4+Cj4+IGV4LyBmb3Ig
-RlBHQSBERkwgRFJJVkVSUwo+Pgo+PiAJRDogZnBnYTogZGZsOgo+IEknbSBhbGwgZm9yIGl0LiAg
-R29vZCBsdWNrIHdpdGggdGhlIGVmZm9ydC4gIEl0J3Mgbm90IGNvbXBsZXRlbHkgdHJpdmlhbC4K
-Pgo+IEZyb20gYSBkZWNhZGUgYWdvOgo+Cj4gaHR0cHM6Ly9sb3JlLmtlcm5lbC5vcmcvbGttbC8x
-Mjg5OTE5MDc3LjI4NzQxLjUwLmNhbWVsQEpvZS1MYXB0b3AvCj4KPiAoYW5kIHRoYXQgdGhyZWFk
-IHN0YXJ0ZWQgd2l0aCBleHRyYSBzZW1pY29sb24gcGF0Y2hlcyB0b28pCgpSZWFkaW5nIHRoZSBo
-aXN0b3J5LCBob3cgYWJvdXQgdGhpcy4KCmdldF9tYXRhaW50YWluZXIucGwgb3V0cHV0cyBhIHNp
-bmdsZSBwcmVmaXgsIGlmIG11bHRpcGxlIGZpbGVzIGhhdmUgdGhlIHNhbWUgcHJlZml4IGl0IHdv
-cmtzLCBpZiB0aGV5IGRvbid0IGl0cyBhbiBlcnJvci4KCkFub3RoZXIgc2NyaXB0ICdjb21taXRf
-b25lX2ZpbGUuc2gnIGRvZXMgdGhlIGNhbGwgdG8gZ2V0X21haW5haW50ZXIucGwgdG8gZ2V0IHRo
-ZSBwcmVmaXggYW5kIGJlIGNhbGxlZCBieSBydW4tY2xhbmctdG9vbHMucHkgdG8gZ2V0IHRoZSBm
-aXhlciBzcGVjaWZpYyBtZXNzYWdlLgoKRGVmZXIgbWluaW1pemluZyB0aGUgY29tbWl0cyBieSBj
-b21iaW5pbmcgc2ltaWxhciBzdWJzeXN0ZW1zIHRpbGwgbGF0ZXIuCgpJbiBhIHN0ZWFkeSBzdGF0
-ZSBjYXNlLCB0aGlzIHNob3VsZCBiZSB1bmNvbW1vbi4KCgo+Cj4+IENvbnRpbnVpbmcgd2l0aCBj
-bGVhbmluZyB1cCBjbGFuZydzIC1XZXh0cmEtc2VtaS1zdG10Cj4+IGRpZmYgLS1naXQgYS9NYWtl
-ZmlsZSBiL01ha2VmaWxlCj4gW10KPj4gQEAgLTE1NjcsMjAgKzE1NjcsMjEgQEAgaGVscDoKPj4g
-wqAJIGVjaG8gICcnCj4+IMKgCUBlY2hvICAnU3RhdGljIGFuYWx5c2VyczonCj4+IMKgCUBlY2hv
-ICAnICBjaGVja3N0YWNrICAgICAgLSBHZW5lcmF0ZSBhIGxpc3Qgb2Ygc3RhY2sgaG9ncycKPj4g
-wqAJQGVjaG8gICcgIHZlcnNpb25jaGVjayAgICAtIFNhbml0eSBjaGVjayBvbiB2ZXJzaW9uLmgg
-dXNhZ2UnCj4+IMKgCUBlY2hvICAnICBpbmNsdWRlY2hlY2sgICAgLSBDaGVjayBmb3IgZHVwbGlj
-YXRlIGluY2x1ZGVkIGhlYWRlciBmaWxlcycKPj4gwqAJQGVjaG8gICcgIGV4cG9ydF9yZXBvcnQg
-ICAtIExpc3QgdGhlIHVzYWdlcyBvZiBhbGwgZXhwb3J0ZWQgc3ltYm9scycKPj4gwqAJQGVjaG8g
-ICcgIGhlYWRlcmRlcCAgICAgICAtIERldGVjdCBpbmNsdXNpb24gY3ljbGVzIGluIGhlYWRlcnMn
-Cj4+IMKgCUBlY2hvICAnICBjb2NjaWNoZWNrICAgICAgLSBDaGVjayB3aXRoIENvY2NpbmVsbGUn
-Cj4+IMKgCUBlY2hvICAnICBjbGFuZy1hbmFseXplciAgLSBDaGVjayB3aXRoIGNsYW5nIHN0YXRp
-YyBhbmFseXplcicKPj4gwqAJQGVjaG8gICcgIGNsYW5nLXRpZHkgICAgICAtIENoZWNrIHdpdGgg
-Y2xhbmctdGlkeScKPj4gKwlAZWNobyAgJyAgY2xhbmctdGlkeS1maXggIC0gQ2hlY2sgYW5kIGZp
-eCB3aXRoIGNsYW5nLXRpZHknCj4gQSBwaXR5IHRoZSBvcmRlcmluZyBvZiB0aGUgY29kZSBiZWxv
-dyBpc24ndCB0aGUgc2FtZSBhcyB0aGUgYWJvdmUuCgpUYWtlbiBjYXJlIHRoYW5rcyEKClRvbQoK
-Cl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdm
-eCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xp
-c3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
+On Sun, 2020-11-22 at 08:10 -0800, Tom Rix wrote:
+> On 11/22/20 6:56 AM, Matthew Wilcox wrote:
+> > On Sun, Nov 22, 2020 at 06:46:46AM -0800, Tom Rix wrote:
+> > > On 11/21/20 7:23 PM, Matthew Wilcox wrote:
+> > > > On Sat, Nov 21, 2020 at 08:50:58AM -0800, trix@redhat.com
+> > > > wrote:
+> > > > > The fixer review is
+> > > > > https://reviews.llvm.org/D91789
+> > > > > 
+> > > > > A run over allyesconfig for x86_64 finds 62 issues, 5 are
+> > > > > false positives. The false positives are caused by macros
+> > > > > passed to other macros and by some macro expansions that did
+> > > > > not have an extra semicolon.
+> > > > > 
+> > > > > This cleans up about 1,000 of the current 10,000 -Wextra-
+> > > > > semi-stmt warnings in linux-next.
+> > > > Are any of them not false-positives?  It's all very well to
+> > > > enable stricter warnings, but if they don't fix any bugs,
+> > > > they're just churn.
+> > > > 
+> > > While enabling additional warnings may be a side effect of this
+> > > effort
+> > > 
+> > > the primary goal is to set up a cleaning robot. After that a
+> > > refactoring robot.
+> > Why do we need such a thing?  Again, it sounds like more churn.
+> > It's really annoying when I'm working on something important that
+> > gets derailed by pointless churn.  Churn also makes it harder to
+> > backport patches to earlier kernels.
+> > 
+> A refactoring example on moving to treewide, consistent use of a new
+> api may help.
+> 
+> Consider
+> 
+> 2efc459d06f1630001e3984854848a5647086232
+> 
+> sysfs: Add sysfs_emit and sysfs_emit_at to format sysfs output
+> 
+> A new api for printing in the sysfs.  How do we use it treewide ?
+> 
+> Done manually, it would be a heroic effort requiring high level
+> maintainers pushing and likely only get partially done.
+> 
+> If a refactoring programatic fixit is done and validated on a one
+> subsystem, it can run on all the subsystems.
+> 
+> The effort is a couple of weeks to write and validate the fixer,
+> hours to run over the tree.
+> 
+> It won't be perfect but will be better than doing it manually.
+
+Here's a thought: perhaps we don't.  sysfs_emit isn't a "new api" its a
+minor rewrap of existing best practice.  The damage caused by the churn
+of forcing its use everywhere would far outweigh any actual benefit
+because pretty much every bug in this area has already been caught and
+killed by existing tools.  We can enforce sysfs_emit going forwards
+using tools like checkpatch but there's no benefit and a lot of harm to
+be done by trying to churn the entire tree retrofitting it (both in
+terms of review time wasted as well as patch series derailed).
+
+James
+
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
