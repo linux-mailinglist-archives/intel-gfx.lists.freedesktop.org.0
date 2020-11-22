@@ -2,73 +2,39 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A4DA22BC61A
-	for <lists+intel-gfx@lfdr.de>; Sun, 22 Nov 2020 15:47:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 37C4F2BC642
+	for <lists+intel-gfx@lfdr.de>; Sun, 22 Nov 2020 15:57:00 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CF39489D2F;
-	Sun, 22 Nov 2020 14:47:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1744C89D43;
+	Sun, 22 Nov 2020 14:56:57 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [63.128.21.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B616089D2F
- for <intel-gfx@lists.freedesktop.org>; Sun, 22 Nov 2020 14:46:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1606056418;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=apju6gP6XSpkYwp4WdL57a/nFAvNI/QCKhQkuBxc3S8=;
- b=ak5/hZ4JasuCdubW59huNEFfJdjI0J7gy5Yn8kCv5PTs7PV7aEfZiOa/NpACRi36M0ke9J
- A4eSPV/Gcjxx8Oi8Rk+FI3bElki0kwQeBytZUV22THTQKGw3YQu7X3VUwAxkZh9tgkn2hL
- 9kk06BsaFcTeFpX1B2wAM5f2J7s7WQE=
-Received: from mail-qt1-f200.google.com (mail-qt1-f200.google.com
- [209.85.160.200]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-46-9xoKi_nkOA6044F5nu9zeg-1; Sun, 22 Nov 2020 09:46:52 -0500
-X-MC-Unique: 9xoKi_nkOA6044F5nu9zeg-1
-Received: by mail-qt1-f200.google.com with SMTP id z8so11584157qti.17
- for <intel-gfx@lists.freedesktop.org>; Sun, 22 Nov 2020 06:46:52 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:subject:to:cc:references:from:message-id:date
- :user-agent:mime-version:in-reply-to:content-transfer-encoding
- :content-language;
- bh=apju6gP6XSpkYwp4WdL57a/nFAvNI/QCKhQkuBxc3S8=;
- b=pHiiouLNBlzqk1SDGldYpyxHVmOed3RkbXYZPvUNDxzHuFtrLz/2zqLKeswJ6vn8PO
- FztpM2tWl/wg/SycX9qpfVwvuGC7zWs4wwtKnKEKJk3BI8V+T8uxR6NtNnA4fgUly51i
- slC7Zqk2WStv3W33J3qE7cgxXsAmtXVm5LPTvbbr6gsF3DrKg7k7H7eCiinwEJI+ucQZ
- 7ftxR5z325ubOnbH8VmJRASvWamgEMmd9nH0GDjT5BLVPcshEkXCJWrMN/M2QTQWhK/j
- jWXFzpSSL0O83/UFIr+5qXUYZywzvGBkF255YnLvCnE2p6SqMwvAUfLF/nzCVgC+/Lp2
- qhVw==
-X-Gm-Message-State: AOAM532gWihowkU9fUPautY0Us0IHPIXrh2Et6CBQwlQywhbW36oAcuP
- EDTFBPG1CK/M/D8DZbPJNyzoM992ldtwSKP8Nnd8ZjRtGDLCooeGHL8/t44FupYI59vsXRT6X9q
- a6kOlusGU/ectmLMnJd4AdEw5GG8N
-X-Received: by 2002:ad4:476b:: with SMTP id d11mr26026193qvx.57.1606056412440; 
- Sun, 22 Nov 2020 06:46:52 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJyPQ8vJIBgyJxmgPlUVzOaStXFRaD0Z+d8VDmnR7kdLyNkvwByAGPov006wc7+pJBCcgj+/zw==
-X-Received: by 2002:ad4:476b:: with SMTP id d11mr26026152qvx.57.1606056412222; 
- Sun, 22 Nov 2020 06:46:52 -0800 (PST)
-Received: from trix.remote.csb (075-142-250-213.res.spectrum.com.
- [75.142.250.213])
- by smtp.gmail.com with ESMTPSA id x72sm6888242qkb.90.2020.11.22.06.46.47
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Sun, 22 Nov 2020 06:46:51 -0800 (PST)
-To: Matthew Wilcox <willy@infradead.org>
+Received: from casper.infradead.org (casper.infradead.org
+ [IPv6:2001:8b0:10b:1236::1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4C93489D43;
+ Sun, 22 Nov 2020 14:56:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=infradead.org; s=casper.20170209; h=In-Reply-To:Content-Type:MIME-Version:
+ References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
+ Content-Transfer-Encoding:Content-ID:Content-Description;
+ bh=wxlelFGFCxCiVSAw6KoblZyEK+s/RwoBRdtshdQHcTA=; b=IHdP9cS5+aim9K2c8XsejJHGrM
+ +S6gdmtkdU0PTIkPZFY+qbqZ8sMUEbhQL8b8Qdm+o2+njoM1Cm2cM6mbD/iY0TNSwZxJRLByIjVzg
+ eNcrVpKlWHjnQQvQ1Go6iFjsUh68sqz8dumIdI2qfrFsd2XrVO5w3MRgBBmvjmOvnFaYJLzopUIl7
+ R6ZVO/KTc63YeijcPbeFNlRWdMYtVgUZuoprtKEH7yjNmV1uGOzQEbR4NJQpt6J1Nu3N9hq7ljiYQ
+ UIsENsOUDnACtwno8Bc2xaczmaEz8q4+sGKzgwN4pxETWG486xJZxN2UeB5LYfIlImw9WtEFIo9GQ
+ DSwauRxg==;
+Received: from willy by casper.infradead.org with local (Exim 4.92.3 #3 (Red
+ Hat Linux)) id 1kgqn5-0000Ms-Pt; Sun, 22 Nov 2020 14:56:36 +0000
+Date: Sun, 22 Nov 2020 14:56:35 +0000
+From: Matthew Wilcox <willy@infradead.org>
+To: Tom Rix <trix@redhat.com>
+Message-ID: <20201122145635.GG4327@casper.infradead.org>
 References: <20201121165058.1644182-1-trix@redhat.com>
  <20201122032304.GE4327@casper.infradead.org>
-From: Tom Rix <trix@redhat.com>
-Message-ID: <ddb08a27-3ca1-fb2e-d51f-4b471f1a56a3@redhat.com>
-Date: Sun, 22 Nov 2020 06:46:46 -0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.12.0
+ <ddb08a27-3ca1-fb2e-d51f-4b471f1a56a3@redhat.com>
 MIME-Version: 1.0
-In-Reply-To: <20201122032304.GE4327@casper.infradead.org>
-Authentication-Results: relay.mimecast.com;
- auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=trix@redhat.com
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
-Content-Language: en-US
+Content-Disposition: inline
+In-Reply-To: <ddb08a27-3ca1-fb2e-d51f-4b471f1a56a3@redhat.com>
 Subject: Re: [Intel-gfx] [RFC] MAINTAINERS tag for cleanup robot
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -104,27 +70,30 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+On Sun, Nov 22, 2020 at 06:46:46AM -0800, Tom Rix wrote:
+> 
+> On 11/21/20 7:23 PM, Matthew Wilcox wrote:
+> > On Sat, Nov 21, 2020 at 08:50:58AM -0800, trix@redhat.com wrote:
+> >> The fixer review is
+> >> https://reviews.llvm.org/D91789
+> >>
+> >> A run over allyesconfig for x86_64 finds 62 issues, 5 are false positives.
+> >> The false positives are caused by macros passed to other macros and by
+> >> some macro expansions that did not have an extra semicolon.
+> >>
+> >> This cleans up about 1,000 of the current 10,000 -Wextra-semi-stmt
+> >> warnings in linux-next.
+> > Are any of them not false-positives?  It's all very well to enable
+> > stricter warnings, but if they don't fix any bugs, they're just churn.
+> >
+> While enabling additional warnings may be a side effect of this effort
+> 
+> the primary goal is to set up a cleaning robot. After that a refactoring robot.
 
-On 11/21/20 7:23 PM, Matthew Wilcox wrote:
-> On Sat, Nov 21, 2020 at 08:50:58AM -0800, trix@redhat.com wrote:
->> The fixer review is
->> https://reviews.llvm.org/D91789
->>
->> A run over allyesconfig for x86_64 finds 62 issues, 5 are false positives.
->> The false positives are caused by macros passed to other macros and by
->> some macro expansions that did not have an extra semicolon.
->>
->> This cleans up about 1,000 of the current 10,000 -Wextra-semi-stmt
->> warnings in linux-next.
-> Are any of them not false-positives?  It's all very well to enable
-> stricter warnings, but if they don't fix any bugs, they're just churn.
->
-While enabling additional warnings may be a side effect of this effort
-
-the primary goal is to set up a cleaning robot. After that a refactoring robot.
-
-Tom
-
+Why do we need such a thing?  Again, it sounds like more churn.
+It's really annoying when I'm working on something important that gets
+derailed by pointless churn.  Churn also makes it harder to backport
+patches to earlier kernels.
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
