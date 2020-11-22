@@ -2,51 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C56882BFF47
-	for <lists+intel-gfx@lfdr.de>; Mon, 23 Nov 2020 05:56:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1D6122BFF41
+	for <lists+intel-gfx@lfdr.de>; Mon, 23 Nov 2020 05:56:28 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6322289B61;
-	Mon, 23 Nov 2020 04:56:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 653F789B18;
+	Mon, 23 Nov 2020 04:56:24 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-yb1-xb42.google.com (mail-yb1-xb42.google.com
- [IPv6:2607:f8b0:4864:20::b42])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5DAB96E936;
- Fri, 20 Nov 2020 22:21:29 +0000 (UTC)
-Received: by mail-yb1-xb42.google.com with SMTP id k65so9977249ybk.5;
- Fri, 20 Nov 2020 14:21:29 -0800 (PST)
+Received: from mail-yb1-xb2f.google.com (mail-yb1-xb2f.google.com
+ [IPv6:2607:f8b0:4864:20::b2f])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7B80789BDB;
+ Sun, 22 Nov 2020 20:36:10 +0000 (UTC)
+Received: by mail-yb1-xb2f.google.com with SMTP id k65so14049276ybk.5;
+ Sun, 22 Nov 2020 12:36:10 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=29/AaAKKWIjlxKBDiu42mXe16/c3LUzQvTdn0Wctw9g=;
- b=th/UjqVcversiy9gEUr46cKRrhHywr0iTgf9mzUejm+T3/Jtu2c6ftjob7N1dnOe2S
- rGVMit/4Gqy7ZDqW+do8x9wI8RCPt/cmuWncILsoBuux3CBAtfG8gT+eTL8wiBVSM5EH
- rDgxqkIvK+vUXnfhgj71GxYIUQH1hInVNMbCl5+3prik9RGhi+hsmul85xXuf9uJVr2L
- NGLQGWDmOXXHg4l9XujW0HrVyacbE3Q1QSLAkLJ0BjE5AdFqhLyeU3T8/6+nJ9hH0JSR
- o1vAVeqr6Bt+/W6rGIwrn7PuvAvMGRmk1Avx4k6vjCg8etglRiDTMnimrqKcX/KEsNCP
- 0CAw==
+ :cc; bh=GG13N+h9bYKW0tA8PzZdEh0PqD5/qSPuWfMm4/MLZZE=;
+ b=tX7AFJY3IoP+sTWjLWjwUeA0EiMqyjgmEMGUK52Uheybmur4GieXYHjq/4452d4+Q2
+ I9IJc2W+KgP7eM5cLMrffBSaL1fq5VPLYq7a7Nqy7aqiJs+SWc7hYJy9lsWlIs20dLH2
+ W28Iwaw2K1E1/9bR59jMmk/7Gq8vv14a82SqbrX8Cr26/AWqo5ergIUL6PfX6EI1DxrF
+ H3tDAymEGdy6lnWgT39rAP3JOfP6UnfKa9FSSCeE7ggKiNT9+2hZ/9zdGiTOU+6HH+d5
+ TmFQQAuEaRP9Z2Bh9bU0txdUhaZCbT+Ezs+qExtvq1zOJlrZzRYF6kJpZnKXIPWyTN/2
+ bJqw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=29/AaAKKWIjlxKBDiu42mXe16/c3LUzQvTdn0Wctw9g=;
- b=kO4WXw2k7yX3i/6mbZRfhrDQz6eo7Nk2hWgVooFrL5huUn0rMBbBasopYT/GmEyCob
- UDAqYr6DbAGyYHwWwX/+xsbLe7s8A5B3VkfJwJBVWZ8wRp3dc9VG3RKrSbxahciY6bs/
- IbR52U4FfF/6CAEBNszzn7tGJheutBlOSyf9gCdIc3PvWdaXma+of0GJfCJGnNxSAr7y
- NYx9trz/FHUCy2UD4g+b//sjqVkejzZ/tSFV+1BorYpnFUC063Vmp6fypjls6cSQ6X+Y
- i+rpYYXklAk4YOszrHOH6U1UzDrLC/DRfDjxVl3MSRlolaNd00ZcIjVYaTbFBnxoaAEZ
- mDdQ==
-X-Gm-Message-State: AOAM530X448hIOvooZXAP4EtK+rRiNU+vNQiSckr8zdY/0tck9v8/Ce3
- CL9uqi4jP71bGYm0gb+WTuA/OdIZ0rrTkc0wkyw=
-X-Google-Smtp-Source: ABdhPJzYUhkcjTyH5GIcOV5fWMsl+OUdzem471zLY9usW3RhV8izQIRbyESMTmZwFikqgbfOQQqVvSSQCZzBPJX4q90=
-X-Received: by 2002:a5b:40e:: with SMTP id m14mr22113400ybp.33.1605910888617; 
- Fri, 20 Nov 2020 14:21:28 -0800 (PST)
+ bh=GG13N+h9bYKW0tA8PzZdEh0PqD5/qSPuWfMm4/MLZZE=;
+ b=AG3Pn6+xVQ+B6AwjXFOIx0phlIOFEUuGSuy8QmPUEzo+sS0hc2d04CD14uk5agLtos
+ YGIO0Y7p5w2DuYdYvhdUKfzQ8S1fTD1vtRtsGdVj6If9Ov5QCluq2a9Q+czNGDNWgtnj
+ h0f7rUxYpOVrL/kiHexlX5nqx4puQd0crsXWrEQwIMunnbNn+d8Fe5qKrpHWEbyh4FyQ
+ To6vsCbElCj8fowtTeHNRriPOXtmEFB6JJrkj2EIoygxUdsJ2YCvu/RGFb/Xx0j72n8e
+ oydG929oxz9KtAjeQn642HMrWFe1G8lIsV/DqkcfYXnhde7TCuF2++btE4/6NmnDIjLW
+ zKzw==
+X-Gm-Message-State: AOAM530hZkYDHSHmoP7oOPCmhT8CNo9j5KceiQUemaCE/O4iA3jJ3DCE
+ shs2E0DE1NdlvkuiK/3wuTfHbOd6jZUmG2RBE98=
+X-Google-Smtp-Source: ABdhPJzCLkP7XKvI+ogPcqXNjFlbBz0ulixnxLa8L+LTJiC1sb757UHHSouM0vJ9LX/4+Ocy8hzM6Anb9s4lPpy7cZY=
+X-Received: by 2002:a25:6986:: with SMTP id e128mr4956056ybc.93.1606077369721; 
+ Sun, 22 Nov 2020 12:36:09 -0800 (PST)
 MIME-Version: 1.0
 References: <cover.1605896059.git.gustavoars@kernel.org>
-In-Reply-To: <cover.1605896059.git.gustavoars@kernel.org>
+ <20201120105344.4345c14e@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
+ <202011201129.B13FDB3C@keescook>
+ <20201120115142.292999b2@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
+ <202011220816.8B6591A@keescook>
+ <9b57fd4914b46f38d54087d75e072d6e947cb56d.camel@HansenPartnership.com>
+In-Reply-To: <9b57fd4914b46f38d54087d75e072d6e947cb56d.camel@HansenPartnership.com>
 From: Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>
-Date: Fri, 20 Nov 2020 23:21:17 +0100
-Message-ID: <CANiq72=E_gEVvqUUTSqU4zegC2=yZSTM4b=4G-iofp6d3=UgWQ@mail.gmail.com>
-To: "Gustavo A. R. Silva" <gustavoars@kernel.org>
+Date: Sun, 22 Nov 2020 21:35:58 +0100
+Message-ID: <CANiq72nZrHWTA4_Msg6MP9snTyenC6-eGfD27CyfNSu7QoVZbw@mail.gmail.com>
+To: James Bottomley <James.Bottomley@hansenpartnership.com>
 X-Mailman-Approved-At: Mon, 23 Nov 2020 04:56:23 +0000
 Subject: Re: [Intel-gfx] [PATCH 000/141] Fix fall-through warnings for Clang
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -64,7 +69,7 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Cc: alsa-devel@alsa-project.org, linux-atm-general@lists.sourceforge.net,
  reiserfs-devel@vger.kernel.org, linux-iio@vger.kernel.org,
  linux-wireless <linux-wireless@vger.kernel.org>, linux-fbdev@vger.kernel.org,
- dri-devel@lists.freedesktop.org, virtualization@lists.linux-foundation.org,
+ dri-devel@lists.freedesktop.org, "Gustavo A. R. Silva" <gustavoars@kernel.org>,
  Nathan Chancellor <natechancellor@gmail.com>, linux-ide@vger.kernel.org,
  dm-devel@redhat.com, keyrings@vger.kernel.org, linux-mtd@lists.infradead.org,
  GR-everest-linux-l2@marvell.com, wcn36xx@lists.infradead.org,
@@ -79,49 +84,55 @@ Cc: alsa-devel@alsa-project.org, linux-atm-general@lists.sourceforge.net,
  linux-stm32@st-md-mailman.stormreply.com, cluster-devel@redhat.com,
  linux-acpi@vger.kernel.org, coreteam@netfilter.org,
  intel-wired-lan@lists.osuosl.org, linux-input <linux-input@vger.kernel.org>,
- Miguel Ojeda <ojeda@kernel.org>, tipc-discussion@lists.sourceforge.net,
+ Miguel Ojeda <ojeda@kernel.org>, Jakub Kicinski <kuba@kernel.org>,
  Ext4 Developers List <linux-ext4@vger.kernel.org>,
  Linux Media Mailing List <linux-media@vger.kernel.org>,
- linux-watchdog@vger.kernel.org, selinux@vger.kernel.org,
+ Kees Cook <keescook@chromium.org>, selinux@vger.kernel.org,
  linux-arm-msm@vger.kernel.org, intel-gfx@lists.freedesktop.org,
  linux-geode@lists.infradead.org, linux-can@vger.kernel.org,
  linux-block@vger.kernel.org, linux-gpio@vger.kernel.org,
  op-tee@lists.trustedfirmware.org, linux-mediatek@lists.infradead.org,
  xen-devel@lists.xenproject.org, nouveau@lists.freedesktop.org,
  linux-hams@vger.kernel.org, ceph-devel@vger.kernel.org,
- target-devel@vger.kernel.org, Linux ARM <linux-arm-kernel@lists.infradead.org>,
- linux-hwmon@vger.kernel.org,
- "maintainer:X86 ARCHITECTURE \(32-BIT AND 64-BIT\)" <x86@kernel.org>,
- linux-nfs@vger.kernel.org, GR-Linux-NIC-Dev@marvell.com,
- Kees Cook <keescook@chromium.org>, Linux-MM <linux-mm@kvack.org>,
- Network Development <netdev@vger.kernel.org>,
+ virtualization@lists.linux-foundation.org, target-devel@vger.kernel.org,
+ Linux ARM <linux-arm-kernel@lists.infradead.org>, linux-hwmon@vger.kernel.org,
+ linux-watchdog@vger.kernel.org, linux-nfs@vger.kernel.org,
+ GR-Linux-NIC-Dev@marvell.com, tipc-discussion@lists.sourceforge.net,
+ Linux-MM <linux-mm@kvack.org>, Network Development <netdev@vger.kernel.org>,
  linux-decnet-user@lists.sourceforge.net, linux-mmc@vger.kernel.org,
  linux-kernel <linux-kernel@vger.kernel.org>, linux-renesas-soc@vger.kernel.org,
  linux-sctp@vger.kernel.org, linux-usb@vger.kernel.org,
  netfilter-devel@vger.kernel.org,
  Linux Crypto Mailing List <linux-crypto@vger.kernel.org>,
  patches@opensource.cirrus.com, Joe Perches <joe@perches.com>,
- linux-integrity@vger.kernel.org, linux-hardening@vger.kernel.org
+ linux-integrity@vger.kernel.org,
+ "maintainer:X86 ARCHITECTURE \(32-BIT AND 64-BIT\)" <x86@kernel.org>,
+ linux-hardening@vger.kernel.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Gustavo,
-
-On Fri, Nov 20, 2020 at 7:21 PM Gustavo A. R. Silva
-<gustavoars@kernel.org> wrote:
+On Sun, Nov 22, 2020 at 7:22 PM James Bottomley
+<James.Bottomley@hansenpartnership.com> wrote:
 >
-> Hi all,
+> Well, it's a problem in an error leg, sure, but it's not a really
+> compelling reason for a 141 patch series, is it?  All that fixing this
+> error will do is get the driver to print "oh dear there's a problem"
+> under four more conditions than it previously did.
 >
-> This series aims to fix almost all remaining fall-through warnings in
-> order to enable -Wimplicit-fallthrough for Clang.
+> We've been at this for three years now with nearly a thousand patches,
+> firstly marking all the fall throughs with /* fall through */ and later
+> changing it to fallthrough.  At some point we do have to ask if the
+> effort is commensurate with the protection afforded.  Please tell me
+> our reward for all this effort isn't a single missing error print.
 
-Thanks for this.
+It isn't that much effort, isn't it? Plus we need to take into account
+the future mistakes that it might prevent, too. So even if there were
+zero problems found so far, it is still a positive change.
 
-Since this warning is reliable in both/all compilers and we are
-eventually getting rid of all the cases, what about going even further
-and making it an error right after?
+I would agree if these changes were high risk, though; but they are
+almost trivial.
 
 Cheers,
 Miguel
