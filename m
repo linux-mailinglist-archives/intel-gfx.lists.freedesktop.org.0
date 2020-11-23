@@ -1,36 +1,43 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 347AB2BFF44
-	for <lists+intel-gfx@lfdr.de>; Mon, 23 Nov 2020 05:56:32 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 103512C0224
+	for <lists+intel-gfx@lfdr.de>; Mon, 23 Nov 2020 10:20:08 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9797389B42;
-	Mon, 23 Nov 2020 04:56:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C9A6689D1D;
+	Mon, 23 Nov 2020 09:20:05 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from kvm5.telegraphics.com.au (kvm5.telegraphics.com.au
- [98.124.60.144])
- by gabe.freedesktop.org (Postfix) with ESMTP id 17962897D7;
- Sun, 22 Nov 2020 22:54:51 +0000 (UTC)
-Received: from localhost (localhost.localdomain [127.0.0.1])
- by kvm5.telegraphics.com.au (Postfix) with ESMTP id BF98E29DB3;
- Sun, 22 Nov 2020 17:54:47 -0500 (EST)
-Date: Mon, 23 Nov 2020 09:54:48 +1100 (AEDT)
-From: Finn Thain <fthain@telegraphics.com.au>
-To: Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>
-In-Reply-To: <CANiq72nZrHWTA4_Msg6MP9snTyenC6-eGfD27CyfNSu7QoVZbw@mail.gmail.com>
-Message-ID: <alpine.LNX.2.23.453.2011230938390.7@nippy.intranet>
-References: <cover.1605896059.git.gustavoars@kernel.org>
- <20201120105344.4345c14e@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
- <202011201129.B13FDB3C@keescook>
- <20201120115142.292999b2@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
- <202011220816.8B6591A@keescook>
- <9b57fd4914b46f38d54087d75e072d6e947cb56d.camel@HansenPartnership.com>
- <CANiq72nZrHWTA4_Msg6MP9snTyenC6-eGfD27CyfNSu7QoVZbw@mail.gmail.com>
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4CE0B89C80;
+ Mon, 23 Nov 2020 09:20:04 +0000 (UTC)
+IronPort-SDR: 2kyV69qVUBWn3fQCp8anlBuWTrXlPRnsc7D3/sT4Mtlc5ELgXwL4ZFZmIuTqnNzCUlnUDWe3yr
+ oOL4hlxpkV1g==
+X-IronPort-AV: E=McAfee;i="6000,8403,9813"; a="171826202"
+X-IronPort-AV: E=Sophos;i="5.78,363,1599548400"; 
+ d="asc'?scan'208";a="171826202"
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+X-Amp-File-Uploaded: False
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Nov 2020 01:20:03 -0800
+IronPort-SDR: mOQGr3OS+AH9mEIMqg1bOWIaM6D1LBWv+/5d5DHHd2gN30Yo9KP8YEpZJ+lR/jptb5NAn3JqpN
+ ACVLHgvgi2MQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.78,363,1599548400"; 
+ d="asc'?scan'208";a="536034726"
+Received: from zhen-hp.sh.intel.com (HELO zhen-hp) ([10.239.160.147])
+ by fmsmga005.fm.intel.com with ESMTP; 23 Nov 2020 01:20:01 -0800
+Date: Mon, 23 Nov 2020 17:05:17 +0800
+From: Zhenyu Wang <zhenyuw@linux.intel.com>
+To: Jani Nikula <jani.nikula@intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ "Vivi, Rodrigo" <rodrigo.vivi@intel.com>
+Message-ID: <20201123090517.GC16939@zhen-hp.sh.intel.com>
 MIME-Version: 1.0
-X-Mailman-Approved-At: Mon, 23 Nov 2020 04:56:23 +0000
-Subject: Re: [Intel-gfx] [PATCH 000/141] Fix fall-through warnings for Clang
+Subject: [Intel-gfx] [PULL] gvt-next
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -43,100 +50,118 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: alsa-devel@alsa-project.org, linux-atm-general@lists.sourceforge.net,
- reiserfs-devel@vger.kernel.org, linux-iio@vger.kernel.org,
- linux-wireless <linux-wireless@vger.kernel.org>, linux-fbdev@vger.kernel.org,
- dri-devel@lists.freedesktop.org, "Gustavo A. R. Silva" <gustavoars@kernel.org>,
- James Bottomley <James.Bottomley@hansenpartnership.com>,
- linux-ide@vger.kernel.org, dm-devel@redhat.com, keyrings@vger.kernel.org,
- linux-mtd@lists.infradead.org, GR-everest-linux-l2@marvell.com,
- wcn36xx@lists.infradead.org, samba-technical@lists.samba.org,
- linux-i3c@lists.infradead.org, linux1394-devel@lists.sourceforge.net,
- linux-afs@lists.infradead.org, usb-storage@lists.one-eyed-alien.net,
- drbd-dev@lists.linbit.com, devel@driverdev.osuosl.org,
- linux-cifs@vger.kernel.org, rds-devel@oss.oracle.com,
- Nick Desaulniers <ndesaulniers@google.com>, linux-scsi@vger.kernel.org,
- Nathan Chancellor <natechancellor@gmail.com>, linux-rdma@vger.kernel.org,
- oss-drivers@netronome.com, bridge@lists.linux-foundation.org,
- linux-security-module@vger.kernel.org, amd-gfx@lists.freedesktop.org,
- linux-stm32@st-md-mailman.stormreply.com, cluster-devel@redhat.com,
- linux-acpi@vger.kernel.org, coreteam@netfilter.org,
- intel-wired-lan@lists.osuosl.org, linux-input <linux-input@vger.kernel.org>,
- Miguel Ojeda <ojeda@kernel.org>, Jakub Kicinski <kuba@kernel.org>,
- Ext4 Developers List <linux-ext4@vger.kernel.org>,
- Linux Media Mailing List <linux-media@vger.kernel.org>,
- Kees Cook <keescook@chromium.org>, selinux@vger.kernel.org,
- linux-arm-msm@vger.kernel.org, intel-gfx@lists.freedesktop.org,
- linux-geode@lists.infradead.org, linux-can@vger.kernel.org,
- linux-block@vger.kernel.org, linux-gpio@vger.kernel.org,
- op-tee@lists.trustedfirmware.org, linux-mediatek@lists.infradead.org,
- xen-devel@lists.xenproject.org, nouveau@lists.freedesktop.org,
- linux-hams@vger.kernel.org, ceph-devel@vger.kernel.org,
- virtualization@lists.linux-foundation.org, target-devel@vger.kernel.org,
- Linux ARM <linux-arm-kernel@lists.infradead.org>, linux-hwmon@vger.kernel.org,
- linux-watchdog@vger.kernel.org, linux-nfs@vger.kernel.org,
- GR-Linux-NIC-Dev@marvell.com, tipc-discussion@lists.sourceforge.net,
- Linux-MM <linux-mm@kvack.org>, Network Development <netdev@vger.kernel.org>,
- linux-decnet-user@lists.sourceforge.net, linux-mmc@vger.kernel.org,
- linux-kernel <linux-kernel@vger.kernel.org>, linux-renesas-soc@vger.kernel.org,
- linux-sctp@vger.kernel.org, linux-usb@vger.kernel.org,
- netfilter-devel@vger.kernel.org,
- Linux Crypto Mailing List <linux-crypto@vger.kernel.org>,
- patches@opensource.cirrus.com, Joe Perches <joe@perches.com>,
- linux-integrity@vger.kernel.org,
- "maintainer:X86 ARCHITECTURE \(32-BIT AND 64-BIT\)" <x86@kernel.org>,
- linux-hardening@vger.kernel.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Reply-To: Zhenyu Wang <zhenyuw@linux.intel.com>
+Cc: intel-gfx <intel-gfx@lists.freedesktop.org>,
+ intel-gvt-dev <intel-gvt-dev@lists.freedesktop.org>, "Lv,
+ Zhiyuan" <zhiyuan.lv@intel.com>, "Yuan, Hang" <hang.yuan@intel.com>
+Content-Type: multipart/mixed; boundary="===============1003122541=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 
-On Sun, 22 Nov 2020, Miguel Ojeda wrote:
+--===============1003122541==
+Content-Type: multipart/signed; micalg=pgp-sha1;
+	protocol="application/pgp-signature"; boundary="RASg3xLB4tUQ4RcS"
+Content-Disposition: inline
 
-> 
-> It isn't that much effort, isn't it? Plus we need to take into account 
-> the future mistakes that it might prevent, too.
 
-We should also take into account optimisim about future improvements in 
-tooling.
+--RASg3xLB4tUQ4RcS
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-> So even if there were zero problems found so far, it is still a positive 
-> change.
-> 
 
-It is if you want to spin it that way.
+Hi,
 
-> I would agree if these changes were high risk, though; but they are 
-> almost trivial.
-> 
+Here's gvt next pull for v5.11. Mostly it's for host suspend/resume
+fix with vGPU active and with some other enhancement as details below.
+Note that this includes some minor i915 driver change to add gvt hook
+in suspend/resume function which has been sent and reviewed on
+intel-gfx list.
 
-This is trivial:
+I just generated against drm-intel-next-queued-2020-11-03 which this
+tree bases on now. Let me know if there's any issue in merge.
 
- case 1:
-	this();
-+	fallthrough;
- case 2:
- 	that();
+Thanks
+--
+The following changes since commit 139caf7ca2866cd0a45814ff938cb0c33920a266:
 
-But what we inevitably get is changes like this:
+  drm/i915: Update DRIVER_DATE to 20201103 (2020-11-03 14:21:25 +0200)
 
- case 3:
-        this();
-+       break;
- case 4:
-        hmmm();
+are available in the Git repository at:
 
-Why? Mainly to silence the compiler. Also because the patch author argued 
-successfully that they had found a theoretical bug, often in mature code.
+  https://github.com/intel/gvt-linux tags/gvt-next-2020-11-23
 
-But is anyone keeping score of the regressions? If unreported bugs count, 
-what about unreported regressions?
+for you to fetch changes up to 9a3a238b3de97b4210c6de66aa88b2d7021ac086:
 
-> Cheers,
-> Miguel
-> 
+  drm/i915/gvt: treat intel_gvt_mpt as const in gvt code (2020-11-23 17:14:=
+20 +0800)
+
+----------------------------------------------------------------
+gvt-next-2020-11-23
+
+- Fix host suspend/resume with vGPU (Colin)
+- optimize idr init (Varma)
+- Change intel_gvt_mpt as const (Julian)
+- One comment error fix (Yan)
+
+----------------------------------------------------------------
+Colin Xu (3):
+      drm/i915/gvt: Save/restore HW status to support GVT suspend/resume
+      drm/i915: Add GVT resume routine to i915
+      drm/i915/gvt: Fix virtual display setup for BXT/APL
+
+Deepak R Varma (1):
+      drm/i915/gvt: replace idr_init() by idr_init_base()
+
+Julian Stecklina (1):
+      drm/i915/gvt: treat intel_gvt_mpt as const in gvt code
+
+Yan Zhao (1):
+      drm/i915/gvt: correct a false comment of flag F_UNALIGN
+
+ drivers/gpu/drm/i915/gvt/display.c  | 179 ++++++++++++++++++++++++++++++++=
+++++
+ drivers/gpu/drm/i915/gvt/gtt.c      |  64 +++++++++++++
+ drivers/gpu/drm/i915/gvt/gtt.h      |   4 +
+ drivers/gpu/drm/i915/gvt/gvt.c      |  13 ++-
+ drivers/gpu/drm/i915/gvt/gvt.h      |   7 +-
+ drivers/gpu/drm/i915/gvt/handlers.c |  44 ++++++++-
+ drivers/gpu/drm/i915/gvt/kvmgt.c    |   2 +-
+ drivers/gpu/drm/i915/gvt/mmio.c     |   5 +
+ drivers/gpu/drm/i915/gvt/mmio.h     |   4 +
+ drivers/gpu/drm/i915/gvt/mpt.h      |   2 +-
+ drivers/gpu/drm/i915/gvt/vgpu.c     |   2 +-
+ drivers/gpu/drm/i915/i915_drv.c     |   2 +
+ drivers/gpu/drm/i915/intel_gvt.c    |  15 +++
+ drivers/gpu/drm/i915/intel_gvt.h    |   5 +
+ 14 files changed, 338 insertions(+), 10 deletions(-)
+
+--=20
+
+$gpg --keyserver wwwkeys.pgp.net --recv-keys 4D781827
+
+--RASg3xLB4tUQ4RcS
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iF0EARECAB0WIQTXuabgHDW6LPt9CICxBBozTXgYJwUCX7t7SAAKCRCxBBozTXgY
+JyNnAJ9nf8Sr3WYtgOwY32tR4WybfjNA0ACgn4EHkV20VZxt5Hjj33haDRTa1sM=
+=yhQx
+-----END PGP SIGNATURE-----
+
+--RASg3xLB4tUQ4RcS--
+
+--===============1003122541==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============1003122541==--
