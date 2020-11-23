@@ -1,42 +1,53 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 485C82C100A
-	for <lists+intel-gfx@lfdr.de>; Mon, 23 Nov 2020 17:20:50 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id DD2452C1012
+	for <lists+intel-gfx@lfdr.de>; Mon, 23 Nov 2020 17:25:11 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A0AB989BE8;
-	Mon, 23 Nov 2020 16:20:48 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2D8CA89BE8
- for <Intel-gfx@lists.freedesktop.org>; Mon, 23 Nov 2020 16:20:47 +0000 (UTC)
-IronPort-SDR: w0/1c4Gj/7NnR9ZIPC2jgal2/ikfmmi151RcU20G+zs7oDE9ud+866IjQPDETxIqeRXnIJB0f8
- EKof3dNJhKww==
-X-IronPort-AV: E=McAfee;i="6000,8403,9813"; a="189912998"
-X-IronPort-AV: E=Sophos;i="5.78,363,1599548400"; d="scan'208";a="189912998"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Nov 2020 08:20:46 -0800
-IronPort-SDR: 4t08UCU9lYzPtB22S1j9iKizjAyBp2G8IJ0V3XDDM92ERTvbuQZe26/0++U8XPL9m+ZqbTb+yn
- 68gpaP4lVZ8g==
-X-IronPort-AV: E=Sophos;i="5.78,363,1599548400"; d="scan'208";a="546474702"
-Received: from suygunge-mobl.ger.corp.intel.com (HELO localhost)
- ([10.249.40.108])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Nov 2020 08:20:45 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: "Huang\, Sean Z" <sean.z.huang@intel.com>, Intel-gfx@lists.freedesktop.org
-In-Reply-To: <20201121003540.24980-1-sean.z.huang@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20201121003540.24980-1-sean.z.huang@intel.com>
-Date: Mon, 23 Nov 2020 18:20:42 +0200
-Message-ID: <87sg90m4dh.fsf@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id CA97B6E042;
+	Mon, 23 Nov 2020 16:25:05 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from mail-ot1-f65.google.com (mail-ot1-f65.google.com
+ [209.85.210.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BB75489C80;
+ Mon, 23 Nov 2020 16:25:03 +0000 (UTC)
+Received: by mail-ot1-f65.google.com with SMTP id l36so16441234ota.4;
+ Mon, 23 Nov 2020 08:25:03 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=SWzdE85KMSmQ5K6aYMgWVQjn8/tst2VI3dLUnv/55SM=;
+ b=RoSmYDLJZUek3Hqeo0q2s0N9gd1Fsv/sAigKVhqBo6DUTia1LdxPBotWq8TcU9893i
+ xlJ6UUCow6YzrtkqvBJfgL/VexbnREQla6STgNeB5OCK4MsmIsP7uTGpq9RUap+xpYhZ
+ rwLXf8wdvy734/VQqhRlGGEPA1mxKHZHrQWwChxXbCD+H4GzQBbuy4x2dZJHZNPPqeI7
+ i6IVSlYQ4NtU4BJKwk2wiVFiVHo2G/poCEMDwDRiSM8YWKzrVvsXvxJf4hY/1IiZ4EK6
+ 97UvXUlo8dqkaVLIC5c9+5YtcfdKKjYg3rJUEXtluynx+uD+kIhbXEuI+g5/f6ouRy6z
+ XOww==
+X-Gm-Message-State: AOAM531AbRE2zVFDrh3RkFV5ORMFWjA/8K7PKrBIkZsACmrlgLWcCjoW
+ 5hX2HRA89br/Q/Q02Kz1zZYRTbT5tWHrBJ6rnWhKFoAqj8o=
+X-Google-Smtp-Source: ABdhPJxW9u67TbnPp8ObIChv5a6F+ncd8SoV+BFvs894Bl4MJzyAX0TVAjkpawJr+z1OvIzzPyEcIsCefAg0WelXSFg=
+X-Received: by 2002:a9d:16f:: with SMTP id 102mr68959otu.206.1606148702991;
+ Mon, 23 Nov 2020 08:25:02 -0800 (PST)
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [RFC-v2 00/26] Introduce Intel PXP component
+References: <cover.1605896059.git.gustavoars@kernel.org>
+ <20201120105344.4345c14e@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
+ <202011201129.B13FDB3C@keescook>
+ <20201120115142.292999b2@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
+ <202011220816.8B6591A@keescook>
+ <9b57fd4914b46f38d54087d75e072d6e947cb56d.camel@HansenPartnership.com>
+ <CANiq72nZrHWTA4_Msg6MP9snTyenC6-eGfD27CyfNSu7QoVZbw@mail.gmail.com>
+ <1c7d7fde126bc0acf825766de64bf2f9b888f216.camel@HansenPartnership.com>
+ <CANiq72m22Jb5_+62NnwX8xds2iUdWDMAqD8PZw9cuxdHd95W0A@mail.gmail.com>
+ <fc45750b6d0277c401015b7aa11e16cd15f32ab2.camel@HansenPartnership.com>
+In-Reply-To: <fc45750b6d0277c401015b7aa11e16cd15f32ab2.camel@HansenPartnership.com>
+From: "Rafael J. Wysocki" <rafael@kernel.org>
+Date: Mon, 23 Nov 2020 17:24:51 +0100
+Message-ID: <CAJZ5v0jJ6GFm4LFCR2V3qvD9rZrVw=pXyXSjSWPYtQudg-F3xg@mail.gmail.com>
+To: James Bottomley <James.Bottomley@hansenpartnership.com>
+Subject: Re: [Intel-gfx] [PATCH 000/141] Fix fall-through warnings for Clang
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,113 +60,104 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: "moderated list:SOUND - SOC LAYER / DYNAMIC AUDIO POWER MANAGEM..."
+ <alsa-devel@alsa-project.org>, linux-atm-general@lists.sourceforge.net,
+ reiserfs-devel@vger.kernel.org, linux-iio@vger.kernel.org,
+ linux-wireless <linux-wireless@vger.kernel.org>,
+ "open list:FRAMEBUFFER LAYER" <linux-fbdev@vger.kernel.org>,
+ dri-devel <dri-devel@lists.freedesktop.org>,
+ linux-kernel <linux-kernel@vger.kernel.org>,
+ Nathan Chancellor <natechancellor@gmail.com>,
+ "open list:LIBATA SUBSYSTEM \(Serial and Parallel ATA drivers\)"
+ <linux-ide@vger.kernel.org>, dm-devel@redhat.com, keyrings@vger.kernel.org,
+ linux-mtd@lists.infradead.org, GR-everest-linux-l2@marvell.com,
+ wcn36xx@lists.infradead.org, samba-technical@lists.samba.org,
+ linux-i3c@lists.infradead.org, linux1394-devel@lists.sourceforge.net,
+ linux-afs@lists.infradead.org, usb-storage@lists.one-eyed-alien.net,
+ drbd-dev@lists.linbit.com, devel@driverdev.osuosl.org,
+ linux-cifs@vger.kernel.org, rds-devel@oss.oracle.com,
+ Nick Desaulniers <ndesaulniers@google.com>,
+ "open list:TARGET SUBSYSTEM" <linux-scsi@vger.kernel.org>,
+ linux-rdma@vger.kernel.org, oss-drivers@netronome.com,
+ bridge@lists.linux-foundation.org, linux-security-module@vger.kernel.org,
+ amd-gfx list <amd-gfx@lists.freedesktop.org>,
+ linux-stm32@st-md-mailman.stormreply.com, cluster-devel@redhat.com,
+ ACPI Devel Maling List <linux-acpi@vger.kernel.org>, coreteam@netfilter.org,
+ intel-wired-lan@lists.osuosl.org, linux-input <linux-input@vger.kernel.org>,
+ Miguel Ojeda <ojeda@kernel.org>, Jakub Kicinski <kuba@kernel.org>,
+ Ext4 Developers List <linux-ext4@vger.kernel.org>,
+ Linux Media Mailing List <linux-media@vger.kernel.org>,
+ Kees Cook <keescook@chromium.org>, selinux@vger.kernel.org,
+ linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+ intel-gfx <intel-gfx@lists.freedesktop.org>, linux-geode@lists.infradead.org,
+ linux-can@vger.kernel.org, linux-block@vger.kernel.org,
+ linux-gpio@vger.kernel.org, op-tee@lists.trustedfirmware.org,
+ "moderated list:ARM/Mediatek SoC..." <linux-mediatek@lists.infradead.org>,
+ xen-devel@lists.xenproject.org, nouveau <nouveau@lists.freedesktop.org>,
+ linux-hams@vger.kernel.org, ceph-devel@vger.kernel.org,
+ virtualization@lists.linux-foundation.org, target-devel@vger.kernel.org,
+ Linux ARM <linux-arm-kernel@lists.infradead.org>, linux-hwmon@vger.kernel.org,
+ linux-watchdog@vger.kernel.org, linux-nfs@vger.kernel.org,
+ GR-Linux-NIC-Dev@marvell.com, tipc-discussion@lists.sourceforge.net,
+ Linux-MM <linux-mm@kvack.org>, Network Development <netdev@vger.kernel.org>,
+ linux-decnet-user@lists.sourceforge.net, linux-mmc <linux-mmc@vger.kernel.org>,
+ "Gustavo A. R. Silva" <gustavoars@kernel.org>,
+ Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+ Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>, linux-sctp@vger.kernel.org,
+ "open list:ULTRA-WIDEBAND \(UWB\) SUBSYSTEM:" <linux-usb@vger.kernel.org>,
+ netfilter-devel@vger.kernel.org,
+ Linux Crypto Mailing List <linux-crypto@vger.kernel.org>,
+ patches@opensource.cirrus.com, Joe Perches <joe@perches.com>,
+ linux-integrity@vger.kernel.org,
+ "maintainer:X86 ARCHITECTURE \(32-BIT AND 64-BIT\)" <x86@kernel.org>,
+ linux-hardening@vger.kernel.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, 20 Nov 2020, "Huang, Sean Z" <sean.z.huang@intel.com> wrote:
-> PXP is an i915 componment, that helps user space to establish the
-> hardware protected session and manage the status of each alive
-> software session, as well as the life cycle of each session.
+On Mon, Nov 23, 2020 at 4:58 PM James Bottomley
+<James.Bottomley@hansenpartnership.com> wrote:
+>
+> On Mon, 2020-11-23 at 15:19 +0100, Miguel Ojeda wrote:
+> > On Sun, Nov 22, 2020 at 11:36 PM James Bottomley
+> > <James.Bottomley@hansenpartnership.com> wrote:
 
-I seem to have replied to an old version of the series; please see if
-the comments I made are still valid.
+[cut]
 
-BR,
-Jani.
+> >
+> > Maintainers routinely review 1-line trivial patches, not to mention
+> > internal API changes, etc.
+>
+> We're also complaining about the inability to recruit maintainers:
+>
+> https://www.theregister.com/2020/06/30/hard_to_find_linux_maintainers_says_torvalds/
+>
+> And burn out:
+>
+> http://antirez.com/news/129
 
->
-> This ioctl is to allow user space driver to create, set, and
-> destroy each session. It also provides the communication chanel to
-> TEE (Trusted Execution Environment) for the protected hardware
-> session creation.
->
-> Anshuman Gupta (1):
->   drm/i915/pxp: Add plane decryption support
->
-> Bommu Krishnaiah (2):
->   drm/i915/uapi: introduce drm_i915_gem_create_ext
->   drm/i915/pxp: User interface for Protected buffer
->
-> Huang, Sean Z (22):
->   drm/i915/pxp: Introduce Intel PXP component
->   drm/i915/pxp: Enable PXP irq worker and callback stub
->   drm/i915/pxp: Add PXP context for logical hardware states.
->   drm/i915/pxp: set KCR reg init during the boot time
->   drm/i915/pxp: Implement ioctl action to set the user space context
->   drm/i915/pxp: Add PXP-related registers into allowlist
->   drm/i915/pxp: Read register to check hardware session state
->   drm/i915/pxp: Implement funcs to get/set PXP tag
->   drm/i915/pxp: Implement ioctl action to reserve session slot
->   drm/i915/pxp: Implement ioctl action to set session in play
->   drm/i915/pxp: Func to send hardware session termination
->   drm/i915/pxp: Implement ioctl action to terminate the session
->   drm/i915/pxp: Enable ioctl action to query PXP tag
->   drm/i915/pxp: Destroy all type0 sessions upon teardown
->   drm/i915/pxp: Termiante the session upon app crash
->   drm/i915/pxp: Enable PXP power management
->   drm/i915/pxp: Implement funcs to create the TEE channel
->   drm/i915/pxp: Implement ioctl action to send TEE commands
->   drm/i915/pxp: Create the arbitrary session after boot
->   drm/i915/pxp: Add i915 trace logs for PXP operations
->   drm/i915/pxp: Expose session state for display protection flip
->   drm/i915/pxp: Enable the PXP ioctl for protected session
->
-> Vitaly Lubart (1):
->   mei: pxp: export pavp client to me client bus
->
->  drivers/gpu/drm/i915/Makefile                 |    8 +
->  drivers/gpu/drm/i915/display/intel_sprite.c   |   21 +-
->  drivers/gpu/drm/i915/gem/i915_gem_context.c   |   15 +-
->  drivers/gpu/drm/i915/gem/i915_gem_context.h   |   10 +
->  .../gpu/drm/i915/gem/i915_gem_context_types.h |    2 +-
->  .../gpu/drm/i915/gem/i915_gem_object_types.h  |    5 +
->  drivers/gpu/drm/i915/gt/intel_gt_irq.c        |    4 +
->  drivers/gpu/drm/i915/i915_drv.c               |   18 +-
->  drivers/gpu/drm/i915/i915_drv.h               |   10 +
->  drivers/gpu/drm/i915/i915_gem.c               |   63 +-
->  drivers/gpu/drm/i915/i915_reg.h               |    8 +
->  drivers/gpu/drm/i915/i915_trace.h             |   44 +
->  drivers/gpu/drm/i915/intel_uncore.c           |   50 +-
->  drivers/gpu/drm/i915/pxp/intel_pxp.c          |  322 +++++
->  drivers/gpu/drm/i915/pxp/intel_pxp.h          |   73 +
->  drivers/gpu/drm/i915/pxp/intel_pxp_context.c  |   69 +
->  drivers/gpu/drm/i915/pxp/intel_pxp_context.h  |   47 +
->  drivers/gpu/drm/i915/pxp/intel_pxp_pm.c       |   72 +
->  drivers/gpu/drm/i915/pxp/intel_pxp_pm.h       |   16 +
->  drivers/gpu/drm/i915/pxp/intel_pxp_sm.c       | 1180 +++++++++++++++++
->  drivers/gpu/drm/i915/pxp/intel_pxp_sm.h       |  126 ++
->  drivers/gpu/drm/i915/pxp/intel_pxp_tee.c      |  216 +++
->  drivers/gpu/drm/i915/pxp/intel_pxp_tee.h      |   25 +
->  drivers/misc/mei/Kconfig                      |    2 +
->  drivers/misc/mei/Makefile                     |    1 +
->  drivers/misc/mei/pxp/Kconfig                  |   13 +
->  drivers/misc/mei/pxp/Makefile                 |    7 +
->  drivers/misc/mei/pxp/mei_pxp.c                |  230 ++++
->  drivers/misc/mei/pxp/mei_pxp.h                |   18 +
->  include/drm/i915_component.h                  |    1 +
->  include/drm/i915_pxp_tee_interface.h          |   45 +
->  include/uapi/drm/i915_drm.h                   |  141 ++
->  32 files changed, 2836 insertions(+), 26 deletions(-)
->  create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp.c
->  create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp.h
->  create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp_context.c
->  create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp_context.h
->  create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp_pm.c
->  create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp_pm.h
->  create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp_sm.c
->  create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp_sm.h
->  create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp_tee.c
->  create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp_tee.h
->  create mode 100644 drivers/misc/mei/pxp/Kconfig
->  create mode 100644 drivers/misc/mei/pxp/Makefile
->  create mode 100644 drivers/misc/mei/pxp/mei_pxp.c
->  create mode 100644 drivers/misc/mei/pxp/mei_pxp.h
->  create mode 100644 include/drm/i915_pxp_tee_interface.h
+Right.
 
--- 
-Jani Nikula, Intel Open Source Graphics Center
+> The whole crux of your argument seems to be maintainers' time isn't
+> important so we should accept all trivial patches ... I'm pushing back
+> on that assumption in two places, firstly the valulessness of the time
+> and secondly that all trivial patches are valuable.
+>
+> > If some company does not want to pay for that, that's fine, but they
+> > don't get to be maintainers and claim `Supported`.
+>
+> What I'm actually trying to articulate is a way of measuring value of
+> the patch vs cost ... it has nothing really to do with who foots the
+> actual bill.
+>
+> One thesis I'm actually starting to formulate is that this continual
+> devaluing of maintainers is why we have so much difficulty keeping and
+> recruiting them.
+
+Absolutely.
+
+This is just one of the factors involved, but a significant one IMV.
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
