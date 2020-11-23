@@ -1,44 +1,30 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 137902C024D
-	for <lists+intel-gfx@lfdr.de>; Mon, 23 Nov 2020 10:32:51 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1B7512C04A4
+	for <lists+intel-gfx@lfdr.de>; Mon, 23 Nov 2020 12:37:26 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1AA4F89D4B;
-	Mon, 23 Nov 2020 09:32:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D16C8898A3;
+	Mon, 23 Nov 2020 11:37:22 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C5D4189D3E;
- Mon, 23 Nov 2020 09:32:46 +0000 (UTC)
-IronPort-SDR: +6QaPRAOht35QjDgi7iRWRJYjWAna8DNfIzw2j4U6vt90+hBDO9lHF1X3s8hTT/7wK+Xbp8uTz
- yiN+FnmJr5VA==
-X-IronPort-AV: E=McAfee;i="6000,8403,9813"; a="171827621"
-X-IronPort-AV: E=Sophos;i="5.78,363,1599548400"; d="scan'208";a="171827621"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Nov 2020 01:32:45 -0800
-IronPort-SDR: +9n+qp9jD/+JHBLVv+W7mVZVg0ISm/vzI5DEaaPmr21i+eRrM+uPBaSAlUCRKEP6LkPwnUKQkd
- AKxiRlVfIhLA==
-X-IronPort-AV: E=Sophos;i="5.78,363,1599548400"; d="scan'208";a="536037699"
-Received: from dmiles-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.252.6.162])
- by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Nov 2020 01:32:41 -0800
+Received: from fireflyinternet.com (unknown [77.68.26.236])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 757CC897E8
+ for <intel-gfx@lists.freedesktop.org>; Mon, 23 Nov 2020 11:37:21 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from build.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 23077527-1500050 
+ for <intel-gfx@lists.freedesktop.org>; Mon, 23 Nov 2020 11:37:17 +0000
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Mon, 23 Nov 2020 11:37:14 +0000
+Message-Id: <20201123113717.20500-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-In-Reply-To: <20201123090517.GC16939@zhen-hp.sh.intel.com>
-References: <20201123090517.GC16939@zhen-hp.sh.intel.com>
-To: "Vivi, Rodrigo" <rodrigo.vivi@intel.com>,
- Jani Nikula <jani.nikula@intel.com>, Zhenyu Wang <zhenyuw@linux.intel.com>
-From: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Message-ID: <160612395828.4926.14269845290017694082@jlahtine-mobl.ger.corp.intel.com>
-User-Agent: alot/0.8.1
-Date: Mon, 23 Nov 2020 11:32:38 +0200
-Subject: Re: [Intel-gfx] [PULL] gvt-next
+Subject: [Intel-gfx] [CI 1/4] drm/i915/gt: Defer enabling the breadcrumb
+ interrupt to after submission
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,97 +37,228 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx <intel-gfx@lists.freedesktop.org>,
- intel-gvt-dev <intel-gvt-dev@lists.freedesktop.org>, "Lv,
- Zhiyuan" <zhiyuan.lv@intel.com>, "Yuan, Hang" <hang.yuan@intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Zhenyu Wang (2020-11-23 11:05:17)
-> 
-> Hi,
-> 
-> Here's gvt next pull for v5.11. Mostly it's for host suspend/resume
-> fix with vGPU active and with some other enhancement as details below.
-> Note that this includes some minor i915 driver change to add gvt hook
-> in suspend/resume function which has been sent and reviewed on
-> intel-gfx list.
-> 
-> I just generated against drm-intel-next-queued-2020-11-03 which this
-> tree bases on now. Let me know if there's any issue in merge.
+Move the register slow register write and readback from out of the
+critical path for execlists submission and delay it until the following
+worker, shaving off around 200us. Note that the same signal_irq_work() is
+allowed to run concurrently on each CPU (but it will only be queued once,
+once running though it can be requeued and reexecuted) so we have to
+remember to lock the global interactions as we cannot rely on the
+signal_irq_work() itself providing the serialisation (in constrast to a
+tasklet).
 
-Sometimes GVT changes are paired with changes related the i915 side
-to adjust the running virtual clients. The changes are more often
-related to GT side, but there's also been display related changes.
+By pushing the arm/disarm into the central signaling worker we can close
+the race for disarming the interrupt (and dropping its associated
+GT wakeref) on parking the engine. If we loose the race, that GT wakeref
+may be held indefinitely, preventing the machine from sleeping while
+the GPU is ostensibly idle.
 
-Going forward, would we want to continue to apply gvt-next to
-drm-intel-next (-queued is planned to be deprecated) or
-should we use drm-intel-gt-next?
+v2: Move the self-arming parking of the signal_irq_work to a flush of
+the irq-work from intel_breadcrumbs_park().
 
-Or should we always strictly apply the GVT changes to drm-intel-next,
-and then any related i915 changes to drm-intel-next or drm-intel-gt-next
-depending on which one they are related to?
+Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/2271
+Fixes: dfeba1ae34c8 ("drm/i915/gt: Hold context/request reference while breadcrumbs are active")
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+---
+ drivers/gpu/drm/i915/gt/intel_breadcrumbs.c | 109 +++++++++++++-------
+ 1 file changed, 70 insertions(+), 39 deletions(-)
 
-Regards, Joonas
+diff --git a/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c b/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c
+index d8b206e53660..8d85683314e1 100644
+--- a/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c
++++ b/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c
+@@ -30,18 +30,21 @@
+ #include "i915_trace.h"
+ #include "intel_breadcrumbs.h"
+ #include "intel_context.h"
++#include "intel_engine_pm.h"
+ #include "intel_gt_pm.h"
+ #include "intel_gt_requests.h"
+ 
+-static void irq_enable(struct intel_engine_cs *engine)
++static bool irq_enable(struct intel_engine_cs *engine)
+ {
+ 	if (!engine->irq_enable)
+-		return;
++		return false;
+ 
+ 	/* Caller disables interrupts */
+ 	spin_lock(&engine->gt->irq_lock);
+ 	engine->irq_enable(engine);
+ 	spin_unlock(&engine->gt->irq_lock);
++
++	return true;
+ }
+ 
+ static void irq_disable(struct intel_engine_cs *engine)
+@@ -57,12 +60,11 @@ static void irq_disable(struct intel_engine_cs *engine)
+ 
+ static void __intel_breadcrumbs_arm_irq(struct intel_breadcrumbs *b)
+ {
+-	lockdep_assert_held(&b->irq_lock);
+-
+-	if (!b->irq_engine || b->irq_armed)
+-		return;
+-
+-	if (!intel_gt_pm_get_if_awake(b->irq_engine->gt))
++	/*
++	 * Since we are waiting on a request, the GPU should be busy
++	 * and should have its own rpm reference.
++	 */
++	if (GEM_WARN_ON(!intel_gt_pm_get_if_awake(b->irq_engine->gt)))
+ 		return;
+ 
+ 	/*
+@@ -73,25 +75,24 @@ static void __intel_breadcrumbs_arm_irq(struct intel_breadcrumbs *b)
+ 	 */
+ 	WRITE_ONCE(b->irq_armed, true);
+ 
+-	/*
+-	 * Since we are waiting on a request, the GPU should be busy
+-	 * and should have its own rpm reference. This is tracked
+-	 * by i915->gt.awake, we can forgo holding our own wakref
+-	 * for the interrupt as before i915->gt.awake is released (when
+-	 * the driver is idle) we disarm the breadcrumbs.
+-	 */
+-
+-	if (!b->irq_enabled++)
+-		irq_enable(b->irq_engine);
++	/* Requests may have completed before we could enable the interrupt. */
++	if (!b->irq_enabled++ && irq_enable(b->irq_engine))
++		irq_work_queue(&b->irq_work);
+ }
+ 
+-static void __intel_breadcrumbs_disarm_irq(struct intel_breadcrumbs *b)
++static void intel_breadcrumbs_arm_irq(struct intel_breadcrumbs *b)
+ {
+-	lockdep_assert_held(&b->irq_lock);
+-
+-	if (!b->irq_engine || !b->irq_armed)
++	if (!b->irq_engine)
+ 		return;
+ 
++	spin_lock(&b->irq_lock);
++	if (!b->irq_armed)
++		__intel_breadcrumbs_arm_irq(b);
++	spin_unlock(&b->irq_lock);
++}
++
++static void __intel_breadcrumbs_disarm_irq(struct intel_breadcrumbs *b)
++{
+ 	GEM_BUG_ON(!b->irq_enabled);
+ 	if (!--b->irq_enabled)
+ 		irq_disable(b->irq_engine);
+@@ -105,8 +106,6 @@ static void add_signaling_context(struct intel_breadcrumbs *b,
+ {
+ 	intel_context_get(ce);
+ 	list_add_tail(&ce->signal_link, &b->signalers);
+-	if (list_is_first(&ce->signal_link, &b->signalers))
+-		__intel_breadcrumbs_arm_irq(b);
+ }
+ 
+ static void remove_signaling_context(struct intel_breadcrumbs *b,
+@@ -197,7 +196,32 @@ static void signal_irq_work(struct irq_work *work)
+ 
+ 	spin_lock(&b->irq_lock);
+ 
+-	if (list_empty(&b->signalers))
++	/*
++	 * Keep the irq armed until the interrupt after all listeners are gone.
++	 *
++	 * Enabling/disabling the interrupt is rather costly, roughly a couple
++	 * of hundred microseconds. If we are proactive and enable/disable
++	 * the interrupt around every request that wants a breadcrumb, we
++	 * quickly drown in the extra orders of magnitude of latency imposed
++	 * on request submission.
++	 *
++	 * So we try to be lazy, and keep the interrupts enabled until no
++	 * more listeners appear within a breadcrumb interrupt interval (that
++	 * is until a request completes that no one cares about). The
++	 * observation is that listeners come in batches, and will often
++	 * listen to a bunch of requests in succession. Though note on icl+,
++	 * interrupts are always enabled due to concerns with rc6 being
++	 * dysfunctional with per-engine interrupt masking.
++	 *
++	 * We also try to avoid raising too many interrupts, as they may
++	 * be generated by userspace batches and it is unfortunately rather
++	 * too easy to drown the CPU under a flood of GPU interrupts. Thus
++	 * whenever no one appears to be listening, we turn off the interrupts.
++	 * Fewer interrupts should conserve power -- at the very least, fewer
++	 * interrupt draw less ire from other users of the system and tools
++	 * like powertop.
++	 */
++	if (b->irq_armed && list_empty(&b->signalers))
+ 		__intel_breadcrumbs_disarm_irq(b);
+ 
+ 	list_splice_init(&b->signaled_requests, &signal);
+@@ -251,6 +275,9 @@ static void signal_irq_work(struct irq_work *work)
+ 
+ 		i915_request_put(rq);
+ 	}
++
++	if (!READ_ONCE(b->irq_armed) && !list_empty(&b->signalers))
++		intel_breadcrumbs_arm_irq(b);
+ }
+ 
+ struct intel_breadcrumbs *
+@@ -292,21 +319,22 @@ void intel_breadcrumbs_reset(struct intel_breadcrumbs *b)
+ 
+ void intel_breadcrumbs_park(struct intel_breadcrumbs *b)
+ {
+-	unsigned long flags;
+-
+-	if (!READ_ONCE(b->irq_armed))
+-		return;
+-
+-	spin_lock_irqsave(&b->irq_lock, flags);
+-	__intel_breadcrumbs_disarm_irq(b);
+-	spin_unlock_irqrestore(&b->irq_lock, flags);
+-
+-	if (!list_empty(&b->signalers))
+-		irq_work_queue(&b->irq_work);
++	/* Kick the work once more to drain the signalers */
++	irq_work_sync(&b->irq_work);
++	while (unlikely(READ_ONCE(b->irq_armed))) {
++		local_irq_disable();
++		signal_irq_work(&b->irq_work);
++		local_irq_enable();
++		cond_resched();
++	}
++	GEM_BUG_ON(!list_empty(&b->signalers));
+ }
+ 
+ void intel_breadcrumbs_free(struct intel_breadcrumbs *b)
+ {
++	irq_work_sync(&b->irq_work);
++	GEM_BUG_ON(!list_empty(&b->signalers));
++	GEM_BUG_ON(b->irq_armed);
+ 	kfree(b);
+ }
+ 
+@@ -362,9 +390,12 @@ static void insert_breadcrumb(struct i915_request *rq,
+ 	GEM_BUG_ON(!check_signal_order(ce, rq));
+ 	set_bit(I915_FENCE_FLAG_SIGNAL, &rq->fence.flags);
+ 
+-	/* Check after attaching to irq, interrupt may have already fired. */
+-	if (__request_completed(rq))
+-		irq_work_queue(&b->irq_work);
++	/*
++	 * Defer enabling the interrupt to after HW submission and recheck
++	 * the request as it may have completed and raised the interrupt as
++	 * we were attaching it into the lists.
++	 */
++	irq_work_queue(&b->irq_work);
+ }
+ 
+ bool i915_request_enable_breadcrumb(struct i915_request *rq)
+-- 
+2.20.1
 
-> Thanks
-> --
-> The following changes since commit 139caf7ca2866cd0a45814ff938cb0c33920a266:
-> 
->   drm/i915: Update DRIVER_DATE to 20201103 (2020-11-03 14:21:25 +0200)
-> 
-> are available in the Git repository at:
-> 
->   https://github.com/intel/gvt-linux tags/gvt-next-2020-11-23
-> 
-> for you to fetch changes up to 9a3a238b3de97b4210c6de66aa88b2d7021ac086:
-> 
->   drm/i915/gvt: treat intel_gvt_mpt as const in gvt code (2020-11-23 17:14:20 +0800)
-> 
-> ----------------------------------------------------------------
-> gvt-next-2020-11-23
-> 
-> - Fix host suspend/resume with vGPU (Colin)
-> - optimize idr init (Varma)
-> - Change intel_gvt_mpt as const (Julian)
-> - One comment error fix (Yan)
-> 
-> ----------------------------------------------------------------
-> Colin Xu (3):
->       drm/i915/gvt: Save/restore HW status to support GVT suspend/resume
->       drm/i915: Add GVT resume routine to i915
->       drm/i915/gvt: Fix virtual display setup for BXT/APL
-> 
-> Deepak R Varma (1):
->       drm/i915/gvt: replace idr_init() by idr_init_base()
-> 
-> Julian Stecklina (1):
->       drm/i915/gvt: treat intel_gvt_mpt as const in gvt code
-> 
-> Yan Zhao (1):
->       drm/i915/gvt: correct a false comment of flag F_UNALIGN
-> 
->  drivers/gpu/drm/i915/gvt/display.c  | 179 ++++++++++++++++++++++++++++++++++++
->  drivers/gpu/drm/i915/gvt/gtt.c      |  64 +++++++++++++
->  drivers/gpu/drm/i915/gvt/gtt.h      |   4 +
->  drivers/gpu/drm/i915/gvt/gvt.c      |  13 ++-
->  drivers/gpu/drm/i915/gvt/gvt.h      |   7 +-
->  drivers/gpu/drm/i915/gvt/handlers.c |  44 ++++++++-
->  drivers/gpu/drm/i915/gvt/kvmgt.c    |   2 +-
->  drivers/gpu/drm/i915/gvt/mmio.c     |   5 +
->  drivers/gpu/drm/i915/gvt/mmio.h     |   4 +
->  drivers/gpu/drm/i915/gvt/mpt.h      |   2 +-
->  drivers/gpu/drm/i915/gvt/vgpu.c     |   2 +-
->  drivers/gpu/drm/i915/i915_drv.c     |   2 +
->  drivers/gpu/drm/i915/intel_gvt.c    |  15 +++
->  drivers/gpu/drm/i915/intel_gvt.h    |   5 +
->  14 files changed, 338 insertions(+), 10 deletions(-)
-> 
-> -- 
-> 
-> $gpg --keyserver wwwkeys.pgp.net --recv-keys 4D781827
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
