@@ -2,31 +2,64 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CD3C52C1016
-	for <lists+intel-gfx@lfdr.de>; Mon, 23 Nov 2020 17:27:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B6F5D2C104F
+	for <lists+intel-gfx@lfdr.de>; Mon, 23 Nov 2020 17:31:42 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 40C946E043;
-	Mon, 23 Nov 2020 16:27:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BE79B6E048;
+	Mon, 23 Nov 2020 16:31:37 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F32576E043
- for <intel-gfx@lists.freedesktop.org>; Mon, 23 Nov 2020 16:27:29 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 23081003-1500050 
- for multiple; Mon, 23 Nov 2020 16:27:17 +0000
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Mon, 23 Nov 2020 16:27:17 +0000
-Message-Id: <20201123162717.21845-1-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20201123145551.13222-1-chris@chris-wilson.co.uk>
-References: <20201123145551.13222-1-chris@chris-wilson.co.uk>
+Received: from bedivere.hansenpartnership.com (bedivere.hansenpartnership.com
+ [96.44.175.130])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 110D26E046;
+ Mon, 23 Nov 2020 16:31:36 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+ by bedivere.hansenpartnership.com (Postfix) with ESMTP id 7EDBD12808F6;
+ Mon, 23 Nov 2020 08:31:35 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=hansenpartnership.com; s=20151216; t=1606149095;
+ bh=+IhPqZ/v6VfDyyXzj4lMu9axEsbedJZyqBpFfwsfG+g=;
+ h=Message-ID:Subject:From:To:Date:In-Reply-To:References:From;
+ b=taYTQdLWt1uKXwIt/3Ve/mEupTdq+Wcpdv+UXp5WQMTWxY34l98m0qHLcdAiwuo2t
+ gwBg46qri78QHRql74q8THMzP+7WPx9XqttvrPch20gBcYUMT4pLXQarcLhIoin1Gp
+ Z+ziweydBKwdaV8ZmrW12X55c5G6vUR8Kiznotik=
+Received: from bedivere.hansenpartnership.com ([127.0.0.1])
+ by localhost (bedivere.hansenpartnership.com [127.0.0.1]) (amavisd-new,
+ port 10024)
+ with ESMTP id S05__PC1UR2d; Mon, 23 Nov 2020 08:31:35 -0800 (PST)
+Received: from jarvis.int.hansenpartnership.com (unknown
+ [IPv6:2601:600:8280:66d1::527])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by bedivere.hansenpartnership.com (Postfix) with ESMTPSA id 9FAA112808A8;
+ Mon, 23 Nov 2020 08:31:31 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=hansenpartnership.com; s=20151216; t=1606149095;
+ bh=+IhPqZ/v6VfDyyXzj4lMu9axEsbedJZyqBpFfwsfG+g=;
+ h=Message-ID:Subject:From:To:Date:In-Reply-To:References:From;
+ b=taYTQdLWt1uKXwIt/3Ve/mEupTdq+Wcpdv+UXp5WQMTWxY34l98m0qHLcdAiwuo2t
+ gwBg46qri78QHRql74q8THMzP+7WPx9XqttvrPch20gBcYUMT4pLXQarcLhIoin1Gp
+ Z+ziweydBKwdaV8ZmrW12X55c5G6vUR8Kiznotik=
+Message-ID: <8f5611bb015e044fa1c0a48147293923c2d904e4.camel@HansenPartnership.com>
+From: James Bottomley <James.Bottomley@HansenPartnership.com>
+To: "Gustavo A. R. Silva" <gustavoars@kernel.org>
+Date: Mon, 23 Nov 2020 08:31:30 -0800
+In-Reply-To: <20201123130348.GA3119@embeddedor>
+References: <cover.1605896059.git.gustavoars@kernel.org>
+ <20201120105344.4345c14e@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
+ <202011201129.B13FDB3C@keescook>
+ <20201120115142.292999b2@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
+ <202011220816.8B6591A@keescook>
+ <9b57fd4914b46f38d54087d75e072d6e947cb56d.camel@HansenPartnership.com>
+ <ca071decb87cc7e905411423c05a48f9fd2f58d7.camel@perches.com>
+ <0147972a72bc13f3629de8a32dee6f1f308994b5.camel@HansenPartnership.com>
+ <d8d1e9add08cdd4158405e77762d4946037208f8.camel@perches.com>
+ <dbd2cb703ed9eefa7dde9281ea26ab0f7acc8afe.camel@HansenPartnership.com>
+ <20201123130348.GA3119@embeddedor>
+User-Agent: Evolution 3.34.4 
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v2] drm/i915/display: Record the plane update
- times for debugging
+Subject: Re: [Intel-gfx] [Intel-wired-lan] [PATCH 000/141] Fix fall-through
+ warnings for Clang
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,103 +72,116 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Chris Wilson <chris@chris-wilson.co.uk>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: alsa-devel@alsa-project.org, bridge@lists.linux-foundation.org,
+ target-devel@vger.kernel.org, Greg KH <gregkh@linuxfoundation.org>,
+ linux-iio@vger.kernel.org, linux-wireless@vger.kernel.org,
+ linux-mmc@vger.kernel.org, linux-fbdev@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, virtualization@lists.linux-foundation.org,
+ linux-ide@vger.kernel.org, dm-devel@redhat.com, keyrings@vger.kernel.org,
+ linux-mtd@lists.infradead.org, GR-everest-linux-l2@marvell.com,
+ wcn36xx@lists.infradead.org, linux-i3c@lists.infradead.org,
+ linux1394-devel@lists.sourceforge.net, linux-afs@lists.infradead.org,
+ drbd-dev@lists.linbit.com, devel@driverdev.osuosl.org,
+ linux-cifs@vger.kernel.org, rds-devel@oss.oracle.com,
+ linux-scsi@vger.kernel.org, linux-acpi@vger.kernel.org,
+ linux-rdma@vger.kernel.org, oss-drivers@netronome.com,
+ linux-atm-general@lists.sourceforge.net, ceph-devel@vger.kernel.org,
+ amd-gfx@lists.freedesktop.org, linux-stm32@st-md-mailman.stormreply.com,
+ cluster-devel@redhat.com, usb-storage@lists.one-eyed-alien.net,
+ coreteam@netfilter.org, intel-wired-lan@lists.osuosl.org,
+ linux-input@vger.kernel.org, Miguel Ojeda <ojeda@kernel.org>,
+ Jakub Kicinski <kuba@kernel.org>, linux-ext4@vger.kernel.org,
+ netfilter-devel@vger.kernel.org, linux-media@vger.kernel.org,
+ Kees Cook <keescook@chromium.org>, selinux@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+ linux-sctp@vger.kernel.org, reiserfs-devel@vger.kernel.org,
+ linux-geode@lists.infradead.org, linux-block@vger.kernel.org,
+ linux-gpio@vger.kernel.org, op-tee@lists.trustedfirmware.org,
+ linux-mediatek@lists.infradead.org, xen-devel@lists.xenproject.org,
+ nouveau@lists.freedesktop.org, linux-hams@vger.kernel.org,
+ Nathan Chancellor <natechancellor@gmail.com>, linux-can@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-hwmon@vger.kernel.org,
+ Nick Desaulniers <ndesaulniers@google.com>, linux-watchdog@vger.kernel.org,
+ GR-Linux-NIC-Dev@marvell.com, linux-mm@kvack.org, netdev@vger.kernel.org,
+ linux-decnet-user@lists.sourceforge.net, samba-technical@lists.samba.org,
+ linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+ linux-security-module@vger.kernel.org, linux-usb@vger.kernel.org,
+ tipc-discussion@lists.sourceforge.net, linux-crypto@vger.kernel.org,
+ Jonathan Cameron <Jonathan.Cameron@huawei.com>, patches@opensource.cirrus.com,
+ Joe Perches <joe@perches.com>, linux-integrity@vger.kernel.org,
+ linux-nfs@vger.kernel.org, x86@kernel.org, linux-hardening@vger.kernel.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-U2luY2Ugd2UgdHJ5IGFuZCBlc3RpbWF0ZSBob3cgbG9uZyB3ZSByZXF1aXJlIHRvIHVwZGF0ZSB0
-aGUgcmVnaXN0ZXJzIHRvCnBlcmZvcm0gYSBwbGFuZSB1cGRhdGUsIGl0IGlzIG9mIHZpdGFsIGlt
-cG9ydGFuY2UgdGhhdCB3ZSBtZWFzdXJlIHRoZQpkaXN0cmlidXRpb24gb2YgcGxhbmUgdXBkYXRl
-cyB0byBiZXR0ZXIgZ3VpZGUgb3VyIGVzdGltYXRlLiBJZiB3ZQp1bmRlcmVzdGltYXRlIGhvdyBs
-b25nIGl0IHRha2VzIHRvIHBlcmZvcm0gdGhlIHBsYW5lIHVwZGF0ZSwgd2UgbWF5CnNsaXAgaW50
-byB0aGUgbmV4dCBzY2Fub3V0IGZyYW1lIGNhdXNpbmcgYSB0ZWFyLiBJZiB3ZSBvdmVyZXN0aW1h
-dGUsIHdlCm1heSB1bm5lY2Vzc2FyaWx5IGRlbGF5IHRoZSB1cGRhdGUgdG8gdGhlIG5leHQgZnJh
-bWUsIGNhdXNpbmcgdmlzaWJsZQpqaXR0ZXIuCgpSZXBsYWNlIHRoZSB3YXJuaW5nIHRoYXQgd2Ug
-ZXhjZWVkIHNvbWUgYXJiaXRyYXJ5IHRocmVzaG9sZCBmb3IgdGhlCnZibGFuayB1cGRhdGUgd2l0
-aCBhIGhpc3RvZ3JhbSBmb3IgZGVidWdmcy4KClNpZ25lZC1vZmYtYnk6IENocmlzIFdpbHNvbiA8
-Y2hyaXNAY2hyaXMtd2lsc29uLmNvLnVrPgpDYzogSmFuaSBOaWt1bGEgPGphbmkubmlrdWxhQGxp
-bnV4LmludGVsLmNvbT4KQ2M6IFZpbGxlIFN5cmrDpGzDpCA8dmlsbGUuc3lyamFsYUBsaW51eC5p
-bnRlbC5jb20+Ci0tLQogLi4uL2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheV9kZWJ1Z2Zz
-LmMgIHwgNDYgKysrKysrKysrKysrKysrKysrKwogLi4uL2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxf
-ZGlzcGxheV90eXBlcy5oICAgIHwgIDcgKysrCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5
-L2ludGVsX3Nwcml0ZS5jICAgfCAyOSArKysrKysrKystLS0KIDMgZmlsZXMgY2hhbmdlZCwgNzUg
-aW5zZXJ0aW9ucygrKSwgNyBkZWxldGlvbnMoLSkKCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9k
-cm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXlfZGVidWdmcy5jIGIvZHJpdmVycy9ncHUvZHJt
-L2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5X2RlYnVnZnMuYwppbmRleCBjYTQxZThjMDBhZDcu
-LmQ0YmNmNDk3MTU1OCAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9p
-bnRlbF9kaXNwbGF5X2RlYnVnZnMuYworKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5
-L2ludGVsX2Rpc3BsYXlfZGVidWdmcy5jCkBAIC04NjUsNiArODY1LDUwIEBAIHN0YXRpYyB2b2lk
-IGludGVsX3NjYWxlcl9pbmZvKHN0cnVjdCBzZXFfZmlsZSAqbSwgc3RydWN0IGludGVsX2NydGMg
-KmNydGMpCiAJfQogfQogCisjaWZkZWYgQ09ORklHX0RSTV9JOTE1X0RFQlVHX1ZCTEFOS19FVkFE
-RQorc3RhdGljIHZvaWQgY3J0Y192YmxhbmtfaW5mbyhzdHJ1Y3Qgc2VxX2ZpbGUgKm0sIHN0cnVj
-dCBpbnRlbF9jcnRjICpjcnRjKQoreworCWNoYXIgYnVmW0FSUkFZX1NJWkUoY3J0Yy0+ZGVidWcu
-dmJsX3RpbWVzKSArIDFdID0ge307CisJaW50IGgsIHJvdywgbWF4OworCXU2NCBjb3VudDsKKwor
-CW1heCA9IDA7CisJY291bnQgPSAwOworCWZvciAoaCA9IDA7IGggPCBBUlJBWV9TSVpFKGNydGMt
-PmRlYnVnLnZibF90aW1lcyk7IGgrKykgeworCQlpZiAoY3J0Yy0+ZGVidWcudmJsX3RpbWVzW2hd
-ID4gbWF4KQorCQkJbWF4ID0gY3J0Yy0+ZGVidWcudmJsX3RpbWVzW2hdOworCQljb3VudCArPSBj
-cnRjLT5kZWJ1Zy52YmxfdGltZXNbaF07CisJfQorCXNlcV9wcmludGYobSwgIlx0VXBkYXRlczog
-JWxsdVxuIiwgY291bnQpOworCWlmICghY291bnQpCisJCXJldHVybjsKKworCW1lbXNldChidWYs
-ICctJywgc2l6ZW9mKGJ1ZikgLSAxKTsKKwlzZXFfcHJpbnRmKG0sICJcdCAgfCVzfFxuIiwgYnVm
-KTsKKworCWZvciAocm93ID0gaWxvZzIobWF4KSAtIDE7IHJvdzsgcm93LS0pIHsKKwkJbWVtc2V0
-KGJ1ZiwgJyAnLCBzaXplb2YoYnVmKSAtIDEpOworCQlmb3IgKGggPSAwOyBoIDwgQVJSQVlfU0la
-RShjcnRjLT5kZWJ1Zy52YmxfdGltZXMpOyBoKyspIHsKKwkJCWlmIChpbG9nMihjcnRjLT5kZWJ1
-Zy52YmxfdGltZXNbaF0pID49IHJvdykKKwkJCQlidWZbaF0gPSAnKic7CisJCX0KKwkJc2VxX3By
-aW50ZihtLCAiXHQgIHwlc3xcbiIsIGJ1Zik7CisJfQorCisJbWVtc2V0KGJ1ZiwgJy0nLCBzaXpl
-b2YoYnVmKSAtIDEpOworCXNlcV9wcmludGYobSwgIlx0ICB8JXN8XG4iLCBidWYpOworCXNlcV9w
-cmludGYobSwgIlx0ICAgIDF1cyAgICAgKGxvZykgICAgICAxbXNcbiIpOworCisJc2VxX3ByaW50
-ZihtLCAiXHRNaW4gdXBkYXRlOiAlbGx1bnNcbiIsIGNydGMtPmRlYnVnLm1pbl92YmxfdGltZSk7
-CisJc2VxX3ByaW50ZihtLCAiXHRNYXggdXBkYXRlOiAlbGx1bnNcbiIsIGNydGMtPmRlYnVnLm1h
-eF92YmxfdGltZSk7CisJc2VxX3ByaW50ZihtLCAiXHRBdmVyYWdlIHVwZGF0ZTogJWxsdW5zXG4i
-LAorCQkgICBkaXY2NF91NjQoY3J0Yy0+ZGVidWcuc3VtX3ZibF90aW1lLCAgY291bnQpKTsKKwlz
-ZXFfcHJpbnRmKG0sICJcdE92ZXJmbG93czogJWx1XG4iLCBjcnRjLT5kZWJ1Zy5vdmVyX3ZibF90
-aW1lKTsKK30KKyNlbHNlCitzdGF0aWMgdm9pZCBjcnRjX3ZibGFua19pbmZvKHN0cnVjdCBzZXFf
-ZmlsZSAqbSwgc3RydWN0IGludGVsX2NydGMgKmNydGMpIHt9CisjZW5kaWYKKwogc3RhdGljIHZv
-aWQgaW50ZWxfY3J0Y19pbmZvKHN0cnVjdCBzZXFfZmlsZSAqbSwgc3RydWN0IGludGVsX2NydGMg
-KmNydGMpCiB7CiAJc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmRldl9wcml2ID0gbm9kZV90b19p
-OTE1KG0tPnByaXZhdGUpOwpAQCAtOTA3LDYgKzk1MSw4IEBAIHN0YXRpYyB2b2lkIGludGVsX2Ny
-dGNfaW5mbyhzdHJ1Y3Qgc2VxX2ZpbGUgKm0sIHN0cnVjdCBpbnRlbF9jcnRjICpjcnRjKQogCXNl
-cV9wcmludGYobSwgIlx0dW5kZXJydW4gcmVwb3J0aW5nOiBjcHU9JXMgcGNoPSVzXG4iLAogCQkg
-ICB5ZXNubyghY3J0Yy0+Y3B1X2ZpZm9fdW5kZXJydW5fZGlzYWJsZWQpLAogCQkgICB5ZXNubygh
-Y3J0Yy0+cGNoX2ZpZm9fdW5kZXJydW5fZGlzYWJsZWQpKTsKKworCWNydGNfdmJsYW5rX2luZm8o
-bSwgY3J0Yyk7CiB9CiAKIHN0YXRpYyBpbnQgaTkxNV9kaXNwbGF5X2luZm8oc3RydWN0IHNlcV9m
-aWxlICptLCB2b2lkICp1bnVzZWQpCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9k
-aXNwbGF5L2ludGVsX2Rpc3BsYXlfdHlwZXMuaCBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3Bs
-YXkvaW50ZWxfZGlzcGxheV90eXBlcy5oCmluZGV4IGNlODJkNjU0ZDBmMi4uZWZiYjdjNjFlNmZi
-IDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXlf
-dHlwZXMuaAorKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXlf
-dHlwZXMuaApAQCAtMTE4Niw2ICsxMTg2LDEzIEBAIHN0cnVjdCBpbnRlbF9jcnRjIHsKIAkJa3Rp
-bWVfdCBzdGFydF92YmxfdGltZTsKIAkJaW50IG1pbl92YmwsIG1heF92Ymw7CiAJCWludCBzY2Fu
-bGluZV9zdGFydDsKKyNpZmRlZiBDT05GSUdfRFJNX0k5MTVfREVCVUdfVkJMQU5LX0VWQURFCisJ
-CXU2NCBtaW5fdmJsX3RpbWU7CisJCXU2NCBtYXhfdmJsX3RpbWU7CisJCXU2NCBzdW1fdmJsX3Rp
-bWU7CisJCXVuc2lnbmVkIGludCB2YmxfdGltZXNbMjFdOyAvKiBbMXVzLCAxbXNdICovCisJCXVu
-c2lnbmVkIGxvbmcgb3Zlcl92YmxfdGltZTsKKyNlbmRpZgogCX0gZGVidWc7CiAKIAkvKiBzY2Fs
-ZXJzIGF2YWlsYWJsZSBvbiB0aGlzIGNydGMgKi8KZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2Ry
-bS9pOTE1L2Rpc3BsYXkvaW50ZWxfc3ByaXRlLmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNw
-bGF5L2ludGVsX3Nwcml0ZS5jCmluZGV4IDAxOWEyZDZkODA3YS4uNjYxY2JhZjRjYzM4IDEwMDY0
-NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX3Nwcml0ZS5jCisrKyBi
-L2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfc3ByaXRlLmMKQEAgLTI1MCwxMyAr
-MjUwLDI4IEBAIHZvaWQgaW50ZWxfcGlwZV91cGRhdGVfZW5kKHN0cnVjdCBpbnRlbF9jcnRjX3N0
-YXRlICpuZXdfY3J0Y19zdGF0ZSkKIAkJCWNydGMtPmRlYnVnLnNjYW5saW5lX3N0YXJ0LCBzY2Fu
-bGluZV9lbmQpOwogCX0KICNpZmRlZiBDT05GSUdfRFJNX0k5MTVfREVCVUdfVkJMQU5LX0VWQURF
-Ci0JZWxzZSBpZiAoa3RpbWVfdXNfZGVsdGEoZW5kX3ZibF90aW1lLCBjcnRjLT5kZWJ1Zy5zdGFy
-dF92YmxfdGltZSkgPgotCQkgVkJMQU5LX0VWQVNJT05fVElNRV9VUykKLQkJZHJtX3dhcm4oJmRl
-dl9wcml2LT5kcm0sCi0JCQkgIkF0b21pYyB1cGRhdGUgb24gcGlwZSAoJWMpIHRvb2sgJWxsZCB1
-cywgbWF4IHRpbWUgdW5kZXIgZXZhc2lvbiBpcyAldSB1c1xuIiwKLQkJCSBwaXBlX25hbWUocGlw
-ZSksCi0JCQkga3RpbWVfdXNfZGVsdGEoZW5kX3ZibF90aW1lLCBjcnRjLT5kZWJ1Zy5zdGFydF92
-YmxfdGltZSksCi0JCQkgVkJMQU5LX0VWQVNJT05fVElNRV9VUyk7CisJeworCQl1bnNpZ25lZCBp
-bnQgaDsKKwkJdTY0IGRlbHRhOworCisJCWRlbHRhID0ga3RpbWVfdG9fbnMoa3RpbWVfc3ViKGVu
-ZF92YmxfdGltZSwKKwkJCQkJICAgICAgY3J0Yy0+ZGVidWcuc3RhcnRfdmJsX3RpbWUpKTsKKwor
-CQloID0gaWxvZzIoZGVsdGEgPj4gOSk7CisJCWlmIChoID49IEFSUkFZX1NJWkUoY3J0Yy0+ZGVi
-dWcudmJsX3RpbWVzKSkKKwkJCWggPSBBUlJBWV9TSVpFKGNydGMtPmRlYnVnLnZibF90aW1lcykg
-LSAxOworCQljcnRjLT5kZWJ1Zy52YmxfdGltZXNbaF0rKzsKKworCQljcnRjLT5kZWJ1Zy5zdW1f
-dmJsX3RpbWUgKz0gZGVsdGE7CisJCWlmICghY3J0Yy0+ZGVidWcubWluX3ZibF90aW1lIHx8CisJ
-CSAgICBkZWx0YSA8IGNydGMtPmRlYnVnLm1pbl92YmxfdGltZSkKKwkJCWNydGMtPmRlYnVnLm1p
-bl92YmxfdGltZSA9IGRlbHRhOworCQlpZiAoZGVsdGEgPiBjcnRjLT5kZWJ1Zy5tYXhfdmJsX3Rp
-bWUpCisJCQljcnRjLT5kZWJ1Zy5tYXhfdmJsX3RpbWUgPSBkZWx0YTsKKworCQlpZiAoZGVsdGEg
-PiAxMDAwICogVkJMQU5LX0VWQVNJT05fVElNRV9VUykKKwkJCWNydGMtPmRlYnVnLm92ZXJfdmJs
-X3RpbWUrKzsKKwl9CiAjZW5kaWYKIH0KIAotLSAKMi4yMC4xCgpfX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVs
-LWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcv
-bWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
+On Mon, 2020-11-23 at 07:03 -0600, Gustavo A. R. Silva wrote:
+> On Sun, Nov 22, 2020 at 11:53:55AM -0800, James Bottomley wrote:
+> > On Sun, 2020-11-22 at 11:22 -0800, Joe Perches wrote:
+> > > On Sun, 2020-11-22 at 11:12 -0800, James Bottomley wrote:
+> > > > On Sun, 2020-11-22 at 10:25 -0800, Joe Perches wrote:
+> > > > > On Sun, 2020-11-22 at 10:21 -0800, James Bottomley wrote:
+> > > > > > Please tell me our reward for all this effort isn't a
+> > > > > > single missing error print.
+> > > > > 
+> > > > > There were quite literally dozens of logical defects found
+> > > > > by the fallthrough additions.  Very few were logging only.
+> > > > 
+> > > > So can you give us the best examples (or indeed all of them if
+> > > > someone is keeping score)?  hopefully this isn't a US election
+> > > > situation ...
+> > > 
+> > > Gustavo?  Are you running for congress now?
+> > > 
+> > > https://lwn.net/Articles/794944/
+> > 
+> > That's 21 reported fixes of which about 50% seem to produce no
+> > change in code behaviour at all, a quarter seem to have no user
+> > visible effect with the remaining quarter producing unexpected
+> > errors on obscure configuration parameters, which is why no-one
+> > really noticed them before.
+> 
+> The really important point here is the number of bugs this has
+> prevented and will prevent in the future. See an example of this,
+> below:
+> 
+> https://lore.kernel.org/linux-iio/20190813135802.GB27392@kroah.com/
+
+I think this falls into the same category as the other six bugs: it
+changes the output/input for parameters but no-one has really noticed,
+usually because the command is obscure or the bias effect is minor.
+
+> This work is still relevant, even if the total number of issues/bugs
+> we find in the process is zero (which is not the case).
+
+Really, no ... something which produces no improvement has no value at
+all ... we really shouldn't be wasting maintainer time with it because
+it has a cost to merge.  I'm not sure we understand where the balance
+lies in value vs cost to merge but I am confident in the zero value
+case.
+
+> "The sucky thing about doing hard work to deploy hardening is that
+> the result is totally invisible by definition (things not happening)
+> [..]"
+> - Dmitry Vyukov
+
+Really, no.  Something that can't be measured at all doesn't exist.
+
+And actually hardening is one of those things you can measure (which I
+do have to admit isn't true for everything in the security space) ...
+it's number of exploitable bugs found before you did it vs number of
+exploitable bugs found after you did it.  Usually hardening eliminates
+a class of bug, so the way I've measured hardening before is to go
+through the CVE list for the last couple of years for product X, find
+all the bugs that are of the class we're looking to eliminate and say
+if we had hardened X against this class of bug we'd have eliminated Y%
+of the exploits.  It can be quite impressive if Y is a suitably big
+number.
+
+James
+
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
