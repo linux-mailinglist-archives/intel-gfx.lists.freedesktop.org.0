@@ -1,62 +1,50 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7A8F02BFCC0
-	for <lists+intel-gfx@lfdr.de>; Mon, 23 Nov 2020 00:04:50 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5820B2BFDC6
+	for <lists+intel-gfx@lfdr.de>; Mon, 23 Nov 2020 01:54:11 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D2E4A892ED;
-	Sun, 22 Nov 2020 23:04:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C8B1589B3B;
+	Mon, 23 Nov 2020 00:54:07 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from bedivere.hansenpartnership.com (bedivere.hansenpartnership.com
- [96.44.175.130])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 21D37892E3;
- Sun, 22 Nov 2020 23:04:42 +0000 (UTC)
-Received: from localhost (localhost [127.0.0.1])
- by bedivere.hansenpartnership.com (Postfix) with ESMTP id 5C1741280900;
- Sun, 22 Nov 2020 15:04:41 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=hansenpartnership.com; s=20151216; t=1606086281;
- bh=ampKVWKUqLiKYyObj0dhEgltdPGbsuliUrstEBadWMw=;
- h=Message-ID:Subject:From:To:Date:In-Reply-To:References:From;
- b=WmZvrZ8SISP4O7CkmRRwRn7Ww4EqbFeoj9AudkGWHrTHPvBGVyYGXPtxxL5/3UBwZ
- KEGMUiR7FBhAVO42W5uBkyouydambEWUMRvvMR32eyWutkJh8vdHwfKrPde3Z6lPQr
- zwZuERjUvzNlbmlNByqn4M9h7sLDVk7BBiQeo3h4=
-Received: from bedivere.hansenpartnership.com ([127.0.0.1])
- by localhost (bedivere.hansenpartnership.com [127.0.0.1]) (amavisd-new,
- port 10024)
- with ESMTP id PvG_3ynFL_Uj; Sun, 22 Nov 2020 15:04:41 -0800 (PST)
-Received: from jarvis.int.hansenpartnership.com (unknown
- [IPv6:2601:600:8280:66d1::527])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by bedivere.hansenpartnership.com (Postfix) with ESMTPSA id 9178D12808F6;
- Sun, 22 Nov 2020 15:04:37 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=hansenpartnership.com; s=20151216; t=1606086281;
- bh=ampKVWKUqLiKYyObj0dhEgltdPGbsuliUrstEBadWMw=;
- h=Message-ID:Subject:From:To:Date:In-Reply-To:References:From;
- b=WmZvrZ8SISP4O7CkmRRwRn7Ww4EqbFeoj9AudkGWHrTHPvBGVyYGXPtxxL5/3UBwZ
- KEGMUiR7FBhAVO42W5uBkyouydambEWUMRvvMR32eyWutkJh8vdHwfKrPde3Z6lPQr
- zwZuERjUvzNlbmlNByqn4M9h7sLDVk7BBiQeo3h4=
-Message-ID: <c3371b7c15ed30b92e9bb8609ff65bdaa0ef61fa.camel@HansenPartnership.com>
-From: James Bottomley <James.Bottomley@HansenPartnership.com>
-To: Finn Thain <fthain@telegraphics.com.au>, Miguel Ojeda
- <miguel.ojeda.sandonis@gmail.com>
-Date: Sun, 22 Nov 2020 15:04:36 -0800
-In-Reply-To: <alpine.LNX.2.23.453.2011230938390.7@nippy.intranet>
-References: <cover.1605896059.git.gustavoars@kernel.org>
- <20201120105344.4345c14e@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
- <202011201129.B13FDB3C@keescook>
- <20201120115142.292999b2@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
- <202011220816.8B6591A@keescook>
- <9b57fd4914b46f38d54087d75e072d6e947cb56d.camel@HansenPartnership.com>
- <CANiq72nZrHWTA4_Msg6MP9snTyenC6-eGfD27CyfNSu7QoVZbw@mail.gmail.com>
- <alpine.LNX.2.23.453.2011230938390.7@nippy.intranet>
-User-Agent: Evolution 3.34.4 
+Received: from smtprelay.hostedemail.com (smtprelay0045.hostedemail.com
+ [216.40.44.45])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 39AE589B3B;
+ Mon, 23 Nov 2020 00:54:06 +0000 (UTC)
+Received: from filter.hostedemail.com (clb03-v110.bra.tucows.net
+ [216.40.38.60])
+ by smtprelay05.hostedemail.com (Postfix) with ESMTP id 2D37318029125;
+ Mon, 23 Nov 2020 00:54:05 +0000 (UTC)
+X-Session-Marker: 6A6F6540706572636865732E636F6D
+X-Spam-Summary: 2, 0, 0, , d41d8cd98f00b204, joe@perches.com, ,
+ RULES_HIT:41:355:379:599:973:982:988:989:1260:1277:1311:1313:1314:1345:1359:1437:1515:1516:1518:1534:1540:1593:1594:1711:1730:1747:1777:1792:2393:2553:2559:2562:2828:2911:3138:3139:3140:3141:3142:3352:3622:3865:3866:3867:3868:3870:3871:3872:4250:4321:4425:5007:6119:6691:6742:6743:7903:10004:10400:10848:11026:11232:11658:11914:12296:12297:12555:12740:12760:12895:13069:13161:13229:13311:13357:13439:14659:14721:21080:21433:21627:21740:30041:30054:30090:30091,
+ 0, RBL:none, CacheIP:none, Bayesian:0.5, 0.5, 0.5, Netcheck:none,
+ DomainCache:0, MSF:not bulk, SPF:, MSBL:0, DNSBL:none, Custom_rules:0:0:0,
+ LFtime:1, LUA_SUMMARY:none
+X-HE-Tag: steam95_4513bd127361
+X-Filterd-Recvd-Size: 3177
+Received: from XPS-9350.home (unknown [47.151.128.180])
+ (Authenticated sender: joe@perches.com)
+ by omf02.hostedemail.com (Postfix) with ESMTPA;
+ Mon, 23 Nov 2020 00:53:59 +0000 (UTC)
+Message-ID: <21826b6d513c4d9ccc795179c1edb0df2361d870.camel@perches.com>
+From: Joe Perches <joe@perches.com>
+To: Finn Thain <fthain@telegraphics.com.au>
+Date: Sun, 22 Nov 2020 16:53:58 -0800
+In-Reply-To: <alpine.LNX.2.23.453.2011230810210.7@nippy.intranet>
+References: <20201121165058.1644182-1-trix@redhat.com>
+ <20201122032304.GE4327@casper.infradead.org>
+ <ddb08a27-3ca1-fb2e-d51f-4b471f1a56a3@redhat.com>
+ <20201122145635.GG4327@casper.infradead.org>
+ <0819ce06-c462-d4df-d3d9-14931dc5aefc@redhat.com>
+ <751803306cd957d0e7ef6a4fc3dbf12ebceaba92.camel@HansenPartnership.com>
+ <dec07021e7fc11a02b14c98b713ae2c6e2a4ca00.camel@perches.com>
+ <alpine.LNX.2.23.453.2011230810210.7@nippy.intranet>
+User-Agent: Evolution 3.38.1-1 
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH 000/141] Fix fall-through warnings for Clang
+Subject: Re: [Intel-gfx] [RFC] MAINTAINERS tag for cleanup robot
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,69 +57,49 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: alsa-devel@alsa-project.org, linux-atm-general@lists.sourceforge.net,
- reiserfs-devel@vger.kernel.org, linux-iio@vger.kernel.org,
- linux-wireless <linux-wireless@vger.kernel.org>, linux-fbdev@vger.kernel.org,
- dri-devel@lists.freedesktop.org, "Gustavo A. R. Silva" <gustavoars@kernel.org>,
- Nathan Chancellor <natechancellor@gmail.com>, linux-ide@vger.kernel.org,
- dm-devel@redhat.com, keyrings@vger.kernel.org, linux-mtd@lists.infradead.org,
- GR-everest-linux-l2@marvell.com, wcn36xx@lists.infradead.org,
- samba-technical@lists.samba.org, linux-i3c@lists.infradead.org,
- linux1394-devel@lists.sourceforge.net, linux-afs@lists.infradead.org,
- usb-storage@lists.one-eyed-alien.net, drbd-dev@lists.linbit.com,
- devel@driverdev.osuosl.org, linux-cifs@vger.kernel.org,
- rds-devel@oss.oracle.com, Nick Desaulniers <ndesaulniers@google.com>,
- linux-scsi@vger.kernel.org, linux-rdma@vger.kernel.org,
- oss-drivers@netronome.com, bridge@lists.linux-foundation.org,
- linux-security-module@vger.kernel.org, amd-gfx@lists.freedesktop.org,
- linux-stm32@st-md-mailman.stormreply.com, cluster-devel@redhat.com,
- linux-acpi@vger.kernel.org, coreteam@netfilter.org,
- intel-wired-lan@lists.osuosl.org, linux-input <linux-input@vger.kernel.org>,
- Miguel Ojeda <ojeda@kernel.org>, Jakub Kicinski <kuba@kernel.org>,
- Ext4 Developers List <linux-ext4@vger.kernel.org>,
- Linux Media Mailing List <linux-media@vger.kernel.org>,
- Kees Cook <keescook@chromium.org>, selinux@vger.kernel.org,
- linux-arm-msm@vger.kernel.org, intel-gfx@lists.freedesktop.org,
- linux-geode@lists.infradead.org, linux-can@vger.kernel.org,
- linux-block@vger.kernel.org, linux-gpio@vger.kernel.org,
- op-tee@lists.trustedfirmware.org, linux-mediatek@lists.infradead.org,
- xen-devel@lists.xenproject.org, nouveau@lists.freedesktop.org,
- linux-hams@vger.kernel.org, ceph-devel@vger.kernel.org,
- virtualization@lists.linux-foundation.org, target-devel@vger.kernel.org,
- Linux ARM <linux-arm-kernel@lists.infradead.org>, linux-hwmon@vger.kernel.org,
- linux-watchdog@vger.kernel.org, linux-nfs@vger.kernel.org,
- GR-Linux-NIC-Dev@marvell.com, tipc-discussion@lists.sourceforge.net,
- Linux-MM <linux-mm@kvack.org>, Network Development <netdev@vger.kernel.org>,
- linux-decnet-user@lists.sourceforge.net, linux-mmc@vger.kernel.org,
- linux-kernel <linux-kernel@vger.kernel.org>, linux-renesas-soc@vger.kernel.org,
- linux-sctp@vger.kernel.org, linux-usb@vger.kernel.org,
- netfilter-devel@vger.kernel.org,
- Linux Crypto Mailing List <linux-crypto@vger.kernel.org>,
- patches@opensource.cirrus.com, Joe Perches <joe@perches.com>,
- linux-integrity@vger.kernel.org,
- "maintainer:X86 ARCHITECTURE \(32-BIT AND 64-BIT\)" <x86@kernel.org>,
- linux-hardening@vger.kernel.org
+Cc: linux-hyperv@vger.kernel.org, kvm@vger.kernel.org,
+ Tom Rix <trix@redhat.com>, linux-fbdev@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, platform-driver-x86@vger.kernel.org,
+ James Bottomley <James.Bottomley@HansenPartnership.com>,
+ ibm-acpi-devel@lists.sourceforge.net, keyrings@vger.kernel.org,
+ linux-mtd@lists.infradead.org, Matthew Wilcox <willy@infradead.org>,
+ linux-scsi@vger.kernel.org, clang-built-linux@googlegroups.com,
+ amd-gfx@lists.freedesktop.org, cluster-devel@redhat.com,
+ linux-acpi@vger.kernel.org, tboot-devel@lists.sourceforge.net,
+ coreteam@netfilter.org, xen-devel@lists.xenproject.org,
+ MPT-FusionLinux.pdl@broadcom.com, linux-media@vger.kernel.org,
+ alsa-devel@alsa-project.org, intel-gfx@lists.freedesktop.org,
+ ecryptfs@vger.kernel.org, linux-omap@vger.kernel.org, devel@acpica.org,
+ linux-nfs@vger.kernel.org, netdev@vger.kernel.org, linux-usb@vger.kernel.org,
+ linux-wireless@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-bluetooth@vger.kernel.org, netfilter-devel@vger.kernel.org,
+ linux-crypto@vger.kernel.org, patches@opensource.cirrus.com,
+ linux-fsdevel@vger.kernel.org, bpf@vger.kernel.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 2020-11-23 at 09:54 +1100, Finn Thain wrote:
-> But is anyone keeping score of the regressions? If unreported bugs
-> count, what about unreported regressions?
+On Mon, 2020-11-23 at 09:33 +1100, Finn Thain wrote:
+> On Sun, 22 Nov 2020, Joe Perches wrote:
 
-Well, I was curious about the former (obviously no tool will tell me
-about the latter), so I asked git what patches had a fall-through
-series named in a fixes tag and these three popped out:
+> > But provably correct conversions IMO _should_ be done and IMO churn 
+> > considerations should generally have less importance.
+[]
+> Moreover, the patch review workload for skilled humans is being generated 
+> by the automation, which is completely backwards: the machine is supposed 
+> to be helping.
 
-9cf51446e686 bpf, powerpc: Fix misuse of fallthrough in bpf_jit_comp()
-6a9dc5fd6170 lib: Revert use of fallthrough pseudo-keyword in lib/
-91dbd73a1739 mips/oprofile: Fix fallthrough placement
+Which is why the provably correct matters.
 
-I don't think any of these is fixing a significant problem, but they
-did cause someone time and trouble to investigate.
+coccinelle transforms can be, but are not necessarily, provably correct.
 
-James
+The _show transforms done via the sysfs_emit_dev.cocci script are correct
+as in commit aa838896d87a ("drivers core: Use sysfs_emit and sysfs_emit_at
+for show(device *...) functions")
+
+Worthwhile?  A different question, but I think yes as it reduces the
+overall question space of the existing other sprintf overrun possibilities.
 
 
 _______________________________________________
