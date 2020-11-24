@@ -2,40 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 46A442C3050
-	for <lists+intel-gfx@lfdr.de>; Tue, 24 Nov 2020 19:59:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 33A022C3005
+	for <lists+intel-gfx@lfdr.de>; Tue, 24 Nov 2020 19:35:46 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1A1AD6E517;
-	Tue, 24 Nov 2020 18:59:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9792889149;
+	Tue, 24 Nov 2020 18:35:44 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EEAEC6E420;
- Tue, 24 Nov 2020 14:47:46 +0000 (UTC)
-Received: from embeddedor (187-162-31-110.static.axtel.net [187.162.31.110])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by mail.kernel.org (Postfix) with ESMTPSA id A5073206F9;
- Tue, 24 Nov 2020 14:47:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=default; t=1606229266;
- bh=KHWIOvsVxIgxzJ3ANvrXr+IcifXvCH3d9eC+5p4MJwo=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=tWoPDQgvsKVPCfxibPNl9c0zBQ9NfBrnsDyv8UIAtPJxHLfF4o1CuP3vwUt19y/P8
- Y66kkjj2Cim4kMyRQiiYzb1whNr+v/N+nMKfcHqv3RaX8mBnUDrFmNddDbw9/dIVnH
- xirANyC4hb8bYXXRvxw8qG9eYp8JWf8UX9D38PQM=
-Date: Tue, 24 Nov 2020 08:47:54 -0600
-From: "Gustavo A. R. Silva" <gustavoars@kernel.org>
-To: Mark Brown <broonie@kernel.org>
-Message-ID: <20201124144754.GL16084@embeddedor>
-References: <cover.1605896059.git.gustavoars@kernel.org>
- <160616392671.21180.16517492185091399884.b4-ty@kernel.org>
+Received: from fireflyinternet.com (unknown [77.68.26.236])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CA4C089149
+ for <intel-gfx@lists.freedesktop.org>; Tue, 24 Nov 2020 18:35:43 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from build.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 23095651-1500050 
+ for multiple; Tue, 24 Nov 2020 18:35:22 +0000
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Tue, 24 Nov 2020 18:35:21 +0000
+Message-Id: <20201124183521.28623-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <160616392671.21180.16517492185091399884.b4-ty@kernel.org>
-User-Agent: Mutt/1.9.4 (2018-02-28)
-X-Mailman-Approved-At: Tue, 24 Nov 2020 18:59:06 +0000
-Subject: Re: [Intel-gfx] [PATCH 000/141] Fix fall-through warnings for Clang
+Subject: [Intel-gfx] [PATCH] drm/i915/gt: Limit frequency drop to RPe on
+ parking
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,72 +37,55 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: alsa-devel@alsa-project.org, linux-atm-general@lists.sourceforge.net,
- dm-devel@redhat.com, usb-storage@lists.one-eyed-alien.net,
- Nick Desaulniers <ndesaulniers@google.com>, linux-mmc@vger.kernel.org,
- x86@kernel.org, dri-devel@lists.freedesktop.org,
- virtualization@lists.linux-foundation.org, linux-mm@kvack.org,
- linux-sctp@vger.kernel.org, target-devel@vger.kernel.org,
- linux-mtd@lists.infradead.org, linux-hardening@vger.kernel.org,
- wcn36xx@lists.infradead.org, linux-i3c@lists.infradead.org,
- linux1394-devel@lists.sourceforge.net, linux-afs@lists.infradead.org,
- drbd-dev@lists.linbit.com, devel@driverdev.osuosl.org,
- linux-cifs@vger.kernel.org, rds-devel@oss.oracle.com,
- linux-scsi@vger.kernel.org, linux-acpi@vger.kernel.org,
- linux-rdma@vger.kernel.org, bridge@lists.linux-foundation.org,
- ceph-devel@vger.kernel.org, amd-gfx@lists.freedesktop.org,
- linux-stm32@st-md-mailman.stormreply.com, cluster-devel@redhat.com,
- oss-drivers@netronome.com, coreteam@netfilter.org,
- intel-wired-lan@lists.osuosl.org, linux-input@vger.kernel.org,
- Miguel Ojeda <ojeda@kernel.org>, tipc-discussion@lists.sourceforge.net,
- linux-ext4@vger.kernel.org, linux-media@vger.kernel.org,
- Kees Cook <keescook@chromium.org>, selinux@vger.kernel.org,
- linux-arm-msm@vger.kernel.org, intel-gfx@lists.freedesktop.org,
- reiserfs-devel@vger.kernel.org, linux-geode@lists.infradead.org,
- linux-block@vger.kernel.org, linux-gpio@vger.kernel.org,
- op-tee@lists.trustedfirmware.org, linux-mediatek@lists.infradead.org,
- samba-technical@lists.samba.org, linux-fbdev@vger.kernel.org,
- xen-devel@lists.xenproject.org, nouveau@lists.freedesktop.org,
- linux-hams@vger.kernel.org, Nathan Chancellor <natechancellor@gmail.com>,
- linux-can@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-hwmon@vger.kernel.org, linux-watchdog@vger.kernel.org,
- linux-nfs@vger.kernel.org, GR-Linux-NIC-Dev@marvell.com,
- linux-ide@vger.kernel.org, linux-decnet-user@lists.sourceforge.net,
- patches@opensource.cirrus.com, linux-usb@vger.kernel.org,
- linux-wireless@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-iio@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
- linux-security-module@vger.kernel.org, keyrings@vger.kernel.org,
- netfilter-devel@vger.kernel.org, linux-crypto@vger.kernel.org,
- netdev@vger.kernel.org, Joe Perches <joe@perches.com>,
- linux-integrity@vger.kernel.org, GR-everest-linux-l2@marvell.com
+Cc: stable@vger.kernel.org, Chris Wilson <chris@chris-wilson.co.uk>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Nov 23, 2020 at 08:38:46PM +0000, Mark Brown wrote:
-> On Fri, 20 Nov 2020 12:21:39 -0600, Gustavo A. R. Silva wrote:
-> > This series aims to fix almost all remaining fall-through warnings in
-> > order to enable -Wimplicit-fallthrough for Clang.
-> > 
-> > In preparation to enable -Wimplicit-fallthrough for Clang, explicitly
-> > add multiple break/goto/return/fallthrough statements instead of just
-> > letting the code fall through to the next case.
-> > 
-> > [...]
-> 
-> Applied to
-> 
->    https://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator.git for-next
-> 
-> Thanks!
-> 
-> [1/1] regulator: as3722: Fix fall-through warnings for Clang
->       commit: b52b417ccac4fae5b1f2ec4f1d46eb91e4493dc5
+We treat idling the GT (intel_rps_park) as a downclock event, and reduce
+the frequency we intend to restart the GT with. Since the two workloads
+are likely related (e.g. a compositor rendering every 16ms), we want to
+carry the frequency and load information from across the idling.
+However, we do also need to update the frequencies so that workloads
+that run for less than 1ms are autotuned by RPS (otherwise we leave
+compositors running at max clocks, draining excess power). Conversely,
+if we try to run too slowly, the next workload has to run longer. Since
+there is a hysteresis in the power graph, below a certain frequency
+running a short workload for longer consumes more energy than running it
+slightly higher for less time. The exact balance point is unknown
+beforehand, but measurements with 30fps media playback indicate that RPe
+is a better choice.
 
-Thank you, Mark.
---
-Gustavo
+Reported-by: Edward Baker <edward.baker@intel.com>
+Fixes: 043cd2d14ede ("drm/i915/gt: Leave rps->cur_freq on unpark")
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Edward Baker <edward.baker@intel.com>
+Cc: Andi Shyti <andi.shyti@intel.com>
+Cc: Lyude Paul <lyude@redhat.com>
+Cc: <stable@vger.kernel.org> # v5.8+
+---
+ drivers/gpu/drm/i915/gt/intel_rps.c | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+diff --git a/drivers/gpu/drm/i915/gt/intel_rps.c b/drivers/gpu/drm/i915/gt/intel_rps.c
+index b13e7845d483..f74d5e09e176 100644
+--- a/drivers/gpu/drm/i915/gt/intel_rps.c
++++ b/drivers/gpu/drm/i915/gt/intel_rps.c
+@@ -907,6 +907,10 @@ void intel_rps_park(struct intel_rps *rps)
+ 		adj = -2;
+ 	rps->last_adj = adj;
+ 	rps->cur_freq = max_t(int, rps->cur_freq + adj, rps->min_freq);
++	if (rps->cur_freq < rps->efficient_freq) {
++		rps->cur_freq = rps->efficient_freq;
++		rps->last_adj = 0;
++	}
+ 
+ 	GT_TRACE(rps_to_gt(rps), "park:%x\n", rps->cur_freq);
+ }
+-- 
+2.20.1
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
