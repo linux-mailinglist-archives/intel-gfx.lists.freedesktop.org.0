@@ -2,48 +2,41 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6B7772C31B3
-	for <lists+intel-gfx@lfdr.de>; Tue, 24 Nov 2020 21:11:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DE77A2C31B5
+	for <lists+intel-gfx@lfdr.de>; Tue, 24 Nov 2020 21:12:01 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 73F806E040;
-	Tue, 24 Nov 2020 20:11:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 458C56E060;
+	Tue, 24 Nov 2020 20:12:00 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D4E646E040
- for <intel-gfx@lists.freedesktop.org>; Tue, 24 Nov 2020 20:11:06 +0000 (UTC)
-IronPort-SDR: zDcUHlSAeFgk2fvQeEuGmLdeEXeryyIpoDDSIleQY5Y8TP9ZQvuDYpG3dn/rCS0JWR4dR8k2Ql
- vP3Ux5QDgEug==
-X-IronPort-AV: E=McAfee;i="6000,8403,9815"; a="256718202"
-X-IronPort-AV: E=Sophos;i="5.78,366,1599548400"; d="scan'208";a="256718202"
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 599206E0D5
+ for <intel-gfx@lists.freedesktop.org>; Tue, 24 Nov 2020 20:11:59 +0000 (UTC)
+IronPort-SDR: KRGS0PqhXU7/XImwNc7nrKzRc1qMxXgjxqXcNZAKgw11EppLI2x0yC3mxVnDFQFG2RE/dZE+Ei
+ E7eJ/kSORzbw==
+X-IronPort-AV: E=McAfee;i="6000,8403,9815"; a="171230509"
+X-IronPort-AV: E=Sophos;i="5.78,366,1599548400"; d="scan'208";a="171230509"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Nov 2020 12:11:06 -0800
-IronPort-SDR: 9UFCsmJppqKY/BvDn1qvz0Giaxgie9kAvoTh1LzFJam3lyarTcRKbzWQgWsI7wjGO2h0z/DtvK
- buKan2fGDPkg==
-X-IronPort-AV: E=Sophos;i="5.78,366,1599548400"; d="scan'208";a="312690373"
-Received: from ldmartin-desk1.jf.intel.com ([134.134.244.72])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Nov 2020 12:11:06 -0800
-Date: Tue, 24 Nov 2020 12:11:05 -0800
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: Jani Nikula <jani.nikula@intel.com>
-Message-ID: <20201124201105.nff2tzuyqny7atgb@ldmartin-desk1.jf.intel.com>
-X-Patchwork-Hint: comment
-References: <20201117185029.22078-1-aditya.swarup@intel.com>
- <20201117185029.22078-3-aditya.swarup@intel.com>
- <20201117193114.ujqf4mgu3z2pzkab@ldmartin-desk1>
- <87mtzfowfj.fsf@intel.com>
- <572c4f61-bd17-0d5c-57e0-73f5896ab6e3@intel.com>
- <20201124131401.c66nhive3nz3n2rq@ldmartin-desk1>
- <87blfmn8ef.fsf@intel.com>
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Nov 2020 12:11:58 -0800
+IronPort-SDR: XTf+zHIitVsQaypG4UgGl4E6GCGriS8V6i1CP6rwRquYbqbREjo6hf9lRdN+ekGtzakUR8gEgZ
+ cbKnRFtCaljg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.78,366,1599548400"; d="scan'208";a="370478740"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
+ by orsmga007.jf.intel.com with SMTP; 24 Nov 2020 12:11:56 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Tue, 24 Nov 2020 22:11:56 +0200
+From: Ville Syrjala <ville.syrjala@linux.intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Tue, 24 Nov 2020 22:11:53 +0200
+Message-Id: <20201124201156.17095-1-ville.syrjala@linux.intel.com>
+X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <87blfmn8ef.fsf@intel.com>
-Subject: Re: [Intel-gfx] [PATCH 02/21] drm/i915/tgl: Fix macros for TGL SOC
- based WA
+Subject: [Intel-gfx] [PATCH 1/4] drm/i915: Track logically enabled planes
+ for hw state
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,178 +49,91 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-+Matt Roper, see question in item (3) below
-
-On Tue, Nov 24, 2020 at 04:20:40PM +0200, Jani Nikula wrote:
->On Tue, 24 Nov 2020, Lucas De Marchi <lucas.demarchi@intel.com> wrote:
->> On Mon, Nov 23, 2020 at 05:32:22PM -0800, Aditya Swarup wrote:
->>>On 11/18/20 1:18 AM, Jani Nikula wrote:
->>>> On Tue, 17 Nov 2020, Lucas De Marchi <lucas.demarchi@intel.com> wrote:
->>>>> On Tue, Nov 17, 2020 at 10:50:10AM -0800, Aditya Swarup wrote:
->>>>>> @@ -1579,9 +1579,9 @@ static inline const struct i915_rev_steppings *
->>>>>> tgl_revids_get(struct drm_i915_private *dev_priv)
->>>>>> {
->>>>>> 	if (IS_TGL_U(dev_priv) || IS_TGL_Y(dev_priv))
->>>>>> -		return tgl_uy_revids;
->>>>>> +		return tgl_uy_revids + INTEL_REVID(dev_priv);
->>>>>
->>>>> oohh, no. You have to at least check you are not accessing out of
->>>>> bounds. New HW running on old kernel should not access create invalid
->>>>> accesses like this.
->>>>
->>>> And this is just one reason why exposing arrays directly as an interface
->>>> to the rest of the driver is a bad idea. Basically I look at *all*
->>>> externs in the driver with suspicion, and they're all exceptions that
->>>> should not be repeated. The revid arrays are a direct invitation to keep
->>>> adding more and more extern arrays. And more ways to go out of bounds.
->>>
->>>We definitely need an array table for the SOC -> Display, GT stepping mapping.
->>
->> the mapping could be very well in the define iff you don't have
->> different mappings per sku as is the case with TGL. Example:
->>
->> #define ADLS_REVID_A0		0
->> #define ADLS_REVID_A1		5
->>
->> #define ADLS_DISP_REVID_A0	0
->> #define ADLS_DISP_REVID_B0	5
->>
->> The actual value is actually the *SoC* revid, regardless the name of the
->> macro. Since we already have to use a different macro -
->> IS_DISP_REVID() - I don't think this is much worse and would allow us to
->> get rid of the table *for ADL-S*, at the expense of having to pass as
->> argument the ADLS_DISP_REVID_*.  However this doesn't apply to TGL as TGL
->> has a different mapping per sku.
->>
->>
->>>SOC steppings were usually the same as display steppings/GT steppings until TGL and therefore
->>>didn't require special mapping cases. But from TGL onwards, we have different combinations of
->>>Disp and GT steppings per SOC stepping. Alderlake-S makes this direct mapping even more difficult
->>>without the array requiring more macros to deal with SOC -> DISP/GT stepping differences.
->>>
->>>Will fix the array bound checks but the possibility of SOC revision id from drm struct going
->>>out of bounds is minimal. Can only happen if we don't have support for latest SOC -> Disp/GT table
->>
->> this is very common. It's just a matter of trying to run a slightly old
->> kernel in a slightly newer rev of the hardware.
->
->Indeed. All kernels released with the arrays are simply bust for any new
->hardware revisions. They'll need a minimal Cc: stable fix.
->
->Here's something I drafted [1] to fix the situation more
->generally. There are still some issues to overcome, though they exist
->already in the current code.
->
->This could be followed up with converting *all* platforms to the scheme,
->making it universal, regardless of whether the revids in the hardware
->are consecutive or not.
->
->BR,
->Jani.
->
->
->[1] https://cgit.freedesktop.org/~jani/drm/log/?h=revid-stepping-scheme
-
-That is looking good.  Some feedback I can give before this series being
-sent for review:
-
-1) You need to call the init function from somewhere
-2) For the FIXMEs:
-
-+	/*
-+	 * FIXME: We should be able to take into account new revids not
-+	 * recognized by this kernel version.
-+	 */
-
-+	/*
-+	 * FIXME: We should be able to handle gaps in revid arrays gracefully,
-+	 * and in a way that works sensibly for the range checks. This is true
-+	 * for the existing revid range checks; it's fine if a new id pops up in
-+	 * the middle.
-+	 *
-+	 * It's okay for the display stepping to be zero, though in an array all
-+	 * or none should be set to non-zero, not a mix.
-+	 */
-
-Maybe consider that gt_stepping will never be 0 and in the case it is (or
-size > ARRAY_SIZE), just backtrack to use the first one we find with
-gt_stepping != 0?  then we probably should add a warning that we are not
-actually using the correct one, but it's the best we can do.
-
-3) REVID_BXT_B_LAST
-
-what is that? The only thing that comes to mind is for "matching all B
-steps". Matt Roper had a patch to change the way we interpret the WA
-ranges so the bounds are [lower, upper) rather than [lower, upper].
-Matt, any problem you faced with that patch? It makes  more sense
-because we know the stepping in which it's fixed, but we may have
-additional revids before that
-
-But I don't see any trace of REVID_BXT_B_LAST in the tree, so not sure
-what's this about.
-
-4)
-
-Lastly, I'd still like the simple fix for TGL without all the noise and
-without the refactor.  It's the simplest fix we can do for the 5.10
-timeframe.
-
-
-Lucas De Marchi
-
->
->
->
->
->>
->>>for TGL from Bspec and if we are picking up wrong revision id from drm struct that means the platform
->>>information obtained itself is wrong which will be a general platform problem unrelated to Gfx driver.
->>
->> Nothing else should really be a problem. We don't really use the revid
->> much, mostly for WAs. And if other parts of the kernel are trying to use
->> the SoC revid, then they are reading that info themselves, not using
->> something we read.
->>
->> We are simply reading the revid from hardware and using that value
->> without checking and that needs to change.
->>
->>
->>>
->>>>
->>>> I'd rather we seek for ways to either nuke the revid arrays altogether,
->>>> or encapsulate them within a .c file with static scope.
->>>
->>>I don't think we should nuke the revid arrays but I agree with finding a more appropriate place to
->>>parse the gt/display stepping info. This should be an exercise for a later patch that takes
->>>care of kbl,tgl and adl-s mappings.
->>>
->>>>
->>>> And for that .c file... the arrays are now in gt/intel_workarounds.c
->>>> which is a really weird place for stuff that's used for generic stepping
->>>> info, and particularly for *display* stepping info.
->>>
->>>I agree and we can change the approach with a different patch later.
->>>
->>>>
->>>> BR,
->>>> Jani.
->>>>
->>>>
->>>
->> _______________________________________________
->> Intel-gfx mailing list
->> Intel-gfx@lists.freedesktop.org
->> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
->
->-- 
->Jani Nikula, Intel Open Source Graphics Center
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+RnJvbTogVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4KCkN1
+cnJlbnRseSBjcnRjX3N0YXRlLT51YXBpLnBsYW5lX21hc2sgb25seSB0cmFja3MgbG9naWNhbGx5
+CmVuYWJsZWQgcGxhbmVzIG9uIHRoZSB1YXBpIGxldmVsLiBGb3IgYmlnam9pbmVyIHB1cnBvc2Vz
+CndlIHdhbnQgdG8gZG8gdGhlIHNhbWUgZm9yIHRoZSBodyBzdGF0ZS4gTGV0J3MgZm9sbG93IHRo
+ZQpwYXR0ZXJuIGVzdGFibGlzaGVkIGJ5IGFjdGl2ZV9wbGFuZXMgJiBjby4gaGVyZS4KClNpZ25l
+ZC1vZmYtYnk6IFZpbGxlIFN5cmrDpGzDpCA8dmlsbGUuc3lyamFsYUBsaW51eC5pbnRlbC5jb20+
+Ci0tLQogZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9hdG9taWNfcGxhbmUuYyAg
+fCAgMyArKysKIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheS5jICAg
+ICAgIHwgMTMgKysrKysrKysrLS0tLQogZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRl
+bF9kaXNwbGF5X3R5cGVzLmggfCAgNSArKysrLQogMyBmaWxlcyBjaGFuZ2VkLCAxNiBpbnNlcnRp
+b25zKCspLCA1IGRlbGV0aW9ucygtKQoKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1
+L2Rpc3BsYXkvaW50ZWxfYXRvbWljX3BsYW5lLmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNw
+bGF5L2ludGVsX2F0b21pY19wbGFuZS5jCmluZGV4IDdlOWY4NGIwMDg1OS4uYjVlMWVlOTk1MzVj
+IDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2F0b21pY19w
+bGFuZS5jCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfYXRvbWljX3Bs
+YW5lLmMKQEAgLTMxMiwxMCArMzEyLDEzIEBAIGludCBpbnRlbF9wbGFuZV9hdG9taWNfY2hlY2tf
+d2l0aF9zdGF0ZShjb25zdCBzdHJ1Y3QgaW50ZWxfY3J0Y19zdGF0ZSAqb2xkX2NydGNfCiAJaW50
+IHJldDsKIAogCWludGVsX3BsYW5lX3NldF9pbnZpc2libGUobmV3X2NydGNfc3RhdGUsIG5ld19w
+bGFuZV9zdGF0ZSk7CisJbmV3X2NydGNfc3RhdGUtPmVuYWJsZWRfcGxhbmVzICY9IH5CSVQocGxh
+bmUtPmlkKTsKIAogCWlmICghbmV3X3BsYW5lX3N0YXRlLT5ody5jcnRjICYmICFvbGRfcGxhbmVf
+c3RhdGUtPmh3LmNydGMpCiAJCXJldHVybiAwOwogCisJbmV3X2NydGNfc3RhdGUtPmVuYWJsZWRf
+cGxhbmVzIHw9IEJJVChwbGFuZS0+aWQpOworCiAJcmV0ID0gcGxhbmUtPmNoZWNrX3BsYW5lKG5l
+d19jcnRjX3N0YXRlLCBuZXdfcGxhbmVfc3RhdGUpOwogCWlmIChyZXQpCiAJCXJldHVybiByZXQ7
+CmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXku
+YyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheS5jCmluZGV4IDU5
+NTE4M2Y3YjYwZi4uMDY4ODkyZTRkMmYwIDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkx
+NS9kaXNwbGF5L2ludGVsX2Rpc3BsYXkuYworKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNw
+bGF5L2ludGVsX2Rpc3BsYXkuYwpAQCAtMzU1MSw3ICszNTUxLDcgQEAgaW50ZWxfc2V0X3BsYW5l
+X3Zpc2libGUoc3RydWN0IGludGVsX2NydGNfc3RhdGUgKmNydGNfc3RhdGUsCiAJCWNydGNfc3Rh
+dGUtPnVhcGkucGxhbmVfbWFzayAmPSB+ZHJtX3BsYW5lX21hc2soJnBsYW5lLT5iYXNlKTsKIH0K
+IAotc3RhdGljIHZvaWQgZml4dXBfYWN0aXZlX3BsYW5lcyhzdHJ1Y3QgaW50ZWxfY3J0Y19zdGF0
+ZSAqY3J0Y19zdGF0ZSkKK3N0YXRpYyB2b2lkIGZpeHVwX3BsYW5lX2JpdG1hc2tzKHN0cnVjdCBp
+bnRlbF9jcnRjX3N0YXRlICpjcnRjX3N0YXRlKQogewogCXN0cnVjdCBkcm1faTkxNV9wcml2YXRl
+ICpkZXZfcHJpdiA9IHRvX2k5MTUoY3J0Y19zdGF0ZS0+dWFwaS5jcnRjLT5kZXYpOwogCXN0cnVj
+dCBkcm1fcGxhbmUgKnBsYW5lOwpAQCAtMzU2MSwxMSArMzU2MSwxNCBAQCBzdGF0aWMgdm9pZCBm
+aXh1cF9hY3RpdmVfcGxhbmVzKHN0cnVjdCBpbnRlbF9jcnRjX3N0YXRlICpjcnRjX3N0YXRlKQog
+CSAqIGhhdmUgYmVlbiB1c2VkIG9uIHRoZSBzYW1lIChvciB3cm9uZykgcGlwZS4gcGxhbmVfbWFz
+ayB1c2VzCiAJICogdW5pcXVlIGlkcywgaGVuY2Ugd2UgY2FuIHVzZSB0aGF0IHRvIHJlY29uc3Ry
+dWN0IGFjdGl2ZV9wbGFuZXMuCiAJICovCisJY3J0Y19zdGF0ZS0+ZW5hYmxlZF9wbGFuZXMgPSAw
+OwogCWNydGNfc3RhdGUtPmFjdGl2ZV9wbGFuZXMgPSAwOwogCiAJZHJtX2Zvcl9lYWNoX3BsYW5l
+X21hc2socGxhbmUsICZkZXZfcHJpdi0+ZHJtLAotCQkJCWNydGNfc3RhdGUtPnVhcGkucGxhbmVf
+bWFzaykKKwkJCQljcnRjX3N0YXRlLT51YXBpLnBsYW5lX21hc2spIHsKKwkJY3J0Y19zdGF0ZS0+
+ZW5hYmxlZF9wbGFuZXMgfD0gQklUKHRvX2ludGVsX3BsYW5lKHBsYW5lKS0+aWQpOwogCQljcnRj
+X3N0YXRlLT5hY3RpdmVfcGxhbmVzIHw9IEJJVCh0b19pbnRlbF9wbGFuZShwbGFuZSktPmlkKTsK
+Kwl9CiB9CiAKIHN0YXRpYyB2b2lkIGludGVsX3BsYW5lX2Rpc2FibGVfbm9hdG9taWMoc3RydWN0
+IGludGVsX2NydGMgKmNydGMsCkBAIC0zNTgzLDcgKzM1ODYsNyBAQCBzdGF0aWMgdm9pZCBpbnRl
+bF9wbGFuZV9kaXNhYmxlX25vYXRvbWljKHN0cnVjdCBpbnRlbF9jcnRjICpjcnRjLAogCQkgICAg
+Y3J0Yy0+YmFzZS5iYXNlLmlkLCBjcnRjLT5iYXNlLm5hbWUpOwogCiAJaW50ZWxfc2V0X3BsYW5l
+X3Zpc2libGUoY3J0Y19zdGF0ZSwgcGxhbmVfc3RhdGUsIGZhbHNlKTsKLQlmaXh1cF9hY3RpdmVf
+cGxhbmVzKGNydGNfc3RhdGUpOworCWZpeHVwX3BsYW5lX2JpdG1hc2tzKGNydGNfc3RhdGUpOwog
+CWNydGNfc3RhdGUtPmRhdGFfcmF0ZVtwbGFuZS0+aWRdID0gMDsKIAljcnRjX3N0YXRlLT5taW5f
+Y2RjbGtbcGxhbmUtPmlkXSA9IDA7CiAKQEAgLTEyODQyLDYgKzEyODQ1LDcgQEAgc3RhdGljIGlu
+dCBpY2xfY2hlY2tfbnYxMl9wbGFuZXMoc3RydWN0IGludGVsX2NydGNfc3RhdGUgKmNydGNfc3Rh
+dGUpCiAKIAkJcGxhbmVfc3RhdGUtPnBsYW5hcl9saW5rZWRfcGxhbmUgPSBOVUxMOwogCQlpZiAo
+cGxhbmVfc3RhdGUtPnBsYW5hcl9zbGF2ZSAmJiAhcGxhbmVfc3RhdGUtPnVhcGkudmlzaWJsZSkg
+eworCQkJY3J0Y19zdGF0ZS0+ZW5hYmxlZF9wbGFuZXMgJj0gfkJJVChwbGFuZS0+aWQpOwogCQkJ
+Y3J0Y19zdGF0ZS0+YWN0aXZlX3BsYW5lcyAmPSB+QklUKHBsYW5lLT5pZCk7CiAJCQljcnRjX3N0
+YXRlLT51cGRhdGVfcGxhbmVzIHw9IEJJVChwbGFuZS0+aWQpOwogCQl9CkBAIC0xMjg4NSw2ICsx
+Mjg4OSw3IEBAIHN0YXRpYyBpbnQgaWNsX2NoZWNrX252MTJfcGxhbmVzKHN0cnVjdCBpbnRlbF9j
+cnRjX3N0YXRlICpjcnRjX3N0YXRlKQogCiAJCWxpbmtlZF9zdGF0ZS0+cGxhbmFyX3NsYXZlID0g
+dHJ1ZTsKIAkJbGlua2VkX3N0YXRlLT5wbGFuYXJfbGlua2VkX3BsYW5lID0gcGxhbmU7CisJCWNy
+dGNfc3RhdGUtPmVuYWJsZWRfcGxhbmVzIHw9IEJJVChsaW5rZWQtPmlkKTsKIAkJY3J0Y19zdGF0
+ZS0+YWN0aXZlX3BsYW5lcyB8PSBCSVQobGlua2VkLT5pZCk7CiAJCWNydGNfc3RhdGUtPnVwZGF0
+ZV9wbGFuZXMgfD0gQklUKGxpbmtlZC0+aWQpOwogCQlkcm1fZGJnX2ttcygmZGV2X3ByaXYtPmRy
+bSwgIlVzaW5nICVzIGFzIFkgcGxhbmUgZm9yICVzXG4iLApAQCAtMTkxNjUsNyArMTkxNzAsNyBA
+QCBzdGF0aWMgdm9pZCByZWFkb3V0X3BsYW5lX3N0YXRlKHN0cnVjdCBkcm1faTkxNV9wcml2YXRl
+ICpkZXZfcHJpdikKIAkJc3RydWN0IGludGVsX2NydGNfc3RhdGUgKmNydGNfc3RhdGUgPQogCQkJ
+dG9faW50ZWxfY3J0Y19zdGF0ZShjcnRjLT5iYXNlLnN0YXRlKTsKIAotCQlmaXh1cF9hY3RpdmVf
+cGxhbmVzKGNydGNfc3RhdGUpOworCQlmaXh1cF9wbGFuZV9iaXRtYXNrcyhjcnRjX3N0YXRlKTsK
+IAl9CiB9CiAKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxf
+ZGlzcGxheV90eXBlcy5oIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNw
+bGF5X3R5cGVzLmgKaW5kZXggY2U4MmQ2NTRkMGYyLi5jOTNjZjNkZGViYjYgMTAwNjQ0Ci0tLSBh
+L2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheV90eXBlcy5oCisrKyBi
+L2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheV90eXBlcy5oCkBAIC0x
+MDQ3LDcgKzEwNDcsMTAgQEAgc3RydWN0IGludGVsX2NydGNfc3RhdGUgewogCQl1MzIgY2dtX21v
+ZGU7CiAJfTsKIAotCS8qIGJpdG1hc2sgb2YgdmlzaWJsZSBwbGFuZXMgKGVudW0gcGxhbmVfaWQp
+ICovCisJLyogYml0bWFzayBvZiBsb2dpY2FsbHkgZW5hYmxlZCBwbGFuZXMgKGVudW0gcGxhbmVf
+aWQpICovCisJdTggZW5hYmxlZF9wbGFuZXM7CisKKwkvKiBiaXRtYXNrIG9mIGFjdHVhbGx5IHZp
+c2libGUgcGxhbmVzIChlbnVtIHBsYW5lX2lkKSAqLwogCXU4IGFjdGl2ZV9wbGFuZXM7CiAJdTgg
+bnYxMl9wbGFuZXM7CiAJdTggYzhfcGxhbmVzOwotLSAKMi4yNi4yCgpfX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0Cklu
+dGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5v
+cmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
