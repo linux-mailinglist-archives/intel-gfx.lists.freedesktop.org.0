@@ -1,40 +1,39 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5CF372C305A
-	for <lists+intel-gfx@lfdr.de>; Tue, 24 Nov 2020 20:02:40 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 642E72C3089
+	for <lists+intel-gfx@lfdr.de>; Tue, 24 Nov 2020 20:13:37 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BD4FD6E51B;
-	Tue, 24 Nov 2020 19:02:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1A47189F61;
+	Tue, 24 Nov 2020 19:13:34 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A37996E51B
- for <intel-gfx@lists.freedesktop.org>; Tue, 24 Nov 2020 19:02:37 +0000 (UTC)
-IronPort-SDR: 6ssDrIAyacr6GHeq2PMqECmK42s3Mlen0Ers8W8PQDOMzKXBJPRYfPthiz9fh+/OOLkRLPlqhF
- 8TkuRlq1Y4SA==
-X-IronPort-AV: E=McAfee;i="6000,8403,9815"; a="151840340"
-X-IronPort-AV: E=Sophos;i="5.78,366,1599548400"; d="scan'208";a="151840340"
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6726F89F61
+ for <intel-gfx@lists.freedesktop.org>; Tue, 24 Nov 2020 19:13:33 +0000 (UTC)
+IronPort-SDR: VSJPdyX9DJRjkxw9JqvhsZZW+fYRpp/i0BULZsn8U57k8tJeyuRk6Fajubx9TaA+/GTr/sIoeJ
+ NhRtn2vJ6ovg==
+X-IronPort-AV: E=McAfee;i="6000,8403,9815"; a="256710243"
+X-IronPort-AV: E=Sophos;i="5.78,366,1599548400"; d="scan'208";a="256710243"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Nov 2020 11:02:36 -0800
-IronPort-SDR: CdPX6l5lptl6irEoPZ3N5GrKyr1Sez0sGpJoaM1laX+8Gximt0s+aiAyIn8jF7dldlbO6kCA6T
- f11G02EcL6uw==
-X-IronPort-AV: E=Sophos;i="5.78,366,1599548400"; d="scan'208";a="546946630"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Nov 2020 11:13:32 -0800
+IronPort-SDR: JmsYtqhKllNXyJcfGopAN6dblK9h49op+SPTnhMxSwb3YYrr8onLX9azJImbWhbwxMkBT4JO+R
+ KApFpLQPyrbg==
+X-IronPort-AV: E=Sophos;i="5.78,366,1599548400"; d="scan'208";a="312676215"
 Received: from lucas-s2600cw.jf.intel.com ([10.165.21.202])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Nov 2020 11:02:36 -0800
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Nov 2020 11:13:32 -0800
 From: Lucas De Marchi <lucas.demarchi@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Tue, 24 Nov 2020 11:02:24 -0800
-Message-Id: <20201124190224.1591757-1-lucas.demarchi@intel.com>
+Date: Tue, 24 Nov 2020 11:13:13 -0800
+Message-Id: <20201124191316.1660749-1-lucas.demarchi@intel.com>
 X-Mailer: git-send-email 2.29.2
 MIME-Version: 1.0
-Subject: [Intel-gfx] [CI] drm/i915/tgl, rkl, dg1: Apply WA_1406941453 to TGL,
- RKL and DG1
+Subject: [Intel-gfx] [PATCH 0/3] Move display initialization
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,49 +51,24 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Swathi Dhanavanthri <swathi.dhanavanthri@intel.com>
+This reduces the surface from which display/ is called by the
+other parts of the driver, starting with the init. For that new
+intel_display_driver_{register,unregister} functions are created
+that will deal with the HAS_DISPLAY check.
 
-This workaround is applicable only for tgl,rkl and dg1.
+There are more changes needed, but I'm sending this early for feedback
+and CI.
 
-Bspec: 52890, 53273, 53508.
+Lucas De Marchi (3):
+  drm/i915: stop registering if drm_dev_register() fails
+  drm/i915: group display-related register calls
+  drm/i915/display: move register functions to display/
 
-Signed-off-by: Swathi Dhanavanthri <swathi.dhanavanthri@intel.com>
-Reviewed-by: Clint Taylor <Clinton.A.Taylor@intel.com>
-Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
----
- drivers/gpu/drm/i915/gt/intel_workarounds.c | 12 +++++-------
- 1 file changed, 5 insertions(+), 7 deletions(-)
+ drivers/gpu/drm/i915/display/intel_display.c | 53 ++++++++++++++++++++
+ drivers/gpu/drm/i915/display/intel_display.h |  3 ++
+ drivers/gpu/drm/i915/i915_drv.c              | 52 ++++---------------
+ 3 files changed, 65 insertions(+), 43 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-index a82554baa6ac..7c6b21ced56f 100644
---- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
-+++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-@@ -1778,6 +1778,11 @@ rcs_engine_wa_init(struct intel_engine_cs *engine, struct i915_wa_list *wal)
- 		wa_masked_en(wal,
- 			     GEN9_CS_DEBUG_MODE1,
- 			     FF_DOP_CLOCK_GATE_DISABLE);
-+
-+		/* Wa_1406941453:tgl,rkl,dg1 */
-+		wa_masked_en(wal,
-+			     GEN10_SAMPLER_MODE,
-+			     ENABLE_SMALLPL);
- 	}
- 
- 	if (IS_DG1_REVID(i915, DG1_REVID_A0, DG1_REVID_A0) ||
-@@ -1808,13 +1813,6 @@ rcs_engine_wa_init(struct intel_engine_cs *engine, struct i915_wa_list *wal)
- 			     GEN8_RC_SEMA_IDLE_MSG_DISABLE);
- 	}
- 
--	if (IS_GEN(i915, 12)) {
--		/* Wa_1406941453:gen12 */
--		wa_masked_en(wal,
--			     GEN10_SAMPLER_MODE,
--			     ENABLE_SMALLPL);
--	}
--
- 	if (IS_GEN(i915, 11)) {
- 		/* This is not an Wa. Enable for better image quality */
- 		wa_masked_en(wal,
 -- 
 2.29.2
 
