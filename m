@@ -1,55 +1,46 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A531E2C2AAB
-	for <lists+intel-gfx@lfdr.de>; Tue, 24 Nov 2020 16:04:00 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 033D82C2B09
+	for <lists+intel-gfx@lfdr.de>; Tue, 24 Nov 2020 16:19:10 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DEDC06E41D;
-	Tue, 24 Nov 2020 15:03:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1C9846E3FE;
+	Tue, 24 Nov 2020 15:19:08 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com
- [209.85.128.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 428826E41D
- for <intel-gfx@lists.freedesktop.org>; Tue, 24 Nov 2020 15:03:57 +0000 (UTC)
-Received: by mail-wm1-f43.google.com with SMTP id h21so3204108wmb.2
- for <intel-gfx@lists.freedesktop.org>; Tue, 24 Nov 2020 07:03:57 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:subject:to:references:from:message-id:date
- :user-agent:mime-version:in-reply-to:content-language
- :content-transfer-encoding;
- bh=CAaUJ0P0Kks1VZG/gOwRO3Xjw22umLBNPDQChD/VqsU=;
- b=uOY6s0Rmh10byvR8EZ1dDGf1Mu/TJ1+CuA5RFpc+FrS8MQuntBtGDHrIxmkV+03UQb
- BVCEqWYjqjmFgZDhuWZ7O9FT3oy5zSy7Euk7fqgjS49/X8nb6vVqhHpAY8wYmKvjlxVf
- SBcb3qLh6mivVODGK50rYUHRFoi4m6k/y1ddtnT/bdadv59XiPJRTq379z0NIKm5khEK
- Qtdbf5tXA1To1HQqgRH0xcsmTtl15ZkA073r4ytvH8H/J8yFOgN3ppsiGbcEnnDsalhB
- wzIzuFxuNinafQjTv5ypvZrrZ/VaQe+ReHSavHyk0Oeq4J51dVqQTEfFyz24Y74u+ez5
- Dd+w==
-X-Gm-Message-State: AOAM530Q8PeSjaQx3666OBf6XligFKRXeavoSUEtauyxHQcRrDXXEDWB
- wnHpZdppAdPP+VZIcEdPWHZaCD1gojA=
-X-Google-Smtp-Source: ABdhPJw/zgFI+pWUopWUTUl4n69dNQqvjJfsPTar3oxSOQVIW1FTUjOPGyXEKtRm9FN+mguKrJeDaQ==
-X-Received: by 2002:a1c:f717:: with SMTP id v23mr4870654wmh.89.1606230235201; 
- Tue, 24 Nov 2020 07:03:55 -0800 (PST)
-Received: from [10.0.0.21] (smtp.glidos.net. [82.69.85.168])
- by smtp.gmail.com with ESMTPSA id 17sm8177687wma.3.2020.11.24.07.03.54
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Tue, 24 Nov 2020 07:03:54 -0800 (PST)
-To: Jani Nikula <jani.nikula@linux.intel.com>, intel-gfx@lists.freedesktop.org
-References: <ac472118-be43-dc8d-87a3-c4d17c9d9f26@glidos.net>
- <87sg98ox2i.fsf@intel.com> <d89b2287-51dc-87a5-4e38-022b0b8da648@glidos.net>
- <87v9dwm4fy.fsf@intel.com>
-From: Paul Gardiner <lists@glidos.net>
-Message-ID: <8705b7e4-9dba-1496-fdbb-15016be15fe6@glidos.net>
-Date: Tue, 24 Nov 2020 15:03:54 +0000
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Thunderbird/78.5.0
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DE6236E3FE;
+ Tue, 24 Nov 2020 15:19:06 +0000 (UTC)
+IronPort-SDR: 4chzIZoH44luZqC6hDnX6QSrze2PkGhJc5iUbsSYV8KVuQiAO5ZTsJ34DsfSfLTUMc2U0rjt7O
+ M/841Ea1RuGQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9815"; a="151220125"
+X-IronPort-AV: E=Sophos;i="5.78,366,1599548400"; d="scan'208";a="151220125"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Nov 2020 07:19:06 -0800
+IronPort-SDR: NclzXhh8HtagT0JyLUc41gxGA+ltwMnnUWIreBxvfJOEWzJk45EiD52nS1h6KnCiXye6abgwa6
+ eOKki05zqQog==
+X-IronPort-AV: E=Sophos;i="5.78,366,1599548400"; d="scan'208";a="370400361"
+Received: from genxfsim-desktop.iind.intel.com (HELO intel.com)
+ ([10.223.74.178])
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Nov 2020 07:19:03 -0800
+Date: Tue, 24 Nov 2020 20:35:17 +0530
+From: Anshuman Gupta <anshuman.gupta@intel.com>
+To: Ramalingam C <ramalingam.c@intel.com>
+Message-ID: <20201124150517.GH13853@intel.com>
+References: <20201111062051.11529-1-anshuman.gupta@intel.com>
+ <20201111062051.11529-8-anshuman.gupta@intel.com>
+ <20201124141457.GA25283@intel.com>
 MIME-Version: 1.0
-In-Reply-To: <87v9dwm4fy.fsf@intel.com>
-Content-Language: en-GB
-Subject: Re: [Intel-gfx] Does the intel driver support faking a connected
- monitor?
+Content-Disposition: inline
+In-Reply-To: <20201124141457.GA25283@intel.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
+Subject: Re: [Intel-gfx] [PATCH v5 07/17] drm/i915/hdcp: Enable HDCP 1.4
+ stream encryption
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,47 +53,133 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: jani.nikula@intel.com, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, seanpaul@chromium.org
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 23/11/2020 16:19, Jani Nikula wrote:
-> On Sat, 21 Nov 2020, Paul Gardiner <lists@glidos.net> wrote:
->> On 17/11/2020 14:52, Jani Nikula wrote:
->>> On Thu, 29 Oct 2020, Paul Gardiner <lists@glidos.net> wrote:
->>>> I use an open source DVR called MythTV. I've just swapped from using
->>>> nvidia graphics to intel graphics. Generally it's working great, but
->>>> I've run into one thing I used to do with the old system that I cannot
->>>> find out how to achieve with the new.
->>>>
->>>> MythTV doesn't currently entirely handle starting without a TV
->>>> connected. With nvidia graphics I could specify, within the X config,
->>>> the "ConnectMonitor" and "CustomEDID" options to fool MythTV into
->>>> thinking there was a TV. With intel graphics I can load EDID, but so far
->>>> I haven't discovered an equivalent of the "ConnectedMonitor" option.
->>>
->>> Sorry for the delay, I seem to have missed this.
->>>
->>> Please try a kernel command-line parameter to force enable the
->>> connector.
->>>
->>> video=TV-1:e
->>>
->>> Assuming the connector name is "TV-1"; replace with whatever you have.
->>
->>
->> Thanks for the reply. I gave that a try, in my case "video=HDMI1:e", but
->> saw no difference. That's KMS, right? Is there anything I might have
->> failed to install or enable that KMS relies on? Are there any logs I
->> should monitor?
+On 2020-11-24 at 19:44:59 +0530, Ramalingam C wrote:
+> On 2020-11-11 at 11:50:41 +0530, Anshuman Gupta wrote:
+> > Enable HDCP 1.4 DP MST stream encryption.
+> > 
+> > Enable stream encryption once encryption is enabled on
+> > the DP transport driving the link for each stream which
+> > has requested encryption.
+> > 
+> > Disable stream encryption for each stream that no longer
+> > requires encryption before disabling HDCP encryption on
+> > the link.
+> > 
+> > v2:
+> > - Added debug print for stream encryption.
+> > - Disable the hdcp on port after disabling last stream
+> >   encryption.
+> > v3:
+> > - Cosmetic change, removed the value less comment. [Uma]
+> > v4:
+> > - Split the Gen12 HDCP enablement patch. [Ram]
+> > - Add connector details in drm_err.
+> > 
+> > Cc: Ramalingam C <ramalingam.c@intel.com>
+> > Reviewed-by: Uma Shankar <uma.shankar@intel.com>
+> > Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
+> > ---
+> >  drivers/gpu/drm/i915/display/intel_hdcp.c | 45 ++++++++++++++++-------
+> >  1 file changed, 31 insertions(+), 14 deletions(-)
+> > 
+> > diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c b/drivers/gpu/drm/i915/display/intel_hdcp.c
+> > index 0322a83c151d..e12bd0ac9fb5 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_hdcp.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
+> > @@ -612,7 +612,12 @@ int intel_hdcp_auth_downstream(struct intel_connector *connector)
+> >  	return ret;
+> >  }
+> >  
+> > -/* Implements Part 1 of the HDCP authorization procedure */
+> > +/*
+> > + * Implements Part 1 of the HDCP authorization procedure.
+> > + * Authentication Part 1 steps for Multi-stream DisplayPort.
+> > + * Step 1. Auth Part 1 sequence on the driving MST Trasport Link.
+> > + * Step 2. Enable encryption for each stream that requires encryption.
+> > +1*/
+> IMO this function is generic for SST and MST. Why do we document only
+> for MST at the top of the function? We can remove them.
+Sure i will remove it.
+> >  static int intel_hdcp_auth(struct intel_connector *connector)
+> >  {
+> >  	struct intel_digital_port *dig_port = intel_attached_dig_port(connector);
+> > @@ -766,10 +771,17 @@ static int intel_hdcp_auth(struct intel_connector *connector)
+> >  		return -ETIMEDOUT;
+> >  	}
+> >  
+> > -	/*
+> > -	 * XXX: If we have MST-connected devices, we need to enable encryption
+> > -	 * on those as well.
+> > -	 */
+> > +	/* DP MST Auth Part 1 Step 2.a and Step 2.b */
+> > +	if (shim->stream_encryption) {
+> > +		ret = shim->stream_encryption(connector, true);
+> > +		if (ret) {
+> > +			drm_err(&dev_priv->drm, "[CONNECTOR:%d:%s] Failed to enable HDCP 1.4 stream enc\n",
+> All the existing error messgae has the %s:%d, why are we changing it
+> here? Could we retain the uniformity?
+Sure i will fix this in entire series.
+> > +				connector->base.base.id, connector->base.name);
+> > +			return ret;
+> > +		}
+> > +		drm_dbg_kms(&dev_priv->drm, "HDCP 1.4 transcoder: %s stream encrypted\n",
+> > +			    transcoder_name(hdcp->stream_transcoder));
+> > +	}
+> >  
+> >  	if (repeater_present)
+> >  		return intel_hdcp_auth_downstream(connector);
+> > @@ -791,18 +803,23 @@ static int _intel_hdcp_disable(struct intel_connector *connector)
+> >  	drm_dbg_kms(&dev_priv->drm, "[%s:%d] HDCP is being disabled...\n",
+> >  		    connector->base.name, connector->base.base.id);
+> >  
+> > +	if (hdcp->shim->stream_encryption) {
+> > +		ret = hdcp->shim->stream_encryption(connector, false);
+> > +		if (ret) {
+> > +			drm_err(&dev_priv->drm, "[CONNECTOR:%d:%s] Failed to disable HDCP 1.4 stream enc\n",
+> same here. remove CONNECTOR ?
+> > +				connector->base.base.id, connector->base.name);
+> > +			return ret;
+> > +		}
+> > +		drm_dbg_kms(&dev_priv->drm, "HDCP 1.4 transcoder: %s stream encryption disabled\n",
+> > +			    transcoder_name(hdcp->stream_transcoder));
+> > +	}
+> > +
+> >  	/*
+> > -	 * If there are other connectors on this port using HDCP, don't disable
+> > -	 * it. Instead, toggle the HDCP signalling off on that particular
+> > -	 * connector/pipe and exit.
+> > +	 * If there are other connectors on this port using HDCP, don't disable it.
+> > +	 * Repeat steps 1-2 for each stream that no longer requires encryption.
+> What is this steps 1-2 here!? Here you are not disabling if other
+> streams are encrpted. May be you want to put something like "Untill all
+> steams of MST stopped encrypting, dont disable the port encryption"
+Sure i will fix this.
+Thanks,
+Anshuman.
 > 
-> I think it should probably be HDMI-1 with the hyphen; is that a typo
-> above or in the command line you used?
-
-Thanks for the continued help. I tried "video=HDMI1:e" because my Xorg 
-log listed outputs HDMI1, HDMI2, DP1 and VIRTUAL1. I've now tried 
-"video=HDMI-1:e", but still no luck.
+> -Ram
+> >  	 */
+> > -	if (dig_port->num_hdcp_streams > 0) {
+> > -		ret = hdcp->shim->toggle_signalling(dig_port,
+> > -						    cpu_transcoder, false);
+> > -		if (ret)
+> > -			DRM_ERROR("Failed to disable HDCP signalling\n");
+> > +	if (dig_port->num_hdcp_streams > 0)
+> >  		return ret;
+> > -	}
+> >  
+> >  	hdcp->hdcp_encrypted = false;
+> >  	intel_de_write(dev_priv, HDCP_CONF(dev_priv, cpu_transcoder, port), 0);
+> > -- 
+> > 2.26.2
+> > 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
