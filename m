@@ -1,46 +1,47 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A26302C2C8D
-	for <lists+intel-gfx@lfdr.de>; Tue, 24 Nov 2020 17:16:27 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4E5D12C2C9C
+	for <lists+intel-gfx@lfdr.de>; Tue, 24 Nov 2020 17:19:24 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AB5F16E49A;
-	Tue, 24 Nov 2020 16:16:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 97B5D6E4AA;
+	Tue, 24 Nov 2020 16:19:22 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7BE736E49A;
- Tue, 24 Nov 2020 16:16:24 +0000 (UTC)
-IronPort-SDR: xXNLSHZD829jgWU5eWbY47CBtgXlj5AoXokTMmpewngzk0ho57SOrphr10kAa19GSm9HTNvFfI
- 23BKHYiu85Bg==
-X-IronPort-AV: E=McAfee;i="6000,8403,9815"; a="256680737"
-X-IronPort-AV: E=Sophos;i="5.78,366,1599548400"; d="scan'208";a="256680737"
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7691E6E4AA
+ for <intel-gfx@lists.freedesktop.org>; Tue, 24 Nov 2020 16:19:20 +0000 (UTC)
+IronPort-SDR: TdT9MEpSqs7SqN0WCjgAgryUYzQzoSGueC57Jwk72lUqthrbgnJRe1N2gltwitYSdXMX85KE6E
+ /b3s5lc94/Lw==
+X-IronPort-AV: E=McAfee;i="6000,8403,9815"; a="151813099"
+X-IronPort-AV: E=Sophos;i="5.78,366,1599548400"; d="scan'208";a="151813099"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Nov 2020 08:16:24 -0800
-IronPort-SDR: s9PkmxjB3nXcCpHQIASn3lfjrmtiW8rKwi8ZWlNpup2dGVK051cggNC+K1tYpjn4RqayZVk8df
- rFNuTZAWPUWg==
-X-IronPort-AV: E=Sophos;i="5.78,366,1599548400"; d="scan'208";a="432652284"
-Received: from ramaling-i9x.iind.intel.com (HELO intel.com) ([10.99.66.154])
- by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Nov 2020 08:16:21 -0800
-Date: Tue, 24 Nov 2020 21:47:19 +0530
-From: Ramalingam C <ramalingam.c@intel.com>
-To: Anshuman Gupta <anshuman.gupta@intel.com>
-Message-ID: <20201124161719.GA25919@intel.com>
-References: <20201111062051.11529-1-anshuman.gupta@intel.com>
- <20201111062051.11529-9-anshuman.gupta@intel.com>
- <20201124142017.GB25283@intel.com>
- <20201124150243.GG13853@intel.com>
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Nov 2020 08:19:19 -0800
+IronPort-SDR: Hm0kOORZ3Jv9WLXuqjsUnpUHCQZEJTnimFYEzTDiHO6Q/gpyPyWhNOXZR5sQ8Xu23vWCj5b2qw
+ u7GtloBqIRLw==
+X-IronPort-AV: E=Sophos;i="5.78,366,1599548400"; d="scan'208";a="546888468"
+Received: from ipilchin-mobl1.ger.corp.intel.com (HELO [10.254.159.60])
+ ([10.254.159.60])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Nov 2020 08:19:18 -0800
+To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
+References: <20201124114219.29020-1-chris@chris-wilson.co.uk>
+ <20201124114219.29020-5-chris@chris-wilson.co.uk>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+Message-ID: <f1089ea3-bfa6-1290-f0bd-5214a36e257a@linux.intel.com>
+Date: Tue, 24 Nov 2020 16:19:15 +0000
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20201124150243.GG13853@intel.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH v5 08/17] drm/i915/hdcp: Enable Gen12 HDCP
- 1.4 DP MST support
+In-Reply-To: <20201124114219.29020-5-chris@chris-wilson.co.uk>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH 05/16] drm/i915/gt: Move the breadcrumb to
+ the signaler if completed upon cancel
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,60 +54,91 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jani.nikula@intel.com, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, seanpaul@chromium.org
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 2020-11-24 at 20:32:43 +0530, Anshuman Gupta wrote:
-> On 2020-11-24 at 19:50:17 +0530, Ramalingam C wrote:
-> > On 2020-11-11 at 11:50:42 +0530, Anshuman Gupta wrote:
-> > > Enable HDCP 1.4 over DP MST for Gen12.
-> > > 
-> > > Cc: Ramalingam C <ramalingam.c@intel.com>
-> > > Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
-> > > ---
-> > >  drivers/gpu/drm/i915/display/intel_dp_mst.c | 10 +++-------
-> > >  1 file changed, 3 insertions(+), 7 deletions(-)
-> > > 
-> > > diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-> > > index 16865b200062..f00e12fc83e8 100644
-> > > --- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
-> > > +++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-> > > @@ -826,13 +826,9 @@ static struct drm_connector *intel_dp_add_mst_connector(struct drm_dp_mst_topolo
-> > >  	intel_attach_force_audio_property(connector);
-> > >  	intel_attach_broadcast_rgb_property(connector);
-> > >  
-> > > -
-> > > -	/* TODO: Figure out how to make HDCP work on GEN12+ */
-> > > -	if (INTEL_GEN(dev_priv) < 12) {
-> > Just a thought, shouldn't we enable for the platforms that we have
-> > tested HDCP? like <= 12. 
-> > 
-> > We could keep expanding the list supported.
-> thanks for comment, i will keep this as if (INTEL_GEN(dev_priv) < 12)
-I guess you meant <= 12.
 
-Ram.
-> Thanks,
-> Anshuman
-> > 
-> > Ram.
-> > > -		ret = intel_dp_init_hdcp(dig_port, intel_connector);
-> > > -		if (ret)
-> > > -			DRM_DEBUG_KMS("HDCP init failed, skipping.\n");
-> > > -	}
-> > > +	ret = intel_dp_init_hdcp(dig_port, intel_connector);
-> > > +	if (ret)
-> > > +		drm_dbg_kms(&dev_priv->drm, "HDCP init failed, skipping.\n");
-> > >  
-> > >  	/*
-> > >  	 * Reuse the prop from the SST connector because we're
-> > > -- 
-> > > 2.26.2
-> > > 
+On 24/11/2020 11:42, Chris Wilson wrote:
+> If while we are cancelling the breadcrumb signaling, we find that the
+> request is already completed, move it to the irq signaler and let it be
+> signaled.
+> 
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> ---
+>   drivers/gpu/drm/i915/gt/intel_breadcrumbs.c | 20 ++++++++++++++++----
+>   1 file changed, 16 insertions(+), 4 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c b/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c
+> index a24cc1ff08a0..f5f6feed0fa6 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c
+> @@ -363,6 +363,14 @@ void intel_breadcrumbs_free(struct intel_breadcrumbs *b)
+>   	kfree(b);
+>   }
+>   
+> +static void irq_signal_request(struct i915_request *rq,
+> +			       struct intel_breadcrumbs *b)
+> +{
+> +	if (__signal_request(rq) &&
+> +	    llist_add(&rq->signal_node, &b->signaled_requests))
+> +		irq_work_queue(&b->irq_work);
+> +}
+> +
+>   static void insert_breadcrumb(struct i915_request *rq)
+>   {
+>   	struct intel_breadcrumbs *b = READ_ONCE(rq->engine)->breadcrumbs;
+> @@ -380,9 +388,7 @@ static void insert_breadcrumb(struct i915_request *rq)
+>   	 * its signal completion.
+>   	 */
+>   	if (__request_completed(rq)) {
+> -		if (__signal_request(rq) &&
+> -		    llist_add(&rq->signal_node, &b->signaled_requests))
+> -			irq_work_queue(&b->irq_work);
+> +		irq_signal_request(rq, b);
+>   		return;
+>   	}
+>   
+> @@ -453,6 +459,7 @@ bool i915_request_enable_breadcrumb(struct i915_request *rq)
+>   
+>   void i915_request_cancel_breadcrumb(struct i915_request *rq)
+>   {
+> +	struct intel_breadcrumbs *b = READ_ONCE(rq->engine)->breadcrumbs;
+>   	struct intel_context *ce = rq->context;
+>   	bool release;
+>   
+> @@ -461,11 +468,16 @@ void i915_request_cancel_breadcrumb(struct i915_request *rq)
+>   
+>   	spin_lock(&ce->signal_lock);
+>   	list_del_rcu(&rq->signal_link);
+> -	release = remove_signaling_context(rq->engine->breadcrumbs, ce);
+> +	release = remove_signaling_context(b, ce);
+>   	spin_unlock(&ce->signal_lock);
+>   	if (release)
+>   		intel_context_put(ce);
+>   
+> +	if (__request_completed(rq)) {
+> +		irq_signal_request(rq, b);
+> +		return;
+
+This is a bit unintuitive - irq_signal_request does things conditionally 
+based on the signaled flag, but here the return value is ignored and 
+reference kept regardless. Which makes me wonder how can the combo of 
+the two always dtrt. Because __request_completed is seqno based, which 
+can happen before setting the signaled flag. Like if retire races with 
+breadcrumbs. Am I missing something?
+
+Regards,
+
+Tvrtko
+
+> +	}
+> +
+>   	i915_request_put(rq);
+>   }
+>   
+> 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
