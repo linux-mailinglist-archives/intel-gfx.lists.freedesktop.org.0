@@ -1,48 +1,82 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6C0B32C2943
-	for <lists+intel-gfx@lfdr.de>; Tue, 24 Nov 2020 15:20:49 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 126ED2C29B8
+	for <lists+intel-gfx@lfdr.de>; Tue, 24 Nov 2020 15:34:20 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CD0AF6E44D;
-	Tue, 24 Nov 2020 14:20:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D84766E442;
+	Tue, 24 Nov 2020 14:34:16 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E86596E454
- for <intel-gfx@lists.freedesktop.org>; Tue, 24 Nov 2020 14:20:45 +0000 (UTC)
-IronPort-SDR: Zm/YU2C2VDLpZMI2gPqSs+TVjb8V8YKkO6GwemLaLVsquGr4KM1W7KezYEHphTlBNVhwm1StDQ
- 0DRMy3l9SGjA==
-X-IronPort-AV: E=McAfee;i="6000,8403,9814"; a="158993153"
-X-IronPort-AV: E=Sophos;i="5.78,366,1599548400"; d="scan'208";a="158993153"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Nov 2020 06:20:45 -0800
-IronPort-SDR: ismrAn7lKhmHk/XZ5TBN7TbjJAo2Kn9jPdjEwQiYKeZEHlFowv0KdtLxJAQMtJuDg3UCCyISYy
- Pn26yzyqau3A==
-X-IronPort-AV: E=Sophos;i="5.78,366,1599548400"; d="scan'208";a="370440637"
-Received: from dohanlon-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.252.20.97])
- by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Nov 2020 06:20:43 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: Lucas De Marchi <lucas.demarchi@intel.com>,
- Aditya Swarup <aditya.swarup@intel.com>
-In-Reply-To: <20201124131401.c66nhive3nz3n2rq@ldmartin-desk1>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20201117185029.22078-1-aditya.swarup@intel.com>
- <20201117185029.22078-3-aditya.swarup@intel.com>
- <20201117193114.ujqf4mgu3z2pzkab@ldmartin-desk1> <87mtzfowfj.fsf@intel.com>
- <572c4f61-bd17-0d5c-57e0-73f5896ab6e3@intel.com>
- <20201124131401.c66nhive3nz3n2rq@ldmartin-desk1>
-Date: Tue, 24 Nov 2020 16:20:40 +0200
-Message-ID: <87blfmn8ef.fsf@intel.com>
+Received: from mail-wr1-x442.google.com (mail-wr1-x442.google.com
+ [IPv6:2a00:1450:4864:20::442])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BA78C6E45C
+ for <intel-gfx@lists.freedesktop.org>; Tue, 24 Nov 2020 14:34:15 +0000 (UTC)
+Received: by mail-wr1-x442.google.com with SMTP id g14so7345701wrm.13
+ for <intel-gfx@lists.freedesktop.org>; Tue, 24 Nov 2020 06:34:15 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
+ h=date:from:to:cc:subject:message-id:mail-followup-to:references
+ :mime-version:content-disposition:in-reply-to;
+ bh=YQpCas1RNfDZEcGYI04yEm6odPOACipDcEuTBaoIULk=;
+ b=UhV7hB9LJySyibtoHRqaxMir8P7FnhXAU96E4aHd3ofIMEZCRtLh+zeMX/RZH2wp/d
+ ASfb7zsWToxZhdhECdglvYGnSj/gHkK+a128+ByWw8EqQuvRvEHVa/6FGH0Q/PMdeY8p
+ cOVbuuXQq/r/33GWKbTOqEjjjzE0whLpLoOC4=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id
+ :mail-followup-to:references:mime-version:content-disposition
+ :in-reply-to;
+ bh=YQpCas1RNfDZEcGYI04yEm6odPOACipDcEuTBaoIULk=;
+ b=mYNw92TKI+SiMTCmsK0WIGT8xG7tkK1Fjv+FZW8SodD+qBRgRjKWRrohyg1CR2vl9l
+ bejRdkfIn7bqikvWLpMTJjZ4V4+S56XnEXxioLw66N9Oime0gr0+GLw4M12qWtM73Ob1
+ 3ZX38cRadOvJYCWAg94benyFmNzDcxdyvJL+PBg+N09qgKiMC02atKI87JJ/0DP8UtkZ
+ zvXgpV1nTcsfGGHtva313pcYHl2Yf6Cjs44zLGKiY14yIyQselrtr+XjzeW7OGc9n6pR
+ koVlcIz5Do/HHF4yrUvdT3JOakVmE3/CN7fgGdg2frQ2xvLBx8PDTCjoaYr4HV4Jywp9
+ a11Q==
+X-Gm-Message-State: AOAM532rNmLKiSpiTseFMCyXmK3q+C3pXsqGaNAHoQZwcwWuPZmwaQQp
+ n/YK2N0Zwn/Li8fgPfUeiL6RGA==
+X-Google-Smtp-Source: ABdhPJz6iTrOgvt95IAsr45xzCdl3M2C2ca0X4EFZPlX+gugzV3LnRN6/oGeySsazf01z6hbldI7qw==
+X-Received: by 2002:a5d:50d1:: with SMTP id f17mr5715898wrt.264.1606228454425; 
+ Tue, 24 Nov 2020 06:34:14 -0800 (PST)
+Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
+ by smtp.gmail.com with ESMTPSA id m18sm27135410wru.37.2020.11.24.06.34.12
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 24 Nov 2020 06:34:13 -0800 (PST)
+Date: Tue, 24 Nov 2020 15:34:11 +0100
+From: Daniel Vetter <daniel@ffwll.ch>
+To: Jason Gunthorpe <jgg@ziepe.ca>
+Message-ID: <20201124143411.GN401619@phenom.ffwll.local>
+Mail-Followup-To: Jason Gunthorpe <jgg@ziepe.ca>,
+ DRI Development <dri-devel@lists.freedesktop.org>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ linux-mm@kvack.org, linux-xfs@vger.kernel.org,
+ linux-fsdevel@vger.kernel.org, LKML <linux-kernel@vger.kernel.org>,
+ Vlastimil Babka <vbabka@suse.cz>,
+ "Paul E . McKenney" <paulmck@kernel.org>,
+ Christoph Lameter <cl@linux.com>, Pekka Enberg <penberg@kernel.org>,
+ David Rientjes <rientjes@google.com>,
+ Joonsoo Kim <iamjoonsoo.kim@lge.com>,
+ Andrew Morton <akpm@linux-foundation.org>,
+ Peter Zijlstra <peterz@infradead.org>,
+ Ingo Molnar <mingo@kernel.org>,
+ Mathieu Desnoyers <mathieu.desnoyers@efficios.com>,
+ Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
+ Michel Lespinasse <walken@google.com>,
+ Waiman Long <longman@redhat.com>,
+ Thomas Gleixner <tglx@linutronix.de>,
+ Randy Dunlap <rdunlap@infradead.org>,
+ Dave Chinner <david@fromorbit.com>, Qian Cai <cai@lca.pw>,
+ "Matthew Wilcox (Oracle)" <willy@infradead.org>,
+ Daniel Vetter <daniel.vetter@intel.com>
+References: <20201120095445.1195585-1-daniel.vetter@ffwll.ch>
+ <20201120095445.1195585-3-daniel.vetter@ffwll.ch>
+ <20201120180719.GO244516@ziepe.ca>
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH 02/21] drm/i915/tgl: Fix macros for TGL SOC
- based WA
+Content-Disposition: inline
+In-Reply-To: <20201120180719.GO244516@ziepe.ca>
+X-Operating-System: Linux phenom 5.7.0-1-amd64 
+Subject: Re: [Intel-gfx] [PATCH 2/3] mm: Extract might_alloc() debug check
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,126 +89,123 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Peter Zijlstra <peterz@infradead.org>,
+ Daniel Vetter <daniel.vetter@ffwll.ch>,
+ Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
+ Dave Chinner <david@fromorbit.com>,
+ DRI Development <dri-devel@lists.freedesktop.org>, linux-mm@kvack.org,
+ Daniel Vetter <daniel.vetter@intel.com>, Christoph Lameter <cl@linux.com>,
+ Michel Lespinasse <walken@google.com>, Ingo Molnar <mingo@kernel.org>,
+ linux-xfs@vger.kernel.org, "Matthew Wilcox \(Oracle\)" <willy@infradead.org>,
+ David Rientjes <rientjes@google.com>, Waiman Long <longman@redhat.com>,
+ "Paul E . McKenney" <paulmck@kernel.org>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ Mathieu Desnoyers <mathieu.desnoyers@efficios.com>,
+ Thomas Gleixner <tglx@linutronix.de>, Joonsoo Kim <iamjoonsoo.kim@lge.com>,
+ Vlastimil Babka <vbabka@suse.cz>, Randy Dunlap <rdunlap@infradead.org>,
+ LKML <linux-kernel@vger.kernel.org>, Pekka Enberg <penberg@kernel.org>,
+ linux-fsdevel@vger.kernel.org, Qian Cai <cai@lca.pw>,
+ Andrew Morton <akpm@linux-foundation.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 24 Nov 2020, Lucas De Marchi <lucas.demarchi@intel.com> wrote:
-> On Mon, Nov 23, 2020 at 05:32:22PM -0800, Aditya Swarup wrote:
->>On 11/18/20 1:18 AM, Jani Nikula wrote:
->>> On Tue, 17 Nov 2020, Lucas De Marchi <lucas.demarchi@intel.com> wrote:
->>>> On Tue, Nov 17, 2020 at 10:50:10AM -0800, Aditya Swarup wrote:
->>>>> @@ -1579,9 +1579,9 @@ static inline const struct i915_rev_steppings *
->>>>> tgl_revids_get(struct drm_i915_private *dev_priv)
->>>>> {
->>>>> 	if (IS_TGL_U(dev_priv) || IS_TGL_Y(dev_priv))
->>>>> -		return tgl_uy_revids;
->>>>> +		return tgl_uy_revids + INTEL_REVID(dev_priv);
->>>>
->>>> oohh, no. You have to at least check you are not accessing out of
->>>> bounds. New HW running on old kernel should not access create invalid
->>>> accesses like this.
->>>
->>> And this is just one reason why exposing arrays directly as an interface
->>> to the rest of the driver is a bad idea. Basically I look at *all*
->>> externs in the driver with suspicion, and they're all exceptions that
->>> should not be repeated. The revid arrays are a direct invitation to keep
->>> adding more and more extern arrays. And more ways to go out of bounds.
->>
->>We definitely need an array table for the SOC -> Display, GT stepping mapping.
->
-> the mapping could be very well in the define iff you don't have
-> different mappings per sku as is the case with TGL. Example:
->
-> #define ADLS_REVID_A0		0
-> #define ADLS_REVID_A1		5
->
-> #define ADLS_DISP_REVID_A0	0
-> #define ADLS_DISP_REVID_B0	5
->
-> The actual value is actually the *SoC* revid, regardless the name of the
-> macro. Since we already have to use a different macro -
-> IS_DISP_REVID() - I don't think this is much worse and would allow us to
-> get rid of the table *for ADL-S*, at the expense of having to pass as
-> argument the ADLS_DISP_REVID_*.  However this doesn't apply to TGL as TGL
-> has a different mapping per sku.
->
->
->>SOC steppings were usually the same as display steppings/GT steppings until TGL and therefore
->>didn't require special mapping cases. But from TGL onwards, we have different combinations of
->>Disp and GT steppings per SOC stepping. Alderlake-S makes this direct mapping even more difficult
->>without the array requiring more macros to deal with SOC -> DISP/GT stepping differences.
->>
->>Will fix the array bound checks but the possibility of SOC revision id from drm struct going
->>out of bounds is minimal. Can only happen if we don't have support for latest SOC -> Disp/GT table
->
-> this is very common. It's just a matter of trying to run a slightly old
-> kernel in a slightly newer rev of the hardware.
+On Fri, Nov 20, 2020 at 02:07:19PM -0400, Jason Gunthorpe wrote:
+> On Fri, Nov 20, 2020 at 10:54:43AM +0100, Daniel Vetter wrote:
+> > diff --git a/include/linux/sched/mm.h b/include/linux/sched/mm.h
+> > index d5ece7a9a403..f94405d43fd1 100644
+> > --- a/include/linux/sched/mm.h
+> > +++ b/include/linux/sched/mm.h
+> > @@ -180,6 +180,22 @@ static inline void fs_reclaim_acquire(gfp_t gfp_mask) { }
+> >  static inline void fs_reclaim_release(gfp_t gfp_mask) { }
+> >  #endif
+> >  
+> > +/**
+> > + * might_alloc - Marks possible allocation sites
+> > + * @gfp_mask: gfp_t flags that would be use to allocate
+> > + *
+> > + * Similar to might_sleep() and other annotations this can be used in functions
+> > + * that might allocate, but often dont. Compiles to nothing without
+> > + * CONFIG_LOCKDEP. Includes a conditional might_sleep() if @gfp allows blocking.
+> > + */
+> > +static inline void might_alloc(gfp_t gfp_mask)
+> > +{
+> > +	fs_reclaim_acquire(gfp_mask);
+> > +	fs_reclaim_release(gfp_mask);
+> > +
+> > +	might_sleep_if(gfpflags_allow_blocking(gfp_mask));
+> > +}
+> 
+> Reviewed-by: Jason Gunthorpe <jgg@nvidia.com>
+> 
+> Oh, I just had a another thread with Matt about xarray, this would be
+> perfect to add before xas_nomem():
 
-Indeed. All kernels released with the arrays are simply bust for any new
-hardware revisions. They'll need a minimal Cc: stable fix.
+Yeah I think there's plenty of places where this will be useful. Want to
+slap a sob onto this diff so I can include it for the next round, or will
+you or Matt send this out when my might_alloc has landed?
+-Daniel
 
-Here's something I drafted [1] to fix the situation more
-generally. There are still some issues to overcome, though they exist
-already in the current code.
-
-This could be followed up with converting *all* platforms to the scheme,
-making it universal, regardless of whether the revids in the hardware
-are consecutive or not.
-
-BR,
-Jani.
-
-
-[1] https://cgit.freedesktop.org/~jani/drm/log/?h=revid-stepping-scheme
-
-
-
-
->
->>for TGL from Bspec and if we are picking up wrong revision id from drm struct that means the platform
->>information obtained itself is wrong which will be a general platform problem unrelated to Gfx driver.
->
-> Nothing else should really be a problem. We don't really use the revid
-> much, mostly for WAs. And if other parts of the kernel are trying to use
-> the SoC revid, then they are reading that info themselves, not using
-> something we read.
->
-> We are simply reading the revid from hardware and using that value
-> without checking and that needs to change.
->
->
->>
->>>
->>> I'd rather we seek for ways to either nuke the revid arrays altogether,
->>> or encapsulate them within a .c file with static scope.
->>
->>I don't think we should nuke the revid arrays but I agree with finding a more appropriate place to
->>parse the gt/display stepping info. This should be an exercise for a later patch that takes
->>care of kbl,tgl and adl-s mappings.
->>
->>>
->>> And for that .c file... the arrays are now in gt/intel_workarounds.c
->>> which is a really weird place for stuff that's used for generic stepping
->>> info, and particularly for *display* stepping info.
->>
->>I agree and we can change the approach with a different patch later.
->>
->>>
->>> BR,
->>> Jani.
->>>
->>>
->>
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+> 
+> diff --git a/lib/idr.c b/lib/idr.c
+> index f4ab4f4aa3c7f5..722d9ddff53221 100644
+> --- a/lib/idr.c
+> +++ b/lib/idr.c
+> @@ -391,6 +391,8 @@ int ida_alloc_range(struct ida *ida, unsigned int min, unsigned int max,
+>  	if ((int)max < 0)
+>  		max = INT_MAX;
+>  
+> +	might_alloc(gfp);
+> +
+>  retry:
+>  	xas_lock_irqsave(&xas, flags);
+>  next:
+> diff --git a/lib/xarray.c b/lib/xarray.c
+> index 5fa51614802ada..dd260ee7dcae9a 100644
+> --- a/lib/xarray.c
+> +++ b/lib/xarray.c
+> @@ -1534,6 +1534,8 @@ void *__xa_store(struct xarray *xa, unsigned long index, void *entry, gfp_t gfp)
+>  	XA_STATE(xas, xa, index);
+>  	void *curr;
+>  
+> +	might_alloc(gfp);
+> +
+>  	if (WARN_ON_ONCE(xa_is_advanced(entry)))
+>  		return XA_ERROR(-EINVAL);
+>  	if (xa_track_free(xa) && !entry)
+> @@ -1600,6 +1602,8 @@ void *__xa_cmpxchg(struct xarray *xa, unsigned long index,
+>  	XA_STATE(xas, xa, index);
+>  	void *curr;
+>  
+> +	might_alloc(gfp);
+> +
+>  	if (WARN_ON_ONCE(xa_is_advanced(entry)))
+>  		return XA_ERROR(-EINVAL);
+>  
+> @@ -1637,6 +1641,8 @@ int __xa_insert(struct xarray *xa, unsigned long index, void *entry, gfp_t gfp)
+>  	XA_STATE(xas, xa, index);
+>  	void *curr;
+>  
+> +	might_alloc(gfp);
+> +
+>  	if (WARN_ON_ONCE(xa_is_advanced(entry)))
+>  		return -EINVAL;
+>  	if (!entry)
+> @@ -1806,6 +1812,8 @@ int __xa_alloc(struct xarray *xa, u32 *id, void *entry,
+>  {
+>  	XA_STATE(xas, xa, 0);
+>  
+> +	might_alloc(gfp);
+> +
+>  	if (WARN_ON_ONCE(xa_is_advanced(entry)))
+>  		return -EINVAL;
+>  	if (WARN_ON_ONCE(!xa_track_free(xa)))
 
 -- 
-Jani Nikula, Intel Open Source Graphics Center
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
