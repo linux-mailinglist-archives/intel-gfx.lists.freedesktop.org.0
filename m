@@ -1,46 +1,46 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 033D82C2B09
-	for <lists+intel-gfx@lfdr.de>; Tue, 24 Nov 2020 16:19:10 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 77F212C2AF9
+	for <lists+intel-gfx@lfdr.de>; Tue, 24 Nov 2020 16:12:46 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1C9846E3FE;
-	Tue, 24 Nov 2020 15:19:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3370A6E424;
+	Tue, 24 Nov 2020 15:12:44 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DE6236E3FE;
- Tue, 24 Nov 2020 15:19:06 +0000 (UTC)
-IronPort-SDR: 4chzIZoH44luZqC6hDnX6QSrze2PkGhJc5iUbsSYV8KVuQiAO5ZTsJ34DsfSfLTUMc2U0rjt7O
- M/841Ea1RuGQ==
-X-IronPort-AV: E=McAfee;i="6000,8403,9815"; a="151220125"
-X-IronPort-AV: E=Sophos;i="5.78,366,1599548400"; d="scan'208";a="151220125"
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F015A6E424
+ for <intel-gfx@lists.freedesktop.org>; Tue, 24 Nov 2020 15:12:42 +0000 (UTC)
+IronPort-SDR: NIBAmmRBQxxXhjN8wWX/sRgjUsQmFEb8IVHh+RbhJSAUleXBTh3FqnaSrx2Id18a/cwlildkf9
+ kCLA3RRmLdVw==
+X-IronPort-AV: E=McAfee;i="6000,8403,9815"; a="159002376"
+X-IronPort-AV: E=Sophos;i="5.78,366,1599548400"; d="scan'208";a="159002376"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Nov 2020 07:19:06 -0800
-IronPort-SDR: NclzXhh8HtagT0JyLUc41gxGA+ltwMnnUWIreBxvfJOEWzJk45EiD52nS1h6KnCiXye6abgwa6
- eOKki05zqQog==
-X-IronPort-AV: E=Sophos;i="5.78,366,1599548400"; d="scan'208";a="370400361"
-Received: from genxfsim-desktop.iind.intel.com (HELO intel.com)
- ([10.223.74.178])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Nov 2020 07:19:03 -0800
-Date: Tue, 24 Nov 2020 20:35:17 +0530
-From: Anshuman Gupta <anshuman.gupta@intel.com>
-To: Ramalingam C <ramalingam.c@intel.com>
-Message-ID: <20201124150517.GH13853@intel.com>
-References: <20201111062051.11529-1-anshuman.gupta@intel.com>
- <20201111062051.11529-8-anshuman.gupta@intel.com>
- <20201124141457.GA25283@intel.com>
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Nov 2020 07:12:42 -0800
+IronPort-SDR: WnatqVi4rapNsIuvQiylY9rtW8g3+dHMK2ZqAv3twUva6/ZY8jn3UTyCsUr2liHuUQKxFbveQ/
+ uexuQfYxyLBw==
+X-IronPort-AV: E=Sophos;i="5.78,366,1599548400"; d="scan'208";a="536502963"
+Received: from ideak-desk.fi.intel.com ([10.237.68.141])
+ by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Nov 2020 07:12:40 -0800
+Date: Tue, 24 Nov 2020 17:12:37 +0200
+From: Imre Deak <imre.deak@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+ Lakshminarayana Vudum <lakshminarayana.vudum@intel.com>
+Message-ID: <20201124151237.GE1750458@ideak-desk.fi.intel.com>
+References: <20201123182631.1740781-1-imre.deak@intel.com>
+ <160616667129.16919.10811690376260413336@emeril.freedesktop.org>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20201124141457.GA25283@intel.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
-Subject: Re: [Intel-gfx] [PATCH v5 07/17] drm/i915/hdcp: Enable HDCP 1.4
- stream encryption
+In-Reply-To: <160616667129.16919.10811690376260413336@emeril.freedesktop.org>
+Subject: Re: [Intel-gfx] 
+ =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3Igc2Vy?=
+ =?utf-8?q?ies_starting_with_=5B1/2=5D_drm/framebuffer=3A_Format_modifier_?=
+ =?utf-8?q?for_Intel_Gen_12_render_compression_with_Clear_Color?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,133 +53,160 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jani.nikula@intel.com, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, seanpaul@chromium.org
+Reply-To: imre.deak@intel.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 2020-11-24 at 19:44:59 +0530, Ramalingam C wrote:
-> On 2020-11-11 at 11:50:41 +0530, Anshuman Gupta wrote:
-> > Enable HDCP 1.4 DP MST stream encryption.
-> > 
-> > Enable stream encryption once encryption is enabled on
-> > the DP transport driving the link for each stream which
-> > has requested encryption.
-> > 
-> > Disable stream encryption for each stream that no longer
-> > requires encryption before disabling HDCP encryption on
-> > the link.
-> > 
-> > v2:
-> > - Added debug print for stream encryption.
-> > - Disable the hdcp on port after disabling last stream
-> >   encryption.
-> > v3:
-> > - Cosmetic change, removed the value less comment. [Uma]
-> > v4:
-> > - Split the Gen12 HDCP enablement patch. [Ram]
-> > - Add connector details in drm_err.
-> > 
-> > Cc: Ramalingam C <ramalingam.c@intel.com>
-> > Reviewed-by: Uma Shankar <uma.shankar@intel.com>
-> > Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
-> > ---
-> >  drivers/gpu/drm/i915/display/intel_hdcp.c | 45 ++++++++++++++++-------
-> >  1 file changed, 31 insertions(+), 14 deletions(-)
-> > 
-> > diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c b/drivers/gpu/drm/i915/display/intel_hdcp.c
-> > index 0322a83c151d..e12bd0ac9fb5 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_hdcp.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
-> > @@ -612,7 +612,12 @@ int intel_hdcp_auth_downstream(struct intel_connector *connector)
-> >  	return ret;
-> >  }
-> >  
-> > -/* Implements Part 1 of the HDCP authorization procedure */
-> > +/*
-> > + * Implements Part 1 of the HDCP authorization procedure.
-> > + * Authentication Part 1 steps for Multi-stream DisplayPort.
-> > + * Step 1. Auth Part 1 sequence on the driving MST Trasport Link.
-> > + * Step 2. Enable encryption for each stream that requires encryption.
-> > +1*/
-> IMO this function is generic for SST and MST. Why do we document only
-> for MST at the top of the function? We can remove them.
-Sure i will remove it.
-> >  static int intel_hdcp_auth(struct intel_connector *connector)
-> >  {
-> >  	struct intel_digital_port *dig_port = intel_attached_dig_port(connector);
-> > @@ -766,10 +771,17 @@ static int intel_hdcp_auth(struct intel_connector *connector)
-> >  		return -ETIMEDOUT;
-> >  	}
-> >  
-> > -	/*
-> > -	 * XXX: If we have MST-connected devices, we need to enable encryption
-> > -	 * on those as well.
-> > -	 */
-> > +	/* DP MST Auth Part 1 Step 2.a and Step 2.b */
-> > +	if (shim->stream_encryption) {
-> > +		ret = shim->stream_encryption(connector, true);
-> > +		if (ret) {
-> > +			drm_err(&dev_priv->drm, "[CONNECTOR:%d:%s] Failed to enable HDCP 1.4 stream enc\n",
-> All the existing error messgae has the %s:%d, why are we changing it
-> here? Could we retain the uniformity?
-Sure i will fix this in entire series.
-> > +				connector->base.base.id, connector->base.name);
-> > +			return ret;
-> > +		}
-> > +		drm_dbg_kms(&dev_priv->drm, "HDCP 1.4 transcoder: %s stream encrypted\n",
-> > +			    transcoder_name(hdcp->stream_transcoder));
-> > +	}
-> >  
-> >  	if (repeater_present)
-> >  		return intel_hdcp_auth_downstream(connector);
-> > @@ -791,18 +803,23 @@ static int _intel_hdcp_disable(struct intel_connector *connector)
-> >  	drm_dbg_kms(&dev_priv->drm, "[%s:%d] HDCP is being disabled...\n",
-> >  		    connector->base.name, connector->base.base.id);
-> >  
-> > +	if (hdcp->shim->stream_encryption) {
-> > +		ret = hdcp->shim->stream_encryption(connector, false);
-> > +		if (ret) {
-> > +			drm_err(&dev_priv->drm, "[CONNECTOR:%d:%s] Failed to disable HDCP 1.4 stream enc\n",
-> same here. remove CONNECTOR ?
-> > +				connector->base.base.id, connector->base.name);
-> > +			return ret;
-> > +		}
-> > +		drm_dbg_kms(&dev_priv->drm, "HDCP 1.4 transcoder: %s stream encryption disabled\n",
-> > +			    transcoder_name(hdcp->stream_transcoder));
-> > +	}
-> > +
-> >  	/*
-> > -	 * If there are other connectors on this port using HDCP, don't disable
-> > -	 * it. Instead, toggle the HDCP signalling off on that particular
-> > -	 * connector/pipe and exit.
-> > +	 * If there are other connectors on this port using HDCP, don't disable it.
-> > +	 * Repeat steps 1-2 for each stream that no longer requires encryption.
-> What is this steps 1-2 here!? Here you are not disabling if other
-> streams are encrpted. May be you want to put something like "Untill all
-> steams of MST stopped encrypting, dont disable the port encryption"
-Sure i will fix this.
-Thanks,
-Anshuman.
+Hi,
+
+On Mon, Nov 23, 2020 at 09:24:31PM +0000, Patchwork wrote:
+> == Series Details ==
 > 
-> -Ram
-> >  	 */
-> > -	if (dig_port->num_hdcp_streams > 0) {
-> > -		ret = hdcp->shim->toggle_signalling(dig_port,
-> > -						    cpu_transcoder, false);
-> > -		if (ret)
-> > -			DRM_ERROR("Failed to disable HDCP signalling\n");
-> > +	if (dig_port->num_hdcp_streams > 0)
-> >  		return ret;
-> > -	}
-> >  
-> >  	hdcp->hdcp_encrypted = false;
-> >  	intel_de_write(dev_priv, HDCP_CONF(dev_priv, cpu_transcoder, port), 0);
-> > -- 
-> > 2.26.2
-> > 
+> Series: series starting with [1/2] drm/framebuffer: Format modifier for Intel Gen 12 render compression with Clear Color
+> URL   : https://patchwork.freedesktop.org/series/84183/
+> State : failure
+> 
+> == Summary ==
+> 
+> CI Bug Log - changes from CI_DRM_9378 -> Patchwork_18961
+> ====================================================
+> 
+> Summary
+> -------
+> 
+>   **FAILURE**
+> 
+>   Serious unknown changes coming with Patchwork_18961 absolutely need to be
+>   verified manually.
+>   
+>   If you think the reported changes have nothing to do with the changes
+>   introduced in Patchwork_18961, please notify your bug team to allow them
+>   to document this new failure mode, which will reduce false positives in CI.
+> 
+>   External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18961/index.html
+> 
+> Possible new issues
+> -------------------
+> 
+>   Here are the unknown changes that may have been introduced in Patchwork_18961:
+> 
+> ### IGT changes ###
+> 
+> #### Possible regressions ####
+> 
+>   * igt@gem_exec_fence@basic-await@rcs0:
+>     - fi-skl-lmem:        [PASS][1] -> [INCOMPLETE][2]
+>    [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9378/fi-skl-lmem/igt@gem_exec_fence@basic-await@rcs0.html
+>    [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18961/fi-skl-lmem/igt@gem_exec_fence@basic-await@rcs0.html
+> 
+>   * igt@kms_chamelium@common-hpd-after-suspend:
+>     - fi-kbl-7500u:       [PASS][3] -> [FAIL][4]
+>    [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9378/fi-kbl-7500u/igt@kms_chamelium@common-hpd-after-suspend.html
+>    [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18961/fi-kbl-7500u/igt@kms_chamelium@common-hpd-after-suspend.html
+
+the patchset adds a new framebuffer modifier used only on TGL, so the
+above two failures happen on unaffected platforms.
+
+> 
+>   
+> New tests
+> ---------
+> 
+>   New tests have been introduced between CI_DRM_9378 and Patchwork_18961:
+> 
+> ### New CI tests (1) ###
+> 
+>   * boot:
+>     - Statuses : 40 pass(s)
+>     - Exec time: [0.0] s
+> 
+>   
+> 
+> Known issues
+> ------------
+> 
+>   Here are the changes found in Patchwork_18961 that come from known issues:
+> 
+> ### IGT changes ###
+> 
+> #### Issues hit ####
+> 
+>   * igt@kms_busy@basic@flip:
+>     - fi-tgl-y:           [PASS][5] -> [DMESG-WARN][6] ([i915#1982]) +1 similar issue
+>    [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9378/fi-tgl-y/igt@kms_busy@basic@flip.html
+>    [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18961/fi-tgl-y/igt@kms_busy@basic@flip.html
+> 
+>   * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy:
+>     - fi-icl-u2:          [PASS][7] -> [DMESG-WARN][8] ([i915#1982]) +1 similar issue
+>    [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9378/fi-icl-u2/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html
+>    [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18961/fi-icl-u2/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html
+> 
+>   * igt@prime_self_import@basic-with_one_bo_two_files:
+>     - fi-tgl-y:           [PASS][9] -> [DMESG-WARN][10] ([i915#402]) +1 similar issue
+>    [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9378/fi-tgl-y/igt@prime_self_import@basic-with_one_bo_two_files.html
+>    [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18961/fi-tgl-y/igt@prime_self_import@basic-with_one_bo_two_files.html
+> 
+>   
+> #### Possible fixes ####
+> 
+>   * igt@kms_busy@basic@modeset:
+>     - fi-tgl-y:           [DMESG-WARN][11] ([i915#1982]) -> [PASS][12] +1 similar issue
+>    [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9378/fi-tgl-y/igt@kms_busy@basic@modeset.html
+>    [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18961/fi-tgl-y/igt@kms_busy@basic@modeset.html
+> 
+>   * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:
+>     - fi-byt-j1900:       [DMESG-WARN][13] ([i915#1982]) -> [PASS][14] +1 similar issue
+>    [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9378/fi-byt-j1900/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
+>    [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18961/fi-byt-j1900/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
+>     - {fi-kbl-7560u}:     [DMESG-WARN][15] ([i915#1982]) -> [PASS][16]
+>    [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9378/fi-kbl-7560u/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
+>    [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18961/fi-kbl-7560u/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
+> 
+>   * igt@kms_cursor_legacy@basic-flip-after-cursor-legacy:
+>     - fi-icl-u2:          [DMESG-WARN][17] ([i915#1982]) -> [PASS][18]
+>    [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9378/fi-icl-u2/igt@kms_cursor_legacy@basic-flip-after-cursor-legacy.html
+>    [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18961/fi-icl-u2/igt@kms_cursor_legacy@basic-flip-after-cursor-legacy.html
+> 
+>   * igt@prime_vgem@basic-write:
+>     - fi-tgl-y:           [DMESG-WARN][19] ([i915#402]) -> [PASS][20] +1 similar issue
+>    [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9378/fi-tgl-y/igt@prime_vgem@basic-write.html
+>    [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18961/fi-tgl-y/igt@prime_vgem@basic-write.html
+> 
+>   
+>   {name}: This element is suppressed. This means it is ignored when computing
+>           the status of the difference (SUCCESS, WARNING, or FAILURE).
+> 
+>   [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
+>   [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
+> 
+> 
+> Participating hosts (44 -> 40)
+> ------------------------------
+> 
+>   Missing    (4): fi-ilk-m540 fi-bsw-cyan fi-bdw-samus fi-hsw-4200u 
+> 
+> 
+> Build changes
+> -------------
+> 
+>   * Linux: CI_DRM_9378 -> Patchwork_18961
+> 
+>   CI-20190529: 20190529
+>   CI_DRM_9378: efc7f880143d6fe75922ad393045665c8ea60f57 @ git://anongit.freedesktop.org/gfx-ci/linux
+>   IGT_5868: 36b5fc05c30dbfd9242069fd6e51ebb419b386bc @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+>   Patchwork_18961: 0dba847db9d24c6d2d706379ac2f842b8f4a6bdb @ git://anongit.freedesktop.org/gfx-ci/linux
+> 
+> 
+> == Linux commits ==
+> 
+> 0dba847db9d2 drm/i915/tgl: Add Clear Color support for TGL Render Decompression
+> a3b4d1336125 drm/framebuffer: Format modifier for Intel Gen 12 render compression with Clear Color
+> 
+> == Logs ==
+> 
+> For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18961/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
