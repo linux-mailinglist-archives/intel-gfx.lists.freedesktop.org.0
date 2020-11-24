@@ -2,34 +2,41 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BCA832C2CF3
-	for <lists+intel-gfx@lfdr.de>; Tue, 24 Nov 2020 17:31:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A28412C2D32
+	for <lists+intel-gfx@lfdr.de>; Tue, 24 Nov 2020 17:44:20 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2ABB86E463;
-	Tue, 24 Nov 2020 16:30:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C44A46E4AD;
+	Tue, 24 Nov 2020 16:44:14 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EE76B6E463
- for <intel-gfx@lists.freedesktop.org>; Tue, 24 Nov 2020 16:30:56 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 23094147-1500050 for multiple; Tue, 24 Nov 2020 16:30:54 +0000
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CBD886E4AD
+ for <intel-gfx@lists.freedesktop.org>; Tue, 24 Nov 2020 16:44:13 +0000 (UTC)
+IronPort-SDR: 5GNfhF2iOZa9+kQNPbsyPun2MV0wBi7f5q18bvGqAbA/K1HotY0pBz8WeHxlHmA7oMQmTsH8wa
+ pfkHRilCG8SA==
+X-IronPort-AV: E=McAfee;i="6000,8403,9815"; a="169414058"
+X-IronPort-AV: E=Sophos;i="5.78,366,1599548400"; d="scan'208";a="169414058"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Nov 2020 08:44:12 -0800
+IronPort-SDR: UsGKvgXzLljfbFEkMTOxWfwG4IqtDQXIbbK63kRplRub5kqu/sJDVWvrY3YRD72LC4vtY7LCGn
+ zAZarBzJhbIA==
+X-IronPort-AV: E=Sophos;i="5.78,366,1599548400"; d="scan'208";a="546896689"
+Received: from ideak-desk.fi.intel.com ([10.237.68.141])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Nov 2020 08:44:11 -0800
+Date: Tue, 24 Nov 2020 18:44:06 +0200
+From: Imre Deak <imre.deak@intel.com>
+To: Anshuman Gupta <anshuman.gupta@intel.com>
+Message-ID: <20201124164406.GG1750458@ideak-desk.fi.intel.com>
+References: <20201124095847.14098-1-anshuman.gupta@intel.com>
 MIME-Version: 1.0
-In-Reply-To: <f1089ea3-bfa6-1290-f0bd-5214a36e257a@linux.intel.com>
-References: <20201124114219.29020-1-chris@chris-wilson.co.uk>
- <20201124114219.29020-5-chris@chris-wilson.co.uk>
- <f1089ea3-bfa6-1290-f0bd-5214a36e257a@linux.intel.com>
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-Date: Tue, 24 Nov 2020 16:30:52 +0000
-Message-ID: <160623545286.28476.12142656128812295838@build.alporthouse.com>
-User-Agent: alot/0.9
-Subject: Re: [Intel-gfx] [PATCH 05/16] drm/i915/gt: Move the breadcrumb to
- the signaler if completed upon cancel
+Content-Disposition: inline
+In-Reply-To: <20201124095847.14098-1-anshuman.gupta@intel.com>
+Subject: Re: [Intel-gfx] [RFC] drm/i915/dp: PPS registers doesn't require
+ AUX power
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,110 +49,72 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: imre.deak@intel.com
+Cc: intel-gfx@lists.freedesktop.org, stable@vger.kernel.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Tvrtko Ursulin (2020-11-24 16:19:15)
+On Tue, Nov 24, 2020 at 03:28:47PM +0530, Anshuman Gupta wrote:
+> Platforms with South Display Engine on PCH, doesn't
+> require to get/put the AUX power domain in order to
+> access PPS register because PPS registers are always on
+> with South display on PCH.
 > 
-> On 24/11/2020 11:42, Chris Wilson wrote:
-> > If while we are cancelling the breadcrumb signaling, we find that the
-> > request is already completed, move it to the irq signaler and let it be
-> > signaled.
-> > 
-> > Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-> > ---
-> >   drivers/gpu/drm/i915/gt/intel_breadcrumbs.c | 20 ++++++++++++++++----
-> >   1 file changed, 16 insertions(+), 4 deletions(-)
-> > 
-> > diff --git a/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c b/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c
-> > index a24cc1ff08a0..f5f6feed0fa6 100644
-> > --- a/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c
-> > +++ b/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c
-> > @@ -363,6 +363,14 @@ void intel_breadcrumbs_free(struct intel_breadcrumbs *b)
-> >       kfree(b);
-> >   }
-> >   
-> > +static void irq_signal_request(struct i915_request *rq,
-> > +                            struct intel_breadcrumbs *b)
-> > +{
-> > +     if (__signal_request(rq) &&
-> > +         llist_add(&rq->signal_node, &b->signaled_requests))
-> > +             irq_work_queue(&b->irq_work);
-> > +}
-> > +
-> >   static void insert_breadcrumb(struct i915_request *rq)
-> >   {
-> >       struct intel_breadcrumbs *b = READ_ONCE(rq->engine)->breadcrumbs;
-> > @@ -380,9 +388,7 @@ static void insert_breadcrumb(struct i915_request *rq)
-> >        * its signal completion.
-> >        */
-> >       if (__request_completed(rq)) {
-> > -             if (__signal_request(rq) &&
-> > -                 llist_add(&rq->signal_node, &b->signaled_requests))
-> > -                     irq_work_queue(&b->irq_work);
-> > +             irq_signal_request(rq, b);
-> >               return;
-> >       }
-> >   
-> > @@ -453,6 +459,7 @@ bool i915_request_enable_breadcrumb(struct i915_request *rq)
-> >   
-> >   void i915_request_cancel_breadcrumb(struct i915_request *rq)
-> >   {
-> > +     struct intel_breadcrumbs *b = READ_ONCE(rq->engine)->breadcrumbs;
-> >       struct intel_context *ce = rq->context;
-> >       bool release;
-> >   
-> > @@ -461,11 +468,16 @@ void i915_request_cancel_breadcrumb(struct i915_request *rq)
-> >   
-> >       spin_lock(&ce->signal_lock);
-> >       list_del_rcu(&rq->signal_link);
-> > -     release = remove_signaling_context(rq->engine->breadcrumbs, ce);
-> > +     release = remove_signaling_context(b, ce);
-> >       spin_unlock(&ce->signal_lock);
-> >       if (release)
-> >               intel_context_put(ce);
-> >   
-> > +     if (__request_completed(rq)) {
-> > +             irq_signal_request(rq, b);
-> > +             return;
+> Cc: Imre Deak <imre.deak@intel.com>
+> Cc: <stable@vger.kernel.org>
+> Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
+
+Could you describe the issue the patch is fixing?
+
+For accessing PPS registers the AUX power well may not be needed, but
+I'm not sure if this also applies to PPS functionality in general. For
+instance forcing VDD is required for AUX functionality.
+
+In any case we do need a power reference for any register access, so I
+don't think not getting any power reference for PPS is ok.
+
+--Imre
+
+> ---
+>  drivers/gpu/drm/i915/display/intel_dp.c | 13 ++++++++-----
+>  1 file changed, 8 insertions(+), 5 deletions(-)
 > 
-> This is a bit unintuitive - irq_signal_request does things conditionally 
-> based on the signaled flag, but here the return value is ignored and 
-> reference kept regardless. Which makes me wonder how can the combo of 
-> the two always dtrt. Because __request_completed is seqno based, which 
-> can happen before setting the signaled flag. Like if retire races with 
-> breadcrumbs. Am I missing something?
-
-static void irq_signal_request()
-
-Yes, the completion must happen before the signal bit is set, and there
-is race on who sets the signal bit.
-
-So if, and only if, __signal_request() is the first to set the signal
-bit do we keep the reference to the request and enqueue it to execute the
-callbacks in the irq-worker.
-
-If the request is completed, but someone else has already signaled the
-request, the reference is dropped.
-
-static bool __signal_request(struct i915_request *rq)
-{
-        GEM_BUG_ON(test_bit(I915_FENCE_FLAG_SIGNAL, &rq->fence.flags));
-
-        if (!__dma_fence_signal(&rq->fence)) {
-                i915_request_put(rq);
-                return false;
-        }
-
-        return true;
-}
-
-I see your point that the reference handling is not obvious. Worth
-taking another pass over it to split the different paths into their
-different ways so the ownership is not hidden away.
--Chris
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+> index 3896d08c4177..84a2c49e154c 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> @@ -872,8 +872,9 @@ pps_lock(struct intel_dp *intel_dp)
+>  	 * See intel_power_sequencer_reset() why we need
+>  	 * a power domain reference here.
+>  	 */
+> -	wakeref = intel_display_power_get(dev_priv,
+> -					  intel_aux_power_domain(dp_to_dig_port(intel_dp)));
+> +	if (!HAS_PCH_SPLIT(dev_priv))
+> +		wakeref = intel_display_power_get(dev_priv,
+> +						  intel_aux_power_domain(dp_to_dig_port(intel_dp)));
+>  
+>  	mutex_lock(&dev_priv->pps_mutex);
+>  
+> @@ -886,9 +887,11 @@ pps_unlock(struct intel_dp *intel_dp, intel_wakeref_t wakeref)
+>  	struct drm_i915_private *dev_priv = dp_to_i915(intel_dp);
+>  
+>  	mutex_unlock(&dev_priv->pps_mutex);
+> -	intel_display_power_put(dev_priv,
+> -				intel_aux_power_domain(dp_to_dig_port(intel_dp)),
+> -				wakeref);
+> +
+> +	if (!HAS_PCH_SPLIT(dev_priv))
+> +		intel_display_power_put(dev_priv,
+> +					intel_aux_power_domain(dp_to_dig_port(intel_dp)),
+> +					wakeref);
+>  	return 0;
+>  }
+>  
+> -- 
+> 2.26.2
+> 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
