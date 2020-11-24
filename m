@@ -1,53 +1,48 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 160D72C1A79
-	for <lists+intel-gfx@lfdr.de>; Tue, 24 Nov 2020 02:05:51 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9DCFE2C1AD7
+	for <lists+intel-gfx@lfdr.de>; Tue, 24 Nov 2020 02:32:28 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 931F46E175;
-	Tue, 24 Nov 2020 01:05:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 178266E182;
+	Tue, 24 Nov 2020 01:32:26 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from smtprelay.hostedemail.com (smtprelay0240.hostedemail.com
- [216.40.44.240])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D2C366E174;
- Tue, 24 Nov 2020 01:05:43 +0000 (UTC)
-Received: from filter.hostedemail.com (clb03-v110.bra.tucows.net
- [216.40.38.60])
- by smtprelay08.hostedemail.com (Postfix) with ESMTP id C6794182CED28;
- Tue, 24 Nov 2020 01:05:42 +0000 (UTC)
-X-Session-Marker: 6A6F6540706572636865732E636F6D
-X-Spam-Summary: 2, 0, 0, , d41d8cd98f00b204, joe@perches.com, ,
- RULES_HIT:41:355:379:599:973:988:989:1260:1277:1311:1313:1314:1345:1359:1437:1515:1516:1518:1534:1538:1567:1593:1594:1711:1714:1730:1747:1777:1792:2393:2559:2562:2828:3138:3139:3140:3141:3142:3622:3865:3867:3868:3872:3874:4321:5007:6119:6742:6743:7903:10004:10400:10848:11658:11914:12297:12740:12760:12895:13069:13311:13357:13439:14659:21080:21627:30012:30054:30060:30091,
- 0, RBL:none, CacheIP:none, Bayesian:0.5, 0.5, 0.5, Netcheck:none,
- DomainCache:0, MSF:not bulk, SPF:, MSBL:0, DNSBL:none, Custom_rules:0:0:0,
- LFtime:1, LUA_SUMMARY:none
-X-HE-Tag: sea70_4d178da27369
-X-Filterd-Recvd-Size: 4565
-Received: from XPS-9350.home (unknown [47.151.128.180])
- (Authenticated sender: joe@perches.com)
- by omf04.hostedemail.com (Postfix) with ESMTPA;
- Tue, 24 Nov 2020 01:05:31 +0000 (UTC)
-Message-ID: <e72a1aaef8673553a3ee9dfa033d6e893e00abcd.camel@perches.com>
-From: Joe Perches <joe@perches.com>
-To: Finn Thain <fthain@telegraphics.com.au>, Miguel Ojeda
- <miguel.ojeda.sandonis@gmail.com>
-Date: Mon, 23 Nov 2020 17:05:30 -0800
-In-Reply-To: <alpine.LNX.2.23.453.2011241036520.7@nippy.intranet>
-References: <cover.1605896059.git.gustavoars@kernel.org>
- <20201120105344.4345c14e@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
- <202011201129.B13FDB3C@keescook>
- <20201120115142.292999b2@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
- <202011220816.8B6591A@keescook>
- <9b57fd4914b46f38d54087d75e072d6e947cb56d.camel@HansenPartnership.com>
- <CANiq72nZrHWTA4_Msg6MP9snTyenC6-eGfD27CyfNSu7QoVZbw@mail.gmail.com>
- <alpine.LNX.2.23.453.2011230938390.7@nippy.intranet>
- <CANiq72=z+tmuey9wj3Kk7wX5s0hTHpsQdLhAqcOVNrHon6xn5Q@mail.gmail.com>
- <alpine.LNX.2.23.453.2011241036520.7@nippy.intranet>
-User-Agent: Evolution 3.38.1-1 
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AD6886E182
+ for <intel-gfx@lists.freedesktop.org>; Tue, 24 Nov 2020 01:32:24 +0000 (UTC)
+IronPort-SDR: 8hRmrC9aUOxIAl4K8Y8W0svAaPDJabwST6QlrVeWgGdy2J1554V+x63srVaJmgxdhC8KXE75J7
+ AbzumAmklDWw==
+X-IronPort-AV: E=McAfee;i="6000,8403,9814"; a="151133066"
+X-IronPort-AV: E=Sophos;i="5.78,364,1599548400"; d="scan'208";a="151133066"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Nov 2020 17:32:24 -0800
+IronPort-SDR: soJ7bK+51jWrUgW6W90VxLM9LKj81HnaZ7aLrmlW9/wwMktTcsR0Zw1+U27/InDORGgd7SBTR6
+ ph+rNfzc84Xw==
+X-IronPort-AV: E=Sophos;i="5.78,364,1599548400"; d="scan'208";a="534671076"
+Received: from egderks-mobl2.amr.corp.intel.com (HELO [10.252.132.120])
+ ([10.252.132.120])
+ by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Nov 2020 17:32:24 -0800
+To: Jani Nikula <jani.nikula@intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>
+References: <20201117185029.22078-1-aditya.swarup@intel.com>
+ <20201117185029.22078-3-aditya.swarup@intel.com>
+ <20201117193114.ujqf4mgu3z2pzkab@ldmartin-desk1> <87mtzfowfj.fsf@intel.com>
+From: Aditya Swarup <aditya.swarup@intel.com>
+Message-ID: <572c4f61-bd17-0d5c-57e0-73f5896ab6e3@intel.com>
+Date: Mon, 23 Nov 2020 17:32:22 -0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH 000/141] Fix fall-through warnings for Clang
+In-Reply-To: <87mtzfowfj.fsf@intel.com>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH 02/21] drm/i915/tgl: Fix macros for TGL SOC
+ based WA
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,64 +55,63 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: alsa-devel@alsa-project.org, linux-atm-general@lists.sourceforge.net,
- reiserfs-devel@vger.kernel.org, linux-iio@vger.kernel.org,
- linux-wireless <linux-wireless@vger.kernel.org>, linux-fbdev@vger.kernel.org,
- dri-devel@lists.freedesktop.org, "Gustavo A. R.
- Silva" <gustavoars@kernel.org>,
- James Bottomley <James.Bottomley@hansenpartnership.com>,
- linux-ide@vger.kernel.org, dm-devel@redhat.com, keyrings@vger.kernel.org,
- linux-mtd@lists.infradead.org, GR-everest-linux-l2@marvell.com,
- wcn36xx@lists.infradead.org, samba-technical@lists.samba.org,
- linux-i3c@lists.infradead.org, linux1394-devel@lists.sourceforge.net,
- linux-afs@lists.infradead.org, usb-storage@lists.one-eyed-alien.net,
- drbd-dev@lists.linbit.com, devel@driverdev.osuosl.org,
- linux-cifs@vger.kernel.org, rds-devel@oss.oracle.com,
- Nick Desaulniers <ndesaulniers@google.com>, linux-scsi@vger.kernel.org,
- Nathan Chancellor <natechancellor@gmail.com>, linux-rdma@vger.kernel.org,
- oss-drivers@netronome.com, bridge@lists.linux-foundation.org,
- linux-security-module@vger.kernel.org, amd-gfx@lists.freedesktop.org,
- linux-stm32@st-md-mailman.stormreply.com, cluster-devel@redhat.com,
- linux-acpi@vger.kernel.org, coreteam@netfilter.org,
- intel-wired-lan@lists.osuosl.org, linux-input <linux-input@vger.kernel.org>,
- Miguel Ojeda <ojeda@kernel.org>, Jakub Kicinski <kuba@kernel.org>,
- Ext4 Developers List <linux-ext4@vger.kernel.org>,
- Linux Media Mailing List <linux-media@vger.kernel.org>,
- Kees Cook <keescook@chromium.org>, selinux@vger.kernel.org,
- linux-arm-msm@vger.kernel.org, intel-gfx@lists.freedesktop.org,
- linux-geode@lists.infradead.org, linux-can@vger.kernel.org,
- linux-block@vger.kernel.org, linux-gpio@vger.kernel.org,
- op-tee@lists.trustedfirmware.org, linux-mediatek@lists.infradead.org,
- xen-devel@lists.xenproject.org, nouveau@lists.freedesktop.org,
- linux-hams@vger.kernel.org, ceph-devel@vger.kernel.org,
- virtualization@lists.linux-foundation.org, target-devel@vger.kernel.org,
- Linux ARM <linux-arm-kernel@lists.infradead.org>, linux-hwmon@vger.kernel.org,
- linux-watchdog@vger.kernel.org, linux-nfs@vger.kernel.org,
- GR-Linux-NIC-Dev@marvell.com, tipc-discussion@lists.sourceforge.net,
- Linux-MM <linux-mm@kvack.org>, Network Development <netdev@vger.kernel.org>,
- linux-decnet-user@lists.sourceforge.net, linux-mmc@vger.kernel.org,
- linux-kernel <linux-kernel@vger.kernel.org>, linux-renesas-soc@vger.kernel.org,
- linux-sctp@vger.kernel.org, linux-usb@vger.kernel.org,
- netfilter-devel@vger.kernel.org,
- Linux Crypto Mailing List <linux-crypto@vger.kernel.org>,
- patches@opensource.cirrus.com, linux-integrity@vger.kernel.org,
- "maintainer:X86 ARCHITECTURE \(32-BIT AND 64-BIT\)" <x86@kernel.org>,
- linux-hardening@vger.kernel.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 2020-11-24 at 11:58 +1100, Finn Thain wrote:
-> it's not for me to prove that such patches don't affect code 
-> generation. That's for the patch author and (unfortunately) for reviewers.
+On 11/18/20 1:18 AM, Jani Nikula wrote:
+> On Tue, 17 Nov 2020, Lucas De Marchi <lucas.demarchi@intel.com> wrote:
+>> On Tue, Nov 17, 2020 at 10:50:10AM -0800, Aditya Swarup wrote:
+>>> @@ -1579,9 +1579,9 @@ static inline const struct i915_rev_steppings *
+>>> tgl_revids_get(struct drm_i915_private *dev_priv)
+>>> {
+>>> 	if (IS_TGL_U(dev_priv) || IS_TGL_Y(dev_priv))
+>>> -		return tgl_uy_revids;
+>>> +		return tgl_uy_revids + INTEL_REVID(dev_priv);
+>>
+>> oohh, no. You have to at least check you are not accessing out of
+>> bounds. New HW running on old kernel should not access create invalid
+>> accesses like this.
+> 
+> And this is just one reason why exposing arrays directly as an interface
+> to the rest of the driver is a bad idea. Basically I look at *all*
+> externs in the driver with suspicion, and they're all exceptions that
+> should not be repeated. The revid arrays are a direct invitation to keep
+> adding more and more extern arrays. And more ways to go out of bounds.
 
-Ideally, that proof would be provided by the compilation system itself
-and not patch authors nor reviewers nor maintainers.
+We definitely need an array table for the SOC -> Display, GT stepping mapping.
+SOC steppings were usually the same as display steppings/GT steppings until TGL and therefore
+didn't require special mapping cases. But from TGL onwards, we have different combinations of 
+Disp and GT steppings per SOC stepping. Alderlake-S makes this direct mapping even more difficult
+without the array requiring more macros to deal with SOC -> DISP/GT stepping differences.
 
-Unfortunately gcc does not guarantee repeatability or deterministic output.
-To my knowledge, neither does clang.
+Will fix the array bound checks but the possibility of SOC revision id from drm struct going 
+out of bounds is minimal. Can only happen if we don't have support for latest SOC -> Disp/GT table
+for TGL from Bspec and if we are picking up wrong revision id from drm struct that means the platform
+information obtained itself is wrong which will be a general platform problem unrelated to Gfx driver.
 
+> 
+> I'd rather we seek for ways to either nuke the revid arrays altogether,
+> or encapsulate them within a .c file with static scope.
+
+I don't think we should nuke the revid arrays but I agree with finding a more appropriate place to 
+parse the gt/display stepping info. This should be an exercise for a later patch that takes 
+care of kbl,tgl and adl-s mappings.
+
+> 
+> And for that .c file... the arrays are now in gt/intel_workarounds.c
+> which is a really weird place for stuff that's used for generic stepping
+> info, and particularly for *display* stepping info.
+
+I agree and we can change the approach with a different patch later.
+
+> 
+> BR,
+> Jani.
+> 
+> 
 
 _______________________________________________
 Intel-gfx mailing list
