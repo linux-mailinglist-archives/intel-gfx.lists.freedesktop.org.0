@@ -1,44 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2BBAE2C2912
-	for <lists+intel-gfx@lfdr.de>; Tue, 24 Nov 2020 15:14:09 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id AA3B12C2921
+	for <lists+intel-gfx@lfdr.de>; Tue, 24 Nov 2020 15:15:09 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B1BD46E406;
-	Tue, 24 Nov 2020 14:14:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CE7DA6E3C6;
+	Tue, 24 Nov 2020 14:15:07 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6A0046E406;
- Tue, 24 Nov 2020 14:14:04 +0000 (UTC)
-IronPort-SDR: YvZ5GRijWi2wbhbOMFRimJteSgZe6fftKlnh3L8VnO1r5ikjFFe4oZuuqqTFLha/TvWnye79p9
- 5Ct9iZB2YziA==
-X-IronPort-AV: E=McAfee;i="6000,8403,9814"; a="159716931"
-X-IronPort-AV: E=Sophos;i="5.78,366,1599548400"; d="scan'208";a="159716931"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Nov 2020 06:14:03 -0800
-IronPort-SDR: 5HO4lgWZjWpvXh8Yk7ijSyZ0Kobd/OON095AJx/gfyWUplS3vtx/fJDXwVdfpEGnyaVT6BAn3K
- GBnZG7V3ZGRA==
-X-IronPort-AV: E=Sophos;i="5.78,366,1599548400"; d="scan'208";a="327596206"
-Received: from ramaling-i9x.iind.intel.com (HELO intel.com) ([10.99.66.154])
- by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Nov 2020 06:14:01 -0800
-Date: Tue, 24 Nov 2020 19:44:59 +0530
-From: Ramalingam C <ramalingam.c@intel.com>
-To: Anshuman Gupta <anshuman.gupta@intel.com>
-Message-ID: <20201124141457.GA25283@intel.com>
-References: <20201111062051.11529-1-anshuman.gupta@intel.com>
- <20201111062051.11529-8-anshuman.gupta@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 20EC46E30F;
+ Tue, 24 Nov 2020 14:15:06 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 0C0E3A00E6;
+ Tue, 24 Nov 2020 14:15:06 +0000 (UTC)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20201111062051.11529-8-anshuman.gupta@intel.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH v5 07/17] drm/i915/hdcp: Enable HDCP 1.4
- stream encryption
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Tue, 24 Nov 2020 14:15:06 -0000
+Message-ID: <160622730604.10863.3152917168415169154@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20201124114219.29020-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20201124114219.29020-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_series_starting_with_=5B01/16=5D_drm/i915/gem=3A_Drop_free?=
+ =?utf-8?q?=5Fwork_for_GEM_contexts?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,127 +39,45 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jani.nikula@intel.com, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, seanpaul@chromium.org
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 2020-11-11 at 11:50:41 +0530, Anshuman Gupta wrote:
-> Enable HDCP 1.4 DP MST stream encryption.
-> 
-> Enable stream encryption once encryption is enabled on
-> the DP transport driving the link for each stream which
-> has requested encryption.
-> 
-> Disable stream encryption for each stream that no longer
-> requires encryption before disabling HDCP encryption on
-> the link.
-> 
-> v2:
-> - Added debug print for stream encryption.
-> - Disable the hdcp on port after disabling last stream
->   encryption.
-> v3:
-> - Cosmetic change, removed the value less comment. [Uma]
-> v4:
-> - Split the Gen12 HDCP enablement patch. [Ram]
-> - Add connector details in drm_err.
-> 
-> Cc: Ramalingam C <ramalingam.c@intel.com>
-> Reviewed-by: Uma Shankar <uma.shankar@intel.com>
-> Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_hdcp.c | 45 ++++++++++++++++-------
->  1 file changed, 31 insertions(+), 14 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c b/drivers/gpu/drm/i915/display/intel_hdcp.c
-> index 0322a83c151d..e12bd0ac9fb5 100644
-> --- a/drivers/gpu/drm/i915/display/intel_hdcp.c
-> +++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
-> @@ -612,7 +612,12 @@ int intel_hdcp_auth_downstream(struct intel_connector *connector)
->  	return ret;
->  }
->  
-> -/* Implements Part 1 of the HDCP authorization procedure */
-> +/*
-> + * Implements Part 1 of the HDCP authorization procedure.
-> + * Authentication Part 1 steps for Multi-stream DisplayPort.
-> + * Step 1. Auth Part 1 sequence on the driving MST Trasport Link.
-> + * Step 2. Enable encryption for each stream that requires encryption.
-> +1*/
-IMO this function is generic for SST and MST. Why do we document only
-for MST at the top of the function? We can remove them.
->  static int intel_hdcp_auth(struct intel_connector *connector)
->  {
->  	struct intel_digital_port *dig_port = intel_attached_dig_port(connector);
-> @@ -766,10 +771,17 @@ static int intel_hdcp_auth(struct intel_connector *connector)
->  		return -ETIMEDOUT;
->  	}
->  
-> -	/*
-> -	 * XXX: If we have MST-connected devices, we need to enable encryption
-> -	 * on those as well.
-> -	 */
-> +	/* DP MST Auth Part 1 Step 2.a and Step 2.b */
-> +	if (shim->stream_encryption) {
-> +		ret = shim->stream_encryption(connector, true);
-> +		if (ret) {
-> +			drm_err(&dev_priv->drm, "[CONNECTOR:%d:%s] Failed to enable HDCP 1.4 stream enc\n",
-All the existing error messgae has the %s:%d, why are we changing it
-here? Could we retain the uniformity?
-> +				connector->base.base.id, connector->base.name);
-> +			return ret;
-> +		}
-> +		drm_dbg_kms(&dev_priv->drm, "HDCP 1.4 transcoder: %s stream encrypted\n",
-> +			    transcoder_name(hdcp->stream_transcoder));
-> +	}
->  
->  	if (repeater_present)
->  		return intel_hdcp_auth_downstream(connector);
-> @@ -791,18 +803,23 @@ static int _intel_hdcp_disable(struct intel_connector *connector)
->  	drm_dbg_kms(&dev_priv->drm, "[%s:%d] HDCP is being disabled...\n",
->  		    connector->base.name, connector->base.base.id);
->  
-> +	if (hdcp->shim->stream_encryption) {
-> +		ret = hdcp->shim->stream_encryption(connector, false);
-> +		if (ret) {
-> +			drm_err(&dev_priv->drm, "[CONNECTOR:%d:%s] Failed to disable HDCP 1.4 stream enc\n",
-same here. remove CONNECTOR ?
-> +				connector->base.base.id, connector->base.name);
-> +			return ret;
-> +		}
-> +		drm_dbg_kms(&dev_priv->drm, "HDCP 1.4 transcoder: %s stream encryption disabled\n",
-> +			    transcoder_name(hdcp->stream_transcoder));
-> +	}
-> +
->  	/*
-> -	 * If there are other connectors on this port using HDCP, don't disable
-> -	 * it. Instead, toggle the HDCP signalling off on that particular
-> -	 * connector/pipe and exit.
-> +	 * If there are other connectors on this port using HDCP, don't disable it.
-> +	 * Repeat steps 1-2 for each stream that no longer requires encryption.
-What is this steps 1-2 here!? Here you are not disabling if other
-streams are encrpted. May be you want to put something like "Untill all
-steams of MST stopped encrypting, dont disable the port encryption"
+== Series Details ==
 
--Ram
->  	 */
-> -	if (dig_port->num_hdcp_streams > 0) {
-> -		ret = hdcp->shim->toggle_signalling(dig_port,
-> -						    cpu_transcoder, false);
-> -		if (ret)
-> -			DRM_ERROR("Failed to disable HDCP signalling\n");
-> +	if (dig_port->num_hdcp_streams > 0)
->  		return ret;
-> -	}
->  
->  	hdcp->hdcp_encrypted = false;
->  	intel_de_write(dev_priv, HDCP_CONF(dev_priv, cpu_transcoder, port), 0);
-> -- 
-> 2.26.2
-> 
+Series: series starting with [01/16] drm/i915/gem: Drop free_work for GEM contexts
+URL   : https://patchwork.freedesktop.org/series/84208/
+State : warning
+
+== Summary ==
+
+$ dim checkpatch origin/drm-tip
+09b67a534628 drm/i915/gem: Drop free_work for GEM contexts
+b9f8bff31c91 drm/i915/gt: Track the overall awake/busy time
+eb6ffa87b41a drm/i915/gt: Protect context lifetime with RCU
+914d24e91664 drm/i915/gt: Split the breadcrumb spinlock between global and contexts
+-:21: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
+#21: 
+<4>[  416.208555] list_add corruption. prev->next should be next (ffff8881951d5910), but was dead000000000100. (prev=ffff8882781bb870).
+
+total: 0 errors, 1 warnings, 0 checks, 354 lines checked
+b79e10f24643 drm/i915/gt: Move the breadcrumb to the signaler if completed upon cancel
+33ea2bdbd54e drm/i915/gt: Decouple completed requests on unwind
+9391ee728d0e drm/i915/gt: Check for a completed last request once
+c020778508b9 drm/i915/gt: Replace direct submit with direct call to tasklet
+087ee180b178 drm/i915/gt: ce->inflight updates are now serialised
+1b827d9f0c33 drm/i915/gt: Use virtual_engine during execlists_dequeue
+63e4c2df7428 drm/i915/gt: Decouple inflight virtual engines
+78d5482e6f09 drm/i915/gt: Defer schedule_out until after the next dequeue
+e53d0a1009d0 drm/i915/gt: Remove virtual breadcrumb before transfer
+25e468dbeb3c drm/i915/gt: Shrink the critical section for irq signaling
+d1cd4435c155 drm/i915/gt: Resubmit the virtual engine on schedule-out
+2203c2e5dec3 drm/i915/gt: Simplify virtual engine handling for execlists_hold()
+
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
