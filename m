@@ -2,30 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 264CB2C255B
-	for <lists+intel-gfx@lfdr.de>; Tue, 24 Nov 2020 13:09:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8C5D62C256F
+	for <lists+intel-gfx@lfdr.de>; Tue, 24 Nov 2020 13:13:44 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9D7BE6E301;
-	Tue, 24 Nov 2020 12:09:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E767C6E2E3;
+	Tue, 24 Nov 2020 12:13:41 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 7CCBD6E2E3;
- Tue, 24 Nov 2020 12:09:12 +0000 (UTC)
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 915256E2C7;
+ Tue, 24 Nov 2020 12:13:40 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 72DC6A47E8;
- Tue, 24 Nov 2020 12:09:12 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 87020A8832;
+ Tue, 24 Nov 2020 12:13:40 +0000 (UTC)
 MIME-Version: 1.0
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Anshuman Gupta" <anshuman.gupta@intel.com>
-Date: Tue, 24 Nov 2020 12:09:12 -0000
-Message-ID: <160621975243.10863.17502940226951012801@emeril.freedesktop.org>
+To: "Thomas Zimmermann" <tzimmermann@suse.de>
+Date: Tue, 24 Nov 2020 12:13:40 -0000
+Message-ID: <160622002052.10862.3532789669504382198@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20201124095847.14098-1-anshuman.gupta@intel.com>
-In-Reply-To: <20201124095847.14098-1-anshuman.gupta@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/dp=3A_PPS_registers_doesn=27t_require_AUX_power?=
+References: <20201124113824.19994-1-tzimmermann@suse.de>
+In-Reply-To: <20201124113824.19994-1-tzimmermann@suse.de>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm=3A_Move_struct_drm=5Fdevice=2Epdev_to_legacy?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,258 +40,634 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============0900379497=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0900379497==
-Content-Type: multipart/alternative;
- boundary="===============2235616145719431164=="
-
---===============2235616145719431164==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/i915/dp: PPS registers doesn't require AUX power
-URL   : https://patchwork.freedesktop.org/series/84201/
-State : success
+Series: drm: Move struct drm_device.pdev to legacy
+URL   : https://patchwork.freedesktop.org/series/84205/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from CI_DRM_9382 -> Patchwork_18962
-====================================================
+$ dim checkpatch origin/drm-tip
+a05395880eb4 drm/amdgpu: Remove references to struct drm_device.pdev
+a19d9609caa5 drm/ast: Remove references to struct drm_device.pdev
+69271c471b3c drm/bochs: Remove references to struct drm_device.pdev
+5b6a109e50c6 drm/cirrus: Remove references to struct drm_device.pdev
+-:12: WARNING:OBSOLETE: drivers/gpu/drm/tiny/cirrus.c is marked as 'obsolete' in the MAINTAINERS hierarchy.  No unnecessary modifications please.
 
-Summary
--------
+-:15: WARNING:OBSOLETE: drivers/gpu/drm/tiny/cirrus.c is marked as 'obsolete' in the MAINTAINERS hierarchy.  No unnecessary modifications please.
 
-  **SUCCESS**
+total: 0 errors, 2 warnings, 0 checks, 7 lines checked
+f61db0e140d6 drm/gma500: Remove references to struct drm_device.pdev
+-:89: CHECK:CAMELCASE: Avoid CamelCase: <saveLBB>
+#89: FILE: drivers/gpu/drm/gma500/cdv_device.c:269:
++	pci_read_config_byte(pdev, 0xF4, &regs->cdv.saveLBB);
 
-  No regressions found.
+-:158: WARNING:PREFER_DEV_LEVEL: Prefer dev_err(... to dev_printk(KERN_ERR, ...
+#158: FILE: drivers/gpu/drm/gma500/cdv_intel_crt.c:281:
++		dev_printk(KERN_ERR, dev->dev, "DDC bus registration failed.\n");
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18962/index.html
+-:180: WARNING:PREFER_DEV_LEVEL: Prefer dev_err(... to dev_printk(KERN_ERR, ...
+#180: FILE: drivers/gpu/drm/gma500/cdv_intel_lvds.c:578:
++		dev_printk(KERN_ERR, dev->dev,
 
-New tests
----------
+-:221: CHECK:UNNECESSARY_PARENTHESES: Unnecessary parentheses around dev->mode_config.fb_base
+#221: FILE: drivers/gpu/drm/gma500/framebuffer.c:545:
++	pci_read_config_dword(pdev, PSB_BSM, (u32 *)&(dev->mode_config.fb_base));
 
-  New tests have been introduced between CI_DRM_9382 and Patchwork_18962:
+-:720: WARNING:PREFER_DEV_LEVEL: Prefer dev_err(... to dev_printk(KERN_ERR, ...
+#720: FILE: drivers/gpu/drm/gma500/psb_intel_lvds.c:722:
++		dev_printk(KERN_ERR, dev->dev,
 
-### New CI tests (1) ###
+-:749: WARNING:LONG_LINE: line length of 116 exceeds 100 columns
+#749: FILE: drivers/gpu/drm/gma500/tc35876x-dsi-lvds.c:459:
++			dev_warn(dev->dev, "GPIOPWMCTRL was not set to system clock (pwmctrl = 0x%02x)\n", pwmctrl);
 
-  * boot:
-    - Statuses : 39 pass(s)
-    - Exec time: [0.0] s
+total: 0 errors, 4 warnings, 2 checks, 658 lines checked
+43de488f0ae9 drm/hibmc: Remove references to struct drm_device.pdev
+01a8ea96ca1c drm/i915: Remove references to struct drm_device.pdev
+f83b2e33ec46 drm/mgag200: Remove references to struct drm_device.pdev
+23269c980b19 drm/nouveau: Remove references to struct drm_device.pdev
+f3f907d41b1b drm/qxl: Remove references to struct drm_device.pdev
+997d0814d5cf drm/radeon: Remove references to struct drm_device.pdev
+-:27: CHECK:UNNECESSARY_PARENTHESES: Unnecessary parentheses around 'rdev->pdev->device == 0x71C5'
+#27: FILE: drivers/gpu/drm/radeon/atombios_encoders.c:2068:
++	if ((rdev->pdev->device == 0x71C5) &&
++	    (rdev->pdev->subsystem_vendor == 0x106b) &&
++	    (rdev->pdev->subsystem_device == 0x0080)) {
 
-  
+-:27: CHECK:UNNECESSARY_PARENTHESES: Unnecessary parentheses around 'rdev->pdev->subsystem_vendor == 0x106b'
+#27: FILE: drivers/gpu/drm/radeon/atombios_encoders.c:2068:
++	if ((rdev->pdev->device == 0x71C5) &&
++	    (rdev->pdev->subsystem_vendor == 0x106b) &&
++	    (rdev->pdev->subsystem_device == 0x0080)) {
 
-Known issues
-------------
+-:27: CHECK:UNNECESSARY_PARENTHESES: Unnecessary parentheses around 'rdev->pdev->subsystem_device == 0x0080'
+#27: FILE: drivers/gpu/drm/radeon/atombios_encoders.c:2068:
++	if ((rdev->pdev->device == 0x71C5) &&
++	    (rdev->pdev->subsystem_vendor == 0x106b) &&
++	    (rdev->pdev->subsystem_device == 0x0080)) {
 
-  Here are the changes found in Patchwork_18962 that come from known issues:
+-:69: CHECK:UNNECESSARY_PARENTHESES: Unnecessary parentheses around 'rdev->pdev->subsystem_device == 0x016c'
+#69: FILE: drivers/gpu/drm/radeon/r100.c:2641:
++		if ((rdev->pdev->subsystem_vendor == 0x1028 /* DELL */) &&
++		    ((rdev->pdev->subsystem_device == 0x016c) ||
++		     (rdev->pdev->subsystem_device == 0x016d) ||
++		     (rdev->pdev->subsystem_device == 0x016e) ||
++		     (rdev->pdev->subsystem_device == 0x016f) ||
++		     (rdev->pdev->subsystem_device == 0x0170) ||
++		     (rdev->pdev->subsystem_device == 0x017d) ||
++		     (rdev->pdev->subsystem_device == 0x017e) ||
++		     (rdev->pdev->subsystem_device == 0x0183) ||
++		     (rdev->pdev->subsystem_device == 0x018a) ||
++		     (rdev->pdev->subsystem_device == 0x019a)))
 
-### IGT changes ###
+-:69: CHECK:UNNECESSARY_PARENTHESES: Unnecessary parentheses around 'rdev->pdev->subsystem_device == 0x016d'
+#69: FILE: drivers/gpu/drm/radeon/r100.c:2641:
++		if ((rdev->pdev->subsystem_vendor == 0x1028 /* DELL */) &&
++		    ((rdev->pdev->subsystem_device == 0x016c) ||
++		     (rdev->pdev->subsystem_device == 0x016d) ||
++		     (rdev->pdev->subsystem_device == 0x016e) ||
++		     (rdev->pdev->subsystem_device == 0x016f) ||
++		     (rdev->pdev->subsystem_device == 0x0170) ||
++		     (rdev->pdev->subsystem_device == 0x017d) ||
++		     (rdev->pdev->subsystem_device == 0x017e) ||
++		     (rdev->pdev->subsystem_device == 0x0183) ||
++		     (rdev->pdev->subsystem_device == 0x018a) ||
++		     (rdev->pdev->subsystem_device == 0x019a)))
 
-#### Issues hit ####
+-:69: CHECK:UNNECESSARY_PARENTHESES: Unnecessary parentheses around 'rdev->pdev->subsystem_device == 0x016e'
+#69: FILE: drivers/gpu/drm/radeon/r100.c:2641:
++		if ((rdev->pdev->subsystem_vendor == 0x1028 /* DELL */) &&
++		    ((rdev->pdev->subsystem_device == 0x016c) ||
++		     (rdev->pdev->subsystem_device == 0x016d) ||
++		     (rdev->pdev->subsystem_device == 0x016e) ||
++		     (rdev->pdev->subsystem_device == 0x016f) ||
++		     (rdev->pdev->subsystem_device == 0x0170) ||
++		     (rdev->pdev->subsystem_device == 0x017d) ||
++		     (rdev->pdev->subsystem_device == 0x017e) ||
++		     (rdev->pdev->subsystem_device == 0x0183) ||
++		     (rdev->pdev->subsystem_device == 0x018a) ||
++		     (rdev->pdev->subsystem_device == 0x019a)))
 
-  * igt@gem_mmap_gtt@basic:
-    - fi-tgl-y:           [PASS][1] -> [DMESG-WARN][2] ([i915#402]) +1 similar issue
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9382/fi-tgl-y/igt@gem_mmap_gtt@basic.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18962/fi-tgl-y/igt@gem_mmap_gtt@basic.html
+-:69: CHECK:UNNECESSARY_PARENTHESES: Unnecessary parentheses around 'rdev->pdev->subsystem_device == 0x016f'
+#69: FILE: drivers/gpu/drm/radeon/r100.c:2641:
++		if ((rdev->pdev->subsystem_vendor == 0x1028 /* DELL */) &&
++		    ((rdev->pdev->subsystem_device == 0x016c) ||
++		     (rdev->pdev->subsystem_device == 0x016d) ||
++		     (rdev->pdev->subsystem_device == 0x016e) ||
++		     (rdev->pdev->subsystem_device == 0x016f) ||
++		     (rdev->pdev->subsystem_device == 0x0170) ||
++		     (rdev->pdev->subsystem_device == 0x017d) ||
++		     (rdev->pdev->subsystem_device == 0x017e) ||
++		     (rdev->pdev->subsystem_device == 0x0183) ||
++		     (rdev->pdev->subsystem_device == 0x018a) ||
++		     (rdev->pdev->subsystem_device == 0x019a)))
 
-  * igt@kms_busy@basic@flip:
-    - fi-tgl-y:           [PASS][3] -> [DMESG-WARN][4] ([i915#1982])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9382/fi-tgl-y/igt@kms_busy@basic@flip.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18962/fi-tgl-y/igt@kms_busy@basic@flip.html
+-:69: CHECK:UNNECESSARY_PARENTHESES: Unnecessary parentheses around 'rdev->pdev->subsystem_device == 0x0170'
+#69: FILE: drivers/gpu/drm/radeon/r100.c:2641:
++		if ((rdev->pdev->subsystem_vendor == 0x1028 /* DELL */) &&
++		    ((rdev->pdev->subsystem_device == 0x016c) ||
++		     (rdev->pdev->subsystem_device == 0x016d) ||
++		     (rdev->pdev->subsystem_device == 0x016e) ||
++		     (rdev->pdev->subsystem_device == 0x016f) ||
++		     (rdev->pdev->subsystem_device == 0x0170) ||
++		     (rdev->pdev->subsystem_device == 0x017d) ||
++		     (rdev->pdev->subsystem_device == 0x017e) ||
++		     (rdev->pdev->subsystem_device == 0x0183) ||
++		     (rdev->pdev->subsystem_device == 0x018a) ||
++		     (rdev->pdev->subsystem_device == 0x019a)))
 
-  * igt@kms_chamelium@dp-crc-fast:
-    - fi-cml-u2:          [PASS][5] -> [DMESG-WARN][6] ([i915#1982])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9382/fi-cml-u2/igt@kms_chamelium@dp-crc-fast.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18962/fi-cml-u2/igt@kms_chamelium@dp-crc-fast.html
+-:69: CHECK:UNNECESSARY_PARENTHESES: Unnecessary parentheses around 'rdev->pdev->subsystem_device == 0x017d'
+#69: FILE: drivers/gpu/drm/radeon/r100.c:2641:
++		if ((rdev->pdev->subsystem_vendor == 0x1028 /* DELL */) &&
++		    ((rdev->pdev->subsystem_device == 0x016c) ||
++		     (rdev->pdev->subsystem_device == 0x016d) ||
++		     (rdev->pdev->subsystem_device == 0x016e) ||
++		     (rdev->pdev->subsystem_device == 0x016f) ||
++		     (rdev->pdev->subsystem_device == 0x0170) ||
++		     (rdev->pdev->subsystem_device == 0x017d) ||
++		     (rdev->pdev->subsystem_device == 0x017e) ||
++		     (rdev->pdev->subsystem_device == 0x0183) ||
++		     (rdev->pdev->subsystem_device == 0x018a) ||
++		     (rdev->pdev->subsystem_device == 0x019a)))
 
-  
-#### Possible fixes ####
+-:69: CHECK:UNNECESSARY_PARENTHESES: Unnecessary parentheses around 'rdev->pdev->subsystem_device == 0x017e'
+#69: FILE: drivers/gpu/drm/radeon/r100.c:2641:
++		if ((rdev->pdev->subsystem_vendor == 0x1028 /* DELL */) &&
++		    ((rdev->pdev->subsystem_device == 0x016c) ||
++		     (rdev->pdev->subsystem_device == 0x016d) ||
++		     (rdev->pdev->subsystem_device == 0x016e) ||
++		     (rdev->pdev->subsystem_device == 0x016f) ||
++		     (rdev->pdev->subsystem_device == 0x0170) ||
++		     (rdev->pdev->subsystem_device == 0x017d) ||
++		     (rdev->pdev->subsystem_device == 0x017e) ||
++		     (rdev->pdev->subsystem_device == 0x0183) ||
++		     (rdev->pdev->subsystem_device == 0x018a) ||
++		     (rdev->pdev->subsystem_device == 0x019a)))
 
-  * igt@gem_exec_create@basic:
-    - fi-icl-u2:          [INCOMPLETE][7] -> [PASS][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9382/fi-icl-u2/igt@gem_exec_create@basic.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18962/fi-icl-u2/igt@gem_exec_create@basic.html
+-:69: CHECK:UNNECESSARY_PARENTHESES: Unnecessary parentheses around 'rdev->pdev->subsystem_device == 0x0183'
+#69: FILE: drivers/gpu/drm/radeon/r100.c:2641:
++		if ((rdev->pdev->subsystem_vendor == 0x1028 /* DELL */) &&
++		    ((rdev->pdev->subsystem_device == 0x016c) ||
++		     (rdev->pdev->subsystem_device == 0x016d) ||
++		     (rdev->pdev->subsystem_device == 0x016e) ||
++		     (rdev->pdev->subsystem_device == 0x016f) ||
++		     (rdev->pdev->subsystem_device == 0x0170) ||
++		     (rdev->pdev->subsystem_device == 0x017d) ||
++		     (rdev->pdev->subsystem_device == 0x017e) ||
++		     (rdev->pdev->subsystem_device == 0x0183) ||
++		     (rdev->pdev->subsystem_device == 0x018a) ||
++		     (rdev->pdev->subsystem_device == 0x019a)))
 
-  * igt@i915_pm_rpm@module-reload:
-    - fi-byt-j1900:       [DMESG-WARN][9] ([i915#1982]) -> [PASS][10]
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9382/fi-byt-j1900/igt@i915_pm_rpm@module-reload.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18962/fi-byt-j1900/igt@i915_pm_rpm@module-reload.html
+-:69: CHECK:UNNECESSARY_PARENTHESES: Unnecessary parentheses around 'rdev->pdev->subsystem_device == 0x018a'
+#69: FILE: drivers/gpu/drm/radeon/r100.c:2641:
++		if ((rdev->pdev->subsystem_vendor == 0x1028 /* DELL */) &&
++		    ((rdev->pdev->subsystem_device == 0x016c) ||
++		     (rdev->pdev->subsystem_device == 0x016d) ||
++		     (rdev->pdev->subsystem_device == 0x016e) ||
++		     (rdev->pdev->subsystem_device == 0x016f) ||
++		     (rdev->pdev->subsystem_device == 0x0170) ||
++		     (rdev->pdev->subsystem_device == 0x017d) ||
++		     (rdev->pdev->subsystem_device == 0x017e) ||
++		     (rdev->pdev->subsystem_device == 0x0183) ||
++		     (rdev->pdev->subsystem_device == 0x018a) ||
++		     (rdev->pdev->subsystem_device == 0x019a)))
 
-  * igt@kms_busy@basic@flip:
-    - fi-kbl-soraka:      [DMESG-WARN][11] ([i915#1982]) -> [PASS][12]
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9382/fi-kbl-soraka/igt@kms_busy@basic@flip.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18962/fi-kbl-soraka/igt@kms_busy@basic@flip.html
+-:69: CHECK:UNNECESSARY_PARENTHESES: Unnecessary parentheses around 'rdev->pdev->subsystem_device == 0x019a'
+#69: FILE: drivers/gpu/drm/radeon/r100.c:2641:
++		if ((rdev->pdev->subsystem_vendor == 0x1028 /* DELL */) &&
++		    ((rdev->pdev->subsystem_device == 0x016c) ||
++		     (rdev->pdev->subsystem_device == 0x016d) ||
++		     (rdev->pdev->subsystem_device == 0x016e) ||
++		     (rdev->pdev->subsystem_device == 0x016f) ||
++		     (rdev->pdev->subsystem_device == 0x0170) ||
++		     (rdev->pdev->subsystem_device == 0x017d) ||
++		     (rdev->pdev->subsystem_device == 0x017e) ||
++		     (rdev->pdev->subsystem_device == 0x0183) ||
++		     (rdev->pdev->subsystem_device == 0x018a) ||
++		     (rdev->pdev->subsystem_device == 0x019a)))
 
-  * igt@prime_vgem@basic-fence-flip:
-    - fi-tgl-y:           [DMESG-WARN][13] ([i915#402]) -> [PASS][14] +1 similar issue
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9382/fi-tgl-y/igt@prime_vgem@basic-fence-flip.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18962/fi-tgl-y/igt@prime_vgem@basic-fence-flip.html
+-:108: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'rdev' - possible side-effects?
+#108: FILE: drivers/gpu/drm/radeon/radeon.h:2626:
++#define ASIC_IS_X2(rdev) ((rdev->pdev->device == 0x9441) || \
++		(rdev->pdev->device == 0x9443) || \
++		(rdev->pdev->device == 0x944B) || \
++		(rdev->pdev->device == 0x9506) || \
++		(rdev->pdev->device == 0x9509) || \
++		(rdev->pdev->device == 0x950F) || \
++		(rdev->pdev->device == 0x689C) || \
++		(rdev->pdev->device == 0x689D))
 
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
+-:108: CHECK:MACRO_ARG_PRECEDENCE: Macro argument 'rdev' may be better as '(rdev)' to avoid precedence issues
+#108: FILE: drivers/gpu/drm/radeon/radeon.h:2626:
++#define ASIC_IS_X2(rdev) ((rdev->pdev->device == 0x9441) || \
++		(rdev->pdev->device == 0x9443) || \
++		(rdev->pdev->device == 0x944B) || \
++		(rdev->pdev->device == 0x9506) || \
++		(rdev->pdev->device == 0x9509) || \
++		(rdev->pdev->device == 0x950F) || \
++		(rdev->pdev->device == 0x689C) || \
++		(rdev->pdev->device == 0x689D))
 
-  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
-  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
+-:131: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'rdev' - possible side-effects?
+#131: FILE: drivers/gpu/drm/radeon/radeon.h:2656:
++#define ASIC_IS_LOMBOK(rdev) ((rdev->pdev->device == 0x6849) || \
++			      (rdev->pdev->device == 0x6850) || \
++			      (rdev->pdev->device == 0x6858) || \
++			      (rdev->pdev->device == 0x6859) || \
++			      (rdev->pdev->device == 0x6840) || \
++			      (rdev->pdev->device == 0x6841) || \
++			      (rdev->pdev->device == 0x6842) || \
++			      (rdev->pdev->device == 0x6843))
 
+-:131: CHECK:MACRO_ARG_PRECEDENCE: Macro argument 'rdev' may be better as '(rdev)' to avoid precedence issues
+#131: FILE: drivers/gpu/drm/radeon/radeon.h:2656:
++#define ASIC_IS_LOMBOK(rdev) ((rdev->pdev->device == 0x6849) || \
++			      (rdev->pdev->device == 0x6850) || \
++			      (rdev->pdev->device == 0x6858) || \
++			      (rdev->pdev->device == 0x6859) || \
++			      (rdev->pdev->device == 0x6840) || \
++			      (rdev->pdev->device == 0x6841) || \
++			      (rdev->pdev->device == 0x6842) || \
++			      (rdev->pdev->device == 0x6843))
 
-Participating hosts (42 -> 39)
-------------------------------
+-:156: CHECK:UNNECESSARY_PARENTHESES: Unnecessary parentheses around 'pdev->device == 0x791e'
+#156: FILE: drivers/gpu/drm/radeon/radeon_atombios.c:297:
++	if ((pdev->device == 0x791e) &&
++	    (pdev->subsystem_vendor == 0x1043) &&
++	    (pdev->subsystem_device == 0x826d)) {
 
-  Additional (1): fi-blb-e6850 
-  Missing    (4): fi-ilk-m540 fi-bsw-cyan fi-bdw-samus fi-hsw-4200u 
+-:156: CHECK:UNNECESSARY_PARENTHESES: Unnecessary parentheses around 'pdev->subsystem_vendor == 0x1043'
+#156: FILE: drivers/gpu/drm/radeon/radeon_atombios.c:297:
++	if ((pdev->device == 0x791e) &&
++	    (pdev->subsystem_vendor == 0x1043) &&
++	    (pdev->subsystem_device == 0x826d)) {
 
+-:156: CHECK:UNNECESSARY_PARENTHESES: Unnecessary parentheses around 'pdev->subsystem_device == 0x826d'
+#156: FILE: drivers/gpu/drm/radeon/radeon_atombios.c:297:
++	if ((pdev->device == 0x791e) &&
++	    (pdev->subsystem_vendor == 0x1043) &&
++	    (pdev->subsystem_device == 0x826d)) {
 
-Build changes
--------------
+-:168: CHECK:UNNECESSARY_PARENTHESES: Unnecessary parentheses around 'pdev->device == 0x7941'
+#168: FILE: drivers/gpu/drm/radeon/radeon_atombios.c:306:
++	if ((pdev->device == 0x7941) &&
++	    (pdev->subsystem_vendor == 0x1849) &&
++	    (pdev->subsystem_device == 0x7941)) {
 
-  * Linux: CI_DRM_9382 -> Patchwork_18962
+-:168: CHECK:UNNECESSARY_PARENTHESES: Unnecessary parentheses around 'pdev->subsystem_vendor == 0x1849'
+#168: FILE: drivers/gpu/drm/radeon/radeon_atombios.c:306:
++	if ((pdev->device == 0x7941) &&
++	    (pdev->subsystem_vendor == 0x1849) &&
++	    (pdev->subsystem_device == 0x7941)) {
 
-  CI-20190529: 20190529
-  CI_DRM_9382: ac60f3f3090115d21f028bffa2dcfb67f695c4f2 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5869: 5236e5d4be3ab5e2fedacc32152120b7fb77bf9f @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_18962: 0fc838333ce0e97b2f0e1beb26546b3dba32eb57 @ git://anongit.freedesktop.org/gfx-ci/linux
+-:168: CHECK:UNNECESSARY_PARENTHESES: Unnecessary parentheses around 'pdev->subsystem_device == 0x7941'
+#168: FILE: drivers/gpu/drm/radeon/radeon_atombios.c:306:
++	if ((pdev->device == 0x7941) &&
++	    (pdev->subsystem_vendor == 0x1849) &&
++	    (pdev->subsystem_device == 0x7941)) {
 
+-:180: CHECK:UNNECESSARY_PARENTHESES: Unnecessary parentheses around 'pdev->device == 0x796e'
+#180: FILE: drivers/gpu/drm/radeon/radeon_atombios.c:315:
++	if ((pdev->device == 0x796e) &&
++	    (pdev->subsystem_vendor == 0x1462) &&
++	    (pdev->subsystem_device == 0x7302)) {
 
-== Linux commits ==
+-:180: CHECK:UNNECESSARY_PARENTHESES: Unnecessary parentheses around 'pdev->subsystem_vendor == 0x1462'
+#180: FILE: drivers/gpu/drm/radeon/radeon_atombios.c:315:
++	if ((pdev->device == 0x796e) &&
++	    (pdev->subsystem_vendor == 0x1462) &&
++	    (pdev->subsystem_device == 0x7302)) {
 
-0fc838333ce0 drm/i915/dp: PPS registers doesn't require AUX power
+-:180: CHECK:UNNECESSARY_PARENTHESES: Unnecessary parentheses around 'pdev->subsystem_device == 0x7302'
+#180: FILE: drivers/gpu/drm/radeon/radeon_atombios.c:315:
++	if ((pdev->device == 0x796e) &&
++	    (pdev->subsystem_vendor == 0x1462) &&
++	    (pdev->subsystem_device == 0x7302)) {
 
-== Logs ==
+-:192: CHECK:UNNECESSARY_PARENTHESES: Unnecessary parentheses around 'pdev->device == 0x7941'
+#192: FILE: drivers/gpu/drm/radeon/radeon_atombios.c:324:
++	if ((pdev->device == 0x7941) &&
++	    (pdev->subsystem_vendor == 0x147b) &&
++	    (pdev->subsystem_device == 0x2412)) {
 
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18962/index.html
+-:192: CHECK:UNNECESSARY_PARENTHESES: Unnecessary parentheses around 'pdev->subsystem_vendor == 0x147b'
+#192: FILE: drivers/gpu/drm/radeon/radeon_atombios.c:324:
++	if ((pdev->device == 0x7941) &&
++	    (pdev->subsystem_vendor == 0x147b) &&
++	    (pdev->subsystem_device == 0x2412)) {
 
---===============2235616145719431164==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+-:192: CHECK:UNNECESSARY_PARENTHESES: Unnecessary parentheses around 'pdev->subsystem_device == 0x2412'
+#192: FILE: drivers/gpu/drm/radeon/radeon_atombios.c:324:
++	if ((pdev->device == 0x7941) &&
++	    (pdev->subsystem_vendor == 0x147b) &&
++	    (pdev->subsystem_device == 0x2412)) {
 
+-:203: CHECK:UNNECESSARY_PARENTHESES: Unnecessary parentheses around 'pdev->device == 0x5653'
+#203: FILE: drivers/gpu/drm/radeon/radeon_atombios.c:332:
++	if ((pdev->device == 0x5653) &&
++	    (pdev->subsystem_vendor == 0x1462) &&
++	    (pdev->subsystem_device == 0x0291)) {
 
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
+-:203: CHECK:UNNECESSARY_PARENTHESES: Unnecessary parentheses around 'pdev->subsystem_vendor == 0x1462'
+#203: FILE: drivers/gpu/drm/radeon/radeon_atombios.c:332:
++	if ((pdev->device == 0x5653) &&
++	    (pdev->subsystem_vendor == 0x1462) &&
++	    (pdev->subsystem_device == 0x0291)) {
 
+-:203: CHECK:UNNECESSARY_PARENTHESES: Unnecessary parentheses around 'pdev->subsystem_device == 0x0291'
+#203: FILE: drivers/gpu/drm/radeon/radeon_atombios.c:332:
++	if ((pdev->device == 0x5653) &&
++	    (pdev->subsystem_vendor == 0x1462) &&
++	    (pdev->subsystem_device == 0x0291)) {
 
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/dp: PPS registers doesn&#39;t require AUX power</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/84201/">https://patchwork.freedesktop.org/series/84201/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
+-:216: CHECK:UNNECESSARY_PARENTHESES: Unnecessary parentheses around 'pdev->device == 0x7146'
+#216: FILE: drivers/gpu/drm/radeon/radeon_atombios.c:342:
++	if ((pdev->device == 0x7146) &&
++	    (pdev->subsystem_vendor == 0x17af) &&
++	    (pdev->subsystem_device == 0x2058)) {
 
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18962/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18962/index.html</a></td></tr>
+-:216: CHECK:UNNECESSARY_PARENTHESES: Unnecessary parentheses around 'pdev->subsystem_vendor == 0x17af'
+#216: FILE: drivers/gpu/drm/radeon/radeon_atombios.c:342:
++	if ((pdev->device == 0x7146) &&
++	    (pdev->subsystem_vendor == 0x17af) &&
++	    (pdev->subsystem_device == 0x2058)) {
 
-</table>
+-:216: CHECK:UNNECESSARY_PARENTHESES: Unnecessary parentheses around 'pdev->subsystem_device == 0x2058'
+#216: FILE: drivers/gpu/drm/radeon/radeon_atombios.c:342:
++	if ((pdev->device == 0x7146) &&
++	    (pdev->subsystem_vendor == 0x17af) &&
++	    (pdev->subsystem_device == 0x2058)) {
 
+-:227: CHECK:UNNECESSARY_PARENTHESES: Unnecessary parentheses around 'pdev->device == 0x7142'
+#227: FILE: drivers/gpu/drm/radeon/radeon_atombios.c:350:
++	if ((pdev->device == 0x7142) &&
++	    (pdev->subsystem_vendor == 0x1458) &&
++	    (pdev->subsystem_device == 0x2134)) {
 
-    <h1>CI Bug Log - changes from CI_DRM_9382 -&gt; Patchwork_18962</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18962/index.html</p>
-<h2>New tests</h2>
-<p>New tests have been introduced between CI_DRM_9382 and Patchwork_18962:</p>
-<h3>New CI tests (1)</h3>
-<ul>
-<li>boot:<ul>
-<li>Statuses : 39 pass(s)</li>
-<li>Exec time: [0.0] s</li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_18962 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@gem_mmap_gtt@basic:</p>
-<ul>
-<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9382/fi-tgl-y/igt@gem_mmap_gtt@basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18962/fi-tgl-y/igt@gem_mmap_gtt@basic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) +1 similar issue</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_busy@basic@flip:</p>
-<ul>
-<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9382/fi-tgl-y/igt@kms_busy@basic@flip.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18962/fi-tgl-y/igt@kms_busy@basic@flip.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@dp-crc-fast:</p>
-<ul>
-<li>fi-cml-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9382/fi-cml-u2/igt@kms_chamelium@dp-crc-fast.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18962/fi-cml-u2/igt@kms_chamelium@dp-crc-fast.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@gem_exec_create@basic:</p>
-<ul>
-<li>fi-icl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9382/fi-icl-u2/igt@gem_exec_create@basic.html">INCOMPLETE</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18962/fi-icl-u2/igt@gem_exec_create@basic.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_pm_rpm@module-reload:</p>
-<ul>
-<li>fi-byt-j1900:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9382/fi-byt-j1900/igt@i915_pm_rpm@module-reload.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18962/fi-byt-j1900/igt@i915_pm_rpm@module-reload.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_busy@basic@flip:</p>
-<ul>
-<li>fi-kbl-soraka:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9382/fi-kbl-soraka/igt@kms_busy@basic@flip.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18962/fi-kbl-soraka/igt@kms_busy@basic@flip.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@prime_vgem@basic-fence-flip:</p>
-<ul>
-<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9382/fi-tgl-y/igt@prime_vgem@basic-fence-flip.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18962/fi-tgl-y/igt@prime_vgem@basic-fence-flip.html">PASS</a> +1 similar issue</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Participating hosts (42 -&gt; 39)</h2>
-<p>Additional (1): fi-blb-e6850 <br />
-  Missing    (4): fi-ilk-m540 fi-bsw-cyan fi-bdw-samus fi-hsw-4200u </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_9382 -&gt; Patchwork_18962</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_9382: ac60f3f3090115d21f028bffa2dcfb67f695c4f2 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_5869: 5236e5d4be3ab5e2fedacc32152120b7fb77bf9f @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
-  Patchwork_18962: 0fc838333ce0e97b2f0e1beb26546b3dba32eb57 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>0fc838333ce0 drm/i915/dp: PPS registers doesn't require AUX power</p>
+-:227: CHECK:UNNECESSARY_PARENTHESES: Unnecessary parentheses around 'pdev->subsystem_vendor == 0x1458'
+#227: FILE: drivers/gpu/drm/radeon/radeon_atombios.c:350:
++	if ((pdev->device == 0x7142) &&
++	    (pdev->subsystem_vendor == 0x1458) &&
++	    (pdev->subsystem_device == 0x2134)) {
 
-</body>
-</html>
+-:227: CHECK:UNNECESSARY_PARENTHESES: Unnecessary parentheses around 'pdev->subsystem_device == 0x2134'
+#227: FILE: drivers/gpu/drm/radeon/radeon_atombios.c:350:
++	if ((pdev->device == 0x7142) &&
++	    (pdev->subsystem_vendor == 0x1458) &&
++	    (pdev->subsystem_device == 0x2134)) {
 
---===============2235616145719431164==--
+-:239: CHECK:UNNECESSARY_PARENTHESES: Unnecessary parentheses around 'pdev->device == 0x71C5'
+#239: FILE: drivers/gpu/drm/radeon/radeon_atombios.c:359:
++	if ((pdev->device == 0x71C5) &&
++	    (pdev->subsystem_vendor == 0x106b) &&
++	    (pdev->subsystem_device == 0x0080)) {
 
---===============0900379497==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+-:239: CHECK:UNNECESSARY_PARENTHESES: Unnecessary parentheses around 'pdev->subsystem_vendor == 0x106b'
+#239: FILE: drivers/gpu/drm/radeon/radeon_atombios.c:359:
++	if ((pdev->device == 0x71C5) &&
++	    (pdev->subsystem_vendor == 0x106b) &&
++	    (pdev->subsystem_device == 0x0080)) {
+
+-:239: CHECK:UNNECESSARY_PARENTHESES: Unnecessary parentheses around 'pdev->subsystem_device == 0x0080'
+#239: FILE: drivers/gpu/drm/radeon/radeon_atombios.c:359:
++	if ((pdev->device == 0x71C5) &&
++	    (pdev->subsystem_vendor == 0x106b) &&
++	    (pdev->subsystem_device == 0x0080)) {
+
+-:252: CHECK:UNNECESSARY_PARENTHESES: Unnecessary parentheses around 'pdev->device == 0x9598'
+#252: FILE: drivers/gpu/drm/radeon/radeon_atombios.c:377:
++	if ((pdev->device == 0x9598) &&
++	    (pdev->subsystem_vendor == 0x1043) &&
++	    (pdev->subsystem_device == 0x01da)) {
+
+-:252: CHECK:UNNECESSARY_PARENTHESES: Unnecessary parentheses around 'pdev->subsystem_vendor == 0x1043'
+#252: FILE: drivers/gpu/drm/radeon/radeon_atombios.c:377:
++	if ((pdev->device == 0x9598) &&
++	    (pdev->subsystem_vendor == 0x1043) &&
++	    (pdev->subsystem_device == 0x01da)) {
+
+-:252: CHECK:UNNECESSARY_PARENTHESES: Unnecessary parentheses around 'pdev->subsystem_device == 0x01da'
+#252: FILE: drivers/gpu/drm/radeon/radeon_atombios.c:377:
++	if ((pdev->device == 0x9598) &&
++	    (pdev->subsystem_vendor == 0x1043) &&
++	    (pdev->subsystem_device == 0x01da)) {
+
+-:264: CHECK:UNNECESSARY_PARENTHESES: Unnecessary parentheses around 'pdev->device == 0x9598'
+#264: FILE: drivers/gpu/drm/radeon/radeon_atombios.c:386:
++	if ((pdev->device == 0x9598) &&
++	    (pdev->subsystem_vendor == 0x1043) &&
++	    (pdev->subsystem_device == 0x01e4)) {
+
+-:264: CHECK:UNNECESSARY_PARENTHESES: Unnecessary parentheses around 'pdev->subsystem_vendor == 0x1043'
+#264: FILE: drivers/gpu/drm/radeon/radeon_atombios.c:386:
++	if ((pdev->device == 0x9598) &&
++	    (pdev->subsystem_vendor == 0x1043) &&
++	    (pdev->subsystem_device == 0x01e4)) {
+
+-:264: CHECK:UNNECESSARY_PARENTHESES: Unnecessary parentheses around 'pdev->subsystem_device == 0x01e4'
+#264: FILE: drivers/gpu/drm/radeon/radeon_atombios.c:386:
++	if ((pdev->device == 0x9598) &&
++	    (pdev->subsystem_vendor == 0x1043) &&
++	    (pdev->subsystem_device == 0x01e4)) {
+
+-:276: CHECK:UNNECESSARY_PARENTHESES: Unnecessary parentheses around 'pdev->device == 0x95C5'
+#276: FILE: drivers/gpu/drm/radeon/radeon_atombios.c:395:
++	if ((pdev->device == 0x95C5) &&
++	    (pdev->subsystem_vendor == 0x1043) &&
++	    (pdev->subsystem_device == 0x01e2)) {
+
+-:276: CHECK:UNNECESSARY_PARENTHESES: Unnecessary parentheses around 'pdev->subsystem_vendor == 0x1043'
+#276: FILE: drivers/gpu/drm/radeon/radeon_atombios.c:395:
++	if ((pdev->device == 0x95C5) &&
++	    (pdev->subsystem_vendor == 0x1043) &&
++	    (pdev->subsystem_device == 0x01e2)) {
+
+-:276: CHECK:UNNECESSARY_PARENTHESES: Unnecessary parentheses around 'pdev->subsystem_device == 0x01e2'
+#276: FILE: drivers/gpu/drm/radeon/radeon_atombios.c:395:
++	if ((pdev->device == 0x95C5) &&
++	    (pdev->subsystem_vendor == 0x1043) &&
++	    (pdev->subsystem_device == 0x01e2)) {
+
+-:289: CHECK:UNNECESSARY_PARENTHESES: Unnecessary parentheses around 'pdev->device == 0x95c4'
+#289: FILE: drivers/gpu/drm/radeon/radeon_atombios.c:422:
++	if (((pdev->device == 0x95c4) || (pdev->device == 0x9591)) &&
++	    (pdev->subsystem_vendor == 0x1025) &&
++	    (pdev->subsystem_device == 0x013c)) {
+
+-:289: CHECK:UNNECESSARY_PARENTHESES: Unnecessary parentheses around 'pdev->device == 0x9591'
+#289: FILE: drivers/gpu/drm/radeon/radeon_atombios.c:422:
++	if (((pdev->device == 0x95c4) || (pdev->device == 0x9591)) &&
++	    (pdev->subsystem_vendor == 0x1025) &&
++	    (pdev->subsystem_device == 0x013c)) {
+
+-:289: CHECK:UNNECESSARY_PARENTHESES: Unnecessary parentheses around 'pdev->subsystem_vendor == 0x1025'
+#289: FILE: drivers/gpu/drm/radeon/radeon_atombios.c:422:
++	if (((pdev->device == 0x95c4) || (pdev->device == 0x9591)) &&
++	    (pdev->subsystem_vendor == 0x1025) &&
++	    (pdev->subsystem_device == 0x013c)) {
+
+-:289: CHECK:UNNECESSARY_PARENTHESES: Unnecessary parentheses around 'pdev->subsystem_device == 0x013c'
+#289: FILE: drivers/gpu/drm/radeon/radeon_atombios.c:422:
++	if (((pdev->device == 0x95c4) || (pdev->device == 0x9591)) &&
++	    (pdev->subsystem_vendor == 0x1025) &&
++	    (pdev->subsystem_device == 0x013c)) {
+
+-:302: CHECK:UNNECESSARY_PARENTHESES: Unnecessary parentheses around 'pdev->device == 0x9498'
+#302: FILE: drivers/gpu/drm/radeon/radeon_atombios.c:436:
++	if ((pdev->device == 0x9498) &&
++	    (pdev->subsystem_vendor == 0x1682) &&
++	    (pdev->subsystem_device == 0x2452) &&
+ 	    (i2c_bus->valid == false) &&
+ 	    !(supported_device & (ATOM_DEVICE_TV_SUPPORT | ATOM_DEVICE_CV_SUPPORT))) {
+
+-:302: CHECK:UNNECESSARY_PARENTHESES: Unnecessary parentheses around 'pdev->subsystem_vendor == 0x1682'
+#302: FILE: drivers/gpu/drm/radeon/radeon_atombios.c:436:
++	if ((pdev->device == 0x9498) &&
++	    (pdev->subsystem_vendor == 0x1682) &&
++	    (pdev->subsystem_device == 0x2452) &&
+ 	    (i2c_bus->valid == false) &&
+ 	    !(supported_device & (ATOM_DEVICE_TV_SUPPORT | ATOM_DEVICE_CV_SUPPORT))) {
+
+-:302: CHECK:UNNECESSARY_PARENTHESES: Unnecessary parentheses around 'pdev->subsystem_device == 0x2452'
+#302: FILE: drivers/gpu/drm/radeon/radeon_atombios.c:436:
++	if ((pdev->device == 0x9498) &&
++	    (pdev->subsystem_vendor == 0x1682) &&
++	    (pdev->subsystem_device == 0x2452) &&
+ 	    (i2c_bus->valid == false) &&
+ 	    !(supported_device & (ATOM_DEVICE_TV_SUPPORT | ATOM_DEVICE_CV_SUPPORT))) {
+
+-:302: CHECK:UNNECESSARY_PARENTHESES: Unnecessary parentheses around 'i2c_bus->valid == false'
+#302: FILE: drivers/gpu/drm/radeon/radeon_atombios.c:436:
++	if ((pdev->device == 0x9498) &&
++	    (pdev->subsystem_vendor == 0x1682) &&
++	    (pdev->subsystem_device == 0x2452) &&
+ 	    (i2c_bus->valid == false) &&
+ 	    !(supported_device & (ATOM_DEVICE_TV_SUPPORT | ATOM_DEVICE_CV_SUPPORT))) {
+
+-:317: CHECK:UNNECESSARY_PARENTHESES: Unnecessary parentheses around 'pdev->device == 0x9802'
+#317: FILE: drivers/gpu/drm/radeon/radeon_atombios.c:446:
++	if (((pdev->device == 0x9802) ||
++	     (pdev->device == 0x9805) ||
++	     (pdev->device == 0x9806)) &&
++	    (pdev->subsystem_vendor == 0x1734) &&
++	    (pdev->subsystem_device == 0x11bd)) {
+
+-:317: CHECK:UNNECESSARY_PARENTHESES: Unnecessary parentheses around 'pdev->device == 0x9805'
+#317: FILE: drivers/gpu/drm/radeon/radeon_atombios.c:446:
++	if (((pdev->device == 0x9802) ||
++	     (pdev->device == 0x9805) ||
++	     (pdev->device == 0x9806)) &&
++	    (pdev->subsystem_vendor == 0x1734) &&
++	    (pdev->subsystem_device == 0x11bd)) {
+
+-:317: CHECK:UNNECESSARY_PARENTHESES: Unnecessary parentheses around 'pdev->device == 0x9806'
+#317: FILE: drivers/gpu/drm/radeon/radeon_atombios.c:446:
++	if (((pdev->device == 0x9802) ||
++	     (pdev->device == 0x9805) ||
++	     (pdev->device == 0x9806)) &&
++	    (pdev->subsystem_vendor == 0x1734) &&
++	    (pdev->subsystem_device == 0x11bd)) {
+
+-:317: CHECK:UNNECESSARY_PARENTHESES: Unnecessary parentheses around 'pdev->subsystem_vendor == 0x1734'
+#317: FILE: drivers/gpu/drm/radeon/radeon_atombios.c:446:
++	if (((pdev->device == 0x9802) ||
++	     (pdev->device == 0x9805) ||
++	     (pdev->device == 0x9806)) &&
++	    (pdev->subsystem_vendor == 0x1734) &&
++	    (pdev->subsystem_device == 0x11bd)) {
+
+-:317: CHECK:UNNECESSARY_PARENTHESES: Unnecessary parentheses around 'pdev->subsystem_device == 0x11bd'
+#317: FILE: drivers/gpu/drm/radeon/radeon_atombios.c:446:
++	if (((pdev->device == 0x9802) ||
++	     (pdev->device == 0x9805) ||
++	     (pdev->device == 0x9806)) &&
++	    (pdev->subsystem_vendor == 0x1734) &&
++	    (pdev->subsystem_device == 0x11bd)) {
+
+-:334: WARNING:BRACES: braces {} are not necessary for single statement blocks
+#334: FILE: drivers/gpu/drm/radeon/radeon_bios.c:531:
++	if (rdev->pdev->device == PCI_DEVICE_ID_ATI_RADEON_QY) {
+ 		fp2_gen_cntl = RREG32(RADEON_FP2_GEN_CNTL);
+ 	}
+
+-:343: WARNING:BRACES: braces {} are not necessary for single statement blocks
+#343: FILE: drivers/gpu/drm/radeon/radeon_bios.c:568:
++	if (rdev->pdev->device == PCI_DEVICE_ID_ATI_RADEON_QY) {
+ 		WREG32(RADEON_FP2_GEN_CNTL, (fp2_gen_cntl & ~RADEON_FP2_ON));
+ 	}
+
+-:352: WARNING:BRACES: braces {} are not necessary for single statement blocks
+#352: FILE: drivers/gpu/drm/radeon/radeon_bios.c:586:
++	if (rdev->pdev->device == PCI_DEVICE_ID_ATI_RADEON_QY) {
+ 		WREG32(RADEON_FP2_GEN_CNTL, fp2_gen_cntl);
+ 	}
+
+-:367: CHECK:UNNECESSARY_PARENTHESES: Unnecessary parentheses around 'rdev->pdev->device == 0x5159'
+#367: FILE: drivers/gpu/drm/radeon/radeon_combios.c:901:
++	if (((rdev->pdev->device == 0x5159) &&
++	    (rdev->pdev->subsystem_vendor == 0x174B) &&
++	    (rdev->pdev->subsystem_device == 0x7c28)) ||
+ 	/* Radeon 9100 (R200) */
++	   ((rdev->pdev->device == 0x514D) &&
++	    (rdev->pdev->subsystem_vendor == 0x174B) &&
++	    (rdev->pdev->subsystem_device == 0x7149))) {
+
+-:367: CHECK:UNNECESSARY_PARENTHESES: Unnecessary parentheses around 'rdev->pdev->subsystem_vendor == 0x174B'
+#367: FILE: drivers/gpu/drm/radeon/radeon_combios.c:901:
++	if (((rdev->pdev->device == 0x5159) &&
++	    (rdev->pdev->subsystem_vendor == 0x174B) &&
++	    (rdev->pdev->subsystem_device == 0x7c28)) ||
+ 	/* Radeon 9100 (R200) */
++	   ((rdev->pdev->device == 0x514D) &&
++	    (rdev->pdev->subsystem_vendor == 0x174B) &&
++	    (rdev->pdev->subsystem_device == 0x7149))) {
+
+-:367: CHECK:UNNECESSARY_PARENTHESES: Unnecessary parentheses around 'rdev->pdev->subsystem_device == 0x7c28'
+#367: FILE: drivers/gpu/drm/radeon/radeon_combios.c:901:
++	if (((rdev->pdev->device == 0x5159) &&
++	    (rdev->pdev->subsystem_vendor == 0x174B) &&
++	    (rdev->pdev->subsystem_device == 0x7c28)) ||
+ 	/* Radeon 9100 (R200) */
++	   ((rdev->pdev->device == 0x514D) &&
++	    (rdev->pdev->subsystem_vendor == 0x174B) &&
++	    (rdev->pdev->subsystem_device == 0x7149))) {
+
+-:367: CHECK:UNNECESSARY_PARENTHESES: Unnecessary parentheses around 'rdev->pdev->device == 0x514D'
+#367: FILE: drivers/gpu/drm/radeon/radeon_combios.c:901:
++	if (((rdev->pdev->device == 0x5159) &&
++	    (rdev->pdev->subsystem_vendor == 0x174B) &&
++	    (rdev->pdev->subsystem_device == 0x7c28)) ||
+ 	/* Radeon 9100 (R200) */
++	   ((rdev->pdev->device == 0x514D) &&
++	    (rdev->pdev->subsystem_vendor == 0x174B) &&
++	    (rdev->pdev->subsystem_device == 0x7149))) {
+
+-:367: CHECK:UNNECESSARY_PARENTHESES: Unnecessary parentheses around 'rdev->pdev->subsystem_vendor == 0x174B'
+#367: FILE: drivers/gpu/drm/radeon/radeon_combios.c:901:
++	if (((rdev->pdev->device == 0x5159) &&
++	    (rdev->pdev->subsystem_vendor == 0x174B) &&
++	    (rdev->pdev->subsystem_device == 0x7c28)) ||
+ 	/* Radeon 9100 (R200) */
++	   ((rdev->pdev->device == 0x514D) &&
++	    (rdev->pdev->subsystem_vendor == 0x174B) &&
++	    (rdev->pdev->subsystem_device == 0x7149))) {
+
+-:367: CHECK:UNNECESSARY_PARENTHESES: Unnecessary parentheses around 'rdev->pdev->subsystem_device == 0x7149'
+#367: FILE: drivers/gpu/drm/radeon/radeon_combios.c:901:
++	if (((rdev->pdev->device == 0x5159) &&
++	    (rdev->pdev->subsystem_vendor == 0x174B) &&
++	    (rdev->pdev->subsystem_device == 0x7c28)) ||
+ 	/* Radeon 9100 (R200) */
+
 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============0900379497==--
