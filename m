@@ -1,46 +1,46 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 77F212C2AF9
-	for <lists+intel-gfx@lfdr.de>; Tue, 24 Nov 2020 16:12:46 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id AD6522C2BC2
+	for <lists+intel-gfx@lfdr.de>; Tue, 24 Nov 2020 16:50:05 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3370A6E424;
-	Tue, 24 Nov 2020 15:12:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7B0756E45C;
+	Tue, 24 Nov 2020 15:50:02 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F015A6E424
- for <intel-gfx@lists.freedesktop.org>; Tue, 24 Nov 2020 15:12:42 +0000 (UTC)
-IronPort-SDR: NIBAmmRBQxxXhjN8wWX/sRgjUsQmFEb8IVHh+RbhJSAUleXBTh3FqnaSrx2Id18a/cwlildkf9
- kCLA3RRmLdVw==
-X-IronPort-AV: E=McAfee;i="6000,8403,9815"; a="159002376"
-X-IronPort-AV: E=Sophos;i="5.78,366,1599548400"; d="scan'208";a="159002376"
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ADA6A6E453;
+ Tue, 24 Nov 2020 15:50:00 +0000 (UTC)
+IronPort-SDR: cpWCsGQbS1whqsGj6vyzbub8msXDVRNgVOoqmFDw6vjs+MYvPcxWdXgVrrLtArBHUS+aIQ19eS
+ DqwYnftCMZQw==
+X-IronPort-AV: E=McAfee;i="6000,8403,9815"; a="151806768"
+X-IronPort-AV: E=Sophos;i="5.78,366,1599548400"; d="scan'208";a="151806768"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Nov 2020 07:12:42 -0800
-IronPort-SDR: WnatqVi4rapNsIuvQiylY9rtW8g3+dHMK2ZqAv3twUva6/ZY8jn3UTyCsUr2liHuUQKxFbveQ/
- uexuQfYxyLBw==
-X-IronPort-AV: E=Sophos;i="5.78,366,1599548400"; d="scan'208";a="536502963"
-Received: from ideak-desk.fi.intel.com ([10.237.68.141])
- by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Nov 2020 07:12:40 -0800
-Date: Tue, 24 Nov 2020 17:12:37 +0200
-From: Imre Deak <imre.deak@intel.com>
-To: intel-gfx@lists.freedesktop.org,
- Lakshminarayana Vudum <lakshminarayana.vudum@intel.com>
-Message-ID: <20201124151237.GE1750458@ideak-desk.fi.intel.com>
-References: <20201123182631.1740781-1-imre.deak@intel.com>
- <160616667129.16919.10811690376260413336@emeril.freedesktop.org>
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Nov 2020 07:50:00 -0800
+IronPort-SDR: uukol10vZ3/84iSGEtI/4Ge+knvbmS2AgzM3MY6bD35NlsfndOW9MvSf5MzVeic0H2R4KpKub1
+ hUX86Mgn8JJg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.78,366,1599548400"; d="scan'208";a="332602260"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
+ by orsmga006.jf.intel.com with SMTP; 24 Nov 2020 07:49:57 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Tue, 24 Nov 2020 17:49:56 +0200
+Date: Tue, 24 Nov 2020 17:49:56 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Hans de Goede <hdegoede@redhat.com>
+Message-ID: <20201124154956.GL6112@intel.com>
+References: <20201118124058.26021-1-hdegoede@redhat.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <160616667129.16919.10811690376260413336@emeril.freedesktop.org>
-Subject: Re: [Intel-gfx] 
- =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3Igc2Vy?=
- =?utf-8?q?ies_starting_with_=5B1/2=5D_drm/framebuffer=3A_Format_modifier_?=
- =?utf-8?q?for_Intel_Gen_12_render_compression_with_Clear_Color?=
+In-Reply-To: <20201118124058.26021-1-hdegoede@redhat.com>
+X-Patchwork-Hint: comment
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/dsi: Use unconditional msleep for
+ the panel_on_delay when there is no reset-deassert MIPI-sequence
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,160 +53,95 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: imre.deak@intel.com
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: intel-gfx <intel-gfx@lists.freedesktop.org>,
+ dri-devel@lists.freedesktop.org
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi,
+On Wed, Nov 18, 2020 at 01:40:58PM +0100, Hans de Goede wrote:
+> Commit 25b4620ee822 ("drm/i915/dsi: Skip delays for v3 VBTs in vid-mode")
+> added an intel_dsi_msleep() helper which skips sleeping if the
+> MIPI-sequences have a version of 3 or newer and the panel is in vid-mode;
+> and it moved a bunch of msleep-s over to this new helper.
+> =
 
-On Mon, Nov 23, 2020 at 09:24:31PM +0000, Patchwork wrote:
-> == Series Details ==
-> 
-> Series: series starting with [1/2] drm/framebuffer: Format modifier for Intel Gen 12 render compression with Clear Color
-> URL   : https://patchwork.freedesktop.org/series/84183/
-> State : failure
-> 
-> == Summary ==
-> 
-> CI Bug Log - changes from CI_DRM_9378 -> Patchwork_18961
-> ====================================================
-> 
-> Summary
-> -------
-> 
->   **FAILURE**
-> 
->   Serious unknown changes coming with Patchwork_18961 absolutely need to be
->   verified manually.
->   
->   If you think the reported changes have nothing to do with the changes
->   introduced in Patchwork_18961, please notify your bug team to allow them
->   to document this new failure mode, which will reduce false positives in CI.
-> 
->   External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18961/index.html
-> 
-> Possible new issues
-> -------------------
-> 
->   Here are the unknown changes that may have been introduced in Patchwork_18961:
-> 
-> ### IGT changes ###
-> 
-> #### Possible regressions ####
-> 
->   * igt@gem_exec_fence@basic-await@rcs0:
->     - fi-skl-lmem:        [PASS][1] -> [INCOMPLETE][2]
->    [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9378/fi-skl-lmem/igt@gem_exec_fence@basic-await@rcs0.html
->    [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18961/fi-skl-lmem/igt@gem_exec_fence@basic-await@rcs0.html
-> 
->   * igt@kms_chamelium@common-hpd-after-suspend:
->     - fi-kbl-7500u:       [PASS][3] -> [FAIL][4]
->    [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9378/fi-kbl-7500u/igt@kms_chamelium@common-hpd-after-suspend.html
->    [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18961/fi-kbl-7500u/igt@kms_chamelium@common-hpd-after-suspend.html
+> This was based on my reading of the big comment around line 730 which
+> starts with "Panel enable/disable sequences from the VBT spec.",
+> where the "v3 video mode seq" column does not have any wait t# entries.
+> =
 
-the patchset adds a new framebuffer modifier used only on TGL, so the
-above two failures happen on unaffected platforms.
+> Given that this code has been used on a lot of different devices without
+> issues until now, it seems that my interpretation of the spec here is
+> mostly correct.
+> =
 
-> 
->   
-> New tests
-> ---------
-> 
->   New tests have been introduced between CI_DRM_9378 and Patchwork_18961:
-> 
-> ### New CI tests (1) ###
-> 
->   * boot:
->     - Statuses : 40 pass(s)
->     - Exec time: [0.0] s
-> 
->   
-> 
-> Known issues
-> ------------
-> 
->   Here are the changes found in Patchwork_18961 that come from known issues:
-> 
-> ### IGT changes ###
-> 
-> #### Issues hit ####
-> 
->   * igt@kms_busy@basic@flip:
->     - fi-tgl-y:           [PASS][5] -> [DMESG-WARN][6] ([i915#1982]) +1 similar issue
->    [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9378/fi-tgl-y/igt@kms_busy@basic@flip.html
->    [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18961/fi-tgl-y/igt@kms_busy@basic@flip.html
-> 
->   * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy:
->     - fi-icl-u2:          [PASS][7] -> [DMESG-WARN][8] ([i915#1982]) +1 similar issue
->    [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9378/fi-icl-u2/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html
->    [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18961/fi-icl-u2/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html
-> 
->   * igt@prime_self_import@basic-with_one_bo_two_files:
->     - fi-tgl-y:           [PASS][9] -> [DMESG-WARN][10] ([i915#402]) +1 similar issue
->    [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9378/fi-tgl-y/igt@prime_self_import@basic-with_one_bo_two_files.html
->    [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18961/fi-tgl-y/igt@prime_self_import@basic-with_one_bo_two_files.html
-> 
->   
-> #### Possible fixes ####
-> 
->   * igt@kms_busy@basic@modeset:
->     - fi-tgl-y:           [DMESG-WARN][11] ([i915#1982]) -> [PASS][12] +1 similar issue
->    [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9378/fi-tgl-y/igt@kms_busy@basic@modeset.html
->    [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18961/fi-tgl-y/igt@kms_busy@basic@modeset.html
-> 
->   * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:
->     - fi-byt-j1900:       [DMESG-WARN][13] ([i915#1982]) -> [PASS][14] +1 similar issue
->    [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9378/fi-byt-j1900/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
->    [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18961/fi-byt-j1900/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
->     - {fi-kbl-7560u}:     [DMESG-WARN][15] ([i915#1982]) -> [PASS][16]
->    [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9378/fi-kbl-7560u/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
->    [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18961/fi-kbl-7560u/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-> 
->   * igt@kms_cursor_legacy@basic-flip-after-cursor-legacy:
->     - fi-icl-u2:          [DMESG-WARN][17] ([i915#1982]) -> [PASS][18]
->    [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9378/fi-icl-u2/igt@kms_cursor_legacy@basic-flip-after-cursor-legacy.html
->    [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18961/fi-icl-u2/igt@kms_cursor_legacy@basic-flip-after-cursor-legacy.html
-> 
->   * igt@prime_vgem@basic-write:
->     - fi-tgl-y:           [DMESG-WARN][19] ([i915#402]) -> [PASS][20] +1 similar issue
->    [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9378/fi-tgl-y/igt@prime_vgem@basic-write.html
->    [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18961/fi-tgl-y/igt@prime_vgem@basic-write.html
-> 
->   
->   {name}: This element is suppressed. This means it is ignored when computing
->           the status of the difference (SUCCESS, WARNING, or FAILURE).
-> 
->   [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
->   [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
-> 
-> 
-> Participating hosts (44 -> 40)
-> ------------------------------
-> 
->   Missing    (4): fi-ilk-m540 fi-bsw-cyan fi-bdw-samus fi-hsw-4200u 
-> 
-> 
-> Build changes
-> -------------
-> 
->   * Linux: CI_DRM_9378 -> Patchwork_18961
-> 
->   CI-20190529: 20190529
->   CI_DRM_9378: efc7f880143d6fe75922ad393045665c8ea60f57 @ git://anongit.freedesktop.org/gfx-ci/linux
->   IGT_5868: 36b5fc05c30dbfd9242069fd6e51ebb419b386bc @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
->   Patchwork_18961: 0dba847db9d24c6d2d706379ac2f842b8f4a6bdb @ git://anongit.freedesktop.org/gfx-ci/linux
-> 
-> 
-> == Linux commits ==
-> 
-> 0dba847db9d2 drm/i915/tgl: Add Clear Color support for TGL Render Decompression
-> a3b4d1336125 drm/framebuffer: Format modifier for Intel Gen 12 render compression with Clear Color
-> 
-> == Logs ==
-> 
-> For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18961/index.html
+> But now I have encountered one device, an Acer Aspire Switch 10 E
+> SW3-016, where the panel will not light up unless we do actually honor the
+> panel_on_delay after exexuting the MIPI_SEQ_PANEL_ON sequence.
+> =
+
+> What seems to set this model apart is that it is lacking a
+> MIPI_SEQ_DEASSERT_RESET sequence, which is where the power-on
+> delay usually happens.
+> =
+
+> Fix the panel not lighting up on this model by using an unconditional
+> msleep(panel_on_delay) instead of intel_dsi_msleep() when there is
+> no MIPI_SEQ_DEASSERT_RESET sequence.
+> =
+
+> Fixes: 25b4620ee822 ("drm/i915/dsi: Skip delays for v3 VBTs in vid-mode")
+> Signed-off-by: Hans de Goede <hdegoede@redhat.com>
+> ---
+>  drivers/gpu/drm/i915/display/vlv_dsi.c | 10 +++++++---
+>  1 file changed, 7 insertions(+), 3 deletions(-)
+> =
+
+> diff --git a/drivers/gpu/drm/i915/display/vlv_dsi.c b/drivers/gpu/drm/i91=
+5/display/vlv_dsi.c
+> index 194c239ab6b1..ef673277b36d 100644
+> --- a/drivers/gpu/drm/i915/display/vlv_dsi.c
+> +++ b/drivers/gpu/drm/i915/display/vlv_dsi.c
+> @@ -816,10 +816,14 @@ static void intel_dsi_pre_enable(struct intel_atomi=
+c_state *state,
+>  		intel_dsi_prepare(encoder, pipe_config);
+>  =
+
+>  	intel_dsi_vbt_exec_sequence(intel_dsi, MIPI_SEQ_POWER_ON);
+> -	intel_dsi_msleep(intel_dsi, intel_dsi->panel_on_delay);
+>  =
+
+> -	/* Deassert reset */
+> -	intel_dsi_vbt_exec_sequence(intel_dsi, MIPI_SEQ_DEASSERT_RESET);
+> +	if (dev_priv->vbt.dsi.sequence[MIPI_SEQ_DEASSERT_RESET]) {
+> +		intel_dsi_msleep(intel_dsi, intel_dsi->panel_on_delay);
+> +		/* Deassert reset */
+> +		intel_dsi_vbt_exec_sequence(intel_dsi, MIPI_SEQ_DEASSERT_RESET);
+> +	} else {
+> +		msleep(intel_dsi->panel_on_delay);
+> +	}
+
+Could perhaps use a comment ot explain to the reader what's going on.
+
+Looks sane enough to me, and if we get this wrong we just get a bigger
+delay than necessary I guess. So mostly harmless.
+
+Reviewed-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+
+>  =
+
+>  	if (IS_GEMINILAKE(dev_priv)) {
+>  		glk_cold_boot =3D glk_dsi_enable_io(encoder);
+> -- =
+
+> 2.28.0
+
+-- =
+
+Ville Syrj=E4l=E4
+Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
