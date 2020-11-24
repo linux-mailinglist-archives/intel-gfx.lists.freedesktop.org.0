@@ -1,32 +1,43 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 101E02C340C
-	for <lists+intel-gfx@lfdr.de>; Tue, 24 Nov 2020 23:32:08 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id F25C62C3454
+	for <lists+intel-gfx@lfdr.de>; Wed, 25 Nov 2020 00:07:33 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D2F646E40C;
-	Tue, 24 Nov 2020 22:32:05 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id C44A16E409;
- Tue, 24 Nov 2020 22:32:04 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id BA9C5A882F;
- Tue, 24 Nov 2020 22:32:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DA4556E409;
+	Tue, 24 Nov 2020 23:07:30 +0000 (UTC)
+X-Original-To: Intel-GFX@lists.freedesktop.org
+Delivered-To: Intel-GFX@lists.freedesktop.org
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3C2BB6E409
+ for <Intel-GFX@lists.freedesktop.org>; Tue, 24 Nov 2020 23:07:30 +0000 (UTC)
+IronPort-SDR: 64jGh/+WNs7UG9eRZs1AoLq8bPDH7v2hSR53iM+OjZ5hLoGdqtV4vrQ51WEDe0ksrHafHo7uYr
+ LUqSrcyns1Og==
+X-IronPort-AV: E=McAfee;i="6000,8403,9815"; a="256739303"
+X-IronPort-AV: E=Sophos;i="5.78,367,1599548400"; d="scan'208";a="256739303"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Nov 2020 15:07:29 -0800
+IronPort-SDR: i+84xYzIBtNodkNhALkPS7j6KaqGfnJQCyosGB2FvovfckFgZ9D2KsZAWkFcRY/azTMwEAUg3T
+ tcEsjFe5ZDXA==
+X-IronPort-AV: E=Sophos;i="5.78,367,1599548400"; d="scan'208";a="362078686"
+Received: from ldmartin-desk1.jf.intel.com ([134.134.244.72])
+ by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Nov 2020 15:07:29 -0800
+Date: Tue, 24 Nov 2020 15:07:05 -0800
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+Message-ID: <20201124230705.dlowrqxp6cu3sml2@ldmartin-desk1.jf.intel.com>
+X-Patchwork-Hint: comment
+References: <20200710213246.222179-1-John.C.Harrison@Intel.com>
+ <b23c6e84-7629-a257-fb55-303db76c7ef3@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Tue, 24 Nov 2020 22:32:04 -0000
-Message-ID: <160625712473.10864.15250093985773083005@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20201123145551.13222-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20201123145551.13222-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciBk?=
- =?utf-8?q?rm/i915/display=3A_Record_the_plane_update_times_for_debugging_?=
- =?utf-8?b?KHJldjMp?=
+Content-Disposition: inline
+In-Reply-To: <b23c6e84-7629-a257-fb55-303db76c7ef3@intel.com>
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Correct location of Wa_1408615072
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,40 +50,66 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: Intel-GFX@lists.freedesktop.org
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-PT0gU2VyaWVzIERldGFpbHMgPT0KClNlcmllczogZHJtL2k5MTUvZGlzcGxheTogUmVjb3JkIHRo
-ZSBwbGFuZSB1cGRhdGUgdGltZXMgZm9yIGRlYnVnZ2luZyAocmV2MykKVVJMICAgOiBodHRwczov
-L3BhdGNod29yay5mcmVlZGVza3RvcC5vcmcvc2VyaWVzLzg0MTc0LwpTdGF0ZSA6IGZhaWx1cmUK
-Cj09IFN1bW1hcnkgPT0KCkNBTEwgICAgc2NyaXB0cy9jaGVja3N5c2NhbGxzLnNoCiAgQ0FMTCAg
-ICBzY3JpcHRzL2F0b21pYy9jaGVjay1hdG9taWNzLnNoCiAgREVTQ0VORCAgb2JqdG9vbAogIENI
-SyAgICAgaW5jbHVkZS9nZW5lcmF0ZWQvY29tcGlsZS5oCiAgQ0MgW01dICBkcml2ZXJzL2dwdS9k
-cm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXlfZGVidWdmcy5vCmRyaXZlcnMvZ3B1L2RybS9p
-OTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheV9kZWJ1Z2ZzLmM6IEluIGZ1bmN0aW9uIOKAmGNydGNf
-dmJsYW5rX2luZm/igJk6CmRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxh
-eV9kZWJ1Z2ZzLmM6OTA3OjY6IGVycm9yOiDigJhWQkxBTktfRVZBU0lPTl9USU1FX1VT4oCZIHVu
-ZGVjbGFyZWQgKGZpcnN0IHVzZSBpbiB0aGlzIGZ1bmN0aW9uKTsgZGlkIHlvdSBtZWFuIOKAmERN
-QVJfT1BFUkFUSU9OX1RJTUVPVVTigJk/CiAgICAgIFZCTEFOS19FVkFTSU9OX1RJTUVfVVMsIGNy
-dGMtPmRlYnVnLm92ZXJfdmJsX3RpbWUpOwogICAgICBefn5+fn5+fn5+fn5+fn5+fn5+fn5+CiAg
-ICAgIERNQVJfT1BFUkFUSU9OX1RJTUVPVVQKZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9p
-bnRlbF9kaXNwbGF5X2RlYnVnZnMuYzo5MDc6Njogbm90ZTogZWFjaCB1bmRlY2xhcmVkIGlkZW50
-aWZpZXIgaXMgcmVwb3J0ZWQgb25seSBvbmNlIGZvciBlYWNoIGZ1bmN0aW9uIGl0IGFwcGVhcnMg
-aW4Kc2NyaXB0cy9NYWtlZmlsZS5idWlsZDoyODM6IHJlY2lwZSBmb3IgdGFyZ2V0ICdkcml2ZXJz
-L2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXlfZGVidWdmcy5vJyBmYWlsZWQKbWFr
-ZVs0XTogKioqIFtkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXlfZGVi
-dWdmcy5vXSBFcnJvciAxCnNjcmlwdHMvTWFrZWZpbGUuYnVpbGQ6NTAwOiByZWNpcGUgZm9yIHRh
-cmdldCAnZHJpdmVycy9ncHUvZHJtL2k5MTUnIGZhaWxlZAptYWtlWzNdOiAqKiogW2RyaXZlcnMv
-Z3B1L2RybS9pOTE1XSBFcnJvciAyCnNjcmlwdHMvTWFrZWZpbGUuYnVpbGQ6NTAwOiByZWNpcGUg
-Zm9yIHRhcmdldCAnZHJpdmVycy9ncHUvZHJtJyBmYWlsZWQKbWFrZVsyXTogKioqIFtkcml2ZXJz
-L2dwdS9kcm1dIEVycm9yIDIKc2NyaXB0cy9NYWtlZmlsZS5idWlsZDo1MDA6IHJlY2lwZSBmb3Ig
-dGFyZ2V0ICdkcml2ZXJzL2dwdScgZmFpbGVkCm1ha2VbMV06ICoqKiBbZHJpdmVycy9ncHVdIEVy
-cm9yIDIKTWFrZWZpbGU6MTc5OTogcmVjaXBlIGZvciB0YXJnZXQgJ2RyaXZlcnMnIGZhaWxlZApt
-YWtlOiAqKiogW2RyaXZlcnNdIEVycm9yIDIKCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0
-cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9s
-aXN0aW5mby9pbnRlbC1nZngK
+
+It seems this was forgotten? We do have it for DG1, but for TGL it's not
+being applied.
+
+Lucas De Marchi
+
+On Fri, Jul 24, 2020 at 02:21:03PM -0700, Daniele Ceraolo Spurio wrote:
+>Reviewed-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+>
+>Daniele
+>
+>On 7/10/2020 2:32 PM, John.C.Harrison@Intel.com wrote:
+>>From: John Harrison <John.C.Harrison@Intel.com>
+>>
+>>The above workaround was added as an engine workaround not a GT
+>>workaround. Moved it to the correct location.
+>>
+>>Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
+>>---
+>>  drivers/gpu/drm/i915/gt/intel_workarounds.c | 10 ++++++----
+>>  1 file changed, 6 insertions(+), 4 deletions(-)
+>>
+>>diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/drm/i915/gt/intel_workarounds.c
+>>index 5726cd0a37e0..a6548a77439c 100644
+>>--- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
+>>+++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
+>>@@ -1191,6 +1191,12 @@ tgl_gt_workarounds_init(struct drm_i915_private *i915, struct i915_wa_list *wal)
+>>  		wa_write_or(wal,
+>>  			    SLICE_UNIT_LEVEL_CLKGATE,
+>>  			    L3_CLKGATE_DIS | L3_CR2X_CLKGATE_DIS);
+>>+
+>>+	/* Wa_1408615072:tgl[a0] */
+>>+	/* Empirical testing shows this register is unaffected by engine reset. */
+>>+	if (IS_TGL_REVID(i915, TGL_REVID_A0, TGL_REVID_A0))
+>>+		wa_write_or(wal, UNSLICE_UNIT_LEVEL_CLKGATE2,
+>>+			    VSUNIT_CLKGATE_DIS_TGL);
+>>  }
+>>  static void
+>>@@ -1648,10 +1654,6 @@ rcs_engine_wa_init(struct intel_engine_cs *engine, struct i915_wa_list *wal)
+>>  		wa_write_or(wal,
+>>  			    GEN7_SARCHKMD,
+>>  			    GEN7_DISABLE_SAMPLER_PREFETCH);
+>>-
+>>-		/* Wa_1408615072:tgl */
+>>-		wa_write_or(wal, UNSLICE_UNIT_LEVEL_CLKGATE2,
+>>-			    VSUNIT_CLKGATE_DIS_TGL);
+>>  	}
+>>  	if (IS_TIGERLAKE(i915)) {
+>
+>_______________________________________________
+>Intel-gfx mailing list
+>Intel-gfx@lists.freedesktop.org
+>https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
