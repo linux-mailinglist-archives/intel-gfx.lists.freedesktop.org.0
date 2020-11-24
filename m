@@ -1,48 +1,29 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6035A2C235A
-	for <lists+intel-gfx@lfdr.de>; Tue, 24 Nov 2020 11:57:58 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 826E72C2475
+	for <lists+intel-gfx@lfdr.de>; Tue, 24 Nov 2020 12:39:09 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9696F6E219;
-	Tue, 24 Nov 2020 10:57:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 404686E3D3;
+	Tue, 24 Nov 2020 11:38:33 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9CEEF6E210;
- Tue, 24 Nov 2020 10:57:50 +0000 (UTC)
-IronPort-SDR: 5HQ7ECG9N8rCyncbxay9rYM0vjFO7nh1lN9iz8VPN1/JKCbxaPOnft/dwW8NdQTuUBFdN271r+
- L/nViX9HHuHQ==
-X-IronPort-AV: E=McAfee;i="6000,8403,9814"; a="169361945"
-X-IronPort-AV: E=Sophos;i="5.78,366,1599548400"; 
- d="scan'208,217";a="169361945"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Nov 2020 02:57:47 -0800
-IronPort-SDR: NbsIMSlPR29ZQyJP/8o7pMuAkoGEi7FxwTf2+/8JdLOffg39ABcjgHcsKLrDn0h3L07gEtr2LW
- uMzTKiZPWRcQ==
-X-IronPort-AV: E=Sophos;i="5.78,366,1599548400"; 
- d="scan'208,217";a="370377457"
-Received: from kbs1-mobl1.gar.corp.intel.com (HELO [10.251.77.86])
- ([10.251.77.86])
- by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Nov 2020 02:57:45 -0800
-To: Anshuman Gupta <anshuman.gupta@intel.com>,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-References: <20201111062051.11529-1-anshuman.gupta@intel.com>
-From: Karthik B S <karthik.b.s@intel.com>
-Message-ID: <967f47ba-cb87-2094-8167-b3501292c47e@intel.com>
-Date: Tue, 24 Nov 2020 16:27:27 +0530
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Thunderbird/78.5.0
+Received: from mx2.suse.de (mx2.suse.de [195.135.220.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 635AB6E20B;
+ Tue, 24 Nov 2020 11:38:28 +0000 (UTC)
+X-Virus-Scanned: by amavisd-new at test-mx.suse.de
+Received: from relay2.suse.de (unknown [195.135.221.27])
+ by mx2.suse.de (Postfix) with ESMTP id 00416AC2D;
+ Tue, 24 Nov 2020 11:38:26 +0000 (UTC)
+From: Thomas Zimmermann <tzimmermann@suse.de>
+To: airlied@linux.ie,
+	daniel@ffwll.ch
+Date: Tue, 24 Nov 2020 12:38:09 +0100
+Message-Id: <20201124113824.19994-1-tzimmermann@suse.de>
+X-Mailer: git-send-email 2.29.2
 MIME-Version: 1.0
-In-Reply-To: <20201111062051.11529-1-anshuman.gupta@intel.com>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH v5 00/17] HDCP 2.2 and HDCP 1.4 Gen12 DP MST
- support
+Subject: [Intel-gfx] [PATCH 00/15] drm: Move struct drm_device.pdev to legacy
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,168 +36,191 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jani.nikula@intel.com, seanpaul@chromium.org
-Content-Type: multipart/mixed; boundary="===============0969485150=="
+Cc: nouveau@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, virtualization@lists.linux-foundation.org,
+ amd-gfx@lists.freedesktop.org, Thomas Zimmermann <tzimmermann@suse.de>,
+ spice-devel@lists.freedesktop.org, intel-gvt-dev@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This is a multi-part message in MIME format.
---===============0969485150==
-Content-Type: multipart/alternative;
- boundary="------------D765DBF6ACE55710C77F9D5D"
-Content-Language: en-US
+The pdev field in struct drm_device points to a PCI device structure and
+goes back to UMS-only days when all DRM drivers where for PCI devices.
+Meanwhile we also support USB, SPI and platform devices. Each of those
+uses the generic device stored in struct drm_device.dev.
 
-This is a multi-part message in MIME format.
---------------D765DBF6ACE55710C77F9D5D
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 7bit
+To reduce duplications and remove the special case of PCI, this patchset
+converts all modesetting drivers from pdev to dev and makes pdev a field
+for legacy UMS drivers.
 
-On 11/11/2020 11:50 AM, Anshuman Gupta wrote:
-> This is v5 version to test with IGT https://patchwork.freedesktop.org/series/82987/
-> This has addressed the review comments from Ram.
-> It has been also tested manually with above IGT series.
+For PCI devices, the pointer in struct drm_device.dev can be upcasted to
+struct pci_device; or tested for PCI with dev_is_pci(). In several places
+the code can use the dev field directly.
 
-As we currently do not have a setup for HDCP over DP MST on CI,
+After converting all drivers and the DRM core, the pdev fields becomes
+only relevant for legacy drivers. In a later patchset, we may want to
+convert these as well and remove pdev entirely.
 
-I've tested this series on local set up with the above IGT series.
+The patchset touches many files, but the individual changes are mostly
+trivial. I suggest to merge each driver's patch through the respective
+tree and later the rest through drm-misc-next.
 
-Tested-by: Karthik B S <karthik.b.s@intel.com>
+Thomas Zimmermann (15):
+  drm/amdgpu: Remove references to struct drm_device.pdev
+  drm/ast: Remove references to struct drm_device.pdev
+  drm/bochs: Remove references to struct drm_device.pdev
+  drm/cirrus: Remove references to struct drm_device.pdev
+  drm/gma500: Remove references to struct drm_device.pdev
+  drm/hibmc: Remove references to struct drm_device.pdev
+  drm/i915: Remove references to struct drm_device.pdev
+  drm/mgag200: Remove references to struct drm_device.pdev
+  drm/nouveau: Remove references to struct drm_device.pdev
+  drm/qxl: Remove references to struct drm_device.pdev
+  drm/radeon: Remove references to struct drm_device.pdev
+  drm/vboxvideo: Remove references to struct drm_device.pdev
+  drm/virtgpu: Remove references to struct drm_device.pdev
+  drm/vmwgfx: Remove references to struct drm_device.pdev
+  drm: Upcast struct drm_device.dev to struct pci_device; replace pdev
 
->
-> [PATCH v5 11/17] misc/mei/hdcp: Fix AUTH_STREAM_REQ cmd buffer len
-> has an Ack from Tomas to merge it via drm-intel.
->
-> [PATCH v5 12/17] drm/hdcp: Max MST content streams
-> has an Ack from drm-misc maintainer to merge it via drm-intel.
->
-> Test-with: 20201103082628.9287-2-karthik.b.s@intel.com
->
-> Anshuman Gupta (17):
->    drm/i915/hdcp: Update CP property in update_pipe
->    drm/i915/hdcp: Get conn while content_type changed
->    drm/i915/hotplug: Handle CP_IRQ for DP-MST
->    drm/i915/hdcp: DP MST transcoder for link and stream
->    drm/i915/hdcp: Move HDCP enc status timeout to header
->    drm/i915/hdcp: HDCP stream encryption support
->    drm/i915/hdcp: Enable HDCP 1.4 stream encryption
->    drm/i915/hdcp: Enable Gen12 HDCP 1.4 DP MST support
->    drm/i915/hdcp: Pass dig_port to intel_hdcp_init
->    drm/i915/hdcp: Encapsulate hdcp_port_data to dig_port
->    misc/mei/hdcp: Fix AUTH_STREAM_REQ cmd buffer len
->    drm/hdcp: Max MST content streams
->    drm/i915/hdcp: MST streams support in hdcp port_data
->    drm/i915/hdcp: Pass connector to check_2_2_link
->    drm/i915/hdcp: Add HDCP 2.2 stream register
->    drm/i915/hdcp: Support for HDCP 2.2 MST shim callbacks
->    drm/i915/hdcp: Enable HDCP 2.2 MST support
->
->   drivers/gpu/drm/i915/display/intel_ddi.c      |  14 +-
->   drivers/gpu/drm/i915/display/intel_ddi.h      |   6 +-
->   .../drm/i915/display/intel_display_types.h    |  20 +-
->   drivers/gpu/drm/i915/display/intel_dp.c       |  14 +-
->   drivers/gpu/drm/i915/display/intel_dp_hdcp.c  | 182 +++++++++--
->   drivers/gpu/drm/i915/display/intel_dp_mst.c   |  12 +-
->   drivers/gpu/drm/i915/display/intel_hdcp.c     | 294 ++++++++++++++----
->   drivers/gpu/drm/i915/display/intel_hdcp.h     |   8 +-
->   drivers/gpu/drm/i915/display/intel_hdmi.c     |  19 +-
->   drivers/gpu/drm/i915/i915_reg.h               |  31 ++
->   drivers/misc/mei/hdcp/mei_hdcp.c              |   3 +-
->   include/drm/drm_hdcp.h                        |   8 +-
->   12 files changed, 489 insertions(+), 122 deletions(-)
->
+ drivers/gpu/drm/amd/amdgpu/amdgpu_device.c    | 23 +++--
+ drivers/gpu/drm/amd/amdgpu/amdgpu_display.c   |  3 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c       |  1 -
+ drivers/gpu/drm/amd/amdgpu/amdgpu_fb.c        |  2 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c       | 10 +--
+ drivers/gpu/drm/amd/amdgpu/amdgpu_i2c.c       |  2 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c       | 10 +--
+ drivers/gpu/drm/ast/ast_drv.c                 |  4 +-
+ drivers/gpu/drm/ast/ast_main.c                | 25 +++---
+ drivers/gpu/drm/ast/ast_mm.c                  | 17 ++--
+ drivers/gpu/drm/ast/ast_mode.c                |  5 +-
+ drivers/gpu/drm/ast/ast_post.c                |  8 +-
+ drivers/gpu/drm/bochs/bochs_drv.c             |  1 -
+ drivers/gpu/drm/bochs/bochs_hw.c              |  4 +-
+ drivers/gpu/drm/drm_agpsupport.c              |  9 +-
+ drivers/gpu/drm/drm_bufs.c                    |  4 +-
+ drivers/gpu/drm/drm_edid.c                    |  7 +-
+ drivers/gpu/drm/drm_irq.c                     | 12 +--
+ drivers/gpu/drm/drm_pci.c                     | 26 +++---
+ drivers/gpu/drm/drm_vm.c                      |  2 +-
+ drivers/gpu/drm/gma500/cdv_device.c           | 30 ++++---
+ drivers/gpu/drm/gma500/cdv_intel_crt.c        |  3 +-
+ drivers/gpu/drm/gma500/cdv_intel_lvds.c       |  4 +-
+ drivers/gpu/drm/gma500/framebuffer.c          |  9 +-
+ drivers/gpu/drm/gma500/gma_device.c           |  3 +-
+ drivers/gpu/drm/gma500/gma_display.c          |  4 +-
+ drivers/gpu/drm/gma500/gtt.c                  | 20 +++--
+ drivers/gpu/drm/gma500/intel_bios.c           |  6 +-
+ drivers/gpu/drm/gma500/intel_gmbus.c          |  4 +-
+ drivers/gpu/drm/gma500/intel_i2c.c            |  2 +-
+ drivers/gpu/drm/gma500/mdfld_device.c         |  4 +-
+ drivers/gpu/drm/gma500/mdfld_dsi_dpi.c        |  8 +-
+ drivers/gpu/drm/gma500/mid_bios.c             |  9 +-
+ drivers/gpu/drm/gma500/oaktrail_device.c      |  5 +-
+ drivers/gpu/drm/gma500/oaktrail_lvds.c        |  2 +-
+ drivers/gpu/drm/gma500/oaktrail_lvds_i2c.c    |  2 +-
+ drivers/gpu/drm/gma500/opregion.c             |  3 +-
+ drivers/gpu/drm/gma500/power.c                | 13 +--
+ drivers/gpu/drm/gma500/psb_drv.c              | 16 ++--
+ drivers/gpu/drm/gma500/psb_drv.h              |  8 +-
+ drivers/gpu/drm/gma500/psb_intel_lvds.c       |  6 +-
+ drivers/gpu/drm/gma500/psb_intel_sdvo.c       |  2 +-
+ drivers/gpu/drm/gma500/tc35876x-dsi-lvds.c    | 36 ++++----
+ .../gpu/drm/hisilicon/hibmc/hibmc_drm_drv.c   | 10 +--
+ .../gpu/drm/hisilicon/hibmc/hibmc_drm_i2c.c   |  2 +-
+ drivers/gpu/drm/hisilicon/hibmc/hibmc_ttm.c   |  4 +-
+ drivers/gpu/drm/i915/display/intel_bios.c     |  2 +-
+ drivers/gpu/drm/i915/display/intel_cdclk.c    | 14 +--
+ drivers/gpu/drm/i915/display/intel_csr.c      |  2 +-
+ drivers/gpu/drm/i915/display/intel_dsi_vbt.c  |  2 +-
+ drivers/gpu/drm/i915/display/intel_fbdev.c    |  2 +-
+ drivers/gpu/drm/i915/display/intel_gmbus.c    |  2 +-
+ .../gpu/drm/i915/display/intel_lpe_audio.c    |  5 +-
+ drivers/gpu/drm/i915/display/intel_opregion.c |  6 +-
+ drivers/gpu/drm/i915/display/intel_overlay.c  |  2 +-
+ drivers/gpu/drm/i915/display/intel_panel.c    |  4 +-
+ drivers/gpu/drm/i915/display/intel_quirks.c   |  2 +-
+ drivers/gpu/drm/i915/display/intel_sdvo.c     |  2 +-
+ drivers/gpu/drm/i915/display/intel_vga.c      |  8 +-
+ drivers/gpu/drm/i915/gem/i915_gem_phys.c      |  6 +-
+ drivers/gpu/drm/i915/gem/i915_gem_shmem.c     |  2 +-
+ drivers/gpu/drm/i915/gt/intel_engine_cs.c     |  2 +-
+ drivers/gpu/drm/i915/gt/intel_ggtt.c          | 10 +--
+ drivers/gpu/drm/i915/gt/intel_ppgtt.c         |  2 +-
+ drivers/gpu/drm/i915/gt/intel_rc6.c           |  4 +-
+ drivers/gpu/drm/i915/gt/intel_reset.c         |  6 +-
+ drivers/gpu/drm/i915/gvt/cfg_space.c          |  5 +-
+ drivers/gpu/drm/i915/gvt/firmware.c           | 10 +--
+ drivers/gpu/drm/i915/gvt/gtt.c                | 12 +--
+ drivers/gpu/drm/i915/gvt/gvt.c                |  6 +-
+ drivers/gpu/drm/i915/gvt/kvmgt.c              |  4 +-
+ drivers/gpu/drm/i915/i915_debugfs.c           |  2 +-
+ drivers/gpu/drm/i915/i915_drv.c               | 20 ++---
+ drivers/gpu/drm/i915/i915_drv.h               |  2 +-
+ drivers/gpu/drm/i915/i915_gem_gtt.c           |  4 +-
+ drivers/gpu/drm/i915/i915_getparam.c          |  5 +-
+ drivers/gpu/drm/i915/i915_gpu_error.c         |  2 +-
+ drivers/gpu/drm/i915/i915_irq.c               |  6 +-
+ drivers/gpu/drm/i915/i915_pmu.c               |  5 +-
+ drivers/gpu/drm/i915/i915_suspend.c           |  4 +-
+ drivers/gpu/drm/i915/i915_switcheroo.c        |  4 +-
+ drivers/gpu/drm/i915/i915_vgpu.c              |  2 +-
+ drivers/gpu/drm/i915/intel_device_info.c      |  2 +-
+ drivers/gpu/drm/i915/intel_region_lmem.c      |  8 +-
+ drivers/gpu/drm/i915/intel_runtime_pm.c       |  2 +-
+ drivers/gpu/drm/i915/intel_uncore.c           |  4 +-
+ .../gpu/drm/i915/selftests/mock_gem_device.c  |  1 -
+ drivers/gpu/drm/i915/selftests/mock_gtt.c     |  2 +-
+ drivers/gpu/drm/mgag200/mgag200_drv.c         | 20 +++--
+ drivers/gpu/drm/mgag200/mgag200_i2c.c         |  2 +-
+ drivers/gpu/drm/mgag200/mgag200_mm.c          | 10 ++-
+ drivers/gpu/drm/nouveau/dispnv04/arb.c        | 12 +--
+ drivers/gpu/drm/nouveau/dispnv04/disp.h       | 14 +--
+ drivers/gpu/drm/nouveau/dispnv04/hw.c         | 10 ++-
+ drivers/gpu/drm/nouveau/nouveau_abi16.c       |  7 +-
+ drivers/gpu/drm/nouveau/nouveau_acpi.c        |  2 +-
+ drivers/gpu/drm/nouveau/nouveau_bios.c        | 11 ++-
+ drivers/gpu/drm/nouveau/nouveau_connector.c   | 10 ++-
+ drivers/gpu/drm/nouveau/nouveau_drm.c         |  5 +-
+ drivers/gpu/drm/nouveau/nouveau_fbcon.c       |  6 +-
+ drivers/gpu/drm/nouveau/nouveau_vga.c         | 20 +++--
+ drivers/gpu/drm/qxl/qxl_drv.c                 |  2 +-
+ drivers/gpu/drm/qxl/qxl_ioctl.c               |  3 +-
+ drivers/gpu/drm/qxl/qxl_irq.c                 |  3 +-
+ drivers/gpu/drm/qxl/qxl_kms.c                 |  1 -
+ drivers/gpu/drm/radeon/atombios_encoders.c    |  6 +-
+ drivers/gpu/drm/radeon/r100.c                 | 27 +++---
+ drivers/gpu/drm/radeon/radeon.h               | 32 +++----
+ drivers/gpu/drm/radeon/radeon_atombios.c      | 89 ++++++++++---------
+ drivers/gpu/drm/radeon/radeon_bios.c          |  6 +-
+ drivers/gpu/drm/radeon/radeon_combios.c       | 55 ++++++------
+ drivers/gpu/drm/radeon/radeon_cs.c            |  3 +-
+ drivers/gpu/drm/radeon/radeon_device.c        | 17 ++--
+ drivers/gpu/drm/radeon/radeon_display.c       |  2 +-
+ drivers/gpu/drm/radeon/radeon_drv.c           |  3 +-
+ drivers/gpu/drm/radeon/radeon_fb.c            |  2 +-
+ drivers/gpu/drm/radeon/radeon_gem.c           |  6 +-
+ drivers/gpu/drm/radeon/radeon_i2c.c           |  2 +-
+ drivers/gpu/drm/radeon/radeon_irq_kms.c       |  2 +-
+ drivers/gpu/drm/radeon/radeon_kms.c           | 20 ++---
+ .../gpu/drm/radeon/radeon_legacy_encoders.c   |  6 +-
+ drivers/gpu/drm/radeon/rs780_dpm.c            |  7 +-
+ drivers/gpu/drm/tiny/cirrus.c                 |  1 -
+ drivers/gpu/drm/vboxvideo/vbox_drv.c          | 11 +--
+ drivers/gpu/drm/vboxvideo/vbox_irq.c          |  4 +-
+ drivers/gpu/drm/vboxvideo/vbox_main.c         |  8 +-
+ drivers/gpu/drm/vboxvideo/vbox_ttm.c          |  7 +-
+ drivers/gpu/drm/virtio/virtgpu_drv.c          |  1 -
+ drivers/gpu/drm/vmwgfx/vmwgfx_cmdbuf.c        |  8 +-
+ drivers/gpu/drm/vmwgfx/vmwgfx_drv.c           | 27 +++---
+ drivers/gpu/drm/vmwgfx/vmwgfx_fb.c            |  2 +-
+ include/drm/drm_device.h                      | 12 ++-
+ 132 files changed, 584 insertions(+), 507 deletions(-)
 
-
---------------D765DBF6ACE55710C77F9D5D
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: 8bit
-
-<html>
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  </head>
-  <body>
-    <div class="moz-cite-prefix">On 11/11/2020 11:50 AM, Anshuman Gupta
-      wrote:<br>
-    </div>
-    <blockquote type="cite"
-      cite="mid:20201111062051.11529-1-anshuman.gupta@intel.com">
-      <pre class="moz-quote-pre" wrap="">This is v5 version to test with IGT <a class="moz-txt-link-freetext" href="https://patchwork.freedesktop.org/series/82987/">https://patchwork.freedesktop.org/series/82987/</a>
-This has addressed the review comments from Ram.
-It has been also tested manually with above IGT series.</pre>
-    </blockquote>
-    <p style="margin:0in;font-family:Calibri;font-size:11.0pt">As we
-      currently do
-      not have a setup for HDCP over DP MST on CI,</p>
-    <p style="margin:0in;font-family:Calibri;font-size:11.0pt">I've
-      tested this
-      series on local set up with the above IGT series.</p>
-    <p style="margin:0in;font-family:Calibri;font-size:11.0pt"> </p>
-    <p style="margin:0in;font-family:Calibri;font-size:11.0pt">Tested-by:
-      Karthik B
-      S <a class="moz-txt-link-rfc2396E" href="mailto:karthik.b.s@intel.com">&lt;karthik.b.s@intel.com&gt;</a></p>
-    <blockquote type="cite"
-      cite="mid:20201111062051.11529-1-anshuman.gupta@intel.com">
-      <pre class="moz-quote-pre" wrap="">
-
-[PATCH v5 11/17] misc/mei/hdcp: Fix AUTH_STREAM_REQ cmd buffer len
-has an Ack from Tomas to merge it via drm-intel.
-
-[PATCH v5 12/17] drm/hdcp: Max MST content streams
-has an Ack from drm-misc maintainer to merge it via drm-intel.
-
-Test-with: <a class="moz-txt-link-abbreviated" href="mailto:20201103082628.9287-2-karthik.b.s@intel.com">20201103082628.9287-2-karthik.b.s@intel.com</a>
-
-Anshuman Gupta (17):
-  drm/i915/hdcp: Update CP property in update_pipe
-  drm/i915/hdcp: Get conn while content_type changed
-  drm/i915/hotplug: Handle CP_IRQ for DP-MST
-  drm/i915/hdcp: DP MST transcoder for link and stream
-  drm/i915/hdcp: Move HDCP enc status timeout to header
-  drm/i915/hdcp: HDCP stream encryption support
-  drm/i915/hdcp: Enable HDCP 1.4 stream encryption
-  drm/i915/hdcp: Enable Gen12 HDCP 1.4 DP MST support
-  drm/i915/hdcp: Pass dig_port to intel_hdcp_init
-  drm/i915/hdcp: Encapsulate hdcp_port_data to dig_port
-  misc/mei/hdcp: Fix AUTH_STREAM_REQ cmd buffer len
-  drm/hdcp: Max MST content streams
-  drm/i915/hdcp: MST streams support in hdcp port_data
-  drm/i915/hdcp: Pass connector to check_2_2_link
-  drm/i915/hdcp: Add HDCP 2.2 stream register
-  drm/i915/hdcp: Support for HDCP 2.2 MST shim callbacks
-  drm/i915/hdcp: Enable HDCP 2.2 MST support
-
- drivers/gpu/drm/i915/display/intel_ddi.c      |  14 +-
- drivers/gpu/drm/i915/display/intel_ddi.h      |   6 +-
- .../drm/i915/display/intel_display_types.h    |  20 +-
- drivers/gpu/drm/i915/display/intel_dp.c       |  14 +-
- drivers/gpu/drm/i915/display/intel_dp_hdcp.c  | 182 +++++++++--
- drivers/gpu/drm/i915/display/intel_dp_mst.c   |  12 +-
- drivers/gpu/drm/i915/display/intel_hdcp.c     | 294 ++++++++++++++----
- drivers/gpu/drm/i915/display/intel_hdcp.h     |   8 +-
- drivers/gpu/drm/i915/display/intel_hdmi.c     |  19 +-
- drivers/gpu/drm/i915/i915_reg.h               |  31 ++
- drivers/misc/mei/hdcp/mei_hdcp.c              |   3 +-
- include/drm/drm_hdcp.h                        |   8 +-
- 12 files changed, 489 insertions(+), 122 deletions(-)
-
-</pre>
-    </blockquote>
-    <p><br>
-    </p>
-  </body>
-</html>
-
---------------D765DBF6ACE55710C77F9D5D--
-
---===============0969485150==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+--
+2.29.2
 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============0969485150==--
