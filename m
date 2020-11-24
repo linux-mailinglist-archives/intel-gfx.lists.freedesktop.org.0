@@ -1,34 +1,44 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 466812C2868
-	for <lists+intel-gfx@lfdr.de>; Tue, 24 Nov 2020 14:41:47 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2BBAE2C2912
+	for <lists+intel-gfx@lfdr.de>; Tue, 24 Nov 2020 15:14:09 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 71CB96E3E3;
-	Tue, 24 Nov 2020 13:41:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B1BD46E406;
+	Tue, 24 Nov 2020 14:14:05 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 400E66E3E3;
- Tue, 24 Nov 2020 13:41:43 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 23092064-1500050 for multiple; Tue, 24 Nov 2020 13:41:40 +0000
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6A0046E406;
+ Tue, 24 Nov 2020 14:14:04 +0000 (UTC)
+IronPort-SDR: YvZ5GRijWi2wbhbOMFRimJteSgZe6fftKlnh3L8VnO1r5ikjFFe4oZuuqqTFLha/TvWnye79p9
+ 5Ct9iZB2YziA==
+X-IronPort-AV: E=McAfee;i="6000,8403,9814"; a="159716931"
+X-IronPort-AV: E=Sophos;i="5.78,366,1599548400"; d="scan'208";a="159716931"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Nov 2020 06:14:03 -0800
+IronPort-SDR: 5HO4lgWZjWpvXh8Yk7ijSyZ0Kobd/OON095AJx/gfyWUplS3vtx/fJDXwVdfpEGnyaVT6BAn3K
+ GBnZG7V3ZGRA==
+X-IronPort-AV: E=Sophos;i="5.78,366,1599548400"; d="scan'208";a="327596206"
+Received: from ramaling-i9x.iind.intel.com (HELO intel.com) ([10.99.66.154])
+ by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Nov 2020 06:14:01 -0800
+Date: Tue, 24 Nov 2020 19:44:59 +0530
+From: Ramalingam C <ramalingam.c@intel.com>
+To: Anshuman Gupta <anshuman.gupta@intel.com>
+Message-ID: <20201124141457.GA25283@intel.com>
+References: <20201111062051.11529-1-anshuman.gupta@intel.com>
+ <20201111062051.11529-8-anshuman.gupta@intel.com>
 MIME-Version: 1.0
-In-Reply-To: <4ab1f514-83cb-c9e2-1feb-a1c054023e4a@linux.intel.com>
-References: <20201124123251.4147819-1-chris@chris-wilson.co.uk>
- <20201124123450.4188664-1-chris@chris-wilson.co.uk>
- <4ab1f514-83cb-c9e2-1feb-a1c054023e4a@linux.intel.com>
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-Date: Tue, 24 Nov 2020 13:41:39 +0000
-Message-ID: <160622529926.28476.13471148278568889360@build.alporthouse.com>
-User-Agent: alot/0.9
-Subject: Re: [Intel-gfx] [PATCH i-g-t] Cast negative debugfs values to u64
+Content-Disposition: inline
+In-Reply-To: <20201111062051.11529-8-anshuman.gupta@intel.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: Re: [Intel-gfx] [PATCH v5 07/17] drm/i915/hdcp: Enable HDCP 1.4
+ stream encryption
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,25 +51,127 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: igt-dev@lists.freedesktop.org
+Cc: jani.nikula@intel.com, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, seanpaul@chromium.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Tvrtko Ursulin (2020-11-24 13:28:15)
+On 2020-11-11 at 11:50:41 +0530, Anshuman Gupta wrote:
+> Enable HDCP 1.4 DP MST stream encryption.
 > 
-> On 24/11/2020 12:34, Chris Wilson wrote:
-> > -             igt_sysfs_set(dir, "i915_wedged", "-1");
-> > +             igt_sysfs_printf(dir, "i915_wedged", "%llu", -1ull);
+> Enable stream encryption once encryption is enabled on
+> the DP transport driving the link for each stream which
+> has requested encryption.
 > 
-> Set to printf conversion is okay. Maybe we could later add 
-> igt_sysfs_setu32 for simplicity but maybe it would also be too much api.
+> Disable stream encryption for each stream that no longer
+> requires encryption before disabling HDCP encryption on
+> the link.
+> 
+> v2:
+> - Added debug print for stream encryption.
+> - Disable the hdcp on port after disabling last stream
+>   encryption.
+> v3:
+> - Cosmetic change, removed the value less comment. [Uma]
+> v4:
+> - Split the Gen12 HDCP enablement patch. [Ram]
+> - Add connector details in drm_err.
+> 
+> Cc: Ramalingam C <ramalingam.c@intel.com>
+> Reviewed-by: Uma Shankar <uma.shankar@intel.com>
+> Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_hdcp.c | 45 ++++++++++++++++-------
+>  1 file changed, 31 insertions(+), 14 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c b/drivers/gpu/drm/i915/display/intel_hdcp.c
+> index 0322a83c151d..e12bd0ac9fb5 100644
+> --- a/drivers/gpu/drm/i915/display/intel_hdcp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
+> @@ -612,7 +612,12 @@ int intel_hdcp_auth_downstream(struct intel_connector *connector)
+>  	return ret;
+>  }
+>  
+> -/* Implements Part 1 of the HDCP authorization procedure */
+> +/*
+> + * Implements Part 1 of the HDCP authorization procedure.
+> + * Authentication Part 1 steps for Multi-stream DisplayPort.
+> + * Step 1. Auth Part 1 sequence on the driving MST Trasport Link.
+> + * Step 2. Enable encryption for each stream that requires encryption.
+> +1*/
+IMO this function is generic for SST and MST. Why do we document only
+for MST at the top of the function? We can remove them.
+>  static int intel_hdcp_auth(struct intel_connector *connector)
+>  {
+>  	struct intel_digital_port *dig_port = intel_attached_dig_port(connector);
+> @@ -766,10 +771,17 @@ static int intel_hdcp_auth(struct intel_connector *connector)
+>  		return -ETIMEDOUT;
+>  	}
+>  
+> -	/*
+> -	 * XXX: If we have MST-connected devices, we need to enable encryption
+> -	 * on those as well.
+> -	 */
+> +	/* DP MST Auth Part 1 Step 2.a and Step 2.b */
+> +	if (shim->stream_encryption) {
+> +		ret = shim->stream_encryption(connector, true);
+> +		if (ret) {
+> +			drm_err(&dev_priv->drm, "[CONNECTOR:%d:%s] Failed to enable HDCP 1.4 stream enc\n",
+All the existing error messgae has the %s:%d, why are we changing it
+here? Could we retain the uniformity?
+> +				connector->base.base.id, connector->base.name);
+> +			return ret;
+> +		}
+> +		drm_dbg_kms(&dev_priv->drm, "HDCP 1.4 transcoder: %s stream encrypted\n",
+> +			    transcoder_name(hdcp->stream_transcoder));
+> +	}
+>  
+>  	if (repeater_present)
+>  		return intel_hdcp_auth_downstream(connector);
+> @@ -791,18 +803,23 @@ static int _intel_hdcp_disable(struct intel_connector *connector)
+>  	drm_dbg_kms(&dev_priv->drm, "[%s:%d] HDCP is being disabled...\n",
+>  		    connector->base.name, connector->base.base.id);
+>  
+> +	if (hdcp->shim->stream_encryption) {
+> +		ret = hdcp->shim->stream_encryption(connector, false);
+> +		if (ret) {
+> +			drm_err(&dev_priv->drm, "[CONNECTOR:%d:%s] Failed to disable HDCP 1.4 stream enc\n",
+same here. remove CONNECTOR ?
+> +				connector->base.base.id, connector->base.name);
+> +			return ret;
+> +		}
+> +		drm_dbg_kms(&dev_priv->drm, "HDCP 1.4 transcoder: %s stream encryption disabled\n",
+> +			    transcoder_name(hdcp->stream_transcoder));
+> +	}
+> +
+>  	/*
+> -	 * If there are other connectors on this port using HDCP, don't disable
+> -	 * it. Instead, toggle the HDCP signalling off on that particular
+> -	 * connector/pipe and exit.
+> +	 * If there are other connectors on this port using HDCP, don't disable it.
+> +	 * Repeat steps 1-2 for each stream that no longer requires encryption.
+What is this steps 1-2 here!? Here you are not disabling if other
+streams are encrpted. May be you want to put something like "Untill all
+steams of MST stopped encrypting, dont disable the port encryption"
 
-Yup, I thought printf would be generic enough to cover all users, and
-was not convinced that wrapping the common integers added enough
-convenience as printf is a ubiquitous API.
--Chris
+-Ram
+>  	 */
+> -	if (dig_port->num_hdcp_streams > 0) {
+> -		ret = hdcp->shim->toggle_signalling(dig_port,
+> -						    cpu_transcoder, false);
+> -		if (ret)
+> -			DRM_ERROR("Failed to disable HDCP signalling\n");
+> +	if (dig_port->num_hdcp_streams > 0)
+>  		return ret;
+> -	}
+>  
+>  	hdcp->hdcp_encrypted = false;
+>  	intel_de_write(dev_priv, HDCP_CONF(dev_priv, cpu_transcoder, port), 0);
+> -- 
+> 2.26.2
+> 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
