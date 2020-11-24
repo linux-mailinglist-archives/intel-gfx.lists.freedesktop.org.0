@@ -1,32 +1,49 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 01B8F2C2D4F
-	for <lists+intel-gfx@lfdr.de>; Tue, 24 Nov 2020 17:52:59 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0AAD82C2DA5
+	for <lists+intel-gfx@lfdr.de>; Tue, 24 Nov 2020 18:02:27 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 604D96E491;
-	Tue, 24 Nov 2020 16:52:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6F9596E4BA;
+	Tue, 24 Nov 2020 17:02:24 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id C10C56E491;
- Tue, 24 Nov 2020 16:52:54 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id B8227A882F;
- Tue, 24 Nov 2020 16:52:54 +0000 (UTC)
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0159E6E4BA
+ for <intel-gfx@lists.freedesktop.org>; Tue, 24 Nov 2020 17:02:22 +0000 (UTC)
+IronPort-SDR: g3P1Jwa7KgV2ol3eXt6jzApo/PUnYSyDvCmleDR56OHBmtteQbV38ZFKw0V8slRWeFskTti0HS
+ whigjHpUkH9A==
+X-IronPort-AV: E=McAfee;i="6000,8403,9815"; a="159747087"
+X-IronPort-AV: E=Sophos;i="5.78,366,1599548400"; d="scan'208";a="159747087"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Nov 2020 09:02:22 -0800
+IronPort-SDR: qlbP7ZFC8QOM21AVlIs0VvZu5nOTrFpSYvb3cAlX96lZs+NYSO2f1iWFIG9NDFVH+MMldb8dpe
+ 7l9U3Xfv+ahQ==
+X-IronPort-AV: E=Sophos;i="5.78,366,1599548400"; d="scan'208";a="546903560"
+Received: from ipilchin-mobl1.ger.corp.intel.com (HELO [10.254.159.60])
+ ([10.254.159.60])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Nov 2020 09:02:21 -0800
+To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
+References: <20201124114219.29020-1-chris@chris-wilson.co.uk>
+ <20201124114219.29020-5-chris@chris-wilson.co.uk>
+ <f1089ea3-bfa6-1290-f0bd-5214a36e257a@linux.intel.com>
+ <160623545286.28476.12142656128812295838@build.alporthouse.com>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+Message-ID: <5fff204d-e5e3-95dc-4946-10e900417a5f@linux.intel.com>
+Date: Tue, 24 Nov 2020 17:02:17 +0000
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>
-Date: Tue, 24 Nov 2020 16:52:54 -0000
-Message-ID: <160623677473.10859.4721392243226183645@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20201124115707.406917-1-maarten.lankhorst@linux.intel.com>
-In-Reply-To: <20201124115707.406917-1-maarten.lankhorst@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZG1h?=
- =?utf-8?q?-buf/dma-resv=3A_Respect_num=5Ffences_when_initializing_the_sha?=
- =?utf-8?q?red_fence_list=2E?=
+In-Reply-To: <160623545286.28476.12142656128812295838@build.alporthouse.com>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH 05/16] drm/i915/gt: Move the breadcrumb to
+ the signaler if completed upon cancel
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,278 +56,126 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============0020681795=="
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0020681795==
-Content-Type: multipart/alternative;
- boundary="===============6789891016815382696=="
 
---===============6789891016815382696==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On 24/11/2020 16:30, Chris Wilson wrote:
+> Quoting Tvrtko Ursulin (2020-11-24 16:19:15)
+>>
+>> On 24/11/2020 11:42, Chris Wilson wrote:
+>>> If while we are cancelling the breadcrumb signaling, we find that the
+>>> request is already completed, move it to the irq signaler and let it be
+>>> signaled.
+>>>
+>>> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+>>> ---
+>>>    drivers/gpu/drm/i915/gt/intel_breadcrumbs.c | 20 ++++++++++++++++----
+>>>    1 file changed, 16 insertions(+), 4 deletions(-)
+>>>
+>>> diff --git a/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c b/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c
+>>> index a24cc1ff08a0..f5f6feed0fa6 100644
+>>> --- a/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c
+>>> +++ b/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c
+>>> @@ -363,6 +363,14 @@ void intel_breadcrumbs_free(struct intel_breadcrumbs *b)
+>>>        kfree(b);
+>>>    }
+>>>    
+>>> +static void irq_signal_request(struct i915_request *rq,
+>>> +                            struct intel_breadcrumbs *b)
+>>> +{
+>>> +     if (__signal_request(rq) &&
+>>> +         llist_add(&rq->signal_node, &b->signaled_requests))
+>>> +             irq_work_queue(&b->irq_work);
+>>> +}
+>>> +
+>>>    static void insert_breadcrumb(struct i915_request *rq)
+>>>    {
+>>>        struct intel_breadcrumbs *b = READ_ONCE(rq->engine)->breadcrumbs;
+>>> @@ -380,9 +388,7 @@ static void insert_breadcrumb(struct i915_request *rq)
+>>>         * its signal completion.
+>>>         */
+>>>        if (__request_completed(rq)) {
+>>> -             if (__signal_request(rq) &&
+>>> -                 llist_add(&rq->signal_node, &b->signaled_requests))
+>>> -                     irq_work_queue(&b->irq_work);
+>>> +             irq_signal_request(rq, b);
+>>>                return;
+>>>        }
+>>>    
+>>> @@ -453,6 +459,7 @@ bool i915_request_enable_breadcrumb(struct i915_request *rq)
+>>>    
+>>>    void i915_request_cancel_breadcrumb(struct i915_request *rq)
+>>>    {
+>>> +     struct intel_breadcrumbs *b = READ_ONCE(rq->engine)->breadcrumbs;
+>>>        struct intel_context *ce = rq->context;
+>>>        bool release;
+>>>    
+>>> @@ -461,11 +468,16 @@ void i915_request_cancel_breadcrumb(struct i915_request *rq)
+>>>    
+>>>        spin_lock(&ce->signal_lock);
+>>>        list_del_rcu(&rq->signal_link);
+>>> -     release = remove_signaling_context(rq->engine->breadcrumbs, ce);
+>>> +     release = remove_signaling_context(b, ce);
+>>>        spin_unlock(&ce->signal_lock);
+>>>        if (release)
+>>>                intel_context_put(ce);
+>>>    
+>>> +     if (__request_completed(rq)) {
+>>> +             irq_signal_request(rq, b);
+>>> +             return;
+>>
+>> This is a bit unintuitive - irq_signal_request does things conditionally
+>> based on the signaled flag, but here the return value is ignored and
+>> reference kept regardless. Which makes me wonder how can the combo of
+>> the two always dtrt. Because __request_completed is seqno based, which
+>> can happen before setting the signaled flag. Like if retire races with
+>> breadcrumbs. Am I missing something?
+> 
+> static void irq_signal_request()
+> 
+> Yes, the completion must happen before the signal bit is set, and there
+> is race on who sets the signal bit.
+> 
+> So if, and only if, __signal_request() is the first to set the signal
+> bit do we keep the reference to the request and enqueue it to execute the
+> callbacks in the irq-worker.
+> 
+> If the request is completed, but someone else has already signaled the
+> request, the reference is dropped.
+> 
+> static bool __signal_request(struct i915_request *rq)
+> {
+>          GEM_BUG_ON(test_bit(I915_FENCE_FLAG_SIGNAL, &rq->fence.flags));
+> 
+>          if (!__dma_fence_signal(&rq->fence)) {
+>                  i915_request_put(rq);
+>                  return false;
+>          }
+> 
+>          return true;
+> }
+> 
+> I see your point that the reference handling is not obvious. Worth
+> taking another pass over it to split the different paths into their
+> different ways so the ownership is not hidden away.
 
-== Series Details ==
+It looks like I confused irq_signal_request and __signal_request. Former 
+has no return value so what I wrote makes no sense. And then it is 
+indeed fine what the patch does but I do think at least a good comment 
+under the if (__request_completed) branch in cancel breadcrumb is needed.
 
-Series: dma-buf/dma-resv: Respect num_fences when initializing the shared fence list.
-URL   : https://patchwork.freedesktop.org/series/84210/
-State : success
+If irq_signal_request could be made return the result from 
+__dma_fence_signal and if other callers would be able to easily handle 
+the change even better. (I mean moving the i915_request_put out of 
+__signal_request.)
 
-== Summary ==
+Regards,
 
-CI Bug Log - changes from CI_DRM_9383 -> Patchwork_18966
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18966/index.html
-
-New tests
----------
-
-  New tests have been introduced between CI_DRM_9383 and Patchwork_18966:
-
-### New CI tests (1) ###
-
-  * boot:
-    - Statuses : 39 pass(s)
-    - Exec time: [0.0] s
-
-  
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_18966 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_module_load@reload:
-    - fi-icl-u2:          [PASS][1] -> [DMESG-WARN][2] ([i915#1982]) +1 similar issue
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9383/fi-icl-u2/igt@i915_module_load@reload.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18966/fi-icl-u2/igt@i915_module_load@reload.html
-
-  * igt@kms_busy@basic@flip:
-    - fi-kbl-soraka:      [PASS][3] -> [DMESG-WARN][4] ([i915#1982])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9383/fi-kbl-soraka/igt@kms_busy@basic@flip.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18966/fi-kbl-soraka/igt@kms_busy@basic@flip.html
-
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:
-    - fi-byt-j1900:       [PASS][5] -> [DMESG-WARN][6] ([i915#1982])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9383/fi-byt-j1900/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18966/fi-byt-j1900/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-
-  
-#### Possible fixes ####
-
-  * igt@core_hotunplug@unbind-rebind:
-    - {fi-ehl-1}:         [DMESG-WARN][7] ([i915#1982]) -> [PASS][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9383/fi-ehl-1/igt@core_hotunplug@unbind-rebind.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18966/fi-ehl-1/igt@core_hotunplug@unbind-rebind.html
-    - fi-icl-u2:          [DMESG-WARN][9] ([i915#1982]) -> [PASS][10]
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9383/fi-icl-u2/igt@core_hotunplug@unbind-rebind.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18966/fi-icl-u2/igt@core_hotunplug@unbind-rebind.html
-
-  * igt@i915_module_load@reload:
-    - fi-byt-j1900:       [DMESG-WARN][11] ([i915#1982]) -> [PASS][12]
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9383/fi-byt-j1900/igt@i915_module_load@reload.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18966/fi-byt-j1900/igt@i915_module_load@reload.html
-
-  * igt@kms_busy@basic@flip:
-    - {fi-kbl-7560u}:     [DMESG-WARN][13] ([i915#1982]) -> [PASS][14]
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9383/fi-kbl-7560u/igt@kms_busy@basic@flip.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18966/fi-kbl-7560u/igt@kms_busy@basic@flip.html
-
-  * igt@kms_chamelium@dp-crc-fast:
-    - fi-cml-u2:          [DMESG-WARN][15] ([i915#1982]) -> [PASS][16]
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9383/fi-cml-u2/igt@kms_chamelium@dp-crc-fast.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18966/fi-cml-u2/igt@kms_chamelium@dp-crc-fast.html
-
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:
-    - fi-bsw-kefka:       [DMESG-WARN][17] ([i915#1982]) -> [PASS][18]
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9383/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18966/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
-
-
-Participating hosts (43 -> 39)
-------------------------------
-
-  Additional (1): fi-tgl-y 
-  Missing    (5): fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_9383 -> Patchwork_18966
-
-  CI-20190529: 20190529
-  CI_DRM_9383: 2096ebc6896ed1b99fddf7c979ea9209dc3b4f73 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5870: 08b13995b85df26a77212e4fb21fd772976ef33c @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_18966: a3e8d02ad6beaff42880573f9d4db06775c96516 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-a3e8d02ad6be dma-buf/dma-resv: Respect num_fences when initializing the shared fence list.
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18966/index.html
-
---===============6789891016815382696==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>dma-buf/dma-resv: Respect num_fences when initializing the shared fence list.</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/84210/">https://patchwork.freedesktop.org/series/84210/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18966/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18966/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_9383 -&gt; Patchwork_18966</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18966/index.html</p>
-<h2>New tests</h2>
-<p>New tests have been introduced between CI_DRM_9383 and Patchwork_18966:</p>
-<h3>New CI tests (1)</h3>
-<ul>
-<li>boot:<ul>
-<li>Statuses : 39 pass(s)</li>
-<li>Exec time: [0.0] s</li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_18966 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@i915_module_load@reload:</p>
-<ul>
-<li>fi-icl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9383/fi-icl-u2/igt@i915_module_load@reload.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18966/fi-icl-u2/igt@i915_module_load@reload.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>) +1 similar issue</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_busy@basic@flip:</p>
-<ul>
-<li>fi-kbl-soraka:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9383/fi-kbl-soraka/igt@kms_busy@basic@flip.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18966/fi-kbl-soraka/igt@kms_busy@basic@flip.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:</p>
-<ul>
-<li>fi-byt-j1900:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9383/fi-byt-j1900/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18966/fi-byt-j1900/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@core_hotunplug@unbind-rebind:</p>
-<ul>
-<li>
-<p>{fi-ehl-1}:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9383/fi-ehl-1/igt@core_hotunplug@unbind-rebind.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18966/fi-ehl-1/igt@core_hotunplug@unbind-rebind.html">PASS</a></p>
-</li>
-<li>
-<p>fi-icl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9383/fi-icl-u2/igt@core_hotunplug@unbind-rebind.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18966/fi-icl-u2/igt@core_hotunplug@unbind-rebind.html">PASS</a></p>
-</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_module_load@reload:</p>
-<ul>
-<li>fi-byt-j1900:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9383/fi-byt-j1900/igt@i915_module_load@reload.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18966/fi-byt-j1900/igt@i915_module_load@reload.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_busy@basic@flip:</p>
-<ul>
-<li>{fi-kbl-7560u}:     <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9383/fi-kbl-7560u/igt@kms_busy@basic@flip.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18966/fi-kbl-7560u/igt@kms_busy@basic@flip.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@dp-crc-fast:</p>
-<ul>
-<li>fi-cml-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9383/fi-cml-u2/igt@kms_chamelium@dp-crc-fast.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18966/fi-cml-u2/igt@kms_chamelium@dp-crc-fast.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:</p>
-<ul>
-<li>fi-bsw-kefka:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9383/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_18966/fi-bsw-kefka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Participating hosts (43 -&gt; 39)</h2>
-<p>Additional (1): fi-tgl-y <br />
-  Missing    (5): fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-bdw-samus </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_9383 -&gt; Patchwork_18966</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_9383: 2096ebc6896ed1b99fddf7c979ea9209dc3b4f73 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_5870: 08b13995b85df26a77212e4fb21fd772976ef33c @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
-  Patchwork_18966: a3e8d02ad6beaff42880573f9d4db06775c96516 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>a3e8d02ad6be dma-buf/dma-resv: Respect num_fences when initializing the shared fence list.</p>
-
-</body>
-</html>
-
---===============6789891016815382696==--
-
---===============0020681795==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
+Tvrtko
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============0020681795==--
