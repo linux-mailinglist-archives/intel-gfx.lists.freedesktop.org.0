@@ -2,31 +2,34 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AEE5D2C2CB5
-	for <lists+intel-gfx@lfdr.de>; Tue, 24 Nov 2020 17:22:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id BCA832C2CF3
+	for <lists+intel-gfx@lfdr.de>; Tue, 24 Nov 2020 17:31:00 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 109DD6E440;
-	Tue, 24 Nov 2020 16:22:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2ABB86E463;
+	Tue, 24 Nov 2020 16:30:59 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 9DC716E440;
- Tue, 24 Nov 2020 16:22:26 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 8CFEAA47E8;
- Tue, 24 Nov 2020 16:22:26 +0000 (UTC)
+Received: from fireflyinternet.com (unknown [77.68.26.236])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EE76B6E463
+ for <intel-gfx@lists.freedesktop.org>; Tue, 24 Nov 2020 16:30:56 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from localhost (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
+ 23094147-1500050 for multiple; Tue, 24 Nov 2020 16:30:54 +0000
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>
-Date: Tue, 24 Nov 2020 16:22:26 -0000
-Message-ID: <160623494657.10864.15404286783363505041@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20201124115707.406917-1-maarten.lankhorst@linux.intel.com>
-In-Reply-To: <20201124115707.406917-1-maarten.lankhorst@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_dma-buf/dma-resv=3A_Respect_num=5Ffences_when_initializing_?=
- =?utf-8?q?the_shared_fence_list=2E?=
+In-Reply-To: <f1089ea3-bfa6-1290-f0bd-5214a36e257a@linux.intel.com>
+References: <20201124114219.29020-1-chris@chris-wilson.co.uk>
+ <20201124114219.29020-5-chris@chris-wilson.co.uk>
+ <f1089ea3-bfa6-1290-f0bd-5214a36e257a@linux.intel.com>
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
+Date: Tue, 24 Nov 2020 16:30:52 +0000
+Message-ID: <160623545286.28476.12142656128812295838@build.alporthouse.com>
+User-Agent: alot/0.9
+Subject: Re: [Intel-gfx] [PATCH 05/16] drm/i915/gt: Move the breadcrumb to
+ the signaler if completed upon cancel
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,34 +42,110 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Quoting Tvrtko Ursulin (2020-11-24 16:19:15)
+> 
+> On 24/11/2020 11:42, Chris Wilson wrote:
+> > If while we are cancelling the breadcrumb signaling, we find that the
+> > request is already completed, move it to the irq signaler and let it be
+> > signaled.
+> > 
+> > Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> > ---
+> >   drivers/gpu/drm/i915/gt/intel_breadcrumbs.c | 20 ++++++++++++++++----
+> >   1 file changed, 16 insertions(+), 4 deletions(-)
+> > 
+> > diff --git a/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c b/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c
+> > index a24cc1ff08a0..f5f6feed0fa6 100644
+> > --- a/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c
+> > +++ b/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c
+> > @@ -363,6 +363,14 @@ void intel_breadcrumbs_free(struct intel_breadcrumbs *b)
+> >       kfree(b);
+> >   }
+> >   
+> > +static void irq_signal_request(struct i915_request *rq,
+> > +                            struct intel_breadcrumbs *b)
+> > +{
+> > +     if (__signal_request(rq) &&
+> > +         llist_add(&rq->signal_node, &b->signaled_requests))
+> > +             irq_work_queue(&b->irq_work);
+> > +}
+> > +
+> >   static void insert_breadcrumb(struct i915_request *rq)
+> >   {
+> >       struct intel_breadcrumbs *b = READ_ONCE(rq->engine)->breadcrumbs;
+> > @@ -380,9 +388,7 @@ static void insert_breadcrumb(struct i915_request *rq)
+> >        * its signal completion.
+> >        */
+> >       if (__request_completed(rq)) {
+> > -             if (__signal_request(rq) &&
+> > -                 llist_add(&rq->signal_node, &b->signaled_requests))
+> > -                     irq_work_queue(&b->irq_work);
+> > +             irq_signal_request(rq, b);
+> >               return;
+> >       }
+> >   
+> > @@ -453,6 +459,7 @@ bool i915_request_enable_breadcrumb(struct i915_request *rq)
+> >   
+> >   void i915_request_cancel_breadcrumb(struct i915_request *rq)
+> >   {
+> > +     struct intel_breadcrumbs *b = READ_ONCE(rq->engine)->breadcrumbs;
+> >       struct intel_context *ce = rq->context;
+> >       bool release;
+> >   
+> > @@ -461,11 +468,16 @@ void i915_request_cancel_breadcrumb(struct i915_request *rq)
+> >   
+> >       spin_lock(&ce->signal_lock);
+> >       list_del_rcu(&rq->signal_link);
+> > -     release = remove_signaling_context(rq->engine->breadcrumbs, ce);
+> > +     release = remove_signaling_context(b, ce);
+> >       spin_unlock(&ce->signal_lock);
+> >       if (release)
+> >               intel_context_put(ce);
+> >   
+> > +     if (__request_completed(rq)) {
+> > +             irq_signal_request(rq, b);
+> > +             return;
+> 
+> This is a bit unintuitive - irq_signal_request does things conditionally 
+> based on the signaled flag, but here the return value is ignored and 
+> reference kept regardless. Which makes me wonder how can the combo of 
+> the two always dtrt. Because __request_completed is seqno based, which 
+> can happen before setting the signaled flag. Like if retire races with 
+> breadcrumbs. Am I missing something?
 
-Series: dma-buf/dma-resv: Respect num_fences when initializing the shared fence list.
-URL   : https://patchwork.freedesktop.org/series/84210/
-State : warning
+static void irq_signal_request()
 
-== Summary ==
+Yes, the completion must happen before the signal bit is set, and there
+is race on who sets the signal bit.
 
-$ dim checkpatch origin/drm-tip
-a3e8d02ad6be dma-buf/dma-resv: Respect num_fences when initializing the shared fence list.
--:18: WARNING:BAD_SIGN_OFF: email address '<stable@vger.kernel.org> # v3.17+' might be better as 'stable@vger.kernel.org# v3.17+'
-#18: 
-Cc: <stable@vger.kernel.org> # v3.17+
+So if, and only if, __signal_request() is the first to set the signal
+bit do we keep the reference to the request and enqueue it to execute the
+callbacks in the irq-worker.
 
--:19: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
-#19: 
-Reported-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
+If the request is completed, but someone else has already signaled the
+request, the reference is dropped.
 
-total: 0 errors, 2 warnings, 0 checks, 8 lines checked
+static bool __signal_request(struct i915_request *rq)
+{
+        GEM_BUG_ON(test_bit(I915_FENCE_FLAG_SIGNAL, &rq->fence.flags));
 
+        if (!__dma_fence_signal(&rq->fence)) {
+                i915_request_put(rq);
+                return false;
+        }
 
+        return true;
+}
+
+I see your point that the reference handling is not obvious. Worth
+taking another pass over it to split the different paths into their
+different ways so the ownership is not hidden away.
+-Chris
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
