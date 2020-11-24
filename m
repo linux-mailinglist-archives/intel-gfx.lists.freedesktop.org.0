@@ -2,39 +2,47 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A57632C228C
-	for <lists+intel-gfx@lfdr.de>; Tue, 24 Nov 2020 11:13:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6035A2C235A
+	for <lists+intel-gfx@lfdr.de>; Tue, 24 Nov 2020 11:57:58 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6EBF26E1F2;
-	Tue, 24 Nov 2020 10:12:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9696F6E219;
+	Tue, 24 Nov 2020 10:57:51 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DB6326E1F2
- for <intel-gfx@lists.freedesktop.org>; Tue, 24 Nov 2020 10:12:55 +0000 (UTC)
-IronPort-SDR: K/UsMPxjU2CLz2DtPr0YUYWWq+zGVLfBQF8RMT4u9tVW6ahGpa6LETRl+O3T38cwDAg4vdwdrs
- 8EmOLt+hQwQw==
-X-IronPort-AV: E=McAfee;i="6000,8403,9814"; a="168412422"
-X-IronPort-AV: E=Sophos;i="5.78,366,1599548400"; d="scan'208";a="168412422"
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9CEEF6E210;
+ Tue, 24 Nov 2020 10:57:50 +0000 (UTC)
+IronPort-SDR: 5HQ7ECG9N8rCyncbxay9rYM0vjFO7nh1lN9iz8VPN1/JKCbxaPOnft/dwW8NdQTuUBFdN271r+
+ L/nViX9HHuHQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9814"; a="169361945"
+X-IronPort-AV: E=Sophos;i="5.78,366,1599548400"; 
+ d="scan'208,217";a="169361945"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Nov 2020 02:12:55 -0800
-IronPort-SDR: Lbc+QponfF2xcY5gqU/FSrtP6sosVsi8THhyvxV7Op0DPI/wRFnsOw4umPa3vkx2QHHBLHHkng
- 7Eo2OyHplckg==
-X-IronPort-AV: E=Sophos;i="5.78,366,1599548400"; d="scan'208";a="361819386"
-Received: from genxfsim-desktop.iind.intel.com ([10.223.74.178])
- by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Nov 2020 02:12:53 -0800
-From: Anshuman Gupta <anshuman.gupta@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Tue, 24 Nov 2020 15:28:47 +0530
-Message-Id: <20201124095847.14098-1-anshuman.gupta@intel.com>
-X-Mailer: git-send-email 2.26.2
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Nov 2020 02:57:47 -0800
+IronPort-SDR: NbsIMSlPR29ZQyJP/8o7pMuAkoGEi7FxwTf2+/8JdLOffg39ABcjgHcsKLrDn0h3L07gEtr2LW
+ uMzTKiZPWRcQ==
+X-IronPort-AV: E=Sophos;i="5.78,366,1599548400"; 
+ d="scan'208,217";a="370377457"
+Received: from kbs1-mobl1.gar.corp.intel.com (HELO [10.251.77.86])
+ ([10.251.77.86])
+ by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Nov 2020 02:57:45 -0800
+To: Anshuman Gupta <anshuman.gupta@intel.com>,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+References: <20201111062051.11529-1-anshuman.gupta@intel.com>
+From: Karthik B S <karthik.b.s@intel.com>
+Message-ID: <967f47ba-cb87-2094-8167-b3501292c47e@intel.com>
+Date: Tue, 24 Nov 2020 16:27:27 +0530
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Thunderbird/78.5.0
 MIME-Version: 1.0
-Subject: [Intel-gfx] [RFC] drm/i915/dp: PPS registers doesn't require AUX
- power
+In-Reply-To: <20201111062051.11529-1-anshuman.gupta@intel.com>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH v5 00/17] HDCP 2.2 and HDCP 1.4 Gen12 DP MST
+ support
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,59 +55,168 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: stable@vger.kernel.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: jani.nikula@intel.com, seanpaul@chromium.org
+Content-Type: multipart/mixed; boundary="===============0969485150=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Platforms with South Display Engine on PCH, doesn't
-require to get/put the AUX power domain in order to
-access PPS register because PPS registers are always on
-with South display on PCH.
+This is a multi-part message in MIME format.
+--===============0969485150==
+Content-Type: multipart/alternative;
+ boundary="------------D765DBF6ACE55710C77F9D5D"
+Content-Language: en-US
 
-Cc: Imre Deak <imre.deak@intel.com>
-Cc: <stable@vger.kernel.org>
-Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
----
- drivers/gpu/drm/i915/display/intel_dp.c | 13 ++++++++-----
- 1 file changed, 8 insertions(+), 5 deletions(-)
+This is a multi-part message in MIME format.
+--------------D765DBF6ACE55710C77F9D5D
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index 3896d08c4177..84a2c49e154c 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -872,8 +872,9 @@ pps_lock(struct intel_dp *intel_dp)
- 	 * See intel_power_sequencer_reset() why we need
- 	 * a power domain reference here.
- 	 */
--	wakeref = intel_display_power_get(dev_priv,
--					  intel_aux_power_domain(dp_to_dig_port(intel_dp)));
-+	if (!HAS_PCH_SPLIT(dev_priv))
-+		wakeref = intel_display_power_get(dev_priv,
-+						  intel_aux_power_domain(dp_to_dig_port(intel_dp)));
- 
- 	mutex_lock(&dev_priv->pps_mutex);
- 
-@@ -886,9 +887,11 @@ pps_unlock(struct intel_dp *intel_dp, intel_wakeref_t wakeref)
- 	struct drm_i915_private *dev_priv = dp_to_i915(intel_dp);
- 
- 	mutex_unlock(&dev_priv->pps_mutex);
--	intel_display_power_put(dev_priv,
--				intel_aux_power_domain(dp_to_dig_port(intel_dp)),
--				wakeref);
-+
-+	if (!HAS_PCH_SPLIT(dev_priv))
-+		intel_display_power_put(dev_priv,
-+					intel_aux_power_domain(dp_to_dig_port(intel_dp)),
-+					wakeref);
- 	return 0;
- }
- 
--- 
-2.26.2
+On 11/11/2020 11:50 AM, Anshuman Gupta wrote:
+> This is v5 version to test with IGT https://patchwork.freedesktop.org/series/82987/
+> This has addressed the review comments from Ram.
+> It has been also tested manually with above IGT series.
+
+As we currently do not have a setup for HDCP over DP MST on CI,
+
+I've tested this series on local set up with the above IGT series.
+
+Tested-by: Karthik B S <karthik.b.s@intel.com>
+
+>
+> [PATCH v5 11/17] misc/mei/hdcp: Fix AUTH_STREAM_REQ cmd buffer len
+> has an Ack from Tomas to merge it via drm-intel.
+>
+> [PATCH v5 12/17] drm/hdcp: Max MST content streams
+> has an Ack from drm-misc maintainer to merge it via drm-intel.
+>
+> Test-with: 20201103082628.9287-2-karthik.b.s@intel.com
+>
+> Anshuman Gupta (17):
+>    drm/i915/hdcp: Update CP property in update_pipe
+>    drm/i915/hdcp: Get conn while content_type changed
+>    drm/i915/hotplug: Handle CP_IRQ for DP-MST
+>    drm/i915/hdcp: DP MST transcoder for link and stream
+>    drm/i915/hdcp: Move HDCP enc status timeout to header
+>    drm/i915/hdcp: HDCP stream encryption support
+>    drm/i915/hdcp: Enable HDCP 1.4 stream encryption
+>    drm/i915/hdcp: Enable Gen12 HDCP 1.4 DP MST support
+>    drm/i915/hdcp: Pass dig_port to intel_hdcp_init
+>    drm/i915/hdcp: Encapsulate hdcp_port_data to dig_port
+>    misc/mei/hdcp: Fix AUTH_STREAM_REQ cmd buffer len
+>    drm/hdcp: Max MST content streams
+>    drm/i915/hdcp: MST streams support in hdcp port_data
+>    drm/i915/hdcp: Pass connector to check_2_2_link
+>    drm/i915/hdcp: Add HDCP 2.2 stream register
+>    drm/i915/hdcp: Support for HDCP 2.2 MST shim callbacks
+>    drm/i915/hdcp: Enable HDCP 2.2 MST support
+>
+>   drivers/gpu/drm/i915/display/intel_ddi.c      |  14 +-
+>   drivers/gpu/drm/i915/display/intel_ddi.h      |   6 +-
+>   .../drm/i915/display/intel_display_types.h    |  20 +-
+>   drivers/gpu/drm/i915/display/intel_dp.c       |  14 +-
+>   drivers/gpu/drm/i915/display/intel_dp_hdcp.c  | 182 +++++++++--
+>   drivers/gpu/drm/i915/display/intel_dp_mst.c   |  12 +-
+>   drivers/gpu/drm/i915/display/intel_hdcp.c     | 294 ++++++++++++++----
+>   drivers/gpu/drm/i915/display/intel_hdcp.h     |   8 +-
+>   drivers/gpu/drm/i915/display/intel_hdmi.c     |  19 +-
+>   drivers/gpu/drm/i915/i915_reg.h               |  31 ++
+>   drivers/misc/mei/hdcp/mei_hdcp.c              |   3 +-
+>   include/drm/drm_hdcp.h                        |   8 +-
+>   12 files changed, 489 insertions(+), 122 deletions(-)
+>
+
+
+--------------D765DBF6ACE55710C77F9D5D
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: 8bit
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  </head>
+  <body>
+    <div class="moz-cite-prefix">On 11/11/2020 11:50 AM, Anshuman Gupta
+      wrote:<br>
+    </div>
+    <blockquote type="cite"
+      cite="mid:20201111062051.11529-1-anshuman.gupta@intel.com">
+      <pre class="moz-quote-pre" wrap="">This is v5 version to test with IGT <a class="moz-txt-link-freetext" href="https://patchwork.freedesktop.org/series/82987/">https://patchwork.freedesktop.org/series/82987/</a>
+This has addressed the review comments from Ram.
+It has been also tested manually with above IGT series.</pre>
+    </blockquote>
+    <p style="margin:0in;font-family:Calibri;font-size:11.0pt">As we
+      currently do
+      not have a setup for HDCP over DP MST on CI,</p>
+    <p style="margin:0in;font-family:Calibri;font-size:11.0pt">I've
+      tested this
+      series on local set up with the above IGT series.</p>
+    <p style="margin:0in;font-family:Calibri;font-size:11.0pt"> </p>
+    <p style="margin:0in;font-family:Calibri;font-size:11.0pt">Tested-by:
+      Karthik B
+      S <a class="moz-txt-link-rfc2396E" href="mailto:karthik.b.s@intel.com">&lt;karthik.b.s@intel.com&gt;</a></p>
+    <blockquote type="cite"
+      cite="mid:20201111062051.11529-1-anshuman.gupta@intel.com">
+      <pre class="moz-quote-pre" wrap="">
+
+[PATCH v5 11/17] misc/mei/hdcp: Fix AUTH_STREAM_REQ cmd buffer len
+has an Ack from Tomas to merge it via drm-intel.
+
+[PATCH v5 12/17] drm/hdcp: Max MST content streams
+has an Ack from drm-misc maintainer to merge it via drm-intel.
+
+Test-with: <a class="moz-txt-link-abbreviated" href="mailto:20201103082628.9287-2-karthik.b.s@intel.com">20201103082628.9287-2-karthik.b.s@intel.com</a>
+
+Anshuman Gupta (17):
+  drm/i915/hdcp: Update CP property in update_pipe
+  drm/i915/hdcp: Get conn while content_type changed
+  drm/i915/hotplug: Handle CP_IRQ for DP-MST
+  drm/i915/hdcp: DP MST transcoder for link and stream
+  drm/i915/hdcp: Move HDCP enc status timeout to header
+  drm/i915/hdcp: HDCP stream encryption support
+  drm/i915/hdcp: Enable HDCP 1.4 stream encryption
+  drm/i915/hdcp: Enable Gen12 HDCP 1.4 DP MST support
+  drm/i915/hdcp: Pass dig_port to intel_hdcp_init
+  drm/i915/hdcp: Encapsulate hdcp_port_data to dig_port
+  misc/mei/hdcp: Fix AUTH_STREAM_REQ cmd buffer len
+  drm/hdcp: Max MST content streams
+  drm/i915/hdcp: MST streams support in hdcp port_data
+  drm/i915/hdcp: Pass connector to check_2_2_link
+  drm/i915/hdcp: Add HDCP 2.2 stream register
+  drm/i915/hdcp: Support for HDCP 2.2 MST shim callbacks
+  drm/i915/hdcp: Enable HDCP 2.2 MST support
+
+ drivers/gpu/drm/i915/display/intel_ddi.c      |  14 +-
+ drivers/gpu/drm/i915/display/intel_ddi.h      |   6 +-
+ .../drm/i915/display/intel_display_types.h    |  20 +-
+ drivers/gpu/drm/i915/display/intel_dp.c       |  14 +-
+ drivers/gpu/drm/i915/display/intel_dp_hdcp.c  | 182 +++++++++--
+ drivers/gpu/drm/i915/display/intel_dp_mst.c   |  12 +-
+ drivers/gpu/drm/i915/display/intel_hdcp.c     | 294 ++++++++++++++----
+ drivers/gpu/drm/i915/display/intel_hdcp.h     |   8 +-
+ drivers/gpu/drm/i915/display/intel_hdmi.c     |  19 +-
+ drivers/gpu/drm/i915/i915_reg.h               |  31 ++
+ drivers/misc/mei/hdcp/mei_hdcp.c              |   3 +-
+ include/drm/drm_hdcp.h                        |   8 +-
+ 12 files changed, 489 insertions(+), 122 deletions(-)
+
+</pre>
+    </blockquote>
+    <p><br>
+    </p>
+  </body>
+</html>
+
+--------------D765DBF6ACE55710C77F9D5D--
+
+--===============0969485150==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============0969485150==--
