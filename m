@@ -1,32 +1,38 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8A6F22C331F
-	for <lists+intel-gfx@lfdr.de>; Tue, 24 Nov 2020 22:38:50 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 13DBB2C334C
+	for <lists+intel-gfx@lfdr.de>; Tue, 24 Nov 2020 22:42:17 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 763A389FC0;
-	Tue, 24 Nov 2020 21:38:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2B71C6E0A5;
+	Tue, 24 Nov 2020 21:42:14 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3949489FC0
- for <intel-gfx@lists.freedesktop.org>; Tue, 24 Nov 2020 21:38:44 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 23097102-1500050 
- for multiple; Tue, 24 Nov 2020 21:38:34 +0000
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Tue, 24 Nov 2020 21:38:32 +0000
-Message-Id: <20201124213832.23149-1-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20201123162717.21845-1-chris@chris-wilson.co.uk>
-References: <20201123162717.21845-1-chris@chris-wilson.co.uk>
+Received: from asavdk3.altibox.net (asavdk3.altibox.net [109.247.116.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B55C46E027;
+ Tue, 24 Nov 2020 21:42:12 +0000 (UTC)
+Received: from ravnborg.org (unknown [188.228.123.71])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by asavdk3.altibox.net (Postfix) with ESMTPS id 0B37B2001F;
+ Tue, 24 Nov 2020 22:42:09 +0100 (CET)
+Date: Tue, 24 Nov 2020 22:42:08 +0100
+From: Sam Ravnborg <sam@ravnborg.org>
+To: Thomas Zimmermann <tzimmermann@suse.de>
+Message-ID: <20201124214208.GB93095@ravnborg.org>
+References: <20201124113824.19994-1-tzimmermann@suse.de>
+ <20201124113824.19994-10-tzimmermann@suse.de>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915/display: Record the plane update times
- for debugging
+Content-Disposition: inline
+In-Reply-To: <20201124113824.19994-10-tzimmermann@suse.de>
+X-CMAE-Score: 0
+X-CMAE-Analysis: v=2.3 cv=VbvZwmh9 c=1 sm=1 tr=0
+ a=S6zTFyMACwkrwXSdXUNehg==:117 a=S6zTFyMACwkrwXSdXUNehg==:17
+ a=kj9zAlcOel0A:10 a=20KFwNOVAAAA:8 a=e5mUnYsNAAAA:8
+ a=gl227gRoZKgfhO-qxXsA:9 a=CjuIK1q_8ugA:10 a=Vxmtnl_E_bksehYqCbjh:22
+Subject: Re: [Intel-gfx] [PATCH 09/15] drm/nouveau: Remove references to
+ struct drm_device.pdev
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,105 +45,161 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Chris Wilson <chris@chris-wilson.co.uk>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: airlied@linux.ie, nouveau@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ virtualization@lists.linux-foundation.org, amd-gfx@lists.freedesktop.org,
+ spice-devel@lists.freedesktop.org, intel-gvt-dev@lists.freedesktop.org,
+ Ben Skeggs <bskeggs@redhat.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-U2luY2Ugd2UgdHJ5IGFuZCBlc3RpbWF0ZSBob3cgbG9uZyB3ZSByZXF1aXJlIHRvIHVwZGF0ZSB0
-aGUgcmVnaXN0ZXJzIHRvCnBlcmZvcm0gYSBwbGFuZSB1cGRhdGUsIGl0IGlzIG9mIHZpdGFsIGlt
-cG9ydGFuY2UgdGhhdCB3ZSBtZWFzdXJlIHRoZQpkaXN0cmlidXRpb24gb2YgcGxhbmUgdXBkYXRl
-cyB0byBiZXR0ZXIgZ3VpZGUgb3VyIGVzdGltYXRlLiBJZiB3ZQp1bmRlcmVzdGltYXRlIGhvdyBs
-b25nIGl0IHRha2VzIHRvIHBlcmZvcm0gdGhlIHBsYW5lIHVwZGF0ZSwgd2UgbWF5CnNsaXAgaW50
-byB0aGUgbmV4dCBzY2Fub3V0IGZyYW1lIGNhdXNpbmcgYSB0ZWFyLiBJZiB3ZSBvdmVyZXN0aW1h
-dGUsIHdlCm1heSB1bm5lY2Vzc2FyaWx5IGRlbGF5IHRoZSB1cGRhdGUgdG8gdGhlIG5leHQgZnJh
-bWUsIGNhdXNpbmcgdmlzaWJsZQpqaXR0ZXIuCgpSZXBsYWNlIHRoZSB3YXJuaW5nIHRoYXQgd2Ug
-ZXhjZWVkIHNvbWUgYXJiaXRyYXJ5IHRocmVzaG9sZCBmb3IgdGhlCnZibGFuayB1cGRhdGUgd2l0
-aCBhIGhpc3RvZ3JhbSBmb3IgZGVidWdmcy4KCkNsb3NlczogaHR0cHM6Ly9naXRsYWIuZnJlZWRl
-c2t0b3Aub3JnL2RybS9pbnRlbC8tL2lzc3Vlcy8xOTgyClNpZ25lZC1vZmYtYnk6IENocmlzIFdp
-bHNvbiA8Y2hyaXNAY2hyaXMtd2lsc29uLmNvLnVrPgpDYzogSmFuaSBOaWt1bGEgPGphbmkubmlr
-dWxhQGxpbnV4LmludGVsLmNvbT4KQ2M6IFZpbGxlIFN5cmrDpGzDpCA8dmlsbGUuc3lyamFsYUBs
-aW51eC5pbnRlbC5jb20+Ci0tLQogLi4uL2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheV9k
-ZWJ1Z2ZzLmMgIHwgNDcgKysrKysrKysrKysrKysrKysrKwogLi4uL2RybS9pOTE1L2Rpc3BsYXkv
-aW50ZWxfZGlzcGxheV90eXBlcy5oICAgIHwgIDcgKysrCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9k
-aXNwbGF5L2ludGVsX3Nwcml0ZS5jICAgfCAyOSArKysrKysrKystLS0KIDMgZmlsZXMgY2hhbmdl
-ZCwgNzYgaW5zZXJ0aW9ucygrKSwgNyBkZWxldGlvbnMoLSkKCmRpZmYgLS1naXQgYS9kcml2ZXJz
-L2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXlfZGVidWdmcy5jIGIvZHJpdmVycy9n
-cHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5X2RlYnVnZnMuYwppbmRleCBjYTQxZThj
-MDBhZDcuLmIyOTEzNjIwOGQ1NiAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlz
-cGxheS9pbnRlbF9kaXNwbGF5X2RlYnVnZnMuYworKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9k
-aXNwbGF5L2ludGVsX2Rpc3BsYXlfZGVidWdmcy5jCkBAIC04NjUsNiArODY1LDUxIEBAIHN0YXRp
-YyB2b2lkIGludGVsX3NjYWxlcl9pbmZvKHN0cnVjdCBzZXFfZmlsZSAqbSwgc3RydWN0IGludGVs
-X2NydGMgKmNydGMpCiAJfQogfQogCisjaWZkZWYgQ09ORklHX0RSTV9JOTE1X0RFQlVHX1ZCTEFO
-S19FVkFERQorc3RhdGljIHZvaWQgY3J0Y192YmxhbmtfaW5mbyhzdHJ1Y3Qgc2VxX2ZpbGUgKm0s
-IHN0cnVjdCBpbnRlbF9jcnRjICpjcnRjKQoreworCWNoYXIgYnVmW0FSUkFZX1NJWkUoY3J0Yy0+
-ZGVidWcudmJsX3RpbWVzKSArIDFdID0ge307CisJaW50IGgsIHJvdywgbWF4OworCXU2NCBjb3Vu
-dDsKKworCW1heCA9IDA7CisJY291bnQgPSAwOworCWZvciAoaCA9IDA7IGggPCBBUlJBWV9TSVpF
-KGNydGMtPmRlYnVnLnZibF90aW1lcyk7IGgrKykgeworCQlpZiAoY3J0Yy0+ZGVidWcudmJsX3Rp
-bWVzW2hdID4gbWF4KQorCQkJbWF4ID0gY3J0Yy0+ZGVidWcudmJsX3RpbWVzW2hdOworCQljb3Vu
-dCArPSBjcnRjLT5kZWJ1Zy52YmxfdGltZXNbaF07CisJfQorCXNlcV9wcmludGYobSwgIlx0VXBk
-YXRlczogJWxsdVxuIiwgY291bnQpOworCWlmICghY291bnQpCisJCXJldHVybjsKKworCW1lbXNl
-dChidWYsICctJywgc2l6ZW9mKGJ1ZikgLSAxKTsKKwlzZXFfcHJpbnRmKG0sICJcdCAgfCVzfFxu
-IiwgYnVmKTsKKworCWZvciAocm93ID0gaWxvZzIobWF4KSAtIDE7IHJvdzsgcm93LS0pIHsKKwkJ
-bWVtc2V0KGJ1ZiwgJyAnLCBzaXplb2YoYnVmKSAtIDEpOworCQlmb3IgKGggPSAwOyBoIDwgQVJS
-QVlfU0laRShjcnRjLT5kZWJ1Zy52YmxfdGltZXMpOyBoKyspIHsKKwkJCWlmIChpbG9nMihjcnRj
-LT5kZWJ1Zy52YmxfdGltZXNbaF0pID49IHJvdykKKwkJCQlidWZbaF0gPSAnKic7CisJCX0KKwkJ
-c2VxX3ByaW50ZihtLCAiXHQgIHwlc3xcbiIsIGJ1Zik7CisJfQorCisJbWVtc2V0KGJ1ZiwgJy0n
-LCBzaXplb2YoYnVmKSAtIDEpOworCXNlcV9wcmludGYobSwgIlx0ICB8JXN8XG4iLCBidWYpOwor
-CXNlcV9wcmludGYobSwgIlx0ICAgIDF1cyAgICAgKGxvZykgICAgICAxbXNcbiIpOworCisJc2Vx
-X3ByaW50ZihtLCAiXHRNaW4gdXBkYXRlOiAlbGx1bnNcbiIsIGNydGMtPmRlYnVnLm1pbl92Ymxf
-dGltZSk7CisJc2VxX3ByaW50ZihtLCAiXHRNYXggdXBkYXRlOiAlbGx1bnNcbiIsIGNydGMtPmRl
-YnVnLm1heF92YmxfdGltZSk7CisJc2VxX3ByaW50ZihtLCAiXHRBdmVyYWdlIHVwZGF0ZTogJWxs
-dW5zXG4iLAorCQkgICBkaXY2NF91NjQoY3J0Yy0+ZGVidWcuc3VtX3ZibF90aW1lLCAgY291bnQp
-KTsKKwlzZXFfcHJpbnRmKG0sICJcdE92ZXJydW5zID4gJXV1czogJWx1XG4iLAorCQkgICBWQkxB
-TktfRVZBU0lPTl9USU1FX1VTLCBjcnRjLT5kZWJ1Zy5vdmVyX3ZibF90aW1lKTsKK30KKyNlbHNl
-CitzdGF0aWMgdm9pZCBjcnRjX3ZibGFua19pbmZvKHN0cnVjdCBzZXFfZmlsZSAqbSwgc3RydWN0
-IGludGVsX2NydGMgKmNydGMpIHt9CisjZW5kaWYKKwogc3RhdGljIHZvaWQgaW50ZWxfY3J0Y19p
-bmZvKHN0cnVjdCBzZXFfZmlsZSAqbSwgc3RydWN0IGludGVsX2NydGMgKmNydGMpCiB7CiAJc3Ry
-dWN0IGRybV9pOTE1X3ByaXZhdGUgKmRldl9wcml2ID0gbm9kZV90b19pOTE1KG0tPnByaXZhdGUp
-OwpAQCAtOTA3LDYgKzk1Miw4IEBAIHN0YXRpYyB2b2lkIGludGVsX2NydGNfaW5mbyhzdHJ1Y3Qg
-c2VxX2ZpbGUgKm0sIHN0cnVjdCBpbnRlbF9jcnRjICpjcnRjKQogCXNlcV9wcmludGYobSwgIlx0
-dW5kZXJydW4gcmVwb3J0aW5nOiBjcHU9JXMgcGNoPSVzXG4iLAogCQkgICB5ZXNubyghY3J0Yy0+
-Y3B1X2ZpZm9fdW5kZXJydW5fZGlzYWJsZWQpLAogCQkgICB5ZXNubyghY3J0Yy0+cGNoX2ZpZm9f
-dW5kZXJydW5fZGlzYWJsZWQpKTsKKworCWNydGNfdmJsYW5rX2luZm8obSwgY3J0Yyk7CiB9CiAK
-IHN0YXRpYyBpbnQgaTkxNV9kaXNwbGF5X2luZm8oc3RydWN0IHNlcV9maWxlICptLCB2b2lkICp1
-bnVzZWQpCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rp
-c3BsYXlfdHlwZXMuaCBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxh
-eV90eXBlcy5oCmluZGV4IGNlODJkNjU0ZDBmMi4uZWZiYjdjNjFlNmZiIDEwMDY0NAotLS0gYS9k
-cml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXlfdHlwZXMuaAorKysgYi9k
-cml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXlfdHlwZXMuaApAQCAtMTE4
-Niw2ICsxMTg2LDEzIEBAIHN0cnVjdCBpbnRlbF9jcnRjIHsKIAkJa3RpbWVfdCBzdGFydF92Ymxf
-dGltZTsKIAkJaW50IG1pbl92YmwsIG1heF92Ymw7CiAJCWludCBzY2FubGluZV9zdGFydDsKKyNp
-ZmRlZiBDT05GSUdfRFJNX0k5MTVfREVCVUdfVkJMQU5LX0VWQURFCisJCXU2NCBtaW5fdmJsX3Rp
-bWU7CisJCXU2NCBtYXhfdmJsX3RpbWU7CisJCXU2NCBzdW1fdmJsX3RpbWU7CisJCXVuc2lnbmVk
-IGludCB2YmxfdGltZXNbMjFdOyAvKiBbMXVzLCAxbXNdICovCisJCXVuc2lnbmVkIGxvbmcgb3Zl
-cl92YmxfdGltZTsKKyNlbmRpZgogCX0gZGVidWc7CiAKIAkvKiBzY2FsZXJzIGF2YWlsYWJsZSBv
-biB0aGlzIGNydGMgKi8KZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkv
-aW50ZWxfc3ByaXRlLmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX3Nwcml0
-ZS5jCmluZGV4IDAxOWEyZDZkODA3YS4uNjYxY2JhZjRjYzM4IDEwMDY0NAotLS0gYS9kcml2ZXJz
-L2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX3Nwcml0ZS5jCisrKyBiL2RyaXZlcnMvZ3B1L2Ry
-bS9pOTE1L2Rpc3BsYXkvaW50ZWxfc3ByaXRlLmMKQEAgLTI1MCwxMyArMjUwLDI4IEBAIHZvaWQg
-aW50ZWxfcGlwZV91cGRhdGVfZW5kKHN0cnVjdCBpbnRlbF9jcnRjX3N0YXRlICpuZXdfY3J0Y19z
-dGF0ZSkKIAkJCWNydGMtPmRlYnVnLnNjYW5saW5lX3N0YXJ0LCBzY2FubGluZV9lbmQpOwogCX0K
-ICNpZmRlZiBDT05GSUdfRFJNX0k5MTVfREVCVUdfVkJMQU5LX0VWQURFCi0JZWxzZSBpZiAoa3Rp
-bWVfdXNfZGVsdGEoZW5kX3ZibF90aW1lLCBjcnRjLT5kZWJ1Zy5zdGFydF92YmxfdGltZSkgPgot
-CQkgVkJMQU5LX0VWQVNJT05fVElNRV9VUykKLQkJZHJtX3dhcm4oJmRldl9wcml2LT5kcm0sCi0J
-CQkgIkF0b21pYyB1cGRhdGUgb24gcGlwZSAoJWMpIHRvb2sgJWxsZCB1cywgbWF4IHRpbWUgdW5k
-ZXIgZXZhc2lvbiBpcyAldSB1c1xuIiwKLQkJCSBwaXBlX25hbWUocGlwZSksCi0JCQkga3RpbWVf
-dXNfZGVsdGEoZW5kX3ZibF90aW1lLCBjcnRjLT5kZWJ1Zy5zdGFydF92YmxfdGltZSksCi0JCQkg
-VkJMQU5LX0VWQVNJT05fVElNRV9VUyk7CisJeworCQl1bnNpZ25lZCBpbnQgaDsKKwkJdTY0IGRl
-bHRhOworCisJCWRlbHRhID0ga3RpbWVfdG9fbnMoa3RpbWVfc3ViKGVuZF92YmxfdGltZSwKKwkJ
-CQkJICAgICAgY3J0Yy0+ZGVidWcuc3RhcnRfdmJsX3RpbWUpKTsKKworCQloID0gaWxvZzIoZGVs
-dGEgPj4gOSk7CisJCWlmIChoID49IEFSUkFZX1NJWkUoY3J0Yy0+ZGVidWcudmJsX3RpbWVzKSkK
-KwkJCWggPSBBUlJBWV9TSVpFKGNydGMtPmRlYnVnLnZibF90aW1lcykgLSAxOworCQljcnRjLT5k
-ZWJ1Zy52YmxfdGltZXNbaF0rKzsKKworCQljcnRjLT5kZWJ1Zy5zdW1fdmJsX3RpbWUgKz0gZGVs
-dGE7CisJCWlmICghY3J0Yy0+ZGVidWcubWluX3ZibF90aW1lIHx8CisJCSAgICBkZWx0YSA8IGNy
-dGMtPmRlYnVnLm1pbl92YmxfdGltZSkKKwkJCWNydGMtPmRlYnVnLm1pbl92YmxfdGltZSA9IGRl
-bHRhOworCQlpZiAoZGVsdGEgPiBjcnRjLT5kZWJ1Zy5tYXhfdmJsX3RpbWUpCisJCQljcnRjLT5k
-ZWJ1Zy5tYXhfdmJsX3RpbWUgPSBkZWx0YTsKKworCQlpZiAoZGVsdGEgPiAxMDAwICogVkJMQU5L
-X0VWQVNJT05fVElNRV9VUykKKwkJCWNydGMtPmRlYnVnLm92ZXJfdmJsX3RpbWUrKzsKKwl9CiAj
-ZW5kaWYKIH0KIAotLSAKMi4yMC4xCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVl
-ZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5m
-by9pbnRlbC1nZngK
+Hi Thomas.
+
+On Tue, Nov 24, 2020 at 12:38:18PM +0100, Thomas Zimmermann wrote:
+> Using struct drm_device.pdev is deprecated. Convert nouveau to struct
+> drm_device.dev. No functional changes.
+> 
+> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
+> Cc: Ben Skeggs <bskeggs@redhat.com>
+
+Suggestion to an alternative implmentation below.
+
+> ---
+>  drivers/gpu/drm/nouveau/dispnv04/arb.c      | 12 +++++++-----
+>  drivers/gpu/drm/nouveau/dispnv04/disp.h     | 14 ++++++++------
+>  drivers/gpu/drm/nouveau/dispnv04/hw.c       | 10 ++++++----
+>  drivers/gpu/drm/nouveau/nouveau_abi16.c     |  7 ++++---
+>  drivers/gpu/drm/nouveau/nouveau_acpi.c      |  2 +-
+>  drivers/gpu/drm/nouveau/nouveau_bios.c      | 11 ++++++++---
+>  drivers/gpu/drm/nouveau/nouveau_connector.c | 10 ++++++----
+>  drivers/gpu/drm/nouveau/nouveau_drm.c       |  5 ++---
+>  drivers/gpu/drm/nouveau/nouveau_fbcon.c     |  6 ++++--
+>  drivers/gpu/drm/nouveau/nouveau_vga.c       | 20 ++++++++++++--------
+>  10 files changed, 58 insertions(+), 39 deletions(-)
+> 
+
+> diff --git a/drivers/gpu/drm/nouveau/nouveau_bios.c b/drivers/gpu/drm/nouveau/nouveau_bios.c
+> index d204ea8a5618..7cc683b8dc7a 100644
+> --- a/drivers/gpu/drm/nouveau/nouveau_bios.c
+> +++ b/drivers/gpu/drm/nouveau/nouveau_bios.c
+> @@ -110,6 +110,9 @@ static int call_lvds_manufacturer_script(struct drm_device *dev, struct dcb_outp
+>  	struct nvbios *bios = &drm->vbios;
+>  	uint8_t sub = bios->data[bios->fp.xlated_entry + script] + (bios->fp.link_c_increment && dcbent->or & DCB_OUTPUT_C ? 1 : 0);
+>  	uint16_t scriptofs = ROM16(bios->data[bios->init_script_tbls_ptr + sub * 2]);
+> +#ifdef __powerpc__
+> +	struct pci_dev *pdev = to_pci_dev(dev->dev);
+> +#endif
+Or
+	int device = 0;
+>  
+>  	if (!bios->fp.xlated_entry || !sub || !scriptofs)
+>  		return -EINVAL;
+> @@ -123,8 +126,8 @@ static int call_lvds_manufacturer_script(struct drm_device *dev, struct dcb_outp
+>  #ifdef __powerpc__
+>  	/* Powerbook specific quirks */
+	device = to_pci_dev(dev->dev)->device;
+	if (script == LVDS_RESET && (device == 0x0179 || device == 0x0189 || device == 0x0329))
+
+>  	if (script == LVDS_RESET &&
+> -	    (dev->pdev->device == 0x0179 || dev->pdev->device == 0x0189 ||
+> -	     dev->pdev->device == 0x0329))
+> +	    (pdev->device == 0x0179 || pdev->device == 0x0189 ||
+> +	     pdev->device == 0x0329))
+>  		nv_write_tmds(dev, dcbent->or, 0, 0x02, 0x72);
+>  #endif
+>  
+
+
+> diff --git a/drivers/gpu/drm/nouveau/nouveau_fbcon.c b/drivers/gpu/drm/nouveau/nouveau_fbcon.c
+> index 24ec5339efb4..4fc0fa696461 100644
+> --- a/drivers/gpu/drm/nouveau/nouveau_fbcon.c
+> +++ b/drivers/gpu/drm/nouveau/nouveau_fbcon.c
+> @@ -396,7 +396,9 @@ nouveau_fbcon_create(struct drm_fb_helper *helper,
+>  	NV_INFO(drm, "allocated %dx%d fb: 0x%llx, bo %p\n",
+>  		fb->width, fb->height, nvbo->offset, nvbo);
+>  
+> -	vga_switcheroo_client_fb_set(dev->pdev, info);
+> +	if (dev_is_pci(dev->dev))
+> +		vga_switcheroo_client_fb_set(to_pci_dev(dev->dev), info);
+> +
+I cannot see why dev_is_pci() is needed here.
+So I am obviously missing something :-(
+
+>  	return 0;
+>  
+>  out_unlock:
+> @@ -548,7 +550,7 @@ nouveau_fbcon_init(struct drm_device *dev)
+>  	int ret;
+>  
+>  	if (!dev->mode_config.num_crtc ||
+> -	    (dev->pdev->class >> 8) != PCI_CLASS_DISPLAY_VGA)
+> +	    (to_pci_dev(dev->dev)->class >> 8) != PCI_CLASS_DISPLAY_VGA)
+>  		return 0;
+>  
+>  	fbcon = kzalloc(sizeof(struct nouveau_fbdev), GFP_KERNEL);
+> diff --git a/drivers/gpu/drm/nouveau/nouveau_vga.c b/drivers/gpu/drm/nouveau/nouveau_vga.c
+> index c85dd8afa3c3..7c4b374b3eca 100644
+> --- a/drivers/gpu/drm/nouveau/nouveau_vga.c
+> +++ b/drivers/gpu/drm/nouveau/nouveau_vga.c
+> @@ -87,18 +87,20 @@ nouveau_vga_init(struct nouveau_drm *drm)
+>  {
+>  	struct drm_device *dev = drm->dev;
+>  	bool runtime = nouveau_pmops_runtime();
+> +	struct pci_dev *pdev;
+>  
+>  	/* only relevant for PCI devices */
+> -	if (!dev->pdev)
+> +	if (!dev_is_pci(dev->dev))
+>  		return;
+> +	pdev = to_pci_dev(dev->dev);
+>  
+> -	vga_client_register(dev->pdev, dev, NULL, nouveau_vga_set_decode);
+> +	vga_client_register(pdev, dev, NULL, nouveau_vga_set_decode);
+>  
+>  	/* don't register Thunderbolt eGPU with vga_switcheroo */
+> -	if (pci_is_thunderbolt_attached(dev->pdev))
+> +	if (pci_is_thunderbolt_attached(pdev))
+>  		return;
+>  
+> -	vga_switcheroo_register_client(dev->pdev, &nouveau_switcheroo_ops, runtime);
+> +	vga_switcheroo_register_client(pdev, &nouveau_switcheroo_ops, runtime);
+>  
+>  	if (runtime && nouveau_is_v1_dsm() && !nouveau_is_optimus())
+>  		vga_switcheroo_init_domain_pm_ops(drm->dev->dev, &drm->vga_pm_domain);
+> @@ -109,17 +111,19 @@ nouveau_vga_fini(struct nouveau_drm *drm)
+>  {
+>  	struct drm_device *dev = drm->dev;
+>  	bool runtime = nouveau_pmops_runtime();
+> +	struct pci_dev *pdev;
+>  
+>  	/* only relevant for PCI devices */
+> -	if (!dev->pdev)
+> +	if (!dev_is_pci(dev->dev))
+>  		return;
+> +	pdev = to_pci_dev(dev->dev);
+>  
+> -	vga_client_register(dev->pdev, NULL, NULL, NULL);
+> +	vga_client_register(pdev, NULL, NULL, NULL);
+>  
+> -	if (pci_is_thunderbolt_attached(dev->pdev))
+> +	if (pci_is_thunderbolt_attached(pdev))
+>  		return;
+>  
+> -	vga_switcheroo_unregister_client(dev->pdev);
+> +	vga_switcheroo_unregister_client(pdev);
+>  	if (runtime && nouveau_is_v1_dsm() && !nouveau_is_optimus())
+>  		vga_switcheroo_fini_domain_pm_ops(drm->dev->dev);
+>  }
+> -- 
+> 2.29.2
+> 
+> _______________________________________________
+> dri-devel mailing list
+> dri-devel@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/dri-devel
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
