@@ -2,31 +2,35 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3AF2E2C48D8
-	for <lists+intel-gfx@lfdr.de>; Wed, 25 Nov 2020 21:07:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 413C52C48E6
+	for <lists+intel-gfx@lfdr.de>; Wed, 25 Nov 2020 21:14:50 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3885E6EA7F;
-	Wed, 25 Nov 2020 20:07:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0BCB26EA84;
+	Wed, 25 Nov 2020 20:14:48 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DCDD06EA7F
- for <intel-gfx@lists.freedesktop.org>; Wed, 25 Nov 2020 20:07:36 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B8A766EA82
+ for <intel-gfx@lists.freedesktop.org>; Wed, 25 Nov 2020 20:14:45 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
-Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 23108291-1500050 
- for <intel-gfx@lists.freedesktop.org>; Wed, 25 Nov 2020 20:07:33 +0000
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Wed, 25 Nov 2020 20:07:33 +0000
-Message-Id: <20201125200733.24581-2-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20201125200733.24581-1-chris@chris-wilson.co.uk>
-References: <20201125200733.24581-1-chris@chris-wilson.co.uk>
+Received: from localhost (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
+ 23108368-1500050 for multiple; Wed, 25 Nov 2020 20:14:41 +0000
 MIME-Version: 1.0
-Subject: [Intel-gfx] [CI 2/2] drm/i915/gt: Check for a completed last
- request once
+In-Reply-To: <61248f45-d8f1-edec-656a-6eaddefb3789@intel.com>
+References: <20201125003108.156110-1-aditya.swarup@intel.com>
+ <87360xmzgr.fsf@intel.com>
+ <160631840326.26272.537878967385128182@build.alporthouse.com>
+ <61248f45-d8f1-edec-656a-6eaddefb3789@intel.com>
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: Aditya Swarup <aditya.swarup@intel.com>,
+ Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org
+Date: Wed, 25 Nov 2020 20:14:41 +0000
+Message-ID: <160633528103.26272.17614370373850540908@build.alporthouse.com>
+User-Agent: alot/0.9
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/tgl: Fix REVID macros for TGL to
+ fetch correct stepping
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,72 +43,84 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Pull the repeated check for the last active request being completed to a
-single spot, when deciding whether or not execlist preemption is
-required.
+Quoting Aditya Swarup (2020-11-25 17:51:04)
+> On 11/25/20 7:33 AM, Chris Wilson wrote:
+> > Quoting Jani Nikula (2020-11-25 11:45:56)
+> >> On Tue, 24 Nov 2020, Aditya Swarup <aditya.swarup@intel.com> wrote:
+> >>>  static inline const struct i915_rev_steppings *
+> >>>  tgl_revids_get(struct drm_i915_private *dev_priv)
+> >>>  {
+> >>> -     if (IS_TGL_U(dev_priv) || IS_TGL_Y(dev_priv))
+> >>> -             return tgl_uy_revids;
+> >>> -     else
+> >>> -             return tgl_revids;
+> >>> +     const u8 revid = INTEL_REVID(dev_priv);
+> >>> +
+> >>> +     if (IS_TGL_U(dev_priv) || IS_TGL_Y(dev_priv)) {
+> >>> +             if (TGL_UY_REVID_RANGE(revid)) {
+> >>> +                     return tgl_uy_revids + revid;
+> >>> +             } else {
+> >>> +                     drm_dbg_kms(&dev_priv->drm,
+> >>> +                                 "Unsupported SOC stepping found %u, using %lu instead\n",
+> >>> +                                 revid, ARRAY_SIZE(tgl_uy_revids) - 1);
+> > 
+> > Also please don't have a dbg for every single IS_TGL_*_REVID
+> > invocation. And this is not _kms, but driver; better yet, don't bother
+> > with a drm_dbg_kms here at all.
+> > 
+> > If you want to actually check, add something like
+> > intel_detect_preproduction_hw() and warn about unknown future revids.
+> > Or include the info when we print the revid in the caps.
+> 
+> So, what you are suggesting is add an info print in that function intel_detect_preproduction_hw() right?
+> Or something else?
 
-In doing so, we remove a tasklet kick if we find the request was
-completed but have not yet seen the corresponding CS event. This was
-devolving into a busy spin of the tasklet while we waited for the event
-as the delivery was not as instantaneous as expected. Under load this
-is sufficient to exhaust the tasklet softirq timeslice, and force
-ksoftirqd. Quite noticeable overhead for no apparent improvement in
-latency.
+I wouldn't put it in detect_preproduction, just using that as an example
+of when we do probes for unexpected revids. E.g.,
 
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
----
- drivers/gpu/drm/i915/gt/intel_lrc.c | 15 ++++-----------
- 1 file changed, 4 insertions(+), 11 deletions(-)
+diff --git a/drivers/gpu/drm/i915/i915_drv.c b/drivers/gpu/drm/i915/i915_drv.c
+index ca16ea541ecc..f1ff5509c23a 100644
+--- a/drivers/gpu/drm/i915/i915_drv.c
++++ b/drivers/gpu/drm/i915/i915_drv.c
+@@ -273,6 +273,21 @@ static void intel_detect_preproduction_hw(struct drm_i915_private *dev_priv)
+        }
+ }
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
-index cf11cbac241b..43703efb36d1 100644
---- a/drivers/gpu/drm/i915/gt/intel_lrc.c
-+++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
-@@ -2141,12 +2141,9 @@ static void execlists_dequeue(struct intel_engine_cs *engine)
- 	 */
- 
- 	if ((last = *active)) {
--		if (need_preempt(engine, last, rb)) {
--			if (i915_request_completed(last)) {
--				tasklet_hi_schedule(&execlists->tasklet);
--				return;
--			}
--
-+		if (i915_request_completed(last)) {
-+			goto check_secondary;
-+		} else if (need_preempt(engine, last, rb)) {
- 			ENGINE_TRACE(engine,
- 				     "preempting last=%llx:%lld, prio=%d, hint=%d\n",
- 				     last->fence.context,
-@@ -2174,11 +2171,6 @@ static void execlists_dequeue(struct intel_engine_cs *engine)
- 			last = NULL;
- 		} else if (need_timeslice(engine, last, rb) &&
- 			   timeslice_expired(execlists, last)) {
--			if (i915_request_completed(last)) {
--				tasklet_hi_schedule(&execlists->tasklet);
--				return;
--			}
--
- 			ENGINE_TRACE(engine,
- 				     "expired last=%llx:%lld, prio=%d, hint=%d, yield?=%s\n",
- 				     last->fence.context,
-@@ -2214,6 +2206,7 @@ static void execlists_dequeue(struct intel_engine_cs *engine)
- 			 * we hopefully coalesce several updates into a single
- 			 * submission.
- 			 */
-+check_secondary:
- 			if (!list_is_last(&last->sched.link,
- 					  &engine->active.requests)) {
- 				/*
--- 
-2.20.1
++/*
++ * HW that is more recent than the kernel runs the risk of us applying
++ * stale and disruptive w/a. Leave a debug tell-tale just in case.
++ */
++static void intel_detect_unknown_hw(struct drm_i915_private *dev_priv)
++{
++       bool post = false;
++
++       if (post) {
++               drm_dbg(&dev_priv->drm,
++                       "This machine is more recent than the w/a database!\n");
++               add_taint(TAINT_MACHINE_CHECK, LOCKDEP_STILL_OK);
++       }
++}
++
+ static void sanitize_gpu(struct drm_i915_private *i915)
+ {
+        if (!INTEL_INFO(i915)->gpu_reset_clobbers_display)
+@@ -343,6 +358,7 @@ static int i915_driver_early_probe(struct drm_i915_private *dev_priv)
+        intel_init_audio_hooks(dev_priv);
 
+        intel_detect_preproduction_hw(dev_priv);
++       intel_detect_unknown_hw(dev_priv);
+
+        return 0;
+
+
+The taint is probably not justified in this case.
+-Chris
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
