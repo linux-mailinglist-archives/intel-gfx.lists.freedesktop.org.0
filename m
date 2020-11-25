@@ -1,48 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3B6062C48BD
-	for <lists+intel-gfx@lfdr.de>; Wed, 25 Nov 2020 20:52:20 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id C9A322C48CA
+	for <lists+intel-gfx@lfdr.de>; Wed, 25 Nov 2020 20:56:46 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 321956EA64;
-	Wed, 25 Nov 2020 19:52:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 827A06EA6A;
+	Wed, 25 Nov 2020 19:56:44 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F1E8A6EA64
- for <intel-gfx@lists.freedesktop.org>; Wed, 25 Nov 2020 19:52:16 +0000 (UTC)
-IronPort-SDR: CiEHJpuXkI1BYFwJdj6nZsMIDn21yXOI6MQ/YVQqIWHfAg521ZNv/GfX5oK+TNBdNIKuztlxR+
- x6/LkmS0eEDA==
-X-IronPort-AV: E=McAfee;i="6000,8403,9816"; a="159960911"
-X-IronPort-AV: E=Sophos;i="5.78,370,1599548400"; d="scan'208";a="159960911"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Nov 2020 11:52:16 -0800
-IronPort-SDR: N0DkHN4zui6dGEYrqaXPkWtwNTledV0RljyDlzeSsk431+ytJBPeFNYZyLrgFqHGtzenCKwHYH
- /ky6+8jrSC2g==
-X-IronPort-AV: E=Sophos;i="5.78,370,1599548400"; d="scan'208";a="333118098"
-Received: from sowmyave-mobl.amr.corp.intel.com (HELO ldmartin-desk1)
- ([10.209.29.185])
- by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Nov 2020 11:52:15 -0800
-Date: Wed, 25 Nov 2020 11:52:15 -0800
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: Aditya Swarup <aditya.swarup@intel.com>
-Message-ID: <20201125195215.meyg57hozkhrnjrg@ldmartin-desk1>
-References: <20201125003108.156110-1-aditya.swarup@intel.com>
- <87360xmzgr.fsf@intel.com>
- <160631840326.26272.537878967385128182@build.alporthouse.com>
- <61248f45-d8f1-edec-656a-6eaddefb3789@intel.com>
- <20201125191811.me6ha4kwhchohrez@ldmartin-desk1>
- <7ae29344-1312-929e-2ae4-decb54435010@intel.com>
+Received: from fireflyinternet.com (unknown [77.68.26.236])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B4F7B6EA6A
+ for <intel-gfx@lists.freedesktop.org>; Wed, 25 Nov 2020 19:56:43 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from build.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 23108122-1500050 
+ for multiple; Wed, 25 Nov 2020 19:56:35 +0000
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Wed, 25 Nov 2020 19:56:34 +0000
+Message-Id: <20201125195634.29783-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.20.1
+In-Reply-To: <20201124114219.29020-5-chris@chris-wilson.co.uk>
+References: <20201124114219.29020-5-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <7ae29344-1312-929e-2ae4-decb54435010@intel.com>
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/tgl: Fix REVID macros for TGL to
- fetch correct stepping
+Subject: [Intel-gfx] [PATCH v2] drm/i915/gt: Move the breadcrumb to the
+ signaler if completed upon cancel
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,62 +39,134 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org,
- Chris Wilson <chris@chris-wilson.co.uk>
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"; Format="flowed"
+Cc: Chris Wilson <chris@chris-wilson.co.uk>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Nov 25, 2020 at 11:30:44AM -0800, Aditya Swarup wrote:
->> As I said in the other reply, sizeof does actually work here:
->
->The question is not about sizeof() not working but rather the usage of ARR=
-AY_SIZE()
->macro in i915_drv.h with just extern declaration without size specified.
+If while we are cancelling the breadcrumb signaling, we find that the
+request is already completed, move it to the irq signaler and let it be
+signaled.
 
-ARRAY_SIZE() is just sizeof(arr)/sizeof(*arr) with additional
-shenanigans to check for misuse: when used with a pointer rather than an
-array:
+v2: Tweak reference counting so that we only acquire a new reference on
+adding to a signal list, as opposed to a hidden i915_request_put of the
+caller's reference.
 
-	int b[0];
-	int *a =3D b;
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+---
+ drivers/gpu/drm/i915/gt/intel_breadcrumbs.c | 41 +++++++++++----------
+ 1 file changed, 22 insertions(+), 19 deletions(-)
 
-	or
+diff --git a/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c b/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c
+index a24cc1ff08a0..00918300f53f 100644
+--- a/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c
++++ b/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c
+@@ -192,18 +192,6 @@ static void add_retire(struct intel_breadcrumbs *b, struct intel_timeline *tl)
+ 		intel_engine_add_retire(b->irq_engine, tl);
+ }
+ 
+-static bool __signal_request(struct i915_request *rq)
+-{
+-	GEM_BUG_ON(test_bit(I915_FENCE_FLAG_SIGNAL, &rq->fence.flags));
+-
+-	if (!__dma_fence_signal(&rq->fence)) {
+-		i915_request_put(rq);
+-		return false;
+-	}
+-
+-	return true;
+-}
+-
+ static struct llist_node *
+ slist_add(struct llist_node *node, struct llist_node *head)
+ {
+@@ -274,9 +262,11 @@ static void signal_irq_work(struct irq_work *work)
+ 			release = remove_signaling_context(b, ce);
+ 			spin_unlock(&ce->signal_lock);
+ 
+-			if (__signal_request(rq))
++			if (__dma_fence_signal(&rq->fence))
+ 				/* We own signal_node now, xfer to local list */
+ 				signal = slist_add(&rq->signal_node, signal);
++			else
++				i915_request_put(rq);
+ 
+ 			if (release) {
+ 				add_retire(b, ce->timeline);
+@@ -363,6 +353,17 @@ void intel_breadcrumbs_free(struct intel_breadcrumbs *b)
+ 	kfree(b);
+ }
+ 
++static void irq_signal_request(struct i915_request *rq,
++			       struct intel_breadcrumbs *b)
++{
++	if (!__dma_fence_signal(&rq->fence))
++		return;
++
++	i915_request_get(rq);
++	if (llist_add(&rq->signal_node, &b->signaled_requests))
++		irq_work_queue(&b->irq_work);
++}
++
+ static void insert_breadcrumb(struct i915_request *rq)
+ {
+ 	struct intel_breadcrumbs *b = READ_ONCE(rq->engine)->breadcrumbs;
+@@ -372,17 +373,13 @@ static void insert_breadcrumb(struct i915_request *rq)
+ 	if (test_bit(I915_FENCE_FLAG_SIGNAL, &rq->fence.flags))
+ 		return;
+ 
+-	i915_request_get(rq);
+-
+ 	/*
+ 	 * If the request is already completed, we can transfer it
+ 	 * straight onto a signaled list, and queue the irq worker for
+ 	 * its signal completion.
+ 	 */
+ 	if (__request_completed(rq)) {
+-		if (__signal_request(rq) &&
+-		    llist_add(&rq->signal_node, &b->signaled_requests))
+-			irq_work_queue(&b->irq_work);
++		irq_signal_request(rq, b);
+ 		return;
+ 	}
+ 
+@@ -413,6 +410,8 @@ static void insert_breadcrumb(struct i915_request *rq)
+ 				break;
+ 		}
+ 	}
++
++	i915_request_get(rq);
+ 	list_add_rcu(&rq->signal_link, pos);
+ 	GEM_BUG_ON(!check_signal_order(ce, rq));
+ 	GEM_BUG_ON(test_bit(DMA_FENCE_FLAG_SIGNALED_BIT, &rq->fence.flags));
+@@ -453,6 +452,7 @@ bool i915_request_enable_breadcrumb(struct i915_request *rq)
+ 
+ void i915_request_cancel_breadcrumb(struct i915_request *rq)
+ {
++	struct intel_breadcrumbs *b = READ_ONCE(rq->engine)->breadcrumbs;
+ 	struct intel_context *ce = rq->context;
+ 	bool release;
+ 
+@@ -461,11 +461,14 @@ void i915_request_cancel_breadcrumb(struct i915_request *rq)
+ 
+ 	spin_lock(&ce->signal_lock);
+ 	list_del_rcu(&rq->signal_link);
+-	release = remove_signaling_context(rq->engine->breadcrumbs, ce);
++	release = remove_signaling_context(b, ce);
+ 	spin_unlock(&ce->signal_lock);
+ 	if (release)
+ 		intel_context_put(ce);
+ 
++	if (__request_completed(rq))
++		irq_signal_request(rq, b);
++
+ 	i915_request_put(rq);
+ }
+ 
+-- 
+2.20.1
 
-	void foo(int a[10])
-
-In these cases 	ARRAY_SIZE(a) will not do what you expect and the macro
-warns about it, because sizeof(a) will be sizeof(int *) instead of the
-array size.
-
-
->
->>
->> =A0=A0=A0=A0$ cat /tmp/a.c
->> =A0=A0=A0=A0#include <stdio.h>
->>
->> =A0=A0=A0=A0#include "b.h"
->>
->> =A0=A0=A0=A0int main(int argc, const char *argv[])
->> =A0=A0=A0=A0{
->> =A0=A0=A0=A0=A0=A0=A0 printf("%zu", sizeof(tgl_uy_revids));
->> =A0=A0=A0=A0=A0=A0=A0 return 0;
->> =A0=A0=A0=A0}
->>
->> =A0=A0=A0=A0$ cat /tmp/b.h
->> =A0=A0=A0=A0#pragma once
->>
->> =A0=A0=A0=A0struct i915_rev_steppings { int a; };
->> =A0=A0=A0=A0extern const struct i915_rev_steppings tgl_uy_revids[4];
->
->You are specifying the size in the extern declaration which will make the =
-ARRAY_SIZE()
->macro work if used in the header else it will complain.
-
-as it should
-
-Lucas De Marchi
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
