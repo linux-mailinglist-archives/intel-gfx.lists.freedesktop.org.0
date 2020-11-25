@@ -2,46 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4D6372C44C2
-	for <lists+intel-gfx@lfdr.de>; Wed, 25 Nov 2020 17:19:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5B9FB2C44CC
+	for <lists+intel-gfx@lfdr.de>; Wed, 25 Nov 2020 17:21:36 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 678666EA09;
-	Wed, 25 Nov 2020 16:19:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0CCD06E910;
+	Wed, 25 Nov 2020 16:21:34 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 36C716EA09
- for <intel-gfx@lists.freedesktop.org>; Wed, 25 Nov 2020 16:19:05 +0000 (UTC)
-IronPort-SDR: cix7B7PYG+SoQqwxqi+D6fytD60zeBpNXIEY5lX67QQRhnffGxRj8oaEydB1y8Mict25txy8Iw
- W9n/pTlgdvsg==
-X-IronPort-AV: E=McAfee;i="6000,8403,9816"; a="159205395"
-X-IronPort-AV: E=Sophos;i="5.78,369,1599548400"; d="scan'208";a="159205395"
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CAD6F6E910
+ for <intel-gfx@lists.freedesktop.org>; Wed, 25 Nov 2020 16:21:32 +0000 (UTC)
+IronPort-SDR: ZcRlB7nB22h3xCpoP32Ebr+IzuZej3GvrjAt7QdZQW5RbfvWD0v6NwRtPbqjzTsEZmkEIoiLvt
+ mS6P8b4NtZfg==
+X-IronPort-AV: E=McAfee;i="6000,8403,9816"; a="159205875"
+X-IronPort-AV: E=Sophos;i="5.78,369,1599548400"; d="scan'208";a="159205875"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Nov 2020 08:18:58 -0800
-IronPort-SDR: dlyefvygjUg6mXiUGPL0PcLoCG7W3NCyy1bbni6p1wthh7W5/TyM94D99kyOv8XMAuknf86nNJ
- 8z0lZ6SgJ0WA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.78,369,1599548400"; d="scan'208";a="343628892"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by orsmga002.jf.intel.com with SMTP; 25 Nov 2020 08:18:56 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 25 Nov 2020 18:18:54 +0200
-Date: Wed, 25 Nov 2020 18:18:54 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Uma Shankar <uma.shankar@intel.com>
-Message-ID: <20201125161854.GO6112@intel.com>
-References: <20201119155050.20328-1-uma.shankar@intel.com>
- <20201119155050.20328-3-uma.shankar@intel.com>
+ 25 Nov 2020 08:21:31 -0800
+IronPort-SDR: 0UY0WN4hgaXv+WQNAjVueoTJUU7GSPt6iwN9F8jzWrjofnO/c2pQS1qxXU4pN+4dBPVug7LoWR
+ T3+DITVhsOJA==
+X-IronPort-AV: E=Sophos;i="5.78,369,1599548400"; d="scan'208";a="547341935"
+Received: from jhaitov-mobl.ger.corp.intel.com (HELO [10.214.246.84])
+ ([10.214.246.84])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Nov 2020 08:21:30 -0800
+To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
+References: <20201124114219.29020-1-chris@chris-wilson.co.uk>
+ <20201124114219.29020-6-chris@chris-wilson.co.uk>
+ <a94f4727-84b2-8a3d-d4a1-eeeae0c369db@linux.intel.com>
+ <160623911107.28476.5808928666560182985@build.alporthouse.com>
+ <72bf7c0b-b55a-042e-06df-8992fd630be0@linux.intel.com>
+ <160629970681.25068.9984672839751167059@build.alporthouse.com>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+Message-ID: <7157b2c0-0fde-8adb-95bd-84ae4573d5b9@linux.intel.com>
+Date: Wed, 25 Nov 2020 16:21:27 +0000
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20201119155050.20328-3-uma.shankar@intel.com>
-X-Patchwork-Hint: comment
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [v2 2/2] Revert "drm/i915/display/fbc: Disable fbc
- by default on TGL"
+In-Reply-To: <160629970681.25068.9984672839751167059@build.alporthouse.com>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH 06/16] drm/i915/gt: Decouple completed
+ requests on unwind
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,61 +58,107 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Nov 19, 2020 at 09:20:50PM +0530, Uma Shankar wrote:
-> FBC can be re-enabled on TGL with WA of keeping it disabled
-> while PSR2 is enabled.
-> =
 
-> This reverts commit 2982ded2ff5ce0cf1a49bc39a526da182782b664.
-> =
+On 25/11/2020 10:21, Chris Wilson wrote:
+> Quoting Tvrtko Ursulin (2020-11-25 09:15:25)
+>>
+>> On 24/11/2020 17:31, Chris Wilson wrote:
+>>> Quoting Tvrtko Ursulin (2020-11-24 17:13:02)
+>>>>
+>>>> On 24/11/2020 11:42, Chris Wilson wrote:
+>>>>> Since the introduction of preempt-to-busy, requests can complete in the
+>>>>> background, even while they are not on the engine->active.requests list.
+>>>>> As such, the engine->active.request list itself is not in strict
+>>>>> retirement order, and we have to scan the entire list while unwinding to
+>>>>> not miss any. However, if the request is completed we currently leave it
+>>>>> on the list [until retirement], but we could just as simply remove it
+>>>>> and stop treating it as active. We would only have to then traverse it
+>>>>> once while unwinding in quick succession.
+>>>>>
+>>>>> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+>>>>> ---
+>>>>>     drivers/gpu/drm/i915/gt/intel_lrc.c | 6 ++++--
+>>>>>     drivers/gpu/drm/i915/i915_request.c | 3 ++-
+>>>>>     2 files changed, 6 insertions(+), 3 deletions(-)
+>>>>>
+>>>>> diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
+>>>>> index 30aa59fb7271..cf11cbac241b 100644
+>>>>> --- a/drivers/gpu/drm/i915/gt/intel_lrc.c
+>>>>> +++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
+>>>>> @@ -1116,8 +1116,10 @@ __unwind_incomplete_requests(struct intel_engine_cs *engine)
+>>>>>         list_for_each_entry_safe_reverse(rq, rn,
+>>>>>                                          &engine->active.requests,
+>>>>>                                          sched.link) {
+>>>>> -             if (i915_request_completed(rq))
+>>>>> -                     continue; /* XXX */
+>>>>> +             if (i915_request_completed(rq)) {
+>>>>> +                     list_del_init(&rq->sched.link);
+>>>>> +                     continue;
+>>>>> +             }
+>>>>>     
+>>>>>                 __i915_request_unsubmit(rq);
+>>>>>     
+>>>>> diff --git a/drivers/gpu/drm/i915/i915_request.c b/drivers/gpu/drm/i915/i915_request.c
+>>>>> index 8d7d29c9e375..a9db1376b996 100644
+>>>>> --- a/drivers/gpu/drm/i915/i915_request.c
+>>>>> +++ b/drivers/gpu/drm/i915/i915_request.c
+>>>>> @@ -321,7 +321,8 @@ bool i915_request_retire(struct i915_request *rq)
+>>>>>          * after removing the breadcrumb and signaling it, so that we do not
+>>>>>          * inadvertently attach the breadcrumb to a completed request.
+>>>>>          */
+>>>>> -     remove_from_engine(rq);
+>>>>> +     if (!list_empty(&rq->sched.link))
+>>>>> +             remove_from_engine(rq);
+>>>>
+>>>> The list_empty check is unlocked so is list_del_init in
+>>>> remove_from_engine safe on potentially already unlinked request or it
+>>>> needs to re-check under the lock?
+>>>
+>>> It's safe. The unwind is under the lock, and remove_from_engine takes
+>>> the lock, and both do list_del_init() which is a no-op if already
+>>> removed. And the end state of the flag bits is the same on each path. We
+>>> can skip the __notify_execute_cb_imm() since we know in unwind it is
+>>> executing and there should be no cb.
+>>>
+>>> The test before we take the lock is only allowed to skip the active.lock
+>>> if it sees the list is already decoupled, in which case we can leave it
+>>> to the unwind to remove it from the engine (and we know that the request
+>>> can only have been inflight prior to completion). Since the test is not
+>>> locked, we don't serialise with the removal, but the list_del_init is
+>>> the last action on the request so there is no window where the unwind is
+>>> accessing the request after it may have been retired.
+>>>
+>>> list_move() will not confuse list_empty(), as although it does a
+>>> list_del_entry, it is not temporarily re-initialised to an empty list.
+>>
+>> List_del_init is indeed safe. List_move.. which one you think can race
+>> with retire? Preempt-to-busy unwinding an almost completed request yet
+>> again? Or even preempt timeout racing with completion?
+> 
+> Here in unwind. We pass the completion check, but the request may still
+> be running and complete at any time (until we submit & ack the new ELSP).
+> So an unlocked list_empty check during retire can race with any of the
+> list_move during unwind and resubmit. (On resubmit, we check completed
+> under the lock and drop the request in __i915_request_submit which
+> should also leave it in a consistent state as if we had called
+> remove_from_engine.)
 
-> Signed-off-by: Uma Shankar <uma.shankar@intel.com>
+Right, yes, that seems safe as well. Only new problem could have been a 
+false negative, meaning remote_from_engine _not_ scheduled by mistake if 
+a transient false list_empty condition.
 
-Sorry, forgot to review this one.
+Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 
-Reviewed-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+Regards,
 
-> ---
->  drivers/gpu/drm/i915/display/intel_fbc.c | 7 -------
->  1 file changed, 7 deletions(-)
-> =
+Tvrtko
 
-> diff --git a/drivers/gpu/drm/i915/display/intel_fbc.c b/drivers/gpu/drm/i=
-915/display/intel_fbc.c
-> index c64ed1cd29b1..7a5783564a0f 100644
-> --- a/drivers/gpu/drm/i915/display/intel_fbc.c
-> +++ b/drivers/gpu/drm/i915/display/intel_fbc.c
-> @@ -1444,13 +1444,6 @@ static int intel_sanitize_fbc_option(struct drm_i9=
-15_private *dev_priv)
->  	if (!HAS_FBC(dev_priv))
->  		return 0;
->  =
 
-> -	/*
-> -	 * Fbc is causing random underruns in CI execution on TGL platforms.
-> -	 * Disabling the same while the problem is being debugged and analyzed.
-> -	 */
-> -	if (IS_TIGERLAKE(dev_priv))
-> -		return 0;
-> -
->  	if (IS_BROADWELL(dev_priv) || INTEL_GEN(dev_priv) >=3D 9)
->  		return 1;
->  =
-
-> -- =
-
-> 2.26.2
-
--- =
-
-Ville Syrj=E4l=E4
-Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
