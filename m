@@ -1,45 +1,43 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AC2BB2C8954
-	for <lists+intel-gfx@lfdr.de>; Mon, 30 Nov 2020 17:21:43 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id EA1122C8958
+	for <lists+intel-gfx@lfdr.de>; Mon, 30 Nov 2020 17:21:56 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 28CE06E57E;
-	Mon, 30 Nov 2020 16:21:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2A1986E58A;
+	Mon, 30 Nov 2020 16:21:55 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from casper.infradead.org (casper.infradead.org
- [IPv6:2001:8b0:10b:1236::1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 091256E8D8;
- Wed, 25 Nov 2020 18:11:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=infradead.org; s=casper.20170209; h=In-Reply-To:Content-Type:MIME-Version:
- References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
- Content-Transfer-Encoding:Content-ID:Content-Description;
- bh=1CkjoPPcNHYHWb6gR85isyRuo3IJhmytJlGs/qonqoo=; b=RzoY5IZIV/03rxcDYeZhkh/y8p
- 4saU71nEnKmCA+HzHYC3JVg9mdPoihJd8zsuDEpz1YEu50etilsQqKhWvil+oxAWit+vmEca5irjj
- W/kQLKd00dbvLyZA3+1MBmD8sywSFHW+r21iUnLIMPzMb8pTMe1YHvp1NnwxjiU3bXoF8aWqCdnRS
- 3YLhe7paif5TuYq10B4b8RSdh/haVKtgh/GEj4C34tz5qHprkcSGtVSafl9LH0L9gfcyodfHuBHLs
- AKqGQCrZ2VQnPp4S+MSnurWy1wGkrS3zt/XQ5qLgQlZKeBKT14z5LT7iv131my+b/31k1HF17DYg0
- O3zRxqwQ==;
-Received: from hch by casper.infradead.org with local (Exim 4.92.3 #3 (Red Hat
- Linux)) id 1khzGL-0001Fj-Jm; Wed, 25 Nov 2020 18:11:29 +0000
-Date: Wed, 25 Nov 2020 18:11:29 +0000
-From: Christoph Hellwig <hch@infradead.org>
-To: Jason Gunthorpe <jgg@ziepe.ca>
-Message-ID: <20201125181129.GA1858@infradead.org>
-References: <20201125162532.1299794-1-daniel.vetter@ffwll.ch>
- <20201125162532.1299794-5-daniel.vetter@ffwll.ch>
- <CAKMK7uGXfqaPUtnX=VgA3tFn3S+Gt9GV+kPguakZ6FF_n8LKuA@mail.gmail.com>
- <20201125180606.GQ5487@ziepe.ca>
+Received: from kvm5.telegraphics.com.au (kvm5.telegraphics.com.au
+ [98.124.60.144])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 215ED6E8F4;
+ Wed, 25 Nov 2020 21:33:31 +0000 (UTC)
+Received: from localhost (localhost.localdomain [127.0.0.1])
+ by kvm5.telegraphics.com.au (Postfix) with ESMTP id 9789F29FB0;
+ Wed, 25 Nov 2020 16:33:24 -0500 (EST)
+Date: Thu, 26 Nov 2020 08:33:24 +1100 (AEDT)
+From: Finn Thain <fthain@telegraphics.com.au>
+To: Nick Desaulniers <ndesaulniers@google.com>
+In-Reply-To: <CAKwvOdkGBn7nuWTAqrORMeN1G+w3YwBfCqqaRD2nwvoAXKi=Aw@mail.gmail.com>
+Message-ID: <alpine.LNX.2.23.453.2011260750300.6@nippy.intranet>
+References: <202011201129.B13FDB3C@keescook>
+ <20201120115142.292999b2@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
+ <202011220816.8B6591A@keescook>
+ <9b57fd4914b46f38d54087d75e072d6e947cb56d.camel@HansenPartnership.com>
+ <ca071decb87cc7e905411423c05a48f9fd2f58d7.camel@perches.com>
+ <0147972a72bc13f3629de8a32dee6f1f308994b5.camel@HansenPartnership.com>
+ <d8d1e9add08cdd4158405e77762d4946037208f8.camel@perches.com>
+ <dbd2cb703ed9eefa7dde9281ea26ab0f7acc8afe.camel@HansenPartnership.com>
+ <20201123130348.GA3119@embeddedor>
+ <8f5611bb015e044fa1c0a48147293923c2d904e4.camel@HansenPartnership.com>
+ <202011241327.BB28F12F6@keescook>
+ <a841536fe65bb33f1c72ce2455a6eb47a0107565.camel@HansenPartnership.com>
+ <CAKwvOdkGBn7nuWTAqrORMeN1G+w3YwBfCqqaRD2nwvoAXKi=Aw@mail.gmail.com>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20201125180606.GQ5487@ziepe.ca>
-X-SRS-Rewrite: SMTP reverse-path rewritten from <hch@infradead.org> by
- casper.infradead.org. See http://www.infradead.org/rpr.html
 X-Mailman-Approved-At: Mon, 30 Nov 2020 16:21:38 +0000
-Subject: Re: [Intel-gfx] [PATCH] drm/ttm: don't set page->mapping
+Subject: Re: [Intel-gfx] [Intel-wired-lan] [PATCH 000/141] Fix fall-through
+ warnings for Clang
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,46 +50,81 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Thomas Hellstrom <thellstrom@vmware.com>,
- Daniel Vetter <daniel.vetter@ffwll.ch>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+Cc: alsa-devel@alsa-project.org, bridge@lists.linux-foundation.org,
+ target-devel@vger.kernel.org, Greg KH <gregkh@linuxfoundation.org>,
+ linux-iio@vger.kernel.org, linux-wireless <linux-wireless@vger.kernel.org>,
+ linux-mmc@vger.kernel.org, linux-fbdev@vger.kernel.org,
+ dri-devel <dri-devel@lists.freedesktop.org>,
+ "Gustavo A. R. Silva" <gustavoars@kernel.org>,
+ James Bottomley <James.Bottomley@hansenpartnership.com>,
+ linux-ide@vger.kernel.org, dm-devel@redhat.com, keyrings@vger.kernel.org,
+ linux-mtd@lists.infradead.org, GR-everest-linux-l2@marvell.com,
+ wcn36xx@lists.infradead.org, linux-i3c@lists.infradead.org,
+ linux1394-devel@lists.sourceforge.net, linux-afs@lists.infradead.org,
+ drbd-dev@lists.linbit.com, devel@driverdev.osuosl.org,
+ linux-cifs@vger.kernel.org, rds-devel@oss.oracle.com,
+ linux-scsi@vger.kernel.org, linux-acpi@vger.kernel.org,
+ linux-rdma@vger.kernel.org, oss-drivers@netronome.com,
+ linux-atm-general@lists.sourceforge.net, ceph-devel@vger.kernel.org,
+ amd-gfx list <amd-gfx@lists.freedesktop.org>,
+ linux-stm32@st-md-mailman.stormreply.com, cluster-devel@redhat.com,
+ usb-storage@lists.one-eyed-alien.net, coreteam@netfilter.org,
+ intel-wired-lan@lists.osuosl.org, linux-input@vger.kernel.org,
+ Miguel Ojeda <ojeda@kernel.org>, Jakub Kicinski <kuba@kernel.org>,
+ linux-ext4@vger.kernel.org, virtualization@lists.linux-foundation.org,
+ netfilter-devel@vger.kernel.org, linux-media@vger.kernel.org,
+ Kees Cook <keescook@chromium.org>, selinux@vger.kernel.org,
+ linux-arm-msm <linux-arm-msm@vger.kernel.org>, intel-gfx@lists.freedesktop.org,
+ linux-sctp@vger.kernel.org, reiserfs-devel@vger.kernel.org,
+ linux-geode@lists.infradead.org, linux-block@vger.kernel.org,
+ linux-gpio@vger.kernel.org, op-tee@lists.trustedfirmware.org,
+ linux-mediatek@lists.infradead.org, xen-devel@lists.xenproject.org,
+ nouveau@lists.freedesktop.org, linux-hams@vger.kernel.org,
+ Nathan Chancellor <natechancellor@gmail.com>, linux-can@vger.kernel.org,
+ Linux ARM <linux-arm-kernel@lists.infradead.org>, linux-hwmon@vger.kernel.org,
+ "maintainer:X86 ARCHITECTURE \(32-BIT AND 64-BIT\)" <x86@kernel.org>,
+ linux-watchdog@vger.kernel.org, GR-Linux-NIC-Dev@marvell.com,
+ Linux Memory Management List <linux-mm@kvack.org>,
+ Network Development <netdev@vger.kernel.org>,
+ linux-decnet-user@lists.sourceforge.net, samba-technical@lists.samba.org,
  LKML <linux-kernel@vger.kernel.org>,
- DRI Development <dri-devel@lists.freedesktop.org>, linux-xfs@vger.kernel.org,
- Linux MM <linux-mm@kvack.org>, Huang Rui <ray.huang@amd.com>,
- Brian Paul <brianp@vmware.com>, linux-fsdevel@vger.kernel.org,
- Daniel Vetter <daniel.vetter@intel.com>,
- Christian Koenig <christian.koenig@amd.com>
+ Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+ linux-security-module@vger.kernel.org, linux-usb@vger.kernel.org,
+ tipc-discussion@lists.sourceforge.net,
+ "open list:HARDWARE RANDOM NUMBER GENERATOR CORE"
+ <linux-crypto@vger.kernel.org>, Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+ patches@opensource.cirrus.com, Joe Perches <joe@perches.com>,
+ linux-integrity@vger.kernel.org, linux-nfs@vger.kernel.org,
+ linux-hardening@vger.kernel.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Nov 25, 2020 at 02:06:06PM -0400, Jason Gunthorpe wrote:
-> It uses a empty 'cover-letter' commit and automatically transforms it
-> into exactly the right stuff. Keeps track of everything you send in
-> git, and there is a little tool to auto-run git range-diff to help
-> build change logs..
+On Wed, 25 Nov 2020, Nick Desaulniers wrote:
+
+> So developers and distributions using Clang can't have 
+> -Wimplicit-fallthrough enabled because GCC is less strict (which has 
+> been shown in this thread to lead to bugs)?  We'd like to have nice 
+> things too, you know.
 > 
-> https://github.com/jgunthorpe/Kernel-Maintainer-Tools/blob/master/gj_tools/cmd_send_patches.py
+
+Apparently the GCC developers don't want you to have "nice things" either. 
+Do you think that the kernel should drop gcc in favour of clang?
+Or do you think that a codebase can somehow satisfy multiple checkers and 
+their divergent interpretations of the language spec?
+
+> This is not a shiny new warning; it's already on for GCC and has existed 
+> in both compilers for multiple releases.
 > 
-> I've been occasionaly wondering if I should suggest Konstantin add a
-> sending side to b4, maybe using some of those ideas..
-> 
-> (careful if you run it, it does autosend without prompting)
 
-The looks pretty fancy.  Here is my trivial patchbomb.sh script
+Perhaps you're referring to the compiler feature that lead to the 
+ill-fated, tree-wide /* fallthrough */ patch series.
 
------------------------ snip -----------------------
-#!/bin/sh
-
-COVERLETTER=$1
-PATCHES=$2
-
-git send-email --annotate --to-cover --cc-cover $1 $2
------------------------ snip -----------------------
-
-still needs the git basecommit..endcommit notation, but it fires
-up the series for review.
+When the ink dries on the C23 language spec and the implementations figure 
+out how to interpret it then sure, enforce the warning for new code -- the 
+cost/benefit analysis is straight forward. However, the case for patching 
+existing mature code is another story.
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
