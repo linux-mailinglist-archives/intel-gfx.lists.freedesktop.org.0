@@ -2,46 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2DB592C4537
-	for <lists+intel-gfx@lfdr.de>; Wed, 25 Nov 2020 17:30:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 43BEB2C4551
+	for <lists+intel-gfx@lfdr.de>; Wed, 25 Nov 2020 17:35:16 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 814676EA2B;
-	Wed, 25 Nov 2020 16:30:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A3A7C6EA2D;
+	Wed, 25 Nov 2020 16:35:14 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9AA136EA2B
- for <intel-gfx@lists.freedesktop.org>; Wed, 25 Nov 2020 16:30:52 +0000 (UTC)
-IronPort-SDR: 2y/WZ8q7rh28AqgA9ngVz6q8XSpr8TWaa+iNXqbb+9PC+COSMDd4zF6X7xEvUrG+Rsa+tDHDYR
- fm5int90GyWg==
-X-IronPort-AV: E=McAfee;i="6000,8403,9816"; a="168652223"
-X-IronPort-AV: E=Sophos;i="5.78,369,1599548400"; d="scan'208";a="168652223"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Nov 2020 08:30:52 -0800
-IronPort-SDR: 1qx1sh4+ZENfKqcSXyLtUVjphDGt9BxMr5vWkKka8Bm+Akgm5a4AiAEqP7kAaqSSSWjIqFdOiV
- jf4Dmh57MZTw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.78,369,1599548400"; d="scan'208";a="403336171"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by orsmga001.jf.intel.com with SMTP; 25 Nov 2020 08:30:49 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 25 Nov 2020 18:30:49 +0200
-Date: Wed, 25 Nov 2020 18:30:49 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Uma Shankar <uma.shankar@intel.com>
-Message-ID: <20201125163049.GR6112@intel.com>
-References: <20201103152834.12727-1-uma.shankar@intel.com>
- <20201103152834.12727-2-uma.shankar@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 4989C6EA05;
+ Wed, 25 Nov 2020 16:35:13 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 35A36A41FB;
+ Wed, 25 Nov 2020 16:35:13 +0000 (UTC)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20201103152834.12727-2-uma.shankar@intel.com>
-X-Patchwork-Hint: comment
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [v9 01/12] drm/i915/display: Add HDR Capability
- detection for LSPCON
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Wed, 25 Nov 2020 16:35:13 -0000
+Message-ID: <160632211319.8877.16082189691848626406@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20201123145551.13222-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20201123145551.13222-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/i915/display=3A_Record_the_plane_update_times_for_debug?=
+ =?utf-8?q?ging_=28rev4=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,137 +39,30 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Nov 03, 2020 at 08:58:23PM +0530, Uma Shankar wrote:
-> LSPCON firmware exposes HDR capability through LPCON_CAPABILITIES
-> DPCD register. LSPCON implementations capable of supporting
-> HDR set HDR_CAPABILITY bit in LSPCON_CAPABILITIES to 1. This patch
-> reads the same, detects the HDR capability and adds this to
-> intel_lspcon struct.
-> =
+== Series Details ==
 
-> v2: Addressed Jani Nikula's review comment and fixed the HDR
->     capability detection logic
-> =
+Series: drm/i915/display: Record the plane update times for debugging (rev4)
+URL   : https://patchwork.freedesktop.org/series/84174/
+State : warning
 
-> v3: Deferred HDR detection from lspcon_init (Ville)
-> =
+== Summary ==
 
-> Signed-off-by: Uma Shankar <uma.shankar@intel.com>
-> ---
->  .../drm/i915/display/intel_display_types.h    |  1 +
->  drivers/gpu/drm/i915/display/intel_lspcon.c   | 28 +++++++++++++++++++
->  drivers/gpu/drm/i915/display/intel_lspcon.h   |  1 +
->  3 files changed, 30 insertions(+)
-> =
+$ dim checkpatch origin/drm-tip
+9b0c89d666a5 drm/i915/display: Record the plane update times for debugging
+-:73: WARNING:PREFER_SEQ_PUTS: Prefer seq_puts to seq_printf
+#73: FILE: drivers/gpu/drm/i915/display/intel_display_debugfs.c:901:
++	seq_printf(m, "\t    1us     (log)      1ms\n");
 
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers=
-/gpu/drm/i915/display/intel_display_types.h
-> index f6f0626649e0..25b2db337174 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
-> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-> @@ -1417,6 +1417,7 @@ struct intel_lspcon {
->  	bool active;
->  	enum drm_lspcon_mode mode;
->  	enum lspcon_vendor vendor;
-> +	bool hdr_supported;
+total: 0 errors, 1 warnings, 0 checks, 144 lines checked
 
-Can be packed next to the other bool.
 
->  };
->  =
-
->  struct intel_digital_port {
-> diff --git a/drivers/gpu/drm/i915/display/intel_lspcon.c b/drivers/gpu/dr=
-m/i915/display/intel_lspcon.c
-> index e37d45e531df..076b21885a30 100644
-> --- a/drivers/gpu/drm/i915/display/intel_lspcon.c
-> +++ b/drivers/gpu/drm/i915/display/intel_lspcon.c
-> @@ -35,6 +35,8 @@
->  #define LSPCON_VENDOR_PARADE_OUI 0x001CF8
->  #define LSPCON_VENDOR_MCA_OUI 0x0060AD
->  =
-
-> +#define DPCD_MCA_LSPCON_HDR_STATUS	0x70003
-> +
->  /* AUX addresses to write MCA AVI IF */
->  #define LSPCON_MCA_AVI_IF_WRITE_OFFSET 0x5C0
->  #define LSPCON_MCA_AVI_IF_CTRL 0x5DF
-> @@ -104,6 +106,32 @@ static bool lspcon_detect_vendor(struct intel_lspcon=
- *lspcon)
->  	return true;
->  }
->  =
-
-> +void lspcon_detect_hdr_capability(struct intel_lspcon *lspcon)
-> +{
-> +	struct intel_digital_port *dig_port =3D
-> +		container_of(lspcon, struct intel_digital_port, lspcon);
-> +	struct drm_device *dev =3D dig_port->base.base.dev;
-> +	struct intel_dp *dp =3D lspcon_to_intel_dp(lspcon);
-> +	u8 hdr_caps;
-> +	int ret;
-> +
-> +	/* Enable HDR for MCA based LSPCON devices */
-> +	if (lspcon->vendor =3D=3D LSPCON_VENDOR_MCA)
-> +		ret =3D drm_dp_dpcd_read(&dp->aux, DPCD_MCA_LSPCON_HDR_STATUS,
-> +				       &hdr_caps, 1);
-> +	else
-> +		return;
-> +
-> +	if (ret < 0) {
-> +		drm_dbg_kms(dev, "hdr capability detection failed\n");
-
-"hdr" vs. "HDR" elsewhere.
-
-> +		lspcon->hdr_supported =3D false;
-> +		return;
-
-Pointless return?
-
-> +	} else if (hdr_caps & 0x1) {
-> +		drm_dbg_kms(dev, "lspcon capable of HDR\n");
-
-"lspcon" vs. "LSPCON"
-
-No idea about the magic dpcd reg, but otherwise seems sane enough.
-Reviewed-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-
-> +		lspcon->hdr_supported =3D true;
-> +	}
-> +}
-> +
->  static enum drm_lspcon_mode lspcon_get_current_mode(struct intel_lspcon =
-*lspcon)
->  {
->  	enum drm_lspcon_mode current_mode;
-> diff --git a/drivers/gpu/drm/i915/display/intel_lspcon.h b/drivers/gpu/dr=
-m/i915/display/intel_lspcon.h
-> index b03dcb7076d8..a19b3564c635 100644
-> --- a/drivers/gpu/drm/i915/display/intel_lspcon.h
-> +++ b/drivers/gpu/drm/i915/display/intel_lspcon.h
-> @@ -15,6 +15,7 @@ struct intel_digital_port;
->  struct intel_encoder;
->  struct intel_lspcon;
->  =
-
-> +void lspcon_detect_hdr_capability(struct intel_lspcon *lspcon);
->  void lspcon_resume(struct intel_digital_port *dig_port);
->  void lspcon_wait_pcon_mode(struct intel_lspcon *lspcon);
->  void lspcon_write_infoframe(struct intel_encoder *encoder,
-> -- =
-
-> 2.26.2
-
--- =
-
-Ville Syrj=E4l=E4
-Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
