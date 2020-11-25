@@ -1,34 +1,48 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 72A872C48AA
-	for <lists+intel-gfx@lfdr.de>; Wed, 25 Nov 2020 20:44:51 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3B6062C48BD
+	for <lists+intel-gfx@lfdr.de>; Wed, 25 Nov 2020 20:52:20 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3817A6EA60;
-	Wed, 25 Nov 2020 19:44:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 321956EA64;
+	Wed, 25 Nov 2020 19:52:18 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 96F676E901;
- Wed, 25 Nov 2020 19:44:43 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 23107975-1500050 for multiple; Wed, 25 Nov 2020 19:44:23 +0000
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F1E8A6EA64
+ for <intel-gfx@lists.freedesktop.org>; Wed, 25 Nov 2020 19:52:16 +0000 (UTC)
+IronPort-SDR: CiEHJpuXkI1BYFwJdj6nZsMIDn21yXOI6MQ/YVQqIWHfAg521ZNv/GfX5oK+TNBdNIKuztlxR+
+ x6/LkmS0eEDA==
+X-IronPort-AV: E=McAfee;i="6000,8403,9816"; a="159960911"
+X-IronPort-AV: E=Sophos;i="5.78,370,1599548400"; d="scan'208";a="159960911"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Nov 2020 11:52:16 -0800
+IronPort-SDR: N0DkHN4zui6dGEYrqaXPkWtwNTledV0RljyDlzeSsk431+ytJBPeFNYZyLrgFqHGtzenCKwHYH
+ /ky6+8jrSC2g==
+X-IronPort-AV: E=Sophos;i="5.78,370,1599548400"; d="scan'208";a="333118098"
+Received: from sowmyave-mobl.amr.corp.intel.com (HELO ldmartin-desk1)
+ ([10.209.29.185])
+ by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Nov 2020 11:52:15 -0800
+Date: Wed, 25 Nov 2020 11:52:15 -0800
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: Aditya Swarup <aditya.swarup@intel.com>
+Message-ID: <20201125195215.meyg57hozkhrnjrg@ldmartin-desk1>
+References: <20201125003108.156110-1-aditya.swarup@intel.com>
+ <87360xmzgr.fsf@intel.com>
+ <160631840326.26272.537878967385128182@build.alporthouse.com>
+ <61248f45-d8f1-edec-656a-6eaddefb3789@intel.com>
+ <20201125191811.me6ha4kwhchohrez@ldmartin-desk1>
+ <7ae29344-1312-929e-2ae4-decb54435010@intel.com>
 MIME-Version: 1.0
-In-Reply-To: <20201030144346.GJ6112@intel.com>
-References: <20201022194256.30978-1-ville.syrjala@linux.intel.com>
- <160406758530.15070.9622609556730885347@build.alporthouse.com>
- <20201030144346.GJ6112@intel.com>
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: Ville Syrjälä <ville.syrjala@linux.intel.com>
-Date: Wed, 25 Nov 2020 19:44:23 +0000
-Message-ID: <160633346339.26272.10139293716347662274@build.alporthouse.com>
-User-Agent: alot/0.9
-Subject: Re: [Intel-gfx] [PATCH] drm/modes: Switch to 64bit maths to avoid
- integer overflow
+Content-Disposition: inline
+In-Reply-To: <7ae29344-1312-929e-2ae4-decb54435010@intel.com>
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/tgl: Fix REVID macros for TGL to
+ fetch correct stepping
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,58 +55,63 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, Randy Dunlap <rdunlap@infradead.org>,
- stable@vger.kernel.org, dri-devel@lists.freedesktop.org
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org,
+ Chris Wilson <chris@chris-wilson.co.uk>
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="iso-8859-1"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-UXVvdGluZyBWaWxsZSBTeXJqw6Rsw6QgKDIwMjAtMTAtMzAgMTQ6NDM6NDYpCj4gT24gRnJpLCBP
-Y3QgMzAsIDIwMjAgYXQgMDI6MTk6NDVQTSArMDAwMCwgQ2hyaXMgV2lsc29uIHdyb3RlOgo+ID4g
-UXVvdGluZyBWaWxsZSBTeXJqYWxhICgyMDIwLTEwLTIyIDIwOjQyOjU2KQo+ID4gPiBGcm9tOiBW
-aWxsZSBTeXJqw6Rsw6QgPHZpbGxlLnN5cmphbGFAbGludXguaW50ZWwuY29tPgo+ID4gPiAKPiA+
-ID4gVGhlIG5ldyA+OGsgQ0VBIG1vZGVzIGhhdmUgZG90Y2xvY2tzIHJlYWNoaW5nIDUuOTQgR0h6
-LCB3aGljaAo+ID4gPiBtZWFucyBvdXIgY2xvY2sqMTAwMCB3aWxsIG5vdyBvdmVyZmxvdyB0aGUg
-MzJiaXQgdW5zaWduZWQKPiA+ID4gaW50ZWdlci4gU3dpdGNoIHRvIDY0Yml0IG1hdGhzIHRvIGF2
-b2lkIGl0Lgo+ID4gPiAKPiA+ID4gQ2M6IHN0YWJsZUB2Z2VyLmtlcm5lbC5vcmcKPiA+ID4gUmVw
-b3J0ZWQtYnk6IFJhbmR5IER1bmxhcCA8cmR1bmxhcEBpbmZyYWRlYWQub3JnPgo+ID4gPiBTaWdu
-ZWQtb2ZmLWJ5OiBWaWxsZSBTeXJqw6Rsw6QgPHZpbGxlLnN5cmphbGFAbGludXguaW50ZWwuY29t
-Pgo+ID4gPiAtLS0KPiA+ID4gQW4gaW50ZXJlc3RpbmcgcXVlc3Rpb24gaG93IG1hbnkgb3RoZXIg
-cGxhY2UgbWlnaHQgc3VmZmVyIGZyb20gc2ltaWxhcgo+ID4gPiBvdmVyZmxvd3MuIEkgdGhpbmsg
-aTkxNSBzaG91bGQgYmUgbW9zdGx5IE9LLiBUaGUgb25lIHBsYWNlIEkga25vdyB3ZSB1c2UKPiA+
-ID4gSHogaW5zdGVhZCBrSHogaXMgdGhlIGhzdyBEUExMIGNvZGUsIHdoaWNoIEkgd291bGQgcHJl
-ZmVyIHdlIGFsc28gY2hhbmdlCj4gPiA+IHRvIHVzZSBrSHouIFRoZSBvdGhlciBjb25jZXJuIGlz
-IHdoZXRoZXIgd2UgaGF2ZSBhbnkgcG90ZW50aWFsIG92ZXJmbG93cwo+ID4gPiBiZWZvcmUgd2Ug
-Y2hlY2sgdGhpcyBhZ2FpbnN0IHRoZSBwbGF0Zm9ybSdzIG1heCBkb3RjbG9jay4KPiA+ID4gCj4g
-PiA+IEkgZG8gaGF2ZSB0aGlzIHVucmV2aWV3ZWQgaWd0IHNlcmllcyAKPiA+ID4gaHR0cHM6Ly9w
-YXRjaHdvcmsuZnJlZWRlc2t0b3Aub3JnL3Nlcmllcy82OTUzMS8gd2hpY2ggZXh0ZW5kcyB0aGUK
-PiA+ID4gY3VycmVudCB0ZXN0aW5nIHdpdGggc29tZSBvdGhlciBmb3JtcyBvZiBpbnZhbGlkIG1v
-ZGVzLiBDb3VsZCBwcm9iYWJseQo+ID4gPiBleHRlbmQgdGhhdCB3aXRoIGEgbW9kZS5jbG9jaz1J
-TlRfTUFYIHRlc3QgdG8gc2VlIGlmIGFueXRoaW5nIGVsc2UgbWlnaHQKPiA+ID4gdHJpcCB1cC4K
-PiA+ID4gCj4gPiA+IE5vIGlkZWEgYWJvdXQgb3RoZXIgZHJpdmVycy4KPiA+ID4gCj4gPiA+ICBk
-cml2ZXJzL2dwdS9kcm0vZHJtX21vZGVzLmMgfCA0ICsrLS0KPiA+ID4gIDEgZmlsZSBjaGFuZ2Vk
-LCAyIGluc2VydGlvbnMoKyksIDIgZGVsZXRpb25zKC0pCj4gPiA+IAo+ID4gPiBkaWZmIC0tZ2l0
-IGEvZHJpdmVycy9ncHUvZHJtL2RybV9tb2Rlcy5jIGIvZHJpdmVycy9ncHUvZHJtL2RybV9tb2Rl
-cy5jCj4gPiA+IGluZGV4IDUwMWI0ZmU1NWEzZC4uNTExY2RlNWM3ZmE2IDEwMDY0NAo+ID4gPiAt
-LS0gYS9kcml2ZXJzL2dwdS9kcm0vZHJtX21vZGVzLmMKPiA+ID4gKysrIGIvZHJpdmVycy9ncHUv
-ZHJtL2RybV9tb2Rlcy5jCj4gPiA+IEBAIC03NjIsNyArNzYyLDcgQEAgaW50IGRybV9tb2RlX3Zy
-ZWZyZXNoKGNvbnN0IHN0cnVjdCBkcm1fZGlzcGxheV9tb2RlICptb2RlKQo+ID4gPiAgICAgICAg
-IGlmIChtb2RlLT5odG90YWwgPT0gMCB8fCBtb2RlLT52dG90YWwgPT0gMCkKPiA+ID4gICAgICAg
-ICAgICAgICAgIHJldHVybiAwOwo+ID4gPiAgCj4gPiA+IC0gICAgICAgbnVtID0gbW9kZS0+Y2xv
-Y2sgKiAxMDAwOwo+ID4gPiArICAgICAgIG51bSA9IG1vZGUtPmNsb2NrOwo+ID4gPiAgICAgICAg
-IGRlbiA9IG1vZGUtPmh0b3RhbCAqIG1vZGUtPnZ0b3RhbDsKPiA+IAo+ID4gWW91IGRvbid0IHdh
-bnQgdG8gcHJvbW90ZSBkZW4gdG8gdTY0IHdoaWxlIHlvdSBhcmUgaGVyZT8gV2UgYXJlIGF0Cj4g
-PiA4a3g0aywgdGhyb3cgaW4gZGJsc2NhbiBhbmQgc29tZSB2c2NhbiwgYW5kIHdlIGNvdWxkIHNv
-b24gaGF2ZSB3YWNreQo+ID4gcmVmcmVzaCByYXRlcy4KPiAKPiBpOTE1IGhhcyAxNmt4OGsgaGFy
-ZCBsaW1pdCBjdXJyZW50bHksIGFuZCB3ZSByZWplY3QgdnNjYW4+MQo+ICh3aXNoIHdlIGNvdWxk
-IGFsc28gcmVqZWN0IERCTFNDQU4pLiBTbyB3ZSBzaG91bGQgbm90IGhpdAo+IHRoYXQsIGF0IGxl
-YXN0IG5vdCB5ZXQuIE90aGVyIGRyaXZlcnMgbWlnaHQgbm90IGJlIHNvIHN0cmljdAo+IEkgZ3Vl
-c3MuCj4gCj4gSSBoYXZlIGEgbmFnZ2luZyBmZWVsaW5nIHRoYXQgb3RoZXIgcGxhY2VzIGFyZSBp
-biBkYW5nZXIgb2YKPiBvdmVyZmxvd3MgaWYgd2UgdHJ5IHRvIHB1c2ggdGhlIGN1cnJlbnQgbGlt
-aXRzIHNpZ25pZmljYW50bHkuCj4gQnV0IEkgZ3Vlc3Mgbm8gcmVhbCBoYXJtIGluIGdvaW5nIGZ1
-bGwgNjRiaXQgaGVyZSwgZXhjZXB0Cj4gbWF5YmUgbWFraW5nIGl0IGEgYml0IHNsb3dlci4KClJl
-dmlld2VkLWJ5OiBDaHJpcyBXaWxzb24gPGNocmlzQGNocmlzLXdpbHNvbi5jby51az4KLUNocmlz
-Cl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdm
-eCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xp
-c3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
+On Wed, Nov 25, 2020 at 11:30:44AM -0800, Aditya Swarup wrote:
+>> As I said in the other reply, sizeof does actually work here:
+>
+>The question is not about sizeof() not working but rather the usage of ARR=
+AY_SIZE()
+>macro in i915_drv.h with just extern declaration without size specified.
+
+ARRAY_SIZE() is just sizeof(arr)/sizeof(*arr) with additional
+shenanigans to check for misuse: when used with a pointer rather than an
+array:
+
+	int b[0];
+	int *a =3D b;
+
+	or
+
+	void foo(int a[10])
+
+In these cases 	ARRAY_SIZE(a) will not do what you expect and the macro
+warns about it, because sizeof(a) will be sizeof(int *) instead of the
+array size.
+
+
+>
+>>
+>> =A0=A0=A0=A0$ cat /tmp/a.c
+>> =A0=A0=A0=A0#include <stdio.h>
+>>
+>> =A0=A0=A0=A0#include "b.h"
+>>
+>> =A0=A0=A0=A0int main(int argc, const char *argv[])
+>> =A0=A0=A0=A0{
+>> =A0=A0=A0=A0=A0=A0=A0 printf("%zu", sizeof(tgl_uy_revids));
+>> =A0=A0=A0=A0=A0=A0=A0 return 0;
+>> =A0=A0=A0=A0}
+>>
+>> =A0=A0=A0=A0$ cat /tmp/b.h
+>> =A0=A0=A0=A0#pragma once
+>>
+>> =A0=A0=A0=A0struct i915_rev_steppings { int a; };
+>> =A0=A0=A0=A0extern const struct i915_rev_steppings tgl_uy_revids[4];
+>
+>You are specifying the size in the extern declaration which will make the =
+ARRAY_SIZE()
+>macro work if used in the header else it will complain.
+
+as it should
+
+Lucas De Marchi
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
