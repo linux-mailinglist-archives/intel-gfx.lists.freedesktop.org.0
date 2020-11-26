@@ -2,31 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 71E292C5696
-	for <lists+intel-gfx@lfdr.de>; Thu, 26 Nov 2020 15:04:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1A92D2C5693
+	for <lists+intel-gfx@lfdr.de>; Thu, 26 Nov 2020 15:04:18 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AEB356E973;
-	Thu, 26 Nov 2020 14:04:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DA0726E96C;
+	Thu, 26 Nov 2020 14:04:12 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6D7BB6E973
- for <intel-gfx@lists.freedesktop.org>; Thu, 26 Nov 2020 14:04:13 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ACDC46E95E
+ for <intel-gfx@lists.freedesktop.org>; Thu, 26 Nov 2020 14:04:11 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 23117560-1500050 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 23117561-1500050 
  for <intel-gfx@lists.freedesktop.org>; Thu, 26 Nov 2020 14:04:08 +0000
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Thu, 26 Nov 2020 14:04:04 +0000
-Message-Id: <20201126140407.31952-2-chris@chris-wilson.co.uk>
+Date: Thu, 26 Nov 2020 14:04:05 +0000
+Message-Id: <20201126140407.31952-3-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20201126140407.31952-1-chris@chris-wilson.co.uk>
 References: <20201126140407.31952-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [CI 2/5] drm/i915/gt: Check for a completed last
- request once
+Subject: [Intel-gfx] [CI 3/5] drm/i915/gt: Protect context lifetime with RCU
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,65 +43,94 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Pull the repeated check for the last active request being completed to a
-single spot, when deciding whether or not execlist preemption is
-required.
+Allow a brief period for continued access to a dead intel_context by
+deferring the release of the struct until after an RCU grace period.
+As we are using a dedicated slab cache for the contexts, we can defer
+the release of the slab pages via RCU, with the caveat that individual
+structs may be reused from the freelist within an RCU grace period. To
+handle that, we have to avoid clearing members of the zombie struct.
 
-In doing so, we remove the tasklet kick, introduced with the completion
-checks in commit 35f3fd8182ba ("drm/i915/execlists: Workaround switching
-back to a completed context"), if we find the request was completed but
-have not yet seen the corresponding CS event. This was devolving into a
-busy spin of the tasklet while we waited for the event as the delivery
-was not as instantaneous as expected. Under load this is sufficient to
-exhaust the tasklet softirq timeslice, and force ksoftirqd. Quite
-noticeable overhead for no apparent improvement in latency.
+This is required for a later patch to handle locking around virtual
+requests in the signaler, as those requests may want to move between
+engines and be destroyed while we are holding b->irq_lock on a physical
+engine.
+
+v2: Drop mutex_reinit(), if we never mark the mutex as destroyed we
+don't need to reset the debug code, at the loss of having the mutex
+debug code spot us attempting to destroy a locked mutex.
+v3: As the intended use will remain strongly referenced counted, with
+very little inflight access across reuse, drop the ctor.
+v4: Drop the unrequired change to remove the temporary reference around
+dropping the active context, and add back some more missing ctor
+operations.
+v5: The ctor is back. Tvrtko spotted that ce->signal_lock [introduced
+later] maybe accessed under RCU and so needs special care not to be
+reinitialised.
+v6: Don't mix SLAB_TYPESAFE_BY_RCU and RCU list iteration.
 
 Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
 Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 ---
- drivers/gpu/drm/i915/gt/intel_lrc.c | 15 ++++-----------
- 1 file changed, 4 insertions(+), 11 deletions(-)
+ drivers/gpu/drm/i915/gt/intel_context.c       | 12 +++++++++---
+ drivers/gpu/drm/i915/gt/intel_context_types.h | 11 ++++++++++-
+ 2 files changed, 19 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
-index cf11cbac241b..43703efb36d1 100644
---- a/drivers/gpu/drm/i915/gt/intel_lrc.c
-+++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
-@@ -2141,12 +2141,9 @@ static void execlists_dequeue(struct intel_engine_cs *engine)
- 	 */
+diff --git a/drivers/gpu/drm/i915/gt/intel_context.c b/drivers/gpu/drm/i915/gt/intel_context.c
+index 92a3f25c4006..d3a835212167 100644
+--- a/drivers/gpu/drm/i915/gt/intel_context.c
++++ b/drivers/gpu/drm/i915/gt/intel_context.c
+@@ -25,11 +25,18 @@ static struct intel_context *intel_context_alloc(void)
+ 	return kmem_cache_zalloc(global.slab_ce, GFP_KERNEL);
+ }
  
- 	if ((last = *active)) {
--		if (need_preempt(engine, last, rb)) {
--			if (i915_request_completed(last)) {
--				tasklet_hi_schedule(&execlists->tasklet);
--				return;
--			}
--
-+		if (i915_request_completed(last)) {
-+			goto check_secondary;
-+		} else if (need_preempt(engine, last, rb)) {
- 			ENGINE_TRACE(engine,
- 				     "preempting last=%llx:%lld, prio=%d, hint=%d\n",
- 				     last->fence.context,
-@@ -2174,11 +2171,6 @@ static void execlists_dequeue(struct intel_engine_cs *engine)
- 			last = NULL;
- 		} else if (need_timeslice(engine, last, rb) &&
- 			   timeslice_expired(execlists, last)) {
--			if (i915_request_completed(last)) {
--				tasklet_hi_schedule(&execlists->tasklet);
--				return;
--			}
--
- 			ENGINE_TRACE(engine,
- 				     "expired last=%llx:%lld, prio=%d, hint=%d, yield?=%s\n",
- 				     last->fence.context,
-@@ -2214,6 +2206,7 @@ static void execlists_dequeue(struct intel_engine_cs *engine)
- 			 * we hopefully coalesce several updates into a single
- 			 * submission.
- 			 */
-+check_secondary:
- 			if (!list_is_last(&last->sched.link,
- 					  &engine->active.requests)) {
- 				/*
+-void intel_context_free(struct intel_context *ce)
++static void rcu_context_free(struct rcu_head *rcu)
+ {
++	struct intel_context *ce = container_of(rcu, typeof(*ce), rcu);
++
+ 	kmem_cache_free(global.slab_ce, ce);
+ }
+ 
++void intel_context_free(struct intel_context *ce)
++{
++	call_rcu(&ce->rcu, rcu_context_free);
++}
++
+ struct intel_context *
+ intel_context_create(struct intel_engine_cs *engine)
+ {
+@@ -356,8 +363,7 @@ static int __intel_context_active(struct i915_active *active)
+ }
+ 
+ void
+-intel_context_init(struct intel_context *ce,
+-		   struct intel_engine_cs *engine)
++intel_context_init(struct intel_context *ce, struct intel_engine_cs *engine)
+ {
+ 	GEM_BUG_ON(!engine->cops);
+ 	GEM_BUG_ON(!engine->gt->vm);
+diff --git a/drivers/gpu/drm/i915/gt/intel_context_types.h b/drivers/gpu/drm/i915/gt/intel_context_types.h
+index 552cb57a2e8c..20cb5835d1c3 100644
+--- a/drivers/gpu/drm/i915/gt/intel_context_types.h
++++ b/drivers/gpu/drm/i915/gt/intel_context_types.h
+@@ -44,7 +44,16 @@ struct intel_context_ops {
+ };
+ 
+ struct intel_context {
+-	struct kref ref;
++	/*
++	 * Note: Some fields may be accessed under RCU.
++	 *
++	 * Unless otherwise noted a field can safely be assumed to be protected
++	 * by strong reference counting.
++	 */
++	union {
++		struct kref ref; /* no kref_get_unless_zero()! */
++		struct rcu_head rcu;
++	};
+ 
+ 	struct intel_engine_cs *engine;
+ 	struct intel_engine_cs *inflight;
 -- 
 2.20.1
 
