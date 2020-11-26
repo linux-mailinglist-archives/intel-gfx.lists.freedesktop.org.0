@@ -2,46 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B1F612C51A4
-	for <lists+intel-gfx@lfdr.de>; Thu, 26 Nov 2020 10:53:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 57C722C517C
+	for <lists+intel-gfx@lfdr.de>; Thu, 26 Nov 2020 10:41:23 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CFF586E844;
-	Thu, 26 Nov 2020 09:53:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 404326E839;
+	Thu, 26 Nov 2020 09:41:21 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DC7296E844
- for <intel-gfx@lists.freedesktop.org>; Thu, 26 Nov 2020 09:53:54 +0000 (UTC)
-IronPort-SDR: nLjsS5I1P+OYdAwBuLikHDlRDExBfwDbshhLARIem4fij928NX4WRrZ8VLsdr1JADSU2Mf/vhT
- ArZinu9ghj5Q==
-X-IronPort-AV: E=McAfee;i="6000,8403,9816"; a="152097628"
-X-IronPort-AV: E=Sophos;i="5.78,371,1599548400"; d="scan'208";a="152097628"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Nov 2020 01:53:36 -0800
-IronPort-SDR: JGHQn+QD7xbDF8ab9HvcWO+SAq2dMi4pdmH+vTRc4Wz9wXCYi/wqh9mUbTT4c0Dme2OEFgETaY
- Eigx0q6TfgYA==
-X-IronPort-AV: E=Sophos;i="5.78,371,1599548400"; d="scan'208";a="371086581"
-Received: from genxfsim-desktop.iind.intel.com (HELO intel.com)
- ([10.223.74.178])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Nov 2020 01:53:34 -0800
-Date: Thu, 26 Nov 2020 15:09:50 +0530
-From: Anshuman Gupta <anshuman.gupta@intel.com>
-To: Imre Deak <ville.syrjala@linux.intel.com>
-Message-ID: <20201126093947.GM13853@intel.com>
-References: <20201124095847.14098-1-anshuman.gupta@intel.com>
- <20201124164406.GG1750458@ideak-desk.fi.intel.com>
- <20201125074624.GJ13853@intel.com>
- <20201125162444.GC1968234@ideak-desk.fi.intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 513116E829;
+ Thu, 26 Nov 2020 09:41:20 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 3F5A5A41FB;
+ Thu, 26 Nov 2020 09:41:20 +0000 (UTC)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20201125162444.GC1968234@ideak-desk.fi.intel.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
-Subject: Re: [Intel-gfx] [RFC] drm/i915/dp: PPS registers doesn't require
- AUX power
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Shankar, Uma" <uma.shankar@intel.com>
+Date: Thu, 26 Nov 2020 09:41:20 -0000
+Message-ID: <160638368023.4110.2006642950104544680@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20201126081445.29759-1-uma.shankar@intel.com>
+In-Reply-To: <20201126081445.29759-1-uma.shankar@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_Enable_HDR_on_MCA_LSPCON_based_Gen9_devices_=28rev11=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,73 +38,42 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, stable@vger.kernel.org
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 2020-11-25 at 18:24:44 +0200, Imre Deak wrote:
-> +Ville.
-Hi Ville ,
-Let me provide you some context over the issue which requires your input.
-TGL on chorome OS has observed some display glitches when brightness is being updated
-at very fast rate. This has surfaced out two issue.
-1. Getting the AUX power when accessing the PPS registers on platform with split PCH.
-2. The race between DC3CO disabling delay and flips. (B.Spec says 200us dc3co exit delay)
-   I will send a separate RFC patch to fix this issue.
+== Series Details ==
 
-Current patch is addressing issue1, 
-IMHO it is unnecessary to take AUX power for pps register read for checking
-whether backlight was enabled. This is causing flip to race with
-DC3CO exit delay.
-Could you please provide your input to this . 
+Series: Enable HDR on MCA LSPCON based Gen9 devices (rev11)
+URL   : https://patchwork.freedesktop.org/series/68081/
+State : warning
 
-Thanks,
-Anshuman Gupta.   
-> 
-> On Wed, Nov 25, 2020 at 01:16:27PM +0530, Anshuman Gupta wrote:
-> > On 2020-11-24 at 18:44:06 +0200, Imre Deak wrote:
-> > > On Tue, Nov 24, 2020 at 03:28:47PM +0530, Anshuman Gupta wrote:
-> > > > Platforms with South Display Engine on PCH, doesn't
-> > > > require to get/put the AUX power domain in order to
-> > > > access PPS register because PPS registers are always on
-> > > > with South display on PCH.
-> > > > 
-> > > > Cc: Imre Deak <imre.deak@intel.com>
-> > > > Cc: <stable@vger.kernel.org>
-> > > > Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
-> > > 
-> > > Could you describe the issue the patch is fixing?
-> >
-> > This fixes the display glitches causes by race between brightness
-> > update thread and flip thread.
-> 
-> Flips should work even with asynchronous DC3co (or any DC state)
-> disabling, at least according to the spec the HW handles this. Only
-> modesetting and AUX transfers have restriction wrt. DC state handling
-> (where DC states need to get disabled).
-> 
-> I think the exact restriction needs to be clarified with HW people: Is
-> only the DC3co disable -> flip or also the opposite sequence
-> problematic? Is it only DC3co or also DC5/6 affected?
-> 
-> > While brightness is being updated it reads pp_ctrl reg to check
-> > whether backlight is enabled and get/put the AUX power domain, this
-> > enables and disable DC Off power well(DC3CO) back and forth.
-> >
-> > IMO there are two work item for above race needed to be addressed.
-> > 1. Don't get AUX power for PPS register access (this patch addressed this).
-> > 2. skl_program_plane() should wait for DC3CO exit delay to avoid any race with
-> >    DC3CO disable sequence. (WIP)      
-> 
-> DC states can be disabled asynchronously with a flip modeset, not only
-> for panel brightness setting, but also AUX transfers for instance. So I
-> think we'd need to add locking against DC state changes to
-> intel_pipe_update_start()/end(). Probably the easiest would be to use
-> the power_domains->lock for this.
-> 
-> --Imre
+== Summary ==
+
+$ dim checkpatch origin/drm-tip
+e7d69665cf73 drm/i915/display: Add HDR Capability detection for LSPCON
+b5fa510007a1 drm/i915/display: Enable HDR on gen9 devices with MCA Lspcon
+94da9b381802 drm/i915/display: Attach HDR property for capable Gen9 devices
+-:58: WARNING:LONG_LINE: line length of 108 exceeds 100 columns
+#58: FILE: drivers/gpu/drm/i915/display/intel_dp.c:6804:
++						   connector->dev->mode_config.hdr_output_metadata_property,
+
+total: 0 errors, 1 warnings, 0 checks, 45 lines checked
+37af9241ac63 drm/i915/display: Enable quantization range for HDR on LSPCON devices
+90a45305d915 drm/i915/display: Add a WARN for invalid output range and format
+99311bb61d69 drm/i915/display: Attach content type property for LSPCON
+78f2b24a1ff7 i915/display: Enable BT2020 for HDR on LSPCON devices
+05833c4d31da drm/i915/display: Enable HDR for Parade based lspcon
+9e5f135c0a29 drm/i915/display: Implement infoframes readback for LSPCON
+ae81dd3d5f06 drm/i915/display: Implement DRM infoframe read for LSPCON
+9cad91480b72 drm/i915/lspcon: Create separate infoframe_enabled helper
+fd7bd8dacdb0 drm/i915/lspcon: Do not send DRM infoframes to non-HDMI sinks
+35f0ce30d872 drm/i915/display: [NOT FOR MERGE] Reduce blanking to support 4k60@10bpp for LSPCON
+
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
