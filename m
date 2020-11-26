@@ -1,42 +1,47 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 30E392C5A42
-	for <lists+intel-gfx@lfdr.de>; Thu, 26 Nov 2020 18:11:34 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0BC312C5A49
+	for <lists+intel-gfx@lfdr.de>; Thu, 26 Nov 2020 18:13:18 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AE9306E958;
-	Thu, 26 Nov 2020 17:11:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1691C6E946;
+	Thu, 26 Nov 2020 17:13:15 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 17B2C6E946
- for <intel-gfx@lists.freedesktop.org>; Thu, 26 Nov 2020 17:11:30 +0000 (UTC)
-IronPort-SDR: NSxRVLAY/D9hyO9qFz/OcCbwMsvOXbYuHGYkfhy09NEQ5A7PLoJoOOJ9mca1+q8NbUtd50xo+h
- 5AT/n7s5at4Q==
-X-IronPort-AV: E=McAfee;i="6000,8403,9817"; a="160080707"
-X-IronPort-AV: E=Sophos;i="5.78,372,1599548400"; d="scan'208";a="160080707"
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D566F6E946
+ for <intel-gfx@lists.freedesktop.org>; Thu, 26 Nov 2020 17:13:13 +0000 (UTC)
+IronPort-SDR: 6aa//V2d/qGZuAcXlPGNb4APG2GLqOMeVtEadNLAxP0wZe64gkEIsZ6sKQvKLogWfMsPVfsyrA
+ uonicQ8fleHA==
+X-IronPort-AV: E=McAfee;i="6000,8403,9817"; a="159355632"
+X-IronPort-AV: E=Sophos;i="5.78,372,1599548400"; d="scan'208";a="159355632"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Nov 2020 09:11:28 -0800
-IronPort-SDR: qTVhSj/iIFGzs7KImWdd9O0qH4mPglrC0SsA5kJDV1I01TjnYjMsEA99JeK77geLX78fB9Rund
- aThO+zuh33jg==
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Nov 2020 09:13:12 -0800
+IronPort-SDR: tUeFG+bUecTcIpMEUktwx+kFRMHUDr1BKzsqOtXjVW2k892Thm1kvDH/LahKqxXtZg4YA4YGCo
+ zZ1sl0k4z9aw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.78,372,1599548400"; d="scan'208";a="314068572"
+X-IronPort-AV: E=Sophos;i="5.78,372,1599548400"; d="scan'208";a="365879800"
 Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by fmsmga007.fm.intel.com with SMTP; 26 Nov 2020 09:11:26 -0800
+ by fmsmga002.fm.intel.com with SMTP; 26 Nov 2020 09:13:09 -0800
 Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 26 Nov 2020 19:11:25 +0200
-From: Ville Syrjala <ville.syrjala@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Thu, 26 Nov 2020 19:11:25 +0200
-Message-Id: <20201126171125.17867-1-ville.syrjala@linux.intel.com>
-X-Mailer: git-send-email 2.26.2
+ Thu, 26 Nov 2020 19:13:09 +0200
+Date: Thu, 26 Nov 2020 19:13:09 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Uma Shankar <uma.shankar@intel.com>
+Message-ID: <20201126171309.GJ6112@intel.com>
+References: <20201126081445.29759-1-uma.shankar@intel.com>
+ <20201126081445.29759-8-uma.shankar@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915: Split
- intel_attach_colorspace_property() into HDMI vs. DP variants
+Content-Disposition: inline
+In-Reply-To: <20201126081445.29759-8-uma.shankar@intel.com>
+X-Patchwork-Hint: comment
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: Re: [Intel-gfx] [v11 07/13] i915/display: Enable BT2020 for HDR on
+ LSPCON devices
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,87 +54,95 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-RnJvbTogVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4KCldp
-dGggTFNQQ09OIHdlIHVzZSB0aGUgQVZJIGluZm9mcmFtZSB0byBjb252ZXkgdGhlIGNvbG9yaW1l
-dHJ5CmluZm9ybWF0aW9uIChhcyBvcHBvc2VkIHRvIERQIE1TQS9TRFApLCBzbyB0aGUgcHJvcGVy
-dHkgd2UgZXhwb3NlCnNob3VsZCBtYXRjaCB0aGUgdmFsdWVzIHdlIGNhbiBzdHVmZiBpbnRvIHRo
-ZSBpbmZvZnJhbWUuIEllLiB3ZQptdXN0IHVzZSB0aGUgSERNSSB2YXJpYW50IG9mIHRoZSBwcm9w
-ZXJ0eSwgZXZlbiB0aG91Z2ggd2UgZHJpdmUKTFNQQ09OIGluIFBDT04gbW9kZS4gVG8gdGhhdCBl
-bmQganVzdCBzcGxpdAppbnRlbF9hdHRhY2hfY29sb3JzcGFjZV9wcm9wZXJ0eSgpIGludG8gSERN
-SSBhbmQgRFAgdmFyaWFudHMKYW5kIGxldCB0aGUgY2FsbGVyIHdvcnJ5IGFib3V0IHdoaWNoIG9u
-ZSBpdCB3YW50cyB0byB1c2UuCgpDYzogVW1hIFNoYW5rYXIgPHVtYS5zaGFua2FyQGludGVsLmNv
-bT4KU2lnbmVkLW9mZi1ieTogVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4Lmlu
-dGVsLmNvbT4KLS0tCiAuLi4vZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfY29ubmVjdG9yLmMg
-ICAgfCAyOSArKysrKysrLS0tLS0tLS0tLS0tCiAuLi4vZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50
-ZWxfY29ubmVjdG9yLmggICAgfCAgMyArLQogZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9p
-bnRlbF9kcC5jICAgICAgIHwgIDIgKy0KIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50
-ZWxfaGRtaS5jICAgICB8ICAyICstCiA0IGZpbGVzIGNoYW5nZWQsIDE1IGluc2VydGlvbnMoKyks
-IDIxIGRlbGV0aW9ucygtKQoKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3Bs
-YXkvaW50ZWxfY29ubmVjdG9yLmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVs
-X2Nvbm5lY3Rvci5jCmluZGV4IDQwNmU5Njc4NWM3Ni4uZDVjZWI3YmRjMTRiIDEwMDY0NAotLS0g
-YS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Nvbm5lY3Rvci5jCisrKyBiL2Ry
-aXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfY29ubmVjdG9yLmMKQEAgLTI3OSwyNCAr
-Mjc5LDE3IEBAIGludGVsX2F0dGFjaF9hc3BlY3RfcmF0aW9fcHJvcGVydHkoc3RydWN0IGRybV9j
-b25uZWN0b3IgKmNvbm5lY3RvcikKIH0KIAogdm9pZAotaW50ZWxfYXR0YWNoX2NvbG9yc3BhY2Vf
-cHJvcGVydHkoc3RydWN0IGRybV9jb25uZWN0b3IgKmNvbm5lY3RvcikKK2ludGVsX2F0dGFjaF9o
-ZG1pX2NvbG9yc3BhY2VfcHJvcGVydHkoc3RydWN0IGRybV9jb25uZWN0b3IgKmNvbm5lY3RvcikK
-IHsKLQlzd2l0Y2ggKGNvbm5lY3Rvci0+Y29ubmVjdG9yX3R5cGUpIHsKLQljYXNlIERSTV9NT0RF
-X0NPTk5FQ1RPUl9IRE1JQToKLQljYXNlIERSTV9NT0RFX0NPTk5FQ1RPUl9IRE1JQjoKLQkJaWYg
-KGRybV9tb2RlX2NyZWF0ZV9oZG1pX2NvbG9yc3BhY2VfcHJvcGVydHkoY29ubmVjdG9yKSkKLQkJ
-CXJldHVybjsKLQkJYnJlYWs7Ci0JY2FzZSBEUk1fTU9ERV9DT05ORUNUT1JfRGlzcGxheVBvcnQ6
-Ci0JY2FzZSBEUk1fTU9ERV9DT05ORUNUT1JfZURQOgotCQlpZiAoZHJtX21vZGVfY3JlYXRlX2Rw
-X2NvbG9yc3BhY2VfcHJvcGVydHkoY29ubmVjdG9yKSkKLQkJCXJldHVybjsKLQkJYnJlYWs7Ci0J
-ZGVmYXVsdDoKLQkJTUlTU0lOR19DQVNFKGNvbm5lY3Rvci0+Y29ubmVjdG9yX3R5cGUpOwotCQly
-ZXR1cm47Ci0JfQorCWlmICghZHJtX21vZGVfY3JlYXRlX2hkbWlfY29sb3JzcGFjZV9wcm9wZXJ0
-eShjb25uZWN0b3IpKQorCQlkcm1fb2JqZWN0X2F0dGFjaF9wcm9wZXJ0eSgmY29ubmVjdG9yLT5i
-YXNlLAorCQkJCQkgICBjb25uZWN0b3ItPmNvbG9yc3BhY2VfcHJvcGVydHksIDApOworfQogCi0J
-ZHJtX29iamVjdF9hdHRhY2hfcHJvcGVydHkoJmNvbm5lY3Rvci0+YmFzZSwKLQkJCQkgICBjb25u
-ZWN0b3ItPmNvbG9yc3BhY2VfcHJvcGVydHksIDApOwordm9pZAoraW50ZWxfYXR0YWNoX2RwX2Nv
-bG9yc3BhY2VfcHJvcGVydHkoc3RydWN0IGRybV9jb25uZWN0b3IgKmNvbm5lY3RvcikKK3sKKwlp
-ZiAoIWRybV9tb2RlX2NyZWF0ZV9kcF9jb2xvcnNwYWNlX3Byb3BlcnR5KGNvbm5lY3RvcikpCisJ
-CWRybV9vYmplY3RfYXR0YWNoX3Byb3BlcnR5KCZjb25uZWN0b3ItPmJhc2UsCisJCQkJCSAgIGNv
-bm5lY3Rvci0+Y29sb3JzcGFjZV9wcm9wZXJ0eSwgMCk7CiB9CmRpZmYgLS1naXQgYS9kcml2ZXJz
-L2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Nvbm5lY3Rvci5oIGIvZHJpdmVycy9ncHUvZHJt
-L2k5MTUvZGlzcGxheS9pbnRlbF9jb25uZWN0b3IuaAppbmRleCA5M2E3Mzc1YzgxOTYuLjY2MWEz
-N2EzYzZkOCAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9j
-b25uZWN0b3IuaAorKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Nvbm5l
-Y3Rvci5oCkBAIC0zMCw2ICszMCw3IEBAIGludCBpbnRlbF9kZGNfZ2V0X21vZGVzKHN0cnVjdCBk
-cm1fY29ubmVjdG9yICpjLCBzdHJ1Y3QgaTJjX2FkYXB0ZXIgKmFkYXB0ZXIpOwogdm9pZCBpbnRl
-bF9hdHRhY2hfZm9yY2VfYXVkaW9fcHJvcGVydHkoc3RydWN0IGRybV9jb25uZWN0b3IgKmNvbm5l
-Y3Rvcik7CiB2b2lkIGludGVsX2F0dGFjaF9icm9hZGNhc3RfcmdiX3Byb3BlcnR5KHN0cnVjdCBk
-cm1fY29ubmVjdG9yICpjb25uZWN0b3IpOwogdm9pZCBpbnRlbF9hdHRhY2hfYXNwZWN0X3JhdGlv
-X3Byb3BlcnR5KHN0cnVjdCBkcm1fY29ubmVjdG9yICpjb25uZWN0b3IpOwotdm9pZCBpbnRlbF9h
-dHRhY2hfY29sb3JzcGFjZV9wcm9wZXJ0eShzdHJ1Y3QgZHJtX2Nvbm5lY3RvciAqY29ubmVjdG9y
-KTsKK3ZvaWQgaW50ZWxfYXR0YWNoX2hkbWlfY29sb3JzcGFjZV9wcm9wZXJ0eShzdHJ1Y3QgZHJt
-X2Nvbm5lY3RvciAqY29ubmVjdG9yKTsKK3ZvaWQgaW50ZWxfYXR0YWNoX2RwX2NvbG9yc3BhY2Vf
-cHJvcGVydHkoc3RydWN0IGRybV9jb25uZWN0b3IgKmNvbm5lY3Rvcik7CiAKICNlbmRpZiAvKiBf
-X0lOVEVMX0NPTk5FQ1RPUl9IX18gKi8KZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1
-L2Rpc3BsYXkvaW50ZWxfZHAuYyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxf
-ZHAuYwppbmRleCAzODk2ZDA4YzQxNzcuLjA3MjMyNDZmMWIxOSAxMDA2NDQKLS0tIGEvZHJpdmVy
-cy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kcC5jCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9p
-OTE1L2Rpc3BsYXkvaW50ZWxfZHAuYwpAQCAtNzE3NSw3ICs3MTc1LDcgQEAgaW50ZWxfZHBfYWRk
-X3Byb3BlcnRpZXMoc3RydWN0IGludGVsX2RwICppbnRlbF9kcCwgc3RydWN0IGRybV9jb25uZWN0
-b3IgKmNvbm5lY3QKIAllbHNlIGlmIChJTlRFTF9HRU4oZGV2X3ByaXYpID49IDUpCiAJCWRybV9j
-b25uZWN0b3JfYXR0YWNoX21heF9icGNfcHJvcGVydHkoY29ubmVjdG9yLCA2LCAxMik7CiAKLQlp
-bnRlbF9hdHRhY2hfY29sb3JzcGFjZV9wcm9wZXJ0eShjb25uZWN0b3IpOworCWludGVsX2F0dGFj
-aF9kcF9jb2xvcnNwYWNlX3Byb3BlcnR5KGNvbm5lY3Rvcik7CiAKIAlpZiAoSVNfR0VNSU5JTEFL
-RShkZXZfcHJpdikgfHwgSU5URUxfR0VOKGRldl9wcml2KSA+PSAxMSkKIAkJZHJtX29iamVjdF9h
-dHRhY2hfcHJvcGVydHkoJmNvbm5lY3Rvci0+YmFzZSwKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1
-L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfaGRtaS5jIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlz
-cGxheS9pbnRlbF9oZG1pLmMKaW5kZXggODI2NzRhODg1M2M2Li4wNjE1MzRlNzFmMTQgMTAwNjQ0
-Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfaGRtaS5jCisrKyBiL2Ry
-aXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfaGRtaS5jCkBAIC0yOTYzLDcgKzI5NjMs
-NyBAQCBpbnRlbF9oZG1pX2FkZF9wcm9wZXJ0aWVzKHN0cnVjdCBpbnRlbF9oZG1pICppbnRlbF9o
-ZG1pLCBzdHJ1Y3QgZHJtX2Nvbm5lY3RvciAqYwogCSAqIGFzIHdlbGwuIFdpbGwgYmUgaW1wbGVt
-ZW50ZWQgc2VwYXJhdGVseS4KIAkgKi8KIAlpZiAoIWRpZ19wb3J0LT5sc3Bjb24uYWN0aXZlKQot
-CQlpbnRlbF9hdHRhY2hfY29sb3JzcGFjZV9wcm9wZXJ0eShjb25uZWN0b3IpOworCQlpbnRlbF9h
-dHRhY2hfaGRtaV9jb2xvcnNwYWNlX3Byb3BlcnR5KGNvbm5lY3Rvcik7CiAKIAlkcm1fY29ubmVj
-dG9yX2F0dGFjaF9jb250ZW50X3R5cGVfcHJvcGVydHkoY29ubmVjdG9yKTsKIAotLSAKMi4yNi4y
-CgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1n
-ZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9s
-aXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
+On Thu, Nov 26, 2020 at 01:44:39PM +0530, Uma Shankar wrote:
+> Enable Colorspace as BT2020 if driving HDR content.Sending Colorimetry
+> data for HDR using AVI infoframe. LSPCON firmware expects this and though
+> SOC drives DP, for HDMI panel AVI infoframe is sent to the LSPCON device
+> which transfers the same to HDMI sink.
+> =
+
+> v2: Dropped state managed in drm core as per Jani Nikula's suggestion.
+> =
+
+> v3: Aligned colorimetry handling for lspcon as per compute_avi_infoframes,
+> as suggested by Ville.
+> =
+
+> v4: Added BT2020 as default for HDR. Adding the colorspace property
+> interface for pcon will be take up separately. Moved changes of
+> quantization in a separate patch as per Ville's comments.
+> =
+
+> Signed-off-by: Uma Shankar <uma.shankar@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_lspcon.c | 18 ++++++++++++++++++
+>  1 file changed, 18 insertions(+)
+> =
+
+> diff --git a/drivers/gpu/drm/i915/display/intel_lspcon.c b/drivers/gpu/dr=
+m/i915/display/intel_lspcon.c
+> index 0a4c05d67108..f6f58a991e7a 100644
+> --- a/drivers/gpu/drm/i915/display/intel_lspcon.c
+> +++ b/drivers/gpu/drm/i915/display/intel_lspcon.c
+> @@ -481,6 +481,10 @@ void lspcon_read_infoframe(struct intel_encoder *enc=
+oder,
+>  	/* FIXME implement this */
+>  }
+>  =
+
+> +/* HDMI HDR Colorspace Spec Definitions */
+> +#define NORMAL_COLORIMETRY_MASK		0x3
+> +#define EXTENDED_COLORIMETRY_MASK	0x7
+> +#define HDMI_COLORIMETRY_BT2020_YCC	((3 << 0) | (6 << 2) | (0 << 5))
+>  void lspcon_set_infoframes(struct intel_encoder *encoder,
+>  			   bool enable,
+>  			   const struct intel_crtc_state *crtc_state,
+> @@ -523,6 +527,20 @@ void lspcon_set_infoframes(struct intel_encoder *enc=
+oder,
+>  	else
+>  		frame.avi.colorspace =3D HDMI_COLORSPACE_RGB;
+>  =
+
+> +	/*
+> +	 * Set BT2020 colorspace if driving HDR data
+> +	 * ToDo: Make this generic and expose all colorspaces for
+> +	 * lspcon. We need to expose HDMI colorspaces when we detect
+> +	 * lspcon, this has to happen after connector is registered,
+> +	 * so need to fix this appropriately
+> +	 */
+> +	if (lspcon->active && conn_state->hdr_output_metadata) {
+> +		frame.avi.colorimetry =3D HDMI_COLORIMETRY_BT2020_YCC &
+> +					NORMAL_COLORIMETRY_MASK;
+> +		frame.avi.extended_colorimetry =3D (HDMI_COLORIMETRY_BT2020_YCC >> 2) &
+> +						  EXTENDED_COLORIMETRY_MASK;
+> +	}
+> +
+
+I don't understand the point of dancing around this instead of just
+fixing it.
+
+There, I did half the work for you
+https://patchwork.freedesktop.org/series/84309/
+
+
+>  	/* nonsense combination */
+>  	drm_WARN_ON(encoder->base.dev, crtc_state->limited_color_range &&
+>  		    crtc_state->output_format !=3D INTEL_OUTPUT_FORMAT_RGB);
+> -- =
+
+> 2.26.2
+
+-- =
+
+Ville Syrj=E4l=E4
+Intel
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
