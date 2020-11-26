@@ -2,31 +2,45 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8680E2C5694
-	for <lists+intel-gfx@lfdr.de>; Thu, 26 Nov 2020 15:04:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 926D22C56AA
+	for <lists+intel-gfx@lfdr.de>; Thu, 26 Nov 2020 15:08:31 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AFFB86E97D;
-	Thu, 26 Nov 2020 14:04:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6EFCC6E956;
+	Thu, 26 Nov 2020 14:08:29 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8D0896E959
- for <intel-gfx@lists.freedesktop.org>; Thu, 26 Nov 2020 14:04:12 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 23117563-1500050 
- for <intel-gfx@lists.freedesktop.org>; Thu, 26 Nov 2020 14:04:09 +0000
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Thu, 26 Nov 2020 14:04:07 +0000
-Message-Id: <20201126140407.31952-5-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20201126140407.31952-1-chris@chris-wilson.co.uk>
-References: <20201126140407.31952-1-chris@chris-wilson.co.uk>
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 155B46E956
+ for <intel-gfx@lists.freedesktop.org>; Thu, 26 Nov 2020 14:08:28 +0000 (UTC)
+IronPort-SDR: 6y+jschMu652ybhVLEo3kcuRkxcIp+XytbIsizKowkOYojwiOlD4OlShHjxpFZ4EGiBsgjEWAE
+ adz9X00BRLCA==
+X-IronPort-AV: E=McAfee;i="6000,8403,9816"; a="151545864"
+X-IronPort-AV: E=Sophos;i="5.78,372,1599548400"; d="scan'208";a="151545864"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Nov 2020 06:08:27 -0800
+IronPort-SDR: 9KuBSnl1FVO9DCadtC0W/v3sgX9kkFYWUYMVfQTHWxPjvB5k+b818A985hngegNRzX+VbmGsEN
+ LyZgBcHwnj4w==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.78,372,1599548400"; d="scan'208";a="371291717"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
+ by FMSMGA003.fm.intel.com with SMTP; 26 Nov 2020 06:08:25 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Thu, 26 Nov 2020 16:08:24 +0200
+Date: Thu, 26 Nov 2020 16:08:24 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Chris Wilson <chris@chris-wilson.co.uk>
+Message-ID: <20201126140824.GC6112@intel.com>
+References: <20201126105539.2661-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [CI 5/5] drm/i915/gt: Move the breadcrumb to the
- signaler if completed upon cancel
+Content-Disposition: inline
+In-Reply-To: <20201126105539.2661-1-chris@chris-wilson.co.uk>
+X-Patchwork-Hint: comment
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/gt: Program mocs:63 for cache
+ eviction on gen9
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,134 +53,69 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: intel-gfx@lists.freedesktop.org, stable@vger.kernel.org
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-If while we are cancelling the breadcrumb signaling, we find that the
-request is already completed, move it to the irq signaler and let it be
-signaled.
+On Thu, Nov 26, 2020 at 10:55:39AM +0000, Chris Wilson wrote:
+> Ville noticed that the last mocs entry is used unconditionally by the HW
+> when it performs cache evictions, and noted that while the value is not
+> meant to be writable by the driver, we should program it to a reasonable
+> value nevertheless.
+> =
 
-v2: Tweak reference counting so that we only acquire a new reference on
-adding to a signal list, as opposed to a hidden i915_request_put of the
-caller's reference.
+> As it turns out, we can change the value of mocs:63 and the value we
+> were programming into it would cause hard hangs in conjunction with
+> atomic operations.
+> =
 
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
----
- drivers/gpu/drm/i915/gt/intel_breadcrumbs.c | 41 +++++++++++----------
- 1 file changed, 22 insertions(+), 19 deletions(-)
+> Suggested-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/2707
+> Fixes: 3bbaba0ceaa2 ("drm/i915: Added Programming of the MOCS")
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> Cc: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> Cc: Jason Ekstrand <jason@jlekstrand.net>
+> Cc: <stable@vger.kernel.org> # v4.3+
+> ---
+>  drivers/gpu/drm/i915/gt/intel_mocs.c | 5 ++++-
+>  1 file changed, 4 insertions(+), 1 deletion(-)
+> =
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c b/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c
-index a24cc1ff08a0..00918300f53f 100644
---- a/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c
-+++ b/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c
-@@ -192,18 +192,6 @@ static void add_retire(struct intel_breadcrumbs *b, struct intel_timeline *tl)
- 		intel_engine_add_retire(b->irq_engine, tl);
- }
- 
--static bool __signal_request(struct i915_request *rq)
--{
--	GEM_BUG_ON(test_bit(I915_FENCE_FLAG_SIGNAL, &rq->fence.flags));
--
--	if (!__dma_fence_signal(&rq->fence)) {
--		i915_request_put(rq);
--		return false;
--	}
--
--	return true;
--}
--
- static struct llist_node *
- slist_add(struct llist_node *node, struct llist_node *head)
- {
-@@ -274,9 +262,11 @@ static void signal_irq_work(struct irq_work *work)
- 			release = remove_signaling_context(b, ce);
- 			spin_unlock(&ce->signal_lock);
- 
--			if (__signal_request(rq))
-+			if (__dma_fence_signal(&rq->fence))
- 				/* We own signal_node now, xfer to local list */
- 				signal = slist_add(&rq->signal_node, signal);
-+			else
-+				i915_request_put(rq);
- 
- 			if (release) {
- 				add_retire(b, ce->timeline);
-@@ -363,6 +353,17 @@ void intel_breadcrumbs_free(struct intel_breadcrumbs *b)
- 	kfree(b);
- }
- 
-+static void irq_signal_request(struct i915_request *rq,
-+			       struct intel_breadcrumbs *b)
-+{
-+	if (!__dma_fence_signal(&rq->fence))
-+		return;
-+
-+	i915_request_get(rq);
-+	if (llist_add(&rq->signal_node, &b->signaled_requests))
-+		irq_work_queue(&b->irq_work);
-+}
-+
- static void insert_breadcrumb(struct i915_request *rq)
- {
- 	struct intel_breadcrumbs *b = READ_ONCE(rq->engine)->breadcrumbs;
-@@ -372,17 +373,13 @@ static void insert_breadcrumb(struct i915_request *rq)
- 	if (test_bit(I915_FENCE_FLAG_SIGNAL, &rq->fence.flags))
- 		return;
- 
--	i915_request_get(rq);
--
- 	/*
- 	 * If the request is already completed, we can transfer it
- 	 * straight onto a signaled list, and queue the irq worker for
- 	 * its signal completion.
- 	 */
- 	if (__request_completed(rq)) {
--		if (__signal_request(rq) &&
--		    llist_add(&rq->signal_node, &b->signaled_requests))
--			irq_work_queue(&b->irq_work);
-+		irq_signal_request(rq, b);
- 		return;
- 	}
- 
-@@ -413,6 +410,8 @@ static void insert_breadcrumb(struct i915_request *rq)
- 				break;
- 		}
- 	}
-+
-+	i915_request_get(rq);
- 	list_add_rcu(&rq->signal_link, pos);
- 	GEM_BUG_ON(!check_signal_order(ce, rq));
- 	GEM_BUG_ON(test_bit(DMA_FENCE_FLAG_SIGNALED_BIT, &rq->fence.flags));
-@@ -453,6 +452,7 @@ bool i915_request_enable_breadcrumb(struct i915_request *rq)
- 
- void i915_request_cancel_breadcrumb(struct i915_request *rq)
- {
-+	struct intel_breadcrumbs *b = READ_ONCE(rq->engine)->breadcrumbs;
- 	struct intel_context *ce = rq->context;
- 	bool release;
- 
-@@ -461,11 +461,14 @@ void i915_request_cancel_breadcrumb(struct i915_request *rq)
- 
- 	spin_lock(&ce->signal_lock);
- 	list_del_rcu(&rq->signal_link);
--	release = remove_signaling_context(rq->engine->breadcrumbs, ce);
-+	release = remove_signaling_context(b, ce);
- 	spin_unlock(&ce->signal_lock);
- 	if (release)
- 		intel_context_put(ce);
- 
-+	if (__request_completed(rq))
-+		irq_signal_request(rq, b);
-+
- 	i915_request_put(rq);
- }
- 
--- 
-2.20.1
+> diff --git a/drivers/gpu/drm/i915/gt/intel_mocs.c b/drivers/gpu/drm/i915/=
+gt/intel_mocs.c
+> index 254873e1646e..6ae512847f64 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_mocs.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_mocs.c
+> @@ -131,7 +131,10 @@ static const struct drm_i915_mocs_entry skl_mocs_tab=
+le[] =3D {
+>  	GEN9_MOCS_ENTRIES,
+>  	MOCS_ENTRY(I915_MOCS_CACHED,
+>  		   LE_3_WB | LE_TC_2_LLC_ELLC | LE_LRUM(3),
+> -		   L3_3_WB)
+> +		   L3_3_WB),
+> +	MOCS_ENTRY(63,
 
+Wonder if we should give these magic MOCS entries actual names?
+
+Anyways, matches my reading of the spec
+Reviewed-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+
+> +		   LE_3_WB | LE_TC_1_LLC | LE_LRUM(3),
+> +		   L3_1_UC)
+>  };
+>  =
+
+>  /* NOTE: the LE_TGT_CACHE is not used on Broxton */
+> -- =
+
+> 2.20.1
+
+-- =
+
+Ville Syrj=E4l=E4
+Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
