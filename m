@@ -2,44 +2,64 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5BA6E2C4F95
-	for <lists+intel-gfx@lfdr.de>; Thu, 26 Nov 2020 08:37:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3D0DC2C4FA9
+	for <lists+intel-gfx@lfdr.de>; Thu, 26 Nov 2020 08:45:39 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 70ACB6E59F;
-	Thu, 26 Nov 2020 07:37:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 172E66E5A5;
+	Thu, 26 Nov 2020 07:45:37 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 019816E59D
- for <intel-gfx@lists.freedesktop.org>; Thu, 26 Nov 2020 07:37:25 +0000 (UTC)
-IronPort-SDR: qMhPuwdK5u5sqWHh4NS1Cafd8j0GsW/rzuxqVr2xcRunmLxcPmk0y0NQ3gbYBsBp+kHmunondT
- cfKVHIOe09bQ==
-X-IronPort-AV: E=McAfee;i="6000,8403,9816"; a="172348247"
-X-IronPort-AV: E=Sophos;i="5.78,371,1599548400"; d="scan'208";a="172348247"
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 20FB06E5A5
+ for <intel-gfx@lists.freedesktop.org>; Thu, 26 Nov 2020 07:45:35 +0000 (UTC)
+IronPort-SDR: YwFz14C8GIenQdHsZoiODeUIRqCRhLc4q7CaTw54IM20KvnNC4IwUogPsIn0jPnl6M2M2QLQz5
+ Sewtr6eouIAQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9816"; a="172349096"
+X-IronPort-AV: E=Sophos;i="5.78,371,1599548400"; d="scan'208";a="172349096"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
  by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Nov 2020 23:37:25 -0800
-IronPort-SDR: NnCfnfg01iHsMEvxKWwhXnpGUhqE3PR1Fqg6qgy0lGUP9ZhCkOJK0/A3fLjSFtpkdmi5EkOBH/
- EpRNx3tL+aeA==
-X-IronPort-AV: E=Sophos;i="5.78,371,1599548400"; d="scan'208";a="343852093"
-Received: from ryanjamx-mobl1.amr.corp.intel.com (HELO ldmartin-desk1)
- ([10.209.30.192])
- by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Nov 2020 23:37:25 -0800
-Date: Wed, 25 Nov 2020 23:37:24 -0800
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: Aditya Swarup <aditya.swarup@intel.com>
-Message-ID: <20201126073724.3tb55cnixyk2lxr2@ldmartin-desk1>
-X-Patchwork-Hint: comment
-References: <20201126070041.369530-1-aditya.swarup@intel.com>
- <20201126070041.369530-2-aditya.swarup@intel.com>
+ 25 Nov 2020 23:45:34 -0800
+IronPort-SDR: 5z24Q2E5+7ZuQoFm/3+G873sY1rtXGbEV/BGvWB1lNYISPzoy5JM0+wuPjde4L/59WXovqpwzC
+ ew8iAJNL+7gg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.78,371,1599548400"; d="scan'208";a="537212383"
+Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
+ by fmsmga005.fm.intel.com with ESMTP; 25 Nov 2020 23:45:34 -0800
+Received: from bgsmsx603.gar.corp.intel.com (10.109.78.82) by
+ fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1713.5; Wed, 25 Nov 2020 23:45:33 -0800
+Received: from bgsmsx604.gar.corp.intel.com (10.67.234.6) by
+ BGSMSX603.gar.corp.intel.com (10.109.78.82) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1713.5; Thu, 26 Nov 2020 13:15:31 +0530
+Received: from bgsmsx604.gar.corp.intel.com ([10.67.234.6]) by
+ BGSMSX604.gar.corp.intel.com ([10.67.234.6]) with mapi id 15.01.1713.004;
+ Thu, 26 Nov 2020 13:15:31 +0530
+From: "Shankar, Uma" <uma.shankar@intel.com>
+To: =?iso-8859-1?Q?Ville_Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+Thread-Topic: [v9 10/12] drm/i915/lspcon: Create separate infoframe_enabled
+ helper
+Thread-Index: AQHWsfE8fuPklG7nA06gHaUmLCgILqnY16IAgAFT0TA=
+Date: Thu, 26 Nov 2020 07:45:30 +0000
+Message-ID: <14107607883147a3ba4c9265688619ad@intel.com>
+References: <20201103152834.12727-1-uma.shankar@intel.com>
+ <20201103152834.12727-11-uma.shankar@intel.com>
+ <20201125165604.GY6112@intel.com>
+In-Reply-To: <20201125165604.GY6112@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+dlp-product: dlpe-windows
+dlp-reaction: no-action
+dlp-version: 11.5.1.3
+x-originating-ip: [10.22.254.132]
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20201126070041.369530-2-aditya.swarup@intel.com>
-Subject: Re: [Intel-gfx] [PATCH 2/2] drm/i915/tgl: Add bound checks and
- simplify TGL REVID macros
+Subject: Re: [Intel-gfx] [v9 10/12] drm/i915/lspcon: Create separate
+ infoframe_enabled helper
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,155 +72,155 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Nov 25, 2020 at 11:00:41PM -0800, Aditya Swarup wrote:
->Add bound checks for TGL REV ID array. Since, there might
->be a possibility of using older kernels on latest platform
->revisions, resulting in out of bounds access for rev ID array.
->In this scenario, use the latest rev ID available and apply
->those WAs.
->
->Also, simplify GT macro for TGL rev ID to reuse tgl_revids_get().
->
->Cc: Jos=E9 Roberto de Souza <jose.souza@intel.com>
->Cc: Matt Roper <matthew.d.roper@intel.com>
->Cc: Lucas De Marchi <lucas.demarchi@intel.com>
->Cc: Jani Nikula <jani.nikula@intel.com>
->Cc: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
->Signed-off-by: Aditya Swarup <aditya.swarup@intel.com>
->---
-> drivers/gpu/drm/i915/gt/intel_workarounds.c |  8 ++---
-> drivers/gpu/drm/i915/i915_drv.h             | 36 +++++++++++++--------
-> 2 files changed, 26 insertions(+), 18 deletions(-)
->
->diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/drm=
-/i915/gt/intel_workarounds.c
->index a82554baa6ac..5e2563529b5f 100644
->--- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
->+++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
->@@ -1250,13 +1250,13 @@ tgl_gt_workarounds_init(struct drm_i915_private *i=
-915, struct i915_wa_list *wal)
-> 	gen12_gt_workarounds_init(i915, wal);
->
-> 	/* Wa_1409420604:tgl */
->-	if (IS_TGL_UY_GT_REVID(i915, TGL_REVID_A0, TGL_REVID_A0))
->+	if (IS_TGL_GT_REVID(i915, TGL_REVID_A0, TGL_REVID_A0))
 
-not seeing what's preventing this WA to be applied on !(U || Y) sku now.
-See below.
 
-> 		wa_write_or(wal,
-> 			    SUBSLICE_UNIT_LEVEL_CLKGATE2,
-> 			    CPSSUNIT_CLKGATE_DIS);
->
-> 	/* Wa_1607087056:tgl also know as BUG:1409180338 */
->-	if (IS_TGL_UY_GT_REVID(i915, TGL_REVID_A0, TGL_REVID_A0))
->+	if (IS_TGL_GT_REVID(i915, TGL_REVID_A0, TGL_REVID_A0))
-> 		wa_write_or(wal,
-> 			    SLICE_UNIT_LEVEL_CLKGATE,
-> 			    L3_CLKGATE_DIS | L3_CR2X_CLKGATE_DIS);
->@@ -1734,7 +1734,7 @@ rcs_engine_wa_init(struct intel_engine_cs *engine, s=
-truct i915_wa_list *wal)
-> 	struct drm_i915_private *i915 =3D engine->i915;
->
-> 	if (IS_DG1_REVID(i915, DG1_REVID_A0, DG1_REVID_A0) ||
->-	    IS_TGL_UY_GT_REVID(i915, TGL_REVID_A0, TGL_REVID_A0)) {
->+	    IS_TGL_GT_REVID(i915, TGL_REVID_A0, TGL_REVID_A0)) {
-> 		/*
-> 		 * Wa_1607138336:tgl[a0],dg1[a0]
-> 		 * Wa_1607063988:tgl[a0],dg1[a0]
->@@ -1744,7 +1744,7 @@ rcs_engine_wa_init(struct intel_engine_cs *engine, s=
-truct i915_wa_list *wal)
-> 			    GEN12_DISABLE_POSH_BUSY_FF_DOP_CG);
-> 	}
->
->-	if (IS_TGL_UY_GT_REVID(i915, TGL_REVID_A0, TGL_REVID_A0)) {
->+	if (IS_TGL_GT_REVID(i915, TGL_REVID_A0, TGL_REVID_A0)) {
-> 		/*
-> 		 * Wa_1606679103:tgl
-> 		 * (see also Wa_1606682166:icl)
->diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_d=
-rv.h
->index 0a3ee4f9dc0a..3d0ef6b60337 100644
->--- a/drivers/gpu/drm/i915/i915_drv.h
->+++ b/drivers/gpu/drm/i915/i915_drv.h
->@@ -1572,16 +1572,30 @@ enum {
-> 	TGL_REVID_D0,
-> };
->
->-extern const struct i915_rev_steppings tgl_uy_revids[];
->-extern const struct i915_rev_steppings tgl_revids[];
->+#define TGL_UY_REVIDS_SIZE	4
->+#define TGL_REVIDS_SIZE		2
->+
->+extern const struct i915_rev_steppings tgl_uy_revids[TGL_UY_REVIDS_SIZE];
->+extern const struct i915_rev_steppings tgl_revids[TGL_REVIDS_SIZE];
->
-> static inline const struct i915_rev_steppings *
-> tgl_revids_get(struct drm_i915_private *dev_priv)
-> {
->-	if (IS_TGL_U(dev_priv) || IS_TGL_Y(dev_priv))
->-		return &tgl_uy_revids[INTEL_REVID(dev_priv)];
->-	else
->-		return &tgl_revids[INTEL_REVID(dev_priv)];
->+	u8 revid =3D INTEL_REVID(dev_priv);
->+	u8 size;
->+	const struct i915_rev_steppings *tgl_revid_tbl;
->+
->+	if (IS_TGL_U(dev_priv) || IS_TGL_Y(dev_priv)) {
->+		tgl_revid_tbl =3D tgl_uy_revids;
->+		size =3D ARRAY_SIZE(tgl_uy_revids);
->+	} else {
->+		tgl_revid_tbl =3D tgl_revids;
->+		size =3D ARRAY_SIZE(tgl_revids);
->+	}
->+
->+	revid =3D min_t(u8, revid, size - 1);
->+
->+	return &tgl_revid_tbl[revid];
-> }
->
-> #define IS_TGL_DISP_REVID(p, since, until) \
->@@ -1589,16 +1603,10 @@ tgl_revids_get(struct drm_i915_private *dev_priv)
-> 	 tgl_revids_get(p)->disp_stepping >=3D (since) && \
-> 	 tgl_revids_get(p)->disp_stepping <=3D (until))
->
->-#define IS_TGL_UY_GT_REVID(p, since, until) \
->-	((IS_TGL_U(p) || IS_TGL_Y(p)) && \
->-	 tgl_uy_revids[INTEL_REVID(p)].gt_stepping >=3D (since) && \
->-	 tgl_uy_revids[INTEL_REVID(p)].gt_stepping <=3D (until))
->-
-> #define IS_TGL_GT_REVID(p, since, until) \
-> 	(IS_TIGERLAKE(p) && \
->-	 !(IS_TGL_U(p) || IS_TGL_Y(p)) && \
+> -----Original Message-----
+> From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> Sent: Wednesday, November 25, 2020 10:26 PM
+> To: Shankar, Uma <uma.shankar@intel.com>
+> Cc: intel-gfx@lists.freedesktop.org
+> Subject: Re: [v9 10/12] drm/i915/lspcon: Create separate infoframe_enabled
+> helper
+> =
 
-so, previously this check would prevent the WA to be applied if it's not
-U or Y sku. Now, in that case you are going to simply apply it. =
+> On Tue, Nov 03, 2020 at 08:58:32PM +0530, Uma Shankar wrote:
+> > Lspcon has Infoframes as well as DIP for HDR metadata(DRM Infoframe).
+> > Create a separate mechanism for lspcon compared to HDMI in order to
+> > address the same and ensure future scalability.
+> >
+> > Suggested-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> > Signed-off-by: Uma Shankar <uma.shankar@intel.com>
+> > ---
+> >  drivers/gpu/drm/i915/display/intel_ddi.c    | 10 +++++++---
+> >  drivers/gpu/drm/i915/display/intel_lspcon.c | 18 ++++++++++++++++++
+> > drivers/gpu/drm/i915/display/intel_lspcon.h |  2 ++
+> >  3 files changed, 27 insertions(+), 3 deletions(-)
+> >
+> > diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c
+> > b/drivers/gpu/drm/i915/display/intel_ddi.c
+> > index 19b16517a502..d50dd1f1292a 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_ddi.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+> > @@ -4402,6 +4402,7 @@ void intel_ddi_get_config(struct intel_encoder
+> *encoder,
+> >  	struct drm_i915_private *dev_priv =3D to_i915(encoder->base.dev);
+> >  	struct intel_crtc *intel_crtc =3D to_intel_crtc(pipe_config->uapi.crt=
+c);
+> >  	enum transcoder cpu_transcoder =3D pipe_config->cpu_transcoder;
+> > +	struct intel_digital_port *dig_port =3D enc_to_dig_port(encoder);
+> >  	u32 temp, flags =3D 0;
+> >
+> >  	/* XXX: DSI transcoder paranoia */
+> > @@ -4482,9 +4483,12 @@ void intel_ddi_get_config(struct intel_encoder
+> *encoder,
+> >  				    pipe_config->fec_enable);
+> >  		}
+> >
+> > -		pipe_config->infoframes.enable |=3D
+> > -			intel_hdmi_infoframes_enabled(encoder, pipe_config);
+> > -
+> > +		if (dig_port->lspcon.active && dig_port->dp.has_hdmi_sink)
+> > +			pipe_config->infoframes.enable |=3D
+> > +				intel_lspcon_infoframes_enabled(encoder,
+> pipe_config);
+> > +		else
+> > +			pipe_config->infoframes.enable |=3D
+> > +				intel_hdmi_infoframes_enabled(encoder,
+> pipe_config);
+> >  		break;
+> >  	case TRANS_DDI_MODE_SELECT_DP_MST:
+> >  		pipe_config->output_types |=3D BIT(INTEL_OUTPUT_DP_MST); diff -
+> -git
+> > a/drivers/gpu/drm/i915/display/intel_lspcon.c
+> > b/drivers/gpu/drm/i915/display/intel_lspcon.c
+> > index 8a4fd8ca8016..9c8dfd2fb949 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_lspcon.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_lspcon.c
+> > @@ -30,6 +30,7 @@
+> >  #include "intel_display_types.h"
+> >  #include "intel_dp.h"
+> >  #include "intel_lspcon.h"
+> > +#include "intel_hdmi.h"
+> >
+> >  /* LSPCON OUI Vendor ID(signatures) */  #define
+> > LSPCON_VENDOR_PARADE_OUI 0x001CF8 @@ -667,6 +668,23 @@ bool
+> > lspcon_init(struct intel_digital_port *dig_port)
+> >  	return true;
+> >  }
+> >
+> > +u32 intel_lspcon_infoframes_enabled(struct intel_encoder *encoder,
+> > +				    const struct intel_crtc_state *pipe_config) {
+> > +	struct intel_digital_port *dig_port =3D enc_to_dig_port(encoder);
+> > +	u32 val, enabled =3D 0;
+> > +
+> > +	val =3D dig_port->infoframes_enabled(encoder, pipe_config);
+> > +
+> > +	if (val & VIDEO_DIP_ENABLE_AVI_HSW)
+> =
 
-See comment in intel_workarounds.c:
+> So this is the function I figured should allow us to not to pretend to us=
+e the
+> video DIP bits.
+> =
 
-/* Same GT stepping between tgl_uy_revids and tgl_revids don't mean the sam=
-e HW */
-const struct i915_rev_steppings tgl_revids[] =3D {
+> I ttink the actual lspcon infoframes_enabled() could just directly use
+> intel_hdmi_infoframe_enable(HDMI_INFOFRAME_TYPE_AVI) etc. instead of
+> doing this extra remapping here.
 
-Lucas De Marchi
+Thanks Ville for the review and the highly useful suggestions and feedback.
+I have addressed the same and sent the next version, please help review.
 
->-	 tgl_revids[INTEL_REVID(p)].gt_stepping >=3D (since) && \
->-	 tgl_revids[INTEL_REVID(p)].gt_stepping <=3D (until))
->+	 tgl_revids_get(p)->gt_stepping >=3D (since) && \
->+	 tgl_revids_get(p)->gt_stepping <=3D (until))
->
-> #define RKL_REVID_A0		0x0
-> #define RKL_REVID_B0		0x1
->-- =
+On colorspace, I have kept BT2020 for HDR as default as of now. Will send a=
+ follow
+up fixing that appropriately.
 
->2.27.0
->
+I have checked the series on pcon and the series works fine with HDR monito=
+r on a
+KBL nuc.
+
+Regards,
+Uma Shankar
+
+> =
+
+> > +		enabled |=3D
+> intel_hdmi_infoframe_enable(HDMI_INFOFRAME_TYPE_AVI);
+> > +
+> > +	if (val & VIDEO_DIP_ENABLE_GMP_HSW)
+> > +		enabled |=3D
+> > +intel_hdmi_infoframe_enable(HDMI_PACKET_TYPE_GAMUT_METADATA);
+> > +
+> > +	return enabled;
+> > +}
+> > +
+> >  void lspcon_resume(struct intel_digital_port *dig_port)  {
+> >  	struct intel_lspcon *lspcon =3D &dig_port->lspcon; diff --git
+> > a/drivers/gpu/drm/i915/display/intel_lspcon.h
+> > b/drivers/gpu/drm/i915/display/intel_lspcon.h
+> > index d622156d0c4e..e92735408443 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_lspcon.h
+> > +++ b/drivers/gpu/drm/i915/display/intel_lspcon.h
+> > @@ -41,5 +41,7 @@ void hsw_read_infoframe(struct intel_encoder *encoder,
+> >  			const struct intel_crtc_state *crtc_state,
+> >  			unsigned int type,
+> >  			void *frame, ssize_t len);
+> > +u32 intel_lspcon_infoframes_enabled(struct intel_encoder *encoder,
+> > +				    const struct intel_crtc_state *pipe_config);
+> >
+> >  #endif /* __INTEL_LSPCON_H__ */
+> > --
+> > 2.26.2
+> =
+
+> --
+> Ville Syrj=E4l=E4
+> Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
