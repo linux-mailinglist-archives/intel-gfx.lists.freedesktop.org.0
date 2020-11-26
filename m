@@ -2,42 +2,43 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 41B2A2C4F06
-	for <lists+intel-gfx@lfdr.de>; Thu, 26 Nov 2020 08:00:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 369B92C4F3F
+	for <lists+intel-gfx@lfdr.de>; Thu, 26 Nov 2020 08:20:23 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 92AD96E598;
-	Thu, 26 Nov 2020 07:00:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 953606E14B;
+	Thu, 26 Nov 2020 07:20:21 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0ACCC6E598
- for <intel-gfx@lists.freedesktop.org>; Thu, 26 Nov 2020 07:00:54 +0000 (UTC)
-IronPort-SDR: ZoqUn+Y+eZZJLwLZCUz+U0Wa/i4fB60WTYKGok0PPrB5NlecD0imZcr+tq5EKroCy3PH2X59FH
- snqv6Lh2VM6Q==
-X-IronPort-AV: E=McAfee;i="6000,8403,9816"; a="151503712"
-X-IronPort-AV: E=Sophos;i="5.78,371,1599548400"; d="scan'208";a="151503712"
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 59C576E14B
+ for <intel-gfx@lists.freedesktop.org>; Thu, 26 Nov 2020 07:20:20 +0000 (UTC)
+IronPort-SDR: H0z2NhOKTu0fVow1IDJbXJCq800zOVkI9e/mCqjz/wqYHVFwP/A/sygMiuva7OgiJt0weJvZNf
+ 3unPf5kwTL5w==
+X-IronPort-AV: E=McAfee;i="6000,8403,9816"; a="190399805"
+X-IronPort-AV: E=Sophos;i="5.78,371,1599548400"; d="scan'208";a="190399805"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Nov 2020 23:00:53 -0800
-IronPort-SDR: 4AzI8nq7ynaeByVou7c1mYgtO1/pBztVVYTnoHIal8EGLaugdyYfhs+01S0qbLEWuzrzkvnvsz
- wdL0TDOQDbVw==
-X-IronPort-AV: E=Sophos;i="5.78,371,1599548400"; d="scan'208";a="362700114"
-Received: from sbhattar-mobl.amr.corp.intel.com (HELO
- aswarup-mobl.amr.corp.intel.com) ([10.251.21.231])
- by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Nov 2020 23:00:52 -0800
-From: Aditya Swarup <aditya.swarup@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Wed, 25 Nov 2020 23:00:41 -0800
-Message-Id: <20201126070041.369530-2-aditya.swarup@intel.com>
-X-Mailer: git-send-email 2.27.0
-In-Reply-To: <20201126070041.369530-1-aditya.swarup@intel.com>
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Nov 2020 23:20:19 -0800
+IronPort-SDR: OOz4VGTAScedrOmqNfFqoSgBKYMmZVXeWUb+YcyV6WUBrSeLHg2v56qzL43iY9c5esEBAggaTP
+ r6XS3iI/D1lg==
+X-IronPort-AV: E=Sophos;i="5.78,371,1599548400"; d="scan'208";a="403557454"
+Received: from ryanjamx-mobl1.amr.corp.intel.com (HELO ldmartin-desk1)
+ ([10.209.30.192])
+ by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Nov 2020 23:20:18 -0800
+Date: Wed, 25 Nov 2020 23:20:18 -0800
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: Aditya Swarup <aditya.swarup@intel.com>
+Message-ID: <20201126072018.bn2zbqrdy7syh6es@ldmartin-desk1>
+X-Patchwork-Hint: comment
 References: <20201126070041.369530-1-aditya.swarup@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 2/2] drm/i915/tgl: Add bound checks and simplify
- TGL REVID macros
+Content-Disposition: inline
+In-Reply-To: <20201126070041.369530-1-aditya.swarup@intel.com>
+Subject: Re: [Intel-gfx] [PATCH 1/2] drm/i915/tgl: Fix REVID macros for TGL
+ to fetch correct stepping
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,91 +51,76 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jani Nikula <jani.nikula@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="iso-8859-1"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-QWRkIGJvdW5kIGNoZWNrcyBmb3IgVEdMIFJFViBJRCBhcnJheS4gU2luY2UsIHRoZXJlIG1pZ2h0
-CmJlIGEgcG9zc2liaWxpdHkgb2YgdXNpbmcgb2xkZXIga2VybmVscyBvbiBsYXRlc3QgcGxhdGZv
-cm0KcmV2aXNpb25zLCByZXN1bHRpbmcgaW4gb3V0IG9mIGJvdW5kcyBhY2Nlc3MgZm9yIHJldiBJ
-RCBhcnJheS4KSW4gdGhpcyBzY2VuYXJpbywgdXNlIHRoZSBsYXRlc3QgcmV2IElEIGF2YWlsYWJs
-ZSBhbmQgYXBwbHkKdGhvc2UgV0FzLgoKQWxzbywgc2ltcGxpZnkgR1QgbWFjcm8gZm9yIFRHTCBy
-ZXYgSUQgdG8gcmV1c2UgdGdsX3Jldmlkc19nZXQoKS4KCkNjOiBKb3PDqSBSb2JlcnRvIGRlIFNv
-dXphIDxqb3NlLnNvdXphQGludGVsLmNvbT4KQ2M6IE1hdHQgUm9wZXIgPG1hdHRoZXcuZC5yb3Bl
-ckBpbnRlbC5jb20+CkNjOiBMdWNhcyBEZSBNYXJjaGkgPGx1Y2FzLmRlbWFyY2hpQGludGVsLmNv
-bT4KQ2M6IEphbmkgTmlrdWxhIDxqYW5pLm5pa3VsYUBpbnRlbC5jb20+CkNjOiBWaWxsZSBTeXJq
-w6Rsw6QgPHZpbGxlLnN5cmphbGFAbGludXguaW50ZWwuY29tPgpTaWduZWQtb2ZmLWJ5OiBBZGl0
-eWEgU3dhcnVwIDxhZGl0eWEuc3dhcnVwQGludGVsLmNvbT4KLS0tCiBkcml2ZXJzL2dwdS9kcm0v
-aTkxNS9ndC9pbnRlbF93b3JrYXJvdW5kcy5jIHwgIDggKystLS0KIGRyaXZlcnMvZ3B1L2RybS9p
-OTE1L2k5MTVfZHJ2LmggICAgICAgICAgICAgfCAzNiArKysrKysrKysrKysrLS0tLS0tLS0KIDIg
-ZmlsZXMgY2hhbmdlZCwgMjYgaW5zZXJ0aW9ucygrKSwgMTggZGVsZXRpb25zKC0pCgpkaWZmIC0t
-Z2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvaW50ZWxfd29ya2Fyb3VuZHMuYyBiL2RyaXZl
-cnMvZ3B1L2RybS9pOTE1L2d0L2ludGVsX3dvcmthcm91bmRzLmMKaW5kZXggYTgyNTU0YmFhNmFj
-Li41ZTI1NjM1MjliNWYgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L2ludGVs
-X3dvcmthcm91bmRzLmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvaW50ZWxfd29ya2Fy
-b3VuZHMuYwpAQCAtMTI1MCwxMyArMTI1MCwxMyBAQCB0Z2xfZ3Rfd29ya2Fyb3VuZHNfaW5pdChz
-dHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqaTkxNSwgc3RydWN0IGk5MTVfd2FfbGlzdCAqd2FsKQog
-CWdlbjEyX2d0X3dvcmthcm91bmRzX2luaXQoaTkxNSwgd2FsKTsKIAogCS8qIFdhXzE0MDk0MjA2
-MDQ6dGdsICovCi0JaWYgKElTX1RHTF9VWV9HVF9SRVZJRChpOTE1LCBUR0xfUkVWSURfQTAsIFRH
-TF9SRVZJRF9BMCkpCisJaWYgKElTX1RHTF9HVF9SRVZJRChpOTE1LCBUR0xfUkVWSURfQTAsIFRH
-TF9SRVZJRF9BMCkpCiAJCXdhX3dyaXRlX29yKHdhbCwKIAkJCSAgICBTVUJTTElDRV9VTklUX0xF
-VkVMX0NMS0dBVEUyLAogCQkJICAgIENQU1NVTklUX0NMS0dBVEVfRElTKTsKIAogCS8qIFdhXzE2
-MDcwODcwNTY6dGdsIGFsc28ga25vdyBhcyBCVUc6MTQwOTE4MDMzOCAqLwotCWlmIChJU19UR0xf
-VVlfR1RfUkVWSUQoaTkxNSwgVEdMX1JFVklEX0EwLCBUR0xfUkVWSURfQTApKQorCWlmIChJU19U
-R0xfR1RfUkVWSUQoaTkxNSwgVEdMX1JFVklEX0EwLCBUR0xfUkVWSURfQTApKQogCQl3YV93cml0
-ZV9vcih3YWwsCiAJCQkgICAgU0xJQ0VfVU5JVF9MRVZFTF9DTEtHQVRFLAogCQkJICAgIEwzX0NM
-S0dBVEVfRElTIHwgTDNfQ1IyWF9DTEtHQVRFX0RJUyk7CkBAIC0xNzM0LDcgKzE3MzQsNyBAQCBy
-Y3NfZW5naW5lX3dhX2luaXQoc3RydWN0IGludGVsX2VuZ2luZV9jcyAqZW5naW5lLCBzdHJ1Y3Qg
-aTkxNV93YV9saXN0ICp3YWwpCiAJc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmk5MTUgPSBlbmdp
-bmUtPmk5MTU7CiAKIAlpZiAoSVNfREcxX1JFVklEKGk5MTUsIERHMV9SRVZJRF9BMCwgREcxX1JF
-VklEX0EwKSB8fAotCSAgICBJU19UR0xfVVlfR1RfUkVWSUQoaTkxNSwgVEdMX1JFVklEX0EwLCBU
-R0xfUkVWSURfQTApKSB7CisJICAgIElTX1RHTF9HVF9SRVZJRChpOTE1LCBUR0xfUkVWSURfQTAs
-IFRHTF9SRVZJRF9BMCkpIHsKIAkJLyoKIAkJICogV2FfMTYwNzEzODMzNjp0Z2xbYTBdLGRnMVth
-MF0KIAkJICogV2FfMTYwNzA2Mzk4ODp0Z2xbYTBdLGRnMVthMF0KQEAgLTE3NDQsNyArMTc0NCw3
-IEBAIHJjc19lbmdpbmVfd2FfaW5pdChzdHJ1Y3QgaW50ZWxfZW5naW5lX2NzICplbmdpbmUsIHN0
-cnVjdCBpOTE1X3dhX2xpc3QgKndhbCkKIAkJCSAgICBHRU4xMl9ESVNBQkxFX1BPU0hfQlVTWV9G
-Rl9ET1BfQ0cpOwogCX0KIAotCWlmIChJU19UR0xfVVlfR1RfUkVWSUQoaTkxNSwgVEdMX1JFVklE
-X0EwLCBUR0xfUkVWSURfQTApKSB7CisJaWYgKElTX1RHTF9HVF9SRVZJRChpOTE1LCBUR0xfUkVW
-SURfQTAsIFRHTF9SRVZJRF9BMCkpIHsKIAkJLyoKIAkJICogV2FfMTYwNjY3OTEwMzp0Z2wKIAkJ
-ICogKHNlZSBhbHNvIFdhXzE2MDY2ODIxNjY6aWNsKQpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUv
-ZHJtL2k5MTUvaTkxNV9kcnYuaCBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfZHJ2LmgKaW5k
-ZXggMGEzZWU0ZjlkYzBhLi4zZDBlZjZiNjAzMzcgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2Ry
-bS9pOTE1L2k5MTVfZHJ2LmgKKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9kcnYuaApA
-QCAtMTU3MiwxNiArMTU3MiwzMCBAQCBlbnVtIHsKIAlUR0xfUkVWSURfRDAsCiB9OwogCi1leHRl
-cm4gY29uc3Qgc3RydWN0IGk5MTVfcmV2X3N0ZXBwaW5ncyB0Z2xfdXlfcmV2aWRzW107Ci1leHRl
-cm4gY29uc3Qgc3RydWN0IGk5MTVfcmV2X3N0ZXBwaW5ncyB0Z2xfcmV2aWRzW107CisjZGVmaW5l
-IFRHTF9VWV9SRVZJRFNfU0laRQk0CisjZGVmaW5lIFRHTF9SRVZJRFNfU0laRQkJMgorCitleHRl
-cm4gY29uc3Qgc3RydWN0IGk5MTVfcmV2X3N0ZXBwaW5ncyB0Z2xfdXlfcmV2aWRzW1RHTF9VWV9S
-RVZJRFNfU0laRV07CitleHRlcm4gY29uc3Qgc3RydWN0IGk5MTVfcmV2X3N0ZXBwaW5ncyB0Z2xf
-cmV2aWRzW1RHTF9SRVZJRFNfU0laRV07CiAKIHN0YXRpYyBpbmxpbmUgY29uc3Qgc3RydWN0IGk5
-MTVfcmV2X3N0ZXBwaW5ncyAqCiB0Z2xfcmV2aWRzX2dldChzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0
-ZSAqZGV2X3ByaXYpCiB7Ci0JaWYgKElTX1RHTF9VKGRldl9wcml2KSB8fCBJU19UR0xfWShkZXZf
-cHJpdikpCi0JCXJldHVybiAmdGdsX3V5X3Jldmlkc1tJTlRFTF9SRVZJRChkZXZfcHJpdildOwot
-CWVsc2UKLQkJcmV0dXJuICZ0Z2xfcmV2aWRzW0lOVEVMX1JFVklEKGRldl9wcml2KV07CisJdTgg
-cmV2aWQgPSBJTlRFTF9SRVZJRChkZXZfcHJpdik7CisJdTggc2l6ZTsKKwljb25zdCBzdHJ1Y3Qg
-aTkxNV9yZXZfc3RlcHBpbmdzICp0Z2xfcmV2aWRfdGJsOworCisJaWYgKElTX1RHTF9VKGRldl9w
-cml2KSB8fCBJU19UR0xfWShkZXZfcHJpdikpIHsKKwkJdGdsX3JldmlkX3RibCA9IHRnbF91eV9y
-ZXZpZHM7CisJCXNpemUgPSBBUlJBWV9TSVpFKHRnbF91eV9yZXZpZHMpOworCX0gZWxzZSB7CisJ
-CXRnbF9yZXZpZF90YmwgPSB0Z2xfcmV2aWRzOworCQlzaXplID0gQVJSQVlfU0laRSh0Z2xfcmV2
-aWRzKTsKKwl9CisKKwlyZXZpZCA9IG1pbl90KHU4LCByZXZpZCwgc2l6ZSAtIDEpOworCisJcmV0
-dXJuICZ0Z2xfcmV2aWRfdGJsW3JldmlkXTsKIH0KIAogI2RlZmluZSBJU19UR0xfRElTUF9SRVZJ
-RChwLCBzaW5jZSwgdW50aWwpIFwKQEAgLTE1ODksMTYgKzE2MDMsMTAgQEAgdGdsX3Jldmlkc19n
-ZXQoc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmRldl9wcml2KQogCSB0Z2xfcmV2aWRzX2dldChw
-KS0+ZGlzcF9zdGVwcGluZyA+PSAoc2luY2UpICYmIFwKIAkgdGdsX3Jldmlkc19nZXQocCktPmRp
-c3Bfc3RlcHBpbmcgPD0gKHVudGlsKSkKIAotI2RlZmluZSBJU19UR0xfVVlfR1RfUkVWSUQocCwg
-c2luY2UsIHVudGlsKSBcCi0JKChJU19UR0xfVShwKSB8fCBJU19UR0xfWShwKSkgJiYgXAotCSB0
-Z2xfdXlfcmV2aWRzW0lOVEVMX1JFVklEKHApXS5ndF9zdGVwcGluZyA+PSAoc2luY2UpICYmIFwK
-LQkgdGdsX3V5X3Jldmlkc1tJTlRFTF9SRVZJRChwKV0uZ3Rfc3RlcHBpbmcgPD0gKHVudGlsKSkK
-LQogI2RlZmluZSBJU19UR0xfR1RfUkVWSUQocCwgc2luY2UsIHVudGlsKSBcCiAJKElTX1RJR0VS
-TEFLRShwKSAmJiBcCi0JICEoSVNfVEdMX1UocCkgfHwgSVNfVEdMX1kocCkpICYmIFwKLQkgdGds
-X3Jldmlkc1tJTlRFTF9SRVZJRChwKV0uZ3Rfc3RlcHBpbmcgPj0gKHNpbmNlKSAmJiBcCi0JIHRn
-bF9yZXZpZHNbSU5URUxfUkVWSUQocCldLmd0X3N0ZXBwaW5nIDw9ICh1bnRpbCkpCisJIHRnbF9y
-ZXZpZHNfZ2V0KHApLT5ndF9zdGVwcGluZyA+PSAoc2luY2UpICYmIFwKKwkgdGdsX3Jldmlkc19n
-ZXQocCktPmd0X3N0ZXBwaW5nIDw9ICh1bnRpbCkpCiAKICNkZWZpbmUgUktMX1JFVklEX0EwCQkw
-eDAKICNkZWZpbmUgUktMX1JFVklEX0IwCQkweDEKLS0gCjIuMjcuMAoKX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJ
-bnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Au
-b3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
+On Wed, Nov 25, 2020 at 11:00:40PM -0800, Aditya Swarup wrote:
+>Fix TGL REVID macros to fetch correct display/gt stepping based
+>on SOC rev id from INTEL_REVID() macro. Previously, we were just
+>returning the first element of the revid array instead of using
+>the correct index based on SOC rev id.
+>
+>Fixes: ("drm/i915/tgl: Fix stepping WA matching")
+>Cc: Jos=E9 Roberto de Souza <jose.souza@intel.com>
+>Cc: Matt Roper <matthew.d.roper@intel.com>
+>Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+>Cc: Jani Nikula <jani.nikula@intel.com>
+>Cc: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+>Signed-off-by: Aditya Swarup <aditya.swarup@intel.com>
+
+
+Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
+
+Lucas De Marchi
+
+>---
+> drivers/gpu/drm/i915/i915_drv.h | 12 ++++++------
+> 1 file changed, 6 insertions(+), 6 deletions(-)
+>
+>diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_d=
+rv.h
+>index 15be8debae54..0a3ee4f9dc0a 100644
+>--- a/drivers/gpu/drm/i915/i915_drv.h
+>+++ b/drivers/gpu/drm/i915/i915_drv.h
+>@@ -1579,9 +1579,9 @@ static inline const struct i915_rev_steppings *
+> tgl_revids_get(struct drm_i915_private *dev_priv)
+> {
+> 	if (IS_TGL_U(dev_priv) || IS_TGL_Y(dev_priv))
+>-		return tgl_uy_revids;
+>+		return &tgl_uy_revids[INTEL_REVID(dev_priv)];
+> 	else
+>-		return tgl_revids;
+>+		return &tgl_revids[INTEL_REVID(dev_priv)];
+> }
+>
+> #define IS_TGL_DISP_REVID(p, since, until) \
+>@@ -1591,14 +1591,14 @@ tgl_revids_get(struct drm_i915_private *dev_priv)
+>
+> #define IS_TGL_UY_GT_REVID(p, since, until) \
+> 	((IS_TGL_U(p) || IS_TGL_Y(p)) && \
+>-	 tgl_uy_revids->gt_stepping >=3D (since) && \
+>-	 tgl_uy_revids->gt_stepping <=3D (until))
+>+	 tgl_uy_revids[INTEL_REVID(p)].gt_stepping >=3D (since) && \
+>+	 tgl_uy_revids[INTEL_REVID(p)].gt_stepping <=3D (until))
+>
+> #define IS_TGL_GT_REVID(p, since, until) \
+> 	(IS_TIGERLAKE(p) && \
+> 	 !(IS_TGL_U(p) || IS_TGL_Y(p)) && \
+>-	 tgl_revids->gt_stepping >=3D (since) && \
+>-	 tgl_revids->gt_stepping <=3D (until))
+>+	 tgl_revids[INTEL_REVID(p)].gt_stepping >=3D (since) && \
+>+	 tgl_revids[INTEL_REVID(p)].gt_stepping <=3D (until))
+>
+> #define RKL_REVID_A0		0x0
+> #define RKL_REVID_B0		0x1
+>-- =
+
+>2.27.0
+>
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
