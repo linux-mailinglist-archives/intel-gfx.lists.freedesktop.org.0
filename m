@@ -2,31 +2,38 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 717582C5D70
-	for <lists+intel-gfx@lfdr.de>; Thu, 26 Nov 2020 22:15:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D775B2C5D88
+	for <lists+intel-gfx@lfdr.de>; Thu, 26 Nov 2020 22:34:36 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A47596EACA;
-	Thu, 26 Nov 2020 21:15:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 89A6C6E9AA;
+	Thu, 26 Nov 2020 21:34:34 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B42796EACA
- for <intel-gfx@lists.freedesktop.org>; Thu, 26 Nov 2020 21:15:29 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CE8366E9AA
+ for <intel-gfx@lists.freedesktop.org>; Thu, 26 Nov 2020 21:34:32 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
-Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 23122587-1500050 
- for multiple; Thu, 26 Nov 2020 21:14:55 +0000
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Thu, 26 Nov 2020 21:14:53 +0000
-Message-Id: <20201126211453.15461-1-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20201126211317.15291-1-chris@chris-wilson.co.uk>
-References: <20201126211317.15291-1-chris@chris-wilson.co.uk>
+Received: from localhost (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
+ 23122683-1500050 for multiple; Thu, 26 Nov 2020 21:34:08 +0000
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915/display: Record the plane update times
- for debugging
+In-Reply-To: <ab9ebc5a-7d79-8003-c7bc-5cf0923983c6@linux.intel.com>
+References: <20201111155811.GB24657@xsang-OptiPlex-9020>
+ <160527763346.5566.3471508802857132043@jlahtine-mobl.ger.corp.intel.com>
+ <20201119072018.GA15197@xsang-OptiPlex-9020>
+ <160625087275.29168.7080737993781611765@build.alporthouse.com>
+ <ab9ebc5a-7d79-8003-c7bc-5cf0923983c6@linux.intel.com>
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Oliver Sang <oliver.sang@intel.com>,
+ Xing Zhengjun <zhengjun.xing@linux.intel.com>
+Date: Thu, 26 Nov 2020 21:34:07 +0000
+Message-ID: <160642644736.15379.9850669928715684163@build.alporthouse.com>
+User-Agent: alot/0.9
+Subject: Re: [Intel-gfx] [drm/i915/gem] 59dd13ad31:
+ phoronix-test-suite.jxrendermark.RadialGradientPaint.1024x1024.operations_per_second
+ -54.0% regression
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,145 +46,96 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Chris Wilson <chris@chris-wilson.co.uk>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: feng.tang@intel.com, tiejun.li@intel.com, guangli.li@intel.com,
+ frank.du@intel.com, guobing.chen@intel.com, jiebin.sun@intel.com,
+ Shuhua.Fan@intel.com, Matthew Auld <matthew.auld@intel.com>,
+ fan.zhao@intel.com, ying.huang@intel.com, shan.kang@intel.com,
+ zhengjun.xing@intel.com, Wenhuan.Huang@intel.com,
+ intel-gfx@lists.freedesktop.org, lkp@lists.01.org, ming.a.chen@intel.com,
+ yu.ma@intel.com, jessica.ji@intel.com, dapeng1.mi@intel.com,
+ wangyang.guo@intel.com, LKML <linux-kernel@vger.kernel.org>,
+ gengxin.xie@intel.com
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-U2luY2Ugd2UgdHJ5IGFuZCBlc3RpbWF0ZSBob3cgbG9uZyB3ZSByZXF1aXJlIHRvIHVwZGF0ZSB0
-aGUgcmVnaXN0ZXJzIHRvCnBlcmZvcm0gYSBwbGFuZSB1cGRhdGUsIGl0IGlzIG9mIHZpdGFsIGlt
-cG9ydGFuY2UgdGhhdCB3ZSBtZWFzdXJlIHRoZQpkaXN0cmlidXRpb24gb2YgcGxhbmUgdXBkYXRl
-cyB0byBiZXR0ZXIgZ3VpZGUgb3VyIGVzdGltYXRlLiBJZiB3ZQp1bmRlcmVzdGltYXRlIGhvdyBs
-b25nIGl0IHRha2VzIHRvIHBlcmZvcm0gdGhlIHBsYW5lIHVwZGF0ZSwgd2UgbWF5CnNsaXAgaW50
-byB0aGUgbmV4dCBzY2Fub3V0IGZyYW1lIGNhdXNpbmcgYSB0ZWFyLiBJZiB3ZSBvdmVyZXN0aW1h
-dGUsIHdlCm1heSB1bm5lY2Vzc2FyaWx5IGRlbGF5IHRoZSB1cGRhdGUgdG8gdGhlIG5leHQgZnJh
-bWUsIGNhdXNpbmcgdmlzaWJsZQpqaXR0ZXIuCgpSZXBsYWNlIHRoZSB3YXJuaW5nIHRoYXQgd2Ug
-ZXhjZWVkIHNvbWUgYXJiaXRyYXJ5IHRocmVzaG9sZCBmb3IgdGhlCnZibGFuayB1cGRhdGUgd2l0
-aCBhIGhpc3RvZ3JhbSBmb3IgZGVidWdmcy4KCkNsb3NlczogaHR0cHM6Ly9naXRsYWIuZnJlZWRl
-c2t0b3Aub3JnL2RybS9pbnRlbC8tL2lzc3Vlcy8xOTgyClNpZ25lZC1vZmYtYnk6IENocmlzIFdp
-bHNvbiA8Y2hyaXNAY2hyaXMtd2lsc29uLmNvLnVrPgpDYzogSmFuaSBOaWt1bGEgPGphbmkubmlr
-dWxhQGxpbnV4LmludGVsLmNvbT4KQ2M6IFZpbGxlIFN5cmrDpGzDpCA8dmlsbGUuc3lyamFsYUBs
-aW51eC5pbnRlbC5jb20+Ci0tLQogLi4uL2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheV9k
-ZWJ1Z2ZzLmMgIHwgNDggKysrKysrKysrKysrKysrKysrCiAuLi4vZHJtL2k5MTUvZGlzcGxheS9p
-bnRlbF9kaXNwbGF5X3R5cGVzLmggICAgfCAgNyArKysKIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rp
-c3BsYXkvaW50ZWxfc3ByaXRlLmMgICB8IDQ5ICsrKysrKysrKysrKy0tLS0tLS0KIGRyaXZlcnMv
-Z3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfc3ByaXRlLmggICB8IDEwICsrKysKIDQgZmlsZXMg
-Y2hhbmdlZCwgOTcgaW5zZXJ0aW9ucygrKSwgMTcgZGVsZXRpb25zKC0pCgpkaWZmIC0tZ2l0IGEv
-ZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5X2RlYnVnZnMuYyBiL2Ry
-aXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheV9kZWJ1Z2ZzLmMKaW5kZXgg
-Y2E0MWU4YzAwYWQ3Li5mZDFhOTdiOWU2NTMgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9p
-OTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheV9kZWJ1Z2ZzLmMKKysrIGIvZHJpdmVycy9ncHUvZHJt
-L2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5X2RlYnVnZnMuYwpAQCAtMTgsNiArMTgsNyBAQAog
-I2luY2x1ZGUgImludGVsX3BtLmgiCiAjaW5jbHVkZSAiaW50ZWxfcHNyLmgiCiAjaW5jbHVkZSAi
-aW50ZWxfc2lkZWJhbmQuaCIKKyNpbmNsdWRlICJpbnRlbF9zcHJpdGUuaCIKIAogc3RhdGljIGlu
-bGluZSBzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqbm9kZV90b19pOTE1KHN0cnVjdCBkcm1faW5m
-b19ub2RlICpub2RlKQogewpAQCAtODY1LDYgKzg2Niw1MSBAQCBzdGF0aWMgdm9pZCBpbnRlbF9z
-Y2FsZXJfaW5mbyhzdHJ1Y3Qgc2VxX2ZpbGUgKm0sIHN0cnVjdCBpbnRlbF9jcnRjICpjcnRjKQog
-CX0KIH0KIAorI2lmIElTX0VOQUJMRUQoQ09ORklHX0RSTV9JOTE1X0RFQlVHX1ZCTEFOS19FVkFE
-RSkKK3N0YXRpYyB2b2lkIGNydGNfdmJsYW5rX2luZm8oc3RydWN0IHNlcV9maWxlICptLCBzdHJ1
-Y3QgaW50ZWxfY3J0YyAqY3J0YykKK3sKKwljaGFyIGJ1ZltBUlJBWV9TSVpFKGNydGMtPmRlYnVn
-LnZibF90aW1lcykgKyAxXSA9IHt9OworCWludCBoLCByb3csIG1heDsKKwl1NjQgY291bnQ7CisK
-KwltYXggPSAwOworCWNvdW50ID0gMDsKKwlmb3IgKGggPSAwOyBoIDwgQVJSQVlfU0laRShjcnRj
-LT5kZWJ1Zy52YmxfdGltZXMpOyBoKyspIHsKKwkJaWYgKGNydGMtPmRlYnVnLnZibF90aW1lc1to
-XSA+IG1heCkKKwkJCW1heCA9IGNydGMtPmRlYnVnLnZibF90aW1lc1toXTsKKwkJY291bnQgKz0g
-Y3J0Yy0+ZGVidWcudmJsX3RpbWVzW2hdOworCX0KKwlzZXFfcHJpbnRmKG0sICJcdFVwZGF0ZXM6
-ICVsbHVcbiIsIGNvdW50KTsKKwlpZiAoIWNvdW50KQorCQlyZXR1cm47CisKKwltZW1zZXQoYnVm
-LCAnLScsIHNpemVvZihidWYpIC0gMSk7CisJc2VxX3ByaW50ZihtLCAiXHQgIHwlc3xcbiIsIGJ1
-Zik7CisKKwlmb3IgKHJvdyA9IGlsb2cyKG1heCkgLSAxOyByb3c7IHJvdy0tKSB7CisJCW1lbXNl
-dChidWYsICcgJywgc2l6ZW9mKGJ1ZikgLSAxKTsKKwkJZm9yIChoID0gMDsgaCA8IEFSUkFZX1NJ
-WkUoY3J0Yy0+ZGVidWcudmJsX3RpbWVzKTsgaCsrKSB7CisJCQlpZiAoaWxvZzIoY3J0Yy0+ZGVi
-dWcudmJsX3RpbWVzW2hdKSA+PSByb3cpCisJCQkJYnVmW2hdID0gJyonOworCQl9CisJCXNlcV9w
-cmludGYobSwgIlx0ICB8JXN8XG4iLCBidWYpOworCX0KKworCW1lbXNldChidWYsICctJywgc2l6
-ZW9mKGJ1ZikgLSAxKTsKKwlzZXFfcHJpbnRmKG0sICJcdCAgfCVzfFxuIiwgYnVmKTsKKwlzZXFf
-cHJpbnRmKG0sICJcdCAgICAxdXMgICAgIChsb2cpICAgICAgMW1zXG4iKTsKKworCXNlcV9wcmlu
-dGYobSwgIlx0TWluIHVwZGF0ZTogJWxsdW5zXG4iLCBjcnRjLT5kZWJ1Zy5taW5fdmJsX3RpbWUp
-OworCXNlcV9wcmludGYobSwgIlx0TWF4IHVwZGF0ZTogJWxsdW5zXG4iLCBjcnRjLT5kZWJ1Zy5t
-YXhfdmJsX3RpbWUpOworCXNlcV9wcmludGYobSwgIlx0QXZlcmFnZSB1cGRhdGU6ICVsbHVuc1xu
-IiwKKwkJICAgZGl2NjRfdTY0KGNydGMtPmRlYnVnLnN1bV92YmxfdGltZSwgIGNvdW50KSk7CisJ
-c2VxX3ByaW50ZihtLCAiXHRPdmVycnVucyA+ICV1dXM6ICVsdVxuIiwKKwkJICAgVkJMQU5LX0VW
-QVNJT05fVElNRV9VUywgY3J0Yy0+ZGVidWcub3Zlcl92YmxfdGltZSk7Cit9CisjZWxzZQorc3Rh
-dGljIHZvaWQgY3J0Y192YmxhbmtfaW5mbyhzdHJ1Y3Qgc2VxX2ZpbGUgKm0sIHN0cnVjdCBpbnRl
-bF9jcnRjICpjcnRjKSB7fQorI2VuZGlmCisKIHN0YXRpYyB2b2lkIGludGVsX2NydGNfaW5mbyhz
-dHJ1Y3Qgc2VxX2ZpbGUgKm0sIHN0cnVjdCBpbnRlbF9jcnRjICpjcnRjKQogewogCXN0cnVjdCBk
-cm1faTkxNV9wcml2YXRlICpkZXZfcHJpdiA9IG5vZGVfdG9faTkxNShtLT5wcml2YXRlKTsKQEAg
-LTkwNyw2ICs5NTMsOCBAQCBzdGF0aWMgdm9pZCBpbnRlbF9jcnRjX2luZm8oc3RydWN0IHNlcV9m
-aWxlICptLCBzdHJ1Y3QgaW50ZWxfY3J0YyAqY3J0YykKIAlzZXFfcHJpbnRmKG0sICJcdHVuZGVy
-cnVuIHJlcG9ydGluZzogY3B1PSVzIHBjaD0lc1xuIiwKIAkJICAgeWVzbm8oIWNydGMtPmNwdV9m
-aWZvX3VuZGVycnVuX2Rpc2FibGVkKSwKIAkJICAgeWVzbm8oIWNydGMtPnBjaF9maWZvX3VuZGVy
-cnVuX2Rpc2FibGVkKSk7CisKKwljcnRjX3ZibGFua19pbmZvKG0sIGNydGMpOwogfQogCiBzdGF0
-aWMgaW50IGk5MTVfZGlzcGxheV9pbmZvKHN0cnVjdCBzZXFfZmlsZSAqbSwgdm9pZCAqdW51c2Vk
-KQpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5
-X3R5cGVzLmggYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXlfdHlw
-ZXMuaAppbmRleCBjZTgyZDY1NGQwZjIuLmVlZjNiMWZhN2U5MiAxMDA2NDQKLS0tIGEvZHJpdmVy
-cy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5X3R5cGVzLmgKKysrIGIvZHJpdmVy
-cy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5X3R5cGVzLmgKQEAgLTExODYsNiAr
-MTE4NiwxMyBAQCBzdHJ1Y3QgaW50ZWxfY3J0YyB7CiAJCWt0aW1lX3Qgc3RhcnRfdmJsX3RpbWU7
-CiAJCWludCBtaW5fdmJsLCBtYXhfdmJsOwogCQlpbnQgc2NhbmxpbmVfc3RhcnQ7CisjaWZkZWYg
-Q09ORklHX0RSTV9JOTE1X0RFQlVHX1ZCTEFOS19FVkFERQorCQl1NjQgbWluX3ZibF90aW1lOwor
-CQl1NjQgbWF4X3ZibF90aW1lOworCQl1NjQgc3VtX3ZibF90aW1lOworCQl1bnNpZ25lZCBsb25n
-IG92ZXJfdmJsX3RpbWU7CisJCXVuc2lnbmVkIGludCB2YmxfdGltZXNbMjFdOyAvKiBbMXVzLCAx
-bXNdICovCisjZW5kaWYKIAl9IGRlYnVnOwogCiAJLyogc2NhbGVycyBhdmFpbGFibGUgb24gdGhp
-cyBjcnRjICovCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVs
-X3Nwcml0ZS5jIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9zcHJpdGUuYwpp
-bmRleCAwMTlhMmQ2ZDgwN2EuLmY2ZTE4NjFmM2MzMSAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUv
-ZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9zcHJpdGUuYworKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkx
-NS9kaXNwbGF5L2ludGVsX3Nwcml0ZS5jCkBAIC02MSwxNCArNjEsNiBAQCBpbnQgaW50ZWxfdXNl
-Y3NfdG9fc2NhbmxpbmVzKGNvbnN0IHN0cnVjdCBkcm1fZGlzcGxheV9tb2RlICphZGp1c3RlZF9t
-b2RlLAogCQkJICAgIDEwMDAgKiBhZGp1c3RlZF9tb2RlLT5jcnRjX2h0b3RhbCk7CiB9CiAKLS8q
-IEZJWE1FOiBXZSBzaG91bGQgaW5zdGVhZCBvbmx5IHRha2Ugc3BpbmxvY2tzIG9uY2UgZm9yIHRo
-ZSBlbnRpcmUgdXBkYXRlCi0gKiBpbnN0ZWFkIG9mIG9uY2UgcGVyIG1taW8uICovCi0jaWYgSVNf
-RU5BQkxFRChDT05GSUdfUFJPVkVfTE9DS0lORykKLSNkZWZpbmUgVkJMQU5LX0VWQVNJT05fVElN
-RV9VUyAyNTAKLSNlbHNlCi0jZGVmaW5lIFZCTEFOS19FVkFTSU9OX1RJTUVfVVMgMTAwCi0jZW5k
-aWYKLQogLyoqCiAgKiBpbnRlbF9waXBlX3VwZGF0ZV9zdGFydCgpIC0gc3RhcnQgdXBkYXRlIG9m
-IGEgc2V0IG9mIGRpc3BsYXkgcmVnaXN0ZXJzCiAgKiBAbmV3X2NydGNfc3RhdGU6IHRoZSBuZXcg
-Y3J0YyBzdGF0ZQpAQCAtMTg3LDYgKzE3OSwzNiBAQCB2b2lkIGludGVsX3BpcGVfdXBkYXRlX3N0
-YXJ0KGNvbnN0IHN0cnVjdCBpbnRlbF9jcnRjX3N0YXRlICpuZXdfY3J0Y19zdGF0ZSkKIAlsb2Nh
-bF9pcnFfZGlzYWJsZSgpOwogfQogCisjaWYgSVNfRU5BQkxFRChDT05GSUdfRFJNX0k5MTVfREVC
-VUdfVkJMQU5LX0VWQURFKQorc3RhdGljIHZvaWQgZGJnX3ZibGFua19ldmFkZShzdHJ1Y3QgaW50
-ZWxfY3J0YyAqY3J0Yywga3RpbWVfdCBlbmQpCit7CisJdTY0IGRlbHRhID0ga3RpbWVfdG9fbnMo
-a3RpbWVfc3ViKGVuZCwgY3J0Yy0+ZGVidWcuc3RhcnRfdmJsX3RpbWUpKTsKKwl1bnNpZ25lZCBp
-bnQgaDsKKworCWggPSBpbG9nMihkZWx0YSA+PiA5KTsKKwlpZiAoaCA+PSBBUlJBWV9TSVpFKGNy
-dGMtPmRlYnVnLnZibF90aW1lcykpCisJCWggPSBBUlJBWV9TSVpFKGNydGMtPmRlYnVnLnZibF90
-aW1lcykgLSAxOworCWNydGMtPmRlYnVnLnZibF90aW1lc1toXSsrOworCisJY3J0Yy0+ZGVidWcu
-c3VtX3ZibF90aW1lICs9IGRlbHRhOworCWlmICghY3J0Yy0+ZGVidWcubWluX3ZibF90aW1lIHx8
-CisJICAgIGRlbHRhIDwgY3J0Yy0+ZGVidWcubWluX3ZibF90aW1lKQorCQljcnRjLT5kZWJ1Zy5t
-aW5fdmJsX3RpbWUgPSBkZWx0YTsKKwlpZiAoZGVsdGEgPiBjcnRjLT5kZWJ1Zy5tYXhfdmJsX3Rp
-bWUpCisJCWNydGMtPmRlYnVnLm1heF92YmxfdGltZSA9IGRlbHRhOworCisJaWYgKGRlbHRhID4g
-MTAwMCAqIFZCTEFOS19FVkFTSU9OX1RJTUVfVVMpIHsKKwkJZHJtX2RiZ19rbXMoIkF0b21pYyB1
-cGRhdGUgb24gcGlwZSAoJWMpIHRvb2sgJWxsZCB1cywgbWF4IHRpbWUgdW5kZXIgZXZhc2lvbiBp
-cyAldSB1c1xuIiwKKwkJCSAgICBwaXBlX25hbWUoY3J0Yy0+cGlwZSksCisJCQkgICAgZGl2X3U2
-NChkZWx0YSwgMTAwMCksCisJCQkgICAgVkJMQU5LX0VWQVNJT05fVElNRV9VUyk7CisJCWNydGMt
-PmRlYnVnLm92ZXJfdmJsX3RpbWUrKzsKKwl9Cit9CisjZWxzZQorc3RhdGljIHZvaWQgZGJnX3Zi
-bGFua19ldmFkZShzdHJ1Y3QgaW50ZWxfY3J0YyAqY3J0Yywga3RpbWVfdCBlbmQpIHt9CisjZW5k
-aWYKKwogLyoqCiAgKiBpbnRlbF9waXBlX3VwZGF0ZV9lbmQoKSAtIGVuZCB1cGRhdGUgb2YgYSBz
-ZXQgb2YgZGlzcGxheSByZWdpc3RlcnMKICAqIEBuZXdfY3J0Y19zdGF0ZTogdGhlIG5ldyBjcnRj
-IHN0YXRlCkBAIC0yNDksMTUgKzI3MSw4IEBAIHZvaWQgaW50ZWxfcGlwZV91cGRhdGVfZW5kKHN0
-cnVjdCBpbnRlbF9jcnRjX3N0YXRlICpuZXdfY3J0Y19zdGF0ZSkKIAkJCWNydGMtPmRlYnVnLm1p
-bl92YmwsIGNydGMtPmRlYnVnLm1heF92YmwsCiAJCQljcnRjLT5kZWJ1Zy5zY2FubGluZV9zdGFy
-dCwgc2NhbmxpbmVfZW5kKTsKIAl9Ci0jaWZkZWYgQ09ORklHX0RSTV9JOTE1X0RFQlVHX1ZCTEFO
-S19FVkFERQotCWVsc2UgaWYgKGt0aW1lX3VzX2RlbHRhKGVuZF92YmxfdGltZSwgY3J0Yy0+ZGVi
-dWcuc3RhcnRfdmJsX3RpbWUpID4KLQkJIFZCTEFOS19FVkFTSU9OX1RJTUVfVVMpCi0JCWRybV93
-YXJuKCZkZXZfcHJpdi0+ZHJtLAotCQkJICJBdG9taWMgdXBkYXRlIG9uIHBpcGUgKCVjKSB0b29r
-ICVsbGQgdXMsIG1heCB0aW1lIHVuZGVyIGV2YXNpb24gaXMgJXUgdXNcbiIsCi0JCQkgcGlwZV9u
-YW1lKHBpcGUpLAotCQkJIGt0aW1lX3VzX2RlbHRhKGVuZF92YmxfdGltZSwgY3J0Yy0+ZGVidWcu
-c3RhcnRfdmJsX3RpbWUpLAotCQkJIFZCTEFOS19FVkFTSU9OX1RJTUVfVVMpOwotI2VuZGlmCisK
-KwlkYmdfdmJsYW5rX2V2YWRlKGNydGMsIGVuZF92YmxfdGltZSk7CiB9CiAKIGludCBpbnRlbF9w
-bGFuZV9jaGVja19zdHJpZGUoY29uc3Qgc3RydWN0IGludGVsX3BsYW5lX3N0YXRlICpwbGFuZV9z
-dGF0ZSkKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfc3By
-aXRlLmggYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX3Nwcml0ZS5oCmluZGV4
-IGNkMjEwNGJhMWNhMS4uNzYxMjZkZDhkNTg0IDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0v
-aTkxNS9kaXNwbGF5L2ludGVsX3Nwcml0ZS5oCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rp
-c3BsYXkvaW50ZWxfc3ByaXRlLmgKQEAgLTE3LDYgKzE3LDE2IEBAIHN0cnVjdCBkcm1faTkxNV9w
-cml2YXRlOwogc3RydWN0IGludGVsX2NydGNfc3RhdGU7CiBzdHJ1Y3QgaW50ZWxfcGxhbmVfc3Rh
-dGU7CiAKKy8qCisgKiBGSVhNRTogV2Ugc2hvdWxkIGluc3RlYWQgb25seSB0YWtlIHNwaW5sb2Nr
-cyBvbmNlIGZvciB0aGUgZW50aXJlIHVwZGF0ZQorICogaW5zdGVhZCBvZiBvbmNlIHBlciBtbWlv
-LgorICovCisjaWYgSVNfRU5BQkxFRChDT05GSUdfUFJPVkVfTE9DS0lORykKKyNkZWZpbmUgVkJM
-QU5LX0VWQVNJT05fVElNRV9VUyAyNTAKKyNlbHNlCisjZGVmaW5lIFZCTEFOS19FVkFTSU9OX1RJ
-TUVfVVMgMTAwCisjZW5kaWYKKwogaW50IGludGVsX3VzZWNzX3RvX3NjYW5saW5lcyhjb25zdCBz
-dHJ1Y3QgZHJtX2Rpc3BsYXlfbW9kZSAqYWRqdXN0ZWRfbW9kZSwKIAkJCSAgICAgaW50IHVzZWNz
-KTsKIHN0cnVjdCBpbnRlbF9wbGFuZSAqaW50ZWxfc3ByaXRlX3BsYW5lX2NyZWF0ZShzdHJ1Y3Qg
-ZHJtX2k5MTVfcHJpdmF0ZSAqZGV2X3ByaXYsCi0tIAoyLjIwLjEKCl9fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50
-ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9y
-Zy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
+Quoting Xing Zhengjun (2020-11-26 01:44:55)
+> 
+> 
+> On 11/25/2020 4:47 AM, Chris Wilson wrote:
+> > Quoting Oliver Sang (2020-11-19 07:20:18)
+> >> On Fri, Nov 13, 2020 at 04:27:13PM +0200, Joonas Lahtinen wrote:
+> >>> Hi,
+> >>>
+> >>> Could you add intel-gfx@lists.freedesktop.org into reports going
+> >>> forward.
+> >>>
+> >>> Quoting kernel test robot (2020-11-11 17:58:11)
+> >>>>
+> >>>> Greeting,
+> >>>>
+> >>>> FYI, we noticed a -54.0% regression of phoronix-test-suite.jxrendermark.RadialGradientPaint.1024x1024.operations_per_second due to commit:
+> >>>
+> >>> How many runs are there on the bad version to ensure the bisect is
+> >>> repeatable?
+> >>
+> >> test 4 times.
+> >> zxing@inn:/result/phoronix-test-suite/performance-true-Radial_Gradient_Paint-1024x1024-jxrendermark-1.2.4-ucode=0xd6-monitor=da39a3ee/lkp-cfl-d1/debian-x86_64-phoronix/x86_64-rhel-8.3/gcc-9/59dd13ad310793757e34afa489dd6fc8544fc3da$ grep -r "operations_per_second" */stats.json
+> >> 0/stats.json: "phoronix-test-suite.jxrendermark.RadialGradientPaint.1024x1024.operations_per_second": 4133.487932,
+> >> 1/stats.json: "phoronix-test-suite.jxrendermark.RadialGradientPaint.1024x1024.operations_per_second": 4120.421503,
+> >> 2/stats.json: "phoronix-test-suite.jxrendermark.RadialGradientPaint.1024x1024.operations_per_second": 4188.414835,
+> >> 3/stats.json: "phoronix-test-suite.jxrendermark.RadialGradientPaint.1024x1024.operations_per_second": 4068.549514,
+> > 
+> > a w/o revert (drm-tip)
+> > b w/ revert
+> > +mB----------------------------------------------------------------------------+
+> > |                             ..b                                              |
+> > |                             ..b.aa                                           |
+> > |                             ....a.a                                          |
+> > |                             ....a.a                                          |
+> > |                      b  b  ........a                                         |
+> > |                   b  b  b b......... a                                       |
+> > |                   b  bb bbb...........                                       |
+> > |b               ab bbab.bb.b............ba b a a            ab               a|
+> > |                             |__A__|                                          |
+> > |                             |MA_|                                            |
+> > +------------------------------------------------------------------------------+
+> >      N                Min           Max        Median           Avg        Stddev
+> > a 120          3621.8761     7356.4442     4606.7895     4607.9132     156.17693
+> > b 120          2664.0563     6359.9686     4519.5036     4534.4463     95.471121
+> > 
+> > The patch is not expected to have any impact on the machine you are testing on.
+> > -Chris
+> > 
+> 
+> What's your code base?
+> For my side:
+> 1) sync the code to the head of Linux mainline
+> 2) git reset --hard 59dd13ad31
+> 3) git revert 59dd13ad3107
+> We compare the test result of commit 59dd13ad3107 (step 2) and 
+> 2052847b06f8 (step 3, revert 59dd13ad3107), the regression should 
+> related with 59dd13ad3107. Each test case we run 5 times.
+
+a 59dd13ad31
+b revert
++mB----------------------------------------------------------------------------+
+|                        a                                                     |
+|                       aa                                                     |
+|                     .b....ba                                                 |
+|                     .b....baa    b                                           |
+|                     .........b . b   b                                       |
+|                a   b.......... ..bb  b        b                              |
+|              b a   b.............b.a b        b                              |
+|a    a  b.    .aaa..b.............b..b....ab   b     a                       .|
+|                      |__A__|                                                 |
+|                      |___A_____|                                             |
++------------------------------------------------------------------------------+
+    N                Min           Max        Median           Avg        Stddev
+a 120          3658.3435     6363.7812     4527.4406      4536.612     86.095459
+b 120          3928.9643      6375.829     4576.0482     4585.4224      157.284
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
