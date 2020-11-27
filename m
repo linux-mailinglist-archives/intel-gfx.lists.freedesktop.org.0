@@ -2,31 +2,43 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4754B2C65EE
-	for <lists+intel-gfx@lfdr.de>; Fri, 27 Nov 2020 13:50:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9231F2C6626
+	for <lists+intel-gfx@lfdr.de>; Fri, 27 Nov 2020 14:02:13 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 72E196ED02;
-	Fri, 27 Nov 2020 12:50:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 739A889B06;
+	Fri, 27 Nov 2020 13:02:10 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E20DE6ECEF
- for <intel-gfx@lists.freedesktop.org>; Fri, 27 Nov 2020 12:50:31 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 23132724-1500050 
- for <intel-gfx@lists.freedesktop.org>; Fri, 27 Nov 2020 12:50:27 +0000
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Fri, 27 Nov 2020 12:50:27 +0000
-Message-Id: <20201127125027.27674-2-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20201127125027.27674-1-chris@chris-wilson.co.uk>
-References: <20201127125027.27674-1-chris@chris-wilson.co.uk>
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 60EA889B06
+ for <intel-gfx@lists.freedesktop.org>; Fri, 27 Nov 2020 13:02:09 +0000 (UTC)
+IronPort-SDR: /1J33CGd6fDu7pYLJKd88Uap6FFKOoSkWAMXm2Wk2SoLS1G7fi13K2y4+TGczy9D46pZSPpCFw
+ bsj+6mWtniCw==
+X-IronPort-AV: E=McAfee;i="6000,8403,9817"; a="172488236"
+X-IronPort-AV: E=Sophos;i="5.78,374,1599548400"; d="scan'208";a="172488236"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Nov 2020 05:02:08 -0800
+IronPort-SDR: N+rdNr6VIZxGU1FsvqoC+RrAts/w1gg4ljh1g4qMCACpx2ZRkyHQP1W6yEB2MTAQ/iqfr+Pu4U
+ C9zGqsmuSpLA==
+X-IronPort-AV: E=Sophos;i="5.78,374,1599548400"; d="scan'208";a="363157270"
+Received: from jmikkola-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.252.21.161])
+ by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Nov 2020 05:02:00 -0800
 MIME-Version: 1.0
-Subject: [Intel-gfx] [CI 2/2] drm/i915/gt: ce->inflight updates are now
- serialised
+In-Reply-To: <20201124060755.1405602-4-ira.weiny@intel.com>
+References: <20201124060755.1405602-1-ira.weiny@intel.com>
+ <20201124060755.1405602-4-ira.weiny@intel.com>
+From: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+To: Andrew Morton <akpm@linux-foundation.org>, ira.weiny@intel.com
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Message-ID: <160648211578.10416.3269409785516897908@jlahtine-mobl.ger.corp.intel.com>
+User-Agent: alot/0.8.1
+Date: Fri, 27 Nov 2020 15:01:56 +0200
+Subject: Re: [Intel-gfx] [PATCH 03/17] drivers/gpu: Convert to mem*_page()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,150 +51,177 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Chao Yu <yuchao0@huawei.com>, Alexei Starovoitov <ast@kernel.org>, David Howells <dhowells@redhat.com>, Chris Mason <clm@fb.com>, Kirti Wankhede <kwankhede@nvidia.com>, Ira Weiny <ira.weiny@intel.com>, Dan Williams <dan.j.williams@intel.com>, Christoph Hellwig <hch@infradead.org>, Daniel Borkmann <daniel@iogearbox.net>, Matthew Wilcox <willy@infradead.org>, Eric Biggers <ebiggers@kernel.org>, intel-gfx@lists.freedesktop.org, Josef Bacik <josef@toxicpanda.com>, Jérôme Glisse <jglisse@redhat.com>, Brian King <brking@us.ibm.com>, Al Viro <viro@zeniv.linux.org.uk>, David Sterba <dsterba@suse.com>, Jaegeuk Kim <jaegeuk@kernel.org>, Thomas Gleixner <tglx@linutronix.de>, "Martin K. Petersen" <martin.petersen@oracle.com>, Nicolas Pitre <nico@fluxnic.net>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Dave Hansen <dave.hansen@intel.com>, linux-kernel@vger.kernel.org, Steve French <sfrench@samba.org>, Luis Chamberlain <mcgrof@kernel.org>, linux-fsdevel@vger.kernel.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Since schedule-in and schedule-out are now both always under the tasklet
-bitlock, we can reduce the individual atomic operations to simple
-instructions and worry less.
++ intel-gfx mailing list
 
-This notably eliminates the race observed with intel_context_inflight in
-__engine_unpark().
+Quoting ira.weiny@intel.com (2020-11-24 08:07:41)
+> From: Ira Weiny <ira.weiny@intel.com>
+> 
+> The pattern of kmap/mem*/kunmap is repeated.  Use the new mem*_page()
+> calls instead.
+> 
+> Cc: Patrik Jakobsson <patrik.r.jakobsson@gmail.com>
+> Cc: Jani Nikula <jani.nikula@linux.intel.com>
+> Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> Signed-off-by: Ira Weiny <ira.weiny@intel.com>
+> ---
+>  drivers/gpu/drm/gma500/gma_display.c      | 7 +++----
+>  drivers/gpu/drm/gma500/mmu.c              | 4 ++--
+>  drivers/gpu/drm/i915/gem/i915_gem_shmem.c | 6 ++----
+>  drivers/gpu/drm/i915/gt/intel_gtt.c       | 9 ++-------
+>  drivers/gpu/drm/i915/gt/shmem_utils.c     | 8 +++-----
 
-Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/2583
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
----
- drivers/gpu/drm/i915/gt/intel_lrc.c | 52 ++++++++++++++---------------
- 1 file changed, 25 insertions(+), 27 deletions(-)
+Are you looking to merge all these from the same tree, or first merge
+the first patch and then trickle the rest through their own trees?
+Our last -next PR was already sent for i915, so I would queue this
+only for 5.12.
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
-index 49a80f940e73..3a6a9539b54e 100644
---- a/drivers/gpu/drm/i915/gt/intel_lrc.c
-+++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
-@@ -1358,11 +1358,11 @@ __execlists_schedule_in(struct i915_request *rq)
- 		ce->lrc.ccid = ce->tag;
- 	} else {
- 		/* We don't need a strict matching tag, just different values */
--		unsigned int tag = ffs(READ_ONCE(engine->context_tag));
-+		unsigned int tag = __ffs(engine->context_tag);
- 
--		GEM_BUG_ON(tag == 0 || tag >= BITS_PER_LONG);
--		clear_bit(tag - 1, &engine->context_tag);
--		ce->lrc.ccid = tag << (GEN11_SW_CTX_ID_SHIFT - 32);
-+		GEM_BUG_ON(tag >= BITS_PER_LONG);
-+		__clear_bit(tag, &engine->context_tag);
-+		ce->lrc.ccid = (1 + tag) << (GEN11_SW_CTX_ID_SHIFT - 32);
- 
- 		BUILD_BUG_ON(BITS_PER_LONG > GEN12_MAX_CONTEXT_HW_ID);
- 	}
-@@ -1375,6 +1375,8 @@ __execlists_schedule_in(struct i915_request *rq)
- 	execlists_context_status_change(rq, INTEL_CONTEXT_SCHEDULE_IN);
- 	intel_engine_context_in(engine);
- 
-+	CE_TRACE(ce, "schedule-in, ccid:%x\n", ce->lrc.ccid);
-+
- 	return engine;
- }
- 
-@@ -1386,13 +1388,10 @@ static inline void execlists_schedule_in(struct i915_request *rq, int idx)
- 	GEM_BUG_ON(!intel_engine_pm_is_awake(rq->engine));
- 	trace_i915_request_in(rq, idx);
- 
--	old = READ_ONCE(ce->inflight);
--	do {
--		if (!old) {
--			WRITE_ONCE(ce->inflight, __execlists_schedule_in(rq));
--			break;
--		}
--	} while (!try_cmpxchg(&ce->inflight, &old, ptr_inc(old)));
-+	old = ce->inflight;
-+	if (!old)
-+		old = __execlists_schedule_in(rq);
-+	WRITE_ONCE(ce->inflight, ptr_inc(old));
- 
- 	GEM_BUG_ON(intel_context_inflight(ce) != rq->engine);
- }
-@@ -1406,12 +1405,11 @@ static void kick_siblings(struct i915_request *rq, struct intel_context *ce)
- 		tasklet_hi_schedule(&ve->base.execlists.tasklet);
- }
- 
--static inline void
--__execlists_schedule_out(struct i915_request *rq,
--			 struct intel_engine_cs * const engine,
--			 unsigned int ccid)
-+static inline void __execlists_schedule_out(struct i915_request *rq)
- {
- 	struct intel_context * const ce = rq->context;
-+	struct intel_engine_cs * const engine = rq->engine;
-+	unsigned int ccid;
- 
- 	/*
- 	 * NB process_csb() is not under the engine->active.lock and hence
-@@ -1419,6 +1417,8 @@ __execlists_schedule_out(struct i915_request *rq,
- 	 * refrain from doing non-trivial work here.
- 	 */
- 
-+	CE_TRACE(ce, "schedule-out, ccid:%x\n", ce->lrc.ccid);
-+
- 	if (IS_ENABLED(CONFIG_DRM_I915_DEBUG_GEM))
- 		execlists_check_context(ce, engine, "after");
- 
-@@ -1430,12 +1430,13 @@ __execlists_schedule_out(struct i915_request *rq,
- 	    i915_request_completed(rq))
- 		intel_engine_add_retire(engine, ce->timeline);
- 
-+	ccid = ce->lrc.ccid;
- 	ccid >>= GEN11_SW_CTX_ID_SHIFT - 32;
- 	ccid &= GEN12_MAX_CONTEXT_HW_ID;
- 	if (ccid < BITS_PER_LONG) {
- 		GEM_BUG_ON(ccid == 0);
- 		GEM_BUG_ON(test_bit(ccid - 1, &engine->context_tag));
--		set_bit(ccid - 1, &engine->context_tag);
-+		__set_bit(ccid - 1, &engine->context_tag);
- 	}
- 
- 	intel_context_update_runtime(ce);
-@@ -1456,26 +1457,23 @@ __execlists_schedule_out(struct i915_request *rq,
- 	 */
- 	if (ce->engine != engine)
- 		kick_siblings(rq, ce);
--
--	intel_context_put(ce);
- }
- 
- static inline void
- execlists_schedule_out(struct i915_request *rq)
- {
- 	struct intel_context * const ce = rq->context;
--	struct intel_engine_cs *cur, *old;
--	u32 ccid;
- 
- 	trace_i915_request_out(rq);
- 
--	ccid = rq->context->lrc.ccid;
--	old = READ_ONCE(ce->inflight);
--	do
--		cur = ptr_unmask_bits(old, 2) ? ptr_dec(old) : NULL;
--	while (!try_cmpxchg(&ce->inflight, &old, cur));
--	if (!cur)
--		__execlists_schedule_out(rq, old, ccid);
-+	GEM_BUG_ON(!ce->inflight);
-+	ce->inflight = ptr_dec(ce->inflight);
-+	if (!intel_context_inflight_count(ce)) {
-+		GEM_BUG_ON(ce->inflight != rq->engine);
-+		__execlists_schedule_out(rq);
-+		WRITE_ONCE(ce->inflight, NULL);
-+		intel_context_put(ce);
-+	}
- 
- 	i915_request_put(rq);
- }
--- 
-2.20.1
+In any case, if you could split the i915 changes to a separate patch
+(we have multiple sub-trees in drm), those are:
 
+Reviewed-by: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+
+The gma500 changes also appear correct, so feel free to apply the
+R-b for those, too.
+
+Regards, Joonas
+
+>  5 files changed, 12 insertions(+), 22 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/gma500/gma_display.c b/drivers/gpu/drm/gma500/gma_display.c
+> index 3df6d6e850f5..f81114594211 100644
+> --- a/drivers/gpu/drm/gma500/gma_display.c
+> +++ b/drivers/gpu/drm/gma500/gma_display.c
+> @@ -9,6 +9,7 @@
+>  
+>  #include <linux/delay.h>
+>  #include <linux/highmem.h>
+> +#include <linux/pagemap.h>
+>  
+>  #include <drm/drm_crtc.h>
+>  #include <drm/drm_fourcc.h>
+> @@ -334,7 +335,7 @@ int gma_crtc_cursor_set(struct drm_crtc *crtc,
+>         struct gtt_range *gt;
+>         struct gtt_range *cursor_gt = gma_crtc->cursor_gt;
+>         struct drm_gem_object *obj;
+> -       void *tmp_dst, *tmp_src;
+> +       void *tmp_dst;
+>         int ret = 0, i, cursor_pages;
+>  
+>         /* If we didn't get a handle then turn the cursor off */
+> @@ -400,9 +401,7 @@ int gma_crtc_cursor_set(struct drm_crtc *crtc,
+>                 /* Copy the cursor to cursor mem */
+>                 tmp_dst = dev_priv->vram_addr + cursor_gt->offset;
+>                 for (i = 0; i < cursor_pages; i++) {
+> -                       tmp_src = kmap(gt->pages[i]);
+> -                       memcpy(tmp_dst, tmp_src, PAGE_SIZE);
+> -                       kunmap(gt->pages[i]);
+> +                       memcpy_from_page(tmp_dst, gt->pages[i], 0, PAGE_SIZE);
+>                         tmp_dst += PAGE_SIZE;
+>                 }
+>  
+> diff --git a/drivers/gpu/drm/gma500/mmu.c b/drivers/gpu/drm/gma500/mmu.c
+> index 505044c9a673..8a0856c7f439 100644
+> --- a/drivers/gpu/drm/gma500/mmu.c
+> +++ b/drivers/gpu/drm/gma500/mmu.c
+> @@ -5,6 +5,7 @@
+>   **************************************************************************/
+>  
+>  #include <linux/highmem.h>
+> +#include <linux/pagemap.h>
+>  
+>  #include "mmu.h"
+>  #include "psb_drv.h"
+> @@ -204,8 +205,7 @@ struct psb_mmu_pd *psb_mmu_alloc_pd(struct psb_mmu_driver *driver,
+>  
+>         kunmap(pd->p);
+>  
+> -       clear_page(kmap(pd->dummy_page));
+> -       kunmap(pd->dummy_page);
+> +       memzero_page(pd->dummy_page, 0, PAGE_SIZE);
+>  
+>         pd->tables = vmalloc_user(sizeof(struct psb_mmu_pt *) * 1024);
+>         if (!pd->tables)
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_shmem.c b/drivers/gpu/drm/i915/gem/i915_gem_shmem.c
+> index 75e8b71c18b9..8a25e08edd18 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_shmem.c
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_shmem.c
+> @@ -558,7 +558,7 @@ i915_gem_object_create_shmem_from_data(struct drm_i915_private *dev_priv,
+>         do {
+>                 unsigned int len = min_t(typeof(size), size, PAGE_SIZE);
+>                 struct page *page;
+> -               void *pgdata, *vaddr;
+> +               void *pgdata;
+>  
+>                 err = pagecache_write_begin(file, file->f_mapping,
+>                                             offset, len, 0,
+> @@ -566,9 +566,7 @@ i915_gem_object_create_shmem_from_data(struct drm_i915_private *dev_priv,
+>                 if (err < 0)
+>                         goto fail;
+>  
+> -               vaddr = kmap(page);
+> -               memcpy(vaddr, data, len);
+> -               kunmap(page);
+> +               memcpy_to_page(page, 0, data, len);
+>  
+>                 err = pagecache_write_end(file, file->f_mapping,
+>                                           offset, len, len,
+> diff --git a/drivers/gpu/drm/i915/gt/intel_gtt.c b/drivers/gpu/drm/i915/gt/intel_gtt.c
+> index 3f1114b58b01..f3d7c601d362 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_gtt.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_gtt.c
+> @@ -153,13 +153,8 @@ static void poison_scratch_page(struct drm_i915_gem_object *scratch)
+>         if (IS_ENABLED(CONFIG_DRM_I915_DEBUG_GEM))
+>                 val = POISON_FREE;
+>  
+> -       for_each_sgt_page(page, sgt, scratch->mm.pages) {
+> -               void *vaddr;
+> -
+> -               vaddr = kmap(page);
+> -               memset(vaddr, val, PAGE_SIZE);
+> -               kunmap(page);
+> -       }
+> +       for_each_sgt_page(page, sgt, scratch->mm.pages)
+> +               memset_page(page, val, 0, PAGE_SIZE);
+>  }
+>  
+>  int setup_scratch_page(struct i915_address_space *vm)
+> diff --git a/drivers/gpu/drm/i915/gt/shmem_utils.c b/drivers/gpu/drm/i915/gt/shmem_utils.c
+> index f011ea42487e..2d5f1f2e803d 100644
+> --- a/drivers/gpu/drm/i915/gt/shmem_utils.c
+> +++ b/drivers/gpu/drm/i915/gt/shmem_utils.c
+> @@ -95,19 +95,17 @@ static int __shmem_rw(struct file *file, loff_t off,
+>                 unsigned int this =
+>                         min_t(size_t, PAGE_SIZE - offset_in_page(off), len);
+>                 struct page *page;
+> -               void *vaddr;
+>  
+>                 page = shmem_read_mapping_page_gfp(file->f_mapping, pfn,
+>                                                    GFP_KERNEL);
+>                 if (IS_ERR(page))
+>                         return PTR_ERR(page);
+>  
+> -               vaddr = kmap(page);
+>                 if (write)
+> -                       memcpy(vaddr + offset_in_page(off), ptr, this);
+> +                       memcpy_to_page(page, offset_in_page(off), ptr, this);
+>                 else
+> -                       memcpy(ptr, vaddr + offset_in_page(off), this);
+> -               kunmap(page);
+> +                       memcpy_from_page(ptr, page, offset_in_page(off), this);
+> +
+>                 put_page(page);
+>  
+>                 len -= this;
+> -- 
+> 2.28.0.rc0.12.gb6a658bd00c9
+> 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
