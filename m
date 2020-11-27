@@ -1,44 +1,41 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9231F2C6626
-	for <lists+intel-gfx@lfdr.de>; Fri, 27 Nov 2020 14:02:13 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id CA1D82C6650
+	for <lists+intel-gfx@lfdr.de>; Fri, 27 Nov 2020 14:08:07 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 739A889B06;
-	Fri, 27 Nov 2020 13:02:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8063A89DDF;
+	Fri, 27 Nov 2020 13:08:05 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 60EA889B06
- for <intel-gfx@lists.freedesktop.org>; Fri, 27 Nov 2020 13:02:09 +0000 (UTC)
-IronPort-SDR: /1J33CGd6fDu7pYLJKd88Uap6FFKOoSkWAMXm2Wk2SoLS1G7fi13K2y4+TGczy9D46pZSPpCFw
- bsj+6mWtniCw==
-X-IronPort-AV: E=McAfee;i="6000,8403,9817"; a="172488236"
-X-IronPort-AV: E=Sophos;i="5.78,374,1599548400"; d="scan'208";a="172488236"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Nov 2020 05:02:08 -0800
-IronPort-SDR: N+rdNr6VIZxGU1FsvqoC+RrAts/w1gg4ljh1g4qMCACpx2ZRkyHQP1W6yEB2MTAQ/iqfr+Pu4U
- C9zGqsmuSpLA==
-X-IronPort-AV: E=Sophos;i="5.78,374,1599548400"; d="scan'208";a="363157270"
-Received: from jmikkola-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.252.21.161])
- by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Nov 2020 05:02:00 -0800
+Received: from fireflyinternet.com (unknown [77.68.26.236])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F21A389DDF
+ for <intel-gfx@lists.freedesktop.org>; Fri, 27 Nov 2020 13:08:03 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from localhost (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
+ 23133040-1500050 for multiple; Fri, 27 Nov 2020 13:07:20 +0000
 MIME-Version: 1.0
-In-Reply-To: <20201124060755.1405602-4-ira.weiny@intel.com>
-References: <20201124060755.1405602-1-ira.weiny@intel.com>
- <20201124060755.1405602-4-ira.weiny@intel.com>
-From: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-To: Andrew Morton <akpm@linux-foundation.org>, ira.weiny@intel.com
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Message-ID: <160648211578.10416.3269409785516897908@jlahtine-mobl.ger.corp.intel.com>
-User-Agent: alot/0.8.1
-Date: Fri, 27 Nov 2020 15:01:56 +0200
-Subject: Re: [Intel-gfx] [PATCH 03/17] drivers/gpu: Convert to mem*_page()
+In-Reply-To: <e14d546c-b1c6-448b-d8ac-50d072802c98@linux.intel.com>
+References: <20201111155811.GB24657@xsang-OptiPlex-9020>
+ <160527763346.5566.3471508802857132043@jlahtine-mobl.ger.corp.intel.com>
+ <20201119072018.GA15197@xsang-OptiPlex-9020>
+ <160625087275.29168.7080737993781611765@build.alporthouse.com>
+ <ab9ebc5a-7d79-8003-c7bc-5cf0923983c6@linux.intel.com>
+ <160642644736.15379.9850669928715684163@build.alporthouse.com>
+ <e14d546c-b1c6-448b-d8ac-50d072802c98@linux.intel.com>
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Oliver Sang <oliver.sang@intel.com>,
+ Xing Zhengjun <zhengjun.xing@linux.intel.com>
+Date: Fri, 27 Nov 2020 13:07:19 +0000
+Message-ID: <160648243984.2925.329587293172518864@build.alporthouse.com>
+User-Agent: alot/0.9
+Subject: Re: [Intel-gfx] [drm/i915/gem] 59dd13ad31:
+ phoronix-test-suite.jxrendermark.RadialGradientPaint.1024x1024.operations_per_second
+ -54.0% regression
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,177 +48,112 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Chao Yu <yuchao0@huawei.com>, Alexei Starovoitov <ast@kernel.org>, David Howells <dhowells@redhat.com>, Chris Mason <clm@fb.com>, Kirti Wankhede <kwankhede@nvidia.com>, Ira Weiny <ira.weiny@intel.com>, Dan Williams <dan.j.williams@intel.com>, Christoph Hellwig <hch@infradead.org>, Daniel Borkmann <daniel@iogearbox.net>, Matthew Wilcox <willy@infradead.org>, Eric Biggers <ebiggers@kernel.org>, intel-gfx@lists.freedesktop.org, Josef Bacik <josef@toxicpanda.com>, Jérôme Glisse <jglisse@redhat.com>, Brian King <brking@us.ibm.com>, Al Viro <viro@zeniv.linux.org.uk>, David Sterba <dsterba@suse.com>, Jaegeuk Kim <jaegeuk@kernel.org>, Thomas Gleixner <tglx@linutronix.de>, "Martin K. Petersen" <martin.petersen@oracle.com>, Nicolas Pitre <nico@fluxnic.net>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Dave Hansen <dave.hansen@intel.com>, linux-kernel@vger.kernel.org, Steve French <sfrench@samba.org>, Luis Chamberlain <mcgrof@kernel.org>, linux-fsdevel@vger.kernel.org
+Cc: feng.tang@intel.com, tiejun.li@intel.com, guangli.li@intel.com,
+ frank.du@intel.com, guobing.chen@intel.com, jiebin.sun@intel.com,
+ Shuhua.Fan@intel.com, Matthew Auld <matthew.auld@intel.com>,
+ fan.zhao@intel.com, ying.huang@intel.com, shan.kang@intel.com,
+ zhengjun.xing@intel.com, Wenhuan.Huang@intel.com,
+ intel-gfx@lists.freedesktop.org, lkp@lists.01.org, ming.a.chen@intel.com,
+ yu.ma@intel.com, jessica.ji@intel.com, dapeng1.mi@intel.com,
+ wangyang.guo@intel.com, LKML <linux-kernel@vger.kernel.org>,
+ gengxin.xie@intel.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-+ intel-gfx mailing list
-
-Quoting ira.weiny@intel.com (2020-11-24 08:07:41)
-> From: Ira Weiny <ira.weiny@intel.com>
+Quoting Xing Zhengjun (2020-11-27 01:51:41)
 > 
-> The pattern of kmap/mem*/kunmap is repeated.  Use the new mem*_page()
-> calls instead.
 > 
-> Cc: Patrik Jakobsson <patrik.r.jakobsson@gmail.com>
-> Cc: Jani Nikula <jani.nikula@linux.intel.com>
-> Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> Signed-off-by: Ira Weiny <ira.weiny@intel.com>
-> ---
->  drivers/gpu/drm/gma500/gma_display.c      | 7 +++----
->  drivers/gpu/drm/gma500/mmu.c              | 4 ++--
->  drivers/gpu/drm/i915/gem/i915_gem_shmem.c | 6 ++----
->  drivers/gpu/drm/i915/gt/intel_gtt.c       | 9 ++-------
->  drivers/gpu/drm/i915/gt/shmem_utils.c     | 8 +++-----
-
-Are you looking to merge all these from the same tree, or first merge
-the first patch and then trickle the rest through their own trees?
-Our last -next PR was already sent for i915, so I would queue this
-only for 5.12.
-
-In any case, if you could split the i915 changes to a separate patch
-(we have multiple sub-trees in drm), those are:
-
-Reviewed-by: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-
-The gma500 changes also appear correct, so feel free to apply the
-R-b for those, too.
-
-Regards, Joonas
-
->  5 files changed, 12 insertions(+), 22 deletions(-)
+> On 11/27/2020 5:34 AM, Chris Wilson wrote:
+> > Quoting Xing Zhengjun (2020-11-26 01:44:55)
+> >>
+> >>
+> >> On 11/25/2020 4:47 AM, Chris Wilson wrote:
+> >>> Quoting Oliver Sang (2020-11-19 07:20:18)
+> >>>> On Fri, Nov 13, 2020 at 04:27:13PM +0200, Joonas Lahtinen wrote:
+> >>>>> Hi,
+> >>>>>
+> >>>>> Could you add intel-gfx@lists.freedesktop.org into reports going
+> >>>>> forward.
+> >>>>>
+> >>>>> Quoting kernel test robot (2020-11-11 17:58:11)
+> >>>>>>
+> >>>>>> Greeting,
+> >>>>>>
+> >>>>>> FYI, we noticed a -54.0% regression of phoronix-test-suite.jxrendermark.RadialGradientPaint.1024x1024.operations_per_second due to commit:
+> >>>>>
+> >>>>> How many runs are there on the bad version to ensure the bisect is
+> >>>>> repeatable?
+> >>>>
+> >>>> test 4 times.
+> >>>> zxing@inn:/result/phoronix-test-suite/performance-true-Radial_Gradient_Paint-1024x1024-jxrendermark-1.2.4-ucode=0xd6-monitor=da39a3ee/lkp-cfl-d1/debian-x86_64-phoronix/x86_64-rhel-8.3/gcc-9/59dd13ad310793757e34afa489dd6fc8544fc3da$ grep -r "operations_per_second" */stats.json
+> >>>> 0/stats.json: "phoronix-test-suite.jxrendermark.RadialGradientPaint.1024x1024.operations_per_second": 4133.487932,
+> >>>> 1/stats.json: "phoronix-test-suite.jxrendermark.RadialGradientPaint.1024x1024.operations_per_second": 4120.421503,
+> >>>> 2/stats.json: "phoronix-test-suite.jxrendermark.RadialGradientPaint.1024x1024.operations_per_second": 4188.414835,
+> >>>> 3/stats.json: "phoronix-test-suite.jxrendermark.RadialGradientPaint.1024x1024.operations_per_second": 4068.549514,
+> >>>
+> >>> a w/o revert (drm-tip)
+> >>> b w/ revert
+> >>> +mB----------------------------------------------------------------------------+
+> >>> |                             ..b                                              |
+> >>> |                             ..b.aa                                           |
+> >>> |                             ....a.a                                          |
+> >>> |                             ....a.a                                          |
+> >>> |                      b  b  ........a                                         |
+> >>> |                   b  b  b b......... a                                       |
+> >>> |                   b  bb bbb...........                                       |
+> >>> |b               ab bbab.bb.b............ba b a a            ab               a|
+> >>> |                             |__A__|                                          |
+> >>> |                             |MA_|                                            |
+> >>> +------------------------------------------------------------------------------+
+> >>>       N                Min           Max        Median           Avg        Stddev
+> >>> a 120          3621.8761     7356.4442     4606.7895     4607.9132     156.17693
+> >>> b 120          2664.0563     6359.9686     4519.5036     4534.4463     95.471121
+> >>>
+> >>> The patch is not expected to have any impact on the machine you are testing on.
+> >>> -Chris
+> >>>
+> >>
+> >> What's your code base?
+> >> For my side:
+> >> 1) sync the code to the head of Linux mainline
+> >> 2) git reset --hard 59dd13ad31
+> >> 3) git revert 59dd13ad3107
+> >> We compare the test result of commit 59dd13ad3107 (step 2) and
+> >> 2052847b06f8 (step 3, revert 59dd13ad3107), the regression should
+> >> related with 59dd13ad3107. Each test case we run 5 times.
+> > 
+> > a 59dd13ad31
+> > b revert
+> > +mB----------------------------------------------------------------------------+
+> > |                        a                                                     |
+> > |                       aa                                                     |
+> > |                     .b....ba                                                 |
+> > |                     .b....baa    b                                           |
+> > |                     .........b . b   b                                       |
+> > |                a   b.......... ..bb  b        b                              |
+> > |              b a   b.............b.a b        b                              |
+> > |a    a  b.    .aaa..b.............b..b....ab   b     a                       .|
+> > |                      |__A__|                                                 |
+> > |                      |___A_____|                                             |
+> > +------------------------------------------------------------------------------+
+> >      N                Min           Max        Median           Avg        Stddev
+> > a 120          3658.3435     6363.7812     4527.4406      4536.612     86.095459
+> > b 120          3928.9643      6375.829     4576.0482     4585.4224      157.284
+> > 
 > 
-> diff --git a/drivers/gpu/drm/gma500/gma_display.c b/drivers/gpu/drm/gma500/gma_display.c
-> index 3df6d6e850f5..f81114594211 100644
-> --- a/drivers/gpu/drm/gma500/gma_display.c
-> +++ b/drivers/gpu/drm/gma500/gma_display.c
-> @@ -9,6 +9,7 @@
->  
->  #include <linux/delay.h>
->  #include <linux/highmem.h>
-> +#include <linux/pagemap.h>
->  
->  #include <drm/drm_crtc.h>
->  #include <drm/drm_fourcc.h>
-> @@ -334,7 +335,7 @@ int gma_crtc_cursor_set(struct drm_crtc *crtc,
->         struct gtt_range *gt;
->         struct gtt_range *cursor_gt = gma_crtc->cursor_gt;
->         struct drm_gem_object *obj;
-> -       void *tmp_dst, *tmp_src;
-> +       void *tmp_dst;
->         int ret = 0, i, cursor_pages;
->  
->         /* If we didn't get a handle then turn the cursor off */
-> @@ -400,9 +401,7 @@ int gma_crtc_cursor_set(struct drm_crtc *crtc,
->                 /* Copy the cursor to cursor mem */
->                 tmp_dst = dev_priv->vram_addr + cursor_gt->offset;
->                 for (i = 0; i < cursor_pages; i++) {
-> -                       tmp_src = kmap(gt->pages[i]);
-> -                       memcpy(tmp_dst, tmp_src, PAGE_SIZE);
-> -                       kunmap(gt->pages[i]);
-> +                       memcpy_from_page(tmp_dst, gt->pages[i], 0, PAGE_SIZE);
->                         tmp_dst += PAGE_SIZE;
->                 }
->  
-> diff --git a/drivers/gpu/drm/gma500/mmu.c b/drivers/gpu/drm/gma500/mmu.c
-> index 505044c9a673..8a0856c7f439 100644
-> --- a/drivers/gpu/drm/gma500/mmu.c
-> +++ b/drivers/gpu/drm/gma500/mmu.c
-> @@ -5,6 +5,7 @@
->   **************************************************************************/
->  
->  #include <linux/highmem.h>
-> +#include <linux/pagemap.h>
->  
->  #include "mmu.h"
->  #include "psb_drv.h"
-> @@ -204,8 +205,7 @@ struct psb_mmu_pd *psb_mmu_alloc_pd(struct psb_mmu_driver *driver,
->  
->         kunmap(pd->p);
->  
-> -       clear_page(kmap(pd->dummy_page));
-> -       kunmap(pd->dummy_page);
-> +       memzero_page(pd->dummy_page, 0, PAGE_SIZE);
->  
->         pd->tables = vmalloc_user(sizeof(struct psb_mmu_pt *) * 1024);
->         if (!pd->tables)
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_shmem.c b/drivers/gpu/drm/i915/gem/i915_gem_shmem.c
-> index 75e8b71c18b9..8a25e08edd18 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_shmem.c
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_shmem.c
-> @@ -558,7 +558,7 @@ i915_gem_object_create_shmem_from_data(struct drm_i915_private *dev_priv,
->         do {
->                 unsigned int len = min_t(typeof(size), size, PAGE_SIZE);
->                 struct page *page;
-> -               void *pgdata, *vaddr;
-> +               void *pgdata;
->  
->                 err = pagecache_write_begin(file, file->f_mapping,
->                                             offset, len, 0,
-> @@ -566,9 +566,7 @@ i915_gem_object_create_shmem_from_data(struct drm_i915_private *dev_priv,
->                 if (err < 0)
->                         goto fail;
->  
-> -               vaddr = kmap(page);
-> -               memcpy(vaddr, data, len);
-> -               kunmap(page);
-> +               memcpy_to_page(page, 0, data, len);
->  
->                 err = pagecache_write_end(file, file->f_mapping,
->                                           offset, len, len,
-> diff --git a/drivers/gpu/drm/i915/gt/intel_gtt.c b/drivers/gpu/drm/i915/gt/intel_gtt.c
-> index 3f1114b58b01..f3d7c601d362 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_gtt.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_gtt.c
-> @@ -153,13 +153,8 @@ static void poison_scratch_page(struct drm_i915_gem_object *scratch)
->         if (IS_ENABLED(CONFIG_DRM_I915_DEBUG_GEM))
->                 val = POISON_FREE;
->  
-> -       for_each_sgt_page(page, sgt, scratch->mm.pages) {
-> -               void *vaddr;
-> -
-> -               vaddr = kmap(page);
-> -               memset(vaddr, val, PAGE_SIZE);
-> -               kunmap(page);
-> -       }
-> +       for_each_sgt_page(page, sgt, scratch->mm.pages)
-> +               memset_page(page, val, 0, PAGE_SIZE);
->  }
->  
->  int setup_scratch_page(struct i915_address_space *vm)
-> diff --git a/drivers/gpu/drm/i915/gt/shmem_utils.c b/drivers/gpu/drm/i915/gt/shmem_utils.c
-> index f011ea42487e..2d5f1f2e803d 100644
-> --- a/drivers/gpu/drm/i915/gt/shmem_utils.c
-> +++ b/drivers/gpu/drm/i915/gt/shmem_utils.c
-> @@ -95,19 +95,17 @@ static int __shmem_rw(struct file *file, loff_t off,
->                 unsigned int this =
->                         min_t(size_t, PAGE_SIZE - offset_in_page(off), len);
->                 struct page *page;
-> -               void *vaddr;
->  
->                 page = shmem_read_mapping_page_gfp(file->f_mapping, pfn,
->                                                    GFP_KERNEL);
->                 if (IS_ERR(page))
->                         return PTR_ERR(page);
->  
-> -               vaddr = kmap(page);
->                 if (write)
-> -                       memcpy(vaddr + offset_in_page(off), ptr, this);
-> +                       memcpy_to_page(page, offset_in_page(off), ptr, this);
->                 else
-> -                       memcpy(ptr, vaddr + offset_in_page(off), this);
-> -               kunmap(page);
-> +                       memcpy_from_page(ptr, page, offset_in_page(off), this);
-> +
->                 put_page(page);
->  
->                 len -= this;
-> -- 
-> 2.28.0.rc0.12.gb6a658bd00c9
-> 
+> Could you share with me your test commands and the hardware info, then I 
+> can reproduce it on my side? Thanks.
+
+It was a i7-8809G, identical i915 behaviour as the i7-8700 the report was
+generated on.
+
+sudo Xorg & for i in $(seq 1 120); do ./jx 13 1024 | awk '{print $1}' ; done
+
+using -modesetting + iris (i965 makes no difference, just slightly
+slower)
+-Chris
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
