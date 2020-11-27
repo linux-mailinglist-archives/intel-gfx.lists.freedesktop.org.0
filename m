@@ -1,28 +1,61 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 604BE2C60DD
-	for <lists+intel-gfx@lfdr.de>; Fri, 27 Nov 2020 09:31:07 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1F5BC2C61AC
+	for <lists+intel-gfx@lfdr.de>; Fri, 27 Nov 2020 10:28:02 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4A9066EB5B;
-	Fri, 27 Nov 2020 08:31:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3D08E6EB63;
+	Fri, 27 Nov 2020 09:27:59 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mx2.suse.de (mx2.suse.de [195.135.220.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 41CF86EB5F;
- Fri, 27 Nov 2020 08:31:04 +0000 (UTC)
-X-Virus-Scanned: by amavisd-new at test-mx.suse.de
-Received: from relay2.suse.de (unknown [195.135.221.27])
- by mx2.suse.de (Postfix) with ESMTP id 7CE5DAC0C;
- Fri, 27 Nov 2020 08:31:02 +0000 (UTC)
-Date: Fri, 27 Nov 2020 09:30:55 +0100
-From: Thomas Zimmermann <tzimmermann@suse.de>
-To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
-Message-ID: <20201127083055.GA29139@linux-uq9g>
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4872F6EB63
+ for <intel-gfx@lists.freedesktop.org>; Fri, 27 Nov 2020 09:27:58 +0000 (UTC)
+IronPort-SDR: Zr0G/jNk155u7wJzseQB/fOLnUg2kowOEP+/01M6zIU49nozJI3rtK+WRZgRxMim0jQjyDcp2l
+ 5RwTleFX709g==
+X-IronPort-AV: E=McAfee;i="6000,8403,9817"; a="160144148"
+X-IronPort-AV: E=Sophos;i="5.78,373,1599548400"; d="scan'208";a="160144148"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Nov 2020 01:27:57 -0800
+IronPort-SDR: SRpXyKssHl19DqV/IdFXfjaTwL5sh7tK7B1v4Hwn7fN2778OGztbNkBmSsBJrEMIj7Z2dDIt9h
+ UHtoQ/rxoo+w==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.78,373,1599548400"; d="scan'208";a="537583230"
+Received: from irsmsx606.ger.corp.intel.com ([163.33.146.139])
+ by fmsmga005.fm.intel.com with ESMTP; 27 Nov 2020 01:27:56 -0800
+Received: from irsmsx605.ger.corp.intel.com (163.33.146.138) by
+ IRSMSX606.ger.corp.intel.com (163.33.146.139) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1713.5; Fri, 27 Nov 2020 09:27:55 +0000
+Received: from irsmsx605.ger.corp.intel.com ([163.33.146.138]) by
+ IRSMSX605.ger.corp.intel.com ([163.33.146.138]) with mapi id 15.01.1713.004;
+ Fri, 27 Nov 2020 09:27:55 +0000
+From: "Kahola, Mika" <mika.kahola@intel.com>
+To: "Deak, Imre" <imre.deak@intel.com>, "intel-gfx@lists.freedesktop.org"
+ <intel-gfx@lists.freedesktop.org>
+Thread-Topic: [Intel-gfx] [PATCH 2/2] drm/i915/tgl: Add Clear Color support
+ for TGL Render Decompression
+Thread-Index: AQHWwcY3mE/1VGr2c0yfvZVAyer4/anbu2Pg
+Date: Fri, 27 Nov 2020 09:27:55 +0000
+Message-ID: <1b1e096c3c9b4a38a7985c06745341e4@intel.com>
+References: <20201123182631.1740781-1-imre.deak@intel.com>
+ <20201123182631.1740781-2-imre.deak@intel.com>
+In-Reply-To: <20201123182631.1740781-2-imre.deak@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+dlp-version: 11.5.1.3
+dlp-product: dlpe-windows
+dlp-reaction: no-action
+x-originating-ip: [163.33.253.164]
 MIME-Version: 1.0
-Content-Disposition: inline
-Subject: [Intel-gfx] [PULL] drm-misc-next
+Subject: Re: [Intel-gfx] [PATCH 2/2] drm/i915/tgl: Add Clear Color support
+ for TGL Render Decompression
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -35,288 +68,382 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dim-tools@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Maxime Ripard <mripard@kernel.org>, intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Cc: "Syrjala, Ville" <ville.syrjala@intel.com>,
+ Rafael Antognolli <rafael.antognolli@intel.com>,
+ Chris Wilson <chris@chris-wilson.co.uk>, "Pandiyan,
+ Dhinakaran" <dhinakaran.pandiyan@intel.com>, "Chery,
+ Nanley G" <nanley.g.chery@intel.com>,
+ Shashank Sharma <shashank.sharma@intel.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Dave and Daniel,
-
-here's this week's PR for drm-misc-next. Many fixes and updates. The most
-important change is probably the amdgpu fix that unbreaks TTM multihop.
-
-Best regards
-Thomas
-
-drm-misc-next-2020-11-27-1:
-drm-misc-next for 5.11:
-
-UAPI Changes:
-
-Cross-subsystem Changes:
-
- * char/agp: Disable frontend without CONFIG_DRM_LEGACY
- * mm: Fix fput in mmap error path; Introduce vma_set_file() to change
-   vma->vm_file
-
-Core Changes:
-
- * dma-buf: Use sgtables in system heap; Move heap helpers to CMA-heap code;
-   Skip sync for unmapped buffers; Alloc higher order pages is available;
-   Respect num_fences when initializing shared fence list
- * doc: Improvements around DRM modes and SCALING_FILTER
- * Pass full state to connector atomic functions + callee updates
- * Cleanups
- * shmem: Map pages with caching by default; Cleanups
- * ttm: Fix DMA32 for global page pool
- * fbdev: Cleanups
- * fb-helper: Update framebuffer after userspace writes; Unmap console buff=
-er
-   during shutdown; Rework damage handling of shadow framebuffer
-
-Driver Changes:
-
- * amdgpu: Multi-hop fixes, Clenaups
- * imx: Fix rotation for Vivante tiled formats; Support nearest-neighour
-   skaling; Cleanups
- * mcde: Fix RGB formats; Support DPI output; Cleanups
- * meson: HDMI clock fixes
- * panel: Add driver and bindings for Innolux N125HCE-GN1
- * panel/s6e63m0: More backlight levels; Fix init; Cleanups
- * via: Clenunps
- * virtio: Use fence ID for handling fences; Cleanups
-
-The following changes since commit fa388231fec99b60346319d56495ae531b666275:
-
-  drm/docs: Fix todo.rst (2020-11-18 11:51:58 +0100)
-
-are available in the Git repository at:
-
-  git://anongit.freedesktop.org/drm/drm-misc tags/drm-misc-next-2020-11-27-1
-
-for you to fetch changes up to 05faf1559de52465f1e753e31883aa294e6179c1:
-
-  drm/imx/dcss: allow using nearest neighbor interpolation scaling (2020-11=
--26 11:29:44 +0100)
-
-----------------------------------------------------------------
-drm-misc-next for 5.11:
-
-UAPI Changes:
-
-Cross-subsystem Changes:
-
- * char/agp: Disable frontend without CONFIG_DRM_LEGACY
- * mm: Fix fput in mmap error path; Introduce vma_set_file() to change
-   vma->vm_file
-
-Core Changes:
-
- * dma-buf: Use sgtables in system heap; Move heap helpers to CMA-heap code;
-   Skip sync for unmapped buffers; Alloc higher order pages is available;
-   Respect num_fences when initializing shared fence list
- * doc: Improvements around DRM modes and SCALING_FILTER
- * Pass full state to connector atomic functions + callee updates
- * Cleanups
- * shmem: Map pages with caching by default; Cleanups
- * ttm: Fix DMA32 for global page pool
- * fbdev: Cleanups
- * fb-helper: Update framebuffer after userspace writes; Unmap console buff=
-er
-   during shutdown; Rework damage handling of shadow framebuffer
-
-Driver Changes:
-
- * amdgpu: Multi-hop fixes, Clenaups
- * imx: Fix rotation for Vivante tiled formats; Support nearest-neighour
-   skaling; Cleanups
- * mcde: Fix RGB formats; Support DPI output; Cleanups
- * meson: HDMI clock fixes
- * panel: Add driver and bindings for Innolux N125HCE-GN1
- * panel/s6e63m0: More backlight levels; Fix init; Cleanups
- * via: Clenunps
- * virtio: Use fence ID for handling fences; Cleanups
-
-----------------------------------------------------------------
-Anthoine Bourgeois (3):
-      drm/virtio: suffix create blob call with _ioctl like any ioctl
-      drm/virtio: fix a file name comment reference
-      virtio-gpu api: Add a comment on VIRTIO_GPU_SHM_ID_HOST_VISIBLE
-
-Bernard Zhao (1):
-      drm/via: fix assignment in if condition
-
-Christian K=F6nig (4):
-      drm/amdgpu: fix check order in amdgpu_bo_move
-      mm: mmap: fix fput in error path v2
-      mm: introduce vma_set_file function v5
-      drm/ttm: fix DMA32 handling in the global page pool
-
-Colin Ian King (1):
-      drm/mcde: fix masking and bitwise-or on variable val
-
-Daniel Vetter (1):
-      char/agp: Disable frontend without CONFIG_DRM_LEGACY
-
-Gurchetan Singh (2):
-      drm/virtio: use fence_id when processing fences
-      drm/virtio: rename sync_seq and last_seq
-
-Gustavo A. R. Silva (4):
-      drm: Fix fall-through warnings for Clang
-      drm/via: Fix fall-through warnings for Clang
-      video: fbdev: lxfb_ops: Fix fall-through warnings for Clang
-      video: fbdev: pm2fb: Fix fall-through warnings for Clang
-
-John Stultz (5):
-      dma-buf: system_heap: Rework system heap to use sgtables instead of p=
-agelists
-      dma-buf: heaps: Move heap-helper logic into the cma_heap implementati=
-on
-      dma-buf: heaps: Remove heap-helpers code
-      dma-buf: heaps: Skip sync if not mapped
-      dma-buf: system_heap: Allocate higher order pages if available
-
-Laurentiu Palcu (3):
-      drm/imx/dcss: fix rotations for Vivante tiled formats
-      drm/imx/dcss: fix coccinelle warning
-      drm/imx/dcss: allow using nearest neighbor interpolation scaling
-
-Linus Walleij (7):
-      drm/panel: s6e63m0: Fix and extend MCS table
-      drm/panel: s6e63m0: Implement 28 backlight levels
-      drm/panel: s6e63m0: Fix init sequence
-      drm/mcde: Fix RGB/BGR bug
-      drm/mcde: Break out DSI set-up routine
-      drm/mcde: Support DPI output
-      drm/mcde: Fix uninitialized value
-
-Luben Tuikov (1):
-      drm/amdgpu: Fix missing prototype warning
-
-Lukas F. Hartmann (2):
-      dt-bindings: display/panel: add Innolux N125HCE-GN1
-      panel-simple: add Innolux N125HCE-GN1
-
-Maarten Lankhorst (1):
-      dma-buf/dma-resv: Respect num_fences when initializing the shared fen=
-ce list.
-
-Marc Zyngier (2):
-      drm/meson: dw-hdmi: Disable clocks on driver teardown
-      drm/meson: dw-hdmi: Enable the iahb clock early enough
-
-Maxime Ripard (1):
-      drm: Pass the full state to connectors atomic functions
-
-Simon Ser (4):
-      drm: improve kernel-docs in drm_mode.h
-      drm: document drm_mode_get_connector
-      drm: document drm_mode_modeinfo
-      drm: fix kernel-doc warnings for SCALING_FILTER
-
-Thomas Zimmermann (12):
-      drm/shmem-helper: Use cached mappings by default
-      drm/shmem-helper: Removed drm_gem_shmem_create_object_cached()
-      drm/fb-helper: Call dirty helper after writing to fbdev
-      drm/fb-helper: Unmap client buffer during shutdown
-      drm/client: Depend on GEM object kmap ref-counting
-      drm/fb-helper: Rename dirty worker to damage worker
-      drm/fb-helper: Return early in damage worker
-      drm/fb-helper: Separate shadow-buffer flushing and calling dirty call=
-back
-      drm/fb-helper: Move damage blit code and its setup into separate rout=
-ine
-      drm/fb-helper: Restore damage area upon errors
-      drm/fb-helper: Copy dma-buf map before flushing shadow fb
-      drm/fb-helper: Acquire modeset lock around shadow-buffer flushing
-
- .../bindings/display/panel/panel-simple.yaml       |   2 +
- drivers/char/agp/Makefile                          |   6 +-
- drivers/char/agp/agp.h                             |   5 +
- drivers/dma-buf/dma-buf.c                          |  19 +-
- drivers/dma-buf/dma-resv.c                         |   2 +-
- drivers/dma-buf/heaps/Makefile                     |   1 -
- drivers/dma-buf/heaps/cma_heap.c                   | 329 ++++++++++++---
- drivers/dma-buf/heaps/heap-helpers.c               | 274 -------------
- drivers/dma-buf/heaps/heap-helpers.h               |  53 ---
- drivers/dma-buf/heaps/system_heap.c                | 414 ++++++++++++++++-=
---
- drivers/gpu/drm/amd/amdgpu/amdgpu.h                |   2 +
- drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c            |   2 -
- drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c            |  53 ++-
- .../amd/display/amdgpu_dm/amdgpu_dm_mst_types.c    |   5 +-
- drivers/gpu/drm/drm_atomic_helper.c                |   8 +-
- drivers/gpu/drm/drm_blend.c                        |   2 +-
- drivers/gpu/drm/drm_bufs.c                         |   1 +
- drivers/gpu/drm/drm_client.c                       |   4 -
- drivers/gpu/drm/drm_crtc.c                         |  12 +-
- drivers/gpu/drm/drm_fb_helper.c                    | 155 ++++---
- drivers/gpu/drm/drm_gem_shmem_helper.c             |  40 +-
- drivers/gpu/drm/etnaviv/etnaviv_gem.c              |   4 +-
- drivers/gpu/drm/i915/display/intel_dp_mst.c        |   7 +-
- drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c         |   3 +-
- drivers/gpu/drm/i915/gem/i915_gem_mman.c           |   5 +-
- drivers/gpu/drm/imx/dcss/dcss-dev.h                |   3 +
- drivers/gpu/drm/imx/dcss/dcss-plane.c              |  24 +-
- drivers/gpu/drm/imx/dcss/dcss-scaler.c             |  47 ++-
- drivers/gpu/drm/lima/lima_gem.c                    |   2 +-
- drivers/gpu/drm/mcde/Kconfig                       |   1 +
- drivers/gpu/drm/mcde/Makefile                      |   2 +-
- drivers/gpu/drm/mcde/mcde_clk_div.c                | 192 +++++++++
- drivers/gpu/drm/mcde/mcde_display.c                | 456 ++++++++++++++++-=
-----
- drivers/gpu/drm/mcde/mcde_display_regs.h           |  91 +++-
- drivers/gpu/drm/mcde/mcde_drm.h                    |  10 +
- drivers/gpu/drm/mcde/mcde_drv.c                    |  46 ++-
- drivers/gpu/drm/meson/meson_dw_hdmi.c              |  51 ++-
- drivers/gpu/drm/mgag200/mgag200_drv.c              |   1 -
- drivers/gpu/drm/msm/msm_gem.c                      |   4 +-
- drivers/gpu/drm/nouveau/dispnv50/disp.c            |   5 +-
- drivers/gpu/drm/omapdrm/omap_gem.c                 |   3 +-
- drivers/gpu/drm/panel/panel-samsung-s6e63m0.c      | 345 ++++++++++++----
- drivers/gpu/drm/panel/panel-simple.c               |  28 ++
- drivers/gpu/drm/panfrost/panfrost_gem.c            |   2 +-
- drivers/gpu/drm/ttm/ttm_pool.c                     |  22 +
- drivers/gpu/drm/udl/udl_drv.c                      |   2 -
- drivers/gpu/drm/v3d/v3d_bo.c                       |   2 +-
- drivers/gpu/drm/vc4/vc4_txp.c                      |   4 +-
- drivers/gpu/drm/vgem/vgem_drv.c                    |   3 +-
- drivers/gpu/drm/via/via_irq.c                      |   1 +
- drivers/gpu/drm/via/via_verifier.c                 |   7 +-
- drivers/gpu/drm/virtio/virtgpu_debugfs.c           |   4 +-
- drivers/gpu/drm/virtio/virtgpu_drv.h               |   8 +-
- drivers/gpu/drm/virtio/virtgpu_fence.c             |  13 +-
- drivers/gpu/drm/virtio/virtgpu_ioctl.c             |   7 +-
- drivers/gpu/drm/virtio/virtgpu_object.c            |   1 -
- drivers/gpu/drm/vkms/vkms_drv.c                    |   1 -
- drivers/gpu/drm/vkms/vkms_writeback.c              |   7 +-
- drivers/staging/android/ashmem.c                   |   6 +-
- drivers/video/fbdev/geode/lxfb_ops.c               |   1 +
- drivers/video/fbdev/pm2fb.c                        |   1 +
- include/drm/drm_fb_helper.h                        |  14 +-
- include/drm/drm_gem_shmem_helper.h                 |   7 +-
- include/drm/drm_modes.h                            |   3 +
- include/drm/drm_modeset_helper_vtables.h           |  13 +-
- include/linux/mm.h                                 |   2 +
- include/uapi/drm/drm_mode.h                        | 165 ++++++--
- include/uapi/linux/virtio_gpu.h                    |   4 +
- mm/mmap.c                                          |   2 +-
- mm/util.c                                          |  12 +
- 70 files changed, 2131 insertions(+), 902 deletions(-)
- delete mode 100644 drivers/dma-buf/heaps/heap-helpers.c
- delete mode 100644 drivers/dma-buf/heaps/heap-helpers.h
- create mode 100644 drivers/gpu/drm/mcde/mcde_clk_div.c
-
---
-Thomas Zimmermann
-Graphics Driver Developer
-SUSE Software Solutions Germany GmbH
-Maxfeldstr. 5, 90409 N=FCrnberg, Germany
-(HRB 36809, AG N=FCrnberg)
-Gesch=E4ftsf=FChrer: Felix Imend=F6rffer
+> -----Original Message-----
+> From: Intel-gfx <intel-gfx-bounces@lists.freedesktop.org> On Behalf Of Imre
+> Deak
+> Sent: Monday, November 23, 2020 8:27 PM
+> To: intel-gfx@lists.freedesktop.org
+> Cc: Chery, Nanley G <nanley.g.chery@intel.com>; Rafael Antognolli
+> <rafael.antognolli@intel.com>; Chris Wilson <chris@chris-wilson.co.uk>;
+> Pandiyan, Dhinakaran <dhinakaran.pandiyan@intel.com>; Syrjala, Ville
+> <ville.syrjala@intel.com>; Shashank Sharma <shashank.sharma@intel.com>
+> Subject: [Intel-gfx] [PATCH 2/2] drm/i915/tgl: Add Clear Color support for TGL
+> Render Decompression
+> 
+> From: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
+> 
+> Render Decompression is supported with Y-Tiled main surface. The CCS is
+> linear and has 4 bits of data for each main surface cache line pair, a ratio of
+> 1:256. Additional Clear Color information is passed from the user-space
+> through an offset in the GEM BO. Add a new modifier to identify and parse
+> new Clear Color information and extend Gen12 render decompression
+> functionality to the newly added modifier.
+> 
+> v2: Fix has_alpha flag for modifiers, omit CC modifier during initial
+>     plane config(Matt). Fix Lookup error.
+> v3: Fix the panic while running kms_cube
+> v4: Add alignment check and reuse the comments for
+> ge12_ccs_formats(Matt)
+> v5: Fix typos and wrap comments(Matt)
+> v6:
+> - Use format block descriptors to get the subsampling calculations for
+>   the CCS surface right.
+> - Use helpers to convert between main and CCS surfaces.
+> - Prevent coordinate checks for the CC surface.
+> - Simplify reading CC value from surface map, add description of CC val
+>   layout.
+> - Remove redundant ccval variable from skl_program_plane().
+> 
+> Cc: Dhinakaran Pandiyan <dhinakaran.pandiyan@intel.com>
+> Cc: Ville Syrjala <ville.syrjala@intel.com>
+> Cc: Shashank Sharma <shashank.sharma@intel.com>
+> Cc: Rafael Antognolli <rafael.antognolli@intel.com>
+> Cc: Nanley G Chery <nanley.g.chery@intel.com>
+> Cc: Chris Wilson <chris@chris-wilson.co.uk>
+> Reviewed-by: Matt Roper <matthew.d.roper@intel.com> (v5)
+Reviewed-by: Mika Kahola <mika.kahola@intel.com> (v6)
+> Signed-off-by: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
+> Signed-off-by: Imre Deak <imre.deak@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_display.c  | 72 +++++++++++++++++--
+>  .../drm/i915/display/intel_display_types.h    |  3 +
+>  drivers/gpu/drm/i915/display/intel_sprite.c   | 10 ++-
+>  drivers/gpu/drm/i915/i915_reg.h               |  9 +++
+>  4 files changed, 89 insertions(+), 5 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.c
+> b/drivers/gpu/drm/i915/display/intel_display.c
+> index 595183f7b60f..f190f6f4cdf5 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> @@ -1968,8 +1968,8 @@ static bool is_ccs_plane(const struct
+> drm_framebuffer *fb, int plane)  static bool is_gen12_ccs_modifier(u64
+> modifier)  {
+>  	return modifier == I915_FORMAT_MOD_Y_TILED_GEN12_RC_CCS ||
+> +	       modifier == I915_FORMAT_MOD_Y_TILED_GEN12_RC_CCS_CC ||
+>  	       modifier == I915_FORMAT_MOD_Y_TILED_GEN12_MC_CCS;
+> -
+>  }
+> 
+>  static bool is_gen12_ccs_plane(const struct drm_framebuffer *fb, int plane)
+> @@ -1977,6 +1977,12 @@ static bool is_gen12_ccs_plane(const struct
+> drm_framebuffer *fb, int plane)
+>  	return is_gen12_ccs_modifier(fb->modifier) && is_ccs_plane(fb,
+> plane);  }
+> 
+> +static bool is_gen12_ccs_cc_plane(const struct drm_framebuffer *fb, int
+> +plane) {
+> +	return fb->modifier ==
+> I915_FORMAT_MOD_Y_TILED_GEN12_RC_CCS_CC &&
+> +	       plane == 2;
+> +}
+> +
+>  static bool is_aux_plane(const struct drm_framebuffer *fb, int plane)  {
+>  	if (is_ccs_modifier(fb->modifier))
+> @@ -1998,6 +2004,9 @@ static int ccs_to_main_plane(const struct
+> drm_framebuffer *fb, int ccs_plane)
+>  	drm_WARN_ON(fb->dev, !is_ccs_modifier(fb->modifier) ||
+>  		    ccs_plane < fb->format->num_planes / 2);
+> 
+> +	if (is_gen12_ccs_cc_plane(fb, ccs_plane))
+> +		return 0;
+> +
+>  	return ccs_plane - fb->format->num_planes / 2;  }
+> 
+> @@ -2048,6 +2057,7 @@ intel_tile_width_bytes(const struct
+> drm_framebuffer *fb, int color_plane)
+>  			return 128;
+>  		fallthrough;
+>  	case I915_FORMAT_MOD_Y_TILED_GEN12_RC_CCS:
+> +	case I915_FORMAT_MOD_Y_TILED_GEN12_RC_CCS_CC:
+>  	case I915_FORMAT_MOD_Y_TILED_GEN12_MC_CCS:
+>  		if (is_ccs_plane(fb, color_plane))
+>  			return 64;
+> @@ -2204,6 +2214,7 @@ static unsigned int intel_surf_alignment(const
+> struct drm_framebuffer *fb,
+>  			return intel_tile_row_size(fb, color_plane);
+>  		fallthrough;
+>  	case I915_FORMAT_MOD_Y_TILED_GEN12_RC_CCS:
+> +	case I915_FORMAT_MOD_Y_TILED_GEN12_RC_CCS_CC:
+>  		return 16 * 1024;
+>  	case I915_FORMAT_MOD_Y_TILED_CCS:
+>  	case I915_FORMAT_MOD_Yf_TILED_CCS:
+> @@ -2608,6 +2619,7 @@ static unsigned int intel_fb_modifier_to_tiling(u64
+> fb_modifier)
+>  	case I915_FORMAT_MOD_Y_TILED:
+>  	case I915_FORMAT_MOD_Y_TILED_CCS:
+>  	case I915_FORMAT_MOD_Y_TILED_GEN12_RC_CCS:
+> +	case I915_FORMAT_MOD_Y_TILED_GEN12_RC_CCS_CC:
+>  	case I915_FORMAT_MOD_Y_TILED_GEN12_MC_CCS:
+>  		return I915_TILING_Y;
+>  	default:
+> @@ -2686,6 +2698,25 @@ static const struct drm_format_info
+> gen12_ccs_formats[] = {
+>  	  .hsub = 2, .vsub = 2, .is_yuv = true },  };
+> 
+> +/*
+> + * Same as gen12_ccs_formats[] above, but with additional surface used
+> + * to pass Clear Color information in plane 2 with 64 bits of data.
+> + */
+> +static const struct drm_format_info gen12_ccs_cc_formats[] = {
+> +	{ .format = DRM_FORMAT_XRGB8888, .depth = 24, .num_planes = 3,
+> +	  .char_per_block = { 4, 1, 0 }, .block_w = { 1, 2, 2 }, .block_h = { 1, 1, 1
+> },
+> +	  .hsub = 1, .vsub = 1, },
+> +	{ .format = DRM_FORMAT_XBGR8888, .depth = 24, .num_planes = 3,
+> +	  .char_per_block = { 4, 1, 0 }, .block_w = { 1, 2, 2 }, .block_h = { 1, 1, 1
+> },
+> +	  .hsub = 1, .vsub = 1, },
+> +	{ .format = DRM_FORMAT_ARGB8888, .depth = 32, .num_planes = 3,
+> +	  .char_per_block = { 4, 1, 0 }, .block_w = { 1, 2, 2 }, .block_h = { 1, 1, 1
+> },
+> +	  .hsub = 1, .vsub = 1, .has_alpha = true },
+> +	{ .format = DRM_FORMAT_ABGR8888, .depth = 32, .num_planes = 3,
+> +	  .char_per_block = { 4, 1, 0 }, .block_w = { 1, 2, 2 }, .block_h = { 1, 1, 1
+> },
+> +	  .hsub = 1, .vsub = 1, .has_alpha = true }, };
+> +
+>  static const struct drm_format_info *
+>  lookup_format_info(const struct drm_format_info formats[],
+>  		   int num_formats, u32 format)
+> @@ -2714,6 +2745,10 @@ intel_get_format_info(const struct
+> drm_mode_fb_cmd2 *cmd)
+>  		return lookup_format_info(gen12_ccs_formats,
+>  					  ARRAY_SIZE(gen12_ccs_formats),
+>  					  cmd->pixel_format);
+> +	case I915_FORMAT_MOD_Y_TILED_GEN12_RC_CCS_CC:
+> +		return lookup_format_info(gen12_ccs_cc_formats,
+> +					  ARRAY_SIZE(gen12_ccs_cc_formats),
+> +					  cmd->pixel_format);
+>  	default:
+>  		return NULL;
+>  	}
+> @@ -2722,6 +2757,7 @@ intel_get_format_info(const struct
+> drm_mode_fb_cmd2 *cmd)  bool is_ccs_modifier(u64 modifier)  {
+>  	return modifier == I915_FORMAT_MOD_Y_TILED_GEN12_RC_CCS ||
+> +	       modifier == I915_FORMAT_MOD_Y_TILED_GEN12_RC_CCS_CC ||
+>  	       modifier == I915_FORMAT_MOD_Y_TILED_GEN12_MC_CCS ||
+>  	       modifier == I915_FORMAT_MOD_Y_TILED_CCS ||
+>  	       modifier == I915_FORMAT_MOD_Yf_TILED_CCS; @@ -2940,7
+> +2976,7 @@ intel_fb_check_ccs_xy(struct drm_framebuffer *fb, int
+> ccs_plane, int x, int y)
+>  	int ccs_x, ccs_y;
+>  	int main_x, main_y;
+> 
+> -	if (!is_ccs_plane(fb, ccs_plane))
+> +	if (!is_ccs_plane(fb, ccs_plane) || is_gen12_ccs_cc_plane(fb,
+> +ccs_plane))
+>  		return 0;
+> 
+>  	intel_tile_dims(fb, ccs_plane, &tile_width, &tile_height); @@ -3067,6
+> +3103,18 @@ intel_fill_fb_info(struct drm_i915_private *dev_priv,
+>  		int x, y;
+>  		int ret;
+> 
+> +		/*
+> +		 * Plane 2 of Render Compression with Clear Color fb
+> modifier
+> +		 * is consumed by the driver and not passed to DE. Skip the
+> +		 * arithmetic related to alignment and offset calculation.
+> +		 */
+> +		if (is_gen12_ccs_cc_plane(fb, i)) {
+> +			if (IS_ALIGNED(fb->offsets[i], PAGE_SIZE))
+> +				continue;
+> +			else
+> +				return -EINVAL;
+> +		}
+> +
+>  		cpp = fb->format->cpp[i];
+>  		intel_fb_plane_dims(&width, &height, fb, i);
+> 
+> @@ -3991,7 +4039,8 @@ static int skl_check_ccs_aux_surface(struct
+> intel_plane_state *plane_state)
+>  		int hsub, vsub;
+>  		int x, y;
+> 
+> -		if (!is_ccs_plane(fb, ccs_plane))
+> +		if (!is_ccs_plane(fb, ccs_plane) ||
+> +		    is_gen12_ccs_cc_plane(fb, ccs_plane))
+>  			continue;
+> 
+>  		intel_fb_plane_get_subsampling(&main_hsub, &main_vsub,
+> fb, @@ -4647,6 +4696,7 @@ static u32 skl_plane_ctl_tiling(u64 fb_modifier)
+>  	case I915_FORMAT_MOD_Y_TILED:
+>  		return PLANE_CTL_TILED_Y;
+>  	case I915_FORMAT_MOD_Y_TILED_CCS:
+> +	case I915_FORMAT_MOD_Y_TILED_GEN12_RC_CCS_CC:
+>  		return PLANE_CTL_TILED_Y |
+> PLANE_CTL_RENDER_DECOMPRESSION_ENABLE;
+>  	case I915_FORMAT_MOD_Y_TILED_GEN12_RC_CCS:
+>  		return PLANE_CTL_TILED_Y |
+> @@ -16647,6 +16697,20 @@ static int intel_plane_pin_fb(struct
+> intel_plane_state *plane_state)
+> 
+>  	plane_state->vma = vma;
+> 
+> +	if (fb->modifier ==
+> I915_FORMAT_MOD_Y_TILED_GEN12_RC_CCS_CC) {
+> +		void *map =
+> kmap_atomic(i915_gem_object_get_page(intel_fb_obj(fb),
+> +								 fb->offsets[2]
+> >> PAGE_SHIFT));
+> +
+> +		/*
+> +		 * The layout of the fast clear color value expected by HW:
+> +		 * - 4 x 4 bytes per-channel value (in surface type specific
+> float/int format)
+> +		 * - 8 bytes native color value used by the display
+> (converted/written by GPU during
+> +		 *   a fast clear operation using the above per-channel values)
+> +		 */
+> +		plane_state->ccval = *(u64 *)(map + 16);
+> +		kunmap_atomic(map);
+> +	}
+> +
+>  	return 0;
+>  }
+> 
+> @@ -17997,7 +18061,7 @@ static int intel_framebuffer_init(struct
+> intel_framebuffer *intel_fb,
+>  			goto err;
+>  		}
+> 
+> -		if (is_gen12_ccs_plane(fb, i)) {
+> +		if (is_gen12_ccs_plane(fb, i) && !is_gen12_ccs_cc_plane(fb,
+> i)) {
+>  			int ccs_aux_stride = gen12_ccs_aux_stride(fb, i);
+> 
+>  			if (fb->pitches[i] != ccs_aux_stride) { diff --git
+> a/drivers/gpu/drm/i915/display/intel_display_types.h
+> b/drivers/gpu/drm/i915/display/intel_display_types.h
+> index ce82d654d0f2..a3f4b945a306 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+> @@ -604,6 +604,9 @@ struct intel_plane_state {
+>  	u32 planar_slave;
+> 
+>  	struct drm_intel_sprite_colorkey ckey;
+> +
+> +	/* Clear Color Value */
+> +	u64 ccval;
+>  };
+> 
+>  struct intel_initial_plane_config {
+> diff --git a/drivers/gpu/drm/i915/display/intel_sprite.c
+> b/drivers/gpu/drm/i915/display/intel_sprite.c
+> index 019a2d6d807a..2dc699e75816 100644
+> --- a/drivers/gpu/drm/i915/display/intel_sprite.c
+> +++ b/drivers/gpu/drm/i915/display/intel_sprite.c
+> @@ -851,6 +851,10 @@ skl_program_plane(struct intel_plane *plane,
+>  	if (fb->format->is_yuv && icl_is_hdr_plane(dev_priv, plane_id))
+>  		icl_program_input_csc(plane, crtc_state, plane_state);
+> 
+> +	if (fb->modifier ==
+> I915_FORMAT_MOD_Y_TILED_GEN12_RC_CCS_CC)
+> +		intel_uncore_write64_fw(&dev_priv->uncore,
+> +					PLANE_CC_VAL(pipe, plane_id),
+> plane_state->ccval);
+> +
+>  	skl_write_plane_wm(plane, crtc_state);
+> 
+>  	intel_de_write_fw(dev_priv, PLANE_KEYVAL(pipe, plane_id), @@ -
+> 2350,7 +2354,8 @@ static int skl_plane_check_fb(const struct
+> intel_crtc_state *crtc_state,
+>  	     fb->modifier == I915_FORMAT_MOD_Y_TILED_CCS ||
+>  	     fb->modifier == I915_FORMAT_MOD_Yf_TILED_CCS ||
+>  	     fb->modifier == I915_FORMAT_MOD_Y_TILED_GEN12_RC_CCS ||
+> -	     fb->modifier == I915_FORMAT_MOD_Y_TILED_GEN12_MC_CCS)) {
+> +	     fb->modifier == I915_FORMAT_MOD_Y_TILED_GEN12_MC_CCS ||
+> +	     fb->modifier ==
+> I915_FORMAT_MOD_Y_TILED_GEN12_RC_CCS_CC)) {
+>  		drm_dbg_kms(&dev_priv->drm,
+>  			    "Y/Yf tiling not supported in IF-ID mode\n");
+>  		return -EINVAL;
+> @@ -2840,6 +2845,7 @@ static const u64 skl_plane_format_modifiers_ccs[]
+> = {  static const u64 gen12_plane_format_modifiers_mc_ccs[] = {
+>  	I915_FORMAT_MOD_Y_TILED_GEN12_MC_CCS,
+>  	I915_FORMAT_MOD_Y_TILED_GEN12_RC_CCS,
+> +	I915_FORMAT_MOD_Y_TILED_GEN12_RC_CCS_CC,
+>  	I915_FORMAT_MOD_Y_TILED,
+>  	I915_FORMAT_MOD_X_TILED,
+>  	DRM_FORMAT_MOD_LINEAR,
+> @@ -2848,6 +2854,7 @@ static const u64
+> gen12_plane_format_modifiers_mc_ccs[] = {
+> 
+>  static const u64 gen12_plane_format_modifiers_rc_ccs[] = {
+>  	I915_FORMAT_MOD_Y_TILED_GEN12_RC_CCS,
+> +	I915_FORMAT_MOD_Y_TILED_GEN12_RC_CCS_CC,
+>  	I915_FORMAT_MOD_Y_TILED,
+>  	I915_FORMAT_MOD_X_TILED,
+>  	DRM_FORMAT_MOD_LINEAR,
+> @@ -3038,6 +3045,7 @@ static bool
+> gen12_plane_format_mod_supported(struct drm_plane *_plane,
+>  	case I915_FORMAT_MOD_X_TILED:
+>  	case I915_FORMAT_MOD_Y_TILED:
+>  	case I915_FORMAT_MOD_Y_TILED_GEN12_RC_CCS:
+> +	case I915_FORMAT_MOD_Y_TILED_GEN12_RC_CCS_CC:
+>  		break;
+>  	default:
+>  		return false;
+> diff --git a/drivers/gpu/drm/i915/i915_reg.h
+> b/drivers/gpu/drm/i915/i915_reg.h index 5375b219cc3b..edabb55d1586
+> 100644
+> --- a/drivers/gpu/drm/i915/i915_reg.h
+> +++ b/drivers/gpu/drm/i915/i915_reg.h
+> @@ -7070,6 +7070,8 @@ enum {
+>  #define _PLANE_KEYMAX_1_A			0x701a0
+>  #define _PLANE_KEYMAX_2_A			0x702a0
+>  #define  PLANE_KEYMAX_ALPHA(a)			((a) << 24)
+> +#define _PLANE_CC_VAL_1_A			0x701b4
+> +#define _PLANE_CC_VAL_2_A			0x702b4
+>  #define _PLANE_AUX_DIST_1_A			0x701c0
+>  #define _PLANE_AUX_DIST_2_A			0x702c0
+>  #define _PLANE_AUX_OFFSET_1_A			0x701c4
+> @@ -7111,6 +7113,13 @@ enum {
+>  #define _PLANE_NV12_BUF_CFG_1_A		0x70278
+>  #define _PLANE_NV12_BUF_CFG_2_A		0x70378
+> 
+> +#define _PLANE_CC_VAL_1_B			0x711b4
+> +#define _PLANE_CC_VAL_2_B			0x712b4
+> +#define _PLANE_CC_VAL_1(pipe)	_PIPE(pipe, _PLANE_CC_VAL_1_A,
+> _PLANE_CC_VAL_1_B)
+> +#define _PLANE_CC_VAL_2(pipe)	_PIPE(pipe, _PLANE_CC_VAL_2_A,
+> _PLANE_CC_VAL_2_B)
+> +#define PLANE_CC_VAL(pipe, plane)	\
+> +	_MMIO_PLANE(plane, _PLANE_CC_VAL_1(pipe),
+> _PLANE_CC_VAL_2(pipe))
+> +
+>  /* Input CSC Register Definitions */
+>  #define _PLANE_INPUT_CSC_RY_GY_1_A	0x701E0
+>  #define _PLANE_INPUT_CSC_RY_GY_2_A	0x702E0
+> --
+> 2.25.1
+> 
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
