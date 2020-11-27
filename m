@@ -1,43 +1,43 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3000A2C67FB
-	for <lists+intel-gfx@lfdr.de>; Fri, 27 Nov 2020 15:33:12 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id E7AEF2C6801
+	for <lists+intel-gfx@lfdr.de>; Fri, 27 Nov 2020 15:36:38 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 776906EDF9;
-	Fri, 27 Nov 2020 14:33:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CBAFE6EDF8;
+	Fri, 27 Nov 2020 14:36:36 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5A0DF6EDF9
- for <intel-gfx@lists.freedesktop.org>; Fri, 27 Nov 2020 14:33:09 +0000 (UTC)
-IronPort-SDR: PIAdjzKykVNQaGJl3kfHmVa7v9O3FQOIYoKqBtf0mSVKPtGbTrNdotbSC6IoU7pMErmu4frVAN
- WKYcV8WOQPcA==
-X-IronPort-AV: E=McAfee;i="6000,8403,9817"; a="190561257"
-X-IronPort-AV: E=Sophos;i="5.78,374,1599548400"; d="scan'208";a="190561257"
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D52C66EDFD;
+ Fri, 27 Nov 2020 14:36:35 +0000 (UTC)
+IronPort-SDR: a5KPedI2OrqAp44abcEOHuLhkR8UXnyqCUPeXTrvxnmOOYlvAJHzzfTU1BeYVjkzDPzYksIXFz
+ s8DMc61EWAJQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9817"; a="160172979"
+X-IronPort-AV: E=Sophos;i="5.78,374,1599548400"; d="scan'208";a="160172979"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Nov 2020 06:33:09 -0800
-IronPort-SDR: Ra20Lc47VmG3mwF6Ya8l5nJkVlbVB89SXRuazJqYWjQ2MpjoX6vfQKp7s+TGLGK46Z99F0re32
- 8ZibNbLVkcew==
-X-IronPort-AV: E=Sophos;i="5.78,374,1599548400"; d="scan'208";a="328669990"
-Received: from parinmsh-mobl1.amr.corp.intel.com (HELO
- josouza-mobl2.intel.com) ([10.254.178.102])
- by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Nov 2020 06:33:07 -0800
-From: =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Fri, 27 Nov 2020 06:33:06 -0800
-Message-Id: <20201127143306.140047-4-jose.souza@intel.com>
-X-Mailer: git-send-email 2.29.2
-In-Reply-To: <20201127143306.140047-1-jose.souza@intel.com>
-References: <20201127143306.140047-1-jose.souza@intel.com>
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Nov 2020 06:36:33 -0800
+IronPort-SDR: WD93QzmBhrUDaUg+cyhJEghaIIpzzlYPZmKeb4aeAagVFSh81mLxSox7xN1tLyIdNP/SshY/3e
+ iZwDBpPFjMGg==
+X-IronPort-AV: E=Sophos;i="5.78,374,1599548400"; d="scan'208";a="548064780"
+Received: from cwilso3-mobl.fi.intel.com (HELO localhost) ([10.214.217.175])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Nov 2020 06:36:30 -0800
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v3 4/4] HAX/DO_NOT_MERGE_IT: drm/i915/display:
- Enable PSR2 selective fetch for testing
+In-Reply-To: <20201127120718.454037-151-matthew.auld@intel.com>
+References: <20201127120718.454037-1-matthew.auld@intel.com>
+ <20201127120718.454037-151-matthew.auld@intel.com>
+From: Chris Wilson <chris.p.wilson@intel.com>
+To: Matthew Auld <matthew.auld@intel.com>, intel-gfx@lists.freedesktop.org
+Date: Fri, 27 Nov 2020 14:36:26 +0000
+Message-ID: <160648778686.2925.791713615282197407@build.alporthouse.com>
+User-Agent: alot/0.9
+Subject: Re: [Intel-gfx] [RFC PATCH 150/162] drm/i915: need consider system
+ BO snoop for dgfx
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,27 +50,80 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: dri-devel@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-RW5hYmxpbmcgaXQgdG8gY2hlY2sgaWYgaXQgY2F1c2VzIHJlZ3Jlc3Npb25zIGluIENJIGJ1dCB0
-aGUgZmVhdHVyZSBpcwpzdGlsbCBub3QgcmVhZHkgdG8gYmUgZW5hYmxlZCBieSBkZWZhdWx0LgoK
-U2lnbmVkLW9mZi1ieTogSm9zw6kgUm9iZXJ0byBkZSBTb3V6YSA8am9zZS5zb3V6YUBpbnRlbC5j
-b20+Ci0tLQogZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9wYXJhbXMuaCB8IDIgKy0KIDEgZmls
-ZSBjaGFuZ2VkLCAxIGluc2VydGlvbigrKSwgMSBkZWxldGlvbigtKQoKZGlmZiAtLWdpdCBhL2Ry
-aXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfcGFyYW1zLmggYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9p
-OTE1X3BhcmFtcy5oCmluZGV4IDMzMGMwM2UyYjRmNy4uYjhiMTkyNzBjMzM5IDEwMDY0NAotLS0g
-YS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X3BhcmFtcy5oCisrKyBiL2RyaXZlcnMvZ3B1L2Ry
-bS9pOTE1L2k5MTVfcGFyYW1zLmgKQEAgLTU0LDcgKzU0LDcgQEAgc3RydWN0IGRybV9wcmludGVy
-OwogCXBhcmFtKGludCwgZW5hYmxlX2ZiYywgLTEsIDA2MDApIFwKIAlwYXJhbShpbnQsIGVuYWJs
-ZV9wc3IsIC0xLCAwNjAwKSBcCiAJcGFyYW0oYm9vbCwgcHNyX3NhZmVzdF9wYXJhbXMsIGZhbHNl
-LCAwNjAwKSBcCi0JcGFyYW0oYm9vbCwgZW5hYmxlX3BzcjJfc2VsX2ZldGNoLCBmYWxzZSwgMDYw
-MCkgXAorCXBhcmFtKGJvb2wsIGVuYWJsZV9wc3IyX3NlbF9mZXRjaCwgdHJ1ZSwgMDYwMCkgXAog
-CXBhcmFtKGludCwgZGlzYWJsZV9wb3dlcl93ZWxsLCAtMSwgMDQwMCkgXAogCXBhcmFtKGludCwg
-ZW5hYmxlX2lwcywgMSwgMDYwMCkgXAogCXBhcmFtKGludCwgaW52ZXJ0X2JyaWdodG5lc3MsIDAs
-IDA2MDApIFwKLS0gCjIuMjkuMgoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRl
-c2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8v
-aW50ZWwtZ2Z4Cg==
+Quoting Matthew Auld (2020-11-27 12:07:06)
+> From: CQ Tang <cq.tang@intel.com>
+> 
+> When cache_level is NONE, we check HAS_LLC(i915).
+> But additionally for DGFX, we also need to check
+> HAS_SNOOP(i915) on system memory object to use
+> I915_BO_CACHE_COHERENT_FOR_READ. on dg1, has_llc=0, and
+> has_snoop=1. Otherwise, we set obj->cache_choerent=0 and
+> have performance impact.
+> 
+> Cc: Chris P Wilson <chris.p.wilson@intel.com>
+> Cc: Ramalingam C <ramalingam.c@intel.com>
+> Cc: Sudeep Dutt <sudeep.dutt@intel.com>
+> Cc: Matthew Auld <matthew.auld@intel.com>
+> Signed-off-by: CQ Tang <cq.tang@intel.com>
+> ---
+>  drivers/gpu/drm/i915/gem/i915_gem_object.c | 16 +++++++++++++++-
+>  1 file changed, 15 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object.c b/drivers/gpu/drm/i915/gem/i915_gem_object.c
+> index ddb448f275eb..be603171c444 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_object.c
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_object.c
+> @@ -95,6 +95,20 @@ void i915_gem_object_init(struct drm_i915_gem_object *obj,
+>         mutex_init(&obj->mm.get_dma_page.lock);
+>  }
+>  
+> +static bool i915_gem_object_use_llc(struct drm_i915_gem_object *obj)
+> +{
+> +       struct drm_i915_private *i915 = to_i915(obj->base.dev);
+> +
+> +       if (HAS_LLC(i915))
+> +               return true;
+> +
+> +       if (IS_DGFX(i915) && HAS_SNOOP(i915) &&
+> +           !i915_gem_object_is_lmem(obj))
+> +               return true;
+> +
+> +       return false;
+> +}
+> +
+>  /**
+>   * Mark up the object's coherency levels for a given cache_level
+>   * @obj: #drm_i915_gem_object
+> @@ -108,7 +122,7 @@ void i915_gem_object_set_cache_coherency(struct drm_i915_gem_object *obj,
+>         if (cache_level != I915_CACHE_NONE)
+>                 obj->cache_coherent = (I915_BO_CACHE_COHERENT_FOR_READ |
+>                                        I915_BO_CACHE_COHERENT_FOR_WRITE);
+> -       else if (HAS_LLC(to_i915(obj->base.dev)))
+> +       else if (i915_gem_object_use_llc(obj))
+>                 obj->cache_coherent = I915_BO_CACHE_COHERENT_FOR_READ;
+>         else
+>                 obj->cache_coherent = 0;
+
+You must also define obj->cache_level correctly. You can not just assume
+the object will be snooped.
+-Chris
+---------------------------------------------------------------------
+Intel Corporation (UK) Limited
+Registered No. 1134945 (England)
+Registered Office: Pipers Way, Swindon SN3 1RJ
+VAT No: 860 2173 47
+
+This e-mail and any attachments may contain confidential material for
+the sole use of the intended recipient(s). Any review or distribution
+by others is strictly prohibited. If you are not the intended
+recipient, please contact the sender and delete all copies.
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
