@@ -2,42 +2,42 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 48B7C2C6585
-	for <lists+intel-gfx@lfdr.de>; Fri, 27 Nov 2020 13:14:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 544842C6589
+	for <lists+intel-gfx@lfdr.de>; Fri, 27 Nov 2020 13:14:52 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B47696ED94;
-	Fri, 27 Nov 2020 12:12:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 743346ED9F;
+	Fri, 27 Nov 2020 12:12:24 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D75306ED8F;
- Fri, 27 Nov 2020 12:12:17 +0000 (UTC)
-IronPort-SDR: 57GVVoFoi1FOkIQfweP9lqQIm2Pd/ZZisYXE1AG3KfIRc1DaNd6Y+JpP2KaakZbSJPTq47ru2z
- XB+I4Zx8oyDw==
-X-IronPort-AV: E=McAfee;i="6000,8403,9817"; a="168883856"
-X-IronPort-AV: E=Sophos;i="5.78,374,1599548400"; d="scan'208";a="168883856"
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 429F76ED8F;
+ Fri, 27 Nov 2020 12:12:19 +0000 (UTC)
+IronPort-SDR: PrXVOdrIeWslpEJwFcmA+OlYuTKbVoVq9Y02f8CqHSObZzuPTs7ejvBRICD5Hkoa8tQw9ScCWH
+ vU6wkMpmsBQA==
+X-IronPort-AV: E=McAfee;i="6000,8403,9817"; a="168883860"
+X-IronPort-AV: E=Sophos;i="5.78,374,1599548400"; d="scan'208";a="168883860"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from orsmga005.jf.intel.com ([10.7.209.41])
  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Nov 2020 04:12:17 -0800
-IronPort-SDR: UGDmbgwzNigaSrZYg5Ox9fXxoGOyN0DZ2nA/rjvhE9iDt76NhzTHIdt+iaheUmFQRBqv9+SI6w
- No8sbXAkujrg==
-X-IronPort-AV: E=Sophos;i="5.78,374,1599548400"; d="scan'208";a="548030018"
+ 27 Nov 2020 04:12:18 -0800
+IronPort-SDR: EUF3dStoizZMYow81o5Kizats7/L77wE6sg18R8+Yiyx2zNW/e/PMY8zXKUutvCe1NIrfYP6LI
+ c3VP24M8EiNw==
+X-IronPort-AV: E=Sophos;i="5.78,374,1599548400"; d="scan'208";a="548030025"
 Received: from mjgleeso-mobl.ger.corp.intel.com (HELO
  mwauld-desk1.ger.corp.intel.com) ([10.251.85.2])
  by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Nov 2020 04:12:15 -0800
+ 27 Nov 2020 04:12:17 -0800
 From: Matthew Auld <matthew.auld@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Fri, 27 Nov 2020 12:07:06 +0000
-Message-Id: <20201127120718.454037-151-matthew.auld@intel.com>
+Date: Fri, 27 Nov 2020 12:07:07 +0000
+Message-Id: <20201127120718.454037-152-matthew.auld@intel.com>
 X-Mailer: git-send-email 2.26.2
 In-Reply-To: <20201127120718.454037-1-matthew.auld@intel.com>
 References: <20201127120718.454037-1-matthew.auld@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [RFC PATCH 150/162] drm/i915: need consider system BO
- snoop for dgfx
+Subject: [Intel-gfx] [RFC PATCH 151/162] drm/i915: move eviction to prepare
+ hook
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,64 +50,95 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Chris P Wilson <chris.p.wilson@intel.com>, dri-devel@lists.freedesktop.org
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>, dri-devel@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: CQ Tang <cq.tang@intel.com>
+From: Lucas De Marchi <lucas.demarchi@intel.com>
 
-When cache_level is NONE, we check HAS_LLC(i915).
-But additionally for DGFX, we also need to check
-HAS_SNOOP(i915) on system memory object to use
-I915_BO_CACHE_COHERENT_FOR_READ. on dg1, has_llc=0, and
-has_snoop=1. Otherwise, we set obj->cache_choerent=0 and
-have performance impact.
-
-Cc: Chris P Wilson <chris.p.wilson@intel.com>
-Cc: Ramalingam C <ramalingam.c@intel.com>
-Cc: Sudeep Dutt <sudeep.dutt@intel.com>
-Cc: Matthew Auld <matthew.auld@intel.com>
-Signed-off-by: CQ Tang <cq.tang@intel.com>
+Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
 ---
- drivers/gpu/drm/i915/gem/i915_gem_object.c | 16 +++++++++++++++-
- 1 file changed, 15 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/i915/i915_drv.c | 40 ++++++++++++++++++++++-----------
+ 1 file changed, 27 insertions(+), 13 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object.c b/drivers/gpu/drm/i915/gem/i915_gem_object.c
-index ddb448f275eb..be603171c444 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_object.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_object.c
-@@ -95,6 +95,20 @@ void i915_gem_object_init(struct drm_i915_gem_object *obj,
- 	mutex_init(&obj->mm.get_dma_page.lock);
+diff --git a/drivers/gpu/drm/i915/i915_drv.c b/drivers/gpu/drm/i915/i915_drv.c
+index c8af68227020..b7d40a9c00bf 100644
+--- a/drivers/gpu/drm/i915/i915_drv.c
++++ b/drivers/gpu/drm/i915/i915_drv.c
+@@ -68,6 +68,7 @@
+ #include "gt/intel_gt.h"
+ #include "gt/intel_gt_pm.h"
+ #include "gt/intel_rc6.h"
++#include "gt/intel_gt_requests.h"
+ 
+ #include "i915_debugfs.h"
+ #include "i915_drv.h"
+@@ -1088,10 +1089,36 @@ static bool suspend_to_idle(struct drm_i915_private *dev_priv)
+ 	return false;
  }
  
-+static bool i915_gem_object_use_llc(struct drm_i915_gem_object *obj)
-+{
-+	struct drm_i915_private *i915 = to_i915(obj->base.dev);
++static int i915_gem_suspend_ppgtt_mappings(struct drm_i915_private *i915);
 +
-+	if (HAS_LLC(i915))
-+		return true;
++static int intel_dmem_evict_buffers(struct drm_device *dev, bool in_suspend,
++				    bool perma_pin);
 +
-+	if (IS_DGFX(i915) && HAS_SNOOP(i915) &&
-+	    !i915_gem_object_is_lmem(obj))
-+		return true;
+ static int i915_drm_prepare(struct drm_device *dev)
+ {
+ 	struct drm_i915_private *i915 = to_i915(dev);
+ 
++	if (HAS_LMEM(i915))     {
++		struct intel_gt *gt= &i915->gt;
++		long timeout = I915_GEM_IDLE_TIMEOUT;
++		int ret;
 +
-+	return false;
-+}
++		if (intel_gt_wait_for_idle(gt, timeout) == -ETIME) {
++			intel_gt_set_wedged(gt);
++			intel_gt_retire_requests(gt);
++		}
 +
- /**
-  * Mark up the object's coherency levels for a given cache_level
-  * @obj: #drm_i915_gem_object
-@@ -108,7 +122,7 @@ void i915_gem_object_set_cache_coherency(struct drm_i915_gem_object *obj,
- 	if (cache_level != I915_CACHE_NONE)
- 		obj->cache_coherent = (I915_BO_CACHE_COHERENT_FOR_READ |
- 				       I915_BO_CACHE_COHERENT_FOR_WRITE);
--	else if (HAS_LLC(to_i915(obj->base.dev)))
-+	else if (i915_gem_object_use_llc(obj))
- 		obj->cache_coherent = I915_BO_CACHE_COHERENT_FOR_READ;
- 	else
- 		obj->cache_coherent = 0;
++		ret = intel_dmem_evict_buffers(dev, true, false);
++		if (ret)
++			return ret;
++
++		i915_teardown_blt_windows(i915);
++
++		ret = i915_gem_suspend_ppgtt_mappings(i915);
++		if (ret)
++			return ret;
++	}
++
+ 	/*
+ 	 * NB intel_display_suspend() may issue new requests after we've
+ 	 * ostensibly marked the GPU as ready-to-sleep here. We need to
+@@ -1274,7 +1301,6 @@ static int i915_drm_suspend(struct drm_device *dev)
+ 	struct drm_i915_private *dev_priv = to_i915(dev);
+ 	struct pci_dev *pdev = dev_priv->drm.pdev;
+ 	pci_power_t opregion_target_state;
+-	int ret = 0;
+ 
+ 	disable_rpm_wakeref_asserts(&dev_priv->runtime_pm);
+ 
+@@ -1290,18 +1316,6 @@ static int i915_drm_suspend(struct drm_device *dev)
+ 
+ 	intel_dp_mst_suspend(dev_priv);
+ 
+-	if (HAS_LMEM(dev_priv))	{
+-		ret = intel_dmem_evict_buffers(dev, true, false);
+-		if (ret)
+-			return ret;
+-
+-		i915_teardown_blt_windows(dev_priv);
+-
+-		ret = i915_gem_suspend_ppgtt_mappings(dev_priv);
+-		if (ret)
+-			return ret;
+-	}
+-
+ 	intel_runtime_pm_disable_interrupts(dev_priv);
+ 	intel_hpd_cancel_work(dev_priv);
+ 
 -- 
 2.26.2
 
