@@ -1,46 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F0D662C631F
-	for <lists+intel-gfx@lfdr.de>; Fri, 27 Nov 2020 11:31:46 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 85BFD2C6326
+	for <lists+intel-gfx@lfdr.de>; Fri, 27 Nov 2020 11:36:31 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0AA226EB8D;
-	Fri, 27 Nov 2020 10:31:45 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 098DD6EB8D
- for <intel-gfx@lists.freedesktop.org>; Fri, 27 Nov 2020 10:31:42 +0000 (UTC)
-IronPort-SDR: zTeuibL1BF7RX22X8r6ceJL5KQH8/a0dPg9AmVJ91T8mHQp4bRz06tiK8VxBfBtUDBLGCC7M1M
- C61ohPVAA3+g==
-X-IronPort-AV: E=McAfee;i="6000,8403,9817"; a="172532646"
-X-IronPort-AV: E=Sophos;i="5.78,374,1599548400"; d="scan'208";a="172532646"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Nov 2020 02:31:42 -0800
-IronPort-SDR: p59ETYrz8oPP9dtuICozKwCzu+IXt0ou1DgoAWUFQPkJ7PwAO9JFvh5IZfZo+7uX/zJ8D6e0Ld
- k6jvXeUsX4Sg==
-X-IronPort-AV: E=Sophos;i="5.78,374,1599548400"; d="scan'208";a="537600217"
-Received: from einatsch-mobl.ger.corp.intel.com (HELO [10.214.245.41])
- ([10.214.245.41])
- by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Nov 2020 02:31:40 -0800
-To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
-References: <20201127102540.13117-1-chris@chris-wilson.co.uk>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-Message-ID: <fe3cc95e-342d-4e3b-2821-853421e8e32c@linux.intel.com>
-Date: Fri, 27 Nov 2020 10:31:37 +0000
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id 99B2C6EB8F;
+	Fri, 27 Nov 2020 10:36:29 +0000 (UTC)
+X-Original-To: Intel-gfx@lists.freedesktop.org
+Delivered-To: Intel-gfx@lists.freedesktop.org
+Received: from fireflyinternet.com (unknown [77.68.26.236])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 09CAC6EB8F
+ for <Intel-gfx@lists.freedesktop.org>; Fri, 27 Nov 2020 10:36:27 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from localhost (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
+ 23130169-1500050 for multiple; Fri, 27 Nov 2020 10:36:20 +0000
 MIME-Version: 1.0
-In-Reply-To: <20201127102540.13117-1-chris@chris-wilson.co.uk>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/gt: Declare gen9 has 64 mocs
- entries!
+In-Reply-To: <20201127100109.1968571-1-tvrtko.ursulin@linux.intel.com>
+References: <20201126164703.1578226-1-tvrtko.ursulin@linux.intel.com>
+ <20201127100109.1968571-1-tvrtko.ursulin@linux.intel.com>
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: Intel-gfx@lists.freedesktop.org,
+ Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Date: Fri, 27 Nov 2020 10:36:20 +0000
+Message-ID: <160647338038.5755.10632872150961246118@build.alporthouse.com>
+User-Agent: alot/0.9
+Subject: Re: [Intel-gfx] [PATCH v2] drm/i915/pmu: Deprecate I915_PMU_LAST
+ and optimize state tracking
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,64 +41,102 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: stable@vger.kernel.org
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-
-On 27/11/2020 10:25, Chris Wilson wrote:
-> We checked the table size against a hardcoded number of entries, and
-> that number was excluding the special mocs registers at the end.
+Quoting Tvrtko Ursulin (2020-11-27 10:01:09)
+> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 > 
-> Fixes: 977933b5da7c ("drm/i915/gt: Program mocs:63 for cache eviction on gen9")
-> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-> Cc: <stable@vger.kernel.org> # v4.3+
+> Adding any kinds of "last" abi markers is usually a mistake which I
+> repeated when implementing the PMU because it felt convenient at the time.
+> 
+> This patch marks I915_PMU_LAST as deprecated and stops the internal
+> implementation using it for sizing the event status bitmask and array.
+> 
+> New way of sizing the fields is a bit less elegant, but it omits reserving
+> slots for tracking events we are not interested in, and as such saves some
+> runtime space. Adding sampling events is likely to be a special event and
+> the new plumbing needed will be easily detected in testing. Existing
+> asserts against the bitfield and array sizes are keeping the code safe.
+> 
+> First event which gets the new treatment in this new scheme are the
+> interrupts - which neither needs any tracking in i915 pmu nor needs
+> waking up the GPU to read it.
+> 
+> v2:
+>  * Streamline helper names. (Chris)
+> 
+> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+> Cc: Chris Wilson <chris@chris-wilson.co.uk>
 > ---
->   drivers/gpu/drm/i915/gt/intel_mocs.c | 9 ++++-----
->   1 file changed, 4 insertions(+), 5 deletions(-)
+>  drivers/gpu/drm/i915/i915_pmu.c | 80 ++++++++++++++++++++++++---------
+>  drivers/gpu/drm/i915/i915_pmu.h | 35 ++++++++++-----
+>  include/uapi/drm/i915_drm.h     |  2 +-
+>  3 files changed, 83 insertions(+), 34 deletions(-)
 > 
-> diff --git a/drivers/gpu/drm/i915/gt/intel_mocs.c b/drivers/gpu/drm/i915/gt/intel_mocs.c
-> index b8d0c32ae9dd..ab6870242e18 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_mocs.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_mocs.c
-> @@ -59,8 +59,7 @@ struct drm_i915_mocs_table {
->   #define _L3_CACHEABILITY(value)	((value) << 4)
->   
->   /* Helper defines */
-> -#define GEN9_NUM_MOCS_ENTRIES	62  /* 62 out of 64 - 63 & 64 are reserved. */
-> -#define GEN11_NUM_MOCS_ENTRIES	64  /* 63-64 are reserved, but configured. */
-> +#define GEN9_NUM_MOCS_ENTRIES	64  /* 63-64 are reserved, but configured. */
->   
->   /* (e)LLC caching options */
->   /*
-> @@ -361,15 +360,15 @@ static unsigned int get_mocs_settings(const struct drm_i915_private *i915,
->   	if (IS_DG1(i915)) {
->   		table->size = ARRAY_SIZE(dg1_mocs_table);
->   		table->table = dg1_mocs_table;
-> -		table->n_entries = GEN11_NUM_MOCS_ENTRIES;
-> +		table->n_entries = GEN9_NUM_MOCS_ENTRIES;
->   	} else if (INTEL_GEN(i915) >= 12) {
->   		table->size  = ARRAY_SIZE(tgl_mocs_table);
->   		table->table = tgl_mocs_table;
-> -		table->n_entries = GEN11_NUM_MOCS_ENTRIES;
-> +		table->n_entries = GEN9_NUM_MOCS_ENTRIES;
->   	} else if (IS_GEN(i915, 11)) {
->   		table->size  = ARRAY_SIZE(icl_mocs_table);
->   		table->table = icl_mocs_table;
-> -		table->n_entries = GEN11_NUM_MOCS_ENTRIES;
-> +		table->n_entries = GEN9_NUM_MOCS_ENTRIES;
->   	} else if (IS_GEN9_BC(i915) || IS_CANNONLAKE(i915)) {
->   		table->size  = ARRAY_SIZE(skl_mocs_table);
->   		table->n_entries = GEN9_NUM_MOCS_ENTRIES;
-> 
+> diff --git a/drivers/gpu/drm/i915/i915_pmu.c b/drivers/gpu/drm/i915/i915_pmu.c
+> index cd786ad12be7..06dc63bf84d7 100644
+> --- a/drivers/gpu/drm/i915/i915_pmu.c
+> +++ b/drivers/gpu/drm/i915/i915_pmu.c
+> @@ -27,8 +27,6 @@
+>          BIT(I915_SAMPLE_WAIT) | \
+>          BIT(I915_SAMPLE_SEMA))
+>  
+> -#define ENGINE_SAMPLE_BITS (1 << I915_PMU_SAMPLE_BITS)
+> -
+>  static cpumask_t i915_pmu_cpumask;
+>  static unsigned int i915_pmu_target_cpu = -1;
+>  
+> @@ -57,17 +55,38 @@ static bool is_engine_config(u64 config)
+>         return config < __I915_PMU_OTHER(0);
+>  }
+>  
+> -static unsigned int config_enabled_bit(u64 config)
+> +static unsigned int other_bit(const u64 config)
+> +{
+> +       unsigned int val;
+> +
+> +       switch (config) {
+> +       case I915_PMU_ACTUAL_FREQUENCY:
+> +               val =  __I915_PMU_ACTUAL_FREQUENCY_ENABLED;
+> +               break;
+> +       case I915_PMU_REQUESTED_FREQUENCY:
+> +               val = __I915_PMU_REQUESTED_FREQUENCY_ENABLED;
+> +               break;
+> +       case I915_PMU_RC6_RESIDENCY:
+> +               val = __I915_PMU_RC6_RESIDENCY_ENABLED;
+> +               break;
+> +       default:
 
-Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+Should we explicitly list the untracked events?
 
-Regards,
+At least we should put a comment here to remind ourselves what takes
+the default path.
 
-Tvrtko
+/* Anything that doesn't require event tracking can be ignored */
+
+> +               return -1;
+> +       }
+> +
+> +       return I915_ENGINE_SAMPLE_COUNT + val;
+> +}
+> +
+> +static unsigned int config_bit(const u64 config)
+>  {
+>         if (is_engine_config(config))
+>                 return engine_config_sample(config);
+>         else
+> -               return ENGINE_SAMPLE_BITS + (config - __I915_PMU_OTHER(0));
+> +               return other_bit(config);
+>  }
+
+Thanks, that reads so much more clearly to me, and complements it use
+well.
+
+Reviewed-by: Chris Wilson <chris@chris-wilson.co.uk>
+-Chris
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
