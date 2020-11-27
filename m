@@ -1,33 +1,47 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 58C822C66FA
-	for <lists+intel-gfx@lfdr.de>; Fri, 27 Nov 2020 14:37:27 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4A6262C6718
+	for <lists+intel-gfx@lfdr.de>; Fri, 27 Nov 2020 14:45:16 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C6B356EDC0;
-	Fri, 27 Nov 2020 13:37:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8E0256ED18;
+	Fri, 27 Nov 2020 13:45:14 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E923B6EDBF;
- Fri, 27 Nov 2020 13:37:23 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 23133542-1500050 for multiple; Fri, 27 Nov 2020 13:37:20 +0000
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F31FB6ED18
+ for <intel-gfx@lists.freedesktop.org>; Fri, 27 Nov 2020 13:45:12 +0000 (UTC)
+IronPort-SDR: Mx36WLxzwvykoEfUux1EBt1dtmse6DKrYm1F2xffJf2MwnlfV2E5g3V3DLQWwpHzbqbQcuWtdD
+ 7+yQMBrCWy2Q==
+X-IronPort-AV: E=McAfee;i="6000,8403,9817"; a="169834598"
+X-IronPort-AV: E=Sophos;i="5.78,374,1599548400"; d="scan'208";a="169834598"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Nov 2020 05:45:11 -0800
+IronPort-SDR: IGL96JV7yPgirrWftrgSo7FilDHELao2t+AEo6jQQjPRIobRZOz6Gua9xE3SpcyE4slm40NneX
+ q1LjDqMfZeAA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.78,374,1599548400"; d="scan'208";a="333690227"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
+ by orsmga006.jf.intel.com with SMTP; 27 Nov 2020 05:45:08 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Fri, 27 Nov 2020 15:45:08 +0200
+Date: Fri, 27 Nov 2020 15:45:08 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Uma Shankar <uma.shankar@intel.com>
+Message-ID: <20201127134508.GL6112@intel.com>
+References: <20201126210314.7882-1-uma.shankar@intel.com>
+ <20201126210314.7882-9-uma.shankar@intel.com>
 MIME-Version: 1.0
-In-Reply-To: <20201127120718.454037-104-matthew.auld@intel.com>
-References: <20201127120718.454037-1-matthew.auld@intel.com>
- <20201127120718.454037-104-matthew.auld@intel.com>
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: Matthew Auld <matthew.auld@intel.com>, intel-gfx@lists.freedesktop.org
-Date: Fri, 27 Nov 2020 13:37:20 +0000
-Message-ID: <160648424005.2925.3851197595431719032@build.alporthouse.com>
-User-Agent: alot/0.9
-Subject: Re: [Intel-gfx] [RFC PATCH 103/162] drm/i915: allocate context from
- LMEM
+Content-Disposition: inline
+In-Reply-To: <20201126210314.7882-9-uma.shankar@intel.com>
+X-Patchwork-Hint: comment
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: Re: [Intel-gfx] [v12 08/15] drm/i915/display: Enable colorspace
+ programming for LSPCON devices
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,54 +54,70 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Abdiel Janulgue <abdiel.janulgue@linux.intel.com>,
- dri-devel@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Matthew Auld (2020-11-27 12:06:19)
-> Based on a patch from Michel Thierry.
-> 
-> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
-> Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-> Cc: Abdiel Janulgue <abdiel.janulgue@linux.intel.com>
-> ---
->  .../drm/i915/gt/intel_execlists_submission.c  | 31 ++++++++++++++++++-
->  1 file changed, 30 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
-> index 582a9044727e..c640b90711fd 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
-> @@ -108,6 +108,8 @@
->   */
->  #include <linux/interrupt.h>
->  
-> +#include "gem/i915_gem_lmem.h"
-> +
->  #include "i915_drv.h"
->  #include "i915_perf.h"
->  #include "i915_trace.h"
-> @@ -4660,6 +4662,21 @@ static struct intel_timeline *pinned_timeline(struct intel_context *ce)
->                                                  page_unmask_bits(tl));
->  }
->  
-> +static int context_clear_lmem(struct drm_i915_gem_object *ctx_obj)
-> +{
-> +       void *vaddr;
-> +
-> +       vaddr = i915_gem_object_pin_map(ctx_obj, I915_MAP_WC);
-> +       if (IS_ERR(vaddr))
-> +               return PTR_ERR(vaddr);
-> +
-> +       memset64(vaddr, 0, ctx_obj->base.size / sizeof(u64));
-> +
-> +       i915_gem_object_unpin_map(ctx_obj);
+On Fri, Nov 27, 2020 at 02:33:07AM +0530, Uma Shankar wrote:
+> Enable HDMI Colorspace for LSPCON based devices. Sending Colorimetry
+> data for HDR using AVI infoframe. LSPCON firmware expects this and though
+> SOC drives DP, for HDMI panel AVI infoframe is sent to the LSPCON device
+> which transfers the same to HDMI sink.
+> =
 
-What? We copy over the entire object with the default state.
--Chris
+> v2: Dropped state managed in drm core as per Jani Nikula's suggestion.
+> =
+
+> v3: Aligned colorimetry handling for lspcon as per compute_avi_infoframes,
+> as suggested by Ville.
+> =
+
+> v4: Finally fixed this with Ville's help, re-phrased the commit header
+> and description.
+
+Still missing the "expose the hdmi variant of the prop on lspcon"
+part. I didn't include that in my patch since we didn't use
+drm_hdmi_avi_infoframe_colorspace() yes on lspcon. Although
+maybe I should have just done that change anyway since we were
+already registering the prop anyway even if we didn't actually
+put the data into the infoframe.
+
+> =
+
+> Credits-to: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> Signed-off-by: Uma Shankar <uma.shankar@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_lspcon.c | 3 +++
+>  1 file changed, 3 insertions(+)
+> =
+
+> diff --git a/drivers/gpu/drm/i915/display/intel_lspcon.c b/drivers/gpu/dr=
+m/i915/display/intel_lspcon.c
+> index 0a4c05d67108..cb768a1ae4c9 100644
+> --- a/drivers/gpu/drm/i915/display/intel_lspcon.c
+> +++ b/drivers/gpu/drm/i915/display/intel_lspcon.c
+> @@ -523,6 +523,9 @@ void lspcon_set_infoframes(struct intel_encoder *enco=
+der,
+>  	else
+>  		frame.avi.colorspace =3D HDMI_COLORSPACE_RGB;
+>  =
+
+> +	/* Set the Colorspace as per the HDMI spec */
+> +	drm_hdmi_avi_infoframe_colorspace(&frame.avi, conn_state);
+> +
+>  	/* nonsense combination */
+>  	drm_WARN_ON(encoder->base.dev, crtc_state->limited_color_range &&
+>  		    crtc_state->output_format !=3D INTEL_OUTPUT_FORMAT_RGB);
+> -- =
+
+> 2.26.2
+
+-- =
+
+Ville Syrj=E4l=E4
+Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
