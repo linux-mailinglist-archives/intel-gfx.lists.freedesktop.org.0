@@ -2,32 +2,40 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1E2A22C67F6
-	for <lists+intel-gfx@lfdr.de>; Fri, 27 Nov 2020 15:32:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 853F42C67F8
+	for <lists+intel-gfx@lfdr.de>; Fri, 27 Nov 2020 15:33:05 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 812596EDF6;
-	Fri, 27 Nov 2020 14:32:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D40736EDF5;
+	Fri, 27 Nov 2020 14:33:03 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6EDBB6EDF3;
- Fri, 27 Nov 2020 14:32:32 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 23134365-1500050 for multiple; Fri, 27 Nov 2020 14:32:28 +0000
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 539F76EDF5
+ for <intel-gfx@lists.freedesktop.org>; Fri, 27 Nov 2020 14:33:03 +0000 (UTC)
+IronPort-SDR: fOG/ri0UIVerZoK1hLAnhRIYWEowTir6HNmjs0JoC2GfRyOnhTXVEkhdPguvRUHU3LgRzy9Edt
+ EyFskf1AmCcg==
+X-IronPort-AV: E=McAfee;i="6000,8403,9817"; a="190561236"
+X-IronPort-AV: E=Sophos;i="5.78,374,1599548400"; d="scan'208";a="190561236"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Nov 2020 06:33:02 -0800
+IronPort-SDR: ZiSrVIwb0Jk6w/So73Vt3pBIOis04zCR4AJRdmIfdpb050370bkobyAY15VxdBl9injd6Yz8wg
+ AZAzQ/xWO3OA==
+X-IronPort-AV: E=Sophos;i="5.78,374,1599548400"; d="scan'208";a="328669955"
+Received: from parinmsh-mobl1.amr.corp.intel.com (HELO
+ josouza-mobl2.intel.com) ([10.254.178.102])
+ by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Nov 2020 06:33:00 -0800
+From: =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Fri, 27 Nov 2020 06:33:03 -0800
+Message-Id: <20201127143306.140047-1-jose.souza@intel.com>
+X-Mailer: git-send-email 2.29.2
 MIME-Version: 1.0
-In-Reply-To: <20201127120718.454037-149-matthew.auld@intel.com>
-References: <20201127120718.454037-1-matthew.auld@intel.com>
- <20201127120718.454037-149-matthew.auld@intel.com>
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: Matthew Auld <matthew.auld@intel.com>, intel-gfx@lists.freedesktop.org
-Date: Fri, 27 Nov 2020 14:32:28 +0000
-Message-ID: <160648754823.2925.8607756331363588319@build.alporthouse.com>
-User-Agent: alot/0.9
-Subject: Re: [Intel-gfx] [RFC PATCH 148/162] drm/i915: suspend/resume enable
- blitter eviction
+Subject: [Intel-gfx] [PATCH v3 1/4] drm/i915/display/psr: Calculate
+ selective fetch plane registers
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,22 +48,78 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Venkata Ramana Nayana <venkata.ramana.nayana@intel.com>,
- dri-devel@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Matthew Auld (2020-11-27 12:07:04)
-> From: Venkata Ramana Nayana <venkata.ramana.nayana@intel.com>
-> 
-> In suspend mode use blitter eviction before disable the runtime
-> interrupts and in resume use blitter after the gem resume happens.
-
-Consider add it to the suspend prepare function.
--Chris
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+QWRkIHRoZSBjYWxjdWxhdGlvbnMgdG8gc2V0IHBsYW5lIHNlbGVjdGl2ZSBmZXRjaCByZWdpc3Rl
+cnMgZGVwZW5kaW5nCmluIHRoZSB2YWx1ZSBvZiB0aGUgYXJlYSBkYW1hZ2VkLgpJdCBpcyBzdGls
+bCB1c2luZyB0aGUgd2hvbGUgcGxhbmUgYXJlYSBhcyBkYW1hZ2VkIGJ1dCB0aGF0IHdpbGwgY2hh
+bmdlCmluIG5leHQgcGF0Y2hlcy4KCnYyOgotIGZpeGVkIG5ld19wbGFuZV9zdGF0ZS0+dWFwaS5k
+c3QueTIgdHlwbyBpbgppbnRlbF9wc3IyX3NlbF9mZXRjaF91cGRhdGUoKQotIGRvIG5vdCBzaGlm
+dGhpbmcgbmV3X3BsYW5lX3N0YXRlLT51YXBpLmRzdCBvbmx5IHNyYyBpcyBpbiAxNi4xNiBmb3Jt
+YXQKCkJTcGVjOiA1NTIyOQpDYzogR3dhbi1neWVvbmcgTXVuIDxnd2FuLWd5ZW9uZy5tdW5AaW50
+ZWwuY29tPgpDYzogVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNv
+bT4KU2lnbmVkLW9mZi1ieTogSm9zw6kgUm9iZXJ0byBkZSBTb3V6YSA8am9zZS5zb3V6YUBpbnRl
+bC5jb20+ClJldmlld2VkLWJ5OiBHd2FuLWd5ZW9uZyBNdW4gPGd3YW4tZ3llb25nLm11bkBpbnRl
+bC5jb20+ClRlc3RlZC1ieTogR3dhbi1neWVvbmcgTXVuIDxnd2FuLWd5ZW9uZy5tdW5AaW50ZWwu
+Y29tPgotLS0KIC4uLi9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXlfdHlwZXMuaCAgICB8
+ICAyICsrCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX3Bzci5jICAgICAgfCAy
+MiArKysrKysrKysrKysrKy0tLS0tCiAyIGZpbGVzIGNoYW5nZWQsIDE4IGluc2VydGlvbnMoKyks
+IDYgZGVsZXRpb25zKC0pCgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxh
+eS9pbnRlbF9kaXNwbGF5X3R5cGVzLmggYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2lu
+dGVsX2Rpc3BsYXlfdHlwZXMuaAppbmRleCBjZTgyZDY1NGQwZjIuLjNhMThhYWY5MDdjYyAxMDA2
+NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5X3R5cGVz
+LmgKKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5X3R5cGVz
+LmgKQEAgLTYwNCw2ICs2MDQsOCBAQCBzdHJ1Y3QgaW50ZWxfcGxhbmVfc3RhdGUgewogCXUzMiBw
+bGFuYXJfc2xhdmU7CiAKIAlzdHJ1Y3QgZHJtX2ludGVsX3Nwcml0ZV9jb2xvcmtleSBja2V5Owor
+CisJc3RydWN0IGRybV9yZWN0IHBzcjJfc2VsX2ZldGNoX2FyZWE7CiB9OwogCiBzdHJ1Y3QgaW50
+ZWxfaW5pdGlhbF9wbGFuZV9jb25maWcgewpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5
+MTUvZGlzcGxheS9pbnRlbF9wc3IuYyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50
+ZWxfcHNyLmMKaW5kZXggYjM2MzFiNzIyZGUzLi5kOWEzOTVjNDg2ZDMgMTAwNjQ0Ci0tLSBhL2Ry
+aXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfcHNyLmMKKysrIGIvZHJpdmVycy9ncHUv
+ZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9wc3IuYwpAQCAtMTE4NSw2ICsxMTg1LDcgQEAgdm9pZCBp
+bnRlbF9wc3IyX3Byb2dyYW1fcGxhbmVfc2VsX2ZldGNoKHN0cnVjdCBpbnRlbF9wbGFuZSAqcGxh
+bmUsCiB7CiAJc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmRldl9wcml2ID0gdG9faTkxNShwbGFu
+ZS0+YmFzZS5kZXYpOwogCWVudW0gcGlwZSBwaXBlID0gcGxhbmUtPnBpcGU7CisJY29uc3Qgc3Ry
+dWN0IGRybV9yZWN0ICpjbGlwOwogCXUzMiB2YWw7CiAKIAlpZiAoIWNydGNfc3RhdGUtPmVuYWJs
+ZV9wc3IyX3NlbF9mZXRjaCkKQEAgLTExOTYsMTYgKzExOTcsMjAgQEAgdm9pZCBpbnRlbF9wc3Iy
+X3Byb2dyYW1fcGxhbmVfc2VsX2ZldGNoKHN0cnVjdCBpbnRlbF9wbGFuZSAqcGxhbmUsCiAJaWYg
+KCF2YWwgfHwgcGxhbmUtPmlkID09IFBMQU5FX0NVUlNPUikKIAkJcmV0dXJuOwogCi0JdmFsID0g
+cGxhbmVfc3RhdGUtPnVhcGkuZHN0LnkxIDw8IDE2IHwgcGxhbmVfc3RhdGUtPnVhcGkuZHN0Lngx
+OworCWNsaXAgPSAmcGxhbmVfc3RhdGUtPnBzcjJfc2VsX2ZldGNoX2FyZWE7CisKKwl2YWwgPSAo
+Y2xpcC0+eTEgKyBwbGFuZV9zdGF0ZS0+dWFwaS5kc3QueTEpIDw8IDE2OworCXZhbCB8PSBwbGFu
+ZV9zdGF0ZS0+dWFwaS5kc3QueDE7CiAJaW50ZWxfZGVfd3JpdGVfZncoZGV2X3ByaXYsIFBMQU5F
+X1NFTF9GRVRDSF9QT1MocGlwZSwgcGxhbmUtPmlkKSwgdmFsKTsKIAotCXZhbCA9IHBsYW5lX3N0
+YXRlLT5jb2xvcl9wbGFuZVtjb2xvcl9wbGFuZV0ueSA8PCAxNjsKKwkvKiBUT0RPOiBjb25zaWRl
+ciB0aWxpbmcgYW5kIGF1eGlsaWFyeSBzdXJmYWNlcyAqLworCXZhbCA9IChjbGlwLT55MSArIHBs
+YW5lX3N0YXRlLT5jb2xvcl9wbGFuZVtjb2xvcl9wbGFuZV0ueSkgPDwgMTY7CiAJdmFsIHw9IHBs
+YW5lX3N0YXRlLT5jb2xvcl9wbGFuZVtjb2xvcl9wbGFuZV0ueDsKIAlpbnRlbF9kZV93cml0ZV9m
+dyhkZXZfcHJpdiwgUExBTkVfU0VMX0ZFVENIX09GRlNFVChwaXBlLCBwbGFuZS0+aWQpLAogCQkJ
+ICB2YWwpOwogCiAJLyogU2l6ZXMgYXJlIDAgYmFzZWQgKi8KLQl2YWwgPSAoKGRybV9yZWN0X2hl
+aWdodCgmcGxhbmVfc3RhdGUtPnVhcGkuc3JjKSA+PiAxNikgLSAxKSA8PCAxNjsKKwl2YWwgPSAo
+ZHJtX3JlY3RfaGVpZ2h0KGNsaXApIC0gMSkgPDwgMTY7CiAJdmFsIHw9IChkcm1fcmVjdF93aWR0
+aCgmcGxhbmVfc3RhdGUtPnVhcGkuc3JjKSA+PiAxNikgLSAxOwogCWludGVsX2RlX3dyaXRlX2Z3
+KGRldl9wcml2LCBQTEFORV9TRUxfRkVUQ0hfU0laRShwaXBlLCBwbGFuZS0+aWQpLCB2YWwpOwog
+fQpAQCAtMTI3OSw3ICsxMjg0LDcgQEAgaW50IGludGVsX3BzcjJfc2VsX2ZldGNoX3VwZGF0ZShz
+dHJ1Y3QgaW50ZWxfYXRvbWljX3N0YXRlICpzdGF0ZSwKIAogCWZvcl9lYWNoX29sZG5ld19pbnRl
+bF9wbGFuZV9pbl9zdGF0ZShzdGF0ZSwgcGxhbmUsIG9sZF9wbGFuZV9zdGF0ZSwKIAkJCQkJICAg
+ICBuZXdfcGxhbmVfc3RhdGUsIGkpIHsKLQkJc3RydWN0IGRybV9yZWN0IHRlbXA7CisJCXN0cnVj
+dCBkcm1fcmVjdCAqc2VsX2ZldGNoX2FyZWEsIHRlbXA7CiAKIAkJaWYgKG5ld19wbGFuZV9zdGF0
+ZS0+dWFwaS5jcnRjICE9IGNydGNfc3RhdGUtPnVhcGkuY3J0YykKIAkJCWNvbnRpbnVlOwpAQCAt
+MTMwMiw4ICsxMzA3LDEzIEBAIGludCBpbnRlbF9wc3IyX3NlbF9mZXRjaF91cGRhdGUoc3RydWN0
+IGludGVsX2F0b21pY19zdGF0ZSAqc3RhdGUsCiAJCSAqIEZvciBub3cgZG9pbmcgYSBzZWxlY3Rp
+dmUgZmV0Y2ggaW4gdGhlIHdob2xlIHBsYW5lIGFyZWEsCiAJCSAqIG9wdGltaXphdGlvbnMgd2ls
+bCBjb21lIGluIHRoZSBmdXR1cmUuCiAJCSAqLwotCQl0ZW1wLnkxID0gbmV3X3BsYW5lX3N0YXRl
+LT51YXBpLmRzdC55MTsKLQkJdGVtcC55MiA9IG5ld19wbGFuZV9zdGF0ZS0+dWFwaS5kc3QueTI7
+CisJCXNlbF9mZXRjaF9hcmVhID0gJm5ld19wbGFuZV9zdGF0ZS0+cHNyMl9zZWxfZmV0Y2hfYXJl
+YTsKKwkJc2VsX2ZldGNoX2FyZWEtPnkxID0gbmV3X3BsYW5lX3N0YXRlLT51YXBpLnNyYy55MSA+
+PiAxNjsKKwkJc2VsX2ZldGNoX2FyZWEtPnkyID0gbmV3X3BsYW5lX3N0YXRlLT51YXBpLnNyYy55
+MiA+PiAxNjsKKworCQl0ZW1wID0gKnNlbF9mZXRjaF9hcmVhOworCQl0ZW1wLnkxICs9IG5ld19w
+bGFuZV9zdGF0ZS0+dWFwaS5kc3QueTE7CisJCXRlbXAueTIgKz0gbmV3X3BsYW5lX3N0YXRlLT51
+YXBpLmRzdC55MjsKIAkJY2xpcF9hcmVhX3VwZGF0ZSgmcGlwZV9jbGlwLCAmdGVtcCk7CiAJfQog
+Ci0tIAoyLjI5LjIKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9y
+ZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdm
+eAo=
