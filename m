@@ -1,47 +1,30 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E43F52C6845
-	for <lists+intel-gfx@lfdr.de>; Fri, 27 Nov 2020 15:55:13 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id BD4392C684F
+	for <lists+intel-gfx@lfdr.de>; Fri, 27 Nov 2020 15:58:06 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 383E36EE06;
-	Fri, 27 Nov 2020 14:55:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AB9896EE11;
+	Fri, 27 Nov 2020 14:58:04 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7C4AC6EE06
- for <intel-gfx@lists.freedesktop.org>; Fri, 27 Nov 2020 14:55:10 +0000 (UTC)
-IronPort-SDR: CUIqx6tyTb8G5cE61l3ksQlcvFQaRRhG/tMzSYaDE6H7BTNAoKN4ibO/nK9B05G7Phe//WiVFR
- DMqD8ZpAfiNA==
-X-IronPort-AV: E=McAfee;i="6000,8403,9817"; a="171620417"
-X-IronPort-AV: E=Sophos;i="5.78,374,1599548400"; d="scan'208";a="171620417"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Nov 2020 06:55:09 -0800
-IronPort-SDR: j6Jt9NZAYNOt3Y28C3QpWWVSQNYDlGEQ5RrQjEaEhbddL8zAll/JLq8wx7xEDdflIlO0CrP/sC
- 4rZh9Tx7wmgg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.78,374,1599548400"; d="scan'208";a="344240408"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by orsmga002.jf.intel.com with SMTP; 27 Nov 2020 06:55:07 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 27 Nov 2020 16:55:07 +0200
-Date: Fri, 27 Nov 2020 16:55:07 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Uma Shankar <uma.shankar@intel.com>
-Message-ID: <20201127145507.GP6112@intel.com>
-References: <20201126210314.7882-1-uma.shankar@intel.com>
- <20201126210314.7882-12-uma.shankar@intel.com>
+Received: from fireflyinternet.com (unknown [77.68.26.236])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2F5986EE11
+ for <intel-gfx@lists.freedesktop.org>; Fri, 27 Nov 2020 14:58:03 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from build.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 23134691-1500050 
+ for multiple; Fri, 27 Nov 2020 14:57:49 +0000
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Fri, 27 Nov 2020 14:57:48 +0000
+Message-Id: <20201127145748.29491-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20201126210314.7882-12-uma.shankar@intel.com>
-X-Patchwork-Hint: comment
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [v12 11/15] drm/i915/lspcon: Create separate
- infoframe_enabled helper
+Subject: [Intel-gfx] [PATCH] Revert "drm/i915: re-order if/else ladder for
+ hpd_irq_setup"
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,125 +37,50 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
+ Chris Wilson <chris@chris-wilson.co.uk>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Nov 27, 2020 at 02:33:10AM +0530, Uma Shankar wrote:
-> Lspcon has Infoframes as well as DIP for HDR metadata(DRM Infoframe).
-> Create a separate mechanism for lspcon compared to HDMI in order to
-> address the same and ensure future scalability.
-> =
-
-> v2: Streamlined this as per Ville's suggestions, making sure that
-> HDMI infoframe versions are directly returned instead of a redundant
-> and confusing DIP overhead.
-> =
-
-> Suggested-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> Signed-off-by: Uma Shankar <uma.shankar@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_ddi.c    | 10 +++++++---
->  drivers/gpu/drm/i915/display/intel_lspcon.c |  9 +++++++++
->  drivers/gpu/drm/i915/display/intel_lspcon.h |  2 ++
->  3 files changed, 18 insertions(+), 3 deletions(-)
-> =
-
-> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i=
-915/display/intel_ddi.c
-> index 92940a0c5ef8..48da5dc59939 100644
-> --- a/drivers/gpu/drm/i915/display/intel_ddi.c
-> +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-> @@ -4583,6 +4583,7 @@ static void intel_ddi_read_func_ctl(struct intel_en=
-coder *encoder,
->  	struct drm_i915_private *dev_priv =3D to_i915(encoder->base.dev);
->  	struct intel_crtc *intel_crtc =3D to_intel_crtc(pipe_config->uapi.crtc);
->  	enum transcoder cpu_transcoder =3D pipe_config->cpu_transcoder;
-> +	struct intel_digital_port *dig_port =3D enc_to_dig_port(encoder);
->  	u32 temp, flags =3D 0;
->  =
-
->  	temp =3D intel_de_read(dev_priv, TRANS_DDI_FUNC_CTL(cpu_transcoder));
-> @@ -4657,9 +4658,12 @@ static void intel_ddi_read_func_ctl(struct intel_e=
-ncoder *encoder,
->  				    pipe_config->fec_enable);
->  		}
->  =
-
-> -		pipe_config->infoframes.enable |=3D
-> -			intel_hdmi_infoframes_enabled(encoder, pipe_config);
-> -
-> +		if (dig_port->lspcon.active && dig_port->dp.has_hdmi_sink)
-> +			pipe_config->infoframes.enable |=3D
-> +				intel_lspcon_infoframes_enabled(encoder, pipe_config);
-> +		else
-> +			pipe_config->infoframes.enable |=3D
-> +				intel_hdmi_infoframes_enabled(encoder, pipe_config);
->  		break;
->  	case TRANS_DDI_MODE_SELECT_DP_MST:
->  		pipe_config->output_types |=3D BIT(INTEL_OUTPUT_DP_MST);
-> diff --git a/drivers/gpu/drm/i915/display/intel_lspcon.c b/drivers/gpu/dr=
-m/i915/display/intel_lspcon.c
-> index 592c19deba00..303f23d35020 100644
-> --- a/drivers/gpu/drm/i915/display/intel_lspcon.c
-> +++ b/drivers/gpu/drm/i915/display/intel_lspcon.c
-> @@ -30,6 +30,7 @@
->  #include "intel_display_types.h"
->  #include "intel_dp.h"
->  #include "intel_lspcon.h"
-> +#include "intel_hdmi.h"
-
-Why do you need that header?
-
-With that potentially removed if it's not needed.
-Reviewed-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-
->  =
-
->  /* LSPCON OUI Vendor ID(signatures) */
->  #define LSPCON_VENDOR_PARADE_OUI 0x001CF8
-> @@ -601,6 +602,14 @@ bool lspcon_init(struct intel_digital_port *dig_port)
->  	return true;
->  }
->  =
-
-> +u32 intel_lspcon_infoframes_enabled(struct intel_encoder *encoder,
-> +				    const struct intel_crtc_state *pipe_config)
-> +{
-> +	struct intel_digital_port *dig_port =3D enc_to_dig_port(encoder);
-> +
-> +	return dig_port->infoframes_enabled(encoder, pipe_config);
-> +}
-> +
->  void lspcon_resume(struct intel_digital_port *dig_port)
->  {
->  	struct intel_lspcon *lspcon =3D &dig_port->lspcon;
-> diff --git a/drivers/gpu/drm/i915/display/intel_lspcon.h b/drivers/gpu/dr=
-m/i915/display/intel_lspcon.h
-> index 42ccb21c908f..44aa6bc38512 100644
-> --- a/drivers/gpu/drm/i915/display/intel_lspcon.h
-> +++ b/drivers/gpu/drm/i915/display/intel_lspcon.h
-> @@ -33,6 +33,8 @@ void lspcon_set_infoframes(struct intel_encoder *encode=
-r,
->  			   const struct drm_connector_state *conn_state);
->  u32 lspcon_infoframes_enabled(struct intel_encoder *encoder,
->  			      const struct intel_crtc_state *pipe_config);
-> +u32 intel_lspcon_infoframes_enabled(struct intel_encoder *encoder,
-> +				    const struct intel_crtc_state *pipe_config);
->  void hsw_write_infoframe(struct intel_encoder *encoder,
->  			 const struct intel_crtc_state *crtc_state,
->  			 unsigned int type,
-> -- =
-
-> 2.26.2
-
--- =
-
-Ville Syrj=E4l=E4
-Intel
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+V2Ugbm93IHVzZSBpbGtfaHBkX2lycV9zZXR1cCBmb3IgYWxsIEdNQ0ggcGxhdGZvcm1zIHRoYXQg
+ZG8gbm90IGhhdmUKaG90cGx1Zy4gVGhlc2UgYXJlIGVhcmx5IGdlbjMgYW5kIGdlbjIgZGV2aWNl
+cyB0aGF0IG5vdyBleHBsb2RlIG9uIGJvb3QKYXMgdGhleSB0cnkgdG8gYWNjZXNzIG5vbi1leGlz
+dGVudCByZWdpc3RlcnMuCgpGaXhlczogNzk0ZDYxYTE5MDkwICgiZHJtL2k5MTU6IHJlLW9yZGVy
+IGlmL2Vsc2UgbGFkZGVyIGZvciBocGRfaXJxX3NldHVwIikKU2lnbmVkLW9mZi1ieTogQ2hyaXMg
+V2lsc29uIDxjaHJpc0BjaHJpcy13aWxzb24uY28udWs+CkNjOiBMdWNhcyBEZSBNYXJjaGkgPGx1
+Y2FzLmRlbWFyY2hpQGludGVsLmNvbT4KQ2M6IEpvc8OpIFJvYmVydG8gZGUgU291emEgPGpvc2Uu
+c291emFAaW50ZWwuY29tPgpDYzogSmFuaSBOaWt1bGEgPGphbmkubmlrdWxhQGxpbnV4LmludGVs
+LmNvbT4KLS0tCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2lycS5jIHwgMjcgKysrKysrKysr
+KysrKysrLS0tLS0tLS0tLS0tCiAxIGZpbGUgY2hhbmdlZCwgMTUgaW5zZXJ0aW9ucygrKSwgMTIg
+ZGVsZXRpb25zKC0pCgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9pcnEu
+YyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfaXJxLmMKaW5kZXggZGM2ZmViYzYzZjFjLi5j
+ODBlZWFjNTM5NTIgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfaXJxLmMK
+KysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9pcnEuYwpAQCAtNDI0MiwxOCArNDI0Miwy
+MSBAQCB2b2lkIGludGVsX2lycV9pbml0KHN0cnVjdCBkcm1faTkxNV9wcml2YXRlICpkZXZfcHJp
+dikKIAkgKi8KIAlkZXZfcHJpdi0+aG90cGx1Zy5ocGRfc2hvcnRfc3Rvcm1fZW5hYmxlZCA9ICFI
+QVNfRFBfTVNUKGRldl9wcml2KTsKIAotCWlmIChIQVNfUENIX0RHMShkZXZfcHJpdikpCi0JCWRl
+dl9wcml2LT5kaXNwbGF5LmhwZF9pcnFfc2V0dXAgPSBkZzFfaHBkX2lycV9zZXR1cDsKLQllbHNl
+IGlmIChJTlRFTF9HRU4oZGV2X3ByaXYpID49IDExKQotCQlkZXZfcHJpdi0+ZGlzcGxheS5ocGRf
+aXJxX3NldHVwID0gZ2VuMTFfaHBkX2lycV9zZXR1cDsKLQllbHNlIGlmIChJU19HRU45X0xQKGRl
+dl9wcml2KSkKLQkJZGV2X3ByaXYtPmRpc3BsYXkuaHBkX2lycV9zZXR1cCA9IGJ4dF9ocGRfaXJx
+X3NldHVwOwotCWVsc2UgaWYgKElOVEVMX1BDSF9UWVBFKGRldl9wcml2KSA+PSBQQ0hfU1BUKQot
+CQlkZXZfcHJpdi0+ZGlzcGxheS5ocGRfaXJxX3NldHVwID0gc3B0X2hwZF9pcnFfc2V0dXA7Ci0J
+ZWxzZSBpZiAoSEFTX0dNQ0goZGV2X3ByaXYpICYmIEk5MTVfSEFTX0hPVFBMVUcoZGV2X3ByaXYp
+KQotCQlkZXZfcHJpdi0+ZGlzcGxheS5ocGRfaXJxX3NldHVwID0gaTkxNV9ocGRfaXJxX3NldHVw
+OwotCWVsc2UKLQkJZGV2X3ByaXYtPmRpc3BsYXkuaHBkX2lycV9zZXR1cCA9IGlsa19ocGRfaXJx
+X3NldHVwOworCWlmIChIQVNfR01DSChkZXZfcHJpdikpIHsKKwkJaWYgKEk5MTVfSEFTX0hPVFBM
+VUcoZGV2X3ByaXYpKQorCQkJZGV2X3ByaXYtPmRpc3BsYXkuaHBkX2lycV9zZXR1cCA9IGk5MTVf
+aHBkX2lycV9zZXR1cDsKKwl9IGVsc2UgeworCQlpZiAoSEFTX1BDSF9ERzEoZGV2X3ByaXYpKQor
+CQkJZGV2X3ByaXYtPmRpc3BsYXkuaHBkX2lycV9zZXR1cCA9IGRnMV9ocGRfaXJxX3NldHVwOwor
+CQllbHNlIGlmIChJTlRFTF9HRU4oZGV2X3ByaXYpID49IDExKQorCQkJZGV2X3ByaXYtPmRpc3Bs
+YXkuaHBkX2lycV9zZXR1cCA9IGdlbjExX2hwZF9pcnFfc2V0dXA7CisJCWVsc2UgaWYgKElTX0dF
+TjlfTFAoZGV2X3ByaXYpKQorCQkJZGV2X3ByaXYtPmRpc3BsYXkuaHBkX2lycV9zZXR1cCA9IGJ4
+dF9ocGRfaXJxX3NldHVwOworCQllbHNlIGlmIChJTlRFTF9QQ0hfVFlQRShkZXZfcHJpdikgPj0g
+UENIX1NQVCkKKwkJCWRldl9wcml2LT5kaXNwbGF5LmhwZF9pcnFfc2V0dXAgPSBzcHRfaHBkX2ly
+cV9zZXR1cDsKKwkJZWxzZQorCQkJZGV2X3ByaXYtPmRpc3BsYXkuaHBkX2lycV9zZXR1cCA9IGls
+a19ocGRfaXJxX3NldHVwOworCX0KIH0KIAogLyoqCi0tIAoyLjIwLjEKCl9fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QK
+SW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9w
+Lm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
