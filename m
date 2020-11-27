@@ -2,32 +2,44 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 985092C66C6
-	for <lists+intel-gfx@lfdr.de>; Fri, 27 Nov 2020 14:25:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id AE9E32C66C9
+	for <lists+intel-gfx@lfdr.de>; Fri, 27 Nov 2020 14:26:36 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5205B6ECFE;
-	Fri, 27 Nov 2020 13:25:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 234CC6ED8D;
+	Fri, 27 Nov 2020 13:26:35 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 50E256ECD1;
- Fri, 27 Nov 2020 13:25:44 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 23133307-1500050 for multiple; Fri, 27 Nov 2020 13:25:41 +0000
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1EA4A6ED18;
+ Fri, 27 Nov 2020 13:26:33 +0000 (UTC)
+IronPort-SDR: sy/gP+wJQg82S87q+v7gLL6x4ylGOcW3V9T8noBuBee40+kZP1we9P679g4+w3FbQWOqcgruwk
+ u5G6Uhxj/FIA==
+X-IronPort-AV: E=McAfee;i="6000,8403,9817"; a="236522388"
+X-IronPort-AV: E=Sophos;i="5.78,374,1599548400"; d="scan'208";a="236522388"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Nov 2020 05:26:21 -0800
+IronPort-SDR: qet7gQT70gQOuu9K6pjqghKzYR2TIzRzFu2ckXI1y8zwjQaGAJeoVrKbL4aFHTN/NbPubV0lWB
+ 4XUWBVqYa9sQ==
+X-IronPort-AV: E=Sophos;i="5.78,374,1599548400"; d="scan'208";a="548049158"
+Received: from jmikkola-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.252.21.161])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Nov 2020 05:26:18 -0800
 MIME-Version: 1.0
-In-Reply-To: <20201127120718.454037-93-matthew.auld@intel.com>
-References: <20201127120718.454037-1-matthew.auld@intel.com>
- <20201127120718.454037-93-matthew.auld@intel.com>
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: Matthew Auld <matthew.auld@intel.com>, intel-gfx@lists.freedesktop.org
-Date: Fri, 27 Nov 2020 13:25:40 +0000
-Message-ID: <160648354092.2925.6626091620345514242@build.alporthouse.com>
-User-Agent: alot/0.9
-Subject: Re: [Intel-gfx] [RFC PATCH 092/162] drm/i915/uapi: introduce
- drm_i915_gem_create_ext
+In-Reply-To: <20201124031359.GE16939@zhen-hp.sh.intel.com>
+References: <20201123090517.GC16939@zhen-hp.sh.intel.com>
+ <160612395828.4926.14269845290017694082@jlahtine-mobl.ger.corp.intel.com>
+ <20201124031359.GE16939@zhen-hp.sh.intel.com>
+From: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+To: Zhenyu Wang <zhenyuw@linux.intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Message-ID: <160648357653.10416.1504182474021040036@jlahtine-mobl.ger.corp.intel.com>
+User-Agent: alot/0.8.1
+Date: Fri, 27 Nov 2020 15:26:16 +0200
+Subject: Re: [Intel-gfx] [PULL] gvt-next
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,114 +52,135 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel@lists.freedesktop.org
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: Jani Nikula <jani.nikula@intel.com>,
+ intel-gfx <intel-gfx@lists.freedesktop.org>, "Yuan,
+ Hang" <hang.yuan@intel.com>, "Lv, Zhiyuan" <zhiyuan.lv@intel.com>,
+ intel-gvt-dev <intel-gvt-dev@lists.freedesktop.org>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-UXVvdGluZyBNYXR0aGV3IEF1bGQgKDIwMjAtMTEtMjcgMTI6MDY6MDgpCj4gU2FtZSBvbGQgZ2Vt
-X2NyZWF0ZSBidXQgd2l0aCBub3cgd2l0aCBleHRlbnNpb25zIHN1cHBvcnQuIFRoaXMgaXMgbmVl
-ZGVkCj4gdG8gc3VwcG9ydCB2YXJpb3VzIHVwY29taW5nIHVzZWNhc2VzLiBGb3Igbm93IHdlIHVz
-ZSB0aGUgZXh0ZW5zaW9ucwo+IG1lY2hhbmlzbSB0byBzdXBwb3J0IHNldHRpbmcgYW4gaW1tdXRh
-YmxlLXByaW9yaXR5LWxpc3Qgb2YgcG90ZW50aWFsCj4gcGxhY2VtZW50cywgYXQgY3JlYXRpb24g
-dGltZS4KPiAKPiBJZiB3ZSB3aXNoIHRvIHNldCB0aGUgcGxhY2VtZW50cy9yZWdpb25zIHdlIGNh
-biBzaW1wbHkgZG86Cj4gCj4gc3RydWN0IGRybV9pOTE1X2dlbV9vYmplY3RfcGFyYW0gcmVnaW9u
-X3BhcmFtID0geyDigKYgfTsgLyogVW5jaGFuZ2VkICovCj4gc3RydWN0IGRybV9pOTE1X2dlbV9j
-cmVhdGVfZXh0X3NldHBhcmFtIHNldHBhcmFtX3JlZ2lvbiA9IHsKPiAgICAgLmJhc2UgPSB7IC5u
-YW1lID0gSTkxNV9HRU1fQ1JFQVRFX0VYVF9TRVRQQVJBTSB9LAo+ICAgICAucGFyYW0gPSByZWdp
-b25fcGFyYW0sCj4gfQo+IAo+IHN0cnVjdCBkcm1faTkxNV9nZW1fY3JlYXRlX2V4dCBjcmVhdGVf
-ZXh0ID0gewo+ICAgICAgICAgLnNpemUgPSAxNiAqIFBBR0VfU0laRSwKPiAgICAgICAgIC5leHRl
-bnNpb25zID0gKHVpbnRwdHJfdCkmc2V0cGFyYW1fcmVnaW9uLAo+IH07Cj4gaW50IGVyciA9IGlv
-Y3RsKGZkLCBEUk1fSU9DVExfSTkxNV9HRU1fQ1JFQVRFX0VYVCwgJmNyZWF0ZV9leHQpOwo+IGlm
-IChlcnIpIC4uLgo+IAo+IElmIHdlIHVzZSB0aGUgbm9ybWFsIGdlbV9jcmVhdGUgb3IgZ2VtX2Ny
-ZWF0ZV9leHQgd2l0aG91dCB0aGUKPiBleHRlbnNpb25zL3BsYWNlbWVudHMgdGhlbiB3ZSBzdGls
-bCBnZXQgdGhlIG9sZCBiZWhhdmlvdXIgd2l0aCBvbmx5Cj4gcGxhY2luZyB0aGUgb2JqZWN0IGlu
-IHN5c3RlbSBtZW1vcnkuCj4gCj4gT25lIGltcG9ydGFudCBjaGFuZ2UgaGVyZSBpcyB0aGUgcmV0
-dXJuZWQgc2l6ZSB3aWxsIG5vdyBiZSByb3VuZGVkIHVwIHRvCj4gdGhlIGNvcnJlY3Qgc2l6ZSwg
-ZGVwZW5kaW5nIG9uIHRoZSBsaXN0IG9mIHBsYWNlbWVudHMsIHdoZXJlIHdlIG1pZ2h0Cj4gaGF2
-ZSBtaW5pbXVtIHBhZ2Utc2l6ZSByZXN0cmljdGlvbnMgb24gc29tZSBwbGF0Zm9ybXMgd2hlbiBk
-ZWFsaW5nIHdpdGgKPiBkZXZpY2UgbG9jYWwtbWVtb3J5Lgo+IAo+IEFsc28sIHdlIHN0aWxsIGtl
-ZXAgYXJvdW5kIHRoZSBpOTE1X2dlbV9vYmplY3Rfc2V0cGFyYW0gaW9jdGwsIGFsdGhvdWdoCj4g
-dGhhdCBpcyBub3cgcmVzdHJpY3RlZCBieSB0aGUgcGxhY2VtZW50IGxpc3QoaS5lIHdlIGFyZSBu
-b3QgYWxsb3dlZCB0bwo+IGFkZCBuZXcgcGxhY2VtZW50cyksIGFuZCBsb25nZXIgdGVybSB0aGF0
-IHdpbGwgYmUgZ29pbmcgYXdheSB3cnQgc2V0dGluZwo+IHBsYWNlbWVudHMsIHNpbmNlIGl0IHdh
-cyBkZWVtZWQgdGhhdCB0aGUga2VybmVsIGRvZXNuJ3QgbmVlZCB0byBzdXBwb3J0Cj4gYSBkeW5h
-bWljIGxpc3Qgb2YgcGxhY2VtZW50cywgd2hpY2ggaXMgbm93IHNvbGlkaWZpZWQgYnkgdGhpcyB1
-YXBpCj4gY2hhbmdlLgo+IAo+IFRlc3RjYXNlOiBpZ3QvZ2VtX2NyZWF0ZS9jcmVhdGUtZXh0LXBs
-YWNlbWVudC1zYW5pdHktY2hlY2sKPiBUZXN0Y2FzZTogaWd0L2dlbV9jcmVhdGUvY3JlYXRlLWV4
-dC1wbGFjZW1lbnQtZWFjaAo+IFRlc3RjYXNlOiBpZ3QvZ2VtX2NyZWF0ZS9jcmVhdGUtZXh0LXBs
-YWNlbWVudC1hbGwKPiBTaWduZWQtb2ZmLWJ5OiBNYXR0aGV3IEF1bGQgPG1hdHRoZXcuYXVsZEBp
-bnRlbC5jb20+Cj4gU2lnbmVkLW9mZi1ieTogQ1EgVGFuZyA8Y3EudGFuZ0BpbnRlbC5jb20+Cj4g
-Q2M6IEpvb25hcyBMYWh0aW5lbiA8am9vbmFzLmxhaHRpbmVuQGxpbnV4LmludGVsLmNvbT4KPiAt
-LS0KPiAgZHJpdmVycy9ncHUvZHJtL2k5MTUvTWFrZWZpbGUgICAgICAgICAgICAgICAgIHwgICAx
-ICsKPiAgZHJpdmVycy9ncHUvZHJtL2k5MTUvZ2VtL2k5MTVfZ2VtX2NyZWF0ZS5jICAgIHwgMzk4
-ICsrKysrKysrKysrKysrKysrKwo+ICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9nZW0vaTkxNV9nZW1f
-b2JqZWN0LmMgICAgfCAgIDIgKwo+ICAuLi4vZ3B1L2RybS9pOTE1L2dlbS9pOTE1X2dlbV9vYmpl
-Y3RfdHlwZXMuaCAgfCAgIDkgKwo+ICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9nZW0vaTkxNV9nZW1f
-cmVnaW9uLmMgICAgfCAgIDQgKwo+ICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2Rydi5jICAg
-ICAgICAgICAgICAgfCAgIDIgKy0KPiAgZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9nZW0uYyAg
-ICAgICAgICAgICAgIHwgMTAzICstLS0tCj4gIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2ludGVsX21l
-bW9yeV9yZWdpb24uYyAgICB8ICAyMCArCj4gIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2ludGVsX21l
-bW9yeV9yZWdpb24uaCAgICB8ICAgNCArCj4gIGluY2x1ZGUvdWFwaS9kcm0vaTkxNV9kcm0uaCAg
-ICAgICAgICAgICAgICAgICB8ICA2MCArKysKPiAgMTAgZmlsZXMgY2hhbmdlZCwgNTAwIGluc2Vy
-dGlvbnMoKyksIDEwMyBkZWxldGlvbnMoLSkKPiAgY3JlYXRlIG1vZGUgMTAwNjQ0IGRyaXZlcnMv
-Z3B1L2RybS9pOTE1L2dlbS9pOTE1X2dlbV9jcmVhdGUuYwo+IAo+IGRpZmYgLS1naXQgYS9kcml2
-ZXJzL2dwdS9kcm0vaTkxNS9NYWtlZmlsZSBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L01ha2VmaWxl
-Cj4gaW5kZXggZWMzNjFkNjEyMzBiLi4zOTU1MTM0ZmVjYTcgMTAwNjQ0Cj4gLS0tIGEvZHJpdmVy
-cy9ncHUvZHJtL2k5MTUvTWFrZWZpbGUKPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9NYWtl
-ZmlsZQo+IEBAIC0xMzQsNiArMTM0LDcgQEAgZ2VtLXkgKz0gXAo+ICAgICAgICAgZ2VtL2k5MTVf
-Z2VtX2NsZmx1c2gubyBcCj4gICAgICAgICBnZW0vaTkxNV9nZW1fY2xpZW50X2JsdC5vIFwKPiAg
-ICAgICAgIGdlbS9pOTE1X2dlbV9jb250ZXh0Lm8gXAo+ICsgICAgICAgZ2VtL2k5MTVfZ2VtX2Ny
-ZWF0ZS5vIFwKPiAgICAgICAgIGdlbS9pOTE1X2dlbV9kbWFidWYubyBcCj4gICAgICAgICBnZW0v
-aTkxNV9nZW1fZG9tYWluLm8gXAo+ICAgICAgICAgZ2VtL2k5MTVfZ2VtX2V4ZWNidWZmZXIubyBc
-Cj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2dlbS9pOTE1X2dlbV9jcmVhdGUu
-YyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2dlbS9pOTE1X2dlbV9jcmVhdGUuYwo+IG5ldyBmaWxl
-IG1vZGUgMTAwNjQ0Cj4gaW5kZXggMDAwMDAwMDAwMDAwLi42ZjZkZDRmMWNlN2UKPiAtLS0gL2Rl
-di9udWxsCj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ2VtL2k5MTVfZ2VtX2NyZWF0ZS5j
-Cj4gQEAgLTAsMCArMSwzOTggQEAKPiArLy8gU1BEWC1MaWNlbnNlLUlkZW50aWZpZXI6IE1JVAo+
-ICsvKgo+ICsgKiBDb3B5cmlnaHQgwqkgMjAyMCBJbnRlbCBDb3Jwb3JhdGlvbgo+ICsgKi8KPiAr
-Cj4gKyNpbmNsdWRlICJnZW0vaTkxNV9nZW1faW9jdGxzLmgiCj4gKyNpbmNsdWRlICJnZW0vaTkx
-NV9nZW1fbG1lbS5oIgo+ICsjaW5jbHVkZSAiZ2VtL2k5MTVfZ2VtX29iamVjdF9ibHQuaCIKPiAr
-I2luY2x1ZGUgImdlbS9pOTE1X2dlbV9yZWdpb24uaCIKPiArCj4gKyNpbmNsdWRlICJpOTE1X2Ry
-di5oIgo+ICsjaW5jbHVkZSAiaTkxNV91c2VyX2V4dGVuc2lvbnMuaCIKPiArCj4gK3N0YXRpYyB1
-MzIgbWF4X3BhZ2Vfc2l6ZShzdHJ1Y3QgaW50ZWxfbWVtb3J5X3JlZ2lvbiAqKnBsYWNlbWVudHMs
-Cj4gKyAgICAgICAgICAgICAgICAgICAgICAgIGludCBuX3BsYWNlbWVudHMpCj4gK3sKPiArICAg
-ICAgIHUzMiBtYXhfcGFnZV9zaXplID0gMDsKPiArICAgICAgIGludCBpOwo+ICsKPiArICAgICAg
-IGZvciAoaSA9IDA7IGkgPCBuX3BsYWNlbWVudHM7ICsraSkgewo+ICsgICAgICAgICAgICAgICBt
-YXhfcGFnZV9zaXplID0gbWF4X3QodTMyLCBtYXhfcGFnZV9zaXplLAo+ICsgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgcGxhY2VtZW50c1tpXS0+bWluX3BhZ2Vfc2l6ZSk7Cj4g
-KyAgICAgICB9Cj4gKwo+ICsgICAgICAgR0VNX0JVR19PTighbWF4X3BhZ2Vfc2l6ZSk7Cj4gKyAg
-ICAgICByZXR1cm4gbWF4X3BhZ2Vfc2l6ZTsKPiArfQo+ICsKPiArc3RhdGljIGludAo+ICtpOTE1
-X2dlbV9jcmVhdGUoc3RydWN0IGRybV9maWxlICpmaWxlLAo+ICsgICAgICAgICAgICAgICBzdHJ1
-Y3QgaW50ZWxfbWVtb3J5X3JlZ2lvbiAqKnBsYWNlbWVudHMsCj4gKyAgICAgICAgICAgICAgIGlu
-dCBuX3BsYWNlbWVudHMsCj4gKyAgICAgICAgICAgICAgIHU2NCAqc2l6ZV9wLAo+ICsgICAgICAg
-ICAgICAgICB1MzIgKmhhbmRsZV9wKQo+ICt7Cj4gKyAgICAgICBzdHJ1Y3QgZHJtX2k5MTVfZ2Vt
-X29iamVjdCAqb2JqOwo+ICsgICAgICAgdTMyIGhhbmRsZTsKPiArICAgICAgIHU2NCBzaXplOwo+
-ICsgICAgICAgaW50IHJldDsKPiArCj4gKyAgICAgICBzaXplID0gcm91bmRfdXAoKnNpemVfcCwg
-bWF4X3BhZ2Vfc2l6ZShwbGFjZW1lbnRzLCBuX3BsYWNlbWVudHMpKTsKPiArICAgICAgIGlmIChz
-aXplID09IDApCj4gKyAgICAgICAgICAgICAgIHJldHVybiAtRUlOVkFMOwo+ICsKPiArICAgICAg
-IC8qIEZvciBtb3N0IG9mIHRoZSBBQkkgKGUuZy4gbW1hcCkgd2UgdGhpbmsgaW4gc3lzdGVtIHBh
-Z2VzICovCj4gKyAgICAgICBHRU1fQlVHX09OKCFJU19BTElHTkVEKHNpemUsIFBBR0VfU0laRSkp
-Owo+ICsKPiArICAgICAgIC8qIEFsbG9jYXRlIHRoZSBuZXcgb2JqZWN0ICovCj4gKyAgICAgICBv
-YmogPSBpOTE1X2dlbV9vYmplY3RfY3JlYXRlX3JlZ2lvbihwbGFjZW1lbnRzWzBdLCBzaXplLCAw
-KTsKPiArICAgICAgIGlmIChJU19FUlIob2JqKSkKPiArICAgICAgICAgICAgICAgcmV0dXJuIFBU
-Ul9FUlIob2JqKTsKPiArCj4gKyAgICAgICBpZiAoaTkxNV9nZW1fb2JqZWN0X2lzX2xtZW0ob2Jq
-KSkgewo+ICsgICAgICAgICAgICAgICBzdHJ1Y3QgaW50ZWxfZ3QgKmd0ID0gb2JqLT5tbS5yZWdp
-b24tPmd0Owo+ICsgICAgICAgICAgICAgICBzdHJ1Y3QgaW50ZWxfY29udGV4dCAqY2UgPSBndC0+
-ZW5naW5lW0JDUzBdLT5ibGl0dGVyX2NvbnRleHQ7Cj4gKwo+ICsgICAgICAgICAgICAgICAvKgo+
-ICsgICAgICAgICAgICAgICAgKiBYWFg6IFdlIHJlYWxseSB3YW50IHRvIG1vdmUgdGhpcyB0byBn
-ZXRfcGFnZXMoKSwgYnV0IHdlCj4gKyAgICAgICAgICAgICAgICAqIHJlcXVpcmUgZ3JhYmJpbmcg
-dGhlIEJLTCBmb3IgdGhlIGJsaXR0aW5nIG9wZXJhdGlvbiB3aGljaCBpcwo+ICsgICAgICAgICAg
-ICAgICAgKiBhbm5veWluZy4gSW4gdGhlIHBpcGVsaW5lIGlzIHN1cHBvcnQgZm9yIGFzeW5jIGdl
-dF9wYWdlcygpCj4gKyAgICAgICAgICAgICAgICAqIHdoaWNoIHNob3VsZCBmaXQgbmljZWx5IGZv
-ciB0aGlzLiBBbHNvIG5vdGUgdGhhdCB0aGUgYWN0dWFsCj4gKyAgICAgICAgICAgICAgICAqIGNs
-ZWFyIHNob3VsZCBiZSBkb25lIGFzeW5jKHdlIGN1cnJlbnRseSBkbyBhbiBvYmplY3Rfd2FpdAo+
-ICsgICAgICAgICAgICAgICAgKiB3aGljaCBpcyBwdXJlIGdhcmJhZ2UpLCB3ZSBqdXN0IG5lZWQg
-dG8gdGFrZSBjYXJlIGlmCj4gKyAgICAgICAgICAgICAgICAqIHVzZXJzcGFjZSBvcHRzIG9mIGlt
-cGxpY2l0IHN5bmMgZm9yIHRoZSBleGVjYnVmLCB0byBhdm9pZCBhbnkKPiArICAgICAgICAgICAg
-ICAgICogcG90ZW50aWFsIGluZm8gbGVhay4KPiArICAgICAgICAgICAgICAgICovCgpOb3QganVz
-dCBYWFgsIGJ1dCB0aGUgZGVzaWduIHNob3VsZCBiZSBjb21wbGV0ZWQgZmlyc3QuCi1DaHJpcwpf
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZngg
-bWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0
-cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
+Quoting Zhenyu Wang (2020-11-24 05:13:59)
+> On 2020.11.23 11:32:38 +0200, Joonas Lahtinen wrote:
+> > Quoting Zhenyu Wang (2020-11-23 11:05:17)
+> > > 
+> > > Hi,
+> > > 
+> > > Here's gvt next pull for v5.11. Mostly it's for host suspend/resume
+> > > fix with vGPU active and with some other enhancement as details below.
+> > > Note that this includes some minor i915 driver change to add gvt hook
+> > > in suspend/resume function which has been sent and reviewed on
+> > > intel-gfx list.
+> > > 
+> > > I just generated against drm-intel-next-queued-2020-11-03 which this
+> > > tree bases on now. Let me know if there's any issue in merge.
+> > 
+> > Sometimes GVT changes are paired with changes related the i915 side
+> > to adjust the running virtual clients. The changes are more often
+> > related to GT side, but there's also been display related changes.
+> > 
+> > Going forward, would we want to continue to apply gvt-next to
+> > drm-intel-next (-queued is planned to be deprecated) or
+> > should we use drm-intel-gt-next?
+> >
+> 
+> Is there any clear criteria on patches for -next or -gt-next now?
+> Something might be only gvt specific, e.g we'll have some enhancement patches
+> for guest context parse, this might be considered as 'gt' part? I'm not sure.
+> But yes, I hope we just stick with one, currently thinking drm-intel-next.
+
+For anything self-contained in gvt directory only, we can make a choice.
+
+I think the patches that concern vgpu, have most often been around the GT
+related code (opposed to display and PM).
+
+That kind of makes me think we would get away with least amount of topic
+branches and backmerges in the future if we also merged gvt-next to
+drm-intel-gt-next. Thoughts?
+
+That'd just mean a shift in timeline to send gvt-next latest early in -rc4
+week.
+
+Regards, Joonas
+
+> > Or should we always strictly apply the GVT changes to drm-intel-next,
+> > and then any related i915 changes to drm-intel-next or drm-intel-gt-next
+> > depending on which one they are related to?
+> >
+> 
+> How about basically we just apply to drm-intel-next, but there might be gvt
+> specific pull required for -gt-next e.g ww-lock fixes? I think we can do that way
+> now to see if there'll be any real issue popup.
+> 
+> Thanks
+> 
+> > 
+> > > Thanks
+> > > --
+> > > The following changes since commit 139caf7ca2866cd0a45814ff938cb0c33920a266:
+> > > 
+> > >   drm/i915: Update DRIVER_DATE to 20201103 (2020-11-03 14:21:25 +0200)
+> > > 
+> > > are available in the Git repository at:
+> > > 
+> > >   https://github.com/intel/gvt-linux tags/gvt-next-2020-11-23
+> > > 
+> > > for you to fetch changes up to 9a3a238b3de97b4210c6de66aa88b2d7021ac086:
+> > > 
+> > >   drm/i915/gvt: treat intel_gvt_mpt as const in gvt code (2020-11-23 17:14:20 +0800)
+> > > 
+> > > ----------------------------------------------------------------
+> > > gvt-next-2020-11-23
+> > > 
+> > > - Fix host suspend/resume with vGPU (Colin)
+> > > - optimize idr init (Varma)
+> > > - Change intel_gvt_mpt as const (Julian)
+> > > - One comment error fix (Yan)
+> > > 
+> > > ----------------------------------------------------------------
+> > > Colin Xu (3):
+> > >       drm/i915/gvt: Save/restore HW status to support GVT suspend/resume
+> > >       drm/i915: Add GVT resume routine to i915
+> > >       drm/i915/gvt: Fix virtual display setup for BXT/APL
+> > > 
+> > > Deepak R Varma (1):
+> > >       drm/i915/gvt: replace idr_init() by idr_init_base()
+> > > 
+> > > Julian Stecklina (1):
+> > >       drm/i915/gvt: treat intel_gvt_mpt as const in gvt code
+> > > 
+> > > Yan Zhao (1):
+> > >       drm/i915/gvt: correct a false comment of flag F_UNALIGN
+> > > 
+> > >  drivers/gpu/drm/i915/gvt/display.c  | 179 ++++++++++++++++++++++++++++++++++++
+> > >  drivers/gpu/drm/i915/gvt/gtt.c      |  64 +++++++++++++
+> > >  drivers/gpu/drm/i915/gvt/gtt.h      |   4 +
+> > >  drivers/gpu/drm/i915/gvt/gvt.c      |  13 ++-
+> > >  drivers/gpu/drm/i915/gvt/gvt.h      |   7 +-
+> > >  drivers/gpu/drm/i915/gvt/handlers.c |  44 ++++++++-
+> > >  drivers/gpu/drm/i915/gvt/kvmgt.c    |   2 +-
+> > >  drivers/gpu/drm/i915/gvt/mmio.c     |   5 +
+> > >  drivers/gpu/drm/i915/gvt/mmio.h     |   4 +
+> > >  drivers/gpu/drm/i915/gvt/mpt.h      |   2 +-
+> > >  drivers/gpu/drm/i915/gvt/vgpu.c     |   2 +-
+> > >  drivers/gpu/drm/i915/i915_drv.c     |   2 +
+> > >  drivers/gpu/drm/i915/intel_gvt.c    |  15 +++
+> > >  drivers/gpu/drm/i915/intel_gvt.h    |   5 +
+> > >  14 files changed, 338 insertions(+), 10 deletions(-)
+> > > 
+> > > -- 
+> > > 
+> > > $gpg --keyserver wwwkeys.pgp.net --recv-keys 4D781827
+> > _______________________________________________
+> > intel-gvt-dev mailing list
+> > intel-gvt-dev@lists.freedesktop.org
+> > https://lists.freedesktop.org/mailman/listinfo/intel-gvt-dev
+> 
+> -- 
+> 
+> $gpg --keyserver wwwkeys.pgp.net --recv-keys 4D781827
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
