@@ -1,43 +1,47 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 206CE2C893A
-	for <lists+intel-gfx@lfdr.de>; Mon, 30 Nov 2020 17:19:44 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3CBA92C893B
+	for <lists+intel-gfx@lfdr.de>; Mon, 30 Nov 2020 17:20:27 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6C6E26E4E8;
-	Mon, 30 Nov 2020 16:19:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8A5BF6E526;
+	Mon, 30 Nov 2020 16:20:25 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8FA156E4E8
- for <intel-gfx@lists.freedesktop.org>; Mon, 30 Nov 2020 16:19:40 +0000 (UTC)
-IronPort-SDR: kYn5AJh/Mo8L9UTPGjnLCmoJobDAOiH+hcMVxRleats7cTTpHbx01pJkkdFK9mZgjIvJNZOQPf
- xZwlwzc2VgtA==
-X-IronPort-AV: E=McAfee;i="6000,8403,9821"; a="236787784"
-X-IronPort-AV: E=Sophos;i="5.78,382,1599548400"; d="scan'208";a="236787784"
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E02236E4F1;
+ Mon, 30 Nov 2020 16:20:23 +0000 (UTC)
+IronPort-SDR: ueZQk1bbWCT1pm3Pkax5cYf11CJVxifsgKAfOHVj6SUfWOe/4TZS8bKbBhx0Vc2VjFCsc35G+d
+ Gw21fLehFXPw==
+X-IronPort-AV: E=McAfee;i="6000,8403,9821"; a="169164444"
+X-IronPort-AV: E=Sophos;i="5.78,382,1599548400"; d="scan'208";a="169164444"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Nov 2020 08:19:39 -0800
-IronPort-SDR: cqQZJCJK0aCusuFJNLbNiJCxF4e9Vc5y3eWNkDFWep0exBvCjKQ14tFL1Hpzc4hoiuK6juRCFG
- 3vzRiBNMy2Fw==
-X-IronPort-AV: E=Sophos;i="5.78,382,1599548400"; d="scan'208";a="549160975"
-Received: from cshanno1-mobl.ger.corp.intel.com (HELO localhost)
- ([10.252.44.44])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Nov 2020 08:19:38 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Dave Airlie <airlied@gmail.com>, intel-gfx@lists.freedesktop.org
-In-Reply-To: <20201126013506.29402-1-airlied@gmail.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20201126013506.29402-1-airlied@gmail.com>
-Date: Mon, 30 Nov 2020 18:19:35 +0200
-Message-ID: <87pn3ukeaw.fsf@intel.com>
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Nov 2020 08:20:22 -0800
+IronPort-SDR: bTOyAC+LhzKWo63DYlZi+O+O9iaiYv1m9dOaea1Hl3ivnzqJlLn6y6ETt3tRUsA7Q6vJxmgtFk
+ FYpika0IV5nQ==
+X-IronPort-AV: E=Sophos;i="5.78,382,1599548400"; d="scan'208";a="480712879"
+Received: from mdubovsk-mobl1.ger.corp.intel.com (HELO [10.254.157.9])
+ ([10.254.157.9])
+ by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Nov 2020 08:20:20 -0800
+To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
+References: <20201123201525.3991343-1-chris@chris-wilson.co.uk>
+ <20201130103656.1049951-1-chris@chris-wilson.co.uk>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+Message-ID: <35bd53ab-7722-dfe4-8d00-a07ee5c0dd6f@linux.intel.com>
+Date: Mon, 30 Nov 2020 16:20:18 +0000
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: refactor panel backlight control
- functions.
+In-Reply-To: <20201130103656.1049951-1-chris@chris-wilson.co.uk>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH i-g-t] i915/gem_request_retire: Switch from
+ random blitter loads to dummy
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,381 +54,278 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
+Cc: igt-dev@lists.freedesktop.org
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 26 Nov 2020, Dave Airlie <airlied@gmail.com> wrote:
-> From: Dave Airlie <airlied@redhat.com>
->
-> This moves the functions into static const instead of having
-> funcs and data in the same struct.
->
-> The only problem is the power callback gets overridden in the
-> eDP code so deal with that, might be worth seeing if that can be
-> done differently.
 
-It's not so much an override but rather the only user. Perhaps adding
-the separate power hook in intel_panel_bl_funcs is overkill.
-
-Anyway, this is objectively an improvement to the current code,
-regardless of the HDR backlight series or the power hook.
-
-Reviewed-by: Jani Nikula <jani.nikula@intel.com>
-
->
-> Signed-off-by: Dave Airlie <airlied@redhat.com>
+On 30/11/2020 10:36, Chris Wilson wrote:
+> Use the spinners to provide exactly the right amount of background
+> busyness.
+> 
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> Cc: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
 > ---
->  .../drm/i915/display/intel_display_types.h    |  22 ++-
->  .../drm/i915/display/intel_dp_aux_backlight.c |  14 +-
->  .../i915/display/intel_dsi_dcs_backlight.c    |  14 +-
->  drivers/gpu/drm/i915/display/intel_panel.c    | 154 +++++++++++-------
->  4 files changed, 130 insertions(+), 74 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-> index f6f0626649e0..b07a1f0042d7 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
-> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-> @@ -225,6 +225,18 @@ struct intel_encoder {
->  	const struct drm_connector *audio_connector;
->  };
->  
-> +struct intel_panel_bl_funcs {
-> +	/* Connector and platform specific backlight functions */
-> +	int (*setup)(struct intel_connector *connector, enum pipe pipe);
-> +	u32 (*get)(struct intel_connector *connector);
-> +	void (*set)(const struct drm_connector_state *conn_state, u32 level);
-> +	void (*disable)(const struct drm_connector_state *conn_state);
-> +	void (*enable)(const struct intel_crtc_state *crtc_state,
-> +		       const struct drm_connector_state *conn_state);
-> +	u32 (*hz_to_pwm)(struct intel_connector *connector, u32 hz);
-> +	void (*power)(struct intel_connector *, bool enable);
-> +};
+>   lib/igt_dummyload.c             |  23 ++---
+>   lib/igt_dummyload.h             |   1 +
+>   tests/i915/gem_request_retire.c | 170 ++++----------------------------
+>   3 files changed, 34 insertions(+), 160 deletions(-)
+> 
+> diff --git a/lib/igt_dummyload.c b/lib/igt_dummyload.c
+> index d58f73108..891e4eaab 100644
+> --- a/lib/igt_dummyload.c
+> +++ b/lib/igt_dummyload.c
+> @@ -161,19 +161,20 @@ emit_recursive_batch(igt_spin_t *spin,
+>   	if (opts->dependency) {
+>   		igt_assert(!(opts->flags & IGT_SPIN_POLL_RUN));
+>   
+> -		r = &relocs[obj[BATCH].relocation_count++];
+> -
+> -		/* dummy write to dependency */
+>   		obj[SCRATCH].handle = opts->dependency;
+>   		obj[SCRATCH].offset = addr;
+> -		obj[SCRATCH].flags = EXEC_OBJECT_WRITE;
+> -
+> -		r->presumed_offset = obj[SCRATCH].offset;
+> -		r->target_handle = obj[SCRATCH].handle;
+> -		r->offset = sizeof(uint32_t) * 1020;
+> -		r->delta = 0;
+> -		r->read_domains = I915_GEM_DOMAIN_RENDER;
+> -		r->write_domain = I915_GEM_DOMAIN_RENDER;
+> +		if (!(opts->flags & IGT_SPIN_SOFTDEP)) {
+> +			obj[SCRATCH].flags = EXEC_OBJECT_WRITE;
 > +
->  struct intel_panel {
->  	struct drm_display_mode *fixed_mode;
->  	struct drm_display_mode *downclock_mode;
-> @@ -251,15 +263,9 @@ struct intel_panel {
->  
->  		struct backlight_device *device;
->  
-> -		/* Connector and platform specific backlight functions */
-> -		int (*setup)(struct intel_connector *connector, enum pipe pipe);
-> -		u32 (*get)(struct intel_connector *connector);
-> -		void (*set)(const struct drm_connector_state *conn_state, u32 level);
-> -		void (*disable)(const struct drm_connector_state *conn_state);
-> -		void (*enable)(const struct intel_crtc_state *crtc_state,
-> -			       const struct drm_connector_state *conn_state);
-> -		u32 (*hz_to_pwm)(struct intel_connector *connector, u32 hz);
-> +		/* power can be overriden for edp. */
->  		void (*power)(struct intel_connector *, bool enable);
-> +		const struct intel_panel_bl_funcs *funcs;
->  	} backlight;
->  };
->  
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c b/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
-> index 51d27fc98d48..4fd536801b14 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
-> @@ -350,6 +350,14 @@ intel_dp_aux_display_control_capable(struct intel_connector *connector)
->  	return false;
->  }
->  
-> +static const struct intel_panel_bl_funcs intel_dp_bl_funcs = {
-> +	.setup = intel_dp_aux_setup_backlight,
-> +	.enable = intel_dp_aux_enable_backlight,
-> +	.disable = intel_dp_aux_disable_backlight,
-> +	.set = intel_dp_aux_set_backlight,
-> +	.get = intel_dp_aux_get_backlight,
-> +};
-> +
->  int intel_dp_aux_init_backlight_funcs(struct intel_connector *intel_connector)
->  {
->  	struct intel_panel *panel = &intel_connector->panel;
-> @@ -379,11 +387,7 @@ int intel_dp_aux_init_backlight_funcs(struct intel_connector *intel_connector)
->  		return -ENODEV;
->  	}
->  
-> -	panel->backlight.setup = intel_dp_aux_setup_backlight;
-> -	panel->backlight.enable = intel_dp_aux_enable_backlight;
-> -	panel->backlight.disable = intel_dp_aux_disable_backlight;
-> -	panel->backlight.set = intel_dp_aux_set_backlight;
-> -	panel->backlight.get = intel_dp_aux_get_backlight;
-> +	panel->backlight.funcs = &intel_dp_bl_funcs;
->  
->  	return 0;
->  }
-> diff --git a/drivers/gpu/drm/i915/display/intel_dsi_dcs_backlight.c b/drivers/gpu/drm/i915/display/intel_dsi_dcs_backlight.c
-> index b53c50372918..5c508d51f526 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dsi_dcs_backlight.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dsi_dcs_backlight.c
-> @@ -156,6 +156,14 @@ static int dcs_setup_backlight(struct intel_connector *connector,
->  	return 0;
->  }
->  
-> +static const struct intel_panel_bl_funcs dcs_bl_funcs = {
-> +	.setup = dcs_setup_backlight,
-> +	.enable = dcs_enable_backlight,
-> +	.disable = dcs_disable_backlight,
-> +	.set = dcs_set_backlight,
-> +	.get = dcs_get_backlight,
-> +};
-> +
->  int intel_dsi_dcs_init_backlight_funcs(struct intel_connector *intel_connector)
->  {
->  	struct drm_device *dev = intel_connector->base.dev;
-> @@ -169,11 +177,7 @@ int intel_dsi_dcs_init_backlight_funcs(struct intel_connector *intel_connector)
->  	if (drm_WARN_ON(dev, encoder->type != INTEL_OUTPUT_DSI))
->  		return -EINVAL;
->  
-> -	panel->backlight.setup = dcs_setup_backlight;
-> -	panel->backlight.enable = dcs_enable_backlight;
-> -	panel->backlight.disable = dcs_disable_backlight;
-> -	panel->backlight.set = dcs_set_backlight;
-> -	panel->backlight.get = dcs_get_backlight;
-> +	panel->backlight.funcs = &dcs_bl_funcs;
->  
->  	return 0;
->  }
-> diff --git a/drivers/gpu/drm/i915/display/intel_panel.c b/drivers/gpu/drm/i915/display/intel_panel.c
-> index 9f23bac0d792..f3c97e31929a 100644
-> --- a/drivers/gpu/drm/i915/display/intel_panel.c
-> +++ b/drivers/gpu/drm/i915/display/intel_panel.c
-> @@ -684,7 +684,7 @@ intel_panel_actually_set_backlight(const struct drm_connector_state *conn_state,
->  	drm_dbg_kms(&i915->drm, "set backlight PWM = %d\n", level);
->  
->  	level = intel_panel_compute_brightness(connector, level);
-> -	panel->backlight.set(conn_state, level);
-> +	panel->backlight.funcs->set(conn_state, level);
->  }
->  
->  /* set backlight brightness to level in range [0..max], assuming hw min is
-> @@ -870,7 +870,7 @@ void intel_panel_disable_backlight(const struct drm_connector_state *old_conn_st
->  	if (panel->backlight.device)
->  		panel->backlight.device->props.power = FB_BLANK_POWERDOWN;
->  	panel->backlight.enabled = false;
-> -	panel->backlight.disable(old_conn_state);
-> +	panel->backlight.funcs->disable(old_conn_state);
->  
->  	mutex_unlock(&dev_priv->backlight_lock);
->  }
-> @@ -1198,7 +1198,7 @@ static void __intel_panel_enable_backlight(const struct intel_crtc_state *crtc_s
->  						 panel->backlight.device->props.max_brightness);
->  	}
->  
-> -	panel->backlight.enable(crtc_state, conn_state);
-> +	panel->backlight.funcs->enable(crtc_state, conn_state);
->  	panel->backlight.enabled = true;
->  	if (panel->backlight.device)
->  		panel->backlight.device->props.power = FB_BLANK_UNBLANK;
-> @@ -1234,7 +1234,7 @@ static u32 intel_panel_get_backlight(struct intel_connector *connector)
->  	mutex_lock(&dev_priv->backlight_lock);
->  
->  	if (panel->backlight.enabled) {
-> -		val = panel->backlight.get(connector);
-> +		val = panel->backlight.funcs->get(connector);
->  		val = intel_panel_compute_brightness(connector, val);
->  	}
->  
-> @@ -1567,13 +1567,13 @@ static u32 get_backlight_max_vbt(struct intel_connector *connector)
->  	u16 pwm_freq_hz = get_vbt_pwm_freq(dev_priv);
->  	u32 pwm;
->  
-> -	if (!panel->backlight.hz_to_pwm) {
-> +	if (!panel->backlight.funcs->hz_to_pwm) {
->  		drm_dbg_kms(&dev_priv->drm,
->  			    "backlight frequency conversion not supported\n");
->  		return 0;
->  	}
->  
-> -	pwm = panel->backlight.hz_to_pwm(connector, pwm_freq_hz);
-> +	pwm = panel->backlight.funcs->hz_to_pwm(connector, pwm_freq_hz);
->  	if (!pwm) {
->  		drm_dbg_kms(&dev_priv->drm,
->  			    "backlight frequency conversion failed\n");
-> @@ -1981,12 +1981,12 @@ int intel_panel_setup_backlight(struct drm_connector *connector, enum pipe pipe)
->  	}
->  
->  	/* ensure intel_panel has been initialized first */
-> -	if (drm_WARN_ON(&dev_priv->drm, !panel->backlight.setup))
-> +	if (drm_WARN_ON(&dev_priv->drm, !panel->backlight.funcs))
->  		return -ENODEV;
->  
->  	/* set level and max in panel struct */
->  	mutex_lock(&dev_priv->backlight_lock);
-> -	ret = panel->backlight.setup(intel_connector, pipe);
-> +	ret = panel->backlight.funcs->setup(intel_connector, pipe);
->  	mutex_unlock(&dev_priv->backlight_lock);
->  
->  	if (ret) {
-> @@ -2016,6 +2016,86 @@ static void intel_panel_destroy_backlight(struct intel_panel *panel)
->  	panel->backlight.present = false;
->  }
->  
-> +static const struct intel_panel_bl_funcs bxt_funcs = {
-> +	.setup = bxt_setup_backlight,
-> +	.enable = bxt_enable_backlight,
-> +	.disable = bxt_disable_backlight,
-> +	.set = bxt_set_backlight,
-> +	.get = bxt_get_backlight,
-> +	.hz_to_pwm = bxt_hz_to_pwm,
-> +};
-> +
-> +static const struct intel_panel_bl_funcs cnp_funcs = {
-> +	.setup = cnp_setup_backlight,
-> +	.enable = cnp_enable_backlight,
-> +	.disable = cnp_disable_backlight,
-> +	.set = bxt_set_backlight,
-> +	.get = bxt_get_backlight,
-> +	.hz_to_pwm = cnp_hz_to_pwm,
-> +};
-> +
-> +static const struct intel_panel_bl_funcs lpt_funcs = {
-> +	.setup = lpt_setup_backlight,
-> +	.enable = lpt_enable_backlight,
-> +	.disable = lpt_disable_backlight,
-> +	.set = lpt_set_backlight,
-> +	.get = lpt_get_backlight,
-> +	.hz_to_pwm = lpt_hz_to_pwm,
-> +};
-> +
-> +static const struct intel_panel_bl_funcs spt_funcs = {
-> +	.setup = lpt_setup_backlight,
-> +	.enable = lpt_enable_backlight,
-> +	.disable = lpt_disable_backlight,
-> +	.set = lpt_set_backlight,
-> +	.get = lpt_get_backlight,
-> +	.hz_to_pwm = spt_hz_to_pwm,
-> +};
-> +
-> +static const struct intel_panel_bl_funcs pch_funcs = {
-> +	.setup = pch_setup_backlight,
-> +	.enable = pch_enable_backlight,
-> +	.disable = pch_disable_backlight,
-> +	.set = pch_set_backlight,
-> +	.get = pch_get_backlight,
-> +	.hz_to_pwm = pch_hz_to_pwm,
-> +};
-> +
-> +static const struct intel_panel_bl_funcs pwm_funcs = {
-> +	.setup = pwm_setup_backlight,
-> +	.enable = pwm_enable_backlight,
-> +	.disable = pwm_disable_backlight,
-> +	.set = pwm_set_backlight,
-> +	.get = pwm_get_backlight,
-> +};
-> +
-> +static const struct intel_panel_bl_funcs vlv_funcs = {
-> +	.setup = vlv_setup_backlight,
-> +	.enable = vlv_enable_backlight,
-> +	.disable = vlv_disable_backlight,
-> +	.set = vlv_set_backlight,
-> +	.get = vlv_get_backlight,
-> +	.hz_to_pwm = vlv_hz_to_pwm,
-> +};
-> +
-> +static const struct intel_panel_bl_funcs i965_funcs = {
-> +	.setup = i965_setup_backlight,
-> +	.enable = i965_enable_backlight,
-> +	.disable = i965_disable_backlight,
-> +	.set = i9xx_set_backlight,
-> +	.get = i9xx_get_backlight,
-> +	.hz_to_pwm = i965_hz_to_pwm,
-> +};
-> +
-> +static const struct intel_panel_bl_funcs i9xx_funcs = {
-> +	.setup = i9xx_setup_backlight,
-> +	.enable = i9xx_enable_backlight,
-> +	.disable = i9xx_disable_backlight,
-> +	.set = i9xx_set_backlight,
-> +	.get = i9xx_get_backlight,
-> +	.hz_to_pwm = i9xx_hz_to_pwm,
-> +};
-> +
->  /* Set up chip specific backlight functions */
->  static void
->  intel_panel_init_backlight_funcs(struct intel_panel *panel)
-> @@ -2033,66 +2113,28 @@ intel_panel_init_backlight_funcs(struct intel_panel *panel)
->  		return;
->  
->  	if (IS_GEN9_LP(dev_priv)) {
-> -		panel->backlight.setup = bxt_setup_backlight;
-> -		panel->backlight.enable = bxt_enable_backlight;
-> -		panel->backlight.disable = bxt_disable_backlight;
-> -		panel->backlight.set = bxt_set_backlight;
-> -		panel->backlight.get = bxt_get_backlight;
-> -		panel->backlight.hz_to_pwm = bxt_hz_to_pwm;
-> +		panel->backlight.funcs = &bxt_funcs;
->  	} else if (INTEL_PCH_TYPE(dev_priv) >= PCH_CNP) {
-> -		panel->backlight.setup = cnp_setup_backlight;
-> -		panel->backlight.enable = cnp_enable_backlight;
-> -		panel->backlight.disable = cnp_disable_backlight;
-> -		panel->backlight.set = bxt_set_backlight;
-> -		panel->backlight.get = bxt_get_backlight;
-> -		panel->backlight.hz_to_pwm = cnp_hz_to_pwm;
-> +		panel->backlight.funcs = &cnp_funcs;
->  	} else if (INTEL_PCH_TYPE(dev_priv) >= PCH_LPT) {
-> -		panel->backlight.setup = lpt_setup_backlight;
-> -		panel->backlight.enable = lpt_enable_backlight;
-> -		panel->backlight.disable = lpt_disable_backlight;
-> -		panel->backlight.set = lpt_set_backlight;
-> -		panel->backlight.get = lpt_get_backlight;
->  		if (HAS_PCH_LPT(dev_priv))
-> -			panel->backlight.hz_to_pwm = lpt_hz_to_pwm;
-> +			panel->backlight.funcs = &lpt_funcs;
->  		else
-> -			panel->backlight.hz_to_pwm = spt_hz_to_pwm;
-> +			panel->backlight.funcs = &spt_funcs;
->  	} else if (HAS_PCH_SPLIT(dev_priv)) {
-> -		panel->backlight.setup = pch_setup_backlight;
-> -		panel->backlight.enable = pch_enable_backlight;
-> -		panel->backlight.disable = pch_disable_backlight;
-> -		panel->backlight.set = pch_set_backlight;
-> -		panel->backlight.get = pch_get_backlight;
-> -		panel->backlight.hz_to_pwm = pch_hz_to_pwm;
-> +		panel->backlight.funcs = &pch_funcs;
->  	} else if (IS_VALLEYVIEW(dev_priv) || IS_CHERRYVIEW(dev_priv)) {
->  		if (connector->base.connector_type == DRM_MODE_CONNECTOR_DSI) {
-> -			panel->backlight.setup = pwm_setup_backlight;
-> -			panel->backlight.enable = pwm_enable_backlight;
-> -			panel->backlight.disable = pwm_disable_backlight;
-> -			panel->backlight.set = pwm_set_backlight;
-> -			panel->backlight.get = pwm_get_backlight;
-> +			panel->backlight.funcs = &pwm_funcs;
->  		} else {
-> -			panel->backlight.setup = vlv_setup_backlight;
-> -			panel->backlight.enable = vlv_enable_backlight;
-> -			panel->backlight.disable = vlv_disable_backlight;
-> -			panel->backlight.set = vlv_set_backlight;
-> -			panel->backlight.get = vlv_get_backlight;
-> -			panel->backlight.hz_to_pwm = vlv_hz_to_pwm;
-> +			panel->backlight.funcs = &vlv_funcs;
->  		}
->  	} else if (IS_GEN(dev_priv, 4)) {
-> -		panel->backlight.setup = i965_setup_backlight;
-> -		panel->backlight.enable = i965_enable_backlight;
-> -		panel->backlight.disable = i965_disable_backlight;
-> -		panel->backlight.set = i9xx_set_backlight;
-> -		panel->backlight.get = i9xx_get_backlight;
-> -		panel->backlight.hz_to_pwm = i965_hz_to_pwm;
-> +		panel->backlight.funcs = &i965_funcs;
->  	} else {
-> -		panel->backlight.setup = i9xx_setup_backlight;
-> -		panel->backlight.enable = i9xx_enable_backlight;
-> -		panel->backlight.disable = i9xx_disable_backlight;
-> -		panel->backlight.set = i9xx_set_backlight;
-> -		panel->backlight.get = i9xx_get_backlight;
-> -		panel->backlight.hz_to_pwm = i9xx_hz_to_pwm;
-> +		panel->backlight.funcs = &i9xx_funcs;
->  	}
-> +	panel->backlight.power = panel->backlight.funcs->power;
->  }
->  
->  enum drm_connector_status
+> +			/* dummy write to dependency */
+> +			r = &relocs[obj[BATCH].relocation_count++];
+> +			r->presumed_offset = obj[SCRATCH].offset;
+> +			r->target_handle = obj[SCRATCH].handle;
+> +			r->offset = sizeof(uint32_t) * 1020;
+> +			r->delta = 0;
+> +			r->read_domains = I915_GEM_DOMAIN_RENDER;
+> +			r->write_domain = I915_GEM_DOMAIN_RENDER;
+> +		}
+>   
+>   		execbuf->buffer_count++;
+>   	} else if (opts->flags & IGT_SPIN_POLL_RUN) {
+> diff --git a/lib/igt_dummyload.h b/lib/igt_dummyload.h
+> index 6d3e65ce2..b8baaa6b4 100644
+> --- a/lib/igt_dummyload.h
+> +++ b/lib/igt_dummyload.h
+> @@ -71,6 +71,7 @@ struct igt_spin_factory {
+>   #define IGT_SPIN_NO_PREEMPTION (1 << 4)
+>   #define IGT_SPIN_INVALID_CS    (1 << 5)
+>   #define IGT_SPIN_USERPTR       (1 << 6)
+> +#define IGT_SPIN_SOFTDEP       (1 << 7)
+>   
+>   igt_spin_t *
+>   __igt_spin_factory(int fd, const struct igt_spin_factory *opts);
+> diff --git a/tests/i915/gem_request_retire.c b/tests/i915/gem_request_retire.c
+> index 31fb41987..c23ddfb7b 100644
+> --- a/tests/i915/gem_request_retire.c
+> +++ b/tests/i915/gem_request_retire.c
+> @@ -52,130 +52,6 @@
+>   IGT_TEST_DESCRIPTION("Collection of tests targeting request retirement code"
+>   		     " paths.");
+>   
+> -#define WIDTH 4096
+> -#define HEIGHT 4096
+> -#define BO_SIZE (WIDTH * HEIGHT * sizeof(uint32_t))
+> -
+> -static uint32_t
+> -blit(int fd, uint32_t dst, uint32_t src, uint32_t ctx_id)
+> -{
+> -	const unsigned int copies = 1000;
+> -	uint32_t batch[12 * copies + 5];
+> -	struct drm_i915_gem_relocation_entry reloc[2 * copies];
+> -	struct drm_i915_gem_exec_object2 obj[3];
+> -	struct drm_i915_gem_execbuffer2 exec;
+> -	uint32_t handle;
+> -	unsigned int i = 0, j, r = 0;
+> -
+> -	for (j = 0; j < copies; j++) {
+> -		reloc[r].target_handle = dst;
+> -		reloc[r].delta = 0;
+> -		reloc[r].offset = (i + 4) * sizeof(uint32_t);
+> -		reloc[r].presumed_offset = 0;
+> -		reloc[r].read_domains = I915_GEM_DOMAIN_RENDER;
+> -		reloc[r].write_domain = I915_GEM_DOMAIN_RENDER;
+> -
+> -		r++;
+> -
+> -		reloc[r].target_handle = src;
+> -		reloc[r].delta = 0;
+> -		reloc[r].offset = (i + 7) * sizeof(uint32_t);
+> -		if (intel_gen(intel_get_drm_devid(fd)) >= 8)
+> -			reloc[r].offset += sizeof(uint32_t);
+> -		reloc[r].presumed_offset = 0;
+> -		reloc[r].read_domains = I915_GEM_DOMAIN_RENDER;
+> -		reloc[r].write_domain = 0;
+> -
+> -		r++;
+> -
+> -		batch[i++] = XY_SRC_COPY_BLT_CMD |
+> -			XY_SRC_COPY_BLT_WRITE_ALPHA |
+> -			XY_SRC_COPY_BLT_WRITE_RGB;
+> -		if (intel_gen(intel_get_drm_devid(fd)) >= 8)
+> -			batch[i - 1] |= 8;
+> -		else
+> -			batch[i - 1] |= 6;
+> -
+> -		batch[i++] = (3 << 24) | /* 32 bits */
+> -			(0xcc << 16) | /* copy ROP */
+> -			WIDTH*4;
+> -		batch[i++] = 0; /* dst x1,y1 */
+> -		batch[i++] = (HEIGHT << 16) | WIDTH; /* dst x2,y2 */
+> -		batch[i++] = 0; /* dst reloc */
+> -		if (intel_gen(intel_get_drm_devid(fd)) >= 8)
+> -			batch[i++] = 0;
+> -		batch[i++] = 0; /* src x1,y1 */
+> -		batch[i++] = WIDTH*4;
+> -		batch[i++] = 0; /* src reloc */
+> -		if (intel_gen(intel_get_drm_devid(fd)) >= 8)
+> -			batch[i++] = 0;
+> -	}
+> -
+> -	batch[i++] = MI_BATCH_BUFFER_END;
+> -
+> -	while (i % 4)
+> -		batch[i++] = MI_NOOP;
+> -
+> -	handle = gem_create(fd, sizeof(batch));
+> -	gem_write(fd, handle, 0, batch, sizeof(batch));
+> -
+> -	memset(obj, 0, sizeof(obj));
+> -	memset(&exec, 0, sizeof(exec));
+> -
+> -	obj[exec.buffer_count++].handle = dst;
+> -	if (src != dst)
+> -		obj[exec.buffer_count++].handle = src;
+> -	obj[exec.buffer_count].handle = handle;
+> -	obj[exec.buffer_count].relocation_count = 2 * copies;
+> -	obj[exec.buffer_count].relocs_ptr = to_user_pointer(reloc);
+> -	exec.buffer_count++;
+> -	exec.buffers_ptr = to_user_pointer(obj);
+> -
+> -	exec.batch_len = i * sizeof(uint32_t);
+> -	exec.flags = I915_EXEC_BLT;
+> -	i915_execbuffer2_set_context_id(exec, ctx_id);
+> -
+> -	gem_execbuf(fd, &exec);
+> -
+> -	return handle;
+> -}
+> -
+> -static uint32_t
+> -noop(int fd, uint32_t src, uint32_t ctx_id)
+> -{
+> -	uint32_t batch[4];
+> -	struct drm_i915_gem_exec_object2 obj[2];
+> -	struct drm_i915_gem_execbuffer2 exec;
+> -	uint32_t handle;
+> -	unsigned int i = 0;
+> -
+> -	batch[i++] = MI_NOOP;
+> -	batch[i++] = MI_BATCH_BUFFER_END;
+> -	batch[i++] = MI_NOOP;
+> -	batch[i++] = MI_NOOP;
+> -
+> -	handle = gem_create(fd, 4096);
+> -	gem_write(fd, handle, 0, batch, sizeof(batch));
+> -
+> -	memset(obj, 0, sizeof(obj));
+> -	memset(&exec, 0, sizeof(exec));
+> -
+> -	obj[exec.buffer_count++].handle = src;
+> -	obj[exec.buffer_count].handle = handle;
+> -	obj[exec.buffer_count].relocation_count = 0;
+> -	obj[exec.buffer_count].relocs_ptr = to_user_pointer(0);
+> -	exec.buffer_count++;
+> -	exec.buffers_ptr = to_user_pointer(obj);
+> -
+> -	exec.batch_len = i * sizeof(uint32_t);
+> -	exec.flags = I915_EXEC_RENDER;
+> -	i915_execbuffer2_set_context_id(exec, ctx_id);
+> -
+> -	gem_execbuf(fd, &exec);
+> -
+> -	return handle;
+> -}
+> -
+>   /*
+>    * A single bo is operated from batchbuffers submitted from two contexts and on
+>    * different rings.
+> @@ -185,37 +61,33 @@ noop(int fd, uint32_t src, uint32_t ctx_id)
+>   static void
+>   test_retire_vma_not_inactive(int fd)
+>   {
+> -	uint32_t ctx_id;
+> -	uint32_t src, dst;
+> -	uint32_t blit_bb, noop_bb;
+> -
+> -	igt_require(HAS_BLT_RING(intel_get_drm_devid(fd)));
+> +	struct intel_execution_engine2 *e;
+>   
+> -	ctx_id = gem_context_create(fd);
+> +	igt_spin_t *bg = NULL;
+>   
+> -	/* Create some bos batch buffers will operate on. */
+> -	src = gem_create(fd, BO_SIZE);
+> -	dst = gem_create(fd, BO_SIZE);
+> +	__for_each_physical_engine(fd, e) {
+> +		igt_spin_t *spin;
+> +		uint32_t ctx;
+>   
+> -	/* Submit a long running batch. */
+> -	blit_bb = blit(fd, dst, src, 0);
+> +		if (!bg) {
+> +			bg = igt_spin_new(fd, .engine = e->flags);
+> +			continue;
+> +		}
+>   
+> -	/* Submit a quick batch referencing the same object. */
+> -	noop_bb = noop(fd, src, ctx_id);
+> +		ctx = gem_context_clone_with_engines(fd, 0);
+> +		spin = igt_spin_new(fd, ctx,
+> +				    .engine = e->flags,
+> +				    .dependency = bg->handle,
+> +				    .flags = IGT_SPIN_SOFTDEP);
+> +		gem_context_destroy(fd, ctx);
+> +		igt_spin_end(spin);
+>   
+> -	/* Wait for the quick batch to complete. */
+> -	gem_sync(fd, noop_bb);
+> -	gem_close(fd, noop_bb);
+> -
+> -	/* Now destroy the context in which the quick batch was submitted. */
+> -	gem_context_destroy(fd, ctx_id);
+> -
+> -	/* Wait for the slow batch to finish and clean up. */
+> -	gem_sync(fd, blit_bb);
+> -	gem_close(fd, blit_bb);
+> +		gem_sync(fd, spin->handle);
+> +		igt_spin_free(fd, spin);
+> +	}
+>   
+> -	gem_close(fd, src);
+> -	gem_close(fd, dst);
+> +	igt_drop_caches_set(fd, DROP_RETIRE);
+> +	igt_spin_free(fd, bg);
+>   }
+>   
+>   int fd;
+> 
 
--- 
-Jani Nikula, Intel Open Source Graphics Center
+I wonder how relevant this test is today but anyway doesn't harm. It is 
+not exactly like-for-like replacement but I *think* the key was context 
+close before involved object is idled so I think is is fine.
+
+Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+
+Regards,
+
+Tvrtko
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
