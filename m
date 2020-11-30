@@ -1,45 +1,44 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3DB5C2C916E
-	for <lists+intel-gfx@lfdr.de>; Mon, 30 Nov 2020 23:48:49 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id ECE6A2C9182
+	for <lists+intel-gfx@lfdr.de>; Mon, 30 Nov 2020 23:51:07 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7183B8925F;
-	Mon, 30 Nov 2020 22:48:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5B6FF898C2;
+	Mon, 30 Nov 2020 22:51:06 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F22308925F
- for <intel-gfx@lists.freedesktop.org>; Mon, 30 Nov 2020 22:48:45 +0000 (UTC)
-IronPort-SDR: lViFn4MvEkzPkZpqVZKk5WOpHyYFsX/g/5zWh7wKccavE+DUQ+BeTVBOJ75W78zmGE8gITjSgT
- UG7n7bcRzCyg==
-X-IronPort-AV: E=McAfee;i="6000,8403,9821"; a="171939747"
-X-IronPort-AV: E=Sophos;i="5.78,382,1599548400"; d="scan'208";a="171939747"
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E4B49898C2
+ for <intel-gfx@lists.freedesktop.org>; Mon, 30 Nov 2020 22:51:04 +0000 (UTC)
+IronPort-SDR: 1YUD+nO3dUKZ3fqH358zohpS2pnC/yPpY7D1SmMWwKtW68jVBF0RO2qgj65H4jaTWFQENCmk58
+ zG91US/iyKVA==
+X-IronPort-AV: E=McAfee;i="6000,8403,9821"; a="169226134"
+X-IronPort-AV: E=Sophos;i="5.78,382,1599548400"; d="scan'208";a="169226134"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Nov 2020 14:48:45 -0800
-IronPort-SDR: fsv/o4YLH8iJ6IOCSCiB3IFjpMxV4IuIJrDV+kqnt55bPVR6qxaDeuYU4UuzuoOhzjnV2Biilp
- s+BoVy/A8uIw==
-X-IronPort-AV: E=Sophos;i="5.78,382,1599548400"; d="scan'208";a="367292139"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Nov 2020 14:51:04 -0800
+IronPort-SDR: HHhoeCsNhqC5CsH61K7VJRgDjIPBubv10fyH2nk8o2+OIZNvdRnNp6hKnpuoEOmIUv2ivZvzyC
+ 2cs8sbcjd6KQ==
+X-IronPort-AV: E=Sophos;i="5.78,382,1599548400"; d="scan'208";a="480838814"
 Received: from labuser-z97x-ud5h.jf.intel.com (HELO labuser-Z97X-UD5H)
  ([10.165.21.211])
- by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Nov 2020 14:48:45 -0800
-Date: Mon, 30 Nov 2020 14:51:39 -0800
+ by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Nov 2020 14:51:03 -0800
+Date: Mon, 30 Nov 2020 14:53:58 -0800
 From: "Navare, Manasi" <manasi.d.navare@intel.com>
 To: Ville Syrjala <ville.syrjala@linux.intel.com>
-Message-ID: <20201130225139.GC17815@labuser-Z97X-UD5H>
+Message-ID: <20201130225358.GD17815@labuser-Z97X-UD5H>
 References: <20201124201156.17095-1-ville.syrjala@linux.intel.com>
- <20201124201156.17095-2-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20201124201156.17095-2-ville.syrjala@linux.intel.com>
+In-Reply-To: <20201124201156.17095-1-ville.syrjala@linux.intel.com>
 User-Agent: Mutt/1.5.24 (2015-08-30)
-Subject: Re: [Intel-gfx] [PATCH 2/4] drm/i915: Add
- intel_atomic_add_affected_planes()
+Subject: Re: [Intel-gfx] [PATCH 1/4] drm/i915: Track logically enabled
+ planes for hw state
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,91 +57,156 @@ Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Nov 24, 2020 at 10:11:54PM +0200, Ville Syrjala wrote:
+On Tue, Nov 24, 2020 at 10:11:53PM +0200, Ville Syrjala wrote:
 > From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
 > =
 
-> drm_atomic_add_affected_planes() only considers planes which
-> are logically enabled in the uapi state. For bigjoiner we need
-> to consider planes logically enabled in the hw state. Add a
-> helper for that.
+> Currently crtc_state->uapi.plane_mask only tracks logically
+> enabled planes on the uapi level. For bigjoiner purposes
+> we want to do the same for the hw state. Let's follow the
+> pattern established by active_planes & co. here.
 > =
 
 > Signed-off-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_atomic_plane.c  |  3 +++
+>  drivers/gpu/drm/i915/display/intel_display.c       | 13 +++++++++----
+>  drivers/gpu/drm/i915/display/intel_display_types.h |  5 ++++-
+>  3 files changed, 16 insertions(+), 5 deletions(-)
+> =
+
+> diff --git a/drivers/gpu/drm/i915/display/intel_atomic_plane.c b/drivers/=
+gpu/drm/i915/display/intel_atomic_plane.c
+> index 7e9f84b00859..b5e1ee99535c 100644
+> --- a/drivers/gpu/drm/i915/display/intel_atomic_plane.c
+> +++ b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
+> @@ -312,10 +312,13 @@ int intel_plane_atomic_check_with_state(const struc=
+t intel_crtc_state *old_crtc_
+>  	int ret;
+>  =
+
+>  	intel_plane_set_invisible(new_crtc_state, new_plane_state);
+> +	new_crtc_state->enabled_planes &=3D ~BIT(plane->id);
+
+Why not just add this a part of the intel_plane_set_invisible() function an=
+d may be rename that
+to indicate invisible and disable?
+
+Not a hard and fast requirement just a suggestion but in either case
 
 Reviewed-by: Manasi Navare <manasi.d.navare@intel.com>
 
 Manasi
-> ---
->  drivers/gpu/drm/i915/display/intel_cdclk.c   |  3 +--
->  drivers/gpu/drm/i915/display/intel_display.c | 13 +++++++++++++
->  drivers/gpu/drm/i915/display/intel_display.h |  2 ++
->  3 files changed, 16 insertions(+), 2 deletions(-)
-> =
 
-> diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm=
-/i915/display/intel_cdclk.c
-> index c449d28d0560..9034a2093da0 100644
-> --- a/drivers/gpu/drm/i915/display/intel_cdclk.c
-> +++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
-> @@ -2415,8 +2415,7 @@ static int intel_modeset_all_pipes(struct intel_ato=
-mic_state *state)
->  		if (ret)
->  			return ret;
 >  =
 
-> -		ret =3D drm_atomic_add_affected_planes(&state->base,
-> -						     &crtc->base);
-> +		ret =3D intel_atomic_add_affected_planes(state, crtc);
->  		if (ret)
->  			return ret;
+>  	if (!new_plane_state->hw.crtc && !old_plane_state->hw.crtc)
+>  		return 0;
 >  =
 
+> +	new_crtc_state->enabled_planes |=3D BIT(plane->id);
+> +
+>  	ret =3D plane->check_plane(new_crtc_state, new_plane_state);
+>  	if (ret)
+>  		return ret;
 > diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/d=
 rm/i915/display/intel_display.c
-> index 068892e4d2f0..fa6ca6191480 100644
+> index 595183f7b60f..068892e4d2f0 100644
 > --- a/drivers/gpu/drm/i915/display/intel_display.c
 > +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> @@ -15107,6 +15107,19 @@ static int intel_crtc_add_planes_to_state(struct=
- intel_atomic_state *state,
->  	return 0;
+> @@ -3551,7 +3551,7 @@ intel_set_plane_visible(struct intel_crtc_state *cr=
+tc_state,
+>  		crtc_state->uapi.plane_mask &=3D ~drm_plane_mask(&plane->base);
 >  }
 >  =
 
-> +int intel_atomic_add_affected_planes(struct intel_atomic_state *state,
-> +				     struct intel_crtc *crtc)
-> +{
-> +	const struct intel_crtc_state *old_crtc_state =3D
-> +		intel_atomic_get_old_crtc_state(state, crtc);
-> +	const struct intel_crtc_state *new_crtc_state =3D
-> +		intel_atomic_get_new_crtc_state(state, crtc);
-> +
-> +	return intel_crtc_add_planes_to_state(state, crtc,
-> +					      old_crtc_state->enabled_planes |
-> +					      new_crtc_state->enabled_planes);
-> +}
-> +
->  static bool active_planes_affects_min_cdclk(struct drm_i915_private *dev=
-_priv)
+> -static void fixup_active_planes(struct intel_crtc_state *crtc_state)
+> +static void fixup_plane_bitmasks(struct intel_crtc_state *crtc_state)
 >  {
->  	/* See {hsw,vlv,ivb}_plane_ratio() */
-> diff --git a/drivers/gpu/drm/i915/display/intel_display.h b/drivers/gpu/d=
-rm/i915/display/intel_display.h
-> index 5e0d42d82c11..a5771bfecba6 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display.h
-> +++ b/drivers/gpu/drm/i915/display/intel_display.h
-> @@ -499,6 +499,8 @@ enum phy_fia {
->  			     ((connector) =3D to_intel_connector((__state)->base.connectors[_=
-_i].ptr), \
->  			     (new_connector_state) =3D to_intel_digital_connector_state((__st=
-ate)->base.connectors[__i].new_state), 1))
+>  	struct drm_i915_private *dev_priv =3D to_i915(crtc_state->uapi.crtc->de=
+v);
+>  	struct drm_plane *plane;
+> @@ -3561,11 +3561,14 @@ static void fixup_active_planes(struct intel_crtc=
+_state *crtc_state)
+>  	 * have been used on the same (or wrong) pipe. plane_mask uses
+>  	 * unique ids, hence we can use that to reconstruct active_planes.
+>  	 */
+> +	crtc_state->enabled_planes =3D 0;
+>  	crtc_state->active_planes =3D 0;
 >  =
 
-> +int intel_atomic_add_affected_planes(struct intel_atomic_state *state,
-> +				     struct intel_crtc *crtc);
->  u8 intel_calc_active_pipes(struct intel_atomic_state *state,
->  			   u8 active_pipes);
->  void intel_link_compute_m_n(u16 bpp, int nlanes,
+>  	drm_for_each_plane_mask(plane, &dev_priv->drm,
+> -				crtc_state->uapi.plane_mask)
+> +				crtc_state->uapi.plane_mask) {
+> +		crtc_state->enabled_planes |=3D BIT(to_intel_plane(plane)->id);
+>  		crtc_state->active_planes |=3D BIT(to_intel_plane(plane)->id);
+> +	}
+>  }
+>  =
+
+>  static void intel_plane_disable_noatomic(struct intel_crtc *crtc,
+> @@ -3583,7 +3586,7 @@ static void intel_plane_disable_noatomic(struct int=
+el_crtc *crtc,
+>  		    crtc->base.base.id, crtc->base.name);
+>  =
+
+>  	intel_set_plane_visible(crtc_state, plane_state, false);
+> -	fixup_active_planes(crtc_state);
+> +	fixup_plane_bitmasks(crtc_state);
+>  	crtc_state->data_rate[plane->id] =3D 0;
+>  	crtc_state->min_cdclk[plane->id] =3D 0;
+>  =
+
+> @@ -12842,6 +12845,7 @@ static int icl_check_nv12_planes(struct intel_crt=
+c_state *crtc_state)
+>  =
+
+>  		plane_state->planar_linked_plane =3D NULL;
+>  		if (plane_state->planar_slave && !plane_state->uapi.visible) {
+> +			crtc_state->enabled_planes &=3D ~BIT(plane->id);
+>  			crtc_state->active_planes &=3D ~BIT(plane->id);
+>  			crtc_state->update_planes |=3D BIT(plane->id);
+>  		}
+> @@ -12885,6 +12889,7 @@ static int icl_check_nv12_planes(struct intel_crt=
+c_state *crtc_state)
+>  =
+
+>  		linked_state->planar_slave =3D true;
+>  		linked_state->planar_linked_plane =3D plane;
+> +		crtc_state->enabled_planes |=3D BIT(linked->id);
+>  		crtc_state->active_planes |=3D BIT(linked->id);
+>  		crtc_state->update_planes |=3D BIT(linked->id);
+>  		drm_dbg_kms(&dev_priv->drm, "Using %s as Y plane for %s\n",
+> @@ -19165,7 +19170,7 @@ static void readout_plane_state(struct drm_i915_p=
+rivate *dev_priv)
+>  		struct intel_crtc_state *crtc_state =3D
+>  			to_intel_crtc_state(crtc->base.state);
+>  =
+
+> -		fixup_active_planes(crtc_state);
+> +		fixup_plane_bitmasks(crtc_state);
+>  	}
+>  }
+>  =
+
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers=
+/gpu/drm/i915/display/intel_display_types.h
+> index ce82d654d0f2..c93cf3ddebb6 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+> @@ -1047,7 +1047,10 @@ struct intel_crtc_state {
+>  		u32 cgm_mode;
+>  	};
+>  =
+
+> -	/* bitmask of visible planes (enum plane_id) */
+> +	/* bitmask of logically enabled planes (enum plane_id) */
+> +	u8 enabled_planes;
+> +
+> +	/* bitmask of actually visible planes (enum plane_id) */
+>  	u8 active_planes;
+>  	u8 nv12_planes;
+>  	u8 c8_planes;
 > -- =
 
 > 2.26.2
