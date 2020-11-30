@@ -2,47 +2,64 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9E41B2C8425
-	for <lists+intel-gfx@lfdr.de>; Mon, 30 Nov 2020 13:31:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id BC10F2C8430
+	for <lists+intel-gfx@lfdr.de>; Mon, 30 Nov 2020 13:35:56 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CDB996E48B;
-	Mon, 30 Nov 2020 12:31:49 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4E81B6E48B
- for <Intel-gfx@lists.freedesktop.org>; Mon, 30 Nov 2020 12:31:48 +0000 (UTC)
-IronPort-SDR: UWAm+88TNAKxq/aUCLbrmdfT01BFQVDcbBV0fZL0QDpkcKFvN1kEm7jBGD/1+CqmwtnL/3R2oY
- Dv4x7881NScA==
-X-IronPort-AV: E=McAfee;i="6000,8403,9820"; a="160397953"
-X-IronPort-AV: E=Sophos;i="5.78,381,1599548400"; d="scan'208";a="160397953"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0884D6E463;
+	Mon, 30 Nov 2020 12:35:55 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5BD516E463
+ for <intel-gfx@lists.freedesktop.org>; Mon, 30 Nov 2020 12:35:53 +0000 (UTC)
+IronPort-SDR: +bJwBZeS9UIauvYnpy/KT7QBomOFebOYv7+w1K+IaZ65vvr3u9l49KskP2Va9vMp4yrV4800U5
+ tJiaCHm/tDvQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9820"; a="190807869"
+X-IronPort-AV: E=Sophos;i="5.78,381,1599548400"; d="scan'208";a="190807869"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Nov 2020 04:31:46 -0800
-IronPort-SDR: HEiErfbmpwNIsWH7pZFJZn/SPjjbwQpP5nR21Jv2a7r5ppjVRKOEEuV+bYrkFjxNqO5LkiOh3d
- OCzTn8k4JROw==
-X-IronPort-AV: E=Sophos;i="5.78,381,1599548400"; d="scan'208";a="480638936"
-Received: from mdubovsk-mobl1.ger.corp.intel.com (HELO [10.254.157.9])
- ([10.254.157.9])
- by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Nov 2020 04:31:44 -0800
-To: Chris Wilson <chris@chris-wilson.co.uk>, Intel-gfx@lists.freedesktop.org
-References: <20201126164703.1578226-1-tvrtko.ursulin@linux.intel.com>
- <20201127100109.1968571-1-tvrtko.ursulin@linux.intel.com>
- <160647338038.5755.10632872150961246118@build.alporthouse.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-Message-ID: <17ffb759-a437-4595-c607-31c04b12b40b@linux.intel.com>
-Date: Mon, 30 Nov 2020 12:31:41 +0000
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
-MIME-Version: 1.0
-In-Reply-To: <160647338038.5755.10632872150961246118@build.alporthouse.com>
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Nov 2020 04:35:52 -0800
+IronPort-SDR: J2qOHcCBnLc3opOPWiJa5i1dLgrKvQMBFZMvUr9kD3nF9VES3wbyxTjYLCliH9WMUrEKWg1SSI
+ zEVPQKDdhq+A==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.78,381,1599548400"; d="scan'208";a="315218987"
+Received: from fmsmsx604.amr.corp.intel.com ([10.18.126.84])
+ by fmsmga007.fm.intel.com with ESMTP; 30 Nov 2020 04:35:51 -0800
+Received: from bgsmsx604.gar.corp.intel.com (10.67.234.6) by
+ fmsmsx604.amr.corp.intel.com (10.18.126.84) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1713.5; Mon, 30 Nov 2020 04:35:51 -0800
+Received: from bgsmsx604.gar.corp.intel.com (10.67.234.6) by
+ BGSMSX604.gar.corp.intel.com (10.67.234.6) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1713.5; Mon, 30 Nov 2020 18:05:48 +0530
+Received: from bgsmsx604.gar.corp.intel.com ([10.67.234.6]) by
+ BGSMSX604.gar.corp.intel.com ([10.67.234.6]) with mapi id 15.01.1713.004;
+ Mon, 30 Nov 2020 18:05:48 +0530
+From: "Shankar, Uma" <uma.shankar@intel.com>
+To: =?iso-8859-1?Q?Ville_Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+Thread-Topic: [v12 14/15] drm/i915/lspcon: Do not send DRM infoframes to
+ non-HDMI sinks
+Thread-Index: AQHWxDLuiGrCbdSaX0+OJmXconi6QqnbtTqAgATrnEA=
+Date: Mon, 30 Nov 2020 12:35:48 +0000
+Message-ID: <346b0698574c47e4aa43decd8ec64359@intel.com>
+References: <20201126210314.7882-1-uma.shankar@intel.com>
+ <20201126210314.7882-15-uma.shankar@intel.com>
+ <20201127145223.GO6112@intel.com>
+In-Reply-To: <20201127145223.GO6112@intel.com>
+Accept-Language: en-US
 Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH v2] drm/i915/pmu: Deprecate I915_PMU_LAST
- and optimize state tracking
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+dlp-product: dlpe-windows
+dlp-reaction: no-action
+dlp-version: 11.5.1.3
+x-originating-ip: [10.223.10.1]
+MIME-Version: 1.0
+Subject: Re: [Intel-gfx] [v12 14/15] drm/i915/lspcon: Do not send DRM
+ infoframes to non-HDMI sinks
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,114 +72,100 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 
-On 27/11/2020 10:36, Chris Wilson wrote:
-> Quoting Tvrtko Ursulin (2020-11-27 10:01:09)
->> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
->>
->> Adding any kinds of "last" abi markers is usually a mistake which I
->> repeated when implementing the PMU because it felt convenient at the time.
->>
->> This patch marks I915_PMU_LAST as deprecated and stops the internal
->> implementation using it for sizing the event status bitmask and array.
->>
->> New way of sizing the fields is a bit less elegant, but it omits reserving
->> slots for tracking events we are not interested in, and as such saves some
->> runtime space. Adding sampling events is likely to be a special event and
->> the new plumbing needed will be easily detected in testing. Existing
->> asserts against the bitfield and array sizes are keeping the code safe.
->>
->> First event which gets the new treatment in this new scheme are the
->> interrupts - which neither needs any tracking in i915 pmu nor needs
->> waking up the GPU to read it.
->>
->> v2:
->>   * Streamline helper names. (Chris)
->>
->> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
->> Cc: Chris Wilson <chris@chris-wilson.co.uk>
->> ---
->>   drivers/gpu/drm/i915/i915_pmu.c | 80 ++++++++++++++++++++++++---------
->>   drivers/gpu/drm/i915/i915_pmu.h | 35 ++++++++++-----
->>   include/uapi/drm/i915_drm.h     |  2 +-
->>   3 files changed, 83 insertions(+), 34 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/i915/i915_pmu.c b/drivers/gpu/drm/i915/i915_pmu.c
->> index cd786ad12be7..06dc63bf84d7 100644
->> --- a/drivers/gpu/drm/i915/i915_pmu.c
->> +++ b/drivers/gpu/drm/i915/i915_pmu.c
->> @@ -27,8 +27,6 @@
->>           BIT(I915_SAMPLE_WAIT) | \
->>           BIT(I915_SAMPLE_SEMA))
->>   
->> -#define ENGINE_SAMPLE_BITS (1 << I915_PMU_SAMPLE_BITS)
->> -
->>   static cpumask_t i915_pmu_cpumask;
->>   static unsigned int i915_pmu_target_cpu = -1;
->>   
->> @@ -57,17 +55,38 @@ static bool is_engine_config(u64 config)
->>          return config < __I915_PMU_OTHER(0);
->>   }
->>   
->> -static unsigned int config_enabled_bit(u64 config)
->> +static unsigned int other_bit(const u64 config)
->> +{
->> +       unsigned int val;
->> +
->> +       switch (config) {
->> +       case I915_PMU_ACTUAL_FREQUENCY:
->> +               val =  __I915_PMU_ACTUAL_FREQUENCY_ENABLED;
->> +               break;
->> +       case I915_PMU_REQUESTED_FREQUENCY:
->> +               val = __I915_PMU_REQUESTED_FREQUENCY_ENABLED;
->> +               break;
->> +       case I915_PMU_RC6_RESIDENCY:
->> +               val = __I915_PMU_RC6_RESIDENCY_ENABLED;
->> +               break;
->> +       default:
-> 
-> Should we explicitly list the untracked events?
-> 
-> At least we should put a comment here to remind ourselves what takes
-> the default path.
-> 
-> /* Anything that doesn't require event tracking can be ignored */
 
-Comment is I think enough, I wouldn't want to list all events because 
-that partially defeats the purpose of the simplification. If something 
-will be forgotten here IGTs would tell us.
+> -----Original Message-----
+> From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> Sent: Friday, November 27, 2020 8:22 PM
+> To: Shankar, Uma <uma.shankar@intel.com>
+> Cc: intel-gfx@lists.freedesktop.org
+> Subject: Re: [v12 14/15] drm/i915/lspcon: Do not send DRM infoframes to n=
+on-
+> HDMI sinks
+> =
 
->> +               return -1;
->> +       }
->> +
->> +       return I915_ENGINE_SAMPLE_COUNT + val;
->> +}
->> +
->> +static unsigned int config_bit(const u64 config)
->>   {
->>          if (is_engine_config(config))
->>                  return engine_config_sample(config);
->>          else
->> -               return ENGINE_SAMPLE_BITS + (config - __I915_PMU_OTHER(0));
->> +               return other_bit(config);
->>   }
-> 
-> Thanks, that reads so much more clearly to me, and complements it use
-> well.
-> 
-> Reviewed-by: Chris Wilson <chris@chris-wilson.co.uk>
+> On Fri, Nov 27, 2020 at 02:33:13AM +0530, Uma Shankar wrote:
+> > Non-HDMI sinks shouldn't be sent Dynamic Range and Mastering infoframes.
+> > Check for that when using LSPCON.
+> >
+> > Signed-off-by: Uma Shankar <uma.shankar@intel.com>
+> > ---
+> >  drivers/gpu/drm/i915/display/intel_ddi.c | 10 +++++++++-
+> >  1 file changed, 9 insertions(+), 1 deletion(-)
+> >
+> > diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c
+> > b/drivers/gpu/drm/i915/display/intel_ddi.c
+> > index 48da5dc59939..07bef90e149e 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_ddi.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+> > @@ -4118,6 +4118,7 @@ static void intel_enable_ddi_dp(struct
+> > intel_atomic_state *state,  {
+> >  	struct drm_i915_private *dev_priv =3D to_i915(encoder->base.dev);
+> >  	struct intel_dp *intel_dp =3D enc_to_intel_dp(encoder);
+> > +	struct intel_digital_port *dig_port =3D enc_to_dig_port(encoder);
+> >  	enum port port =3D encoder->port;
+> >
+> >  	if (port =3D=3D PORT_A && INTEL_GEN(dev_priv) < 9) @@ -4125,7 +4126,14
+> > @@ static void intel_enable_ddi_dp(struct intel_atomic_state *state,
+> >
+> >  	intel_edp_backlight_on(crtc_state, conn_state);
+> >  	intel_psr_enable(intel_dp, crtc_state, conn_state);
+> > -	intel_dp_set_infoframes(encoder, true, crtc_state, conn_state);
+> > +
+> > +	if (dig_port->lspcon.active) {
+> > +		if (dig_port->dp.has_hdmi_sink)
+> > +			intel_dp_set_infoframes(encoder, true, crtc_state,
+> conn_state);
+> > +	} else {
+> > +		intel_dp_set_infoframes(encoder, true, crtc_state, conn_state);
+> > +	}
+> =
 
-Thanks!
+> Simplify to
+> if (!lspcon || has_hdmi_sink)
+> 	intel_dp_set_infoframes()
+> ?
 
-Regards,
+Sure, will update this.
 
-Tvrtko
+> Some time ago I was pondering if we should start to use crtc_state-
+> >has_hdmi_sink for DP too, but since we have no way to do readout for it =
+I'm
+> not sure it can be done in a sane way.
 
+Yeah this is a bit convoluted to fit both.
+
+Can you please check 1 last remaining patch as well
+https://patchwork.freedesktop.org/patch/404605/?series=3D68081&rev=3D14
+
+With that the series would be ready for merge,
+
+Thanks & Regards,
+Uma Shankar
+
+> I guess in the meantime I guess we need something like this.
+> =
+
+> Reviewed-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> =
+
+> > +
+> >  	intel_edp_drrs_enable(intel_dp, crtc_state);
+> >
+> >  	if (crtc_state->has_audio)
+> > --
+> > 2.26.2
+> =
+
+> --
+> Ville Syrj=E4l=E4
+> Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
