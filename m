@@ -1,43 +1,43 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C0AAF2C8305
-	for <lists+intel-gfx@lfdr.de>; Mon, 30 Nov 2020 12:16:59 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id B59902C830D
+	for <lists+intel-gfx@lfdr.de>; Mon, 30 Nov 2020 12:19:13 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 351DA6E46B;
-	Mon, 30 Nov 2020 11:16:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 543F16E483;
+	Mon, 30 Nov 2020 11:19:08 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 71F346E46B
- for <intel-gfx@lists.freedesktop.org>; Mon, 30 Nov 2020 11:16:57 +0000 (UTC)
-IronPort-SDR: IfivNdReim6d1P4ytEY3LuXBwx5TTFtRLU3d+JaAkbqt3TDMZRR5gUL+Vi2iVSMF0a4waMa2N8
- urm8NaJZfp9g==
-X-IronPort-AV: E=McAfee;i="6000,8403,9820"; a="152451932"
-X-IronPort-AV: E=Sophos;i="5.78,381,1599548400"; d="scan'208";a="152451932"
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D153F6E463;
+ Mon, 30 Nov 2020 11:19:06 +0000 (UTC)
+IronPort-SDR: xeBkrqrZB1vkNSPQQkWGYiqd6xjsjssVei1BoS9UhNGP4upOSUp5tpJQEKiToQgDsUQkvnSwFd
+ 9pv4A8cTaRNw==
+X-IronPort-AV: E=McAfee;i="6000,8403,9820"; a="151869178"
+X-IronPort-AV: E=Sophos;i="5.78,381,1599548400"; d="scan'208";a="151869178"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Nov 2020 03:16:57 -0800
-IronPort-SDR: nQHjJDXziXGAXuRZ+TEUDxUAY7OaD9qzfxzpo/sf9lHXl/sVvBj6i7XZ5nj0wrODrjzUimgUgz
- vgTOFSl1sOLQ==
-X-IronPort-AV: E=Sophos;i="5.78,381,1599548400"; d="scan'208";a="364194703"
-Received: from cshanno1-mobl.ger.corp.intel.com (HELO localhost)
- ([10.252.44.44])
- by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Nov 2020 03:16:55 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Mon, 30 Nov 2020 13:16:01 +0200
-Message-Id: <20201130111601.2817-10-jani.nikula@intel.com>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20201130111601.2817-1-jani.nikula@intel.com>
-References: <20201130111601.2817-1-jani.nikula@intel.com>
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Nov 2020 03:19:05 -0800
+IronPort-SDR: GVNS5TdGDwBhSI3M7qSVKPGak+6uBtF63a3y7Hl2VZMW6XCh6Ju8zAR6SSN39aqsyI6eRRBoKr
+ KcgxI6thldIA==
+X-IronPort-AV: E=Sophos;i="5.78,381,1599548400"; d="scan'208";a="329549544"
+Received: from cwilso3-mobl.fi.intel.com (HELO localhost) ([10.214.219.106])
+ by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Nov 2020 03:19:00 -0800
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v3 10/10] drm/i915: remove last traces of
- I915_READ(), I915_WRITE() and POSTING_READ()
+In-Reply-To: <20201127120718.454037-108-matthew.auld@intel.com>
+References: <20201127120718.454037-1-matthew.auld@intel.com>
+ <20201127120718.454037-108-matthew.auld@intel.com>
+From: Chris Wilson <chris.p.wilson@intel.com>
+To: Matthew Auld <matthew.auld@intel.com>, intel-gfx@lists.freedesktop.org
+Date: Mon, 30 Nov 2020 11:18:55 +0000
+Message-ID: <160673513539.8815.7095510536023948003@build.alporthouse.com>
+User-Agent: alot/0.9
+Subject: Re: [Intel-gfx] [RFC PATCH 107/162] drm/i915: setup GPU device lmem
+ region
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,132 +50,115 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jani.nikula@intel.com, chris@chris-wilson.co.uk
+Cc: Abdiel Janulgue <abdiel.janulgue@linux.intel.com>,
+	dri-devel@lists.freedesktop.org, Neel Desai <neel.desai@intel.com>,
+	Balestrieri@freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Good riddance! Remove the macros and their remaining references in
-comments.
+Quoting Matthew Auld (2020-11-27 12:06:23)
+> From: CQ Tang <cq.tang@intel.com>
+> 
+> The lmem region needs to remove the stolen part.
+> 
+> Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+> Cc: Matthew Auld <matthew.auld@intel.com>
+> Cc: Abdiel Janulgue <abdiel.janulgue@linux.intel.com>
+> Cc: Chris P Wilson <chris.p.wilson@intel.com>
+> Cc: Balestrieri, Francesco <francesco.balestrieri@intel.com>
+> Cc: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
+> Cc: Venkata S Dhanalakota <venkata.s.dhanalakota@intel.com>
+> Cc: Neel Desai <neel.desai@intel.com>
+> Cc: Matthew Brost <matthew.brost@intel.com>
+> Cc: Sudeep Dutt <sudeep.dutt@intel.com>
+> Signed-off-by: CQ Tang <cq.tang@intel.com>
+> ---
+>  drivers/gpu/drm/i915/i915_reg.h          |  2 ++
+>  drivers/gpu/drm/i915/intel_region_lmem.c | 11 +++++++----
+>  2 files changed, 9 insertions(+), 4 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+> index 1af1966ac461..0e01ea0cb0a4 100644
+> --- a/drivers/gpu/drm/i915/i915_reg.h
+> +++ b/drivers/gpu/drm/i915/i915_reg.h
+> @@ -12066,6 +12066,8 @@ enum skl_power_gate {
+>  #define GEN12_LMEM_CFG_ADDR            _MMIO(0xcf58)
+>  #define   LMEM_ENABLE                  (1 << 31)
+>  
+> +#define GEN12_GSMBASE                  _MMIO(0x108100)
+> +
+>  /* gamt regs */
+>  #define GEN8_L3_LRA_1_GPGPU _MMIO(0x4dd4)
+>  #define   GEN8_L3_LRA_1_GPGPU_DEFAULT_VALUE_BDW  0x67F1427F /* max/min for LRA1/2 */
+> diff --git a/drivers/gpu/drm/i915/intel_region_lmem.c b/drivers/gpu/drm/i915/intel_region_lmem.c
+> index e98582c76de1..7f2b31d469b0 100644
+> --- a/drivers/gpu/drm/i915/intel_region_lmem.c
+> +++ b/drivers/gpu/drm/i915/intel_region_lmem.c
+> @@ -140,20 +140,23 @@ intel_setup_fake_lmem(struct drm_i915_private *i915)
+>  static struct intel_memory_region *
+>  setup_lmem(struct drm_i915_private *dev_priv)
 
-The following functions should be used instead, depending on the use
-case:
+Am I wrong in thinking lmem should be under gt?
 
-- intel_uncore_read(), intel_uncore_write(), intel_uncore_posting_read()
+>  {
+> +       struct intel_uncore *uncore = &dev_priv->uncore;
+>         struct pci_dev *pdev = dev_priv->drm.pdev;
+>         struct intel_memory_region *mem;
+>         resource_size_t io_start;
+> -       resource_size_t size;
+> +       resource_size_t lmem_size;
+>  
+>         /* Enables Local Memory functionality in GAM */
+>         I915_WRITE(GEN12_LMEM_CFG_ADDR, I915_READ(GEN12_LMEM_CFG_ADDR) | LMEM_ENABLE);
+>  
+> +       /* Stolen starts from GSMBASE on DG1 */
+> +       lmem_size = intel_uncore_read64(uncore, GEN12_GSMBASE);
+> +
+>         io_start = pci_resource_start(pdev, 2);
+> -       size = pci_resource_len(pdev, 2);
 
-- intel_de_read(), intel_de_write(), intel_de_posting_read()
+Sanitycheck the two.
 
-Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
----
- drivers/gpu/drm/i915/display/intel_dvo.c | 4 ----
- drivers/gpu/drm/i915/i915_drv.h          | 8 --------
- drivers/gpu/drm/i915/i915_reg.h          | 6 ++++--
- drivers/gpu/drm/i915/intel_sideband.c    | 4 ++--
- drivers/gpu/drm/i915/intel_uncore.c      | 2 +-
- drivers/gpu/drm/i915/intel_uncore.h      | 4 ++--
- 6 files changed, 9 insertions(+), 19 deletions(-)
+size = min(size, lmem_size);
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dvo.c b/drivers/gpu/drm/i915/display/intel_dvo.c
-index 237dbb1ba0ee..090cd76266c6 100644
---- a/drivers/gpu/drm/i915/display/intel_dvo.c
-+++ b/drivers/gpu/drm/i915/display/intel_dvo.c
-@@ -301,12 +301,8 @@ static void intel_dvo_pre_enable(struct intel_atomic_state *state,
- 	if (adjusted_mode->flags & DRM_MODE_FLAG_PVSYNC)
- 		dvo_val |= DVO_VSYNC_ACTIVE_HIGH;
- 
--	/*I915_WRITE(DVOB_SRCDIM,
--	  (adjusted_mode->crtc_hdisplay << DVO_SRCDIM_HORIZONTAL_SHIFT) |
--	  (adjusted_mode->crtc_vdisplay << DVO_SRCDIM_VERTICAL_SHIFT));*/
- 	intel_de_write(dev_priv, dvo_srcdim_reg,
- 		       (adjusted_mode->crtc_hdisplay << DVO_SRCDIM_HORIZONTAL_SHIFT) | (adjusted_mode->crtc_vdisplay << DVO_SRCDIM_VERTICAL_SHIFT));
--	/*I915_WRITE(DVOB, dvo_val);*/
- 	intel_de_write(dev_priv, dvo_reg, dvo_val);
- }
- 
-diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
-index fecb5899cbac..42f60b112436 100644
---- a/drivers/gpu/drm/i915/i915_drv.h
-+++ b/drivers/gpu/drm/i915/i915_drv.h
-@@ -1970,14 +1970,6 @@ mkwrite_device_info(struct drm_i915_private *dev_priv)
- int i915_reg_read_ioctl(struct drm_device *dev, void *data,
- 			struct drm_file *file);
- 
--#define __I915_REG_OP(op__, dev_priv__, ...) \
--	intel_uncore_##op__(&(dev_priv__)->uncore, __VA_ARGS__)
--
--#define I915_READ(reg__)	 __I915_REG_OP(read, dev_priv, (reg__))
--#define I915_WRITE(reg__, val__) __I915_REG_OP(write, dev_priv, (reg__), (val__))
--
--#define POSTING_READ(reg__)	__I915_REG_OP(posting_read, dev_priv, (reg__))
--
- /* i915_mm.c */
- int remap_io_mapping(struct vm_area_struct *vma,
- 		     unsigned long addr, unsigned long pfn, unsigned long size,
-diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-index 5375b219cc3b..cdc67f583a9c 100644
---- a/drivers/gpu/drm/i915/i915_reg.h
-+++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -10851,8 +10851,10 @@ enum skl_power_gate {
- #define  CNL_DRAM_RANK_3			(0x2 << 9)
- #define  CNL_DRAM_RANK_4			(0x3 << 9)
- 
--/* Please see hsw_read_dcomp() and hsw_write_dcomp() before using this register,
-- * since on HSW we can't write to it using I915_WRITE. */
-+/*
-+ * Please see hsw_read_dcomp() and hsw_write_dcomp() before using this register,
-+ * since on HSW we can't write to it using intel_uncore_write.
-+ */
- #define D_COMP_HSW			_MMIO(MCHBAR_MIRROR_BASE_SNB + 0x5F0C)
- #define D_COMP_BDW			_MMIO(0x138144)
- #define  D_COMP_RCOMP_IN_PROGRESS	(1 << 9)
-diff --git a/drivers/gpu/drm/i915/intel_sideband.c b/drivers/gpu/drm/i915/intel_sideband.c
-index 02ebf5a04a9b..0ec0cf191955 100644
---- a/drivers/gpu/drm/i915/intel_sideband.c
-+++ b/drivers/gpu/drm/i915/intel_sideband.c
-@@ -404,8 +404,8 @@ static int __sandybridge_pcode_rw(struct drm_i915_private *i915,
- 	lockdep_assert_held(&i915->sb_lock);
- 
- 	/*
--	 * GEN6_PCODE_* are outside of the forcewake domain, we can
--	 * use te fw I915_READ variants to reduce the amount of work
-+	 * GEN6_PCODE_* are outside of the forcewake domain, we can use
-+	 * intel_uncore_read/write_fw variants to reduce the amount of work
- 	 * required when reading/writing.
- 	 */
- 
-diff --git a/drivers/gpu/drm/i915/intel_uncore.c b/drivers/gpu/drm/i915/intel_uncore.c
-index ef40edfff412..9ac501bcfdad 100644
---- a/drivers/gpu/drm/i915/intel_uncore.c
-+++ b/drivers/gpu/drm/i915/intel_uncore.c
-@@ -2126,7 +2126,7 @@ int __intel_wait_for_register_fw(struct intel_uncore *uncore,
-  * This routine waits until the target register @reg contains the expected
-  * @value after applying the @mask, i.e. it waits until ::
-  *
-- *     (I915_READ(reg) & mask) == value
-+ *     (intel_uncore_read(uncore, reg) & mask) == value
-  *
-  * Otherwise, the wait will timeout after @timeout_ms milliseconds.
-  *
-diff --git a/drivers/gpu/drm/i915/intel_uncore.h b/drivers/gpu/drm/i915/intel_uncore.h
-index 5dcb7f4183b2..59f0da8f1fbb 100644
---- a/drivers/gpu/drm/i915/intel_uncore.h
-+++ b/drivers/gpu/drm/i915/intel_uncore.h
-@@ -318,8 +318,8 @@ __uncore_write(write_notrace, 32, l, false)
-  * will be implemented using 2 32-bit writes in an arbitrary order with
-  * an arbitrary delay between them. This can cause the hardware to
-  * act upon the intermediate value, possibly leading to corruption and
-- * machine death. For this reason we do not support I915_WRITE64, or
-- * uncore->funcs.mmio_writeq.
-+ * machine death. For this reason we do not support intel_uncore_write64,
-+ * or uncore->funcs.mmio_writeq.
-  *
-  * When reading a 64-bit value as two 32-bit values, the delay may cause
-  * the two reads to mismatch, e.g. a timestamp overflowing. Also note that
--- 
-2.20.1
+>  
+>         mem = intel_memory_region_create(dev_priv,
+>                                          0,
+> -                                        size,
+> +                                        lmem_size,
 
+Ok, stolen is at tail not start. 
+
+>                                          I915_GTT_PAGE_SIZE_4K,
+>                                          io_start,
+>                                          &intel_region_lmem_ops);
+> @@ -162,7 +165,7 @@ setup_lmem(struct drm_i915_private *dev_priv)
+>                 DRM_INFO("Intel graphics LMEM IO start: %llx\n",
+>                          (u64)mem->io_start);
+>                 DRM_INFO("Intel graphics LMEM size: %llx\n",
+> -                        (u64)size);
+> +                        (u64)lmem_size);
+
+Use the correct printf-formats, %pa.
+
+>         }
+>  
+>         return mem;
+> -- 
+> 2.26.2
+>
+---------------------------------------------------------------------
+Intel Corporation (UK) Limited
+Registered No. 1134945 (England)
+Registered Office: Pipers Way, Swindon SN3 1RJ
+VAT No: 860 2173 47
+
+This e-mail and any attachments may contain confidential material for
+the sole use of the intended recipient(s). Any review or distribution
+by others is strictly prohibited. If you are not the intended
+recipient, please contact the sender and delete all copies.
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
