@@ -1,44 +1,75 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id ECE6A2C9182
-	for <lists+intel-gfx@lfdr.de>; Mon, 30 Nov 2020 23:51:07 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id CA2B32C91FC
+	for <lists+intel-gfx@lfdr.de>; Tue,  1 Dec 2020 00:06:13 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5B6FF898C2;
-	Mon, 30 Nov 2020 22:51:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 929DA89993;
+	Mon, 30 Nov 2020 23:06:09 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E4B49898C2
- for <intel-gfx@lists.freedesktop.org>; Mon, 30 Nov 2020 22:51:04 +0000 (UTC)
-IronPort-SDR: 1YUD+nO3dUKZ3fqH358zohpS2pnC/yPpY7D1SmMWwKtW68jVBF0RO2qgj65H4jaTWFQENCmk58
- zG91US/iyKVA==
-X-IronPort-AV: E=McAfee;i="6000,8403,9821"; a="169226134"
-X-IronPort-AV: E=Sophos;i="5.78,382,1599548400"; d="scan'208";a="169226134"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Nov 2020 14:51:04 -0800
-IronPort-SDR: HHhoeCsNhqC5CsH61K7VJRgDjIPBubv10fyH2nk8o2+OIZNvdRnNp6hKnpuoEOmIUv2ivZvzyC
- 2cs8sbcjd6KQ==
-X-IronPort-AV: E=Sophos;i="5.78,382,1599548400"; d="scan'208";a="480838814"
-Received: from labuser-z97x-ud5h.jf.intel.com (HELO labuser-Z97X-UD5H)
- ([10.165.21.211])
- by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Nov 2020 14:51:03 -0800
-Date: Mon, 30 Nov 2020 14:53:58 -0800
-From: "Navare, Manasi" <manasi.d.navare@intel.com>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>
-Message-ID: <20201130225358.GD17815@labuser-Z97X-UD5H>
-References: <20201124201156.17095-1-ville.syrjala@linux.intel.com>
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [63.128.21.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ADC648997C
+ for <intel-gfx@lists.freedesktop.org>; Mon, 30 Nov 2020 23:06:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1606777567;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=6frRBBzQXaMeT/8bnTK/8rFpMmloGyYxD+8Uj5KjWgo=;
+ b=BElYt24PP28u5hd2k2ymwMKcckF3BNnjQHJw1aTmSYtMNQOcK4ogdILnWH7DD3DUzqDx52
+ zKP0S9QV3ya4lNtXp1mBM8OPBIfMANx3gm/lAkrJvlZcXrmmkQp20VHU+39TZ10yJLop76
+ bNWUkq6tlMzAqQotLjyF9TosVu7I/hg=
+Received: from mail-qt1-f197.google.com (mail-qt1-f197.google.com
+ [209.85.160.197]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-550-zyAAQANuOjykp-_L7sJZIg-1; Mon, 30 Nov 2020 18:06:03 -0500
+X-MC-Unique: zyAAQANuOjykp-_L7sJZIg-1
+Received: by mail-qt1-f197.google.com with SMTP id t22so9509849qtq.2
+ for <intel-gfx@lists.freedesktop.org>; Mon, 30 Nov 2020 15:06:03 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
+ :references:organization:user-agent:mime-version
+ :content-transfer-encoding;
+ bh=6frRBBzQXaMeT/8bnTK/8rFpMmloGyYxD+8Uj5KjWgo=;
+ b=A2L3w3rSrI0PZD7k0wpEeqixCe1yvpjOdtn9OMgCkODNtT3Xyilhh/AuOzp04+Sw35
+ HNMfMgVdBMwE3emklm17wq87Q3zvWfAH8kXzCKukU+URn1CssdLfDSxmB8cfvTVH//p9
+ Dh08/PIe8KZJzcK3UKjQHbuw5TdG3vowdpdz7VFovwHF1mH8iU/KKMba4eXLmY4YcuSM
+ HzgmzmTTJVOK2oE4Z4T3W5hyMAs368DjZWWUaUXSV/EPJt0ta58mMri13VEmV9mGoyVy
+ uoJ8fh2d7e/6uD2hQDe/ZRFPQGDOujS6RJQuc+HE17Czb/IjsJIhDazV8QD+IlX4yOS8
+ Oi+w==
+X-Gm-Message-State: AOAM533Gf9HkgXQKYAzPA3SxNz0YSWMipMXxlFN09TcND0TZr2LWgoay
+ yYtdaMD2x7+F+x2mr09s3QEBELcgafN6RPU45olCkOyoFXvEObYOygPXmniy1zZ4kbbcHi2L/yY
+ +j7i6aacnHwWMyxVvN1YMnsMFGMlO
+X-Received: by 2002:ac8:46cf:: with SMTP id h15mr23615617qto.99.1606777563004; 
+ Mon, 30 Nov 2020 15:06:03 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJyPPVXc2CJiyNmc2S2hfwQESzG7j5pEG12mmoAlT+/dieclhE3Gw6dgwp8JFgE1caYlZzxhpg==
+X-Received: by 2002:ac8:46cf:: with SMTP id h15mr23615598qto.99.1606777562748; 
+ Mon, 30 Nov 2020 15:06:02 -0800 (PST)
+Received: from Ruby.lyude.net (pool-108-49-102-102.bstnma.fios.verizon.net.
+ [108.49.102.102])
+ by smtp.gmail.com with ESMTPSA id r89sm16845878qtd.16.2020.11.30.15.06.01
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 30 Nov 2020 15:06:01 -0800 (PST)
+Message-ID: <53161495c2915ad60f749a0917bc606259a78e7c.camel@redhat.com>
+From: Lyude Paul <lyude@redhat.com>
+To: Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org
+Date: Mon, 30 Nov 2020 18:06:00 -0500
+In-Reply-To: <87v9dsl7ap.fsf@intel.com>
+References: <20200916171855.129511-1-lyude@redhat.com>
+ <20200916171855.129511-2-lyude@redhat.com> <87v9dsl7ap.fsf@intel.com>
+Organization: Red Hat
+User-Agent: Evolution 3.38.1 (3.38.1-1.fc33)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20201124201156.17095-1-ville.syrjala@linux.intel.com>
-User-Agent: Mutt/1.5.24 (2015-08-30)
-Subject: Re: [Intel-gfx] [PATCH 1/4] drm/i915: Track logically enabled
- planes for hw state
+Authentication-Results: relay.mimecast.com;
+ auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=lyude@redhat.com
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+Subject: Re: [Intel-gfx] [RFC v2 1/8] drm/i915/dp: Program source OUI on eDP
+ panels
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,172 +82,101 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Cc: David Airlie <airlied@linux.ie>, open list <linux-kernel@vger.kernel.org>,
+ dri-devel@lists.freedesktop.org, Vasily Khoruzhick <anarsoul@gmail.com>,
+ Sean Paul <seanpaul@chromium.org>, Wambui Karuga <wambui.karugax@gmail.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Nov 24, 2020 at 10:11:53PM +0200, Ville Syrjala wrote:
-> From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> =
-
-> Currently crtc_state->uapi.plane_mask only tracks logically
-> enabled planes on the uapi level. For bigjoiner purposes
-> we want to do the same for the hw state. Let's follow the
-> pattern established by active_planes & co. here.
-> =
-
-> Signed-off-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_atomic_plane.c  |  3 +++
->  drivers/gpu/drm/i915/display/intel_display.c       | 13 +++++++++----
->  drivers/gpu/drm/i915/display/intel_display_types.h |  5 ++++-
->  3 files changed, 16 insertions(+), 5 deletions(-)
-> =
-
-> diff --git a/drivers/gpu/drm/i915/display/intel_atomic_plane.c b/drivers/=
-gpu/drm/i915/display/intel_atomic_plane.c
-> index 7e9f84b00859..b5e1ee99535c 100644
-> --- a/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-> +++ b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-> @@ -312,10 +312,13 @@ int intel_plane_atomic_check_with_state(const struc=
-t intel_crtc_state *old_crtc_
->  	int ret;
->  =
-
->  	intel_plane_set_invisible(new_crtc_state, new_plane_state);
-> +	new_crtc_state->enabled_planes &=3D ~BIT(plane->id);
-
-Why not just add this a part of the intel_plane_set_invisible() function an=
-d may be rename that
-to indicate invisible and disable?
-
-Not a hard and fast requirement just a suggestion but in either case
-
-Reviewed-by: Manasi Navare <manasi.d.navare@intel.com>
-
-Manasi
-
->  =
-
->  	if (!new_plane_state->hw.crtc && !old_plane_state->hw.crtc)
->  		return 0;
->  =
-
-> +	new_crtc_state->enabled_planes |=3D BIT(plane->id);
-> +
->  	ret =3D plane->check_plane(new_crtc_state, new_plane_state);
->  	if (ret)
->  		return ret;
-> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/d=
-rm/i915/display/intel_display.c
-> index 595183f7b60f..068892e4d2f0 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> @@ -3551,7 +3551,7 @@ intel_set_plane_visible(struct intel_crtc_state *cr=
-tc_state,
->  		crtc_state->uapi.plane_mask &=3D ~drm_plane_mask(&plane->base);
->  }
->  =
-
-> -static void fixup_active_planes(struct intel_crtc_state *crtc_state)
-> +static void fixup_plane_bitmasks(struct intel_crtc_state *crtc_state)
->  {
->  	struct drm_i915_private *dev_priv =3D to_i915(crtc_state->uapi.crtc->de=
-v);
->  	struct drm_plane *plane;
-> @@ -3561,11 +3561,14 @@ static void fixup_active_planes(struct intel_crtc=
-_state *crtc_state)
->  	 * have been used on the same (or wrong) pipe. plane_mask uses
->  	 * unique ids, hence we can use that to reconstruct active_planes.
->  	 */
-> +	crtc_state->enabled_planes =3D 0;
->  	crtc_state->active_planes =3D 0;
->  =
-
->  	drm_for_each_plane_mask(plane, &dev_priv->drm,
-> -				crtc_state->uapi.plane_mask)
-> +				crtc_state->uapi.plane_mask) {
-> +		crtc_state->enabled_planes |=3D BIT(to_intel_plane(plane)->id);
->  		crtc_state->active_planes |=3D BIT(to_intel_plane(plane)->id);
-> +	}
->  }
->  =
-
->  static void intel_plane_disable_noatomic(struct intel_crtc *crtc,
-> @@ -3583,7 +3586,7 @@ static void intel_plane_disable_noatomic(struct int=
-el_crtc *crtc,
->  		    crtc->base.base.id, crtc->base.name);
->  =
-
->  	intel_set_plane_visible(crtc_state, plane_state, false);
-> -	fixup_active_planes(crtc_state);
-> +	fixup_plane_bitmasks(crtc_state);
->  	crtc_state->data_rate[plane->id] =3D 0;
->  	crtc_state->min_cdclk[plane->id] =3D 0;
->  =
-
-> @@ -12842,6 +12845,7 @@ static int icl_check_nv12_planes(struct intel_crt=
-c_state *crtc_state)
->  =
-
->  		plane_state->planar_linked_plane =3D NULL;
->  		if (plane_state->planar_slave && !plane_state->uapi.visible) {
-> +			crtc_state->enabled_planes &=3D ~BIT(plane->id);
->  			crtc_state->active_planes &=3D ~BIT(plane->id);
->  			crtc_state->update_planes |=3D BIT(plane->id);
->  		}
-> @@ -12885,6 +12889,7 @@ static int icl_check_nv12_planes(struct intel_crt=
-c_state *crtc_state)
->  =
-
->  		linked_state->planar_slave =3D true;
->  		linked_state->planar_linked_plane =3D plane;
-> +		crtc_state->enabled_planes |=3D BIT(linked->id);
->  		crtc_state->active_planes |=3D BIT(linked->id);
->  		crtc_state->update_planes |=3D BIT(linked->id);
->  		drm_dbg_kms(&dev_priv->drm, "Using %s as Y plane for %s\n",
-> @@ -19165,7 +19170,7 @@ static void readout_plane_state(struct drm_i915_p=
-rivate *dev_priv)
->  		struct intel_crtc_state *crtc_state =3D
->  			to_intel_crtc_state(crtc->base.state);
->  =
-
-> -		fixup_active_planes(crtc_state);
-> +		fixup_plane_bitmasks(crtc_state);
->  	}
->  }
->  =
-
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers=
-/gpu/drm/i915/display/intel_display_types.h
-> index ce82d654d0f2..c93cf3ddebb6 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
-> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-> @@ -1047,7 +1047,10 @@ struct intel_crtc_state {
->  		u32 cgm_mode;
->  	};
->  =
-
-> -	/* bitmask of visible planes (enum plane_id) */
-> +	/* bitmask of logically enabled planes (enum plane_id) */
-> +	u8 enabled_planes;
-> +
-> +	/* bitmask of actually visible planes (enum plane_id) */
->  	u8 active_planes;
->  	u8 nv12_planes;
->  	u8 c8_planes;
-> -- =
-
-> 2.26.2
-> =
-
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+T24gVGh1LCAyMDIwLTExLTI2IGF0IDEyOjUxICswMjAwLCBKYW5pIE5pa3VsYSB3cm90ZToKPiBP
+biBXZWQsIDE2IFNlcCAyMDIwLCBMeXVkZSBQYXVsIDxseXVkZUByZWRoYXQuY29tPiB3cm90ZToK
+PiA+IFNpbmNlIHdlJ3JlIGFib3V0IHRvIHN0YXJ0IGFkZGluZyBzdXBwb3J0IGZvciBJbnRlbCdz
+IG1hZ2ljIEhEUgo+ID4gYmFja2xpZ2h0IGludGVyZmFjZSBvdmVyIERQQ0QsIHdlIG5lZWQgdG8g
+ZW5zdXJlIHdlJ3JlIHByb3Blcmx5Cj4gPiBwcm9ncmFtbWluZyB0aGlzIGZpZWxkIHNvIHRoYXQg
+SW50ZWwgc3BlY2lmaWMgc2luayBzZXJ2aWNlcyBhcmUgZXhwb3NlZC4KPiA+IE90aGVyd2lzZSwg
+MHgzMDAtMHgzZmYgd2lsbCBqdXN0IHJlYWQgemVyb2VzLgo+ID4gCj4gPiBXZSBhbHNvIHRha2Ug
+Y2FyZSBub3QgdG8gcmVwcm9ncmFtIHRoZSBzb3VyY2UgT1VJIGlmIGl0IGFscmVhZHkgbWF0Y2hl
+cwo+ID4gd2hhdCB3ZSBleHBlY3QuIFRoaXMgaXMganVzdCB0byBiZSBjYXJlZnVsIHNvIHRoYXQg
+d2UgZG9uJ3QgYWNjaWRlbnRhbGx5Cj4gPiB0YWtlIHRoZSBwYW5lbCBvdXQgb2YgYW55IGJhY2ts
+aWdodCBjb250cm9sIG1vZGVzIHdlIGZvdW5kIGl0IGluLgo+ID4gCj4gPiB2MjoKPiA+ICogQWRk
+IGNhcmVmdWwgcGFyYW1ldGVyIHRvIGludGVsX2VkcF9pbml0X3NvdXJjZV9vdWkoKSB0byBhdm9p
+ZAo+ID4gwqAgcmUtd3JpdGluZyB0aGUgc291cmNlIE9VSSBpZiBpdCdzIGFscmVhZHkgYmVlbiBz
+ZXQgZHVyaW5nIGRyaXZlcgo+ID4gwqAgaW5pdGlhbGl6YXRpb24KPiA+IAo+ID4gU2lnbmVkLW9m
+Zi1ieTogTHl1ZGUgUGF1bCA8bHl1ZGVAcmVkaGF0LmNvbT4KPiA+IENjOiB0aGF5dGFuQG5vcmFp
+c2luLm5ldAo+ID4gQ2M6IFZhc2lseSBLaG9ydXpoaWNrIDxhbmFyc291bEBnbWFpbC5jb20+Cj4g
+PiAtLS0KPiA+IMKgZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kcC5jIHwgMzMg
+KysrKysrKysrKysrKysrKysrKysrKysrKwo+ID4gwqAxIGZpbGUgY2hhbmdlZCwgMzMgaW5zZXJ0
+aW9ucygrKQo+ID4gCj4gPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxh
+eS9pbnRlbF9kcC5jCj4gPiBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZHAu
+Ywo+ID4gaW5kZXggNGJkMTA0NTZhZDE4OC4uN2RiMmI2YTNjZDUyZSAxMDA2NDQKPiA+IC0tLSBh
+L2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZHAuYwo+ID4gKysrIGIvZHJpdmVy
+cy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kcC5jCj4gPiBAQCAtMzQyNCw2ICszNDI0LDI5
+IEBAIHZvaWQgaW50ZWxfZHBfc2lua19zZXRfZGVjb21wcmVzc2lvbl9zdGF0ZShzdHJ1Y3QKPiA+
+IGludGVsX2RwICppbnRlbF9kcCwKPiA+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBlbmFibGUgPyAiZW5hYmxlIiA6ICJkaXNhYmxlIik7Cj4g
+PiDCoH0KPiA+IMKgCj4gPiArc3RhdGljIHZvaWQKPiA+ICtpbnRlbF9lZHBfaW5pdF9zb3VyY2Vf
+b3VpKHN0cnVjdCBpbnRlbF9kcCAqaW50ZWxfZHAsIGJvb2wgY2FyZWZ1bCkKPiA+ICt7Cj4gPiAr
+wqDCoMKgwqDCoMKgwqBzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqaTkxNSA9IGRwX3RvX2k5MTUo
+aW50ZWxfZHApOwo+ID4gK8KgwqDCoMKgwqDCoMKgdTggb3VpW10gPSB7IDB4MDAsIDB4YWEsIDB4
+MDEgfTsKPiAKPiBOaXRwaWNrLCBjb3VsZCBiZSBzdGF0aWMgY29uc3QuCj4gCj4gPiArwqDCoMKg
+wqDCoMKgwqB1OCBidWZbM10gPSB7IDAgfTsKPiA+ICsKPiA+ICvCoMKgwqDCoMKgwqDCoC8qCj4g
+PiArwqDCoMKgwqDCoMKgwqAgKiBEdXJpbmcgZHJpdmVyIGluaXQsIHdlIHdhbnQgdG8gYmUgY2Fy
+ZWZ1bCBhbmQgYXZvaWQgY2hhbmdpbmcKPiA+IHRoZSBzb3VyY2UgT1VJIGlmIGl0J3MKPiA+ICvC
+oMKgwqDCoMKgwqDCoCAqIGFscmVhZHkgc2V0IHRvIHdoYXQgd2Ugd2FudCwgc28gYXMgdG8gYXZv
+aWQgY2xlYXJpbmcgYW55IHN0YXRlCj4gPiBieSBhY2NpZGVudAo+ID4gK8KgwqDCoMKgwqDCoMKg
+ICovCj4gCj4gRGlkIHlvdSBhY3R1YWxseSBvYnNlcnZlIGFueSBpbGwgYmVoYXZpb3VyIHdpdGgg
+dW5jb25kaXRpb25hbGx5IHdyaXRpbmcKPiB0aGUgc291cmNlIE9VST8KPiAKPiBJIG1lYW4gaXQn
+cyBlYXN5IHRvIGFkZCB0aGUgImNhcmVmdWwiIG1vZGUgYWZ0ZXJ3YXJkcyBpZiB0aGVyZSBhcmUK
+PiBjb25jcmV0ZSBpc3N1ZXMsIGJ1dCBpdCdsbCBiZSBoYXJkIHRvIHJlbW92ZSBiZWNhdXNlIGl0
+J2xsIGJlIGEKPiBmdW5jdGlvbmFsIGNoYW5nZSBwb3RlbnRpYWxseSBjYXVzaW5nIHJlZ3Jlc3Np
+b25zLgoKSSBoYXZlbid0IHlldCwgYWx0aG91Z2ggSSdsbCBnaXZlIGEgdGVzdCBvbiBzb21lIG9m
+IHRoZSBvdGhlciBtYWNoaW5lcyBJJ3ZlCmdvdCBseWluZyBhcm91bmQuCgpGV0lXLCByZWxldmFu
+dCBzcGVjIGluZm86CgogICBBIFNpbmsgZGV2aWNlIHRoYXQgZG9lcyBub3Qgc3VwcG9ydCB0aGUg
+U291cmNlLWRldmljZSBzcGVjaWZpZWQgYmVoYXZpb3IKICAgc3BlY2lmaWVkIGJ5IHRoZSBvd25l
+ciBvZiB0aGUgSUVFRSBPVUkgd3JpdHRlbiB0byBpbiBEUENEIEFkZHJlc3NlcyAwMDMwMGgKICAg
+dGhyb3VnaCAwMDMwMmggYXMgYmVpbmcgYXNzb2NpYXRlZCB3aXRoIHRoZSBTb3VyY2UgSWRlbnRp
+ZmljYXRpb24gc2hhbGwKICAgQVVYX0FDSyBhbGwgd3JpdGVzLCBidXQgdGFrZSBubyBvdGhlciBh
+Y3Rpb24sIGFuZCBzaGFsbCByZXNwb25kIHRvIHJlYWRzCiAgIHdpdGggYW4gQVVYX0FDSyBhbmQg
+dGhlIHZhbHVlIDAwaC4KCj4gCj4gPiArwqDCoMKgwqDCoMKgwqBpZiAoY2FyZWZ1bCkgewo+ID4g
+K8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoGlmIChkcm1fZHBfZHBjZF9yZWFkKCZpbnRl
+bF9kcC0+YXV4LCBEUF9TT1VSQ0VfT1VJLCBidWYsCj4gPiBzaXplb2YoYnVmKSkgPCAwKQo+ID4g
+K8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBkcm1fZXJyKCZp
+OTE1LT5kcm0sICJGYWlsZWQgdG8gcmVhZCBzb3VyY2UKPiA+IE9VSVxuIik7Cj4gPiArCj4gPiAr
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgaWYgKG1lbWNtcChvdWksIGJ1Ziwgc2l6ZW9m
+KG91aSkpID09IDApCj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoHJldHVybjsKPiA+ICvCoMKgwqDCoMKgwqDCoH0KPiA+ICsKPiA+ICvCoMKgwqDCoMKg
+wqDCoGlmIChkcm1fZHBfZHBjZF93cml0ZSgmaW50ZWxfZHAtPmF1eCwgRFBfU09VUkNFX09VSSwg
+b3VpLAo+ID4gc2l6ZW9mKG91aSkpIDwgMCkKPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqBkcm1fZXJyKCZpOTE1LT5kcm0sICJGYWlsZWQgdG8gd3JpdGUgc291cmNlIE9VSVxuIik7
+Cj4gPiArfQo+ID4gKwo+ID4gwqAvKiBJZiB0aGUgc2luayBzdXBwb3J0cyBpdCwgdHJ5IHRvIHNl
+dCB0aGUgcG93ZXIgc3RhdGUgYXBwcm9wcmlhdGVseSAqLwo+ID4gwqB2b2lkIGludGVsX2RwX3Np
+bmtfZHBtcyhzdHJ1Y3QgaW50ZWxfZHAgKmludGVsX2RwLCBpbnQgbW9kZSkKPiA+IMKgewo+ID4g
+QEAgLTM0NDMsNiArMzQ2NiwxMCBAQCB2b2lkIGludGVsX2RwX3NpbmtfZHBtcyhzdHJ1Y3QgaW50
+ZWxfZHAgKmludGVsX2RwLAo+ID4gaW50IG1vZGUpCj4gPiDCoMKgwqDCoMKgwqDCoMKgfSBlbHNl
+IHsKPiA+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgc3RydWN0IGludGVsX2xzcGNv
+biAqbHNwY29uID0gZHBfdG9fbHNwY29uKGludGVsX2RwKTsKPiA+IMKgCj4gPiArwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgLyogV3JpdGUgdGhlIHNvdXJjZSBPVUkgYXMgZWFybHkgYXMg
+cG9zc2libGUgKi8KPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBpZiAoaW50ZWxf
+ZHBfaXNfZWRwKGludGVsX2RwKSkKPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgaW50ZWxfZWRwX2luaXRfc291cmNlX291aShpbnRlbF9kcCwgZmFsc2Up
+Owo+ID4gKwo+IAo+IFRoaXMgaHVuayBjb25mbGljdHMsIHdpbGwgbmVlZCBhIHJlYmFzZS4KPiAK
+PiBCUiwKPiBKYW5pLgo+IAo+IAo+ID4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAv
+Kgo+ID4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgKiBXaGVuIHR1cm5pbmcgb24s
+IHdlIG5lZWQgdG8gcmV0cnkgZm9yIDFtcyB0byBnaXZlIHRoZQo+ID4gc2luawo+ID4gwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgKiB0aW1lIHRvIHdha2UgdXAuCj4gPiBAQCAtNDYw
+Nyw2ICs0NjM0LDEyIEBAIGludGVsX2VkcF9pbml0X2RwY2Qoc3RydWN0IGludGVsX2RwICppbnRl
+bF9kcCkKPiA+IMKgwqDCoMKgwqDCoMKgwqBpZiAoSU5URUxfR0VOKGRldl9wcml2KSA+PSAxMCB8
+fCBJU19HRU1JTklMQUtFKGRldl9wcml2KSkKPiA+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgaW50ZWxfZHBfZ2V0X2RzY19zaW5rX2NhcChpbnRlbF9kcCk7Cj4gPiDCoAo+ID4gK8Kg
+wqDCoMKgwqDCoMKgLyoKPiA+ICvCoMKgwqDCoMKgwqDCoCAqIElmIG5lZWRlZCwgcHJvZ3JhbSBv
+dXIgc291cmNlIE9VSSBzbyB3ZSBjYW4gbWFrZSB2YXJpb3VzIEludGVsLQo+ID4gc3BlY2lmaWMg
+QVVYIHNlcnZpY2VzCj4gPiArwqDCoMKgwqDCoMKgwqAgKiBhdmFpbGFibGUgKHN1Y2ggYXMgSERS
+IGJhY2tsaWdodCBjb250cm9scykKPiA+ICvCoMKgwqDCoMKgwqDCoCAqLwo+ID4gK8KgwqDCoMKg
+wqDCoMKgaW50ZWxfZWRwX2luaXRfc291cmNlX291aShpbnRlbF9kcCwgdHJ1ZSk7Cj4gPiArCj4g
+PiDCoMKgwqDCoMKgwqDCoMKgcmV0dXJuIHRydWU7Cj4gPiDCoH0KPiAKCi0tIApDaGVlcnMsCiBM
+eXVkZSBQYXVsIChzaGUvaGVyKQogU29mdHdhcmUgRW5naW5lZXIgYXQgUmVkIEhhdAoKX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxp
+bmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJl
+ZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
