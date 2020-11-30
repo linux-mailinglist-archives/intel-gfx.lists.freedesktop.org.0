@@ -2,41 +2,44 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 755302C8106
-	for <lists+intel-gfx@lfdr.de>; Mon, 30 Nov 2020 10:31:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 97C952C818D
+	for <lists+intel-gfx@lfdr.de>; Mon, 30 Nov 2020 11:00:43 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CC9966E43D;
-	Mon, 30 Nov 2020 09:31:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6376D6E442;
+	Mon, 30 Nov 2020 10:00:40 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 667136E40A
- for <intel-gfx@lists.freedesktop.org>; Mon, 30 Nov 2020 09:31:02 +0000 (UTC)
-IronPort-SDR: xFtSH/tlJBAVaRhKjE8hD5x23zIlgpJpIs0DxhBOgSA43koJ979w12luAsXb/1qfD/Gdw9c0rN
- IAwKA94vHGoA==
-X-IronPort-AV: E=McAfee;i="6000,8403,9820"; a="257314888"
-X-IronPort-AV: E=Sophos;i="5.78,381,1599548400"; d="scan'208";a="257314888"
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 93B686E43F;
+ Mon, 30 Nov 2020 10:00:38 +0000 (UTC)
+IronPort-SDR: U2iyBLPZrC8VOcCywRu2j36qK/V2TLibdQwgaZGDXgG0DRFS6THIIJ4e33sp5m7PkMKSlxhArZ
+ sXRza+pCTXiw==
+X-IronPort-AV: E=McAfee;i="6000,8403,9820"; a="151861741"
+X-IronPort-AV: E=Sophos;i="5.78,381,1599548400"; d="scan'208";a="151861741"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Nov 2020 01:31:02 -0800
-IronPort-SDR: Z7GgltN4bb+GBVtJQwqzig3y8rLTrTDXFS6XMmtzqvz+3dRAzVQqWBLEGq+QqIu1iIF4KCd/r+
- VrlOmgIcJ9QA==
-X-IronPort-AV: E=Sophos;i="5.78,381,1599548400"; d="scan'208";a="367055058"
-Received: from genxfsim-desktop.iind.intel.com ([10.223.74.178])
- by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Nov 2020 01:31:00 -0800
-From: Anshuman Gupta <anshuman.gupta@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Mon, 30 Nov 2020 14:46:46 +0530
-Message-Id: <20201130091646.25576-3-anshuman.gupta@intel.com>
-X-Mailer: git-send-email 2.26.2
-In-Reply-To: <20201130091646.25576-1-anshuman.gupta@intel.com>
-References: <20201130091646.25576-1-anshuman.gupta@intel.com>
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Nov 2020 02:00:37 -0800
+IronPort-SDR: 6oMN2U2q8HAKiZhpR1uGs0j7UETALvgwCU/iQFbt1vyOEl0QAu9T9M71gJPTV0mJMxUS+MilSm
+ QBec2+Rub7bw==
+X-IronPort-AV: E=Sophos;i="5.78,381,1599548400"; d="scan'208";a="549036835"
+Received: from cshanno1-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.252.44.44])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Nov 2020 02:00:33 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: Daniel Vetter <daniel@ffwll.ch>, Imre Deak <imre.deak@intel.com>
+In-Reply-To: <20201127151920.GI401619@phenom.ffwll.local>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20201123182631.1740781-1-imre.deak@intel.com>
+ <20201127143100.GB2144692@ideak-desk.fi.intel.com>
+ <20201127151920.GI401619@phenom.ffwll.local>
+Date: Mon, 30 Nov 2020 12:00:29 +0200
+Message-ID: <877dq3kvuq.fsf@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [RFC 2/2] drm/i915/display: Protect pipe_update against
- dc3co exit
+Subject: Re: [Intel-gfx] [PATCH 1/2] drm/framebuffer: Format modifier for
+ Intel Gen 12 render compression with Clear Color
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,53 +52,105 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: stable@vger.kernel.org
+Cc: Nanley Chery <nanley.g.chery@intel.com>,
+ Rafael Antognolli <rafael.antognolli@intel.com>,
+ Daniel Vetter <daniel.vetter@ffwll.ch>, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org,
+ Dhinakaran Pandiyan <dhinakaran.pandiyan@intel.com>,
+ Kalyan Kondapally <kalyan.kondapally@intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-At usual case DC3CO exit happen automatically by DMC f/w whenever
-PSR2 clears idle. This happens smoothly by DMC f/w to work with flips.
-But there are certain scenario where DC3CO  Disallowed by driver
-asynchronous with flips. In such scenario display engine could
-be already in DC3CO state and driver has disallowed it,
-It initiates DC3CO exit sequence in DMC f/w which requires a
-dc3co exit delay of 200us in driver.
-It requires to protect intel_pipe_update_{update_end} with
-dc3co exit delay.
+On Fri, 27 Nov 2020, Daniel Vetter <daniel@ffwll.ch> wrote:
+> On Fri, Nov 27, 2020 at 04:31:00PM +0200, Imre Deak wrote:
+>> Hi Daniel, Jani,
+>> 
+>> is it ok to merge this patch along with 2/2 via the i915 tree?
+>
+> Ack from mesa (userspace in general, but mesa is kinda mandatory) is
+> missing I think. With that
+>
+> Acked-by: Daniel Vetter <daniel.vetter@ffwll.ch>
 
-Cc: Imre Deak <imre.deak@intel.com>
-Cc: <stable@vger.kernel.org>
-Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
----
- drivers/gpu/drm/i915/display/intel_display.c | 3 +++
- 1 file changed, 3 insertions(+)
+With the same conditions,
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index ba26545392bc..3b81b98c0daf 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -15924,6 +15924,8 @@ static void intel_update_crtc(struct intel_atomic_state *state,
- 	else
- 		intel_fbc_enable(state, crtc);
- 
-+	/* Protect intel_pipe_update_{start,end} with power_domians lock */
-+	mutex_lock(&dev_priv->power_domains.lock);
- 	/* Perform vblank evasion around commit operation */
- 	intel_pipe_update_start(new_crtc_state);
- 
-@@ -15935,6 +15937,7 @@ static void intel_update_crtc(struct intel_atomic_state *state,
- 		i9xx_update_planes_on_crtc(state, crtc);
- 
- 	intel_pipe_update_end(new_crtc_state);
-+	mutex_unlock(&dev_prive->power_domains.lock);
- 
- 	/*
- 	 * We usually enable FIFO underrun interrupts as part of the
+Acked-by: Jani Nikula <jani.nikula@intel.com>
+
+
+>
+>> 
+>> --Imre
+>> 
+>> On Mon, Nov 23, 2020 at 08:26:30PM +0200, Imre Deak wrote:
+>> > From: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
+>> > 
+>> > Gen12 display can decompress surfaces compressed by render engine with
+>> > Clear Color, add a new modifier as the driver needs to know the surface
+>> > was compressed by render engine.
+>> > 
+>> > V2: Description changes as suggested by Rafael.
+>> > V3: Mention the Clear Color size of 64 bits in the comments(DK)
+>> > v4: Fix trailing whitespaces
+>> > v5: Explain Clear Color in the documentation.
+>> > v6: Documentation Nitpicks(Nanley)
+>> > 
+>> > Cc: Ville Syrjala <ville.syrjala@linux.intel.com>
+>> > Cc: Dhinakaran Pandiyan <dhinakaran.pandiyan@intel.com>
+>> > Cc: Kalyan Kondapally <kalyan.kondapally@intel.com>
+>> > Cc: Rafael Antognolli <rafael.antognolli@intel.com>
+>> > Cc: Nanley Chery <nanley.g.chery@intel.com>
+>> > Signed-off-by: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
+>> > Signed-off-by: Imre Deak <imre.deak@intel.com>
+>> > ---
+>> >  include/uapi/drm/drm_fourcc.h | 19 +++++++++++++++++++
+>> >  1 file changed, 19 insertions(+)
+>> > 
+>> > diff --git a/include/uapi/drm/drm_fourcc.h b/include/uapi/drm/drm_fourcc.h
+>> > index ca48ed0e6bc1..0a1b2c4c4bee 100644
+>> > --- a/include/uapi/drm/drm_fourcc.h
+>> > +++ b/include/uapi/drm/drm_fourcc.h
+>> > @@ -527,6 +527,25 @@ extern "C" {
+>> >   */
+>> >  #define I915_FORMAT_MOD_Y_TILED_GEN12_MC_CCS fourcc_mod_code(INTEL, 7)
+>> >  
+>> > +/*
+>> > + * Intel Color Control Surface with Clear Color (CCS) for Gen-12 render
+>> > + * compression.
+>> > + *
+>> > + * The main surface is Y-tiled and is at plane index 0 whereas CCS is linear
+>> > + * and at index 1. The clear color is stored at index 2, and the pitch should
+>> > + * be ignored. The clear color structure is 256 bits. The first 128 bits
+>> > + * represents Raw Clear Color Red, Green, Blue and Alpha color each represented
+>> > + * by 32 bits. The raw clear color is consumed by the 3d engine and generates
+>> > + * the converted clear color of size 64 bits. The first 32 bits store the Lower
+>> > + * Converted Clear Color value and the next 32 bits store the Higher Converted
+>> > + * Clear Color value when applicable. The Converted Clear Color values are
+>> > + * consumed by the DE. The last 64 bits are used to store Color Discard Enable
+>> > + * and Depth Clear Value Valid which are ignored by the DE. A CCS cache line
+>> > + * corresponds to an area of 4x1 tiles in the main surface. The main surface
+>> > + * pitch is required to be a multiple of 4 tile widths.
+>> > + */
+>> > +#define I915_FORMAT_MOD_Y_TILED_GEN12_RC_CCS_CC fourcc_mod_code(INTEL, 8)
+>> > +
+>> >  /*
+>> >   * Tiled, NV12MT, grouped in 64 (pixels) x 32 (lines) -sized macroblocks
+>> >   *
+>> > -- 
+>> > 2.25.1
+>> > 
+>> > _______________________________________________
+>> > Intel-gfx mailing list
+>> > Intel-gfx@lists.freedesktop.org
+>> > https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+>> _______________________________________________
+>> dri-devel mailing list
+>> dri-devel@lists.freedesktop.org
+>> https://lists.freedesktop.org/mailman/listinfo/dri-devel
+
 -- 
-2.26.2
-
+Jani Nikula, Intel Open Source Graphics Center
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
