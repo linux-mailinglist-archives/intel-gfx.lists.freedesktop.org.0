@@ -2,46 +2,35 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3CBA92C893B
-	for <lists+intel-gfx@lfdr.de>; Mon, 30 Nov 2020 17:20:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6D07C2C8951
+	for <lists+intel-gfx@lfdr.de>; Mon, 30 Nov 2020 17:21:18 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8A5BF6E526;
-	Mon, 30 Nov 2020 16:20:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C3A8C6E4F1;
+	Mon, 30 Nov 2020 16:21:16 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E02236E4F1;
- Mon, 30 Nov 2020 16:20:23 +0000 (UTC)
-IronPort-SDR: ueZQk1bbWCT1pm3Pkax5cYf11CJVxifsgKAfOHVj6SUfWOe/4TZS8bKbBhx0Vc2VjFCsc35G+d
- Gw21fLehFXPw==
-X-IronPort-AV: E=McAfee;i="6000,8403,9821"; a="169164444"
-X-IronPort-AV: E=Sophos;i="5.78,382,1599548400"; d="scan'208";a="169164444"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Nov 2020 08:20:22 -0800
-IronPort-SDR: bTOyAC+LhzKWo63DYlZi+O+O9iaiYv1m9dOaea1Hl3ivnzqJlLn6y6ETt3tRUsA7Q6vJxmgtFk
- FYpika0IV5nQ==
-X-IronPort-AV: E=Sophos;i="5.78,382,1599548400"; d="scan'208";a="480712879"
-Received: from mdubovsk-mobl1.ger.corp.intel.com (HELO [10.254.157.9])
- ([10.254.157.9])
- by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Nov 2020 08:20:20 -0800
-To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
-References: <20201123201525.3991343-1-chris@chris-wilson.co.uk>
- <20201130103656.1049951-1-chris@chris-wilson.co.uk>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-Message-ID: <35bd53ab-7722-dfe4-8d00-a07ee5c0dd6f@linux.intel.com>
-Date: Mon, 30 Nov 2020 16:20:18 +0000
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+Received: from fireflyinternet.com (unknown [77.68.26.236])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3D63A6E4F1
+ for <intel-gfx@lists.freedesktop.org>; Mon, 30 Nov 2020 16:21:15 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from localhost (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
+ 23164874-1500050 for multiple; Mon, 30 Nov 2020 16:21:12 +0000
 MIME-Version: 1.0
-In-Reply-To: <20201130103656.1049951-1-chris@chris-wilson.co.uk>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH i-g-t] i915/gem_request_retire: Switch from
- random blitter loads to dummy
+In-Reply-To: <874d8bb0-b4ab-708d-b307-63687c0498ee@linux.intel.com>
+References: <20201128184040.20150-1-chris@chris-wilson.co.uk>
+ <20201128184040.20150-4-chris@chris-wilson.co.uk>
+ <f8856a1a-48ad-9a26-3658-bfbcef1c7a95@linux.intel.com>
+ <160674359480.9503.7150298801559341502@build.alporthouse.com>
+ <874d8bb0-b4ab-708d-b307-63687c0498ee@linux.intel.com>
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
+Date: Mon, 30 Nov 2020 16:21:11 +0000
+Message-ID: <160675327116.10401.3831761327207987081@build.alporthouse.com>
+User-Agent: alot/0.9
+Subject: Re: [Intel-gfx] [RFC 4/4] drm/i915/gt: Pipelined page migration
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,279 +43,132 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: igt-dev@lists.freedesktop.org
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-
-On 30/11/2020 10:36, Chris Wilson wrote:
-> Use the spinners to provide exactly the right amount of background
-> busyness.
-> 
-> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-> Cc: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-> ---
->   lib/igt_dummyload.c             |  23 ++---
->   lib/igt_dummyload.h             |   1 +
->   tests/i915/gem_request_retire.c | 170 ++++----------------------------
->   3 files changed, 34 insertions(+), 160 deletions(-)
-> 
-> diff --git a/lib/igt_dummyload.c b/lib/igt_dummyload.c
-> index d58f73108..891e4eaab 100644
-> --- a/lib/igt_dummyload.c
-> +++ b/lib/igt_dummyload.c
-> @@ -161,19 +161,20 @@ emit_recursive_batch(igt_spin_t *spin,
->   	if (opts->dependency) {
->   		igt_assert(!(opts->flags & IGT_SPIN_POLL_RUN));
->   
-> -		r = &relocs[obj[BATCH].relocation_count++];
-> -
-> -		/* dummy write to dependency */
->   		obj[SCRATCH].handle = opts->dependency;
->   		obj[SCRATCH].offset = addr;
-> -		obj[SCRATCH].flags = EXEC_OBJECT_WRITE;
-> -
-> -		r->presumed_offset = obj[SCRATCH].offset;
-> -		r->target_handle = obj[SCRATCH].handle;
-> -		r->offset = sizeof(uint32_t) * 1020;
-> -		r->delta = 0;
-> -		r->read_domains = I915_GEM_DOMAIN_RENDER;
-> -		r->write_domain = I915_GEM_DOMAIN_RENDER;
-> +		if (!(opts->flags & IGT_SPIN_SOFTDEP)) {
-> +			obj[SCRATCH].flags = EXEC_OBJECT_WRITE;
-> +
-> +			/* dummy write to dependency */
-> +			r = &relocs[obj[BATCH].relocation_count++];
-> +			r->presumed_offset = obj[SCRATCH].offset;
-> +			r->target_handle = obj[SCRATCH].handle;
-> +			r->offset = sizeof(uint32_t) * 1020;
-> +			r->delta = 0;
-> +			r->read_domains = I915_GEM_DOMAIN_RENDER;
-> +			r->write_domain = I915_GEM_DOMAIN_RENDER;
-> +		}
->   
->   		execbuf->buffer_count++;
->   	} else if (opts->flags & IGT_SPIN_POLL_RUN) {
-> diff --git a/lib/igt_dummyload.h b/lib/igt_dummyload.h
-> index 6d3e65ce2..b8baaa6b4 100644
-> --- a/lib/igt_dummyload.h
-> +++ b/lib/igt_dummyload.h
-> @@ -71,6 +71,7 @@ struct igt_spin_factory {
->   #define IGT_SPIN_NO_PREEMPTION (1 << 4)
->   #define IGT_SPIN_INVALID_CS    (1 << 5)
->   #define IGT_SPIN_USERPTR       (1 << 6)
-> +#define IGT_SPIN_SOFTDEP       (1 << 7)
->   
->   igt_spin_t *
->   __igt_spin_factory(int fd, const struct igt_spin_factory *opts);
-> diff --git a/tests/i915/gem_request_retire.c b/tests/i915/gem_request_retire.c
-> index 31fb41987..c23ddfb7b 100644
-> --- a/tests/i915/gem_request_retire.c
-> +++ b/tests/i915/gem_request_retire.c
-> @@ -52,130 +52,6 @@
->   IGT_TEST_DESCRIPTION("Collection of tests targeting request retirement code"
->   		     " paths.");
->   
-> -#define WIDTH 4096
-> -#define HEIGHT 4096
-> -#define BO_SIZE (WIDTH * HEIGHT * sizeof(uint32_t))
-> -
-> -static uint32_t
-> -blit(int fd, uint32_t dst, uint32_t src, uint32_t ctx_id)
-> -{
-> -	const unsigned int copies = 1000;
-> -	uint32_t batch[12 * copies + 5];
-> -	struct drm_i915_gem_relocation_entry reloc[2 * copies];
-> -	struct drm_i915_gem_exec_object2 obj[3];
-> -	struct drm_i915_gem_execbuffer2 exec;
-> -	uint32_t handle;
-> -	unsigned int i = 0, j, r = 0;
-> -
-> -	for (j = 0; j < copies; j++) {
-> -		reloc[r].target_handle = dst;
-> -		reloc[r].delta = 0;
-> -		reloc[r].offset = (i + 4) * sizeof(uint32_t);
-> -		reloc[r].presumed_offset = 0;
-> -		reloc[r].read_domains = I915_GEM_DOMAIN_RENDER;
-> -		reloc[r].write_domain = I915_GEM_DOMAIN_RENDER;
-> -
-> -		r++;
-> -
-> -		reloc[r].target_handle = src;
-> -		reloc[r].delta = 0;
-> -		reloc[r].offset = (i + 7) * sizeof(uint32_t);
-> -		if (intel_gen(intel_get_drm_devid(fd)) >= 8)
-> -			reloc[r].offset += sizeof(uint32_t);
-> -		reloc[r].presumed_offset = 0;
-> -		reloc[r].read_domains = I915_GEM_DOMAIN_RENDER;
-> -		reloc[r].write_domain = 0;
-> -
-> -		r++;
-> -
-> -		batch[i++] = XY_SRC_COPY_BLT_CMD |
-> -			XY_SRC_COPY_BLT_WRITE_ALPHA |
-> -			XY_SRC_COPY_BLT_WRITE_RGB;
-> -		if (intel_gen(intel_get_drm_devid(fd)) >= 8)
-> -			batch[i - 1] |= 8;
-> -		else
-> -			batch[i - 1] |= 6;
-> -
-> -		batch[i++] = (3 << 24) | /* 32 bits */
-> -			(0xcc << 16) | /* copy ROP */
-> -			WIDTH*4;
-> -		batch[i++] = 0; /* dst x1,y1 */
-> -		batch[i++] = (HEIGHT << 16) | WIDTH; /* dst x2,y2 */
-> -		batch[i++] = 0; /* dst reloc */
-> -		if (intel_gen(intel_get_drm_devid(fd)) >= 8)
-> -			batch[i++] = 0;
-> -		batch[i++] = 0; /* src x1,y1 */
-> -		batch[i++] = WIDTH*4;
-> -		batch[i++] = 0; /* src reloc */
-> -		if (intel_gen(intel_get_drm_devid(fd)) >= 8)
-> -			batch[i++] = 0;
-> -	}
-> -
-> -	batch[i++] = MI_BATCH_BUFFER_END;
-> -
-> -	while (i % 4)
-> -		batch[i++] = MI_NOOP;
-> -
-> -	handle = gem_create(fd, sizeof(batch));
-> -	gem_write(fd, handle, 0, batch, sizeof(batch));
-> -
-> -	memset(obj, 0, sizeof(obj));
-> -	memset(&exec, 0, sizeof(exec));
-> -
-> -	obj[exec.buffer_count++].handle = dst;
-> -	if (src != dst)
-> -		obj[exec.buffer_count++].handle = src;
-> -	obj[exec.buffer_count].handle = handle;
-> -	obj[exec.buffer_count].relocation_count = 2 * copies;
-> -	obj[exec.buffer_count].relocs_ptr = to_user_pointer(reloc);
-> -	exec.buffer_count++;
-> -	exec.buffers_ptr = to_user_pointer(obj);
-> -
-> -	exec.batch_len = i * sizeof(uint32_t);
-> -	exec.flags = I915_EXEC_BLT;
-> -	i915_execbuffer2_set_context_id(exec, ctx_id);
-> -
-> -	gem_execbuf(fd, &exec);
-> -
-> -	return handle;
-> -}
-> -
-> -static uint32_t
-> -noop(int fd, uint32_t src, uint32_t ctx_id)
-> -{
-> -	uint32_t batch[4];
-> -	struct drm_i915_gem_exec_object2 obj[2];
-> -	struct drm_i915_gem_execbuffer2 exec;
-> -	uint32_t handle;
-> -	unsigned int i = 0;
-> -
-> -	batch[i++] = MI_NOOP;
-> -	batch[i++] = MI_BATCH_BUFFER_END;
-> -	batch[i++] = MI_NOOP;
-> -	batch[i++] = MI_NOOP;
-> -
-> -	handle = gem_create(fd, 4096);
-> -	gem_write(fd, handle, 0, batch, sizeof(batch));
-> -
-> -	memset(obj, 0, sizeof(obj));
-> -	memset(&exec, 0, sizeof(exec));
-> -
-> -	obj[exec.buffer_count++].handle = src;
-> -	obj[exec.buffer_count].handle = handle;
-> -	obj[exec.buffer_count].relocation_count = 0;
-> -	obj[exec.buffer_count].relocs_ptr = to_user_pointer(0);
-> -	exec.buffer_count++;
-> -	exec.buffers_ptr = to_user_pointer(obj);
-> -
-> -	exec.batch_len = i * sizeof(uint32_t);
-> -	exec.flags = I915_EXEC_RENDER;
-> -	i915_execbuffer2_set_context_id(exec, ctx_id);
-> -
-> -	gem_execbuf(fd, &exec);
-> -
-> -	return handle;
-> -}
-> -
->   /*
->    * A single bo is operated from batchbuffers submitted from two contexts and on
->    * different rings.
-> @@ -185,37 +61,33 @@ noop(int fd, uint32_t src, uint32_t ctx_id)
->   static void
->   test_retire_vma_not_inactive(int fd)
->   {
-> -	uint32_t ctx_id;
-> -	uint32_t src, dst;
-> -	uint32_t blit_bb, noop_bb;
-> -
-> -	igt_require(HAS_BLT_RING(intel_get_drm_devid(fd)));
-> +	struct intel_execution_engine2 *e;
->   
-> -	ctx_id = gem_context_create(fd);
-> +	igt_spin_t *bg = NULL;
->   
-> -	/* Create some bos batch buffers will operate on. */
-> -	src = gem_create(fd, BO_SIZE);
-> -	dst = gem_create(fd, BO_SIZE);
-> +	__for_each_physical_engine(fd, e) {
-> +		igt_spin_t *spin;
-> +		uint32_t ctx;
->   
-> -	/* Submit a long running batch. */
-> -	blit_bb = blit(fd, dst, src, 0);
-> +		if (!bg) {
-> +			bg = igt_spin_new(fd, .engine = e->flags);
-> +			continue;
-> +		}
->   
-> -	/* Submit a quick batch referencing the same object. */
-> -	noop_bb = noop(fd, src, ctx_id);
-> +		ctx = gem_context_clone_with_engines(fd, 0);
-> +		spin = igt_spin_new(fd, ctx,
-> +				    .engine = e->flags,
-> +				    .dependency = bg->handle,
-> +				    .flags = IGT_SPIN_SOFTDEP);
-> +		gem_context_destroy(fd, ctx);
-> +		igt_spin_end(spin);
->   
-> -	/* Wait for the quick batch to complete. */
-> -	gem_sync(fd, noop_bb);
-> -	gem_close(fd, noop_bb);
-> -
-> -	/* Now destroy the context in which the quick batch was submitted. */
-> -	gem_context_destroy(fd, ctx_id);
-> -
-> -	/* Wait for the slow batch to finish and clean up. */
-> -	gem_sync(fd, blit_bb);
-> -	gem_close(fd, blit_bb);
-> +		gem_sync(fd, spin->handle);
-> +		igt_spin_free(fd, spin);
-> +	}
->   
-> -	gem_close(fd, src);
-> -	gem_close(fd, dst);
-> +	igt_drop_caches_set(fd, DROP_RETIRE);
-> +	igt_spin_free(fd, bg);
->   }
->   
->   int fd;
-> 
-
-I wonder how relevant this test is today but anyway doesn't harm. It is 
-not exactly like-for-like replacement but I *think* the key was context 
-close before involved object is idled so I think is is fine.
-
-Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-
-Regards,
-
-Tvrtko
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+UXVvdGluZyBUdnJ0a28gVXJzdWxpbiAoMjAyMC0xMS0zMCAxNjowNzo0NCkKPiAKPiBPbiAzMC8x
+MS8yMDIwIDEzOjM5LCBDaHJpcyBXaWxzb24gd3JvdGU6Cj4gPiBRdW90aW5nIFR2cnRrbyBVcnN1
+bGluICgyMDIwLTExLTMwIDEzOjEyOjU1KQo+ID4+IE9uIDI4LzExLzIwMjAgMTg6NDAsIENocmlz
+IFdpbHNvbiB3cm90ZToKPiA+Pj4gSWYgd2UgcGlwZWxpbmUgdGhlIFBURSB1cGRhdGVzIGFuZCB0
+aGVuIGRvIHRoZSBjb3B5IG9mIHRob3NlIHBhZ2VzCj4gPj4+IHdpdGhpbiBhIHNpbmdsZSB1bnBy
+ZWVtcHRpYmxlIGNvbW1hbmQgcGFja2V0LCB3ZSBjYW4gc3VibWl0IHRoZSBjb3BpZXMKPiA+Pj4g
+YW5kIGxlYXZlIHRoZW0gdG8gYmUgc2NoZWR1bGVkIHdpdGhvdXQgaGF2aW5nIHRvIHN5bmNocm9u
+b3VzbHkgd2FpdAo+ID4+PiB1bmRlciBhIGdsb2JhbCBsb2NrLgo+ID4+Pgo+ID4+PiBTaWduZWQt
+b2ZmLWJ5OiBDaHJpcyBXaWxzb24gPGNocmlzQGNocmlzLXdpbHNvbi5jby51az4KPiA+Pj4gLS0t
+Cj4gPj4+ICAgIGRyaXZlcnMvZ3B1L2RybS9pOTE1L01ha2VmaWxlICAgICAgICAgICAgICAgICB8
+ICAgMSArCj4gPj4+ICAgIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L2ludGVsX2VuZ2luZS5oICAg
+ICAgICB8ICAgMSArCj4gPj4+ICAgIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L2ludGVsX21pZ3Jh
+dGUuYyAgICAgICB8IDM3MCArKysrKysrKysrKysrKysrKysKPiA+Pj4gICAgZHJpdmVycy9ncHUv
+ZHJtL2k5MTUvZ3QvaW50ZWxfbWlncmF0ZS5oICAgICAgIHwgIDMzICsrCj4gPj4+ICAgIGRyaXZl
+cnMvZ3B1L2RybS9pOTE1L2d0L3NlbGZ0ZXN0X21pZ3JhdGUuYyAgICB8IDEwNSArKysrKwo+ID4+
+PiAgICAuLi4vZHJtL2k5MTUvc2VsZnRlc3RzL2k5MTVfbGl2ZV9zZWxmdGVzdHMuaCAgfCAgIDEg
+Kwo+ID4+PiAgICA2IGZpbGVzIGNoYW5nZWQsIDUxMSBpbnNlcnRpb25zKCspCj4gPj4+ICAgIGNy
+ZWF0ZSBtb2RlIDEwMDY0NCBkcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC9pbnRlbF9taWdyYXRlLmMK
+PiA+Pj4gICAgY3JlYXRlIG1vZGUgMTAwNjQ0IGRyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L2ludGVs
+X21pZ3JhdGUuaAo+ID4+PiAgICBjcmVhdGUgbW9kZSAxMDA2NDQgZHJpdmVycy9ncHUvZHJtL2k5
+MTUvZ3Qvc2VsZnRlc3RfbWlncmF0ZS5jCj4gPj4+Cj4gPj4+IGRpZmYgLS1naXQgYS9kcml2ZXJz
+L2dwdS9kcm0vaTkxNS9NYWtlZmlsZSBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L01ha2VmaWxlCj4g
+Pj4+IGluZGV4IGU1NTc0ZTUwNmE1Yy4uMGIyZTEyYzg3ZjlkIDEwMDY0NAo+ID4+PiAtLS0gYS9k
+cml2ZXJzL2dwdS9kcm0vaTkxNS9NYWtlZmlsZQo+ID4+PiArKysgYi9kcml2ZXJzL2dwdS9kcm0v
+aTkxNS9NYWtlZmlsZQo+ID4+PiBAQCAtMTAzLDYgKzEwMyw3IEBAIGd0LXkgKz0gXAo+ID4+PiAg
+ICAgICAgZ3QvaW50ZWxfZ3R0Lm8gXAo+ID4+PiAgICAgICAgZ3QvaW50ZWxfbGxjLm8gXAo+ID4+
+PiAgICAgICAgZ3QvaW50ZWxfbHJjLm8gXAo+ID4+PiArICAgICBndC9pbnRlbF9taWdyYXRlLm8g
+XAo+ID4+PiAgICAgICAgZ3QvaW50ZWxfbW9jcy5vIFwKPiA+Pj4gICAgICAgIGd0L2ludGVsX3Bw
+Z3R0Lm8gXAo+ID4+PiAgICAgICAgZ3QvaW50ZWxfcmM2Lm8gXAo+ID4+PiBkaWZmIC0tZ2l0IGEv
+ZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvaW50ZWxfZW5naW5lLmggYi9kcml2ZXJzL2dwdS9kcm0v
+aTkxNS9ndC9pbnRlbF9lbmdpbmUuaAo+ID4+PiBpbmRleCBhYzU4ZmNkYTQ5MjcuLjA3OWQyNmI0
+N2E5NyAxMDA2NDQKPiA+Pj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvaW50ZWxfZW5n
+aW5lLmgKPiA+Pj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvaW50ZWxfZW5naW5lLmgK
+PiA+Pj4gQEAgLTE4OCw2ICsxODgsNyBAQCBpbnRlbF93cml0ZV9zdGF0dXNfcGFnZShzdHJ1Y3Qg
+aW50ZWxfZW5naW5lX2NzICplbmdpbmUsIGludCByZWcsIHUzMiB2YWx1ZSkKPiA+Pj4gICAgI2Rl
+ZmluZSBJOTE1X0dFTV9IV1NfUFJFRU1QVF9BRERSICAgKEk5MTVfR0VNX0hXU19QUkVFTVBUICog
+c2l6ZW9mKHUzMikpCj4gPj4+ICAgICNkZWZpbmUgSTkxNV9HRU1fSFdTX1NFUU5PICAgICAgICAg
+IDB4NDAKPiA+Pj4gICAgI2RlZmluZSBJOTE1X0dFTV9IV1NfU0VRTk9fQUREUiAgICAgICAgICAg
+ICAoSTkxNV9HRU1fSFdTX1NFUU5PICogc2l6ZW9mKHUzMikpCj4gPj4+ICsjZGVmaW5lIEk5MTVf
+R0VNX0hXU19NSUdSQVRFICAgICAgICAgKDB4NDIgKiBzaXplb2YodTMyKSkKPiA+Pj4gICAgI2Rl
+ZmluZSBJOTE1X0dFTV9IV1NfU0NSQVRDSCAgICAgICAgICAgICAgICAweDgwCj4gPj4+ICAgIAo+
+ID4+PiAgICAjZGVmaW5lIEk5MTVfSFdTX0NTQl9CVUYwX0lOREVYICAgICAgICAgICAgIDB4MTAK
+PiA+Pj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L2ludGVsX21pZ3JhdGUu
+YyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L2ludGVsX21pZ3JhdGUuYwo+ID4+PiBuZXcgZmls
+ZSBtb2RlIDEwMDY0NAo+ID4+PiBpbmRleCAwMDAwMDAwMDAwMDAuLjRkN2JkMzJlYjhkNAo+ID4+
+PiAtLS0gL2Rldi9udWxsCj4gPj4+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L2ludGVs
+X21pZ3JhdGUuYwo+ID4+PiBAQCAtMCwwICsxLDM3MCBAQAo+ID4+PiArLy8gU1BEWC1MaWNlbnNl
+LUlkZW50aWZpZXI6IE1JVAo+ID4+PiArLyoKPiA+Pj4gKyAqIENvcHlyaWdodCDCqSAyMDIwIElu
+dGVsIENvcnBvcmF0aW9uCj4gPj4+ICsgKi8KPiA+Pj4gKwo+ID4+PiArI2luY2x1ZGUgImk5MTVf
+ZHJ2LmgiCj4gPj4+ICsjaW5jbHVkZSAiaW50ZWxfY29udGV4dC5oIgo+ID4+PiArI2luY2x1ZGUg
+ImludGVsX2d0LmgiCj4gPj4+ICsjaW5jbHVkZSAiaW50ZWxfZ3R0LmgiCj4gPj4+ICsjaW5jbHVk
+ZSAiaW50ZWxfbHJjLmgiIC8qIHZpcnR1YWwgZW5naW5lICovCj4gPj4+ICsjaW5jbHVkZSAiaW50
+ZWxfbWlncmF0ZS5oIgo+ID4+PiArI2luY2x1ZGUgImludGVsX3JpbmcuaCIKPiA+Pj4gKwo+ID4+
+PiArI2RlZmluZSBDSFVOS19TWiBTWl84TSAvKiB+MW1zIGF0IDhHaUIvcyBwcmVlbXB0aW9uIGRl
+bGF5ICovCj4gPj4+ICsKPiA+Pj4gK3N0YXRpYyB2b2lkIGluc2VydF9wdGUoc3RydWN0IGk5MTVf
+YWRkcmVzc19zcGFjZSAqdm0sCj4gPj4+ICsgICAgICAgICAgICAgICAgICAgIHN0cnVjdCBpOTE1
+X3BhZ2VfdGFibGUgKnB0LAo+ID4+PiArICAgICAgICAgICAgICAgICAgICB2b2lkICpkYXRhKQo+
+ID4+PiArewo+ID4+PiArICAgICB1NjQgKm9mZnNldCA9IGRhdGE7Cj4gPj4+ICsKPiA+Pj4gKyAg
+ICAgdm0tPmluc2VydF9wYWdlKHZtLCBweF9kbWEocHQpLCAqb2Zmc2V0LCBJOTE1X0NBQ0hFX05P
+TkUsIDApOwo+ID4+PiArICAgICAqb2Zmc2V0ICs9IFBBR0VfU0laRTsKPiA+Pj4gK30KPiA+Pj4g
+Kwo+ID4+PiArc3RhdGljIHN0cnVjdCBpOTE1X2FkZHJlc3Nfc3BhY2UgKm1pZ3JhdGVfdm0oc3Ry
+dWN0IGludGVsX2d0ICpndCkKPiA+Pj4gK3sKPiA+Pj4gKyAgICAgc3RydWN0IGk5MTVfdm1fcHRf
+c3Rhc2ggc3Rhc2ggPSB7fTsKPiA+Pj4gKyAgICAgc3RydWN0IGk5MTVfcHBndHQgKnZtOwo+ID4+
+PiArICAgICB1NjQgb2Zmc2V0LCBzejsKPiA+Pj4gKyAgICAgaW50IGVycjsKPiA+Pj4gKwo+ID4+
+PiArICAgICB2bSA9IGk5MTVfcHBndHRfY3JlYXRlKGd0KTsKPiA+Pj4gKyAgICAgaWYgKElTX0VS
+Uih2bSkpCj4gPj4+ICsgICAgICAgICAgICAgcmV0dXJuIEVSUl9DQVNUKHZtKTsKPiA+Pj4gKwo+
+ID4+PiArICAgICBpZiAoIXZtLT52bS5hbGxvY2F0ZV92YV9yYW5nZSB8fCAhdm0tPnZtLmZvcmVh
+Y2gpIHsKPiA+Pj4gKyAgICAgICAgICAgICBlcnIgPSAtRU5PREVWOwo+ID4+PiArICAgICAgICAg
+ICAgIGdvdG8gZXJyX3ZtOwo+ID4+PiArICAgICB9Cj4gPj4+ICsKPiA+Pj4gKyAgICAgLyoKPiA+
+Pj4gKyAgICAgICogV2UgY29weSBpbiA4TWlCIGNodW5rcy4gRWFjaCBQREUgY292ZXJzIDJNaUIs
+IHNvIHdlIG5lZWQKPiA+Pj4gKyAgICAgICogNHgyIHBhZ2UgZGlyZWN0b3JpZXMgZm9yIHNvdXJj
+ZS9kZXN0aW5hdGlvbi4KPiA+Pj4gKyAgICAgICovCj4gPj4+ICsgICAgIHN6ID0gMiAqIENIVU5L
+X1NaOwo+ID4+PiArICAgICBvZmZzZXQgPSBzejsKPiA+Pj4gKwo+ID4+PiArICAgICAvKgo+ID4+
+PiArICAgICAgKiBXZSBuZWVkIGFub3RoZXIgcGFnZSBkaXJlY3Rvcnkgc2V0dXAgc28gdGhhdCB3
+ZSBjYW4gd3JpdGUKPiA+Pj4gKyAgICAgICogdGhlIDh4NTEyIFBURSBpbiBlYWNoIGNodW5rLgo+
+ID4+PiArICAgICAgKi8KPiA+Pj4gKyAgICAgc3ogKz0gKHN6ID4+IDEyKSAqIHNpemVvZih1NjQp
+Owo+ID4+PiArCj4gPj4+ICsgICAgIGVyciA9IGk5MTVfdm1fYWxsb2NfcHRfc3Rhc2goJnZtLT52
+bSwgJnN0YXNoLCBzeik7Cj4gPj4+ICsgICAgIGlmIChlcnIpCj4gPj4+ICsgICAgICAgICAgICAg
+Z290byBlcnJfdm07Cj4gPj4+ICsKPiA+Pj4gKyAgICAgZXJyID0gaTkxNV92bV9waW5fcHRfc3Rh
+c2goJnZtLT52bSwgJnN0YXNoKTsKPiA+Pj4gKyAgICAgaWYgKGVycikgewo+ID4+PiArICAgICAg
+ICAgICAgIGk5MTVfdm1fZnJlZV9wdF9zdGFzaCgmdm0tPnZtLCAmc3Rhc2gpOwo+ID4+PiArICAg
+ICAgICAgICAgIGdvdG8gZXJyX3ZtOwo+ID4+PiArICAgICB9Cj4gPj4+ICsKPiA+Pj4gKyAgICAg
+dm0tPnZtLmFsbG9jYXRlX3ZhX3JhbmdlKCZ2bS0+dm0sICZzdGFzaCwgMCwgc3opOwo+ID4+PiAr
+ICAgICBpOTE1X3ZtX2ZyZWVfcHRfc3Rhc2goJnZtLT52bSwgJnN0YXNoKTsKPiA+Pj4gKwo+ID4+
+PiArICAgICAvKiBOb3cgYWxsb3cgdGhlIEdQVSB0byByZXdyaXRlIHRoZSBQVEUgdmlhIGl0cyBv
+d24gcHBHVFQgKi8KPiA+Pj4gKyAgICAgdm0tPnZtLmZvcmVhY2goJnZtLT52bSwgMCwgc3osIGlu
+c2VydF9wdGUsICZvZmZzZXQpOwo+ID4+Cj4gPj4gVGhpcyBpcyBqdXN0IG1ha2luZyB0aGUgWzAg
+LSBzeikgZ3ZhIHBvaW50IHRvIHRoZSBhbGxvY2F0ZWQgc3ogYnl0ZXMgb2YKPiA+PiBiYWNraW5n
+IHN0b3JlPwo+ID4gCj4gPiBOb3QgcXVpdGUsIHdlIGFyZSBwb2ludGluZyBbb2Zmc2V0LCBzeikg
+dG8gdGhlIHBhZ2UgZGlyZWN0b3JpZXMKPiA+IHRoZW1zZWx2ZXMuIFdoZW4gd2Ugd3JpdGUgaW50
+byB0aGF0IHJhbmdlLCB3ZSBhcmUgbW9kaWZ5aW5nIHRoZSBQVEUgb2YKPiA+IHRoaXMgcHBHVFQu
+IChCcmVha2luZyB0aGUgZm91cnRoIHdhbGwsIGFsbG93aW5nIHRoZSBub24tcHJpdmlsZWdlZAo+
+ID4gY29udGV4dCB0byB1cGRhdGUgaXRzIG93biBwYWdlIHRhYmxlcy4pCj4gCj4gQ29uZnVzaW5n
+LCBzbyBmaXJzdCBzdGVwIGlzIGhlcmUgbWFraW5nIFswLCBzeikgZ3ZhIHB0ZXMgcG9pbnQgdG8g
+cHRlIAo+IGJhY2tpbmcgc3RvcmUuCj4gCj4gV2hpY2ggbWVhbnMgZW1pdF9wdGUgd2hlbiBjYWxs
+ZWQgZnJvbSBpbnRlbF9jb250ZXh0X21pZ3JhdGVfcGFnZXMgaXMgCj4gZW1pdHRpbmcgc2R3IHdo
+aWNoIHdpbGwgd3JpdGUgaW50byBbMCwgc3pdIGd2YSwgZWZmZWN0aXZlbHkgcGxhY2luZyB0aGUg
+Cj4gc3JjIGFuZCBkZXN0IG9iamVjdCBjb250ZW50IGF0IHRob3NlIGxvY2F0aW9uLgo+IAo+IFRo
+ZW4gYmxpdCBjb3BpZXMgdGhlIGRhdGEuCj4gCj4gV2hhdCBoYXBwZW5zIGlmIGNvbnRleHQgaXMg
+cmUtdXNlZD8gR3ZhJ3Mgbm8gbG9uZ2VyIHBvaW50IHRvIFBURXMgc28gCj4gaG93PyBJcyBhIHN0
+ZXAgdG8gcmUtaW5pdGlhbGl6ZSBhZnRlciB1c2UgbWlzc2luZz8gTW9yZSBzZHcgYWZ0ZXIgdGhl
+IAo+IGJsaXQgY29weSB0byBtYWtlIGl0IHBvaW50IGJhY2sgdG8gcHRlcz8KCkV2ZXJ5IGNodW5r
+IHN0YXJ0cyB3aXRoIHdyaXRpbmcgdGhlIFBURXMgdXNlZCBieSB0aGUgY2h1bmsuIFdpdGhpbiB0
+aGUKY2h1bmssIHRoZSBHUFUgY29tbWFuZHMgYXJlIG5vdCBwcmVlbXB0aWJsZSwgc28gdGhlIFBU
+RXMgY2Fubm90IGJlCnJlcGxhY2VkIGJlZm9yZSB0aGV5IGFyZSBjb25zdW1lZC4KCldlIGRvIGxl
+YXZlIHRoZSBQVEUgcG9pbnRpbmcgdG8gc3RhbGUgcGFnZXMgYWZ0ZXIgdGhlIGJsaXQsIGJ1dCBz
+aW5jZQp0aGUgdm0gaXMgb25seSB1c2VkIGJ5IGZpcnN0IHJld3JpdGluZyB0aGUgUFRFLCB0aG9z
+ZSBkYW5nbGluZyBQVEUKc2hvdWxkIG5ldmVyIGJlIGNoYXNlZC4KClNvIGVhY2ggY2h1bmsgZG9l
+cyBhIGZpeGVkIGNvcHkgYmV0d2VlbiB0aGUgc2FtZSBwYWlyIG9mIGFkZHJlc3Nlcwp3aXRoaW4g
+dGhlIHZtOyB0aGUgbWFnaWMgaXMgaW4gcmV3cml0aW5nIHRoZSBQVEUgdG8gcG9pbnQgYXQgdGhl
+IHBhZ2VzCm9mIGludGVyZXN0IGZvciB0aGUgY2h1bmsuCgo+ID4+PiArICAgICAgICAgICAgIGk5
+MTVfcmVxdWVzdF9hZGQocnEpOwo+ID4+PiArICAgICAgICAgICAgIGlmIChpdF9zLnNnKQo+ID4+
+PiArICAgICAgICAgICAgICAgICAgICAgY29uZF9yZXNjaGVkKCk7Cj4gPj4KPiA+PiAgIEZyb20g
+d2hhdCBjb250ZXh0IGRvZXMgdGhpcyBydW4/IE5vIHByZWVtcHRpYmxlPwo+ID4gCj4gPiBIYXMg
+dG8gYmUgcHJvY2VzcyBjb250ZXh0OyBudW1lcm91cyBhbGxvY2F0aW9ucywgaW1wbGljaXQgd2Fp
+dHMgKHRoYXQgd2UKPiA+IHdhbnQgdG8gYXZvaWQgaW4gcHJhY3RpY2UpLCBhbmQgdGhlIHRpbWVs
+aW5lIChwZXItY29udGV4dCkgbXV0ZXggdG8KPiA+IGd1YXJkIGFjY2VzcyB0byB0aGUgcmluZ2J1
+ZmZlci4KPiAKPiBJIGd1ZXNzIG9uIG5vbi1wcmVlbXB0aWJsZSwgb3Igbm90IGZ1bGx5IHByZWVt
+cHRpYmxlIGtlcm5lbCBpdCBpcyB1c2VmdWwuCgpPaCwgdGhlIGNvbmRfcmVzY2hlZCgpIGlzIGFs
+bW9zdCBjZXJ0YWlubHkgb3ZlcmtpbGwuIEJ1dCBwb3RlbnRpYWxseSBhCnZlcnkgbGFyZ2UgbG9v
+cCBzbyB3b3J0aCBiZWluZyBjYXJlZnVsLgotQ2hyaXMKX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhA
+bGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxt
+YW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
