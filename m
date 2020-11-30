@@ -2,38 +2,41 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id BDDA22C8105
-	for <lists+intel-gfx@lfdr.de>; Mon, 30 Nov 2020 10:30:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D08112C8107
+	for <lists+intel-gfx@lfdr.de>; Mon, 30 Nov 2020 10:31:08 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8AA916E40C;
-	Mon, 30 Nov 2020 09:30:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3395A6E413;
+	Mon, 30 Nov 2020 09:31:07 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6EB186E40C
- for <intel-gfx@lists.freedesktop.org>; Mon, 30 Nov 2020 09:30:55 +0000 (UTC)
-IronPort-SDR: 58XipkhnBjy3EWcFiuU5pelaOxVmHyhPxhyZJjW0IxEJ6cVQMwZSseMM3yo0X01FJ7qGXTnhsA
- uJ5790X8k+6g==
-X-IronPort-AV: E=McAfee;i="6000,8403,9820"; a="160378864"
-X-IronPort-AV: E=Sophos;i="5.78,381,1599548400"; d="scan'208";a="160378864"
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 22B366E40A
+ for <intel-gfx@lists.freedesktop.org>; Mon, 30 Nov 2020 09:31:02 +0000 (UTC)
+IronPort-SDR: 5tSO+CQiFTpKG3TCXF5rRZnZFk/7d3XNgD7A4vF5HpAS7Y7rkc6nCgIxoUgTfAbmWs0mdRX3IB
+ vky7EH9Zdpzg==
+X-IronPort-AV: E=McAfee;i="6000,8403,9820"; a="257314886"
+X-IronPort-AV: E=Sophos;i="5.78,381,1599548400"; d="scan'208";a="257314886"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Nov 2020 01:30:54 -0800
-IronPort-SDR: R3eI/c8BAoBxG+tBKC7K9kNj+CpEpOFQsDyBZwDdZxCmT73raYjLT1lGpVu20TMg5B96mAzOkx
- 3lyuNbTP2a3w==
-X-IronPort-AV: E=Sophos;i="5.78,381,1599548400"; d="scan'208";a="367055031"
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Nov 2020 01:31:00 -0800
+IronPort-SDR: msPKbE6RIy/47oIenrtyjT8fB3XjJHxF/MbrvOE3/URxlgQZVIzMiayjXqglIINHthj7yPOxKd
+ Dy4mG29rYH8Q==
+X-IronPort-AV: E=Sophos;i="5.78,381,1599548400"; d="scan'208";a="367055050"
 Received: from genxfsim-desktop.iind.intel.com ([10.223.74.178])
  by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Nov 2020 01:30:52 -0800
+ 30 Nov 2020 01:30:58 -0800
 From: Anshuman Gupta <anshuman.gupta@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Mon, 30 Nov 2020 14:46:44 +0530
-Message-Id: <20201130091646.25576-1-anshuman.gupta@intel.com>
+Date: Mon, 30 Nov 2020 14:46:45 +0530
+Message-Id: <20201130091646.25576-2-anshuman.gupta@intel.com>
 X-Mailer: git-send-email 2.26.2
+In-Reply-To: <20201130091646.25576-1-anshuman.gupta@intel.com>
+References: <20201130091646.25576-1-anshuman.gupta@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [RFC 0/2] Display glitches fixes
+Subject: [Intel-gfx] [RFC 1/2] drm/i915/dp: optimize pps_lock wherever
+ required
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,17 +54,81 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This series addressed the display glitches observed on
-TGL chrome-OS platform.
+Reading backlight status from PPS register doesn't require
+AUX power on the platform which has South Display Engine on PCH.
+It invokes a unnecessary power well enable/disable noise.
+optimize it wherever is possible.
 
-Anshuman Gupta (2):
-  drm/i915/dp: optimize pps_lock wherever required
-  drm/i915/display: Protect pipe_update against dc3co exit
+Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_dp.c | 47 +++++++++++++++++++++++--
+ 1 file changed, 45 insertions(+), 2 deletions(-)
 
- drivers/gpu/drm/i915/display/intel_display.c |  3 ++
- drivers/gpu/drm/i915/display/intel_dp.c      | 47 +++++++++++++++++++-
- 2 files changed, 48 insertions(+), 2 deletions(-)
-
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+index 3896d08c4177..37371aa5f7c5 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp.c
+@@ -892,6 +892,47 @@ pps_unlock(struct intel_dp *intel_dp, intel_wakeref_t wakeref)
+ 	return 0;
+ }
+ 
++/*
++ * Platform with PCH based SDE doesn't require to enable AUX power
++ * for simple PPS register access like whether backlight is enabled.
++ * use pch_pps_lock()/pch_pps_unlock() wherever we don't require
++ * aux power to avoid unnecessary power well enable/disable back
++ * and forth.
++ */
++static intel_wakeref_t
++pch_pps_lock(struct intel_dp *intel_dp)
++{
++	struct drm_i915_private *dev_priv = dp_to_i915(intel_dp);
++	intel_wakeref_t wakeref;
++
++	if (!HAS_PCH_SPLIT(dev_priv))
++		wakeref = intel_display_power_get(dev_priv,
++						  intel_aux_power_domain(dp_to_dig_port(intel_dp)));
++	else
++		wakeref = intel_runtime_pm_get(&dev_priv->runtime_pm);
++
++	mutex_lock(&dev_priv->pps_mutex);
++
++	return wakeref;
++}
++
++static intel_wakeref_t
++pch_pps_unlock(struct intel_dp *intel_dp, intel_wakeref_t wakeref)
++{
++	struct drm_i915_private *dev_priv = dp_to_i915(intel_dp);
++
++	mutex_unlock(&dev_priv->pps_mutex);
++
++	if (!HAS_PCH_SPLIT(dev_priv))
++		intel_display_power_put(dev_priv,
++					intel_aux_power_domain(dp_to_dig_port(intel_dp)),
++					wakeref);
++	else
++		intel_runtime_pm_put(&dev_priv->runtime_pm, wakeref);
++
++	return 0;
++}
++
+ #define with_pps_lock(dp, wf) \
+ 	for ((wf) = pps_lock(dp); (wf); (wf) = pps_unlock((dp), (wf)))
+ 
+@@ -3449,8 +3490,10 @@ static void intel_edp_backlight_power(struct intel_connector *connector,
+ 	bool is_enabled;
+ 
+ 	is_enabled = false;
+-	with_pps_lock(intel_dp, wakeref)
+-		is_enabled = ilk_get_pp_control(intel_dp) & EDP_BLC_ENABLE;
++	wakeref = pch_pps_lock(intel_dp);
++	is_enabled = ilk_get_pp_control(intel_dp) & EDP_BLC_ENABLE;
++	pch_pps_unlock(intel_dp, wakeref);
++
+ 	if (is_enabled == enable)
+ 		return;
+ 
 -- 
 2.26.2
 
