@@ -2,41 +2,41 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D08112C8107
-	for <lists+intel-gfx@lfdr.de>; Mon, 30 Nov 2020 10:31:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 755302C8106
+	for <lists+intel-gfx@lfdr.de>; Mon, 30 Nov 2020 10:31:05 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3395A6E413;
-	Mon, 30 Nov 2020 09:31:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CC9966E43D;
+	Mon, 30 Nov 2020 09:31:03 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 22B366E40A
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 667136E40A
  for <intel-gfx@lists.freedesktop.org>; Mon, 30 Nov 2020 09:31:02 +0000 (UTC)
-IronPort-SDR: 5tSO+CQiFTpKG3TCXF5rRZnZFk/7d3XNgD7A4vF5HpAS7Y7rkc6nCgIxoUgTfAbmWs0mdRX3IB
- vky7EH9Zdpzg==
-X-IronPort-AV: E=McAfee;i="6000,8403,9820"; a="257314886"
-X-IronPort-AV: E=Sophos;i="5.78,381,1599548400"; d="scan'208";a="257314886"
+IronPort-SDR: xFtSH/tlJBAVaRhKjE8hD5x23zIlgpJpIs0DxhBOgSA43koJ979w12luAsXb/1qfD/Gdw9c0rN
+ IAwKA94vHGoA==
+X-IronPort-AV: E=McAfee;i="6000,8403,9820"; a="257314888"
+X-IronPort-AV: E=Sophos;i="5.78,381,1599548400"; d="scan'208";a="257314888"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from fmsmga002.fm.intel.com ([10.253.24.26])
  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Nov 2020 01:31:00 -0800
-IronPort-SDR: msPKbE6RIy/47oIenrtyjT8fB3XjJHxF/MbrvOE3/URxlgQZVIzMiayjXqglIINHthj7yPOxKd
- Dy4mG29rYH8Q==
-X-IronPort-AV: E=Sophos;i="5.78,381,1599548400"; d="scan'208";a="367055050"
+ 30 Nov 2020 01:31:02 -0800
+IronPort-SDR: Z7GgltN4bb+GBVtJQwqzig3y8rLTrTDXFS6XMmtzqvz+3dRAzVQqWBLEGq+QqIu1iIF4KCd/r+
+ VrlOmgIcJ9QA==
+X-IronPort-AV: E=Sophos;i="5.78,381,1599548400"; d="scan'208";a="367055058"
 Received: from genxfsim-desktop.iind.intel.com ([10.223.74.178])
  by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Nov 2020 01:30:58 -0800
+ 30 Nov 2020 01:31:00 -0800
 From: Anshuman Gupta <anshuman.gupta@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Mon, 30 Nov 2020 14:46:45 +0530
-Message-Id: <20201130091646.25576-2-anshuman.gupta@intel.com>
+Date: Mon, 30 Nov 2020 14:46:46 +0530
+Message-Id: <20201130091646.25576-3-anshuman.gupta@intel.com>
 X-Mailer: git-send-email 2.26.2
 In-Reply-To: <20201130091646.25576-1-anshuman.gupta@intel.com>
 References: <20201130091646.25576-1-anshuman.gupta@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [RFC 1/2] drm/i915/dp: optimize pps_lock wherever
- required
+Subject: [Intel-gfx] [RFC 2/2] drm/i915/display: Protect pipe_update against
+ dc3co exit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,86 +49,50 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: stable@vger.kernel.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Reading backlight status from PPS register doesn't require
-AUX power on the platform which has South Display Engine on PCH.
-It invokes a unnecessary power well enable/disable noise.
-optimize it wherever is possible.
+At usual case DC3CO exit happen automatically by DMC f/w whenever
+PSR2 clears idle. This happens smoothly by DMC f/w to work with flips.
+But there are certain scenario where DC3CO  Disallowed by driver
+asynchronous with flips. In such scenario display engine could
+be already in DC3CO state and driver has disallowed it,
+It initiates DC3CO exit sequence in DMC f/w which requires a
+dc3co exit delay of 200us in driver.
+It requires to protect intel_pipe_update_{update_end} with
+dc3co exit delay.
 
+Cc: Imre Deak <imre.deak@intel.com>
+Cc: <stable@vger.kernel.org>
 Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dp.c | 47 +++++++++++++++++++++++--
- 1 file changed, 45 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/i915/display/intel_display.c | 3 +++
+ 1 file changed, 3 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index 3896d08c4177..37371aa5f7c5 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -892,6 +892,47 @@ pps_unlock(struct intel_dp *intel_dp, intel_wakeref_t wakeref)
- 	return 0;
- }
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index ba26545392bc..3b81b98c0daf 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -15924,6 +15924,8 @@ static void intel_update_crtc(struct intel_atomic_state *state,
+ 	else
+ 		intel_fbc_enable(state, crtc);
  
-+/*
-+ * Platform with PCH based SDE doesn't require to enable AUX power
-+ * for simple PPS register access like whether backlight is enabled.
-+ * use pch_pps_lock()/pch_pps_unlock() wherever we don't require
-+ * aux power to avoid unnecessary power well enable/disable back
-+ * and forth.
-+ */
-+static intel_wakeref_t
-+pch_pps_lock(struct intel_dp *intel_dp)
-+{
-+	struct drm_i915_private *dev_priv = dp_to_i915(intel_dp);
-+	intel_wakeref_t wakeref;
-+
-+	if (!HAS_PCH_SPLIT(dev_priv))
-+		wakeref = intel_display_power_get(dev_priv,
-+						  intel_aux_power_domain(dp_to_dig_port(intel_dp)));
-+	else
-+		wakeref = intel_runtime_pm_get(&dev_priv->runtime_pm);
-+
-+	mutex_lock(&dev_priv->pps_mutex);
-+
-+	return wakeref;
-+}
-+
-+static intel_wakeref_t
-+pch_pps_unlock(struct intel_dp *intel_dp, intel_wakeref_t wakeref)
-+{
-+	struct drm_i915_private *dev_priv = dp_to_i915(intel_dp);
-+
-+	mutex_unlock(&dev_priv->pps_mutex);
-+
-+	if (!HAS_PCH_SPLIT(dev_priv))
-+		intel_display_power_put(dev_priv,
-+					intel_aux_power_domain(dp_to_dig_port(intel_dp)),
-+					wakeref);
-+	else
-+		intel_runtime_pm_put(&dev_priv->runtime_pm, wakeref);
-+
-+	return 0;
-+}
-+
- #define with_pps_lock(dp, wf) \
- 	for ((wf) = pps_lock(dp); (wf); (wf) = pps_unlock((dp), (wf)))
++	/* Protect intel_pipe_update_{start,end} with power_domians lock */
++	mutex_lock(&dev_priv->power_domains.lock);
+ 	/* Perform vblank evasion around commit operation */
+ 	intel_pipe_update_start(new_crtc_state);
  
-@@ -3449,8 +3490,10 @@ static void intel_edp_backlight_power(struct intel_connector *connector,
- 	bool is_enabled;
+@@ -15935,6 +15937,7 @@ static void intel_update_crtc(struct intel_atomic_state *state,
+ 		i9xx_update_planes_on_crtc(state, crtc);
  
- 	is_enabled = false;
--	with_pps_lock(intel_dp, wakeref)
--		is_enabled = ilk_get_pp_control(intel_dp) & EDP_BLC_ENABLE;
-+	wakeref = pch_pps_lock(intel_dp);
-+	is_enabled = ilk_get_pp_control(intel_dp) & EDP_BLC_ENABLE;
-+	pch_pps_unlock(intel_dp, wakeref);
-+
- 	if (is_enabled == enable)
- 		return;
+ 	intel_pipe_update_end(new_crtc_state);
++	mutex_unlock(&dev_prive->power_domains.lock);
  
+ 	/*
+ 	 * We usually enable FIFO underrun interrupts as part of the
 -- 
 2.26.2
 
