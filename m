@@ -2,41 +2,104 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BD9052C8EDB
-	for <lists+intel-gfx@lfdr.de>; Mon, 30 Nov 2020 21:14:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7D8C52C8F90
+	for <lists+intel-gfx@lfdr.de>; Mon, 30 Nov 2020 22:00:02 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2CA426E860;
-	Mon, 30 Nov 2020 20:14:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 92A5289D4D;
+	Mon, 30 Nov 2020 20:59:55 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E98A889B9E
- for <intel-gfx@lists.freedesktop.org>; Mon, 30 Nov 2020 20:14:31 +0000 (UTC)
-IronPort-SDR: ElIienufWNFi6Ml/0jvSrI7jvx6z5mARyxuFq8FzxG+a0m9Dut7p+YPWxIN9UECR74J/ps0AA1
- jY0kQcofLJHw==
-X-IronPort-AV: E=McAfee;i="6000,8403,9821"; a="190893004"
-X-IronPort-AV: E=Sophos;i="5.78,382,1599548400"; d="scan'208";a="190893004"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Nov 2020 12:14:31 -0800
-IronPort-SDR: WOu4/NZe1w38PfduwY5380brObo1hnUdxaGJTcC2wysBPZxerz58fiw7d7cBRohDwYmLBHq1R6
- aaZselQx8Axw==
-X-IronPort-AV: E=Sophos;i="5.78,382,1599548400"; d="scan'208";a="372472391"
-Received: from linux-desktop.iind.intel.com ([10.223.34.173])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Nov 2020 12:14:30 -0800
-From: Uma Shankar <uma.shankar@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Tue,  1 Dec 2020 02:17:38 +0530
-Message-Id: <20201130204738.2443-16-uma.shankar@intel.com>
-X-Mailer: git-send-email 2.26.2
-In-Reply-To: <20201130204738.2443-1-uma.shankar@intel.com>
-References: <20201130204738.2443-1-uma.shankar@intel.com>
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam12on2062.outbound.protection.outlook.com [40.107.237.62])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5B31689CF2;
+ Mon, 30 Nov 2020 20:59:54 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=mbEACLEvQMLiGLZzy4V+7A3TcecZ8i7cBU/sriWaTVFfdeALnSq0N0YSbwygMWQI1cSbKU7Jtm/9sjC+MAEW/QxojggYNytdJgzKqprP0v9ggxp6iVtqR4ddpidKHUQmzbW3HYfFT1CU8Tli8NGq9P5X7X+kcY7II+Mf1kiNB/my11Ib9ABm3kgEb4+g0280pWW9AemCB1yDVMMX5ShiqbYof0wHoA8nwOlCbGne27hc2jjL83HvXFpLdaNoyGX/HevMbjXbFS3igpNO+QRpnlGZYZ4QiBZPcm44fFNS/AwNVV7SthupY9FK3hR98TS5vyAEkMsCNXKqKm+Q1iEGSg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=sU8qXTDuZDWl8ptwgkY0Wk8RC9Ca0AQO3aOswrUCdGo=;
+ b=LmYdxr/Cff0BQNRrgLfbab1lnPoQn9MM+1u2syujdjDvJ5fAkecWHbgUgLPiCcafteqTmMpyJp/6rDM9r0Z+qMcmXxmiUnLeOnGxyvG33VQbbvbwxxxqce3SF2OzBPaLusuTEqxW9VbLRe/Cze2IjX7pVn3xn2ZuRLX7bzsuXO/hje1DHCcDy/0HY+xIph83Rcsen+IUEa7qPmp8dTnOQYCi3YlgeM9LxIfwVEKllOlknWXImsQQUTZOOp/xu2mPaduFW8qBVM7i4+TKbPkLH88YO4scuaIKYfUQyrzMdzAuTXLykiuv6f6kpFWaorrDzvkvqCP7ADM2qu/aEjcAMg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=vmware.com; dmarc=pass action=none header.from=vmware.com;
+ dkim=pass header.d=vmware.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=vmware.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=sU8qXTDuZDWl8ptwgkY0Wk8RC9Ca0AQO3aOswrUCdGo=;
+ b=vDizNmFwWwGnFYj3K/RfUogG1E19b1vb7+r/6k9CVOrKPM4o1UlOUJ3K0B7VEPuyHSyt7s/zz4MXCVdW/ogyIotVW6cEPHA8kKmzZt6NviXTMnvGxhNq5915xSHS9exgTkkoFkzQRYHpBLMErzADN5jVnVKVAc+fhMpbYGYYmqo=
+Received: from BL0PR05MB5186.namprd05.prod.outlook.com (2603:10b6:208:8f::18)
+ by BL0PR05MB5588.namprd05.prod.outlook.com (2603:10b6:208:6e::12)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3632.6; Mon, 30 Nov
+ 2020 20:59:52 +0000
+Received: from BL0PR05MB5186.namprd05.prod.outlook.com
+ ([fe80::59ed:18ca:252d:72f6]) by BL0PR05MB5186.namprd05.prod.outlook.com
+ ([fe80::59ed:18ca:252d:72f6%7]) with mapi id 15.20.3632.016; Mon, 30 Nov 2020
+ 20:59:52 +0000
+From: Zack Rusin <zackr@vmware.com>
+To: Thomas Zimmermann <tzimmermann@suse.de>
+Thread-Topic: [PATCH 14/15] drm/vmwgfx: Remove references to struct
+ drm_device.pdev
+Thread-Index: AQHWwlaG5WlZT6CPxU6T7GsrbIaTjanhMtCA
+Date: Mon, 30 Nov 2020 20:59:52 +0000
+Message-ID: <31E75B1A-AAC0-49E3-985E-2DF5B59CD883@vmware.com>
+References: <20201124113824.19994-1-tzimmermann@suse.de>
+ <20201124113824.19994-15-tzimmermann@suse.de>
+In-Reply-To: <20201124113824.19994-15-tzimmermann@suse.de>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-mailer: Apple Mail (2.3608.120.23.2.4)
+authentication-results: suse.de; dkim=none (message not signed)
+ header.d=none;suse.de; dmarc=none action=none header.from=vmware.com;
+x-originating-ip: [71.175.59.246]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 1f0214c3-2da1-4d3b-3b52-08d89572e1e8
+x-ms-traffictypediagnostic: BL0PR05MB5588:
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <BL0PR05MB5588E4B29C9638548FE9B5D9CEF50@BL0PR05MB5588.namprd05.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:849;
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: iN0W7nqmJ+GRtCOPNL2IJ1GerLvIBkK+KUyM8yaOY7Ecj0rfJTt8WpPKVuEXgVZyJyIyxMxD8joOgrYmYSp3w3+ngJ7a9KXXi3tCmXQuHk03llmnkVG68Bvw/Qr4IYcqxr3cMSbJ7BfPrHlImI8/7RPYAUveQ70CNwSVnRS/vB60JToUo+pPybHt5wYi7g7OpFoZDBabiL3TQOKdjSIbMiEKZtxA5UeYUX5Npd9xbDIuFlX1bw91Y+AtCCcdSJj1ghbKT3q3GYrcJNx8ewQJm5K9HTJmKzSh6OZlRtLqY4IX4GSlXrJ+DyNk61s9Rvmt/Ik0kBCEhEmgpT36Eip4QA==
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:BL0PR05MB5186.namprd05.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(4636009)(366004)(346002)(376002)(136003)(39860400002)(396003)(8676002)(8936002)(6512007)(5660300002)(2906002)(6486002)(2616005)(36756003)(4744005)(66446008)(316002)(54906003)(66556008)(76116006)(64756008)(71200400001)(66476007)(26005)(33656002)(66946007)(186003)(478600001)(7416002)(86362001)(4326008)(6506007)(6916009)(53546011);
+ DIR:OUT; SFP:1101; 
+x-ms-exchange-antispam-messagedata: =?us-ascii?Q?PYtjGb518O0ip1gT/S8MkSKTcfym9HafySjrLzNtj/K9p29AtHi22Nz9bLgs?=
+ =?us-ascii?Q?Xs2tNeuqgD0+AZbNAfkhGKpCvcLYG/h3Yuu16YOAy+/0bHMQyUI+D7Owa1Cz?=
+ =?us-ascii?Q?DN+wygOXlXWzo/srHCn7P8YBPVscfuhkF2UkLsVXGFnQnfJyJeoHQGEUzWIf?=
+ =?us-ascii?Q?+aLOlAaL7+9eoXnjMKE6AYzD1B5+3x5z8Ar413CU1RxpoGbXyHxaJ6KPIo92?=
+ =?us-ascii?Q?RY2hok4hC1HkyTK9W0O1+Eee+8GwC3po3xi8t5qv5brwQJP44gEthr3Nr/an?=
+ =?us-ascii?Q?nB4j1tjpPHTMdBuVvxPfoEWscQ8rd/3Zs5slbJbvpLF/cZCHfQWWZvpboYm6?=
+ =?us-ascii?Q?HGCLNymIy+xrTHdfQ1fugkxP3Ylg2LF0bvo7pXCyD4Ak3GRbfS6ece4N0sNC?=
+ =?us-ascii?Q?mqBVuWqQsLM7B9BWjKzJ97s/+h94ZUw3+0F+8d6hZYP70fVjiCGxCYntRTSH?=
+ =?us-ascii?Q?9dMu8UrmcVGmzd9jZVOAU1K2Q5QJrC2a8c6NUPstyrhY7KPal+3DeKWuk33J?=
+ =?us-ascii?Q?j1nIj+TGjgIzwSeiym25zWAPtkUfYtTesb3yXkhG/LiO2X1THcS6OVQ0BsXO?=
+ =?us-ascii?Q?AUSGci/LQELrlURpnXOKsP4QomhItf3UoUqiYoXcEbRtL2J8ksEpRptm3Ptg?=
+ =?us-ascii?Q?zA4xcgZB22emHi0YiDy+0KKHF83FpIZp42Dd0TEmxINRehIov+EWWLrLvBvB?=
+ =?us-ascii?Q?ryjBRbRIZ3sLUF8tLc1C11D+JBMkFlcx65hrvwyUXPidMLD+u8IZoDntwLGh?=
+ =?us-ascii?Q?Jd3GAt7ml5msPPHCu2Knoq+Kn44Ij34vjpIQylyUC+7ISL7Oz6EiHA21oGv0?=
+ =?us-ascii?Q?cI8mHctWACpva3XBaWptAIcZtstO7r/tW7Hj8l9pEn/g1Et83OtFMLaxLX/p?=
+ =?us-ascii?Q?wQVucnUd4pc1X/ADjMCpT1gzKmnbuE71ueWjTUNWRa/WYgHEe3ogxTUtR+FZ?=
+ =?us-ascii?Q?d6KkxBtaG4W9edqAUHojYKYTjPyI8MEoOOWfqDhXJd0ChFqAxclLAqu4/TTo?=
+ =?us-ascii?Q?swvr?=
+Content-ID: <DA00B6650FD7A948A321344693A5973A@namprd05.prod.outlook.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [v14 15/15] drm/i915/display: [NOT FOR MERGE] Reduce
- blanking to support 4k60@10bpp for LSPCON
+X-OriginatorOrg: vmware.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: BL0PR05MB5186.namprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 1f0214c3-2da1-4d3b-3b52-08d89572e1e8
+X-MS-Exchange-CrossTenant-originalarrivaltime: 30 Nov 2020 20:59:52.0089 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: b39138ca-3cee-4b4a-a4d6-cd83d9dd62f0
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: feIN9tRtxBM3IDeKho3X1g0E3JzY61Bh/tu1Qw5z1F1LYdR1Qb/YLWYFjDQuAm1vV1hcvbFSS83OXdj88UXK9Q==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL0PR05MB5588
+Subject: Re: [Intel-gfx] [PATCH 14/15] drm/vmwgfx: Remove references to
+ struct drm_device.pdev
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,69 +112,38 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: "airlied@linux.ie" <airlied@linux.ie>,
+ "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ Roland Scheidegger <sroland@vmware.com>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ "virtualization@lists.linux-foundation.org"
+ <virtualization@lists.linux-foundation.org>,
+ "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>,
+ "spice-devel@lists.freedesktop.org" <spice-devel@lists.freedesktop.org>,
+ "intel-gvt-dev@lists.freedesktop.org" <intel-gvt-dev@lists.freedesktop.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Blanking needs to be reduced to incorporate DP and HDMI timing/link
-bandwidth limitations for CEA modes (4k@60 at 10 bpp). DP can drive
-17.28Gbs while 4k modes (VIC97 etc) at 10 bpp required 17.8 Gbps.
-This will cause mode to blank out. Reduced Htotal by shortening the
-back porch and front porch within permissible limits.
 
-Note: This is for reference for userspace, not to be merged in kernel.
 
-v2: This is marked as Not for merge and the responsibilty to program
-these custom timings will be on userspace. This patch is just for
-reference purposes. This is based on Ville's recommendation.
+> On Nov 24, 2020, at 06:38, Thomas Zimmermann <tzimmermann@suse.de> wrote:
+> 
+> Using struct drm_device.pdev is deprecated. Convert vmwgfx to struct
+> drm_device.dev. No functional changes.
+> 
+> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
+> Cc: Roland Scheidegger <sroland@vmware.com>
+> ---
+> drivers/gpu/drm/vmwgfx/vmwgfx_cmdbuf.c |  8 ++++----
+> drivers/gpu/drm/vmwgfx/vmwgfx_drv.c    | 27 +++++++++++++-------------
+> drivers/gpu/drm/vmwgfx/vmwgfx_fb.c     |  2 +-
 
-v3: updated commit message.
+Reviewed-by: Zack Rusin <zackr@vmware.com>
 
-Signed-off-by: Uma Shankar <uma.shankar@intel.com>
----
- drivers/gpu/drm/i915/display/intel_dp.c | 17 +++++++++++++++++
- 1 file changed, 17 insertions(+)
-
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index 21a0ca6ae2a6..15e9c46af1d9 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -741,8 +741,10 @@ intel_dp_mode_valid(struct drm_connector *connector,
- {
- 	struct intel_dp *intel_dp = intel_attached_dp(to_intel_connector(connector));
- 	struct intel_connector *intel_connector = to_intel_connector(connector);
-+	struct intel_encoder *intel_encoder = intel_attached_encoder(intel_connector);
- 	struct drm_display_mode *fixed_mode = intel_connector->panel.fixed_mode;
- 	struct drm_i915_private *dev_priv = to_i915(connector->dev);
-+	struct intel_lspcon *lspcon = enc_to_intel_lspcon(intel_encoder);
- 	int target_clock = mode->clock;
- 	int max_rate, mode_rate, max_lanes, max_link_clock;
- 	int max_dotclk = dev_priv->max_dotclk_freq;
-@@ -778,6 +780,21 @@ intel_dp_mode_valid(struct drm_connector *connector,
- 	if (target_clock > max_dotclk)
- 		return MODE_CLOCK_HIGH;
- 
-+	/*
-+	 * Reducing Blanking to incorporate DP and HDMI timing/link bandwidth
-+	 * limitations for CEA modes (4k@60 at 10 bpp). DP can drive 17.28Gbs
-+	 * while 4k modes (VIC97 etc) at 10 bpp required 17.8 Gbps. This will
-+	 * cause mode to blank out. Reduced Htotal by shortening the back porch
-+	 * and front porch within permissible limits.
-+	 */
-+	if (lspcon->active && lspcon->hdr_supported &&
-+	    mode->clock > 570000) {
-+		mode->clock = 570000;
-+		mode->htotal -= 180;
-+		mode->hsync_start -= 72;
-+		mode->hsync_end -= 72;
-+	}
-+
- 	max_link_clock = intel_dp_max_link_rate(intel_dp);
- 	max_lanes = intel_dp_max_lane_count(intel_dp);
- 
--- 
-2.26.2
+z
 
 _______________________________________________
 Intel-gfx mailing list
