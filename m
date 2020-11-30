@@ -1,65 +1,44 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 487EC2C83F8
-	for <lists+intel-gfx@lfdr.de>; Mon, 30 Nov 2020 13:16:21 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 40C552C8403
+	for <lists+intel-gfx@lfdr.de>; Mon, 30 Nov 2020 13:20:29 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B8CF689BF5;
-	Mon, 30 Nov 2020 12:16:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 60E0F6E48F;
+	Mon, 30 Nov 2020 12:20:27 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DEB3089BF5
- for <intel-gfx@lists.freedesktop.org>; Mon, 30 Nov 2020 12:16:18 +0000 (UTC)
-IronPort-SDR: DmEGdIneOBPN//uT4Zesv7z0A0Y81bcWv1v9NNFgw+0fs3VYizZgbrq4Y21uBW0GD7D2JLx6z/
- fRrPm2egJvLg==
-X-IronPort-AV: E=McAfee;i="6000,8403,9820"; a="160396126"
-X-IronPort-AV: E=Sophos;i="5.78,381,1599548400"; d="scan'208";a="160396126"
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 120B76E48C;
+ Mon, 30 Nov 2020 12:20:26 +0000 (UTC)
+IronPort-SDR: yYx6dVbEuka7k1B/Drrl6bqakKAIjsa8zJekKe1Mn9vjq/ezfSHJbPFP4dkXrmL51+gcc0RNFR
+ 7gPDJWJmclyg==
+X-IronPort-AV: E=McAfee;i="6000,8403,9820"; a="159677082"
+X-IronPort-AV: E=Sophos;i="5.78,381,1599548400"; d="scan'208";a="159677082"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Nov 2020 04:16:17 -0800
-IronPort-SDR: QPnJWtZWXlmGxTzfB0kwHm51AjGFL8iFuHNvMKkBrp+I+uV6aMm4VmYbLDpZt12RRXNp1mKohx
- g1XyXFo1Ft3g==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.78,381,1599548400"; d="scan'208";a="404713922"
-Received: from fmsmsx604.amr.corp.intel.com ([10.18.126.84])
- by orsmga001.jf.intel.com with ESMTP; 30 Nov 2020 04:16:17 -0800
-Received: from bgsmsx601.gar.corp.intel.com (10.109.78.80) by
- fmsmsx604.amr.corp.intel.com (10.18.126.84) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1713.5; Mon, 30 Nov 2020 04:16:14 -0800
-Received: from bgsmsx604.gar.corp.intel.com (10.67.234.6) by
- BGSMSX601.gar.corp.intel.com (10.109.78.80) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1713.5; Mon, 30 Nov 2020 17:46:12 +0530
-Received: from bgsmsx604.gar.corp.intel.com ([10.67.234.6]) by
- BGSMSX604.gar.corp.intel.com ([10.67.234.6]) with mapi id 15.01.1713.004;
- Mon, 30 Nov 2020 17:46:12 +0530
-From: "Shankar, Uma" <uma.shankar@intel.com>
-To: =?iso-8859-1?Q?Ville_Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-Thread-Topic: [v12 11/15] drm/i915/lspcon: Create separate infoframe_enabled
- helper
-Thread-Index: AQHWxDLrQV4nXq/ZGE2n50P8Rds51Knbtf2AgATmRfA=
-Date: Mon, 30 Nov 2020 12:16:12 +0000
-Message-ID: <398750521d844bb6af29b27ae224d66e@intel.com>
-References: <20201126210314.7882-1-uma.shankar@intel.com>
- <20201126210314.7882-12-uma.shankar@intel.com>
- <20201127145507.GP6112@intel.com>
-In-Reply-To: <20201127145507.GP6112@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-product: dlpe-windows
-dlp-reaction: no-action
-dlp-version: 11.5.1.3
-x-originating-ip: [10.223.10.1]
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Nov 2020 04:20:25 -0800
+IronPort-SDR: NG91eec7ch1hC+h9mP0iRd2bAbZGpj4DVHfJSuSWOFSH9aM4iZTOt0/yzfdWd/H019fUpzkvta
+ u77XETT2C6yA==
+X-IronPort-AV: E=Sophos;i="5.78,381,1599548400"; d="scan'208";a="549076858"
+Received: from cshanno1-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.252.44.44])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Nov 2020 04:20:22 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Matthew Auld <matthew.auld@intel.com>, intel-gfx@lists.freedesktop.org
+In-Reply-To: <20201127120718.454037-132-matthew.auld@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20201127120718.454037-1-matthew.auld@intel.com>
+ <20201127120718.454037-132-matthew.auld@intel.com>
+Date: Mon, 30 Nov 2020 14:20:19 +0200
+Message-ID: <87v9dnjat8.fsf@intel.com>
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [v12 11/15] drm/i915/lspcon: Create separate
- infoframe_enabled helper
+Subject: Re: [Intel-gfx] [RFC PATCH 131/162] drm/i915/dg1: Add
+ enable_eviction modparam
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,137 +51,132 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Cc: dri-devel@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+On Fri, 27 Nov 2020, Matthew Auld <matthew.auld@intel.com> wrote:
+> From: CQ Tang <cq.tang@intel.com>
+>
+> enable_eviction is used to tune if eviction is enabled (default) or not.
+>
+> Signed-off-by: Sudeep Dutt <sudeep.dutt@intel.com>
+> Signed-off-by: CQ Tang <cq.tang@intel.com>
+> ---
+>  drivers/gpu/drm/i915/gem/i915_gem_object.c | 1 +
+>  drivers/gpu/drm/i915/gem/i915_gem_region.c | 5 +++++
+>  drivers/gpu/drm/i915/i915_params.c         | 3 +++
+>  drivers/gpu/drm/i915/i915_params.h         | 1 +
+>  drivers/gpu/drm/i915/intel_memory_region.c | 2 +-
+>  5 files changed, 11 insertions(+), 1 deletion(-)
+>
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object.c b/drivers/gpu/drm/i915/gem/i915_gem_object.c
+> index 7cb5f137522f..46d0f8731db0 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_object.c
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_object.c
+> @@ -293,6 +293,7 @@ static void i915_gem_free_object(struct drm_gem_object *gem_obj)
+>  	 * If object had been swapped out, free the hidden object.
+>  	 */
+>  	if (obj->swapto) {
+> +		GEM_BUG_ON(!i915->params.enable_eviction);
+>  		i915_gem_object_put(obj->swapto);
+>  		obj->swapto = NULL;
+>  	}
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_region.c b/drivers/gpu/drm/i915/gem/i915_gem_region.c
+> index a437538cd872..e1793c5f8d8c 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_region.c
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_region.c
+> @@ -21,6 +21,7 @@ i915_gem_object_swapout_pages(struct drm_i915_gem_object *obj,
+>  	GEM_BUG_ON(i915_gem_object_has_pages(obj));
+>  	GEM_BUG_ON(obj->mm.madv != I915_MADV_WILLNEED);
+>  	GEM_BUG_ON(obj->mm.region->type != INTEL_MEMORY_LOCAL);
+> +	GEM_BUG_ON(!i915->params.enable_eviction);
+>  
+>  	assert_object_held(obj);
+>  
+> @@ -70,6 +71,7 @@ static int
+>  i915_gem_object_swapin_pages(struct drm_i915_gem_object *obj,
+>  			     struct sg_table *pages, unsigned int sizes)
+>  {
+> +	struct drm_i915_private *i915 = to_i915(obj->base.dev);
+>  	struct drm_i915_gem_object *dst, *src;
+>  	int err;
+>  
+> @@ -77,6 +79,7 @@ i915_gem_object_swapin_pages(struct drm_i915_gem_object *obj,
+>  	GEM_BUG_ON(i915_gem_object_has_pages(obj));
+>  	GEM_BUG_ON(obj->mm.madv != I915_MADV_WILLNEED);
+>  	GEM_BUG_ON(obj->mm.region->type != INTEL_MEMORY_LOCAL);
+> +	GEM_BUG_ON(!i915->params.enable_eviction);
+>  
+>  	assert_object_held(obj);
+>  
+> @@ -146,6 +149,7 @@ i915_gem_object_put_pages_buddy(struct drm_i915_gem_object *obj,
+>  int
+>  i915_gem_object_get_pages_buddy(struct drm_i915_gem_object *obj)
+>  {
+> +	struct drm_i915_private *i915 = to_i915(obj->base.dev);
+>  	struct intel_memory_region *mem = obj->mm.region;
+>  	struct list_head *blocks = &obj->mm.blocks;
+>  	resource_size_t size = obj->base.size;
+> @@ -222,6 +226,7 @@ i915_gem_object_get_pages_buddy(struct drm_i915_gem_object *obj)
+>  	/* if we saved the page contents, swap them in */
+>  	if (obj->swapto) {
+>  		GEM_BUG_ON(i915_gem_object_is_volatile(obj));
+> +		GEM_BUG_ON(!i915->params.enable_eviction);
+>  
+>  		ret = i915_gem_object_swapin_pages(obj, st,
+>  						   sg_page_sizes);
+> diff --git a/drivers/gpu/drm/i915/i915_params.c b/drivers/gpu/drm/i915/i915_params.c
+> index 7f139ea4a90b..bb1ebb6ece95 100644
+> --- a/drivers/gpu/drm/i915/i915_params.c
+> +++ b/drivers/gpu/drm/i915/i915_params.c
+> @@ -197,6 +197,9 @@ i915_param_named_unsafe(fake_lmem_start, ulong, 0400,
+>  	"Fake LMEM start offset (default: 0)");
+>  #endif
+>  
+> +i915_param_named_unsafe(enable_eviction, bool, 0600,
+> +	"Enable memcpy based eviction which does not rely on DMA resv refactoring)");
 
+Does the module parameter actually need to be writable? Should be
+modified via debugfs as a device specific parameter?
 
-> -----Original Message-----
-> From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> Sent: Friday, November 27, 2020 8:25 PM
-> To: Shankar, Uma <uma.shankar@intel.com>
-> Cc: intel-gfx@lists.freedesktop.org
-> Subject: Re: [v12 11/15] drm/i915/lspcon: Create separate infoframe_enabl=
-ed
-> helper
-> =
+BR,
+Jani.
 
-> On Fri, Nov 27, 2020 at 02:33:10AM +0530, Uma Shankar wrote:
-> > Lspcon has Infoframes as well as DIP for HDR metadata(DRM Infoframe).
-> > Create a separate mechanism for lspcon compared to HDMI in order to
-> > address the same and ensure future scalability.
-> >
-> > v2: Streamlined this as per Ville's suggestions, making sure that HDMI
-> > infoframe versions are directly returned instead of a redundant and
-> > confusing DIP overhead.
-> >
-> > Suggested-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> > Signed-off-by: Uma Shankar <uma.shankar@intel.com>
-> > ---
-> >  drivers/gpu/drm/i915/display/intel_ddi.c    | 10 +++++++---
-> >  drivers/gpu/drm/i915/display/intel_lspcon.c |  9 +++++++++
-> > drivers/gpu/drm/i915/display/intel_lspcon.h |  2 ++
-> >  3 files changed, 18 insertions(+), 3 deletions(-)
-> >
-> > diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c
-> > b/drivers/gpu/drm/i915/display/intel_ddi.c
-> > index 92940a0c5ef8..48da5dc59939 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_ddi.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-> > @@ -4583,6 +4583,7 @@ static void intel_ddi_read_func_ctl(struct
-> intel_encoder *encoder,
-> >  	struct drm_i915_private *dev_priv =3D to_i915(encoder->base.dev);
-> >  	struct intel_crtc *intel_crtc =3D to_intel_crtc(pipe_config->uapi.crt=
-c);
-> >  	enum transcoder cpu_transcoder =3D pipe_config->cpu_transcoder;
-> > +	struct intel_digital_port *dig_port =3D enc_to_dig_port(encoder);
-> >  	u32 temp, flags =3D 0;
-> >
-> >  	temp =3D intel_de_read(dev_priv, TRANS_DDI_FUNC_CTL(cpu_transcoder));
-> > @@ -4657,9 +4658,12 @@ static void intel_ddi_read_func_ctl(struct
-> intel_encoder *encoder,
-> >  				    pipe_config->fec_enable);
-> >  		}
-> >
-> > -		pipe_config->infoframes.enable |=3D
-> > -			intel_hdmi_infoframes_enabled(encoder, pipe_config);
-> > -
-> > +		if (dig_port->lspcon.active && dig_port->dp.has_hdmi_sink)
-> > +			pipe_config->infoframes.enable |=3D
-> > +				intel_lspcon_infoframes_enabled(encoder,
-> pipe_config);
-> > +		else
-> > +			pipe_config->infoframes.enable |=3D
-> > +				intel_hdmi_infoframes_enabled(encoder,
-> pipe_config);
-> >  		break;
-> >  	case TRANS_DDI_MODE_SELECT_DP_MST:
-> >  		pipe_config->output_types |=3D BIT(INTEL_OUTPUT_DP_MST); diff -
-> -git
-> > a/drivers/gpu/drm/i915/display/intel_lspcon.c
-> > b/drivers/gpu/drm/i915/display/intel_lspcon.c
-> > index 592c19deba00..303f23d35020 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_lspcon.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_lspcon.c
-> > @@ -30,6 +30,7 @@
-> >  #include "intel_display_types.h"
-> >  #include "intel_dp.h"
-> >  #include "intel_lspcon.h"
-> > +#include "intel_hdmi.h"
-> =
+> +
+>  static __always_inline void _print_param(struct drm_printer *p,
+>  					 const char *name,
+>  					 const char *type,
+> diff --git a/drivers/gpu/drm/i915/i915_params.h b/drivers/gpu/drm/i915/i915_params.h
+> index 330c03e2b4f7..87df407d9afb 100644
+> --- a/drivers/gpu/drm/i915/i915_params.h
+> +++ b/drivers/gpu/drm/i915/i915_params.h
+> @@ -72,6 +72,7 @@ struct drm_printer;
+>  	param(char *, force_probe, CONFIG_DRM_I915_FORCE_PROBE, 0400) \
+>  	param(unsigned long, fake_lmem_start, 0, 0400) \
+>  	/* leave bools at the end to not create holes */ \
+> +	param(bool, enable_eviction, true, 0600) \
+>  	param(bool, enable_hangcheck, true, 0600) \
+>  	param(bool, load_detect_test, false, 0600) \
+>  	param(bool, force_reset_modeset_test, false, 0600) \
+> diff --git a/drivers/gpu/drm/i915/intel_memory_region.c b/drivers/gpu/drm/i915/intel_memory_region.c
+> index afcd6fe6eaff..57f01ef16628 100644
+> --- a/drivers/gpu/drm/i915/intel_memory_region.c
+> +++ b/drivers/gpu/drm/i915/intel_memory_region.c
+> @@ -175,7 +175,7 @@ static int intel_memory_region_evict(struct intel_memory_region *mem,
+>  	list_splice_tail(&still_in_list, *phase);
+>  	mutex_unlock(&mem->objects.lock);
+>  
+> -	if (found < target) {
+> +	if (found < target && i915->params.enable_eviction) {
+>  		pass++;
+>  		phase++;
+>  		if (*phase)
 
-> Why do you need that header?
-
-intel_hdmi_infoframe_enabled is coming from that, hence we need that.
-Thanks Ville for the review and RB.
-
-Regards,
-Uma Shankar
-
-> With that potentially removed if it's not needed.
-> Reviewed-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> =
-
-> >
-> >  /* LSPCON OUI Vendor ID(signatures) */  #define
-> > LSPCON_VENDOR_PARADE_OUI 0x001CF8 @@ -601,6 +602,14 @@ bool
-> > lspcon_init(struct intel_digital_port *dig_port)
-> >  	return true;
-> >  }
-> >
-> > +u32 intel_lspcon_infoframes_enabled(struct intel_encoder *encoder,
-> > +				    const struct intel_crtc_state *pipe_config) {
-> > +	struct intel_digital_port *dig_port =3D enc_to_dig_port(encoder);
-> > +
-> > +	return dig_port->infoframes_enabled(encoder, pipe_config); }
-> > +
-> >  void lspcon_resume(struct intel_digital_port *dig_port)  {
-> >  	struct intel_lspcon *lspcon =3D &dig_port->lspcon; diff --git
-> > a/drivers/gpu/drm/i915/display/intel_lspcon.h
-> > b/drivers/gpu/drm/i915/display/intel_lspcon.h
-> > index 42ccb21c908f..44aa6bc38512 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_lspcon.h
-> > +++ b/drivers/gpu/drm/i915/display/intel_lspcon.h
-> > @@ -33,6 +33,8 @@ void lspcon_set_infoframes(struct intel_encoder
-> *encoder,
-> >  			   const struct drm_connector_state *conn_state);
-> >  u32 lspcon_infoframes_enabled(struct intel_encoder *encoder,
-> >  			      const struct intel_crtc_state *pipe_config);
-> > +u32 intel_lspcon_infoframes_enabled(struct intel_encoder *encoder,
-> > +				    const struct intel_crtc_state *pipe_config);
-> >  void hsw_write_infoframe(struct intel_encoder *encoder,
-> >  			 const struct intel_crtc_state *crtc_state,
-> >  			 unsigned int type,
-> > --
-> > 2.26.2
-> =
-
-> --
-> Ville Syrj=E4l=E4
-> Intel
+-- 
+Jani Nikula, Intel Open Source Graphics Center
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
