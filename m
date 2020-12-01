@@ -1,45 +1,61 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 81B5D2CA854
-	for <lists+intel-gfx@lfdr.de>; Tue,  1 Dec 2020 17:36:02 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id CC7602CA867
+	for <lists+intel-gfx@lfdr.de>; Tue,  1 Dec 2020 17:43:27 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DBD636E584;
-	Tue,  1 Dec 2020 16:36:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2C8966E844;
+	Tue,  1 Dec 2020 16:43:25 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 28E056E584
- for <intel-gfx@lists.freedesktop.org>; Tue,  1 Dec 2020 16:35:59 +0000 (UTC)
-IronPort-SDR: 7Ao20sMIMP9XyA3NPd4OPnSxX7Ysd4DSP8kLIuPD/fyaCioauVXccV5s5YfCg5LPQlh5IlH9o2
- 23b1GMqYALIg==
-X-IronPort-AV: E=McAfee;i="6000,8403,9822"; a="172075458"
-X-IronPort-AV: E=Sophos;i="5.78,384,1599548400"; d="scan'208";a="172075458"
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F35C56E83F
+ for <intel-gfx@lists.freedesktop.org>; Tue,  1 Dec 2020 16:43:22 +0000 (UTC)
+IronPort-SDR: cG4Kpc8PsKxOGs4BMl4++5B0ebCv552irFdRauGLjVwsOog1ckHhwENzd6fOtWgdL3BVfAL7Hu
+ I/5lK+lA/qmA==
+X-IronPort-AV: E=McAfee;i="6000,8403,9822"; a="160633106"
+X-IronPort-AV: E=Sophos;i="5.78,384,1599548400"; d="scan'208";a="160633106"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Dec 2020 08:35:56 -0800
-IronPort-SDR: ELXXgntXJ6tOMv3WmRDo7vHkiOMVtmF7kI4VNqmBldXj2aAeCAolYzfj2Q6C5aOpA4OQ4JBWPu
- SL5lwWVCljOw==
-X-IronPort-AV: E=Sophos;i="5.78,384,1599548400"; d="scan'208";a="539088481"
-Received: from hpicot-mobl.ger.corp.intel.com (HELO [10.252.22.39])
- ([10.252.22.39])
- by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Dec 2020 08:35:55 -0800
-To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
-References: <20201130130843.44334-1-matthew.auld@intel.com>
- <160674232973.8815.8625041556670650754@build.alporthouse.com>
-From: Matthew Auld <matthew.auld@intel.com>
-Message-ID: <bdac1115-e71c-b014-f33a-9fa81d277f31@intel.com>
-Date: Tue, 1 Dec 2020 16:35:53 +0000
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.4.0
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Dec 2020 08:43:20 -0800
+IronPort-SDR: WVN6d69SnM/xvKgBQmc+cgqfSXo32Tso7ytbuHmrLnC8pNp3CdWiTz76XmghmFW8ejBR4Remau
+ YUtv9I2wOr8w==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.78,384,1599548400"; d="scan'208";a="335168786"
+Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
+ by orsmga006.jf.intel.com with ESMTP; 01 Dec 2020 08:43:19 -0800
+Received: from bgsmsx605.gar.corp.intel.com (10.67.234.7) by
+ fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1713.5; Tue, 1 Dec 2020 08:43:18 -0800
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ BGSMSX605.gar.corp.intel.com (10.67.234.7) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1713.5; Tue, 1 Dec 2020 22:13:15 +0530
+Received: from orsmsx610.amr.corp.intel.com ([10.22.229.23]) by
+ ORSMSX610.amr.corp.intel.com ([10.22.229.23]) with mapi id 15.01.1713.004;
+ Tue, 1 Dec 2020 08:43:13 -0800
+From: "Souza, Jose" <jose.souza@intel.com>
+To: "Shankar, Uma" <uma.shankar@intel.com>, "intel-gfx@lists.freedesktop.org"
+ <intel-gfx@lists.freedesktop.org>
+Thread-Topic: [v5 1/2] drm/i915/display/tgl: Disable FBC with PSR2
+Thread-Index: AQHWx/0Ce2NUtvQTw06HMZT4rIJcnqni+FQA
+Date: Tue, 1 Dec 2020 16:43:13 +0000
+Message-ID: <91b9b8a64eec22179d5522cbc6570e737ed5139f.camel@intel.com>
+References: <20201201164749.32702-1-uma.shankar@intel.com>
+ <20201201164749.32702-2-uma.shankar@intel.com>
+In-Reply-To: <20201201164749.32702-2-uma.shankar@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.132]
+Content-ID: <F765AC2564430447995E9F912B90B968@intel.com>
 MIME-Version: 1.0
-In-Reply-To: <160674232973.8815.8625041556670650754@build.alporthouse.com>
-Content-Language: en-GB
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/lmem: Limit block size to 4G
+Subject: Re: [Intel-gfx] [v5 1/2] drm/i915/display/tgl: Disable FBC with PSR2
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,151 +68,59 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 30/11/2020 13:18, Chris Wilson wrote:
-> Quoting Matthew Auld (2020-11-30 13:08:43)
->> From: Venkata Sandeep Dhanalakota <venkata.s.dhanalakota@intel.com>
->>
->> Block sizes are only limited by the largest power-of-two that will fit
->> in the region size, but to construct an object we also require feeding
->> it into an sg list, where the upper limit of the sg entry is at most
->> UINT_MAX. Therefore to prevent issues with allocating blocks that are
->> too large, add the flag I915_ALLOC_MAX_SEGMENT_SIZE which should limit
->> block sizes to the i915_sg_segment_size().
->>
->> v2: (matt)
->>    - query the max segment.
->>    - prefer flag to limit block size to 4G, since it's best not to assume
->>      the user will feed the blocks into an sg list.
->>    - simple selftest so we don't have to guess.
->>
->> Cc: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
->> Cc: Matthew Auld <matthew.auld@intel.com>
->> Cc: CQ Tang <cq.tang@intel.com>
->> Signed-off-by: Venkata Sandeep Dhanalakota <venkata.s.dhanalakota@intel.com>
->> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
->> ---
->>   drivers/gpu/drm/i915/gem/i915_gem_region.c    |  2 +-
->>   drivers/gpu/drm/i915/intel_memory_region.c    | 16 +++++-
->>   drivers/gpu/drm/i915/intel_memory_region.h    |  5 +-
->>   .../drm/i915/selftests/intel_memory_region.c  | 50 +++++++++++++++++++
->>   4 files changed, 69 insertions(+), 4 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_region.c b/drivers/gpu/drm/i915/gem/i915_gem_region.c
->> index 1515384d7e0e..e72d78074c9e 100644
->> --- a/drivers/gpu/drm/i915/gem/i915_gem_region.c
->> +++ b/drivers/gpu/drm/i915/gem/i915_gem_region.c
->> @@ -42,7 +42,7 @@ i915_gem_object_get_pages_buddy(struct drm_i915_gem_object *obj)
->>                  return -ENOMEM;
->>          }
->>   
->> -       flags = I915_ALLOC_MIN_PAGE_SIZE;
->> +       flags = I915_ALLOC_MIN_PAGE_SIZE | I915_ALLOC_MAX_SEGMENT_SIZE;
->>          if (obj->flags & I915_BO_ALLOC_CONTIGUOUS)
->>                  flags |= I915_ALLOC_CONTIGUOUS;
->>   
->> diff --git a/drivers/gpu/drm/i915/intel_memory_region.c b/drivers/gpu/drm/i915/intel_memory_region.c
->> index b326993a1026..8a376f1b5b3b 100644
->> --- a/drivers/gpu/drm/i915/intel_memory_region.c
->> +++ b/drivers/gpu/drm/i915/intel_memory_region.c
->> @@ -72,6 +72,7 @@ __intel_memory_region_get_pages_buddy(struct intel_memory_region *mem,
->>                                        struct list_head *blocks)
->>   {
->>          unsigned int min_order = 0;
->> +       unsigned int max_order;
->>          unsigned long n_pages;
->>   
->>          GEM_BUG_ON(!IS_ALIGNED(size, mem->mm.chunk_size));
->> @@ -92,13 +93,26 @@ __intel_memory_region_get_pages_buddy(struct intel_memory_region *mem,
->>   
->>          n_pages = size >> ilog2(mem->mm.chunk_size);
->>   
->> +       /*
->> +        * If we going to feed this into an sg list we should limit the block
->> +        * sizes such that we don't exceed the i915_sg_segment_size().
->> +        */
->> +       if (flags & I915_ALLOC_MAX_SEGMENT_SIZE) {
->> +               unsigned int max_segment = i915_sg_segment_size();
->> +
->> +               GEM_BUG_ON(max_segment < mem->mm.chunk_size);
-> 
-> iirc, the swiotlb segment size can be adjusted by user parameter.
-> [Don't ask if swiotlb is compatible with lmem, I suspect not ;]
-> 
-> I think err on the side of safety, just in case the user does find a way
-> to adjust the parameter,
-> 
-> if (GEM_WARN_ON(max_segment < mem->mm.chunk_size))
-> 	max_order = 0;
-> else
-> 	max_order = ilog2(max_segment) - ilog2(mem->mm.chunk_size);
-
-I think I made a big mess here :|
-
-Thoughts on just making this max_segment = UINT_MAX, or perhaps dropping 
-the flag and just hiding these details in the sg construction phase, 
-where we just split the blocks down into i915_sg_segment_size() sg 
-chunks, if required. Otherwise we start seeing explosions with some 
-large contiguous object.
-
-> 
->> +               max_order = ilog2(max_segment) - ilog2(mem->mm.chunk_size);
->> +       } else {
->> +               max_order = mem->mm.max_order;
->> +       }
->> +
->>          mutex_lock(&mem->mm_lock);
->>   
->>          do {
->>                  struct i915_buddy_block *block;
->>                  unsigned int order;
->>   
->> -               order = fls(n_pages) - 1;
->> +               order = min_t(u32, (fls(n_pages) - 1), max_order);
-> 
-> Spare () around fls.
-> 
->>                  GEM_BUG_ON(order > mem->mm.max_order);
->>                  GEM_BUG_ON(order < min_order);
->>   
->> diff --git a/drivers/gpu/drm/i915/intel_memory_region.h b/drivers/gpu/drm/i915/intel_memory_region.h
->> index 232490d89a83..5fb9bcf86b97 100644
->> --- a/drivers/gpu/drm/i915/intel_memory_region.h
->> +++ b/drivers/gpu/drm/i915/intel_memory_region.h
->> @@ -44,8 +44,9 @@ enum intel_region_id {
->>   #define MEMORY_TYPE_FROM_REGION(r) (ilog2((r) >> INTEL_MEMORY_TYPE_SHIFT))
->>   #define MEMORY_INSTANCE_FROM_REGION(r) (ilog2((r) & 0xffff))
->>   
->> -#define I915_ALLOC_MIN_PAGE_SIZE  BIT(0)
->> -#define I915_ALLOC_CONTIGUOUS     BIT(1)
->> +#define I915_ALLOC_MIN_PAGE_SIZE       BIT(0)
->> +#define I915_ALLOC_CONTIGUOUS          BIT(1)
->> +#define I915_ALLOC_MAX_SEGMENT_SIZE    BIT(2)
->>   
->>   #define for_each_memory_region(mr, i915, id) \
->>          for (id = 0; id < ARRAY_SIZE((i915)->mm.regions); id++) \
->> diff --git a/drivers/gpu/drm/i915/selftests/intel_memory_region.c b/drivers/gpu/drm/i915/selftests/intel_memory_region.c
->> index 0aeba8e3af28..cd706c0d9213 100644
->> --- a/drivers/gpu/drm/i915/selftests/intel_memory_region.c
->> +++ b/drivers/gpu/drm/i915/selftests/intel_memory_region.c
->> @@ -337,6 +337,55 @@ static int igt_mock_splintered_region(void *arg)
->>          return err;
->>   }
->>   
->> +#define SZ_8G BIT(33)
-> 
-> BIT_ULL
-> 
-> Otherwise makes sense.
-> 
-> Reviewed-by: Chris Wilson <chris@chris-wilson.co.uk>
-> -Chris
-> 
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+T24gVHVlLCAyMDIwLTEyLTAxIGF0IDIyOjE3ICswNTMwLCBVbWEgU2hhbmthciB3cm90ZToNCj4g
+VGhlcmUgYXJlIHNvbWUgY29ybmVyIGNhc2VzIHdydCB1bmRlcnJ1biB3aGVuIHdlIGVuYWJsZQ0K
+PiBGQkMgd2l0aCBQU1IyIG9uIFRHTC4gUmVjb21tZW5kYXRpb24gZnJvbSBoYXJkd2FyZSBpcyB0
+bw0KPiBrZWVwIHRoaXMgY29tYmluYXRpb24gZGlzYWJsZWQuDQo+IA0KPiBCc3BlYzogNTA0MjIg
+SFNEOiAxNDAxMDI2MDAwMg0KPiANCj4gdjI6IEFkZGVkIHBzcjIgZW5hYmxlZCBjaGVjayBmcm9t
+IGNydGNfc3RhdGUgKEFuc2h1bWFuKQ0KPiBBZGRlZCBCc3BlYyBsaW5rIGFuZCBIU0QgcmVmZXJu
+ZWNlcyAoSm9zZSkNCj4gDQo+IHYzOiBNb3ZlZCB0aGUgbG9naWMgdG8gZGlzYWJsZSBmYmMgdG8g
+aW50ZWxfZmJjX3VwZGF0ZV9zdGF0ZV9jYWNoZQ0KPiBhbmQgcmVtb3ZlZCB0aGUgY3J0Yy0+Y29u
+ZmlnIHVzYWdlcywgYXMgcGVyIFZpbGxlJ3MgcmVjb21tZW5kYXRpb24uDQo+IA0KPiB2NDogSW50
+cm9kdWNlZCBhIHZhcmlhYmxlIGluIGZiYyBzdGF0ZV9jYWNoZSBpbnN0ZWFkIG9mIHRoZSBlYXJs
+aWVyDQo+IHBsYW5lLnZpc2libGUgV0EsIGFzIHN1Z2dlc3RlZCBieSBKb3NlLg0KPiANCj4gdjU6
+IERyb3BwZWQgYW4gZXh0cmEgY2hlY2sgZm9yIGZiYyBpbiBpbnRlbF9mYmNfZW5hYmxlIGFuZCBh
+ZGRyZXNzZWQNCj4gcmV2aWV3IGNvbW1lbnRzIGJ5IEpvc2UuDQo+IA0KPiBTaWduZWQtb2ZmLWJ5
+OiBVbWEgU2hhbmthciA8dW1hLnNoYW5rYXJAaW50ZWwuY29tPg0KPiAtLS0NCj4gwqBkcml2ZXJz
+L2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2ZiYy5jIHwgMTIgKysrKysrKysrKysrDQo+IMKg
+ZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9kcnYuaCAgICAgICAgICB8ICAxICsNCj4gwqAyIGZp
+bGVzIGNoYW5nZWQsIDEzIGluc2VydGlvbnMoKykNCj4gDQo+IGRpZmYgLS1naXQgYS9kcml2ZXJz
+L2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2ZiYy5jIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUv
+ZGlzcGxheS9pbnRlbF9mYmMuYw0KPiBpbmRleCBhNWIwNzI4MTZhN2IuLjYxMWNhZGM1YzcwYSAx
+MDA2NDQNCj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9mYmMuYw0K
+PiArKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2ZiYy5jDQo+IEBAIC03
+NDIsNiArNzQyLDggQEAgc3RhdGljIHZvaWQgaW50ZWxfZmJjX3VwZGF0ZV9zdGF0ZV9jYWNoZShz
+dHJ1Y3QgaW50ZWxfY3J0YyAqY3J0YywNCj4gwqAJCWNhY2hlLT5mZW5jZV9pZCA9IHBsYW5lX3N0
+YXRlLT52bWEtPmZlbmNlLT5pZDsNCj4gwqAJZWxzZQ0KPiDCoAkJY2FjaGUtPmZlbmNlX2lkID0g
+LTE7DQo+ICsNCj4gKwljYWNoZS0+cHNyMl9hY3RpdmUgPSBjcnRjX3N0YXRlLT5oYXNfcHNyMjsN
+Cj4gwqB9DQo+IMKgDQo+IA0KPiANCj4gDQo+IMKgc3RhdGljIGJvb2wgaW50ZWxfZmJjX2NmYl9z
+aXplX2NoYW5nZWQoc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmRldl9wcml2KQ0KPiBAQCAtNzk5
+LDYgKzgwMSwxNiBAQCBzdGF0aWMgYm9vbCBpbnRlbF9mYmNfY2FuX2FjdGl2YXRlKHN0cnVjdCBp
+bnRlbF9jcnRjICpjcnRjKQ0KPiDCoAlzdHJ1Y3QgaW50ZWxfZmJjICpmYmMgPSAmZGV2X3ByaXYt
+PmZiYzsNCj4gwqAJc3RydWN0IGludGVsX2ZiY19zdGF0ZV9jYWNoZSAqY2FjaGUgPSAmZmJjLT5z
+dGF0ZV9jYWNoZTsNCj4gwqANCj4gDQo+IA0KPiANCj4gKwkvKg0KPiArCSAqIFRpZ2VybGFrZSBp
+cyBub3Qgc3VwcG9ydGluZyBGQkMgd2l0aCBQU1IyLg0KPiArCSAqIFJlY29tbWVuZGF0aW9uIGlz
+IHRvIGtlZXAgdGhpcyBjb21iaW5hdGlvbiBkaXNhYmxlZA0KPiArCSAqIEJzcGVjOiA1MDQyMiBI
+U0Q6IDE0MDEwMjYwMDAyDQo+ICsJICovDQo+ICsJaWYgKGZiYy0+c3RhdGVfY2FjaGUucHNyMl9h
+Y3RpdmUgJiYgSVNfVElHRVJMQUtFKGRldl9wcml2KSkgew0KPiArCQlmYmMtPm5vX2ZiY19yZWFz
+b24gPSAibm90IHN1cHBvcnRlZCB3aXRoIFBTUjIiOw0KPiArCQlyZXR1cm4gZmFsc2U7DQo+ICsJ
+fQ0KDQpOaXRwaWNrOiBhbGwgbmV3IHJlc3RyaWN0aW9ucyBhcmUgYWRkZWQgYXQgdGhlIGJvdHRv
+bSBsZXRzIGZvbGxvdyBpdC4NCldpdGggdGhpcyBjaGFuZ2UgeW91IGNhbiBhZGQgbXkgcnZiIGlu
+IGJvdGggcGF0Y2hlcy4NClJldmlld2VkLWJ5OiBKb3PDqSBSb2JlcnRvIGRlIFNvdXphIDxqb3Nl
+LnNvdXphQGludGVsLmNvbT4NCg0KDQoNCj4gKw0KPiDCoAlpZiAoIWludGVsX2ZiY19jYW5fZW5h
+YmxlKGRldl9wcml2KSkNCj4gwqAJCXJldHVybiBmYWxzZTsNCj4gwqANCj4gDQo+IA0KPiANCj4g
+ZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfZHJ2LmggYi9kcml2ZXJzL2dw
+dS9kcm0vaTkxNS9pOTE1X2Rydi5oDQo+IGluZGV4IDE1YmU4ZGViYWU1NC4uZjRlMDhjMWE1ODY3
+IDEwMDY0NA0KPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2Rydi5oDQo+ICsrKyBi
+L2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfZHJ2LmgNCj4gQEAgLTQxNiw2ICs0MTYsNyBAQCBz
+dHJ1Y3QgaW50ZWxfZmJjIHsNCj4gwqAJCXUxNiBnZW45X3dhX2NmYl9zdHJpZGU7DQo+IMKgCQl1
+MTYgaW50ZXJ2YWw7DQo+IMKgCQlzOCBmZW5jZV9pZDsNCj4gKwkJYm9vbCBwc3IyX2FjdGl2ZTsN
+Cj4gwqAJfSBzdGF0ZV9jYWNoZTsNCj4gwqANCj4gDQo+IA0KPiANCj4gwqAJLyoNCg0KX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxp
+bmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJl
+ZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
