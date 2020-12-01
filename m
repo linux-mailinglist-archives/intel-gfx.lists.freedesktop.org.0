@@ -1,41 +1,41 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9B8282CB13A
-	for <lists+intel-gfx@lfdr.de>; Wed,  2 Dec 2020 00:58:47 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id DF2982CB134
+	for <lists+intel-gfx@lfdr.de>; Wed,  2 Dec 2020 00:58:43 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 12D466E9B6;
-	Tue,  1 Dec 2020 23:58:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 24A916E9AB;
+	Tue,  1 Dec 2020 23:58:27 +0000 (UTC)
 X-Original-To: Intel-gfx@lists.freedesktop.org
 Delivered-To: Intel-gfx@lists.freedesktop.org
 Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2F7D36E981
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 81BDB6E97B
  for <Intel-gfx@lists.freedesktop.org>; Tue,  1 Dec 2020 23:58:23 +0000 (UTC)
-IronPort-SDR: 5k0yUc9uKJ4q8PzPm6YXmWLCyLUeP7R5iAyf/QZo3Ob1wBx6Rl7RVv2xElzxLDgwUiR54SNPpS
- z9vriRW0qyyQ==
-X-IronPort-AV: E=McAfee;i="6000,8403,9822"; a="191136802"
-X-IronPort-AV: E=Sophos;i="5.78,385,1599548400"; d="scan'208";a="191136802"
+IronPort-SDR: JZF2yGpTThFASn2bpo8whyjw75GTp8Sc0A0FhaM1QqRt/2VuluTqFTPbdr4yK9dQjJtOgi1lWh
+ yzD1DFSGGiMQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9822"; a="191136803"
+X-IronPort-AV: E=Sophos;i="5.78,385,1599548400"; d="scan'208";a="191136803"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from fmsmga007.fm.intel.com ([10.253.24.52])
  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  01 Dec 2020 15:58:21 -0800
-IronPort-SDR: v+rOV/kp/H97+iXsc4EcH6UoaZyCwT4YdyoCZc6tjFvV5bsEycnJykj7CnVaadp3XGeKjXcAy0
- T1kqGAB1cM8A==
+IronPort-SDR: qQ2MXPMtp88MGuhSAW3X7jLYkfplaKK3pDIWkoFJxleGus/+DVEQ7L2xsnyKIQmZisT2eaFStS
+ /ifnVTPy3HEw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.78,385,1599548400"; d="scan'208";a="315897580"
+X-IronPort-AV: E=Sophos;i="5.78,385,1599548400"; d="scan'208";a="315897581"
 Received: from sean-virtualbox.fm.intel.com ([10.105.158.96])
  by fmsmga007.fm.intel.com with ESMTP; 01 Dec 2020 15:58:21 -0800
 From: "Huang, Sean Z" <sean.z.huang@intel.com>
 To: Intel-gfx@lists.freedesktop.org
-Date: Tue,  1 Dec 2020 15:57:27 -0800
-Message-Id: <20201201235747.26017-7-sean.z.huang@intel.com>
+Date: Tue,  1 Dec 2020 15:57:28 -0800
+Message-Id: <20201201235747.26017-8-sean.z.huang@intel.com>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20201201235747.26017-1-sean.z.huang@intel.com>
 References: <20201201235747.26017-1-sean.z.huang@intel.com>
-Subject: [Intel-gfx] [RFC-v3 06/26] drm/i915/pxp: Add PXP-related registers
- into allowlist
+Subject: [Intel-gfx] [RFC-v3 07/26] drm/i915/pxp: Read register to check
+ hardware session state
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,129 +54,287 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Add several PXP-related reg into allowlist to allow user space
-driver to read the those register values.
+Implement the functions to check the hardware protected session
+state via reading the hardware register session in play.
 
 Signed-off-by: Huang, Sean Z <sean.z.huang@intel.com>
 ---
- drivers/gpu/drm/i915/i915_reg.h     |  6 ++++
- drivers/gpu/drm/i915/intel_uncore.c | 50 ++++++++++++++++++++---------
- 2 files changed, 41 insertions(+), 15 deletions(-)
+ drivers/gpu/drm/i915/pxp/intel_pxp.h    |   3 +
+ drivers/gpu/drm/i915/pxp/intel_pxp_sm.c | 177 ++++++++++++++++++++++++
+ drivers/gpu/drm/i915/pxp/intel_pxp_sm.h |  51 +++++++
+ 3 files changed, 231 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-index c3b9ca142539..69758935abb8 100644
---- a/drivers/gpu/drm/i915/i915_reg.h
-+++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -12421,4 +12421,10 @@ enum skl_power_gate {
- #define TGL_ROOT_DEVICE_SKU_ULX		0x2
- #define TGL_ROOT_DEVICE_SKU_ULT		0x4
+diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp.h b/drivers/gpu/drm/i915/pxp/intel_pxp.h
+index 132aeccf8447..c781a07bb7d5 100644
+--- a/drivers/gpu/drm/i915/pxp/intel_pxp.h
++++ b/drivers/gpu/drm/i915/pxp/intel_pxp.h
+@@ -12,6 +12,9 @@
+ #define PXP_IRQ_VECTOR_DISPLAY_APP_TERM_PER_FW_REQ BIT(2)
+ #define PXP_IRQ_VECTOR_PXP_DISP_STATE_RESET_COMPLETE BIT(3)
  
-+/* Registers for allowlist check */
-+#define PXP_REG_01_LOWERBOUND		_MMIO(0x32260)
-+#define PXP_REG_01_UPPERBOUND		_MMIO(0x32268)
-+#define PXP_REG_02_LOWERBOUND		_MMIO(0x32670)
-+#define PXP_REG_02_UPPERBOUND		_MMIO(0x32678)
++#define pxp_session_list(i915, session_type) (((session_type) == SESSION_TYPE_TYPE0) ? \
++	&(i915)->pxp.ctx->active_pxp_type0_sessions : &(i915)->pxp.ctx->active_pxp_type1_sessions)
 +
- #endif /* _I915_REG_H_ */
-diff --git a/drivers/gpu/drm/i915/intel_uncore.c b/drivers/gpu/drm/i915/intel_uncore.c
-index ef40edfff412..8185e2f9f254 100644
---- a/drivers/gpu/drm/i915/intel_uncore.c
-+++ b/drivers/gpu/drm/i915/intel_uncore.c
-@@ -1990,16 +1990,34 @@ void intel_uncore_fini_mmio(struct intel_uncore *uncore)
+ #define MAX_TYPE0_SESSIONS 16
+ #define MAX_TYPE1_SESSIONS 6
+ 
+diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp_sm.c b/drivers/gpu/drm/i915/pxp/intel_pxp_sm.c
+index a2c9c71d2372..6413f401d939 100644
+--- a/drivers/gpu/drm/i915/pxp/intel_pxp_sm.c
++++ b/drivers/gpu/drm/i915/pxp/intel_pxp_sm.c
+@@ -10,6 +10,21 @@
+ #include "intel_pxp_sm.h"
+ #include "intel_pxp_context.h"
+ 
++static int pxp_sm_reg_read(struct drm_i915_private *i915, u32 offset, u32 *regval)
++{
++	intel_wakeref_t wakeref;
++
++	if (!i915 || !regval)
++		return -EINVAL;
++
++	with_intel_runtime_pm(&i915->runtime_pm, wakeref) {
++		i915_reg_t reg_offset = {offset};
++		*regval = intel_uncore_read(&i915->uncore, reg_offset);
++	}
++
++	return 0;
++}
++
+ static int pxp_reg_write(struct drm_i915_private *i915, u32 offset, u32 regval)
+ {
+ 	intel_wakeref_t wakeref;
+@@ -26,6 +41,168 @@ static int pxp_reg_write(struct drm_i915_private *i915, u32 offset, u32 regval)
+ 	return 0;
  }
  
- static const struct reg_whitelist {
--	i915_reg_t offset_ldw;
-+	i915_reg_t offset_ldw_lowerbound;
-+	i915_reg_t offset_ldw_upperbound;
- 	i915_reg_t offset_udw;
- 	u16 gen_mask;
- 	u8 size;
--} reg_read_whitelist[] = { {
--	.offset_ldw = RING_TIMESTAMP(RENDER_RING_BASE),
-+} reg_read_whitelist[] = {
-+	{
-+	.offset_ldw_lowerbound = RING_TIMESTAMP(RENDER_RING_BASE),
-+	.offset_ldw_upperbound = RING_TIMESTAMP(RENDER_RING_BASE),
- 	.offset_udw = RING_TIMESTAMP_UDW(RENDER_RING_BASE),
- 	.gen_mask = INTEL_GEN_MASK(4, 12),
- 	.size = 8
--} };
-+	},
-+	{
-+	.offset_ldw_lowerbound = PXP_REG_01_LOWERBOUND,
-+	.offset_ldw_upperbound = PXP_REG_01_UPPERBOUND,
-+	.offset_udw = {0},
-+	.gen_mask = INTEL_GEN_MASK(4, 12),
-+	.size = 4
-+	},
-+	{
-+	.offset_ldw_lowerbound = PXP_REG_02_LOWERBOUND,
-+	.offset_ldw_upperbound = PXP_REG_02_UPPERBOUND,
-+	.offset_udw = {0},
-+	.gen_mask = INTEL_GEN_MASK(4, 12),
-+	.size = 4
++/**
++ * is_sw_session_active - Check if the given sw session id is active.
++ * @i915: i915 device handle.
++ * @session_type: Specified session type
++ * @session_index: Numeric session identifier.
++ * @is_in_play: Set false to return true if the specified session is active.
++ *              Set true to also check if the session is active and in_play.
++ * @protection_mode: get the protection mode of specified session.
++ *
++ * The caller needs to use ctx_mutex lock to protect the session_list
++ * inside this function.
++ *
++ * Return : true if session with the same identifier is active (and in_play).
++ */
++static bool is_sw_session_active(struct drm_i915_private *i915, int session_type,
++				 int session_index, bool is_in_play, int *protection_mode)
++{
++	struct pxp_protected_session *current_session;
++
++	lockdep_assert_held(&i915->pxp.ctx->ctx_mutex);
++
++	list_for_each_entry(current_session, pxp_session_list(i915, session_type), session_list) {
++		if (current_session->session_index == session_index) {
++			if (protection_mode)
++				*protection_mode = current_session->protection_mode;
++
++			if (is_in_play && !current_session->session_is_in_play)
++				return false;
++
++			return true;
++		}
 +	}
++
++	/* session id not found. return false */
++	return false;
++}
++
++static bool is_hw_type0_session_in_play(struct drm_i915_private *i915, int session_index)
++{
++	u32 regval_sip = 0;
++	u32 reg_session_id_mask;
++	bool hw_session_is_in_play = false;
++	int ret = 0;
++
++	if (!i915 || session_index < 0 || session_index >= MAX_TYPE0_SESSIONS)
++		goto end;
++
++	ret = pxp_sm_reg_read(i915, GEN12_KCR_SIP.reg, &regval_sip);
++	if (ret) {
++		drm_err(&i915->drm, "Failed to read()\n");
++		goto end;
++	}
++
++	reg_session_id_mask = (1 << session_index);
++	hw_session_is_in_play = (bool)(regval_sip & reg_session_id_mask);
++end:
++	return hw_session_is_in_play;
++}
++
++static bool is_hw_type1_session_in_play(struct drm_i915_private *i915, int session_index)
++{
++	int ret = 0;
++	u32 regval_tsip_low = 0;
++	u32 regval_tsip_high = 0;
++	u64 reg_session_id_mask;
++	u64 regval_tsip;
++	bool hw_session_is_in_play = false;
++
++	if (!i915 || session_index < 0 || session_index >= MAX_TYPE1_SESSIONS)
++		goto end;
++
++	ret = pxp_sm_reg_read(i915, GEN12_KCR_TSIP_LOW.reg, &regval_tsip_low);
++	if (ret) {
++		drm_err(&i915->drm, "Failed to pxp_sm_reg_read()\n");
++		goto end;
++	}
++
++	ret = pxp_sm_reg_read(i915, GEN12_KCR_TSIP_HIGH.reg, &regval_tsip_high);
++	if (ret) {
++		drm_err(&i915->drm, "Failed to pxp_sm_reg_read()\n");
++		goto end;
++	}
++
++	reg_session_id_mask = (1 << session_index);
++	regval_tsip = ((u64)regval_tsip_high << 32) | regval_tsip_low;
++	hw_session_is_in_play = (bool)(regval_tsip & reg_session_id_mask);
++end:
++	return hw_session_is_in_play;
++}
++
++static bool is_hw_session_in_play(struct drm_i915_private *i915,
++				  int session_type, int session_index)
++{
++	bool is_in_play = false;
++
++	if (session_type == SESSION_TYPE_TYPE0)
++		is_in_play = is_hw_type0_session_in_play(i915, session_index);
++	else if (session_type == SESSION_TYPE_TYPE1)
++		is_in_play = is_hw_type1_session_in_play(i915, session_index);
++	else
++		drm_err(&i915->drm, "Failed to %s invalid session_type=[%d]\n",
++			__func__, session_type);
++
++	return is_in_play;
++}
++
++/* check hw session in play reg if match the current sw state */
++static int sync_hw_sw_state(struct drm_i915_private *i915, int session_index, int session_type)
++{
++	const int max_retry = 10;
++	const int ms_delay = 10;
++	int retry = 0;
++	int ret;
++
++	if (!i915 || session_type >= SESSION_TYPE_MAX)
++		return -EINVAL;
++
++	ret = -EINVAL;
++	for (retry = 0; retry < max_retry; retry++) {
++		if (is_hw_session_in_play(i915, session_type, session_index) ==
++		    is_sw_session_active(i915, session_type, session_index, true, NULL)) {
++			ret = 0;
++			break;
++		}
++
++		msleep(ms_delay);
++	}
++
++	return ret;
++}
++
++/**
++ * check_if_protected_type0_sessions_are_attacked - To check if type0 active sessions are attacked.
++ * @i915: i915 device handle.
++ *
++ * Return: true if HW shows protected sessions are attacked, false otherwise.
++ */
++static bool check_if_protected_type0_sessions_are_attacked(struct drm_i915_private *i915)
++{
++	i915_reg_t kcr_status_reg = KCR_STATUS_1;
++	u32 reg_value = 0;
++	u32 mask = 0x80000000;
++	int ret;
++
++	if (!i915)
++		return false;
++
++	if (i915->pxp.ctx->global_state_attacked)
++		return true;
++
++	ret = pxp_sm_reg_read(i915, kcr_status_reg.reg, &reg_value);
++	if (ret) {
++		drm_err(&i915->drm, "Failed to pxp_sm_reg_read\n");
++		goto end;
++	}
++
++	if (reg_value & mask)
++		return true;
++end:
++	return false;
++}
++
+ int pxp_sm_set_kcr_init_reg(struct drm_i915_private *i915)
+ {
+ 	int ret;
+diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp_sm.h b/drivers/gpu/drm/i915/pxp/intel_pxp_sm.h
+index d061f395aa16..222a879be96d 100644
+--- a/drivers/gpu/drm/i915/pxp/intel_pxp_sm.h
++++ b/drivers/gpu/drm/i915/pxp/intel_pxp_sm.h
+@@ -15,6 +15,57 @@
+ /* Setting KCR Init bit is required after system boot */
+ #define KCR_INIT_ALLOW_DISPLAY_ME_WRITES (BIT(14) | (BIT(14) << KCR_INIT_MASK_SHIFT))
+ 
++#define KCR_STATUS_1        _MMIO(0x320f4)
++#define GEN12_KCR_SIP       _MMIO(0x32260)   /* KCR type0 session in play 0-31 */
++#define GEN12_KCR_TSIP_LOW  _MMIO(0x32264)   /* KCR type1 session in play 0-31 */
++#define GEN12_KCR_TSIP_HIGH _MMIO(0x32268)   /* KCR type1 session in play 32-63 */
++
++enum pxp_session_types {
++	SESSION_TYPE_TYPE0 = 0,
++	SESSION_TYPE_TYPE1 = 1,
++
++	SESSION_TYPE_MAX
 +};
++
++enum pxp_protection_modes {
++	PROTECTION_MODE_NONE = 0,
++	PROTECTION_MODE_LM   = 2,
++	PROTECTION_MODE_HM   = 3,
++	PROTECTION_MODE_SM   = 6,
++
++	PROTECTION_MODE_ALL
++};
++
++/**
++ * struct pxp_protected_session - linked list to track all active sessions.
++ */
++struct pxp_protected_session {
++	/** @session_list: linked list infrastructure, do not change its order. */
++	struct list_head session_list;
++
++	/** @session_index: Numeric identifier for this protected session */
++	int session_index;
++	/** @session_type: Type of session */
++	int session_type;
++	/** @protection_mode: mode of protection requested */
++	int protection_mode;
++	/** @context_id: context identifier of the protected session requestor */
++	int context_id;
++	/** @pid: pid of this session's creator */
++	int pid;
++	/** @drmfile: pointer to drm_file, which is allocated on device file open() call */
++	struct drm_file *drmfile;
++
++	/**
++	 * @session_is_in_play: indicates whether the session has been established
++	 *                      in the HW root of trust if this flag is false, it
++	 *                      indicates an application has reserved this session,
++	 *                      but has not * established the session in the
++	 *                      hardware yet.
++	 */
++	bool session_is_in_play;
++};
++
+ int pxp_sm_set_kcr_init_reg(struct drm_i915_private *i915);
  
- int i915_reg_read_ioctl(struct drm_device *dev,
- 			void *data, struct drm_file *file)
-@@ -2012,18 +2030,22 @@ int i915_reg_read_ioctl(struct drm_device *dev,
- 	unsigned int flags;
- 	int remain;
- 	int ret = 0;
-+	i915_reg_t offset_ldw;
- 
- 	entry = reg_read_whitelist;
- 	remain = ARRAY_SIZE(reg_read_whitelist);
- 	while (remain) {
--		u32 entry_offset = i915_mmio_reg_offset(entry->offset_ldw);
-+		u32 entry_offset_lb = i915_mmio_reg_offset(entry->offset_ldw_lowerbound);
-+		u32 entry_offset_ub = i915_mmio_reg_offset(entry->offset_ldw_upperbound);
- 
- 		GEM_BUG_ON(!is_power_of_2(entry->size));
- 		GEM_BUG_ON(entry->size > 8);
--		GEM_BUG_ON(entry_offset & (entry->size - 1));
-+		GEM_BUG_ON(entry_offset_lb & (entry->size - 1));
-+		GEM_BUG_ON(entry_offset_ub & (entry->size - 1));
- 
- 		if (INTEL_INFO(i915)->gen_mask & entry->gen_mask &&
--		    entry_offset == (reg->offset & -entry->size))
-+		    entry_offset_lb <= (reg->offset & -entry->size) &&
-+		    (reg->offset & -entry->size) <= entry_offset_ub)
- 			break;
- 		entry++;
- 		remain--;
-@@ -2033,23 +2055,21 @@ int i915_reg_read_ioctl(struct drm_device *dev,
- 		return -EINVAL;
- 
- 	flags = reg->offset & (entry->size - 1);
-+	offset_ldw = _MMIO(reg->offset - flags);
- 
- 	with_intel_runtime_pm(&i915->runtime_pm, wakeref) {
- 		if (entry->size == 8 && flags == I915_REG_READ_8B_WA)
- 			reg->val = intel_uncore_read64_2x32(uncore,
--							    entry->offset_ldw,
-+							    offset_ldw,
- 							    entry->offset_udw);
- 		else if (entry->size == 8 && flags == 0)
--			reg->val = intel_uncore_read64(uncore,
--						       entry->offset_ldw);
-+			reg->val = intel_uncore_read64(uncore, offset_ldw);
- 		else if (entry->size == 4 && flags == 0)
--			reg->val = intel_uncore_read(uncore, entry->offset_ldw);
-+			reg->val = intel_uncore_read(uncore, offset_ldw);
- 		else if (entry->size == 2 && flags == 0)
--			reg->val = intel_uncore_read16(uncore,
--						       entry->offset_ldw);
-+			reg->val = intel_uncore_read16(uncore, offset_ldw);
- 		else if (entry->size == 1 && flags == 0)
--			reg->val = intel_uncore_read8(uncore,
--						      entry->offset_ldw);
-+			reg->val = intel_uncore_read8(uncore, offset_ldw);
- 		else
- 			ret = -EINVAL;
- 	}
+ #endif /* __INTEL_PXP_SM_H__ */
 -- 
 2.17.1
 
