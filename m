@@ -1,31 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 90C7E2CAEB0
-	for <lists+intel-gfx@lfdr.de>; Tue,  1 Dec 2020 22:40:29 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id C771F2CAF18
+	for <lists+intel-gfx@lfdr.de>; Tue,  1 Dec 2020 22:47:59 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4CD176E929;
-	Tue,  1 Dec 2020 21:40:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7B5AA6E92A;
+	Tue,  1 Dec 2020 21:47:56 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id F18886E929;
- Tue,  1 Dec 2020 21:40:25 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id E5E98A363B;
- Tue,  1 Dec 2020 21:40:25 +0000 (UTC)
+Received: from fireflyinternet.com (unknown [77.68.26.236])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 199DD6E92A
+ for <intel-gfx@lists.freedesktop.org>; Tue,  1 Dec 2020 21:47:54 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from localhost (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
+ 23182404-1500050 for multiple; Tue, 01 Dec 2020 21:47:51 +0000
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Shankar, Uma" <uma.shankar@intel.com>
-Date: Tue, 01 Dec 2020 21:40:25 -0000
-Message-ID: <160685882591.6987.2645885991592875218@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20201201190406.1752-1-uma.shankar@intel.com>
-In-Reply-To: <20201201190406.1752-1-uma.shankar@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
- =?utf-8?q?Re-enable_FBC_on_TGL_=28rev6=29?=
+In-Reply-To: <bdac1115-e71c-b014-f33a-9fa81d277f31@intel.com>
+References: <20201130130843.44334-1-matthew.auld@intel.com>
+ <160674232973.8815.8625041556670650754@build.alporthouse.com>
+ <bdac1115-e71c-b014-f33a-9fa81d277f31@intel.com>
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: Matthew Auld <matthew.auld@intel.com>, intel-gfx@lists.freedesktop.org
+Date: Tue, 01 Dec 2020 21:47:50 +0000
+Message-ID: <160685927071.21230.15834967407229209174@build.alporthouse.com>
+User-Agent: alot/0.9
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/lmem: Limit block size to 4G
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,80 +40,136 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Quoting Matthew Auld (2020-12-01 16:35:53)
+> On 30/11/2020 13:18, Chris Wilson wrote:
+> > Quoting Matthew Auld (2020-11-30 13:08:43)
+> >> From: Venkata Sandeep Dhanalakota <venkata.s.dhanalakota@intel.com>
+> >>
+> >> Block sizes are only limited by the largest power-of-two that will fit
+> >> in the region size, but to construct an object we also require feeding
+> >> it into an sg list, where the upper limit of the sg entry is at most
+> >> UINT_MAX. Therefore to prevent issues with allocating blocks that are
+> >> too large, add the flag I915_ALLOC_MAX_SEGMENT_SIZE which should limit
+> >> block sizes to the i915_sg_segment_size().
+> >>
+> >> v2: (matt)
+> >>    - query the max segment.
+> >>    - prefer flag to limit block size to 4G, since it's best not to assume
+> >>      the user will feed the blocks into an sg list.
+> >>    - simple selftest so we don't have to guess.
+> >>
+> >> Cc: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
+> >> Cc: Matthew Auld <matthew.auld@intel.com>
+> >> Cc: CQ Tang <cq.tang@intel.com>
+> >> Signed-off-by: Venkata Sandeep Dhanalakota <venkata.s.dhanalakota@intel.com>
+> >> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+> >> ---
+> >>   drivers/gpu/drm/i915/gem/i915_gem_region.c    |  2 +-
+> >>   drivers/gpu/drm/i915/intel_memory_region.c    | 16 +++++-
+> >>   drivers/gpu/drm/i915/intel_memory_region.h    |  5 +-
+> >>   .../drm/i915/selftests/intel_memory_region.c  | 50 +++++++++++++++++++
+> >>   4 files changed, 69 insertions(+), 4 deletions(-)
+> >>
+> >> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_region.c b/drivers/gpu/drm/i915/gem/i915_gem_region.c
+> >> index 1515384d7e0e..e72d78074c9e 100644
+> >> --- a/drivers/gpu/drm/i915/gem/i915_gem_region.c
+> >> +++ b/drivers/gpu/drm/i915/gem/i915_gem_region.c
+> >> @@ -42,7 +42,7 @@ i915_gem_object_get_pages_buddy(struct drm_i915_gem_object *obj)
+> >>                  return -ENOMEM;
+> >>          }
+> >>   
+> >> -       flags = I915_ALLOC_MIN_PAGE_SIZE;
+> >> +       flags = I915_ALLOC_MIN_PAGE_SIZE | I915_ALLOC_MAX_SEGMENT_SIZE;
+> >>          if (obj->flags & I915_BO_ALLOC_CONTIGUOUS)
+> >>                  flags |= I915_ALLOC_CONTIGUOUS;
+> >>   
+> >> diff --git a/drivers/gpu/drm/i915/intel_memory_region.c b/drivers/gpu/drm/i915/intel_memory_region.c
+> >> index b326993a1026..8a376f1b5b3b 100644
+> >> --- a/drivers/gpu/drm/i915/intel_memory_region.c
+> >> +++ b/drivers/gpu/drm/i915/intel_memory_region.c
+> >> @@ -72,6 +72,7 @@ __intel_memory_region_get_pages_buddy(struct intel_memory_region *mem,
+> >>                                        struct list_head *blocks)
+> >>   {
+> >>          unsigned int min_order = 0;
+> >> +       unsigned int max_order;
+> >>          unsigned long n_pages;
+> >>   
+> >>          GEM_BUG_ON(!IS_ALIGNED(size, mem->mm.chunk_size));
+> >> @@ -92,13 +93,26 @@ __intel_memory_region_get_pages_buddy(struct intel_memory_region *mem,
+> >>   
+> >>          n_pages = size >> ilog2(mem->mm.chunk_size);
+> >>   
+> >> +       /*
+> >> +        * If we going to feed this into an sg list we should limit the block
+> >> +        * sizes such that we don't exceed the i915_sg_segment_size().
+> >> +        */
+> >> +       if (flags & I915_ALLOC_MAX_SEGMENT_SIZE) {
+> >> +               unsigned int max_segment = i915_sg_segment_size();
+> >> +
+> >> +               GEM_BUG_ON(max_segment < mem->mm.chunk_size);
+> > 
+> > iirc, the swiotlb segment size can be adjusted by user parameter.
+> > [Don't ask if swiotlb is compatible with lmem, I suspect not ;]
+> > 
+> > I think err on the side of safety, just in case the user does find a way
+> > to adjust the parameter,
+> > 
+> > if (GEM_WARN_ON(max_segment < mem->mm.chunk_size))
+> >       max_order = 0;
+> > else
+> >       max_order = ilog2(max_segment) - ilog2(mem->mm.chunk_size);
+> 
+> I think I made a big mess here :|
+> 
+> Thoughts on just making this max_segment = UINT_MAX, or perhaps dropping 
+> the flag and just hiding these details in the sg construction phase, 
+> where we just split the blocks down into i915_sg_segment_size() sg 
+> chunks, if required. Otherwise we start seeing explosions with some 
+> large contiguous object.
 
-Series: Re-enable FBC on TGL (rev6)
-URL   : https://patchwork.freedesktop.org/series/83510/
-State : warning
+Oh, I missed the conflict between I915_ALLOC_CONTIGUOUS and
+I915_ALLOC_MAX_SEGMENT_SIZE. Bad reviewer.
 
-== Summary ==
+The latter (split sg construction) is what we do elsewhere in case we get
+a huge contiguous chunk.
 
-$ dim sparse --fast origin/drm-tip
-Sparse version: v0.6.2
-Fast mode used, each commit won't be checked separately.
--
-+drivers/gpu/drm/i915/gt/intel_reset.c:1312:5: warning: context imbalance in 'intel_gt_reset_trylock' - different lock contexts for basic block
-+drivers/gpu/drm/i915/gt/selftest_reset.c:100:20:    expected void *in
-+drivers/gpu/drm/i915/gt/selftest_reset.c:100:20:    got void [noderef] __iomem *[assigned] s
-+drivers/gpu/drm/i915/gt/selftest_reset.c:100:20: warning: incorrect type in assignment (different address spaces)
-+drivers/gpu/drm/i915/gt/selftest_reset.c:101:46:    expected void const *src
-+drivers/gpu/drm/i915/gt/selftest_reset.c:101:46:    got void [noderef] __iomem *[assigned] s
-+drivers/gpu/drm/i915/gt/selftest_reset.c:101:46: warning: incorrect type in argument 2 (different address spaces)
-+drivers/gpu/drm/i915/gt/selftest_reset.c:136:20:    expected void *in
-+drivers/gpu/drm/i915/gt/selftest_reset.c:136:20:    got void [noderef] __iomem *[assigned] s
-+drivers/gpu/drm/i915/gt/selftest_reset.c:136:20: warning: incorrect type in assignment (different address spaces)
-+drivers/gpu/drm/i915/gt/selftest_reset.c:137:46:    expected void const *src
-+drivers/gpu/drm/i915/gt/selftest_reset.c:137:46:    got void [noderef] __iomem *[assigned] s
-+drivers/gpu/drm/i915/gt/selftest_reset.c:137:46: warning: incorrect type in argument 2 (different address spaces)
-+drivers/gpu/drm/i915/gt/selftest_reset.c:98:34:    expected unsigned int [usertype] *s
-+drivers/gpu/drm/i915/gt/selftest_reset.c:98:34:    got void [noderef] __iomem *[assigned] s
-+drivers/gpu/drm/i915/gt/selftest_reset.c:98:34: warning: incorrect type in argument 1 (different address spaces)
-+drivers/gpu/drm/i915/gvt/mmio.c:295:23: warning: memcpy with byte count of 279040
-+drivers/gpu/drm/i915/i915_perf.c:1447:15: warning: memset with byte count of 16777216
-+drivers/gpu/drm/i915/i915_perf.c:1501:15: warning: memset with byte count of 16777216
-+./include/linux/seqlock.h:838:24: warning: trying to copy expression type 31
-+./include/linux/seqlock.h:838:24: warning: trying to copy expression type 31
-+./include/linux/seqlock.h:864:16: warning: trying to copy expression type 31
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_read16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_read32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_read64' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_read8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_write8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_read16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_read32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_read64' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_read8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_write8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_read16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_read32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_read64' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_read8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_write8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_read16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_read32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_read64' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_read8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_write8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen8_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen8_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen8_write8' - different lock contexts for basic block
+The appeal of splitting the buddies is that it's done once at the start.
 
+Conversely splitting sg constructions mean we do it once at the end.
+But it means we have to conservatively allocate the sgtable and trim.
+More work, but less passing flags to forewarn the allocator about the
+user.
 
+The fixup would be something like:
+
+        if (flags & I915_ALLOC_MAX_SEGMENT_SIZE) {
+                unsigned int max_segment = i915_sg_segment_size();
+
+                if (GEM_WARN_ON(max_segment < mem->mm.chunk_size))
+                        max_order = 0;
+                else
+                        max_order = ilog2(max_segment) - ilog2(mem->mm.chunk_size);
+
+                min_order = min(min_order, max_order);
+	}
+
+And at that point we clearly may still allocate more than max_segment,
+and less than the desired contiguous size.
+
+The only way to meet both I915_ALLOC_CONTIGUOUS and
+i915_sg_segment_size() is to split at the sg constuction.
+
+Unless you do intend for I915_ALLOC_CONTIGUOUS to only return a single
+element in the scatterlist? In which case we need to return an error if
+I915_ALLOC_CONTIGUOUS exceeds I915_ALLOC_MAX_SEGMENT_SIZE.
+
+The positive news is that we successfully tested the test suite.
+-Chris
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
