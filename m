@@ -2,31 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0CC432C9B0D
-	for <lists+intel-gfx@lfdr.de>; Tue,  1 Dec 2020 10:07:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 46A2A2C9B03
+	for <lists+intel-gfx@lfdr.de>; Tue,  1 Dec 2020 10:07:45 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 597B36E51A;
-	Tue,  1 Dec 2020 09:07:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 070E689F89;
+	Tue,  1 Dec 2020 09:07:42 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7734989F3C
- for <intel-gfx@lists.freedesktop.org>; Tue,  1 Dec 2020 09:07:41 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9532589F89
+ for <intel-gfx@lists.freedesktop.org>; Tue,  1 Dec 2020 09:07:39 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 23172174-1500050 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 23172175-1500050 
  for multiple; Tue, 01 Dec 2020 09:07:32 +0000
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Tue,  1 Dec 2020 09:07:26 +0000
-Message-Id: <20201201090729.24777-9-chris@chris-wilson.co.uk>
+Date: Tue,  1 Dec 2020 09:07:27 +0000
+Message-Id: <20201201090729.24777-10-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20201201090729.24777-1-chris@chris-wilson.co.uk>
 References: <20201201090729.24777-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 09/12] drm/i915: Prefer software tracked context
- busyness
+Subject: [Intel-gfx] [PATCH 10/12] drm/i915: Look up clients by pid
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,119 +38,216 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Chris Wilson <chris@chris-wilson.co.uk>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+Use the pid to find associated clients, and report their runtime. This
+will be used to provide the information via procfs.
 
-When available prefer context tracked context busyness because it provides
-visibility into currently executing contexts as well.
-
-Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
 ---
- drivers/gpu/drm/i915/i915_drm_client.c | 66 ++++++++++++++++++++++++--
- 1 file changed, 61 insertions(+), 5 deletions(-)
+ drivers/gpu/drm/i915/i915_drm_client.c | 75 ++++++++++++++++++++++++--
+ drivers/gpu/drm/i915/i915_drm_client.h | 12 +++--
+ 2 files changed, 79 insertions(+), 8 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/i915_drm_client.c b/drivers/gpu/drm/i915/i915_drm_client.c
-index 49bbbc7b7fbf..8a5594819f9a 100644
+index 8a5594819f9a..7602786347fb 100644
 --- a/drivers/gpu/drm/i915/i915_drm_client.c
 +++ b/drivers/gpu/drm/i915/i915_drm_client.c
-@@ -96,6 +96,59 @@ show_client_busy(struct device *kdev, struct device_attribute *attr, char *buf)
+@@ -26,6 +26,9 @@ void i915_drm_clients_init(struct i915_drm_clients *clients,
+ 
+ 	clients->next_id = 0;
+ 	xa_init_flags(&clients->xarray, XA_FLAGS_ALLOC);
++
++	hash_init(clients->pids);
++	spin_lock_init(&clients->pid_lock);
+ }
+ 
+ static ssize_t
+@@ -149,6 +152,58 @@ show_client_sw_busy(struct device *kdev,
  	return snprintf(buf, PAGE_SIZE, "%llu\n", total);
  }
  
-+static u64 sw_busy_add(struct i915_gem_context *ctx, unsigned int class)
++u64 i915_drm_clients_get_runtime(struct i915_drm_clients *clients,
++				 struct pid *pid,
++				 u64 *rt)
 +{
-+	struct i915_gem_engines *engines = rcu_dereference(ctx->engines);
-+	u32 period_ns = RUNTIME_INFO(ctx->i915)->cs_timestamp_period_ns;
-+	struct i915_gem_engines_iter it;
-+	struct intel_context *ce;
++	u32 period_ns = RUNTIME_INFO(clients->i915)->cs_timestamp_period_ns;
++	struct i915_drm_client_name *name;
 +	u64 total = 0;
++	u64 t;
 +
-+	for_each_gem_engine(ce, engines, it) {
-+		struct intel_context_stats *stats;
-+		unsigned int seq;
-+		u64 t;
-+
-+		if (ce->engine->uabi_class != class)
-+			continue;
-+
-+		stats = &ce->stats;
-+
-+		do {
-+			seq = read_seqbegin(&stats->lock);
-+			t = ce->stats.runtime.total * period_ns;
-+			t += __intel_context_get_active_time(ce);
-+		} while (read_seqretry(&stats->lock, seq));
-+
-+		total += t;
-+	}
-+
-+	return total;
-+}
-+
-+static ssize_t
-+show_client_sw_busy(struct device *kdev,
-+		    struct device_attribute *attr,
-+		    char *buf)
-+{
-+	struct i915_engine_busy_attribute *i915_attr =
-+		container_of(attr, typeof(*i915_attr), attr);
-+	unsigned int class = i915_attr->engine_class;
-+	struct i915_drm_client *client = i915_attr->client;
-+	const u32 period_ns =
-+		RUNTIME_INFO(client->clients->i915)->cs_timestamp_period_ns;
-+	u64 total = atomic64_read(&client->past_runtime[class]) * period_ns;
-+	struct list_head *list = &client->ctx_list;
-+	struct i915_gem_context *ctx;
++	memset64(rt, 0, MAX_ENGINE_CLASS + 1);
 +
 +	rcu_read_lock();
-+	list_for_each_entry_rcu(ctx, list, client_link)
-+		total += sw_busy_add(ctx, class);
++	hash_for_each_possible_rcu(clients->pids, name, node, pid_nr(pid)) {
++		struct i915_drm_client *client = name->client;
++		struct list_head *list = &client->ctx_list;
++		struct i915_gem_context *ctx;
++		int i;
++
++		if (name->pid != pid)
++			continue;
++
++		for (i = 0; i < ARRAY_SIZE(client->past_runtime); i++) {
++			t = atomic64_read(&client->past_runtime[i]) * period_ns;
++			rt[i] += t;
++			total += t;
++		}
++
++		list_for_each_entry_rcu(ctx, list, client_link) {
++			struct i915_gem_engines *engines = rcu_dereference(ctx->engines);
++			struct i915_gem_engines_iter it;
++			struct intel_context *ce;
++
++			for_each_gem_engine(ce, engines, it) {
++				struct intel_context_stats *stats = &ce->stats;
++				unsigned int seq;
++
++				do {
++					seq = read_seqbegin(&stats->lock);
++					t = ce->stats.runtime.total * period_ns;
++					t += __intel_context_get_active_time(ce);
++				} while (read_seqretry(&stats->lock, seq));
++
++				rt[ce->engine->class] += t;
++				total += t;
++			}
++		}
++	}
 +	rcu_read_unlock();
 +
-+	return snprintf(buf, PAGE_SIZE, "%llu\n", total);
++	return total;
 +}
 +
  static const char * const uabi_class_names[] = {
  	[I915_ENGINE_CLASS_RENDER] = "0",
  	[I915_ENGINE_CLASS_COPY] = "1",
-@@ -106,6 +159,8 @@ static const char * const uabi_class_names[] = {
- static int __client_register_sysfs_busy(struct i915_drm_client *client)
- {
- 	struct i915_drm_clients *clients = client->clients;
-+	bool sw_stats = clients->i915->caps.scheduler &
-+			I915_SCHEDULER_CAP_ENGINE_BUSY_STATS;
- 	unsigned int i;
- 	int ret = 0;
+@@ -300,7 +355,10 @@ __i915_drm_client_register(struct i915_drm_client *client,
+ 	if (!name)
+ 		return -ENOMEM;
  
-@@ -131,18 +186,19 @@ static int __client_register_sysfs_busy(struct i915_drm_client *client)
++	spin_lock(&clients->pid_lock);
++	hash_add_rcu(clients->pids, &name->node, pid_nr(name->pid));
+ 	RCU_INIT_POINTER(client->name, name);
++	spin_unlock(&clients->pid_lock);
  
- 		attr->attr.name = uabi_class_names[i];
- 		attr->attr.mode = 0444;
--		attr->show = show_client_busy;
-+		attr->show = sw_stats ?
-+			     show_client_sw_busy : show_client_busy;
+ 	if (!clients->root)
+ 		return 0; /* intel_fbdev_init registers a client before sysfs */
+@@ -312,20 +370,25 @@ __i915_drm_client_register(struct i915_drm_client *client,
+ 	return 0;
  
- 		ret = sysfs_create_file(client->busy_root,
- 					(struct attribute *)attr);
- 		if (ret)
--			goto err;
-+			goto out;
- 	}
- 
--	return 0;
-+out:
-+	if (ret)
-+		kobject_put(client->busy_root);
- 
--err:
--	kobject_put(client->busy_root);
+ err_sysfs:
++	spin_lock(&clients->pid_lock);
+ 	RCU_INIT_POINTER(client->name, NULL);
++	hash_del_rcu(&name->node);
++	spin_unlock(&clients->pid_lock);
+ 	call_rcu(&name->rcu, free_name);
  	return ret;
  }
  
+ static void __i915_drm_client_unregister(struct i915_drm_client *client)
+ {
++	struct i915_drm_clients *clients = client->clients;
+ 	struct i915_drm_client_name *name;
+ 
+ 	__client_unregister_sysfs(client);
+ 
+-	mutex_lock(&client->update_lock);
++	spin_lock(&clients->pid_lock);
+ 	name = rcu_replace_pointer(client->name, NULL, true);
+-	mutex_unlock(&client->update_lock);
++	hash_del_rcu(&name->node);
++	spin_unlock(&clients->pid_lock);
+ 
+ 	call_rcu(&name->rcu, free_name);
+ }
+@@ -352,7 +415,6 @@ i915_drm_client_add(struct i915_drm_clients *clients, struct task_struct *task)
+ 		return ERR_PTR(-ENOMEM);
+ 
+ 	kref_init(&client->kref);
+-	mutex_init(&client->update_lock);
+ 	spin_lock_init(&client->ctx_lock);
+ 	INIT_LIST_HEAD(&client->ctx_list);
+ 
+@@ -397,17 +459,20 @@ int
+ i915_drm_client_update(struct i915_drm_client *client,
+ 		       struct task_struct *task)
+ {
++	struct i915_drm_clients *clients = client->clients;
+ 	struct i915_drm_client_name *name;
+ 
+ 	name = get_name(client, task);
+ 	if (!name)
+ 		return -ENOMEM;
+ 
+-	mutex_lock(&client->update_lock);
++	spin_lock(&clients->pid_lock);
+ 	if (name->pid != rcu_dereference_protected(client->name, true)->pid) {
++		hash_add_rcu(clients->pids, &name->node, pid_nr(name->pid));
+ 		name = rcu_replace_pointer(client->name, name, true);
++		hash_del_rcu(&name->node);
+ 	}
+-	mutex_unlock(&client->update_lock);
++	spin_unlock(&clients->pid_lock);
+ 
+ 	call_rcu(&name->rcu, free_name);
+ 	return 0;
+diff --git a/drivers/gpu/drm/i915/i915_drm_client.h b/drivers/gpu/drm/i915/i915_drm_client.h
+index 6365723d89e0..0b392ed9d540 100644
+--- a/drivers/gpu/drm/i915/i915_drm_client.h
++++ b/drivers/gpu/drm/i915/i915_drm_client.h
+@@ -7,10 +7,10 @@
+ #define __I915_DRM_CLIENT_H__
+ 
+ #include <linux/device.h>
++#include <linux/hashtable.h>
+ #include <linux/kobject.h>
+ #include <linux/kref.h>
+ #include <linux/list.h>
+-#include <linux/mutex.h>
+ #include <linux/pid.h>
+ #include <linux/rcupdate.h>
+ #include <linux/sched.h>
+@@ -28,6 +28,9 @@ struct i915_drm_clients {
+ 	u32 next_id;
+ 
+ 	struct kobject *root;
++
++	spinlock_t pid_lock;
++	DECLARE_HASHTABLE(pids, 6);
+ };
+ 
+ struct i915_drm_client;
+@@ -40,6 +43,7 @@ struct i915_engine_busy_attribute {
+ 
+ struct i915_drm_client_name {
+ 	struct rcu_head rcu;
++	struct hlist_node node;
+ 	struct i915_drm_client *client;
+ 	struct pid *pid;
+ 	char name[];
+@@ -50,8 +54,6 @@ struct i915_drm_client {
+ 
+ 	struct rcu_work rcu;
+ 
+-	struct mutex update_lock; /* Serializes name and pid updates. */
+-
+ 	unsigned int id;
+ 	struct i915_drm_client_name __rcu *name;
+ 	bool closed;
+@@ -100,4 +102,8 @@ struct i915_drm_client *i915_drm_client_add(struct i915_drm_clients *clients,
+ int i915_drm_client_update(struct i915_drm_client *client,
+ 			   struct task_struct *task);
+ 
++u64 i915_drm_clients_get_runtime(struct i915_drm_clients *clients,
++				 struct pid *pid,
++				 u64 *rt);
++
+ #endif /* !__I915_DRM_CLIENT_H__ */
 -- 
 2.20.1
 
