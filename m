@@ -2,30 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4D3932C9B07
-	for <lists+intel-gfx@lfdr.de>; Tue,  1 Dec 2020 10:07:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2CF0C2C9B06
+	for <lists+intel-gfx@lfdr.de>; Tue,  1 Dec 2020 10:07:51 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A82DE6E4B5;
+	by gabe.freedesktop.org (Postfix) with ESMTP id B364B6E4B7;
 	Tue,  1 Dec 2020 09:07:42 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 95A9B6E4AF
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9568189FCE
  for <intel-gfx@lists.freedesktop.org>; Tue,  1 Dec 2020 09:07:39 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 23172176-1500050 
- for multiple; Tue, 01 Dec 2020 09:07:32 +0000
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 23172177-1500050 
+ for multiple; Tue, 01 Dec 2020 09:07:33 +0000
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Tue,  1 Dec 2020 09:07:28 +0000
-Message-Id: <20201201090729.24777-11-chris@chris-wilson.co.uk>
+Date: Tue,  1 Dec 2020 09:07:29 +0000
+Message-Id: <20201201090729.24777-12-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20201201090729.24777-1-chris@chris-wilson.co.uk>
 References: <20201201090729.24777-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 11/12] proc: Show GPU runtimes
+Subject: [Intel-gfx] [PATCH 12/12] drm/i915/gt: Export device and
+ per-process runtimes via procfs
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,210 +40,95 @@ List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: Chris Wilson <chris@chris-wilson.co.uk>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Present an interface for system monitors to watch the GPU usage as a
-whole and by individual applications. By consolidating the information
-into a canonical location, we have a single interface that can track the
-utilisation of all GPU devices and sub-devices. This is preferrable to
-asking the system monitors to walk the sysfs, or other interfaces, of
-each device and parse the custom information.
-
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
----
- fs/proc/Makefile         |  1 +
- fs/proc/base.c           |  2 +
- fs/proc/gpu.c            | 83 ++++++++++++++++++++++++++++++++++++++++
- fs/proc/internal.h       |  6 +++
- include/linux/proc_gpu.h | 33 ++++++++++++++++
- 5 files changed, 125 insertions(+)
- create mode 100644 fs/proc/gpu.c
- create mode 100644 include/linux/proc_gpu.h
-
-diff --git a/fs/proc/Makefile b/fs/proc/Makefile
-index bd08616ed8ba..bdc42b592e3e 100644
---- a/fs/proc/Makefile
-+++ b/fs/proc/Makefile
-@@ -16,6 +16,7 @@ proc-y	+= cmdline.o
- proc-y	+= consoles.o
- proc-y	+= cpuinfo.o
- proc-y	+= devices.o
-+proc-y	+= gpu.o
- proc-y	+= interrupts.o
- proc-y	+= loadavg.o
- proc-y	+= meminfo.o
-diff --git a/fs/proc/base.c b/fs/proc/base.c
-index b362523a9829..abb8c3549b40 100644
---- a/fs/proc/base.c
-+++ b/fs/proc/base.c
-@@ -3263,6 +3263,7 @@ static const struct pid_entry tgid_base_stuff[] = {
- #ifdef CONFIG_PROC_PID_ARCH_STATUS
- 	ONE("arch_status", S_IRUGO, proc_pid_arch_status),
- #endif
-+	ONE("gpu", S_IRUGO, proc_pid_gpu),
- };
- 
- static int proc_tgid_base_readdir(struct file *file, struct dir_context *ctx)
-@@ -3592,6 +3593,7 @@ static const struct pid_entry tid_base_stuff[] = {
- #ifdef CONFIG_PROC_PID_ARCH_STATUS
- 	ONE("arch_status", S_IRUGO, proc_pid_arch_status),
- #endif
-+	ONE("gpu", S_IRUGO, proc_pid_gpu),
- };
- 
- static int proc_tid_base_readdir(struct file *file, struct dir_context *ctx)
-diff --git a/fs/proc/gpu.c b/fs/proc/gpu.c
-new file mode 100644
-index 000000000000..7264bf1f2f7b
---- /dev/null
-+++ b/fs/proc/gpu.c
-@@ -0,0 +1,83 @@
-+// SPDX-License-Identifier: GPL-2.0
-+#include <linux/fs.h>
-+#include <linux/init.h>
-+#include <linux/proc_fs.h>
-+#include <linux/proc_gpu.h>
-+#include <linux/seq_file.h>
-+#include <linux/spinlock.h>
-+#include <linux/list.h>
-+
-+#include "internal.h"
-+
-+static LIST_HEAD(gpu);
-+static DEFINE_SPINLOCK(lock);
-+
-+void proc_gpu_register(struct proc_gpu *pg)
-+{
-+	spin_lock(&lock);
-+	list_add_tail(&pg->link, &gpu);
-+	spin_unlock(&lock);
-+}
-+EXPORT_SYMBOL_GPL(proc_gpu_register);
-+
-+void proc_gpu_unregister(struct proc_gpu *pg)
-+{
-+	spin_lock(&lock);
-+	list_del(&pg->link);
-+	spin_unlock(&lock);
-+}
-+EXPORT_SYMBOL_GPL(proc_gpu_unregister);
-+
-+static void print_runtime(struct seq_file *m, const struct proc_gpu_runtime *rt)
-+{
-+	int i;
-+
-+	seq_printf(m, "%llu", rt->device);
-+
-+	for (i = 0; i < rt->nchannel; i++)
-+		seq_printf(m, " %llu", rt->channel[i]);
-+
-+	seq_printf(m, " %s\n", rt->name);
-+}
-+
-+int proc_pid_gpu(struct seq_file *m, struct pid_namespace *ns,
-+		 struct pid *pid, struct task_struct *task)
-+{
-+	struct proc_gpu *p, *pn, mark = {};
-+	struct proc_gpu_runtime rt;
-+
-+	spin_lock(&lock);
-+	list_for_each_entry_safe(p, pn, &gpu, link) {
-+		if (!p->fn)
-+			continue;
-+
-+		rt.name[0] = '\0';
-+		p->fn(p, pid, &rt);
-+		if (!rt.name[0])
-+			continue;
-+
-+		list_add(&mark.link, &p->link);
-+		spin_unlock(&lock);
-+
-+		print_runtime(m, &rt);
-+
-+		spin_lock(&lock);
-+		list_safe_reset_next(&mark, pn, link);
-+		list_del(&mark.link);
-+	}
-+	spin_unlock(&lock);
-+
-+	return 0;
-+}
-+
-+static int proc_gpu_show(struct seq_file *m, void *v)
-+{
-+	return proc_pid_gpu(m, NULL, NULL, NULL);
-+}
-+
-+static int __init proc_gpu_init(void)
-+{
-+	proc_create_single("gpu", 0, NULL, proc_gpu_show);
-+	return 0;
-+}
-+fs_initcall(proc_gpu_init);
-diff --git a/fs/proc/internal.h b/fs/proc/internal.h
-index 917cc85e3466..26fbae85b3e9 100644
---- a/fs/proc/internal.h
-+++ b/fs/proc/internal.h
-@@ -222,6 +222,12 @@ void set_proc_pid_nlink(void);
- extern struct inode *proc_get_inode(struct super_block *, struct proc_dir_entry *);
- extern void proc_entry_rundown(struct proc_dir_entry *);
- 
-+/*
-+ * proc_gpu.c
-+ */
-+int proc_pid_gpu(struct seq_file *m, struct pid_namespace *ns,
-+		 struct pid *pid, struct task_struct *task);
-+
- /*
-  * proc_namespaces.c
-  */
-diff --git a/include/linux/proc_gpu.h b/include/linux/proc_gpu.h
-new file mode 100644
-index 000000000000..05c1db951c80
---- /dev/null
-+++ b/include/linux/proc_gpu.h
-@@ -0,0 +1,33 @@
-+/* SPDX-License-Identifier: GPL-2.0 */
-+/*
-+ * Interface for showing per-gpu/per-process runtimes in /proc.
-+ */
-+#ifndef _LINUX_PROC_GPU_H
-+#define _LINUX_PROC_GPU_H
-+
-+#include <linux/list.h>
-+#include <linux/types.h>
-+
-+struct pid;
-+struct proc_gpu;
-+
-+struct proc_gpu_runtime {
-+	char name[60];
-+	int nchannel;
-+	u64 device;
-+	u64 channel[64];
-+};
-+
-+typedef void (*proc_gpu_fn_t)(struct proc_gpu *arg,
-+			      struct pid *pid,
-+			      struct proc_gpu_runtime *rt);
-+
-+struct proc_gpu {
-+	struct list_head link;
-+	proc_gpu_fn_t fn;
-+};
-+
-+void proc_gpu_register(struct proc_gpu *pg);
-+void proc_gpu_unregister(struct proc_gpu *pg);
-+
-+#endif /* _LINUX_PROC_GPU_H */
--- 
-2.20.1
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+UmVnaXN0ZXIgd2l0aCAvcHJvYy9ncHUgdG8gcHJvdmlkZSB0aGUgY2xpZW50IHJ1bnRpbWVzLgoK
+U2lnbmVkLW9mZi1ieTogQ2hyaXMgV2lsc29uIDxjaHJpc0BjaHJpcy13aWxzb24uY28udWs+Ci0t
+LQogZHJpdmVycy9ncHUvZHJtL2k5MTUvTWFrZWZpbGUgICAgICAgICAgICB8ICAxICsKIGRyaXZl
+cnMvZ3B1L2RybS9pOTE1L2d0L2ludGVsX2d0LmMgICAgICAgfCAgNSArKwogZHJpdmVycy9ncHUv
+ZHJtL2k5MTUvZ3QvaW50ZWxfZ3RfcHJvYy5jICB8IDY2ICsrKysrKysrKysrKysrKysrKysrKysr
+KwogZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvaW50ZWxfZ3RfcHJvYy5oICB8IDE0ICsrKysrCiBk
+cml2ZXJzL2dwdS9kcm0vaTkxNS9ndC9pbnRlbF9ndF90eXBlcy5oIHwgIDMgKysKIDUgZmlsZXMg
+Y2hhbmdlZCwgODkgaW5zZXJ0aW9ucygrKQogY3JlYXRlIG1vZGUgMTAwNjQ0IGRyaXZlcnMvZ3B1
+L2RybS9pOTE1L2d0L2ludGVsX2d0X3Byb2MuYwogY3JlYXRlIG1vZGUgMTAwNjQ0IGRyaXZlcnMv
+Z3B1L2RybS9pOTE1L2d0L2ludGVsX2d0X3Byb2MuaAoKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1
+L2RybS9pOTE1L01ha2VmaWxlIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvTWFrZWZpbGUKaW5kZXgg
+MjUwZjAwNGQ5MmJiLi5lZGU5MGEwMzkyYWYgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9p
+OTE1L01ha2VmaWxlCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L01ha2VmaWxlCkBAIC0xMDAs
+NiArMTAwLDcgQEAgZ3QteSArPSBcCiAJZ3QvaW50ZWxfZ3RfaXJxLm8gXAogCWd0L2ludGVsX2d0
+X3BtLm8gXAogCWd0L2ludGVsX2d0X3BtX2lycS5vIFwKKwlndC9pbnRlbF9ndF9wcm9jLm8gXAog
+CWd0L2ludGVsX2d0X3JlcXVlc3RzLm8gXAogCWd0L2ludGVsX2d0dC5vIFwKIAlndC9pbnRlbF9s
+bGMubyBcCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC9pbnRlbF9ndC5jIGIv
+ZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvaW50ZWxfZ3QuYwppbmRleCA0NGYxZDUxZTVhZTUuLjc5
+Mjg3ZWUzMTYyNSAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvaW50ZWxfZ3Qu
+YworKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC9pbnRlbF9ndC5jCkBAIC0xMCw2ICsxMCw3
+IEBACiAjaW5jbHVkZSAiaW50ZWxfZ3RfYnVmZmVyX3Bvb2wuaCIKICNpbmNsdWRlICJpbnRlbF9n
+dF9jbG9ja191dGlscy5oIgogI2luY2x1ZGUgImludGVsX2d0X3BtLmgiCisjaW5jbHVkZSAiaW50
+ZWxfZ3RfcHJvYy5oIgogI2luY2x1ZGUgImludGVsX2d0X3JlcXVlc3RzLmgiCiAjaW5jbHVkZSAi
+aW50ZWxfbW9jcy5oIgogI2luY2x1ZGUgImludGVsX3JjNi5oIgpAQCAtMzMzLDYgKzMzNCw4IEBA
+IHZvaWQgaW50ZWxfZ3RfZHJpdmVyX3JlZ2lzdGVyKHN0cnVjdCBpbnRlbF9ndCAqZ3QpCiAJaW50
+ZWxfcnBzX2RyaXZlcl9yZWdpc3RlcigmZ3QtPnJwcyk7CiAKIAlkZWJ1Z2ZzX2d0X3JlZ2lzdGVy
+KGd0KTsKKworCWludGVsX2d0X2RyaXZlcl9yZWdpc3Rlcl9fcHJvYyhndCk7CiB9CiAKIHN0YXRp
+YyBpbnQgaW50ZWxfZ3RfaW5pdF9zY3JhdGNoKHN0cnVjdCBpbnRlbF9ndCAqZ3QsIHVuc2lnbmVk
+IGludCBzaXplKQpAQCAtNjE2LDYgKzYxOSw4IEBAIHZvaWQgaW50ZWxfZ3RfZHJpdmVyX3VucmVn
+aXN0ZXIoc3RydWN0IGludGVsX2d0ICpndCkKIHsKIAlpbnRlbF93YWtlcmVmX3Qgd2FrZXJlZjsK
+IAorCWludGVsX2d0X2RyaXZlcl91bnJlZ2lzdGVyX19wcm9jKGd0KTsKKwogCWludGVsX3Jwc19k
+cml2ZXJfdW5yZWdpc3RlcigmZ3QtPnJwcyk7CiAKIAkvKgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9n
+cHUvZHJtL2k5MTUvZ3QvaW50ZWxfZ3RfcHJvYy5jIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3Qv
+aW50ZWxfZ3RfcHJvYy5jCm5ldyBmaWxlIG1vZGUgMTAwNjQ0CmluZGV4IDAwMDAwMDAwMDAwMC4u
+OTc0YTgwYWM0ZjdkCi0tLSAvZGV2L251bGwKKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3Qv
+aW50ZWxfZ3RfcHJvYy5jCkBAIC0wLDAgKzEsNjYgQEAKKy8vIFNQRFgtTGljZW5zZS1JZGVudGlm
+aWVyOiBNSVQKKy8qCisgKiBDb3B5cmlnaHQgwqkgMjAyMCBJbnRlbCBDb3Jwb3JhdGlvbgorICov
+CisKKyNpbmNsdWRlIDxsaW51eC9wcm9jX2dwdS5oPgorCisjaW5jbHVkZSAiaTkxNV9kcm1fY2xp
+ZW50LmgiCisjaW5jbHVkZSAiaTkxNV9kcnYuaCIKKyNpbmNsdWRlICJpbnRlbF9ndC5oIgorI2lu
+Y2x1ZGUgImludGVsX2d0X3BtLmgiCisjaW5jbHVkZSAiaW50ZWxfZ3RfcHJvYy5oIgorCitzdGF0
+aWMgdm9pZCBwcm9jX3J1bnRpbWVfcGlkKHN0cnVjdCBpbnRlbF9ndCAqZ3QsCisJCQkgICAgIHN0
+cnVjdCBwaWQgKnBpZCwKKwkJCSAgICAgc3RydWN0IHByb2NfZ3B1X3J1bnRpbWUgKnJ0KQorewor
+CXN0cnVjdCBpOTE1X2RybV9jbGllbnRzICpjbGllbnRzID0gJmd0LT5pOTE1LT5jbGllbnRzOwor
+CisJQlVJTERfQlVHX09OKE1BWF9FTkdJTkVfQ0xBU1MgPj0gQVJSQVlfU0laRShydC0+Y2hhbm5l
+bCkpOworCisJcnQtPmRldmljZSA9IGk5MTVfZHJtX2NsaWVudHNfZ2V0X3J1bnRpbWUoY2xpZW50
+cywgcGlkLCBydC0+Y2hhbm5lbCk7CisJcnQtPm5jaGFubmVsID0gTUFYX0VOR0lORV9DTEFTUyAr
+IDE7Cit9CisKK3N0YXRpYyB2b2lkIHByb2NfcnVudGltZV9kZXZpY2Uoc3RydWN0IGludGVsX2d0
+ICpndCwKKwkJCQlzdHJ1Y3QgcGlkICpwaWQsCisJCQkJc3RydWN0IHByb2NfZ3B1X3J1bnRpbWUg
+KnJ0KQoreworCXN0cnVjdCBpbnRlbF9lbmdpbmVfY3MgKmVuZ2luZTsKKwllbnVtIGludGVsX2Vu
+Z2luZV9pZCBpZDsKKwlrdGltZV90IGR1bW15OworCisJcnQtPm5jaGFubmVsID0gMDsKKwlmb3Jf
+ZWFjaF9lbmdpbmUoZW5naW5lLCBndCwgaWQpIHsKKwkJcnQtPmNoYW5uZWxbcnQtPm5jaGFubmVs
+KytdID0KKwkJCWludGVsX2VuZ2luZV9nZXRfYnVzeV90aW1lKGVuZ2luZSwgJmR1bW15KTsKKwkJ
+aWYgKHJ0LT5uY2hhbm5lbCA9PSBBUlJBWV9TSVpFKHJ0LT5jaGFubmVsKSkKKwkJCWJyZWFrOwor
+CX0KKwlydC0+ZGV2aWNlID0gaW50ZWxfZ3RfZ2V0X2F3YWtlX3RpbWUoZ3QpOworfQorCitzdGF0
+aWMgdm9pZCBwcm9jX3J1bnRpbWUoc3RydWN0IHByb2NfZ3B1ICpwZywKKwkJCSBzdHJ1Y3QgcGlk
+ICpwaWQsCisJCQkgc3RydWN0IHByb2NfZ3B1X3J1bnRpbWUgKnJ0KQoreworCXN0cnVjdCBpbnRl
+bF9ndCAqZ3QgPSBjb250YWluZXJfb2YocGcsIHR5cGVvZigqZ3QpLCBwcm9jKTsKKworCXN0cmxj
+cHkocnQtPm5hbWUsIGRldl9uYW1lKGd0LT5pOTE1LT5kcm0uZGV2KSwgc2l6ZW9mKHJ0LT5uYW1l
+KSk7CisJaWYgKHBpZCkKKwkJcHJvY19ydW50aW1lX3BpZChndCwgcGlkLCBydCk7CisJZWxzZQor
+CQlwcm9jX3J1bnRpbWVfZGV2aWNlKGd0LCBwaWQsIHJ0KTsKK30KKwordm9pZCBpbnRlbF9ndF9k
+cml2ZXJfcmVnaXN0ZXJfX3Byb2Moc3RydWN0IGludGVsX2d0ICpndCkKK3sKKwlndC0+cHJvYy5m
+biA9IHByb2NfcnVudGltZTsKKwlwcm9jX2dwdV9yZWdpc3RlcigmZ3QtPnByb2MpOworfQorCit2
+b2lkIGludGVsX2d0X2RyaXZlcl91bnJlZ2lzdGVyX19wcm9jKHN0cnVjdCBpbnRlbF9ndCAqZ3Qp
+Cit7CisJcHJvY19ncHVfdW5yZWdpc3RlcigmZ3QtPnByb2MpOworfQpkaWZmIC0tZ2l0IGEvZHJp
+dmVycy9ncHUvZHJtL2k5MTUvZ3QvaW50ZWxfZ3RfcHJvYy5oIGIvZHJpdmVycy9ncHUvZHJtL2k5
+MTUvZ3QvaW50ZWxfZ3RfcHJvYy5oCm5ldyBmaWxlIG1vZGUgMTAwNjQ0CmluZGV4IDAwMDAwMDAw
+MDAwMC4uN2E5YmZmMGZiMDIwCi0tLSAvZGV2L251bGwKKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5
+MTUvZ3QvaW50ZWxfZ3RfcHJvYy5oCkBAIC0wLDAgKzEsMTQgQEAKKy8qIFNQRFgtTGljZW5zZS1J
+ZGVudGlmaWVyOiBNSVQgKi8KKy8qCisgKiBDb3B5cmlnaHQgwqkgMjAyMCBJbnRlbCBDb3Jwb3Jh
+dGlvbgorICovCisKKyNpZm5kZWYgSU5URUxfR1RfUFJPQ19ICisjZGVmaW5lIElOVEVMX0dUX1BS
+T0NfSAorCitzdHJ1Y3QgaW50ZWxfZ3Q7CisKK3ZvaWQgaW50ZWxfZ3RfZHJpdmVyX3JlZ2lzdGVy
+X19wcm9jKHN0cnVjdCBpbnRlbF9ndCAqZ3QpOwordm9pZCBpbnRlbF9ndF9kcml2ZXJfdW5yZWdp
+c3Rlcl9fcHJvYyhzdHJ1Y3QgaW50ZWxfZ3QgKmd0KTsKKworI2VuZGlmIC8qIElOVEVMX0dUX1BS
+T0NfSCAqLwpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvaW50ZWxfZ3RfdHlw
+ZXMuaCBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L2ludGVsX2d0X3R5cGVzLmgKaW5kZXggYzdi
+ZGU1MjlmZWFiLi5jOWY3NDg2ZGI5MzQgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1
+L2d0L2ludGVsX2d0X3R5cGVzLmgKKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvaW50ZWxf
+Z3RfdHlwZXMuaApAQCAtMTAsNiArMTAsNyBAQAogI2luY2x1ZGUgPGxpbnV4L2xpc3QuaD4KICNp
+bmNsdWRlIDxsaW51eC9tdXRleC5oPgogI2luY2x1ZGUgPGxpbnV4L25vdGlmaWVyLmg+CisjaW5j
+bHVkZSA8bGludXgvcHJvY19ncHUuaD4KICNpbmNsdWRlIDxsaW51eC9zcGlubG9jay5oPgogI2lu
+Y2x1ZGUgPGxpbnV4L3R5cGVzLmg+CiAKQEAgLTEzNCw2ICsxMzUsOCBAQCBzdHJ1Y3QgaW50ZWxf
+Z3QgewogCiAJc3RydWN0IGk5MTVfdm1hICpzY3JhdGNoOwogCisJc3RydWN0IHByb2NfZ3B1IHBy
+b2M7CisKIAlzdHJ1Y3QgaW50ZWxfZ3RfaW5mbyB7CiAJCWludGVsX2VuZ2luZV9tYXNrX3QgZW5n
+aW5lX21hc2s7CiAJCXU4IG51bV9lbmdpbmVzOwotLSAKMi4yMC4xCgpfX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0Cklu
+dGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5v
+cmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
