@@ -1,32 +1,46 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B58AB2CA024
-	for <lists+intel-gfx@lfdr.de>; Tue,  1 Dec 2020 11:44:04 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id ED9D22CA05A
+	for <lists+intel-gfx@lfdr.de>; Tue,  1 Dec 2020 11:52:33 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5C8986E52C;
-	Tue,  1 Dec 2020 10:44:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 59CBF6E4DD;
+	Tue,  1 Dec 2020 10:52:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 26B626E4EA;
- Tue,  1 Dec 2020 10:44:01 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 1CEB8A8836;
- Tue,  1 Dec 2020 10:44:01 +0000 (UTC)
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9A7946E4DD
+ for <intel-gfx@lists.freedesktop.org>; Tue,  1 Dec 2020 10:52:30 +0000 (UTC)
+IronPort-SDR: vr2OwDmrgCX7BQQY/Ml/HokOAfxDK+beaMWhhj4zQfxupW8a//DHWijQKfzxVBeRgT+aW4oD1M
+ 5Ir/v8PvUaxQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9821"; a="152637627"
+X-IronPort-AV: E=Sophos;i="5.78,384,1599548400"; d="scan'208";a="152637627"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Dec 2020 02:52:27 -0800
+IronPort-SDR: USL2aiZD3ttV8ZU0uvcdk3nQQX7Fvrbjh+2nM9g9vjqx3ARnW6Sgao1M4S3lfgyPEIHgoQqXGd
+ GaxBKNgMMUiw==
+X-IronPort-AV: E=Sophos;i="5.78,384,1599548400"; d="scan'208";a="549520042"
+Received: from ideak-desk.fi.intel.com ([10.237.68.141])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Dec 2020 02:52:26 -0800
+Date: Tue, 1 Dec 2020 12:52:22 +0200
+From: Imre Deak <imre.deak@intel.com>
+To: Chris Wilson <chris@chris-wilson.co.uk>
+Message-ID: <20201201105222.GA2849269@ideak-desk.fi.intel.com>
+References: <20201130212200.2811939-1-imre.deak@intel.com>
+ <20201130212200.2811939-10-imre.deak@intel.com>
+ <160677402120.12351.15729317951519810612@build.alporthouse.com>
+ <20201130224708.GD2480925@ideak-desk.fi.intel.com>
+ <160681048020.12351.8804231018277657231@build.alporthouse.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Tue, 01 Dec 2020 10:44:01 -0000
-Message-ID: <160681944109.6988.12831383165558073358@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20201201100626.16073-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20201201100626.16073-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
- =?utf-8?q?series_starting_with_=5B01/10=5D_drm/i915/gt=3A_Replace_direct_?=
- =?utf-8?q?submit_with_direct_call_to_tasklet?=
+Content-Disposition: inline
+In-Reply-To: <160681048020.12351.8804231018277657231@build.alporthouse.com>
+Subject: Re: [Intel-gfx] [PATCH 9/9] drm/i915: Make
+ intel_display_power_put_unchecked() an internal-only function
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,80 +53,60 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
+Reply-To: imre.deak@intel.com
 Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Tue, Dec 01, 2020 at 08:14:40AM +0000, Chris Wilson wrote:
+> Quoting Imre Deak (2020-11-30 22:47:08)
+> > On Mon, Nov 30, 2020 at 10:07:01PM +0000, Chris Wilson wrote:
+> > > Quoting Imre Deak (2020-11-30 21:22:00)
+> > > > All the display power domain references are wakeref tracked now, so we
+> > > > can mark intel_display_power_put_unchecked() as an internal function
+> > > > (for suppressing wakeref tracking in non-debug builds).
+> > > > 
+> > > > Cc: Chris Wilson <chris@chris-wilson.co.uk>
+> > > > Signed-off-by: Imre Deak <imre.deak@intel.com>
+> > > 
+> > > Ok, after all previous patches it will only be called from the header
+> > > after throwing away the wakeref.
+> > > 
+> > > I have a sneaky suspicion you might take another path after reviewing
+> > > the danger caused by the debug build, 
+> > 
+> > Yes, how about also adding:
+> > 
+> > +static inline void
+> > +____intel_display_power_put(struct drm_i915_private *i915,
+> > +                           enum intel_display_power_domain domain,
+> > +                           intel_wakeref_t wakeref)
+> > +{
+> > +       intel_display_power_put_unchecked(i915, domain);
+> > +}
+> > +
+> >  static inline void
+> >  intel_display_power_put(struct drm_i915_private *i915,
+> >                         enum intel_display_power_domain domain,
+> >                         intel_wakeref_t wakeref)
+> >  {
+> > -       intel_display_power_put_unchecked(i915, domain);
+> > +       ____intel_display_power_put(i915, domain, wakeref);
+> >  }
+> > 
+> > (and similar change for intel_display_power_put_async()) ?
+> 
+> Hmm. The compiler shouldn't DCE the wakeref since it has a side-effect.
+> We can but see.
 
-Series: series starting with [01/10] drm/i915/gt: Replace direct submit with direct call to tasklet
-URL   : https://patchwork.freedesktop.org/series/84445/
-State : warning
+Yes, arguments passed to functions are evaluated exactly once. The above
+extra call doesn't make sense anyway.
 
-== Summary ==
+Are you ok with patch 4 then?
 
-$ dim sparse --fast origin/drm-tip
-Sparse version: v0.6.2
-Fast mode used, each commit won't be checked separately.
--
-+drivers/gpu/drm/i915/gt/intel_reset.c:1328:5: warning: context imbalance in 'intel_gt_reset_trylock' - different lock contexts for basic block
-+drivers/gpu/drm/i915/gt/selftest_reset.c:100:20:    expected void *in
-+drivers/gpu/drm/i915/gt/selftest_reset.c:100:20:    got void [noderef] __iomem *[assigned] s
-+drivers/gpu/drm/i915/gt/selftest_reset.c:100:20: warning: incorrect type in assignment (different address spaces)
-+drivers/gpu/drm/i915/gt/selftest_reset.c:101:46:    expected void const *src
-+drivers/gpu/drm/i915/gt/selftest_reset.c:101:46:    got void [noderef] __iomem *[assigned] s
-+drivers/gpu/drm/i915/gt/selftest_reset.c:101:46: warning: incorrect type in argument 2 (different address spaces)
-+drivers/gpu/drm/i915/gt/selftest_reset.c:136:20:    expected void *in
-+drivers/gpu/drm/i915/gt/selftest_reset.c:136:20:    got void [noderef] __iomem *[assigned] s
-+drivers/gpu/drm/i915/gt/selftest_reset.c:136:20: warning: incorrect type in assignment (different address spaces)
-+drivers/gpu/drm/i915/gt/selftest_reset.c:137:46:    expected void const *src
-+drivers/gpu/drm/i915/gt/selftest_reset.c:137:46:    got void [noderef] __iomem *[assigned] s
-+drivers/gpu/drm/i915/gt/selftest_reset.c:137:46: warning: incorrect type in argument 2 (different address spaces)
-+drivers/gpu/drm/i915/gt/selftest_reset.c:98:34:    expected unsigned int [usertype] *s
-+drivers/gpu/drm/i915/gt/selftest_reset.c:98:34:    got void [noderef] __iomem *[assigned] s
-+drivers/gpu/drm/i915/gt/selftest_reset.c:98:34: warning: incorrect type in argument 1 (different address spaces)
-+drivers/gpu/drm/i915/gvt/mmio.c:295:23: warning: memcpy with byte count of 279040
-+drivers/gpu/drm/i915/i915_perf.c:1447:15: warning: memset with byte count of 16777216
-+drivers/gpu/drm/i915/i915_perf.c:1501:15: warning: memset with byte count of 16777216
-+./include/linux/seqlock.h:838:24: warning: trying to copy expression type 31
-+./include/linux/seqlock.h:838:24: warning: trying to copy expression type 31
-+./include/linux/seqlock.h:864:16: warning: trying to copy expression type 31
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_read16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_read32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_read64' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_read8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_write8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_read16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_read32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_read64' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_read8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_write8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_read16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_read32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_read64' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_read8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_write8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_read16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_read32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_read64' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_read8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_write8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen8_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen8_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen8_write8' - different lock contexts for basic block
-
-
+--Imre
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
