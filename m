@@ -2,45 +2,35 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id ED9D22CA05A
-	for <lists+intel-gfx@lfdr.de>; Tue,  1 Dec 2020 11:52:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id CA2352CA0EB
+	for <lists+intel-gfx@lfdr.de>; Tue,  1 Dec 2020 12:08:39 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 59CBF6E4DD;
-	Tue,  1 Dec 2020 10:52:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 441866E529;
+	Tue,  1 Dec 2020 11:08:37 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9A7946E4DD
- for <intel-gfx@lists.freedesktop.org>; Tue,  1 Dec 2020 10:52:30 +0000 (UTC)
-IronPort-SDR: vr2OwDmrgCX7BQQY/Ml/HokOAfxDK+beaMWhhj4zQfxupW8a//DHWijQKfzxVBeRgT+aW4oD1M
- 5Ir/v8PvUaxQ==
-X-IronPort-AV: E=McAfee;i="6000,8403,9821"; a="152637627"
-X-IronPort-AV: E=Sophos;i="5.78,384,1599548400"; d="scan'208";a="152637627"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Dec 2020 02:52:27 -0800
-IronPort-SDR: USL2aiZD3ttV8ZU0uvcdk3nQQX7Fvrbjh+2nM9g9vjqx3ARnW6Sgao1M4S3lfgyPEIHgoQqXGd
- GaxBKNgMMUiw==
-X-IronPort-AV: E=Sophos;i="5.78,384,1599548400"; d="scan'208";a="549520042"
-Received: from ideak-desk.fi.intel.com ([10.237.68.141])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Dec 2020 02:52:26 -0800
-Date: Tue, 1 Dec 2020 12:52:22 +0200
-From: Imre Deak <imre.deak@intel.com>
-To: Chris Wilson <chris@chris-wilson.co.uk>
-Message-ID: <20201201105222.GA2849269@ideak-desk.fi.intel.com>
-References: <20201130212200.2811939-1-imre.deak@intel.com>
- <20201130212200.2811939-10-imre.deak@intel.com>
- <160677402120.12351.15729317951519810612@build.alporthouse.com>
- <20201130224708.GD2480925@ideak-desk.fi.intel.com>
- <160681048020.12351.8804231018277657231@build.alporthouse.com>
+Received: from fireflyinternet.com (unknown [77.68.26.236])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9B7566E529
+ for <intel-gfx@lists.freedesktop.org>; Tue,  1 Dec 2020 11:08:34 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from localhost (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
+ 23174277-1500050 for multiple; Tue, 01 Dec 2020 11:08:26 +0000
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <160681048020.12351.8804231018277657231@build.alporthouse.com>
-Subject: Re: [Intel-gfx] [PATCH 9/9] drm/i915: Make
- intel_display_power_put_unchecked() an internal-only function
+In-Reply-To: <20201130233902.GA2843910@ideak-desk.fi.intel.com>
+References: <20201130212200.2811939-1-imre.deak@intel.com>
+ <20201130212200.2811939-5-imre.deak@intel.com>
+ <160677363371.12351.7483170084025008582@build.alporthouse.com>
+ <20201130220716.GC2480925@ideak-desk.fi.intel.com>
+ <20201130233902.GA2843910@ideak-desk.fi.intel.com>
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: Imre Deak <imre.deak@intel.com>
+Date: Tue, 01 Dec 2020 11:08:25 +0000
+Message-ID: <160682090551.17248.9251611047847421758@build.alporthouse.com>
+User-Agent: alot/0.9
+Subject: Re: [Intel-gfx] [PATCH 4/9] drm/i915/ddi: Track power reference
+ taken for encoder DDI IO use
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,60 +43,81 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: imre.deak@intel.com
 Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Dec 01, 2020 at 08:14:40AM +0000, Chris Wilson wrote:
-> Quoting Imre Deak (2020-11-30 22:47:08)
-> > On Mon, Nov 30, 2020 at 10:07:01PM +0000, Chris Wilson wrote:
-> > > Quoting Imre Deak (2020-11-30 21:22:00)
-> > > > All the display power domain references are wakeref tracked now, so we
-> > > > can mark intel_display_power_put_unchecked() as an internal function
-> > > > (for suppressing wakeref tracking in non-debug builds).
+Quoting Imre Deak (2020-11-30 23:39:02)
+> On Tue, Dec 01, 2020 at 12:07:21AM +0200, Imre Deak wrote:
+> > On Mon, Nov 30, 2020 at 10:00:33PM +0000, Chris Wilson wrote:
+> > > Quoting Imre Deak (2020-11-30 21:21:55)
+> > > > Add wakeref tracking for the DDI encoders' DDI_IO display power domain
+> > > > references.
 > > > > 
 > > > > Cc: Chris Wilson <chris@chris-wilson.co.uk>
 > > > > Signed-off-by: Imre Deak <imre.deak@intel.com>
+> > > > ---
+> > > >  drivers/gpu/drm/i915/display/intel_ddi.c      | 38 ++++++++++++-------
+> > > >  .../drm/i915/display/intel_display_types.h    |  1 +
+> > > >  2 files changed, 25 insertions(+), 14 deletions(-)
+> > > > 
+> > > > diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
+> > > > index 92940a0c5ef8..9518d298b0f7 100644
+> > > > --- a/drivers/gpu/drm/i915/display/intel_ddi.c
+> > > > +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+> > > > @@ -2285,9 +2285,11 @@ static void intel_ddi_get_power_domains(struct intel_encoder *encoder,
+> > > >         dig_port = enc_to_dig_port(encoder);
+> > > >  
+> > > >         if (!intel_phy_is_tc(dev_priv, phy) ||
+> > > > -           dig_port->tc_mode != TC_PORT_TBT_ALT)
+> > > > -               intel_display_power_get(dev_priv,
+> > > > -                                       dig_port->ddi_io_power_domain);
+> > > > +           dig_port->tc_mode != TC_PORT_TBT_ALT) {
+> > > > +               drm_WARN_ON(&dev_priv->drm, dig_port->ddi_io_wakeref);
+> > > > +               dig_port->ddi_io_wakeref = intel_display_power_get(dev_priv,
+> > > > +                                                                  dig_port->ddi_io_power_domain);
+> > > > +       }
 > > > 
-> > > Ok, after all previous patches it will only be called from the header
-> > > after throwing away the wakeref.
+> > > > @@ -3958,8 +3967,9 @@ static void intel_ddi_post_disable_hdmi(struct intel_atomic_state *state,
+> > > >  
+> > > >         intel_disable_ddi_buf(encoder, old_crtc_state);
+> > > >  
+> > > > -       intel_display_power_put_unchecked(dev_priv,
+> > > > -                                         dig_port->ddi_io_power_domain);
+> > > > +       intel_display_power_put(dev_priv,
+> > > > +                               dig_port->ddi_io_power_domain,
+> > > > +                               fetch_and_zero(&dig_port->ddi_io_wakeref));
 > > > 
-> > > I have a sneaky suspicion you might take another path after reviewing
-> > > the danger caused by the debug build, 
-> > 
-> > Yes, how about also adding:
-> > 
-> > +static inline void
-> > +____intel_display_power_put(struct drm_i915_private *i915,
-> > +                           enum intel_display_power_domain domain,
-> > +                           intel_wakeref_t wakeref)
-> > +{
-> > +       intel_display_power_put_unchecked(i915, domain);
-> > +}
-> > +
-> >  static inline void
-> >  intel_display_power_put(struct drm_i915_private *i915,
-> >                         enum intel_display_power_domain domain,
-> >                         intel_wakeref_t wakeref)
-> >  {
-> > -       intel_display_power_put_unchecked(i915, domain);
-> > +       ____intel_display_power_put(i915, domain, wakeref);
-> >  }
-> > 
-> > (and similar change for intel_display_power_put_async()) ?
+> > > I remember that once we had trouble with this being a macro and not
+> > > evaluating the fetch_and_zero() when used as an argument.
+> > > 
+> > > Looks like we still have the same trouble with
+> > > 
+> > > #if !IS_ENABLED(CONFIG_DRM_I915_DEBUG_RUNTIME_PM)
+> > > static inline void
+> > > intel_display_power_put(struct drm_i915_private *i915,
+> > >                         enum intel_display_power_domain domain,
+> > >                         intel_wakeref_t wakeref)
+> > > {
+> > >         intel_display_power_put_unchecked(i915, domain);
+> > > }
+> > > #endif
+> > > 
+> > > will cause the ddi_io_wakeref to not be cleared, and the warn on to be
+> > > hit in non-debug builds.
 > 
-> Hmm. The compiler shouldn't DCE the wakeref since it has a side-effect.
-> We can but see.
+> Actually, this would be the case only if intel_display_power_put() was a
+> macro (which it was at one point, but we've changed it to be an inline
+> function just to avoid the same issue).
+> 
+> So I think the wakeref zeroing is still ok.
 
-Yes, arguments passed to functions are evaluated exactly once. The above
-extra call doesn't make sense anyway.
-
-Are you ok with patch 4 then?
-
---Imre
+Yeah, I think it was previously broken by being a macro whereas the
+inline function should be ok. A pair of non-debug modesets would bery
+quickly confirm whether or not there is an issue :)
+-Chris
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
