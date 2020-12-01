@@ -2,31 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1AF442C9832
-	for <lists+intel-gfx@lfdr.de>; Tue,  1 Dec 2020 08:34:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 758C82C98B7
+	for <lists+intel-gfx@lfdr.de>; Tue,  1 Dec 2020 08:57:06 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0A5CA6E4B1;
-	Tue,  1 Dec 2020 07:34:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BE4676E4B5;
+	Tue,  1 Dec 2020 07:57:03 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9BE4B6E4AD
- for <intel-gfx@lists.freedesktop.org>; Tue,  1 Dec 2020 07:34:01 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 23171030-1500050 
- for <intel-gfx@lists.freedesktop.org>; Tue, 01 Dec 2020 07:33:57 +0000
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Tue,  1 Dec 2020 07:33:56 +0000
-Message-Id: <20201201073356.18968-2-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20201201073356.18968-1-chris@chris-wilson.co.uk>
-References: <20201201073356.18968-1-chris@chris-wilson.co.uk>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id A0AED6E4B1;
+ Tue,  1 Dec 2020 07:57:02 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 961BBA47EB;
+ Tue,  1 Dec 2020 07:57:02 +0000 (UTC)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [CI 2/2] drm/i915/gt: ce->inflight updates are now
- serialised
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Tue, 01 Dec 2020 07:57:02 -0000
+Message-ID: <160680942261.6987.5670695933245103774@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20201201073356.18968-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20201201073356.18968-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
+ =?utf-8?q?series_starting_with_=5BCI=2C1/2=5D_drm/i915/gt=3A_Replace_dire?=
+ =?utf-8?q?ct_submit_with_direct_call_to_tasklet?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,149 +39,79 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Since schedule-in and schedule-out are now both always under the tasklet
-bitlock, we can reduce the individual atomic operations to simple
-instructions and worry less.
+== Series Details ==
 
-This notably eliminates the race observed with intel_context_inflight in
-__engine_unpark().
+Series: series starting with [CI,1/2] drm/i915/gt: Replace direct submit with direct call to tasklet
+URL   : https://patchwork.freedesktop.org/series/84433/
+State : warning
 
-Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/2583
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
----
- drivers/gpu/drm/i915/gt/intel_lrc.c | 52 ++++++++++++++---------------
- 1 file changed, 25 insertions(+), 27 deletions(-)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
-index de4794ecde36..6bd9b1bd3c2d 100644
---- a/drivers/gpu/drm/i915/gt/intel_lrc.c
-+++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
-@@ -1358,11 +1358,11 @@ __execlists_schedule_in(struct i915_request *rq)
- 		ce->lrc.ccid = ce->tag;
- 	} else {
- 		/* We don't need a strict matching tag, just different values */
--		unsigned int tag = ffs(READ_ONCE(engine->context_tag));
-+		unsigned int tag = __ffs(engine->context_tag);
- 
--		GEM_BUG_ON(tag == 0 || tag >= BITS_PER_LONG);
--		clear_bit(tag - 1, &engine->context_tag);
--		ce->lrc.ccid = tag << (GEN11_SW_CTX_ID_SHIFT - 32);
-+		GEM_BUG_ON(tag >= BITS_PER_LONG);
-+		__clear_bit(tag, &engine->context_tag);
-+		ce->lrc.ccid = (1 + tag) << (GEN11_SW_CTX_ID_SHIFT - 32);
- 
- 		BUILD_BUG_ON(BITS_PER_LONG > GEN12_MAX_CONTEXT_HW_ID);
- 	}
-@@ -1375,6 +1375,8 @@ __execlists_schedule_in(struct i915_request *rq)
- 	execlists_context_status_change(rq, INTEL_CONTEXT_SCHEDULE_IN);
- 	intel_engine_context_in(engine);
- 
-+	CE_TRACE(ce, "schedule-in, ccid:%x\n", ce->lrc.ccid);
-+
- 	return engine;
- }
- 
-@@ -1386,13 +1388,10 @@ static inline void execlists_schedule_in(struct i915_request *rq, int idx)
- 	GEM_BUG_ON(!intel_engine_pm_is_awake(rq->engine));
- 	trace_i915_request_in(rq, idx);
- 
--	old = READ_ONCE(ce->inflight);
--	do {
--		if (!old) {
--			WRITE_ONCE(ce->inflight, __execlists_schedule_in(rq));
--			break;
--		}
--	} while (!try_cmpxchg(&ce->inflight, &old, ptr_inc(old)));
-+	old = ce->inflight;
-+	if (!old)
-+		old = __execlists_schedule_in(rq);
-+	WRITE_ONCE(ce->inflight, ptr_inc(old));
- 
- 	GEM_BUG_ON(intel_context_inflight(ce) != rq->engine);
- }
-@@ -1406,12 +1405,11 @@ static void kick_siblings(struct i915_request *rq, struct intel_context *ce)
- 		tasklet_hi_schedule(&ve->base.execlists.tasklet);
- }
- 
--static inline void
--__execlists_schedule_out(struct i915_request *rq,
--			 struct intel_engine_cs * const engine,
--			 unsigned int ccid)
-+static inline void __execlists_schedule_out(struct i915_request *rq)
- {
- 	struct intel_context * const ce = rq->context;
-+	struct intel_engine_cs * const engine = rq->engine;
-+	unsigned int ccid;
- 
- 	/*
- 	 * NB process_csb() is not under the engine->active.lock and hence
-@@ -1419,6 +1417,8 @@ __execlists_schedule_out(struct i915_request *rq,
- 	 * refrain from doing non-trivial work here.
- 	 */
- 
-+	CE_TRACE(ce, "schedule-out, ccid:%x\n", ce->lrc.ccid);
-+
- 	if (IS_ENABLED(CONFIG_DRM_I915_DEBUG_GEM))
- 		execlists_check_context(ce, engine, "after");
- 
-@@ -1430,12 +1430,13 @@ __execlists_schedule_out(struct i915_request *rq,
- 	    i915_request_completed(rq))
- 		intel_engine_add_retire(engine, ce->timeline);
- 
-+	ccid = ce->lrc.ccid;
- 	ccid >>= GEN11_SW_CTX_ID_SHIFT - 32;
- 	ccid &= GEN12_MAX_CONTEXT_HW_ID;
- 	if (ccid < BITS_PER_LONG) {
- 		GEM_BUG_ON(ccid == 0);
- 		GEM_BUG_ON(test_bit(ccid - 1, &engine->context_tag));
--		set_bit(ccid - 1, &engine->context_tag);
-+		__set_bit(ccid - 1, &engine->context_tag);
- 	}
- 
- 	intel_context_update_runtime(ce);
-@@ -1456,26 +1457,23 @@ __execlists_schedule_out(struct i915_request *rq,
- 	 */
- 	if (ce->engine != engine)
- 		kick_siblings(rq, ce);
+$ dim sparse --fast origin/drm-tip
+Sparse version: v0.6.2
+Fast mode used, each commit won't be checked separately.
 -
--	intel_context_put(ce);
- }
- 
- static inline void
- execlists_schedule_out(struct i915_request *rq)
- {
- 	struct intel_context * const ce = rq->context;
--	struct intel_engine_cs *cur, *old;
--	u32 ccid;
- 
- 	trace_i915_request_out(rq);
- 
--	ccid = rq->context->lrc.ccid;
--	old = READ_ONCE(ce->inflight);
--	do
--		cur = ptr_unmask_bits(old, 2) ? ptr_dec(old) : NULL;
--	while (!try_cmpxchg(&ce->inflight, &old, cur));
--	if (!cur)
--		__execlists_schedule_out(rq, old, ccid);
-+	GEM_BUG_ON(!ce->inflight);
-+	ce->inflight = ptr_dec(ce->inflight);
-+	if (!intel_context_inflight_count(ce)) {
-+		GEM_BUG_ON(ce->inflight != rq->engine);
-+		__execlists_schedule_out(rq);
-+		WRITE_ONCE(ce->inflight, NULL);
-+		intel_context_put(ce);
-+	}
- 
- 	i915_request_put(rq);
- }
--- 
-2.20.1
++drivers/gpu/drm/i915/gt/intel_reset.c:1328:5: warning: context imbalance in 'intel_gt_reset_trylock' - different lock contexts for basic block
++drivers/gpu/drm/i915/gt/selftest_reset.c:100:20:    expected void *in
++drivers/gpu/drm/i915/gt/selftest_reset.c:100:20:    got void [noderef] __iomem *[assigned] s
++drivers/gpu/drm/i915/gt/selftest_reset.c:100:20: warning: incorrect type in assignment (different address spaces)
++drivers/gpu/drm/i915/gt/selftest_reset.c:101:46:    expected void const *src
++drivers/gpu/drm/i915/gt/selftest_reset.c:101:46:    got void [noderef] __iomem *[assigned] s
++drivers/gpu/drm/i915/gt/selftest_reset.c:101:46: warning: incorrect type in argument 2 (different address spaces)
++drivers/gpu/drm/i915/gt/selftest_reset.c:136:20:    expected void *in
++drivers/gpu/drm/i915/gt/selftest_reset.c:136:20:    got void [noderef] __iomem *[assigned] s
++drivers/gpu/drm/i915/gt/selftest_reset.c:136:20: warning: incorrect type in assignment (different address spaces)
++drivers/gpu/drm/i915/gt/selftest_reset.c:137:46:    expected void const *src
++drivers/gpu/drm/i915/gt/selftest_reset.c:137:46:    got void [noderef] __iomem *[assigned] s
++drivers/gpu/drm/i915/gt/selftest_reset.c:137:46: warning: incorrect type in argument 2 (different address spaces)
++drivers/gpu/drm/i915/gt/selftest_reset.c:98:34:    expected unsigned int [usertype] *s
++drivers/gpu/drm/i915/gt/selftest_reset.c:98:34:    got void [noderef] __iomem *[assigned] s
++drivers/gpu/drm/i915/gt/selftest_reset.c:98:34: warning: incorrect type in argument 1 (different address spaces)
++drivers/gpu/drm/i915/gvt/mmio.c:295:23: warning: memcpy with byte count of 279040
++drivers/gpu/drm/i915/i915_perf.c:1447:15: warning: memset with byte count of 16777216
++drivers/gpu/drm/i915/i915_perf.c:1501:15: warning: memset with byte count of 16777216
++./include/linux/seqlock.h:838:24: warning: trying to copy expression type 31
++./include/linux/seqlock.h:838:24: warning: trying to copy expression type 31
++./include/linux/seqlock.h:864:16: warning: trying to copy expression type 31
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_read16' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_read32' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_read64' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_read8' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_write16' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_write32' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_write8' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_read16' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_read32' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_read64' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_read8' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_write16' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_write32' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_write8' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_read16' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_read32' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_read64' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_read8' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_write16' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_write32' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_write8' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_read16' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_read32' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_read64' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_read8' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_write16' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_write32' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_write8' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen8_write16' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen8_write32' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen8_write8' - different lock contexts for basic block
+
 
 _______________________________________________
 Intel-gfx mailing list
