@@ -2,43 +2,38 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9540B2CA7ED
-	for <lists+intel-gfx@lfdr.de>; Tue,  1 Dec 2020 17:16:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2B56E2CA7DB
+	for <lists+intel-gfx@lfdr.de>; Tue,  1 Dec 2020 17:14:37 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8EE9E89BC0;
-	Tue,  1 Dec 2020 16:16:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B4DDF89BFB;
+	Tue,  1 Dec 2020 16:14:33 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B2A7989BC0;
- Tue,  1 Dec 2020 16:16:42 +0000 (UTC)
-IronPort-SDR: h/PEUK83vTSJDaxNWYtBog7D6qN/BFBiPlVNsSRE7CUYnYBvKBmo0NR7ix7yU1ZJLROmMHHJ/u
- RoKAtpgnUV/g==
-X-IronPort-AV: E=McAfee;i="6000,8403,9822"; a="169354207"
-X-IronPort-AV: E=Sophos;i="5.78,384,1599548400"; d="scan'208";a="169354207"
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 36C3089B62
+ for <intel-gfx@lists.freedesktop.org>; Tue,  1 Dec 2020 16:14:32 +0000 (UTC)
+IronPort-SDR: X+8kmazVLVz/beGapkv0hP0dJf/XE8xB6T5xYJJ5qDl5l+e0eL7UFcaEkNm3NsZP9+epx12Qcf
+ 5JQFHu06kxgQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9822"; a="234459514"
+X-IronPort-AV: E=Sophos;i="5.78,384,1599548400"; d="scan'208";a="234459514"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Dec 2020 08:16:41 -0800
-IronPort-SDR: aX0hiIXHbE2FBl6ASmw6VCrs+wjew2zRiyABJ0Yi+VdWUW4SVQPbeTWxehmw+RMdjqb7hv32SC
- +eo1plELL5jA==
-X-IronPort-AV: E=Sophos;i="5.78,384,1599548400"; d="scan'208";a="549631630"
-Received: from ivgeniax-mobl.ger.corp.intel.com (HELO localhost)
- ([10.249.42.176])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Dec 2020 08:16:38 -0800
-From: Jani Nikula <jani.nikula@intel.com>
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Dec 2020 08:14:11 -0800
+IronPort-SDR: 2btwmBUZRkG2OJEhLvUiwl2KmZY+GAewb7SV1oY2JUWuQI8ZATR42Je9sC1A48k4aVPTZP60XY
+ bnBWZ1KerXPw==
+X-IronPort-AV: E=Sophos;i="5.78,384,1599548400"; d="scan'208";a="364813621"
+Received: from linux-desktop.iind.intel.com ([10.223.34.173])
+ by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Dec 2020 08:14:09 -0800
+From: Uma Shankar <uma.shankar@intel.com>
 To: intel-gfx@lists.freedesktop.org
-In-Reply-To: <20201130111601.2817-9-jani.nikula@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20201130111601.2817-1-jani.nikula@intel.com>
- <20201130111601.2817-9-jani.nikula@intel.com>
-Date: Tue, 01 Dec 2020 18:16:35 +0200
-Message-ID: <87o8jdcxi4.fsf@intel.com>
+Date: Tue,  1 Dec 2020 22:17:47 +0530
+Message-Id: <20201201164749.32702-1-uma.shankar@intel.com>
+X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH v3 09/10] drm/i915/gvt: replace I915_WRITE
- with intel_uncore_write
+Subject: [Intel-gfx] [v5 0/2] Re-enable FBC on TGL
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,55 +46,37 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Hang Yuan <hang.yuan@linux.intel.com>, chris@chris-wilson.co.uk,
- intel-gvt-dev@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 30 Nov 2020, Jani Nikula <jani.nikula@intel.com> wrote:
-> Let's avoid adding new I915_WRITE uses while we try to get rid of them.
->
-> Fixes: 5f60b12edcd0 ("drm/i915/gvt: Save/restore HW status to support GVT suspend/resume")
-> Cc: Zhenyu Wang <zhenyuw@linux.intel.com>
-> Cc: Hang Yuan <hang.yuan@linux.intel.com>
-> Cc: Colin Xu <colin.xu@intel.com>
-> Cc: Zhi Wang <zhi.a.wang@intel.com>
-> Cc: intel-gvt-dev@lists.freedesktop.org
-> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+FBC was disabled on TGL due to random underruns. It has
+been determined that FBC will not work reliably with PSR2.
+This series re-enables fbc along with taking care of the
+PSR2 limitations for TGL.
 
-Pushed up to, but *excluding* this patch to dinq. Thanks for the
-reviews.
+Bspec: 50422 HSD: 14010260002
 
-Zhenyu, Zhi, may I have your review/ack for merging this one directly
-via dinq to not add a dependency on the gvt tree?
+v2: Addressed review comments and added bspec links
 
+v3: Addressed Ville's review comments
 
-BR,
-Jani.
+v4: Change the WA as per Jose's recommendation.
 
+v5: Addressed Jose's review comments.
 
-> ---
->  drivers/gpu/drm/i915/gvt/handlers.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
->
-> diff --git a/drivers/gpu/drm/i915/gvt/handlers.c b/drivers/gpu/drm/i915/gvt/handlers.c
-> index 6f0706e885cb..eba626ba640f 100644
-> --- a/drivers/gpu/drm/i915/gvt/handlers.c
-> +++ b/drivers/gpu/drm/i915/gvt/handlers.c
-> @@ -3693,7 +3693,7 @@ static inline int mmio_pm_restore_handler(struct intel_gvt *gvt,
->  	struct drm_i915_private *dev_priv = gvt->gt->i915;
->  
->  	if (gvt->mmio.mmio_attribute[offset >> 2] & F_PM_SAVE)
-> -		I915_WRITE(_MMIO(offset), vgpu_vreg(vgpu, offset));
-> +		intel_uncore_write(&dev_priv->uncore, _MMIO(offset), vgpu_vreg(vgpu, offset));
->  
->  	return 0;
->  }
+Uma Shankar (2):
+  drm/i915/display/tgl: Disable FBC with PSR2
+  Revert "drm/i915/display/fbc: Disable fbc by default on TGL"
+
+ drivers/gpu/drm/i915/display/intel_fbc.c | 19 ++++++++++++-------
+ drivers/gpu/drm/i915/i915_drv.h          |  1 +
+ 2 files changed, 13 insertions(+), 7 deletions(-)
 
 -- 
-Jani Nikula, Intel Open Source Graphics Center
+2.26.2
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
