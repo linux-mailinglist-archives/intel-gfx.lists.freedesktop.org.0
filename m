@@ -1,34 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 887132C9E56
-	for <lists+intel-gfx@lfdr.de>; Tue,  1 Dec 2020 10:50:28 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 212842C9E99
+	for <lists+intel-gfx@lfdr.de>; Tue,  1 Dec 2020 11:05:22 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 453ED6E4BB;
-	Tue,  1 Dec 2020 09:50:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 97D256E4F8;
+	Tue,  1 Dec 2020 10:05:20 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mx2.suse.de (mx2.suse.de [195.135.220.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0AE586E4BA;
- Tue,  1 Dec 2020 09:50:23 +0000 (UTC)
-X-Virus-Scanned: by amavisd-new at test-mx.suse.de
-Received: from relay2.suse.de (unknown [195.135.221.27])
- by mx2.suse.de (Postfix) with ESMTP id 8C5F8AC65;
- Tue,  1 Dec 2020 09:50:21 +0000 (UTC)
-To: Sam Ravnborg <sam@ravnborg.org>
-References: <20201124113824.19994-1-tzimmermann@suse.de>
- <20201124113824.19994-10-tzimmermann@suse.de>
- <20201124214208.GB93095@ravnborg.org>
-From: Thomas Zimmermann <tzimmermann@suse.de>
-Message-ID: <77dcf689-d22c-5ae8-8c46-10ce7a546a63@suse.de>
-Date: Tue, 1 Dec 2020 10:50:19 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.5.0
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 4344E89DFB;
+ Tue,  1 Dec 2020 10:05:19 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 3A43FA0009;
+ Tue,  1 Dec 2020 10:05:19 +0000 (UTC)
 MIME-Version: 1.0
-In-Reply-To: <20201124214208.GB93095@ravnborg.org>
-Subject: Re: [Intel-gfx] [PATCH 09/15] drm/nouveau: Remove references to
- struct drm_device.pdev
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Tue, 01 Dec 2020 10:05:19 -0000
+Message-ID: <160681711923.6987.11699286451731456470@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20201201090729.24777-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20201201090729.24777-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
+ =?utf-8?q?ies_starting_with_=5B01/12=5D_drm/i915/gem=3A_Drop_free=5Fwork_?=
+ =?utf-8?q?for_GEM_contexts?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,257 +39,360 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: airlied@linux.ie, nouveau@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- virtualization@lists.linux-foundation.org, amd-gfx@lists.freedesktop.org,
- spice-devel@lists.freedesktop.org, intel-gvt-dev@lists.freedesktop.org,
- Ben Skeggs <bskeggs@redhat.com>
-Content-Type: multipart/mixed; boundary="===============0610698993=="
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============0223409737=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---===============0610698993==
-Content-Type: multipart/signed; micalg=pgp-sha256;
- protocol="application/pgp-signature";
- boundary="4bE8wtoD18K52eefsY2TD0VT1msAv6pGQ"
+--===============0223409737==
+Content-Type: multipart/alternative;
+ boundary="===============2366830188150725183=="
 
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---4bE8wtoD18K52eefsY2TD0VT1msAv6pGQ
-Content-Type: multipart/mixed; boundary="h9BtDHO1BkSllNSHbFLWYUa8dv8v2U8Rv";
- protected-headers="v1"
-From: Thomas Zimmermann <tzimmermann@suse.de>
-To: Sam Ravnborg <sam@ravnborg.org>
-Cc: airlied@linux.ie, daniel@ffwll.ch, nouveau@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- virtualization@lists.linux-foundation.org, amd-gfx@lists.freedesktop.org,
- spice-devel@lists.freedesktop.org, intel-gvt-dev@lists.freedesktop.org,
- Ben Skeggs <bskeggs@redhat.com>
-Message-ID: <77dcf689-d22c-5ae8-8c46-10ce7a546a63@suse.de>
-Subject: Re: [PATCH 09/15] drm/nouveau: Remove references to struct
- drm_device.pdev
-References: <20201124113824.19994-1-tzimmermann@suse.de>
- <20201124113824.19994-10-tzimmermann@suse.de>
- <20201124214208.GB93095@ravnborg.org>
-In-Reply-To: <20201124214208.GB93095@ravnborg.org>
+--===============2366830188150725183==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
---h9BtDHO1BkSllNSHbFLWYUa8dv8v2U8Rv
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: quoted-printable
+== Series Details ==
 
-Hi Sam
+Series: series starting with [01/12] drm/i915/gem: Drop free_work for GEM contexts
+URL   : https://patchwork.freedesktop.org/series/84440/
+State : success
 
-Am 24.11.20 um 22:42 schrieb Sam Ravnborg:
-> Hi Thomas.
->=20
-> On Tue, Nov 24, 2020 at 12:38:18PM +0100, Thomas Zimmermann wrote:
->> Using struct drm_device.pdev is deprecated. Convert nouveau to struct
->> drm_device.dev. No functional changes.
->>
->> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
->> Cc: Ben Skeggs <bskeggs@redhat.com>
->=20
-> Suggestion to an alternative implmentation below.
->=20
->> ---
->>   drivers/gpu/drm/nouveau/dispnv04/arb.c      | 12 +++++++-----
->>   drivers/gpu/drm/nouveau/dispnv04/disp.h     | 14 ++++++++------
->>   drivers/gpu/drm/nouveau/dispnv04/hw.c       | 10 ++++++----
->>   drivers/gpu/drm/nouveau/nouveau_abi16.c     |  7 ++++---
->>   drivers/gpu/drm/nouveau/nouveau_acpi.c      |  2 +-
->>   drivers/gpu/drm/nouveau/nouveau_bios.c      | 11 ++++++++---
->>   drivers/gpu/drm/nouveau/nouveau_connector.c | 10 ++++++----
->>   drivers/gpu/drm/nouveau/nouveau_drm.c       |  5 ++---
->>   drivers/gpu/drm/nouveau/nouveau_fbcon.c     |  6 ++++--
->>   drivers/gpu/drm/nouveau/nouveau_vga.c       | 20 ++++++++++++-------=
--
->>   10 files changed, 58 insertions(+), 39 deletions(-)
->>
->=20
->> diff --git a/drivers/gpu/drm/nouveau/nouveau_bios.c b/drivers/gpu/drm/=
-nouveau/nouveau_bios.c
->> index d204ea8a5618..7cc683b8dc7a 100644
->> --- a/drivers/gpu/drm/nouveau/nouveau_bios.c
->> +++ b/drivers/gpu/drm/nouveau/nouveau_bios.c
->> @@ -110,6 +110,9 @@ static int call_lvds_manufacturer_script(struct dr=
-m_device *dev, struct dcb_outp
->>   	struct nvbios *bios =3D &drm->vbios;
->>   	uint8_t sub =3D bios->data[bios->fp.xlated_entry + script] + (bios-=
->fp.link_c_increment && dcbent->or & DCB_OUTPUT_C ? 1 : 0);
->>   	uint16_t scriptofs =3D ROM16(bios->data[bios->init_script_tbls_ptr =
-+ sub * 2]);
->> +#ifdef __powerpc__
->> +	struct pci_dev *pdev =3D to_pci_dev(dev->dev);
->> +#endif
-> Or
-> 	int device =3D 0;
->>  =20
->>   	if (!bios->fp.xlated_entry || !sub || !scriptofs)
->>   		return -EINVAL;
->> @@ -123,8 +126,8 @@ static int call_lvds_manufacturer_script(struct dr=
-m_device *dev, struct dcb_outp
->>   #ifdef __powerpc__
->>   	/* Powerbook specific quirks */
-> 	device =3D to_pci_dev(dev->dev)->device;
-> 	if (script =3D=3D LVDS_RESET && (device =3D=3D 0x0179 || device =3D=3D=
- 0x0189 || device =3D=3D 0x0329))
+== Summary ==
 
-I see the point, but I'm trying to not change the existing=20
-implementation too much.
+CI Bug Log - changes from CI_DRM_9412 -> Patchwork_19022
+====================================================
 
->=20
->>   	if (script =3D=3D LVDS_RESET &&
->> -	    (dev->pdev->device =3D=3D 0x0179 || dev->pdev->device =3D=3D 0x0=
-189 ||
->> -	     dev->pdev->device =3D=3D 0x0329))
->> +	    (pdev->device =3D=3D 0x0179 || pdev->device =3D=3D 0x0189 ||
->> +	     pdev->device =3D=3D 0x0329))
->>   		nv_write_tmds(dev, dcbent->or, 0, 0x02, 0x72);
->>   #endif
->>  =20
->=20
->=20
->> diff --git a/drivers/gpu/drm/nouveau/nouveau_fbcon.c b/drivers/gpu/drm=
-/nouveau/nouveau_fbcon.c
->> index 24ec5339efb4..4fc0fa696461 100644
->> --- a/drivers/gpu/drm/nouveau/nouveau_fbcon.c
->> +++ b/drivers/gpu/drm/nouveau/nouveau_fbcon.c
->> @@ -396,7 +396,9 @@ nouveau_fbcon_create(struct drm_fb_helper *helper,=
+Summary
+-------
 
->>   	NV_INFO(drm, "allocated %dx%d fb: 0x%llx, bo %p\n",
->>   		fb->width, fb->height, nvbo->offset, nvbo);
->>  =20
->> -	vga_switcheroo_client_fb_set(dev->pdev, info);
->> +	if (dev_is_pci(dev->dev))
->> +		vga_switcheroo_client_fb_set(to_pci_dev(dev->dev), info);
->> +
-> I cannot see why dev_is_pci() is needed here.
-> So I am obviously missing something :-(
+  **SUCCESS**
 
-vga_switcheroo_client_fb_set() expects a PCI device. It's a bit of a=20
-stretch, but at least it is possible to pass NULL for non-PCI devices.=20
-Passing the upcasted dev->dev is just garbage.
+  No regressions found.
 
-As the VGA switcheroo is only relevant for PCI devices, I added the=20
-branching to make this work reliably.
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19022/index.html
 
-Best regards
-Thomas
+New tests
+---------
 
->=20
->>   	return 0;
->>  =20
->>   out_unlock:
->> @@ -548,7 +550,7 @@ nouveau_fbcon_init(struct drm_device *dev)
->>   	int ret;
->>  =20
->>   	if (!dev->mode_config.num_crtc ||
->> -	    (dev->pdev->class >> 8) !=3D PCI_CLASS_DISPLAY_VGA)
->> +	    (to_pci_dev(dev->dev)->class >> 8) !=3D PCI_CLASS_DISPLAY_VGA)
->>   		return 0;
->>  =20
->>   	fbcon =3D kzalloc(sizeof(struct nouveau_fbdev), GFP_KERNEL);
->> diff --git a/drivers/gpu/drm/nouveau/nouveau_vga.c b/drivers/gpu/drm/n=
-ouveau/nouveau_vga.c
->> index c85dd8afa3c3..7c4b374b3eca 100644
->> --- a/drivers/gpu/drm/nouveau/nouveau_vga.c
->> +++ b/drivers/gpu/drm/nouveau/nouveau_vga.c
->> @@ -87,18 +87,20 @@ nouveau_vga_init(struct nouveau_drm *drm)
->>   {
->>   	struct drm_device *dev =3D drm->dev;
->>   	bool runtime =3D nouveau_pmops_runtime();
->> +	struct pci_dev *pdev;
->>  =20
->>   	/* only relevant for PCI devices */
->> -	if (!dev->pdev)
->> +	if (!dev_is_pci(dev->dev))
->>   		return;
->> +	pdev =3D to_pci_dev(dev->dev);
->>  =20
->> -	vga_client_register(dev->pdev, dev, NULL, nouveau_vga_set_decode);
->> +	vga_client_register(pdev, dev, NULL, nouveau_vga_set_decode);
->>  =20
->>   	/* don't register Thunderbolt eGPU with vga_switcheroo */
->> -	if (pci_is_thunderbolt_attached(dev->pdev))
->> +	if (pci_is_thunderbolt_attached(pdev))
->>   		return;
->>  =20
->> -	vga_switcheroo_register_client(dev->pdev, &nouveau_switcheroo_ops, r=
-untime);
->> +	vga_switcheroo_register_client(pdev, &nouveau_switcheroo_ops, runtim=
-e);
->>  =20
->>   	if (runtime && nouveau_is_v1_dsm() && !nouveau_is_optimus())
->>   		vga_switcheroo_init_domain_pm_ops(drm->dev->dev, &drm->vga_pm_doma=
-in);
->> @@ -109,17 +111,19 @@ nouveau_vga_fini(struct nouveau_drm *drm)
->>   {
->>   	struct drm_device *dev =3D drm->dev;
->>   	bool runtime =3D nouveau_pmops_runtime();
->> +	struct pci_dev *pdev;
->>  =20
->>   	/* only relevant for PCI devices */
->> -	if (!dev->pdev)
->> +	if (!dev_is_pci(dev->dev))
->>   		return;
->> +	pdev =3D to_pci_dev(dev->dev);
->>  =20
->> -	vga_client_register(dev->pdev, NULL, NULL, NULL);
->> +	vga_client_register(pdev, NULL, NULL, NULL);
->>  =20
->> -	if (pci_is_thunderbolt_attached(dev->pdev))
->> +	if (pci_is_thunderbolt_attached(pdev))
->>   		return;
->>  =20
->> -	vga_switcheroo_unregister_client(dev->pdev);
->> +	vga_switcheroo_unregister_client(pdev);
->>   	if (runtime && nouveau_is_v1_dsm() && !nouveau_is_optimus())
->>   		vga_switcheroo_fini_domain_pm_ops(drm->dev->dev);
->>   }
->> --=20
->> 2.29.2
->>
->> _______________________________________________
->> dri-devel mailing list
->> dri-devel@lists.freedesktop.org
->> https://lists.freedesktop.org/mailman/listinfo/dri-devel
+  New tests have been introduced between CI_DRM_9412 and Patchwork_19022:
 
---=20
-Thomas Zimmermann
-Graphics Driver Developer
-SUSE Software Solutions Germany GmbH
-Maxfeldstr. 5, 90409 N=C3=BCrnberg, Germany
-(HRB 36809, AG N=C3=BCrnberg)
-Gesch=C3=A4ftsf=C3=BChrer: Felix Imend=C3=B6rffer
+### New CI tests (1) ###
+
+  * boot:
+    - Statuses : 1 fail(s) 40 pass(s)
+    - Exec time: [0.0] s
+
+  
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_19022 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@gem_sync@basic-each:
+    - fi-kbl-soraka:      [PASS][1] -> [INCOMPLETE][2] ([i915#794])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9412/fi-kbl-soraka/igt@gem_sync@basic-each.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19022/fi-kbl-soraka/igt@gem_sync@basic-each.html
+
+  * igt@i915_module_load@reload:
+    - fi-bsw-kefka:       [PASS][3] -> [DMESG-WARN][4] ([i915#1982])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9412/fi-bsw-kefka/igt@i915_module_load@reload.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19022/fi-bsw-kefka/igt@i915_module_load@reload.html
+
+  * igt@i915_selftest@live@client:
+    - fi-kbl-soraka:      [PASS][5] -> [INCOMPLETE][6] ([i915#2295])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9412/fi-kbl-soraka/igt@i915_selftest@live@client.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19022/fi-kbl-soraka/igt@i915_selftest@live@client.html
+
+  * igt@kms_busy@basic@flip:
+    - fi-kbl-soraka:      [PASS][7] -> [DMESG-WARN][8] ([i915#1982])
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9412/fi-kbl-soraka/igt@kms_busy@basic@flip.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19022/fi-kbl-soraka/igt@kms_busy@basic@flip.html
+
+  * igt@kms_cursor_legacy@basic-flip-before-cursor-atomic:
+    - fi-icl-u2:          [PASS][9] -> [DMESG-WARN][10] ([i915#1982]) +1 similar issue
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9412/fi-icl-u2/igt@kms_cursor_legacy@basic-flip-before-cursor-atomic.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19022/fi-icl-u2/igt@kms_cursor_legacy@basic-flip-before-cursor-atomic.html
+
+  * igt@kms_pipe_crc_basic@read-crc-pipe-c:
+    - fi-tgl-y:           [PASS][11] -> [DMESG-WARN][12] ([i915#1982])
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9412/fi-tgl-y/igt@kms_pipe_crc_basic@read-crc-pipe-c.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19022/fi-tgl-y/igt@kms_pipe_crc_basic@read-crc-pipe-c.html
+
+  * igt@prime_self_import@basic-with_one_bo_two_files:
+    - fi-tgl-y:           [PASS][13] -> [DMESG-WARN][14] ([i915#402]) +2 similar issues
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9412/fi-tgl-y/igt@prime_self_import@basic-with_one_bo_two_files.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19022/fi-tgl-y/igt@prime_self_import@basic-with_one_bo_two_files.html
+
+  
+#### Possible fixes ####
+
+  * igt@core_hotunplug@unbind-rebind:
+    - fi-tgl-u2:          [DMESG-WARN][15] ([i915#1982]) -> [PASS][16]
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9412/fi-tgl-u2/igt@core_hotunplug@unbind-rebind.html
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19022/fi-tgl-u2/igt@core_hotunplug@unbind-rebind.html
+
+  * igt@i915_module_load@reload:
+    - fi-byt-j1900:       [DMESG-WARN][17] ([i915#1982]) -> [PASS][18] +1 similar issue
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9412/fi-byt-j1900/igt@i915_module_load@reload.html
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19022/fi-byt-j1900/igt@i915_module_load@reload.html
+
+  * igt@i915_pm_rpm@basic-pci-d3-state:
+    - fi-bsw-n3050:       [DMESG-WARN][19] ([i915#1982]) -> [PASS][20]
+   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9412/fi-bsw-n3050/igt@i915_pm_rpm@basic-pci-d3-state.html
+   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19022/fi-bsw-n3050/igt@i915_pm_rpm@basic-pci-d3-state.html
+    - fi-tgl-y:           [DMESG-WARN][21] ([i915#1982] / [i915#2411]) -> [PASS][22]
+   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9412/fi-tgl-y/igt@i915_pm_rpm@basic-pci-d3-state.html
+   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19022/fi-tgl-y/igt@i915_pm_rpm@basic-pci-d3-state.html
+
+  * igt@i915_selftest@live@client:
+    - fi-glk-dsi:         [INCOMPLETE][23] ([i915#2295]) -> [PASS][24]
+   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9412/fi-glk-dsi/igt@i915_selftest@live@client.html
+   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19022/fi-glk-dsi/igt@i915_selftest@live@client.html
+
+  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:
+    - fi-snb-2520m:       [DMESG-WARN][25] ([i915#1982]) -> [PASS][26]
+   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9412/fi-snb-2520m/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
+   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19022/fi-snb-2520m/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
+
+  * igt@kms_cursor_legacy@basic-flip-after-cursor-atomic:
+    - fi-icl-u2:          [DMESG-WARN][27] ([i915#1982]) -> [PASS][28] +1 similar issue
+   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9412/fi-icl-u2/igt@kms_cursor_legacy@basic-flip-after-cursor-atomic.html
+   [28]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19022/fi-icl-u2/igt@kms_cursor_legacy@basic-flip-after-cursor-atomic.html
+
+  * igt@vgem_basic@dmabuf-export:
+    - fi-tgl-y:           [DMESG-WARN][29] ([i915#402]) -> [PASS][30] +1 similar issue
+   [29]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9412/fi-tgl-y/igt@vgem_basic@dmabuf-export.html
+   [30]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19022/fi-tgl-y/igt@vgem_basic@dmabuf-export.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
+  [i915#2295]: https://gitlab.freedesktop.org/drm/intel/issues/2295
+  [i915#2411]: https://gitlab.freedesktop.org/drm/intel/issues/2411
+  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
+  [i915#794]: https://gitlab.freedesktop.org/drm/intel/issues/794
 
 
---h9BtDHO1BkSllNSHbFLWYUa8dv8v2U8Rv--
+Participating hosts (45 -> 41)
+------------------------------
 
---4bE8wtoD18K52eefsY2TD0VT1msAv6pGQ
-Content-Type: application/pgp-signature; name="OpenPGP_signature.asc"
-Content-Description: OpenPGP digital signature
-Content-Disposition: attachment; filename="OpenPGP_signature"
+  Missing    (4): fi-ilk-m540 fi-bsw-cyan fi-bdw-samus fi-hsw-4200u 
 
------BEGIN PGP SIGNATURE-----
 
-wsF5BAABCAAjFiEExndm/fpuMUdwYFFolh/E3EQov+AFAl/GEdsFAwAAAAAACgkQlh/E3EQov+Df
-kRAAvj2+LkBCXz/2aIbjZjTpvfqk5RKkEA3ePFiR6UttUmznYEPIJkPmdsqr2JNUU5YI85JJRvM7
-7/QvWO4KXVqYbbPAzFhdHqySRrSnWpV89jseDccMSnjcHEKc1cNj386s3YDWeJ3/pmAuysLnOU30
-bTdrdkKpYL4CvHWI6RQyGG/5D65TteLwDT6ZAXThOVthuraz2XvGwt2pOhVSiwX1mNfibm2lQ0G6
-7b7sv+5l5sKaq5uETZi4iW++TmdotLrd40VioW/dttTfBwtfiIFHZm2jcO8Kb0+WkpZ4JKEDPZT2
-nfxMeK2euCeehZYCWFz4xlDg3SiBAbTTB2uhasE7McPPA25P3MoR4d8Ivf237PbA1EVSGNuTshKU
-zc4S9Rnw6zyqD9lc5rlofsyDUrESgMGQlbneHb52dUwFxIcgfdvg3nitUSBGw9deFIRDd6Rjrbu+
-+ns4Z223cVq+TEmRNSERvAxVwCDlSN2x7Q0U4P0MIBd/4cPKsmwOvjZlWlGMfpTKlfkhWyMVV0aZ
-mK6WZxRrV827KprLxdT9vSGLlPNEbYYOz1dqRsaRgtSk+XhplfGJwPBnsbPiUVt7NlOGmltFHFl8
-8+vR4ygf4RBTIO4Y23B8ba2NwuvqxMEo9asKO0hZ1IqPbQQYYRZnkqXtZtKMlIo7TUb41I8gNFHR
-Yc4=
-=91fY
------END PGP SIGNATURE-----
+Build changes
+-------------
 
---4bE8wtoD18K52eefsY2TD0VT1msAv6pGQ--
+  * Linux: CI_DRM_9412 -> Patchwork_19022
 
---===============0610698993==
+  CI-20190529: 20190529
+  CI_DRM_9412: 62a57fc697819341ffabadc2b734f2288fdf19ce @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5877: c36f7973d1ee7886ec65fa16c7b1fd8dc5a33caa @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_19022: e3a6135246e42992b21eba7e0ac35244b3f4aad7 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+e3a6135246e4 drm/i915/gt: Export device and per-process runtimes via procfs
+241fa69b1882 proc: Show GPU runtimes
+56632b583933 drm/i915: Look up clients by pid
+44dd43e81326 drm/i915: Prefer software tracked context busyness
+73cf39079d77 drm/i915: Track context current active time
+d3d5619fc9fb drm/i915: Track all user contexts per client
+dc11141234a3 drm/i915: Track runtime spent in closed and unreachable GEM contexts
+dff72485e95b drm/i915: Make GEM contexts track DRM clients
+ee050c119037 drm/i915: Update client name on context create
+7d7adb951b35 drm/i915: Expose list of clients in sysfs
+9fc9fb916f26 drm/i915/gt: Track the overall awake/busy time
+4f351702b028 drm/i915/gem: Drop free_work for GEM contexts
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19022/index.html
+
+--===============2366830188150725183==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>series starting with [01/12] drm/i915/gem: Drop free_work for GEM contexts</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/84440/">https://patchwork.freedesktop.org/series/84440/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19022/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19022/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_9412 -&gt; Patchwork_19022</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19022/index.html</p>
+<h2>New tests</h2>
+<p>New tests have been introduced between CI_DRM_9412 and Patchwork_19022:</p>
+<h3>New CI tests (1)</h3>
+<ul>
+<li>boot:<ul>
+<li>Statuses : 1 fail(s) 40 pass(s)</li>
+<li>Exec time: [0.0] s</li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_19022 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@gem_sync@basic-each:</p>
+<ul>
+<li>fi-kbl-soraka:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9412/fi-kbl-soraka/igt@gem_sync@basic-each.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19022/fi-kbl-soraka/igt@gem_sync@basic-each.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/794">i915#794</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_module_load@reload:</p>
+<ul>
+<li>fi-bsw-kefka:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9412/fi-bsw-kefka/igt@i915_module_load@reload.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19022/fi-bsw-kefka/igt@i915_module_load@reload.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@client:</p>
+<ul>
+<li>fi-kbl-soraka:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9412/fi-kbl-soraka/igt@i915_selftest@live@client.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19022/fi-kbl-soraka/igt@i915_selftest@live@client.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2295">i915#2295</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_busy@basic@flip:</p>
+<ul>
+<li>fi-kbl-soraka:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9412/fi-kbl-soraka/igt@kms_busy@basic@flip.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19022/fi-kbl-soraka/igt@kms_busy@basic@flip.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_legacy@basic-flip-before-cursor-atomic:</p>
+<ul>
+<li>fi-icl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9412/fi-icl-u2/igt@kms_cursor_legacy@basic-flip-before-cursor-atomic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19022/fi-icl-u2/igt@kms_cursor_legacy@basic-flip-before-cursor-atomic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>) +1 similar issue</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@read-crc-pipe-c:</p>
+<ul>
+<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9412/fi-tgl-y/igt@kms_pipe_crc_basic@read-crc-pipe-c.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19022/fi-tgl-y/igt@kms_pipe_crc_basic@read-crc-pipe-c.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@prime_self_import@basic-with_one_bo_two_files:</p>
+<ul>
+<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9412/fi-tgl-y/igt@prime_self_import@basic-with_one_bo_two_files.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19022/fi-tgl-y/igt@prime_self_import@basic-with_one_bo_two_files.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) +2 similar issues</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@core_hotunplug@unbind-rebind:</p>
+<ul>
+<li>fi-tgl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9412/fi-tgl-u2/igt@core_hotunplug@unbind-rebind.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19022/fi-tgl-u2/igt@core_hotunplug@unbind-rebind.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_module_load@reload:</p>
+<ul>
+<li>fi-byt-j1900:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9412/fi-byt-j1900/igt@i915_module_load@reload.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19022/fi-byt-j1900/igt@i915_module_load@reload.html">PASS</a> +1 similar issue</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_pm_rpm@basic-pci-d3-state:</p>
+<ul>
+<li>
+<p>fi-bsw-n3050:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9412/fi-bsw-n3050/igt@i915_pm_rpm@basic-pci-d3-state.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19022/fi-bsw-n3050/igt@i915_pm_rpm@basic-pci-d3-state.html">PASS</a></p>
+</li>
+<li>
+<p>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9412/fi-tgl-y/igt@i915_pm_rpm@basic-pci-d3-state.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2411">i915#2411</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19022/fi-tgl-y/igt@i915_pm_rpm@basic-pci-d3-state.html">PASS</a></p>
+</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@client:</p>
+<ul>
+<li>fi-glk-dsi:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9412/fi-glk-dsi/igt@i915_selftest@live@client.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2295">i915#2295</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19022/fi-glk-dsi/igt@i915_selftest@live@client.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:</p>
+<ul>
+<li>fi-snb-2520m:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9412/fi-snb-2520m/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19022/fi-snb-2520m/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_legacy@basic-flip-after-cursor-atomic:</p>
+<ul>
+<li>fi-icl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9412/fi-icl-u2/igt@kms_cursor_legacy@basic-flip-after-cursor-atomic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19022/fi-icl-u2/igt@kms_cursor_legacy@basic-flip-after-cursor-atomic.html">PASS</a> +1 similar issue</li>
+</ul>
+</li>
+<li>
+<p>igt@vgem_basic@dmabuf-export:</p>
+<ul>
+<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9412/fi-tgl-y/igt@vgem_basic@dmabuf-export.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19022/fi-tgl-y/igt@vgem_basic@dmabuf-export.html">PASS</a> +1 similar issue</li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Participating hosts (45 -&gt; 41)</h2>
+<p>Missing    (4): fi-ilk-m540 fi-bsw-cyan fi-bdw-samus fi-hsw-4200u </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_9412 -&gt; Patchwork_19022</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_9412: 62a57fc697819341ffabadc2b734f2288fdf19ce @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_5877: c36f7973d1ee7886ec65fa16c7b1fd8dc5a33caa @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
+  Patchwork_19022: e3a6135246e42992b21eba7e0ac35244b3f4aad7 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>e3a6135246e4 drm/i915/gt: Export device and per-process runtimes via procfs<br />
+241fa69b1882 proc: Show GPU runtimes<br />
+56632b583933 drm/i915: Look up clients by pid<br />
+44dd43e81326 drm/i915: Prefer software tracked context busyness<br />
+73cf39079d77 drm/i915: Track context current active time<br />
+d3d5619fc9fb drm/i915: Track all user contexts per client<br />
+dc11141234a3 drm/i915: Track runtime spent in closed and unreachable GEM contexts<br />
+dff72485e95b drm/i915: Make GEM contexts track DRM clients<br />
+ee050c119037 drm/i915: Update client name on context create<br />
+7d7adb951b35 drm/i915: Expose list of clients in sysfs<br />
+9fc9fb916f26 drm/i915/gt: Track the overall awake/busy time<br />
+4f351702b028 drm/i915/gem: Drop free_work for GEM contexts</p>
+
+</body>
+</html>
+
+--===============2366830188150725183==--
+
+--===============0223409737==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -302,4 +403,4 @@ Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 
---===============0610698993==--
+--===============0223409737==--
