@@ -1,32 +1,68 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9BB9A2CACDA
-	for <lists+intel-gfx@lfdr.de>; Tue,  1 Dec 2020 20:59:59 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id B25AD2CAD9B
+	for <lists+intel-gfx@lfdr.de>; Tue,  1 Dec 2020 21:47:48 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9014E6E8B3;
-	Tue,  1 Dec 2020 19:59:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 60E6D6E02B;
+	Tue,  1 Dec 2020 20:47:46 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 3A9A289E0E;
- Tue,  1 Dec 2020 19:59:55 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 3008CA0019;
- Tue,  1 Dec 2020 19:59:55 +0000 (UTC)
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A14216E02B
+ for <intel-gfx@lists.freedesktop.org>; Tue,  1 Dec 2020 20:47:44 +0000 (UTC)
+IronPort-SDR: zDvWSJt+HsoPzBVONnMS+sPX9eFDEisjj2eXykhkCPcsGG6B6LBMmF8MymFFrYVQuyBT+bL/P8
+ heqI+BD3o7Rw==
+X-IronPort-AV: E=McAfee;i="6000,8403,9822"; a="173064595"
+X-IronPort-AV: E=Sophos;i="5.78,385,1599548400"; d="scan'208";a="173064595"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Dec 2020 12:47:43 -0800
+IronPort-SDR: J99MpRU04KF3GIln+hqK3oHkDBnwhyypo3ZyT8C7RkVKg1Tl/ReLfsSR8Nrj+g76X9fbJAvLdr
+ hmImRM6v95qQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.78,385,1599548400"; d="scan'208";a="335262466"
+Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
+ by orsmga006.jf.intel.com with ESMTP; 01 Dec 2020 12:47:42 -0800
+Received: from bgsmsx603.gar.corp.intel.com (10.109.78.82) by
+ fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1713.5; Tue, 1 Dec 2020 12:47:41 -0800
+Received: from bgsmsx604.gar.corp.intel.com (10.67.234.6) by
+ BGSMSX603.gar.corp.intel.com (10.109.78.82) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1713.5; Wed, 2 Dec 2020 02:17:39 +0530
+Received: from bgsmsx604.gar.corp.intel.com ([10.67.234.6]) by
+ BGSMSX604.gar.corp.intel.com ([10.67.234.6]) with mapi id 15.01.1713.004;
+ Wed, 2 Dec 2020 02:17:39 +0530
+From: "Shankar, Uma" <uma.shankar@intel.com>
+To: Shashank Sharma <shashank.sharma@amd.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "ville.syrjala@linux.intel.com" <ville.syrjala@linux.intel.com>
+Thread-Topic: [Intel-gfx] [v12 15/15] drm/i915/display: [NOT FOR MERGE] Reduce
+ blanking to support 4k60@10bpp for LSPCON
+Thread-Index: AQHWxDRXVCdQoXHAx0uDGNhB9rkQ7qngLvsAgAKMTHA=
+Date: Tue, 1 Dec 2020 20:47:39 +0000
+Message-ID: <5c46d4b766f04eda89d5731e67a7a744@intel.com>
+References: <20201126210314.7882-1-uma.shankar@intel.com>
+ <20201126210314.7882-16-uma.shankar@intel.com>
+ <056dbfca-53ae-570f-0cc9-09c34a0dbb77@amd.com>
+In-Reply-To: <056dbfca-53ae-570f-0cc9-09c34a0dbb77@amd.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-Mentions: ville.syrjala@linux.intel.com
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+dlp-product: dlpe-windows
+dlp-reaction: no-action
+dlp-version: 11.5.1.3
+x-originating-ip: [10.223.10.1]
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Swathi Dhanavanthri" <swathi.dhanavanthri@intel.com>
-Date: Tue, 01 Dec 2020 19:59:55 -0000
-Message-ID: <160685279517.6992.13491344244853938957@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20201201175735.1377372-1-lucas.demarchi@intel.com>
-In-Reply-To: <20201201175735.1377372-1-lucas.demarchi@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/tgl=2C_rkl=2C_dg1=3A_Apply_WA=5F1406941453_to_TGL=2C_RKL_?=
- =?utf-8?q?and_DG1_=28rev3=29?=
+Subject: Re: [Intel-gfx] [v12 15/15] drm/i915/display: [NOT FOR MERGE]
+ Reduce blanking to support 4k60@10bpp for LSPCON
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,293 +75,139 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============1175070540=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============1175070540==
-Content-Type: multipart/alternative;
- boundary="===============2412411955452184392=="
-
---===============2412411955452184392==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-== Series Details ==
-
-Series: drm/i915/tgl, rkl, dg1: Apply WA_1406941453 to TGL, RKL and DG1 (rev3)
-URL   : https://patchwork.freedesktop.org/series/83383/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_9415 -> Patchwork_19028
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19028/index.html
-
-New tests
----------
-
-  New tests have been introduced between CI_DRM_9415 and Patchwork_19028:
-
-### New CI tests (1) ###
-
-  * boot:
-    - Statuses : 1 fail(s) 40 pass(s)
-    - Exec time: [0.0] s
-
-  
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_19028 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@gem_mmap_gtt@basic:
-    - fi-tgl-y:           [PASS][1] -> [DMESG-WARN][2] ([i915#402]) +1 similar issue
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9415/fi-tgl-y/igt@gem_mmap_gtt@basic.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19028/fi-tgl-y/igt@gem_mmap_gtt@basic.html
-
-  * igt@i915_selftest@live@client:
-    - fi-glk-dsi:         [PASS][3] -> [INCOMPLETE][4] ([i915#2295])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9415/fi-glk-dsi/igt@i915_selftest@live@client.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19028/fi-glk-dsi/igt@i915_selftest@live@client.html
-
-  * igt@kms_busy@basic@flip:
-    - fi-tgl-y:           [PASS][5] -> [DMESG-WARN][6] ([i915#1982]) +1 similar issue
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9415/fi-tgl-y/igt@kms_busy@basic@flip.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19028/fi-tgl-y/igt@kms_busy@basic@flip.html
-
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:
-    - fi-byt-j1900:       [PASS][7] -> [DMESG-WARN][8] ([i915#1982])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9415/fi-byt-j1900/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19028/fi-byt-j1900/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy:
-    - fi-icl-u2:          [PASS][9] -> [DMESG-WARN][10] ([i915#1982])
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9415/fi-icl-u2/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19028/fi-icl-u2/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html
-
-  
-#### Possible fixes ####
-
-  * igt@core_hotunplug@unbind-rebind:
-    - fi-tgl-u2:          [DMESG-WARN][11] ([i915#1982]) -> [PASS][12]
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9415/fi-tgl-u2/igt@core_hotunplug@unbind-rebind.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19028/fi-tgl-u2/igt@core_hotunplug@unbind-rebind.html
-
-  * igt@gem_exec_suspend@basic-s3:
-    - fi-tgl-y:           [DMESG-WARN][13] ([i915#2411] / [i915#402]) -> [PASS][14]
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9415/fi-tgl-y/igt@gem_exec_suspend@basic-s3.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19028/fi-tgl-y/igt@gem_exec_suspend@basic-s3.html
-
-  * igt@kms_cursor_legacy@basic-flip-after-cursor-atomic:
-    - fi-icl-u2:          [DMESG-WARN][15] ([i915#1982]) -> [PASS][16]
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9415/fi-icl-u2/igt@kms_cursor_legacy@basic-flip-after-cursor-atomic.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19028/fi-icl-u2/igt@kms_cursor_legacy@basic-flip-after-cursor-atomic.html
-
-  * igt@kms_force_connector_basic@force-connector-state:
-    - fi-tgl-y:           [DMESG-WARN][17] ([i915#1982]) -> [PASS][18]
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9415/fi-tgl-y/igt@kms_force_connector_basic@force-connector-state.html
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19028/fi-tgl-y/igt@kms_force_connector_basic@force-connector-state.html
-
-  * igt@prime_vgem@basic-gtt:
-    - fi-tgl-y:           [DMESG-WARN][19] ([i915#402]) -> [PASS][20] +1 similar issue
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9415/fi-tgl-y/igt@prime_vgem@basic-gtt.html
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19028/fi-tgl-y/igt@prime_vgem@basic-gtt.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
-  [i915#2295]: https://gitlab.freedesktop.org/drm/intel/issues/2295
-  [i915#2411]: https://gitlab.freedesktop.org/drm/intel/issues/2411
-  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
 
 
-Participating hosts (45 -> 41)
-------------------------------
+> -----Original Message-----
+> From: Intel-gfx <intel-gfx-bounces@lists.freedesktop.org> On Behalf Of Shashank
+> Sharma
+> Sent: Monday, November 30, 2020 4:43 PM
+> To: intel-gfx@lists.freedesktop.org
+> Subject: Re: [Intel-gfx] [v12 15/15] drm/i915/display: [NOT FOR MERGE] Reduce
+> blanking to support 4k60@10bpp for LSPCON
+> 
+> Hello Uma,
+> 
+> This expectations from user-space of having to adjust the timings of video mode
+> doesn't seem like a good idea to me.
+> 
+> This seems more like a quirk, and it should be better kept in I915 layer itself.
+> 
+> 
+> Else, it will enforce user space to write a lot of vendor specific code, like:
+> 
+> - Is it Intel device ?
+> 
+> - Is it GEN9 ?
+> 
+> - Is it Gen9 + LSPCON ?
+> 
+> - Are we planning for a HDR playback ?
+> 
+> which is not what most of the compositors developers would be interested in.
+> 
+> 
+> I was talking to some of the Kodi folks and they also seem to think that it should
+> go in driver.
+> 
+> Any reason why can't we add this code in encoder->compute_config() or
+> mode_fixup() ?
+> 
+> compute_config() will have all the information above required, as this might be
+> required for future LSPCON based devices as well.
 
-  Missing    (4): fi-ilk-m540 fi-bsw-cyan fi-bdw-samus fi-hsw-4200u 
+Hi Shashank,
+My initial idea was to have it inside kernel itself. But this actually tweaks the display timing from the standard one
+what sink has given, so Ville's suggestion was to keep this out from kernel, and let userspace components
+force the adjusted timings.
 
+This is more of a limitation coming from DP spec wrt HBR2 bandwidths.
 
-Build changes
--------------
+@ville.syrjala@linux.intel.com What do you suggest. I have merged the changes leaving this patch out as of
+now.
 
-  * Linux: CI_DRM_9415 -> Patchwork_19028
+Based on recommendation, I can re-work this and merge if we all are aligned on this one.
 
-  CI-20190529: 20190529
-  CI_DRM_9415: 7170e8ad5a8764257c383c8b677ca6398ba6b1af @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5877: c36f7973d1ee7886ec65fa16c7b1fd8dc5a33caa @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_19028: 6737e67a7ac7000a2acc096fb23710a602274124 @ git://anongit.freedesktop.org/gfx-ci/linux
+Thanks & Regards,
+Uma Shankar
 
-
-== Linux commits ==
-
-6737e67a7ac7 drm/i915/tgl, rkl, dg1: Apply WA_1406941453 to TGL, RKL and DG1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19028/index.html
-
---===============2412411955452184392==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/tgl, rkl, dg1: Apply WA_1406941453 to TGL, RKL and DG1 (rev3)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/83383/">https://patchwork.freedesktop.org/series/83383/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19028/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19028/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_9415 -&gt; Patchwork_19028</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19028/index.html</p>
-<h2>New tests</h2>
-<p>New tests have been introduced between CI_DRM_9415 and Patchwork_19028:</p>
-<h3>New CI tests (1)</h3>
-<ul>
-<li>boot:<ul>
-<li>Statuses : 1 fail(s) 40 pass(s)</li>
-<li>Exec time: [0.0] s</li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_19028 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@gem_mmap_gtt@basic:</p>
-<ul>
-<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9415/fi-tgl-y/igt@gem_mmap_gtt@basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19028/fi-tgl-y/igt@gem_mmap_gtt@basic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) +1 similar issue</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@client:</p>
-<ul>
-<li>fi-glk-dsi:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9415/fi-glk-dsi/igt@i915_selftest@live@client.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19028/fi-glk-dsi/igt@i915_selftest@live@client.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2295">i915#2295</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_busy@basic@flip:</p>
-<ul>
-<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9415/fi-tgl-y/igt@kms_busy@basic@flip.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19028/fi-tgl-y/igt@kms_busy@basic@flip.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>) +1 similar issue</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:</p>
-<ul>
-<li>fi-byt-j1900:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9415/fi-byt-j1900/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19028/fi-byt-j1900/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy:</p>
-<ul>
-<li>fi-icl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9415/fi-icl-u2/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19028/fi-icl-u2/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@core_hotunplug@unbind-rebind:</p>
-<ul>
-<li>fi-tgl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9415/fi-tgl-u2/igt@core_hotunplug@unbind-rebind.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19028/fi-tgl-u2/igt@core_hotunplug@unbind-rebind.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_suspend@basic-s3:</p>
-<ul>
-<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9415/fi-tgl-y/igt@gem_exec_suspend@basic-s3.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2411">i915#2411</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19028/fi-tgl-y/igt@gem_exec_suspend@basic-s3.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@basic-flip-after-cursor-atomic:</p>
-<ul>
-<li>fi-icl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9415/fi-icl-u2/igt@kms_cursor_legacy@basic-flip-after-cursor-atomic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19028/fi-icl-u2/igt@kms_cursor_legacy@basic-flip-after-cursor-atomic.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_force_connector_basic@force-connector-state:</p>
-<ul>
-<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9415/fi-tgl-y/igt@kms_force_connector_basic@force-connector-state.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19028/fi-tgl-y/igt@kms_force_connector_basic@force-connector-state.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@prime_vgem@basic-gtt:</p>
-<ul>
-<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9415/fi-tgl-y/igt@prime_vgem@basic-gtt.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19028/fi-tgl-y/igt@prime_vgem@basic-gtt.html">PASS</a> +1 similar issue</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Participating hosts (45 -&gt; 41)</h2>
-<p>Missing    (4): fi-ilk-m540 fi-bsw-cyan fi-bdw-samus fi-hsw-4200u </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_9415 -&gt; Patchwork_19028</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_9415: 7170e8ad5a8764257c383c8b677ca6398ba6b1af @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_5877: c36f7973d1ee7886ec65fa16c7b1fd8dc5a33caa @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
-  Patchwork_19028: 6737e67a7ac7000a2acc096fb23710a602274124 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>6737e67a7ac7 drm/i915/tgl, rkl, dg1: Apply WA_1406941453 to TGL, RKL and DG1</p>
-
-</body>
-</html>
-
---===============2412411955452184392==--
-
---===============1175070540==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
+> 
+> Regards
+> 
+> Shashank
+> 
+> On 27/11/20 2:33 am, Uma Shankar wrote:
+> > Blanking needs to be reduced to incorporate DP and HDMI timing/link
+> > bandwidth limitations for CEA modes (4k@60 at 10 bpp). DP can drive
+> > 17.28Gbs while 4k modes (VIC97 etc) at 10 bpp required 17.8 Gbps.
+> > This will cause mode to blank out. Reduced Htotal by shortening the
+> > back porch and front porch within permissible limits.
+> >
+> > Note: This is for reference for userspace, not to be merged in kernel.
+> >
+> > v2: This is marked as Not for merge and the responsibilty to program
+> > these custom timings will be on userspace. This patch is just for
+> > reference purposes. This is based on Ville's recommendation.
+> >
+> > v3: updated commit message.
+> >
+> > Signed-off-by: Uma Shankar <uma.shankar@intel.com>
+> > ---
+> >  drivers/gpu/drm/i915/display/intel_dp.c | 17 +++++++++++++++++
+> >  1 file changed, 17 insertions(+)
+> >
+> > diff --git a/drivers/gpu/drm/i915/display/intel_dp.c
+> > b/drivers/gpu/drm/i915/display/intel_dp.c
+> > index 0f89dbfa958a..f6f66033176b 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> > @@ -741,8 +741,10 @@ intel_dp_mode_valid(struct drm_connector
+> > *connector,  {
+> >  	struct intel_dp *intel_dp =
+> intel_attached_dp(to_intel_connector(connector));
+> >  	struct intel_connector *intel_connector =
+> > to_intel_connector(connector);
+> > +	struct intel_encoder *intel_encoder =
+> > +intel_attached_encoder(intel_connector);
+> >  	struct drm_display_mode *fixed_mode = intel_connector-
+> >panel.fixed_mode;
+> >  	struct drm_i915_private *dev_priv = to_i915(connector->dev);
+> > +	struct intel_lspcon *lspcon = enc_to_intel_lspcon(intel_encoder);
+> >  	int target_clock = mode->clock;
+> >  	int max_rate, mode_rate, max_lanes, max_link_clock;
+> >  	int max_dotclk = dev_priv->max_dotclk_freq; @@ -778,6 +780,21 @@
+> > intel_dp_mode_valid(struct drm_connector *connector,
+> >  	if (target_clock > max_dotclk)
+> >  		return MODE_CLOCK_HIGH;
+> >
+> > +	/*
+> > +	 * Reducing Blanking to incorporate DP and HDMI timing/link bandwidth
+> > +	 * limitations for CEA modes (4k@60 at 10 bpp). DP can drive 17.28Gbs
+> > +	 * while 4k modes (VIC97 etc) at 10 bpp required 17.8 Gbps. This will
+> > +	 * cause mode to blank out. Reduced Htotal by shortening the back
+> porch
+> > +	 * and front porch within permissible limits.
+> > +	 */
+> > +	if (lspcon->active && lspcon->hdr_supported &&
+> > +	    mode->clock > 570000) {
+> > +		mode->clock = 570000;
+> > +		mode->htotal -= 180;
+> > +		mode->hsync_start -= 72;
+> > +		mode->hsync_end -= 72;
+> > +	}
+> > +
+> >  	max_link_clock = intel_dp_max_link_rate(intel_dp);
+> >  	max_lanes = intel_dp_max_lane_count(intel_dp);
+> >
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============1175070540==--
