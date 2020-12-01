@@ -2,40 +2,40 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A70532CB137
-	for <lists+intel-gfx@lfdr.de>; Wed,  2 Dec 2020 00:58:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9B8282CB13A
+	for <lists+intel-gfx@lfdr.de>; Wed,  2 Dec 2020 00:58:47 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 318066E9B9;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 12D466E9B6;
 	Tue,  1 Dec 2020 23:58:28 +0000 (UTC)
 X-Original-To: Intel-gfx@lists.freedesktop.org
 Delivered-To: Intel-gfx@lists.freedesktop.org
 Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E18016E981
- for <Intel-gfx@lists.freedesktop.org>; Tue,  1 Dec 2020 23:58:22 +0000 (UTC)
-IronPort-SDR: lwYyQLAEJcY0HwDcEdDP3XyzzCtitBl2GemeMSY1ZYvnI7YctinRq/+7z/pXTJInUH+hV0Xrwy
- V2Y1J81RzmhQ==
-X-IronPort-AV: E=McAfee;i="6000,8403,9822"; a="191136801"
-X-IronPort-AV: E=Sophos;i="5.78,385,1599548400"; d="scan'208";a="191136801"
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2F7D36E981
+ for <Intel-gfx@lists.freedesktop.org>; Tue,  1 Dec 2020 23:58:23 +0000 (UTC)
+IronPort-SDR: 5k0yUc9uKJ4q8PzPm6YXmWLCyLUeP7R5iAyf/QZo3Ob1wBx6Rl7RVv2xElzxLDgwUiR54SNPpS
+ z9vriRW0qyyQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9822"; a="191136802"
+X-IronPort-AV: E=Sophos;i="5.78,385,1599548400"; d="scan'208";a="191136802"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from fmsmga007.fm.intel.com ([10.253.24.52])
  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  01 Dec 2020 15:58:21 -0800
-IronPort-SDR: ByKOeuVDnPA17q1PzoNmyngWNw3c3onq8JXbArhV+uzaenHWZK3Hhd+U9hyX4CzK/wE/yFgjL7
- oVA8j9dAutqA==
+IronPort-SDR: v+rOV/kp/H97+iXsc4EcH6UoaZyCwT4YdyoCZc6tjFvV5bsEycnJykj7CnVaadp3XGeKjXcAy0
+ T1kqGAB1cM8A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.78,385,1599548400"; d="scan'208";a="315897579"
+X-IronPort-AV: E=Sophos;i="5.78,385,1599548400"; d="scan'208";a="315897580"
 Received: from sean-virtualbox.fm.intel.com ([10.105.158.96])
  by fmsmga007.fm.intel.com with ESMTP; 01 Dec 2020 15:58:21 -0800
 From: "Huang, Sean Z" <sean.z.huang@intel.com>
 To: Intel-gfx@lists.freedesktop.org
-Date: Tue,  1 Dec 2020 15:57:26 -0800
-Message-Id: <20201201235747.26017-6-sean.z.huang@intel.com>
+Date: Tue,  1 Dec 2020 15:57:27 -0800
+Message-Id: <20201201235747.26017-7-sean.z.huang@intel.com>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20201201235747.26017-1-sean.z.huang@intel.com>
 References: <20201201235747.26017-1-sean.z.huang@intel.com>
-Subject: [Intel-gfx] [RFC-v3 05/26] drm/i915/pxp: Implement ioctl action to
- set the user space context
+Subject: [Intel-gfx] [RFC-v3 06/26] drm/i915/pxp: Add PXP-related registers
+ into allowlist
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,188 +54,129 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Implement one ioctl action to allow user space driver to set its
-user space context, so PXP can track the context id through this
-user space context list.
+Add several PXP-related reg into allowlist to allow user space
+driver to read the those register values.
 
 Signed-off-by: Huang, Sean Z <sean.z.huang@intel.com>
 ---
- drivers/gpu/drm/i915/pxp/intel_pxp.c         | 57 ++++++++++++++++++++
- drivers/gpu/drm/i915/pxp/intel_pxp.h         | 26 +++++++++
- drivers/gpu/drm/i915/pxp/intel_pxp_context.c | 24 +++++++++
- drivers/gpu/drm/i915/pxp/intel_pxp_context.h |  3 ++
- 4 files changed, 110 insertions(+)
+ drivers/gpu/drm/i915/i915_reg.h     |  6 ++++
+ drivers/gpu/drm/i915/intel_uncore.c | 50 ++++++++++++++++++++---------
+ 2 files changed, 41 insertions(+), 15 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp.c b/drivers/gpu/drm/i915/pxp/intel_pxp.c
-index d74a32b29716..ba473e1f4dde 100644
---- a/drivers/gpu/drm/i915/pxp/intel_pxp.c
-+++ b/drivers/gpu/drm/i915/pxp/intel_pxp.c
-@@ -8,6 +8,61 @@
- #include "intel_pxp_context.h"
- #include "intel_pxp_sm.h"
+diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+index c3b9ca142539..69758935abb8 100644
+--- a/drivers/gpu/drm/i915/i915_reg.h
++++ b/drivers/gpu/drm/i915/i915_reg.h
+@@ -12421,4 +12421,10 @@ enum skl_power_gate {
+ #define TGL_ROOT_DEVICE_SKU_ULX		0x2
+ #define TGL_ROOT_DEVICE_SKU_ULT		0x4
  
-+int i915_pxp_ops_ioctl(struct drm_device *dev, void *data, struct drm_file *drmfile)
-+{
-+	int ret;
-+	struct pxp_info pxp_info = {0};
-+	struct drm_i915_pxp_ops *pxp_ops = data;
-+	struct drm_i915_private *i915 = to_i915(dev);
++/* Registers for allowlist check */
++#define PXP_REG_01_LOWERBOUND		_MMIO(0x32260)
++#define PXP_REG_01_UPPERBOUND		_MMIO(0x32268)
++#define PXP_REG_02_LOWERBOUND		_MMIO(0x32670)
++#define PXP_REG_02_UPPERBOUND		_MMIO(0x32678)
 +
-+	if (!i915 || !i915->pxp.ctx || !drmfile || !pxp_ops ||
-+	    pxp_ops->info_size != sizeof(pxp_info))
-+		return -EINVAL;
-+
-+	if (copy_from_user(&pxp_info, pxp_ops->info_ptr, sizeof(pxp_info)) != 0)
-+		return -EFAULT;
-+
-+	mutex_lock(&i915->pxp.ctx->ctx_mutex);
-+
-+	if (i915->pxp.ctx->global_state_in_suspend) {
-+		drm_err(&i915->drm, "Return failure due to state in suspend\n");
-+		pxp_info.sm_status = PXP_SM_STATUS_SESSION_NOT_AVAILABLE;
-+		ret = 0;
-+		goto end;
-+	}
-+
-+	if (i915->pxp.ctx->global_state_attacked) {
-+		drm_err(&i915->drm, "Retry required due to state attacked\n");
-+		pxp_info.sm_status = PXP_SM_STATUS_RETRY_REQUIRED;
-+		ret = 0;
-+		goto end;
-+	}
-+
-+	switch (pxp_info.action) {
-+	case PXP_ACTION_SET_USER_CONTEXT:
+ #endif /* _I915_REG_H_ */
+diff --git a/drivers/gpu/drm/i915/intel_uncore.c b/drivers/gpu/drm/i915/intel_uncore.c
+index ef40edfff412..8185e2f9f254 100644
+--- a/drivers/gpu/drm/i915/intel_uncore.c
++++ b/drivers/gpu/drm/i915/intel_uncore.c
+@@ -1990,16 +1990,34 @@ void intel_uncore_fini_mmio(struct intel_uncore *uncore)
+ }
+ 
+ static const struct reg_whitelist {
+-	i915_reg_t offset_ldw;
++	i915_reg_t offset_ldw_lowerbound;
++	i915_reg_t offset_ldw_upperbound;
+ 	i915_reg_t offset_udw;
+ 	u16 gen_mask;
+ 	u8 size;
+-} reg_read_whitelist[] = { {
+-	.offset_ldw = RING_TIMESTAMP(RENDER_RING_BASE),
++} reg_read_whitelist[] = {
 +	{
-+		ret = intel_pxp_set_user_ctx(i915, pxp_info.set_user_ctx);
-+		break;
++	.offset_ldw_lowerbound = RING_TIMESTAMP(RENDER_RING_BASE),
++	.offset_ldw_upperbound = RING_TIMESTAMP(RENDER_RING_BASE),
+ 	.offset_udw = RING_TIMESTAMP_UDW(RENDER_RING_BASE),
+ 	.gen_mask = INTEL_GEN_MASK(4, 12),
+ 	.size = 8
+-} };
++	},
++	{
++	.offset_ldw_lowerbound = PXP_REG_01_LOWERBOUND,
++	.offset_ldw_upperbound = PXP_REG_01_UPPERBOUND,
++	.offset_udw = {0},
++	.gen_mask = INTEL_GEN_MASK(4, 12),
++	.size = 4
++	},
++	{
++	.offset_ldw_lowerbound = PXP_REG_02_LOWERBOUND,
++	.offset_ldw_upperbound = PXP_REG_02_UPPERBOUND,
++	.offset_udw = {0},
++	.gen_mask = INTEL_GEN_MASK(4, 12),
++	.size = 4
 +	}
-+	default:
-+		drm_err(&i915->drm, "Failed to %s due to bad params\n", __func__);
-+		ret = -EINVAL;
-+		goto end;
-+	}
-+
-+end:
-+	mutex_unlock(&i915->pxp.ctx->ctx_mutex);
-+
-+	if (ret == 0)
-+		if (copy_to_user(pxp_ops->info_ptr, &pxp_info, sizeof(pxp_info)) != 0)
-+			ret = -EFAULT;
-+
-+	if (ret)
-+		dev_err(&dev->pdev->dev, "pid=%d, ret = %d\n", task_pid_nr(current), ret);
-+
-+	return ret;
-+}
-+
- static void intel_pxp_write_irq_mask_reg(struct drm_i915_private *i915, u32 mask)
- {
- 	/* crypto mask is in bit31-16 (Engine1 Interrupt Mask) */
-@@ -35,6 +90,8 @@ static int intel_pxp_teardown_required_callback(struct drm_i915_private *i915)
- 	i915->pxp.ctx->global_state_attacked = true;
- 	i915->pxp.ctx->flag_display_hm_surface_keys = false;
- 
-+	intel_pxp_destroy_user_ctx_list(i915);
-+
- 	mutex_unlock(&i915->pxp.ctx->ctx_mutex);
- 
- 	return 0;
-diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp.h b/drivers/gpu/drm/i915/pxp/intel_pxp.h
-index eb0ec4a07d3d..132aeccf8447 100644
---- a/drivers/gpu/drm/i915/pxp/intel_pxp.h
-+++ b/drivers/gpu/drm/i915/pxp/intel_pxp.h
-@@ -24,6 +24,26 @@ enum pxp_sm_session_req {
- 	PXP_SM_REQ_SESSION_TERMINATE
- };
- 
-+#define PXP_ACTION_SET_USER_CONTEXT 5
-+
-+enum pxp_sm_status {
-+	PXP_SM_STATUS_SUCCESS,
-+	PXP_SM_STATUS_RETRY_REQUIRED,
-+	PXP_SM_STATUS_SESSION_NOT_AVAILABLE,
-+	PXP_SM_STATUS_ERROR_UNKNOWN
 +};
-+
-+struct pxp_info {
-+	u32 action;
-+	u32 sm_status;
-+	u32 set_user_ctx;
-+} __attribute__((packed));
-+
-+struct drm_i915_pxp_ops {
-+	struct pxp_info __user *info_ptr;
-+	__u32 info_size;
-+};
-+
- struct pxp_context;
  
- struct intel_pxp {
-@@ -38,6 +58,7 @@ struct intel_gt;
- struct drm_i915_private;
+ int i915_reg_read_ioctl(struct drm_device *dev,
+ 			void *data, struct drm_file *file)
+@@ -2012,18 +2030,22 @@ int i915_reg_read_ioctl(struct drm_device *dev,
+ 	unsigned int flags;
+ 	int remain;
+ 	int ret = 0;
++	i915_reg_t offset_ldw;
  
- #ifdef CONFIG_DRM_I915_PXP
-+int i915_pxp_ops_ioctl(struct drm_device *dev, void *data, struct drm_file *drmfile);
- void intel_pxp_irq_handler(struct intel_gt *gt, u16 iir);
- int i915_pxp_teardown_required_callback(struct drm_i915_private *i915);
- int i915_pxp_global_terminate_complete_callback(struct drm_i915_private *i915);
-@@ -45,6 +66,11 @@ int i915_pxp_global_terminate_complete_callback(struct drm_i915_private *i915);
- int intel_pxp_init(struct drm_i915_private *i915);
- void intel_pxp_uninit(struct drm_i915_private *i915);
- #else
-+static inline int i915_pxp_ops_ioctl(struct drm_device *dev, void *data, struct drm_file *drmfile)
-+{
-+	return 0;
-+}
-+
- static inline void intel_pxp_irq_handler(struct intel_gt *gt, u16 iir)
- {
- }
-diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp_context.c b/drivers/gpu/drm/i915/pxp/intel_pxp_context.c
-index c340c375daac..7fc99567b3ac 100644
---- a/drivers/gpu/drm/i915/pxp/intel_pxp_context.c
-+++ b/drivers/gpu/drm/i915/pxp/intel_pxp_context.c
-@@ -43,3 +43,27 @@ void intel_pxp_destroy_ctx(struct drm_i915_private *i915)
- 	kfree(i915->pxp.ctx);
- 	i915->pxp.ctx = NULL;
- }
-+
-+int intel_pxp_set_user_ctx(struct drm_i915_private *i915, u32 user_ctx_in)
-+{
-+	struct pxp_user_ctx *user_ctx;
-+
-+	user_ctx = kzalloc(sizeof(*user_ctx), GFP_KERNEL);
-+	if (!user_ctx)
-+		return -ENOMEM;
-+
-+	user_ctx->user_ctx = user_ctx_in;
-+
-+	list_add(&user_ctx->listhead, &i915->pxp.ctx->user_ctx_list);
-+	return 0;
-+}
-+
-+void intel_pxp_destroy_user_ctx_list(struct drm_i915_private *i915)
-+{
-+	struct pxp_user_ctx *user_ctx, *n;
-+
-+	list_for_each_entry_safe(user_ctx, n, &i915->pxp.ctx->user_ctx_list, listhead) {
-+		list_del(&user_ctx->listhead);
-+		kfree(user_ctx);
-+	}
-+}
-diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp_context.h b/drivers/gpu/drm/i915/pxp/intel_pxp_context.h
-index e0794dfb548d..c8b2d89e6548 100644
---- a/drivers/gpu/drm/i915/pxp/intel_pxp_context.h
-+++ b/drivers/gpu/drm/i915/pxp/intel_pxp_context.h
-@@ -41,4 +41,7 @@ struct pxp_user_ctx {
- struct pxp_context *intel_pxp_create_ctx(struct drm_i915_private *i915);
- void intel_pxp_destroy_ctx(struct drm_i915_private *i915);
+ 	entry = reg_read_whitelist;
+ 	remain = ARRAY_SIZE(reg_read_whitelist);
+ 	while (remain) {
+-		u32 entry_offset = i915_mmio_reg_offset(entry->offset_ldw);
++		u32 entry_offset_lb = i915_mmio_reg_offset(entry->offset_ldw_lowerbound);
++		u32 entry_offset_ub = i915_mmio_reg_offset(entry->offset_ldw_upperbound);
  
-+int intel_pxp_set_user_ctx(struct drm_i915_private *i915, u32 user_ctx);
-+void intel_pxp_destroy_user_ctx_list(struct drm_i915_private *i915);
-+
- #endif /* __INTEL_PXP_CONTEXT_H__ */
+ 		GEM_BUG_ON(!is_power_of_2(entry->size));
+ 		GEM_BUG_ON(entry->size > 8);
+-		GEM_BUG_ON(entry_offset & (entry->size - 1));
++		GEM_BUG_ON(entry_offset_lb & (entry->size - 1));
++		GEM_BUG_ON(entry_offset_ub & (entry->size - 1));
+ 
+ 		if (INTEL_INFO(i915)->gen_mask & entry->gen_mask &&
+-		    entry_offset == (reg->offset & -entry->size))
++		    entry_offset_lb <= (reg->offset & -entry->size) &&
++		    (reg->offset & -entry->size) <= entry_offset_ub)
+ 			break;
+ 		entry++;
+ 		remain--;
+@@ -2033,23 +2055,21 @@ int i915_reg_read_ioctl(struct drm_device *dev,
+ 		return -EINVAL;
+ 
+ 	flags = reg->offset & (entry->size - 1);
++	offset_ldw = _MMIO(reg->offset - flags);
+ 
+ 	with_intel_runtime_pm(&i915->runtime_pm, wakeref) {
+ 		if (entry->size == 8 && flags == I915_REG_READ_8B_WA)
+ 			reg->val = intel_uncore_read64_2x32(uncore,
+-							    entry->offset_ldw,
++							    offset_ldw,
+ 							    entry->offset_udw);
+ 		else if (entry->size == 8 && flags == 0)
+-			reg->val = intel_uncore_read64(uncore,
+-						       entry->offset_ldw);
++			reg->val = intel_uncore_read64(uncore, offset_ldw);
+ 		else if (entry->size == 4 && flags == 0)
+-			reg->val = intel_uncore_read(uncore, entry->offset_ldw);
++			reg->val = intel_uncore_read(uncore, offset_ldw);
+ 		else if (entry->size == 2 && flags == 0)
+-			reg->val = intel_uncore_read16(uncore,
+-						       entry->offset_ldw);
++			reg->val = intel_uncore_read16(uncore, offset_ldw);
+ 		else if (entry->size == 1 && flags == 0)
+-			reg->val = intel_uncore_read8(uncore,
+-						      entry->offset_ldw);
++			reg->val = intel_uncore_read8(uncore, offset_ldw);
+ 		else
+ 			ret = -EINVAL;
+ 	}
 -- 
 2.17.1
 
