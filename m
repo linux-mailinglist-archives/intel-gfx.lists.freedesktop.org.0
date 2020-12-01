@@ -2,32 +2,28 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C771F2CAF18
-	for <lists+intel-gfx@lfdr.de>; Tue,  1 Dec 2020 22:47:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B10DE2CAF30
+	for <lists+intel-gfx@lfdr.de>; Tue,  1 Dec 2020 22:54:57 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7B5AA6E92A;
-	Tue,  1 Dec 2020 21:47:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 17D7F89BD4;
+	Tue,  1 Dec 2020 21:54:55 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 199DD6E92A
- for <intel-gfx@lists.freedesktop.org>; Tue,  1 Dec 2020 21:47:54 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 39BDA89BD4
+ for <intel-gfx@lists.freedesktop.org>; Tue,  1 Dec 2020 21:54:52 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 23182404-1500050 for multiple; Tue, 01 Dec 2020 21:47:51 +0000
-MIME-Version: 1.0
-In-Reply-To: <bdac1115-e71c-b014-f33a-9fa81d277f31@intel.com>
-References: <20201130130843.44334-1-matthew.auld@intel.com>
- <160674232973.8815.8625041556670650754@build.alporthouse.com>
- <bdac1115-e71c-b014-f33a-9fa81d277f31@intel.com>
+Received: from build.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 23182445-1500050 
+ for multiple; Tue, 01 Dec 2020 21:54:41 +0000
 From: Chris Wilson <chris@chris-wilson.co.uk>
-To: Matthew Auld <matthew.auld@intel.com>, intel-gfx@lists.freedesktop.org
-Date: Tue, 01 Dec 2020 21:47:50 +0000
-Message-ID: <160685927071.21230.15834967407229209174@build.alporthouse.com>
-User-Agent: alot/0.9
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/lmem: Limit block size to 4G
+To: intel-gfx@lists.freedesktop.org
+Date: Tue,  1 Dec 2020 21:54:41 +0000
+Message-Id: <20201201215441.31900-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.20.1
+MIME-Version: 1.0
+Subject: [Intel-gfx] [PATCH] drm/i915/gem: Report error for vmap() failure
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,136 +36,108 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Matthew Auld <matthew.auld@intel.com>,
+ Chris Wilson <chris@chris-wilson.co.uk>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Matthew Auld (2020-12-01 16:35:53)
-> On 30/11/2020 13:18, Chris Wilson wrote:
-> > Quoting Matthew Auld (2020-11-30 13:08:43)
-> >> From: Venkata Sandeep Dhanalakota <venkata.s.dhanalakota@intel.com>
-> >>
-> >> Block sizes are only limited by the largest power-of-two that will fit
-> >> in the region size, but to construct an object we also require feeding
-> >> it into an sg list, where the upper limit of the sg entry is at most
-> >> UINT_MAX. Therefore to prevent issues with allocating blocks that are
-> >> too large, add the flag I915_ALLOC_MAX_SEGMENT_SIZE which should limit
-> >> block sizes to the i915_sg_segment_size().
-> >>
-> >> v2: (matt)
-> >>    - query the max segment.
-> >>    - prefer flag to limit block size to 4G, since it's best not to assume
-> >>      the user will feed the blocks into an sg list.
-> >>    - simple selftest so we don't have to guess.
-> >>
-> >> Cc: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
-> >> Cc: Matthew Auld <matthew.auld@intel.com>
-> >> Cc: CQ Tang <cq.tang@intel.com>
-> >> Signed-off-by: Venkata Sandeep Dhanalakota <venkata.s.dhanalakota@intel.com>
-> >> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
-> >> ---
-> >>   drivers/gpu/drm/i915/gem/i915_gem_region.c    |  2 +-
-> >>   drivers/gpu/drm/i915/intel_memory_region.c    | 16 +++++-
-> >>   drivers/gpu/drm/i915/intel_memory_region.h    |  5 +-
-> >>   .../drm/i915/selftests/intel_memory_region.c  | 50 +++++++++++++++++++
-> >>   4 files changed, 69 insertions(+), 4 deletions(-)
-> >>
-> >> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_region.c b/drivers/gpu/drm/i915/gem/i915_gem_region.c
-> >> index 1515384d7e0e..e72d78074c9e 100644
-> >> --- a/drivers/gpu/drm/i915/gem/i915_gem_region.c
-> >> +++ b/drivers/gpu/drm/i915/gem/i915_gem_region.c
-> >> @@ -42,7 +42,7 @@ i915_gem_object_get_pages_buddy(struct drm_i915_gem_object *obj)
-> >>                  return -ENOMEM;
-> >>          }
-> >>   
-> >> -       flags = I915_ALLOC_MIN_PAGE_SIZE;
-> >> +       flags = I915_ALLOC_MIN_PAGE_SIZE | I915_ALLOC_MAX_SEGMENT_SIZE;
-> >>          if (obj->flags & I915_BO_ALLOC_CONTIGUOUS)
-> >>                  flags |= I915_ALLOC_CONTIGUOUS;
-> >>   
-> >> diff --git a/drivers/gpu/drm/i915/intel_memory_region.c b/drivers/gpu/drm/i915/intel_memory_region.c
-> >> index b326993a1026..8a376f1b5b3b 100644
-> >> --- a/drivers/gpu/drm/i915/intel_memory_region.c
-> >> +++ b/drivers/gpu/drm/i915/intel_memory_region.c
-> >> @@ -72,6 +72,7 @@ __intel_memory_region_get_pages_buddy(struct intel_memory_region *mem,
-> >>                                        struct list_head *blocks)
-> >>   {
-> >>          unsigned int min_order = 0;
-> >> +       unsigned int max_order;
-> >>          unsigned long n_pages;
-> >>   
-> >>          GEM_BUG_ON(!IS_ALIGNED(size, mem->mm.chunk_size));
-> >> @@ -92,13 +93,26 @@ __intel_memory_region_get_pages_buddy(struct intel_memory_region *mem,
-> >>   
-> >>          n_pages = size >> ilog2(mem->mm.chunk_size);
-> >>   
-> >> +       /*
-> >> +        * If we going to feed this into an sg list we should limit the block
-> >> +        * sizes such that we don't exceed the i915_sg_segment_size().
-> >> +        */
-> >> +       if (flags & I915_ALLOC_MAX_SEGMENT_SIZE) {
-> >> +               unsigned int max_segment = i915_sg_segment_size();
-> >> +
-> >> +               GEM_BUG_ON(max_segment < mem->mm.chunk_size);
-> > 
-> > iirc, the swiotlb segment size can be adjusted by user parameter.
-> > [Don't ask if swiotlb is compatible with lmem, I suspect not ;]
-> > 
-> > I think err on the side of safety, just in case the user does find a way
-> > to adjust the parameter,
-> > 
-> > if (GEM_WARN_ON(max_segment < mem->mm.chunk_size))
-> >       max_order = 0;
-> > else
-> >       max_order = ilog2(max_segment) - ilog2(mem->mm.chunk_size);
-> 
-> I think I made a big mess here :|
-> 
-> Thoughts on just making this max_segment = UINT_MAX, or perhaps dropping 
-> the flag and just hiding these details in the sg construction phase, 
-> where we just split the blocks down into i915_sg_segment_size() sg 
-> chunks, if required. Otherwise we start seeing explosions with some 
-> large contiguous object.
+Convert the NULL pointer from a failed vmap() to ERR_PTR(-ENOMEM) for
+propagation.
 
-Oh, I missed the conflict between I915_ALLOC_CONTIGUOUS and
-I915_ALLOC_MAX_SEGMENT_SIZE. Bad reviewer.
+<1> [269.830447] BUG: kernel NULL pointer dereference, address: 0000000000000000
+<1> [269.830455] #PF: supervisor write access in kernel mode
+<1> [269.830457] #PF: error_code(0x0002) - not-present page
+<6> [269.830459] PGD 0 P4D 0
+<4> [269.830465] Oops: 0002 [#1] PREEMPT SMP PTI
+<4> [269.830469] CPU: 3 PID: 5789 Comm: i915_selftest Tainted: G     U            5.10.0-rc6-CI-CI_DRM_9412+ #1
+<4> [269.830472] Hardware name: Intel Corp. Geminilake/GLK RVP2 LP4SD (07), BIOS GELKRVPA.X64.0062.B30.1708222146 08/22/2017
+<4> [269.830636] RIP: 0010:igt_client_fill+0x1b9/0x5f0 [i915]
+<4> [269.830640] Code: e8 0c 32 02 00 48 89 c5 48 3d 00 f0 ff ff 0f 87 e9 02 00 00 48 8b 8b 78 06 00 00 44 89 f0 48 89 ef 35 af be ad de 48 c1 e9 02 <f3> ab 0f b6 83 80 03 00 00 89 c2 c0 ea 03 83 e2 02 75 09 83 c8 20
+<4> [269.830642] RSP: 0018:ffffc900007a79e8 EFLAGS: 00010206
+<4> [269.830645] RAX: 00000000df0bf37b RBX: ffff88811d8af3c0 RCX: 00000000010afc00
+<4> [269.830647] RDX: 0000000000000000 RSI: ffffffff822f2b17 RDI: 0000000000000000
+<4> [269.830648] RBP: 0000000000000000 R08: ffff888111c80930 R09: 00000000fffffffe
+<4> [269.830650] R10: 0000000000000000 R11: 00000000ffbc70e4 R12: ffff88811090f700
+<4> [269.830652] R13: ffff88810df60180 R14: 0000000001a64dd4 R15: 0000000000000000
+<4> [269.830655] FS:  00007f137b07de40(0000) GS:ffff88817b980000(0000) knlGS:0000000000000000
+<4> [269.830657] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+<4> [269.830659] CR2: 0000000000000000 CR3: 0000000115984000 CR4: 0000000000350ee0
+<4> [269.830661] Call Trace:
+<4> [269.830780]  __i915_subtests.cold.7+0x42/0x92 [i915]
+<4> [269.830886]  ? __i915_nop_teardown+0x10/0x10 [i915]
+<4> [269.830989]  ? __i915_live_setup+0x30/0x30 [i915]
+<4> [269.831104]  __run_selftests.part.3+0xf7/0x14c [i915]
+<4> [269.831939]  i915_live_selftests.cold.5+0x1f/0x47 [i915]
+<4> [269.832027]  i915_pci_probe+0x93/0x1d0 [i915]
+<4> [269.832037]  ? _raw_spin_unlock_irqrestore+0x2f/0x50
+<4> [269.832043]  pci_device_probe+0x9e/0x110
+<4> [269.832049]  really_probe+0x1c4/0x430
+<4> [269.832053]  driver_probe_device+0xd9/0x140
+<4> [269.832056]  device_driver_attach+0x4a/0x50
+<4> [269.832059]  __driver_attach+0x83/0x140
+<4> [269.832062]  ? device_driver_attach+0x50/0x50
+<4> [269.832064]  ? device_driver_attach+0x50/0x50
+<4> [269.832067]  bus_for_each_dev+0x75/0xc0
+<4> [269.832070]  bus_add_driver+0x14b/0x1f0
+<4> [269.832073]  driver_register+0x66/0xb0
+<4> [269.832160]  i915_init+0x70/0x87 [i915]
+<4> [269.832164]  ? 0xffffffffa05e3000
+<4> [269.832168]  do_one_initcall+0x56/0x2e0
+<4> [269.832174]  ? kmem_cache_alloc_trace+0x6a4/0x770
+<4> [269.832180]  do_init_module+0x55/0x200
+<4> [269.832184]  load_module+0x22a2/0x2480
+<4> [269.832191]  ? __do_sys_finit_module+0xad/0x110
+<4> [269.832194]  __do_sys_finit_module+0xad/0x110
+<4> [269.832199]  do_syscall_64+0x33/0x80
+<4> [269.832202]  entry_SYSCALL_64_after_hwframe+0x44/0xa9
+<4> [269.832204] RIP: 0033:0x7f137a718839
+<4> [269.832208] Code: 00 f3 c3 66 2e 0f 1f 84 00 00 00 00 00 0f 1f 40 00 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 8b 0d 1f f6 2c 00 f7 d8 64 89 01 48
+<4> [269.832210] RSP: 002b:00007ffc4267d308 EFLAGS: 00000246 ORIG_RAX: 0000000000000139
+<4> [269.832214] RAX: ffffffffffffffda RBX: 000056288b88f0d0 RCX: 00007f137a718839
+<4> [269.832216] RDX: 0000000000000000 RSI: 000056288b895850 RDI: 0000000000000007
+<4> [269.832218] RBP: 000056288b895850 R08: 312d3d7374736574 R09: 000056288b88c020
+<4> [269.832220] R10: 00007ffc4267d450 R11: 0000000000000246 R12: 0000000000000000
+<4> [269.832222] R13: 000056288b8877a0 R14: 0000000000000020 R15: 0000000000000045
+<4> [269.832226] Modules linked in: i915(+) vgem mei_hdcp snd_hda_codec_hdmi snd_hda_codec_realtek snd_hda_codec_generic ledtrig_audio x86_pkg_temp_thermal coretemp crct10dif_pclmul crc32_pclmul ghash_clmulni_intel cdc_ether usbnet snd_intel_dspcfg mii snd_hda_codec snd_hwdep snd_hda_core r8169 snd_pcm realtek mei_me mei prime_numbers intel_lpss_pci i2c_hid pinctrl_geminilake [last unloaded: i915]
+<4> [269.832264] CR2: 0000000000000000
 
-The latter (split sg construction) is what we do elsewhere in case we get
-a huge contiguous chunk.
+Fixes: cb2ce93e5b05 ("drm/i915/gem: Differentiate oom failures from invalid map types")
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Matthew Auld <matthew.auld@intel.com>
+Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.
+---
+ drivers/gpu/drm/i915/gem/i915_gem_pages.c | 6 ++++--
+ 1 file changed, 4 insertions(+), 2 deletions(-)
 
-The appeal of splitting the buddies is that it's done once at the start.
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_pages.c b/drivers/gpu/drm/i915/gem/i915_gem_pages.c
+index 6dad9ea8eaa3..3db3c667c486 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_pages.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_pages.c
+@@ -290,7 +290,8 @@ static void *i915_gem_object_map_page(struct drm_i915_gem_object *obj,
+ 	vaddr = vmap(pages, n_pages, 0, pgprot);
+ 	if (pages != stack)
+ 		kvfree(pages);
+-	return vaddr;
++
++	return vaddr ?: ERR_PTR(-ENOMEM);
+ }
+ 
+ static void *i915_gem_object_map_pfn(struct drm_i915_gem_object *obj,
+@@ -320,7 +321,8 @@ static void *i915_gem_object_map_pfn(struct drm_i915_gem_object *obj,
+ 	vaddr = vmap_pfn(pfns, n_pfn, pgprot_writecombine(PAGE_KERNEL_IO));
+ 	if (pfns != stack)
+ 		kvfree(pfns);
+-	return vaddr;
++
++	return vaddr ?: ERR_PTR(-ENOMEM);
+ }
+ 
+ /* get, pin, and map the pages of the object into kernel space */
+-- 
+2.20.1
 
-Conversely splitting sg constructions mean we do it once at the end.
-But it means we have to conservatively allocate the sgtable and trim.
-More work, but less passing flags to forewarn the allocator about the
-user.
-
-The fixup would be something like:
-
-        if (flags & I915_ALLOC_MAX_SEGMENT_SIZE) {
-                unsigned int max_segment = i915_sg_segment_size();
-
-                if (GEM_WARN_ON(max_segment < mem->mm.chunk_size))
-                        max_order = 0;
-                else
-                        max_order = ilog2(max_segment) - ilog2(mem->mm.chunk_size);
-
-                min_order = min(min_order, max_order);
-	}
-
-And at that point we clearly may still allocate more than max_segment,
-and less than the desired contiguous size.
-
-The only way to meet both I915_ALLOC_CONTIGUOUS and
-i915_sg_segment_size() is to split at the sg constuction.
-
-Unless you do intend for I915_ALLOC_CONTIGUOUS to only return a single
-element in the scatterlist? In which case we need to return an error if
-I915_ALLOC_CONTIGUOUS exceeds I915_ALLOC_MAX_SEGMENT_SIZE.
-
-The positive news is that we successfully tested the test suite.
--Chris
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
