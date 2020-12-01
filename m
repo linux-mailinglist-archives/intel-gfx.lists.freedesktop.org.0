@@ -1,35 +1,30 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 88E422C9979
-	for <lists+intel-gfx@lfdr.de>; Tue,  1 Dec 2020 09:31:18 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id A760F2C9B0E
+	for <lists+intel-gfx@lfdr.de>; Tue,  1 Dec 2020 10:07:57 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B8C5F89FD4;
-	Tue,  1 Dec 2020 08:31:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 48F986E519;
+	Tue,  1 Dec 2020 09:07:47 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 973CB6E4AF
- for <intel-gfx@lists.freedesktop.org>; Tue,  1 Dec 2020 08:31:11 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5B2A76E4BA
+ for <intel-gfx@lists.freedesktop.org>; Tue,  1 Dec 2020 09:07:42 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 23171470-1500050 for multiple; Tue, 01 Dec 2020 08:14:41 +0000
-MIME-Version: 1.0
-In-Reply-To: <20201130224708.GD2480925@ideak-desk.fi.intel.com>
-References: <20201130212200.2811939-1-imre.deak@intel.com>
- <20201130212200.2811939-10-imre.deak@intel.com>
- <160677402120.12351.15729317951519810612@build.alporthouse.com>
- <20201130224708.GD2480925@ideak-desk.fi.intel.com>
+Received: from build.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 23172165-1500050 
+ for multiple; Tue, 01 Dec 2020 09:07:31 +0000
 From: Chris Wilson <chris@chris-wilson.co.uk>
-To: Imre Deak <imre.deak@intel.com>
-Date: Tue, 01 Dec 2020 08:14:40 +0000
-Message-ID: <160681048020.12351.8804231018277657231@build.alporthouse.com>
-User-Agent: alot/0.9
-Subject: Re: [Intel-gfx] [PATCH 9/9] drm/i915: Make
- intel_display_power_put_unchecked() an internal-only function
+To: intel-gfx@lists.freedesktop.org
+Date: Tue,  1 Dec 2020 09:07:18 +0000
+Message-Id: <20201201090729.24777-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.20.1
+MIME-Version: 1.0
+Subject: [Intel-gfx] [PATCH 01/12] drm/i915/gem: Drop free_work for GEM
+ contexts
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,52 +37,221 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Chris Wilson <chris@chris-wilson.co.uk>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Imre Deak (2020-11-30 22:47:08)
-> On Mon, Nov 30, 2020 at 10:07:01PM +0000, Chris Wilson wrote:
-> > Quoting Imre Deak (2020-11-30 21:22:00)
-> > > All the display power domain references are wakeref tracked now, so we
-> > > can mark intel_display_power_put_unchecked() as an internal function
-> > > (for suppressing wakeref tracking in non-debug builds).
-> > > 
-> > > Cc: Chris Wilson <chris@chris-wilson.co.uk>
-> > > Signed-off-by: Imre Deak <imre.deak@intel.com>
-> > 
-> > Ok, after all previous patches it will only be called from the header
-> > after throwing away the wakeref.
-> > 
-> > I have a sneaky suspicion you might take another path after reviewing
-> > the danger caused by the debug build, 
-> 
-> Yes, how about also adding:
-> 
-> +static inline void
-> +____intel_display_power_put(struct drm_i915_private *i915,
-> +                           enum intel_display_power_domain domain,
-> +                           intel_wakeref_t wakeref)
-> +{
-> +       intel_display_power_put_unchecked(i915, domain);
-> +}
-> +
->  static inline void
->  intel_display_power_put(struct drm_i915_private *i915,
->                         enum intel_display_power_domain domain,
->                         intel_wakeref_t wakeref)
->  {
-> -       intel_display_power_put_unchecked(i915, domain);
-> +       ____intel_display_power_put(i915, domain, wakeref);
->  }
-> 
-> (and similar change for intel_display_power_put_async()) ?
+The free_list and worker was introduced in commit 5f09a9c8ab6b ("drm/i915:
+Allow contexts to be unreferenced locklessly"), but subsequently made
+redundant by the removal of the last sleeping lock in commit 2935ed5339c4
+("drm/i915: Remove logical HW ID"). As we can now free the GEM context
+immediately from any context, remove the deferral of the free_list
 
-Hmm. The compiler shouldn't DCE the wakeref since it has a side-effect.
-We can but see.
--Chris
+v2: Lift removing the context from the global list into close().
+
+Suggested-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+---
+ drivers/gpu/drm/i915/gem/i915_gem_context.c   | 59 +++----------------
+ drivers/gpu/drm/i915/gem/i915_gem_context.h   |  1 -
+ .../gpu/drm/i915/gem/i915_gem_context_types.h |  1 -
+ drivers/gpu/drm/i915/i915_drv.h               |  3 -
+ drivers/gpu/drm/i915/i915_gem.c               |  2 -
+ .../gpu/drm/i915/selftests/mock_gem_device.c  |  2 -
+ 6 files changed, 8 insertions(+), 60 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.c b/drivers/gpu/drm/i915/gem/i915_gem_context.c
+index a6299da64de4..8493af37eb8a 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_context.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_context.c
+@@ -333,13 +333,12 @@ static struct i915_gem_engines *default_engines(struct i915_gem_context *ctx)
+ 	return e;
+ }
+ 
+-static void i915_gem_context_free(struct i915_gem_context *ctx)
++void i915_gem_context_release(struct kref *ref)
+ {
+-	GEM_BUG_ON(!i915_gem_context_is_closed(ctx));
++	struct i915_gem_context *ctx = container_of(ref, typeof(*ctx), ref);
+ 
+-	spin_lock(&ctx->i915->gem.contexts.lock);
+-	list_del(&ctx->link);
+-	spin_unlock(&ctx->i915->gem.contexts.lock);
++	trace_i915_context_free(ctx);
++	GEM_BUG_ON(!i915_gem_context_is_closed(ctx));
+ 
+ 	mutex_destroy(&ctx->engines_mutex);
+ 	mutex_destroy(&ctx->lut_mutex);
+@@ -353,37 +352,6 @@ static void i915_gem_context_free(struct i915_gem_context *ctx)
+ 	kfree_rcu(ctx, rcu);
+ }
+ 
+-static void contexts_free_all(struct llist_node *list)
+-{
+-	struct i915_gem_context *ctx, *cn;
+-
+-	llist_for_each_entry_safe(ctx, cn, list, free_link)
+-		i915_gem_context_free(ctx);
+-}
+-
+-static void contexts_flush_free(struct i915_gem_contexts *gc)
+-{
+-	contexts_free_all(llist_del_all(&gc->free_list));
+-}
+-
+-static void contexts_free_worker(struct work_struct *work)
+-{
+-	struct i915_gem_contexts *gc =
+-		container_of(work, typeof(*gc), free_work);
+-
+-	contexts_flush_free(gc);
+-}
+-
+-void i915_gem_context_release(struct kref *ref)
+-{
+-	struct i915_gem_context *ctx = container_of(ref, typeof(*ctx), ref);
+-	struct i915_gem_contexts *gc = &ctx->i915->gem.contexts;
+-
+-	trace_i915_context_free(ctx);
+-	if (llist_add(&ctx->free_link, &gc->free_list))
+-		schedule_work(&gc->free_work);
+-}
+-
+ static inline struct i915_gem_engines *
+ __context_engines_static(const struct i915_gem_context *ctx)
+ {
+@@ -632,6 +600,10 @@ static void context_close(struct i915_gem_context *ctx)
+ 	 */
+ 	lut_close(ctx);
+ 
++	spin_lock(&ctx->i915->gem.contexts.lock);
++	list_del(&ctx->link);
++	spin_unlock(&ctx->i915->gem.contexts.lock);
++
+ 	mutex_unlock(&ctx->mutex);
+ 
+ 	/*
+@@ -849,9 +821,6 @@ i915_gem_create_context(struct drm_i915_private *i915, unsigned int flags)
+ 	    !HAS_EXECLISTS(i915))
+ 		return ERR_PTR(-EINVAL);
+ 
+-	/* Reap the stale contexts */
+-	contexts_flush_free(&i915->gem.contexts);
+-
+ 	ctx = __create_context(i915);
+ 	if (IS_ERR(ctx))
+ 		return ctx;
+@@ -896,9 +865,6 @@ static void init_contexts(struct i915_gem_contexts *gc)
+ {
+ 	spin_lock_init(&gc->lock);
+ 	INIT_LIST_HEAD(&gc->list);
+-
+-	INIT_WORK(&gc->free_work, contexts_free_worker);
+-	init_llist_head(&gc->free_list);
+ }
+ 
+ void i915_gem_init__contexts(struct drm_i915_private *i915)
+@@ -906,12 +872,6 @@ void i915_gem_init__contexts(struct drm_i915_private *i915)
+ 	init_contexts(&i915->gem.contexts);
+ }
+ 
+-void i915_gem_driver_release__contexts(struct drm_i915_private *i915)
+-{
+-	flush_work(&i915->gem.contexts.free_work);
+-	rcu_barrier(); /* and flush the left over RCU frees */
+-}
+-
+ static int gem_context_register(struct i915_gem_context *ctx,
+ 				struct drm_i915_file_private *fpriv,
+ 				u32 *id)
+@@ -985,7 +945,6 @@ int i915_gem_context_open(struct drm_i915_private *i915,
+ void i915_gem_context_close(struct drm_file *file)
+ {
+ 	struct drm_i915_file_private *file_priv = file->driver_priv;
+-	struct drm_i915_private *i915 = file_priv->dev_priv;
+ 	struct i915_address_space *vm;
+ 	struct i915_gem_context *ctx;
+ 	unsigned long idx;
+@@ -997,8 +956,6 @@ void i915_gem_context_close(struct drm_file *file)
+ 	xa_for_each(&file_priv->vm_xa, idx, vm)
+ 		i915_vm_put(vm);
+ 	xa_destroy(&file_priv->vm_xa);
+-
+-	contexts_flush_free(&i915->gem.contexts);
+ }
+ 
+ int i915_gem_vm_create_ioctl(struct drm_device *dev, void *data,
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.h b/drivers/gpu/drm/i915/gem/i915_gem_context.h
+index a133f92bbedb..b5c908f3f4f2 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_context.h
++++ b/drivers/gpu/drm/i915/gem/i915_gem_context.h
+@@ -110,7 +110,6 @@ i915_gem_context_clear_user_engines(struct i915_gem_context *ctx)
+ 
+ /* i915_gem_context.c */
+ void i915_gem_init__contexts(struct drm_i915_private *i915);
+-void i915_gem_driver_release__contexts(struct drm_i915_private *i915);
+ 
+ int i915_gem_context_open(struct drm_i915_private *i915,
+ 			  struct drm_file *file);
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context_types.h b/drivers/gpu/drm/i915/gem/i915_gem_context_types.h
+index ae14ca24a11f..1449f54924e0 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_context_types.h
++++ b/drivers/gpu/drm/i915/gem/i915_gem_context_types.h
+@@ -108,7 +108,6 @@ struct i915_gem_context {
+ 
+ 	/** link: place with &drm_i915_private.context_list */
+ 	struct list_head link;
+-	struct llist_node free_link;
+ 
+ 	/**
+ 	 * @ref: reference count
+diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
+index 15be8debae54..1a2a1276dd31 100644
+--- a/drivers/gpu/drm/i915/i915_drv.h
++++ b/drivers/gpu/drm/i915/i915_drv.h
+@@ -1172,9 +1172,6 @@ struct drm_i915_private {
+ 		struct i915_gem_contexts {
+ 			spinlock_t lock; /* locks list */
+ 			struct list_head list;
+-
+-			struct llist_head free_list;
+-			struct work_struct free_work;
+ 		} contexts;
+ 
+ 		/*
+diff --git a/drivers/gpu/drm/i915/i915_gem.c b/drivers/gpu/drm/i915/i915_gem.c
+index 58276694c848..17a4636ee542 100644
+--- a/drivers/gpu/drm/i915/i915_gem.c
++++ b/drivers/gpu/drm/i915/i915_gem.c
+@@ -1207,8 +1207,6 @@ void i915_gem_driver_remove(struct drm_i915_private *dev_priv)
+ 
+ void i915_gem_driver_release(struct drm_i915_private *dev_priv)
+ {
+-	i915_gem_driver_release__contexts(dev_priv);
+-
+ 	intel_gt_driver_release(&dev_priv->gt);
+ 
+ 	intel_wa_list_free(&dev_priv->gt_wa_list);
+diff --git a/drivers/gpu/drm/i915/selftests/mock_gem_device.c b/drivers/gpu/drm/i915/selftests/mock_gem_device.c
+index e946bd2087d8..0188f877cab2 100644
+--- a/drivers/gpu/drm/i915/selftests/mock_gem_device.c
++++ b/drivers/gpu/drm/i915/selftests/mock_gem_device.c
+@@ -64,8 +64,6 @@ static void mock_device_release(struct drm_device *dev)
+ 	mock_device_flush(i915);
+ 	intel_gt_driver_remove(&i915->gt);
+ 
+-	i915_gem_driver_release__contexts(i915);
+-
+ 	i915_gem_drain_workqueue(i915);
+ 	i915_gem_drain_freed_objects(i915);
+ 
+-- 
+2.20.1
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
