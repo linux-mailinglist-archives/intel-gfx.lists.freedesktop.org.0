@@ -2,30 +2,65 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 89FD82C9392
-	for <lists+intel-gfx@lfdr.de>; Tue,  1 Dec 2020 01:05:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3F38D2C93C6
+	for <lists+intel-gfx@lfdr.de>; Tue,  1 Dec 2020 01:18:31 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5DFDA89D5C;
-	Tue,  1 Dec 2020 00:05:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9825F89D8E;
+	Tue,  1 Dec 2020 00:18:29 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id D089789D5C;
- Tue,  1 Dec 2020 00:05:08 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id B63EAA0019;
- Tue,  1 Dec 2020 00:05:08 +0000 (UTC)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9243089D8E;
+ Tue,  1 Dec 2020 00:18:28 +0000 (UTC)
+IronPort-SDR: NCdnfP1G9Y6bftbeJPZZX9J9RCIUE3015zC+HUGHsFfTJBrzCsj3jwirpfFzXCjRHX4ys5Sk3n
+ fwS83JoB9VDQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9821"; a="159788724"
+X-IronPort-AV: E=Sophos;i="5.78,382,1599548400"; d="scan'208";a="159788724"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Nov 2020 16:18:27 -0800
+IronPort-SDR: C3Bi679nL2Emn87eR3qnGSPMfEkciVQyIi2iYOdR0Mpefys37EAEdy5HQjw828oNdKM3A5a1Yg
+ 8tWh1GNtcYxQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.78,382,1599548400"; d="scan'208";a="315476958"
+Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
+ by fmsmga007.fm.intel.com with ESMTP; 30 Nov 2020 16:18:27 -0800
+Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
+ fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1713.5; Mon, 30 Nov 2020 16:18:27 -0800
+Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx612.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1713.5; Mon, 30 Nov 2020 16:18:26 -0800
+Received: from fmsmsx611.amr.corp.intel.com ([10.18.126.91]) by
+ fmsmsx611.amr.corp.intel.com ([10.18.126.91]) with mapi id 15.01.1713.004;
+ Mon, 30 Nov 2020 16:18:26 -0800
+From: "Chery, Nanley G" <nanley.g.chery@intel.com>
+To: "Deak, Imre" <imre.deak@intel.com>, Daniel Vetter <daniel@ffwll.ch>
+Thread-Topic: [Intel-gfx] [PATCH 1/2] drm/framebuffer: Format modifier for
+ Intel Gen 12 render compression with Clear Color
+Thread-Index: AQHWwcYtZb75ND2biUmoOqzlC5CxF6nclmoAgAANgQCAAC6VAIAEj3Bw
+Date: Tue, 1 Dec 2020 00:18:26 +0000
+Message-ID: <0048c10f7b8047b18934e730ae57386c@intel.com>
+References: <20201123182631.1740781-1-imre.deak@intel.com>
+ <20201127143100.GB2144692@ideak-desk.fi.intel.com>
+ <20201127151920.GI401619@phenom.ffwll.local>
+ <20201127180604.GA2169344@ideak-desk.fi.intel.com>
+In-Reply-To: <20201127180604.GA2169344@ideak-desk.fi.intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+dlp-product: dlpe-windows
+dlp-reaction: no-action
+dlp-version: 11.5.1.3
+x-originating-ip: [10.22.254.132]
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Shankar, Uma" <uma.shankar@intel.com>
-Date: Tue, 01 Dec 2020 00:05:08 -0000
-Message-ID: <160678110874.6991.17220960504960634906@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20201130204738.2443-1-uma.shankar@intel.com>
-In-Reply-To: <20201130204738.2443-1-uma.shankar@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
- =?utf-8?q?Enable_HDR_on_MCA_LSPCON_based_Gen9_devices_=28rev15=29?=
+Subject: Re: [Intel-gfx] [PATCH 1/2] drm/framebuffer: Format modifier for
+ Intel Gen 12 render compression with Clear Color
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,74 +73,143 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: "Nikula, Jani" <jani.nikula@intel.com>,
+ Daniel Vetter <daniel.vetter@ffwll.ch>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, "Pandiyan,
+ Dhinakaran" <dhinakaran.pandiyan@intel.com>, "Kondapally,
+ Kalyan" <kalyan.kondapally@intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
-
-Series: Enable HDR on MCA LSPCON based Gen9 devices (rev15)
-URL   : https://patchwork.freedesktop.org/series/68081/
-State : warning
-
-== Summary ==
-
-$ dim sparse --fast origin/drm-tip
-Sparse version: v0.6.2
-Fast mode used, each commit won't be checked separately.
--
-+drivers/gpu/drm/i915/gt/intel_reset.c:1312:5: warning: context imbalance in 'intel_gt_reset_trylock' - different lock contexts for basic block
-+drivers/gpu/drm/i915/gt/selftest_reset.c:100:20:    expected void *in
-+drivers/gpu/drm/i915/gt/selftest_reset.c:100:20:    got void [noderef] __iomem *[assigned] s
-+drivers/gpu/drm/i915/gt/selftest_reset.c:100:20: warning: incorrect type in assignment (different address spaces)
-+drivers/gpu/drm/i915/gt/selftest_reset.c:101:46:    expected void const *src
-+drivers/gpu/drm/i915/gt/selftest_reset.c:101:46:    got void [noderef] __iomem *[assigned] s
-+drivers/gpu/drm/i915/gt/selftest_reset.c:101:46: warning: incorrect type in argument 2 (different address spaces)
-+drivers/gpu/drm/i915/gt/selftest_reset.c:136:20:    expected void *in
-+drivers/gpu/drm/i915/gt/selftest_reset.c:136:20:    got void [noderef] __iomem *[assigned] s
-+drivers/gpu/drm/i915/gt/selftest_reset.c:136:20: warning: incorrect type in assignment (different address spaces)
-+drivers/gpu/drm/i915/gt/selftest_reset.c:137:46:    expected void const *src
-+drivers/gpu/drm/i915/gt/selftest_reset.c:137:46:    got void [noderef] __iomem *[assigned] s
-+drivers/gpu/drm/i915/gt/selftest_reset.c:137:46: warning: incorrect type in argument 2 (different address spaces)
-+drivers/gpu/drm/i915/gt/selftest_reset.c:98:34:    expected unsigned int [usertype] *s
-+drivers/gpu/drm/i915/gt/selftest_reset.c:98:34:    got void [noderef] __iomem *[assigned] s
-+drivers/gpu/drm/i915/gt/selftest_reset.c:98:34: warning: incorrect type in argument 1 (different address spaces)
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_read16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_read32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_read64' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_read8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_write8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_read16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_read32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_read64' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_read8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_write8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_read16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_read32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_read64' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_read8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_write8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_read16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_read32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_read64' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_read8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_write8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen8_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen8_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen8_write8' - different lock contexts for basic block
 
 
+> -----Original Message-----
+> From: Imre Deak <imre.deak@intel.com>
+> Sent: Friday, November 27, 2020 10:06 AM
+> To: Daniel Vetter <daniel@ffwll.ch>; Chery, Nanley G
+> <nanley.g.chery@intel.com>
+> Cc: intel-gfx@lists.freedesktop.org; Nikula, Jani <jani.nikula@intel.com>; Daniel
+> Vetter <daniel.vetter@ffwll.ch>; Rafael Antognolli
+> <rafael.antognolli@intel.com>; Kondapally, Kalyan
+> <kalyan.kondapally@intel.com>; Pandiyan, Dhinakaran
+> <dhinakaran.pandiyan@intel.com>; dri-devel@lists.freedesktop.org
+> Subject: Re: [Intel-gfx] [PATCH 1/2] drm/framebuffer: Format modifier for Intel
+> Gen 12 render compression with Clear Color
+> 
+> On Fri, Nov 27, 2020 at 04:19:20PM +0100, Daniel Vetter wrote:
+> > On Fri, Nov 27, 2020 at 04:31:00PM +0200, Imre Deak wrote:
+> > > Hi Daniel, Jani,
+> > >
+> > > is it ok to merge this patch along with 2/2 via the i915 tree?
+> >
+> > Ack from mesa (userspace in general, but mesa is kinda mandatory) is
+> > missing I think. With that
+> > Acked-by: Daniel Vetter <daniel.vetter@ffwll.ch>
+> 
+> Thanks.
+> 
+> Nanley, could you ACK the patchset if they look ok from Mesa's POV? It
+> works as expected at least with the igt/kms_ccs RC-CC subtest.
+> 
+
+Hi Imre,
+ 
+I have a question and a couple comments:
+
+Is the map of the clear color address creating a new synchronization point between the GPU and CPU? If so, I wonder how this will impact performance. There was some talk of asynchronously updating the clear color register a while back. 
+
+We probably don't have to update the header, but we noticed in our testing that the clear color prefers an alignment greater than 64B. Unfortunately, I can't find any bspec note about this. As long as the buffer creators are aware though, I think we should be fine. I don't know if this is the best forum to bring it up, but I thought I'd share.
+
+Seems like the upper converted clear color is untested due to the lack of RGBX16 support. I suppose that if there are any issues there, they can be fixed later...
+
+-Nanley
+
+> --Imre
+> 
+> > > On Mon, Nov 23, 2020 at 08:26:30PM +0200, Imre Deak wrote:
+> > > > From: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
+> > > >
+> > > > Gen12 display can decompress surfaces compressed by render engine with
+> > > > Clear Color, add a new modifier as the driver needs to know the surface
+> > > > was compressed by render engine.
+> > > >
+> > > > V2: Description changes as suggested by Rafael.
+> > > > V3: Mention the Clear Color size of 64 bits in the comments(DK)
+> > > > v4: Fix trailing whitespaces
+> > > > v5: Explain Clear Color in the documentation.
+> > > > v6: Documentation Nitpicks(Nanley)
+> > > >
+> > > > Cc: Ville Syrjala <ville.syrjala@linux.intel.com>
+> > > > Cc: Dhinakaran Pandiyan <dhinakaran.pandiyan@intel.com>
+> > > > Cc: Kalyan Kondapally <kalyan.kondapally@intel.com>
+> > > > Cc: Rafael Antognolli <rafael.antognolli@intel.com>
+> > > > Cc: Nanley Chery <nanley.g.chery@intel.com>
+> > > > Signed-off-by: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
+> > > > Signed-off-by: Imre Deak <imre.deak@intel.com>
+> > > > ---
+> > > >  include/uapi/drm/drm_fourcc.h | 19 +++++++++++++++++++
+> > > >  1 file changed, 19 insertions(+)
+> > > >
+> > > > diff --git a/include/uapi/drm/drm_fourcc.h
+> b/include/uapi/drm/drm_fourcc.h
+> > > > index ca48ed0e6bc1..0a1b2c4c4bee 100644
+> > > > --- a/include/uapi/drm/drm_fourcc.h
+> > > > +++ b/include/uapi/drm/drm_fourcc.h
+> > > > @@ -527,6 +527,25 @@ extern "C" {
+> > > >   */
+> > > >  #define I915_FORMAT_MOD_Y_TILED_GEN12_MC_CCS
+> fourcc_mod_code(INTEL, 7)
+> > > >
+> > > > +/*
+> > > > + * Intel Color Control Surface with Clear Color (CCS) for Gen-12 render
+> > > > + * compression.
+> > > > + *
+> > > > + * The main surface is Y-tiled and is at plane index 0 whereas CCS is linear
+> > > > + * and at index 1. The clear color is stored at index 2, and the pitch should
+> > > > + * be ignored. The clear color structure is 256 bits. The first 128 bits
+> > > > + * represents Raw Clear Color Red, Green, Blue and Alpha color each
+> represented
+> > > > + * by 32 bits. The raw clear color is consumed by the 3d engine and
+> generates
+> > > > + * the converted clear color of size 64 bits. The first 32 bits store the
+> Lower
+> > > > + * Converted Clear Color value and the next 32 bits store the Higher
+> Converted
+> > > > + * Clear Color value when applicable. The Converted Clear Color values
+> are
+> > > > + * consumed by the DE. The last 64 bits are used to store Color Discard
+> Enable
+> > > > + * and Depth Clear Value Valid which are ignored by the DE. A CCS cache
+> line
+> > > > + * corresponds to an area of 4x1 tiles in the main surface. The main
+> surface
+> > > > + * pitch is required to be a multiple of 4 tile widths.
+> > > > + */
+> > > > +#define I915_FORMAT_MOD_Y_TILED_GEN12_RC_CCS_CC
+> fourcc_mod_code(INTEL, 8)
+> > > > +
+> > > >  /*
+> > > >   * Tiled, NV12MT, grouped in 64 (pixels) x 32 (lines) -sized macroblocks
+> > > >   *
+> > > > --
+> > > > 2.25.1
+> > > >
+> > > > _______________________________________________
+> > > > Intel-gfx mailing list
+> > > > Intel-gfx@lists.freedesktop.org
+> > > > https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+> > > _______________________________________________
+> > > dri-devel mailing list
+> > > dri-devel@lists.freedesktop.org
+> > > https://lists.freedesktop.org/mailman/listinfo/dri-devel
+> >
+> > --
+> > Daniel Vetter
+> > Software Engineer, Intel Corporation
+> > http://blog.ffwll.ch
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
