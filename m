@@ -2,31 +2,46 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7EE342CC620
-	for <lists+intel-gfx@lfdr.de>; Wed,  2 Dec 2020 20:05:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 44F692CC690
+	for <lists+intel-gfx@lfdr.de>; Wed,  2 Dec 2020 20:24:42 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D09036EA9D;
-	Wed,  2 Dec 2020 19:05:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8452389895;
+	Wed,  2 Dec 2020 19:24:39 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id B28726EA9B;
- Wed,  2 Dec 2020 19:05:42 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id AA615A363D;
- Wed,  2 Dec 2020 19:05:42 +0000 (UTC)
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4B7AA89895
+ for <intel-gfx@lists.freedesktop.org>; Wed,  2 Dec 2020 19:24:38 +0000 (UTC)
+IronPort-SDR: T0Aj0MbfdWs5XKPKZtE3P4CYl8bZ76AOysewMU7upJ979cilu5IDbxSyBXpDDCIcVzmBGyK429
+ y0paoj/PSQoA==
+X-IronPort-AV: E=McAfee;i="6000,8403,9823"; a="257785218"
+X-IronPort-AV: E=Sophos;i="5.78,387,1599548400"; d="scan'208";a="257785218"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Dec 2020 11:24:37 -0800
+IronPort-SDR: lf+zE4ohZzqyfDGo8Y3ensWvhH/ZWOGFjl219OGEcZxThPiaBQ3BI/TOQB9z6tiv04GQwdHygu
+ Rx4XY7+or1BQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.78,387,1599548400"; d="scan'208";a="373280258"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
+ by orsmga007.jf.intel.com with SMTP; 02 Dec 2020 11:24:34 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Wed, 02 Dec 2020 21:24:33 +0200
+Date: Wed, 2 Dec 2020 21:24:33 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Chris Wilson <chris@chris-wilson.co.uk>
+Message-ID: <20201202192433.GD6112@intel.com>
+References: <20201126211317.15291-1-chris@chris-wilson.co.uk>
+ <20201127161841.24806-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Manasi Navare" <manasi.d.navare@intel.com>
-Date: Wed, 02 Dec 2020 19:05:42 -0000
-Message-ID: <160693594267.4090.10161625370703737329@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20201202182727.26158-1-manasi.d.navare@intel.com>
-In-Reply-To: <20201202182727.26158-1-manasi.d.navare@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915=3A_Add_VRR=5FCTL=5FLINE=5FCOUNT_field_to_VRR=5FCTL_regist?=
- =?utf-8?q?er_def?=
+Content-Disposition: inline
+In-Reply-To: <20201127161841.24806-1-chris@chris-wilson.co.uk>
+X-Patchwork-Hint: comment
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: Re: [Intel-gfx] [PATCH v2] drm/i915/display: Record the plane
+ update times for debugging
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,302 +54,425 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============0021131836=="
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0021131836==
-Content-Type: multipart/alternative;
- boundary="===============8705815516118722445=="
+On Fri, Nov 27, 2020 at 04:18:41PM +0000, Chris Wilson wrote:
+> Since we try and estimate how long we require to update the registers to
+> perform a plane update, it is of vital importance that we measure the
+> distribution of plane updates to better guide our estimate. If we
+> underestimate how long it takes to perform the plane update, we may
+> slip into the next scanout frame causing a tear. If we overestimate, we
+> may unnecessarily delay the update to the next frame, causing visible
+> jitter.
+> =
 
---===============8705815516118722445==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+> Replace the warning that we exceed some arbitrary threshold for the
+> vblank update with a histogram for debugfs.
+> =
 
-== Series Details ==
+> v2: Add a per-crtc debugfs entry so that the information is easier to
+> extract when testing individual CRTC, and so that it can be reset before
+> a test.
+> =
 
-Series: drm/i915: Add VRR_CTL_LINE_COUNT field to VRR_CTL register def
-URL   : https://patchwork.freedesktop.org/series/84503/
-State : success
+> Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/1982
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> Cc: Jani Nikula <jani.nikula@linux.intel.com>
+> Cc: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_display.c  |  10 +-
+>  .../drm/i915/display/intel_display_debugfs.c  | 117 ++++++++++++++++++
+>  .../drm/i915/display/intel_display_debugfs.h  |   3 +
+>  .../drm/i915/display/intel_display_types.h    |   9 ++
+>  drivers/gpu/drm/i915/display/intel_sprite.c   |  49 +++++---
+>  drivers/gpu/drm/i915/display/intel_sprite.h   |  10 ++
+>  6 files changed, 180 insertions(+), 18 deletions(-)
+> =
 
-== Summary ==
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/d=
+rm/i915/display/intel_display.c
+> index ba26545392bc..9187a20a8aca 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> @@ -45,6 +45,7 @@
+>  =
 
-CI Bug Log - changes from CI_DRM_9424 -> Patchwork_19044
-====================================================
+>  #include "display/intel_crt.h"
+>  #include "display/intel_ddi.h"
+> +#include "display/intel_display_debugfs.h"
+>  #include "display/intel_dp.h"
+>  #include "display/intel_dp_mst.h"
+>  #include "display/intel_dpll_mgr.h"
+> @@ -17266,6 +17267,12 @@ intel_cursor_plane_create(struct drm_i915_privat=
+e *dev_priv,
+>  	return ERR_PTR(ret);
+>  }
+>  =
 
-Summary
--------
+> +static int intel_crtc_late_register(struct drm_crtc *crtc)
+> +{
+> +	intel_crtc_debugfs_add(crtc);
+> +	return 0;
+> +}
+> +
+>  #define INTEL_CRTC_FUNCS \
+>  	.gamma_set =3D drm_atomic_helper_legacy_gamma_set, \
+>  	.set_config =3D drm_atomic_helper_set_config, \
+> @@ -17275,7 +17282,8 @@ intel_cursor_plane_create(struct drm_i915_private=
+ *dev_priv,
+>  	.atomic_destroy_state =3D intel_crtc_destroy_state, \
+>  	.set_crc_source =3D intel_crtc_set_crc_source, \
+>  	.verify_crc_source =3D intel_crtc_verify_crc_source, \
+> -	.get_crc_sources =3D intel_crtc_get_crc_sources
+> +	.get_crc_sources =3D intel_crtc_get_crc_sources, \
+> +	.late_register =3D intel_crtc_late_register
+>  =
 
-  **SUCCESS**
+>  static const struct drm_crtc_funcs bdw_crtc_funcs =3D {
+>  	INTEL_CRTC_FUNCS,
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c b/drive=
+rs/gpu/drm/i915/display/intel_display_debugfs.c
+> index ca41e8c00ad7..08db0ff022e0 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+> @@ -18,6 +18,7 @@
+>  #include "intel_pm.h"
+>  #include "intel_psr.h"
+>  #include "intel_sideband.h"
+> +#include "intel_sprite.h"
+>  =
 
-  No regressions found.
+>  static inline struct drm_i915_private *node_to_i915(struct drm_info_node=
+ *node)
+>  {
+> @@ -865,6 +866,103 @@ static void intel_scaler_info(struct seq_file *m, s=
+truct intel_crtc *crtc)
+>  	}
+>  }
+>  =
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19044/index.html
+> +#if IS_ENABLED(CONFIG_DRM_I915_DEBUG_VBLANK_EVADE)
+> +static void crtc_updates_info(struct seq_file *m,
+> +			      struct intel_crtc *crtc,
+> +			      const char *hdr)
+> +{
+> +	char buf[ARRAY_SIZE(crtc->debug.vbl.times) + 1] =3D {};
+> +	int h, row, max;
+> +	u64 count;
+> +
+> +	max =3D 0;
+> +	count =3D 0;
+> +	for (h =3D 0; h < ARRAY_SIZE(crtc->debug.vbl.times); h++) {
+> +		if (crtc->debug.vbl.times[h] > max)
+> +			max =3D crtc->debug.vbl.times[h];
+> +		count +=3D crtc->debug.vbl.times[h];
+> +	}
+> +	seq_printf(m, "%sUpdates: %llu\n", hdr, count);
+> +	if (!count)
+> +		return;
+> +
+> +	memset(buf, '-', sizeof(buf) - 1);
+> +	seq_printf(m, "%s  |%s|\n", hdr, buf);
+> +
+> +	for (row =3D ilog2(max) - 1; row; row--) {
 
-New tests
----------
+row >=3D 0?
 
-  New tests have been introduced between CI_DRM_9424 and Patchwork_19044:
+> +		memset(buf, ' ', sizeof(buf) - 1);
+> +		for (h =3D 0; h < ARRAY_SIZE(crtc->debug.vbl.times); h++) {
+> +			if (ilog2(crtc->debug.vbl.times[h]) >=3D row)
+> +				buf[h] =3D '*';
+> +		}
+> +		seq_printf(m, "%s  |%s|\n", hdr, buf);
+> +	}
 
-### New CI tests (1) ###
+I have a feeling that putting the graph on its side would make it more
+readable since then we could easily label more (all even?) of the bins.
+Right now I'm having a hard time seeing what's what exactly.
 
-  * boot:
-    - Statuses : 1 fail(s) 40 pass(s)
-    - Exec time: [0.0] s
+> +	memset(buf, '-', sizeof(buf) - 1);
+> +	seq_printf(m, "%s  |%s|\n", hdr, buf);
+> +	seq_printf(m, "%s    1us     (log)      1ms\n", hdr);
+> +
+> +	seq_printf(m, "%sMin update: %lluns\n",
+> +		   hdr, crtc->debug.vbl.min);
+> +	seq_printf(m, "%sMax update: %lluns\n",
+> +		   hdr, crtc->debug.vbl.max);
+> +	seq_printf(m, "%sAverage update: %lluns\n",
+> +		   hdr, div64_u64(crtc->debug.vbl.sum,  count));
+> +	seq_printf(m, "%sOverruns > %uus: %lu\n",
+> +		   hdr, VBLANK_EVASION_TIME_US, crtc->debug.vbl.over);
+> +}
+> +
+> +static int crtc_updates_show(struct seq_file *m, void *data)
+> +{
+> +	crtc_updates_info(m, m->private, "");
+> +	return 0;
+> +}
+> +
+> +static int crtc_updates_open(struct inode *inode, struct file *file)
+> +{
+> +	return single_open(file, crtc_updates_show, inode->i_private);
+> +}
+> +
+> +static ssize_t crtc_updates_write(struct file *file,
+> +				  const char __user *ubuf,
+> +				  size_t len, loff_t *offp)
+> +{
+> +	struct seq_file *m =3D file->private_data;
+> +	struct intel_crtc *crtc =3D m->private;
+> +
+> +	/* May race with an update. Meh. */
+> +	memset(&crtc->debug.vbl, 0, sizeof(crtc->debug.vbl));
+> +
+> +	return len;
+> +}
+> +
+> +static const struct file_operations crtc_updates_fops =3D {
+> +	.owner =3D THIS_MODULE,
+> +	.open =3D crtc_updates_open,
+> +	.read =3D seq_read,
+> +	.llseek =3D seq_lseek,
+> +	.release =3D single_release,
+> +	.write =3D crtc_updates_write
+> +};
+> +
+> +static void crtc_updates_add(struct drm_crtc *crtc)
+> +{
+> +	debugfs_create_file("i915_update_info", 0644, crtc->debugfs_entry,
+> +			    to_intel_crtc(crtc), &crtc_updates_fops);
+> +}
+> +
+> +#else
+> +static void crtc_updates_info(struct seq_file *m,
+> +			      struct intel_crtc *crtc,
+> +			      const char *hdr)
+> +{
+> +}
+> +
+> +static void crtc_updates_add(struct drm_crtc *crtc)
+> +{
+> +}
+> +#endif
+> +
+>  static void intel_crtc_info(struct seq_file *m, struct intel_crtc *crtc)
+>  {
+>  	struct drm_i915_private *dev_priv =3D node_to_i915(m->private);
+> @@ -907,6 +1005,8 @@ static void intel_crtc_info(struct seq_file *m, stru=
+ct intel_crtc *crtc)
+>  	seq_printf(m, "\tunderrun reporting: cpu=3D%s pch=3D%s\n",
+>  		   yesno(!crtc->cpu_fifo_underrun_disabled),
+>  		   yesno(!crtc->pch_fifo_underrun_disabled));
+> +
+> +	crtc_updates_info(m, crtc, "\t");
+>  }
+>  =
 
-  
+>  static int i915_display_info(struct seq_file *m, void *unused)
+> @@ -2278,3 +2378,20 @@ int intel_connector_debugfs_add(struct drm_connect=
+or *connector)
+>  =
 
-Known issues
-------------
+>  	return 0;
+>  }
+> +
+> +/**
+> + * intel_crtc_debugfs_add - add i915 specific crtc debugfs files
+> + * @crtc: pointer to a drm_crtc
+> + *
+> + * Returns 0 on success, negative error codes on error.
+> + *
+> + * Failure to add debugfs entries should generally be ignored.
+> + */
+> +int intel_crtc_debugfs_add(struct drm_crtc *crtc)
+> +{
+> +	if (!crtc->debugfs_entry)
+> +		return -ENODEV;
+> +
+> +	crtc_updates_add(crtc);
+> +	return 0;
+> +}
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.h b/drive=
+rs/gpu/drm/i915/display/intel_display_debugfs.h
+> index c922c1745bfe..557901f3eb90 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_debugfs.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.h
+> @@ -7,14 +7,17 @@
+>  #define __INTEL_DISPLAY_DEBUGFS_H__
+>  =
 
-  Here are the changes found in Patchwork_19044 that come from known issues:
+>  struct drm_connector;
+> +struct drm_crtc;
+>  struct drm_i915_private;
+>  =
 
-### IGT changes ###
+>  #ifdef CONFIG_DEBUG_FS
+>  void intel_display_debugfs_register(struct drm_i915_private *i915);
+>  int intel_connector_debugfs_add(struct drm_connector *connector);
+> +int intel_crtc_debugfs_add(struct drm_crtc *crtc);
+>  #else
+>  static inline void intel_display_debugfs_register(struct drm_i915_privat=
+e *i915) {}
+>  static inline int intel_connector_debugfs_add(struct drm_connector *conn=
+ector) { return 0; }
+> +static inline int intel_crtc_debugfs_add(struct drm_crtc *crtc) { return=
+ 0; }
+>  #endif
+>  =
 
-#### Issues hit ####
+>  #endif /* __INTEL_DISPLAY_DEBUGFS_H__ */
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers=
+/gpu/drm/i915/display/intel_display_types.h
+> index ce82d654d0f2..30c82bc5ca98 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+> @@ -1186,6 +1186,15 @@ struct intel_crtc {
+>  		ktime_t start_vbl_time;
+>  		int min_vbl, max_vbl;
+>  		int scanline_start;
+> +#ifdef CONFIG_DRM_I915_DEBUG_VBLANK_EVADE
+> +		struct {
+> +			u64 min;
+> +			u64 max;
+> +			u64 sum;
+> +			unsigned long over;
 
-  * igt@core_hotunplug@unbind-rebind:
-    - fi-icl-u2:          [PASS][1] -> [DMESG-WARN][2] ([i915#1982])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9424/fi-icl-u2/igt@core_hotunplug@unbind-rebind.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19044/fi-icl-u2/igt@core_hotunplug@unbind-rebind.html
+Was there a particular reason for the long? The bins are
+ints so can't really see why this couldn't be an in too.
 
-  * igt@i915_module_load@reload:
-    - fi-byt-j1900:       [PASS][3] -> [DMESG-WARN][4] ([i915#1982]) +1 similar issue
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9424/fi-byt-j1900/igt@i915_module_load@reload.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19044/fi-byt-j1900/igt@i915_module_load@reload.html
-    - fi-icl-y:           [PASS][5] -> [DMESG-WARN][6] ([i915#1982])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9424/fi-icl-y/igt@i915_module_load@reload.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19044/fi-icl-y/igt@i915_module_load@reload.html
+Apart from those lgtm
+Reviewed-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
 
-  * igt@kms_busy@basic@flip:
-    - fi-kbl-soraka:      [PASS][7] -> [DMESG-WARN][8] ([i915#1982])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9424/fi-kbl-soraka/igt@kms_busy@basic@flip.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19044/fi-kbl-soraka/igt@kms_busy@basic@flip.html
+> +			unsigned int times[21]; /* [1us, 1ms] */
+> +		} vbl;
+> +#endif
+>  	} debug;
+>  =
 
-  * igt@kms_pipe_crc_basic@suspend-read-crc-pipe-a:
-    - fi-tgl-y:           [PASS][9] -> [DMESG-WARN][10] ([i915#1982] / [i915#2411]) +1 similar issue
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9424/fi-tgl-y/igt@kms_pipe_crc_basic@suspend-read-crc-pipe-a.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19044/fi-tgl-y/igt@kms_pipe_crc_basic@suspend-read-crc-pipe-a.html
+>  	/* scalers available on this crtc */
+> diff --git a/drivers/gpu/drm/i915/display/intel_sprite.c b/drivers/gpu/dr=
+m/i915/display/intel_sprite.c
+> index 019a2d6d807a..b7e208816074 100644
+> --- a/drivers/gpu/drm/i915/display/intel_sprite.c
+> +++ b/drivers/gpu/drm/i915/display/intel_sprite.c
+> @@ -61,14 +61,6 @@ int intel_usecs_to_scanlines(const struct drm_display_=
+mode *adjusted_mode,
+>  			    1000 * adjusted_mode->crtc_htotal);
+>  }
+>  =
 
-  * igt@prime_self_import@basic-with_two_bos:
-    - fi-tgl-y:           [PASS][11] -> [DMESG-WARN][12] ([i915#402])
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9424/fi-tgl-y/igt@prime_self_import@basic-with_two_bos.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19044/fi-tgl-y/igt@prime_self_import@basic-with_two_bos.html
+> -/* FIXME: We should instead only take spinlocks once for the entire upda=
+te
+> - * instead of once per mmio. */
+> -#if IS_ENABLED(CONFIG_PROVE_LOCKING)
+> -#define VBLANK_EVASION_TIME_US 250
+> -#else
+> -#define VBLANK_EVASION_TIME_US 100
+> -#endif
+> -
+>  /**
+>   * intel_pipe_update_start() - start update of a set of display registers
+>   * @new_crtc_state: the new crtc state
+> @@ -187,6 +179,36 @@ void intel_pipe_update_start(const struct intel_crtc=
+_state *new_crtc_state)
+>  	local_irq_disable();
+>  }
+>  =
 
-  
-#### Possible fixes ####
+> +#if IS_ENABLED(CONFIG_DRM_I915_DEBUG_VBLANK_EVADE)
+> +static void dbg_vblank_evade(struct intel_crtc *crtc, ktime_t end)
+> +{
+> +	u64 delta =3D ktime_to_ns(ktime_sub(end, crtc->debug.start_vbl_time));
+> +	unsigned int h;
+> +
+> +	h =3D ilog2(delta >> 9);
+> +	if (h >=3D ARRAY_SIZE(crtc->debug.vbl.times))
+> +		h =3D ARRAY_SIZE(crtc->debug.vbl.times) - 1;
+> +	crtc->debug.vbl.times[h]++;
+> +
+> +	crtc->debug.vbl.sum +=3D delta;
+> +	if (!crtc->debug.vbl.min || delta < crtc->debug.vbl.min)
+> +		crtc->debug.vbl.min =3D delta;
+> +	if (delta > crtc->debug.vbl.max)
+> +		crtc->debug.vbl.max =3D delta;
+> +
+> +	if (delta > 1000 * VBLANK_EVASION_TIME_US) {
+> +		drm_dbg_kms(crtc->base.dev,
+> +			    "Atomic update on pipe (%c) took %lld us, max time under evasion =
+is %u us\n",
+> +			    pipe_name(crtc->pipe),
+> +			    div_u64(delta, 1000),
+> +			    VBLANK_EVASION_TIME_US);
+> +		crtc->debug.vbl.over++;
+> +	}
+> +}
+> +#else
+> +static void dbg_vblank_evade(struct intel_crtc *crtc, ktime_t end) {}
+> +#endif
+> +
+>  /**
+>   * intel_pipe_update_end() - end update of a set of display registers
+>   * @new_crtc_state: the new crtc state
+> @@ -249,15 +271,8 @@ void intel_pipe_update_end(struct intel_crtc_state *=
+new_crtc_state)
+>  			crtc->debug.min_vbl, crtc->debug.max_vbl,
+>  			crtc->debug.scanline_start, scanline_end);
+>  	}
+> -#ifdef CONFIG_DRM_I915_DEBUG_VBLANK_EVADE
+> -	else if (ktime_us_delta(end_vbl_time, crtc->debug.start_vbl_time) >
+> -		 VBLANK_EVASION_TIME_US)
+> -		drm_warn(&dev_priv->drm,
+> -			 "Atomic update on pipe (%c) took %lld us, max time under evasion is =
+%u us\n",
+> -			 pipe_name(pipe),
+> -			 ktime_us_delta(end_vbl_time, crtc->debug.start_vbl_time),
+> -			 VBLANK_EVASION_TIME_US);
+> -#endif
+> +
+> +	dbg_vblank_evade(crtc, end_vbl_time);
+>  }
+>  =
 
-  * igt@i915_pm_rpm@basic-pci-d3-state:
-    - fi-bsw-kefka:       [DMESG-WARN][13] ([i915#1982]) -> [PASS][14]
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9424/fi-bsw-kefka/igt@i915_pm_rpm@basic-pci-d3-state.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19044/fi-bsw-kefka/igt@i915_pm_rpm@basic-pci-d3-state.html
+>  int intel_plane_check_stride(const struct intel_plane_state *plane_state)
+> diff --git a/drivers/gpu/drm/i915/display/intel_sprite.h b/drivers/gpu/dr=
+m/i915/display/intel_sprite.h
+> index cd2104ba1ca1..76126dd8d584 100644
+> --- a/drivers/gpu/drm/i915/display/intel_sprite.h
+> +++ b/drivers/gpu/drm/i915/display/intel_sprite.h
+> @@ -17,6 +17,16 @@ struct drm_i915_private;
+>  struct intel_crtc_state;
+>  struct intel_plane_state;
+>  =
 
-  * igt@i915_selftest@live@gt_heartbeat:
-    - fi-kbl-soraka:      [DMESG-FAIL][15] ([i915#2291] / [i915#541]) -> [PASS][16]
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9424/fi-kbl-soraka/igt@i915_selftest@live@gt_heartbeat.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19044/fi-kbl-soraka/igt@i915_selftest@live@gt_heartbeat.html
+> +/*
+> + * FIXME: We should instead only take spinlocks once for the entire upda=
+te
+> + * instead of once per mmio.
+> + */
+> +#if IS_ENABLED(CONFIG_PROVE_LOCKING)
+> +#define VBLANK_EVASION_TIME_US 250
+> +#else
+> +#define VBLANK_EVASION_TIME_US 100
+> +#endif
+> +
+>  int intel_usecs_to_scanlines(const struct drm_display_mode *adjusted_mod=
+e,
+>  			     int usecs);
+>  struct intel_plane *intel_sprite_plane_create(struct drm_i915_private *d=
+ev_priv,
+> -- =
 
-  * igt@kms_cursor_legacy@basic-flip-before-cursor-atomic:
-    - fi-icl-u2:          [DMESG-WARN][17] ([i915#1982]) -> [PASS][18] +1 similar issue
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9424/fi-icl-u2/igt@kms_cursor_legacy@basic-flip-before-cursor-atomic.html
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19044/fi-icl-u2/igt@kms_cursor_legacy@basic-flip-before-cursor-atomic.html
+> 2.20.1
 
-  * igt@kms_pipe_crc_basic@hang-read-crc-pipe-a:
-    - fi-tgl-y:           [DMESG-WARN][19] ([i915#1982]) -> [PASS][20]
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9424/fi-tgl-y/igt@kms_pipe_crc_basic@hang-read-crc-pipe-a.html
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19044/fi-tgl-y/igt@kms_pipe_crc_basic@hang-read-crc-pipe-a.html
+-- =
 
-  * igt@prime_self_import@basic-with_one_bo_two_files:
-    - fi-tgl-y:           [DMESG-WARN][21] ([i915#402]) -> [PASS][22] +1 similar issue
-   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9424/fi-tgl-y/igt@prime_self_import@basic-with_one_bo_two_files.html
-   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19044/fi-tgl-y/igt@prime_self_import@basic-with_one_bo_two_files.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
-  [i915#2291]: https://gitlab.freedesktop.org/drm/intel/issues/2291
-  [i915#2411]: https://gitlab.freedesktop.org/drm/intel/issues/2411
-  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
-  [i915#541]: https://gitlab.freedesktop.org/drm/intel/issues/541
-
-
-Participating hosts (45 -> 41)
-------------------------------
-
-  Missing    (4): fi-ilk-m540 fi-bsw-cyan fi-bdw-samus fi-hsw-4200u 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_9424 -> Patchwork_19044
-
-  CI-20190529: 20190529
-  CI_DRM_9424: 52e59b0a3839bde394be8b5d48b2c1a309b564e3 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5878: e96c0d8e6952d892bcbbcdf004999880a4dfb42e @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_19044: 8030019a17f7d5f23817032b5bc97575b2e976a2 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-8030019a17f7 drm/i915: Add VRR_CTL_LINE_COUNT field to VRR_CTL register def
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19044/index.html
-
---===============8705815516118722445==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915: Add VRR_CTL_LINE_COUNT field to VRR_CTL register def</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/84503/">https://patchwork.freedesktop.org/series/84503/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19044/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19044/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_9424 -&gt; Patchwork_19044</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19044/index.html</p>
-<h2>New tests</h2>
-<p>New tests have been introduced between CI_DRM_9424 and Patchwork_19044:</p>
-<h3>New CI tests (1)</h3>
-<ul>
-<li>boot:<ul>
-<li>Statuses : 1 fail(s) 40 pass(s)</li>
-<li>Exec time: [0.0] s</li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_19044 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@core_hotunplug@unbind-rebind:</p>
-<ul>
-<li>fi-icl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9424/fi-icl-u2/igt@core_hotunplug@unbind-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19044/fi-icl-u2/igt@core_hotunplug@unbind-rebind.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_module_load@reload:</p>
-<ul>
-<li>
-<p>fi-byt-j1900:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9424/fi-byt-j1900/igt@i915_module_load@reload.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19044/fi-byt-j1900/igt@i915_module_load@reload.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>) +1 similar issue</p>
-</li>
-<li>
-<p>fi-icl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9424/fi-icl-y/igt@i915_module_load@reload.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19044/fi-icl-y/igt@i915_module_load@reload.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>)</p>
-</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_busy@basic@flip:</p>
-<ul>
-<li>fi-kbl-soraka:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9424/fi-kbl-soraka/igt@kms_busy@basic@flip.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19044/fi-kbl-soraka/igt@kms_busy@basic@flip.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@suspend-read-crc-pipe-a:</p>
-<ul>
-<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9424/fi-tgl-y/igt@kms_pipe_crc_basic@suspend-read-crc-pipe-a.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19044/fi-tgl-y/igt@kms_pipe_crc_basic@suspend-read-crc-pipe-a.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2411">i915#2411</a>) +1 similar issue</li>
-</ul>
-</li>
-<li>
-<p>igt@prime_self_import@basic-with_two_bos:</p>
-<ul>
-<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9424/fi-tgl-y/igt@prime_self_import@basic-with_two_bos.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19044/fi-tgl-y/igt@prime_self_import@basic-with_two_bos.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@i915_pm_rpm@basic-pci-d3-state:</p>
-<ul>
-<li>fi-bsw-kefka:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9424/fi-bsw-kefka/igt@i915_pm_rpm@basic-pci-d3-state.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19044/fi-bsw-kefka/igt@i915_pm_rpm@basic-pci-d3-state.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@gt_heartbeat:</p>
-<ul>
-<li>fi-kbl-soraka:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9424/fi-kbl-soraka/igt@i915_selftest@live@gt_heartbeat.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2291">i915#2291</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/541">i915#541</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19044/fi-kbl-soraka/igt@i915_selftest@live@gt_heartbeat.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@basic-flip-before-cursor-atomic:</p>
-<ul>
-<li>fi-icl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9424/fi-icl-u2/igt@kms_cursor_legacy@basic-flip-before-cursor-atomic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19044/fi-icl-u2/igt@kms_cursor_legacy@basic-flip-before-cursor-atomic.html">PASS</a> +1 similar issue</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@hang-read-crc-pipe-a:</p>
-<ul>
-<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9424/fi-tgl-y/igt@kms_pipe_crc_basic@hang-read-crc-pipe-a.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19044/fi-tgl-y/igt@kms_pipe_crc_basic@hang-read-crc-pipe-a.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@prime_self_import@basic-with_one_bo_two_files:</p>
-<ul>
-<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9424/fi-tgl-y/igt@prime_self_import@basic-with_one_bo_two_files.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19044/fi-tgl-y/igt@prime_self_import@basic-with_one_bo_two_files.html">PASS</a> +1 similar issue</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Participating hosts (45 -&gt; 41)</h2>
-<p>Missing    (4): fi-ilk-m540 fi-bsw-cyan fi-bdw-samus fi-hsw-4200u </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_9424 -&gt; Patchwork_19044</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_9424: 52e59b0a3839bde394be8b5d48b2c1a309b564e3 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_5878: e96c0d8e6952d892bcbbcdf004999880a4dfb42e @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
-  Patchwork_19044: 8030019a17f7d5f23817032b5bc97575b2e976a2 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>8030019a17f7 drm/i915: Add VRR_CTL_LINE_COUNT field to VRR_CTL register def</p>
-
-</body>
-</html>
-
---===============8705815516118722445==--
-
---===============0021131836==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
+Ville Syrj=E4l=E4
+Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============0021131836==--
