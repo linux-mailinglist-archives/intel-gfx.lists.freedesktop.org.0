@@ -2,30 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id AD2A52CC3E9
-	for <lists+intel-gfx@lfdr.de>; Wed,  2 Dec 2020 18:34:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8F2E12CC458
+	for <lists+intel-gfx@lfdr.de>; Wed,  2 Dec 2020 18:57:07 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C9FA56EA8F;
-	Wed,  2 Dec 2020 17:34:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EEA856EA60;
+	Wed,  2 Dec 2020 17:57:04 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B1FE36EA60
- for <intel-gfx@lists.freedesktop.org>; Wed,  2 Dec 2020 17:34:48 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 23193493-1500050 
- for <intel-gfx@lists.freedesktop.org>; Wed, 02 Dec 2020 17:34:45 +0000
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Wed,  2 Dec 2020 17:34:44 +0000
-Message-Id: <20201202173444.14903-2-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20201202173444.14903-1-chris@chris-wilson.co.uk>
-References: <20201202173444.14903-1-chris@chris-wilson.co.uk>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id CE1236EA5E;
+ Wed,  2 Dec 2020 17:57:03 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id C49F5A7525;
+ Wed,  2 Dec 2020 17:57:03 +0000 (UTC)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [CI 2/2] Revert "drm/i915/lmem: Limit block size to 4G"
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Wed, 02 Dec 2020 17:57:03 -0000
+Message-ID: <160693182377.4090.3947225283162928351@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20201202155139.15143-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20201202155139.15143-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
+ =?utf-8?q?ies_starting_with_=5Bv2=2C1/2=5D_drm/i915/gem=3A_Limit_lmem_sca?=
+ =?utf-8?q?tterlist_elements_to_UINT=5FMAX?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,169 +39,318 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============1598368950=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Mixing I915_ALLOC_CONTIGUOUS and I915_ALLOC_MAX_SEGMENT_SIZE fared
-badly. The two directives conflict, with the contiguous request setting
-the min_order to the full size of the object, and the max-segment-size
-setting the max_order to the limit of the DMA mapper. This results in a
-situation where max_order < min_order, causing our sanity checks to
-fail.
+--===============1598368950==
+Content-Type: multipart/alternative;
+ boundary="===============3149683598873328777=="
 
-Instead of limiting the buddy block size, in the previous patch we split
-the oversized buddy into multiple scatterlist elements.
+--===============3149683598873328777==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Fixes: d2cf0125d4a1 ("drm/i915/lmem: Limit block size to 4G")
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
-Cc: Matthew Auld <matthew.auld@intel.com>
-Reviewed-by: Matthew Auld <matthew.auld@intel.com>
----
- drivers/gpu/drm/i915/gem/i915_gem_region.c    |  2 +-
- drivers/gpu/drm/i915/intel_memory_region.c    | 18 +---------
- drivers/gpu/drm/i915/intel_memory_region.h    |  5 ++-
- .../drm/i915/selftests/intel_memory_region.c  | 33 ++++++++++++-------
- 4 files changed, 26 insertions(+), 32 deletions(-)
+== Series Details ==
 
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_region.c b/drivers/gpu/drm/i915/gem/i915_gem_region.c
-index 7d05b5f346c1..835bd01f2e5d 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_region.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_region.c
-@@ -43,7 +43,7 @@ i915_gem_object_get_pages_buddy(struct drm_i915_gem_object *obj)
- 		return -ENOMEM;
- 	}
- 
--	flags = I915_ALLOC_MIN_PAGE_SIZE | I915_ALLOC_MAX_SEGMENT_SIZE;
-+	flags = I915_ALLOC_MIN_PAGE_SIZE;
- 	if (obj->flags & I915_BO_ALLOC_CONTIGUOUS)
- 		flags |= I915_ALLOC_CONTIGUOUS;
- 
-diff --git a/drivers/gpu/drm/i915/intel_memory_region.c b/drivers/gpu/drm/i915/intel_memory_region.c
-index ae36e2f6d6e3..b326993a1026 100644
---- a/drivers/gpu/drm/i915/intel_memory_region.c
-+++ b/drivers/gpu/drm/i915/intel_memory_region.c
-@@ -72,7 +72,6 @@ __intel_memory_region_get_pages_buddy(struct intel_memory_region *mem,
- 				      struct list_head *blocks)
- {
- 	unsigned int min_order = 0;
--	unsigned int max_order;
- 	unsigned long n_pages;
- 
- 	GEM_BUG_ON(!IS_ALIGNED(size, mem->mm.chunk_size));
-@@ -93,28 +92,13 @@ __intel_memory_region_get_pages_buddy(struct intel_memory_region *mem,
- 
- 	n_pages = size >> ilog2(mem->mm.chunk_size);
- 
--	/*
--	 * If we going to feed this into an sg list we should limit the block
--	 * sizes such that we don't exceed the i915_sg_segment_size().
--	 */
--	if (flags & I915_ALLOC_MAX_SEGMENT_SIZE) {
--		unsigned int max_segment = i915_sg_segment_size();
--
--		if (GEM_WARN_ON(max_segment < mem->mm.chunk_size))
--			max_order = 0;
--		else
--			max_order = ilog2(max_segment) - ilog2(mem->mm.chunk_size);
--	} else {
--		max_order = mem->mm.max_order;
--	}
--
- 	mutex_lock(&mem->mm_lock);
- 
- 	do {
- 		struct i915_buddy_block *block;
- 		unsigned int order;
- 
--		order = min_t(u32, fls(n_pages) - 1, max_order);
-+		order = fls(n_pages) - 1;
- 		GEM_BUG_ON(order > mem->mm.max_order);
- 		GEM_BUG_ON(order < min_order);
- 
-diff --git a/drivers/gpu/drm/i915/intel_memory_region.h b/drivers/gpu/drm/i915/intel_memory_region.h
-index 5fb9bcf86b97..232490d89a83 100644
---- a/drivers/gpu/drm/i915/intel_memory_region.h
-+++ b/drivers/gpu/drm/i915/intel_memory_region.h
-@@ -44,9 +44,8 @@ enum intel_region_id {
- #define MEMORY_TYPE_FROM_REGION(r) (ilog2((r) >> INTEL_MEMORY_TYPE_SHIFT))
- #define MEMORY_INSTANCE_FROM_REGION(r) (ilog2((r) & 0xffff))
- 
--#define I915_ALLOC_MIN_PAGE_SIZE	BIT(0)
--#define I915_ALLOC_CONTIGUOUS		BIT(1)
--#define I915_ALLOC_MAX_SEGMENT_SIZE	BIT(2)
-+#define I915_ALLOC_MIN_PAGE_SIZE  BIT(0)
-+#define I915_ALLOC_CONTIGUOUS     BIT(1)
- 
- #define for_each_memory_region(mr, i915, id) \
- 	for (id = 0; id < ARRAY_SIZE((i915)->mm.regions); id++) \
-diff --git a/drivers/gpu/drm/i915/selftests/intel_memory_region.c b/drivers/gpu/drm/i915/selftests/intel_memory_region.c
-index 7c02a0c16fc1..a0b518c255de 100644
---- a/drivers/gpu/drm/i915/selftests/intel_memory_region.c
-+++ b/drivers/gpu/drm/i915/selftests/intel_memory_region.c
-@@ -356,21 +356,21 @@ static int igt_mock_splintered_region(void *arg)
- 
- static int igt_mock_max_segment(void *arg)
- {
-+	const unsigned int max_segment = i915_sg_segment_size();
- 	struct intel_memory_region *mem = arg;
- 	struct drm_i915_private *i915 = mem->i915;
- 	struct drm_i915_gem_object *obj;
- 	struct i915_buddy_block *block;
-+	struct scatterlist *sg;
- 	LIST_HEAD(objects);
- 	u64 size;
- 	int err = 0;
- 
- 	/*
--	 * The size of block are only limited by the largest power-of-two that
--	 * will fit in the region size, but to construct an object we also
--	 * require feeding it into an sg list, where the upper limit of the sg
--	 * entry is at most UINT_MAX, therefore when allocating with
--	 * I915_ALLOC_MAX_SEGMENT_SIZE we shouldn't see blocks larger than
--	 * i915_sg_segment_size().
-+	 * While we may create very large contiguous blocks, we may need
-+	 * to break those down for consumption elsewhere. In particular,
-+	 * dma-mapping with scatterlist elements have an implicit limit of
-+	 * UINT_MAX on each element.
- 	 */
- 
- 	size = SZ_8G;
-@@ -384,12 +384,23 @@ static int igt_mock_max_segment(void *arg)
- 		goto out_put;
- 	}
- 
-+	err = -EINVAL;
- 	list_for_each_entry(block, &obj->mm.blocks, link) {
--		if (i915_buddy_block_size(&mem->mm, block) > i915_sg_segment_size()) {
--			pr_err("%s found block size(%llu) larger than max sg_segment_size(%u)",
--			       __func__,
--			       i915_buddy_block_size(&mem->mm, block),
--			       i915_sg_segment_size());
-+		if (i915_buddy_block_size(&mem->mm, block) > max_segment) {
-+			err = 0;
-+			break;
-+		}
-+	}
-+	if (err) {
-+		pr_err("%s: Failed to create a huge contiguous block\n",
-+		       __func__);
-+		goto out_close;
-+	}
-+
-+	for (sg = obj->mm.pages->sgl; sg; sg = sg_next(sg)) {
-+		if (sg->length > max_segment) {
-+			pr_err("%s: Created an oversized scatterlist entry, %u > %u\n",
-+			       __func__, sg->length, max_segment);
- 			err = -EINVAL;
- 			goto out_close;
- 		}
--- 
-2.20.1
+Series: series starting with [v2,1/2] drm/i915/gem: Limit lmem scatterlist elements to UINT_MAX
+URL   : https://patchwork.freedesktop.org/series/84501/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_9424 -> Patchwork_19042
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19042/index.html
+
+New tests
+---------
+
+  New tests have been introduced between CI_DRM_9424 and Patchwork_19042:
+
+### New CI tests (1) ###
+
+  * boot:
+    - Statuses : 1 fail(s) 40 pass(s)
+    - Exec time: [0.0] s
+
+  
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_19042 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@core_hotunplug@unbind-rebind:
+    - fi-tgl-u2:          [PASS][1] -> [DMESG-WARN][2] ([i915#1982])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9424/fi-tgl-u2/igt@core_hotunplug@unbind-rebind.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19042/fi-tgl-u2/igt@core_hotunplug@unbind-rebind.html
+
+  * igt@i915_module_load@reload:
+    - fi-icl-u2:          [PASS][3] -> [DMESG-WARN][4] ([i915#1982]) +1 similar issue
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9424/fi-icl-u2/igt@i915_module_load@reload.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19042/fi-icl-u2/igt@i915_module_load@reload.html
+
+  * igt@i915_pm_rpm@module-reload:
+    - fi-kbl-guc:         [PASS][5] -> [FAIL][6] ([i915#138])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9424/fi-kbl-guc/igt@i915_pm_rpm@module-reload.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19042/fi-kbl-guc/igt@i915_pm_rpm@module-reload.html
+
+  * igt@kms_busy@basic@flip:
+    - fi-kbl-soraka:      [PASS][7] -> [DMESG-WARN][8] ([i915#1982])
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9424/fi-kbl-soraka/igt@kms_busy@basic@flip.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19042/fi-kbl-soraka/igt@kms_busy@basic@flip.html
+
+  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:
+    - fi-byt-j1900:       [PASS][9] -> [DMESG-WARN][10] ([i915#1982])
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9424/fi-byt-j1900/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19042/fi-byt-j1900/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
+
+  * igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-c:
+    - fi-tgl-y:           [PASS][11] -> [DMESG-WARN][12] ([i915#1982]) +2 similar issues
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9424/fi-tgl-y/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-c.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19042/fi-tgl-y/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-c.html
+
+  * igt@prime_self_import@basic-with_two_bos:
+    - fi-tgl-y:           [PASS][13] -> [DMESG-WARN][14] ([i915#402]) +1 similar issue
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9424/fi-tgl-y/igt@prime_self_import@basic-with_two_bos.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19042/fi-tgl-y/igt@prime_self_import@basic-with_two_bos.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_pm_rpm@module-reload:
+    - fi-byt-j1900:       [DMESG-WARN][15] ([i915#1982]) -> [PASS][16]
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9424/fi-byt-j1900/igt@i915_pm_rpm@module-reload.html
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19042/fi-byt-j1900/igt@i915_pm_rpm@module-reload.html
+
+  * igt@i915_selftest@live@gt_heartbeat:
+    - fi-kbl-soraka:      [DMESG-FAIL][17] ([i915#2291] / [i915#541]) -> [PASS][18]
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9424/fi-kbl-soraka/igt@i915_selftest@live@gt_heartbeat.html
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19042/fi-kbl-soraka/igt@i915_selftest@live@gt_heartbeat.html
+
+  * igt@kms_cursor_legacy@basic-flip-before-cursor-atomic:
+    - fi-icl-u2:          [DMESG-WARN][19] ([i915#1982]) -> [PASS][20] +1 similar issue
+   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9424/fi-icl-u2/igt@kms_cursor_legacy@basic-flip-before-cursor-atomic.html
+   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19042/fi-icl-u2/igt@kms_cursor_legacy@basic-flip-before-cursor-atomic.html
+
+  * igt@kms_pipe_crc_basic@hang-read-crc-pipe-a:
+    - fi-tgl-y:           [DMESG-WARN][21] ([i915#1982]) -> [PASS][22]
+   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9424/fi-tgl-y/igt@kms_pipe_crc_basic@hang-read-crc-pipe-a.html
+   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19042/fi-tgl-y/igt@kms_pipe_crc_basic@hang-read-crc-pipe-a.html
+
+  * igt@prime_self_import@basic-with_one_bo_two_files:
+    - fi-tgl-y:           [DMESG-WARN][23] ([i915#402]) -> [PASS][24] +2 similar issues
+   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9424/fi-tgl-y/igt@prime_self_import@basic-with_one_bo_two_files.html
+   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19042/fi-tgl-y/igt@prime_self_import@basic-with_one_bo_two_files.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [i915#138]: https://gitlab.freedesktop.org/drm/intel/issues/138
+  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
+  [i915#2291]: https://gitlab.freedesktop.org/drm/intel/issues/2291
+  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
+  [i915#541]: https://gitlab.freedesktop.org/drm/intel/issues/541
+
+
+Participating hosts (45 -> 41)
+------------------------------
+
+  Missing    (4): fi-ilk-m540 fi-bsw-cyan fi-bdw-samus fi-hsw-4200u 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_9424 -> Patchwork_19042
+
+  CI-20190529: 20190529
+  CI_DRM_9424: 52e59b0a3839bde394be8b5d48b2c1a309b564e3 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5878: e96c0d8e6952d892bcbbcdf004999880a4dfb42e @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_19042: 9f373e51c9a903cd707fec43e06600c6bb6f59b4 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+9f373e51c9a9 Revert "drm/i915/lmem: Limit block size to 4G"
+a38d86f0fa1f drm/i915/gem: Limit lmem scatterlist elements to UINT_MAX
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19042/index.html
+
+--===============3149683598873328777==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>series starting with [v2,1/2] drm/i915/gem: Limit lmem scatterlist elements to UINT_MAX</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/84501/">https://patchwork.freedesktop.org/series/84501/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19042/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19042/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_9424 -&gt; Patchwork_19042</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19042/index.html</p>
+<h2>New tests</h2>
+<p>New tests have been introduced between CI_DRM_9424 and Patchwork_19042:</p>
+<h3>New CI tests (1)</h3>
+<ul>
+<li>boot:<ul>
+<li>Statuses : 1 fail(s) 40 pass(s)</li>
+<li>Exec time: [0.0] s</li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_19042 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@core_hotunplug@unbind-rebind:</p>
+<ul>
+<li>fi-tgl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9424/fi-tgl-u2/igt@core_hotunplug@unbind-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19042/fi-tgl-u2/igt@core_hotunplug@unbind-rebind.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_module_load@reload:</p>
+<ul>
+<li>fi-icl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9424/fi-icl-u2/igt@i915_module_load@reload.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19042/fi-icl-u2/igt@i915_module_load@reload.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>) +1 similar issue</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_pm_rpm@module-reload:</p>
+<ul>
+<li>fi-kbl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9424/fi-kbl-guc/igt@i915_pm_rpm@module-reload.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19042/fi-kbl-guc/igt@i915_pm_rpm@module-reload.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/138">i915#138</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_busy@basic@flip:</p>
+<ul>
+<li>fi-kbl-soraka:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9424/fi-kbl-soraka/igt@kms_busy@basic@flip.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19042/fi-kbl-soraka/igt@kms_busy@basic@flip.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:</p>
+<ul>
+<li>fi-byt-j1900:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9424/fi-byt-j1900/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19042/fi-byt-j1900/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-c:</p>
+<ul>
+<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9424/fi-tgl-y/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-c.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19042/fi-tgl-y/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-c.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>) +2 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@prime_self_import@basic-with_two_bos:</p>
+<ul>
+<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9424/fi-tgl-y/igt@prime_self_import@basic-with_two_bos.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19042/fi-tgl-y/igt@prime_self_import@basic-with_two_bos.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) +1 similar issue</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@i915_pm_rpm@module-reload:</p>
+<ul>
+<li>fi-byt-j1900:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9424/fi-byt-j1900/igt@i915_pm_rpm@module-reload.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19042/fi-byt-j1900/igt@i915_pm_rpm@module-reload.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@gt_heartbeat:</p>
+<ul>
+<li>fi-kbl-soraka:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9424/fi-kbl-soraka/igt@i915_selftest@live@gt_heartbeat.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2291">i915#2291</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/541">i915#541</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19042/fi-kbl-soraka/igt@i915_selftest@live@gt_heartbeat.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_legacy@basic-flip-before-cursor-atomic:</p>
+<ul>
+<li>fi-icl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9424/fi-icl-u2/igt@kms_cursor_legacy@basic-flip-before-cursor-atomic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19042/fi-icl-u2/igt@kms_cursor_legacy@basic-flip-before-cursor-atomic.html">PASS</a> +1 similar issue</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@hang-read-crc-pipe-a:</p>
+<ul>
+<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9424/fi-tgl-y/igt@kms_pipe_crc_basic@hang-read-crc-pipe-a.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19042/fi-tgl-y/igt@kms_pipe_crc_basic@hang-read-crc-pipe-a.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@prime_self_import@basic-with_one_bo_two_files:</p>
+<ul>
+<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9424/fi-tgl-y/igt@prime_self_import@basic-with_one_bo_two_files.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19042/fi-tgl-y/igt@prime_self_import@basic-with_one_bo_two_files.html">PASS</a> +2 similar issues</li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Participating hosts (45 -&gt; 41)</h2>
+<p>Missing    (4): fi-ilk-m540 fi-bsw-cyan fi-bdw-samus fi-hsw-4200u </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_9424 -&gt; Patchwork_19042</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_9424: 52e59b0a3839bde394be8b5d48b2c1a309b564e3 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_5878: e96c0d8e6952d892bcbbcdf004999880a4dfb42e @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
+  Patchwork_19042: 9f373e51c9a903cd707fec43e06600c6bb6f59b4 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>9f373e51c9a9 Revert "drm/i915/lmem: Limit block size to 4G"<br />
+a38d86f0fa1f drm/i915/gem: Limit lmem scatterlist elements to UINT_MAX</p>
+
+</body>
+</html>
+
+--===============3149683598873328777==--
+
+--===============1598368950==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============1598368950==--
