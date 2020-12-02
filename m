@@ -2,46 +2,46 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CF3432CC9A9
-	for <lists+intel-gfx@lfdr.de>; Wed,  2 Dec 2020 23:35:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C0ABA2CC9AF
+	for <lists+intel-gfx@lfdr.de>; Wed,  2 Dec 2020 23:37:37 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 424686EB1B;
-	Wed,  2 Dec 2020 22:35:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 675A66EB1C;
+	Wed,  2 Dec 2020 22:37:35 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3247A6EB1B
- for <intel-gfx@lists.freedesktop.org>; Wed,  2 Dec 2020 22:35:31 +0000 (UTC)
-IronPort-SDR: VGVpsnkGRwokX6g0eVMQ3sU434kN6Yef/lFgZdqchGClr5qGioWEBeF7bR36EX4zS1T1+171bo
- VR2q3bDUB0JA==
-X-IronPort-AV: E=McAfee;i="6000,8403,9823"; a="152926409"
-X-IronPort-AV: E=Sophos;i="5.78,388,1599548400"; d="scan'208";a="152926409"
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1C4E16EB1C
+ for <intel-gfx@lists.freedesktop.org>; Wed,  2 Dec 2020 22:37:34 +0000 (UTC)
+IronPort-SDR: 5VGUObVp5mYd6KH1XrrqhzqUXbEgsYz2NLK8m4lAz8SHUqPzJcMGSe4xc9kjo5T7a30BNzQ0S3
+ /zhvmMB4rXcA==
+X-IronPort-AV: E=McAfee;i="6000,8403,9823"; a="237222826"
+X-IronPort-AV: E=Sophos;i="5.78,388,1599548400"; d="scan'208";a="237222826"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Dec 2020 14:35:30 -0800
-IronPort-SDR: ySfdZA5gHgdb58Bc35sYtzZD+rcCKbjU8eaASfFv3Etit6N572fLQU/F4fPfe3AENPGnmDWXxn
- QpDt+d2gs9Tw==
-X-IronPort-AV: E=Sophos;i="5.78,388,1599548400"; d="scan'208";a="550241831"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Dec 2020 14:37:33 -0800
+IronPort-SDR: NefAELCxyMl+s30A7WVVGAlQ04qNl7xVj1qtapA5u3fpnO0oPxEVERhVx88HY+mg1lnn5tUD2h
+ GjLwxRI8ffMQ==
+X-IronPort-AV: E=Sophos;i="5.78,388,1599548400"; d="scan'208";a="373664358"
 Received: from labuser-z97x-ud5h.jf.intel.com (HELO labuser-Z97X-UD5H)
  ([10.165.21.211])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Dec 2020 14:35:30 -0800
-Date: Wed, 2 Dec 2020 14:38:28 -0800
+ by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Dec 2020 14:37:32 -0800
+Date: Wed, 2 Dec 2020 14:40:31 -0800
 From: "Navare, Manasi" <manasi.d.navare@intel.com>
 To: Jani Nikula <jani.nikula@linux.intel.com>
-Message-ID: <20201202223828.GA26911@labuser-Z97X-UD5H>
+Message-ID: <20201202224030.GB26911@labuser-Z97X-UD5H>
 References: <20201022222709.29386-1-manasi.d.navare@intel.com>
- <20201022222709.29386-6-manasi.d.navare@intel.com>
- <87o8k5sd2l.fsf@intel.com>
- <20201201225259.GB22644@labuser-Z97X-UD5H>
+ <20201022222709.29386-3-manasi.d.navare@intel.com>
+ <87wnytsdgz.fsf@intel.com>
+ <20201201222148.GA21862@labuser-Z97X-UD5H>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20201201225259.GB22644@labuser-Z97X-UD5H>
+In-Reply-To: <20201201222148.GA21862@labuser-Z97X-UD5H>
 User-Agent: Mutt/1.5.24 (2015-08-30)
-Subject: Re: [Intel-gfx] [PATCH 05/11] drm/i915/display/dp: Compute VRR
- state in atomic_check
+Subject: Re: [Intel-gfx] [PATCH 02/11] drm/i915/display/vrr: Create VRR file
+ and add VRR capability check
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,196 +60,194 @@ Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Dec 01, 2020 at 02:52:59PM -0800, Navare, Manasi wrote:
-> On Tue, Nov 10, 2020 at 12:47:46PM +0200, Jani Nikula wrote:
+On Tue, Dec 01, 2020 at 02:21:56PM -0800, Navare, Manasi wrote:
+> On Tue, Nov 10, 2020 at 12:39:08PM +0200, Jani Nikula wrote:
 > > On Thu, 22 Oct 2020, Manasi Navare <manasi.d.navare@intel.com> wrote:
-> > > This forces a complete modeset if vrr drm crtc state goes
-> > > from enabled to disabled and vice versa.
-> > > This patch also computes vrr state variables from the mode timings
-> > > and based on the vrr property set by userspace as well as hardware's
-> > > vrr capability.
-> > >
-> > > v2:
-> > > *Rebase
-> > > v3:
-> > > * Vmin =3D max (vtotal, vmin) (Manasi)
-> > > v4:
-> > > * set crtc_state->vrr.enable =3D 0 for disable request
+> > > We create a new file for all VRR related helpers.
+> > > Also add a function to check vrr capability based on
+> > > platform support, DPCD bits and EDID monitor range.
 > > >
 > > > Cc: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> > > Cc: Jani Nikula <jani.nikula@linux.intel.com>
 > > > Signed-off-by: Manasi Navare <manasi.d.navare@intel.com>
 > > > ---
-> > >  drivers/gpu/drm/i915/display/intel_display.c |  7 +++-
-> > >  drivers/gpu/drm/i915/display/intel_dp.c      |  1 +
-> > >  drivers/gpu/drm/i915/display/intel_vrr.c     | 38 ++++++++++++++++++=
+> > >  drivers/gpu/drm/i915/Makefile            |  1 +
+> > >  drivers/gpu/drm/i915/display/intel_vrr.c | 28 ++++++++++++++++++++++=
 ++
-> > >  drivers/gpu/drm/i915/display/intel_vrr.h     |  2 ++
-> > >  4 files changed, 47 insertions(+), 1 deletion(-)
+> > >  drivers/gpu/drm/i915/display/intel_vrr.h | 19 ++++++++++++++++
+> > >  3 files changed, 48 insertions(+)
+> > >  create mode 100644 drivers/gpu/drm/i915/display/intel_vrr.c
+> > >  create mode 100644 drivers/gpu/drm/i915/display/intel_vrr.h
 > > >
-> > > diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/g=
-pu/drm/i915/display/intel_display.c
-> > > index f41b6f8b5618..f70cc3b2a1a4 100644
-> > > --- a/drivers/gpu/drm/i915/display/intel_display.c
-> > > +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> > > @@ -14213,6 +14213,10 @@ intel_pipe_config_compare(const struct intel=
-_crtc_state *current_config,
+> > > diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Mak=
+efile
+> > > index e5574e506a5c..3beeaf517191 100644
+> > > --- a/drivers/gpu/drm/i915/Makefile
+> > > +++ b/drivers/gpu/drm/i915/Makefile
+> > > @@ -249,6 +249,7 @@ i915-y +=3D \
+> > >  	display/intel_sdvo.o \
+> > >  	display/intel_tv.o \
+> > >  	display/intel_vdsc.o \
+> > > +	display/intel_vrr.o \
+> > >  	display/vlv_dsi.o \
+> > >  	display/vlv_dsi_pll.o
 > > >  =
 
-> > >  	PIPE_CONF_CHECK_I(mst_master_transcoder);
-> > >  =
-
-> > > +	PIPE_CONF_CHECK_BOOL(vrr.enable);
-> > > +	PIPE_CONF_CHECK_I(vrr.vtotalmin);
-> > > +	PIPE_CONF_CHECK_I(vrr.vtotalmax);
-> > > +
-> > >  #undef PIPE_CONF_CHECK_X
-> > >  #undef PIPE_CONF_CHECK_I
-> > >  #undef PIPE_CONF_CHECK_BOOL
-> > > @@ -15202,7 +15206,8 @@ static int intel_atomic_check(struct drm_devi=
-ce *dev,
-> > >  =
-
-> > >  	for_each_oldnew_intel_crtc_in_state(state, crtc, old_crtc_state,
-> > >  					    new_crtc_state, i) {
-> > > -		if (new_crtc_state->inherited !=3D old_crtc_state->inherited)
-> > > +		if (new_crtc_state->inherited !=3D old_crtc_state->inherited ||
-> > > +		    new_crtc_state->uapi.vrr_enabled !=3D old_crtc_state->uapi.vrr=
-_enabled)
+> > > diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/d=
+rm/i915/display/intel_vrr.c
+> > > new file mode 100644
+> > > index 000000000000..0c8a91fabb64
+> > > --- /dev/null
+> > > +++ b/drivers/gpu/drm/i915/display/intel_vrr.c
+> > > @@ -0,0 +1,28 @@
+> > > +/* SPDX-License-Identifier: MIT */
+> > > +/*
+> > > + * Copyright =A9 2020 Intel Corporation
+> > > + *
+> > > + * Author: Manasi Navare <manasi.d.navare@intel.com>
 > > =
 
-> > Somehow this feels like a really specific check to add considering the
-> > abstraction level of the function in general.
+> > I have increasingly mixed feelings about adding author lines in files in
+> > big collaborative projects. They tend to go out of date fairly quickly,
+> > and will cease to represent the contributions fairly. And git already
+> > gives us this information.
+> =
 
-Actually while discussing with @Ville on IRC, he had proposed just adding i=
-t here
-since we already have this loop existing that loops through the old and new=
- crtc states
-and we need to set the mode_changed =3D true right up at the top.
-But if you think its more intuitive to create a separate function for this =
-I could do that
+> Thanks Jani, yes will remove the author name then.
+> =
 
-Ville, Jani N any thoughts?
+> > =
+
+> > > + */
+> > > +
+> > > +#include "i915_drv.h"
+> > > +#include "intel_display_types.h"
+> > > +#include "intel_vrr.h"
+> > > +
+> > > +bool intel_is_vrr_capable(struct drm_connector *connector)
+> > =
+
+> > Please prefix with intel_vrr_ consistently.
+> =
+
+> Will do, and change this to intel_vrr_is_capable()
+> =
+
+> > =
+
+> > > +{
+> > > +	struct intel_dp *intel_dp =3D intel_attached_dp(to_intel_connector(=
+connector));
+> > =
+
+> > I kind of feel like either the function should a) ensure it's okay to do
+> > intel_attached_dp() and return false if not, or b) just use struct
+> > intel_dp as the parameter.
+> > =
+
+> > As it is, passing a non-dp connector to this function will fail either
+> > subtly or spectacularly, but not graciously.
+
+Actually after doing some code rewriting, I think it is best to still pass
+the drm connector but I am adding the check now for connector type
+Only if its eDP or DP now I get the intel_dp.
+Future we can add HDMI there as well.
 
 Manasi
 
 > =
 
-> Should I then create a separate function to force a full modeset by setti=
-ng mode changed =
-
-> if vrr_enabled changed?
-> And call that from intel_atomic_check() ?
+> Yes I agree here. I think passing intel_dp is a good idea as anyway this =
+function
+> is currently only called from intel_dp specific functions and after brain=
+storming a bit
+> on how this will look for the VRR on native HDMI, it will likely require =
+its own helpers.
+> So infact I was thinking of even renaming this as intel_vrr_is_capable_dp=
+() and send intel_dp to it
+> and then intel_vrr_is_capable_hdmi() can be added later.
+> What do you think?
 > =
 
 > > =
 
-> > >  			new_crtc_state->uapi.mode_changed =3D true;
-> > >  	}
-> > >  =
-
-> > > diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/dr=
-m/i915/display/intel_dp.c
-> > > index 3794b8f35edc..3185c4ca523d 100644
-> > > --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> > > +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> > > @@ -2752,6 +2752,7 @@ intel_dp_compute_config(struct intel_encoder *e=
-ncoder,
-> > >  	if (!HAS_DDI(dev_priv))
-> > >  		intel_dp_set_clock(encoder, pipe_config);
-> > >  =
-
-> > > +	intel_vrr_compute_config(intel_dp, pipe_config);
-> > >  	intel_psr_compute_config(intel_dp, pipe_config);
-> > >  	intel_dp_drrs_compute_config(intel_dp, pipe_config, output_bpp,
-> > >  				     constant_n);
-> > > diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/d=
-rm/i915/display/intel_vrr.c
-> > > index 0c8a91fabb64..56114f535f94 100644
-> > > --- a/drivers/gpu/drm/i915/display/intel_vrr.c
-> > > +++ b/drivers/gpu/drm/i915/display/intel_vrr.c
-> > > @@ -26,3 +26,41 @@ bool intel_is_vrr_capable(struct drm_connector *co=
-nnector)
-> > >  		info->monitor_range.max_vfreq - info->monitor_range.min_vfreq > 10;
-> > >  }
-> > >  =
-
-> > > +void
-> > > +intel_vrr_compute_config(struct intel_dp *intel_dp,
-> > > +			 struct intel_crtc_state *crtc_state)
-> > > +{
-> > > +	struct drm_i915_private *dev_priv =3D dp_to_i915(intel_dp);
-> > > +	struct intel_connector *intel_connector =3D intel_dp->attached_conn=
-ector;
-> > > +	struct drm_connector *connector =3D &intel_connector->base;
-> > > +	struct drm_display_mode *adjusted_mode =3D &crtc_state->hw.adjusted=
-_mode;
 > > > +	const struct drm_display_info *info =3D &connector->display_info;
-> > > +
-> > > +	if (!intel_is_vrr_capable(connector))
-> > > +		return;
-> > > +
-> > > +	if (!crtc_state->uapi.vrr_enabled) {
-> > > +		drm_dbg(&dev_priv->drm,
-> > > +			"VRR disable requested by Userspace\n");
+> > > +	struct drm_i915_private *dev_priv =3D to_i915(connector->dev);
 > > =
 
-> > drm_dbg_kms, though is this useful information? Quite a bit of log spam
-> > I'd think.
+> > Please use i915 over dev_priv in all new code.
 > =
 
-> Yea this one can probably remove
-> =
-
-> Manasi
-> =
-
+> Okay
 > =
 
 > > =
 
-> > > +		crtc_state->vrr.enable =3D false;
-> > > +		return;
-> > > +	}
 > > > +
-> > > +	crtc_state->vrr.enable =3D true;
-> > > +	crtc_state->vrr.vtotalmin =3D
-> > > +		max_t(u16, adjusted_mode->crtc_vtotal,
-> > > +		      DIV_ROUND_CLOSEST(adjusted_mode->crtc_clock * 1000,
-> > > +					adjusted_mode->crtc_htotal *
-> > > +					info->monitor_range.max_vfreq));
-> > > +	crtc_state->vrr.vtotalmax =3D
-> > > +		max_t(u16, adjusted_mode->crtc_vtotal,
-> > > +		      DIV_ROUND_UP(adjusted_mode->crtc_clock * 1000,
-> > > +				   adjusted_mode->crtc_htotal *
-> > > +				   info->monitor_range.min_vfreq));
-> > > +
-> > > +	drm_dbg(&dev_priv->drm,
+> > > +	/*
+> > > +	 * DP Sink is capable of Variable refresh video timings if
+> > > +	 * Ignore MSA bit is set in DPCD.
+> > > +	 * EDID monitor range also should be atleast 10 for reasonable
+> > > +	 * Adaptive sync/ VRR end user experience.
+> > > +	 */
 > > =
 
-> > drm_dbg_kms
+> > Please fix typos etc.
+> =
+
+> Did I miss some typos, I dont see any in the above comment?
+> =
+
 > > =
 
-> > > +		"VRR Config: Enable =3D %s Vtotal Min =3D %d Vtotal Max =3D %d\n",
-> > > +		 yesno(crtc_state->vrr.enable), crtc_state->vrr.vtotalmin,
-> > > +		 crtc_state->vrr.vtotalmax);
+> > > +	return INTEL_GEN(dev_priv) >=3D 12 &&
+> > > +		drm_dp_sink_can_do_video_without_timing_msa(intel_dp->dpcd) &&
+> > > +		info->monitor_range.max_vfreq - info->monitor_range.min_vfreq > 10;
 > > > +}
 > > > +
 > > > diff --git a/drivers/gpu/drm/i915/display/intel_vrr.h b/drivers/gpu/d=
 rm/i915/display/intel_vrr.h
-> > > index 755746c7525c..1e6fe8fe92ec 100644
-> > > --- a/drivers/gpu/drm/i915/display/intel_vrr.h
+> > > new file mode 100644
+> > > index 000000000000..755746c7525c
+> > > --- /dev/null
 > > > +++ b/drivers/gpu/drm/i915/display/intel_vrr.h
-> > > @@ -15,5 +15,7 @@ struct intel_encoder;
-> > >  struct intel_dp;
-> > >  =
+> > > @@ -0,0 +1,19 @@
+> > > +/* SPDX-License-Identifier: MIT */
+> > > +/*
+> > > + * Copyright =A9 2019 Intel Corporation
+> > > +*/
+> > > +
+> > > +#ifndef __INTEL_VRR_H__
+> > > +#define __INTEL_VRR_H__
+> > > +
+> > > +#include <linux/types.h>
+> > > +
+> > > +struct drm_connector;
+> > =
 
-> > >  bool intel_is_vrr_capable(struct drm_connector *connector);
-> > > +void intel_vrr_compute_config(struct intel_dp *intel_dp,
-> > > +			      struct intel_crtc_state *crtc_state);
-> > >  =
+> > All of the below declarations are unnecessary at this commit.
+> =
 
-> > >  #endif /* __INTEL_VRR_H__ */
+> Yes will add them in the next commits as I add the next functions, got it.
+> =
+
+> Regards
+> Manasi
+> =
+
+> > =
+
+> > BR,
+> > Jani.
+> > =
+
+> > > +struct drm_i915_private;
+> > > +struct intel_crtc_state;
+> > > +struct intel_encoder;
+> > > +struct intel_dp;
+> > > +
+> > > +bool intel_is_vrr_capable(struct drm_connector *connector);
+> > > +
+> > > +#endif /* __INTEL_VRR_H__ */
 > > =
 
 > > -- =
