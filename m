@@ -2,40 +2,39 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BC2692CB3BF
-	for <lists+intel-gfx@lfdr.de>; Wed,  2 Dec 2020 05:04:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DADC52CB3C3
+	for <lists+intel-gfx@lfdr.de>; Wed,  2 Dec 2020 05:04:43 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B2BC46EA15;
-	Wed,  2 Dec 2020 04:04:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 25A018825E;
+	Wed,  2 Dec 2020 04:04:31 +0000 (UTC)
 X-Original-To: Intel-gfx@lists.freedesktop.org
 Delivered-To: Intel-gfx@lists.freedesktop.org
 Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 091CE6E9FE
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2CD1A6EA0E
  for <Intel-gfx@lists.freedesktop.org>; Wed,  2 Dec 2020 04:04:21 +0000 (UTC)
-IronPort-SDR: iWsyMnPZHRHRz6Le28YbWDjV1x5iZo3nrKlMSBsPIMavEE03i6EJCmMeAUP5t44HilVPAUOwyL
- SpvI6vG8ZvMQ==
-X-IronPort-AV: E=McAfee;i="6000,8403,9822"; a="152206078"
-X-IronPort-AV: E=Sophos;i="5.78,385,1599548400"; d="scan'208";a="152206078"
+IronPort-SDR: 8SklgjjPSk+FOgzkmHcapENC3n5BuXQVrE6Da5BqTedYbIKU2u3ePD5SoAIPxey7UPxNU09Qot
+ V2kSHEiAn6NA==
+X-IronPort-AV: E=McAfee;i="6000,8403,9822"; a="152206080"
+X-IronPort-AV: E=Sophos;i="5.78,385,1599548400"; d="scan'208";a="152206080"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from orsmga005.jf.intel.com ([10.7.209.41])
  by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  01 Dec 2020 20:04:17 -0800
-IronPort-SDR: uXUKNXG/dJ7AA/sHKmJJ7MfheYHcuHuCFYSw2eLHfUQDF8v7tfaz1/yfI/FCouD0Ig4pCO62F9
- SBNUuw98LNSQ==
+IronPort-SDR: bVjqWXN/tmK3usStYaCkELfemsTDCrxjNeo/F50ql4sCZ3GdF9oZGb0ED05YEvpHBd1t6k4KHj
+ SNartagFMt3A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.78,385,1599548400"; d="scan'208";a="549869257"
+X-IronPort-AV: E=Sophos;i="5.78,385,1599548400"; d="scan'208";a="549869259"
 Received: from sean-virtualbox.fm.intel.com ([10.105.158.96])
  by orsmga005.jf.intel.com with ESMTP; 01 Dec 2020 20:04:16 -0800
 From: "Huang, Sean Z" <sean.z.huang@intel.com>
 To: Intel-gfx@lists.freedesktop.org
-Date: Tue,  1 Dec 2020 20:03:30 -0800
-Message-Id: <20201202040341.31981-16-sean.z.huang@intel.com>
+Date: Tue,  1 Dec 2020 20:03:31 -0800
+Message-Id: <20201202040341.31981-17-sean.z.huang@intel.com>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20201202040341.31981-1-sean.z.huang@intel.com>
 References: <20201202040341.31981-1-sean.z.huang@intel.com>
-Subject: [Intel-gfx] [RFC-v4 15/26] drm/i915/pxp: Termiante the session upon
- app crash
+Subject: [Intel-gfx] [RFC-v4 16/26] drm/i915/pxp: Enable PXP power management
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,115 +53,189 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-PXP should terminate the hardware session and cleanup the software
-state gracefully when the application has established the
-protection session, but doesn't close the session correctly due to
-some cases like application crash.
+During the power event S3+ sleep/resume, hardware will lose all the
+encryption keys for every hardware session, even though the
+software session state was marked as alive after resume. So to
+handle such case, PXP should terminate all the hardware sessions
+and cleanup all the software states after the power cycle.
 
 Signed-off-by: Huang, Sean Z <sean.z.huang@intel.com>
 ---
- drivers/gpu/drm/i915/i915_drv.c         |  2 ++
- drivers/gpu/drm/i915/pxp/intel_pxp.c    | 10 ++++++++++
- drivers/gpu/drm/i915/pxp/intel_pxp.h    |  5 +++++
- drivers/gpu/drm/i915/pxp/intel_pxp_sm.c | 19 +++++++++++++++++++
- drivers/gpu/drm/i915/pxp/intel_pxp_sm.h |  1 +
- 5 files changed, 37 insertions(+)
+ drivers/gpu/drm/i915/Makefile           |  1 +
+ drivers/gpu/drm/i915/i915_drv.c         |  8 +++
+ drivers/gpu/drm/i915/pxp/intel_pxp_pm.c | 72 +++++++++++++++++++++++++
+ drivers/gpu/drm/i915/pxp/intel_pxp_pm.h | 31 +++++++++++
+ 4 files changed, 112 insertions(+)
+ create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp_pm.c
+ create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp_pm.h
 
+diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefile
+index 131bd8921565..610ba6a729a5 100644
+--- a/drivers/gpu/drm/i915/Makefile
++++ b/drivers/gpu/drm/i915/Makefile
+@@ -258,6 +258,7 @@ i915-y += i915_perf.o
+ i915-$(CONFIG_DRM_I915_PXP) += \
+ 	pxp/intel_pxp.o \
+ 	pxp/intel_pxp_context.o \
++	pxp/intel_pxp_pm.o \
+ 	pxp/intel_pxp_sm.o
+ 
+ # Post-mortem debug and GPU hang state capture
 diff --git a/drivers/gpu/drm/i915/i915_drv.c b/drivers/gpu/drm/i915/i915_drv.c
-index 1e5ecaff571f..343c47ce33f9 100644
+index 343c47ce33f9..acb94ce9bf11 100644
 --- a/drivers/gpu/drm/i915/i915_drv.c
 +++ b/drivers/gpu/drm/i915/i915_drv.c
-@@ -1028,6 +1028,8 @@ static void i915_driver_postclose(struct drm_device *dev, struct drm_file *file)
+@@ -68,6 +68,8 @@
+ #include "gt/intel_gt_pm.h"
+ #include "gt/intel_rc6.h"
  
- 	/* Catch up with all the deferred frees from "this" client */
- 	i915_gem_flush_free_objects(to_i915(dev));
++#include "pxp/intel_pxp_pm.h"
 +
-+	intel_pxp_close(to_i915(dev), file);
- }
+ #include "i915_debugfs.h"
+ #include "i915_drv.h"
+ #include "i915_ioc32.h"
+@@ -1094,6 +1096,8 @@ static int i915_drm_prepare(struct drm_device *dev)
+ 	 */
+ 	i915_gem_suspend(i915);
  
- static void intel_suspend_encoders(struct drm_i915_private *dev_priv)
-diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp.c b/drivers/gpu/drm/i915/pxp/intel_pxp.c
-index 83024c47da7b..54929335b0f7 100644
---- a/drivers/gpu/drm/i915/pxp/intel_pxp.c
-+++ b/drivers/gpu/drm/i915/pxp/intel_pxp.c
-@@ -101,6 +101,16 @@ int i915_pxp_ops_ioctl(struct drm_device *dev, void *data, struct drm_file *drmf
- 	return ret;
- }
- 
-+void intel_pxp_close(struct drm_i915_private *i915, struct drm_file *drmfile)
-+{
-+	if (!i915 || !i915->pxp.ctx || !drmfile)
-+		return;
++	intel_pxp_pm_prepare_suspend(i915);
 +
-+	mutex_lock(&i915->pxp.ctx->ctx_mutex);
-+	intel_pxp_sm_close(i915, drmfile);
-+	mutex_unlock(&i915->pxp.ctx->ctx_mutex);
-+}
-+
- static void intel_pxp_write_irq_mask_reg(struct drm_i915_private *i915, u32 mask)
- {
- 	/* crypto mask is in bit31-16 (Engine1 Interrupt Mask) */
-diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp.h b/drivers/gpu/drm/i915/pxp/intel_pxp.h
-index 9ba17c620ea2..e6d2b8bac225 100644
---- a/drivers/gpu/drm/i915/pxp/intel_pxp.h
-+++ b/drivers/gpu/drm/i915/pxp/intel_pxp.h
-@@ -89,6 +89,7 @@ struct drm_i915_private;
- 
- #ifdef CONFIG_DRM_I915_PXP
- int i915_pxp_ops_ioctl(struct drm_device *dev, void *data, struct drm_file *drmfile);
-+void intel_pxp_close(struct drm_i915_private *i915, struct drm_file *drmfile);
- void intel_pxp_irq_handler(struct intel_gt *gt, u16 iir);
- int i915_pxp_teardown_required_callback(struct drm_i915_private *i915);
- int i915_pxp_global_terminate_complete_callback(struct drm_i915_private *i915);
-@@ -101,6 +102,10 @@ static inline int i915_pxp_ops_ioctl(struct drm_device *dev, void *data, struct
  	return 0;
  }
  
-+static inline void intel_pxp_close(struct drm_i915_private *i915, struct drm_file *drmfile)
+@@ -1279,6 +1283,8 @@ static int i915_drm_resume(struct drm_device *dev)
+ 
+ 	intel_gvt_resume(dev_priv);
+ 
++	intel_pxp_pm_resume(dev_priv);
++
+ 	enable_rpm_wakeref_asserts(&dev_priv->runtime_pm);
+ 
+ 	return 0;
+@@ -1350,6 +1356,8 @@ static int i915_drm_resume_early(struct drm_device *dev)
+ 
+ 	intel_power_domains_resume(dev_priv);
+ 
++	intel_pxp_pm_resume_early(dev_priv);
++
+ 	enable_rpm_wakeref_asserts(&dev_priv->runtime_pm);
+ 
+ 	return ret;
+diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp_pm.c b/drivers/gpu/drm/i915/pxp/intel_pxp_pm.c
+new file mode 100644
+index 000000000000..59847e0ed2e3
+--- /dev/null
++++ b/drivers/gpu/drm/i915/pxp/intel_pxp_pm.c
+@@ -0,0 +1,72 @@
++// SPDX-License-Identifier: MIT
++/*
++ * Copyright(c) 2020 Intel Corporation.
++ */
++
++#include "intel_pxp_context.h"
++#include "intel_pxp_sm.h"
++#include "intel_pxp_pm.h"
++
++void intel_pxp_pm_prepare_suspend(struct drm_i915_private *i915)
 +{
++	if (!i915->pxp.ctx)
++		return;
++
++	mutex_lock(&i915->pxp.ctx->ctx_mutex);
++
++	/* Disable PXP-IOCTLs */
++	i915->pxp.ctx->global_state_in_suspend = true;
++
++	mutex_unlock(&i915->pxp.ctx->ctx_mutex);
 +}
 +
- static inline void intel_pxp_irq_handler(struct intel_gt *gt, u16 iir)
- {
- }
-diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp_sm.c b/drivers/gpu/drm/i915/pxp/intel_pxp_sm.c
-index 32eebdc380e5..6ff347b7b72b 100644
---- a/drivers/gpu/drm/i915/pxp/intel_pxp_sm.c
-+++ b/drivers/gpu/drm/i915/pxp/intel_pxp_sm.c
-@@ -1132,3 +1132,22 @@ bool intel_pxp_sm_is_any_type0_session_in_play(struct drm_i915_private *i915, in
- 
- 	return false;
- }
-+
-+int intel_pxp_sm_close(struct drm_i915_private *i915, struct drm_file *drmfile)
++void intel_pxp_pm_resume_early(struct drm_i915_private *i915)
 +{
-+	struct pxp_protected_session *s, *n;
++	if (!i915->pxp.ctx)
++		return;
++
++	mutex_lock(&i915->pxp.ctx->ctx_mutex);
++
++	if (i915->pxp.ctx->global_state_in_suspend) {
++		/* reset the attacked flag even there was a pending */
++		i915->pxp.ctx->global_state_attacked = false;
++
++		i915->pxp.ctx->flag_display_hm_surface_keys = false;
++	}
++
++	mutex_unlock(&i915->pxp.ctx->ctx_mutex);
++}
++
++int intel_pxp_pm_resume(struct drm_i915_private *i915)
++{
 +	int ret = 0;
 +
-+	list_for_each_entry_safe(s, n, pxp_session_list(i915, SESSION_TYPE_TYPE0), session_list) {
-+		if (s->drmfile && s->drmfile == drmfile && s->pid == pid_nr(drmfile->pid)) {
-+			ret = terminate_protected_session(i915, 0, s->session_type,
-+							  s->session_index, false);
-+			if (ret) {
-+				drm_err(&i915->drm, "Failed to terminate_protected_session()\n");
-+				return ret;
-+			}
++	if (!i915->pxp.ctx)
++		return 0;
++
++	mutex_lock(&i915->pxp.ctx->ctx_mutex);
++
++	/* Re-enable PXP-IOCTLs */
++	if (i915->pxp.ctx->global_state_in_suspend) {
++		intel_pxp_destroy_user_ctx_list(i915);
++
++		ret = intel_pxp_sm_terminate_all_active_sessions(i915, SESSION_TYPE_TYPE0);
++		if (ret) {
++			drm_err(&i915->drm, "Failed to intel_pxp_sm_terminate_all_active_sessions with type0\n");
++			goto end;
 +		}
++
++		ret = intel_pxp_sm_terminate_all_active_sessions(i915, SESSION_TYPE_TYPE1);
++		if (ret) {
++			drm_err(&i915->drm, "Failed to intel_pxp_sm_terminate_all_active_sessions with type1\n");
++			goto end;
++		}
++
++		i915->pxp.ctx->global_state_in_suspend = false;
 +	}
++
++end:
++	mutex_unlock(&i915->pxp.ctx->ctx_mutex);
 +
 +	return ret;
 +}
-diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp_sm.h b/drivers/gpu/drm/i915/pxp/intel_pxp_sm.h
-index aee638e70be6..143f024bb0d2 100644
---- a/drivers/gpu/drm/i915/pxp/intel_pxp_sm.h
-+++ b/drivers/gpu/drm/i915/pxp/intel_pxp_sm.h
-@@ -115,5 +115,6 @@ int pxp_sm_set_kcr_init_reg(struct drm_i915_private *i915);
- u32 intel_pxp_get_pxp_tag(struct drm_i915_private *i915, int session_idx,
- 			  int session_type, u32 *session_is_alive);
- bool intel_pxp_sm_is_any_type0_session_in_play(struct drm_i915_private *i915, int protection_mode);
-+int intel_pxp_sm_close(struct drm_i915_private *i915, struct drm_file *drmfile);
- 
- #endif /* __INTEL_PXP_SM_H__ */
+diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp_pm.h b/drivers/gpu/drm/i915/pxp/intel_pxp_pm.h
+new file mode 100644
+index 000000000000..b66b7e95e211
+--- /dev/null
++++ b/drivers/gpu/drm/i915/pxp/intel_pxp_pm.h
+@@ -0,0 +1,31 @@
++/* SPDX-License-Identifier: MIT */
++/*
++ * Copyright(c) 2020, Intel Corporation. All rights reserved.
++ */
++
++#ifndef __INTEL_PXP_PM_H__
++#define __INTEL_PXP_PM_H__
++
++#include "i915_drv.h"
++
++#ifdef CONFIG_DRM_I915_PXP
++void intel_pxp_pm_prepare_suspend(struct drm_i915_private *i915);
++
++void intel_pxp_pm_resume_early(struct drm_i915_private *i915);
++int intel_pxp_pm_resume(struct drm_i915_private *i915);
++#else
++static inline void intel_pxp_pm_prepare_suspend(struct drm_i915_private *i915)
++{
++}
++
++static inline void intel_pxp_pm_resume_early(struct drm_i915_private *i915)
++{
++}
++
++static inline int intel_pxp_pm_resume(struct drm_i915_private *i915)
++{
++	return 0;
++}
++#endif
++
++#endif /* __INTEL_PXP_PM_H__ */
 -- 
 2.17.1
 
