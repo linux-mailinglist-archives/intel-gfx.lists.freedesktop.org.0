@@ -2,42 +2,128 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 921E32CD209
-	for <lists+intel-gfx@lfdr.de>; Thu,  3 Dec 2020 10:06:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B6C9E2CD266
+	for <lists+intel-gfx@lfdr.de>; Thu,  3 Dec 2020 10:21:11 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E9C8D6E09E;
-	Thu,  3 Dec 2020 09:06:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0B0476E0BE;
+	Thu,  3 Dec 2020 09:21:09 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E84D76E0AA
- for <intel-gfx@lists.freedesktop.org>; Thu,  3 Dec 2020 09:06:23 +0000 (UTC)
-IronPort-SDR: fb0xtGYt01Q9766BlfDj8xuYiHxQyVCh04/gzBsn5AfJEQAhZW/J2/EZRoaTzorGy3z0Qp5hLV
- hcgTN/VI3hYw==
-X-IronPort-AV: E=McAfee;i="6000,8403,9823"; a="160929169"
-X-IronPort-AV: E=Sophos;i="5.78,389,1599548400"; d="scan'208";a="160929169"
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 676486E0BE
+ for <intel-gfx@lists.freedesktop.org>; Thu,  3 Dec 2020 09:21:08 +0000 (UTC)
+IronPort-SDR: o/dcbTSIoeRgoWBuSHaTwpKniiLRsd9C9mInINvfAvzTH/3AuK/3oaj4+rx+MKC104gS65FB0G
+ sCf85acYWJrQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9823"; a="160930668"
+X-IronPort-AV: E=Sophos;i="5.78,389,1599548400"; d="scan'208";a="160930668"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Dec 2020 01:06:23 -0800
-IronPort-SDR: UAC9P2jEahFfqbwKj0TamR+8z+v6kNh4LqTyDXbsRoyGnvWCKr6NuhyvEmy2kBZGvakdaOzFO0
- Nlm8h6ZWQbwg==
-X-IronPort-AV: E=Sophos;i="5.78,389,1599548400"; d="scan'208";a="550413605"
-Received: from isobow-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.213.16.51])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Dec 2020 01:06:21 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Dave Airlie <airlied@gmail.com>, intel-gfx@lists.freedesktop.org
-In-Reply-To: <20201130210945.31850-1-airlied@gmail.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20201130210945.31850-1-airlied@gmail.com>
-Date: Thu, 03 Dec 2020 11:06:18 +0200
-Message-ID: <877dpzcl85.fsf@intel.com>
+ 03 Dec 2020 01:21:07 -0800
+IronPort-SDR: ZrPX0tRCN8A7EbAuaMmJXreb9vj5XxcyhwMKsNtUZLz4kyyk35mSgWj0cTf80I2wgYGXr1tcth
+ QW0ZXEZDEJ9g==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.78,389,1599548400"; d="scan'208";a="365672931"
+Received: from orsmsx606.amr.corp.intel.com ([10.22.229.19])
+ by fmsmga004.fm.intel.com with ESMTP; 03 Dec 2020 01:21:05 -0800
+Received: from orsmsx605.amr.corp.intel.com (10.22.229.18) by
+ ORSMSX606.amr.corp.intel.com (10.22.229.19) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1713.5; Thu, 3 Dec 2020 01:21:05 -0800
+Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
+ orsmsx605.amr.corp.intel.com (10.22.229.18) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1713.5
+ via Frontend Transport; Thu, 3 Dec 2020 01:21:05 -0800
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com (104.47.59.175)
+ by edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.1713.5; Thu, 3 Dec 2020 01:21:05 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=RYcb5/Q3GoF3ZhiYEQ7JlYLq4zle/de9iGTNTu1MrMSSBfEWyciLUxtDnEuFrEZhBU3qI9WLFbNCMGMBtWjB8gIuuJ+A1bPf0KRxxgdfcu3UhloOFrIhXTnOTXCAzIdOCaQpKm77fJpBKtLvz0SHA0DqKB10dSfirFVDxR4RHeyQ2Beb//FcDLItTKv/oqWs47DD3DO8gL9ShFIhI9vYneEgsRH3dPE71mDmeLjLaqMSerF7kzpEvgPpV6yzPwjmxQGdUplFa517liPo29o+RT09qyiyBmA6fUSWPjha4fOpzRDzaJKGLCF6Q4rMk4qga4IHpdIUSGZ/eAaIl6RI4g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Ik2u3hc5fditHZ8h8/aG0CkvAwS8HQTm8NDpIkqAKA8=;
+ b=hiutFdRzP7keevzOxdE7W8BPchMMZk6lR6CJ+o5r2qNFJ3hbXFkoCeev/hfxtjQCEn9Ba9c2L4ZOt0s/rz7OHm+EIrQnM5Y1WvMf0Xdw332QHWKDxtjGmZXfztioLZmtY+hZuErLazMcoZqcIRmvWup4/CegqhIfm0ZhJSHx7LIz1LS/okq26t+wZsylCnaid3uwDMxnSEg9su/2YD7fhzOklgmChePttQP3BC+yvXJ2fv1tcp4rQSEDdpGj9uXHZ0iLeXPl/AFLGyLHU2jILwGSbY1ID0HAL25XDQJ2i4gLH2Pq590FNIvBVFyzryD4k0HSWBa46RSEjQyUwQDkfg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=intel.onmicrosoft.com; 
+ s=selector2-intel-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Ik2u3hc5fditHZ8h8/aG0CkvAwS8HQTm8NDpIkqAKA8=;
+ b=ldOPd3pLyT7DtyX1+lNsdG/WIWwTk49wqawtssSNMROHGj/+E4dUquZVba8d0JhFtIqtmG8ejEwq+FJynhB5MKua03vkkRziktL1MinWaMU1W/CuLmVTy7SCgXhJnYgCgchhGIoUXYFBGDGoE/RH1MtGN1udZPxqkKIC0ZsmxU4=
+Received: from DM5PR11MB1643.namprd11.prod.outlook.com (2603:10b6:4:b::16) by
+ DM5PR11MB1644.namprd11.prod.outlook.com (2603:10b6:4:c::15) with
+ Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.3632.18; Thu, 3 Dec 2020 09:21:03 +0000
+Received: from DM5PR11MB1643.namprd11.prod.outlook.com
+ ([fe80::f991:b840:a505:808e]) by DM5PR11MB1643.namprd11.prod.outlook.com
+ ([fe80::f991:b840:a505:808e%12]) with mapi id 15.20.3611.031; Thu, 3 Dec 2020
+ 09:21:03 +0000
+From: "Gao, Fred" <fred.gao@intel.com>
+To: Alex Williamson <alex.williamson@redhat.com>
+Thread-Topic: [PATCH v1] vfio/pci: Add support for opregion v2.0+
+Thread-Index: AQHWyIv3TnNNa/sYxUS4xK4Y4ZBPN6nkKNeAgADO78A=
+Date: Thu, 3 Dec 2020 09:21:03 +0000
+Message-ID: <DM5PR11MB16436AACB3AE89CC8C4ED4199DF20@DM5PR11MB1643.namprd11.prod.outlook.com>
+References: <20201202171249.17083-1-fred.gao@intel.com>
+ <20201202115723.27df527b@w520.home>
+In-Reply-To: <20201202115723.27df527b@w520.home>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+dlp-product: dlpe-windows
+dlp-reaction: no-action
+dlp-version: 11.5.1.3
+authentication-results: redhat.com; dkim=none (message not signed)
+ header.d=none;redhat.com; dmarc=none action=none header.from=intel.com;
+x-originating-ip: [192.198.147.202]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: ff34c502-9b0e-4a70-cae7-08d8976cc1d7
+x-ms-traffictypediagnostic: DM5PR11MB1644:
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <DM5PR11MB1644CF810B09AE4E91E8EF569DF20@DM5PR11MB1644.namprd11.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:8882;
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: rWhT/GaUvqG20sq68tG5R8pWFN4fWgSmPQhH6aJUzJEXKzF/QxwDOfVijjcHUmKQCBe3SbzG2n4siyQzM7EfmvwIwx0bAWSxauj7tYdPSudSI/fIrYYsnNgrBElOOY1q8F6yPXvjLhXIgWPalGpeuZovT4KIZCfAGdyTnYUCXAJo1LZLg6fhcxaNr+Im+qqVk1zKU1tQalXKKtcCmYIqOQ0haEmPt932UmK9FQbNCxsSfUMlzIedbiQkq5gfVY/hlFfASiXVGY4MwNWgZvA6KrGea1p3Z7A1wTJkZcPVReF1RZpE0xcIh9yYvWB4bC0+JqCnrVD3KzcmCNRgZIChPw==
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM5PR11MB1643.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(4636009)(376002)(136003)(346002)(366004)(39860400002)(396003)(316002)(8936002)(7696005)(53546011)(76116006)(83380400001)(9686003)(26005)(52536014)(55016002)(2906002)(66556008)(64756008)(6506007)(66946007)(66446008)(66476007)(186003)(5660300002)(478600001)(8676002)(4326008)(6916009)(54906003)(33656002)(71200400001)(86362001);
+ DIR:OUT; SFP:1102; 
+x-ms-exchange-antispam-messagedata: =?us-ascii?Q?ijRDXstCdXVZjbs70StUankBmk1/Mezb/L2g4I3zlBNeI4TOgJDlIElskPTZ?=
+ =?us-ascii?Q?5ewknkoD5bsqX9Aznj1qQKHcIrJXF32J9cstJD/DxylZVcuKWqOxSgZZtSuM?=
+ =?us-ascii?Q?qn1coXgBLWsZOHO27Of1Af3Nr9YH9csd5oogTmO5jTgw1mUdhryz1RXv91VK?=
+ =?us-ascii?Q?jfiexLt9kdGNV22ML4qBGRQT7yqd6P/wIMNuTP2nYnNtUBiuTve01k2lBUwM?=
+ =?us-ascii?Q?Rkp4FSggEgjbmuyIPbKY9XDZ7UgvVWJ+eTiIzSOlhpJihO+KidwGOYgsy3BC?=
+ =?us-ascii?Q?C2ABpvLHPWjjpGj+F2KiiqKVzXsW3zH/kIoUABK7gAFsMXuag0crvFApwXl6?=
+ =?us-ascii?Q?o9PvfMtcxKJb/qucuivEIo9QtL5wW6oTMipvmC+Aa4TYW+APluLJtkmm/Mll?=
+ =?us-ascii?Q?RxE5eCm4+oAhZAbFWAnSd6XZSqm+SXThk3iDrvKIfEJcJIwESf9YNDbkZquX?=
+ =?us-ascii?Q?ED20gbyj19xSRoOivg64Sm/io+0QliS9ZqikqCSYTuJED9/d/o9NKONMQvr4?=
+ =?us-ascii?Q?ZKLw4kuQJvvlAJoE5swVmlTvg1XOuXTtxIPy6OZH9WJKnsu7PkgzZOSPO34N?=
+ =?us-ascii?Q?3dkrzLvkKLb9NbfuvjHctZ9M4WRBx5BCAdUtqTgRj8IhXabIn8nCv+voQVtU?=
+ =?us-ascii?Q?l6XZxNVg+pspnV3BuIEYC8FFwJPMETxYvkI+i9St7+AreSU8aKmGwHNtWS5G?=
+ =?us-ascii?Q?dQibpimfLkSBtTdSgvjBbCM6Ez+Tz69ERxdEgJy08WVjNtQzDXS7x+Zwh5Hy?=
+ =?us-ascii?Q?SUTDbkGJaeWpIOTDYnX3c9ESGoSUpcti1NU1/Mt1hM7GLzrS3YAiMueEZqEo?=
+ =?us-ascii?Q?EaKzWHs7N0XLxeoQ+BJ8a3I5Yzb5+6Hk2wCl7cMa98voEhDfR++tkLpspiSa?=
+ =?us-ascii?Q?mx08QcTWeWc5Pex+GR/VqPjAbgtj8A/G6kiMq2eTjYD5oWZAI89Yw7G/FYlM?=
+ =?us-ascii?Q?Y0yULDeBaO/ItucVmX2sKTcLCPw13nrFDZCoMXIPdlg=3D?=
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: refactor panel backlight control
- functions. (v2)
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: DM5PR11MB1643.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: ff34c502-9b0e-4a70-cae7-08d8976cc1d7
+X-MS-Exchange-CrossTenant-originalarrivaltime: 03 Dec 2020 09:21:03.6442 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: KPaZxPJqVcdqoXvvBRvgl2fz32v9BHHBfdQ8szgPSTOI8VUx4KtLzyNusi0lHth1Vo7kwZFOA5q2Qj905n4oTQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR11MB1644
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-gfx] [PATCH v1] vfio/pci: Add support for opregion v2.0+
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,374 +136,159 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: "Fonn, Swee Yee" <swee.yee.fonn@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "kvm@vger.kernel.org" <kvm@vger.kernel.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 01 Dec 2020, Dave Airlie <airlied@gmail.com> wrote:
-> From: Dave Airlie <airlied@redhat.com>
->
-> This moves the functions into static const instead of having
-> funcs and data in the same struct.
->
-> It leaves the power callback alone, as it is used in a different
-> manner.
->
-> v2: leave power callback alone (Jani)
->
-> Reviewed-by: Jani Nikula <jani.nikula@intel.com>
-> Signed-off-by: Dave Airlie <airlied@redhat.com>
+Thanks Alex for the timely review.
 
-Pushed to dinq, thanks for the patch.
+> -----Original Message-----
+> From: Alex Williamson <alex.williamson@redhat.com>
+> Sent: Thursday, December 3, 2020 2:57 AM
+> To: Gao, Fred <fred.gao@intel.com>
+> Cc: kvm@vger.kernel.org; intel-gfx@lists.freedesktop.org; Zhenyu Wang
+> <zhenyuw@linux.intel.com>; Fonn, Swee Yee <swee.yee.fonn@intel.com>
+> Subject: Re: [PATCH v1] vfio/pci: Add support for opregion v2.0+
+> 
+> On Thu,  3 Dec 2020 01:12:49 +0800
+> Fred Gao <fred.gao@intel.com> wrote:
+> 
+> > When VBT data exceeds 6KB size and cannot be within mailbox #4
+> > starting from opregion v2.0+, Extended VBT region, next to opregion,
+> > is used to hold the VBT data, so the total size will be opregion size
+> > plus extended VBT region size.
+> >
+> > For opregion 2.1+: since rvda is relative offset from opregion base,
+> > rvda as extended VBT start offset should be same as opregion size.
+> >
+> > For opregion 2.0: the only difference between opregion 2.0 and 2.1 is
+> > rvda addressing mode besides the version. since rvda is physical host
+> > VBT address and cannot be directly used in guest, it is faked into
+> > opregion 2.1's relative offset.
+> >
+> > Cc: Zhenyu Wang <zhenyuw@linux.intel.com>
+> > Signed-off-by: Swee Yee Fonn <swee.yee.fonn@intel.com>
+> > Signed-off-by: Fred Gao <fred.gao@intel.com>
+> > ---
+> >  drivers/vfio/pci/vfio_pci_igd.c | 44
+> > +++++++++++++++++++++++++++++++++
+> >  1 file changed, 44 insertions(+)
+> >
+> > diff --git a/drivers/vfio/pci/vfio_pci_igd.c
+> > b/drivers/vfio/pci/vfio_pci_igd.c index 53d97f459252..78919a289914
+> > 100644
+> > --- a/drivers/vfio/pci/vfio_pci_igd.c
+> > +++ b/drivers/vfio/pci/vfio_pci_igd.c
+> > @@ -21,6 +21,17 @@
+> >  #define OPREGION_SIZE		(8 * 1024)
+> >  #define OPREGION_PCI_ADDR	0xfc
+> >
+> > +/*
+> > + * opregion 2.0: rvda is the physical VBT address.
+> 
+> What's rvda?  What's VBT?
+Rvda is a struct member in opregion mailbox 3 ,
+ same definition in i915's struct opregion_asle.
+  I,e  Physical address of raw VBT data (v2.0) or 
+Relative address from opregion (v2.1).
 
-BR,
-Jani.
+VBT: video bios table ,
+        the data is  stored in  opregion mailbox 4 before opregion v2.0.
+        After opregion v2.0+ , VBT data is larger than mailbox 4, 
+        so Extended VBT region, next to opregion  is used to hold the data.
+> > + *
+> > + * opregion 2.1+: rvda is unsigned, relative offset from
+> > + * opregion base, and should never point within opregion.
+> > + */
+> > +#define OPREGION_RDVA		0x3ba
+> > +#define OPREGION_RDVS		0x3c2
+> > +#define OPREGION_VERSION	22
+> 
+> Why is this specified as decimal and the others in hex?  This makes it seem
+> like the actual version rather than the offset of a version register.
 
-> ---
->  .../drm/i915/display/intel_display_types.h    |  20 ++-
->  .../drm/i915/display/intel_dp_aux_backlight.c |  14 +-
->  .../i915/display/intel_dsi_dcs_backlight.c    |  14 +-
->  drivers/gpu/drm/i915/display/intel_panel.c    | 153 +++++++++++-------
->  4 files changed, 127 insertions(+), 74 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-> index f6f0626649e0..291139fc1084 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
-> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-> @@ -225,6 +225,17 @@ struct intel_encoder {
->  	const struct drm_connector *audio_connector;
->  };
->  
-> +struct intel_panel_bl_funcs {
-> +	/* Connector and platform specific backlight functions */
-> +	int (*setup)(struct intel_connector *connector, enum pipe pipe);
-> +	u32 (*get)(struct intel_connector *connector);
-> +	void (*set)(const struct drm_connector_state *conn_state, u32 level);
-> +	void (*disable)(const struct drm_connector_state *conn_state);
-> +	void (*enable)(const struct intel_crtc_state *crtc_state,
-> +		       const struct drm_connector_state *conn_state);
-> +	u32 (*hz_to_pwm)(struct intel_connector *connector, u32 hz);
-> +};
-> +
->  struct intel_panel {
->  	struct drm_display_mode *fixed_mode;
->  	struct drm_display_mode *downclock_mode;
-> @@ -251,14 +262,7 @@ struct intel_panel {
->  
->  		struct backlight_device *device;
->  
-> -		/* Connector and platform specific backlight functions */
-> -		int (*setup)(struct intel_connector *connector, enum pipe pipe);
-> -		u32 (*get)(struct intel_connector *connector);
-> -		void (*set)(const struct drm_connector_state *conn_state, u32 level);
-> -		void (*disable)(const struct drm_connector_state *conn_state);
-> -		void (*enable)(const struct intel_crtc_state *crtc_state,
-> -			       const struct drm_connector_state *conn_state);
-> -		u32 (*hz_to_pwm)(struct intel_connector *connector, u32 hz);
-> +		const struct intel_panel_bl_funcs *funcs;
->  		void (*power)(struct intel_connector *, bool enable);
->  	} backlight;
->  };
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c b/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
-> index 51d27fc98d48..4fd536801b14 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
-> @@ -350,6 +350,14 @@ intel_dp_aux_display_control_capable(struct intel_connector *connector)
->  	return false;
->  }
->  
-> +static const struct intel_panel_bl_funcs intel_dp_bl_funcs = {
-> +	.setup = intel_dp_aux_setup_backlight,
-> +	.enable = intel_dp_aux_enable_backlight,
-> +	.disable = intel_dp_aux_disable_backlight,
-> +	.set = intel_dp_aux_set_backlight,
-> +	.get = intel_dp_aux_get_backlight,
-> +};
-> +
->  int intel_dp_aux_init_backlight_funcs(struct intel_connector *intel_connector)
->  {
->  	struct intel_panel *panel = &intel_connector->panel;
-> @@ -379,11 +387,7 @@ int intel_dp_aux_init_backlight_funcs(struct intel_connector *intel_connector)
->  		return -ENODEV;
->  	}
->  
-> -	panel->backlight.setup = intel_dp_aux_setup_backlight;
-> -	panel->backlight.enable = intel_dp_aux_enable_backlight;
-> -	panel->backlight.disable = intel_dp_aux_disable_backlight;
-> -	panel->backlight.set = intel_dp_aux_set_backlight;
-> -	panel->backlight.get = intel_dp_aux_get_backlight;
-> +	panel->backlight.funcs = &intel_dp_bl_funcs;
->  
->  	return 0;
->  }
-> diff --git a/drivers/gpu/drm/i915/display/intel_dsi_dcs_backlight.c b/drivers/gpu/drm/i915/display/intel_dsi_dcs_backlight.c
-> index b53c50372918..5c508d51f526 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dsi_dcs_backlight.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dsi_dcs_backlight.c
-> @@ -156,6 +156,14 @@ static int dcs_setup_backlight(struct intel_connector *connector,
->  	return 0;
->  }
->  
-> +static const struct intel_panel_bl_funcs dcs_bl_funcs = {
-> +	.setup = dcs_setup_backlight,
-> +	.enable = dcs_enable_backlight,
-> +	.disable = dcs_disable_backlight,
-> +	.set = dcs_set_backlight,
-> +	.get = dcs_get_backlight,
-> +};
-> +
->  int intel_dsi_dcs_init_backlight_funcs(struct intel_connector *intel_connector)
->  {
->  	struct drm_device *dev = intel_connector->base.dev;
-> @@ -169,11 +177,7 @@ int intel_dsi_dcs_init_backlight_funcs(struct intel_connector *intel_connector)
->  	if (drm_WARN_ON(dev, encoder->type != INTEL_OUTPUT_DSI))
->  		return -EINVAL;
->  
-> -	panel->backlight.setup = dcs_setup_backlight;
-> -	panel->backlight.enable = dcs_enable_backlight;
-> -	panel->backlight.disable = dcs_disable_backlight;
-> -	panel->backlight.set = dcs_set_backlight;
-> -	panel->backlight.get = dcs_get_backlight;
-> +	panel->backlight.funcs = &dcs_bl_funcs;
->  
->  	return 0;
->  }
-> diff --git a/drivers/gpu/drm/i915/display/intel_panel.c b/drivers/gpu/drm/i915/display/intel_panel.c
-> index 9f23bac0d792..36b7693453ae 100644
-> --- a/drivers/gpu/drm/i915/display/intel_panel.c
-> +++ b/drivers/gpu/drm/i915/display/intel_panel.c
-> @@ -684,7 +684,7 @@ intel_panel_actually_set_backlight(const struct drm_connector_state *conn_state,
->  	drm_dbg_kms(&i915->drm, "set backlight PWM = %d\n", level);
->  
->  	level = intel_panel_compute_brightness(connector, level);
-> -	panel->backlight.set(conn_state, level);
-> +	panel->backlight.funcs->set(conn_state, level);
->  }
->  
->  /* set backlight brightness to level in range [0..max], assuming hw min is
-> @@ -870,7 +870,7 @@ void intel_panel_disable_backlight(const struct drm_connector_state *old_conn_st
->  	if (panel->backlight.device)
->  		panel->backlight.device->props.power = FB_BLANK_POWERDOWN;
->  	panel->backlight.enabled = false;
-> -	panel->backlight.disable(old_conn_state);
-> +	panel->backlight.funcs->disable(old_conn_state);
->  
->  	mutex_unlock(&dev_priv->backlight_lock);
->  }
-> @@ -1198,7 +1198,7 @@ static void __intel_panel_enable_backlight(const struct intel_crtc_state *crtc_s
->  						 panel->backlight.device->props.max_brightness);
->  	}
->  
-> -	panel->backlight.enable(crtc_state, conn_state);
-> +	panel->backlight.funcs->enable(crtc_state, conn_state);
->  	panel->backlight.enabled = true;
->  	if (panel->backlight.device)
->  		panel->backlight.device->props.power = FB_BLANK_UNBLANK;
-> @@ -1234,7 +1234,7 @@ static u32 intel_panel_get_backlight(struct intel_connector *connector)
->  	mutex_lock(&dev_priv->backlight_lock);
->  
->  	if (panel->backlight.enabled) {
-> -		val = panel->backlight.get(connector);
-> +		val = panel->backlight.funcs->get(connector);
->  		val = intel_panel_compute_brightness(connector, val);
->  	}
->  
-> @@ -1567,13 +1567,13 @@ static u32 get_backlight_max_vbt(struct intel_connector *connector)
->  	u16 pwm_freq_hz = get_vbt_pwm_freq(dev_priv);
->  	u32 pwm;
->  
-> -	if (!panel->backlight.hz_to_pwm) {
-> +	if (!panel->backlight.funcs->hz_to_pwm) {
->  		drm_dbg_kms(&dev_priv->drm,
->  			    "backlight frequency conversion not supported\n");
->  		return 0;
->  	}
->  
-> -	pwm = panel->backlight.hz_to_pwm(connector, pwm_freq_hz);
-> +	pwm = panel->backlight.funcs->hz_to_pwm(connector, pwm_freq_hz);
->  	if (!pwm) {
->  		drm_dbg_kms(&dev_priv->drm,
->  			    "backlight frequency conversion failed\n");
-> @@ -1981,12 +1981,12 @@ int intel_panel_setup_backlight(struct drm_connector *connector, enum pipe pipe)
->  	}
->  
->  	/* ensure intel_panel has been initialized first */
-> -	if (drm_WARN_ON(&dev_priv->drm, !panel->backlight.setup))
-> +	if (drm_WARN_ON(&dev_priv->drm, !panel->backlight.funcs))
->  		return -ENODEV;
->  
->  	/* set level and max in panel struct */
->  	mutex_lock(&dev_priv->backlight_lock);
-> -	ret = panel->backlight.setup(intel_connector, pipe);
-> +	ret = panel->backlight.funcs->setup(intel_connector, pipe);
->  	mutex_unlock(&dev_priv->backlight_lock);
->  
->  	if (ret) {
-> @@ -2016,6 +2016,86 @@ static void intel_panel_destroy_backlight(struct intel_panel *panel)
->  	panel->backlight.present = false;
->  }
->  
-> +static const struct intel_panel_bl_funcs bxt_funcs = {
-> +	.setup = bxt_setup_backlight,
-> +	.enable = bxt_enable_backlight,
-> +	.disable = bxt_disable_backlight,
-> +	.set = bxt_set_backlight,
-> +	.get = bxt_get_backlight,
-> +	.hz_to_pwm = bxt_hz_to_pwm,
-> +};
-> +
-> +static const struct intel_panel_bl_funcs cnp_funcs = {
-> +	.setup = cnp_setup_backlight,
-> +	.enable = cnp_enable_backlight,
-> +	.disable = cnp_disable_backlight,
-> +	.set = bxt_set_backlight,
-> +	.get = bxt_get_backlight,
-> +	.hz_to_pwm = cnp_hz_to_pwm,
-> +};
-> +
-> +static const struct intel_panel_bl_funcs lpt_funcs = {
-> +	.setup = lpt_setup_backlight,
-> +	.enable = lpt_enable_backlight,
-> +	.disable = lpt_disable_backlight,
-> +	.set = lpt_set_backlight,
-> +	.get = lpt_get_backlight,
-> +	.hz_to_pwm = lpt_hz_to_pwm,
-> +};
-> +
-> +static const struct intel_panel_bl_funcs spt_funcs = {
-> +	.setup = lpt_setup_backlight,
-> +	.enable = lpt_enable_backlight,
-> +	.disable = lpt_disable_backlight,
-> +	.set = lpt_set_backlight,
-> +	.get = lpt_get_backlight,
-> +	.hz_to_pwm = spt_hz_to_pwm,
-> +};
-> +
-> +static const struct intel_panel_bl_funcs pch_funcs = {
-> +	.setup = pch_setup_backlight,
-> +	.enable = pch_enable_backlight,
-> +	.disable = pch_disable_backlight,
-> +	.set = pch_set_backlight,
-> +	.get = pch_get_backlight,
-> +	.hz_to_pwm = pch_hz_to_pwm,
-> +};
-> +
-> +static const struct intel_panel_bl_funcs pwm_funcs = {
-> +	.setup = pwm_setup_backlight,
-> +	.enable = pwm_enable_backlight,
-> +	.disable = pwm_disable_backlight,
-> +	.set = pwm_set_backlight,
-> +	.get = pwm_get_backlight,
-> +};
-> +
-> +static const struct intel_panel_bl_funcs vlv_funcs = {
-> +	.setup = vlv_setup_backlight,
-> +	.enable = vlv_enable_backlight,
-> +	.disable = vlv_disable_backlight,
-> +	.set = vlv_set_backlight,
-> +	.get = vlv_get_backlight,
-> +	.hz_to_pwm = vlv_hz_to_pwm,
-> +};
-> +
-> +static const struct intel_panel_bl_funcs i965_funcs = {
-> +	.setup = i965_setup_backlight,
-> +	.enable = i965_enable_backlight,
-> +	.disable = i965_disable_backlight,
-> +	.set = i9xx_set_backlight,
-> +	.get = i9xx_get_backlight,
-> +	.hz_to_pwm = i965_hz_to_pwm,
-> +};
-> +
-> +static const struct intel_panel_bl_funcs i9xx_funcs = {
-> +	.setup = i9xx_setup_backlight,
-> +	.enable = i9xx_enable_backlight,
-> +	.disable = i9xx_disable_backlight,
-> +	.set = i9xx_set_backlight,
-> +	.get = i9xx_get_backlight,
-> +	.hz_to_pwm = i9xx_hz_to_pwm,
-> +};
-> +
->  /* Set up chip specific backlight functions */
->  static void
->  intel_panel_init_backlight_funcs(struct intel_panel *panel)
-> @@ -2033,65 +2113,26 @@ intel_panel_init_backlight_funcs(struct intel_panel *panel)
->  		return;
->  
->  	if (IS_GEN9_LP(dev_priv)) {
-> -		panel->backlight.setup = bxt_setup_backlight;
-> -		panel->backlight.enable = bxt_enable_backlight;
-> -		panel->backlight.disable = bxt_disable_backlight;
-> -		panel->backlight.set = bxt_set_backlight;
-> -		panel->backlight.get = bxt_get_backlight;
-> -		panel->backlight.hz_to_pwm = bxt_hz_to_pwm;
-> +		panel->backlight.funcs = &bxt_funcs;
->  	} else if (INTEL_PCH_TYPE(dev_priv) >= PCH_CNP) {
-> -		panel->backlight.setup = cnp_setup_backlight;
-> -		panel->backlight.enable = cnp_enable_backlight;
-> -		panel->backlight.disable = cnp_disable_backlight;
-> -		panel->backlight.set = bxt_set_backlight;
-> -		panel->backlight.get = bxt_get_backlight;
-> -		panel->backlight.hz_to_pwm = cnp_hz_to_pwm;
-> +		panel->backlight.funcs = &cnp_funcs;
->  	} else if (INTEL_PCH_TYPE(dev_priv) >= PCH_LPT) {
-> -		panel->backlight.setup = lpt_setup_backlight;
-> -		panel->backlight.enable = lpt_enable_backlight;
-> -		panel->backlight.disable = lpt_disable_backlight;
-> -		panel->backlight.set = lpt_set_backlight;
-> -		panel->backlight.get = lpt_get_backlight;
->  		if (HAS_PCH_LPT(dev_priv))
-> -			panel->backlight.hz_to_pwm = lpt_hz_to_pwm;
-> +			panel->backlight.funcs = &lpt_funcs;
->  		else
-> -			panel->backlight.hz_to_pwm = spt_hz_to_pwm;
-> +			panel->backlight.funcs = &spt_funcs;
->  	} else if (HAS_PCH_SPLIT(dev_priv)) {
-> -		panel->backlight.setup = pch_setup_backlight;
-> -		panel->backlight.enable = pch_enable_backlight;
-> -		panel->backlight.disable = pch_disable_backlight;
-> -		panel->backlight.set = pch_set_backlight;
-> -		panel->backlight.get = pch_get_backlight;
-> -		panel->backlight.hz_to_pwm = pch_hz_to_pwm;
-> +		panel->backlight.funcs = &pch_funcs;
->  	} else if (IS_VALLEYVIEW(dev_priv) || IS_CHERRYVIEW(dev_priv)) {
->  		if (connector->base.connector_type == DRM_MODE_CONNECTOR_DSI) {
-> -			panel->backlight.setup = pwm_setup_backlight;
-> -			panel->backlight.enable = pwm_enable_backlight;
-> -			panel->backlight.disable = pwm_disable_backlight;
-> -			panel->backlight.set = pwm_set_backlight;
-> -			panel->backlight.get = pwm_get_backlight;
-> +			panel->backlight.funcs = &pwm_funcs;
->  		} else {
-> -			panel->backlight.setup = vlv_setup_backlight;
-> -			panel->backlight.enable = vlv_enable_backlight;
-> -			panel->backlight.disable = vlv_disable_backlight;
-> -			panel->backlight.set = vlv_set_backlight;
-> -			panel->backlight.get = vlv_get_backlight;
-> -			panel->backlight.hz_to_pwm = vlv_hz_to_pwm;
-> +			panel->backlight.funcs = &vlv_funcs;
->  		}
->  	} else if (IS_GEN(dev_priv, 4)) {
-> -		panel->backlight.setup = i965_setup_backlight;
-> -		panel->backlight.enable = i965_enable_backlight;
-> -		panel->backlight.disable = i965_disable_backlight;
-> -		panel->backlight.set = i9xx_set_backlight;
-> -		panel->backlight.get = i9xx_get_backlight;
-> -		panel->backlight.hz_to_pwm = i965_hz_to_pwm;
-> +		panel->backlight.funcs = &i965_funcs;
->  	} else {
-> -		panel->backlight.setup = i9xx_setup_backlight;
-> -		panel->backlight.enable = i9xx_enable_backlight;
-> -		panel->backlight.disable = i9xx_disable_backlight;
-> -		panel->backlight.set = i9xx_set_backlight;
-> -		panel->backlight.get = i9xx_get_backlight;
-> -		panel->backlight.hz_to_pwm = i9xx_hz_to_pwm;
-> +		panel->backlight.funcs = &i9xx_funcs;
->  	}
->  }
+Yes, it is an offset, will redefine the opregion version offset in hex. 
+> > +
+> > +
+> >  static size_t vfio_pci_igd_rw(struct vfio_pci_device *vdev, char __user
+> *buf,
+> >  			      size_t count, loff_t *ppos, bool iswrite)  { @@ -
+> 58,6 +69,7
+> > @@ static int vfio_pci_igd_opregion_init(struct vfio_pci_device *vdev)
+> >  	u32 addr, size;
+> >  	void *base;
+> >  	int ret;
+> > +	u16 version;
+> >
+> >  	ret = pci_read_config_dword(vdev->pdev, OPREGION_PCI_ADDR,
+> &addr);
+> >  	if (ret)
+> > @@ -83,6 +95,38 @@ static int vfio_pci_igd_opregion_init(struct
+> > vfio_pci_device *vdev)
+> >
+> >  	size *= 1024; /* In KB */
+> >
+> > +	/* Support opregion v2.0+ */
+> > +	version = le16_to_cpu(*(__le16 *)(base + OPREGION_VERSION));
+> > +	if (version >= 0x0200) {
+> > +		u64 rvda;
+> > +		u32 rvds;
+> > +
+> > +		rvda = le64_to_cpu(*(__le64 *)(base + OPREGION_RDVA));
+> > +		rvds = le32_to_cpu(*(__le32 *)(base + OPREGION_RDVS));
+> > +		if (rvda && rvds) {
+> > +			u32 offset;
+> > +
+> > +			if (version == 0x0200)
+> > +				offset = (rvda - (u64)addr);
+> 
+> Unnecessary outer ()
+Thx, will remove in new patch.
+> > +			else
+> > +				offset = rvda;
+> > +
+> > +			pci_WARN(vdev->pdev, offset != size,
+> > +				"Extended VBT does not follow opregion !\n"
+> > +				"opregion version 0x%x:offset 0x%x\n",
+> version, offset);
+> > +
+> > +			if (version == 0x0200) {
+> > +				/* opregion version v2.0 faked to v2.1 */
+> > +				*(__le16 *)(base + OPREGION_VERSION) =
+> > +					cpu_to_le16(0x0201);
+> > +				/* rvda faked to relative offset */
+> > +				(*(__le64 *)(base + OPREGION_RDVA)) =
+> > +					cpu_to_le64((rvda - (u64)addr));
+> 
+> We're writing to the OpRegion and affecting all future use of it, seems
+> dangerous.
 
--- 
-Jani Nikula, Intel Open Source Graphics Center
+  from the opregion v2.0+ specification 
+since there is only RVDA difference between opregion v2.0 and v2.1 besides the version
+  It is the simplest solution and should not impact the future use.
+> > +			}
+> > +			size = offset + rvds;
+> 
+> 
+> We warn about VBT (whatever that is) not immediately following the
+> OpRegion, but then we go ahead and size the thing that we expose to
+> userspace to allow read access to everything between the OpRegion and
+> VBT??
+From the specification , there should no hole between opregion and VBT.
+But I am not sure if some vendor BIOS will make the hole.
+Can we return the error if this abnormal thing happens ?
+
+> > +		}
+> > +	}
+> > +
+> >  	if (size != OPREGION_SIZE) {
+> >  		memunmap(base);
+> >  		base = memremap(addr, size, MEMREMAP_WB);
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
