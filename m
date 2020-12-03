@@ -1,34 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 420162CD08C
-	for <lists+intel-gfx@lfdr.de>; Thu,  3 Dec 2020 08:46:38 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id F17AB2CD0CB
+	for <lists+intel-gfx@lfdr.de>; Thu,  3 Dec 2020 09:08:40 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 10EAA6E09C;
-	Thu,  3 Dec 2020 07:46:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5BD916E098;
+	Thu,  3 Dec 2020 08:08:37 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 506AE6E09C
- for <intel-gfx@lists.freedesktop.org>; Thu,  3 Dec 2020 07:46:34 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 23197761-1500050 
- for <intel-gfx@lists.freedesktop.org>; Thu, 03 Dec 2020 07:46:31 +0000
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id A5A4B6E098;
+ Thu,  3 Dec 2020 08:08:35 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 9C2CDA7525;
+ Thu,  3 Dec 2020 08:08:35 +0000 (UTC)
 MIME-Version: 1.0
-In-Reply-To: <20201203005731.18385-1-chris@chris-wilson.co.uk>
-References: <20201203005731.18385-1-chris@chris-wilson.co.uk>
-From: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: 
-To: intel-gfx@lists.freedesktop.org
-Date: Thu, 03 Dec 2020 07:46:30 +0000
-Message-ID: <160698159032.26639.9590627415541886084@build.alporthouse.com>
-User-Agent: alot/0.9
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/gt: Clear the execlists timers
- before restarting
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Aditya Swarup" <aditya.swarup@intel.com>
+Date: Thu, 03 Dec 2020 08:08:35 -0000
+Message-ID: <160698291560.31154.1737820179999726755@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20201203072359.156682-1-aditya.swarup@intel.com>
+In-Reply-To: <20201203072359.156682-1-aditya.swarup@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
+ =?utf-8?q?ies_starting_with_=5Bv2=2C1/2=5D_drm/i915/tgl=3A_Fix_REVID_macr?=
+ =?utf-8?q?os_for_TGL_to_fetch_correct_stepping?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,57 +39,211 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============1639789592=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Chris Wilson (2020-12-03 00:57:31)
-> Across a reset, we stop the engine but not the timers. This leaves a
-> window where the timers have inconsistent state with the engine, causing
-> false timeslicing/preemption decisions to be made immediately upon
-> resume.
-> 
-> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-> ---
-> This fits the trace of a failure across reset, and has a certain ring of
-> truth to it, but the preempt timer should have been cleared with the
-> first submission after the reset (and before the first submission should
-> not be an issue). I fear there's something else lurking here with the
-> timer vs reset.
-> 
-> For reference, the issue is the immediate reset following the first,
-> both due to preeempt timeout, but there was not a submission during the
-> reset to prime the preempt timer:
-> 
-> [   27.184920] kworker/-121       3.... 27095209us : execlists_reset: 0000:00:02.0 bcs0: reset for preemption time out
-> [   27.184962] kworker/-121       3d..1 27095309us : active_context: 0000:00:02.0 bcs0: ccid found at active:0
-> [   27.185005] kworker/-121       3d..1 27095312us : execlists_hold: 0000:00:02.0 bcs0: fence 1c:45, current 44 on hold
-> [   27.185048] kworker/-121       3d..1 27095313us : execlists_hold: 0000:00:02.0 bcs0: fence 1c:46, current 44 on hold
-> [   27.185091] kworker/-121       3d..1 27095314us : execlists_hold: 0000:00:02.0 bcs0: fence 1c:47, current 44 on hold
-> [   27.185135] kworker/-121       3.... 27095316us : intel_engine_reset: 0000:00:02.0 bcs0: flags=8
-> [   27.185178] kworker/-121       3.... 27095345us : execlists_reset_prepare: 0000:00:02.0 bcs0: depth<-1
-> [   27.185218] kworker/-121       3.... 27095346us : intel_engine_stop_cs: 0000:00:02.0 bcs0: 
-> [   27.185259] kworker/-121       3.... 27096347us : intel_engine_stop_cs: 0000:00:02.0 bcs0: timed out on STOP_RING -> IDLE
-> [   27.185304] kworker/-121       3.... 27096367us : __intel_gt_reset: 0000:00:02.0 engine_mask=2
-> [   27.185345] kworker/-121       3.... 27097297us : intel_engine_cancel_stop_cs: 0000:00:02.0 bcs0: 
+--===============1639789592==
+Content-Type: multipart/alternative;
+ boundary="===============1880701817012624075=="
 
-I see what happened here that quietly slipped by.
+--===============1880701817012624075==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-The reset failed. And since we didn't reset the engine, the inflight
-tracking stays intact, hence why we do immediately attempt the reset
-again.
+== Series Details ==
 
-We don't have the immediate fallback to a device reset here as we are in
-the atomic engine-reset path.
+Series: series starting with [v2,1/2] drm/i915/tgl: Fix REVID macros for TGL to fetch correct stepping
+URL   : https://patchwork.freedesktop.org/series/84518/
+State : success
 
-Tricky.
+== Summary ==
 
-> [   27.185388] kworker/-121       3.... 27097299us : execlists_reset_finish: 0000:00:02.0 bcs0: depth->1
-> [   27.185440] kworker/-121       3d..2 27097348us : __i915_schedule: 0000:00:02.0 bcs0: bumping queue-priority-hint:1025 for rq:13:20, inflight:1c:47 prio 0
-> [   27.185485] kworker/-121       3..s1 27097350us : execlists_reset: 0000:00:02.0 bcs0: reset for preemption time out
-> [   27.185528] kworker/-121       3d.s2 27097454us : active_context: 0000:00:02.0 bcs0: ccid found at active:0
+CI Bug Log - changes from CI_DRM_9430 -> Patchwork_19047
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19047/index.html
+
+New tests
+---------
+
+  New tests have been introduced between CI_DRM_9430 and Patchwork_19047:
+
+### New CI tests (1) ###
+
+  * boot:
+    - Statuses : 1 fail(s) 40 pass(s)
+    - Exec time: [0.0] s
+
+  
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_19047 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@vgem_basic@setversion:
+    - fi-tgl-y:           [PASS][1] -> [DMESG-WARN][2] ([i915#402]) +2 similar issues
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9430/fi-tgl-y/igt@vgem_basic@setversion.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19047/fi-tgl-y/igt@vgem_basic@setversion.html
+
+  
+#### Possible fixes ####
+
+  * igt@core_hotunplug@unbind-rebind:
+    - fi-kbl-7500u:       [DMESG-WARN][3] ([i915#2605]) -> [PASS][4]
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9430/fi-kbl-7500u/igt@core_hotunplug@unbind-rebind.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19047/fi-kbl-7500u/igt@core_hotunplug@unbind-rebind.html
+
+  * igt@prime_self_import@basic-with_one_bo_two_files:
+    - fi-tgl-y:           [DMESG-WARN][5] ([i915#402]) -> [PASS][6] +1 similar issue
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9430/fi-tgl-y/igt@prime_self_import@basic-with_one_bo_two_files.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19047/fi-tgl-y/igt@prime_self_import@basic-with_one_bo_two_files.html
+
+  
+  [i915#2605]: https://gitlab.freedesktop.org/drm/intel/issues/2605
+  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
+
+
+Participating hosts (42 -> 41)
+------------------------------
+
+  Additional (2): fi-blb-e6850 fi-tgl-dsi 
+  Missing    (3): fi-ilk-m540 fi-bdw-samus fi-hsw-4200u 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_9430 -> Patchwork_19047
+
+  CI-20190529: 20190529
+  CI_DRM_9430: 88c5c7135da4f61235fe3dbf4a67b2121b893fca @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5878: e96c0d8e6952d892bcbbcdf004999880a4dfb42e @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_19047: ff2abc96943168dc25c22b94db3e95b26899979d @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+ff2abc969431 drm/i915/tgl: Add bound checks and simplify TGL REVID macros
+6a9d88264aa2 drm/i915/tgl: Fix REVID macros for TGL to fetch correct stepping
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19047/index.html
+
+--===============1880701817012624075==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>series starting with [v2,1/2] drm/i915/tgl: Fix REVID macros for TGL to fetch correct stepping</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/84518/">https://patchwork.freedesktop.org/series/84518/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19047/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19047/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_9430 -&gt; Patchwork_19047</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19047/index.html</p>
+<h2>New tests</h2>
+<p>New tests have been introduced between CI_DRM_9430 and Patchwork_19047:</p>
+<h3>New CI tests (1)</h3>
+<ul>
+<li>boot:<ul>
+<li>Statuses : 1 fail(s) 40 pass(s)</li>
+<li>Exec time: [0.0] s</li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_19047 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@vgem_basic@setversion:<ul>
+<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9430/fi-tgl-y/igt@vgem_basic@setversion.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19047/fi-tgl-y/igt@vgem_basic@setversion.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) +2 similar issues</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@core_hotunplug@unbind-rebind:</p>
+<ul>
+<li>fi-kbl-7500u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9430/fi-kbl-7500u/igt@core_hotunplug@unbind-rebind.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2605">i915#2605</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19047/fi-kbl-7500u/igt@core_hotunplug@unbind-rebind.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@prime_self_import@basic-with_one_bo_two_files:</p>
+<ul>
+<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9430/fi-tgl-y/igt@prime_self_import@basic-with_one_bo_two_files.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19047/fi-tgl-y/igt@prime_self_import@basic-with_one_bo_two_files.html">PASS</a> +1 similar issue</li>
+</ul>
+</li>
+</ul>
+<h2>Participating hosts (42 -&gt; 41)</h2>
+<p>Additional (2): fi-blb-e6850 fi-tgl-dsi <br />
+  Missing    (3): fi-ilk-m540 fi-bdw-samus fi-hsw-4200u </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_9430 -&gt; Patchwork_19047</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_9430: 88c5c7135da4f61235fe3dbf4a67b2121b893fca @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_5878: e96c0d8e6952d892bcbbcdf004999880a4dfb42e @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
+  Patchwork_19047: ff2abc96943168dc25c22b94db3e95b26899979d @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>ff2abc969431 drm/i915/tgl: Add bound checks and simplify TGL REVID macros<br />
+6a9d88264aa2 drm/i915/tgl: Fix REVID macros for TGL to fetch correct stepping</p>
+
+</body>
+</html>
+
+--===============1880701817012624075==--
+
+--===============1639789592==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============1639789592==--
