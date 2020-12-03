@@ -1,43 +1,30 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F03F32CD3A0
-	for <lists+intel-gfx@lfdr.de>; Thu,  3 Dec 2020 11:34:33 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id F1F962CD3A2
+	for <lists+intel-gfx@lfdr.de>; Thu,  3 Dec 2020 11:35:27 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3942D6E0C6;
-	Thu,  3 Dec 2020 10:34:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3E09B6E0C9;
+	Thu,  3 Dec 2020 10:35:26 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A442C6E0C6;
- Thu,  3 Dec 2020 10:34:29 +0000 (UTC)
-IronPort-SDR: EaWLtlDSuzeTCGlWLFT3y38JjoSWxYZuV9fudMez7SyIxsD2FTlvE00/UJ+MlvnGSbG3rW3PxU
- VSeT46HFzAcw==
-X-IronPort-AV: E=McAfee;i="6000,8403,9823"; a="173265763"
-X-IronPort-AV: E=Sophos;i="5.78,389,1599548400"; d="scan'208";a="173265763"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Dec 2020 02:34:28 -0800
-IronPort-SDR: A7uWYnzdq3Y9Em1QnL2gTlaXI5efcqlI5HQ5YKuoC4q/cUQ1b/S2yxiaf5dCwk4nuM28Ka/xLz
- FdY1kM17I3WA==
-X-IronPort-AV: E=Sophos;i="5.78,389,1599548400"; d="scan'208";a="335910501"
-Received: from jsekita-mobl3.ger.corp.intel.com (HELO zkempczy-mobl2)
- ([10.213.9.165])
- by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Dec 2020 02:34:27 -0800
-Date: Thu, 3 Dec 2020 11:34:23 +0100
-From: Zbigniew =?utf-8?Q?Kempczy=C5=84ski?= <zbigniew.kempczynski@intel.com>
-To: Chris Wilson <chris@chris-wilson.co.uk>
-Message-ID: <20201203103423.GA29773@zkempczy-mobl2>
-References: <20201203083931.1370591-1-chris@chris-wilson.co.uk>
+Received: from fireflyinternet.com (unknown [77.68.26.236])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CA0B76E0C9
+ for <intel-gfx@lists.freedesktop.org>; Thu,  3 Dec 2020 10:35:24 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from build.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 23199946-1500050 
+ for multiple; Thu, 03 Dec 2020 10:34:33 +0000
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Thu,  3 Dec 2020 10:34:32 +0000
+Message-Id: <20201203103432.31526-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20201203083931.1370591-1-chris@chris-wilson.co.uk>
-Subject: Re: [Intel-gfx] [PATCH i-g-t] i915/api_intel_bb: Only assert
- objects are unmoved for full-ppgtt
+Subject: [Intel-gfx] [PATCH] drm/i915/gem: Propagate error from cancelled
+ submit due to context closure
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,51 +37,74 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: igt-dev@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: stable@vger.kernel.org, Chris Wilson <chris@chris-wilson.co.uk>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gVGh1LCBEZWMgMDMsIDIwMjAgYXQgMDg6Mzk6MzFBTSArMDAwMCwgQ2hyaXMgV2lsc29uIHdy
-b3RlOgo+IElmIHdlIGxldCBhbiBvYmplY3QgaWRsZSBpbiBhIHNoYXJlZCBHVFQsIGl0IG1heSBi
-ZSBldmljdGVkIGJ5IHRoZQo+IGtlcm5lbCBpbiBmYXZvdXIgb2YgYW5vdGhlciBjbGllbnQuIFRo
-dXMsIHdlIGhhdmUgdG8gYmUgdmVyeSBjYXJlZnVsCj4gd2hlbiBhc3NlcnRpbmcgdGhhdCB0d28g
-ZGlmZmVyZW50IGV4ZWN1dGlvbnMgb2YgdGhlIHNhbWUgb2JqZWN0IHdpbGwKPiBiZSBhdCB0aGUg
-c2FtZSBhZGRyZXNzLiBJZiB0aGVyZSdzIGFuIGlkbGUgcG9pbnQgYmV0d2VlbiB0aGUgdHdvCj4g
-YXNzZXJ0cywgaXQgd2lsbCBvbmx5IGJlIGd1YXJhbnRlZWQgdG8gaG9sZCBmb3IgZnVsbC1wcGd0
-dC4KPiAKPiBDbG9zZXM6IGh0dHBzOi8vZ2l0bGFiLmZyZWVkZXNrdG9wLm9yZy9kcm0vaW50ZWwv
-LS9pc3N1ZXMvMjc1NAo+IFNpZ25lZC1vZmYtYnk6IENocmlzIFdpbHNvbiA8Y2hyaXNAY2hyaXMt
-d2lsc29uLmNvLnVrPgo+IENjOiBaYmlnbmlldyBLZW1wY3p5xYRza2kgPHpiaWduaWV3LmtlbXBj
-enluc2tpQGludGVsLmNvbT4KPiAtLS0KPiAgdGVzdHMvaTkxNS9hcGlfaW50ZWxfYmIuYyB8IDE5
-ICsrKysrKysrKysrKysrKy0tLS0KPiAgMSBmaWxlIGNoYW5nZWQsIDE1IGluc2VydGlvbnMoKyks
-IDQgZGVsZXRpb25zKC0pCj4gCj4gZGlmZiAtLWdpdCBhL3Rlc3RzL2k5MTUvYXBpX2ludGVsX2Ji
-LmMgYi90ZXN0cy9pOTE1L2FwaV9pbnRlbF9iYi5jCj4gaW5kZXggMGNiMzE5MmNiLi4xODgxNGQx
-NGQgMTAwNjQ0Cj4gLS0tIGEvdGVzdHMvaTkxNS9hcGlfaW50ZWxfYmIuYwo+ICsrKyBiL3Rlc3Rz
-L2k5MTUvYXBpX2ludGVsX2JiLmMKPiBAQCAtNTA1LDEwICs1MDUsMjEgQEAgc3RhdGljIHZvaWQg
-YmxpdChzdHJ1Y3QgYnVmX29wcyAqYm9wcywKPiAgCWludGVsX2JiX2V4ZWMoaWJiLCBpbnRlbF9i
-Yl9vZmZzZXQoaWJiKSwgZmxhZ3MsIHRydWUpOwo+ICAJY2hlY2tfYnVmKGRzdCwgQ09MT1JfNzcp
-Owo+ICAKPiAtCXBvZmYyX3NyYyA9IGludGVsX2JiX2dldF9vYmplY3Rfb2Zmc2V0KGliYiwgc3Jj
-LT5oYW5kbGUpOwo+IC0JcG9mZjJfZHN0ID0gaW50ZWxfYmJfZ2V0X29iamVjdF9vZmZzZXQoaWJi
-LCBkc3QtPmhhbmRsZSk7Cj4gLQlpZ3RfYXNzZXJ0KHBvZmZfc3JjID09IHBvZmYyX3NyYyk7Cj4g
-LQlpZ3RfYXNzZXJ0KHBvZmZfZHN0ID09IHBvZmYyX2RzdCk7Cj4gKwkvKgo+ICsJICogU2luY2Ug
-d2UgbGV0IHRoZSBvYmplY3RzIGlkbGUsIGlmIHRoZSBHVFQgaXMgc2hhcmVkIGFub3RoZXIgY2xp
-ZW50Cj4gKwkgKiBpcyBsaWFibGUgdG8gcmV1c2Ugb3VyIG9mZnNldHMgZm9yIHRoZW1zZWx2ZXMs
-IGNhdXNpbmcgdXMgdG8gaGF2ZQo+ICsJICogdG8gcmVsb2NhdGUuIFdlIGRvbid0IGV4cGVjdCB0
-aGlzIHRvIGhhcHBlbiBhcyBMUlUgZXZpY3Rpb24gc2hvdWxkCj4gKwkgKiB0cnkgdG8gYXZvaWQg
-cmV1c2UsIGJ1dCB3ZSB1c2UgcmFuZG9tIGV2aWN0aW9uIGluc3RlYWQgYXMgaXQgaXMKPiArCSAq
-IG11Y2ggcXVpY2tlciEgR2l2ZW4gdGhhdCB0aGUga2VybmVsIGlzICphbGxvd2VkKiB0byByZWxv
-Y2F0ZSBvYmplY3RzLAo+ICsJICogd2UgY2Fubm90IGFzc2VydCB0aGF0IHRoZSBvYmplY3RzIHJl
-bWFpbiBpbiB0aGUgc2FtZSBsb2NhdGlvbiwgdW5sZXNzCj4gKwkgKiB3ZSBhcmUgaW4gZnVsbCBj
-b250cm9sIG9mIG91ciBvd24gR1RULgo+ICsJICovCj4gKwlpZiAoZ2VtX3VzZXNfZnVsbF9wcGd0
-dChpOTE1KSkgewo+ICsJCWlndF9hc3NlcnRfZXFfdTY0KGludGVsX2JiX2dldF9vYmplY3Rfb2Zm
-c2V0KGliYiwgc3JjLT5oYW5kbGUpLAo+ICsJCQkJICBwb2ZmX3NyYyk7Cj4gKwkJaWd0X2Fzc2Vy
-dF9lcV91NjQoaW50ZWxfYmJfZ2V0X29iamVjdF9vZmZzZXQoaWJiLCBkc3QtPmhhbmRsZSksCj4g
-KwkJCQkgIHBvZmZfZHN0KTsKPiArCX0KPiAgCj4gIAlpbnRlbF9idWZfZGVzdHJveShzcmMpOwo+
-ICAJaW50ZWxfYnVmX2Rlc3Ryb3koZHN0KTsKPiAtLSAKPiAyLjI5LjIKPiAKClBhdGNoIGxvb2tz
-IG9rLiBCVFcgaXMgaXQgcG9zc2libGUgd2hlbiB3ZSdyZSBydW5uaW5nIHRoZSB0ZXN0IGluIGlz
-b2xhdGVkCmVudmlyb25tZW50IChJR1QpPwoKUmV2aWV3ZWQtYnk6IFpiaWduaWV3IEtlbXBjennF
-hHNraSA8emJpZ25pZXcua2VtcGN6eW5za2lAaW50ZWwuY29tPgoKLS0KWmJpZ25pZXcKX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxp
-bmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJl
-ZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
+In the course of discovering and closing many races with context closure
+and execbuf submission, since commit 61231f6bd056 ("drm/i915/gem: Check
+that the context wasn't closed during setup") we started checking that
+the context was not closed by another userspace thread during the execbuf
+ioctl. In doing so we cancelled the inflight request (by telling it to be
+skipped), but kept reporting success since we do submit a request, albeit
+one that doesn't execute. As the error is known before we return from the
+ioctl, we can report the error we detect immediately, rather than leave
+it on the fence status. With the immediate propagation of the error, it
+is easier for userspace to handle.
+
+Fixes: 61231f6bd056 ("drm/i915/gem: Check that the context wasn't closed during setup")
+Testcase: igt/gem_ctx_exec/basic-close-race
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: <stable@vger.kernel.org> # v5.7+
+---
+ drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c | 7 +++++--
+ 1 file changed, 5 insertions(+), 2 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+index 1904e6e5ea64..b07dc1156a0e 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+@@ -3097,7 +3097,7 @@ static void retire_requests(struct intel_timeline *tl, struct i915_request *end)
+ 			break;
+ }
+ 
+-static void eb_request_add(struct i915_execbuffer *eb)
++static int eb_request_add(struct i915_execbuffer *eb, int err)
+ {
+ 	struct i915_request *rq = eb->request;
+ 	struct intel_timeline * const tl = i915_request_timeline(rq);
+@@ -3118,6 +3118,7 @@ static void eb_request_add(struct i915_execbuffer *eb)
+ 		/* Serialise with context_close via the add_to_timeline */
+ 		i915_request_set_error_once(rq, -ENOENT);
+ 		__i915_request_skip(rq);
++		err = -ENOENT; /* override any transient errors */
+ 	}
+ 
+ 	__i915_request_queue(rq, &attr);
+@@ -3127,6 +3128,8 @@ static void eb_request_add(struct i915_execbuffer *eb)
+ 		retire_requests(tl, prev);
+ 
+ 	mutex_unlock(&tl->mutex);
++
++	return err;
+ }
+ 
+ static const i915_user_extension_fn execbuf_extensions[] = {
+@@ -3332,7 +3335,7 @@ i915_gem_do_execbuffer(struct drm_device *dev,
+ 	err = eb_submit(&eb, batch);
+ err_request:
+ 	i915_request_get(eb.request);
+-	eb_request_add(&eb);
++	err = eb_request_add(&eb, err);
+ 
+ 	if (eb.fences)
+ 		signal_fence_array(&eb);
+-- 
+2.20.1
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
