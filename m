@@ -1,33 +1,30 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 019792CE1B9
-	for <lists+intel-gfx@lfdr.de>; Thu,  3 Dec 2020 23:33:44 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id D949D2CE1EC
+	for <lists+intel-gfx@lfdr.de>; Thu,  3 Dec 2020 23:39:05 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 810A06EC59;
-	Thu,  3 Dec 2020 22:33:41 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
+	by gabe.freedesktop.org (Postfix) with ESMTP id 442ED6EC61;
+	Thu,  3 Dec 2020 22:39:04 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9E6C76EC59
- for <Intel-gfx@lists.freedesktop.org>; Thu,  3 Dec 2020 22:33:39 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2888A6EC61
+ for <intel-gfx@lists.freedesktop.org>; Thu,  3 Dec 2020 22:39:02 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 23208324-1500050 for multiple; Thu, 03 Dec 2020 22:33:34 +0000
-MIME-Version: 1.0
-In-Reply-To: <20201126164703.1578226-1-tvrtko.ursulin@linux.intel.com>
-References: <20201126164703.1578226-1-tvrtko.ursulin@linux.intel.com>
+Received: from build.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 23208355-1500050 
+ for multiple; Thu, 03 Dec 2020 22:38:51 +0000
 From: Chris Wilson <chris@chris-wilson.co.uk>
-To: Intel-gfx@lists.freedesktop.org,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Date: Thu, 03 Dec 2020 22:33:32 +0000
-Message-ID: <160703481225.6805.2703036425596972611@build.alporthouse.com>
-User-Agent: alot/0.9
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/pmu: Deprecate I915_PMU_LAST and
- optimize state tracking
+To: intel-gfx@lists.freedesktop.org
+Date: Thu,  3 Dec 2020 22:38:49 +0000
+Message-Id: <20201203223849.17350-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.20.1
+MIME-Version: 1.0
+Subject: [Intel-gfx] [PATCH] drm/i915: Stop sampling rc6 from inside
+ pmu_enable
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,137 +37,82 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Chris Wilson <chris@chris-wilson.co.uk>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Tvrtko Ursulin (2020-11-26 16:47:03)
-> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-> 
-> Adding any kinds of "last" abi markers is usually a mistake which I
-> repeated when implementing the PMU because it felt convenient at the time.
-> 
-> This patch marks I915_PMU_LAST as deprecated and stops the internal
-> implementation using it for sizing the event status bitmask and array.
-> 
-> New way of sizing the fields is a bit less elegant, but it omits reserving
-> slots for tracking events we are not interested in, and as such saves some
-> runtime space. Adding sampling events is likely to be a special event and
-> the new plumbing needed will be easily detected in testing. Existing
-> asserts against the bitfield and array sizes are keeping the code safe.
-> 
-> First event which gets the new treatment in this new scheme are the
-> interrupts - which neither needs any tracking in i915 pmu nor needs
-> waking up the GPU to read it.
-> 
-> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-> ---
->  drivers/gpu/drm/i915/i915_pmu.c | 64 +++++++++++++++++++++++++++------
->  drivers/gpu/drm/i915/i915_pmu.h | 35 ++++++++++++------
->  include/uapi/drm/i915_drm.h     |  2 +-
->  3 files changed, 78 insertions(+), 23 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/i915_pmu.c b/drivers/gpu/drm/i915/i915_pmu.c
-> index cd786ad12be7..cd564c709115 100644
-> --- a/drivers/gpu/drm/i915/i915_pmu.c
-> +++ b/drivers/gpu/drm/i915/i915_pmu.c
-> @@ -27,8 +27,6 @@
->          BIT(I915_SAMPLE_WAIT) | \
->          BIT(I915_SAMPLE_SEMA))
->  
-> -#define ENGINE_SAMPLE_BITS (1 << I915_PMU_SAMPLE_BITS)
-> -
->  static cpumask_t i915_pmu_cpumask;
->  static unsigned int i915_pmu_target_cpu = -1;
->  
-> @@ -57,12 +55,39 @@ static bool is_engine_config(u64 config)
->         return config < __I915_PMU_OTHER(0);
->  }
->  
-> -static unsigned int config_enabled_bit(u64 config)
-> +static unsigned int is_tracked_config(const u64 config)
->  {
-> -       if (is_engine_config(config))
-> +       unsigned int val;
-> +
-> +       switch (config) {
-> +       case I915_PMU_ACTUAL_FREQUENCY:
-> +               val =  __I915_PMU_ACTUAL_FREQUENCY_ENABLED;
-> +               break;
-> +       case I915_PMU_REQUESTED_FREQUENCY:
-> +               val = __I915_PMU_REQUESTED_FREQUENCY_ENABLED;
-> +               break;
-> +       case I915_PMU_RC6_RESIDENCY:
-> +               val = __I915_PMU_RC6_RESIDENCY_ENABLED;
-> +               break;
-> +       default:
-> +               return 0;
-> +       }
-> +
-> +       return val + 1;
-> +}
-> +
-> +static unsigned int config_enabled_bit(const u64 config)
-> +{
-> +       if (is_engine_config(config)) {
->                 return engine_config_sample(config);
-> -       else
-> -               return ENGINE_SAMPLE_BITS + (config - __I915_PMU_OTHER(0));
-> +       } else {
-> +               unsigned int bit = is_tracked_config(config);
-> +
-> +               if (bit)
-> +                       return I915_ENGINE_SAMPLE_COUNT + bit - 1;
-> +               else
-> +                       return -1;
-> +       }
->  }
->  
->  static u64 config_enabled_mask(u64 config)
-> @@ -80,10 +105,15 @@ static unsigned int event_enabled_bit(struct perf_event *event)
->         return config_enabled_bit(event->attr.config);
->  }
->  
-> +static bool event_read_needs_wakeref(const struct perf_event *event)
-> +{
-> +       return event->attr.config == I915_PMU_RC6_RESIDENCY;
-> +}
-> +
->  static bool pmu_needs_timer(struct i915_pmu *pmu, bool gpu_active)
->  {
->         struct drm_i915_private *i915 = container_of(pmu, typeof(*i915), pmu);
-> -       u64 enable;
-> +       u32 enable;
->  
->         /*
->          * Only some counters need the sampling timer.
-> @@ -627,12 +657,19 @@ static void i915_pmu_enable(struct perf_event *event)
->  {
->         struct drm_i915_private *i915 =
->                 container_of(event->pmu, typeof(*i915), pmu.base);
-> -       unsigned int bit = event_enabled_bit(event);
-> +       bool need_wakeref = event_read_needs_wakeref(event);
->         struct i915_pmu *pmu = &i915->pmu;
-> -       intel_wakeref_t wakeref;
-> +       intel_wakeref_t wakeref = 0;
->         unsigned long flags;
-> +       unsigned int bit;
-> +
-> +       if (need_wakeref)
-> +               wakeref = intel_runtime_pm_get(&i915->runtime_pm);
-> +
-> +       bit = event_enabled_bit(event);
-> +       if (bit == -1)
-> +               goto update;
->  
-> -       wakeref = intel_runtime_pm_get(&i915->runtime_pm);
->         spin_lock_irqsave(&pmu->lock, flags);
+Since rc6 is sampling the device registers, we try to acquire the device
+wakeref. However, since i915_pmu_enable may be called from hardirq, we
+cannot actually wake the device up. So let's not, and hope our gt wake
+tracking is accurate.
 
-What are we taking a wakeref here for?
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+---
+ drivers/gpu/drm/i915/i915_pmu.c | 20 --------------------
+ 1 file changed, 20 deletions(-)
 
-Looks just to be __get_rc6. Do we need to update the sample at all?
--Chris
+diff --git a/drivers/gpu/drm/i915/i915_pmu.c b/drivers/gpu/drm/i915/i915_pmu.c
+index 97bb4aaa5236..b3df73ba1cb0 100644
+--- a/drivers/gpu/drm/i915/i915_pmu.c
++++ b/drivers/gpu/drm/i915/i915_pmu.c
+@@ -103,11 +103,6 @@ static unsigned int event_bit(struct perf_event *event)
+ 	return config_bit(event->attr.config);
+ }
+ 
+-static bool event_read_needs_wakeref(const struct perf_event *event)
+-{
+-	return event->attr.config == I915_PMU_RC6_RESIDENCY;
+-}
+-
+ static bool pmu_needs_timer(struct i915_pmu *pmu, bool gpu_active)
+ {
+ 	struct drm_i915_private *i915 = container_of(pmu, typeof(*i915), pmu);
+@@ -655,15 +650,10 @@ static void i915_pmu_enable(struct perf_event *event)
+ {
+ 	struct drm_i915_private *i915 =
+ 		container_of(event->pmu, typeof(*i915), pmu.base);
+-	bool need_wakeref = event_read_needs_wakeref(event);
+ 	struct i915_pmu *pmu = &i915->pmu;
+-	intel_wakeref_t wakeref = 0;
+ 	unsigned long flags;
+ 	unsigned int bit;
+ 
+-	if (need_wakeref)
+-		wakeref = intel_runtime_pm_get(&i915->runtime_pm);
+-
+ 	bit = event_bit(event);
+ 	if (bit == -1)
+ 		goto update;
+@@ -678,13 +668,6 @@ static void i915_pmu_enable(struct perf_event *event)
+ 	GEM_BUG_ON(bit >= ARRAY_SIZE(pmu->enable_count));
+ 	GEM_BUG_ON(pmu->enable_count[bit] == ~0);
+ 
+-	if (pmu->enable_count[bit] == 0 &&
+-	    config_mask(I915_PMU_RC6_RESIDENCY) & BIT_ULL(bit)) {
+-		pmu->sample[__I915_SAMPLE_RC6_LAST_REPORTED].cur = 0;
+-		pmu->sample[__I915_SAMPLE_RC6].cur = __get_rc6(&i915->gt);
+-		pmu->sleep_last = ktime_get();
+-	}
+-
+ 	pmu->enable |= BIT_ULL(bit);
+ 	pmu->enable_count[bit]++;
+ 
+@@ -726,9 +709,6 @@ static void i915_pmu_enable(struct perf_event *event)
+ 	 * an existing non-zero value.
+ 	 */
+ 	local64_set(&event->hw.prev_count, __i915_pmu_event_read(event));
+-
+-	if (wakeref)
+-		intel_runtime_pm_put(&i915->runtime_pm, wakeref);
+ }
+ 
+ static void i915_pmu_disable(struct perf_event *event)
+-- 
+2.20.1
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
