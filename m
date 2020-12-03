@@ -1,52 +1,40 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id AC0F82CE2C9
-	for <lists+intel-gfx@lfdr.de>; Fri,  4 Dec 2020 00:38:56 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id A86322CE303
+	for <lists+intel-gfx@lfdr.de>; Fri,  4 Dec 2020 00:51:11 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4CAC56E0DB;
-	Thu,  3 Dec 2020 23:38:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B1EB06E0E3;
+	Thu,  3 Dec 2020 23:51:05 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [216.205.24.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D5D996E0DB
- for <intel-gfx@lists.freedesktop.org>; Thu,  3 Dec 2020 23:38:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1607038730;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=Hli72dy0cTfWhnPynSoKT4NTzeaVrDo6tur3icwmqMo=;
- b=BBFcD+fGbqljUsC8WwdYc26pSRXGZ/sQpCdKcPlqMgI4t0Vr7X80zmPjqfneMIWSrkuxEs
- T1pyuuGDboFaPF2HGKqyRVPFhlmZafBe2tt1ogjOf322Jiz+YxkgCj2f0q8D9GNJJgo4V7
- 00oCq674VZZzTwkG4IIuFI2R+aHzGxE=
-Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
- [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-407-96hGfTrJOeWIf2I_ZaQ1-A-1; Thu, 03 Dec 2020 18:38:46 -0500
-X-MC-Unique: 96hGfTrJOeWIf2I_ZaQ1-A-1
-Received: from smtp.corp.redhat.com (int-mx08.intmail.prod.int.phx2.redhat.com
- [10.5.11.23])
- (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
- (No client certificate requested)
- by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 1EDBC835DE0;
- Thu,  3 Dec 2020 23:38:45 +0000 (UTC)
-Received: from w520.home (ovpn-112-10.phx2.redhat.com [10.3.112.10])
- by smtp.corp.redhat.com (Postfix) with ESMTP id B59301A890;
- Thu,  3 Dec 2020 23:38:44 +0000 (UTC)
-Date: Thu, 3 Dec 2020 16:38:44 -0700
-From: Alex Williamson <alex.williamson@redhat.com>
-To: "Gao, Fred" <fred.gao@intel.com>
-Message-ID: <20201203163844.2bcc4b85@w520.home>
-In-Reply-To: <DM5PR11MB16436AACB3AE89CC8C4ED4199DF20@DM5PR11MB1643.namprd11.prod.outlook.com>
-References: <20201202171249.17083-1-fred.gao@intel.com>
- <20201202115723.27df527b@w520.home>
- <DM5PR11MB16436AACB3AE89CC8C4ED4199DF20@DM5PR11MB1643.namprd11.prod.outlook.com>
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6E1F26E0DE
+ for <intel-gfx@lists.freedesktop.org>; Thu,  3 Dec 2020 23:51:04 +0000 (UTC)
+IronPort-SDR: cr6jFsk6XYy2V/8Nh0jw/YZF15k/DkSAsUoeP80TzErpt4rbL+leZl01T+ERXSX3VHu5wBnJC/
+ dNedZUaT9gaQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9824"; a="161067204"
+X-IronPort-AV: E=Sophos;i="5.78,390,1599548400"; d="scan'208";a="161067204"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Dec 2020 15:51:03 -0800
+IronPort-SDR: HLGIj796a9ezA+/32c47XNKMpeHTYVAUjWSinAkK/DOfIX68wV1hJ0ekazNB4b80phnl1L+um2
+ anQwbKj9qdNQ==
+X-IronPort-AV: E=Sophos;i="5.78,390,1599548400"; d="scan'208";a="550716490"
+Received: from labuser-z97x-ud5h.jf.intel.com ([10.165.21.211])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-SHA;
+ 03 Dec 2020 15:51:03 -0800
+From: Manasi Navare <manasi.d.navare@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Thu,  3 Dec 2020 15:53:50 -0800
+Message-Id: <20201203235358.18041-1-manasi.d.navare@intel.com>
+X-Mailer: git-send-email 2.19.1
 MIME-Version: 1.0
-X-Scanned-By: MIMEDefang 2.84 on 10.5.11.23
-Subject: Re: [Intel-gfx] [PATCH v1] vfio/pci: Add support for opregion v2.0+
+Subject: [Intel-gfx] [PATCH v3 1/9] drm/i915/display/vrr: Create VRR file
+ and add VRR capability check
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,179 +47,73 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Fonn, Swee Yee" <swee.yee.fonn@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "kvm@vger.kernel.org" <kvm@vger.kernel.org>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: Jani Nikula <jani.nikula@intel.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 3 Dec 2020 09:21:03 +0000
-"Gao, Fred" <fred.gao@intel.com> wrote:
-
-> Thanks Alex for the timely review.
-> 
-> > -----Original Message-----
-> > From: Alex Williamson <alex.williamson@redhat.com>
-> > Sent: Thursday, December 3, 2020 2:57 AM
-> > To: Gao, Fred <fred.gao@intel.com>
-> > Cc: kvm@vger.kernel.org; intel-gfx@lists.freedesktop.org; Zhenyu Wang
-> > <zhenyuw@linux.intel.com>; Fonn, Swee Yee <swee.yee.fonn@intel.com>
-> > Subject: Re: [PATCH v1] vfio/pci: Add support for opregion v2.0+
-> > 
-> > On Thu,  3 Dec 2020 01:12:49 +0800
-> > Fred Gao <fred.gao@intel.com> wrote:
-> >   
-> > > When VBT data exceeds 6KB size and cannot be within mailbox #4
-> > > starting from opregion v2.0+, Extended VBT region, next to opregion,
-> > > is used to hold the VBT data, so the total size will be opregion size
-> > > plus extended VBT region size.
-> > >
-> > > For opregion 2.1+: since rvda is relative offset from opregion base,
-> > > rvda as extended VBT start offset should be same as opregion size.
-> > >
-> > > For opregion 2.0: the only difference between opregion 2.0 and 2.1 is
-> > > rvda addressing mode besides the version. since rvda is physical host
-> > > VBT address and cannot be directly used in guest, it is faked into
-> > > opregion 2.1's relative offset.
-> > >
-> > > Cc: Zhenyu Wang <zhenyuw@linux.intel.com>
-> > > Signed-off-by: Swee Yee Fonn <swee.yee.fonn@intel.com>
-> > > Signed-off-by: Fred Gao <fred.gao@intel.com>
-> > > ---
-> > >  drivers/vfio/pci/vfio_pci_igd.c | 44
-> > > +++++++++++++++++++++++++++++++++
-> > >  1 file changed, 44 insertions(+)
-> > >
-> > > diff --git a/drivers/vfio/pci/vfio_pci_igd.c
-> > > b/drivers/vfio/pci/vfio_pci_igd.c index 53d97f459252..78919a289914
-> > > 100644
-> > > --- a/drivers/vfio/pci/vfio_pci_igd.c
-> > > +++ b/drivers/vfio/pci/vfio_pci_igd.c
-> > > @@ -21,6 +21,17 @@
-> > >  #define OPREGION_SIZE		(8 * 1024)
-> > >  #define OPREGION_PCI_ADDR	0xfc
-> > >
-> > > +/*
-> > > + * opregion 2.0: rvda is the physical VBT address.  
-> > 
-> > What's rvda?  What's VBT?  
-> Rvda is a struct member in opregion mailbox 3 ,
->  same definition in i915's struct opregion_asle.
->   I,e  Physical address of raw VBT data (v2.0) or 
-> Relative address from opregion (v2.1).
-> 
-> VBT: video bios table ,
->         the data is  stored in  opregion mailbox 4 before opregion v2.0.
->         After opregion v2.0+ , VBT data is larger than mailbox 4, 
->         so Extended VBT region, next to opregion  is used to hold the data.
-
-
-Are these published anywhere?  I can only find revision 1.0 available.
-
-
-> > > + *
-> > > + * opregion 2.1+: rvda is unsigned, relative offset from
-> > > + * opregion base, and should never point within opregion.
-> > > + */
-> > > +#define OPREGION_RDVA		0x3ba
-> > > +#define OPREGION_RDVS		0x3c2
-> > > +#define OPREGION_VERSION	22  
-> > 
-> > Why is this specified as decimal and the others in hex?  This makes it seem
-> > like the actual version rather than the offset of a version register.  
-> 
-> Yes, it is an offset, will redefine the opregion version offset in hex. 
-> > > +
-> > > +
-> > >  static size_t vfio_pci_igd_rw(struct vfio_pci_device *vdev, char __user  
-> > *buf,  
-> > >  			      size_t count, loff_t *ppos, bool iswrite)  { @@ -  
-> > 58,6 +69,7  
-> > > @@ static int vfio_pci_igd_opregion_init(struct vfio_pci_device *vdev)
-> > >  	u32 addr, size;
-> > >  	void *base;
-> > >  	int ret;
-> > > +	u16 version;
-> > >
-> > >  	ret = pci_read_config_dword(vdev->pdev, OPREGION_PCI_ADDR,  
-> > &addr);  
-> > >  	if (ret)
-> > > @@ -83,6 +95,38 @@ static int vfio_pci_igd_opregion_init(struct
-> > > vfio_pci_device *vdev)
-> > >
-> > >  	size *= 1024; /* In KB */
-> > >
-> > > +	/* Support opregion v2.0+ */
-> > > +	version = le16_to_cpu(*(__le16 *)(base + OPREGION_VERSION));
-> > > +	if (version >= 0x0200) {
-> > > +		u64 rvda;
-> > > +		u32 rvds;
-> > > +
-> > > +		rvda = le64_to_cpu(*(__le64 *)(base + OPREGION_RDVA));
-> > > +		rvds = le32_to_cpu(*(__le32 *)(base + OPREGION_RDVS));
-> > > +		if (rvda && rvds) {
-> > > +			u32 offset;
-> > > +
-> > > +			if (version == 0x0200)
-> > > +				offset = (rvda - (u64)addr);  
-> > 
-> > Unnecessary outer ()  
-> Thx, will remove in new patch.
-> > > +			else
-> > > +				offset = rvda;
-> > > +
-> > > +			pci_WARN(vdev->pdev, offset != size,
-> > > +				"Extended VBT does not follow opregion !\n"
-> > > +				"opregion version 0x%x:offset 0x%x\n",  
-> > version, offset);  
-> > > +
-> > > +			if (version == 0x0200) {
-> > > +				/* opregion version v2.0 faked to v2.1 */
-> > > +				*(__le16 *)(base + OPREGION_VERSION) =
-> > > +					cpu_to_le16(0x0201);
-> > > +				/* rvda faked to relative offset */
-> > > +				(*(__le64 *)(base + OPREGION_RDVA)) =
-> > > +					cpu_to_le64((rvda - (u64)addr));  
-> > 
-> > We're writing to the OpRegion and affecting all future use of it, seems
-> > dangerous.  
-> 
->   from the opregion v2.0+ specification 
-> since there is only RVDA difference between opregion v2.0 and v2.1 besides the version
->   It is the simplest solution and should not impact the future use.
-
-*Should* not, but I'm not so confident without a spec to reference.
-
-
-> > > +			}
-> > > +			size = offset + rvds;  
-> > 
-> > 
-> > We warn about VBT (whatever that is) not immediately following the
-> > OpRegion, but then we go ahead and size the thing that we expose to
-> > userspace to allow read access to everything between the OpRegion and
-> > VBT??  
-> From the specification , there should no hole between opregion and VBT.
-> But I am not sure if some vendor BIOS will make the hole.
-> Can we return the error if this abnormal thing happens ?
-
-It seems rather dangerous to allow a user to have read access to an
-unknown extent of unknown data... right?  Thanks,
-
-Alex
-
-
-> > > +		}
-> > > +	}
-> > > +
-> > >  	if (size != OPREGION_SIZE) {
-> > >  		memunmap(base);
-> > >  		base = memremap(addr, size, MEMREMAP_WB);  
-> 
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+V2UgY3JlYXRlIGEgbmV3IGZpbGUgZm9yIGFsbCBWUlIgcmVsYXRlZCBoZWxwZXJzLgpBbHNvIGFk
+ZCBhIGZ1bmN0aW9uIHRvIGNoZWNrIHZyciBjYXBhYmlsaXR5IGJhc2VkIG9uCnBsYXRmb3JtIHN1
+cHBvcnQsIERQQ0QgYml0cyBhbmQgRURJRCBtb25pdG9yIHJhbmdlLgoKdjI6CiogUmVtb3ZlIGF1
+dGhvciAoSmFuaSBOKQoqIERlZmluZSBIQVNfVlJSIChKYW5pIE4pCiogRW5zdXJlIGludGVsX2Rw
+IGNhbiBiZSBvYnRhaW5lZCBmcm9tIGNvbm4gKEphbmkgTikKCkNjOiBWaWxsZSBTeXJqw6Rsw6Qg
+PHZpbGxlLnN5cmphbGFAbGludXguaW50ZWwuY29tPgpDYzogSmFuaSBOaWt1bGEgPGphbmkubmlr
+dWxhQGludGVsLmNvbT4KU2lnbmVkLW9mZi1ieTogTWFuYXNpIE5hdmFyZSA8bWFuYXNpLmQubmF2
+YXJlQGludGVsLmNvbT4KLS0tCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9NYWtlZmlsZSAgICAgICAg
+ICAgIHwgIDEgKwogZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF92cnIuYyB8IDMy
+ICsrKysrKysrKysrKysrKysrKysrKysrKwogZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9p
+bnRlbF92cnIuaCB8IDE1ICsrKysrKysrKysrCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2Ry
+di5oICAgICAgICAgIHwgIDIgKysKIDQgZmlsZXMgY2hhbmdlZCwgNTAgaW5zZXJ0aW9ucygrKQog
+Y3JlYXRlIG1vZGUgMTAwNjQ0IGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfdnJy
+LmMKIGNyZWF0ZSBtb2RlIDEwMDY0NCBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVs
+X3Zyci5oCgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvTWFrZWZpbGUgYi9kcml2
+ZXJzL2dwdS9kcm0vaTkxNS9NYWtlZmlsZQppbmRleCBlNTU3NGU1MDZhNWMuLjNiZWVhZjUxNzE5
+MSAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvTWFrZWZpbGUKKysrIGIvZHJpdmVy
+cy9ncHUvZHJtL2k5MTUvTWFrZWZpbGUKQEAgLTI0OSw2ICsyNDksNyBAQCBpOTE1LXkgKz0gXAog
+CWRpc3BsYXkvaW50ZWxfc2R2by5vIFwKIAlkaXNwbGF5L2ludGVsX3R2Lm8gXAogCWRpc3BsYXkv
+aW50ZWxfdmRzYy5vIFwKKwlkaXNwbGF5L2ludGVsX3Zyci5vIFwKIAlkaXNwbGF5L3Zsdl9kc2ku
+byBcCiAJZGlzcGxheS92bHZfZHNpX3BsbC5vCiAKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2Ry
+bS9pOTE1L2Rpc3BsYXkvaW50ZWxfdnJyLmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5
+L2ludGVsX3Zyci5jCm5ldyBmaWxlIG1vZGUgMTAwNjQ0CmluZGV4IDAwMDAwMDAwMDAwMC4uOGE0
+MjdjMTUyMzQxCi0tLSAvZGV2L251bGwKKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxh
+eS9pbnRlbF92cnIuYwpAQCAtMCwwICsxLDMyIEBACisvKiBTUERYLUxpY2Vuc2UtSWRlbnRpZmll
+cjogTUlUICovCisvKgorICogQ29weXJpZ2h0IMKpIDIwMjAgSW50ZWwgQ29ycG9yYXRpb24KKyAq
+CisgKi8KKworI2luY2x1ZGUgImk5MTVfZHJ2LmgiCisjaW5jbHVkZSAiaW50ZWxfZGlzcGxheV90
+eXBlcy5oIgorI2luY2x1ZGUgImludGVsX3Zyci5oIgorCitib29sIGludGVsX3Zycl9pc19jYXBh
+YmxlKHN0cnVjdCBkcm1fY29ubmVjdG9yICpjb25uZWN0b3IpCit7CisJc3RydWN0IGludGVsX2Rw
+ICppbnRlbF9kcDsKKwljb25zdCBzdHJ1Y3QgZHJtX2Rpc3BsYXlfaW5mbyAqaW5mbyA9ICZjb25u
+ZWN0b3ItPmRpc3BsYXlfaW5mbzsKKwlzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqaTkxNSA9IHRv
+X2k5MTUoY29ubmVjdG9yLT5kZXYpOworCisJaWYgKGNvbm5lY3Rvci0+Y29ubmVjdG9yX3R5cGUg
+IT0gRFJNX01PREVfQ09OTkVDVE9SX2VEUCAmJgorCSAgICBjb25uZWN0b3ItPmNvbm5lY3Rvcl90
+eXBlICE9IERSTV9NT0RFX0NPTk5FQ1RPUl9EaXNwbGF5UG9ydCkKKwkJcmV0dXJuIGZhbHNlOwor
+CisJaW50ZWxfZHAgPSBpbnRlbF9hdHRhY2hlZF9kcCh0b19pbnRlbF9jb25uZWN0b3IoY29ubmVj
+dG9yKSk7CisJLyoKKwkgKiBEUCBTaW5rIGlzIGNhcGFibGUgb2YgVmFyaWFibGUgcmVmcmVzaCB2
+aWRlbyB0aW1pbmdzIGlmCisJICogSWdub3JlIE1TQSBiaXQgaXMgc2V0IGluIERQQ0QuCisJICog
+RURJRCBtb25pdG9yIHJhbmdlIGFsc28gc2hvdWxkIGJlIGF0bGVhc3QgMTAgZm9yIHJlYXNvbmFi
+bGUKKwkgKiBBZGFwdGl2ZSBzeW5jLyBWUlIgZW5kIHVzZXIgZXhwZXJpZW5jZS4KKwkgKi8KKwly
+ZXR1cm4gSEFTX1ZSUihpOTE1KSAmJgorCQlkcm1fZHBfc2lua19jYW5fZG9fdmlkZW9fd2l0aG91
+dF90aW1pbmdfbXNhKGludGVsX2RwLT5kcGNkKSAmJgorCQlpbmZvLT5tb25pdG9yX3JhbmdlLm1h
+eF92ZnJlcSAtIGluZm8tPm1vbml0b3JfcmFuZ2UubWluX3ZmcmVxID4gMTA7Cit9CisKZGlmZiAt
+LWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfdnJyLmggYi9kcml2ZXJz
+L2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX3Zyci5oCm5ldyBmaWxlIG1vZGUgMTAwNjQ0Cmlu
+ZGV4IDAwMDAwMDAwMDAwMC4uMzcwMGFjZWM1ZDA5Ci0tLSAvZGV2L251bGwKKysrIGIvZHJpdmVy
+cy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF92cnIuaApAQCAtMCwwICsxLDE1IEBACisvKiBT
+UERYLUxpY2Vuc2UtSWRlbnRpZmllcjogTUlUICovCisvKgorICogQ29weXJpZ2h0IMKpIDIwMTkg
+SW50ZWwgQ29ycG9yYXRpb24KKyovCisKKyNpZm5kZWYgX19JTlRFTF9WUlJfSF9fCisjZGVmaW5l
+IF9fSU5URUxfVlJSX0hfXworCisjaW5jbHVkZSA8bGludXgvdHlwZXMuaD4KKworc3RydWN0IGRy
+bV9jb25uZWN0b3I7CisKK2Jvb2wgaW50ZWxfdnJyX2lzX2NhcGFibGUoc3RydWN0IGRybV9jb25u
+ZWN0b3IgKmNvbm5lY3Rvcik7CisKKyNlbmRpZiAvKiBfX0lOVEVMX1ZSUl9IX18gKi8KZGlmZiAt
+LWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfZHJ2LmggYi9kcml2ZXJzL2dwdS9kcm0v
+aTkxNS9pOTE1X2Rydi5oCmluZGV4IGZjMTA5MGM2ODg5Yy4uMzg1YWVjNzQ0YTY0IDEwMDY0NAot
+LS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2Rydi5oCisrKyBiL2RyaXZlcnMvZ3B1L2Ry
+bS9pOTE1L2k5MTVfZHJ2LmgKQEAgLTE3NTMsNiArMTc1Myw4IEBAIHRnbF9yZXZpZHNfZ2V0KHN0
+cnVjdCBkcm1faTkxNV9wcml2YXRlICpkZXZfcHJpdikKIAogI2RlZmluZSBIQVNfRElTUExBWShk
+ZXZfcHJpdikgKElOVEVMX0lORk8oZGV2X3ByaXYpLT5waXBlX21hc2sgIT0gMCkKIAorI2RlZmlu
+ZSBIQVNfVlJSKGk5MTUpCShJTlRFTF9HRU4oaTkxNSkgPj0gMTIpCisKIC8qIE9ubHkgdmFsaWQg
+d2hlbiBIQVNfRElTUExBWSgpIGlzIHRydWUgKi8KICNkZWZpbmUgSU5URUxfRElTUExBWV9FTkFC
+TEVEKGRldl9wcml2KSBcCiAJKGRybV9XQVJOX09OKCYoZGV2X3ByaXYpLT5kcm0sICFIQVNfRElT
+UExBWShkZXZfcHJpdikpLCAhKGRldl9wcml2KS0+cGFyYW1zLmRpc2FibGVfZGlzcGxheSkKLS0g
+CjIuMTkuMQoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18K
+SW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0
+dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
