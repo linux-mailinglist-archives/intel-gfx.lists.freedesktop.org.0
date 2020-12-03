@@ -2,42 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4574E2CD053
-	for <lists+intel-gfx@lfdr.de>; Thu,  3 Dec 2020 08:24:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 420162CD08C
+	for <lists+intel-gfx@lfdr.de>; Thu,  3 Dec 2020 08:46:38 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 286DE6E098;
-	Thu,  3 Dec 2020 07:24:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 10EAA6E09C;
+	Thu,  3 Dec 2020 07:46:36 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 982E96E096
- for <intel-gfx@lists.freedesktop.org>; Thu,  3 Dec 2020 07:24:08 +0000 (UTC)
-IronPort-SDR: gLPFH8LSGdyQhzthikBlu8yeDIWEh4d0h+poSa6nva3bDNdih7CstWAFv7C6FkHHxtCVRAwjSo
- raeperP4Hqgg==
-X-IronPort-AV: E=McAfee;i="6000,8403,9823"; a="191375285"
-X-IronPort-AV: E=Sophos;i="5.78,388,1599548400"; d="scan'208";a="191375285"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Dec 2020 23:24:08 -0800
-IronPort-SDR: 678jmeNZbnzPf47MuNTZfuVsjZ4BtXddPvFmBxKf8FJcYpazBh8uM8LxVXf6dRi1v5HNCU1C7v
- Khn/J6e68nbg==
-X-IronPort-AV: E=Sophos;i="5.78,388,1599548400"; d="scan'208";a="361698250"
-Received: from bgersten-mobl1.amr.corp.intel.com (HELO
- aswarup-mobl.amr.corp.intel.com) ([10.252.132.63])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Dec 2020 23:24:08 -0800
-From: Aditya Swarup <aditya.swarup@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Wed,  2 Dec 2020 23:23:59 -0800
-Message-Id: <20201203072359.156682-2-aditya.swarup@intel.com>
-X-Mailer: git-send-email 2.27.0
-In-Reply-To: <20201203072359.156682-1-aditya.swarup@intel.com>
-References: <20201203072359.156682-1-aditya.swarup@intel.com>
+Received: from fireflyinternet.com (unknown [77.68.26.236])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 506AE6E09C
+ for <intel-gfx@lists.freedesktop.org>; Thu,  3 Dec 2020 07:46:34 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from localhost (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
+ 23197761-1500050 
+ for <intel-gfx@lists.freedesktop.org>; Thu, 03 Dec 2020 07:46:31 +0000
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v2 2/2] drm/i915/tgl: Add bound checks and
- simplify TGL REVID macros
+In-Reply-To: <20201203005731.18385-1-chris@chris-wilson.co.uk>
+References: <20201203005731.18385-1-chris@chris-wilson.co.uk>
+From: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: 
+To: intel-gfx@lists.freedesktop.org
+Date: Thu, 03 Dec 2020 07:46:30 +0000
+Message-ID: <160698159032.26639.9590627415541886084@build.alporthouse.com>
+User-Agent: alot/0.9
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/gt: Clear the execlists timers
+ before restarting
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,61 +41,57 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jani Nikula <jani.nikula@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-QWRkIGJvdW5kIGNoZWNrcyBmb3IgVEdMIFJFViBJRCBhcnJheS4gU2luY2UsIHRoZXJlIG1pZ2h0
-CmJlIGEgcG9zc2liaWxpdHkgb2YgdXNpbmcgb2xkZXIga2VybmVscyBvbiBsYXRlc3QgcGxhdGZv
-cm0KcmV2aXNpb25zLCByZXN1bHRpbmcgaW4gb3V0IG9mIGJvdW5kcyBhY2Nlc3MgZm9yIHJldiBJ
-RCBhcnJheS4KSW4gdGhpcyBzY2VuYXJpbywgdXNlIHRoZSBsYXRlc3QgcmV2IElEIGF2YWlsYWJs
-ZSBhbmQgYXBwbHkKdGhvc2UgV0FzLgoKQWxzbywgc2ltcGxpZnkgR1QgbWFjcm9zIGZvciBUR0wg
-cmV2IElEIHRvIHJldXNlIHRnbF9yZXZpZHNfZ2V0KCkuCgpDYzogSm9zw6kgUm9iZXJ0byBkZSBT
-b3V6YSA8am9zZS5zb3V6YUBpbnRlbC5jb20+CkNjOiBNYXR0IFJvcGVyIDxtYXR0aGV3LmQucm9w
-ZXJAaW50ZWwuY29tPgpDYzogTHVjYXMgRGUgTWFyY2hpIDxsdWNhcy5kZW1hcmNoaUBpbnRlbC5j
-b20+CkNjOiBKYW5pIE5pa3VsYSA8amFuaS5uaWt1bGFAaW50ZWwuY29tPgpDYzogVmlsbGUgU3ly
-asOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4KU2lnbmVkLW9mZi1ieTogQWRp
-dHlhIFN3YXJ1cCA8YWRpdHlhLnN3YXJ1cEBpbnRlbC5jb20+Ci0tLQogZHJpdmVycy9ncHUvZHJt
-L2k5MTUvaTkxNV9kcnYuaCB8IDM0ICsrKysrKysrKysrKysrKysrKysrKysrLS0tLS0tLS0tLQog
-MSBmaWxlIGNoYW5nZWQsIDI0IGluc2VydGlvbnMoKyksIDEwIGRlbGV0aW9ucygtKQoKZGlmZiAt
-LWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfZHJ2LmggYi9kcml2ZXJzL2dwdS9kcm0v
-aTkxNS9pOTE1X2Rydi5oCmluZGV4IDJlMjE0OWM5YTJmNC4uMzdjMmRmMTljZTUyIDEwMDY0NAot
-LS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2Rydi5oCisrKyBiL2RyaXZlcnMvZ3B1L2Ry
-bS9pOTE1L2k5MTVfZHJ2LmgKQEAgLTE1NzMsMTYgKzE1NzMsMzAgQEAgZW51bSB7CiAJVEdMX1JF
-VklEX0QwLAogfTsKIAotZXh0ZXJuIGNvbnN0IHN0cnVjdCBpOTE1X3Jldl9zdGVwcGluZ3MgdGds
-X3V5X3Jldmlkc1tdOwotZXh0ZXJuIGNvbnN0IHN0cnVjdCBpOTE1X3Jldl9zdGVwcGluZ3MgdGds
-X3Jldmlkc1tdOworI2RlZmluZSBUR0xfVVlfUkVWSURTX1NJWkUJNAorI2RlZmluZSBUR0xfUkVW
-SURTX1NJWkUJCTIKKworZXh0ZXJuIGNvbnN0IHN0cnVjdCBpOTE1X3Jldl9zdGVwcGluZ3MgdGds
-X3V5X3Jldmlkc1tUR0xfVVlfUkVWSURTX1NJWkVdOworZXh0ZXJuIGNvbnN0IHN0cnVjdCBpOTE1
-X3Jldl9zdGVwcGluZ3MgdGdsX3Jldmlkc1tUR0xfUkVWSURTX1NJWkVdOwogCiBzdGF0aWMgaW5s
-aW5lIGNvbnN0IHN0cnVjdCBpOTE1X3Jldl9zdGVwcGluZ3MgKgogdGdsX3Jldmlkc19nZXQoc3Ry
-dWN0IGRybV9pOTE1X3ByaXZhdGUgKmRldl9wcml2KQogewotCWlmIChJU19UR0xfVShkZXZfcHJp
-dikgfHwgSVNfVEdMX1koZGV2X3ByaXYpKQotCQlyZXR1cm4gJnRnbF91eV9yZXZpZHNbSU5URUxf
-UkVWSUQoZGV2X3ByaXYpXTsKLQllbHNlCi0JCXJldHVybiAmdGdsX3Jldmlkc1tJTlRFTF9SRVZJ
-RChkZXZfcHJpdildOworCXU4IHJldmlkID0gSU5URUxfUkVWSUQoZGV2X3ByaXYpOworCXU4IHNp
-emU7CisJY29uc3Qgc3RydWN0IGk5MTVfcmV2X3N0ZXBwaW5ncyAqdGdsX3JldmlkX3RibDsKKwor
-CWlmIChJU19UR0xfVShkZXZfcHJpdikgfHwgSVNfVEdMX1koZGV2X3ByaXYpKSB7CisJCXRnbF9y
-ZXZpZF90YmwgPSB0Z2xfdXlfcmV2aWRzOworCQlzaXplID0gQVJSQVlfU0laRSh0Z2xfdXlfcmV2
-aWRzKTsKKwl9IGVsc2UgeworCQl0Z2xfcmV2aWRfdGJsID0gdGdsX3JldmlkczsKKwkJc2l6ZSA9
-IEFSUkFZX1NJWkUodGdsX3Jldmlkcyk7CisJfQorCisJcmV2aWQgPSBtaW5fdCh1OCwgcmV2aWQs
-IHNpemUgLSAxKTsKKworCXJldHVybiAmdGdsX3JldmlkX3RibFtyZXZpZF07CiB9CiAKICNkZWZp
-bmUgSVNfVEdMX0RJU1BfUkVWSUQocCwgc2luY2UsIHVudGlsKSBcCkBAIC0xNTkyLDE0ICsxNjA2
-LDE0IEBAIHRnbF9yZXZpZHNfZ2V0KHN0cnVjdCBkcm1faTkxNV9wcml2YXRlICpkZXZfcHJpdikK
-IAogI2RlZmluZSBJU19UR0xfVVlfR1RfUkVWSUQocCwgc2luY2UsIHVudGlsKSBcCiAJKChJU19U
-R0xfVShwKSB8fCBJU19UR0xfWShwKSkgJiYgXAotCSB0Z2xfdXlfcmV2aWRzW0lOVEVMX1JFVklE
-KHApXS5ndF9zdGVwcGluZyA+PSAoc2luY2UpICYmIFwKLQkgdGdsX3V5X3Jldmlkc1tJTlRFTF9S
-RVZJRChwKV0uZ3Rfc3RlcHBpbmcgPD0gKHVudGlsKSkKKwkgdGdsX3Jldmlkc19nZXQocCktPmd0
-X3N0ZXBwaW5nID49IChzaW5jZSkgJiYgXAorCSB0Z2xfcmV2aWRzX2dldChwKS0+Z3Rfc3RlcHBp
-bmcgPD0gKHVudGlsKSkKIAogI2RlZmluZSBJU19UR0xfR1RfUkVWSUQocCwgc2luY2UsIHVudGls
-KSBcCiAJKElTX1RJR0VSTEFLRShwKSAmJiBcCiAJICEoSVNfVEdMX1UocCkgfHwgSVNfVEdMX1ko
-cCkpICYmIFwKLQkgdGdsX3Jldmlkc1tJTlRFTF9SRVZJRChwKV0uZ3Rfc3RlcHBpbmcgPj0gKHNp
-bmNlKSAmJiBcCi0JIHRnbF9yZXZpZHNbSU5URUxfUkVWSUQocCldLmd0X3N0ZXBwaW5nIDw9ICh1
-bnRpbCkpCisJIHRnbF9yZXZpZHNfZ2V0KHApLT5ndF9zdGVwcGluZyA+PSAoc2luY2UpICYmIFwK
-KwkgdGdsX3Jldmlkc19nZXQocCktPmd0X3N0ZXBwaW5nIDw9ICh1bnRpbCkpCiAKICNkZWZpbmUg
-UktMX1JFVklEX0EwCQkweDAKICNkZWZpbmUgUktMX1JFVklEX0IwCQkweDEKLS0gCjIuMjcuMAoK
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4
-IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
-dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
+Quoting Chris Wilson (2020-12-03 00:57:31)
+> Across a reset, we stop the engine but not the timers. This leaves a
+> window where the timers have inconsistent state with the engine, causing
+> false timeslicing/preemption decisions to be made immediately upon
+> resume.
+> 
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> ---
+> This fits the trace of a failure across reset, and has a certain ring of
+> truth to it, but the preempt timer should have been cleared with the
+> first submission after the reset (and before the first submission should
+> not be an issue). I fear there's something else lurking here with the
+> timer vs reset.
+> 
+> For reference, the issue is the immediate reset following the first,
+> both due to preeempt timeout, but there was not a submission during the
+> reset to prime the preempt timer:
+> 
+> [   27.184920] kworker/-121       3.... 27095209us : execlists_reset: 0000:00:02.0 bcs0: reset for preemption time out
+> [   27.184962] kworker/-121       3d..1 27095309us : active_context: 0000:00:02.0 bcs0: ccid found at active:0
+> [   27.185005] kworker/-121       3d..1 27095312us : execlists_hold: 0000:00:02.0 bcs0: fence 1c:45, current 44 on hold
+> [   27.185048] kworker/-121       3d..1 27095313us : execlists_hold: 0000:00:02.0 bcs0: fence 1c:46, current 44 on hold
+> [   27.185091] kworker/-121       3d..1 27095314us : execlists_hold: 0000:00:02.0 bcs0: fence 1c:47, current 44 on hold
+> [   27.185135] kworker/-121       3.... 27095316us : intel_engine_reset: 0000:00:02.0 bcs0: flags=8
+> [   27.185178] kworker/-121       3.... 27095345us : execlists_reset_prepare: 0000:00:02.0 bcs0: depth<-1
+> [   27.185218] kworker/-121       3.... 27095346us : intel_engine_stop_cs: 0000:00:02.0 bcs0: 
+> [   27.185259] kworker/-121       3.... 27096347us : intel_engine_stop_cs: 0000:00:02.0 bcs0: timed out on STOP_RING -> IDLE
+> [   27.185304] kworker/-121       3.... 27096367us : __intel_gt_reset: 0000:00:02.0 engine_mask=2
+> [   27.185345] kworker/-121       3.... 27097297us : intel_engine_cancel_stop_cs: 0000:00:02.0 bcs0: 
+
+I see what happened here that quietly slipped by.
+
+The reset failed. And since we didn't reset the engine, the inflight
+tracking stays intact, hence why we do immediately attempt the reset
+again.
+
+We don't have the immediate fallback to a device reset here as we are in
+the atomic engine-reset path.
+
+Tricky.
+
+> [   27.185388] kworker/-121       3.... 27097299us : execlists_reset_finish: 0000:00:02.0 bcs0: depth->1
+> [   27.185440] kworker/-121       3d..2 27097348us : __i915_schedule: 0000:00:02.0 bcs0: bumping queue-priority-hint:1025 for rq:13:20, inflight:1c:47 prio 0
+> [   27.185485] kworker/-121       3..s1 27097350us : execlists_reset: 0000:00:02.0 bcs0: reset for preemption time out
+> [   27.185528] kworker/-121       3d.s2 27097454us : active_context: 0000:00:02.0 bcs0: ccid found at active:0
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
