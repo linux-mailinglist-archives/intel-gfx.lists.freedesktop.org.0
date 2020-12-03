@@ -2,32 +2,67 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 086252CD621
-	for <lists+intel-gfx@lfdr.de>; Thu,  3 Dec 2020 13:53:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A6E372CD646
+	for <lists+intel-gfx@lfdr.de>; Thu,  3 Dec 2020 13:59:54 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A1CB06E995;
-	Thu,  3 Dec 2020 12:53:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 91D5C6E995;
+	Thu,  3 Dec 2020 12:59:51 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E74516E995
- for <intel-gfx@lists.freedesktop.org>; Thu,  3 Dec 2020 12:53:51 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 23201822-1500050 for multiple; Thu, 03 Dec 2020 12:53:45 +0000
+Received: from new4-smtp.messagingengine.com (new4-smtp.messagingengine.com
+ [66.111.4.230])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 14FA989FA5;
+ Thu,  3 Dec 2020 12:59:49 +0000 (UTC)
+Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
+ by mailnew.nyi.internal (Postfix) with ESMTP id 5C5EA58041E;
+ Thu,  3 Dec 2020 07:59:47 -0500 (EST)
+Received: from mailfrontend2 ([10.202.2.163])
+ by compute6.internal (MEProxy); Thu, 03 Dec 2020 07:59:47 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
+ date:from:to:cc:subject:message-id:mime-version:content-type; s=
+ fm1; bh=XXaaqays4k4y7Whh8IvMz3SH6yY2pfiiN9hKc+1ZNBQ=; b=YkODmNQ9
+ Zum4/Xygxm4ncgQOD0LStSbmqKjh1Rc+lN5uCwgvklHsnXIvadnc55ynzZ547fH4
+ pgHl3YXPlXSDv+pW+m7Ji+xrNB81gxVANGAbELwLkPK++I4HzFEFBCkmdhXEeInu
+ k40vKGokKTzqZm2IbPt+XlmQErEgYZY+FSW80NDJ2Q8nEBtfE6+WHIrt0Mq6WCNF
+ TNhwPlYIfs2MPObSuZwpluy6bLS0yT3rc8Q0aUVaHg/dsDKKyYa0BXdTSFj225cL
+ aanN6vk5rXnzXKdWuWRmPFBLoKEud/Xta282lj2uN0LkoIw6NXpbQStRqJYjqxF/
+ tOWvSMBVUTuPPw==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+ messagingengine.com; h=cc:content-type:date:from:message-id
+ :mime-version:subject:to:x-me-proxy:x-me-proxy:x-me-sender
+ :x-me-sender:x-sasl-enc; s=fm1; bh=XXaaqays4k4y7Whh8IvMz3SH6yY2p
+ fiiN9hKc+1ZNBQ=; b=AKb5AEaRe2THXjXI+KqXYkGrdKLU+ZwN5lq1ltVQqMRbb
+ S98tNBNeXxox+jldO5kWouYkVga5cZaMeUo+krRIz3cVln8Hc+5b7pIITB7dQS3J
+ qSqEhPhmxuIOiTwSPFadBmS/V7j9S4HsJU5khnN8ycOQ1+HfpxLgjMHZE57xsTW8
+ hBomfQjoGZ7/JZmXIkCAoyWrRLZl5L7cuOJdWbAosFEhAcm9xxXsVIZkSUKkitdN
+ 0sme9N89ID3EwCmAYKyVe2K5fMSVmElkpMFIq+1L3xDPOM3g66e+pWBiumrOG+Fl
+ MKUdYZppqyHKCt+9noSv6h5or7BeBgoNWHkJLtfaA==
+X-ME-Sender: <xms:QeHIXzIwI8-1MsPefQVBrxVT67ZstbJNVXWxDZoKlzYkj4TXTmO9WA>
+ <xme:QeHIX3KNVuFM8aYBvfla6I4Tc-ovKuKhSbTkAHSQqanJXVJo6sojQ8nafiz-QWeKd
+ rkUD3YGdQ-uej9vRNw>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedujedrudeiiedggeekucetufdoteggodetrfdotf
+ fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+ uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+ cujfgurhepfffhvffukfggtggusehgtderredttddunecuhfhrohhmpeforgigihhmvgcu
+ tfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrthhtvg
+ hrnhephfehtefggeekteffueeileekfeegteetfffggfekleehkeffvedvgedtieetvddu
+ necuffhomhgrihhnpehfrhgvvgguvghskhhtohhprdhorhhgnecukfhppeeltddrkeelrd
+ eikedrjeeinecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhho
+ mhepmhgrgihimhgvsegtvghrnhhordhtvggthh
+X-ME-Proxy: <xmx:QeHIX7v9Zu0PDUGUIALh-U2yCif8Rg8f75vj8vB3VtH_NYDVxrDkxw>
+ <xmx:QeHIX8Z2F_RLoJpvVhCI9EU50tJZyN25EEcOBhXGhCdpIQ9iLPoM4g>
+ <xmx:QeHIX6Y6f3GOjJzotmypKDlw7VOgICPO9y_GYIgRB1S25QxuJEhVZA>
+ <xmx:Q-HIXwPLjGWRoHRLksq7K98xZJVrzBCalPe8CBX1KdaJTYeKVa0jfA>
+Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr
+ [90.89.68.76])
+ by mail.messagingengine.com (Postfix) with ESMTPA id 092941080057;
+ Thu,  3 Dec 2020 07:59:44 -0500 (EST)
+Date: Thu, 3 Dec 2020 13:59:43 +0100
+From: Maxime Ripard <maxime@cerno.tech>
+To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
+Message-ID: <20201203125943.h2ft2xoywunt5orl@gilmour>
 MIME-Version: 1.0
-In-Reply-To: <20201203124543.GG6112@intel.com>
-References: <20201202212809.26233-1-chris@chris-wilson.co.uk>
- <20201203124543.GG6112@intel.com>
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: Ville Syrjälä <ville.syrjala@linux.intel.com>
-Date: Thu, 03 Dec 2020 12:53:43 +0000
-Message-ID: <160700002362.2026.10506954563660230233@build.alporthouse.com>
-User-Agent: alot/0.9
-Subject: Re: [Intel-gfx] [PATCH v3] drm/i915/display: Record the plane
- update times for debugging
+Subject: [Intel-gfx] [PULL] drm-misc-fixes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,41 +75,104 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: dim-tools@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Maxime Ripard <mripard@kernel.org>, intel-gfx@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============1902441249=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-UXVvdGluZyBWaWxsZSBTeXJqw6Rsw6QgKDIwMjAtMTItMDMgMTI6NDU6NDMpCj4gT24gV2VkLCBE
-ZWMgMDIsIDIwMjAgYXQgMDk6Mjg6MDlQTSArMDAwMCwgQ2hyaXMgV2lsc29uIHdyb3RlOgo+ID4g
-U2luY2Ugd2UgdHJ5IGFuZCBlc3RpbWF0ZSBob3cgbG9uZyB3ZSByZXF1aXJlIHRvIHVwZGF0ZSB0
-aGUgcmVnaXN0ZXJzIHRvCj4gPiBwZXJmb3JtIGEgcGxhbmUgdXBkYXRlLCBpdCBpcyBvZiB2aXRh
-bCBpbXBvcnRhbmNlIHRoYXQgd2UgbWVhc3VyZSB0aGUKPiA+IGRpc3RyaWJ1dGlvbiBvZiBwbGFu
-ZSB1cGRhdGVzIHRvIGJldHRlciBndWlkZSBvdXIgZXN0aW1hdGUuIElmIHdlCj4gPiB1bmRlcmVz
-dGltYXRlIGhvdyBsb25nIGl0IHRha2VzIHRvIHBlcmZvcm0gdGhlIHBsYW5lIHVwZGF0ZSwgd2Ug
-bWF5Cj4gPiBzbGlwIGludG8gdGhlIG5leHQgc2Nhbm91dCBmcmFtZSBjYXVzaW5nIGEgdGVhci4g
-SWYgd2Ugb3ZlcmVzdGltYXRlLCB3ZQo+ID4gbWF5IHVubmVjZXNzYXJpbHkgZGVsYXkgdGhlIHVw
-ZGF0ZSB0byB0aGUgbmV4dCBmcmFtZSwgY2F1c2luZyB2aXNpYmxlCj4gPiBqaXR0ZXIuCj4gPiAK
-PiA+IFJlcGxhY2UgdGhlIHdhcm5pbmcgdGhhdCB3ZSBleGNlZWQgc29tZSBhcmJpdHJhcnkgdGhy
-ZXNob2xkIGZvciB0aGUKPiA+IHZibGFuayB1cGRhdGUgd2l0aCBhIGhpc3RvZ3JhbSBmb3IgZGVi
-dWdmcy4KPiA+IAo+ID4gdjI6IEFkZCBhIHBlci1jcnRjIGRlYnVnZnMgZW50cnkgc28gdGhhdCB0
-aGUgaW5mb3JtYXRpb24gaXMgZWFzaWVyIHRvCj4gPiBleHRyYWN0IHdoZW4gdGVzdGluZyBpbmRp
-dmlkdWFsIENSVEMsIGFuZCBzbyB0aGF0IGl0IGNhbiBiZSByZXNldCBiZWZvcmUKPiA+IGEgdGVz
-dC4KPiA+IAo+ID4gdjM6IEZsaXAgdGhlIGdyYXBoIG9uIGl0cyBzaWRlOyBjcmVhdGVzIHNwYWNl
-IHRvIGxhYmVsIHRoZSB0aW1lIGF4aXMuCj4gPiAKPiA+IFVwZGF0ZXM6IDQ2ODQKPiA+ICAgICAg
-ICB8Cj4gPiAgICAxdXMgfAo+ID4gICAgICAgIHwKPiA+ICAgIDR1cyB8KioqKioqKioKPiA+ICAg
-ICAgICB8KioqKioqKioqKgo+ID4gICAxNnVzIHwqKioqKioqKioqKgo+ID4gICAgICAgIHwqKioq
-Kgo+ID4gICA2NnVzIHwKPiA+ICAgICAgICB8Cj4gPiAgMjYydXMgfAo+ID4gICAgICAgIHwKPiA+
-ICAgIDFtcyB8Cj4gPiAgICAgICAgfAo+ID4gICAgNG1zIHwKPiA+ICAgICAgICB8Cj4gPiAgIDE3
-bXMgfAo+ID4gICAgICAgIHwKPiAKPiBHb2luZyB0aGF0IGhpZ2ggZmVlbHMgYSBiaXQgb3Zlcmtp
-bGwgdG8gbWUuIEknZCBiZSBzYXRpc2lmaWVkCj4gd2l0aCBhbiB1cHBlciBsaW1pdCBvZiA8MW1z
-IG9yIHNvbWV0aGluZy4KIApJIHRob3VnaHQgMTZtcyB3YXMgb3ZlcmtpbGwsIGJ1dCBsb29raW5n
-IGF0IHRoZSByZXN1bHRzLCB3ZSBkbyBnZXQgc29tZQpkZWxheXMgPjFtcyAoYnV0IG5vdCByYWlz
-aW5nIGFuIGVycm9yIGZvciBtaXNzaW5nIHRoZSBzdGFydCBvZiB2YmxhbmspLgoKSSBjYXBwZWQg
-aXQgdGhlcmUganVzdCBpbiBjYXNlIHRoZXJlIGlzIGEgYnVnIHdoZXJlIHdlIHdhaXQgZm9yIGEg
-d2hvbGUKdmJsYW5rLCB3aGljaCBpcyBhYm91dCBhcyBzZXZlcmUgYSBidWcgYXMgb25lIG1pZ2h0
-IGV4cGVjdC4KLUNocmlzCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9w
-Lm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVs
-LWdmeAo=
+
+--===============1902441249==
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="k73hb63skliru4kq"
+Content-Disposition: inline
+
+
+--k73hb63skliru4kq
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+Hi Daniel, Dave,
+
+Here's this week round of fixes for drm-misc
+
+Thanks!
+Maxime
+
+drm-misc-fixes-2020-12-03:
+One bridge fix for OMAP, one for a race condition in a panel, two for
+uninitialized variables in rockchip and nouveau, and two fixes for mxsfb
+to fix a regression with modifiers and a fix for a fence synchronization
+issue.
+The following changes since commit 2be65641642ef423f82162c3a5f28c754d1637d2:
+
+  drm/nouveau: fix relocations applying logic and a double-free (2020-11-26=
+ 08:04:19 +0100)
+
+are available in the Git repository at:
+
+  git://anongit.freedesktop.org/drm/drm-misc tags/drm-misc-fixes-2020-12-03
+
+for you to fetch changes up to fd4e788e971ce763e50762d7b1a0048992949dd0:
+
+  drm/omap: sdi: fix bridge enable/disable (2020-11-30 11:27:57 +0200)
+
+----------------------------------------------------------------
+One bridge fix for OMAP, one for a race condition in a panel, two for
+uninitialized variables in rockchip and nouveau, and two fixes for mxsfb
+to fix a regression with modifiers and a fix for a fence synchronization
+issue.
+
+----------------------------------------------------------------
+Christian K=F6nig (1):
+      drm/nouveau: make sure ret is initialized in nouveau_ttm_io_mem_reser=
+ve
+
+Daniel Abrecht (1):
+      drm: mxsfb: Implement .format_mod_supported
+
+Lucas Stach (1):
+      drm: mxsfb: fix fence synchronization
+
+Paul Kocialkowski (1):
+      drm/rockchip: Avoid uninitialized use of endpoint id in LVDS
+
+Sebastian Reichel (1):
+      drm/panel: sony-acx565akm: Fix race condition in probe
+
+Tomi Valkeinen (1):
+      drm/omap: sdi: fix bridge enable/disable
+
+ drivers/gpu/drm/mxsfb/mxsfb_kms.c            | 11 +++++++++++
+ drivers/gpu/drm/nouveau/nouveau_bo.c         |  2 +-
+ drivers/gpu/drm/omapdrm/dss/sdi.c            | 10 ++++------
+ drivers/gpu/drm/panel/panel-sony-acx565akm.c |  2 +-
+ drivers/gpu/drm/rockchip/rockchip_lvds.c     |  2 +-
+ 5 files changed, 18 insertions(+), 9 deletions(-)
+
+--k73hb63skliru4kq
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCX8jhPwAKCRDj7w1vZxhR
+xfy0AP9S5Ds+/f3sJ4VCJ/5iB+ty1+mw1TPa3vuiaF/BOeMZaQEApWhszc1zTh4w
+Z8vKPW4JFRgfa+CpCzKg83/NKRaYbwQ=
+=zZ9v
+-----END PGP SIGNATURE-----
+
+--k73hb63skliru4kq--
+
+--===============1902441249==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============1902441249==--
