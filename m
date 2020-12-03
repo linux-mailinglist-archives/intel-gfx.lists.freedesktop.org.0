@@ -2,31 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 19DA12CD144
-	for <lists+intel-gfx@lfdr.de>; Thu,  3 Dec 2020 09:27:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8C4C62CD146
+	for <lists+intel-gfx@lfdr.de>; Thu,  3 Dec 2020 09:28:21 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 03EC96E09E;
-	Thu,  3 Dec 2020 08:27:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F22D66E09F;
+	Thu,  3 Dec 2020 08:28:19 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 354436E098;
- Thu,  3 Dec 2020 08:27:34 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id D52616E098;
+ Thu,  3 Dec 2020 08:28:18 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 2B480A47E9;
- Thu,  3 Dec 2020 08:27:34 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id CF8EFA47E9;
+ Thu,  3 Dec 2020 08:28:18 +0000 (UTC)
 MIME-Version: 1.0
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Thu, 03 Dec 2020 08:27:34 -0000
-Message-ID: <160698405414.31155.16660420523232428263@emeril.freedesktop.org>
+Date: Thu, 03 Dec 2020 08:28:18 -0000
+Message-ID: <160698409884.31154.6355219385017907506@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20201203081616.1645-1-chris@chris-wilson.co.uk>
 In-Reply-To: <20201203081616.1645-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_series_starting_with_=5B1/4=5D_drm/i915/gt=3A_Ignore_repeat?=
- =?utf-8?q?ed_attempts_to_suspend_request_flow_across_reset?=
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
+ =?utf-8?q?series_starting_with_=5B1/4=5D_drm/i915/gt=3A_Ignore_repeated_a?=
+ =?utf-8?q?ttempts_to_suspend_request_flow_across_reset?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,16 +54,26 @@ State : warning
 
 == Summary ==
 
-$ dim checkpatch origin/drm-tip
-dacd9017014a drm/i915/gt: Ignore repeated attempts to suspend request flow across reset
--:7: WARNING:TYPO_SPELLING: 'reseting' may be misspelled - perhaps 'resetting'?
-#7: 
-Before reseting the engine, we suspend the execution of the guilty
-
-total: 0 errors, 1 warnings, 0 checks, 9 lines checked
-dd0cbe4cd971 drm/i915/gt: Cancel the preemption timeout on responding to it
-3b9793a3a6be drm/i915/gt: Include reset failures in the trace
-93a470ddbac9 drm/i915/gt: Clear the execlists timers upon reset
+$ dim sparse --fast origin/drm-tip
+Sparse version: v0.6.2
+Fast mode used, each commit won't be checked separately.
+-
++drivers/gpu/drm/i915/gt/intel_reset.c:1310:5: warning: context imbalance in 'intel_gt_reset_trylock' - different lock contexts for basic block
++drivers/gpu/drm/i915/gt/selftest_reset.c:100:20:    expected void *in
++drivers/gpu/drm/i915/gt/selftest_reset.c:100:20:    got void [noderef] __iomem *[assigned] s
++drivers/gpu/drm/i915/gt/selftest_reset.c:100:20: warning: incorrect type in assignment (different address spaces)
++drivers/gpu/drm/i915/gt/selftest_reset.c:101:46:    expected void const *src
++drivers/gpu/drm/i915/gt/selftest_reset.c:101:46:    got void [noderef] __iomem *[assigned] s
++drivers/gpu/drm/i915/gt/selftest_reset.c:101:46: warning: incorrect type in argument 2 (different address spaces)
++drivers/gpu/drm/i915/gt/selftest_reset.c:136:20:    expected void *in
++drivers/gpu/drm/i915/gt/selftest_reset.c:136:20:    got void [noderef] __iomem *[assigned] s
++drivers/gpu/drm/i915/gt/selftest_reset.c:136:20: warning: incorrect type in assignment (different address spaces)
++drivers/gpu/drm/i915/gt/selftest_reset.c:137:46:    expected void const *src
++drivers/gpu/drm/i915/gt/selftest_reset.c:137:46:    got void [noderef] __iomem *[assigned] s
++drivers/gpu/drm/i915/gt/selftest_reset.c:137:46: warning: incorrect type in argument 2 (different address spaces)
++drivers/gpu/drm/i915/gt/selftest_reset.c:98:34:    expected unsigned int [usertype] *s
++drivers/gpu/drm/i915/gt/selftest_reset.c:98:34:    got void [noderef] __iomem *[assigned] s
++drivers/gpu/drm/i915/gt/selftest_reset.c:98:34: warning: incorrect type in argument 1 (different address spaces)
 
 
 _______________________________________________
