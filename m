@@ -2,29 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3E6B82CD164
-	for <lists+intel-gfx@lfdr.de>; Thu,  3 Dec 2020 09:40:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 97A272CD1E8
+	for <lists+intel-gfx@lfdr.de>; Thu,  3 Dec 2020 09:58:20 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 241406E09C;
-	Thu,  3 Dec 2020 08:40:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D904A6E09E;
+	Thu,  3 Dec 2020 08:58:17 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A238E6E09C;
- Thu,  3 Dec 2020 08:40:39 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 23198367-1500050 
- for multiple; Thu, 03 Dec 2020 08:40:27 +0000
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Thu,  3 Dec 2020 08:39:31 +0000
-Message-Id: <20201203083931.1370591-1-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.29.2
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 429BB6E09C;
+ Thu,  3 Dec 2020 08:58:16 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 38FD0A7DFB;
+ Thu,  3 Dec 2020 08:58:16 +0000 (UTC)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH i-g-t] i915/api_intel_bb: Only assert objects
- are unmoved for full-ppgtt
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Thu, 03 Dec 2020 08:58:16 -0000
+Message-ID: <160698589620.31154.12002267725769130309@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20201203081616.1645-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20201203081616.1645-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
+ =?utf-8?q?ies_starting_with_=5B1/4=5D_drm/i915/gt=3A_Ignore_repeated_atte?=
+ =?utf-8?q?mpts_to_suspend_request_flow_across_reset?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,45 +39,215 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: igt-dev@lists.freedesktop.org, Chris Wilson <chris@chris-wilson.co.uk>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============0162914987=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-SWYgd2UgbGV0IGFuIG9iamVjdCBpZGxlIGluIGEgc2hhcmVkIEdUVCwgaXQgbWF5IGJlIGV2aWN0
-ZWQgYnkgdGhlCmtlcm5lbCBpbiBmYXZvdXIgb2YgYW5vdGhlciBjbGllbnQuIFRodXMsIHdlIGhh
-dmUgdG8gYmUgdmVyeSBjYXJlZnVsCndoZW4gYXNzZXJ0aW5nIHRoYXQgdHdvIGRpZmZlcmVudCBl
-eGVjdXRpb25zIG9mIHRoZSBzYW1lIG9iamVjdCB3aWxsCmJlIGF0IHRoZSBzYW1lIGFkZHJlc3Mu
-IElmIHRoZXJlJ3MgYW4gaWRsZSBwb2ludCBiZXR3ZWVuIHRoZSB0d28KYXNzZXJ0cywgaXQgd2ls
-bCBvbmx5IGJlIGd1YXJhbnRlZWQgdG8gaG9sZCBmb3IgZnVsbC1wcGd0dC4KCkNsb3NlczogaHR0
-cHM6Ly9naXRsYWIuZnJlZWRlc2t0b3Aub3JnL2RybS9pbnRlbC8tL2lzc3Vlcy8yNzU0ClNpZ25l
-ZC1vZmYtYnk6IENocmlzIFdpbHNvbiA8Y2hyaXNAY2hyaXMtd2lsc29uLmNvLnVrPgpDYzogWmJp
-Z25pZXcgS2VtcGN6ecWEc2tpIDx6Ymlnbmlldy5rZW1wY3p5bnNraUBpbnRlbC5jb20+Ci0tLQog
-dGVzdHMvaTkxNS9hcGlfaW50ZWxfYmIuYyB8IDE5ICsrKysrKysrKysrKysrKy0tLS0KIDEgZmls
-ZSBjaGFuZ2VkLCAxNSBpbnNlcnRpb25zKCspLCA0IGRlbGV0aW9ucygtKQoKZGlmZiAtLWdpdCBh
-L3Rlc3RzL2k5MTUvYXBpX2ludGVsX2JiLmMgYi90ZXN0cy9pOTE1L2FwaV9pbnRlbF9iYi5jCmlu
-ZGV4IDBjYjMxOTJjYi4uMTg4MTRkMTRkIDEwMDY0NAotLS0gYS90ZXN0cy9pOTE1L2FwaV9pbnRl
-bF9iYi5jCisrKyBiL3Rlc3RzL2k5MTUvYXBpX2ludGVsX2JiLmMKQEAgLTUwNSwxMCArNTA1LDIx
-IEBAIHN0YXRpYyB2b2lkIGJsaXQoc3RydWN0IGJ1Zl9vcHMgKmJvcHMsCiAJaW50ZWxfYmJfZXhl
-YyhpYmIsIGludGVsX2JiX29mZnNldChpYmIpLCBmbGFncywgdHJ1ZSk7CiAJY2hlY2tfYnVmKGRz
-dCwgQ09MT1JfNzcpOwogCi0JcG9mZjJfc3JjID0gaW50ZWxfYmJfZ2V0X29iamVjdF9vZmZzZXQo
-aWJiLCBzcmMtPmhhbmRsZSk7Ci0JcG9mZjJfZHN0ID0gaW50ZWxfYmJfZ2V0X29iamVjdF9vZmZz
-ZXQoaWJiLCBkc3QtPmhhbmRsZSk7Ci0JaWd0X2Fzc2VydChwb2ZmX3NyYyA9PSBwb2ZmMl9zcmMp
-OwotCWlndF9hc3NlcnQocG9mZl9kc3QgPT0gcG9mZjJfZHN0KTsKKwkvKgorCSAqIFNpbmNlIHdl
-IGxldCB0aGUgb2JqZWN0cyBpZGxlLCBpZiB0aGUgR1RUIGlzIHNoYXJlZCBhbm90aGVyIGNsaWVu
-dAorCSAqIGlzIGxpYWJsZSB0byByZXVzZSBvdXIgb2Zmc2V0cyBmb3IgdGhlbXNlbHZlcywgY2F1
-c2luZyB1cyB0byBoYXZlCisJICogdG8gcmVsb2NhdGUuIFdlIGRvbid0IGV4cGVjdCB0aGlzIHRv
-IGhhcHBlbiBhcyBMUlUgZXZpY3Rpb24gc2hvdWxkCisJICogdHJ5IHRvIGF2b2lkIHJldXNlLCBi
-dXQgd2UgdXNlIHJhbmRvbSBldmljdGlvbiBpbnN0ZWFkIGFzIGl0IGlzCisJICogbXVjaCBxdWlj
-a2VyISBHaXZlbiB0aGF0IHRoZSBrZXJuZWwgaXMgKmFsbG93ZWQqIHRvIHJlbG9jYXRlIG9iamVj
-dHMsCisJICogd2UgY2Fubm90IGFzc2VydCB0aGF0IHRoZSBvYmplY3RzIHJlbWFpbiBpbiB0aGUg
-c2FtZSBsb2NhdGlvbiwgdW5sZXNzCisJICogd2UgYXJlIGluIGZ1bGwgY29udHJvbCBvZiBvdXIg
-b3duIEdUVC4KKwkgKi8KKwlpZiAoZ2VtX3VzZXNfZnVsbF9wcGd0dChpOTE1KSkgeworCQlpZ3Rf
-YXNzZXJ0X2VxX3U2NChpbnRlbF9iYl9nZXRfb2JqZWN0X29mZnNldChpYmIsIHNyYy0+aGFuZGxl
-KSwKKwkJCQkgIHBvZmZfc3JjKTsKKwkJaWd0X2Fzc2VydF9lcV91NjQoaW50ZWxfYmJfZ2V0X29i
-amVjdF9vZmZzZXQoaWJiLCBkc3QtPmhhbmRsZSksCisJCQkJICBwb2ZmX2RzdCk7CisJfQogCiAJ
-aW50ZWxfYnVmX2Rlc3Ryb3koc3JjKTsKIAlpbnRlbF9idWZfZGVzdHJveShkc3QpOwotLSAKMi4y
-OS4yCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRl
-bC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6
-Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
+--===============0162914987==
+Content-Type: multipart/alternative;
+ boundary="===============6368064501425929957=="
+
+--===============6368064501425929957==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+== Series Details ==
+
+Series: series starting with [1/4] drm/i915/gt: Ignore repeated attempts to suspend request flow across reset
+URL   : https://patchwork.freedesktop.org/series/84526/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_9430 -> Patchwork_19048
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19048/index.html
+
+New tests
+---------
+
+  New tests have been introduced between CI_DRM_9430 and Patchwork_19048:
+
+### New CI tests (1) ###
+
+  * boot:
+    - Statuses : 1 fail(s) 40 pass(s)
+    - Exec time: [0.0] s
+
+  
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_19048 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@prime_self_import@basic-with_two_bos:
+    - fi-tgl-y:           [PASS][1] -> [DMESG-WARN][2] ([i915#402]) +1 similar issue
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9430/fi-tgl-y/igt@prime_self_import@basic-with_two_bos.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19048/fi-tgl-y/igt@prime_self_import@basic-with_two_bos.html
+
+  
+#### Possible fixes ####
+
+  * igt@core_hotunplug@unbind-rebind:
+    - fi-kbl-7500u:       [DMESG-WARN][3] ([i915#2605]) -> [PASS][4]
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9430/fi-kbl-7500u/igt@core_hotunplug@unbind-rebind.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19048/fi-kbl-7500u/igt@core_hotunplug@unbind-rebind.html
+
+  * igt@prime_self_import@basic-with_one_bo_two_files:
+    - fi-tgl-y:           [DMESG-WARN][5] ([i915#402]) -> [PASS][6] +1 similar issue
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9430/fi-tgl-y/igt@prime_self_import@basic-with_one_bo_two_files.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19048/fi-tgl-y/igt@prime_self_import@basic-with_one_bo_two_files.html
+
+  
+  [i915#2605]: https://gitlab.freedesktop.org/drm/intel/issues/2605
+  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
+
+
+Participating hosts (42 -> 41)
+------------------------------
+
+  Additional (2): fi-blb-e6850 fi-tgl-dsi 
+  Missing    (3): fi-ilk-m540 fi-bdw-samus fi-hsw-4200u 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_9430 -> Patchwork_19048
+
+  CI-20190529: 20190529
+  CI_DRM_9430: 88c5c7135da4f61235fe3dbf4a67b2121b893fca @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5878: e96c0d8e6952d892bcbbcdf004999880a4dfb42e @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_19048: 93a470ddbac97dc8c1bc8e90ca90e93ca39d6bbe @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+93a470ddbac9 drm/i915/gt: Clear the execlists timers upon reset
+3b9793a3a6be drm/i915/gt: Include reset failures in the trace
+dd0cbe4cd971 drm/i915/gt: Cancel the preemption timeout on responding to it
+dacd9017014a drm/i915/gt: Ignore repeated attempts to suspend request flow across reset
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19048/index.html
+
+--===============6368064501425929957==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>series starting with [1/4] drm/i915/gt: Ignore repeated attempts to suspend request flow across reset</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/84526/">https://patchwork.freedesktop.org/series/84526/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19048/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19048/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_9430 -&gt; Patchwork_19048</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19048/index.html</p>
+<h2>New tests</h2>
+<p>New tests have been introduced between CI_DRM_9430 and Patchwork_19048:</p>
+<h3>New CI tests (1)</h3>
+<ul>
+<li>boot:<ul>
+<li>Statuses : 1 fail(s) 40 pass(s)</li>
+<li>Exec time: [0.0] s</li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_19048 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@prime_self_import@basic-with_two_bos:<ul>
+<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9430/fi-tgl-y/igt@prime_self_import@basic-with_two_bos.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19048/fi-tgl-y/igt@prime_self_import@basic-with_two_bos.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) +1 similar issue</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@core_hotunplug@unbind-rebind:</p>
+<ul>
+<li>fi-kbl-7500u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9430/fi-kbl-7500u/igt@core_hotunplug@unbind-rebind.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2605">i915#2605</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19048/fi-kbl-7500u/igt@core_hotunplug@unbind-rebind.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@prime_self_import@basic-with_one_bo_two_files:</p>
+<ul>
+<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9430/fi-tgl-y/igt@prime_self_import@basic-with_one_bo_two_files.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19048/fi-tgl-y/igt@prime_self_import@basic-with_one_bo_two_files.html">PASS</a> +1 similar issue</li>
+</ul>
+</li>
+</ul>
+<h2>Participating hosts (42 -&gt; 41)</h2>
+<p>Additional (2): fi-blb-e6850 fi-tgl-dsi <br />
+  Missing    (3): fi-ilk-m540 fi-bdw-samus fi-hsw-4200u </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_9430 -&gt; Patchwork_19048</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_9430: 88c5c7135da4f61235fe3dbf4a67b2121b893fca @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_5878: e96c0d8e6952d892bcbbcdf004999880a4dfb42e @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
+  Patchwork_19048: 93a470ddbac97dc8c1bc8e90ca90e93ca39d6bbe @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>93a470ddbac9 drm/i915/gt: Clear the execlists timers upon reset<br />
+3b9793a3a6be drm/i915/gt: Include reset failures in the trace<br />
+dd0cbe4cd971 drm/i915/gt: Cancel the preemption timeout on responding to it<br />
+dacd9017014a drm/i915/gt: Ignore repeated attempts to suspend request flow across reset</p>
+
+</body>
+</html>
+
+--===============6368064501425929957==--
+
+--===============0162914987==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============0162914987==--
