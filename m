@@ -1,40 +1,30 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2EFE12CCB0B
-	for <lists+intel-gfx@lfdr.de>; Thu,  3 Dec 2020 01:36:30 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 18C352CCB53
+	for <lists+intel-gfx@lfdr.de>; Thu,  3 Dec 2020 01:57:45 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1D9476EA5D;
-	Thu,  3 Dec 2020 00:36:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 70F1A6EB1E;
+	Thu,  3 Dec 2020 00:57:42 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A3CFC6EA5D;
- Thu,  3 Dec 2020 00:36:25 +0000 (UTC)
-IronPort-SDR: 7mIgqpepACoUzD9JwsiSWTrsgUEAUBr87PsIHQoajInooG41Npkwybsu+0tpSgpI+w+HpUZtsq
- HjLldsra4+sQ==
-X-IronPort-AV: E=McAfee;i="6000,8403,9823"; a="160167523"
-X-IronPort-AV: E=Sophos;i="5.78,388,1599548400"; d="scan'208";a="160167523"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Dec 2020 16:36:24 -0800
-IronPort-SDR: MV6tZMddInp2em9Sb8Se7mfZO7yWaXBIm5njWpMTV/ETkkeguuSQdlZHR3oN0gCAZX6uS0Dx5d
- AHyuKsIhzapQ==
-X-IronPort-AV: E=Sophos;i="5.78,388,1599548400"; d="scan'208";a="550273752"
-Received: from jkbrown3-mobl2.amr.corp.intel.com (HELO intel.com)
- ([10.212.201.247])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Dec 2020 16:36:24 -0800
-Date: Wed, 2 Dec 2020 16:36:24 -0800
-From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
-Message-ID: <20201203003624.GA1517510@intel.com>
+Received: from fireflyinternet.com (unknown [77.68.26.236])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B1B206EB1E
+ for <intel-gfx@lists.freedesktop.org>; Thu,  3 Dec 2020 00:57:40 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from build.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 23196341-1500050 
+ for multiple; Thu, 03 Dec 2020 00:57:33 +0000
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Thu,  3 Dec 2020 00:57:31 +0000
+Message-Id: <20201203005731.18385-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Content-Disposition: inline
-Subject: [Intel-gfx] [PULL] drm-intel-fixes
+Subject: [Intel-gfx] [PATCH] drm/i915/gt: Clear the execlists timers before
+ restarting
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,78 +37,66 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dim-tools@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Maxime Ripard <mripard@kernel.org>, intel-gfx@lists.freedesktop.org
+Cc: Chris Wilson <chris@chris-wilson.co.uk>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Dave and Daniel,
+Across a reset, we stop the engine but not the timers. This leaves a
+window where the timers have inconsistent state with the engine, causing
+false timeslicing/preemption decisions to be made immediately upon
+resume.
 
-Fixes for GPU hang, null dereference, suspend-resume, power consumption, and use-after-free.
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+---
+This fits the trace of a failure across reset, and has a certain ring of
+truth to it, but the preempt timer should have been cleared with the
+first submission after the reset (and before the first submission should
+not be an issue). I fear there's something else lurking here with the
+timer vs reset.
 
-The commit 6db58901c2aa ("drm/i915/display: return earlier from intel_modeset_init() without display") was not actually a crucial fix, but it allowed a clean pick of the use-after-free one.
+For reference, the issue is the immediate reset following the first,
+both due to preeempt timeout, but there was not a submission during the
+reset to prime the preempt timer:
 
-Here goes drm-intel-fixes-2020-12-02:
+[   27.184920] kworker/-121       3.... 27095209us : execlists_reset: 0000:00:02.0 bcs0: reset for preemption time out
+[   27.184962] kworker/-121       3d..1 27095309us : active_context: 0000:00:02.0 bcs0: ccid found at active:0
+[   27.185005] kworker/-121       3d..1 27095312us : execlists_hold: 0000:00:02.0 bcs0: fence 1c:45, current 44 on hold
+[   27.185048] kworker/-121       3d..1 27095313us : execlists_hold: 0000:00:02.0 bcs0: fence 1c:46, current 44 on hold
+[   27.185091] kworker/-121       3d..1 27095314us : execlists_hold: 0000:00:02.0 bcs0: fence 1c:47, current 44 on hold
+[   27.185135] kworker/-121       3.... 27095316us : intel_engine_reset: 0000:00:02.0 bcs0: flags=8
+[   27.185178] kworker/-121       3.... 27095345us : execlists_reset_prepare: 0000:00:02.0 bcs0: depth<-1
+[   27.185218] kworker/-121       3.... 27095346us : intel_engine_stop_cs: 0000:00:02.0 bcs0: 
+[   27.185259] kworker/-121       3.... 27096347us : intel_engine_stop_cs: 0000:00:02.0 bcs0: timed out on STOP_RING -> IDLE
+[   27.185304] kworker/-121       3.... 27096367us : __intel_gt_reset: 0000:00:02.0 engine_mask=2
+[   27.185345] kworker/-121       3.... 27097297us : intel_engine_cancel_stop_cs: 0000:00:02.0 bcs0: 
+[   27.185388] kworker/-121       3.... 27097299us : execlists_reset_finish: 0000:00:02.0 bcs0: depth->1
+[   27.185440] kworker/-121       3d..2 27097348us : __i915_schedule: 0000:00:02.0 bcs0: bumping queue-priority-hint:1025 for rq:13:20, inflight:1c:47 prio 0
+[   27.185485] kworker/-121       3..s1 27097350us : execlists_reset: 0000:00:02.0 bcs0: reset for preemption time out
+[   27.185528] kworker/-121       3d.s2 27097454us : active_context: 0000:00:02.0 bcs0: ccid found at active:0
 
-Fixes for GPU hang, null dereference, suspend-resume, power consumption, and use-after-free.
+---
+ drivers/gpu/drm/i915/gt/intel_lrc.c | 3 +++
+ 1 file changed, 3 insertions(+)
 
-- Program mocs:63 for cache eviction on gen9 (Chris)
-- Split the breadcrumb spinlock between global and contexts (Chris)
-- Retain default context state across shrinking (Venkata)
-- Limit frequency drop to RPe on parking (Chris)
-- Return earlier from intel_modeset_init() without display (Jani)
-- Defer initial modeset until after GGTT is initialized (Chris).
+diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
+index 43703efb36d1..f5685ec9e0cd 100644
+--- a/drivers/gpu/drm/i915/gt/intel_lrc.c
++++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
+@@ -4200,6 +4200,9 @@ static int execlists_resume(struct intel_engine_cs *engine)
+ 
+ 	intel_breadcrumbs_reset(engine->breadcrumbs);
+ 
++	cancel_timer(&execlists->timer);
++	cancel_timer(&execlists->preempt);
++
+ 	if (GEM_SHOW_DEBUG() && unexpected_starting_state(engine)) {
+ 		struct drm_printer p = drm_debug_printer(__func__);
+ 
+-- 
+2.20.1
 
-Thanks,
-Rodrigo.
-
-The following changes since commit b65054597872ce3aefbc6a666385eabdf9e288da:
-
-  Linux 5.10-rc6 (2020-11-29 15:50:50 -0800)
-
-are available in the Git repository at:
-
-  git://anongit.freedesktop.org/drm/drm-intel tags/drm-intel-fixes-2020-12-02
-
-for you to fetch changes up to f2f2b21feadcb1eb08687a8b20dcf6442d22be18:
-
-  drm/i915/display: Defer initial modeset until after GGTT is initialised (2020-12-01 08:36:37 -0800)
-
-----------------------------------------------------------------
-Fixes for GPU hang, null dereference, suspend-resume, power consumption, and use-after-free.
-
-- Program mocs:63 for cache eviction on gen9 (Chris)
-- Split the breadcrumb spinlock between global and contexts (Chris)
-- Retain default context state across shrinking (Venkata)
-- Limit frequency drop to RPe on parking (Chris)
-- Return earlier from intel_modeset_init() without display (Jani)
-- Defer initial modeset until after GGTT is initialized (Chris).
-
-----------------------------------------------------------------
-Chris Wilson (4):
-      drm/i915/gt: Program mocs:63 for cache eviction on gen9
-      drm/i915/gt: Split the breadcrumb spinlock between global and contexts
-      drm/i915/gt: Limit frequency drop to RPe on parking
-      drm/i915/display: Defer initial modeset until after GGTT is initialised
-
-Jani Nikula (1):
-      drm/i915/display: return earlier from intel_modeset_init() without display
-
-Venkata Ramana Nayana (1):
-      drm/i915/gt: Retain default context state across shrinking
-
- drivers/gpu/drm/i915/display/intel_display.c      |  24 ++--
- drivers/gpu/drm/i915/gt/intel_breadcrumbs.c       | 168 ++++++++++------------
- drivers/gpu/drm/i915/gt/intel_breadcrumbs_types.h |   6 +-
- drivers/gpu/drm/i915/gt/intel_context.c           |   3 +-
- drivers/gpu/drm/i915/gt/intel_context_types.h     |  12 +-
- drivers/gpu/drm/i915/gt/intel_mocs.c              |  14 +-
- drivers/gpu/drm/i915/gt/intel_rps.c               |   4 +
- drivers/gpu/drm/i915/gt/shmem_utils.c             |   7 +-
- drivers/gpu/drm/i915/i915_request.h               |   6 +-
- 9 files changed, 124 insertions(+), 120 deletions(-)
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
