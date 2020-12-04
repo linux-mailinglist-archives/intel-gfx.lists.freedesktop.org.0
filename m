@@ -1,46 +1,35 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 76A102CECC2
-	for <lists+intel-gfx@lfdr.de>; Fri,  4 Dec 2020 12:09:57 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id D528C2CECD0
+	for <lists+intel-gfx@lfdr.de>; Fri,  4 Dec 2020 12:13:14 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EC9E589A98;
-	Fri,  4 Dec 2020 11:09:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 347EA6E138;
+	Fri,  4 Dec 2020 11:13:13 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2AFF489A98
- for <intel-gfx@lists.freedesktop.org>; Fri,  4 Dec 2020 11:09:53 +0000 (UTC)
-IronPort-SDR: BUMLXFH+6uNJqo2vA6Z+fSluF83y2l11p8jbHUbkvURuV8XIEusQayCoGtqSM1gW0lZMo8o9c7
- R8Ry8AuU2jYg==
-X-IronPort-AV: E=McAfee;i="6000,8403,9824"; a="173516860"
-X-IronPort-AV: E=Sophos;i="5.78,392,1599548400"; d="scan'208";a="173516860"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Dec 2020 03:09:51 -0800
-IronPort-SDR: ZjwEm6o/J2uWVg/DZtrEwPqVKTtcOgQfWir1+idpURExU4w3jKruUMNfYqn+MffliTzbJ/oFnv
- KR9K3cHQpSFw==
-X-IronPort-AV: E=Sophos;i="5.78,392,1599548400"; d="scan'208";a="550912246"
-Received: from sgefen-mobl1.ger.corp.intel.com (HELO [10.214.200.164])
- ([10.214.200.164])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Dec 2020 03:09:50 -0800
-To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
-References: <20201203103432.31526-1-chris@chris-wilson.co.uk>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-Message-ID: <eefe8e52-3d6e-6c91-5733-e9f3474aff9e@linux.intel.com>
-Date: Fri, 4 Dec 2020 11:09:47 +0000
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+Received: from fireflyinternet.com (unknown [77.68.26.236])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0E83D6E134;
+ Fri,  4 Dec 2020 11:13:10 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from localhost (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
+ 23213055-1500050 for multiple; Fri, 04 Dec 2020 11:13:08 +0000
 MIME-Version: 1.0
-In-Reply-To: <20201203103432.31526-1-chris@chris-wilson.co.uk>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/gem: Propagate error from
- cancelled submit due to context closure
+In-Reply-To: <50454fb2-2f43-3fc6-50ba-587b787bca3f@linux.intel.com>
+References: <20201203095726.1427559-1-chris@chris-wilson.co.uk>
+ <20201203095914.1427672-1-chris@chris-wilson.co.uk>
+ <50454fb2-2f43-3fc6-50ba-587b787bca3f@linux.intel.com>
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
+Date: Fri, 04 Dec 2020 11:13:06 +0000
+Message-ID: <160708038690.7398.6644926840404279368@build.alporthouse.com>
+User-Agent: alot/0.9
+Subject: Re: [Intel-gfx] [igt-dev] [PATCH i-g-t] i915/gem_ctx_exec: Exercise
+ execution along context while closing it
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,83 +42,119 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: stable@vger.kernel.org
+Cc: igt-dev@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-
-On 03/12/2020 10:34, Chris Wilson wrote:
-> In the course of discovering and closing many races with context closure
-> and execbuf submission, since commit 61231f6bd056 ("drm/i915/gem: Check
-> that the context wasn't closed during setup") we started checking that
-> the context was not closed by another userspace thread during the execbuf
-> ioctl. In doing so we cancelled the inflight request (by telling it to be
-> skipped), but kept reporting success since we do submit a request, albeit
-> one that doesn't execute. As the error is known before we return from the
-> ioctl, we can report the error we detect immediately, rather than leave
-> it on the fence status. With the immediate propagation of the error, it
-> is easier for userspace to handle.
+Quoting Tvrtko Ursulin (2020-12-04 10:52:23)
 > 
-> Fixes: 61231f6bd056 ("drm/i915/gem: Check that the context wasn't closed during setup")
-> Testcase: igt/gem_ctx_exec/basic-close-race
-> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-> Cc: <stable@vger.kernel.org> # v5.7+
-> ---
->   drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c | 7 +++++--
->   1 file changed, 5 insertions(+), 2 deletions(-)
+> On 03/12/2020 09:59, Chris Wilson wrote:
+> > Race the execution and interrupt handlers along a context, while
+> > closing it at a random time.
+> > 
+> > Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> > Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+> > ---
+> >   tests/i915/gem_ctx_exec.c | 60 +++++++++++++++++++++++++++++++++++++++
+> >   1 file changed, 60 insertions(+)
+> > 
+> > diff --git a/tests/i915/gem_ctx_exec.c b/tests/i915/gem_ctx_exec.c
+> > index 194191def..18d5d1217 100644
+> > --- a/tests/i915/gem_ctx_exec.c
+> > +++ b/tests/i915/gem_ctx_exec.c
+> > @@ -336,6 +336,63 @@ static void nohangcheck_hostile(int i915)
+> >       close(i915);
+> >   }
+> >   
+> > +static void close_race(int i915)
+> > +{
+> > +     const int ncpus = sysconf(_SC_NPROCESSORS_ONLN);
+> > +     uint32_t *contexts;
+> > +
+> > +     contexts = mmap(NULL, 4096, PROT_WRITE, MAP_SHARED | MAP_ANON, -1, 0);
+> > +     igt_assert(contexts != MAP_FAILED);
+> > +
+> > +     for (int child = 0; child < ncpus; child++)
+> > +             contexts[child] = gem_context_clone_with_engines(i915, 0);
+> > +
+> > +     igt_fork(child, ncpus) {
+> > +             igt_spin_t *spin;
+> > +
+> > +             spin = igt_spin_new(i915, .flags = IGT_SPIN_POLL_RUN);
+> > +             igt_spin_end(spin);
+> > +             gem_sync(i915, spin->handle);
+> > +
+> > +             while (!READ_ONCE(contexts[ncpus])) {
+> > +                     int64_t timeout = 1;
+> > +
+> > +                     igt_spin_reset(spin);
+> > +                     igt_assert(!igt_spin_has_started(spin));
+> > +
+> > +                     spin->execbuf.rsvd1 = READ_ONCE(contexts[child]);
+> > +                     if (__gem_execbuf(i915, &spin->execbuf))
+> > +                             continue;
+> > +
+> > +                     igt_assert(gem_bo_busy(i915, spin->handle));
 > 
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-> index 1904e6e5ea64..b07dc1156a0e 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-> @@ -3097,7 +3097,7 @@ static void retire_requests(struct intel_timeline *tl, struct i915_request *end)
->   			break;
->   }
->   
-> -static void eb_request_add(struct i915_execbuffer *eb)
-> +static int eb_request_add(struct i915_execbuffer *eb, int err)
->   {
->   	struct i915_request *rq = eb->request;
->   	struct intel_timeline * const tl = i915_request_timeline(rq);
-> @@ -3118,6 +3118,7 @@ static void eb_request_add(struct i915_execbuffer *eb)
->   		/* Serialise with context_close via the add_to_timeline */
->   		i915_request_set_error_once(rq, -ENOENT);
->   		__i915_request_skip(rq);
-> +		err = -ENOENT; /* override any transient errors */
->   	}
->   
->   	__i915_request_queue(rq, &attr);
-> @@ -3127,6 +3128,8 @@ static void eb_request_add(struct i915_execbuffer *eb)
->   		retire_requests(tl, prev);
->   
->   	mutex_unlock(&tl->mutex);
-> +
-> +	return err;
->   }
->   
->   static const i915_user_extension_fn execbuf_extensions[] = {
-> @@ -3332,7 +3335,7 @@ i915_gem_do_execbuffer(struct drm_device *dev,
->   	err = eb_submit(&eb, batch);
->   err_request:
->   	i915_request_get(eb.request);
-> -	eb_request_add(&eb);
-> +	err = eb_request_add(&eb, err);
->   
->   	if (eb.fences)
->   		signal_fence_array(&eb);
+> I've seen this line fail in CI results - any idea how that can happen?
+
+Yes. The presumption we have in this test is that if gem_execbuf
+succeeds, the request will execute.
+
+However, see
+
+  drm/i915/gem: Propagate error from cancelled submit due to context closure
+  https://patchwork.freedesktop.org/patch/405392/?series=84531&rev=1
+
+we are cancelling the request if we detect the context is closed before
+the request is submitted, but still returned success (with an async
+error).
+
+I think the test makes a fair assumption, and it's easier than I was
+thinking to return the error for the closed context, which makes the
+gem_execbuf solid for this race.
+
+> > +                     gem_wait(i915, spin->handle, &timeout); /* prime irq */
 > 
+> Is this depending on implementation specific behaviour, that we will 
+> leave the irq on after the waiter had exited?
 
-Simple enough and it explains why gem_busy assert in the IGT can fail 
-after execbuf succeeded - skipped request executes before the check 
-since the payload was zapped. Fast timing but obviously possible.
+It's the best I can do. Nothing in the uAPI should ever govern exactly
+the HW details.
 
-Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+And since this can be used to trick the machine into locking up under
+irq pressure... Maybe not the best.
 
-Regards,
+> > +                     igt_spin_busywait_until_started(spin);
+> > +
+> > +                     igt_spin_end(spin);
+> > +                     gem_sync(i915, spin->handle);
+> > +             }
+> > +
+> > +             igt_spin_free(i915, spin);
+> > +     }
+> > +
+> > +     igt_until_timeout(5) {
+> > +             for (int child = 0; child < ncpus; child++) {
+> > +                     gem_context_destroy(i915, contexts[child]);
+> > +                     contexts[child] =
+> > +                             gem_context_clone_with_engines(i915, 0);
+> 
+> Right so deliberate attempt to occasionally make the child use closed 
+> context. Presumably, well according to the CI results, it does manage to 
+> consistently hit it, which surprises me a bit. A comment here would be good.
+> 
+> > +             }
+> > +             usleep(1000);
+> 
+> Maybe add some randomness here? Or even a random busy loop within the 
+> child loop? I haven't looked at the i915 patch yet to know where the 
+> race actually is..
 
-Tvrtko
+The CPU scheduler is great at providing randomness :)
+-Chris
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
