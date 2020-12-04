@@ -1,31 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 662B82CF6FF
-	for <lists+intel-gfx@lfdr.de>; Fri,  4 Dec 2020 23:43:21 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 46CFE2CF712
+	for <lists+intel-gfx@lfdr.de>; Fri,  4 Dec 2020 23:47:02 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F03366EC83;
-	Fri,  4 Dec 2020 22:43:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 155C76EC80;
+	Fri,  4 Dec 2020 22:47:00 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 4062C6EC80;
- Fri,  4 Dec 2020 22:43:16 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id F09B26EC7F;
+ Fri,  4 Dec 2020 22:46:58 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 37A72AA912;
- Fri,  4 Dec 2020 22:43:16 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id E7374A0091;
+ Fri,  4 Dec 2020 22:46:58 +0000 (UTC)
 MIME-Version: 1.0
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Fri, 04 Dec 2020 22:43:16 -0000
-Message-ID: <160712179620.27542.1144644188390211046@emeril.freedesktop.org>
+To: "Lyude Paul" <lyude@redhat.com>
+Date: Fri, 04 Dec 2020 22:46:58 -0000
+Message-ID: <160712201891.27539.99761502457196152@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20201204215908.22708-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20201204215908.22708-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/gem=3A_Drop_false_!i915=5Fvma=5Fis=5Fclosed_assertion?=
+References: <20201204223603.249878-1-lyude@redhat.com>
+In-Reply-To: <20201204223603.249878-1-lyude@redhat.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/i915=3A_Add_support_for_Intel=27s_eDP_backlight_control?=
+ =?utf-8?q?s_=28rev3=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,244 +41,52 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============0788549473=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0788549473==
-Content-Type: multipart/alternative;
- boundary="===============0810076309432455803=="
-
---===============0810076309432455803==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/i915/gem: Drop false !i915_vma_is_closed assertion
-URL   : https://patchwork.freedesktop.org/series/84602/
-State : success
+Series: drm/i915: Add support for Intel's eDP backlight controls (rev3)
+URL   : https://patchwork.freedesktop.org/series/81702/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from CI_DRM_9444 -> Patchwork_19065
-====================================================
+$ dim checkpatch origin/drm-tip
+f28a72ff60f8 drm/i915/dp: Program source OUI on eDP panels
+9233620226ff drm/i915: Rename pwm_* backlight callbacks to ext_pwm_*
+f6028d739181 drm/i915: Pass down brightness values to enable/disable backlight callbacks
+ae85f27764dd drm/i915: Keep track of pwm-related backlight hooks separately
+9af1a6377bd0 drm/i915/dp: Rename eDP VESA backlight interface functions
+e013bc041067 drm/i915/dp: Add register definitions for Intel HDR backlight interface
+0f59b8d11611 drm/i915/dp: Enable Intel's HDR backlight interface (only SDR for now)
+-:151: WARNING:UNNECESSARY_ELSE: else is not generally useful after a break or return
+#151: FILE: drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c:147:
++			return panel->backlight.max;
++		} else {
 
-Summary
--------
+-:172: CHECK:PREFER_KERNEL_TYPES: Prefer kernel type 'u8' over 'uint8_t'
+#172: FILE: drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c:168:
++	uint8_t buf[4] = { 0 };
 
-  **SUCCESS**
+-:191: WARNING:LINE_SPACING: Missing a blank line after declarations
+#191: FILE: drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c:187:
++		const u32 pwm_level = intel_panel_backlight_level_to_pwm(connector, level);
++		intel_panel_set_pwm_level(conn_state, pwm_level);
 
-  No regressions found.
+-:218: WARNING:LINE_SPACING: Missing a blank line after declarations
+#218: FILE: drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c:214:
++		u32 pwm_level = intel_panel_backlight_level_to_pwm(connector, level);
++		panel->backlight.pwm_funcs->enable(crtc_state, conn_state, pwm_level);
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19065/index.html
+total: 0 errors, 3 warnings, 1 checks, 379 lines checked
+1cd0fee4656f drm/i915/dp: Allow forcing specific interfaces through enable_dpcd_backlight
+0246c3bf43a0 drm/dp: Revert "drm/dp: Introduce EDID-based quirks"
 
-New tests
----------
-
-  New tests have been introduced between CI_DRM_9444 and Patchwork_19065:
-
-### New CI tests (1) ###
-
-  * boot:
-    - Statuses : 1 fail(s) 38 pass(s)
-    - Exec time: [0.0] s
-
-  
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_19065 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@gem_exec_suspend@basic-s3:
-    - fi-tgl-u2:          [PASS][1] -> [FAIL][2] ([i915#1888])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9444/fi-tgl-u2/igt@gem_exec_suspend@basic-s3.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19065/fi-tgl-u2/igt@gem_exec_suspend@basic-s3.html
-    - fi-tgl-y:           [PASS][3] -> [DMESG-WARN][4] ([i915#2411] / [i915#402])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9444/fi-tgl-y/igt@gem_exec_suspend@basic-s3.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19065/fi-tgl-y/igt@gem_exec_suspend@basic-s3.html
-
-  * igt@i915_hangman@error-state-basic:
-    - fi-tgl-y:           [PASS][5] -> [DMESG-WARN][6] ([i915#402]) +1 similar issue
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9444/fi-tgl-y/igt@i915_hangman@error-state-basic.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19065/fi-tgl-y/igt@i915_hangman@error-state-basic.html
-
-  * igt@i915_selftest@live@active:
-    - fi-kbl-soraka:      [PASS][7] -> [DMESG-FAIL][8] ([i915#2291] / [i915#666])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9444/fi-kbl-soraka/igt@i915_selftest@live@active.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19065/fi-kbl-soraka/igt@i915_selftest@live@active.html
-
-  
-#### Possible fixes ####
-
-  * igt@gem_ctx_create@basic:
-    - fi-tgl-y:           [DMESG-WARN][9] ([i915#402]) -> [PASS][10] +1 similar issue
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9444/fi-tgl-y/igt@gem_ctx_create@basic.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19065/fi-tgl-y/igt@gem_ctx_create@basic.html
-
-  
-#### Warnings ####
-
-  * igt@amdgpu/amd_prime@i915-to-amd:
-    - fi-gdg-551:         [SKIP][11] ([fdo#109271]) -> [INCOMPLETE][12] ([i915#172])
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9444/fi-gdg-551/igt@amdgpu/amd_prime@i915-to-amd.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19065/fi-gdg-551/igt@amdgpu/amd_prime@i915-to-amd.html
-
-  
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [i915#172]: https://gitlab.freedesktop.org/drm/intel/issues/172
-  [i915#1888]: https://gitlab.freedesktop.org/drm/intel/issues/1888
-  [i915#2291]: https://gitlab.freedesktop.org/drm/intel/issues/2291
-  [i915#2411]: https://gitlab.freedesktop.org/drm/intel/issues/2411
-  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
-  [i915#666]: https://gitlab.freedesktop.org/drm/intel/issues/666
-
-
-Participating hosts (43 -> 39)
-------------------------------
-
-  Missing    (4): fi-ilk-m540 fi-bsw-cyan fi-bdw-samus fi-hsw-4200u 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_9444 -> Patchwork_19065
-
-  CI-20190529: 20190529
-  CI_DRM_9444: cee8f6ace633b555c64b14938577e6da02710a0b @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5881: 10d4e2e9177eb747b9f2ab9122e3ab60e91654fb @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_19065: 2f09abf79c2fed8ccad82374dfadbc36ca35ac77 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-2f09abf79c2f drm/i915/gem: Drop false !i915_vma_is_closed assertion
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19065/index.html
-
---===============0810076309432455803==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/gem: Drop false !i915_vma_is_closed assertion</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/84602/">https://patchwork.freedesktop.org/series/84602/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19065/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19065/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_9444 -&gt; Patchwork_19065</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19065/index.html</p>
-<h2>New tests</h2>
-<p>New tests have been introduced between CI_DRM_9444 and Patchwork_19065:</p>
-<h3>New CI tests (1)</h3>
-<ul>
-<li>boot:<ul>
-<li>Statuses : 1 fail(s) 38 pass(s)</li>
-<li>Exec time: [0.0] s</li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_19065 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@gem_exec_suspend@basic-s3:</p>
-<ul>
-<li>
-<p>fi-tgl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9444/fi-tgl-u2/igt@gem_exec_suspend@basic-s3.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19065/fi-tgl-u2/igt@gem_exec_suspend@basic-s3.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1888">i915#1888</a>)</p>
-</li>
-<li>
-<p>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9444/fi-tgl-y/igt@gem_exec_suspend@basic-s3.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19065/fi-tgl-y/igt@gem_exec_suspend@basic-s3.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2411">i915#2411</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>)</p>
-</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_hangman@error-state-basic:</p>
-<ul>
-<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9444/fi-tgl-y/igt@i915_hangman@error-state-basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19065/fi-tgl-y/igt@i915_hangman@error-state-basic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) +1 similar issue</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@active:</p>
-<ul>
-<li>fi-kbl-soraka:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9444/fi-kbl-soraka/igt@i915_selftest@live@active.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19065/fi-kbl-soraka/igt@i915_selftest@live@active.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2291">i915#2291</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/666">i915#666</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@gem_ctx_create@basic:<ul>
-<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9444/fi-tgl-y/igt@gem_ctx_create@basic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19065/fi-tgl-y/igt@gem_ctx_create@basic.html">PASS</a> +1 similar issue</li>
-</ul>
-</li>
-</ul>
-<h4>Warnings</h4>
-<ul>
-<li>igt@amdgpu/amd_prime@i915-to-amd:<ul>
-<li>fi-gdg-551:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9444/fi-gdg-551/igt@amdgpu/amd_prime@i915-to-amd.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19065/fi-gdg-551/igt@amdgpu/amd_prime@i915-to-amd.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/172">i915#172</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Participating hosts (43 -&gt; 39)</h2>
-<p>Missing    (4): fi-ilk-m540 fi-bsw-cyan fi-bdw-samus fi-hsw-4200u </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_9444 -&gt; Patchwork_19065</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_9444: cee8f6ace633b555c64b14938577e6da02710a0b @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_5881: 10d4e2e9177eb747b9f2ab9122e3ab60e91654fb @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
-  Patchwork_19065: 2f09abf79c2fed8ccad82374dfadbc36ca35ac77 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>2f09abf79c2f drm/i915/gem: Drop false !i915_vma_is_closed assertion</p>
-
-</body>
-</html>
-
---===============0810076309432455803==--
-
---===============0788549473==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============0788549473==--
