@@ -1,48 +1,55 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 669F92CF6C7
-	for <lists+intel-gfx@lfdr.de>; Fri,  4 Dec 2020 23:33:16 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id B9EE92CF6D2
+	for <lists+intel-gfx@lfdr.de>; Fri,  4 Dec 2020 23:36:23 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2BF3F6E220;
-	Fri,  4 Dec 2020 22:33:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 65AE06EC7F;
+	Fri,  4 Dec 2020 22:36:21 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BF7006E220
- for <intel-gfx@lists.freedesktop.org>; Fri,  4 Dec 2020 22:33:11 +0000 (UTC)
-From: Thomas Gleixner <tglx@linutronix.de>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
- s=2020; t=1607121189;
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [216.205.24.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AD39D6E220
+ for <intel-gfx@lists.freedesktop.org>; Fri,  4 Dec 2020 22:36:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1607121378;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=YbRXY429jy10ThX2bWwmeNckWbunoi+DH/zVHNz4Hkg=;
- b=zZgk97fS/Cu1ayNQt8zCSx+RyGvBPt3BEbtm4/2J0+wYSt7qAt6S6lrIbTMFbW5zPvJAU1
- zR4xvxFeAx/SRlb7YupffZ8F6YfLtK8qQ8zNls/G+rvxmeqVtD770eJ0vGJ9mB8n0/b1JA
- Cdj9si6bqurOhG4SB5uF58outH8W5uvUm3+K95JPjhBxa13SygviLAmCHaYJeblezOyfLs
- N+J1GlhrZWDPMVMh28Jz8zrYUtKlIXwRHZFcNT+tvzdKkMPK2NnRAvUPb8d7vVedO7smUv
- 28AQaFm92Jbtf4yp602X8ur9q7xCkWiNgVBSfABcaMLndKkOgSR0sNCxTTlxpg==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
- s=2020e; t=1607121189;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=YbRXY429jy10ThX2bWwmeNckWbunoi+DH/zVHNz4Hkg=;
- b=upIBhyrHbsbvHciDx/4TpyV/LlhEy5Xqw9SdhaA99Phzx/iTH3SYoU7Xz2RPcQPNxHNKwU
- 86WcyyOx8qiQaFAA==
-To: Ira Weiny <ira.weiny@intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-In-Reply-To: <20201204160504.GH1563847@iweiny-DESK2.sc.intel.com>
-References: <20201124060755.1405602-1-ira.weiny@intel.com>
- <20201124060755.1405602-4-ira.weiny@intel.com>
- <160648211578.10416.3269409785516897908@jlahtine-mobl.ger.corp.intel.com>
- <20201204160504.GH1563847@iweiny-DESK2.sc.intel.com>
-Date: Fri, 04 Dec 2020 23:33:08 +0100
-Message-ID: <878sad9p7f.fsf@nanos.tec.linutronix.de>
+ to:to:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=aNsxtvDeEpU2rFFWxdOTmdRSlc01cOdQavk/G3A+TNI=;
+ b=QQ1VsNdckKzJOw095ui8Zzsm1CfHaL2yOPk3f1qs6DKBH7hNCn+0glK6fNOFNoRihGgNuz
+ F1ct2/sj6gbxxboYRb6Za/dk8i/1XpCNZpYyUkO8BW9wnO3RGT93liCq8xdf/eZPp7WG04
+ qoATjKbEttkA508tiYvF0OpdbOHVm+Y=
+Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
+ [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-45-gHBnbpupN9Sg-a-RVhcEKw-1; Fri, 04 Dec 2020 17:36:13 -0500
+X-MC-Unique: gHBnbpupN9Sg-a-RVhcEKw-1
+Received: from smtp.corp.redhat.com (int-mx01.intmail.prod.int.phx2.redhat.com
+ [10.5.11.11])
+ (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
+ (No client certificate requested)
+ by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 55E9C3FD4;
+ Fri,  4 Dec 2020 22:36:12 +0000 (UTC)
+Received: from Whitewolf.redhat.com (ovpn-112-159.rdu2.redhat.com
+ [10.10.112.159])
+ by smtp.corp.redhat.com (Postfix) with ESMTP id 81FA063BA7;
+ Fri,  4 Dec 2020 22:36:11 +0000 (UTC)
+From: Lyude Paul <lyude@redhat.com>
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>, Dave Airlie <airlied@gmail.com>,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Date: Fri,  4 Dec 2020 17:35:54 -0500
+Message-Id: <20201204223603.249878-1-lyude@redhat.com>
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH 03/17] drivers/gpu: Convert to mem*_page()
+X-Scanned-By: MIMEDefang 2.79 on 10.5.11.11
+Authentication-Results: relay.mimecast.com;
+ auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=lyude@redhat.com
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+Subject: [Intel-gfx] [PATCH v3 0/9] drm/i915: Add support for Intel's eDP
+ backlight controls
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,37 +62,59 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Chao Yu <yuchao0@huawei.com>, Alexei Starovoitov <ast@kernel.org>,
- David Howells <dhowells@redhat.com>, Chris Mason <clm@fb.com>,
- Kirti Wankhede <kwankhede@nvidia.com>, Christoph Hellwig <hch@infradead.org>,
- Daniel Borkmann <daniel@iogearbox.net>, Matthew Wilcox <willy@infradead.org>,
- Eric Biggers <ebiggers@kernel.org>, intel-gfx@lists.freedesktop.org,
- Josef Bacik <josef@toxicpanda.com>,
- =?utf-8?B?SsOpcsO0bWU=?= Glisse <jglisse@redhat.com>,
- Brian King <brking@us.ibm.com>, Al Viro <viro@zeniv.linux.org.uk>,
- David Sterba <dsterba@suse.com>, Jaegeuk Kim <jaegeuk@kernel.org>,
- Dan Williams <dan.j.williams@intel.com>,
- "Martin K. Petersen" <martin.petersen@oracle.com>,
- Dave Hansen <dave.hansen@intel.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Nicolas Pitre <nico@fluxnic.net>, linux-kernel@vger.kernel.org,
- Steve French <sfrench@samba.org>, Luis Chamberlain <mcgrof@kernel.org>,
- linux-fsdevel@vger.kernel.org, Andrew Morton <akpm@linux-foundation.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Dec 04 2020 at 08:05, Ira Weiny wrote:
-> So I think I'm going to submit the base patch to Andrew today (with some
-> cleanups per the comments in this thread).
+A while ago we ran into issues while trying to enable the eDP backlight
+control interface as defined by VESA, in order to make the DPCD
+backlight controls on newer laptop panels work. The issue ended up being
+much more complicated however, as we also apparently needed to add
+support for an Intel-specific DPCD backlight control interface as the
+VESA interface is broken on many laptop panels. For lack of a better
+name, we just call this the Intel HDR backlight interface.
 
-Could you please base that on tip core/mm where the kmap_local() muck is
-and use kmap_local() right away?
+While this only adds support for the SDR backlight mode (I think), this
+will fix a lot of user's laptop panels that we weren't able to properly
+automatically detect DPCD backlight controls on previously.
 
-Thanks,
+Series-wide changes in v3:
+* Pass down brightness values to enable/disable backlight callbacks in a
+  separate patch
+* Rebase
 
-        tglx
+Lyude Paul (9):
+  drm/i915/dp: Program source OUI on eDP panels
+  drm/i915: Rename pwm_* backlight callbacks to ext_pwm_*
+  drm/i915: Pass down brightness values to enable/disable backlight
+    callbacks
+  drm/i915: Keep track of pwm-related backlight hooks separately
+  drm/i915/dp: Rename eDP VESA backlight interface functions
+  drm/i915/dp: Add register definitions for Intel HDR backlight
+    interface
+  drm/i915/dp: Enable Intel's HDR backlight interface (only SDR for now)
+  drm/i915/dp: Allow forcing specific interfaces through
+    enable_dpcd_backlight
+  drm/dp: Revert "drm/dp: Introduce EDID-based quirks"
+
+ drivers/gpu/drm/drm_dp_helper.c               |  83 +---
+ drivers/gpu/drm/drm_dp_mst_topology.c         |   3 +-
+ .../drm/i915/display/intel_display_types.h    |  18 +-
+ drivers/gpu/drm/i915/display/intel_dp.c       |  42 +-
+ .../drm/i915/display/intel_dp_aux_backlight.c | 394 +++++++++++++---
+ drivers/gpu/drm/i915/display/intel_dp_mst.c   |   3 +-
+ .../i915/display/intel_dsi_dcs_backlight.c    |   7 +-
+ drivers/gpu/drm/i915/display/intel_panel.c    | 435 ++++++++++--------
+ drivers/gpu/drm/i915/display/intel_panel.h    |   4 +
+ drivers/gpu/drm/i915/display/intel_psr.c      |   2 +-
+ drivers/gpu/drm/i915/i915_params.c            |   2 +-
+ include/drm/drm_dp_helper.h                   |  21 +-
+ 12 files changed, 655 insertions(+), 359 deletions(-)
+
+-- 
+2.28.0
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
