@@ -1,44 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B84312CEA69
-	for <lists+intel-gfx@lfdr.de>; Fri,  4 Dec 2020 10:02:40 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id E91292CEA83
+	for <lists+intel-gfx@lfdr.de>; Fri,  4 Dec 2020 10:12:19 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 519946E135;
-	Fri,  4 Dec 2020 09:02:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3808F6E145;
+	Fri,  4 Dec 2020 09:12:16 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C76756E135;
- Fri,  4 Dec 2020 09:02:37 +0000 (UTC)
-IronPort-SDR: J4zrkhhb+FuXTnLtnq2jzYJlFadYSQSta/ZvFHWEEwc8S8X0LIouZeubnWNiWAgaJ/4CumOFwe
- t18MAGc+4oEA==
-X-IronPort-AV: E=McAfee;i="6000,8403,9824"; a="170781561"
-X-IronPort-AV: E=Sophos;i="5.78,392,1599548400"; d="scan'208";a="170781561"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Dec 2020 01:02:36 -0800
-IronPort-SDR: 93oqj+yMLNMQ6nd884NHkOlG8oEZ7fcduNJhMBIPxZsM9iPL2giNKQJ/CZOjQMkBesBWV75T0A
- 1LumlZ9EsPxw==
-X-IronPort-AV: E=Sophos;i="5.78,392,1599548400"; d="scan'208";a="540619939"
-Received: from ramaling-i9x.iind.intel.com (HELO intel.com) ([10.99.66.154])
- by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Dec 2020 01:02:33 -0800
-Date: Fri, 4 Dec 2020 14:32:16 +0530
-From: Ramalingam C <ramalingam.c@intel.com>
-To: Anshuman Gupta <anshuman.gupta@intel.com>
-Message-ID: <20201204090216.GA5336@intel.com>
-References: <20201126073722.19107-1-anshuman.gupta@intel.com>
- <20201126073722.19107-5-anshuman.gupta@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 506786E139;
+ Fri,  4 Dec 2020 09:12:14 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 1CF6CA363B;
+ Fri,  4 Dec 2020 09:12:14 +0000 (UTC)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20201126073722.19107-5-anshuman.gupta@intel.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH v6 04/18] drm/i915/hdcp: No HDCP when
- encoder is't initialized
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Anshuman Gupta" <anshuman.gupta@intel.com>
+Date: Fri, 04 Dec 2020 09:12:14 -0000
+Message-ID: <160707313408.27541.3585592279728606940@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20201204081845.26528-1-anshuman.gupta@intel.com>
+In-Reply-To: <20201204081845.26528-1-anshuman.gupta@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgRGlz?=
+ =?utf-8?q?play_glitches_fixes_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,54 +38,159 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jani.nikula@intel.com, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, seanpaul@chromium.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============0334334189=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 2020-11-26 at 13:07:08 +0530, Anshuman Gupta wrote:
-> There can be situation when DP MST connector is created without
-> mst modeset being done, in those cases connector->encoder will be
-> NULL. MST connector->encoder initializes after modeset.
+--===============0334334189==
+Content-Type: multipart/alternative;
+ boundary="===============5243141066986882124=="
 
-This patch is to reject the HDCP request on MST connector without
-encoder initialized(modeset). But userspace are not supposed to request hdcp at such
-scenario right?.
+--===============5243141066986882124==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Ram
+== Series Details ==
 
-> Don't enable HDCP in such cases to prevent any crash.
-> 
-> Cc: Ramalingam C <ramalingam.c@intel.com>
-> Cc: Juston Li <juston.li@intel.com>
-> Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_hdcp.c | 6 ++++++
->  1 file changed, 6 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c b/drivers/gpu/drm/i915/display/intel_hdcp.c
-> index b9d8825e2bb1..7d63e9495956 100644
-> --- a/drivers/gpu/drm/i915/display/intel_hdcp.c
-> +++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
-> @@ -2106,6 +2106,12 @@ int intel_hdcp_enable(struct intel_connector *connector,
->  	if (!hdcp->shim)
->  		return -ENOENT;
->  
-> +	if (!connector->encoder) {
-> +		drm_err(&dev_priv->drm, "[%s:%d] encoder is not initialized\n",
-> +			connector->base.name, connector->base.base.id);
-> +		return -ENODEV;
-> +	}
-> +
->  	mutex_lock(&hdcp->mutex);
->  	mutex_lock(&dig_port->hdcp_mutex);
->  	drm_WARN_ON(&dev_priv->drm,
-> -- 
-> 2.26.2
-> 
+Series: Display glitches fixes (rev2)
+URL   : https://patchwork.freedesktop.org/series/84394/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_9441 -> Patchwork_19056
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19056/index.html
+
+New tests
+---------
+
+  New tests have been introduced between CI_DRM_9441 and Patchwork_19056:
+
+### New CI tests (1) ###
+
+  * boot:
+    - Statuses : 1 fail(s) 37 pass(s)
+    - Exec time: [0.0] s
+
+  
+
+
+Changes
+-------
+
+  No changes found
+
+
+Participating hosts (43 -> 38)
+------------------------------
+
+  Missing    (5): fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-tgl-y fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_9441 -> Patchwork_19056
+
+  CI-20190529: 20190529
+  CI_DRM_9441: 6e992bb7585d1bee238776d8fe0512a70a22a1a0 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5880: d67bad61dc9a7515f94a7eecadd3bcd6b4f9d49e @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_19056: 8da72c4348fd85d565c8e83b497b6c8f5233a3fa @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+8da72c4348fd drm/i915/dp: optimize pps_lock wherever required
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19056/index.html
+
+--===============5243141066986882124==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Display glitches fixes (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/84394/">https://patchwork.freedesktop.org/series/84394/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19056/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19056/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_9441 -&gt; Patchwork_19056</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19056/index.html</p>
+<h2>New tests</h2>
+<p>New tests have been introduced between CI_DRM_9441 and Patchwork_19056:</p>
+<h3>New CI tests (1)</h3>
+<ul>
+<li>boot:<ul>
+<li>Statuses : 1 fail(s) 37 pass(s)</li>
+<li>Exec time: [0.0] s</li>
+</ul>
+</li>
+</ul>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Participating hosts (43 -&gt; 38)</h2>
+<p>Missing    (5): fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-tgl-y fi-bdw-samus </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_9441 -&gt; Patchwork_19056</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_9441: 6e992bb7585d1bee238776d8fe0512a70a22a1a0 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_5880: d67bad61dc9a7515f94a7eecadd3bcd6b4f9d49e @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
+  Patchwork_19056: 8da72c4348fd85d565c8e83b497b6c8f5233a3fa @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>8da72c4348fd drm/i915/dp: optimize pps_lock wherever required</p>
+
+</body>
+</html>
+
+--===============5243141066986882124==--
+
+--===============0334334189==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============0334334189==--
