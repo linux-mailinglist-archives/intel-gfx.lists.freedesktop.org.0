@@ -2,31 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9DEB22CF07F
-	for <lists+intel-gfx@lfdr.de>; Fri,  4 Dec 2020 16:12:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id BC9532CF080
+	for <lists+intel-gfx@lfdr.de>; Fri,  4 Dec 2020 16:12:44 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9239F6E1BE;
+	by gabe.freedesktop.org (Postfix) with ESMTP id DCA846E1A8;
 	Fri,  4 Dec 2020 15:12:41 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 440BC6E1A5
- for <intel-gfx@lists.freedesktop.org>; Fri,  4 Dec 2020 15:12:40 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5E5F56E196
+ for <intel-gfx@lists.freedesktop.org>; Fri,  4 Dec 2020 15:12:39 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 23216193-1500050 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 23216194-1500050 
  for <intel-gfx@lists.freedesktop.org>; Fri, 04 Dec 2020 15:12:35 +0000
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Fri,  4 Dec 2020 15:12:32 +0000
-Message-Id: <20201204151234.19729-2-chris@chris-wilson.co.uk>
+Date: Fri,  4 Dec 2020 15:12:33 +0000
+Message-Id: <20201204151234.19729-3-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20201204151234.19729-1-chris@chris-wilson.co.uk>
 References: <20201204151234.19729-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [CI 2/4] drm/i915/gt: Cancel the preemption timeout on
- responding to it
+Subject: [Intel-gfx] [CI 3/4] drm/i915/gt: Include reset failures in the
+ trace
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,38 +44,97 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-We currently presume that the engine reset is successful, cancelling the
-expired preemption timer in the process. However, engine resets can
-fail, leaving the timeout still pending and we will then respond to the
-timeout again next time the tasklet fires. What we want is for the
-failed engine reset to be promoted to a full device reset, which is
-kicked by the heartbeat once the engine stops processing events.
+The GT and engine reset failures are completely invisible when looking at
+a trace for a bug, but are vital to understanding the incomplete flow.
 
-Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/1168
-Fixes: 3a7a92aba8fb ("drm/i915/execlists: Force preemption")
 Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: <stable@vger.kernel.org> # v5.5+
 Reviewed-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/gt/intel_lrc.c | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/i915/gt/intel_reset.c | 22 ++++++++++------------
+ 1 file changed, 10 insertions(+), 12 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
-index 1d209a8a95e8..7f25894e41d5 100644
---- a/drivers/gpu/drm/i915/gt/intel_lrc.c
-+++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
-@@ -3209,8 +3209,10 @@ static void execlists_submission_tasklet(unsigned long data)
- 		spin_unlock_irqrestore(&engine->active.lock, flags);
- 
- 		/* Recheck after serialising with direct-submission */
--		if (unlikely(timeout && preempt_timeout(engine)))
-+		if (unlikely(timeout && preempt_timeout(engine))) {
-+			cancel_timer(&engine->execlists.preempt);
- 			execlists_reset(engine, "preemption time out");
-+		}
+diff --git a/drivers/gpu/drm/i915/gt/intel_reset.c b/drivers/gpu/drm/i915/gt/intel_reset.c
+index 3654c955e6be..000d63588e9e 100644
+--- a/drivers/gpu/drm/i915/gt/intel_reset.c
++++ b/drivers/gpu/drm/i915/gt/intel_reset.c
+@@ -231,7 +231,7 @@ static int g4x_do_reset(struct intel_gt *gt,
+ 			      GRDOM_MEDIA | GRDOM_RESET_ENABLE);
+ 	ret =  wait_for_atomic(g4x_reset_complete(pdev), 50);
+ 	if (ret) {
+-		drm_dbg(&gt->i915->drm, "Wait for media reset failed\n");
++		GT_TRACE(gt, "Wait for media reset failed\n");
+ 		goto out;
  	}
- }
  
+@@ -239,7 +239,7 @@ static int g4x_do_reset(struct intel_gt *gt,
+ 			      GRDOM_RENDER | GRDOM_RESET_ENABLE);
+ 	ret =  wait_for_atomic(g4x_reset_complete(pdev), 50);
+ 	if (ret) {
+-		drm_dbg(&gt->i915->drm, "Wait for render reset failed\n");
++		GT_TRACE(gt, "Wait for render reset failed\n");
+ 		goto out;
+ 	}
+ 
+@@ -265,7 +265,7 @@ static int ilk_do_reset(struct intel_gt *gt, intel_engine_mask_t engine_mask,
+ 					   5000, 0,
+ 					   NULL);
+ 	if (ret) {
+-		drm_dbg(&gt->i915->drm, "Wait for render reset failed\n");
++		GT_TRACE(gt, "Wait for render reset failed\n");
+ 		goto out;
+ 	}
+ 
+@@ -276,7 +276,7 @@ static int ilk_do_reset(struct intel_gt *gt, intel_engine_mask_t engine_mask,
+ 					   5000, 0,
+ 					   NULL);
+ 	if (ret) {
+-		drm_dbg(&gt->i915->drm, "Wait for media reset failed\n");
++		GT_TRACE(gt, "Wait for media reset failed\n");
+ 		goto out;
+ 	}
+ 
+@@ -305,9 +305,9 @@ static int gen6_hw_domain_reset(struct intel_gt *gt, u32 hw_domain_mask)
+ 					   500, 0,
+ 					   NULL);
+ 	if (err)
+-		drm_dbg(&gt->i915->drm,
+-			"Wait for 0x%08x engines reset failed\n",
+-			hw_domain_mask);
++		GT_TRACE(gt,
++			 "Wait for 0x%08x engines reset failed\n",
++			 hw_domain_mask);
+ 
+ 	return err;
+ }
+@@ -407,8 +407,7 @@ static int gen11_lock_sfc(struct intel_engine_cs *engine, u32 *hw_mask)
+ 		return 0;
+ 
+ 	if (ret) {
+-		drm_dbg(&engine->i915->drm,
+-			"Wait for SFC forced lock ack failed\n");
++		ENGINE_TRACE(engine, "Wait for SFC forced lock ack failed\n");
+ 		return ret;
+ 	}
+ 
+@@ -1148,8 +1147,7 @@ int intel_engine_reset(struct intel_engine_cs *engine, const char *msg)
+ 		ret = intel_guc_reset_engine(&engine->gt->uc.guc, engine);
+ 	if (ret) {
+ 		/* If we fail here, we expect to fallback to a global reset */
+-		drm_dbg(&gt->i915->drm, "%sFailed to reset %s, ret=%d\n",
+-			uses_guc ? "GuC " : "", engine->name, ret);
++		ENGINE_TRACE(engine, "Failed to reset, err: %d\n", ret);
+ 		goto out;
+ 	}
+ 
+@@ -1186,7 +1184,7 @@ static void intel_gt_reset_global(struct intel_gt *gt,
+ 
+ 	kobject_uevent_env(kobj, KOBJ_CHANGE, error_event);
+ 
+-	drm_dbg(&gt->i915->drm, "resetting chip, engines=%x\n", engine_mask);
++	GT_TRACE(gt, "resetting chip, engines=%x\n", engine_mask);
+ 	kobject_uevent_env(kobj, KOBJ_CHANGE, reset_event);
+ 
+ 	/* Use a watchdog to ensure that our reset completes */
 -- 
 2.20.1
 
