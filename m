@@ -1,55 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7DCFB2CECF5
-	for <lists+intel-gfx@lfdr.de>; Fri,  4 Dec 2020 12:22:23 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 058892CED08
+	for <lists+intel-gfx@lfdr.de>; Fri,  4 Dec 2020 12:27:29 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EE9836E15C;
-	Fri,  4 Dec 2020 11:22:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6040B6E138;
+	Fri,  4 Dec 2020 11:27:26 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com
- [209.85.128.47])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 35B146E155
- for <intel-gfx@lists.freedesktop.org>; Fri,  4 Dec 2020 11:22:20 +0000 (UTC)
-Received: by mail-wm1-f47.google.com with SMTP id k10so5216623wmi.3
- for <intel-gfx@lists.freedesktop.org>; Fri, 04 Dec 2020 03:22:20 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:subject:from:to:references:message-id:date
- :user-agent:mime-version:in-reply-to:content-language
- :content-transfer-encoding;
- bh=Id3LK/FyCkJdAohUv49y24dUwkrsfVB6dimXeu4zoqk=;
- b=HcIQG4Eyx4n9KAeIyRsZBIu7WRlV85UBb0UjTdol+Iki8PdWufijVkdJGVyqbIbgxa
- 2FP/6QY0mns6H5TpKU3jBpKFl3LcS2CcO5BnHFzKQjI5zGSxjNshjNXElPem9t+Z4Gdz
- ZgjT6Fe8TIzBKMVRgrmq6rjGFT7woHuPUjasoOdIpy814QDHFaTgfe9eK6wTS4xJqfnC
- 2P0HVm8FD1fTkgxPeltHnd5HwyE65puG3NqcXffbYBXBllqZcc1wFbKUp0J+zsQfVI64
- S5p4Jczp8CsjkIQRP8sReG7GixmUxHNWYAdZizkpip4IscoDCD6PS5oDlxNDc8BwihXr
- CY/Q==
-X-Gm-Message-State: AOAM531UdWHz8bHfWt5ZaAG7+jc7dn3h0eURdgG9pTeNVRvqqc6gjRd9
- srydDXZjGUUEnHNDkqHICkz4A8T1ZOebVw==
-X-Google-Smtp-Source: ABdhPJyuCdvynsHZvXHdR//QEnftAk5NC9CoMZEIQd2kokXICMuJvhHXsZFxniNjkBP2m0j2iEDbKQ==
-X-Received: by 2002:a1c:7909:: with SMTP id l9mr3660856wme.120.1607080938485; 
- Fri, 04 Dec 2020 03:22:18 -0800 (PST)
-Received: from [10.0.0.21] (smtp.glidos.net. [82.69.85.168])
- by smtp.gmail.com with ESMTPSA id d8sm2671664wmb.11.2020.12.04.03.22.17
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Fri, 04 Dec 2020 03:22:17 -0800 (PST)
-From: Paul Gardiner <lists@glidos.net>
-To: Jani Nikula <jani.nikula@linux.intel.com>, intel-gfx@lists.freedesktop.org
-References: <ac472118-be43-dc8d-87a3-c4d17c9d9f26@glidos.net>
- <87sg98ox2i.fsf@intel.com> <d89b2287-51dc-87a5-4e38-022b0b8da648@glidos.net>
- <87v9dwm4fy.fsf@intel.com> <8705b7e4-9dba-1496-fdbb-15016be15fe6@glidos.net>
-Message-ID: <81a0f2f9-8669-8409-1ca5-8111bedef6b1@glidos.net>
-Date: Fri, 4 Dec 2020 11:22:18 +0000
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Thunderbird/78.5.1
+Received: from fireflyinternet.com (unknown [77.68.26.236])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 410076E138;
+ Fri,  4 Dec 2020 11:27:25 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 23213236-1500050 
+ for multiple; Fri, 04 Dec 2020 11:27:14 +0000
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Fri,  4 Dec 2020 11:27:12 +0000
+Message-Id: <20201204112712.1655631-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.29.2
+In-Reply-To: <20201203095914.1427672-1-chris@chris-wilson.co.uk>
+References: <20201203095914.1427672-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-In-Reply-To: <8705b7e4-9dba-1496-fdbb-15016be15fe6@glidos.net>
-Content-Language: en-GB
-Subject: Re: [Intel-gfx] Does the intel driver support faking a connected
- monitor?
+Subject: [Intel-gfx] [PATCH i-g-t] i915/gem_ctx_exec: Exercise execution
+ along context while closing it
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,56 +39,136 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: igt-dev@lists.freedesktop.org, Chris Wilson <chris@chris-wilson.co.uk>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 24/11/2020 15:03, Paul Gardiner wrote:
-> On 23/11/2020 16:19, Jani Nikula wrote:
->> On Sat, 21 Nov 2020, Paul Gardiner <lists@glidos.net> wrote:
->>> On 17/11/2020 14:52, Jani Nikula wrote:
->>>> On Thu, 29 Oct 2020, Paul Gardiner <lists@glidos.net> wrote:
->>>>> I use an open source DVR called MythTV. I've just swapped from using
->>>>> nvidia graphics to intel graphics. Generally it's working great, but
->>>>> I've run into one thing I used to do with the old system that I cannot
->>>>> find out how to achieve with the new.
->>>>>
->>>>> MythTV doesn't currently entirely handle starting without a TV
->>>>> connected. With nvidia graphics I could specify, within the X config,
->>>>> the "ConnectMonitor" and "CustomEDID" options to fool MythTV into
->>>>> thinking there was a TV. With intel graphics I can load EDID, but 
->>>>> so far
->>>>> I haven't discovered an equivalent of the "ConnectedMonitor" option.
->>>>
->>>> Sorry for the delay, I seem to have missed this.
->>>>
->>>> Please try a kernel command-line parameter to force enable the
->>>> connector.
->>>>
->>>> video=TV-1:e
->>>>
->>>> Assuming the connector name is "TV-1"; replace with whatever you have.
->>>
->>>
->>> Thanks for the reply. I gave that a try, in my case "video=HDMI1:e", but
->>> saw no difference. That's KMS, right? Is there anything I might have
->>> failed to install or enable that KMS relies on? Are there any logs I
->>> should monitor?
->>
->> I think it should probably be HDMI-1 with the hyphen; is that a typo
->> above or in the command line you used?
-> 
-> Thanks for the continued help. I tried "video=HDMI1:e" because my Xorg 
-> log listed outputs HDMI1, HDMI2, DP1 and VIRTUAL1. I've now tried 
-> "video=HDMI-1:e", but still no luck.
+Race the execution and interrupt handlers along a context, while
+closing it at a random time.
 
-Not wishing to hassle you, but before I give up, any further thoughts on 
-this?  I have a solution at least, which is to use a EDID emulator, so 
-it's no great inconvenience how it is.
+v2: Some comments to handwave away the knowledge of internal
+implementation details.
 
-Cheers,
-	Paul.
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+---
+ tests/i915/gem_ctx_exec.c | 84 +++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 84 insertions(+)
+
+diff --git a/tests/i915/gem_ctx_exec.c b/tests/i915/gem_ctx_exec.c
+index 194191def..5c6109237 100644
+--- a/tests/i915/gem_ctx_exec.c
++++ b/tests/i915/gem_ctx_exec.c
+@@ -43,6 +43,7 @@
+ #include "i915/gem.h"
+ #include "igt.h"
+ #include "igt_dummyload.h"
++#include "igt_rand.h"
+ #include "igt_sysfs.h"
+ #include "sw_sync.h"
+ 
+@@ -336,6 +337,86 @@ static void nohangcheck_hostile(int i915)
+ 	close(i915);
+ }
+ 
++static void close_race(int i915)
++{
++	const int ncpus = sysconf(_SC_NPROCESSORS_ONLN);
++	uint32_t *contexts;
++
++	contexts = mmap(NULL, 4096, PROT_WRITE, MAP_SHARED | MAP_ANON, -1, 0);
++	igt_assert(contexts != MAP_FAILED);
++
++	for (int child = 0; child < ncpus; child++)
++		contexts[child] = gem_context_clone_with_engines(i915, 0);
++
++	igt_fork(child, ncpus) {
++		igt_spin_t *spin;
++
++		spin = igt_spin_new(i915, .flags = IGT_SPIN_POLL_RUN);
++		igt_spin_end(spin);
++		gem_sync(i915, spin->handle);
++
++		while (!READ_ONCE(contexts[ncpus])) {
++			int64_t timeout = 1;
++
++			igt_spin_reset(spin);
++			igt_assert(!igt_spin_has_started(spin));
++
++			spin->execbuf.rsvd1 = READ_ONCE(contexts[child]);
++			if (__gem_execbuf(i915, &spin->execbuf))
++				continue;
++
++			/*
++			 * One race we are particularly interested in is the
++			 * handling of interrupt signaling along a closed
++			 * context. We want to see if we can catch the kernel
++			 * freeing the context while using it in the interrupt
++			 * handler.
++			 *
++			 * There's no API to mandate that the interrupt is
++			 * generate for a wait, nor that the implementation
++			 * details of the kernel will not change to remove
++			 * context access during interrupt processing. But
++			 * for now, this should be interesting.
++			 *
++			 * Even if the signaling implementation is changed,
++			 * racing context closure versus execbuf and looking
++			 * at the outcome is very useful.
++			 */
++
++			igt_assert(gem_bo_busy(i915, spin->handle));
++			gem_wait(i915, spin->handle, &timeout); /* prime irq */
++			igt_spin_busywait_until_started(spin);
++
++			igt_spin_end(spin);
++			gem_sync(i915, spin->handle);
++		}
++
++		igt_spin_free(i915, spin);
++	}
++
++	igt_until_timeout(5) {
++		/*
++		 * Recreate all the contexts while they are in active use
++		 * by the children. This may race with any of their ioctls
++		 * and the kernel's context/request handling.
++		 */
++		for (int child = 0; child < ncpus; child++) {
++			gem_context_destroy(i915, contexts[child]);
++			contexts[child] =
++				gem_context_clone_with_engines(i915, 0);
++		}
++		usleep(1000 + hars_petruska_f54_1_random_unsafe() % 2000);
++	}
++
++	contexts[ncpus] = 1;
++	igt_waitchildren();
++
++	for (int child = 0; child < ncpus; child++)
++		gem_context_destroy(i915, contexts[child]);
++
++	munmap(contexts, 4096);
++}
++
+ igt_main
+ {
+ 	const uint32_t batch[2] = { 0, MI_BATCH_BUFFER_END };
+@@ -380,6 +461,9 @@ igt_main
+ 	igt_subtest("basic-nohangcheck")
+ 		nohangcheck_hostile(fd);
+ 
++	igt_subtest("basic-close-race")
++		close_race(fd);
++
+ 	igt_subtest("reset-pin-leak") {
+ 		int i;
+ 
+-- 
+2.29.2
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
