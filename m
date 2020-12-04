@@ -1,42 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1F9CB2CE307
-	for <lists+intel-gfx@lfdr.de>; Fri,  4 Dec 2020 00:51:13 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 32F892CE48E
+	for <lists+intel-gfx@lfdr.de>; Fri,  4 Dec 2020 01:43:28 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7D2226E0DF;
-	Thu,  3 Dec 2020 23:51:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E4C3E6E0DF;
+	Fri,  4 Dec 2020 00:43:24 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 41D7E6E0DD
- for <intel-gfx@lists.freedesktop.org>; Thu,  3 Dec 2020 23:51:04 +0000 (UTC)
-IronPort-SDR: rkj3SZHxmrBsxSbgde0oKSAIjHTTo1PpP30/WENLbPq6glIiJdFTK+coqte1/9Jm1TI01pMVaL
- hdXfiuJtOyLA==
-X-IronPort-AV: E=McAfee;i="6000,8403,9824"; a="161067213"
-X-IronPort-AV: E=Sophos;i="5.78,390,1599548400"; d="scan'208";a="161067213"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Dec 2020 15:51:03 -0800
-IronPort-SDR: XY903eZvL9TUqWmAQuyGgAu1IsgAxFh6SYg9KLF4TlVNgRZvEXLvIKjDA1bsfGMYm7h17ZqysU
- 4Vi0V22P9XzQ==
-X-IronPort-AV: E=Sophos;i="5.78,390,1599548400"; d="scan'208";a="550716513"
-Received: from labuser-z97x-ud5h.jf.intel.com ([10.165.21.211])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-SHA;
- 03 Dec 2020 15:51:03 -0800
-From: Manasi Navare <manasi.d.navare@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Thu,  3 Dec 2020 15:53:58 -0800
-Message-Id: <20201203235358.18041-9-manasi.d.navare@intel.com>
-X-Mailer: git-send-email 2.19.1
-In-Reply-To: <20201203235358.18041-1-manasi.d.navare@intel.com>
-References: <20201203235358.18041-1-manasi.d.navare@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id C8BC66E0DE;
+ Fri,  4 Dec 2020 00:43:23 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id B9205A363B;
+ Fri,  4 Dec 2020 00:43:23 +0000 (UTC)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v3 9/9] drm/i915/display: Add HW state readout
- for VRR
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Fri, 04 Dec 2020 00:43:23 -0000
+Message-ID: <160704260373.27540.3407056890035635410@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20201203223849.17350-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20201203223849.17350-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
+ =?utf-8?q?/i915=3A_Stop_sampling_rc6_from_inside_pmu=5Fenable_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,89 +38,228 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============1646300551=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This functions gets the VRR config from the VRR registers
-to match the crtc state variables for VRR.
+--===============1646300551==
+Content-Type: multipart/alternative;
+ boundary="===============0939930525132288036=="
 
-v2:
-* Rebase (Manasi)
-* Use HAS_VRR (Jani N)
+--===============0939930525132288036==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Cc: Jani Nikula <jani.nikula@linux.intel.com>
-Signed-off-by: Manasi Navare <manasi.d.navare@intel.com>
----
- drivers/gpu/drm/i915/display/intel_display.c |  3 +++
- drivers/gpu/drm/i915/display/intel_vrr.c     | 17 +++++++++++++++++
- drivers/gpu/drm/i915/display/intel_vrr.h     |  3 +++
- 3 files changed, 23 insertions(+)
+== Series Details ==
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index fa452eb3adb8..d5b934ecb30c 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -11449,6 +11449,9 @@ static bool hsw_get_pipe_config(struct intel_crtc *crtc,
- 		intel_get_transcoder_timings(crtc, pipe_config);
- 	}
- 
-+	if (HAS_VRR(dev_priv))
-+		intel_vrr_get_config(crtc, pipe_config);
-+
- 	intel_get_pipe_src_size(crtc, pipe_config);
- 
- 	if (IS_HASWELL(dev_priv)) {
-diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/i915/display/intel_vrr.c
-index a3edfadb50f1..9b867f629f86 100644
---- a/drivers/gpu/drm/i915/display/intel_vrr.c
-+++ b/drivers/gpu/drm/i915/display/intel_vrr.c
-@@ -149,3 +149,20 @@ void intel_vrr_disable(const struct intel_crtc_state *old_crtc_state)
- 	drm_dbg_kms(&dev_priv->drm, "Disabling VRR on pipe %c\n",
- 		    pipe_name(pipe));
- }
-+
-+void intel_vrr_get_config(struct intel_crtc *crtc,
-+			  struct intel_crtc_state *pipe_config)
-+{
-+	struct drm_device *dev = crtc->base.dev;
-+	struct drm_i915_private *dev_priv = to_i915(dev);
-+	enum pipe pipe = crtc->pipe;
-+	u32 trans_vrr_ctl;
-+
-+	trans_vrr_ctl = intel_de_read(dev_priv, TRANS_VRR_CTL(pipe));
-+	pipe_config->vrr.enable = trans_vrr_ctl & VRR_CTL_VRR_ENABLE;
-+	if (!pipe_config->vrr.enable)
-+		return;
-+
-+	pipe_config->vrr.vtotalmax = intel_de_read(dev_priv, TRANS_VRR_VMAX(pipe)) + 1;
-+	pipe_config->vrr.vtotalmin = intel_de_read(dev_priv, TRANS_VRR_VMIN(pipe)) + 1;
-+}
-diff --git a/drivers/gpu/drm/i915/display/intel_vrr.h b/drivers/gpu/drm/i915/display/intel_vrr.h
-index 5d3def024006..ae01eef6947f 100644
---- a/drivers/gpu/drm/i915/display/intel_vrr.h
-+++ b/drivers/gpu/drm/i915/display/intel_vrr.h
-@@ -14,6 +14,7 @@ struct intel_crtc;
- struct intel_crtc_state;
- struct intel_dp;
- struct intel_encoder;
-+struct intel_crtc;
- 
- bool intel_vrr_is_capable(struct drm_connector *connector);
- void intel_vrr_check_modeset(struct intel_atomic_state *state);
-@@ -23,5 +24,7 @@ void intel_vrr_enable(struct intel_encoder *encoder,
- 		      const struct intel_crtc_state *crtc_state);
- void intel_vrr_send_push(const struct intel_crtc_state *crtc_state);
- void intel_vrr_disable(const struct intel_crtc_state *old_crtc_state);
-+void intel_vrr_get_config(struct intel_crtc *crtc,
-+			  struct intel_crtc_state *pipe_config);
- 
- #endif /* __INTEL_VRR_H__ */
--- 
-2.19.1
+Series: drm/i915: Stop sampling rc6 from inside pmu_enable (rev2)
+URL   : https://patchwork.freedesktop.org/series/84549/
+State : failure
+
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_9439 -> Patchwork_19054
+====================================================
+
+Summary
+-------
+
+  **FAILURE**
+
+  Serious unknown changes coming with Patchwork_19054 absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in Patchwork_19054, please notify your bug team to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19054/index.html
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_19054:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@gem_exec_suspend@basic-s3:
+    - fi-snb-2600:        [PASS][1] -> [INCOMPLETE][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9439/fi-snb-2600/igt@gem_exec_suspend@basic-s3.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19054/fi-snb-2600/igt@gem_exec_suspend@basic-s3.html
+
+  
+New tests
+---------
+
+  New tests have been introduced between CI_DRM_9439 and Patchwork_19054:
+
+### New CI tests (1) ###
+
+  * boot:
+    - Statuses : 1 fail(s) 37 pass(s)
+    - Exec time: [0.0] s
+
+  
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_19054 that come from known issues:
+
+### IGT changes ###
+
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@execlists:
+    - fi-kbl-x1275:       [INCOMPLETE][3] ([i915#1037] / [i915#794]) -> [PASS][4]
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9439/fi-kbl-x1275/igt@i915_selftest@live@execlists.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19054/fi-kbl-x1275/igt@i915_selftest@live@execlists.html
+
+  * igt@i915_selftest@live@gt_timelines:
+    - fi-apl-guc:         [INCOMPLETE][5] -> [PASS][6]
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9439/fi-apl-guc/igt@i915_selftest@live@gt_timelines.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19054/fi-apl-guc/igt@i915_selftest@live@gt_timelines.html
+
+  
+  [i915#1037]: https://gitlab.freedesktop.org/drm/intel/issues/1037
+  [i915#794]: https://gitlab.freedesktop.org/drm/intel/issues/794
+
+
+Participating hosts (42 -> 38)
+------------------------------
+
+  Additional (1): fi-tgl-y 
+  Missing    (5): fi-kbl-soraka fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_9439 -> Patchwork_19054
+
+  CI-20190529: 20190529
+  CI_DRM_9439: 17ead179a640cc74313ebdd72c51eee3d2d803d6 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5880: d67bad61dc9a7515f94a7eecadd3bcd6b4f9d49e @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_19054: bc6f455af929894c1be333a41cd397e3c5232829 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+bc6f455af929 drm/i915: Stop sampling rc6 from inside pmu_enable
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19054/index.html
+
+--===============0939930525132288036==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915: Stop sampling rc6 from inside pmu_enable (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/84549/">https://patchwork.freedesktop.org/series/84549/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19054/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19054/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_9439 -&gt; Patchwork_19054</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with Patchwork_19054 absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in Patchwork_19054, please notify your bug team to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19054/index.html</p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in Patchwork_19054:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>igt@gem_exec_suspend@basic-s3:<ul>
+<li>fi-snb-2600:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9439/fi-snb-2600/igt@gem_exec_suspend@basic-s3.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19054/fi-snb-2600/igt@gem_exec_suspend@basic-s3.html">INCOMPLETE</a></li>
+</ul>
+</li>
+</ul>
+<h2>New tests</h2>
+<p>New tests have been introduced between CI_DRM_9439 and Patchwork_19054:</p>
+<h3>New CI tests (1)</h3>
+<ul>
+<li>boot:<ul>
+<li>Statuses : 1 fail(s) 37 pass(s)</li>
+<li>Exec time: [0.0] s</li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_19054 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live@execlists:</p>
+<ul>
+<li>fi-kbl-x1275:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9439/fi-kbl-x1275/igt@i915_selftest@live@execlists.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1037">i915#1037</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/794">i915#794</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19054/fi-kbl-x1275/igt@i915_selftest@live@execlists.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@gt_timelines:</p>
+<ul>
+<li>fi-apl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9439/fi-apl-guc/igt@i915_selftest@live@gt_timelines.html">INCOMPLETE</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19054/fi-apl-guc/igt@i915_selftest@live@gt_timelines.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Participating hosts (42 -&gt; 38)</h2>
+<p>Additional (1): fi-tgl-y <br />
+  Missing    (5): fi-kbl-soraka fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-bdw-samus </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_9439 -&gt; Patchwork_19054</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_9439: 17ead179a640cc74313ebdd72c51eee3d2d803d6 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_5880: d67bad61dc9a7515f94a7eecadd3bcd6b4f9d49e @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
+  Patchwork_19054: bc6f455af929894c1be333a41cd397e3c5232829 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>bc6f455af929 drm/i915: Stop sampling rc6 from inside pmu_enable</p>
+
+</body>
+</html>
+
+--===============0939930525132288036==--
+
+--===============1646300551==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============1646300551==--
