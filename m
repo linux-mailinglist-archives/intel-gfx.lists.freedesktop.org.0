@@ -2,31 +2,45 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E71952CF140
-	for <lists+intel-gfx@lfdr.de>; Fri,  4 Dec 2020 16:53:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 364022CF161
+	for <lists+intel-gfx@lfdr.de>; Fri,  4 Dec 2020 17:01:19 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5CAD96E199;
-	Fri,  4 Dec 2020 15:53:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 69DC86E196;
+	Fri,  4 Dec 2020 16:01:17 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 776E36E197;
- Fri,  4 Dec 2020 15:53:56 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 72052A9A42;
- Fri,  4 Dec 2020 15:53:56 +0000 (UTC)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C88206E196
+ for <intel-gfx@lists.freedesktop.org>; Fri,  4 Dec 2020 16:01:15 +0000 (UTC)
+IronPort-SDR: i6UpZFNJgRovii43qYh/5Xh6ibnBrnWnbg1DSqZXDEu/+D4EyBy1j5b4uw/EVGzmdO7XFYA3s3
+ nNOg1mRl4uYg==
+X-IronPort-AV: E=McAfee;i="6000,8403,9825"; a="160451813"
+X-IronPort-AV: E=Sophos;i="5.78,393,1599548400"; d="scan'208";a="160451813"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Dec 2020 08:01:14 -0800
+IronPort-SDR: 1w0/YtiZyn7B0fXWHaPp25c2hNEKaYc03i5FK2QIEX6jgOXH2Yxuun/U9etB8fRl+59URfTlTY
+ 5nBU7JFafQbQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.78,393,1599548400"; d="scan'208";a="373960223"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
+ by orsmga007.jf.intel.com with SMTP; 04 Dec 2020 08:01:12 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Fri, 04 Dec 2020 18:01:11 +0200
+Date: Fri, 4 Dec 2020 18:01:11 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Chris Wilson <chris@chris-wilson.co.uk>
+Message-ID: <X8pdR3wUue1tNhJJ@intel.com>
+References: <20201127220548.3713-1-chris@chris-wilson.co.uk>
+ <20201201160517.GX6112@intel.com>
+ <160686233758.408.13656920081137084390@build.alporthouse.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Fri, 04 Dec 2020 15:53:56 -0000
-Message-ID: <160709723646.27540.4301324355611106118@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20201204140315.24341-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20201204140315.24341-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
- =?utf-8?q?series_starting_with_=5B01/24=5D_drm/i915=3A_Disable_outputs_du?=
- =?utf-8?q?ring_unregister?=
+Content-Disposition: inline
+In-Reply-To: <160686233758.408.13656920081137084390@build.alporthouse.com>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Disable outputs during unregister
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,80 +53,73 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Tue, Dec 01, 2020 at 10:38:57PM +0000, Chris Wilson wrote:
+> Quoting Ville Syrj=E4l=E4 (2020-12-01 16:05:17)
+> > On Fri, Nov 27, 2020 at 10:05:48PM +0000, Chris Wilson wrote:
+> > > Switch off the scanout during driver unregister, so we can shutdown t=
+he
+> > > HW immediately for unbind.
+> > > =
 
-Series: series starting with [01/24] drm/i915: Disable outputs during unregister
-URL   : https://patchwork.freedesktop.org/series/84579/
-State : warning
+> > > Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> > > ---
+> > >  drivers/gpu/drm/i915/i915_drv.c | 1 +
+> > >  1 file changed, 1 insertion(+)
+> > > =
 
-== Summary ==
+> > > diff --git a/drivers/gpu/drm/i915/i915_drv.c b/drivers/gpu/drm/i915/i=
+915_drv.c
+> > > index 320856b665a1..62d188e5cb8d 100644
+> > > --- a/drivers/gpu/drm/i915/i915_drv.c
+> > > +++ b/drivers/gpu/drm/i915/i915_drv.c
+> > > @@ -738,6 +738,7 @@ static void i915_driver_unregister(struct drm_i91=
+5_private *dev_priv)
+> > >        * events.
+> > >        */
+> > >       drm_kms_helper_poll_fini(&dev_priv->drm);
+> > > +     drm_atomic_helper_shutdown(&dev_priv->drm);
+> > =
 
-$ dim sparse --fast origin/drm-tip
-Sparse version: v0.6.2
-Fast mode used, each commit won't be checked separately.
--
-+drivers/gpu/drm/i915/gt/intel_reset.c:1326:5: warning: context imbalance in 'intel_gt_reset_trylock' - different lock contexts for basic block
-+drivers/gpu/drm/i915/gt/selftest_reset.c:100:20:    expected void *in
-+drivers/gpu/drm/i915/gt/selftest_reset.c:100:20:    got void [noderef] __iomem *[assigned] s
-+drivers/gpu/drm/i915/gt/selftest_reset.c:100:20: warning: incorrect type in assignment (different address spaces)
-+drivers/gpu/drm/i915/gt/selftest_reset.c:101:46:    expected void const *src
-+drivers/gpu/drm/i915/gt/selftest_reset.c:101:46:    got void [noderef] __iomem *[assigned] s
-+drivers/gpu/drm/i915/gt/selftest_reset.c:101:46: warning: incorrect type in argument 2 (different address spaces)
-+drivers/gpu/drm/i915/gt/selftest_reset.c:136:20:    expected void *in
-+drivers/gpu/drm/i915/gt/selftest_reset.c:136:20:    got void [noderef] __iomem *[assigned] s
-+drivers/gpu/drm/i915/gt/selftest_reset.c:136:20: warning: incorrect type in assignment (different address spaces)
-+drivers/gpu/drm/i915/gt/selftest_reset.c:137:46:    expected void const *src
-+drivers/gpu/drm/i915/gt/selftest_reset.c:137:46:    got void [noderef] __iomem *[assigned] s
-+drivers/gpu/drm/i915/gt/selftest_reset.c:137:46: warning: incorrect type in argument 2 (different address spaces)
-+drivers/gpu/drm/i915/gt/selftest_reset.c:98:34:    expected unsigned int [usertype] *s
-+drivers/gpu/drm/i915/gt/selftest_reset.c:98:34:    got void [noderef] __iomem *[assigned] s
-+drivers/gpu/drm/i915/gt/selftest_reset.c:98:34: warning: incorrect type in argument 1 (different address spaces)
-+drivers/gpu/drm/i915/gvt/mmio.c:295:23: warning: memcpy with byte count of 279040
-+drivers/gpu/drm/i915/i915_perf.c:1447:15: warning: memset with byte count of 16777216
-+drivers/gpu/drm/i915/i915_perf.c:1501:15: warning: memset with byte count of 16777216
-+./include/linux/seqlock.h:838:24: warning: trying to copy expression type 31
-+./include/linux/seqlock.h:838:24: warning: trying to copy expression type 31
-+./include/linux/seqlock.h:864:16: warning: trying to copy expression type 31
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_read16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_read32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_read64' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_read8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_write8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_read16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_read32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_read64' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_read8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_write8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_read16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_read32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_read64' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_read8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_write8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_read16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_read32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_read64' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_read8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_write8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen8_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen8_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen8_write8' - different lock contexts for basic block
+> > Looks like we already have this in remove(). Is that too late?
+> =
 
+> For the operations we do during unbind, yes.
+> =
 
+> For the core_hotplug/rebind dance, we have to reset the GPU while we
+> still have runtime-pm operational and have pushed the reset to
+> unregister (from experimentation that's as late as we can put it where
+> the GPU works after rebinding and we don't corrupt the system on unbind,
+> with the current hooks). You can guess how well gen3 likes that.
+> =
+
+> But I don't think the right answer is to skip the reset for gen3.
+> Suppose we enable context support for gen3, then the reset would be
+> required as well, and so we would still need the whole display
+> shenanigans to turn it off. Moving the modeset to turn the display off
+> to the end of userspace seems reasonable.
+
+Yeah, just a bit odd to have the same call twice in the
+sequence. Can we remove the second call at least?
+
+Also a bit annoying the unload sequence no longer matches the
+suspend sequence. Well, I guess it was never 100% anyway but
+I think it was a bit closer before this patch. But the whole
+thing is rather messy anyway so I guess t's not significantly
+worse after this.
+
+Reviewed-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+
+-- =
+
+Ville Syrj=E4l=E4
+Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
