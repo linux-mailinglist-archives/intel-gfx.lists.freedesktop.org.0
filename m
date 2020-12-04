@@ -1,32 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9E58D2CE490
-	for <lists+intel-gfx@lfdr.de>; Fri,  4 Dec 2020 01:45:47 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id E38AE2CE497
+	for <lists+intel-gfx@lfdr.de>; Fri,  4 Dec 2020 01:47:15 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1CA9F6E0DE;
-	Fri,  4 Dec 2020 00:45:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 372F36E0DE;
+	Fri,  4 Dec 2020 00:47:14 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id CC86E6E0DE;
- Fri,  4 Dec 2020 00:45:44 +0000 (UTC)
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 2E9C26E0DE;
+ Fri,  4 Dec 2020 00:47:13 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id C3161A8835;
- Fri,  4 Dec 2020 00:45:44 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 28EECA8835;
+ Fri,  4 Dec 2020 00:47:13 +0000 (UTC)
 MIME-Version: 1.0
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Manasi Navare" <manasi.d.navare@intel.com>
-Date: Fri, 04 Dec 2020 00:45:44 -0000
-Message-ID: <160704274477.27541.7349299119659359071@emeril.freedesktop.org>
+Date: Fri, 04 Dec 2020 00:47:13 -0000
+Message-ID: <160704283316.27539.1065960108314348147@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20201203235358.18041-1-manasi.d.navare@intel.com>
 In-Reply-To: <20201203235358.18041-1-manasi.d.navare@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_series_starting_with_=5Bv3=2C1/9=5D_drm/i915/display/vrr=3A?=
- =?utf-8?q?_Create_VRR_file_and_add_VRR_capability_check?=
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
+ =?utf-8?q?series_starting_with_=5Bv3=2C1/9=5D_drm/i915/display/vrr=3A_Cre?=
+ =?utf-8?q?ate_VRR_file_and_add_VRR_capability_check?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,44 +41,79 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-PT0gU2VyaWVzIERldGFpbHMgPT0KClNlcmllczogc2VyaWVzIHN0YXJ0aW5nIHdpdGggW3YzLDEv
-OV0gZHJtL2k5MTUvZGlzcGxheS92cnI6IENyZWF0ZSBWUlIgZmlsZSBhbmQgYWRkIFZSUiBjYXBh
-YmlsaXR5IGNoZWNrClVSTCAgIDogaHR0cHM6Ly9wYXRjaHdvcmsuZnJlZWRlc2t0b3Aub3JnL3Nl
-cmllcy84NDU1NS8KU3RhdGUgOiB3YXJuaW5nCgo9PSBTdW1tYXJ5ID09CgokIGRpbSBjaGVja3Bh
-dGNoIG9yaWdpbi9kcm0tdGlwCjBmNTI1ZmViYzdmNCBkcm0vaTkxNS9kaXNwbGF5L3ZycjogQ3Jl
-YXRlIFZSUiBmaWxlIGFuZCBhZGQgVlJSIGNhcGFiaWxpdHkgY2hlY2sKLTozNjogV0FSTklORzpG
-SUxFX1BBVEhfQ0hBTkdFUzogYWRkZWQsIG1vdmVkIG9yIGRlbGV0ZWQgZmlsZShzKSwgZG9lcyBN
-QUlOVEFJTkVSUyBuZWVkIHVwZGF0aW5nPwojMzY6IApuZXcgZmlsZSBtb2RlIDEwMDY0NAoKLTo0
-MTogV0FSTklORzpTUERYX0xJQ0VOU0VfVEFHOiBJbXByb3BlciBTUERYIGNvbW1lbnQgc3R5bGUg
-Zm9yICdkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX3Zyci5jJywgcGxlYXNlIHVz
-ZSAnLy8nIGluc3RlYWQKIzQxOiBGSUxFOiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2lu
-dGVsX3Zyci5jOjE6CisvKiBTUERYLUxpY2Vuc2UtSWRlbnRpZmllcjogTUlUICovCgotOjQxOiBX
-QVJOSU5HOlNQRFhfTElDRU5TRV9UQUc6IE1pc3Npbmcgb3IgbWFsZm9ybWVkIFNQRFgtTGljZW5z
-ZS1JZGVudGlmaWVyIHRhZyBpbiBsaW5lIDEKIzQxOiBGSUxFOiBkcml2ZXJzL2dwdS9kcm0vaTkx
-NS9kaXNwbGF5L2ludGVsX3Zyci5jOjE6CisvKiBTUERYLUxpY2Vuc2UtSWRlbnRpZmllcjogTUlU
-ICovCgotOjgyOiBXQVJOSU5HOkJMT0NLX0NPTU1FTlRfU1RZTEU6IEJsb2NrIGNvbW1lbnRzIHNo
-b3VsZCBhbGlnbiB0aGUgKiBvbiBlYWNoIGxpbmUKIzgyOiBGSUxFOiBkcml2ZXJzL2dwdS9kcm0v
-aTkxNS9kaXNwbGF5L2ludGVsX3Zyci5oOjQ6CisgKiBDb3B5cmlnaHQgwqkgMjAxOSBJbnRlbCBD
-b3Jwb3JhdGlvbgorKi8KCnRvdGFsOiAwIGVycm9ycywgNCB3YXJuaW5ncywgMCBjaGVja3MsIDYy
-IGxpbmVzIGNoZWNrZWQKN2ZhMjk2NzQyYzM3IGRybS9pOTE1L2Rpc3BsYXkvZHA6IEF0dGFjaCBh
-bmQgc2V0IGRybSBjb25uZWN0b3IgVlJSIHByb3BlcnR5CmY1YmE0Mjc0YTczMSBkcm0vaTkxNS9k
-aXNwbGF5L2RwOiBDb21wdXRlIFZSUiBzdGF0ZSBpbiBhdG9taWNfY2hlY2sKODY0NmI4NjExZmVm
-IGRybS9pOTE1L2Rpc3BsYXkvZHA6IERvIG5vdCBlbmFibGUgUFNSIGlmIFZSUiBpcyBlbmFibGVk
-CmNiNGY3MmJlMGNmYiBkcm0vaTkxNS9kaXNwbGF5L3ZycjogQ29uZmlndXJlIGFuZCBlbmFibGUg
-VlJSIGluIG1vZGVzZXQgZW5hYmxlCmFmZTVmNDliYzkyMyBkcm0vaTkxNS9kaXNwbGF5L3Zycjog
-U2VuZCBWUlIgcHVzaCB0byBmbGlwIHRoZSBmcmFtZQotOjUxOiBXQVJOSU5HOkxPTkdfTElORTog
-bGluZSBsZW5ndGggb2YgMTAzIGV4Y2VlZHMgMTAwIGNvbHVtbnMKIzUxOiBGSUxFOiBkcml2ZXJz
-L2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX3Nwcml0ZS5jOjEwNToKKwkJCQkJCQkJCSAgICAg
-ICBWQkxBTktfRVZBU0lPTl9USU1FX1VTKTsKCnRvdGFsOiAwIGVycm9ycywgMSB3YXJuaW5ncywg
-MCBjaGVja3MsIDU3IGxpbmVzIGNoZWNrZWQKMDNhMzY0YTcyMjRlIGRybS9pOTE1L2Rpc3BsYXkv
-dnJyOiBEaXNhYmxlIFZSUiBpbiBtb2Rlc2V0IGRpc2FibGUgcGF0aAowMzViM2Y5MmJiNTIgZHJt
-L2k5MTUvZGlzcGxheS92cnI6IFNldCBJR05PUkVfTVNBX1BBUiBzdGF0ZSBpbiBEUCBTaW5rCjA2
-OTc4NDZmMjg4YyBkcm0vaTkxNS9kaXNwbGF5OiBBZGQgSFcgc3RhdGUgcmVhZG91dCBmb3IgVlJS
-CgoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwt
-Z2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8v
-bGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
+== Series Details ==
+
+Series: series starting with [v3,1/9] drm/i915/display/vrr: Create VRR file and add VRR capability check
+URL   : https://patchwork.freedesktop.org/series/84555/
+State : warning
+
+== Summary ==
+
+$ dim sparse --fast origin/drm-tip
+Sparse version: v0.6.2
+Fast mode used, each commit won't be checked separately.
+-
++drivers/gpu/drm/i915/gt/intel_reset.c:1312:5: warning: context imbalance in 'intel_gt_reset_trylock' - different lock contexts for basic block
++drivers/gpu/drm/i915/gt/selftest_reset.c:100:20:    expected void *in
++drivers/gpu/drm/i915/gt/selftest_reset.c:100:20:    got void [noderef] __iomem *[assigned] s
++drivers/gpu/drm/i915/gt/selftest_reset.c:100:20: warning: incorrect type in assignment (different address spaces)
++drivers/gpu/drm/i915/gt/selftest_reset.c:101:46:    expected void const *src
++drivers/gpu/drm/i915/gt/selftest_reset.c:101:46:    got void [noderef] __iomem *[assigned] s
++drivers/gpu/drm/i915/gt/selftest_reset.c:101:46: warning: incorrect type in argument 2 (different address spaces)
++drivers/gpu/drm/i915/gt/selftest_reset.c:136:20:    expected void *in
++drivers/gpu/drm/i915/gt/selftest_reset.c:136:20:    got void [noderef] __iomem *[assigned] s
++drivers/gpu/drm/i915/gt/selftest_reset.c:136:20: warning: incorrect type in assignment (different address spaces)
++drivers/gpu/drm/i915/gt/selftest_reset.c:137:46:    expected void const *src
++drivers/gpu/drm/i915/gt/selftest_reset.c:137:46:    got void [noderef] __iomem *[assigned] s
++drivers/gpu/drm/i915/gt/selftest_reset.c:137:46: warning: incorrect type in argument 2 (different address spaces)
++drivers/gpu/drm/i915/gt/selftest_reset.c:98:34:    expected unsigned int [usertype] *s
++drivers/gpu/drm/i915/gt/selftest_reset.c:98:34:    got void [noderef] __iomem *[assigned] s
++drivers/gpu/drm/i915/gt/selftest_reset.c:98:34: warning: incorrect type in argument 1 (different address spaces)
++drivers/gpu/drm/i915/gvt/mmio.c:295:23: warning: memcpy with byte count of 279040
++drivers/gpu/drm/i915/i915_perf.c:1447:15: warning: memset with byte count of 16777216
++drivers/gpu/drm/i915/i915_perf.c:1501:15: warning: memset with byte count of 16777216
++./include/linux/seqlock.h:838:24: warning: trying to copy expression type 31
++./include/linux/seqlock.h:838:24: warning: trying to copy expression type 31
++./include/linux/seqlock.h:864:16: warning: trying to copy expression type 31
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_read16' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_read32' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_read64' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_read8' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_write16' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_write32' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_write8' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_read16' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_read32' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_read64' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_read8' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_write16' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_write32' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_write8' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_read16' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_read32' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_read64' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_read8' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_write16' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_write32' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_write8' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_read16' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_read32' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_read64' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_read8' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_write16' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_write32' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_write8' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen8_write16' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen8_write32' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen8_write8' - different lock contexts for basic block
+
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
