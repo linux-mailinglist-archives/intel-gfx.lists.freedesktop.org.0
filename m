@@ -2,30 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 123562CF50F
-	for <lists+intel-gfx@lfdr.de>; Fri,  4 Dec 2020 20:52:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 578FD2CF59E
+	for <lists+intel-gfx@lfdr.de>; Fri,  4 Dec 2020 21:25:22 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5B1DA6E1B3;
-	Fri,  4 Dec 2020 19:52:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2EA696E217;
+	Fri,  4 Dec 2020 20:25:20 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 6E7C96E1B3;
- Fri,  4 Dec 2020 19:52:31 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id 49F546E216;
+ Fri,  4 Dec 2020 20:25:19 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 5FEFAAA912;
- Fri,  4 Dec 2020 19:52:31 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 37250A47DB;
+ Fri,  4 Dec 2020 20:25:19 +0000 (UTC)
 MIME-Version: 1.0
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Daniel Vetter" <daniel.vetter@ffwll.ch>
-Date: Fri, 04 Dec 2020 19:52:31 -0000
-Message-ID: <160711155137.27540.377201242551392326@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Fri, 04 Dec 2020 20:25:19 -0000
+Message-ID: <160711351919.27540.9609413405555110913@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20201204164125.2667107-1-daniel.vetter@ffwll.ch>
-In-Reply-To: <20201204164125.2667107-1-daniel.vetter@ffwll.ch>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZG1h?=
- =?utf-8?q?-buf=3A_Fix_kerneldoc_formatting?=
+References: <20201204171455.6276-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20201204171455.6276-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/display=3A_Inject_a_failure_into_the_initial_modeset_=28r?=
+ =?utf-8?q?ev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,63 +41,43 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============1921043087=="
+Content-Type: multipart/mixed; boundary="===============1780547881=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============1921043087==
+--===============1780547881==
 Content-Type: multipart/alternative;
- boundary="===============5928214694387000823=="
+ boundary="===============1269356846466703594=="
 
---===============5928214694387000823==
+--===============1269356846466703594==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 
 == Series Details ==
 
-Series: dma-buf: Fix kerneldoc formatting
-URL   : https://patchwork.freedesktop.org/series/84585/
-State : failure
+Series: drm/i915/display: Inject a failure into the initial modeset (rev2)
+URL   : https://patchwork.freedesktop.org/series/84592/
+State : success
 
 == Summary ==
 
-CI Bug Log - changes from CI_DRM_9444 -> Patchwork_19061
+CI Bug Log - changes from CI_DRM_9444 -> Patchwork_19062
 ====================================================
 
 Summary
 -------
 
-  **FAILURE**
+  **SUCCESS**
 
-  Serious unknown changes coming with Patchwork_19061 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_19061, please notify your bug team to allow them
-  to document this new failure mode, which will reduce false positives in CI.
+  No regressions found.
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19061/index.html
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19062/index.html
 
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_19061:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@gem_exec_suspend@basic-s3:
-    - fi-snb-2600:        [PASS][1] -> [INCOMPLETE][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9444/fi-snb-2600/igt@gem_exec_suspend@basic-s3.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19061/fi-snb-2600/igt@gem_exec_suspend@basic-s3.html
-
-  
 New tests
 ---------
 
-  New tests have been introduced between CI_DRM_9444 and Patchwork_19061:
+  New tests have been introduced between CI_DRM_9444 and Patchwork_19062:
 
 ### New CI tests (1) ###
 
@@ -109,33 +90,40 @@ New tests
 Known issues
 ------------
 
-  Here are the changes found in Patchwork_19061 that come from known issues:
+  Here are the changes found in Patchwork_19062 that come from known issues:
 
 ### IGT changes ###
 
 #### Issues hit ####
 
-  * igt@gem_linear_blits@basic:
-    - fi-tgl-y:           [PASS][3] -> [DMESG-WARN][4] ([i915#402])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9444/fi-tgl-y/igt@gem_linear_blits@basic.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19061/fi-tgl-y/igt@gem_linear_blits@basic.html
+  * igt@i915_selftest@live@active:
+    - fi-bsw-nick:        [PASS][1] -> [DMESG-FAIL][2] ([i915#2675] / [i915#541])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9444/fi-bsw-nick/igt@i915_selftest@live@active.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19062/fi-bsw-nick/igt@i915_selftest@live@active.html
 
-  * igt@kms_chamelium@hdmi-hpd-fast:
-    - fi-kbl-7500u:       [PASS][5] -> [DMESG-FAIL][6] ([i915#165])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9444/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19061/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
+  * igt@i915_selftest@live@gt_heartbeat:
+    - fi-kbl-soraka:      [PASS][3] -> [DMESG-FAIL][4] ([i915#2291] / [i915#541])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9444/fi-kbl-soraka/igt@i915_selftest@live@gt_heartbeat.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19062/fi-kbl-soraka/igt@i915_selftest@live@gt_heartbeat.html
+
+  * igt@prime_vgem@basic-fence-flip:
+    - fi-tgl-y:           [PASS][5] -> [DMESG-WARN][6] ([i915#402]) +2 similar issues
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9444/fi-tgl-y/igt@prime_vgem@basic-fence-flip.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19062/fi-tgl-y/igt@prime_vgem@basic-fence-flip.html
 
   
 #### Possible fixes ####
 
-  * igt@gem_ctx_create@basic:
-    - fi-tgl-y:           [DMESG-WARN][7] ([i915#402]) -> [PASS][8] +1 similar issue
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9444/fi-tgl-y/igt@gem_ctx_create@basic.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19061/fi-tgl-y/igt@gem_ctx_create@basic.html
+  * igt@prime_self_import@basic-with_one_bo_two_files:
+    - fi-tgl-y:           [DMESG-WARN][7] ([i915#402]) -> [PASS][8] +2 similar issues
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9444/fi-tgl-y/igt@prime_self_import@basic-with_one_bo_two_files.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19062/fi-tgl-y/igt@prime_self_import@basic-with_one_bo_two_files.html
 
   
-  [i915#165]: https://gitlab.freedesktop.org/drm/intel/issues/165
+  [i915#2291]: https://gitlab.freedesktop.org/drm/intel/issues/2291
+  [i915#2675]: https://gitlab.freedesktop.org/drm/intel/issues/2675
   [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
+  [i915#541]: https://gitlab.freedesktop.org/drm/intel/issues/541
 
 
 Participating hosts (43 -> 39)
@@ -147,23 +135,23 @@ Participating hosts (43 -> 39)
 Build changes
 -------------
 
-  * Linux: CI_DRM_9444 -> Patchwork_19061
+  * Linux: CI_DRM_9444 -> Patchwork_19062
 
   CI-20190529: 20190529
   CI_DRM_9444: cee8f6ace633b555c64b14938577e6da02710a0b @ git://anongit.freedesktop.org/gfx-ci/linux
   IGT_5881: 10d4e2e9177eb747b9f2ab9122e3ab60e91654fb @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_19061: f9918c0f7808f8648b0069498199177bef3b9ac8 @ git://anongit.freedesktop.org/gfx-ci/linux
+  Patchwork_19062: 203678a9c9abfca010dfbc6ff60977c5d8c652d5 @ git://anongit.freedesktop.org/gfx-ci/linux
 
 
 == Linux commits ==
 
-f9918c0f7808 dma-buf: Fix kerneldoc formatting
+203678a9c9ab drm/i915/display: Inject a failure into the initial modeset
 
 == Logs ==
 
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19061/index.html
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19062/index.html
 
---===============5928214694387000823==
+--===============1269356846466703594==
 Content-Type: text/html; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -183,36 +171,22 @@ Content-Transfer-Encoding: 7bit
 
 <b>Patch Details</b>
 <table>
-<tr><td><b>Series:</b></td><td>dma-buf: Fix kerneldoc formatting</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/84585/">https://patchwork.freedesktop.org/series/84585/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
+<tr><td><b>Series:</b></td><td>drm/i915/display: Inject a failure into the initial modeset (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/84592/">https://patchwork.freedesktop.org/series/84592/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
 
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19061/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19061/index.html</a></td></tr>
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19062/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19062/index.html</a></td></tr>
 
 </table>
 
 
-    <h1>CI Bug Log - changes from CI_DRM_9444 -&gt; Patchwork_19061</h1>
+    <h1>CI Bug Log - changes from CI_DRM_9444 -&gt; Patchwork_19062</h1>
 <h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with Patchwork_19061 absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in Patchwork_19061, please notify your bug team to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19061/index.html</p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in Patchwork_19061:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>igt@gem_exec_suspend@basic-s3:<ul>
-<li>fi-snb-2600:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9444/fi-snb-2600/igt@gem_exec_suspend@basic-s3.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19061/fi-snb-2600/igt@gem_exec_suspend@basic-s3.html">INCOMPLETE</a></li>
-</ul>
-</li>
-</ul>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19062/index.html</p>
 <h2>New tests</h2>
-<p>New tests have been introduced between CI_DRM_9444 and Patchwork_19061:</p>
+<p>New tests have been introduced between CI_DRM_9444 and Patchwork_19062:</p>
 <h3>New CI tests (1)</h3>
 <ul>
 <li>boot:<ul>
@@ -222,27 +196,33 @@ Content-Transfer-Encoding: 7bit
 </li>
 </ul>
 <h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_19061 that come from known issues:</p>
+<p>Here are the changes found in Patchwork_19062 that come from known issues:</p>
 <h3>IGT changes</h3>
 <h4>Issues hit</h4>
 <ul>
 <li>
-<p>igt@gem_linear_blits@basic:</p>
+<p>igt@i915_selftest@live@active:</p>
 <ul>
-<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9444/fi-tgl-y/igt@gem_linear_blits@basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19061/fi-tgl-y/igt@gem_linear_blits@basic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>)</li>
+<li>fi-bsw-nick:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9444/fi-bsw-nick/igt@i915_selftest@live@active.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19062/fi-bsw-nick/igt@i915_selftest@live@active.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2675">i915#2675</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/541">i915#541</a>)</li>
 </ul>
 </li>
 <li>
-<p>igt@kms_chamelium@hdmi-hpd-fast:</p>
+<p>igt@i915_selftest@live@gt_heartbeat:</p>
 <ul>
-<li>fi-kbl-7500u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9444/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19061/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/165">i915#165</a>)</li>
+<li>fi-kbl-soraka:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9444/fi-kbl-soraka/igt@i915_selftest@live@gt_heartbeat.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19062/fi-kbl-soraka/igt@i915_selftest@live@gt_heartbeat.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2291">i915#2291</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/541">i915#541</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@prime_vgem@basic-fence-flip:</p>
+<ul>
+<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9444/fi-tgl-y/igt@prime_vgem@basic-fence-flip.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19062/fi-tgl-y/igt@prime_vgem@basic-fence-flip.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) +2 similar issues</li>
 </ul>
 </li>
 </ul>
 <h4>Possible fixes</h4>
 <ul>
-<li>igt@gem_ctx_create@basic:<ul>
-<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9444/fi-tgl-y/igt@gem_ctx_create@basic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19061/fi-tgl-y/igt@gem_ctx_create@basic.html">PASS</a> +1 similar issue</li>
+<li>igt@prime_self_import@basic-with_one_bo_two_files:<ul>
+<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9444/fi-tgl-y/igt@prime_self_import@basic-with_one_bo_two_files.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19062/fi-tgl-y/igt@prime_self_import@basic-with_one_bo_two_files.html">PASS</a> +2 similar issues</li>
 </ul>
 </li>
 </ul>
@@ -250,21 +230,21 @@ Content-Transfer-Encoding: 7bit
 <p>Missing    (4): fi-ilk-m540 fi-bsw-cyan fi-bdw-samus fi-hsw-4200u </p>
 <h2>Build changes</h2>
 <ul>
-<li>Linux: CI_DRM_9444 -&gt; Patchwork_19061</li>
+<li>Linux: CI_DRM_9444 -&gt; Patchwork_19062</li>
 </ul>
 <p>CI-20190529: 20190529<br />
   CI_DRM_9444: cee8f6ace633b555c64b14938577e6da02710a0b @ git://anongit.freedesktop.org/gfx-ci/linux<br />
   IGT_5881: 10d4e2e9177eb747b9f2ab9122e3ab60e91654fb @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
-  Patchwork_19061: f9918c0f7808f8648b0069498199177bef3b9ac8 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+  Patchwork_19062: 203678a9c9abfca010dfbc6ff60977c5d8c652d5 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
 <p>== Linux commits ==</p>
-<p>f9918c0f7808 dma-buf: Fix kerneldoc formatting</p>
+<p>203678a9c9ab drm/i915/display: Inject a failure into the initial modeset</p>
 
 </body>
 </html>
 
---===============5928214694387000823==--
+--===============1269356846466703594==--
 
---===============1921043087==
+--===============1780547881==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -275,4 +255,4 @@ Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 
---===============1921043087==--
+--===============1780547881==--
