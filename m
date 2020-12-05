@@ -1,31 +1,47 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D6B5E2CF88D
-	for <lists+intel-gfx@lfdr.de>; Sat,  5 Dec 2020 02:22:06 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8DB742CF8AD
+	for <lists+intel-gfx@lfdr.de>; Sat,  5 Dec 2020 02:43:53 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4351E6E2B8;
-	Sat,  5 Dec 2020 01:22:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4A2E16E342;
+	Sat,  5 Dec 2020 01:43:49 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 55AE36E220;
- Sat,  5 Dec 2020 01:22:04 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 4FFC8A3ECB;
- Sat,  5 Dec 2020 01:22:04 +0000 (UTC)
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [216.205.24.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 44F3C6E334
+ for <intel-gfx@lists.freedesktop.org>; Sat,  5 Dec 2020 01:43:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1607132627;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=LW+4VRCw8R3F3WRgitjgSML8vOT8dg+Dh8HEUAO8kA4=;
+ b=LCR70ees0Cbj7IoHe0yg6iB9ZhzvjdJrLlQck+faR1j1RSl9u+dt/MDL2Oj57kdwZTaaoe
+ xaaJmziSDEnMM52aseQubieCj7IAonyzbhayQW/9rlg2vY+NATUsbrDjzEEpzESvURT2pK
+ TiepChXPMTcb8hS4fwr43M/A4jry06s=
+Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
+ [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-101-85zLLKAcNpie_eVxFlDWIA-1; Fri, 04 Dec 2020 20:43:45 -0500
+X-MC-Unique: 85zLLKAcNpie_eVxFlDWIA-1
+Received: from smtp.corp.redhat.com (int-mx03.intmail.prod.int.phx2.redhat.com
+ [10.5.11.13])
+ (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
+ (No client certificate requested)
+ by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 2E6E0518E;
+ Sat,  5 Dec 2020 01:43:43 +0000 (UTC)
+Received: from cantor.redhat.com (ovpn-114-119.phx2.redhat.com [10.3.114.119])
+ by smtp.corp.redhat.com (Postfix) with ESMTP id 9787160936;
+ Sat,  5 Dec 2020 01:43:41 +0000 (UTC)
+From: Jerry Snitselaar <jsnitsel@redhat.com>
+To: linux-kernel@vger.kernel.org
+Date: Fri,  4 Dec 2020 18:43:36 -0700
+Message-Id: <20201205014340.148235-1-jsnitsel@redhat.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Aditya Swarup" <aditya.swarup@intel.com>
-Date: Sat, 05 Dec 2020 01:22:04 -0000
-Message-ID: <160713132432.22631.10901470144132259353@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20201205010844.361880-1-aditya.swarup@intel.com>
-In-Reply-To: <20201205010844.361880-1-aditya.swarup@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
- =?utf-8?q?Introduce_Alderlake-S_=28rev3=29?=
+X-Scanned-By: MIMEDefang 2.79 on 10.5.11.13
+Subject: [Intel-gfx] [PATCH v3 0/4] tpm_tis: Detect interrupt storms
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,79 +54,88 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: David Airlie <airlied@linux.ie>, Matthew Garrett <mjg59@google.com>,
+ intel-gfx@lists.freedesktop.org,
+ James Bottomley <James.Bottomley@HansenPartnership.com>,
+ Jason Gunthorpe <jgg@ziepe.ca>, Jarkko Sakkinen <jarkko@kernel.org>,
+ dri-devel@lists.freedesktop.org, linux-integrity@vger.kernel.org,
+ Thomas Gleixner <tglx@linutronix.de>, Peter Huewe <peterhuewe@gmx.de>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+This patchset is an attempt to try and catch tpm_tis devices that have
+interrupt storm issues, disable the interrupt, and use polling. In
+2016 the tpm_tis interrupt code was accidently disabled, and polling
+was just being used. When we initially tried to enable interrupts
+again there were some reports of systems being hit with interrupt
+storms. It turned out that the ThinkPad T490s had misconfigured a gpio
+pin being used for the interrupt.  The problem is more widespread
+though, with interrupt storms also being seen on other platforms and
+different TPM vendors. With the L490 the system hangs at tpm_tis
+initialization even with the detection code, so change the earlier
+detection code that used dmi to look for the T490s to instead look for
+the L490 and disable interrupts.
 
-Series: Introduce Alderlake-S (rev3)
-URL   : https://patchwork.freedesktop.org/series/82917/
-State : warning
+Since kstat_irqs needs to be exported to allow building of tpm_tis
+as a module, I've included a patch to change the i915_pmu code to
+use kstat_irqs where before it was using its own version. If this
+isn't desired it can be dropped.
 
-== Summary ==
+I've been testing this on top of James' proposed patchset which
+re-enables interrupts for tpm_tis. With the patchsets applied
+it detects the problem on the T490s and on the Ice Lake development
+system where I found the issue. I have Lenovo verifying that the
+dmi detection code will now detect the L490 and avoid the hang
+it experiences. I'm also working on getting access to an L490
+to see if I can figure out what the underlying issue is.
 
-$ dim sparse --fast origin/drm-tip
-Sparse version: v0.6.2
-Fast mode used, each commit won't be checked separately.
--
-+drivers/gpu/drm/i915/gt/intel_reset.c:1310:5: warning: context imbalance in 'intel_gt_reset_trylock' - different lock contexts for basic block
-+drivers/gpu/drm/i915/gt/selftest_reset.c:100:20:    expected void *in
-+drivers/gpu/drm/i915/gt/selftest_reset.c:100:20:    got void [noderef] __iomem *[assigned] s
-+drivers/gpu/drm/i915/gt/selftest_reset.c:100:20: warning: incorrect type in assignment (different address spaces)
-+drivers/gpu/drm/i915/gt/selftest_reset.c:101:46:    expected void const *src
-+drivers/gpu/drm/i915/gt/selftest_reset.c:101:46:    got void [noderef] __iomem *[assigned] s
-+drivers/gpu/drm/i915/gt/selftest_reset.c:101:46: warning: incorrect type in argument 2 (different address spaces)
-+drivers/gpu/drm/i915/gt/selftest_reset.c:136:20:    expected void *in
-+drivers/gpu/drm/i915/gt/selftest_reset.c:136:20:    got void [noderef] __iomem *[assigned] s
-+drivers/gpu/drm/i915/gt/selftest_reset.c:136:20: warning: incorrect type in assignment (different address spaces)
-+drivers/gpu/drm/i915/gt/selftest_reset.c:137:46:    expected void const *src
-+drivers/gpu/drm/i915/gt/selftest_reset.c:137:46:    got void [noderef] __iomem *[assigned] s
-+drivers/gpu/drm/i915/gt/selftest_reset.c:137:46: warning: incorrect type in argument 2 (different address spaces)
-+drivers/gpu/drm/i915/gt/selftest_reset.c:98:34:    expected unsigned int [usertype] *s
-+drivers/gpu/drm/i915/gt/selftest_reset.c:98:34:    got void [noderef] __iomem *[assigned] s
-+drivers/gpu/drm/i915/gt/selftest_reset.c:98:34: warning: incorrect type in argument 1 (different address spaces)
-+drivers/gpu/drm/i915/gvt/mmio.c:295:23: warning: memcpy with byte count of 279040
-+drivers/gpu/drm/i915/i915_perf.c:1447:15: warning: memset with byte count of 16777216
-+drivers/gpu/drm/i915/i915_perf.c:1501:15: warning: memset with byte count of 16777216
-+./include/linux/seqlock.h:838:24: warning: trying to copy expression type 31
-+./include/linux/seqlock.h:838:24: warning: trying to copy expression type 31
-+./include/linux/seqlock.h:864:16: warning: trying to copy expression type 31
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_read16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_read32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_read64' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_read8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_write8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_read16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_read32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_read64' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_read8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_write8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_read16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_read32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_read64' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_read8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_write8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_read16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_read32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_read64' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_read8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_write8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen8_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen8_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen8_write8' - different lock contexts for basic block
 
+
+Changes from v2:
+	- Export kstat_irqs to allow building tpm_tis as a module.
+    	- Change i915_pmu.c to use kstat_irqs instead of it's own
+      	  version count_interrupts.
+    	- Change include from linux/kernel_stat.h to linux/irq.h.
+    	- Change dmi checking code to now look for L490 instead of
+	  T490s.
+
+Changes from v1:
+	- drop tpm_tis specific workqueue and use just system_w.
+
+Jerry Snitselaar (4):
+  irq: export kstat_irqs
+  drm/i915/pmu: Use kstat_irqs to get interrupt count
+  tpm_tis: Disable interrupts if interrupt storm detected
+  tpm_tis: Disable Interrupts on the ThinkPad L490
+
+
+Cc: Thomas Gleixner <tglx@linutronix.de>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: David Airlie <airlied@linux.ie>
+Cc: Daniel Vetter <daniel@ffwll.ch>
+Cc: intel-gfx@lists.freedesktop.org 
+Cc: dri-devel@lists.freedesktop.org
+Cc: Jarkko Sakkinen <jarkko@kernel.org>
+Cc: Jason Gunthorpe <jgg@ziepe.ca>
+Cc: Peter Huewe <peterhuewe@gmx.de>
+Cc: James Bottomley <James.Bottomley@HansenPartnership.com>
+Cc: Matthew Garrett <mjg59@google.com>
+Cc: Hans de Goede <hdegoede@redhat.com>
+Cc: linux-integrity@vger.kernel.org
+
+ drivers/char/tpm/tpm_tis.c      |  4 ++--
+ drivers/char/tpm/tpm_tis_core.c | 27 +++++++++++++++++++++++++++
+ drivers/char/tpm/tpm_tis_core.h |  2 ++
+ drivers/gpu/drm/i915/i915_pmu.c | 18 +-----------------
+ include/linux/irqdesc.h         |  1 +
+ kernel/irq/irqdesc.c            |  1 +
+ 6 files changed, 34 insertions(+), 19 deletions(-)
+
+-- 
+2.27.0
 
 _______________________________________________
 Intel-gfx mailing list
