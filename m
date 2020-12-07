@@ -2,38 +2,38 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 503452D088C
-	for <lists+intel-gfx@lfdr.de>; Mon,  7 Dec 2020 01:22:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 974E62D0891
+	for <lists+intel-gfx@lfdr.de>; Mon,  7 Dec 2020 01:22:23 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4102E6E550;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7272D6E554;
 	Mon,  7 Dec 2020 00:22:12 +0000 (UTC)
 X-Original-To: Intel-gfx@lists.freedesktop.org
 Delivered-To: Intel-gfx@lists.freedesktop.org
 Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AC85B6E550
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D58796E544
  for <Intel-gfx@lists.freedesktop.org>; Mon,  7 Dec 2020 00:22:09 +0000 (UTC)
-IronPort-SDR: aZwGui8O/rZ9K3s1UxY9IASllhNhZ1LNWbMiWtseTY7wUo/+BSEiM3e0pjBQ+9Yv4wxU6eDm7f
- 53QMgSShW2OQ==
-X-IronPort-AV: E=McAfee;i="6000,8403,9827"; a="191889192"
-X-IronPort-AV: E=Sophos;i="5.78,398,1599548400"; d="scan'208";a="191889192"
+IronPort-SDR: LysAgZrGzQqmG+71+lHD1rcfPApqY1FgLOYsDaSkqDH5AjvDTdBAJRFfgLl5yvX9zsJbXIBVhr
+ ejDNcaxVBQ2g==
+X-IronPort-AV: E=McAfee;i="6000,8403,9827"; a="191889193"
+X-IronPort-AV: E=Sophos;i="5.78,398,1599548400"; d="scan'208";a="191889193"
 Received: from fmsmga002.fm.intel.com ([10.253.24.26])
  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  06 Dec 2020 16:22:07 -0800
-IronPort-SDR: 275SrwN2kvoiARgyJPTJrVDSF9ul2wMI7yCBevJd3yHlk33v6e8kHHQaY2hXCcd/EshOGvBD/N
- Jmp9n1rofaaQ==
+IronPort-SDR: 7Ix85XtcmLP2h/Bkwrq6z8iy+vi/YZ6NQXu8DE74P3JqUGZD6y5ZZK4C+ndB/tpBymsznaZd7l
+ 5j+2s6E+fAZg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.78,398,1599548400"; d="scan'208";a="369586436"
+X-IronPort-AV: E=Sophos;i="5.78,398,1599548400"; d="scan'208";a="369586437"
 Received: from sean-virtualbox.fm.intel.com ([10.105.158.96])
  by fmsmga002.fm.intel.com with ESMTP; 06 Dec 2020 16:22:07 -0800
 From: "Huang, Sean Z" <sean.z.huang@intel.com>
 To: Intel-gfx@lists.freedesktop.org
-Date: Sun,  6 Dec 2020 16:21:22 -0800
-Message-Id: <20201207002134.13731-5-sean.z.huang@intel.com>
+Date: Sun,  6 Dec 2020 16:21:23 -0800
+Message-Id: <20201207002134.13731-6-sean.z.huang@intel.com>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20201207002134.13731-1-sean.z.huang@intel.com>
 References: <20201207002134.13731-1-sean.z.huang@intel.com>
-Subject: [Intel-gfx] [RFC-v1 04/16] drm/i915/pxp: set KCR reg init during
- the boot time
+Subject: [Intel-gfx] [RFC-v1 05/16] drm/i915/pxp: Read register to check
+ hardware session state
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,146 +52,287 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Set the KCR init during the boot time, which is required by
-hardware, to allow us doing further protection operation such
-as sending commands to GPU or TEE
+Implement the functions to check the hardware protected session
+state via reading the hardware register session in play.
 
 Signed-off-by: Huang, Sean Z <sean.z.huang@intel.com>
 ---
- drivers/gpu/drm/i915/Makefile           |  3 +-
- drivers/gpu/drm/i915/pxp/intel_pxp.c    | 11 ++++++-
- drivers/gpu/drm/i915/pxp/intel_pxp_sm.c | 38 +++++++++++++++++++++++++
- drivers/gpu/drm/i915/pxp/intel_pxp_sm.h | 20 +++++++++++++
- 4 files changed, 70 insertions(+), 2 deletions(-)
- create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp_sm.c
- create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp_sm.h
+ drivers/gpu/drm/i915/pxp/intel_pxp.h    |   3 +
+ drivers/gpu/drm/i915/pxp/intel_pxp_sm.c | 177 ++++++++++++++++++++++++
+ drivers/gpu/drm/i915/pxp/intel_pxp_sm.h |  51 +++++++
+ 3 files changed, 231 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefile
-index 99efac469cc2..131bd8921565 100644
---- a/drivers/gpu/drm/i915/Makefile
-+++ b/drivers/gpu/drm/i915/Makefile
-@@ -257,7 +257,8 @@ i915-y += i915_perf.o
- # Protected execution platform (PXP) support
- i915-$(CONFIG_DRM_I915_PXP) += \
- 	pxp/intel_pxp.o \
--	pxp/intel_pxp_context.o
-+	pxp/intel_pxp_context.o \
-+	pxp/intel_pxp_sm.o
+diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp.h b/drivers/gpu/drm/i915/pxp/intel_pxp.h
+index eb0ec4a07d3d..308d8d312a6d 100644
+--- a/drivers/gpu/drm/i915/pxp/intel_pxp.h
++++ b/drivers/gpu/drm/i915/pxp/intel_pxp.h
+@@ -12,6 +12,9 @@
+ #define PXP_IRQ_VECTOR_DISPLAY_APP_TERM_PER_FW_REQ BIT(2)
+ #define PXP_IRQ_VECTOR_PXP_DISP_STATE_RESET_COMPLETE BIT(3)
  
- # Post-mortem debug and GPU hang state capture
- i915-$(CONFIG_DRM_I915_CAPTURE_ERROR) += i915_gpu_error.o
-diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp.c b/drivers/gpu/drm/i915/pxp/intel_pxp.c
-index 769bfd9bc6b8..d74a32b29716 100644
---- a/drivers/gpu/drm/i915/pxp/intel_pxp.c
-+++ b/drivers/gpu/drm/i915/pxp/intel_pxp.c
-@@ -6,6 +6,7 @@
- #include "i915_drv.h"
- #include "intel_pxp.h"
- #include "intel_pxp_context.h"
-+#include "intel_pxp_sm.h"
- 
- static void intel_pxp_write_irq_mask_reg(struct drm_i915_private *i915, u32 mask)
- {
-@@ -77,6 +78,8 @@ static void intel_pxp_irq_work(struct work_struct *work)
- 
- int intel_pxp_init(struct drm_i915_private *i915)
- {
-+	int ret;
++#define pxp_session_list(i915, session_type) (((session_type) == SESSION_TYPE_TYPE0) ? \
++	&(i915)->pxp.ctx->active_pxp_type0_sessions : &(i915)->pxp.ctx->active_pxp_type1_sessions)
 +
- 	if (!i915)
- 		return -EINVAL;
+ #define MAX_TYPE0_SESSIONS 16
+ #define MAX_TYPE1_SESSIONS 6
  
-@@ -92,13 +95,19 @@ int intel_pxp_init(struct drm_i915_private *i915)
- 		return -EFAULT;
- 	}
- 
-+	ret = pxp_sm_set_kcr_init_reg(i915);
-+	if (ret) {
-+		drm_err(&i915->drm, "Failed to set kcr init reg\n");
-+		return ret;
-+	}
-+
- 	INIT_WORK(&i915->pxp.irq_work, intel_pxp_irq_work);
- 
- 	i915->pxp.handled_irr = (PXP_IRQ_VECTOR_DISPLAY_PXP_STATE_TERMINATED |
- 				 PXP_IRQ_VECTOR_DISPLAY_APP_TERM_PER_FW_REQ |
- 				 PXP_IRQ_VECTOR_PXP_DISP_STATE_RESET_COMPLETE);
- 
--	return 0;
-+	return ret;
- }
- 
- void intel_pxp_uninit(struct drm_i915_private *i915)
 diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp_sm.c b/drivers/gpu/drm/i915/pxp/intel_pxp_sm.c
-new file mode 100644
-index 000000000000..a2c9c71d2372
---- /dev/null
+index a2c9c71d2372..6413f401d939 100644
+--- a/drivers/gpu/drm/i915/pxp/intel_pxp_sm.c
 +++ b/drivers/gpu/drm/i915/pxp/intel_pxp_sm.c
-@@ -0,0 +1,38 @@
-+// SPDX-License-Identifier: MIT
-+/*
-+ * Copyright(c) 2020, Intel Corporation. All rights reserved.
-+ */
-+
-+#include "gt/intel_context.h"
-+#include "gt/intel_engine_pm.h"
-+
-+#include "intel_pxp.h"
-+#include "intel_pxp_sm.h"
-+#include "intel_pxp_context.h"
-+
-+static int pxp_reg_write(struct drm_i915_private *i915, u32 offset, u32 regval)
+@@ -10,6 +10,21 @@
+ #include "intel_pxp_sm.h"
+ #include "intel_pxp_context.h"
+ 
++static int pxp_sm_reg_read(struct drm_i915_private *i915, u32 offset, u32 *regval)
 +{
 +	intel_wakeref_t wakeref;
 +
-+	if (!i915)
++	if (!i915 || !regval)
 +		return -EINVAL;
 +
 +	with_intel_runtime_pm(&i915->runtime_pm, wakeref) {
 +		i915_reg_t reg_offset = {offset};
-+
-+		intel_uncore_write(&i915->uncore, reg_offset, regval);
++		*regval = intel_uncore_read(&i915->uncore, reg_offset);
 +	}
 +
 +	return 0;
 +}
 +
-+int pxp_sm_set_kcr_init_reg(struct drm_i915_private *i915)
+ static int pxp_reg_write(struct drm_i915_private *i915, u32 offset, u32 regval)
+ {
+ 	intel_wakeref_t wakeref;
+@@ -26,6 +41,168 @@ static int pxp_reg_write(struct drm_i915_private *i915, u32 offset, u32 regval)
+ 	return 0;
+ }
+ 
++/**
++ * is_sw_session_active - Check if the given sw session id is active.
++ * @i915: i915 device handle.
++ * @session_type: Specified session type
++ * @session_index: Numeric session identifier.
++ * @is_in_play: Set false to return true if the specified session is active.
++ *              Set true to also check if the session is active and in_play.
++ * @protection_mode: get the protection mode of specified session.
++ *
++ * The caller needs to use ctx_mutex lock to protect the session_list
++ * inside this function.
++ *
++ * Return : true if session with the same identifier is active (and in_play).
++ */
++static bool is_sw_session_active(struct drm_i915_private *i915, int session_type,
++				 int session_index, bool is_in_play, int *protection_mode)
 +{
++	struct pxp_protected_session *current_session;
++
++	lockdep_assert_held(&i915->pxp.ctx->ctx_mutex);
++
++	list_for_each_entry(current_session, pxp_session_list(i915, session_type), session_list) {
++		if (current_session->session_index == session_index) {
++			if (protection_mode)
++				*protection_mode = current_session->protection_mode;
++
++			if (is_in_play && !current_session->session_is_in_play)
++				return false;
++
++			return true;
++		}
++	}
++
++	/* session id not found. return false */
++	return false;
++}
++
++static bool is_hw_type0_session_in_play(struct drm_i915_private *i915, int session_index)
++{
++	u32 regval_sip = 0;
++	u32 reg_session_id_mask;
++	bool hw_session_is_in_play = false;
++	int ret = 0;
++
++	if (!i915 || session_index < 0 || session_index >= MAX_TYPE0_SESSIONS)
++		goto end;
++
++	ret = pxp_sm_reg_read(i915, GEN12_KCR_SIP.reg, &regval_sip);
++	if (ret) {
++		drm_err(&i915->drm, "Failed to read()\n");
++		goto end;
++	}
++
++	reg_session_id_mask = (1 << session_index);
++	hw_session_is_in_play = (bool)(regval_sip & reg_session_id_mask);
++end:
++	return hw_session_is_in_play;
++}
++
++static bool is_hw_type1_session_in_play(struct drm_i915_private *i915, int session_index)
++{
++	int ret = 0;
++	u32 regval_tsip_low = 0;
++	u32 regval_tsip_high = 0;
++	u64 reg_session_id_mask;
++	u64 regval_tsip;
++	bool hw_session_is_in_play = false;
++
++	if (!i915 || session_index < 0 || session_index >= MAX_TYPE1_SESSIONS)
++		goto end;
++
++	ret = pxp_sm_reg_read(i915, GEN12_KCR_TSIP_LOW.reg, &regval_tsip_low);
++	if (ret) {
++		drm_err(&i915->drm, "Failed to pxp_sm_reg_read()\n");
++		goto end;
++	}
++
++	ret = pxp_sm_reg_read(i915, GEN12_KCR_TSIP_HIGH.reg, &regval_tsip_high);
++	if (ret) {
++		drm_err(&i915->drm, "Failed to pxp_sm_reg_read()\n");
++		goto end;
++	}
++
++	reg_session_id_mask = (1 << session_index);
++	regval_tsip = ((u64)regval_tsip_high << 32) | regval_tsip_low;
++	hw_session_is_in_play = (bool)(regval_tsip & reg_session_id_mask);
++end:
++	return hw_session_is_in_play;
++}
++
++static bool is_hw_session_in_play(struct drm_i915_private *i915,
++				  int session_type, int session_index)
++{
++	bool is_in_play = false;
++
++	if (session_type == SESSION_TYPE_TYPE0)
++		is_in_play = is_hw_type0_session_in_play(i915, session_index);
++	else if (session_type == SESSION_TYPE_TYPE1)
++		is_in_play = is_hw_type1_session_in_play(i915, session_index);
++	else
++		drm_err(&i915->drm, "Failed to %s invalid session_type=[%d]\n",
++			__func__, session_type);
++
++	return is_in_play;
++}
++
++/* check hw session in play reg if match the current sw state */
++static int sync_hw_sw_state(struct drm_i915_private *i915, int session_index, int session_type)
++{
++	const int max_retry = 10;
++	const int ms_delay = 10;
++	int retry = 0;
 +	int ret;
 +
-+	ret = pxp_reg_write(i915, KCR_INIT.reg, KCR_INIT_ALLOW_DISPLAY_ME_WRITES);
-+	if (ret)
-+		drm_err(&i915->drm, "Failed to write()\n");
++	if (!i915 || session_type >= SESSION_TYPE_MAX)
++		return -EINVAL;
++
++	ret = -EINVAL;
++	for (retry = 0; retry < max_retry; retry++) {
++		if (is_hw_session_in_play(i915, session_type, session_index) ==
++		    is_sw_session_active(i915, session_type, session_index, true, NULL)) {
++			ret = 0;
++			break;
++		}
++
++		msleep(ms_delay);
++	}
 +
 +	return ret;
 +}
-diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp_sm.h b/drivers/gpu/drm/i915/pxp/intel_pxp_sm.h
-new file mode 100644
-index 000000000000..d061f395aa16
---- /dev/null
-+++ b/drivers/gpu/drm/i915/pxp/intel_pxp_sm.h
-@@ -0,0 +1,20 @@
-+/* SPDX-License-Identifier: MIT */
-+/*
-+ * Copyright(c) 2020, Intel Corporation. All rights reserved.
++
++/**
++ * check_if_protected_type0_sessions_are_attacked - To check if type0 active sessions are attacked.
++ * @i915: i915 device handle.
++ *
++ * Return: true if HW shows protected sessions are attacked, false otherwise.
 + */
++static bool check_if_protected_type0_sessions_are_attacked(struct drm_i915_private *i915)
++{
++	i915_reg_t kcr_status_reg = KCR_STATUS_1;
++	u32 reg_value = 0;
++	u32 mask = 0x80000000;
++	int ret;
 +
-+#ifndef __INTEL_PXP_SM_H__
-+#define __INTEL_PXP_SM_H__
++	if (!i915)
++		return false;
 +
-+#include "i915_drv.h"
-+#include "i915_reg.h"
++	if (i915->pxp.ctx->global_state_attacked)
++		return true;
 +
-+/* KCR register definitions */
-+#define KCR_INIT            _MMIO(0x320f0)
-+#define KCR_INIT_MASK_SHIFT (16)
-+/* Setting KCR Init bit is required after system boot */
-+#define KCR_INIT_ALLOW_DISPLAY_ME_WRITES (BIT(14) | (BIT(14) << KCR_INIT_MASK_SHIFT))
++	ret = pxp_sm_reg_read(i915, kcr_status_reg.reg, &reg_value);
++	if (ret) {
++		drm_err(&i915->drm, "Failed to pxp_sm_reg_read\n");
++		goto end;
++	}
 +
-+int pxp_sm_set_kcr_init_reg(struct drm_i915_private *i915);
++	if (reg_value & mask)
++		return true;
++end:
++	return false;
++}
 +
-+#endif /* __INTEL_PXP_SM_H__ */
+ int pxp_sm_set_kcr_init_reg(struct drm_i915_private *i915)
+ {
+ 	int ret;
+diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp_sm.h b/drivers/gpu/drm/i915/pxp/intel_pxp_sm.h
+index d061f395aa16..222a879be96d 100644
+--- a/drivers/gpu/drm/i915/pxp/intel_pxp_sm.h
++++ b/drivers/gpu/drm/i915/pxp/intel_pxp_sm.h
+@@ -15,6 +15,57 @@
+ /* Setting KCR Init bit is required after system boot */
+ #define KCR_INIT_ALLOW_DISPLAY_ME_WRITES (BIT(14) | (BIT(14) << KCR_INIT_MASK_SHIFT))
+ 
++#define KCR_STATUS_1        _MMIO(0x320f4)
++#define GEN12_KCR_SIP       _MMIO(0x32260)   /* KCR type0 session in play 0-31 */
++#define GEN12_KCR_TSIP_LOW  _MMIO(0x32264)   /* KCR type1 session in play 0-31 */
++#define GEN12_KCR_TSIP_HIGH _MMIO(0x32268)   /* KCR type1 session in play 32-63 */
++
++enum pxp_session_types {
++	SESSION_TYPE_TYPE0 = 0,
++	SESSION_TYPE_TYPE1 = 1,
++
++	SESSION_TYPE_MAX
++};
++
++enum pxp_protection_modes {
++	PROTECTION_MODE_NONE = 0,
++	PROTECTION_MODE_LM   = 2,
++	PROTECTION_MODE_HM   = 3,
++	PROTECTION_MODE_SM   = 6,
++
++	PROTECTION_MODE_ALL
++};
++
++/**
++ * struct pxp_protected_session - linked list to track all active sessions.
++ */
++struct pxp_protected_session {
++	/** @session_list: linked list infrastructure, do not change its order. */
++	struct list_head session_list;
++
++	/** @session_index: Numeric identifier for this protected session */
++	int session_index;
++	/** @session_type: Type of session */
++	int session_type;
++	/** @protection_mode: mode of protection requested */
++	int protection_mode;
++	/** @context_id: context identifier of the protected session requestor */
++	int context_id;
++	/** @pid: pid of this session's creator */
++	int pid;
++	/** @drmfile: pointer to drm_file, which is allocated on device file open() call */
++	struct drm_file *drmfile;
++
++	/**
++	 * @session_is_in_play: indicates whether the session has been established
++	 *                      in the HW root of trust if this flag is false, it
++	 *                      indicates an application has reserved this session,
++	 *                      but has not * established the session in the
++	 *                      hardware yet.
++	 */
++	bool session_is_in_play;
++};
++
+ int pxp_sm_set_kcr_init_reg(struct drm_i915_private *i915);
+ 
+ #endif /* __INTEL_PXP_SM_H__ */
 -- 
 2.17.1
 
