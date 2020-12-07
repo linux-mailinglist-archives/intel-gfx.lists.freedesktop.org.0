@@ -1,39 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9F1EE2D0897
-	for <lists+intel-gfx@lfdr.de>; Mon,  7 Dec 2020 01:22:27 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id C76802D08A4
+	for <lists+intel-gfx@lfdr.de>; Mon,  7 Dec 2020 01:42:52 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3CD626E581;
-	Mon,  7 Dec 2020 00:22:22 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 45E4A6E554
- for <Intel-gfx@lists.freedesktop.org>; Mon,  7 Dec 2020 00:22:10 +0000 (UTC)
-IronPort-SDR: bIjlBTGrL/4LACmGUIsUOUwsTPhyhKKOqPsm51SWfEo0Qc1oCQZZsHWjOS2OzkTmWiZUZ+FMKU
- 9l/ZRWZpZU+g==
-X-IronPort-AV: E=McAfee;i="6000,8403,9827"; a="191889205"
-X-IronPort-AV: E=Sophos;i="5.78,398,1599548400"; d="scan'208";a="191889205"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Dec 2020 16:22:08 -0800
-IronPort-SDR: iqpEN1++TC/+5Bs3eBdN2xzaVJZOGlI/EfaifQYB6izO1sbKpLD4zywyGbCFb5H2VGHbs8pTdR
- EftU8DO3tgqw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.78,398,1599548400"; d="scan'208";a="369586456"
-Received: from sean-virtualbox.fm.intel.com ([10.105.158.96])
- by fmsmga002.fm.intel.com with ESMTP; 06 Dec 2020 16:22:08 -0800
-From: "Huang, Sean Z" <sean.z.huang@intel.com>
-To: Intel-gfx@lists.freedesktop.org
-Date: Sun,  6 Dec 2020 16:21:34 -0800
-Message-Id: <20201207002134.13731-17-sean.z.huang@intel.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20201207002134.13731-1-sean.z.huang@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 00F1089E69;
+	Mon,  7 Dec 2020 00:42:50 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id BD04489E63;
+ Mon,  7 Dec 2020 00:42:48 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id B3587A0019;
+ Mon,  7 Dec 2020 00:42:48 +0000 (UTC)
+MIME-Version: 1.0
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Huang, Sean Z" <sean.z.huang@intel.com>
+Date: Mon, 07 Dec 2020 00:42:48 -0000
+Message-ID: <160730176870.8721.17482553750535139633@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
 References: <20201207002134.13731-1-sean.z.huang@intel.com>
-Subject: [Intel-gfx] [RFC-v1 16/16] drm/i915/pxp: Add plane decryption
- support
+In-Reply-To: <20201207002134.13731-1-sean.z.huang@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_Introduce_Intel_PXP_component_-_Mesa_single_session?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,107 +38,111 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Bommu Krishnaiah <krishnaiah.bommu@intel.com>
-MIME-Version: 1.0
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Anshuman Gupta <anshuman.gupta@intel.com>
+== Series Details ==
 
-Add support to enable/disable PLANE_SURF Decryption Request bit.
-It requires only to enable plane decryption support when following
-condition met.
-1. PAVP session is enabled.
-2. Buffer object is protected.
+Series: Introduce Intel PXP component - Mesa single session
+URL   : https://patchwork.freedesktop.org/series/84620/
+State : warning
 
-v2:
-- Rebased to libva_cp-drm-tip_tgl_cp tree.
-- Used gen fb obj user_flags instead gem_object_metadata. [Krishna]
+== Summary ==
 
-Cc: Bommu Krishnaiah <krishnaiah.bommu@intel.com>
-Cc: Huang, Sean Z <sean.z.huang@intel.com>
-Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
----
- drivers/gpu/drm/i915/display/intel_sprite.c | 21 ++++++++++++++++++---
- drivers/gpu/drm/i915/i915_reg.h             |  1 +
- 2 files changed, 19 insertions(+), 3 deletions(-)
+$ dim checkpatch origin/drm-tip
+56ffa1e5dc43 drm/i915/pxp: Introduce Intel PXP component
+-:108: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#108: 
+new file mode 100644
 
-diff --git a/drivers/gpu/drm/i915/display/intel_sprite.c b/drivers/gpu/drm/i915/display/intel_sprite.c
-index 019a2d6d807a..158c8dea0930 100644
---- a/drivers/gpu/drm/i915/display/intel_sprite.c
-+++ b/drivers/gpu/drm/i915/display/intel_sprite.c
-@@ -39,6 +39,8 @@
- #include <drm/drm_plane_helper.h>
- #include <drm/drm_rect.h>
- 
-+#include "pxp/intel_pxp.h"
+total: 0 errors, 1 warnings, 0 checks, 125 lines checked
+900074c203b4 drm/i915/pxp: Enable PXP irq worker and callback stub
+a44a71ee8f7a drm/i915/pxp: Add PXP context for logical hardware states.
+-:106: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#106: 
+new file mode 100644
+
+total: 0 errors, 1 warnings, 0 checks, 165 lines checked
+dbe74e292313 drm/i915/pxp: set KCR reg init during the boot time
+-:69: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#69: 
+new file mode 100644
+
+total: 0 errors, 1 warnings, 0 checks, 102 lines checked
+1f58bdf3d44d drm/i915/pxp: Read register to check hardware session state
+-:19: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'i915' - possible side-effects?
+#19: FILE: drivers/gpu/drm/i915/pxp/intel_pxp.h:15:
++#define pxp_session_list(i915, session_type) (((session_type) == SESSION_TYPE_TYPE0) ? \
++	&(i915)->pxp.ctx->active_pxp_type0_sessions : &(i915)->pxp.ctx->active_pxp_type1_sessions)
+
+total: 0 errors, 0 warnings, 1 checks, 255 lines checked
+21ed306a5303 drm/i915/pxp: Implement funcs to get/set PXP tag
+6535c3768f7b drm/i915/pxp: Implement funcs to create the TEE channel
+-:87: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#87: 
+new file mode 100644
+
+total: 0 errors, 1 warnings, 0 checks, 244 lines checked
+dce0eab4952c drm/i915/pxp: Create the arbitrary session after boot
+f3d2af9143ce drm/i915/pxp: Func to send hardware session termination
+8d1a900379e7 drm/i915/pxp: Destroy arb session upon teardown
+f363d53b2c55 drm/i915/pxp: Enable PXP power management
+-:67: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#67: 
+new file mode 100644
+
+total: 0 errors, 1 warnings, 0 checks, 140 lines checked
+61c300f2e8e9 drm/i915/pxp: Expose session state for display protection flip
+ad81178c888f mei: pxp: export pavp client to me client bus
+-:32: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#32: 
+new file mode 100644
+
+total: 0 errors, 1 warnings, 0 checks, 277 lines checked
+cb5b82433cec drm/i915/uapi: introduce drm_i915_gem_create_ext
+-:12: ERROR:BAD_SIGN_OFF: Unrecognized email address: 'Joonas Lahtinen joonas.lahtinen@linux.intel.com'
+#12: 
+Cc: Joonas Lahtinen joonas.lahtinen@linux.intel.com
+
+-:13: ERROR:BAD_SIGN_OFF: Unrecognized email address: 'Matthew Auld matthew.auld@intel.com'
+#13: 
+Cc: Matthew Auld matthew.auld@intel.com
+
+-:46: ERROR:CODE_INDENT: code indent should use tabs where possible
+#46: FILE: drivers/gpu/drm/i915/i915_gem.c:265:
++        struct drm_i915_private *i915;$
+
+-:46: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#46: FILE: drivers/gpu/drm/i915/i915_gem.c:265:
++        struct drm_i915_private *i915;$
+
+-:50: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#50: FILE: drivers/gpu/drm/i915/i915_gem.c:269:
++static int __create_setparam(struct drm_i915_gem_object_param *args,
++							struct create_ext *ext_data)
+
+-:95: CHECK:LINE_SPACING: Please don't use multiple blank lines
+#95: FILE: drivers/gpu/drm/i915/i915_gem.c:317:
 +
- #include "i915_drv.h"
- #include "i915_trace.h"
- #include "i915_vgpu.h"
-@@ -752,6 +754,11 @@ icl_program_input_csc(struct intel_plane *plane,
- 			  PLANE_INPUT_CSC_POSTOFF(pipe, plane_id, 2), 0x0);
- }
- 
-+static bool intel_fb_obj_protected(const struct drm_i915_gem_object *obj)
-+{
-+	return obj->user_flags & I915_BO_PROTECTED ? true : false;
-+}
 +
- static void
- skl_plane_async_flip(struct intel_plane *plane,
- 		     const struct intel_crtc_state *crtc_state,
-@@ -788,6 +795,7 @@ skl_program_plane(struct intel_plane *plane,
- 	u32 surf_addr = plane_state->color_plane[color_plane].offset;
- 	u32 stride = skl_plane_stride(plane_state, color_plane);
- 	const struct drm_framebuffer *fb = plane_state->hw.fb;
-+	const struct drm_i915_gem_object *obj = intel_fb_obj(fb);
- 	int aux_plane = intel_main_to_aux_plane(fb, color_plane);
- 	int crtc_x = plane_state->uapi.dst.x1;
- 	int crtc_y = plane_state->uapi.dst.y1;
-@@ -798,7 +806,7 @@ skl_program_plane(struct intel_plane *plane,
- 	u8 alpha = plane_state->hw.alpha >> 8;
- 	u32 plane_color_ctl = 0, aux_dist = 0;
- 	unsigned long irqflags;
--	u32 keymsk, keymax;
-+	u32 keymsk, keymax, plane_surf;
- 	u32 plane_ctl = plane_state->ctl;
- 
- 	plane_ctl |= skl_plane_ctl_crtc(crtc_state);
-@@ -874,8 +882,15 @@ skl_program_plane(struct intel_plane *plane,
- 	 * the control register just before the surface register.
- 	 */
- 	intel_de_write_fw(dev_priv, PLANE_CTL(pipe, plane_id), plane_ctl);
--	intel_de_write_fw(dev_priv, PLANE_SURF(pipe, plane_id),
--			  intel_plane_ggtt_offset(plane_state) + surf_addr);
-+	plane_surf = intel_plane_ggtt_offset(plane_state) + surf_addr;
-+
-+	if (intel_pxp_gem_object_status(dev_priv) &&
-+	    intel_fb_obj_protected(obj))
-+		plane_surf |= PLANE_SURF_DECRYPTION_ENABLED;
-+	else
-+		plane_surf &= ~PLANE_SURF_DECRYPTION_ENABLED;
-+
-+	intel_de_write_fw(dev_priv, PLANE_SURF(pipe, plane_id), plane_surf);
- 
- 	if (plane_state->scaler_id >= 0)
- 		skl_program_scaler(plane, crtc_state, plane_state);
-diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-index c3b9ca142539..ebb66fbab7d9 100644
---- a/drivers/gpu/drm/i915/i915_reg.h
-+++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -7208,6 +7208,7 @@ enum {
- #define _PLANE_SURF_3(pipe)	_PIPE(pipe, _PLANE_SURF_3_A, _PLANE_SURF_3_B)
- #define PLANE_SURF(pipe, plane)	\
- 	_MMIO_PLANE(plane, _PLANE_SURF_1(pipe), _PLANE_SURF_2(pipe))
-+#define   PLANE_SURF_DECRYPTION_ENABLED		REG_BIT(2)
- 
- #define _PLANE_OFFSET_1_B			0x711a4
- #define _PLANE_OFFSET_2_B			0x712a4
--- 
-2.17.1
+
+-:107: WARNING:LONG_LINE: line length of 120 exceeds 100 columns
+#107: FILE: include/uapi/drm/i915_drm.h:394:
++#define DRM_IOCTL_I915_GEM_CREATE_EXT   DRM_IOWR(DRM_COMMAND_BASE + DRM_I915_GEM_CREATE, struct drm_i915_gem_create_ext)
+
+-:155: CHECK:SPACING: spaces preferred around that '<<' (ctx:VxV)
+#155: FILE: include/uapi/drm/i915_drm.h:1735:
++#define I915_OBJECT_PARAM  (1ull<<32)
+                                 ^
+
+total: 3 errors, 2 warnings, 3 checks, 136 lines checked
+835fa00f2104 drm/i915/pxp: User interface for Protected buffer
+2c2a5ec977c5 drm/i915/pxp: Add plane decryption support
+
 
 _______________________________________________
 Intel-gfx mailing list
