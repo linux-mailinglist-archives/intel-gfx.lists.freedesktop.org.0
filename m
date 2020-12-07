@@ -1,27 +1,29 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 26F842D1140
-	for <lists+intel-gfx@lfdr.de>; Mon,  7 Dec 2020 14:02:16 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id E87922D1148
+	for <lists+intel-gfx@lfdr.de>; Mon,  7 Dec 2020 14:04:04 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CFFDE89FDD;
-	Mon,  7 Dec 2020 13:02:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 802006E7D4;
+	Mon,  7 Dec 2020 13:04:02 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 734E289FDD
- for <intel-gfx@lists.freedesktop.org>; Mon,  7 Dec 2020 13:02:12 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 071026E7D4
+ for <intel-gfx@lists.freedesktop.org>; Mon,  7 Dec 2020 13:04:00 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 23240912-1500050 
- for multiple; Mon, 07 Dec 2020 13:02:03 +0000
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 23240936-1500050 
+ for multiple; Mon, 07 Dec 2020 13:03:48 +0000
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Mon,  7 Dec 2020 13:02:01 +0000
-Message-Id: <20201207130201.8492-1-chris@chris-wilson.co.uk>
+Date: Mon,  7 Dec 2020 13:03:46 +0000
+Message-Id: <20201207130346.11849-1-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.20.1
+In-Reply-To: <20201207130201.8492-1-chris@chris-wilson.co.uk>
+References: <20201207130201.8492-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
 Subject: [Intel-gfx] [PATCH] drm/i915/selftests: Improve error reporting for
  igt_mock_max_segment
@@ -55,7 +57,7 @@ Cc: Ramalingam C <ramalingam.c@intel.com>
  1 file changed, 7 insertions(+), 8 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/selftests/intel_memory_region.c b/drivers/gpu/drm/i915/selftests/intel_memory_region.c
-index a0b518c255de..b03c2adfcf27 100644
+index a0b518c255de..a55079a061dd 100644
 --- a/drivers/gpu/drm/i915/selftests/intel_memory_region.c
 +++ b/drivers/gpu/drm/i915/selftests/intel_memory_region.c
 @@ -384,16 +384,15 @@ static int igt_mock_max_segment(void *arg)
@@ -76,8 +78,8 @@ index a0b518c255de..b03c2adfcf27 100644
 -		pr_err("%s: Failed to create a huge contiguous block\n",
 -		       __func__);
 +	if (size < max_segment) {
-+		pr_err("%s: Failed to create a huge contiguous block, largest block %lld\n",
-+		       __func__, size);
++		pr_err("%s: Failed to create a huge contiguous block [> %u], largest block %lld\n",
++		       __func__, max_segment, size);
 +		err = -EINVAL;
  		goto out_close;
  	}
