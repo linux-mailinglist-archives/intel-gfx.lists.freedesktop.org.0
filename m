@@ -1,42 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8B8072D107C
-	for <lists+intel-gfx@lfdr.de>; Mon,  7 Dec 2020 13:21:19 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id D50452D1127
+	for <lists+intel-gfx@lfdr.de>; Mon,  7 Dec 2020 13:57:43 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 95BB86E7EF;
-	Mon,  7 Dec 2020 12:21:17 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 62B6A6E7EF
- for <Intel-gfx@lists.freedesktop.org>; Mon,  7 Dec 2020 12:21:15 +0000 (UTC)
-IronPort-SDR: T+NYIH3tZvUa80A7bIWwaUPw8P7BvKIWUVt3uYC+r1D4SmauNGV81GM5eXYWgY7zcZ4WJXruY5
- NdrODRxZDhug==
-X-IronPort-AV: E=McAfee;i="6000,8403,9827"; a="173798636"
-X-IronPort-AV: E=Sophos;i="5.78,399,1599548400"; d="scan'208";a="173798636"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Dec 2020 04:21:13 -0800
-IronPort-SDR: lkAqUJegZZqHR4BjJJWVwrTzrIYaVpUu0ZaEHyQbFcxiuWfN6BAv++mmaiOoSY6eKfmkX6zpEt
- ipRd8/GzNqmA==
-X-IronPort-AV: E=Sophos;i="5.78,399,1599548400"; d="scan'208";a="363117475"
-Received: from tcujba-mobl.ger.corp.intel.com (HELO localhost) ([10.252.9.141])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Dec 2020 04:21:12 -0800
+	by gabe.freedesktop.org (Postfix) with ESMTP id C4A736E829;
+	Mon,  7 Dec 2020 12:57:40 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 4C6E26E7D4;
+ Mon,  7 Dec 2020 12:57:40 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 44368A0078;
+ Mon,  7 Dec 2020 12:57:40 +0000 (UTC)
 MIME-Version: 1.0
-In-Reply-To: <20201207002134.13731-10-sean.z.huang@intel.com>
-References: <20201207002134.13731-1-sean.z.huang@intel.com>
- <20201207002134.13731-10-sean.z.huang@intel.com>
-To: "Huang, Sean Z" <sean.z.huang@intel.com>, Intel-gfx@lists.freedesktop.org
-From: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Message-ID: <160734366944.9322.3216167551541536930@jlahtine-mobl.ger.corp.intel.com>
-User-Agent: alot/0.8.1
-Date: Mon, 07 Dec 2020 14:21:09 +0200
-Subject: Re: [Intel-gfx] [RFC-v1 09/16] drm/i915/pxp: Func to send hardware
- session termination
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "C, Ramalingam" <ramalingam.c@intel.com>
+Date: Mon, 07 Dec 2020 12:57:40 -0000
+Message-ID: <160734586025.8717.8478238397712086960@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20201207102812.29931-1-ramalingam.c@intel.com>
+In-Reply-To: <20201207102812.29931-1-ramalingam.c@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/gt=3A_Fixing_the_error_handling_of_shmem=5Fpin=5Fmap?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,207 +38,224 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============1370940223=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Huang, Sean Z (2020-12-07 02:21:27)
-> Implement the functions to allow PXP to send a GPU command, in
-> order to terminate the hardware session, so hardware can recycle
-> this session slot for the next usage.
-> 
-> Signed-off-by: Huang, Sean Z <sean.z.huang@intel.com>
+--===============1370940223==
+Content-Type: multipart/alternative;
+ boundary="===============7129490720791273695=="
 
-As we only have a singleton session support in this series, maybe this
-patch is not needed?
+--===============7129490720791273695==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-I don't think we should add functions to arbitarily inject commands to VCS0
-from another driver. We should add proper functions for the commands in i915
-and call them on demand and add EXPORT_SYMBOL for them.
+== Series Details ==
 
-Regards, Joonas
+Series: drm/i915/gt: Fixing the error handling of shmem_pin_map
+URL   : https://patchwork.freedesktop.org/series/84637/
+State : success
 
-> ---
->  drivers/gpu/drm/i915/pxp/intel_pxp_sm.c | 150 ++++++++++++++++++++++++
->  1 file changed, 150 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp_sm.c b/drivers/gpu/drm/i915/pxp/intel_pxp_sm.c
-> index 056f65fbaf4e..c88243e02a3c 100644
-> --- a/drivers/gpu/drm/i915/pxp/intel_pxp_sm.c
-> +++ b/drivers/gpu/drm/i915/pxp/intel_pxp_sm.c
-> @@ -3,13 +3,163 @@
->   * Copyright(c) 2020, Intel Corporation. All rights reserved.
->   */
->  
-> +#include "gt/intel_gpu_commands.h"
-> +#include "gt/intel_gt.h"
->  #include "gt/intel_context.h"
-> +#include "gt/intel_gt_buffer_pool.h"
->  #include "gt/intel_engine_pm.h"
->  
->  #include "intel_pxp.h"
->  #include "intel_pxp_sm.h"
->  #include "intel_pxp_context.h"
->  
-> +static struct i915_vma *pxp_get_batch(struct drm_i915_private *i915,
-> +                                     struct intel_context *ce,
-> +                                     struct intel_gt_buffer_pool_node *pool,
-> +                                     u32 *cmd_buf, int cmd_size_in_dw)
-> +{
-> +       struct i915_vma *batch = ERR_PTR(-EINVAL);
-> +       u32 *cmd;
-> +
-> +       if (!ce || !ce->engine || !cmd_buf)
-> +               return ERR_PTR(-EINVAL);
-> +
-> +       if (cmd_size_in_dw * 4 > PAGE_SIZE) {
-> +               drm_err(&i915->drm, "Failed to %s, invalid cmd_size_id_dw=[%d]\n",
-> +                       __func__, cmd_size_in_dw);
-> +               return ERR_PTR(-EINVAL);
-> +       }
-> +
-> +       cmd = i915_gem_object_pin_map(pool->obj, I915_MAP_FORCE_WC);
-> +       if (IS_ERR(cmd)) {
-> +               drm_err(&i915->drm, "Failed to i915_gem_object_pin_map()\n");
-> +               return ERR_PTR(-EINVAL);
-> +       }
-> +
-> +       memcpy(cmd, cmd_buf, cmd_size_in_dw * 4);
-> +
-> +       if (drm_debug_enabled(DRM_UT_DRIVER)) {
-> +               print_hex_dump(KERN_DEBUG, "cmd binaries:",
-> +                              DUMP_PREFIX_OFFSET, 4, 4, cmd, cmd_size_in_dw * 4, true);
-> +       }
-> +
-> +       i915_gem_object_unpin_map(pool->obj);
-> +
-> +       batch = i915_vma_instance(pool->obj, ce->vm, NULL);
-> +       if (IS_ERR(batch)) {
-> +               drm_err(&i915->drm, "Failed to i915_vma_instance()\n");
-> +               return batch;
-> +       }
-> +
-> +       return batch;
-> +}
-> +
-> +static int pxp_submit_cmd(struct drm_i915_private *i915, u32 *cmd, int cmd_size_in_dw)
-> +{
-> +       int err = -EINVAL;
-> +       struct i915_vma *batch;
-> +       struct i915_request *rq;
-> +       struct intel_context *ce = NULL;
-> +       bool is_engine_pm_get = false;
-> +       bool is_batch_vma_pin = false;
-> +       bool is_skip_req_on_err = false;
-> +       bool is_engine_get_pool = false;
-> +       struct intel_gt_buffer_pool_node *pool = NULL;
-> +       struct intel_gt *gt = NULL;
-> +
-> +       if (!i915 || !HAS_ENGINE(&i915->gt, VCS0) ||
-> +           !i915->gt.engine[VCS0]->kernel_context) {
-> +               err = -EINVAL;
-> +               goto end;
-> +       }
-> +
-> +       if (!cmd || (cmd_size_in_dw * 4) > PAGE_SIZE) {
-> +               drm_err(&i915->drm, "Failed to %s bad params\n", __func__);
-> +               return -EINVAL;
-> +       }
-> +
-> +       gt = &i915->gt;
-> +       ce = i915->gt.engine[VCS0]->kernel_context;
-> +
-> +       intel_engine_pm_get(ce->engine);
-> +       is_engine_pm_get = true;
-> +
-> +       pool = intel_gt_get_buffer_pool(gt, PAGE_SIZE);
-> +       if (IS_ERR(pool)) {
-> +               drm_err(&i915->drm, "Failed to intel_engine_get_pool()\n");
-> +               goto end;
-> +       }
-> +       is_engine_get_pool = true;
-> +
-> +       batch = pxp_get_batch(i915, ce, pool, cmd, cmd_size_in_dw);
-> +       if (IS_ERR(batch)) {
-> +               drm_err(&i915->drm, "Failed to pxp_get_batch()\n");
-> +               goto end;
-> +       }
-> +
-> +       err = i915_vma_pin(batch, 0, 0, PIN_USER);
-> +       if (err) {
-> +               drm_err(&i915->drm, "Failed to i915_vma_pin()\n");
-> +               goto end;
-> +       }
-> +       is_batch_vma_pin = true;
-> +
-> +       rq = intel_context_create_request(ce);
-> +       if (IS_ERR(rq)) {
-> +               drm_err(&i915->drm, "Failed to intel_context_create_request()\n");
-> +               goto end;
-> +       }
-> +       is_skip_req_on_err = true;
-> +
-> +       err = intel_gt_buffer_pool_mark_active(pool, rq);
-> +       if (err) {
-> +               drm_err(&i915->drm, "Failed to intel_engine_pool_mark_active()\n");
-> +               goto end;
-> +       }
-> +
-> +       i915_vma_lock(batch);
-> +       err = i915_request_await_object(rq, batch->obj, false);
-> +       if (!err)
-> +               err = i915_vma_move_to_active(batch, rq, 0);
-> +       i915_vma_unlock(batch);
-> +       if (err) {
-> +               drm_err(&i915->drm, "Failed to i915_request_await_object()\n");
-> +               goto end;
-> +       }
-> +
-> +       if (ce->engine->emit_init_breadcrumb) {
-> +               err = ce->engine->emit_init_breadcrumb(rq);
-> +               if (err) {
-> +                       drm_err(&i915->drm, "Failed to emit_init_breadcrumb()\n");
-> +                       goto end;
-> +               }
-> +       }
-> +
-> +       err = ce->engine->emit_bb_start(rq, batch->node.start,
-> +               batch->node.size, 0);
-> +       if (err) {
-> +               drm_err(&i915->drm, "Failed to emit_bb_start()\n");
-> +               goto end;
-> +       }
-> +
-> +       i915_request_add(rq);
-> +
-> +end:
-> +       if (unlikely(err) && is_skip_req_on_err)
-> +               i915_request_set_error_once(rq, err);
-> +
-> +       if (is_batch_vma_pin)
-> +               i915_vma_unpin(batch);
-> +
-> +       if (is_engine_get_pool)
-> +               intel_gt_buffer_pool_put(pool);
-> +
-> +       if (is_engine_pm_get)
-> +               intel_engine_pm_put(ce->engine);
-> +
-> +       return err;
-> +}
-> +
->  static int pxp_sm_reg_read(struct drm_i915_private *i915, u32 offset, u32 *regval)
->  {
->         intel_wakeref_t wakeref;
-> -- 
-> 2.17.1
-> 
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_9453 -> Patchwork_19074
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19074/index.html
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_19074:
+
+### CI changes ###
+
+#### Possible regressions ####
+
+  * boot (NEW):
+    - {fi-dg1-1}:         NOTRUN -> [FAIL][1]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19074/fi-dg1-1/boot.html
+
+  
+New tests
+---------
+
+  New tests have been introduced between CI_DRM_9453 and Patchwork_19074:
+
+### New CI tests (1) ###
+
+  * boot:
+    - Statuses : 1 fail(s) 39 pass(s)
+    - Exec time: [0.0] s
+
+  
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_19074 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_getparams_basic@basic-subslice-total:
+    - fi-tgl-y:           [PASS][2] -> [DMESG-WARN][3] ([i915#402]) +1 similar issue
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9453/fi-tgl-y/igt@i915_getparams_basic@basic-subslice-total.html
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19074/fi-tgl-y/igt@i915_getparams_basic@basic-subslice-total.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_hangman@error-state-basic:
+    - fi-tgl-y:           [DMESG-WARN][4] ([i915#402]) -> [PASS][5] +2 similar issues
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9453/fi-tgl-y/igt@i915_hangman@error-state-basic.html
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19074/fi-tgl-y/igt@i915_hangman@error-state-basic.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
+
+
+Participating hosts (44 -> 40)
+------------------------------
+
+  Additional (1): fi-dg1-1 
+  Missing    (5): fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_9453 -> Patchwork_19074
+
+  CI-20190529: 20190529
+  CI_DRM_9453: 52e2ca46b7e2aa62c0509bce0be189d2f5a7325f @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5883: 02244f60c98b4e4106b1099ade3439b159ac848e @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_19074: 078213cdececf1a6a14eff6e67f004ff761d0cd3 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+078213cdecec drm/i915/gt: Fixing the error handling of shmem_pin_map
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19074/index.html
+
+--===============7129490720791273695==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/gt: Fixing the error handling of shmem_pin_map</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/84637/">https://patchwork.freedesktop.org/series/84637/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19074/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19074/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_9453 -&gt; Patchwork_19074</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19074/index.html</p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in Patchwork_19074:</p>
+<h3>CI changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>boot (NEW):<ul>
+<li>{fi-dg1-1}:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19074/fi-dg1-1/boot.html">FAIL</a></li>
+</ul>
+</li>
+</ul>
+<h2>New tests</h2>
+<p>New tests have been introduced between CI_DRM_9453 and Patchwork_19074:</p>
+<h3>New CI tests (1)</h3>
+<ul>
+<li>boot:<ul>
+<li>Statuses : 1 fail(s) 39 pass(s)</li>
+<li>Exec time: [0.0] s</li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_19074 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@i915_getparams_basic@basic-subslice-total:<ul>
+<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9453/fi-tgl-y/igt@i915_getparams_basic@basic-subslice-total.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19074/fi-tgl-y/igt@i915_getparams_basic@basic-subslice-total.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) +1 similar issue</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@i915_hangman@error-state-basic:<ul>
+<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9453/fi-tgl-y/igt@i915_hangman@error-state-basic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19074/fi-tgl-y/igt@i915_hangman@error-state-basic.html">PASS</a> +2 similar issues</li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Participating hosts (44 -&gt; 40)</h2>
+<p>Additional (1): fi-dg1-1 <br />
+  Missing    (5): fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-bdw-samus </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_9453 -&gt; Patchwork_19074</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_9453: 52e2ca46b7e2aa62c0509bce0be189d2f5a7325f @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_5883: 02244f60c98b4e4106b1099ade3439b159ac848e @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
+  Patchwork_19074: 078213cdececf1a6a14eff6e67f004ff761d0cd3 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>078213cdecec drm/i915/gt: Fixing the error handling of shmem_pin_map</p>
+
+</body>
+</html>
+
+--===============7129490720791273695==--
+
+--===============1370940223==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============1370940223==--
