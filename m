@@ -2,43 +2,44 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6E91A2D0ADE
-	for <lists+intel-gfx@lfdr.de>; Mon,  7 Dec 2020 07:47:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 00A872D0B80
+	for <lists+intel-gfx@lfdr.de>; Mon,  7 Dec 2020 09:11:24 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 118F76E566;
-	Mon,  7 Dec 2020 06:46:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D2EC489E5B;
+	Mon,  7 Dec 2020 08:11:21 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C52B66E566
- for <intel-gfx@lists.freedesktop.org>; Mon,  7 Dec 2020 06:46:56 +0000 (UTC)
-IronPort-SDR: 5wdrVMjxY/7NxqGY0zpYuQKe5WVzrUE3UVgb1G0nVjzaNc5ayD1i9pfY7iGSIFhCmCwqd6aY67
- 4xrXvJm9BqBg==
-X-IronPort-AV: E=McAfee;i="6000,8403,9827"; a="152898030"
-X-IronPort-AV: E=Sophos;i="5.78,398,1599548400"; d="scan'208";a="152898030"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Dec 2020 22:46:56 -0800
-IronPort-SDR: 4FH3/Y817ld6sm+54ad8aUJ+RAw5sbHDpwqTAM/MP0pI8maX3Aytstx5sdbZIFZ/+Z7xloG9ro
- fd9YOjOFvrjQ==
-X-IronPort-AV: E=Sophos;i="5.78,398,1599548400"; d="scan'208";a="363003127"
-Received: from iweiny-desk2.sc.intel.com (HELO localhost) ([10.3.52.147])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Dec 2020 22:46:55 -0800
-Date: Sun, 6 Dec 2020 22:46:55 -0800
-From: Ira Weiny <ira.weiny@intel.com>
-To: Thomas Gleixner <tglx@linutronix.de>
-Message-ID: <20201207064655.GK1563847@iweiny-DESK2.sc.intel.com>
-References: <20201124060755.1405602-1-ira.weiny@intel.com>
- <20201124060755.1405602-4-ira.weiny@intel.com>
- <160648211578.10416.3269409785516897908@jlahtine-mobl.ger.corp.intel.com>
- <20201204160504.GH1563847@iweiny-DESK2.sc.intel.com>
- <878sad9p7f.fsf@nanos.tec.linutronix.de>
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CFE3A89E5B
+ for <intel-gfx@lists.freedesktop.org>; Mon,  7 Dec 2020 08:11:20 +0000 (UTC)
+IronPort-SDR: hqxEYDhCbVdqQgrrNcycho3lA8QpCX47Yl5UOillu1EiI3vKuCb/YFMnvTn34pJLb8sYgUdK2E
+ 8N5hpxXprMQQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9827"; a="153477244"
+X-IronPort-AV: E=Sophos;i="5.78,399,1599548400"; d="scan'208";a="153477244"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Dec 2020 00:11:19 -0800
+IronPort-SDR: 96lnoa4Q8nDksTSIc/j01PS5Jy/KiTFV5UppvTBpNfR75XZGJ/QImYl/FsSsfG5rIYm2AidnCM
+ p/8colBZMH2w==
+X-IronPort-AV: E=Sophos;i="5.78,399,1599548400"; d="scan'208";a="347367580"
+Received: from genxfsim-desktop.iind.intel.com (HELO intel.com)
+ ([10.223.74.178])
+ by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Dec 2020 00:11:17 -0800
+Date: Mon, 7 Dec 2020 13:27:48 +0530
+From: Anshuman Gupta <anshuman.gupta@intel.com>
+To: Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+Message-ID: <20201207075745.GI30377@intel.com>
+References: <20201130091646.25576-1-anshuman.gupta@intel.com>
+ <20201130091646.25576-3-anshuman.gupta@intel.com>
+ <20201130152832.GB2348711@ideak-desk.fi.intel.com>
+ <20201204081003.GC30377@intel.com> <X8pbBsHVRVV4cNfJ@intel.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <878sad9p7f.fsf@nanos.tec.linutronix.de>
-User-Agent: Mutt/1.11.1 (2018-12-01)
-Subject: Re: [Intel-gfx] [PATCH 03/17] drivers/gpu: Convert to mem*_page()
+In-Reply-To: <X8pbBsHVRVV4cNfJ@intel.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
+Subject: Re: [Intel-gfx] [RFC 2/2] drm/i915/display: Protect pipe_update
+ against dc3co exit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,44 +52,77 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Alexei Starovoitov <ast@kernel.org>, David Howells <dhowells@redhat.com>,
- Chris Mason <clm@fb.com>, Kirti Wankhede <kwankhede@nvidia.com>,
- Christoph Hellwig <hch@infradead.org>, Daniel Borkmann <daniel@iogearbox.net>,
- Matthew Wilcox <willy@infradead.org>, Eric Biggers <ebiggers@kernel.org>,
- Chao Yu <yuchao0@huawei.com>, intel-gfx@lists.freedesktop.org,
- Josef Bacik <josef@toxicpanda.com>,
- =?iso-8859-1?B?Suly9G1l?= Glisse <jglisse@redhat.com>,
- Brian King <brking@us.ibm.com>, Al Viro <viro@zeniv.linux.org.uk>,
- David Sterba <dsterba@suse.com>, Jaegeuk Kim <jaegeuk@kernel.org>,
- Dan Williams <dan.j.williams@intel.com>,
- "Martin K. Petersen" <martin.petersen@oracle.com>,
- Nicolas Pitre <nico@fluxnic.net>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Dave Hansen <dave.hansen@intel.com>, linux-kernel@vger.kernel.org,
- Steve French <sfrench@samba.org>, Luis Chamberlain <mcgrof@kernel.org>,
- linux-fsdevel@vger.kernel.org, Andrew Morton <akpm@linux-foundation.org>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: intel-gfx@lists.freedesktop.org, stable@vger.kernel.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Dec 04, 2020 at 11:33:08PM +0100, Thomas Gleixner wrote:
-> On Fri, Dec 04 2020 at 08:05, Ira Weiny wrote:
-> > So I think I'm going to submit the base patch to Andrew today (with some
-> > cleanups per the comments in this thread).
-> 
-> Could you please base that on tip core/mm where the kmap_local() muck is
-> and use kmap_local() right away?
-
-Sure.  Would that mean it should go through you and not Andrew?
-
-Ira
-
-> 
-> Thanks,
-> 
->         tglx
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+T24gMjAyMC0xMi0wNCBhdCAxNzo1MTozNCArMDIwMCwgVmlsbGUgU3lyasOkbMOkIHdyb3RlOgo+
+IE9uIEZyaSwgRGVjIDA0LCAyMDIwIGF0IDAxOjQwOjAzUE0gKzA1MzAsIEFuc2h1bWFuIEd1cHRh
+IHdyb3RlOgo+ID4gT24gMjAyMC0xMS0zMCBhdCAxNzoyODozMiArMDIwMCwgSW1yZSBEZWFrIHdy
+b3RlOgo+ID4gPiBPbiBNb24sIE5vdiAzMCwgMjAyMCBhdCAwMjo0Njo0NlBNICswNTMwLCBBbnNo
+dW1hbiBHdXB0YSB3cm90ZToKPiA+ID4gPiBBdCB1c3VhbCBjYXNlIERDM0NPIGV4aXQgaGFwcGVu
+IGF1dG9tYXRpY2FsbHkgYnkgRE1DIGYvdyB3aGVuZXZlcgo+ID4gPiA+IFBTUjIgY2xlYXJzIGlk
+bGUuIFRoaXMgaGFwcGVucyBzbW9vdGhseSBieSBETUMgZi93IHRvIHdvcmsgd2l0aCBmbGlwcy4K
+PiA+ID4gPiBCdXQgdGhlcmUgYXJlIGNlcnRhaW4gc2NlbmFyaW8gd2hlcmUgREMzQ08gIERpc2Fs
+bG93ZWQgYnkgZHJpdmVyCj4gPiA+ID4gYXN5bmNocm9ub3VzIHdpdGggZmxpcHMuIEluIHN1Y2gg
+c2NlbmFyaW8gZGlzcGxheSBlbmdpbmUgY291bGQKPiA+ID4gPiBiZSBhbHJlYWR5IGluIERDM0NP
+IHN0YXRlIGFuZCBkcml2ZXIgaGFzIGRpc2FsbG93ZWQgaXQsCj4gPiA+ID4gSXQgaW5pdGlhdGVz
+IERDM0NPIGV4aXQgc2VxdWVuY2UgaW4gRE1DIGYvdyB3aGljaCByZXF1aXJlcyBhCj4gPiA+ID4g
+ZGMzY28gZXhpdCBkZWxheSBvZiAyMDB1cyBpbiBkcml2ZXIuCj4gPiA+ID4gSXQgcmVxdWlyZXMg
+dG8gcHJvdGVjdCBpbnRlbF9waXBlX3VwZGF0ZV97dXBkYXRlX2VuZH0gd2l0aAo+ID4gPiA+IGRj
+M2NvIGV4aXQgZGVsYXkuCj4gPiA+ID4gCj4gPiA+ID4gQ2M6IEltcmUgRGVhayA8aW1yZS5kZWFr
+QGludGVsLmNvbT4KPiA+ID4gPiBDYzogPHN0YWJsZUB2Z2VyLmtlcm5lbC5vcmc+Cj4gPiA+ID4g
+U2lnbmVkLW9mZi1ieTogQW5zaHVtYW4gR3VwdGEgPGFuc2h1bWFuLmd1cHRhQGludGVsLmNvbT4K
+PiA+ID4gCj4gPiA+IFRvIG1ha2Ugc3VyZSB0aGF0IGl0IGRvZXNuJ3QgaGlkZSB0aGUgcm9vdCBj
+YXVzZSAob3IgYWZmZWN0cyB1bnJlbGF0ZWQKPiA+ID4gcGxhdGZvcm1zKSwgSSdkIG9ubHkgYWRk
+IGxvY2tpbmcgYXJvdW5kIERDM2NvIGNoYW5nZXMgd2l0aCBhIG5ldyBsb2NrLAo+ID4gPiB1c2lu
+ZyBsb2NrL3VubG9jayBoZWxwZXJzIGluIGludGVsX2Rpc3BsYXlfcG93ZXIuYyBjYWxsZWQgZnJv
+bQo+ID4gPiBpbnRlbF9waXBlX3VwZGF0ZV9zdGFydC9lbmQuCj4gPiA+IAo+ID4gPiBBbHNvIHBs
+ZWFzZSBzdWJtaXQgdGhpcyBwYXRjaCBzZXBhcmF0ZWx5LCB3L28gdGhlIG9wdGltaXphdGlvbiBp
+biBwYXRjaAo+ID4gPiAxLzIsIHNvIHdlIGtub3cgdGhhdCB0aGlzIGNoYW5nZSBmaXhlcyB0aGUg
+cHJvYmxlbS4KPiA+IFRoaXMgcGF0Y2ggZG9lc24ndCBzZWVtcyB0byBmaXggdGhlIGlzc3VlLgo+
+ID4gTG9va3MgbGlrZSB0aGVyZSBpcyBzb21lIG90aGVyIHNldCBvZiBkaXNwbGF5IHJlZ2lzdGVy
+IHVwZGF0ZXMgYmVmb3JlCj4gPiBjb21wbGV0aW5nIHRoZSBkYzNjbyBleGl0IGRlbGF5IGJleW9u
+ZCBpbnRlbF9waXBlX3VwZGF0ZV9zdGFydC9lbmQgY2F1c2luZyB0aGlzIGlzc3VlLgo+IAo+IE5v
+dCByZWFsbHkgc3VyZSBJIHVuZGVyc3RhbmQgdGhlIERDM0NPIGlzc3VlIGhlcmUsIG5vciBob3cg
+Z3JhYmJpbmcgYQo+IG11dGV4IGFjcm9zcyB0aGUgdXBkYXRlIGNvdWxkIGhlbHAuClRoYW5rcyBW
+aWxsZSBmb3IgcHJvdmlkaW5nIHlvdXIgaW5wdXQgaGVyZSwgdGhlIGRpc3BsYXkgZ2xpdGNoZXMg
+aXMgZml4ZWQgYnkgCmh0dHBzOi8vcGF0Y2h3b3JrLmZyZWVkZXNrdG9wLm9yZy9wYXRjaC80MDU1
+ODUvP3Nlcmllcz04NDM5NCZyZXY9MiBwYXRjaCBpbiBjYXNlCm9mIGJyaWdodG5lc3MgYmVpbmcg
+dXBkYXRlZCBzaW11bHRhbmVvdXNseSB3aXRoIGZsaXBzLCBzbyBpdCB3YXMgb3VyIHdpbGQgZ3Vl
+c3MKdGhhdCBpZiBpbnRlbF9waXBlX3VwZGF0ZV9zdGFydCAgdHJpZ2dlcnMgYmVmb3JlIGNvbXBs
+ZXRpbmcgREMzQ08gZXhpdCBkZWxheSBpbgp0Z2xfZGlzYWJsZV9kYzNjbyBjb3VsZCBjYXVzZSB0
+aGUgZGlzcGxheSBnbGl0Y2hlcyBidXQgdGhhdCB3YXMgbm90IHRydWUuCj4gCj4gQnV0IGFueXdh
+eXMsIG1heWJlIHdlIHNob3VsZCBqdXN0Ogo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0v
+aTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXkuYyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3Bs
+YXkvaW50ZWxfZGlzcGxheS5jCj4gaW5kZXggMmUyZGQ3NDY5MjFmLi45NjI3NmYwZmVkZGMgMTAw
+NjQ0Cj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5LmMK
+PiArKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXkuYwo+IEBA
+IC0xNjI2OCw4ICsxNjI2OCw3IEBAIHN0YXRpYyB2b2lkIGludGVsX2F0b21pY19jb21taXRfdGFp
+bChzdHJ1Y3QgaW50ZWxfYXRvbWljX3N0YXRlICpzdGF0ZSkKPiAgCj4gIAlkcm1fYXRvbWljX2hl
+bHBlcl93YWl0X2Zvcl9kZXBlbmRlbmNpZXMoJnN0YXRlLT5iYXNlKTsKPiAgCj4gLQlpZiAoc3Rh
+dGUtPm1vZGVzZXQpCj4gLQkJd2FrZXJlZiA9IGludGVsX2Rpc3BsYXlfcG93ZXJfZ2V0KGRldl9w
+cml2LCBQT1dFUl9ET01BSU5fTU9ERVNFVCk7Cj4gKwl3YWtlcmVmID0gaW50ZWxfZGlzcGxheV9w
+b3dlcl9nZXQoZGV2X3ByaXYsIFBPV0VSX0RPTUFJTl9NT0RFU0VUKTsKQ2VydGFpbmx5IHRoaXMg
+c2hvdWxkIGZpeCB0aGUgaXNzdWUuIEkgd2lsbCB0cnkgdGhpcyBvdXQgYnV0IGkgZmVlbCB0aGlz
+IApjb3VsZCBjYXVzZSBoZWF2eSBsb2NrIGNvbnRlbnRpb24gYXJvdW5kIHBvd2VyX2RvbWFpbnMt
+PmxvY2sgaW4gY2FzZSAKYnJpZ2h0bmVzcyBiZWluZyB1cGRhdGVkIHJhcGlkbHkgYXMgdGhlIHNj
+ZW5hcmlvIG9mIHRoaXMgaXNzdWUuCldlIHdvdWxkIGFsc28gbmVlZCBodHRwczovL3BhdGNod29y
+ay5mcmVlZGVza3RvcC5vcmcvcGF0Y2gvNDA1NTg1Lz9zZXJpZXM9ODQzOTQmcmV2PTIgcGF0Y2gg
+YXMgd2VsbCA/ClRoYW5rcywKQW5zaHVtYW4gR3VwdGEuCj4gIAo+ICAJZm9yX2VhY2hfb2xkbmV3
+X2ludGVsX2NydGNfaW5fc3RhdGUoc3RhdGUsIGNydGMsIG9sZF9jcnRjX3N0YXRlLAo+ICAJCQkJ
+CSAgICBuZXdfY3J0Y19zdGF0ZSwgaSkgewo+IEBAIC0xNjQxNSw4ICsxNjQxNCw4IEBAIHN0YXRp
+YyB2b2lkIGludGVsX2F0b21pY19jb21taXRfdGFpbChzdHJ1Y3QgaW50ZWxfYXRvbWljX3N0YXRl
+ICpzdGF0ZSkKPiAgCQkgKiB0aGUgY3VscHJpdC4KPiAgCQkgKi8KPiAgCQlpbnRlbF91bmNvcmVf
+YXJtX3VuY2xhaW1lZF9tbWlvX2RldGVjdGlvbigmZGV2X3ByaXYtPnVuY29yZSk7Cj4gLQkJaW50
+ZWxfZGlzcGxheV9wb3dlcl9wdXQoZGV2X3ByaXYsIFBPV0VSX0RPTUFJTl9NT0RFU0VULCB3YWtl
+cmVmKTsKPiAgCX0KPiArCWludGVsX2Rpc3BsYXlfcG93ZXJfcHV0KGRldl9wcml2LCBQT1dFUl9E
+T01BSU5fTU9ERVNFVCwgd2FrZXJlZik7Cj4gIAlpbnRlbF9ydW50aW1lX3BtX3B1dCgmZGV2X3By
+aXYtPnJ1bnRpbWVfcG0sIHN0YXRlLT53YWtlcmVmKTsKPiAgCj4gIAkvKgo+IAo+IFRvIGdldCB0
+aGUgRE1DIG91dCBvZiBlcXVhdGlvbiBlbnRpcmVseSBmb3IgYWxsIHBsYW5lIHVwZGF0ZXM/Cj4g
+Cj4gLS0gCj4gVmlsbGUgU3lyasOkbMOkCj4gSW50ZWwKX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhA
+bGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxt
+YW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
