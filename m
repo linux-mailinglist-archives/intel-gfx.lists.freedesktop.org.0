@@ -1,32 +1,50 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 741DF2D1592
-	for <lists+intel-gfx@lfdr.de>; Mon,  7 Dec 2020 17:12:12 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id C707D2D15D4
+	for <lists+intel-gfx@lfdr.de>; Mon,  7 Dec 2020 17:19:50 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2B2A989DFC;
-	Mon,  7 Dec 2020 16:12:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BB31F89932;
+	Mon,  7 Dec 2020 16:19:48 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1E0C689D58;
- Mon,  7 Dec 2020 16:12:04 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 23243235-1500050 
- for multiple; Mon, 07 Dec 2020 16:11:51 +0000
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Mon,  7 Dec 2020 16:11:50 +0000
-Message-Id: <20201207161150.1841453-2-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.29.2
-In-Reply-To: <20201207161150.1841453-1-chris@chris-wilson.co.uk>
-References: <20201207161150.1841453-1-chris@chris-wilson.co.uk>
+Received: from galois.linutronix.de (Galois.linutronix.de
+ [IPv6:2a0a:51c0:0:12e:550::1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 01BAC89932
+ for <intel-gfx@lists.freedesktop.org>; Mon,  7 Dec 2020 16:19:46 +0000 (UTC)
+From: Thomas Gleixner <tglx@linutronix.de>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
+ s=2020; t=1607357985;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=C/sQljTyhwUHTax9M8bioo3pwWQ7vbfn0SifDxcVhSU=;
+ b=daPJYYstwXwkwp7Us5EjfmoRdt/dKmWwd1ay66mz3AYkonITnKgsDvtsMQTXOZyQ84kDo2
+ WokUttcO1OEThJXxPfmwEAduSnbEHcwAWCa7lvCZfW/umpij7Xr0mhn5x4LnIGYFWnaMfO
+ SNQwLy0EZFRt+vK6udNE784KCz+lbgkGq8JlXhCd80RDYtjt1fwi+OHvq7a1eYPcewWElK
+ 3llyPa6hpUsQpM6POeFUkXeLIp9+7M48VDuO78bxd2TlW4PGsV/QMqsS/6ZX8Sa9Jfa9T4
+ Steq0NCMw+NVM8oh2I5UmGUFM5HpXTCvJLDSL8pGZHeAhb+oqUlhInhB33poNw==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
+ s=2020e; t=1607357985;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=C/sQljTyhwUHTax9M8bioo3pwWQ7vbfn0SifDxcVhSU=;
+ b=6T3c4F0TLNkZ/0M/LqgMkgAIlzNgeXLtZd/k8BXHbBREzVmKufMvVAGQuEVBqTjWqG/R4e
+ k9VJJ4G6u22o+hBw==
+To: Ira Weiny <ira.weiny@intel.com>
+In-Reply-To: <20201207064655.GK1563847@iweiny-DESK2.sc.intel.com>
+References: <20201124060755.1405602-1-ira.weiny@intel.com>
+ <20201124060755.1405602-4-ira.weiny@intel.com>
+ <160648211578.10416.3269409785516897908@jlahtine-mobl.ger.corp.intel.com>
+ <20201204160504.GH1563847@iweiny-DESK2.sc.intel.com>
+ <878sad9p7f.fsf@nanos.tec.linutronix.de>
+ <20201207064655.GK1563847@iweiny-DESK2.sc.intel.com>
+Date: Mon, 07 Dec 2020 17:19:44 +0100
+Message-ID: <87ft4h6127.fsf@nanos.tec.linutronix.de>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH i-g-t 2/2] i915/query: Directly check query
- results against GETPARAM
+Subject: Re: [Intel-gfx] [PATCH 03/17] drivers/gpu: Convert to mem*_page()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,85 +57,43 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: igt-dev@lists.freedesktop.org, Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Alexei Starovoitov <ast@kernel.org>, David Howells <dhowells@redhat.com>,
+ Chris Mason <clm@fb.com>, Kirti Wankhede <kwankhede@nvidia.com>,
+ Christoph Hellwig <hch@infradead.org>, Daniel Borkmann <daniel@iogearbox.net>,
+ Matthew Wilcox <willy@infradead.org>, Eric Biggers <ebiggers@kernel.org>,
+ Chao Yu <yuchao0@huawei.com>, intel-gfx@lists.freedesktop.org,
+ Josef Bacik <josef@toxicpanda.com>,
+ =?utf-8?B?SsOpcsO0bWU=?= Glisse <jglisse@redhat.com>,
+ Brian King <brking@us.ibm.com>, Al Viro <viro@zeniv.linux.org.uk>,
+ David Sterba <dsterba@suse.com>, Jaegeuk Kim <jaegeuk@kernel.org>,
+ Dan Williams <dan.j.williams@intel.com>,
+ "Martin K. Petersen" <martin.petersen@oracle.com>,
+ Nicolas Pitre <nico@fluxnic.net>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Dave Hansen <dave.hansen@intel.com>, linux-kernel@vger.kernel.org,
+ Steve French <sfrench@samba.org>, Luis Chamberlain <mcgrof@kernel.org>,
+ linux-fsdevel@vger.kernel.org, Andrew Morton <akpm@linux-foundation.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Simplify the cross-check by asserting that the existence of an engine in
-the list matches the existence of the engine as reported by GETPARAM.
-By using the comparison, we check both directions at once.
+On Sun, Dec 06 2020 at 22:46, Ira Weiny wrote:
+> On Fri, Dec 04, 2020 at 11:33:08PM +0100, Thomas Gleixner wrote:
+>> On Fri, Dec 04 2020 at 08:05, Ira Weiny wrote:
+>> > So I think I'm going to submit the base patch to Andrew today (with some
+>> > cleanups per the comments in this thread).
+>> 
+>> Could you please base that on tip core/mm where the kmap_local() muck is
+>> and use kmap_local() right away?
+>
+> Sure.  Would that mean it should go through you and not Andrew?
 
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: Petri Latvala <petri.latvala@intel.com>
----
- tests/i915/i915_query.c | 49 ++++++++---------------------------------
- 1 file changed, 9 insertions(+), 40 deletions(-)
+If Andrew has no objections of course.
 
-diff --git a/tests/i915/i915_query.c b/tests/i915/i915_query.c
-index cdf2d3403..b415650ae 100644
---- a/tests/i915/i915_query.c
-+++ b/tests/i915/i915_query.c
-@@ -719,46 +719,15 @@ static void engines(int fd)
- 	gem_context_reset_engines(fd, 0);
- 
- 	/* Check results match the legacy GET_PARAM (where we can). */
--	for (i = 0; i < engines->num_engines; i++) {
--		struct drm_i915_engine_info *engine =
--			(struct drm_i915_engine_info *)&engines->engines[i];
--
--		switch (engine->engine.engine_class) {
--		case I915_ENGINE_CLASS_RENDER:
--			/* Will be tested later. */
--			break;
--		case I915_ENGINE_CLASS_COPY:
--			igt_assert(gem_has_blt(fd));
--			break;
--		case I915_ENGINE_CLASS_VIDEO:
--			switch (engine->engine.engine_instance) {
--			case 0:
--				igt_assert(gem_has_bsd(fd));
--				break;
--			case 1:
--				igt_assert(gem_has_bsd2(fd));
--				break;
--			}
--			break;
--		case I915_ENGINE_CLASS_VIDEO_ENHANCE:
--			igt_assert(gem_has_vebox(fd));
--			break;
--		default:
--			igt_assert(0);
--		}
--	}
--
--	/* Reverse check to the above - all GET_PARAM engines are present. */
--	igt_assert(has_engine(engines, I915_ENGINE_CLASS_RENDER, 0));
--	if (gem_has_blt(fd))
--		igt_assert(has_engine(engines, I915_ENGINE_CLASS_COPY, 0));
--	if (gem_has_bsd(fd))
--		igt_assert(has_engine(engines, I915_ENGINE_CLASS_VIDEO, 0));
--	if (gem_has_bsd2(fd))
--		igt_assert(has_engine(engines, I915_ENGINE_CLASS_VIDEO, 1));
--	if (gem_has_vebox(fd))
--		igt_assert(has_engine(engines, I915_ENGINE_CLASS_VIDEO_ENHANCE,
--				       0));
-+	igt_assert_eq(has_engine(engines, I915_ENGINE_CLASS_RENDER, 0), 1);
-+	igt_assert_eq(has_engine(engines, I915_ENGINE_CLASS_COPY, 0),
-+		      gem_has_blt(fd));
-+	igt_assert_eq(has_engine(engines, I915_ENGINE_CLASS_VIDEO, 0),
-+		      gem_has_bsd(fd));
-+	igt_assert_eq(has_engine(engines, I915_ENGINE_CLASS_VIDEO, 1),
-+		      gem_has_bsd2(fd));
-+	igt_assert_eq(has_engine(engines, I915_ENGINE_CLASS_VIDEO_ENHANCE, 0),
-+		      gem_has_vebox(fd));
- 
- 	free(engines);
- }
--- 
-2.29.2
+Thanks,
 
+        tglx
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
