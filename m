@@ -2,44 +2,42 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 00A872D0B80
-	for <lists+intel-gfx@lfdr.de>; Mon,  7 Dec 2020 09:11:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 71C0D2D0C80
+	for <lists+intel-gfx@lfdr.de>; Mon,  7 Dec 2020 10:02:07 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D2EC489E5B;
-	Mon,  7 Dec 2020 08:11:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7EB5789E8C;
+	Mon,  7 Dec 2020 09:02:04 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CFE3A89E5B
- for <intel-gfx@lists.freedesktop.org>; Mon,  7 Dec 2020 08:11:20 +0000 (UTC)
-IronPort-SDR: hqxEYDhCbVdqQgrrNcycho3lA8QpCX47Yl5UOillu1EiI3vKuCb/YFMnvTn34pJLb8sYgUdK2E
- 8N5hpxXprMQQ==
-X-IronPort-AV: E=McAfee;i="6000,8403,9827"; a="153477244"
-X-IronPort-AV: E=Sophos;i="5.78,399,1599548400"; d="scan'208";a="153477244"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 17AF589E8C
+ for <intel-gfx@lists.freedesktop.org>; Mon,  7 Dec 2020 09:02:03 +0000 (UTC)
+IronPort-SDR: 0pjl4BYkJtbi5K4kRIWYuqVU0jhMmHrJ83mvDDf09pPWFZJHgs9fR+za+dGnyutqEO29XrKwau
+ XxmUAr2Zez6A==
+X-IronPort-AV: E=McAfee;i="6000,8403,9827"; a="153482917"
+X-IronPort-AV: E=Sophos;i="5.78,399,1599548400"; d="scan'208";a="153482917"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
  by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Dec 2020 00:11:19 -0800
-IronPort-SDR: 96lnoa4Q8nDksTSIc/j01PS5Jy/KiTFV5UppvTBpNfR75XZGJ/QImYl/FsSsfG5rIYm2AidnCM
- p/8colBZMH2w==
-X-IronPort-AV: E=Sophos;i="5.78,399,1599548400"; d="scan'208";a="347367580"
-Received: from genxfsim-desktop.iind.intel.com (HELO intel.com)
- ([10.223.74.178])
- by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Dec 2020 00:11:17 -0800
-Date: Mon, 7 Dec 2020 13:27:48 +0530
-From: Anshuman Gupta <anshuman.gupta@intel.com>
-To: Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-Message-ID: <20201207075745.GI30377@intel.com>
-References: <20201130091646.25576-1-anshuman.gupta@intel.com>
- <20201130091646.25576-3-anshuman.gupta@intel.com>
- <20201130152832.GB2348711@ideak-desk.fi.intel.com>
- <20201204081003.GC30377@intel.com> <X8pbBsHVRVV4cNfJ@intel.com>
+ 07 Dec 2020 01:02:01 -0800
+IronPort-SDR: aCUyh66i5+DOkHAf/o9L3dRnPl6tjHq4xcroojTwSIDaIE3SY1iSudEnR0E1khk4YEudhXxDPX
+ jSewqIag7KjA==
+X-IronPort-AV: E=Sophos;i="5.78,399,1599548400"; d="scan'208";a="317041775"
+Received: from aknautiy-mobl.gar.corp.intel.com (HELO [10.213.64.115])
+ ([10.213.64.115])
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Dec 2020 01:02:00 -0800
+To: Manasi Navare <manasi.d.navare@intel.com>, intel-gfx@lists.freedesktop.org
+References: <20201204205804.25225-1-manasi.d.navare@intel.com>
+From: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
+Message-ID: <d6bc504f-d23c-143f-6d5e-e8117d56d2e6@intel.com>
+Date: Mon, 7 Dec 2020 14:31:57 +0530
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Thunderbird/78.5.1
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <X8pbBsHVRVV4cNfJ@intel.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
-Subject: Re: [Intel-gfx] [RFC 2/2] drm/i915/display: Protect pipe_update
- against dc3co exit
+In-Reply-To: <20201204205804.25225-1-manasi.d.navare@intel.com>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/display/dp: Compute the correct
+ slice count for VDSC on DP
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,77 +50,58 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, stable@vger.kernel.org
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: Jani Nikula <jani.nikula@intel.com>
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gMjAyMC0xMi0wNCBhdCAxNzo1MTozNCArMDIwMCwgVmlsbGUgU3lyasOkbMOkIHdyb3RlOgo+
-IE9uIEZyaSwgRGVjIDA0LCAyMDIwIGF0IDAxOjQwOjAzUE0gKzA1MzAsIEFuc2h1bWFuIEd1cHRh
-IHdyb3RlOgo+ID4gT24gMjAyMC0xMS0zMCBhdCAxNzoyODozMiArMDIwMCwgSW1yZSBEZWFrIHdy
-b3RlOgo+ID4gPiBPbiBNb24sIE5vdiAzMCwgMjAyMCBhdCAwMjo0Njo0NlBNICswNTMwLCBBbnNo
-dW1hbiBHdXB0YSB3cm90ZToKPiA+ID4gPiBBdCB1c3VhbCBjYXNlIERDM0NPIGV4aXQgaGFwcGVu
-IGF1dG9tYXRpY2FsbHkgYnkgRE1DIGYvdyB3aGVuZXZlcgo+ID4gPiA+IFBTUjIgY2xlYXJzIGlk
-bGUuIFRoaXMgaGFwcGVucyBzbW9vdGhseSBieSBETUMgZi93IHRvIHdvcmsgd2l0aCBmbGlwcy4K
-PiA+ID4gPiBCdXQgdGhlcmUgYXJlIGNlcnRhaW4gc2NlbmFyaW8gd2hlcmUgREMzQ08gIERpc2Fs
-bG93ZWQgYnkgZHJpdmVyCj4gPiA+ID4gYXN5bmNocm9ub3VzIHdpdGggZmxpcHMuIEluIHN1Y2gg
-c2NlbmFyaW8gZGlzcGxheSBlbmdpbmUgY291bGQKPiA+ID4gPiBiZSBhbHJlYWR5IGluIERDM0NP
-IHN0YXRlIGFuZCBkcml2ZXIgaGFzIGRpc2FsbG93ZWQgaXQsCj4gPiA+ID4gSXQgaW5pdGlhdGVz
-IERDM0NPIGV4aXQgc2VxdWVuY2UgaW4gRE1DIGYvdyB3aGljaCByZXF1aXJlcyBhCj4gPiA+ID4g
-ZGMzY28gZXhpdCBkZWxheSBvZiAyMDB1cyBpbiBkcml2ZXIuCj4gPiA+ID4gSXQgcmVxdWlyZXMg
-dG8gcHJvdGVjdCBpbnRlbF9waXBlX3VwZGF0ZV97dXBkYXRlX2VuZH0gd2l0aAo+ID4gPiA+IGRj
-M2NvIGV4aXQgZGVsYXkuCj4gPiA+ID4gCj4gPiA+ID4gQ2M6IEltcmUgRGVhayA8aW1yZS5kZWFr
-QGludGVsLmNvbT4KPiA+ID4gPiBDYzogPHN0YWJsZUB2Z2VyLmtlcm5lbC5vcmc+Cj4gPiA+ID4g
-U2lnbmVkLW9mZi1ieTogQW5zaHVtYW4gR3VwdGEgPGFuc2h1bWFuLmd1cHRhQGludGVsLmNvbT4K
-PiA+ID4gCj4gPiA+IFRvIG1ha2Ugc3VyZSB0aGF0IGl0IGRvZXNuJ3QgaGlkZSB0aGUgcm9vdCBj
-YXVzZSAob3IgYWZmZWN0cyB1bnJlbGF0ZWQKPiA+ID4gcGxhdGZvcm1zKSwgSSdkIG9ubHkgYWRk
-IGxvY2tpbmcgYXJvdW5kIERDM2NvIGNoYW5nZXMgd2l0aCBhIG5ldyBsb2NrLAo+ID4gPiB1c2lu
-ZyBsb2NrL3VubG9jayBoZWxwZXJzIGluIGludGVsX2Rpc3BsYXlfcG93ZXIuYyBjYWxsZWQgZnJv
-bQo+ID4gPiBpbnRlbF9waXBlX3VwZGF0ZV9zdGFydC9lbmQuCj4gPiA+IAo+ID4gPiBBbHNvIHBs
-ZWFzZSBzdWJtaXQgdGhpcyBwYXRjaCBzZXBhcmF0ZWx5LCB3L28gdGhlIG9wdGltaXphdGlvbiBp
-biBwYXRjaAo+ID4gPiAxLzIsIHNvIHdlIGtub3cgdGhhdCB0aGlzIGNoYW5nZSBmaXhlcyB0aGUg
-cHJvYmxlbS4KPiA+IFRoaXMgcGF0Y2ggZG9lc24ndCBzZWVtcyB0byBmaXggdGhlIGlzc3VlLgo+
-ID4gTG9va3MgbGlrZSB0aGVyZSBpcyBzb21lIG90aGVyIHNldCBvZiBkaXNwbGF5IHJlZ2lzdGVy
-IHVwZGF0ZXMgYmVmb3JlCj4gPiBjb21wbGV0aW5nIHRoZSBkYzNjbyBleGl0IGRlbGF5IGJleW9u
-ZCBpbnRlbF9waXBlX3VwZGF0ZV9zdGFydC9lbmQgY2F1c2luZyB0aGlzIGlzc3VlLgo+IAo+IE5v
-dCByZWFsbHkgc3VyZSBJIHVuZGVyc3RhbmQgdGhlIERDM0NPIGlzc3VlIGhlcmUsIG5vciBob3cg
-Z3JhYmJpbmcgYQo+IG11dGV4IGFjcm9zcyB0aGUgdXBkYXRlIGNvdWxkIGhlbHAuClRoYW5rcyBW
-aWxsZSBmb3IgcHJvdmlkaW5nIHlvdXIgaW5wdXQgaGVyZSwgdGhlIGRpc3BsYXkgZ2xpdGNoZXMg
-aXMgZml4ZWQgYnkgCmh0dHBzOi8vcGF0Y2h3b3JrLmZyZWVkZXNrdG9wLm9yZy9wYXRjaC80MDU1
-ODUvP3Nlcmllcz04NDM5NCZyZXY9MiBwYXRjaCBpbiBjYXNlCm9mIGJyaWdodG5lc3MgYmVpbmcg
-dXBkYXRlZCBzaW11bHRhbmVvdXNseSB3aXRoIGZsaXBzLCBzbyBpdCB3YXMgb3VyIHdpbGQgZ3Vl
-c3MKdGhhdCBpZiBpbnRlbF9waXBlX3VwZGF0ZV9zdGFydCAgdHJpZ2dlcnMgYmVmb3JlIGNvbXBs
-ZXRpbmcgREMzQ08gZXhpdCBkZWxheSBpbgp0Z2xfZGlzYWJsZV9kYzNjbyBjb3VsZCBjYXVzZSB0
-aGUgZGlzcGxheSBnbGl0Y2hlcyBidXQgdGhhdCB3YXMgbm90IHRydWUuCj4gCj4gQnV0IGFueXdh
-eXMsIG1heWJlIHdlIHNob3VsZCBqdXN0Ogo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0v
-aTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXkuYyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3Bs
-YXkvaW50ZWxfZGlzcGxheS5jCj4gaW5kZXggMmUyZGQ3NDY5MjFmLi45NjI3NmYwZmVkZGMgMTAw
-NjQ0Cj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5LmMK
-PiArKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXkuYwo+IEBA
-IC0xNjI2OCw4ICsxNjI2OCw3IEBAIHN0YXRpYyB2b2lkIGludGVsX2F0b21pY19jb21taXRfdGFp
-bChzdHJ1Y3QgaW50ZWxfYXRvbWljX3N0YXRlICpzdGF0ZSkKPiAgCj4gIAlkcm1fYXRvbWljX2hl
-bHBlcl93YWl0X2Zvcl9kZXBlbmRlbmNpZXMoJnN0YXRlLT5iYXNlKTsKPiAgCj4gLQlpZiAoc3Rh
-dGUtPm1vZGVzZXQpCj4gLQkJd2FrZXJlZiA9IGludGVsX2Rpc3BsYXlfcG93ZXJfZ2V0KGRldl9w
-cml2LCBQT1dFUl9ET01BSU5fTU9ERVNFVCk7Cj4gKwl3YWtlcmVmID0gaW50ZWxfZGlzcGxheV9w
-b3dlcl9nZXQoZGV2X3ByaXYsIFBPV0VSX0RPTUFJTl9NT0RFU0VUKTsKQ2VydGFpbmx5IHRoaXMg
-c2hvdWxkIGZpeCB0aGUgaXNzdWUuIEkgd2lsbCB0cnkgdGhpcyBvdXQgYnV0IGkgZmVlbCB0aGlz
-IApjb3VsZCBjYXVzZSBoZWF2eSBsb2NrIGNvbnRlbnRpb24gYXJvdW5kIHBvd2VyX2RvbWFpbnMt
-PmxvY2sgaW4gY2FzZSAKYnJpZ2h0bmVzcyBiZWluZyB1cGRhdGVkIHJhcGlkbHkgYXMgdGhlIHNj
-ZW5hcmlvIG9mIHRoaXMgaXNzdWUuCldlIHdvdWxkIGFsc28gbmVlZCBodHRwczovL3BhdGNod29y
-ay5mcmVlZGVza3RvcC5vcmcvcGF0Y2gvNDA1NTg1Lz9zZXJpZXM9ODQzOTQmcmV2PTIgcGF0Y2gg
-YXMgd2VsbCA/ClRoYW5rcywKQW5zaHVtYW4gR3VwdGEuCj4gIAo+ICAJZm9yX2VhY2hfb2xkbmV3
-X2ludGVsX2NydGNfaW5fc3RhdGUoc3RhdGUsIGNydGMsIG9sZF9jcnRjX3N0YXRlLAo+ICAJCQkJ
-CSAgICBuZXdfY3J0Y19zdGF0ZSwgaSkgewo+IEBAIC0xNjQxNSw4ICsxNjQxNCw4IEBAIHN0YXRp
-YyB2b2lkIGludGVsX2F0b21pY19jb21taXRfdGFpbChzdHJ1Y3QgaW50ZWxfYXRvbWljX3N0YXRl
-ICpzdGF0ZSkKPiAgCQkgKiB0aGUgY3VscHJpdC4KPiAgCQkgKi8KPiAgCQlpbnRlbF91bmNvcmVf
-YXJtX3VuY2xhaW1lZF9tbWlvX2RldGVjdGlvbigmZGV2X3ByaXYtPnVuY29yZSk7Cj4gLQkJaW50
-ZWxfZGlzcGxheV9wb3dlcl9wdXQoZGV2X3ByaXYsIFBPV0VSX0RPTUFJTl9NT0RFU0VULCB3YWtl
-cmVmKTsKPiAgCX0KPiArCWludGVsX2Rpc3BsYXlfcG93ZXJfcHV0KGRldl9wcml2LCBQT1dFUl9E
-T01BSU5fTU9ERVNFVCwgd2FrZXJlZik7Cj4gIAlpbnRlbF9ydW50aW1lX3BtX3B1dCgmZGV2X3By
-aXYtPnJ1bnRpbWVfcG0sIHN0YXRlLT53YWtlcmVmKTsKPiAgCj4gIAkvKgo+IAo+IFRvIGdldCB0
-aGUgRE1DIG91dCBvZiBlcXVhdGlvbiBlbnRpcmVseSBmb3IgYWxsIHBsYW5lIHVwZGF0ZXM/Cj4g
-Cj4gLS0gCj4gVmlsbGUgU3lyasOkbMOkCj4gSW50ZWwKX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhA
-bGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxt
-YW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
+On 12/5/2020 2:28 AM, Manasi Navare wrote:
+> This patch fixes the slice count computation algorithm
+> for calculating the slice count based on Peak pixel rate
+> and the max slice width allowed on the DSC engines.
+> We need to ensure slice count > min slice count req
+> as per DP spec based on peak pixel rate and that it is
+> greater than min slice count based on the max slice width
+> advertised by DPCD. So use max of these two.
+> In the prev patch we were using min of these 2 causing it
+> to violate the max slice width limitation causing a blank
+> screen on 8K@60.
+>
+> Fixes: d9218c8f6cf4 ("drm/i915/dp: Add helpers for Compressed BPP and Slice Count for DSC")
+> Cc: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+> Cc: Jani Nikula <jani.nikula@intel.com>
+> Signed-off-by: Manasi Navare <manasi.d.navare@intel.com>
+> ---
+>   drivers/gpu/drm/i915/display/intel_dp.c | 2 +-
+>   1 file changed, 1 insertion(+), 1 deletion(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+> index 2d4d5e95af84..cb5e42c3ecd5 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> @@ -615,7 +615,7 @@ static u8 intel_dp_dsc_get_slice_count(struct intel_dp *intel_dp,
+>   		return 0;
+>   	}
+>   	/* Also take into account max slice width */
+> -	min_slice_count = min_t(u8, min_slice_count,
+> +	min_slice_count = max_t(u8, min_slice_count,
+>   				DIV_ROUND_UP(mode_hdisplay,
+>   					     max_slice_width));
+
+
+Change looks good to me.
+
+'min_slice_count' is essentially the least no. of slices that would be 
+sufficient. So max of the two values would be correct.
+
+Also tested with this change on an 8k panel, we are able get 8 DSC 
+slices with this change, which is correct for 8k@60 resolution.
+
+Reviewed-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+
+>   
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
