@@ -1,143 +1,42 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 873002D0DB0
-	for <lists+intel-gfx@lfdr.de>; Mon,  7 Dec 2020 11:02:11 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5B46E2D0DE3
+	for <lists+intel-gfx@lfdr.de>; Mon,  7 Dec 2020 11:21:07 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F1ACC89E7C;
-	Mon,  7 Dec 2020 10:02:09 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 91BAC89E7C
- for <intel-gfx@lists.freedesktop.org>; Mon,  7 Dec 2020 10:02:08 +0000 (UTC)
-IronPort-SDR: t7+6CeT+Se1UVDW68Jtst1GSyAeSJhgrp4fU4yQQpbWqTxfKYi3mRB86nVdpFZZOyl4f9st1d3
- 25NhFgZ39z4Q==
-X-IronPort-AV: E=McAfee;i="6000,8403,9827"; a="173783543"
-X-IronPort-AV: E=Sophos;i="5.78,399,1599548400"; d="scan'208";a="173783543"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Dec 2020 02:02:07 -0800
-IronPort-SDR: Vad5aTEOKNTRHXa/JOWtMQd90uRA086YriOiq9nsxwoH0ehMTr7ED5QNXH2pVEUhDEC4B0Aayw
- Gr9KJvC9+LuQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.78,399,1599548400"; d="scan'208";a="407070714"
-Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
- by orsmga001.jf.intel.com with ESMTP; 07 Dec 2020 02:02:07 -0800
-Received: from orsmsx605.amr.corp.intel.com (10.22.229.18) by
- ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1713.5; Mon, 7 Dec 2020 02:02:07 -0800
-Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
- orsmsx605.amr.corp.intel.com (10.22.229.18) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1713.5
- via Frontend Transport; Mon, 7 Dec 2020 02:02:07 -0800
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com (104.47.56.170)
- by edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.1713.5; Mon, 7 Dec 2020 02:02:07 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=TNtj++4E9yQrm9+Y2gWpKv1IC8bGYOBSfGkxZCpMX/F957j/hED32VoY/hMcRW71r4nBGihbekQmnpI4eV3iKEsiWRxjvhkB4fxgqBBnWmwnFwZkMH04FjcoLzz1Za1laTXYj64zqgGUYw6MKLIB9QgVlaVrROY6s4FWwscVGaL0VWChOiBPUMGm32EA5vMLMpZdAwM/DOV+klbkwXnI57nEXmROOjT2HHK+GxsMZtGEo3RLK/IX6uP9XBzRmwBAvdW13LKRwNECHeb2pIYn6/OXftJjjZeNX2Sq/Xo/EW7I6hmoCXJqMSwbr0Pu/S5RAxc4M7CDLdk4PyH52lcN/Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=/FSqX/Dg4H8ACvX337xZP4QURmalvgFEekye1jNXf9I=;
- b=GMXIb/uvIgYNg+ZwWnCNixW+8ipmPaaGN9A6CnbRvxkkm9zxtmISsmHqJJ6TEbJ4OfqNUdkxyS0MEOJmI4XAmuzybs/Khbi8PsVM6GjJ13YsaLXSk2b6kv6lWwfu+0ddLIAajXAeqp2QUD2toUJSdJ+9apUKe0R0iaIShNVZs3AgHrnIXhCmt3+x1DXKSY+rmgt9zR7XlViZNxm/Ue2jI/rGCQ2bZJ3bIloDKgIoeCEGA9UairDanQQ2N4WIG7YFWovNsrhtH4z0m0uFvEijpscRo3c2FoA2YCtBBFmankOP8JaXzCWd/LWD8Ir9u5s4bqro47ox+S79oPpini3U/A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=intel.onmicrosoft.com; 
- s=selector2-intel-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=/FSqX/Dg4H8ACvX337xZP4QURmalvgFEekye1jNXf9I=;
- b=DFzKHWQ7e23ILLss9Gk3gtwZNQbJz+sUecrs+pohmZ3SIQs/pt9Y+QouJtbjAp139tobcA7FwgH3D0vx9PaNqWk5CZR+3yox9TGoY3rXr2i6rdSehDSPdjG0PjxZp1GA0u5w9GUqICav/XCByanoS66MAQhSLvU03s01cyzqZmA=
-Received: from SN6PR11MB3421.namprd11.prod.outlook.com (2603:10b6:805:cd::27)
- by SN6PR11MB2640.namprd11.prod.outlook.com (2603:10b6:805:56::11)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3632.17; Mon, 7 Dec
- 2020 10:02:06 +0000
-Received: from SN6PR11MB3421.namprd11.prod.outlook.com
- ([fe80::153b:8e85:c2b0:c2ce]) by SN6PR11MB3421.namprd11.prod.outlook.com
- ([fe80::153b:8e85:c2b0:c2ce%3]) with mapi id 15.20.3632.023; Mon, 7 Dec 2020
- 10:02:06 +0000
-From: "Surendrakumar Upadhyay, TejaskumarX"
- <tejaskumarx.surendrakumar.upadhyay@intel.com>
-To: "Kattamanchi, JaswanthX" <jaswanthx.kattamanchi@intel.com>, Chris Wilson
- <chris@chris-wilson.co.uk>, "Pandey, Hariom" <hariom.pandey@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Thread-Topic: [Intel-gfx] [PATCH] drm/i915/rkl: Remove require_force_probe
- protection
-Thread-Index: AQHWxxhY7kXRSdZumE6Pi/Mqo5s7Hqngo56AgAAcjYCAAAT1gIAEAXoAgAB0HYCAAXmu0IAEvRtw
-Date: Mon, 7 Dec 2020 10:02:06 +0000
-Message-ID: <SN6PR11MB3421922524D8B1EAD8996B8BDFCE0@SN6PR11MB3421.namprd11.prod.outlook.com>
-References: <20201130124855.319226-1-tejaskumarx.surendrakumar.upadhyay@intel.com>
- <160674128376.8815.15501065474758980770@build.alporthouse.com>
- <SN6PR11MB342108C9577A99EF4D3BBC87DFF50@SN6PR11MB3421.namprd11.prod.outlook.com>
- <160674847963.9850.14014681039747149826@build.alporthouse.com>
- <SN6PR11MB34210126D6425BBDD80F6258DFF20@SN6PR11MB3421.namprd11.prod.outlook.com>
- <SN6PR11MB342113B3B07EFA7D7E6656AADFF20@SN6PR11MB3421.namprd11.prod.outlook.com>
- <DM6PR11MB3355DDA42F41463D267737AEEEF10@DM6PR11MB3355.namprd11.prod.outlook.com>
-In-Reply-To: <DM6PR11MB3355DDA42F41463D267737AEEEF10@DM6PR11MB3355.namprd11.prod.outlook.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-version: 11.5.1.3
-dlp-product: dlpe-windows
-dlp-reaction: no-action
-authentication-results: intel.com; dkim=none (message not signed)
- header.d=none;intel.com; dmarc=none action=none header.from=intel.com;
-x-originating-ip: [103.249.233.238]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 27fd4b01-45c3-43d9-9635-08d89a972777
-x-ms-traffictypediagnostic: SN6PR11MB2640:
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <SN6PR11MB26406A74F0A363A9BF1DCF85DFCE0@SN6PR11MB2640.namprd11.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:9508;
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 6dAuu0+O59WGwjbl+vHo97ZHA0Lqjxk5/pofW4bB+zs+2V8orbqnC61WuTtCKoOG2qDoyHbXiFFsMMv1Tse6hXjiMeO8y3hkO8rYerDjNqHB3gorrKeU4Yt2MHK1hkGGiAFP50v18hPi9KO7QU1Rc9Bbgzuzu49ABcTRH5VmgKtomab8UzR2O/Dpw02yW/q/Ku9Rk2kns6EL7dUWTpy0sjEvBXELMYkMXSdEr4AVk/0fS9VutYSuxD+xh4aMzAguilH7R6pnjY8qe11ckZqu3La7KmufI5ngQ/iL8Ke9rbGMiu1/AN9IydiwlcvmB17bPyffCygHpSO1lUBE00Ygz62SnocBBetmc60zEizmIho=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:SN6PR11MB3421.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(4636009)(366004)(39860400002)(396003)(376002)(346002)(136003)(2906002)(110136005)(7696005)(316002)(71200400001)(66946007)(64756008)(107886003)(8676002)(66476007)(186003)(66446008)(66556008)(76116006)(55016002)(8936002)(6506007)(5660300002)(33656002)(53546011)(26005)(4001150100001)(86362001)(52536014)(478600001)(9686003)(966005)(83380400001)(4326008);
- DIR:OUT; SFP:1102; 
-x-ms-exchange-antispam-messagedata: =?utf-8?B?Nk5XV0dRd1huc0ZGcU9rQVlWeHBvb3lLZldNUWJyR1ZXeFhER0c0ak1JRDJI?=
- =?utf-8?B?UmF0dENUME9oSUNyeUxYWkJ5OEpPa1oyUEM5RXVEUkkySFU5dmplWDZOTnJK?=
- =?utf-8?B?aWNMbS9YTUg2TE9ScjNiQ3FlWkFtZ2I4eW1kY3RiZWpLSlBvSGhWZ21GQzh4?=
- =?utf-8?B?QTRzNWpRdzdsMVRvdGNwcVNHTEM2WGZybDEvTndCaVV3R0tkTWlHdUdaNlFs?=
- =?utf-8?B?QmZrZkhnZko2VTMreXprb1hCakExQ2NsVzhpaXB5SUhvY0dOT2VLWU5lOEhZ?=
- =?utf-8?B?TWh4a3FrU3BGc2EyK2svNHltK3NWeXFYaW1kTWN0ck9GWGhMZjZXTHZuTXBZ?=
- =?utf-8?B?VHpOaDRMRE51MEY0OVNLa1loYkZveDFlOWExVVBQeFNQWFVXczJlcGZsdEc3?=
- =?utf-8?B?RGJPdkVZUzRRamxrRm1NMWtRTGsrcXBYUXNWYmtsbTlqQS9HeEJHTHdKVkw5?=
- =?utf-8?B?R2tUTEtIbE03QTlkS2xReXM0aDZNK3VxRXNEMi9LeXRHZ1NDc29XVGkvNDJ5?=
- =?utf-8?B?ZXFZci9TZy8zbW9JRk4wSVhBbkpyeTQxMG9HMGFXcVZRcU9Wd1NaYzB3SG1s?=
- =?utf-8?B?VzVrTTRUWklHYTAwTC83RVhRcDNFTTZWR0wwRktQclFuVzJiOTNrSnVyRUZK?=
- =?utf-8?B?blN1TWFjeFdReHdWOU9wVlk3S2VFTlRZblF3SE5mclh4S3N4alpZbWplVGph?=
- =?utf-8?B?MmpyVXd5MDZPbU5DNWc0ZkNuZUF2c1hxUWRpTTFQWmU0YlNvSS9iaEQxVXNM?=
- =?utf-8?B?Yi9GVkhObHVUSDFLTGFmZTdzWXFra0lYTUorVDcvd240bnFJVCtPb2h3Mklo?=
- =?utf-8?B?bjd6TXBRQWxzak8yeURqTlB0elcxRzc5T0tEZGhKSzBkdElTU3MrS2hWUTZB?=
- =?utf-8?B?Y1Nnei82L05QZzZUSGlkUEJ4aTNVRUlRd3ZYcWZOakpnZHUwL0xjTm01UENp?=
- =?utf-8?B?SHpWRFB4dkQxY08xdUo0RTNwMUY1V3E3eDBOcEN1N0h3N0QvMGdteDlIRXlM?=
- =?utf-8?B?ek1sWnRyQ2xsY0U0YjRGN1owbk5Xbnh0dGh6OXh5N0t2cTlESWtwVktUczlk?=
- =?utf-8?B?Qm84U0ZnNFd6alA3dDVIZ3lWTGFzMWJiUWZTK3RmRkpDZXRKd29ZMlV0Zm1H?=
- =?utf-8?B?R09mQlJoT241dVAvTEJyUnVhS0hXV0M5R2pOcG5ZejJNNDlUQ091RS8xR3NB?=
- =?utf-8?B?RVdtRkg5VGVnYlFMMUhTVDJDZXUySlNycGhtbUtzVEJSOVN6MS9LY1NBVWVu?=
- =?utf-8?B?a0lnbjRpaGpxU3ZRVHhYM1FPazBWS0dRVjJqY2RYejdtRFo5STVISER5emww?=
- =?utf-8?Q?5OS9IVVwuNsnI=3D?=
+	by gabe.freedesktop.org (Postfix) with ESMTP id 92BF66E566;
+	Mon,  7 Dec 2020 10:21:05 +0000 (UTC)
+X-Original-To: Intel-gfx@lists.freedesktop.org
+Delivered-To: Intel-gfx@lists.freedesktop.org
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 95C8F89E2B
+ for <Intel-gfx@lists.freedesktop.org>; Mon,  7 Dec 2020 10:21:04 +0000 (UTC)
+IronPort-SDR: dUVdfuLV3nJnE8zQXRBsq2RRDK8StfyVzrC0hB1ar5IdEYTqyhMxM0XO9eg9qMAVfhigKXfH9T
+ gau0HF2YMwOA==
+X-IronPort-AV: E=McAfee;i="6000,8403,9827"; a="173828388"
+X-IronPort-AV: E=Sophos;i="5.78,399,1599548400"; d="scan'208";a="173828388"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Dec 2020 02:21:03 -0800
+IronPort-SDR: jFD14WtXLNdghTiowMiAO86ISwnu8ce9gbHXi8WGC4nzOa6DkBhY7Iah5kRThrJPiDnLfPiyQA
+ 5RKSG7Av7Tcw==
+X-IronPort-AV: E=Sophos;i="5.78,399,1599548400"; d="scan'208";a="363083096"
+Received: from tcujba-mobl.ger.corp.intel.com (HELO localhost) ([10.252.9.141])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Dec 2020 02:21:02 -0800
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: SN6PR11MB3421.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 27fd4b01-45c3-43d9-9635-08d89a972777
-X-MS-Exchange-CrossTenant-originalarrivaltime: 07 Dec 2020 10:02:06.4573 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: OMZHisS/i+wqW4/2VeHU1hO+7d0kHVcCaj34v4lgL0ztOgjCJqlcmmrLP2HNl9W3gGNZeow7R9Sd0YGoRP7fBmNFmzisO7MRpEuOz4ksuUbUWbQC1rtx0MZnTx3g5qVRPbVVsPgAkc8diKmUeoSCTw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN6PR11MB2640
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/rkl: Remove require_force_probe
- protection
+In-Reply-To: <20201207002134.13731-3-sean.z.huang@intel.com>
+References: <20201207002134.13731-1-sean.z.huang@intel.com>
+ <20201207002134.13731-3-sean.z.huang@intel.com>
+To: "Huang, Sean Z" <sean.z.huang@intel.com>, Intel-gfx@lists.freedesktop.org
+From: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Message-ID: <160733646002.9322.17986069886877489765@jlahtine-mobl.ger.corp.intel.com>
+User-Agent: alot/0.8.1
+Date: Mon, 07 Dec 2020 12:21:00 +0200
+Subject: Re: [Intel-gfx] [RFC-v1 02/16] drm/i915/pxp: Enable PXP irq worker
+ and callback stub
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -150,103 +49,122 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Naramasetti, LaxminarayanaX" <laxminarayanax.naramasetti@intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Chris,
+Quoting Huang, Sean Z (2020-12-07 02:21:20)
+> Create the irq worker that serves as callback handler, those
+> callback stubs should be called while the hardware key teardown
+> occurs.
+> 
+> Signed-off-by: Huang, Sean Z <sean.z.huang@intel.com>
 
-Are below results satisfying?
+<SNIP>
 
-Thanks,
-Tejas
+> +++ b/drivers/gpu/drm/i915/gt/intel_gt_irq.c
+> @@ -13,6 +13,7 @@
+>  #include "intel_gt_irq.h"
+>  #include "intel_uncore.h"
+>  #include "intel_rps.h"
+> +#include "pxp/intel_pxp.h"
+>  
+>  static void guc_irq_handler(struct intel_guc *guc, u16 iir)
+>  {
+> @@ -106,6 +107,9 @@ gen11_other_irq_handler(struct intel_gt *gt, const u8 instance,
+>         if (instance == OTHER_GTPM_INSTANCE)
+>                 return gen11_rps_irq_handler(&gt->rps, iir);
+>  
+> +       if (instance == OTHER_KCR_INSTANCE)
+> +               return intel_pxp_irq_handler(gt, iir);
 
-> -----Original Message-----
-> From: Kattamanchi, JaswanthX <jaswanthx.kattamanchi@intel.com>
-> Sent: 04 December 2020 15:11
-> To: Surendrakumar Upadhyay, TejaskumarX
-> <tejaskumarx.surendrakumar.upadhyay@intel.com>; Chris Wilson
-> <chris@chris-wilson.co.uk>; Pandey, Hariom <hariom.pandey@intel.com>;
-> intel-gfx@lists.freedesktop.org
-> Cc: Naramasetti, LaxminarayanaX <laxminarayanax.naramasetti@intel.com>
-> Subject: RE: [Intel-gfx] [PATCH] drm/i915/rkl: Remove require_force_probe
-> protection
-> 
-> Hi Tejas,
-> 
-> As per your request triggered resume run on RKL CI machine, the testcases
-> which chris mentioned were passing with this run, Please find the below logs
-> for your reference
-> 
-> Git ID : https://gitlab.freedesktop.org/drm/intel/-/issues/2743
-> 
-> igt@gem_exec_schedule@pi-ringfull@vcs0 : https://intel-gfx-
-> ci.01.org/tree/drm-tip/CI_DRM_9432/re-rkl-1/igt@gem_exec_schedule@pi-
-> ringfull@vcs0.html
-> 
-> igt@gem_exec_schedule@pi-common@vcs0 : https://intel-gfx-
-> ci.01.org/tree/drm-tip/CI_DRM_9432/re-rkl-1/igt@gem_exec_schedule@pi-
-> common@vcs0.html
-> 
-> Regards,
-> Jaswanth Kattamanchi
-> 
-> -----Original Message-----
-> From: Surendrakumar Upadhyay, TejaskumarX
-> <tejaskumarx.surendrakumar.upadhyay@intel.com>
-> Sent: Thursday, December 3, 2020 4:38 PM
-> To: Chris Wilson <chris@chris-wilson.co.uk>; Pandey, Hariom
-> <hariom.pandey@intel.com>; intel-gfx@lists.freedesktop.org; Kattamanchi,
-> JaswanthX <jaswanthx.kattamanchi@intel.com>
-> Cc: Naramasetti, LaxminarayanaX <laxminarayanax.naramasetti@intel.com>
-> Subject: RE: [Intel-gfx] [PATCH] drm/i915/rkl: Remove require_force_probe
-> protection
-> 
-> + Jaswant
-> 
-> > -----Original Message-----
-> > From: Surendrakumar Upadhyay, TejaskumarX
-> > Sent: 03 December 2020 09:44
-> > To: Chris Wilson <chris@chris-wilson.co.uk>; Pandey, Hariom
-> > <hariom.pandey@intel.com>; intel-gfx@lists.freedesktop.org
-> > Subject: RE: [Intel-gfx] [PATCH] drm/i915/rkl: Remove
-> > require_force_probe protection
-> >
-> > Hi Jaswant,
-> >
-> > Can you please re-run resume run on CI as well as local setup and
-> > share results here? If it passes in full resume run in either of setup
-> > we are good go with.
-> >
-> > Thanks,
-> > Tejas
-> >
-> > > -----Original Message-----
-> > > From: Chris Wilson <chris@chris-wilson.co.uk>
-> > > Sent: 30 November 2020 20:31
-> > > To: Pandey, Hariom <hariom.pandey@intel.com>; Surendrakumar
-> > Upadhyay,
-> > > TejaskumarX <tejaskumarx.surendrakumar.upadhyay@intel.com>; intel-
-> > > gfx@lists.freedesktop.org
-> > > Subject: Re: [Intel-gfx] [PATCH] drm/i915/rkl: Remove
-> > > require_force_probe protection
-> > >
-> > > Quoting Surendrakumar Upadhyay, TejaskumarX (2020-11-30 14:45:14)
-> > > > Hi Chris,
-> > > >
-> > > > The failing test was not part of BAT run, it ran in CI resume run
-> > > > and failed
-> > > there, however on manual run the same test got passed. Please find
-> > > attached results.
-> > >
-> > > One pass versus a major failure is not satisfactory.
-> > >
-> > > We can not say we are happy with the hardware/driver until it is
-> > > reliable, and forcewake is of fundamental importance for mmio
-> > > access, as well as execution.
-> > > -Chris
+We should take &gt->pxp as the first parameter and keep a tight scope.
+
+> +++ b/drivers/gpu/drm/i915/pxp/intel_pxp.c
+> @@ -6,6 +6,58 @@
+>  #include "i915_drv.h"
+>  #include "intel_pxp.h"
+>  
+> +static void intel_pxp_write_irq_mask_reg(struct drm_i915_private *i915, u32 mask)
+
+Again, we should be taking intel_pxp as parameter to tighten the scope.
+
+> +{
+> +       /* crypto mask is in bit31-16 (Engine1 Interrupt Mask) */
+> +       intel_uncore_write(&i915->uncore, GEN11_CRYPTO_RSVD_INTR_MASK, mask << 16);
+
+Instead of writing to register that is indicated to be "reserved"
+(RSVD), we should properly document the register in i915_reg.h and the
+comment should not be needed.
+
+> +static void intel_pxp_irq_work(struct work_struct *work)
+> +{
+> +       struct intel_pxp *pxp_ptr = container_of(work, typeof(*pxp_ptr), irq_work);
+
+_ptr is a tautology, we can already see it's apointer.
+
+> +       struct drm_i915_private *i915 = container_of(pxp_ptr, typeof(*i915), pxp);
+
+We should go from intel_pxp to intel_gt to i915 here, once the struct
+intel_pxp member is moved inside intel_gt
+
+> +       u32 events = 0;
+> +
+> +       spin_lock_irq(&i915->gt.irq_lock);
+> +       events = fetch_and_zero(&pxp_ptr->current_events);
+> +       spin_unlock_irq(&i915->gt.irq_lock);
+> +
+> +       if (events & PXP_IRQ_VECTOR_DISPLAY_PXP_STATE_TERMINATED ||
+> +           events & PXP_IRQ_VECTOR_DISPLAY_APP_TERM_PER_FW_REQ)
+> +               intel_pxp_teardown_required_callback(i915);
+> +
+> +       if (events & PXP_IRQ_VECTOR_PXP_DISP_STATE_RESET_COMPLETE)
+> +               intel_pxp_global_terminate_complete_callback(i915);
+
+The mapping between the callbacks and the hardware events are unclear.
+These all seem like display related events, so we probably need a split
+between the GT and display PXP code.
+
+It's hard to review as this only adds stubs and no actual flow. I think
+teardown interrupt handling should come later in the series after init
+and other code has been added.
+
+> @@ -17,9 +69,45 @@ int intel_pxp_init(struct drm_i915_private *i915)
+>  
+>         drm_info(&i915->drm, "i915 PXP is inited with i915=[%p]\n", i915);
+
+This INFO message is wrongly placed, either it should say "initializing"
+and be at the beginning or "initialized" and be at the end. Also see
+previous patch for more comments.
+
+> +++ b/drivers/gpu/drm/i915/pxp/intel_pxp.h
+> @@ -8,18 +8,54 @@
+>  
+>  #include <drm/drm_file.h>
+>  
+> +#define PXP_IRQ_VECTOR_DISPLAY_PXP_STATE_TERMINATED BIT(1)
+> +#define PXP_IRQ_VECTOR_DISPLAY_APP_TERM_PER_FW_REQ BIT(2)
+> +#define PXP_IRQ_VECTOR_PXP_DISP_STATE_RESET_COMPLETE BIT(3)
+> +
+> +enum pxp_sm_session_req {
+> +       /* Request KMD to allocate session id and move it to IN INIT */
+> +       PXP_SM_REQ_SESSION_ID_INIT = 0x0,
+> +       /* Inform KMD that UMD has completed the initialization */
+> +       PXP_SM_REQ_SESSION_IN_PLAY,
+> +       /* Request KMD to terminate the session */
+> +       PXP_SM_REQ_SESSION_TERMINATE
+> +};
+
+This enum here feels like a misplaced hunk. We should be adding the
+enums and structs only when they are used in the patch. Reviewing the
+logic and looking for dead code is much harder when structs are
+introduced way earlier than they are used.
+
+We should be adding the base structs at most and extending them as we
+add more functionality as we go.
+
+Regards, Joonas
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
