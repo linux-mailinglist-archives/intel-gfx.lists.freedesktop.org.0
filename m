@@ -1,42 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 344762D1A9A
-	for <lists+intel-gfx@lfdr.de>; Mon,  7 Dec 2020 21:35:24 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0CE2C2D1C02
+	for <lists+intel-gfx@lfdr.de>; Mon,  7 Dec 2020 22:26:12 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A8E7F89BA3;
-	Mon,  7 Dec 2020 20:35:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 420946E8C2;
+	Mon,  7 Dec 2020 21:26:10 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C09B389BA3
- for <intel-gfx@lists.freedesktop.org>; Mon,  7 Dec 2020 20:35:20 +0000 (UTC)
-IronPort-SDR: YXSywubYFnQ5CyoEiVC6C5PKlvfVwbU8vue6s3ZOu0dz9tc0pq3SpZtU3scEoBU4e+kN8b315d
- KEPT8UWXoebw==
-X-IronPort-AV: E=McAfee;i="6000,8403,9828"; a="161536242"
-X-IronPort-AV: E=Sophos;i="5.78,400,1599548400"; d="scan'208";a="161536242"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Dec 2020 12:35:18 -0800
-IronPort-SDR: m/l/Dw0sOLAoMYSKp5GmbDSfLhNk/kBFBwkgzV207i+im2UvJxcytY+EUq0Wnkpk+1waQqLY0c
- +2q/8IV00SWA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.78,400,1599548400"; d="scan'208";a="437073673"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by fmsmga001.fm.intel.com with SMTP; 07 Dec 2020 12:35:16 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Mon, 07 Dec 2020 22:35:16 +0200
-From: Ville Syrjala <ville.syrjala@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Mon,  7 Dec 2020 22:35:12 +0200
-Message-Id: <20201207203512.1718-2-ville.syrjala@linux.intel.com>
-X-Mailer: git-send-email 2.26.2
-In-Reply-To: <20201207203512.1718-1-ville.syrjala@linux.intel.com>
-References: <20201207203512.1718-1-ville.syrjala@linux.intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 8310F6E8C1;
+ Mon,  7 Dec 2020 21:26:09 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 7904FA0078;
+ Mon,  7 Dec 2020 21:26:09 +0000 (UTC)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 2/2] drm/i915: Unify the sanity checks for the
- buf trans tables
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
+Date: Mon, 07 Dec 2020 21:26:09 -0000
+Message-ID: <160737636949.8720.17861606290591436483@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20201207203512.1718-1-ville.syrjala@linux.intel.com>
+In-Reply-To: <20201207203512.1718-1-ville.syrjala@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3Igc2Vy?=
+ =?utf-8?q?ies_starting_with_=5B1/2=5D_drm/i915=3A_Fix_ICL_MG_PHY_vswing_h?=
+ =?utf-8?q?andling?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,52 +39,232 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============1356875199=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-RnJvbTogVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4KCkdl
-dCByaWQgb2YgdGhlICJJIGxpa2UgbXkgcmFuZG9tIG5ldyBzdHlsZSBiZXN0IiBhcHByb2FjaCBh
-bmQgdW5pZnkKdGhlIGhhbmRsaW5nIGZvciB0aGUgRERJIGJ1ZiB0cmFucyB0YWJsZSBzYW5pdHkg
-Y2hlY2tzIG9uY2UgYWdhaW4uCgpTaWduZWQtb2ZmLWJ5OiBWaWxsZSBTeXJqw6Rsw6QgPHZpbGxl
-LnN5cmphbGFAbGludXguaW50ZWwuY29tPgotLS0KIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3Bs
-YXkvaW50ZWxfZGRpLmMgfCAyMyArKysrKysrKysrLS0tLS0tLS0tLS0tLQogMSBmaWxlIGNoYW5n
-ZWQsIDEwIGluc2VydGlvbnMoKyksIDEzIGRlbGV0aW9ucygtKQoKZGlmZiAtLWdpdCBhL2RyaXZl
-cnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGRpLmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkx
-NS9kaXNwbGF5L2ludGVsX2RkaS5jCmluZGV4IGMzYTE1Y2U2NjQ3OC4uNjg2OTNkNDUzOGUyIDEw
-MDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RkaS5jCisrKyBi
-L2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGRpLmMKQEAgLTI2MzEsMTUgKzI2
-MzEsMTEgQEAgc3RhdGljIHZvaWQgaWNsX2RkaV9jb21ib192c3dpbmdfcHJvZ3JhbShzdHJ1Y3Qg
-aW50ZWxfZW5jb2RlciAqZW5jb2RlciwKIAkJZGRpX3RyYW5zbGF0aW9ucyA9IGVobF9nZXRfY29t
-Ym9fYnVmX3RyYW5zKGVuY29kZXIsIGNydGNfc3RhdGUsICZuX2VudHJpZXMpOwogCWVsc2UKIAkJ
-ZGRpX3RyYW5zbGF0aW9ucyA9IGljbF9nZXRfY29tYm9fYnVmX3RyYW5zKGVuY29kZXIsIGNydGNf
-c3RhdGUsICZuX2VudHJpZXMpOwotCWlmICghZGRpX3RyYW5zbGF0aW9ucykKLQkJcmV0dXJuOwog
-Ci0JaWYgKGxldmVsID49IG5fZW50cmllcykgewotCQlkcm1fZGJnX2ttcygmZGV2X3ByaXYtPmRy
-bSwKLQkJCSAgICAiRERJIHRyYW5zbGF0aW9uIG5vdCBmb3VuZCBmb3IgbGV2ZWwgJWQuIFVzaW5n
-ICVkIGluc3RlYWQuIiwKLQkJCSAgICBsZXZlbCwgbl9lbnRyaWVzIC0gMSk7CisJaWYgKGRybV9X
-QVJOX09OX09OQ0UoJmRldl9wcml2LT5kcm0sICFkZGlfdHJhbnNsYXRpb25zKSkKKwkJcmV0dXJu
-OworCWlmIChkcm1fV0FSTl9PTl9PTkNFKCZkZXZfcHJpdi0+ZHJtLCBsZXZlbCA+PSBuX2VudHJp
-ZXMpKQogCQlsZXZlbCA9IG5fZW50cmllcyAtIDE7Ci0JfQogCiAJaWYgKGludGVsX2NydGNfaGFz
-X3R5cGUoY3J0Y19zdGF0ZSwgSU5URUxfT1VUUFVUX0VEUCkpIHsKIAkJc3RydWN0IGludGVsX2Rw
-ICppbnRlbF9kcCA9IGVuY190b19pbnRlbF9kcChlbmNvZGVyKTsKQEAgLTI3NjAsMTIgKzI3NTYs
-MTEgQEAgc3RhdGljIHZvaWQgaWNsX21nX3BoeV9kZGlfdnN3aW5nX3NlcXVlbmNlKHN0cnVjdCBp
-bnRlbF9lbmNvZGVyICplbmNvZGVyLAogCXUzMiB2YWw7CiAKIAlkZGlfdHJhbnNsYXRpb25zID0g
-aWNsX2dldF9tZ19idWZfdHJhbnMoZW5jb2RlciwgY3J0Y19zdGF0ZSwgJm5fZW50cmllcyk7Ci0J
-aWYgKGxldmVsID49IG5fZW50cmllcykgewotCQlkcm1fZGJnX2ttcygmZGV2X3ByaXYtPmRybSwK
-LQkJCSAgICAiRERJIHRyYW5zbGF0aW9uIG5vdCBmb3VuZCBmb3IgbGV2ZWwgJWQuIFVzaW5nICVk
-IGluc3RlYWQuIiwKLQkJCSAgICBsZXZlbCwgbl9lbnRyaWVzIC0gMSk7CisKKwlpZiAoZHJtX1dB
-Uk5fT05fT05DRSgmZGV2X3ByaXYtPmRybSwgIWRkaV90cmFuc2xhdGlvbnMpKQorCQlyZXR1cm47
-CisJaWYgKGRybV9XQVJOX09OX09OQ0UoJmRldl9wcml2LT5kcm0sIGxldmVsID49IG5fZW50cmll
-cykpCiAJCWxldmVsID0gbl9lbnRyaWVzIC0gMTsKLQl9CiAKIAkvKiBTZXQgTUdfVFhfTElOS19Q
-QVJBTVMgY3JpX3VzZV9mczMyIHRvIDAuICovCiAJZm9yIChsbiA9IDA7IGxuIDwgMjsgbG4rKykg
-ewpAQCAtMjg5Nyw3ICsyODkyLDkgQEAgdGdsX2RrbF9waHlfZGRpX3Zzd2luZ19zZXF1ZW5jZShz
-dHJ1Y3QgaW50ZWxfZW5jb2RlciAqZW5jb2RlciwKIAogCWRkaV90cmFuc2xhdGlvbnMgPSB0Z2xf
-Z2V0X2RrbF9idWZfdHJhbnMoZW5jb2RlciwgY3J0Y19zdGF0ZSwgJm5fZW50cmllcyk7CiAKLQlp
-ZiAobGV2ZWwgPj0gbl9lbnRyaWVzKQorCWlmIChkcm1fV0FSTl9PTl9PTkNFKCZkZXZfcHJpdi0+
-ZHJtLCAhZGRpX3RyYW5zbGF0aW9ucykpCisJCXJldHVybjsKKwlpZiAoZHJtX1dBUk5fT05fT05D
-RSgmZGV2X3ByaXYtPmRybSwgbGV2ZWwgPj0gbl9lbnRyaWVzKSkKIAkJbGV2ZWwgPSBuX2VudHJp
-ZXMgLSAxOwogCiAJZHBjbnRfbWFzayA9IChES0xfVFhfUFJFU0hPT1RfQ09FRkZfTUFTSyB8Ci0t
-IAoyLjI2LjIKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-CkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpo
-dHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
+--===============1356875199==
+Content-Type: multipart/alternative;
+ boundary="===============0467585537109311927=="
+
+--===============0467585537109311927==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+== Series Details ==
+
+Series: series starting with [1/2] drm/i915: Fix ICL MG PHY vswing handling
+URL   : https://patchwork.freedesktop.org/series/84651/
+State : failure
+
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_9456 -> Patchwork_19077
+====================================================
+
+Summary
+-------
+
+  **FAILURE**
+
+  Serious unknown changes coming with Patchwork_19077 absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in Patchwork_19077, please notify your bug team to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19077/index.html
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_19077:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@gem_exec_suspend@basic-s3:
+    - fi-snb-2600:        [PASS][1] -> [DMESG-WARN][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9456/fi-snb-2600/igt@gem_exec_suspend@basic-s3.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19077/fi-snb-2600/igt@gem_exec_suspend@basic-s3.html
+
+  
+New tests
+---------
+
+  New tests have been introduced between CI_DRM_9456 and Patchwork_19077:
+
+### New CI tests (1) ###
+
+  * boot:
+    - Statuses : 1 fail(s) 38 pass(s)
+    - Exec time: [0.0] s
+
+  
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_19077 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_selftest@live@gt_heartbeat:
+    - fi-bsw-kefka:       [PASS][3] -> [DMESG-FAIL][4] ([i915#2675] / [i915#541])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9456/fi-bsw-kefka/igt@i915_selftest@live@gt_heartbeat.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19077/fi-bsw-kefka/igt@i915_selftest@live@gt_heartbeat.html
+
+  
+#### Warnings ####
+
+  * igt@i915_selftest@live@gt_pm:
+    - fi-kbl-soraka:      [DMESG-FAIL][5] ([i915#2291]) -> [DMESG-FAIL][6] ([i915#1886] / [i915#2291])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9456/fi-kbl-soraka/igt@i915_selftest@live@gt_pm.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19077/fi-kbl-soraka/igt@i915_selftest@live@gt_pm.html
+
+  
+  [i915#1886]: https://gitlab.freedesktop.org/drm/intel/issues/1886
+  [i915#2291]: https://gitlab.freedesktop.org/drm/intel/issues/2291
+  [i915#2675]: https://gitlab.freedesktop.org/drm/intel/issues/2675
+  [i915#541]: https://gitlab.freedesktop.org/drm/intel/issues/541
+
+
+Participating hosts (44 -> 39)
+------------------------------
+
+  Missing    (5): fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-tgl-y fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_9456 -> Patchwork_19077
+
+  CI-20190529: 20190529
+  CI_DRM_9456: 4c841475fa2fe28db44c090a65ec58c632f705dd @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5884: b1015a3267bbccb985b2fa7e3accb778c7bff0ed @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_19077: c4a7651820892f181e8aa4e4389f0243d4ef79a4 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+c4a765182089 drm/i915: Unify the sanity checks for the buf trans tables
+6c4f73fa8880 drm/i915: Fix ICL MG PHY vswing handling
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19077/index.html
+
+--===============0467585537109311927==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>series starting with [1/2] drm/i915: Fix ICL MG PHY vswing handling</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/84651/">https://patchwork.freedesktop.org/series/84651/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19077/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19077/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_9456 -&gt; Patchwork_19077</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with Patchwork_19077 absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in Patchwork_19077, please notify your bug team to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19077/index.html</p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in Patchwork_19077:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>igt@gem_exec_suspend@basic-s3:<ul>
+<li>fi-snb-2600:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9456/fi-snb-2600/igt@gem_exec_suspend@basic-s3.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19077/fi-snb-2600/igt@gem_exec_suspend@basic-s3.html">DMESG-WARN</a></li>
+</ul>
+</li>
+</ul>
+<h2>New tests</h2>
+<p>New tests have been introduced between CI_DRM_9456 and Patchwork_19077:</p>
+<h3>New CI tests (1)</h3>
+<ul>
+<li>boot:<ul>
+<li>Statuses : 1 fail(s) 38 pass(s)</li>
+<li>Exec time: [0.0] s</li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_19077 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@i915_selftest@live@gt_heartbeat:<ul>
+<li>fi-bsw-kefka:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9456/fi-bsw-kefka/igt@i915_selftest@live@gt_heartbeat.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19077/fi-bsw-kefka/igt@i915_selftest@live@gt_heartbeat.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2675">i915#2675</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/541">i915#541</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Warnings</h4>
+<ul>
+<li>igt@i915_selftest@live@gt_pm:<ul>
+<li>fi-kbl-soraka:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9456/fi-kbl-soraka/igt@i915_selftest@live@gt_pm.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2291">i915#2291</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19077/fi-kbl-soraka/igt@i915_selftest@live@gt_pm.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1886">i915#1886</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2291">i915#2291</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>Participating hosts (44 -&gt; 39)</h2>
+<p>Missing    (5): fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-tgl-y fi-bdw-samus </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_9456 -&gt; Patchwork_19077</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_9456: 4c841475fa2fe28db44c090a65ec58c632f705dd @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_5884: b1015a3267bbccb985b2fa7e3accb778c7bff0ed @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
+  Patchwork_19077: c4a7651820892f181e8aa4e4389f0243d4ef79a4 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>c4a765182089 drm/i915: Unify the sanity checks for the buf trans tables<br />
+6c4f73fa8880 drm/i915: Fix ICL MG PHY vswing handling</p>
+
+</body>
+</html>
+
+--===============0467585537109311927==--
+
+--===============1356875199==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============1356875199==--
