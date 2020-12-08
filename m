@@ -1,32 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EA6E82D36D0
-	for <lists+intel-gfx@lfdr.de>; Wed,  9 Dec 2020 00:18:50 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5DE392D36CE
+	for <lists+intel-gfx@lfdr.de>; Wed,  9 Dec 2020 00:18:47 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6BC9E6E0A8;
-	Tue,  8 Dec 2020 23:18:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 219476E098;
+	Tue,  8 Dec 2020 23:18:44 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3D5416E0A8
- for <intel-gfx@lists.freedesktop.org>; Tue,  8 Dec 2020 23:18:46 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3CEB76E098
+ for <intel-gfx@lists.freedesktop.org>; Tue,  8 Dec 2020 23:18:42 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 23259510-1500050 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 23259511-1500050 
  for multiple; Tue, 08 Dec 2020 23:18:35 +0000
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Tue,  8 Dec 2020 23:18:33 +0000
-Message-Id: <20201208231834.24812-2-chris@chris-wilson.co.uk>
+Date: Tue,  8 Dec 2020 23:18:34 +0000
+Message-Id: <20201208231834.24812-3-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20201208231834.24812-1-chris@chris-wilson.co.uk>
 References: <20201208231834.24812-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 2/3] drm/i915: Sleep around performing iommu
- unmaps on Tigerlake
+Subject: [Intel-gfx] [PATCH 3/3] drm/i915/gt: Remove uninterruptible
+ parameter from intel_gt_wait_for_idle
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,41 +45,41 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Tigerlake is plagued by spontaneous DMAR faults [reason 7, next page
-table ptr is invalid] which lead to GPU hangs. These faults occur when
-an iommu map is immediately reused. Adding further clflushes and
-barriers around either the GTT PTE or iommu PTE updates do not prevent
-the faults. So far the only effect has been from inducing a delay
-between reuse of the iommu on the GPU.
+Now that the only user of the uninterruptible wait was eliminated,
+remove the support.
 
 Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/gt/intel_ggtt.c | 11 ++++++++++-
- 1 file changed, 10 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/i915/gt/intel_gt_requests.c | 7 +------
+ 1 file changed, 1 insertion(+), 6 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_ggtt.c b/drivers/gpu/drm/i915/gt/intel_ggtt.c
-index cf94525be2c1..f5b981443117 100644
---- a/drivers/gpu/drm/i915/gt/intel_ggtt.c
-+++ b/drivers/gpu/drm/i915/gt/intel_ggtt.c
-@@ -101,7 +101,16 @@ static bool needs_idle_maps(struct drm_i915_private *i915)
- 	 * Query intel_iommu to see if we need the workaround. Presumably that
- 	 * was loaded first.
- 	 */
--	return IS_GEN(i915, 5) && IS_MOBILE(i915) && intel_vtd_active();
-+	if (!intel_vtd_active())
-+		return false;
-+
-+	if (IS_GEN(i915, 5) && IS_MOBILE(i915))
-+		return true;
-+
-+	if (IS_GEN(i915, 12))
-+		return true; /* XXX DMAR fault reason 7 */
-+
-+	return false;
- }
+diff --git a/drivers/gpu/drm/i915/gt/intel_gt_requests.c b/drivers/gpu/drm/i915/gt/intel_gt_requests.c
+index 66fcbf9d0fdd..dc06c78c9eeb 100644
+--- a/drivers/gpu/drm/i915/gt/intel_gt_requests.c
++++ b/drivers/gpu/drm/i915/gt/intel_gt_requests.c
+@@ -135,13 +135,8 @@ long intel_gt_retire_requests_timeout(struct intel_gt *gt, long timeout)
+ 	struct intel_gt_timelines *timelines = &gt->timelines;
+ 	struct intel_timeline *tl, *tn;
+ 	unsigned long active_count = 0;
+-	bool interruptible;
+ 	LIST_HEAD(free);
  
- void i915_ggtt_suspend(struct i915_ggtt *ggtt)
+-	interruptible = true;
+-	if (unlikely(timeout < 0))
+-		timeout = -timeout, interruptible = false;
+-
+ 	flush_submission(gt, timeout); /* kick the ksoftirqd tasklets */
+ 	spin_lock(&timelines->lock);
+ 	list_for_each_entry_safe(tl, tn, &timelines->active_list, link) {
+@@ -163,7 +158,7 @@ long intel_gt_retire_requests_timeout(struct intel_gt *gt, long timeout)
+ 				mutex_unlock(&tl->mutex);
+ 
+ 				timeout = dma_fence_wait_timeout(fence,
+-								 interruptible,
++								 true,
+ 								 timeout);
+ 				dma_fence_put(fence);
+ 
 -- 
 2.20.1
 
