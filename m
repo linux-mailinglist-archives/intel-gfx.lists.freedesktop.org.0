@@ -1,31 +1,30 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0DED42D3102
-	for <lists+intel-gfx@lfdr.de>; Tue,  8 Dec 2020 18:28:14 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id A11562D3275
+	for <lists+intel-gfx@lfdr.de>; Tue,  8 Dec 2020 19:57:17 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D68646E961;
-	Tue,  8 Dec 2020 17:28:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 084476E9A9;
+	Tue,  8 Dec 2020 18:57:16 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id AB0656E953;
- Tue,  8 Dec 2020 17:28:09 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id A220EAA912;
- Tue,  8 Dec 2020 17:28:09 +0000 (UTC)
+Received: from fireflyinternet.com (unknown [77.68.26.236])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 407DD6E9AB
+ for <intel-gfx@lists.freedesktop.org>; Tue,  8 Dec 2020 18:57:15 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from build.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 23257844-1500050 
+ for multiple; Tue, 08 Dec 2020 18:57:03 +0000
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Tue,  8 Dec 2020 18:57:02 +0000
+Message-Id: <20201208185702.31852-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jani Nikula" <jani.nikula@intel.com>
-Date: Tue, 08 Dec 2020 17:28:09 -0000
-Message-ID: <160744848963.9599.1551274024537730399@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <cover.1607429866.git.jani.nikula@intel.com>
-In-Reply-To: <cover.1607429866.git.jani.nikula@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/dsc=2C_drm/dp=2C_and_/drm/i915=3A_rc_model_size_updates?=
+Subject: [Intel-gfx] [PATCH] drm/i915/gt: Disable preparser around
+ MI_SEMAPHORE_WAIT
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,247 +37,138 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============2078276177=="
+Cc: Chris Wilson <chris@chris-wilson.co.uk>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============2078276177==
-Content-Type: multipart/alternative;
- boundary="===============1079724002486355182=="
+W/a 1607297627 requires us to prevent new DMA requests once the CS
+enters RDOP. The recommendation is to suspend the CS preparser around
+MI_SEMAPHORE_WAIT.
 
---===============1079724002486355182==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+---
+ drivers/gpu/drm/i915/gt/intel_gpu_commands.h |  5 +++++
+ drivers/gpu/drm/i915/gt/intel_lrc.c          | 15 ++++++---------
+ drivers/gpu/drm/i915/i915_request.c          |  4 +++-
+ 3 files changed, 14 insertions(+), 10 deletions(-)
 
-== Series Details ==
-
-Series: drm/dsc, drm/dp, and /drm/i915: rc model size updates
-URL   : https://patchwork.freedesktop.org/series/84685/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_9461 -> Patchwork_19081
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19081/index.html
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_19081:
-
-### CI changes ###
-
-#### Possible regressions ####
-
-  * boot (NEW):
-    - {fi-tgl-dsi}:       [PASS][1] -> [FAIL][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9461/fi-tgl-dsi/boot.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19081/fi-tgl-dsi/boot.html
-
-  
-New tests
----------
-
-  New tests have been introduced between CI_DRM_9461 and Patchwork_19081:
-
-### New CI tests (1) ###
-
-  * boot:
-    - Statuses : 2 fail(s) 38 pass(s)
-    - Exec time: [0.0] s
-
-  
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_19081 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@vgem_basic@setversion:
-    - fi-tgl-y:           [PASS][3] -> [DMESG-WARN][4] ([i915#402]) +1 similar issue
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9461/fi-tgl-y/igt@vgem_basic@setversion.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19081/fi-tgl-y/igt@vgem_basic@setversion.html
-
-  
-#### Possible fixes ####
-
-  * igt@debugfs_test@read_all_entries:
-    - fi-tgl-y:           [DMESG-WARN][5] ([i915#402]) -> [PASS][6] +1 similar issue
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9461/fi-tgl-y/igt@debugfs_test@read_all_entries.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19081/fi-tgl-y/igt@debugfs_test@read_all_entries.html
-
-  * igt@kms_chamelium@hdmi-hpd-fast:
-    - fi-kbl-7500u:       [DMESG-FAIL][7] ([i915#165]) -> [PASS][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9461/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19081/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [i915#165]: https://gitlab.freedesktop.org/drm/intel/issues/165
-  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
-
-
-Participating hosts (43 -> 40)
-------------------------------
-
-  Missing    (3): fi-ilk-m540 fi-bdw-samus fi-hsw-4200u 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_9461 -> Patchwork_19081
-
-  CI-20190529: 20190529
-  CI_DRM_9461: cac67f316baee6c9d82e94e881a9a397c5dce95a @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5885: d99f644b1868b9c92435b05ebfafa230721cd677 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_19081: 52414a882a7728b1ba4855481fb198dbf3d7531f @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-52414a882a77 drm/i915/dsi: use VBT data for rc_model_size
-d997af2e7914 drm/i915/bios: fill in DSC rc_model_size from VBT
-925c8324ea3e drm/dsc: add helper for calculating rc buffer size from DPCD
-aecdbfc662d5 drm/i915/dsc: make rc_model_size an encoder defined value
-d3786025b31c drm/i915/dsc: configure hardware using specified rc_model_size
-e40fcc2fb88c drm/dsc: use rc_model_size from DSC config for PPS
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19081/index.html
-
---===============1079724002486355182==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/dsc, drm/dp, and /drm/i915: rc model size updates</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/84685/">https://patchwork.freedesktop.org/series/84685/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19081/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19081/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_9461 -&gt; Patchwork_19081</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19081/index.html</p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in Patchwork_19081:</p>
-<h3>CI changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>boot (NEW):<ul>
-<li>{fi-tgl-dsi}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9461/fi-tgl-dsi/boot.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19081/fi-tgl-dsi/boot.html">FAIL</a></li>
-</ul>
-</li>
-</ul>
-<h2>New tests</h2>
-<p>New tests have been introduced between CI_DRM_9461 and Patchwork_19081:</p>
-<h3>New CI tests (1)</h3>
-<ul>
-<li>boot:<ul>
-<li>Statuses : 2 fail(s) 38 pass(s)</li>
-<li>Exec time: [0.0] s</li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_19081 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@vgem_basic@setversion:<ul>
-<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9461/fi-tgl-y/igt@vgem_basic@setversion.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19081/fi-tgl-y/igt@vgem_basic@setversion.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) +1 similar issue</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@debugfs_test@read_all_entries:</p>
-<ul>
-<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9461/fi-tgl-y/igt@debugfs_test@read_all_entries.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19081/fi-tgl-y/igt@debugfs_test@read_all_entries.html">PASS</a> +1 similar issue</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@hdmi-hpd-fast:</p>
-<ul>
-<li>fi-kbl-7500u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9461/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/165">i915#165</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19081/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Participating hosts (43 -&gt; 40)</h2>
-<p>Missing    (3): fi-ilk-m540 fi-bdw-samus fi-hsw-4200u </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_9461 -&gt; Patchwork_19081</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_9461: cac67f316baee6c9d82e94e881a9a397c5dce95a @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_5885: d99f644b1868b9c92435b05ebfafa230721cd677 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
-  Patchwork_19081: 52414a882a7728b1ba4855481fb198dbf3d7531f @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>52414a882a77 drm/i915/dsi: use VBT data for rc_model_size<br />
-d997af2e7914 drm/i915/bios: fill in DSC rc_model_size from VBT<br />
-925c8324ea3e drm/dsc: add helper for calculating rc buffer size from DPCD<br />
-aecdbfc662d5 drm/i915/dsc: make rc_model_size an encoder defined value<br />
-d3786025b31c drm/i915/dsc: configure hardware using specified rc_model_size<br />
-e40fcc2fb88c drm/dsc: use rc_model_size from DSC config for PPS</p>
-
-</body>
-</html>
-
---===============1079724002486355182==--
-
---===============2078276177==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+diff --git a/drivers/gpu/drm/i915/gt/intel_gpu_commands.h b/drivers/gpu/drm/i915/gt/intel_gpu_commands.h
+index 534e435f20bc..1982716aeb88 100644
+--- a/drivers/gpu/drm/i915/gt/intel_gpu_commands.h
++++ b/drivers/gpu/drm/i915/gt/intel_gpu_commands.h
+@@ -359,4 +359,9 @@ static inline u32 *__gen6_emit_bb_start(u32 *cs, u32 addr, unsigned int flags)
+ 	return cs;
+ }
+ 
++static inline u32 gen12_preparser_disable(bool state)
++{
++	return MI_ARB_CHECK | 1 << 8 | state;
++}
++
+ #endif /* _INTEL_GPU_COMMANDS_H_ */
+diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
+index 0c7f1e3dee5c..86495c999f1f 100644
+--- a/drivers/gpu/drm/i915/gt/intel_lrc.c
++++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
+@@ -4723,11 +4723,6 @@ static int gen11_emit_flush_render(struct i915_request *request,
+ 	return 0;
+ }
+ 
+-static u32 preparser_disable(bool state)
+-{
+-	return MI_ARB_CHECK | 1 << 8 | state;
+-}
+-
+ static i915_reg_t aux_inv_reg(const struct intel_engine_cs *engine)
+ {
+ 	static const i915_reg_t vd[] = {
+@@ -4821,14 +4816,14 @@ static int gen12_emit_flush_render(struct i915_request *request,
+ 		 * invalidate and loading a stale page for the batch
+ 		 * buffer / request payload.
+ 		 */
+-		*cs++ = preparser_disable(true);
++		*cs++ = gen12_preparser_disable(true);
+ 
+ 		cs = gen8_emit_pipe_control(cs, flags, LRC_PPHWSP_SCRATCH_ADDR);
+ 
+ 		/* hsdes: 1809175790 */
+ 		cs = gen12_emit_aux_table_inv(GEN12_GFX_CCS_AUX_NV, cs);
+ 
+-		*cs++ = preparser_disable(false);
++		*cs++ = gen12_preparser_disable(false);
+ 		intel_ring_advance(request, cs);
+ 	}
+ 
+@@ -4853,7 +4848,7 @@ static int gen12_emit_flush(struct i915_request *request, u32 mode)
+ 		return PTR_ERR(cs);
+ 
+ 	if (mode & EMIT_INVALIDATE)
+-		*cs++ = preparser_disable(true);
++		*cs++ = gen12_preparser_disable(true);
+ 
+ 	cmd = MI_FLUSH_DW + 1;
+ 
+@@ -4889,7 +4884,7 @@ static int gen12_emit_flush(struct i915_request *request, u32 mode)
+ 	}
+ 
+ 	if (mode & EMIT_INVALIDATE)
+-		*cs++ = preparser_disable(false);
++		*cs++ = gen12_preparser_disable(false);
+ 
+ 	intel_ring_advance(request, cs);
+ 
+@@ -5015,6 +5010,7 @@ gen11_emit_fini_breadcrumb_rcs(struct i915_request *request, u32 *cs)
+ 
+ static u32 *gen12_emit_preempt_busywait(struct i915_request *request, u32 *cs)
+ {
++	*cs++ = gen12_preparser_disable(true); /* Wa_1607297627:tgl,dg1,rkl */
+ 	*cs++ = MI_SEMAPHORE_WAIT_TOKEN |
+ 		MI_SEMAPHORE_GLOBAL_GTT |
+ 		MI_SEMAPHORE_POLL |
+@@ -5023,6 +5019,7 @@ static u32 *gen12_emit_preempt_busywait(struct i915_request *request, u32 *cs)
+ 	*cs++ = intel_hws_preempt_address(request->engine);
+ 	*cs++ = 0;
+ 	*cs++ = 0;
++	*cs++ = gen12_preparser_disable(false);
+ 	*cs++ = MI_NOOP;
+ 
+ 	return cs;
+diff --git a/drivers/gpu/drm/i915/i915_request.c b/drivers/gpu/drm/i915/i915_request.c
+index a9db1376b996..84fc31dc61bf 100644
+--- a/drivers/gpu/drm/i915/i915_request.c
++++ b/drivers/gpu/drm/i915/i915_request.c
+@@ -1046,7 +1046,7 @@ __emit_semaphore_wait(struct i915_request *to,
+ 	if (err)
+ 		return err;
+ 
+-	len = 4;
++	len = 6;
+ 	if (has_token)
+ 		len += 2;
+ 
+@@ -1062,6 +1062,7 @@ __emit_semaphore_wait(struct i915_request *to,
+ 	 * (post-wrap) values than they were expecting (and so wait
+ 	 * forever).
+ 	 */
++	*cs++ = gen12_preparser_disable(true); /* Wa_1607297627:tgl,dg1,rkl */
+ 	*cs++ = (MI_SEMAPHORE_WAIT |
+ 		 MI_SEMAPHORE_GLOBAL_GTT |
+ 		 MI_SEMAPHORE_POLL |
+@@ -1074,6 +1075,7 @@ __emit_semaphore_wait(struct i915_request *to,
+ 		*cs++ = 0;
+ 		*cs++ = MI_NOOP;
+ 	}
++	*cs++ = gen12_preparser_disable(false);
+ 
+ 	intel_ring_advance(to, cs);
+ 	return 0;
+-- 
+2.20.1
 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============2078276177==--
