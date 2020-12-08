@@ -2,30 +2,139 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4E9CD2D32F8
-	for <lists+intel-gfx@lfdr.de>; Tue,  8 Dec 2020 21:07:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A22532D32FD
+	for <lists+intel-gfx@lfdr.de>; Tue,  8 Dec 2020 21:11:28 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 00D2289F99;
-	Tue,  8 Dec 2020 20:07:07 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 81FA389F0B;
- Tue,  8 Dec 2020 20:07:05 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 78A15A008A;
- Tue,  8 Dec 2020 20:07:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2B2226E069;
+	Tue,  8 Dec 2020 20:11:26 +0000 (UTC)
+X-Original-To: Intel-gfx@lists.freedesktop.org
+Delivered-To: Intel-gfx@lists.freedesktop.org
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 79BE06E069
+ for <Intel-gfx@lists.freedesktop.org>; Tue,  8 Dec 2020 20:11:25 +0000 (UTC)
+IronPort-SDR: i6f/KXtdwPaOZ+gA4zpETII2evdVp262gUYgD75xCWMa/5NRKJAWqVzDYk+kFh8oyP5iCcNTQt
+ YiLpMkd0Jycw==
+X-IronPort-AV: E=McAfee;i="6000,8403,9829"; a="161013415"
+X-IronPort-AV: E=Sophos;i="5.78,403,1599548400"; d="scan'208";a="161013415"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Dec 2020 12:11:24 -0800
+IronPort-SDR: Qhv4xdeqkQXJW34k1e1QquZq7sFNkRYroE8FLxFNH6YJ205XSLwOHLWjpfJKwc/XfX8YZC7BKD
+ iLS04TVwRc8Q==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.78,403,1599548400"; d="scan'208";a="552365793"
+Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
+ by orsmga005.jf.intel.com with ESMTP; 08 Dec 2020 12:11:24 -0800
+Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1713.5; Tue, 8 Dec 2020 12:11:24 -0800
+Received: from fmsmsx602.amr.corp.intel.com (10.18.126.82) by
+ fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1713.5; Tue, 8 Dec 2020 12:11:23 -0800
+Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
+ fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1713.5
+ via Frontend Transport; Tue, 8 Dec 2020 12:11:23 -0800
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com (104.47.58.101)
+ by edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.1713.5; Tue, 8 Dec 2020 12:11:18 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Qw3CgRvbZ6bNW9KCbjxfx1fbOKHxT3O8kb0wK6HVBu14IttvRIuLAf9kV/L1bpG7oPQtR5tPz9WFEhnRR4Eeh1+v1rCZnijv/8GhVbCcBtAn5ROnJtbrOl1OXT6xNg2k07wB6OTIPe5H/4O7pLO6u60SKG4ndVgInRcRPSAYJSGoo2BkWNVYB/rkF1wRRznyvtKj4ua0I2ev8UwlzOoNj15RRxmOCFZ8ivHYTOm6HsIyE3/WYA6vOYZO2LloWHTrxCvdwhl0Rna5WxcPy34+Tktb1UHFoi2Otw8j1s20UrhVuzx+QwnJPVhrCT9OaD7JRRegA8Rvf7NOINhsO9cfQQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=sef/ZnUbCGD4CNpkB4KETclkb43XUZivRPMPY59Ik5I=;
+ b=isZfRKoN9rnNVPlHGs6BCLDwqEo/Fi/8rzMPHFdWH52nVolUb0cVWtxgvhWpr1W2IfmVIzAxhRx7YOYnDGiPfikqbujGEpBGCnwVy8RwGSkQz6gbphn0XkxUnuC3tDsPt2STz3cHecFaDwqdS6ggPNzNYhOVQy95BYlhzZa2wdo4VLbwUFqeirRCJB7LH8jVedb0B//AqAjdB4E2H266Qcp24NekeXxXLUQfbDDRLWB8lHst4peoKpjFBCwrv5oin6TG/Z1emI1l7tapecq6DAucj9zpx/h4x7liG4S4uFLk4mhJ3MRx5Pb5Eb7/7nXQoiDmkTcPhCjjk/S638HSKg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=intel.onmicrosoft.com; 
+ s=selector2-intel-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=sef/ZnUbCGD4CNpkB4KETclkb43XUZivRPMPY59Ik5I=;
+ b=xFvn4uPp0GhaXCmEYf2lFkXN3nEA/Uitli4n+Hjn5GfZ6MDimD3zti4ljP0w0znJyMdBYEr3hLYV0aYJPmesk0G4tFWwtfeL9P4hUdiCuJDES/R1fbqTZB6twSom7RRz0n/dOOcBHt8AXQcu9xaJTdNqUOdF/V8Fo0WD6hqty4I=
+Received: from DM6PR11MB4531.namprd11.prod.outlook.com (2603:10b6:5:2a5::19)
+ by DM6PR11MB3466.namprd11.prod.outlook.com (2603:10b6:5:e::23) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.3654.12; Tue, 8 Dec 2020 20:11:17 +0000
+Received: from DM6PR11MB4531.namprd11.prod.outlook.com
+ ([fe80::78db:6406:7820:1071]) by DM6PR11MB4531.namprd11.prod.outlook.com
+ ([fe80::78db:6406:7820:1071%8]) with mapi id 15.20.3632.018; Tue, 8 Dec 2020
+ 20:11:17 +0000
+From: "Huang, Sean Z" <sean.z.huang@intel.com>
+To: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ "Intel-gfx@lists.freedesktop.org" <Intel-gfx@lists.freedesktop.org>
+Thread-Topic: [Intel-gfx] [RFC-v1 03/16] drm/i915/pxp: Add PXP context for
+ logical hardware states.
+Thread-Index: AQHWzIbUUnmwj50czEWxxHcLYGeyjqnsXNzg
+Date: Tue, 8 Dec 2020 20:11:17 +0000
+Message-ID: <DM6PR11MB45313947EB92E9DB090E11AAD9CD0@DM6PR11MB4531.namprd11.prod.outlook.com>
+References: <20201207002134.13731-1-sean.z.huang@intel.com>
+ <20201207002134.13731-4-sean.z.huang@intel.com>
+ <160733823922.9322.17600246328526278530@jlahtine-mobl.ger.corp.intel.com>
+In-Reply-To: <160733823922.9322.17600246328526278530@jlahtine-mobl.ger.corp.intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+dlp-version: 11.5.1.3
+dlp-product: dlpe-windows
+dlp-reaction: no-action
+authentication-results: linux.intel.com; dkim=none (message not signed)
+ header.d=none;linux.intel.com; dmarc=none action=none header.from=intel.com;
+x-originating-ip: [73.220.16.43]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 73c41b0f-5ac5-4980-f3e9-08d89bb56bc8
+x-ms-traffictypediagnostic: DM6PR11MB3466:
+x-microsoft-antispam-prvs: <DM6PR11MB3466BD4E1AB191495552C0C8D9CD0@DM6PR11MB3466.namprd11.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:10000;
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: RawpTzozqevcfCZry3zpegZxwVxpyzrP7N0nspK9wMg4R0l1L1Q3amNRx43qYoLO8aF67o6kK4hRYsF0b7f+7sRrAyMZRVdDf6kEX1IanvmzuLYbN5lU+e4TUZVDBoTg+6O7uZk/r53UPCSDoHUw51ET0R+W5QJfQ9aCmKa1J4CiRhaSuqlwYfdYGyuJZynt0CNNvq41MG9FsRfWsFdd3iAynzl+ngqBYVQBR5W+qiHNy+/Hb4rAVfNKPVzQsMAdleyzveQIi+h2pGBr1KMZcgJPIvyVXh6yPinCkY2naAq4OxTA6UxgUvdiv9EMT8Mk
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM6PR11MB4531.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(4636009)(376002)(136003)(366004)(346002)(2906002)(71200400001)(66556008)(66946007)(110136005)(8936002)(83380400001)(64756008)(66446008)(66476007)(5660300002)(8676002)(508600001)(86362001)(76116006)(52536014)(33656002)(186003)(53546011)(7696005)(6506007)(26005)(9686003)(55016002);
+ DIR:OUT; SFP:1102; 
+x-ms-exchange-antispam-messagedata: =?utf-8?B?eEdjL1YvOFRBZVdaaWRUcjFtaldOWXVLc01lanVMT3JiVXh4aDNST09WQ3lm?=
+ =?utf-8?B?WE5UYTl2aHdhdXNWOHBmeEJEZjc1K1I3Q2xaajFhZ3Z6MkxnTzI0VWhWMlM2?=
+ =?utf-8?B?ZVpsOXRud2VTVmZFcFl1ZVNpMkRoWXdlRDdJMXBBdjQ0WDk2cFU0alN1em5j?=
+ =?utf-8?B?RUQ3V1psZUxTTjNvV2tjd20yOW9Qbi9LSzV3T0pmb2lCbjFZN2hwd2c0NkNH?=
+ =?utf-8?B?RjUvRmJ5Myt5eGxGSlZEaFNieVNyZncyNkVIZ0JHbGZLakJ0U2ZlY3ltVjR4?=
+ =?utf-8?B?aUJqQlpUUytsSUZqM0NYeWFMRFB3UWpRelhZcVFXbUpHVEV3UVR5R1p0Q241?=
+ =?utf-8?B?M0QwM3RVRERUQVNJSmQrN3o1Rkt1bWloWnZoWkV4R21JWldvdnFmSGh6QXJa?=
+ =?utf-8?B?TXpYb0dtVi9CK0VHWTNQUktpblR2YmJ5YlVCZTg1M09GVHQxQVpFUzJqT2xZ?=
+ =?utf-8?B?Qk5VdnpOV0xycmcyUEJrRXAwTk9SWURVZVRsN1NEWm1NbWw0MHpiNTFWb0lv?=
+ =?utf-8?B?ZzErNzc5RS80UlNHVDZORjZyeGlRVlFZaGVUWWFSTDIvN0Q2L2ZicXFQa0Nv?=
+ =?utf-8?B?OHBqbWhxZXBRL25JWHpVWnNiTkVyWGprZUI1MWg3cmlEckhRUy9aWkJsVGk5?=
+ =?utf-8?B?UTZlK0VuNWliZjdHT3JrZnc3dTNhRTBHbWpYTmN6R3FYOUp6OXFLNUREMHBy?=
+ =?utf-8?B?bklPQ1hsbGxHVG9LR3plMGd1ZFJHcHRQNkVrL2k2YkpSUnhqWGVhVmtPTDBV?=
+ =?utf-8?B?QWZmMDVvR0kxODhnbkh6ek53U0Z6cUx6NkY1T01aWXA5SUpjRHRha0NmYXow?=
+ =?utf-8?B?YnRKeS96TEpHaytTYjZibkc5SXN2R3YvQ3N3KzZlWXViRXpXVlpQU1lDU0lo?=
+ =?utf-8?B?K0hCdk5pTTJVOThUY2RCWE1xZSszOG5XL2RnVW9oSEYrMjl1UGEzbXdXSzZr?=
+ =?utf-8?B?aU1sQTZEM0ZuY0NOVHNFc1hHWG16MTZWamcwOFE1ZHdqNDFTazg0c3RKMzVL?=
+ =?utf-8?B?Z1FHZjdwem9HeUp1VzlOdDlhMEJzRnZVVStwbFhVT05rUjlwWjRUSGRRQlNR?=
+ =?utf-8?B?QjRPV1JPWkNWTEdNMTBMODVFQ3QyaHpHVndlMFAyQmdNRThLTWZnUEdmc1pp?=
+ =?utf-8?B?TUxkTEZKMi9kaTE1QUdFMXVwMzE1cjdjdVNETExDRi81bU5WMDQ1cDZCNVdP?=
+ =?utf-8?B?NEg0M3RNMDN3TVQzd01NbTJkbVpxVFMyQ250Z3pCVmNRcUc1Y3JaUUZiYzh3?=
+ =?utf-8?B?eUt4WUhEZ25BQnpFNjRoaloxanBBenRKN0l2ZG0vVk9qeGM2MWVXWGJBZEJC?=
+ =?utf-8?Q?0nErr67q3IrEs=3D?=
+x-ms-exchange-transport-forked: True
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Tue, 08 Dec 2020 20:07:05 -0000
-Message-ID: <160745802546.9599.6293416088701305880@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20201208185702.31852-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20201208185702.31852-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/gt=3A_Disable_preparser_around_MI=5FSEMAPHORE=5FWAIT?=
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: DM6PR11MB4531.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 73c41b0f-5ac5-4980-f3e9-08d89bb56bc8
+X-MS-Exchange-CrossTenant-originalarrivaltime: 08 Dec 2020 20:11:17.1527 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: VeU52U/mJA1O8vfikQLPM93YzU6XC8twDoHUck+hHxwRhy5khq3dWSjhUbxh9uT8NwjHhkW1YgVfdKLA1MevDQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR11MB3466
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-gfx] [RFC-v1 03/16] drm/i915/pxp: Add PXP context for
+ logical hardware states.
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,234 +147,238 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============0264028245=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0264028245==
-Content-Type: multipart/alternative;
- boundary="===============7990597859773329285=="
+Hi Joonas,
 
---===============7990597859773329285==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+> This should really have its own function intel_pxp_context_foobar() that is called from this point.
+DONE, remove global_state_attacked and flag_display_hm_surface_keys from this patch and only added them if necessary.
 
-== Series Details ==
+> Also, as you see "ctx_mutex" is tautology and "mutex" is enough when it's member of "ctx".
+DONE
 
-Series: drm/i915/gt: Disable preparser around MI_SEMAPHORE_WAIT
-URL   : https://patchwork.freedesktop.org/series/84699/
-State : success
+> We seem to have two separate interrupts at the top level handler. Either we should handle the interrupts separately or just have a single variable "teardown_requested" that is flagged from here.
+I would prefer to handle them separately because they are indeed coming from different irq, having different handler would be more readable.
 
-== Summary ==
+> The effects of setting these variables can't be reviewed as not even the initialization sequence has been added by the series, so this should definitely be much more towards the end of the series.
+DONE, got it, let me re-order the commit sequence and move this patch to the tail.
 
-CI Bug Log - changes from CI_DRM_9462 -> Patchwork_19082
-====================================================
+> The if() check is pointless. Again, we should not directly poke such deeply, but wrap it in a function.
+DONE
 
-Summary
--------
+> I think this should be -ENOMEM.
+DONE, no need to allocate or return error.
 
-  **SUCCESS**
+> As we only intend to support a single context, we should avoid a pointer
+> + alloc here and just use intel_pxp_context_init(&pxp->ctx)
+DONE
 
-  No regressions found.
+> intel_pxp_context_fini(&pxp->ctx);
+DONE
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19082/index.html
+> These should be prefixed with PXP_ also, we should not need these at all if we only intend to support single-session.
+DONE, remove them since not required by single session usage.
 
-New tests
----------
+> Adding "new_" is tautology here. Also, we try to separate the allocation and init to separate functions so that we can embed, like I suggested above to embed the singleton context to intel_pxp as member, not pointer.
+DONE
 
-  New tests have been introduced between CI_DRM_9462 and Patchwork_19082:
+> "ctx_id" is again repeating as it's member of "ctx", so "id" should be fine for member name.
+DONE
 
-### New CI tests (1) ###
+> We shouldn't need any session tracking as we only have single session.
+I have trimmed the code only for single session usage only, but hopefully we could have at least one tag for this single session.
 
-  * boot:
-    - Statuses : 1 fail(s) 39 pass(s)
-    - Exec time: [0.0] s
+> We should only add each variable only when the handler code is introduced. For now the names don't really give a good hint about what their usage model will be, so can't recommend better names.
+DONE
 
-  
+> In this series, there will be no user space context ID, but only a singleton implicit session. So we should not need any tracking code.
+DONE
 
-Known issues
-------------
+-----Original Message-----
+From: Joonas Lahtinen <joonas.lahtinen@linux.intel.com> 
+Sent: Monday, December 7, 2020 2:51 AM
+To: Huang, Sean Z <sean.z.huang@intel.com>; Intel-gfx@lists.freedesktop.org
+Subject: Re: [Intel-gfx] [RFC-v1 03/16] drm/i915/pxp: Add PXP context for logical hardware states.
 
-  Here are the changes found in Patchwork_19082 that come from known issues:
+Quoting Huang, Sean Z (2020-12-07 02:21:21)
+> Add PXP context which represents combined view of driver and logical 
+> HW states.
+> 
+> Signed-off-by: Huang, Sean Z <sean.z.huang@intel.com>
 
-### IGT changes ###
+<SNIP>
 
-#### Issues hit ####
+> +++ b/drivers/gpu/drm/i915/pxp/intel_pxp.c
+> @@ -5,6 +5,7 @@
+>  
+>  #include "i915_drv.h"
+>  #include "intel_pxp.h"
+> +#include "intel_pxp_context.h"
+>  
+>  static void intel_pxp_write_irq_mask_reg(struct drm_i915_private 
+> *i915, u32 mask)  { @@ -28,12 +29,28 @@ static void 
+> intel_pxp_mask_irq(struct intel_gt *gt, u32 mask)
+>  
+>  static int intel_pxp_teardown_required_callback(struct 
+> drm_i915_private *i915)  {
+> +       mutex_lock(&i915->pxp.ctx->ctx_mutex);
+> +
+> +       i915->pxp.ctx->global_state_attacked = true;
+> +       i915->pxp.ctx->flag_display_hm_surface_keys = false;
+> +
+> +       mutex_unlock(&i915->pxp.ctx->ctx_mutex);
 
-  * igt@i915_selftest@live@gt_heartbeat:
-    - fi-tgl-y:           [PASS][1] -> [DMESG-FAIL][2] ([i915#2601])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9462/fi-tgl-y/igt@i915_selftest@live@gt_heartbeat.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19082/fi-tgl-y/igt@i915_selftest@live@gt_heartbeat.html
+This should really have its own function intel_pxp_context_foobar() that is called from this point. Also, as you see "ctx_mutex" is tautology and "mutex" is enough when it's member of "ctx".
 
-  * igt@prime_vgem@basic-fence-flip:
-    - fi-tgl-y:           [PASS][3] -> [DMESG-WARN][4] ([i915#402]) +1 similar issue
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9462/fi-tgl-y/igt@prime_vgem@basic-fence-flip.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19082/fi-tgl-y/igt@prime_vgem@basic-fence-flip.html
+We seem to have two separate interrupts at the top level handler. Either we should handle the interrupts separately or just have a single variable "teardown_requested" that is flagged from here.
 
-  * igt@runner@aborted:
-    - fi-bdw-5557u:       NOTRUN -> [FAIL][5] ([i915#2029] / [i915#2722])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19082/fi-bdw-5557u/igt@runner@aborted.html
+The effects of setting these variables can't be reviewed as not even the initialization sequence has been added by the series, so this should definitely be much more towards the end of the series.
 
-  
-#### Possible fixes ####
+> +
+>         return 0;
+>  }
+>  
+>  static int intel_pxp_global_terminate_complete_callback(struct 
+> drm_i915_private *i915)  {
+> -       return 0;
+> +       int ret = 0;
+> +
+> +       mutex_lock(&i915->pxp.ctx->ctx_mutex);
+> +
+> +       if (i915->pxp.ctx->global_state_attacked)
+> +               i915->pxp.ctx->global_state_attacked = false;
 
-  * igt@gem_flink_basic@bad-flink:
-    - fi-tgl-y:           [DMESG-WARN][6] ([i915#402]) -> [PASS][7] +1 similar issue
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9462/fi-tgl-y/igt@gem_flink_basic@bad-flink.html
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19082/fi-tgl-y/igt@gem_flink_basic@bad-flink.html
+The if() check is pointless. Again, we should not directly poke such deeply, but wrap it in a function.
 
-  * igt@kms_chamelium@dp-crc-fast:
-    - fi-kbl-7500u:       [FAIL][8] ([i915#1161] / [i915#262]) -> [PASS][9]
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9462/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19082/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html
+> +
+> +       mutex_unlock(&i915->pxp.ctx->ctx_mutex);
+> +
+> +       return ret;
+>  }
+>  
+>  static void intel_pxp_irq_work(struct work_struct *work) @@ -69,6 
+> +86,12 @@ int intel_pxp_init(struct drm_i915_private *i915)
+>  
+>         drm_info(&i915->drm, "i915 PXP is inited with i915=[%p]\n", 
+> i915);
+>  
+> +       i915->pxp.ctx = intel_pxp_create_ctx(i915);
+> +       if (!i915->pxp.ctx) {
+> +               drm_err(&i915->drm, "Failed to create pxp ctx\n");
+> +               return -EFAULT;
 
-  
-  [i915#1161]: https://gitlab.freedesktop.org/drm/intel/issues/1161
-  [i915#2029]: https://gitlab.freedesktop.org/drm/intel/issues/2029
-  [i915#2601]: https://gitlab.freedesktop.org/drm/intel/issues/2601
-  [i915#262]: https://gitlab.freedesktop.org/drm/intel/issues/262
-  [i915#2722]: https://gitlab.freedesktop.org/drm/intel/issues/2722
-  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
+I think this should be -ENOMEM.
 
+> +       }
 
-Participating hosts (43 -> 40)
-------------------------------
+As we only intend to support a single context, we should avoid a pointer
++ alloc here and just use intel_pxp_context_init(&pxp->ctx)
 
-  Missing    (3): fi-ilk-m540 fi-bdw-samus fi-hsw-4200u 
+> @@ -80,6 +103,10 @@ int intel_pxp_init(struct drm_i915_private *i915)
+>  
+>  void intel_pxp_uninit(struct drm_i915_private *i915)  {
+> +       if (!i915 || INTEL_GEN(i915) < 12)
+> +               return;
+> +
+> +       intel_pxp_destroy_ctx(i915);
 
+intel_pxp_context_fini(&pxp->ctx);
 
-Build changes
--------------
+> +++ b/drivers/gpu/drm/i915/pxp/intel_pxp.h
+> @@ -12,6 +12,9 @@
+>  #define PXP_IRQ_VECTOR_DISPLAY_APP_TERM_PER_FW_REQ BIT(2)  #define 
+> PXP_IRQ_VECTOR_PXP_DISP_STATE_RESET_COMPLETE BIT(3)
+>  
+> +#define MAX_TYPE0_SESSIONS 16
+> +#define MAX_TYPE1_SESSIONS 6
 
-  * Linux: CI_DRM_9462 -> Patchwork_19082
+These should be prefixed with PXP_ also, we should not need these at all if we only intend to support single-session.
 
-  CI-20190529: 20190529
-  CI_DRM_9462: b358df960435469848e291bbebbeb4eca1ff32af @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5885: d99f644b1868b9c92435b05ebfafa230721cd677 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_19082: be6cd228954cad6c05cd167d6f30582b538c6668 @ git://anongit.freedesktop.org/gfx-ci/linux
+> +++ b/drivers/gpu/drm/i915/pxp/intel_pxp_context.c
+> @@ -0,0 +1,45 @@
+> +// SPDX-License-Identifier: MIT
+> +/*
+> + * Copyright(c) 2020, Intel Corporation. All rights reserved.
+> + */
+> +
+> +#include "intel_pxp_context.h"
+> +
+> +/**
+> + * intel_pxp_create_ctx - To create a new pxp context.
+> + * @i915: i915 device handle.
+> + *
+> + * Return: pointer to new_ctx, NULL for failure  */ struct 
+> +pxp_context *intel_pxp_create_ctx(struct drm_i915_private *i915) {
+> +       struct pxp_context *new_ctx = NULL;
 
+Adding "new_" is tautology here. Also, we try to separate the allocation and init to separate functions so that we can embed, like I suggested above to embed the singleton context to intel_pxp as member, not pointer.
 
-== Linux commits ==
+> +
+> +       new_ctx = kzalloc(sizeof(*new_ctx), GFP_KERNEL);
+> +       if (!new_ctx)
+> +               return NULL;
+> +
+> +       get_random_bytes(&new_ctx->ctx_id, sizeof(new_ctx->ctx_id));
 
-be6cd228954c drm/i915/gt: Disable preparser around MI_SEMAPHORE_WAIT
+"ctx_id" is again repeating as it's member of "ctx", so "id" should be fine for member name.
 
-== Logs ==
+> +++ b/drivers/gpu/drm/i915/pxp/intel_pxp_context.h
+> @@ -0,0 +1,44 @@
+> +/* SPDX-License-Identifier: MIT */
+> +/*
+> + * Copyright(c) 2020, Intel Corporation. All rights reserved.
+> + */
+> +
+> +#ifndef __INTEL_PXP_CONTEXT_H__
+> +#define __INTEL_PXP_CONTEXT_H__
+> +
+> +#include <linux/list.h>
+> +#include "i915_drv.h"
+> +#include "pxp/intel_pxp.h"
+> +
+> +/* struct pxp_context - Represents combined view of driver and 
+> +logical HW states. */ struct pxp_context {
+> +       /** @ctx_mutex: mutex to protect the pxp context */
+> +       struct mutex ctx_mutex;
+> +
+> +       struct list_head active_pxp_type0_sessions;
+> +       struct list_head active_pxp_type1_sessions;
 
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19082/index.html
+We shouldn't need any session tracking as we only have single session.
 
---===============7990597859773329285==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+> +       struct list_head user_ctx_list;
+> +
+> +       u32 type0_session_pxp_tag[MAX_TYPE0_SESSIONS];
+> +       u32 type1_session_pxp_tag[MAX_TYPE1_SESSIONS];
 
+We shouldn't need any of these arrays as we only have single session.
 
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
+> +
+> +       int ctx_id;
+> +
+> +       bool global_state_attacked;
+> +       bool global_state_in_suspend;
+> +       bool flag_display_hm_surface_keys;
 
+We should only add each variable only when the handler code is introduced. For now the names don't really give a good hint about what their usage model will be, so can't recommend better names.
 
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/gt: Disable preparser around MI_SEMAPHORE_WAIT</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/84699/">https://patchwork.freedesktop.org/series/84699/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
+> +};
+> +
+> +struct pxp_user_ctx {
+> +       /** @listhead: linked list infrastructure, do not change its order. */
+> +       struct list_head listhead;
+> +
+> +       /** @user_ctx: user space context id */
+> +       u32 user_ctx;
+> +};
 
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19082/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19082/index.html</a></td></tr>
+In this series, there will be no user space context ID, but only a singleton implicit session. So we should not need any tracking code.
 
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_9462 -&gt; Patchwork_19082</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19082/index.html</p>
-<h2>New tests</h2>
-<p>New tests have been introduced between CI_DRM_9462 and Patchwork_19082:</p>
-<h3>New CI tests (1)</h3>
-<ul>
-<li>boot:<ul>
-<li>Statuses : 1 fail(s) 39 pass(s)</li>
-<li>Exec time: [0.0] s</li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_19082 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live@gt_heartbeat:</p>
-<ul>
-<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9462/fi-tgl-y/igt@i915_selftest@live@gt_heartbeat.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19082/fi-tgl-y/igt@i915_selftest@live@gt_heartbeat.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2601">i915#2601</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@prime_vgem@basic-fence-flip:</p>
-<ul>
-<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9462/fi-tgl-y/igt@prime_vgem@basic-fence-flip.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19082/fi-tgl-y/igt@prime_vgem@basic-fence-flip.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) +1 similar issue</li>
-</ul>
-</li>
-<li>
-<p>igt@runner@aborted:</p>
-<ul>
-<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19082/fi-bdw-5557u/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2029">i915#2029</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2722">i915#2722</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@gem_flink_basic@bad-flink:</p>
-<ul>
-<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9462/fi-tgl-y/igt@gem_flink_basic@bad-flink.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19082/fi-tgl-y/igt@gem_flink_basic@bad-flink.html">PASS</a> +1 similar issue</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@dp-crc-fast:</p>
-<ul>
-<li>fi-kbl-7500u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9462/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1161">i915#1161</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/262">i915#262</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19082/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Participating hosts (43 -&gt; 40)</h2>
-<p>Missing    (3): fi-ilk-m540 fi-bdw-samus fi-hsw-4200u </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_9462 -&gt; Patchwork_19082</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_9462: b358df960435469848e291bbebbeb4eca1ff32af @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_5885: d99f644b1868b9c92435b05ebfafa230721cd677 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
-  Patchwork_19082: be6cd228954cad6c05cd167d6f30582b538c6668 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>be6cd228954c drm/i915/gt: Disable preparser around MI_SEMAPHORE_WAIT</p>
-
-</body>
-</html>
-
---===============7990597859773329285==--
-
---===============0264028245==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
+Regards, Joonas
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============0264028245==--
