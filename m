@@ -2,40 +2,45 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 761082D28F4
-	for <lists+intel-gfx@lfdr.de>; Tue,  8 Dec 2020 11:33:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 037EB2D2976
+	for <lists+intel-gfx@lfdr.de>; Tue,  8 Dec 2020 12:04:17 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 390BA6E0BF;
-	Tue,  8 Dec 2020 10:33:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AB5CF8999A;
+	Tue,  8 Dec 2020 11:04:13 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CF0D46E0BE;
- Tue,  8 Dec 2020 10:33:28 +0000 (UTC)
-IronPort-SDR: LEose4KbvIOt/UNuuEs1O3knvaZebS5LrGw2lhyPig0uDMsocVCwDuvkdxwLikW9Fch3sbyrz9
- tFlQaZRVPnWg==
-X-IronPort-AV: E=McAfee;i="6000,8403,9828"; a="258576513"
-X-IronPort-AV: E=Sophos;i="5.78,402,1599548400"; d="scan'208";a="258576513"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Dec 2020 02:33:26 -0800
-IronPort-SDR: cACYdinbxwL7OyT6e2bbk3UfFRP09uka5HcEub/UX5XyGz/LFq3LfXWl92ONECeEhy0ej0fEV5
- jjn6HYVJYrsA==
-X-IronPort-AV: E=Sophos;i="5.78,402,1599548400"; d="scan'208";a="317739141"
-Received: from mjgleeso-mobl.ger.corp.intel.com (HELO localhost)
- ([10.213.246.199])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Dec 2020 02:33:23 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Ankit Nautiyal <ankit.k.nautiyal@intel.com>,
- intel-gfx@lists.freedesktop.org
-In-Reply-To: <20201208075145.17389-1-ankit.k.nautiyal@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20201208075145.17389-1-ankit.k.nautiyal@intel.com>
-Date: Tue, 08 Dec 2020 12:33:20 +0200
-Message-ID: <87tuswa8pb.fsf@intel.com>
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 89E958999A;
+ Tue,  8 Dec 2020 11:04:12 +0000 (UTC)
+IronPort-SDR: IIaHZH/MjKnSWU5xGH0QUOVNQUtF0ZDhQ/P5XTpnedLbiG0gsopzCslxEpcXRzoulXric7H3dz
+ dsX5L37ebe5w==
+X-IronPort-AV: E=McAfee;i="6000,8403,9828"; a="192154752"
+X-IronPort-AV: E=Sophos;i="5.78,402,1599548400"; d="scan'208";a="192154752"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Dec 2020 03:04:08 -0800
+IronPort-SDR: T3qYfZCERfoJ6CZRSkqPOME8CzmMEM/MtU72uX800d/6B11PlB6bE6OcsTD7atZeCyCMNjxVit
+ vkO1KI+5jIpA==
+X-IronPort-AV: E=Sophos;i="5.78,402,1599548400"; d="scan'208";a="347854790"
+Received: from thrakatuluk.fi.intel.com (HELO thrakatuluk) ([10.237.68.154])
+ by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Dec 2020 03:04:07 -0800
+Received: from platvala by thrakatuluk with local (Exim 4.92)
+ (envelope-from <petri.latvala@intel.com>)
+ id 1kmamr-0005uT-0i; Tue, 08 Dec 2020 13:04:05 +0200
+Date: Tue, 8 Dec 2020 13:04:05 +0200
+From: Petri Latvala <petri.latvala@intel.com>
+To: Chris Wilson <chris@chris-wilson.co.uk>
+Message-ID: <20201208110405.GO7444@platvala-desk.ger.corp.intel.com>
+References: <20201207161150.1841453-1-chris@chris-wilson.co.uk>
+ <20201207161150.1841453-2-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH v4 00/16] Add support for DP-HDMI2.1 PCON
+Content-Disposition: inline
+In-Reply-To: <20201207161150.1841453-2-chris@chris-wilson.co.uk>
+X-Patchwork-Hint: comment
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: Re: [Intel-gfx] [PATCH i-g-t 2/2] i915/query: Directly check query
+ results against GETPARAM
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,58 +53,25 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: airlied@linux.ie, Daniel Vetter <daniel.vetter@ffwll.ch>,
- dri-devel@lists.freedesktop.org
+Cc: igt-dev@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 08 Dec 2020, Ankit Nautiyal <ankit.k.nautiyal@intel.com> wrote:
-> This patch series attempts to add support for a DP-HDMI2.1 Protocol
-> Convertor. The VESA spec for the HDMI2.1 PCON are proposed in Errata
-> E5 to DisplayPort_v2.0:
-> https://vesa.org/join-vesamemberships/member-downloads/?action=stamp&fileid=42299
-> The details are mentioned in:
-> VESA DP-to-HDMI PCON Specification Standalone Document
-> https://groups.vesa.org/wg/DP/document/15651
->
-> This series starts with adding support for FRL (Fixed Rate Link)
-> Training between the PCON and HDMI2.1 sink.
-> As per HDMI2.1 specification, a new data-channel or lane is added in
-> FRL mode, by repurposing the TMDS clock Channel. Through FRL, higher
-> bit-rate can be supported, ie. up to 12 Gbps/lane (48 Gbps over 4
-> lanes).
->
-> With these patches, the HDMI2.1 PCON can be configured to achieve FRL
-> training based on the maximum FRL rate supported by the panel, source
-> and the PCON.
-> The approach is to add the support for FRL training between PCON and
-> HDMI2.1 sink and gradually add other blocks for supporting higher
-> resolutions and other HDMI2.1 features, that can be supported by pcon
-> for the sources that do not natively support HDMI2.1.
->
-> This is done before the DP Link training between the source and PCON
-> is started. In case of FRL training is not achieved, the PCON will
-> work in the regular TMDS mode, without HDMI2.1 feature support.
-> Any interruption in FRL training between the PCON and HDMI2.1 sink is
-> notified through IRQ_HPD. On receiving the IRQ_HPD the concerned DPCD
-> registers are read and FRL training is re-attempted.
->
-> Currently, we have tested the FRL training and are able to enable 4K
-> display with TGL Platform + Realtek PCON RTD2173 with HDMI2.1 supporting
-> panel.
-
-Per IRC chat with Maarten and Daniel, once all the reviews are in, I'll
-add a topic branch and apply the patches there, so we can merge the
-branch to both drm-misc-next and drm-intel-next.
-
-BR,
-Jani.
+On Mon, Dec 07, 2020 at 04:11:50PM +0000, Chris Wilson wrote:
+> Simplify the cross-check by asserting that the existence of an engine in
+> the list matches the existence of the engine as reported by GETPARAM.
+> By using the comparison, we check both directions at once.
+> 
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> Cc: Petri Latvala <petri.latvala@intel.com>
 
 
--- 
-Jani Nikula, Intel Open Source Graphics Center
+For the series,
+Reviewed-by: Petri Latvala <petri.latvala@intel.com>
+
+Thanks!
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
