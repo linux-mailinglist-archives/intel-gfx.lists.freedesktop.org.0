@@ -2,41 +2,110 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E7FE32D4650
-	for <lists+intel-gfx@lfdr.de>; Wed,  9 Dec 2020 17:06:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id AE1552D466B
+	for <lists+intel-gfx@lfdr.de>; Wed,  9 Dec 2020 17:11:03 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 63D496EA7A;
-	Wed,  9 Dec 2020 16:06:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2D79D6EABD;
+	Wed,  9 Dec 2020 16:10:59 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 133206EA7A
- for <intel-gfx@lists.freedesktop.org>; Wed,  9 Dec 2020 16:06:30 +0000 (UTC)
-IronPort-SDR: PMFO7DZYulcNXQgttZSGiMrERvB2SrerF280zEvNMZxmm8SIlKD9TOAVahgYnPawE453mNi09M
- dEy2HJQEiVew==
-X-IronPort-AV: E=McAfee;i="6000,8403,9829"; a="161150497"
-X-IronPort-AV: E=Sophos;i="5.78,405,1599548400"; d="scan'208";a="161150497"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Dec 2020 08:06:29 -0800
-IronPort-SDR: zFvSuK6gzcuRmik+qQLSvfggTSUaxIRKt5rCuERCbHWFuoeSoXaxJtP26VXQywfiVKVuwmAC/r
- 8FonCIOvt1QA==
-X-IronPort-AV: E=Sophos;i="5.78,405,1599548400"; d="scan'208";a="318339073"
-Received: from genxfsim-desktop.iind.intel.com (HELO intel.com)
- ([10.223.74.178])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Dec 2020 08:06:28 -0800
-Date: Wed, 9 Dec 2020 21:23:02 +0530
-From: Anshuman Gupta <anshuman.gupta@intel.com>
-To: Imre Deak <imre.deak@intel.com>
-Message-ID: <20201209155302.GM30377@intel.com>
-References: <20201209153952.3397959-1-imre.deak@intel.com>
+Received: from NAM02-BL2-obe.outbound.protection.outlook.com
+ (mail-eopbgr750045.outbound.protection.outlook.com [40.107.75.45])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EAE026EA96;
+ Wed,  9 Dec 2020 16:10:56 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Q5pS1KCK5WKJR6K+oUXWY8odqERAZ5Lnf7y26FEh/XKgvGLTpnYc8gpI0kFr7rIwzuAv/ekmfHNcO7rU+GZTiTxRa4rl1r0Xg2S5jTFzj0CP5zmHBl37wLVwJ+tO1YQAwk4RsDjFY7NOzdLWmQYgeQ4kj3gZBywyjRZ1FJnDjuz+bNbY15gm6wOQQ/7T6kFkvpSwuwnkokakPn/6UCVgVa7ynMJJMCKtHF0aMx9deiHTkp2aS4rUbKrCGN8bjekrv7qUQknyit1Nj4+/mxazZa5v8xcTFT+BCC4PyONuDsDIYtrAOPEBxvxgBe84/ptFgdB6K5bCYmJqC2XEXVor+A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=w7HlXYyvyJ7UQ5TJcbB/wsgmxLfytwe9GV+qTwWdXuc=;
+ b=j9cVpDc+sxxhrNFOB/abrAuoZdhAGtCjhx8GjmWnW1Pb85YRLyPH1pb71a0U9FiG4hY4Kf6q7yxGZ72Ew05pTCb3lqN3ec2bE8sKY1PovyLOfpgNtM2XW82/bzqN1QTsg5Z591Egrxidw3RRN3pzYpBG28FciCD1Xa8E7Lpath8rsGGssZslB4B/JnJVHvgMiVovamWu63QWAxc7zAgxxxF5vHFDFUFzc5yeefsEqTmzj2ZGIRYFecaYTRuisE5aT72WB2nkSE2oGbsLdeorVibaKCoHIhi52A08oUgWz4BwvMQ9wrNS3qkmVuA3vU2w1VMC0iGjDJkC10vXl82L6w==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=w7HlXYyvyJ7UQ5TJcbB/wsgmxLfytwe9GV+qTwWdXuc=;
+ b=r3SrVZ9Lnmwh+ymUH410sjLAitat1iKB1dTP0MzmBdK8pUwotIbAu8HtPeJUMLmGTYTI9pCC8qh6aBOaSs6D4CBPaB1fCwFh2CJwES9IUVfaGBXbo1Xoc1BE9N91OFqrbALYPzqEMORchXnWrZCv6YhsGWGx1OghIevJhWo0kbM=
+Authentication-Results: vger.kernel.org; dkim=none (message not signed)
+ header.d=none;vger.kernel.org; dmarc=none action=none header.from=amd.com;
+Received: from DM6PR12MB3962.namprd12.prod.outlook.com (2603:10b6:5:1ce::21)
+ by DM6PR12MB2795.namprd12.prod.outlook.com (2603:10b6:5:41::32) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3632.18; Wed, 9 Dec
+ 2020 16:10:55 +0000
+Received: from DM6PR12MB3962.namprd12.prod.outlook.com
+ ([fe80::d055:19dc:5b0f:ed56]) by DM6PR12MB3962.namprd12.prod.outlook.com
+ ([fe80::d055:19dc:5b0f:ed56%6]) with mapi id 15.20.3654.012; Wed, 9 Dec 2020
+ 16:10:55 +0000
+To: Stephen Rothwell <sfr@canb.auug.org.au>,
+ Daniel Vetter <daniel.vetter@ffwll.ch>,
+ Intel Graphics <intel-gfx@lists.freedesktop.org>,
+ DRI <dri-devel@lists.freedesktop.org>
+References: <20201209210211.306f3c61@canb.auug.org.au>
+From: Luben Tuikov <luben.tuikov@amd.com>
+Message-ID: <4005f7bb-1a46-0357-cccd-5febae8c4fe1@amd.com>
+Date: Wed, 9 Dec 2020 11:10:51 -0500
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Thunderbird/78.5.1
+In-Reply-To: <20201209210211.306f3c61@canb.auug.org.au>
+Content-Language: en-CA
+X-Originating-IP: [165.204.54.211]
+X-ClientProxiedBy: YT1PR01CA0149.CANPRD01.PROD.OUTLOOK.COM
+ (2603:10b6:b01:2f::28) To DM6PR12MB3962.namprd12.prod.outlook.com
+ (2603:10b6:5:1ce::21)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20201209153952.3397959-1-imre.deak@intel.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/icl: Fix initing the DSI DSC power
- refcount during HW readout
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from [172.31.18.65] (165.204.54.211) by
+ YT1PR01CA0149.CANPRD01.PROD.OUTLOOK.COM (2603:10b6:b01:2f::28) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.3654.12 via Frontend Transport; Wed, 9 Dec 2020 16:10:53 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-HT: Tenant
+X-MS-Office365-Filtering-Correlation-Id: 225e9c0e-38c8-4993-0969-08d89c5d01fc
+X-MS-TrafficTypeDiagnostic: DM6PR12MB2795:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <DM6PR12MB2795E3EE1FD690D8837362BC99CC0@DM6PR12MB2795.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:983;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: kiDsXg3dqSJ5bdNQSX3+1KOw6CKySxc3dTRmyojkoYxkrKHoNMdfrnQvuLjDIBL30+lpxDBiB2CUWAOrpoMnGzIKzrvkGYp5sdN5hLb5pnFXZF8IWLU1d4mvfJ2UozriF672P+xUt3ZorKAmthj9edc2LWGMW/bT2WfrY8I00lE9MBjh+XrjTa5WaC3kvpyFHOgMeOvZDIObeGmkmgnFrCFdmKoRf2XBQ1fL0I0KtKLPr3pmdBwB98c3T9dcYF1TGsO1BPrvn+KcqxcWgI86uSd0EODV6XlCHFJbYv892eH3tvwdk6hjP+GqHwcfm98tV2RjeL2ZlpfoF2d0kSjBZQ0patbfuXd+vBGdLs6HGo2uDjCzwe9eD8FUQsErw06HfoCymf4Eq0pLEJb5UihgP7NhM9TE74sX4uBrGvEXKgI12oN4+3sv3UZeIBKQW/h/
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM6PR12MB3962.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(4636009)(346002)(376002)(366004)(136003)(508600001)(8676002)(2906002)(4326008)(8936002)(54906003)(53546011)(34490700003)(44832011)(66946007)(66476007)(186003)(2616005)(31686004)(956004)(83380400001)(4744005)(16526019)(66556008)(110136005)(86362001)(52116002)(5660300002)(16576012)(36756003)(26005)(31696002)(6486002)(45980500001)(43740500002);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData: =?Windows-1252?Q?AiBLBMimMsy7ve7GfhX/rYVv2+qCEwqxsW8RzR13TTbyt3hHggdSqalG?=
+ =?Windows-1252?Q?FNRs/V+gv/inkNYTXn973NOIlprJWNdD0PlyO1Y8DByKIcrqdyROPy/L?=
+ =?Windows-1252?Q?JaE9ELYW6ev/me7msZRUN8u1dqjKJybnKTgaaa90MydmNcnJlfrSKI8d?=
+ =?Windows-1252?Q?L2XS5JUrUHJq2Bcjgno/FBjXA/tjQX5WhFISwPIOawaHUrZ5QPXU/kN+?=
+ =?Windows-1252?Q?GQFJPfa1GfyKjms2pIpHomfCEobmT71au9EuxKpKcfdsL7VqmYBXLOrJ?=
+ =?Windows-1252?Q?XT90HKoj+2TghhT0Eb4KVj4thDxMUsT3KItJYiptE3H/7U86nxMTEF2i?=
+ =?Windows-1252?Q?8xGtJGlXwWaGb7+Pp4FKvxMYJjPwMx0UIA0ikAXnwrlII0okm2X8ZMwr?=
+ =?Windows-1252?Q?kMxhaFeI7WMHp18RY4nd0bYzJE2UJO05p/6R+yB/iY8p2OUuRgog/lvp?=
+ =?Windows-1252?Q?6JO5hcJ9KwBRtMlje5viMaPdxrPGxmxncHqxoZ3qwOR34oRweaumedVZ?=
+ =?Windows-1252?Q?fTk/FcUm0LJhMV9UM36mVtQ+Caha4ZlBpi1uuGG4ria8nqoy9j1D5czn?=
+ =?Windows-1252?Q?1RJiY1ZbNt7dsyuFuUjErBVNvEt6p9omVZkKpoyd3h86TyOu7NPqD/62?=
+ =?Windows-1252?Q?khMjv4dBYIbR1Y6Ai+aBwFKmMUcccWuqq/TAk50O1oqPxI2BBZh34Ub8?=
+ =?Windows-1252?Q?Gzjwz7yZGVet7+6aQkQZZ00sSxn0ktLIsRFcmqqTUBlzIBLi8CNYoTpF?=
+ =?Windows-1252?Q?5m7Bg2y+qJQ+WJTE+Ifl+8GMlA4SFbym3omndVP9fUx5Mqt9HO663fQz?=
+ =?Windows-1252?Q?cVDo7FswhWJ462kDw3T6r3Gr5d7ta5MsyGmOfOrM0KGQ6MGgTXqr1tWl?=
+ =?Windows-1252?Q?hr6dzsg2rR4eBDPjXbLv/Gi5pFuYou3eJo/yYFhlE0oeb1Fqp7aGGUmZ?=
+ =?Windows-1252?Q?vmmSjH/ZZZWnhcfeaEbGZH+GwiKRHk80rC8fmwghBDcL9lUDnOwmHXLc?=
+ =?Windows-1252?Q?9RORjpLrFp42DV26Jle3M/roeP57L06IkY3h3yNAuRd8TiMkG0GN1YN6?=
+ =?Windows-1252?Q?AFThnY6kvhgbsuAg?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-AuthSource: DM6PR12MB3962.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Dec 2020 16:10:55.1321 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-Network-Message-Id: 225e9c0e-38c8-4993-0969-08d89c5d01fc
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: sHeQyS9spUhjaVgRB3sxP/ADhrjnj5pD+KcqaTn493f2Bc25YNS7+5Wvyqki7NjR
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB2795
+Subject: Re: [Intel-gfx] linux-next: build warning after merge of the
+ drm-misc tree
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,50 +118,33 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Nikula, Jani" <jani.nikula@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Cc: Linux Next Mailing List <linux-next@vger.kernel.org>,
+ =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 2020-12-09 at 21:09:52 +0530, Imre Deak wrote:
-> For an enabled DSC during HW readout the corresponding power reference
-> is taken along the CRTC power domain references in
-> get_crtc_power_domains(). Remove the incorrect get ref from the DSI
-> encoder hook.
-Looks good to me.
-Reviewed-by: Anshuman Gupta <anshuman.gupta@intel.com>
+On 2020-12-09 05:02, Stephen Rothwell wrote:
+> Hi all,
 > 
-> Cc: Vandita Kulkarni <vandita.kulkarni@intel.com>
-> Cc: Jani Nikula <jani.nikula@intel.com>
-> Signed-off-by: Imre Deak <imre.deak@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/icl_dsi.c | 4 ----
->  1 file changed, 4 deletions(-)
+> After merging the drm-misc tree, today's linux-next build (htmldocs)
+> produced this warning:
 > 
-> diff --git a/drivers/gpu/drm/i915/display/icl_dsi.c b/drivers/gpu/drm/i915/display/icl_dsi.c
-> index a9439b415603..b3533a32f8ba 100644
-> --- a/drivers/gpu/drm/i915/display/icl_dsi.c
-> +++ b/drivers/gpu/drm/i915/display/icl_dsi.c
-> @@ -1616,10 +1616,6 @@ static void gen11_dsi_get_power_domains(struct intel_encoder *encoder,
->  
->  	get_dsi_io_power_domains(i915,
->  				 enc_to_intel_dsi(encoder));
-> -
-> -	if (crtc_state->dsc.compression_enable)
-> -		intel_display_power_get(i915,
-> -					intel_dsc_power_domain(crtc_state));
->  }
->  
->  static bool gen11_dsi_get_hw_state(struct intel_encoder *encoder,
-> -- 
-> 2.25.1
+> include/drm/gpu_scheduler.h:201: warning: Function parameter or member 'list' not described in 'drm_sched_job'
 > 
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+> Introduced by commit
+> 
+>   8935ff00e3b1 ("drm/scheduler: "node" --> "list"")
+> 
+
+Thanks for the notification.
+
+I'll send out a patch to fix this.
+
+Regards,
+Luben
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
