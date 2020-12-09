@@ -1,32 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 850782D412C
-	for <lists+intel-gfx@lfdr.de>; Wed,  9 Dec 2020 12:34:35 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0FAE12D4134
+	for <lists+intel-gfx@lfdr.de>; Wed,  9 Dec 2020 12:36:44 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BB0E66EA03;
-	Wed,  9 Dec 2020 11:34:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4901A6E140;
+	Wed,  9 Dec 2020 11:36:42 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1940D6EA03
- for <intel-gfx@lists.freedesktop.org>; Wed,  9 Dec 2020 11:34:31 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BD7F46E140
+ for <intel-gfx@lists.freedesktop.org>; Wed,  9 Dec 2020 11:36:40 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from localhost (unverified [78.156.65.138]) 
  by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 23266089-1500050 for multiple; Wed, 09 Dec 2020 11:34:28 +0000
+ 23266118-1500050 for multiple; Wed, 09 Dec 2020 11:36:37 +0000
 MIME-Version: 1.0
-In-Reply-To: <20201209045246.2905675-2-lucas.demarchi@intel.com>
+In-Reply-To: <20201209045246.2905675-3-lucas.demarchi@intel.com>
 References: <20201209045246.2905675-1-lucas.demarchi@intel.com>
- <20201209045246.2905675-2-lucas.demarchi@intel.com>
+ <20201209045246.2905675-3-lucas.demarchi@intel.com>
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: Lucas De Marchi <lucas.demarchi@intel.com>, intel-gfx@lists.freedesktop.org
-Date: Wed, 09 Dec 2020 11:34:28 +0000
-Message-ID: <160751366828.31456.10473263501650040367@build.alporthouse.com>
+Date: Wed, 09 Dec 2020 11:36:36 +0000
+Message-ID: <160751379675.31456.8430605901487850316@build.alporthouse.com>
 User-Agent: alot/0.9
-Subject: Re: [Intel-gfx] [PATCH 2/3] drm/i915/gt: rename wa_write_masked_or()
+Subject: Re: [Intel-gfx] [PATCH 3/3] drm/i915/gt: document masked registers
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,30 +44,34 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Lucas De Marchi (2020-12-09 04:52:45)
-> The use of "masked" in this function is due to its history. Once upon a
-> time it received a mask and a value as parameter. Since
-> commit eeec73f8a4a4 ("drm/i915/gt: Skip rmw for masked registers")
-> that is not true anymore and now there is a clear and a set parameter.
-> Depending on the case, that can still be thought as a mask and value,
-> but there are some subtle differences: what we clear doesn't need to be
-> the same bits we are setting, particularly when we are using masked
-> registers.
+Quoting Lucas De Marchi (2020-12-09 04:52:46)
+> Document what a masked register is according to bspec so we avoid
+> developers using the wrong functions to implement WAs.
 > 
-> The fact that we also have "masked registers", i.e. registers whose mask
-> is stored in the upper 16 bits of the register, makes it even more
-> confusing, because "masked" in wa_write_masked_or() has little to do
-> with masked registers, but rather refers to the old mask parameter the
-> function received (that can also, but not exclusively, be used to write
-> to masked register).
-> 
-> Avoid the ambiguity and misnomer by renaming it to something else,
-> hopefully less confusing: wa_write_clr_set(), to designate that we are
-> doing both clr and set operations in the register.
-
-Seems reasonable; both name and use.
-
 > Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+> ---
+>  drivers/gpu/drm/i915/gt/intel_workarounds.c | 11 +++++++++++
+>  1 file changed, 11 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/drm/i915/gt/intel_workarounds.c
+> index fec099f6ae76..b5339a36d256 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
+> @@ -217,6 +217,17 @@ wa_write_clr(struct i915_wa_list *wal, i915_reg_t reg, u32 clr)
+>         wa_write_clr_set(wal, reg, clr, 0);
+>  }
+>  
+> +/*
+> + * WA operations on "masked register". A masked register has the upper 16 bits
+> + * documented as "masked" in b-spec. Its purpose is to allow writing to just a
+> + * portion of the register without a rmw: you simply write in the upper 16 bits
+> + * the mask of bits you are going to modify.
+> + *
+> + * The wa_masked_* family of functions already does the necessary operations to
+> + * calculate the mask based on the parameters passed, so user only has to
+> + * provide the lower 16 bits of that register.
+> + */
+
 Reviewed-by: Chris Wilson <chris@chris-wilson.co.uk>
 -Chris
 _______________________________________________
