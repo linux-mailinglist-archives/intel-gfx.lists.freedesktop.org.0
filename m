@@ -1,32 +1,141 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C0AB32D39F8
-	for <lists+intel-gfx@lfdr.de>; Wed,  9 Dec 2020 05:56:07 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id E216C2D3A29
+	for <lists+intel-gfx@lfdr.de>; Wed,  9 Dec 2020 06:10:14 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 13F28899B0;
-	Wed,  9 Dec 2020 04:56:06 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 07956899B0;
- Wed,  9 Dec 2020 04:56:05 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 01F24A0091;
- Wed,  9 Dec 2020 04:56:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A35016E0EC;
+	Wed,  9 Dec 2020 05:10:12 +0000 (UTC)
+X-Original-To: Intel-gfx@lists.freedesktop.org
+Delivered-To: Intel-gfx@lists.freedesktop.org
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 484826E0EC
+ for <Intel-gfx@lists.freedesktop.org>; Wed,  9 Dec 2020 05:10:12 +0000 (UTC)
+IronPort-SDR: +SC8VByAi0CopdPAEJNsxytqnHNz5R+OUwKWWI7ci8OZ8MDSdBQRsiThhJqOFP4h5PeVVm5h6Y
+ tcWLQFTDGvgw==
+X-IronPort-AV: E=McAfee;i="6000,8403,9829"; a="153257220"
+X-IronPort-AV: E=Sophos;i="5.78,404,1599548400"; d="scan'208";a="153257220"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Dec 2020 21:10:11 -0800
+IronPort-SDR: 7n/9HSHI4DitUk5kwwiQVt/0a7p8oJPRZwEWuSdWPkt1mhNmlxCFZ2gTaedp7mjKN8ZCos1bsH
+ kXahcBgOqiIA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.78,404,1599548400"; d="scan'208";a="375411015"
+Received: from orsmsx604.amr.corp.intel.com ([10.22.229.17])
+ by orsmga007.jf.intel.com with ESMTP; 08 Dec 2020 21:10:11 -0800
+Received: from orsmsx609.amr.corp.intel.com (10.22.229.22) by
+ ORSMSX604.amr.corp.intel.com (10.22.229.17) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1713.5; Tue, 8 Dec 2020 21:10:11 -0800
+Received: from orsmsx603.amr.corp.intel.com (10.22.229.16) by
+ ORSMSX609.amr.corp.intel.com (10.22.229.22) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1713.5; Tue, 8 Dec 2020 21:10:10 -0800
+Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
+ orsmsx603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1713.5
+ via Frontend Transport; Tue, 8 Dec 2020 21:10:10 -0800
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com (104.47.66.44) by
+ edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.1713.5; Tue, 8 Dec 2020 21:10:10 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=UEHclNJuQa990cI0SSNVETyrPueN93x9Ki+t1r9vSdyBkrUlbUDHISKF8wRvnpv/ssBo7m+dWTc1j++sBKJZ0jjuV57jLsQkLS6nIFwI6ulFgVFK1ymWt0Rvlm7asbw9Wx8MmR4q5XIisPQvQJ4LQYfYWp5XCNLfXWPC4Uq59Y4ZYDFoBUxF6po5BJjL9DPtpEN6r6dBCUBgUAb59dZVVFJtbU4aGqU3u+4K6er00mbWYIIJSXqNawVAYhPkM7e6yp1GJryE0BnlVu2tXG1Ng6w6tSRbmXirodbM6X7OWqDrW8lvKw5ExL/gIxWEdQNOzutNkxPStuORr1M2X0rmvQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=a2kvACiw5xQS1kROiKs4MJWijBtMj2R1Jtb8Y1euoAU=;
+ b=McKVAtpwSk90VRVUgjuIm/nm/yRTsHMfGzWKhBp12WGGG/0RGW6Hdnd7bkiwphm0UCBs9p3VpvHajPstBIZAF+pVSYMZddjYS/Rz8F55jI9FK6mcvnSoIn2TZUrVegNF8+gxPkuUMvx2ngvSTh5cO0lXnFdK2rfs+BSrt1WOtUogBvCXrJysM4+/Xd5Tw47Dw97JGEmnDP7uJrgk9Oi9KKf2tSekHYY3f62IXq5QnCo0BarlEcHaBqCVXFto6RzIew/L2sW2OmzicJxfCwGmEweTIcsVb/eYL8SrirQVQAjdpAW7qP152qI6a+rZxme9GunClKusy4bcG3W15cyt0Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=intel.onmicrosoft.com; 
+ s=selector2-intel-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=a2kvACiw5xQS1kROiKs4MJWijBtMj2R1Jtb8Y1euoAU=;
+ b=m6Dvx+NCCurX+QbLx/tY5zkfdu4r+eYwyPUpakng6TNcoQGYEaUWwu4zCPKiwp+eQnp7LJKJLr7tyUYBjSDBlZjQB5+kXERiP58JMkVZkQLUo5hE05J9QVlI21jSj0moohsIwIMjXBqER69yRi6rCq3DKislMWqeoLezCC8A2qA=
+Received: from DM6PR11MB4531.namprd11.prod.outlook.com (2603:10b6:5:2a5::19)
+ by DM6PR11MB4265.namprd11.prod.outlook.com (2603:10b6:5:1de::30) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3632.17; Wed, 9 Dec
+ 2020 05:10:09 +0000
+Received: from DM6PR11MB4531.namprd11.prod.outlook.com
+ ([fe80::78db:6406:7820:1071]) by DM6PR11MB4531.namprd11.prod.outlook.com
+ ([fe80::78db:6406:7820:1071%8]) with mapi id 15.20.3632.018; Wed, 9 Dec 2020
+ 05:10:09 +0000
+From: "Huang, Sean Z" <sean.z.huang@intel.com>
+To: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ "Intel-gfx@lists.freedesktop.org" <Intel-gfx@lists.freedesktop.org>
+Thread-Topic: [Intel-gfx] [RFC-v1 07/16] drm/i915/pxp: Implement funcs to
+ create the TEE channel
+Thread-Index: AQHWzI/p67qVnTzR4U+t625TnbPrfanuOcxQ
+Date: Wed, 9 Dec 2020 05:10:09 +0000
+Message-ID: <DM6PR11MB4531C67F9BCA0FB4F3AC59ECD9CC0@DM6PR11MB4531.namprd11.prod.outlook.com>
+References: <20201207002134.13731-1-sean.z.huang@intel.com>
+ <20201207002134.13731-8-sean.z.huang@intel.com>
+ <160734214290.9322.10418886468519670642@jlahtine-mobl.ger.corp.intel.com>
+In-Reply-To: <160734214290.9322.10418886468519670642@jlahtine-mobl.ger.corp.intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+dlp-version: 11.5.1.3
+dlp-product: dlpe-windows
+dlp-reaction: no-action
+authentication-results: linux.intel.com; dkim=none (message not signed)
+ header.d=none;linux.intel.com; dmarc=none action=none header.from=intel.com;
+x-originating-ip: [73.220.16.43]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 1246c0e0-b79c-4489-7988-08d89c00b340
+x-ms-traffictypediagnostic: DM6PR11MB4265:
+x-microsoft-antispam-prvs: <DM6PR11MB426535F813EB33912CA2523CD9CC0@DM6PR11MB4265.namprd11.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:8882;
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: jMC3ZTSDIfd406vYBAEQNNEoXnENqozRA7wtkEbhPU+w6jufFBnFbzDG4r+EkCVsRwDNQnK0fVnnnn1PIi6xin0ghSsy5GuWBVBqnD4pepnouFnplZ3LO8lazZG2mCQDZri3MnDvRTSvIwsB6fvIBgwcZfCH4+/dFTP2TF/ym3wBDFA4KAHEQYWmjTh+sResuL0dkewDi+kUxuXWk2CD0DK1bzVkURcL2hgLni4WoD7ArEmz3BOr+PzqkM/ztaggUntYQt/fJKLtcNynAiyXQUW96qzCLPwn/DiutU3qExRsJmKfmVRw4PdaHBdSqW6an5U7LpomO4+UUDkAfGDTiw==
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM6PR11MB4531.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(4636009)(376002)(136003)(366004)(346002)(2906002)(64756008)(4744005)(83380400001)(110136005)(55016002)(66446008)(33656002)(8676002)(6506007)(508600001)(66946007)(66476007)(7696005)(66556008)(186003)(26005)(86362001)(76116006)(5660300002)(8936002)(71200400001)(9686003)(53546011)(52536014);
+ DIR:OUT; SFP:1102; 
+x-ms-exchange-antispam-messagedata: =?utf-8?B?SWdtemFlU0tnYkVLR2tFQ0hCQXJ3eVBaUkVnVXNYaVNmRzY1emIrZkRFSzFB?=
+ =?utf-8?B?aUIzSWw1bHFDNVc3ejU1WmZDa3JMVGE5TnRaYkFEaUZ6a01WZDdQbnBZdnla?=
+ =?utf-8?B?MW9tQVpnRXJFVDZjandWamRmbGs2NTZqWlNodTllSVBNQWtod3ZrOXk0M01F?=
+ =?utf-8?B?cnNsR3ByMTFNMFl5Rm4yS0lpUVM5ckoxNHNsYzh0L3c0eHl4Uk4xeDU3b1Uz?=
+ =?utf-8?B?N2JYVmN3QXlOMHk4VTNvU1NvWXFaWVlCM2ppSzM1M09mRXJWazJxZFFtNFls?=
+ =?utf-8?B?ZWlYY2xJOGRYSXM4VVQ5R3hJODZRUURVaThrL01jclVCL2VGL1lTV3diemhQ?=
+ =?utf-8?B?Mi9KNDFEYjNqY1ZTSkozd0RzOE9TeTJjcjY2aitXeFg1WEtsQStsRjFJUEJu?=
+ =?utf-8?B?MmtjNjdPeHVjcUhDbXBjbGtBU3lGUzZGb212VzVQaHVFVFkvTE16K1BPclBP?=
+ =?utf-8?B?Lzg3TzZjOFhBUDJLdm03QWVGbWJ0ZHQvWG11T1pVQUw5TmlxNGtSazBCTG1y?=
+ =?utf-8?B?bEdGZnY1UGMyelQ1RWFNYzFrWDBDR0J4clRPYStIdS9rUDhEVFd5MzRWTkZk?=
+ =?utf-8?B?cEdHMnFlakZLRVlQYUFYVEpTamFxR01VbVhMZGtxSmxmUFVsZkI2QWZoZnE1?=
+ =?utf-8?B?WnJlSFVDWk9Nc0VDV2RMTUdLY3VsQklSU3hENDU3UUVYWHExSXNCOUltT3RX?=
+ =?utf-8?B?Tzdaa3pZbW9nNXB1MzVpOTZkTmpjU0JRWXdrNmR5elNqdlkxa0ZqTVNTSnEz?=
+ =?utf-8?B?cWp6RmlHOGt0Y2xyOFZieVhFcVliKzRxYUw4S1RKZGRJZWlndHJROVBVWDZT?=
+ =?utf-8?B?Ni9nQ3BwR0VlUDBZRThOZ29TRlJNZGxPMjJ6ME1ndmpjTExZZ1AvMmx2MkFK?=
+ =?utf-8?B?eEFUWHVtSCtENlZJVGtTOElzd1dmR2JsaHhCRWNKQm1iS1MyZ0VmMXF6YzY5?=
+ =?utf-8?B?TkpVMnBCYmRKWHZpOXZxbjJBS0Qxcm5OK1d6RGluUzhrbUkxc3pYVlBQYlY2?=
+ =?utf-8?B?MmxzOHZ0c09JTkJYT3oyOFRTYXpER0pXSHdBdGNEd0xMVCtNZWRRZG9EdWFq?=
+ =?utf-8?B?Nk1yd1B3YjFjbXEzb1IyU2txTXFlYk52MDVXNS93VEUwTnpjM1lWWTAzT05G?=
+ =?utf-8?B?VU84dXd6dHVlL1UyT2FPR0d2ZHhlbW5ZQ1Q5SUZicHJ5SnJObGxqNWNEMFpJ?=
+ =?utf-8?B?Q1FUbzA0ais3M3lBMEdJUWlCWkJ6N0dya0NXWEpMUU1rcHlrUU1zNitOMG1J?=
+ =?utf-8?B?Wm5uOHl1Ty9GWCtHdnBxK1hYT1lTWnRWaHF2dlBUWmpNMjBrVUp6RkxSWCt4?=
+ =?utf-8?Q?vS+EEBqdy3Gp0=3D?=
+x-ms-exchange-transport-forked: True
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Dave Airlie" <airlied@gmail.com>
-Date: Wed, 09 Dec 2020 04:56:05 -0000
-Message-ID: <160748976500.4258.12960070285016343683@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20201209042144.2281-1-airlied@gmail.com>
-In-Reply-To: <20201209042144.2281-1-airlied@gmail.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_series_starting_with_=5B1/4=5D_drm/i915=3A_refactor_cursor_?=
- =?utf-8?q?code_out_of_i915=5Fdisplay=2Ec?=
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: DM6PR11MB4531.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 1246c0e0-b79c-4489-7988-08d89c00b340
+X-MS-Exchange-CrossTenant-originalarrivaltime: 09 Dec 2020 05:10:09.3359 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: emOvfepNP6zBb1OZsRi24vKMgsPjvHyUFhHmYWAAxlBBebBWZLpOz8uwhQ6cTPn/5evtYeyzDesZcVAaVfP8EA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR11MB4265
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-gfx] [RFC-v1 07/16] drm/i915/pxp: Implement funcs to
+ create the TEE channel
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,304 +148,35 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Thanks, Yes for single session there is no ioctl exposed so I correct the commit description.
 
-Series: series starting with [1/4] drm/i915: refactor cursor code out of i915_display.c
-URL   : https://patchwork.freedesktop.org/series/84712/
-State : warning
+Best regards,
+Sean
 
-== Summary ==
+-----Original Message-----
+From: Joonas Lahtinen <joonas.lahtinen@linux.intel.com> 
+Sent: Monday, December 7, 2020 3:56 AM
+To: Huang, Sean Z <sean.z.huang@intel.com>; Intel-gfx@lists.freedesktop.org
+Subject: Re: [Intel-gfx] [RFC-v1 07/16] drm/i915/pxp: Implement funcs to create the TEE channel
 
-$ dim checkpatch origin/drm-tip
-b87be3dc234f drm/i915: refactor cursor code out of i915_display.c
--:24: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
-#24: 
-new file mode 100644
+Quoting Huang, Sean Z (2020-12-07 02:21:25)
+> Currently ring3 driver sends the TEE commands directly to TEE, but 
+> later, as our design, we would like to make ring3 sending the TEE 
+> commands via the ring0 PXP ioctl action instead of TEE ioctl, so we 
+> can centralize those protection operations at ring0 PXP.
 
--:534: WARNING:UNSPECIFIED_INT: Prefer 'unsigned int' to bare use of 'unsigned'
-#534: FILE: drivers/gpu/drm/i915/display/intel_cursor.c:506:
-+		unsigned width = drm_rect_width(&plane_state->uapi.dst);
+Kernel vs. userspace nomenclature to be used.
 
--:535: WARNING:UNSPECIFIED_INT: Prefer 'unsigned int' to bare use of 'unsigned'
-#535: FILE: drivers/gpu/drm/i915/display/intel_cursor.c:507:
-+		unsigned height = drm_rect_height(&plane_state->uapi.dst);
+The description feels incorrect given no IOCTL will be exposed.
 
--:564: WARNING:REPEATED_WORD: Possible repeated word: 'by'
-#564: FILE: drivers/gpu/drm/i915/display/intel_cursor.c:536:
-+	 * The other registers are armed by by the CURBASE write
+This is missing an explanation as to why it would be needed for singleton session, so I think this patch should not be included in the series.
 
--:791: CHECK:SPACING: No space is necessary after a cast
-#791: FILE: drivers/gpu/drm/i915/display/intel_cursor.c:763:
-+	cursor->i9xx_plane = (enum i9xx_plane_id) pipe;
-
-total: 0 errors, 4 warnings, 1 checks, 1692 lines checked
-f86b532a437f drm/i915: refactor some crtc code out of intel display.
--:26: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
-#26: 
-new file mode 100644
-
--:601: CHECK:SPACING: spaces preferred around that '*' (ctx:VxV)
-#601: FILE: drivers/gpu/drm/i915/display/intel_crtc.c:571:
-+		return 32*1024;
- 		         ^
-
--:604: CHECK:SPACING: spaces preferred around that '*' (ctx:VxV)
-#604: FILE: drivers/gpu/drm/i915/display/intel_crtc.c:574:
-+			return 16*1024;
- 			         ^
-
--:606: CHECK:SPACING: spaces preferred around that '*' (ctx:VxV)
-#606: FILE: drivers/gpu/drm/i915/display/intel_crtc.c:576:
-+			return 32*1024;
- 			         ^
-
--:609: CHECK:SPACING: spaces preferred around that '*' (ctx:VxV)
-#609: FILE: drivers/gpu/drm/i915/display/intel_crtc.c:579:
-+			return 8*1024;
- 			        ^
-
--:611: CHECK:SPACING: spaces preferred around that '*' (ctx:VxV)
-#611: FILE: drivers/gpu/drm/i915/display/intel_crtc.c:581:
-+			return 16*1024;
- 			         ^
-
--:614: CHECK:SPACING: spaces preferred around that '*' (ctx:VxV)
-#614: FILE: drivers/gpu/drm/i915/display/intel_crtc.c:584:
-+			return 4*1024;
- 			        ^
-
--:616: CHECK:SPACING: spaces preferred around that '*' (ctx:VxV)
-#616: FILE: drivers/gpu/drm/i915/display/intel_crtc.c:586:
-+			return 8*1024;
- 			        ^
-
--:663: CHECK:SPACING: No space is necessary after a cast
-#663: FILE: drivers/gpu/drm/i915/display/intel_crtc.c:633:
-+		plane->i9xx_plane = (enum i9xx_plane_id) !pipe;
-
--:665: CHECK:SPACING: No space is necessary after a cast
-#665: FILE: drivers/gpu/drm/i915/display/intel_crtc.c:635:
-+		plane->i9xx_plane = (enum i9xx_plane_id) pipe;
-
--:952: WARNING:AVOID_BUG: Avoid crashing the kernel - try using WARN_ON & recovery code rather than BUG() or BUG_ON()
-#952: FILE: drivers/gpu/drm/i915/display/intel_crtc.c:922:
-+	BUG_ON(pipe >= ARRAY_SIZE(dev_priv->pipe_to_crtc_mapping) ||
-
--:953: CHECK:COMPARISON_TO_NULL: Comparison to NULL could be written "dev_priv->pipe_to_crtc_mapping[pipe]"
-#953: FILE: drivers/gpu/drm/i915/display/intel_crtc.c:923:
-+	       dev_priv->pipe_to_crtc_mapping[pipe] != NULL);
-
--:959: WARNING:AVOID_BUG: Avoid crashing the kernel - try using WARN_ON & recovery code rather than BUG() or BUG_ON()
-#959: FILE: drivers/gpu/drm/i915/display/intel_crtc.c:929:
-+		BUG_ON(i9xx_plane >= ARRAY_SIZE(dev_priv->plane_to_crtc_mapping) ||
-
--:960: CHECK:COMPARISON_TO_NULL: Comparison to NULL could be written "dev_priv->plane_to_crtc_mapping[i9xx_plane]"
-#960: FILE: drivers/gpu/drm/i915/display/intel_crtc.c:930:
-+		       dev_priv->plane_to_crtc_mapping[i9xx_plane] != NULL);
-
--:966: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#966: FILE: drivers/gpu/drm/i915/display/intel_crtc.c:936:
-+		drm_crtc_create_scaling_filter_property(&crtc->base,
-+						BIT(DRM_SCALING_FILTER_DEFAULT) |
-
-total: 0 errors, 3 warnings, 12 checks, 1969 lines checked
-b45ec2e66b7d drm/i915: refactor pll code out into intel_clock.c
--:30: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
-#30: 
-new file mode 100644
-
--:50: CHECK:LOGICAL_CONTINUATIONS: Logical continuations should be on the previous line
-#50: FILE: drivers/gpu/drm/i915/display/intel_clock.c:16:
-+	return dev_priv->vbt.lvds_use_ssc
-+		&& !(dev_priv->quirks & QUIRK_LVDS_SSC_DISABLE);
-
--:63: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
-#63: FILE: drivers/gpu/drm/i915/display/intel_clock.c:29:
-+};
-+static const struct intel_limit intel_limits_i8xx_dac = {
-
--:128: CHECK:LINE_SPACING: Please don't use multiple blank lines
-#128: FILE: drivers/gpu/drm/i915/display/intel_clock.c:94:
-+
-+
-
--:700: WARNING:LONG_LINE: line length of 103 exceeds 100 columns
-#700: FILE: drivers/gpu/drm/i915/display/intel_clock.c:666:
-+				for (clock.m1 = limit->m1.min; clock.m1 <= limit->m1.max; clock.m1++) {
-
--:771: CHECK:SPACING: spaces preferred around that '/' (ctx:VxV)
-#771: FILE: drivers/gpu/drm/i915/display/intel_clock.c:737:
-+			if (m2 > INT_MAX/clock.m1)
- 			                ^
-
--:868: CHECK:BRACES: braces {} should be used on all arms of this statement
-#868: FILE: drivers/gpu/drm/i915/display/intel_clock.c:834:
-+	if (IS_PINEVIEW(dev_priv))
-[...]
-+	else {
-[...]
-
--:870: CHECK:BRACES: Unbalanced braces around else statement
-#870: FILE: drivers/gpu/drm/i915/display/intel_clock.c:836:
-+	else {
-
--:988: CHECK:LINE_SPACING: Please don't use multiple blank lines
-#988: FILE: drivers/gpu/drm/i915/display/intel_clock.c:954:
-+
-+
-
-total: 0 errors, 2 warnings, 7 checks, 2895 lines checked
-a10cb379b7b4 drm/i915: split fdi code out from intel_display.c
--:785: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
-#785: 
-new file mode 100644
-
--:880: WARNING:AVOID_BUG: Avoid crashing the kernel - try using WARN_ON & recovery code rather than BUG() or BUG_ON()
-#880: FILE: drivers/gpu/drm/i915/display/intel_fdi.c:91:
-+		BUG();
-
--:885: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#885: FILE: drivers/gpu/drm/i915/display/intel_fdi.c:96:
-+int ilk_fdi_compute_config(struct intel_crtc *intel_crtc,
-+				  struct intel_crtc_state *pipe_config)
-
--:917: CHECK:SPACING: spaces preferred around that '*' (ctx:VxV)
-#917: FILE: drivers/gpu/drm/i915/display/intel_fdi.c:128:
-+	if (ret == -EINVAL && pipe_config->pipe_bpp > 6*3) {
- 	                                               ^
-
--:918: CHECK:SPACING: spaces preferred around that '*' (ctx:VxV)
-#918: FILE: drivers/gpu/drm/i915/display/intel_fdi.c:129:
-+		pipe_config->pipe_bpp -= 2*3;
- 		                          ^
-
--:967: CHECK:USLEEP_RANGE: usleep_range is preferred over udelay; see Documentation/timers/timers-howto.rst
-#967: FILE: drivers/gpu/drm/i915/display/intel_fdi.c:178:
-+	udelay(1000);
-
--:972: WARNING:LONG_LINE: line length of 103 exceeds 100 columns
-#972: FILE: drivers/gpu/drm/i915/display/intel_fdi.c:183:
-+			       intel_de_read(dev_priv, reg) | FDI_FS_ERRC_ENABLE | FDI_FE_ERRC_ENABLE);
-
--:989: WARNING:BLOCK_COMMENT_STYLE: Block comments use * on subsequent lines
-#989: FILE: drivers/gpu/drm/i915/display/intel_fdi.c:200:
-+	/* Train 1: umask FDI RX Interrupt symbol_lock and bit_lock bit
-+	   for train result */
-
--:989: WARNING:BLOCK_COMMENT_STYLE: Block comments use a trailing */ on a separate line
-#989: FILE: drivers/gpu/drm/i915/display/intel_fdi.c:200:
-+	   for train result */
-
--:996: CHECK:USLEEP_RANGE: usleep_range is preferred over udelay; see Documentation/timers/timers-howto.rst
-#996: FILE: drivers/gpu/drm/i915/display/intel_fdi.c:207:
-+	udelay(150);
-
--:1014: CHECK:USLEEP_RANGE: usleep_range is preferred over udelay; see Documentation/timers/timers-howto.rst
-#1014: FILE: drivers/gpu/drm/i915/display/intel_fdi.c:225:
-+	udelay(150);
-
--:1050: CHECK:USLEEP_RANGE: usleep_range is preferred over udelay; see Documentation/timers/timers-howto.rst
-#1050: FILE: drivers/gpu/drm/i915/display/intel_fdi.c:261:
-+	udelay(150);
-
--:1069: CHECK:BRACES: Blank lines aren't necessary before a close brace '}'
-#1069: FILE: drivers/gpu/drm/i915/display/intel_fdi.c:280:
-+
-+}
-
--:1089: WARNING:BLOCK_COMMENT_STYLE: Block comments use * on subsequent lines
-#1089: FILE: drivers/gpu/drm/i915/display/intel_fdi.c:300:
-+	/* Train 1: umask FDI RX Interrupt symbol_lock and bit_lock bit
-+	   for train result */
-
--:1089: WARNING:BLOCK_COMMENT_STYLE: Block comments use a trailing */ on a separate line
-#1089: FILE: drivers/gpu/drm/i915/display/intel_fdi.c:300:
-+	   for train result */
-
--:1097: CHECK:USLEEP_RANGE: usleep_range is preferred over udelay; see Documentation/timers/timers-howto.rst
-#1097: FILE: drivers/gpu/drm/i915/display/intel_fdi.c:308:
-+	udelay(150);
-
--:1126: CHECK:USLEEP_RANGE: usleep_range is preferred over udelay; see Documentation/timers/timers-howto.rst
-#1126: FILE: drivers/gpu/drm/i915/display/intel_fdi.c:337:
-+	udelay(150);
-
--:1136: CHECK:USLEEP_RANGE: usleep_range is preferred over udelay; see Documentation/timers/timers-howto.rst
-#1136: FILE: drivers/gpu/drm/i915/display/intel_fdi.c:347:
-+		udelay(500);
-
--:1149: CHECK:USLEEP_RANGE: usleep_range is preferred over udelay; see Documentation/timers/timers-howto.rst
-#1149: FILE: drivers/gpu/drm/i915/display/intel_fdi.c:360:
-+			udelay(50);
-
--:1181: CHECK:USLEEP_RANGE: usleep_range is preferred over udelay; see Documentation/timers/timers-howto.rst
-#1181: FILE: drivers/gpu/drm/i915/display/intel_fdi.c:392:
-+	udelay(150);
-
--:1191: CHECK:USLEEP_RANGE: usleep_range is preferred over udelay; see Documentation/timers/timers-howto.rst
-#1191: FILE: drivers/gpu/drm/i915/display/intel_fdi.c:402:
-+		udelay(500);
-
--:1204: CHECK:USLEEP_RANGE: usleep_range is preferred over udelay; see Documentation/timers/timers-howto.rst
-#1204: FILE: drivers/gpu/drm/i915/display/intel_fdi.c:415:
-+			udelay(50);
-
--:1226: WARNING:BLOCK_COMMENT_STYLE: Block comments use * on subsequent lines
-#1226: FILE: drivers/gpu/drm/i915/display/intel_fdi.c:437:
-+	/* Train 1: umask FDI RX Interrupt symbol_lock and bit_lock bit
-+	   for train result */
-
--:1226: WARNING:BLOCK_COMMENT_STYLE: Block comments use a trailing */ on a separate line
-#1226: FILE: drivers/gpu/drm/i915/display/intel_fdi.c:437:
-+	   for train result */
-
--:1234: CHECK:USLEEP_RANGE: usleep_range is preferred over udelay; see Documentation/timers/timers-howto.rst
-#1234: FILE: drivers/gpu/drm/i915/display/intel_fdi.c:445:
-+	udelay(150);
-
--:1262: CHECK:SPACING: spaces preferred around that '/' (ctx:VxV)
-#1262: FILE: drivers/gpu/drm/i915/display/intel_fdi.c:473:
-+		temp |= snb_b_fdi_train_param[j/2];
- 		                               ^
-
--:1358: CHECK:USLEEP_RANGE: usleep_range is preferred over udelay; see Documentation/timers/timers-howto.rst
-#1358: FILE: drivers/gpu/drm/i915/display/intel_fdi.c:569:
-+	udelay(200);
-
--:1365: CHECK:USLEEP_RANGE: usleep_range is preferred over udelay; see Documentation/timers/timers-howto.rst
-#1365: FILE: drivers/gpu/drm/i915/display/intel_fdi.c:576:
-+	udelay(200);
-
--:1374: CHECK:USLEEP_RANGE: usleep_range is preferred over udelay; see Documentation/timers/timers-howto.rst
-#1374: FILE: drivers/gpu/drm/i915/display/intel_fdi.c:585:
-+		udelay(100);
-
--:1397: CHECK:USLEEP_RANGE: usleep_range is preferred over udelay; see Documentation/timers/timers-howto.rst
-#1397: FILE: drivers/gpu/drm/i915/display/intel_fdi.c:608:
-+	udelay(100);
-
--:1405: CHECK:USLEEP_RANGE: usleep_range is preferred over udelay; see Documentation/timers/timers-howto.rst
-#1405: FILE: drivers/gpu/drm/i915/display/intel_fdi.c:616:
-+	udelay(100);
-
--:1428: CHECK:USLEEP_RANGE: usleep_range is preferred over udelay; see Documentation/timers/timers-howto.rst
-#1428: FILE: drivers/gpu/drm/i915/display/intel_fdi.c:639:
-+	udelay(100);
-
--:1457: CHECK:USLEEP_RANGE: usleep_range is preferred over udelay; see Documentation/timers/timers-howto.rst
-#1457: FILE: drivers/gpu/drm/i915/display/intel_fdi.c:668:
-+	udelay(100);
-
-total: 0 errors, 9 warnings, 24 checks, 1432 lines checked
-
-
+Regards, Joonas
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
