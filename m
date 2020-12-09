@@ -1,42 +1,30 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id BBDAA2D41CB
-	for <lists+intel-gfx@lfdr.de>; Wed,  9 Dec 2020 13:11:54 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id F3C172D423E
+	for <lists+intel-gfx@lfdr.de>; Wed,  9 Dec 2020 13:40:04 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 198756EA14;
-	Wed,  9 Dec 2020 12:11:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 46C506EA0F;
+	Wed,  9 Dec 2020 12:40:03 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8C0E36E138;
- Wed,  9 Dec 2020 12:11:47 +0000 (UTC)
-IronPort-SDR: 4GGoqD//skmO4hrC7yLaG/LEkxHoUMofSUQMJDFIRFml0bMVvYsRAtFguFZEK9FoarMejTRO/H
- VoWs1jgYVJ6Q==
-X-IronPort-AV: E=McAfee;i="6000,8403,9829"; a="153302260"
-X-IronPort-AV: E=Sophos;i="5.78,405,1599548400"; d="scan'208";a="153302260"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Dec 2020 04:11:47 -0800
-IronPort-SDR: m7LhZdmiyVYjbDQRO78DIx4PYa14HHHViN8u5JfON030En5oWU6uPPHEGI0TPk6KKXx0eTdXZw
- ZlITHYsBv0Iw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.78,405,1599548400"; d="scan'208";a="318758568"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by fmsmga007.fm.intel.com with SMTP; 09 Dec 2020 04:11:43 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 09 Dec 2020 14:11:42 +0200
-Date: Wed, 9 Dec 2020 14:11:42 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Message-ID: <X9C+/nvvyls/vj1b@intel.com>
-References: <20201203134705.GA1575873@intel.com>
+Received: from fireflyinternet.com (unknown [77.68.26.236])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7DE076EA0F
+ for <intel-gfx@lists.freedesktop.org>; Wed,  9 Dec 2020 12:40:01 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from build.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 23267003-1500050 
+ for multiple; Wed, 09 Dec 2020 12:39:53 +0000
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Wed,  9 Dec 2020 12:39:50 +0000
+Message-Id: <20201209123950.25518-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20201203134705.GA1575873@intel.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PULL] drm-intel-fixes v2
+Subject: [Intel-gfx] [PATCH] drm/i915/gt: Replace open-coded
+ intel_engine_stop_cs()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,130 +37,82 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dim-tools@lists.freedesktop.org, Daniel Vetter <daniel.vetter@ffwll.ch>,
- intel-gfx@lists.freedesktop.org, Maxime Ripard <mripard@kernel.org>,
- dri-devel@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Cc: Chris Wilson <chris@chris-wilson.co.uk>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Dec 03, 2020 at 05:47:05AM -0800, Rodrigo Vivi wrote:
-> Hi Dave and Daniel,
-> =
+In the legacy ringbuffer submission, we still had an open-coded version
+of intel_engine_stop_cs() with one addition verification step. Transfer
+that verification to intel_engine_stop_cs() itself, and call it.
 
-> Please ignore the pull request I had sent yesterday and use only this one.
-> =
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+---
+ drivers/gpu/drm/i915/gt/intel_engine_cs.c     | 10 +++++++-
+ .../gpu/drm/i915/gt/intel_ring_submission.c   | 25 +------------------
+ 2 files changed, 10 insertions(+), 25 deletions(-)
 
-> I had missed one patch: 14d1eaf08845 ("drm/i915/gt: Protect context lifet=
-ime with RCU").
-> =
+diff --git a/drivers/gpu/drm/i915/gt/intel_engine_cs.c b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+index d4e988b2816a..0ea6e2d5e083 100644
+--- a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
++++ b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+@@ -1022,7 +1022,15 @@ int intel_engine_stop_cs(struct intel_engine_cs *engine)
+ 					 1000, stop_timeout(engine),
+ 					 NULL)) {
+ 		ENGINE_TRACE(engine, "timed out on STOP_RING -> IDLE\n");
+-		err = -ETIMEDOUT;
++
++		/*
++		 * Sometimes we observe that the idle flag is not
++		 * set even though the ring is empty. So double
++		 * check before giving up.
++		 */
++		if (ENGINE_READ_FW(engine, RING_HEAD) !=
++		    ENGINE_READ_FW(engine, RING_TAIL))
++			err = -ETIMEDOUT;
+ 	}
+ 
+ 	/* A final mmio read to let GPU writes be hopefully flushed to memory */
+diff --git a/drivers/gpu/drm/i915/gt/intel_ring_submission.c b/drivers/gpu/drm/i915/gt/intel_ring_submission.c
+index a41b43f445b8..9f6b7daf54b0 100644
+--- a/drivers/gpu/drm/i915/gt/intel_ring_submission.c
++++ b/drivers/gpu/drm/i915/gt/intel_ring_submission.c
+@@ -158,30 +158,7 @@ static void ring_setup_status_page(struct intel_engine_cs *engine)
+ 
+ static bool stop_ring(struct intel_engine_cs *engine)
+ {
+-	struct drm_i915_private *dev_priv = engine->i915;
+-
+-	if (INTEL_GEN(dev_priv) > 2) {
+-		ENGINE_WRITE(engine,
+-			     RING_MI_MODE, _MASKED_BIT_ENABLE(STOP_RING));
+-		if (intel_wait_for_register(engine->uncore,
+-					    RING_MI_MODE(engine->mmio_base),
+-					    MODE_IDLE,
+-					    MODE_IDLE,
+-					    1000)) {
+-			drm_err(&dev_priv->drm,
+-				"%s : timed out trying to stop ring\n",
+-				engine->name);
+-
+-			/*
+-			 * Sometimes we observe that the idle flag is not
+-			 * set even though the ring is empty. So double
+-			 * check before giving up.
+-			 */
+-			if (ENGINE_READ(engine, RING_HEAD) !=
+-			    ENGINE_READ(engine, RING_TAIL))
+-				return false;
+-		}
+-	}
++	intel_engine_stop_cs(engine);
+ 
+ 	ENGINE_WRITE(engine, RING_HEAD, ENGINE_READ(engine, RING_TAIL));
+ 
+-- 
+2.20.1
 
-> Also, please notice that the commit 6db58901c2aa ("drm/i915/display: retu=
-rn earlier from
-> +intel_modeset_init() without display") was not actually a crucial fix, b=
-ut it
-> +allowed a clean pick of the use-after-free one.
-> =
-
-> Here goes drm-intel-fixes-2020-12-03:
-> Fixes for GPU hang, null dereference, suspend-resume, power consumption, =
-and use-after-free.
-> =
-
-> - Program mocs:63 for cache eviction on gen9 (Chris)
-> - Protect context lifetime with RCU (Chris)
-> - Split the breadcrumb spinlock between global and contexts (Chris)
-> - Retain default context state across shrinking (Venkata)
-> - Limit frequency drop to RPe on parking (Chris)
-> - Return earlier from intel_modeset_init() without display (Jani)
-> - Defer initial modeset until after GGTT is initialized (Chris)
-> =
-
-> Thanks,
-> Rodrigo.
-> =
-
-> The following changes since commit b65054597872ce3aefbc6a666385eabdf9e288=
-da:
-> =
-
->   Linux 5.10-rc6 (2020-11-29 15:50:50 -0800)
-> =
-
-> are available in the Git repository at:
-> =
-
->   git://anongit.freedesktop.org/drm/drm-intel tags/drm-intel-fixes-2020-1=
-2-03
-> =
-
-> for you to fetch changes up to ccc9e67ab26feda7e62749bb54c05d7abe07dca9:
-> =
-
->   drm/i915/display: Defer initial modeset until after GGTT is initialised=
- (2020-12-02 17:05:58 -0800)
-> =
-
-> ----------------------------------------------------------------
-> Fixes for GPU hang, null dereference, suspend-resume, power consumption, =
-and use-after-free.
-> =
-
-> - Program mocs:63 for cache eviction on gen9 (Chris)
-> - Protect context lifetime with RCU (Chris)
-> - Split the breadcrumb spinlock between global and contexts (Chris)
-> - Retain default context state across shrinking (Venkata)
-> - Limit frequency drop to RPe on parking (Chris)
-> - Return earlier from intel_modeset_init() without display (Jani)
-> - Defer initial modeset until after GGTT is initialized (Chris)
-> =
-
-> ----------------------------------------------------------------
-> Chris Wilson (5):
->       drm/i915/gt: Program mocs:63 for cache eviction on gen9
-
-That also needs
-commit 444fbf5d7058 ("drm/i915/gt: Declare gen9 has 64 mocs entries!")
-which seems to have not made it into this pull.
-
->       drm/i915/gt: Protect context lifetime with RCU
->       drm/i915/gt: Split the breadcrumb spinlock between global and conte=
-xts
->       drm/i915/gt: Limit frequency drop to RPe on parking
->       drm/i915/display: Defer initial modeset until after GGTT is initial=
-ised
-> =
-
-> Jani Nikula (1):
->       drm/i915/display: return earlier from intel_modeset_init() without =
-display
-> =
-
-> Venkata Ramana Nayana (1):
->       drm/i915/gt: Retain default context state across shrinking
-> =
-
->  drivers/gpu/drm/i915/display/intel_display.c      |  24 ++--
->  drivers/gpu/drm/i915/gt/intel_breadcrumbs.c       | 168 ++++++++++------=
-------
->  drivers/gpu/drm/i915/gt/intel_breadcrumbs_types.h |   6 +-
->  drivers/gpu/drm/i915/gt/intel_context.c           |  15 +-
->  drivers/gpu/drm/i915/gt/intel_context_types.h     |  23 ++-
->  drivers/gpu/drm/i915/gt/intel_mocs.c              |  14 +-
->  drivers/gpu/drm/i915/gt/intel_rps.c               |   4 +
->  drivers/gpu/drm/i915/gt/shmem_utils.c             |   7 +-
->  drivers/gpu/drm/i915/i915_request.h               |   6 +-
->  9 files changed, 143 insertions(+), 124 deletions(-)
-> _______________________________________________
-> dim-tools mailing list
-> dim-tools@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/dim-tools
-
--- =
-
-Ville Syrj=E4l=E4
-Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
