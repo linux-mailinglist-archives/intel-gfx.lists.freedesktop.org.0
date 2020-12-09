@@ -1,41 +1,42 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 015822D453D
-	for <lists+intel-gfx@lfdr.de>; Wed,  9 Dec 2020 16:23:23 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id EA63B2D4541
+	for <lists+intel-gfx@lfdr.de>; Wed,  9 Dec 2020 16:24:31 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6112F6EA83;
-	Wed,  9 Dec 2020 15:23:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5B0936EA8A;
+	Wed,  9 Dec 2020 15:24:30 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B9FDA6EA83
- for <intel-gfx@lists.freedesktop.org>; Wed,  9 Dec 2020 15:23:19 +0000 (UTC)
-IronPort-SDR: MSgLydGINz4+JqBal1u8yiW3sZs9BhkmpYOsnqegx6cGqdKgyOk41EBnGlcyydX4ESe0HebxKk
- Gz9bzFAruyhA==
-X-IronPort-AV: E=McAfee;i="6000,8403,9829"; a="174237034"
-X-IronPort-AV: E=Sophos;i="5.78,405,1599548400"; d="scan'208";a="174237034"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Dec 2020 07:23:18 -0800
-IronPort-SDR: 1S1huRtCFlmDa6GeDquoK2EQIhcRktyUWEegVBDfLwWBrlyt9f/MjyJlv4IeWzrccI2ZpZnL+r
- cHj41CAbv8zA==
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E0E046EA8A
+ for <intel-gfx@lists.freedesktop.org>; Wed,  9 Dec 2020 15:24:28 +0000 (UTC)
+IronPort-SDR: 1jqTXMQaFzEfACAnue8SXWziO81Q5NUMh9tJIiUiSw0ET/jmHBHC+b6/QFuFfbDK8NF1tUcZx/
+ ZoqkssNpHRGw==
+X-IronPort-AV: E=McAfee;i="6000,8403,9829"; a="170583688"
+X-IronPort-AV: E=Sophos;i="5.78,405,1599548400"; d="scan'208";a="170583688"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Dec 2020 07:24:28 -0800
+IronPort-SDR: xEvkaOO2zmfCqIN8XLHjzaeODfDz83wzSHP2MGOZ9q3su1bvojSlEK1VsPEts9zpnvitInEAOB
+ hTvth+DsbrDg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.78,405,1599548400"; d="scan'208";a="318813010"
+X-IronPort-AV: E=Sophos;i="5.78,405,1599548400"; d="scan'208";a="364179008"
 Received: from gaia.fi.intel.com ([10.237.72.192])
- by fmsmga007.fm.intel.com with ESMTP; 09 Dec 2020 07:23:17 -0800
+ by orsmga008.jf.intel.com with ESMTP; 09 Dec 2020 07:24:27 -0800
 Received: by gaia.fi.intel.com (Postfix, from userid 1000)
- id 7A4E25C2003; Wed,  9 Dec 2020 17:21:02 +0200 (EET)
+ id BC3805C2003; Wed,  9 Dec 2020 17:22:11 +0200 (EET)
 From: Mika Kuoppala <mika.kuoppala@linux.intel.com>
 To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
-In-Reply-To: <20201208231834.24812-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20201208231834.24812-2-chris@chris-wilson.co.uk>
 References: <20201208231834.24812-1-chris@chris-wilson.co.uk>
-Date: Wed, 09 Dec 2020 17:21:02 +0200
-Message-ID: <87zh2nkntt.fsf@gaia.fi.intel.com>
+ <20201208231834.24812-2-chris@chris-wilson.co.uk>
+Date: Wed, 09 Dec 2020 17:22:11 +0200
+Message-ID: <87wnxrknrw.fsf@gaia.fi.intel.com>
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH 1/3] drm/i915: Remove livelock from
- "do_idle_maps" vtd w/a
+Subject: Re: [Intel-gfx] [PATCH 2/3] drm/i915: Sleep around performing iommu
+ unmaps on Tigerlake
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,65 +57,46 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 Chris Wilson <chris@chris-wilson.co.uk> writes:
 
-> A call to wait for the GT to idle from inside the put_pages fallback is
-> prone to cause an uninterruptible livelock. As it does not provide
-> adequate serialisation with new requests, simply fallback to a trial
-
-s/trial/trivial
-> sleep.
+> Tigerlake is plagued by spontaneous DMAR faults [reason 7, next page
+> table ptr is invalid] which lead to GPU hangs. These faults occur when
+> an iommu map is immediately reused. Adding further clflushes and
+> barriers around either the GTT PTE or iommu PTE updates do not prevent
+> the faults. So far the only effect has been from inducing a delay
+> between reuse of the iommu on the GPU.
 >
 > Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
 
-Reviewed-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+Acked-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
 
 > ---
->  drivers/gpu/drm/i915/i915_gem_gtt.c | 25 ++++++++++---------------
->  1 file changed, 10 insertions(+), 15 deletions(-)
+>  drivers/gpu/drm/i915/gt/intel_ggtt.c | 11 ++++++++++-
+>  1 file changed, 10 insertions(+), 1 deletion(-)
 >
-> diff --git a/drivers/gpu/drm/i915/i915_gem_gtt.c b/drivers/gpu/drm/i915/i915_gem_gtt.c
-> index c5ee1567f3d1..d2350a4c6606 100644
-> --- a/drivers/gpu/drm/i915/i915_gem_gtt.c
-> +++ b/drivers/gpu/drm/i915/i915_gem_gtt.c
-> @@ -55,22 +55,17 @@ int i915_gem_gtt_prepare_pages(struct drm_i915_gem_object *obj,
->  void i915_gem_gtt_finish_pages(struct drm_i915_gem_object *obj,
->  			       struct sg_table *pages)
->  {
-> -	struct drm_i915_private *dev_priv = to_i915(obj->base.dev);
-> -	struct device *kdev = &dev_priv->drm.pdev->dev;
-> -	struct i915_ggtt *ggtt = &dev_priv->ggtt;
-> -
-> -	if (unlikely(ggtt->do_idle_maps)) {
-> -		/* XXX This does not prevent more requests being submitted! */
-> -		if (intel_gt_retire_requests_timeout(ggtt->vm.gt,
-> -						     -MAX_SCHEDULE_TIMEOUT)) {
-> -			drm_err(&dev_priv->drm,
-> -				"Failed to wait for idle; VT'd may hang.\n");
-> -			/* Wait a bit, in hopes it avoids the hang */
-> -			udelay(10);
-> -		}
-> -	}
-> +	struct drm_i915_private *i915 = to_i915(obj->base.dev);
-> +	struct i915_ggtt *ggtt = &i915->ggtt;
+> diff --git a/drivers/gpu/drm/i915/gt/intel_ggtt.c b/drivers/gpu/drm/i915/gt/intel_ggtt.c
+> index cf94525be2c1..f5b981443117 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_ggtt.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_ggtt.c
+> @@ -101,7 +101,16 @@ static bool needs_idle_maps(struct drm_i915_private *i915)
+>  	 * Query intel_iommu to see if we need the workaround. Presumably that
+>  	 * was loaded first.
+>  	 */
+> -	return IS_GEN(i915, 5) && IS_MOBILE(i915) && intel_vtd_active();
+> +	if (!intel_vtd_active())
+> +		return false;
 > +
-> +	/* XXX This does not prevent more requests being submitted! */
-> +	if (unlikely(ggtt->do_idle_maps))
-> +		/* Wait a bit, in hope it avoids the hang */
-> +		usleep_range(100, 250);
->  
-> -	dma_unmap_sg(kdev, pages->sgl, pages->nents, PCI_DMA_BIDIRECTIONAL);
-> +	dma_unmap_sg(&i915->drm.pdev->dev,
-> +		     pages->sgl, pages->nents,
-> +		     PCI_DMA_BIDIRECTIONAL);
+> +	if (IS_GEN(i915, 5) && IS_MOBILE(i915))
+> +		return true;
+> +
+> +	if (IS_GEN(i915, 12))
+> +		return true; /* XXX DMAR fault reason 7 */
+> +
+> +	return false;
 >  }
 >  
->  /**
+>  void i915_ggtt_suspend(struct i915_ggtt *ggtt)
 > -- 
 > 2.20.1
->
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
