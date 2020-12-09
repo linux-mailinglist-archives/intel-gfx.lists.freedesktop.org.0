@@ -2,31 +2,40 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0036D2D3C29
-	for <lists+intel-gfx@lfdr.de>; Wed,  9 Dec 2020 08:27:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B18DE2D3C82
+	for <lists+intel-gfx@lfdr.de>; Wed,  9 Dec 2020 08:52:17 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 778716E120;
-	Wed,  9 Dec 2020 07:27:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7EE0C6E128;
+	Wed,  9 Dec 2020 07:52:15 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id CE9A26E11F;
- Wed,  9 Dec 2020 07:27:33 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id C72D7A008A;
- Wed,  9 Dec 2020 07:27:33 +0000 (UTC)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 86F876E128;
+ Wed,  9 Dec 2020 07:52:14 +0000 (UTC)
+IronPort-SDR: x+PeLQ9xeyrB+xxL5W+S7I+SLWHOkthHpeiec957wFml3bJLBCoXS/kVVSl57y5oD3vZoNOkpB
+ uqNh+JXnSszg==
+X-IronPort-AV: E=McAfee;i="6000,8403,9829"; a="161087382"
+X-IronPort-AV: E=Sophos;i="5.78,404,1599548400"; 
+ d="asc'?scan'208";a="161087382"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Dec 2020 23:52:13 -0800
+IronPort-SDR: 1uqYvliSGq6xaVhyp5z797fQLBmeMuZ4ZCSoWuVqLMvW2j/4Lv1tKfb8Vw7OZfkio6WFzaYTpc
+ 7IDFNAdJj1rw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.78,404,1599548400"; 
+ d="asc'?scan'208";a="376249313"
+Received: from zhen-hp.sh.intel.com (HELO zhen-hp) ([10.239.160.147])
+ by FMSMGA003.fm.intel.com with ESMTP; 08 Dec 2020 23:52:12 -0800
+Date: Wed, 9 Dec 2020 15:36:53 +0800
+From: Zhenyu Wang <zhenyuw@linux.intel.com>
+To: Jani Nikula <jani.nikula@intel.com>
+Message-ID: <20201209073653.GL16939@zhen-hp.sh.intel.com>
+References: <cover.1607422863.git.jani.nikula@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Huang, Sean Z" <sean.z.huang@intel.com>
-Date: Wed, 09 Dec 2020 07:27:33 -0000
-Message-ID: <160749885379.4258.3848764263309675886@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20201209070307.2304-1-sean.z.huang@intel.com>
-In-Reply-To: <20201209070307.2304-1-sean.z.huang@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_Introduce_Intel_PXP_component_-_Mesa_single_session_=28rev3?=
- =?utf-8?q?=29?=
+In-Reply-To: <cover.1607422863.git.jani.nikula@intel.com>
+Subject: Re: [Intel-gfx] [PATCH 0/8] drm/i915/gvt: make headers
+ self-contained
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,113 +48,96 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Reply-To: Zhenyu Wang <zhenyuw@linux.intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-gvt-dev@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============0068090618=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
 
-Series: Introduce Intel PXP component - Mesa single session (rev3)
-URL   : https://patchwork.freedesktop.org/series/84620/
-State : warning
+--===============0068090618==
+Content-Type: multipart/signed; micalg=pgp-sha1;
+	protocol="application/pgp-signature"; boundary="l2C7pJE7HE4aLL3l"
+Content-Disposition: inline
 
-== Summary ==
 
-$ dim checkpatch origin/drm-tip
-9ae32f4f2eb1 drm/i915/pxp: Introduce Intel PXP component
--:111: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
-#111: 
-new file mode 100644
+--l2C7pJE7HE4aLL3l
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-total: 0 errors, 1 warnings, 0 checks, 175 lines checked
-2dab19aab08d drm/i915/pxp: set KCR reg init during the boot time
-b7d165163cc9 drm/i915/pxp: Implement funcs to create the TEE channel
--:8: WARNING:TYPO_SPELLING: 'defualt' may be misspelled - perhaps 'default'?
-#8: 
-(defualt) session.
+On 2020.12.08 12:29:06 +0200, Jani Nikula wrote:
+> For a long time now we've had a build option in i915 to ensure the
+> headers in the driver are self-contained, i.e. they include and forward
+> declare everything they need. Finally fix the gvt headers that aren't,
+> and remove them from the exclude list.
+>=20
+> Please use the CONFIG_DRM_I915_WERROR=3Dy config option to ensure the
+> driver remains warning free and headers stay self-contained.
+>=20
+> Please merge this via the gvt tree.
+>=20
 
--:85: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
-#85: 
-new file mode 100644
+Thanks, Jani! Looks fine to me.
 
-total: 0 errors, 2 warnings, 0 checks, 248 lines checked
-5fba41ef381a drm/i915/pxp: Create the arbitrary session after boot
--:68: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
-#68: 
-new file mode 100644
+Reviewed-by: Zhenyu Wang <zhenyuw@linux.intel.com>
 
-total: 0 errors, 1 warnings, 0 checks, 311 lines checked
-99a4cb2946c9 drm/i915/pxp: Func to send hardware session termination
--:25: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
-#25: 
-new file mode 100644
+>=20
+>=20
+> Jani Nikula (8):
+>   drm/i915/gvt: make execlist.h self-contained
+>   drm/i915/gvt: make fb_decoder.h self-contained
+>   drm/i915/gvt: make gtt.h self-contained
+>   drm/i915/gvt: make interrupt.h self-contained
+>   drm/i915/gvt: make mmio_context.h self-contained
+>   drm/i915/gvt: make gvt.h self-contained
+>   drm/i915/gvt: make scheduler.h self-contained
+>   drm/i915/gvt: make mpt.h self-contained
+>=20
+>  drivers/gpu/drm/i915/Makefile           | 10 +---------
+>  drivers/gpu/drm/i915/gvt/execlist.h     |  3 ---
+>  drivers/gpu/drm/i915/gvt/fb_decoder.h   |  6 ++++--
+>  drivers/gpu/drm/i915/gvt/gtt.h          | 11 ++++++++++-
+>  drivers/gpu/drm/i915/gvt/gvt.h          |  4 ++++
+>  drivers/gpu/drm/i915/gvt/interrupt.h    |  5 ++++-
+>  drivers/gpu/drm/i915/gvt/mmio_context.h | 11 +++++++++++
+>  drivers/gpu/drm/i915/gvt/mpt.h          |  2 ++
+>  drivers/gpu/drm/i915/gvt/scheduler.h    |  5 +++++
+>  9 files changed, 41 insertions(+), 16 deletions(-)
+>=20
+> --=20
+> 2.20.1
+>=20
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 
-total: 0 errors, 1 warnings, 0 checks, 181 lines checked
-bebe24b4735c drm/i915/pxp: Enable PXP irq worker and callback stub
--:51: WARNING:LONG_LINE_COMMENT: line length of 113 exceeds 100 columns
-#51: FILE: drivers/gpu/drm/i915/i915_reg.h:7970:
-+#define GEN11_CRYPTO_INTR_MASK		_MMIO(0x1900f0) /* crypto mask is in bit31-16 (Engine1 Interrupt Mask) */
+--=20
 
-total: 0 errors, 1 warnings, 0 checks, 211 lines checked
-b9b9d9b3d000 drm/i915/pxp: Destroy arb session upon teardown
-8a8a945349b3 drm/i915/pxp: Enable PXP power management
--:90: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
-#90: 
-new file mode 100644
+$gpg --keyserver wwwkeys.pgp.net --recv-keys 4D781827
 
-total: 0 errors, 1 warnings, 0 checks, 148 lines checked
-3073cbf15fe1 drm/i915/pxp: Expose session state for display protection flip
-9d59c789c491 mei: pxp: export pavp client to me client bus
--:32: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
-#32: 
-new file mode 100644
+--l2C7pJE7HE4aLL3l
+Content-Type: application/pgp-signature; name="signature.asc"
 
-total: 0 errors, 1 warnings, 0 checks, 277 lines checked
-020fc05af9bc drm/i915/uapi: introduce drm_i915_gem_create_ext
--:12: ERROR:BAD_SIGN_OFF: Unrecognized email address: 'Joonas Lahtinen joonas.lahtinen@linux.intel.com'
-#12: 
-Cc: Joonas Lahtinen joonas.lahtinen@linux.intel.com
+-----BEGIN PGP SIGNATURE-----
 
--:13: ERROR:BAD_SIGN_OFF: Unrecognized email address: 'Matthew Auld matthew.auld@intel.com'
-#13: 
-Cc: Matthew Auld matthew.auld@intel.com
+iF0EARECAB0WIQTXuabgHDW6LPt9CICxBBozTXgYJwUCX9B+kAAKCRCxBBozTXgY
+J2pYAJ44rA4h9xu8bXNDKDZ+KDNhV2GhUACfWY/ChVpwb22IIZgGb5tHqURRMJA=
+=zqZu
+-----END PGP SIGNATURE-----
 
--:46: ERROR:CODE_INDENT: code indent should use tabs where possible
-#46: FILE: drivers/gpu/drm/i915/i915_gem.c:265:
-+        struct drm_i915_private *i915;$
+--l2C7pJE7HE4aLL3l--
 
--:46: WARNING:LEADING_SPACE: please, no spaces at the start of a line
-#46: FILE: drivers/gpu/drm/i915/i915_gem.c:265:
-+        struct drm_i915_private *i915;$
-
--:50: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#50: FILE: drivers/gpu/drm/i915/i915_gem.c:269:
-+static int __create_setparam(struct drm_i915_gem_object_param *args,
-+							struct create_ext *ext_data)
-
--:95: CHECK:LINE_SPACING: Please don't use multiple blank lines
-#95: FILE: drivers/gpu/drm/i915/i915_gem.c:317:
-+
-+
-
--:107: WARNING:LONG_LINE: line length of 120 exceeds 100 columns
-#107: FILE: include/uapi/drm/i915_drm.h:394:
-+#define DRM_IOCTL_I915_GEM_CREATE_EXT   DRM_IOWR(DRM_COMMAND_BASE + DRM_I915_GEM_CREATE, struct drm_i915_gem_create_ext)
-
--:155: CHECK:SPACING: spaces preferred around that '<<' (ctx:VxV)
-#155: FILE: include/uapi/drm/i915_drm.h:1735:
-+#define I915_OBJECT_PARAM  (1ull<<32)
-                                 ^
-
-total: 3 errors, 2 warnings, 3 checks, 136 lines checked
-6122eeb602ea drm/i915/pxp: User interface for Protected buffer
-b8913e83d4cc drm/i915/pxp: Add plane decryption support
-
+--===============0068090618==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============0068090618==--
