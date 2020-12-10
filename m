@@ -2,41 +2,42 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 95FC42D6648
-	for <lists+intel-gfx@lfdr.de>; Thu, 10 Dec 2020 20:22:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2DD0E2D66C6
+	for <lists+intel-gfx@lfdr.de>; Thu, 10 Dec 2020 20:42:20 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0C2016EB04;
-	Thu, 10 Dec 2020 19:22:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 321536EB1A;
+	Thu, 10 Dec 2020 19:42:18 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8F2ED6EAD3
- for <intel-gfx@lists.freedesktop.org>; Thu, 10 Dec 2020 19:22:30 +0000 (UTC)
-IronPort-SDR: GygTgYVSObQMnRog+Y0zzj7X9/sa3FwGJRfyIAmH/oVOGXe/zkmr8gkCdEVDD32/BcKFQIebUy
- O2p1HrBC+KGw==
-X-IronPort-AV: E=McAfee;i="6000,8403,9831"; a="170813403"
-X-IronPort-AV: E=Sophos;i="5.78,409,1599548400"; d="scan'208";a="170813403"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Dec 2020 11:22:30 -0800
-IronPort-SDR: 6lJ+6dh/wEhWUnqJEU9S/wqouQ4aLho7td3xKPnl50qPSMkzVu/2M8zXwT3EUYTRvoOBjNzIw3
- uLBcsVIDilUA==
-X-IronPort-AV: E=Sophos;i="5.78,409,1599548400"; d="scan'208";a="553432945"
-Received: from unknown (HELO sdutt-i7) ([10.165.21.147])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Dec 2020 11:22:29 -0800
-Date: Thu, 10 Dec 2020 11:16:44 -0800
-From: Matthew Brost <matthew.brost@intel.com>
-To: Chris Wilson <chris@chris-wilson.co.uk>
-Message-ID: <20201210191644.GA6255@sdutt-i7>
-References: <20201210080240.24529-1-chris@chris-wilson.co.uk>
- <20201210080240.24529-19-chris@chris-wilson.co.uk>
+Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1425A6EB17;
+ Thu, 10 Dec 2020 19:42:17 +0000 (UTC)
+Message-Id: <20201210192536.118432146@linutronix.de>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
+ s=2020; t=1607629334;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=dqmaBUU1aX3t41xhFMZZXhwmlvXhIHW8LZkxAL3qIuw=;
+ b=h/TAwStAiTk4XvWiKPBPyDEOx218hZJC1vmF2rxVMRIvmco9q+UXf8EllPz4AjaFdOly7G
+ LH+a53gOb/6x23hHUexy7zt6RJrXCLvlfH0RT7UmulMioZYuYNOHYckgeF+NjT2uTUeh+Y
+ x4QOtIuHWxwLs6LKhedv+5hufAepZeedXGgORll6jDA+oynwB+JjiqXx/tgkxTCP8dbJ6L
+ eWUOoe8IS6Z7h2dgCBQQBehNHm1Tfe56GXWt3TBc5qz2bsl6Xo6wT+1/DTPysSy3XD7/6K
+ p0j9T2Hw/f1US+iZCI2FQmyJpu2ijKWYz9OMLgGwEfvXwTDnGAF9V1bHZmS/0A==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
+ s=2020e; t=1607629334;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=dqmaBUU1aX3t41xhFMZZXhwmlvXhIHW8LZkxAL3qIuw=;
+ b=njYD6xBoyWobXQbQRXgtO58qqL+V8jLaqaWB6hUvHzVko4O9Y0w527+7oT5RC78ucYDSLL
+ sPAJGjvbV9zCgIAw==
+Date: Thu, 10 Dec 2020 20:25:36 +0100
+From: Thomas Gleixner <tglx@linutronix.de>
+To: LKML <linux-kernel@vger.kernel.org>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20201210080240.24529-19-chris@chris-wilson.co.uk>
-User-Agent: Mutt/1.9.4 (2018-02-28)
-Subject: Re: [Intel-gfx] [PATCH 19/21] drm/i915/gt: Use indices for writing
- into relative timelines
+Subject: [Intel-gfx] [patch 00/30] genirq: Treewide hunt for irq descriptor
+ abuse and assorted fixes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,196 +50,106 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Mark Rutland <mark.rutland@arm.com>,
+ Karthikeyan Mitran <m.karthikeyan@mobiveil.co.in>,
+ Peter Zijlstra <peterz@infradead.org>,
+ Catalin Marinas <catalin.marinas@arm.com>,
+ Linus Walleij <linus.walleij@linaro.org>, dri-devel@lists.freedesktop.org,
+ Chris Wilson <chris@chris-wilson.co.uk>,
+ "James E.J. Bottomley" <James.Bottomley@HansenPartnership.com>,
+ Saeed Mahameed <saeedm@nvidia.com>, netdev@vger.kernel.org,
+ Will Deacon <will@kernel.org>, Michal Simek <michal.simek@xilinx.com>,
+ linux-s390@vger.kernel.org, afzal mohammed <afzal.mohd.ma@gmail.com>,
+ Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+ Dave Jiang <dave.jiang@intel.com>, xen-devel@lists.xenproject.org,
+ Leon Romanovsky <leon@kernel.org>, linux-rdma@vger.kernel.org,
+ Marc Zyngier <maz@kernel.org>, Helge Deller <deller@gmx.de>,
+ Russell King <linux@armlinux.org.uk>,
+ Christian Borntraeger <borntraeger@de.ibm.com>, linux-pci@vger.kernel.org,
+ Jakub Kicinski <kuba@kernel.org>, Heiko Carstens <hca@linux.ibm.com>,
+ Wambui Karuga <wambui.karugax@gmail.com>, Allen Hubbe <allenbh@gmail.com>,
+ Juergen Gross <jgross@suse.com>, Rob Herring <robh@kernel.org>,
+ David Airlie <airlied@linux.ie>, linux-gpio@vger.kernel.org,
+ Stefano Stabellini <sstabellini@kernel.org>,
+ Bjorn Helgaas <bhelgaas@google.com>, Lee Jones <lee.jones@linaro.org>,
+ linux-arm-kernel@lists.infradead.org,
+ Boris Ostrovsky <boris.ostrovsky@oracle.com>, linux-parisc@vger.kernel.org,
+ Hou Zhiqiang <Zhiqiang.Hou@nxp.com>, Tariq Toukan <tariqt@nvidia.com>,
+ Jon Mason <jdmason@kudzu.us>, linux-ntb@googlegroups.com,
+ intel-gfx@lists.freedesktop.org, "David S. Miller" <davem@davemloft.net>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Dec 10, 2020 at 08:02:38AM +0000, Chris Wilson wrote:
-> Relative timelines are relative to either the global or per-process
-> HWSP, and so we can replace the absolute addressing with store-index
-> variants for position invariance.
-> 
+A recent request to export kstat_irqs() pointed to a copy of the same in
+the i915 code, which made me look for further usage of irq descriptors in
+drivers.
 
-Can you explain the benifit of relative addressing? Why can't we also
-use absolute? If we can always use absolute, I don't see the point
-complicating the breadcrumb code.
+The usage in drivers ranges from creative to broken in all colours.
 
-Matt
+irqdesc.h clearly says that this is core functionality and the fact C does
+not allow full encapsulation is not a justification to fiddle with it just
+because. It took us a lot of effort to make the core functionality provide
+what drivers need.
 
-> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-> ---
->  drivers/gpu/drm/i915/gt/gen8_engine_cs.c | 98 +++++++++++++++++-------
->  drivers/gpu/drm/i915/gt/intel_timeline.h | 12 +++
->  2 files changed, 82 insertions(+), 28 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/gt/gen8_engine_cs.c b/drivers/gpu/drm/i915/gt/gen8_engine_cs.c
-> index ed88dc4de72c..386da26816d0 100644
-> --- a/drivers/gpu/drm/i915/gt/gen8_engine_cs.c
-> +++ b/drivers/gpu/drm/i915/gt/gen8_engine_cs.c
-> @@ -502,7 +502,19 @@ gen8_emit_fini_breadcrumb_tail(struct i915_request *rq, u32 *cs)
->  
->  static u32 *emit_xcs_breadcrumb(struct i915_request *rq, u32 *cs)
->  {
-> -	return gen8_emit_ggtt_write(cs, rq->fence.seqno, hwsp_offset(rq), 0);
-> +	struct intel_timeline *tl = rcu_dereference_protected(rq->timeline, 1);
-> +	unsigned int flags = MI_FLUSH_DW_OP_STOREDW;
-> +	u32 offset = hwsp_offset(rq);
-> +
-> +	if (intel_timeline_is_relative(tl)) {
-> +		offset = offset_in_page(offset);
-> +		flags |= MI_FLUSH_DW_STORE_INDEX;
-> +	}
-> +	GEM_BUG_ON(offset & 7);
-> +	if (intel_timeline_is_global(tl))
-> +		offset |= MI_FLUSH_DW_USE_GTT;
-> +
-> +	return __gen8_emit_flush_dw(cs, rq->fence.seqno, offset, flags);
->  }
->  
->  u32 *gen8_emit_fini_breadcrumb_xcs(struct i915_request *rq, u32 *cs)
-> @@ -512,6 +524,18 @@ u32 *gen8_emit_fini_breadcrumb_xcs(struct i915_request *rq, u32 *cs)
->  
->  u32 *gen8_emit_fini_breadcrumb_rcs(struct i915_request *rq, u32 *cs)
->  {
-> +	struct intel_timeline *tl = rcu_dereference_protected(rq->timeline, 1);
-> +	unsigned int flags = PIPE_CONTROL_FLUSH_ENABLE | PIPE_CONTROL_CS_STALL;
-> +	u32 offset = hwsp_offset(rq);
-> +
-> +	if (intel_timeline_is_relative(tl)) {
-> +		offset = offset_in_page(offset);
-> +		flags |= PIPE_CONTROL_STORE_DATA_INDEX;
-> +	}
-> +	GEM_BUG_ON(offset & 7);
-> +	if (intel_timeline_is_global(tl))
-> +		flags |= PIPE_CONTROL_GLOBAL_GTT_IVB;
-> +
->  	cs = gen8_emit_pipe_control(cs,
->  				    PIPE_CONTROL_RENDER_TARGET_CACHE_FLUSH |
->  				    PIPE_CONTROL_DEPTH_CACHE_FLUSH |
-> @@ -519,26 +543,33 @@ u32 *gen8_emit_fini_breadcrumb_rcs(struct i915_request *rq, u32 *cs)
->  				    0);
->  
->  	/* XXX flush+write+CS_STALL all in one upsets gem_concurrent_blt:kbl */
-> -	cs = gen8_emit_ggtt_write_rcs(cs,
-> -				      rq->fence.seqno,
-> -				      hwsp_offset(rq),
-> -				      PIPE_CONTROL_FLUSH_ENABLE |
-> -				      PIPE_CONTROL_CS_STALL);
-> +	cs = __gen8_emit_write_rcs(cs, rq->fence.seqno, offset, 0, flags);
->  
->  	return gen8_emit_fini_breadcrumb_tail(rq, cs);
->  }
->  
->  u32 *gen11_emit_fini_breadcrumb_rcs(struct i915_request *rq, u32 *cs)
->  {
-> -	cs = gen8_emit_ggtt_write_rcs(cs,
-> -				      rq->fence.seqno,
-> -				      hwsp_offset(rq),
-> -				      PIPE_CONTROL_CS_STALL |
-> -				      PIPE_CONTROL_TILE_CACHE_FLUSH |
-> -				      PIPE_CONTROL_RENDER_TARGET_CACHE_FLUSH |
-> -				      PIPE_CONTROL_DEPTH_CACHE_FLUSH |
-> -				      PIPE_CONTROL_DC_FLUSH_ENABLE |
-> -				      PIPE_CONTROL_FLUSH_ENABLE);
-> +	struct intel_timeline *tl = rcu_dereference_protected(rq->timeline, 1);
-> +	u32 offset = hwsp_offset(rq);
-> +	unsigned int flags;
-> +
-> +	flags = (PIPE_CONTROL_CS_STALL |
-> +		 PIPE_CONTROL_TILE_CACHE_FLUSH |
-> +		 PIPE_CONTROL_RENDER_TARGET_CACHE_FLUSH |
-> +		 PIPE_CONTROL_DEPTH_CACHE_FLUSH |
-> +		 PIPE_CONTROL_DC_FLUSH_ENABLE |
-> +		 PIPE_CONTROL_FLUSH_ENABLE);
-> +
-> +	if (intel_timeline_is_relative(tl)) {
-> +		offset = offset_in_page(offset);
-> +		flags |= PIPE_CONTROL_STORE_DATA_INDEX;
-> +	}
-> +	GEM_BUG_ON(offset & 7);
-> +	if (intel_timeline_is_global(tl))
-> +		flags |= PIPE_CONTROL_GLOBAL_GTT_IVB;
-> +
-> +	cs = __gen8_emit_write_rcs(cs, rq->fence.seqno, offset, 0, flags);
->  
->  	return gen8_emit_fini_breadcrumb_tail(rq, cs);
->  }
-> @@ -601,19 +632,30 @@ u32 *gen12_emit_fini_breadcrumb_xcs(struct i915_request *rq, u32 *cs)
->  
->  u32 *gen12_emit_fini_breadcrumb_rcs(struct i915_request *rq, u32 *cs)
->  {
-> -	cs = gen12_emit_ggtt_write_rcs(cs,
-> -				       rq->fence.seqno,
-> -				       hwsp_offset(rq),
-> -				       PIPE_CONTROL0_HDC_PIPELINE_FLUSH,
-> -				       PIPE_CONTROL_CS_STALL |
-> -				       PIPE_CONTROL_TILE_CACHE_FLUSH |
-> -				       PIPE_CONTROL_FLUSH_L3 |
-> -				       PIPE_CONTROL_RENDER_TARGET_CACHE_FLUSH |
-> -				       PIPE_CONTROL_DEPTH_CACHE_FLUSH |
-> -				       /* Wa_1409600907:tgl */
-> -				       PIPE_CONTROL_DEPTH_STALL |
-> -				       PIPE_CONTROL_DC_FLUSH_ENABLE |
-> -				       PIPE_CONTROL_FLUSH_ENABLE);
-> +	struct intel_timeline *tl = rcu_dereference_protected(rq->timeline, 1);
-> +	u32 offset = hwsp_offset(rq);
-> +	unsigned int flags;
-> +
-> +	flags = (PIPE_CONTROL_CS_STALL |
-> +		 PIPE_CONTROL_TILE_CACHE_FLUSH |
-> +		 PIPE_CONTROL_FLUSH_L3 |
-> +		 PIPE_CONTROL_RENDER_TARGET_CACHE_FLUSH |
-> +		 PIPE_CONTROL_DEPTH_CACHE_FLUSH |
-> +		 /* Wa_1409600907:tgl */
-> +		 PIPE_CONTROL_DEPTH_STALL |
-> +		 PIPE_CONTROL_DC_FLUSH_ENABLE |
-> +		 PIPE_CONTROL_FLUSH_ENABLE);
-> +
-> +	if (intel_timeline_is_relative(tl)) {
-> +		offset = offset_in_page(offset);
-> +		flags |= PIPE_CONTROL_STORE_DATA_INDEX;
-> +	}
-> +	GEM_BUG_ON(offset & 7);
-> +	if (intel_timeline_is_global(tl))
-> +		flags |= PIPE_CONTROL_GLOBAL_GTT_IVB;
-> +
-> +	cs = __gen8_emit_write_rcs(cs, rq->fence.seqno, offset,
-> +				   PIPE_CONTROL0_HDC_PIPELINE_FLUSH, flags);
->  
->  	return gen12_emit_fini_breadcrumb_tail(rq, cs);
->  }
-> diff --git a/drivers/gpu/drm/i915/gt/intel_timeline.h b/drivers/gpu/drm/i915/gt/intel_timeline.h
-> index 69250de3a814..a3bdbff62e96 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_timeline.h
-> +++ b/drivers/gpu/drm/i915/gt/intel_timeline.h
-> @@ -79,6 +79,18 @@ intel_timeline_has_initial_breadcrumb(const struct intel_timeline *tl)
->  	return tl->mode == INTEL_TIMELINE_ABSOLUTE;
->  }
->  
-> +static inline bool
-> +intel_timeline_is_relative(const struct intel_timeline *tl)
-> +{
-> +	return tl->mode != INTEL_TIMELINE_ABSOLUTE;
-> +}
-> +
-> +static inline bool
-> +intel_timeline_is_global(const struct intel_timeline *tl)
-> +{
-> +	return tl->mode != INTEL_TIMELINE_CONTEXT;
-> +}
-> +
->  static inline int __intel_timeline_sync_set(struct intel_timeline *tl,
->  					    u64 context, u32 seqno)
->  {
-> -- 
-> 2.20.1
-> 
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+If there is a shortcoming, it's not asked too much to talk to the relevant
+maintainers instead of going off and fiddling with the guts of interrupt
+descriptors and often enough without understanding lifetime and locking
+rules.
+
+As people insist on not respecting boundaries, this series cleans up the
+(ab)use and at the end removes the export of irq_to_desc() to make it at
+least harder. All legitimate users of this are built in.
+
+While at it I stumbled over some other oddities related to interrupt
+counting and cleaned them up as well.
+
+The series applies on top of
+
+   git://git.kernel.org/pub/scm/linux/kernel/git/tip/tip.git irq/core
+
+and is also available from git:
+
+  git://git.kernel.org/pub/scm/linux/kernel/git/tglx/devel.git genirq
+
+Thanks,
+
+	tglx
+---
+ arch/alpha/kernel/sys_jensen.c                       |    2 
+ arch/arm/kernel/smp.c                                |    2 
+ arch/parisc/kernel/irq.c                             |    7 
+ arch/s390/kernel/irq.c                               |    2 
+ arch/x86/kernel/topology.c                           |    1 
+ arch/arm64/kernel/smp.c                              |    2 
+ drivers/gpu/drm/i915/display/intel_lpe_audio.c       |    4 
+ drivers/gpu/drm/i915/i915_irq.c                      |   34 +++
+ drivers/gpu/drm/i915/i915_pmu.c                      |   18 -
+ drivers/gpu/drm/i915/i915_pmu.h                      |    8 
+ drivers/mfd/ab8500-debugfs.c                         |   16 -
+ drivers/net/ethernet/mellanox/mlx4/en_cq.c           |    8 
+ drivers/net/ethernet/mellanox/mlx4/en_rx.c           |    6 
+ drivers/net/ethernet/mellanox/mlx4/mlx4_en.h         |    3 
+ drivers/net/ethernet/mellanox/mlx5/core/en.h         |    2 
+ drivers/net/ethernet/mellanox/mlx5/core/en_main.c    |    2 
+ drivers/net/ethernet/mellanox/mlx5/core/en_txrx.c    |    6 
+ drivers/ntb/msi.c                                    |    4 
+ drivers/pci/controller/mobiveil/pcie-mobiveil-host.c |    8 
+ drivers/pci/controller/pcie-xilinx-nwl.c             |    8 
+ drivers/pinctrl/nomadik/pinctrl-nomadik.c            |    3 
+ drivers/xen/events/events_base.c                     |  172 +++++++++++--------
+ drivers/xen/evtchn.c                                 |   34 ---
+ include/linux/interrupt.h                            |    1 
+ include/linux/irq.h                                  |    7 
+ include/linux/irqdesc.h                              |   40 +---
+ include/linux/kernel_stat.h                          |    1 
+ kernel/irq/irqdesc.c                                 |   42 ++--
+ kernel/irq/manage.c                                  |   37 ++++
+ kernel/irq/proc.c                                    |    5 
+ 30 files changed, 263 insertions(+), 222 deletions(-)
+
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
