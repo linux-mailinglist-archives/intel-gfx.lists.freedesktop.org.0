@@ -1,32 +1,42 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 32BDF2D5266
-	for <lists+intel-gfx@lfdr.de>; Thu, 10 Dec 2020 05:03:21 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 26C672D52B0
+	for <lists+intel-gfx@lfdr.de>; Thu, 10 Dec 2020 05:18:06 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3AA946E83E;
-	Thu, 10 Dec 2020 04:03:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8E4296E840;
+	Thu, 10 Dec 2020 04:18:03 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id C64426E82D;
- Thu, 10 Dec 2020 04:03:16 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id BFD75A47DB;
- Thu, 10 Dec 2020 04:03:16 +0000 (UTC)
+Received: from us-smtp-delivery-44.mimecast.com
+ (us-smtp-delivery-44.mimecast.com [205.139.111.44])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2A7E16E840
+ for <intel-gfx@lists.freedesktop.org>; Thu, 10 Dec 2020 04:18:02 +0000 (UTC)
+Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
+ [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-184-LDTh5t4eOQ2EtQ3kFVd1tg-1; Wed, 09 Dec 2020 23:17:59 -0500
+X-MC-Unique: LDTh5t4eOQ2EtQ3kFVd1tg-1
+Received: from smtp.corp.redhat.com (int-mx05.intmail.prod.int.phx2.redhat.com
+ [10.5.11.15])
+ (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
+ (No client certificate requested)
+ by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 87E901922027
+ for <intel-gfx@lists.freedesktop.org>; Thu, 10 Dec 2020 04:17:58 +0000 (UTC)
+Received: from dreadlord-bne-redhat-com.bne.redhat.com (unknown [10.64.32.209])
+ by smtp.corp.redhat.com (Postfix) with ESMTP id ED2115D6A1
+ for <intel-gfx@lists.freedesktop.org>; Thu, 10 Dec 2020 04:17:57 +0000 (UTC)
+From: Dave Airlie <airlied@gmail.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Thu, 10 Dec 2020 14:17:46 +1000
+Message-Id: <20201210041755.29088-1-airlied@gmail.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Lyude Paul" <lyude@redhat.com>
-Date: Thu, 10 Dec 2020 04:03:16 -0000
-Message-ID: <160757299675.19116.96637796517934876@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20201210012143.729402-1-lyude@redhat.com>
-In-Reply-To: <20201210012143.729402-1-lyude@redhat.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkRPQ1M6IHdhcm5pbmcgZm9yIGRy?=
- =?utf-8?q?m=3A_Extract_DPCD_backlight_helpers_from_i915=2C_add_support_in?=
- =?utf-8?q?_nouveau?=
+X-Scanned-By: MIMEDefang 2.79 on 10.5.11.15
+Authentication-Results: relay.mimecast.com;
+ auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=airlied@gmail.com
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: gmail.com
+Subject: [Intel-gfx] [RFC v2] refactor intel display a bit more
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,24 +49,19 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+The first 3 are just moving some functions to inline and fixing
+a wrong comma, the next 4 are cleaned up from yesterday.
 
-Series: drm: Extract DPCD backlight helpers from i915, add support in nouveau
-URL   : https://patchwork.freedesktop.org/series/84754/
-State : warning
+hsw fdi is definitely a WIP.
 
-== Summary ==
+Skl planes migration is along the lines of what danvet asked for.
 
-$ make htmldocs 2>&1 > /dev/null | grep i915
-Error: Cannot open file ./drivers/gpu/drm/i915/gt/intel_lrc.c
-WARNING: kernel-doc './scripts/kernel-doc -rst -enable-lineno -sphinx-version 1.7.9 -function Logical Rings, Logical Ring Contexts and Execlists ./drivers/gpu/drm/i915/gt/intel_lrc.c' failed with return code 1
+Dave.
 
 
 _______________________________________________
