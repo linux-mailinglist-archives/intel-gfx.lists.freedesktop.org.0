@@ -1,32 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4F53D2D5510
-	for <lists+intel-gfx@lfdr.de>; Thu, 10 Dec 2020 09:03:13 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id CE93B2D550A
+	for <lists+intel-gfx@lfdr.de>; Thu, 10 Dec 2020 09:03:07 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B226B6EA23;
-	Thu, 10 Dec 2020 08:03:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ABD586E9ED;
+	Thu, 10 Dec 2020 08:02:59 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2B4406E3A0
- for <intel-gfx@lists.freedesktop.org>; Thu, 10 Dec 2020 08:02:52 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1D25E6E372
+ for <intel-gfx@lists.freedesktop.org>; Thu, 10 Dec 2020 08:02:51 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 23275669-1500050 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 23275670-1500050 
  for multiple; Thu, 10 Dec 2020 08:02:43 +0000
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Thu, 10 Dec 2020 08:02:33 +0000
-Message-Id: <20201210080240.24529-14-chris@chris-wilson.co.uk>
+Date: Thu, 10 Dec 2020 08:02:34 +0000
+Message-Id: <20201210080240.24529-15-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20201210080240.24529-1-chris@chris-wilson.co.uk>
 References: <20201210080240.24529-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 14/21] drm/i915: Encode fence specific waitqueue
- behaviour into the wait.flags
+Subject: [Intel-gfx] [PATCH 15/21] drm/i915/gt: Track all timelines created
+ using the HWSP
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,84 +45,212 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Use the wait_queue_entry.flags to denote the special fence behaviour
-(flattening continuations along fence chains, and for propagating
-errors) rather than trying to detect ordinary waiters by their
-functions.
+We assume that the contents of the HWSP are lost across suspend, and so
+upon resume we must restore critical values such as the timeline seqno.
+Keep track of every timeline allocated that uses the HWSP as its storage
+and so we can then reset all seqno values by walking that list.
 
 Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
 ---
- drivers/gpu/drm/i915/i915_sw_fence.c | 25 +++++++++++++++----------
- 1 file changed, 15 insertions(+), 10 deletions(-)
+ drivers/gpu/drm/i915/gt/intel_engine_cs.c     |  9 ++++-
+ drivers/gpu/drm/i915/gt/intel_engine_pm.c     |  6 ++++
+ drivers/gpu/drm/i915/gt/intel_engine_types.h  |  1 +
+ .../drm/i915/gt/intel_execlists_submission.c  | 11 ++++--
+ .../gpu/drm/i915/gt/intel_ring_submission.c   | 35 +++++++++++++++++++
+ drivers/gpu/drm/i915/gt/intel_timeline.h      | 13 +++++--
+ .../gpu/drm/i915/gt/intel_timeline_types.h    |  2 ++
+ 7 files changed, 71 insertions(+), 6 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/i915_sw_fence.c b/drivers/gpu/drm/i915/i915_sw_fence.c
-index 038d4c6884c5..2744558f3050 100644
---- a/drivers/gpu/drm/i915/i915_sw_fence.c
-+++ b/drivers/gpu/drm/i915/i915_sw_fence.c
-@@ -18,10 +18,15 @@
- #define I915_SW_FENCE_BUG_ON(expr) BUILD_BUG_ON_INVALID(expr)
- #endif
+diff --git a/drivers/gpu/drm/i915/gt/intel_engine_cs.c b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+index 71bd052628f4..6c08e74edcae 100644
+--- a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
++++ b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+@@ -648,6 +648,8 @@ static int init_status_page(struct intel_engine_cs *engine)
+ 	void *vaddr;
+ 	int ret;
  
--#define I915_SW_FENCE_FLAG_ALLOC BIT(3) /* after WQ_FLAG_* for safety */
--
- static DEFINE_SPINLOCK(i915_sw_fence_lock);
- 
-+#define WQ_FLAG_BITS \
-+	BITS_PER_TYPE(typeof_member(struct wait_queue_entry, flags))
++	INIT_LIST_HEAD(&engine->status_page.timelines);
 +
-+/* after WQ_FLAG_* for safety */
-+#define I915_SW_FENCE_FLAG_FENCE BIT(WQ_FLAG_BITS - 1)
-+#define I915_SW_FENCE_FLAG_ALLOC BIT(WQ_FLAG_BITS - 2)
+ 	/*
+ 	 * Though the HWS register does support 36bit addresses, historically
+ 	 * we have had hangs and corruption reported due to wild writes if
+@@ -936,6 +938,7 @@ void intel_engine_cleanup_common(struct intel_engine_cs *engine)
+ 		fput(engine->default_state);
+ 
+ 	if (engine->kernel_context) {
++		list_del(&engine->kernel_context->timeline->engine_link);
+ 		intel_context_unpin(engine->kernel_context);
+ 		intel_context_put(engine->kernel_context);
+ 	}
+@@ -1281,8 +1284,12 @@ void intel_engines_reset_default_submission(struct intel_gt *gt)
+ 	struct intel_engine_cs *engine;
+ 	enum intel_engine_id id;
+ 
+-	for_each_engine(engine, gt, id)
++	for_each_engine(engine, gt, id) {
++		if (engine->sanitize)
++			engine->sanitize(engine);
 +
- enum {
- 	DEBUG_FENCE_IDLE = 0,
- 	DEBUG_FENCE_NOTIFY,
-@@ -154,10 +159,10 @@ static void __i915_sw_fence_wake_up_all(struct i915_sw_fence *fence,
- 	spin_lock_irqsave_nested(&x->lock, flags, 1 + !!continuation);
- 	if (continuation) {
- 		list_for_each_entry_safe(pos, next, &x->head, entry) {
--			if (pos->func == autoremove_wake_function)
--				pos->func(pos, TASK_NORMAL, 0, continuation);
--			else
-+			if (pos->flags & I915_SW_FENCE_FLAG_FENCE)
- 				list_move_tail(&pos->entry, continuation);
-+			else
-+				pos->func(pos, TASK_NORMAL, 0, continuation);
- 		}
- 	} else {
- 		LIST_HEAD(extra);
-@@ -166,9 +171,9 @@ static void __i915_sw_fence_wake_up_all(struct i915_sw_fence *fence,
- 			list_for_each_entry_safe(pos, next, &x->head, entry) {
- 				int wake_flags;
+ 		engine->set_default_submission(engine);
++	}
+ }
  
--				wake_flags = fence->error;
--				if (pos->func == autoremove_wake_function)
--					wake_flags = 0;
-+				wake_flags = 0;
-+				if (pos->flags & I915_SW_FENCE_FLAG_FENCE)
-+					wake_flags = fence->error;
+ bool intel_engine_can_store_dword(struct intel_engine_cs *engine)
+diff --git a/drivers/gpu/drm/i915/gt/intel_engine_pm.c b/drivers/gpu/drm/i915/gt/intel_engine_pm.c
+index 99574378047f..1e5bad0b9a82 100644
+--- a/drivers/gpu/drm/i915/gt/intel_engine_pm.c
++++ b/drivers/gpu/drm/i915/gt/intel_engine_pm.c
+@@ -60,6 +60,12 @@ static int __engine_unpark(struct intel_wakeref *wf)
  
- 				pos->func(pos, TASK_NORMAL, wake_flags, &extra);
- 			}
-@@ -332,8 +337,8 @@ static int __i915_sw_fence_await_sw_fence(struct i915_sw_fence *fence,
- 					  struct i915_sw_fence *signaler,
- 					  wait_queue_entry_t *wq, gfp_t gfp)
+ 		/* Scrub the context image after our loss of control */
+ 		ce->ops->reset(ce);
++
++		CE_TRACE(ce, "reset { seqno:%x, *hwsp:%x, ring:%x }\n",
++			 ce->timeline->seqno,
++			 READ_ONCE(*ce->timeline->hwsp_seqno),
++			 ce->ring->emit);
++		GEM_BUG_ON(ce->timeline->seqno != *ce->timeline->hwsp_seqno);
+ 	}
+ 
+ 	if (engine->unpark)
+diff --git a/drivers/gpu/drm/i915/gt/intel_engine_types.h b/drivers/gpu/drm/i915/gt/intel_engine_types.h
+index e71eef157231..c28f4e190fe6 100644
+--- a/drivers/gpu/drm/i915/gt/intel_engine_types.h
++++ b/drivers/gpu/drm/i915/gt/intel_engine_types.h
+@@ -68,6 +68,7 @@ typedef u8 intel_engine_mask_t;
+ #define ALL_ENGINES ((intel_engine_mask_t)~0ul)
+ 
+ struct intel_hw_status_page {
++	struct list_head timelines;
+ 	struct i915_vma *vma;
+ 	u32 *addr;
+ };
+diff --git a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
+index 8285de82c929..8bff0559a6a9 100644
+--- a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
++++ b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
+@@ -3508,7 +3508,6 @@ static int execlists_context_alloc(struct intel_context *ce)
+ 
+ static void execlists_context_reset(struct intel_context *ce)
  {
-+	unsigned int pending;
- 	unsigned long flags;
--	int pending;
+-	CE_TRACE(ce, "reset\n");
+ 	GEM_BUG_ON(!intel_context_is_pinned(ce));
  
- 	debug_fence_assert(fence);
- 	might_sleep_if(gfpflags_allow_blocking(gfp));
-@@ -349,7 +354,7 @@ static int __i915_sw_fence_await_sw_fence(struct i915_sw_fence *fence,
- 	if (unlikely(i915_sw_fence_check_if_after(fence, signaler)))
- 		return -EINVAL;
+ 	intel_ring_reset(ce->ring, ce->ring->emit);
+@@ -3985,6 +3984,14 @@ static void reset_csb_pointers(struct intel_engine_cs *engine)
+ 	GEM_BUG_ON(READ_ONCE(*execlists->csb_write) != reset_value);
+ }
  
--	pending = 0;
-+	pending = I915_SW_FENCE_FLAG_FENCE;
- 	if (!wq) {
- 		wq = kmalloc(sizeof(*wq), gfp);
- 		if (!wq) {
++static void sanitize_hwsp(struct intel_engine_cs *engine)
++{
++	struct intel_timeline *tl;
++
++	list_for_each_entry(tl, &engine->status_page.timelines, engine_link)
++		intel_timeline_reset_seqno(tl);
++}
++
+ static void execlists_sanitize(struct intel_engine_cs *engine)
+ {
+ 	GEM_BUG_ON(execlists_active(&engine->execlists));
+@@ -4008,7 +4015,7 @@ static void execlists_sanitize(struct intel_engine_cs *engine)
+ 	 * that may be lost on resume/initialisation, and so we need to
+ 	 * reset the value in the HWSP.
+ 	 */
+-	intel_timeline_reset_seqno(engine->kernel_context->timeline);
++	sanitize_hwsp(engine);
+ 
+ 	/* And scrub the dirty cachelines for the HWSP */
+ 	clflush_cache_range(engine->status_page.addr, PAGE_SIZE);
+diff --git a/drivers/gpu/drm/i915/gt/intel_ring_submission.c b/drivers/gpu/drm/i915/gt/intel_ring_submission.c
+index 1959e3e5b8e9..3848d40ead89 100644
+--- a/drivers/gpu/drm/i915/gt/intel_ring_submission.c
++++ b/drivers/gpu/drm/i915/gt/intel_ring_submission.c
+@@ -321,6 +321,39 @@ static int xcs_resume(struct intel_engine_cs *engine)
+ 	return ret;
+ }
+ 
++static void sanitize_hwsp(struct intel_engine_cs *engine)
++{
++	struct intel_timeline *tl;
++
++	list_for_each_entry(tl, &engine->status_page.timelines, engine_link)
++		intel_timeline_reset_seqno(tl);
++}
++
++static void xcs_sanitize(struct intel_engine_cs *engine)
++{
++	/*
++	 * Poison residual state on resume, in case the suspend didn't!
++	 *
++	 * We have to assume that across suspend/resume (or other loss
++	 * of control) that the contents of our pinned buffers has been
++	 * lost, replaced by garbage. Since this doesn't always happen,
++	 * let's poison such state so that we more quickly spot when
++	 * we falsely assume it has been preserved.
++	 */
++	if (IS_ENABLED(CONFIG_DRM_I915_DEBUG_GEM))
++		memset(engine->status_page.addr, POISON_INUSE, PAGE_SIZE);
++
++	/*
++	 * The kernel_context HWSP is stored in the status_page. As above,
++	 * that may be lost on resume/initialisation, and so we need to
++	 * reset the value in the HWSP.
++	 */
++	sanitize_hwsp(engine);
++
++	/* And scrub the dirty cachelines for the HWSP */
++	clflush_cache_range(engine->status_page.addr, PAGE_SIZE);
++}
++
+ static void reset_prepare(struct intel_engine_cs *engine)
+ {
+ 	struct intel_uncore *uncore = engine->uncore;
+@@ -1070,6 +1103,8 @@ static void setup_common(struct intel_engine_cs *engine)
+ 	setup_irq(engine);
+ 
+ 	engine->resume = xcs_resume;
++	engine->sanitize = xcs_sanitize;
++
+ 	engine->reset.prepare = reset_prepare;
+ 	engine->reset.rewind = reset_rewind;
+ 	engine->reset.cancel = reset_cancel;
+diff --git a/drivers/gpu/drm/i915/gt/intel_timeline.h b/drivers/gpu/drm/i915/gt/intel_timeline.h
+index 634acebd0c4b..1ee680d31801 100644
+--- a/drivers/gpu/drm/i915/gt/intel_timeline.h
++++ b/drivers/gpu/drm/i915/gt/intel_timeline.h
+@@ -48,9 +48,16 @@ static inline struct intel_timeline *
+ intel_timeline_create_from_engine(struct intel_engine_cs *engine,
+ 				  unsigned int offset)
+ {
+-	return __intel_timeline_create(engine->gt,
+-				       engine->status_page.vma,
+-				       offset);
++	struct intel_timeline *tl;
++
++	tl = __intel_timeline_create(engine->gt,
++				     engine->status_page.vma,
++				     offset);
++	if (IS_ERR(tl))
++		return tl;
++
++	list_add_tail(&tl->engine_link, &engine->status_page.timelines);
++	return tl;
+ }
+ 
+ static inline struct intel_timeline *
+diff --git a/drivers/gpu/drm/i915/gt/intel_timeline_types.h b/drivers/gpu/drm/i915/gt/intel_timeline_types.h
+index 4474f487f589..e360f50706bf 100644
+--- a/drivers/gpu/drm/i915/gt/intel_timeline_types.h
++++ b/drivers/gpu/drm/i915/gt/intel_timeline_types.h
+@@ -84,6 +84,8 @@ struct intel_timeline {
+ 	struct list_head link;
+ 	struct intel_gt *gt;
+ 
++	struct list_head engine_link;
++
+ 	struct kref kref;
+ 	struct rcu_head rcu;
+ };
 -- 
 2.20.1
 
