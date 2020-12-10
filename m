@@ -2,42 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id DFF192D5638
-	for <lists+intel-gfx@lfdr.de>; Thu, 10 Dec 2020 10:13:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B3A3F2D56A9
+	for <lists+intel-gfx@lfdr.de>; Thu, 10 Dec 2020 10:18:46 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 76E1B6EA3D;
-	Thu, 10 Dec 2020 09:13:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9E2576EA47;
+	Thu, 10 Dec 2020 09:18:44 +0000 (UTC)
 X-Original-To: Intel-gfx@lists.freedesktop.org
 Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ADE136EA3D
- for <Intel-gfx@lists.freedesktop.org>; Thu, 10 Dec 2020 09:13:21 +0000 (UTC)
-IronPort-SDR: t7iN7MmcI+LgcYAPsClCqOiKaHBSdpI0nIwKzM1LxFb8YpiOxaqgLaN4ILUx9G0SS9O4OS7zUK
- twa+LLCbVLQw==
-X-IronPort-AV: E=McAfee;i="6000,8403,9830"; a="161275156"
-X-IronPort-AV: E=Sophos;i="5.78,408,1599548400"; d="scan'208";a="161275156"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Dec 2020 01:13:20 -0800
-IronPort-SDR: EJ0/0VlYMj0czR9obUkBF2apldJ0By0vC2z3zFot1kyjmNnhjYBFT34jU25CFeyBRk3jDvT0ef
- y5MeJJ3rGnWw==
-X-IronPort-AV: E=Sophos;i="5.78,408,1599548400"; d="scan'208";a="371444511"
-Received: from ggiordax-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.251.87.181])
- by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Dec 2020 01:13:18 -0800
+Received: from fireflyinternet.com (unknown [77.68.26.236])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A5B406EA47
+ for <Intel-gfx@lists.freedesktop.org>; Thu, 10 Dec 2020 09:18:43 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from localhost (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
+ 23276816-1500050 for multiple; Thu, 10 Dec 2020 09:18:39 +0000
 MIME-Version: 1.0
-In-Reply-To: <20201209070307.2304-12-sean.z.huang@intel.com>
-References: <20201209070307.2304-1-sean.z.huang@intel.com>
- <20201209070307.2304-12-sean.z.huang@intel.com>
-From: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+In-Reply-To: <20201210072435.24066-6-sean.z.huang@intel.com>
+References: <20201210072435.24066-1-sean.z.huang@intel.com>
+ <20201210072435.24066-6-sean.z.huang@intel.com>
+From: Chris Wilson <chris@chris-wilson.co.uk>
 To: "Huang, Sean Z" <sean.z.huang@intel.com>, Intel-gfx@lists.freedesktop.org
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Message-ID: <160759159521.5062.6020207187950987766@jlahtine-mobl.ger.corp.intel.com>
-User-Agent: alot/0.8.1
-Date: Thu, 10 Dec 2020 11:13:15 +0200
-Subject: Re: [Intel-gfx] [RFC-v3 11/13] drm/i915/uapi: introduce
- drm_i915_gem_create_ext
+Date: Thu, 10 Dec 2020 09:18:39 +0000
+Message-ID: <160759191903.595.11455610929447185588@build.alporthouse.com>
+User-Agent: alot/0.9
+Subject: Re: [Intel-gfx] [RFC-v4 05/21] drm/i915/pxp: Func to send hardware
+ session termination
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,193 +40,272 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Bommu Krishnaiah <krishnaiah.bommu@intel.com>, Joonas@freedesktop.org,
- Matthew@freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Huang, Sean Z (2020-12-09 09:03:05)
-> From: Bommu Krishnaiah <krishnaiah.bommu@intel.com>
-
-The patch authorship is still recorded wrong.
-
-'git am' should always be used for importing patches to retain the
-correct authorship.
-
-Regards, Joonas
-
-> Same old gem_create but with now with extensions support. This is needed
-> to support various upcoming usecases. For now we use the extensions
-> mechanism to support PAVP.
+Quoting Huang, Sean Z (2020-12-10 07:24:19)
+> Implement the functions to allow PXP to send a GPU command, in
+> order to terminate the hardware session, so hardware can recycle
+> this session slot for the next usage.
 > 
-> Signed-off-by: Bommu Krishnaiah <krishnaiah.bommu@intel.com>
-> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
-> Cc: Joonas Lahtinen joonas.lahtinen@linux.intel.com
-> Cc: Matthew Auld matthew.auld@intel.com
-> Cc: Telukuntla Sreedhar <sreedhar.telukuntla@intel.com>
+> Signed-off-by: Huang, Sean Z <sean.z.huang@intel.com>
 > ---
->  drivers/gpu/drm/i915/i915_drv.c |  2 +-
->  drivers/gpu/drm/i915/i915_gem.c | 42 ++++++++++++++++++++++++++++-
->  include/uapi/drm/i915_drm.h     | 47 +++++++++++++++++++++++++++++++++
->  3 files changed, 89 insertions(+), 2 deletions(-)
+>  drivers/gpu/drm/i915/Makefile            |   1 +
+>  drivers/gpu/drm/i915/pxp/intel_pxp_cmd.c | 156 +++++++++++++++++++++++
+>  drivers/gpu/drm/i915/pxp/intel_pxp_cmd.h |  18 +++
+>  3 files changed, 175 insertions(+)
+>  create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp_cmd.c
+>  create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp_cmd.h
 > 
-> diff --git a/drivers/gpu/drm/i915/i915_drv.c b/drivers/gpu/drm/i915/i915_drv.c
-> index af06c85e6ba7..3dbda949bf71 100644
-> --- a/drivers/gpu/drm/i915/i915_drv.c
-> +++ b/drivers/gpu/drm/i915/i915_drv.c
-> @@ -1733,7 +1733,7 @@ static const struct drm_ioctl_desc i915_ioctls[] = {
->         DRM_IOCTL_DEF_DRV(I915_GEM_THROTTLE, i915_gem_throttle_ioctl, DRM_RENDER_ALLOW),
->         DRM_IOCTL_DEF_DRV(I915_GEM_ENTERVT, drm_noop, DRM_AUTH|DRM_MASTER|DRM_ROOT_ONLY),
->         DRM_IOCTL_DEF_DRV(I915_GEM_LEAVEVT, drm_noop, DRM_AUTH|DRM_MASTER|DRM_ROOT_ONLY),
-> -       DRM_IOCTL_DEF_DRV(I915_GEM_CREATE, i915_gem_create_ioctl, DRM_RENDER_ALLOW),
-> +       DRM_IOCTL_DEF_DRV(I915_GEM_CREATE_EXT, i915_gem_create_ioctl, DRM_RENDER_ALLOW),
->         DRM_IOCTL_DEF_DRV(I915_GEM_PREAD, i915_gem_pread_ioctl, DRM_RENDER_ALLOW),
->         DRM_IOCTL_DEF_DRV(I915_GEM_PWRITE, i915_gem_pwrite_ioctl, DRM_RENDER_ALLOW),
->         DRM_IOCTL_DEF_DRV(I915_GEM_MMAP, i915_gem_mmap_ioctl, DRM_RENDER_ALLOW),
-> diff --git a/drivers/gpu/drm/i915/i915_gem.c b/drivers/gpu/drm/i915/i915_gem.c
-> index 58276694c848..41698a823737 100644
-> --- a/drivers/gpu/drm/i915/i915_gem.c
-> +++ b/drivers/gpu/drm/i915/i915_gem.c
-> @@ -53,6 +53,7 @@
->  #include "i915_drv.h"
->  #include "i915_trace.h"
->  #include "i915_vgpu.h"
-> +#include "i915_user_extensions.h"
+> diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefile
+> index 0710cc522f38..2da904cda49f 100644
+> --- a/drivers/gpu/drm/i915/Makefile
+> +++ b/drivers/gpu/drm/i915/Makefile
+> @@ -258,6 +258,7 @@ i915-y += i915_perf.o
+>  i915-$(CONFIG_DRM_I915_PXP) += \
+>         pxp/intel_pxp.o \
+>         pxp/intel_pxp_arb.o \
+> +       pxp/intel_pxp_cmd.o \
+>         pxp/intel_pxp_context.o \
+>         pxp/intel_pxp_tee.o
 >  
->  #include "intel_pm.h"
->  
-> @@ -260,6 +261,35 @@ i915_gem_dumb_create(struct drm_file *file,
->                                &args->size, &args->handle);
->  }
->  
-> +struct create_ext {
-> +        struct drm_i915_private *i915;
-> +};
+> diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp_cmd.c b/drivers/gpu/drm/i915/pxp/intel_pxp_cmd.c
+> new file mode 100644
+> index 000000000000..e531ea9f3cdc
+> --- /dev/null
+> +++ b/drivers/gpu/drm/i915/pxp/intel_pxp_cmd.c
+> @@ -0,0 +1,156 @@
+> +// SPDX-License-Identifier: MIT
+> +/*
+> + * Copyright(c) 2020, Intel Corporation. All rights reserved.
+> + */
 > +
-> +static int __create_setparam(struct drm_i915_gem_object_param *args,
-> +                                                       struct create_ext *ext_data)
+> +#include "intel_pxp_cmd.h"
+> +#include "i915_drv.h"
+> +#include "gt/intel_context.h"
+> +#include "gt/intel_engine_pm.h"
+> +
+> +struct i915_vma *intel_pxp_cmd_get_batch(struct intel_pxp *pxp,
+> +                                        struct intel_context *ce,
+> +                                        struct intel_gt_buffer_pool_node *pool,
+> +                                        u32 *cmd_buf, int cmd_size_in_dw)
 > +{
-> +       if (!(args->param & I915_OBJECT_PARAM)) {
-> +               DRM_DEBUG("Missing I915_OBJECT_PARAM namespace\n");
+> +       struct i915_vma *batch = ERR_PTR(-EINVAL);
+> +       struct intel_gt *gt = container_of(pxp, struct intel_gt, pxp);
+> +       u32 *cmd;
+> +
+> +       if (!ce || !ce->engine || !cmd_buf)
+> +               return ERR_PTR(-EINVAL);
+
+Really?
+
+> +       if (cmd_size_in_dw * 4 > PAGE_SIZE) {
+
+Pardon?
+
+> +               drm_err(&gt->i915->drm, "Failed to %s, invalid cmd_size_id_dw=[%d]\n",
+> +                       __func__, cmd_size_in_dw);
+> +               return ERR_PTR(-EINVAL);
+> +       }
+> +
+> +       cmd = i915_gem_object_pin_map(pool->obj, I915_MAP_FORCE_WC);
+> +       if (IS_ERR(cmd)) {
+> +               drm_err(&gt->i915->drm, "Failed to i915_gem_object_pin_map()\n");
+> +               return ERR_PTR(-EINVAL);
+> +       }
+> +
+> +       memcpy(cmd, cmd_buf, cmd_size_in_dw * 4);
+
+Why did you bother creating a temporary?
+[memcpy32]
+
+> +       if (drm_debug_enabled(DRM_UT_DRIVER)) {
+> +               print_hex_dump(KERN_DEBUG, "cmd binaries:",
+> +                              DUMP_PREFIX_OFFSET, 4, 4, cmd, cmd_size_in_dw * 4, true);
+
+More sillyness again.
+
+> +       }
+> +
+
+Flush the map after a write
+
+> +       i915_gem_object_unpin_map(pool->obj);
+> +
+> +       batch = i915_vma_instance(pool->obj, ce->vm, NULL);
+> +       if (IS_ERR(batch)) {
+> +               drm_err(&gt->i915->drm, "Failed to i915_vma_instance()\n");
+> +               return batch;
+> +       }
+> +
+> +       return batch;
+> +}
+> +
+> +int intel_pxp_cmd_submit(struct intel_pxp *pxp, u32 *cmd, int cmd_size_in_dw)
+> +{
+> +       int err = -EINVAL;
+> +       struct i915_vma *batch;
+> +       struct i915_request *rq;
+> +       struct intel_context *ce = NULL;
+> +       bool is_engine_pm_get = false;
+> +       bool is_batch_vma_pin = false;
+> +       bool is_skip_req_on_err = false;
+> +       bool is_engine_get_pool = false;
+
+Please implement onion unwind correctly.
+
+And a general plea to be consistent with the rest of the code in laying
+out locals.
+
+> +       struct intel_gt_buffer_pool_node *pool = NULL;
+> +       struct intel_gt *gt = container_of(pxp, struct intel_gt, pxp);
+> +
+> +       if (!HAS_ENGINE(gt, VCS0) ||
+> +           !gt->engine[VCS0]->kernel_context) {
+
+What are you doing here if you don't have a VCS? Surely you should not
+have even bothered to bind PXP in that case?
+
+Don't assume the first available VCS engine has the HW instance id of 0.
+
+The kernel_context exists if the engine exists.
+
+> +               err = -EINVAL;
+> +               goto end;
+> +       }
+> +
+> +       if (!cmd || (cmd_size_in_dw * 4) > PAGE_SIZE) {
+
+Fix your debug code.
+
+> +               drm_err(&gt->i915->drm, "Failed to %s bad params\n", __func__);
 > +               return -EINVAL;
 > +       }
 > +
-> +       return -EINVAL;
+> +       ce = gt->engine[VCS0]->kernel_context;
+
+DO NOT USE THE KERNEL CONTEXT. Unless you really know what you are
+doing and can guarantee that under no circumstances does it break.
+
+> +       intel_engine_pm_get(ce->engine);
+> +       is_engine_pm_get = true;
+> +
+> +       pool = intel_gt_get_buffer_pool(gt, PAGE_SIZE);
+
+If only you knew what the desired size actually was.
+
+> +       if (IS_ERR(pool)) {
+> +               drm_err(&gt->i915->drm, "Failed to intel_engine_get_pool()\n");
+> +               goto end;
+> +       }
+> +       is_engine_get_pool = true;
+> +
+> +       batch = intel_pxp_cmd_get_batch(pxp, ce, pool, cmd, cmd_size_in_dw);
+> +       if (IS_ERR(batch)) {
+> +               drm_err(&gt->i915->drm, "Failed to intel_pxp_cmd_get_batch()\n");
+> +               goto end;
+> +       }
+> +
+> +       err = i915_vma_pin(batch, 0, 0, PIN_USER);
+> +       if (err) {
+> +               drm_err(&gt->i915->drm, "Failed to i915_vma_pin()\n");
+> +               goto end;
+> +       }
+> +       is_batch_vma_pin = true;
+> +
+> +       rq = intel_context_create_request(ce);
+> +       if (IS_ERR(rq)) {
+> +               drm_err(&gt->i915->drm, "Failed to intel_context_create_request()\n");
+> +               goto end;
+> +       }
+> +       is_skip_req_on_err = true;
+> +
+> +       err = intel_gt_buffer_pool_mark_active(pool, rq);
+> +       if (err) {
+> +               drm_err(&gt->i915->drm, "Failed to intel_engine_pool_mark_active()\n");
+> +               goto end;
+> +       }
+> +
+> +       i915_vma_lock(batch);
+> +       err = i915_request_await_object(rq, batch->obj, false);
+> +       if (!err)
+> +               err = i915_vma_move_to_active(batch, rq, 0);
+> +       i915_vma_unlock(batch);
+> +       if (err) {
+> +               drm_err(&gt->i915->drm, "Failed to i915_request_await_object()\n");
+> +               goto end;
+> +       }
+> +
+> +       if (ce->engine->emit_init_breadcrumb) {
+> +               err = ce->engine->emit_init_breadcrumb(rq);
+> +               if (err) {
+> +                       drm_err(&gt->i915->drm, "Failed to emit_init_breadcrumb()\n");
+> +                       goto end;
+> +               }
+> +       }
+> +
+> +       err = ce->engine->emit_bb_start(rq, batch->node.start,
+> +               batch->node.size, 0);
+
+If this is not privileged, why is it done in the kernel? What prevents
+everyone else from issuing the very same commands to give themselves
+control?
+
+> +       if (err) {
+> +               drm_err(&gt->i915->drm, "Failed to emit_bb_start()\n");
+> +               goto end;
+> +       }
+> +
+> +       i915_request_add(rq);
+> +
+> +end:
+
+Consistency would be to use out:
+
+> +       if (unlikely(err) && is_skip_req_on_err)
+> +               i915_request_set_error_once(rq, err);
+
+Why?
+
+> +       if (is_batch_vma_pin)
+> +               i915_vma_unpin(batch);
+> +
+> +       if (is_engine_get_pool)
+> +               intel_gt_buffer_pool_put(pool);
+> +
+> +       if (is_engine_pm_get)
+> +               intel_engine_pm_put(ce->engine);
+
+Style wise, highly inconsistent. Just use labels, spare the locals.
+
+> +       return err;
 > +}
-> +
-> +static int create_setparam(struct i915_user_extension __user *base, void *data)
-> +{
-> +       struct drm_i915_gem_create_ext_setparam ext;
-> +
-> +       if (copy_from_user(&ext, base, sizeof(ext)))
-> +               return -EFAULT;
-> +
-> +       return __create_setparam(&ext.param, data);
-> +}
-> +
-> +static const i915_user_extension_fn create_extensions[] = {
-> +       [I915_GEM_CREATE_EXT_SETPARAM] = create_setparam,
-> +};
-> +
->  /**
->   * Creates a new mm object and returns a handle to it.
->   * @dev: drm device pointer
-> @@ -271,10 +301,20 @@ i915_gem_create_ioctl(struct drm_device *dev, void *data,
->                       struct drm_file *file)
->  {
->         struct drm_i915_private *i915 = to_i915(dev);
-> -       struct drm_i915_gem_create *args = data;
-> +       struct create_ext ext_data = { .i915 = i915 };
-> +       struct drm_i915_gem_create_ext *args = data;
-> +       int ret;
->  
->         i915_gem_flush_free_objects(i915);
->  
-> +       ret = i915_user_extensions(u64_to_user_ptr(args->extensions),
-> +                                  create_extensions,
-> +                                  ARRAY_SIZE(create_extensions),
-> +                                  &ext_data);
-> +       if (ret)
-> +               return ret;
-> +
-> +
->         return i915_gem_create(file,
->                                intel_memory_region_by_type(i915,
->                                                            INTEL_MEMORY_SYSTEM),
-> diff --git a/include/uapi/drm/i915_drm.h b/include/uapi/drm/i915_drm.h
-> index 6edcb2b6c708..e918ccc81c74 100644
-> --- a/include/uapi/drm/i915_drm.h
-> +++ b/include/uapi/drm/i915_drm.h
-> @@ -391,6 +391,7 @@ typedef struct _drm_i915_sarea {
->  #define DRM_IOCTL_I915_GEM_ENTERVT     DRM_IO(DRM_COMMAND_BASE + DRM_I915_GEM_ENTERVT)
->  #define DRM_IOCTL_I915_GEM_LEAVEVT     DRM_IO(DRM_COMMAND_BASE + DRM_I915_GEM_LEAVEVT)
->  #define DRM_IOCTL_I915_GEM_CREATE      DRM_IOWR(DRM_COMMAND_BASE + DRM_I915_GEM_CREATE, struct drm_i915_gem_create)
-> +#define DRM_IOCTL_I915_GEM_CREATE_EXT   DRM_IOWR(DRM_COMMAND_BASE + DRM_I915_GEM_CREATE, struct drm_i915_gem_create_ext)
->  #define DRM_IOCTL_I915_GEM_PREAD       DRM_IOW (DRM_COMMAND_BASE + DRM_I915_GEM_PREAD, struct drm_i915_gem_pread)
->  #define DRM_IOCTL_I915_GEM_PWRITE      DRM_IOW (DRM_COMMAND_BASE + DRM_I915_GEM_PWRITE, struct drm_i915_gem_pwrite)
->  #define DRM_IOCTL_I915_GEM_MMAP                DRM_IOWR(DRM_COMMAND_BASE + DRM_I915_GEM_MMAP, struct drm_i915_gem_mmap)
-> @@ -728,6 +729,27 @@ struct drm_i915_gem_create {
->         __u32 pad;
->  };
->  
-> +struct drm_i915_gem_create_ext {
-> +       /**
-> +        * Requested size for the object.
-> +        *
-> +        * The (page-aligned) allocated size for the object will be returned.
-> +        */
-> +       __u64 size;
-> +       /**
-> +        * Returned handle for the object.
-> +        *
-> +        * Object handles are nonzero.
-> +        */
-> +       __u32 handle;
-> +       __u32 pad;
-> +#define I915_GEM_CREATE_EXT_SETPARAM (1u << 0)
-> +#define I915_GEM_CREATE_EXT_FLAGS_UNKNOWN \
-> +       (-(I915_GEM_CREATE_EXT_SETPARAM << 1))
-> +       __u64 extensions;
-> +
-> +};
-> +
->  struct drm_i915_gem_pread {
->         /** Handle for the object being read. */
->         __u32 handle;
-> @@ -1698,6 +1720,31 @@ struct drm_i915_gem_context_param {
->         __u64 value;
->  };
->  
-> +struct drm_i915_gem_object_param {
-> +       /* Object handle (0 for I915_GEM_CREATE_EXT_SETPARAM) */
-> +       __u32 handle;
-> +
-> +       /* Data pointer size */
-> +       __u32 size;
-> +
+> diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp_cmd.h b/drivers/gpu/drm/i915/pxp/intel_pxp_cmd.h
+> new file mode 100644
+> index 000000000000..d04463962421
+> --- /dev/null
+> +++ b/drivers/gpu/drm/i915/pxp/intel_pxp_cmd.h
+> @@ -0,0 +1,18 @@
+> +/* SPDX-License-Identifier: MIT */
 > +/*
-> + * I915_OBJECT_PARAM:
-> + *
-> + * Select object namespace for the param.
+> + * Copyright(c) 2020, Intel Corporation. All rights reserved.
 > + */
-> +#define I915_OBJECT_PARAM  (1ull<<32)
 > +
-> +       __u64 param;
+> +#ifndef __INTEL_PXP_CMD_H__
+> +#define __INTEL_PXP_CMD_H__
 > +
-> +       /* Data value or pointer */
-> +       __u64 data;
-> +};
+> +#include "gt/intel_gt_buffer_pool.h"
+> +#include "intel_pxp.h"
 > +
-> +struct drm_i915_gem_create_ext_setparam {
-> +       struct i915_user_extension base;
-> +       struct drm_i915_gem_object_param param;
-> +};
+> +struct i915_vma *intel_pxp_cmd_get_batch(struct intel_pxp *pxp,
+> +                                        struct intel_context *ce,
+> +                                        struct intel_gt_buffer_pool_node *pool,
+> +                                        u32 *cmd_buf, int cmd_size_in_dw);
 > +
->  /**
->   * Context SSEU programming
->   *
+> +int intel_pxp_cmd_submit(struct intel_pxp *pxp, u32 *cmd, int cmd_size_in_dw);
+> +#endif /* __INTEL_PXP_SM_H__ */
 > -- 
 > 2.17.1
 > 
@@ -244,6 +313,7 @@ Regards, Joonas
 > Intel-gfx mailing list
 > Intel-gfx@lists.freedesktop.org
 > https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+>
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
