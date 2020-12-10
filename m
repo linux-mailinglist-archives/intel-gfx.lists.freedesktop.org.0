@@ -1,32 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 27ECF2D6AEF
-	for <lists+intel-gfx@lfdr.de>; Fri, 11 Dec 2020 00:31:00 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 03EC42D6AF2
+	for <lists+intel-gfx@lfdr.de>; Fri, 11 Dec 2020 00:36:30 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 726336EBD0;
-	Thu, 10 Dec 2020 23:30:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1C3FF6EBFB;
+	Thu, 10 Dec 2020 23:36:28 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 5A3DC6EBC4;
- Thu, 10 Dec 2020 23:30:57 +0000 (UTC)
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 2D82B6EBFB;
+ Thu, 10 Dec 2020 23:36:26 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 53BD3A0091;
- Thu, 10 Dec 2020 23:30:57 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 26E95A0019;
+ Thu, 10 Dec 2020 23:36:26 +0000 (UTC)
 MIME-Version: 1.0
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Lyude Paul" <lyude@redhat.com>
-Date: Thu, 10 Dec 2020 23:30:57 -0000
-Message-ID: <160764305731.19115.1066796981290515555@emeril.freedesktop.org>
+To: "Huang, Sean Z" <sean.z.huang@intel.com>
+Date: Thu, 10 Dec 2020 23:36:26 -0000
+Message-ID: <160764338613.19116.8864650057789754762@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20201210012143.729402-1-lyude@redhat.com>
-In-Reply-To: <20201210012143.729402-1-lyude@redhat.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?=3A_Extract_DPCD_backlight_helpers_from_i915=2C_add_support_in_?=
- =?utf-8?q?nouveau_=28rev3=29?=
+References: <20201210223859.23882-1-sean.z.huang@intel.com>
+In-Reply-To: <20201210223859.23882-1-sean.z.huang@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_Introduce_Intel_PXP_component_-_Mesa_single_session_=28rev6?=
+ =?utf-8?q?=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,205 +41,141 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============1667380145=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============1667380145==
-Content-Type: multipart/alternative;
- boundary="===============8927243464535470613=="
-
---===============8927243464535470613==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm: Extract DPCD backlight helpers from i915, add support in nouveau (rev3)
-URL   : https://patchwork.freedesktop.org/series/84754/
-State : success
+Series: Introduce Intel PXP component - Mesa single session (rev6)
+URL   : https://patchwork.freedesktop.org/series/84620/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from CI_DRM_9473 -> Patchwork_19117
-====================================================
+$ dim checkpatch origin/drm-tip
+483cb19f6248 drm/i915/pxp: Introduce Intel PXP component
+-:111: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#111: 
+new file mode 100644
 
-Summary
--------
+total: 0 errors, 1 warnings, 0 checks, 175 lines checked
+b12972ae3297 drm/i915/pxp: set KCR reg init during the boot time
+cb091c29444b drm/i915/pxp: Implement funcs to create the TEE channel
+-:8: WARNING:TYPO_SPELLING: 'defualt' may be misspelled - perhaps 'default'?
+#8: 
+(defualt) session.
 
-  **SUCCESS**
+-:85: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#85: 
+new file mode 100644
 
-  No regressions found.
+total: 0 errors, 2 warnings, 0 checks, 248 lines checked
+1269b2f4bf9b drm/i915/pxp: Create the arbitrary session after boot
+-:68: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#68: 
+new file mode 100644
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19117/index.html
+total: 0 errors, 1 warnings, 0 checks, 297 lines checked
+6e0495763e2b drm/i915/pxp: Func to send hardware session termination
+-:25: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#25: 
+new file mode 100644
 
-Known issues
-------------
+total: 0 errors, 1 warnings, 0 checks, 181 lines checked
+e1072de8779e drm/i915/pxp: Enable PXP irq worker and callback stub
+-:51: WARNING:LONG_LINE_COMMENT: line length of 113 exceeds 100 columns
+#51: FILE: drivers/gpu/drm/i915/i915_reg.h:7970:
++#define GEN11_CRYPTO_INTR_MASK		_MMIO(0x1900f0) /* crypto mask is in bit31-16 (Engine1 Interrupt Mask) */
 
-  Here are the changes found in Patchwork_19117 that come from known issues:
+total: 0 errors, 1 warnings, 0 checks, 210 lines checked
+4243dda12065 drm/i915/pxp: Destroy arb session upon teardown
+1cc947ef42df drm/i915/pxp: Enable PXP power management
+-:90: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#90: 
+new file mode 100644
 
-### IGT changes ###
+total: 0 errors, 1 warnings, 0 checks, 148 lines checked
+c78a877702c7 drm/i915/pxp: Expose session state for display protection flip
+d2ed1fac0c2c mei: pxp: export pavp client to me client bus
+-:32: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#32: 
+new file mode 100644
 
-#### Issues hit ####
+total: 0 errors, 1 warnings, 0 checks, 277 lines checked
+238291470e9d drm/i915/uapi: introduce drm_i915_gem_create_ext
+-:12: ERROR:BAD_SIGN_OFF: Unrecognized email address: 'Joonas Lahtinen joonas.lahtinen@linux.intel.com'
+#12: 
+Cc: Joonas Lahtinen joonas.lahtinen@linux.intel.com
 
-  * igt@fbdev@read:
-    - fi-tgl-y:           [PASS][1] -> [DMESG-WARN][2] ([i915#402])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9473/fi-tgl-y/igt@fbdev@read.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19117/fi-tgl-y/igt@fbdev@read.html
+-:13: ERROR:BAD_SIGN_OFF: Unrecognized email address: 'Matthew Auld matthew.auld@intel.com'
+#13: 
+Cc: Matthew Auld matthew.auld@intel.com
 
-  * igt@i915_selftest@live@coherency:
-    - fi-gdg-551:         [PASS][3] -> [DMESG-FAIL][4] ([i915#1748])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9473/fi-gdg-551/igt@i915_selftest@live@coherency.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19117/fi-gdg-551/igt@i915_selftest@live@coherency.html
+-:46: ERROR:CODE_INDENT: code indent should use tabs where possible
+#46: FILE: drivers/gpu/drm/i915/i915_gem.c:265:
++        struct drm_i915_private *i915;$
 
-  
-#### Possible fixes ####
+-:46: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#46: FILE: drivers/gpu/drm/i915/i915_gem.c:265:
++        struct drm_i915_private *i915;$
 
-  * igt@debugfs_test@read_all_entries:
-    - fi-apl-guc:         [DMESG-WARN][5] ([i915#62]) -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9473/fi-apl-guc/igt@debugfs_test@read_all_entries.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19117/fi-apl-guc/igt@debugfs_test@read_all_entries.html
+-:50: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#50: FILE: drivers/gpu/drm/i915/i915_gem.c:269:
++static int __create_setparam(struct drm_i915_gem_object_param *args,
++							struct create_ext *ext_data)
 
-  * igt@gem_exec_suspend@basic-s0:
-    - fi-apl-guc:         [DMESG-WARN][7] ([i915#180] / [i915#62]) -> [PASS][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9473/fi-apl-guc/igt@gem_exec_suspend@basic-s0.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19117/fi-apl-guc/igt@gem_exec_suspend@basic-s0.html
+-:95: CHECK:LINE_SPACING: Please don't use multiple blank lines
+#95: FILE: drivers/gpu/drm/i915/i915_gem.c:317:
++
++
 
-  
-  [i915#1748]: https://gitlab.freedesktop.org/drm/intel/issues/1748
-  [i915#180]: https://gitlab.freedesktop.org/drm/intel/issues/180
-  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
-  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
+-:107: WARNING:LONG_LINE: line length of 120 exceeds 100 columns
+#107: FILE: include/uapi/drm/i915_drm.h:394:
++#define DRM_IOCTL_I915_GEM_CREATE_EXT   DRM_IOWR(DRM_COMMAND_BASE + DRM_I915_GEM_CREATE, struct drm_i915_gem_create_ext)
 
+-:155: CHECK:SPACING: spaces preferred around that '<<' (ctx:VxV)
+#155: FILE: include/uapi/drm/i915_drm.h:1735:
++#define I915_OBJECT_PARAM  (1ull<<32)
+                                 ^
 
-Participating hosts (44 -> 40)
-------------------------------
+total: 3 errors, 2 warnings, 3 checks, 136 lines checked
+9d0636e9498a drm/i915/pxp: User interface for Protected buffer
+6b8e71a51390 drm/i915/pxp: Add plane decryption support
+717f710b867c drm/i915/pxp: Implement ioctl action to reserve session slots
+-:62: WARNING:PREFER_PACKED: __packed is preferred over __attribute__((packed))
+#62: FILE: drivers/gpu/drm/i915/pxp/intel_pxp.c:39:
++} __attribute__((packed));
 
-  Missing    (4): fi-ctg-p8600 fi-ilk-m540 fi-bdw-samus fi-hsw-4200u 
+-:254: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#254: 
+new file mode 100644
 
+-:345: WARNING:MSLEEP: msleep < 20ms can sleep for up to 20ms; see Documentation/timers/timers-howto.rst
+#345: FILE: drivers/gpu/drm/i915/pxp/intel_pxp_sm.c:87:
++		msleep(10);
 
-Build changes
--------------
+total: 0 errors, 3 warnings, 0 checks, 437 lines checked
+cd05c940fecf drm/i915/pxp: Implement ioctl action to set session in play
+f2c7fba3da45 drm/i915/pxp: Implement ioctl action to terminate the session
+733af51aac06 drm/i915/pxp: Implement ioctl action to send TEE commands
+e9386b8ba7be drm/i915/pxp: Implement ioctl action to query PXP tag
+611b466b4273 drm/i915/pxp: Termiante the session upon app crash
+2d36ea7befb9 drm/i915/pxp: Add PXP-related registers into allowlist
+c5cb8520b5e1 drm/i915/pxp: Enable the PXP ioctl for protected session
+-:9: WARNING:TYPO_SPELLING: 'destory' may be misspelled - perhaps 'destroy'?
+#9: 
+destory the protected session via this ioctl.
 
-  * Linux: CI_DRM_9473 -> Patchwork_19117
+-:105: WARNING:LONG_LINE: line length of 110 exceeds 100 columns
+#105: FILE: include/uapi/drm/i915_drm.h:427:
++#define DRM_IOCTL_I915_PXP_OPS		DRM_IOWR(DRM_COMMAND_BASE + DRM_I915_PXP_OPS, struct drm_i915_pxp_ops)
 
-  CI-20190529: 20190529
-  CI_DRM_9473: c64377fd4f00a839c5b25b9e3bae1052fee113b5 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5888: c79d4e88f4162905da400360b6fa4940122f3a2c @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_19117: e9d81787a6e79b5b7cd1caaf750cd18d35d4cb8c @ git://anongit.freedesktop.org/gfx-ci/linux
+total: 0 errors, 2 warnings, 0 checks, 156 lines checked
 
-
-== Linux commits ==
-
-e9d81787a6e7 drm/nouveau/kms/nv50-: Add basic DPCD backlight support for nouveau
-f4bf871fa73a drm/dp: Extract i915's eDP backlight code into DRM helpers
-f4762128551a drm/i915/dp: Remove redundant AUX backlight frequency calculations
-945b0c32e7e2 drm/nouveau/kms: Don't probe eDP connectors more then once
-cfc42e455a86 drm/nouveau/kms/nv40-/backlight: Assign prop type once
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19117/index.html
-
---===============8927243464535470613==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm: Extract DPCD backlight helpers from i915, add support in nouveau (rev3)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/84754/">https://patchwork.freedesktop.org/series/84754/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19117/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19117/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_9473 -&gt; Patchwork_19117</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19117/index.html</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_19117 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@fbdev@read:</p>
-<ul>
-<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9473/fi-tgl-y/igt@fbdev@read.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19117/fi-tgl-y/igt@fbdev@read.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@coherency:</p>
-<ul>
-<li>fi-gdg-551:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9473/fi-gdg-551/igt@i915_selftest@live@coherency.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19117/fi-gdg-551/igt@i915_selftest@live@coherency.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1748">i915#1748</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@debugfs_test@read_all_entries:</p>
-<ul>
-<li>fi-apl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9473/fi-apl-guc/igt@debugfs_test@read_all_entries.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/62">i915#62</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19117/fi-apl-guc/igt@debugfs_test@read_all_entries.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_suspend@basic-s0:</p>
-<ul>
-<li>fi-apl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9473/fi-apl-guc/igt@gem_exec_suspend@basic-s0.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/180">i915#180</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/62">i915#62</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19117/fi-apl-guc/igt@gem_exec_suspend@basic-s0.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Participating hosts (44 -&gt; 40)</h2>
-<p>Missing    (4): fi-ctg-p8600 fi-ilk-m540 fi-bdw-samus fi-hsw-4200u </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_9473 -&gt; Patchwork_19117</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_9473: c64377fd4f00a839c5b25b9e3bae1052fee113b5 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_5888: c79d4e88f4162905da400360b6fa4940122f3a2c @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
-  Patchwork_19117: e9d81787a6e79b5b7cd1caaf750cd18d35d4cb8c @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>e9d81787a6e7 drm/nouveau/kms/nv50-: Add basic DPCD backlight support for nouveau<br />
-f4bf871fa73a drm/dp: Extract i915's eDP backlight code into DRM helpers<br />
-f4762128551a drm/i915/dp: Remove redundant AUX backlight frequency calculations<br />
-945b0c32e7e2 drm/nouveau/kms: Don't probe eDP connectors more then once<br />
-cfc42e455a86 drm/nouveau/kms/nv40-/backlight: Assign prop type once</p>
-
-</body>
-</html>
-
---===============8927243464535470613==--
-
---===============1667380145==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============1667380145==--
