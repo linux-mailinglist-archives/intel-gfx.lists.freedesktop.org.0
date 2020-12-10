@@ -2,42 +2,41 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C99822D69AD
-	for <lists+intel-gfx@lfdr.de>; Thu, 10 Dec 2020 22:24:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 762212D69F5
+	for <lists+intel-gfx@lfdr.de>; Thu, 10 Dec 2020 22:34:14 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9DEAE6E44D;
-	Thu, 10 Dec 2020 21:24:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AF3F56EB5C;
+	Thu, 10 Dec 2020 21:34:11 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AE3506E44D
- for <intel-gfx@lists.freedesktop.org>; Thu, 10 Dec 2020 21:24:45 +0000 (UTC)
-IronPort-SDR: BX8IXlH51ssInyWGV7xmtUPAsnMGNdXJ2URNJw0BjiTXpkJDYuAccTm1YUdkGcLPo9bh8GIp2r
- mYuW8/43pVdg==
-X-IronPort-AV: E=McAfee;i="6000,8403,9831"; a="259051545"
-X-IronPort-AV: E=Sophos;i="5.78,409,1599548400"; d="scan'208";a="259051545"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Dec 2020 13:24:45 -0800
-IronPort-SDR: XfNDVI4NSOXeJfyMySTG5eJ5piz5ag2EywQZpufqHEBpoy63HArwUW7wvtFjHPJwvuvoiOgdkc
- cxsbkz+kRx6Q==
-X-IronPort-AV: E=Sophos;i="5.78,409,1599548400"; d="scan'208";a="372935191"
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E823A6EB5C
+ for <intel-gfx@lists.freedesktop.org>; Thu, 10 Dec 2020 21:34:10 +0000 (UTC)
+IronPort-SDR: g4OW9rERLsRxr4VQbk0K31Sglo3wCWCAloX/xL2t+/eFvi5UpFcfCLliir7sxZhlX5I1g5QPfL
+ QDOQU2cd0Eag==
+X-IronPort-AV: E=McAfee;i="6000,8403,9831"; a="161387223"
+X-IronPort-AV: E=Sophos;i="5.78,409,1599548400"; d="scan'208";a="161387223"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Dec 2020 13:34:10 -0800
+IronPort-SDR: lGrJls/YaINWDexmkDlHfrCQ58ehYo48YloMtaG+d6HXydT3VDCc6Uxu7Xk3w0V1PpHEWzHDeo
+ iULbi0ZQ2O4w==
+X-IronPort-AV: E=Sophos;i="5.78,409,1599548400"; d="scan'208";a="349010743"
 Received: from unknown (HELO sdutt-i7) ([10.165.21.147])
- by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Dec 2020 13:24:45 -0800
-Date: Thu, 10 Dec 2020 13:18:59 -0800
+ by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Dec 2020 13:34:10 -0800
+Date: Thu, 10 Dec 2020 13:28:24 -0800
 From: Matthew Brost <matthew.brost@intel.com>
 To: Chris Wilson <chris@chris-wilson.co.uk>
-Message-ID: <20201210211859.GA21293@sdutt-i7>
+Message-ID: <20201210212824.GA24184@sdutt-i7>
 References: <20201210080240.24529-1-chris@chris-wilson.co.uk>
- <20201210080240.24529-18-chris@chris-wilson.co.uk>
- <20201210192806.GB6255@sdutt-i7>
- <160763405359.21588.11912750748685482852@build.alporthouse.com>
+ <20201210080240.24529-21-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <160763405359.21588.11912750748685482852@build.alporthouse.com>
+In-Reply-To: <20201210080240.24529-21-chris@chris-wilson.co.uk>
 User-Agent: Mutt/1.9.4 (2018-02-28)
-Subject: Re: [Intel-gfx] [PATCH 18/21] drm/i915/gt: Add timeline "mode"
+Subject: Re: [Intel-gfx] [PATCH 21/21] drm/i915/gt: Use ppHWSP for unshared
+ non-semaphore related timelines
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,62 +55,103 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Dec 10, 2020 at 09:00:53PM +0000, Chris Wilson wrote:
-> Quoting Matthew Brost (2020-12-10 19:28:06)
-> > On Thu, Dec 10, 2020 at 08:02:37AM +0000, Chris Wilson wrote:
-> > > diff --git a/drivers/gpu/drm/i915/gt/intel_timeline_types.h b/drivers/gpu/drm/i915/gt/intel_timeline_types.h
-> > > index f187c5aac11c..32c51425a0c4 100644
-> > > --- a/drivers/gpu/drm/i915/gt/intel_timeline_types.h
-> > > +++ b/drivers/gpu/drm/i915/gt/intel_timeline_types.h
-> > > @@ -20,6 +20,12 @@ struct i915_syncmap;
-> > >  struct intel_gt;
-> > >  struct intel_timeline_hwsp;
-> > >  
-> > > +enum intel_timeline_mode {
-> > > +     INTEL_TIMELINE_ABSOLUTE = 0,
-> > > +     INTEL_TIMELINE_CONTEXT = BIT(0),
-> > > +     INTEL_TIMELINE_GLOBAL = BIT(1),
-> > > +};
-> > > +
-> > 
-> > Not sure I like these names.
-> > 
-> > How about:
-> > INTEL_TIMELINE_ABSOLUTE_GGTT
-> > INTEL_TIMELINE_RELATIVE_PPGTT
-> > INTEL_TIMELINE_RELATIVE_GGTT
+On Thu, Dec 10, 2020 at 08:02:40AM +0000, Chris Wilson wrote:
+> When we are not using semaphores with a context/engine, we can simply
+> reuse the same seqno location across wraps, but we still require each
+> timeline to have its own address. For LRC submission, each context is
+> prefixed by a per-process HWSP, which provides us with a unique location
+> for each context-local timeline. A shared timeline that is common to
+> multiple contexts will continue to use a separate page.
 > 
-> They are all in the GGTT, including the ppHWSP.
->
-
-Ah, got it. The 'MI_FLUSH_DW_USE_GTT' in a later patch threw me off. I
-see now that it is picking between global status page and per-process
-page in that case.
-
-> One is relative to the context, the other relative to the engine.
+> This enables us to create position invariant contexts should we feel the
+> need to relocate them.
 > 
->   INTEL_TIMELINE_ABSOLUTE
->   INTEL_TIMELINE_RELATIVE_CONTEXT
->   INTEL_TIMELINE_RELATIVE_ENGINE
->
 
-I like these names better.
-
-> > Also not convinced we need the 'RELATIVE' modes. See my comments in 'Use
-> > indices for writing into relative'.
-> 
-> It saves extra allocations for when we don't (e.g. gen8, and other
-> contexts where we know we will never require disposable slots), and
-> there's a strong incentive to not use absolute addressing with GVT
-
-Understand using the status page to save on allocations.
-
-I could see relative addressing helping with GVT.
-
-With the name nits:
 Reviewed-by: Matthew Brost <matthew.brost@intel.com>
 
-> -Chris
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+> ---
+>  .../drm/i915/gt/intel_execlists_submission.c  | 37 +++++++++++--------
+>  1 file changed, 22 insertions(+), 15 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
+> index 8bff0559a6a9..cc1b3509d808 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
+> @@ -4749,6 +4749,14 @@ static struct intel_timeline *pinned_timeline(struct intel_context *ce)
+>  						 page_unmask_bits(tl));
+>  }
+>  
+> +static struct intel_timeline *pphwsp_timeline(struct intel_context *ce,
+> +					      struct i915_vma *state)
+> +{
+> +	return __intel_timeline_create(ce->engine->gt, state,
+> +				       I915_GEM_HWS_SEQNO_ADDR |
+> +				       INTEL_TIMELINE_CONTEXT);
+> +}
+> +
+>  static int __execlists_context_alloc(struct intel_context *ce,
+>  				     struct intel_engine_cs *engine)
+>  {
+> @@ -4779,6 +4787,16 @@ static int __execlists_context_alloc(struct intel_context *ce,
+>  		goto error_deref_obj;
+>  	}
+>  
+> +	ring = intel_engine_create_ring(engine, (unsigned long)ce->ring);
+> +	if (IS_ERR(ring)) {
+> +		ret = PTR_ERR(ring);
+> +		goto error_deref_obj;
+> +	}
+> +
+> +	ret = populate_lr_context(ce, ctx_obj, engine, ring);
+> +	if (ret)
+> +		goto error_ring_free;
+> +
+>  	if (!page_mask_bits(ce->timeline)) {
+>  		struct intel_timeline *tl;
+>  
+> @@ -4788,29 +4806,18 @@ static int __execlists_context_alloc(struct intel_context *ce,
+>  		 */
+>  		if (unlikely(ce->timeline))
+>  			tl = pinned_timeline(ce);
+> -		else
+> +		else if (intel_engine_has_semaphores(engine))
+>  			tl = intel_timeline_create(engine->gt);
+> +		else
+> +			tl = pphwsp_timeline(ce, vma);
+>  		if (IS_ERR(tl)) {
+>  			ret = PTR_ERR(tl);
+> -			goto error_deref_obj;
+> +			goto error_ring_free;
+>  		}
+>  
+>  		ce->timeline = tl;
+>  	}
+>  
+> -	ring = intel_engine_create_ring(engine, (unsigned long)ce->ring);
+> -	if (IS_ERR(ring)) {
+> -		ret = PTR_ERR(ring);
+> -		goto error_deref_obj;
+> -	}
+> -
+> -	ret = populate_lr_context(ce, ctx_obj, engine, ring);
+> -	if (ret) {
+> -		drm_dbg(&engine->i915->drm,
+> -			"Failed to populate LRC: %d\n", ret);
+> -		goto error_ring_free;
+> -	}
+> -
+>  	ce->ring = ring;
+>  	ce->state = vma;
+>  
+> -- 
+> 2.20.1
+> 
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
