@@ -2,44 +2,42 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 810842D66C8
-	for <lists+intel-gfx@lfdr.de>; Thu, 10 Dec 2020 20:42:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 128112D66CB
+	for <lists+intel-gfx@lfdr.de>; Thu, 10 Dec 2020 20:42:24 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1B47B6EB1B;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6ECC56EB17;
 	Thu, 10 Dec 2020 19:42:20 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from galois.linutronix.de (Galois.linutronix.de
- [IPv6:2a0a:51c0:0:12e:550::1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0B6876EB17;
+Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B06EE6EB17;
  Thu, 10 Dec 2020 19:42:18 +0000 (UTC)
-Message-Id: <20201210194042.548936472@linutronix.de>
+Message-Id: <20201210194042.703779349@linutronix.de>
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
- s=2020; t=1607629336;
+ s=2020; t=1607629337;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
  content-transfer-encoding:content-transfer-encoding:  references:references;
- bh=wCqGjbHBcSlcHWGOV/dAhxvR97JcFGNX9psmcROoCq0=;
- b=2Z0Q8lbqw2d3iK0lyMTfu6GGSIFMkE/mgVP/hAGnWOqxBRMxf5MtZTpRPSPBXz/boYfgYn
- ST6oe0NetpTwhOSarLLIdAuYLS1gydE77MQVYVcY3FouLrWnl5si1eWOJ4F95yCk0G9X60
- 1VL1Pvt1tpdt2jzvXhHk1B3J4gqT2I16payytnnsVM1ae0GkKHVOkzm3mG/NvUjNMZDZ8b
- Y9sC2WWQtJSCM32DjS16A3YMAUHnAI48PATHpxuESAMuGdCfbbEW6ICvvlfOLWvLQ9S/jh
- Z+QD95xpqockzbshrRUV6G0e1FqEFRsR9IAhKZG5jK6CihEBgYA5K4ONks8gvw==
+ bh=xNUoZoBVroF7IJy3X8hhV7V+S/ANMxwK+r48iZvHH7k=;
+ b=SuZCyt4zlNSkg7Jh6xjd5t+bljnkIDhiuE1rhn/qKeMG+ite6vJEiEbNofXy6Jc8tYg+0b
+ IECvv2LjnWcGzCS6R2c2tg4sgQpGcjXByKLBZPL7Xs4OwNUUaKF820w3Ic1JKPFWbxYaV/
+ zQxlwp4rnzD+WzTiaw91J+4L7iQQ+SR32KSqZT854CLAJKIIUHqBcwUh01vq4gYJysHS9U
+ 2YuIdbPutXAYf6qxYXI8k/N2s6EcL8OojQbYBV3yqFeMwoY5o0cLfzqE9P8/gw+P+igDVq
+ lKj3W3wk7xu1ziy9h34ybqOITt3G9Oy0XdV3S2Ut5Fvm8NWwxziMLNP2XRk3vg==
 DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
- s=2020e; t=1607629336;
+ s=2020e; t=1607629337;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
  content-transfer-encoding:content-transfer-encoding:  references:references;
- bh=wCqGjbHBcSlcHWGOV/dAhxvR97JcFGNX9psmcROoCq0=;
- b=7JxYxk/ThtDXDjNM4lO0Kv6ZI0VZ4wL2ccu9YMROMO3FB+Dn8roKKZsGAALM1EdgllUWzl
- ydzvbEXlvqdXI/CQ==
-Date: Thu, 10 Dec 2020 20:25:37 +0100
+ bh=xNUoZoBVroF7IJy3X8hhV7V+S/ANMxwK+r48iZvHH7k=;
+ b=VHoSRskFC2dXgfT8CV99ZHE5BpRPUfLU6nfE7o3PMPrsIEKWqDmtgbLpWFRMlRZjjTeINe
+ qsFjW8cMZ9WikxCw==
+Date: Thu, 10 Dec 2020 20:25:38 +0100
 From: Thomas Gleixner <tglx@linutronix.de>
 To: LKML <linux-kernel@vger.kernel.org>
 References: <20201210192536.118432146@linutronix.de>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [patch 01/30] genirq: Move irq_has_action() into core
- code
+Subject: [Intel-gfx] [patch 02/30] genirq: Move status flag checks to core
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -84,92 +82,77 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This function uses irq_to_desc() and is going to be used by modules to
-replace the open coded irq_to_desc() (ab)usage. The final goal is to remove
-the export of irq_to_desc() so driver cannot fiddle with it anymore.
-
-Move it into the core code and fixup the usage sites to include the proper
-header.
+These checks are used by modules and prevent the removal of the export of
+irq_to_desc(). Move the accessor into the core.
 
 Signed-off-by: Thomas Gleixner <tglx@linutronix.de>
 ---
- arch/alpha/kernel/sys_jensen.c |    2 +-
- arch/x86/kernel/topology.c     |    1 +
- include/linux/interrupt.h      |    1 +
- include/linux/irqdesc.h        |    7 +------
- kernel/irq/manage.c            |   17 +++++++++++++++++
- 5 files changed, 21 insertions(+), 7 deletions(-)
+ include/linux/irqdesc.h |   17 +++++------------
+ kernel/irq/manage.c     |   17 +++++++++++++++++
+ 2 files changed, 22 insertions(+), 12 deletions(-)
 
---- a/arch/alpha/kernel/sys_jensen.c
-+++ b/arch/alpha/kernel/sys_jensen.c
-@@ -7,7 +7,7 @@
-  *
-  * Code supporting the Jensen.
-  */
--
-+#include <linux/interrupt.h>
- #include <linux/kernel.h>
- #include <linux/types.h>
- #include <linux/mm.h>
---- a/arch/x86/kernel/topology.c
-+++ b/arch/x86/kernel/topology.c
-@@ -25,6 +25,7 @@
-  *
-  * Send feedback to <colpatch@us.ibm.com>
-  */
-+#include <linux/interrupt.h>
- #include <linux/nodemask.h>
- #include <linux/export.h>
- #include <linux/mmzone.h>
---- a/include/linux/interrupt.h
-+++ b/include/linux/interrupt.h
-@@ -232,6 +232,7 @@ extern void devm_free_irq(struct device
- # define local_irq_enable_in_hardirq()	local_irq_enable()
- #endif
- 
-+bool irq_has_action(unsigned int irq);
- extern void disable_irq_nosync(unsigned int irq);
- extern bool disable_hardirq(unsigned int irq);
- extern void disable_irq(unsigned int irq);
 --- a/include/linux/irqdesc.h
 +++ b/include/linux/irqdesc.h
-@@ -179,12 +179,7 @@ int handle_domain_nmi(struct irq_domain
- /* Test to see if a driver has successfully requested an irq */
- static inline int irq_desc_has_action(struct irq_desc *desc)
- {
--	return desc->action != NULL;
--}
--
--static inline int irq_has_action(unsigned int irq)
--{
--	return irq_desc_has_action(irq_to_desc(irq));
-+	return desc && desc->action != NULL;
+@@ -223,28 +223,21 @@ irq_set_chip_handler_name_locked(struct
+ 	data->chip = chip;
  }
  
- /**
++bool irq_check_status_bit(unsigned int irq, unsigned int bitmask);
++
+ static inline bool irq_balancing_disabled(unsigned int irq)
+ {
+-	struct irq_desc *desc;
+-
+-	desc = irq_to_desc(irq);
+-	return desc->status_use_accessors & IRQ_NO_BALANCING_MASK;
++	return irq_check_status_bit(irq, IRQ_NO_BALANCING_MASK);
+ }
+ 
+ static inline bool irq_is_percpu(unsigned int irq)
+ {
+-	struct irq_desc *desc;
+-
+-	desc = irq_to_desc(irq);
+-	return desc->status_use_accessors & IRQ_PER_CPU;
++	return irq_check_status_bit(irq, IRQ_PER_CPU);
+ }
+ 
+ static inline bool irq_is_percpu_devid(unsigned int irq)
+ {
+-	struct irq_desc *desc;
+-
+-	desc = irq_to_desc(irq);
+-	return desc->status_use_accessors & IRQ_PER_CPU_DEVID;
++	return irq_check_status_bit(irq, IRQ_PER_CPU_DEVID);
+ }
+ 
+ static inline void
 --- a/kernel/irq/manage.c
 +++ b/kernel/irq/manage.c
-@@ -2752,3 +2752,20 @@ int irq_set_irqchip_state(unsigned int i
- 	return err;
+@@ -2769,3 +2769,23 @@ bool irq_has_action(unsigned int irq)
+ 	return res;
  }
- EXPORT_SYMBOL_GPL(irq_set_irqchip_state);
+ EXPORT_SYMBOL_GPL(irq_has_action);
 +
 +/**
-+ * irq_has_action - Check whether an interrupt is requested
++ * irq_check_status_bit - Check whether bits in the irq descriptor status are set
 + * @irq:	The linux irq number
++ * @bitmask:	The bitmask to evaluate
 + *
-+ * Returns: A snapshot of the current state
++ * Returns: True if one of the bits in @bitmask is set
 + */
-+bool irq_has_action(unsigned int irq)
++bool irq_check_status_bit(unsigned int irq, unsigned int bitmask)
 +{
-+	bool res;
++	struct irq_desc *desc;
++	bool res = false;
 +
 +	rcu_read_lock();
-+	res = irq_desc_has_action(irq_to_desc(irq));
++	desc = irq_to_desc(irq);
++	if (desc)
++		res = !!(desc->status_use_accessors & bitmask);
 +	rcu_read_unlock();
 +	return res;
 +}
-+EXPORT_SYMBOL_GPL(irq_has_action);
 
 _______________________________________________
 Intel-gfx mailing list
