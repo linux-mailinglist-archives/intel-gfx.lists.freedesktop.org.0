@@ -1,44 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 313B92D6AD9
-	for <lists+intel-gfx@lfdr.de>; Thu, 10 Dec 2020 23:57:12 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2BDD02D6AE0
+	for <lists+intel-gfx@lfdr.de>; Fri, 11 Dec 2020 00:01:50 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9486F6EB8E;
-	Thu, 10 Dec 2020 22:57:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 17EB86EB90;
+	Thu, 10 Dec 2020 23:01:47 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CB2246EB8E;
- Thu, 10 Dec 2020 22:57:09 +0000 (UTC)
-X-Gm-Message-State: AOAM531wzZ1XhmfyVP9RsfOK4frUz8Ig55UIGYOQJhKwL/8QJg4MvRCC
- xsg3o+aE3+CUkbSiS/5FZOsyO5ohFWFelICDcg==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1607641029;
- bh=CumYBB9xVU4mI+ysFQ9GC3xvipGC4R7OnFI2Gfa5FNQ=;
- h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
- b=NX100t6gCQytNa7OiazwnNywlnnE3MGA+EwIsG1KwPo3g9YIMvMkZenkX6DPjonLX
- LgiB+WhmPpHDqq68su5+am2qlFC3dPRt63g4quEmvydBolDCLPaFApKatvOjZ8QpSh
- t8DP63zX380Hmbe21aY/TXXZZVUGRRb9HCRBFVBeJscvK+q7L14Fm/b/rqKNPyMDp7
- LGbf/bPcWcrfMi1ra6Q9AGb5RMSUk/KMDinLe6YXNtA4nslj1hondib08OcOsoqaUl
- R8VDvstTAeLsboQByXDyHliDd1PrRisKjrGFVbj5XTLtWTbNK+FOWwSfjLDaWtlE1h
- FDGHWjLjPHW1g==
-X-Google-Smtp-Source: ABdhPJyKMB0fAO5ccR1ON7eKp3wop/g844H0Em6KIAw65vcwOioEZudsqFxyo2xMX2ascC0HxcRxz5ivmcQz5wtwB24=
-X-Received: by 2002:a17:906:c20f:: with SMTP id
- d15mr8477099ejz.341.1607641026526; 
- Thu, 10 Dec 2020 14:57:06 -0800 (PST)
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 596886E4E3;
+ Thu, 10 Dec 2020 23:01:46 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 51768A7DFC;
+ Thu, 10 Dec 2020 23:01:46 +0000 (UTC)
 MIME-Version: 1.0
-References: <20201210192536.118432146@linutronix.de>
- <20201210194044.473308721@linutronix.de>
-In-Reply-To: <20201210194044.473308721@linutronix.de>
-From: Rob Herring <robh@kernel.org>
-Date: Thu, 10 Dec 2020 16:56:55 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqK4bVyqyT9ip9A5P7gQQwDt1HMksjkCe6bwHrBCGrZYug@mail.gmail.com>
-Message-ID: <CAL_JsqK4bVyqyT9ip9A5P7gQQwDt1HMksjkCe6bwHrBCGrZYug@mail.gmail.com>
-To: Thomas Gleixner <tglx@linutronix.de>
-Subject: Re: [Intel-gfx] [patch 19/30] PCI: mobiveil: Use
- irq_data_get_irq_chip_data()
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Lyude Paul" <lyude@redhat.com>
+Date: Thu, 10 Dec 2020 23:01:46 -0000
+Message-ID: <160764130630.19120.5245699066668911202@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20201210012143.729402-1-lyude@redhat.com>
+In-Reply-To: <20201210012143.729402-1-lyude@redhat.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm=3A_Extract_DPCD_backlight_helpers_from_i915=2C_add_supp?=
+ =?utf-8?q?ort_in_nouveau_=28rev3=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,64 +39,46 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Mark Rutland <mark.rutland@arm.com>,
- Karthikeyan Mitran <m.karthikeyan@mobiveil.co.in>,
- Peter Zijlstra <peterz@infradead.org>,
- Catalin Marinas <catalin.marinas@arm.com>,
- Linus Walleij <linus.walleij@linaro.org>,
- dri-devel <dri-devel@lists.freedesktop.org>,
- Chris Wilson <chris@chris-wilson.co.uk>,
- "James E.J. Bottomley" <James.Bottomley@hansenpartnership.com>,
- Saeed Mahameed <saeedm@nvidia.com>, netdev <netdev@vger.kernel.org>,
- Will Deacon <will@kernel.org>, Michal Simek <michal.simek@xilinx.com>,
- linux-s390@vger.kernel.org, afzal mohammed <afzal.mohd.ma@gmail.com>,
- Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
- Dave Jiang <dave.jiang@intel.com>, xen-devel@lists.xenproject.org,
- Leon Romanovsky <leon@kernel.org>, linux-rdma@vger.kernel.org,
- Marc Zyngier <maz@kernel.org>, Helge Deller <deller@gmx.de>,
- Russell King <linux@armlinux.org.uk>,
- Christian Borntraeger <borntraeger@de.ibm.com>,
- PCI <linux-pci@vger.kernel.org>, Jakub Kicinski <kuba@kernel.org>,
- Heiko Carstens <hca@linux.ibm.com>, Wambui Karuga <wambui.karugax@gmail.com>,
- Allen Hubbe <allenbh@gmail.com>, Juergen Gross <jgross@suse.com>,
- Hou Zhiqiang <Zhiqiang.Hou@nxp.com>,
- "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
- Stefano Stabellini <sstabellini@kernel.org>,
- Bjorn Helgaas <bhelgaas@google.com>, Lee Jones <lee.jones@linaro.org>,
- linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
- Boris Ostrovsky <boris.ostrovsky@oracle.com>, David Airlie <airlied@linux.ie>,
- linux-parisc@vger.kernel.org, LKML <linux-kernel@vger.kernel.org>,
- Tariq Toukan <tariqt@nvidia.com>, Jon Mason <jdmason@kudzu.us>,
- linux-ntb@googlegroups.com, Intel Graphics <intel-gfx@lists.freedesktop.org>,
- "David S. Miller" <davem@davemloft.net>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Dec 10, 2020 at 1:42 PM Thomas Gleixner <tglx@linutronix.de> wrote:
->
-> Going through a full irq descriptor lookup instead of just using the proper
-> helper function which provides direct access is suboptimal.
->
-> In fact it _is_ wrong because the chip callback needs to get the chip data
-> which is relevant for the chip while using the irq descriptor variant
-> returns the irq chip data of the top level chip of a hierarchy. It does not
-> matter in this case because the chip is the top level chip, but that
-> doesn't make it more correct.
->
-> Signed-off-by: Thomas Gleixner <tglx@linutronix.de>
-> Cc: Karthikeyan Mitran <m.karthikeyan@mobiveil.co.in>
-> Cc: Hou Zhiqiang <Zhiqiang.Hou@nxp.com>
-> Cc: Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
-> Cc: Rob Herring <robh@kernel.org>
-> Cc: Bjorn Helgaas <bhelgaas@google.com>
-> Cc: linux-pci@vger.kernel.org
-> ---
->  drivers/pci/controller/mobiveil/pcie-mobiveil-host.c |    8 ++------
->  1 file changed, 2 insertions(+), 6 deletions(-)
+== Series Details ==
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Series: drm: Extract DPCD backlight helpers from i915, add support in nouveau (rev3)
+URL   : https://patchwork.freedesktop.org/series/84754/
+State : warning
+
+== Summary ==
+
+$ dim checkpatch origin/drm-tip
+cfc42e455a86 drm/nouveau/kms/nv40-/backlight: Assign prop type once
+-:7: WARNING:COMMIT_MESSAGE: Missing commit description - Add an appropriate one
+
+total: 0 errors, 1 warnings, 0 checks, 22 lines checked
+945b0c32e7e2 drm/nouveau/kms: Don't probe eDP connectors more then once
+-:6: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
+#6: 
+eDP doesn't do hotplugging, so there's no reason for us to reprobe it (unless a
+
+-:23: CHECK:CAMELCASE: Avoid CamelCase: <DCB_CONNECTOR_eDP>
+#23: FILE: drivers/gpu/drm/nouveau/nouveau_connector.c:558:
++	if (nv_connector->type == DCB_CONNECTOR_eDP &&
+
+total: 0 errors, 1 warnings, 1 checks, 12 lines checked
+f4762128551a drm/i915/dp: Remove redundant AUX backlight frequency calculations
+f4bf871fa73a drm/dp: Extract i915's eDP backlight code into DRM helpers
+e9d81787a6e7 drm/nouveau/kms/nv50-: Add basic DPCD backlight support for nouveau
+-:247: CHECK:CAMELCASE: Avoid CamelCase: <DCB_CONNECTOR_eDP>
+#247: FILE: drivers/gpu/drm/nouveau/nouveau_backlight.c:299:
++	if (nv_conn->type == DCB_CONNECTOR_eDP) {
+
+total: 0 errors, 0 warnings, 1 checks, 311 lines checked
+
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
