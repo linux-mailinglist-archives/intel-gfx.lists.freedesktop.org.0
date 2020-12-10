@@ -1,44 +1,43 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F21AC2D5F11
-	for <lists+intel-gfx@lfdr.de>; Thu, 10 Dec 2020 16:09:05 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2A7A92D5F13
+	for <lists+intel-gfx@lfdr.de>; Thu, 10 Dec 2020 16:09:29 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3FB636EA8E;
-	Thu, 10 Dec 2020 15:09:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 830B56EA9D;
+	Thu, 10 Dec 2020 15:09:27 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DE5926EA8E
- for <intel-gfx@lists.freedesktop.org>; Thu, 10 Dec 2020 15:09:02 +0000 (UTC)
-IronPort-SDR: p1aa2uuw0aMO9dPhkxtke5MM3HjZSZEUcRyWwxVcahd7j96O1oShIWg17iOy33D9q+ldqNcn/F
- 8WZiZzDne4fw==
-X-IronPort-AV: E=McAfee;i="6000,8403,9830"; a="174412428"
-X-IronPort-AV: E=Sophos;i="5.78,408,1599548400"; d="scan'208";a="174412428"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Dec 2020 07:09:01 -0800
-IronPort-SDR: VYBjECK7MLRyuetcYa/nSkXg+BcikBdz6xktSTzrPlFdRslMg0iFN3wHaYR7RzMC2edTf69HRQ
- tq3zQcdl5oRg==
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E5DA86EA9D
+ for <intel-gfx@lists.freedesktop.org>; Thu, 10 Dec 2020 15:09:25 +0000 (UTC)
+IronPort-SDR: H/87sMhmgr6fDaiTOIv16xIP1AoX1ta2y8MN2TlddfoApuaGHry8tDGPa0w9hoCSP9vmtIZDmj
+ BY0AVMeITB1Q==
+X-IronPort-AV: E=McAfee;i="6000,8403,9830"; a="161319766"
+X-IronPort-AV: E=Sophos;i="5.78,408,1599548400"; d="scan'208";a="161319766"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Dec 2020 07:09:25 -0800
+IronPort-SDR: pxVsgRpAcAZRisTLJvD88+m8U6twZsxyhsthcFBEkk8xMEln16UsXzADwhALKU6ui6AcaFJzTG
+ WgKuMItVOHQQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.78,408,1599548400"; d="scan'208";a="319409543"
+X-IronPort-AV: E=Sophos;i="5.78,408,1599548400"; d="scan'208";a="364723323"
 Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by fmsmga008.fm.intel.com with SMTP; 10 Dec 2020 07:08:58 -0800
+ by orsmga008.jf.intel.com with SMTP; 10 Dec 2020 07:09:23 -0800
 Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 10 Dec 2020 17:08:58 +0200
-Date: Thu, 10 Dec 2020 17:08:58 +0200
+ Thu, 10 Dec 2020 17:09:22 +0200
+Date: Thu, 10 Dec 2020 17:09:22 +0200
 From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
 To: Dave Airlie <airlied@gmail.com>
-Message-ID: <X9I6CtmnjTNy2R7Z@intel.com>
+Message-ID: <X9I6Ij+8h3VaoDLt@intel.com>
 References: <20201210041755.29088-1-airlied@gmail.com>
- <20201210041755.29088-3-airlied@gmail.com>
+ <20201210041755.29088-4-airlied@gmail.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20201210041755.29088-3-airlied@gmail.com>
+In-Reply-To: <20201210041755.29088-4-airlied@gmail.com>
 X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH 2/9] drm/i915/display: move
- to_intel_frontbuffer to header
+Subject: Re: [Intel-gfx] [PATCH 3/9] drm/i915/display: fix misused comma
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,12 +56,11 @@ Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Dec 10, 2020 at 02:17:48PM +1000, Dave Airlie wrote:
+On Thu, Dec 10, 2020 at 02:17:49PM +1000, Dave Airlie wrote:
 > From: Dave Airlie <airlied@redhat.com>
 > =
 
-> This will be used for some refactoring in other files, so move it
-> first.
+> There is no need for a comma use here.
 > =
 
 > Signed-off-by: Dave Airlie <airlied@redhat.com>
@@ -70,49 +68,27 @@ On Thu, Dec 10, 2020 at 02:17:48PM +1000, Dave Airlie wrote:
 Reviewed-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
 
 > ---
->  drivers/gpu/drm/i915/display/intel_display.c       | 6 ------
->  drivers/gpu/drm/i915/display/intel_display_types.h | 6 ++++++
->  2 files changed, 6 insertions(+), 6 deletions(-)
+>  drivers/gpu/drm/i915/display/intel_display.c | 3 ++-
+>  1 file changed, 2 insertions(+), 1 deletion(-)
 > =
 
 > diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/d=
 rm/i915/display/intel_display.c
-> index 80103211f407..62e22d832cab 100644
+> index 62e22d832cab..79d7479beed2 100644
 > --- a/drivers/gpu/drm/i915/display/intel_display.c
 > +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> @@ -3611,12 +3611,6 @@ static void intel_plane_disable_noatomic(struct in=
-tel_crtc *crtc,
->  	intel_disable_plane(plane, crtc_state);
->  }
+> @@ -989,7 +989,8 @@ chv_find_best_dpll(const struct intel_limit *limit,
+>  	 * set to 2.  If requires to support 200Mhz refclk, we need to
+>  	 * revisit this because n may not 1 anymore.
+>  	 */
+> -	clock.n =3D 1, clock.m1 =3D 2;
+> +	clock.n =3D 1;
+> +	clock.m1 =3D 2;
+>  	target *=3D 5;	/* fast clock */
 >  =
 
-> -static struct intel_frontbuffer *
-> -to_intel_frontbuffer(struct drm_framebuffer *fb)
-> -{
-> -	return fb ? to_intel_framebuffer(fb)->frontbuffer : NULL;
-> -}
-> -
->  static void
->  intel_find_initial_plane_obj(struct intel_crtc *intel_crtc,
->  			     struct intel_initial_plane_config *plane_config)
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers=
-/gpu/drm/i915/display/intel_display_types.h
-> index 8c4afad68a44..dfe573c8b5ae 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
-> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-> @@ -1805,4 +1805,10 @@ static inline u32 intel_plane_ggtt_offset(const st=
-ruct intel_plane_state *state)
->  	return i915_ggtt_offset(state->vma);
->  }
->  =
-
-> +static inline struct intel_frontbuffer *
-> +to_intel_frontbuffer(struct drm_framebuffer *fb)
-> +{
-> +	return fb ? to_intel_framebuffer(fb)->frontbuffer : NULL;
-> +}
-> +
->  #endif /*  __INTEL_DISPLAY_TYPES_H__ */
+>  	for (clock.p1 =3D limit->p1.max; clock.p1 >=3D limit->p1.min; clock.p1-=
+-) {
 > -- =
 
 > 2.27.0
