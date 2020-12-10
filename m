@@ -1,54 +1,37 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id EBCDE2D545B
-	for <lists+intel-gfx@lfdr.de>; Thu, 10 Dec 2020 08:11:55 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id AC49F2D547F
+	for <lists+intel-gfx@lfdr.de>; Thu, 10 Dec 2020 08:25:20 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 494F66E9DE;
-	Thu, 10 Dec 2020 07:11:54 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com
- [IPv6:2a00:1450:4864:20::62c])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1DB506E9DE
- for <intel-gfx@lists.freedesktop.org>; Thu, 10 Dec 2020 07:11:53 +0000 (UTC)
-Received: by mail-ej1-x62c.google.com with SMTP id lt17so5869800ejb.3
- for <intel-gfx@lists.freedesktop.org>; Wed, 09 Dec 2020 23:11:53 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to;
- bh=HyekjdljxmRoEbDFQy2vKCMoM2IOaYgqJJEmrMWOeEc=;
- b=bwnc8lrQu0X6wUF1+N8EudDAWBoF6tVd9L2Wl1/6duxXA1+FLVX4qw3xiibfHp4RZH
- T+62bZUs+/d5h/wcRposG7aZVwJv6u/089qcRfd+T5IM9Mti5xo8CsCq78E3vg8I/HER
- +3xV6RZ8P4h0qLziQn+AsFVO8DDuFI6G/lhNcYF/puTp831Gq8xHRLxvCgTt4AiQPgEU
- oGb4qovlfC0uNp3dom/YGN1EXOqiJtqVy+XUATXPQdydzf9pLB2Yd34edQrbPYQUCQqd
- j94LCwK1wdIq49KURfzlxpGudsK1HM87hNGQM+vAsRTHrGAIq5TEDtHBSJiX7+hl2PWM
- EapQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to;
- bh=HyekjdljxmRoEbDFQy2vKCMoM2IOaYgqJJEmrMWOeEc=;
- b=B+1wYLO7v9trDZjT4MeMyuNArVblRUHIKakqMQg4BVjZdwaS7DAM1fLc6Qy2IXWya3
- q4d0XxUQFyEfYVi9amjFjWJdnECQxbr9QRDBPQVV6Lxw4al/WNzaidUShD5ylgLp0Qa0
- DnPU+5lo04jFP2s84UMBQW4rpkk4A0uK/YKpQwkhGbQMtN5Ou7gCJgEDFXdo8z63n4V2
- 6u6RNpH+ZOQNjaqWsYAuxLLWzREk06GzPnfhwu4+ADop36dOKY28HYOCpbKY1HQNCqCD
- 9tBXaAj+DWoNozlRP0T7pKvw8dljnsxNrtx2JvSqG1FlaBOVZmadtjQfIiq/v1If6tw/
- xEmQ==
-X-Gm-Message-State: AOAM533SMVJEN5+jlYH7WNLaDKbIk6tNG0dzcB8SpwLR9JpHOt+02gQ0
- IPM7d9SEY9+YE9Pm6dytHwiuAGhXL4L/t4eipey+4kZgsdRuMg==
-X-Google-Smtp-Source: ABdhPJwjAW8+uvqL9aUMWcmg7W4aQREKZR8/UtVzI8AfaIuKPlmmwR0CsdnxGdROR3L+J6T3G0oINSueMyBBFzsx6GQ=
-X-Received: by 2002:a17:906:ae55:: with SMTP id
- lf21mr5151909ejb.101.1607584311559; 
- Wed, 09 Dec 2020 23:11:51 -0800 (PST)
-MIME-Version: 1.0
-References: <20201210041755.29088-1-airlied@gmail.com>
-In-Reply-To: <20201210041755.29088-1-airlied@gmail.com>
-From: Dave Airlie <airlied@gmail.com>
-Date: Thu, 10 Dec 2020 17:11:40 +1000
-Message-ID: <CAPM=9tzo+p318geTdDc3d=6ymO=vGLd-vzPjT3fj7UDhLe-UzQ@mail.gmail.com>
-To: Intel Graphics Development <intel-gfx@lists.freedesktop.org>
-Subject: Re: [Intel-gfx] [RFC v2] refactor intel display a bit more
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2F7B26E877;
+	Thu, 10 Dec 2020 07:25:11 +0000 (UTC)
+X-Original-To: Intel-gfx@lists.freedesktop.org
+Delivered-To: Intel-gfx@lists.freedesktop.org
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1438D6E32F
+ for <Intel-gfx@lists.freedesktop.org>; Thu, 10 Dec 2020 07:25:09 +0000 (UTC)
+IronPort-SDR: lflhY9/mjlR2CY6MVn71+RjWKGzS4oN707HtXijkazD+XBmidtXjLVwHU5V8bxOaWrbbUQXZ2O
+ Vjs/e7iFH1UQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9830"; a="170701295"
+X-IronPort-AV: E=Sophos;i="5.78,407,1599548400"; d="scan'208";a="170701295"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Dec 2020 23:25:08 -0800
+IronPort-SDR: r9ix8qTBcDfaE5kIL298NdvufPH5Vc8o7m22ZiB06UAf/iqlAsvaE8Ueq2mildcIxo67EBBfA6
+ zqnsbCliMZ+w==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.78,407,1599548400"; d="scan'208";a="318867184"
+Received: from sean-virtualbox.fm.intel.com ([10.105.158.96])
+ by fmsmga008.fm.intel.com with ESMTP; 09 Dec 2020 23:25:08 -0800
+From: "Huang, Sean Z" <sean.z.huang@intel.com>
+To: Intel-gfx@lists.freedesktop.org
+Date: Wed,  9 Dec 2020 23:24:14 -0800
+Message-Id: <20201210072435.24066-1-sean.z.huang@intel.com>
+X-Mailer: git-send-email 2.17.1
+Subject: [Intel-gfx] [RFC-v4 00/21] Introduce Intel PXP component - Mesa
+ single session
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,37 +44,127 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-There are all in this branch
-https://github.com/airlied/linux/commits/i915-display-refactor
+PXP is an i915 componment, that helps to establish the hardware
+protected session and manage the status of the alive software
+session, as well as its life cycle.
 
-I moved more code in the skl planes patch and move some pipe code in
-there as well
+This patch series is to allow the kernel space to create and
+manage a single hardware session (a.k.a default session or
+arbitrary session). So Mesa can allocate the protected buffer,
+which is encrypted with the leverage of the arbitrary hardware
+session.
 
-Will repost those tomorrow most likely.
+v2:
+    - modification based on code reivew feedbacks received
+    - passing pxp instead of i915 as funciton argument
+    - remove dead code only for multi-session
+    - move the pxp init call from i915_drv.c to intel_gt.c
+    - reove the tautology naming
 
-Dave.
+v3:
+    - rebase to latest drm-tip
 
-On Thu, 10 Dec 2020 at 14:18, Dave Airlie <airlied@gmail.com> wrote:
->
-> The first 3 are just moving some functions to inline and fixing
-> a wrong comma, the next 4 are cleaned up from yesterday.
->
-> hsw fdi is definitely a WIP.
->
-> Skl planes migration is along the lines of what danvet asked for.
->
-> Dave.
->
->
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+v4:
+    - Append the split non-mesa patch sereis (commit #14 - #21) into this patch series
+
+Anshuman Gupta (1):
+  drm/i915/pxp: Add plane decryption support
+
+Bommu Krishnaiah (2):
+  drm/i915/uapi: introduce drm_i915_gem_create_ext
+  drm/i915/pxp: User interface for Protected buffer
+
+Huang, Sean Z (17):
+  drm/i915/pxp: Introduce Intel PXP component
+  drm/i915/pxp: set KCR reg init during the boot time
+  drm/i915/pxp: Implement funcs to create the TEE channel
+  drm/i915/pxp: Create the arbitrary session after boot
+  drm/i915/pxp: Func to send hardware session termination
+  drm/i915/pxp: Enable PXP irq worker and callback stub
+  drm/i915/pxp: Destroy arb session upon teardown
+  drm/i915/pxp: Enable PXP power management
+  drm/i915/pxp: Expose session state for display protection flip
+  drm/i915/pxp: Implement ioctl action to reserve session slots
+  drm/i915/pxp: Implement ioctl action to set session in play
+  drm/i915/pxp: Implement ioctl action to terminate the session
+  drm/i915/pxp: Implement ioctl action to send TEE commands
+  drm/i915/pxp: Enable ioctl action to query PXP tag
+  drm/i915/pxp: Termiante the session upon app crash
+  drm/i915/pxp: Add PXP-related registers into allowlist
+  drm/i915/pxp: Enable the PXP ioctl for protected session
+
+Vitaly Lubart (1):
+  mei: pxp: export pavp client to me client bus
+
+ drivers/gpu/drm/i915/Kconfig                  |  19 +
+ drivers/gpu/drm/i915/Makefile                 |  10 +
+ drivers/gpu/drm/i915/display/intel_sprite.c   |  21 +-
+ drivers/gpu/drm/i915/gem/i915_gem_context.c   |  15 +-
+ drivers/gpu/drm/i915/gem/i915_gem_context.h   |  10 +
+ .../gpu/drm/i915/gem/i915_gem_context_types.h |   2 +-
+ .../gpu/drm/i915/gem/i915_gem_object_types.h  |   5 +
+ drivers/gpu/drm/i915/gt/intel_gt.c            |   7 +
+ drivers/gpu/drm/i915/gt/intel_gt_irq.c        |   4 +
+ drivers/gpu/drm/i915/gt/intel_gt_pm.c         |   4 +
+ drivers/gpu/drm/i915/gt/intel_gt_types.h      |   3 +
+ drivers/gpu/drm/i915/i915_drv.c               |  11 +-
+ drivers/gpu/drm/i915/i915_drv.h               |   6 +
+ drivers/gpu/drm/i915/i915_gem.c               |  63 ++-
+ drivers/gpu/drm/i915/i915_reg.h               |  10 +-
+ drivers/gpu/drm/i915/intel_uncore.c           |  50 +-
+ drivers/gpu/drm/i915/pxp/intel_pxp.c          | 284 ++++++++++
+ drivers/gpu/drm/i915/pxp/intel_pxp.h          | 107 ++++
+ drivers/gpu/drm/i915/pxp/intel_pxp_arb.c      | 226 ++++++++
+ drivers/gpu/drm/i915/pxp/intel_pxp_arb.h      |  37 ++
+ drivers/gpu/drm/i915/pxp/intel_pxp_cmd.c      | 328 ++++++++++++
+ drivers/gpu/drm/i915/pxp/intel_pxp_cmd.h      |  22 +
+ drivers/gpu/drm/i915/pxp/intel_pxp_context.c  |  32 ++
+ drivers/gpu/drm/i915/pxp/intel_pxp_context.h  |  41 ++
+ drivers/gpu/drm/i915/pxp/intel_pxp_pm.c       |  72 +++
+ drivers/gpu/drm/i915/pxp/intel_pxp_pm.h       |  31 ++
+ drivers/gpu/drm/i915/pxp/intel_pxp_sm.c       | 487 ++++++++++++++++++
+ drivers/gpu/drm/i915/pxp/intel_pxp_sm.h       |  55 ++
+ drivers/gpu/drm/i915/pxp/intel_pxp_tee.c      | 227 ++++++++
+ drivers/gpu/drm/i915/pxp/intel_pxp_tee.h      |  25 +
+ drivers/misc/mei/Kconfig                      |   2 +
+ drivers/misc/mei/Makefile                     |   1 +
+ drivers/misc/mei/pxp/Kconfig                  |  13 +
+ drivers/misc/mei/pxp/Makefile                 |   7 +
+ drivers/misc/mei/pxp/mei_pxp.c                | 230 +++++++++
+ drivers/misc/mei/pxp/mei_pxp.h                |  18 +
+ include/drm/i915_component.h                  |   1 +
+ include/drm/i915_pxp_tee_interface.h          |  45 ++
+ include/uapi/drm/i915_drm.h                   | 138 +++++
+ 39 files changed, 2642 insertions(+), 27 deletions(-)
+ create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp.c
+ create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp.h
+ create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp_arb.c
+ create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp_arb.h
+ create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp_cmd.c
+ create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp_cmd.h
+ create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp_context.c
+ create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp_context.h
+ create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp_pm.c
+ create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp_pm.h
+ create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp_sm.c
+ create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp_sm.h
+ create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp_tee.c
+ create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp_tee.h
+ create mode 100644 drivers/misc/mei/pxp/Kconfig
+ create mode 100644 drivers/misc/mei/pxp/Makefile
+ create mode 100644 drivers/misc/mei/pxp/mei_pxp.c
+ create mode 100644 drivers/misc/mei/pxp/mei_pxp.h
+ create mode 100644 include/drm/i915_pxp_tee_interface.h
+
+-- 
+2.17.1
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
