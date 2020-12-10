@@ -2,33 +2,42 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C5D442D695C
-	for <lists+intel-gfx@lfdr.de>; Thu, 10 Dec 2020 22:05:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C99822D69AD
+	for <lists+intel-gfx@lfdr.de>; Thu, 10 Dec 2020 22:24:50 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 52A116EB59;
-	Thu, 10 Dec 2020 21:05:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9DEAE6E44D;
+	Thu, 10 Dec 2020 21:24:47 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4E25B6EB59
- for <intel-gfx@lists.freedesktop.org>; Thu, 10 Dec 2020 21:05:51 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 23286341-1500050 for multiple; Thu, 10 Dec 2020 21:05:45 +0000
-MIME-Version: 1.0
-In-Reply-To: <20201210191644.GA6255@sdutt-i7>
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AE3506E44D
+ for <intel-gfx@lists.freedesktop.org>; Thu, 10 Dec 2020 21:24:45 +0000 (UTC)
+IronPort-SDR: BX8IXlH51ssInyWGV7xmtUPAsnMGNdXJ2URNJw0BjiTXpkJDYuAccTm1YUdkGcLPo9bh8GIp2r
+ mYuW8/43pVdg==
+X-IronPort-AV: E=McAfee;i="6000,8403,9831"; a="259051545"
+X-IronPort-AV: E=Sophos;i="5.78,409,1599548400"; d="scan'208";a="259051545"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Dec 2020 13:24:45 -0800
+IronPort-SDR: XfNDVI4NSOXeJfyMySTG5eJ5piz5ag2EywQZpufqHEBpoy63HArwUW7wvtFjHPJwvuvoiOgdkc
+ cxsbkz+kRx6Q==
+X-IronPort-AV: E=Sophos;i="5.78,409,1599548400"; d="scan'208";a="372935191"
+Received: from unknown (HELO sdutt-i7) ([10.165.21.147])
+ by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Dec 2020 13:24:45 -0800
+Date: Thu, 10 Dec 2020 13:18:59 -0800
+From: Matthew Brost <matthew.brost@intel.com>
+To: Chris Wilson <chris@chris-wilson.co.uk>
+Message-ID: <20201210211859.GA21293@sdutt-i7>
 References: <20201210080240.24529-1-chris@chris-wilson.co.uk>
- <20201210080240.24529-19-chris@chris-wilson.co.uk>
- <20201210191644.GA6255@sdutt-i7>
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: Matthew Brost <matthew.brost@intel.com>
-Date: Thu, 10 Dec 2020 21:05:44 +0000
-Message-ID: <160763434489.21588.6583586596864510610@build.alporthouse.com>
-User-Agent: alot/0.9
-Subject: Re: [Intel-gfx] [PATCH 19/21] drm/i915/gt: Use indices for writing
- into relative timelines
+ <20201210080240.24529-18-chris@chris-wilson.co.uk>
+ <20201210192806.GB6255@sdutt-i7>
+ <160763405359.21588.11912750748685482852@build.alporthouse.com>
+MIME-Version: 1.0
+Content-Disposition: inline
+In-Reply-To: <160763405359.21588.11912750748685482852@build.alporthouse.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
+Subject: Re: [Intel-gfx] [PATCH 18/21] drm/i915/gt: Add timeline "mode"
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,26 +56,62 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Matthew Brost (2020-12-10 19:16:44)
-> On Thu, Dec 10, 2020 at 08:02:38AM +0000, Chris Wilson wrote:
-> > Relative timelines are relative to either the global or per-process
-> > HWSP, and so we can replace the absolute addressing with store-index
-> > variants for position invariance.
+On Thu, Dec 10, 2020 at 09:00:53PM +0000, Chris Wilson wrote:
+> Quoting Matthew Brost (2020-12-10 19:28:06)
+> > On Thu, Dec 10, 2020 at 08:02:37AM +0000, Chris Wilson wrote:
+> > > diff --git a/drivers/gpu/drm/i915/gt/intel_timeline_types.h b/drivers/gpu/drm/i915/gt/intel_timeline_types.h
+> > > index f187c5aac11c..32c51425a0c4 100644
+> > > --- a/drivers/gpu/drm/i915/gt/intel_timeline_types.h
+> > > +++ b/drivers/gpu/drm/i915/gt/intel_timeline_types.h
+> > > @@ -20,6 +20,12 @@ struct i915_syncmap;
+> > >  struct intel_gt;
+> > >  struct intel_timeline_hwsp;
+> > >  
+> > > +enum intel_timeline_mode {
+> > > +     INTEL_TIMELINE_ABSOLUTE = 0,
+> > > +     INTEL_TIMELINE_CONTEXT = BIT(0),
+> > > +     INTEL_TIMELINE_GLOBAL = BIT(1),
+> > > +};
+> > > +
 > > 
+> > Not sure I like these names.
+> > 
+> > How about:
+> > INTEL_TIMELINE_ABSOLUTE_GGTT
+> > INTEL_TIMELINE_RELATIVE_PPGTT
+> > INTEL_TIMELINE_RELATIVE_GGTT
 > 
-> Can you explain the benifit of relative addressing? Why can't we also
-> use absolute? If we can always use absolute, I don't see the point
-> complicating the breadcrumb code.
+> They are all in the GGTT, including the ppHWSP.
+>
 
-It basically allows a third party to move the contexts between hosts
-with far less patching of global state. They want us to avoid all fixed
-GGTT addressing.
+Ah, got it. The 'MI_FLUSH_DW_USE_GTT' in a later patch threw me off. I
+see now that it is picking between global status page and per-process
+page in that case.
 
-The breadcrumbs themselves do not notice at all, it's just the timeline
-setup and decision to take advantage of the relative commands. The
-breadcrumb patches in this series are some outstanding fixes from ~6
-months ago.
--Chris
+> One is relative to the context, the other relative to the engine.
+> 
+>   INTEL_TIMELINE_ABSOLUTE
+>   INTEL_TIMELINE_RELATIVE_CONTEXT
+>   INTEL_TIMELINE_RELATIVE_ENGINE
+>
+
+I like these names better.
+
+> > Also not convinced we need the 'RELATIVE' modes. See my comments in 'Use
+> > indices for writing into relative'.
+> 
+> It saves extra allocations for when we don't (e.g. gen8, and other
+> contexts where we know we will never require disposable slots), and
+> there's a strong incentive to not use absolute addressing with GVT
+
+Understand using the status page to save on allocations.
+
+I could see relative addressing helping with GVT.
+
+With the name nits:
+Reviewed-by: Matthew Brost <matthew.brost@intel.com>
+
+> -Chris
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
