@@ -1,32 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 10D402D5509
-	for <lists+intel-gfx@lfdr.de>; Thu, 10 Dec 2020 09:03:07 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 66CDF2D550F
+	for <lists+intel-gfx@lfdr.de>; Thu, 10 Dec 2020 09:03:12 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 950566E9D5;
-	Thu, 10 Dec 2020 08:02:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A0F066EA19;
+	Thu, 10 Dec 2020 08:03:00 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 48A486E595
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 70AF86E9E8
  for <intel-gfx@lists.freedesktop.org>; Thu, 10 Dec 2020 08:02:53 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 23275667-1500050 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 23275668-1500050 
  for multiple; Thu, 10 Dec 2020 08:02:43 +0000
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Thu, 10 Dec 2020 08:02:31 +0000
-Message-Id: <20201210080240.24529-12-chris@chris-wilson.co.uk>
+Date: Thu, 10 Dec 2020 08:02:32 +0000
+Message-Id: <20201210080240.24529-13-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20201210080240.24529-1-chris@chris-wilson.co.uk>
 References: <20201210080240.24529-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 12/21] drm/i915/gem: Drop free_work for GEM
- contexts
+Subject: [Intel-gfx] [PATCH 13/21] drm/i915/gt: Track the overall awake/busy
+ time
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,211 +45,242 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The free_list and worker was introduced in commit 5f09a9c8ab6b ("drm/i915:
-Allow contexts to be unreferenced locklessly"), but subsequently made
-redundant by the removal of the last sleeping lock in commit 2935ed5339c4
-("drm/i915: Remove logical HW ID"). As we can now free the GEM context
-immediately from any context, remove the deferral of the free_list
+Since we wake the GT up before executing a request, and go to sleep as
+soon as it is retired, the GT wake time not only represents how long the
+device is powered up, but also provides a summary, albeit an overestimate,
+of the device runtime (i.e. the rc0 time to compare against rc6 time).
 
-v2: Lift removing the context from the global list into close().
+v2: s/busy/awake/
 
-Suggested-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
 Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
-Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 ---
- drivers/gpu/drm/i915/gem/i915_gem_context.c   | 59 +++----------------
- drivers/gpu/drm/i915/gem/i915_gem_context.h   |  1 -
- .../gpu/drm/i915/gem/i915_gem_context_types.h |  1 -
- drivers/gpu/drm/i915/i915_drv.h               |  3 -
- drivers/gpu/drm/i915/i915_gem.c               |  2 -
- .../gpu/drm/i915/selftests/mock_gem_device.c  |  2 -
- 6 files changed, 8 insertions(+), 60 deletions(-)
+ drivers/gpu/drm/i915/gt/debugfs_gt_pm.c  |  5 ++-
+ drivers/gpu/drm/i915/gt/intel_gt_pm.c    | 49 ++++++++++++++++++++++++
+ drivers/gpu/drm/i915/gt/intel_gt_pm.h    |  2 +
+ drivers/gpu/drm/i915/gt/intel_gt_types.h | 24 ++++++++++++
+ drivers/gpu/drm/i915/i915_debugfs.c      |  5 ++-
+ drivers/gpu/drm/i915/i915_pmu.c          |  6 +++
+ include/uapi/drm/i915_drm.h              |  1 +
+ 7 files changed, 89 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.c b/drivers/gpu/drm/i915/gem/i915_gem_context.c
-index ad136d009d9b..738a07b3583c 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_context.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_context.c
-@@ -334,13 +334,12 @@ static struct i915_gem_engines *default_engines(struct i915_gem_context *ctx)
- 	return e;
+diff --git a/drivers/gpu/drm/i915/gt/debugfs_gt_pm.c b/drivers/gpu/drm/i915/gt/debugfs_gt_pm.c
+index 174a24553322..8975717ace06 100644
+--- a/drivers/gpu/drm/i915/gt/debugfs_gt_pm.c
++++ b/drivers/gpu/drm/i915/gt/debugfs_gt_pm.c
+@@ -11,6 +11,7 @@
+ #include "i915_drv.h"
+ #include "intel_gt.h"
+ #include "intel_gt_clock_utils.h"
++#include "intel_gt_pm.h"
+ #include "intel_llc.h"
+ #include "intel_rc6.h"
+ #include "intel_rps.h"
+@@ -558,7 +559,9 @@ static int rps_boost_show(struct seq_file *m, void *data)
+ 
+ 	seq_printf(m, "RPS enabled? %s\n", yesno(intel_rps_is_enabled(rps)));
+ 	seq_printf(m, "RPS active? %s\n", yesno(intel_rps_is_active(rps)));
+-	seq_printf(m, "GPU busy? %s\n", yesno(gt->awake));
++	seq_printf(m, "GPU busy? %s, %llums\n",
++		   yesno(gt->awake),
++		   ktime_to_ms(intel_gt_get_awake_time(gt)));
+ 	seq_printf(m, "Boosts outstanding? %d\n",
+ 		   atomic_read(&rps->num_waiters));
+ 	seq_printf(m, "Interactive? %d\n", READ_ONCE(rps->power.interactive));
+diff --git a/drivers/gpu/drm/i915/gt/intel_gt_pm.c b/drivers/gpu/drm/i915/gt/intel_gt_pm.c
+index 274aa0dd7050..c94e8ac884eb 100644
+--- a/drivers/gpu/drm/i915/gt/intel_gt_pm.c
++++ b/drivers/gpu/drm/i915/gt/intel_gt_pm.c
+@@ -39,6 +39,28 @@ static void user_forcewake(struct intel_gt *gt, bool suspend)
+ 	intel_gt_pm_put(gt);
  }
  
--static void i915_gem_context_free(struct i915_gem_context *ctx)
-+void i915_gem_context_release(struct kref *ref)
- {
--	GEM_BUG_ON(!i915_gem_context_is_closed(ctx));
-+	struct i915_gem_context *ctx = container_of(ref, typeof(*ctx), ref);
- 
--	spin_lock(&ctx->i915->gem.contexts.lock);
--	list_del(&ctx->link);
--	spin_unlock(&ctx->i915->gem.contexts.lock);
-+	trace_i915_context_free(ctx);
-+	GEM_BUG_ON(!i915_gem_context_is_closed(ctx));
- 
- 	mutex_destroy(&ctx->engines_mutex);
- 	mutex_destroy(&ctx->lut_mutex);
-@@ -354,37 +353,6 @@ static void i915_gem_context_free(struct i915_gem_context *ctx)
- 	kfree_rcu(ctx, rcu);
- }
- 
--static void contexts_free_all(struct llist_node *list)
--{
--	struct i915_gem_context *ctx, *cn;
--
--	llist_for_each_entry_safe(ctx, cn, list, free_link)
--		i915_gem_context_free(ctx);
--}
--
--static void contexts_flush_free(struct i915_gem_contexts *gc)
--{
--	contexts_free_all(llist_del_all(&gc->free_list));
--}
--
--static void contexts_free_worker(struct work_struct *work)
--{
--	struct i915_gem_contexts *gc =
--		container_of(work, typeof(*gc), free_work);
--
--	contexts_flush_free(gc);
--}
--
--void i915_gem_context_release(struct kref *ref)
--{
--	struct i915_gem_context *ctx = container_of(ref, typeof(*ctx), ref);
--	struct i915_gem_contexts *gc = &ctx->i915->gem.contexts;
--
--	trace_i915_context_free(ctx);
--	if (llist_add(&ctx->free_link, &gc->free_list))
--		schedule_work(&gc->free_work);
--}
--
- static inline struct i915_gem_engines *
- __context_engines_static(const struct i915_gem_context *ctx)
- {
-@@ -633,6 +601,10 @@ static void context_close(struct i915_gem_context *ctx)
- 	 */
- 	lut_close(ctx);
- 
-+	spin_lock(&ctx->i915->gem.contexts.lock);
-+	list_del(&ctx->link);
-+	spin_unlock(&ctx->i915->gem.contexts.lock);
++static void runtime_begin(struct intel_gt *gt)
++{
++	local_irq_disable();
++	write_seqcount_begin(&gt->stats.lock);
++	gt->stats.start = ktime_get();
++	gt->stats.active = true;
++	write_seqcount_end(&gt->stats.lock);
++	local_irq_enable();
++}
 +
- 	mutex_unlock(&ctx->mutex);
- 
- 	/*
-@@ -850,9 +822,6 @@ i915_gem_create_context(struct drm_i915_private *i915, unsigned int flags)
- 	    !HAS_EXECLISTS(i915))
- 		return ERR_PTR(-EINVAL);
- 
--	/* Reap the stale contexts */
--	contexts_flush_free(&i915->gem.contexts);
--
- 	ctx = __create_context(i915);
- 	if (IS_ERR(ctx))
- 		return ctx;
-@@ -897,9 +866,6 @@ static void init_contexts(struct i915_gem_contexts *gc)
++static void runtime_end(struct intel_gt *gt)
++{
++	local_irq_disable();
++	write_seqcount_begin(&gt->stats.lock);
++	gt->stats.active = false;
++	gt->stats.total =
++		ktime_add(gt->stats.total,
++			  ktime_sub(ktime_get(), gt->stats.start));
++	write_seqcount_end(&gt->stats.lock);
++	local_irq_enable();
++}
++
+ static int __gt_unpark(struct intel_wakeref *wf)
  {
- 	spin_lock_init(&gc->lock);
- 	INIT_LIST_HEAD(&gc->list);
--
--	INIT_WORK(&gc->free_work, contexts_free_worker);
--	init_llist_head(&gc->free_list);
+ 	struct intel_gt *gt = container_of(wf, typeof(*gt), wakeref);
+@@ -67,6 +89,7 @@ static int __gt_unpark(struct intel_wakeref *wf)
+ 	i915_pmu_gt_unparked(i915);
+ 
+ 	intel_gt_unpark_requests(gt);
++	runtime_begin(gt);
+ 
+ 	return 0;
+ }
+@@ -79,6 +102,7 @@ static int __gt_park(struct intel_wakeref *wf)
+ 
+ 	GT_TRACE(gt, "\n");
+ 
++	runtime_end(gt);
+ 	intel_gt_park_requests(gt);
+ 
+ 	i915_vma_parked(gt);
+@@ -106,6 +130,7 @@ static const struct intel_wakeref_ops wf_ops = {
+ void intel_gt_pm_init_early(struct intel_gt *gt)
+ {
+ 	intel_wakeref_init(&gt->wakeref, gt->uncore->rpm, &wf_ops);
++	seqcount_mutex_init(&gt->stats.lock, &gt->wakeref.mutex);
  }
  
- void i915_gem_init__contexts(struct drm_i915_private *i915)
-@@ -907,12 +873,6 @@ void i915_gem_init__contexts(struct drm_i915_private *i915)
- 	init_contexts(&i915->gem.contexts);
+ void intel_gt_pm_init(struct intel_gt *gt)
+@@ -339,6 +364,30 @@ int intel_gt_runtime_resume(struct intel_gt *gt)
+ 	return intel_uc_runtime_resume(&gt->uc);
  }
  
--void i915_gem_driver_release__contexts(struct drm_i915_private *i915)
--{
--	flush_work(&i915->gem.contexts.free_work);
--	rcu_barrier(); /* and flush the left over RCU frees */
--}
--
- static int gem_context_register(struct i915_gem_context *ctx,
- 				struct drm_i915_file_private *fpriv,
- 				u32 *id)
-@@ -986,7 +946,6 @@ int i915_gem_context_open(struct drm_i915_private *i915,
- void i915_gem_context_close(struct drm_file *file)
++static ktime_t __intel_gt_get_awake_time(const struct intel_gt *gt)
++{
++	ktime_t total = gt->stats.total;
++
++	if (gt->stats.active)
++		total = ktime_add(total,
++				  ktime_sub(ktime_get(), gt->stats.start));
++
++	return total;
++}
++
++ktime_t intel_gt_get_awake_time(const struct intel_gt *gt)
++{
++	unsigned int seq;
++	ktime_t total;
++
++	do {
++		seq = read_seqcount_begin(&gt->stats.lock);
++		total = __intel_gt_get_awake_time(gt);
++	} while (read_seqcount_retry(&gt->stats.lock, seq));
++
++	return total;
++}
++
+ #if IS_ENABLED(CONFIG_DRM_I915_SELFTEST)
+ #include "selftest_gt_pm.c"
+ #endif
+diff --git a/drivers/gpu/drm/i915/gt/intel_gt_pm.h b/drivers/gpu/drm/i915/gt/intel_gt_pm.h
+index 60f0e2fbe55c..63846a856e7e 100644
+--- a/drivers/gpu/drm/i915/gt/intel_gt_pm.h
++++ b/drivers/gpu/drm/i915/gt/intel_gt_pm.h
+@@ -58,6 +58,8 @@ int intel_gt_resume(struct intel_gt *gt);
+ void intel_gt_runtime_suspend(struct intel_gt *gt);
+ int intel_gt_runtime_resume(struct intel_gt *gt);
+ 
++ktime_t intel_gt_get_awake_time(const struct intel_gt *gt);
++
+ static inline bool is_mock_gt(const struct intel_gt *gt)
  {
- 	struct drm_i915_file_private *file_priv = file->driver_priv;
--	struct drm_i915_private *i915 = file_priv->dev_priv;
- 	struct i915_address_space *vm;
- 	struct i915_gem_context *ctx;
- 	unsigned long idx;
-@@ -998,8 +957,6 @@ void i915_gem_context_close(struct drm_file *file)
- 	xa_for_each(&file_priv->vm_xa, idx, vm)
- 		i915_vm_put(vm);
- 	xa_destroy(&file_priv->vm_xa);
--
--	contexts_flush_free(&i915->gem.contexts);
- }
+ 	return I915_SELFTEST_ONLY(gt->awake == -ENODEV);
+diff --git a/drivers/gpu/drm/i915/gt/intel_gt_types.h b/drivers/gpu/drm/i915/gt/intel_gt_types.h
+index 6d39a4a11bf3..c7bde529feab 100644
+--- a/drivers/gpu/drm/i915/gt/intel_gt_types.h
++++ b/drivers/gpu/drm/i915/gt/intel_gt_types.h
+@@ -87,6 +87,30 @@ struct intel_gt {
  
- int i915_gem_vm_create_ioctl(struct drm_device *dev, void *data,
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.h b/drivers/gpu/drm/i915/gem/i915_gem_context.h
-index a133f92bbedb..b5c908f3f4f2 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_context.h
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_context.h
-@@ -110,7 +110,6 @@ i915_gem_context_clear_user_engines(struct i915_gem_context *ctx)
+ 	u32 pm_guc_events;
  
- /* i915_gem_context.c */
- void i915_gem_init__contexts(struct drm_i915_private *i915);
--void i915_gem_driver_release__contexts(struct drm_i915_private *i915);
++	struct {
++		bool active;
++
++		/**
++		 * @lock: Lock protecting the below fields.
++		 */
++		seqcount_mutex_t lock;
++
++		/**
++		 * @total: Total time this engine was busy.
++		 *
++		 * Accumulated time not counting the most recent block in cases
++		 * where engine is currently busy (active > 0).
++		 */
++		ktime_t total;
++
++		/**
++		 * @start: Timestamp of the last idle to active transition.
++		 *
++		 * Idle is defined as active == 0, active is active > 0.
++		 */
++		ktime_t start;
++	} stats;
++
+ 	struct intel_engine_cs *engine[I915_NUM_ENGINES];
+ 	struct intel_engine_cs *engine_class[MAX_ENGINE_CLASS + 1]
+ 					    [MAX_ENGINE_INSTANCE + 1];
+diff --git a/drivers/gpu/drm/i915/i915_debugfs.c b/drivers/gpu/drm/i915/i915_debugfs.c
+index f48df3545e39..c72160e3702f 100644
+--- a/drivers/gpu/drm/i915/i915_debugfs.c
++++ b/drivers/gpu/drm/i915/i915_debugfs.c
+@@ -858,9 +858,10 @@ static int i915_engine_info(struct seq_file *m, void *unused)
  
- int i915_gem_context_open(struct drm_i915_private *i915,
- 			  struct drm_file *file);
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context_types.h b/drivers/gpu/drm/i915/gem/i915_gem_context_types.h
-index ae14ca24a11f..1449f54924e0 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_context_types.h
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_context_types.h
-@@ -108,7 +108,6 @@ struct i915_gem_context {
+ 	wakeref = intel_runtime_pm_get(&i915->runtime_pm);
  
- 	/** link: place with &drm_i915_private.context_list */
- 	struct list_head link;
--	struct llist_node free_link;
+-	seq_printf(m, "GT awake? %s [%d]\n",
++	seq_printf(m, "GT awake? %s [%d], %llums\n",
+ 		   yesno(i915->gt.awake),
+-		   atomic_read(&i915->gt.wakeref.count));
++		   atomic_read(&i915->gt.wakeref.count),
++		   ktime_to_ms(intel_gt_get_awake_time(&i915->gt)));
+ 	seq_printf(m, "CS timestamp frequency: %u Hz\n",
+ 		   RUNTIME_INFO(i915)->cs_timestamp_frequency_hz);
  
- 	/**
- 	 * @ref: reference count
-diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
-index 5d04b282c060..c2d0156e8a5d 100644
---- a/drivers/gpu/drm/i915/i915_drv.h
-+++ b/drivers/gpu/drm/i915/i915_drv.h
-@@ -1172,9 +1172,6 @@ struct drm_i915_private {
- 		struct i915_gem_contexts {
- 			spinlock_t lock; /* locks list */
- 			struct list_head list;
--
--			struct llist_head free_list;
--			struct work_struct free_work;
- 		} contexts;
+diff --git a/drivers/gpu/drm/i915/i915_pmu.c b/drivers/gpu/drm/i915/i915_pmu.c
+index 97bb4aaa5236..fc762eec9601 100644
+--- a/drivers/gpu/drm/i915/i915_pmu.c
++++ b/drivers/gpu/drm/i915/i915_pmu.c
+@@ -516,6 +516,8 @@ config_status(struct drm_i915_private *i915, u64 config)
+ 		if (!HAS_RC6(i915))
+ 			return -ENODEV;
+ 		break;
++	case I915_PMU_GT_AWAKE:
++		break;
+ 	default:
+ 		return -ENOENT;
+ 	}
+@@ -623,6 +625,9 @@ static u64 __i915_pmu_event_read(struct perf_event *event)
+ 		case I915_PMU_RC6_RESIDENCY:
+ 			val = get_rc6(&i915->gt);
+ 			break;
++		case I915_PMU_GT_AWAKE:
++			val = ktime_to_ns(intel_gt_get_awake_time(&i915->gt));
++			break;
+ 		}
+ 	}
  
- 		/*
-diff --git a/drivers/gpu/drm/i915/i915_gem.c b/drivers/gpu/drm/i915/i915_gem.c
-index 58276694c848..17a4636ee542 100644
---- a/drivers/gpu/drm/i915/i915_gem.c
-+++ b/drivers/gpu/drm/i915/i915_gem.c
-@@ -1207,8 +1207,6 @@ void i915_gem_driver_remove(struct drm_i915_private *dev_priv)
+@@ -938,6 +943,7 @@ create_event_attributes(struct i915_pmu *pmu)
+ 		__event(I915_PMU_REQUESTED_FREQUENCY, "requested-frequency", "M"),
+ 		__event(I915_PMU_INTERRUPTS, "interrupts", NULL),
+ 		__event(I915_PMU_RC6_RESIDENCY, "rc6-residency", "ns"),
++		__event(I915_PMU_GT_AWAKE, "awake", "ns"),
+ 	};
+ 	static const struct {
+ 		enum drm_i915_pmu_engine_sample sample;
+diff --git a/include/uapi/drm/i915_drm.h b/include/uapi/drm/i915_drm.h
+index 6edcb2b6c708..04abd1ee89bf 100644
+--- a/include/uapi/drm/i915_drm.h
++++ b/include/uapi/drm/i915_drm.h
+@@ -177,6 +177,7 @@ enum drm_i915_pmu_engine_sample {
+ #define I915_PMU_REQUESTED_FREQUENCY	__I915_PMU_OTHER(1)
+ #define I915_PMU_INTERRUPTS		__I915_PMU_OTHER(2)
+ #define I915_PMU_RC6_RESIDENCY		__I915_PMU_OTHER(3)
++#define I915_PMU_GT_AWAKE		__I915_PMU_OTHER(4)
  
- void i915_gem_driver_release(struct drm_i915_private *dev_priv)
- {
--	i915_gem_driver_release__contexts(dev_priv);
--
- 	intel_gt_driver_release(&dev_priv->gt);
- 
- 	intel_wa_list_free(&dev_priv->gt_wa_list);
-diff --git a/drivers/gpu/drm/i915/selftests/mock_gem_device.c b/drivers/gpu/drm/i915/selftests/mock_gem_device.c
-index e946bd2087d8..0188f877cab2 100644
---- a/drivers/gpu/drm/i915/selftests/mock_gem_device.c
-+++ b/drivers/gpu/drm/i915/selftests/mock_gem_device.c
-@@ -64,8 +64,6 @@ static void mock_device_release(struct drm_device *dev)
- 	mock_device_flush(i915);
- 	intel_gt_driver_remove(&i915->gt);
- 
--	i915_gem_driver_release__contexts(i915);
--
- 	i915_gem_drain_workqueue(i915);
- 	i915_gem_drain_freed_objects(i915);
+ #define I915_PMU_LAST /* Deprecated - do not use */ I915_PMU_RC6_RESIDENCY
  
 -- 
 2.20.1
