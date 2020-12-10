@@ -2,50 +2,42 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 796102D587A
-	for <lists+intel-gfx@lfdr.de>; Thu, 10 Dec 2020 11:45:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3483B2D5882
+	for <lists+intel-gfx@lfdr.de>; Thu, 10 Dec 2020 11:47:19 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DE0A26E40A;
-	Thu, 10 Dec 2020 10:45:44 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BDE966E40A;
- Thu, 10 Dec 2020 10:45:43 +0000 (UTC)
-IronPort-SDR: i8QLw6wSmbyutX+z1x7pe/a5f3hdlkGwF9dSPgZZkMBIMF5mZB04QkslSmcy0143I/YNft831W
- kpoRjfcB23kA==
-X-IronPort-AV: E=McAfee;i="6000,8403,9830"; a="235827967"
-X-IronPort-AV: E=Sophos;i="5.78,408,1599548400"; d="scan'208";a="235827967"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Dec 2020 02:45:42 -0800
-IronPort-SDR: 8B5JILFNwgpLoTaLek6lDBxucy5SOqjmME7GMXrefffU9h3aOhRW/kkWr7tMkBT7Ul/eo4ThxS
- Po3iPyr1yLcg==
-X-IronPort-AV: E=Sophos;i="5.78,408,1599548400"; d="scan'208";a="319007397"
-Received: from nabuhijl-mobl.ger.corp.intel.com (HELO [10.251.185.230])
- ([10.251.185.230])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Dec 2020 02:45:37 -0800
-To: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Jerry Snitselaar <jsnitsel@redhat.com>, Thomas Gleixner
- <tglx@linutronix.de>, linux-kernel@vger.kernel.org,
- Tvrtko Ursulin <tvrtko.ursulin@intel.com>,
- Chris Wilson <chris@chris-wilson.co.uk>
-References: <20201205014340.148235-1-jsnitsel@redhat.com>
- <20201205014340.148235-3-jsnitsel@redhat.com>
- <875z5e99ez.fsf@nanos.tec.linutronix.de>
- <160758677957.5062.15497765500689083558@jlahtine-mobl.ger.corp.intel.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-Message-ID: <e9892cc4-6344-be07-66b5-236b8576100e@linux.intel.com>
-Date: Thu, 10 Dec 2020 10:45:34 +0000
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8FB266EA6D;
+	Thu, 10 Dec 2020 10:47:17 +0000 (UTC)
+X-Original-To: Intel-gfx@lists.freedesktop.org
+Delivered-To: Intel-gfx@lists.freedesktop.org
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8F50C6EA6D
+ for <Intel-gfx@lists.freedesktop.org>; Thu, 10 Dec 2020 10:47:15 +0000 (UTC)
+IronPort-SDR: eUTi50g+L1qcftGK8IZ1SbOzF9lYsz3z6vsBU05Fftdv1DseD8cYOrgwa6d2p+3L1FoFWS1XZA
+ ZaNzYGlw1TLQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9830"; a="174349094"
+X-IronPort-AV: E=Sophos;i="5.78,408,1599548400"; d="scan'208";a="174349094"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Dec 2020 02:47:14 -0800
+IronPort-SDR: cKWOu8NxmkC3NTQLKEX9IAJcpPbCbtXk9nZ6gDEo5/5ujjyVloRwk6WJRMY4Ukhaa+E9hPsOlv
+ PHXrOq6QDiiA==
+X-IronPort-AV: E=Sophos;i="5.78,408,1599548400"; d="scan'208";a="364571171"
+Received: from ggiordax-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.251.87.181])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Dec 2020 02:47:13 -0800
 MIME-Version: 1.0
-In-Reply-To: <160758677957.5062.15497765500689083558@jlahtine-mobl.ger.corp.intel.com>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH v3 2/4] drm/i915/pmu: Use kstat_irqs to get
- interrupt count
+In-Reply-To: <20201209070307.2304-6-sean.z.huang@intel.com>
+References: <20201209070307.2304-1-sean.z.huang@intel.com>
+ <20201209070307.2304-6-sean.z.huang@intel.com>
+From: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+To: "Huang, Sean Z" <sean.z.huang@intel.com>, Intel-gfx@lists.freedesktop.org
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Message-ID: <160759722951.5062.15504912937063428732@jlahtine-mobl.ger.corp.intel.com>
+User-Agent: alot/0.8.1
+Date: Thu, 10 Dec 2020 12:47:10 +0200
+Subject: Re: [Intel-gfx] [RFC-v3 05/13] drm/i915/pxp: Func to send hardware
+ session termination
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,98 +50,247 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: David Airlie <airlied@linux.ie>, Peter Zijlstra <peterz@infradead.org>,
- intel-gfx@lists.freedesktop.org, Matthew Garrett <mjg59@google.com>,
- James Bottomley <James.Bottomley@HansenPartnership.com>,
- Jason Gunthorpe <jgg@ziepe.ca>, Jarkko Sakkinen <jarkko@kernel.org>,
- dri-devel@lists.freedesktop.org, linux-integrity@vger.kernel.org,
- Peter Huewe <peterhuewe@gmx.de>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+Quoting Huang, Sean Z (2020-12-09 09:02:59)
+> Implement the functions to allow PXP to send a GPU command, in
+> order to terminate the hardware session, so hardware can recycle
+> this session slot for the next usage.
 
-On 10/12/2020 07:53, Joonas Lahtinen wrote:
-> + Tvrtko and Chris for comments
+Just like for the ARB session creation must happen during i915
+initialization in order to guarantee being available for userspace, we
+must detect the corruption from i915 and i915 must be able to recreate
+the session.
+
+We already initiate the TEE commands to create the session, so I assume
+we have to repeat those to recreate the session? Should not we
+invalidate the previous session as part of that flow.
+
+Any command to be sent to the command streamers that i915 is also
+submitting to, should definitely happen under strict i915 control.
+
+So we should include the session termination command in here, inside
+i915 source.
+
+Regards, Joonas
+
+> Signed-off-by: Huang, Sean Z <sean.z.huang@intel.com>
+> ---
+>  drivers/gpu/drm/i915/Makefile            |   1 +
+>  drivers/gpu/drm/i915/pxp/intel_pxp_cmd.c | 156 +++++++++++++++++++++++
+>  drivers/gpu/drm/i915/pxp/intel_pxp_cmd.h |  18 +++
+>  3 files changed, 175 insertions(+)
+>  create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp_cmd.c
+>  create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp_cmd.h
 > 
-> Code seems to be added in:
+> diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefile
+> index 0710cc522f38..2da904cda49f 100644
+> --- a/drivers/gpu/drm/i915/Makefile
+> +++ b/drivers/gpu/drm/i915/Makefile
+> @@ -258,6 +258,7 @@ i915-y += i915_perf.o
+>  i915-$(CONFIG_DRM_I915_PXP) += \
+>         pxp/intel_pxp.o \
+>         pxp/intel_pxp_arb.o \
+> +       pxp/intel_pxp_cmd.o \
+>         pxp/intel_pxp_context.o \
+>         pxp/intel_pxp_tee.o
+>  
+> diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp_cmd.c b/drivers/gpu/drm/i915/pxp/intel_pxp_cmd.c
+> new file mode 100644
+> index 000000000000..e531ea9f3cdc
+> --- /dev/null
+> +++ b/drivers/gpu/drm/i915/pxp/intel_pxp_cmd.c
+> @@ -0,0 +1,156 @@
+> +// SPDX-License-Identifier: MIT
+> +/*
+> + * Copyright(c) 2020, Intel Corporation. All rights reserved.
+> + */
+> +
+> +#include "intel_pxp_cmd.h"
+> +#include "i915_drv.h"
+> +#include "gt/intel_context.h"
+> +#include "gt/intel_engine_pm.h"
+> +
+> +struct i915_vma *intel_pxp_cmd_get_batch(struct intel_pxp *pxp,
+> +                                        struct intel_context *ce,
+> +                                        struct intel_gt_buffer_pool_node *pool,
+> +                                        u32 *cmd_buf, int cmd_size_in_dw)
+> +{
+> +       struct i915_vma *batch = ERR_PTR(-EINVAL);
+> +       struct intel_gt *gt = container_of(pxp, struct intel_gt, pxp);
+> +       u32 *cmd;
+> +
+> +       if (!ce || !ce->engine || !cmd_buf)
+> +               return ERR_PTR(-EINVAL);
+> +
+> +       if (cmd_size_in_dw * 4 > PAGE_SIZE) {
+> +               drm_err(&gt->i915->drm, "Failed to %s, invalid cmd_size_id_dw=[%d]\n",
+> +                       __func__, cmd_size_in_dw);
+> +               return ERR_PTR(-EINVAL);
+> +       }
+> +
+> +       cmd = i915_gem_object_pin_map(pool->obj, I915_MAP_FORCE_WC);
+> +       if (IS_ERR(cmd)) {
+> +               drm_err(&gt->i915->drm, "Failed to i915_gem_object_pin_map()\n");
+> +               return ERR_PTR(-EINVAL);
+> +       }
+> +
+> +       memcpy(cmd, cmd_buf, cmd_size_in_dw * 4);
+> +
+> +       if (drm_debug_enabled(DRM_UT_DRIVER)) {
+> +               print_hex_dump(KERN_DEBUG, "cmd binaries:",
+> +                              DUMP_PREFIX_OFFSET, 4, 4, cmd, cmd_size_in_dw * 4, true);
+> +       }
+> +
+> +       i915_gem_object_unpin_map(pool->obj);
+> +
+> +       batch = i915_vma_instance(pool->obj, ce->vm, NULL);
+> +       if (IS_ERR(batch)) {
+> +               drm_err(&gt->i915->drm, "Failed to i915_vma_instance()\n");
+> +               return batch;
+> +       }
+> +
+> +       return batch;
+> +}
+> +
+> +int intel_pxp_cmd_submit(struct intel_pxp *pxp, u32 *cmd, int cmd_size_in_dw)
+> +{
+> +       int err = -EINVAL;
+> +       struct i915_vma *batch;
+> +       struct i915_request *rq;
+> +       struct intel_context *ce = NULL;
+> +       bool is_engine_pm_get = false;
+> +       bool is_batch_vma_pin = false;
+> +       bool is_skip_req_on_err = false;
+> +       bool is_engine_get_pool = false;
+> +       struct intel_gt_buffer_pool_node *pool = NULL;
+> +       struct intel_gt *gt = container_of(pxp, struct intel_gt, pxp);
+> +
+> +       if (!HAS_ENGINE(gt, VCS0) ||
+> +           !gt->engine[VCS0]->kernel_context) {
+> +               err = -EINVAL;
+> +               goto end;
+> +       }
+> +
+> +       if (!cmd || (cmd_size_in_dw * 4) > PAGE_SIZE) {
+> +               drm_err(&gt->i915->drm, "Failed to %s bad params\n", __func__);
+> +               return -EINVAL;
+> +       }
+> +
+> +       ce = gt->engine[VCS0]->kernel_context;
+> +
+> +       intel_engine_pm_get(ce->engine);
+> +       is_engine_pm_get = true;
+> +
+> +       pool = intel_gt_get_buffer_pool(gt, PAGE_SIZE);
+> +       if (IS_ERR(pool)) {
+> +               drm_err(&gt->i915->drm, "Failed to intel_engine_get_pool()\n");
+> +               goto end;
+> +       }
+> +       is_engine_get_pool = true;
+> +
+> +       batch = intel_pxp_cmd_get_batch(pxp, ce, pool, cmd, cmd_size_in_dw);
+> +       if (IS_ERR(batch)) {
+> +               drm_err(&gt->i915->drm, "Failed to intel_pxp_cmd_get_batch()\n");
+> +               goto end;
+> +       }
+> +
+> +       err = i915_vma_pin(batch, 0, 0, PIN_USER);
+> +       if (err) {
+> +               drm_err(&gt->i915->drm, "Failed to i915_vma_pin()\n");
+> +               goto end;
+> +       }
+> +       is_batch_vma_pin = true;
+> +
+> +       rq = intel_context_create_request(ce);
+> +       if (IS_ERR(rq)) {
+> +               drm_err(&gt->i915->drm, "Failed to intel_context_create_request()\n");
+> +               goto end;
+> +       }
+> +       is_skip_req_on_err = true;
+> +
+> +       err = intel_gt_buffer_pool_mark_active(pool, rq);
+> +       if (err) {
+> +               drm_err(&gt->i915->drm, "Failed to intel_engine_pool_mark_active()\n");
+> +               goto end;
+> +       }
+> +
+> +       i915_vma_lock(batch);
+> +       err = i915_request_await_object(rq, batch->obj, false);
+> +       if (!err)
+> +               err = i915_vma_move_to_active(batch, rq, 0);
+> +       i915_vma_unlock(batch);
+> +       if (err) {
+> +               drm_err(&gt->i915->drm, "Failed to i915_request_await_object()\n");
+> +               goto end;
+> +       }
+> +
+> +       if (ce->engine->emit_init_breadcrumb) {
+> +               err = ce->engine->emit_init_breadcrumb(rq);
+> +               if (err) {
+> +                       drm_err(&gt->i915->drm, "Failed to emit_init_breadcrumb()\n");
+> +                       goto end;
+> +               }
+> +       }
+> +
+> +       err = ce->engine->emit_bb_start(rq, batch->node.start,
+> +               batch->node.size, 0);
+> +       if (err) {
+> +               drm_err(&gt->i915->drm, "Failed to emit_bb_start()\n");
+> +               goto end;
+> +       }
+> +
+> +       i915_request_add(rq);
+> +
+> +end:
+> +       if (unlikely(err) && is_skip_req_on_err)
+> +               i915_request_set_error_once(rq, err);
+> +
+> +       if (is_batch_vma_pin)
+> +               i915_vma_unpin(batch);
+> +
+> +       if (is_engine_get_pool)
+> +               intel_gt_buffer_pool_put(pool);
+> +
+> +       if (is_engine_pm_get)
+> +               intel_engine_pm_put(ce->engine);
+> +
+> +       return err;
+> +}
+> diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp_cmd.h b/drivers/gpu/drm/i915/pxp/intel_pxp_cmd.h
+> new file mode 100644
+> index 000000000000..d04463962421
+> --- /dev/null
+> +++ b/drivers/gpu/drm/i915/pxp/intel_pxp_cmd.h
+> @@ -0,0 +1,18 @@
+> +/* SPDX-License-Identifier: MIT */
+> +/*
+> + * Copyright(c) 2020, Intel Corporation. All rights reserved.
+> + */
+> +
+> +#ifndef __INTEL_PXP_CMD_H__
+> +#define __INTEL_PXP_CMD_H__
+> +
+> +#include "gt/intel_gt_buffer_pool.h"
+> +#include "intel_pxp.h"
+> +
+> +struct i915_vma *intel_pxp_cmd_get_batch(struct intel_pxp *pxp,
+> +                                        struct intel_context *ce,
+> +                                        struct intel_gt_buffer_pool_node *pool,
+> +                                        u32 *cmd_buf, int cmd_size_in_dw);
+> +
+> +int intel_pxp_cmd_submit(struct intel_pxp *pxp, u32 *cmd, int cmd_size_in_dw);
+> +#endif /* __INTEL_PXP_SM_H__ */
+> -- 
+> 2.17.1
 > 
-> commit 0cd4684d6ea9a4ffec33fc19de4dd667bb90d0a5
-> Author: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-> Date:   Tue Nov 21 18:18:50 2017 +0000
-> 
->      drm/i915/pmu: Add interrupt count metric
-> 
-> I think later in the thread there was a suggestion to replace this with
-> simple counter increment in IRQ handler.
-
-It was indeed unsafe until recent b00bccb3f0bb ("drm/i915/pmu: Handle 
-PCI unbind") but now should be fine.
-
-If kstat_irqs does not get exported it is easy enough for i915 to keep a 
-local counter. Reasoning was very infrequent per cpu summation is much 
-cheaper than very frequent atomic add. Up to thousands of interrupts per 
-second vs "once per second" PMU read kind of thing.
-
-Regards,
-
-Tvrtko
-
-> Quoting Thomas Gleixner (2020-12-06 18:38:44)
->> On Fri, Dec 04 2020 at 18:43, Jerry Snitselaar wrote:
->>
->>> Now that kstat_irqs is exported, get rid of count_interrupts in
->>> i915_pmu.c
->>> --- a/drivers/gpu/drm/i915/i915_pmu.c
->>> +++ b/drivers/gpu/drm/i915/i915_pmu.c
->>> @@ -423,22 +423,6 @@ static enum hrtimer_restart i915_sample(struct hrtimer *hrtimer)
->>>        return HRTIMER_RESTART;
->>>   }
->>>   
->>> -static u64 count_interrupts(struct drm_i915_private *i915)
->>> -{
->>> -     /* open-coded kstat_irqs() */
->>> -     struct irq_desc *desc = irq_to_desc(i915->drm.pdev->irq);
->>> -     u64 sum = 0;
->>> -     int cpu;
->>> -
->>> -     if (!desc || !desc->kstat_irqs)
->>> -             return 0;
->>> -
->>> -     for_each_possible_cpu(cpu)
->>> -             sum += *per_cpu_ptr(desc->kstat_irqs, cpu);
->>> -
->>> -     return sum;
->>> -}
->>
->> May I ask why this has been merged in the first place?
->>
->> Nothing in a driver has ever to fiddle with the internals of an irq
->> descriptor. We have functions for properly accessing them. Just because
->> C allows to fiddle with everything is not a justification. If the
->> required function is not exported then adding the export with a proper
->> explanation is not asked too much.
->>
->> Also this lacks protection or at least a comment why this can be called
->> safely and is not subject to a concurrent removal of the irq descriptor.
->> The same problem exists when calling kstat_irqs(). It's even documented
->> at the top of the function.
->>
->> Thanks,
->>
->>          tglx
->>
->>
->> _______________________________________________
->> Intel-gfx mailing list
->> Intel-gfx@lists.freedesktop.org
->> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 > _______________________________________________
 > Intel-gfx mailing list
 > Intel-gfx@lists.freedesktop.org
 > https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-> 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
