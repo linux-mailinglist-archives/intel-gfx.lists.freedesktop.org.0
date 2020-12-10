@@ -1,39 +1,42 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 721E02D63A6
-	for <lists+intel-gfx@lfdr.de>; Thu, 10 Dec 2020 18:36:01 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 660FD2D63D5
+	for <lists+intel-gfx@lfdr.de>; Thu, 10 Dec 2020 18:43:02 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DF9636E436;
-	Thu, 10 Dec 2020 17:35:59 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 09E3B89D77
- for <Intel-gfx@lists.freedesktop.org>; Thu, 10 Dec 2020 17:35:58 +0000 (UTC)
-IronPort-SDR: v2A323jQ1Mad1RPU5asCe4EaazsK/hq0fDQgO0e+Oh+fkgCmaqkXKj0DQ6BGmhcndx0SSQuJuW
- JHcBJ0jHHSrg==
-X-IronPort-AV: E=McAfee;i="6000,8403,9831"; a="174411043"
-X-IronPort-AV: E=Sophos;i="5.78,408,1599548400"; d="scan'208";a="174411043"
+	by gabe.freedesktop.org (Postfix) with ESMTP id D24BD6E430;
+	Thu, 10 Dec 2020 17:42:59 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 818826E430
+ for <intel-gfx@lists.freedesktop.org>; Thu, 10 Dec 2020 17:42:59 +0000 (UTC)
+IronPort-SDR: pCewm+3z6vN4uvlJiskagY02aPaN3NOvJ34EbkymZJV98ZJq77xdk2KfCfQt5H0tjdrysaRJmf
+ lPqyPA8qC6aA==
+X-IronPort-AV: E=McAfee;i="6000,8403,9831"; a="154108926"
+X-IronPort-AV: E=Sophos;i="5.78,408,1599548400"; d="scan'208";a="154108926"
 Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Dec 2020 09:35:58 -0800
-IronPort-SDR: S5Q/2ynaPrVschzbG8YI0u1R+gK80QGeObUta2tlFFupB7qVFKjLe6oYxAKTnAifz5vlR96PJp
- 1iGGSDlYl+5g==
-X-IronPort-AV: E=Sophos;i="5.78,408,1599548400"; d="scan'208";a="364810572"
-Received: from nabuhijl-mobl.ger.corp.intel.com (HELO localhost.localdomain)
- ([10.251.185.230])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Dec 2020 09:42:59 -0800
+IronPort-SDR: hX5D38zT1DNzCVAZvGq7LafRbd5sh1vEur6W9e5tjQzhfEx2jibKDj7PFlHZfqsP75xtOuuqQt
+ HR1tgo2SAbUw==
+X-IronPort-AV: E=Sophos;i="5.78,408,1599548400"; d="scan'208";a="364812621"
+Received: from unknown (HELO sdutt-i7) ([10.165.21.147])
  by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Dec 2020 09:35:55 -0800
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-To: Intel-gfx@lists.freedesktop.org
-Date: Thu, 10 Dec 2020 17:35:45 +0000
-Message-Id: <20201210173545.1508568-1-tvrtko.ursulin@linux.intel.com>
-X-Mailer: git-send-email 2.25.1
+ 10 Dec 2020 09:42:58 -0800
+Date: Thu, 10 Dec 2020 09:37:13 -0800
+From: Matthew Brost <matthew.brost@intel.com>
+To: Chris Wilson <chris@chris-wilson.co.uk>
+Message-ID: <20201210173713.GA25527@sdutt-i7>
+References: <20201207193824.18114-1-chris@chris-wilson.co.uk>
+ <20201207193824.18114-7-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915/pmu: Stop peeking at kernel internals
- for counting interrupts
+Content-Disposition: inline
+In-Reply-To: <20201207193824.18114-7-chris@chris-wilson.co.uk>
+User-Agent: Mutt/1.9.4 (2018-02-28)
+Subject: Re: [Intel-gfx] [PATCH 07/20] drm/i915/gt: Shrink the critical
+ section for irq signaling
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,97 +49,85 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Thomas Gleixner <tglx@linutronix.de>,
- Chris Wilson <chris@chris-wilson.co.uk>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-RnJvbTogVHZydGtvIFVyc3VsaW4gPHR2cnRrby51cnN1bGluQGludGVsLmNvbT4KClBlZWtpbmcg
-YXQga2VybmVsIGludGVybmFscyBpcyBiYWQgdGFzdGUgc28gaW5zdGVhZCB3ZSBrZWVwIG91ciBv
-d24KY291bnRlciB3aGljaCBhbHNvIHNvbHZlcyB0aGUgcHJvYmxlbSBvZiBzaGFyZWQgaW50ZXJy
-dXB0IGxpbmVzLgoKQWRkaXRpb25hbCBjb3N0IHNob3VsZCBiZSB3YXkgYmVsb3cgbm9pc2UgcmVs
-YXRpdmUgdG8gbW1pbyByZWFkcy4KClNpZ25lZC1vZmYtYnk6IFR2cnRrbyBVcnN1bGluIDx0dnJ0
-a28udXJzdWxpbkBpbnRlbC5jb20+ClN1Z2dlc3RlZC1ieTogVGhvbWFzIEdsZWl4bmVyIDx0Z2x4
-QGxpbnV0cm9uaXguZGU+CkNjOiBDaHJpcyBXaWxzb24gPGNocmlzQGNocmlzLXdpbHNvbi5jby51
-az4KLS0tCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2Rydi5oIHwgIDMgKysrCiBkcml2ZXJz
-L2dwdS9kcm0vaTkxNS9pOTE1X2lycS5jIHwgMTYgKysrKysrKysrKysrKysrKwogZHJpdmVycy9n
-cHUvZHJtL2k5MTUvaTkxNV9wbXUuYyB8IDE5ICstLS0tLS0tLS0tLS0tLS0tLS0KIDMgZmlsZXMg
-Y2hhbmdlZCwgMjAgaW5zZXJ0aW9ucygrKSwgMTggZGVsZXRpb25zKC0pCgpkaWZmIC0tZ2l0IGEv
-ZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9kcnYuaCBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5
-MTVfZHJ2LmgKaW5kZXggNWQwNGIyODJjMDYwLi5kZTVjZGNkYzQ2YjAgMTAwNjQ0Ci0tLSBhL2Ry
-aXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfZHJ2LmgKKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUv
-aTkxNV9kcnYuaApAQCAtODg5LDYgKzg4OSw5IEBAIHN0cnVjdCBkcm1faTkxNV9wcml2YXRlIHsK
-IAkvKiBwcm90ZWN0cyB0aGUgaXJxIG1hc2tzICovCiAJc3BpbmxvY2tfdCBpcnFfbG9jazsKIAor
-CS8qKiBPdmVyYWxsIGlycSBoYW5kbGVyIGludm9jYXRpb25zLiAqLworCXU2NCBpcnFfY291bnQ7
-CisKIAlib29sIGRpc3BsYXlfaXJxc19lbmFibGVkOwogCiAJLyogVG8gY29udHJvbCB3YWtldXAg
-bGF0ZW5jeSwgZS5nLiBmb3IgaXJxLWRyaXZlbiBkcCBhdXggdHJhbnNmZXJzLiAqLwpkaWZmIC0t
-Z2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9pcnEuYyBiL2RyaXZlcnMvZ3B1L2RybS9p
-OTE1L2k5MTVfaXJxLmMKaW5kZXggYjI0NTEwOWY3M2UzLi5hODhjMWRhMDI1ZjEgMTAwNjQ0Ci0t
-LSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfaXJxLmMKKysrIGIvZHJpdmVycy9ncHUvZHJt
-L2k5MTUvaTkxNV9pcnEuYwpAQCAtMTU5Niw2ICsxNTk2LDggQEAgc3RhdGljIGlycXJldHVybl90
-IHZhbGxleXZpZXdfaXJxX2hhbmRsZXIoaW50IGlycSwgdm9pZCAqYXJnKQogCWlmICghaW50ZWxf
-aXJxc19lbmFibGVkKGRldl9wcml2KSkKIAkJcmV0dXJuIElSUV9OT05FOwogCisJZGV2X3ByaXYt
-PmlycV9jb3VudCsrOworCiAJLyogSVJRcyBhcmUgc3luY2VkIGR1cmluZyBydW50aW1lX3N1c3Bl
-bmQsIHdlIGRvbid0IHJlcXVpcmUgYSB3YWtlcmVmICovCiAJZGlzYWJsZV9ycG1fd2FrZXJlZl9h
-c3NlcnRzKCZkZXZfcHJpdi0+cnVudGltZV9wbSk7CiAKQEAgLTE2ODEsNiArMTY4Myw4IEBAIHN0
-YXRpYyBpcnFyZXR1cm5fdCBjaGVycnl2aWV3X2lycV9oYW5kbGVyKGludCBpcnEsIHZvaWQgKmFy
-ZykKIAlpZiAoIWludGVsX2lycXNfZW5hYmxlZChkZXZfcHJpdikpCiAJCXJldHVybiBJUlFfTk9O
-RTsKIAorCWRldl9wcml2LT5pcnFfY291bnQrKzsKKwogCS8qIElSUXMgYXJlIHN5bmNlZCBkdXJp
-bmcgcnVudGltZV9zdXNwZW5kLCB3ZSBkb24ndCByZXF1aXJlIGEgd2FrZXJlZiAqLwogCWRpc2Fi
-bGVfcnBtX3dha2VyZWZfYXNzZXJ0cygmZGV2X3ByaXYtPnJ1bnRpbWVfcG0pOwogCkBAIC0yMTAz
-LDYgKzIxMDcsOCBAQCBzdGF0aWMgaXJxcmV0dXJuX3QgaWxrX2lycV9oYW5kbGVyKGludCBpcnEs
-IHZvaWQgKmFyZykKIAlpZiAodW5saWtlbHkoIWludGVsX2lycXNfZW5hYmxlZChpOTE1KSkpCiAJ
-CXJldHVybiBJUlFfTk9ORTsKIAorCWk5MTUtPmlycV9jb3VudCsrOworCiAJLyogSVJRcyBhcmUg
-c3luY2VkIGR1cmluZyBydW50aW1lX3N1c3BlbmQsIHdlIGRvbid0IHJlcXVpcmUgYSB3YWtlcmVm
-ICovCiAJZGlzYWJsZV9ycG1fd2FrZXJlZl9hc3NlcnRzKCZpOTE1LT5ydW50aW1lX3BtKTsKIApA
-QCAtMjUyMyw2ICsyNTI5LDggQEAgc3RhdGljIGlycXJldHVybl90IGdlbjhfaXJxX2hhbmRsZXIo
-aW50IGlycSwgdm9pZCAqYXJnKQogCWlmICghaW50ZWxfaXJxc19lbmFibGVkKGRldl9wcml2KSkK
-IAkJcmV0dXJuIElSUV9OT05FOwogCisJZGV2X3ByaXYtPmlycV9jb3VudCsrOworCiAJbWFzdGVy
-X2N0bCA9IGdlbjhfbWFzdGVyX2ludHJfZGlzYWJsZShyZWdzKTsKIAlpZiAoIW1hc3Rlcl9jdGwp
-IHsKIAkJZ2VuOF9tYXN0ZXJfaW50cl9lbmFibGUocmVncyk7CkBAIC0yNjE3LDYgKzI2MjUsOCBA
-QCBfX2dlbjExX2lycV9oYW5kbGVyKHN0cnVjdCBkcm1faTkxNV9wcml2YXRlICogY29uc3QgaTkx
-NSwKIAlpZiAoIWludGVsX2lycXNfZW5hYmxlZChpOTE1KSkKIAkJcmV0dXJuIElSUV9OT05FOwog
-CisJaTkxNS0+aXJxX2NvdW50Kys7CisKIAltYXN0ZXJfY3RsID0gaW50cl9kaXNhYmxlKHJlZ3Mp
-OwogCWlmICghbWFzdGVyX2N0bCkgewogCQlpbnRyX2VuYWJsZShyZWdzKTsKQEAgLTM5MDIsNiAr
-MzkxMiw4IEBAIHN0YXRpYyBpcnFyZXR1cm5fdCBpOHh4X2lycV9oYW5kbGVyKGludCBpcnEsIHZv
-aWQgKmFyZykKIAlpZiAoIWludGVsX2lycXNfZW5hYmxlZChkZXZfcHJpdikpCiAJCXJldHVybiBJ
-UlFfTk9ORTsKIAorCWRldl9wcml2LT5pcnFfY291bnQrKzsKKwogCS8qIElSUXMgYXJlIHN5bmNl
-ZCBkdXJpbmcgcnVudGltZV9zdXNwZW5kLCB3ZSBkb24ndCByZXF1aXJlIGEgd2FrZXJlZiAqLwog
-CWRpc2FibGVfcnBtX3dha2VyZWZfYXNzZXJ0cygmZGV2X3ByaXYtPnJ1bnRpbWVfcG0pOwogCkBA
-IC00MDAzLDYgKzQwMTUsOCBAQCBzdGF0aWMgaXJxcmV0dXJuX3QgaTkxNV9pcnFfaGFuZGxlcihp
-bnQgaXJxLCB2b2lkICphcmcpCiAJaWYgKCFpbnRlbF9pcnFzX2VuYWJsZWQoZGV2X3ByaXYpKQog
-CQlyZXR1cm4gSVJRX05PTkU7CiAKKwlkZXZfcHJpdi0+aXJxX2NvdW50Kys7CisKIAkvKiBJUlFz
-IGFyZSBzeW5jZWQgZHVyaW5nIHJ1bnRpbWVfc3VzcGVuZCwgd2UgZG9uJ3QgcmVxdWlyZSBhIHdh
-a2VyZWYgKi8KIAlkaXNhYmxlX3JwbV93YWtlcmVmX2Fzc2VydHMoJmRldl9wcml2LT5ydW50aW1l
-X3BtKTsKIApAQCAtNDE0Nyw2ICs0MTYxLDggQEAgc3RhdGljIGlycXJldHVybl90IGk5NjVfaXJx
-X2hhbmRsZXIoaW50IGlycSwgdm9pZCAqYXJnKQogCWlmICghaW50ZWxfaXJxc19lbmFibGVkKGRl
-dl9wcml2KSkKIAkJcmV0dXJuIElSUV9OT05FOwogCisJZGV2X3ByaXYtPmlycV9jb3VudCsrOwor
-CiAJLyogSVJRcyBhcmUgc3luY2VkIGR1cmluZyBydW50aW1lX3N1c3BlbmQsIHdlIGRvbid0IHJl
-cXVpcmUgYSB3YWtlcmVmICovCiAJZGlzYWJsZV9ycG1fd2FrZXJlZl9hc3NlcnRzKCZkZXZfcHJp
-di0+cnVudGltZV9wbSk7CiAKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVf
-cG11LmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X3BtdS5jCmluZGV4IDk3YmI0YWFhNTIz
-Ni4uMGYzMTNmNDU0NmFiIDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X3Bt
-dS5jCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfcG11LmMKQEAgLTQsNyArNCw2IEBA
-CiAgKiBDb3B5cmlnaHQgwqkgMjAxNy0yMDE4IEludGVsIENvcnBvcmF0aW9uCiAgKi8KIAotI2lu
-Y2x1ZGUgPGxpbnV4L2lycS5oPgogI2luY2x1ZGUgPGxpbnV4L3BtX3J1bnRpbWUuaD4KIAogI2lu
-Y2x1ZGUgImd0L2ludGVsX2VuZ2luZS5oIgpAQCAtNDUyLDIyICs0NTEsNiBAQCBzdGF0aWMgZW51
-bSBocnRpbWVyX3Jlc3RhcnQgaTkxNV9zYW1wbGUoc3RydWN0IGhydGltZXIgKmhydGltZXIpCiAJ
-cmV0dXJuIEhSVElNRVJfUkVTVEFSVDsKIH0KIAotc3RhdGljIHU2NCBjb3VudF9pbnRlcnJ1cHRz
-KHN0cnVjdCBkcm1faTkxNV9wcml2YXRlICppOTE1KQotewotCS8qIG9wZW4tY29kZWQga3N0YXRf
-aXJxcygpICovCi0Jc3RydWN0IGlycV9kZXNjICpkZXNjID0gaXJxX3RvX2Rlc2MoaTkxNS0+ZHJt
-LnBkZXYtPmlycSk7Ci0JdTY0IHN1bSA9IDA7Ci0JaW50IGNwdTsKLQotCWlmICghZGVzYyB8fCAh
-ZGVzYy0+a3N0YXRfaXJxcykKLQkJcmV0dXJuIDA7Ci0KLQlmb3JfZWFjaF9wb3NzaWJsZV9jcHUo
-Y3B1KQotCQlzdW0gKz0gKnBlcl9jcHVfcHRyKGRlc2MtPmtzdGF0X2lycXMsIGNwdSk7Ci0KLQly
-ZXR1cm4gc3VtOwotfQotCiBzdGF0aWMgdm9pZCBpOTE1X3BtdV9ldmVudF9kZXN0cm95KHN0cnVj
-dCBwZXJmX2V2ZW50ICpldmVudCkKIHsKIAlzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqaTkxNSA9
-CkBAIC02MTgsNyArNjAxLDcgQEAgc3RhdGljIHU2NCBfX2k5MTVfcG11X2V2ZW50X3JlYWQoc3Ry
-dWN0IHBlcmZfZXZlbnQgKmV2ZW50KQogCQkJCSAgIFVTRUNfUEVSX1NFQyAvKiB0byBNSHogKi8p
-OwogCQkJYnJlYWs7CiAJCWNhc2UgSTkxNV9QTVVfSU5URVJSVVBUUzoKLQkJCXZhbCA9IGNvdW50
-X2ludGVycnVwdHMoaTkxNSk7CisJCQl2YWwgPSBpOTE1LT5pcnFfY291bnQ7CiAJCQlicmVhazsK
-IAkJY2FzZSBJOTE1X1BNVV9SQzZfUkVTSURFTkNZOgogCQkJdmFsID0gZ2V0X3JjNigmaTkxNS0+
-Z3QpOwotLSAKMi4yNS4xCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3Rv
-cC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRl
-bC1nZngK
+On Mon, Dec 07, 2020 at 07:38:11PM +0000, Chris Wilson wrote:
+> Let's only wait for the list iterator when decoupling the virtual
+> breadcrumb, as the signaling of all the requests may take a long time,
+> during which we do not want to keep the tasklet spinning.
+> 
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> ---
+>  drivers/gpu/drm/i915/gt/intel_breadcrumbs.c       | 2 ++
+>  drivers/gpu/drm/i915/gt/intel_breadcrumbs_types.h | 1 +
+>  drivers/gpu/drm/i915/gt/intel_lrc.c               | 3 ++-
+>  3 files changed, 5 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c b/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c
+> index 63900edbde88..ac1e5f6c3c2c 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c
+> @@ -239,6 +239,7 @@ static void signal_irq_work(struct irq_work *work)
+>  		intel_breadcrumbs_disarm_irq(b);
+>  
+>  	rcu_read_lock();
+> +	atomic_inc(&b->signaler_active);
+>  	list_for_each_entry_rcu(ce, &b->signalers, signal_link) {
+>  		struct i915_request *rq;
+>  
+> @@ -274,6 +275,7 @@ static void signal_irq_work(struct irq_work *work)
+>  			}
+>  		}
+>  	}
+> +	atomic_dec(&b->signaler_active);
+>  	rcu_read_unlock();
+>  
+>  	llist_for_each_safe(signal, sn, signal) {
+> diff --git a/drivers/gpu/drm/i915/gt/intel_breadcrumbs_types.h b/drivers/gpu/drm/i915/gt/intel_breadcrumbs_types.h
+> index a74bb3062bd8..f672053d694d 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_breadcrumbs_types.h
+> +++ b/drivers/gpu/drm/i915/gt/intel_breadcrumbs_types.h
+> @@ -35,6 +35,7 @@ struct intel_breadcrumbs {
+>  	spinlock_t signalers_lock; /* protects the list of signalers */
+>  	struct list_head signalers;
+>  	struct llist_head signaled_requests;
+> +	atomic_t signaler_active;
+>  
+>  	spinlock_t irq_lock; /* protects the interrupt from hardirq context */
+>  	struct irq_work irq_work; /* for use from inside irq_lock */
+> diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
+> index b3db16b2a5a4..35cded25c6c1 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_lrc.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
+> @@ -1401,7 +1401,8 @@ static void kick_siblings(struct i915_request *rq, struct intel_context *ce)
+>  		 * ce->signal_link.
+>  		 */
+>  		i915_request_cancel_breadcrumb(rq);
+> -		irq_work_sync(&engine->breadcrumbs->irq_work);
+> +		while (atomic_read(&engine->breadcrumbs->signaler_active))
+> +			cpu_relax();
+
+Would a 'cond_resched' be better here? I trust your opinion on which to
+use but thought I'd mention it.
+
+With that:
+Reviewed-by: Matthew Brost <matthew.brost@intel.com>
+
+>  	}
+>  
+>  	if (READ_ONCE(ve->request))
+> -- 
+> 2.20.1
+> 
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
