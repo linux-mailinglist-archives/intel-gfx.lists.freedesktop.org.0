@@ -2,31 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 121BF2D6936
-	for <lists+intel-gfx@lfdr.de>; Thu, 10 Dec 2020 21:56:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 039FA2D6945
+	for <lists+intel-gfx@lfdr.de>; Thu, 10 Dec 2020 22:01:06 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 077D06EB52;
-	Thu, 10 Dec 2020 20:56:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F1C6E6EB54;
+	Thu, 10 Dec 2020 21:01:03 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id B65EC6EB28;
- Thu, 10 Dec 2020 20:56:29 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id A87C6A7DFB;
- Thu, 10 Dec 2020 20:56:29 +0000 (UTC)
+Received: from fireflyinternet.com (unknown [77.68.26.236])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F2C046EB54
+ for <intel-gfx@lists.freedesktop.org>; Thu, 10 Dec 2020 21:01:02 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from localhost (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
+ 23286299-1500050 for multiple; Thu, 10 Dec 2020 21:00:53 +0000
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Tvrtko Ursulin" <tvrtko.ursulin@linux.intel.com>
-Date: Thu, 10 Dec 2020 20:56:29 -0000
-Message-ID: <160763378965.19119.650781200113500980@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20201210173545.1508568-1-tvrtko.ursulin@linux.intel.com>
-In-Reply-To: <20201210173545.1508568-1-tvrtko.ursulin@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
- =?utf-8?q?/i915/pmu=3A_Stop_peeking_at_kernel_internals_for_counting_inte?=
- =?utf-8?q?rrupts?=
+In-Reply-To: <20201210192806.GB6255@sdutt-i7>
+References: <20201210080240.24529-1-chris@chris-wilson.co.uk>
+ <20201210080240.24529-18-chris@chris-wilson.co.uk>
+ <20201210192806.GB6255@sdutt-i7>
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: Matthew Brost <matthew.brost@intel.com>
+Date: Thu, 10 Dec 2020 21:00:53 +0000
+Message-ID: <160763405359.21588.11912750748685482852@build.alporthouse.com>
+User-Agent: alot/0.9
+Subject: Re: [Intel-gfx] [PATCH 18/21] drm/i915/gt: Add timeline "mode"
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,218 +40,52 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============1129123660=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============1129123660==
-Content-Type: multipart/alternative;
- boundary="===============7691587737579699212=="
+Quoting Matthew Brost (2020-12-10 19:28:06)
+> On Thu, Dec 10, 2020 at 08:02:37AM +0000, Chris Wilson wrote:
+> > diff --git a/drivers/gpu/drm/i915/gt/intel_timeline_types.h b/drivers/gpu/drm/i915/gt/intel_timeline_types.h
+> > index f187c5aac11c..32c51425a0c4 100644
+> > --- a/drivers/gpu/drm/i915/gt/intel_timeline_types.h
+> > +++ b/drivers/gpu/drm/i915/gt/intel_timeline_types.h
+> > @@ -20,6 +20,12 @@ struct i915_syncmap;
+> >  struct intel_gt;
+> >  struct intel_timeline_hwsp;
+> >  
+> > +enum intel_timeline_mode {
+> > +     INTEL_TIMELINE_ABSOLUTE = 0,
+> > +     INTEL_TIMELINE_CONTEXT = BIT(0),
+> > +     INTEL_TIMELINE_GLOBAL = BIT(1),
+> > +};
+> > +
+> 
+> Not sure I like these names.
+> 
+> How about:
+> INTEL_TIMELINE_ABSOLUTE_GGTT
+> INTEL_TIMELINE_RELATIVE_PPGTT
+> INTEL_TIMELINE_RELATIVE_GGTT
 
---===============7691587737579699212==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+They are all in the GGTT, including the ppHWSP.
 
-== Series Details ==
+One is relative to the context, the other relative to the engine.
 
-Series: drm/i915/pmu: Stop peeking at kernel internals for counting interrupts
-URL   : https://patchwork.freedesktop.org/series/84800/
-State : failure
+  INTEL_TIMELINE_ABSOLUTE
+  INTEL_TIMELINE_RELATIVE_CONTEXT
+  INTEL_TIMELINE_RELATIVE_ENGINE
 
-== Summary ==
+> Also not convinced we need the 'RELATIVE' modes. See my comments in 'Use
+> indices for writing into relative'.
 
-CI Bug Log - changes from CI_DRM_9472 -> Patchwork_19114
-====================================================
-
-Summary
--------
-
-  **FAILURE**
-
-  Serious unknown changes coming with Patchwork_19114 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_19114, please notify your bug team to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19114/index.html
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_19114:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@i915_selftest@live@ring_submission:
-    - fi-apl-guc:         [PASS][1] -> [DMESG-WARN][2] +13 similar issues
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9472/fi-apl-guc/igt@i915_selftest@live@ring_submission.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19114/fi-apl-guc/igt@i915_selftest@live@ring_submission.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_19114 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_selftest@live@execlists:
-    - fi-apl-guc:         [PASS][3] -> [DMESG-WARN][4] ([i915#1037])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9472/fi-apl-guc/igt@i915_selftest@live@execlists.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19114/fi-apl-guc/igt@i915_selftest@live@execlists.html
-
-  * igt@kms_addfb_basic@addfb25-modifier-no-flag:
-    - fi-tgl-y:           [PASS][5] -> [DMESG-WARN][6] ([i915#402]) +1 similar issue
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9472/fi-tgl-y/igt@kms_addfb_basic@addfb25-modifier-no-flag.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19114/fi-tgl-y/igt@kms_addfb_basic@addfb25-modifier-no-flag.html
-
-  
-#### Possible fixes ####
-
-  * igt@debugfs_test@read_all_entries:
-    - fi-tgl-y:           [DMESG-WARN][7] ([i915#402]) -> [PASS][8] +2 similar issues
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9472/fi-tgl-y/igt@debugfs_test@read_all_entries.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19114/fi-tgl-y/igt@debugfs_test@read_all_entries.html
-
-  
-  [i915#1037]: https://gitlab.freedesktop.org/drm/intel/issues/1037
-  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
-
-
-Participating hosts (44 -> 40)
-------------------------------
-
-  Missing    (4): fi-ctg-p8600 fi-ilk-m540 fi-bdw-samus fi-hsw-4200u 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_9472 -> Patchwork_19114
-
-  CI-20190529: 20190529
-  CI_DRM_9472: 661399b277bad4b274f9c7dc8ee8a967f5353cb5 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5888: c79d4e88f4162905da400360b6fa4940122f3a2c @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_19114: fe77a262404fb4e2128ee608bd14ac219764a669 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-fe77a262404f drm/i915/pmu: Stop peeking at kernel internals for counting interrupts
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19114/index.html
-
---===============7691587737579699212==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/pmu: Stop peeking at kernel internals for counting interrupts</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/84800/">https://patchwork.freedesktop.org/series/84800/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19114/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19114/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_9472 -&gt; Patchwork_19114</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with Patchwork_19114 absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in Patchwork_19114, please notify your bug team to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19114/index.html</p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in Patchwork_19114:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>igt@i915_selftest@live@ring_submission:<ul>
-<li>fi-apl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9472/fi-apl-guc/igt@i915_selftest@live@ring_submission.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19114/fi-apl-guc/igt@i915_selftest@live@ring_submission.html">DMESG-WARN</a> +13 similar issues</li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_19114 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live@execlists:</p>
-<ul>
-<li>fi-apl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9472/fi-apl-guc/igt@i915_selftest@live@execlists.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19114/fi-apl-guc/igt@i915_selftest@live@execlists.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1037">i915#1037</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_addfb_basic@addfb25-modifier-no-flag:</p>
-<ul>
-<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9472/fi-tgl-y/igt@kms_addfb_basic@addfb25-modifier-no-flag.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19114/fi-tgl-y/igt@kms_addfb_basic@addfb25-modifier-no-flag.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) +1 similar issue</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@debugfs_test@read_all_entries:<ul>
-<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9472/fi-tgl-y/igt@debugfs_test@read_all_entries.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19114/fi-tgl-y/igt@debugfs_test@read_all_entries.html">PASS</a> +2 similar issues</li>
-</ul>
-</li>
-</ul>
-<h2>Participating hosts (44 -&gt; 40)</h2>
-<p>Missing    (4): fi-ctg-p8600 fi-ilk-m540 fi-bdw-samus fi-hsw-4200u </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_9472 -&gt; Patchwork_19114</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_9472: 661399b277bad4b274f9c7dc8ee8a967f5353cb5 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_5888: c79d4e88f4162905da400360b6fa4940122f3a2c @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
-  Patchwork_19114: fe77a262404fb4e2128ee608bd14ac219764a669 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>fe77a262404f drm/i915/pmu: Stop peeking at kernel internals for counting interrupts</p>
-
-</body>
-</html>
-
---===============7691587737579699212==--
-
---===============1129123660==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
+It saves extra allocations for when we don't (e.g. gen8, and other
+contexts where we know we will never require disposable slots), and
+there's a strong incentive to not use absolute addressing with GVT.
+-Chris
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============1129123660==--
