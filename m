@@ -1,31 +1,43 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0D1F32D5744
-	for <lists+intel-gfx@lfdr.de>; Thu, 10 Dec 2020 10:34:15 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id E0D952D574F
+	for <lists+intel-gfx@lfdr.de>; Thu, 10 Dec 2020 10:36:53 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 12F4C6EA54;
-	Thu, 10 Dec 2020 09:34:11 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id A59D06EA51;
- Thu, 10 Dec 2020 09:34:09 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 946A2A0009;
- Thu, 10 Dec 2020 09:34:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8DBF589CF7;
+	Thu, 10 Dec 2020 09:36:51 +0000 (UTC)
+X-Original-To: Intel-gfx@lists.freedesktop.org
+Delivered-To: Intel-gfx@lists.freedesktop.org
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A518489CF7
+ for <Intel-gfx@lists.freedesktop.org>; Thu, 10 Dec 2020 09:36:49 +0000 (UTC)
+IronPort-SDR: 3yeEgRTEzLcJXfeiiRe7IiJBTutQwZoHrTgtJOWN2RH73he62KRSSEin6/YZr+GdweQ8196MW9
+ zO3fnNQrRoxQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9830"; a="258942729"
+X-IronPort-AV: E=Sophos;i="5.78,408,1599548400"; d="scan'208";a="258942729"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Dec 2020 01:36:49 -0800
+IronPort-SDR: 05J2HlXJiycKjBDmfMayVMXT+5s2XH1V0jU4nzPfcCrSqzbkfh8RW8cdDNKW9U4tY50Jr4ITPp
+ f2yovxQN+ahg==
+X-IronPort-AV: E=Sophos;i="5.78,408,1599548400"; d="scan'208";a="364553575"
+Received: from ggiordax-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.251.87.181])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Dec 2020 01:36:47 -0800
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Huang, Sean Z" <sean.z.huang@intel.com>
-Date: Thu, 10 Dec 2020 09:34:09 -0000
-Message-ID: <160759284958.19115.1263794194971379914@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20201210085203.14422-1-sean.z.huang@intel.com>
-In-Reply-To: <20201210085203.14422-1-sean.z.huang@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgSW50?=
- =?utf-8?q?roduce_Intel_PXP_component_-_Mesa_single_session_=28rev5=29?=
+In-Reply-To: <20201209070307.2304-2-sean.z.huang@intel.com>
+References: <20201209070307.2304-1-sean.z.huang@intel.com>
+ <20201209070307.2304-2-sean.z.huang@intel.com>
+From: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+To: "Huang, Sean Z" <sean.z.huang@intel.com>, Intel-gfx@lists.freedesktop.org
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Message-ID: <160759300414.5062.14848965878731236058@jlahtine-mobl.ger.corp.intel.com>
+User-Agent: alot/0.8.1
+Date: Thu, 10 Dec 2020 11:36:44 +0200
+Subject: Re: [Intel-gfx] [RFC-v3 01/13] drm/i915/pxp: Introduce Intel PXP
+ component
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,248 +50,229 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============1248093610=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============1248093610==
-Content-Type: multipart/alternative;
- boundary="===============0168982091823664096=="
+Quoting Huang, Sean Z (2020-12-09 09:02:55)
+> PXP (Protected Xe Path) is an i915 componment, available on GEN12+,
+> that helps to establish the hardware protected session and manage
+> the status of the alive software session, as well as its life cycle.
+> 
+> This patch series is to allow the kernel space to create and
+> manage a single hardware session (a.k.a default session or
+> arbitrary session). So Mesa can allocate the protected buffer,
+> which is encrypted with the leverage of the arbitrary hardware
+> session.
+> 
+> Signed-off-by: Huang, Sean Z <sean.z.huang@intel.com>
 
---===============0168982091823664096==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+<SNIP>
 
-== Series Details ==
+> +++ b/drivers/gpu/drm/i915/Makefile
+> @@ -254,6 +254,11 @@ i915-y += \
+>  
+>  i915-y += i915_perf.o
+>  
+> +# Protected execution platform (PXP) support
+> +i915-$(CONFIG_DRM_I915_PXP) += \
+> +       pxp/intel_pxp.o \
+> +       pxp/intel_pxp_context.o
+> +
+>  # Post-mortem debug and GPU hang state capture
+>  i915-$(CONFIG_DRM_I915_CAPTURE_ERROR) += i915_gpu_error.o
+>  i915-$(CONFIG_DRM_I915_SELFTEST) += \
+> diff --git a/drivers/gpu/drm/i915/gt/intel_gt.c b/drivers/gpu/drm/i915/gt/intel_gt.c
+> index 44f1d51e5ae5..d8e20ede7326 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_gt.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_gt.c
+> @@ -584,6 +584,12 @@ int intel_gt_init(struct intel_gt *gt)
+>         if (err)
+>                 goto err_gt;
+>  
+> +       if (INTEL_GEN(gt->i915) >= 12) {
 
-Series: Introduce Intel PXP component - Mesa single session (rev5)
-URL   : https://patchwork.freedesktop.org/series/84620/
-State : success
+This check should be moved into intel_pxp_init() to avoid cluttering the
+top level init flow.
 
-== Summary ==
+Inside init, we should record the pxp initialization status and fail
+the attempted use of PXP from uAPI or from MEI driver with -ENODEV.
 
-CI Bug Log - changes from CI_DRM_9468 -> Patchwork_19108
-====================================================
+> +               err = intel_pxp_init(&gt->pxp);
+> +               if (err)
+> +                       goto err_gt;
+> +       }
+> +
+>         goto out_fw;
+>  err_gt:
+>         __intel_gt_disable(gt);
+> @@ -638,6 +644,7 @@ void intel_gt_driver_release(struct intel_gt *gt)
+>         if (vm) /* FIXME being called twice on error paths :( */
+>                 i915_vm_put(vm);
+>  
+> +       intel_pxp_uninit(&gt->pxp);
 
-Summary
--------
+intel_pxp_fini()
 
-  **SUCCESS**
+>         intel_gt_pm_fini(gt);
+>         intel_gt_fini_scratch(gt);
+>         intel_gt_fini_buffer_pool(gt);
+> diff --git a/drivers/gpu/drm/i915/gt/intel_gt_types.h b/drivers/gpu/drm/i915/gt/intel_gt_types.h
+> index 6d39a4a11bf3..05255632c2c0 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_gt_types.h
+> +++ b/drivers/gpu/drm/i915/gt/intel_gt_types.h
+> @@ -23,6 +23,7 @@
+>  #include "intel_rc6_types.h"
+>  #include "intel_rps_types.h"
+>  #include "intel_wakeref.h"
+> +#include "pxp/intel_pxp.h"
 
-  No regressions found.
+This should include just intel_pxp_types.h.
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19108/index.html
+> +++ b/drivers/gpu/drm/i915/pxp/intel_pxp.c
+> @@ -0,0 +1,27 @@
+> +// SPDX-License-Identifier: MIT
+> +/*
+> + * Copyright(c) 2020 Intel Corporation.
+> + */
+> +#include "i915_drv.h"
+> +#include "intel_pxp.h"
+> +#include "intel_pxp_context.h"
+> +
+> +int intel_pxp_init(struct intel_pxp *pxp)
+> +{
+> +       struct intel_gt *gt = container_of(pxp, struct intel_gt, pxp);
+> +
+> +       /* PXP only available for GEN12+ */
 
-Known issues
-------------
+Comment is spurious, just describes what the next line of code reads, so can
+be dropped.
 
-  Here are the changes found in Patchwork_19108 that come from known issues:
+> +       if (INTEL_GEN(gt->i915) < 12)
 
-### IGT changes ###
+We probably better introduce HAS_PXP() macro (I think it was previously
+suggested, too).
 
-#### Issues hit ####
+> +               return -ENODEV;
 
-  * igt@core_hotunplug@unbind-rebind:
-    - fi-kbl-7500u:       [PASS][1] -> [DMESG-WARN][2] ([i915#2605])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9468/fi-kbl-7500u/igt@core_hotunplug@unbind-rebind.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19108/fi-kbl-7500u/igt@core_hotunplug@unbind-rebind.html
+This is top-level initialization function, we should record the
+initialization status somewhere at the end of successful init sequence.
+Then in whatever entrypoints we have to the code from userspace we want
+to differentiate between failure to initialize and not supported by HW.
 
-  * igt@fbdev@read:
-    - fi-tgl-y:           [PASS][3] -> [DMESG-WARN][4] ([i915#402]) +1 similar issue
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9468/fi-tgl-y/igt@fbdev@read.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19108/fi-tgl-y/igt@fbdev@read.html
+Based on what I'm reading here, this could be made into void function as
+I don't see anything that would potentially fail.
 
-  * igt@i915_selftest@live@gt_heartbeat:
-    - fi-tgl-y:           [PASS][5] -> [DMESG-FAIL][6] ([i915#2601])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9468/fi-tgl-y/igt@i915_selftest@live@gt_heartbeat.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19108/fi-tgl-y/igt@i915_selftest@live@gt_heartbeat.html
+So above would look like
 
-  * igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-b:
-    - fi-cfl-8109u:       [PASS][7] -> [DMESG-WARN][8] ([i915#165]) +15 similar issues
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9468/fi-cfl-8109u/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-b.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19108/fi-cfl-8109u/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-b.html
+	if (!HAS_PXP(i915))
+		return;
 
-  
-#### Possible fixes ####
+As the top level intel_gt init sequence is not impacted by the lack of
+PXP or even the init failure.
 
-  * igt@prime_vgem@basic-fence-flip:
-    - fi-tgl-y:           [DMESG-WARN][9] ([i915#402]) -> [PASS][10]
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9468/fi-tgl-y/igt@prime_vgem@basic-fence-flip.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19108/fi-tgl-y/igt@prime_vgem@basic-fence-flip.html
+> +       intel_pxp_ctx_init(&pxp->ctx);
 
-  
-  [i915#165]: https://gitlab.freedesktop.org/drm/intel/issues/165
-  [i915#2601]: https://gitlab.freedesktop.org/drm/intel/issues/2601
-  [i915#2605]: https://gitlab.freedesktop.org/drm/intel/issues/2605
-  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
+I think we could use the pxp->ctx.id being nonzero as a check for successful
+initialization in the entrypoints to code.
 
+> +       drm_info(&gt->i915->drm, "Protected Xe Path (PXP) protected content support initialized\n");
+> +
+> +       return 0;
+> +}
+> +
+> +void intel_pxp_uninit(struct intel_pxp *pxp)
 
-Participating hosts (43 -> 40)
-------------------------------
+intel_pxp_fini()
 
-  Missing    (3): fi-ilk-m540 fi-bdw-samus fi-hsw-4200u 
+> +++ b/drivers/gpu/drm/i915/pxp/intel_pxp.h
+> @@ -0,0 +1,29 @@
+> +/* SPDX-License-Identifier: MIT */
+> +/*
+> + * Copyright(c) 2020, Intel Corporation. All rights reserved.
+> + */
+> +
+> +#ifndef __INTEL_PXP_H__
+> +#define __INTEL_PXP_H__
+> +
+> +#include "intel_pxp_context.h"
 
+This should only include intel_pxp_context_types.h file.
 
-Build changes
--------------
+> +
+> +struct intel_pxp {
+> +       struct pxp_context ctx;
+> +};
 
-  * Linux: CI_DRM_9468 -> Patchwork_19108
+These should too go into separate intel_pxp_types.h file.
 
-  CI-20190529: 20190529
-  CI_DRM_9468: b7b601789c54389ad15a5a3fd68e6988bb47631e @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5887: 7d87d0f1a22544e6a78dc0920b3f54b64144a029 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_19108: 30b7044179788d5a565a9d74c0d730f8658d5dff @ git://anongit.freedesktop.org/gfx-ci/linux
+> +#ifdef CONFIG_DRM_I915_PXP
+> +int intel_pxp_init(struct intel_pxp *pxp);
+> +void intel_pxp_uninit(struct intel_pxp *pxp);
 
+intel_pxp_fini()
 
-== Linux commits ==
+> +#else
+> +static inline int intel_pxp_init(struct intel_pxp *pxp)
 
-30b704417978 drm/i915/pxp: Enable the PXP ioctl for protected session
-6dac969f5857 drm/i915/pxp: Add PXP-related registers into allowlist
-b19e2df7c277 drm/i915/pxp: Termiante the session upon app crash
-a3a0458018b8 drm/i915/pxp: Implement ioctl action to query PXP tag
-a5e79d395c0b drm/i915/pxp: Implement ioctl action to send TEE commands
-949bf122347c drm/i915/pxp: Implement ioctl action to terminate the session
-115ceaf569f9 drm/i915/pxp: Implement ioctl action to set session in play
-2b8c63db2fd5 drm/i915/pxp: Implement ioctl action to reserve session slots
-bba3509d4de2 drm/i915/pxp: Add plane decryption support
-4d3e71aebd48 drm/i915/pxp: User interface for Protected buffer
-280757987ae3 drm/i915/uapi: introduce drm_i915_gem_create_ext
-ac45e57d9780 mei: pxp: export pavp client to me client bus
-b53c3b4b2b57 drm/i915/pxp: Expose session state for display protection flip
-d3ceaa600beb drm/i915/pxp: Enable PXP power management
-58f42b15a1a9 drm/i915/pxp: Destroy arb session upon teardown
-a0977e83d5ac drm/i915/pxp: Enable PXP irq worker and callback stub
-5b0b63e69209 drm/i915/pxp: Func to send hardware session termination
-a5754a1b1061 drm/i915/pxp: Create the arbitrary session after boot
-2473e936a077 drm/i915/pxp: Implement funcs to create the TEE channel
-876545c569e0 drm/i915/pxp: set KCR reg init during the boot time
-5bf0d56055a9 drm/i915/pxp: Introduce Intel PXP component
+This could become void.
 
-== Logs ==
+> +{
+> +       return 0;
+> +}
+> +
+> +static inline void intel_pxp_uninit(struct intel_pxp *pxp)
 
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19108/index.html
+intel_pxp_fini()
 
---===============0168982091823664096==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+> index 000000000000..5ffaf55dc7df
+> --- /dev/null
+> +++ b/drivers/gpu/drm/i915/pxp/intel_pxp_context.c
+> @@ -0,0 +1,27 @@
+> +// SPDX-License-Identifier: MIT
+> +/*
+> + * Copyright(c) 2020, Intel Corporation. All rights reserved.
+> + */
+> +
+> +#include "intel_pxp_context.h"
+> +#include <linux/random.h>
+> +
+> +/**
+> + * intel_pxp_ctx_init - To init a pxp context.
+> + * @ctx: pointer to ctx structure.
+> + */
+> +void intel_pxp_ctx_init(struct pxp_context *ctx)
+> +{
+> +       get_random_bytes(&ctx->id, sizeof(ctx->id));
 
+Agreeing with Rodrigo. We should be fine just using the arbitary
+session id here, too.
 
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
+> +++ b/drivers/gpu/drm/i915/pxp/intel_pxp_context.h
+> @@ -0,0 +1,22 @@
+> +/* SPDX-License-Identifier: MIT */
+> +/*
+> + * Copyright(c) 2020, Intel Corporation. All rights reserved.
+> + */
+> +
+> +#ifndef __INTEL_PXP_CONTEXT_H__
+> +#define __INTEL_PXP_CONTEXT_H__
+> +
+> +#include <linux/mutex.h>
+> +
+> +/* struct pxp_context - Represents combined view of driver and logical HW states. */
+> +struct pxp_context {
+> +       /** @mutex: mutex to protect the pxp context */
+> +       struct mutex mutex;
+> +
+> +       int id;
+> +};
 
+Again, a split into _types.h file as described above.
 
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Introduce Intel PXP component - Mesa single session (rev5)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/84620/">https://patchwork.freedesktop.org/series/84620/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19108/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19108/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_9468 -&gt; Patchwork_19108</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19108/index.html</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_19108 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@core_hotunplug@unbind-rebind:</p>
-<ul>
-<li>fi-kbl-7500u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9468/fi-kbl-7500u/igt@core_hotunplug@unbind-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19108/fi-kbl-7500u/igt@core_hotunplug@unbind-rebind.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2605">i915#2605</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@fbdev@read:</p>
-<ul>
-<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9468/fi-tgl-y/igt@fbdev@read.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19108/fi-tgl-y/igt@fbdev@read.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) +1 similar issue</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@gt_heartbeat:</p>
-<ul>
-<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9468/fi-tgl-y/igt@i915_selftest@live@gt_heartbeat.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19108/fi-tgl-y/igt@i915_selftest@live@gt_heartbeat.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2601">i915#2601</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-b:</p>
-<ul>
-<li>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9468/fi-cfl-8109u/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-b.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19108/fi-cfl-8109u/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-b.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/165">i915#165</a>) +15 similar issues</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@prime_vgem@basic-fence-flip:<ul>
-<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9468/fi-tgl-y/igt@prime_vgem@basic-fence-flip.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19108/fi-tgl-y/igt@prime_vgem@basic-fence-flip.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Participating hosts (43 -&gt; 40)</h2>
-<p>Missing    (3): fi-ilk-m540 fi-bdw-samus fi-hsw-4200u </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_9468 -&gt; Patchwork_19108</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_9468: b7b601789c54389ad15a5a3fd68e6988bb47631e @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_5887: 7d87d0f1a22544e6a78dc0920b3f54b64144a029 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
-  Patchwork_19108: 30b7044179788d5a565a9d74c0d730f8658d5dff @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>30b704417978 drm/i915/pxp: Enable the PXP ioctl for protected session<br />
-6dac969f5857 drm/i915/pxp: Add PXP-related registers into allowlist<br />
-b19e2df7c277 drm/i915/pxp: Termiante the session upon app crash<br />
-a3a0458018b8 drm/i915/pxp: Implement ioctl action to query PXP tag<br />
-a5e79d395c0b drm/i915/pxp: Implement ioctl action to send TEE commands<br />
-949bf122347c drm/i915/pxp: Implement ioctl action to terminate the session<br />
-115ceaf569f9 drm/i915/pxp: Implement ioctl action to set session in play<br />
-2b8c63db2fd5 drm/i915/pxp: Implement ioctl action to reserve session slots<br />
-bba3509d4de2 drm/i915/pxp: Add plane decryption support<br />
-4d3e71aebd48 drm/i915/pxp: User interface for Protected buffer<br />
-280757987ae3 drm/i915/uapi: introduce drm_i915_gem_create_ext<br />
-ac45e57d9780 mei: pxp: export pavp client to me client bus<br />
-b53c3b4b2b57 drm/i915/pxp: Expose session state for display protection flip<br />
-d3ceaa600beb drm/i915/pxp: Enable PXP power management<br />
-58f42b15a1a9 drm/i915/pxp: Destroy arb session upon teardown<br />
-a0977e83d5ac drm/i915/pxp: Enable PXP irq worker and callback stub<br />
-5b0b63e69209 drm/i915/pxp: Func to send hardware session termination<br />
-a5754a1b1061 drm/i915/pxp: Create the arbitrary session after boot<br />
-2473e936a077 drm/i915/pxp: Implement funcs to create the TEE channel<br />
-876545c569e0 drm/i915/pxp: set KCR reg init during the boot time<br />
-5bf0d56055a9 drm/i915/pxp: Introduce Intel PXP component</p>
-
-</body>
-</html>
-
---===============0168982091823664096==--
-
---===============1248093610==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
+Regards, Joonas
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============1248093610==--
