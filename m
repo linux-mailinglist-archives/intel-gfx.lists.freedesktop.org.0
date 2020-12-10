@@ -1,42 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 46CA02D659F
-	for <lists+intel-gfx@lfdr.de>; Thu, 10 Dec 2020 19:56:21 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 507E52D65E3
+	for <lists+intel-gfx@lfdr.de>; Thu, 10 Dec 2020 20:07:33 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7B2FD6E0DE;
-	Thu, 10 Dec 2020 18:56:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A20BB6EAD1;
+	Thu, 10 Dec 2020 19:07:31 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 376AE6EACE
- for <intel-gfx@lists.freedesktop.org>; Thu, 10 Dec 2020 18:56:18 +0000 (UTC)
-IronPort-SDR: sDLDLMQGAYeY7dvR/YkxAuSEhcIiZ2S0N/62JNbIzWaRCc8jzmeBhjak2Z3JnitdXVmn+ZotUh
- C5x54QNzka1g==
-X-IronPort-AV: E=McAfee;i="6000,8403,9831"; a="235909668"
-X-IronPort-AV: E=Sophos;i="5.78,409,1599548400"; d="scan'208";a="235909668"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Dec 2020 10:56:15 -0800
-IronPort-SDR: gu+hjNDpxr7n+FqzSHaVwneBthq+OuXV7BrnuSvyHowtBuufw9UGMXbR5+aMXr7XAU8Xp4du9D
- W/mGCA/Ob4Ig==
-X-IronPort-AV: E=Sophos;i="5.78,409,1599548400"; d="scan'208";a="348934329"
-Received: from unknown (HELO sdutt-i7) ([10.165.21.147])
- by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Dec 2020 10:56:15 -0800
-Date: Thu, 10 Dec 2020 10:50:29 -0800
-From: Matthew Brost <matthew.brost@intel.com>
-To: Chris Wilson <chris@chris-wilson.co.uk>
-Message-ID: <20201210185029.GA3230@sdutt-i7>
-References: <20201210080240.24529-1-chris@chris-wilson.co.uk>
- <20201210080240.24529-12-chris@chris-wilson.co.uk>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 9B9C66EAD0;
+ Thu, 10 Dec 2020 19:07:30 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 95D09A8835;
+ Thu, 10 Dec 2020 19:07:30 +0000 (UTC)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20201210080240.24529-12-chris@chris-wilson.co.uk>
-User-Agent: Mutt/1.9.4 (2018-02-28)
-Subject: Re: [Intel-gfx] [PATCH 12/21] drm/i915/gem: Drop free_work for GEM
- contexts
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Lyude Paul" <lyude@redhat.com>
+Date: Thu, 10 Dec 2020 19:07:30 -0000
+Message-ID: <160762725059.19119.4708983289427421971@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20201210012143.729402-1-lyude@redhat.com>
+In-Reply-To: <20201210012143.729402-1-lyude@redhat.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?=3A_Extract_DPCD_backlight_helpers_from_i915=2C_add_support_in_?=
+ =?utf-8?q?nouveau_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,230 +39,254 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============2026237983=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Dec 10, 2020 at 08:02:31AM +0000, Chris Wilson wrote:
-> The free_list and worker was introduced in commit 5f09a9c8ab6b ("drm/i915:
-> Allow contexts to be unreferenced locklessly"), but subsequently made
-> redundant by the removal of the last sleeping lock in commit 2935ed5339c4
-> ("drm/i915: Remove logical HW ID"). As we can now free the GEM context
-> immediately from any context, remove the deferral of the free_list
-> 
-> v2: Lift removing the context from the global list into close().
-> 
-> Suggested-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
-> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+--===============2026237983==
+Content-Type: multipart/alternative;
+ boundary="===============4363783572797169811=="
 
-Reviewed-by: Matthew Brost <matthew.brost@intel.com>
+--===============4363783572797169811==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-> Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
-> Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-> ---
->  drivers/gpu/drm/i915/gem/i915_gem_context.c   | 59 +++----------------
->  drivers/gpu/drm/i915/gem/i915_gem_context.h   |  1 -
->  .../gpu/drm/i915/gem/i915_gem_context_types.h |  1 -
->  drivers/gpu/drm/i915/i915_drv.h               |  3 -
->  drivers/gpu/drm/i915/i915_gem.c               |  2 -
->  .../gpu/drm/i915/selftests/mock_gem_device.c  |  2 -
->  6 files changed, 8 insertions(+), 60 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.c b/drivers/gpu/drm/i915/gem/i915_gem_context.c
-> index ad136d009d9b..738a07b3583c 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_context.c
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_context.c
-> @@ -334,13 +334,12 @@ static struct i915_gem_engines *default_engines(struct i915_gem_context *ctx)
->  	return e;
->  }
->  
-> -static void i915_gem_context_free(struct i915_gem_context *ctx)
-> +void i915_gem_context_release(struct kref *ref)
->  {
-> -	GEM_BUG_ON(!i915_gem_context_is_closed(ctx));
-> +	struct i915_gem_context *ctx = container_of(ref, typeof(*ctx), ref);
->  
-> -	spin_lock(&ctx->i915->gem.contexts.lock);
-> -	list_del(&ctx->link);
-> -	spin_unlock(&ctx->i915->gem.contexts.lock);
-> +	trace_i915_context_free(ctx);
-> +	GEM_BUG_ON(!i915_gem_context_is_closed(ctx));
->  
->  	mutex_destroy(&ctx->engines_mutex);
->  	mutex_destroy(&ctx->lut_mutex);
-> @@ -354,37 +353,6 @@ static void i915_gem_context_free(struct i915_gem_context *ctx)
->  	kfree_rcu(ctx, rcu);
->  }
->  
-> -static void contexts_free_all(struct llist_node *list)
-> -{
-> -	struct i915_gem_context *ctx, *cn;
-> -
-> -	llist_for_each_entry_safe(ctx, cn, list, free_link)
-> -		i915_gem_context_free(ctx);
-> -}
-> -
-> -static void contexts_flush_free(struct i915_gem_contexts *gc)
-> -{
-> -	contexts_free_all(llist_del_all(&gc->free_list));
-> -}
-> -
-> -static void contexts_free_worker(struct work_struct *work)
-> -{
-> -	struct i915_gem_contexts *gc =
-> -		container_of(work, typeof(*gc), free_work);
-> -
-> -	contexts_flush_free(gc);
-> -}
-> -
-> -void i915_gem_context_release(struct kref *ref)
-> -{
-> -	struct i915_gem_context *ctx = container_of(ref, typeof(*ctx), ref);
-> -	struct i915_gem_contexts *gc = &ctx->i915->gem.contexts;
-> -
-> -	trace_i915_context_free(ctx);
-> -	if (llist_add(&ctx->free_link, &gc->free_list))
-> -		schedule_work(&gc->free_work);
-> -}
-> -
->  static inline struct i915_gem_engines *
->  __context_engines_static(const struct i915_gem_context *ctx)
->  {
-> @@ -633,6 +601,10 @@ static void context_close(struct i915_gem_context *ctx)
->  	 */
->  	lut_close(ctx);
->  
-> +	spin_lock(&ctx->i915->gem.contexts.lock);
-> +	list_del(&ctx->link);
-> +	spin_unlock(&ctx->i915->gem.contexts.lock);
-> +
->  	mutex_unlock(&ctx->mutex);
->  
->  	/*
-> @@ -850,9 +822,6 @@ i915_gem_create_context(struct drm_i915_private *i915, unsigned int flags)
->  	    !HAS_EXECLISTS(i915))
->  		return ERR_PTR(-EINVAL);
->  
-> -	/* Reap the stale contexts */
-> -	contexts_flush_free(&i915->gem.contexts);
-> -
->  	ctx = __create_context(i915);
->  	if (IS_ERR(ctx))
->  		return ctx;
-> @@ -897,9 +866,6 @@ static void init_contexts(struct i915_gem_contexts *gc)
->  {
->  	spin_lock_init(&gc->lock);
->  	INIT_LIST_HEAD(&gc->list);
-> -
-> -	INIT_WORK(&gc->free_work, contexts_free_worker);
-> -	init_llist_head(&gc->free_list);
->  }
->  
->  void i915_gem_init__contexts(struct drm_i915_private *i915)
-> @@ -907,12 +873,6 @@ void i915_gem_init__contexts(struct drm_i915_private *i915)
->  	init_contexts(&i915->gem.contexts);
->  }
->  
-> -void i915_gem_driver_release__contexts(struct drm_i915_private *i915)
-> -{
-> -	flush_work(&i915->gem.contexts.free_work);
-> -	rcu_barrier(); /* and flush the left over RCU frees */
-> -}
-> -
->  static int gem_context_register(struct i915_gem_context *ctx,
->  				struct drm_i915_file_private *fpriv,
->  				u32 *id)
-> @@ -986,7 +946,6 @@ int i915_gem_context_open(struct drm_i915_private *i915,
->  void i915_gem_context_close(struct drm_file *file)
->  {
->  	struct drm_i915_file_private *file_priv = file->driver_priv;
-> -	struct drm_i915_private *i915 = file_priv->dev_priv;
->  	struct i915_address_space *vm;
->  	struct i915_gem_context *ctx;
->  	unsigned long idx;
-> @@ -998,8 +957,6 @@ void i915_gem_context_close(struct drm_file *file)
->  	xa_for_each(&file_priv->vm_xa, idx, vm)
->  		i915_vm_put(vm);
->  	xa_destroy(&file_priv->vm_xa);
-> -
-> -	contexts_flush_free(&i915->gem.contexts);
->  }
->  
->  int i915_gem_vm_create_ioctl(struct drm_device *dev, void *data,
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.h b/drivers/gpu/drm/i915/gem/i915_gem_context.h
-> index a133f92bbedb..b5c908f3f4f2 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_context.h
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_context.h
-> @@ -110,7 +110,6 @@ i915_gem_context_clear_user_engines(struct i915_gem_context *ctx)
->  
->  /* i915_gem_context.c */
->  void i915_gem_init__contexts(struct drm_i915_private *i915);
-> -void i915_gem_driver_release__contexts(struct drm_i915_private *i915);
->  
->  int i915_gem_context_open(struct drm_i915_private *i915,
->  			  struct drm_file *file);
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context_types.h b/drivers/gpu/drm/i915/gem/i915_gem_context_types.h
-> index ae14ca24a11f..1449f54924e0 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_context_types.h
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_context_types.h
-> @@ -108,7 +108,6 @@ struct i915_gem_context {
->  
->  	/** link: place with &drm_i915_private.context_list */
->  	struct list_head link;
-> -	struct llist_node free_link;
->  
->  	/**
->  	 * @ref: reference count
-> diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
-> index 5d04b282c060..c2d0156e8a5d 100644
-> --- a/drivers/gpu/drm/i915/i915_drv.h
-> +++ b/drivers/gpu/drm/i915/i915_drv.h
-> @@ -1172,9 +1172,6 @@ struct drm_i915_private {
->  		struct i915_gem_contexts {
->  			spinlock_t lock; /* locks list */
->  			struct list_head list;
-> -
-> -			struct llist_head free_list;
-> -			struct work_struct free_work;
->  		} contexts;
->  
->  		/*
-> diff --git a/drivers/gpu/drm/i915/i915_gem.c b/drivers/gpu/drm/i915/i915_gem.c
-> index 58276694c848..17a4636ee542 100644
-> --- a/drivers/gpu/drm/i915/i915_gem.c
-> +++ b/drivers/gpu/drm/i915/i915_gem.c
-> @@ -1207,8 +1207,6 @@ void i915_gem_driver_remove(struct drm_i915_private *dev_priv)
->  
->  void i915_gem_driver_release(struct drm_i915_private *dev_priv)
->  {
-> -	i915_gem_driver_release__contexts(dev_priv);
-> -
->  	intel_gt_driver_release(&dev_priv->gt);
->  
->  	intel_wa_list_free(&dev_priv->gt_wa_list);
-> diff --git a/drivers/gpu/drm/i915/selftests/mock_gem_device.c b/drivers/gpu/drm/i915/selftests/mock_gem_device.c
-> index e946bd2087d8..0188f877cab2 100644
-> --- a/drivers/gpu/drm/i915/selftests/mock_gem_device.c
-> +++ b/drivers/gpu/drm/i915/selftests/mock_gem_device.c
-> @@ -64,8 +64,6 @@ static void mock_device_release(struct drm_device *dev)
->  	mock_device_flush(i915);
->  	intel_gt_driver_remove(&i915->gt);
->  
-> -	i915_gem_driver_release__contexts(i915);
-> -
->  	i915_gem_drain_workqueue(i915);
->  	i915_gem_drain_freed_objects(i915);
->  
-> -- 
-> 2.20.1
-> 
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+== Series Details ==
+
+Series: drm: Extract DPCD backlight helpers from i915, add support in nouveau (rev2)
+URL   : https://patchwork.freedesktop.org/series/84754/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_9471 -> Patchwork_19112
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19112/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_19112 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@core_hotunplug@unbind-rebind:
+    - fi-kbl-7500u:       [PASS][1] -> [DMESG-WARN][2] ([i915#2605]) +1 similar issue
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9471/fi-kbl-7500u/igt@core_hotunplug@unbind-rebind.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19112/fi-kbl-7500u/igt@core_hotunplug@unbind-rebind.html
+
+  * igt@vgem_basic@create:
+    - fi-tgl-y:           [PASS][3] -> [DMESG-WARN][4] ([i915#402]) +1 similar issue
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9471/fi-tgl-y/igt@vgem_basic@create.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19112/fi-tgl-y/igt@vgem_basic@create.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_pm_rpm@module-reload:
+    - fi-kbl-guc:         [SKIP][5] ([fdo#109271]) -> [PASS][6]
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9471/fi-kbl-guc/igt@i915_pm_rpm@module-reload.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19112/fi-kbl-guc/igt@i915_pm_rpm@module-reload.html
+
+  * igt@i915_selftest@live@execlists:
+    - fi-apl-guc:         [DMESG-WARN][7] ([i915#1037]) -> [PASS][8]
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9471/fi-apl-guc/igt@i915_selftest@live@execlists.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19112/fi-apl-guc/igt@i915_selftest@live@execlists.html
+
+  * igt@i915_selftest@live@ring_submission:
+    - fi-apl-guc:         [DMESG-WARN][9] -> [PASS][10] +8 similar issues
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9471/fi-apl-guc/igt@i915_selftest@live@ring_submission.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19112/fi-apl-guc/igt@i915_selftest@live@ring_submission.html
+
+  * igt@kms_chamelium@dp-crc-fast:
+    - fi-kbl-7500u:       [FAIL][11] ([i915#1161] / [i915#262]) -> [PASS][12]
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9471/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19112/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html
+
+  * igt@kms_force_connector_basic@force-connector-state:
+    - fi-icl-u2:          [DMESG-WARN][13] ([i915#1226]) -> [PASS][14]
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9471/fi-icl-u2/igt@kms_force_connector_basic@force-connector-state.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19112/fi-icl-u2/igt@kms_force_connector_basic@force-connector-state.html
+
+  * igt@prime_self_import@basic-with_one_bo_two_files:
+    - fi-tgl-y:           [DMESG-WARN][15] ([i915#402]) -> [PASS][16] +1 similar issue
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9471/fi-tgl-y/igt@prime_self_import@basic-with_one_bo_two_files.html
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19112/fi-tgl-y/igt@prime_self_import@basic-with_one_bo_two_files.html
+
+  
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [i915#1037]: https://gitlab.freedesktop.org/drm/intel/issues/1037
+  [i915#1161]: https://gitlab.freedesktop.org/drm/intel/issues/1161
+  [i915#1226]: https://gitlab.freedesktop.org/drm/intel/issues/1226
+  [i915#2605]: https://gitlab.freedesktop.org/drm/intel/issues/2605
+  [i915#262]: https://gitlab.freedesktop.org/drm/intel/issues/262
+  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
+
+
+Participating hosts (44 -> 40)
+------------------------------
+
+  Missing    (4): fi-ctg-p8600 fi-ilk-m540 fi-bdw-samus fi-hsw-4200u 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_9471 -> Patchwork_19112
+
+  CI-20190529: 20190529
+  CI_DRM_9471: 1e384ea457bc2af47dc7653f8ebbcae21fbac5fc @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5887: 7d87d0f1a22544e6a78dc0920b3f54b64144a029 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_19112: 6f41a076ae113f11503a7c3f5ec25940cc6cbe37 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+6f41a076ae11 drm/nouveau/kms/nv50-: Add basic DPCD backlight support for nouveau
+a50b774542f6 drm/dp: Extract i915's eDP backlight code into DRM helpers
+f1d7c4b52e52 drm/i915/dp: Remove redundant AUX backlight frequency calculations
+5c960bc872b2 drm/nouveau/kms: Don't probe eDP connectors more then once
+346d389548f8 drm/nouveau/kms/nv40-/backlight: Assign prop type once
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19112/index.html
+
+--===============4363783572797169811==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm: Extract DPCD backlight helpers from i915, add support in nouveau (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/84754/">https://patchwork.freedesktop.org/series/84754/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19112/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19112/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_9471 -&gt; Patchwork_19112</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19112/index.html</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_19112 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@core_hotunplug@unbind-rebind:</p>
+<ul>
+<li>fi-kbl-7500u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9471/fi-kbl-7500u/igt@core_hotunplug@unbind-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19112/fi-kbl-7500u/igt@core_hotunplug@unbind-rebind.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2605">i915#2605</a>) +1 similar issue</li>
+</ul>
+</li>
+<li>
+<p>igt@vgem_basic@create:</p>
+<ul>
+<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9471/fi-tgl-y/igt@vgem_basic@create.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19112/fi-tgl-y/igt@vgem_basic@create.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) +1 similar issue</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@i915_pm_rpm@module-reload:</p>
+<ul>
+<li>fi-kbl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9471/fi-kbl-guc/igt@i915_pm_rpm@module-reload.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19112/fi-kbl-guc/igt@i915_pm_rpm@module-reload.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@execlists:</p>
+<ul>
+<li>fi-apl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9471/fi-apl-guc/igt@i915_selftest@live@execlists.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1037">i915#1037</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19112/fi-apl-guc/igt@i915_selftest@live@execlists.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@ring_submission:</p>
+<ul>
+<li>fi-apl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9471/fi-apl-guc/igt@i915_selftest@live@ring_submission.html">DMESG-WARN</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19112/fi-apl-guc/igt@i915_selftest@live@ring_submission.html">PASS</a> +8 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium@dp-crc-fast:</p>
+<ul>
+<li>fi-kbl-7500u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9471/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1161">i915#1161</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/262">i915#262</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19112/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_force_connector_basic@force-connector-state:</p>
+<ul>
+<li>fi-icl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9471/fi-icl-u2/igt@kms_force_connector_basic@force-connector-state.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1226">i915#1226</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19112/fi-icl-u2/igt@kms_force_connector_basic@force-connector-state.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@prime_self_import@basic-with_one_bo_two_files:</p>
+<ul>
+<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9471/fi-tgl-y/igt@prime_self_import@basic-with_one_bo_two_files.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19112/fi-tgl-y/igt@prime_self_import@basic-with_one_bo_two_files.html">PASS</a> +1 similar issue</li>
+</ul>
+</li>
+</ul>
+<h2>Participating hosts (44 -&gt; 40)</h2>
+<p>Missing    (4): fi-ctg-p8600 fi-ilk-m540 fi-bdw-samus fi-hsw-4200u </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_9471 -&gt; Patchwork_19112</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_9471: 1e384ea457bc2af47dc7653f8ebbcae21fbac5fc @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_5887: 7d87d0f1a22544e6a78dc0920b3f54b64144a029 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
+  Patchwork_19112: 6f41a076ae113f11503a7c3f5ec25940cc6cbe37 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>6f41a076ae11 drm/nouveau/kms/nv50-: Add basic DPCD backlight support for nouveau<br />
+a50b774542f6 drm/dp: Extract i915's eDP backlight code into DRM helpers<br />
+f1d7c4b52e52 drm/i915/dp: Remove redundant AUX backlight frequency calculations<br />
+5c960bc872b2 drm/nouveau/kms: Don't probe eDP connectors more then once<br />
+346d389548f8 drm/nouveau/kms/nv40-/backlight: Assign prop type once</p>
+
+</body>
+</html>
+
+--===============4363783572797169811==--
+
+--===============2026237983==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============2026237983==--
