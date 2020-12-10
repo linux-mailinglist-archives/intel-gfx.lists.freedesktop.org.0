@@ -1,44 +1,45 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C3D4C2D66E9
-	for <lists+intel-gfx@lfdr.de>; Thu, 10 Dec 2020 20:42:38 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 661FD2D66E2
+	for <lists+intel-gfx@lfdr.de>; Thu, 10 Dec 2020 20:42:34 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8AE876EB3C;
-	Thu, 10 Dec 2020 19:42:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E66A86EB31;
+	Thu, 10 Dec 2020 19:42:31 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DB4F06EB30;
- Thu, 10 Dec 2020 19:42:29 +0000 (UTC)
-Message-Id: <20201210194043.659522455@linutronix.de>
+Received: from galois.linutronix.de (Galois.linutronix.de
+ [IPv6:2a0a:51c0:0:12e:550::1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0E1716EB2A;
+ Thu, 10 Dec 2020 19:42:31 +0000 (UTC)
+Message-Id: <20201210194043.769108348@linutronix.de>
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
- s=2020; t=1607629348;
+ s=2020; t=1607629349;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
  content-transfer-encoding:content-transfer-encoding:  references:references;
- bh=b1npAX3rdKpi0zxYsfY5Z+OgET1V6fz47IjXP2N2S30=;
- b=XVTknQmD0+t9vnaeIeIdlOsx1km0mt60yX3sLzQQo1Ss1/zAJ0V4dKHa6DvwjgOabag8/L
- cdAIIF6lZarTaeoLKetYm0pzGwl8kcckN80Dn3W3jMGiKQboR+gMBzt00I83ziyHabYe8b
- NtMvjO2a5WGqd9peY6AIorbHYlQYKzPUUQ5sgSHC+l4y5YIFim4X7GOcwjhvZ7Git47A37
- gmcxNDaJq1jS9foBWYoWsrYgrXjv0vr506Cf/8Zt24Pt75S4yTc5RSKsMNiLugnEQs66lu
- JY2BKtk7vw81ebNMg9AR+ndNy6um/c3Nr6OXjzxeLIyPUkLePe2OzZqJJSi+0A==
+ bh=RkpDEDsz36bMGIvl/YLs0noKGbsbwyBTWfWGyYCIvwI=;
+ b=FjXt0gBZbmoGEhW+JUNun0TgRlpWk5UHUbF8b/SYgA73R5qt2FK9Tl9JCUAhz1x+5ISxmb
+ 8V7v08WHaUsVznntzV+P4bCrHHh6loow5ZaaQC5qCuEudPhwVHK22AOQesI0Ecsqkh8veP
+ Qwn4/oD2Zv3hZttfcTXroXZBKsSviSPS/hfZ0fieRb3ZsJsiILx4Kdfz9zR7w+K2srUSyp
+ sVcjXZizv2IhQYS+ESc7LfjgqYgvOCII1d3ugOhi6vPvk7jAG3wwmOOag6qx9YOR3B1IuO
+ KQi2Ohrd/6vH+kL/8yvl1XW4GpaahKbPHYgPc32mGshR05m6gXPFbQzdssR1DQ==
 DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
- s=2020e; t=1607629348;
+ s=2020e; t=1607629349;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
  content-transfer-encoding:content-transfer-encoding:  references:references;
- bh=b1npAX3rdKpi0zxYsfY5Z+OgET1V6fz47IjXP2N2S30=;
- b=WNYux1er1Ehidg7p8CyS69i/jC/6HS8muln7aTCmBy2Y4C4fUCVrgJw4x7KlJp6BDc2l6Z
- 2PdGgfz2rCEe0FAA==
-Date: Thu, 10 Dec 2020 20:25:47 +0100
+ bh=RkpDEDsz36bMGIvl/YLs0noKGbsbwyBTWfWGyYCIvwI=;
+ b=tNp+xNMz1hLFIiRaZEJhoV6X6hTrUYtKO/6Uex9oEhysEt44+COqeNeDA5dBz+L1+ts6Sq
+ 70KNBmuAKx0cHoAw==
+Date: Thu, 10 Dec 2020 20:25:48 +0100
 From: Thomas Gleixner <tglx@linutronix.de>
 To: LKML <linux-kernel@vger.kernel.org>
 References: <20201210192536.118432146@linutronix.de>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [patch 11/30] parisc/irq: Use irq_desc_kstat_cpu() in
- show_interrupts()
+Subject: [Intel-gfx] [patch 12/30] s390/irq: Use irq_desc_kstat_cpu() in
+ show_msi_interrupt()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,8 +59,8 @@ Cc: Mark Rutland <mark.rutland@arm.com>,
  Linus Walleij <linus.walleij@linaro.org>, dri-devel@lists.freedesktop.org,
  Chris Wilson <chris@chris-wilson.co.uk>,
  "James E.J. Bottomley" <James.Bottomley@HansenPartnership.com>,
- Saeed Mahameed <saeedm@nvidia.com>, netdev@vger.kernel.org,
- Will Deacon <will@kernel.org>, Michal Simek <michal.simek@xilinx.com>,
+ netdev@vger.kernel.org, Will Deacon <will@kernel.org>,
+ Michal Simek <michal.simek@xilinx.com>, Rob Herring <robh@kernel.org>,
  linux-s390@vger.kernel.org, afzal mohammed <afzal.mohd.ma@gmail.com>,
  Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
  Dave Jiang <dave.jiang@intel.com>, xen-devel@lists.xenproject.org,
@@ -67,17 +68,17 @@ Cc: Mark Rutland <mark.rutland@arm.com>,
  Marc Zyngier <maz@kernel.org>, Helge Deller <deller@gmx.de>,
  Russell King <linux@armlinux.org.uk>,
  Christian Borntraeger <borntraeger@de.ibm.com>, linux-pci@vger.kernel.org,
- Jakub Kicinski <kuba@kernel.org>, Heiko Carstens <hca@linux.ibm.com>,
+ Jakub Kicinski <kuba@kernel.org>, intel-gfx@lists.freedesktop.org,
  Wambui Karuga <wambui.karugax@gmail.com>, Allen Hubbe <allenbh@gmail.com>,
- Juergen Gross <jgross@suse.com>, Rob Herring <robh@kernel.org>,
- David Airlie <airlied@linux.ie>, linux-gpio@vger.kernel.org,
- Stefano Stabellini <sstabellini@kernel.org>,
+ Juergen Gross <jgross@suse.com>, Heiko Carstens <hca@linux.ibm.com>,
+ linux-gpio@vger.kernel.org, Stefano Stabellini <sstabellini@kernel.org>,
  Bjorn Helgaas <bhelgaas@google.com>, Lee Jones <lee.jones@linaro.org>,
  linux-arm-kernel@lists.infradead.org,
- Boris Ostrovsky <boris.ostrovsky@oracle.com>, linux-parisc@vger.kernel.org,
- Hou Zhiqiang <Zhiqiang.Hou@nxp.com>, Tariq Toukan <tariqt@nvidia.com>,
- Jon Mason <jdmason@kudzu.us>, linux-ntb@googlegroups.com,
- intel-gfx@lists.freedesktop.org, "David S. Miller" <davem@davemloft.net>
+ Boris Ostrovsky <boris.ostrovsky@oracle.com>, David Airlie <airlied@linux.ie>,
+ linux-parisc@vger.kernel.org, Hou Zhiqiang <Zhiqiang.Hou@nxp.com>,
+ Tariq Toukan <tariqt@nvidia.com>, Jon Mason <jdmason@kudzu.us>,
+ linux-ntb@googlegroups.com, Saeed Mahameed <saeedm@nvidia.com>,
+ "David S. Miller" <davem@davemloft.net>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
@@ -86,25 +87,24 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 The irq descriptor is already there, no need to look it up again.
 
 Signed-off-by: Thomas Gleixner <tglx@linutronix.de>
-Cc: "James E.J. Bottomley" <James.Bottomley@HansenPartnership.com>
-Cc: Helge Deller <deller@gmx.de>
-Cc: afzal mohammed <afzal.mohd.ma@gmail.com>
-Cc: linux-parisc@vger.kernel.org
+Cc: Christian Borntraeger <borntraeger@de.ibm.com>
+Cc: Heiko Carstens <hca@linux.ibm.com>
+Cc: linux-s390@vger.kernel.org
 ---
- arch/parisc/kernel/irq.c |    2 +-
+ arch/s390/kernel/irq.c |    2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
---- a/arch/parisc/kernel/irq.c
-+++ b/arch/parisc/kernel/irq.c
-@@ -218,7 +218,7 @@ int show_interrupts(struct seq_file *p,
- 		seq_printf(p, "%3d: ", i);
+--- a/arch/s390/kernel/irq.c
++++ b/arch/s390/kernel/irq.c
+@@ -124,7 +124,7 @@ static void show_msi_interrupt(struct se
+ 	raw_spin_lock_irqsave(&desc->lock, flags);
+ 	seq_printf(p, "%3d: ", irq);
+ 	for_each_online_cpu(cpu)
+-		seq_printf(p, "%10u ", kstat_irqs_cpu(irq, cpu));
++		seq_printf(p, "%10u ", irq_desc_kstat_irq(desc, cpu));
  
- 		for_each_online_cpu(j)
--			seq_printf(p, "%10u ", kstat_irqs_cpu(i, j));
-+			seq_printf(p, "%10u ", irq_desc_kstat_cpu(desc, j));
- 
- 		seq_printf(p, " %14s", irq_desc_get_chip(desc)->name);
- #ifndef PARISC_IRQ_CR16_COUNTS
+ 	if (desc->irq_data.chip)
+ 		seq_printf(p, " %8s", desc->irq_data.chip->name);
 
 _______________________________________________
 Intel-gfx mailing list
