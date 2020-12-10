@@ -2,41 +2,36 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7069A2D62F3
-	for <lists+intel-gfx@lfdr.de>; Thu, 10 Dec 2020 18:05:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9A8532D6300
+	for <lists+intel-gfx@lfdr.de>; Thu, 10 Dec 2020 18:06:52 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A370A6EA70;
-	Thu, 10 Dec 2020 17:05:36 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4F7246EA70
- for <Intel-gfx@lists.freedesktop.org>; Thu, 10 Dec 2020 17:05:36 +0000 (UTC)
-IronPort-SDR: nH2QI6aP/hDUpHBimsgdqxbQMEYUcWTzYjVJhs1Ln0j6SMtGZEtAhrEqecnlk79hmG91Afs7no
- u5QhHAfUfgng==
-X-IronPort-AV: E=McAfee;i="6000,8403,9831"; a="259007077"
-X-IronPort-AV: E=Sophos;i="5.78,408,1599548400"; d="scan'208";a="259007077"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Dec 2020 09:05:35 -0800
-IronPort-SDR: ljLrrsxPCGne5QXpZ17a4qILRa3/CjjzFMnW5HQmmQivI0uxxLsIqiC3FHZmCmu5qlJCRpLHdd
- nNFOGljp+olA==
-X-IronPort-AV: E=Sophos;i="5.78,408,1599548400"; d="scan'208";a="364773572"
-Received: from yechielg-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.249.81.29])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Dec 2020 09:05:33 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: "Huang\, Sean Z" <sean.z.huang@intel.com>, Intel-gfx@lists.freedesktop.org
-In-Reply-To: <20201209070307.2304-6-sean.z.huang@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20201209070307.2304-1-sean.z.huang@intel.com>
- <20201209070307.2304-6-sean.z.huang@intel.com>
-Date: Thu, 10 Dec 2020 19:05:29 +0200
-Message-ID: <878sa58ucm.fsf@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 124CD6EAAE;
+	Thu, 10 Dec 2020 17:06:51 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C55B76EAAE
+ for <intel-gfx@lists.freedesktop.org>; Thu, 10 Dec 2020 17:06:49 +0000 (UTC)
+IronPort-SDR: 0lNu7uzgikLjBAq9PVBZGTD6p9fH8CdHZmJq+fbeT22y2ilnxI8fKUUsllHdE4nYTKpQorDPKY
+ wtOXVus7HBZw==
+X-IronPort-AV: E=McAfee;i="6000,8403,9831"; a="162050486"
+X-IronPort-AV: E=Sophos;i="5.78,408,1599548400"; d="scan'208";a="162050486"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Dec 2020 09:06:48 -0800
+IronPort-SDR: AnVAMiT708jbSXzbXNJqT3rWA/9NL/Dj91489plAlVmPV8x6iFo9ki+uBrUD6iKT746cUnJx3c
+ rUta5zkm861Q==
+X-IronPort-AV: E=Sophos;i="5.78,408,1599548400"; d="scan'208";a="439159801"
+Received: from lucas-s2600cw.jf.intel.com ([10.165.21.202])
+ by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Dec 2020 09:06:48 -0800
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Thu, 10 Dec 2020 09:06:15 -0800
+Message-Id: <20201210170615.3107266-1-lucas.demarchi@intel.com>
+X-Mailer: git-send-email 2.29.2
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [RFC-v3 05/13] drm/i915/pxp: Func to send hardware
- session termination
+Subject: [Intel-gfx] [CI] drm/i915: Correct location of Wa_1408615072
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,231 +49,49 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 08 Dec 2020, "Huang, Sean Z" <sean.z.huang@intel.com> wrote:
-> Implement the functions to allow PXP to send a GPU command, in
-> order to terminate the hardware session, so hardware can recycle
-> this session slot for the next usage.
->
-> Signed-off-by: Huang, Sean Z <sean.z.huang@intel.com>
-> ---
->  drivers/gpu/drm/i915/Makefile            |   1 +
->  drivers/gpu/drm/i915/pxp/intel_pxp_cmd.c | 156 +++++++++++++++++++++++
->  drivers/gpu/drm/i915/pxp/intel_pxp_cmd.h |  18 +++
->  3 files changed, 175 insertions(+)
->  create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp_cmd.c
->  create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp_cmd.h
->
-> diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefile
-> index 0710cc522f38..2da904cda49f 100644
-> --- a/drivers/gpu/drm/i915/Makefile
-> +++ b/drivers/gpu/drm/i915/Makefile
-> @@ -258,6 +258,7 @@ i915-y += i915_perf.o
->  i915-$(CONFIG_DRM_I915_PXP) += \
->  	pxp/intel_pxp.o \
->  	pxp/intel_pxp_arb.o \
-> +	pxp/intel_pxp_cmd.o \
->  	pxp/intel_pxp_context.o \
->  	pxp/intel_pxp_tee.o
->  
-> diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp_cmd.c b/drivers/gpu/drm/i915/pxp/intel_pxp_cmd.c
-> new file mode 100644
-> index 000000000000..e531ea9f3cdc
-> --- /dev/null
-> +++ b/drivers/gpu/drm/i915/pxp/intel_pxp_cmd.c
-> @@ -0,0 +1,156 @@
-> +// SPDX-License-Identifier: MIT
-> +/*
-> + * Copyright(c) 2020, Intel Corporation. All rights reserved.
-> + */
-> +
-> +#include "intel_pxp_cmd.h"
-> +#include "i915_drv.h"
-> +#include "gt/intel_context.h"
-> +#include "gt/intel_engine_pm.h"
-> +
-> +struct i915_vma *intel_pxp_cmd_get_batch(struct intel_pxp *pxp,
-> +					 struct intel_context *ce,
-> +					 struct intel_gt_buffer_pool_node *pool,
-> +					 u32 *cmd_buf, int cmd_size_in_dw)
-> +{
-> +	struct i915_vma *batch = ERR_PTR(-EINVAL);
-> +	struct intel_gt *gt = container_of(pxp, struct intel_gt, pxp);
-> +	u32 *cmd;
-> +
-> +	if (!ce || !ce->engine || !cmd_buf)
-> +		return ERR_PTR(-EINVAL);
-> +
-> +	if (cmd_size_in_dw * 4 > PAGE_SIZE) {
-> +		drm_err(&gt->i915->drm, "Failed to %s, invalid cmd_size_id_dw=[%d]\n",
-> +			__func__, cmd_size_in_dw);
-> +		return ERR_PTR(-EINVAL);
-> +	}
-> +
-> +	cmd = i915_gem_object_pin_map(pool->obj, I915_MAP_FORCE_WC);
-> +	if (IS_ERR(cmd)) {
-> +		drm_err(&gt->i915->drm, "Failed to i915_gem_object_pin_map()\n");
-> +		return ERR_PTR(-EINVAL);
-> +	}
-> +
-> +	memcpy(cmd, cmd_buf, cmd_size_in_dw * 4);
-> +
-> +	if (drm_debug_enabled(DRM_UT_DRIVER)) {
-> +		print_hex_dump(KERN_DEBUG, "cmd binaries:",
-> +			       DUMP_PREFIX_OFFSET, 4, 4, cmd, cmd_size_in_dw * 4, true);
-> +	}
-> +
-> +	i915_gem_object_unpin_map(pool->obj);
-> +
-> +	batch = i915_vma_instance(pool->obj, ce->vm, NULL);
-> +	if (IS_ERR(batch)) {
-> +		drm_err(&gt->i915->drm, "Failed to i915_vma_instance()\n");
-> +		return batch;
-> +	}
-> +
-> +	return batch;
-> +}
-> +
-> +int intel_pxp_cmd_submit(struct intel_pxp *pxp, u32 *cmd, int cmd_size_in_dw)
-> +{
-> +	int err = -EINVAL;
-> +	struct i915_vma *batch;
-> +	struct i915_request *rq;
-> +	struct intel_context *ce = NULL;
-> +	bool is_engine_pm_get = false;
-> +	bool is_batch_vma_pin = false;
-> +	bool is_skip_req_on_err = false;
-> +	bool is_engine_get_pool = false;
-> +	struct intel_gt_buffer_pool_node *pool = NULL;
-> +	struct intel_gt *gt = container_of(pxp, struct intel_gt, pxp);
-> +
-> +	if (!HAS_ENGINE(gt, VCS0) ||
-> +	    !gt->engine[VCS0]->kernel_context) {
-> +		err = -EINVAL;
-> +		goto end;
-> +	}
-> +
-> +	if (!cmd || (cmd_size_in_dw * 4) > PAGE_SIZE) {
-> +		drm_err(&gt->i915->drm, "Failed to %s bad params\n", __func__);
-> +		return -EINVAL;
-> +	}
-> +
-> +	ce = gt->engine[VCS0]->kernel_context;
-> +
-> +	intel_engine_pm_get(ce->engine);
-> +	is_engine_pm_get = true;
-> +
-> +	pool = intel_gt_get_buffer_pool(gt, PAGE_SIZE);
-> +	if (IS_ERR(pool)) {
-> +		drm_err(&gt->i915->drm, "Failed to intel_engine_get_pool()\n");
-> +		goto end;
-> +	}
-> +	is_engine_get_pool = true;
-> +
-> +	batch = intel_pxp_cmd_get_batch(pxp, ce, pool, cmd, cmd_size_in_dw);
-> +	if (IS_ERR(batch)) {
-> +		drm_err(&gt->i915->drm, "Failed to intel_pxp_cmd_get_batch()\n");
-> +		goto end;
-> +	}
-> +
-> +	err = i915_vma_pin(batch, 0, 0, PIN_USER);
-> +	if (err) {
-> +		drm_err(&gt->i915->drm, "Failed to i915_vma_pin()\n");
-> +		goto end;
-> +	}
-> +	is_batch_vma_pin = true;
-> +
-> +	rq = intel_context_create_request(ce);
-> +	if (IS_ERR(rq)) {
-> +		drm_err(&gt->i915->drm, "Failed to intel_context_create_request()\n");
-> +		goto end;
-> +	}
-> +	is_skip_req_on_err = true;
-> +
-> +	err = intel_gt_buffer_pool_mark_active(pool, rq);
-> +	if (err) {
-> +		drm_err(&gt->i915->drm, "Failed to intel_engine_pool_mark_active()\n");
-> +		goto end;
-> +	}
-> +
-> +	i915_vma_lock(batch);
-> +	err = i915_request_await_object(rq, batch->obj, false);
-> +	if (!err)
-> +		err = i915_vma_move_to_active(batch, rq, 0);
-> +	i915_vma_unlock(batch);
-> +	if (err) {
-> +		drm_err(&gt->i915->drm, "Failed to i915_request_await_object()\n");
-> +		goto end;
-> +	}
-> +
-> +	if (ce->engine->emit_init_breadcrumb) {
-> +		err = ce->engine->emit_init_breadcrumb(rq);
-> +		if (err) {
-> +			drm_err(&gt->i915->drm, "Failed to emit_init_breadcrumb()\n");
-> +			goto end;
-> +		}
-> +	}
-> +
-> +	err = ce->engine->emit_bb_start(rq, batch->node.start,
-> +		batch->node.size, 0);
-> +	if (err) {
-> +		drm_err(&gt->i915->drm, "Failed to emit_bb_start()\n");
-> +		goto end;
-> +	}
-> +
-> +	i915_request_add(rq);
-> +
-> +end:
-> +	if (unlikely(err) && is_skip_req_on_err)
+From: John Harrison <John.C.Harrison@Intel.com>
 
-Please avoid using likely/unlikely unless performance really matters
-*and* you know it matters.
+The above workaround was added as an engine workaround not a GT
+workaround. Moved it to the correct location.
 
-Usually error handling is done via labels where you goto, not via a
-plethora of booleans.
+Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
+Reviewed-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
+Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+---
+ drivers/gpu/drm/i915/gt/intel_workarounds.c | 9 +++++----
+ 1 file changed, 5 insertions(+), 4 deletions(-)
 
-BR,
-Jani.
-
-> +		i915_request_set_error_once(rq, err);
-> +
-> +	if (is_batch_vma_pin)
-> +		i915_vma_unpin(batch);
-> +
-> +	if (is_engine_get_pool)
-> +		intel_gt_buffer_pool_put(pool);
-> +
-> +	if (is_engine_pm_get)
-> +		intel_engine_pm_put(ce->engine);
-> +
-> +	return err;
-> +}
-> diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp_cmd.h b/drivers/gpu/drm/i915/pxp/intel_pxp_cmd.h
-> new file mode 100644
-> index 000000000000..d04463962421
-> --- /dev/null
-> +++ b/drivers/gpu/drm/i915/pxp/intel_pxp_cmd.h
-> @@ -0,0 +1,18 @@
-> +/* SPDX-License-Identifier: MIT */
-> +/*
-> + * Copyright(c) 2020, Intel Corporation. All rights reserved.
-> + */
-> +
-> +#ifndef __INTEL_PXP_CMD_H__
-> +#define __INTEL_PXP_CMD_H__
-> +
-> +#include "gt/intel_gt_buffer_pool.h"
-> +#include "intel_pxp.h"
-> +
-> +struct i915_vma *intel_pxp_cmd_get_batch(struct intel_pxp *pxp,
-> +					 struct intel_context *ce,
-> +					 struct intel_gt_buffer_pool_node *pool,
-> +					 u32 *cmd_buf, int cmd_size_in_dw);
-> +
-> +int intel_pxp_cmd_submit(struct intel_pxp *pxp, u32 *cmd, int cmd_size_in_dw);
-> +#endif /* __INTEL_PXP_SM_H__ */
-
+diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/drm/i915/gt/intel_workarounds.c
+index b5339a36d256..52f12a6d66b9 100644
+--- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
++++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
+@@ -1279,6 +1279,11 @@ tgl_gt_workarounds_init(struct drm_i915_private *i915, struct i915_wa_list *wal)
+ 		wa_write_or(wal,
+ 			    SLICE_UNIT_LEVEL_CLKGATE,
+ 			    L3_CLKGATE_DIS | L3_CR2X_CLKGATE_DIS);
++
++	/* Wa_1408615072:tgl[a0] */
++	if (IS_TGL_UY_GT_REVID(i915, TGL_REVID_A0, TGL_REVID_A0))
++		wa_write_or(wal, UNSLICE_UNIT_LEVEL_CLKGATE2,
++			    VSUNIT_CLKGATE_DIS_TGL);
+ }
+ 
+ static void
+@@ -1771,10 +1776,6 @@ rcs_engine_wa_init(struct intel_engine_cs *engine, struct i915_wa_list *wal)
+ 		wa_write_or(wal,
+ 			    GEN7_SARCHKMD,
+ 			    GEN7_DISABLE_SAMPLER_PREFETCH);
+-
+-		/* Wa_1408615072:tgl */
+-		wa_write_or(wal, UNSLICE_UNIT_LEVEL_CLKGATE2,
+-			    VSUNIT_CLKGATE_DIS_TGL);
+ 	}
+ 
+ 	if (IS_DG1(i915) || IS_ROCKETLAKE(i915) || IS_TIGERLAKE(i915)) {
 -- 
-Jani Nikula, Intel Open Source Graphics Center
+2.29.2
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
