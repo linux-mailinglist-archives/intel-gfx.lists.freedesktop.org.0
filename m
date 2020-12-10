@@ -1,45 +1,42 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D1B9E2D5B39
-	for <lists+intel-gfx@lfdr.de>; Thu, 10 Dec 2020 14:07:53 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2CD012D5B7E
+	for <lists+intel-gfx@lfdr.de>; Thu, 10 Dec 2020 14:21:30 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5705E6E0C6;
-	Thu, 10 Dec 2020 13:07:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 98A746E529;
+	Thu, 10 Dec 2020 13:21:27 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CD41C6E0C6
- for <intel-gfx@lists.freedesktop.org>; Thu, 10 Dec 2020 13:07:49 +0000 (UTC)
-IronPort-SDR: 2cqUs8MLo1sWOQ+kB95IRfzajeAa/eEczs8uwD3Few9m5TVYwasJcPvSfnc9gIYZ6rhpuKzRjg
- 2f9rVe7hMRJg==
-X-IronPort-AV: E=McAfee;i="6000,8403,9830"; a="170742739"
-X-IronPort-AV: E=Sophos;i="5.78,408,1599548400"; d="scan'208";a="170742739"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Dec 2020 05:07:49 -0800
-IronPort-SDR: ZZY4wOrKEP2+c/ZfSEXZ6V7C2I4+Z96cKOTeD6oA8QOZIt6AS6vvSagfzNXwoZc57/rVXEROpQ
- HhBD6eNy4tEQ==
-X-IronPort-AV: E=Sophos;i="5.78,408,1599548400"; d="scan'208";a="364618956"
-Received: from ggiordax-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.251.87.181])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Dec 2020 05:07:47 -0800
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0218E6E529
+ for <intel-gfx@lists.freedesktop.org>; Thu, 10 Dec 2020 13:21:25 +0000 (UTC)
+IronPort-SDR: nrstMcPGnfXvO4uUw4L8CYnovkB3X4cNlY5xqvkw1cju6EB/8QT61qAHoAgZNcpJYDgd0vCdEO
+ Tyt8QLVMdUbg==
+X-IronPort-AV: E=McAfee;i="6000,8403,9830"; a="174365108"
+X-IronPort-AV: E=Sophos;i="5.78,408,1599548400"; d="scan'208";a="174365108"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Dec 2020 05:21:24 -0800
+IronPort-SDR: u2aZAd+tn+k8HoIm3XJ46QCyXBnnXIjxdjaxCfZSbER6JAVTkPgWeWT4PL4aHem2426MwJfZ73
+ brgNObjTjgNQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.78,408,1599548400"; d="scan'208";a="368959056"
+Received: from gaia.fi.intel.com ([10.237.72.192])
+ by fmsmga004.fm.intel.com with ESMTP; 10 Dec 2020 05:21:23 -0800
+Received: by gaia.fi.intel.com (Postfix, from userid 1000)
+ id 306595C201A; Thu, 10 Dec 2020 15:19:07 +0200 (EET)
+From: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
+In-Reply-To: <160759689953.21588.11243424019053509462@build.alporthouse.com>
+References: <20201209134231.961-1-chris@chris-wilson.co.uk>
+ <87k0tqlzhk.fsf@gaia.fi.intel.com>
+ <160759689953.21588.11243424019053509462@build.alporthouse.com>
+Date: Thu, 10 Dec 2020 15:19:07 +0200
+Message-ID: <87o8j1lrxw.fsf@gaia.fi.intel.com>
 MIME-Version: 1.0
-In-Reply-To: <df7e1556-ee01-ad27-1abb-ffe5d74567b7@intel.com>
-References: <20201111155811.GB24657@xsang-OptiPlex-9020>
- <160527763346.5566.3471508802857132043@jlahtine-mobl.ger.corp.intel.com>
- <df7e1556-ee01-ad27-1abb-ffe5d74567b7@intel.com>
-To: Rong Chen <rong.a.chen@intel.com>
-From: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Message-ID: <160760566414.12460.9109750414621198044@jlahtine-mobl.ger.corp.intel.com>
-User-Agent: alot/0.8.1
-Date: Thu, 10 Dec 2020 15:07:44 +0200
-Subject: Re: [Intel-gfx] [drm/i915/gem] 59dd13ad31:
- phoronix-test-suite.jxrendermark.RadialGradientPaint.1024x1024.operations_per_second
- -54.0% regression
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/gt: Rearrange snb workarounds
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,116 +49,65 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-KyBpbnRlbC1nZngKClF1b3RpbmcgUm9uZyBDaGVuICgyMDIwLTEyLTEwIDA4OjU0OjU5KQo+IAo+
-IAo+IE9uIDExLzEzLzIwIDEwOjI3IFBNLCBKb29uYXMgTGFodGluZW4gd3JvdGU6Cj4gPiBIaSwK
-PiA+Cj4gPiBDb3VsZCB5b3UgYWRkIGludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcgaW50
-byByZXBvcnRzIGdvaW5nCj4gPiBmb3J3YXJkLgo+IAo+IEhpIEpvb25hcywKPiAKPiBTb3JyeSBm
-b3IgdGhlIGxhdGUsIHdoaWNoIGtpbmQgb2YgaXNzdWUgdGhhdCBuZWVkcyB0byBiZSBmb3J3YXJk
-ZWQ/CgpXaGVuIHNlbmRpbmcgdGhlIHJlZ3Jlc3Npb24gbm90aWZpY2F0aW9ucywgaXQgd291bGQg
-YmUgdXNlZnVsIHRvIGluY2x1ZGUKdGhlIG1haWxpbmcgbGlzdHMgZnJvbSBNQUlOVEFJTkVSUyBm
-aWxlIGJhc2VkIG9uIHRoZSBmaWxlcyBiZWluZyB0b3VjaGVkCmJ5IHRoZSBiaXNlY3RlZCBjb21t
-aXQuCgpUaGF0IHdvdWxkIGhlbHAgYnJpbmdpbmcgdGhlIHJpZ2h0IGF0dGVudGlvbiBhbmQgYmUg
-ZXNwZWNpYWxseSBpbXBvcnRhbnQKZm9yIHRoZSBjYXNlcyB3aGVyZSB0aGUgcGF0Y2ggYXV0aG9y
-IGhhcyBiZWNvbWUgaW5hY3RpdmUgKGNoYW5nZWQgam9icwpvciBlLW1haWwsIGV0Yy4pCgpSZWdh
-cmRzLCBKb29uYXMKCj4gQmVzdCBSZWdhcmRzLAo+IFJvbmcgQ2hlbgo+IAo+ID4KPiA+IFF1b3Rp
-bmcga2VybmVsIHRlc3Qgcm9ib3QgKDIwMjAtMTEtMTEgMTc6NTg6MTEpCj4gPj4gR3JlZXRpbmcs
-Cj4gPj4KPiA+PiBGWUksIHdlIG5vdGljZWQgYSAtNTQuMCUgcmVncmVzc2lvbiBvZiBwaG9yb25p
-eC10ZXN0LXN1aXRlLmp4cmVuZGVybWFyay5SYWRpYWxHcmFkaWVudFBhaW50LjEwMjR4MTAyNC5v
-cGVyYXRpb25zX3Blcl9zZWNvbmQgZHVlIHRvIGNvbW1pdDoKPiA+IEhvdyBtYW55IHJ1bnMgYXJl
-IHRoZXJlIG9uIHRoZSBiYWQgdmVyc2lvbiB0byBlbnN1cmUgdGhlIGJpc2VjdCBpcwo+ID4gcmVw
-ZWF0YWJsZT8KPiA+Cj4gPiBBY2NvcmRpbmcgdG8gQ2hyaXMgdGVzdCBoYXMgdmFyaW91cyBmYWN0
-b3JzIGFmZmVjdGluZyB3aHkgdGhlIHJlc3VsdAo+ID4gY291bGQgZmx1Y3R1YXRlIGFuZCBoYXMg
-YmVlbiBrbm93bi4gUmV2ZXJ0aW5nIHRoZSBwYXRjaCBkaWQgbm90IGhhdmUKPiA+IGFuIGVmZmVj
-dCBvbiB0aGUgYmVuY2htYXJrIGFuZCB3YXMgbm90IGV4cGVjdGVkIHRvIGRvIHNvLCBlaXRoZXIu
-Cj4gPgo+ID4gSXMgdGhlcmUgc29tZSBtZWNoYW5pc20gdG8gcXVldWUgYSByZS1ydW4/Cj4gPgo+
-ID4gV291bGQgaXQgbWFrZSBzZW5zZSB0byBkbyBmdXJ0aGVyIHJ1bnMgYmVmb3JlIHNlbmRpbmcg
-b3V0IHRoZSBlLW1haWwKPiA+IHRvIGF2b2lkIGZhbHNlIHBvc2l0aXZlcy4KPiA+Cj4gPiBJdCBj
-b3VsZCBvZiBjb3Vyc2UgYmUgYWxzbyBzb2x2ZWQgYnkgc3RpY2tpbmcgdG8gdGVzdHMgdGhhdCBo
-YXZlIGxlc3MKPiA+IGZsdWN0dWF0aW9uIGluIHRoZW0uCj4gPgo+ID4gUmVnYXJkcywgSm9vbmFz
-Cj4gPgo+ID4+Cj4gPj4gY29tbWl0OiA1OWRkMTNhZDMxMDc5Mzc1N2UzNGFmYTQ4OWRkNmZjODU0
-NGZjM2RhICgiZHJtL2k5MTUvZ2VtOiBGbHVzaCBjb2hlcmVuY3kgZG9tYWlucyBvbiBmaXJzdCBz
-ZXQtZG9tYWluLWlvY3RsIikKPiA+PiBodHRwczovL2dpdC5rZXJuZWwub3JnL2NnaXQvbGludXgv
-a2VybmVsL2dpdC90b3J2YWxkcy9saW51eC5naXQgbWFzdGVyCj4gPj4KPiA+Pgo+ID4+IGluIHRl
-c3RjYXNlOiBwaG9yb25peC10ZXN0LXN1aXRlCj4gPj4gb24gdGVzdCBtYWNoaW5lOiAxMiB0aHJl
-YWRzIEludGVsKFIpIENvcmUoVE0pIGk3LTg3MDAgQ1BVIEAgMy4yMEdIeiB3aXRoIDhHIG1lbW9y
-eQo+ID4+IHdpdGggZm9sbG93aW5nIHBhcmFtZXRlcnM6Cj4gPj4KPiA+PiAgICAgICAgICBuZWVk
-X3g6IHRydWUKPiA+PiAgICAgICAgICB0ZXN0OiBqeHJlbmRlcm1hcmstMS4yLjQKPiA+PiAgICAg
-ICAgICBvcHRpb25fYTogUmFkaWFsIEdyYWRpZW50IFBhaW50Cj4gPj4gICAgICAgICAgb3B0aW9u
-X2I6IDEwMjR4MTAyNAo+ID4+ICAgICAgICAgIGNwdWZyZXFfZ292ZXJub3I6IHBlcmZvcm1hbmNl
-Cj4gPj4gICAgICAgICAgdWNvZGU6IDB4ZDYKPiA+Pgo+ID4+IHRlc3QtZGVzY3JpcHRpb246IFRo
-ZSBQaG9yb25peCBUZXN0IFN1aXRlIGlzIHRoZSBtb3N0IGNvbXByZWhlbnNpdmUgdGVzdGluZyBh
-bmQgYmVuY2htYXJraW5nIHBsYXRmb3JtIGF2YWlsYWJsZSB0aGF0IHByb3ZpZGVzIGFuIGV4dGVu
-c2libGUgZnJhbWV3b3JrIGZvciB3aGljaCBuZXcgdGVzdHMgY2FuIGJlIGVhc2lseSBhZGRlZC4K
-PiA+PiB0ZXN0LXVybDogaHR0cDovL3d3dy5waG9yb25peC10ZXN0LXN1aXRlLmNvbS8KPiA+Pgo+
-ID4+Cj4gPj4KPiA+PiBJZiB5b3UgZml4IHRoZSBpc3N1ZSwga2luZGx5IGFkZCBmb2xsb3dpbmcg
-dGFnCj4gPj4gUmVwb3J0ZWQtYnk6IGtlcm5lbCB0ZXN0IHJvYm90IDxvbGl2ZXIuc2FuZ0BpbnRl
-bC5jb20+Cj4gPj4KPiA+Pgo+ID4+IERldGFpbHMgYXJlIGFzIGJlbG93Ogo+ID4+IC0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tPgo+ID4+Cj4gPj4KPiA+PiBUbyByZXBy
-b2R1Y2U6Cj4gPj4KPiA+PiAgICAgICAgICBnaXQgY2xvbmUgaHR0cHM6Ly9naXRodWIuY29tL2lu
-dGVsL2xrcC10ZXN0cy5naXQKPiA+PiAgICAgICAgICBjZCBsa3AtdGVzdHMKPiA+PiAgICAgICAg
-ICBiaW4vbGtwIGluc3RhbGwgam9iLnlhbWwgICMgam9iIGZpbGUgaXMgYXR0YWNoZWQgaW4gdGhp
-cyBlbWFpbAo+ID4+ICAgICAgICAgIGJpbi9sa3AgcnVuICAgICBqb2IueWFtbAo+ID4+Cj4gPj4g
-PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09
-PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0KPiA+PiBjb21waWxlci9jcHVmcmVxX2dv
-dmVybm9yL2tjb25maWcvbmVlZF94L29wdGlvbl9hL29wdGlvbl9iL3Jvb3Rmcy90Ym94X2dyb3Vw
-L3Rlc3QvdGVzdGNhc2UvdWNvZGU6Cj4gPj4gICAgZ2NjLTkvcGVyZm9ybWFuY2UveDg2XzY0LXJo
-ZWwtOC4zL3RydWUvUmFkaWFsIEdyYWRpZW50IFBhaW50LzEwMjR4MTAyNC9kZWJpYW4teDg2XzY0
-LXBob3Jvbml4L2xrcC1jZmwtZDEvanhyZW5kZXJtYXJrLTEuMi40L3Bob3Jvbml4LXRlc3Qtc3Vp
-dGUvMHhkNgo+ID4+Cj4gPj4gY29tbWl0Ogo+ID4+ICAgIDBkY2NkYmE1MWUgKCJNZXJnZSB0YWcg
-J2d2dC1maXhlcy0yMDIwLTEwLTMwJyBvZiBodHRwczovL2dpdGh1Yi5jb20vaW50ZWwvZ3Z0LWxp
-bnV4IGludG8gZHJtLWludGVsLWZpeGVzIikKPiA+PiAgICA1OWRkMTNhZDMxICgiZHJtL2k5MTUv
-Z2VtOiBGbHVzaCBjb2hlcmVuY3kgZG9tYWlucyBvbiBmaXJzdCBzZXQtZG9tYWluLWlvY3RsIikK
-PiA+Pgo+ID4+IDBkY2NkYmE1MWU4NTIyNzEgNTlkZDEzYWQzMTA3OTM3NTdlMzRhZmE0ODlkCj4g
-Pj4gLS0tLS0tLS0tLS0tLS0tLSAtLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0KPiA+PiAgICAg
-ICAgICAgJXN0ZGRldiAgICAgJWNoYW5nZSAgICAgICAgICVzdGRkZXYKPiA+PiAgICAgICAgICAg
-ICAgIFwgICAgICAgICAgfCAgICAgICAgICAgICAgICBcCj4gPj4gICAgICAgIDg5ODAgwrEgIDIl
-ICAgICAtNTQuMCUgICAgICAgNDEyNyAgICAgICAgcGhvcm9uaXgtdGVzdC1zdWl0ZS5qeHJlbmRl
-cm1hcmsuUmFkaWFsR3JhZGllbnRQYWludC4xMDI0eDEwMjQub3BlcmF0aW9uc19wZXJfc2Vjb25k
-Cj4gPj4gICAgICAgIDkuMDAgICAgICAgICAgICsxMy45JSAgICAgIDEwLjI1IMKxICA0JSAgcGhv
-cm9uaXgtdGVzdC1zdWl0ZS50aW1lLnBlcmNlbnRfb2ZfY3B1X3RoaXNfam9iX2dvdAo+ID4+Cj4g
-Pj4KPiA+PiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKPiA+PiAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAKPiA+PiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKPiA+PiAgICAxMDAwMCArLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLSsKPiA+PiAgICAgICAgICB8ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHwKPiA+PiAgICAgOTAwMCB8LSsuKy4gLisu
-Ky4rLisuKy4gICAuKy4gLisuICAgLisuIC4rLisuICAgICAuKy4gLisuICAgLisuIC4rLisuICAg
-LnwKPiA+PiAgICAgICAgICB8LisgICArICAgICAgICAgICArLisgICArICAgKy4rICAgKyAgICAg
-Ky4rLisgICArICAgKy4rICAgKyAgICAgKy4rIHwKPiA+PiAgICAgICAgICB8ICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHwK
-PiA+PiAgICAgODAwMCB8LSsgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgIHwKPiA+PiAgICAgICAgICB8ICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHwKPiA+
-PiAgICAgNzAwMCB8LSsgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgIHwKPiA+PiAgICAgICAgICB8ICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHwKPiA+PiAg
-ICAgNjAwMCB8LSsgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgIHwKPiA+PiAgICAgICAgICB8ICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHwKPiA+PiAgICAg
-ICAgICB8ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgIHwKPiA+PiAgICAgNTAwMCB8LSsgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHwKPiA+PiAgICAgICAg
-ICB8ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgTyAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgIHwKPiA+PiAgICAgNDAwMCArLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLSsKPiA+PiAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAKPiA+PiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKPiA+PiBbKl0gYmlz
-ZWN0LWdvb2Qgc2FtcGxlCj4gPj4gW09dIGJpc2VjdC1iYWQgIHNhbXBsZQo+ID4+Cj4gPj4KPiA+
-Pgo+ID4+IERpc2NsYWltZXI6Cj4gPj4gUmVzdWx0cyBoYXZlIGJlZW4gZXN0aW1hdGVkIGJhc2Vk
-IG9uIGludGVybmFsIEludGVsIGFuYWx5c2lzIGFuZCBhcmUgcHJvdmlkZWQKPiA+PiBmb3IgaW5m
-b3JtYXRpb25hbCBwdXJwb3NlcyBvbmx5LiBBbnkgZGlmZmVyZW5jZSBpbiBzeXN0ZW0gaGFyZHdh
-cmUgb3Igc29mdHdhcmUKPiA+PiBkZXNpZ24gb3IgY29uZmlndXJhdGlvbiBtYXkgYWZmZWN0IGFj
-dHVhbCBwZXJmb3JtYW5jZS4KPiA+Pgo+ID4+Cj4gPj4gVGhhbmtzLAo+ID4+IE9saXZlciBTYW5n
-Cj4gPj4KPiAKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18K
-SW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0
-dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
+Chris Wilson <chris@chris-wilson.co.uk> writes:
+
+> Quoting Mika Kuoppala (2020-12-10 10:36:07)
+>> Chris Wilson <chris@chris-wilson.co.uk> writes:
+>> 
+>> > Some rcs0 workarounds were being incorrectly applied to the GT, and so
+>> > we failed to restore the expected register settings after a reset.
+>> >
+>> > Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+>> > ---
+>> >  drivers/gpu/drm/i915/gt/intel_workarounds.c | 67 ++++++++++-----------
+>> >  1 file changed, 33 insertions(+), 34 deletions(-)
+>> >
+>> > diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/drm/i915/gt/intel_workarounds.c
+>> > index b5339a36d256..50cfe82f18a9 100644
+>> > --- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
+>> > +++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
+>> > @@ -823,40 +823,6 @@ ilk_gt_workarounds_init(struct drm_i915_private *i915, struct i915_wa_list *wal)
+>> >  static void
+>> >  snb_gt_workarounds_init(struct drm_i915_private *i915, struct i915_wa_list *wal)
+>> >  {
+>> > -     /* WaDisableHiZPlanesWhenMSAAEnabled:snb */
+>> > -     wa_masked_en(wal,
+>> > -                  _3D_CHICKEN,
+>> > -                  _3D_CHICKEN_HIZ_PLANE_DISABLE_MSAA_4X_SNB);
+>> > -
+>> > -     /* WaDisable_RenderCache_OperationalFlush:snb */
+>> > -     wa_masked_dis(wal, CACHE_MODE_0, RC_OP_FLUSH_ENABLE);
+>> > -
+>> > -     /*
+>> > -      * BSpec recommends 8x4 when MSAA is used,
+>> > -      * however in practice 16x4 seems fastest.
+>> > -      *
+>> > -      * Note that PS/WM thread counts depend on the WIZ hashing
+>> > -      * disable bit, which we don't touch here, but it's good
+>> > -      * to keep in mind (see 3DSTATE_PS and 3DSTATE_WM).
+>> > -      */
+>> > -     wa_add(wal,
+>> > -            GEN6_GT_MODE, 0,
+>> > -            _MASKED_FIELD(GEN6_WIZ_HASHING_MASK, GEN6_WIZ_HASHING_16x4),
+>> > -            GEN6_WIZ_HASHING_16x4);
+>> > -
+>> > -     wa_masked_dis(wal, CACHE_MODE_0, CM0_STC_EVICT_DISABLE_LRA_SNB);
+>> 
+>> Where did this go?
+>
+> It was already in rcs_engine_wa
+
+Yes it was.
+
+Reviewed-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+
+> -Chris
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
