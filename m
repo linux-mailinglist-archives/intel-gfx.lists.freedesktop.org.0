@@ -2,29 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B9B9B2D5594
-	for <lists+intel-gfx@lfdr.de>; Thu, 10 Dec 2020 09:43:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3C9EE2D5595
+	for <lists+intel-gfx@lfdr.de>; Thu, 10 Dec 2020 09:44:48 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9BE976E3EF;
-	Thu, 10 Dec 2020 08:43:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F0C6289668;
+	Thu, 10 Dec 2020 08:44:45 +0000 (UTC)
 X-Original-To: Intel-gfx@lists.freedesktop.org
 Delivered-To: Intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B17DD6E3EF
- for <Intel-gfx@lists.freedesktop.org>; Thu, 10 Dec 2020 08:43:32 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9E3CD89668
+ for <Intel-gfx@lists.freedesktop.org>; Thu, 10 Dec 2020 08:44:44 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from localhost (unverified [78.156.65.138]) 
  by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 23276322-1500050 for multiple; Thu, 10 Dec 2020 08:43:28 +0000
+ 23276331-1500050 for multiple; Thu, 10 Dec 2020 08:44:41 +0000
 MIME-Version: 1.0
 In-Reply-To: <20201210072435.24066-3-sean.z.huang@intel.com>
 References: <20201210072435.24066-1-sean.z.huang@intel.com>
  <20201210072435.24066-3-sean.z.huang@intel.com>
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: "Huang, Sean Z" <sean.z.huang@intel.com>, Intel-gfx@lists.freedesktop.org
-Date: Thu, 10 Dec 2020 08:43:28 +0000
-Message-ID: <160758980852.595.4926485420604986511@build.alporthouse.com>
+Date: Thu, 10 Dec 2020 08:44:40 +0000
+Message-ID: <160758988075.595.14886274422254861537@build.alporthouse.com>
 User-Agent: alot/0.9
 Subject: Re: [Intel-gfx] [RFC-v4 02/21] drm/i915/pxp: set KCR reg init
  during the boot time
@@ -69,13 +69,6 @@ Quoting Huang, Sean Z (2020-12-10 07:24:16)
 > +#define KCR_INIT_MASK_SHIFT (16)
 > +/* Setting KCR Init bit is required after system boot */
 > +#define KCR_INIT_ALLOW_DISPLAY_ME_WRITES (BIT(14) | (BIT(14) << KCR_INIT_MASK_SHIFT))
-
-That's a regular masked register.
-
-#define KCR_INIT_ALLOW_DISPLAY_ME_WRITES REG_BIT(14)
-intel_uncore_write(gt->uncore,
-		   KCR_INIT, _MASKED_ENABLE(KCR_INIT_ALLOW_DISPLAY_ME_WRITES));
-
 > +
 >  int intel_pxp_init(struct intel_pxp *pxp)
 >  {
@@ -85,18 +78,9 @@ intel_uncore_write(gt->uncore,
 >         intel_pxp_ctx_init(&pxp->ctx);
 >  
 > +       intel_uncore_write(gt->uncore, KCR_INIT, KCR_INIT_ALLOW_DISPLAY_ME_WRITES);
-> +
->         drm_info(&gt->i915->drm, "Protected Xe Path (PXP) protected content support initialized\n");
->  
->         return 0;
-> -- 
-> 2.17.1
-> 
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
->
+
+So this looks dangerous to leave enabled after driver unload?
+-Chris
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
