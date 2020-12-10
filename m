@@ -1,43 +1,36 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 134C72D63E1
-	for <lists+intel-gfx@lfdr.de>; Thu, 10 Dec 2020 18:44:49 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 921652D640D
+	for <lists+intel-gfx@lfdr.de>; Thu, 10 Dec 2020 18:51:23 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8A10B89CDE;
-	Thu, 10 Dec 2020 17:44:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 469756EAB1;
+	Thu, 10 Dec 2020 17:51:19 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4755589CDE;
- Thu, 10 Dec 2020 17:44:46 +0000 (UTC)
-From: Thomas Gleixner <tglx@linutronix.de>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
- s=2020; t=1607622284;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=oeioyqpxNmG6CK8lLuYIEgegZmVE7BiOpQp+xJs/g5M=;
- b=nFpOge/3DK/YrVphh+ZKWZYuF1Z9nOGge7xU97iWnUyzPbaEFKCmHRLc8uXkq/UajGCT5N
- OncAX1nMt1jLZ9Zpu2A3eiw5nnrk2Wc6fPLw8c8bJAQ/WAxLUszBEbdn8OLNplLWrI/2Gb
- F7KcieQGQ4eBqcsJV7BUSYwmoMRFFvGtOLAVBkDpMemGux1f0WYLqf210QcCp3hX34VjmK
- PPuojzqSecXQCIRBtQb4VSB46fptypIDq6BQrST9YDHc1v+XDLurqAo59LaSQrHrh8+CB4
- +Dmw0dMvmpPZC/70Y48xr5qEpr5O4MomnWtOqao1KuNEg06CM0OceEHjHLpO7Q==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
- s=2020e; t=1607622284;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=oeioyqpxNmG6CK8lLuYIEgegZmVE7BiOpQp+xJs/g5M=;
- b=rWL5Y9Xn9fN7dzBlg88tnUbJnatJ/mJ8Nef3j1Bgh0vv4WhDAu4D4F9E4/waF+d2Zh+v12
- EW4+HqySJVUXLIBA==
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6D95B6E435;
+ Thu, 10 Dec 2020 17:51:17 +0000 (UTC)
+IronPort-SDR: /jlUou1kIhg+luXYOyYTOniu+4yKbVpj5ND+8OSh/+pFD9ETszrDbj9g2xg3H5T1euMrbO75rp
+ nJslFUHmrGpQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9831"; a="235894941"
+X-IronPort-AV: E=Sophos;i="5.78,408,1599548400"; d="scan'208";a="235894941"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Dec 2020 09:51:15 -0800
+IronPort-SDR: O9xj5AStRn1R/+n9qHsHejcuXQqjPe2N7zBcihmXhLps93EdZZo2Vwdx+lzK7LvWiIO3KGBQ+L
+ xuouzydGXi3A==
+X-IronPort-AV: E=Sophos;i="5.78,409,1599548400"; d="scan'208";a="320190821"
+Received: from nabuhijl-mobl.ger.corp.intel.com (HELO [10.251.185.230])
+ ([10.251.185.230])
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Dec 2020 09:51:10 -0800
+To: Thomas Gleixner <tglx@linutronix.de>,
  Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
  Jerry Snitselaar <jsnitsel@redhat.com>, linux-kernel@vger.kernel.org,
  Tvrtko Ursulin <tvrtko.ursulin@intel.com>,
  Chris Wilson <chris@chris-wilson.co.uk>
-In-Reply-To: <e01e321d-d4ea-fcec-a3dc-16e641e49056@linux.intel.com>
 References: <20201205014340.148235-1-jsnitsel@redhat.com>
  <20201205014340.148235-3-jsnitsel@redhat.com>
  <875z5e99ez.fsf@nanos.tec.linutronix.de>
@@ -45,9 +38,16 @@ References: <20201205014340.148235-1-jsnitsel@redhat.com>
  <e9892cc4-6344-be07-66b5-236b8576100e@linux.intel.com>
  <87v9d9k49q.fsf@nanos.tec.linutronix.de>
  <e01e321d-d4ea-fcec-a3dc-16e641e49056@linux.intel.com>
-Date: Thu, 10 Dec 2020 18:44:44 +0100
-Message-ID: <87pn3hk12r.fsf@nanos.tec.linutronix.de>
+ <87pn3hk12r.fsf@nanos.tec.linutronix.de>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+Message-ID: <118a2e24-12f8-8a5c-193e-67e5ac37cac1@linux.intel.com>
+Date: Thu, 10 Dec 2020 17:51:07 +0000
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
+In-Reply-To: <87pn3hk12r.fsf@nanos.tec.linutronix.de>
+Content-Language: en-US
 Subject: Re: [Intel-gfx] [PATCH v3 2/4] drm/i915/pmu: Use kstat_irqs to get
  interrupt count
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -68,36 +68,43 @@ Cc: David Airlie <airlied@linux.ie>, Peter Zijlstra <peterz@infradead.org>,
  Jason Gunthorpe <jgg@ziepe.ca>, Jarkko Sakkinen <jarkko@kernel.org>,
  dri-devel@lists.freedesktop.org, linux-integrity@vger.kernel.org,
  Peter Huewe <peterhuewe@gmx.de>
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Dec 10 2020 at 17:09, Tvrtko Ursulin wrote:
-> On 10/12/2020 16:35, Thomas Gleixner wrote:
->> I'll send out a series addressing irq_to_desc() (ab)use all over the
->> place shortly. i915 is in there...
->
-> Yep we don't need atomic, my bad. And we would care about the shared 
-> interrupt line. And without atomic the extra accounting falls way below 
-> noise.
 
-You have to be careful though. If you make the accumulated counter 64
-bit wide then you need to be careful vs. 32bit machines.
+On 10/12/2020 17:44, Thomas Gleixner wrote:
+> On Thu, Dec 10 2020 at 17:09, Tvrtko Ursulin wrote:
+>> On 10/12/2020 16:35, Thomas Gleixner wrote:
+>>> I'll send out a series addressing irq_to_desc() (ab)use all over the
+>>> place shortly. i915 is in there...
+>>
+>> Yep we don't need atomic, my bad. And we would care about the shared
+>> interrupt line. And without atomic the extra accounting falls way below
+>> noise.
+> 
+> You have to be careful though. If you make the accumulated counter 64
+> bit wide then you need to be careful vs. 32bit machines.
 
-> So in the light of it all, it sounds best I just quickly replace our 
-> abuse with private counting and then you don't have to deal with it in 
-> your series.
+Yep, thanks, I am bad jumping from one thing to another. Forgot about 
+the read side atomicity completely..
 
-I mostly have it. Still chewing on the 32bit vs. 64bit thing. And
-keeping it in my series allows me to remove the export of irq_to_desc()
-at the end without waiting for your tree to be merged.
+>> So in the light of it all, it sounds best I just quickly replace our
+>> abuse with private counting and then you don't have to deal with it in
+>> your series.
+> 
+> I mostly have it. Still chewing on the 32bit vs. 64bit thing. And
+> keeping it in my series allows me to remove the export of irq_to_desc()
+> at the end without waiting for your tree to be merged.
+> 
+> Give me a few.
 
-Give me a few.
+Ok.
 
-Thanks,
+Regards,
 
-        tglx
+Tvrtko
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
