@@ -2,51 +2,48 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 937572D75B8
-	for <lists+intel-gfx@lfdr.de>; Fri, 11 Dec 2020 13:37:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DE4EF2D761F
+	for <lists+intel-gfx@lfdr.de>; Fri, 11 Dec 2020 13:57:54 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 453D56EDCC;
-	Fri, 11 Dec 2020 12:37:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4C6536EDDE;
+	Fri, 11 Dec 2020 12:57:53 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from galois.linutronix.de (Galois.linutronix.de
  [IPv6:2a0a:51c0:0:12e:550::1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4F4D06EDCC;
- Fri, 11 Dec 2020 12:37:12 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A5FE06EDDE;
+ Fri, 11 Dec 2020 12:57:51 +0000 (UTC)
 From: Thomas Gleixner <tglx@linutronix.de>
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
- s=2020; t=1607690230;
+ s=2020; t=1607691469;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=xeKMIUUY7UN7nseclqb6capkWQKCLYLlFPvEsM/avAA=;
- b=3520JJ+cuub+0iUSOK2WXjhkvCbFqeJNnWTo2fJ47aLTUyErKzNfEkULJPsX3Qa7RkBVwA
- 4q6jw5fcFuYyZr/ciqFHaAnQVfC1Alp3kCIzCyANWRIH5wkikSXOxsM9LH0a3lH+xiAa45
- f0/UcyAfqGDvjb7eJDdGBHj9hJNdTg1RDGpqvbSImr23oJWz9hqAB7upD/U8t27689mDeg
- F/Tz1FEjoqnkk1C0t4mKGVaykVWwH0Pu53ShxAoYAYxl3sBd5Q86Au5G3wKiLThho8mDJo
- PrspxrgGCxFQ2+rt5HHBAUWr3eImu1NL/lsNiVCRl0iT/SNo3u6jwsn7CYROBw==
+ bh=JI1elAtJ+5DtZ6K623jhzzi7pTI2yY5tK5xHv6JaNRg=;
+ b=IsUihC8x41gfVuZ56mJpZCBvWH6AGSSnlAtCqFu+Y6vHBUWXmKQx9YvU5B8lrG6utDrQMP
+ 8canZDEEsNDVhNNdoKfnFOQzTFOpz9W+psXaARAvFsUFtyOebsqoT9kLX8kBnNz5EacFR5
+ rK53uTCJCAI+CQzV9BLaBuU/gNEQZy9UASonSM4NSF0ZsDg2qgrh9flw6frSO8WIrRyHsw
+ fF1cIAuhmb0wJbfH0peqshua47BZpnwfG0pDc4EWPJORiwGLQuagVjgVxqHnf+tQ9+0hUT
+ H0SNNDNOI9Tui6mw4dUpmVwGgPTgPo14TX1s4jNlbb7LIWdUurk9RmWQuaaNkw==
 DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
- s=2020e; t=1607690230;
+ s=2020e; t=1607691469;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=xeKMIUUY7UN7nseclqb6capkWQKCLYLlFPvEsM/avAA=;
- b=BclOyliY9++BXeKdFZCu5z1BEMLnNc8fqr8CcstXRZSRH4lrLjensrS/wg9nxh2q1FTvD5
- HDIGPJaNNIgQp/DQ==
-To: =?utf-8?B?SsO8cmdlbiBHcm/Dnw==?= <jgross@suse.com>,
- boris.ostrovsky@oracle.com, LKML <linux-kernel@vger.kernel.org>
-In-Reply-To: <2164a0ce-0e0d-c7dc-ac97-87c8f384ad82@suse.com>
+ bh=JI1elAtJ+5DtZ6K623jhzzi7pTI2yY5tK5xHv6JaNRg=;
+ b=9Ep94KYblAfQy2iSeDDH/NSIpD2gqoyh3N3s+6g4ZgyvdTP4pfDpIIp6ve3zDE8y9b1XGh
+ NoOqscBMvs3mS3Bw==
+To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ LKML <linux-kernel@vger.kernel.org>
+In-Reply-To: <ad05af1a-5463-2a80-0887-7629721d6863@linux.intel.com>
 References: <20201210192536.118432146@linutronix.de>
- <20201210194045.250321315@linutronix.de>
- <7f7af60f-567f-cdef-f8db-8062a44758ce@oracle.com>
- <2164a0ce-0e0d-c7dc-ac97-87c8f384ad82@suse.com>
-Date: Fri, 11 Dec 2020 13:37:10 +0100
-Message-ID: <871rfwiknd.fsf@nanos.tec.linutronix.de>
+ <20201210194043.957046529@linutronix.de>
+ <ad05af1a-5463-2a80-0887-7629721d6863@linux.intel.com>
+Date: Fri, 11 Dec 2020 13:57:49 +0100
+Message-ID: <87y2i4h54i.fsf@nanos.tec.linutronix.de>
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [patch 27/30] xen/events: Only force affinity mask
- for percpu interrupts
+Subject: Re: [Intel-gfx] [patch 14/30] drm/i915/pmu: Replace open coded
+ kstat_irqs() copy
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,57 +61,130 @@ Cc: Mark Rutland <mark.rutland@arm.com>,
  Peter Zijlstra <peterz@infradead.org>,
  Catalin Marinas <catalin.marinas@arm.com>,
  Linus Walleij <linus.walleij@linaro.org>, dri-devel@lists.freedesktop.org,
- Chris Wilson <chris@chris-wilson.co.uk>,
- "James E.J. Bottomley" <James.Bottomley@HansenPartnership.com>,
- Saeed Mahameed <saeedm@nvidia.com>, netdev@vger.kernel.org,
- Jakub Kicinski <kuba@kernel.org>, Will Deacon <will@kernel.org>,
- Michal Simek <michal.simek@xilinx.com>, linux-s390@vger.kernel.org,
- afzal mohammed <afzal.mohd.ma@gmail.com>,
- Stefano Stabellini <sstabellini@kernel.org>, Dave Jiang <dave.jiang@intel.com>,
+ Chris Wilson <chris@chris-wilson.co.uk>, "James
+ E.J. Bottomley" <James.Bottomley@HansenPartnership.com>, netdev@vger.kernel.org,
+ Will Deacon <will@kernel.org>, Michal Simek <michal.simek@xilinx.com>,
+ linux-s390@vger.kernel.org, afzal mohammed <afzal.mohd.ma@gmail.com>,
+ Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+ Dave Jiang <dave.jiang@intel.com>, xen-devel@lists.xenproject.org,
  Leon Romanovsky <leon@kernel.org>, linux-rdma@vger.kernel.org,
  Marc Zyngier <maz@kernel.org>, Helge Deller <deller@gmx.de>,
  Russell King <linux@armlinux.org.uk>,
  Christian Borntraeger <borntraeger@de.ibm.com>, linux-pci@vger.kernel.org,
- xen-devel@lists.xenproject.org, Heiko Carstens <hca@linux.ibm.com>,
+ Jakub Kicinski <kuba@kernel.org>, Heiko Carstens <hca@linux.ibm.com>,
  Wambui Karuga <wambui.karugax@gmail.com>, Allen Hubbe <allenbh@gmail.com>,
- Rob Herring <robh@kernel.org>, David Airlie <airlied@linux.ie>,
- linux-gpio@vger.kernel.org, Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+ Juergen Gross <jgross@suse.com>, Rob Herring <robh@kernel.org>,
+ intel-gfx@lists.freedesktop.org, linux-gpio@vger.kernel.org,
+ Stefano Stabellini <sstabellini@kernel.org>,
  Bjorn Helgaas <bhelgaas@google.com>, Lee Jones <lee.jones@linaro.org>,
- linux-arm-kernel@lists.infradead.org, linux-parisc@vger.kernel.org,
- Hou Zhiqiang <Zhiqiang.Hou@nxp.com>, Tariq Toukan <tariqt@nvidia.com>,
- Jon Mason <jdmason@kudzu.us>, linux-ntb@googlegroups.com,
- intel-gfx@lists.freedesktop.org, "David S. Miller" <davem@davemloft.net>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+ linux-arm-kernel@lists.infradead.org,
+ Boris Ostrovsky <boris.ostrovsky@oracle.com>, David Airlie <airlied@linux.ie>,
+ linux-parisc@vger.kernel.org, Hou Zhiqiang <Zhiqiang.Hou@nxp.com>,
+ Tariq Toukan <tariqt@nvidia.com>, Jon Mason <jdmason@kudzu.us>,
+ linux-ntb@googlegroups.com, Saeed Mahameed <saeedm@nvidia.com>, "David S.
+ Miller" <davem@davemloft.net>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gRnJpLCBEZWMgMTEgMjAyMCBhdCAxMzoxMCwgSsO8cmdlbiBHcm/DnyB3cm90ZToKPiBPbiAx
-MS4xMi4yMCAwMDoyMCwgYm9yaXMub3N0cm92c2t5QG9yYWNsZS5jb20gd3JvdGU6Cj4+IAo+PiBP
-biAxMi8xMC8yMCAyOjI2IFBNLCBUaG9tYXMgR2xlaXhuZXIgd3JvdGU6Cj4+PiBBbGwgZXZlbnQg
-Y2hhbm5lbCBzZXR1cHMgYmluZCB0aGUgaW50ZXJydXB0IG9uIENQVTAgb3IgdGhlIHRhcmdldCBD
-UFUgZm9yCj4+PiBwZXJjcHUgaW50ZXJydXB0cyBhbmQgb3ZlcndyaXRlIHRoZSBhZmZpbml0eSBt
-YXNrIHdpdGggdGhlIGNvcnJlc3BvbmRpbmcKPj4+IGNwdW1hc2suIFRoYXQgZG9lcyBub3QgbWFr
-ZSBzZW5zZS4KPj4+Cj4+PiBUaGUgWEVOIGltcGxlbWVudGF0aW9uIG9mIGlycWNoaXA6OmlycV9z
-ZXRfYWZmaW5pdHkoKSBhbHJlYWR5IHBpY2tzIGEKPj4+IHNpbmdsZSB0YXJnZXQgQ1BVIG91dCBv
-ZiB0aGUgYWZmaW5pdHkgbWFzayBhbmQgdGhlIGFjdHVhbCB0YXJnZXQgaXMgc3RvcmVkCj4+PiBp
-biB0aGUgZWZmZWN0aXZlIENQVSBtYXNrLCBzbyBkZXN0cm95aW5nIHRoZSB1c2VyIGNob3NlbiBh
-ZmZpbml0eSBtYXNrCj4+PiB3aGljaCBtaWdodCBjb250YWluIG1vcmUgdGhhbiBvbmUgQ1BVIGlz
-IHdyb25nLgo+Pj4KPj4+IENoYW5nZSB0aGUgaW1wbGVtZW50YXRpb24gc28gdGhhdCB0aGUgY2hh
-bm5lbCBpcyBib3VuZCB0byBDUFUwIGF0IHRoZSBYRU4KPj4+IGxldmVsIGFuZCBsZWF2ZSB0aGUg
-YWZmaW5pdHkgbWFzayBhbG9uZS4gQXQgc3RhcnR1cCBvZiB0aGUgaW50ZXJydXB0Cj4+PiBhZmZp
-bml0eSB3aWxsIGJlIGFzc2lnbmVkIG91dCBvZiB0aGUgYWZmaW5pdHkgbWFzayBhbmQgdGhlIFhF
-TiBiaW5kaW5nIHdpbGwKPj4+IGJlIHVwZGF0ZWQuCj4+IAo+PiAKPj4gSWYgdGhhdCdzIHRoZSBj
-YXNlIHRoZW4gSSB3b25kZXIgd2hldGhlciB3ZSBuZWVkIHRoaXMgY2FsbCBhdCBhbGwgYW5kIGlu
-c3RlYWQgYmluZCBhdCBzdGFydHVwIHRpbWUuCj4KPiBBZnRlciBzb21lIGRpc2N1c3Npb24gd2l0
-aCBUaG9tYXMgb24gSVJDIGFuZCB4ZW4tZGV2ZWwgYXJjaGFlb2xvZ3kgdGhlCj4gcmVzdWx0IGlz
-OiB0aGlzIHdpbGwgYmUgbmVlZGVkIGVzcGVjaWFsbHkgZm9yIHN5c3RlbXMgcnVubmluZyBvbiBh
-Cj4gc2luZ2xlIHZjcHUgKGUuZy4gc21hbGwgZ3Vlc3RzKSwgYXMgdGhlIC5pcnFfc2V0X2FmZmlu
-aXR5KCkgY2FsbGJhY2sKPiB3b24ndCBiZSBjYWxsZWQgaW4gdGhpcyBjYXNlIHdoZW4gc3RhcnRp
-bmcgdGhlIGlycS4KClRoYXQncyByaWdodCwgYnV0IG5vdCBsaW1pdGVkIHRvIEFSTS4gVGhlIHNh
-bWUgcHJvYmxlbSBleGlzdHMgb24geDg2IFVQLgpTbyB5ZXMsIHRoZSBjYWxsIG1ha2VzIHNlbnNl
-LCBidXQgdGhlIGNoYW5nZWxvZyBpcyBub3QgcmVhbGx5IHVzZWZ1bC4KTGV0IG1lIGFkZCBhIGNv
-bW1lbnQgdG8gdGhpcy4KClRoYW5rcywKCiAgICAgICAgdGdseApfX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVs
-LWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcv
-bWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
+On Fri, Dec 11 2020 at 10:13, Tvrtko Ursulin wrote:
+> On 10/12/2020 19:25, Thomas Gleixner wrote:
+
+>> 
+>> Aside of that the count is per interrupt line and therefore takes
+>> interrupts from other devices into account which share the interrupt line
+>> and are not handled by the graphics driver.
+>> 
+>> Replace it with a pmu private count which only counts interrupts which
+>> originate from the graphics card.
+>> 
+>> To avoid atomics or heuristics of some sort make the counter field
+>> 'unsigned long'. That limits the count to 4e9 on 32bit which is a lot and
+>> postprocessing can easily deal with the occasional wraparound.
+>
+> After my failed hasty sketch from last night I had a different one which 
+> was kind of heuristics based (re-reading the upper dword and retrying if 
+> it changed on 32-bit).
+
+The problem is that there will be two seperate modifications for the low
+and high word. Several ways how the compiler can translate this, but the
+problem is the same for all of them:
+
+CPU 0                           CPU 1
+        load low
+        load high
+        add  low, 1
+        addc high, 0            
+        store low               load high
+--> NMI                         load low
+                                load high and compare
+        store high
+
+You can't catch that. If this really becomes an issue you need a
+sequence counter around it.
+      
+
+> But you are right - it is okay to at least start 
+> like this today and if later there is a need we can either do that or 
+> deal with wrap at PMU read time.
+
+Right.
+
+>> +/*
+>> + * Interrupt statistic for PMU. Increments the counter only if the
+>> + * interrupt originated from the the GPU so interrupts from a device which
+>> + * shares the interrupt line are not accounted.
+>> + */
+>> +static inline void pmu_irq_stats(struct drm_i915_private *priv,
+>
+> We never use priv as a local name, it should be either i915 or
+> dev_priv.
+
+Sure, will fix.
+
+>> +	/*
+>> +	 * A clever compiler translates that into INC. A not so clever one
+>> +	 * should at least prevent store tearing.
+>> +	 */
+>> +	WRITE_ONCE(priv->pmu.irq_count, priv->pmu.irq_count + 1);
+>
+> Curious, probably more educational for me - given x86_32 and x86_64, and 
+> the context of it getting called, what is the difference from just doing 
+> irq_count++?
+
+Several reasons:
+
+    1) The compiler can pretty much do what it wants with cnt++
+       including tearing and whatever. https://lwn.net/Articles/816850/
+       for the full set of insanities.
+
+       Not really a problem here, but
+
+    2) It's annotating the reader and the writer side and documenting
+       that this is subject to concurrency
+
+    3) It will prevent KCSAN to complain about the data race,
+       i.e. concurrent modification while reading.
+
+Thanks,
+
+        tglx
+
+>> --- a/drivers/gpu/drm/i915/i915_pmu.c
+>> +++ b/drivers/gpu/drm/i915/i915_pmu.c
+>> @@ -423,22 +423,6 @@ static enum hrtimer_restart i915_sample(
+>>   	return HRTIMER_RESTART;
+>>   }
+>
+> In this file you can also drop the #include <linux/irq.h> line.
+
+Indeed.
+
+Thanks,
+
+        tglx
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
