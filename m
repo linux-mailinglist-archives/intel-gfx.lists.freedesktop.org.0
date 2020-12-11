@@ -1,39 +1,39 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8DF3E2D7288
-	for <lists+intel-gfx@lfdr.de>; Fri, 11 Dec 2020 10:05:53 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id AA6DF2D728B
+	for <lists+intel-gfx@lfdr.de>; Fri, 11 Dec 2020 10:05:55 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 472096ECEE;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 645146ECF3;
 	Fri, 11 Dec 2020 09:05:40 +0000 (UTC)
 X-Original-To: Intel-gfx@lists.freedesktop.org
 Delivered-To: Intel-gfx@lists.freedesktop.org
 Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5A9746ECC5
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 431D36ECE5
  for <Intel-gfx@lists.freedesktop.org>; Fri, 11 Dec 2020 09:05:36 +0000 (UTC)
-IronPort-SDR: yroOddawr26iwGRBVvRadcXbO+JbNVODMEN+qakqqq0R1w406DqARcmbuxYLhmn/DWQv1Jl2gy
- P/lBcYzmJtUw==
-X-IronPort-AV: E=McAfee;i="6000,8403,9831"; a="162159119"
-X-IronPort-AV: E=Sophos;i="5.78,410,1599548400"; d="scan'208";a="162159119"
+IronPort-SDR: 788ZC0spD3Uk+ehHkPS942FAUrp7+9ii1iWvcECQJfcPHiA+g5Na4UD7L931rcgJ/JufhWG2Px
+ /lrn7qaRGJlg==
+X-IronPort-AV: E=McAfee;i="6000,8403,9831"; a="162159120"
+X-IronPort-AV: E=Sophos;i="5.78,410,1599548400"; d="scan'208";a="162159120"
 Received: from orsmga005.jf.intel.com ([10.7.209.41])
  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  11 Dec 2020 01:05:32 -0800
-IronPort-SDR: bX0NHRWpa4p8JYFNV/4HcbGKuzfEXqv10qrKvTbJPmaKtM+vNZaKnM/yM15TDGjqptfYszc8/b
- TIWZ1BDSWWVQ==
+IronPort-SDR: bui3WQpTSfoJih4YkhM00bzX3ui7x4a7nDZqMUN9TmXgEgw97NevmOnnNEYVB+SbpYe5e6T+f9
+ Vb3/MxF57v0g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.78,410,1599548400"; d="scan'208";a="553804564"
+X-IronPort-AV: E=Sophos;i="5.78,410,1599548400"; d="scan'208";a="553804562"
 Received: from sean-virtualbox.fm.intel.com ([10.105.158.96])
  by orsmga005.jf.intel.com with ESMTP; 11 Dec 2020 01:05:32 -0800
 From: "Huang, Sean Z" <sean.z.huang@intel.com>
 To: Intel-gfx@lists.freedesktop.org
-Date: Fri, 11 Dec 2020 01:04:56 -0800
-Message-Id: <20201211090457.32674-23-sean.z.huang@intel.com>
+Date: Fri, 11 Dec 2020 01:04:57 -0800
+Message-Id: <20201211090457.32674-24-sean.z.huang@intel.com>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20201211090457.32674-1-sean.z.huang@intel.com>
 References: <20201211090457.32674-1-sean.z.huang@intel.com>
-Subject: [Intel-gfx] [RFC-v8 22/23] mei: pxp: add vtag parameter to
- mei_pxp_send/receive interface
+Subject: [Intel-gfx] [RFC-v8 23/23] drm/i915/pxp: Enable the PXP ioctl for
+ protected session
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,109 +46,197 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Tomas Winkler <tomas.winkler@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Tomas Winkler <tomas.winkler@intel.com>
+In the previous commits, we have implemented the PXP ioctl
+functions. Now we enable those handlers and expose them as PXP
+ioctl, so allow the userspace driver can establish, set, or
+destory the protected session via this ioctl.
 
-Added vtag parameter to mei_pxp_send_message and
-mei_pxp_receive_message functions.
-
-Signed-off-by: Vitaly Lubart <vitaly.lubart@intel.com>
-Signed-off-by: Tomas Winkler <tomas.winkler@intel.com>
+Signed-off-by: Huang, Sean Z <sean.z.huang@intel.com>
 ---
- drivers/gpu/drm/i915/pxp/intel_pxp_tee.c |  4 ++--
- drivers/misc/mei/pxp/mei_pxp.c           | 10 ++++++----
- include/drm/i915_pxp_tee_interface.h     |  4 ++--
- 3 files changed, 10 insertions(+), 8 deletions(-)
+ drivers/gpu/drm/i915/i915_drv.c      |  1 +
+ drivers/gpu/drm/i915/pxp/intel_pxp.c | 53 --------------------
+ include/uapi/drm/i915_drm.h          | 72 ++++++++++++++++++++++++++++
+ 3 files changed, 73 insertions(+), 53 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp_tee.c b/drivers/gpu/drm/i915/pxp/intel_pxp_tee.c
-index e0815b2ee9ab..002275ff9c71 100644
---- a/drivers/gpu/drm/i915/pxp/intel_pxp_tee.c
-+++ b/drivers/gpu/drm/i915/pxp/intel_pxp_tee.c
-@@ -31,13 +31,13 @@ static int intel_pxp_tee_io_message(struct intel_pxp *pxp,
- 		print_hex_dump(KERN_DEBUG, "TEE input message binaries:",
- 			       DUMP_PREFIX_OFFSET, 4, 4, msg_in, msg_in_size, true);
- 
--	ret = pxp_tee_master->ops->send(pxp_tee_master->tee_dev, msg_in, msg_in_size);
-+	ret = pxp_tee_master->ops->send(pxp_tee_master->tee_dev, msg_in, msg_in_size, 1);
- 	if (ret) {
- 		drm_err(&i915->drm, "Failed to send TEE message\n");
- 		return -EFAULT;
- 	}
- 
--	ret = pxp_tee_master->ops->receive(pxp_tee_master->tee_dev, msg_out, msg_out_buf_size);
-+	ret = pxp_tee_master->ops->receive(pxp_tee_master->tee_dev, msg_out, msg_out_buf_size, 1);
- 	if (ret < 0) {
- 		drm_err(&i915->drm, "Failed to receive TEE message\n");
- 		return -EFAULT;
-diff --git a/drivers/misc/mei/pxp/mei_pxp.c b/drivers/misc/mei/pxp/mei_pxp.c
-index 5bd61fe445e3..55d4cb772367 100644
---- a/drivers/misc/mei/pxp/mei_pxp.c
-+++ b/drivers/misc/mei/pxp/mei_pxp.c
-@@ -27,10 +27,11 @@
-  * @dev: device corresponding to the mei_cl_device
-  * @message: a message buffer to send
-  * @size: size of the message
-+ * @vtag: the vtag of the connection (use 0 for default)
-  * Return: 0 on Success, <0 on Failure
-  */
- static int
--mei_pxp_send_message(struct device *dev, const void *message, size_t size)
-+mei_pxp_send_message(struct device *dev, const void *message, size_t size, u8 vtag)
- {
- 	struct mei_cl_device *cldev;
- 	ssize_t byte;
-@@ -41,7 +42,7 @@ mei_pxp_send_message(struct device *dev, const void *message, size_t size)
- 	cldev = to_mei_cl_device(dev);
- 
- 	/* temporary drop const qualifier till the API is fixed */
--	byte = mei_cldev_send(cldev, (u8 *)message, size);
-+	byte = mei_cldev_send_vtag(cldev, (u8 *)message, size, vtag);
- 	if (byte < 0) {
- 		dev_dbg(dev, "mei_cldev_send failed. %zd\n", byte);
- 		return byte;
-@@ -55,10 +56,11 @@ mei_pxp_send_message(struct device *dev, const void *message, size_t size)
-  * @dev: device corresponding to the mei_cl_device
-  * @buffer: a message buffer to contain the received message
-  * @size: size of the buffer
-+ * @vtag: the vtag of the connection (use 0 for default)
-  * Return: bytes sent on Success, <0 on Failure
-  */
- static int
--mei_pxp_receive_message(struct device *dev, void *buffer, size_t size)
-+mei_pxp_receive_message(struct device *dev, void *buffer, size_t size, u8 vtag)
- {
- 	struct mei_cl_device *cldev;
- 	ssize_t byte;
-@@ -68,7 +70,7 @@ mei_pxp_receive_message(struct device *dev, void *buffer, size_t size)
- 
- 	cldev = to_mei_cl_device(dev);
- 
--	byte = mei_cldev_recv(cldev, buffer, size);
-+	byte = mei_cldev_recv_vtag(cldev, buffer, size, &vtag);
- 	if (byte < 0) {
- 		dev_dbg(dev, "mei_cldev_recv failed. %zd\n", byte);
- 		return byte;
-diff --git a/include/drm/i915_pxp_tee_interface.h b/include/drm/i915_pxp_tee_interface.h
-index 3999e255e145..cacde01058fc 100644
---- a/include/drm/i915_pxp_tee_interface.h
-+++ b/include/drm/i915_pxp_tee_interface.h
-@@ -24,8 +24,8 @@ struct i915_pxp_component_ops {
- 	 */
- 	struct module *owner;
- 
--	int (*send)(struct device *dev, const void *message, size_t size);
--	int (*receive)(struct device *dev, void *buffer, size_t size);
-+	int (*send)(struct device *dev, const void *message, size_t size, u8 vtag);
-+	int (*receive)(struct device *dev, void *buffer, size_t size, u8 vtag);
+diff --git a/drivers/gpu/drm/i915/i915_drv.c b/drivers/gpu/drm/i915/i915_drv.c
+index e74201e81369..201550ffb353 100644
+--- a/drivers/gpu/drm/i915/i915_drv.c
++++ b/drivers/gpu/drm/i915/i915_drv.c
+@@ -1766,6 +1766,7 @@ static const struct drm_ioctl_desc i915_ioctls[] = {
+ 	DRM_IOCTL_DEF_DRV(I915_QUERY, i915_query_ioctl, DRM_RENDER_ALLOW),
+ 	DRM_IOCTL_DEF_DRV(I915_GEM_VM_CREATE, i915_gem_vm_create_ioctl, DRM_RENDER_ALLOW),
+ 	DRM_IOCTL_DEF_DRV(I915_GEM_VM_DESTROY, i915_gem_vm_destroy_ioctl, DRM_RENDER_ALLOW),
++	DRM_IOCTL_DEF_DRV(I915_PXP_OPS, i915_pxp_ops_ioctl, DRM_RENDER_ALLOW),
  };
  
- /**
+ static const struct drm_driver driver = {
+diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp.c b/drivers/gpu/drm/i915/pxp/intel_pxp.c
+index 3a49dd97cab2..51e09224d7c6 100644
+--- a/drivers/gpu/drm/i915/pxp/intel_pxp.c
++++ b/drivers/gpu/drm/i915/pxp/intel_pxp.c
+@@ -31,59 +31,6 @@ enum pxp_session_req {
+ 	PXP_REQ_SESSION_TERMINATE
+ };
+ 
+-/*
+- * struct pxp_sm_query_pxp_tag - Params to query the PXP tag of specified
+- * session id and whether the session is alive from PXP state machine.
+- */
+-struct pxp_sm_query_pxp_tag {
+-	u32 session_is_alive;
+-	u32 pxp_tag; /* in  - Session ID, out pxp tag */
+-};
+-
+-/*
+- * struct pxp_set_session_status_params - Params to reserved, set or destroy
+- * the session from the PXP state machine.
+- */
+-struct pxp_set_session_status_params {
+-	u32 pxp_tag; /* in [optional], out pxp tag */
+-	u32 session_type; /* in, session type */
+-	u32 session_mode; /* in, session mode */
+-	u32 req_session_state; /* in, new session state */
+-};
+-
+-/*
+- * struct pxp_tee_io_message_params - Params to send/receive message to/from TEE.
+- */
+-struct pxp_tee_io_message_params {
+-	u8 __user *msg_in; /* in - message input */
+-	u32 msg_in_size; /* in - message input size */
+-	u8 __user *msg_out; /* in - message output buffer */
+-	u32 msg_out_size; /* out- message output size from TEE */
+-	u32 msg_out_buf_size; /* in - message output buffer size */
+-};
+-
+-/* struct pxp_info - Params for PXP operation. */
+-struct pxp_info {
+-	u32 action; /* in - specified action of this operation */
+-	u32 sm_status; /* out - status output for this operation */
+-
+-	union {
+-		/* in - action params to query PXP tag */
+-		struct pxp_sm_query_pxp_tag query_pxp_tag;
+-		/* in - action params to set the PXP session state */
+-		struct pxp_set_session_status_params set_session_status;
+-		/* in - action params to send TEE commands */
+-		struct pxp_tee_io_message_params tee_io_message;
+-	};
+-} __attribute__((packed));
+-
+-struct drm_i915_pxp_ops {
+-	/* in - user space pointer to struct pxp_info */
+-	struct pxp_info __user *info_ptr;
+-	/* in - memory size that info_ptr points to */
+-	u32 info_size;
+-};
+-
+ static void intel_pxp_write_irq_mask_reg(struct intel_gt *gt, u32 mask)
+ {
+ 	lockdep_assert_held(&gt->irq_lock);
+diff --git a/include/uapi/drm/i915_drm.h b/include/uapi/drm/i915_drm.h
+index d6085a328b2c..17cf25bdc3c4 100644
+--- a/include/uapi/drm/i915_drm.h
++++ b/include/uapi/drm/i915_drm.h
+@@ -359,6 +359,7 @@ typedef struct _drm_i915_sarea {
+ #define DRM_I915_QUERY			0x39
+ #define DRM_I915_GEM_VM_CREATE		0x3a
+ #define DRM_I915_GEM_VM_DESTROY		0x3b
++#define DRM_I915_PXP_OPS		0x3c
+ /* Must be kept compact -- no holes */
+ 
+ #define DRM_IOCTL_I915_INIT		DRM_IOW( DRM_COMMAND_BASE + DRM_I915_INIT, drm_i915_init_t)
+@@ -423,6 +424,7 @@ typedef struct _drm_i915_sarea {
+ #define DRM_IOCTL_I915_QUERY			DRM_IOWR(DRM_COMMAND_BASE + DRM_I915_QUERY, struct drm_i915_query)
+ #define DRM_IOCTL_I915_GEM_VM_CREATE	DRM_IOWR(DRM_COMMAND_BASE + DRM_I915_GEM_VM_CREATE, struct drm_i915_gem_vm_control)
+ #define DRM_IOCTL_I915_GEM_VM_DESTROY	DRM_IOW (DRM_COMMAND_BASE + DRM_I915_GEM_VM_DESTROY, struct drm_i915_gem_vm_control)
++#define DRM_IOCTL_I915_PXP_OPS		DRM_IOWR(DRM_COMMAND_BASE + DRM_I915_PXP_OPS, struct drm_i915_pxp_ops)
+ 
+ /* Allow drivers to submit batchbuffers directly to hardware, relying
+  * on the security mechanisms provided by hardware.
+@@ -1964,6 +1966,76 @@ struct drm_i915_gem_vm_control {
+ 	__u32 vm_id;
+ };
+ 
++/*
++ * struct pxp_sm_query_pxp_tag - Params to query the PXP tag of specified
++ * session id and whether the session is alive from PXP state machine.
++ */
++struct pxp_sm_query_pxp_tag {
++	__u32 session_is_alive;
++	__u32 pxp_tag; /* in  - Session ID, out pxp tag */
++};
++
++/*
++ * struct pxp_set_session_status_params - Params to reserved, set or destroy
++ * the session from the PXP state machine.
++ */
++struct pxp_set_session_status_params {
++	__u32 pxp_tag; /* in [optional], for Arbitrator session, out pxp tag */
++	__u32 session_type; /* in, session type */
++	__u32 session_mode; /* in, session mode */
++	__u32 req_session_state; /* in, new session state */
++};
++
++/*
++ * struct pxp_tee_io_message_params - Params to send/receive message to/from TEE.
++ */
++struct pxp_tee_io_message_params {
++	__u8 __user *msg_in; /* in - message input */
++	__u32 msg_in_size; /* in - message input size */
++	__u8 __user *msg_out; /* in - message output buffer */
++	__u32 msg_out_size; /* out- message output size from TEE */
++	__u32 msg_out_buf_size; /* in - message output buffer size */
++};
++
++/*
++ * struct pxp_info - Params for PXP operation.
++ */
++struct pxp_info {
++	__u32 action; /* in - specified action of this operation */
++	__u32 sm_status; /* out - status output for this operation */
++
++	union {
++		/* in - action params to query PXP tag */
++		struct pxp_sm_query_pxp_tag query_pxp_tag;
++		/* in - action params to set the PXP session state */
++		struct pxp_set_session_status_params set_session_status;
++		/* in - action params to send TEE commands */
++		struct pxp_tee_io_message_params tee_io_message;
++
++		/* in - action params to set user space context */
++		__u32 set_user_ctx;
++	};
++} __attribute__((packed));
++
++/*
++ * DRM_I915_PXP_OPS -
++ *
++ * PXP is an i915 componment, that helps user space to establish the hardware
++ * protected session and manage the status of each alive software session,
++ * as well as the life cycle of each session.
++ *
++ * This ioctl is to allow user space driver to create, set, and destroy each
++ * session. It also provides the communication chanel to TEE (Trusted
++ * Execution Environment) for the protected hardware session creation.
++ */
++struct drm_i915_pxp_ops {
++	/* in - user space pointer to struct pxp_info */
++	struct pxp_info __user *info_ptr;
++
++	/* in - memory size that info_ptr points to */
++	__u32 info_size;
++};
++
+ struct drm_i915_reg_read {
+ 	/*
+ 	 * Register offset.
 -- 
 2.17.1
 
