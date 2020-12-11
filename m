@@ -1,44 +1,58 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 381362D744F
-	for <lists+intel-gfx@lfdr.de>; Fri, 11 Dec 2020 11:56:46 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 59C5D2D7417
+	for <lists+intel-gfx@lfdr.de>; Fri, 11 Dec 2020 11:45:46 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2303E6ED93;
-	Fri, 11 Dec 2020 10:56:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C41AD6ED92;
+	Fri, 11 Dec 2020 10:45:44 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9A7BF6ED93;
- Fri, 11 Dec 2020 10:56:42 +0000 (UTC)
-IronPort-SDR: /FaN1fGHgXH9ZVBE5ml7zU0nDhJrLqc4Q4pjpiwIfJqYxiCykb/Wt2T4opDSqgZDFiD6CZZfqX
- UkzjFd9W4ncg==
-X-IronPort-AV: E=McAfee;i="6000,8403,9831"; a="192753716"
-X-IronPort-AV: E=Sophos;i="5.78,411,1599548400"; d="scan'208";a="192753716"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Dec 2020 02:56:42 -0800
-IronPort-SDR: KfQ9TnhrHtOqkmBKf16kxCLrcL2cyMz2zBnW4Jo7ogZhlv8nL2RCW7gyPEDLBxs8rx8UrtrD8t
- HiryNSuThnPQ==
-X-IronPort-AV: E=Sophos;i="5.78,411,1599548400"; d="scan'208";a="321822307"
-Received: from genxfsim-desktop.iind.intel.com (HELO intel.com)
- ([10.223.74.178])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Dec 2020 02:56:39 -0800
-Date: Fri, 11 Dec 2020 16:13:16 +0530
-From: Anshuman Gupta <anshuman.gupta@intel.com>
-To: Ramalingam C <ramalingam.c@intel.com>
-Message-ID: <20201211104316.GE9309@intel.com>
-References: <20201210062640.11783-1-anshuman.gupta@intel.com>
- <20201210062640.11783-18-anshuman.gupta@intel.com>
- <20201211071934.GE1297@intel.com>
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DCC966ED92
+ for <intel-gfx@lists.freedesktop.org>; Fri, 11 Dec 2020 10:45:42 +0000 (UTC)
+IronPort-SDR: 6BMiagE4UwlN7WWzV5N7cJ7uRXlLPml/XYAoR+MiEOOyqTr+j0/vd2S6DScbKuOGZaR5ymftJS
+ ycTu2JLOE6UQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9831"; a="154222046"
+X-IronPort-AV: E=Sophos;i="5.78,411,1599548400"; d="scan'208";a="154222046"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Dec 2020 02:45:42 -0800
+IronPort-SDR: Gr1/qv0yn4bmfKMc0ZzbDDCkyyx4aULlk5PaimrWRV9SvjiCaz0TQa5Gzdhceo7MRsTjecSBgq
+ uR/0zLDgl18Q==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.78,411,1599548400"; d="scan'208";a="365359634"
+Received: from irsmsx604.ger.corp.intel.com ([163.33.146.137])
+ by orsmga008.jf.intel.com with ESMTP; 11 Dec 2020 02:45:41 -0800
+Received: from irsmsx605.ger.corp.intel.com (163.33.146.138) by
+ IRSMSX604.ger.corp.intel.com (163.33.146.137) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1713.5; Fri, 11 Dec 2020 10:45:40 +0000
+Received: from irsmsx605.ger.corp.intel.com ([163.33.146.138]) by
+ IRSMSX605.ger.corp.intel.com ([163.33.146.138]) with mapi id 15.01.1713.004;
+ Fri, 11 Dec 2020 10:45:40 +0000
+From: "Mun, Gwan-gyeong" <gwan-gyeong.mun@intel.com>
+To: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "jani.nikula@linux.intel.com" <jani.nikula@linux.intel.com>
+Thread-Topic: [Intel-gfx] [PATCH v4 2/2] drm/i915/display: Support Multiple
+ Transcoders' PSR status on debugfs
+Thread-Index: AQHWtCW5lp9pblo9/Eu7pjI8FAEe2anNzvUAgCQeMYA=
+Date: Fri, 11 Dec 2020 10:45:40 +0000
+Message-ID: <a3ed2ff26f0a8e6eed6d59c80783a117633c4a9b.camel@intel.com>
+References: <20201106101443.686053-1-gwan-gyeong.mun@intel.com>
+ <20201106101443.686053-2-gwan-gyeong.mun@intel.com>
+ <878sayq5qb.fsf@intel.com>
+In-Reply-To: <878sayq5qb.fsf@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [163.33.253.164]
+Content-ID: <8C2E1EEB58B54A4BBBDF6077DEAF409A@intel.com>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20201211071934.GE1297@intel.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
-Subject: Re: [Intel-gfx] [PATCH v7 17/18] drm/i915/hdcp: Support for HDCP
- 2.2 MST shim callbacks
+Subject: Re: [Intel-gfx] [PATCH v4 2/2] drm/i915/display: Support Multiple
+ Transcoders' PSR status on debugfs
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,186 +65,61 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jani.nikula@intel.com, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, seanpaul@chromium.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 2020-12-11 at 12:49:35 +0530, Ramalingam C wrote:
-> On 2020-12-10 at 11:56:39 +0530, Anshuman Gupta wrote:
-> > Add support for HDCP 2.2 DP MST shim callback.
-> > This adds existing DP HDCP shim callback for Link Authentication
-> > and Encryption and HDCP 2.2 stream encryption
-> > callback.
-> > 
-> > v2:
-> > - Added a WARN_ON() instead of drm_err. [Uma]
-> > - Cosmetic changes. [Uma]
-> > v3:
-> > - 's/port_data/hdcp_port_data' [Ram]
-> > - skip redundant link check. [Ram]
-> > v4:
-> > - use pipe instead of port to access HDCP2_STREAM_STATUS
-> How this missed the functional test till now?
-> Always true because port's stream status was referred?
-> > 
-> > Cc: Ramalingam C <ramalingam.c@intel.com>
-> > Reviewed-by: Uma Shankar <uma.shankar@intel.com>
-> > Tested-by: Karthik B S <karthik.b.s@intel.com>
-> > Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
-> > ---
-> >  .../drm/i915/display/intel_display_types.h    |  4 +
-> >  drivers/gpu/drm/i915/display/intel_dp_hdcp.c  | 89 +++++++++++++++++--
-> >  2 files changed, 85 insertions(+), 8 deletions(-)
-> > 
-> > diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-> > index 63de25b40eff..da91e3f4ff27 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_display_types.h
-> > +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-> > @@ -378,6 +378,10 @@ struct intel_hdcp_shim {
-> >  	int (*config_stream_type)(struct intel_digital_port *dig_port,
-> >  				  bool is_repeater, u8 type);
-> >  
-> > +	/* Enable/Disable HDCP 2.2 stream encryption on DP MST Transport Link */
-> > +	int (*stream_2_2_encryption)(struct intel_connector *connector,
-> > +				     bool enable);
-> > +
-> >  	/* HDCP2.2 Link Integrity Check */
-> >  	int (*check_2_2_link)(struct intel_digital_port *dig_port,
-> >  			      struct intel_connector *connector);
-> > diff --git a/drivers/gpu/drm/i915/display/intel_dp_hdcp.c b/drivers/gpu/drm/i915/display/intel_dp_hdcp.c
-> > index 9ade1ad3a80c..f372e25edab4 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_dp_hdcp.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_dp_hdcp.c
-> > @@ -698,18 +698,14 @@ intel_dp_mst_hdcp_stream_encryption(struct intel_connector *connector,
-> >  	return 0;
-> >  }
-> >  
-> > -static
-> > -bool intel_dp_mst_hdcp_check_link(struct intel_digital_port *dig_port,
-> > -				  struct intel_connector *connector)
-> > +static bool intel_dp_mst_get_qses_status(struct intel_digital_port *dig_port,
-> > +					 struct intel_connector *connector)
-> >  {
-> >  	struct drm_i915_private *i915 = to_i915(dig_port->base.base.dev);
-> > -	struct intel_dp *intel_dp = &dig_port->dp;
-> >  	struct drm_dp_query_stream_enc_status_ack_reply reply;
-> > +	struct intel_dp *intel_dp = &dig_port->dp;
-> >  	int ret;
-> >  
-> > -	if (!intel_dp_hdcp_check_link(dig_port, connector))
-> > -		return false;
-> > -
-> >  	ret = drm_dp_send_query_stream_enc_status(&intel_dp->mst_mgr,
-> >  						  connector->port, &reply);
-> >  	if (ret) {
-> > @@ -726,6 +722,78 @@ bool intel_dp_mst_hdcp_check_link(struct intel_digital_port *dig_port,
-> >  	return reply.auth_completed && reply.encryption_enabled;
-> >  }
-> >  
-> > +static
-> > +bool intel_dp_mst_hdcp_check_link(struct intel_digital_port *dig_port,
-> > +				  struct intel_connector *connector)
-> > +{
-> > +	if (!intel_dp_hdcp_check_link(dig_port, connector))
-> > +		return false;
-> this also could be optimised for the connector with port authentication
-> only?
-Can we take this up in different series? With HDCP 1.4 POV this series just 
-focused to enable HDCP 1.4 stream encryption and HDCP for Gen12.
-Currently HDCP 1.4 port authentication and encryption is done of each DP MST
-connector, we can take up this work while optimizing HDCP 1.4.
-Thanks,
-Anshuman Gupta.
-> > +
-> > +	return intel_dp_mst_get_qses_status(dig_port, connector);
-> > +}
-> > +
-> > +static int
-> > +intel_dp_mst_hdcp2_stream_encryption(struct intel_connector *connector,
-> > +				     bool enable)
-> > +{
-> > +	struct intel_digital_port *dig_port = intel_attached_dig_port(connector);
-> > +	struct drm_i915_private *i915 = to_i915(connector->base.dev);
-> > +	struct hdcp_port_data *data = &dig_port->hdcp_port_data;
-> > +	struct intel_hdcp *hdcp = &connector->hdcp;
-> > +	enum transcoder cpu_transcoder = hdcp->stream_transcoder;
-> > +	enum pipe pipe = (enum pipe)cpu_transcoder;
-> > +	enum port port = dig_port->base.port;
-> > +	int ret;
-> > +
-> > +	drm_WARN_ON(&i915->drm, enable &&
-> > +		    !!(intel_de_read(i915, HDCP2_AUTH_STREAM(i915, cpu_transcoder, port))
-> > +		    & AUTH_STREAM_TYPE) != data->streams[0].stream_type);
-> > +
-> > +	ret = intel_dp_mst_toggle_hdcp_stream_select(connector, enable);
-> > +	if (ret)
-> > +		return ret;
-> > +
-> > +	/* Wait for encryption confirmation */
-> > +	if (intel_de_wait_for_register(i915,
-> > +				       HDCP2_STREAM_STATUS(i915, cpu_transcoder, pipe),
-> > +				       STREAM_ENCRYPTION_STATUS,
-> > +				       enable ? STREAM_ENCRYPTION_STATUS : 0,
-> > +				       HDCP_ENCRYPT_STATUS_CHANGE_TIMEOUT_MS)) {
-> > +		drm_err(&i915->drm, "Timed out waiting for transcoder: %s stream encryption %s\n",
-> > +			transcoder_name(cpu_transcoder), enable ? "enabled" : "disabled");
-> > +		return -ETIMEDOUT;
-> > +	}
-> > +
-> > +	return 0;
-> > +}
-> > +
-> > +/*
-> > + * DP v2.0 I.3.3 ignore the stream signature L' in QSES reply msg reply.
-> > + * I.3.5 MST source device may use a QSES msg to query downstream status
-> > + * for a particular stream.
-> > + */
-> > +static
-> > +int intel_dp_mst_hdcp2_check_link(struct intel_digital_port *dig_port,
-> > +				  struct intel_connector *connector)
-> > +{
-> > +	struct intel_hdcp *hdcp = &connector->hdcp;
-> > +	int ret;
-> > +
-> > +	/*
-> > +	 * We do need to do the Link Check only for the connector involved with
-> > +	 * HDCP port authentication and encryption.
-> > +	 * We can re-use the hdcp->is_repeater flag to know that the connector
-> > +	 * involved with HDCP port authentication and encryption.
-> > +	 */
-> > +	if (hdcp->is_repeater) {
-> > +		ret = intel_dp_hdcp2_check_link(dig_port, connector);
-> > +		if (ret)
-> > +			return ret;
-> > +	}
-> > +
-> > +	return intel_dp_mst_get_qses_status(dig_port, connector) ? 0 : -EINVAL;
-> > +}
-> > +
-> >  static const struct intel_hdcp_shim intel_dp_mst_hdcp_shim = {
-> >  	.write_an_aksv = intel_dp_hdcp_write_an_aksv,
-> >  	.read_bksv = intel_dp_hdcp_read_bksv,
-> > @@ -739,7 +807,12 @@ static const struct intel_hdcp_shim intel_dp_mst_hdcp_shim = {
-> >  	.stream_encryption = intel_dp_mst_hdcp_stream_encryption,
-> >  	.check_link = intel_dp_mst_hdcp_check_link,
-> >  	.hdcp_capable = intel_dp_hdcp_capable,
-> > -
-> > +	.write_2_2_msg = intel_dp_hdcp2_write_msg,
-> > +	.read_2_2_msg = intel_dp_hdcp2_read_msg,
-> > +	.config_stream_type = intel_dp_hdcp2_config_stream_type,
-> > +	.stream_2_2_encryption = intel_dp_mst_hdcp2_stream_encryption,
-> > +	.check_2_2_link = intel_dp_mst_hdcp2_check_link,
-> > +	.hdcp_2_2_capable = intel_dp_hdcp2_capable,
-> >  	.protocol = HDCP_PROTOCOL_DP,
-> >  };
-> >  
-> > -- 
-> > 2.26.2
-> > 
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+T24gV2VkLCAyMDIwLTExLTE4IGF0IDEzOjExICswMjAwLCBKYW5pIE5pa3VsYSB3cm90ZToNCj4g
+T24gRnJpLCAwNiBOb3YgMjAyMCwgR3dhbi1neWVvbmcgTXVuIDxnd2FuLWd5ZW9uZy5tdW5AaW50
+ZWwuY29tPg0KPiB3cm90ZToNCj4gPiBJbiBvcmRlciB0byBzdXBwb3J0IHRoZSBQU1Igc3RhdGUg
+b2YgZWFjaCB0cmFuc2NvZGVyLCBpdCBhZGRzDQo+ID4gaTkxNV9wc3Jfc3RhdHVzIHRvIHN1Yi1k
+aXJlY3Rvcnkgb2YgZWFjaCB0cmFuc2NvZGVyLg0KPiA+IA0KPiA+IHYyOiBDaGFuZ2UgdXNpbmcg
+b2YgU3ltYm9saWMgcGVybWlzc2lvbnMgJ1NfSVJVR08nIHRvIHVzaW5nIG9mDQo+ID4gb2N0YWwN
+Cj4gPiAgICAgcGVybWlzc2lvbnMgJzA0NDQnDQo+ID4gDQo+ID4gU2lnbmVkLW9mZi1ieTogR3dh
+bi1neWVvbmcgTXVuIDxnd2FuLWd5ZW9uZy5tdW5AaW50ZWwuY29tPg0KPiA+IENjOiBKb3PDqSBS
+b2JlcnRvIGRlIFNvdXphIDxqb3NlLnNvdXphQGludGVsLmNvbT4NCj4gPiAtLS0NCj4gPiAgLi4u
+L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheV9kZWJ1Z2ZzLmMgIHwgMjMNCj4gPiArKysr
+KysrKysrKysrKysrKysrDQo+ID4gIDEgZmlsZSBjaGFuZ2VkLCAyMyBpbnNlcnRpb25zKCspDQo+
+ID4gDQo+ID4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxf
+ZGlzcGxheV9kZWJ1Z2ZzLmMNCj4gPiBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50
+ZWxfZGlzcGxheV9kZWJ1Z2ZzLmMNCj4gPiBpbmRleCA4NDAyZTZhYzlmNzYuLjM3ODA1NjE1YTIy
+MSAxMDA2NDQNCj4gPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rp
+c3BsYXlfZGVidWdmcy5jDQo+ID4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9p
+bnRlbF9kaXNwbGF5X2RlYnVnZnMuYw0KPiA+IEBAIC0yMDkzLDYgKzIwOTMsMjMgQEAgc3RhdGlj
+IGludA0KPiA+IGk5MTVfaGRjcF9zaW5rX2NhcGFiaWxpdHlfc2hvdyhzdHJ1Y3Qgc2VxX2ZpbGUg
+Km0sIHZvaWQgKmRhdGEpDQo+ID4gIH0NCj4gPiAgREVGSU5FX1NIT1dfQVRUUklCVVRFKGk5MTVf
+aGRjcF9zaW5rX2NhcGFiaWxpdHkpOw0KPiA+ICANCj4gPiArc3RhdGljIGludCBpOTE1X3Bzcl9z
+dGF0dXNfc2hvdyhzdHJ1Y3Qgc2VxX2ZpbGUgKm0sIHZvaWQgKmRhdGEpDQo+ID4gK3sNCj4gPiAr
+CXN0cnVjdCBkcm1fY29ubmVjdG9yICpjb25uZWN0b3IgPSBtLT5wcml2YXRlOw0KPiA+ICsJc3Ry
+dWN0IGludGVsX2RwICppbnRlbF9kcCA9DQo+ID4gKwkJaW50ZWxfYXR0YWNoZWRfZHAodG9faW50
+ZWxfY29ubmVjdG9yKGNvbm5lY3RvcikpOw0KPiA+ICsJc3RydWN0IGRybV9pOTE1X3ByaXZhdGUg
+KmRldl9wcml2ID0gZHBfdG9faTkxNShpbnRlbF9kcCk7DQo+ID4gKw0KPiA+ICsJaWYgKGNvbm5l
+Y3Rvci0+c3RhdHVzICE9IGNvbm5lY3Rvcl9zdGF0dXNfY29ubmVjdGVkKQ0KPiA+ICsJCXJldHVy
+biAtRU5PREVWOw0KPiA+ICsNCj4gPiArCWlmICghSEFTX1BTUihkZXZfcHJpdikpDQo+ID4gKwkJ
+cmV0dXJuIC1FTk9ERVY7DQo+ID4gKw0KPiA+ICsJcmV0dXJuIGludGVsX3Bzcl9zdGF0dXMobSwg
+aW50ZWxfZHApOw0KPiA+ICt9DQo+ID4gK0RFRklORV9TSE9XX0FUVFJJQlVURShpOTE1X3Bzcl9z
+dGF0dXMpOw0KPiA+ICsNCj4gPiAgI2RlZmluZSBMUFNQX0NBUEFCTEUoQ09ORCkgKENPTkQgPyBz
+ZXFfcHV0cyhtLCAiTFBTUDogY2FwYWJsZVxuIikNCj4gPiA6IFwNCj4gPiAgCQkJCXNlcV9wdXRz
+KG0sICJMUFNQOiBpbmNhcGFibGVcbiIpKQ0KPiA+ICANCj4gPiBAQCAtMjI2OCw2ICsyMjg1LDEy
+IEBAIGludCBpbnRlbF9jb25uZWN0b3JfZGVidWdmc19hZGQoc3RydWN0DQo+ID4gZHJtX2Nvbm5l
+Y3RvciAqY29ubmVjdG9yKQ0KPiA+ICAJCQkJICAgIGNvbm5lY3RvciwNCj4gPiAmaTkxNV9wc3Jf
+c2lua19zdGF0dXNfZm9wcyk7DQo+ID4gIAl9DQo+ID4gIA0KPiA+ICsJaWYgKElOVEVMX0dFTihk
+ZXZfcHJpdikgPj0gMTIgJiYNCj4gDQo+IEknZCBhZGQgdGhpcyBmb3IgYWxsIGdlbmVyYXRpb25z
+IHRvIHVuaWZ5IHRoZSBkZWJ1Z2ZzLCBhbmQgZXZlbnR1YWxseQ0KPiBwaGFzZSBvdXQgdGhlIG5v
+biBjb25uZWN0b3Igc3BlY2lmaWMgZGVidWdmcyBmaWxlLg0KPiANCj4gQW5kIEknZCBhZGQgSEFT
+X1BTUigpIGNoZWNrIGhlcmUgdG8gbm90IGNyZWF0ZSB0aGUgZmlsZSBpZiBpdCdzIG5vdA0KPiBw
+b3NzaWJsZSBpbnN0ZWFkIG9mIGhhdmluZyB0aGUgY2hlY2sgaW4gaTkxNV9wc3Jfc3RhdHVzX3No
+b3coKS4NCj4gDQpIaSBKYW5pLA0KVGhhbmsgeW91IGZvciBjaGVja2luZyB0aGUgcGF0Y2guDQpJ
+J2xsIHVwZGF0ZSB0aGUgY29kZSBhcyBwZXIgeW91ciByZWNvbW1lbmRhdGlvbnMuDQo+IEJSLA0K
+PiBKYW5pLg0KPiANCj4gPiArCSAgICBjb25uZWN0b3ItPmNvbm5lY3Rvcl90eXBlID09IERSTV9N
+T0RFX0NPTk5FQ1RPUl9lRFApIHsNCj4gPiArCQlkZWJ1Z2ZzX2NyZWF0ZV9maWxlKCJpOTE1X3Bz
+cl9zdGF0dXMiLCAwNDQ0LCByb290LA0KPiA+ICsJCQkJICAgIGNvbm5lY3RvciwgJmk5MTVfcHNy
+X3N0YXR1c19mb3BzKTsNCj4gPiArCX0NCj4gPiArDQo+ID4gIAlpZiAoY29ubmVjdG9yLT5jb25u
+ZWN0b3JfdHlwZSA9PSBEUk1fTU9ERV9DT05ORUNUT1JfRGlzcGxheVBvcnQNCj4gPiB8fA0KPiA+
+ICAJICAgIGNvbm5lY3Rvci0+Y29ubmVjdG9yX3R5cGUgPT0gRFJNX01PREVfQ09OTkVDVE9SX0hE
+TUlBIHx8DQo+ID4gIAkgICAgY29ubmVjdG9yLT5jb25uZWN0b3JfdHlwZSA9PSBEUk1fTU9ERV9D
+T05ORUNUT1JfSERNSUIpIHsNCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNr
+dG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2lu
+dGVsLWdmeAo=
