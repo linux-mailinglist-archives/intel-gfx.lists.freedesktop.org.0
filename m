@@ -2,43 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5925F2D72D0
-	for <lists+intel-gfx@lfdr.de>; Fri, 11 Dec 2020 10:29:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3FD962D72EE
+	for <lists+intel-gfx@lfdr.de>; Fri, 11 Dec 2020 10:36:49 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D61AA6ECFF;
-	Fri, 11 Dec 2020 09:29:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B88E76ED04;
+	Fri, 11 Dec 2020 09:36:45 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B852C6ECFD;
- Fri, 11 Dec 2020 09:29:50 +0000 (UTC)
-IronPort-SDR: QXmqMpCJcm3SoQQQVG0bwsjgTJPmStvINc20+uls6l42WHvbOqfQ0r8KrDgD9P1+yrxQG4ZoCo
- HIH0j2bBL6jA==
-X-IronPort-AV: E=McAfee;i="6000,8403,9831"; a="153638851"
-X-IronPort-AV: E=Sophos;i="5.78,410,1599548400"; d="scan'208";a="153638851"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Dec 2020 01:29:50 -0800
-IronPort-SDR: AznPK7LTfIq19DO+g6qqqBMvGD8DPDv+VeMxEMkE0Hbb9ISyttYZrL6xOwtxaPCug7xRMqH1XU
- e5xMlCBA6jOw==
-X-IronPort-AV: E=Sophos;i="5.78,411,1599548400"; d="scan'208";a="440798548"
-Received: from genxfsim-desktop.iind.intel.com (HELO intel.com)
- ([10.223.74.178])
- by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Dec 2020 01:29:47 -0800
-Date: Fri, 11 Dec 2020 14:46:24 +0530
-From: Anshuman Gupta <anshuman.gupta@intel.com>
-To: Ramalingam C <ramalingam.c@intel.com>
-Message-ID: <20201211091621.GD9309@intel.com>
-References: <20201210062640.11783-1-anshuman.gupta@intel.com>
- <20201210062640.11783-18-anshuman.gupta@intel.com>
- <20201211071934.GE1297@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 866376ED03;
+ Fri, 11 Dec 2020 09:36:44 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 802D1A0009;
+ Fri, 11 Dec 2020 09:36:44 +0000 (UTC)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20201211071934.GE1297@intel.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
-Subject: Re: [Intel-gfx] [PATCH v7 17/18] drm/i915/hdcp: Support for HDCP
- 2.2 MST shim callbacks
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Huang, Sean Z" <sean.z.huang@intel.com>
+Date: Fri, 11 Dec 2020 09:36:44 -0000
+Message-ID: <160767940450.16100.3972219268349816199@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20201211090457.32674-1-sean.z.huang@intel.com>
+In-Reply-To: <20201211090457.32674-1-sean.z.huang@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_Introduce_Intel_PXP_component_-_Mesa_single_session_=28rev8?=
+ =?utf-8?q?=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,187 +39,144 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jani.nikula@intel.com, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, seanpaul@chromium.org
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 2020-12-11 at 12:49:35 +0530, Ramalingam C wrote:
-> On 2020-12-10 at 11:56:39 +0530, Anshuman Gupta wrote:
-> > Add support for HDCP 2.2 DP MST shim callback.
-> > This adds existing DP HDCP shim callback for Link Authentication
-> > and Encryption and HDCP 2.2 stream encryption
-> > callback.
-> > 
-> > v2:
-> > - Added a WARN_ON() instead of drm_err. [Uma]
-> > - Cosmetic changes. [Uma]
-> > v3:
-> > - 's/port_data/hdcp_port_data' [Ram]
-> > - skip redundant link check. [Ram]
-> > v4:
-> > - use pipe instead of port to access HDCP2_STREAM_STATUS
-> How this missed the functional test till now?
-Earlier it was tested on ICL with exisitng content protection igt tests
-becuase DP-MST modeset were failing due to MST bandwidht related issue.
-> Always true because port's stream status was referred?
-It was passing when DDI_A being passed as port instead Pipe A (Used only MST panels)
-but when we connected an eDP panel, it uses DDI_A for eDP and DP_MST
-connectors uses DDI_B. So this time it fails as issue surfaced
-out becuase we have passed DDI_B as port instead of Pipe A.
-Thanks,
-Anshuman Gupta.
-> > 
-> > Cc: Ramalingam C <ramalingam.c@intel.com>
-> > Reviewed-by: Uma Shankar <uma.shankar@intel.com>
-> > Tested-by: Karthik B S <karthik.b.s@intel.com>
-> > Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
-> > ---
-> >  .../drm/i915/display/intel_display_types.h    |  4 +
-> >  drivers/gpu/drm/i915/display/intel_dp_hdcp.c  | 89 +++++++++++++++++--
-> >  2 files changed, 85 insertions(+), 8 deletions(-)
-> > 
-> > diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-> > index 63de25b40eff..da91e3f4ff27 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_display_types.h
-> > +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-> > @@ -378,6 +378,10 @@ struct intel_hdcp_shim {
-> >  	int (*config_stream_type)(struct intel_digital_port *dig_port,
-> >  				  bool is_repeater, u8 type);
-> >  
-> > +	/* Enable/Disable HDCP 2.2 stream encryption on DP MST Transport Link */
-> > +	int (*stream_2_2_encryption)(struct intel_connector *connector,
-> > +				     bool enable);
-> > +
-> >  	/* HDCP2.2 Link Integrity Check */
-> >  	int (*check_2_2_link)(struct intel_digital_port *dig_port,
-> >  			      struct intel_connector *connector);
-> > diff --git a/drivers/gpu/drm/i915/display/intel_dp_hdcp.c b/drivers/gpu/drm/i915/display/intel_dp_hdcp.c
-> > index 9ade1ad3a80c..f372e25edab4 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_dp_hdcp.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_dp_hdcp.c
-> > @@ -698,18 +698,14 @@ intel_dp_mst_hdcp_stream_encryption(struct intel_connector *connector,
-> >  	return 0;
-> >  }
-> >  
-> > -static
-> > -bool intel_dp_mst_hdcp_check_link(struct intel_digital_port *dig_port,
-> > -				  struct intel_connector *connector)
-> > +static bool intel_dp_mst_get_qses_status(struct intel_digital_port *dig_port,
-> > +					 struct intel_connector *connector)
-> >  {
-> >  	struct drm_i915_private *i915 = to_i915(dig_port->base.base.dev);
-> > -	struct intel_dp *intel_dp = &dig_port->dp;
-> >  	struct drm_dp_query_stream_enc_status_ack_reply reply;
-> > +	struct intel_dp *intel_dp = &dig_port->dp;
-> >  	int ret;
-> >  
-> > -	if (!intel_dp_hdcp_check_link(dig_port, connector))
-> > -		return false;
-> > -
-> >  	ret = drm_dp_send_query_stream_enc_status(&intel_dp->mst_mgr,
-> >  						  connector->port, &reply);
-> >  	if (ret) {
-> > @@ -726,6 +722,78 @@ bool intel_dp_mst_hdcp_check_link(struct intel_digital_port *dig_port,
-> >  	return reply.auth_completed && reply.encryption_enabled;
-> >  }
-> >  
-> > +static
-> > +bool intel_dp_mst_hdcp_check_link(struct intel_digital_port *dig_port,
-> > +				  struct intel_connector *connector)
-> > +{
-> > +	if (!intel_dp_hdcp_check_link(dig_port, connector))
-> > +		return false;
-> this also could be optimised for the connector with port authentication
-> only?
-> > +
-> > +	return intel_dp_mst_get_qses_status(dig_port, connector);
-> > +}
-> > +
-> > +static int
-> > +intel_dp_mst_hdcp2_stream_encryption(struct intel_connector *connector,
-> > +				     bool enable)
-> > +{
-> > +	struct intel_digital_port *dig_port = intel_attached_dig_port(connector);
-> > +	struct drm_i915_private *i915 = to_i915(connector->base.dev);
-> > +	struct hdcp_port_data *data = &dig_port->hdcp_port_data;
-> > +	struct intel_hdcp *hdcp = &connector->hdcp;
-> > +	enum transcoder cpu_transcoder = hdcp->stream_transcoder;
-> > +	enum pipe pipe = (enum pipe)cpu_transcoder;
-> > +	enum port port = dig_port->base.port;
-> > +	int ret;
-> > +
-> > +	drm_WARN_ON(&i915->drm, enable &&
-> > +		    !!(intel_de_read(i915, HDCP2_AUTH_STREAM(i915, cpu_transcoder, port))
-> > +		    & AUTH_STREAM_TYPE) != data->streams[0].stream_type);
-> > +
-> > +	ret = intel_dp_mst_toggle_hdcp_stream_select(connector, enable);
-> > +	if (ret)
-> > +		return ret;
-> > +
-> > +	/* Wait for encryption confirmation */
-> > +	if (intel_de_wait_for_register(i915,
-> > +				       HDCP2_STREAM_STATUS(i915, cpu_transcoder, pipe),
-> > +				       STREAM_ENCRYPTION_STATUS,
-> > +				       enable ? STREAM_ENCRYPTION_STATUS : 0,
-> > +				       HDCP_ENCRYPT_STATUS_CHANGE_TIMEOUT_MS)) {
-> > +		drm_err(&i915->drm, "Timed out waiting for transcoder: %s stream encryption %s\n",
-> > +			transcoder_name(cpu_transcoder), enable ? "enabled" : "disabled");
-> > +		return -ETIMEDOUT;
-> > +	}
-> > +
-> > +	return 0;
-> > +}
-> > +
-> > +/*
-> > + * DP v2.0 I.3.3 ignore the stream signature L' in QSES reply msg reply.
-> > + * I.3.5 MST source device may use a QSES msg to query downstream status
-> > + * for a particular stream.
-> > + */
-> > +static
-> > +int intel_dp_mst_hdcp2_check_link(struct intel_digital_port *dig_port,
-> > +				  struct intel_connector *connector)
-> > +{
-> > +	struct intel_hdcp *hdcp = &connector->hdcp;
-> > +	int ret;
-> > +
-> > +	/*
-> > +	 * We do need to do the Link Check only for the connector involved with
-> > +	 * HDCP port authentication and encryption.
-> > +	 * We can re-use the hdcp->is_repeater flag to know that the connector
-> > +	 * involved with HDCP port authentication and encryption.
-> > +	 */
-> > +	if (hdcp->is_repeater) {
-> > +		ret = intel_dp_hdcp2_check_link(dig_port, connector);
-> > +		if (ret)
-> > +			return ret;
-> > +	}
-> > +
-> > +	return intel_dp_mst_get_qses_status(dig_port, connector) ? 0 : -EINVAL;
-> > +}
-> > +
-> >  static const struct intel_hdcp_shim intel_dp_mst_hdcp_shim = {
-> >  	.write_an_aksv = intel_dp_hdcp_write_an_aksv,
-> >  	.read_bksv = intel_dp_hdcp_read_bksv,
-> > @@ -739,7 +807,12 @@ static const struct intel_hdcp_shim intel_dp_mst_hdcp_shim = {
-> >  	.stream_encryption = intel_dp_mst_hdcp_stream_encryption,
-> >  	.check_link = intel_dp_mst_hdcp_check_link,
-> >  	.hdcp_capable = intel_dp_hdcp_capable,
-> > -
-> > +	.write_2_2_msg = intel_dp_hdcp2_write_msg,
-> > +	.read_2_2_msg = intel_dp_hdcp2_read_msg,
-> > +	.config_stream_type = intel_dp_hdcp2_config_stream_type,
-> > +	.stream_2_2_encryption = intel_dp_mst_hdcp2_stream_encryption,
-> > +	.check_2_2_link = intel_dp_mst_hdcp2_check_link,
-> > +	.hdcp_2_2_capable = intel_dp_hdcp2_capable,
-> >  	.protocol = HDCP_PROTOCOL_DP,
-> >  };
-> >  
-> > -- 
-> > 2.26.2
-> > 
+== Series Details ==
+
+Series: Introduce Intel PXP component - Mesa single session (rev8)
+URL   : https://patchwork.freedesktop.org/series/84620/
+State : warning
+
+== Summary ==
+
+$ dim checkpatch origin/drm-tip
+69d2fc1c153b drm/i915/pxp: Introduce Intel PXP component
+-:111: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#111: 
+new file mode 100644
+
+total: 0 errors, 1 warnings, 0 checks, 175 lines checked
+bf809419dacc drm/i915/pxp: set KCR reg init during the boot time
+38e3c5114511 drm/i915/pxp: Implement funcs to create the TEE channel
+-:8: WARNING:TYPO_SPELLING: 'defualt' may be misspelled - perhaps 'default'?
+#8: 
+(defualt) session.
+
+-:85: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#85: 
+new file mode 100644
+
+total: 0 errors, 2 warnings, 0 checks, 248 lines checked
+01a5ed146b56 drm/i915/pxp: Create the arbitrary session after boot
+-:68: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#68: 
+new file mode 100644
+
+total: 0 errors, 1 warnings, 0 checks, 297 lines checked
+3e513275f2c4 drm/i915/pxp: Func to send hardware session termination
+-:25: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#25: 
+new file mode 100644
+
+total: 0 errors, 1 warnings, 0 checks, 181 lines checked
+9db73c188015 drm/i915/pxp: Enable PXP irq worker and callback stub
+-:51: WARNING:LONG_LINE_COMMENT: line length of 113 exceeds 100 columns
+#51: FILE: drivers/gpu/drm/i915/i915_reg.h:7970:
++#define GEN11_CRYPTO_INTR_MASK		_MMIO(0x1900f0) /* crypto mask is in bit31-16 (Engine1 Interrupt Mask) */
+
+total: 0 errors, 1 warnings, 0 checks, 210 lines checked
+8a0aff60049e drm/i915/pxp: Destroy arb session upon teardown
+b96bf7e80a28 drm/i915/pxp: Enable PXP power management
+-:90: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#90: 
+new file mode 100644
+
+total: 0 errors, 1 warnings, 0 checks, 148 lines checked
+47d3aeafecbe drm/i915/pxp: Expose session state for display protection flip
+fe8a87fd99d9 mei: pxp: export pavp client to me client bus
+-:32: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#32: 
+new file mode 100644
+
+total: 0 errors, 1 warnings, 0 checks, 277 lines checked
+6f0f2a9fad54 drm/i915/uapi: introduce drm_i915_gem_create_ext
+-:12: ERROR:BAD_SIGN_OFF: Unrecognized email address: 'Joonas Lahtinen joonas.lahtinen@linux.intel.com'
+#12: 
+Cc: Joonas Lahtinen joonas.lahtinen@linux.intel.com
+
+-:13: ERROR:BAD_SIGN_OFF: Unrecognized email address: 'Matthew Auld matthew.auld@intel.com'
+#13: 
+Cc: Matthew Auld matthew.auld@intel.com
+
+-:46: ERROR:CODE_INDENT: code indent should use tabs where possible
+#46: FILE: drivers/gpu/drm/i915/i915_gem.c:265:
++        struct drm_i915_private *i915;$
+
+-:46: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#46: FILE: drivers/gpu/drm/i915/i915_gem.c:265:
++        struct drm_i915_private *i915;$
+
+-:50: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#50: FILE: drivers/gpu/drm/i915/i915_gem.c:269:
++static int __create_setparam(struct drm_i915_gem_object_param *args,
++							struct create_ext *ext_data)
+
+-:95: CHECK:LINE_SPACING: Please don't use multiple blank lines
+#95: FILE: drivers/gpu/drm/i915/i915_gem.c:317:
++
++
+
+-:107: WARNING:LONG_LINE: line length of 120 exceeds 100 columns
+#107: FILE: include/uapi/drm/i915_drm.h:394:
++#define DRM_IOCTL_I915_GEM_CREATE_EXT   DRM_IOWR(DRM_COMMAND_BASE + DRM_I915_GEM_CREATE, struct drm_i915_gem_create_ext)
+
+-:155: CHECK:SPACING: spaces preferred around that '<<' (ctx:VxV)
+#155: FILE: include/uapi/drm/i915_drm.h:1735:
++#define I915_OBJECT_PARAM  (1ull<<32)
+                                 ^
+
+total: 3 errors, 2 warnings, 3 checks, 136 lines checked
+7cfdaae63c4e drm/i915/pxp: User interface for Protected buffer
+72b03056fdd8 drm/i915/pxp: Add plane decryption support
+ec0265ec5383 drm/i915/pxp: Implement ioctl action to reserve session slots
+-:62: WARNING:PREFER_PACKED: __packed is preferred over __attribute__((packed))
+#62: FILE: drivers/gpu/drm/i915/pxp/intel_pxp.c:39:
++} __attribute__((packed));
+
+-:254: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#254: 
+new file mode 100644
+
+-:345: WARNING:MSLEEP: msleep < 20ms can sleep for up to 20ms; see Documentation/timers/timers-howto.rst
+#345: FILE: drivers/gpu/drm/i915/pxp/intel_pxp_sm.c:87:
++		msleep(10);
+
+total: 0 errors, 3 warnings, 0 checks, 437 lines checked
+cf7bd29b94d9 drm/i915/pxp: Implement ioctl action to set session in play
+56d25d4e32a4 drm/i915/pxp: Implement ioctl action to terminate the session
+52012be29790 drm/i915/pxp: Implement ioctl action to send TEE commands
+9b1fa8b3b954 drm/i915/pxp: Implement ioctl action to query PXP tag
+b84477cc8080 drm/i915/pxp: Termiante the session upon app crash
+7ec0ed17ce84 drm/i915/pxp: Add PXP-related registers into allowlist
+b6503a960d6a mei: bus: add vtag support
+bcc9b977b876 mei: pxp: add vtag parameter to mei_pxp_send/receive interface
+8e852e077594 drm/i915/pxp: Enable the PXP ioctl for protected session
+-:9: WARNING:TYPO_SPELLING: 'destory' may be misspelled - perhaps 'destroy'?
+#9: 
+destory the protected session via this ioctl.
+
+-:105: WARNING:LONG_LINE: line length of 110 exceeds 100 columns
+#105: FILE: include/uapi/drm/i915_drm.h:427:
++#define DRM_IOCTL_I915_PXP_OPS		DRM_IOWR(DRM_COMMAND_BASE + DRM_I915_PXP_OPS, struct drm_i915_pxp_ops)
+
+total: 0 errors, 2 warnings, 0 checks, 156 lines checked
+
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
