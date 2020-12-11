@@ -1,31 +1,45 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F16782D735A
-	for <lists+intel-gfx@lfdr.de>; Fri, 11 Dec 2020 11:05:22 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 73A6D2D7396
+	for <lists+intel-gfx@lfdr.de>; Fri, 11 Dec 2020 11:13:43 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 34BAB6ED22;
-	Fri, 11 Dec 2020 10:05:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9DDAD6ED7D;
+	Fri, 11 Dec 2020 10:13:40 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 24B446ED24;
- Fri, 11 Dec 2020 10:05:20 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 1E8AAA41FB;
- Fri, 11 Dec 2020 10:05:20 +0000 (UTC)
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5B82A6ED72;
+ Fri, 11 Dec 2020 10:13:39 +0000 (UTC)
+IronPort-SDR: MzJ5Trzegq3ePm1vhF/uo/Qm09Clx97WBQrNcSZhkG98rza56k8rWH7xvDtG8PXGiufPw8QTEH
+ 9NkxkRf9T5Zg==
+X-IronPort-AV: E=McAfee;i="6000,8403,9831"; a="171845608"
+X-IronPort-AV: E=Sophos;i="5.78,411,1599548400"; d="scan'208";a="171845608"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Dec 2020 02:13:38 -0800
+IronPort-SDR: RsQ7lmI/Ay9vaPccFC88f8JfxCXrqcVSXV/MMPaui8twEB+RtpNdJLZX44RdUN4vBcYtBFso8b
+ xcHG9HzNR9pw==
+X-IronPort-AV: E=Sophos;i="5.78,411,1599548400"; d="scan'208";a="321689328"
+Received: from ynaki-mobl1.ger.corp.intel.com (HELO [10.214.252.46])
+ ([10.214.252.46])
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Dec 2020 02:13:24 -0800
+To: Thomas Gleixner <tglx@linutronix.de>, LKML <linux-kernel@vger.kernel.org>
+References: <20201210192536.118432146@linutronix.de>
+ <20201210194043.957046529@linutronix.de>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+Message-ID: <ad05af1a-5463-2a80-0887-7629721d6863@linux.intel.com>
+Date: Fri, 11 Dec 2020 10:13:21 +0000
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Huang, Sean Z" <sean.z.huang@intel.com>
-Date: Fri, 11 Dec 2020 10:05:20 -0000
-Message-ID: <160768112012.16100.5707797146377634487@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20201211090457.32674-1-sean.z.huang@intel.com>
-In-Reply-To: <20201211090457.32674-1-sean.z.huang@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgSW50?=
- =?utf-8?q?roduce_Intel_PXP_component_-_Mesa_single_session_=28rev8=29?=
+In-Reply-To: <20201210194043.957046529@linutronix.de>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [patch 14/30] drm/i915/pmu: Replace open coded
+ kstat_irqs() copy
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,228 +52,248 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============0044190812=="
+Cc: Mark Rutland <mark.rutland@arm.com>,
+ Karthikeyan Mitran <m.karthikeyan@mobiveil.co.in>,
+ Peter Zijlstra <peterz@infradead.org>,
+ Catalin Marinas <catalin.marinas@arm.com>,
+ Linus Walleij <linus.walleij@linaro.org>, dri-devel@lists.freedesktop.org,
+ Chris Wilson <chris@chris-wilson.co.uk>,
+ "James E.J. Bottomley" <James.Bottomley@HansenPartnership.com>,
+ netdev@vger.kernel.org, Will Deacon <will@kernel.org>,
+ Michal Simek <michal.simek@xilinx.com>, linux-s390@vger.kernel.org,
+ afzal mohammed <afzal.mohd.ma@gmail.com>,
+ Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+ Dave Jiang <dave.jiang@intel.com>, xen-devel@lists.xenproject.org,
+ Leon Romanovsky <leon@kernel.org>, linux-rdma@vger.kernel.org,
+ Marc Zyngier <maz@kernel.org>, Helge Deller <deller@gmx.de>,
+ Russell King <linux@armlinux.org.uk>,
+ Christian Borntraeger <borntraeger@de.ibm.com>, linux-pci@vger.kernel.org,
+ Jakub Kicinski <kuba@kernel.org>, Heiko Carstens <hca@linux.ibm.com>,
+ Wambui Karuga <wambui.karugax@gmail.com>, Allen Hubbe <allenbh@gmail.com>,
+ Juergen Gross <jgross@suse.com>, Rob Herring <robh@kernel.org>,
+ intel-gfx@lists.freedesktop.org, linux-gpio@vger.kernel.org,
+ Stefano Stabellini <sstabellini@kernel.org>,
+ Bjorn Helgaas <bhelgaas@google.com>, Lee Jones <lee.jones@linaro.org>,
+ linux-arm-kernel@lists.infradead.org,
+ Boris Ostrovsky <boris.ostrovsky@oracle.com>, David Airlie <airlied@linux.ie>,
+ linux-parisc@vger.kernel.org, Hou Zhiqiang <Zhiqiang.Hou@nxp.com>,
+ Tariq Toukan <tariqt@nvidia.com>, Jon Mason <jdmason@kudzu.us>,
+ linux-ntb@googlegroups.com, Saeed Mahameed <saeedm@nvidia.com>,
+ "David S. Miller" <davem@davemloft.net>
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0044190812==
-Content-Type: multipart/alternative;
- boundary="===============2969827096236134633=="
 
---===============2969827096236134633==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On 10/12/2020 19:25, Thomas Gleixner wrote:
+> Driver code has no business with the internals of the irq descriptor.
+> 
+> Aside of that the count is per interrupt line and therefore takes
+> interrupts from other devices into account which share the interrupt line
+> and are not handled by the graphics driver.
+> 
+> Replace it with a pmu private count which only counts interrupts which
+> originate from the graphics card.
+> 
+> To avoid atomics or heuristics of some sort make the counter field
+> 'unsigned long'. That limits the count to 4e9 on 32bit which is a lot and
+> postprocessing can easily deal with the occasional wraparound.
 
-== Series Details ==
+After my failed hasty sketch from last night I had a different one which 
+was kind of heuristics based (re-reading the upper dword and retrying if 
+it changed on 32-bit). But you are right - it is okay to at least start 
+like this today and if later there is a need we can either do that or 
+deal with wrap at PMU read time.
 
-Series: Introduce Intel PXP component - Mesa single session (rev8)
-URL   : https://patchwork.freedesktop.org/series/84620/
-State : success
+So thanks for dealing with it, some small comments below but overall it 
+is fine.
 
-== Summary ==
+> Signed-off-by: Thomas Gleixner <tglx@linutronix.de>
+> Cc: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+> Cc: Jani Nikula <jani.nikula@linux.intel.com>
+> Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> Cc: David Airlie <airlied@linux.ie>
+> Cc: Daniel Vetter <daniel@ffwll.ch>
+> Cc: intel-gfx@lists.freedesktop.org
+> Cc: dri-devel@lists.freedesktop.org
+> ---
+>   drivers/gpu/drm/i915/i915_irq.c |   34 ++++++++++++++++++++++++++++++++++
+>   drivers/gpu/drm/i915/i915_pmu.c |   18 +-----------------
+>   drivers/gpu/drm/i915/i915_pmu.h |    8 ++++++++
+>   3 files changed, 43 insertions(+), 17 deletions(-)
+> 
+> --- a/drivers/gpu/drm/i915/i915_irq.c
+> +++ b/drivers/gpu/drm/i915/i915_irq.c
+> @@ -60,6 +60,24 @@
+>    * and related files, but that will be described in separate chapters.
+>    */
+>   
+> +/*
+> + * Interrupt statistic for PMU. Increments the counter only if the
+> + * interrupt originated from the the GPU so interrupts from a device which
+> + * shares the interrupt line are not accounted.
+> + */
+> +static inline void pmu_irq_stats(struct drm_i915_private *priv,
 
-CI Bug Log - changes from CI_DRM_9474 -> Patchwork_19122
-====================================================
+We never use priv as a local name, it should be either i915 or dev_priv.
 
-Summary
--------
+> +				 irqreturn_t res)
+> +{
+> +	if (unlikely(res != IRQ_HANDLED))
+> +		return;
+> +
+> +	/*
+> +	 * A clever compiler translates that into INC. A not so clever one
+> +	 * should at least prevent store tearing.
+> +	 */
+> +	WRITE_ONCE(priv->pmu.irq_count, priv->pmu.irq_count + 1);
 
-  **SUCCESS**
+Curious, probably more educational for me - given x86_32 and x86_64, and 
+the context of it getting called, what is the difference from just doing 
+irq_count++?
 
-  No regressions found.
+> +}
+> +
+>   typedef bool (*long_pulse_detect_func)(enum hpd_pin pin, u32 val);
+>   
+>   static const u32 hpd_ilk[HPD_NUM_PINS] = {
+> @@ -1599,6 +1617,8 @@ static irqreturn_t valleyview_irq_handle
+>   		valleyview_pipestat_irq_handler(dev_priv, pipe_stats);
+>   	} while (0);
+>   
+> +	pmu_irq_stats(dev_priv, ret);
+> +
+>   	enable_rpm_wakeref_asserts(&dev_priv->runtime_pm);
+>   
+>   	return ret;
+> @@ -1676,6 +1696,8 @@ static irqreturn_t cherryview_irq_handle
+>   		valleyview_pipestat_irq_handler(dev_priv, pipe_stats);
+>   	} while (0);
+>   
+> +	pmu_irq_stats(dev_priv, ret);
+> +
+>   	enable_rpm_wakeref_asserts(&dev_priv->runtime_pm);
+>   
+>   	return ret;
+> @@ -2103,6 +2125,8 @@ static irqreturn_t ilk_irq_handler(int i
+>   	if (sde_ier)
+>   		raw_reg_write(regs, SDEIER, sde_ier);
+>   
+> +	pmu_irq_stats(i915, ret);
+> +
+>   	/* IRQs are synced during runtime_suspend, we don't require a wakeref */
+>   	enable_rpm_wakeref_asserts(&i915->runtime_pm);
+>   
+> @@ -2419,6 +2443,8 @@ static irqreturn_t gen8_irq_handler(int
+>   
+>   	gen8_master_intr_enable(regs);
+>   
+> +	pmu_irq_stats(dev_priv, IRQ_HANDLED);
+> +
+>   	return IRQ_HANDLED;
+>   }
+>   
+> @@ -2514,6 +2540,8 @@ static __always_inline irqreturn_t
+>   
+>   	gen11_gu_misc_irq_handler(gt, gu_misc_iir);
+>   
+> +	pmu_irq_stats(i915, IRQ_HANDLED);
+> +
+>   	return IRQ_HANDLED;
+>   }
+>   
+> @@ -3688,6 +3716,8 @@ static irqreturn_t i8xx_irq_handler(int
+>   		i8xx_pipestat_irq_handler(dev_priv, iir, pipe_stats);
+>   	} while (0);
+>   
+> +	pmu_irq_stats(dev_priv, ret);
+> +
+>   	enable_rpm_wakeref_asserts(&dev_priv->runtime_pm);
+>   
+>   	return ret;
+> @@ -3796,6 +3826,8 @@ static irqreturn_t i915_irq_handler(int
+>   		i915_pipestat_irq_handler(dev_priv, iir, pipe_stats);
+>   	} while (0);
+>   
+> +	pmu_irq_stats(dev_priv, ret);
+> +
+>   	enable_rpm_wakeref_asserts(&dev_priv->runtime_pm);
+>   
+>   	return ret;
+> @@ -3941,6 +3973,8 @@ static irqreturn_t i965_irq_handler(int
+>   		i965_pipestat_irq_handler(dev_priv, iir, pipe_stats);
+>   	} while (0);
+>   
+> +	pmu_irq_stats(dev_priv, IRQ_HANDLED);
+> +
+>   	enable_rpm_wakeref_asserts(&dev_priv->runtime_pm);
+>   
+>   	return ret;
+> --- a/drivers/gpu/drm/i915/i915_pmu.c
+> +++ b/drivers/gpu/drm/i915/i915_pmu.c
+> @@ -423,22 +423,6 @@ static enum hrtimer_restart i915_sample(
+>   	return HRTIMER_RESTART;
+>   }
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19122/index.html
+In this file you can also drop the #include <linux/irq.h> line.
 
-Known issues
-------------
+>   
+> -static u64 count_interrupts(struct drm_i915_private *i915)
+> -{
+> -	/* open-coded kstat_irqs() */
+> -	struct irq_desc *desc = irq_to_desc(i915->drm.pdev->irq);
+> -	u64 sum = 0;
+> -	int cpu;
+> -
+> -	if (!desc || !desc->kstat_irqs)
+> -		return 0;
+> -
+> -	for_each_possible_cpu(cpu)
+> -		sum += *per_cpu_ptr(desc->kstat_irqs, cpu);
+> -
+> -	return sum;
+> -}
+> -
+>   static void i915_pmu_event_destroy(struct perf_event *event)
+>   {
+>   	struct drm_i915_private *i915 =
+> @@ -581,7 +565,7 @@ static u64 __i915_pmu_event_read(struct
+>   				   USEC_PER_SEC /* to MHz */);
+>   			break;
+>   		case I915_PMU_INTERRUPTS:
+> -			val = count_interrupts(i915);
+> +			val = READ_ONCE(pmu->irq_count);
 
-  Here are the changes found in Patchwork_19122 that come from known issues:
+I guess same curiosity about READ_ONCE like in the increment site.
 
-### IGT changes ###
+>   			break;
+>   		case I915_PMU_RC6_RESIDENCY:
+>   			val = get_rc6(&i915->gt);
+> --- a/drivers/gpu/drm/i915/i915_pmu.h
+> +++ b/drivers/gpu/drm/i915/i915_pmu.h
+> @@ -108,6 +108,14 @@ struct i915_pmu {
+>   	 */
+>   	ktime_t sleep_last;
+>   	/**
+> +	 * @irq_count: Number of interrupts
+> +	 *
+> +	 * Intentionally unsigned long to avoid atomics or heuristics on 32bit.
+> +	 * 4e9 interrupts are a lot and postprocessing can really deal with an
+> +	 * occasional wraparound easily. It's 32bit after all.
+> +	 */
+> +	unsigned long irq_count;
+> +	/**
+>   	 * @events_attr_group: Device events attribute group.
+>   	 */
+>   	struct attribute_group events_attr_group;
+> 
 
-#### Issues hit ####
+Regards,
 
-  * igt@i915_selftest@live@gt_heartbeat:
-    - fi-tgl-y:           [PASS][1] -> [DMESG-FAIL][2] ([i915#2601])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9474/fi-tgl-y/igt@i915_selftest@live@gt_heartbeat.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19122/fi-tgl-y/igt@i915_selftest@live@gt_heartbeat.html
-
-  * igt@prime_self_import@basic-with_two_bos:
-    - fi-tgl-y:           [PASS][3] -> [DMESG-WARN][4] ([i915#402]) +1 similar issue
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9474/fi-tgl-y/igt@prime_self_import@basic-with_two_bos.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19122/fi-tgl-y/igt@prime_self_import@basic-with_two_bos.html
-
-  
-#### Possible fixes ####
-
-  * igt@gem_mmap_gtt@basic:
-    - fi-tgl-y:           [DMESG-WARN][5] ([i915#402]) -> [PASS][6] +2 similar issues
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9474/fi-tgl-y/igt@gem_mmap_gtt@basic.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19122/fi-tgl-y/igt@gem_mmap_gtt@basic.html
-
-  
-  [i915#2601]: https://gitlab.freedesktop.org/drm/intel/issues/2601
-  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
-
-
-Participating hosts (43 -> 39)
-------------------------------
-
-  Missing    (4): fi-ilk-m540 fi-bdw-samus fi-tgl-dsi fi-hsw-4200u 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_9474 -> Patchwork_19122
-
-  CI-20190529: 20190529
-  CI_DRM_9474: f982ee792667f5f2d70901f49a70021415241c07 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5888: c79d4e88f4162905da400360b6fa4940122f3a2c @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_19122: 8e852e077594ab190386c155f4428b35dfd08dbb @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-8e852e077594 drm/i915/pxp: Enable the PXP ioctl for protected session
-bcc9b977b876 mei: pxp: add vtag parameter to mei_pxp_send/receive interface
-b6503a960d6a mei: bus: add vtag support
-7ec0ed17ce84 drm/i915/pxp: Add PXP-related registers into allowlist
-b84477cc8080 drm/i915/pxp: Termiante the session upon app crash
-9b1fa8b3b954 drm/i915/pxp: Implement ioctl action to query PXP tag
-52012be29790 drm/i915/pxp: Implement ioctl action to send TEE commands
-56d25d4e32a4 drm/i915/pxp: Implement ioctl action to terminate the session
-cf7bd29b94d9 drm/i915/pxp: Implement ioctl action to set session in play
-ec0265ec5383 drm/i915/pxp: Implement ioctl action to reserve session slots
-72b03056fdd8 drm/i915/pxp: Add plane decryption support
-7cfdaae63c4e drm/i915/pxp: User interface for Protected buffer
-6f0f2a9fad54 drm/i915/uapi: introduce drm_i915_gem_create_ext
-fe8a87fd99d9 mei: pxp: export pavp client to me client bus
-47d3aeafecbe drm/i915/pxp: Expose session state for display protection flip
-b96bf7e80a28 drm/i915/pxp: Enable PXP power management
-8a0aff60049e drm/i915/pxp: Destroy arb session upon teardown
-9db73c188015 drm/i915/pxp: Enable PXP irq worker and callback stub
-3e513275f2c4 drm/i915/pxp: Func to send hardware session termination
-01a5ed146b56 drm/i915/pxp: Create the arbitrary session after boot
-38e3c5114511 drm/i915/pxp: Implement funcs to create the TEE channel
-bf809419dacc drm/i915/pxp: set KCR reg init during the boot time
-69d2fc1c153b drm/i915/pxp: Introduce Intel PXP component
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19122/index.html
-
---===============2969827096236134633==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Introduce Intel PXP component - Mesa single session (rev8)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/84620/">https://patchwork.freedesktop.org/series/84620/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19122/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19122/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_9474 -&gt; Patchwork_19122</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19122/index.html</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_19122 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live@gt_heartbeat:</p>
-<ul>
-<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9474/fi-tgl-y/igt@i915_selftest@live@gt_heartbeat.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19122/fi-tgl-y/igt@i915_selftest@live@gt_heartbeat.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2601">i915#2601</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@prime_self_import@basic-with_two_bos:</p>
-<ul>
-<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9474/fi-tgl-y/igt@prime_self_import@basic-with_two_bos.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19122/fi-tgl-y/igt@prime_self_import@basic-with_two_bos.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) +1 similar issue</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@gem_mmap_gtt@basic:<ul>
-<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9474/fi-tgl-y/igt@gem_mmap_gtt@basic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19122/fi-tgl-y/igt@gem_mmap_gtt@basic.html">PASS</a> +2 similar issues</li>
-</ul>
-</li>
-</ul>
-<h2>Participating hosts (43 -&gt; 39)</h2>
-<p>Missing    (4): fi-ilk-m540 fi-bdw-samus fi-tgl-dsi fi-hsw-4200u </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_9474 -&gt; Patchwork_19122</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_9474: f982ee792667f5f2d70901f49a70021415241c07 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_5888: c79d4e88f4162905da400360b6fa4940122f3a2c @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
-  Patchwork_19122: 8e852e077594ab190386c155f4428b35dfd08dbb @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>8e852e077594 drm/i915/pxp: Enable the PXP ioctl for protected session<br />
-bcc9b977b876 mei: pxp: add vtag parameter to mei_pxp_send/receive interface<br />
-b6503a960d6a mei: bus: add vtag support<br />
-7ec0ed17ce84 drm/i915/pxp: Add PXP-related registers into allowlist<br />
-b84477cc8080 drm/i915/pxp: Termiante the session upon app crash<br />
-9b1fa8b3b954 drm/i915/pxp: Implement ioctl action to query PXP tag<br />
-52012be29790 drm/i915/pxp: Implement ioctl action to send TEE commands<br />
-56d25d4e32a4 drm/i915/pxp: Implement ioctl action to terminate the session<br />
-cf7bd29b94d9 drm/i915/pxp: Implement ioctl action to set session in play<br />
-ec0265ec5383 drm/i915/pxp: Implement ioctl action to reserve session slots<br />
-72b03056fdd8 drm/i915/pxp: Add plane decryption support<br />
-7cfdaae63c4e drm/i915/pxp: User interface for Protected buffer<br />
-6f0f2a9fad54 drm/i915/uapi: introduce drm_i915_gem_create_ext<br />
-fe8a87fd99d9 mei: pxp: export pavp client to me client bus<br />
-47d3aeafecbe drm/i915/pxp: Expose session state for display protection flip<br />
-b96bf7e80a28 drm/i915/pxp: Enable PXP power management<br />
-8a0aff60049e drm/i915/pxp: Destroy arb session upon teardown<br />
-9db73c188015 drm/i915/pxp: Enable PXP irq worker and callback stub<br />
-3e513275f2c4 drm/i915/pxp: Func to send hardware session termination<br />
-01a5ed146b56 drm/i915/pxp: Create the arbitrary session after boot<br />
-38e3c5114511 drm/i915/pxp: Implement funcs to create the TEE channel<br />
-bf809419dacc drm/i915/pxp: set KCR reg init during the boot time<br />
-69d2fc1c153b drm/i915/pxp: Introduce Intel PXP component</p>
-
-</body>
-</html>
-
---===============2969827096236134633==--
-
---===============0044190812==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
+Tvrtko
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============0044190812==--
