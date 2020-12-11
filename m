@@ -1,42 +1,37 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E777A2D70C4
-	for <lists+intel-gfx@lfdr.de>; Fri, 11 Dec 2020 08:24:40 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0754C2D70DE
+	for <lists+intel-gfx@lfdr.de>; Fri, 11 Dec 2020 08:29:57 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3815689ED3;
-	Fri, 11 Dec 2020 07:24:38 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 15A3789ED3;
- Fri, 11 Dec 2020 07:24:37 +0000 (UTC)
-IronPort-SDR: ncdA5nfqfAMvQBfW7Sn8t8jYV1DXF0FNkgkDHg82NHZguOIZukiwND5Wn7ZOChzJdO3Z81n5sR
- pgCJT4C1r5aA==
-X-IronPort-AV: E=McAfee;i="6000,8403,9831"; a="171827815"
-X-IronPort-AV: E=Sophos;i="5.78,410,1599548400"; d="scan'208";a="171827815"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Dec 2020 23:24:36 -0800
-IronPort-SDR: pZgPJk+elSFw+5OggAoWq/5PVtW3FOloDS8m9M+3kWtISGZBG7/apLpGAbsnBdtrH4VqFGGQRv
- vRcU82ArElhg==
-X-IronPort-AV: E=Sophos;i="5.78,410,1599548400"; d="scan'208";a="484962849"
-Received: from ramaling-i9x.iind.intel.com (HELO intel.com) ([10.99.66.154])
- by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Dec 2020 23:24:33 -0800
-Date: Fri, 11 Dec 2020 12:54:21 +0530
-From: Ramalingam C <ramalingam.c@intel.com>
-To: Anshuman Gupta <anshuman.gupta@intel.com>
-Message-ID: <20201211072421.GF1297@intel.com>
-References: <20201210062640.11783-1-anshuman.gupta@intel.com>
- <20201210062640.11783-19-anshuman.gupta@intel.com>
-MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20201210062640.11783-19-anshuman.gupta@intel.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH v7 18/18] drm/i915/hdcp: Enable HDCP 2.2 MST
- support
+	by gabe.freedesktop.org (Postfix) with ESMTP id A9A096EC75;
+	Fri, 11 Dec 2020 07:29:50 +0000 (UTC)
+X-Original-To: Intel-gfx@lists.freedesktop.org
+Delivered-To: Intel-gfx@lists.freedesktop.org
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8D1466EC7D
+ for <Intel-gfx@lists.freedesktop.org>; Fri, 11 Dec 2020 07:29:45 +0000 (UTC)
+IronPort-SDR: eR9n7A/6/HC9PQbAIATkzbZ/PT3BKFluszpmZ3gonTe2wAS5l4sWikiiCHAIWr7lLPhysAFbri
+ vRQvLPDbAH2Q==
+X-IronPort-AV: E=McAfee;i="6000,8403,9831"; a="174506392"
+X-IronPort-AV: E=Sophos;i="5.78,410,1599548400"; d="scan'208";a="174506392"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Dec 2020 23:29:44 -0800
+IronPort-SDR: 2ecgO+fkEoi7krypUkBQUzIforN6hbyw28/u5eQFrqRX6kBNkrJE8FdXFdJqIJZ3CFS6GjfOMp
+ wqtD5QBxufIQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.78,410,1599548400"; d="scan'208";a="409063276"
+Received: from sean-virtualbox.fm.intel.com ([10.105.158.96])
+ by orsmga001.jf.intel.com with ESMTP; 10 Dec 2020 23:29:44 -0800
+From: "Huang, Sean Z" <sean.z.huang@intel.com>
+To: Intel-gfx@lists.freedesktop.org
+Date: Thu, 10 Dec 2020 23:28:50 -0800
+Message-Id: <20201211072911.27403-1-sean.z.huang@intel.com>
+X-Mailer: git-send-email 2.17.1
+Subject: [Intel-gfx] [RFC-v7 00/21] Introduce Intel PXP component - Mesa
+ single session
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,158 +44,147 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jani.nikula@intel.com, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, seanpaul@chromium.org
+MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 2020-12-10 at 11:56:40 +0530, Anshuman Gupta wrote:
-> Enable HDCP 2.2 over DP MST.
-> Authenticate and enable port encryption only once for
-> an active HDCP 2.2 session, once port is authenticated
-> and encrypted enable encryption for each stream that
-> requires encryption on this port.
-> 
-> Similarly disable the stream encryption for each encrypted
-> stream, once all encrypted stream encryption is disabled,
-> disable the port HDCP encryption and deauthenticate the port.
-> 
-Like in the previous patch (for 1.4 MST?) split this patch into 2. one
-for configuring the stream encryptions status for 2.2 another one for
-enabling the HDCP2.2 MST support.
+PXP (Protected Xe Path) is an i915 componment, available on
+GEN12+ that helps to establish the hardware protected session
+and manage the status of the alive software session, as well
+as its life cycle.
 
-Ram
-> v2:
-> - Add connector details in drm_err. [Ram]
-> - 's/port_auth/hdcp_auth_status'. [Ram]
-> - Added a debug print for stream enc.
-> v3:
-> - uniformity for connector detail in DMESG. [Ram]
-> 
-> Cc: Ramalingam C <ramalingam.c@intel.com>
-> Reviewed-by: Uma Shankar <uma.shankar@intel.com>
-> Tested-by: Karthik B S <karthik.b.s@intel.com>
-> Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_hdcp.c | 53 ++++++++++++++++++++++-
->  1 file changed, 51 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c b/drivers/gpu/drm/i915/display/intel_hdcp.c
-> index 65dd39b44688..4b221c298835 100644
-> --- a/drivers/gpu/drm/i915/display/intel_hdcp.c
-> +++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
-> @@ -1700,6 +1700,36 @@ static int hdcp2_authenticate_sink(struct intel_connector *connector)
->  	return ret;
->  }
->  
-> +static int hdcp2_enable_stream_encryption(struct intel_connector *connector)
-> +{
-> +	struct intel_digital_port *dig_port = intel_attached_dig_port(connector);
-> +	struct drm_i915_private *dev_priv = to_i915(connector->base.dev);
-> +	struct intel_hdcp *hdcp = &connector->hdcp;
-> +	enum transcoder cpu_transcoder = hdcp->cpu_transcoder;
-> +	enum port port = dig_port->base.port;
-> +	int ret = 0;
-> +
-> +	if (!(intel_de_read(dev_priv, HDCP2_STATUS(dev_priv, cpu_transcoder, port)) &
-> +			    LINK_ENCRYPTION_STATUS)) {
-> +		drm_err(&dev_priv->drm, "[%s:%d] HDCP 2.2 Link is not encrypted\n",
-> +			connector->base.name, connector->base.base.id);
-> +		return -EPERM;
-> +	}
-> +
-> +	if (hdcp->shim->stream_2_2_encryption) {
-> +		ret = hdcp->shim->stream_2_2_encryption(connector, true);
-> +		if (ret) {
-> +			drm_err(&dev_priv->drm, "[%s:%d] Failed to enable HDCP 2.2 stream enc\n",
-> +				connector->base.name, connector->base.base.id);
-> +			return ret;
-> +		}
-> +		drm_dbg_kms(&dev_priv->drm, "HDCP 2.2 transcoder: %s stream encrypted\n",
-> +			    transcoder_name(hdcp->stream_transcoder));
-> +	}
-> +
-> +	return ret;
-> +}
-> +
->  static int hdcp2_enable_encryption(struct intel_connector *connector)
->  {
->  	struct intel_digital_port *dig_port = intel_attached_dig_port(connector);
-> @@ -1838,7 +1868,7 @@ static int hdcp2_authenticate_and_encrypt(struct intel_connector *connector)
->  			drm_dbg_kms(&i915->drm, "Port deauth failed.\n");
->  	}
->  
-> -	if (!ret) {
-> +	if (!ret && !dig_port->hdcp_auth_status) {
->  		/*
->  		 * Ensuring the required 200mSec min time interval between
->  		 * Session Key Exchange and encryption.
-> @@ -1853,6 +1883,8 @@ static int hdcp2_authenticate_and_encrypt(struct intel_connector *connector)
->  		}
->  	}
->  
-> +	ret = hdcp2_enable_stream_encryption(connector);
-> +
->  	return ret;
->  }
->  
-> @@ -1898,11 +1930,26 @@ static int _intel_hdcp2_disable(struct intel_connector *connector)
->  	struct intel_digital_port *dig_port = intel_attached_dig_port(connector);
->  	struct drm_i915_private *i915 = to_i915(connector->base.dev);
->  	struct hdcp_port_data *data = &dig_port->hdcp_port_data;
-> +	struct intel_hdcp *hdcp = &connector->hdcp;
->  	int ret;
->  
->  	drm_dbg_kms(&i915->drm, "[%s:%d] HDCP2.2 is being Disabled\n",
->  		    connector->base.name, connector->base.base.id);
->  
-> +	if (hdcp->shim->stream_2_2_encryption) {
-> +		ret = hdcp->shim->stream_2_2_encryption(connector, false);
-> +		if (ret) {
-> +			drm_err(&i915->drm, "[%s:%d] Failed to disable HDCP 2.2 stream enc\n",
-> +				connector->base.name, connector->base.base.id);
-> +			return ret;
-> +		}
-> +		drm_dbg_kms(&i915->drm, "HDCP 2.2 transcoder: %s stream encryption disabled\n",
-> +			    transcoder_name(hdcp->stream_transcoder));
-> +	}
-> +
-> +	if (dig_port->num_hdcp_streams > 0)
-> +		return ret;
-> +
->  	ret = hdcp2_disable_encryption(connector);
->  
->  	if (hdcp2_deauthenticate_port(connector) < 0)
-> @@ -1926,6 +1973,7 @@ static int intel_hdcp2_check_link(struct intel_connector *connector)
->  	int ret = 0;
->  
->  	mutex_lock(&hdcp->mutex);
-> +	mutex_lock(&dig_port->hdcp_mutex);
->  	cpu_transcoder = hdcp->cpu_transcoder;
->  
->  	/* hdcp2_check_link is expected only when HDCP2.2 is Enabled */
-> @@ -2003,6 +2051,7 @@ static int intel_hdcp2_check_link(struct intel_connector *connector)
->  	}
->  
->  out:
-> +	mutex_unlock(&dig_port->hdcp_mutex);
->  	mutex_unlock(&hdcp->mutex);
->  	return ret;
->  }
-> @@ -2184,7 +2233,7 @@ int intel_hdcp_init(struct intel_connector *connector,
->  	if (!shim)
->  		return -EINVAL;
->  
-> -	if (is_hdcp2_supported(dev_priv) && !connector->mst_port)
-> +	if (is_hdcp2_supported(dev_priv))
->  		intel_hdcp2_init(connector, dig_port, shim);
->  
->  	ret =
-> -- 
-> 2.26.2
-> 
+[commit #1 - #13]
+This patch series is to allow the kernel space to create and
+manage a single hardware session (a.k.a default session or
+arbitrary session). So user can allocate the protected buffer,
+which is encrypted with the leverage of the arbitrary hardware
+session.
+
+[commit #14 - #21]
+This patch series exposes ioctl so allow userspace to create,
+set, and destroy one or multiple sessions. It will also provide
+the communication chanel to TEE (Trusted Execution Environment)
+for the protected hardware session creation.
+
+v2:
+    - modification based on code reivew feedbacks received
+    - passing pxp instead of i915 as funciton argument
+    - remove dead code only for multi-session
+    - move the pxp init call from i915_drv.c to intel_gt.c
+    - reove the tautology naming
+
+v3:
+    - rebase to latest drm-tip
+
+v4:
+    - Append the split non-mesa patch sereis (commit #14 - #21) into
+      this patch series
+
+v5:
+    - include "intel_pxp.h" in intel_pxp_sm.h at commit #14 to fix
+      the build problem.
+
+v6:
+    - Fix the null pointer arb_session access bug in intel_pxp_arb.c in
+      "04 [RFC-v5] drm/i915/pxp: Create the arbitrary session after boot"
+
+v7:
+    - Use list_for_each_entry_safe instead of list_for_each_entry
+
+Anshuman Gupta (1):
+  drm/i915/pxp: Add plane decryption support
+
+Bommu Krishnaiah (2):
+  drm/i915/uapi: introduce drm_i915_gem_create_ext
+  drm/i915/pxp: User interface for Protected buffer
+
+Huang, Sean Z (17):
+  drm/i915/pxp: Introduce Intel PXP component
+  drm/i915/pxp: set KCR reg init during the boot time
+  drm/i915/pxp: Implement funcs to create the TEE channel
+  drm/i915/pxp: Create the arbitrary session after boot
+  drm/i915/pxp: Func to send hardware session termination
+  drm/i915/pxp: Enable PXP irq worker and callback stub
+  drm/i915/pxp: Destroy arb session upon teardown
+  drm/i915/pxp: Enable PXP power management
+  drm/i915/pxp: Expose session state for display protection flip
+  drm/i915/pxp: Implement ioctl action to reserve session slots
+  drm/i915/pxp: Implement ioctl action to set session in play
+  drm/i915/pxp: Implement ioctl action to terminate the session
+  drm/i915/pxp: Implement ioctl action to send TEE commands
+  drm/i915/pxp: Implement ioctl action to query PXP tag
+  drm/i915/pxp: Termiante the session upon app crash
+  drm/i915/pxp: Add PXP-related registers into allowlist
+  drm/i915/pxp: Enable the PXP ioctl for protected session
+
+Vitaly Lubart (1):
+  mei: pxp: export pavp client to me client bus
+
+ drivers/gpu/drm/i915/Kconfig                  |  19 +
+ drivers/gpu/drm/i915/Makefile                 |  10 +
+ drivers/gpu/drm/i915/display/intel_sprite.c   |  21 +-
+ drivers/gpu/drm/i915/gem/i915_gem_context.c   |  15 +-
+ drivers/gpu/drm/i915/gem/i915_gem_context.h   |  10 +
+ .../gpu/drm/i915/gem/i915_gem_context_types.h |   2 +-
+ .../gpu/drm/i915/gem/i915_gem_object_types.h  |   5 +
+ drivers/gpu/drm/i915/gt/intel_gt.c            |   7 +
+ drivers/gpu/drm/i915/gt/intel_gt_irq.c        |   4 +
+ drivers/gpu/drm/i915/gt/intel_gt_pm.c         |   4 +
+ drivers/gpu/drm/i915/gt/intel_gt_types.h      |   3 +
+ drivers/gpu/drm/i915/i915_drv.c               |  11 +-
+ drivers/gpu/drm/i915/i915_drv.h               |   6 +
+ drivers/gpu/drm/i915/i915_gem.c               |  63 ++-
+ drivers/gpu/drm/i915/i915_reg.h               |  10 +-
+ drivers/gpu/drm/i915/intel_uncore.c           |  50 +-
+ drivers/gpu/drm/i915/pxp/intel_pxp.c          | 284 ++++++++++
+ drivers/gpu/drm/i915/pxp/intel_pxp.h          | 107 ++++
+ drivers/gpu/drm/i915/pxp/intel_pxp_arb.c      | 208 ++++++++
+ drivers/gpu/drm/i915/pxp/intel_pxp_arb.h      |  39 ++
+ drivers/gpu/drm/i915/pxp/intel_pxp_cmd.c      | 328 ++++++++++++
+ drivers/gpu/drm/i915/pxp/intel_pxp_cmd.h      |  22 +
+ drivers/gpu/drm/i915/pxp/intel_pxp_context.c  |  32 ++
+ drivers/gpu/drm/i915/pxp/intel_pxp_context.h  |  42 ++
+ drivers/gpu/drm/i915/pxp/intel_pxp_pm.c       |  72 +++
+ drivers/gpu/drm/i915/pxp/intel_pxp_pm.h       |  31 ++
+ drivers/gpu/drm/i915/pxp/intel_pxp_sm.c       | 487 ++++++++++++++++++
+ drivers/gpu/drm/i915/pxp/intel_pxp_sm.h       |  54 ++
+ drivers/gpu/drm/i915/pxp/intel_pxp_tee.c      | 227 ++++++++
+ drivers/gpu/drm/i915/pxp/intel_pxp_tee.h      |  25 +
+ drivers/misc/mei/Kconfig                      |   2 +
+ drivers/misc/mei/Makefile                     |   1 +
+ drivers/misc/mei/pxp/Kconfig                  |  13 +
+ drivers/misc/mei/pxp/Makefile                 |   7 +
+ drivers/misc/mei/pxp/mei_pxp.c                | 230 +++++++++
+ drivers/misc/mei/pxp/mei_pxp.h                |  18 +
+ include/drm/i915_component.h                  |   1 +
+ include/drm/i915_pxp_tee_interface.h          |  45 ++
+ include/uapi/drm/i915_drm.h                   | 138 +++++
+ 39 files changed, 2626 insertions(+), 27 deletions(-)
+ create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp.c
+ create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp.h
+ create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp_arb.c
+ create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp_arb.h
+ create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp_cmd.c
+ create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp_cmd.h
+ create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp_context.c
+ create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp_context.h
+ create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp_pm.c
+ create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp_pm.h
+ create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp_sm.c
+ create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp_sm.h
+ create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp_tee.c
+ create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp_tee.h
+ create mode 100644 drivers/misc/mei/pxp/Kconfig
+ create mode 100644 drivers/misc/mei/pxp/Makefile
+ create mode 100644 drivers/misc/mei/pxp/mei_pxp.c
+ create mode 100644 drivers/misc/mei/pxp/mei_pxp.h
+ create mode 100644 include/drm/i915_pxp_tee_interface.h
+
+-- 
+2.17.1
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
