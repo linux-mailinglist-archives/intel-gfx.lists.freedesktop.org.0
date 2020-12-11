@@ -1,42 +1,55 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 66D512D7785
-	for <lists+intel-gfx@lfdr.de>; Fri, 11 Dec 2020 15:14:06 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id BEB382D77BB
+	for <lists+intel-gfx@lfdr.de>; Fri, 11 Dec 2020 15:25:25 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 952146E9B2;
-	Fri, 11 Dec 2020 14:14:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 33F336E197;
+	Fri, 11 Dec 2020 14:25:24 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 220DD6E9B2
- for <intel-gfx@lists.freedesktop.org>; Fri, 11 Dec 2020 14:14:02 +0000 (UTC)
-IronPort-SDR: QwNd2bMA4FUTVFc42WMLIjuqqHIRCa2k/77idv00oWJhNM9iryPcRUfdmtMR7R699ZubGAVi3A
- QMPNNmpxMmIg==
-X-IronPort-AV: E=McAfee;i="6000,8403,9831"; a="238540949"
-X-IronPort-AV: E=Sophos;i="5.78,411,1599548400"; d="scan'208";a="238540949"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Dec 2020 06:14:00 -0800
-IronPort-SDR: 5WY1CRUB6D0VkfzonlNs9YeXnaEDFneGljeY9YFQ8z37m/r523mSZ3HP8mQaJjsZZ90O2hMgoz
- q2Zv7mZIhmIw==
-X-IronPort-AV: E=Sophos;i="5.78,411,1599548400"; d="scan'208";a="379783500"
-Received: from dkreft-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.249.158.206])
- by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Dec 2020 06:13:59 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Anshuman Gupta <anshuman.gupta@intel.com>, intel-gfx@lists.freedesktop.org
-In-Reply-To: <20201204081845.26528-2-anshuman.gupta@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20201204081845.26528-1-anshuman.gupta@intel.com>
- <20201204081845.26528-2-anshuman.gupta@intel.com>
-Date: Fri, 11 Dec 2020 16:13:56 +0200
-Message-ID: <87h7os77mj.fsf@intel.com>
+X-Greylist: delayed 368 seconds by postgrey-1.36 at gabe;
+ Fri, 11 Dec 2020 14:25:23 UTC
+Received: from eu-smtp-delivery-151.mimecast.com
+ (eu-smtp-delivery-151.mimecast.com [185.58.86.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2BC836E197
+ for <intel-gfx@lists.freedesktop.org>; Fri, 11 Dec 2020 14:25:23 +0000 (UTC)
+Received: from AcuMS.aculab.com (156.67.243.126 [156.67.243.126]) (Using
+ TLS) by relay.mimecast.com with ESMTP id
+ uk-mta-53-s0AncPC_O7qxZEyLU7X13A-1; Fri, 11 Dec 2020 14:19:07 +0000
+X-MC-Unique: s0AncPC_O7qxZEyLU7X13A-1
+Received: from AcuMS.Aculab.com (fd9f:af1c:a25b:0:43c:695e:880f:8750) by
+ AcuMS.aculab.com (fd9f:af1c:a25b:0:43c:695e:880f:8750) with Microsoft SMTP
+ Server (TLS) id 15.0.1347.2; Fri, 11 Dec 2020 14:19:05 +0000
+Received: from AcuMS.Aculab.com ([fe80::43c:695e:880f:8750]) by
+ AcuMS.aculab.com ([fe80::43c:695e:880f:8750%12]) with mapi id 15.00.1347.000; 
+ Fri, 11 Dec 2020 14:19:05 +0000
+From: David Laight <David.Laight@ACULAB.COM>
+To: 'Thomas Gleixner' <tglx@linutronix.de>, Tvrtko Ursulin
+ <tvrtko.ursulin@linux.intel.com>, LKML <linux-kernel@vger.kernel.org>
+Thread-Topic: [patch 14/30] drm/i915/pmu: Replace open coded kstat_irqs() copy
+Thread-Index: AQHWz72qwjNpP0n0UkWT70W8RrLS8qnx7xrw
+Date: Fri, 11 Dec 2020 14:19:05 +0000
+Message-ID: <d6cbfa118490459bb0671394f00323fc@AcuMS.aculab.com>
+References: <20201210192536.118432146@linutronix.de>
+ <20201210194043.957046529@linutronix.de>
+ <ad05af1a-5463-2a80-0887-7629721d6863@linux.intel.com>
+ <87y2i4h54i.fsf@nanos.tec.linutronix.de>
+In-Reply-To: <87y2i4h54i.fsf@nanos.tec.linutronix.de>
+Accept-Language: en-GB, en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ms-exchange-transport-fromentityheader: Hosted
+x-originating-ip: [10.202.205.107]
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH 1/1] drm/i915/dp: optimize pps_lock wherever
- required
+Authentication-Results: relay.mimecast.com;
+ auth=pass smtp.auth=C51A453 smtp.mailfrom=david.laight@aculab.com
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: aculab.com
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [patch 14/30] drm/i915/pmu: Replace open coded
+ kstat_irqs() copy
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,121 +62,95 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Mark Rutland <mark.rutland@arm.com>,
+ Karthikeyan Mitran <m.karthikeyan@mobiveil.co.in>,
+ Peter Zijlstra <peterz@infradead.org>,
+ Catalin Marinas <catalin.marinas@arm.com>, Linus
+ Walleij <linus.walleij@linaro.org>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ Chris Wilson <chris@chris-wilson.co.uk>, "James
+ E.J. Bottomley" <James.Bottomley@HansenPartnership.com>,
+ "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+ Will Deacon <will@kernel.org>, Michal Simek <michal.simek@xilinx.com>,
+ "linux-s390@vger.kernel.org" <linux-s390@vger.kernel.org>,
+ afzal mohammed <afzal.mohd.ma@gmail.com>,
+ Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+ Dave Jiang <dave.jiang@intel.com>,
+ "xen-devel@lists.xenproject.org" <xen-devel@lists.xenproject.org>, Leon
+ Romanovsky <leon@kernel.org>,
+ "linux-rdma@vger.kernel.org" <linux-rdma@vger.kernel.org>,
+ Marc Zyngier <maz@kernel.org>, Helge Deller <deller@gmx.de>,
+ Russell King <linux@armlinux.org.uk>,
+ Christian Borntraeger <borntraeger@de.ibm.com>,
+ "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>, Jakub
+ Kicinski <kuba@kernel.org>, Heiko Carstens <hca@linux.ibm.com>,
+ Wambui Karuga <wambui.karugax@gmail.com>, Allen Hubbe <allenbh@gmail.com>,
+ Juergen Gross <jgross@suse.com>, Rob Herring <robh@kernel.org>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
+ Stefano Stabellini <sstabellini@kernel.org>,
+ Bjorn Helgaas <bhelgaas@google.com>, Lee Jones <lee.jones@linaro.org>,
+ "linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
+ Boris Ostrovsky <boris.ostrovsky@oracle.com>, David Airlie <airlied@linux.ie>,
+ "linux-parisc@vger.kernel.org" <linux-parisc@vger.kernel.org>,
+ Hou Zhiqiang <Zhiqiang.Hou@nxp.com>, Tariq
+ Toukan <tariqt@nvidia.com>, Jon Mason <jdmason@kudzu.us>,
+ "linux-ntb@googlegroups.com" <linux-ntb@googlegroups.com>,
+ Saeed Mahameed <saeedm@nvidia.com>, "David S. Miller" <davem@davemloft.net>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, 04 Dec 2020, Anshuman Gupta <anshuman.gupta@intel.com> wrote:
-> Reading backlight status from PPS register doesn't require
-> AUX power on the platform which has South Display Engine on PCH.
-> It invokes a unnecessary power well enable/disable noise.
-> optimize it wherever is possible.
+From: Thomas Gleixner
+> Sent: 11 December 2020 12:58
+..
+> > After my failed hasty sketch from last night I had a different one which
+> > was kind of heuristics based (re-reading the upper dword and retrying if
+> > it changed on 32-bit).
+> 
+> The problem is that there will be two seperate modifications for the low
+> and high word. Several ways how the compiler can translate this, but the
+> problem is the same for all of them:
+> 
+> CPU 0                           CPU 1
+>         load low
+>         load high
+>         add  low, 1
+>         addc high, 0
+>         store low               load high
+> --> NMI                         load low
+>                                 load high and compare
+>         store high
+> 
+> You can't catch that. If this really becomes an issue you need a
+> sequence counter around it.
 
-Three aspects here:
+Or just two copies of the high word.
+Provided the accesses are sequenced:
+writer:
+	load high:low
+	add small_value,high:low
+	store high
+	store low
+	store high_copy
+reader:
+	load high_copy
+	load low
+	load high
+	if (high != high_copy)
+		low = 0;
 
-1. What's the root cause for the glitches, really? AFAICT this is still
-an open question, judging from the discussion in previous versions.
+The read value is always stale, so it probably doesn't
+matter that the value you have is one that is between the
+value when you started and that when you finished.
 
-2. See why we end up here in the first place for brightness
-updates. It's a long story (*), but maybe the fix isn't to optimize this
-path, but to avoid calling this function for regular brightness updates
-to begin with?
+	David
 
-3. The implementation here seems like a hack, to be honest. Considering
-the points above, it really has a bad vibe of papering over something
-else.
+-
+Registered Address Lakeside, Bramley Road, Mount Farm, Milton Keynes, MK1 1PT, UK
+Registration No: 1397386 (Wales)
 
-BR,
-Jani.
-
-
-
-(*)
-It was a Chrome OS requirement originally to be able to quickly switch
-off backlight through the backlight sysfs interface, without switching
-off the display through the KMS API. For whatever reason. We can't just
-set the PWM to 0, because that may an invalid thing to do on some boards
-out there. (On some device it ended up pulling other lanes on the eDP
-connector to 0 V, but I digress.)
-
-So the hack is we have a way to switch the eDP power sequencer backlight
-bit off/on, as a substate of enabled backlight, through using the
-backlight sysfs to set the brightness to 0 or using bl_power.
-
->
-> Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_dp.c | 47 +++++++++++++++++++++++--
->  1 file changed, 45 insertions(+), 2 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-> index 2d4d5e95af84..7e18e4ff50f4 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> @@ -892,6 +892,47 @@ pps_unlock(struct intel_dp *intel_dp, intel_wakeref_t wakeref)
->  	return 0;
->  }
->  
-> +/*
-> + * Platform with PCH based SDE doesn't require to enable AUX power
-> + * for simple PPS register access like whether backlight is enabled.
-> + * use pch_pps_lock()/pch_pps_unlock() wherever we don't require
-> + * aux power to avoid unnecessary power well enable/disable back
-> + * and forth.
-> + */
-> +static intel_wakeref_t
-> +pch_pps_lock(struct intel_dp *intel_dp)
-> +{
-> +	struct drm_i915_private *dev_priv = dp_to_i915(intel_dp);
-> +	intel_wakeref_t wakeref;
-> +
-> +	if (!HAS_PCH_SPLIT(dev_priv))
-> +		wakeref = intel_display_power_get(dev_priv,
-> +						  intel_aux_power_domain(dp_to_dig_port(intel_dp)));
-> +	else
-> +		wakeref = intel_runtime_pm_get(&dev_priv->runtime_pm);
-> +
-> +	mutex_lock(&dev_priv->pps_mutex);
-> +
-> +	return wakeref;
-> +}
-> +
-> +static intel_wakeref_t
-> +pch_pps_unlock(struct intel_dp *intel_dp, intel_wakeref_t wakeref)
-> +{
-> +	struct drm_i915_private *dev_priv = dp_to_i915(intel_dp);
-> +
-> +	mutex_unlock(&dev_priv->pps_mutex);
-> +
-> +	if (!HAS_PCH_SPLIT(dev_priv))
-> +		intel_display_power_put(dev_priv,
-> +					intel_aux_power_domain(dp_to_dig_port(intel_dp)),
-> +					wakeref);
-> +	else
-> +		intel_runtime_pm_put(&dev_priv->runtime_pm, wakeref);
-> +
-> +	return 0;
-> +}
-> +
->  #define with_pps_lock(dp, wf) \
->  	for ((wf) = pps_lock(dp); (wf); (wf) = pps_unlock((dp), (wf)))
->  
-> @@ -3453,8 +3494,10 @@ static void intel_edp_backlight_power(struct intel_connector *connector,
->  	bool is_enabled;
->  
->  	is_enabled = false;
-> -	with_pps_lock(intel_dp, wakeref)
-> -		is_enabled = ilk_get_pp_control(intel_dp) & EDP_BLC_ENABLE;
-> +	wakeref = pch_pps_lock(intel_dp);
-> +	is_enabled = ilk_get_pp_control(intel_dp) & EDP_BLC_ENABLE;
-> +	pch_pps_unlock(intel_dp, wakeref);
-> +
->  	if (is_enabled == enable)
->  		return;
-
--- 
-Jani Nikula, Intel Open Source Graphics Center
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
