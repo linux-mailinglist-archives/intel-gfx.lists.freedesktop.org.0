@@ -1,44 +1,83 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id EE4D22D81D0
-	for <lists+intel-gfx@lfdr.de>; Fri, 11 Dec 2020 23:19:21 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 966832D825F
+	for <lists+intel-gfx@lfdr.de>; Fri, 11 Dec 2020 23:52:45 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5A34D8912A;
-	Fri, 11 Dec 2020 22:19:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4DD206E7F1;
+	Fri, 11 Dec 2020 22:52:41 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B295A8912A
- for <intel-gfx@lists.freedesktop.org>; Fri, 11 Dec 2020 22:19:19 +0000 (UTC)
-IronPort-SDR: aWuXzpy1h3DiWpcOAIlD8jxtX0pbE9kdy8681E3nZ431a0djrPnzUCGp9IQ0IL1sMsvURU0sDo
- eVSjZU2IOXuQ==
-X-IronPort-AV: E=McAfee;i="6000,8403,9832"; a="171939773"
-X-IronPort-AV: E=Sophos;i="5.78,412,1599548400"; d="scan'208";a="171939773"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Dec 2020 14:19:19 -0800
-IronPort-SDR: KaaZEQrmdfU4Hn/d/yHEsKSQBRIzkWarbMHNqfqPcmrVZk3obJcf9f1bMHHTm8DEJYxWNLzCKh
- DBWC/ZqYCM3w==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.78,412,1599548400"; d="scan'208";a="334358619"
-Received: from lkp-server01.sh.intel.com (HELO ecc0cebe68d1) ([10.239.97.150])
- by orsmga003.jf.intel.com with ESMTP; 11 Dec 2020 14:19:18 -0800
-Received: from kbuild by ecc0cebe68d1 with local (Exim 4.92)
- (envelope-from <lkp@intel.com>)
- id 1knqkv-00017Q-Bw; Fri, 11 Dec 2020 22:19:17 +0000
-Date: Sat, 12 Dec 2020 06:19:11 +0800
-From: kernel test robot <lkp@intel.com>
-To: Dave Airlie <airlied@gmail.com>, intel-gfx@lists.freedesktop.org
-Message-ID: <20201211221911.GA55742@58efc5df12a6>
-References: <20201211072922.19101-10-airlied@gmail.com>
+X-Greylist: delayed 21906 seconds by postgrey-1.36 at gabe;
+ Fri, 11 Dec 2020 20:36:36 UTC
+Received: from userp2130.oracle.com (userp2130.oracle.com [156.151.31.86])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 687936E462;
+ Fri, 11 Dec 2020 20:36:36 +0000 (UTC)
+Received: from pps.filterd (userp2130.oracle.com [127.0.0.1])
+ by userp2130.oracle.com (8.16.0.42/8.16.0.42) with SMTP id 0BBEK3q4153543;
+ Fri, 11 Dec 2020 14:29:21 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=oracle.com;
+ h=subject : to : cc :
+ references : from : message-id : date : mime-version : in-reply-to :
+ content-type : content-transfer-encoding; s=corp-2020-01-29;
+ bh=XwmNJXsce0biO7XLe+zGaIsjtrmRfK/vTz0mYn6nQBU=;
+ b=bR7yH4+1kTFS/uaRb9qwsHTyFm2EoNVmWnQB/6uOrO708u+eqNtBobFpmn1ttrRdH1ys
+ eWZmcv+9rBDGS0S9dxVH7WJEjVIq3kan/8A2J+2JEfl4cmi6SdTHDxhFZ9FOjgghK0i/
+ gSlqjyBs3FtwP3+ZAOMx//Xrh2s4GGZVNmZZvw8Dg7A8ucgqyFuZ1jZz6HYR0R/QX3KB
+ jq1go8jZfLC3JdZILS9AqGFwicAYPALMmwsEwRd+5bZO9goG03a6o19lTH5pgGTEdXEs
+ I4ECgSmCCiTYqeMDSavCaEpGT9QkWsYwEp7lVPsTzWiLDfHkK38lg3Q5ATAnYCJ8Q3TZ zQ== 
+Received: from aserp3030.oracle.com (aserp3030.oracle.com [141.146.126.71])
+ by userp2130.oracle.com with ESMTP id 3581mratkd-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
+ Fri, 11 Dec 2020 14:29:21 +0000
+Received: from pps.filterd (aserp3030.oracle.com [127.0.0.1])
+ by aserp3030.oracle.com (8.16.0.42/8.16.0.42) with SMTP id 0BBEPIII069767;
+ Fri, 11 Dec 2020 14:29:20 GMT
+Received: from userv0122.oracle.com (userv0122.oracle.com [156.151.31.75])
+ by aserp3030.oracle.com with ESMTP id 358kstfcjw-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+ Fri, 11 Dec 2020 14:29:20 +0000
+Received: from abhmp0008.oracle.com (abhmp0008.oracle.com [141.146.116.14])
+ by userv0122.oracle.com (8.14.4/8.14.4) with ESMTP id 0BBETD7i006093;
+ Fri, 11 Dec 2020 14:29:13 GMT
+Received: from [10.39.222.144] (/10.39.222.144)
+ by default (Oracle Beehive Gateway v4.0)
+ with ESMTP ; Fri, 11 Dec 2020 06:29:13 -0800
+To: Thomas Gleixner <tglx@linutronix.de>, =?UTF-8?B?SsO8cmdlbiBHcm/Dnw==?=
+ <jgross@suse.com>, LKML <linux-kernel@vger.kernel.org>
+References: <20201210192536.118432146@linutronix.de>
+ <20201210194045.250321315@linutronix.de>
+ <7f7af60f-567f-cdef-f8db-8062a44758ce@oracle.com>
+ <2164a0ce-0e0d-c7dc-ac97-87c8f384ad82@suse.com>
+ <871rfwiknd.fsf@nanos.tec.linutronix.de>
+From: boris.ostrovsky@oracle.com
+Organization: Oracle Corporation
+Message-ID: <9806692f-24a3-4b6f-ae55-86bd66481271@oracle.com>
+Date: Fri, 11 Dec 2020 09:29:09 -0500
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:78.0)
+ Gecko/20100101 Thunderbird/78.5.1
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20201211072922.19101-10-airlied@gmail.com>
-X-Patchwork-Hint: ignore
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: [Intel-gfx] [RFC PATCH] drm/i915: skl_plane_ctl_crtc() can be static
+In-Reply-To: <871rfwiknd.fsf@nanos.tec.linutronix.de>
+Content-Language: en-US
+X-Proofpoint-Virus-Version: vendor=nai engine=6000 definitions=9831
+ signatures=668683
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 mlxlogscore=999
+ suspectscore=0
+ bulkscore=0 malwarescore=0 phishscore=0 mlxscore=0 spamscore=0
+ adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2009150000 definitions=main-2012110094
+X-Proofpoint-Virus-Version: vendor=nai engine=6000 definitions=9831
+ signatures=668683
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 suspectscore=0
+ mlxlogscore=999
+ clxscore=1015 malwarescore=0 priorityscore=1501 adultscore=0
+ lowpriorityscore=0 phishscore=0 spamscore=0 impostorscore=0 mlxscore=0
+ bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2009150000 definitions=main-2012110093
+X-Mailman-Approved-At: Fri, 11 Dec 2020 22:52:39 +0000
+Subject: Re: [Intel-gfx] [patch 27/30] xen/events: Only force affinity mask
+ for percpu interrupts
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,64 +90,73 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: kbuild-all@lists.01.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: Mark Rutland <mark.rutland@arm.com>,
+ Karthikeyan Mitran <m.karthikeyan@mobiveil.co.in>,
+ Peter Zijlstra <peterz@infradead.org>,
+ Catalin Marinas <catalin.marinas@arm.com>,
+ Linus Walleij <linus.walleij@linaro.org>, dri-devel@lists.freedesktop.org,
+ Chris Wilson <chris@chris-wilson.co.uk>,
+ "James E.J. Bottomley" <James.Bottomley@HansenPartnership.com>,
+ Saeed Mahameed <saeedm@nvidia.com>, netdev@vger.kernel.org,
+ Jakub Kicinski <kuba@kernel.org>, Will Deacon <will@kernel.org>,
+ Michal Simek <michal.simek@xilinx.com>, linux-s390@vger.kernel.org,
+ afzal mohammed <afzal.mohd.ma@gmail.com>,
+ Stefano Stabellini <sstabellini@kernel.org>, Dave Jiang <dave.jiang@intel.com>,
+ Leon Romanovsky <leon@kernel.org>, linux-rdma@vger.kernel.org,
+ Marc Zyngier <maz@kernel.org>, Helge Deller <deller@gmx.de>,
+ Russell King <linux@armlinux.org.uk>,
+ Christian Borntraeger <borntraeger@de.ibm.com>, linux-pci@vger.kernel.org,
+ xen-devel@lists.xenproject.org, Heiko Carstens <hca@linux.ibm.com>,
+ Wambui Karuga <wambui.karugax@gmail.com>, Allen Hubbe <allenbh@gmail.com>,
+ Rob Herring <robh@kernel.org>, David Airlie <airlied@linux.ie>,
+ linux-gpio@vger.kernel.org, Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+ Bjorn Helgaas <bhelgaas@google.com>, Lee Jones <lee.jones@linaro.org>,
+ linux-arm-kernel@lists.infradead.org, linux-parisc@vger.kernel.org,
+ Hou Zhiqiang <Zhiqiang.Hou@nxp.com>, Tariq Toukan <tariqt@nvidia.com>,
+ Jon Mason <jdmason@kudzu.us>, linux-ntb@googlegroups.com,
+ intel-gfx@lists.freedesktop.org, "David S. Miller" <davem@davemloft.net>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-
-Reported-by: kernel test robot <lkp@intel.com>
-Signed-off-by: kernel test robot <lkp@intel.com>
----
- intel_gen9_plane.c |   12 ++++++------
- 1 file changed, 6 insertions(+), 6 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/display/intel_gen9_plane.c b/drivers/gpu/drm/i915/display/intel_gen9_plane.c
-index d547edabb5ce7..8549b262f095e 100644
---- a/drivers/gpu/drm/i915/display/intel_gen9_plane.c
-+++ b/drivers/gpu/drm/i915/display/intel_gen9_plane.c
-@@ -1393,7 +1393,7 @@ static u32 cnl_plane_ctl_flip(unsigned int reflect)
- 	return 0;
- }
- 
--u32 skl_plane_ctl_crtc(const struct intel_crtc_state *crtc_state)
-+static u32 skl_plane_ctl_crtc(const struct intel_crtc_state *crtc_state)
- {
- 	struct drm_i915_private *dev_priv = to_i915(crtc_state->uapi.crtc->dev);
- 	u32 plane_ctl = 0;
-@@ -1413,8 +1413,8 @@ u32 skl_plane_ctl_crtc(const struct intel_crtc_state *crtc_state)
- 	return plane_ctl;
- }
- 
--u32 skl_plane_ctl(const struct intel_crtc_state *crtc_state,
--		  const struct intel_plane_state *plane_state)
-+static u32 skl_plane_ctl(const struct intel_crtc_state *crtc_state,
-+			 const struct intel_plane_state *plane_state)
- {
- 	struct drm_i915_private *dev_priv =
- 		to_i915(plane_state->uapi.plane->dev);
-@@ -1452,7 +1452,7 @@ u32 skl_plane_ctl(const struct intel_crtc_state *crtc_state,
- 	return plane_ctl;
- }
- 
--u32 glk_plane_color_ctl_crtc(const struct intel_crtc_state *crtc_state)
-+static u32 glk_plane_color_ctl_crtc(const struct intel_crtc_state *crtc_state)
- {
- 	struct drm_i915_private *dev_priv = to_i915(crtc_state->uapi.crtc->dev);
- 	u32 plane_color_ctl = 0;
-@@ -1469,8 +1469,8 @@ u32 glk_plane_color_ctl_crtc(const struct intel_crtc_state *crtc_state)
- 	return plane_color_ctl;
- }
- 
--u32 glk_plane_color_ctl(const struct intel_crtc_state *crtc_state,
--			const struct intel_plane_state *plane_state)
-+static u32 glk_plane_color_ctl(const struct intel_crtc_state *crtc_state,
-+			       const struct intel_plane_state *plane_state)
- {
- 	struct drm_i915_private *dev_priv =
- 		to_i915(plane_state->uapi.plane->dev);
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+Ck9uIDEyLzExLzIwIDc6MzcgQU0sIFRob21hcyBHbGVpeG5lciB3cm90ZToKPiBPbiBGcmksIERl
+YyAxMSAyMDIwIGF0IDEzOjEwLCBKw7xyZ2VuIEdyb8OfIHdyb3RlOgo+PiBPbiAxMS4xMi4yMCAw
+MDoyMCwgYm9yaXMub3N0cm92c2t5QG9yYWNsZS5jb20gd3JvdGU6Cj4+PiBPbiAxMi8xMC8yMCAy
+OjI2IFBNLCBUaG9tYXMgR2xlaXhuZXIgd3JvdGU6Cj4+Pj4gQWxsIGV2ZW50IGNoYW5uZWwgc2V0
+dXBzIGJpbmQgdGhlIGludGVycnVwdCBvbiBDUFUwIG9yIHRoZSB0YXJnZXQgQ1BVIGZvcgo+Pj4+
+IHBlcmNwdSBpbnRlcnJ1cHRzIGFuZCBvdmVyd3JpdGUgdGhlIGFmZmluaXR5IG1hc2sgd2l0aCB0
+aGUgY29ycmVzcG9uZGluZwo+Pj4+IGNwdW1hc2suIFRoYXQgZG9lcyBub3QgbWFrZSBzZW5zZS4K
+Pj4+Pgo+Pj4+IFRoZSBYRU4gaW1wbGVtZW50YXRpb24gb2YgaXJxY2hpcDo6aXJxX3NldF9hZmZp
+bml0eSgpIGFscmVhZHkgcGlja3MgYQo+Pj4+IHNpbmdsZSB0YXJnZXQgQ1BVIG91dCBvZiB0aGUg
+YWZmaW5pdHkgbWFzayBhbmQgdGhlIGFjdHVhbCB0YXJnZXQgaXMgc3RvcmVkCj4+Pj4gaW4gdGhl
+IGVmZmVjdGl2ZSBDUFUgbWFzaywgc28gZGVzdHJveWluZyB0aGUgdXNlciBjaG9zZW4gYWZmaW5p
+dHkgbWFzawo+Pj4+IHdoaWNoIG1pZ2h0IGNvbnRhaW4gbW9yZSB0aGFuIG9uZSBDUFUgaXMgd3Jv
+bmcuCj4+Pj4KPj4+PiBDaGFuZ2UgdGhlIGltcGxlbWVudGF0aW9uIHNvIHRoYXQgdGhlIGNoYW5u
+ZWwgaXMgYm91bmQgdG8gQ1BVMCBhdCB0aGUgWEVOCj4+Pj4gbGV2ZWwgYW5kIGxlYXZlIHRoZSBh
+ZmZpbml0eSBtYXNrIGFsb25lLiBBdCBzdGFydHVwIG9mIHRoZSBpbnRlcnJ1cHQKPj4+PiBhZmZp
+bml0eSB3aWxsIGJlIGFzc2lnbmVkIG91dCBvZiB0aGUgYWZmaW5pdHkgbWFzayBhbmQgdGhlIFhF
+TiBiaW5kaW5nIHdpbGwKPj4+PiBiZSB1cGRhdGVkLgo+Pj4KPj4+IElmIHRoYXQncyB0aGUgY2Fz
+ZSB0aGVuIEkgd29uZGVyIHdoZXRoZXIgd2UgbmVlZCB0aGlzIGNhbGwgYXQgYWxsIGFuZCBpbnN0
+ZWFkIGJpbmQgYXQgc3RhcnR1cCB0aW1lLgo+PiBBZnRlciBzb21lIGRpc2N1c3Npb24gd2l0aCBU
+aG9tYXMgb24gSVJDIGFuZCB4ZW4tZGV2ZWwgYXJjaGFlb2xvZ3kgdGhlCj4+IHJlc3VsdCBpczog
+dGhpcyB3aWxsIGJlIG5lZWRlZCBlc3BlY2lhbGx5IGZvciBzeXN0ZW1zIHJ1bm5pbmcgb24gYQo+
+PiBzaW5nbGUgdmNwdSAoZS5nLiBzbWFsbCBndWVzdHMpLCBhcyB0aGUgLmlycV9zZXRfYWZmaW5p
+dHkoKSBjYWxsYmFjawo+PiB3b24ndCBiZSBjYWxsZWQgaW4gdGhpcyBjYXNlIHdoZW4gc3RhcnRp
+bmcgdGhlIGlycS4KCgpPbiBVUCBhcmUgd2Ugbm90IHRoZW4gZ29pbmcgdG8gZW5kIHVwIHdpdGgg
+YW4gZW1wdHkgYWZmaW5pdHkgbWFzaz8gT3IgYXJlIHdlIGd1YXJhbnRlZWQgdG8gaGF2ZSBpdCBz
+ZXQgdG8gMSBieSBpbnRlcnJ1cHQgZ2VuZXJpYyBjb2RlPwoKClRoaXMgaXMgYWN0dWFsbHkgd2h5
+IEkgYnJvdWdodCB0aGlzIHVwIGluIHRoZSBmaXJzdCBwbGFjZSAtLS0gYSBwb3RlbnRpYWwgbWlz
+bWF0Y2ggYmV0d2VlbiB0aGUgYWZmaW5pdHkgbWFzayBhbmQgWGVuLXNwZWNpZmljIGRhdGEgKGUu
+Zy4gaW5mby0+Y3B1IGFuZCB0aGVuIHByb3RvY29sLXNwZWNpZmljIGRhdGEgaW4gZXZlbnQgY2hh
+bm5lbCBjb2RlKS4gRXZlbiBpZiB0aGV5IGFyZSByZS1zeW5jaHJvbml6ZWQgbGF0ZXIsIGF0IHN0
+YXJ0dXAgdGltZSAoZm9yIFNNUCkuCgoKSSBkb24ndCBzZWUgYW55dGhpbmcgdGhhdCB3b3VsZCBj
+YXVzZSBhIHByb2JsZW0gcmlnaHQgbm93IGJ1dCBJIHdvcnJ5IHRoYXQgdGhpcyBpbmNvbnNpc3Rl
+bmN5IG1heSBjb21lIHVwIGF0IHNvbWUgcG9pbnQuCgoKLWJvcmlzCgoKPiBUaGF0J3MgcmlnaHQs
+IGJ1dCBub3QgbGltaXRlZCB0byBBUk0uIFRoZSBzYW1lIHByb2JsZW0gZXhpc3RzIG9uIHg4NiBV
+UC4KPiBTbyB5ZXMsIHRoZSBjYWxsIG1ha2VzIHNlbnNlLCBidXQgdGhlIGNoYW5nZWxvZyBpcyBu
+b3QgcmVhbGx5IHVzZWZ1bC4KPiBMZXQgbWUgYWRkIGEgY29tbWVudCB0byB0aGlzLgo+Cj4gVGhh
+bmtzLAo+Cj4gICAgICAgICB0Z2x4Cj4KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJl
+ZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGlu
+Zm8vaW50ZWwtZ2Z4Cg==
