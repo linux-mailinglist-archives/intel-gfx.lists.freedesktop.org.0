@@ -1,32 +1,63 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8C9072D7AB8
-	for <lists+intel-gfx@lfdr.de>; Fri, 11 Dec 2020 17:21:31 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6F24A2D7AF3
+	for <lists+intel-gfx@lfdr.de>; Fri, 11 Dec 2020 17:31:04 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DCCEB6E491;
-	Fri, 11 Dec 2020 16:21:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 494976E49D;
+	Fri, 11 Dec 2020 16:31:02 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 60DCF6E8C1;
- Fri, 11 Dec 2020 16:21:28 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 5BB7DA8835;
- Fri, 11 Dec 2020 16:21:28 +0000 (UTC)
+Received: from mail-wm1-x342.google.com (mail-wm1-x342.google.com
+ [IPv6:2a00:1450:4864:20::342])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 41E966E49D
+ for <intel-gfx@lists.freedesktop.org>; Fri, 11 Dec 2020 16:31:01 +0000 (UTC)
+Received: by mail-wm1-x342.google.com with SMTP id q75so9144132wme.2
+ for <intel-gfx@lists.freedesktop.org>; Fri, 11 Dec 2020 08:31:01 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:content-transfer-encoding:in-reply-to;
+ bh=0aJqlMpxFQBrfFCs6sqCkMfuxmLBNkaqvClkNn2UQPQ=;
+ b=Wdk9JBjvocAi2dqwxuNPHHzpObpiB5liK/Gt7nIdSSwgn8qupo+XFa1OazZwJKJa4U
+ VZfqYNe8Jfpo+Ns7PYIu7VWm4ebDD02sKaaePLlSEhbL/H0VfL1iz3j3UvgJWsnblXbA
+ lb7DvAhCSlr5SDMealgKnNRjYpenbWHN3U+VU=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:content-transfer-encoding
+ :in-reply-to;
+ bh=0aJqlMpxFQBrfFCs6sqCkMfuxmLBNkaqvClkNn2UQPQ=;
+ b=ARSVjqHI5YgXQMyhvzDAJGPhHkbzkFkEZa24dNYEOBvvVcMSPIoTEMNfTwFRs9QMtO
+ z8bY70tLHkiDI0mhAuUG4v+84Tevb42Jhm5QihsjUl+xDrbaznoMgu8L/DF7woHrAYCl
+ nltq7dDlqGxujtE47FYWdg/E7daEiRlVbWkxA8GMjB2u4njlvopaJcmUglyEArrTQo3W
+ iNNK1ZMPPYrWhPuZxc8PZ8fvCe3DEL99LKs/tJu8Hk+mZq+IILRwAbsXbYlj/ZdugGoN
+ Vdobpu3GtkwEb3ZAIEDE3LEIK5s1kQItR3XdU5LcMC4b5W/8TGNQr8u3UHmtJOJUb0UX
+ quPg==
+X-Gm-Message-State: AOAM532ttAl1ydO1fH2EFDDIdAFRm1qDGLNAZ05s0qIgM0DTu5+s1fA8
+ aygP9fRv1S0AoAhQgoMGxXsfAg==
+X-Google-Smtp-Source: ABdhPJwCeliXqsUkATdMzf50vwlfwEpDxoeyZlOwFYPOnTq38VjuEBG3mJIwlRjrNQ9giVdEVHiYXw==
+X-Received: by 2002:a1c:234d:: with SMTP id j74mr14346222wmj.18.1607704259920; 
+ Fri, 11 Dec 2020 08:30:59 -0800 (PST)
+Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
+ by smtp.gmail.com with ESMTPSA id b9sm15633467wmd.32.2020.12.11.08.30.58
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Fri, 11 Dec 2020 08:30:58 -0800 (PST)
+Date: Fri, 11 Dec 2020 17:30:56 +0100
+From: Daniel Vetter <daniel@ffwll.ch>
+To: Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>
+Message-ID: <20201211163056.GV401619@phenom.ffwll.local>
+References: <20201021163242.1458885-1-daniel.vetter@ffwll.ch>
+ <20201023122216.2373294-1-daniel.vetter@ffwll.ch>
+ <20201023122216.2373294-28-daniel.vetter@ffwll.ch>
+ <18e78a2d-6ede-97b8-3c8c-e85354a573f8@amd.com>
+ <CAKMK7uGG0B+NfBFO7j7E9FnxY4ET+bCgTHp5vKKXEYDX_1aR+Q@mail.gmail.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Daniel Vetter" <daniel.vetter@ffwll.ch>
-Date: Fri, 11 Dec 2020 16:21:28 -0000
-Message-ID: <160770368837.16101.14781732645786810242@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20201211155843.3348718-1-daniel.vetter@ffwll.ch>
-In-Reply-To: <20201211155843.3348718-1-daniel.vetter@ffwll.ch>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciBz?=
- =?utf-8?q?eries_starting_with_=5B1/4=5D_dma-buf=3A_Remove_kmap_kerneldoc_?=
- =?utf-8?q?vestiges?=
+Content-Disposition: inline
+In-Reply-To: <CAKMK7uGG0B+NfBFO7j7E9FnxY4ET+bCgTHp5vKKXEYDX_1aR+Q@mail.gmail.com>
+X-Operating-System: Linux phenom 5.7.0-1-amd64 
+Subject: Re: [Intel-gfx] [PATCH 28/65] drm/ttm: WARN_ON non-empty lru when
+ disabling a resource manager
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,69 +70,96 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: Daniel Vetter <daniel.vetter@intel.com>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ Huang Rui <ray.huang@amd.com>,
+ DRI Development <dri-devel@lists.freedesktop.org>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-PT0gU2VyaWVzIERldGFpbHMgPT0KClNlcmllczogc2VyaWVzIHN0YXJ0aW5nIHdpdGggWzEvNF0g
-ZG1hLWJ1ZjogUmVtb3ZlIGttYXAga2VybmVsZG9jIHZlc3RpZ2VzClVSTCAgIDogaHR0cHM6Ly9w
-YXRjaHdvcmsuZnJlZWRlc2t0b3Aub3JnL3Nlcmllcy84NDg0OS8KU3RhdGUgOiBmYWlsdXJlCgo9
-PSBTdW1tYXJ5ID09CgpDQUxMICAgIHNjcmlwdHMvY2hlY2tzeXNjYWxscy5zaAogIENBTEwgICAg
-c2NyaXB0cy9hdG9taWMvY2hlY2stYXRvbWljcy5zaAogIERFU0NFTkQgIG9ianRvb2wKICBDSEsg
-ICAgIGluY2x1ZGUvZ2VuZXJhdGVkL2NvbXBpbGUuaAogIENDICAgICAgZHJpdmVycy9kbWEtYnVm
-L2RtYS1idWYubwpJbiBmaWxlIGluY2x1ZGVkIGZyb20gLi9pbmNsdWRlL2xpbnV4L2tlcm5lbC5o
-OjE1LAogICAgICAgICAgICAgICAgIGZyb20gLi9pbmNsdWRlL2xpbnV4L2xpc3QuaDo5LAogICAg
-ICAgICAgICAgICAgIGZyb20gLi9pbmNsdWRlL2xpbnV4L3dhaXQuaDo3LAogICAgICAgICAgICAg
-ICAgIGZyb20gLi9pbmNsdWRlL2xpbnV4L3dhaXRfYml0Lmg6OCwKICAgICAgICAgICAgICAgICBm
-cm9tIC4vaW5jbHVkZS9saW51eC9mcy5oOjYsCiAgICAgICAgICAgICAgICAgZnJvbSBkcml2ZXJz
-L2RtYS1idWYvZG1hLWJ1Zi5jOjE0Ogpkcml2ZXJzL2RtYS1idWYvZG1hLWJ1Zi5jOiBJbiBmdW5j
-dGlvbiDigJhkbWFfYnVmX2JlZ2luX2NwdV9hY2Nlc3PigJk6CmRyaXZlcnMvZG1hLWJ1Zi9kbWEt
-YnVmLmM6MTEzNDoxNDogZXJyb3I6IOKAmGRtYV9idWbigJkgdW5kZWNsYXJlZCAoZmlyc3QgdXNl
-IGluIHRoaXMgZnVuY3Rpb24pCiAgbWlnaHRfbG9jaygmZG1hX2J1Zi0+cmVzdi5sb2NrKTsKICAg
-ICAgICAgICAgICBefn5+fn5+Ci4vaW5jbHVkZS9saW51eC90eXBlY2hlY2suaDoxMTo5OiBub3Rl
-OiBpbiBkZWZpbml0aW9uIG9mIG1hY3JvIOKAmHR5cGVjaGVja+KAmQogIHR5cGVvZih4KSBfX2R1
-bW15MjsgXAogICAgICAgICBeCmRyaXZlcnMvZG1hLWJ1Zi9kbWEtYnVmLmM6MTEzNDoyOiBub3Rl
-OiBpbiBleHBhbnNpb24gb2YgbWFjcm8g4oCYbWlnaHRfbG9ja+KAmQogIG1pZ2h0X2xvY2soJmRt
-YV9idWYtPnJlc3YubG9jayk7CiAgXn5+fn5+fn5+fgpkcml2ZXJzL2RtYS1idWYvZG1hLWJ1Zi5j
-OjExMzQ6MTQ6IG5vdGU6IGVhY2ggdW5kZWNsYXJlZCBpZGVudGlmaWVyIGlzIHJlcG9ydGVkIG9u
-bHkgb25jZSBmb3IgZWFjaCBmdW5jdGlvbiBpdCBhcHBlYXJzIGluCiAgbWlnaHRfbG9jaygmZG1h
-X2J1Zi0+cmVzdi5sb2NrKTsKICAgICAgICAgICAgICBefn5+fn5+Ci4vaW5jbHVkZS9saW51eC90
-eXBlY2hlY2suaDoxMTo5OiBub3RlOiBpbiBkZWZpbml0aW9uIG9mIG1hY3JvIOKAmHR5cGVjaGVj
-a+KAmQogIHR5cGVvZih4KSBfX2R1bW15MjsgXAogICAgICAgICBeCmRyaXZlcnMvZG1hLWJ1Zi9k
-bWEtYnVmLmM6MTEzNDoyOiBub3RlOiBpbiBleHBhbnNpb24gb2YgbWFjcm8g4oCYbWlnaHRfbG9j
-a+KAmQogIG1pZ2h0X2xvY2soJmRtYV9idWYtPnJlc3YubG9jayk7CiAgXn5+fn5+fn5+fgouL2lu
-Y2x1ZGUvbGludXgvdHlwZWNoZWNrLmg6MTI6MTg6IHdhcm5pbmc6IGNvbXBhcmlzb24gb2YgZGlz
-dGluY3QgcG9pbnRlciB0eXBlcyBsYWNrcyBhIGNhc3QKICAodm9pZCkoJl9fZHVtbXkgPT0gJl9f
-ZHVtbXkyKTsgXAogICAgICAgICAgICAgICAgICBefgouL2luY2x1ZGUvbGludXgvbG9ja2RlcC5o
-OjU0MjoyOiBub3RlOiBpbiBleHBhbnNpb24gb2YgbWFjcm8g4oCYdHlwZWNoZWNr4oCZCiAgdHlw
-ZWNoZWNrKHN0cnVjdCBsb2NrZGVwX21hcCAqLCAmKGxvY2spLT5kZXBfbWFwKTsgIFwKICBefn5+
-fn5+fn4KZHJpdmVycy9kbWEtYnVmL2RtYS1idWYuYzoxMTM0OjI6IG5vdGU6IGluIGV4cGFuc2lv
-biBvZiBtYWNybyDigJhtaWdodF9sb2Nr4oCZCiAgbWlnaHRfbG9jaygmZG1hX2J1Zi0+cmVzdi5s
-b2NrKTsKICBefn5+fn5+fn5+CmRyaXZlcnMvZG1hLWJ1Zi9kbWEtYnVmLmM6IEluIGZ1bmN0aW9u
-IOKAmGRtYV9idWZfZW5kX2NwdV9hY2Nlc3PigJk6CmRyaXZlcnMvZG1hLWJ1Zi9kbWEtYnVmLmM6
-MTE2OToxNDogZXJyb3I6IOKAmGRtYV9idWbigJkgdW5kZWNsYXJlZCAoZmlyc3QgdXNlIGluIHRo
-aXMgZnVuY3Rpb24pCiAgbWlnaHRfbG9jaygmZG1hX2J1Zi0+cmVzdi5sb2NrKTsKICAgICAgICAg
-ICAgICBefn5+fn5+Ci4vaW5jbHVkZS9saW51eC90eXBlY2hlY2suaDoxMTo5OiBub3RlOiBpbiBk
-ZWZpbml0aW9uIG9mIG1hY3JvIOKAmHR5cGVjaGVja+KAmQogIHR5cGVvZih4KSBfX2R1bW15Mjsg
-XAogICAgICAgICBeCmRyaXZlcnMvZG1hLWJ1Zi9kbWEtYnVmLmM6MTE2OToyOiBub3RlOiBpbiBl
-eHBhbnNpb24gb2YgbWFjcm8g4oCYbWlnaHRfbG9ja+KAmQogIG1pZ2h0X2xvY2soJmRtYV9idWYt
-PnJlc3YubG9jayk7CiAgXn5+fn5+fn5+fgouL2luY2x1ZGUvbGludXgvdHlwZWNoZWNrLmg6MTI6
-MTg6IHdhcm5pbmc6IGNvbXBhcmlzb24gb2YgZGlzdGluY3QgcG9pbnRlciB0eXBlcyBsYWNrcyBh
-IGNhc3QKICAodm9pZCkoJl9fZHVtbXkgPT0gJl9fZHVtbXkyKTsgXAogICAgICAgICAgICAgICAg
-ICBefgouL2luY2x1ZGUvbGludXgvbG9ja2RlcC5oOjU0MjoyOiBub3RlOiBpbiBleHBhbnNpb24g
-b2YgbWFjcm8g4oCYdHlwZWNoZWNr4oCZCiAgdHlwZWNoZWNrKHN0cnVjdCBsb2NrZGVwX21hcCAq
-LCAmKGxvY2spLT5kZXBfbWFwKTsgIFwKICBefn5+fn5+fn4KZHJpdmVycy9kbWEtYnVmL2RtYS1i
-dWYuYzoxMTY5OjI6IG5vdGU6IGluIGV4cGFuc2lvbiBvZiBtYWNybyDigJhtaWdodF9sb2Nr4oCZ
-CiAgbWlnaHRfbG9jaygmZG1hX2J1Zi0+cmVzdi5sb2NrKTsKICBefn5+fn5+fn5+CnNjcmlwdHMv
-TWFrZWZpbGUuYnVpbGQ6Mjc5OiByZWNpcGUgZm9yIHRhcmdldCAnZHJpdmVycy9kbWEtYnVmL2Rt
-YS1idWYubycgZmFpbGVkCm1ha2VbMl06ICoqKiBbZHJpdmVycy9kbWEtYnVmL2RtYS1idWYub10g
-RXJyb3IgMQpzY3JpcHRzL01ha2VmaWxlLmJ1aWxkOjQ5NjogcmVjaXBlIGZvciB0YXJnZXQgJ2Ry
-aXZlcnMvZG1hLWJ1ZicgZmFpbGVkCm1ha2VbMV06ICoqKiBbZHJpdmVycy9kbWEtYnVmXSBFcnJv
-ciAyCk1ha2VmaWxlOjE4MDU6IHJlY2lwZSBmb3IgdGFyZ2V0ICdkcml2ZXJzJyBmYWlsZWQKbWFr
-ZTogKioqIFtkcml2ZXJzXSBFcnJvciAyCgoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMu
-ZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlz
-dGluZm8vaW50ZWwtZ2Z4Cg==
+On Fri, Oct 23, 2020 at 04:56:20PM +0200, Daniel Vetter wrote:
+> On Fri, Oct 23, 2020 at 4:54 PM Christian K=F6nig
+> <christian.koenig@amd.com> wrote:
+> >
+> > Am 23.10.20 um 14:21 schrieb Daniel Vetter:
+> > > ttm_resource_manager->use_type is only used for runtime changes by
+> > > vmwgfx. I think ideally we'd push this functionality into drivers -
+> > > ttm itself does not provide any locking to guarantee this is safe, so
+> > > the only way this can work at runtime is if the driver does provide
+> > > additional guarantees. vwmgfx does that through the
+> > > vmw_private->reservation_sem. Therefore supporting this feature in
+> > > shared code feels a bit misplaced.
+> > >
+> > > As a first step add a WARN_ON to make sure the resource manager is
+> > > empty. This is just to make sure I actually understand correctly what
+> > > vmwgfx is doing, and to make sure an eventual subsequent refactor
+> > > doesn't break anything.
+> > >
+> > > This check should also be useful for other drivers, to make sure they
+> > > haven't leaked anything.
+> > >
+> > > Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
+> > > Cc: Christian Koenig <christian.koenig@amd.com>
+> > > Cc: Huang Rui <ray.huang@amd.com>
+> >
+> > I'm pretty sure that this will trigger for vmwgfx. But that's what it is
+> > supposed to do, isn't it?
+> =
+
+> Yeah, this is an accidental dump of my wip pile, and it's not done yet
+> at all. Please disregard (at least for now).
+> -Daniel
+> =
+
+> > Reviewed-by: Christian K=F6nig <christian.koenig@amd.com>
+
+Ok decided to submit these 3 patches finally, including the 2 vmwgfx fixes
+which should avoid the splat. I included your r-b, pls complain if that's
+not ok anymore.
+
+Thanks, Daniel
+
+> >
+> > > ---
+> > >   include/drm/ttm/ttm_resource.h | 4 ++++
+> > >   1 file changed, 4 insertions(+)
+> > >
+> > > diff --git a/include/drm/ttm/ttm_resource.h b/include/drm/ttm/ttm_res=
+ource.h
+> > > index f48a70d39ac5..789ec477b607 100644
+> > > --- a/include/drm/ttm/ttm_resource.h
+> > > +++ b/include/drm/ttm/ttm_resource.h
+> > > @@ -191,6 +191,10 @@ struct ttm_resource {
+> > >   static inline void
+> > >   ttm_resource_manager_set_used(struct ttm_resource_manager *man, boo=
+l used)
+> > >   {
+> > > +     int i;
+> > > +
+> > > +     for (i =3D 0; i < TTM_MAX_BO_PRIORITY; i++)
+> > > +             WARN_ON(!list_empty(&man->lru[i]));
+> > >       man->use_type =3D used;
+> > >   }
+> > >
+> >
+> =
+
+> =
+
+> -- =
+
+> Daniel Vetter
+> Software Engineer, Intel Corporation
+> http://blog.ffwll.ch
+
+-- =
+
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
