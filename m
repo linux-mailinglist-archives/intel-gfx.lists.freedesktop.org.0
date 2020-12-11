@@ -1,47 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 017682D6C04
-	for <lists+intel-gfx@lfdr.de>; Fri, 11 Dec 2020 01:04:46 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 033482D6C05
+	for <lists+intel-gfx@lfdr.de>; Fri, 11 Dec 2020 01:05:23 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 53B3F6E50C;
-	Fri, 11 Dec 2020 00:04:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 66A116E56D;
+	Fri, 11 Dec 2020 00:05:21 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 75E216E50C;
- Fri, 11 Dec 2020 00:04:41 +0000 (UTC)
-From: Thomas Gleixner <tglx@linutronix.de>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
- s=2020; t=1607645077;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=u4caiGj9t4ml+Fg2/LjvRAStceu1HqnXy5JxnlwmdFA=;
- b=eJe5C3lGb4euYOQ5NqFfsUko6q7Wl5m2rZaxuQ1CHGu4Pm86NUNkZ6G0XU9RxY87NzbBDc
- ldDhHBRuz8FurePK9zxQgdZ8itpY4Ib/oRUPYjSjeYReInLr9h7ip+USHGm7wSsyPmDxLv
- kj/1ZDcjtWRNli3PMHxskKmD4HwrP9Z+f8gXizycgXKbIaIDlgPtawVOXPrlZTSGX8Zfnf
- IWYCSqSxGsHEKzkDR85bq7gyV8KfYwwNkrQ2+SYN1BD6txCpqD9nrnJuEv/HOAgcIkRmdB
- DiW9PCPEtazOZRhcxwcj1i5rFCGn+T95DeUWuc+jttPExN8BouNdQm/34fvnLQ==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
- s=2020e; t=1607645077;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=u4caiGj9t4ml+Fg2/LjvRAStceu1HqnXy5JxnlwmdFA=;
- b=z8XrxSbQKj1sp6kNzbU4BhMX1SALkTHGkd40WvYT5KLsIfRVa3pnqtOT9ywbS00FEUqpMv
- tXHEfFQ9bRMVcSAg==
-To: boris.ostrovsky@oracle.com, LKML <linux-kernel@vger.kernel.org>
-In-Reply-To: <748d8d81-ac0f-aee2-1a56-ba9c40fee52f@oracle.com>
-References: <20201210192536.118432146@linutronix.de>
- <20201210194044.972064156@linutronix.de>
- <748d8d81-ac0f-aee2-1a56-ba9c40fee52f@oracle.com>
-Date: Fri, 11 Dec 2020 01:04:37 +0100
-Message-ID: <87im99i4x6.fsf@nanos.tec.linutronix.de>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 5D8246E56D;
+ Fri, 11 Dec 2020 00:05:19 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 4F220A0003;
+ Fri, 11 Dec 2020 00:05:19 +0000 (UTC)
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [patch 24/30] xen/events: Remove unused
- bind_evtchn_to_irq_lateeoi()
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Huang, Sean Z" <sean.z.huang@intel.com>
+Date: Fri, 11 Dec 2020 00:05:19 -0000
+Message-ID: <160764511931.16101.12965877023693632953@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20201210223859.23882-1-sean.z.huang@intel.com>
+In-Reply-To: <20201210223859.23882-1-sean.z.huang@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgSW50?=
+ =?utf-8?q?roduce_Intel_PXP_component_-_Mesa_single_session_=28rev6=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,45 +38,236 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Mark Rutland <mark.rutland@arm.com>,
- Karthikeyan Mitran <m.karthikeyan@mobiveil.co.in>,
- Peter Zijlstra <peterz@infradead.org>,
- Catalin Marinas <catalin.marinas@arm.com>,
- Linus Walleij <linus.walleij@linaro.org>, dri-devel@lists.freedesktop.org,
- Chris Wilson <chris@chris-wilson.co.uk>, "James E.J.
- Bottomley" <James.Bottomley@HansenPartnership.com>,
- Saeed Mahameed <saeedm@nvidia.com>, netdev@vger.kernel.org,
- Jakub Kicinski <kuba@kernel.org>, Will Deacon <will@kernel.org>,
- Michal Simek <michal.simek@xilinx.com>, linux-s390@vger.kernel.org,
- afzal mohammed <afzal.mohd.ma@gmail.com>,
- Stefano Stabellini <sstabellini@kernel.org>, Dave Jiang <dave.jiang@intel.com>,
- Leon Romanovsky <leon@kernel.org>, linux-rdma@vger.kernel.org,
- Marc Zyngier <maz@kernel.org>, Helge Deller <deller@gmx.de>,
- Russell King <linux@armlinux.org.uk>,
- Christian Borntraeger <borntraeger@de.ibm.com>, linux-pci@vger.kernel.org,
- xen-devel@lists.xenproject.org, Heiko Carstens <hca@linux.ibm.com>,
- Wambui Karuga <wambui.karugax@gmail.com>, Allen Hubbe <allenbh@gmail.com>,
- Rob Herring <robh@kernel.org>, David Airlie <airlied@linux.ie>,
- linux-gpio@vger.kernel.org, Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
- Bjorn Helgaas <bhelgaas@google.com>, Lee Jones <lee.jones@linaro.org>,
- linux-arm-kernel@lists.infradead.org, Juergen Gross <jgross@suse.com>,
- linux-parisc@vger.kernel.org, Hou Zhiqiang <Zhiqiang.Hou@nxp.com>,
- Tariq Toukan <tariqt@nvidia.com>, Jon Mason <jdmason@kudzu.us>,
- linux-ntb@googlegroups.com, intel-gfx@lists.freedesktop.org, "David S.
- Miller" <davem@davemloft.net>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============0375988448=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Dec 10 2020 at 18:19, boris ostrovsky wrote:
-> On 12/10/20 2:26 PM, Thomas Gleixner wrote:
->> -EXPORT_SYMBOL_GPL(bind_evtchn_to_irq_lateeoi);
->
-> include/xen/events.h also needs to be updated (and in the next patch for xen_set_affinity_evtchn() as well).
+--===============0375988448==
+Content-Type: multipart/alternative;
+ boundary="===============2321124862484331478=="
 
-Darn, I lost that.
+--===============2321124862484331478==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+== Series Details ==
+
+Series: Introduce Intel PXP component - Mesa single session (rev6)
+URL   : https://patchwork.freedesktop.org/series/84620/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_9473 -> Patchwork_19118
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19118/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_19118 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@gem_mmap_gtt@basic:
+    - fi-tgl-y:           [PASS][1] -> [DMESG-WARN][2] ([i915#402]) +1 similar issue
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9473/fi-tgl-y/igt@gem_mmap_gtt@basic.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19118/fi-tgl-y/igt@gem_mmap_gtt@basic.html
+
+  
+#### Possible fixes ####
+
+  * igt@debugfs_test@read_all_entries:
+    - fi-apl-guc:         [DMESG-WARN][3] ([i915#62]) -> [PASS][4]
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9473/fi-apl-guc/igt@debugfs_test@read_all_entries.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19118/fi-apl-guc/igt@debugfs_test@read_all_entries.html
+
+  * igt@gem_exec_suspend@basic-s0:
+    - fi-apl-guc:         [DMESG-WARN][5] ([i915#180] / [i915#62]) -> [PASS][6]
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9473/fi-apl-guc/igt@gem_exec_suspend@basic-s0.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19118/fi-apl-guc/igt@gem_exec_suspend@basic-s0.html
+
+  * igt@gem_linear_blits@basic:
+    - fi-tgl-y:           [DMESG-WARN][7] ([i915#402]) -> [PASS][8]
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9473/fi-tgl-y/igt@gem_linear_blits@basic.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19118/fi-tgl-y/igt@gem_linear_blits@basic.html
+
+  
+  [i915#180]: https://gitlab.freedesktop.org/drm/intel/issues/180
+  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
+  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
+
+
+Participating hosts (44 -> 40)
+------------------------------
+
+  Missing    (4): fi-ctg-p8600 fi-ilk-m540 fi-bdw-samus fi-hsw-4200u 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_9473 -> Patchwork_19118
+
+  CI-20190529: 20190529
+  CI_DRM_9473: c64377fd4f00a839c5b25b9e3bae1052fee113b5 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5888: c79d4e88f4162905da400360b6fa4940122f3a2c @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_19118: c5cb8520b5e1530d14c42e4b7830e7b53ff2878b @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+c5cb8520b5e1 drm/i915/pxp: Enable the PXP ioctl for protected session
+2d36ea7befb9 drm/i915/pxp: Add PXP-related registers into allowlist
+611b466b4273 drm/i915/pxp: Termiante the session upon app crash
+e9386b8ba7be drm/i915/pxp: Implement ioctl action to query PXP tag
+733af51aac06 drm/i915/pxp: Implement ioctl action to send TEE commands
+f2c7fba3da45 drm/i915/pxp: Implement ioctl action to terminate the session
+cd05c940fecf drm/i915/pxp: Implement ioctl action to set session in play
+717f710b867c drm/i915/pxp: Implement ioctl action to reserve session slots
+6b8e71a51390 drm/i915/pxp: Add plane decryption support
+9d0636e9498a drm/i915/pxp: User interface for Protected buffer
+238291470e9d drm/i915/uapi: introduce drm_i915_gem_create_ext
+d2ed1fac0c2c mei: pxp: export pavp client to me client bus
+c78a877702c7 drm/i915/pxp: Expose session state for display protection flip
+1cc947ef42df drm/i915/pxp: Enable PXP power management
+4243dda12065 drm/i915/pxp: Destroy arb session upon teardown
+e1072de8779e drm/i915/pxp: Enable PXP irq worker and callback stub
+6e0495763e2b drm/i915/pxp: Func to send hardware session termination
+1269b2f4bf9b drm/i915/pxp: Create the arbitrary session after boot
+cb091c29444b drm/i915/pxp: Implement funcs to create the TEE channel
+b12972ae3297 drm/i915/pxp: set KCR reg init during the boot time
+483cb19f6248 drm/i915/pxp: Introduce Intel PXP component
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19118/index.html
+
+--===============2321124862484331478==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Introduce Intel PXP component - Mesa single session (rev6)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/84620/">https://patchwork.freedesktop.org/series/84620/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19118/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19118/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_9473 -&gt; Patchwork_19118</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19118/index.html</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_19118 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@gem_mmap_gtt@basic:<ul>
+<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9473/fi-tgl-y/igt@gem_mmap_gtt@basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19118/fi-tgl-y/igt@gem_mmap_gtt@basic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) +1 similar issue</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@debugfs_test@read_all_entries:</p>
+<ul>
+<li>fi-apl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9473/fi-apl-guc/igt@debugfs_test@read_all_entries.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/62">i915#62</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19118/fi-apl-guc/igt@debugfs_test@read_all_entries.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@gem_exec_suspend@basic-s0:</p>
+<ul>
+<li>fi-apl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9473/fi-apl-guc/igt@gem_exec_suspend@basic-s0.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/180">i915#180</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/62">i915#62</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19118/fi-apl-guc/igt@gem_exec_suspend@basic-s0.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@gem_linear_blits@basic:</p>
+<ul>
+<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9473/fi-tgl-y/igt@gem_linear_blits@basic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19118/fi-tgl-y/igt@gem_linear_blits@basic.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Participating hosts (44 -&gt; 40)</h2>
+<p>Missing    (4): fi-ctg-p8600 fi-ilk-m540 fi-bdw-samus fi-hsw-4200u </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_9473 -&gt; Patchwork_19118</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_9473: c64377fd4f00a839c5b25b9e3bae1052fee113b5 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_5888: c79d4e88f4162905da400360b6fa4940122f3a2c @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
+  Patchwork_19118: c5cb8520b5e1530d14c42e4b7830e7b53ff2878b @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>c5cb8520b5e1 drm/i915/pxp: Enable the PXP ioctl for protected session<br />
+2d36ea7befb9 drm/i915/pxp: Add PXP-related registers into allowlist<br />
+611b466b4273 drm/i915/pxp: Termiante the session upon app crash<br />
+e9386b8ba7be drm/i915/pxp: Implement ioctl action to query PXP tag<br />
+733af51aac06 drm/i915/pxp: Implement ioctl action to send TEE commands<br />
+f2c7fba3da45 drm/i915/pxp: Implement ioctl action to terminate the session<br />
+cd05c940fecf drm/i915/pxp: Implement ioctl action to set session in play<br />
+717f710b867c drm/i915/pxp: Implement ioctl action to reserve session slots<br />
+6b8e71a51390 drm/i915/pxp: Add plane decryption support<br />
+9d0636e9498a drm/i915/pxp: User interface for Protected buffer<br />
+238291470e9d drm/i915/uapi: introduce drm_i915_gem_create_ext<br />
+d2ed1fac0c2c mei: pxp: export pavp client to me client bus<br />
+c78a877702c7 drm/i915/pxp: Expose session state for display protection flip<br />
+1cc947ef42df drm/i915/pxp: Enable PXP power management<br />
+4243dda12065 drm/i915/pxp: Destroy arb session upon teardown<br />
+e1072de8779e drm/i915/pxp: Enable PXP irq worker and callback stub<br />
+6e0495763e2b drm/i915/pxp: Func to send hardware session termination<br />
+1269b2f4bf9b drm/i915/pxp: Create the arbitrary session after boot<br />
+cb091c29444b drm/i915/pxp: Implement funcs to create the TEE channel<br />
+b12972ae3297 drm/i915/pxp: set KCR reg init during the boot time<br />
+483cb19f6248 drm/i915/pxp: Introduce Intel PXP component</p>
+
+</body>
+</html>
+
+--===============2321124862484331478==--
+
+--===============0375988448==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============0375988448==--
