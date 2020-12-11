@@ -1,32 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2601B2D791F
-	for <lists+intel-gfx@lfdr.de>; Fri, 11 Dec 2020 16:24:45 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id D08DF2D797A
+	for <lists+intel-gfx@lfdr.de>; Fri, 11 Dec 2020 16:35:25 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EF1946E888;
-	Fri, 11 Dec 2020 15:24:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 42B476E3D6;
+	Fri, 11 Dec 2020 15:35:24 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5F88A6E888
- for <intel-gfx@lists.freedesktop.org>; Fri, 11 Dec 2020 15:24:41 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 23295340-1500050 
- for multiple; Fri, 11 Dec 2020 15:24:29 +0000
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Fri, 11 Dec 2020 15:24:29 +0000
-Message-Id: <20201211152429.2717186-1-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.29.2
-In-Reply-To: <20201211143909.2716931-1-chris@chris-wilson.co.uk>
-References: <20201211143909.2716931-1-chris@chris-wilson.co.uk>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 247CA6E29D;
+ Fri, 11 Dec 2020 15:35:23 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 12FC2A9F66;
+ Fri, 11 Dec 2020 15:35:23 +0000 (UTC)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH i-g-t v2] i915/perf_pmu: Verify RC6 measurements
- before/after suspend
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Anshuman Gupta" <anshuman.gupta@intel.com>
+Date: Fri, 11 Dec 2020 15:35:23 -0000
+Message-ID: <160770092305.16101.4502496763006051604@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20201211134244.14588-1-anshuman.gupta@intel.com>
+In-Reply-To: <20201211134244.14588-1-anshuman.gupta@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
+ =?utf-8?q?HDCP_2=2E2_and_HDCP_1=2E4_Gen12_DP_MST_support_=28rev7=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,110 +38,81 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Chris Wilson <chris@chris-wilson.co.uk>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-RC6 should work before suspend, and continue to increment while idle
-after suspend. Should.
+== Series Details ==
 
-v2: Include a longer sleep after suspend; it appears we are reticent to
-idle so soon after waking up.
+Series: HDCP 2.2 and HDCP 1.4 Gen12 DP MST support (rev7)
+URL   : https://patchwork.freedesktop.org/series/82998/
+State : warning
 
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
----
- tests/i915/perf_pmu.c | 42 ++++++++++++++++++++++++++++++++++--------
- 1 file changed, 34 insertions(+), 8 deletions(-)
+== Summary ==
 
-diff --git a/tests/i915/perf_pmu.c b/tests/i915/perf_pmu.c
-index cb7273142..389e7bf46 100644
---- a/tests/i915/perf_pmu.c
-+++ b/tests/i915/perf_pmu.c
-@@ -170,6 +170,7 @@ static unsigned int measured_usleep(unsigned int usec)
- #define TEST_RUNTIME_PM (8)
- #define FLAG_LONG (16)
- #define FLAG_HANG (32)
-+#define TEST_S3 (64)
- 
- static igt_spin_t * __spin_poll(int fd, uint32_t ctx,
- 				const struct intel_execution_engine2 *e)
-@@ -1578,7 +1579,7 @@ test_frequency_idle(int gem_fd)
- 		     "Actual frequency should be 0 while parked!\n");
- }
- 
--static bool wait_for_rc6(int fd)
-+static bool wait_for_rc6(int fd, int timeout)
- {
- 	struct timespec tv = {};
- 	uint64_t start, now;
-@@ -1594,7 +1595,7 @@ static bool wait_for_rc6(int fd)
- 		now = pmu_read_single(fd);
- 		if (now - start > 1e6)
- 			return true;
--	} while (!igt_seconds_elapsed(&tv));
-+	} while (igt_seconds_elapsed(&tv) <= timeout);
- 
- 	return false;
- }
-@@ -1636,15 +1637,37 @@ test_rc6(int gem_fd, unsigned int flags)
- 		}
- 	}
- 
--	igt_require(wait_for_rc6(fd));
-+	igt_require(wait_for_rc6(fd, 1));
- 
- 	/* While idle check full RC6. */
--	prev = __pmu_read_single(fd, &ts[0]);
--	slept = measured_usleep(duration_ns / 1000);
--	idle = __pmu_read_single(fd, &ts[1]);
--	igt_debug("slept=%lu perf=%"PRIu64"\n", slept, ts[1] - ts[0]);
-+	for (int pass = 0; pass < 3; pass++) {
-+		prev = __pmu_read_single(fd, &ts[0]);
-+		slept = measured_usleep(duration_ns / 1000);
-+		idle = __pmu_read_single(fd, &ts[1]);
-+
-+		igt_debug("slept=%lu perf=%"PRIu64"\n", slept, ts[1] - ts[0]);
-+		assert_within_epsilon(idle - prev, ts[1] - ts[0], tolerance);
-+	}
-+
-+	if (flags & TEST_S3) {
-+		prev = __pmu_read_single(fd, &ts[0]);
-+		igt_system_suspend_autoresume(SUSPEND_STATE_MEM,
-+					      SUSPEND_TEST_NONE);
-+		idle = __pmu_read_single(fd, &ts[1]);
-+		igt_debug("suspend=%"PRIu64"\n", ts[1] - ts[0]);
-+		//assert_within_epsilon(idle - prev, ts[1] - ts[0], tolerance);
-+	}
- 
--	assert_within_epsilon(idle - prev, ts[1] - ts[0], tolerance);
-+	igt_assert(wait_for_rc6(fd, 5));
-+
-+	for (int pass = 0; pass < 3; pass++) {
-+		prev = __pmu_read_single(fd, &ts[0]);
-+		slept = measured_usleep(duration_ns / 1000);
-+		idle = __pmu_read_single(fd, &ts[1]);
-+
-+		igt_debug("slept=%lu perf=%"PRIu64"\n", slept, ts[1] - ts[0]);
-+		assert_within_epsilon(idle - prev, ts[1] - ts[0], tolerance);
-+	}
- 
- 	/* Wake up device and check no RC6. */
- 	fw = igt_open_forcewake_handle(gem_fd);
-@@ -2245,6 +2268,9 @@ igt_main
- 	igt_subtest("rc6-runtime-pm-long")
- 		test_rc6(fd, TEST_RUNTIME_PM | FLAG_LONG);
- 
-+	igt_subtest("rc6-suspend")
-+		test_rc6(fd, TEST_S3);
-+
- 	/**
- 	 * Check render nodes are counted.
- 	 */
--- 
-2.29.2
+$ dim sparse --fast origin/drm-tip
+Sparse version: v0.6.2
+Fast mode used, each commit won't be checked separately.
+-
++./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:257:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
++./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:261:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
++drivers/gpu/drm/i915/gt/intel_reset.c:1310:5: warning: context imbalance in 'intel_gt_reset_trylock' - different lock contexts for basic block
++drivers/gpu/drm/i915/gt/selftest_reset.c:100:20:    expected void *in
++drivers/gpu/drm/i915/gt/selftest_reset.c:100:20:    got void [noderef] __iomem *[assigned] s
++drivers/gpu/drm/i915/gt/selftest_reset.c:100:20: warning: incorrect type in assignment (different address spaces)
++drivers/gpu/drm/i915/gt/selftest_reset.c:101:46:    expected void const *src
++drivers/gpu/drm/i915/gt/selftest_reset.c:101:46:    got void [noderef] __iomem *[assigned] s
++drivers/gpu/drm/i915/gt/selftest_reset.c:101:46: warning: incorrect type in argument 2 (different address spaces)
++drivers/gpu/drm/i915/gt/selftest_reset.c:136:20:    expected void *in
++drivers/gpu/drm/i915/gt/selftest_reset.c:136:20:    got void [noderef] __iomem *[assigned] s
++drivers/gpu/drm/i915/gt/selftest_reset.c:136:20: warning: incorrect type in assignment (different address spaces)
++drivers/gpu/drm/i915/gt/selftest_reset.c:137:46:    expected void const *src
++drivers/gpu/drm/i915/gt/selftest_reset.c:137:46:    got void [noderef] __iomem *[assigned] s
++drivers/gpu/drm/i915/gt/selftest_reset.c:137:46: warning: incorrect type in argument 2 (different address spaces)
++drivers/gpu/drm/i915/gt/selftest_reset.c:98:34:    expected unsigned int [usertype] *s
++drivers/gpu/drm/i915/gt/selftest_reset.c:98:34:    got void [noderef] __iomem *[assigned] s
++drivers/gpu/drm/i915/gt/selftest_reset.c:98:34: warning: incorrect type in argument 1 (different address spaces)
++drivers/gpu/drm/i915/gvt/mmio.c:295:23: warning: memcpy with byte count of 279040
++drivers/gpu/drm/i915/i915_perf.c:1448:15: warning: memset with byte count of 16777216
++drivers/gpu/drm/i915/i915_perf.c:1502:15: warning: memset with byte count of 16777216
++./include/linux/seqlock.h:838:24: warning: trying to copy expression type 31
++./include/linux/seqlock.h:838:24: warning: trying to copy expression type 31
++./include/linux/seqlock.h:864:16: warning: trying to copy expression type 31
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_read16' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_read32' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_read64' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_read8' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_write16' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_write32' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_write8' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_read16' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_read32' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_read64' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_read8' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_write16' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_write32' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_write8' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_read16' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_read32' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_read64' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_read8' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_write16' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_write32' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_write8' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_read16' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_read32' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_read64' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_read8' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_write16' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_write32' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_write8' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen8_write16' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen8_write32' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen8_write8' - different lock contexts for basic block
+
 
 _______________________________________________
 Intel-gfx mailing list
