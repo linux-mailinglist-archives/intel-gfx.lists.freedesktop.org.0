@@ -1,63 +1,30 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 385BA2D8C09
-	for <lists+intel-gfx@lfdr.de>; Sun, 13 Dec 2020 08:29:35 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7D7812D8CE4
+	for <lists+intel-gfx@lfdr.de>; Sun, 13 Dec 2020 12:53:37 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 84C2F6E0E7;
-	Sun, 13 Dec 2020 07:29:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 90D0C89F97;
+	Sun, 13 Dec 2020 11:53:33 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 596296E0AF;
- Sun, 13 Dec 2020 07:29:27 +0000 (UTC)
-IronPort-SDR: D92JLDl6DKDmnxiNzchP7YDJqwJDwfuS4bfaRTlHjd625W6/iu08PjYj02QdoDfKmhqQ8r4ozy
- 0nHyFpYvwt1A==
-X-IronPort-AV: E=McAfee;i="6000,8403,9833"; a="172025194"
-X-IronPort-AV: E=Sophos;i="5.78,415,1599548400"; d="scan'208";a="172025194"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Dec 2020 23:29:26 -0800
-IronPort-SDR: f4KCmZj01QdkQP0lnWwiHzj0MqCWkx8O/Nz1pVYIimOyNPliwqOnUpDYUalXqLBIlb2ANu5NxP
- IKFxQvxY+y2Q==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.78,415,1599548400"; d="scan'208";a="377356944"
-Received: from fmsmsx606.amr.corp.intel.com ([10.18.126.86])
- by fmsmga004.fm.intel.com with ESMTP; 12 Dec 2020 23:29:26 -0800
-Received: from bgsmsx605.gar.corp.intel.com (10.67.234.7) by
- fmsmsx606.amr.corp.intel.com (10.18.126.86) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1713.5; Sat, 12 Dec 2020 23:29:25 -0800
-Received: from bgsmsx604.gar.corp.intel.com (10.67.234.6) by
- BGSMSX605.gar.corp.intel.com (10.67.234.7) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1713.5; Sun, 13 Dec 2020 12:59:23 +0530
-Received: from bgsmsx604.gar.corp.intel.com ([10.67.234.6]) by
- BGSMSX604.gar.corp.intel.com ([10.67.234.6]) with mapi id 15.01.1713.004;
- Sun, 13 Dec 2020 12:59:23 +0530
-From: "Shankar, Uma" <uma.shankar@intel.com>
-To: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Thread-Topic: [PATCH v4 16/16] drm/i915: Enable PCON configuration for Color
- Conversion for TGL
-Thread-Index: AQHWzTf9+2zfgg6nuUesSL0grB37D6n0p62Q
-Date: Sun, 13 Dec 2020 07:29:23 +0000
-Message-ID: <9bda98244dea4f578a372361d52c0a98@intel.com>
-References: <20201208075145.17389-1-ankit.k.nautiyal@intel.com>
- <20201208075145.17389-17-ankit.k.nautiyal@intel.com>
-In-Reply-To: <20201208075145.17389-17-ankit.k.nautiyal@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-product: dlpe-windows
-dlp-reaction: no-action
-dlp-version: 11.5.1.3
-x-originating-ip: [10.223.10.1]
+Received: from fireflyinternet.com (unknown [77.68.26.236])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EF77C89F92;
+ Sun, 13 Dec 2020 11:53:31 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 23310341-1500050 
+ for multiple; Sun, 13 Dec 2020 11:53:24 +0000
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Sun, 13 Dec 2020 11:53:23 +0000
+Message-Id: <20201213115323.415223-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.29.2
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH v4 16/16] drm/i915: Enable PCON
- configuration for Color Conversion for TGL
+Subject: [Intel-gfx] [PATCH i-g-t] i915/gem_exec_balancer: Measure
+ timeslicing fairness
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,86 +37,194 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "airlied@linux.ie" <airlied@linux.ie>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
+Cc: igt-dev@lists.freedesktop.org, Chris Wilson <chris@chris-wilson.co.uk>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+Oversaturate the virtual engines on the system and check that each
+workload receives a fair share of the available GPU time.
 
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+---
+ tests/i915/gem_exec_balancer.c | 154 +++++++++++++++++++++++++++++++++
+ 1 file changed, 154 insertions(+)
 
-> -----Original Message-----
-> From: Nautiyal, Ankit K <ankit.k.nautiyal@intel.com>
-> Sent: Tuesday, December 8, 2020 1:22 PM
-> To: intel-gfx@lists.freedesktop.org
-> Cc: dri-devel@lists.freedesktop.org; Shankar, Uma <uma.shankar@intel.com>;
-> airlied@linux.ie; jani.nikula@linux.intel.com; ville.syrjala@linux.intel.com;
-> Kulkarni, Vandita <vandita.kulkarni@intel.com>; Sharma, Swati2
-> <swati2.sharma@intel.com>
-> Subject: [PATCH v4 16/16] drm/i915: Enable PCON configuration for Color
-> Conversion for TGL
-
-Append display here.
-> 
-> This patch enables PCON configuration for color space conversion for
-> TGL+ platfrom. This will help in supporting 8k@60 YUV420 modes common
-> in HDMI 8k panels, through a capable PCON.
-> Also allow 8k@60 YUV420 modes, only if PCON claims to support the color space
-> conversion.
-> 
-> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_ddi.c | 1 +
-> drivers/gpu/drm/i915/display/intel_dp.c  | 5 +++++
->  2 files changed, 6 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c
-> b/drivers/gpu/drm/i915/display/intel_ddi.c
-> index 721a47bbc009..ed6b8ea85408 100644
-> --- a/drivers/gpu/drm/i915/display/intel_ddi.c
-> +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-> @@ -3644,6 +3644,7 @@ static void tgl_ddi_pre_enable_dp(struct
-> intel_atomic_state *state,
->  	if (!is_mst)
->  		intel_dp_set_power(intel_dp, DP_SET_POWER_D0);
-> 
-> +	intel_dp_configure_protocol_converter(intel_dp);
-
-Both the changes seems to be unrelated, it would be good to put configuration
-of protocol convertor in earlier patches and just pruning logic here.
-Also the description of patch needs to change to clearly call this out.
-
->  	intel_dp_sink_set_decompression_state(intel_dp, crtc_state, true);
->  	/*
->  	 * DDI FEC: "anticipates enabling FEC encoding sets the FEC_READY bit
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c
-> b/drivers/gpu/drm/i915/display/intel_dp.c
-> index b3f1190d8150..86289c925612 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> @@ -720,6 +720,11 @@ intel_dp_mode_valid_downstream(struct
-> intel_connector *connector,
->  	const struct drm_display_info *info = &connector->base.display_info;
->  	int tmds_clock;
-> 
-> +	/* Allow 8k YUV420 modes, only if PCON supports RGB->YUV conversion
-> */
-> +	if (mode->hdisplay == 7680 && drm_mode_is_420_only(info, mode) &&
-> +	    !intel_dp->dfp.rgb_to_ycbcr)
-
-I think this will be a platform limitation, as there may be platforms which can
-do that on the SOC side as well. So would be good to limit to those platforms where
-pcon conversion is the only option in order to support this configuration, instead of doing
-it for all platforms.
-
-> +		return MODE_NO_420;
-> +
->  	/*
->  	 * If PCON and HDMI2.1 sink both support FRL MODE, check FRL
->  	 * bandwidth constraints.
-> --
-> 2.17.1
+diff --git a/tests/i915/gem_exec_balancer.c b/tests/i915/gem_exec_balancer.c
+index 35a032ccb..34927da54 100644
+--- a/tests/i915/gem_exec_balancer.c
++++ b/tests/i915/gem_exec_balancer.c
+@@ -2763,6 +2763,157 @@ static void smoketest(int i915, int timeout)
+ 	gem_close(i915, batch[0].handle);
+ }
+ 
++static uint32_t read_ctx_timestamp(int i915, uint32_t ctx)
++{
++	struct drm_i915_gem_relocation_entry reloc;
++	struct drm_i915_gem_exec_object2 obj = {
++		.handle = gem_create(i915, 4096),
++		.offset = 32 << 20,
++		.relocs_ptr = to_user_pointer(&reloc),
++		.relocation_count = 1,
++	};
++	struct drm_i915_gem_execbuffer2 execbuf = {
++		.buffers_ptr = to_user_pointer(&obj),
++		.buffer_count = 1,
++		.rsvd1 = ctx,
++	};
++	uint32_t *map, *cs;
++	uint32_t ts;
++
++	cs = map = gem_mmap__device_coherent(i915, obj.handle,
++					     0, 4096, PROT_WRITE);
++
++	*cs++ = 0x24 << 23 | 1 << 19 | 2; /* relative SRM */
++	*cs++ = 0x3a8; /* CTX_TIMESTAMP */
++	memset(&reloc, 0, sizeof(reloc));
++	reloc.target_handle = obj.handle;
++	reloc.presumed_offset = obj.offset;
++	reloc.offset = offset_in_page(cs);
++	reloc.delta = 4000;
++	*cs++ = obj.offset + 4000;
++	*cs++ = obj.offset >> 32;
++
++	*cs++ = MI_BATCH_BUFFER_END;
++
++	gem_execbuf(i915, &execbuf);
++	gem_sync(i915, obj.handle);
++	gem_close(i915, obj.handle);
++
++	ts = map[1000];
++	munmap(map, 4096);
++
++	return ts;
++}
++
++static int cmp_u32(const void *A, const void *B)
++{
++	const uint32_t *a = A, *b = B;
++
++	if (*a < *b)
++		return -1;
++	else if (*a > *b)
++		return 1;
++	else
++		return 0;
++}
++
++static int read_ctx_timestamp_frequency(int i915)
++{
++	int value = 12500000; /* icl!!! are you feeling alright? CTX vs CS */
++	drm_i915_getparam_t gp = {
++		.value = &value,
++		.param = I915_PARAM_CS_TIMESTAMP_FREQUENCY,
++	};
++	if (intel_gen(intel_get_drm_devid(i915)) != 11)
++		ioctl(i915, DRM_IOCTL_I915_GETPARAM, &gp);
++	return value;
++}
++
++static uint64_t div64_u64_round_up(uint64_t x, uint64_t y)
++{
++	return (x + y - 1) / y;
++}
++
++static uint64_t ticks_to_ns(int i915, uint64_t ticks)
++{
++	return div64_u64_round_up(ticks * NSEC_PER_SEC,
++				  read_ctx_timestamp_frequency(i915));
++}
++
++static void __fairslice(int i915,
++			const struct i915_engine_class_instance *ci,
++			unsigned int count)
++{
++	igt_spin_t *spin = NULL;
++	uint32_t ctx[count + 1];
++	uint32_t ts[count + 1];
++
++	igt_debug("Launching %zd spinners on %s\n",
++		  ARRAY_SIZE(ctx), class_to_str(ci->engine_class));
++	igt_assert(ARRAY_SIZE(ctx) >= 3);
++
++	for (int i = 0; i < ARRAY_SIZE(ctx); i++) {
++		ctx[i] = load_balancer_create(i915, ci, count);
++		if (spin == NULL) {
++			spin = __igt_spin_new(i915, .ctx = ctx[i]);
++		} else {
++			struct drm_i915_gem_execbuffer2 eb = {
++				.buffer_count = 1,
++				.buffers_ptr = to_user_pointer(&spin->obj[IGT_SPIN_BATCH]),
++				.rsvd1 = ctx[i],
++			};
++			gem_execbuf(i915, &eb);
++		}
++	}
++
++	sleep(2); /* over the course of many timeslices */
++
++	igt_assert(gem_bo_busy(i915, spin->handle));
++	igt_spin_end(spin);
++	igt_debug("Cancelled spinners\n");
++
++	for (int i = 0; i < ARRAY_SIZE(ctx); i++)
++		ts[i] = read_ctx_timestamp(i915, ctx[i]);
++
++	for (int i = 0; i < ARRAY_SIZE(ctx); i++)
++		gem_context_destroy(i915, ctx[i]);
++	igt_spin_free(i915, spin);
++
++	qsort(ts, ARRAY_SIZE(ctx), sizeof(*ts), cmp_u32);
++	igt_info("%s: [%.1f, %.1f, %.1f] ms, expect %1.fms\n",
++		 class_to_str(ci->engine_class),
++		 1e-6 * ticks_to_ns(i915, ts[0]),
++		 1e-6 * ticks_to_ns(i915, ts[count / 2]),
++		 1e-6 * ticks_to_ns(i915, ts[count]),
++		 2e3 * count / ARRAY_SIZE(ctx));
++
++	igt_assert_f(ts[count], "CTX_TIMESTAMP not reported!\n");
++	igt_assert_f((ts[count] - ts[0]) * 6 < ts[count / 2],
++		     "Range of timeslices greater than tolerable: %.2fms > %.2fms; unfair!\n",
++		     1e-6 * ticks_to_ns(i915, ts[count] - ts[0]),
++		     1e-6 * ticks_to_ns(i915, ts[count / 2]) / 6);
++}
++
++static void fairslice(int i915)
++{
++	/* Relative CS mmio */
++	igt_require(intel_gen(intel_get_drm_devid(i915)) >= 11);
++
++	for (int class = 0; class < 32; class++) {
++		struct i915_engine_class_instance *ci;
++		unsigned int count = 0;
++
++		ci = list_engines(i915, 1u << class, &count);
++		if (!ci || count < 2) {
++			free(ci);
++			continue;
++		}
++
++		__fairslice(i915, ci, count);
++		free(ci);
++	}
++}
++
+ static bool has_context_engines(int i915)
+ {
+ 	struct drm_i915_gem_context_param p = {
+@@ -2848,6 +2999,9 @@ igt_main
+ 				full(i915, p->flags);
+ 	}
+ 
++	igt_subtest("fairslice")
++		fairslice(i915);
++
+ 	igt_subtest("nop")
+ 		nop(i915);
+ 
+-- 
+2.29.2
 
 _______________________________________________
 Intel-gfx mailing list
