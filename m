@@ -2,58 +2,62 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7AB032D86D9
-	for <lists+intel-gfx@lfdr.de>; Sat, 12 Dec 2020 14:22:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4D2AC2D8BFD
+	for <lists+intel-gfx@lfdr.de>; Sun, 13 Dec 2020 08:10:43 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C8B996E844;
-	Sat, 12 Dec 2020 13:22:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EAE366E0AF;
+	Sun, 13 Dec 2020 07:10:40 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-pg1-x52d.google.com (mail-pg1-x52d.google.com
- [IPv6:2607:f8b0:4864:20::52d])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3EEAF6E844;
- Sat, 12 Dec 2020 13:22:31 +0000 (UTC)
-Received: by mail-pg1-x52d.google.com with SMTP id n1so6522827pge.8;
- Sat, 12 Dec 2020 05:22:31 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=VTZpp0n/Om/Jf11Mz+DqRKpiaIjN4mJ897+taVy59Ug=;
- b=gs+DafSa6tm6ZhcmtOMAV2zOpZsgVdlfnJO3Cc8h6uZ7zEIkJ//kiGJiG610YJYd9c
- hi7RAK/gnCn0RzWdwMYCDo5iWNdBQbtvJKYrsQI5ZcoVP15/FlhWsHbcStHoxRpLv5K2
- 7tZggztOJ5OrWHKSc7C0B5gdsPwG3Jh4XQNGDZzJ5uC91i9eb/FOwSgLNZwxuhvbJlm1
- NZRNGWscN+BvdnS2hdE/2kf8TIOM+A9TYoTVx3z4X0kR366gEuSlj/jqKKPOYQFh4Kj3
- 5afdtXgK8N3xa39LgKIpCZwsKgk5qgska42v8wTbiGBbB+guXeCE2Frkke6P3b+dq3Ir
- zifA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=VTZpp0n/Om/Jf11Mz+DqRKpiaIjN4mJ897+taVy59Ug=;
- b=elUe3EVxoJomd+L+OwDLpkyuXi1PY6lIaL+yX9OxDv7A9JqwXBtlpEVh3rvN81upo9
- snBCsLUUAVdR5zMcBWrsUIlba6PMdvYrziakwIS9w3haj0tLdfqLci/AOr111dZBv5aP
- XLATsz34EgQ3RGMevWJy5PdITch4u5wSx7QPThz1BgJ6eOVdGpUNb9npIu5K92jJfRkr
- qEezTZH6OsyCXyPGZ4oJ+EbePsgEOpBGAjN0DNz7B9/z4b1oVwlhqBxThb6mH7e/oSXO
- HN4/GkUVRh+6QN/k5JXl4V4wjFAIhUVmBJKG9XNhzxFgnSf1767oPPPrT2G4Hd15ReMz
- +vvA==
-X-Gm-Message-State: AOAM5323CDiL3iB0zpWrbO20PJ8sZ2jRMrXN/7xNXQEOpSRnwMapSiFu
- 6YSwzM3LsZUs7qAd/CkoUCUO1BWziaHhRyQPJVw=
-X-Google-Smtp-Source: ABdhPJz6qkGZaIbcK80z8oNTbmCmaNucZ+fxbrx52JjiY59cFl32wS2FAI0NK0C4i2f9nCp4IxJVJq78J8uiblnFRTg=
-X-Received: by 2002:a05:6a00:170a:b029:19d:afca:4704 with SMTP id
- h10-20020a056a00170ab029019dafca4704mr15887538pfc.7.1607779350726; Sat, 12
- Dec 2020 05:22:30 -0800 (PST)
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4F2ED6E0AF;
+ Sun, 13 Dec 2020 07:10:39 +0000 (UTC)
+IronPort-SDR: 1/FcgHr37nrlgjzmH2NdMHuT56wRE9E3XyMj1paijumAclKZrvyoTgnH7Un7O9Cqfn3nWB+XUL
+ KwpUgU/zzNMQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9833"; a="236182519"
+X-IronPort-AV: E=Sophos;i="5.78,415,1599548400"; d="scan'208";a="236182519"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Dec 2020 23:10:37 -0800
+IronPort-SDR: rog/kyOgyUU1z9fW0u0fRDU5d0e1efC9zn8z1Pz8O8CBvSddNFvytTdGZpUph351Q/53kaKokV
+ +/64jwe/7j9Q==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.78,415,1599548400"; d="scan'208";a="379166714"
+Received: from fmsmsx606.amr.corp.intel.com ([10.18.126.86])
+ by fmsmga002.fm.intel.com with ESMTP; 12 Dec 2020 23:10:36 -0800
+Received: from bgsmsx601.gar.corp.intel.com (10.109.78.80) by
+ fmsmsx606.amr.corp.intel.com (10.18.126.86) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1713.5; Sat, 12 Dec 2020 23:10:35 -0800
+Received: from bgsmsx604.gar.corp.intel.com (10.67.234.6) by
+ BGSMSX601.gar.corp.intel.com (10.109.78.80) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1713.5; Sun, 13 Dec 2020 12:40:33 +0530
+Received: from bgsmsx604.gar.corp.intel.com ([10.67.234.6]) by
+ BGSMSX604.gar.corp.intel.com ([10.67.234.6]) with mapi id 15.01.1713.004;
+ Sun, 13 Dec 2020 12:40:33 +0530
+From: "Shankar, Uma" <uma.shankar@intel.com>
+To: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Thread-Topic: [PATCH v4 07/16] drm/dp_helper: Add helpers to configure PCONs
+ RGB-YCbCr Conversion
+Thread-Index: AQHWzTfnjYeyk30AfUC/Fs7RQhTAHqn0oHHw
+Date: Sun, 13 Dec 2020 07:10:33 +0000
+Message-ID: <84fd6863339d4737a67decd2a9787a23@intel.com>
+References: <20201208075145.17389-1-ankit.k.nautiyal@intel.com>
+ <20201208075145.17389-8-ankit.k.nautiyal@intel.com>
+In-Reply-To: <20201208075145.17389-8-ankit.k.nautiyal@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+dlp-product: dlpe-windows
+dlp-reaction: no-action
+dlp-version: 11.5.1.3
+x-originating-ip: [10.223.10.1]
 MIME-Version: 1.0
-References: <20201210192536.118432146@linutronix.de>
- <20201210194042.860029489@linutronix.de>
- <CAHp75Vc-2OjE2uwvNRiyLMQ8GSN3P7SehKD-yf229_7ocaktiw@mail.gmail.com>
- <87h7osgifc.fsf@nanos.tec.linutronix.de>
- <87360cgfol.fsf@nanos.tec.linutronix.de>
-In-Reply-To: <87360cgfol.fsf@nanos.tec.linutronix.de>
-From: Andy Shevchenko <andy.shevchenko@gmail.com>
-Date: Sat, 12 Dec 2020 15:22:14 +0200
-Message-ID: <CAHp75Ve5zzeQw8P2wD083WW5+KGehETTy810wksfpXbj+3GBug@mail.gmail.com>
-To: Thomas Gleixner <tglx@linutronix.de>
-Subject: Re: [Intel-gfx] [patch 03/30] genirq: Move irq_set_lockdep_class()
- to core
+Subject: Re: [Intel-gfx] [PATCH v4 07/16] drm/dp_helper: Add helpers to
+ configure PCONs RGB-YCbCr Conversion
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,117 +70,171 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Mark Rutland <mark.rutland@arm.com>,
- Karthikeyan Mitran <m.karthikeyan@mobiveil.co.in>,
- Peter Zijlstra <peterz@infradead.org>,
- Catalin Marinas <catalin.marinas@arm.com>,
- Linus Walleij <linus.walleij@linaro.org>,
- dri-devel <dri-devel@lists.freedesktop.org>,
- Chris Wilson <chris@chris-wilson.co.uk>,
- "James E.J. Bottomley" <James.Bottomley@hansenpartnership.com>,
- Saeed Mahameed <saeedm@nvidia.com>, netdev <netdev@vger.kernel.org>,
- Will Deacon <will@kernel.org>, Michal Simek <michal.simek@xilinx.com>,
- linux-s390@vger.kernel.org, afzal mohammed <afzal.mohd.ma@gmail.com>,
- Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
- Dave Jiang <dave.jiang@intel.com>, xen-devel@lists.xenproject.org,
- Leon Romanovsky <leon@kernel.org>,
- "open list:HFI1 DRIVER" <linux-rdma@vger.kernel.org>,
- Marc Zyngier <maz@kernel.org>, Helge Deller <deller@gmx.de>,
- Russell King <linux@armlinux.org.uk>,
- Christian Borntraeger <borntraeger@de.ibm.com>,
- linux-pci <linux-pci@vger.kernel.org>, Jakub Kicinski <kuba@kernel.org>,
- Heiko Carstens <hca@linux.ibm.com>, Wambui Karuga <wambui.karugax@gmail.com>,
- Allen Hubbe <allenbh@gmail.com>, Juergen Gross <jgross@suse.com>,
- Rob Herring <robh@kernel.org>, David Airlie <airlied@linux.ie>,
- "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
- Stefano Stabellini <sstabellini@kernel.org>,
- Bjorn Helgaas <bhelgaas@google.com>, Lee Jones <lee.jones@linaro.org>,
- linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
- Boris Ostrovsky <boris.ostrovsky@oracle.com>, linux-parisc@vger.kernel.org,
- Hou Zhiqiang <Zhiqiang.Hou@nxp.com>, LKML <linux-kernel@vger.kernel.org>,
- Tariq Toukan <tariqt@nvidia.com>, Jon Mason <jdmason@kudzu.us>,
- linux-ntb@googlegroups.com, intel-gfx <intel-gfx@lists.freedesktop.org>,
- "David S. Miller" <davem@davemloft.net>
+Cc: "airlied@linux.ie" <airlied@linux.ie>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Sat, Dec 12, 2020 at 12:07 AM Thomas Gleixner <tglx@linutronix.de> wrote:
->
-> On Fri, Dec 11 2020 at 22:08, Thomas Gleixner wrote:
->
-> > On Fri, Dec 11 2020 at 19:53, Andy Shevchenko wrote:
-> >
-> >> On Thu, Dec 10, 2020 at 10:14 PM Thomas Gleixner <tglx@linutronix.de> wrote:
-> >>>
-> >>> irq_set_lockdep_class() is used from modules and requires irq_to_desc() to
-> >>> be exported. Move it into the core code which lifts another requirement for
-> >>> the export.
-> >>
-> >> ...
-> >>
-> >>> +       if (IS_ENABLED(CONFIG_LOCKDEP))
-> >>> +               __irq_set_lockdep_class(irq, lock_class, request_class);
-> >
-> > You are right. Let me fix that.
->
-> No. I have to correct myself. You're wrong.
->
-> The inline is evaluated in the compilation units which include that
-> header and because the function declaration is unconditional it is
-> happy.
->
-> Now the optimizer stage makes the whole thing a NOOP if CONFIG_LOCKDEP=n
-> and thereby drops the reference to the function which makes it not
-> required for linking.
->
-> So in the file where the function is implemented:
->
-> #ifdef CONFIG_LOCKDEP
-> void __irq_set_lockdep_class(....)
-> {
-> }
-> #endif
->
-> The whole block is either discarded because CONFIG_LOCKDEP is not
-> defined or compile if it is defined which makes it available for the
-> linker.
->
-> And in the latter case the optimizer keeps the call in the inline (it
-> optimizes the condition away because it's always true).
->
-> So in both cases the compiler and the linker are happy and everything
-> works as expected.
->
-> It would fail if the header file had the following:
->
-> #ifdef CONFIG_LOCKDEP
-> void __irq_set_lockdep_class(....);
-> #endif
->
-> Because then it would complain about the missing function prototype when
-> it evaluates the inline.
 
-I understand that (that's why I put "if even no warning") and what I'm
-talking about is the purpose of IS_ENABLED(). It's usually good for
-compile testing !CONFIG_FOO cases. But here it seems inconsistent.
 
-The pattern I usually see in the cases like this is
+> -----Original Message-----
+> From: Nautiyal, Ankit K <ankit.k.nautiyal@intel.com>
+> Sent: Tuesday, December 8, 2020 1:22 PM
+> To: intel-gfx@lists.freedesktop.org
+> Cc: dri-devel@lists.freedesktop.org; Shankar, Uma <uma.shankar@intel.com>;
+> airlied@linux.ie; jani.nikula@linux.intel.com; ville.syrjala@linux.intel.com;
+> Kulkarni, Vandita <vandita.kulkarni@intel.com>; Sharma, Swati2
+> <swati2.sharma@intel.com>
+> Subject: [PATCH v4 07/16] drm/dp_helper: Add helpers to configure PCONs RGB-
+> YCbCr Conversion
+> 
+> DP Specification for DP2.0 to HDMI2.1 Pcon specifies support for conversion of
+> colorspace from RGB to YCbCr.
+> https://groups.vesa.org/wg/DP/document/previewpdf/15651
+> 
+> This patch adds the relavant registers and helper functions to get the capability
+> and set the color conversion bits for rgb->ycbcr conversion through PCON.
+> 
+> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+> ---
+>  drivers/gpu/drm/drm_dp_helper.c | 59 +++++++++++++++++++++++++++++++++
+>  include/drm/drm_dp_helper.h     | 10 +++++-
+>  2 files changed, 68 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/drm_dp_helper.c
+> b/drivers/gpu/drm/drm_dp_helper.c index d0626f57f99c..344662d5c295 100644
+> --- a/drivers/gpu/drm/drm_dp_helper.c
+> +++ b/drivers/gpu/drm/drm_dp_helper.c
+> @@ -949,6 +949,35 @@ bool
+> drm_dp_downstream_444_to_420_conversion(const u8
+> dpcd[DP_RECEIVER_CAP_SIZE]  }
+> EXPORT_SYMBOL(drm_dp_downstream_444_to_420_conversion);
+> 
+> +/**
+> + * drm_dp_downstream_rgb_to_ycbcr_conversion() - determine downstream
+> facing port
+> + *                                               RGB->YCbCr conversion capability
+> + * @dpcd: DisplayPort configuration data
+> + * @port_cap: downstream facing port capabilities
+> + *
+> + * Returns: whether the downstream facing port can convert RGB->YCbCr
+> +*/ bool drm_dp_downstream_rgb_to_ycbcr_conversion(const u8
+> +dpcd[DP_RECEIVER_CAP_SIZE],
+> +					       const u8 port_cap[4])
+> +{
+> +	if (!drm_dp_is_branch(dpcd))
+> +		return false;
+> +
+> +	if (dpcd[DP_DPCD_REV] < 0x13)
+> +		return false;
+> +
+> +	switch (port_cap[0] & DP_DS_PORT_TYPE_MASK) {
+> +	case DP_DS_PORT_TYPE_HDMI:
+> +		if ((dpcd[DP_DOWNSTREAMPORT_PRESENT] &
+> DP_DETAILED_CAP_INFO_AVAILABLE) == 0)
+> +			return false;
+> +
+> +		return port_cap[3] & DP_DS_HDMI_BT601_RGB_YCBCR_CONV;
 
- #ifdef CONFIG_LOCKDEP
- void __irq_set_lockdep_class(....);
- #else
- static inline void ... {}
- #endif
+I guess there are other conversions also possible, like BT709 and 2020. Update those
+as well here.
 
-and call it directly in the caller.
+> +	default:
+> +		return false;
+> +	}
+> +}
+> +EXPORT_SYMBOL(drm_dp_downstream_rgb_to_ycbcr_conversion);
+> +
+>  /**
+>   * drm_dp_downstream_mode() - return a mode for downstream facing port
+>   * @dev: DRM device
+> @@ -3140,3 +3169,33 @@ int drm_dp_pcon_pps_override_param(struct
+> drm_dp_aux *aux, u8 pps_param[6])
+>  	return 0;
+>  }
+>  EXPORT_SYMBOL(drm_dp_pcon_pps_override_param);
+> +
+> +/*
+> + * drm_dp_pcon_convert_rgb_to_ycbcr() - Configure the PCon to convert
+> +RGB to Ycbcr
+> + * @aux: displayPort AUX channel
+> + * @color_spc: Color space conversion type
+> + *
+> + * Returns 0 on success, else returns negative error code.
+> + */
+> +int drm_dp_pcon_convert_rgb_to_ycbcr(struct drm_dp_aux *aux, u8
+> +color_spc) {
+> +	int ret;
+> +	u8 buf;
+> +
+> +	if (color_spc != DP_CONVERSION_BT601_RGB_YCBCR_ENABLE ||
+> +	    color_spc != DP_CONVERSION_BT709_RGB_YCBCR_ENABLE ||
+> +	    color_spc != DP_CONVERSION_BT2020_RGB_YCBCR_ENABLE)
+> +		return -EINVAL;
 
-It's not a big deal, so up to you.
+Yeah this is wrong, fix it.
 
--- 
-With Best Regards,
-Andy Shevchenko
+> +
+> +	ret = drm_dp_dpcd_readb(aux, DP_PROTOCOL_CONVERTER_CONTROL_2,
+> &buf);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	buf |= color_spc;
+> +	ret = drm_dp_dpcd_writeb(aux,
+> DP_PROTOCOL_CONVERTER_CONTROL_2, buf);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	return 0;
+> +}
+> +EXPORT_SYMBOL(drm_dp_pcon_convert_rgb_to_ycbcr);
+> diff --git a/include/drm/drm_dp_helper.h b/include/drm/drm_dp_helper.h index
+> 347b4e1a55b4..1b3d54ed7a78 100644
+> --- a/include/drm/drm_dp_helper.h
+> +++ b/include/drm/drm_dp_helper.h
+> @@ -431,6 +431,9 @@ struct drm_device;
+>  # define DP_DS_HDMI_YCBCR420_PASS_THROUGH   (1 << 2)
+>  # define DP_DS_HDMI_YCBCR444_TO_422_CONV    (1 << 3)
+>  # define DP_DS_HDMI_YCBCR444_TO_420_CONV    (1 << 4)
+> +# define DP_DS_HDMI_BT601_RGB_YCBCR_CONV    (1 << 5)
+> +# define DP_DS_HDMI_BT709_RGB_YCBCR_CONV    (1 << 6)
+> +# define DP_DS_HDMI_BT2020_RGB_YCBCR_CONV   (1 << 7)
+
+I think it would be good to mention the location in spec (section or table),
+will make it easier to understand/review by directly going to relevant sections in spec.
+
+> 
+>  #define DP_MAX_DOWNSTREAM_PORTS		    0x10
+> 
+> @@ -1217,7 +1220,9 @@ struct drm_device;
+>  # define DP_PCON_ENC_PPS_OVERRIDE_DISABLED      0
+>  # define DP_PCON_ENC_PPS_OVERRIDE_EN_PARAMS     1
+>  # define DP_PCON_ENC_PPS_OVERRIDE_EN_BUFFER     2
+> -
+> +# define DP_CONVERSION_BT601_RGB_YCBCR_ENABLE  (1 << 4) # define
+> +DP_CONVERSION_BT709_RGB_YCBCR_ENABLE  (1 << 5) # define
+> +DP_CONVERSION_BT2020_RGB_YCBCR_ENABLE (1 << 6)
+> 
+>  /* PCON Downstream HDMI ERROR Status per Lane */
+>  #define DP_PCON_HDMI_ERROR_STATUS_LN0          0x3037
+> @@ -2178,5 +2183,8 @@ int drm_dp_pcon_dsc_bpp_incr(const u8
+> pcon_dsc_dpcd[DP_PCON_DSC_ENCODER_CAP_SIZE
+>  int drm_dp_pcon_pps_default(struct drm_dp_aux *aux);  int
+> drm_dp_pcon_pps_override_buf(struct drm_dp_aux *aux, u8 pps_buf[128]);  int
+> drm_dp_pcon_pps_override_param(struct drm_dp_aux *aux, u8 pps_param[6]);
+> +bool drm_dp_downstream_rgb_to_ycbcr_conversion(const u8
+> dpcd[DP_RECEIVER_CAP_SIZE],
+> +					       const u8 port_cap[4]);
+> +int drm_dp_pcon_convert_rgb_to_ycbcr(struct drm_dp_aux *aux, u8
+> +color_spc);
+> 
+>  #endif /* _DRM_DP_HELPER_H_ */
+> --
+> 2.17.1
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
