@@ -1,32 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 14F302D8F8A
-	for <lists+intel-gfx@lfdr.de>; Sun, 13 Dec 2020 19:51:12 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id CA05C2D8F8E
+	for <lists+intel-gfx@lfdr.de>; Sun, 13 Dec 2020 19:54:22 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4FDBF89C8D;
-	Sun, 13 Dec 2020 18:51:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9360589C8D;
+	Sun, 13 Dec 2020 18:54:19 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 4DDA489C8D;
- Sun, 13 Dec 2020 18:51:08 +0000 (UTC)
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id A4F0389C8D;
+ Sun, 13 Dec 2020 18:54:17 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 3AB28A41FB;
- Sun, 13 Dec 2020 18:51:08 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 9B2FDA41FB;
+ Sun, 13 Dec 2020 18:54:17 +0000 (UTC)
 MIME-Version: 1.0
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: =?utf-8?q?Jos=C3=A9_Roberto_de_Souza?= <jose.souza@intel.com>
-Date: Sun, 13 Dec 2020 18:51:08 -0000
-Message-ID: <160788546821.3706.5100624752861970722@emeril.freedesktop.org>
+Date: Sun, 13 Dec 2020 18:54:17 -0000
+Message-ID: <160788565761.3703.2392176154874133662@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20201213183930.349592-1-jose.souza@intel.com>
 In-Reply-To: <20201213183930.349592-1-jose.souza@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
- =?utf-8?q?series_starting_with_=5Bv5=2C1/6=5D_drm/damage=5Fhelper=3A_Chec?=
- =?utf-8?q?k_if_damage_clips_has_valid_values?=
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkRPQ1M6IHdhcm5pbmcgZm9yIHNl?=
+ =?utf-8?q?ries_starting_with_=5Bv5=2C1/6=5D_drm/damage=5Fhelper=3A_Check_?=
+ =?utf-8?q?if_damage_clips_has_valid_values?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,12 +54,9 @@ State : warning
 
 == Summary ==
 
-$ dim sparse --fast origin/drm-tip
-Sparse version: v0.6.2
-Fast mode used, each commit won't be checked separately.
-+drivers/gpu/drm/i915/intel_wakeref.c:137:19: warning: context imbalance in 'wakeref_auto_timeout' - unexpected unlock
-+drivers/gpu/drm/selftests/test-drm_damage_helper.c:244:25: warning: Using plain integer as NULL pointer
-+drivers/gpu/drm/selftests/test-drm_damage_helper.c:268:23: warning: Using plain integer as NULL pointer
+$ make htmldocs 2>&1 > /dev/null | grep i915
+Error: Cannot open file ./drivers/gpu/drm/i915/gt/intel_lrc.c
+WARNING: kernel-doc './scripts/kernel-doc -rst -enable-lineno -sphinx-version 1.7.9 -function Logical Rings, Logical Ring Contexts and Execlists ./drivers/gpu/drm/i915/gt/intel_lrc.c' failed with return code 1
 
 
 _______________________________________________
