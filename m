@@ -1,32 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 011C92D9605
-	for <lists+intel-gfx@lfdr.de>; Mon, 14 Dec 2020 11:10:51 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id B92772D95FB
+	for <lists+intel-gfx@lfdr.de>; Mon, 14 Dec 2020 11:10:44 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1DDD36E2B6;
-	Mon, 14 Dec 2020 10:10:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D189D6E171;
+	Mon, 14 Dec 2020 10:10:21 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C6FF16E1E0
- for <intel-gfx@lists.freedesktop.org>; Mon, 14 Dec 2020 10:10:05 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 458C56E197
+ for <intel-gfx@lists.freedesktop.org>; Mon, 14 Dec 2020 10:10:04 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 23317811-1500050 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 23317812-1500050 
  for multiple; Mon, 14 Dec 2020 10:09:55 +0000
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Mon, 14 Dec 2020 10:09:17 +0000
-Message-Id: <20201214100949.11387-37-chris@chris-wilson.co.uk>
+Date: Mon, 14 Dec 2020 10:09:18 +0000
+Message-Id: <20201214100949.11387-38-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20201214100949.11387-1-chris@chris-wilson.co.uk>
 References: <20201214100949.11387-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 37/69] drm/i915/gt: Defer the kmem_cache_free()
- until after the HW submit
+Subject: [Intel-gfx] [PATCH 38/69] drm/i915: Prune empty priolists
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,102 +44,97 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Watching lock_stat, we noticed that the kmem_cache_free() would cause
-the occasional multi-millisecond spike (directly affecting max-holdtime
-and so the max-waittime). Delaying our submission of the next ELSP by a
-millisecond will leave the GPU idle, so defer the kmem_cache_free()
-until afterwards.
+A side-effect of our priority inheritance scheme is that we promote
+requests from one priority to the next, moving them from one list to the
+next. This can often leave the old priority list empty, but still
+resident in the rbtree, which we then have to traverse during HW
+submission. rb_next() is relatively expensive operation so if we can
+push that to the update where we can do piecemeal pruning and reuse the
+nodes, this reduces the latency for HW submission.
 
 Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 ---
- .../gpu/drm/i915/gt/intel_execlists_submission.c    | 10 +++++++++-
- drivers/gpu/drm/i915/i915_scheduler.c               | 13 +++++++++++++
- drivers/gpu/drm/i915/i915_scheduler.h               | 12 ++++++++++++
- 3 files changed, 34 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/i915/i915_scheduler.c | 41 +++++++++++++++++++++------
+ 1 file changed, 32 insertions(+), 9 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
-index 201700fe3483..16161bf4c849 100644
---- a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
-+++ b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
-@@ -2019,6 +2019,7 @@ static void execlists_dequeue(struct intel_engine_cs *engine)
- 	struct i915_request **port = execlists->pending;
- 	struct i915_request ** const last_port = port + execlists->port_mask;
- 	struct i915_request *last = *execlists->active;
-+	struct list_head *free = NULL;
- 	struct virtual_engine *ve;
- 	struct rb_node *rb;
- 	bool submit = false;
-@@ -2307,8 +2308,9 @@ static void execlists_dequeue(struct intel_engine_cs *engine)
- 			}
- 		}
- 
-+		/* Remove the node, but defer the free for later */
- 		rb_erase_cached(&p->node, &execlists->queue);
--		i915_priolist_free(p);
-+		free = i915_priolist_free_defer(p, free);
- 	}
- done:
- 	*port++ = i915_request_get(last);
-@@ -2360,6 +2362,12 @@ static void execlists_dequeue(struct intel_engine_cs *engine)
- 			i915_request_put(*port);
- 		*execlists->pending = NULL;
- 	}
-+
-+	/*
-+	 * We noticed that kmem_cache_free() may cause 1ms+ latencies, so
-+	 * we defer the frees until after we have submitted the ELSP.
-+	 */
-+	i915_priolist_free_many(free);
- }
- 
- static void execlists_dequeue_irq(struct intel_engine_cs *engine)
 diff --git a/drivers/gpu/drm/i915/i915_scheduler.c b/drivers/gpu/drm/i915/i915_scheduler.c
-index a57353191d12..dad5318ca825 100644
+index dad5318ca825..c65fa0b012de 100644
 --- a/drivers/gpu/drm/i915/i915_scheduler.c
 +++ b/drivers/gpu/drm/i915/i915_scheduler.c
-@@ -126,6 +126,19 @@ void __i915_priolist_free(struct i915_priolist *p)
- 	kmem_cache_free(global.slab_priorities, p);
+@@ -64,9 +64,10 @@ struct list_head *
+ i915_sched_lookup_priolist(struct intel_engine_cs *engine, int prio)
+ {
+ 	struct intel_engine_execlists * const execlists = &engine->execlists;
+-	struct i915_priolist *p;
++	struct list_head *free = NULL;
+ 	struct rb_node **parent, *rb;
+-	bool first = true;
++	struct i915_priolist *p;
++	bool first;
+ 
+ 	lockdep_assert_held(&engine->active.lock);
+ 	assert_priolists(execlists);
+@@ -77,22 +78,40 @@ i915_sched_lookup_priolist(struct intel_engine_cs *engine, int prio)
+ find_priolist:
+ 	/* most positive priority is scheduled first, equal priorities fifo */
+ 	rb = NULL;
++	first = true;
+ 	parent = &execlists->queue.rb_root.rb_node;
+ 	while (*parent) {
+ 		rb = *parent;
+ 		p = to_priolist(rb);
+-		if (prio > p->priority) {
+-			parent = &rb->rb_left;
+-		} else if (prio < p->priority) {
+-			parent = &rb->rb_right;
+-			first = false;
+-		} else {
+-			return &p->requests;
++
++		if (prio == p->priority)
++			goto out;
++
++		/*
++		 * Prune an empty priolist, we can reuse it if we need to
++		 * allocate. After removing this node and rotating the subtrees
++		 * beneath its parent, we need to restart our descent from the
++		 * parent.
++		 */
++		if (list_empty(&p->requests)) {
++			rb = rb_parent(&p->node);
++			parent = rb ? &rb : &execlists->queue.rb_root.rb_node;
++			rb_erase_cached(&p->node, &execlists->queue);
++			free = i915_priolist_free_defer(p, free);
++			continue;
+ 		}
++
++		if (prio > p->priority)
++			parent = &rb->rb_left;
++		else
++			parent = &rb->rb_right, first = false;
+ 	}
+ 
+ 	if (prio == I915_PRIORITY_NORMAL) {
+ 		p = &execlists->default_priolist;
++	} else if (free) {
++		p = container_of(free, typeof(*p), requests);
++		free = p->requests.next;
+ 	} else {
+ 		p = kmem_cache_alloc(global.slab_priorities, GFP_ATOMIC);
+ 		/* Convert an allocation failure to a priority bump */
+@@ -117,7 +136,11 @@ i915_sched_lookup_priolist(struct intel_engine_cs *engine, int prio)
+ 
+ 	rb_link_node(&p->node, rb, parent);
+ 	rb_insert_color_cached(&p->node, &execlists->queue, first);
++	GEM_BUG_ON(rb_first_cached(&execlists->queue) !=
++		   rb_first(&execlists->queue.rb_root));
+ 
++out:
++	i915_priolist_free_many(free);
+ 	return &p->requests;
  }
  
-+void i915_priolist_free_many(struct list_head *list)
-+{
-+	while (list) {
-+		struct i915_priolist *p;
-+
-+		p = container_of(list, typeof(*p), requests);
-+		list = p->requests.next;
-+
-+		GEM_BUG_ON(p->priority == I915_PRIORITY_NORMAL);
-+		kmem_cache_free(global.slab_priorities, p);
-+	}
-+}
-+
- struct sched_cache {
- 	struct list_head *priolist;
- };
-diff --git a/drivers/gpu/drm/i915/i915_scheduler.h b/drivers/gpu/drm/i915/i915_scheduler.h
-index 858a0938f47a..503630bd2c03 100644
---- a/drivers/gpu/drm/i915/i915_scheduler.h
-+++ b/drivers/gpu/drm/i915/i915_scheduler.h
-@@ -48,6 +48,18 @@ static inline void i915_priolist_free(struct i915_priolist *p)
- 		__i915_priolist_free(p);
- }
- 
-+void i915_priolist_free_many(struct list_head *list);
-+
-+static inline struct list_head *
-+i915_priolist_free_defer(struct i915_priolist *p, struct list_head *free)
-+{
-+	if (p->priority != I915_PRIORITY_NORMAL) {
-+		p->requests.next = free;
-+		free = &p->requests;
-+	}
-+	return free;
-+}
-+
- void i915_request_show_with_schedule(struct drm_printer *m,
- 				     const struct i915_request *rq,
- 				     const char *prefix,
 -- 
 2.20.1
 
