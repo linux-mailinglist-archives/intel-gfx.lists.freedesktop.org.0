@@ -2,39 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8CC6E2D99CB
-	for <lists+intel-gfx@lfdr.de>; Mon, 14 Dec 2020 15:24:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D9B322D9A5F
+	for <lists+intel-gfx@lfdr.de>; Mon, 14 Dec 2020 15:57:47 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1116F6E213;
-	Mon, 14 Dec 2020 14:24:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BFDCF6E2BC;
+	Mon, 14 Dec 2020 14:57:44 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0A3F16E213
- for <intel-gfx@lists.freedesktop.org>; Mon, 14 Dec 2020 14:24:25 +0000 (UTC)
-IronPort-SDR: /I1PNuWwCAUgWPg12+v267DU2hv+UgAQSbZZd9/F4/DV41rvRvTuBp2jrlAx6gH+uE3gsubIBJ
- ZRlw3qeIp01A==
-X-IronPort-AV: E=McAfee;i="6000,8403,9834"; a="193071980"
-X-IronPort-AV: E=Sophos;i="5.78,419,1599548400"; d="scan'208";a="193071980"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Dec 2020 06:24:12 -0800
-IronPort-SDR: niIer5Cw+Q7vFfsLqB2OwkBITR4IG1YfoX1nnU/QMzmMuAQguWv8M5NY/vQM6mFYkDH7hyQgnr
- UaPFKs/kEhEQ==
-X-IronPort-AV: E=Sophos;i="5.78,419,1599548400"; d="scan'208";a="556021067"
-Received: from genxfsim-desktop.iind.intel.com ([10.223.74.178])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Dec 2020 06:24:10 -0800
-From: Anshuman Gupta <anshuman.gupta@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Mon, 14 Dec 2020 19:40:32 +0530
-Message-Id: <20201214141032.13431-1-anshuman.gupta@intel.com>
-X-Mailer: git-send-email 2.26.2
-In-Reply-To: <20201211134244.14588-5-anshuman.gupta@intel.com>
-References: <20201211134244.14588-5-anshuman.gupta@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 990466E2B8;
+ Mon, 14 Dec 2020 14:57:43 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 8D13BA008A;
+ Mon, 14 Dec 2020 14:57:43 +0000 (UTC)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v8 04/19] drm/i915/hdcp: No HDCP when encoder
- is't initialized
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Mon, 14 Dec 2020 14:57:43 -0000
+Message-ID: <160795786354.28164.6779861443334349483@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20201214123126.9777-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20201214123126.9777-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_series_starting_with_=5B1/2=5D_drm/i915=3A_Individual_reque?=
+ =?utf-8?q?st_cancellation?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,47 +39,48 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-There can be situation when DP MST connector is created without
-mst modeset being done, in those cases connector->encoder will be
-NULL. MST connector->encoder initializes after modeset.
-Don't enable HDCP in such cases to prevent any crash.
+== Series Details ==
 
-Cc: Ramalingam C <ramalingam.c@intel.com>
-Cc: Juston Li <juston.li@intel.com>
-Tested-by: Karthik B S <karthik.b.s@intel.com>
-Reviewed-by: Ramalingam C <ramalingam.c@intel.com>
-Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
----
-v2:
-Added missing RB of Ram.
+Series: series starting with [1/2] drm/i915: Individual request cancellation
+URL   : https://patchwork.freedesktop.org/series/84906/
+State : warning
 
- drivers/gpu/drm/i915/display/intel_hdcp.c | 6 ++++++
- 1 file changed, 6 insertions(+)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c b/drivers/gpu/drm/i915/display/intel_hdcp.c
-index b9d8825e2bb1..7d63e9495956 100644
---- a/drivers/gpu/drm/i915/display/intel_hdcp.c
-+++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
-@@ -2106,6 +2106,12 @@ int intel_hdcp_enable(struct intel_connector *connector,
- 	if (!hdcp->shim)
- 		return -ENOENT;
- 
-+	if (!connector->encoder) {
-+		drm_err(&dev_priv->drm, "[%s:%d] encoder is not initialized\n",
-+			connector->base.name, connector->base.base.id);
-+		return -ENODEV;
-+	}
+$ dim checkpatch origin/drm-tip
+27629d7496f4 drm/i915: Individual request cancellation
+-:318: CHECK:LINE_SPACING: Please don't use multiple blank lines
+#318: FILE: drivers/gpu/drm/i915/selftests/i915_request.c:742:
 +
- 	mutex_lock(&hdcp->mutex);
- 	mutex_lock(&dig_port->hdcp_mutex);
- 	drm_WARN_ON(&dev_priv->drm,
--- 
-2.26.2
++
+
+total: 0 errors, 0 warnings, 1 checks, 323 lines checked
+823a8e9dc249 drm/i915/gem: Allow cancelling an individual fence
+-:25: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#25: 
+new file mode 100644
+
+-:128: WARNING:LONG_LINE: line length of 116 exceeds 100 columns
+#128: FILE: include/uapi/drm/i915_drm.h:426:
++#define DRM_IOCTL_I915_GEM_CANCEL	DRM_IOW (DRM_COMMAND_BASE + DRM_I915_GEM_CANCEL, struct drm_i915_gem_cancel)
+
+-:128: WARNING:SPACING: space prohibited between function name and open parenthesis '('
+#128: FILE: include/uapi/drm/i915_drm.h:426:
++#define DRM_IOCTL_I915_GEM_CANCEL	DRM_IOW (DRM_COMMAND_BASE + DRM_I915_GEM_CANCEL, struct drm_i915_gem_cancel)
+
+-:128: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
+#128: FILE: include/uapi/drm/i915_drm.h:426:
++#define DRM_IOCTL_I915_GEM_CANCEL	DRM_IOW (DRM_COMMAND_BASE + DRM_I915_GEM_CANCEL, struct drm_i915_gem_cancel)
+
+total: 1 errors, 3 warnings, 0 checks, 105 lines checked
+
 
 _______________________________________________
 Intel-gfx mailing list
