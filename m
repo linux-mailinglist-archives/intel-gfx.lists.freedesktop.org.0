@@ -2,31 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 57B7C2D95F9
-	for <lists+intel-gfx@lfdr.de>; Mon, 14 Dec 2020 11:10:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 117632D95FF
+	for <lists+intel-gfx@lfdr.de>; Mon, 14 Dec 2020 11:10:47 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BAC256E1BB;
-	Mon, 14 Dec 2020 10:10:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 712856E2DF;
+	Mon, 14 Dec 2020 10:10:27 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2D64C6E182
- for <intel-gfx@lists.freedesktop.org>; Mon, 14 Dec 2020 10:10:04 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 96E1F6E288
+ for <intel-gfx@lists.freedesktop.org>; Mon, 14 Dec 2020 10:10:07 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 23317873-1500050 
- for multiple; Mon, 14 Dec 2020 10:10:00 +0000
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 23317874-1500050 
+ for multiple; Mon, 14 Dec 2020 10:10:01 +0000
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Mon, 14 Dec 2020 10:09:47 +0000
-Message-Id: <20201214100949.11387-67-chris@chris-wilson.co.uk>
+Date: Mon, 14 Dec 2020 10:09:48 +0000
+Message-Id: <20201214100949.11387-68-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20201214100949.11387-1-chris@chris-wilson.co.uk>
 References: <20201214100949.11387-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 67/69] drm/i915: Move saturated workload
- detection back to the context
+Subject: [Intel-gfx] [PATCH 68/69] drm/i915/gt: Skip over completed active
+ execlists, again
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,146 +39,105 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Chris Wilson <chris@chris-wilson.co.uk>,
+ Chris Wilson <ickle@kabylake.alporthouse.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-When we introduced the saturated workload detection to tell us to back
-off from semaphore usage [semaphores have a noticeable impact on
-contended bus cycles with the CPU for some heavy workloads], we first
-introduced it as a per-context tracker. This allows individual contexts
-to try and optimise their own usage, but we found that with the local
-tracking and the no-semaphore boosting, the first context to disable
-semaphores got a massive priority boost and so would starve the rest and
-all new contexts (as they started with semaphores enabled and lower
-priority). Hence we moved the saturated workload detection to the
-engine, and a consequence had to disable semaphores on virtual engines.
+From: Chris Wilson <ickle@kabylake.alporthouse.com>
 
-Now that we do not have semaphore priority boosting, and try to fairly
-schedule irrespective of semaphore usage, we can move the tracking back
-to the context and virtual engines can now utilise the faster inter-engine
-synchronisation. If we see that any context fairs to use the semaphore,
-because the system is oversubscribed and was busy doing something else
-instead of spinning on the semaphore, we disable further usage of
-semaphores with that context until it idles again. This should restrict
-the semaphores to lightly utilised system where the latency between
-requests is more noticeable, and curtail the bus-contention from checking
-for signaled semaphores.
+Now that we are careful to always force-restore contexts upon rewinding
+(where necessary), we can restore our optimisation to skip over
+completed active execlists when dequeuing.
 
-References: 44d89409a12e ("drm/i915: Make the semaphore saturation mask global")
+Referenecs: 35f3fd8182ba ("drm/i915/execlists: Workaround switching back to a completed context")
+References: 8ab3a3812aa9 ("drm/i915/gt: Incrementally check for rewinding")
 Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/gt/intel_context.c           |  3 +++
- drivers/gpu/drm/i915/gt/intel_context_types.h     |  2 ++
- drivers/gpu/drm/i915/gt/intel_engine_pm.c         |  2 --
- drivers/gpu/drm/i915/gt/intel_engine_types.h      |  2 --
- .../gpu/drm/i915/gt/intel_execlists_submission.c  | 15 ---------------
- drivers/gpu/drm/i915/i915_request.c               |  4 ++--
- 6 files changed, 7 insertions(+), 21 deletions(-)
+ .../drm/i915/gt/intel_execlists_submission.c  | 31 +++++++++----------
+ 1 file changed, 15 insertions(+), 16 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_context.c b/drivers/gpu/drm/i915/gt/intel_context.c
-index f3a8c139624c..d01678c26a91 100644
---- a/drivers/gpu/drm/i915/gt/intel_context.c
-+++ b/drivers/gpu/drm/i915/gt/intel_context.c
-@@ -345,6 +345,9 @@ static int __intel_context_active(struct i915_active *active)
- {
- 	struct intel_context *ce = container_of(active, typeof(*ce), active);
- 
-+	CE_TRACE(ce, "active\n");
-+	ce->saturated = 0;
-+
- 	intel_context_get(ce);
- 
- 	/* everything should already be activated by intel_context_pre_pin() */
-diff --git a/drivers/gpu/drm/i915/gt/intel_context_types.h b/drivers/gpu/drm/i915/gt/intel_context_types.h
-index f7a0fb6f3a2e..1b972b1e0047 100644
---- a/drivers/gpu/drm/i915/gt/intel_context_types.h
-+++ b/drivers/gpu/drm/i915/gt/intel_context_types.h
-@@ -102,6 +102,8 @@ struct intel_context {
- 	} lrc;
- 	u32 tag; /* cookie passed to HW to track this context on submission */
- 
-+	intel_engine_mask_t saturated; /* submitting semaphores too late? */
-+
- 	/* Time on GPU as tracked by the hw. */
- 	struct {
- 		struct ewma_runtime avg;
-diff --git a/drivers/gpu/drm/i915/gt/intel_engine_pm.c b/drivers/gpu/drm/i915/gt/intel_engine_pm.c
-index aea8b6eab5ee..d4fe2dea537b 100644
---- a/drivers/gpu/drm/i915/gt/intel_engine_pm.c
-+++ b/drivers/gpu/drm/i915/gt/intel_engine_pm.c
-@@ -251,8 +251,6 @@ static int __engine_park(struct intel_wakeref *wf)
- 	struct intel_engine_cs *engine =
- 		container_of(wf, typeof(*engine), wakeref);
- 
--	engine->saturated = 0;
--
- 	/*
- 	 * If one and only one request is completed between pm events,
- 	 * we know that we are inside the kernel context and it is
-diff --git a/drivers/gpu/drm/i915/gt/intel_engine_types.h b/drivers/gpu/drm/i915/gt/intel_engine_types.h
-index 0698c4ae572c..a93bef46e455 100644
---- a/drivers/gpu/drm/i915/gt/intel_engine_types.h
-+++ b/drivers/gpu/drm/i915/gt/intel_engine_types.h
-@@ -304,8 +304,6 @@ struct intel_engine_cs {
- 
- 	struct intel_context *kernel_context; /* pinned */
- 
--	intel_engine_mask_t saturated; /* submitting semaphores too late? */
--
- 	struct {
- 		struct delayed_work work;
- 		struct i915_request *systole;
 diff --git a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
-index 989f1a2a2e8b..ed3b574f4547 100644
+index ed3b574f4547..442621efa2ff 100644
 --- a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
 +++ b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
-@@ -4921,21 +4921,6 @@ intel_execlists_create_virtual(struct intel_engine_cs **siblings,
- 	ve->base.instance = I915_ENGINE_CLASS_INVALID_VIRTUAL;
- 	ve->base.uabi_instance = I915_ENGINE_CLASS_INVALID_VIRTUAL;
- 
--	/*
--	 * The decision on whether to submit a request using semaphores
--	 * depends on the saturated state of the engine. We only compute
--	 * this during HW submission of the request, and we need for this
--	 * state to be globally applied to all requests being submitted
--	 * to this engine. Virtual engines encompass more than one physical
--	 * engine and so we cannot accurately tell in advance if one of those
--	 * engines is already saturated and so cannot afford to use a semaphore
--	 * and be pessimized in priority for doing so -- if we are the only
--	 * context using semaphores after all other clients have stopped, we
--	 * will be starved on the saturated system. Such a global switch for
--	 * semaphores is less than ideal, but alas is the current compromise.
--	 */
--	ve->base.saturated = ALL_ENGINES;
--
- 	snprintf(ve->base.name, sizeof(ve->base.name), "virtual");
- 
- 	i915_sched_init_engine(&ve->base.active, ENGINE_VIRTUAL);
-diff --git a/drivers/gpu/drm/i915/i915_request.c b/drivers/gpu/drm/i915/i915_request.c
-index ca82b717c7c0..d51747c3aedd 100644
---- a/drivers/gpu/drm/i915/i915_request.c
-+++ b/drivers/gpu/drm/i915/i915_request.c
-@@ -571,7 +571,7 @@ bool __i915_request_submit(struct i915_request *request)
- 	 */
- 	if (request->sched.semaphores &&
- 	    i915_sw_fence_signaled(&request->semaphore))
--		engine->saturated |= request->sched.semaphores;
-+		request->context->saturated |= request->sched.semaphores;
- 
- 	engine->emit_fini_breadcrumb(request,
- 				     request->ring->vaddr + request->postfix);
-@@ -1032,7 +1032,7 @@ already_busywaiting(struct i915_request *rq)
- 	 *
- 	 * See the are-we-too-late? check in __i915_request_submit().
- 	 */
--	return rq->sched.semaphores | READ_ONCE(rq->engine->saturated);
-+	return rq->sched.semaphores | READ_ONCE(rq->context->saturated);
+@@ -1985,12 +1985,20 @@ static void set_preempt_timeout(struct intel_engine_cs *engine,
+ 		     active_preempt_timeout(engine, rq));
  }
  
- static int
++static bool completed(const struct i915_request *rq)
++{
++	if (i915_request_has_sentinel(rq))
++		return false;
++
++	return i915_request_completed(rq);
++}
++
+ static void execlists_dequeue(struct intel_engine_cs *engine)
+ {
+ 	struct intel_engine_execlists * const execlists = &engine->execlists;
+ 	struct i915_request **port = execlists->pending;
+ 	struct i915_request ** const last_port = port + execlists->port_mask;
+-	struct i915_request *last = *execlists->active;
++	struct i915_request *last, * const *active;
+ 	struct list_head *free = NULL;
+ 	struct virtual_engine *ve;
+ 	struct rb_node *rb;
+@@ -2028,21 +2036,13 @@ static void execlists_dequeue(struct intel_engine_cs *engine)
+ 	 * i.e. we will retrigger preemption following the ack in case
+ 	 * of trouble.
+ 	 *
+-	 * In theory we can skip over completed contexts that have not
+-	 * yet been processed by events (as those events are in flight):
+-	 *
+-	 * while ((last = *active) && i915_request_completed(last))
+-	 *	active++;
+-	 *
+-	 * However, the GPU cannot handle this as it will ultimately
+-	 * find itself trying to jump back into a context it has just
+-	 * completed and barf.
+ 	 */
++	active = execlists->active;
++	while ((last = *active) && completed(last))
++		active++;
+ 
+ 	if (last) {
+-		if (i915_request_completed(last)) {
+-			goto check_secondary;
+-		} else if (need_preempt(engine, last)) {
++		if (need_preempt(engine, last)) {
+ 			ENGINE_TRACE(engine,
+ 				     "preempting last=%llx:%llu, dl=%llu, prio=%d\n",
+ 				     last->fence.context,
+@@ -2104,7 +2104,6 @@ static void execlists_dequeue(struct intel_engine_cs *engine)
+ 			 * we hopefully coalesce several updates into a single
+ 			 * submission.
+ 			 */
+-check_secondary:
+ 			if (!list_is_last(&last->sched.link,
+ 					  &engine->active.requests)) {
+ 				/*
+@@ -2293,7 +2292,7 @@ static void execlists_dequeue(struct intel_engine_cs *engine)
+ 	 * of ordered contexts.
+ 	 */
+ 	if (submit &&
+-	    memcmp(execlists->active,
++	    memcmp(active,
+ 		   execlists->pending,
+ 		   (port - execlists->pending) * sizeof(*port))) {
+ 		*port = NULL;
+@@ -2301,7 +2300,7 @@ static void execlists_dequeue(struct intel_engine_cs *engine)
+ 			execlists_schedule_in(*port, port - execlists->pending);
+ 
+ 		WRITE_ONCE(execlists->yield, -1);
+-		set_preempt_timeout(engine, *execlists->active);
++		set_preempt_timeout(engine, *active);
+ 		execlists_submit_ports(engine);
+ 	} else {
+ 		ring_set_paused(engine, 0);
 -- 
 2.20.1
 
