@@ -1,61 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6F14E2D9F70
-	for <lists+intel-gfx@lfdr.de>; Mon, 14 Dec 2020 19:45:11 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 358AA2D9FA6
+	for <lists+intel-gfx@lfdr.de>; Mon, 14 Dec 2020 19:54:31 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9315A6E0C9;
-	Mon, 14 Dec 2020 18:45:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9161D6E0F5;
+	Mon, 14 Dec 2020 18:54:29 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5BBDA6E0C9;
- Mon, 14 Dec 2020 18:45:08 +0000 (UTC)
-IronPort-SDR: W3NlH6TlPhTzQci41cHWji262/ycvCByEBGb4XQoV/mkdM09QE8FBEic6yrpccw8opVV6rcFje
- SFEAmSoUjoVA==
-X-IronPort-AV: E=McAfee;i="6000,8403,9834"; a="162505202"
-X-IronPort-AV: E=Sophos;i="5.78,420,1599548400"; 
- d="scan'208,217";a="162505202"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Dec 2020 10:45:06 -0800
-IronPort-SDR: 5xZweUbirlWjanYrWrjoY5E1P3gdENilyURIA5vkQtH0iqJZci2lSzuxvcuHZfOAPhUgati3rG
- jVOBaPK+xR0A==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.78,420,1599548400"; 
- d="scan'208,217";a="383256032"
-Received: from orsmsx606.amr.corp.intel.com ([10.22.229.19])
- by fmsmga002.fm.intel.com with ESMTP; 14 Dec 2020 10:45:05 -0800
-Received: from orsmsx612.amr.corp.intel.com (10.22.229.25) by
- ORSMSX606.amr.corp.intel.com (10.22.229.19) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1713.5; Mon, 14 Dec 2020 10:45:04 -0800
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX612.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1713.5; Mon, 14 Dec 2020 10:45:04 -0800
-Received: from orsmsx610.amr.corp.intel.com ([10.22.229.23]) by
- ORSMSX610.amr.corp.intel.com ([10.22.229.23]) with mapi id 15.01.1713.004;
- Mon, 14 Dec 2020 10:45:04 -0800
-From: "Chang, Yu bruce" <yu.bruce.chang@intel.com>
-To: Chris Wilson <chris@chris-wilson.co.uk>, "intel-gfx@lists.freedesktop.org"
- <intel-gfx@lists.freedesktop.org>
-Thread-Topic: [PATCH i-g-t] lib: Pass device fd to
- gem_mmappable_aperture_size()
-Thread-Index: AQHW0Gtb2Usp9qHUFUmsvUL74KoMQan27y7/
-Date: Mon, 14 Dec 2020 18:45:04 +0000
-Message-ID: <7021dc5149a24438878f6540a0c4aed8@intel.com>
-References: <20201212094354.3023502-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20201212094354.3023502-1-chris@chris-wilson.co.uk>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.132]
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 5727C6E0F4;
+ Mon, 14 Dec 2020 18:54:28 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 51253A882F;
+ Mon, 14 Dec 2020 18:54:28 +0000 (UTC)
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH i-g-t] lib: Pass device fd to
- gem_mmappable_aperture_size()
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Mon, 14 Dec 2020 18:54:28 -0000
+Message-ID: <160797206832.28163.17189832266596389471@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20201214123126.9777-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20201214123126.9777-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLklHVDogc3VjY2VzcyBmb3Igc2Vy?=
+ =?utf-8?q?ies_starting_with_=5B1/2=5D_drm/i915=3A_Individual_request_canc?=
+ =?utf-8?q?ellation?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,1771 +39,594 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "igt-dev@lists.freedesktop.org" <igt-dev@lists.freedesktop.org>
-Content-Type: multipart/mixed; boundary="===============1014413096=="
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============0400372373=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============1014413096==
-Content-Language: en-US
+--===============0400372373==
 Content-Type: multipart/alternative;
-	boundary="_000_7021dc5149a24438878f6540a0c4aed8intelcom_"
+ boundary="===============8406012883507354864=="
 
---_000_7021dc5149a24438878f6540a0c4aed8intelcom_
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+--===============8406012883507354864==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Some minor comments as below.
+== Series Details ==
 
+Series: series starting with [1/2] drm/i915: Individual request cancellation
+URL   : https://patchwork.freedesktop.org/series/84906/
+State : success
 
-Reviewed-by: Bruce Chang <yu.bruce.chang@intel.com>
+== Summary ==
 
-________________________________
-From: Chris Wilson <chris@chris-wilson.co.uk>
-Sent: Saturday, December 12, 2020 1:43 AM
-To: intel-gfx@lists.freedesktop.org
-Cc: igt-dev@lists.freedesktop.org; Chris Wilson; Chang, Yu bruce
-Subject: [PATCH i-g-t] lib: Pass device fd to gem_mmappable_aperture_size()
+CI Bug Log - changes from CI_DRM_9481_full -> Patchwork_19134_full
+====================================================
 
-In order to find the correct aperture size for the test, we want to pass
-the test's device into the query.
+Summary
+-------
 
-Reported-by: Bruce Chang <yu.bruce.chang@intel.com>
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: Bruce Chang <yu.bruce.chang@intel.com>
----
- lib/i915/gem_mman.c                | 108 +++++++++++++++++++++++++++
- lib/i915/gem_mman.h                |   6 ++
- lib/ioctl_wrappers.c               | 116 -----------------------------
- lib/ioctl_wrappers.h               |   5 --
- tests/i915/gem_concurrent_all.c    |  12 +--
- tests/i915/gem_mmap.c              |   4 +-
- tests/i915/gem_mmap_gtt.c          |  10 +--
- tests/i915/gem_pwrite.c            |   6 +-
- tests/i915/gem_shrink.c            |   2 +-
- tests/i915/gem_tiled_fence_blits.c |   2 +-
- tests/i915/i915_pm_rpm.c           |   4 +-
- tests/kms_big_fb.c                 |   2 +-
- tests/kms_flip.c                   |   2 +-
- tests/prime_mmap.c                 |   4 +-
- 14 files changed, 138 insertions(+), 145 deletions(-)
+  **SUCCESS**
 
-diff --git a/lib/i915/gem_mman.c b/lib/i915/gem_mman.c
-index 93bef2bfc..703c6a5c1 100644
---- a/lib/i915/gem_mman.c
-+++ b/lib/i915/gem_mman.c
-@@ -27,7 +27,9 @@
- #include <errno.h>
+  No regressions found.
 
- #include "igt_core.h"
-+#include "igt_device.h"
- #include "ioctl_wrappers.h"
-+#include "intel_chipset.h"
+  
 
- #include "gem_mman.h"
+Known issues
+------------
 
-@@ -551,3 +553,109 @@ const struct mmap_offset mmap_offset_types[] =3D {
-         { "uc", I915_MMAP_OFFSET_UC, I915_GEM_DOMAIN_WC },
-         {},
- };
-+
-+/**
-+ * gem_available_aperture_size:
-+ * @fd: open i915 drm file descriptor
-+ *
-+ * Feature test macro to query the kernel for the available gpu aperture s=
-ize
-+ * usable in a batchbuffer.
-+ *
-+ * Returns: The available gtt address space size.
-+ */
-+uint64_t gem_available_aperture_size(int fd)
-+{
-+       struct drm_i915_gem_get_aperture aperture =3D {
-+               aperture.aper_available_size =3D 256*1024*1024,
-+       };
-+
-+       ioctl(fd, DRM_IOCTL_I915_GEM_GET_APERTURE, &aperture);
-+       errno =3D 0;
-+
-+       return aperture.aper_available_size;
-+}
-+
-+/**
-+ * gem_aperture_size:
-+ * @fd: open i915 drm file descriptor
-+ *
-+ * Feature test macro to query the kernel for the total gpu aperture size.
-+ *
-+ * Returns: The total gtt address space size.
-+ */
-+uint64_t gem_aperture_size(int fd)
-+{
-+       struct drm_i915_gem_context_param p =3D {
-+               .param =3D 0x3
-+       };
+  Here are the changes found in Patchwork_19134_full that come from known issues:
 
-Understand this is the original code, but it will be more readable to use I=
-915_CONTEXT_PARAM_GTT_SIZE instead of 3.
+### IGT changes ###
 
-+
-+       if (__gem_context_get_param(fd, &p))
-+               p.value =3D gem_global_aperture_size(fd);
-+
-+       return p.value;
-+}
-+
-+/**
-+ * gem_mappable_aperture_size:
-+ *
-+ * Feature test macro to query the kernel for the mappable gpu aperture si=
-ze.
-+ * This is the area available for GTT memory mappings.
-+ *
-+ * Returns: The mappable gtt address space size.
-+ */
-+uint64_t gem_mappable_aperture_size(int fd)
-+{
-+       struct pci_device *pci_dev =3D igt_device_get_pci_device(fd);
+#### Issues hit ####
 
-Does it make sense to eliminate the function intel_get_pci_device() if not =
-being used anymore? But it can be a separate patch.
+  * igt@gem_exec_whisper@basic-forked-all:
+    - shard-glk:          [PASS][1] -> [DMESG-WARN][2] ([i915#118] / [i915#95]) +1 similar issue
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9481/shard-glk9/igt@gem_exec_whisper@basic-forked-all.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19134/shard-glk6/igt@gem_exec_whisper@basic-forked-all.html
 
-+       int bar;
-+
-+       if (intel_gen(pci_dev->device_id) < 3)
-+               bar =3D 0;
-+       else
-+               bar =3D 2;
-+
-+       return pci_dev->regions[bar].size;
-+}
-+
-+/**
-+ * gem_global_aperture_size:
-+ * @fd: open i915 drm file descriptor
-+ *
-+ * Feature test macro to query the kernel for the global gpu aperture size=
-.
-+ * This is the area available for the kernel to perform address translatio=
-ns.
-+ *
-+ * Returns: The gtt address space size.
-+ */
-+uint64_t gem_global_aperture_size(int fd)
-+{
-+       struct drm_i915_gem_get_aperture aperture =3D {
-+               aperture.aper_size =3D 256*1024*1024
-+       };
-+
-+       ioctl(fd, DRM_IOCTL_I915_GEM_GET_APERTURE, &aperture);
-+       errno =3D 0;
-+
-+       return aperture.aper_size;
-+}
-+
-+/**
-+ * gem_available_fences:
-+ * @fd: open i915 drm file descriptor
-+ *
-+ * Feature test macro to query the kernel for the number of available fenc=
-es
-+ * usable in a batchbuffer. Only relevant for pre-gen4.
-+ *
-+ * Returns: The number of available fences.
-+ */
-+int gem_available_fences(int fd)
-+{
-+       int num_fences =3D 0;
-+       struct drm_i915_getparam gp =3D {
-+               gp.param =3D I915_PARAM_NUM_FENCES_AVAIL,
-+               gp.value =3D &num_fences,
-+       };
-+
-+       ioctl(fd, DRM_IOCTL_I915_GETPARAM, &gp, sizeof(gp));
-+       errno =3D 0;
-+
-+       return num_fences;
-+}
-diff --git a/lib/i915/gem_mman.h b/lib/i915/gem_mman.h
-index 2c4a7a00b..ec2899ffe 100644
---- a/lib/i915/gem_mman.h
-+++ b/lib/i915/gem_mman.h
-@@ -109,5 +109,11 @@ bool gem_has_mmap_offset_type(int fd, const struct mma=
-p_offset *t);
-              (__t)++) \
-                 for_each_if(gem_has_mmap_offset_type((fd), (__t)))
+  * igt@kms_big_fb@linear-16bpp-rotate-0:
+    - shard-iclb:         [PASS][3] -> [DMESG-FAIL][4] ([i915#1226])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9481/shard-iclb8/igt@kms_big_fb@linear-16bpp-rotate-0.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19134/shard-iclb3/igt@kms_big_fb@linear-16bpp-rotate-0.html
 
-+uint64_t gem_available_aperture_size(int fd);
-+uint64_t gem_aperture_size(int fd);
-+uint64_t gem_global_aperture_size(int fd);
-+uint64_t gem_mappable_aperture_size(int fd);
-+int gem_available_fences(int fd);
-+
- #endif /* GEM_MMAN_H */
+  * igt@kms_chamelium@hdmi-aspect-ratio:
+    - shard-skl:          NOTRUN -> [SKIP][5] ([fdo#109271] / [fdo#111827]) +4 similar issues
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19134/shard-skl9/igt@kms_chamelium@hdmi-aspect-ratio.html
 
-diff --git a/lib/ioctl_wrappers.c b/lib/ioctl_wrappers.c
-index 06431ce6c..a928f894f 100644
---- a/lib/ioctl_wrappers.c
-+++ b/lib/ioctl_wrappers.c
-@@ -782,31 +782,6 @@ bool gem_engine_reset_enabled(int fd)
-         return gem_gpu_reset_type(fd) > 1;
- }
+  * igt@kms_color@pipe-c-ctm-0-25:
+    - shard-skl:          [PASS][6] -> [DMESG-WARN][7] ([i915#1982])
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9481/shard-skl7/igt@kms_color@pipe-c-ctm-0-25.html
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19134/shard-skl10/igt@kms_color@pipe-c-ctm-0-25.html
+    - shard-glk:          [PASS][8] -> [FAIL][9] ([i915#182])
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9481/shard-glk7/igt@kms_color@pipe-c-ctm-0-25.html
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19134/shard-glk1/igt@kms_color@pipe-c-ctm-0-25.html
 
--/**
-- * gem_available_fences:
-- * @fd: open i915 drm file descriptor
-- *
-- * Feature test macro to query the kernel for the number of available fenc=
-es
-- * usable in a batchbuffer. Only relevant for pre-gen4.
-- *
-- * Returns: The number of available fences.
-- */
--int gem_available_fences(int fd)
--{
--       int num_fences;
--       struct drm_i915_getparam gp;
--
--       memset(&gp, 0, sizeof(gp));
--       gp.param =3D I915_PARAM_NUM_FENCES_AVAIL;
--       gp.value =3D &num_fences;
--
--       num_fences =3D 0;
--       ioctl(fd, DRM_IOCTL_I915_GETPARAM, &gp, sizeof(gp));
--       errno =3D 0;
--
--       return num_fences;
--}
--
- bool gem_has_llc(int fd)
- {
-         int has_llc;
-@@ -929,97 +904,6 @@ uint64_t gem_total_stolen_size(int fd)
-         return aperture.stolen_total_size;
- }
+  * igt@kms_color_chamelium@pipe-c-ctm-blue-to-red:
+    - shard-hsw:          NOTRUN -> [SKIP][10] ([fdo#109271] / [fdo#111827]) +2 similar issues
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19134/shard-hsw6/igt@kms_color_chamelium@pipe-c-ctm-blue-to-red.html
 
--/**
-- * gem_available_aperture_size:
-- * @fd: open i915 drm file descriptor
-- *
-- * Feature test macro to query the kernel for the available gpu aperture s=
-ize
-- * usable in a batchbuffer.
-- *
-- * Returns: The available gtt address space size.
-- */
--uint64_t gem_available_aperture_size(int fd)
--{
--       struct drm_i915_gem_get_aperture aperture;
--
--       memset(&aperture, 0, sizeof(aperture));
--       aperture.aper_size =3D 256*1024*1024;
--       do_ioctl(fd, DRM_IOCTL_I915_GEM_GET_APERTURE, &aperture);
--
--       return aperture.aper_available_size;
--}
--
--/**
-- * gem_aperture_size:
-- * @fd: open i915 drm file descriptor
-- *
-- * Feature test macro to query the kernel for the total gpu aperture size.
-- *
-- * Returns: The total gtt address space size.
-- */
--uint64_t gem_aperture_size(int fd)
--{
--       uint64_t aperture_size =3D 0;
--       struct drm_i915_gem_context_param p;
--
--       memset(&p, 0, sizeof(p));
--       p.param =3D 0x3;
--       if (__gem_context_get_param(fd, &p) =3D=3D 0) {
--               aperture_size =3D p.value;
--       } else {
--               struct drm_i915_gem_get_aperture aperture;
--
--               memset(&aperture, 0, sizeof(aperture));
--               aperture.aper_size =3D 256*1024*1024;
--
--               do_ioctl(fd, DRM_IOCTL_I915_GEM_GET_APERTURE, &aperture);
--               aperture_size =3D  aperture.aper_size;
--       }
--
--       return aperture_size;
--}
--
--/**
-- * gem_mappable_aperture_size:
-- *
-- * Feature test macro to query the kernel for the mappable gpu aperture si=
-ze.
-- * This is the area available for GTT memory mappings.
-- *
-- * Returns: The mappable gtt address space size.
-- */
--uint64_t gem_mappable_aperture_size(void)
--{
--       struct pci_device *pci_dev =3D intel_get_pci_device();
--       int bar;
--
--       if (intel_gen(pci_dev->device_id) < 3)
--               bar =3D 0;
--       else
--               bar =3D 2;
--
--       return pci_dev->regions[bar].size;
--}
--
--/**
-- * gem_global_aperture_size:
-- * @fd: open i915 drm file descriptor
-- *
-- * Feature test macro to query the kernel for the global gpu aperture size=
-.
-- * This is the area available for the kernel to perform address translatio=
-ns.
-- *
-- * Returns: The gtt address space size.
-- */
--uint64_t gem_global_aperture_size(int fd)
--{
--       struct drm_i915_gem_get_aperture aperture;
--
--       memset(&aperture, 0, sizeof(aperture));
--       aperture.aper_size =3D 256*1024*1024;
--       do_ioctl(fd, DRM_IOCTL_I915_GEM_GET_APERTURE, &aperture);
--
--       return aperture.aper_size;
--}
--
- /**
-  * gem_has_softpin:
-  * @fd: open i915 drm file descriptor
-diff --git a/lib/ioctl_wrappers.h b/lib/ioctl_wrappers.h
-index b76bea564..07879ae96 100644
---- a/lib/ioctl_wrappers.h
-+++ b/lib/ioctl_wrappers.h
-@@ -117,12 +117,7 @@ bool gem_uses_full_ppgtt(int fd);
- int gem_gpu_reset_type(int fd);
- bool gem_gpu_reset_enabled(int fd);
- bool gem_engine_reset_enabled(int fd);
--int gem_available_fences(int fd);
- uint64_t gem_total_stolen_size(int fd);
--uint64_t gem_available_aperture_size(int fd);
--uint64_t gem_aperture_size(int fd);
--uint64_t gem_global_aperture_size(int fd);
--uint64_t gem_mappable_aperture_size(void);
- bool gem_has_softpin(int fd);
- bool gem_has_exec_fence(int fd);
+  * igt@kms_color_chamelium@pipe-invalid-degamma-lut-sizes:
+    - shard-glk:          NOTRUN -> [SKIP][11] ([fdo#109271] / [fdo#111827])
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19134/shard-glk3/igt@kms_color_chamelium@pipe-invalid-degamma-lut-sizes.html
 
-diff --git a/tests/i915/gem_concurrent_all.c b/tests/i915/gem_concurrent_al=
-l.c
-index 9ea94125e..da850a104 100644
---- a/tests/i915/gem_concurrent_all.c
-+++ b/tests/i915/gem_concurrent_all.c
-@@ -1828,7 +1828,7 @@ igt_main
-                                  c->name, s->name, "small");
-                         igt_subtest_group {
-                                 igt_fixture {
--                                       count =3D num_buffers(gem_mappable_=
-aperture_size()/4,
-+                                       count =3D num_buffers(gem_mappable_=
-aperture_size(fd)/4,
-                                                             s, c, CHECK_RA=
-M);
-                                 }
-                                 run_modes(name, c, modes, s, count);
-@@ -1839,7 +1839,7 @@ igt_main
-                                  c->name, s->name, "thrash");
-                         igt_subtest_group {
-                                 igt_fixture {
--                                       count =3D num_buffers(gem_mappable_=
-aperture_size(),
-+                                       count =3D num_buffers(gem_mappable_=
-aperture_size(fd),
-                                                             s, c, CHECK_RA=
-M);
-                                 }
-                                 run_modes(name, c, modes, s, count);
-@@ -1871,7 +1871,7 @@ igt_main
-                                  c->name, s->name, "shrink");
-                         igt_subtest_group {
-                                 igt_fixture {
--                                       count =3D num_buffers(gem_mappable_=
-aperture_size(),
-+                                       count =3D num_buffers(gem_mappable_=
-aperture_size(fd),
-                                                             s, c, CHECK_RA=
-M);
+  * igt@kms_cursor_crc@pipe-b-cursor-64x21-random:
+    - shard-skl:          NOTRUN -> [FAIL][12] ([i915#54])
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19134/shard-skl9/igt@kms_cursor_crc@pipe-b-cursor-64x21-random.html
 
-                                         igt_fork_shrink_helper(fd);
-@@ -1887,8 +1887,8 @@ igt_main
-                                  c->name, s->name, "swap");
-                         igt_subtest_group {
-                                 igt_fixture {
--                                       if (intel_get_avail_ram_mb() > gem_=
-mappable_aperture_size()/(1024*1024)) {
--                                               pin_sz =3D intel_get_avail_=
-ram_mb() - gem_mappable_aperture_size()/(1024*1024);
-+                                       if (intel_get_avail_ram_mb() > gem_=
-mappable_aperture_size(fd)/(1024*1024)) {
-+                                               pin_sz =3D intel_get_avail_=
-ram_mb() - gem_mappable_aperture_size(fd)/(1024*1024);
+  * igt@kms_cursor_crc@pipe-b-cursor-suspend:
+    - shard-skl:          [PASS][13] -> [INCOMPLETE][14] ([i915#2405] / [i915#300])
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9481/shard-skl9/igt@kms_cursor_crc@pipe-b-cursor-suspend.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19134/shard-skl8/igt@kms_cursor_crc@pipe-b-cursor-suspend.html
 
-                                                 igt_debug("Pinning %lld Mi=
-B\n", (long long)pin_sz);
-                                                 pin_sz *=3D 1024 * 1024;
-@@ -1902,7 +1902,7 @@ igt_main
-                                                 igt_require(pinned);
-                                         }
+  * igt@kms_cursor_crc@pipe-c-cursor-64x21-random:
+    - shard-skl:          [PASS][15] -> [FAIL][16] ([i915#54])
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9481/shard-skl2/igt@kms_cursor_crc@pipe-c-cursor-64x21-random.html
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19134/shard-skl4/igt@kms_cursor_crc@pipe-c-cursor-64x21-random.html
 
--                                       count =3D num_buffers(gem_mappable_=
-aperture_size(),
-+                                       count =3D num_buffers(gem_mappable_=
-aperture_size(fd),
-                                                             s, c, CHECK_RA=
-M | CHECK_SWAP);
-                                 }
-                                 run_modes(name, c, modes, s, count);
-diff --git a/tests/i915/gem_mmap.c b/tests/i915/gem_mmap.c
-index 8bad9b14e..60a64c134 100644
---- a/tests/i915/gem_mmap.c
-+++ b/tests/i915/gem_mmap.c
-@@ -53,10 +53,10 @@ test_huge_bo(int huge)
+  * igt@kms_cursor_legacy@flip-vs-cursor-atomic-transitions:
+    - shard-skl:          [PASS][17] -> [FAIL][18] ([i915#2346])
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9481/shard-skl7/igt@kms_cursor_legacy@flip-vs-cursor-atomic-transitions.html
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19134/shard-skl10/igt@kms_cursor_legacy@flip-vs-cursor-atomic-transitions.html
 
-         switch (huge) {
-         case -1:
--               huge_object_size =3D gem_mappable_aperture_size() / 2;
-+               huge_object_size =3D gem_mappable_aperture_size(fd) / 2;
-                 break;
-         case 0:
--               huge_object_size =3D gem_mappable_aperture_size() + PAGE_SI=
-ZE;
-+               huge_object_size =3D gem_mappable_aperture_size(fd) + PAGE_=
-SIZE;
-                 break;
-         case 1:
-                 huge_object_size =3D gem_aperture_size(fd) + PAGE_SIZE;
-diff --git a/tests/i915/gem_mmap_gtt.c b/tests/i915/gem_mmap_gtt.c
-index 61fbc5bc7..528a7c726 100644
---- a/tests/i915/gem_mmap_gtt.c
-+++ b/tests/i915/gem_mmap_gtt.c
-@@ -905,7 +905,7 @@ test_huge_bo(int fd, int huge, int tiling)
+  * igt@kms_cursor_legacy@flip-vs-cursor-varying-size:
+    - shard-tglb:         [PASS][19] -> [FAIL][20] ([i915#2346])
+   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9481/shard-tglb6/igt@kms_cursor_legacy@flip-vs-cursor-varying-size.html
+   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19134/shard-tglb5/igt@kms_cursor_legacy@flip-vs-cursor-varying-size.html
 
-         switch (huge) {
-         case -1:
--               size =3D gem_mappable_aperture_size() / 2;
-+               size =3D gem_mappable_aperture_size(fd) / 2;
+  * igt@kms_flip@2x-flip-vs-dpms:
+    - shard-iclb:         NOTRUN -> [SKIP][21] ([fdo#109274])
+   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19134/shard-iclb4/igt@kms_flip@2x-flip-vs-dpms.html
 
-                 /* Power of two fence size, natural fence
-                  * alignment, and the guard page at the end
-@@ -920,7 +920,7 @@ test_huge_bo(int fd, int huge, int tiling)
-                         size /=3D 2;
-                 break;
-         case 0:
--               size =3D gem_mappable_aperture_size() + PAGE_SIZE;
-+               size =3D gem_mappable_aperture_size(fd) + PAGE_SIZE;
-                 break;
-         default:
-                 size =3D gem_global_aperture_size(fd) + PAGE_SIZE;
-@@ -1001,13 +1001,13 @@ test_huge_copy(int fd, int huge, int tiling_a, int =
-tiling_b, int ncpus)
+  * igt@kms_flip@flip-vs-expired-vblank-interruptible@c-edp1:
+    - shard-skl:          [PASS][22] -> [FAIL][23] ([i915#79])
+   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9481/shard-skl3/igt@kms_flip@flip-vs-expired-vblank-interruptible@c-edp1.html
+   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19134/shard-skl4/igt@kms_flip@flip-vs-expired-vblank-interruptible@c-edp1.html
 
-         switch (huge) {
-         case -2:
--               huge_object_size =3D gem_mappable_aperture_size() / 4;
-+               huge_object_size =3D gem_mappable_aperture_size(fd) / 4;
-                 break;
-         case -1:
--               huge_object_size =3D gem_mappable_aperture_size() / 2;
-+               huge_object_size =3D gem_mappable_aperture_size(fd) / 2;
-                 break;
-         case 0:
--               huge_object_size =3D gem_mappable_aperture_size() + PAGE_SI=
-ZE;
-+               huge_object_size =3D gem_mappable_aperture_size(fd) + PAGE_=
-SIZE;
-                 break;
-         case 1:
-                 huge_object_size =3D gem_global_aperture_size(fd) + PAGE_S=
-IZE;
-diff --git a/tests/i915/gem_pwrite.c b/tests/i915/gem_pwrite.c
-index d2dcc95e8..f76d2bc70 100644
---- a/tests/i915/gem_pwrite.c
-+++ b/tests/i915/gem_pwrite.c
-@@ -130,7 +130,7 @@ static void test_big_cpu(int fd, int scale, unsigned fl=
-ags)
+  * igt@kms_flip@plain-flip-ts-check-interruptible@c-edp1:
+    - shard-skl:          [PASS][24] -> [FAIL][25] ([i915#2122])
+   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9481/shard-skl7/igt@kms_flip@plain-flip-ts-check-interruptible@c-edp1.html
+   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19134/shard-skl10/igt@kms_flip@plain-flip-ts-check-interruptible@c-edp1.html
 
-         switch (scale) {
-         case 0:
--               size =3D gem_mappable_aperture_size() + 4096;
-+               size =3D gem_mappable_aperture_size(fd) + 4096;
-                 break;
-         case 1:
-                 size =3D gem_global_aperture_size(fd) + 4096;
-@@ -192,7 +192,7 @@ static void test_big_gtt(int fd, int scale, unsigned fl=
-ags)
-         igt_require(gem_mmap__has_wc(fd));
-         switch (scale) {
-         case 0:
--               size =3D gem_mappable_aperture_size() + 4096;
-+               size =3D gem_mappable_aperture_size(fd) + 4096;
-                 break;
-         case 1:
-                 size =3D gem_global_aperture_size(fd) + 4096;
-@@ -257,7 +257,7 @@ static void test_random(int fd)
-         gem_require_mmap_wc(fd);
+  * igt@kms_flip_scaled_crc@flip-64bpp-ytile-to-32bpp-ytilercccs:
+    - shard-skl:          NOTRUN -> [SKIP][26] ([fdo#109271] / [i915#2672])
+   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19134/shard-skl9/igt@kms_flip_scaled_crc@flip-64bpp-ytile-to-32bpp-ytilercccs.html
 
-         size =3D min(intel_get_total_ram_mb() / 2,
--                   gem_mappable_aperture_size() + 4096);
-+                   gem_mappable_aperture_size(fd) + 4096);
-         intel_require_memory(1, size, CHECK_RAM);
+  * igt@kms_frontbuffer_tracking@fbcpsr-2p-scndscrn-cur-indfb-draw-pwrite:
+    - shard-hsw:          NOTRUN -> [SKIP][27] ([fdo#109271]) +22 similar issues
+   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19134/shard-hsw6/igt@kms_frontbuffer_tracking@fbcpsr-2p-scndscrn-cur-indfb-draw-pwrite.html
 
-         handle =3D gem_create(fd, size);
-diff --git a/tests/i915/gem_shrink.c b/tests/i915/gem_shrink.c
-index dba62c8fa..023db8c56 100644
---- a/tests/i915/gem_shrink.c
-+++ b/tests/i915/gem_shrink.c
-@@ -439,7 +439,7 @@ igt_main
-                  * we expect the shrinker to start purging objects,
-                  * and possibly fail.
-                  */
--               alloc_size =3D gem_mappable_aperture_size() / 2;
-+               alloc_size =3D gem_mappable_aperture_size(fd) / 2;
-                 num_processes =3D 1 + (mem_size / (alloc_size >> 20));
+  * igt@kms_frontbuffer_tracking@psr-rgb565-draw-mmap-cpu:
+    - shard-glk:          NOTRUN -> [SKIP][28] ([fdo#109271]) +10 similar issues
+   [28]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19134/shard-glk3/igt@kms_frontbuffer_tracking@psr-rgb565-draw-mmap-cpu.html
 
-                 igt_info("Using %d processes and %'lluMiB per process\n",
-diff --git a/tests/i915/gem_tiled_fence_blits.c b/tests/i915/gem_tiled_fenc=
-e_blits.c
-index 0a633d91b..28beea898 100644
---- a/tests/i915/gem_tiled_fence_blits.c
-+++ b/tests/i915/gem_tiled_fence_blits.c
-@@ -225,7 +225,7 @@ igt_main
-                 gem_require_blitter(fd);
-                 gem_require_mappable_ggtt(fd);
+  * igt@kms_hdr@bpc-switch-dpms:
+    - shard-skl:          [PASS][29] -> [FAIL][30] ([i915#1188]) +1 similar issue
+   [29]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9481/shard-skl5/igt@kms_hdr@bpc-switch-dpms.html
+   [30]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19134/shard-skl1/igt@kms_hdr@bpc-switch-dpms.html
 
--               count =3D gem_mappable_aperture_size(); /* thrash fences! *=
-/
-+               count =3D gem_mappable_aperture_size(fd); /* thrash fences!=
- */
-                 if (count >> 32)
-                         count =3D MAX_32b;
-                 count =3D 3 + count / (1024 * 1024);
-diff --git a/tests/i915/i915_pm_rpm.c b/tests/i915/i915_pm_rpm.c
-index 6d46c320c..6321dd403 100644
---- a/tests/i915/i915_pm_rpm.c
-+++ b/tests/i915/i915_pm_rpm.c
-@@ -1419,7 +1419,7 @@ static void gem_evict_pwrite_subtest(void)
-         unsigned int num_trash_bos, n;
-         uint32_t buf;
+  * igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d:
+    - shard-glk:          NOTRUN -> [SKIP][31] ([fdo#109271] / [i915#533])
+   [31]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19134/shard-glk3/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d.html
 
--       num_trash_bos =3D gem_mappable_aperture_size() / (1024*1024) + 1;
-+       num_trash_bos =3D gem_mappable_aperture_size(drm_fd) / (1024*1024) =
-+ 1;
-         trash_bos =3D malloc(num_trash_bos * sizeof(*trash_bos));
-         igt_assert(trash_bos);
+  * igt@kms_pipe_crc_basic@hang-read-crc-pipe-d:
+    - shard-skl:          NOTRUN -> [SKIP][32] ([fdo#109271] / [i915#533])
+   [32]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19134/shard-skl9/igt@kms_pipe_crc_basic@hang-read-crc-pipe-d.html
 
-@@ -1463,7 +1463,7 @@ static bool device_in_pci_d3(void)
-         uint16_t val;
-         int rc;
+  * igt@kms_plane_alpha_blend@pipe-b-constant-alpha-min:
+    - shard-skl:          [PASS][33] -> [FAIL][34] ([fdo#108145] / [i915#265])
+   [33]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9481/shard-skl10/igt@kms_plane_alpha_blend@pipe-b-constant-alpha-min.html
+   [34]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19134/shard-skl5/igt@kms_plane_alpha_blend@pipe-b-constant-alpha-min.html
 
--       rc =3D pci_device_cfg_read_u16(intel_get_pci_device(), &val, 0xd4);
-+       rc =3D pci_device_cfg_read_u16(igt_device_get_pci_device(drm_fd), &=
-val, 0xd4);
-         igt_assert_eq(rc, 0);
+  * igt@kms_plane_alpha_blend@pipe-b-coverage-7efc:
+    - shard-skl:          NOTRUN -> [FAIL][35] ([fdo#108145] / [i915#265])
+   [35]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19134/shard-skl9/igt@kms_plane_alpha_blend@pipe-b-coverage-7efc.html
 
-         igt_debug("%s: PCI D3 state=3D%d\n", __func__, val & 0x3);
-diff --git a/tests/kms_big_fb.c b/tests/kms_big_fb.c
-index 02e9915ba..8794ace08 100644
---- a/tests/kms_big_fb.c
-+++ b/tests/kms_big_fb.c
-@@ -645,7 +645,7 @@ igt_main
+  * igt@kms_psr@psr2_sprite_blt:
+    - shard-iclb:         [PASS][36] -> [SKIP][37] ([fdo#109441]) +2 similar issues
+   [36]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9481/shard-iclb2/igt@kms_psr@psr2_sprite_blt.html
+   [37]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19134/shard-iclb6/igt@kms_psr@psr2_sprite_blt.html
 
-                 data.ram_size =3D intel_get_total_ram_mb() << 20;
-                 data.aper_size =3D gem_aperture_size(data.drm_fd);
--               data.mappable_size =3D gem_mappable_aperture_size();
-+               data.mappable_size =3D gem_mappable_aperture_size(data.drm_=
-fd);
+  * igt@kms_vrr@flip-basic:
+    - shard-skl:          NOTRUN -> [SKIP][38] ([fdo#109271]) +35 similar issues
+   [38]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19134/shard-skl9/igt@kms_vrr@flip-basic.html
 
-                 igt_info("RAM: %"PRIu64" MiB, GPU address space: %"PRId64"=
- MiB, GGTT mappable size: %"PRId64" MiB\n",
-                          data.ram_size >> 20, data.aper_size >> 20,
-diff --git a/tests/kms_flip.c b/tests/kms_flip.c
-index 51b9ac950..0f0565cf6 100755
---- a/tests/kms_flip.c
-+++ b/tests/kms_flip.c
-@@ -1282,7 +1282,7 @@ static void __run_test_on_crtc_set(struct test_output=
- *o, int *crtc_idxs,
-         /* 256 MB is usually the maximum mappable aperture,
-          * (make it 4x times that to ensure failure) */
-         if (o->flags & TEST_BO_TOOBIG) {
--               bo_size =3D 4*gem_mappable_aperture_size();
-+               bo_size =3D 4*gem_mappable_aperture_size(drm_fd);
-                 igt_require(bo_size < gem_global_aperture_size(drm_fd));
-         }
+  * igt@perf@polling-parameterized:
+    - shard-skl:          [PASS][39] -> [FAIL][40] ([i915#1542])
+   [39]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9481/shard-skl4/igt@perf@polling-parameterized.html
+   [40]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19134/shard-skl9/igt@perf@polling-parameterized.html
 
-diff --git a/tests/prime_mmap.c b/tests/prime_mmap.c
-index 143342410..7c43ced85 100644
---- a/tests/prime_mmap.c
-+++ b/tests/prime_mmap.c
-@@ -447,8 +447,8 @@ test_aperture_limit(void)
-         char *ptr1, *ptr2;
-         uint32_t handle1, handle2;
-         /* Two buffers the sum of which > mappable aperture */
--       uint64_t size1 =3D (gem_mappable_aperture_size() * 7) / 8;
--       uint64_t size2 =3D (gem_mappable_aperture_size() * 3) / 8;
-+       uint64_t size1 =3D (gem_mappable_aperture_size(fd) * 7) / 8;
-+       uint64_t size2 =3D (gem_mappable_aperture_size(fd) * 3) / 8;
+  
+#### Possible fixes ####
 
-         handle1 =3D gem_create(fd, size1);
-         fill_bo(handle1, BO_SIZE);
---
-2.29.2
+  * {igt@gem_create@busy-create}:
+    - shard-hsw:          [INCOMPLETE][41] -> [PASS][42]
+   [41]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9481/shard-hsw6/igt@gem_create@busy-create.html
+   [42]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19134/shard-hsw6/igt@gem_create@busy-create.html
+
+  * igt@gem_exec_fence@syncobj-unused-fence:
+    - shard-skl:          [WARN][43] ([i915#2690]) -> [PASS][44]
+   [43]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9481/shard-skl3/igt@gem_exec_fence@syncobj-unused-fence.html
+   [44]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19134/shard-skl3/igt@gem_exec_fence@syncobj-unused-fence.html
+
+  * igt@gem_exec_whisper@basic-queues-forked:
+    - shard-glk:          [DMESG-WARN][45] ([i915#118] / [i915#95]) -> [PASS][46]
+   [45]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9481/shard-glk6/igt@gem_exec_whisper@basic-queues-forked.html
+   [46]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19134/shard-glk5/igt@gem_exec_whisper@basic-queues-forked.html
+
+  * igt@i915_selftest@live@gt_heartbeat:
+    - shard-glk:          [DMESG-FAIL][47] ([i915#2291]) -> [PASS][48]
+   [47]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9481/shard-glk3/igt@i915_selftest@live@gt_heartbeat.html
+   [48]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19134/shard-glk6/igt@i915_selftest@live@gt_heartbeat.html
+
+  * igt@kms_async_flips@test-time-stamp:
+    - shard-tglb:         [FAIL][49] ([i915#2574]) -> [PASS][50]
+   [49]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9481/shard-tglb8/igt@kms_async_flips@test-time-stamp.html
+   [50]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19134/shard-tglb2/igt@kms_async_flips@test-time-stamp.html
+
+  * igt@kms_cursor_crc@pipe-c-cursor-128x128-random:
+    - shard-skl:          [FAIL][51] ([i915#54]) -> [PASS][52] +2 similar issues
+   [51]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9481/shard-skl2/igt@kms_cursor_crc@pipe-c-cursor-128x128-random.html
+   [52]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19134/shard-skl8/igt@kms_cursor_crc@pipe-c-cursor-128x128-random.html
+
+  * igt@kms_flip@flip-vs-expired-vblank-interruptible@c-hdmi-a1:
+    - shard-glk:          [FAIL][53] ([i915#79]) -> [PASS][54] +1 similar issue
+   [53]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9481/shard-glk6/igt@kms_flip@flip-vs-expired-vblank-interruptible@c-hdmi-a1.html
+   [54]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19134/shard-glk5/igt@kms_flip@flip-vs-expired-vblank-interruptible@c-hdmi-a1.html
+
+  * igt@kms_flip@plain-flip-fb-recreate-interruptible@b-edp1:
+    - shard-skl:          [FAIL][55] ([i915#2122]) -> [PASS][56]
+   [55]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9481/shard-skl1/igt@kms_flip@plain-flip-fb-recreate-interruptible@b-edp1.html
+   [56]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19134/shard-skl3/igt@kms_flip@plain-flip-fb-recreate-interruptible@b-edp1.html
+
+  * igt@kms_plane_alpha_blend@pipe-c-coverage-7efc:
+    - shard-skl:          [FAIL][57] ([fdo#108145] / [i915#265]) -> [PASS][58]
+   [57]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9481/shard-skl9/igt@kms_plane_alpha_blend@pipe-c-coverage-7efc.html
+   [58]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19134/shard-skl8/igt@kms_plane_alpha_blend@pipe-c-coverage-7efc.html
+
+  * igt@kms_psr2_su@page_flip:
+    - shard-iclb:         [SKIP][59] ([fdo#109642] / [fdo#111068]) -> [PASS][60]
+   [59]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9481/shard-iclb5/igt@kms_psr2_su@page_flip.html
+   [60]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19134/shard-iclb2/igt@kms_psr2_su@page_flip.html
+
+  * igt@kms_psr@psr2_cursor_plane_move:
+    - shard-iclb:         [SKIP][61] ([fdo#109441]) -> [PASS][62]
+   [61]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9481/shard-iclb7/igt@kms_psr@psr2_cursor_plane_move.html
+   [62]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19134/shard-iclb2/igt@kms_psr@psr2_cursor_plane_move.html
+
+  
+#### Warnings ####
+
+  * igt@i915_pm_rc6_residency@rc6-fence:
+    - shard-iclb:         [WARN][63] ([i915#2681] / [i915#2684]) -> [WARN][64] ([i915#1804] / [i915#2684])
+   [63]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9481/shard-iclb1/igt@i915_pm_rc6_residency@rc6-fence.html
+   [64]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19134/shard-iclb7/igt@i915_pm_rc6_residency@rc6-fence.html
+
+  * igt@runner@aborted:
+    - shard-skl:          [FAIL][65] ([i915#2295] / [i915#2722] / [i915#483]) -> [FAIL][66] ([i915#2295] / [i915#2722])
+   [65]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9481/shard-skl9/igt@runner@aborted.html
+   [66]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19134/shard-skl2/igt@runner@aborted.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#108145]: https://bugs.freedesktop.org/show_bug.cgi?id=108145
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [fdo#109274]: https://bugs.freedesktop.org/show_bug.cgi?id=109274
+  [fdo#109441]: https://bugs.freedesktop.org/show_bug.cgi?id=109441
+  [fdo#109642]: https://bugs.freedesktop.org/show_bug.cgi?id=109642
+  [fdo#111068]: https://bugs.freedesktop.org/show_bug.cgi?id=111068
+  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
+  [i915#118]: https://gitlab.freedesktop.org/drm/intel/issues/118
+  [i915#1188]: https://gitlab.freedesktop.org/drm/intel/issues/1188
+  [i915#1226]: https://gitlab.freedesktop.org/drm/intel/issues/1226
+  [i915#1542]: https://gitlab.freedesktop.org/drm/intel/issues/1542
+  [i915#1804]: https://gitlab.freedesktop.org/drm/intel/issues/1804
+  [i915#182]: https://gitlab.freedesktop.org/drm/intel/issues/182
+  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
+  [i915#2122]: https://gitlab.freedesktop.org/drm/intel/issues/2122
+  [i915#2291]: https://gitlab.freedesktop.org/drm/intel/issues/2291
+  [i915#2295]: https://gitlab.freedesktop.org/drm/intel/issues/2295
+  [i915#2346]: https://gitlab.freedesktop.org/drm/intel/issues/2346
+  [i915#2405]: https://gitlab.freedesktop.org/drm/intel/issues/2405
+  [i915#2574]: https://gitlab.freedesktop.org/drm/intel/issues/2574
+  [i915#265]: https://gitlab.freedesktop.org/drm/intel/issues/265
+  [i915#2672]: https://gitlab.freedesktop.org/drm/intel/issues/2672
+  [i915#2681]: https://gitlab.freedesktop.org/drm/intel/issues/2681
+  [i915#2684]: https://gitlab.freedesktop.org/drm/intel/issues/2684
+  [i915#2690]: https://gitlab.freedesktop.org/drm/intel/issues/2690
+  [i915#2722]: https://gitlab.freedesktop.org/drm/intel/issues/2722
+  [i915#300]: https://gitlab.freedesktop.org/drm/intel/issues/300
+  [i915#483]: https://gitlab.freedesktop.org/drm/intel/issues/483
+  [i915#533]: https://gitlab.freedesktop.org/drm/intel/issues/533
+  [i915#54]: https://gitlab.freedesktop.org/drm/intel/issues/54
+  [i915#79]: https://gitlab.freedesktop.org/drm/intel/issues/79
+  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
 
 
---_000_7021dc5149a24438878f6540a0c4aed8intelcom_
-Content-Type: text/html; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Participating hosts (10 -> 10)
+------------------------------
 
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
-1">
-<style type=3D"text/css" style=3D"display:none;"><!-- P {margin-top:0;margi=
-n-bottom:0;} --></style>
+  No changes in participating hosts
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_9481 -> Patchwork_19134
+
+  CI-20190529: 20190529
+  CI_DRM_9481: 968d6b8835487575d68732a7c0a1588795900de4 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5893: ec4073d30b428aaf199c0f4de6c0a5ebdc1c1c65 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_19134: 823a8e9dc24952b2566419b3a88670ed1783b65d @ git://anongit.freedesktop.org/gfx-ci/linux
+  piglit_4509: fdc5a4ca11124ab8413c7988896eec4c97336694 @ git://anongit.freedesktop.org/piglit
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19134/index.html
+
+--===============8406012883507354864==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
 </head>
-<body dir=3D"ltr">
-<div id=3D"divtagdefaultwrapper" style=3D"color: rgb(0, 0, 0); font-family:=
- Calibri, Helvetica, sans-serif, EmojiFont, &quot;Apple Color Emoji&quot;, =
-&quot;Segoe UI Emoji&quot;, NotoColorEmoji, &quot;Segoe UI Symbol&quot;, &q=
-uot;Android Emoji&quot;, EmojiSymbols;" dir=3D"ltr">
-<p style=3D"font-size: 12pt;">Some minor comments as below.</p>
-<p style=3D"font-size: 12pt;"><br>
-</p>
-<span style=3D"font-family: Calibri, Helvetica, sans-serif, EmojiFont, &quo=
-t;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, NotoColorEmoji, &quo=
-t;Segoe UI Symbol&quot;, &quot;Android Emoji&quot;, EmojiSymbols; font-size=
-: 13.3333px;"><span style=3D"font-family: Calibri, Helvetica, sans-serif, E=
-mojiFont, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, NotoCo=
-lorEmoji, &quot;Segoe UI Symbol&quot;, &quot;Android Emoji&quot;, EmojiSymb=
-ols; font-size: 13.3333px;">Reviewed-by:&nbsp;</span>Bruce
- Chang &lt;yu.bruce.chang@intel.com&gt;</span><br>
-<br>
-<div style=3D"color: rgb(0, 0, 0);">
-<div style=3D"font-size: 12pt;">
-<hr tabindex=3D"-1" style=3D"display:inline-block; width:98%">
-<div id=3D"x_divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" =
-color=3D"#000000" style=3D"font-size:11pt"><b>From:</b> Chris Wilson &lt;ch=
-ris@chris-wilson.co.uk&gt;<br>
-<b>Sent:</b> Saturday, December 12, 2020 1:43 AM<br>
-<b>To:</b> intel-gfx@lists.freedesktop.org<br>
-<b>Cc:</b> igt-dev@lists.freedesktop.org; Chris Wilson; Chang, Yu bruce<br>
-<b>Subject:</b> [PATCH i-g-t] lib: Pass device fd to gem_mmappable_aperture=
-_size()</font>
-<div>&nbsp;</div>
-</div>
-</div>
-<font style=3D"">
-<div class=3D"PlainText" style=3D"font-size: 10pt;">In order to find the co=
-rrect aperture size for the test, we want to pass<br>
-the test's device into the query.<br>
-<br>
-Reported-by: Bruce Chang &lt;yu.bruce.chang@intel.com&gt;<br>
-Signed-off-by: Chris Wilson &lt;chris@chris-wilson.co.uk&gt;<br>
-Cc: Bruce Chang &lt;yu.bruce.chang@intel.com&gt;<br>
----<br>
-&nbsp;lib/i915/gem_mman.c&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | 108 &#43;&#43;&#43;&#43;&#43;&#4=
-3;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#4=
-3;&#43;&#43;&#43;&#43;&#43;&#43;<br>
-&nbsp;lib/i915/gem_mman.h&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |&nbsp;&nbsp; 6 &#43;&#43;<br>
-&nbsp;lib/ioctl_wrappers.c&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | 116 -----------------------------<br>
-&nbsp;lib/ioctl_wrappers.h&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |&nbsp;&nbsp; 5 --<br>
-&nbsp;tests/i915/gem_concurrent_all.c&nbsp;&nbsp;&nbsp; |&nbsp; 12 &#43;--<=
-br>
-&nbsp;tests/i915/gem_mmap.c&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |&nbsp;&nbsp; 4 &#43;-<br>
-&nbsp;tests/i915/gem_mmap_gtt.c&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp; |&nbsp; 10 &#43;--<br>
-&nbsp;tests/i915/gem_pwrite.c&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp; |&nbsp;&nbsp; 6 &#43;-<br>
-&nbsp;tests/i915/gem_shrink.c&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp; |&nbsp;&nbsp; 2 &#43;-<br>
-&nbsp;tests/i915/gem_tiled_fence_blits.c |&nbsp;&nbsp; 2 &#43;-<br>
-&nbsp;tests/i915/i915_pm_rpm.c&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp; |&nbsp;&nbsp; 4 &#43;-<br>
-&nbsp;tests/kms_big_fb.c&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |&nbsp;&nbsp; 2 &#43;-<br>
-&nbsp;tests/kms_flip.c&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |&nbsp;&nbsp; 2 &#4=
-3;-<br>
-&nbsp;tests/prime_mmap.c&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |&nbsp;&nbsp; 4 &#43;-<br>
-&nbsp;14 files changed, 138 insertions(&#43;), 145 deletions(-)<br>
-<br>
-diff --git a/lib/i915/gem_mman.c b/lib/i915/gem_mman.c<br>
-index 93bef2bfc..703c6a5c1 100644<br>
---- a/lib/i915/gem_mman.c<br>
-&#43;&#43;&#43; b/lib/i915/gem_mman.c<br>
-@@ -27,7 &#43;27,9 @@<br>
-&nbsp;#include &lt;errno.h&gt;<br>
-&nbsp;<br>
-&nbsp;#include &quot;igt_core.h&quot;<br>
-&#43;#include &quot;igt_device.h&quot;<br>
-&nbsp;#include &quot;ioctl_wrappers.h&quot;<br>
-&#43;#include &quot;intel_chipset.h&quot;<br>
-&nbsp;<br>
-&nbsp;#include &quot;gem_mman.h&quot;<br>
-&nbsp;<br>
-@@ -551,3 &#43;553,109 @@ const struct mmap_offset mmap_offset_types[] =3D =
-{<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; { &quot;uc&quot;, I915_MMA=
-P_OFFSET_UC, I915_GEM_DOMAIN_WC },<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {},<br>
-&nbsp;};<br>
-&#43;<br>
-&#43;/**<br>
-&#43; * gem_available_aperture_size:<br>
-&#43; * @fd: open i915 drm file descriptor<br>
-&#43; *<br>
-&#43; * Feature test macro to query the kernel for the available gpu apertu=
-re size<br>
-&#43; * usable in a batchbuffer.<br>
-&#43; *<br>
-&#43; * Returns: The available gtt address space size.<br>
-&#43; */<br>
-&#43;uint64_t gem_available_aperture_size(int fd)<br>
-&#43;{<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct drm_i915_gem_get_aperture =
-aperture =3D {<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp; aperture.aper_available_size =3D 256*1024*1024,<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; };<br>
-&#43;<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ioctl(fd, DRM_IOCTL_I915_GEM_GET_=
-APERTURE, &amp;aperture);<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; errno =3D 0;<br>
-&#43;<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return aperture.aper_available_si=
-ze;<br>
-&#43;}<br>
-&#43;<br>
-&#43;/**<br>
-&#43; * gem_aperture_size:<br>
-&#43; * @fd: open i915 drm file descriptor<br>
-&#43; *<br>
-&#43; * Feature test macro to query the kernel for the total gpu aperture s=
-ize.<br>
-&#43; *<br>
-&#43; * Returns: The total gtt address space size.<br>
-&#43; */<br>
-&#43;uint64_t gem_aperture_size(int fd)<br>
-&#43;{<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct drm_i915_gem_context_param=
- p =3D {<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp; .param =3D 0x3<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; };<br>
-<br>
-</div>
-<div class=3D"PlainText" style=3D"font-size: 10pt;">Understand this is the =
-original code, but it will be more readable to use&nbsp;<span>I915_CONTEXT_=
-PARAM_GTT_SIZE instead of 3.</span></div>
-<div class=3D"PlainText" style=3D"font-size: 10pt;"><span><br>
-</span></div>
-<div class=3D"PlainText" style=3D"font-size: 10pt;">&#43;<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (__gem_context_get_param(fd, &=
-amp;p))<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp; p.value =3D gem_global_aperture_size(fd);<br>
-&#43;<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return p.value;<br>
-&#43;}<br>
-&#43;<br>
-&#43;/**<br>
-&#43; * gem_mappable_aperture_size:<br>
-&#43; *<br>
-&#43; * Feature test macro to query the kernel for the mappable gpu apertur=
-e size.<br>
-&#43; * This is the area available for GTT memory mappings.<br>
-&#43; *<br>
-&#43; * Returns: The mappable gtt address space size.<br>
-&#43; */<br>
-&#43;uint64_t gem_mappable_aperture_size(int fd)<br>
-&#43;{<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct pci_device *pci_dev =3D ig=
-t_device_get_pci_device(fd);</div>
-<div class=3D"PlainText" style=3D"font-size: 10pt;"><br>
-</div>
-<div class=3D"PlainText" style=3D"font-size: 10pt;"><span style=3D"font-fam=
-ily: Calibri, Helvetica, sans-serif, EmojiFont, &quot;Apple Color Emoji&quo=
-t;, &quot;Segoe UI Emoji&quot;, NotoColorEmoji, &quot;Segoe UI Symbol&quot;=
-, &quot;Android Emoji&quot;, EmojiSymbols; font-size: 13.3333px;">Does it m=
-ake
- sense to eliminate the function&nbsp;intel_get_pci_device() if not being u=
-sed anymore? But it can be a separate patch.</span></div>
-<div class=3D"PlainText" style=3D""><span style=3D"font-size: 13.3333px;"><=
-br>
-</span><span style=3D"font-size: 10pt;">&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp; int bar;</span><br>
-<span style=3D"font-size: 10pt;">&#43;</span><br>
-<span style=3D"font-size: 10pt;">&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =
-if (intel_gen(pci_dev-&gt;device_id) &lt; 3)</span><br>
-<span style=3D"font-size: 10pt;">&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; bar =3D 0;</span><br>
-<span style=3D"font-size: 10pt;">&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =
-else</span><br>
-<span style=3D"font-size: 10pt;">&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; bar =3D 2;</span><br>
-<span style=3D"font-size: 10pt;">&#43;</span><br>
-<span style=3D"font-size: 10pt;">&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =
-return pci_dev-&gt;regions[bar].size;</span><br>
-<span style=3D"font-size: 10pt;">&#43;}</span><br>
-<span style=3D"font-size: 10pt;">&#43;</span><br>
-<span style=3D"font-size: 10pt;">&#43;/**</span><br>
-<span style=3D"font-size: 10pt;">&#43; * gem_global_aperture_size:</span><b=
-r>
-<span style=3D"font-size: 10pt;">&#43; * @fd: open i915 drm file descriptor=
-</span><br>
-<span style=3D"font-size: 10pt;">&#43; *</span><br>
-<span style=3D"font-size: 10pt;">&#43; * Feature test macro to query the ke=
-rnel for the global gpu aperture size.</span><br>
-<span style=3D"font-size: 10pt;">&#43; * This is the area available for the=
- kernel to perform address translations.</span><br>
-<span style=3D"font-size: 10pt;">&#43; *</span><br>
-<span style=3D"font-size: 10pt;">&#43; * Returns: The gtt address space siz=
-e.</span><br>
-<span style=3D"font-size: 10pt;">&#43; */</span><br>
-<span style=3D"font-size: 10pt;">&#43;uint64_t gem_global_aperture_size(int=
- fd)</span><br>
-<span style=3D"font-size: 10pt;">&#43;{</span><br>
-<span style=3D"font-size: 10pt;">&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =
-struct drm_i915_gem_get_aperture aperture =3D {</span><br>
-<span style=3D"font-size: 10pt;">&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; aperture.aper_size =3D 256*=
-1024*1024</span><br>
-<span style=3D"font-size: 10pt;">&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =
-};</span><br>
-<span style=3D"font-size: 10pt;">&#43;</span><br>
-<span style=3D"font-size: 10pt;">&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =
-ioctl(fd, DRM_IOCTL_I915_GEM_GET_APERTURE, &amp;aperture);</span><br>
-<span style=3D"font-size: 10pt;">&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =
-errno =3D 0;</span><br>
-<span style=3D"font-size: 10pt;">&#43;</span><br>
-<span style=3D"font-size: 10pt;">&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =
-return aperture.aper_size;</span><br>
-<span style=3D"font-size: 10pt;">&#43;}</span><br>
-<span style=3D"font-size: 10pt;">&#43;</span><br>
-<span style=3D"font-size: 10pt;">&#43;/**</span><br>
-<span style=3D"font-size: 10pt;">&#43; * gem_available_fences:</span><br>
-<span style=3D"font-size: 10pt;">&#43; * @fd: open i915 drm file descriptor=
-</span><br>
-<span style=3D"font-size: 10pt;">&#43; *</span><br>
-<span style=3D"font-size: 10pt;">&#43; * Feature test macro to query the ke=
-rnel for the number of available fences</span><br>
-<span style=3D"font-size: 10pt;">&#43; * usable in a batchbuffer. Only rele=
-vant for pre-gen4.</span><br>
-<span style=3D"font-size: 10pt;">&#43; *</span><br>
-<span style=3D"font-size: 10pt;">&#43; * Returns: The number of available f=
-ences.</span><br>
-<span style=3D"font-size: 10pt;">&#43; */</span><br>
-<span style=3D"font-size: 10pt;">&#43;int gem_available_fences(int fd)</spa=
-n><br>
-<span style=3D"font-size: 10pt;">&#43;{</span><br>
-<span style=3D"font-size: 10pt;">&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =
-int num_fences =3D 0;</span><br>
-<span style=3D"font-size: 10pt;">&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =
-struct drm_i915_getparam gp =3D {</span><br>
-<span style=3D"font-size: 10pt;">&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; gp.param =3D I915_PARAM_NUM=
-_FENCES_AVAIL,</span><br>
-<span style=3D"font-size: 10pt;">&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; gp.value =3D &amp;num_fence=
-s,</span><br>
-<span style=3D"font-size: 10pt;">&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =
-};</span><br>
-<span style=3D"font-size: 10pt;">&#43;</span><br>
-<span style=3D"font-size: 10pt;">&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =
-ioctl(fd, DRM_IOCTL_I915_GETPARAM, &amp;gp, sizeof(gp));</span><br>
-<span style=3D"font-size: 10pt;">&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =
-errno =3D 0;</span><br>
-<span style=3D"font-size: 10pt;">&#43;</span><br>
-<span style=3D"font-size: 10pt;">&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =
-return num_fences;</span><br>
-<span style=3D"font-size: 10pt;">&#43;}</span><br>
-<span style=3D"font-size: 10pt;">diff --git a/lib/i915/gem_mman.h b/lib/i91=
-5/gem_mman.h</span><br>
-<span style=3D"font-size: 10pt;">index 2c4a7a00b..ec2899ffe 100644</span><b=
-r>
-<span style=3D"font-size: 10pt;">--- a/lib/i915/gem_mman.h</span><br>
-<span style=3D"font-size: 10pt;">&#43;&#43;&#43; b/lib/i915/gem_mman.h</spa=
-n><br>
-<span style=3D"font-size: 10pt;">@@ -109,5 &#43;109,11 @@ bool gem_has_mmap=
-_offset_type(int fd, const struct mmap_offset *t);</span><br>
-<span style=3D"font-size: 10pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (__t)&#43;&#43;) \</span><br>
-<span style=3D"font-size: 10pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for_each_if(gem_has_=
-mmap_offset_type((fd), (__t)))</span><br>
-<span style=3D"font-size: 10pt;">&nbsp;</span><br>
-<span style=3D"font-size: 10pt;">&#43;uint64_t gem_available_aperture_size(=
-int fd);</span><br>
-<span style=3D"font-size: 10pt;">&#43;uint64_t gem_aperture_size(int fd);</=
-span><br>
-<span style=3D"font-size: 10pt;">&#43;uint64_t gem_global_aperture_size(int=
- fd);</span><br>
-<span style=3D"font-size: 10pt;">&#43;uint64_t gem_mappable_aperture_size(i=
-nt fd);</span><br>
-<span style=3D"font-size: 10pt;">&#43;int gem_available_fences(int fd);</sp=
-an><br>
-<span style=3D"font-size: 10pt;">&#43;</span><br>
-<span style=3D"font-size: 10pt;">&nbsp;#endif /* GEM_MMAN_H */</span><br>
-<span style=3D"font-size: 10pt;">&nbsp;</span><br>
-<span style=3D"font-size: 10pt;">diff --git a/lib/ioctl_wrappers.c b/lib/io=
-ctl_wrappers.c</span><br>
-<span style=3D"font-size: 10pt;">index 06431ce6c..a928f894f 100644</span><b=
-r>
-<span style=3D"font-size: 10pt;">--- a/lib/ioctl_wrappers.c</span><br>
-<span style=3D"font-size: 10pt;">&#43;&#43;&#43; b/lib/ioctl_wrappers.c</sp=
-an><br>
-<span style=3D"font-size: 10pt;">@@ -782,31 &#43;782,6 @@ bool gem_engine_r=
-eset_enabled(int fd)</span><br>
-<span style=3D"font-size: 10pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp; return gem_gpu_reset_type(fd) &gt; 1;</span><br>
-<span style=3D"font-size: 10pt;">&nbsp;}</span><br>
-<span style=3D"font-size: 10pt;">&nbsp;</span><br>
-<span style=3D"font-size: 10pt;">-/**</span><br>
-<span style=3D"font-size: 10pt;">- * gem_available_fences:</span><br>
-<span style=3D"font-size: 10pt;">- * @fd: open i915 drm file descriptor</sp=
-an><br>
-<span style=3D"font-size: 10pt;">- *</span><br>
-<span style=3D"font-size: 10pt;">- * Feature test macro to query the kernel=
- for the number of available fences</span><br>
-<span style=3D"font-size: 10pt;">- * usable in a batchbuffer. Only relevant=
- for pre-gen4.</span><br>
-<span style=3D"font-size: 10pt;">- *</span><br>
-<span style=3D"font-size: 10pt;">- * Returns: The number of available fence=
-s.</span><br>
-<span style=3D"font-size: 10pt;">- */</span><br>
-<span style=3D"font-size: 10pt;">-int gem_available_fences(int fd)</span><b=
-r>
-<span style=3D"font-size: 10pt;">-{</span><br>
-<span style=3D"font-size: 10pt;">-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int =
-num_fences;</span><br>
-<span style=3D"font-size: 10pt;">-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; stru=
-ct drm_i915_getparam gp;</span><br>
-<span style=3D"font-size: 10pt;">-</span><br>
-<span style=3D"font-size: 10pt;">-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mems=
-et(&amp;gp, 0, sizeof(gp));</span><br>
-<span style=3D"font-size: 10pt;">-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; gp.p=
-aram =3D I915_PARAM_NUM_FENCES_AVAIL;</span><br>
-<span style=3D"font-size: 10pt;">-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; gp.v=
-alue =3D &amp;num_fences;</span><br>
-<span style=3D"font-size: 10pt;">-</span><br>
-<span style=3D"font-size: 10pt;">-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; num_=
-fences =3D 0;</span><br>
-<span style=3D"font-size: 10pt;">-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ioct=
-l(fd, DRM_IOCTL_I915_GETPARAM, &amp;gp, sizeof(gp));</span><br>
-<span style=3D"font-size: 10pt;">-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; errn=
-o =3D 0;</span><br>
-<span style=3D"font-size: 10pt;">-</span><br>
-<span style=3D"font-size: 10pt;">-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; retu=
-rn num_fences;</span><br>
-<span style=3D"font-size: 10pt;">-}</span><br>
-<span style=3D"font-size: 10pt;">-</span><br>
-<span style=3D"font-size: 10pt;">&nbsp;bool gem_has_llc(int fd)</span><br>
-<span style=3D"font-size: 10pt;">&nbsp;{</span><br>
-<span style=3D"font-size: 10pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp; int has_llc;</span><br>
-<span style=3D"font-size: 10pt;">@@ -929,97 &#43;904,6 @@ uint64_t gem_tota=
-l_stolen_size(int fd)</span><br>
-<span style=3D"font-size: 10pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp; return aperture.stolen_total_size;</span><br>
-<span style=3D"font-size: 10pt;">&nbsp;}</span><br>
-<span style=3D"font-size: 10pt;">&nbsp;</span><br>
-<span style=3D"font-size: 10pt;">-/**</span><br>
-<span style=3D"font-size: 10pt;">- * gem_available_aperture_size:</span><br=
->
-<span style=3D"font-size: 10pt;">- * @fd: open i915 drm file descriptor</sp=
-an><br>
-<span style=3D"font-size: 10pt;">- *</span><br>
-<span style=3D"font-size: 10pt;">- * Feature test macro to query the kernel=
- for the available gpu aperture size</span><br>
-<span style=3D"font-size: 10pt;">- * usable in a batchbuffer.</span><br>
-<span style=3D"font-size: 10pt;">- *</span><br>
-<span style=3D"font-size: 10pt;">- * Returns: The available gtt address spa=
-ce size.</span><br>
-<span style=3D"font-size: 10pt;">- */</span><br>
-<span style=3D"font-size: 10pt;">-uint64_t gem_available_aperture_size(int =
-fd)</span><br>
-<span style=3D"font-size: 10pt;">-{</span><br>
-<span style=3D"font-size: 10pt;">-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; stru=
-ct drm_i915_gem_get_aperture aperture;</span><br>
-<span style=3D"font-size: 10pt;">-</span><br>
-<span style=3D"font-size: 10pt;">-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mems=
-et(&amp;aperture, 0, sizeof(aperture));</span><br>
-<span style=3D"font-size: 10pt;">-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; aper=
-ture.aper_size =3D 256*1024*1024;</span><br>
-<span style=3D"font-size: 10pt;">-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; do_i=
-octl(fd, DRM_IOCTL_I915_GEM_GET_APERTURE, &amp;aperture);</span><br>
-<span style=3D"font-size: 10pt;">-</span><br>
-<span style=3D"font-size: 10pt;">-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; retu=
-rn aperture.aper_available_size;</span><br>
-<span style=3D"font-size: 10pt;">-}</span><br>
-<span style=3D"font-size: 10pt;">-</span><br>
-<span style=3D"font-size: 10pt;">-/**</span><br>
-<span style=3D"font-size: 10pt;">- * gem_aperture_size:</span><br>
-<span style=3D"font-size: 10pt;">- * @fd: open i915 drm file descriptor</sp=
-an><br>
-<span style=3D"font-size: 10pt;">- *</span><br>
-<span style=3D"font-size: 10pt;">- * Feature test macro to query the kernel=
- for the total gpu aperture size.</span><br>
-<span style=3D"font-size: 10pt;">- *</span><br>
-<span style=3D"font-size: 10pt;">- * Returns: The total gtt address space s=
-ize.</span><br>
-<span style=3D"font-size: 10pt;">- */</span><br>
-<span style=3D"font-size: 10pt;">-uint64_t gem_aperture_size(int fd)</span>=
-<br>
-<span style=3D"font-size: 10pt;">-{</span><br>
-<span style=3D"font-size: 10pt;">-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; uint=
-64_t aperture_size =3D 0;</span><br>
-<span style=3D"font-size: 10pt;">-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; stru=
-ct drm_i915_gem_context_param p;</span><br>
-<span style=3D"font-size: 10pt;">-</span><br>
-<span style=3D"font-size: 10pt;">-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mems=
-et(&amp;p, 0, sizeof(p));</span><br>
-<span style=3D"font-size: 10pt;">-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; p.pa=
-ram =3D 0x3;</span><br>
-<span style=3D"font-size: 10pt;">-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (=
-__gem_context_get_param(fd, &amp;p) =3D=3D 0) {</span><br>
-<span style=3D"font-size: 10pt;">-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; aperture_size =3D p.value;</spa=
-n><br>
-<span style=3D"font-size: 10pt;">-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } el=
-se {</span><br>
-<span style=3D"font-size: 10pt;">-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct drm_i915_gem_get_apertur=
-e aperture;</span><br>
-<span style=3D"font-size: 10pt;">-</span><br>
-<span style=3D"font-size: 10pt;">-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; memset(&amp;aperture, 0, sizeof=
-(aperture));</span><br>
-<span style=3D"font-size: 10pt;">-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; aperture.aper_size =3D 256*1024=
-*1024;</span><br>
-<span style=3D"font-size: 10pt;">-</span><br>
-<span style=3D"font-size: 10pt;">-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; do_ioctl(fd, DRM_IOCTL_I915_GEM=
-_GET_APERTURE, &amp;aperture);</span><br>
-<span style=3D"font-size: 10pt;">-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; aperture_size =3D&nbsp; apertur=
-e.aper_size;</span><br>
-<span style=3D"font-size: 10pt;">-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }</s=
-pan><br>
-<span style=3D"font-size: 10pt;">-</span><br>
-<span style=3D"font-size: 10pt;">-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; retu=
-rn aperture_size;</span><br>
-<span style=3D"font-size: 10pt;">-}</span><br>
-<span style=3D"font-size: 10pt;">-</span><br>
-<span style=3D"font-size: 10pt;">-/**</span><br>
-<span style=3D"font-size: 10pt;">- * gem_mappable_aperture_size:</span><br>
-<span style=3D"font-size: 10pt;">- *</span><br>
-<span style=3D"font-size: 10pt;">- * Feature test macro to query the kernel=
- for the mappable gpu aperture size.</span><br>
-<span style=3D"font-size: 10pt;">- * This is the area available for GTT mem=
-ory mappings.</span><br>
-<span style=3D"font-size: 10pt;">- *</span><br>
-<span style=3D"font-size: 10pt;">- * Returns: The mappable gtt address spac=
-e size.</span><br>
-<span style=3D"font-size: 10pt;">- */</span><br>
-<span style=3D"font-size: 10pt;">-uint64_t gem_mappable_aperture_size(void)=
-</span><br>
-<span style=3D"font-size: 10pt;">-{</span><br>
-<span style=3D"font-size: 10pt;">-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; stru=
-ct pci_device *pci_dev =3D intel_get_pci_device();</span><br>
-<span style=3D"font-size: 10pt;">-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int =
-bar;</span><br>
-<span style=3D"font-size: 10pt;">-</span><br>
-<span style=3D"font-size: 10pt;">-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (=
-intel_gen(pci_dev-&gt;device_id) &lt; 3)</span><br>
-<span style=3D"font-size: 10pt;">-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; bar =3D 0;</span><br>
-<span style=3D"font-size: 10pt;">-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; else=
-</span><br>
-<span style=3D"font-size: 10pt;">-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; bar =3D 2;</span><br>
-<span style=3D"font-size: 10pt;">-</span><br>
-<span style=3D"font-size: 10pt;">-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; retu=
-rn pci_dev-&gt;regions[bar].size;</span><br>
-<span style=3D"font-size: 10pt;">-}</span><br>
-<span style=3D"font-size: 10pt;">-</span><br>
-<span style=3D"font-size: 10pt;">-/**</span><br>
-<span style=3D"font-size: 10pt;">- * gem_global_aperture_size:</span><br>
-<span style=3D"font-size: 10pt;">- * @fd: open i915 drm file descriptor</sp=
-an><br>
-<span style=3D"font-size: 10pt;">- *</span><br>
-<span style=3D"font-size: 10pt;">- * Feature test macro to query the kernel=
- for the global gpu aperture size.</span><br>
-<span style=3D"font-size: 10pt;">- * This is the area available for the ker=
-nel to perform address translations.</span><br>
-<span style=3D"font-size: 10pt;">- *</span><br>
-<span style=3D"font-size: 10pt;">- * Returns: The gtt address space size.</=
-span><br>
-<span style=3D"font-size: 10pt;">- */</span><br>
-<span style=3D"font-size: 10pt;">-uint64_t gem_global_aperture_size(int fd)=
-</span><br>
-<span style=3D"font-size: 10pt;">-{</span><br>
-<span style=3D"font-size: 10pt;">-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; stru=
-ct drm_i915_gem_get_aperture aperture;</span><br>
-<span style=3D"font-size: 10pt;">-</span><br>
-<span style=3D"font-size: 10pt;">-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mems=
-et(&amp;aperture, 0, sizeof(aperture));</span><br>
-<span style=3D"font-size: 10pt;">-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; aper=
-ture.aper_size =3D 256*1024*1024;</span><br>
-<span style=3D"font-size: 10pt;">-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; do_i=
-octl(fd, DRM_IOCTL_I915_GEM_GET_APERTURE, &amp;aperture);</span><br>
-<span style=3D"font-size: 10pt;">-</span><br>
-<span style=3D"font-size: 10pt;">-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; retu=
-rn aperture.aper_size;</span><br>
-<span style=3D"font-size: 10pt;">-}</span><br>
-<span style=3D"font-size: 10pt;">-</span><br>
-<span style=3D"font-size: 10pt;">&nbsp;/**</span><br>
-<span style=3D"font-size: 10pt;">&nbsp; * gem_has_softpin:</span><br>
-<span style=3D"font-size: 10pt;">&nbsp; * @fd: open i915 drm file descripto=
-r</span><br>
-<span style=3D"font-size: 10pt;">diff --git a/lib/ioctl_wrappers.h b/lib/io=
-ctl_wrappers.h</span><br>
-<span style=3D"font-size: 10pt;">index b76bea564..07879ae96 100644</span><b=
-r>
-<span style=3D"font-size: 10pt;">--- a/lib/ioctl_wrappers.h</span><br>
-<span style=3D"font-size: 10pt;">&#43;&#43;&#43; b/lib/ioctl_wrappers.h</sp=
-an><br>
-<span style=3D"font-size: 10pt;">@@ -117,12 &#43;117,7 @@ bool gem_uses_ful=
-l_ppgtt(int fd);</span><br>
-<span style=3D"font-size: 10pt;">&nbsp;int gem_gpu_reset_type(int fd);</spa=
-n><br>
-<span style=3D"font-size: 10pt;">&nbsp;bool gem_gpu_reset_enabled(int fd);<=
-/span><br>
-<span style=3D"font-size: 10pt;">&nbsp;bool gem_engine_reset_enabled(int fd=
-);</span><br>
-<span style=3D"font-size: 10pt;">-int gem_available_fences(int fd);</span><=
-br>
-<span style=3D"font-size: 10pt;">&nbsp;uint64_t gem_total_stolen_size(int f=
-d);</span><br>
-<span style=3D"font-size: 10pt;">-uint64_t gem_available_aperture_size(int =
-fd);</span><br>
-<span style=3D"font-size: 10pt;">-uint64_t gem_aperture_size(int fd);</span=
-><br>
-<span style=3D"font-size: 10pt;">-uint64_t gem_global_aperture_size(int fd)=
-;</span><br>
-<span style=3D"font-size: 10pt;">-uint64_t gem_mappable_aperture_size(void)=
-;</span><br>
-<span style=3D"font-size: 10pt;">&nbsp;bool gem_has_softpin(int fd);</span>=
-<br>
-<span style=3D"font-size: 10pt;">&nbsp;bool gem_has_exec_fence(int fd);</sp=
-an><br>
-<span style=3D"font-size: 10pt;">&nbsp;</span><br>
-<span style=3D"font-size: 10pt;">diff --git a/tests/i915/gem_concurrent_all=
-.c b/tests/i915/gem_concurrent_all.c</span><br>
-<span style=3D"font-size: 10pt;">index 9ea94125e..da850a104 100644</span><b=
-r>
-<span style=3D"font-size: 10pt;">--- a/tests/i915/gem_concurrent_all.c</spa=
-n><br>
-<span style=3D"font-size: 10pt;">&#43;&#43;&#43; b/tests/i915/gem_concurren=
-t_all.c</span><br>
-<span style=3D"font-size: 10pt;">@@ -1828,7 &#43;1828,7 @@ igt_main</span><=
-br>
-<span style=3D"font-size: 10pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp; c-&gt;name, s-&gt;name, &quot;small&quot;);</span><br>
-<span style=3D"font-size: 10pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp; igt_subtest_group {</span><br>
-<span style=3D"font-size: 10pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
- igt_fixture {</span><br>
-<span style=3D"font-size: 10pt;">-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; count =3D num_buffers(gem_mappable_ap=
-erture_size()/4,</span><br>
-<span style=3D"font-size: 10pt;">&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; count =3D num_buffers(gem_mappabl=
-e_aperture_size(fd)/4,</span><br>
-<span style=3D"font-size: 10pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp; s, c, CHECK_RAM);</span><br>
-<span style=3D"font-size: 10pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
- }</span><br>
-<span style=3D"font-size: 10pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
- run_modes(name, c, modes, s, count);</span><br>
-<span style=3D"font-size: 10pt;">@@ -1839,7 &#43;1839,7 @@ igt_main</span><=
-br>
-<span style=3D"font-size: 10pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp; c-&gt;name, s-&gt;name, &quot;thrash&quot;);</span><br>
-<span style=3D"font-size: 10pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp; igt_subtest_group {</span><br>
-<span style=3D"font-size: 10pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
- igt_fixture {</span><br>
-<span style=3D"font-size: 10pt;">-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; count =3D num_buffers(gem_mappable_ap=
-erture_size(),</span><br>
-<span style=3D"font-size: 10pt;">&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; count =3D num_buffers(gem_mappabl=
-e_aperture_size(fd),</span><br>
-<span style=3D"font-size: 10pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp; s, c, CHECK_RAM);</span><br>
-<span style=3D"font-size: 10pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
- }</span><br>
-<span style=3D"font-size: 10pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
- run_modes(name, c, modes, s, count);</span><br>
-<span style=3D"font-size: 10pt;">@@ -1871,7 &#43;1871,7 @@ igt_main</span><=
-br>
-<span style=3D"font-size: 10pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp; c-&gt;name, s-&gt;name, &quot;shrink&quot;);</span><br>
-<span style=3D"font-size: 10pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp; igt_subtest_group {</span><br>
-<span style=3D"font-size: 10pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
- igt_fixture {</span><br>
-<span style=3D"font-size: 10pt;">-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; count =3D num_buffers(gem_mappable_ap=
-erture_size(),</span><br>
-<span style=3D"font-size: 10pt;">&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; count =3D num_buffers(gem_mappabl=
-e_aperture_size(fd),</span><br>
-<span style=3D"font-size: 10pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp; s, c, CHECK_RAM);</span><br>
-<span style=3D"font-size: 10pt;">&nbsp;</span><br>
-<span style=3D"font-size: 10pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; igt_fork_shrink_helper(fd)=
-;</span><br>
-<span style=3D"font-size: 10pt;">@@ -1887,8 &#43;1887,8 @@ igt_main</span><=
-br>
-<span style=3D"font-size: 10pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp; c-&gt;name, s-&gt;name, &quot;swap&quot;);</span><br>
-<span style=3D"font-size: 10pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp; igt_subtest_group {</span><br>
-<span style=3D"font-size: 10pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
- igt_fixture {</span><br>
-<span style=3D"font-size: 10pt;">-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (intel_get_avail_ram_mb() &gt; gem=
-_mappable_aperture_size()/(1024*1024)) {</span><br>
-<span style=3D"font-size: 10pt;">-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp; pin_sz =3D intel_get_avail_ram_mb() - gem_mappable_aperture_size=
-()/(1024*1024);</span><br>
-<span style=3D"font-size: 10pt;">&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (intel_get_avail_ram_mb() &gt;=
- gem_mappable_aperture_size(fd)/(1024*1024)) {</span><br>
-<span style=3D"font-size: 10pt;">&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp; pin_sz =3D intel_get_avail_ram_mb() - gem_mappable_aperture_=
-size(fd)/(1024*1024);</span><br>
-<span style=3D"font-size: 10pt;">&nbsp;</span><br>
-<span style=3D"font-size: 10pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp; igt_debug(&quot;Pinning %lld MiB\n&quot;, (long long)=
-pin_sz);</span><br>
-<span style=3D"font-size: 10pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp; pin_sz *=3D 1024 * 1024;</span><br>
-<span style=3D"font-size: 10pt;">@@ -1902,7 &#43;1902,7 @@ igt_main</span><=
-br>
-<span style=3D"font-size: 10pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp; igt_require(pinned);</span><br>
-<span style=3D"font-size: 10pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }</span><br>
-<span style=3D"font-size: 10pt;">&nbsp;</span><br>
-<span style=3D"font-size: 10pt;">-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; count =3D num_buffers(gem_mappable_ap=
-erture_size(),</span><br>
-<span style=3D"font-size: 10pt;">&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; count =3D num_buffers(gem_mappabl=
-e_aperture_size(fd),</span><br>
-<span style=3D"font-size: 10pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp; s, c, CHECK_RAM | CHECK_SWAP);</span><br>
-<span style=3D"font-size: 10pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
- }</span><br>
-<span style=3D"font-size: 10pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
- run_modes(name, c, modes, s, count);</span><br>
-<span style=3D"font-size: 10pt;">diff --git a/tests/i915/gem_mmap.c b/tests=
-/i915/gem_mmap.c</span><br>
-<span style=3D"font-size: 10pt;">index 8bad9b14e..60a64c134 100644</span><b=
-r>
-<span style=3D"font-size: 10pt;">--- a/tests/i915/gem_mmap.c</span><br>
-<span style=3D"font-size: 10pt;">&#43;&#43;&#43; b/tests/i915/gem_mmap.c</s=
-pan><br>
-<span style=3D"font-size: 10pt;">@@ -53,10 &#43;53,10 @@ test_huge_bo(int h=
-uge)</span><br>
-<span style=3D"font-size: 10pt;">&nbsp;</span><br>
-<span style=3D"font-size: 10pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp; switch (huge) {</span><br>
-<span style=3D"font-size: 10pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp; case -1:</span><br>
-<span style=3D"font-size: 10pt;">-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; huge_object_size =3D gem_mappab=
-le_aperture_size() / 2;</span><br>
-<span style=3D"font-size: 10pt;">&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; huge_object_size =3D gem_ma=
-ppable_aperture_size(fd) / 2;</span><br>
-<span style=3D"font-size: 10pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; break;</span><br>
-<span style=3D"font-size: 10pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp; case 0:</span><br>
-<span style=3D"font-size: 10pt;">-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; huge_object_size =3D gem_mappab=
-le_aperture_size() &#43; PAGE_SIZE;</span><br>
-<span style=3D"font-size: 10pt;">&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; huge_object_size =3D gem_ma=
-ppable_aperture_size(fd) &#43; PAGE_SIZE;</span><br>
-<span style=3D"font-size: 10pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; break;</span><br>
-<span style=3D"font-size: 10pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp; case 1:</span><br>
-<span style=3D"font-size: 10pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; huge_object_size =3D=
- gem_aperture_size(fd) &#43; PAGE_SIZE;</span><br>
-<span style=3D"font-size: 10pt;">diff --git a/tests/i915/gem_mmap_gtt.c b/t=
-ests/i915/gem_mmap_gtt.c</span><br>
-<span style=3D"font-size: 10pt;">index 61fbc5bc7..528a7c726 100644</span><b=
-r>
-<span style=3D"font-size: 10pt;">--- a/tests/i915/gem_mmap_gtt.c</span><br>
-<span style=3D"font-size: 10pt;">&#43;&#43;&#43; b/tests/i915/gem_mmap_gtt.=
-c</span><br>
-<span style=3D"font-size: 10pt;">@@ -905,7 &#43;905,7 @@ test_huge_bo(int f=
-d, int huge, int tiling)</span><br>
-<span style=3D"font-size: 10pt;">&nbsp;</span><br>
-<span style=3D"font-size: 10pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp; switch (huge) {</span><br>
-<span style=3D"font-size: 10pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp; case -1:</span><br>
-<span style=3D"font-size: 10pt;">-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; size =3D gem_mappable_aperture_=
-size() / 2;</span><br>
-<span style=3D"font-size: 10pt;">&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; size =3D gem_mappable_apert=
-ure_size(fd) / 2;</span><br>
-<span style=3D"font-size: 10pt;">&nbsp;</span><br>
-<span style=3D"font-size: 10pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; /* Power of two fenc=
-e size, natural fence</span><br>
-<span style=3D"font-size: 10pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; * alignment, a=
-nd the guard page at the end</span><br>
-<span style=3D"font-size: 10pt;">@@ -920,7 &#43;920,7 @@ test_huge_bo(int f=
-d, int huge, int tiling)</span><br>
-<span style=3D"font-size: 10pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp; size /=3D 2;</span><br>
-<span style=3D"font-size: 10pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; break;</span><br>
-<span style=3D"font-size: 10pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp; case 0:</span><br>
-<span style=3D"font-size: 10pt;">-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; size =3D gem_mappable_aperture_=
-size() &#43; PAGE_SIZE;</span><br>
-<span style=3D"font-size: 10pt;">&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; size =3D gem_mappable_apert=
-ure_size(fd) &#43; PAGE_SIZE;</span><br>
-<span style=3D"font-size: 10pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; break;</span><br>
-<span style=3D"font-size: 10pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp; default:</span><br>
-<span style=3D"font-size: 10pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; size =3D gem_global_=
-aperture_size(fd) &#43; PAGE_SIZE;</span><br>
-<span style=3D"font-size: 10pt;">@@ -1001,13 &#43;1001,13 @@ test_huge_copy=
-(int fd, int huge, int tiling_a, int tiling_b, int ncpus)</span><br>
-<span style=3D"font-size: 10pt;">&nbsp;</span><br>
-<span style=3D"font-size: 10pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp; switch (huge) {</span><br>
-<span style=3D"font-size: 10pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp; case -2:</span><br>
-<span style=3D"font-size: 10pt;">-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; huge_object_size =3D gem_mappab=
-le_aperture_size() / 4;</span><br>
-<span style=3D"font-size: 10pt;">&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; huge_object_size =3D gem_ma=
-ppable_aperture_size(fd) / 4;</span><br>
-<span style=3D"font-size: 10pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; break;</span><br>
-<span style=3D"font-size: 10pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp; case -1:</span><br>
-<span style=3D"font-size: 10pt;">-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; huge_object_size =3D gem_mappab=
-le_aperture_size() / 2;</span><br>
-<span style=3D"font-size: 10pt;">&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; huge_object_size =3D gem_ma=
-ppable_aperture_size(fd) / 2;</span><br>
-<span style=3D"font-size: 10pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; break;</span><br>
-<span style=3D"font-size: 10pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp; case 0:</span><br>
-<span style=3D"font-size: 10pt;">-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; huge_object_size =3D gem_mappab=
-le_aperture_size() &#43; PAGE_SIZE;</span><br>
-<span style=3D"font-size: 10pt;">&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; huge_object_size =3D gem_ma=
-ppable_aperture_size(fd) &#43; PAGE_SIZE;</span><br>
-<span style=3D"font-size: 10pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; break;</span><br>
-<span style=3D"font-size: 10pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp; case 1:</span><br>
-<span style=3D"font-size: 10pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; huge_object_size =3D=
- gem_global_aperture_size(fd) &#43; PAGE_SIZE;</span><br>
-<span style=3D"font-size: 10pt;">diff --git a/tests/i915/gem_pwrite.c b/tes=
-ts/i915/gem_pwrite.c</span><br>
-<span style=3D"font-size: 10pt;">index d2dcc95e8..f76d2bc70 100644</span><b=
-r>
-<span style=3D"font-size: 10pt;">--- a/tests/i915/gem_pwrite.c</span><br>
-<span style=3D"font-size: 10pt;">&#43;&#43;&#43; b/tests/i915/gem_pwrite.c<=
-/span><br>
-<span style=3D"font-size: 10pt;">@@ -130,7 &#43;130,7 @@ static void test_b=
-ig_cpu(int fd, int scale, unsigned flags)</span><br>
-<span style=3D"font-size: 10pt;">&nbsp;</span><br>
-<span style=3D"font-size: 10pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp; switch (scale) {</span><br>
-<span style=3D"font-size: 10pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp; case 0:</span><br>
-<span style=3D"font-size: 10pt;">-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; size =3D gem_mappable_aperture_=
-size() &#43; 4096;</span><br>
-<span style=3D"font-size: 10pt;">&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; size =3D gem_mappable_apert=
-ure_size(fd) &#43; 4096;</span><br>
-<span style=3D"font-size: 10pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; break;</span><br>
-<span style=3D"font-size: 10pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp; case 1:</span><br>
-<span style=3D"font-size: 10pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; size =3D gem_global_=
-aperture_size(fd) &#43; 4096;</span><br>
-<span style=3D"font-size: 10pt;">@@ -192,7 &#43;192,7 @@ static void test_b=
-ig_gtt(int fd, int scale, unsigned flags)</span><br>
-<span style=3D"font-size: 10pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp; igt_require(gem_mmap__has_wc(fd));</span><br>
-<span style=3D"font-size: 10pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp; switch (scale) {</span><br>
-<span style=3D"font-size: 10pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp; case 0:</span><br>
-<span style=3D"font-size: 10pt;">-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; size =3D gem_mappable_aperture_=
-size() &#43; 4096;</span><br>
-<span style=3D"font-size: 10pt;">&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; size =3D gem_mappable_apert=
-ure_size(fd) &#43; 4096;</span><br>
-<span style=3D"font-size: 10pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; break;</span><br>
-<span style=3D"font-size: 10pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp; case 1:</span><br>
-<span style=3D"font-size: 10pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; size =3D gem_global_=
-aperture_size(fd) &#43; 4096;</span><br>
-<span style=3D"font-size: 10pt;">@@ -257,7 &#43;257,7 @@ static void test_r=
-andom(int fd)</span><br>
-<span style=3D"font-size: 10pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp; gem_require_mmap_wc(fd);</span><br>
-<span style=3D"font-size: 10pt;">&nbsp;</span><br>
-<span style=3D"font-size: 10pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp; size =3D min(intel_get_total_ram_mb() / 2,</span><br>
-<span style=3D"font-size: 10pt;">-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; gem_map=
-pable_aperture_size() &#43; 4096);</span><br>
-<span style=3D"font-size: 10pt;">&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; gem=
-_mappable_aperture_size(fd) &#43; 4096);</span><br>
-<span style=3D"font-size: 10pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp; intel_require_memory(1, size, CHECK_RAM);</span><br>
-<span style=3D"font-size: 10pt;">&nbsp;</span><br>
-<span style=3D"font-size: 10pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp; handle =3D gem_create(fd, size);</span><br>
-<span style=3D"font-size: 10pt;">diff --git a/tests/i915/gem_shrink.c b/tes=
-ts/i915/gem_shrink.c</span><br>
-<span style=3D"font-size: 10pt;">index dba62c8fa..023db8c56 100644</span><b=
-r>
-<span style=3D"font-size: 10pt;">--- a/tests/i915/gem_shrink.c</span><br>
-<span style=3D"font-size: 10pt;">&#43;&#43;&#43; b/tests/i915/gem_shrink.c<=
-/span><br>
-<span style=3D"font-size: 10pt;">@@ -439,7 &#43;439,7 @@ igt_main</span><br=
->
-<span style=3D"font-size: 10pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; * we expect th=
-e shrinker to start purging objects,</span><br>
-<span style=3D"font-size: 10pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; * and possibly=
- fail.</span><br>
-<span style=3D"font-size: 10pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; */</span><br>
-<span style=3D"font-size: 10pt;">-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; alloc_size =3D gem_mappable_ape=
-rture_size() / 2;</span><br>
-<span style=3D"font-size: 10pt;">&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; alloc_size =3D gem_mappable=
-_aperture_size(fd) / 2;</span><br>
-<span style=3D"font-size: 10pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; num_processes =3D 1 =
-&#43; (mem_size / (alloc_size &gt;&gt; 20));</span><br>
-<span style=3D"font-size: 10pt;">&nbsp;</span><br>
-<span style=3D"font-size: 10pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; igt_info(&quot;Using=
- %d processes and %'lluMiB per process\n&quot;,</span><br>
-<span style=3D"font-size: 10pt;">diff --git a/tests/i915/gem_tiled_fence_bl=
-its.c b/tests/i915/gem_tiled_fence_blits.c</span><br>
-<span style=3D"font-size: 10pt;">index 0a633d91b..28beea898 100644</span><b=
-r>
-<span style=3D"font-size: 10pt;">--- a/tests/i915/gem_tiled_fence_blits.c</=
-span><br>
-<span style=3D"font-size: 10pt;">&#43;&#43;&#43; b/tests/i915/gem_tiled_fen=
-ce_blits.c</span><br>
-<span style=3D"font-size: 10pt;">@@ -225,7 &#43;225,7 @@ igt_main</span><br=
->
-<span style=3D"font-size: 10pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; gem_require_blitter(=
-fd);</span><br>
-<span style=3D"font-size: 10pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; gem_require_mappable=
-_ggtt(fd);</span><br>
-<span style=3D"font-size: 10pt;">&nbsp;</span><br>
-<span style=3D"font-size: 10pt;">-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; count =3D gem_mappable_aperture=
-_size(); /* thrash fences! */</span><br>
-<span style=3D"font-size: 10pt;">&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; count =3D gem_mappable_aper=
-ture_size(fd); /* thrash fences! */</span><br>
-<span style=3D"font-size: 10pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (count &gt;&gt; 3=
-2)</span><br>
-<span style=3D"font-size: 10pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp; count =3D MAX_32b;</span><br>
-<span style=3D"font-size: 10pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; count =3D 3 &#43; co=
-unt / (1024 * 1024);</span><br>
-<span style=3D"font-size: 10pt;">diff --git a/tests/i915/i915_pm_rpm.c b/te=
-sts/i915/i915_pm_rpm.c</span><br>
-<span style=3D"font-size: 10pt;">index 6d46c320c..6321dd403 100644</span><b=
-r>
-<span style=3D"font-size: 10pt;">--- a/tests/i915/i915_pm_rpm.c</span><br>
-<span style=3D"font-size: 10pt;">&#43;&#43;&#43; b/tests/i915/i915_pm_rpm.c=
-</span><br>
-<span style=3D"font-size: 10pt;">@@ -1419,7 &#43;1419,7 @@ static void gem_=
-evict_pwrite_subtest(void)</span><br>
-<span style=3D"font-size: 10pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp; unsigned int num_trash_bos, n;</span><br>
-<span style=3D"font-size: 10pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp; uint32_t buf;</span><br>
-<span style=3D"font-size: 10pt;">&nbsp;</span><br>
-<span style=3D"font-size: 10pt;">-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; num_=
-trash_bos =3D gem_mappable_aperture_size() / (1024*1024) &#43; 1;</span><br=
->
-<span style=3D"font-size: 10pt;">&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =
-num_trash_bos =3D gem_mappable_aperture_size(drm_fd) / (1024*1024) &#43; 1;=
-</span><br>
-<span style=3D"font-size: 10pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp; trash_bos =3D malloc(num_trash_bos * sizeof(*trash_bos));</span><br>
-<span style=3D"font-size: 10pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp; igt_assert(trash_bos);</span><br>
-<span style=3D"font-size: 10pt;">&nbsp;</span><br>
-<span style=3D"font-size: 10pt;">@@ -1463,7 &#43;1463,7 @@ static bool devi=
-ce_in_pci_d3(void)</span><br>
-<span style=3D"font-size: 10pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp; uint16_t val;</span><br>
-<span style=3D"font-size: 10pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp; int rc;</span><br>
-<span style=3D"font-size: 10pt;">&nbsp;</span><br>
-<span style=3D"font-size: 10pt;">-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; rc =
-=3D pci_device_cfg_read_u16(intel_get_pci_device(), &amp;val, 0xd4);</span>=
-<br>
-<span style=3D"font-size: 10pt;">&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =
-rc =3D pci_device_cfg_read_u16(igt_device_get_pci_device(drm_fd), &amp;val,=
- 0xd4);</span><br>
-<span style=3D"font-size: 10pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp; igt_assert_eq(rc, 0);</span><br>
-<span style=3D"font-size: 10pt;">&nbsp;</span><br>
-<span style=3D"font-size: 10pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp; igt_debug(&quot;%s: PCI D3 state=3D%d\n&quot;, __func__, val &amp; 0=
-x3);</span><br>
-<span style=3D"font-size: 10pt;">diff --git a/tests/kms_big_fb.c b/tests/km=
-s_big_fb.c</span><br>
-<span style=3D"font-size: 10pt;">index 02e9915ba..8794ace08 100644</span><b=
-r>
-<span style=3D"font-size: 10pt;">--- a/tests/kms_big_fb.c</span><br>
-<span style=3D"font-size: 10pt;">&#43;&#43;&#43; b/tests/kms_big_fb.c</span=
-><br>
-<span style=3D"font-size: 10pt;">@@ -645,7 &#43;645,7 @@ igt_main</span><br=
->
-<span style=3D"font-size: 10pt;">&nbsp;</span><br>
-<span style=3D"font-size: 10pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; data.ram_size =3D in=
-tel_get_total_ram_mb() &lt;&lt; 20;</span><br>
-<span style=3D"font-size: 10pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; data.aper_size =3D g=
-em_aperture_size(data.drm_fd);</span><br>
-<span style=3D"font-size: 10pt;">-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; data.mappable_size =3D gem_mapp=
-able_aperture_size();</span><br>
-<span style=3D"font-size: 10pt;">&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; data.mappable_size =3D gem_=
-mappable_aperture_size(data.drm_fd);</span><br>
-<span style=3D"font-size: 10pt;">&nbsp;</span><br>
-<span style=3D"font-size: 10pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; igt_info(&quot;RAM: =
-%&quot;PRIu64&quot; MiB, GPU address space: %&quot;PRId64&quot; MiB, GGTT m=
-appable size: %&quot;PRId64&quot; MiB\n&quot;,</span><br>
-<span style=3D"font-size: 10pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; data.ram_size &gt;&gt; 20, data.aper_size=
- &gt;&gt; 20,</span><br>
-<span style=3D"font-size: 10pt;">diff --git a/tests/kms_flip.c b/tests/kms_=
-flip.c</span><br>
-<span style=3D"font-size: 10pt;">index 51b9ac950..0f0565cf6 100755</span><b=
-r>
-<span style=3D"font-size: 10pt;">--- a/tests/kms_flip.c</span><br>
-<span style=3D"font-size: 10pt;">&#43;&#43;&#43; b/tests/kms_flip.c</span><=
-br>
-<span style=3D"font-size: 10pt;">@@ -1282,7 &#43;1282,7 @@ static void __ru=
-n_test_on_crtc_set(struct test_output *o, int *crtc_idxs,</span><br>
-<span style=3D"font-size: 10pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp; /* 256 MB is usually the maximum mappable aperture,</span><br>
-<span style=3D"font-size: 10pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp; * (make it 4x times that to ensure failure) */</span><br>
-<span style=3D"font-size: 10pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp; if (o-&gt;flags &amp; TEST_BO_TOOBIG) {</span><br>
-<span style=3D"font-size: 10pt;">-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; bo_size =3D 4*gem_mappable_aper=
-ture_size();</span><br>
-<span style=3D"font-size: 10pt;">&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; bo_size =3D 4*gem_mappable_=
-aperture_size(drm_fd);</span><br>
-<span style=3D"font-size: 10pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; igt_require(bo_size =
-&lt; gem_global_aperture_size(drm_fd));</span><br>
-<span style=3D"font-size: 10pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp; }</span><br>
-<span style=3D"font-size: 10pt;">&nbsp;</span><br>
-<span style=3D"font-size: 10pt;">diff --git a/tests/prime_mmap.c b/tests/pr=
-ime_mmap.c</span><br>
-<span style=3D"font-size: 10pt;">index 143342410..7c43ced85 100644</span><b=
-r>
-<span style=3D"font-size: 10pt;">--- a/tests/prime_mmap.c</span><br>
-<span style=3D"font-size: 10pt;">&#43;&#43;&#43; b/tests/prime_mmap.c</span=
-><br>
-<span style=3D"font-size: 10pt;">@@ -447,8 &#43;447,8 @@ test_aperture_limi=
-t(void)</span><br>
-<span style=3D"font-size: 10pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp; char *ptr1, *ptr2;</span><br>
-<span style=3D"font-size: 10pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp; uint32_t handle1, handle2;</span><br>
-<span style=3D"font-size: 10pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp; /* Two buffers the sum of which &gt; mappable aperture */</span><br>
-<span style=3D"font-size: 10pt;">-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; uint=
-64_t size1 =3D (gem_mappable_aperture_size() * 7) / 8;</span><br>
-<span style=3D"font-size: 10pt;">-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; uint=
-64_t size2 =3D (gem_mappable_aperture_size() * 3) / 8;</span><br>
-<span style=3D"font-size: 10pt;">&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =
-uint64_t size1 =3D (gem_mappable_aperture_size(fd) * 7) / 8;</span><br>
-<span style=3D"font-size: 10pt;">&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =
-uint64_t size2 =3D (gem_mappable_aperture_size(fd) * 3) / 8;</span><br>
-<span style=3D"font-size: 10pt;">&nbsp;</span><br>
-<span style=3D"font-size: 10pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp; handle1 =3D gem_create(fd, size1);</span><br>
-<span style=3D"font-size: 10pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp; fill_bo(handle1, BO_SIZE);</span><br>
-<span style=3D"font-size: 10pt;">-- </span><br>
-<span style=3D"font-size: 10pt;">2.29.2</span><br>
-<br>
-</div>
-</font></div>
-</div>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>series starting with [1/2] drm/i915: Individual request cancellation</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/84906/">https://patchwork.freedesktop.org/series/84906/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19134/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19134/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_9481_full -&gt; Patchwork_19134_full</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_19134_full that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@gem_exec_whisper@basic-forked-all:</p>
+<ul>
+<li>shard-glk:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9481/shard-glk9/igt@gem_exec_whisper@basic-forked-all.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19134/shard-glk6/igt@gem_exec_whisper@basic-forked-all.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/118">i915#118</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/95">i915#95</a>) +1 similar issue</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_big_fb@linear-16bpp-rotate-0:</p>
+<ul>
+<li>shard-iclb:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9481/shard-iclb8/igt@kms_big_fb@linear-16bpp-rotate-0.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19134/shard-iclb3/igt@kms_big_fb@linear-16bpp-rotate-0.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1226">i915#1226</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium@hdmi-aspect-ratio:</p>
+<ul>
+<li>shard-skl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19134/shard-skl9/igt@kms_chamelium@hdmi-aspect-ratio.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +4 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_color@pipe-c-ctm-0-25:</p>
+<ul>
+<li>
+<p>shard-skl:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9481/shard-skl7/igt@kms_color@pipe-c-ctm-0-25.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19134/shard-skl10/igt@kms_color@pipe-c-ctm-0-25.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>)</p>
+</li>
+<li>
+<p>shard-glk:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9481/shard-glk7/igt@kms_color@pipe-c-ctm-0-25.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19134/shard-glk1/igt@kms_color@pipe-c-ctm-0-25.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/182">i915#182</a>)</p>
+</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_color_chamelium@pipe-c-ctm-blue-to-red:</p>
+<ul>
+<li>shard-hsw:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19134/shard-hsw6/igt@kms_color_chamelium@pipe-c-ctm-blue-to-red.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +2 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_color_chamelium@pipe-invalid-degamma-lut-sizes:</p>
+<ul>
+<li>shard-glk:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19134/shard-glk3/igt@kms_color_chamelium@pipe-invalid-degamma-lut-sizes.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_crc@pipe-b-cursor-64x21-random:</p>
+<ul>
+<li>shard-skl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19134/shard-skl9/igt@kms_cursor_crc@pipe-b-cursor-64x21-random.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/54">i915#54</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_crc@pipe-b-cursor-suspend:</p>
+<ul>
+<li>shard-skl:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9481/shard-skl9/igt@kms_cursor_crc@pipe-b-cursor-suspend.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19134/shard-skl8/igt@kms_cursor_crc@pipe-b-cursor-suspend.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2405">i915#2405</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/300">i915#300</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_crc@pipe-c-cursor-64x21-random:</p>
+<ul>
+<li>shard-skl:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9481/shard-skl2/igt@kms_cursor_crc@pipe-c-cursor-64x21-random.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19134/shard-skl4/igt@kms_cursor_crc@pipe-c-cursor-64x21-random.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/54">i915#54</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_legacy@flip-vs-cursor-atomic-transitions:</p>
+<ul>
+<li>shard-skl:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9481/shard-skl7/igt@kms_cursor_legacy@flip-vs-cursor-atomic-transitions.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19134/shard-skl10/igt@kms_cursor_legacy@flip-vs-cursor-atomic-transitions.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2346">i915#2346</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_legacy@flip-vs-cursor-varying-size:</p>
+<ul>
+<li>shard-tglb:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9481/shard-tglb6/igt@kms_cursor_legacy@flip-vs-cursor-varying-size.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19134/shard-tglb5/igt@kms_cursor_legacy@flip-vs-cursor-varying-size.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2346">i915#2346</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_flip@2x-flip-vs-dpms:</p>
+<ul>
+<li>shard-iclb:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19134/shard-iclb4/igt@kms_flip@2x-flip-vs-dpms.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109274">fdo#109274</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_flip@flip-vs-expired-vblank-interruptible@c-edp1:</p>
+<ul>
+<li>shard-skl:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9481/shard-skl3/igt@kms_flip@flip-vs-expired-vblank-interruptible@c-edp1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19134/shard-skl4/igt@kms_flip@flip-vs-expired-vblank-interruptible@c-edp1.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/79">i915#79</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_flip@plain-flip-ts-check-interruptible@c-edp1:</p>
+<ul>
+<li>shard-skl:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9481/shard-skl7/igt@kms_flip@plain-flip-ts-check-interruptible@c-edp1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19134/shard-skl10/igt@kms_flip@plain-flip-ts-check-interruptible@c-edp1.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2122">i915#2122</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_flip_scaled_crc@flip-64bpp-ytile-to-32bpp-ytilercccs:</p>
+<ul>
+<li>shard-skl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19134/shard-skl9/igt@kms_flip_scaled_crc@flip-64bpp-ytile-to-32bpp-ytilercccs.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2672">i915#2672</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_frontbuffer_tracking@fbcpsr-2p-scndscrn-cur-indfb-draw-pwrite:</p>
+<ul>
+<li>shard-hsw:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19134/shard-hsw6/igt@kms_frontbuffer_tracking@fbcpsr-2p-scndscrn-cur-indfb-draw-pwrite.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +22 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_frontbuffer_tracking@psr-rgb565-draw-mmap-cpu:</p>
+<ul>
+<li>shard-glk:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19134/shard-glk3/igt@kms_frontbuffer_tracking@psr-rgb565-draw-mmap-cpu.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +10 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_hdr@bpc-switch-dpms:</p>
+<ul>
+<li>shard-skl:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9481/shard-skl5/igt@kms_hdr@bpc-switch-dpms.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19134/shard-skl1/igt@kms_hdr@bpc-switch-dpms.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1188">i915#1188</a>) +1 similar issue</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d:</p>
+<ul>
+<li>shard-glk:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19134/shard-glk3/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/533">i915#533</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@hang-read-crc-pipe-d:</p>
+<ul>
+<li>shard-skl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19134/shard-skl9/igt@kms_pipe_crc_basic@hang-read-crc-pipe-d.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/533">i915#533</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_plane_alpha_blend@pipe-b-constant-alpha-min:</p>
+<ul>
+<li>shard-skl:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9481/shard-skl10/igt@kms_plane_alpha_blend@pipe-b-constant-alpha-min.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19134/shard-skl5/igt@kms_plane_alpha_blend@pipe-b-constant-alpha-min.html">FAIL</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=108145">fdo#108145</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/265">i915#265</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_plane_alpha_blend@pipe-b-coverage-7efc:</p>
+<ul>
+<li>shard-skl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19134/shard-skl9/igt@kms_plane_alpha_blend@pipe-b-coverage-7efc.html">FAIL</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=108145">fdo#108145</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/265">i915#265</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_psr@psr2_sprite_blt:</p>
+<ul>
+<li>shard-iclb:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9481/shard-iclb2/igt@kms_psr@psr2_sprite_blt.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19134/shard-iclb6/igt@kms_psr@psr2_sprite_blt.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109441">fdo#109441</a>) +2 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_vrr@flip-basic:</p>
+<ul>
+<li>shard-skl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19134/shard-skl9/igt@kms_vrr@flip-basic.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +35 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@perf@polling-parameterized:</p>
+<ul>
+<li>shard-skl:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9481/shard-skl4/igt@perf@polling-parameterized.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19134/shard-skl9/igt@perf@polling-parameterized.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1542">i915#1542</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>{igt@gem_create@busy-create}:</p>
+<ul>
+<li>shard-hsw:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9481/shard-hsw6/igt@gem_create@busy-create.html">INCOMPLETE</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19134/shard-hsw6/igt@gem_create@busy-create.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@gem_exec_fence@syncobj-unused-fence:</p>
+<ul>
+<li>shard-skl:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9481/shard-skl3/igt@gem_exec_fence@syncobj-unused-fence.html">WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2690">i915#2690</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19134/shard-skl3/igt@gem_exec_fence@syncobj-unused-fence.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@gem_exec_whisper@basic-queues-forked:</p>
+<ul>
+<li>shard-glk:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9481/shard-glk6/igt@gem_exec_whisper@basic-queues-forked.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/118">i915#118</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/95">i915#95</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19134/shard-glk5/igt@gem_exec_whisper@basic-queues-forked.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@gt_heartbeat:</p>
+<ul>
+<li>shard-glk:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9481/shard-glk3/igt@i915_selftest@live@gt_heartbeat.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2291">i915#2291</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19134/shard-glk6/igt@i915_selftest@live@gt_heartbeat.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_async_flips@test-time-stamp:</p>
+<ul>
+<li>shard-tglb:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9481/shard-tglb8/igt@kms_async_flips@test-time-stamp.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2574">i915#2574</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19134/shard-tglb2/igt@kms_async_flips@test-time-stamp.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_crc@pipe-c-cursor-128x128-random:</p>
+<ul>
+<li>shard-skl:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9481/shard-skl2/igt@kms_cursor_crc@pipe-c-cursor-128x128-random.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/54">i915#54</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19134/shard-skl8/igt@kms_cursor_crc@pipe-c-cursor-128x128-random.html">PASS</a> +2 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_flip@flip-vs-expired-vblank-interruptible@c-hdmi-a1:</p>
+<ul>
+<li>shard-glk:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9481/shard-glk6/igt@kms_flip@flip-vs-expired-vblank-interruptible@c-hdmi-a1.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/79">i915#79</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19134/shard-glk5/igt@kms_flip@flip-vs-expired-vblank-interruptible@c-hdmi-a1.html">PASS</a> +1 similar issue</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_flip@plain-flip-fb-recreate-interruptible@b-edp1:</p>
+<ul>
+<li>shard-skl:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9481/shard-skl1/igt@kms_flip@plain-flip-fb-recreate-interruptible@b-edp1.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2122">i915#2122</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19134/shard-skl3/igt@kms_flip@plain-flip-fb-recreate-interruptible@b-edp1.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_plane_alpha_blend@pipe-c-coverage-7efc:</p>
+<ul>
+<li>shard-skl:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9481/shard-skl9/igt@kms_plane_alpha_blend@pipe-c-coverage-7efc.html">FAIL</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=108145">fdo#108145</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/265">i915#265</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19134/shard-skl8/igt@kms_plane_alpha_blend@pipe-c-coverage-7efc.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_psr2_su@page_flip:</p>
+<ul>
+<li>shard-iclb:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9481/shard-iclb5/igt@kms_psr2_su@page_flip.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109642">fdo#109642</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111068">fdo#111068</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19134/shard-iclb2/igt@kms_psr2_su@page_flip.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_psr@psr2_cursor_plane_move:</p>
+<ul>
+<li>shard-iclb:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9481/shard-iclb7/igt@kms_psr@psr2_cursor_plane_move.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109441">fdo#109441</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19134/shard-iclb2/igt@kms_psr@psr2_cursor_plane_move.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h4>Warnings</h4>
+<ul>
+<li>
+<p>igt@i915_pm_rc6_residency@rc6-fence:</p>
+<ul>
+<li>shard-iclb:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9481/shard-iclb1/igt@i915_pm_rc6_residency@rc6-fence.html">WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2681">i915#2681</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2684">i915#2684</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19134/shard-iclb7/igt@i915_pm_rc6_residency@rc6-fence.html">WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1804">i915#1804</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2684">i915#2684</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@runner@aborted:</p>
+<ul>
+<li>shard-skl:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9481/shard-skl9/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2295">i915#2295</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2722">i915#2722</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/483">i915#483</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19134/shard-skl2/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2295">i915#2295</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2722">i915#2722</a>)</li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Participating hosts (10 -&gt; 10)</h2>
+<p>No changes in participating hosts</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_9481 -&gt; Patchwork_19134</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_9481: 968d6b8835487575d68732a7c0a1588795900de4 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_5893: ec4073d30b428aaf199c0f4de6c0a5ebdc1c1c65 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
+  Patchwork_19134: 823a8e9dc24952b2566419b3a88670ed1783b65d @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  piglit_4509: fdc5a4ca11124ab8413c7988896eec4c97336694 @ git://anongit.freedesktop.org/piglit</p>
+
 </body>
 </html>
 
---_000_7021dc5149a24438878f6540a0c4aed8intelcom_--
+--===============8406012883507354864==--
 
---===============1014413096==
+--===============0400372373==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -1843,4 +637,4 @@ Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 
---===============1014413096==--
+--===============0400372373==--
