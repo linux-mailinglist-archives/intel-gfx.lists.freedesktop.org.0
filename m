@@ -1,31 +1,44 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B99B12D93B1
-	for <lists+intel-gfx@lfdr.de>; Mon, 14 Dec 2020 08:47:12 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id B4F582D946A
+	for <lists+intel-gfx@lfdr.de>; Mon, 14 Dec 2020 09:55:44 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2612C6E077;
-	Mon, 14 Dec 2020 07:47:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0BBBB6E072;
+	Mon, 14 Dec 2020 08:55:43 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 7249F6E075;
- Mon, 14 Dec 2020 07:47:10 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 6C40FA7DFC;
- Mon, 14 Dec 2020 07:47:10 +0000 (UTC)
+X-Greylist: delayed 55954 seconds by postgrey-1.36 at gabe;
+ Mon, 14 Dec 2020 08:55:41 UTC
+Received: from mail-40133.protonmail.ch (mail-40133.protonmail.ch
+ [185.70.40.133])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B6C2A6E072
+ for <intel-gfx@lists.freedesktop.org>; Mon, 14 Dec 2020 08:55:41 +0000 (UTC)
+Date: Mon, 14 Dec 2020 08:55:33 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=emersion.fr;
+ s=protonmail2; t=1607936139;
+ bh=TEBhOtqfa17K52xtKT9xnApO+7iuK81H1vRsdKzaJ2c=;
+ h=Date:To:From:Cc:Reply-To:Subject:In-Reply-To:References:From;
+ b=BmETrhZI88b6ZNObBAzCCE3a1Luu7Q+/vmE+IzCnwxwhrW8F6itYxRre1fuMiWyeX
+ 2Qrr+C+RzdeuN+Lsy0/564bnQClVNegF2Fso7Eeg01ryx4U+mbDK4rM8JNeF53y5/d
+ AetS88hXorQfqzflX0S8gLhgXMEdSrxFXSmlS7LunZsb4voHcs8GeP8RVg2Gkpatrl
+ MUj75yvSZM7Z5ZcZl9IcQfdCsF+IN+fV24wjokL035CGS3PUG5RFnI9zwlai2BfC9j
+ Rf+uD4h082n7Ubg9o5ZL9i47hlX6B499Z61ziGh+ZIuzlBNfN7h8Kx3X9VStT+cnWK
+ LZ4K5z+yHozfA==
+To: =?utf-8?Q?Jos=C3=A9_Roberto_de_Souza?= <jose.souza@intel.com>
+From: Simon Ser <contact@emersion.fr>
+Message-ID: <Mc9Acjxtl9hCv_yd6qeDG8VXAC5-I18UkQYV4xPBAIv-K1QJt_gwTg1WJQjKdD5f3Yfoq6kElbFxFx8HNnHJ3vqX9ztgdL7o_9aGtwAYLZk=@emersion.fr>
+In-Reply-To: <20201213183930.349592-1-jose.souza@intel.com>
+References: <20201213183930.349592-1-jose.souza@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Xiong Zhang" <xiong.y.zhang@intel.com>
-Date: Mon, 14 Dec 2020 07:47:10 -0000
-Message-ID: <160793203040.28163.9589801606075737284@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20201214070113.16177-1-xiong.y.zhang@intel.com>
-In-Reply-To: <20201214070113.16177-1-xiong.y.zhang@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915=3A_Try_to_guess_PCH_type_even_without_ISA_bridge?=
+X-Spam-Status: No, score=-1.2 required=10.0 tests=ALL_TRUSTED,DKIM_SIGNED,
+ DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF shortcircuit=no
+ autolearn=disabled version=3.4.4
+X-Spam-Checker-Version: SpamAssassin 3.4.4 (2020-01-24) on
+ mailout.protonmail.ch
+Subject: Re: [Intel-gfx] [PATCH v5 1/6] drm/damage_helper: Check if damage
+ clips has valid values
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,208 +51,33 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============1350612524=="
+Reply-To: Simon Ser <contact@emersion.fr>
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Sean Paul <seanpaul@chromium.org>, Deepak Rawat <drawat@vmware.com>,
+ Fabio Estevam <festevam@gmail.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============1350612524==
-Content-Type: multipart/alternative;
- boundary="===============2303145640508599062=="
-
---===============2303145640508599062==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-== Series Details ==
-
-Series: drm/i915: Try to guess PCH type even without ISA bridge
-URL   : https://patchwork.freedesktop.org/series/84886/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_9478 -> Patchwork_19131
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19131/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_19131 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@debugfs_test@read_all_entries:
-    - fi-apl-guc:         [PASS][1] -> [DMESG-WARN][2] ([i915#62])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9478/fi-apl-guc/igt@debugfs_test@read_all_entries.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19131/fi-apl-guc/igt@debugfs_test@read_all_entries.html
-
-  * igt@gem_exec_suspend@basic-s0:
-    - fi-apl-guc:         [PASS][3] -> [DMESG-WARN][4] ([i915#180] / [i915#62])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9478/fi-apl-guc/igt@gem_exec_suspend@basic-s0.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19131/fi-apl-guc/igt@gem_exec_suspend@basic-s0.html
-
-  * igt@i915_hangman@error-state-basic:
-    - fi-tgl-y:           [PASS][5] -> [DMESG-WARN][6] ([i915#402]) +2 similar issues
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9478/fi-tgl-y/igt@i915_hangman@error-state-basic.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19131/fi-tgl-y/igt@i915_hangman@error-state-basic.html
-
-  * igt@runner@aborted:
-    - fi-bdw-5557u:       NOTRUN -> [FAIL][7] ([i915#2029] / [i915#2722])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19131/fi-bdw-5557u/igt@runner@aborted.html
-
-  
-#### Possible fixes ####
-
-  * igt@fbdev@read:
-    - fi-tgl-y:           [DMESG-WARN][8] ([i915#402]) -> [PASS][9] +1 similar issue
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9478/fi-tgl-y/igt@fbdev@read.html
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19131/fi-tgl-y/igt@fbdev@read.html
-
-  
-  [i915#180]: https://gitlab.freedesktop.org/drm/intel/issues/180
-  [i915#2029]: https://gitlab.freedesktop.org/drm/intel/issues/2029
-  [i915#2722]: https://gitlab.freedesktop.org/drm/intel/issues/2722
-  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
-  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
-
-
-Participating hosts (42 -> 35)
-------------------------------
-
-  Missing    (7): fi-bxt-dsi fi-bdw-samus fi-bsw-n3050 fi-hsw-4200u fi-skl-guc fi-blb-e6850 fi-skl-6700k2 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_9478 -> Patchwork_19131
-
-  CI-20190529: 20190529
-  CI_DRM_9478: 94cf3a4cc350324f21728c70954c46e535405c87 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5890: 0e209dc3cd7561a57ec45be74b8b299eaf391950 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_19131: 17c226d01ecce6b64b66ad30aabbce7bed71dd34 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-17c226d01ecc drm/i915: Try to guess PCH type even without ISA bridge
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19131/index.html
-
---===============2303145640508599062==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915: Try to guess PCH type even without ISA bridge</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/84886/">https://patchwork.freedesktop.org/series/84886/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19131/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19131/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_9478 -&gt; Patchwork_19131</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19131/index.html</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_19131 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@debugfs_test@read_all_entries:</p>
-<ul>
-<li>fi-apl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9478/fi-apl-guc/igt@debugfs_test@read_all_entries.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19131/fi-apl-guc/igt@debugfs_test@read_all_entries.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/62">i915#62</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_suspend@basic-s0:</p>
-<ul>
-<li>fi-apl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9478/fi-apl-guc/igt@gem_exec_suspend@basic-s0.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19131/fi-apl-guc/igt@gem_exec_suspend@basic-s0.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/180">i915#180</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/62">i915#62</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_hangman@error-state-basic:</p>
-<ul>
-<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9478/fi-tgl-y/igt@i915_hangman@error-state-basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19131/fi-tgl-y/igt@i915_hangman@error-state-basic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) +2 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@runner@aborted:</p>
-<ul>
-<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19131/fi-bdw-5557u/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2029">i915#2029</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2722">i915#2722</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@fbdev@read:<ul>
-<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9478/fi-tgl-y/igt@fbdev@read.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19131/fi-tgl-y/igt@fbdev@read.html">PASS</a> +1 similar issue</li>
-</ul>
-</li>
-</ul>
-<h2>Participating hosts (42 -&gt; 35)</h2>
-<p>Missing    (7): fi-bxt-dsi fi-bdw-samus fi-bsw-n3050 fi-hsw-4200u fi-skl-guc fi-blb-e6850 fi-skl-6700k2 </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_9478 -&gt; Patchwork_19131</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_9478: 94cf3a4cc350324f21728c70954c46e535405c87 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_5890: 0e209dc3cd7561a57ec45be74b8b299eaf391950 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
-  Patchwork_19131: 17c226d01ecce6b64b66ad30aabbce7bed71dd34 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>17c226d01ecc drm/i915: Try to guess PCH type even without ISA bridge</p>
-
-</body>
-</html>
-
---===============2303145640508599062==--
-
---===============1350612524==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============1350612524==--
+PiBVc2Vyc3BhY2UgY2FuIHNldCBhIGRhbWFnZSBjbGlwIHdpdGggYSBuZWdhdGl2ZSBjb29yZGlu
+YXRlLCBuZWdhdGl2ZQo+IHdpZHRoIG9yIGhlaWdodCBvciBsYXJnZXIgdGhhbiB0aGUgcGxhbmUu
+Cj4gVGhpcyBpbnZhbGlkIHZhbHVlcyBjb3VsZCBjYXVzZSBpc3N1ZXMgaW4gc29tZSBIVyBvciBl
+dmVuIHdvcnN0IGVuYWJsZQo+IHNlY3VyaXR5IGZsYXdzLgo+Cj4gdjI6Cj4gLSBhZGQgZGVidWcg
+bWVzc2FnZXMgdG8gbGV0IHVzZXJzcGFjZSBrbm93IHdoeSBhdG9taWMgY29tbWl0IGZhaWxlZAo+
+IGR1ZSBpbnZhbGlkIGRhbWFnZSBjbGlwcwo+Cj4gQ2M6IFNpbW9uIFNlciA8Y29udGFjdEBlbWVy
+c2lvbi5mcj4KPiBDYzogR3dhbi1neWVvbmcgTXVuIDxnd2FuLWd5ZW9uZy5tdW5AaW50ZWwuY29t
+Pgo+IENjOiBTZWFuIFBhdWwgPHNlYW5wYXVsQGNocm9taXVtLm9yZz4KPiBDYzogRmFiaW8gRXN0
+ZXZhbSA8ZmVzdGV2YW1AZ21haWwuY29tPgo+IENjOiBEZWVwYWsgUmF3YXQgPGRyYXdhdEB2bXdh
+cmUuY29tPgo+IENjOiBkcmktZGV2ZWxAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCj4gU2lnbmVkLW9m
+Zi1ieTogSm9zw6kgUm9iZXJ0byBkZSBTb3V6YSA8am9zZS5zb3V6YUBpbnRlbC5jb20+CgpBZnRl
+ciBsb29raW5nIGF0IHRoZSBrZXJuZWwgY29kZSwgaXQgc2VlbXMgbGlrZSB0aGUga2VybmVsIGFs
+cmVhZHkgY2hlY2tzIGZvcgphbGwgb2YgdGhhdCBpbiBkcm1fYXRvbWljX3BsYW5lX2NoZWNrLiBB
+cmUgeW91IGF3YXJlIG9mIHRoaXM/Cgo+ICsJdyA9IGRybV9yZWN0X3dpZHRoKCZwbGFuZV9zdGF0
+ZS0+c3JjKSA+PiAxNjsKPiArCWggPSBkcm1fcmVjdF9oZWlnaHQoJnBsYW5lX3N0YXRlLT5zcmMp
+ID4+IDE2OwoKVGhlIGRvY3Mgc2F5IHRoaXMgc2hvdWxkIGJlIGluIEZCIGNvb3JkaW5hdGVzLCBu
+b3QgaW4gU1JDXyogY29vcmRpbmF0ZXMuIFNvIHdlCnNob3VsZG4ndCBuZWVkIHRvIGNoZWNrIGFu
+eSBTUkNfKiBwcm9wIGhlcmUuCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVz
+a3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9p
+bnRlbC1nZngK
