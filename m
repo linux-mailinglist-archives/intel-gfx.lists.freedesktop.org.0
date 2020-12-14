@@ -1,61 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C795C2D958C
-	for <lists+intel-gfx@lfdr.de>; Mon, 14 Dec 2020 10:55:14 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 699A32D958F
+	for <lists+intel-gfx@lfdr.de>; Mon, 14 Dec 2020 10:56:27 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6E3C16E150;
-	Mon, 14 Dec 2020 09:55:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D986B6E150;
+	Mon, 14 Dec 2020 09:56:25 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-x442.google.com (mail-wr1-x442.google.com
- [IPv6:2a00:1450:4864:20::442])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A4BFB6E147
- for <intel-gfx@lists.freedesktop.org>; Mon, 14 Dec 2020 09:55:10 +0000 (UTC)
-Received: by mail-wr1-x442.google.com with SMTP id t16so15807363wra.3
- for <intel-gfx@lists.freedesktop.org>; Mon, 14 Dec 2020 01:55:10 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:content-transfer-encoding:in-reply-to;
- bh=b4Fx/qpsDjJ8a+Ri8W62vhBFQU3cIzA1w9OyhGn/XLU=;
- b=U5y0zwSWdX6btMmBy7tXhsLuna9yVe7lk+H44m6mvrhn5LrSXdSzrJcTh1H3ynkaLc
- 8V0+LDbpjkkHBkIuXxy0L6YLzxegHqryc9eVVgKVksQ5XJOSQzmfaBRvmsfakrBOeN7G
- Yg/7lMECWvzeaIsPPG51YKClJs7ESpoSCatdM=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:content-transfer-encoding
- :in-reply-to;
- bh=b4Fx/qpsDjJ8a+Ri8W62vhBFQU3cIzA1w9OyhGn/XLU=;
- b=M1AeLY99CoYKB9kQJhvo1UM4/Tul6OIxH7803zADi+EJAqq8uuPqGiCiu4m3KRN3uz
- QCT3MtAXDuU9z4IA7gX9c7Z3rZRJZf7/Qce2C6x5l3b8+QGa03xnjPvR6DLPxhrt0huk
- 3PddlBDJSloGZXgETk2N6V7NIU+yVbpZJgzCv35BEq3yW2EpJSrlGg2eDAhV+KTwOSug
- xNH/zs92lLbR8grHDwGFGtg5/Vd8vz+4hUPUb8hmzCdvkFPsKcq5TVtGpySCHkdLWEZ/
- NgMol+QJuohXzfsvSC/I8wtW3Zt+2nCctAd2R/7OC50McWzVjgzhGqBbQl2yq/Rm4yjB
- pyzQ==
-X-Gm-Message-State: AOAM532nJZhHuvi9UFYMpySOTXP809M9q4TMunUcz17w6Q5PnFdgEH/a
- bd1y1cZby+QM1Ked1jjdM+yTwQ==
-X-Google-Smtp-Source: ABdhPJyoPoPmBf06BijH5vz/jTDdmM096z7DynwOQgU5Rev25s043d8Ph6EhhqxucqGvdEA9wzEaLg==
-X-Received: by 2002:adf:ec86:: with SMTP id z6mr28188032wrn.17.1607939709426; 
- Mon, 14 Dec 2020 01:55:09 -0800 (PST)
-Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id i16sm28602163wrx.89.2020.12.14.01.55.08
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 14 Dec 2020 01:55:08 -0800 (PST)
-Date: Mon, 14 Dec 2020 10:55:06 +0100
-From: Daniel Vetter <daniel@ffwll.ch>
-To: "Mun, Gwan-gyeong" <gwan-gyeong.mun@intel.com>
-Message-ID: <20201214095506.GY401619@phenom.ffwll.local>
-References: <20201213183930.349592-1-jose.souza@intel.com>
- <Mc9Acjxtl9hCv_yd6qeDG8VXAC5-I18UkQYV4xPBAIv-K1QJt_gwTg1WJQjKdD5f3Yfoq6kElbFxFx8HNnHJ3vqX9ztgdL7o_9aGtwAYLZk=@emersion.fr>
- <636492279d31fc14d8dc7dd336bb1afe2a894eaa.camel@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 8AAA16E147;
+ Mon, 14 Dec 2020 09:56:25 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 84587A7DFF;
+ Mon, 14 Dec 2020 09:56:25 +0000 (UTC)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <636492279d31fc14d8dc7dd336bb1afe2a894eaa.camel@intel.com>
-X-Operating-System: Linux phenom 5.7.0-1-amd64 
-Subject: Re: [Intel-gfx] [PATCH v5 1/6] drm/damage_helper: Check if damage
- clips has valid values
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Tvrtko Ursulin" <tvrtko.ursulin@linux.intel.com>
+Date: Mon, 14 Dec 2020 09:56:25 -0000
+Message-ID: <160793978553.28164.708176051451598018@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20201214094349.3563876-1-tvrtko.ursulin@linux.intel.com>
+In-Reply-To: <20201214094349.3563876-1-tvrtko.ursulin@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_series_starting_with_=5BCI=2C1/3=5D_drm/i915/pmu=3A_Don=27t?=
+ =?utf-8?q?_grab_wakeref_when_enabling_events?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,72 +39,32 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "contact@emersion.fr" <contact@emersion.fr>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "seanpaul@chromium.org" <seanpaul@chromium.org>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- "drawat@vmware.com" <drawat@vmware.com>,
- "festevam@gmail.com" <festevam@gmail.com>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Dec 14, 2020 at 09:27:30AM +0000, Mun, Gwan-gyeong wrote:
-> On Mon, 2020-12-14 at 08:55 +0000, Simon Ser wrote:
-> > > Userspace can set a damage clip with a negative coordinate,
-> > > negative
-> > > width or height or larger than the plane.
-> > > This invalid values could cause issues in some HW or even worst
-> > > enable
-> > > security flaws.
-> > > =
+== Series Details ==
 
-> > > v2:
-> > > - add debug messages to let userspace know why atomic commit failed
-> > > due invalid damage clips
-> > > =
+Series: series starting with [CI,1/3] drm/i915/pmu: Don't grab wakeref when enabling events
+URL   : https://patchwork.freedesktop.org/series/84898/
+State : warning
 
-> > > Cc: Simon Ser <contact@emersion.fr>
-> > > Cc: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>
-> > > Cc: Sean Paul <seanpaul@chromium.org>
-> > > Cc: Fabio Estevam <festevam@gmail.com>
-> > > Cc: Deepak Rawat <drawat@vmware.com>
-> > > Cc: dri-devel@lists.freedesktop.org
-> > > Signed-off-by: Jos=E9 Roberto de Souza <jose.souza@intel.com>
-> > =
+== Summary ==
 
-> > After looking at the kernel code, it seems like the kernel already
-> > checks for
-> > all of that in drm_atomic_plane_check. Are you aware of this?
-> > =
+$ dim checkpatch origin/drm-tip
+5f62030b7d49 drm/i915/pmu: Don't grab wakeref when enabling events
+e28201228e02 drm/i915/pmu: Use raw clock for rc6 estimation
+d781b1a46f9c drm/i915/pmu: Remove !CONFIG_PM code
+-:6: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit 16ffe73c186b ("drm/i915/pmu: Use GT parked for estimating RC6 while asleep")'
+#6: 
+Chris spotted that since 16ffe73c186b ("drm/i915/pmu: Use GT parked for
 
-> > > +	w =3D drm_rect_width(&plane_state->src) >> 16;
-> > > +	h =3D drm_rect_height(&plane_state->src) >> 16;
-> > =
+total: 1 errors, 0 warnings, 0 checks, 26 lines checked
 
-> > The docs say this should be in FB coordinates, not in SRC_*
-> > coordinates. So we
-> > shouldn't need to check any SRC_* prop here.
-> > =
 
-> I agree the Simon's opinion. it does check between plane's frame buffer
-> src geometry and damage clips. (Plane's damage clip might exist outside
-> of fb src geometry.)
-
-Since this is causing confusion, please make sure that the igt for damage
-clips validates this correctly. I think some of the igts that vmwgfx
-people have created have still not yet landed, so we definitely want to
-land these.
-
-Note that basic damage clips tests should be fully generic, i.e. not tied
-to anything driver specific like our psr testcases are.
--Daniel
--- =
-
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
