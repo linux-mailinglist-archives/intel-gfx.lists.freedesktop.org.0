@@ -2,31 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8E27E2D9E68
-	for <lists+intel-gfx@lfdr.de>; Mon, 14 Dec 2020 19:02:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2DC9C2D9E76
+	for <lists+intel-gfx@lfdr.de>; Mon, 14 Dec 2020 19:06:24 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E37D66E098;
-	Mon, 14 Dec 2020 18:02:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0BCA56E098;
+	Mon, 14 Dec 2020 18:06:22 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id BD3726E0DD;
- Mon, 14 Dec 2020 18:02:34 +0000 (UTC)
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 84F406E098;
+ Mon, 14 Dec 2020 18:06:21 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id B7580A8835;
- Mon, 14 Dec 2020 18:02:34 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 7FF50A7DFE;
+ Mon, 14 Dec 2020 18:06:21 +0000 (UTC)
 MIME-Version: 1.0
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Daniel Vetter" <daniel.vetter@ffwll.ch>
-Date: Mon, 14 Dec 2020 18:02:34 -0000
-Message-ID: <160796895472.28163.6632840962817355563@emeril.freedesktop.org>
+Date: Mon, 14 Dec 2020 18:06:21 -0000
+Message-ID: <160796918150.28166.14516787195206444893@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20201211155843.3348718-1-daniel.vetter@ffwll.ch>
 In-Reply-To: <20201211155843.3348718-1-daniel.vetter@ffwll.ch>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_series_starting_with_=5B1/4=5D_dma-buf=3A_Remove_kmap_kerne?=
- =?utf-8?q?ldoc_vestiges_=28rev2=29?=
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkRPQ1M6IHdhcm5pbmcgZm9yIHNl?=
+ =?utf-8?q?ries_starting_with_=5B1/4=5D_dma-buf=3A_Remove_kmap_kerneldoc_v?=
+ =?utf-8?q?estiges_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,23 +54,9 @@ State : warning
 
 == Summary ==
 
-$ dim checkpatch origin/drm-tip
-431d5d802932 dma-buf: Remove kmap kerneldoc vestiges
--:115: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Daniel Vetter <daniel.vetter@ffwll.ch>' != 'Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>'
-
-total: 0 errors, 1 warnings, 0 checks, 84 lines checked
-23e5090ffe7c dma-buf: some kerneldoc formatting fixes
--:144: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Daniel Vetter <daniel.vetter@ffwll.ch>' != 'Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>'
-
-total: 0 errors, 1 warnings, 0 checks, 108 lines checked
-019147465c7d dma-buf: begin/end_cpu might lock the dma_resv lock
--:41: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Daniel Vetter <daniel.vetter@ffwll.ch>' != 'Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>'
-
-total: 0 errors, 1 warnings, 0 checks, 16 lines checked
-a0a86fd27dc7 dma-buf: doc polish for pin/unpin
--:96: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Daniel Vetter <daniel.vetter@ffwll.ch>' != 'Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>'
-
-total: 0 errors, 1 warnings, 0 checks, 63 lines checked
+$ make htmldocs 2>&1 > /dev/null | grep i915
+Error: Cannot open file ./drivers/gpu/drm/i915/gt/intel_lrc.c
+WARNING: kernel-doc './scripts/kernel-doc -rst -enable-lineno -sphinx-version 1.7.9 -function Logical Rings, Logical Ring Contexts and Execlists ./drivers/gpu/drm/i915/gt/intel_lrc.c' failed with return code 1
 
 
 _______________________________________________
