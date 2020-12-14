@@ -1,32 +1,46 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D44BC2D987C
-	for <lists+intel-gfx@lfdr.de>; Mon, 14 Dec 2020 14:04:49 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id B3BEE2D989F
+	for <lists+intel-gfx@lfdr.de>; Mon, 14 Dec 2020 14:18:09 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 37B0C89BA5;
-	Mon, 14 Dec 2020 13:04:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 22D4D6E157;
+	Mon, 14 Dec 2020 13:18:07 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 8695F899AB;
- Mon, 14 Dec 2020 13:04:47 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 81480A0094;
- Mon, 14 Dec 2020 13:04:47 +0000 (UTC)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 47AE56E157;
+ Mon, 14 Dec 2020 13:18:06 +0000 (UTC)
+IronPort-SDR: KFb3uwr5BdpM2CUXSnTxoQ7RlU9AsJ/lHwPbHmRHD6XG/TbdlmC2X6OMBfunwsQUepvR4X34/P
+ mGcJkVIhOgQQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9834"; a="161753572"
+X-IronPort-AV: E=Sophos;i="5.78,418,1599548400"; d="scan'208";a="161753572"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Dec 2020 05:18:05 -0800
+IronPort-SDR: upzBDfuoLSVDJRaf/pFVdy9J3Rsr3gSu93DSaSkpJ+OzQSLQLuPvTxGqOF4z2Pq7hpO7+zbNkw
+ gljHR9lWj5RQ==
+X-IronPort-AV: E=Sophos;i="5.78,418,1599548400"; d="scan'208";a="381654103"
+Received: from aknautiy-mobl.gar.corp.intel.com (HELO [10.213.98.131])
+ ([10.213.98.131])
+ by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Dec 2020 05:18:02 -0800
+To: "Shankar, Uma" <uma.shankar@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+References: <20201208075145.17389-1-ankit.k.nautiyal@intel.com>
+ <20201208075145.17389-8-ankit.k.nautiyal@intel.com>
+ <84fd6863339d4737a67decd2a9787a23@intel.com>
+From: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
+Message-ID: <b2282934-25ed-e510-e38f-a1df2f59deb2@intel.com>
+Date: Mon, 14 Dec 2020 18:47:59 +0530
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Thunderbird/78.5.1
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Mon, 14 Dec 2020 13:04:47 -0000
-Message-ID: <160795108752.28165.6661716163003124772@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20201214100949.11387-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20201214100949.11387-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
- =?utf-8?q?ies_starting_with_=5B01/69=5D_drm/i915=3A_Use_cmpxchg64_for_32b?=
- =?utf-8?q?_compatilibity?=
+In-Reply-To: <84fd6863339d4737a67decd2a9787a23@intel.com>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH v4 07/16] drm/dp_helper: Add helpers to
+ configure PCONs RGB-YCbCr Conversion
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,343 +53,195 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============0271699627=="
+Cc: "airlied@linux.ie" <airlied@linux.ie>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0271699627==
-Content-Type: multipart/alternative;
- boundary="===============7391207938317856153=="
+Hi Uma Shankar,
 
---===============7391207938317856153==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Thanks for the comments and suggestions.
 
-== Series Details ==
+Please find my response inline.
 
-Series: series starting with [01/69] drm/i915: Use cmpxchg64 for 32b compatilibity
-URL   : https://patchwork.freedesktop.org/series/84900/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_9478 -> Patchwork_19133
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19133/index.html
-
-New tests
----------
-
-  New tests have been introduced between CI_DRM_9478 and Patchwork_19133:
-
-### New IGT tests (1) ###
-
-  * igt@i915_selftest@live@scheduler:
-    - Statuses : 34 pass(s)
-    - Exec time: [0.59, 9.15] s
-
-  
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_19133 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@gem_linear_blits@basic:
-    - fi-tgl-y:           [PASS][1] -> [DMESG-WARN][2] ([i915#402]) +1 similar issue
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9478/fi-tgl-y/igt@gem_linear_blits@basic.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19133/fi-tgl-y/igt@gem_linear_blits@basic.html
-
-  * igt@runner@aborted:
-    - fi-bdw-5557u:       NOTRUN -> [FAIL][3] ([i915#2029] / [i915#2722])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19133/fi-bdw-5557u/igt@runner@aborted.html
-
-  
-#### Possible fixes ####
-
-  * igt@fbdev@read:
-    - fi-tgl-y:           [DMESG-WARN][4] ([i915#402]) -> [PASS][5] +1 similar issue
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9478/fi-tgl-y/igt@fbdev@read.html
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19133/fi-tgl-y/igt@fbdev@read.html
-
-  
-  [i915#2029]: https://gitlab.freedesktop.org/drm/intel/issues/2029
-  [i915#2722]: https://gitlab.freedesktop.org/drm/intel/issues/2722
-  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
+On 12/13/2020 12:40 PM, Shankar, Uma wrote:
+>
+>> -----Original Message-----
+>> From: Nautiyal, Ankit K <ankit.k.nautiyal@intel.com>
+>> Sent: Tuesday, December 8, 2020 1:22 PM
+>> To: intel-gfx@lists.freedesktop.org
+>> Cc: dri-devel@lists.freedesktop.org; Shankar, Uma <uma.shankar@intel.com>;
+>> airlied@linux.ie; jani.nikula@linux.intel.com; ville.syrjala@linux.intel.com;
+>> Kulkarni, Vandita <vandita.kulkarni@intel.com>; Sharma, Swati2
+>> <swati2.sharma@intel.com>
+>> Subject: [PATCH v4 07/16] drm/dp_helper: Add helpers to configure PCONs RGB-
+>> YCbCr Conversion
+>>
+>> DP Specification for DP2.0 to HDMI2.1 Pcon specifies support for conversion of
+>> colorspace from RGB to YCbCr.
+>> https://groups.vesa.org/wg/DP/document/previewpdf/15651
+>>
+>> This patch adds the relavant registers and helper functions to get the capability
+>> and set the color conversion bits for rgb->ycbcr conversion through PCON.
+>>
+>> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+>> ---
+>>   drivers/gpu/drm/drm_dp_helper.c | 59 +++++++++++++++++++++++++++++++++
+>>   include/drm/drm_dp_helper.h     | 10 +++++-
+>>   2 files changed, 68 insertions(+), 1 deletion(-)
+>>
+>> diff --git a/drivers/gpu/drm/drm_dp_helper.c
+>> b/drivers/gpu/drm/drm_dp_helper.c index d0626f57f99c..344662d5c295 100644
+>> --- a/drivers/gpu/drm/drm_dp_helper.c
+>> +++ b/drivers/gpu/drm/drm_dp_helper.c
+>> @@ -949,6 +949,35 @@ bool
+>> drm_dp_downstream_444_to_420_conversion(const u8
+>> dpcd[DP_RECEIVER_CAP_SIZE]  }
+>> EXPORT_SYMBOL(drm_dp_downstream_444_to_420_conversion);
+>>
+>> +/**
+>> + * drm_dp_downstream_rgb_to_ycbcr_conversion() - determine downstream
+>> facing port
+>> + *                                               RGB->YCbCr conversion capability
+>> + * @dpcd: DisplayPort configuration data
+>> + * @port_cap: downstream facing port capabilities
+>> + *
+>> + * Returns: whether the downstream facing port can convert RGB->YCbCr
+>> +*/ bool drm_dp_downstream_rgb_to_ycbcr_conversion(const u8
+>> +dpcd[DP_RECEIVER_CAP_SIZE],
+>> +					       const u8 port_cap[4])
+>> +{
+>> +	if (!drm_dp_is_branch(dpcd))
+>> +		return false;
+>> +
+>> +	if (dpcd[DP_DPCD_REV] < 0x13)
+>> +		return false;
+>> +
+>> +	switch (port_cap[0] & DP_DS_PORT_TYPE_MASK) {
+>> +	case DP_DS_PORT_TYPE_HDMI:
+>> +		if ((dpcd[DP_DOWNSTREAMPORT_PRESENT] &
+>> DP_DETAILED_CAP_INFO_AVAILABLE) == 0)
+>> +			return false;
+>> +
+>> +		return port_cap[3] & DP_DS_HDMI_BT601_RGB_YCBCR_CONV;
+> I guess there are other conversions also possible, like BT709 and 2020. Update those
+> as well here.
 
 
-Participating hosts (42 -> 38)
-------------------------------
+Yes you are right. I will modify the function to take as input 
+colorspace, also and
 
-  Missing    (4): fi-blb-e6850 fi-hsw-4200u fi-bdw-samus fi-bsw-n3050 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_9478 -> Patchwork_19133
-
-  CI-20190529: 20190529
-  CI_DRM_9478: 94cf3a4cc350324f21728c70954c46e535405c87 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5890: 0e209dc3cd7561a57ec45be74b8b299eaf391950 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_19133: 70d710616a47edbf414439350c1821774c8b9a6c @ git://anongit.freedesktop.org/gfx-ci/linux
+the function will be returning true, if the rgb->ycbcr conversion for 
+the given colorspace is supported.
 
 
-== Linux commits ==
+>
+>> +	default:
+>> +		return false;
+>> +	}
+>> +}
+>> +EXPORT_SYMBOL(drm_dp_downstream_rgb_to_ycbcr_conversion);
+>> +
+>>   /**
+>>    * drm_dp_downstream_mode() - return a mode for downstream facing port
+>>    * @dev: DRM device
+>> @@ -3140,3 +3169,33 @@ int drm_dp_pcon_pps_override_param(struct
+>> drm_dp_aux *aux, u8 pps_param[6])
+>>   	return 0;
+>>   }
+>>   EXPORT_SYMBOL(drm_dp_pcon_pps_override_param);
+>> +
+>> +/*
+>> + * drm_dp_pcon_convert_rgb_to_ycbcr() - Configure the PCon to convert
+>> +RGB to Ycbcr
+>> + * @aux: displayPort AUX channel
+>> + * @color_spc: Color space conversion type
+>> + *
+>> + * Returns 0 on success, else returns negative error code.
+>> + */
+>> +int drm_dp_pcon_convert_rgb_to_ycbcr(struct drm_dp_aux *aux, u8
+>> +color_spc) {
+>> +	int ret;
+>> +	u8 buf;
+>> +
+>> +	if (color_spc != DP_CONVERSION_BT601_RGB_YCBCR_ENABLE ||
+>> +	    color_spc != DP_CONVERSION_BT709_RGB_YCBCR_ENABLE ||
+>> +	    color_spc != DP_CONVERSION_BT2020_RGB_YCBCR_ENABLE)
+>> +		return -EINVAL;
+> Yeah this is wrong, fix it.
 
-70d710616a47 drm/i915/gt: Support virtual engine queues
-eea9c98ae924 drm/i915/gt: Skip over completed active execlists, again
-dc3d8fa55043 drm/i915: Move saturated workload detection back to the context
-323da02de4eb drm/i915/gt: Enable ring scheduling for gen6/7
-f8ed557dd270 drm/i915/gt: Implement ring scheduler for gen6/7
-d96ffec133d1 drm/i915/gt: Enable busy-stats for ring-scheduler
-413f05d8e17b drm/i915/gt: Infrastructure for ring scheduling
-86d6df08c846 drm/i915/gt: Use client timeline address for seqno writes
-cd3ce6df8cdc drm/i915/gt: Support creation of 'internal' rings
-fc966b2cd073 drm/i915/gt: Couple tasklet scheduling for all CS interrupts
-84c52535dbaf Restore "drm/i915: drop engine_pin/unpin_breadcrumbs_irq"
-d968c14536c6 drm/i915/gt: Another tweak for flushing the tasklets
-115fa74d21c8 drm/i915: Move tasklet from execlists to sched
-3fdabb21ae8c drm/i915: Move scheduler queue
-307f5103a402 drm/i915: Move common active lists from engine to i915_scheduler
-cce02f220b17 drm/i915: Extend the priority boosting for the display with a deadline
-ea38b5a2194f drm/i915/gt: Specify a deadline for the heartbeat
-ee5f9ad7eee0 drm/i915: Fair low-latency scheduling
-48624311bbf0 drm/i915: Wrap cmpxchg64 with try_cmpxchg64() helper
-a751859ecb72 drm/i915: Fix the iterative dfs for defering requests
-a5ffb8e4d752 drm/i915: Extract the ability to defer and rerun a request later
-f0634ef3a719 drm/i915: Extract request suspension from the execlists backend
-0c5bc38dac03 drm/i915: Extract request submission from execlists
-6463731d3356 drm/i915/gt: Remove timeslice suppression
-3835bb8e7018 drm/i915: Improve DFS for priority inheritance
-fdf0bf3f6e3e drm/i915/selftests: Exercise priority inheritance around an engine loop
-622182a65e16 drm/i915/selftests: Measure set-priority duration
-c5834625d876 drm/i915: Restructure priority inheritance
-76805c1d568f drm/i915: Teach the i915_dependency to use a double-lock
-34b62d953f50 drm/i915/gt: Do not suspend bonded requests if one hangs
-b916ef805b71 drm/i915: Replace engine->schedule() with a known request operation
-b0f4da50b0fc drm/i915: Prune empty priolists
-506d0c1b2d3a drm/i915/gt: Defer the kmem_cache_free() until after the HW submit
-70dd8ff805da drm/i915: Remove I915_USER_PRIORITY_SHIFT
-19429f06a9d1 drm/i915: Strip out internal priorities
-7bbaf73cc381 drm/i915/gt: Refactor heartbeat request construction and submission
-f5458bf52a9d drm/i915/gt: Convert stats.active to plain unsigned int
-04fb23cb64d2 drm/i915/gt: Extract busy-stats for ring-scheduler
-a1dec9510015 drm/i915/gt: Drop atomic for engine->fw_active tracking
-aba47aad12c0 drm/i915: Reduce test_and_set_bit to set_bit in i915_request_submit()
-ca26a0835509 drm/i915/gem: Reduce ctx->engines_mutex for get_engines()
-0874a9ee121d drm/i915/gem: Reduce ctx->engine_mutex for reading the clone source
-acb070e009e6 drm/i915: Drop i915_request.lock requirement for intel_rps_boost()
-e1ba077c4634 drm/i915: Drop i915_request.lock serialisation around await_start
-f41ace3aacd9 drm/i915/gem: Optimistically prune dma-resv from the shrinker.
-801b88f03c21 drm/i915/gt: Prefer recycling an idle fence
-ccb57dc0aafd drm/i915/gt: Consolidate the CS timestamp clocks
-937af88e9869 drm/i915/selftests: Confirm RING_TIMESTAMP / CTX_TIMESTAMP share a clock
-99692fe0f319 drm/i915/gt: Use ppHWSP for unshared non-semaphore related timelines
-722362f35c0d drm/i915/selftests: Exercise relative timeline modes
-a3ff02a6c8f0 drm/i915/gt: Use indices for writing into relative timelines
-98e9db354de5 drm/i915/gt: Add timeline "mode"
-3c050f7bff37 drm/i915/gt: Track timeline GGTT offset separately from subpage offset
-5d9534289170 drm/i915/gt: Wrap intel_timeline.has_initial_breadcrumb
-d77dfac7aad3 drm/i915/gt: Track all timelines created using the HWSP
-e4f662259e10 drm/i915/gt: Track the overall awake/busy time
-8ccab6df158e drm/i915/gem: Drop free_work for GEM contexts
-8ddfebc69fcb drm/i915/gt: ce->inflight updates are now serialised
-a28f9e8810aa drm/i915/gt: Simplify virtual engine handling for execlists_hold()
-9aefee3ded48 drm/i915/gt: Resubmit the virtual engine on schedule-out
-b6c9a8fd2b70 drm/i915/gt: Shrink the critical section for irq signaling
-af9dc0dc069e drm/i915/gt: Remove virtual breadcrumb before transfer
-a83ac0a0f58e drm/i915/gt: Defer schedule_out until after the next dequeue
-b930ba2a83d3 drm/i915/gt: Decouple inflight virtual engines
-efdd2df1bc73 drm/i915/gt: Use virtual_engine during execlists_dequeue
-4aa9ef6d49f8 drm/i915/gt: Replace direct submit with direct call to tasklet
-b674cfb42071 drm/i915: Encode fence specific waitqueue behaviour into the wait.flags
-4e8074241dc4 drm/i915/uc: Squelch load failure error message
-0dc75ecba54f drm/i915: Use cmpxchg64 for 32b compatilibity
+Agreed. Will fix this in next version of the patch.
 
-== Logs ==
+>
+>> +
+>> +	ret = drm_dp_dpcd_readb(aux, DP_PROTOCOL_CONVERTER_CONTROL_2,
+>> &buf);
+>> +	if (ret < 0)
+>> +		return ret;
+>> +
+>> +	buf |= color_spc;
+>> +	ret = drm_dp_dpcd_writeb(aux,
+>> DP_PROTOCOL_CONVERTER_CONTROL_2, buf);
+>> +	if (ret < 0)
+>> +		return ret;
+>> +
+>> +	return 0;
+>> +}
+>> +EXPORT_SYMBOL(drm_dp_pcon_convert_rgb_to_ycbcr);
+>> diff --git a/include/drm/drm_dp_helper.h b/include/drm/drm_dp_helper.h index
+>> 347b4e1a55b4..1b3d54ed7a78 100644
+>> --- a/include/drm/drm_dp_helper.h
+>> +++ b/include/drm/drm_dp_helper.h
+>> @@ -431,6 +431,9 @@ struct drm_device;
+>>   # define DP_DS_HDMI_YCBCR420_PASS_THROUGH   (1 << 2)
+>>   # define DP_DS_HDMI_YCBCR444_TO_422_CONV    (1 << 3)
+>>   # define DP_DS_HDMI_YCBCR444_TO_420_CONV    (1 << 4)
+>> +# define DP_DS_HDMI_BT601_RGB_YCBCR_CONV    (1 << 5)
+>> +# define DP_DS_HDMI_BT709_RGB_YCBCR_CONV    (1 << 6)
+>> +# define DP_DS_HDMI_BT2020_RGB_YCBCR_CONV   (1 << 7)
+> I think it would be good to mention the location in spec (section or table),
+> will make it easier to understand/review by directly going to relevant sections in spec.
 
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19133/index.html
+This is still Draft 1 of the spec: VESA DP-to-HDMI PCON Specification 
+Standalone Document. Link in the commit message.
 
---===============7391207938317856153==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+I will mention the current Section and Table no. nevertheless in the 
+next version of the patch.
 
+Thanks & Regards,
 
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
+Ankit
 
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>series starting with [01/69] drm/i915: Use cmpxchg64 for 32b compatilibity</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/84900/">https://patchwork.freedesktop.org/series/84900/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19133/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19133/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_9478 -&gt; Patchwork_19133</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19133/index.html</p>
-<h2>New tests</h2>
-<p>New tests have been introduced between CI_DRM_9478 and Patchwork_19133:</p>
-<h3>New IGT tests (1)</h3>
-<ul>
-<li>igt@i915_selftest@live@scheduler:<ul>
-<li>Statuses : 34 pass(s)</li>
-<li>Exec time: [0.59, 9.15] s</li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_19133 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@gem_linear_blits@basic:</p>
-<ul>
-<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9478/fi-tgl-y/igt@gem_linear_blits@basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19133/fi-tgl-y/igt@gem_linear_blits@basic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) +1 similar issue</li>
-</ul>
-</li>
-<li>
-<p>igt@runner@aborted:</p>
-<ul>
-<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19133/fi-bdw-5557u/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2029">i915#2029</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2722">i915#2722</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@fbdev@read:<ul>
-<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9478/fi-tgl-y/igt@fbdev@read.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19133/fi-tgl-y/igt@fbdev@read.html">PASS</a> +1 similar issue</li>
-</ul>
-</li>
-</ul>
-<h2>Participating hosts (42 -&gt; 38)</h2>
-<p>Missing    (4): fi-blb-e6850 fi-hsw-4200u fi-bdw-samus fi-bsw-n3050 </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_9478 -&gt; Patchwork_19133</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_9478: 94cf3a4cc350324f21728c70954c46e535405c87 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_5890: 0e209dc3cd7561a57ec45be74b8b299eaf391950 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
-  Patchwork_19133: 70d710616a47edbf414439350c1821774c8b9a6c @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>70d710616a47 drm/i915/gt: Support virtual engine queues<br />
-eea9c98ae924 drm/i915/gt: Skip over completed active execlists, again<br />
-dc3d8fa55043 drm/i915: Move saturated workload detection back to the context<br />
-323da02de4eb drm/i915/gt: Enable ring scheduling for gen6/7<br />
-f8ed557dd270 drm/i915/gt: Implement ring scheduler for gen6/7<br />
-d96ffec133d1 drm/i915/gt: Enable busy-stats for ring-scheduler<br />
-413f05d8e17b drm/i915/gt: Infrastructure for ring scheduling<br />
-86d6df08c846 drm/i915/gt: Use client timeline address for seqno writes<br />
-cd3ce6df8cdc drm/i915/gt: Support creation of 'internal' rings<br />
-fc966b2cd073 drm/i915/gt: Couple tasklet scheduling for all CS interrupts<br />
-84c52535dbaf Restore "drm/i915: drop engine_pin/unpin_breadcrumbs_irq"<br />
-d968c14536c6 drm/i915/gt: Another tweak for flushing the tasklets<br />
-115fa74d21c8 drm/i915: Move tasklet from execlists to sched<br />
-3fdabb21ae8c drm/i915: Move scheduler queue<br />
-307f5103a402 drm/i915: Move common active lists from engine to i915_scheduler<br />
-cce02f220b17 drm/i915: Extend the priority boosting for the display with a deadline<br />
-ea38b5a2194f drm/i915/gt: Specify a deadline for the heartbeat<br />
-ee5f9ad7eee0 drm/i915: Fair low-latency scheduling<br />
-48624311bbf0 drm/i915: Wrap cmpxchg64 with try_cmpxchg64() helper<br />
-a751859ecb72 drm/i915: Fix the iterative dfs for defering requests<br />
-a5ffb8e4d752 drm/i915: Extract the ability to defer and rerun a request later<br />
-f0634ef3a719 drm/i915: Extract request suspension from the execlists backend<br />
-0c5bc38dac03 drm/i915: Extract request submission from execlists<br />
-6463731d3356 drm/i915/gt: Remove timeslice suppression<br />
-3835bb8e7018 drm/i915: Improve DFS for priority inheritance<br />
-fdf0bf3f6e3e drm/i915/selftests: Exercise priority inheritance around an engine loop<br />
-622182a65e16 drm/i915/selftests: Measure set-priority duration<br />
-c5834625d876 drm/i915: Restructure priority inheritance<br />
-76805c1d568f drm/i915: Teach the i915_dependency to use a double-lock<br />
-34b62d953f50 drm/i915/gt: Do not suspend bonded requests if one hangs<br />
-b916ef805b71 drm/i915: Replace engine-&gt;schedule() with a known request operation<br />
-b0f4da50b0fc drm/i915: Prune empty priolists<br />
-506d0c1b2d3a drm/i915/gt: Defer the kmem_cache_free() until after the HW submit<br />
-70dd8ff805da drm/i915: Remove I915_USER_PRIORITY_SHIFT<br />
-19429f06a9d1 drm/i915: Strip out internal priorities<br />
-7bbaf73cc381 drm/i915/gt: Refactor heartbeat request construction and submission<br />
-f5458bf52a9d drm/i915/gt: Convert stats.active to plain unsigned int<br />
-04fb23cb64d2 drm/i915/gt: Extract busy-stats for ring-scheduler<br />
-a1dec9510015 drm/i915/gt: Drop atomic for engine-&gt;fw_active tracking<br />
-aba47aad12c0 drm/i915: Reduce test_and_set_bit to set_bit in i915_request_submit()<br />
-ca26a0835509 drm/i915/gem: Reduce ctx-&gt;engines_mutex for get_engines()<br />
-0874a9ee121d drm/i915/gem: Reduce ctx-&gt;engine_mutex for reading the clone source<br />
-acb070e009e6 drm/i915: Drop i915_request.lock requirement for intel_rps_boost()<br />
-e1ba077c4634 drm/i915: Drop i915_request.lock serialisation around await_start<br />
-f41ace3aacd9 drm/i915/gem: Optimistically prune dma-resv from the shrinker.<br />
-801b88f03c21 drm/i915/gt: Prefer recycling an idle fence<br />
-ccb57dc0aafd drm/i915/gt: Consolidate the CS timestamp clocks<br />
-937af88e9869 drm/i915/selftests: Confirm RING_TIMESTAMP / CTX_TIMESTAMP share a clock<br />
-99692fe0f319 drm/i915/gt: Use ppHWSP for unshared non-semaphore related timelines<br />
-722362f35c0d drm/i915/selftests: Exercise relative timeline modes<br />
-a3ff02a6c8f0 drm/i915/gt: Use indices for writing into relative timelines<br />
-98e9db354de5 drm/i915/gt: Add timeline "mode"<br />
-3c050f7bff37 drm/i915/gt: Track timeline GGTT offset separately from subpage offset<br />
-5d9534289170 drm/i915/gt: Wrap intel_timeline.has_initial_breadcrumb<br />
-d77dfac7aad3 drm/i915/gt: Track all timelines created using the HWSP<br />
-e4f662259e10 drm/i915/gt: Track the overall awake/busy time<br />
-8ccab6df158e drm/i915/gem: Drop free_work for GEM contexts<br />
-8ddfebc69fcb drm/i915/gt: ce-&gt;inflight updates are now serialised<br />
-a28f9e8810aa drm/i915/gt: Simplify virtual engine handling for execlists_hold()<br />
-9aefee3ded48 drm/i915/gt: Resubmit the virtual engine on schedule-out<br />
-b6c9a8fd2b70 drm/i915/gt: Shrink the critical section for irq signaling<br />
-af9dc0dc069e drm/i915/gt: Remove virtual breadcrumb before transfer<br />
-a83ac0a0f58e drm/i915/gt: Defer schedule_out until after the next dequeue<br />
-b930ba2a83d3 drm/i915/gt: Decouple inflight virtual engines<br />
-efdd2df1bc73 drm/i915/gt: Use virtual_engine during execlists_dequeue<br />
-4aa9ef6d49f8 drm/i915/gt: Replace direct submit with direct call to tasklet<br />
-b674cfb42071 drm/i915: Encode fence specific waitqueue behaviour into the wait.flags<br />
-4e8074241dc4 drm/i915/uc: Squelch load failure error message<br />
-0dc75ecba54f drm/i915: Use cmpxchg64 for 32b compatilibity</p>
-
-</body>
-</html>
-
---===============7391207938317856153==--
-
---===============0271699627==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
+>>   #define DP_MAX_DOWNSTREAM_PORTS		    0x10
+>>
+>> @@ -1217,7 +1220,9 @@ struct drm_device;
+>>   # define DP_PCON_ENC_PPS_OVERRIDE_DISABLED      0
+>>   # define DP_PCON_ENC_PPS_OVERRIDE_EN_PARAMS     1
+>>   # define DP_PCON_ENC_PPS_OVERRIDE_EN_BUFFER     2
+>> -
+>> +# define DP_CONVERSION_BT601_RGB_YCBCR_ENABLE  (1 << 4) # define
+>> +DP_CONVERSION_BT709_RGB_YCBCR_ENABLE  (1 << 5) # define
+>> +DP_CONVERSION_BT2020_RGB_YCBCR_ENABLE (1 << 6)
+>>
+>>   /* PCON Downstream HDMI ERROR Status per Lane */
+>>   #define DP_PCON_HDMI_ERROR_STATUS_LN0          0x3037
+>> @@ -2178,5 +2183,8 @@ int drm_dp_pcon_dsc_bpp_incr(const u8
+>> pcon_dsc_dpcd[DP_PCON_DSC_ENCODER_CAP_SIZE
+>>   int drm_dp_pcon_pps_default(struct drm_dp_aux *aux);  int
+>> drm_dp_pcon_pps_override_buf(struct drm_dp_aux *aux, u8 pps_buf[128]);  int
+>> drm_dp_pcon_pps_override_param(struct drm_dp_aux *aux, u8 pps_param[6]);
+>> +bool drm_dp_downstream_rgb_to_ycbcr_conversion(const u8
+>> dpcd[DP_RECEIVER_CAP_SIZE],
+>> +					       const u8 port_cap[4]);
+>> +int drm_dp_pcon_convert_rgb_to_ycbcr(struct drm_dp_aux *aux, u8
+>> +color_spc);
+>>
+>>   #endif /* _DRM_DP_HELPER_H_ */
+>> --
+>> 2.17.1
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============0271699627==--
