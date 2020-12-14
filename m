@@ -2,31 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3AD4A2D95FC
-	for <lists+intel-gfx@lfdr.de>; Mon, 14 Dec 2020 11:10:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2EE3C2D9604
+	for <lists+intel-gfx@lfdr.de>; Mon, 14 Dec 2020 11:10:50 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 00FF46E207;
-	Mon, 14 Dec 2020 10:10:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 460D76E21D;
+	Mon, 14 Dec 2020 10:10:26 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 58E5D6E204
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 413B66E153
  for <intel-gfx@lists.freedesktop.org>; Mon, 14 Dec 2020 10:10:06 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 23317801-1500050 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 23317802-1500050 
  for multiple; Mon, 14 Dec 2020 10:09:54 +0000
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Mon, 14 Dec 2020 10:09:10 +0000
-Message-Id: <20201214100949.11387-30-chris@chris-wilson.co.uk>
+Date: Mon, 14 Dec 2020 10:09:11 +0000
+Message-Id: <20201214100949.11387-31-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20201214100949.11387-1-chris@chris-wilson.co.uk>
 References: <20201214100949.11387-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 30/69] drm/i915: Reduce test_and_set_bit to
- set_bit in i915_request_submit()
+Subject: [Intel-gfx] [PATCH 31/69] drm/i915/gt: Drop atomic for
+ engine->fw_active tracking
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,48 +45,65 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Avoid the full blown memory barrier of test_and_set_bit() by noting the
-completed request and removing it from the lists.
+Since schedule-in/out is now entirely serialised by the tasklet bitlock,
+we do not need to worry about concurrent in/out operations and so reduce
+the atomic operations to plain instructions.
 
 Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
 ---
- drivers/gpu/drm/i915/i915_request.c | 16 +++++++++-------
- 1 file changed, 9 insertions(+), 7 deletions(-)
+ drivers/gpu/drm/i915/gt/intel_engine_cs.c            | 2 +-
+ drivers/gpu/drm/i915/gt/intel_engine_types.h         | 2 +-
+ drivers/gpu/drm/i915/gt/intel_execlists_submission.c | 4 ++--
+ 3 files changed, 4 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/i915_request.c b/drivers/gpu/drm/i915/i915_request.c
-index 4d886b3c9cd7..2a2ec95fed5f 100644
---- a/drivers/gpu/drm/i915/i915_request.c
-+++ b/drivers/gpu/drm/i915/i915_request.c
-@@ -538,8 +538,10 @@ bool __i915_request_submit(struct i915_request *request)
- 	 * dropped upon retiring. (Otherwise if resubmit a *retired*
- 	 * request, this would be a horrible use-after-free.)
+diff --git a/drivers/gpu/drm/i915/gt/intel_engine_cs.c b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+index 55856c230779..bd6bb4ede48d 100644
+--- a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
++++ b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+@@ -1644,7 +1644,7 @@ void intel_engine_dump(struct intel_engine_cs *engine,
+ 			   ktime_to_ms(intel_engine_get_busy_time(engine,
+ 								  &dummy)));
+ 	drm_printf(m, "\tForcewake: %x domains, %d active\n",
+-		   engine->fw_domain, atomic_read(&engine->fw_active));
++		   engine->fw_domain, READ_ONCE(engine->fw_active));
+ 
+ 	rcu_read_lock();
+ 	rq = READ_ONCE(engine->heartbeat.systole);
+diff --git a/drivers/gpu/drm/i915/gt/intel_engine_types.h b/drivers/gpu/drm/i915/gt/intel_engine_types.h
+index c28f4e190fe6..1fbee35cb5ad 100644
+--- a/drivers/gpu/drm/i915/gt/intel_engine_types.h
++++ b/drivers/gpu/drm/i915/gt/intel_engine_types.h
+@@ -329,7 +329,7 @@ struct intel_engine_cs {
+ 	 * as possible.
  	 */
--	if (i915_request_completed(request))
--		goto xfer;
-+	if (i915_request_completed(request)) {
-+		list_del_init(&request->sched.link);
-+		goto active;
-+	}
+ 	enum forcewake_domains fw_domain;
+-	atomic_t fw_active;
++	unsigned int fw_active;
  
- 	if (unlikely(intel_context_is_closed(request->context) &&
- 		     !intel_engine_has_heartbeat(engine)))
-@@ -578,11 +580,11 @@ bool __i915_request_submit(struct i915_request *request)
- 	engine->serial++;
- 	result = true;
+ 	unsigned long context_tag;
  
--xfer:
--	if (!test_and_set_bit(I915_FENCE_FLAG_ACTIVE, &request->fence.flags)) {
--		list_move_tail(&request->sched.link, &engine->active.requests);
--		clear_bit(I915_FENCE_FLAG_PQUEUE, &request->fence.flags);
--	}
-+	GEM_BUG_ON(test_bit(I915_FENCE_FLAG_ACTIVE, &request->fence.flags));
-+	list_move_tail(&request->sched.link, &engine->active.requests);
-+active:
-+	clear_bit(I915_FENCE_FLAG_PQUEUE, &request->fence.flags);
-+	set_bit(I915_FENCE_FLAG_ACTIVE, &request->fence.flags);
+diff --git a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
+index 974cca0cfe76..541dad2948b0 100644
+--- a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
++++ b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
+@@ -1314,7 +1314,7 @@ __execlists_schedule_in(struct i915_request *rq)
+ 	ce->lrc.ccid |= engine->execlists.ccid;
  
- 	/*
- 	 * XXX Rollback bonded-execution on __i915_request_unsubmit()?
+ 	__intel_gt_pm_get(engine->gt);
+-	if (engine->fw_domain && !atomic_fetch_inc(&engine->fw_active))
++	if (engine->fw_domain && !engine->fw_active++)
+ 		intel_uncore_forcewake_get(engine->uncore, engine->fw_domain);
+ 	execlists_context_status_change(rq, INTEL_CONTEXT_SCHEDULE_IN);
+ 	intel_engine_context_in(engine);
+@@ -1425,7 +1425,7 @@ static inline void __execlists_schedule_out(struct i915_request *rq)
+ 	intel_context_update_runtime(ce);
+ 	intel_engine_context_out(engine);
+ 	execlists_context_status_change(rq, INTEL_CONTEXT_SCHEDULE_OUT);
+-	if (engine->fw_domain && !atomic_dec_return(&engine->fw_active))
++	if (engine->fw_domain && !--engine->fw_active)
+ 		intel_uncore_forcewake_put(engine->uncore, engine->fw_domain);
+ 	intel_gt_pm_put_async(engine->gt);
+ 
 -- 
 2.20.1
 
