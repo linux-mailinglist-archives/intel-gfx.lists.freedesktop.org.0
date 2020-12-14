@@ -1,46 +1,42 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B3BEE2D989F
-	for <lists+intel-gfx@lfdr.de>; Mon, 14 Dec 2020 14:18:09 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 69E012D98B6
+	for <lists+intel-gfx@lfdr.de>; Mon, 14 Dec 2020 14:25:45 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 22D4D6E157;
-	Mon, 14 Dec 2020 13:18:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 285FD6E1BB;
+	Mon, 14 Dec 2020 13:25:40 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 47AE56E157;
- Mon, 14 Dec 2020 13:18:06 +0000 (UTC)
-IronPort-SDR: KFb3uwr5BdpM2CUXSnTxoQ7RlU9AsJ/lHwPbHmRHD6XG/TbdlmC2X6OMBfunwsQUepvR4X34/P
- mGcJkVIhOgQQ==
-X-IronPort-AV: E=McAfee;i="6000,8403,9834"; a="161753572"
-X-IronPort-AV: E=Sophos;i="5.78,418,1599548400"; d="scan'208";a="161753572"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Dec 2020 05:18:05 -0800
-IronPort-SDR: upzBDfuoLSVDJRaf/pFVdy9J3Rsr3gSu93DSaSkpJ+OzQSLQLuPvTxGqOF4z2Pq7hpO7+zbNkw
- gljHR9lWj5RQ==
-X-IronPort-AV: E=Sophos;i="5.78,418,1599548400"; d="scan'208";a="381654103"
-Received: from aknautiy-mobl.gar.corp.intel.com (HELO [10.213.98.131])
- ([10.213.98.131])
- by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Dec 2020 05:18:02 -0800
-To: "Shankar, Uma" <uma.shankar@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-References: <20201208075145.17389-1-ankit.k.nautiyal@intel.com>
- <20201208075145.17389-8-ankit.k.nautiyal@intel.com>
- <84fd6863339d4737a67decd2a9787a23@intel.com>
-From: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
-Message-ID: <b2282934-25ed-e510-e38f-a1df2f59deb2@intel.com>
-Date: Mon, 14 Dec 2020 18:47:59 +0530
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Thunderbird/78.5.1
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D284E6E176;
+ Mon, 14 Dec 2020 13:25:38 +0000 (UTC)
+IronPort-SDR: xQyAK9+9nxC1WYBNmFux3vmvOoD+IE/P0eh5meE7Bo/zh5nDd0L+Eo9UfjlsnMFwegw39PMcPY
+ MKtb1G4G8SQA==
+X-IronPort-AV: E=McAfee;i="6000,8403,9834"; a="236288102"
+X-IronPort-AV: E=Sophos;i="5.78,418,1599548400"; d="scan'208";a="236288102"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Dec 2020 05:25:38 -0800
+IronPort-SDR: PyJIfVqCzWY11pfBVp6LJrv3h0HI9dghDvuSVHqDqbmth/yLmhP57Wje0Pdj2VaoV30hZH/Z+2
+ OENSyC0I608g==
+X-IronPort-AV: E=Sophos;i="5.78,418,1599548400"; d="scan'208";a="336083251"
+Received: from ramaling-i9x.iind.intel.com (HELO intel.com) ([10.99.66.154])
+ by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Dec 2020 05:25:35 -0800
+Date: Mon, 14 Dec 2020 18:55:25 +0530
+From: Ramalingam C <ramalingam.c@intel.com>
+To: Anshuman Gupta <anshuman.gupta@intel.com>
+Message-ID: <20201214132525.GA22687@intel.com>
+References: <20201211134244.14588-1-anshuman.gupta@intel.com>
+ <20201211134244.14588-20-anshuman.gupta@intel.com>
 MIME-Version: 1.0
-In-Reply-To: <84fd6863339d4737a67decd2a9787a23@intel.com>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH v4 07/16] drm/dp_helper: Add helpers to
- configure PCONs RGB-YCbCr Conversion
+Content-Disposition: inline
+In-Reply-To: <20201211134244.14588-20-anshuman.gupta@intel.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: Re: [Intel-gfx] [PATCH v8 19/19] drm/i915/hdcp: Enable HDCP 2.2 MST
+ support
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,194 +49,42 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "airlied@linux.ie" <airlied@linux.ie>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
+Cc: jani.nikula@intel.com, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, seanpaul@chromium.org
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Uma Shankar,
+On 2020-12-11 at 19:12:44 +0530, Anshuman Gupta wrote:
+> Enable HDCP 2.2 MST support till Gen12.
+> 
+> Cc: Ramalingam C <ramalingam.c@intel.com>
 
-Thanks for the comments and suggestions.
+Reviewed-by: Ramalingam C <ramalingam.c@intel.com>
 
-Please find my response inline.
-
-On 12/13/2020 12:40 PM, Shankar, Uma wrote:
->
->> -----Original Message-----
->> From: Nautiyal, Ankit K <ankit.k.nautiyal@intel.com>
->> Sent: Tuesday, December 8, 2020 1:22 PM
->> To: intel-gfx@lists.freedesktop.org
->> Cc: dri-devel@lists.freedesktop.org; Shankar, Uma <uma.shankar@intel.com>;
->> airlied@linux.ie; jani.nikula@linux.intel.com; ville.syrjala@linux.intel.com;
->> Kulkarni, Vandita <vandita.kulkarni@intel.com>; Sharma, Swati2
->> <swati2.sharma@intel.com>
->> Subject: [PATCH v4 07/16] drm/dp_helper: Add helpers to configure PCONs RGB-
->> YCbCr Conversion
->>
->> DP Specification for DP2.0 to HDMI2.1 Pcon specifies support for conversion of
->> colorspace from RGB to YCbCr.
->> https://groups.vesa.org/wg/DP/document/previewpdf/15651
->>
->> This patch adds the relavant registers and helper functions to get the capability
->> and set the color conversion bits for rgb->ycbcr conversion through PCON.
->>
->> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
->> ---
->>   drivers/gpu/drm/drm_dp_helper.c | 59 +++++++++++++++++++++++++++++++++
->>   include/drm/drm_dp_helper.h     | 10 +++++-
->>   2 files changed, 68 insertions(+), 1 deletion(-)
->>
->> diff --git a/drivers/gpu/drm/drm_dp_helper.c
->> b/drivers/gpu/drm/drm_dp_helper.c index d0626f57f99c..344662d5c295 100644
->> --- a/drivers/gpu/drm/drm_dp_helper.c
->> +++ b/drivers/gpu/drm/drm_dp_helper.c
->> @@ -949,6 +949,35 @@ bool
->> drm_dp_downstream_444_to_420_conversion(const u8
->> dpcd[DP_RECEIVER_CAP_SIZE]  }
->> EXPORT_SYMBOL(drm_dp_downstream_444_to_420_conversion);
->>
->> +/**
->> + * drm_dp_downstream_rgb_to_ycbcr_conversion() - determine downstream
->> facing port
->> + *                                               RGB->YCbCr conversion capability
->> + * @dpcd: DisplayPort configuration data
->> + * @port_cap: downstream facing port capabilities
->> + *
->> + * Returns: whether the downstream facing port can convert RGB->YCbCr
->> +*/ bool drm_dp_downstream_rgb_to_ycbcr_conversion(const u8
->> +dpcd[DP_RECEIVER_CAP_SIZE],
->> +					       const u8 port_cap[4])
->> +{
->> +	if (!drm_dp_is_branch(dpcd))
->> +		return false;
->> +
->> +	if (dpcd[DP_DPCD_REV] < 0x13)
->> +		return false;
->> +
->> +	switch (port_cap[0] & DP_DS_PORT_TYPE_MASK) {
->> +	case DP_DS_PORT_TYPE_HDMI:
->> +		if ((dpcd[DP_DOWNSTREAMPORT_PRESENT] &
->> DP_DETAILED_CAP_INFO_AVAILABLE) == 0)
->> +			return false;
->> +
->> +		return port_cap[3] & DP_DS_HDMI_BT601_RGB_YCBCR_CONV;
-> I guess there are other conversions also possible, like BT709 and 2020. Update those
-> as well here.
-
-
-Yes you are right. I will modify the function to take as input 
-colorspace, also and
-
-the function will be returning true, if the rgb->ycbcr conversion for 
-the given colorspace is supported.
-
-
->
->> +	default:
->> +		return false;
->> +	}
->> +}
->> +EXPORT_SYMBOL(drm_dp_downstream_rgb_to_ycbcr_conversion);
->> +
->>   /**
->>    * drm_dp_downstream_mode() - return a mode for downstream facing port
->>    * @dev: DRM device
->> @@ -3140,3 +3169,33 @@ int drm_dp_pcon_pps_override_param(struct
->> drm_dp_aux *aux, u8 pps_param[6])
->>   	return 0;
->>   }
->>   EXPORT_SYMBOL(drm_dp_pcon_pps_override_param);
->> +
->> +/*
->> + * drm_dp_pcon_convert_rgb_to_ycbcr() - Configure the PCon to convert
->> +RGB to Ycbcr
->> + * @aux: displayPort AUX channel
->> + * @color_spc: Color space conversion type
->> + *
->> + * Returns 0 on success, else returns negative error code.
->> + */
->> +int drm_dp_pcon_convert_rgb_to_ycbcr(struct drm_dp_aux *aux, u8
->> +color_spc) {
->> +	int ret;
->> +	u8 buf;
->> +
->> +	if (color_spc != DP_CONVERSION_BT601_RGB_YCBCR_ENABLE ||
->> +	    color_spc != DP_CONVERSION_BT709_RGB_YCBCR_ENABLE ||
->> +	    color_spc != DP_CONVERSION_BT2020_RGB_YCBCR_ENABLE)
->> +		return -EINVAL;
-> Yeah this is wrong, fix it.
-
-Agreed. Will fix this in next version of the patch.
-
->
->> +
->> +	ret = drm_dp_dpcd_readb(aux, DP_PROTOCOL_CONVERTER_CONTROL_2,
->> &buf);
->> +	if (ret < 0)
->> +		return ret;
->> +
->> +	buf |= color_spc;
->> +	ret = drm_dp_dpcd_writeb(aux,
->> DP_PROTOCOL_CONVERTER_CONTROL_2, buf);
->> +	if (ret < 0)
->> +		return ret;
->> +
->> +	return 0;
->> +}
->> +EXPORT_SYMBOL(drm_dp_pcon_convert_rgb_to_ycbcr);
->> diff --git a/include/drm/drm_dp_helper.h b/include/drm/drm_dp_helper.h index
->> 347b4e1a55b4..1b3d54ed7a78 100644
->> --- a/include/drm/drm_dp_helper.h
->> +++ b/include/drm/drm_dp_helper.h
->> @@ -431,6 +431,9 @@ struct drm_device;
->>   # define DP_DS_HDMI_YCBCR420_PASS_THROUGH   (1 << 2)
->>   # define DP_DS_HDMI_YCBCR444_TO_422_CONV    (1 << 3)
->>   # define DP_DS_HDMI_YCBCR444_TO_420_CONV    (1 << 4)
->> +# define DP_DS_HDMI_BT601_RGB_YCBCR_CONV    (1 << 5)
->> +# define DP_DS_HDMI_BT709_RGB_YCBCR_CONV    (1 << 6)
->> +# define DP_DS_HDMI_BT2020_RGB_YCBCR_CONV   (1 << 7)
-> I think it would be good to mention the location in spec (section or table),
-> will make it easier to understand/review by directly going to relevant sections in spec.
-
-This is still Draft 1 of the spec: VESA DP-to-HDMI PCON Specification 
-Standalone Document. Link in the commit message.
-
-I will mention the current Section and Table no. nevertheless in the 
-next version of the patch.
-
-Thanks & Regards,
-
-Ankit
-
->>   #define DP_MAX_DOWNSTREAM_PORTS		    0x10
->>
->> @@ -1217,7 +1220,9 @@ struct drm_device;
->>   # define DP_PCON_ENC_PPS_OVERRIDE_DISABLED      0
->>   # define DP_PCON_ENC_PPS_OVERRIDE_EN_PARAMS     1
->>   # define DP_PCON_ENC_PPS_OVERRIDE_EN_BUFFER     2
->> -
->> +# define DP_CONVERSION_BT601_RGB_YCBCR_ENABLE  (1 << 4) # define
->> +DP_CONVERSION_BT709_RGB_YCBCR_ENABLE  (1 << 5) # define
->> +DP_CONVERSION_BT2020_RGB_YCBCR_ENABLE (1 << 6)
->>
->>   /* PCON Downstream HDMI ERROR Status per Lane */
->>   #define DP_PCON_HDMI_ERROR_STATUS_LN0          0x3037
->> @@ -2178,5 +2183,8 @@ int drm_dp_pcon_dsc_bpp_incr(const u8
->> pcon_dsc_dpcd[DP_PCON_DSC_ENCODER_CAP_SIZE
->>   int drm_dp_pcon_pps_default(struct drm_dp_aux *aux);  int
->> drm_dp_pcon_pps_override_buf(struct drm_dp_aux *aux, u8 pps_buf[128]);  int
->> drm_dp_pcon_pps_override_param(struct drm_dp_aux *aux, u8 pps_param[6]);
->> +bool drm_dp_downstream_rgb_to_ycbcr_conversion(const u8
->> dpcd[DP_RECEIVER_CAP_SIZE],
->> +					       const u8 port_cap[4]);
->> +int drm_dp_pcon_convert_rgb_to_ycbcr(struct drm_dp_aux *aux, u8
->> +color_spc);
->>
->>   #endif /* _DRM_DP_HELPER_H_ */
->> --
->> 2.17.1
+> Tested-by: Karthik B S <karthik.b.s@intel.com>
+> Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_hdcp.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c b/drivers/gpu/drm/i915/display/intel_hdcp.c
+> index 768a6218b9c4..20c8d8f63566 100644
+> --- a/drivers/gpu/drm/i915/display/intel_hdcp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
+> @@ -2233,7 +2233,7 @@ int intel_hdcp_init(struct intel_connector *connector,
+>  	if (!shim)
+>  		return -EINVAL;
+>  
+> -	if (is_hdcp2_supported(dev_priv) && !connector->mst_port)
+> +	if (is_hdcp2_supported(dev_priv))
+>  		intel_hdcp2_init(connector, dig_port, shim);
+>  
+>  	ret =
+> -- 
+> 2.26.2
+> 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
