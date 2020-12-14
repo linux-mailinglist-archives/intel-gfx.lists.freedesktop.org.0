@@ -2,62 +2,42 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C8BC32DA2D4
-	for <lists+intel-gfx@lfdr.de>; Mon, 14 Dec 2020 22:52:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id AB6D82DA308
+	for <lists+intel-gfx@lfdr.de>; Mon, 14 Dec 2020 23:11:07 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5140989D43;
-	Mon, 14 Dec 2020 21:52:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 196AD6E0C6;
+	Mon, 14 Dec 2020 22:11:06 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 546D089D43
- for <intel-gfx@lists.freedesktop.org>; Mon, 14 Dec 2020 21:52:12 +0000 (UTC)
-IronPort-SDR: 3KKMotmQTKNO0elBqz73fSrmyPYSSZPFX22ROAupDc6rb3kclTNmqIDdY1WFHqou67yzUw7lC6
- felL137IAi9w==
-X-IronPort-AV: E=McAfee;i="6000,8403,9835"; a="154017742"
-X-IronPort-AV: E=Sophos;i="5.78,420,1599548400"; 
- d="scan'208,217";a="154017742"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Dec 2020 13:52:11 -0800
-IronPort-SDR: 7jGx8VLymrfuMfPkKwac+NQkNQthgXy31Su4Yi8sxSPAsUpQxZtAC6P83Ap1GgzRJAU1eLwsfL
- OMtFa1fTVkkA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.78,420,1599548400"; 
- d="scan'208,217";a="556263808"
-Received: from orsmsx605.amr.corp.intel.com ([10.22.229.18])
- by orsmga005.jf.intel.com with ESMTP; 14 Dec 2020 13:52:11 -0800
-Received: from orsmsx612.amr.corp.intel.com (10.22.229.25) by
- ORSMSX605.amr.corp.intel.com (10.22.229.18) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1713.5; Mon, 14 Dec 2020 13:52:11 -0800
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX612.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1713.5; Mon, 14 Dec 2020 13:52:10 -0800
-Received: from orsmsx610.amr.corp.intel.com ([10.22.229.23]) by
- ORSMSX610.amr.corp.intel.com ([10.22.229.23]) with mapi id 15.01.1713.004;
- Mon, 14 Dec 2020 13:52:10 -0800
-From: "Chang, Yu bruce" <yu.bruce.chang@intel.com>
-To: Chris Wilson <chris@chris-wilson.co.uk>, "intel-gfx@lists.freedesktop.org"
- <intel-gfx@lists.freedesktop.org>
-Thread-Topic: [Intel-gfx] [PATCH i-g-t] lib: Pass device fd to
- gem_mmappable_aperture_size()
-Thread-Index: AQHW0Gtb2Usp9qHUFUmsvUL74KoMQan27y7/gACrGAD//4hAlA==
-Date: Mon, 14 Dec 2020 21:52:10 +0000
-Message-ID: <b9269e1c98b34fb6a06fb14a277be599@intel.com>
-References: <20201212094354.3023502-1-chris@chris-wilson.co.uk>
- <7021dc5149a24438878f6540a0c4aed8@intel.com>,
- <160797892093.13039.18269573801947438332@build.alporthouse.com>
-In-Reply-To: <160797892093.13039.18269573801947438332@build.alporthouse.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.132]
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 497AD6E0C6
+ for <intel-gfx@lists.freedesktop.org>; Mon, 14 Dec 2020 22:11:05 +0000 (UTC)
+IronPort-SDR: bf+Zz65JI6nFLGy4MwN21CKIQy9gkzjdSBiqk++yqE/skecwbb0xXJh+p4suHcxyftK+oN/oiO
+ d2S4asqdXnvQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9835"; a="174932647"
+X-IronPort-AV: E=Sophos;i="5.78,420,1599548400"; d="scan'208";a="174932647"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Dec 2020 14:11:04 -0800
+IronPort-SDR: UC1Sz0JAReiMPSYIg6gX6jM3P8EZpwhzkJIzJ/ZoH4I+60OXxvrbmxt8LJprgUOSdIEciP8Gaa
+ lRg0boR24RYA==
+X-IronPort-AV: E=Sophos;i="5.78,420,1599548400"; d="scan'208";a="334572481"
+Received: from dceraolo-mobl.amr.corp.intel.com (HELO [10.254.6.244])
+ ([10.254.6.244])
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Dec 2020 14:11:03 -0800
+To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
+References: <20201210011720.26649-1-chris@chris-wilson.co.uk>
+From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+Message-ID: <267ac87a-6e4a-ac0e-0dfe-a9ea940db486@intel.com>
+Date: Mon, 14 Dec 2020 14:11:01 -0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Thunderbird/78.5.1
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH i-g-t] lib: Pass device fd to
- gem_mmappable_aperture_size()
+In-Reply-To: <20201210011720.26649-1-chris@chris-wilson.co.uk>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/gt: Split logical ring contexts
+ from execlist submission
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,339 +50,130 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: multipart/mixed; boundary="===============0346881528=="
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0346881528==
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_b9269e1c98b34fb6a06fb14a277be599intelcom_"
-
---_000_b9269e1c98b34fb6a06fb14a277be599intelcom_
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
-
-
->
->From: Chris Wilson <chris@chris-wilson.co.uk>
->Sent: Monday, December 14, 2020 12:48 PM
->To: Chang, Yu bruce; intel-gfx@lists.freedesktop.org
->Cc: igt-dev@
->Subject: Re: [Intel-gfx] [PATCH i-g-t] lib: Pass device fd to gem_mmappabl=
-e_aperture_size()
->
->Quoting Chang, Yu bruce (2020-12-14 18:45:04)
->> +/**
->> + * gem_mappable_aperture_size:
->> + *
->> + * Feature test macro to query the kernel for the mappable gpu aperture=
- size.
->> + * This is the area available for GTT memory mappings.
->> + *
-> + * Returns: The mappable gtt address space size.
-> + */
-> +uint64_t gem_mappable_aperture_size(int fd)
-> +{
-> +       struct pci_device *pci_dev =3D igt_device_get_pci_device(fd);
->
-> Does it make sense to eliminate the function intel_get_pci_device() if no=
-t
-> being used anymore? But it can be a separate patch.
->
->It's still used by tools. The complication there is that we mostly
->need to lookup the pci device without loading i915.ko.
->-Chris
->
-
-That makes sense.
-
-Then we need to make sure not start from a fix slot to look for GPU device =
-in the intel_get_pci_device() below as
-it may not work for a discrete GPU as that slot can be a non-vga device but=
- with vendor_id 0x8086.
-
-        pci_dev =3D pci_device_find_by_slot(0, 0, 2, 0);
-        if (pci_dev =3D=3D NULL || pci_dev->vendor_id !=3D 0x8086) {
-
-So, either add extra check to make sure it is VGA class or always use pci_d=
-evice_next to search.
-
-Thanks,
--Bruce
-
-
-________________________________
-From: Chris Wilson <chris@chris-wilson.co.uk>
-Sent: Monday, December 14, 2020 12:48:40 PM
-To: Chang, Yu bruce; intel-gfx@lists.freedesktop.org
-Cc: igt-dev@
-Subject: Re: [Intel-gfx] [PATCH i-g-t] lib: Pass device fd to gem_mmappable=
-_aperture_size()
-
-Quoting Chang, Yu bruce (2020-12-14 18:45:04)
-> +/**
-> + * gem_mappable_aperture_size:
-> + *
-> + * Feature test macro to query the kernel for the mappable gpu aperture =
-size.
-> + * This is the area available for GTT memory mappings.
-> + *
-> + * Returns: The mappable gtt address space size.
-> + */
-> +uint64_t gem_mappable_aperture_size(int fd)
-> +{
-> +       struct pci_device *pci_dev =3D igt_device_get_pci_device(fd);
->
-> Does it make sense to eliminate the function intel_get_pci_device() if no=
-t
-> being used anymore? But it can be a separate patch.
-
-It's still used by tools. The complication there is that we mostly
-need to lookup the pci device without loading i915.ko.
--Chris
-
---_000_b9269e1c98b34fb6a06fb14a277be599intelcom_
-Content-Type: text/html; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
-1">
-<style type=3D"text/css" style=3D"display:none;"><!-- P {margin-top:0;margi=
-n-bottom:0;} --></style>
-</head>
-<body dir=3D"ltr">
-<div id=3D"divtagdefaultwrapper" style=3D"font-size:12pt;color:#000000;font=
--family:Calibri,Helvetica,sans-serif;" dir=3D"ltr">
-<p><br>
-</p>
-<meta content=3D"text/html; charset=3DUTF-8">
-<div dir=3D"ltr">
-<div id=3D"x_divtagdefaultwrapper" dir=3D"ltr" style=3D"font-size: 12pt; co=
-lor: rgb(0, 0, 0); font-family: Calibri, Helvetica, sans-serif, EmojiFont, =
-&quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, NotoColorEmoji, =
-&quot;Segoe UI Symbol&quot;, &quot;Android Emoji&quot;, EmojiSymbols;">
-<p></p>
-<div style=3D"font-family:Calibri,Helvetica,sans-serif,EmojiFont,&quot;Appl=
-e Color Emoji&quot;,&quot;Segoe UI Emoji&quot;,NotoColorEmoji,&quot;Segoe U=
-I Symbol&quot;,&quot;Android Emoji&quot;,EmojiSymbols; font-size:16px">
-&gt;</div>
-<div style=3D"font-family:Calibri,Helvetica,sans-serif,EmojiFont,&quot;Appl=
-e Color Emoji&quot;,&quot;Segoe UI Emoji&quot;,NotoColorEmoji,&quot;Segoe U=
-I Symbol&quot;,&quot;Android Emoji&quot;,EmojiSymbols; font-size:16px">
-&gt;From: Chris Wilson &lt;chris@chris-wilson.co.uk&gt;</div>
-<div style=3D"font-family:Calibri,Helvetica,sans-serif,EmojiFont,&quot;Appl=
-e Color Emoji&quot;,&quot;Segoe UI Emoji&quot;,NotoColorEmoji,&quot;Segoe U=
-I Symbol&quot;,&quot;Android Emoji&quot;,EmojiSymbols; font-size:16px">
-&gt;Sent: Monday, December 14, 2020 12:48 PM</div>
-<div style=3D"font-family:Calibri,Helvetica,sans-serif,EmojiFont,&quot;Appl=
-e Color Emoji&quot;,&quot;Segoe UI Emoji&quot;,NotoColorEmoji,&quot;Segoe U=
-I Symbol&quot;,&quot;Android Emoji&quot;,EmojiSymbols; font-size:16px">
-&gt;To: Chang, Yu bruce; intel-gfx@lists.freedesktop.org</div>
-<div style=3D"font-family:Calibri,Helvetica,sans-serif,EmojiFont,&quot;Appl=
-e Color Emoji&quot;,&quot;Segoe UI Emoji&quot;,NotoColorEmoji,&quot;Segoe U=
-I Symbol&quot;,&quot;Android Emoji&quot;,EmojiSymbols; font-size:16px">
-&gt;Cc: igt-dev@</div>
-<div style=3D"font-family:Calibri,Helvetica,sans-serif,EmojiFont,&quot;Appl=
-e Color Emoji&quot;,&quot;Segoe UI Emoji&quot;,NotoColorEmoji,&quot;Segoe U=
-I Symbol&quot;,&quot;Android Emoji&quot;,EmojiSymbols; font-size:16px">
-&gt;Subject: Re: [Intel-gfx] [PATCH i-g-t] lib: Pass device fd to gem_mmapp=
-able_aperture_size()</div>
-<div style=3D"font-family:Calibri,Helvetica,sans-serif,EmojiFont,&quot;Appl=
-e Color Emoji&quot;,&quot;Segoe UI Emoji&quot;,NotoColorEmoji,&quot;Segoe U=
-I Symbol&quot;,&quot;Android Emoji&quot;,EmojiSymbols; font-size:16px">
-&gt;&nbsp;</div>
-<div style=3D"font-family:Calibri,Helvetica,sans-serif,EmojiFont,&quot;Appl=
-e Color Emoji&quot;,&quot;Segoe UI Emoji&quot;,NotoColorEmoji,&quot;Segoe U=
-I Symbol&quot;,&quot;Android Emoji&quot;,EmojiSymbols; font-size:16px">
-&gt;Quoting Chang, Yu bruce (2020-12-14 18:45:04)</div>
-<div style=3D"font-family:Calibri,Helvetica,sans-serif,EmojiFont,&quot;Appl=
-e Color Emoji&quot;,&quot;Segoe UI Emoji&quot;,NotoColorEmoji,&quot;Segoe U=
-I Symbol&quot;,&quot;Android Emoji&quot;,EmojiSymbols; font-size:16px">
-&gt;&gt; &#43;/**</div>
-<div style=3D"font-family:Calibri,Helvetica,sans-serif,EmojiFont,&quot;Appl=
-e Color Emoji&quot;,&quot;Segoe UI Emoji&quot;,NotoColorEmoji,&quot;Segoe U=
-I Symbol&quot;,&quot;Android Emoji&quot;,EmojiSymbols; font-size:16px">
-&gt;&gt; &#43; * gem_mappable_aperture_size:</div>
-<div style=3D"font-family:Calibri,Helvetica,sans-serif,EmojiFont,&quot;Appl=
-e Color Emoji&quot;,&quot;Segoe UI Emoji&quot;,NotoColorEmoji,&quot;Segoe U=
-I Symbol&quot;,&quot;Android Emoji&quot;,EmojiSymbols; font-size:16px">
-&gt;&gt; &#43; *</div>
-<div style=3D"font-family:Calibri,Helvetica,sans-serif,EmojiFont,&quot;Appl=
-e Color Emoji&quot;,&quot;Segoe UI Emoji&quot;,NotoColorEmoji,&quot;Segoe U=
-I Symbol&quot;,&quot;Android Emoji&quot;,EmojiSymbols; font-size:16px">
-&gt;&gt; &#43; * Feature test macro to query the kernel for the mappable gp=
-u aperture size.</div>
-<div style=3D"font-family:Calibri,Helvetica,sans-serif,EmojiFont,&quot;Appl=
-e Color Emoji&quot;,&quot;Segoe UI Emoji&quot;,NotoColorEmoji,&quot;Segoe U=
-I Symbol&quot;,&quot;Android Emoji&quot;,EmojiSymbols; font-size:16px">
-&gt;&gt; &#43; * This is the area available for GTT memory mappings.</div>
-<div style=3D"font-family:Calibri,Helvetica,sans-serif,EmojiFont,&quot;Appl=
-e Color Emoji&quot;,&quot;Segoe UI Emoji&quot;,NotoColorEmoji,&quot;Segoe U=
-I Symbol&quot;,&quot;Android Emoji&quot;,EmojiSymbols; font-size:16px">
-&gt;&gt; &#43; *</div>
-<div style=3D"font-family:Calibri,Helvetica,sans-serif,EmojiFont,&quot;Appl=
-e Color Emoji&quot;,&quot;Segoe UI Emoji&quot;,NotoColorEmoji,&quot;Segoe U=
-I Symbol&quot;,&quot;Android Emoji&quot;,EmojiSymbols; font-size:16px">
-&gt; &#43; * Returns: The mappable gtt address space size.</div>
-<div style=3D"font-family:Calibri,Helvetica,sans-serif,EmojiFont,&quot;Appl=
-e Color Emoji&quot;,&quot;Segoe UI Emoji&quot;,NotoColorEmoji,&quot;Segoe U=
-I Symbol&quot;,&quot;Android Emoji&quot;,EmojiSymbols; font-size:16px">
-&gt; &#43; */</div>
-<div style=3D"font-family:Calibri,Helvetica,sans-serif,EmojiFont,&quot;Appl=
-e Color Emoji&quot;,&quot;Segoe UI Emoji&quot;,NotoColorEmoji,&quot;Segoe U=
-I Symbol&quot;,&quot;Android Emoji&quot;,EmojiSymbols; font-size:16px">
-&gt; &#43;uint64_t gem_mappable_aperture_size(int fd)</div>
-<div style=3D"font-family:Calibri,Helvetica,sans-serif,EmojiFont,&quot;Appl=
-e Color Emoji&quot;,&quot;Segoe UI Emoji&quot;,NotoColorEmoji,&quot;Segoe U=
-I Symbol&quot;,&quot;Android Emoji&quot;,EmojiSymbols; font-size:16px">
-&gt; &#43;{</div>
-<div style=3D"font-family:Calibri,Helvetica,sans-serif,EmojiFont,&quot;Appl=
-e Color Emoji&quot;,&quot;Segoe UI Emoji&quot;,NotoColorEmoji,&quot;Segoe U=
-I Symbol&quot;,&quot;Android Emoji&quot;,EmojiSymbols; font-size:16px">
-&gt; &#43;&nbsp; &nbsp; &nbsp; &nbsp;struct pci_device *pci_dev =3D igt_dev=
-ice_get_pci_device(fd);</div>
-<div style=3D"font-family:Calibri,Helvetica,sans-serif,EmojiFont,&quot;Appl=
-e Color Emoji&quot;,&quot;Segoe UI Emoji&quot;,NotoColorEmoji,&quot;Segoe U=
-I Symbol&quot;,&quot;Android Emoji&quot;,EmojiSymbols; font-size:16px">
-&gt;&nbsp;</div>
-<div style=3D"font-family:Calibri,Helvetica,sans-serif,EmojiFont,&quot;Appl=
-e Color Emoji&quot;,&quot;Segoe UI Emoji&quot;,NotoColorEmoji,&quot;Segoe U=
-I Symbol&quot;,&quot;Android Emoji&quot;,EmojiSymbols; font-size:16px">
-&gt; Does it make sense to eliminate the function intel_get_pci_device() if=
- not</div>
-<div style=3D"font-family:Calibri,Helvetica,sans-serif,EmojiFont,&quot;Appl=
-e Color Emoji&quot;,&quot;Segoe UI Emoji&quot;,NotoColorEmoji,&quot;Segoe U=
-I Symbol&quot;,&quot;Android Emoji&quot;,EmojiSymbols; font-size:16px">
-&gt; being used anymore? But it can be a separate patch.</div>
-<div style=3D"font-family:Calibri,Helvetica,sans-serif,EmojiFont,&quot;Appl=
-e Color Emoji&quot;,&quot;Segoe UI Emoji&quot;,NotoColorEmoji,&quot;Segoe U=
-I Symbol&quot;,&quot;Android Emoji&quot;,EmojiSymbols; font-size:16px">
-&gt;</div>
-<div style=3D"font-family:Calibri,Helvetica,sans-serif,EmojiFont,&quot;Appl=
-e Color Emoji&quot;,&quot;Segoe UI Emoji&quot;,NotoColorEmoji,&quot;Segoe U=
-I Symbol&quot;,&quot;Android Emoji&quot;,EmojiSymbols; font-size:16px">
-&gt;It's still used by tools. The complication there is that we mostly</div=
->
-<div style=3D"font-family:Calibri,Helvetica,sans-serif,EmojiFont,&quot;Appl=
-e Color Emoji&quot;,&quot;Segoe UI Emoji&quot;,NotoColorEmoji,&quot;Segoe U=
-I Symbol&quot;,&quot;Android Emoji&quot;,EmojiSymbols; font-size:16px">
-&gt;need to lookup the pci device without loading i915.ko.&nbsp;</div>
-<div style=3D"font-family:Calibri,Helvetica,sans-serif,EmojiFont,&quot;Appl=
-e Color Emoji&quot;,&quot;Segoe UI Emoji&quot;,NotoColorEmoji,&quot;Segoe U=
-I Symbol&quot;,&quot;Android Emoji&quot;,EmojiSymbols; font-size:16px">
-&gt;-Chris</div>
-<div style=3D"font-family:Calibri,Helvetica,sans-serif,EmojiFont,&quot;Appl=
-e Color Emoji&quot;,&quot;Segoe UI Emoji&quot;,NotoColorEmoji,&quot;Segoe U=
-I Symbol&quot;,&quot;Android Emoji&quot;,EmojiSymbols; font-size:16px">
-&gt;</div>
-<div style=3D"font-family:Calibri,Helvetica,sans-serif,EmojiFont,&quot;Appl=
-e Color Emoji&quot;,&quot;Segoe UI Emoji&quot;,NotoColorEmoji,&quot;Segoe U=
-I Symbol&quot;,&quot;Android Emoji&quot;,EmojiSymbols; font-size:16px">
-<br>
-</div>
-<div style=3D"font-family:Calibri,Helvetica,sans-serif,EmojiFont,&quot;Appl=
-e Color Emoji&quot;,&quot;Segoe UI Emoji&quot;,NotoColorEmoji,&quot;Segoe U=
-I Symbol&quot;,&quot;Android Emoji&quot;,EmojiSymbols; font-size:16px">
-<font size=3D"2"><span style=3D"font-size:10pt">
-<div class=3D"x_PlainText"><span style=3D"font-size:12pt; font-family:Calib=
-ri,Helvetica,sans-serif">That makes sense.</span></div>
-<div class=3D"x_PlainText"><br>
-</div>
-<div class=3D"x_PlainText"><span style=3D"font-size:16px"><span style=3D"fo=
-nt-size:12pt; font-family:Calibri,Helvetica,sans-serif">Then we need&nbsp;t=
-o make sure not start from a fix slot to look for GPU device&nbsp;</span><s=
-pan style=3D"font-size:12pt; font-family:Calibri,Helvetica,sans-serif">in
- the&nbsp;</span><span style=3D"font-size:12pt; font-family:Calibri,Helveti=
-ca,sans-serif">intel_get_pci_device() below&nbsp;as</span></span></div>
-<div class=3D"x_PlainText"><span style=3D"font-size:16px"><span style=3D"fo=
-nt-size:12pt; font-family:Calibri,Helvetica,sans-serif">it&nbsp;</span><spa=
-n style=3D"font-size:12pt; font-family:Calibri,Helvetica,sans-serif">may no=
-t work for&nbsp;a discrete GPU as that slot can be
- a non-vga device but with&nbsp;<i style=3D"font-family:Calibri,Helvetica,s=
-ans-serif; font-size:16px">vendor_id 0x8086</i>.</span></span><span style=
-=3D"font-size:10pt"></span></div>
-<div class=3D"x_PlainText"><span style=3D"font-size:16px"><span style=3D"fo=
-nt-size:12pt; font-family:Calibri,Helvetica,sans-serif"><br>
-</span></span></div>
-<div class=3D"x_PlainText"><span style=3D"font-size:16px"><span style=3D"fo=
-nt-size:12pt; font-family:Calibri,Helvetica,sans-serif">
-<div><i>&nbsp; &nbsp; &nbsp; &nbsp; pci_dev =3D pci_device_find_by_slot(0, =
-0, 2, 0);</i></div>
-<div><i><span style=3D"white-space:pre"></span>&nbsp; &nbsp; &nbsp; &nbsp; =
-if (pci_dev =3D=3D NULL || pci_dev-&gt;vendor_id !=3D 0x8086) {</i></div>
-<br>
-</span></span></div>
-<div class=3D"x_PlainText"><span style=3D"font-size:16px"><span style=3D"fo=
-nt-size:12pt; font-family:Calibri,Helvetica,sans-serif">So, either add extr=
-a&nbsp;check to make sure it&nbsp;is VGA class or always&nbsp;use&nbsp;<spa=
-n>pci_device_next to search.</span></span></span></div>
-<div class=3D"x_PlainText"><span style=3D"font-size:16px"><span style=3D"fo=
-nt-size:10pt"><br>
-</span></span></div>
-<div class=3D"x_PlainText"><span style=3D"font-family:Calibri,Helvetica,san=
-s-serif; font-size:12pt">Thanks,</span><br>
-</div>
-<div class=3D"x_PlainText"><span style=3D"font-size:16px"><span style=3D"fo=
-nt-size:12pt; font-family:Calibri,Helvetica,sans-serif">-Bruce</span></span=
-></div>
-</span></font></div>
-<br>
-<p></p>
-</div>
-<hr tabindex=3D"-1" style=3D"display:inline-block; width:98%">
-<div id=3D"x_divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" =
-color=3D"#000000" style=3D"font-size:11pt"><b>From:</b> Chris Wilson &lt;ch=
-ris@chris-wilson.co.uk&gt;<br>
-<b>Sent:</b> Monday, December 14, 2020 12:48:40 PM<br>
-<b>To:</b> Chang, Yu bruce; intel-gfx@lists.freedesktop.org<br>
-<b>Cc:</b> igt-dev@<br>
-<b>Subject:</b> Re: [Intel-gfx] [PATCH i-g-t] lib: Pass device fd to gem_mm=
-appable_aperture_size()</font>
-<div>&nbsp;</div>
-</div>
-</div>
-<font size=3D"2"><span style=3D"font-size:10pt">
-<div class=3D"PlainText">Quoting Chang, Yu bruce (2020-12-14 18:45:04)<br>
-&gt; &#43;/**<br>
-&gt; &#43; * gem_mappable_aperture_size:<br>
-&gt; &#43; *<br>
-&gt; &#43; * Feature test macro to query the kernel for the mappable gpu ap=
-erture size.<br>
-&gt; &#43; * This is the area available for GTT memory mappings.<br>
-&gt; &#43; *<br>
-&gt; &#43; * Returns: The mappable gtt address space size.<br>
-&gt; &#43; */<br>
-&gt; &#43;uint64_t gem_mappable_aperture_size(int fd)<br>
-&gt; &#43;{<br>
-&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct pci_device *pci_dev =
-=3D igt_device_get_pci_device(fd);<br>
-&gt; <br>
-&gt; Does it make sense to eliminate the function intel_get_pci_device() if=
- not<br>
-&gt; being used anymore? But it can be a separate patch.<br>
-<br>
-It's still used by tools. The complication there is that we mostly<br>
-need to lookup the pci device without loading i915.ko. <br>
--Chris<br>
-</div>
-</span></font></div>
-</body>
-</html>
-
---_000_b9269e1c98b34fb6a06fb14a277be599intelcom_--
-
---===============0346881528==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============0346881528==--
+PHNuaXA+Cgo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC9pbnRlbF9scmMu
+aCBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L2ludGVsX2xyYy5oCj4gbmV3IGZpbGUgbW9kZSAx
+MDA2NDQKPiBpbmRleCAwMDAwMDAwMDAwMDAuLjNkM2U0MDhhODdhOQo+IC0tLSAvZGV2L251bGwK
+PiArKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC9pbnRlbF9scmMuaAo+IEBAIC0wLDAgKzEs
+MTE0IEBACj4gKy8qIFNQRFgtTGljZW5zZS1JZGVudGlmaWVyOiBNSVQgKi8KPiArLyoKPiArICog
+Q29weXJpZ2h0IMKpIDIwMTQgSW50ZWwgQ29ycG9yYXRpb24KPiArICovCj4gKwo+ICsjaWZuZGVm
+IF9fSU5URUxfTFJDX0hfXwo+ICsjZGVmaW5lIF9fSU5URUxfTFJDX0hfXwo+ICsKPiArI2luY2x1
+ZGUgPGxpbnV4L3R5cGVzLmg+Cj4gKwo+ICsjaW5jbHVkZSAiaW50ZWxfY29udGV4dC5oIgo+ICsj
+aW5jbHVkZSAiaW50ZWxfbHJjX3JlZy5oIgo+ICsKPiArc3RydWN0IGRybV9pOTE1X2dlbV9vYmpl
+Y3Q7Cj4gK3N0cnVjdCBpbnRlbF9lbmdpbmVfY3M7Cj4gK3N0cnVjdCBpbnRlbF9yaW5nOwo+ICsK
+PiArLyogQXQgdGhlIHN0YXJ0IG9mIHRoZSBjb250ZXh0IGltYWdlIGlzIGl0cyBwZXItcHJvY2Vz
+cyBIV1MgcGFnZSAqLwo+ICsjZGVmaW5lIExSQ19QUEhXU1BfUE4JKDApCj4gKyNkZWZpbmUgTFJD
+X1BQSFdTUF9TWgkoMSkKPiArLyogQWZ0ZXIgdGhlIFBQSFdTUCB3ZSBoYXZlIHRoZSBsb2dpY2Fs
+IHN0YXRlIGZvciB0aGUgY29udGV4dCAqLwo+ICsjZGVmaW5lIExSQ19TVEFURV9QTgkoTFJDX1BQ
+SFdTUF9QTiArIExSQ19QUEhXU1BfU1opCj4gKyNkZWZpbmUgTFJDX1NUQVRFX09GRlNFVCAoTFJD
+X1NUQVRFX1BOICogUEFHRV9TSVpFKQo+ICsKPiArLyogU3BhY2Ugd2l0aGluIFBQSFdTUCByZXNl
+cnZlZCB0byBiZSB1c2VkIGFzIHNjcmF0Y2ggKi8KPiArI2RlZmluZSBMUkNfUFBIV1NQX1NDUkFU
+Q0gJCTB4MzQKPiArI2RlZmluZSBMUkNfUFBIV1NQX1NDUkFUQ0hfQUREUgkJKExSQ19QUEhXU1Bf
+U0NSQVRDSCAqIHNpemVvZih1MzIpKQo+ICsKPiAraW50IGxyY19pbml0X3dhX2N0eChzdHJ1Y3Qg
+aW50ZWxfZW5naW5lX2NzICplbmdpbmUpOwo+ICt2b2lkIGxyY19maW5pX3dhX2N0eChzdHJ1Y3Qg
+aW50ZWxfZW5naW5lX2NzICplbmdpbmUpOwo+ICsKPiAraW50IGxyY19hbGxvYyhzdHJ1Y3QgaW50
+ZWxfY29udGV4dCAqY2UsCj4gKwkgICAgICBzdHJ1Y3QgaW50ZWxfZW5naW5lX2NzICplbmdpbmUp
+Owo+ICt2b2lkIGxyY19yZXNldChzdHJ1Y3QgaW50ZWxfY29udGV4dCAqY2UsCj4gKwkgICAgICAg
+c3RydWN0IGludGVsX2VuZ2luZV9jcyAqZW5naW5lLAo+ICsJICAgICAgIHUzMiBoZWFkLAo+ICsJ
+ICAgICAgIGJvb2wgc2NydWIpOwo+ICsKPiArdm9pZCBscmNfaW5pdF9yZWdzKGNvbnN0IHN0cnVj
+dCBpbnRlbF9jb250ZXh0ICpjZSwKPiArCQkgICBjb25zdCBzdHJ1Y3QgaW50ZWxfZW5naW5lX2Nz
+ICplbmdpbmUsCj4gKwkJICAgY29uc3Qgc3RydWN0IGludGVsX3JpbmcgKnJpbmcsCj4gKwkJICAg
+Ym9vbCBjbG9zZSk7Cj4gK3ZvaWQgbHJjX3VwZGF0ZV9yZWdzKGNvbnN0IHN0cnVjdCBpbnRlbF9j
+b250ZXh0ICpjZSwKPiArCQkgICAgIGNvbnN0IHN0cnVjdCBpbnRlbF9lbmdpbmVfY3MgKmVuZ2lu
+ZSwKPiArCQkgICAgIHUzMiBoZWFkKTsKPiArdm9pZCBscmNfcmVzZXRfcmVncyhjb25zdCBzdHJ1
+Y3QgaW50ZWxfY29udGV4dCAqY2UsCj4gKwkJICAgIGNvbnN0IHN0cnVjdCBpbnRlbF9lbmdpbmVf
+Y3MgKmVuZ2luZSk7Cj4gKwo+ICt2b2lkIGxyY19yZXN0b3JlX2RlZmF1bHRzKHN0cnVjdCBpbnRl
+bF9jb250ZXh0ICpjZSwKPiArCQkJICBzdHJ1Y3QgaW50ZWxfZW5naW5lX2NzICplbmdpbmUpOwo+
+ICsKPiArdm9pZCBscmNfdXBkYXRlX29mZnNldHMoc3RydWN0IGludGVsX2NvbnRleHQgKmNlLAo+
+ICsJCQlzdHJ1Y3QgaW50ZWxfZW5naW5lX2NzICplbmdpbmUpOwo+ICsKPiArdm9pZCBscmNfY2hl
+Y2tfcmVncyhjb25zdCBzdHJ1Y3QgaW50ZWxfY29udGV4dCAqY2UsCj4gKwkJICAgIGNvbnN0IHN0
+cnVjdCBpbnRlbF9lbmdpbmVfY3MgKmVuZ2luZSwKPiArCQkgICAgY29uc3QgY2hhciAqd2hlbik7
+Cj4gK3ZvaWQgbHJjX2NoZWNrX3JlZHpvbmUoc3RydWN0IGludGVsX2NvbnRleHQgKmNlKTsKPiAr
+Cj4gK3N0YXRpYyBpbmxpbmUgdTMyIGxyY19nZXRfcnVudGltZShjb25zdCBzdHJ1Y3QgaW50ZWxf
+Y29udGV4dCAqY2UpCj4gK3sKPiArCS8qCj4gKwkgKiBXZSBjYW4gdXNlIGVpdGhlciBwcEhXU1Bb
+MTZdIHdoaWNoIGlzIHJlY29yZGVkIGJlZm9yZSB0aGUgY29udGV4dAo+ICsJICogc3dpdGNoIChh
+bmQgc28gZXhjbHVkZXMgdGhlIGNvc3Qgb2YgY29udGV4dCBzd2l0Y2hlcykgb3IgdXNlIHRoZQo+
+ICsJICogdmFsdWUgZnJvbSB0aGUgY29udGV4dCBpbWFnZSBpdHNlbGYsIHdoaWNoIGlzIHNhdmVk
+L3Jlc3RvcmVkIGVhcmxpZXIKPiArCSAqIGFuZCBzbyBpbmNsdWRlcyB0aGUgY29zdCBvZiB0aGUg
+c2F2ZS4KPiArCSAqLwo+ICsJcmV0dXJuIFJFQURfT05DRShjZS0+bHJjX3JlZ19zdGF0ZVtDVFhf
+VElNRVNUQU1QXSk7Cj4gK30KPiArCj4gKy8qCj4gKyAqIFRoZSBjb250ZXh0IGRlc2NyaXB0b3Ig
+ZW5jb2RlcyB2YXJpb3VzIGF0dHJpYnV0ZXMgb2YgYSBjb250ZXh0LAo+ICsgKiBpbmNsdWRpbmcg
+aXRzIEdUVCBhZGRyZXNzIGFuZCBzb21lIGZsYWdzLiBCZWNhdXNlIGl0J3MgZmFpcmx5Cj4gKyAq
+IGV4cGVuc2l2ZSB0byBjYWxjdWxhdGUsIHdlJ2xsIGp1c3QgZG8gaXQgb25jZSBhbmQgY2FjaGUg
+dGhlIHJlc3VsdCwKPiArICogd2hpY2ggcmVtYWlucyB2YWxpZCB1bnRpbCB0aGUgY29udGV4dCBp
+cyB1bnBpbm5lZC4KPiArICoKPiArICogVGhpcyBpcyB3aGF0IGEgZGVzY3JpcHRvciBsb29rcyBs
+aWtlLCBmcm9tIExTQiB0byBNU0I6Ogo+ICsgKgo+ICsgKiAgICAgIGJpdHMgIDAtMTE6ICAgIGZs
+YWdzLCBHRU44X0NUWF8qIChjYWNoZWQgaW4gY3R4LT5kZXNjX3RlbXBsYXRlKQo+ICsgKiAgICAg
+IGJpdHMgMTItMzE6ICAgIExSQ0EsIEdUVCBhZGRyZXNzIG9mICh0aGUgSFdTUCBvZikgdGhpcyBj
+b250ZXh0Cj4gKyAqICAgICAgYml0cyAzMi01MjogICAgY3R4IElELCBhIGdsb2JhbGx5IHVuaXF1
+ZSB0YWcgKGhpZ2hlc3QgYml0IHVzZWQgYnkgR3VDKQo+ICsgKiAgICAgIGJpdHMgNTMtNTQ6ICAg
+IG1ieiwgcmVzZXJ2ZWQgZm9yIHVzZSBieSBoYXJkd2FyZQo+ICsgKiAgICAgIGJpdHMgNTUtNjM6
+ICAgIGdyb3VwIElELCBjdXJyZW50bHkgdW51c2VkIGFuZCBzZXQgdG8gMAo+ICsgKgo+ICsgKiBT
+dGFydGluZyBmcm9tIEdlbjExLCB0aGUgdXBwZXIgZHdvcmQgb2YgdGhlIGRlc2NyaXB0b3IgaGFz
+IGEgbmV3IGZvcm1hdDoKPiArICoKPiArICogICAgICBiaXRzIDMyLTM2OiAgICByZXNlcnZlZAo+
+ICsgKiAgICAgIGJpdHMgMzctNDc6ICAgIFNXIGNvbnRleHQgSUQKPiArICogICAgICBiaXRzIDQ4
+OjUzOiAgICBlbmdpbmUgaW5zdGFuY2UKPiArICogICAgICBiaXQgNTQ6ICAgICAgICBtYnosIHJl
+c2VydmVkIGZvciB1c2UgYnkgaGFyZHdhcmUKPiArICogICAgICBiaXRzIDU1LTYwOiAgICBTVyBj
+b3VudGVyCj4gKyAqICAgICAgYml0cyA2MS02MzogICAgZW5naW5lIGNsYXNzCj4gKyAqCj4gKyAq
+IGVuZ2luZSBpbmZvLCBTVyBjb250ZXh0IElEIGFuZCBTVyBjb3VudGVyIG5lZWQgdG8gZm9ybSBh
+IHVuaXF1ZSBudW1iZXIKPiArICogKENvbnRleHQgSUQpIHBlciBscmMuCj4gKyAqLwo+ICtzdGF0
+aWMgaW5saW5lIHUzMgo+ICtscmNfZGVzY3JpcHRvcihzdHJ1Y3QgaW50ZWxfY29udGV4dCAqY2Us
+IHN0cnVjdCBpbnRlbF9lbmdpbmVfY3MgKmVuZ2luZSkKPiArewo+ICsJdTMyIGRlc2M7Cj4gKwo+
+ICsJZGVzYyA9IElOVEVMX0xFR0FDWV8zMkJfQ09OVEVYVDsKPiArCWlmIChpOTE1X3ZtX2lzXzRs
+dmwoY2UtPnZtKSkKPiArCQlkZXNjID0gSU5URUxfTEVHQUNZXzY0Ql9DT05URVhUOwo+ICsJZGVz
+YyA8PD0gR0VOOF9DVFhfQUREUkVTU0lOR19NT0RFX1NISUZUOwo+ICsKPiArCWRlc2MgfD0gR0VO
+OF9DVFhfVkFMSUQgfCBHRU44X0NUWF9QUklWSUxFR0U7Cj4gKwlpZiAoSVNfR0VOKGVuZ2luZS0+
+aTkxNSwgOCkpCj4gKwkJZGVzYyB8PSBHRU44X0NUWF9MM0xMQ19DT0hFUkVOVDsKPiArCj4gKwly
+ZXR1cm4gaTkxNV9nZ3R0X29mZnNldChjZS0+c3RhdGUpIHwgZGVzYzsKPiArfQpQZXJzb25hbCBw
+cmVmZXJlbmNlOiBJJ2QgYXZvaWQgaGF2aW5nIHRoaXMgYXMgYSBzdGF0aWMgaW5saW5lIHRvIG5v
+dCAKaGF2ZSBhIGRpcmVjdCBkZXBlbmRlbmN5IHRvIGk5MTVfZHJ2LmguIE1heWJlIHdlIGNhbiBz
+cGxpdCB0aGlzIGluIDIgCnBhcnRzLCBhbiBpbml0IHBhcnQgd2hlcmUgd2Ugc2V0IGFsbCB0aGUg
+ZmxhZ3MgYXQgY29udGV4dCBhbGxvYyB0aW1lIGFuZCAKYW4gdXBkYXRlIHBhcnQgd2hlcmUgd2Ug
+cm13IHRoZSBhZGRyZXNzIGluLCBhbmQgb25seSBpbmxpbmUgdGhlIGxhdHRlcj8KCk5vdCBhIGJs
+b2NrZXIsIGNhbiBiZSBkb25lIGFzIGEgZm9sbG93IHVwLgoKPiArCj4gKyNlbmRpZiAvKiBfX0lO
+VEVMX0xSQ19IX18gKi8KCjxzbmlwPgoKPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5
+MTUvZ3Qvc2VsZnRlc3RfbHJjLmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC9zZWxmdGVzdF9s
+cmMuYwo+IG5ldyBmaWxlIG1vZGUgMTAwNjQ0Cj4gaW5kZXggMDAwMDAwMDAwMDAwLi41Nzc0NjI2
+ZDNkMzQKPiAtLS0gL2Rldi9udWxsCj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3Qvc2Vs
+ZnRlc3RfbHJjLmMKPiBAQCAtMCwwICsxLDE4NjUgQEAKPiArLy8gU1BEWC1MaWNlbnNlLUlkZW50
+aWZpZXI6IE1JVAo+ICsvKgo+ICsgKiBDb3B5cmlnaHQgwqkgMjAxOCBJbnRlbCBDb3Jwb3JhdGlv
+bgo+ICsgKi8KPiArCj4gKyNpbmNsdWRlIDxsaW51eC9wcmltZV9udW1iZXJzLmg+Cj4gKwo+ICsj
+aW5jbHVkZSAiZ3QvaW50ZWxfZW5naW5lX2hlYXJ0YmVhdC5oIgo+ICsjaW5jbHVkZSAiZ3QvaW50
+ZWxfZW5naW5lX3BtLmgiCj4gKyNpbmNsdWRlICJndC9pbnRlbF9yZXNldC5oIgo+ICsjaW5jbHVk
+ZSAiZ3QvaW50ZWxfcmluZy5oIgo+ICsjaW5jbHVkZSAiZ3Qvc2VsZnRlc3RfZW5naW5lX2hlYXJ0
+YmVhdC5oIgo+ICsjaW5jbHVkZSAiZ3Qvc2htZW1fdXRpbHMuaCIKPiArCj4gKyNpbmNsdWRlICJp
+OTE1X3NlbGZ0ZXN0LmgiCj4gKyNpbmNsdWRlICJzZWxmdGVzdHMvaTkxNV9yYW5kb20uaCIKPiAr
+I2luY2x1ZGUgInNlbGZ0ZXN0cy9pZ3RfZmx1c2hfdGVzdC5oIgo+ICsjaW5jbHVkZSAic2VsZnRl
+c3RzL2lndF9saXZlX3Rlc3QuaCIKPiArI2luY2x1ZGUgInNlbGZ0ZXN0cy9pZ3Rfc3Bpbm5lci5o
+Igo+ICsjaW5jbHVkZSAic2VsZnRlc3RzL2xpYl9zd19mZW5jZS5oIgo+ICsKPiArI2luY2x1ZGUg
+ImdlbS9zZWxmdGVzdHMvaWd0X2dlbV91dGlscy5oIgo+ICsjaW5jbHVkZSAiZ2VtL3NlbGZ0ZXN0
+cy9tb2NrX2NvbnRleHQuaCIKPiArCj4gKyNkZWZpbmUgQ1NfR1BSKGVuZ2luZSwgbikgKChlbmdp
+bmUpLT5tbWlvX2Jhc2UgKyAweDYwMCArIChuKSAqIDQpCj4gKyNkZWZpbmUgTlVNX0dQUiAxNgo+
+ICsjZGVmaW5lIE5VTV9HUFJfRFcgKE5VTV9HUFIgKiAyKSAvKiBlYWNoIEdQUiBpcyAyIGR3b3Jk
+cyAqLwo+ICsKPiArc3RhdGljIHN0cnVjdCBpOTE1X3ZtYSAqY3JlYXRlX3NjcmF0Y2goc3RydWN0
+IGludGVsX2d0ICpndCkKPiArewoKVGhlcmUgaXMgYWxyZWFkeSBzZXZlcmFsIGNvcGllcyBvZiB0
+aGlzIGNyZWF0ZV9zY3JhdGNoKCkgaW4gdGhlIApzZWxmdGVzdHMgY29kZSAoZXhlY2xpc3RzLCBt
+b2NzIGFuZCBub3cgbHJjKS4gRG8gd2Ugbm93IGhhdmUgZW5vdWdoIAp1c2FnZXMgdG8gbW92ZSBp
+dCB0byBhIGNvbW1vbiBmaWxlPyBDYW4gYmUgZG9uZSBhcyBhIGZvbGxvdyB1cC4KCkFwYXJ0IGZy
+b20gdGhlIG5pdHMsIHRoZSBzcGxpdCBsb29rcyBnb29kIHRvIG1lIGFuZCB0aGUgcmVuYW1lcyBh
+cmUgCnJlYXNvbmFibGUuClRoZSBpc3N1ZSB3aXRoIHRoZSBkb2NzIGlzIGFjdHVhbGx5IGNhdXNl
+ZCBieSB0aGUgcHJldmlvdXMgcGF0Y2ggdGhhdCAKcmVuYW1lZCBscmMuYyB0byBleGVjbGlzdHNf
+c3VibWlzc2lvbi5jLCBzbyB3ZSBjYW4gZml4IHRoYXQgc2VwYXJhdGVseS4KClJldmlld2VkLWJ5
+OiBEYW5pZWxlIENlcmFvbG8gU3B1cmlvIDxkYW5pZWxlLmNlcmFvbG9zcHVyaW9AaW50ZWwuY29t
+PgoKRGFuaWVsZQoKPiArCXN0cnVjdCBkcm1faTkxNV9nZW1fb2JqZWN0ICpvYmo7Cj4gKwlzdHJ1
+Y3QgaTkxNV92bWEgKnZtYTsKPiArCWludCBlcnI7Cj4gKwo+ICsJb2JqID0gaTkxNV9nZW1fb2Jq
+ZWN0X2NyZWF0ZV9pbnRlcm5hbChndC0+aTkxNSwgUEFHRV9TSVpFKTsKPiArCWlmIChJU19FUlIo
+b2JqKSkKPiArCQlyZXR1cm4gRVJSX0NBU1Qob2JqKTsKPiArCj4gKwlpOTE1X2dlbV9vYmplY3Rf
+c2V0X2NhY2hlX2NvaGVyZW5jeShvYmosIEk5MTVfQ0FDSElOR19DQUNIRUQpOwo+ICsKPiArCXZt
+YSA9IGk5MTVfdm1hX2luc3RhbmNlKG9iaiwgJmd0LT5nZ3R0LT52bSwgTlVMTCk7Cj4gKwlpZiAo
+SVNfRVJSKHZtYSkpIHsKPiArCQlpOTE1X2dlbV9vYmplY3RfcHV0KG9iaik7Cj4gKwkJcmV0dXJu
+IHZtYTsKPiArCX0KPiArCj4gKwllcnIgPSBpOTE1X3ZtYV9waW4odm1hLCAwLCAwLCBQSU5fR0xP
+QkFMKTsKPiArCWlmIChlcnIpIHsKPiArCQlpOTE1X2dlbV9vYmplY3RfcHV0KG9iaik7Cj4gKwkJ
+cmV0dXJuIEVSUl9QVFIoZXJyKTsKPiArCX0KPiArCj4gKwlyZXR1cm4gdm1hOwo+ICt9Cj4gKwo+
+CgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1n
+ZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9s
+aXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
