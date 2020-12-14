@@ -2,29 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CF8F42D969D
-	for <lists+intel-gfx@lfdr.de>; Mon, 14 Dec 2020 11:51:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C0FC82D969B
+	for <lists+intel-gfx@lfdr.de>; Mon, 14 Dec 2020 11:51:34 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B1E8B6E1F5;
-	Mon, 14 Dec 2020 10:51:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0F3DF6E15A;
+	Mon, 14 Dec 2020 10:51:33 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3D1346E1D7;
- Mon, 14 Dec 2020 10:51:32 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2FC8C6E1B5;
+ Mon, 14 Dec 2020 10:51:30 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 23318471-1500050 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 23318472-1500050 
  for multiple; Mon, 14 Dec 2020 10:51:22 +0000
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Mon, 14 Dec 2020 10:51:20 +0000
-Message-Id: <20201214105123.542518-1-chris@chris-wilson.co.uk>
+Date: Mon, 14 Dec 2020 10:51:21 +0000
+Message-Id: <20201214105123.542518-2-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.29.2
+In-Reply-To: <20201214105123.542518-1-chris@chris-wilson.co.uk>
+References: <20201214105123.542518-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH i-g-t 1/4] i915/perf_pmu: Verify RC6
- measurements before/after suspend
+Subject: [Intel-gfx] [PATCH i-g-t 2/4] i915/gem_exec_balancer: Measure
+ timeslicing fairness
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -43,92 +45,186 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-RC6 should work before suspend, and continue to increment while idle
-after suspend. Should.
-
-v2: Include a longer sleep after suspend; it appears we are reticent to
-idle so soon after waking up.
+Oversaturate the virtual engines on the system and check that each
+workload receives a fair share of the available GPU time.
 
 Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 ---
- tests/i915/perf_pmu.c | 28 +++++++++++++++++++++++++---
- 1 file changed, 25 insertions(+), 3 deletions(-)
+ tests/i915/gem_exec_balancer.c | 154 +++++++++++++++++++++++++++++++++
+ 1 file changed, 154 insertions(+)
 
-diff --git a/tests/i915/perf_pmu.c b/tests/i915/perf_pmu.c
-index cb7273142..0b470c1bc 100644
---- a/tests/i915/perf_pmu.c
-+++ b/tests/i915/perf_pmu.c
-@@ -170,6 +170,7 @@ static unsigned int measured_usleep(unsigned int usec)
- #define TEST_RUNTIME_PM (8)
- #define FLAG_LONG (16)
- #define FLAG_HANG (32)
-+#define TEST_S3 (64)
- 
- static igt_spin_t * __spin_poll(int fd, uint32_t ctx,
- 				const struct intel_execution_engine2 *e)
-@@ -1578,7 +1579,7 @@ test_frequency_idle(int gem_fd)
- 		     "Actual frequency should be 0 while parked!\n");
+diff --git a/tests/i915/gem_exec_balancer.c b/tests/i915/gem_exec_balancer.c
+index 35a032ccb..5efd586ad 100644
+--- a/tests/i915/gem_exec_balancer.c
++++ b/tests/i915/gem_exec_balancer.c
+@@ -2763,6 +2763,157 @@ static void smoketest(int i915, int timeout)
+ 	gem_close(i915, batch[0].handle);
  }
  
--static bool wait_for_rc6(int fd)
-+static bool wait_for_rc6(int fd, int timeout)
- {
- 	struct timespec tv = {};
- 	uint64_t start, now;
-@@ -1594,7 +1595,7 @@ static bool wait_for_rc6(int fd)
- 		now = pmu_read_single(fd);
- 		if (now - start > 1e6)
- 			return true;
--	} while (!igt_seconds_elapsed(&tv));
-+	} while (igt_seconds_elapsed(&tv) <= timeout);
- 
- 	return false;
- }
-@@ -1636,14 +1637,32 @@ test_rc6(int gem_fd, unsigned int flags)
- 		}
- 	}
- 
--	igt_require(wait_for_rc6(fd));
-+	igt_require(wait_for_rc6(fd, 1));
- 
- 	/* While idle check full RC6. */
- 	prev = __pmu_read_single(fd, &ts[0]);
- 	slept = measured_usleep(duration_ns / 1000);
- 	idle = __pmu_read_single(fd, &ts[1]);
++static uint32_t read_ctx_timestamp(int i915, uint32_t ctx)
++{
++	struct drm_i915_gem_relocation_entry reloc;
++	struct drm_i915_gem_exec_object2 obj = {
++		.handle = gem_create(i915, 4096),
++		.offset = 32 << 20,
++		.relocs_ptr = to_user_pointer(&reloc),
++		.relocation_count = 1,
++	};
++	struct drm_i915_gem_execbuffer2 execbuf = {
++		.buffers_ptr = to_user_pointer(&obj),
++		.buffer_count = 1,
++		.rsvd1 = ctx,
++	};
++	uint32_t *map, *cs;
++	uint32_t ts;
 +
- 	igt_debug("slept=%lu perf=%"PRIu64"\n", slept, ts[1] - ts[0]);
-+	assert_within_epsilon(idle - prev, ts[1] - ts[0], tolerance);
++	cs = map = gem_mmap__device_coherent(i915, obj.handle,
++					     0, 4096, PROT_WRITE);
 +
-+	if (flags & TEST_S3) {
-+		prev = __pmu_read_single(fd, &ts[0]);
-+		igt_system_suspend_autoresume(SUSPEND_STATE_MEM,
-+					      SUSPEND_TEST_NONE);
-+		idle = __pmu_read_single(fd, &ts[1]);
-+		igt_debug("suspend=%"PRIu64"\n", ts[1] - ts[0]);
-+		//assert_within_epsilon(idle - prev, ts[1] - ts[0], tolerance);
++	*cs++ = 0x24 << 23 | 1 << 19 | 2; /* relative SRM */
++	*cs++ = 0x3a8; /* CTX_TIMESTAMP */
++	memset(&reloc, 0, sizeof(reloc));
++	reloc.target_handle = obj.handle;
++	reloc.presumed_offset = obj.offset;
++	reloc.offset = offset_in_page(cs);
++	reloc.delta = 4000;
++	*cs++ = obj.offset + 4000;
++	*cs++ = obj.offset >> 32;
++
++	*cs++ = MI_BATCH_BUFFER_END;
++
++	gem_execbuf(i915, &execbuf);
++	gem_sync(i915, obj.handle);
++	gem_close(i915, obj.handle);
++
++	ts = map[1000];
++	munmap(map, 4096);
++
++	return ts;
++}
++
++static int cmp_u32(const void *A, const void *B)
++{
++	const uint32_t *a = A, *b = B;
++
++	if (*a < *b)
++		return -1;
++	else if (*a > *b)
++		return 1;
++	else
++		return 0;
++}
++
++static int read_ctx_timestamp_frequency(int i915)
++{
++	int value = 12500000; /* icl!!! are you feeling alright? CTX vs CS */
++	drm_i915_getparam_t gp = {
++		.value = &value,
++		.param = I915_PARAM_CS_TIMESTAMP_FREQUENCY,
++	};
++	if (intel_gen(intel_get_drm_devid(i915)) != 11)
++		ioctl(i915, DRM_IOCTL_I915_GETPARAM, &gp);
++	return value;
++}
++
++static uint64_t div64_u64_round_up(uint64_t x, uint64_t y)
++{
++	return (x + y - 1) / y;
++}
++
++static uint64_t ticks_to_ns(int i915, uint64_t ticks)
++{
++	return div64_u64_round_up(ticks * NSEC_PER_SEC,
++				  read_ctx_timestamp_frequency(i915));
++}
++
++static void __fairslice(int i915,
++			const struct i915_engine_class_instance *ci,
++			unsigned int count)
++{
++	igt_spin_t *spin = NULL;
++	uint32_t ctx[count + 1];
++	uint32_t ts[count + 1];
++
++	igt_debug("Launching %zd spinners on %s\n",
++		  ARRAY_SIZE(ctx), class_to_str(ci->engine_class));
++	igt_assert(ARRAY_SIZE(ctx) >= 3);
++
++	for (int i = 0; i < ARRAY_SIZE(ctx); i++) {
++		ctx[i] = load_balancer_create(i915, ci, count);
++		if (spin == NULL) {
++			spin = __igt_spin_new(i915, .ctx = ctx[i]);
++		} else {
++			struct drm_i915_gem_execbuffer2 eb = {
++				.buffer_count = 1,
++				.buffers_ptr = to_user_pointer(&spin->obj[IGT_SPIN_BATCH]),
++				.rsvd1 = ctx[i],
++			};
++			gem_execbuf(i915, &eb);
++		}
 +	}
 +
-+	igt_assert(wait_for_rc6(fd, 5));
- 
-+	prev = __pmu_read_single(fd, &ts[0]);
-+	slept = measured_usleep(duration_ns / 1000);
-+	idle = __pmu_read_single(fd, &ts[1]);
++	sleep(2); /* over the course of many timeslices */
 +
-+	igt_debug("slept=%lu perf=%"PRIu64"\n", slept, ts[1] - ts[0]);
- 	assert_within_epsilon(idle - prev, ts[1] - ts[0], tolerance);
- 
- 	/* Wake up device and check no RC6. */
-@@ -2245,6 +2264,9 @@ igt_main
- 	igt_subtest("rc6-runtime-pm-long")
- 		test_rc6(fd, TEST_RUNTIME_PM | FLAG_LONG);
- 
-+	igt_subtest("rc6-suspend")
-+		test_rc6(fd, TEST_S3);
++	igt_assert(gem_bo_busy(i915, spin->handle));
++	igt_spin_end(spin);
++	igt_debug("Cancelled spinners\n");
 +
- 	/**
- 	 * Check render nodes are counted.
- 	 */
++	for (int i = 0; i < ARRAY_SIZE(ctx); i++)
++		ts[i] = read_ctx_timestamp(i915, ctx[i]);
++
++	for (int i = 0; i < ARRAY_SIZE(ctx); i++)
++		gem_context_destroy(i915, ctx[i]);
++	igt_spin_free(i915, spin);
++
++	qsort(ts, ARRAY_SIZE(ctx), sizeof(*ts), cmp_u32);
++	igt_info("%s: [%.1f, %.1f, %.1f] ms, expect %1.fms\n",
++		 class_to_str(ci->engine_class),
++		 1e-6 * ticks_to_ns(i915, ts[0]),
++		 1e-6 * ticks_to_ns(i915, ts[(count + 1) / 2]),
++		 1e-6 * ticks_to_ns(i915, ts[count]),
++		 2e3 * count / ARRAY_SIZE(ctx));
++
++	igt_assert_f(ts[count], "CTX_TIMESTAMP not reported!\n");
++	igt_assert_f((ts[count] - ts[0]) * 6 < ts[(count + 1) / 2],
++		     "Range of timeslices greater than tolerable: %.2fms > %.2fms; unfair!\n",
++		     1e-6 * ticks_to_ns(i915, ts[count] - ts[0]),
++		     1e-6 * ticks_to_ns(i915, ts[(count  + 1) / 2]) / 6);
++}
++
++static void fairslice(int i915)
++{
++	/* Relative CS mmio */
++	igt_require(intel_gen(intel_get_drm_devid(i915)) >= 11);
++
++	for (int class = 0; class < 32; class++) {
++		struct i915_engine_class_instance *ci;
++		unsigned int count = 0;
++
++		ci = list_engines(i915, 1u << class, &count);
++		if (!ci || count < 2) {
++			free(ci);
++			continue;
++		}
++
++		__fairslice(i915, ci, count);
++		free(ci);
++	}
++}
++
+ static bool has_context_engines(int i915)
+ {
+ 	struct drm_i915_gem_context_param p = {
+@@ -2848,6 +2999,9 @@ igt_main
+ 				full(i915, p->flags);
+ 	}
+ 
++	igt_subtest("fairslice")
++		fairslice(i915);
++
+ 	igt_subtest("nop")
+ 		nop(i915);
+ 
 -- 
 2.29.2
 
