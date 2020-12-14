@@ -1,35 +1,46 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 381DA2D9C71
-	for <lists+intel-gfx@lfdr.de>; Mon, 14 Dec 2020 17:22:02 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 20BF62D9C73
+	for <lists+intel-gfx@lfdr.de>; Mon, 14 Dec 2020 17:22:42 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 67F916E2A3;
-	Mon, 14 Dec 2020 16:22:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3BFBC6E3B2;
+	Mon, 14 Dec 2020 16:22:40 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 574D889CDB;
- Mon, 14 Dec 2020 16:21:57 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 23322593-1500050 for multiple; Mon, 14 Dec 2020 16:21:52 +0000
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8E16C6E32A;
+ Mon, 14 Dec 2020 16:22:38 +0000 (UTC)
+IronPort-SDR: Kec+48/YR1L2fLXlv9wk5xjBi+hDaV+3kDtqTblu3b/t/l+OnrVWrBuvaeMAVpne/Ghv4iP8it
+ TuJhjP/UCRKQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9834"; a="193095108"
+X-IronPort-AV: E=Sophos;i="5.78,420,1599548400"; d="scan'208";a="193095108"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Dec 2020 08:22:34 -0800
+IronPort-SDR: H+QH7esplQt7GQkr+fZS75FR5nvDwEV2oQHH5F8FcwN5pS+bq/hylqRH1IIOsEzua8kAVP1+E3
+ 8/Sc4BkDMIfQ==
+X-IronPort-AV: E=Sophos;i="5.78,420,1599548400"; d="scan'208";a="367486855"
+Received: from ideak-desk.fi.intel.com ([10.237.68.141])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Dec 2020 08:22:31 -0800
+Date: Mon, 14 Dec 2020 18:22:27 +0200
+From: Imre Deak <imre.deak@intel.com>
+To: "Chery, Nanley G" <nanley.g.chery@intel.com>
+Message-ID: <20201214162227.GA3566534@ideak-desk.fi.intel.com>
+References: <20201123182631.1740781-1-imre.deak@intel.com>
+ <20201127143100.GB2144692@ideak-desk.fi.intel.com>
+ <20201127151920.GI401619@phenom.ffwll.local>
+ <20201127180604.GA2169344@ideak-desk.fi.intel.com>
+ <0048c10f7b8047b18934e730ae57386c@intel.com>
+ <20201201120456.GC2849269@ideak-desk.fi.intel.com>
+ <ac393a9d1b774766a35c299915f0cca5@intel.com>
 MIME-Version: 1.0
-In-Reply-To: <db3f4d96-1143-168b-dfa0-f49fd856832d@linux.intel.com>
-References: <20201214105123.542518-1-chris@chris-wilson.co.uk>
- <20201214105123.542518-3-chris@chris-wilson.co.uk>
- <db3f4d96-1143-168b-dfa0-f49fd856832d@linux.intel.com>
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-Date: Mon, 14 Dec 2020 16:21:53 +0000
-Message-ID: <160796291334.13039.8401706851037677309@build.alporthouse.com>
-User-Agent: alot/0.9
-Subject: Re: [Intel-gfx] [igt-dev] [PATCH i-g-t 3/4] i915/gem_shrink:
- Refactor allocation sizing based on available memory
+Content-Disposition: inline
+In-Reply-To: <ac393a9d1b774766a35c299915f0cca5@intel.com>
+Subject: Re: [Intel-gfx] [PATCH 1/2] drm/framebuffer: Format modifier for
+ Intel Gen 12 render compression with Clear Color
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,62 +53,46 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: igt-dev@lists.freedesktop.org
+Reply-To: imre.deak@intel.com
+Cc: "Nikula, Jani" <jani.nikula@intel.com>,
+ Daniel Vetter <daniel.vetter@ffwll.ch>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ Chris Wilson <chris@chris-wilson.co.uk>, "Pandiyan,
+ Dhinakaran" <dhinakaran.pandiyan@intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Tvrtko Ursulin (2020-12-14 15:57:59)
-> 
-> On 14/12/2020 10:51, Chris Wilson wrote:
-> > Refactor the allocation such that we utilise just enough memory pressure
-> > to invoke the shrinker, and just enough processes to spread across the
-> > CPUs and contend on the shrinker.
+On Fri, Dec 11, 2020 at 09:04:02AM +0200, Chery, Nanley G wrote:
+> [...]
+> > > We probably don't have to update the header, but we noticed in our
+> > > testing that the clear color prefers an alignment greater than 64B.
+> > > Unfortunately, I can't find any bspec note about this. As long as the
+> > > buffer creators are aware though, I think we should be fine. I don't
+> > > know if this is the best forum to bring it up, but I thought I'd
+> > > share.
 > > 
-> > Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-> > ---
-> >   tests/i915/gem_shrink.c | 11 ++++++-----
-> >   1 file changed, 6 insertions(+), 5 deletions(-)
-> > 
-> > diff --git a/tests/i915/gem_shrink.c b/tests/i915/gem_shrink.c
-> > index 023db8c56..e8a814fe6 100644
-> > --- a/tests/i915/gem_shrink.c
-> > +++ b/tests/i915/gem_shrink.c
-> > @@ -426,6 +426,7 @@ igt_main
-> >       int num_processes = 0;
-> >   
-> >       igt_fixture {
-> > +             const int ncpus = sysconf(_SC_NPROCESSORS_ONLN);
-> >               uint64_t mem_size = intel_get_total_ram_mb();
-> >               int fd;
-> >   
-> > @@ -434,16 +435,16 @@ igt_main
-> >   
-> >               /*
-> >                * Spawn enough processes to use all memory, but each only
-> > -              * uses half the available mappable aperture ~128MiB.
-> > +              * uses half of the available per-cpu memory.
-> >                * Individually the processes would be ok, but en masse
-> >                * we expect the shrinker to start purging objects,
-> >                * and possibly fail.
-> >                */
-> > -             alloc_size = gem_mappable_aperture_size(fd) / 2;
-> > -             num_processes = 1 + (mem_size / (alloc_size >> 20));
-> > +             alloc_size = (mem_size + ncpus - 1) / ncpus / 2;
+> > Yes, would be good to clarify this and get it also to the spec. Then the
+> > driver should also check the alignment of the 3rd FB plane.
 > 
-> Div round up with thousands divided by small integers okay, safe on very 
-> old smp boxes. :)
-> 
-> > +             num_processes = ncpus + (mem_size / alloc_size);
-> 
-> Hm, now what does this add up to..
-> 
-> ncpus + mem_size / (mem_size / ncpus / 2) = ... ?
+> I plan to run some more tests and file a bug in the spec.
 
-(ncpus + mem_size / (mem_size / ncpus / 2)) * (mem_size / ncpus / 2)
+Ok, thanks. Note that this patch has a problem with synchornization and
+based on Chris' response I'm planning to update it once I figured out
+the proper way to map the CC plane. Until that you could still use it on
+TGL if you wait for the RT result explicitly after the fast clear and
+before flipping to it (that's what the IGT test does atm).
 
-mem_size / 2 + mem_size
+> I see that the IGT test only clears the fb once. Just to confirm, is the 
+> clear color offset read from on every frame? Userspace would like to be 
+> able to pass different clear colors for an fb.
+
+Yes, every time you do a flip the kernel will re-read the CC value and
+program it to the display.
+
+--Imre
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
