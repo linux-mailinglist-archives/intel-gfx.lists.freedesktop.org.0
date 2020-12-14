@@ -2,28 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 06E3F2D9801
-	for <lists+intel-gfx@lfdr.de>; Mon, 14 Dec 2020 13:31:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 013592D9800
+	for <lists+intel-gfx@lfdr.de>; Mon, 14 Dec 2020 13:31:38 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5C66B899AB;
-	Mon, 14 Dec 2020 12:31:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6691F89993;
+	Mon, 14 Dec 2020 12:31:36 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 167148949C
- for <intel-gfx@lists.freedesktop.org>; Mon, 14 Dec 2020 12:31:35 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 163718949C
+ for <intel-gfx@lists.freedesktop.org>; Mon, 14 Dec 2020 12:31:34 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 23319642-1500050 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 23319643-1500050 
  for multiple; Mon, 14 Dec 2020 12:31:26 +0000
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Mon, 14 Dec 2020 12:31:25 +0000
-Message-Id: <20201214123126.9777-1-chris@chris-wilson.co.uk>
+Date: Mon, 14 Dec 2020 12:31:26 +0000
+Message-Id: <20201214123126.9777-2-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.20.1
+In-Reply-To: <20201214123126.9777-1-chris@chris-wilson.co.uk>
+References: <20201214123126.9777-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 1/2] drm/i915: Individual request cancellation
+Subject: [Intel-gfx] [PATCH 2/2] drm/i915/gem: Allow cancelling an
+ individual fence
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,383 +40,103 @@ List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: Chris Wilson <chris@chris-wilson.co.uk>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Currently, we cancel outstanding requests within a context when the
-context is closed. We may also want to cancel individual requests using
-the same graceful preemption mechanism.
-
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
----
- .../gpu/drm/i915/gt/intel_engine_heartbeat.c  |   1 +
- .../drm/i915/gt/intel_execlists_submission.c  |   9 +-
- drivers/gpu/drm/i915/i915_request.c           |  62 ++++++-
- drivers/gpu/drm/i915/i915_request.h           |   4 +-
- drivers/gpu/drm/i915/selftests/i915_request.c | 170 ++++++++++++++++++
- 5 files changed, 240 insertions(+), 6 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/gt/intel_engine_heartbeat.c b/drivers/gpu/drm/i915/gt/intel_engine_heartbeat.c
-index 9060385cd69e..351c3431786d 100644
---- a/drivers/gpu/drm/i915/gt/intel_engine_heartbeat.c
-+++ b/drivers/gpu/drm/i915/gt/intel_engine_heartbeat.c
-@@ -267,6 +267,7 @@ int intel_engine_pulse(struct intel_engine_cs *engine)
- 		mutex_unlock(&ce->timeline->mutex);
- 	}
- 
-+	intel_engine_flush_submission(engine);
- 	intel_engine_pm_put(engine);
- 	return err;
- }
-diff --git a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
-index dcecc2887891..fd3b170ec4ff 100644
---- a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
-+++ b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
-@@ -1309,6 +1309,11 @@ static void intel_context_update_runtime(struct intel_context *ce)
- 	ce->runtime.total += dt;
- }
- 
-+static bool bad_request(const struct i915_request *rq)
-+{
-+	return rq->fence.error && i915_request_started(rq);
-+}
-+
- static inline struct intel_engine_cs *
- __execlists_schedule_in(struct i915_request *rq)
- {
-@@ -1317,7 +1322,7 @@ __execlists_schedule_in(struct i915_request *rq)
- 
- 	intel_context_get(ce);
- 
--	if (unlikely(intel_context_is_banned(ce)))
-+	if (unlikely(intel_context_is_banned(ce) || bad_request(rq)))
- 		reset_active(rq, engine);
- 
- 	if (IS_ENABLED(CONFIG_DRM_I915_DEBUG_GEM))
-@@ -2008,7 +2013,7 @@ static unsigned long active_preempt_timeout(struct intel_engine_cs *engine,
- 		return 0;
- 
- 	/* Force a fast reset for terminated contexts (ignoring sysfs!) */
--	if (unlikely(intel_context_is_banned(rq->context)))
-+	if (unlikely(intel_context_is_banned(rq->context) || bad_request(rq)))
- 		return 1;
- 
- 	return READ_ONCE(engine->props.preempt_timeout_ms);
-diff --git a/drivers/gpu/drm/i915/i915_request.c b/drivers/gpu/drm/i915/i915_request.c
-index a9db1376b996..45e53001e386 100644
---- a/drivers/gpu/drm/i915/i915_request.c
-+++ b/drivers/gpu/drm/i915/i915_request.c
-@@ -33,6 +33,9 @@
- #include "gem/i915_gem_context.h"
- #include "gt/intel_breadcrumbs.h"
- #include "gt/intel_context.h"
-+#include "gt/intel_engine.h"
-+#include "gt/intel_engine_heartbeat.h"
-+#include "gt/intel_reset.h"
- #include "gt/intel_ring.h"
- #include "gt/intel_rps.h"
- 
-@@ -498,20 +501,22 @@ void __i915_request_skip(struct i915_request *rq)
- 	rq->infix = rq->postfix;
- }
- 
--void i915_request_set_error_once(struct i915_request *rq, int error)
-+bool i915_request_set_error_once(struct i915_request *rq, int error)
- {
- 	int old;
- 
- 	GEM_BUG_ON(!IS_ERR_VALUE((long)error));
- 
- 	if (i915_request_signaled(rq))
--		return;
-+		return false;
- 
- 	old = READ_ONCE(rq->fence.error);
- 	do {
- 		if (fatal_error(old))
--			return;
-+			return false;
- 	} while (!try_cmpxchg(&rq->fence.error, &old, error));
-+
-+	return true;
- }
- 
- bool __i915_request_submit(struct i915_request *request)
-@@ -669,6 +674,57 @@ void i915_request_unsubmit(struct i915_request *request)
- 	spin_unlock_irqrestore(&engine->active.lock, flags);
- }
- 
-+static struct intel_engine_cs *active_engine(struct i915_request *rq)
-+{
-+	struct intel_engine_cs *engine, *locked;
-+
-+	locked = READ_ONCE(rq->engine);
-+	spin_lock_irq(&locked->active.lock);
-+	while (unlikely(locked != (engine = READ_ONCE(rq->engine)))) {
-+		spin_unlock(&locked->active.lock);
-+		locked = engine;
-+		spin_lock(&locked->active.lock);
-+	}
-+
-+	engine = NULL;
-+	if (i915_request_is_active(rq) && !i915_request_completed(rq))
-+		engine = locked;
-+
-+	spin_unlock_irq(&locked->active.lock);
-+
-+	return engine;
-+}
-+
-+static void __cancel_request(struct i915_request *rq)
-+{
-+	struct intel_engine_cs *engine = active_engine(rq);
-+
-+	if (engine && intel_engine_pulse(engine))
-+		intel_gt_handle_error(engine->gt, engine->mask, 0,
-+				      "request cancellation by %s",
-+				      current->comm);
-+}
-+
-+void i915_request_cancel(struct i915_request *rq, int error)
-+{
-+	if (!i915_request_set_error_once(rq, error))
-+		return;
-+
-+	if (i915_sw_fence_signaled(&rq->submit)) {
-+		struct i915_dependency *p;
-+
-+		for_each_waiter(p, rq) {
-+			struct i915_request *w =
-+				container_of(p->waiter, typeof(*w), sched);
-+
-+			/* Recursion is bounded by the number of engines */
-+			i915_request_cancel(w, error);
-+		}
-+	}
-+
-+	__cancel_request(rq);
-+}
-+
- static int __i915_sw_fence_call
- submit_notify(struct i915_sw_fence *fence, enum i915_sw_fence_notify state)
- {
-diff --git a/drivers/gpu/drm/i915/i915_request.h b/drivers/gpu/drm/i915/i915_request.h
-index 92e4320c50c4..692e302047f9 100644
---- a/drivers/gpu/drm/i915/i915_request.h
-+++ b/drivers/gpu/drm/i915/i915_request.h
-@@ -309,7 +309,7 @@ __i915_request_create(struct intel_context *ce, gfp_t gfp);
- struct i915_request * __must_check
- i915_request_create(struct intel_context *ce);
- 
--void i915_request_set_error_once(struct i915_request *rq, int error);
-+bool i915_request_set_error_once(struct i915_request *rq, int error);
- void __i915_request_skip(struct i915_request *rq);
- 
- struct i915_request *__i915_request_commit(struct i915_request *request);
-@@ -364,6 +364,8 @@ void i915_request_submit(struct i915_request *request);
- void __i915_request_unsubmit(struct i915_request *request);
- void i915_request_unsubmit(struct i915_request *request);
- 
-+void i915_request_cancel(struct i915_request *rq, int error);
-+
- long i915_request_wait(struct i915_request *rq,
- 		       unsigned int flags,
- 		       long timeout)
-diff --git a/drivers/gpu/drm/i915/selftests/i915_request.c b/drivers/gpu/drm/i915/selftests/i915_request.c
-index e424a6d1a68c..cdd0c34e4f62 100644
---- a/drivers/gpu/drm/i915/selftests/i915_request.c
-+++ b/drivers/gpu/drm/i915/selftests/i915_request.c
-@@ -608,6 +608,175 @@ static int live_nop_request(void *arg)
- 	return err;
- }
- 
-+static int __cancel_inactive(struct intel_engine_cs *engine)
-+{
-+	struct intel_context *ce;
-+	struct igt_spinner spin;
-+	struct i915_request *rq;
-+	int err = 0;
-+
-+	if (igt_spinner_init(&spin, engine->gt))
-+		return -ENOMEM;
-+
-+	ce = intel_context_create(engine);
-+	if (IS_ERR(ce)) {
-+		err = PTR_ERR(ce);
-+		goto out_spin;
-+	}
-+
-+	rq = igt_spinner_create_request(&spin, ce, MI_ARB_CHECK);
-+	if (IS_ERR(rq)) {
-+		err = PTR_ERR(rq);
-+		goto out_ce;
-+	}
-+
-+	pr_debug("%s: Cancelling inactive request\n", engine->name);
-+	i915_request_cancel(rq, -EINTR);
-+	i915_request_add(rq);
-+
-+	if (i915_request_wait(rq, 0, HZ / 5) < 0) {
-+		struct drm_printer p = drm_info_printer(engine->i915->drm.dev);
-+
-+		pr_err("Failed to cancel inactive request\n");
-+		intel_engine_dump(engine, &p, "%s\n", engine->name);
-+		err = -ETIME;
-+		goto out_ce;
-+	}
-+
-+	if (rq->fence.error != -EINTR)
-+		err = -EINVAL;
-+
-+out_ce:
-+	intel_context_put(ce);
-+out_spin:
-+	igt_spinner_fini(&spin);
-+	return err;
-+}
-+
-+static int __cancel_active(struct intel_engine_cs *engine)
-+{
-+	struct intel_context *ce;
-+	struct igt_spinner spin;
-+	struct i915_request *rq;
-+	int err = 0;
-+
-+	if (igt_spinner_init(&spin, engine->gt))
-+		return -ENOMEM;
-+
-+	ce = intel_context_create(engine);
-+	if (IS_ERR(ce)) {
-+		err = PTR_ERR(ce);
-+		goto out_spin;
-+	}
-+
-+	rq = igt_spinner_create_request(&spin, ce, MI_ARB_CHECK);
-+	if (IS_ERR(rq)) {
-+		err = PTR_ERR(rq);
-+		goto out_ce;
-+	}
-+
-+	pr_debug("%s: Cancelling active request\n", engine->name);
-+	i915_request_add(rq);
-+	i915_request_cancel(rq, -EINTR);
-+
-+	if (i915_request_wait(rq, 0, HZ / 5) < 0) {
-+		struct drm_printer p = drm_info_printer(engine->i915->drm.dev);
-+
-+		pr_err("Failed to cancel active request\n");
-+		intel_engine_dump(engine, &p, "%s\n", engine->name);
-+		err = -ETIME;
-+		goto out_ce;
-+	}
-+
-+	if (rq->fence.error != -EINTR)
-+		err = -EINVAL;
-+
-+out_ce:
-+	intel_context_put(ce);
-+out_spin:
-+	igt_spinner_fini(&spin);
-+	return err;
-+}
-+
-+static int __cancel_completed(struct intel_engine_cs *engine)
-+{
-+	struct intel_context *ce;
-+	struct igt_spinner spin;
-+	struct i915_request *rq;
-+	int err = 0;
-+
-+	if (igt_spinner_init(&spin, engine->gt))
-+		return -ENOMEM;
-+
-+	ce = intel_context_create(engine);
-+	if (IS_ERR(ce)) {
-+		err = PTR_ERR(ce);
-+		goto out_spin;
-+	}
-+
-+	rq = igt_spinner_create_request(&spin, ce, MI_ARB_CHECK);
-+	if (IS_ERR(rq)) {
-+		err = PTR_ERR(rq);
-+		goto out_ce;
-+	}
-+	igt_spinner_end(&spin);
-+	i915_request_add(rq);
-+
-+	if (i915_request_wait(rq, 0, HZ / 5) < 0) {
-+		err = -ETIME;
-+		goto out_ce;
-+	}
-+
-+	pr_debug("%s: Cancelling completed request\n", engine->name);
-+	i915_request_cancel(rq, -EINTR);
-+	if (rq->fence.error)
-+		err = -EINVAL;
-+
-+out_ce:
-+	intel_context_put(ce);
-+out_spin:
-+	igt_spinner_fini(&spin);
-+	return err;
-+}
-+
-+
-+static int live_cancel_request(void *arg)
-+{
-+	struct drm_i915_private *i915 = arg;
-+	struct intel_engine_cs *engine;
-+
-+	/*
-+	 * Check cancellation of requests. We expect to be able to immediately
-+	 * cancel active requests, even if they are currently on the GPU.
-+	 */
-+
-+	for_each_uabi_engine(engine, i915) {
-+		struct igt_live_test t;
-+		int err, err2;
-+
-+		if (!intel_engine_has_preemption(engine))
-+			continue;
-+
-+		err = igt_live_test_begin(&t, i915, __func__, engine->name);
-+		if (err)
-+			return err;
-+
-+		err = __cancel_inactive(engine);
-+		if (err == 0)
-+			err = __cancel_active(engine);
-+		if (err == 0)
-+			err = __cancel_completed(engine);
-+
-+		err2 = igt_live_test_end(&t);
-+		if (err)
-+			return err;
-+		if (err2)
-+			return err2;
-+	}
-+
-+	return 0;
-+}
-+
- static struct i915_vma *empty_batch(struct drm_i915_private *i915)
- {
- 	struct drm_i915_gem_object *obj;
-@@ -1485,6 +1654,7 @@ int i915_request_live_selftests(struct drm_i915_private *i915)
- 		SUBTEST(live_sequential_engines),
- 		SUBTEST(live_parallel_engines),
- 		SUBTEST(live_empty_request),
-+		SUBTEST(live_cancel_request),
- 		SUBTEST(live_breadcrumbs_smoketest),
- 	};
- 
--- 
-2.20.1
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+UHJpbWFyaWx5IGFzIGEgdGhvdWdodCBleHBlcmltZW50LCBjb25zdHJ1Y3QgYW4gaW9jdGwgdGhh
+dCBhbGxvd3MgdGhlCnVzZXIgdG8gY2FuY2VsIHRoZSBhc3NvY2lhdGVkIGZlbmNlLCBjYXVzaW5n
+IGltbWVkaWF0ZSBjb21wbGV0aW9uIGlmCmN1cnJlbnRseSBleGVjdXRpbmcuCgpTaWduZWQtb2Zm
+LWJ5OiBDaHJpcyBXaWxzb24gPGNocmlzQGNocmlzLXdpbHNvbi5jby51az4KLS0tCiBkcml2ZXJz
+L2dwdS9kcm0vaTkxNS9NYWtlZmlsZSAgICAgICAgICAgICAgfCAgMSArCiBkcml2ZXJzL2dwdS9k
+cm0vaTkxNS9nZW0vaTkxNV9nZW1fY2FuY2VsLmMgfCA1NyArKysrKysrKysrKysrKysrKysrKysr
+CiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9nZW0vaTkxNV9nZW1faW9jdGxzLmggfCAgMiArCiBkcml2
+ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2Rydi5jICAgICAgICAgICAgfCAgMSArCiBpbmNsdWRlL3Vh
+cGkvZHJtL2k5MTVfZHJtLmggICAgICAgICAgICAgICAgfCAgOCArKysKIDUgZmlsZXMgY2hhbmdl
+ZCwgNjkgaW5zZXJ0aW9ucygrKQogY3JlYXRlIG1vZGUgMTAwNjQ0IGRyaXZlcnMvZ3B1L2RybS9p
+OTE1L2dlbS9pOTE1X2dlbV9jYW5jZWwuYwoKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9p
+OTE1L01ha2VmaWxlIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvTWFrZWZpbGUKaW5kZXggZjllZjUx
+OTliMTI0Li44NmZmNjE0MmQyZmUgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L01h
+a2VmaWxlCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L01ha2VmaWxlCkBAIC0xMjksNiArMTI5
+LDcgQEAgaTkxNS15ICs9ICQoZ3QteSkKICMgR0VNIChHcmFwaGljcyBFeGVjdXRpb24gTWFuYWdl
+bWVudCkgY29kZQogZ2VtLXkgKz0gXAogCWdlbS9pOTE1X2dlbV9idXN5Lm8gXAorCWdlbS9pOTE1
+X2dlbV9jYW5jZWwubyBcCiAJZ2VtL2k5MTVfZ2VtX2NsZmx1c2gubyBcCiAJZ2VtL2k5MTVfZ2Vt
+X2NsaWVudF9ibHQubyBcCiAJZ2VtL2k5MTVfZ2VtX2NvbnRleHQubyBcCmRpZmYgLS1naXQgYS9k
+cml2ZXJzL2dwdS9kcm0vaTkxNS9nZW0vaTkxNV9nZW1fY2FuY2VsLmMgYi9kcml2ZXJzL2dwdS9k
+cm0vaTkxNS9nZW0vaTkxNV9nZW1fY2FuY2VsLmMKbmV3IGZpbGUgbW9kZSAxMDA2NDQKaW5kZXgg
+MDAwMDAwMDAwMDAwLi5jODVkYzIyZmI5NmQKLS0tIC9kZXYvbnVsbAorKysgYi9kcml2ZXJzL2dw
+dS9kcm0vaTkxNS9nZW0vaTkxNV9nZW1fY2FuY2VsLmMKQEAgLTAsMCArMSw1NyBAQAorLy8gU1BE
+WC1MaWNlbnNlLUlkZW50aWZpZXI6IE1JVAorLyoKKyAqIENvcHlyaWdodCDCqSAyMDIwIEludGVs
+IENvcnBvcmF0aW9uCisgKi8KKworI2luY2x1ZGUgPGxpbnV4L3N5bmNfZmlsZS5oPgorCisjaW5j
+bHVkZSA8ZHJtL2RybV9wcmludC5oPgorI2luY2x1ZGUgPGRybS9kcm1fc3luY29iai5oPgorCisj
+aW5jbHVkZSAiaTkxNV9kcnYuaCIKKyNpbmNsdWRlICJpOTE1X2dlbV9pb2N0bHMuaCIKKworaW50
+CitpOTE1X2dlbV9jYW5jZWxfaW9jdGwoc3RydWN0IGRybV9kZXZpY2UgKmRldiwgdm9pZCAqZGF0
+YSwgc3RydWN0IGRybV9maWxlICpmaWxlKQoreworCXN0cnVjdCBkcm1faTkxNV9nZW1fY2FuY2Vs
+ICphcmdzID0gZGF0YTsKKwlzdHJ1Y3QgZG1hX2ZlbmNlICpmZW5jZTsKKwlpbnQgZXJyOworCisJ
+LyogT25seSBzdXBwb3J0ZWQgaWYgd2UgY2FuIGdyYWNlZnVsbHkgY2FuY2VsIGEgcmVxdWVzdCAq
+LworCWlmICghKHRvX2k5MTUoZGV2KS0+Y2Fwcy5zY2hlZHVsZXIgJiBJOTE1X1NDSEVEVUxFUl9D
+QVBfUFJFRU1QVElPTikpCisJCXJldHVybiAtRU5PREVWOworCisJaWYgKGFyZ3MtPmZsYWdzICYg
+fihJOTE1X0dFTV9DQU5DRUxfU1lOQ09CSikpCisJCXJldHVybiAtRUlOVkFMOworCisJaWYgKGFy
+Z3MtPmZsYWdzICYgSTkxNV9HRU1fQ0FOQ0VMX1NZTkNPQkopIHsKKwkJc3RydWN0IGRybV9zeW5j
+b2JqICpzeW5jb2JqOworCisJCXN5bmNvYmogPSBkcm1fc3luY29ial9maW5kKGZpbGUsIGFyZ3Mt
+PmhhbmRsZSk7CisJCWlmICghc3luY29iaikgeworCQkJRFJNX0RFQlVHKCJJbnZhbGlkIHN5bmNv
+YmogaGFuZGxlOiVkIHByb3ZpZGVkXG4iLAorCQkJCSAgYXJncy0+aGFuZGxlKTsKKwkJCXJldHVy
+biAtRU5PRU5UOworCQl9CisKKwkJZmVuY2UgPSBkcm1fc3luY29ial9mZW5jZV9nZXQoc3luY29i
+aik7CisJCWRybV9zeW5jb2JqX3B1dChzeW5jb2JqKTsKKwl9IGVsc2UgeworCQlmZW5jZSA9IHN5
+bmNfZmlsZV9nZXRfZmVuY2UoYXJncy0+aGFuZGxlKTsKKwkJaWYgKCFmZW5jZSkgeworCQkJRFJN
+X0RFQlVHKCJJbnZhbGlkIGZlbmNlIGZkOiVkIHByb3ZpZGVkXG4iLAorCQkJCSAgYXJncy0+aGFu
+ZGxlKTsKKwkJCXJldHVybiAtRU5PRU5UOworCQl9CisJfQorCisJZXJyID0gLUVJTlZBTDsKKwlp
+ZiAoZG1hX2ZlbmNlX2lzX2k5MTUoZmVuY2UpKSB7CisJCWk5MTVfcmVxdWVzdF9jYW5jZWwodG9f
+cmVxdWVzdChmZW5jZSksIC1FSU5UUik7CisJCWVyciA9IDA7CisJfQorCisJZG1hX2ZlbmNlX3B1
+dChmZW5jZSk7CisJcmV0dXJuIGVycjsKK30KZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9p
+OTE1L2dlbS9pOTE1X2dlbV9pb2N0bHMuaCBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2dlbS9pOTE1
+X2dlbV9pb2N0bHMuaAppbmRleCA4N2Q4YjI3ZjQyNmQuLjY0ODdmOWE2NTJlNiAxMDA2NDQKLS0t
+IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ2VtL2k5MTVfZ2VtX2lvY3Rscy5oCisrKyBiL2RyaXZl
+cnMvZ3B1L2RybS9pOTE1L2dlbS9pOTE1X2dlbV9pb2N0bHMuaApAQCAtMTIsNiArMTIsOCBAQCBz
+dHJ1Y3QgZHJtX2ZpbGU7CiAKIGludCBpOTE1X2dlbV9idXN5X2lvY3RsKHN0cnVjdCBkcm1fZGV2
+aWNlICpkZXYsIHZvaWQgKmRhdGEsCiAJCQlzdHJ1Y3QgZHJtX2ZpbGUgKmZpbGUpOworaW50IGk5
+MTVfZ2VtX2NhbmNlbF9pb2N0bChzdHJ1Y3QgZHJtX2RldmljZSAqZGV2LCB2b2lkICpkYXRhLAor
+CQkJICBzdHJ1Y3QgZHJtX2ZpbGUgKmZpbGUpOwogaW50IGk5MTVfZ2VtX2NyZWF0ZV9pb2N0bChz
+dHJ1Y3QgZHJtX2RldmljZSAqZGV2LCB2b2lkICpkYXRhLAogCQkJICBzdHJ1Y3QgZHJtX2ZpbGUg
+KmZpbGUpOwogaW50IGk5MTVfZ2VtX2V4ZWNidWZmZXJfaW9jdGwoc3RydWN0IGRybV9kZXZpY2Ug
+KmRldiwgdm9pZCAqZGF0YSwKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVf
+ZHJ2LmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2Rydi5jCmluZGV4IDU3MDhlMTFkOTE3
+Yi4uZGU4MGZiZjQ3YjczIDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2Ry
+di5jCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfZHJ2LmMKQEAgLTE3NTgsNiArMTc1
+OCw3IEBAIHN0YXRpYyBjb25zdCBzdHJ1Y3QgZHJtX2lvY3RsX2Rlc2MgaTkxNV9pb2N0bHNbXSA9
+IHsKIAlEUk1fSU9DVExfREVGX0RSVihJOTE1X1FVRVJZLCBpOTE1X3F1ZXJ5X2lvY3RsLCBEUk1f
+UkVOREVSX0FMTE9XKSwKIAlEUk1fSU9DVExfREVGX0RSVihJOTE1X0dFTV9WTV9DUkVBVEUsIGk5
+MTVfZ2VtX3ZtX2NyZWF0ZV9pb2N0bCwgRFJNX1JFTkRFUl9BTExPVyksCiAJRFJNX0lPQ1RMX0RF
+Rl9EUlYoSTkxNV9HRU1fVk1fREVTVFJPWSwgaTkxNV9nZW1fdm1fZGVzdHJveV9pb2N0bCwgRFJN
+X1JFTkRFUl9BTExPVyksCisJRFJNX0lPQ1RMX0RFRl9EUlYoSTkxNV9HRU1fQ0FOQ0VMLCBpOTE1
+X2dlbV9jYW5jZWxfaW9jdGwsIERSTV9SRU5ERVJfQUxMT1cpLAogfTsKIAogc3RhdGljIGNvbnN0
+IHN0cnVjdCBkcm1fZHJpdmVyIGRyaXZlciA9IHsKZGlmZiAtLWdpdCBhL2luY2x1ZGUvdWFwaS9k
+cm0vaTkxNV9kcm0uaCBiL2luY2x1ZGUvdWFwaS9kcm0vaTkxNV9kcm0uaAppbmRleCA2ZWRjYjJi
+NmM3MDguLmJjMWQwNjVjZDFlMCAxMDA2NDQKLS0tIGEvaW5jbHVkZS91YXBpL2RybS9pOTE1X2Ry
+bS5oCisrKyBiL2luY2x1ZGUvdWFwaS9kcm0vaTkxNV9kcm0uaApAQCAtMzU5LDYgKzM1OSw3IEBA
+IHR5cGVkZWYgc3RydWN0IF9kcm1faTkxNV9zYXJlYSB7CiAjZGVmaW5lIERSTV9JOTE1X1FVRVJZ
+CQkJMHgzOQogI2RlZmluZSBEUk1fSTkxNV9HRU1fVk1fQ1JFQVRFCQkweDNhCiAjZGVmaW5lIERS
+TV9JOTE1X0dFTV9WTV9ERVNUUk9ZCQkweDNiCisjZGVmaW5lIERSTV9JOTE1X0dFTV9DQU5DRUwJ
+CTB4M2MKIC8qIE11c3QgYmUga2VwdCBjb21wYWN0IC0tIG5vIGhvbGVzICovCiAKICNkZWZpbmUg
+RFJNX0lPQ1RMX0k5MTVfSU5JVAkJRFJNX0lPVyggRFJNX0NPTU1BTkRfQkFTRSArIERSTV9JOTE1
+X0lOSVQsIGRybV9pOTE1X2luaXRfdCkKQEAgLTQyMiw2ICs0MjMsNyBAQCB0eXBlZGVmIHN0cnVj
+dCBfZHJtX2k5MTVfc2FyZWEgewogI2RlZmluZSBEUk1fSU9DVExfSTkxNV9RVUVSWQkJCURSTV9J
+T1dSKERSTV9DT01NQU5EX0JBU0UgKyBEUk1fSTkxNV9RVUVSWSwgc3RydWN0IGRybV9pOTE1X3F1
+ZXJ5KQogI2RlZmluZSBEUk1fSU9DVExfSTkxNV9HRU1fVk1fQ1JFQVRFCURSTV9JT1dSKERSTV9D
+T01NQU5EX0JBU0UgKyBEUk1fSTkxNV9HRU1fVk1fQ1JFQVRFLCBzdHJ1Y3QgZHJtX2k5MTVfZ2Vt
+X3ZtX2NvbnRyb2wpCiAjZGVmaW5lIERSTV9JT0NUTF9JOTE1X0dFTV9WTV9ERVNUUk9ZCURSTV9J
+T1cgKERSTV9DT01NQU5EX0JBU0UgKyBEUk1fSTkxNV9HRU1fVk1fREVTVFJPWSwgc3RydWN0IGRy
+bV9pOTE1X2dlbV92bV9jb250cm9sKQorI2RlZmluZSBEUk1fSU9DVExfSTkxNV9HRU1fQ0FOQ0VM
+CURSTV9JT1cgKERSTV9DT01NQU5EX0JBU0UgKyBEUk1fSTkxNV9HRU1fQ0FOQ0VMLCBzdHJ1Y3Qg
+ZHJtX2k5MTVfZ2VtX2NhbmNlbCkKIAogLyogQWxsb3cgZHJpdmVycyB0byBzdWJtaXQgYmF0Y2hi
+dWZmZXJzIGRpcmVjdGx5IHRvIGhhcmR3YXJlLCByZWx5aW5nCiAgKiBvbiB0aGUgc2VjdXJpdHkg
+bWVjaGFuaXNtcyBwcm92aWRlZCBieSBoYXJkd2FyZS4KQEAgLTE1NjksNiArMTU3MSwxMiBAQCBz
+dHJ1Y3QgZHJtX2k5MTVfZ2VtX3dhaXQgewogCV9fczY0IHRpbWVvdXRfbnM7CiB9OwogCitzdHJ1
+Y3QgZHJtX2k5MTVfZ2VtX2NhbmNlbCB7CisJX191MzIgaGFuZGxlOworCV9fdTMyIGZsYWdzOwor
+I2RlZmluZSBJOTE1X0dFTV9DQU5DRUxfU1lOQ09CSiAoMSA8PCAwKQorfTsKKwogc3RydWN0IGRy
+bV9pOTE1X2dlbV9jb250ZXh0X2NyZWF0ZSB7CiAJX191MzIgY3R4X2lkOyAvKiBvdXRwdXQ6IGlk
+IG9mIG5ldyBjb250ZXh0Ki8KIAlfX3UzMiBwYWQ7Ci0tIAoyLjIwLjEKCl9fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QK
+SW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9w
+Lm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
