@@ -1,32 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 282A22D9618
-	for <lists+intel-gfx@lfdr.de>; Mon, 14 Dec 2020 11:11:03 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id F2E592D95EA
+	for <lists+intel-gfx@lfdr.de>; Mon, 14 Dec 2020 11:10:32 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C640A6E436;
-	Mon, 14 Dec 2020 10:10:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D2FEE6E2D7;
+	Mon, 14 Dec 2020 10:10:08 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C53C06E210
- for <intel-gfx@lists.freedesktop.org>; Mon, 14 Dec 2020 10:10:06 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 27ECD6E161
+ for <intel-gfx@lists.freedesktop.org>; Mon, 14 Dec 2020 10:10:01 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 23317796-1500050 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 23317797-1500050 
  for multiple; Mon, 14 Dec 2020 10:09:53 +0000
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Mon, 14 Dec 2020 10:09:05 +0000
-Message-Id: <20201214100949.11387-25-chris@chris-wilson.co.uk>
+Date: Mon, 14 Dec 2020 10:09:06 +0000
+Message-Id: <20201214100949.11387-26-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20201214100949.11387-1-chris@chris-wilson.co.uk>
 References: <20201214100949.11387-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 25/69] drm/i915/gem: Optimistically prune
- dma-resv from the shrinker.
+Subject: [Intel-gfx] [PATCH 26/69] drm/i915: Drop i915_request.lock
+ serialisation around await_start
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,71 +40,58 @@ List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: Chris Wilson <chris@chris-wilson.co.uk>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-QXMgd2Ugc2hyaW5rIGFuIG9iamVjdCwgYWxzbyBzZWUgaWYgd2UgY2FuIHBydW5lIHRoZSBkbWEt
-cmVzdiBvZiBpZGxlCmZlbmNlcyBpdCBpcyBtYWludGFpbmluZyBhIHJlZmVyZW5jZSB0by4KClNp
-Z25lZC1vZmYtYnk6IENocmlzIFdpbHNvbiA8Y2hyaXNAY2hyaXMtd2lsc29uLmNvLnVrPgotLS0K
-IGRyaXZlcnMvZ3B1L2RybS9pOTE1L01ha2VmaWxlICAgICAgICAgICAgICAgIHwgIDEgKwogZHJp
-dmVycy9ncHUvZHJtL2k5MTUvZG1hX3Jlc3ZfdXRpbHMuYyAgICAgICAgfCAxNyArKysrKysrKysr
-KysrKysrKwogZHJpdmVycy9ncHUvZHJtL2k5MTUvZG1hX3Jlc3ZfdXRpbHMuaCAgICAgICAgfCAx
-MyArKysrKysrKysrKysrCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9nZW0vaTkxNV9nZW1fc2hyaW5r
-ZXIuYyB8ICAzICsrKwogZHJpdmVycy9ncHUvZHJtL2k5MTUvZ2VtL2k5MTVfZ2VtX3dhaXQuYyAg
-ICAgfCAgOCArKystLS0tLQogNSBmaWxlcyBjaGFuZ2VkLCAzNyBpbnNlcnRpb25zKCspLCA1IGRl
-bGV0aW9ucygtKQogY3JlYXRlIG1vZGUgMTAwNjQ0IGRyaXZlcnMvZ3B1L2RybS9pOTE1L2RtYV9y
-ZXN2X3V0aWxzLmMKIGNyZWF0ZSBtb2RlIDEwMDY0NCBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kbWFf
-cmVzdl91dGlscy5oCgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvTWFrZWZpbGUg
-Yi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9NYWtlZmlsZQppbmRleCBmOWVmNTE5OWIxMjQuLmYzMTkz
-MTFiZTkzZSAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvTWFrZWZpbGUKKysrIGIv
-ZHJpdmVycy9ncHUvZHJtL2k5MTUvTWFrZWZpbGUKQEAgLTU4LDYgKzU4LDcgQEAgaTkxNS15ICs9
-IGk5MTVfZHJ2Lm8gXAogCiAjIGNvcmUgbGlicmFyeSBjb2RlCiBpOTE1LXkgKz0gXAorCWRtYV9y
-ZXN2X3V0aWxzLm8gXAogCWk5MTVfbWVtY3B5Lm8gXAogCWk5MTVfbW0ubyBcCiAJaTkxNV9zd19m
-ZW5jZS5vIFwKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2RtYV9yZXN2X3V0aWxz
-LmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kbWFfcmVzdl91dGlscy5jCm5ldyBmaWxlIG1vZGUg
-MTAwNjQ0CmluZGV4IDAwMDAwMDAwMDAwMC4uOWU1MDhlN2Q0NjI5Ci0tLSAvZGV2L251bGwKKysr
-IGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZG1hX3Jlc3ZfdXRpbHMuYwpAQCAtMCwwICsxLDE3IEBA
-CisvLyBTUERYLUxpY2Vuc2UtSWRlbnRpZmllcjogTUlUCisvKgorICogQ29weXJpZ2h0IMKpIDIw
-MjAgSW50ZWwgQ29ycG9yYXRpb24KKyAqLworCisjaW5jbHVkZSA8bGludXgvZG1hLXJlc3YuaD4K
-KworI2luY2x1ZGUgImRtYV9yZXN2X3V0aWxzLmgiCisKK3ZvaWQgZG1hX3Jlc3ZfcHJ1bmUoc3Ry
-dWN0IGRtYV9yZXN2ICpyZXN2KQoreworCWlmIChkbWFfcmVzdl90cnlsb2NrKHJlc3YpKSB7CisJ
-CWlmIChkbWFfcmVzdl90ZXN0X3NpZ25hbGVkX3JjdShyZXN2LCB0cnVlKSkKKwkJCWRtYV9yZXN2
-X2FkZF9leGNsX2ZlbmNlKHJlc3YsIE5VTEwpOworCQlkbWFfcmVzdl91bmxvY2socmVzdik7CisJ
-fQorfQpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZG1hX3Jlc3ZfdXRpbHMuaCBi
-L2RyaXZlcnMvZ3B1L2RybS9pOTE1L2RtYV9yZXN2X3V0aWxzLmgKbmV3IGZpbGUgbW9kZSAxMDA2
-NDQKaW5kZXggMDAwMDAwMDAwMDAwLi5iOWQ4ZmI1ZjgzNjcKLS0tIC9kZXYvbnVsbAorKysgYi9k
-cml2ZXJzL2dwdS9kcm0vaTkxNS9kbWFfcmVzdl91dGlscy5oCkBAIC0wLDAgKzEsMTMgQEAKKy8q
-IFNQRFgtTGljZW5zZS1JZGVudGlmaWVyOiBNSVQgKi8KKy8qCisgKiBDb3B5cmlnaHQgwqkgMjAy
-MCBJbnRlbCBDb3Jwb3JhdGlvbgorICovCisKKyNpZm5kZWYgRE1BX1JFU1ZfVVRJTFNfSAorI2Rl
-ZmluZSBETUFfUkVTVl9VVElMU19ICisKK3N0cnVjdCBkbWFfcmVzdjsKKwordm9pZCBkbWFfcmVz
-dl9wcnVuZShzdHJ1Y3QgZG1hX3Jlc3YgKnJlc3YpOworCisjZW5kaWYgLyogRE1BX1JFU1ZfVVRJ
-TFNfSCAqLwpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ2VtL2k5MTVfZ2VtX3No
-cmlua2VyLmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9nZW0vaTkxNV9nZW1fc2hyaW5rZXIuYwpp
-bmRleCBkYzhmMDUyYTBmZmUuLmMyZGJhMWNkOTUzMiAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUv
-ZHJtL2k5MTUvZ2VtL2k5MTVfZ2VtX3Nocmlua2VyLmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5
-MTUvZ2VtL2k5MTVfZ2VtX3Nocmlua2VyLmMKQEAgLTE1LDYgKzE1LDcgQEAKIAogI2luY2x1ZGUg
-Imd0L2ludGVsX2d0X3JlcXVlc3RzLmgiCiAKKyNpbmNsdWRlICJkbWFfcmVzdl91dGlscy5oIgog
-I2luY2x1ZGUgImk5MTVfdHJhY2UuaCIKIAogc3RhdGljIGJvb2wgc3dhcF9hdmFpbGFibGUodm9p
-ZCkKQEAgLTIwOSw2ICsyMTAsOCBAQCBpOTE1X2dlbV9zaHJpbmsoc3RydWN0IGRybV9pOTE1X3By
-aXZhdGUgKmk5MTUsCiAJCQkJbXV0ZXhfdW5sb2NrKCZvYmotPm1tLmxvY2spOwogCQkJfQogCisJ
-CQlkbWFfcmVzdl9wcnVuZShvYmotPmJhc2UucmVzdik7CisKIAkJCXNjYW5uZWQgKz0gb2JqLT5i
-YXNlLnNpemUgPj4gUEFHRV9TSElGVDsKIAkJCWk5MTVfZ2VtX29iamVjdF9wdXQob2JqKTsKIApk
-aWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ2VtL2k5MTVfZ2VtX3dhaXQuYyBiL2Ry
-aXZlcnMvZ3B1L2RybS9pOTE1L2dlbS9pOTE1X2dlbV93YWl0LmMKaW5kZXggOGFmNTVjZDNlNjkw
-Li5jMWIxM2FjNTBkMGYgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2dlbS9pOTE1
-X2dlbV93YWl0LmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ2VtL2k5MTVfZ2VtX3dhaXQu
-YwpAQCAtOSw2ICs5LDcgQEAKIAogI2luY2x1ZGUgImd0L2ludGVsX2VuZ2luZS5oIgogCisjaW5j
-bHVkZSAiZG1hX3Jlc3ZfdXRpbHMuaCIKICNpbmNsdWRlICJpOTE1X2dlbV9pb2N0bHMuaCIKICNp
-bmNsdWRlICJpOTE1X2dlbV9vYmplY3QuaCIKIApAQCAtODQsMTEgKzg1LDggQEAgaTkxNV9nZW1f
-b2JqZWN0X3dhaXRfcmVzZXJ2YXRpb24oc3RydWN0IGRtYV9yZXN2ICpyZXN2LAogCSAqIE9wcG9y
-dHVuaXN0aWNhbGx5IHBydW5lIHRoZSBmZW5jZXMgaWZmIHdlIGtub3cgdGhleSBoYXZlICphbGwq
-IGJlZW4KIAkgKiBzaWduYWxlZC4KIAkgKi8KLQlpZiAocHJ1bmVfZmVuY2VzICYmIGRtYV9yZXN2
-X3RyeWxvY2socmVzdikpIHsKLQkJaWYgKGRtYV9yZXN2X3Rlc3Rfc2lnbmFsZWRfcmN1KHJlc3Ys
-IHRydWUpKQotCQkJZG1hX3Jlc3ZfYWRkX2V4Y2xfZmVuY2UocmVzdiwgTlVMTCk7Ci0JCWRtYV9y
-ZXN2X3VubG9jayhyZXN2KTsKLQl9CisJaWYgKHBydW5lX2ZlbmNlcykKKwkJZG1hX3Jlc3ZfcHJ1
-bmUocmVzdik7CiAKIAlyZXR1cm4gdGltZW91dDsKIH0KLS0gCjIuMjAuMQoKX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlz
-dApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0
-b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
+Originally, we used the signal->lock as a means of following the
+previous link in its timeline and peeking at the previous fence.
+However, we have replaced the explicit serialisation with a series of
+very careful probes that anticipate the links being deleted and the
+fences recycled before we are able to acquire a strong reference to it.
+We do not need the signal->lock crutch anymore, nor want the contention.
+
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+---
+ drivers/gpu/drm/i915/i915_request.c | 10 ++++++++--
+ 1 file changed, 8 insertions(+), 2 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/i915_request.c b/drivers/gpu/drm/i915/i915_request.c
+index e4dad3aa69ff..87f59931f2ba 100644
+--- a/drivers/gpu/drm/i915/i915_request.c
++++ b/drivers/gpu/drm/i915/i915_request.c
+@@ -962,9 +962,16 @@ i915_request_await_start(struct i915_request *rq, struct i915_request *signal)
+ 	if (i915_request_started(signal))
+ 		return 0;
+ 
++	/*
++	 * The caller holds a reference on @signal, but we do not serialise
++	 * against it being retired and removed from the lists.
++	 *
++	 * We do not hold a reference to the request before @signal, and
++	 * so must be very careful to ensure that it is not _recycled_ as
++	 * we follow the link backwards.
++	 */
+ 	fence = NULL;
+ 	rcu_read_lock();
+-	spin_lock_irq(&signal->lock);
+ 	do {
+ 		struct list_head *pos = READ_ONCE(signal->link.prev);
+ 		struct i915_request *prev;
+@@ -995,7 +1002,6 @@ i915_request_await_start(struct i915_request *rq, struct i915_request *signal)
+ 
+ 		fence = &prev->fence;
+ 	} while (0);
+-	spin_unlock_irq(&signal->lock);
+ 	rcu_read_unlock();
+ 	if (!fence)
+ 		return 0;
+-- 
+2.20.1
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
