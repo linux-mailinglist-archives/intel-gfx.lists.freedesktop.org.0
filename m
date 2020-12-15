@@ -1,31 +1,44 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 85F662DA976
-	for <lists+intel-gfx@lfdr.de>; Tue, 15 Dec 2020 09:49:15 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1AEBC2DAA3F
+	for <lists+intel-gfx@lfdr.de>; Tue, 15 Dec 2020 10:41:23 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3C2FA6E165;
-	Tue, 15 Dec 2020 08:49:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7E1D489D42;
+	Tue, 15 Dec 2020 09:41:20 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id A2FF26E165;
- Tue, 15 Dec 2020 08:49:12 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 9CDF1A9F66;
- Tue, 15 Dec 2020 08:49:12 +0000 (UTC)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0817289D30;
+ Tue, 15 Dec 2020 09:41:18 +0000 (UTC)
+IronPort-SDR: +6FaxR1Xj/qBil4PciA/hdKOuGd2vISQZNepsmuXXSLPvRXV1gN3ARHGPWJRRMHRcy6SV8QMZd
+ 8M4mnC3oQRVg==
+X-IronPort-AV: E=McAfee;i="6000,8403,9835"; a="161906100"
+X-IronPort-AV: E=Sophos;i="5.78,420,1599548400"; d="scan'208";a="161906100"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Dec 2020 01:41:12 -0800
+IronPort-SDR: fi9eu2T94Csc5V+W3UdKt0wsbWts2S06aLJMKrkanQJrSDThVowMzJSojOgICHw4ZV43wtP8jq
+ KxPXPWXsspyQ==
+X-IronPort-AV: E=Sophos;i="5.78,420,1599548400"; d="scan'208";a="368138045"
+Received: from vmastnak-mobl1.ger.corp.intel.com (HELO [10.252.36.152])
+ ([10.252.36.152])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Dec 2020 01:41:11 -0800
+To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
+References: <20201214204430.677828-1-chris@chris-wilson.co.uk>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+Message-ID: <4cd49f52-efe8-9367-c56b-d1f5382a4580@linux.intel.com>
+Date: Tue, 15 Dec 2020 09:41:09 +0000
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Animesh Manna" <animesh.manna@intel.com>
-Date: Tue, 15 Dec 2020 08:49:12 -0000
-Message-ID: <160802215261.24784.17407302112145506358@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20201215072712.12723-1-animesh.manna@intel.com>
-In-Reply-To: <20201215072712.12723-1-animesh.manna@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgTXVs?=
- =?utf-8?q?ti_DSB_instance_support?=
+In-Reply-To: <20201214204430.677828-1-chris@chris-wilson.co.uk>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [igt-dev] [PATCH i-g-t] i915/gem_exec_schedule:
+ Measure timeslice distribution when oversaturated
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,258 +51,233 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============0108343671=="
+Cc: igt-dev@lists.freedesktop.org
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0108343671==
-Content-Type: multipart/alternative;
- boundary="===============1264883196069377248=="
 
---===============1264883196069377248==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On 14/12/2020 20:44, Chris Wilson wrote:
+> Check that timeslices for an oversaturated system (where there is more
+> work than can be supported by a single engine) are evenly distributed
+> between the clients.
+> 
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+> ---
+>   tests/i915/gem_exec_schedule.c | 179 +++++++++++++++++++++++++++++++++
+>   1 file changed, 179 insertions(+)
+> 
+> diff --git a/tests/i915/gem_exec_schedule.c b/tests/i915/gem_exec_schedule.c
+> index f23d63ac3..263f1dd78 100644
+> --- a/tests/i915/gem_exec_schedule.c
+> +++ b/tests/i915/gem_exec_schedule.c
+> @@ -2516,6 +2516,154 @@ static void measure_semaphore_power(int i915)
+>   	rapl_close(&pkg);
+>   }
+>   
+> +static int read_timestamp_frequency(int i915)
+> +{
+> +	int value = 0;
+> +	drm_i915_getparam_t gp = {
+> +		.value = &value,
+> +		.param = I915_PARAM_CS_TIMESTAMP_FREQUENCY,
+> +	};
+> +	ioctl(i915, DRM_IOCTL_I915_GETPARAM, &gp);
+> +	return value;
+> +}
+> +
+> +static uint64_t div64_u64_round_up(uint64_t x, uint64_t y)
+> +{
+> +	return (x + y - 1) / y;
+> +}
+> +
+> +static uint64_t ticks_to_ns(int i915, uint64_t ticks)
+> +{
+> +	return div64_u64_round_up(ticks * NSEC_PER_SEC,
+> +				  read_timestamp_frequency(i915));
+> +}
+> +
+> +static int cmp_u32(const void *A, const void *B)
+> +{
+> +	const uint32_t *a = A, *b = B;
+> +
+> +	if (*a < *b)
+> +		return -1;
+> +	else if (*a > *b)
+> +		return 1;
+> +	else
+> +		return 0;
+> +}
+> +
+> +static uint32_t read_ctx_timestamp(int i915,
+> +				   uint32_t ctx,
+> +				   const struct intel_execution_engine2 *e)
+> +{
+> +	const int use_64b = intel_gen(intel_get_drm_devid(i915)) >= 8;
+> +	const uint32_t base = gem_engine_mmio_base(i915, e->name);
+> +	struct drm_i915_gem_relocation_entry reloc;
+> +	struct drm_i915_gem_exec_object2 obj = {
+> +		.handle = gem_create(i915, 4096),
+> +		.offset = 32 << 20,
+> +		.relocs_ptr = to_user_pointer(&reloc),
+> +		.relocation_count = 1,
+> +	};
+> +	struct drm_i915_gem_execbuffer2 execbuf = {
+> +		.buffers_ptr = to_user_pointer(&obj),
+> +		.buffer_count = 1,
+> +		.flags = e->flags,
+> +		.rsvd1 = ctx,
+> +	};
+> +#define RUNTIME (base + 0x3a8)
+> +	uint32_t *map, *cs;
+> +	uint32_t ts;
+> +
+> +	igt_require(base);
+> +
+> +	cs = map = gem_mmap__device_coherent(i915, obj.handle,
+> +					     0, 4096, PROT_WRITE);
+> +
+> +	*cs++ = 0x24 << 23 | (1 + use_64b); /* SRM */
+> +	*cs++ = RUNTIME;
+> +	memset(&reloc, 0, sizeof(reloc));
+> +	reloc.target_handle = obj.handle;
+> +	reloc.presumed_offset = obj.offset;
+> +	reloc.offset = offset_in_page(cs);
+> +	reloc.delta = 4000;
+> +	*cs++ = obj.offset + 4000;
+> +	*cs++ = obj.offset >> 32;
+> +
+> +	*cs++ = MI_BATCH_BUFFER_END;
+> +
+> +	gem_execbuf(i915, &execbuf);
+> +	gem_sync(i915, obj.handle);
+> +	gem_close(i915, obj.handle);
+> +
+> +	ts = map[1000];
+> +	munmap(map, 4096);
+> +
+> +	return ts;
+> +}
+> +
+> +static void fairslice(int i915,
+> +		      const struct intel_execution_engine2 *e,
+> +		      unsigned long flags,
+> +		      int duration)
+> +{
+> +	const double timeslice_duration_ns = 1e6;
+> +	igt_spin_t *spin = NULL;
+> +	double threshold;
+> +	uint32_t ctx[3];
+> +	uint32_t ts[3];
+> +
+> +	for (int i = 0; i < ARRAY_SIZE(ctx); i++) {
+> +		ctx[i] = gem_context_clone_with_engines(i915, 0);
+> +		if (spin == NULL) {
+> +			spin = __igt_spin_new(i915,
+> +					      .ctx = ctx[i],
+> +					      .engine = e->flags,
+> +					      .flags = flags);
+> +		} else {
+> +			struct drm_i915_gem_execbuffer2 eb = {
+> +				.buffer_count = 1,
+> +				.buffers_ptr = to_user_pointer(&spin->obj[IGT_SPIN_BATCH]),
+> +				.flags = e->flags,
+> +				.rsvd1 = ctx[i],
+> +			};
+> +			gem_execbuf(i915, &eb);
+> +		}
+> +	}
+> +
+> +	sleep(duration); /* over the course of many timeslices */
+> +
+> +	igt_assert(gem_bo_busy(i915, spin->handle));
+> +	igt_spin_end(spin);
+> +	for (int i = 0; i < ARRAY_SIZE(ctx); i++)
+> +		ts[i] = read_ctx_timestamp(i915, ctx[i], e);
+> +
+> +	for (int i = 0; i < ARRAY_SIZE(ctx); i++)
+> +		gem_context_destroy(i915, ctx[i]);
+> +	igt_spin_free(i915, spin);
+> +
+> +	/*
+> +	 * If we imagine that the timeslices are randomly distributed to
+> +	 * the virtual engines, we would expect the variation to be modelled
+> +	 * by a drunken walk; ergo sqrt(num_timeslices).
+> +	 */
+> +	threshold = sqrt(1e9 * duration / timeslice_duration_ns);
+> +	threshold *= timeslice_duration_ns;
+> +	threshold *= 2; /* CI safety factor before crying wolf */
+> +
+> +	qsort(ts, 3, sizeof(*ts), cmp_u32);
+> +	igt_info("%s: [%.1f, %.1f, %.1f] ms, expect %1.f +- %.1fms\n", e->name,
+> +		 1e-6 * ticks_to_ns(i915, ts[0]),
+> +		 1e-6 * ticks_to_ns(i915, ts[1]),
+> +		 1e-6 * ticks_to_ns(i915, ts[2]),
+> +		 1e3 * duration / 3,
+> +		 1e-6 * threshold);
+> +
+> +	igt_assert_f(ts[2], "CTX_TIMESTAMP not reported!\n");
+> +	igt_assert_f(ticks_to_ns(i915, ts[2] - ts[0]) < 2 * threshold,
 
-== Series Details ==
+Is this second threshold x2 by accident?
 
-Series: Multi DSB instance support
-URL   : https://patchwork.freedesktop.org/series/84934/
-State : success
+> +		     "Range of timeslices greater than tolerable: %.2fms > %.2fms; unfair!\n",
+> +		     1e-6 * ticks_to_ns(i915, ts[2] - ts[0]),
+> +		     1e-6 * threshold * 2);
 
-== Summary ==
+* 2 as well.
 
-CI Bug Log - changes from CI_DRM_9482 -> Patchwork_19143
-====================================================
+> +}
+> +
+>   #define test_each_engine(T, i915, e) \
+>   	igt_subtest_with_dynamic(T) __for_each_physical_engine(i915, e) \
+>   		igt_dynamic_f("%s", e->name)
+> @@ -2582,6 +2730,37 @@ igt_main
+>   		test_each_engine("lateslice", fd, e)
+>   			lateslice(fd, e->flags);
+>   
+> +		igt_subtest_group {
+> +			igt_fixture {
+> +				igt_require(gem_scheduler_has_semaphores(fd));
+> +				igt_require(gem_scheduler_has_preemption(fd));
+> +				igt_require(intel_gen(intel_get_drm_devid(fd)) >= 8);
+> +			}
+> +
+> +			test_each_engine("fairslice", fd, e)
+> +				fairslice(fd, e, 0, 2);
+> +
+> +			test_each_engine("u-fairslice", fd, e)
+> +				fairslice(fd, e, IGT_SPIN_USERPTR, 2);
+> +
+> +			igt_subtest("fairslice-all")  {
+> +				__for_each_physical_engine(fd, e) {
+> +					igt_fork(child, 1)
+> +						fairslice(fd, e, 0, 2);
+> +				}
+> +				igt_waitchildren();
+> +			}
+> +			igt_subtest("u-fairslice-all")  {
+> +				__for_each_physical_engine(fd, e) {
+> +					igt_fork(child, 1)
+> +						fairslice(fd, e,
+> +							  IGT_SPIN_USERPTR,
+> +							  2);
+> +				}
+> +				igt_waitchildren();
+> +			}
+> +		}
+> +
+>   		test_each_engine("submit-early-slice", fd, e)
+>   			submit_slice(fd, e, EARLY_SUBMIT);
+>   		test_each_engine("submit-golden-slice", fd, e)
+> 
 
-Summary
--------
+Regards,
 
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19143/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_19143 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@amdgpu/amd_basic@semaphore:
-    - fi-bdw-5557u:       NOTRUN -> [SKIP][1] ([fdo#109271]) +26 similar issues
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19143/fi-bdw-5557u/igt@amdgpu/amd_basic@semaphore.html
-
-  * igt@amdgpu/amd_basic@userptr:
-    - fi-byt-j1900:       NOTRUN -> [SKIP][2] ([fdo#109271]) +17 similar issues
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19143/fi-byt-j1900/igt@amdgpu/amd_basic@userptr.html
-
-  * igt@core_hotunplug@unbind-rebind:
-    - fi-bdw-5557u:       NOTRUN -> [WARN][3] ([i915#2283])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19143/fi-bdw-5557u/igt@core_hotunplug@unbind-rebind.html
-
-  * igt@debugfs_test@read_all_entries:
-    - fi-tgl-y:           [PASS][4] -> [DMESG-WARN][5] ([i915#402]) +1 similar issue
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9482/fi-tgl-y/igt@debugfs_test@read_all_entries.html
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19143/fi-tgl-y/igt@debugfs_test@read_all_entries.html
-
-  * igt@i915_pm_rpm@module-reload:
-    - fi-kbl-guc:         [PASS][6] -> [SKIP][7] ([fdo#109271])
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9482/fi-kbl-guc/igt@i915_pm_rpm@module-reload.html
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19143/fi-kbl-guc/igt@i915_pm_rpm@module-reload.html
-
-  * igt@i915_selftest@live@active:
-    - fi-kbl-soraka:      [PASS][8] -> [DMESG-FAIL][9] ([i915#2291] / [i915#666])
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9482/fi-kbl-soraka/igt@i915_selftest@live@active.html
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19143/fi-kbl-soraka/igt@i915_selftest@live@active.html
-
-  * igt@kms_chamelium@dp-crc-fast:
-    - fi-bdw-5557u:       NOTRUN -> [SKIP][10] ([fdo#109271] / [fdo#111827]) +8 similar issues
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19143/fi-bdw-5557u/igt@kms_chamelium@dp-crc-fast.html
-
-  
-#### Possible fixes ####
-
-  * igt@gem_flink_basic@bad-flink:
-    - fi-tgl-y:           [DMESG-WARN][11] ([i915#402]) -> [PASS][12]
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9482/fi-tgl-y/igt@gem_flink_basic@bad-flink.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19143/fi-tgl-y/igt@gem_flink_basic@bad-flink.html
-
-  * igt@i915_pm_rpm@module-reload:
-    - fi-byt-j1900:       [INCOMPLETE][13] ([i915#142] / [i915#2405]) -> [PASS][14]
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9482/fi-byt-j1900/igt@i915_pm_rpm@module-reload.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19143/fi-byt-j1900/igt@i915_pm_rpm@module-reload.html
-
-  
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
-  [i915#142]: https://gitlab.freedesktop.org/drm/intel/issues/142
-  [i915#2283]: https://gitlab.freedesktop.org/drm/intel/issues/2283
-  [i915#2291]: https://gitlab.freedesktop.org/drm/intel/issues/2291
-  [i915#2405]: https://gitlab.freedesktop.org/drm/intel/issues/2405
-  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
-  [i915#666]: https://gitlab.freedesktop.org/drm/intel/issues/666
-
-
-Participating hosts (43 -> 39)
-------------------------------
-
-  Missing    (4): fi-ctg-p8600 fi-bsw-cyan fi-bdw-samus fi-hsw-4200u 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_9482 -> Patchwork_19143
-
-  CI-20190529: 20190529
-  CI_DRM_9482: 279e4ca8a7117e617c498833deaa287b797e7d09 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5894: a668d5c148ec3c1d3958f660a146a88676aac25d @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_19143: f98badfe5d95bcabf9220b53328347e339abbf82 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-f98badfe5d95 drm/i915/dsb: multi dsb instance support in dsb-commit()
-b29008823ac1 drm/i915/dsb: multi dsb instance support in dsb-write()
-5408c90cf097 drm/i915/dsb: multi dsb instance support in prepare() and cleanup()
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19143/index.html
-
---===============1264883196069377248==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Multi DSB instance support</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/84934/">https://patchwork.freedesktop.org/series/84934/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19143/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19143/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_9482 -&gt; Patchwork_19143</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19143/index.html</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_19143 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@amdgpu/amd_basic@semaphore:</p>
-<ul>
-<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19143/fi-bdw-5557u/igt@amdgpu/amd_basic@semaphore.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +26 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@amdgpu/amd_basic@userptr:</p>
-<ul>
-<li>fi-byt-j1900:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19143/fi-byt-j1900/igt@amdgpu/amd_basic@userptr.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +17 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@core_hotunplug@unbind-rebind:</p>
-<ul>
-<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19143/fi-bdw-5557u/igt@core_hotunplug@unbind-rebind.html">WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2283">i915#2283</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@debugfs_test@read_all_entries:</p>
-<ul>
-<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9482/fi-tgl-y/igt@debugfs_test@read_all_entries.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19143/fi-tgl-y/igt@debugfs_test@read_all_entries.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) +1 similar issue</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_pm_rpm@module-reload:</p>
-<ul>
-<li>fi-kbl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9482/fi-kbl-guc/igt@i915_pm_rpm@module-reload.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19143/fi-kbl-guc/igt@i915_pm_rpm@module-reload.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@active:</p>
-<ul>
-<li>fi-kbl-soraka:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9482/fi-kbl-soraka/igt@i915_selftest@live@active.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19143/fi-kbl-soraka/igt@i915_selftest@live@active.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2291">i915#2291</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/666">i915#666</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@dp-crc-fast:</p>
-<ul>
-<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19143/fi-bdw-5557u/igt@kms_chamelium@dp-crc-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@gem_flink_basic@bad-flink:</p>
-<ul>
-<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9482/fi-tgl-y/igt@gem_flink_basic@bad-flink.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19143/fi-tgl-y/igt@gem_flink_basic@bad-flink.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_pm_rpm@module-reload:</p>
-<ul>
-<li>fi-byt-j1900:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9482/fi-byt-j1900/igt@i915_pm_rpm@module-reload.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/142">i915#142</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2405">i915#2405</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19143/fi-byt-j1900/igt@i915_pm_rpm@module-reload.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Participating hosts (43 -&gt; 39)</h2>
-<p>Missing    (4): fi-ctg-p8600 fi-bsw-cyan fi-bdw-samus fi-hsw-4200u </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_9482 -&gt; Patchwork_19143</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_9482: 279e4ca8a7117e617c498833deaa287b797e7d09 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_5894: a668d5c148ec3c1d3958f660a146a88676aac25d @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
-  Patchwork_19143: f98badfe5d95bcabf9220b53328347e339abbf82 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>f98badfe5d95 drm/i915/dsb: multi dsb instance support in dsb-commit()<br />
-b29008823ac1 drm/i915/dsb: multi dsb instance support in dsb-write()<br />
-5408c90cf097 drm/i915/dsb: multi dsb instance support in prepare() and cleanup()</p>
-
-</body>
-</html>
-
---===============1264883196069377248==--
-
---===============0108343671==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
+Tvrtko
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============0108343671==--
