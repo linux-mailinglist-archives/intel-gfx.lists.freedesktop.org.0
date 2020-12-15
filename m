@@ -2,64 +2,36 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E5E812DA43B
-	for <lists+intel-gfx@lfdr.de>; Tue, 15 Dec 2020 00:40:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5BD152DA530
+	for <lists+intel-gfx@lfdr.de>; Tue, 15 Dec 2020 02:08:08 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5B1356E054;
-	Mon, 14 Dec 2020 23:40:27 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 93CF56E054
- for <intel-gfx@lists.freedesktop.org>; Mon, 14 Dec 2020 23:40:26 +0000 (UTC)
-IronPort-SDR: G5e0IA/u9krQVzsHxJ5Y7BU4n/WaT1dSq6xKlZklb2C/tLugfTP5pDxQzI1HiwlHaJwjCuLjEW
- y0MrZN2+9sqg==
-X-IronPort-AV: E=McAfee;i="6000,8403,9835"; a="174942490"
-X-IronPort-AV: E=Sophos;i="5.78,420,1599548400"; 
- d="scan'208,217";a="174942490"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Dec 2020 15:40:25 -0800
-IronPort-SDR: K6vcsvdZtglGebfpFYGa9I5/OkEqaPRONtEgDEqxqXKprcVxhJrrxXVG1syUqjFYUBVxB+oC2T
- 8jtS+l7Nn9iQ==
+	by gabe.freedesktop.org (Postfix) with ESMTP id 468256E045;
+	Tue, 15 Dec 2020 01:08:03 +0000 (UTC)
+X-Original-To: Intel-gfx@lists.freedesktop.org
+Delivered-To: Intel-gfx@lists.freedesktop.org
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E3DFD6E054
+ for <Intel-gfx@lists.freedesktop.org>; Tue, 15 Dec 2020 01:08:01 +0000 (UTC)
+IronPort-SDR: VIPyXfRmfzeKnj/eSRsPlft6f57WFu6eJWdVyw5a+AKmEXZQqii7zI1rpMSw8dmnBW8cINTbmW
+ E3NB2Dh7dbtA==
+X-IronPort-AV: E=McAfee;i="6000,8403,9835"; a="171297982"
+X-IronPort-AV: E=Sophos;i="5.78,420,1599548400"; d="scan'208";a="171297982"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Dec 2020 17:08:01 -0800
+IronPort-SDR: 8TuFuzaU2yGcSOc2CH56sbgBqijMsgdE+HayMsdG2CIgBUl8/g0oIHevXFBBWQo8hXsSVLn3ec
+ TN5gROINbyog==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.78,420,1599548400"; 
- d="scan'208,217";a="351638098"
-Received: from orsmsx604.amr.corp.intel.com ([10.22.229.17])
- by orsmga002.jf.intel.com with ESMTP; 14 Dec 2020 15:40:25 -0800
-Received: from orsmsx612.amr.corp.intel.com (10.22.229.25) by
- ORSMSX604.amr.corp.intel.com (10.22.229.17) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1713.5; Mon, 14 Dec 2020 15:40:25 -0800
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX612.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1713.5; Mon, 14 Dec 2020 15:40:24 -0800
-Received: from orsmsx610.amr.corp.intel.com ([10.22.229.23]) by
- ORSMSX610.amr.corp.intel.com ([10.22.229.23]) with mapi id 15.01.1713.004;
- Mon, 14 Dec 2020 15:40:24 -0800
-From: "Chang, Yu bruce" <yu.bruce.chang@intel.com>
-To: Chris Wilson <chris@chris-wilson.co.uk>, "intel-gfx@lists.freedesktop.org"
- <intel-gfx@lists.freedesktop.org>
-Thread-Topic: [Intel-gfx] [PATCH i-g-t] lib: Pass device fd to
- gem_mmappable_aperture_size()
-Thread-Index: AQHW0Gtb2Usp9qHUFUmsvUL74KoMQan27y7/gACrGAD//4hAlIAAj98A//+Qpl0=
-Date: Mon, 14 Dec 2020 23:40:24 +0000
-Message-ID: <10feb0b0fd924e48a149b0fa2a8d5d29@intel.com>
-References: <20201212094354.3023502-1-chris@chris-wilson.co.uk>
- <7021dc5149a24438878f6540a0c4aed8@intel.com>,
- <160797892093.13039.18269573801947438332@build.alporthouse.com>
- <b9269e1c98b34fb6a06fb14a277be599@intel.com>,
- <160798410071.13039.10818205990449584130@build.alporthouse.com>
-In-Reply-To: <160798410071.13039.10818205990449584130@build.alporthouse.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.132]
-MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH i-g-t] lib: Pass device fd to
- gem_mmappable_aperture_size()
+X-IronPort-AV: E=Sophos;i="5.78,420,1599548400"; d="scan'208";a="331861118"
+Received: from sean-virtualbox.fm.intel.com ([10.105.158.96])
+ by fmsmga007.fm.intel.com with ESMTP; 14 Dec 2020 17:08:01 -0800
+From: "Huang, Sean Z" <sean.z.huang@intel.com>
+To: Intel-gfx@lists.freedesktop.org
+Date: Mon, 14 Dec 2020 17:07:03 -0800
+Message-Id: <20201215010726.15898-1-sean.z.huang@intel.com>
+X-Mailer: git-send-email 2.17.1
+Subject: [Intel-gfx] [RFC-v9 00/23] Introduce Intel PXP component - Mesa
+ single session
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,258 +44,169 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: multipart/mixed; boundary="===============0038654789=="
+MIME-Version: 1.0
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0038654789==
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_10feb0b0fd924e48a149b0fa2a8d5d29intelcom_"
+PXP (Protected Xe Path) is an i915 componment, available on
+GEN12+ that helps to establish the hardware protected session
+and manage the status of the alive software session, as well
+as its life cycle.
 
---_000_10feb0b0fd924e48a149b0fa2a8d5d29intelcom_
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+[commit #1 - #13]
+This patch series is to allow the kernel space to create and
+manage a single hardware session (a.k.a default session or
+arbitrary session). So user can allocate the protected buffer,
+which is encrypted with the leverage of the arbitrary hardware
+session.
 
->From: Chris Wilson <chris@chris-wilson.co.uk>
->
->Sent: Monday, December 14, 2020 2:15 PM
->To: Chang, Yu bruce; intel-gfx@lists.freedesktop.org
->Subject: Re: [Intel-gfx] [PATCH i-g-t] lib: Pass device fd to gem_mmappabl=
-e_aperture_size()
->
->Quoting Chang, Yu bruce (2020-12-14 21:52:10)
->>
->> >
->> >From: Chris Wilson <chris@chris-wilson.co.uk>
->> >Sent: Monday, December 14, 2020 12:48 PM
->> >To: Chang, Yu bruce; intel-gfx@lists.freedesktop.org
->> >Cc: igt-dev@
->> >Subject: Re: [Intel-gfx] [PATCH i-g-t] lib: Pass device fd to
->> gem_mmappable_aperture_size()
->> >
->> >Quoting Chang, Yu bruce (2020-12-14 18:45:04)
->> >> +/**
->> >> + * gem_mappable_aperture_size:
->> >> + *
->> >> + * Feature test macro to query the kernel for the mappable gpu apert=
-ure
->> size.
->> >> + * This is the area available for GTT memory mappings.
->> >> + *
->> > + * Returns: The mappable gtt address space size.
->> > + */
->> > +uint64_t gem_mappable_aperture_size(int fd)
->> > +{
->> > +       struct pci_device *pci_dev =3D igt_device_get_pci_device(fd);
->> >
->> > Does it make sense to eliminate the function intel_get_pci_device() if=
- not
->> > being used anymore? But it can be a separate patch.
->> >
->> >It's still used by tools. The complication there is that we mostly
->> >need to lookup the pci device without loading i915.ko.
->> >-Chris
->> >
->>
->> That makes sense.
->>
->> Then we need to make sure not start from a fix slot to look for GPU devi=
-ce in
->> the intel_get_pci_device() below as
->> it may not work for a discrete GPU as that slot can be a non-vga device =
-but
->> with vendor_id 0x8086.
->>
->>         pci_dev =3D pci_device_find_by_slot(0, 0, 2, 0);
->>         if (pci_dev =3D=3D NULL || pci_dev->vendor_id !=3D 0x8086) {
->>
->> So, either add extra check to make sure it is VGA class or always use
->> pci_device_next to search.
->
->It's held true for ~20 years :)
->
->I hear you; for the remaining users, they should probably use the lsgpu
->interface to pick the right device to work on (and remove
->intel_get_pci_device).
->
->tools/intel_audio_dump.c
->tools/intel_backlight.c
->tools/intel_display_poller.c
->tools/intel_forcewaked.c
->tools/intel_gpu_time.c
->tools/intel_gtt.c
->tools/intel_infoframes.c
->tools/intel_lid.c
->tools/intel_panel_fitter.c
->tools/intel_reg.c
->tools/intel_reg_checker.c
->tools/intel_watermark.c
->
->A few of those could even be retired.
->-Chris
->
->
+[commit #14 - #23]
+This patch series exposes ioctl so allow userspace to create,
+set, and destroy one or multiple sessions. It will also provide
+the communication chanel to TEE (Trusted Execution Environment)
+for the protected hardware session creation.
 
-Sounds reasonably to me. the rest of your changes look good to me, and also=
- fix my issue.
+v2:
+    - modification based on code reivew feedbacks received
+    - passing pxp instead of i915 as funciton argument
+    - remove dead code only for multi-session
+    - move the pxp init call from i915_drv.c to intel_gt.c
+    - reove the tautology naming
 
-Thanks,
-Bruce
+v3:
+    - rebase to latest drm-tip
 
-Reviewed-by: Bruce Chang <yu.bruce.chang@intel.com>
+v4:
+    - Append the split non-mesa patch sereis (commit #14 - #21) into
+      this patch series
 
+v5:
+    - include "intel_pxp.h" in intel_pxp_sm.h at commit #14 to fix
+      the build problem.
 
---_000_10feb0b0fd924e48a149b0fa2a8d5d29intelcom_
-Content-Type: text/html; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+v6:
+    - Fix the null pointer arb_session access bug in intel_pxp_arb.c in
+      "04 [RFC-v5] drm/i915/pxp: Create the arbitrary session after
+      boot"
 
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
-1">
-<style type=3D"text/css" style=3D"display:none;"><!-- P {margin-top:0;margi=
-n-bottom:0;} --></style>
-</head>
-<body dir=3D"ltr">
-<div id=3D"divtagdefaultwrapper" dir=3D"ltr" style=3D"font-size:12pt; color=
-:rgb(0,0,0); font-family:Calibri,Helvetica,sans-serif,EmojiFont,&quot;Apple=
- Color Emoji&quot;,&quot;Segoe UI Emoji&quot;,NotoColorEmoji,&quot;Segoe UI=
- Symbol&quot;,&quot;Android Emoji&quot;,EmojiSymbols">
-<p></p>
-<div>&gt;From: Chris Wilson &lt;chris@chris-wilson.co.uk&gt;</div>
-<div>&gt;</div>
-<div>&gt;Sent: Monday, December 14, 2020 2:15 PM</div>
-<div>&gt;To: Chang, Yu bruce; intel-gfx@lists.freedesktop.org</div>
-<div>&gt;Subject: Re: [Intel-gfx] [PATCH i-g-t] lib: Pass device fd to gem_=
-mmappable_aperture_size()</div>
-<div>&gt;&nbsp;</div>
-<div>&gt;Quoting Chang, Yu bruce (2020-12-14 21:52:10)</div>
-<div>&gt;&gt;&nbsp;</div>
-<div>&gt;&gt; &gt;</div>
-<div>&gt;&gt; &gt;From: Chris Wilson &lt;chris@chris-wilson.co.uk&gt;</div>
-<div>&gt;&gt; &gt;Sent: Monday, December 14, 2020 12:48 PM</div>
-<div>&gt;&gt; &gt;To: Chang, Yu bruce; intel-gfx@lists.freedesktop.org</div=
->
-<div>&gt;&gt; &gt;Cc: igt-dev@</div>
-<div>&gt;&gt; &gt;Subject: Re: [Intel-gfx] [PATCH i-g-t] lib: Pass device f=
-d to</div>
-<div>&gt;&gt; gem_mmappable_aperture_size()</div>
-<div>&gt;&gt; &gt;&nbsp;</div>
-<div>&gt;&gt; &gt;Quoting Chang, Yu bruce (2020-12-14 18:45:04)</div>
-<div>&gt;&gt; &gt;&gt; &#43;/**</div>
-<div>&gt;&gt; &gt;&gt; &#43; * gem_mappable_aperture_size:</div>
-<div>&gt;&gt; &gt;&gt; &#43; *</div>
-<div>&gt;&gt; &gt;&gt; &#43; * Feature test macro to query the kernel for t=
-he mappable gpu aperture</div>
-<div>&gt;&gt; size.</div>
-<div>&gt;&gt; &gt;&gt; &#43; * This is the area available for GTT memory ma=
-ppings.</div>
-<div>&gt;&gt; &gt;&gt; &#43; *</div>
-<div>&gt;&gt; &gt; &#43; * Returns: The mappable gtt address space size.</d=
-iv>
-<div>&gt;&gt; &gt; &#43; */</div>
-<div>&gt;&gt; &gt; &#43;uint64_t gem_mappable_aperture_size(int fd)</div>
-<div>&gt;&gt; &gt; &#43;{</div>
-<div>&gt;&gt; &gt; &#43;&nbsp; &nbsp; &nbsp; &nbsp;struct pci_device *pci_d=
-ev =3D igt_device_get_pci_device(fd);</div>
-<div>&gt;&gt; &gt;&nbsp;</div>
-<div>&gt;&gt; &gt; Does it make sense to eliminate the function intel_get_p=
-ci_device() if not</div>
-<div>&gt;&gt; &gt; being used anymore? But it can be a separate patch.</div=
->
-<div>&gt;&gt; &gt;</div>
-<div>&gt;&gt; &gt;It's still used by tools. The complication there is that =
-we mostly</div>
-<div>&gt;&gt; &gt;need to lookup the pci device without loading i915.ko.&nb=
-sp;</div>
-<div>&gt;&gt; &gt;-Chris</div>
-<div>&gt;&gt; &gt;</div>
-<div>&gt;&gt;&nbsp;</div>
-<div>&gt;&gt; That makes sense.</div>
-<div>&gt;&gt;&nbsp;</div>
-<div>&gt;&gt; Then we need to make sure not start from a fix slot to look f=
-or GPU device in</div>
-<div>&gt;&gt; the intel_get_pci_device() below as</div>
-<div>&gt;&gt; it may not work for a discrete GPU as that slot can be a non-=
-vga device but</div>
-<div>&gt;&gt; with vendor_id 0x8086.</div>
-<div>&gt;&gt;&nbsp;</div>
-<div>&gt;&gt;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;pci_dev =3D pci_device_find_=
-by_slot(0, 0, 2, 0);</div>
-<div>&gt;&gt;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;if (pci_dev =3D=3D NULL || p=
-ci_dev-&gt;vendor_id !=3D 0x8086) {</div>
-<div>&gt;&gt;&nbsp;</div>
-<div>&gt;&gt; So, either add extra check to make sure it is VGA class or al=
-ways use&nbsp;</div>
-<div>&gt;&gt; pci_device_next to search.</div>
-<div>&gt;</div>
-<div>&gt;It's held true for ~20 years :)</div>
-<div>&gt;</div>
-<div>&gt;I hear you; for the remaining users, they should probably use the =
-lsgpu</div>
-<div>&gt;interface to pick the right device to work on (and remove</div>
-<div>&gt;intel_get_pci_device).</div>
-<div>&gt;</div>
-<div>&gt;tools/intel_audio_dump.c</div>
-<div>&gt;tools/intel_backlight.c</div>
-<div>&gt;tools/intel_display_poller.c</div>
-<div>&gt;tools/intel_forcewaked.c</div>
-<div>&gt;tools/intel_gpu_time.c</div>
-<div>&gt;tools/intel_gtt.c</div>
-<div>&gt;tools/intel_infoframes.c</div>
-<div>&gt;tools/intel_lid.c</div>
-<div>&gt;tools/intel_panel_fitter.c</div>
-<div>&gt;tools/intel_reg.c</div>
-<div>&gt;tools/intel_reg_checker.c</div>
-<div>&gt;tools/intel_watermark.c</div>
-<div>&gt;</div>
-<div>&gt;A few of those could even be retired.</div>
-<div>&gt;-Chris</div>
-<div>&gt;</div>
-<div>&gt;</div>
-<div><br>
-</div>
-<div>Sounds reasonably&nbsp;to me. the rest of your changes look good to me=
-, and also fix my issue.</div>
-<div><br>
-</div>
-<div>Thanks,</div>
-<div>Bruce</div>
-<div><br>
-</div>
-<div><font face=3D"Calibri,Helvetica,sans-serif,EmojiFont,Apple Color Emoji=
-,Segoe UI Emoji,NotoColorEmoji,Segoe UI Symbol,Android Emoji,EmojiSymbols" =
-size=3D"1" style=3D"font-family: Calibri, Helvetica, sans-serif, EmojiFont,=
- &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, NotoColorEmoji,=
- &quot;Segoe UI Symbol&quot;, &quot;Android Emoji&quot;, EmojiSymbols;"><sp=
-an style=3D"font-size: 13.32px;">Reviewed-by:&nbsp;</span></font><font face=
-=3D"Calibri,Helvetica,sans-serif,EmojiFont,Apple Color Emoji,Segoe UI Emoji=
-,NotoColorEmoji,Segoe UI Symbol,Android Emoji,EmojiSymbols" size=3D"1" styl=
-e=3D"font-family: Calibri, Helvetica, sans-serif, EmojiFont, &quot;Apple Co=
-lor Emoji&quot;, &quot;Segoe UI Emoji&quot;, NotoColorEmoji, &quot;Segoe UI=
- Symbol&quot;, &quot;Android Emoji&quot;, EmojiSymbols;"><span style=3D"fon=
-t-size: 13.32px;">Bruce
- Chang &lt;yu.bruce.chang@intel.com&gt;</span></font><br>
-</div>
-<br>
-<p></p>
-<div style=3D"color:rgb(0,0,0)"></div>
-</div>
-</body>
-</html>
+v7:
+    - Use list_for_each_entry_safe instead of list_for_each_entry
 
---_000_10feb0b0fd924e48a149b0fa2a8d5d29intelcom_--
+v8:
+    - Add MEI vtag support for PXP multi-session usage
 
---===============0038654789==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+v9:
+    - Fix error handling bug in commit #5 "Func to send hardware session
+      termination". In intel_pxp_cmd.c, we should properly assign
+      "err = PTR_ERR(x)" if hitting the error case "IS_ERR(x)", this is
+      the only change in v9.
+
+Alexander Usyskin (1):
+  mei: bus: add vtag support
+
+Anshuman Gupta (1):
+  drm/i915/pxp: Add plane decryption support
+
+Bommu Krishnaiah (2):
+  drm/i915/uapi: introduce drm_i915_gem_create_ext
+  drm/i915/pxp: User interface for Protected buffer
+
+Huang, Sean Z (17):
+  drm/i915/pxp: Introduce Intel PXP component
+  drm/i915/pxp: set KCR reg init during the boot time
+  drm/i915/pxp: Implement funcs to create the TEE channel
+  drm/i915/pxp: Create the arbitrary session after boot
+  drm/i915/pxp: Func to send hardware session termination
+  drm/i915/pxp: Enable PXP irq worker and callback stub
+  drm/i915/pxp: Destroy arb session upon teardown
+  drm/i915/pxp: Enable PXP power management
+  drm/i915/pxp: Expose session state for display protection flip
+  drm/i915/pxp: Implement ioctl action to reserve session slots
+  drm/i915/pxp: Implement ioctl action to set session in play
+  drm/i915/pxp: Implement ioctl action to terminate the session
+  drm/i915/pxp: Implement ioctl action to send TEE commands
+  drm/i915/pxp: Implement ioctl action to query PXP tag
+  drm/i915/pxp: Termiante the session upon app crash
+  drm/i915/pxp: Add PXP-related registers into allowlist
+  drm/i915/pxp: Enable the PXP ioctl for protected session
+
+Tomas Winkler (1):
+  mei: pxp: add vtag parameter to mei_pxp_send/receive interface
+
+Vitaly Lubart (1):
+  mei: pxp: export pavp client to me client bus
+
+ drivers/gpu/drm/i915/Kconfig                  |  19 +
+ drivers/gpu/drm/i915/Makefile                 |  10 +
+ drivers/gpu/drm/i915/display/intel_sprite.c   |  21 +-
+ drivers/gpu/drm/i915/gem/i915_gem_context.c   |  15 +-
+ drivers/gpu/drm/i915/gem/i915_gem_context.h   |  10 +
+ .../gpu/drm/i915/gem/i915_gem_context_types.h |   2 +-
+ .../gpu/drm/i915/gem/i915_gem_object_types.h  |   5 +
+ drivers/gpu/drm/i915/gt/intel_gt.c            |   7 +
+ drivers/gpu/drm/i915/gt/intel_gt_irq.c        |   4 +
+ drivers/gpu/drm/i915/gt/intel_gt_pm.c         |   4 +
+ drivers/gpu/drm/i915/gt/intel_gt_types.h      |   3 +
+ drivers/gpu/drm/i915/i915_drv.c               |  11 +-
+ drivers/gpu/drm/i915/i915_drv.h               |   6 +
+ drivers/gpu/drm/i915/i915_gem.c               |  63 ++-
+ drivers/gpu/drm/i915/i915_reg.h               |  10 +-
+ drivers/gpu/drm/i915/intel_uncore.c           |  50 +-
+ drivers/gpu/drm/i915/pxp/intel_pxp.c          | 284 ++++++++++
+ drivers/gpu/drm/i915/pxp/intel_pxp.h          | 107 ++++
+ drivers/gpu/drm/i915/pxp/intel_pxp_arb.c      | 208 ++++++++
+ drivers/gpu/drm/i915/pxp/intel_pxp_arb.h      |  39 ++
+ drivers/gpu/drm/i915/pxp/intel_pxp_cmd.c      | 331 ++++++++++++
+ drivers/gpu/drm/i915/pxp/intel_pxp_cmd.h      |  22 +
+ drivers/gpu/drm/i915/pxp/intel_pxp_context.c  |  32 ++
+ drivers/gpu/drm/i915/pxp/intel_pxp_context.h  |  42 ++
+ drivers/gpu/drm/i915/pxp/intel_pxp_pm.c       |  72 +++
+ drivers/gpu/drm/i915/pxp/intel_pxp_pm.h       |  31 ++
+ drivers/gpu/drm/i915/pxp/intel_pxp_sm.c       | 487 ++++++++++++++++++
+ drivers/gpu/drm/i915/pxp/intel_pxp_sm.h       |  54 ++
+ drivers/gpu/drm/i915/pxp/intel_pxp_tee.c      | 227 ++++++++
+ drivers/gpu/drm/i915/pxp/intel_pxp_tee.h      |  25 +
+ drivers/misc/mei/Kconfig                      |   2 +
+ drivers/misc/mei/Makefile                     |   1 +
+ drivers/misc/mei/bus-fixup.c                  |  13 +-
+ drivers/misc/mei/bus.c                        | 101 +++-
+ drivers/misc/mei/client.c                     |   6 +-
+ drivers/misc/mei/mei_dev.h                    |   4 +-
+ drivers/misc/mei/pxp/Kconfig                  |  13 +
+ drivers/misc/mei/pxp/Makefile                 |   7 +
+ drivers/misc/mei/pxp/mei_pxp.c                | 232 +++++++++
+ drivers/misc/mei/pxp/mei_pxp.h                |  18 +
+ include/drm/i915_component.h                  |   1 +
+ include/drm/i915_pxp_tee_interface.h          |  45 ++
+ include/linux/mei_cl_bus.h                    |   6 +
+ include/uapi/drm/i915_drm.h                   | 138 +++++
+ 44 files changed, 2735 insertions(+), 53 deletions(-)
+ create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp.c
+ create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp.h
+ create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp_arb.c
+ create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp_arb.h
+ create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp_cmd.c
+ create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp_cmd.h
+ create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp_context.c
+ create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp_context.h
+ create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp_pm.c
+ create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp_pm.h
+ create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp_sm.c
+ create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp_sm.h
+ create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp_tee.c
+ create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp_tee.h
+ create mode 100644 drivers/misc/mei/pxp/Kconfig
+ create mode 100644 drivers/misc/mei/pxp/Makefile
+ create mode 100644 drivers/misc/mei/pxp/mei_pxp.c
+ create mode 100644 drivers/misc/mei/pxp/mei_pxp.h
+ create mode 100644 include/drm/i915_pxp_tee_interface.h
+
+-- 
+2.17.1
 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============0038654789==--
