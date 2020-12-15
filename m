@@ -1,40 +1,40 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 324172DA8B5
-	for <lists+intel-gfx@lfdr.de>; Tue, 15 Dec 2020 08:44:33 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 128362DA8B4
+	for <lists+intel-gfx@lfdr.de>; Tue, 15 Dec 2020 08:44:31 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 555BD6E170;
-	Tue, 15 Dec 2020 07:44:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E94816E169;
+	Tue, 15 Dec 2020 07:44:28 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1FFD36E169
- for <intel-gfx@lists.freedesktop.org>; Tue, 15 Dec 2020 07:44:28 +0000 (UTC)
-IronPort-SDR: lWYYJxktYQ7ZE462Jw9OkmMyTnRSo8XxjKNoKXZTAlBRihmYe0mJ26zaV+XqmORPfMF7iqNLKA
- ZTr99jFL3BhA==
-X-IronPort-AV: E=McAfee;i="6000,8403,9835"; a="259567359"
-X-IronPort-AV: E=Sophos;i="5.78,420,1599548400"; d="scan'208";a="259567359"
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 64E1B6E169
+ for <intel-gfx@lists.freedesktop.org>; Tue, 15 Dec 2020 07:44:27 +0000 (UTC)
+IronPort-SDR: ZJNjmwss7RMVDkSkFTNkHRJedid1fMQeprURQ7Isys/cGzw9DbL51BiL4z1JenNkghZiu4h+Vx
+ i+XrboYFcd0g==
+X-IronPort-AV: E=McAfee;i="6000,8403,9835"; a="174949666"
+X-IronPort-AV: E=Sophos;i="5.78,420,1599548400"; d="scan'208";a="174949666"
 Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  14 Dec 2020 23:44:26 -0800
-IronPort-SDR: QktsXReGW8dB8O9KaYzsaH7KeGb1lzVBtNPEYvNMxXHc/aTvx5wfRPmzPXMKyCNjV4ce3+RnJY
- LtlgEL40Vu2w==
+IronPort-SDR: ufp164XkgXCpkPCPZE2cf1mB45ZCNReP6ru3fVCaN0aMlWYue6eWC2yqUWO+TjytDM/63P6d3J
+ Wx/7LiSV08Tg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.78,420,1599548400"; d="scan'208";a="336593453"
+X-IronPort-AV: E=Sophos;i="5.78,420,1599548400"; d="scan'208";a="336593460"
 Received: from amanna.iind.intel.com ([10.223.74.93])
- by orsmga003.jf.intel.com with ESMTP; 14 Dec 2020 23:44:23 -0800
+ by orsmga003.jf.intel.com with ESMTP; 14 Dec 2020 23:44:25 -0800
 From: Animesh Manna <animesh.manna@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Tue, 15 Dec 2020 12:57:10 +0530
-Message-Id: <20201215072712.12723-2-animesh.manna@intel.com>
+Date: Tue, 15 Dec 2020 12:57:11 +0530
+Message-Id: <20201215072712.12723-3-animesh.manna@intel.com>
 X-Mailer: git-send-email 2.26.0
 In-Reply-To: <20201215072712.12723-1-animesh.manna@intel.com>
 References: <20201215072712.12723-1-animesh.manna@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 1/3] drm/i915/dsb: multi dsb instance support in
- prepare() and cleanup()
+Subject: [Intel-gfx] [PATCH 2/3] drm/i915/dsb: multi dsb instance support in
+ dsb-write()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,226 +54,159 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 Signed-off-by: Animesh Manna <animesh.manna@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_atomic.c   |  9 +-
- drivers/gpu/drm/i915/display/intel_display.c  |  6 +-
- .../drm/i915/display/intel_display_types.h    |  2 +-
- drivers/gpu/drm/i915/display/intel_dsb.c      | 99 ++++++++++---------
- 4 files changed, 65 insertions(+), 51 deletions(-)
+ drivers/gpu/drm/i915/display/intel_color.c | 40 +++++++++++++---------
+ drivers/gpu/drm/i915/display/intel_dsb.c   |  8 ++---
+ drivers/gpu/drm/i915/display/intel_dsb.h   |  4 +--
+ 3 files changed, 29 insertions(+), 23 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_atomic.c b/drivers/gpu/drm/i915/display/intel_atomic.c
-index e00fdc47c0eb..3833f3b4851b 100644
---- a/drivers/gpu/drm/i915/display/intel_atomic.c
-+++ b/drivers/gpu/drm/i915/display/intel_atomic.c
-@@ -226,6 +226,7 @@ intel_crtc_duplicate_state(struct drm_crtc *crtc)
- {
- 	const struct intel_crtc_state *old_crtc_state = to_intel_crtc_state(crtc->state);
- 	struct intel_crtc_state *crtc_state;
-+	int i;
+diff --git a/drivers/gpu/drm/i915/display/intel_color.c b/drivers/gpu/drm/i915/display/intel_color.c
+index 172d398081ee..02f31bcf0d24 100644
+--- a/drivers/gpu/drm/i915/display/intel_color.c
++++ b/drivers/gpu/drm/i915/display/intel_color.c
+@@ -728,9 +728,12 @@ static void ivb_load_lut_ext_max(const struct intel_crtc_state *crtc_state)
+ 	enum pipe pipe = crtc->pipe;
  
- 	crtc_state = kmemdup(old_crtc_state, sizeof(*crtc_state), GFP_KERNEL);
- 	if (!crtc_state)
-@@ -252,7 +253,9 @@ intel_crtc_duplicate_state(struct drm_crtc *crtc)
- 	crtc_state->wm.need_postvbl_update = false;
- 	crtc_state->fb_bits = 0;
- 	crtc_state->update_planes = 0;
--	crtc_state->dsb = NULL;
-+
-+	for (i = 0; i < MAX_DSB_PER_PIPE; i++)
-+		crtc_state->dsb[i] = NULL;
+ 	/* Program the max register to clamp values > 1.0. */
+-	intel_dsb_reg_write(crtc_state, PREC_PAL_EXT_GC_MAX(pipe, 0), 1 << 16);
+-	intel_dsb_reg_write(crtc_state, PREC_PAL_EXT_GC_MAX(pipe, 1), 1 << 16);
+-	intel_dsb_reg_write(crtc_state, PREC_PAL_EXT_GC_MAX(pipe, 2), 1 << 16);
++	intel_dsb_reg_write(crtc_state, PREC_PAL_EXT_GC_MAX(pipe, 0), 1 << 16,
++			    DSB1);
++	intel_dsb_reg_write(crtc_state, PREC_PAL_EXT_GC_MAX(pipe, 1), 1 << 16,
++			    DSB1);
++	intel_dsb_reg_write(crtc_state, PREC_PAL_EXT_GC_MAX(pipe, 2), 1 << 16,
++			    DSB1);
  
- 	return &crtc_state->uapi;
+ 	/*
+ 	 * Program the gc max 2 register to clamp values > 1.0.
+@@ -739,11 +742,11 @@ static void ivb_load_lut_ext_max(const struct intel_crtc_state *crtc_state)
+ 	 */
+ 	if (INTEL_GEN(dev_priv) >= 10 || IS_GEMINILAKE(dev_priv)) {
+ 		intel_dsb_reg_write(crtc_state, PREC_PAL_EXT2_GC_MAX(pipe, 0),
+-				    1 << 16);
++				    1 << 16, DSB1);
+ 		intel_dsb_reg_write(crtc_state, PREC_PAL_EXT2_GC_MAX(pipe, 1),
+-				    1 << 16);
++				    1 << 16, DSB1);
+ 		intel_dsb_reg_write(crtc_state, PREC_PAL_EXT2_GC_MAX(pipe, 2),
+-				    1 << 16);
++				    1 << 16, DSB1);
+ 	}
  }
-@@ -293,8 +296,10 @@ intel_crtc_destroy_state(struct drm_crtc *crtc,
- 			 struct drm_crtc_state *state)
- {
- 	struct intel_crtc_state *crtc_state = to_intel_crtc_state(state);
-+	int i;
  
--	drm_WARN_ON(crtc->dev, crtc_state->dsb);
-+	for (i = 0; i < MAX_DSB_PER_PIPE; i++)
-+		drm_WARN_ON(crtc->dev, crtc_state->dsb[i]);
+@@ -931,9 +934,12 @@ icl_load_gcmax(const struct intel_crtc_state *crtc_state,
+ 	enum pipe pipe = crtc->pipe;
  
- 	__drm_atomic_helper_crtc_destroy_state(&crtc_state->uapi);
- 	intel_crtc_free_hw_state(crtc_state);
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 761be8deaa9b..e93c602b81e0 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -16256,7 +16256,7 @@ static void intel_atomic_commit_tail(struct intel_atomic_state *state)
- 	struct intel_crtc *crtc;
- 	u64 put_domains[I915_MAX_PIPES] = {};
- 	intel_wakeref_t wakeref = 0;
--	int i;
-+	int i, j;
+ 	/* FIXME LUT entries are 16 bit only, so we can prog 0xFFFF max */
+-	intel_dsb_reg_write(crtc_state, PREC_PAL_GC_MAX(pipe, 0), color->red);
+-	intel_dsb_reg_write(crtc_state, PREC_PAL_GC_MAX(pipe, 1), color->green);
+-	intel_dsb_reg_write(crtc_state, PREC_PAL_GC_MAX(pipe, 2), color->blue);
++	intel_dsb_reg_write(crtc_state, PREC_PAL_GC_MAX(pipe, 0), color->red,
++			    DSB1);
++	intel_dsb_reg_write(crtc_state, PREC_PAL_GC_MAX(pipe, 1), color->green,
++			    DSB1);
++	intel_dsb_reg_write(crtc_state, PREC_PAL_GC_MAX(pipe, 2), color->blue,
++			    DSB1);
+ }
  
- 	intel_atomic_commit_fence_wait(state);
+ static void
+@@ -953,15 +959,15 @@ icl_program_gamma_superfine_segment(const struct intel_crtc_state *crtc_state)
+ 	 * 2/(8 * 128 * 256) ... 8/(8 * 128 * 256).
+ 	 */
+ 	intel_dsb_reg_write(crtc_state, PREC_PAL_MULTI_SEG_INDEX(pipe),
+-			    PAL_PREC_AUTO_INCREMENT);
++			    PAL_PREC_AUTO_INCREMENT, DSB1);
  
-@@ -16386,7 +16386,9 @@ static void intel_atomic_commit_tail(struct intel_atomic_state *state)
- 		 * cleanup. So copy and reset the dsb structure to sync with
- 		 * commit_done and later do dsb cleanup in cleanup_work.
- 		 */
--		old_crtc_state->dsb = fetch_and_zero(&new_crtc_state->dsb);
-+		for (j = 0; j < MAX_DSB_PER_PIPE; j++)
-+			old_crtc_state->dsb[j] =
-+				fetch_and_zero(&new_crtc_state->dsb[j]);
+ 	for (i = 0; i < 9; i++) {
+ 		const struct drm_color_lut *entry = &lut[i];
+ 
+ 		intel_dsb_indexed_reg_write(crtc_state, PREC_PAL_MULTI_SEG_DATA(pipe),
+-					    ilk_lut_12p4_ldw(entry));
++					    ilk_lut_12p4_ldw(entry), DSB1);
+ 		intel_dsb_indexed_reg_write(crtc_state, PREC_PAL_MULTI_SEG_DATA(pipe),
+-					    ilk_lut_12p4_udw(entry));
++					    ilk_lut_12p4_udw(entry), DSB1);
+ 	}
+ }
+ 
+@@ -986,13 +992,13 @@ icl_program_gamma_multi_segment(const struct intel_crtc_state *crtc_state)
+ 	 * seg2[0] being unused by the hardware.
+ 	 */
+ 	intel_dsb_reg_write(crtc_state, PREC_PAL_INDEX(pipe),
+-			    PAL_PREC_AUTO_INCREMENT);
++			    PAL_PREC_AUTO_INCREMENT, DSB1);
+ 	for (i = 1; i < 257; i++) {
+ 		entry = &lut[i * 8];
+ 		intel_dsb_indexed_reg_write(crtc_state, PREC_PAL_DATA(pipe),
+-					    ilk_lut_12p4_ldw(entry));
++					    ilk_lut_12p4_ldw(entry), DSB1);
+ 		intel_dsb_indexed_reg_write(crtc_state, PREC_PAL_DATA(pipe),
+-					    ilk_lut_12p4_udw(entry));
++					    ilk_lut_12p4_udw(entry), DSB1);
  	}
  
- 	/* Underruns don't always raise interrupts, so check manually */
-diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-index 5bc5bfbc4551..06ae7470ab8c 100644
---- a/drivers/gpu/drm/i915/display/intel_display_types.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-@@ -1124,7 +1124,7 @@ struct intel_crtc_state {
- 	enum transcoder mst_master_transcoder;
+ 	/*
+@@ -1010,9 +1016,9 @@ icl_program_gamma_multi_segment(const struct intel_crtc_state *crtc_state)
+ 	for (i = 0; i < 256; i++) {
+ 		entry = &lut[i * 8 * 128];
+ 		intel_dsb_indexed_reg_write(crtc_state, PREC_PAL_DATA(pipe),
+-					    ilk_lut_12p4_ldw(entry));
++					    ilk_lut_12p4_ldw(entry), DSB1);
+ 		intel_dsb_indexed_reg_write(crtc_state, PREC_PAL_DATA(pipe),
+-					    ilk_lut_12p4_udw(entry));
++					    ilk_lut_12p4_udw(entry), DSB1);
+ 	}
  
- 	/* For DSB related info */
--	struct intel_dsb *dsb;
-+	struct intel_dsb *dsb[MAX_DSB_PER_PIPE];
- 
- 	u32 psr2_man_track_ctl;
- };
+ 	/* The last entry in the LUT is to be programmed in GCMAX */
 diff --git a/drivers/gpu/drm/i915/display/intel_dsb.c b/drivers/gpu/drm/i915/display/intel_dsb.c
-index 566fa72427b3..cef1015cc04f 100644
+index cef1015cc04f..c968c9785484 100644
 --- a/drivers/gpu/drm/i915/display/intel_dsb.c
 +++ b/drivers/gpu/drm/i915/display/intel_dsb.c
-@@ -92,7 +92,7 @@ static bool intel_dsb_disable_engine(struct drm_i915_private *i915,
+@@ -90,9 +90,9 @@ static bool intel_dsb_disable_engine(struct drm_i915_private *i915,
+  */
+ 
  void intel_dsb_indexed_reg_write(const struct intel_crtc_state *crtc_state,
- 				 i915_reg_t reg, u32 val)
+-				 i915_reg_t reg, u32 val)
++				 i915_reg_t reg, u32 val, enum dsb_id id)
  {
--	struct intel_dsb *dsb = crtc_state->dsb;
-+	struct intel_dsb *dsb = crtc_state->dsb[0];
+-	struct intel_dsb *dsb = crtc_state->dsb[0];
++	struct intel_dsb *dsb = crtc_state->dsb[id];
  	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
  	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
  	u32 *buf;
-@@ -174,7 +174,7 @@ void intel_dsb_reg_write(const struct intel_crtc_state *crtc_state,
+@@ -167,14 +167,14 @@ void intel_dsb_indexed_reg_write(const struct intel_crtc_state *crtc_state,
+  * through mmio write.
+  */
+ void intel_dsb_reg_write(const struct intel_crtc_state *crtc_state,
+-			 i915_reg_t reg, u32 val)
++			 i915_reg_t reg, u32 val, enum dsb_id id)
+ {
+ 	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+ 	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
  	struct intel_dsb *dsb;
  	u32 *buf;
  
--	dsb = crtc_state->dsb;
-+	dsb = crtc_state->dsb[0];
+-	dsb = crtc_state->dsb[0];
++	dsb = crtc_state->dsb[id];
  	if (!dsb) {
  		intel_de_write(dev_priv, reg, val);
  		return;
-@@ -202,7 +202,7 @@ void intel_dsb_reg_write(const struct intel_crtc_state *crtc_state,
-  */
- void intel_dsb_commit(const struct intel_crtc_state *crtc_state)
- {
--	struct intel_dsb *dsb = crtc_state->dsb;
-+	struct intel_dsb *dsb = crtc_state->dsb[0];
- 	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
- 	struct drm_device *dev = crtc->base.dev;
- 	struct drm_i915_private *dev_priv = to_i915(dev);
-@@ -266,49 +266,52 @@ void intel_dsb_prepare(struct intel_crtc_state *crtc_state)
- 	struct i915_vma *vma;
- 	u32 *buf;
- 	intel_wakeref_t wakeref;
-+	int i;
+diff --git a/drivers/gpu/drm/i915/display/intel_dsb.h b/drivers/gpu/drm/i915/display/intel_dsb.h
+index 654a11f24b80..0040941d6a56 100644
+--- a/drivers/gpu/drm/i915/display/intel_dsb.h
++++ b/drivers/gpu/drm/i915/display/intel_dsb.h
+@@ -43,9 +43,9 @@ struct intel_dsb {
+ void intel_dsb_prepare(struct intel_crtc_state *crtc_state);
+ void intel_dsb_cleanup(struct intel_crtc_state *crtc_state);
+ void intel_dsb_reg_write(const struct intel_crtc_state *crtc_state,
+-			 i915_reg_t reg, u32 val);
++			 i915_reg_t reg, u32 val, enum dsb_id id);
+ void intel_dsb_indexed_reg_write(const struct intel_crtc_state *crtc_state,
+-				 i915_reg_t reg, u32 val);
++				 i915_reg_t reg, u32 val, enum dsb_id id);
+ void intel_dsb_commit(const struct intel_crtc_state *crtc_state);
  
- 	if (!HAS_DSB(i915))
- 		return;
- 
--	dsb = kmalloc(sizeof(*dsb), GFP_KERNEL);
--	if (!dsb) {
--		drm_err(&i915->drm, "DSB object creation failed\n");
--		return;
--	}
--
--	wakeref = intel_runtime_pm_get(&i915->runtime_pm);
--
--	obj = i915_gem_object_create_internal(i915, DSB_BUF_SIZE);
--	if (IS_ERR(obj)) {
--		drm_err(&i915->drm, "Gem object creation failed\n");
--		kfree(dsb);
--		goto out;
--	}
--
--	vma = i915_gem_object_ggtt_pin(obj, NULL, 0, 0, 0);
--	if (IS_ERR(vma)) {
--		drm_err(&i915->drm, "Vma creation failed\n");
--		i915_gem_object_put(obj);
--		kfree(dsb);
--		goto out;
--	}
--
--	buf = i915_gem_object_pin_map(vma->obj, I915_MAP_WC);
--	if (IS_ERR(buf)) {
--		drm_err(&i915->drm, "Command buffer creation failed\n");
--		i915_vma_unpin_and_release(&vma, I915_VMA_RELEASE_MAP);
--		kfree(dsb);
--		goto out;
--	}
--
--	dsb->id = DSB1;
--	dsb->vma = vma;
--	dsb->cmd_buf = buf;
--	dsb->free_pos = 0;
--	dsb->ins_start_offset = 0;
--	crtc_state->dsb = dsb;
-+	for (i = 0 ; i < MAX_DSB_PER_PIPE; i++)	{
-+		dsb = kmalloc(sizeof(*dsb), GFP_KERNEL);
-+		if (!dsb) {
-+			drm_err(&i915->drm, "DSB%d obj creation failed\n", i);
-+			continue;
-+		}
-+
-+		wakeref = intel_runtime_pm_get(&i915->runtime_pm);
-+
-+		obj = i915_gem_object_create_internal(i915, DSB_BUF_SIZE);
-+		if (IS_ERR(obj)) {
-+			drm_err(&i915->drm, "Gem object creation failed\n");
-+			kfree(dsb);
-+			goto out;
-+		}
-+
-+		vma = i915_gem_object_ggtt_pin(obj, NULL, 0, 0, 0);
-+		if (IS_ERR(vma)) {
-+			drm_err(&i915->drm, "Vma creation failed\n");
-+			i915_gem_object_put(obj);
-+			kfree(dsb);
-+			goto out;
-+		}
-+
-+		buf = i915_gem_object_pin_map(vma->obj, I915_MAP_WC);
-+		if (IS_ERR(buf)) {
-+			drm_err(&i915->drm, "Command buffer creation failed\n");
-+			i915_vma_unpin_and_release(&vma, I915_VMA_RELEASE_MAP);
-+			kfree(dsb);
-+			goto out;
-+		}
-+
-+		dsb->id = i;
-+		dsb->vma = vma;
-+		dsb->cmd_buf = buf;
-+		dsb->free_pos = 0;
-+		dsb->ins_start_offset = 0;
-+		crtc_state->dsb[i] = dsb;
- out:
--	intel_runtime_pm_put(&i915->runtime_pm, wakeref);
-+		intel_runtime_pm_put(&i915->runtime_pm, wakeref);
-+	}
- }
- 
- /**
-@@ -320,10 +323,14 @@ void intel_dsb_prepare(struct intel_crtc_state *crtc_state)
-  */
- void intel_dsb_cleanup(struct intel_crtc_state *crtc_state)
- {
--	if (!crtc_state->dsb)
--		return;
-+	int i;
- 
--	i915_vma_unpin_and_release(&crtc_state->dsb->vma, I915_VMA_RELEASE_MAP);
--	kfree(crtc_state->dsb);
--	crtc_state->dsb = NULL;
-+	for (i = 0; i < MAX_DSB_PER_PIPE; i++) {
-+		if (!crtc_state->dsb[i])
-+			continue;
-+
-+		i915_vma_unpin_and_release(&crtc_state->dsb[i]->vma, I915_VMA_RELEASE_MAP);
-+		kfree(crtc_state->dsb[i]);
-+		crtc_state->dsb[i] = NULL;
-+	}
- }
+ #endif
 -- 
 2.26.0
 
