@@ -1,31 +1,42 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D26022DB22C
-	for <lists+intel-gfx@lfdr.de>; Tue, 15 Dec 2020 18:06:37 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id D66172DB23B
+	for <lists+intel-gfx@lfdr.de>; Tue, 15 Dec 2020 18:12:03 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F1E74899F2;
-	Tue, 15 Dec 2020 17:06:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AE22689533;
+	Tue, 15 Dec 2020 17:12:01 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id ED18788C07;
- Tue, 15 Dec 2020 17:06:34 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id E6089A7DFF;
- Tue, 15 Dec 2020 17:06:34 +0000 (UTC)
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8C73889533
+ for <intel-gfx@lists.freedesktop.org>; Tue, 15 Dec 2020 17:12:00 +0000 (UTC)
+IronPort-SDR: A5Nrje8s5LZVco1xWVKDUPUNLvYdHPA0UIODU6PjrEeCobFb4r9KFoUiRN8YiGUOoQU25TfXY6
+ lPqqZL0Bqvyg==
+X-IronPort-AV: E=McAfee;i="6000,8403,9836"; a="174143401"
+X-IronPort-AV: E=Sophos;i="5.78,422,1599548400"; d="scan'208";a="174143401"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Dec 2020 09:12:00 -0800
+IronPort-SDR: 9A3OLKYNFUUV+kqumbL2HHbPiW2THFO01CleFR3JNzDeGnN16aoO/hZFRHc9d9izRId/ZPYAn/
+ f5oohjAYIt3w==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.78,422,1599548400"; d="scan'208";a="487958968"
+Received: from gaia.fi.intel.com ([10.237.72.192])
+ by orsmga004.jf.intel.com with ESMTP; 15 Dec 2020 09:11:58 -0800
+Received: by gaia.fi.intel.com (Postfix, from userid 1000)
+ id 0F42F5C2053; Tue, 15 Dec 2020 19:09:39 +0200 (EET)
+From: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
+In-Reply-To: <20201214100949.11387-15-chris@chris-wilson.co.uk>
+References: <20201214100949.11387-1-chris@chris-wilson.co.uk>
+ <20201214100949.11387-15-chris@chris-wilson.co.uk>
+Date: Tue, 15 Dec 2020 19:09:39 +0200
+Message-ID: <87h7onm1ws.fsf@gaia.fi.intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: trix@redhat.com
-Date: Tue, 15 Dec 2020 17:06:34 -0000
-Message-ID: <160805199491.24782.2895550814849050716@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20201215144101.1878719-1-trix@redhat.com>
-In-Reply-To: <20201215144101.1878719-1-trix@redhat.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
- =?utf-8?q?/i915=3A_remove_h_from_printk_format_specifier?=
+Subject: Re: [Intel-gfx] [PATCH 15/69] drm/i915/gt: Track all timelines
+ created using the HWSP
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,274 +49,241 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============0664239419=="
+Cc: Chris Wilson <chris@chris-wilson.co.uk>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0664239419==
-Content-Type: multipart/alternative;
- boundary="===============4911921013395652617=="
+Chris Wilson <chris@chris-wilson.co.uk> writes:
 
---===============4911921013395652617==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+> We assume that the contents of the HWSP are lost across suspend, and so
+> upon resume we must restore critical values such as the timeline seqno.
+> Keep track of every timeline allocated that uses the HWSP as its storage
+> and so we can then reset all seqno values by walking that list.
+>
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> ---
+>  drivers/gpu/drm/i915/gt/intel_engine_cs.c     |  9 ++++-
+>  drivers/gpu/drm/i915/gt/intel_engine_pm.c     |  6 ++++
+>  drivers/gpu/drm/i915/gt/intel_engine_types.h  |  1 +
+>  .../drm/i915/gt/intel_execlists_submission.c  | 11 ++++--
+>  .../gpu/drm/i915/gt/intel_ring_submission.c   | 35 +++++++++++++++++++
+>  drivers/gpu/drm/i915/gt/intel_timeline.h      | 13 +++++--
+>  .../gpu/drm/i915/gt/intel_timeline_types.h    |  2 ++
+>  7 files changed, 71 insertions(+), 6 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/gt/intel_engine_cs.c b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+> index 71bd052628f4..6c08e74edcae 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+> @@ -648,6 +648,8 @@ static int init_status_page(struct intel_engine_cs *engine)
+>  	void *vaddr;
+>  	int ret;
+>  
+> +	INIT_LIST_HEAD(&engine->status_page.timelines);
+> +
+>  	/*
+>  	 * Though the HWS register does support 36bit addresses, historically
+>  	 * we have had hangs and corruption reported due to wild writes if
+> @@ -936,6 +938,7 @@ void intel_engine_cleanup_common(struct intel_engine_cs *engine)
+>  		fput(engine->default_state);
+>  
+>  	if (engine->kernel_context) {
+> +		list_del(&engine->kernel_context->timeline->engine_link);
+>  		intel_context_unpin(engine->kernel_context);
+>  		intel_context_put(engine->kernel_context);
+>  	}
+> @@ -1281,8 +1284,12 @@ void intel_engines_reset_default_submission(struct intel_gt *gt)
+>  	struct intel_engine_cs *engine;
+>  	enum intel_engine_id id;
+>  
+> -	for_each_engine(engine, gt, id)
+> +	for_each_engine(engine, gt, id) {
+> +		if (engine->sanitize)
+> +			engine->sanitize(engine);
+> +
+>  		engine->set_default_submission(engine);
+> +	}
+>  }
+>  
+>  bool intel_engine_can_store_dword(struct intel_engine_cs *engine)
+> diff --git a/drivers/gpu/drm/i915/gt/intel_engine_pm.c b/drivers/gpu/drm/i915/gt/intel_engine_pm.c
+> index 99574378047f..1e5bad0b9a82 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_engine_pm.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_engine_pm.c
+> @@ -60,6 +60,12 @@ static int __engine_unpark(struct intel_wakeref *wf)
+>  
+>  		/* Scrub the context image after our loss of control */
+>  		ce->ops->reset(ce);
+> +
+> +		CE_TRACE(ce, "reset { seqno:%x, *hwsp:%x, ring:%x }\n",
+> +			 ce->timeline->seqno,
+> +			 READ_ONCE(*ce->timeline->hwsp_seqno),
+> +			 ce->ring->emit);
+> +		GEM_BUG_ON(ce->timeline->seqno != *ce->timeline->hwsp_seqno);
 
-== Series Details ==
+Compiler should be satified but could still have been READ_ONCE,
+for the reader and for the fine bug on which might get delivered to console. 
 
-Series: drm/i915: remove h from printk format specifier
-URL   : https://patchwork.freedesktop.org/series/84958/
-State : failure
+But main thing is that now coherency is enforced from the get go.
 
-== Summary ==
+>  	}
+>  
+>  	if (engine->unpark)
+> diff --git a/drivers/gpu/drm/i915/gt/intel_engine_types.h b/drivers/gpu/drm/i915/gt/intel_engine_types.h
+> index e71eef157231..c28f4e190fe6 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_engine_types.h
+> +++ b/drivers/gpu/drm/i915/gt/intel_engine_types.h
+> @@ -68,6 +68,7 @@ typedef u8 intel_engine_mask_t;
+>  #define ALL_ENGINES ((intel_engine_mask_t)~0ul)
+>  
+>  struct intel_hw_status_page {
+> +	struct list_head timelines;
+>  	struct i915_vma *vma;
+>  	u32 *addr;
+>  };
+> diff --git a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
+> index 9f5efff08785..c5b013cc10b3 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
+> @@ -3508,7 +3508,6 @@ static int execlists_context_alloc(struct intel_context *ce)
+>  
+>  static void execlists_context_reset(struct intel_context *ce)
+>  {
+> -	CE_TRACE(ce, "reset\n");
+>  	GEM_BUG_ON(!intel_context_is_pinned(ce));
+>  
+>  	intel_ring_reset(ce->ring, ce->ring->emit);
+> @@ -3985,6 +3984,14 @@ static void reset_csb_pointers(struct intel_engine_cs *engine)
+>  	GEM_BUG_ON(READ_ONCE(*execlists->csb_write) != reset_value);
+>  }
+>  
+> +static void sanitize_hwsp(struct intel_engine_cs *engine)
+> +{
+> +	struct intel_timeline *tl;
+> +
+> +	list_for_each_entry(tl, &engine->status_page.timelines, engine_link)
+> +		intel_timeline_reset_seqno(tl);
+> +}
+> +
+>  static void execlists_sanitize(struct intel_engine_cs *engine)
+>  {
+>  	GEM_BUG_ON(execlists_active(&engine->execlists));
+> @@ -4008,7 +4015,7 @@ static void execlists_sanitize(struct intel_engine_cs *engine)
+>  	 * that may be lost on resume/initialisation, and so we need to
+>  	 * reset the value in the HWSP.
+>  	 */
+> -	intel_timeline_reset_seqno(engine->kernel_context->timeline);
+> +	sanitize_hwsp(engine);
+>  
+>  	/* And scrub the dirty cachelines for the HWSP */
+>  	clflush_cache_range(engine->status_page.addr, PAGE_SIZE);
+> diff --git a/drivers/gpu/drm/i915/gt/intel_ring_submission.c b/drivers/gpu/drm/i915/gt/intel_ring_submission.c
+> index 5105e19514ee..4ea741f488a8 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_ring_submission.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_ring_submission.c
+> @@ -321,6 +321,39 @@ static int xcs_resume(struct intel_engine_cs *engine)
+>  	return ret;
+>  }
+>  
+> +static void sanitize_hwsp(struct intel_engine_cs *engine)
+> +{
+> +	struct intel_timeline *tl;
+> +
+> +	list_for_each_entry(tl, &engine->status_page.timelines, engine_link)
+> +		intel_timeline_reset_seqno(tl);
+> +}
+> +
+> +static void xcs_sanitize(struct intel_engine_cs *engine)
+> +{
+> +	/*
+> +	 * Poison residual state on resume, in case the suspend didn't!
+> +	 *
+> +	 * We have to assume that across suspend/resume (or other loss
+> +	 * of control) that the contents of our pinned buffers has been
+> +	 * lost, replaced by garbage. Since this doesn't always happen,
+> +	 * let's poison such state so that we more quickly spot when
+> +	 * we falsely assume it has been preserved.
+> +	 */
+> +	if (IS_ENABLED(CONFIG_DRM_I915_DEBUG_GEM))
+> +		memset(engine->status_page.addr, POISON_INUSE, PAGE_SIZE);
+> +
+> +	/*
+> +	 * The kernel_context HWSP is stored in the status_page. As above,
+> +	 * that may be lost on resume/initialisation, and so we need to
+> +	 * reset the value in the HWSP.
+> +	 */
+> +	sanitize_hwsp(engine);
+> +
+> +	/* And scrub the dirty cachelines for the HWSP */
+> +	clflush_cache_range(engine->status_page.addr, PAGE_SIZE);
 
-CI Bug Log - changes from CI_DRM_9487 -> Patchwork_19145
-====================================================
+The flush could be part of the actual writing of the seqno with
+that range. But then you would need to track the debug so. Better
+to make sure to transfer everything to be visible.
 
-Summary
--------
+Reviewed-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
 
-  **FAILURE**
-
-  Serious unknown changes coming with Patchwork_19145 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_19145, please notify your bug team to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19145/index.html
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_19145:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@i915_selftest@live@hangcheck:
-    - fi-tgl-u2:          [PASS][1] -> [INCOMPLETE][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9487/fi-tgl-u2/igt@i915_selftest@live@hangcheck.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19145/fi-tgl-u2/igt@i915_selftest@live@hangcheck.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_19145 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:
-    - fi-snb-2600:        NOTRUN -> [SKIP][3] ([fdo#109271]) +30 similar issues
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19145/fi-snb-2600/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html
-
-  * igt@kms_chamelium@dp-edid-read:
-    - fi-kbl-7500u:       [PASS][4] -> [FAIL][5] ([i915#2679])
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9487/fi-kbl-7500u/igt@kms_chamelium@dp-edid-read.html
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19145/fi-kbl-7500u/igt@kms_chamelium@dp-edid-read.html
-
-  * igt@kms_chamelium@hdmi-crc-fast:
-    - fi-snb-2600:        NOTRUN -> [SKIP][6] ([fdo#109271] / [fdo#111827]) +8 similar issues
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19145/fi-snb-2600/igt@kms_chamelium@hdmi-crc-fast.html
-
-  * igt@runner@aborted:
-    - fi-bdw-5557u:       NOTRUN -> [FAIL][7] ([i915#2029] / [i915#2722])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19145/fi-bdw-5557u/igt@runner@aborted.html
-    - fi-tgl-u2:          NOTRUN -> [FAIL][8] ([i915#2045] / [i915#2722])
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19145/fi-tgl-u2/igt@runner@aborted.html
-
-  
-#### Possible fixes ####
-
-  * igt@gem_exec_suspend@basic-s3:
-    - fi-snb-2600:        [DMESG-WARN][9] -> [PASS][10]
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9487/fi-snb-2600/igt@gem_exec_suspend@basic-s3.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19145/fi-snb-2600/igt@gem_exec_suspend@basic-s3.html
-
-  * igt@i915_pm_rpm@module-reload:
-    - fi-kbl-guc:         [SKIP][11] ([fdo#109271]) -> [PASS][12]
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9487/fi-kbl-guc/igt@i915_pm_rpm@module-reload.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19145/fi-kbl-guc/igt@i915_pm_rpm@module-reload.html
-
-  * igt@i915_selftest@live@gt_heartbeat:
-    - fi-kbl-soraka:      [DMESG-FAIL][13] ([i915#2291] / [i915#541]) -> [PASS][14]
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9487/fi-kbl-soraka/igt@i915_selftest@live@gt_heartbeat.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19145/fi-kbl-soraka/igt@i915_selftest@live@gt_heartbeat.html
-
-  
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
-  [i915#2029]: https://gitlab.freedesktop.org/drm/intel/issues/2029
-  [i915#2045]: https://gitlab.freedesktop.org/drm/intel/issues/2045
-  [i915#2291]: https://gitlab.freedesktop.org/drm/intel/issues/2291
-  [i915#2679]: https://gitlab.freedesktop.org/drm/intel/issues/2679
-  [i915#2722]: https://gitlab.freedesktop.org/drm/intel/issues/2722
-  [i915#541]: https://gitlab.freedesktop.org/drm/intel/issues/541
-
-
-Participating hosts (43 -> 38)
-------------------------------
-
-  Missing    (5): fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-tgl-y fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_9487 -> Patchwork_19145
-
-  CI-20190529: 20190529
-  CI_DRM_9487: 43bb70011b480e222721c5472399dc2dcd795c36 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5901: 565d911f08df697fa211dbd1faefe2fd57066f71 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_19145: f67d74d936b7d5934c7ace143ccff2e38f9b758d @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-f67d74d936b7 drm/i915: remove h from printk format specifier
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19145/index.html
-
---===============4911921013395652617==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915: remove h from printk format specifier</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/84958/">https://patchwork.freedesktop.org/series/84958/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19145/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19145/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_9487 -&gt; Patchwork_19145</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with Patchwork_19145 absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in Patchwork_19145, please notify your bug team to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19145/index.html</p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in Patchwork_19145:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>igt@i915_selftest@live@hangcheck:<ul>
-<li>fi-tgl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9487/fi-tgl-u2/igt@i915_selftest@live@hangcheck.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19145/fi-tgl-u2/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a></li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_19145 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:</p>
-<ul>
-<li>fi-snb-2600:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19145/fi-snb-2600/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +30 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@dp-edid-read:</p>
-<ul>
-<li>fi-kbl-7500u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9487/fi-kbl-7500u/igt@kms_chamelium@dp-edid-read.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19145/fi-kbl-7500u/igt@kms_chamelium@dp-edid-read.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2679">i915#2679</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@hdmi-crc-fast:</p>
-<ul>
-<li>fi-snb-2600:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19145/fi-snb-2600/igt@kms_chamelium@hdmi-crc-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@runner@aborted:</p>
-<ul>
-<li>
-<p>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19145/fi-bdw-5557u/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2029">i915#2029</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2722">i915#2722</a>)</p>
-</li>
-<li>
-<p>fi-tgl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19145/fi-tgl-u2/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2045">i915#2045</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2722">i915#2722</a>)</p>
-</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@gem_exec_suspend@basic-s3:</p>
-<ul>
-<li>fi-snb-2600:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9487/fi-snb-2600/igt@gem_exec_suspend@basic-s3.html">DMESG-WARN</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19145/fi-snb-2600/igt@gem_exec_suspend@basic-s3.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_pm_rpm@module-reload:</p>
-<ul>
-<li>fi-kbl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9487/fi-kbl-guc/igt@i915_pm_rpm@module-reload.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19145/fi-kbl-guc/igt@i915_pm_rpm@module-reload.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@gt_heartbeat:</p>
-<ul>
-<li>fi-kbl-soraka:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9487/fi-kbl-soraka/igt@i915_selftest@live@gt_heartbeat.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2291">i915#2291</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/541">i915#541</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19145/fi-kbl-soraka/igt@i915_selftest@live@gt_heartbeat.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Participating hosts (43 -&gt; 38)</h2>
-<p>Missing    (5): fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-tgl-y fi-bdw-samus </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_9487 -&gt; Patchwork_19145</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_9487: 43bb70011b480e222721c5472399dc2dcd795c36 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_5901: 565d911f08df697fa211dbd1faefe2fd57066f71 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
-  Patchwork_19145: f67d74d936b7d5934c7ace143ccff2e38f9b758d @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>f67d74d936b7 drm/i915: remove h from printk format specifier</p>
-
-</body>
-</html>
-
---===============4911921013395652617==--
-
---===============0664239419==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
+> +}
+> +
+>  static void reset_prepare(struct intel_engine_cs *engine)
+>  {
+>  	struct intel_uncore *uncore = engine->uncore;
+> @@ -1070,6 +1103,8 @@ static void setup_common(struct intel_engine_cs *engine)
+>  	setup_irq(engine);
+>  
+>  	engine->resume = xcs_resume;
+> +	engine->sanitize = xcs_sanitize;
+> +
+>  	engine->reset.prepare = reset_prepare;
+>  	engine->reset.rewind = reset_rewind;
+>  	engine->reset.cancel = reset_cancel;
+> diff --git a/drivers/gpu/drm/i915/gt/intel_timeline.h b/drivers/gpu/drm/i915/gt/intel_timeline.h
+> index 634acebd0c4b..1ee680d31801 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_timeline.h
+> +++ b/drivers/gpu/drm/i915/gt/intel_timeline.h
+> @@ -48,9 +48,16 @@ static inline struct intel_timeline *
+>  intel_timeline_create_from_engine(struct intel_engine_cs *engine,
+>  				  unsigned int offset)
+>  {
+> -	return __intel_timeline_create(engine->gt,
+> -				       engine->status_page.vma,
+> -				       offset);
+> +	struct intel_timeline *tl;
+> +
+> +	tl = __intel_timeline_create(engine->gt,
+> +				     engine->status_page.vma,
+> +				     offset);
+> +	if (IS_ERR(tl))
+> +		return tl;
+> +
+> +	list_add_tail(&tl->engine_link, &engine->status_page.timelines);
+> +	return tl;
+>  }
+>  
+>  static inline struct intel_timeline *
+> diff --git a/drivers/gpu/drm/i915/gt/intel_timeline_types.h b/drivers/gpu/drm/i915/gt/intel_timeline_types.h
+> index 4474f487f589..e360f50706bf 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_timeline_types.h
+> +++ b/drivers/gpu/drm/i915/gt/intel_timeline_types.h
+> @@ -84,6 +84,8 @@ struct intel_timeline {
+>  	struct list_head link;
+>  	struct intel_gt *gt;
+>  
+> +	struct list_head engine_link;
+> +
+>  	struct kref kref;
+>  	struct rcu_head rcu;
+>  };
+> -- 
+> 2.20.1
+>
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============0664239419==--
