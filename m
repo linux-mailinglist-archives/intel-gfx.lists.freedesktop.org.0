@@ -1,32 +1,62 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8986F2DB5DF
-	for <lists+intel-gfx@lfdr.de>; Tue, 15 Dec 2020 22:29:45 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4C9F02DB604
+	for <lists+intel-gfx@lfdr.de>; Tue, 15 Dec 2020 22:47:54 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 88D8989A6D;
-	Tue, 15 Dec 2020 21:29:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3A42389CA4;
+	Tue, 15 Dec 2020 21:47:52 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 2A93C89A60;
- Tue, 15 Dec 2020 21:29:41 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 22FFFA0BCB;
- Tue, 15 Dec 2020 21:29:41 +0000 (UTC)
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C05DB89CA4;
+ Tue, 15 Dec 2020 21:47:51 +0000 (UTC)
+IronPort-SDR: qddklm96xunqM9ovEdXeUFIO/tyZEFmZaRjqEzeWzFBbOmWI57Y4Cg/4JIddn5/bOl3RDIqOx0
+ IgqliLkr28Mg==
+X-IronPort-AV: E=McAfee;i="6000,8403,9836"; a="174185352"
+X-IronPort-AV: E=Sophos;i="5.78,422,1599548400"; d="scan'208";a="174185352"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Dec 2020 13:47:51 -0800
+IronPort-SDR: +ZinWqNYO9vXeGhDZC4TQYAxe1aTIVVjFAj091+lN/rPNIr+WJT7k8iL4eOECWejbra+Rw1qih
+ 6jJIe6YwiV/g==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.78,422,1599548400"; d="scan'208";a="412160272"
+Received: from fmsmsx606.amr.corp.intel.com ([10.18.126.86])
+ by orsmga001.jf.intel.com with ESMTP; 15 Dec 2020 13:47:50 -0800
+Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
+ fmsmsx606.amr.corp.intel.com (10.18.126.86) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1713.5; Tue, 15 Dec 2020 13:47:50 -0800
+Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx612.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1713.5; Tue, 15 Dec 2020 13:47:50 -0800
+Received: from fmsmsx611.amr.corp.intel.com ([10.18.126.91]) by
+ fmsmsx611.amr.corp.intel.com ([10.18.126.91]) with mapi id 15.01.1713.004;
+ Tue, 15 Dec 2020 13:47:50 -0800
+From: "Tang, CQ" <cq.tang@intel.com>
+To: Chris Wilson <chris@chris-wilson.co.uk>, "intel-gfx@lists.freedesktop.org"
+ <intel-gfx@lists.freedesktop.org>
+Thread-Topic: [PATCH i-g-t 1/2] i915/gem_exec_params: Assert a 4G object does
+ _not_ fit without 48b
+Thread-Index: AQHW0yY9iK2uVfAADE+bV73fhJ5vcKn4sVvQ
+Date: Tue, 15 Dec 2020 21:47:49 +0000
+Message-ID: <f5fd4df2c9cf4a1f9849c78aff6cb0b8@intel.com>
+References: <20201215210658.1188718-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20201215210658.1188718-1-chris@chris-wilson.co.uk>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+dlp-product: dlpe-windows
+dlp-reaction: no-action
+dlp-version: 11.5.1.3
+x-originating-ip: [10.22.254.132]
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Andres Calderon Jaramillo" <andrescj@google.com>
-Date: Tue, 15 Dec 2020 21:29:41 -0000
-Message-ID: <160806778111.24783.16863683225973220156@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20201214221934.2478240-1-andrescj@google.com>
-In-Reply-To: <20201214221934.2478240-1-andrescj@google.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
- =?utf-8?q?/i915/display=3A_Prevent_double_YUV_range_correction_on_HDR_pla?=
- =?utf-8?q?nes?=
+Subject: Re: [Intel-gfx] [PATCH i-g-t 1/2] i915/gem_exec_params: Assert a 4G
+ object does _not_ fit without 48b
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,239 +69,66 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============1020073449=="
+Cc: "igt-dev@lists.freedesktop.org" <igt-dev@lists.freedesktop.org>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============1020073449==
-Content-Type: multipart/alternative;
- boundary="===============6212544227735952611=="
-
---===============6212544227735952611==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-== Series Details ==
-
-Series: drm/i915/display: Prevent double YUV range correction on HDR planes
-URL   : https://patchwork.freedesktop.org/series/84966/
-State : failure
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_9488 -> Patchwork_19149
-====================================================
-
-Summary
--------
-
-  **FAILURE**
-
-  Serious unknown changes coming with Patchwork_19149 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_19149, please notify your bug team to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19149/index.html
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_19149:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@gem_exec_suspend@basic-s3:
-    - fi-snb-2600:        [PASS][1] -> [DMESG-WARN][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9488/fi-snb-2600/igt@gem_exec_suspend@basic-s3.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19149/fi-snb-2600/igt@gem_exec_suspend@basic-s3.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_19149 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@amdgpu/amd_basic@semaphore:
-    - fi-bdw-5557u:       NOTRUN -> [SKIP][3] ([fdo#109271]) +22 similar issues
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19149/fi-bdw-5557u/igt@amdgpu/amd_basic@semaphore.html
-
-  * igt@core_hotunplug@unbind-rebind:
-    - fi-bdw-5557u:       NOTRUN -> [WARN][4] ([i915#2283])
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19149/fi-bdw-5557u/igt@core_hotunplug@unbind-rebind.html
-
-  * igt@prime_self_import@basic-with_one_bo_two_files:
-    - fi-tgl-y:           [PASS][5] -> [DMESG-WARN][6] ([i915#402]) +1 similar issue
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9488/fi-tgl-y/igt@prime_self_import@basic-with_one_bo_two_files.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19149/fi-tgl-y/igt@prime_self_import@basic-with_one_bo_two_files.html
-
-  * igt@runner@aborted:
-    - fi-snb-2600:        NOTRUN -> [FAIL][7] ([i915#698])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19149/fi-snb-2600/igt@runner@aborted.html
-
-  
-#### Possible fixes ####
-
-  * igt@prime_self_import@basic-with_two_bos:
-    - fi-tgl-y:           [DMESG-WARN][8] ([i915#402]) -> [PASS][9] +1 similar issue
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9488/fi-tgl-y/igt@prime_self_import@basic-with_two_bos.html
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19149/fi-tgl-y/igt@prime_self_import@basic-with_two_bos.html
-
-  
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [i915#2283]: https://gitlab.freedesktop.org/drm/intel/issues/2283
-  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
-  [i915#698]: https://gitlab.freedesktop.org/drm/intel/issues/698
 
 
-Participating hosts (43 -> 39)
-------------------------------
+> -----Original Message-----
+> From: Chris Wilson <chris@chris-wilson.co.uk>
+> Sent: Tuesday, December 15, 2020 1:07 PM
+> To: intel-gfx@lists.freedesktop.org
+> Cc: igt-dev@lists.freedesktop.org; Chris Wilson <chris@chris-wilson.co.uk>;
+> Tang, CQ <cq.tang@intel.com>
+> Subject: [PATCH i-g-t 1/2] i915/gem_exec_params: Assert a 4G object does
+> _not_ fit without 48b
+> 
+> Without opting into 48B addressing, objects are strictly limited to being
+> placed only the first (4G - 4K). This is to avoid an issue with stateless 32b
+> addressing being unable to access the last 32b page.
+> Assert that we do indeed fail to fit in a 4G object without setting the
+> EXEC_OBJECT_SUPPORTS_48B_ADDRESS flag.
+> 
+> Reported-by: CQ Tang <cq.tang@intel.com>
+> References:: 48ea1e32c39d ("drm/i915/gen9: Set PIN_ZONE_4G end to 4GB -
+> 1 page")
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> Cc: CQ Tang <cq.tang@intel.com>
+> ---
+>  tests/i915/gem_exec_params.c | 8 +++++++-
+>  1 file changed, 7 insertions(+), 1 deletion(-)
+> 
+> diff --git a/tests/i915/gem_exec_params.c b/tests/i915/gem_exec_params.c
+> index c405f4eb7..e679c512a 100644
+> --- a/tests/i915/gem_exec_params.c
+> +++ b/tests/i915/gem_exec_params.c
+> @@ -340,7 +340,13 @@ static void test_larger_than_life_batch(int fd)
+>         for_each_engine(e, fd) {
+>  	       /* Keep the batch_len implicit [0] */
+>  	       execbuf.flags = eb_ring(e);
+> -	       gem_execbuf(fd, &execbuf);
+> +
+> +	       /* non-48b objects are limited to the low (4G - 4K) */
+> +	       igt_assert_eq(__gem_execbuf(fd, &execbuf), -ENOSPC);
+> +
+> +	       exec.flags = EXEC_OBJECT_SUPPORTS_48B_ADDRESS;
+> +	       igt_assert_eq(__gem_execbuf(fd, &execbuf), 0);
+> +	       exec.flags = 0;
 
-  Missing    (4): fi-ctg-p8600 fi-bsw-cyan fi-bdw-samus fi-hsw-4200u 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_9488 -> Patchwork_19149
-
-  CI-20190529: 20190529
-  CI_DRM_9488: 610a032e0c8eff40d87d9344f92311382f4acd49 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5901: 565d911f08df697fa211dbd1faefe2fd57066f71 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_19149: 7f602d3a40e441cbaf5fa895c639562bcf82d4de @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-7f602d3a40e4 drm/i915/display: Prevent double YUV range correction on HDR planes
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19149/index.html
-
---===============6212544227735952611==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/display: Prevent double YUV range correction on HDR planes</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/84966/">https://patchwork.freedesktop.org/series/84966/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19149/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19149/index.html</a></td></tr>
-
-</table>
+It is good to test both cases.
+Reviewed-by: CQ Tang <cq.tang@intel.com>
 
 
-    <h1>CI Bug Log - changes from CI_DRM_9488 -&gt; Patchwork_19149</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with Patchwork_19149 absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in Patchwork_19149, please notify your bug team to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19149/index.html</p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in Patchwork_19149:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>igt@gem_exec_suspend@basic-s3:<ul>
-<li>fi-snb-2600:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9488/fi-snb-2600/igt@gem_exec_suspend@basic-s3.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19149/fi-snb-2600/igt@gem_exec_suspend@basic-s3.html">DMESG-WARN</a></li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_19149 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@amdgpu/amd_basic@semaphore:</p>
-<ul>
-<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19149/fi-bdw-5557u/igt@amdgpu/amd_basic@semaphore.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +22 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@core_hotunplug@unbind-rebind:</p>
-<ul>
-<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19149/fi-bdw-5557u/igt@core_hotunplug@unbind-rebind.html">WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2283">i915#2283</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@prime_self_import@basic-with_one_bo_two_files:</p>
-<ul>
-<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9488/fi-tgl-y/igt@prime_self_import@basic-with_one_bo_two_files.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19149/fi-tgl-y/igt@prime_self_import@basic-with_one_bo_two_files.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) +1 similar issue</li>
-</ul>
-</li>
-<li>
-<p>igt@runner@aborted:</p>
-<ul>
-<li>fi-snb-2600:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19149/fi-snb-2600/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/698">i915#698</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@prime_self_import@basic-with_two_bos:<ul>
-<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9488/fi-tgl-y/igt@prime_self_import@basic-with_two_bos.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19149/fi-tgl-y/igt@prime_self_import@basic-with_two_bos.html">PASS</a> +1 similar issue</li>
-</ul>
-</li>
-</ul>
-<h2>Participating hosts (43 -&gt; 39)</h2>
-<p>Missing    (4): fi-ctg-p8600 fi-bsw-cyan fi-bdw-samus fi-hsw-4200u </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_9488 -&gt; Patchwork_19149</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_9488: 610a032e0c8eff40d87d9344f92311382f4acd49 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_5901: 565d911f08df697fa211dbd1faefe2fd57066f71 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
-  Patchwork_19149: 7f602d3a40e441cbaf5fa895c639562bcf82d4de @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>7f602d3a40e4 drm/i915/display: Prevent double YUV range correction on HDR planes</p>
-
-</body>
-</html>
-
---===============6212544227735952611==--
-
---===============1020073449==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+>         }
+> 
+>         gem_sync(fd, exec.handle);
+> --
+> 2.29.2
 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============1020073449==--
