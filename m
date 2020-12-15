@@ -1,39 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 69D972DA53A
-	for <lists+intel-gfx@lfdr.de>; Tue, 15 Dec 2020 02:08:19 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7F4802DA5AB
+	for <lists+intel-gfx@lfdr.de>; Tue, 15 Dec 2020 02:38:14 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ECD686E169;
-	Tue, 15 Dec 2020 01:08:10 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 91B506E158
- for <Intel-gfx@lists.freedesktop.org>; Tue, 15 Dec 2020 01:08:03 +0000 (UTC)
-IronPort-SDR: PdcYJrdRp/tGKa32rT51Unx34BqFWC7m0W1P2oulDv2FBvG8YkPOPvrzlYJCL7AD7ephyVZvXI
- Y7XbN1LdiJtA==
-X-IronPort-AV: E=McAfee;i="6000,8403,9835"; a="171298005"
-X-IronPort-AV: E=Sophos;i="5.78,420,1599548400"; d="scan'208";a="171298005"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Dec 2020 17:08:01 -0800
-IronPort-SDR: 1jR7MZ3jMHTr35Knl/oAHO8sl1avPoC1YiUB6tcLo1Zpj/+qUk8cUCG+YxHKPVII1Q1ns2MPgm
- KeodITtc2sQA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.78,420,1599548400"; d="scan'208";a="331861155"
-Received: from sean-virtualbox.fm.intel.com ([10.105.158.96])
- by fmsmga007.fm.intel.com with ESMTP; 14 Dec 2020 17:08:01 -0800
-From: "Huang, Sean Z" <sean.z.huang@intel.com>
-To: Intel-gfx@lists.freedesktop.org
-Date: Mon, 14 Dec 2020 17:07:26 -0800
-Message-Id: <20201215010726.15898-24-sean.z.huang@intel.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20201215010726.15898-1-sean.z.huang@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 95A9D6E045;
+	Tue, 15 Dec 2020 01:38:11 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 0EA946E02C;
+ Tue, 15 Dec 2020 01:38:11 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 06F25A0BCB;
+ Tue, 15 Dec 2020 01:38:11 +0000 (UTC)
+MIME-Version: 1.0
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Huang, Sean Z" <sean.z.huang@intel.com>
+Date: Tue, 15 Dec 2020 01:38:11 -0000
+Message-ID: <160799629100.24781.3171993021968076232@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
 References: <20201215010726.15898-1-sean.z.huang@intel.com>
-Subject: [Intel-gfx] [RFC-v9 23/23] drm/i915/pxp: Enable the PXP ioctl for
- protected session
+In-Reply-To: <20201215010726.15898-1-sean.z.huang@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_Introduce_Intel_PXP_component_-_Mesa_single_session_=28rev9?=
+ =?utf-8?q?=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,199 +39,143 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-MIME-Version: 1.0
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-In the previous commits, we have implemented the PXP ioctl
-functions. Now we enable those handlers and expose them as PXP
-ioctl, so allow the userspace driver can establish, set, or
+== Series Details ==
+
+Series: Introduce Intel PXP component - Mesa single session (rev9)
+URL   : https://patchwork.freedesktop.org/series/84620/
+State : warning
+
+== Summary ==
+
+$ dim checkpatch origin/drm-tip
+9cc153390294 drm/i915/pxp: Introduce Intel PXP component
+-:111: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#111: 
+new file mode 100644
+
+total: 0 errors, 1 warnings, 0 checks, 175 lines checked
+e51f062056e5 drm/i915/pxp: set KCR reg init during the boot time
+5bc3bc0efc8f drm/i915/pxp: Implement funcs to create the TEE channel
+-:8: WARNING:TYPO_SPELLING: 'defualt' may be misspelled - perhaps 'default'?
+#8: 
+(defualt) session.
+
+-:85: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#85: 
+new file mode 100644
+
+total: 0 errors, 2 warnings, 0 checks, 248 lines checked
+ad29af959bfd drm/i915/pxp: Create the arbitrary session after boot
+-:68: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#68: 
+new file mode 100644
+
+total: 0 errors, 1 warnings, 0 checks, 297 lines checked
+eaa6e13dfc23 drm/i915/pxp: Func to send hardware session termination
+-:25: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#25: 
+new file mode 100644
+
+total: 0 errors, 1 warnings, 0 checks, 184 lines checked
+949c9444c351 drm/i915/pxp: Enable PXP irq worker and callback stub
+-:51: WARNING:LONG_LINE_COMMENT: line length of 113 exceeds 100 columns
+#51: FILE: drivers/gpu/drm/i915/i915_reg.h:7970:
++#define GEN11_CRYPTO_INTR_MASK		_MMIO(0x1900f0) /* crypto mask is in bit31-16 (Engine1 Interrupt Mask) */
+
+total: 0 errors, 1 warnings, 0 checks, 210 lines checked
+b1930d67ee22 drm/i915/pxp: Destroy arb session upon teardown
+5f961b501516 drm/i915/pxp: Enable PXP power management
+-:90: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#90: 
+new file mode 100644
+
+total: 0 errors, 1 warnings, 0 checks, 148 lines checked
+3aca4c717f0f drm/i915/pxp: Expose session state for display protection flip
+13c18d614250 mei: pxp: export pavp client to me client bus
+-:32: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#32: 
+new file mode 100644
+
+total: 0 errors, 1 warnings, 0 checks, 277 lines checked
+8607613cdc3c drm/i915/uapi: introduce drm_i915_gem_create_ext
+-:12: ERROR:BAD_SIGN_OFF: Unrecognized email address: 'Joonas Lahtinen joonas.lahtinen@linux.intel.com'
+#12: 
+Cc: Joonas Lahtinen joonas.lahtinen@linux.intel.com
+
+-:13: ERROR:BAD_SIGN_OFF: Unrecognized email address: 'Matthew Auld matthew.auld@intel.com'
+#13: 
+Cc: Matthew Auld matthew.auld@intel.com
+
+-:46: ERROR:CODE_INDENT: code indent should use tabs where possible
+#46: FILE: drivers/gpu/drm/i915/i915_gem.c:265:
++        struct drm_i915_private *i915;$
+
+-:46: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#46: FILE: drivers/gpu/drm/i915/i915_gem.c:265:
++        struct drm_i915_private *i915;$
+
+-:50: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#50: FILE: drivers/gpu/drm/i915/i915_gem.c:269:
++static int __create_setparam(struct drm_i915_gem_object_param *args,
++							struct create_ext *ext_data)
+
+-:95: CHECK:LINE_SPACING: Please don't use multiple blank lines
+#95: FILE: drivers/gpu/drm/i915/i915_gem.c:317:
++
++
+
+-:107: WARNING:LONG_LINE: line length of 120 exceeds 100 columns
+#107: FILE: include/uapi/drm/i915_drm.h:394:
++#define DRM_IOCTL_I915_GEM_CREATE_EXT   DRM_IOWR(DRM_COMMAND_BASE + DRM_I915_GEM_CREATE, struct drm_i915_gem_create_ext)
+
+-:155: CHECK:SPACING: spaces preferred around that '<<' (ctx:VxV)
+#155: FILE: include/uapi/drm/i915_drm.h:1735:
++#define I915_OBJECT_PARAM  (1ull<<32)
+                                 ^
+
+total: 3 errors, 2 warnings, 3 checks, 136 lines checked
+0109d81526e7 drm/i915/pxp: User interface for Protected buffer
+2d4ceab335b8 drm/i915/pxp: Add plane decryption support
+61e2d59046ef drm/i915/pxp: Implement ioctl action to reserve session slots
+-:62: WARNING:PREFER_PACKED: __packed is preferred over __attribute__((packed))
+#62: FILE: drivers/gpu/drm/i915/pxp/intel_pxp.c:39:
++} __attribute__((packed));
+
+-:254: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#254: 
+new file mode 100644
+
+-:345: WARNING:MSLEEP: msleep < 20ms can sleep for up to 20ms; see Documentation/timers/timers-howto.rst
+#345: FILE: drivers/gpu/drm/i915/pxp/intel_pxp_sm.c:87:
++		msleep(10);
+
+total: 0 errors, 3 warnings, 0 checks, 437 lines checked
+0aad847ac03a drm/i915/pxp: Implement ioctl action to set session in play
+7283461e1827 drm/i915/pxp: Implement ioctl action to terminate the session
+f1ec94927f56 drm/i915/pxp: Implement ioctl action to send TEE commands
+e5de6f6bc36d drm/i915/pxp: Implement ioctl action to query PXP tag
+713326f8ee89 drm/i915/pxp: Termiante the session upon app crash
+c1bed68ad38c drm/i915/pxp: Add PXP-related registers into allowlist
+f5dd23fa8e44 mei: bus: add vtag support
+b6e69de09984 mei: pxp: add vtag parameter to mei_pxp_send/receive interface
+2ef214b61382 drm/i915/pxp: Enable the PXP ioctl for protected session
+-:9: WARNING:TYPO_SPELLING: 'destory' may be misspelled - perhaps 'destroy'?
+#9: 
 destory the protected session via this ioctl.
 
-Signed-off-by: Huang, Sean Z <sean.z.huang@intel.com>
----
- drivers/gpu/drm/i915/i915_drv.c      |  1 +
- drivers/gpu/drm/i915/pxp/intel_pxp.c | 53 --------------------
- include/uapi/drm/i915_drm.h          | 72 ++++++++++++++++++++++++++++
- 3 files changed, 73 insertions(+), 53 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/i915_drv.c b/drivers/gpu/drm/i915/i915_drv.c
-index e74201e81369..201550ffb353 100644
---- a/drivers/gpu/drm/i915/i915_drv.c
-+++ b/drivers/gpu/drm/i915/i915_drv.c
-@@ -1766,6 +1766,7 @@ static const struct drm_ioctl_desc i915_ioctls[] = {
- 	DRM_IOCTL_DEF_DRV(I915_QUERY, i915_query_ioctl, DRM_RENDER_ALLOW),
- 	DRM_IOCTL_DEF_DRV(I915_GEM_VM_CREATE, i915_gem_vm_create_ioctl, DRM_RENDER_ALLOW),
- 	DRM_IOCTL_DEF_DRV(I915_GEM_VM_DESTROY, i915_gem_vm_destroy_ioctl, DRM_RENDER_ALLOW),
-+	DRM_IOCTL_DEF_DRV(I915_PXP_OPS, i915_pxp_ops_ioctl, DRM_RENDER_ALLOW),
- };
- 
- static const struct drm_driver driver = {
-diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp.c b/drivers/gpu/drm/i915/pxp/intel_pxp.c
-index 3a49dd97cab2..51e09224d7c6 100644
---- a/drivers/gpu/drm/i915/pxp/intel_pxp.c
-+++ b/drivers/gpu/drm/i915/pxp/intel_pxp.c
-@@ -31,59 +31,6 @@ enum pxp_session_req {
- 	PXP_REQ_SESSION_TERMINATE
- };
- 
--/*
-- * struct pxp_sm_query_pxp_tag - Params to query the PXP tag of specified
-- * session id and whether the session is alive from PXP state machine.
-- */
--struct pxp_sm_query_pxp_tag {
--	u32 session_is_alive;
--	u32 pxp_tag; /* in  - Session ID, out pxp tag */
--};
--
--/*
-- * struct pxp_set_session_status_params - Params to reserved, set or destroy
-- * the session from the PXP state machine.
-- */
--struct pxp_set_session_status_params {
--	u32 pxp_tag; /* in [optional], out pxp tag */
--	u32 session_type; /* in, session type */
--	u32 session_mode; /* in, session mode */
--	u32 req_session_state; /* in, new session state */
--};
--
--/*
-- * struct pxp_tee_io_message_params - Params to send/receive message to/from TEE.
-- */
--struct pxp_tee_io_message_params {
--	u8 __user *msg_in; /* in - message input */
--	u32 msg_in_size; /* in - message input size */
--	u8 __user *msg_out; /* in - message output buffer */
--	u32 msg_out_size; /* out- message output size from TEE */
--	u32 msg_out_buf_size; /* in - message output buffer size */
--};
--
--/* struct pxp_info - Params for PXP operation. */
--struct pxp_info {
--	u32 action; /* in - specified action of this operation */
--	u32 sm_status; /* out - status output for this operation */
--
--	union {
--		/* in - action params to query PXP tag */
--		struct pxp_sm_query_pxp_tag query_pxp_tag;
--		/* in - action params to set the PXP session state */
--		struct pxp_set_session_status_params set_session_status;
--		/* in - action params to send TEE commands */
--		struct pxp_tee_io_message_params tee_io_message;
--	};
--} __attribute__((packed));
--
--struct drm_i915_pxp_ops {
--	/* in - user space pointer to struct pxp_info */
--	struct pxp_info __user *info_ptr;
--	/* in - memory size that info_ptr points to */
--	u32 info_size;
--};
--
- static void intel_pxp_write_irq_mask_reg(struct intel_gt *gt, u32 mask)
- {
- 	lockdep_assert_held(&gt->irq_lock);
-diff --git a/include/uapi/drm/i915_drm.h b/include/uapi/drm/i915_drm.h
-index d6085a328b2c..17cf25bdc3c4 100644
---- a/include/uapi/drm/i915_drm.h
-+++ b/include/uapi/drm/i915_drm.h
-@@ -359,6 +359,7 @@ typedef struct _drm_i915_sarea {
- #define DRM_I915_QUERY			0x39
- #define DRM_I915_GEM_VM_CREATE		0x3a
- #define DRM_I915_GEM_VM_DESTROY		0x3b
-+#define DRM_I915_PXP_OPS		0x3c
- /* Must be kept compact -- no holes */
- 
- #define DRM_IOCTL_I915_INIT		DRM_IOW( DRM_COMMAND_BASE + DRM_I915_INIT, drm_i915_init_t)
-@@ -423,6 +424,7 @@ typedef struct _drm_i915_sarea {
- #define DRM_IOCTL_I915_QUERY			DRM_IOWR(DRM_COMMAND_BASE + DRM_I915_QUERY, struct drm_i915_query)
- #define DRM_IOCTL_I915_GEM_VM_CREATE	DRM_IOWR(DRM_COMMAND_BASE + DRM_I915_GEM_VM_CREATE, struct drm_i915_gem_vm_control)
- #define DRM_IOCTL_I915_GEM_VM_DESTROY	DRM_IOW (DRM_COMMAND_BASE + DRM_I915_GEM_VM_DESTROY, struct drm_i915_gem_vm_control)
+-:105: WARNING:LONG_LINE: line length of 110 exceeds 100 columns
+#105: FILE: include/uapi/drm/i915_drm.h:427:
 +#define DRM_IOCTL_I915_PXP_OPS		DRM_IOWR(DRM_COMMAND_BASE + DRM_I915_PXP_OPS, struct drm_i915_pxp_ops)
- 
- /* Allow drivers to submit batchbuffers directly to hardware, relying
-  * on the security mechanisms provided by hardware.
-@@ -1964,6 +1966,76 @@ struct drm_i915_gem_vm_control {
- 	__u32 vm_id;
- };
- 
-+/*
-+ * struct pxp_sm_query_pxp_tag - Params to query the PXP tag of specified
-+ * session id and whether the session is alive from PXP state machine.
-+ */
-+struct pxp_sm_query_pxp_tag {
-+	__u32 session_is_alive;
-+	__u32 pxp_tag; /* in  - Session ID, out pxp tag */
-+};
-+
-+/*
-+ * struct pxp_set_session_status_params - Params to reserved, set or destroy
-+ * the session from the PXP state machine.
-+ */
-+struct pxp_set_session_status_params {
-+	__u32 pxp_tag; /* in [optional], for Arbitrator session, out pxp tag */
-+	__u32 session_type; /* in, session type */
-+	__u32 session_mode; /* in, session mode */
-+	__u32 req_session_state; /* in, new session state */
-+};
-+
-+/*
-+ * struct pxp_tee_io_message_params - Params to send/receive message to/from TEE.
-+ */
-+struct pxp_tee_io_message_params {
-+	__u8 __user *msg_in; /* in - message input */
-+	__u32 msg_in_size; /* in - message input size */
-+	__u8 __user *msg_out; /* in - message output buffer */
-+	__u32 msg_out_size; /* out- message output size from TEE */
-+	__u32 msg_out_buf_size; /* in - message output buffer size */
-+};
-+
-+/*
-+ * struct pxp_info - Params for PXP operation.
-+ */
-+struct pxp_info {
-+	__u32 action; /* in - specified action of this operation */
-+	__u32 sm_status; /* out - status output for this operation */
-+
-+	union {
-+		/* in - action params to query PXP tag */
-+		struct pxp_sm_query_pxp_tag query_pxp_tag;
-+		/* in - action params to set the PXP session state */
-+		struct pxp_set_session_status_params set_session_status;
-+		/* in - action params to send TEE commands */
-+		struct pxp_tee_io_message_params tee_io_message;
-+
-+		/* in - action params to set user space context */
-+		__u32 set_user_ctx;
-+	};
-+} __attribute__((packed));
-+
-+/*
-+ * DRM_I915_PXP_OPS -
-+ *
-+ * PXP is an i915 componment, that helps user space to establish the hardware
-+ * protected session and manage the status of each alive software session,
-+ * as well as the life cycle of each session.
-+ *
-+ * This ioctl is to allow user space driver to create, set, and destroy each
-+ * session. It also provides the communication chanel to TEE (Trusted
-+ * Execution Environment) for the protected hardware session creation.
-+ */
-+struct drm_i915_pxp_ops {
-+	/* in - user space pointer to struct pxp_info */
-+	struct pxp_info __user *info_ptr;
-+
-+	/* in - memory size that info_ptr points to */
-+	__u32 info_size;
-+};
-+
- struct drm_i915_reg_read {
- 	/*
- 	 * Register offset.
--- 
-2.17.1
+
+total: 0 errors, 2 warnings, 0 checks, 156 lines checked
+
 
 _______________________________________________
 Intel-gfx mailing list
