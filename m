@@ -2,42 +2,28 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 257BC2DAF30
-	for <lists+intel-gfx@lfdr.de>; Tue, 15 Dec 2020 15:44:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1B4512DAFEB
+	for <lists+intel-gfx@lfdr.de>; Tue, 15 Dec 2020 16:21:45 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EE0156E3C6;
-	Tue, 15 Dec 2020 14:44:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DE77D6E3D6;
+	Tue, 15 Dec 2020 15:21:42 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3CCEF6E3B2;
- Tue, 15 Dec 2020 14:44:12 +0000 (UTC)
-IronPort-SDR: wwahZhmUzioC3T8zgNHXALr29dr9zsa1W4wNNr5jM9eDkm6Lf0tA236ld8XCjlvBJHySylCc3U
- apRTtEp4TEsw==
-X-IronPort-AV: E=McAfee;i="6000,8403,9835"; a="238986230"
-X-IronPort-AV: E=Sophos;i="5.78,421,1599548400"; d="scan'208";a="238986230"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Dec 2020 06:44:11 -0800
-IronPort-SDR: 274jQrRyRdV2o3YFMyJUX4JNIS7rDX25fDoWDOiM7ZDkP4TuVFCawXaR6OQAqDUbqYvmiYaw9g
- muU186HXCqgA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.78,421,1599548400"; d="scan'208";a="411979356"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by orsmga001.jf.intel.com with SMTP; 15 Dec 2020 06:44:08 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 15 Dec 2020 16:44:08 +0200
-Date: Tue, 15 Dec 2020 16:44:07 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: =?iso-8859-1?Q?Jos=E9?= Roberto de Souza <jose.souza@intel.com>
-Message-ID: <X9jLt5p62uJ38cE7@intel.com>
-References: <20201214174912.174065-1-jose.souza@intel.com>
+Received: from fireflyinternet.com (unknown [77.68.26.236])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2B0936E3D6
+ for <intel-gfx@lists.freedesktop.org>; Tue, 15 Dec 2020 15:21:42 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from build.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 23333910-1500050 
+ for <intel-gfx@lists.freedesktop.org>; Tue, 15 Dec 2020 15:21:37 +0000
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Tue, 15 Dec 2020 15:21:38 +0000
+Message-Id: <20201215152138.8158-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20201214174912.174065-1-jose.souza@intel.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH v6 1/5] drm: Add function to convert rect in
- 16.16 fixed format to regular format
+Subject: [Intel-gfx] [CI] drm/i915/gem: Drop free_work for GEM contexts
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,70 +36,221 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Dec 14, 2020 at 09:49:08AM -0800, Jos=E9 Roberto de Souza wrote:
-> Much more clear to read one function call than four lines doing this
-> conversion.
-> =
+The free_list and worker was introduced in commit 5f09a9c8ab6b ("drm/i915:
+Allow contexts to be unreferenced locklessly"), but subsequently made
+redundant by the removal of the last sleeping lock in commit 2935ed5339c4
+("drm/i915: Remove logical HW ID"). As we can now free the GEM context
+immediately from any context, remove the deferral of the free_list
 
-> Cc: dri-devel@lists.freedesktop.org
-> Cc: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>
-> Signed-off-by: Jos=E9 Roberto de Souza <jose.souza@intel.com>
-> ---
->  drivers/gpu/drm/drm_rect.c | 15 +++++++++++++++
->  include/drm/drm_rect.h     |  2 ++
->  2 files changed, 17 insertions(+)
-> =
+v2: Lift removing the context from the global list into close().
 
-> diff --git a/drivers/gpu/drm/drm_rect.c b/drivers/gpu/drm/drm_rect.c
-> index 0460e874896e..24345704b353 100644
-> --- a/drivers/gpu/drm/drm_rect.c
-> +++ b/drivers/gpu/drm/drm_rect.c
-> @@ -373,3 +373,18 @@ void drm_rect_rotate_inv(struct drm_rect *r,
->  	}
->  }
->  EXPORT_SYMBOL(drm_rect_rotate_inv);
-> +
-> +/**
-> + * drm_rect_convert_16_16_to_regular - Convert a rect in 16.16 fixed poi=
-nt form
-> + * to regular form.
-> + * @in: rect in 16.16 fixed point form
-> + * @out: rect to be stored the converted value
-> + */
-> +void drm_rect_convert_16_16_to_regular(struct drm_rect *in, struct drm_r=
-ect *out)
-> +{
-> +	out->x1 =3D in->x1 >> 16;
-> +	out->y1 =3D in->y1 >> 16;
-> +	out->x2 =3D in->x2 >> 16;
-> +	out->y2 =3D in->y2 >> 16;
-> +}
+Suggested-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+Reviewed-by: Matthew Brost <matthew.brost@intel.com>
+---
+ drivers/gpu/drm/i915/gem/i915_gem_context.c   | 59 +++----------------
+ drivers/gpu/drm/i915/gem/i915_gem_context.h   |  1 -
+ .../gpu/drm/i915/gem/i915_gem_context_types.h |  1 -
+ drivers/gpu/drm/i915/i915_drv.h               |  3 -
+ drivers/gpu/drm/i915/i915_gem.c               |  2 -
+ .../gpu/drm/i915/selftests/mock_gem_device.c  |  2 -
+ 6 files changed, 8 insertions(+), 60 deletions(-)
 
-That's not the same as what we do in most places. We truncate
-the width/height, not x2/y2. Doing it on x2/y2 may increase
-the width/height.
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.c b/drivers/gpu/drm/i915/gem/i915_gem_context.c
+index ad136d009d9b..738a07b3583c 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_context.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_context.c
+@@ -334,13 +334,12 @@ static struct i915_gem_engines *default_engines(struct i915_gem_context *ctx)
+ 	return e;
+ }
+ 
+-static void i915_gem_context_free(struct i915_gem_context *ctx)
++void i915_gem_context_release(struct kref *ref)
+ {
+-	GEM_BUG_ON(!i915_gem_context_is_closed(ctx));
++	struct i915_gem_context *ctx = container_of(ref, typeof(*ctx), ref);
+ 
+-	spin_lock(&ctx->i915->gem.contexts.lock);
+-	list_del(&ctx->link);
+-	spin_unlock(&ctx->i915->gem.contexts.lock);
++	trace_i915_context_free(ctx);
++	GEM_BUG_ON(!i915_gem_context_is_closed(ctx));
+ 
+ 	mutex_destroy(&ctx->engines_mutex);
+ 	mutex_destroy(&ctx->lut_mutex);
+@@ -354,37 +353,6 @@ static void i915_gem_context_free(struct i915_gem_context *ctx)
+ 	kfree_rcu(ctx, rcu);
+ }
+ 
+-static void contexts_free_all(struct llist_node *list)
+-{
+-	struct i915_gem_context *ctx, *cn;
+-
+-	llist_for_each_entry_safe(ctx, cn, list, free_link)
+-		i915_gem_context_free(ctx);
+-}
+-
+-static void contexts_flush_free(struct i915_gem_contexts *gc)
+-{
+-	contexts_free_all(llist_del_all(&gc->free_list));
+-}
+-
+-static void contexts_free_worker(struct work_struct *work)
+-{
+-	struct i915_gem_contexts *gc =
+-		container_of(work, typeof(*gc), free_work);
+-
+-	contexts_flush_free(gc);
+-}
+-
+-void i915_gem_context_release(struct kref *ref)
+-{
+-	struct i915_gem_context *ctx = container_of(ref, typeof(*ctx), ref);
+-	struct i915_gem_contexts *gc = &ctx->i915->gem.contexts;
+-
+-	trace_i915_context_free(ctx);
+-	if (llist_add(&ctx->free_link, &gc->free_list))
+-		schedule_work(&gc->free_work);
+-}
+-
+ static inline struct i915_gem_engines *
+ __context_engines_static(const struct i915_gem_context *ctx)
+ {
+@@ -633,6 +601,10 @@ static void context_close(struct i915_gem_context *ctx)
+ 	 */
+ 	lut_close(ctx);
+ 
++	spin_lock(&ctx->i915->gem.contexts.lock);
++	list_del(&ctx->link);
++	spin_unlock(&ctx->i915->gem.contexts.lock);
++
+ 	mutex_unlock(&ctx->mutex);
+ 
+ 	/*
+@@ -850,9 +822,6 @@ i915_gem_create_context(struct drm_i915_private *i915, unsigned int flags)
+ 	    !HAS_EXECLISTS(i915))
+ 		return ERR_PTR(-EINVAL);
+ 
+-	/* Reap the stale contexts */
+-	contexts_flush_free(&i915->gem.contexts);
+-
+ 	ctx = __create_context(i915);
+ 	if (IS_ERR(ctx))
+ 		return ctx;
+@@ -897,9 +866,6 @@ static void init_contexts(struct i915_gem_contexts *gc)
+ {
+ 	spin_lock_init(&gc->lock);
+ 	INIT_LIST_HEAD(&gc->list);
+-
+-	INIT_WORK(&gc->free_work, contexts_free_worker);
+-	init_llist_head(&gc->free_list);
+ }
+ 
+ void i915_gem_init__contexts(struct drm_i915_private *i915)
+@@ -907,12 +873,6 @@ void i915_gem_init__contexts(struct drm_i915_private *i915)
+ 	init_contexts(&i915->gem.contexts);
+ }
+ 
+-void i915_gem_driver_release__contexts(struct drm_i915_private *i915)
+-{
+-	flush_work(&i915->gem.contexts.free_work);
+-	rcu_barrier(); /* and flush the left over RCU frees */
+-}
+-
+ static int gem_context_register(struct i915_gem_context *ctx,
+ 				struct drm_i915_file_private *fpriv,
+ 				u32 *id)
+@@ -986,7 +946,6 @@ int i915_gem_context_open(struct drm_i915_private *i915,
+ void i915_gem_context_close(struct drm_file *file)
+ {
+ 	struct drm_i915_file_private *file_priv = file->driver_priv;
+-	struct drm_i915_private *i915 = file_priv->dev_priv;
+ 	struct i915_address_space *vm;
+ 	struct i915_gem_context *ctx;
+ 	unsigned long idx;
+@@ -998,8 +957,6 @@ void i915_gem_context_close(struct drm_file *file)
+ 	xa_for_each(&file_priv->vm_xa, idx, vm)
+ 		i915_vm_put(vm);
+ 	xa_destroy(&file_priv->vm_xa);
+-
+-	contexts_flush_free(&i915->gem.contexts);
+ }
+ 
+ int i915_gem_vm_create_ioctl(struct drm_device *dev, void *data,
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.h b/drivers/gpu/drm/i915/gem/i915_gem_context.h
+index a133f92bbedb..b5c908f3f4f2 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_context.h
++++ b/drivers/gpu/drm/i915/gem/i915_gem_context.h
+@@ -110,7 +110,6 @@ i915_gem_context_clear_user_engines(struct i915_gem_context *ctx)
+ 
+ /* i915_gem_context.c */
+ void i915_gem_init__contexts(struct drm_i915_private *i915);
+-void i915_gem_driver_release__contexts(struct drm_i915_private *i915);
+ 
+ int i915_gem_context_open(struct drm_i915_private *i915,
+ 			  struct drm_file *file);
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context_types.h b/drivers/gpu/drm/i915/gem/i915_gem_context_types.h
+index ae14ca24a11f..1449f54924e0 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_context_types.h
++++ b/drivers/gpu/drm/i915/gem/i915_gem_context_types.h
+@@ -108,7 +108,6 @@ struct i915_gem_context {
+ 
+ 	/** link: place with &drm_i915_private.context_list */
+ 	struct list_head link;
+-	struct llist_node free_link;
+ 
+ 	/**
+ 	 * @ref: reference count
+diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
+index 5d04b282c060..c2d0156e8a5d 100644
+--- a/drivers/gpu/drm/i915/i915_drv.h
++++ b/drivers/gpu/drm/i915/i915_drv.h
+@@ -1172,9 +1172,6 @@ struct drm_i915_private {
+ 		struct i915_gem_contexts {
+ 			spinlock_t lock; /* locks list */
+ 			struct list_head list;
+-
+-			struct llist_head free_list;
+-			struct work_struct free_work;
+ 		} contexts;
+ 
+ 		/*
+diff --git a/drivers/gpu/drm/i915/i915_gem.c b/drivers/gpu/drm/i915/i915_gem.c
+index 58276694c848..17a4636ee542 100644
+--- a/drivers/gpu/drm/i915/i915_gem.c
++++ b/drivers/gpu/drm/i915/i915_gem.c
+@@ -1207,8 +1207,6 @@ void i915_gem_driver_remove(struct drm_i915_private *dev_priv)
+ 
+ void i915_gem_driver_release(struct drm_i915_private *dev_priv)
+ {
+-	i915_gem_driver_release__contexts(dev_priv);
+-
+ 	intel_gt_driver_release(&dev_priv->gt);
+ 
+ 	intel_wa_list_free(&dev_priv->gt_wa_list);
+diff --git a/drivers/gpu/drm/i915/selftests/mock_gem_device.c b/drivers/gpu/drm/i915/selftests/mock_gem_device.c
+index e946bd2087d8..0188f877cab2 100644
+--- a/drivers/gpu/drm/i915/selftests/mock_gem_device.c
++++ b/drivers/gpu/drm/i915/selftests/mock_gem_device.c
+@@ -64,8 +64,6 @@ static void mock_device_release(struct drm_device *dev)
+ 	mock_device_flush(i915);
+ 	intel_gt_driver_remove(&i915->gt);
+ 
+-	i915_gem_driver_release__contexts(i915);
+-
+ 	i915_gem_drain_workqueue(i915);
+ 	i915_gem_drain_freed_objects(i915);
+ 
+-- 
+2.20.1
 
-So I suggest something more like:
-
-static inline void drm_rect_fp_to_int(struct drm_rect *r)
-{
-	drm_rect_init(r, r->x1 >> 16, r->y1 >> 16,
-		      drm_rect_width(r) >> 16,
-		      drm_rect_height(r) >> 16);
-}
-
-to match the current way of doing things.
-
--- =
-
-Ville Syrj=E4l=E4
-Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
