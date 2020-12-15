@@ -1,32 +1,30 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0303D2DB581
-	for <lists+intel-gfx@lfdr.de>; Tue, 15 Dec 2020 21:59:17 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 210232DB594
+	for <lists+intel-gfx@lfdr.de>; Tue, 15 Dec 2020 22:05:44 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 343E589565;
-	Tue, 15 Dec 2020 20:59:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 08E5E89683;
+	Tue, 15 Dec 2020 21:05:42 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id BA92C8955D;
- Tue, 15 Dec 2020 20:59:13 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id B5133A8835;
- Tue, 15 Dec 2020 20:59:13 +0000 (UTC)
+Received: from fireflyinternet.com (unknown [77.68.26.236])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6CFAF89683
+ for <intel-gfx@lists.freedesktop.org>; Tue, 15 Dec 2020 21:05:40 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 23337643-1500050 
+ for multiple; Tue, 15 Dec 2020 21:05:26 +0000
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Tue, 15 Dec 2020 21:05:26 +0000
+Message-Id: <20201215210527.1188654-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.29.2
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Andres Calderon Jaramillo" <andrescj@google.com>
-Date: Tue, 15 Dec 2020 20:59:13 -0000
-Message-ID: <160806595371.24781.16529741371661101458@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20201214221934.2478240-1-andrescj@google.com>
-In-Reply-To: <20201214221934.2478240-1-andrescj@google.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_drm/i915/display=3A_Prevent_double_YUV_range_correction_on_?=
- =?utf-8?q?HDR_planes?=
+Subject: [Intel-gfx] [PATCH i-g-t 1/2] i915/gem_exec_params: Assert a 4G
+ object does _not_ fit without 48b
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,29 +37,47 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: igt-dev@lists.freedsktop.org, Chris Wilson <chris@chris-wilson.co.uk>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Without opting into 48B addressing, objects are strictly limited to
+being placed only the first (4G - 4K). This is to avoid an issue with
+stateless 32b addressing being unable to access the last 32b page.
+Assert that we do indeed fail to fit in a 4G object without setting the
+EXEC_OBJECT_SUPPORTS_48B_ADDRESS flag.
 
-Series: drm/i915/display: Prevent double YUV range correction on HDR planes
-URL   : https://patchwork.freedesktop.org/series/84966/
-State : warning
+Reported-by: CQ Tang <cq.tang@intel.com>
+References:: 48ea1e32c39d ("drm/i915/gen9: Set PIN_ZONE_4G end to 4GB - 1 page")
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: CQ Tang <cq.tang@intel.com>
+---
+ tests/i915/gem_exec_params.c | 8 +++++++-
+ 1 file changed, 7 insertions(+), 1 deletion(-)
 
-== Summary ==
-
-$ dim checkpatch origin/drm-tip
-7f602d3a40e4 drm/i915/display: Prevent double YUV range correction on HDR planes
--:23: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
-#23: 
-[1] https://01.org/sites/default/files/documentation/intel-gfx-prm-osrc-icllp-vol12-displayengine_0.pdf#page=281
-
-total: 0 errors, 1 warnings, 0 checks, 13 lines checked
-
+diff --git a/tests/i915/gem_exec_params.c b/tests/i915/gem_exec_params.c
+index c405f4eb7..e679c512a 100644
+--- a/tests/i915/gem_exec_params.c
++++ b/tests/i915/gem_exec_params.c
+@@ -340,7 +340,13 @@ static void test_larger_than_life_batch(int fd)
+        for_each_engine(e, fd) {
+ 	       /* Keep the batch_len implicit [0] */
+ 	       execbuf.flags = eb_ring(e);
+-	       gem_execbuf(fd, &execbuf);
++
++	       /* non-48b objects are limited to the low (4G - 4K) */
++	       igt_assert_eq(__gem_execbuf(fd, &execbuf), -ENOSPC);
++
++	       exec.flags = EXEC_OBJECT_SUPPORTS_48B_ADDRESS;
++	       igt_assert_eq(__gem_execbuf(fd, &execbuf), 0);
++	       exec.flags = 0;
+        }
+ 
+        gem_sync(fd, exec.handle);
+-- 
+2.29.2
 
 _______________________________________________
 Intel-gfx mailing list
