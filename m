@@ -2,80 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9A6452DB423
-	for <lists+intel-gfx@lfdr.de>; Tue, 15 Dec 2020 20:00:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 565592DB461
+	for <lists+intel-gfx@lfdr.de>; Tue, 15 Dec 2020 20:20:32 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CF6AA89207;
-	Tue, 15 Dec 2020 19:00:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3713E89CF2;
+	Tue, 15 Dec 2020 19:20:30 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [216.205.24.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E1ED489207
- for <intel-gfx@lists.freedesktop.org>; Tue, 15 Dec 2020 19:00:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1608058812;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=5HE8p4803nr8EEV2Foh/7Cpa0TkBbGGqMwRHap2gZvI=;
- b=PAVcZGk1IvgxPRwFC6cHi7zqI+Apamb+E7kOHYhTF1fPIdXavGb6gjxgDQrXfu8hcRei3K
- 0kDC9v8xkCgyB4aOwtkljdqsCQZ8Rdx4dPrhE3SRWBGL1gHT81yUI6nvEZ2VA3n5OdnI4b
- lzUCGYNFq4EUBg3QnufIIzxeZde4Jos=
-Received: from mail-qt1-f200.google.com (mail-qt1-f200.google.com
- [209.85.160.200]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-255-C0O4hjVnPmSN_I_9VJlsXw-1; Tue, 15 Dec 2020 14:00:11 -0500
-X-MC-Unique: C0O4hjVnPmSN_I_9VJlsXw-1
-Received: by mail-qt1-f200.google.com with SMTP id f33so14999752qtb.1
- for <intel-gfx@lists.freedesktop.org>; Tue, 15 Dec 2020 11:00:09 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:subject:to:cc:references:from:message-id:date
- :user-agent:mime-version:in-reply-to:content-transfer-encoding
- :content-language;
- bh=5HE8p4803nr8EEV2Foh/7Cpa0TkBbGGqMwRHap2gZvI=;
- b=hR3bzeLxaM/V5oOOxPXGt3CFZfYHQJzNz/SVAjsRIC49xlsKB1xZ7Jr+RU/MaIe8BJ
- H0RDRg1WxuSch4JgltZ7Mp0fZtxeMx4FjgtX8qumXI9bpurFkm/B7uo7uhXM3071MNbX
- 7Cmf6F3TaD3fueopUVlg38ocKAnraWIUAJAjel1N2Y3tYfQ7Bl/RPv+yQbJ1JmlKbyet
- NTioHqV06Q84uiiGf+TERJmNAbkq/xtIAFEAxNXI63Df4AIseJncADG9X/DD7Cr+Fsif
- pjaM9pcAcdhCrmt46lXuu2FJMrk/+fyrvHf7ND+fNxt7KvSUm6E1AJnkUu7PHtJshb4u
- cnAQ==
-X-Gm-Message-State: AOAM5306e1IRYlZqvnvRacVCv+2DuMF8Lm22t7mGRafkwS8I/ie8DShm
- 3wIwboLjxH/1s5083SlE1SIQ5bgpak01QoBdfyHc6jfespDrzRPPqKPOwGLWQbf25lnfoLwK2CX
- 1SiQuS7Q2bR9yAck/Pwd4n4Zmu9RD
-X-Received: by 2002:a37:8d01:: with SMTP id p1mr20046587qkd.31.1608058809600; 
- Tue, 15 Dec 2020 11:00:09 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJzsEMbKSsCB6tRrwkxY7WiocSFllMT54n4GdhwdkEoxTJJmDGKfXjf4l0GrD1Ds/zJlQ5106w==
-X-Received: by 2002:a37:8d01:: with SMTP id p1mr20046566qkd.31.1608058809388; 
- Tue, 15 Dec 2020 11:00:09 -0800 (PST)
-Received: from trix.remote.csb (075-142-250-213.res.spectrum.com.
- [75.142.250.213])
- by smtp.gmail.com with ESMTPSA id r6sm18260743qkk.127.2020.12.15.11.00.07
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Tue, 15 Dec 2020 11:00:08 -0800 (PST)
-To: Chris Wilson <chris@chris-wilson.co.uk>, airlied@linux.ie,
- daniel@ffwll.ch, daniele.ceraolospurio@intel.com,
- jani.nikula@linux.intel.com, joonas.lahtinen@linux.intel.com,
- lionel.g.landwerlin@intel.com, rodrigo.vivi@intel.com,
- tejaskumarx.surendrakumar.upadhyay@intel.com, tvrtko.ursulin@intel.com,
- venkata.s.dhanalakota@intel.com
-References: <20201215144101.1878719-1-trix@redhat.com>
- <160805599050.14591.5854311082825914383@build.alporthouse.com>
-From: Tom Rix <trix@redhat.com>
-Message-ID: <12579dc7-603e-2fbe-85c0-0a4110b8992a@redhat.com>
-Date: Tue, 15 Dec 2020 11:00:06 -0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.4.0
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 89EEB89C99;
+ Tue, 15 Dec 2020 19:20:28 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 93D79AA3D8;
+ Tue, 15 Dec 2020 19:20:27 +0000 (UTC)
 MIME-Version: 1.0
-In-Reply-To: <160805599050.14591.5854311082825914383@build.alporthouse.com>
-Authentication-Results: relay.mimecast.com;
- auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=trix@redhat.com
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: remove h from printk format
- specifier
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Daniel Vetter" <daniel.vetter@ffwll.ch>
+Date: Tue, 15 Dec 2020 19:20:27 -0000
+Message-ID: <160806002758.24783.5137815867214762577@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20201211155843.3348718-1-daniel.vetter@ffwll.ch>
+In-Reply-To: <20201211155843.3348718-1-daniel.vetter@ffwll.ch>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
+ =?utf-8?q?ies_starting_with_=5B1/4=5D_dma-buf=3A_Remove_kmap_kerneldoc_ve?=
+ =?utf-8?q?stiges_=28rev3=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -88,36 +39,200 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============1530142838=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+--===============1530142838==
+Content-Type: multipart/alternative;
+ boundary="===============7332886830128396518=="
 
-On 12/15/20 10:13 AM, Chris Wilson wrote:
-> Quoting trix@redhat.com (2020-12-15 14:41:01)
->> From: Tom Rix <trix@redhat.com>
->>
->> See Documentation/core-api/printk-formats.rst.
->> h should no longer be used in the format specifier for printk.
-> It's understood by format_decode().
-> * 'h', 'l', or 'L' for integer fields
->
-> At least reference commit cbacb5ab0aa0 ("docs: printk-formats: Stop
-> encouraging use of unnecessary %h[xudi] and %hh[xudi]") as to why the
-> printk-formats.rst was altered so we know the code is merely in bad
-> taste and not using undefined behaviour of printk.
+--===============7332886830128396518==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Ok, i will fix this after the first run of patches.
+== Series Details ==
 
-Tom
+Series: series starting with [1/4] dma-buf: Remove kmap kerneldoc vestiges (rev3)
+URL   : https://patchwork.freedesktop.org/series/84849/
+State : success
 
-> -Chris
->
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_9488 -> Patchwork_19147
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19147/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_19147 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@amdgpu/amd_basic@semaphore:
+    - fi-bdw-5557u:       NOTRUN -> [SKIP][1] ([fdo#109271]) +22 similar issues
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19147/fi-bdw-5557u/igt@amdgpu/amd_basic@semaphore.html
+
+  * igt@core_hotunplug@unbind-rebind:
+    - fi-bdw-5557u:       NOTRUN -> [WARN][2] ([i915#2283])
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19147/fi-bdw-5557u/igt@core_hotunplug@unbind-rebind.html
+
+  * igt@vgem_basic@dmabuf-export:
+    - fi-tgl-y:           [PASS][3] -> [DMESG-WARN][4] ([i915#402])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9488/fi-tgl-y/igt@vgem_basic@dmabuf-export.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19147/fi-tgl-y/igt@vgem_basic@dmabuf-export.html
+
+  
+#### Possible fixes ####
+
+  * igt@gem_basic@create-fd-close:
+    - fi-tgl-y:           [DMESG-WARN][5] ([i915#402]) -> [PASS][6] +1 similar issue
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9488/fi-tgl-y/igt@gem_basic@create-fd-close.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19147/fi-tgl-y/igt@gem_basic@create-fd-close.html
+
+  
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [i915#2283]: https://gitlab.freedesktop.org/drm/intel/issues/2283
+  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
+
+
+Participating hosts (43 -> 39)
+------------------------------
+
+  Missing    (4): fi-ctg-p8600 fi-bsw-cyan fi-bdw-samus fi-hsw-4200u 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_9488 -> Patchwork_19147
+
+  CI-20190529: 20190529
+  CI_DRM_9488: 610a032e0c8eff40d87d9344f92311382f4acd49 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5901: 565d911f08df697fa211dbd1faefe2fd57066f71 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_19147: c85f8a2cb7d4f2eec063ad0627327543aba54d25 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+c85f8a2cb7d4 dma-buf: doc polish for pin/unpin
+214090d2fdc5 dma-buf: begin/end_cpu might lock the dma_resv lock
+df3455aca7cf dma-buf: some kerneldoc formatting fixes
+403e03068940 dma-buf: Remove kmap kerneldoc vestiges
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19147/index.html
+
+--===============7332886830128396518==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>series starting with [1/4] dma-buf: Remove kmap kerneldoc vestiges (rev3)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/84849/">https://patchwork.freedesktop.org/series/84849/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19147/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19147/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_9488 -&gt; Patchwork_19147</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19147/index.html</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_19147 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@amdgpu/amd_basic@semaphore:</p>
+<ul>
+<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19147/fi-bdw-5557u/igt@amdgpu/amd_basic@semaphore.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +22 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@core_hotunplug@unbind-rebind:</p>
+<ul>
+<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19147/fi-bdw-5557u/igt@core_hotunplug@unbind-rebind.html">WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2283">i915#2283</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@vgem_basic@dmabuf-export:</p>
+<ul>
+<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9488/fi-tgl-y/igt@vgem_basic@dmabuf-export.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19147/fi-tgl-y/igt@vgem_basic@dmabuf-export.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@gem_basic@create-fd-close:<ul>
+<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9488/fi-tgl-y/igt@gem_basic@create-fd-close.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19147/fi-tgl-y/igt@gem_basic@create-fd-close.html">PASS</a> +1 similar issue</li>
+</ul>
+</li>
+</ul>
+<h2>Participating hosts (43 -&gt; 39)</h2>
+<p>Missing    (4): fi-ctg-p8600 fi-bsw-cyan fi-bdw-samus fi-hsw-4200u </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_9488 -&gt; Patchwork_19147</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_9488: 610a032e0c8eff40d87d9344f92311382f4acd49 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_5901: 565d911f08df697fa211dbd1faefe2fd57066f71 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
+  Patchwork_19147: c85f8a2cb7d4f2eec063ad0627327543aba54d25 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>c85f8a2cb7d4 dma-buf: doc polish for pin/unpin<br />
+214090d2fdc5 dma-buf: begin/end_cpu might lock the dma_resv lock<br />
+df3455aca7cf dma-buf: some kerneldoc formatting fixes<br />
+403e03068940 dma-buf: Remove kmap kerneldoc vestiges</p>
+
+</body>
+</html>
+
+--===============7332886830128396518==--
+
+--===============1530142838==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============1530142838==--
