@@ -1,62 +1,39 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4C9F02DB604
-	for <lists+intel-gfx@lfdr.de>; Tue, 15 Dec 2020 22:47:54 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5DE1E2DB609
+	for <lists+intel-gfx@lfdr.de>; Tue, 15 Dec 2020 22:49:09 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3A42389CA4;
-	Tue, 15 Dec 2020 21:47:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BC2B689C98;
+	Tue, 15 Dec 2020 21:49:07 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C05DB89CA4;
- Tue, 15 Dec 2020 21:47:51 +0000 (UTC)
-IronPort-SDR: qddklm96xunqM9ovEdXeUFIO/tyZEFmZaRjqEzeWzFBbOmWI57Y4Cg/4JIddn5/bOl3RDIqOx0
- IgqliLkr28Mg==
-X-IronPort-AV: E=McAfee;i="6000,8403,9836"; a="174185352"
-X-IronPort-AV: E=Sophos;i="5.78,422,1599548400"; d="scan'208";a="174185352"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Dec 2020 13:47:51 -0800
-IronPort-SDR: +ZinWqNYO9vXeGhDZC4TQYAxe1aTIVVjFAj091+lN/rPNIr+WJT7k8iL4eOECWejbra+Rw1qih
- 6jJIe6YwiV/g==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.78,422,1599548400"; d="scan'208";a="412160272"
-Received: from fmsmsx606.amr.corp.intel.com ([10.18.126.86])
- by orsmga001.jf.intel.com with ESMTP; 15 Dec 2020 13:47:50 -0800
-Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
- fmsmsx606.amr.corp.intel.com (10.18.126.86) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1713.5; Tue, 15 Dec 2020 13:47:50 -0800
-Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
- fmsmsx612.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1713.5; Tue, 15 Dec 2020 13:47:50 -0800
-Received: from fmsmsx611.amr.corp.intel.com ([10.18.126.91]) by
- fmsmsx611.amr.corp.intel.com ([10.18.126.91]) with mapi id 15.01.1713.004;
- Tue, 15 Dec 2020 13:47:50 -0800
-From: "Tang, CQ" <cq.tang@intel.com>
-To: Chris Wilson <chris@chris-wilson.co.uk>, "intel-gfx@lists.freedesktop.org"
- <intel-gfx@lists.freedesktop.org>
-Thread-Topic: [PATCH i-g-t 1/2] i915/gem_exec_params: Assert a 4G object does
- _not_ fit without 48b
-Thread-Index: AQHW0yY9iK2uVfAADE+bV73fhJ5vcKn4sVvQ
-Date: Tue, 15 Dec 2020 21:47:49 +0000
-Message-ID: <f5fd4df2c9cf4a1f9849c78aff6cb0b8@intel.com>
-References: <20201215210658.1188718-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20201215210658.1188718-1-chris@chris-wilson.co.uk>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-product: dlpe-windows
-dlp-reaction: no-action
-dlp-version: 11.5.1.3
-x-originating-ip: [10.22.254.132]
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 618E989C98
+ for <intel-gfx@lists.freedesktop.org>; Tue, 15 Dec 2020 21:49:06 +0000 (UTC)
+IronPort-SDR: ilq/+gP8HdSy3SVmWoWW2V72sR7Hg8RzXigC/IO5PNx0Sle/GRvA/LKjVNo8Ndg9of2n0Gmm2F
+ xUrux11kJc3A==
+X-IronPort-AV: E=McAfee;i="6000,8403,9836"; a="172388345"
+X-IronPort-AV: E=Sophos;i="5.78,422,1599548400"; d="scan'208";a="172388345"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Dec 2020 13:49:05 -0800
+IronPort-SDR: EtzeLxlIUBKNmy4oKNaP1XpEH08dQa5LffH/PJSH0ix4nHc1a2VxjaS+Pdk5zCUe4z8wJpBgYA
+ kBPb/TYdBJpA==
+X-IronPort-AV: E=Sophos;i="5.78,422,1599548400"; d="scan'208";a="368466006"
+Received: from orsosgc001.ra.intel.com ([10.23.184.150])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Dec 2020 13:49:05 -0800
+From: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+ Lionel G Landwerlin <lionel.g.landwerlin@intel.com>
+Date: Tue, 15 Dec 2020 13:49:00 -0800
+Message-Id: <20201215214901.10038-1-umesh.nerlige.ramappa@intel.com>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH i-g-t 1/2] i915/gem_exec_params: Assert a 4G
- object does _not_ fit without 48b
+Subject: [Intel-gfx] [PATCH 1/2] i915/perf: Move gen specific OA formats to
+ single array
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,64 +46,163 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "igt-dev@lists.freedesktop.org" <igt-dev@lists.freedesktop.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+Variations in OA formats in the different gens has led to creation of
+several sparse arrays to store the formats.
 
+Move oa formats into a single array and add the supported range of
+platforms for the oa formats.
 
-> -----Original Message-----
-> From: Chris Wilson <chris@chris-wilson.co.uk>
-> Sent: Tuesday, December 15, 2020 1:07 PM
-> To: intel-gfx@lists.freedesktop.org
-> Cc: igt-dev@lists.freedesktop.org; Chris Wilson <chris@chris-wilson.co.uk>;
-> Tang, CQ <cq.tang@intel.com>
-> Subject: [PATCH i-g-t 1/2] i915/gem_exec_params: Assert a 4G object does
-> _not_ fit without 48b
-> 
-> Without opting into 48B addressing, objects are strictly limited to being
-> placed only the first (4G - 4K). This is to avoid an issue with stateless 32b
-> addressing being unable to access the last 32b page.
-> Assert that we do indeed fail to fit in a 4G object without setting the
-> EXEC_OBJECT_SUPPORTS_48B_ADDRESS flag.
-> 
-> Reported-by: CQ Tang <cq.tang@intel.com>
-> References:: 48ea1e32c39d ("drm/i915/gen9: Set PIN_ZONE_4G end to 4GB -
-> 1 page")
-> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-> Cc: CQ Tang <cq.tang@intel.com>
-> ---
->  tests/i915/gem_exec_params.c | 8 +++++++-
->  1 file changed, 7 insertions(+), 1 deletion(-)
-> 
-> diff --git a/tests/i915/gem_exec_params.c b/tests/i915/gem_exec_params.c
-> index c405f4eb7..e679c512a 100644
-> --- a/tests/i915/gem_exec_params.c
-> +++ b/tests/i915/gem_exec_params.c
-> @@ -340,7 +340,13 @@ static void test_larger_than_life_batch(int fd)
->         for_each_engine(e, fd) {
->  	       /* Keep the batch_len implicit [0] */
->  	       execbuf.flags = eb_ring(e);
-> -	       gem_execbuf(fd, &execbuf);
-> +
-> +	       /* non-48b objects are limited to the low (4G - 4K) */
-> +	       igt_assert_eq(__gem_execbuf(fd, &execbuf), -ENOSPC);
-> +
-> +	       exec.flags = EXEC_OBJECT_SUPPORTS_48B_ADDRESS;
-> +	       igt_assert_eq(__gem_execbuf(fd, &execbuf), 0);
-> +	       exec.flags = 0;
+Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+---
+ drivers/gpu/drm/i915/i915_perf.c       | 56 ++++++++++++--------------
+ drivers/gpu/drm/i915/i915_perf_types.h |  3 ++
+ 2 files changed, 28 insertions(+), 31 deletions(-)
 
-It is good to test both cases.
-Reviewed-by: CQ Tang <cq.tang@intel.com>
-
-
->         }
-> 
->         gem_sync(fd, exec.handle);
-> --
-> 2.29.2
+diff --git a/drivers/gpu/drm/i915/i915_perf.c b/drivers/gpu/drm/i915/i915_perf.c
+index f553caf4b06d..afa92cf075c4 100644
+--- a/drivers/gpu/drm/i915/i915_perf.c
++++ b/drivers/gpu/drm/i915/i915_perf.c
+@@ -298,28 +298,27 @@ static u32 i915_oa_max_sample_rate = 100000;
+ 
+ /* XXX: beware if future OA HW adds new report formats that the current
+  * code assumes all reports have a power-of-two size and ~(size - 1) can
+- * be used as a mask to align the OA tail pointer.
++ * be used as a mask to align the OA tail pointer. Note that the platforms
++ * in this array specify a range (inclusive of start and end).
+  */
+-static const struct i915_oa_format hsw_oa_formats[I915_OA_FORMAT_MAX] = {
+-	[I915_OA_FORMAT_A13]	    = { 0, 64 },
+-	[I915_OA_FORMAT_A29]	    = { 1, 128 },
+-	[I915_OA_FORMAT_A13_B8_C8]  = { 2, 128 },
+-	/* A29_B8_C8 Disallowed as 192 bytes doesn't factor into buffer size */
+-	[I915_OA_FORMAT_B4_C8]	    = { 4, 64 },
+-	[I915_OA_FORMAT_A45_B8_C8]  = { 5, 256 },
+-	[I915_OA_FORMAT_B4_C8_A16]  = { 6, 128 },
+-	[I915_OA_FORMAT_C4_B8]	    = { 7, 64 },
+-};
+-
+-static const struct i915_oa_format gen8_plus_oa_formats[I915_OA_FORMAT_MAX] = {
+-	[I915_OA_FORMAT_A12]		    = { 0, 64 },
+-	[I915_OA_FORMAT_A12_B8_C8]	    = { 2, 128 },
+-	[I915_OA_FORMAT_A32u40_A4u32_B8_C8] = { 5, 256 },
+-	[I915_OA_FORMAT_C4_B8]		    = { 7, 64 },
+-};
+-
+-static const struct i915_oa_format gen12_oa_formats[I915_OA_FORMAT_MAX] = {
+-	[I915_OA_FORMAT_A32u40_A4u32_B8_C8] = { 5, 256 },
++static const struct i915_oa_format oa_formats[I915_OA_FORMAT_MAX] = {
++	/* haswell */
++	[I915_OA_FORMAT_A13]                    = { 0, 64, INTEL_IVYBRIDGE, INTEL_HASWELL },
++	[I915_OA_FORMAT_A29]                    = { 1, 128, INTEL_IVYBRIDGE, INTEL_HASWELL },
++	[I915_OA_FORMAT_A13_B8_C8]              = { 2, 128, INTEL_IVYBRIDGE, INTEL_HASWELL },
++	[I915_OA_FORMAT_B4_C8]                  = { 4, 64, INTEL_IVYBRIDGE, INTEL_HASWELL },
++	[I915_OA_FORMAT_A45_B8_C8]              = { 5, 256, INTEL_IVYBRIDGE, INTEL_HASWELL },
++	[I915_OA_FORMAT_B4_C8_A16]              = { 6, 128, INTEL_IVYBRIDGE, INTEL_HASWELL },
++
++	/* haswell+ upto but not including tigerlake */
++	[I915_OA_FORMAT_C4_B8]                  = { 7, 64, INTEL_IVYBRIDGE, INTEL_TIGERLAKE - 1 },
++
++	/* gen8+ upto but not including tigerlake */
++	[I915_OA_FORMAT_A12]                    = { 0, 64, INTEL_BROADWELL, INTEL_TIGERLAKE - 1 },
++	[I915_OA_FORMAT_A12_B8_C8]              = { 2, 128, INTEL_BROADWELL, INTEL_TIGERLAKE - 1 },
++
++	/* gen8+ */
++	[I915_OA_FORMAT_A32u40_A4u32_B8_C8]     = { 5, 256, INTEL_BROADWELL, INTEL_MAX_PLATFORMS - 1 },
+ };
+ 
+ #define SAMPLE_OA_REPORT      (1<<0)
+@@ -3575,6 +3574,7 @@ static int read_properties_unlocked(struct i915_perf *perf,
+ 	for (i = 0; i < n_props; i++) {
+ 		u64 oa_period, oa_freq_hz;
+ 		u64 id, value;
++		enum intel_platform p = INTEL_INFO(perf->i915)->platform;
+ 
+ 		ret = get_user(id, uprop);
+ 		if (ret)
+@@ -3611,8 +3611,9 @@ static int read_properties_unlocked(struct i915_perf *perf,
+ 					  value);
+ 				return -EINVAL;
+ 			}
+-			if (!perf->oa_formats[value].size) {
+-				DRM_DEBUG("Unsupported OA report format %llu\n",
++			if (p < perf->oa_formats[value].start ||
++			    p > perf->oa_formats[value].end) {
++				DRM_DEBUG("OA report format not supported %llu\n",
+ 					  value);
+ 				return -EINVAL;
+ 			}
+@@ -4270,6 +4271,7 @@ void i915_perf_init(struct drm_i915_private *i915)
+ 
+ 	/* XXX const struct i915_perf_ops! */
+ 
++	perf->oa_formats = oa_formats;
+ 	if (IS_HASWELL(i915)) {
+ 		perf->ops.is_valid_b_counter_reg = gen7_is_valid_b_counter_addr;
+ 		perf->ops.is_valid_mux_reg = hsw_is_valid_mux_addr;
+@@ -4280,8 +4282,6 @@ void i915_perf_init(struct drm_i915_private *i915)
+ 		perf->ops.oa_disable = gen7_oa_disable;
+ 		perf->ops.read = gen7_oa_read;
+ 		perf->ops.oa_hw_tail_read = gen7_oa_hw_tail_read;
+-
+-		perf->oa_formats = hsw_oa_formats;
+ 	} else if (HAS_LOGICAL_RING_CONTEXTS(i915)) {
+ 		/* Note: that although we could theoretically also support the
+ 		 * legacy ringbuffer mode on BDW (and earlier iterations of
+@@ -4292,8 +4292,6 @@ void i915_perf_init(struct drm_i915_private *i915)
+ 		perf->ops.read = gen8_oa_read;
+ 
+ 		if (IS_GEN_RANGE(i915, 8, 9)) {
+-			perf->oa_formats = gen8_plus_oa_formats;
+-
+ 			perf->ops.is_valid_b_counter_reg =
+ 				gen7_is_valid_b_counter_addr;
+ 			perf->ops.is_valid_mux_reg =
+@@ -4324,8 +4322,6 @@ void i915_perf_init(struct drm_i915_private *i915)
+ 				perf->gen8_valid_ctx_bit = BIT(16);
+ 			}
+ 		} else if (IS_GEN_RANGE(i915, 10, 11)) {
+-			perf->oa_formats = gen8_plus_oa_formats;
+-
+ 			perf->ops.is_valid_b_counter_reg =
+ 				gen7_is_valid_b_counter_addr;
+ 			perf->ops.is_valid_mux_reg =
+@@ -4348,8 +4344,6 @@ void i915_perf_init(struct drm_i915_private *i915)
+ 			}
+ 			perf->gen8_valid_ctx_bit = BIT(16);
+ 		} else if (IS_GEN(i915, 12)) {
+-			perf->oa_formats = gen12_oa_formats;
+-
+ 			perf->ops.is_valid_b_counter_reg =
+ 				gen12_is_valid_b_counter_addr;
+ 			perf->ops.is_valid_mux_reg =
+diff --git a/drivers/gpu/drm/i915/i915_perf_types.h b/drivers/gpu/drm/i915/i915_perf_types.h
+index a36a455ae336..84dceb743ebc 100644
+--- a/drivers/gpu/drm/i915/i915_perf_types.h
++++ b/drivers/gpu/drm/i915/i915_perf_types.h
+@@ -19,6 +19,7 @@
+ #include "gt/intel_sseu.h"
+ #include "i915_reg.h"
+ #include "intel_wakeref.h"
++#include "intel_device_info.h"
+ 
+ struct drm_i915_private;
+ struct file;
+@@ -32,6 +33,8 @@ struct intel_engine_cs;
+ struct i915_oa_format {
+ 	u32 format;
+ 	int size;
++	enum intel_platform start;
++	enum intel_platform end;
+ };
+ 
+ struct i915_oa_reg {
+-- 
+2.20.1
 
 _______________________________________________
 Intel-gfx mailing list
