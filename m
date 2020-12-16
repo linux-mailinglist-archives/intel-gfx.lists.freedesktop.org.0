@@ -2,44 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7ED5C2DBFA3
-	for <lists+intel-gfx@lfdr.de>; Wed, 16 Dec 2020 12:44:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B72272DBFA9
+	for <lists+intel-gfx@lfdr.de>; Wed, 16 Dec 2020 12:46:58 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6618F6E193;
-	Wed, 16 Dec 2020 11:44:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5D7DB6E19A;
+	Wed, 16 Dec 2020 11:46:56 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6C97B6E190
- for <intel-gfx@lists.freedesktop.org>; Wed, 16 Dec 2020 11:44:29 +0000 (UTC)
-IronPort-SDR: zi16RASBWdg8W3NTXKB9flB13W91c8JTv9MbQlTZGylI4Dra4wVtkL1wGvSs/W5zLx1Tt8+deb
- MTTZfXPSzmmg==
-X-IronPort-AV: E=McAfee;i="6000,8403,9836"; a="175155267"
-X-IronPort-AV: E=Sophos;i="5.78,424,1599548400"; d="scan'208";a="175155267"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Dec 2020 03:44:27 -0800
-IronPort-SDR: dtrQH2533c23PqLpUTBYrMt3TMxQgKBXqHombrdtKSfLvd7RfrQu6S5Ys5W7pDP45lf//4QWy7
- P2rdbFLg3cpA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.78,424,1599548400"; d="scan'208";a="338377721"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by fmsmga008.fm.intel.com with SMTP; 16 Dec 2020 03:44:24 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 16 Dec 2020 13:44:24 +0200
-Date: Wed, 16 Dec 2020 13:44:24 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@intel.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>
-Message-ID: <X9nzGCAqpRWDCMh5@intel.com>
-References: <20201211072922.19101-1-airlied@gmail.com>
- <20201211072922.19101-6-airlied@gmail.com>
- <87czza5apy.fsf@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 1D60E6E196;
+ Wed, 16 Dec 2020 11:46:55 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 17C21A0094;
+ Wed, 16 Dec 2020 11:46:55 +0000 (UTC)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <87czza5apy.fsf@intel.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH 05/11] drm/i915: refactor some crtc code out
- of intel display.
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Mun, Gwan-gyeong" <gwan-gyeong.mun@intel.com>
+Date: Wed, 16 Dec 2020 11:46:55 -0000
+Message-ID: <160811921506.16510.11464658437204378513@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20201216093825.403689-1-gwan-gyeong.mun@intel.com>
+In-Reply-To: <20201216093825.403689-1-gwan-gyeong.mun@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_series_starting_with_=5Bv6=2C1/2=5D_drm/i915/display=3A_Sup?=
+ =?utf-8?q?port_PSR_Multiple_Transcoders?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,56 +39,30 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Dec 16, 2020 at 12:03:37PM +0200, Jani Nikula wrote:
-> On Fri, 11 Dec 2020, Dave Airlie <airlied@gmail.com> wrote:
-> > From: Dave Airlie <airlied@redhat.com>
-> >
-> > There may be more crtc code that can be pulled out, but this
-> > is a good start.
-> >
-> > RFC: maybe call the new file something different
-> =
+== Series Details ==
 
-> I checked this is just code movement. I did clean up intel_crtc.h
-> locally a bit though. (I'll probably re-send the series with a few fixes
-> to pass CI.)
-> =
+Series: series starting with [v6,1/2] drm/i915/display: Support PSR Multiple Transcoders
+URL   : https://patchwork.freedesktop.org/series/84997/
+State : warning
 
-> I'm not averse to renaming the file later if needed, I'm more concerned
-> about choosing a meaningful bunch of functions to take out and put in
-> the new file.
-> =
+== Summary ==
 
-> Ville, I saw you had some comments about this - is this making sensible
-> progress or making further refactoring harder?
+$ dim checkpatch origin/drm-tip
+144736cb4785 drm/i915/display: Support PSR Multiple Transcoders
+-:1705: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'intel_dp' - possible side-effects?
+#1705: FILE: drivers/gpu/drm/i915/display/intel_psr.h:21:
++#define CAN_PSR(intel_dp) (HAS_PSR(dp_to_i915(intel_dp)) && intel_dp->psr.sink_support)
 
-Just means we have to move 90% of the proposed intel_crtc.c
-into i9xx_plane.c again. So the plane bits here are just
-pointless churn IMO.
+total: 0 errors, 0 warnings, 1 checks, 1734 lines checked
+46edf1f39389 drm/i915/display: Support Multiple Transcoders' PSR status on debugfs
 
--- =
-
-Ville Syrj=E4l=E4
-Intel
----------------------------------------------------------------------
-Intel Finland Oy
-Registered Address: PL 281, 00181 Helsinki =
-
-Business Identity Code: 0357606 - 4 =
-
-Domiciled in Helsinki =
-
-
-This e-mail and any attachments may contain confidential material for
-the sole use of the intended recipient(s). Any review or distribution
-by others is strictly prohibited. If you are not the intended
-recipient, please contact the sender and delete all copies.
 
 _______________________________________________
 Intel-gfx mailing list
