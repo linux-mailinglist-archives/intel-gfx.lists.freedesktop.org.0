@@ -2,39 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B9C482DBDC3
-	for <lists+intel-gfx@lfdr.de>; Wed, 16 Dec 2020 10:39:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id F31452DBDC9
+	for <lists+intel-gfx@lfdr.de>; Wed, 16 Dec 2020 10:41:58 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 69B8C6E0D8;
-	Wed, 16 Dec 2020 09:38:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 422836E0D7;
+	Wed, 16 Dec 2020 09:41:52 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B62BF6E0D6
- for <intel-gfx@lists.freedesktop.org>; Wed, 16 Dec 2020 09:38:56 +0000 (UTC)
-IronPort-SDR: Iv216nNArnjG364SfdSvx+6Srj6RJTbCVq7XNulhKMVQ7okj48xae13UamkVaC3XQI275ne7Fe
- NnuwAw6/JZzA==
-X-IronPort-AV: E=McAfee;i="6000,8403,9836"; a="174263502"
-X-IronPort-AV: E=Sophos;i="5.78,424,1599548400"; d="scan'208";a="174263502"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Dec 2020 01:38:56 -0800
-IronPort-SDR: N45mDPF8EMTndsCr1q8XpE1rRGa/Z9EjYQdwIMKTGbufJTprrbt4U6XfBY6TgHzYng3zi1D3ea
- HapVKH8RLgBg==
-X-IronPort-AV: E=Sophos;i="5.78,424,1599548400"; d="scan'208";a="368871881"
-Received: from helsinki.fi.intel.com ([10.237.66.162])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Dec 2020 01:38:55 -0800
-From: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Wed, 16 Dec 2020 11:38:25 +0200
-Message-Id: <20201216093825.403689-2-gwan-gyeong.mun@intel.com>
-X-Mailer: git-send-email 2.25.0
-In-Reply-To: <20201216093825.403689-1-gwan-gyeong.mun@intel.com>
-References: <20201216093825.403689-1-gwan-gyeong.mun@intel.com>
+Received: from mail-ot1-x333.google.com (mail-ot1-x333.google.com
+ [IPv6:2607:f8b0:4864:20::333])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2CAF46E0D6
+ for <intel-gfx@lists.freedesktop.org>; Wed, 16 Dec 2020 09:41:51 +0000 (UTC)
+Received: by mail-ot1-x333.google.com with SMTP id a109so22295015otc.1
+ for <intel-gfx@lists.freedesktop.org>; Wed, 16 Dec 2020 01:41:51 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=f3hFtHny9tWcZXe9Ppr41tOMRXk5DQrjAzV/rnP5TFc=;
+ b=NYZ8CJ5ai6cJl9VtmTEM7bTiae/MtYvXAyJoXxtb8De6ETtw+NlEXRxOyL8rUhYAry
+ BZLuMufDaHyUEu2hP5Fryx4vr1+F4iJPWLjJHJ4nQTMD4zfk0ZM5vbr43dRWuDCmhWm3
+ gZEMzNXTjv/IlKikDOWk5ATZ34LDIaZXqqpQs=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=f3hFtHny9tWcZXe9Ppr41tOMRXk5DQrjAzV/rnP5TFc=;
+ b=KFRImnSbX3TWCNqKdrlS0WEu1zhGAA0Z2SaNyFn9IQAC4m1JqgdB7s9y5I+nJduqNp
+ czO06fIqldHksclkEvoIvJI+r6xNnR5DGpDUILbPKlqRfZaIBeXuJgOyn6Gj1YYFfAud
+ UlAxTQDST4Bij7uNK5cF6vQrAOr/vRaWiI0o78a3sA5/nPFOtMM/yefutzth8jSAjkUY
+ nq/bbuap5UdjSCh0DPOHLHIxwg2LVjaddMlzA5xowKPHm5Gd52XX8lDOzlM5mKyAwmXX
+ uFSBhiVuwV7hXANOp8bbpol4Rk6T98l7cdaPn+OgReS5uH5+ChgfIa0wEdfT8luVH2HK
+ IDgA==
+X-Gm-Message-State: AOAM5306Wl9VU4ccDHUwJqwTS0CjXY+/dtxiztsJo712gRAHmEo4TE1r
+ a2Da8nK2CY3kQPZGOIwnO6JfZFlguvn/GvYFn6XBJQ==
+X-Google-Smtp-Source: ABdhPJxMXZuDmdTKCNd+t3C7uTCdbzCNOEW5fSzqxK+RVd/yxec7n29mF1Nm9n15J7L2OmMqvIonRa+3kwaIt9znTpw=
+X-Received: by 2002:a9d:4e08:: with SMTP id p8mr25635431otf.188.1608111710460; 
+ Wed, 16 Dec 2020 01:41:50 -0800 (PST)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v6 2/2] drm/i915/display: Support Multiple
- Transcoders' PSR status on debugfs
+References: <20201021163242.1458885-1-daniel.vetter@ffwll.ch>
+ <20201023122216.2373294-1-daniel.vetter@ffwll.ch>
+ <20201023122216.2373294-14-daniel.vetter@ffwll.ch>
+ <X9ljB3sRJHXf7ZZJ@pendragon.ideasonboard.com>
+In-Reply-To: <X9ljB3sRJHXf7ZZJ@pendragon.ideasonboard.com>
+From: Daniel Vetter <daniel.vetter@ffwll.ch>
+Date: Wed, 16 Dec 2020 10:41:39 +0100
+Message-ID: <CAKMK7uE8mD_X718iuNU1e-NEZV7QMvbgu5xLMqS3tOFqdUXAgQ@mail.gmail.com>
+To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Subject: Re: [Intel-gfx] [PATCH 14/65] drm/rcar-du: Annotate dma-fence
+ critical section in commit path
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,48 +61,88 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jani.nikula@intel.com
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: "open list:DRM DRIVERS FOR RENESAS" <linux-renesas-soc@vger.kernel.org>,
+ Daniel Vetter <daniel.vetter@intel.com>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
+ DRI Development <dri-devel@lists.freedesktop.org>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-SW4gb3JkZXIgdG8gc3VwcG9ydCB0aGUgUFNSIHN0YXRlIG9mIGVhY2ggdHJhbnNjb2RlciwgaXQg
-YWRkcwppOTE1X3Bzcl9zdGF0dXMgdG8gc3ViLWRpcmVjdG9yeSBvZiBlYWNoIHRyYW5zY29kZXIu
-Cgp2MjogQ2hhbmdlIHVzaW5nIG9mIFN5bWJvbGljIHBlcm1pc3Npb25zICdTX0lSVUdPJyB0byB1
-c2luZyBvZiBvY3RhbAogICAgcGVybWlzc2lvbnMgJzA0NDQnCnY1OiBBZGRyZXNzZWQgSkphbmkg
-TmlrdWxhJ3MgcmV2aWV3IGNvbW1lbnRzCiAtIFJlbW92ZSBjaGVja2luZyBvZiBHZW4xMiBmb3Ig
-aTkxNV9wc3Jfc3RhdHVzLgogLSBBZGQgY2hlY2sgb2YgSEFTX1BTUigpCiAtIFJlbW92ZSBtZWFu
-aW5nbGVzcyBjaGVjayByb3V0aW5lLgoKU2lnbmVkLW9mZi1ieTogR3dhbi1neWVvbmcgTXVuIDxn
-d2FuLWd5ZW9uZy5tdW5AaW50ZWwuY29tPgpDYzogSm9zw6kgUm9iZXJ0byBkZSBTb3V6YSA8am9z
-ZS5zb3V6YUBpbnRlbC5jb20+CkNjOiBKYW5pIE5pa3VsYSA8amFuaS5uaWt1bGFAaW50ZWwuY29t
-PgpDYzogQW5zaHVtYW4gR3VwdGEgPGFuc2h1bWFuLmd1cHRhQGludGVsLmNvbT4KLS0tCiAuLi4v
-Z3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheV9kZWJ1Z2ZzLmMgfCAxNiArKysrKysr
-KysrKysrKysrCiAxIGZpbGUgY2hhbmdlZCwgMTYgaW5zZXJ0aW9ucygrKQoKZGlmZiAtLWdpdCBh
-L2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheV9kZWJ1Z2ZzLmMgYi9k
-cml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXlfZGVidWdmcy5jCmluZGV4
-IDA0MTA1MzE2N2Q3Zi4uZDJkZDYxYzRlZTBiIDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0v
-aTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXlfZGVidWdmcy5jCisrKyBiL2RyaXZlcnMvZ3B1L2Ry
-bS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheV9kZWJ1Z2ZzLmMKQEAgLTIyMjQsNiArMjIyNCwx
-NiBAQCBzdGF0aWMgaW50IGk5MTVfaGRjcF9zaW5rX2NhcGFiaWxpdHlfc2hvdyhzdHJ1Y3Qgc2Vx
-X2ZpbGUgKm0sIHZvaWQgKmRhdGEpCiB9CiBERUZJTkVfU0hPV19BVFRSSUJVVEUoaTkxNV9oZGNw
-X3NpbmtfY2FwYWJpbGl0eSk7CiAKK3N0YXRpYyBpbnQgaTkxNV9wc3Jfc3RhdHVzX3Nob3coc3Ry
-dWN0IHNlcV9maWxlICptLCB2b2lkICpkYXRhKQoreworCXN0cnVjdCBkcm1fY29ubmVjdG9yICpj
-b25uZWN0b3IgPSBtLT5wcml2YXRlOworCXN0cnVjdCBpbnRlbF9kcCAqaW50ZWxfZHAgPQorCQlp
-bnRlbF9hdHRhY2hlZF9kcCh0b19pbnRlbF9jb25uZWN0b3IoY29ubmVjdG9yKSk7CisKKwlyZXR1
-cm4gaW50ZWxfcHNyX3N0YXR1cyhtLCBpbnRlbF9kcCk7Cit9CitERUZJTkVfU0hPV19BVFRSSUJV
-VEUoaTkxNV9wc3Jfc3RhdHVzKTsKKwogI2RlZmluZSBMUFNQX0NBUEFCTEUoQ09ORCkgKENPTkQg
-PyBzZXFfcHV0cyhtLCAiTFBTUDogY2FwYWJsZVxuIikgOiBcCiAJCQkJc2VxX3B1dHMobSwgIkxQ
-U1A6IGluY2FwYWJsZVxuIikpCiAKQEAgLTIzOTksNiArMjQwOSwxMiBAQCBpbnQgaW50ZWxfY29u
-bmVjdG9yX2RlYnVnZnNfYWRkKHN0cnVjdCBkcm1fY29ubmVjdG9yICpjb25uZWN0b3IpCiAJCQkJ
-ICAgIGNvbm5lY3RvciwgJmk5MTVfcHNyX3Npbmtfc3RhdHVzX2ZvcHMpOwogCX0KIAorCWlmIChI
-QVNfUFNSKGRldl9wcml2KSAmJgorCSAgICBjb25uZWN0b3ItPmNvbm5lY3Rvcl90eXBlID09IERS
-TV9NT0RFX0NPTk5FQ1RPUl9lRFApIHsKKwkJZGVidWdmc19jcmVhdGVfZmlsZSgiaTkxNV9wc3Jf
-c3RhdHVzIiwgMDQ0NCwgcm9vdCwKKwkJCQkgICAgY29ubmVjdG9yLCAmaTkxNV9wc3Jfc3RhdHVz
-X2ZvcHMpOworCX0KKwogCWlmIChjb25uZWN0b3ItPmNvbm5lY3Rvcl90eXBlID09IERSTV9NT0RF
-X0NPTk5FQ1RPUl9EaXNwbGF5UG9ydCB8fAogCSAgICBjb25uZWN0b3ItPmNvbm5lY3Rvcl90eXBl
-ID09IERSTV9NT0RFX0NPTk5FQ1RPUl9IRE1JQSB8fAogCSAgICBjb25uZWN0b3ItPmNvbm5lY3Rv
-cl90eXBlID09IERSTV9NT0RFX0NPTk5FQ1RPUl9IRE1JQikgewotLSAKMi4yNS4wCgpfX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGlu
-ZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVl
-ZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
+On Wed, Dec 16, 2020 at 2:29 AM Laurent Pinchart
+<laurent.pinchart@ideasonboard.com> wrote:
+>
+> Hi Daniel,
+>
+> Thank you for the patch.
+>
+> On Fri, Oct 23, 2020 at 02:21:25PM +0200, Daniel Vetter wrote:
+> > Ends right after drm_atomic_helper_commit_hw_done(), absolutely
+> > nothing fancy going on here.
+> >
+> > Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
+> > Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> > Cc: Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>
+> > Cc: linux-renesas-soc@vger.kernel.org
+>
+> I'm lacking context here, there's only one instance of a call to
+> dma_fence_begin_signalling() in the subsystem, and no cover letter in
+> the series to explain what's going on. Some information would help
+> reviewing the patch :-)
+>
+> Also, could you mention in the cover letter for the next version if you
+> will merge the whole series, or expect individual maintainers to pick up
+> the relevant patches ?
+
+This series was a misfire of git send-email. I figured that following
+up to 65 patches with "I'm sorry" doesn't help the spam problem, so I
+only did it once.
+
+This patch was part of a proper series half a year ago, with cover
+letter and everything, and a few patches from that series have landed.
+I've planed to resubmit this all this week again.
+-Daniel
+
+>
+> > ---
+> >  drivers/gpu/drm/rcar-du/rcar_du_kms.c | 2 ++
+> >  1 file changed, 2 insertions(+)
+> >
+> > diff --git a/drivers/gpu/drm/rcar-du/rcar_du_kms.c b/drivers/gpu/drm/rcar-du/rcar_du_kms.c
+> > index 72dda446355f..8d91140151cc 100644
+> > --- a/drivers/gpu/drm/rcar-du/rcar_du_kms.c
+> > +++ b/drivers/gpu/drm/rcar-du/rcar_du_kms.c
+> > @@ -441,6 +441,7 @@ static void rcar_du_atomic_commit_tail(struct drm_atomic_state *old_state)
+> >       struct drm_crtc_state *crtc_state;
+> >       struct drm_crtc *crtc;
+> >       unsigned int i;
+> > +     bool fence_cookie = dma_fence_begin_signalling();
+> >
+> >       /*
+> >        * Store RGB routing to DPAD0 and DPAD1, the hardware will be configured
+> > @@ -467,6 +468,7 @@ static void rcar_du_atomic_commit_tail(struct drm_atomic_state *old_state)
+> >       drm_atomic_helper_commit_modeset_enables(dev, old_state);
+> >
+> >       drm_atomic_helper_commit_hw_done(old_state);
+> > +     dma_fence_end_signalling(fence_cookie);
+> >       drm_atomic_helper_wait_for_flip_done(dev, old_state);
+> >
+> >       drm_atomic_helper_cleanup_planes(dev, old_state);
+>
+> --
+> Regards,
+>
+> Laurent Pinchart
+
+
+
+-- 
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
