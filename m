@@ -2,62 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 308252DC73E
-	for <lists+intel-gfx@lfdr.de>; Wed, 16 Dec 2020 20:34:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 301F82DC750
+	for <lists+intel-gfx@lfdr.de>; Wed, 16 Dec 2020 20:43:16 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F1F2689ACC;
-	Wed, 16 Dec 2020 19:33:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 301E789ACC;
+	Wed, 16 Dec 2020 19:43:13 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F276289AC0;
- Wed, 16 Dec 2020 19:33:52 +0000 (UTC)
-IronPort-SDR: GKNdTX/u/hxC0j/musJ1vKwP1MXNft8HTeSndtW/l1sjUK77QJ23PLAsbeAjCPIX+Pbqc008x0
- T00fqQ4iPZQw==
-X-IronPort-AV: E=McAfee;i="6000,8403,9837"; a="236705217"
-X-IronPort-AV: E=Sophos;i="5.78,425,1599548400"; d="scan'208";a="236705217"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Dec 2020 11:33:51 -0800
-IronPort-SDR: t4OafLvB/Jj1tRFYHKQcGo9vmLLBCEEZ2bWZKq8tOPgxUdXzyTAwe6cH0+iW7TkuFgXeFs7SSg
- PrmhQOY0Iy2A==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.78,425,1599548400"; d="scan'208";a="338768894"
-Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
- by fmsmga008.fm.intel.com with ESMTP; 16 Dec 2020 11:33:51 -0800
-Received: from bgsmsx602.gar.corp.intel.com (10.109.78.81) by
- fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1713.5; Wed, 16 Dec 2020 11:33:50 -0800
-Received: from bgsmsx604.gar.corp.intel.com (10.67.234.6) by
- BGSMSX602.gar.corp.intel.com (10.109.78.81) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1713.5; Thu, 17 Dec 2020 01:03:48 +0530
-Received: from bgsmsx604.gar.corp.intel.com ([10.67.234.6]) by
- BGSMSX604.gar.corp.intel.com ([10.67.234.6]) with mapi id 15.01.1713.004;
- Thu, 17 Dec 2020 01:03:48 +0530
-From: "Shankar, Uma" <uma.shankar@intel.com>
-To: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Thread-Topic: [PATCH v6 15/15] drm/i915/display: Let PCON convert from RGB to
- YUV if it can
-Thread-Index: AQHW05/NM+voD7quM0i2ftrBc9wx36n6GPjQ
-Date: Wed, 16 Dec 2020 19:33:48 +0000
-Message-ID: <807c09eb4c524e70bcb36f61e2fb9c71@intel.com>
-References: <20201216053121.18819-16-ankit.k.nautiyal@intel.com>
- <20201216113104.20669-1-ankit.k.nautiyal@intel.com>
-In-Reply-To: <20201216113104.20669-1-ankit.k.nautiyal@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-product: dlpe-windows
-dlp-reaction: no-action
-dlp-version: 11.5.1.3
-x-originating-ip: [10.223.10.1]
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 3879789AC9;
+ Wed, 16 Dec 2020 19:43:12 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 33829A7DFE;
+ Wed, 16 Dec 2020 19:43:12 +0000 (UTC)
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH v6 15/15] drm/i915/display: Let PCON convert
- from RGB to YUV if it can
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Zheng Yongjun" <zhengyongjun3@huawei.com>
+Date: Wed, 16 Dec 2020 19:43:12 -0000
+Message-ID: <160814779218.16510.10339356216362689173@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20201216132849.15741-1-zhengyongjun3@huawei.com>
+In-Reply-To: <20201216132849.15741-1-zhengyongjun3@huawei.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZ3B1?=
+ =?utf-8?q?/drm/i915=3A_convert_comma_to_semicolon?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,265 +38,255 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "airlied@linux.ie" <airlied@linux.ie>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============1949408402=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+--===============1949408402==
+Content-Type: multipart/alternative;
+ boundary="===============5259751012275349306=="
+
+--===============5259751012275349306==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+== Series Details ==
+
+Series: gpu/drm/i915: convert comma to semicolon
+URL   : https://patchwork.freedesktop.org/series/85006/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_9494 -> Patchwork_19160
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19160/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_19160 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@amdgpu/amd_basic@semaphore:
+    - fi-bdw-5557u:       NOTRUN -> [SKIP][1] ([fdo#109271]) +22 similar issues
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19160/fi-bdw-5557u/igt@amdgpu/amd_basic@semaphore.html
+
+  * igt@amdgpu/amd_cs_nop@nop-gfx0:
+    - fi-apl-guc:         NOTRUN -> [SKIP][2] ([fdo#109271]) +17 similar issues
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19160/fi-apl-guc/igt@amdgpu/amd_cs_nop@nop-gfx0.html
+
+  * igt@core_hotunplug@unbind-rebind:
+    - fi-bdw-5557u:       NOTRUN -> [WARN][3] ([i915#2283])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19160/fi-bdw-5557u/igt@core_hotunplug@unbind-rebind.html
+
+  * igt@debugfs_test@read_all_entries:
+    - fi-apl-guc:         [PASS][4] -> [DMESG-WARN][5] ([i915#62])
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9494/fi-apl-guc/igt@debugfs_test@read_all_entries.html
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19160/fi-apl-guc/igt@debugfs_test@read_all_entries.html
+
+  * igt@gem_exec_suspend@basic-s0:
+    - fi-apl-guc:         [PASS][6] -> [DMESG-WARN][7] ([i915#180] / [i915#62])
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9494/fi-apl-guc/igt@gem_exec_suspend@basic-s0.html
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19160/fi-apl-guc/igt@gem_exec_suspend@basic-s0.html
+
+  * igt@vgem_basic@create:
+    - fi-tgl-y:           [PASS][8] -> [DMESG-WARN][9] ([i915#402]) +1 similar issue
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9494/fi-tgl-y/igt@vgem_basic@create.html
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19160/fi-tgl-y/igt@vgem_basic@create.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@gt_heartbeat:
+    - fi-kbl-soraka:      [DMESG-FAIL][10] ([i915#2291] / [i915#541]) -> [PASS][11]
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9494/fi-kbl-soraka/igt@i915_selftest@live@gt_heartbeat.html
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19160/fi-kbl-soraka/igt@i915_selftest@live@gt_heartbeat.html
+
+  * igt@i915_selftest@live@gt_timelines:
+    - fi-apl-guc:         [INCOMPLETE][12] ([i915#2750]) -> [PASS][13]
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9494/fi-apl-guc/igt@i915_selftest@live@gt_timelines.html
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19160/fi-apl-guc/igt@i915_selftest@live@gt_timelines.html
+
+  * igt@prime_self_import@basic-with_two_bos:
+    - fi-tgl-y:           [DMESG-WARN][14] ([i915#402]) -> [PASS][15] +1 similar issue
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9494/fi-tgl-y/igt@prime_self_import@basic-with_two_bos.html
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19160/fi-tgl-y/igt@prime_self_import@basic-with_two_bos.html
+
+  
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [i915#180]: https://gitlab.freedesktop.org/drm/intel/issues/180
+  [i915#2283]: https://gitlab.freedesktop.org/drm/intel/issues/2283
+  [i915#2291]: https://gitlab.freedesktop.org/drm/intel/issues/2291
+  [i915#2750]: https://gitlab.freedesktop.org/drm/intel/issues/2750
+  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
+  [i915#541]: https://gitlab.freedesktop.org/drm/intel/issues/541
+  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
 
 
-> -----Original Message-----
-> From: Nautiyal, Ankit K <ankit.k.nautiyal@intel.com>
-> Sent: Wednesday, December 16, 2020 5:01 PM
-> To: intel-gfx@lists.freedesktop.org
-> Cc: dri-devel@lists.freedesktop.org; Shankar, Uma <uma.shankar@intel.com>;
-> airlied@linux.ie; jani.nikula@linux.intel.com; ville.syrjala@linux.intel.com;
-> Kulkarni, Vandita <vandita.kulkarni@intel.com>; Sharma, Swati2
-> <swati2.sharma@intel.com>
-> Subject: [PATCH v6 15/15] drm/i915/display: Let PCON convert from RGB to YUV
-> if it can
-> 
-> If PCON has capability to convert RGB->YUV colorspace and also to 444->420
-> downsampling then for any YUV420 only mode, we can let the PCON do all the
-> conversion.
-> 
-> v2: As suggested by Uma Shankar, considered case for colorspace
-> BT709 and BT2020, and default to BT609. Also appended dir 'display' in commit
-> message.
-> 
-> v3: Fixed typo in condition for printing one of the error msg.
-> 
-> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_ddi.c      |  3 +-
->  .../drm/i915/display/intel_display_types.h    |  1 +
->  drivers/gpu/drm/i915/display/intel_dp.c       | 68 +++++++++++++++----
->  drivers/gpu/drm/i915/display/intel_dp.h       |  3 +-
->  4 files changed, 58 insertions(+), 17 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c
-> b/drivers/gpu/drm/i915/display/intel_ddi.c
-> index fbc07a93504b..17eaa56c5a99 100644
-> --- a/drivers/gpu/drm/i915/display/intel_ddi.c
-> +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-> @@ -3644,6 +3644,7 @@ static void tgl_ddi_pre_enable_dp(struct
-> intel_atomic_state *state,
->  	if (!is_mst)
->  		intel_dp_set_power(intel_dp, DP_SET_POWER_D0);
-> 
-> +	intel_dp_configure_protocol_converter(intel_dp, crtc_state);
->  	intel_dp_sink_set_decompression_state(intel_dp, crtc_state, true);
->  	/*
->  	 * DDI FEC: "anticipates enabling FEC encoding sets the FEC_READY bit
-> @@ -3731,7 +3732,7 @@ static void hsw_ddi_pre_enable_dp(struct
-> intel_atomic_state *state,
->  	intel_ddi_init_dp_buf_reg(encoder, crtc_state);
->  	if (!is_mst)
->  		intel_dp_set_power(intel_dp, DP_SET_POWER_D0);
-> -	intel_dp_configure_protocol_converter(intel_dp);
-> +	intel_dp_configure_protocol_converter(intel_dp, crtc_state);
->  	intel_dp_sink_set_decompression_state(intel_dp, crtc_state,
->  					      true);
->  	intel_dp_sink_set_fec_ready(intel_dp, crtc_state); diff --git
-> a/drivers/gpu/drm/i915/display/intel_display_types.h
-> b/drivers/gpu/drm/i915/display/intel_display_types.h
-> index 4c01c7c23dfd..2009ae9e9678 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
-> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-> @@ -1460,6 +1460,7 @@ struct intel_dp {
->  		int pcon_max_frl_bw;
->  		u8 max_bpc;
->  		bool ycbcr_444_to_420;
-> +		bool rgb_to_ycbcr;
->  	} dfp;
-> 
->  	/* Display stream compression testing */ diff --git
-> a/drivers/gpu/drm/i915/display/intel_dp.c
-> b/drivers/gpu/drm/i915/display/intel_dp.c
-> index abc9b772d1c8..366b2e4e7f4a 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> @@ -651,6 +651,10 @@ intel_dp_output_format(struct drm_connector
-> *connector,
->  	    !drm_mode_is_420_only(info, mode))
->  		return INTEL_OUTPUT_FORMAT_RGB;
-> 
-> +	if (intel_dp->dfp.rgb_to_ycbcr &&
-> +	    intel_dp->dfp.ycbcr_444_to_420)
-> +		return INTEL_OUTPUT_FORMAT_RGB;
-> +
->  	if (intel_dp->dfp.ycbcr_444_to_420)
->  		return INTEL_OUTPUT_FORMAT_YCBCR444;
->  	else
-> @@ -4311,7 +4315,8 @@ static void intel_dp_enable_port(struct intel_dp
-> *intel_dp,
->  	intel_de_posting_read(dev_priv, intel_dp->output_reg);  }
-> 
-> -void intel_dp_configure_protocol_converter(struct intel_dp *intel_dp)
-> +void intel_dp_configure_protocol_converter(struct intel_dp *intel_dp,
-> +					   const struct intel_crtc_state *crtc_state)
->  {
->  	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
->  	u8 tmp;
-> @@ -4338,14 +4343,34 @@ void intel_dp_configure_protocol_converter(struct
-> intel_dp *intel_dp)
->  		drm_dbg_kms(&i915->drm,
->  			    "Failed to set protocol converter YCbCr 4:2:0
-> conversion mode to %s\n",
->  			    enableddisabled(intel_dp->dfp.ycbcr_444_to_420));
-> -
-> -	tmp = 0;
-> -
-> -	if (drm_dp_dpcd_writeb(&intel_dp->aux,
-> -			       DP_PROTOCOL_CONVERTER_CONTROL_2, tmp) <= 0)
-> +	if (intel_dp->dfp.rgb_to_ycbcr) {
-> +		bool bt2020, bt709;
-> +
-> +		bt2020 =
-> drm_dp_downstream_rgb_to_ycbcr_conversion(intel_dp->dpcd,
-> +							intel_dp-
-> >downstream_ports,
-> +
-> 	DP_DS_HDMI_BT2020_RGB_YCBCR_CONV);
+Participating hosts (42 -> 39)
+------------------------------
 
-Next line should match the parenthesis, seems off.
+  Missing    (3): fi-bsw-cyan fi-bdw-samus fi-hsw-4200u 
 
-> +		bt709 =
-> drm_dp_downstream_rgb_to_ycbcr_conversion(intel_dp->dpcd,
-> +							intel_dp-
-> >downstream_ports,
-> +
-> 	DP_DS_HDMI_BT709_RGB_YCBCR_CONV);
-> +		switch (crtc_state->infoframes.vsc.colorimetry) {
-> +		case DP_COLORIMETRY_BT2020_RGB:
-> +		case DP_COLORIMETRY_BT2020_YCC:
-> +			tmp = bt2020 ?
-> DP_CONVERSION_BT2020_RGB_YCBCR_ENABLE : 0;
 
-One concern I have here is what will happen if pcon returns 0 here. From SOC we will be sending
-BT2020 RGB, so we expect it to be able to support this conversion. So ideally this should not be optional
-but kind of mandatory for pcon to support.
+Build changes
+-------------
 
-> +			break;
-> +		case DP_COLORIMETRY_BT709_YCC:
-> +		case DP_COLORIMETRY_XVYCC_709:
-> +			tmp = bt709 ?
-> DP_CONVERSION_BT709_RGB_YCBCR_ENABLE : 0;
-> +			break;
-> +		default:
-> +			tmp = DP_CONVERSION_BT601_RGB_YCBCR_ENABLE;
-> +		}
-> +	} else {
-> +		tmp = 0;
-> +	}
+  * Linux: CI_DRM_9494 -> Patchwork_19160
 
-Just initialize tmp to 0 and drop this else.
+  CI-20190529: 20190529
+  CI_DRM_9494: 0daa598dbcfd00141cb7e287d6e1369916097161 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5905: 3d0934900bddeb7a68f1abab4cd05077f0609e32 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_19160: f7d323039f460825dd44fb183c09384ccd7f15ed @ git://anongit.freedesktop.org/gfx-ci/linux
 
-> +	if (drm_dp_pcon_convert_rgb_to_ycbcr(&intel_dp->aux, tmp) < 0)
->  		drm_dbg_kms(&i915->drm,
-> -			    "Failed to set protocol converter YCbCr 4:2:2
-> conversion mode to %s\n",
-> -			    enableddisabled(false));
-> +			   "Failed to set protocol converter RGB->YCbCr
-> conversion mode to %s\n",
-> +			   enableddisabled(tmp ? true : false));
->  }
-> 
->  static void intel_enable_dp(struct intel_atomic_state *state, @@ -4385,7
-> +4410,7 @@ static void intel_enable_dp(struct intel_atomic_state *state,
->  	}
-> 
->  	intel_dp_set_power(intel_dp, DP_SET_POWER_D0);
-> -	intel_dp_configure_protocol_converter(intel_dp);
-> +	intel_dp_configure_protocol_converter(intel_dp, pipe_config);
->  	intel_dp_check_frl_training(intel_dp);
->  	intel_dp_pcon_dsc_configure(intel_dp, pipe_config);
->  	intel_dp_start_link_train(intel_dp, pipe_config); @@ -6853,7 +6878,7
-> @@ intel_dp_update_420(struct intel_dp *intel_dp)  {
->  	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
->  	struct intel_connector *connector = intel_dp->attached_connector;
-> -	bool is_branch, ycbcr_420_passthrough, ycbcr_444_to_420;
-> +	bool is_branch, ycbcr_420_passthrough, ycbcr_444_to_420, rgb_to_ycbcr;
-> 
->  	/* No YCbCr output support on gmch platforms */
->  	if (HAS_GMCH(i915))
-> @@ -6875,14 +6900,26 @@ intel_dp_update_420(struct intel_dp *intel_dp)
->  		dp_to_dig_port(intel_dp)->lspcon.active ||
->  		drm_dp_downstream_444_to_420_conversion(intel_dp->dpcd,
->  							intel_dp-
-> >downstream_ports);
-> +	rgb_to_ycbcr = drm_dp_downstream_rgb_to_ycbcr_conversion(intel_dp-
-> >dpcd,
-> +							intel_dp-
-> >downstream_ports,
-> +
-> 	DP_DS_HDMI_BT601_RGB_YCBCR_CONV ||
-> +
-> 	DP_DS_HDMI_BT709_RGB_YCBCR_CONV ||
-> +
-> 	DP_DS_HDMI_BT2020_RGB_YCBCR_CONV);
 
-Here also, match the parenthesis.
+== Linux commits ==
 
-> 
->  	if (INTEL_GEN(i915) >= 11) {
-> +		/* Let PCON convert from RGB->YCbCr if possible */
-> +		if (is_branch && rgb_to_ycbcr && ycbcr_444_to_420) {
-> +			intel_dp->dfp.rgb_to_ycbcr = true;
-> +			intel_dp->dfp.ycbcr_444_to_420 = true;
-> +			connector->base.ycbcr_420_allowed = true;
-> +		} else {
->  		/* Prefer 4:2:0 passthrough over 4:4:4->4:2:0 conversion */
-> -		intel_dp->dfp.ycbcr_444_to_420 =
-> -			ycbcr_444_to_420 && !ycbcr_420_passthrough;
-> +			intel_dp->dfp.ycbcr_444_to_420 =
-> +				ycbcr_444_to_420 && !ycbcr_420_passthrough;
-> 
-> -		connector->base.ycbcr_420_allowed =
-> -			!is_branch || ycbcr_444_to_420 ||
-> ycbcr_420_passthrough;
-> +			connector->base.ycbcr_420_allowed =
-> +				!is_branch || ycbcr_444_to_420 ||
-> ycbcr_420_passthrough;
-> +		}
->  	} else {
->  		/* 4:4:4->4:2:0 conversion is the only way */
->  		intel_dp->dfp.ycbcr_444_to_420 = ycbcr_444_to_420; @@ -
-> 6891,8 +6928,9 @@ intel_dp_update_420(struct intel_dp *intel_dp)
->  	}
-> 
->  	drm_dbg_kms(&i915->drm,
-> -		    "[CONNECTOR:%d:%s] YCbCr 4:2:0 allowed? %s, YCbCr 4:4:4-
-> >4:2:0 conversion? %s\n",
-> +		    "[CONNECTOR:%d:%s] RGB->YcbCr conversion? %s, YCbCr 4:2:0
-> +allowed? %s, YCbCr 4:4:4->4:2:0 conversion? %s\n",
->  		    connector->base.base.id, connector->base.name,
-> +		    yesno(intel_dp->dfp.rgb_to_ycbcr),
->  		    yesno(connector->base.ycbcr_420_allowed),
->  		    yesno(intel_dp->dfp.ycbcr_444_to_420));
->  }
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp.h
-> b/drivers/gpu/drm/i915/display/intel_dp.h
-> index 1bfde4f89019..4280a09fd8fd 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp.h
-> +++ b/drivers/gpu/drm/i915/display/intel_dp.h
-> @@ -51,7 +51,8 @@ int intel_dp_get_link_train_fallback_values(struct intel_dp
-> *intel_dp,  int intel_dp_retrain_link(struct intel_encoder *encoder,
->  			  struct drm_modeset_acquire_ctx *ctx);  void
-> intel_dp_set_power(struct intel_dp *intel_dp, u8 mode); -void
-> intel_dp_configure_protocol_converter(struct intel_dp *intel_dp);
-> +void intel_dp_configure_protocol_converter(struct intel_dp *intel_dp,
-> +					   const struct intel_crtc_state
-> *crtc_state);
->  void intel_dp_sink_set_decompression_state(struct intel_dp *intel_dp,
->  					   const struct intel_crtc_state *crtc_state,
->  					   bool enable);
-> --
-> 2.17.1
+f7d323039f46 gpu/drm/i915: convert comma to semicolon
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19160/index.html
+
+--===============5259751012275349306==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>gpu/drm/i915: convert comma to semicolon</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/85006/">https://patchwork.freedesktop.org/series/85006/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19160/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19160/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_9494 -&gt; Patchwork_19160</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19160/index.html</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_19160 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@amdgpu/amd_basic@semaphore:</p>
+<ul>
+<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19160/fi-bdw-5557u/igt@amdgpu/amd_basic@semaphore.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +22 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@amdgpu/amd_cs_nop@nop-gfx0:</p>
+<ul>
+<li>fi-apl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19160/fi-apl-guc/igt@amdgpu/amd_cs_nop@nop-gfx0.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +17 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@core_hotunplug@unbind-rebind:</p>
+<ul>
+<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19160/fi-bdw-5557u/igt@core_hotunplug@unbind-rebind.html">WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2283">i915#2283</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@debugfs_test@read_all_entries:</p>
+<ul>
+<li>fi-apl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9494/fi-apl-guc/igt@debugfs_test@read_all_entries.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19160/fi-apl-guc/igt@debugfs_test@read_all_entries.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/62">i915#62</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_exec_suspend@basic-s0:</p>
+<ul>
+<li>fi-apl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9494/fi-apl-guc/igt@gem_exec_suspend@basic-s0.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19160/fi-apl-guc/igt@gem_exec_suspend@basic-s0.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/180">i915#180</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/62">i915#62</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@vgem_basic@create:</p>
+<ul>
+<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9494/fi-tgl-y/igt@vgem_basic@create.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19160/fi-tgl-y/igt@vgem_basic@create.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) +1 similar issue</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live@gt_heartbeat:</p>
+<ul>
+<li>fi-kbl-soraka:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9494/fi-kbl-soraka/igt@i915_selftest@live@gt_heartbeat.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2291">i915#2291</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/541">i915#541</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19160/fi-kbl-soraka/igt@i915_selftest@live@gt_heartbeat.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@gt_timelines:</p>
+<ul>
+<li>fi-apl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9494/fi-apl-guc/igt@i915_selftest@live@gt_timelines.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2750">i915#2750</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19160/fi-apl-guc/igt@i915_selftest@live@gt_timelines.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@prime_self_import@basic-with_two_bos:</p>
+<ul>
+<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9494/fi-tgl-y/igt@prime_self_import@basic-with_two_bos.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19160/fi-tgl-y/igt@prime_self_import@basic-with_two_bos.html">PASS</a> +1 similar issue</li>
+</ul>
+</li>
+</ul>
+<h2>Participating hosts (42 -&gt; 39)</h2>
+<p>Missing    (3): fi-bsw-cyan fi-bdw-samus fi-hsw-4200u </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_9494 -&gt; Patchwork_19160</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_9494: 0daa598dbcfd00141cb7e287d6e1369916097161 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_5905: 3d0934900bddeb7a68f1abab4cd05077f0609e32 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
+  Patchwork_19160: f7d323039f460825dd44fb183c09384ccd7f15ed @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>f7d323039f46 gpu/drm/i915: convert comma to semicolon</p>
+
+</body>
+</html>
+
+--===============5259751012275349306==--
+
+--===============1949408402==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============1949408402==--
