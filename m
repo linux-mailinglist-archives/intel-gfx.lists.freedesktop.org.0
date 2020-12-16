@@ -2,43 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8647D2DC00C
-	for <lists+intel-gfx@lfdr.de>; Wed, 16 Dec 2020 13:16:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 43F9C2DC00E
+	for <lists+intel-gfx@lfdr.de>; Wed, 16 Dec 2020 13:17:33 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D471589C09;
-	Wed, 16 Dec 2020 12:16:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 972156E162;
+	Wed, 16 Dec 2020 12:17:31 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9085F89C09
- for <intel-gfx@lists.freedesktop.org>; Wed, 16 Dec 2020 12:16:08 +0000 (UTC)
-IronPort-SDR: D1SnWsg0c5G9k+IRyV7Vzr0nhaMu5EA+VqNtmTKYP60Kop9GVNhKjPqicI55DlCwVEZrLXBMRR
- Heylnb7Cllmw==
-X-IronPort-AV: E=McAfee;i="6000,8403,9836"; a="174280494"
-X-IronPort-AV: E=Sophos;i="5.78,424,1599548400"; d="scan'208";a="174280494"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Dec 2020 04:16:08 -0800
-IronPort-SDR: 2JC79GBPS7FD4lI+lLjLw3BxM3IEP1XskVNgOq5lwenXWRBUX6oCiaAiMwil4b0X8VtCX2Tbe8
- fCpbI264lnwQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.78,424,1599548400"; d="scan'208";a="451946850"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by fmsmga001.fm.intel.com with SMTP; 16 Dec 2020 04:16:05 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 16 Dec 2020 14:16:04 +0200
-Date: Wed, 16 Dec 2020 14:16:04 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Jani Nikula <jani.nikula@intel.com>
-Message-ID: <X9n6hCzikvQvnZ25@intel.com>
-References: <cover.1608117676.git.jani.nikula@intel.com>
- <80bdfd91b04f301db0e2c64752b1e10665bba7d8.1608117676.git.jani.nikula@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 33B2A6E162;
+ Wed, 16 Dec 2020 12:17:30 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 2D2FEA008A;
+ Wed, 16 Dec 2020 12:17:30 +0000 (UTC)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <80bdfd91b04f301db0e2c64752b1e10665bba7d8.1608117676.git.jani.nikula@intel.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH v4 11/11] drm/i915: split fb scalable checks
- into g4x and skl versions
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Mun, Gwan-gyeong" <gwan-gyeong.mun@intel.com>
+Date: Wed, 16 Dec 2020 12:17:30 -0000
+Message-ID: <160812105018.16511.11855981525196615410@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20201216093825.403689-1-gwan-gyeong.mun@intel.com>
+In-Reply-To: <20201216093825.403689-1-gwan-gyeong.mun@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
+ =?utf-8?q?ies_starting_with_=5Bv6=2C1/2=5D_drm/i915/display=3A_Support_PS?=
+ =?utf-8?q?R_Multiple_Transcoders?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,109 +39,282 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Dave Airlie <airlied@redhat.com>, intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============0733202647=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Dec 16, 2020 at 01:29:18PM +0200, Jani Nikula wrote:
-> From: Dave Airlie <airlied@redhat.com>
-> =
+--===============0733202647==
+Content-Type: multipart/alternative;
+ boundary="===============7212171062472304027=="
 
-> This just cleans these up a bit.
-> =
+--===============7212171062472304027==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-> Signed-off-by: Dave Airlie <airlied@redhat.com>
-> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_gen9_plane.c | 4 ++--
->  drivers/gpu/drm/i915/display/intel_sprite.c     | 7 +++----
->  2 files changed, 5 insertions(+), 6 deletions(-)
-> =
+== Series Details ==
 
-> diff --git a/drivers/gpu/drm/i915/display/intel_gen9_plane.c b/drivers/gp=
-u/drm/i915/display/intel_gen9_plane.c
-> index 8549b262f095..c695ee990a82 100644
-> --- a/drivers/gpu/drm/i915/display/intel_gen9_plane.c
-> +++ b/drivers/gpu/drm/i915/display/intel_gen9_plane.c
-> @@ -2139,7 +2139,7 @@ static int skl_check_plane_surface(struct intel_pla=
-ne_state *plane_state)
->  	return 0;
->  }
->  =
+Series: series starting with [v6,1/2] drm/i915/display: Support PSR Multiple Transcoders
+URL   : https://patchwork.freedesktop.org/series/84997/
+State : success
 
-> -static bool intel_fb_scalable(const struct drm_framebuffer *fb)
-> +static bool skl_fb_scalable(const struct drm_framebuffer *fb)
->  {
->  	if (!fb)
->  		return false;
-> @@ -2172,7 +2172,7 @@ static int skl_plane_check(struct intel_crtc_state =
-*crtc_state,
->  		return ret;
->  =
+== Summary ==
 
->  	/* use scaler when colorkey is not required */
-> -	if (!plane_state->ckey.flags && intel_fb_scalable(fb)) {
-> +	if (!plane_state->ckey.flags && skl_fb_scalable(fb)) {
->  		min_scale =3D 1;
->  		max_scale =3D skl_plane_max_scale(dev_priv, fb);
->  	}
-> diff --git a/drivers/gpu/drm/i915/display/intel_sprite.c b/drivers/gpu/dr=
-m/i915/display/intel_sprite.c
-> index cc3bec42d04c..4cb6339d12be 100644
-> --- a/drivers/gpu/drm/i915/display/intel_sprite.c
-> +++ b/drivers/gpu/drm/i915/display/intel_sprite.c
-> @@ -1282,19 +1282,18 @@ g4x_plane_get_hw_state(struct intel_plane *plane,
->  	return ret;
->  }
->  =
+CI Bug Log - changes from CI_DRM_9490 -> Patchwork_19155
+====================================================
 
-> -static bool intel_fb_scalable(const struct drm_framebuffer *fb)
-> +static bool g4x_fb_scalable(const struct drm_framebuffer *fb)
->  {
->  	if (!fb)
->  		return false;
->  =
+Summary
+-------
 
->  	switch (fb->format->format) {
->  	case DRM_FORMAT_C8:
-> -		return false;
->  	case DRM_FORMAT_XRGB16161616F:
->  	case DRM_FORMAT_ARGB16161616F:
->  	case DRM_FORMAT_XBGR16161616F:
->  	case DRM_FORMAT_ABGR16161616F:
-> -		return INTEL_GEN(to_i915(fb->dev)) >=3D 11;
-> +		return false;
+  **SUCCESS**
 
-We could drop a bunch of the formats here since they're not
-supported by the g4x+ sprites anyway. But that could be a followup.
+  No regressions found.
 
-Reviewed-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19155/index.html
 
->  	default:
->  		return true;
->  	}
-> @@ -1371,7 +1370,7 @@ g4x_sprite_check(struct intel_crtc_state *crtc_stat=
-e,
->  	int max_scale =3D DRM_PLANE_HELPER_NO_SCALING;
->  	int ret;
->  =
+Possible new issues
+-------------------
 
-> -	if (intel_fb_scalable(plane_state->hw.fb)) {
-> +	if (g4x_fb_scalable(plane_state->hw.fb)) {
->  		if (INTEL_GEN(dev_priv) < 7) {
->  			min_scale =3D 1;
->  			max_scale =3D 16 << 16;
-> -- =
+  Here are the unknown changes that may have been introduced in Patchwork_19155:
 
-> 2.20.1
+### IGT changes ###
 
--- =
+#### Suppressed ####
 
-Ville Syrj=E4l=E4
-Intel
+  The following results come from untrusted machines, tests, or statuses.
+  They do not affect the overall result.
+
+  * igt@kms_psr@primary_mmap_gtt:
+    - {fi-tgl-dsi}:       [SKIP][1] ([fdo#110189]) -> [SKIP][2] +3 similar issues
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9490/fi-tgl-dsi/igt@kms_psr@primary_mmap_gtt.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19155/fi-tgl-dsi/igt@kms_psr@primary_mmap_gtt.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_19155 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@gem_flink_basic@double-flink:
+    - fi-tgl-y:           [PASS][3] -> [DMESG-WARN][4] ([i915#402]) +1 similar issue
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9490/fi-tgl-y/igt@gem_flink_basic@double-flink.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19155/fi-tgl-y/igt@gem_flink_basic@double-flink.html
+
+  * igt@i915_pm_rpm@module-reload:
+    - fi-kbl-guc:         [PASS][5] -> [SKIP][6] ([fdo#109271])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9490/fi-kbl-guc/igt@i915_pm_rpm@module-reload.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19155/fi-kbl-guc/igt@i915_pm_rpm@module-reload.html
+
+  * igt@i915_selftest@live@blt:
+    - fi-snb-2520m:       [PASS][7] -> [DMESG-FAIL][8] ([i915#1409])
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9490/fi-snb-2520m/igt@i915_selftest@live@blt.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19155/fi-snb-2520m/igt@i915_selftest@live@blt.html
+
+  * igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:
+    - fi-bdw-5557u:       NOTRUN -> [SKIP][9] ([fdo#109271]) +3 similar issues
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19155/fi-bdw-5557u/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html
+
+  * igt@kms_chamelium@dp-crc-fast:
+    - fi-bdw-5557u:       NOTRUN -> [SKIP][10] ([fdo#109271] / [fdo#111827]) +8 similar issues
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19155/fi-bdw-5557u/igt@kms_chamelium@dp-crc-fast.html
+
+  
+#### Possible fixes ####
+
+  * igt@debugfs_test@read_all_entries:
+    - fi-tgl-y:           [DMESG-WARN][11] ([i915#402]) -> [PASS][12] +2 similar issues
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9490/fi-tgl-y/igt@debugfs_test@read_all_entries.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19155/fi-tgl-y/igt@debugfs_test@read_all_entries.html
+
+  * igt@i915_selftest@live@gt_heartbeat:
+    - fi-tgl-y:           [DMESG-FAIL][13] ([i915#2601]) -> [PASS][14]
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9490/fi-tgl-y/igt@i915_selftest@live@gt_heartbeat.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19155/fi-tgl-y/igt@i915_selftest@live@gt_heartbeat.html
+
+  * igt@kms_chamelium@dp-crc-fast:
+    - fi-kbl-7500u:       [FAIL][15] ([i915#1161] / [i915#262]) -> [PASS][16]
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9490/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19155/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [fdo#110189]: https://bugs.freedesktop.org/show_bug.cgi?id=110189
+  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
+  [i915#1161]: https://gitlab.freedesktop.org/drm/intel/issues/1161
+  [i915#1409]: https://gitlab.freedesktop.org/drm/intel/issues/1409
+  [i915#2601]: https://gitlab.freedesktop.org/drm/intel/issues/2601
+  [i915#262]: https://gitlab.freedesktop.org/drm/intel/issues/262
+  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
+
+
+Participating hosts (43 -> 39)
+------------------------------
+
+  Missing    (4): fi-ctg-p8600 fi-bsw-cyan fi-bdw-samus fi-hsw-4200u 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_9490 -> Patchwork_19155
+
+  CI-20190529: 20190529
+  CI_DRM_9490: a8d002117655cf836077d0334ae97486eb699ed9 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5903: e4a5c72eaa83aa07ff6847e4c166c17dd29722f0 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_19155: 46edf1f39389b05e11e477ba7cc9e8c50526e8ab @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+46edf1f39389 drm/i915/display: Support Multiple Transcoders' PSR status on debugfs
+144736cb4785 drm/i915/display: Support PSR Multiple Transcoders
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19155/index.html
+
+--===============7212171062472304027==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>series starting with [v6,1/2] drm/i915/display: Support PSR Multiple Transcoders</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/84997/">https://patchwork.freedesktop.org/series/84997/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19155/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19155/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_9490 -&gt; Patchwork_19155</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19155/index.html</p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in Patchwork_19155:</p>
+<h3>IGT changes</h3>
+<h4>Suppressed</h4>
+<p>The following results come from untrusted machines, tests, or statuses.<br />
+  They do not affect the overall result.</p>
+<ul>
+<li>igt@kms_psr@primary_mmap_gtt:<ul>
+<li>{fi-tgl-dsi}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9490/fi-tgl-dsi/igt@kms_psr@primary_mmap_gtt.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=110189">fdo#110189</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19155/fi-tgl-dsi/igt@kms_psr@primary_mmap_gtt.html">SKIP</a> +3 similar issues</li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_19155 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@gem_flink_basic@double-flink:</p>
+<ul>
+<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9490/fi-tgl-y/igt@gem_flink_basic@double-flink.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19155/fi-tgl-y/igt@gem_flink_basic@double-flink.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) +1 similar issue</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_pm_rpm@module-reload:</p>
+<ul>
+<li>fi-kbl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9490/fi-kbl-guc/igt@i915_pm_rpm@module-reload.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19155/fi-kbl-guc/igt@i915_pm_rpm@module-reload.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@blt:</p>
+<ul>
+<li>fi-snb-2520m:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9490/fi-snb-2520m/igt@i915_selftest@live@blt.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19155/fi-snb-2520m/igt@i915_selftest@live@blt.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1409">i915#1409</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:</p>
+<ul>
+<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19155/fi-bdw-5557u/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +3 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium@dp-crc-fast:</p>
+<ul>
+<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19155/fi-bdw-5557u/igt@kms_chamelium@dp-crc-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@debugfs_test@read_all_entries:</p>
+<ul>
+<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9490/fi-tgl-y/igt@debugfs_test@read_all_entries.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19155/fi-tgl-y/igt@debugfs_test@read_all_entries.html">PASS</a> +2 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@gt_heartbeat:</p>
+<ul>
+<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9490/fi-tgl-y/igt@i915_selftest@live@gt_heartbeat.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2601">i915#2601</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19155/fi-tgl-y/igt@i915_selftest@live@gt_heartbeat.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium@dp-crc-fast:</p>
+<ul>
+<li>fi-kbl-7500u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9490/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1161">i915#1161</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/262">i915#262</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19155/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Participating hosts (43 -&gt; 39)</h2>
+<p>Missing    (4): fi-ctg-p8600 fi-bsw-cyan fi-bdw-samus fi-hsw-4200u </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_9490 -&gt; Patchwork_19155</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_9490: a8d002117655cf836077d0334ae97486eb699ed9 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_5903: e4a5c72eaa83aa07ff6847e4c166c17dd29722f0 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
+  Patchwork_19155: 46edf1f39389b05e11e477ba7cc9e8c50526e8ab @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>46edf1f39389 drm/i915/display: Support Multiple Transcoders' PSR status on debugfs<br />
+144736cb4785 drm/i915/display: Support PSR Multiple Transcoders</p>
+
+</body>
+</html>
+
+--===============7212171062472304027==--
+
+--===============0733202647==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============0733202647==--
