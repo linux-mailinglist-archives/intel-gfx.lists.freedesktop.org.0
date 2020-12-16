@@ -1,33 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8615E2DC358
-	for <lists+intel-gfx@lfdr.de>; Wed, 16 Dec 2020 16:44:11 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9783E2DC36F
+	for <lists+intel-gfx@lfdr.de>; Wed, 16 Dec 2020 16:52:07 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E32C16E20A;
-	Wed, 16 Dec 2020 15:44:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1F9A76E1D2;
+	Wed, 16 Dec 2020 15:52:05 +0000 (UTC)
 X-Original-To: Intel-gfx@lists.freedesktop.org
 Delivered-To: Intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A2CD76E209;
- Wed, 16 Dec 2020 15:44:05 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 872736E1D2;
+ Wed, 16 Dec 2020 15:52:03 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from localhost (unverified [78.156.65.138]) 
  by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 23345714-1500050 for multiple; Wed, 16 Dec 2020 15:44:00 +0000
+ 23345776-1500050 for multiple; Wed, 16 Dec 2020 15:51:58 +0000
 MIME-Version: 1.0
-In-Reply-To: <20201216152809.706094-1-tvrtko.ursulin@linux.intel.com>
+In-Reply-To: <20201216152809.706094-2-tvrtko.ursulin@linux.intel.com>
 References: <20201216152809.706094-1-tvrtko.ursulin@linux.intel.com>
+ <20201216152809.706094-2-tvrtko.ursulin@linux.intel.com>
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
  igt-dev@lists.freedesktop.org
-Date: Wed, 16 Dec 2020 15:44:01 +0000
-Message-ID: <160813344178.9127.8687502283562592577@build.alporthouse.com>
+Date: Wed, 16 Dec 2020 15:51:59 +0000
+Message-ID: <160813391912.9127.16376546917210365956@build.alporthouse.com>
 User-Agent: alot/0.9
-Subject: Re: [Intel-gfx] [igt-dev] [PATCH i-g-t 1/2] intel_gpu_top: Support
- exiting the tool by pressing 'q'
+Subject: Re: [Intel-gfx] [igt-dev] [PATCH i-g-t 2/2] intel_gpu_top:
+ Aggregate engine busyness per class
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,176 +47,302 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Tvrtko Ursulin (2020-12-16 15:28:08)
+Quoting Tvrtko Ursulin (2020-12-16 15:28:09)
 > From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 > 
-> Analoguous to top(1) we can enable the user to exit from the tool by
-> pressing 'q' on the console.
+> Similarly to how top(1) handles SMP, we can default to showing engines of
+> a same class as a single bar graph entry.
+> 
+> To achieve this a little bit of hackery is employed. PMU sampling is left
+> as is and only at the presentation layer we create a fake set of engines,
+> one for each class, summing and normalizing the load respectively.
 > 
 > Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 > ---
->  man/intel_gpu_top.rst |  6 ++++
->  tools/intel_gpu_top.c | 77 +++++++++++++++++++++++++++++++++++--------
->  2 files changed, 70 insertions(+), 13 deletions(-)
+>  man/intel_gpu_top.rst |   1 +
+>  tools/intel_gpu_top.c | 192 +++++++++++++++++++++++++++++++++++++++---
+>  2 files changed, 180 insertions(+), 13 deletions(-)
 > 
 > diff --git a/man/intel_gpu_top.rst b/man/intel_gpu_top.rst
-> index 5552e9699d26..2e0c3a05acc1 100644
+> index 2e0c3a05acc1..35ab10da9bb4 100644
 > --- a/man/intel_gpu_top.rst
 > +++ b/man/intel_gpu_top.rst
-> @@ -48,6 +48,12 @@ OPTIONS
->  -d
->      Select a specific GPU using supported filter.
+> @@ -54,6 +54,7 @@ RUNTIME CONTROL
+>  Supported keys:
 >  
-> +RUNTIME CONTROL
-> +===============
-> +
-> +Supported keys:
-> +
-> +    'q'    Exit from the tool.
+>      'q'    Exit from the tool.
+> +    '1'    Toggle between aggregated engine class and physical engine mode.
 >  
 >  DEVICE SELECTION
 >  ================
 > diff --git a/tools/intel_gpu_top.c b/tools/intel_gpu_top.c
-> index dbd353673e55..68911940f1d0 100644
+> index 68911940f1d0..8c4280aa19b9 100644
 > --- a/tools/intel_gpu_top.c
 > +++ b/tools/intel_gpu_top.c
-> @@ -23,24 +23,26 @@
+> @@ -76,8 +76,16 @@ struct engine {
+>         struct pmu_counter sema;
+>  };
 >  
->  #include "igt_device_scan.h"
->  
-> -#include <stdio.h>
-> -#include <sys/types.h>
-> -#include <dirent.h>
-> -#include <stdint.h>
->  #include <assert.h>
-> -#include <string.h>
->  #include <ctype.h>
-> -#include <stdlib.h>
-> -#include <unistd.h>
-> -#include <sys/stat.h>
-> +#include <dirent.h>
-> +#include <errno.h>
->  #include <fcntl.h>
->  #include <inttypes.h>
-> -#include <sys/ioctl.h>
-> -#include <errno.h>
-> -#include <math.h>
-> -#include <locale.h>
->  #include <limits.h>
-> +#include <locale.h>
-> +#include <math.h>
-> +#include <poll.h>
->  #include <signal.h>
-> +#include <stdint.h>
-> +#include <stdio.h>
-> +#include <stdlib.h>
-> +#include <string.h>
-> +#include <sys/ioctl.h>
-> +#include <sys/stat.h>
-> +#include <sys/types.h>
-> +#include <unistd.h>
-> +#include <termios.h>
->  
->  #include "igt_perf.h"
->  
-> @@ -1246,6 +1248,54 @@ static char *tr_pmu_name(struct igt_device_card *card)
->         return device;
+> +struct engine_class {
+> +       unsigned int class;
+> +       const char *name;
+> +       unsigned int num_engines;
+> +};
+> +
+>  struct engines {
+>         unsigned int num_engines;
+> +       unsigned int num_classes;
+> +       struct engine_class *class;
+>         unsigned int num_counters;
+>         DIR *root;
+>         int fd;
+> @@ -1118,6 +1126,8 @@ print_imc(struct engines *engines, double t, int lines, int con_w, int con_h)
+>         return lines;
 >  }
 >  
-> +static void interactive_stdin(void)
+> +static bool class_view;
+> +
+>  static int
+>  print_engines_header(struct engines *engines, double t,
+>                      int lines, int con_w, int con_h)
+> @@ -1133,8 +1143,13 @@ print_engines_header(struct engines *engines, double t,
+>                 pops->open_struct("engines");
+>  
+>                 if (output_mode == INTERACTIVE) {
+> -                       const char *a = "          ENGINE      BUSY ";
+>                         const char *b = " MI_SEMA MI_WAIT";
+> +                       const char *a;
+> +
+> +                       if (class_view)
+> +                               a = "         ENGINES     BUSY  ";
+> +                       else
+> +                               a = "          ENGINE     BUSY  ";
+>  
+>                         printf("\033[7m%s%*s%s\033[0m\n",
+>                                a, (int)(con_w - 1 - strlen(a) - strlen(b)),
+> @@ -1214,6 +1229,164 @@ print_engines_footer(struct engines *engines, double t,
+>         return lines;
+>  }
+>  
+> +static int class_cmp(const void *_a, const void *_b)
 > +{
-> +       struct termios termios = { };
-> +       int ret;
+> +       const struct engine_class *a = _a;
+> +       const struct engine_class *b = _b;
 > +
-> +       ret = fcntl(0, F_GETFL, NULL);
-> +       ret |= O_NONBLOCK;
-> +       ret = fcntl(0, F_SETFL, ret);
-> +       assert(ret == 0);
-
-I always have to double check that O_NONBLOCK is in F_SETFL and not
-F_SETFD.
-
-> +
-> +       ret = tcgetattr(0, &termios);
-> +       assert(ret == 0);
-> +
-> +       termios.c_lflag &= ~ICANON;
-> +       termios.c_cc[VMIN] = 1;
-> +       termios.c_cc[VTIME] = 0; /* Deciseconds only - we'll use poll. */
-> +
-> +       ret = tcsetattr(0, TCSAFLUSH, &termios);
-> +       assert(ret == 0);
+> +       return a->class - b->class;
 > +}
 > +
-> +static void process_stdin(unsigned int timeout_us)
+> +static void init_engine_classes(struct engines *engines)
 > +{
-> +       struct pollfd p = { .fd = 0, .events = POLLIN };
-> +       int ret;
+> +       struct engine_class *classes;
+> +       unsigned int i, num;
+> +       int max = -1;
 > +
-> +       ret = poll(&p, 1, timeout_us / 1000);
-
-Replacing the usleep in the mainloop.
-
-Hmm. Won't this have a problem if this run as a daemon (with stdin
-closed)?
-
-> +       if (ret <= 0) {
-> +               if (ret < 0)
-> +                       stop_top = true;
-> +               return;
+> +       for (i = 0; i < engines->num_engines; i++) {
+> +               struct engine *engine = engine_ptr(engines, i);
+> +
+> +               if ((int)engine->class > max)
+> +                       max = engine->class;
+> +       }
+> +       assert(max >= 0);
+> +
+> +       num = max + 1;
+> +
+> +       classes = calloc(num, sizeof(*classes));
+> +       assert(classes);
+> +
+> +       for (i = 0; i < engines->num_engines; i++) {
+> +               struct engine *engine = engine_ptr(engines, i);
+> +
+> +               classes[engine->class].num_engines++;
 > +       }
 > +
-> +       for (;;) {
-> +               char c;
-> +
-> +               ret = read(0, &c, 1);
-> +               if (ret <= 0)
-> +                       break;
-
-O_NONBLOCK on 0.
-
-So on each mainloop, we check for a key press, consume all that are in
-the buffer, then return to the mainloop.
-
-> +
-> +               switch (c) {
-> +               case 'q':
-> +                       stop_top = true;
-> +                       break;
-> +               };
+> +       for (i = 0; i < num; i++) {
+> +               classes[i].class = i;
+> +               classes[i].name = class_display_name(i);
 > +       }
+
+Do you want to remove empty classes at this point?
+
+> +
+> +       qsort(classes, num, sizeof(*classes), class_cmp);
+> +
+> +       engines->num_classes = num;
+> +       engines->class = classes;
 > +}
 > +
->  int main(int argc, char **argv)
->  {
->         unsigned int period_us = DEFAULT_PERIOD_MS * 1000;
-> @@ -1315,6 +1365,7 @@ int main(int argc, char **argv)
->         switch (output_mode) {
+> +static void __pmu_sum(struct pmu_pair *dst, struct pmu_pair *src)
+> +{
+> +       dst->prev += src->prev;
+> +       dst->cur += src->cur;
+> +}
+> +
+> +static void __pmu_normalize(struct pmu_pair *val, unsigned int n)
+> +{
+> +       val->prev /= n;
+> +       val->cur /= n;
+
+I was expecting just the delta to be normalized. This works as well.
+
+> +}
+> +
+> +static struct engines *init_classes(struct engines *engines)
+> +{
+> +       struct engines *classes;
+> +       unsigned int i, j;
+> +
+> +       init_engine_classes(engines);
+> +
+> +       classes = calloc(1, sizeof(struct engines) +
+> +                           engines->num_classes * sizeof(struct engine));
+> +       assert(classes);
+> +
+> +       classes->num_engines = engines->num_classes;
+> +       classes->num_classes = engines->num_classes;
+> +       classes->class = engines->class;
+> +
+> +       for (i = 0; i < engines->num_classes; i++) {
+> +               struct engine *engine = engine_ptr(classes, i);
+> +
+> +               engine->class = i;
+> +               engine->instance = -1;
+> +
+> +               if (!engines->class[i].num_engines)
+> +                       continue;
+> +
+> +               engine->display_name = strdup(class_display_name(i));
+> +               assert(engine->display_name);
+> +               engine->short_name = strdup(class_short_name(i));
+> +               assert(engine->short_name);
+> +
+> +               for (j = 0; j < engines->num_engines; j++) {
+> +                       struct engine *e = engine_ptr(engines, j);
+> +
+> +                       if (e->class == i) {
+> +                               engine->num_counters = e->num_counters;
+> +                               engine->busy = e->busy;
+> +                               engine->sema = e->sema;
+> +                               engine->wait = e->wait;
+> +                       }
+> +               }
+> +       }
+> +
+> +       return classes;
+> +}
+> +
+> +static struct engines *
+> +update_classes(struct engines *classes, struct engines *engines)
+> +{
+> +       unsigned int i, j;
+> +
+> +       if (!classes)
+> +               classes = init_classes(engines);
+> +
+> +       for (i = 0; i < classes->num_engines; i++) {
+> +               unsigned int num_engines = classes->class[i].num_engines;
+> +               struct engine *engine = engine_ptr(classes, i);
+> +
+> +               if (!num_engines)
+> +                       continue;
+> +
+> +               memset(&engine->busy.val, 0, sizeof(engine->busy.val));
+> +               memset(&engine->sema.val, 0, sizeof(engine->sema.val));
+> +               memset(&engine->wait.val, 0, sizeof(engine->wait.val));
+> +
+> +               for (j = 0; j < engines->num_engines; j++) {
+> +                       struct engine *e = engine_ptr(engines, j);
+> +
+> +                       if (e->class == i) {
+> +                               __pmu_sum(&engine->busy.val, &e->busy.val);
+> +                               __pmu_sum(&engine->sema.val, &e->sema.val);
+> +                               __pmu_sum(&engine->wait.val, &e->wait.val);
+> +                       }
+> +               }
+> +
+> +               __pmu_normalize(&engine->busy.val, num_engines);
+> +               __pmu_normalize(&engine->sema.val, num_engines);
+> +               __pmu_normalize(&engine->wait.val, num_engines);
+
+Ok. So you wrap the normal engines with class_view, where each engine in
+that class_view is an average of all engines within it.
+
+> +       }
+> +
+> +       return classes;
+> +}
+> +
+> +static int
+> +print_engines(struct engines *engines, double t, int lines, int w, int h)
+> +{
+> +       static struct engines *classes;
+> +       struct engines *show;
+> +
+> +       if (class_view)
+> +               classes = show = update_classes(classes, engines);
+
+Something is not right here. Oh static, nvm.
+
+> +       else
+> +               show = engines;
+> +
+> +       lines = print_engines_header(show, t, lines, w,  h);
+> +
+> +       for (unsigned int i = 0; i < show->num_engines && lines < h; i++)
+> +               lines = print_engine(show, i, t, lines, w, h);
+> +
+> +       lines = print_engines_footer(show, t, lines, w, h);
+> +
+> +       return lines;
+> +}
+> +
+>  static bool stop_top;
+>  
+>  static void sigint_handler(int  sig)
+> @@ -1292,6 +1465,9 @@ static void process_stdin(unsigned int timeout_us)
+>                 case 'q':
+>                         stop_top = true;
+>                         break;
+> +               case '1':
+> +                       class_view ^= true;
+> +                       break;
+>                 };
+>         }
+>  }
+> @@ -1302,7 +1478,6 @@ int main(int argc, char **argv)
+>         int con_w = -1, con_h = -1;
+>         char *output_path = NULL;
+>         struct engines *engines;
+> -       unsigned int i;
+>         int ret = 0, ch;
+>         bool list_device = false;
+>         char *pmu_device, *opt_device = NULL;
+> @@ -1366,6 +1541,7 @@ int main(int argc, char **argv)
 >         case INTERACTIVE:
-
-INTERACTIVE is the default mode when run in a terminal.
-
 >                 pops = &term_pops;
-> +               interactive_stdin();
+>                 interactive_stdin();
+> +               class_view = true;
 >                 break;
 >         case STDOUT:
 >                 pops = &stdout_pops;
-> @@ -1427,7 +1478,7 @@ int main(int argc, char **argv)
+> @@ -1462,17 +1638,7 @@ int main(int argc, char **argv)
+>  
+>                         lines = print_imc(engines, t, lines, con_w, con_h);
+>  
+> -                       lines = print_engines_header(engines, t, lines, con_w,
+> -                                                    con_h);
+> -
+> -                       for (i = 0;
+> -                            i < engines->num_engines && lines < con_h;
+> -                            i++)
+> -                               lines = print_engine(engines, i, t, lines,
+> -                                                    con_w, con_h);
+> -
+> -                       lines = print_engines_footer(engines, t, lines, con_w,
+> -                                                    con_h);
+> +                       lines = print_engines(engines, t, lines, con_w, con_h);
+>                 }
+>  
 >                 if (stop_top)
->                         break;
->  
-> -               usleep(period_us);
-> +               process_stdin(period_us);
-
-Just the question about what happens if run with 0 closed...
-
-if (!process_stdin(period_us))
-	usleep(period_us);
-?
-
->         }
->  
->         free(codename);
 > -- 
 > 2.25.1
 > 
