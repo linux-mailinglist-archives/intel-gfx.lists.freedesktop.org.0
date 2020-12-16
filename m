@@ -2,57 +2,45 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9CBF32DBD6D
-	for <lists+intel-gfx@lfdr.de>; Wed, 16 Dec 2020 10:20:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0ED092DBD7E
+	for <lists+intel-gfx@lfdr.de>; Wed, 16 Dec 2020 10:25:47 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DA6396E0B9;
-	Wed, 16 Dec 2020 09:20:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3012789C85;
+	Wed, 16 Dec 2020 09:25:45 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-qt1-x833.google.com (mail-qt1-x833.google.com
- [IPv6:2607:f8b0:4864:20::833])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 250186E0B9
- for <intel-gfx@lists.freedesktop.org>; Wed, 16 Dec 2020 09:20:23 +0000 (UTC)
-Received: by mail-qt1-x833.google.com with SMTP id y15so16713374qtv.5
- for <intel-gfx@lists.freedesktop.org>; Wed, 16 Dec 2020 01:20:23 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=qAiXLq0Rv2iziEcam+8ortu3kvvfONHe9LpZGNcwpDs=;
- b=bNgY0zrnVbl16HeIu3oMkgjt37C2+LBQdPBgFghyuVw3CrTAD7jvHQ440I284IZT04
- n1fXbQtpUIb1evDOpO+ltkigndAPsH/fRA9qdFJ72GzV+CwwySAv9SPq/LAnRblSq7Ag
- cDbZOpB5PzmXZf5WiUzFqcZvcAgiAtQiSiId5EwZm0iJ2OJMISbiCMt2Et5q+e9NOk14
- K7uIWmEpb/bY6wG57iHUd81GcV4Tt+5SLG25WV5xqcyZu5WUIO7j1ZjFSDh2E76Z/lH1
- hluFDgsPIWrjWaTyK+7Pjth3zuWZRnbga4tnz/6tElEq8KSYD1tScoON2gV8/lAtGs8p
- LwfA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=qAiXLq0Rv2iziEcam+8ortu3kvvfONHe9LpZGNcwpDs=;
- b=Q8LR1QLKLT83nd/VXCKvhbj1FPFhffy1wvm6+GqzbD7A6abHMs5Jk72PqjavsAY4LV
- WkkmLdu1huB4w9SzViM47wPKb4Wx0T4V4UWC5yTvGEV8fYpDFFpm4ljWQSWJoa4jqXZv
- 6f1T5gl/mLLx50cAuceCOwmbDCc53a5SOVCMPiNyDqF/bzs8HylcHE1DOBs4+lLpioa5
- hTF7R5Y1wYelsIDoeSuQMbWxJwgbzhuYlBfZsFNZWnwVrGqbMJwF8fmlVCV8lrr+ZZpS
- KT7tbY5wAD4aCBy2MgLYvNWus7b646NoorO2vWtRKsTMI9IbFgBsAUepFopUfseg79WG
- sPeQ==
-X-Gm-Message-State: AOAM531qvbnk0+6hnURwWlroVfs9vcWc251T83ZSFcU/Md7Wyul793We
- bA1Zu8OQZZP2JXrP61wrQokp2WaekWzjY0dCTZQZD8Yy4U4=
-X-Google-Smtp-Source: ABdhPJyPUZDHP0DpBXHcl5qvoqfkOGGFUddTfzQScBnWUUAMxYfpZ/GNDHzy1UV7/FHfGr5obc4jqY4gNCjSic4jvG0=
-X-Received: by 2002:ac8:1c6a:: with SMTP id j39mr42161397qtk.341.1608110422280; 
- Wed, 16 Dec 2020 01:20:22 -0800 (PST)
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4F6B389C85
+ for <intel-gfx@lists.freedesktop.org>; Wed, 16 Dec 2020 09:25:43 +0000 (UTC)
+IronPort-SDR: HdvWtMIEwurwt+7JPCLBMdT4A8YlVWIuyqYCJ5+8hqWeZUpWhF/iDydcVGkCLJ/DO+2QMM7zsV
+ N4kGQUFZ+B2g==
+X-IronPort-AV: E=McAfee;i="6000,8403,9836"; a="154840937"
+X-IronPort-AV: E=Sophos;i="5.78,424,1599548400"; d="scan'208";a="154840937"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Dec 2020 01:25:42 -0800
+IronPort-SDR: 666alGcpHXO2q53bK5Jgt31N4BLoW2efJ8xyByjMeZVTkPEjIBpgpEJoRfq1xEYGepsbm1j9VX
+ DUGR5G8XCH7Q==
+X-IronPort-AV: E=Sophos;i="5.78,424,1599548400"; d="scan'208";a="368860126"
+Received: from rafik-mobl1.ger.corp.intel.com (HELO [10.251.174.118])
+ ([10.251.174.118])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Dec 2020 01:25:41 -0800
+To: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>,
+ intel-gfx@lists.freedesktop.org,
+ Lionel G Landwerlin <lionel.g.landwerlin@intel.com>
+References: <20201215214901.10038-1-umesh.nerlige.ramappa@intel.com>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+Message-ID: <ca9fac19-a681-3ec1-a2fd-16166c8ad6e4@linux.intel.com>
+Date: Wed, 16 Dec 2020 09:25:35 +0000
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-References: <20201215203111.650-1-chris@chris-wilson.co.uk>
- <3e4fe0b2533e48d19d78f3a4752b6508@intel.com>
- <160806973208.14591.6953006911801735484@build.alporthouse.com>
- <498fa7d973bb49acba439b0060d9e7d3@intel.com>
- <160810819627.1420.3427754786741837992@build.alporthouse.com>
-In-Reply-To: <160810819627.1420.3427754786741837992@build.alporthouse.com>
-From: Matthew Auld <matthew.william.auld@gmail.com>
-Date: Wed, 16 Dec 2020 09:19:56 +0000
-Message-ID: <CAM0jSHOTWq77TvNzVE-EoQxKNKV0mCqivYyjEd2ewY9KEPp-zQ@mail.gmail.com>
-To: Chris Wilson <chris@chris-wilson.co.uk>
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Fix mismatch between misplaced
- vma check and vma insert
+In-Reply-To: <20201215214901.10038-1-umesh.nerlige.ramappa@intel.com>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH 1/2] i915/perf: Move gen specific OA formats
+ to single array
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,102 +53,173 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: vger.kernel.orgstable@vger.kernel.org,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 16 Dec 2020 at 08:43, Chris Wilson <chris@chris-wilson.co.uk> wrote:
->
-> Quoting Tang, CQ (2020-12-16 00:51:21)
-> >
-> >
-> > > -----Original Message-----
-> > > From: Chris Wilson <chris@chris-wilson.co.uk>
-> > > Sent: Tuesday, December 15, 2020 2:02 PM
-> > > To: Tang, CQ <cq.tang@intel.com>; intel-gfx@lists.freedesktop.org
-> > > Cc: stable@ <vger.kernel.org stable@vger.kernel.org>
-> > > Subject: Re: [Intel-gfx] [PATCH] drm/i915: Fix mismatch between misplaced
-> > > vma check and vma insert
-> > >
-> > > Quoting Tang, CQ (2020-12-15 21:50:53)
-> > > >
-> > > >
-> > > > > -----Original Message-----
-> > > > > From: Chris Wilson <chris@chris-wilson.co.uk>
-> > > > > Sent: Tuesday, December 15, 2020 12:31 PM
-> > > > > To: intel-gfx@lists.freedesktop.org
-> > > > > Cc: Chris Wilson <chris@chris-wilson.co.uk>; Tang, CQ
-> > > > > <cq.tang@intel.com>; stable@vger.kernel.org
-> > > > > Subject: [PATCH] drm/i915: Fix mismatch between misplaced vma check
-> > > > > and vma insert
-> > > > >
-> > > > > When inserting a VMA, we restrict the placement to the low 4G unless
-> > > > > the caller opts into using the full range. This was done to allow
-> > > > > usersapce the opportunity to transition slowly from a 32b address
-> > > > > space, and to avoid breaking inherent 32b assumptions of some
-> > > commands.
-> > > > >
-> > > > > However, for insert we limited ourselves to 4G-4K, but on
-> > > > > verification we allowed the full 4G. This causes some attempts to
-> > > > > bind a new buffer to sporadically fail with -ENOSPC, but at other times be
-> > > bound successfully.
-> > > > >
-> > > > > commit 48ea1e32c39d ("drm/i915/gen9: Set PIN_ZONE_4G end to 4GB - 1
-> > > > > page") suggests that there is a genuine problem with stateless
-> > > > > addressing that cannot utilize the last page in 4G and so we purposefully
-> > > excluded it.
-> > > > >
-> > > > > Reported-by: CQ Tang <cq.tang@intel.com>
-> > > > > Fixes: 48ea1e32c39d ("drm/i915/gen9: Set PIN_ZONE_4G end to 4GB - 1
-> > > > > page")
-> > > > > Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-> > > > > Cc: CQ Tang <cq.tang@intel.com>
-> > > > > Cc: stable@vger.kernel.org
-> > > > > ---
-> > > > >  drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c | 2 +-
-> > > > >  1 file changed, 1 insertion(+), 1 deletion(-)
-> > > > >
-> > > > > diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-> > > > > b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-> > > > > index 193996144c84..2ff32daa50bd 100644
-> > > > > --- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-> > > > > +++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-> > > > > @@ -382,7 +382,7 @@ eb_vma_misplaced(const struct
-> > > > > drm_i915_gem_exec_object2 *entry,
-> > > > >               return true;
-> > > > >
-> > > > >       if (!(flags & EXEC_OBJECT_SUPPORTS_48B_ADDRESS) &&
-> > > > > -         (vma->node.start + vma->node.size - 1) >> 32)
-> > > > > +         (vma->node.start + vma->node.size + 4095) >> 32)
-> > > >
-> > > > Why 4095 not 4096?
-> > >
-> > > It's the nature of the test that we need an inclusive bound.
-> > >
-> > > Consider an object of size 4G - 4K, that is allowed to fit within our 32b GTT.
-> > >
-> > >       4G - 4k + 4K = 4G == 1 << 32: => vma misplaced
-> > >
-> > >       4G - 4k + 4k - 1 = 4G -1 = 0xffffffff => vma ok
-> >
-> > How do we trigger this code?  I run gem_exec_params@larger-than-life-batch but did not see this code is executed.
-> > Basically how do we triggre first attempt to pin the object in place.
->
-> It's the first pin tried, but the incoming execobj.offset must be
-> available and the object itself must be ready to be pinned. That's true
-> for the current tree on all current gen.
 
-Missing the original mail so just replying here,
-Reviewed-by: Matthew Auld <matthew.auld@intel.com>
+On 15/12/2020 21:49, Umesh Nerlige Ramappa wrote:
+> Variations in OA formats in the different gens has led to creation of
+> several sparse arrays to store the formats.
+> 
+> Move oa formats into a single array and add the supported range of
+> platforms for the oa formats.
+> 
+> Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+> ---
+>   drivers/gpu/drm/i915/i915_perf.c       | 56 ++++++++++++--------------
+>   drivers/gpu/drm/i915/i915_perf_types.h |  3 ++
+>   2 files changed, 28 insertions(+), 31 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/i915_perf.c b/drivers/gpu/drm/i915/i915_perf.c
+> index f553caf4b06d..afa92cf075c4 100644
+> --- a/drivers/gpu/drm/i915/i915_perf.c
+> +++ b/drivers/gpu/drm/i915/i915_perf.c
+> @@ -298,28 +298,27 @@ static u32 i915_oa_max_sample_rate = 100000;
+>   
+>   /* XXX: beware if future OA HW adds new report formats that the current
+>    * code assumes all reports have a power-of-two size and ~(size - 1) can
+> - * be used as a mask to align the OA tail pointer.
+> + * be used as a mask to align the OA tail pointer. Note that the platforms
+> + * in this array specify a range (inclusive of start and end).
+>    */
+> -static const struct i915_oa_format hsw_oa_formats[I915_OA_FORMAT_MAX] = {
+> -	[I915_OA_FORMAT_A13]	    = { 0, 64 },
+> -	[I915_OA_FORMAT_A29]	    = { 1, 128 },
+> -	[I915_OA_FORMAT_A13_B8_C8]  = { 2, 128 },
+> -	/* A29_B8_C8 Disallowed as 192 bytes doesn't factor into buffer size */
+> -	[I915_OA_FORMAT_B4_C8]	    = { 4, 64 },
+> -	[I915_OA_FORMAT_A45_B8_C8]  = { 5, 256 },
+> -	[I915_OA_FORMAT_B4_C8_A16]  = { 6, 128 },
+> -	[I915_OA_FORMAT_C4_B8]	    = { 7, 64 },
+> -};
+> -
+> -static const struct i915_oa_format gen8_plus_oa_formats[I915_OA_FORMAT_MAX] = {
+> -	[I915_OA_FORMAT_A12]		    = { 0, 64 },
+> -	[I915_OA_FORMAT_A12_B8_C8]	    = { 2, 128 },
+> -	[I915_OA_FORMAT_A32u40_A4u32_B8_C8] = { 5, 256 },
+> -	[I915_OA_FORMAT_C4_B8]		    = { 7, 64 },
+> -};
+> -
+> -static const struct i915_oa_format gen12_oa_formats[I915_OA_FORMAT_MAX] = {
+> -	[I915_OA_FORMAT_A32u40_A4u32_B8_C8] = { 5, 256 },
+> +static const struct i915_oa_format oa_formats[I915_OA_FORMAT_MAX] = {
+> +	/* haswell */
+> +	[I915_OA_FORMAT_A13]                    = { 0, 64, INTEL_IVYBRIDGE, INTEL_HASWELL },
+> +	[I915_OA_FORMAT_A29]                    = { 1, 128, INTEL_IVYBRIDGE, INTEL_HASWELL },
+> +	[I915_OA_FORMAT_A13_B8_C8]              = { 2, 128, INTEL_IVYBRIDGE, INTEL_HASWELL },
+> +	[I915_OA_FORMAT_B4_C8]                  = { 4, 64, INTEL_IVYBRIDGE, INTEL_HASWELL },
+> +	[I915_OA_FORMAT_A45_B8_C8]              = { 5, 256, INTEL_IVYBRIDGE, INTEL_HASWELL },
+> +	[I915_OA_FORMAT_B4_C8_A16]              = { 6, 128, INTEL_IVYBRIDGE, INTEL_HASWELL },
+> +
+> +	/* haswell+ upto but not including tigerlake */
+> +	[I915_OA_FORMAT_C4_B8]                  = { 7, 64, INTEL_IVYBRIDGE, INTEL_TIGERLAKE - 1 },
+> +
+> +	/* gen8+ upto but not including tigerlake */
+> +	[I915_OA_FORMAT_A12]                    = { 0, 64, INTEL_BROADWELL, INTEL_TIGERLAKE - 1 },
+> +	[I915_OA_FORMAT_A12_B8_C8]              = { 2, 128, INTEL_BROADWELL, INTEL_TIGERLAKE - 1 },
+> +
+> +	/* gen8+ */
+> +	[I915_OA_FORMAT_A32u40_A4u32_B8_C8]     = { 5, 256, INTEL_BROADWELL, INTEL_MAX_PLATFORMS - 1 },
+>   };
+>   
+>   #define SAMPLE_OA_REPORT      (1<<0)
+> @@ -3575,6 +3574,7 @@ static int read_properties_unlocked(struct i915_perf *perf,
+>   	for (i = 0; i < n_props; i++) {
+>   		u64 oa_period, oa_freq_hz;
+>   		u64 id, value;
+> +		enum intel_platform p = INTEL_INFO(perf->i915)->platform;
+>   
+>   		ret = get_user(id, uprop);
+>   		if (ret)
+> @@ -3611,8 +3611,9 @@ static int read_properties_unlocked(struct i915_perf *perf,
+>   					  value);
+>   				return -EINVAL;
+>   			}
+> -			if (!perf->oa_formats[value].size) {
+> -				DRM_DEBUG("Unsupported OA report format %llu\n",
+> +			if (p < perf->oa_formats[value].start ||
+> +			    p > perf->oa_formats[value].end) {
+> +				DRM_DEBUG("OA report format not supported %llu\n",
+>   					  value);
+>   				return -EINVAL;
+>   			}
+> @@ -4270,6 +4271,7 @@ void i915_perf_init(struct drm_i915_private *i915)
+>   
+>   	/* XXX const struct i915_perf_ops! */
+>   
+> +	perf->oa_formats = oa_formats;
+>   	if (IS_HASWELL(i915)) {
+>   		perf->ops.is_valid_b_counter_reg = gen7_is_valid_b_counter_addr;
+>   		perf->ops.is_valid_mux_reg = hsw_is_valid_mux_addr;
+> @@ -4280,8 +4282,6 @@ void i915_perf_init(struct drm_i915_private *i915)
+>   		perf->ops.oa_disable = gen7_oa_disable;
+>   		perf->ops.read = gen7_oa_read;
+>   		perf->ops.oa_hw_tail_read = gen7_oa_hw_tail_read;
+> -
+> -		perf->oa_formats = hsw_oa_formats;
+>   	} else if (HAS_LOGICAL_RING_CONTEXTS(i915)) {
+>   		/* Note: that although we could theoretically also support the
+>   		 * legacy ringbuffer mode on BDW (and earlier iterations of
+> @@ -4292,8 +4292,6 @@ void i915_perf_init(struct drm_i915_private *i915)
+>   		perf->ops.read = gen8_oa_read;
+>   
+>   		if (IS_GEN_RANGE(i915, 8, 9)) {
+> -			perf->oa_formats = gen8_plus_oa_formats;
+> -
+>   			perf->ops.is_valid_b_counter_reg =
+>   				gen7_is_valid_b_counter_addr;
+>   			perf->ops.is_valid_mux_reg =
+> @@ -4324,8 +4322,6 @@ void i915_perf_init(struct drm_i915_private *i915)
+>   				perf->gen8_valid_ctx_bit = BIT(16);
+>   			}
+>   		} else if (IS_GEN_RANGE(i915, 10, 11)) {
+> -			perf->oa_formats = gen8_plus_oa_formats;
+> -
+>   			perf->ops.is_valid_b_counter_reg =
+>   				gen7_is_valid_b_counter_addr;
+>   			perf->ops.is_valid_mux_reg =
+> @@ -4348,8 +4344,6 @@ void i915_perf_init(struct drm_i915_private *i915)
+>   			}
+>   			perf->gen8_valid_ctx_bit = BIT(16);
+>   		} else if (IS_GEN(i915, 12)) {
+> -			perf->oa_formats = gen12_oa_formats;
+> -
+>   			perf->ops.is_valid_b_counter_reg =
+>   				gen12_is_valid_b_counter_addr;
+>   			perf->ops.is_valid_mux_reg =
+> diff --git a/drivers/gpu/drm/i915/i915_perf_types.h b/drivers/gpu/drm/i915/i915_perf_types.h
+> index a36a455ae336..84dceb743ebc 100644
+> --- a/drivers/gpu/drm/i915/i915_perf_types.h
+> +++ b/drivers/gpu/drm/i915/i915_perf_types.h
+> @@ -19,6 +19,7 @@
+>   #include "gt/intel_sseu.h"
+>   #include "i915_reg.h"
+>   #include "intel_wakeref.h"
+> +#include "intel_device_info.h"
+>   
+>   struct drm_i915_private;
+>   struct file;
+> @@ -32,6 +33,8 @@ struct intel_engine_cs;
+>   struct i915_oa_format {
+>   	u32 format;
+>   	int size;
+> +	enum intel_platform start;
+> +	enum intel_platform end;
 
-> -Chris
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+As a drive by only - I question the concept of thinking about platforms 
+enums as ordered and having things like INTEL_TIGERLAKE - 1 in the code. 
+It's completely novel concept and I think fragile. Order there is purely 
+the order of upstreaming and not stable.
+
+Suggestions wise, if the rules are Gen based you could use a mask, but 
+if they are truly platform based then it is more tricky. However current 
+code does use gen ranges to assign them, so would a genmask really not fit?
+
+Regards,
+
+Tvrtko
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
