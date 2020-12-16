@@ -1,30 +1,38 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0E1172DC4D4
-	for <lists+intel-gfx@lfdr.de>; Wed, 16 Dec 2020 17:58:59 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id E5B492DC512
+	for <lists+intel-gfx@lfdr.de>; Wed, 16 Dec 2020 18:10:51 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DC4E289B62;
-	Wed, 16 Dec 2020 16:58:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 458A089C2A;
+	Wed, 16 Dec 2020 17:10:50 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EBA0389B62
- for <intel-gfx@lists.freedesktop.org>; Wed, 16 Dec 2020 16:58:53 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 23346527-1500050 
- for <intel-gfx@lists.freedesktop.org>; Wed, 16 Dec 2020 16:58:48 +0000
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Wed, 16 Dec 2020 16:58:50 +0000
-Message-Id: <20201216165850.25030-1-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.20.1
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3F2E889C2A
+ for <intel-gfx@lists.freedesktop.org>; Wed, 16 Dec 2020 17:10:49 +0000 (UTC)
+IronPort-SDR: JLHQf1fhjCZNM2S5UVjKUkZJ+n1xzsQLihc26bJkiYlox6FPEWb5kK7szMk06f7ChLW9EQmReq
+ jj9zUI4bGjAA==
+X-IronPort-AV: E=McAfee;i="6000,8403,9837"; a="171586204"
+X-IronPort-AV: E=Sophos;i="5.78,424,1599548400"; d="scan'208";a="171586204"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Dec 2020 09:10:48 -0800
+IronPort-SDR: chzyRRG7M8CPTwcwuZkXUhwzh72xXxSw1luOWh39zjrB2UNS7Swu3Q58WdNUDNuYVvfwPSAkfB
+ AEP0e2CSKP+w==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.78,424,1599548400"; d="scan'208";a="384758375"
+Received: from tejas-system-product-name.iind.intel.com ([10.145.162.130])
+ by fmsmga004.fm.intel.com with ESMTP; 16 Dec 2020 09:10:45 -0800
+From: Tejas Upadhyay <tejaskumarx.surendrakumar.upadhyay@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	hariom.pandey@intel.com
+Date: Wed, 16 Dec 2020 22:33:00 +0530
+Message-Id: <20201216170300.397742-1-tejaskumarx.surendrakumar.upadhyay@intel.com>
+X-Mailer: git-send-email 2.28.0
 MIME-Version: 1.0
-Subject: [Intel-gfx] [CI] drm/i915: Encode fence specific waitqueue
- behaviour into the wait.flags
+Subject: [Intel-gfx] [PATCH] drm/i915/cml : Add TGP PCH support
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,87 +50,64 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Use the wait_queue_entry.flags to denote the special fence behaviour
-(flattening continuations along fence chains, and for propagating
-errors) rather than trying to detect ordinary waiters by their
-functions.
+We have TGP PCH support for Tigerlake and Rocketlake. Similarly
+now TGP PCH can be used with Cometlake CPU.
 
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Reviewed-by: Matthew Brost <matthew.brost@intel.com>
+Cc: Matt Roper <matthew.d.roper@intel.com>
+Signed-off-by: Tejas Upadhyay <tejaskumarx.surendrakumar.upadhyay@intel.com>
 ---
- drivers/gpu/drm/i915/i915_sw_fence.c | 25 +++++++++++++++----------
- 1 file changed, 15 insertions(+), 10 deletions(-)
+ drivers/gpu/drm/i915/display/intel_ddi.c     | 3 ++-
+ drivers/gpu/drm/i915/display/intel_display.c | 6 ++++++
+ drivers/gpu/drm/i915/display/intel_hdmi.c    | 3 ++-
+ 3 files changed, 10 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/i915_sw_fence.c b/drivers/gpu/drm/i915/i915_sw_fence.c
-index 038d4c6884c5..2744558f3050 100644
---- a/drivers/gpu/drm/i915/i915_sw_fence.c
-+++ b/drivers/gpu/drm/i915/i915_sw_fence.c
-@@ -18,10 +18,15 @@
- #define I915_SW_FENCE_BUG_ON(expr) BUILD_BUG_ON_INVALID(expr)
- #endif
+diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
+index 6863236df1d0..10e677978ded 100644
+--- a/drivers/gpu/drm/i915/display/intel_ddi.c
++++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+@@ -5451,7 +5451,8 @@ void intel_ddi_init(struct drm_i915_private *dev_priv, enum port port)
  
--#define I915_SW_FENCE_FLAG_ALLOC BIT(3) /* after WQ_FLAG_* for safety */
--
- static DEFINE_SPINLOCK(i915_sw_fence_lock);
+ 	if (IS_DG1(dev_priv))
+ 		encoder->hpd_pin = dg1_hpd_pin(dev_priv, port);
+-	else if (IS_ROCKETLAKE(dev_priv))
++	else if (IS_ROCKETLAKE(dev_priv) || (IS_COMETLAKE(dev_priv) &&
++					     HAS_PCH_TGP(dev_priv)))
+ 		encoder->hpd_pin = rkl_hpd_pin(dev_priv, port);
+ 	else if (INTEL_GEN(dev_priv) >= 12)
+ 		encoder->hpd_pin = tgl_hpd_pin(dev_priv, port);
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index 78452de5e12f..711e8e21e756 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -17644,6 +17644,12 @@ static void intel_setup_outputs(struct drm_i915_private *dev_priv)
+ 			intel_ddi_init(dev_priv, PORT_F);
  
-+#define WQ_FLAG_BITS \
-+	BITS_PER_TYPE(typeof_member(struct wait_queue_entry, flags))
-+
-+/* after WQ_FLAG_* for safety */
-+#define I915_SW_FENCE_FLAG_FENCE BIT(WQ_FLAG_BITS - 1)
-+#define I915_SW_FENCE_FLAG_ALLOC BIT(WQ_FLAG_BITS - 2)
-+
- enum {
- 	DEBUG_FENCE_IDLE = 0,
- 	DEBUG_FENCE_NOTIFY,
-@@ -154,10 +159,10 @@ static void __i915_sw_fence_wake_up_all(struct i915_sw_fence *fence,
- 	spin_lock_irqsave_nested(&x->lock, flags, 1 + !!continuation);
- 	if (continuation) {
- 		list_for_each_entry_safe(pos, next, &x->head, entry) {
--			if (pos->func == autoremove_wake_function)
--				pos->func(pos, TASK_NORMAL, 0, continuation);
--			else
-+			if (pos->flags & I915_SW_FENCE_FLAG_FENCE)
- 				list_move_tail(&pos->entry, continuation);
-+			else
-+				pos->func(pos, TASK_NORMAL, 0, continuation);
- 		}
- 	} else {
- 		LIST_HEAD(extra);
-@@ -166,9 +171,9 @@ static void __i915_sw_fence_wake_up_all(struct i915_sw_fence *fence,
- 			list_for_each_entry_safe(pos, next, &x->head, entry) {
- 				int wake_flags;
+ 		icl_dsi_init(dev_priv);
++	} else if (IS_COMETLAKE(dev_priv) && HAS_PCH_TGP(dev_priv)) {
++		intel_ddi_init(dev_priv, PORT_A);
++		intel_ddi_init(dev_priv, PORT_B);
++		intel_ddi_init(dev_priv, PORT_C);
++		intel_ddi_init(dev_priv, PORT_D);
++		intel_ddi_init(dev_priv, PORT_E);
+ 	} else if (IS_GEN9_LP(dev_priv)) {
+ 		/*
+ 		 * FIXME: Broxton doesn't support port detection via the
+diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/i915/display/intel_hdmi.c
+index e10fdb369daa..881646ce47c5 100644
+--- a/drivers/gpu/drm/i915/display/intel_hdmi.c
++++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
+@@ -3174,7 +3174,8 @@ static u8 intel_hdmi_ddc_pin(struct intel_encoder *encoder)
  
--				wake_flags = fence->error;
--				if (pos->func == autoremove_wake_function)
--					wake_flags = 0;
-+				wake_flags = 0;
-+				if (pos->flags & I915_SW_FENCE_FLAG_FENCE)
-+					wake_flags = fence->error;
- 
- 				pos->func(pos, TASK_NORMAL, wake_flags, &extra);
- 			}
-@@ -332,8 +337,8 @@ static int __i915_sw_fence_await_sw_fence(struct i915_sw_fence *fence,
- 					  struct i915_sw_fence *signaler,
- 					  wait_queue_entry_t *wq, gfp_t gfp)
- {
-+	unsigned int pending;
- 	unsigned long flags;
--	int pending;
- 
- 	debug_fence_assert(fence);
- 	might_sleep_if(gfpflags_allow_blocking(gfp));
-@@ -349,7 +354,7 @@ static int __i915_sw_fence_await_sw_fence(struct i915_sw_fence *fence,
- 	if (unlikely(i915_sw_fence_check_if_after(fence, signaler)))
- 		return -EINVAL;
- 
--	pending = 0;
-+	pending = I915_SW_FENCE_FLAG_FENCE;
- 	if (!wq) {
- 		wq = kmalloc(sizeof(*wq), gfp);
- 		if (!wq) {
+ 	if (INTEL_PCH_TYPE(dev_priv) >= PCH_DG1)
+ 		ddc_pin = dg1_port_to_ddc_pin(dev_priv, port);
+-	else if (IS_ROCKETLAKE(dev_priv))
++	else if (IS_ROCKETLAKE(dev_priv) || (IS_COMETLAKE(dev_priv) &&
++					     HAS_PCH_TGP(dev_priv)))
+ 		ddc_pin = rkl_port_to_ddc_pin(dev_priv, port);
+ 	else if (HAS_PCH_MCC(dev_priv))
+ 		ddc_pin = mcc_port_to_ddc_pin(dev_priv, port);
 -- 
-2.20.1
+2.28.0
 
 _______________________________________________
 Intel-gfx mailing list
