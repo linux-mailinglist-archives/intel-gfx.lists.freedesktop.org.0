@@ -1,31 +1,60 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4F5B42DC0AD
-	for <lists+intel-gfx@lfdr.de>; Wed, 16 Dec 2020 14:03:58 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0E2312DC10B
+	for <lists+intel-gfx@lfdr.de>; Wed, 16 Dec 2020 14:18:15 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A03E16E1A8;
-	Wed, 16 Dec 2020 13:03:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6D7228997C;
+	Wed, 16 Dec 2020 13:18:13 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 180A46E1A7;
- Wed, 16 Dec 2020 13:03:54 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 1218DA0BCB;
- Wed, 16 Dec 2020 13:03:54 +0000 (UTC)
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6A53D8997C
+ for <intel-gfx@lists.freedesktop.org>; Wed, 16 Dec 2020 13:18:12 +0000 (UTC)
+IronPort-SDR: sDXoO/vfC4wU2wMKrhq7FAPda9vjTxxTQ20Va51DkWGfJLssKKffznyrsXyv9q1cfmpbVtqqu8
+ KqYE3HsnupYA==
+X-IronPort-AV: E=McAfee;i="6000,8403,9836"; a="193443826"
+X-IronPort-AV: E=Sophos;i="5.78,424,1599548400"; d="scan'208";a="193443826"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Dec 2020 05:17:56 -0800
+IronPort-SDR: 2aqifs1ZoAgGNuYBzO/n7LgIPAnpuFY+oAnhOkw1MmKm+LolRNfWUcTOmvnYwvWSwDdeTposbO
+ TrfbJiKme5cw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.78,424,1599548400"; d="scan'208";a="451961704"
+Received: from irsmsx606.ger.corp.intel.com ([163.33.146.139])
+ by fmsmga001.fm.intel.com with ESMTP; 16 Dec 2020 05:17:55 -0800
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ IRSMSX606.ger.corp.intel.com (163.33.146.139) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1713.5; Wed, 16 Dec 2020 13:17:53 +0000
+Received: from orsmsx610.amr.corp.intel.com ([10.22.229.23]) by
+ ORSMSX610.amr.corp.intel.com ([10.22.229.23]) with mapi id 15.01.1713.004;
+ Wed, 16 Dec 2020 05:17:52 -0800
+From: "Souza, Jose" <jose.souza@intel.com>
+To: "Mun, Gwan-gyeong" <gwan-gyeong.mun@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Thread-Topic: [PATCH v6 2/5] drm/i915/display/psr: Use plane damage clips to
+ calculate damaged area
+Thread-Index: AQHW0kFnEh9N88NE6kuNQVWnJ9Oncan4pqWAgAADfoCAAWQ2AIAALxqA
+Date: Wed, 16 Dec 2020 13:17:52 +0000
+Message-ID: <4f52b653ab0f9db43bfebfd0ebba93d6eab99f1a.camel@intel.com>
+References: <20201214174912.174065-1-jose.souza@intel.com>
+ <20201214174912.174065-2-jose.souza@intel.com>
+ <57d6f185c5b9fbd63f38e3339d1df4f0b1d4a70c.camel@intel.com>
+ <b1bdcb1fe3c440ff82453eab5934a48a97e58c2b.camel@intel.com>
+ <2abf93646e9f4bc981cbb2622ade0ded3ca90eae.camel@intel.com>
+In-Reply-To: <2abf93646e9f4bc981cbb2622ade0ded3ca90eae.camel@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.1.200.100]
+Content-ID: <9EAF50B5AFD82D40B4D0B28FFA99FDDA@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Ankit Nautiyal" <ankit.k.nautiyal@intel.com>
-Date: Wed, 16 Dec 2020 13:03:54 -0000
-Message-ID: <160812383405.16509.9914839571567224514@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20201216053121.18819-1-ankit.k.nautiyal@intel.com>
-In-Reply-To: <20201216053121.18819-1-ankit.k.nautiyal@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
- =?utf-8?q?Add_support_for_DP-HDMI2=2E1_PCON_=28rev8=29?=
+Subject: Re: [Intel-gfx] [PATCH v6 2/5] drm/i915/display/psr: Use plane
+ damage clips to calculate damaged area
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,257 +67,331 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
-
-Series: Add support for DP-HDMI2.1 PCON (rev8)
-URL   : https://patchwork.freedesktop.org/series/82098/
-State : warning
-
-== Summary ==
-
-$ dim sparse --fast origin/drm-tip
-Sparse version: v0.6.2
-Fast mode used, each commit won't be checked separately.
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:257:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:257:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:257:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:257:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:257:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:257:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:257:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:257:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:257:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:257:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:257:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:257:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:257:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:257:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:257:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:257:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:257:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:257:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:257:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:257:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:257:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:257:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:257:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:257:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:257:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:257:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:257:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:257:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:257:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:257:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:257:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:257:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:257:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:257:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:257:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:257:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:257:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:257:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:257:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:257:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:257:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:257:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:257:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:257:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:257:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:257:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:257:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:257:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:257:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:257:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:257:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:257:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:257:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:257:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:257:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:257:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:257:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:257:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:257:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:257:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:257:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:257:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:257:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:257:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:257:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:257:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:257:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:257:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:257:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:257:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:257:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:257:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:257:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:257:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:257:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:257:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:261:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:261:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:261:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:261:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:261:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:261:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:261:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:261:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:261:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:261:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:261:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:261:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:261:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:261:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:261:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:261:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:261:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:261:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:261:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:261:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:261:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:261:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:261:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:261:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:261:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:261:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:261:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:261:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:261:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:261:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:261:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:261:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:261:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:261:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:261:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:261:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:261:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:261:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:261:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:261:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:261:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:261:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:261:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:261:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:261:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:261:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:261:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:261:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:261:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:261:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:261:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:261:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:261:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:261:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:261:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:261:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:261:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:261:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:261:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:261:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:261:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:261:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:261:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:261:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:261:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:261:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:261:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:261:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:261:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:261:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:261:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:261:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:261:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:261:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:261:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:261:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:1398:25: error: incompatible types in comparison expression (different address spaces):
-+drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:1398:25:    struct dma_fence *
-+drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:1398:25:    struct dma_fence [noderef] __rcu *
-+drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:1399:17: error: incompatible types in comparison expression (different address spaces):
-+drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:1399:17:    struct dma_fence *
-+drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:1399:17:    struct dma_fence [noderef] __rcu *
-+drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:1458:17: error: incompatible types in comparison expression (different address spaces):
-+drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:1458:17:    struct dma_fence *
-+drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:1458:17:    struct dma_fence [noderef] __rcu *
-+drivers/gpu/drm/amd/amdgpu/amdgpu_device.c:268:16: error: incompatible types in comparison expression (different type sizes):
-+drivers/gpu/drm/amd/amdgpu/amdgpu_device.c:268:16:    unsigned long *
-+drivers/gpu/drm/amd/amdgpu/amdgpu_device.c:268:16:    unsigned long long *
-+drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c:276:25: error: incompatible types in comparison expression (different address spaces):
-+drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c:276:25:    struct dma_fence *
-+drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c:276:25:    struct dma_fence [noderef] __rcu *
-+drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c:277:17: error: incompatible types in comparison expression (different address spaces):
-+drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c:277:17:    struct dma_fence *
-+drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c:277:17:    struct dma_fence [noderef] __rcu *
-+drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c:331:17: error: incompatible types in comparison expression (different address spaces):
-+drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c:331:17:    struct dma_fence *
-+drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c:331:17:    struct dma_fence [noderef] __rcu *
-+drivers/gpu/drm/amd/amdgpu/amdgpu_ras_eeprom.h:92:56: error: marked inline, but without a definition
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:257:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:257:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:257:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:257:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:257:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:257:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:257:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:257:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:257:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:257:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:257:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:257:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:257:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:257:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:257:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:257:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:257:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:257:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:257:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:257:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:257:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:257:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:257:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:257:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:257:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:257:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:257:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:257:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:257:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:257:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:257:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:257:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:257:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:257:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:257:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:257:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:257:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:257:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:257:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:257:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:257:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:257:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:257:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:257:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:257:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:257:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:257:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:257:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:257:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:257:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:257:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:257:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:257:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:257:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:257:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amd
-
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+T24gV2VkLCAyMDIwLTEyLTE2IGF0IDEwOjI5ICswMDAwLCBNdW4sIEd3YW4tZ3llb25nIHdyb3Rl
+Og0KPiBPbiBUdWUsIDIwMjAtMTItMTUgYXQgMDU6MTQgLTA4MDAsIFNvdXphLCBKb3NlIHdyb3Rl
+Og0KPiA+IE9uIFR1ZSwgMjAyMC0xMi0xNSBhdCAxMzowMiArMDAwMCwgTXVuLCBHd2FuLWd5ZW9u
+ZyB3cm90ZToNCj4gPiA+IE9uIE1vbiwgMjAyMC0xMi0xNCBhdCAwOTo0OSAtMDgwMCwgSm9zw6kg
+Um9iZXJ0byBkZSBTb3V6YSB3cm90ZToNCj4gPiA+ID4gTm93IHVzaW5nIHBsYW5lIGRhbWFnZSBj
+bGlwcyBwcm9wZXJ0eSB0byBjYWxjdWFsdGUgdGhlIGRhbWFnZWQNCj4gPiA+ID4gYXJlYS4NCj4g
+PiA+ID4gU2VsZWN0aXZlIGZldGNoIG9ubHkgc3VwcG9ydHMgb25lIHJlZ2lvbiB0byBiZSBmZXRj
+aGVkIHNvDQo+ID4gPiA+IHNvZnR3YXJlDQo+ID4gPiA+IG5lZWRzIHRvIGNhbGN1bGF0ZSBhIGJv
+dW5kaW5nIGJveCBhcm91bmQgYWxsIGRhbWFnZSBjbGlwcy4NCj4gPiA+ID4gDQo+ID4gPiA+IE5v
+dyB0aGF0IHdlIGFyZSBub3QgY29tcGxldGUgZmV0Y2hpbmcgZWFjaCBwbGFuZSwgdGhlcmUgaXMN
+Cj4gPiA+ID4gYW5vdGhlcg0KPiA+ID4gPiBsb29wIG5lZWRlZCBhcyBhbGwgdGhlIHBsYW5lIGFy
+ZWFzIHRoYXQgaW50ZXJzZWN0IHdpdGggdGhlIHBpcGUNCj4gPiA+ID4gZGFtYWdlZCBhcmVhIG5l
+ZWRzIHRvIGJlIGZldGNoZWQgZnJvbSBtZW1vcnkgc28gdGhlIGNvbXBsZXRlDQo+ID4gPiA+IGJs
+ZW5kaW5nDQo+ID4gPiA+IG9mIGFsbCBwbGFuZXMgY2FuIGhhcHBlbi4NCj4gPiA+ID4gDQo+ID4g
+PiBIaSwNCj4gPiA+ID4gdjI6DQo+ID4gPiA+IC0gZG8gbm90IHNoaWZ0aGluZyBuZXdfcGxhbmVf
+c3RhdGUtPnVhcGkuZHN0IG9ubHkgc3JjIGlzIGluDQo+ID4gPiA+IDE2LjE2IA0KPiA+ID4gVHlw
+byBvbiBjb21taXQgbWVzc2FnZS4gc2hpZnRoaW5nIC0+IHNoaWZ0aW5nDQo+ID4gPiA+IGZvcm1h
+dA0KPiA+ID4gPiANCj4gPiA+ID4gdjQ6DQo+ID4gPiA+IC0gc2V0dGluZyBwbGFuZSBzZWxlY3Rp
+dmUgZmV0Y2ggYXJlYSB1c2luZyB0aGUgd2hvbGUgcGlwZSBkYW1hZ2UNCj4gPiA+ID4gYXJlYQ0K
+PiA+ID4gPiAtIG1hcmsgdGhlIHdob2xlIHBsYW5lIGFyZWEgZGFtYWdlZCBpZiBwbGFuZSB2aXNp
+YmlsaXR5IG9yIGFscGhhDQo+ID4gPiA+IGNoYW5nZWQNCj4gPiA+ID4gDQo+ID4gPiA+IHY1Og0K
+PiA+ID4gPiAtIHRha2luZyBpbiBjb25zaWRlcmF0aW9uIHNyYy55MSBpbiB0aGUgZGFtYWdlIGNv
+b3JkaW5hdGVzDQo+ID4gPiA+IC0gYWRkaW5nIHRvIHRoZSBwaXBlIGRhbWFnZWQgYXJlYSBwbGFu
+ZXMgdGhhdCB3ZXJlIHZpc2libGUgYnV0DQo+ID4gPiA+IGFyZQ0KPiA+ID4gPiBpbnZpc2libGUg
+aW4gdGhlIG5ldyBzdGF0ZQ0KPiA+ID4gPiANCj4gPiA+ID4gdjY6DQo+ID4gPiA+IC0gY29uc2lk
+ZXIgb2xkIHN0YXRlIHBsYW5lIGNvb3JkaW5hdGVzIHdoZW4gdmlzaWJpbGl0eSBjaGFuZ2VzIG9y
+DQo+ID4gPiA+IGl0DQo+ID4gPiA+IG1vdmVkIHRvIGNhbGN1bGF0ZSBkYW1hZ2VkIGFyZWENCj4g
+PiA+ID4gLSByZW1vdmUgZnJvbSBkYW1hZ2VkIGFyZWEgdGhlIHBvcnRpb24gbm90IGluIHNyYyBj
+bGlwDQo+ID4gPiA+IA0KPiA+ID4gPiBDYzogVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJqYWxh
+QGxpbnV4LmludGVsLmNvbT4NCj4gPiA+ID4gQ2M6IEd3YW4tZ3llb25nIE11biA8Z3dhbi1neWVv
+bmcubXVuQGludGVsLmNvbT4NCj4gPiA+ID4gU2lnbmVkLW9mZi1ieTogSm9zw6kgUm9iZXJ0byBk
+ZSBTb3V6YSA8am9zZS5zb3V6YUBpbnRlbC5jb20+DQo+ID4gPiA+IC0tLQ0KPiA+ID4gPiDCoGRy
+aXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfcHNyLmMgfCA5OA0KPiA+ID4gPiArKysr
+KysrKysrKysrKysrKysrKystDQo+ID4gPiA+IC0tDQo+ID4gPiA+IMKgMSBmaWxlIGNoYW5nZWQs
+IDg2IGluc2VydGlvbnMoKyksIDEyIGRlbGV0aW9ucygtKQ0KPiA+ID4gPiANCj4gPiA+ID4gZGlm
+ZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfcHNyLmMNCj4gPiA+
+ID4gYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX3Bzci5jDQo+ID4gPiA+IGlu
+ZGV4IGQ5YTM5NWM0ODZkMy4uN2RhZWQwOThmYTc0IDEwMDY0NA0KPiA+ID4gPiAtLS0gYS9kcml2
+ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX3Bzci5jDQo+ID4gPiA+ICsrKyBiL2RyaXZl
+cnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfcHNyLmMNCj4gPiA+ID4gQEAgLTEyNjksOCAr
+MTI2OSw4IEBAIGludCBpbnRlbF9wc3IyX3NlbF9mZXRjaF91cGRhdGUoc3RydWN0DQo+ID4gPiA+
+IGludGVsX2F0b21pY19zdGF0ZSAqc3RhdGUsDQo+ID4gPiA+IMKgCQkJCXN0cnVjdCBpbnRlbF9j
+cnRjICpjcnRjKQ0KPiA+ID4gPiDCoHsNCj4gPiA+ID4gwqAJc3RydWN0IGludGVsX2NydGNfc3Rh
+dGUgKmNydGNfc3RhdGUgPQ0KPiA+ID4gPiBpbnRlbF9hdG9taWNfZ2V0X25ld19jcnRjX3N0YXRl
+KHN0YXRlLCBjcnRjKTsNCj4gPiA+ID4gKwlzdHJ1Y3QgZHJtX3JlY3QgcGlwZV9jbGlwID0geyAu
+eDEgPSAwLCAueTEgPSAtMSwgLngyID0gSU5UX01BWCwNCj4gPiA+ID4gLnkyID0gLTEgfTsNCj4g
+PiA+ID4gwqAJc3RydWN0IGludGVsX3BsYW5lX3N0YXRlICpuZXdfcGxhbmVfc3RhdGUsICpvbGRf
+cGxhbmVfc3RhdGU7DQo+ID4gPiA+IC0Jc3RydWN0IGRybV9yZWN0IHBpcGVfY2xpcCA9IHsgLnkx
+ID0gLTEgfTsNCj4gPiA+ID4gwqAJc3RydWN0IGludGVsX3BsYW5lICpwbGFuZTsNCj4gPiA+ID4g
+wqAJYm9vbCBmdWxsX3VwZGF0ZSA9IGZhbHNlOw0KPiA+ID4gPiDCoAlpbnQgaSwgcmV0Ow0KPiA+
+ID4gPiBAQCAtMTI4Miw5ICsxMjgyLDE3IEBAIGludCBpbnRlbF9wc3IyX3NlbF9mZXRjaF91cGRh
+dGUoc3RydWN0DQo+ID4gPiA+IGludGVsX2F0b21pY19zdGF0ZSAqc3RhdGUsDQo+ID4gPiA+IMKg
+CWlmIChyZXQpDQo+ID4gPiA+IMKgCQlyZXR1cm4gcmV0Ow0KPiA+ID4gPiDCoA0KPiA+ID4gPiAN
+Cj4gPiA+ID4gDQo+ID4gPiA+IA0KPiA+ID4gPiANCj4gPiA+ID4gDQo+ID4gPiA+IA0KPiA+ID4g
+PiArCS8qDQo+ID4gPiA+ICsJICogQ2FsY3VsYXRlIG1pbmltYWwgc2VsZWN0aXZlIGZldGNoIGFy
+ZWEgb2YgZWFjaCBwbGFuZSBhbmQNCj4gPiA+ID4gY2FsY3VsYXRlDQo+ID4gPiA+ICsJICogdGhl
+IHBpcGUgZGFtYWdlZCBhcmVhLg0KPiA+ID4gPiArCSAqIEluIHRoZSBuZXh0IGxvb3AgdGhlIHBs
+YW5lIHNlbGVjdGl2ZSBmZXRjaCBhcmVhIHdpbGwNCj4gPiA+ID4gYWN0dWFsbHkgYmUgc2V0DQo+
+ID4gPiA+ICsJICogdXNpbmcgd2hvbGUgcGlwZSBkYW1hZ2VkIGFyZWEuDQo+ID4gPiA+ICsJICov
+DQo+ID4gPiA+IMKgCWZvcl9lYWNoX29sZG5ld19pbnRlbF9wbGFuZV9pbl9zdGF0ZShzdGF0ZSwg
+cGxhbmUsDQo+ID4gPiA+IG9sZF9wbGFuZV9zdGF0ZSwNCj4gPiA+ID4gwqAJCQkJCSAgICAgbmV3
+X3BsYW5lX3N0YXRlLCBpKSB7DQo+ID4gPiA+IC0JCXN0cnVjdCBkcm1fcmVjdCAqc2VsX2ZldGNo
+X2FyZWEsIHRlbXA7DQo+ID4gPiA+ICsJCXN0cnVjdCBkcm1fcmVjdCBzcmMsIGRhbWFnZWRfYXJl
+YSA9IHsgLngxID0gMCwgLnkxID0NCj4gPiA+ID4gLTEsIC54MiA9IElOVF9NQVgsIC55MiA9IC0x
+IH07DQo+ID4gPiA+ICsJCXN0cnVjdCBkcm1fbW9kZV9yZWN0ICpkYW1hZ2VkX2NsaXBzOw0KPiA+
+ID4gPiArCQl1MzIgbnVtX2NsaXBzLCBqOw0KPiA+ID4gPiDCoA0KPiA+ID4gPiANCj4gPiA+ID4g
+DQo+ID4gPiA+IA0KPiA+ID4gPiANCj4gPiA+ID4gDQo+ID4gPiA+IA0KPiA+ID4gPiDCoAkJaWYg
+KG5ld19wbGFuZV9zdGF0ZS0+dWFwaS5jcnRjICE9IGNydGNfc3RhdGUtDQo+ID4gPiA+ID4gdWFw
+aS5jcnRjKQ0KPiA+ID4gPiDCoAkJCWNvbnRpbnVlOw0KPiA+ID4gPiBAQCAtMTMwMCwyMyArMTMw
+OCw4OSBAQCBpbnQgaW50ZWxfcHNyMl9zZWxfZmV0Y2hfdXBkYXRlKHN0cnVjdA0KPiA+ID4gPiBp
+bnRlbF9hdG9taWNfc3RhdGUgKnN0YXRlLA0KPiA+ID4gPiDCoAkJCWJyZWFrOw0KPiA+ID4gPiDC
+oAkJfQ0KPiA+ID4gPiDCoA0KPiA+ID4gPiANCj4gPiA+ID4gDQo+ID4gPiA+IA0KPiA+ID4gPiAN
+Cj4gPiA+ID4gDQo+ID4gPiA+IA0KPiA+ID4gPiAtCQlpZiAoIW5ld19wbGFuZV9zdGF0ZS0+dWFw
+aS52aXNpYmxlKQ0KPiA+ID4gPiAtCQkJY29udGludWU7DQo+ID4gPiA+ICsJCWRybV9yZWN0X2Nv
+bnZlcnRfMTZfMTZfdG9fcmVndWxhcigmbmV3X3BsYW5lX3N0YXRlLQ0KPiA+ID4gPiA+IHVhcGku
+c3JjLCAmc3JjKTsNCj4gPiA+ID4gKwkJZGFtYWdlZF9jbGlwcyA9DQo+ID4gPiA+IGRybV9wbGFu
+ZV9nZXRfZGFtYWdlX2NsaXBzKCZuZXdfcGxhbmVfc3RhdGUtPnVhcGkpOw0KPiA+ID4gPiArCQlu
+dW1fY2xpcHMgPQ0KPiA+ID4gPiBkcm1fcGxhbmVfZ2V0X2RhbWFnZV9jbGlwc19jb3VudCgmbmV3
+X3BsYW5lX3N0YXRlLT51YXBpKTsNCj4gPiA+ID4gwqANCj4gPiA+ID4gDQo+ID4gPiA+IA0KPiA+
+ID4gPiANCj4gPiA+ID4gDQo+ID4gPiA+IA0KPiA+ID4gPiANCj4gPiA+ID4gwqAJCS8qDQo+ID4g
+PiA+IC0JCSAqIEZvciBub3cgZG9pbmcgYSBzZWxlY3RpdmUgZmV0Y2ggaW4gdGhlIHdob2xlIHBs
+YW5lDQo+ID4gPiA+IGFyZWEsDQo+ID4gPiA+IC0JCSAqIG9wdGltaXphdGlvbnMgd2lsbCBjb21l
+IGluIHRoZSBmdXR1cmUuDQo+ID4gPiA+ICsJCSAqIElmIHZpc2liaWxpdHkgb3IgcGxhbmUgbW92
+ZWQsIG1hcmsgdGhlIHdob2xlIHBsYW5lDQo+ID4gPiA+IGFyZWEgYXMNCj4gPiA+ID4gKwkJICog
+ZGFtYWdlZCBhcyBpdCBuZWVkcyB0byBiZSBjb21wbGV0ZSByZWRyYXcgaW4gdGhlIG5ldw0KPiA+
+ID4gPiBhbmQgb2xkDQo+ID4gPiA+ICsJCSAqIHBvc2l0aW9uLg0KPiA+ID4gPiDCoAkJICovDQo+
+ID4gPiA+ICsJCWlmIChuZXdfcGxhbmVfc3RhdGUtPnVhcGkudmlzaWJsZSAhPSBvbGRfcGxhbmVf
+c3RhdGUtDQo+ID4gPiA+ID4gdWFwaS52aXNpYmxlIHx8DQo+ID4gPiA+ICsJCSAgICAhZHJtX3Jl
+Y3RfZXF1YWxzKCZuZXdfcGxhbmVfc3RhdGUtPnVhcGkuZHN0LA0KPiA+ID4gPiArCQkJCSAgICAg
+Jm9sZF9wbGFuZV9zdGF0ZS0+dWFwaS5kc3QpKSB7DQo+ID4gPiA+ICsJCQlkYW1hZ2VkX2FyZWEu
+eTEgPSBvbGRfcGxhbmVfc3RhdGUtPnVhcGkuc3JjLnkxDQo+ID4gPiA+ID4gPiAxNjsNCj4gPiA+
+ID4gKwkJCWRhbWFnZWRfYXJlYS55MSA9IG9sZF9wbGFuZV9zdGF0ZS0+dWFwaS5zcmMueTINCj4g
+PiA+ID4gPiA+IDE2Ow0KPiA+ID4gPiArCQkJZGFtYWdlZF9hcmVhLnkxICs9IG9sZF9wbGFuZV9z
+dGF0ZS0NCj4gPiA+ID4gPiB1YXBpLmRzdC55MTsNCj4gPiA+ID4gKwkJCWRhbWFnZWRfYXJlYS55
+MiArPSBvbGRfcGxhbmVfc3RhdGUtDQo+ID4gPiA+ID4gdWFwaS5kc3QueTE7DQo+ID4gPiA+ICsJ
+CQljbGlwX2FyZWFfdXBkYXRlKCZwaXBlX2NsaXAsICZkYW1hZ2VkX2FyZWEpOw0KPiA+ID4gPiAr
+DQo+ID4gPiA+ICsJCQludW1fY2xpcHMgPSAwOw0KPiA+ID4gPiArCQkJZGFtYWdlZF9hcmVhLnkx
+ID0gc3JjLnkxOw0KPiA+ID4gPiArCQkJZGFtYWdlZF9hcmVhLnkyID0gc3JjLnkyOw0KPiA+ID4g
+MS4gVmlzaWJpbGl0eSBjaGFuZ2UgY2FzZQ0KPiA+ID4gwqBUaGUgcGlwZSBkYW1hZ2VkIGFyZWEg
+KFRoZSBTZWxlY3RpdmUgVXBkYXRlIHJlZ2lvbikgbmVlZHMgdG8NCj4gPiA+IGFjY3VtdWxhdGUg
+YmVpbmcgdmlzaWJsZSBwbGFuZSdzIGRzdCBiZXR3ZWVuIG9sZCBhbmQgbmV3IHBsYW5lJ3MNCj4g
+PiA+IGRzdC4NCj4gPiA+IA0KPiA+ID4gaWYgeW91IGFyZSBpbXBsZW1lbnRpbmcgdGhpcyBzY2Vu
+YXJpbywgdGhlIGNvZGUgc2hvdWxlIGJlIGxpa2UNCj4gPiA+IHRoaXMsDQo+ID4gPiANCj4gPiA+
+IGlmIChuZXdfcGxhbmVfc3RhdGUtPnVhcGkudmlzaWJsZSAhPSBvbGRfcGxhbmVfc3RhdGUtPnVh
+cGkudmlzaWJsZSkgDQo+ID4gPiB7DQo+ID4gPiDCoMKgwqBpZiAobmV3X3BsYW5lX3N0YXRlLT51
+YXBpLnZpc2libGUpIHsNCj4gPiA+IMKgwqDCoMKgwqDCoGRhbWFnZWRfYXJlYS55MSA9IG5ld19w
+bGFuZV9zdGF0ZS0+dWFwaS5kc3QueTE7DQo+ID4gPiDCoMKgwqDCoMKgwqBkYW1hZ2VkX2FyZWEu
+eTIgPSBuZXdfcGxhbmVfc3RhdGUtPnVhcGkuZHN0LnkyOw0KPiA+ID4gwqDCoMKgfSBlbHNlIHsN
+Cj4gPiA+IMKgwqDCoMKgwqDCoGRhbWFnZWRfYXJlYS55MSA9IG9sZF9wbGFuZV9zdGF0ZS0+dWFw
+aS5kc3QueTE7DQo+ID4gPiDCoMKgwqDCoMKgwqBkYW1hZ2VkX2FyZWEueTIgPSBvbGRfcGxhbmVf
+c3RhdGUtPnVhcGkuZHN0LnkyOw0KPiA+ID4gwqDCoMKgfQ0KPiA+ID4gwqDCoMKgY2xpcF9hcmVh
+X3VwZGF0ZSgmcGlwZV9jbGlwLCAmZGFtYWdlZF9hcmVhKTsNCj4gPiA+IMKgwqDCoGNvbnRpbnVl
+Ow0KPiA+ID4gfQ0KPiA+IA0KPiA+IFRoZSBjdXJyZW50IGNvZGUgZG9lcyBleGFjdGx5IGFib3Zl
+IGJ1dCBkaXNjYXJkcyB0aGUgY2xpcHBlZCBpbg0KPiA+IHVhcGkuc3JjLg0KPiA+IA0KPiBpbiBv
+cmRlciB0byBhY2N1bWxhdGUgdGhlIHBpcGUgZGFtYWdlIGFyZWEsIHdlIGRvbid0IG5lZWQgdG8g
+dXNlIGFuZA0KPiBjYWxjdWxhdGUgc3JjIGNvb3JkaW5hdGVzIG9uIG1vdmUgYW5kIHZpc2liaWxp
+dHkgY2hhbmdlIHNjZW5hcmlvcy4NCj4gd2UgY2FuIGVhc2lseSBhY2N1bWFsYXRlcyB0aGFuIGFk
+ZGl0aW9uYWwgY2FsY3VsYXRpb24uDQoNClVzaW5nIHVhcGkuZHN0IHdpbGwgY2F1c2UgYWRkaXRp
+b25hbCBhbmQgdW5uZWNlc3NhcnkgYXJlYSBiZSBpbmNsdWRlZCB0byB0aGUgcGlwZSBkYW1hZ2Vk
+IGFyZWEsIGltYWdpbmUgdGhhdCBhIHBsYW5lIGhhdmUgc3JjLngxID0gNTAsIHNyYy55MSA9IDEw
+MCwNCi4uLiB0aGUgcGxhbmUgaW52aXNpYmxlL2Nyb3BwZWQgYXJlYSBkb24ndCBuZWVkIHRvIGJl
+IGFkZGVkIHRvIHRoZSBwaXBlIGRhbWFnZWQgYXJlYS4NCg0KDQo+ID4gPiAyLiBNb3ZlIGNhc2UN
+Cj4gPiA+IMKgVGhlIHBpcGUgZGFtYWdlZCBhcmVhIChUaGUgU2VsZWN0aXZlIFVwZGF0ZSByZWdp
+b24pIG5lZWRzIHRvDQo+ID4gPiBhY2N1bXVsYXRlIGJvdGggb2xkIGFuZCBuZXcgcGxhbmUncyBk
+c3QNCj4gPiANCj4gPiBzYW1lDQo+ID4gDQo+ID4gPiBpZiB5b3UgYXJlIGltcGxlbWVudGluZyB0
+aGlzIHNjZW5hcmlvLCB0aGUgY29kZSBzaG91bGUgYmUgbGlrZQ0KPiA+ID4gdGhpcywNCj4gPiA+
+IA0KPiA+ID4gZWxzZSBpZiAoIWRybV9yZWN0X2VxdWFscygmbmV3X3BsYW5lX3N0YXRlLT51YXBp
+LmRzdCwNCj4gPiA+ICZvbGRfcGxhbmVfc3RhdGUtDQo+ID4gPiA+IHVhcGkuZHN0KSkgew0KPiA+
+ID4gwqDCoMKgZGFtYWdlZF9hcmVhLnkxID0gbmV3X3BsYW5lX3N0YXRlLT51YXBpLmRzdC55MTsN
+Cj4gPiA+IMKgwqDCoGRhbWFnZWRfYXJlYS55MiA9IG5ld19wbGFuZV9zdGF0ZS0+dWFwaS5kc3Qu
+eTI7DQo+ID4gPiDCoMKgwqBjbGlwX2FyZWFfdXBkYXRlKCZwaXBlX2NsaXAsICZkYW1hZ2VkX2Fy
+ZWEpOw0KPiA+ID4gDQo+ID4gPiDCoMKgwqBkYW1hZ2VkX2FyZWEueTEgPSBvbGRfcGxhbmVfc3Rh
+dGUtPnVhcGkuZHN0LnkxOw0KPiA+ID4gwqDCoMKgZGFtYWdlZF9hcmVhLnkyID0gb2xkX3BsYW5l
+X3N0YXRlLT51YXBpLmRzdC55MjsNCj4gPiA+IMKgwqDCoGNsaXBfYXJlYV91cGRhdGUoJnBpcGVf
+Y2xpcCwgJmRhbWFnZWRfYXJlYSk7DQo+ID4gPiDCoMKgwqANCj4gPiA+IA0KPiA+ID4gDQo+ID4g
+PiANCj4gPiA+IA0KPiA+ID4gDQo+ID4gPiANCj4gPiA+IA0KPiA+ID4gDQo+ID4gPiANCj4gPiA+
+IA0KPiA+ID4gDQo+ID4gPiANCj4gPiA+IA0KPiA+ID4gDQo+ID4gPiANCj4gPiA+IA0KPiA+ID4g
+DQo+ID4gPiANCj4gPiA+IA0KPiA+ID4gDQo+ID4gPiANCj4gPiA+IA0KPiA+ID4gwqDCoMKgY29u
+dGludWU7DQo+ID4gPiB9DQo+ID4gPiA+ICsJCX0gZWxzZSBpZiAobmV3X3BsYW5lX3N0YXRlLT51
+YXBpLmFscGhhICE9DQo+ID4gPiA+IG9sZF9wbGFuZV9zdGF0ZS0+dWFwaS5hbHBoYSkgew0KPiA+
+ID4gPiArCQkJbnVtX2NsaXBzID0gMDsNCj4gPiA+ID4gKwkJCWRhbWFnZWRfYXJlYS55MSA9IHNy
+Yy55MTsNCj4gPiA+ID4gKwkJCWRhbWFnZWRfYXJlYS55MiA9IHNyYy55MjsNCj4gPiA+IDMuIGFs
+cGhhIGhhcyBjaGFuZ2VkICggYmVjYXVzZSBhbHBoYSBoYW5kbGluZyBzZWN0aW9uIGlzIG5vdA0K
+PiA+ID4gb3B0aW1pemVkLA0KPiA+ID4gaXQgY2FuIGJlIHRyZWF0ZWQgd2l0aCB0aGUgbW92ZSBz
+ZWN0aW9uKQ0KPiA+IA0KPiBZZXMsIHlvdSBhcmUgcmlnaHQsIHRoZXJlIHdhcyBhIG1pc3VuZGVy
+c3RhbmRpbmcgb2YgdGhlIGFscGhhIHNjZW5hcmlvDQo+IG9mIG1lLg0KPiA+IG5vIG5lZWQgdG8g
+aGFuZGxlIGxpa2UgdGhpcyBmb3IgYWxwaGEsIGlmIHRoZSBwbGFuZSBtb3ZlZCBpZiB3aWxsIGJl
+DQo+ID4gaGFuZGxlZCBpbiB0aGUgImlmIiBhYm92ZSB3aXRoIG9yIHdpdGhvdXQgYWxwaGEgY2hh
+bmdlLCBpZiBpdCBkaWQgbm90DQo+ID4gbW92ZWQgYnV0DQo+ID4gYWxwaGEgY2hhbmdlIG5vIG5l
+ZWQgdG8gYWRkIHRoZSBvbGQgc3RhdGUgY29vcmRpbmF0ZSB0byB0aGUgcGlwZQ0KPiA+IGNsaXAu
+DQo+ID4gDQo+ID4gPiBlbHNlIGlmIChuZXdfcGxhbmVfc3RhdGUtPnVhcGkuYWxwaGEgIT0gb2xk
+X3BsYW5lX3N0YXRlLQ0KPiA+ID4gPiB1YXBpLmFscGhhKSB7DQo+ID4gPiDCoMKgwqBkYW1hZ2Vk
+X2FyZWEueTEgPSBuZXdfcGxhbmVfc3RhdGUtPnVhcGkuZHN0LnkxOw0KPiA+ID4gwqDCoMKgZGFt
+YWdlZF9hcmVhLnkyID0gbmV3X3BsYW5lX3N0YXRlLT51YXBpLmRzdC55MjsNCj4gPiA+IMKgwqDC
+oGNsaXBfYXJlYV91cGRhdGUoJnBpcGVfY2xpcCwgJmRhbWFnZWRfYXJlYSk7DQo+ID4gPiANCj4g
+PiA+IMKgwqDCoGRhbWFnZWRfYXJlYS55MSA9IG9sZF9wbGFuZV9zdGF0ZS0+dWFwaS5kc3QueTE7
+DQo+ID4gPiDCoMKgwqBkYW1hZ2VkX2FyZWEueTIgPSBvbGRfcGxhbmVfc3RhdGUtPnVhcGkuZHN0
+LnkyOw0KPiA+ID4gwqDCoMKgY2xpcF9hcmVhX3VwZGF0ZSgmcGlwZV9jbGlwLCAmZGFtYWdlZF9h
+cmVhKTsNCj4gPiA+IMKgwqDCoA0KPiA+ID4gDQo+ID4gPiANCj4gPiA+IA0KPiA+ID4gDQo+ID4g
+PiANCj4gPiA+IA0KPiA+ID4gDQo+ID4gPiANCj4gPiA+IA0KPiA+ID4gDQo+ID4gPiANCj4gPiA+
+IA0KPiA+ID4gDQo+ID4gPiANCj4gPiA+IA0KPiA+ID4gDQo+ID4gPiANCj4gPiA+IA0KPiA+ID4g
+DQo+ID4gPiANCj4gPiA+IA0KPiA+ID4gDQo+ID4gPiANCj4gPiA+IA0KPiA+ID4gDQo+ID4gPiAN
+Cj4gPiA+IA0KPiA+ID4gDQo+ID4gPiANCj4gPiA+IA0KPiA+ID4gDQo+ID4gPiANCj4gPiA+IA0K
+PiA+ID4gDQo+ID4gPiANCj4gPiA+IA0KPiA+ID4gDQo+ID4gPiANCj4gPiA+IA0KPiA+ID4gDQo+
+ID4gPiANCj4gPiA+IA0KPiA+ID4gDQo+ID4gPiANCj4gPiA+IA0KPiA+ID4gDQo+ID4gPiANCj4g
+PiA+IA0KPiA+ID4gDQo+ID4gPiANCj4gPiA+IA0KPiA+ID4gDQo+ID4gPiANCj4gPiA+IA0KPiA+
+ID4gDQo+ID4gPiANCj4gPiA+IA0KPiA+ID4gDQo+ID4gPiANCj4gPiA+IA0KPiA+ID4gDQo+ID4g
+PiANCj4gPiA+IA0KPiA+ID4gDQo+ID4gPiANCj4gPiA+IA0KPiA+ID4gDQo+ID4gPiANCj4gPiA+
+IA0KPiA+ID4gDQo+ID4gPiDCoMKgwqBjb250aW51ZTsNCj4gPiA+IH0gDQo+ID4gPiA+ICsJCX0g
+ZWxzZSBpZiAoIW51bV9jbGlwcyAmJg0KPiA+ID4gPiArCQkJICAgbmV3X3BsYW5lX3N0YXRlLT51
+YXBpLmZiICE9IG9sZF9wbGFuZV9zdGF0ZS0NCj4gPiA+ID4gPiB1YXBpLmZiKSB7DQo+ID4gPiA+
+ICsJCQkvKg0KPiA+ID4gPiArCQkJICogSWYgdGhlIHBsYW5lIGRvbid0IGhhdmUgZGFtYWdlIGFy
+ZWFzIGJ1dCB0aGUNCj4gPiA+ID4gKwkJCSAqIGZyYW1lYnVmZmVyIGNoYW5nZWQsIG1hcmsgdGhl
+IHdob2xlIHBsYW5lDQo+ID4gPiA+IGFyZWEgYXMNCj4gPiA+ID4gKwkJCSAqIGRhbWFnZWQuDQo+
+ID4gPiA+ICsJCQkgKi8NCj4gPiA+ID4gKwkJCWRhbWFnZWRfYXJlYS55MSA9IHNyYy55MTsNCj4g
+PiA+ID4gKwkJCWRhbWFnZWRfYXJlYS55MiA9IHNyYy55MjsNCj4gPiA+ID4gKwkJfQ0KPiA+ID4g
+PiArDQo+ID4gPiBlbHNlIGlmICghbnVtX2NsaXBzICYmIG5ld19wbGFuZV9zdGF0ZS0+dWFwaS5m
+YiAhPSBvbGRfcGxhbmVfc3RhdGUtDQo+ID4gPiA+IHVhcGkuZmIpIHsNCj4gPiA+IMKgwqDCoC8q
+DQo+ID4gPiDCoMKgwqDCoCogSWYgdGhlIHBsYW5lIGRvbid0IGhhdmUgZGFtYWdlIGFyZWFzIGJ1
+dCB0aGUNCj4gPiA+IMKgwqDCoMKgKiBmcmFtZWJ1ZmZlciBjaGFuZ2VkLCBtYXJrIHRoZSB3aG9s
+ZSBwbGFuZSBhcmVhIGFzDQo+ID4gPiDCoMKgwqDCoCogZGFtYWdlZC4NCj4gPiA+IMKgwqDCoMKg
+Ki8NCj4gPiA+IMKgwqDCoGRhbWFnZWRfYXJlYS55MSA9IG5ld19wbGFuZV9zdGF0ZS0+dWFwaS5k
+c3QueTE7DQo+ID4gPiDCoMKgwqBkYW1hZ2VkX2FyZWEueTIgPSBuZXdfcGxhbmVfc3RhdGUtPnVh
+cGkuZHN0LnkyOw0KPiA+ID4gwqDCoMKgY2xpcF9hcmVhX3VwZGF0ZSgmcGlwZV9jbGlwLCAmZGFt
+YWdlZF9hcmVhKTsNCj4gPiA+IMKgwqDCoGNvbnRpbnVlOw0KPiA+ID4gfQ0KPiA+ID4gPiArCQlm
+b3IgKGogPSAwOyBqIDwgbnVtX2NsaXBzOyBqKyspIHsNCj4gPiA+ID4gKwkJCXN0cnVjdCBkcm1f
+cmVjdCBjbGlwOw0KPiA+ID4gPiArDQo+ID4gPiA+ICsJCQljbGlwLnkxID0gZGFtYWdlZF9jbGlw
+c1tqXS55MTsNCj4gPiA+ID4gKwkJCWNsaXAueTIgPSBkYW1hZ2VkX2NsaXBzW2pdLnkyOw0KPiA+
+ID4gPiArCQkJY2xpcF9hcmVhX3VwZGF0ZSgmZGFtYWdlZF9hcmVhLCAmY2xpcCk7DQo+ID4gPiA+
+ICsJCX0NCj4gPiA+ID4gKw0KPiA+ID4gPiArCQlpZiAoIWRybV9yZWN0X2ludGVyc2VjdCgmZGFt
+YWdlZF9hcmVhLCAmc3JjKSkNCj4gPiA+ID4gKwkJCWNvbnRpbnVlOw0KPiA+ID4gPiArDQo+ID4g
+PiA+ICsJCWRhbWFnZWRfYXJlYS55MSArPSBuZXdfcGxhbmVfc3RhdGUtPnVhcGkuZHN0LnkxOw0K
+PiA+ID4gPiArCQlkYW1hZ2VkX2FyZWEueTIgKz0gbmV3X3BsYW5lX3N0YXRlLT51YXBpLmRzdC55
+MTsNCj4gPiA+ID4gKwkJY2xpcF9hcmVhX3VwZGF0ZSgmcGlwZV9jbGlwLCAmZGFtYWdlZF9hcmVh
+KTsNCj4gPiA+ID4gKwl9DQo+ID4gPiA+ICsNCj4gPiA+IGVsc2UgaWYgKG51bV9jbGlwcykgew0K
+PiA+ID4gwqDCoMKgc3RydWN0IGRybV9yZWN0IHBsYW5lX2RhbWFnZWRfYXJlYTsNCj4gPiA+IMKg
+wqDCoHBsYW5lX2RhbWFnZWRfYXJlYS54MSA9IHNyYy54MTsNCj4gPiA+IMKgwqDCoHBsYW5lX2Rh
+bWFnZWRfYXJlYS54MiA9IHNyYy54MjsNCj4gPiA+IMKgwqDCoHBsYW5lX2RhbWFnZWRfYXJlYS55
+MSA9IDA7DQo+ID4gPiDCoMKgwqBwbGFuZV9kYW1hZ2VkX2FyZWEueTIgPSAwOw0KPiA+ID4gCSAg
+ICAgICAgDQo+ID4gPiDCoMKgwqBmb3IgKGogPSAwOyBqIDwgbnVtX2NsaXBzOyBqKyspIHsNCj4g
+PiA+IMKgwqDCoMKgwqDCoHN0cnVjdCBkcm1fcmVjdCBjbGlwOw0KPiA+ID4gDQo+ID4gPiDCoMKg
+wqDCoMKgwqBjbGlwLngxID0gZGFtYWdlZF9jbGlwc1tqXS54MTsNCj4gPiA+IMKgwqDCoMKgwqDC
+oGNsaXAueDIgPSBkYW1hZ2VkX2NsaXBzW2pdLngyOw0KPiA+ID4gwqDCoMKgwqDCoMKgY2xpcC55
+MSA9IGRhbWFnZWRfY2xpcHNbal0ueTE7DQo+ID4gPiDCoMKgwqDCoMKgwqBjbGlwLnkyID0gZGFt
+YWdlZF9jbGlwc1tqXS55MjsNCj4gPiA+IA0KPiA+ID4gwqDCoMKgwqDCoMKgaWYgKGRybV9yZWN0
+X2ludGVyc2VjdCgmY2xpcCwgJnNyYykpIHsNCj4gPiA+IMKgwqDCoMKgwqDCoMKgwqDCoGNsaXBf
+YXJlYV91cGRhdGUoJnBsYW5lX2RhbWFnZWRfYXJlYSwgJmNsaXApOw0KPiA+ID4gwqDCoMKgwqDC
+oMKgfQ0KPiA+IA0KPiA+IENhbGwgaW50ZXJzZWN0IGF0IGV2ZXJ5IGNsaXA/IHRoYXQgZG9uJ3Qg
+bG9vayBvcHRpbWl6ZWQuDQo+ID4gDQo+IHdoZW4gdGhlIGNsaXBfYXJlYV91cGRhdGUoKSBpcyBj
+YWxsZWQgaXQganVzdCBhY2N1bXVsYXRlcyB0aGUgaW5wdXQNCj4gcmVjdHMgdG8gb25lIG91dHB1
+dCByZWN0Lg0KPiBpdCBtaWdodCBsZWFkIHRvIGFjY3VtdWxhdGluZyB1bm5lZWRlZCBleGNlc3Np
+dmUgdXBkYXRlIHJlY3QgcmVnaW9uDQoNClRoZSBleGNlc3NpdmUgcmVjdCByZWdpb24gd2lsbCBi
+ZSByZW1vdmVkIG9uY2UgYWZ0ZXIgc3VtIGFsbCBjbGlwcyBpbiB0aGUgY3VycmVudCBhcHByb2Fj
+aC4NCg0KPiA+IA0KPiA+ID4gwqDCoMKgfQ0KPiA+ID4gDQo+ID4gPiDCoMKgaWYgKGRybV9yZWN0
+X3Zpc2libGUocGxhbmVfZGFtYWdlZF9hcmVhKSkgew0KPiA+ID4gwqDCoMKgwqDCoHBsYW5lX2Rh
+bWFnZWRfYXJlYS55MSA9IHBsYW5lX2RhbWFnZWRfYXJlYS55MSAtIHNyYy55MSArDQo+ID4gPiBu
+ZXdfcGxhbmVfc3RhdGUtPnVhcGkuZHN0LnkxOw0KPiA+ID4gwqDCoMKgwqDCoHBsYW5lX2RhbWFn
+ZWRfYXJlYS55MiA9IHBsYW5lX2RhbWFnZWRfYXJlYS55MiAtIHNyYy55MSArDQo+ID4gPiBuZXdf
+cGxhbmVfc3RhdGUtPnVhcGkuZHN0LnkxOw0KPiA+ID4gDQo+ID4gPiDCoMKgwqDCoMKgY2xpcF9h
+cmVhX3VwZGF0ZSgmcGlwZV9jbGlwLCAmcGxhbmVfZGFtYWdlZF9hcmVhKTsNCj4gPiA+IMKgwqDC
+oMKgwqBjb250aW51ZTsNCj4gPiA+IMKgwqB9DQo+ID4gPiB9DQo+ID4gDQo+ID4gQ3VycmVudCBj
+b2RlIHN1bSBhbGwgdGhlIGRhbWFnZSBjbGlwcywgaWYgdGhlIHN1bSBvZiB0aGUgZGFtYWdlIGNs
+aXBzDQo+ID4gaW5zZWN0IHdpdGggdGhlIHNyYyBhcmVhIGl0IGlzIHRyYW5zbGF0ZWQgdG8gcGlw
+ZSBjb29yZGluYXRlcyBhbmQNCj4gPiBjYWxsZWQNCj4gPiBjbGlwX2FyZWFfdXBkYXRlKCkgdG8g
+dXBkYXRlIHBpcGVfY2xpcC4NCj4gPiANCj4gPiA+IHRoZSBjYWxjdWxhdGlvbiBhbmQgdHJhbnNs
+YXRpbmcgY29vcmlkaW5hdGVzIGlzIGFscmVheSBpbXBsZW1lbnRlZA0KPiA+ID4gaGVyZQ0KPiA+
+ID4gKCANCj4gPiA+IGh0dHBzOi8vcGF0Y2h3b3JrLmZyZWVkZXNrdG9wLm9yZy9wYXRjaC80MDQy
+NjQvP3Nlcmllcz04NDM0MCZyZXY9MQ0KPiA+ID4gwqDCoGl0IGhhcyBjb21tZXRucyB3aGljaCBl
+eHBsYWlucyBzY2VuYXJpb3MuKSANCj4gPiA+ID4gKwlpZiAoZnVsbF91cGRhdGUpDQo+ID4gPiA+
+ICsJCWdvdG8gc2tpcF9zZWxfZmV0Y2hfc2V0X2xvb3A7DQo+ID4gPiA+ICsNCj4gPiA+ID4gKwkv
+Kg0KPiA+ID4gPiArCSAqIE5vdyB0aGF0IHdlIGhhdmUgdGhlIHBpcGUgZGFtYWdlZCBhcmVhIGNo
+ZWNrIGlmIGl0IGludGVyc2VjdA0KPiA+ID4gPiB3aXRoDQo+ID4gPiA+ICsJICogZXZlcnkgcGxh
+bmUsIGlmIGl0IGRvZXMgc2V0IHRoZSBwbGFuZSBzZWxlY3RpdmUgZmV0Y2ggYXJlYS4NCj4gPiA+
+ID4gKwkgKi8NCj4gPiA+ID4gKwlmb3JfZWFjaF9vbGRuZXdfaW50ZWxfcGxhbmVfaW5fc3RhdGUo
+c3RhdGUsIHBsYW5lLA0KPiA+ID4gPiBvbGRfcGxhbmVfc3RhdGUsDQo+ID4gPiA+ICsJCQkJCSAg
+ICAgbmV3X3BsYW5lX3N0YXRlLCBpKSB7DQo+ID4gPiA+ICsJCXN0cnVjdCBkcm1fcmVjdCAqc2Vs
+X2ZldGNoX2FyZWEsIGludGVyLCBzcmM7DQo+ID4gPiA+ICsNCj4gPiA+ID4gKwkJaWYgKG5ld19w
+bGFuZV9zdGF0ZS0+dWFwaS5jcnRjICE9IGNydGNfc3RhdGUtDQo+ID4gPiA+ID4gdWFwaS5jcnRj
+IA0KPiA+ID4gPiArCQkgICAgIW5ld19wbGFuZV9zdGF0ZS0+dWFwaS52aXNpYmxlKQ0KPiA+ID4g
+PiArCQkJY29udGludWU7DQo+ID4gPiA+ICsNCj4gPiA+ID4gKwkJaW50ZXIgPSBwaXBlX2NsaXA7
+DQo+ID4gPiA+ICsJCWlmICghZHJtX3JlY3RfaW50ZXJzZWN0KCZpbnRlciwgJm5ld19wbGFuZV9z
+dGF0ZS0NCj4gPiA+ID4gPiB1YXBpLmRzdCkpDQo+ID4gPiA+ICsJCQljb250aW51ZTsNCj4gPiA+
+ID4gKw0KPiA+ID4gPiArCQlkcm1fcmVjdF9jb252ZXJ0XzE2XzE2X3RvX3JlZ3VsYXIoJm5ld19w
+bGFuZV9zdGF0ZS0NCj4gPiA+ID4gPiB1YXBpLnNyYywgJnNyYyk7DQo+ID4gPiA+ICsNCj4gPiA+
+ID4gwqAJCXNlbF9mZXRjaF9hcmVhID0gJm5ld19wbGFuZV9zdGF0ZS0+cHNyMl9zZWxfZmV0Y2hf
+YXJlYTsNCj4gPiA+ID4gLQkJc2VsX2ZldGNoX2FyZWEtPnkxID0gbmV3X3BsYW5lX3N0YXRlLT51
+YXBpLnNyYy55MSA+Pg0KPiA+ID4gPiAxNjsNCj4gPiA+ID4gLQkJc2VsX2ZldGNoX2FyZWEtPnky
+ID0gbmV3X3BsYW5lX3N0YXRlLT51YXBpLnNyYy55MiA+Pg0KPiA+ID4gPiAxNjsNCj4gPiA+ID4g
+KwkJc2VsX2ZldGNoX2FyZWEtPnkxID0gaW50ZXIueTEgLSBuZXdfcGxhbmVfc3RhdGUtDQo+ID4g
+PiA+ID4gdWFwaS5kc3QueTE7DQo+ID4gPiA+ICsJCXNlbF9mZXRjaF9hcmVhLT55MiA9IGludGVy
+LnkyIC0gbmV3X3BsYW5lX3N0YXRlLQ0KPiA+ID4gPiA+IHVhcGkuZHN0LnkxOw0KPiA+ID4gc2Vs
+X2ZldGNoX2FyZWEtPnkxID0gaW50ZXIueTEgLSBuZXdfcGxhbmVfc3RhdGUtPnVhcGkuZHN0Lnkx
+ICsNCj4gPiA+IHNyYy55MTsNCj4gPiA+IHNlbF9mZXRjaF9hcmVhLT55MiA9IGludGVyLnkyIC0g
+bmV3X3BsYW5lX3N0YXRlLT51YXBpLmRzdC55MSArDQo+ID4gPiBzcmMueTE7DQo+ID4gDQo+ID4g
+c2VsX2ZldGNoX2FyZWEtPnkxID0gaW50ZXIueTEgLSBuZXdfcGxhbmVfc3RhdGUtPnVhcGkuZHN0
+LnkxOyArDQo+ID4gZHJtX3JlY3RfaW50ZXJzZWN0KHNlbF9mZXRjaF9hcmVhLCAmc3JjKTsNCj4g
+PiBkb2VzIGEgdGhlIHNhbWUgam9iIGFuZCBpcyBlYXNpZXIgdG8gdW5kZXJzdGFuZCh0cmFuc2xh
+dGlvbiArIGNsaXApDQo+ID4gDQo+IHdoZW4gdGhlIHNyYydzIHgxIGFuZCB5MSBpbmRpY2F0ZXMg
+b3ZlciB0aGFuIDAsIGRvZXMgaXQgd29yaz8NCg0KSXQgd2lsbCwgd2UgdXNlIGl0IGZvciBzY2Vu
+YXJpb3MgbGlrZSB0aGF0IGluIHRoaXMgZnVuY3Rpb24uDQoNCg0KPiA+ID4gPiArCQlzZWxfZmV0
+Y2hfYXJlYS0+eDEgPSBzcmMueDE7DQo+ID4gPiA+ICsJCXNlbF9mZXRjaF9hcmVhLT54MiA9IHNy
+Yy54MjsNCj4gPiA+ID4gwqANCj4gPiA+ID4gDQo+ID4gPiA+IA0KPiA+ID4gPiANCj4gPiA+ID4g
+DQo+ID4gPiA+IA0KPiA+ID4gPiANCj4gPiA+ID4gDQo+ID4gPiA+IA0KPiA+ID4gPiANCj4gPiA+
+ID4gDQo+ID4gPiA+IA0KPiA+ID4gPiANCj4gPiA+ID4gDQo+ID4gPiA+IA0KPiA+ID4gPiANCj4g
+PiA+ID4gDQo+ID4gPiA+IA0KPiA+ID4gPiANCj4gPiA+ID4gDQo+ID4gPiA+IA0KPiA+ID4gPiAN
+Cj4gPiA+ID4gDQo+ID4gPiA+IA0KPiA+ID4gPiANCj4gPiA+ID4gDQo+ID4gPiA+IA0KPiA+ID4g
+PiANCj4gPiA+ID4gDQo+ID4gPiA+IA0KPiA+ID4gPiANCj4gPiA+ID4gDQo+ID4gPiA+IA0KPiA+
+ID4gPiANCj4gPiA+ID4gDQo+ID4gPiA+IA0KPiA+ID4gPiANCj4gPiA+ID4gDQo+ID4gPiA+IA0K
+PiA+ID4gPiANCj4gPiA+ID4gDQo+ID4gPiA+IA0KPiA+ID4gPiANCj4gPiA+ID4gDQo+ID4gPiA+
+IA0KPiA+ID4gPiANCj4gPiA+ID4gDQo+ID4gPiA+IA0KPiA+ID4gPiANCj4gPiA+ID4gDQo+ID4g
+PiA+IA0KPiA+ID4gPiANCj4gPiA+ID4gDQo+ID4gPiA+IA0KPiA+ID4gPiANCj4gPiA+ID4gDQo+
+ID4gPiA+IA0KPiA+ID4gPiANCj4gPiA+ID4gDQo+ID4gPiA+IA0KPiA+ID4gPiANCj4gPiA+ID4g
+DQo+ID4gPiA+IA0KPiA+ID4gPiANCj4gPiA+ID4gDQo+ID4gPiA+IA0KPiA+ID4gPiANCj4gPiA+
+ID4gDQo+ID4gPiA+IA0KPiA+ID4gPiANCj4gPiA+ID4gDQo+ID4gPiA+IA0KPiA+ID4gPiANCj4g
+PiA+ID4gDQo+ID4gPiA+IA0KPiA+ID4gPiANCj4gPiA+ID4gDQo+ID4gPiA+IA0KPiA+ID4gPiAN
+Cj4gPiA+ID4gDQo+ID4gPiA+IA0KPiA+ID4gPiANCj4gPiA+ID4gDQo+ID4gPiA+IA0KPiA+ID4g
+PiANCj4gPiA+ID4gDQo+ID4gPiA+IA0KPiA+ID4gPiANCj4gPiA+ID4gDQo+ID4gPiA+IA0KPiA+
+ID4gPiANCj4gPiA+ID4gDQo+ID4gPiA+IA0KPiA+ID4gPiANCj4gPiA+ID4gDQo+ID4gPiA+IA0K
+PiA+ID4gPiANCj4gPiA+ID4gDQo+ID4gPiA+IA0KPiA+ID4gPiANCj4gPiA+ID4gDQo+ID4gPiA+
+IA0KPiA+ID4gPiANCj4gPiA+ID4gDQo+ID4gPiA+IA0KPiA+ID4gPiANCj4gPiA+ID4gDQo+ID4g
+PiA+IA0KPiA+ID4gPiANCj4gPiA+ID4gDQo+ID4gPiA+IA0KPiA+ID4gPiANCj4gPiA+ID4gDQo+
+ID4gPiA+IA0KPiA+ID4gPiANCj4gPiA+ID4gDQo+ID4gPiA+IA0KPiA+ID4gPiANCj4gPiA+ID4g
+DQo+ID4gPiA+IA0KPiA+ID4gPiANCj4gPiA+ID4gDQo+ID4gPiA+IA0KPiA+ID4gPiANCj4gPiA+
+ID4gDQo+ID4gPiA+IA0KPiA+ID4gPiANCj4gPiA+ID4gDQo+ID4gPiA+IA0KPiA+ID4gPiANCj4g
+PiA+ID4gDQo+ID4gPiA+IA0KPiA+ID4gPiANCj4gPiA+ID4gDQo+ID4gPiA+IA0KPiA+ID4gPiAN
+Cj4gPiA+ID4gDQo+ID4gPiA+IA0KPiA+ID4gPiANCj4gPiA+ID4gDQo+ID4gPiA+IA0KPiA+ID4g
+PiANCj4gPiA+ID4gDQo+ID4gPiA+IC0JCXRlbXAgPSAqc2VsX2ZldGNoX2FyZWE7DQo+ID4gPiA+
+IC0JCXRlbXAueTEgKz0gbmV3X3BsYW5lX3N0YXRlLT51YXBpLmRzdC55MTsNCj4gPiA+ID4gLQkJ
+dGVtcC55MiArPSBuZXdfcGxhbmVfc3RhdGUtPnVhcGkuZHN0LnkyOw0KPiA+ID4gPiAtCQljbGlw
+X2FyZWFfdXBkYXRlKCZwaXBlX2NsaXAsICZ0ZW1wKTsNCj4gPiA+ID4gKwkJZHJtX3JlY3RfaW50
+ZXJzZWN0KHNlbF9mZXRjaF9hcmVhLCAmc3JjKTsNCj4gPiA+IHdoeSB0aGlzIGxpbmUgaXMgbmVl
+ZGVkPw0KPiA+IA0KPiA+IGV4cGxhaW5lZCBhYm92ZS4NCj4gPiANCj4gPiANCj4gPiA+ID4gwqAJ
+fQ0KPiA+ID4gPiDCoA0KPiA+ID4gPiANCj4gPiA+ID4gDQo+ID4gPiA+IA0KPiA+ID4gPiANCj4g
+PiA+ID4gDQo+ID4gPiA+IA0KPiA+ID4gPiANCj4gPiA+ID4gDQo+ID4gPiA+IA0KPiA+ID4gPiAN
+Cj4gPiA+ID4gDQo+ID4gPiA+IA0KPiA+ID4gPiANCj4gPiA+ID4gDQo+ID4gPiA+IA0KPiA+ID4g
+PiANCj4gPiA+ID4gDQo+ID4gPiA+IA0KPiA+ID4gPiANCj4gPiA+ID4gDQo+ID4gPiA+IA0KPiA+
+ID4gPiANCj4gPiA+ID4gDQo+ID4gPiA+IA0KPiA+ID4gPiANCj4gPiA+ID4gDQo+ID4gPiA+IA0K
+PiA+ID4gPiANCj4gPiA+ID4gDQo+ID4gPiA+IA0KPiA+ID4gPiANCj4gPiA+ID4gDQo+ID4gPiA+
+IA0KPiA+ID4gPiANCj4gPiA+ID4gDQo+ID4gPiA+IA0KPiA+ID4gPiANCj4gPiA+ID4gDQo+ID4g
+PiA+IA0KPiA+ID4gPiANCj4gPiA+ID4gDQo+ID4gPiA+IA0KPiA+ID4gPiANCj4gPiA+ID4gDQo+
+ID4gPiA+IA0KPiA+ID4gPiANCj4gPiA+ID4gDQo+ID4gPiA+IA0KPiA+ID4gPiANCj4gPiA+ID4g
+DQo+ID4gPiA+IA0KPiA+ID4gPiANCj4gPiA+ID4gDQo+ID4gPiA+IA0KPiA+ID4gPiANCj4gPiA+
+ID4gDQo+ID4gPiA+IA0KPiA+ID4gPiANCj4gPiA+ID4gDQo+ID4gPiA+IA0KPiA+ID4gPiANCj4g
+PiA+ID4gDQo+ID4gPiA+IA0KPiA+ID4gPiANCj4gPiA+ID4gDQo+ID4gPiA+IA0KPiA+ID4gPiAN
+Cj4gPiA+ID4gDQo+ID4gPiA+IA0KPiA+ID4gPiANCj4gPiA+ID4gDQo+ID4gPiA+IA0KPiA+ID4g
+PiANCj4gPiA+ID4gDQo+ID4gPiA+IA0KPiA+ID4gPiANCj4gPiA+ID4gDQo+ID4gPiA+IA0KPiA+
+ID4gPiANCj4gPiA+ID4gDQo+ID4gPiA+IA0KPiA+ID4gPiANCj4gPiA+ID4gDQo+ID4gPiA+IA0K
+PiA+ID4gPiANCj4gPiA+ID4gDQo+ID4gPiA+IA0KPiA+ID4gPiANCj4gPiA+ID4gDQo+ID4gPiA+
+IA0KPiA+ID4gPiANCj4gPiA+ID4gDQo+ID4gPiA+IA0KPiA+ID4gPiANCj4gPiA+ID4gDQo+ID4g
+PiA+IA0KPiA+ID4gPiANCj4gPiA+ID4gDQo+ID4gPiA+IA0KPiA+ID4gPiANCj4gPiA+ID4gDQo+
+ID4gPiA+IA0KPiA+ID4gPiANCj4gPiA+ID4gDQo+ID4gPiA+IA0KPiA+ID4gPiANCj4gPiA+ID4g
+DQo+ID4gPiA+IA0KPiA+ID4gPiANCj4gPiA+ID4gDQo+ID4gPiA+IA0KPiA+ID4gPiANCj4gPiA+
+ID4gDQo+ID4gPiA+IA0KPiA+ID4gPiANCj4gPiA+ID4gDQo+ID4gPiA+IA0KPiA+ID4gPiANCj4g
+PiA+ID4gDQo+ID4gPiA+IA0KPiA+ID4gPiANCj4gPiA+ID4gDQo+ID4gPiA+IA0KPiA+ID4gPiAN
+Cj4gPiA+ID4gDQo+ID4gPiA+IA0KPiA+ID4gPiANCj4gPiA+ID4gDQo+ID4gPiA+IA0KPiA+ID4g
+PiANCj4gPiA+ID4gDQo+ID4gPiA+IA0KPiA+ID4gPiANCj4gPiA+ID4gDQo+ID4gPiA+IA0KPiA+
+ID4gPiANCj4gPiA+ID4gDQo+ID4gPiA+IA0KPiA+ID4gPiANCj4gPiA+ID4gDQo+ID4gPiA+IA0K
+PiA+ID4gPiANCj4gPiA+ID4gK3NraXBfc2VsX2ZldGNoX3NldF9sb29wOg0KPiA+ID4gPiDCoAlw
+c3IyX21hbl90cmtfY3RsX2NhbGMoY3J0Y19zdGF0ZSwgJnBpcGVfY2xpcCwgZnVsbF91cGRhdGUp
+Ow0KPiA+ID4gPiDCoAlyZXR1cm4gMDsNCj4gPiA+ID4gwqB9DQoNCl9fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50
+ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9y
+Zy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
