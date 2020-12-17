@@ -2,43 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 972FF2DCFC4
-	for <lists+intel-gfx@lfdr.de>; Thu, 17 Dec 2020 11:51:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id F082F2DD022
+	for <lists+intel-gfx@lfdr.de>; Thu, 17 Dec 2020 12:13:10 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E82516E24D;
-	Thu, 17 Dec 2020 10:51:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2A4AE6E25B;
+	Thu, 17 Dec 2020 11:13:08 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4C45B6E24D;
- Thu, 17 Dec 2020 10:51:43 +0000 (UTC)
-IronPort-SDR: QxroTeyHDPxyck/9Sqk0gec6kcFRFXQmCGuwf3X9jLJTH4rhNjiH9CHr7b/1pdE2GJJhE4dWx9
- vdsVpOsXl6Ug==
-X-IronPort-AV: E=McAfee;i="6000,8403,9837"; a="193622256"
-X-IronPort-AV: E=Sophos;i="5.78,426,1599548400"; d="scan'208";a="193622256"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Dec 2020 02:51:42 -0800
-IronPort-SDR: dawserwVbfdRqlsYAlYBxqyrCmU6DHqLdy/32VJzb17zI4lcfE+JOWfn8632LVjnZMm69Cp1Ol
- xT6MDQS3ktiw==
-X-IronPort-AV: E=Sophos;i="5.78,426,1599548400"; d="scan'208";a="452951116"
-Received: from acherneg-mobl.ger.corp.intel.com (HELO [10.214.210.48])
- ([10.214.210.48])
- by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Dec 2020 02:51:41 -0800
-To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
-References: <20201216165457.1361781-1-chris@chris-wilson.co.uk>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-Message-ID: <a88fc05e-fec3-6a4d-6631-37bb70d8efa3@linux.intel.com>
-Date: Thu, 17 Dec 2020 10:51:38 +0000
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id CEC706E252;
+ Thu, 17 Dec 2020 11:13:06 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id C0DCEA47E9;
+ Thu, 17 Dec 2020 11:13:06 +0000 (UTC)
 MIME-Version: 1.0
-In-Reply-To: <20201216165457.1361781-1-chris@chris-wilson.co.uk>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [igt-dev] [PATCH i-g-t] i915/perf_pmu: Replace
- init/read-other with a plea
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Thu, 17 Dec 2020 11:13:06 -0000
+Message-ID: <160820358676.2012.14436294058770773317@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20201217091524.10258-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20201217091524.10258-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/gt=3A_Drain_the_breadcrumbs_just_once?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,123 +38,185 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: igt-dev@lists.freedesktop.org
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============0632276844=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+--===============0632276844==
+Content-Type: multipart/alternative;
+ boundary="===============2026279347077010155=="
 
-On 16/12/2020 16:54, Chris Wilson wrote:
-> We cannot assume we know how many PMU there are exactly, so pick -1ULL
-> to represent all invalid metrics. Similarly, we have to rely on explicit
-> testing for each PMU to prove their existence and correct functioning.
-> 
-> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-> Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-> ---
->   tests/i915/perf_pmu.c | 56 ++++++++++++-------------------------------
->   1 file changed, 15 insertions(+), 41 deletions(-)
-> 
-> diff --git a/tests/i915/perf_pmu.c b/tests/i915/perf_pmu.c
-> index e2f975a1a..db375341c 100644
-> --- a/tests/i915/perf_pmu.c
-> +++ b/tests/i915/perf_pmu.c
-> @@ -1165,38 +1165,12 @@ do { \
->   	igt_assert_eq(errno, EINVAL);
->   }
->   
-> -static void init_other(int i915, unsigned int i, bool valid)
-> +static void open_invalid(int i915)
->   {
->   	int fd;
->   
-> -	fd = perf_i915_open(i915, __I915_PMU_OTHER(i));
-> -	igt_require(!(fd < 0 && errno == ENODEV));
-> -	if (valid) {
-> -		igt_assert(fd >= 0);
-> -	} else {
-> -		igt_assert(fd < 0);
-> -		return;
-> -	}
-> -
-> -	close(fd);
-> -}
-> -
-> -static void read_other(int i915, unsigned int i, bool valid)
-> -{
-> -	int fd;
-> -
-> -	fd = perf_i915_open(i915, __I915_PMU_OTHER(i));
-> -	igt_require(!(fd < 0 && errno == ENODEV));
-> -	if (valid) {
-> -		igt_assert(fd >= 0);
-> -	} else {
-> -		igt_assert(fd < 0);
-> -		return;
-> -	}
-> -
-> -	(void)pmu_read_single(fd);
-> -
-> -	close(fd);
-> +	fd = perf_i915_open(i915, -1ULL);
-> +	igt_assert(fd < 0);
->   }
->   
->   static bool cpu0_hotplug_support(void)
-> @@ -2058,6 +2032,12 @@ igt_main
->   	unsigned int num_engines = 0;
->   	int fd = -1;
->   
-> +	/**
-> +	 * All PMU should be accompanied by a test.
-> +	 *
-> +	 * Including all the I915_PMU_OTHER(x).
-> +	 */
-> +
->   	igt_fixture {
->   		fd = __drm_open_driver(DRIVER_INTEL);
->   
-> @@ -2075,6 +2055,12 @@ igt_main
->   	igt_subtest("invalid-init")
->   		invalid_init(fd);
->   
-> +	/**
-> +	 * Double check the invalid metric does fail.
-> +	 */
-> +	igt_subtest("invalid-open")
-> +		open_invalid(fd);
-> +
->   	igt_subtest_with_dynamic("faulting-read") {
->   		for_each_mmap_offset_type(fd, t) {
->   			igt_dynamic_f("%s", t->name)
-> @@ -2228,18 +2214,6 @@ igt_main
->   		all_busy_check_all(fd, num_engines,
->   				   TEST_BUSY | TEST_TRAILING_IDLE);
->   
-> -	/**
-> -	 * Test that non-engine counters can be initialized and read. Apart
-> -	 * from the invalid metric which should fail.
-> -	 */
-> -	for (unsigned int i = 0; i < num_other_metrics + 1; i++) {
-> -		igt_subtest_f("other-init-%u", i)
-> -			init_other(fd, i, i < num_other_metrics);
-> -
-> -		igt_subtest_f("other-read-%u", i)
-> -			read_other(fd, i, i < num_other_metrics);
-> -	}
-> -
->   	/**
->   	 * Test counters are not affected by CPU offline/online events.
->   	 */
-> 
+--===============2026279347077010155==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+== Series Details ==
 
-Regards,
+Series: drm/i915/gt: Drain the breadcrumbs just once
+URL   : https://patchwork.freedesktop.org/series/85037/
+State : success
 
-Tvrtko
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_9496 -> Patchwork_19167
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19167/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_19167 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_selftest@live@gt_heartbeat:
+    - fi-bsw-n3050:       [PASS][1] -> [DMESG-FAIL][2] ([i915#2675] / [i915#541])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9496/fi-bsw-n3050/igt@i915_selftest@live@gt_heartbeat.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19167/fi-bsw-n3050/igt@i915_selftest@live@gt_heartbeat.html
+
+  * igt@prime_self_import@basic-with_one_bo_two_files:
+    - fi-tgl-y:           [PASS][3] -> [DMESG-WARN][4] ([i915#402]) +1 similar issue
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9496/fi-tgl-y/igt@prime_self_import@basic-with_one_bo_two_files.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19167/fi-tgl-y/igt@prime_self_import@basic-with_one_bo_two_files.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_getparams_basic@basic-subslice-total:
+    - fi-tgl-y:           [DMESG-WARN][5] ([i915#402]) -> [PASS][6] +2 similar issues
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9496/fi-tgl-y/igt@i915_getparams_basic@basic-subslice-total.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19167/fi-tgl-y/igt@i915_getparams_basic@basic-subslice-total.html
+
+  
+  [i915#2675]: https://gitlab.freedesktop.org/drm/intel/issues/2675
+  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
+  [i915#541]: https://gitlab.freedesktop.org/drm/intel/issues/541
+
+
+Participating hosts (42 -> 39)
+------------------------------
+
+  Missing    (3): fi-bsw-cyan fi-bdw-samus fi-hsw-4200u 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_9496 -> Patchwork_19167
+
+  CI-20190529: 20190529
+  CI_DRM_9496: c1bf99ceda83bcdd33f05515deb9efc3649d449e @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5905: 3d0934900bddeb7a68f1abab4cd05077f0609e32 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_19167: 5fd3c4d2c8955af09fdf227412a2e5757f4d57fd @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+5fd3c4d2c895 drm/i915/gt: Drain the breadcrumbs just once
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19167/index.html
+
+--===============2026279347077010155==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/gt: Drain the breadcrumbs just once</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/85037/">https://patchwork.freedesktop.org/series/85037/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19167/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19167/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_9496 -&gt; Patchwork_19167</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19167/index.html</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_19167 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live@gt_heartbeat:</p>
+<ul>
+<li>fi-bsw-n3050:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9496/fi-bsw-n3050/igt@i915_selftest@live@gt_heartbeat.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19167/fi-bsw-n3050/igt@i915_selftest@live@gt_heartbeat.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2675">i915#2675</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/541">i915#541</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@prime_self_import@basic-with_one_bo_two_files:</p>
+<ul>
+<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9496/fi-tgl-y/igt@prime_self_import@basic-with_one_bo_two_files.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19167/fi-tgl-y/igt@prime_self_import@basic-with_one_bo_two_files.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) +1 similar issue</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@i915_getparams_basic@basic-subslice-total:<ul>
+<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9496/fi-tgl-y/igt@i915_getparams_basic@basic-subslice-total.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19167/fi-tgl-y/igt@i915_getparams_basic@basic-subslice-total.html">PASS</a> +2 similar issues</li>
+</ul>
+</li>
+</ul>
+<h2>Participating hosts (42 -&gt; 39)</h2>
+<p>Missing    (3): fi-bsw-cyan fi-bdw-samus fi-hsw-4200u </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_9496 -&gt; Patchwork_19167</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_9496: c1bf99ceda83bcdd33f05515deb9efc3649d449e @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_5905: 3d0934900bddeb7a68f1abab4cd05077f0609e32 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
+  Patchwork_19167: 5fd3c4d2c8955af09fdf227412a2e5757f4d57fd @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>5fd3c4d2c895 drm/i915/gt: Drain the breadcrumbs just once</p>
+
+</body>
+</html>
+
+--===============2026279347077010155==--
+
+--===============0632276844==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============0632276844==--
