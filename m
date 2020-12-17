@@ -2,44 +2,39 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id F34752DD691
-	for <lists+intel-gfx@lfdr.de>; Thu, 17 Dec 2020 18:49:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 836FA2DD8BD
+	for <lists+intel-gfx@lfdr.de>; Thu, 17 Dec 2020 19:52:59 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D8C43898F3;
-	Thu, 17 Dec 2020 17:49:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 75E8C89722;
+	Thu, 17 Dec 2020 18:52:57 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3D7B289911;
- Thu, 17 Dec 2020 17:49:24 +0000 (UTC)
-IronPort-SDR: 2Pds8r41RpE3QcjKMykLmwytKiSVBovgqCZIkvN9i7kLFVl6MBM56+AywdqPOH/0uWUz1gpmKN
- MR6ddXVSicpQ==
-X-IronPort-AV: E=McAfee;i="6000,8403,9838"; a="193694968"
-X-IronPort-AV: E=Sophos;i="5.78,428,1599548400"; d="scan'208";a="193694968"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Dec 2020 09:49:20 -0800
-IronPort-SDR: KIikYDoB4r0sAVmjhXn6pq1LoERqb9W4djX12nBeKiz4zUhZ/1gDl2LCilZSLkBGCgWHX98O4k
- o8YNYpqwULRg==
-X-IronPort-AV: E=Sophos;i="5.78,428,1599548400"; d="scan'208";a="453308742"
-Received: from acherneg-mobl.ger.corp.intel.com (HELO [10.214.210.48])
- ([10.214.210.48])
- by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Dec 2020 09:49:13 -0800
-To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
-References: <20201217172618.1637044-1-chris@chris-wilson.co.uk>
- <20201217174516.1705324-1-chris@chris-wilson.co.uk>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-Message-ID: <0c11db27-b4e3-33f5-4345-eb100baac566@linux.intel.com>
-Date: Thu, 17 Dec 2020 17:49:10 +0000
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8A14B89715
+ for <intel-gfx@lists.freedesktop.org>; Thu, 17 Dec 2020 18:52:56 +0000 (UTC)
+IronPort-SDR: o02jwFfa1/bXfe3oj+K4L0K67z+OBg5tQDRO2jg/L1tW4mS7tpN+1SWGJQWhyUHBa+aD/c6ZSH
+ seeN8i60Am2Q==
+X-IronPort-AV: E=McAfee;i="6000,8403,9838"; a="175451108"
+X-IronPort-AV: E=Sophos;i="5.78,428,1599548400"; d="scan'208";a="175451108"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Dec 2020 10:52:55 -0800
+IronPort-SDR: feXkPbTTSXOP2a2lv/epY7lbj5GPCU2hqvvfu7zeG3PjgmpeeIGb9URLoZYmL1FcxY/3LzGNOP
+ o5Y+afhMtpbg==
+X-IronPort-AV: E=Sophos;i="5.78,428,1599548400"; d="scan'208";a="338394174"
+Received: from unknown (HELO sdutt-i7) ([10.165.21.147])
+ by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Dec 2020 10:52:55 -0800
+Date: Thu, 17 Dec 2020 10:47:15 -0800
+From: Matthew Brost <matthew.brost@intel.com>
+To: Chris Wilson <chris@chris-wilson.co.uk>
+Message-ID: <20201217184715.GA22774@sdutt-i7>
+References: <20201217091524.10258-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-In-Reply-To: <20201217174516.1705324-1-chris@chris-wilson.co.uk>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH i-g-t v2] i915/perf_pmu: Exercise
- I915_PMU_SOFTWARE_GT_AWAKE_TIME
+Content-Disposition: inline
+In-Reply-To: <20201217091524.10258-1-chris@chris-wilson.co.uk>
+User-Agent: Mutt/1.9.4 (2018-02-28)
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/gt: Drain the breadcrumbs just once
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,143 +47,133 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: igt-dev@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-
-On 17/12/2020 17:45, Chris Wilson wrote:
-> Measure the sample gt-awake time while each engine and every engine is
-> busy. They should all report the same duration, the elapsed runtime of
-> the batch.
+On Thu, Dec 17, 2020 at 09:15:24AM +0000, Chris Wilson wrote:
+> Matthew Brost pointed out that the while-loop on a shared breadcrumb was
+> inherently fraught with danger as it competed with the other users of
+> the breadcrumbs. However, in order to completely drain the re-arming irq
+> worker, the while-loop is a necessity, despite my optimism that we could
+> force cancellation with a couple of irq_work invocations.
 > 
+> Given that we can't merely drop the while-loop, use an activity counter on
+> the breadcrumbs to detect when we are parking the breadcrumbs for the
+> last time.
+> 
+> Based on a patch by Matthew Brost.
+> 
+
+This was more or less exactly what I was going to suggest.
+Reviewed-by: Matthew Brost <matthew.brost@intel.com>
+
+> Reported-by: Matthew Brost <matthew.brost@intel.com>
+> Suggested-by: Matthew Brost <matthew.brost@intel.com>
+> Fixes: 9d5612ca165a ("drm/i915/gt: Defer enabling the breadcrumb interrupt to after submission")
 > Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-> Cc: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+> Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+> Cc: Matthew Brost <matthew.brost@intel.com>
 > ---
->   include/drm-uapi/i915_drm.h |  3 ++-
->   lib/igt_dummyload.c         | 10 +++++++++
->   lib/igt_dummyload.h         |  1 +
->   tests/i915/perf_pmu.c       | 43 +++++++++++++++++++++++++++++++++++++
->   4 files changed, 56 insertions(+), 1 deletion(-)
+>  drivers/gpu/drm/i915/gt/intel_breadcrumbs.c       | 10 ++++++----
+>  drivers/gpu/drm/i915/gt/intel_breadcrumbs.h       | 13 ++++++++++++-
+>  drivers/gpu/drm/i915/gt/intel_breadcrumbs_types.h |  6 ++++--
+>  drivers/gpu/drm/i915/gt/intel_engine_pm.c         |  1 +
+>  4 files changed, 23 insertions(+), 7 deletions(-)
 > 
-> diff --git a/include/drm-uapi/i915_drm.h b/include/drm-uapi/i915_drm.h
-> index ef696d1a5..bf9ea471c 100644
-> --- a/include/drm-uapi/i915_drm.h
-> +++ b/include/drm-uapi/i915_drm.h
-> @@ -177,8 +177,9 @@ enum drm_i915_pmu_engine_sample {
->   #define I915_PMU_REQUESTED_FREQUENCY	__I915_PMU_OTHER(1)
->   #define I915_PMU_INTERRUPTS		__I915_PMU_OTHER(2)
->   #define I915_PMU_RC6_RESIDENCY		__I915_PMU_OTHER(3)
-> +#define I915_PMU_SOFTWARE_GT_AWAKE_TIME	__I915_PMU_OTHER(4)
->   
-> -#define I915_PMU_LAST I915_PMU_RC6_RESIDENCY
-> +#define I915_PMU_LAST /* Deprecated - do not use */ I915_PMU_RC6_RESIDENCY
->   
->   /* Each region is a minimum of 16k, and there are at most 255 of them.
->    */
-> diff --git a/lib/igt_dummyload.c b/lib/igt_dummyload.c
-> index 4ef79cc4a..b29d12aff 100644
-> --- a/lib/igt_dummyload.c
-> +++ b/lib/igt_dummyload.c
-> @@ -590,6 +590,16 @@ void igt_terminate_spins(void)
->   	pthread_mutex_unlock(&list_lock);
->   }
->   
-> +void igt_free_spins(int i915)
-> +{
-> +	struct igt_spin *iter, *next;
+> diff --git a/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c b/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c
+> index 00918300f53f..3c62fd6daa76 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c
+> @@ -332,17 +332,19 @@ void intel_breadcrumbs_reset(struct intel_breadcrumbs *b)
+>  	spin_unlock_irqrestore(&b->irq_lock, flags);
+>  }
+>  
+> -void intel_breadcrumbs_park(struct intel_breadcrumbs *b)
+> +void __intel_breadcrumbs_park(struct intel_breadcrumbs *b)
+>  {
+> -	/* Kick the work once more to drain the signalers */
+> +	if (!READ_ONCE(b->irq_armed))
+> +		return;
 > +
-> +	pthread_mutex_lock(&list_lock);
-> +	igt_list_for_each_entry_safe(iter, next, &spin_list, link)
-> +		igt_spin_free(i915, iter);
-> +	pthread_mutex_unlock(&list_lock);
+> +	/* Kick the work once more to drain the signalers, and disarm the irq */
+>  	irq_work_sync(&b->irq_work);
+> -	while (unlikely(READ_ONCE(b->irq_armed))) {
+> +	while (READ_ONCE(b->irq_armed) && !atomic_read(&b->active)) {
+>  		local_irq_disable();
+>  		signal_irq_work(&b->irq_work);
+>  		local_irq_enable();
+>  		cond_resched();
+>  	}
+> -	GEM_BUG_ON(!list_empty(&b->signalers));
+>  }
+>  
+>  void intel_breadcrumbs_free(struct intel_breadcrumbs *b)
+> diff --git a/drivers/gpu/drm/i915/gt/intel_breadcrumbs.h b/drivers/gpu/drm/i915/gt/intel_breadcrumbs.h
+> index ed3d1deabfbd..75cc9cff3ae3 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_breadcrumbs.h
+> +++ b/drivers/gpu/drm/i915/gt/intel_breadcrumbs.h
+> @@ -19,7 +19,18 @@ intel_breadcrumbs_create(struct intel_engine_cs *irq_engine);
+>  void intel_breadcrumbs_free(struct intel_breadcrumbs *b);
+>  
+>  void intel_breadcrumbs_reset(struct intel_breadcrumbs *b);
+> -void intel_breadcrumbs_park(struct intel_breadcrumbs *b);
+> +void __intel_breadcrumbs_park(struct intel_breadcrumbs *b);
+> +
+> +static inline void intel_breadcrumbs_unpark(struct intel_breadcrumbs *b)
+> +{
+> +	atomic_inc(&b->active);
 > +}
 > +
->   void igt_unshare_spins(void)
->   {
->   	struct igt_spin *it, *n;
-> diff --git a/lib/igt_dummyload.h b/lib/igt_dummyload.h
-> index 3ece70a50..9e19ffabc 100644
-> --- a/lib/igt_dummyload.h
-> +++ b/lib/igt_dummyload.h
-> @@ -107,6 +107,7 @@ static inline void igt_spin_busywait_until_started(igt_spin_t *spin)
->   
->   void igt_terminate_spins(void);
->   void igt_unshare_spins(void);
-> +void igt_free_spins(int i915);
->   
->   enum igt_cork_type {
->   	CORK_SYNC_FD = 1,
-> diff --git a/tests/i915/perf_pmu.c b/tests/i915/perf_pmu.c
-> index c2b186d39..da06a28b0 100644
-> --- a/tests/i915/perf_pmu.c
-> +++ b/tests/i915/perf_pmu.c
-> @@ -883,6 +883,43 @@ sema_busy(int gem_fd,
->   	close(fd[1]);
->   }
->   
-> +static void test_awake(int i915)
+> +static inline void intel_breadcrumbs_park(struct intel_breadcrumbs *b)
 > +{
-> +	const struct intel_execution_engine2 *e;
-> +	unsigned long slept;
-> +	uint64_t val;
-> +	int fd;
-> +
-> +	fd = perf_i915_open(i915, I915_PMU_SOFTWARE_GT_AWAKE_TIME);
-> +	igt_skip_on(fd < 0);
-> +
-> +	/* Check that each engine is captured by the GT wakeref */
-> +	__for_each_physical_engine(i915, e) {
-> +		igt_spin_new(i915, .engine = e->flags);
-> +
-> +		val = pmu_read_single(fd);
-> +		slept = measured_usleep(batch_duration_ns / 1000);
-> +		val = pmu_read_single(fd) - val;
-> +
-> +		gem_quiescent_gpu(i915);
-> +		assert_within_epsilon(val, slept, tolerance);
-> +	}
-> +
-> +	/* And that the total GT wakeref matches walltime not summation */
-> +	__for_each_physical_engine(i915, e)
-> +		igt_spin_new(i915, .engine = e->flags);
-> +
-> +	val = pmu_read_single(fd);
-> +	slept = measured_usleep(batch_duration_ns / 1000);
-> +	val = pmu_read_single(fd) - val;
-> +
-> +	gem_quiescent_gpu(i915);
-> +	assert_within_epsilon(val, slept, tolerance);
-> +
-> +	igt_free_spins(i915);
-> +	close(fd);
+> +	if (atomic_dec_and_test(&b->active))
+> +		__intel_breadcrumbs_park(b);
 > +}
+>  
+>  static inline void
+>  intel_engine_signal_breadcrumbs(struct intel_engine_cs *engine)
+> diff --git a/drivers/gpu/drm/i915/gt/intel_breadcrumbs_types.h b/drivers/gpu/drm/i915/gt/intel_breadcrumbs_types.h
+> index a74bb3062bd8..d85a6f74fb87 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_breadcrumbs_types.h
+> +++ b/drivers/gpu/drm/i915/gt/intel_breadcrumbs_types.h
+> @@ -29,8 +29,7 @@
+>   * the overhead of waking that client is much preferred.
+>   */
+>  struct intel_breadcrumbs {
+> -	/* Not all breadcrumbs are attached to physical HW */
+> -	struct intel_engine_cs *irq_engine;
+> +	atomic_t active;
+>  
+>  	spinlock_t signalers_lock; /* protects the list of signalers */
+>  	struct list_head signalers;
+> @@ -40,6 +39,9 @@ struct intel_breadcrumbs {
+>  	struct irq_work irq_work; /* for use from inside irq_lock */
+>  	unsigned int irq_enabled;
+>  	bool irq_armed;
 > +
->   #define   MI_WAIT_FOR_PIPE_C_VBLANK (1<<21)
->   #define   MI_WAIT_FOR_PIPE_B_VBLANK (1<<11)
->   #define   MI_WAIT_FOR_PIPE_A_VBLANK (1<<3)
-> @@ -2250,6 +2287,12 @@ igt_main
->   	igt_subtest("rc6-suspend")
->   		test_rc6(fd, TEST_S3);
->   
-> +	/**
-> +	 * Test GT wakeref tracking (similar to RC0, opposite of RC6)
-> +	 */
-> +	igt_subtest("gt-awake")
-> +		test_awake(fd);
-> +
->   	/**
->   	 * Check render nodes are counted.
->   	 */
+> +	/* Not all breadcrumbs are attached to physical HW */
+> +	struct intel_engine_cs *irq_engine;
+>  };
+>  
+>  #endif /* __INTEL_BREADCRUMBS_TYPES__ */
+> diff --git a/drivers/gpu/drm/i915/gt/intel_engine_pm.c b/drivers/gpu/drm/i915/gt/intel_engine_pm.c
+> index 499b09cb4acf..d74e748f677a 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_engine_pm.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_engine_pm.c
+> @@ -65,6 +65,7 @@ static int __engine_unpark(struct intel_wakeref *wf)
+>  	if (engine->unpark)
+>  		engine->unpark(engine);
+>  
+> +	intel_breadcrumbs_unpark(engine->breadcrumbs);
+>  	intel_engine_unpark_heartbeat(engine);
+>  	return 0;
+>  }
+> -- 
+> 2.20.1
 > 
-
-Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-
-Regards,
-
-Tvrtko
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
