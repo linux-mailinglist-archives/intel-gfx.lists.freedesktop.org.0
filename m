@@ -1,57 +1,45 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7B5112DE6D1
-	for <lists+intel-gfx@lfdr.de>; Fri, 18 Dec 2020 16:42:55 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2B1442DE6F2
+	for <lists+intel-gfx@lfdr.de>; Fri, 18 Dec 2020 16:52:14 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A1A366E1CD;
-	Fri, 18 Dec 2020 15:42:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 02AC66E159;
+	Fri, 18 Dec 2020 15:52:12 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com
- [IPv6:2a00:1450:4864:20::42f])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 888076E1CD
- for <intel-gfx@lists.freedesktop.org>; Fri, 18 Dec 2020 15:42:51 +0000 (UTC)
-Received: by mail-wr1-x42f.google.com with SMTP id r7so2636608wrc.5
- for <intel-gfx@lists.freedesktop.org>; Fri, 18 Dec 2020 07:42:51 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:in-reply-to;
- bh=TzwW3xjjWn4Ug0mSSu8SJ2wtKhKSJ9lrt0i+nH01vj4=;
- b=dyI4ZoIqVOLhXqCyfu/mV4crgcXXn/OtqE+2L+M8lleBXoA+XvXx0NNtt+FsZ3uIe/
- esTXT/lD49MqnY7PFRzmIL7gaIL26ElvfPa6Cwz+4gF85o9BtaWe+I5/X7Se/CAALtrm
- +MnIbU0EEjWiirv/8lWN5NRFgTb3YmIaOFHBk=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:in-reply-to;
- bh=TzwW3xjjWn4Ug0mSSu8SJ2wtKhKSJ9lrt0i+nH01vj4=;
- b=sSIN2yL5tQVfrJDDa1BSH2/vQFt/RTw1efbwAlQ8isV6o9F63kqIR6nKdLFficX8w2
- Ynp4PtzozlKq5n9JU4AV+30DmGP6+q4S8VKmKjNJEz+x7e2pRcHDSXfCQINl78jgiBac
- iRkA2vmpq9BN3qycAKtxvV49XPie/uOeVEDRvU5IoNpnErtWgAUHLJFnS8a/qGWol7SB
- flOHKVSfJItcaK09fVwb9umnBWcrHbYabxxQUXTJUKODUMyjj6OumsAf1+G2YTJrc0xt
- b/e7BCkzobXkrbRDJB5Pr6UPM3k3ugti1PejQ8mdXzXkTXq3axpjCcey9fFwW4OYRosO
- ijPg==
-X-Gm-Message-State: AOAM530ecue+2c5UBSCtk5Yuwwf6Tx4NMqHsFTpQGniFjoDjWBPtAlHo
- 1BuPmOVmvEI93TzwQeViO+1jiw==
-X-Google-Smtp-Source: ABdhPJzFoz47xZGKOeU8S2OrPf1heeLkRSMGdicNxQBfyOsNIS0LdeecOIJqsfvoygna3jLijzqXsg==
-X-Received: by 2002:a5d:570e:: with SMTP id a14mr5171465wrv.126.1608306170200; 
- Fri, 18 Dec 2020 07:42:50 -0800 (PST)
-Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id m18sm14117224wrw.43.2020.12.18.07.42.48
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 18 Dec 2020 07:42:49 -0800 (PST)
-Date: Fri, 18 Dec 2020 16:42:47 +0100
-From: Daniel Vetter <daniel@ffwll.ch>
-To: Jani Nikula <jani.nikula@intel.com>
-Message-ID: <X9zN96w7c5bPLMwJ@phenom.ffwll.local>
-References: <87zh2bp34m.fsf@intel.com>
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 236E56E159
+ for <intel-gfx@lists.freedesktop.org>; Fri, 18 Dec 2020 15:52:11 +0000 (UTC)
+IronPort-SDR: vQJAYxAtlGL31+8UQA8zd+jzBWoKzFRgZm7GMUXRidQFz4Nwmczu55XSpYloMG6gKYC4NluCun
+ 7Wl6GNxSOjTQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9839"; a="154677727"
+X-IronPort-AV: E=Sophos;i="5.78,430,1599548400"; d="scan'208";a="154677727"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Dec 2020 07:52:10 -0800
+IronPort-SDR: tpWylOKWSnLLxOhZQZB6YK+FYfHvd6Yr1p6CVd9XITHvbltnKm2LgYNUaS5upliVkyyP0CENbr
+ O2YegGBz51og==
+X-IronPort-AV: E=Sophos;i="5.78,430,1599548400"; d="scan'208";a="370633187"
+Received: from mizrahid-mobl.ger.corp.intel.com (HELO [10.214.205.41])
+ ([10.214.205.41])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Dec 2020 07:52:09 -0800
+To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
+References: <20201218091944.32417-1-chris@chris-wilson.co.uk>
+ <20201218122421.18344-1-chris@chris-wilson.co.uk>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+Message-ID: <68b73001-3179-5aca-c206-449a1ff12d01@linux.intel.com>
+Date: Fri, 18 Dec 2020 15:52:05 +0000
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <87zh2bp34m.fsf@intel.com>
-X-Operating-System: Linux phenom 5.7.0-1-amd64 
-Subject: Re: [Intel-gfx] [PULL] drm-intel-next-fixes
+In-Reply-To: <20201218122421.18344-1-chris@chris-wilson.co.uk>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH v2] drm/i915: Check for rq->hwsp validity
+ after acquiring RCU lock
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,68 +52,212 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dim-tools@lists.freedesktop.org, Daniel Vetter <daniel.vetter@ffwll.ch>,
- dri-devel@lists.freedesktop.org, Maxime Ripard <mripard@kernel.org>,
- intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
+Cc: stable@vger.kernel.org
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Dec 18, 2020 at 05:04:09PM +0200, Jani Nikula wrote:
-> 
-> Hi Dave & Daniel -
-> 
-> drm-intel-next-fixes-2020-12-18:
-> drm/i915 fixes for the merge window
 
-Pulled, thanks a lot.
--Daniel
+On 18/12/2020 12:24, Chris Wilson wrote:
+> Since we allow removing the timeline map at runtime, there is a risk
+> that rq->hwsp points into a stale page. To control that risk, we hold
+> the RCU read lock while reading *rq->hwsp, but we missed a couple of
+> important barriers. First, the unpinning / removal of the timeline map
+> must be after all RCU readers into that map are complete, i.e. after an
+> rcu barrier (in this case courtesy of call_rcu()). Secondly, we must
+> make sure that the rq->hwsp we are about to dereference under the RCU
+> lock is valid. In this case, we make the rq->hwsp pointer safe during
+> i915_request_retire() and so we know that rq->hwsp may become invalid
+> only after the request has been signaled. Therefore is the request is
+> not yet signaled when we acquire rq->hwsp under the RCU, we know that
+> rq->hwsp will remain valid for the duration of the RCU read lock.
+> 
+> This is a very small window that may lead to either considering the
+> request not completed (causing a delay until the request is checked
+> again, any wait for the request is not affected) or dereferencing an
+> invalid pointer.
+> 
+> Fixes: 3adac4689f58 ("drm/i915: Introduce concept of per-timeline (context) HWSP")
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+> Cc: <stable@vger.kernel.org> # v5.1+
+> ---
+>   drivers/gpu/drm/i915/gt/intel_breadcrumbs.c | 11 ++----
+>   drivers/gpu/drm/i915/gt/intel_timeline.c    | 10 +++---
+>   drivers/gpu/drm/i915/i915_request.h         | 37 ++++++++++++++++++---
+>   3 files changed, 39 insertions(+), 19 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c b/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c
+> index 3c62fd6daa76..f96cd7d9b419 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c
+> @@ -134,11 +134,6 @@ static bool remove_signaling_context(struct intel_breadcrumbs *b,
+>   	return true;
+>   }
+>   
+> -static inline bool __request_completed(const struct i915_request *rq)
+> -{
+> -	return i915_seqno_passed(__hwsp_seqno(rq), rq->fence.seqno);
+> -}
+> -
+>   __maybe_unused static bool
+>   check_signal_order(struct intel_context *ce, struct i915_request *rq)
+>   {
+> @@ -245,7 +240,7 @@ static void signal_irq_work(struct irq_work *work)
+>   		list_for_each_entry_rcu(rq, &ce->signals, signal_link) {
+>   			bool release;
+>   
+> -			if (!__request_completed(rq))
+> +			if (!__i915_request_is_complete(rq))
+>   				break;
+>   
+>   			if (!test_and_clear_bit(I915_FENCE_FLAG_SIGNAL,
+> @@ -380,7 +375,7 @@ static void insert_breadcrumb(struct i915_request *rq)
+>   	 * straight onto a signaled list, and queue the irq worker for
+>   	 * its signal completion.
+>   	 */
+> -	if (__request_completed(rq)) {
+> +	if (__i915_request_is_complete(rq)) {
+>   		irq_signal_request(rq, b);
+>   		return;
+>   	}
+> @@ -468,7 +463,7 @@ void i915_request_cancel_breadcrumb(struct i915_request *rq)
+>   	if (release)
+>   		intel_context_put(ce);
+>   
+> -	if (__request_completed(rq))
+> +	if (__i915_request_is_complete(rq))
+>   		irq_signal_request(rq, b);
+>   
+>   	i915_request_put(rq);
+> diff --git a/drivers/gpu/drm/i915/gt/intel_timeline.c b/drivers/gpu/drm/i915/gt/intel_timeline.c
+> index 512afacd2bdc..a005d0165bf4 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_timeline.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_timeline.c
+> @@ -126,6 +126,10 @@ static void __rcu_cacheline_free(struct rcu_head *rcu)
+>   	struct intel_timeline_cacheline *cl =
+>   		container_of(rcu, typeof(*cl), rcu);
+>   
+> +	/* Must wait until after all *rq->hwsp are complete before removing */
+> +	i915_gem_object_unpin_map(cl->hwsp->vma->obj);
+> +	__idle_hwsp_free(cl->hwsp, ptr_unmask_bits(cl->vaddr, CACHELINE_BITS));
+> +
+>   	i915_active_fini(&cl->active);
+>   	kfree(cl);
+>   }
+> @@ -133,11 +137,6 @@ static void __rcu_cacheline_free(struct rcu_head *rcu)
+>   static void __idle_cacheline_free(struct intel_timeline_cacheline *cl)
+>   {
+>   	GEM_BUG_ON(!i915_active_is_idle(&cl->active));
+> -
+> -	i915_gem_object_unpin_map(cl->hwsp->vma->obj);
+> -	i915_vma_put(cl->hwsp->vma);
+> -	__idle_hwsp_free(cl->hwsp, ptr_unmask_bits(cl->vaddr, CACHELINE_BITS));
+> -
+>   	call_rcu(&cl->rcu, __rcu_cacheline_free);
+>   }
+>   
+> @@ -179,7 +178,6 @@ cacheline_alloc(struct intel_timeline_hwsp *hwsp, unsigned int cacheline)
+>   		return ERR_CAST(vaddr);
+>   	}
+>   
+> -	i915_vma_get(hwsp->vma);
+>   	cl->hwsp = hwsp;
+>   	cl->vaddr = page_pack_bits(vaddr, cacheline);
+>   
+> diff --git a/drivers/gpu/drm/i915/i915_request.h b/drivers/gpu/drm/i915/i915_request.h
+> index 92e4320c50c4..7c4453e60323 100644
+> --- a/drivers/gpu/drm/i915/i915_request.h
+> +++ b/drivers/gpu/drm/i915/i915_request.h
+> @@ -440,7 +440,7 @@ static inline u32 hwsp_seqno(const struct i915_request *rq)
+>   
+>   static inline bool __i915_request_has_started(const struct i915_request *rq)
+>   {
+> -	return i915_seqno_passed(hwsp_seqno(rq), rq->fence.seqno - 1);
+> +	return i915_seqno_passed(__hwsp_seqno(rq), rq->fence.seqno - 1);
+>   }
+>   
+>   /**
+> @@ -471,11 +471,19 @@ static inline bool __i915_request_has_started(const struct i915_request *rq)
+>    */
+>   static inline bool i915_request_started(const struct i915_request *rq)
+>   {
+> +	bool result;
+> +
+>   	if (i915_request_signaled(rq))
+>   		return true;
+>   
+> -	/* Remember: started but may have since been preempted! */
+> -	return __i915_request_has_started(rq);
+> +	result = true;
+> +	rcu_read_lock(); /* the HWSP may be freed at runtime */
+> +	if (likely(!i915_request_signaled(rq)))
+> +		/* Remember: started but may have since been preempted! */
+> +		result = __i915_request_has_started(rq);
+> +	rcu_read_unlock();
+> +
+> +	return result;
+>   }
+>   
+>   /**
+> @@ -488,10 +496,16 @@ static inline bool i915_request_started(const struct i915_request *rq)
+>    */
+>   static inline bool i915_request_is_running(const struct i915_request *rq)
+>   {
+> +	bool result;
+> +
+>   	if (!i915_request_is_active(rq))
+>   		return false;
+>   
+> -	return __i915_request_has_started(rq);
+> +	rcu_read_lock();
+> +	result = __i915_request_has_started(rq) && i915_request_is_active(rq);
+> +	rcu_read_unlock();
+> +
+> +	return result;
+>   }
+>   
+>   /**
+> @@ -515,12 +529,25 @@ static inline bool i915_request_is_ready(const struct i915_request *rq)
+>   	return !list_empty(&rq->sched.link);
+>   }
+>   
+> +static inline bool __i915_request_is_complete(const struct i915_request *rq)
+> +{
+> +	return i915_seqno_passed(__hwsp_seqno(rq), rq->fence.seqno);
+> +}
+> +
+>   static inline bool i915_request_completed(const struct i915_request *rq)
+>   {
+> +	bool result;
+> +
+>   	if (i915_request_signaled(rq))
+>   		return true;
+>   
+> -	return i915_seqno_passed(hwsp_seqno(rq), rq->fence.seqno);
+> +	result = true;
+> +	rcu_read_lock(); /* the HWSP may be freed at runtime */
+> +	if (likely(!i915_request_signaled(rq)))
+> +		result = __i915_request_is_complete(rq);
+> +	rcu_read_unlock();
+> +
+> +	return result; >   }
+>   
+>   static inline void i915_request_mark_complete(struct i915_request *rq)
+> 
 
-> 
-> 
-> BR,
-> Jani.
-> 
-> The following changes since commit efd3043790c6e92f0bbe1fe385db9b544131c59c:
-> 
->   Merge tag 'amd-drm-fixes-5.11-2020-12-16' of git://people.freedesktop.org/~agd5f/linux into drm-next (2020-12-16 23:25:51 +0100)
-> 
-> are available in the Git repository at:
-> 
->   git://anongit.freedesktop.org/drm/drm-intel tags/drm-intel-next-fixes-2020-12-18
-> 
-> for you to fetch changes up to 046f70d31ddb2069941aec54966fec5b7fbc7b7b:
-> 
->   drm/i915/tgl: Fix REVID macros for TGL to fetch correct stepping (2020-12-18 12:30:10 +0200)
-> 
-> ----------------------------------------------------------------
-> drm/i915 fixes for the merge window
-> 
-> ----------------------------------------------------------------
-> Aditya Swarup (1):
->       drm/i915/tgl: Fix REVID macros for TGL to fetch correct stepping
-> 
-> Chris Wilson (2):
->       Revert "drm/i915: re-order if/else ladder for hpd_irq_setup"
->       drm/i915: Fix mismatch between misplaced vma check and vma insert
-> 
-> Lionel Landwerlin (1):
->       drm/i915/perf: also include Gen11 in OATAILPTR workaround
-> 
->  drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c |  2 +-
->  drivers/gpu/drm/i915/i915_drv.h                | 12 ++++++------
->  drivers/gpu/drm/i915/i915_irq.c                | 27 ++++++++++++++------------
->  drivers/gpu/drm/i915/i915_perf.c               |  2 +-
->  4 files changed, 23 insertions(+), 20 deletions(-)
-> 
-> -- 
-> Jani Nikula, Intel Open Source Graphics Center
+Should rq->hwsp_seqno be marked as rcu pointer?
 
--- 
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
+We reset the fence signaled status before re-assigning the timeline. So 
+if we were to query a request in the process of being allocated, do we 
+need to do something extra to make sure !signaled status is not seen 
+before the rq->hwsp_seqno is replaced? Like should the order of re-init 
+be inverted?
+
+Regards,
+
+Tvrtko
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
