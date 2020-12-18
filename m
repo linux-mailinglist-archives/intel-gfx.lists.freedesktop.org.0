@@ -1,44 +1,44 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 059712DE643
-	for <lists+intel-gfx@lfdr.de>; Fri, 18 Dec 2020 16:13:20 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id E8AFC2DE648
+	for <lists+intel-gfx@lfdr.de>; Fri, 18 Dec 2020 16:13:40 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DAE646E1F2;
-	Fri, 18 Dec 2020 15:13:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6728D6E1F4;
+	Fri, 18 Dec 2020 15:13:39 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4DEB36E1F2
- for <intel-gfx@lists.freedesktop.org>; Fri, 18 Dec 2020 15:13:15 +0000 (UTC)
-IronPort-SDR: XzQfg4OPQdWnT9HptVAzyhudYeaul4pyPYYFc+l2sr5w+lNwqhP3t8vWaxV+u1cSFc5Yaqjsd+
- OJL84dgyDBVg==
-X-IronPort-AV: E=McAfee;i="6000,8403,9839"; a="171947656"
-X-IronPort-AV: E=Sophos;i="5.78,430,1599548400"; d="scan'208";a="171947656"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 132A06E1F4
+ for <intel-gfx@lists.freedesktop.org>; Fri, 18 Dec 2020 15:13:38 +0000 (UTC)
+IronPort-SDR: 5fvbs92rGtUAT4lyejtmiMQipv5u9ikzrfZ3HlNUdC3WXppLyJcxvkQNgQSO0rQgWslLsQsdMM
+ qd++VOMXUKBw==
+X-IronPort-AV: E=McAfee;i="6000,8403,9839"; a="171947698"
+X-IronPort-AV: E=Sophos;i="5.78,430,1599548400"; d="scan'208";a="171947698"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Dec 2020 07:13:14 -0800
-IronPort-SDR: 66mTlu5AiGUe7211trVnHl9pn5IeySOibQF/ILfDEYXGsegRhhonR6wSmP1Pl6TKj8i47sR1Vx
- JPnfZWIsC7Xg==
+ 18 Dec 2020 07:13:37 -0800
+IronPort-SDR: f2gMqUkSUpwzOfqED+UO05qhQPzNSKBbO0YREjpKOYi/Qe2hDvwCv0iQ/BhpRZCPhQ1uv+SrtQ
+ 1Hnczg63oxrQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.78,430,1599548400"; d="scan'208";a="414059170"
+X-IronPort-AV: E=Sophos;i="5.78,430,1599548400"; d="scan'208";a="454021383"
 Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by orsmga001.jf.intel.com with SMTP; 18 Dec 2020 07:13:12 -0800
+ by fmsmga001.fm.intel.com with SMTP; 18 Dec 2020 07:13:35 -0800
 Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 18 Dec 2020 17:13:11 +0200
-Date: Fri, 18 Dec 2020 17:13:11 +0200
+ Fri, 18 Dec 2020 17:13:35 +0200
+Date: Fri, 18 Dec 2020 17:13:35 +0200
 From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
 To: Dave Airlie <airlied@gmail.com>
-Message-ID: <X9zHB33bwOTQVeAm@intel.com>
+Message-ID: <X9zHHw06ZqajzB+e@intel.com>
 References: <20201218060420.3203-1-airlied@gmail.com>
- <20201218060420.3203-11-airlied@gmail.com>
+ <20201218060420.3203-10-airlied@gmail.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20201218060420.3203-11-airlied@gmail.com>
+In-Reply-To: <20201218060420.3203-10-airlied@gmail.com>
 X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH 10/13] drm/i915: migrate skl planes code new
- file (v2)
+Subject: Re: [Intel-gfx] [PATCH 09/13] drm/i915: migrate hsw fdi code to new
+ file.
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,674 +57,631 @@ Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Dec 18, 2020 at 04:04:17PM +1000, Dave Airlie wrote:
+On Fri, Dec 18, 2020 at 04:04:16PM +1000, Dave Airlie wrote:
 > From: Dave Airlie <airlied@redhat.com>
 > =
 
-> Rework the plane init calls to do the gen test one level higher.
-> =
-
-> Rework some of the plane helpers so they can live in new file,
-> there is still some scope to clean up the plane/fb interactions
-> later.
-> =
-
-> v2: drop atomic code back, rename file to Ville suggestions,
-> add header file.
+> Daniel asked for this, but it's a bit messy and I'm not sure
+> how best to clean it up yet.
 > =
 
 > Signed-off-by: Dave Airlie <airlied@redhat.com>
-> [Jani: fixed up sparse warnings.]
+> [Jani: also moved fdi buf trans to intel_fdi.c.]
 > Signed-off-by: Jani Nikula <jani.nikula@intel.com>
-> Reported-by: kernel test robot <lkp@intel.com>
-> Reported-by: Dan Carpenter <dan.carpenter@oracle.com>
 > ---
->  drivers/gpu/drm/i915/Makefile                 |    3 +-
->  drivers/gpu/drm/i915/display/i9xx_plane.c     |    4 -
->  drivers/gpu/drm/i915/display/icl_dsi.c        |    1 +
->  drivers/gpu/drm/i915/display/intel_crtc.c     |   13 +-
->  drivers/gpu/drm/i915/display/intel_ddi.c      |    1 +
->  drivers/gpu/drm/i915/display/intel_display.c  | 1401 +--------
->  drivers/gpu/drm/i915/display/intel_display.h  |   29 +-
->  .../drm/i915/display/intel_display_types.h    |   21 +
->  drivers/gpu/drm/i915/display/intel_dp_mst.c   |    1 +
->  drivers/gpu/drm/i915/display/intel_sprite.c   | 1395 ---------
->  drivers/gpu/drm/i915/display/intel_sprite.h   |    3 -
->  .../drm/i915/display/skl_universal_plane.c    | 2790 +++++++++++++++++
->  .../drm/i915/display/skl_universal_plane.h    |   37 +
->  drivers/gpu/drm/i915/display/vlv_dsi.c        |    1 +
->  drivers/gpu/drm/i915/intel_pm.c               |    1 +
->  15 files changed, 2893 insertions(+), 2808 deletions(-)
->  create mode 100644 drivers/gpu/drm/i915/display/skl_universal_plane.c
->  create mode 100644 drivers/gpu/drm/i915/display/skl_universal_plane.h
+>  drivers/gpu/drm/i915/display/intel_crt.c |   1 +
+>  drivers/gpu/drm/i915/display/intel_ddi.c | 197 +----------------------
+>  drivers/gpu/drm/i915/display/intel_ddi.h |  14 +-
+>  drivers/gpu/drm/i915/display/intel_fdi.c | 174 ++++++++++++++++++++
+>  drivers/gpu/drm/i915/display/intel_fdi.h |   7 +
+>  5 files changed, 202 insertions(+), 191 deletions(-)
 > =
 
-> diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefile
-> index e1a24239e25e..a055860daddb 100644
-> --- a/drivers/gpu/drm/i915/Makefile
-> +++ b/drivers/gpu/drm/i915/Makefile
-> @@ -219,7 +219,8 @@ i915-y +=3D \
->  	display/intel_sprite.o \
->  	display/intel_tc.o \
->  	display/intel_vga.o \
-> -	display/i9xx_plane.o
-> +	display/i9xx_plane.o \
-> +	display/skl_universal_plane.o
->  i915-$(CONFIG_ACPI) +=3D \
->  	display/intel_acpi.o \
->  	display/intel_opregion.o
-> diff --git a/drivers/gpu/drm/i915/display/i9xx_plane.c b/drivers/gpu/drm/=
-i915/display/i9xx_plane.c
-> index b78985c855a5..6c568079f492 100644
-> --- a/drivers/gpu/drm/i915/display/i9xx_plane.c
-> +++ b/drivers/gpu/drm/i915/display/i9xx_plane.c
-> @@ -578,10 +578,6 @@ intel_primary_plane_create(struct drm_i915_private *=
-dev_priv, enum pipe pipe)
->  	int num_formats;
->  	int ret, zpos;
->  =
-
-> -	if (INTEL_GEN(dev_priv) >=3D 9)
-> -		return skl_universal_plane_create(dev_priv, pipe,
-> -						  PLANE_PRIMARY);
-> -
->  	plane =3D intel_plane_alloc();
->  	if (IS_ERR(plane))
->  		return plane;
-> diff --git a/drivers/gpu/drm/i915/display/icl_dsi.c b/drivers/gpu/drm/i91=
-5/display/icl_dsi.c
-> index 9d245a689323..9eeec6fadec7 100644
-> --- a/drivers/gpu/drm/i915/display/icl_dsi.c
-> +++ b/drivers/gpu/drm/i915/display/icl_dsi.c
-> @@ -35,6 +35,7 @@
+> diff --git a/drivers/gpu/drm/i915/display/intel_crt.c b/drivers/gpu/drm/i=
+915/display/intel_crt.c
+> index 4934edd51cb0..077ebc7e6396 100644
+> --- a/drivers/gpu/drm/i915/display/intel_crt.c
+> +++ b/drivers/gpu/drm/i915/display/intel_crt.c
+> @@ -38,6 +38,7 @@
+>  #include "intel_crt.h"
+>  #include "intel_ddi.h"
+>  #include "intel_display_types.h"
+> +#include "intel_fdi.h"
+>  #include "intel_fifo_underrun.h"
+>  #include "intel_gmbus.h"
+>  #include "intel_hotplug.h"
+> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i=
+915/display/intel_ddi.c
+> index 6863236df1d0..deabb1ad6045 100644
+> --- a/drivers/gpu/drm/i915/display/intel_ddi.c
+> +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+> @@ -35,10 +35,11 @@
+>  #include "intel_ddi.h"
+>  #include "intel_display_types.h"
+>  #include "intel_dp.h"
+> -#include "intel_dp_mst.h"
+>  #include "intel_dp_link_training.h"
+> +#include "intel_dp_mst.h"
+>  #include "intel_dpio_phy.h"
 >  #include "intel_dsi.h"
->  #include "intel_panel.h"
+> +#include "intel_fdi.h"
+>  #include "intel_fifo_underrun.h"
+>  #include "intel_gmbus.h"
+>  #include "intel_hdcp.h"
+> @@ -51,12 +52,6 @@
+>  #include "intel_tc.h"
 >  #include "intel_vdsc.h"
-> +#include "skl_universal_plane.h"
 >  =
 
->  static int header_credits_available(struct drm_i915_private *dev_priv,
->  				    enum transcoder dsi_trans)
-> diff --git a/drivers/gpu/drm/i915/display/intel_crtc.c b/drivers/gpu/drm/=
-i915/display/intel_crtc.c
-> index ad63df163850..d89cf6f2d97d 100644
-> --- a/drivers/gpu/drm/i915/display/intel_crtc.c
-> +++ b/drivers/gpu/drm/i915/display/intel_crtc.c
-> @@ -20,6 +20,7 @@
->  #include "intel_pipe_crc.h"
->  #include "intel_sprite.h"
->  #include "i9xx_plane.h"
-> +#include "skl_universal_plane.h"
+> -struct ddi_buf_trans {
+> -	u32 trans1;	/* balance leg enable, de-emph level */
+> -	u32 trans2;	/* vref sel, vswing */
+> -	u8 i_boost;	/* SKL: I_boost; valid: 0x0, 0x1, 0x3, 0x7 */
+> -};
+> -
+>  static const u8 index_to_dp_signal_levels[] =3D {
+>  	[0] =3D DP_TRAIN_VOLTAGE_SWING_LEVEL_0 | DP_TRAIN_PRE_EMPH_LEVEL_0,
+>  	[1] =3D DP_TRAIN_VOLTAGE_SWING_LEVEL_0 | DP_TRAIN_PRE_EMPH_LEVEL_1,
+> @@ -86,18 +81,6 @@ static const struct ddi_buf_trans hsw_ddi_translations=
+_dp[] =3D {
+>  	{ 0x80D75FFF, 0x000B0000, 0x0 },
+>  };
 >  =
 
->  static void assert_vblank_disabled(struct drm_crtc *crtc)
+> -static const struct ddi_buf_trans hsw_ddi_translations_fdi[] =3D {
+> -	{ 0x00FFFFFF, 0x0007000E, 0x0 },
+> -	{ 0x00D75FFF, 0x000F000A, 0x0 },
+> -	{ 0x00C30FFF, 0x00060006, 0x0 },
+> -	{ 0x00AAAFFF, 0x001E0000, 0x0 },
+> -	{ 0x00FFFFFF, 0x000F000A, 0x0 },
+> -	{ 0x00D75FFF, 0x00160004, 0x0 },
+> -	{ 0x00C30FFF, 0x001E0000, 0x0 },
+> -	{ 0x00FFFFFF, 0x00060006, 0x0 },
+> -	{ 0x00D75FFF, 0x001E0000, 0x0 },
+> -};
+
+Still wouldn't move these buf trans tables. Makes it harder to review
+all of them in one go if they're spread around all over the place.
+As mentioned before I'd suggest adding intel_ddi_buf_trans.c to house
+all of these tables.
+
+The rest of the patch lgtm.
+
+> -
+>  static const struct ddi_buf_trans hsw_ddi_translations_hdmi[] =3D {
+>  					/* Idx	NT mV d	T mV d	db	*/
+>  	{ 0x00FFFFFF, 0x0006000E, 0x0 },/* 0:	400	400	0	*/
+> @@ -138,18 +121,6 @@ static const struct ddi_buf_trans bdw_ddi_translatio=
+ns_dp[] =3D {
+>  	{ 0x80D75FFF, 0x001B0002, 0x0 },
+>  };
+>  =
+
+> -static const struct ddi_buf_trans bdw_ddi_translations_fdi[] =3D {
+> -	{ 0x00FFFFFF, 0x0001000E, 0x0 },
+> -	{ 0x00D75FFF, 0x0004000A, 0x0 },
+> -	{ 0x00C30FFF, 0x00070006, 0x0 },
+> -	{ 0x00AAAFFF, 0x000C0000, 0x0 },
+> -	{ 0x00FFFFFF, 0x0004000A, 0x0 },
+> -	{ 0x00D75FFF, 0x00090004, 0x0 },
+> -	{ 0x00C30FFF, 0x000C0000, 0x0 },
+> -	{ 0x00FFFFFF, 0x00070006, 0x0 },
+> -	{ 0x00D75FFF, 0x000C0000, 0x0 },
+> -};
+> -
+>  static const struct ddi_buf_trans bdw_ddi_translations_hdmi[] =3D {
+>  					/* Idx	NT mV d	T mV df	db	*/
+>  	{ 0x00FFFFFF, 0x0007000E, 0x0 },/* 0:	400	400	0	*/
+> @@ -929,22 +900,6 @@ intel_ddi_get_buf_trans_edp(struct intel_encoder *en=
+coder, int *n_entries)
+>  	return NULL;
+>  }
+>  =
+
+> -static const struct ddi_buf_trans *
+> -intel_ddi_get_buf_trans_fdi(struct drm_i915_private *dev_priv,
+> -			    int *n_entries)
+> -{
+> -	if (IS_BROADWELL(dev_priv)) {
+> -		*n_entries =3D ARRAY_SIZE(bdw_ddi_translations_fdi);
+> -		return bdw_ddi_translations_fdi;
+> -	} else if (IS_HASWELL(dev_priv)) {
+> -		*n_entries =3D ARRAY_SIZE(hsw_ddi_translations_fdi);
+> -		return hsw_ddi_translations_fdi;
+> -	}
+> -
+> -	*n_entries =3D 0;
+> -	return NULL;
+> -}
+> -
+>  static const struct ddi_buf_trans *
+>  intel_ddi_get_buf_trans_hdmi(struct intel_encoder *encoder,
+>  			     int *n_entries)
+> @@ -1398,8 +1353,8 @@ static int intel_ddi_hdmi_level(struct intel_encode=
+r *encoder,
+>   * values in advance. This function programs the correct values for
+>   * DP/eDP/FDI use cases.
+>   */
+> -static void intel_prepare_dp_ddi_buffers(struct intel_encoder *encoder,
+> -					 const struct intel_crtc_state *crtc_state)
+> +void intel_prepare_dp_ddi_buffers(struct intel_encoder *encoder,
+> +				  const struct intel_crtc_state *crtc_state)
 >  {
-> @@ -244,7 +245,11 @@ int intel_crtc_init(struct drm_i915_private *dev_pri=
-v, enum pipe pipe)
->  	crtc->pipe =3D pipe;
->  	crtc->num_scalers =3D RUNTIME_INFO(dev_priv)->num_scalers[pipe];
+>  	struct drm_i915_private *dev_priv =3D to_i915(encoder->base.dev);
+>  	u32 iboost_bit =3D 0;
+> @@ -1408,8 +1363,7 @@ static void intel_prepare_dp_ddi_buffers(struct int=
+el_encoder *encoder,
+>  	const struct ddi_buf_trans *ddi_translations;
 >  =
 
-> -	primary =3D intel_primary_plane_create(dev_priv, pipe);
-> +	if (INTEL_GEN(dev_priv) >=3D 9)
-> +		primary =3D skl_universal_plane_create(dev_priv, pipe,
-> +						     PLANE_PRIMARY);
-> +	else
-> +		primary =3D intel_primary_plane_create(dev_priv, pipe);
-
-Ah, this got inlined here. Seems ok. But I'd probably follow
-up with s/intel/i9xx/ renamed for the pre-skl function.
-
->  	if (IS_ERR(primary)) {
->  		ret =3D PTR_ERR(primary);
->  		goto fail;
-> @@ -254,7 +259,11 @@ int intel_crtc_init(struct drm_i915_private *dev_pri=
-v, enum pipe pipe)
->  	for_each_sprite(dev_priv, pipe, sprite) {
->  		struct intel_plane *plane;
+>  	if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_ANALOG))
+> -		ddi_translations =3D intel_ddi_get_buf_trans_fdi(dev_priv,
+> -							       &n_entries);
+> +		ddi_translations =3D intel_fdi_get_buf_trans(dev_priv, &n_entries);
+>  	else if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_EDP))
+>  		ddi_translations =3D intel_ddi_get_buf_trans_edp(encoder,
+>  							       &n_entries);
+> @@ -1461,8 +1415,8 @@ static void intel_prepare_hdmi_ddi_buffers(struct i=
+ntel_encoder *encoder,
+>  		       ddi_translations[level].trans2);
+>  }
 >  =
 
-> -		plane =3D intel_sprite_plane_create(dev_priv, pipe, sprite);
-> +		if (INTEL_GEN(dev_priv) >=3D 9)
-> +			plane =3D skl_universal_plane_create(dev_priv, pipe,
-> +							   PLANE_SPRITE0 + sprite);
-> +		else
-> +			plane =3D intel_sprite_plane_create(dev_priv, pipe, sprite);
+> -static void intel_wait_ddi_buf_idle(struct drm_i915_private *dev_priv,
+> -				    enum port port)
+> +void intel_wait_ddi_buf_idle(struct drm_i915_private *dev_priv,
+> +			     enum port port)
+>  {
+>  	if (IS_BROXTON(dev_priv)) {
+>  		udelay(16);
+> @@ -1490,7 +1444,7 @@ static void intel_wait_ddi_buf_active(struct drm_i9=
+15_private *dev_priv,
+>  			port_name(port));
+>  }
+>  =
 
-Ditto here I guess. Though until the sprite code moves into
-i9xx_plane.c it does seem a bit off.
+> -static u32 hsw_pll_to_ddi_pll_sel(const struct intel_shared_dpll *pll)
+> +u32 hsw_pll_to_ddi_pll_sel(const struct intel_shared_dpll *pll)
+>  {
+>  	switch (pll->info->id) {
+>  	case DPLL_ID_WRPLL1:
+> @@ -1550,141 +1504,6 @@ static u32 icl_pll_to_ddi_clk_sel(struct intel_en=
+coder *encoder,
+>  	}
+>  }
+>  =
 
-Oh well, I guess the intel_ prefix for these two is fine for the time
-being.
-
-<snip>
-> -static void skl_detach_scaler(struct intel_crtc *intel_crtc, int id)
-> -{
-> -	struct drm_device *dev =3D intel_crtc->base.dev;
-> -	struct drm_i915_private *dev_priv =3D to_i915(dev);
-> -	unsigned long irqflags;
-> -
-> -	spin_lock_irqsave(&dev_priv->uncore.lock, irqflags);
-> -
-> -	intel_de_write_fw(dev_priv, SKL_PS_CTRL(intel_crtc->pipe, id), 0);
-> -	intel_de_write_fw(dev_priv, SKL_PS_WIN_POS(intel_crtc->pipe, id), 0);
-> -	intel_de_write_fw(dev_priv, SKL_PS_WIN_SZ(intel_crtc->pipe, id), 0);
-> -
-> -	spin_unlock_irqrestore(&dev_priv->uncore.lock, irqflags);
-> -}
-> -
-> -/*
-> - * This function detaches (aka. unbinds) unused scalers in hardware
-> - */
-> -static void skl_detach_scalers(const struct intel_crtc_state *crtc_state)
-> -{
-> -	struct intel_crtc *intel_crtc =3D to_intel_crtc(crtc_state->uapi.crtc);
-> -	const struct intel_crtc_scaler_state *scaler_state =3D
-> -		&crtc_state->scaler_state;
-> -	int i;
-> -
-> -	/* loop through and disable scalers that aren't in use */
-> -	for (i =3D 0; i < intel_crtc->num_scalers; i++) {
-> -		if (!scaler_state->scalers[i].in_use)
-> -			skl_detach_scaler(intel_crtc, i);
-> -	}
-> -}
-
-The scaler code should not be moved. The scaler is shared by both pfit
-and planes. It really should be moved to a totally new file (atm it's
-semi-randomly split between intel_display.c and intel_atomic.c).
-
-<snip>
-> -/*
-> - * The hardware phase 0.0 refers to the center of the pixel.
-> - * We want to start from the top/left edge which is phase
-> - * -0.5. That matches how the hardware calculates the scaling
-> - * factors (from top-left of the first pixel to bottom-right
-> - * of the last pixel, as opposed to the pixel centers).
+> -/* Starting with Haswell, different DDI ports can work in FDI mode for
+> - * connection to the PCH-located connectors. For this, it is necessary t=
+o train
+> - * both the DDI port and PCH receiver for the desired DDI buffer setting=
+s.
 > - *
-> - * For 4:2:0 subsampled chroma planes we obviously have to
-> - * adjust that so that the chroma sample position lands in
-> - * the right spot.
-> - *
-> - * Note that for packed YCbCr 4:2:2 formats there is no way to
-> - * control chroma siting. The hardware simply replicates the
-> - * chroma samples for both of the luma samples, and thus we don't
-> - * actually get the expected MPEG2 chroma siting convention :(
-> - * The same behaviour is observed on pre-SKL platforms as well.
-> - *
-> - * Theory behind the formula (note that we ignore sub-pixel
-> - * source coordinates):
-> - * s =3D source sample position
-> - * d =3D destination sample position
-> - *
-> - * Downscaling 4:1:
-> - * -0.5
-> - * | 0.0
-> - * | |     1.5 (initial phase)
-> - * | |     |
-> - * v v     v
-> - * | s | s | s | s |
-> - * |       d       |
-> - *
-> - * Upscaling 1:4:
-> - * -0.5
-> - * | -0.375 (initial phase)
-> - * | |     0.0
-> - * | |     |
-> - * v v     v
-> - * |       s       |
-> - * | d | d | d | d |
-> - */
-> -u16 skl_scaler_calc_phase(int sub, int scale, bool chroma_cosited)
-> -{
-> -	int phase =3D -0x8000;
-> -	u16 trip =3D 0;
-> -
-> -	if (chroma_cosited)
-> -		phase +=3D (sub - 1) * 0x8000 / sub;
-> -
-> -	phase +=3D scale / (2 * sub);
-> -
-> -	/*
-> -	 * Hardware initial phase limited to [-0.5:1.5].
-> -	 * Since the max hardware scale factor is 3.0, we
-> -	 * should never actually excdeed 1.0 here.
-> -	 */
-> -	WARN_ON(phase < -0x8000 || phase > 0x18000);
-> -
-> -	if (phase < 0)
-> -		phase =3D 0x10000 + phase;
-> -	else
-> -		trip =3D PS_PHASE_TRIP;
-> -
-> -	return ((phase >> 2) & PS_PHASE_MASK) | trip;
-> -}
-> -
-> -#define SKL_MIN_SRC_W 8
-> -#define SKL_MAX_SRC_W 4096
-> -#define SKL_MIN_SRC_H 8
-> -#define SKL_MAX_SRC_H 4096
-> -#define SKL_MIN_DST_W 8
-> -#define SKL_MAX_DST_W 4096
-> -#define SKL_MIN_DST_H 8
-> -#define SKL_MAX_DST_H 4096
-> -#define ICL_MAX_SRC_W 5120
-> -#define ICL_MAX_SRC_H 4096
-> -#define ICL_MAX_DST_W 5120
-> -#define ICL_MAX_DST_H 4096
-> -#define SKL_MIN_YUV_420_SRC_W 16
-> -#define SKL_MIN_YUV_420_SRC_H 16
-> -
-> -static int
-> -skl_update_scaler(struct intel_crtc_state *crtc_state, bool force_detach,
-> -		  unsigned int scaler_user, int *scaler_id,
-> -		  int src_w, int src_h, int dst_w, int dst_h,
-> -		  const struct drm_format_info *format,
-> -		  u64 modifier, bool need_scaler)
-> -{
-> -	struct intel_crtc_scaler_state *scaler_state =3D
-> -		&crtc_state->scaler_state;
-> -	struct intel_crtc *intel_crtc =3D
-> -		to_intel_crtc(crtc_state->uapi.crtc);
-> -	struct drm_i915_private *dev_priv =3D to_i915(intel_crtc->base.dev);
-> -	const struct drm_display_mode *adjusted_mode =3D
-> -		&crtc_state->hw.adjusted_mode;
-> -
-> -	/*
-> -	 * Src coordinates are already rotated by 270 degrees for
-> -	 * the 90/270 degree plane rotation cases (to match the
-> -	 * GTT mapping), hence no need to account for rotation here.
-> -	 */
-> -	if (src_w !=3D dst_w || src_h !=3D dst_h)
-> -		need_scaler =3D true;
-> -
-> -	/*
-> -	 * Scaling/fitting not supported in IF-ID mode in GEN9+
-> -	 * TODO: Interlace fetch mode doesn't support YUV420 planar formats.
-> -	 * Once NV12 is enabled, handle it here while allocating scaler
-> -	 * for NV12.
-> -	 */
-> -	if (INTEL_GEN(dev_priv) >=3D 9 && crtc_state->hw.enable &&
-> -	    need_scaler && adjusted_mode->flags & DRM_MODE_FLAG_INTERLACE) {
-> -		drm_dbg_kms(&dev_priv->drm,
-> -			    "Pipe/Plane scaling not supported with IF-ID mode\n");
-> -		return -EINVAL;
-> -	}
-> -
-> -	/*
-> -	 * if plane is being disabled or scaler is no more required or force de=
-tach
-> -	 *  - free scaler binded to this plane/crtc
-> -	 *  - in order to do this, update crtc->scaler_usage
-> -	 *
-> -	 * Here scaler state in crtc_state is set free so that
-> -	 * scaler can be assigned to other user. Actual register
-> -	 * update to free the scaler is done in plane/panel-fit programming.
-> -	 * For this purpose crtc/plane_state->scaler_id isn't reset here.
-> -	 */
-> -	if (force_detach || !need_scaler) {
-> -		if (*scaler_id >=3D 0) {
-> -			scaler_state->scaler_users &=3D ~(1 << scaler_user);
-> -			scaler_state->scalers[*scaler_id].in_use =3D 0;
-> -
-> -			drm_dbg_kms(&dev_priv->drm,
-> -				    "scaler_user index %u.%u: "
-> -				    "Staged freeing scaler id %d scaler_users =3D 0x%x\n",
-> -				    intel_crtc->pipe, scaler_user, *scaler_id,
-> -				    scaler_state->scaler_users);
-> -			*scaler_id =3D -1;
-> -		}
-> -		return 0;
-> -	}
-> -
-> -	if (format && intel_format_info_is_yuv_semiplanar(format, modifier) &&
-> -	    (src_h < SKL_MIN_YUV_420_SRC_H || src_w < SKL_MIN_YUV_420_SRC_W)) {
-> -		drm_dbg_kms(&dev_priv->drm,
-> -			    "Planar YUV: src dimensions not met\n");
-> -		return -EINVAL;
-> -	}
-> -
-> -	/* range checks */
-> -	if (src_w < SKL_MIN_SRC_W || src_h < SKL_MIN_SRC_H ||
-> -	    dst_w < SKL_MIN_DST_W || dst_h < SKL_MIN_DST_H ||
-> -	    (INTEL_GEN(dev_priv) >=3D 11 &&
-> -	     (src_w > ICL_MAX_SRC_W || src_h > ICL_MAX_SRC_H ||
-> -	      dst_w > ICL_MAX_DST_W || dst_h > ICL_MAX_DST_H)) ||
-> -	    (INTEL_GEN(dev_priv) < 11 &&
-> -	     (src_w > SKL_MAX_SRC_W || src_h > SKL_MAX_SRC_H ||
-> -	      dst_w > SKL_MAX_DST_W || dst_h > SKL_MAX_DST_H)))	{
-> -		drm_dbg_kms(&dev_priv->drm,
-> -			    "scaler_user index %u.%u: src %ux%u dst %ux%u "
-> -			    "size is out of scaler range\n",
-> -			    intel_crtc->pipe, scaler_user, src_w, src_h,
-> -			    dst_w, dst_h);
-> -		return -EINVAL;
-> -	}
-> -
-> -	/* mark this plane as a scaler user in crtc_state */
-> -	scaler_state->scaler_users |=3D (1 << scaler_user);
-> -	drm_dbg_kms(&dev_priv->drm, "scaler_user index %u.%u: "
-> -		    "staged scaling request for %ux%u->%ux%u scaler_users =3D 0x%x\n",
-> -		    intel_crtc->pipe, scaler_user, src_w, src_h, dst_w, dst_h,
-> -		    scaler_state->scaler_users);
-> -
-> -	return 0;
-> -}
-> -
-> -static int skl_update_scaler_crtc(struct intel_crtc_state *crtc_state)
-> -{
-> -	const struct drm_display_mode *pipe_mode =3D &crtc_state->hw.pipe_mode;
-> -	int width, height;
-> -
-> -	if (crtc_state->pch_pfit.enabled) {
-> -		width =3D drm_rect_width(&crtc_state->pch_pfit.dst);
-> -		height =3D drm_rect_height(&crtc_state->pch_pfit.dst);
-> -	} else {
-> -		width =3D pipe_mode->crtc_hdisplay;
-> -		height =3D pipe_mode->crtc_vdisplay;
-> -	}
-> -	return skl_update_scaler(crtc_state, !crtc_state->hw.active,
-> -				 SKL_CRTC_INDEX,
-> -				 &crtc_state->scaler_state.scaler_id,
-> -				 crtc_state->pipe_src_w, crtc_state->pipe_src_h,
-> -				 width, height, NULL, 0,
-> -				 crtc_state->pch_pfit.enabled);
-> -}
-> -
-> -/**
-> - * skl_update_scaler_plane - Stages update to scaler state for a given p=
-lane.
-> - * @crtc_state: crtc's scaler state
-> - * @plane_state: atomic plane state to update
-> - *
-> - * Return
-> - *     0 - scaler_usage updated successfully
-> - *    error - requested scaling cannot be supported or other error condi=
-tion
-> - */
-> -static int skl_update_scaler_plane(struct intel_crtc_state *crtc_state,
-> -				   struct intel_plane_state *plane_state)
-> -{
-> -	struct intel_plane *intel_plane =3D
-> -		to_intel_plane(plane_state->uapi.plane);
-> -	struct drm_i915_private *dev_priv =3D to_i915(intel_plane->base.dev);
-> -	struct drm_framebuffer *fb =3D plane_state->hw.fb;
-> -	int ret;
-> -	bool force_detach =3D !fb || !plane_state->uapi.visible;
-> -	bool need_scaler =3D false;
-> -
-> -	/* Pre-gen11 and SDR planes always need a scaler for planar formats. */
-> -	if (!icl_is_hdr_plane(dev_priv, intel_plane->id) &&
-> -	    fb && intel_format_info_is_yuv_semiplanar(fb->format, fb->modifier))
-> -		need_scaler =3D true;
-> -
-> -	ret =3D skl_update_scaler(crtc_state, force_detach,
-> -				drm_plane_index(&intel_plane->base),
-> -				&plane_state->scaler_id,
-> -				drm_rect_width(&plane_state->uapi.src) >> 16,
-> -				drm_rect_height(&plane_state->uapi.src) >> 16,
-> -				drm_rect_width(&plane_state->uapi.dst),
-> -				drm_rect_height(&plane_state->uapi.dst),
-> -				fb ? fb->format : NULL,
-> -				fb ? fb->modifier : 0,
-> -				need_scaler);
-> -
-> -	if (ret || plane_state->scaler_id < 0)
-> -		return ret;
-> -
-> -	/* check colorkey */
-> -	if (plane_state->ckey.flags) {
-> -		drm_dbg_kms(&dev_priv->drm,
-> -			    "[PLANE:%d:%s] scaling with color key not allowed",
-> -			    intel_plane->base.base.id,
-> -			    intel_plane->base.name);
-> -		return -EINVAL;
-> -	}
-> -
-> -	/* Check src format */
-> -	switch (fb->format->format) {
-> -	case DRM_FORMAT_RGB565:
-> -	case DRM_FORMAT_XBGR8888:
-> -	case DRM_FORMAT_XRGB8888:
-> -	case DRM_FORMAT_ABGR8888:
-> -	case DRM_FORMAT_ARGB8888:
-> -	case DRM_FORMAT_XRGB2101010:
-> -	case DRM_FORMAT_XBGR2101010:
-> -	case DRM_FORMAT_ARGB2101010:
-> -	case DRM_FORMAT_ABGR2101010:
-> -	case DRM_FORMAT_YUYV:
-> -	case DRM_FORMAT_YVYU:
-> -	case DRM_FORMAT_UYVY:
-> -	case DRM_FORMAT_VYUY:
-> -	case DRM_FORMAT_NV12:
-> -	case DRM_FORMAT_XYUV8888:
-> -	case DRM_FORMAT_P010:
-> -	case DRM_FORMAT_P012:
-> -	case DRM_FORMAT_P016:
-> -	case DRM_FORMAT_Y210:
-> -	case DRM_FORMAT_Y212:
-> -	case DRM_FORMAT_Y216:
-> -	case DRM_FORMAT_XVYU2101010:
-> -	case DRM_FORMAT_XVYU12_16161616:
-> -	case DRM_FORMAT_XVYU16161616:
-> -		break;
-> -	case DRM_FORMAT_XBGR16161616F:
-> -	case DRM_FORMAT_ABGR16161616F:
-> -	case DRM_FORMAT_XRGB16161616F:
-> -	case DRM_FORMAT_ARGB16161616F:
-> -		if (INTEL_GEN(dev_priv) >=3D 11)
-> -			break;
-> -		fallthrough;
-> -	default:
-> -		drm_dbg_kms(&dev_priv->drm,
-> -			    "[PLANE:%d:%s] FB:%d unsupported scaling format 0x%x\n",
-> -			    intel_plane->base.base.id, intel_plane->base.name,
-> -			    fb->base.id, fb->format->format);
-> -		return -EINVAL;
-> -	}
-> -
-> -	return 0;
-> -}
-> -
-> -void skl_scaler_disable(const struct intel_crtc_state *old_crtc_state)
-> -{
-> -	struct intel_crtc *crtc =3D to_intel_crtc(old_crtc_state->uapi.crtc);
-> -	int i;
-> -
-> -	for (i =3D 0; i < crtc->num_scalers; i++)
-> -		skl_detach_scaler(crtc, i);
-> -}
-> -
-> -static int cnl_coef_tap(int i)
-> -{
-> -	return i % 7;
-> -}
-> -
-> -static u16 cnl_nearest_filter_coef(int t)
-> -{
-> -	return t =3D=3D 3 ? 0x0800 : 0x3000;
-> -}
-> -
-> -/*
-> - *  Theory behind setting nearest-neighbor integer scaling:
-> - *
-> - *  17 phase of 7 taps requires 119 coefficients in 60 dwords per set.
-> - *  The letter represents the filter tap (D is the center tap) and the n=
-umber
-> - *  represents the coefficient set for a phase (0-16).
-> - *
-> - *         +------------+------------------------+----------------------=
---+
-> - *         |Index value | Data value coeffient 1 | Data value coeffient =
-2 |
-> - *         +------------+------------------------+----------------------=
---+
-> - *         |   00h      |          B0            |          A0          =
-  |
-> - *         +------------+------------------------+----------------------=
---+
-> - *         |   01h      |          D0            |          C0          =
-  |
-> - *         +------------+------------------------+----------------------=
---+
-> - *         |   02h      |          F0            |          E0          =
-  |
-> - *         +------------+------------------------+----------------------=
---+
-> - *         |   03h      |          A1            |          G0          =
-  |
-> - *         +------------+------------------------+----------------------=
---+
-> - *         |   04h      |          C1            |          B1          =
-  |
-> - *         +------------+------------------------+----------------------=
---+
-> - *         |   ...      |          ...           |          ...         =
-  |
-> - *         +------------+------------------------+----------------------=
---+
-> - *         |   38h      |          B16           |          A16         =
-  |
-> - *         +------------+------------------------+----------------------=
---+
-> - *         |   39h      |          D16           |          C16         =
-  |
-> - *         +------------+------------------------+----------------------=
---+
-> - *         |   3Ah      |          F16           |          C16         =
-  |
-> - *         +------------+------------------------+----------------------=
---+
-> - *         |   3Bh      |        Reserved        |          G16         =
-  |
-> - *         +------------+------------------------+----------------------=
---+
-> - *
-> - *  To enable nearest-neighbor scaling:  program scaler coefficents with
-> - *  the center tap (Dxx) values set to 1 and all other values set to 0 a=
-s per
-> - *  SCALER_COEFFICIENT_FORMAT
-> - *
+> - * The recommended port to work in FDI mode is DDI E, which we use here.=
+ Also,
+> - * please note that when FDI mode is active on DDI E, it shares 2 lines =
+with
+> - * DDI A (which is used for eDP)
 > - */
 > -
-> -static void cnl_program_nearest_filter_coefs(struct drm_i915_private *de=
-v_priv,
-> -					     enum pipe pipe, int id, int set)
-> -{
-> -	int i;
-> -
-> -	intel_de_write_fw(dev_priv, CNL_PS_COEF_INDEX_SET(pipe, id, set),
-> -			  PS_COEE_INDEX_AUTO_INC);
-> -
-> -	for (i =3D 0; i < 17 * 7; i +=3D 2) {
-> -		u32 tmp;
-> -		int t;
-> -
-> -		t =3D cnl_coef_tap(i);
-> -		tmp =3D cnl_nearest_filter_coef(t);
-> -
-> -		t =3D cnl_coef_tap(i + 1);
-> -		tmp |=3D cnl_nearest_filter_coef(t) << 16;
-> -
-> -		intel_de_write_fw(dev_priv, CNL_PS_COEF_DATA_SET(pipe, id, set),
-> -				  tmp);
-> -	}
-> -
-> -	intel_de_write_fw(dev_priv, CNL_PS_COEF_INDEX_SET(pipe, id, set), 0);
-> -}
-> -
-> -inline u32 skl_scaler_get_filter_select(enum drm_scaling_filter filter, =
-int set)
-> -{
-> -	if (filter =3D=3D DRM_SCALING_FILTER_NEAREST_NEIGHBOR) {
-> -		return (PS_FILTER_PROGRAMMED |
-> -			PS_Y_VERT_FILTER_SELECT(set) |
-> -			PS_Y_HORZ_FILTER_SELECT(set) |
-> -			PS_UV_VERT_FILTER_SELECT(set) |
-> -			PS_UV_HORZ_FILTER_SELECT(set));
-> -	}
-> -
-> -	return PS_FILTER_MEDIUM;
-> -}
-> -
-> -void skl_scaler_setup_filter(struct drm_i915_private *dev_priv, enum pip=
-e pipe,
-> -			     int id, int set, enum drm_scaling_filter filter)
-> -{
-> -	switch (filter) {
-> -	case DRM_SCALING_FILTER_DEFAULT:
-> -		break;
-> -	case DRM_SCALING_FILTER_NEAREST_NEIGHBOR:
-> -		cnl_program_nearest_filter_coefs(dev_priv, pipe, id, set);
-> -		break;
-> -	default:
-> -		MISSING_CASE(filter);
-> -	}
-> -}
-> -
-> -static void skl_pfit_enable(const struct intel_crtc_state *crtc_state)
+> -void hsw_fdi_link_train(struct intel_encoder *encoder,
+> -			const struct intel_crtc_state *crtc_state)
 > -{
 > -	struct intel_crtc *crtc =3D to_intel_crtc(crtc_state->uapi.crtc);
 > -	struct drm_i915_private *dev_priv =3D to_i915(crtc->base.dev);
-> -	const struct intel_crtc_scaler_state *scaler_state =3D
-> -		&crtc_state->scaler_state;
-> -	struct drm_rect src =3D {
-> -		.x2 =3D crtc_state->pipe_src_w << 16,
-> -		.y2 =3D crtc_state->pipe_src_h << 16,
-> -	};
-> -	const struct drm_rect *dst =3D &crtc_state->pch_pfit.dst;
-> -	u16 uv_rgb_hphase, uv_rgb_vphase;
-> -	enum pipe pipe =3D crtc->pipe;
-> -	int width =3D drm_rect_width(dst);
-> -	int height =3D drm_rect_height(dst);
-> -	int x =3D dst->x1;
-> -	int y =3D dst->y1;
-> -	int hscale, vscale;
-> -	unsigned long irqflags;
-> -	int id;
-> -	u32 ps_ctrl;
+> -	u32 temp, i, rx_ctl_val, ddi_pll_sel;
 > -
-> -	if (!crtc_state->pch_pfit.enabled)
-> -		return;
+> -	intel_prepare_dp_ddi_buffers(encoder, crtc_state);
 > -
-> -	if (drm_WARN_ON(&dev_priv->drm,
-> -			crtc_state->scaler_state.scaler_id < 0))
-> -		return;
+> -	/* Set the FDI_RX_MISC pwrdn lanes and the 2 workarounds listed at the
+> -	 * mode set "sequence for CRT port" document:
+> -	 * - TP1 to TP2 time with the default value
+> -	 * - FDI delay to 90h
+> -	 *
+> -	 * WaFDIAutoLinkSetTimingOverrride:hsw
+> -	 */
+> -	intel_de_write(dev_priv, FDI_RX_MISC(PIPE_A),
+> -		       FDI_RX_PWRDN_LANE1_VAL(2) | FDI_RX_PWRDN_LANE0_VAL(2) | FDI_RX_=
+TP1_TO_TP2_48 | FDI_RX_FDI_DELAY_90);
 > -
-> -	hscale =3D drm_rect_calc_hscale(&src, dst, 0, INT_MAX);
-> -	vscale =3D drm_rect_calc_vscale(&src, dst, 0, INT_MAX);
+> -	/* Enable the PCH Receiver FDI PLL */
+> -	rx_ctl_val =3D dev_priv->fdi_rx_config | FDI_RX_ENHANCE_FRAME_ENABLE |
+> -		     FDI_RX_PLL_ENABLE |
+> -		     FDI_DP_PORT_WIDTH(crtc_state->fdi_lanes);
+> -	intel_de_write(dev_priv, FDI_RX_CTL(PIPE_A), rx_ctl_val);
+> -	intel_de_posting_read(dev_priv, FDI_RX_CTL(PIPE_A));
+> -	udelay(220);
 > -
-> -	uv_rgb_hphase =3D skl_scaler_calc_phase(1, hscale, false);
-> -	uv_rgb_vphase =3D skl_scaler_calc_phase(1, vscale, false);
+> -	/* Switch from Rawclk to PCDclk */
+> -	rx_ctl_val |=3D FDI_PCDCLK;
+> -	intel_de_write(dev_priv, FDI_RX_CTL(PIPE_A), rx_ctl_val);
 > -
-> -	id =3D scaler_state->scaler_id;
+> -	/* Configure Port Clock Select */
+> -	ddi_pll_sel =3D hsw_pll_to_ddi_pll_sel(crtc_state->shared_dpll);
+> -	intel_de_write(dev_priv, PORT_CLK_SEL(PORT_E), ddi_pll_sel);
+> -	drm_WARN_ON(&dev_priv->drm, ddi_pll_sel !=3D PORT_CLK_SEL_SPLL);
 > -
-> -	ps_ctrl =3D skl_scaler_get_filter_select(crtc_state->hw.scaling_filter,=
- 0);
-> -	ps_ctrl |=3D  PS_SCALER_EN | scaler_state->scalers[id].mode;
+> -	/* Start the training iterating through available voltages and emphasis,
+> -	 * testing each value twice. */
+> -	for (i =3D 0; i < ARRAY_SIZE(hsw_ddi_translations_fdi) * 2; i++) {
+> -		/* Configure DP_TP_CTL with auto-training */
+> -		intel_de_write(dev_priv, DP_TP_CTL(PORT_E),
+> -			       DP_TP_CTL_FDI_AUTOTRAIN |
+> -			       DP_TP_CTL_ENHANCED_FRAME_ENABLE |
+> -			       DP_TP_CTL_LINK_TRAIN_PAT1 |
+> -			       DP_TP_CTL_ENABLE);
 > -
-> -	spin_lock_irqsave(&dev_priv->uncore.lock, irqflags);
+> -		/* Configure and enable DDI_BUF_CTL for DDI E with next voltage.
+> -		 * DDI E does not support port reversal, the functionality is
+> -		 * achieved on the PCH side in FDI_RX_CTL, so no need to set the
+> -		 * port reversal bit */
+> -		intel_de_write(dev_priv, DDI_BUF_CTL(PORT_E),
+> -			       DDI_BUF_CTL_ENABLE | ((crtc_state->fdi_lanes - 1) << 1) | DDI_=
+BUF_TRANS_SELECT(i / 2));
+> -		intel_de_posting_read(dev_priv, DDI_BUF_CTL(PORT_E));
 > -
-> -	skl_scaler_setup_filter(dev_priv, pipe, id, 0,
-> -				crtc_state->hw.scaling_filter);
+> -		udelay(600);
 > -
-> -	intel_de_write_fw(dev_priv, SKL_PS_CTRL(pipe, id), ps_ctrl);
+> -		/* Program PCH FDI Receiver TU */
+> -		intel_de_write(dev_priv, FDI_RX_TUSIZE1(PIPE_A), TU_SIZE(64));
 > -
-> -	intel_de_write_fw(dev_priv, SKL_PS_VPHASE(pipe, id),
-> -			  PS_Y_PHASE(0) | PS_UV_RGB_PHASE(uv_rgb_vphase));
-> -	intel_de_write_fw(dev_priv, SKL_PS_HPHASE(pipe, id),
-> -			  PS_Y_PHASE(0) | PS_UV_RGB_PHASE(uv_rgb_hphase));
-> -	intel_de_write_fw(dev_priv, SKL_PS_WIN_POS(pipe, id),
-> -			  x << 16 | y);
-> -	intel_de_write_fw(dev_priv, SKL_PS_WIN_SZ(pipe, id),
-> -			  width << 16 | height);
+> -		/* Enable PCH FDI Receiver with auto-training */
+> -		rx_ctl_val |=3D FDI_RX_ENABLE | FDI_LINK_TRAIN_AUTO;
+> -		intel_de_write(dev_priv, FDI_RX_CTL(PIPE_A), rx_ctl_val);
+> -		intel_de_posting_read(dev_priv, FDI_RX_CTL(PIPE_A));
 > -
-> -	spin_unlock_irqrestore(&dev_priv->uncore.lock, irqflags);
+> -		/* Wait for FDI receiver lane calibration */
+> -		udelay(30);
+> -
+> -		/* Unset FDI_RX_MISC pwrdn lanes */
+> -		temp =3D intel_de_read(dev_priv, FDI_RX_MISC(PIPE_A));
+> -		temp &=3D ~(FDI_RX_PWRDN_LANE1_MASK | FDI_RX_PWRDN_LANE0_MASK);
+> -		intel_de_write(dev_priv, FDI_RX_MISC(PIPE_A), temp);
+> -		intel_de_posting_read(dev_priv, FDI_RX_MISC(PIPE_A));
+> -
+> -		/* Wait for FDI auto training time */
+> -		udelay(5);
+> -
+> -		temp =3D intel_de_read(dev_priv, DP_TP_STATUS(PORT_E));
+> -		if (temp & DP_TP_STATUS_AUTOTRAIN_DONE) {
+> -			drm_dbg_kms(&dev_priv->drm,
+> -				    "FDI link training done on step %d\n", i);
+> -			break;
+> -		}
+> -
+> -		/*
+> -		 * Leave things enabled even if we failed to train FDI.
+> -		 * Results in less fireworks from the state checker.
+> -		 */
+> -		if (i =3D=3D ARRAY_SIZE(hsw_ddi_translations_fdi) * 2 - 1) {
+> -			drm_err(&dev_priv->drm, "FDI link training failed!\n");
+> -			break;
+> -		}
+> -
+> -		rx_ctl_val &=3D ~FDI_RX_ENABLE;
+> -		intel_de_write(dev_priv, FDI_RX_CTL(PIPE_A), rx_ctl_val);
+> -		intel_de_posting_read(dev_priv, FDI_RX_CTL(PIPE_A));
+> -
+> -		temp =3D intel_de_read(dev_priv, DDI_BUF_CTL(PORT_E));
+> -		temp &=3D ~DDI_BUF_CTL_ENABLE;
+> -		intel_de_write(dev_priv, DDI_BUF_CTL(PORT_E), temp);
+> -		intel_de_posting_read(dev_priv, DDI_BUF_CTL(PORT_E));
+> -
+> -		/* Disable DP_TP_CTL and FDI_RX_CTL and retry */
+> -		temp =3D intel_de_read(dev_priv, DP_TP_CTL(PORT_E));
+> -		temp &=3D ~(DP_TP_CTL_ENABLE | DP_TP_CTL_LINK_TRAIN_MASK);
+> -		temp |=3D DP_TP_CTL_LINK_TRAIN_PAT1;
+> -		intel_de_write(dev_priv, DP_TP_CTL(PORT_E), temp);
+> -		intel_de_posting_read(dev_priv, DP_TP_CTL(PORT_E));
+> -
+> -		intel_wait_ddi_buf_idle(dev_priv, PORT_E);
+> -
+> -		/* Reset FDI_RX_MISC pwrdn lanes */
+> -		temp =3D intel_de_read(dev_priv, FDI_RX_MISC(PIPE_A));
+> -		temp &=3D ~(FDI_RX_PWRDN_LANE1_MASK | FDI_RX_PWRDN_LANE0_MASK);
+> -		temp |=3D FDI_RX_PWRDN_LANE1_VAL(2) | FDI_RX_PWRDN_LANE0_VAL(2);
+> -		intel_de_write(dev_priv, FDI_RX_MISC(PIPE_A), temp);
+> -		intel_de_posting_read(dev_priv, FDI_RX_MISC(PIPE_A));
+> -	}
+> -
+> -	/* Enable normal pixel sending for FDI */
+> -	intel_de_write(dev_priv, DP_TP_CTL(PORT_E),
+> -		       DP_TP_CTL_FDI_AUTOTRAIN |
+> -		       DP_TP_CTL_LINK_TRAIN_NORMAL |
+> -		       DP_TP_CTL_ENHANCED_FRAME_ENABLE |
+> -		       DP_TP_CTL_ENABLE);
 > -}
+> -
+>  static void intel_ddi_init_dp_buf_reg(struct intel_encoder *encoder,
+>  				      const struct intel_crtc_state *crtc_state)
+>  {
+> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.h b/drivers/gpu/drm/i=
+915/display/intel_ddi.h
+> index dcc711cfe4fe..e42b6bd05e01 100644
+> --- a/drivers/gpu/drm/i915/display/intel_ddi.h
+> +++ b/drivers/gpu/drm/i915/display/intel_ddi.h
+> @@ -9,6 +9,12 @@
+>  #include "intel_display.h"
+>  #include "i915_reg.h"
+>  =
 
-Lot more scaler code that should not be moved.
+> +struct ddi_buf_trans {
+> +	u32 trans1;	/* balance leg enable, de-emph level */
+> +	u32 trans2;	/* vref sel, vswing */
+> +	u8 i_boost;	/* SKL: I_boost; valid: 0x0, 0x1, 0x3, 0x7 */
+> +};
+> +
+>  struct drm_connector_state;
+>  struct drm_i915_private;
+>  struct intel_connector;
+> @@ -17,6 +23,7 @@ struct intel_crtc_state;
+>  struct intel_dp;
+>  struct intel_dpll_hw_state;
+>  struct intel_encoder;
+> +struct intel_shared_dpll;
+>  enum transcoder;
+>  =
 
-The rest of patch looks good.
+>  i915_reg_t dp_tp_ctl_reg(struct intel_encoder *encoder,
+> @@ -27,8 +34,11 @@ void intel_ddi_fdi_post_disable(struct intel_atomic_st=
+ate *state,
+>  				struct intel_encoder *intel_encoder,
+>  				const struct intel_crtc_state *old_crtc_state,
+>  				const struct drm_connector_state *old_conn_state);
+> -void hsw_fdi_link_train(struct intel_encoder *encoder,
+> -			const struct intel_crtc_state *crtc_state);
+> +u32 hsw_pll_to_ddi_pll_sel(const struct intel_shared_dpll *pll);
+> +void intel_prepare_dp_ddi_buffers(struct intel_encoder *encoder,
+> +				  const struct intel_crtc_state *crtc_state);
+> +void intel_wait_ddi_buf_idle(struct drm_i915_private *dev_priv,
+> +			     enum port port);
+>  void intel_ddi_init(struct drm_i915_private *dev_priv, enum port port);
+>  bool intel_ddi_get_hw_state(struct intel_encoder *encoder, enum pipe *pi=
+pe);
+>  void intel_ddi_enable_transcoder_func(struct intel_encoder *encoder,
+> diff --git a/drivers/gpu/drm/i915/display/intel_fdi.c b/drivers/gpu/drm/i=
+915/display/intel_fdi.c
+> index b2eb96ae10a2..19bbc1f8dd5a 100644
+> --- a/drivers/gpu/drm/i915/display/intel_fdi.c
+> +++ b/drivers/gpu/drm/i915/display/intel_fdi.c
+> @@ -3,9 +3,49 @@
+>   * Copyright =A9 2020 Intel Corporation
+>   */
+>  #include "intel_atomic.h"
+> +#include "intel_ddi.h"
+>  #include "intel_display_types.h"
+>  #include "intel_fdi.h"
+>  =
+
+> +static const struct ddi_buf_trans bdw_ddi_translations_fdi[] =3D {
+> +	{ 0x00FFFFFF, 0x0001000E, 0x0 },
+> +	{ 0x00D75FFF, 0x0004000A, 0x0 },
+> +	{ 0x00C30FFF, 0x00070006, 0x0 },
+> +	{ 0x00AAAFFF, 0x000C0000, 0x0 },
+> +	{ 0x00FFFFFF, 0x0004000A, 0x0 },
+> +	{ 0x00D75FFF, 0x00090004, 0x0 },
+> +	{ 0x00C30FFF, 0x000C0000, 0x0 },
+> +	{ 0x00FFFFFF, 0x00070006, 0x0 },
+> +	{ 0x00D75FFF, 0x000C0000, 0x0 },
+> +};
+> +
+> +static const struct ddi_buf_trans hsw_ddi_translations_fdi[] =3D {
+> +	{ 0x00FFFFFF, 0x0007000E, 0x0 },
+> +	{ 0x00D75FFF, 0x000F000A, 0x0 },
+> +	{ 0x00C30FFF, 0x00060006, 0x0 },
+> +	{ 0x00AAAFFF, 0x001E0000, 0x0 },
+> +	{ 0x00FFFFFF, 0x000F000A, 0x0 },
+> +	{ 0x00D75FFF, 0x00160004, 0x0 },
+> +	{ 0x00C30FFF, 0x001E0000, 0x0 },
+> +	{ 0x00FFFFFF, 0x00060006, 0x0 },
+> +	{ 0x00D75FFF, 0x001E0000, 0x0 },
+> +};
+> +
+> +const struct ddi_buf_trans *
+> +intel_fdi_get_buf_trans(struct drm_i915_private *dev_priv, int *n_entrie=
+s)
+> +{
+> +	if (IS_BROADWELL(dev_priv)) {
+> +		*n_entries =3D ARRAY_SIZE(bdw_ddi_translations_fdi);
+> +		return bdw_ddi_translations_fdi;
+> +	} else if (IS_HASWELL(dev_priv)) {
+> +		*n_entries =3D ARRAY_SIZE(hsw_ddi_translations_fdi);
+> +		return hsw_ddi_translations_fdi;
+> +	}
+> +
+> +	*n_entries =3D 0;
+> +	return NULL;
+> +}
+> +
+>  /* units of 100MHz */
+>  static int pipe_required_fdi_lanes(struct intel_crtc_state *crtc_state)
+>  {
+> @@ -550,6 +590,140 @@ static void ivb_manual_fdi_link_train(struct intel_=
+crtc *crtc,
+>  	drm_dbg_kms(&dev_priv->drm, "FDI train done.\n");
+>  }
+>  =
+
+> +/* Starting with Haswell, different DDI ports can work in FDI mode for
+> + * connection to the PCH-located connectors. For this, it is necessary t=
+o train
+> + * both the DDI port and PCH receiver for the desired DDI buffer setting=
+s.
+> + *
+> + * The recommended port to work in FDI mode is DDI E, which we use here.=
+ Also,
+> + * please note that when FDI mode is active on DDI E, it shares 2 lines =
+with
+> + * DDI A (which is used for eDP)
+> + */
+> +void hsw_fdi_link_train(struct intel_encoder *encoder,
+> +			const struct intel_crtc_state *crtc_state)
+> +{
+> +	struct intel_crtc *crtc =3D to_intel_crtc(crtc_state->uapi.crtc);
+> +	struct drm_i915_private *dev_priv =3D to_i915(crtc->base.dev);
+> +	u32 temp, i, rx_ctl_val, ddi_pll_sel;
+> +
+> +	intel_prepare_dp_ddi_buffers(encoder, crtc_state);
+> +
+> +	/* Set the FDI_RX_MISC pwrdn lanes and the 2 workarounds listed at the
+> +	 * mode set "sequence for CRT port" document:
+> +	 * - TP1 to TP2 time with the default value
+> +	 * - FDI delay to 90h
+> +	 *
+> +	 * WaFDIAutoLinkSetTimingOverrride:hsw
+> +	 */
+> +	intel_de_write(dev_priv, FDI_RX_MISC(PIPE_A),
+> +		       FDI_RX_PWRDN_LANE1_VAL(2) | FDI_RX_PWRDN_LANE0_VAL(2) | FDI_RX_=
+TP1_TO_TP2_48 | FDI_RX_FDI_DELAY_90);
+> +
+> +	/* Enable the PCH Receiver FDI PLL */
+> +	rx_ctl_val =3D dev_priv->fdi_rx_config | FDI_RX_ENHANCE_FRAME_ENABLE |
+> +		     FDI_RX_PLL_ENABLE |
+> +		     FDI_DP_PORT_WIDTH(crtc_state->fdi_lanes);
+> +	intel_de_write(dev_priv, FDI_RX_CTL(PIPE_A), rx_ctl_val);
+> +	intel_de_posting_read(dev_priv, FDI_RX_CTL(PIPE_A));
+> +	udelay(220);
+> +
+> +	/* Switch from Rawclk to PCDclk */
+> +	rx_ctl_val |=3D FDI_PCDCLK;
+> +	intel_de_write(dev_priv, FDI_RX_CTL(PIPE_A), rx_ctl_val);
+> +
+> +	/* Configure Port Clock Select */
+> +	ddi_pll_sel =3D hsw_pll_to_ddi_pll_sel(crtc_state->shared_dpll);
+> +	intel_de_write(dev_priv, PORT_CLK_SEL(PORT_E), ddi_pll_sel);
+> +	drm_WARN_ON(&dev_priv->drm, ddi_pll_sel !=3D PORT_CLK_SEL_SPLL);
+> +
+> +	/* Start the training iterating through available voltages and emphasis,
+> +	 * testing each value twice. */
+> +	for (i =3D 0; i < ARRAY_SIZE(hsw_ddi_translations_fdi) * 2; i++) {
+> +		/* Configure DP_TP_CTL with auto-training */
+> +		intel_de_write(dev_priv, DP_TP_CTL(PORT_E),
+> +			       DP_TP_CTL_FDI_AUTOTRAIN |
+> +			       DP_TP_CTL_ENHANCED_FRAME_ENABLE |
+> +			       DP_TP_CTL_LINK_TRAIN_PAT1 |
+> +			       DP_TP_CTL_ENABLE);
+> +
+> +		/* Configure and enable DDI_BUF_CTL for DDI E with next voltage.
+> +		 * DDI E does not support port reversal, the functionality is
+> +		 * achieved on the PCH side in FDI_RX_CTL, so no need to set the
+> +		 * port reversal bit */
+> +		intel_de_write(dev_priv, DDI_BUF_CTL(PORT_E),
+> +			       DDI_BUF_CTL_ENABLE | ((crtc_state->fdi_lanes - 1) << 1) | DDI_=
+BUF_TRANS_SELECT(i / 2));
+> +		intel_de_posting_read(dev_priv, DDI_BUF_CTL(PORT_E));
+> +
+> +		udelay(600);
+> +
+> +		/* Program PCH FDI Receiver TU */
+> +		intel_de_write(dev_priv, FDI_RX_TUSIZE1(PIPE_A), TU_SIZE(64));
+> +
+> +		/* Enable PCH FDI Receiver with auto-training */
+> +		rx_ctl_val |=3D FDI_RX_ENABLE | FDI_LINK_TRAIN_AUTO;
+> +		intel_de_write(dev_priv, FDI_RX_CTL(PIPE_A), rx_ctl_val);
+> +		intel_de_posting_read(dev_priv, FDI_RX_CTL(PIPE_A));
+> +
+> +		/* Wait for FDI receiver lane calibration */
+> +		udelay(30);
+> +
+> +		/* Unset FDI_RX_MISC pwrdn lanes */
+> +		temp =3D intel_de_read(dev_priv, FDI_RX_MISC(PIPE_A));
+> +		temp &=3D ~(FDI_RX_PWRDN_LANE1_MASK | FDI_RX_PWRDN_LANE0_MASK);
+> +		intel_de_write(dev_priv, FDI_RX_MISC(PIPE_A), temp);
+> +		intel_de_posting_read(dev_priv, FDI_RX_MISC(PIPE_A));
+> +
+> +		/* Wait for FDI auto training time */
+> +		udelay(5);
+> +
+> +		temp =3D intel_de_read(dev_priv, DP_TP_STATUS(PORT_E));
+> +		if (temp & DP_TP_STATUS_AUTOTRAIN_DONE) {
+> +			drm_dbg_kms(&dev_priv->drm,
+> +				    "FDI link training done on step %d\n", i);
+> +			break;
+> +		}
+> +
+> +		/*
+> +		 * Leave things enabled even if we failed to train FDI.
+> +		 * Results in less fireworks from the state checker.
+> +		 */
+> +		if (i =3D=3D ARRAY_SIZE(hsw_ddi_translations_fdi) * 2 - 1) {
+> +			drm_err(&dev_priv->drm, "FDI link training failed!\n");
+> +			break;
+> +		}
+> +
+> +		rx_ctl_val &=3D ~FDI_RX_ENABLE;
+> +		intel_de_write(dev_priv, FDI_RX_CTL(PIPE_A), rx_ctl_val);
+> +		intel_de_posting_read(dev_priv, FDI_RX_CTL(PIPE_A));
+> +
+> +		temp =3D intel_de_read(dev_priv, DDI_BUF_CTL(PORT_E));
+> +		temp &=3D ~DDI_BUF_CTL_ENABLE;
+> +		intel_de_write(dev_priv, DDI_BUF_CTL(PORT_E), temp);
+> +		intel_de_posting_read(dev_priv, DDI_BUF_CTL(PORT_E));
+> +
+> +		/* Disable DP_TP_CTL and FDI_RX_CTL and retry */
+> +		temp =3D intel_de_read(dev_priv, DP_TP_CTL(PORT_E));
+> +		temp &=3D ~(DP_TP_CTL_ENABLE | DP_TP_CTL_LINK_TRAIN_MASK);
+> +		temp |=3D DP_TP_CTL_LINK_TRAIN_PAT1;
+> +		intel_de_write(dev_priv, DP_TP_CTL(PORT_E), temp);
+> +		intel_de_posting_read(dev_priv, DP_TP_CTL(PORT_E));
+> +
+> +		intel_wait_ddi_buf_idle(dev_priv, PORT_E);
+> +
+> +		/* Reset FDI_RX_MISC pwrdn lanes */
+> +		temp =3D intel_de_read(dev_priv, FDI_RX_MISC(PIPE_A));
+> +		temp &=3D ~(FDI_RX_PWRDN_LANE1_MASK | FDI_RX_PWRDN_LANE0_MASK);
+> +		temp |=3D FDI_RX_PWRDN_LANE1_VAL(2) | FDI_RX_PWRDN_LANE0_VAL(2);
+> +		intel_de_write(dev_priv, FDI_RX_MISC(PIPE_A), temp);
+> +		intel_de_posting_read(dev_priv, FDI_RX_MISC(PIPE_A));
+> +	}
+> +
+> +	/* Enable normal pixel sending for FDI */
+> +	intel_de_write(dev_priv, DP_TP_CTL(PORT_E),
+> +		       DP_TP_CTL_FDI_AUTOTRAIN |
+> +		       DP_TP_CTL_LINK_TRAIN_NORMAL |
+> +		       DP_TP_CTL_ENHANCED_FRAME_ENABLE |
+> +		       DP_TP_CTL_ENABLE);
+> +}
+> +
+>  void ilk_fdi_pll_enable(const struct intel_crtc_state *crtc_state)
+>  {
+>  	struct intel_crtc *intel_crtc =3D to_intel_crtc(crtc_state->uapi.crtc);
+> diff --git a/drivers/gpu/drm/i915/display/intel_fdi.h b/drivers/gpu/drm/i=
+915/display/intel_fdi.h
+> index a9cd21663eb8..5fd65f67eda8 100644
+> --- a/drivers/gpu/drm/i915/display/intel_fdi.h
+> +++ b/drivers/gpu/drm/i915/display/intel_fdi.h
+> @@ -9,6 +9,11 @@
+>  struct drm_i915_private;
+>  struct intel_crtc;
+>  struct intel_crtc_state;
+> +struct intel_encoder;
+> +struct ddi_buf_trans;
+> +
+> +const struct ddi_buf_trans *
+> +intel_fdi_get_buf_trans(struct drm_i915_private *dev_priv, int *n_entrie=
+s);
+>  =
+
+>  #define I915_DISPLAY_CONFIG_RETRY 1
+>  int ilk_fdi_compute_config(struct intel_crtc *intel_crtc,
+> @@ -18,5 +23,7 @@ void ilk_fdi_disable(struct intel_crtc *crtc);
+>  void ilk_fdi_pll_disable(struct intel_crtc *intel_crtc);
+>  void ilk_fdi_pll_enable(const struct intel_crtc_state *crtc_state);
+>  void intel_fdi_init_hook(struct drm_i915_private *dev_priv);
+> +void hsw_fdi_link_train(struct intel_encoder *encoder,
+> +			const struct intel_crtc_state *crtc_state);
+>  =
+
+>  #endif
+> -- =
+
+> 2.27.0
+> =
+
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 
 -- =
 
