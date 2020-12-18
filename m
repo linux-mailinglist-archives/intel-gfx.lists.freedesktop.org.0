@@ -1,39 +1,30 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A783B2DE03A
-	for <lists+intel-gfx@lfdr.de>; Fri, 18 Dec 2020 10:06:27 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 344BA2DE056
+	for <lists+intel-gfx@lfdr.de>; Fri, 18 Dec 2020 10:20:47 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ECF9889E5B;
-	Fri, 18 Dec 2020 09:06:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 87D926E086;
+	Fri, 18 Dec 2020 09:20:43 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CD4BE89E36
- for <intel-gfx@lists.freedesktop.org>; Fri, 18 Dec 2020 09:06:24 +0000 (UTC)
-IronPort-SDR: xKk1EjJNcPzqelpTzViabt1rNGEJo4JW+cnLQyU9e9aI5b2pfv77WzzKbOEN1rwVVvzvFMHDZK
- TqWV3XB6UGGQ==
-X-IronPort-AV: E=McAfee;i="6000,8403,9838"; a="260134532"
-X-IronPort-AV: E=Sophos;i="5.78,430,1599548400"; d="scan'208";a="260134532"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Dec 2020 01:06:24 -0800
-IronPort-SDR: XO3BBCpN6O+dkaGAUnuhlCvq/Yjng94huwz+XrtNuc3mwMxLfbbogNdGrfvV3ob5IKEKnjWr48
- zrD+v8yuE+0g==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.78,430,1599548400"; d="scan'208";a="340294378"
-Received: from test-optiplex-7040.bj.intel.com ([10.238.154.158])
- by fmsmga008.fm.intel.com with ESMTP; 18 Dec 2020 01:06:22 -0800
-From: Xiong Zhang <xiong.y.zhang@intel.com>
+Received: from fireflyinternet.com (unknown [77.68.26.236])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A9E4C6E041
+ for <intel-gfx@lists.freedesktop.org>; Fri, 18 Dec 2020 09:20:41 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from build.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 23363391-1500050 
+ for multiple; Fri, 18 Dec 2020 09:19:45 +0000
+From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Fri, 18 Dec 2020 17:05:31 +0800
-Message-Id: <20201218090531.23241-1-xiong.y.zhang@intel.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <160793037629.28163.3135436538881981223@emeril.freedesktop.org>
-References: <160793037629.28163.3135436538881981223@emeril.freedesktop.org>
-Subject: [Intel-gfx] [PATCH v2] drm/i915: Try to guess PCH type even without
- ISA bridge
+Date: Fri, 18 Dec 2020 09:19:44 +0000
+Message-Id: <20201218091944.32417-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.20.1
+MIME-Version: 1.0
+Subject: [Intel-gfx] [PATCH] drm/i915: Check for rq->hwsp validity after
+ acquiring RCU lock
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,120 +37,189 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: chris@chris-wilson.co.uk
-MIME-Version: 1.0
+Cc: stable@vger.kernel.org, Chris Wilson <chris@chris-wilson.co.uk>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Zhenyu Wang <zhenyuw@linux.intel.com>
+Since we allow removing the timeline map at runtime, there is a risk
+that rq->hwsp points into a stale page. To control that risk, we hold
+the RCU read lock while reading *rq->hwsp, but we missed a couple of
+important barriers. First, the unpinning / removal of the timeline map
+must be after all RCU readers into that map are complete, i.e. after an
+rcu barrier (in this case courtesy of call_rcu()). Secondly, we must
+make sure that the rq->hwsp we are about to dereference under the RCU
+lock is valid. In this case, we make the rq->hwsp pointer safe during
+i915_request_retire() and so we know that rq->hwsp may become invalid
+only after the request has been signaled. Therefore is the request is
+not yet signaled when we acquire rq->hwsp under the RCU, we know that
+rq->hwsp will remain valid for the duration of the RCU read lock.
 
-Some vmm like hyperv and crosvm don't supply any ISA bridge to their guest,
-when igd passthrough is equipped on these vmm, guest i915 display may
-couldn't work as guest i915 detects PCH_NONE pch type.
+This is a very small window that may lead to either considering the
+request not completed (causing a delay until the request is checked
+again, any wait for the request is not affected) or dereferencing an
+invalid pointer.
 
-When i915 runs as guest, this patch guess pch type through gpu type even
-without ISA bridge.
-
-v2: Fix CI warning
-
-Signed-off-by: Zhenyu Wang <zhenyuw@linux.intel.com>
+Fixes: 3adac4689f58 ("drm/i915: Introduce concept of per-timeline (context) HWSP")
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+Cc: <stable@vger.kernel.org> # v5.1+
 ---
- drivers/gpu/drm/i915/i915_drv.h  |  7 +++++-
- drivers/gpu/drm/i915/intel_pch.c | 38 ++++++++++++++++++++++----------
- 2 files changed, 32 insertions(+), 13 deletions(-)
+ drivers/gpu/drm/i915/gt/intel_breadcrumbs.c | 11 ++----
+ drivers/gpu/drm/i915/gt/intel_timeline.c    |  6 ++--
+ drivers/gpu/drm/i915/i915_request.h         | 37 ++++++++++++++++++---
+ 3 files changed, 39 insertions(+), 15 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
-index 5a7df5621aa3..df0b8f9268b2 100644
---- a/drivers/gpu/drm/i915/i915_drv.h
-+++ b/drivers/gpu/drm/i915/i915_drv.h
-@@ -1758,6 +1758,11 @@ tgl_revids_get(struct drm_i915_private *dev_priv)
- #define INTEL_DISPLAY_ENABLED(dev_priv) \
- 	(drm_WARN_ON(&(dev_priv)->drm, !HAS_DISPLAY(dev_priv)), !(dev_priv)->params.disable_display)
+diff --git a/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c b/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c
+index 3c62fd6daa76..f96cd7d9b419 100644
+--- a/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c
++++ b/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c
+@@ -134,11 +134,6 @@ static bool remove_signaling_context(struct intel_breadcrumbs *b,
+ 	return true;
+ }
  
-+static inline bool run_as_guest(void)
+-static inline bool __request_completed(const struct i915_request *rq)
+-{
+-	return i915_seqno_passed(__hwsp_seqno(rq), rq->fence.seqno);
+-}
+-
+ __maybe_unused static bool
+ check_signal_order(struct intel_context *ce, struct i915_request *rq)
+ {
+@@ -245,7 +240,7 @@ static void signal_irq_work(struct irq_work *work)
+ 		list_for_each_entry_rcu(rq, &ce->signals, signal_link) {
+ 			bool release;
+ 
+-			if (!__request_completed(rq))
++			if (!__i915_request_is_complete(rq))
+ 				break;
+ 
+ 			if (!test_and_clear_bit(I915_FENCE_FLAG_SIGNAL,
+@@ -380,7 +375,7 @@ static void insert_breadcrumb(struct i915_request *rq)
+ 	 * straight onto a signaled list, and queue the irq worker for
+ 	 * its signal completion.
+ 	 */
+-	if (__request_completed(rq)) {
++	if (__i915_request_is_complete(rq)) {
+ 		irq_signal_request(rq, b);
+ 		return;
+ 	}
+@@ -468,7 +463,7 @@ void i915_request_cancel_breadcrumb(struct i915_request *rq)
+ 	if (release)
+ 		intel_context_put(ce);
+ 
+-	if (__request_completed(rq))
++	if (__i915_request_is_complete(rq))
+ 		irq_signal_request(rq, b);
+ 
+ 	i915_request_put(rq);
+diff --git a/drivers/gpu/drm/i915/gt/intel_timeline.c b/drivers/gpu/drm/i915/gt/intel_timeline.c
+index 512afacd2bdc..a0ce2fb8737a 100644
+--- a/drivers/gpu/drm/i915/gt/intel_timeline.c
++++ b/drivers/gpu/drm/i915/gt/intel_timeline.c
+@@ -126,6 +126,10 @@ static void __rcu_cacheline_free(struct rcu_head *rcu)
+ 	struct intel_timeline_cacheline *cl =
+ 		container_of(rcu, typeof(*cl), rcu);
+ 
++	/* Must wait until after all *rq->hwsp are complete before removing */
++	i915_gem_object_unpin_map(cl->hwsp->vma->obj);
++	i915_vma_put(cl->hwsp->vma);
++
+ 	i915_active_fini(&cl->active);
+ 	kfree(cl);
+ }
+@@ -134,8 +138,6 @@ static void __idle_cacheline_free(struct intel_timeline_cacheline *cl)
+ {
+ 	GEM_BUG_ON(!i915_active_is_idle(&cl->active));
+ 
+-	i915_gem_object_unpin_map(cl->hwsp->vma->obj);
+-	i915_vma_put(cl->hwsp->vma);
+ 	__idle_hwsp_free(cl->hwsp, ptr_unmask_bits(cl->vaddr, CACHELINE_BITS));
+ 
+ 	call_rcu(&cl->rcu, __rcu_cacheline_free);
+diff --git a/drivers/gpu/drm/i915/i915_request.h b/drivers/gpu/drm/i915/i915_request.h
+index 92e4320c50c4..7c4453e60323 100644
+--- a/drivers/gpu/drm/i915/i915_request.h
++++ b/drivers/gpu/drm/i915/i915_request.h
+@@ -440,7 +440,7 @@ static inline u32 hwsp_seqno(const struct i915_request *rq)
+ 
+ static inline bool __i915_request_has_started(const struct i915_request *rq)
+ {
+-	return i915_seqno_passed(hwsp_seqno(rq), rq->fence.seqno - 1);
++	return i915_seqno_passed(__hwsp_seqno(rq), rq->fence.seqno - 1);
+ }
+ 
+ /**
+@@ -471,11 +471,19 @@ static inline bool __i915_request_has_started(const struct i915_request *rq)
+  */
+ static inline bool i915_request_started(const struct i915_request *rq)
+ {
++	bool result;
++
+ 	if (i915_request_signaled(rq))
+ 		return true;
+ 
+-	/* Remember: started but may have since been preempted! */
+-	return __i915_request_has_started(rq);
++	result = true;
++	rcu_read_lock(); /* the HWSP may be freed at runtime */
++	if (likely(!i915_request_signaled(rq)))
++		/* Remember: started but may have since been preempted! */
++		result = __i915_request_has_started(rq);
++	rcu_read_unlock();
++
++	return result;
+ }
+ 
+ /**
+@@ -488,10 +496,16 @@ static inline bool i915_request_started(const struct i915_request *rq)
+  */
+ static inline bool i915_request_is_running(const struct i915_request *rq)
+ {
++	bool result;
++
+ 	if (!i915_request_is_active(rq))
+ 		return false;
+ 
+-	return __i915_request_has_started(rq);
++	rcu_read_lock();
++	result = __i915_request_has_started(rq) && i915_request_is_active(rq);
++	rcu_read_unlock();
++
++	return result;
+ }
+ 
+ /**
+@@ -515,12 +529,25 @@ static inline bool i915_request_is_ready(const struct i915_request *rq)
+ 	return !list_empty(&rq->sched.link);
+ }
+ 
++static inline bool __i915_request_is_complete(const struct i915_request *rq)
 +{
-+	return !hypervisor_is_type(X86_HYPER_NATIVE);
++	return i915_seqno_passed(__hwsp_seqno(rq), rq->fence.seqno);
 +}
 +
- static inline bool intel_vtd_active(void)
+ static inline bool i915_request_completed(const struct i915_request *rq)
  {
- #ifdef CONFIG_INTEL_IOMMU
-@@ -1766,7 +1771,7 @@ static inline bool intel_vtd_active(void)
- #endif
++	bool result;
++
+ 	if (i915_request_signaled(rq))
+ 		return true;
  
- 	/* Running as a guest, we assume the host is enforcing VT'd */
--	return !hypervisor_is_type(X86_HYPER_NATIVE);
-+	return run_as_guest();
+-	return i915_seqno_passed(hwsp_seqno(rq), rq->fence.seqno);
++	result = true;
++	rcu_read_lock(); /* the HWSP may be freed at runtime */
++	if (likely(!i915_request_signaled(rq)))
++		result = __i915_request_is_complete(rq);
++	rcu_read_unlock();
++
++	return result;
  }
  
- static inline bool intel_scanout_needs_vtd_wa(struct drm_i915_private *dev_priv)
-diff --git a/drivers/gpu/drm/i915/intel_pch.c b/drivers/gpu/drm/i915/intel_pch.c
-index f31c0dabd0cc..a73c60bf349e 100644
---- a/drivers/gpu/drm/i915/intel_pch.c
-+++ b/drivers/gpu/drm/i915/intel_pch.c
-@@ -184,6 +184,23 @@ intel_virt_detect_pch(const struct drm_i915_private *dev_priv)
- 	return id;
- }
- 
-+static void intel_detect_pch_virt(struct drm_i915_private *dev_priv)
-+{
-+	unsigned short id;
-+	enum intel_pch pch_type;
-+
-+	id = intel_virt_detect_pch(dev_priv);
-+	pch_type = intel_pch_type(dev_priv, id);
-+
-+	/* Sanity check virtual PCH id */
-+	if (drm_WARN_ON(&dev_priv->drm,
-+			id && pch_type == PCH_NONE))
-+		id = 0;
-+
-+	dev_priv->pch_type = pch_type;
-+	dev_priv->pch_id = id;
-+}
-+
- void intel_detect_pch(struct drm_i915_private *dev_priv)
- {
- 	struct pci_dev *pch = NULL;
-@@ -221,16 +238,7 @@ void intel_detect_pch(struct drm_i915_private *dev_priv)
- 			break;
- 		} else if (intel_is_virt_pch(id, pch->subsystem_vendor,
- 					     pch->subsystem_device)) {
--			id = intel_virt_detect_pch(dev_priv);
--			pch_type = intel_pch_type(dev_priv, id);
--
--			/* Sanity check virtual PCH id */
--			if (drm_WARN_ON(&dev_priv->drm,
--					id && pch_type == PCH_NONE))
--				id = 0;
--
--			dev_priv->pch_type = pch_type;
--			dev_priv->pch_id = id;
-+			intel_detect_pch_virt(dev_priv);
- 			break;
- 		}
- 	}
-@@ -246,8 +254,14 @@ void intel_detect_pch(struct drm_i915_private *dev_priv)
- 		dev_priv->pch_id = 0;
- 	}
- 
--	if (!pch)
--		drm_dbg_kms(&dev_priv->drm, "No PCH found.\n");
-+	if (!pch) {
-+		if (run_as_guest()) {
-+			drm_dbg_kms(&dev_priv->drm, "No PCH found in vm, try guess..\n");
-+			intel_detect_pch_virt(dev_priv);
-+		} else {
-+			drm_dbg_kms(&dev_priv->drm, "No PCH found.\n");
-+		}
-+	}
- 
- 	pci_dev_put(pch);
- }
+ static inline void i915_request_mark_complete(struct i915_request *rq)
 -- 
-2.17.1
+2.20.1
 
 _______________________________________________
 Intel-gfx mailing list
