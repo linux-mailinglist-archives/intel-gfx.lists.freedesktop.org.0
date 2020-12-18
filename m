@@ -2,38 +2,38 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 489D12DE912
-	for <lists+intel-gfx@lfdr.de>; Fri, 18 Dec 2020 19:45:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 604ED2DE91E
+	for <lists+intel-gfx@lfdr.de>; Fri, 18 Dec 2020 19:45:46 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 191D889971;
-	Fri, 18 Dec 2020 18:45:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4B4D989DA7;
+	Fri, 18 Dec 2020 18:45:33 +0000 (UTC)
 X-Original-To: Intel-gfx@lists.freedesktop.org
 Delivered-To: Intel-gfx@lists.freedesktop.org
 Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6948389971
- for <Intel-gfx@lists.freedesktop.org>; Fri, 18 Dec 2020 18:45:28 +0000 (UTC)
-IronPort-SDR: Czk91y2JRx8dGMAh1UiMfroDiqnXs0cbNd09F8+DUVNIP6k9QKkUoW2OdzW7ZaL6LOKv2m1ln1
- Fod+WIvIJh+w==
-X-IronPort-AV: E=McAfee;i="6000,8403,9839"; a="193894749"
-X-IronPort-AV: E=Sophos;i="5.78,431,1599548400"; d="scan'208";a="193894749"
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 90CB689D2E
+ for <Intel-gfx@lists.freedesktop.org>; Fri, 18 Dec 2020 18:45:30 +0000 (UTC)
+IronPort-SDR: nAo7rOciksrX5DC4iEnd0Tc2aHYl7g8PlHVKT0neggwLUgdDUW1G/dvDRbOi2orQYTDyJ5gDYE
+ 570mIytJyL+Q==
+X-IronPort-AV: E=McAfee;i="6000,8403,9839"; a="193894750"
+X-IronPort-AV: E=Sophos;i="5.78,431,1599548400"; d="scan'208";a="193894750"
 Received: from fmsmga008.fm.intel.com ([10.253.24.58])
  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  18 Dec 2020 10:45:20 -0800
-IronPort-SDR: qElJgqJ4XskLOGw0wIAgGsh63JsZK6SVAzi3x6CxCzzDHLcxu15fgMXQ0iLOn2KqAZ2BnK7Yjb
- uXjfrUKFkarQ==
+IronPort-SDR: l0dz5ydIrpivKVwZQWqbideadwEKe3YL/UXS3eeDcqLXb5aUhwd0o2RlujRV7bPkNxovRujzZd
+ f6y9jtW6qdPA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.78,431,1599548400"; d="scan'208";a="340645783"
+X-IronPort-AV: E=Sophos;i="5.78,431,1599548400"; d="scan'208";a="340645785"
 Received: from sean-virtualbox.fm.intel.com ([10.105.158.96])
  by fmsmga008.fm.intel.com with ESMTP; 18 Dec 2020 10:45:20 -0800
 From: "Huang, Sean Z" <sean.z.huang@intel.com>
 To: Intel-gfx@lists.freedesktop.org
-Date: Fri, 18 Dec 2020 10:45:11 -0800
-Message-Id: <20201218184520.8697-5-sean.z.huang@intel.com>
+Date: Fri, 18 Dec 2020 10:45:12 -0800
+Message-Id: <20201218184520.8697-6-sean.z.huang@intel.com>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20201218184520.8697-1-sean.z.huang@intel.com>
 References: <20201218184520.8697-1-sean.z.huang@intel.com>
-Subject: [Intel-gfx] [RFC-v13 04/13] drm/i915/pxp: Create the arbitrary
- session after boot
+Subject: [Intel-gfx] [RFC-v13 05/13] drm/i915/pxp: Func to send hardware
+ session termination
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,378 +52,271 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Create the arbitrary session, with the fixed session id 0xf, after
-system boot, for the case that application allocates the protected
-buffer without establishing any protection session. Because the
-hardware requires at least one alive session for protected buffer
-creation.  This arbitrary session needs to be re-created after
-teardown or power event because hardware encryption key won't be
-valid after such cases.
+Implement the functions to allow PXP to send a GPU command, in
+order to terminate the hardware session, so hardware can recycle
+this session slot for the next usage.
 
 Signed-off-by: Huang, Sean Z <sean.z.huang@intel.com>
 ---
- drivers/gpu/drm/i915/Makefile                |   1 +
- drivers/gpu/drm/i915/pxp/intel_pxp.c         |   1 +
- drivers/gpu/drm/i915/pxp/intel_pxp.h         |  16 +++
- drivers/gpu/drm/i915/pxp/intel_pxp_arb.c     | 133 +++++++++++++++++++
- drivers/gpu/drm/i915/pxp/intel_pxp_arb.h     |  15 +++
- drivers/gpu/drm/i915/pxp/intel_pxp_context.h |   1 +
- drivers/gpu/drm/i915/pxp/intel_pxp_tee.c     |  38 ++++++
- drivers/gpu/drm/i915/pxp/intel_pxp_tee.h     |   6 +
- drivers/gpu/drm/i915/pxp/intel_pxp_types.h   |  26 ++++
- 9 files changed, 237 insertions(+)
- create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp_arb.c
- create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp_arb.h
+ drivers/gpu/drm/i915/Makefile              |   1 +
+ drivers/gpu/drm/i915/pxp/intel_pxp.c       |  13 ++
+ drivers/gpu/drm/i915/pxp/intel_pxp_cmd.c   | 158 +++++++++++++++++++++
+ drivers/gpu/drm/i915/pxp/intel_pxp_cmd.h   |  18 +++
+ drivers/gpu/drm/i915/pxp/intel_pxp_types.h |   4 +
+ 5 files changed, 194 insertions(+)
+ create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp_cmd.c
+ create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp_cmd.h
 
 diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefile
-index 57447887d352..2c84f75b41da 100644
+index 2c84f75b41da..abe52189986a 100644
 --- a/drivers/gpu/drm/i915/Makefile
 +++ b/drivers/gpu/drm/i915/Makefile
-@@ -258,6 +258,7 @@ i915-y += i915_perf.o
- # Protected execution platform (PXP) support
+@@ -259,6 +259,7 @@ i915-y += i915_perf.o
  i915-$(CONFIG_DRM_I915_PXP) += \
  	pxp/intel_pxp.o \
-+	pxp/intel_pxp_arb.o \
+ 	pxp/intel_pxp_arb.o \
++	pxp/intel_pxp_cmd.o \
  	pxp/intel_pxp_context.o \
  	pxp/intel_pxp_tee.o
  
 diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp.c b/drivers/gpu/drm/i915/pxp/intel_pxp.c
-index 5a3461272fe9..2203464c76bc 100644
+index 2203464c76bc..cc8afca955f9 100644
 --- a/drivers/gpu/drm/i915/pxp/intel_pxp.c
 +++ b/drivers/gpu/drm/i915/pxp/intel_pxp.c
-@@ -6,6 +6,7 @@
- #include "intel_pxp.h"
- #include "intel_pxp_context.h"
- #include "intel_pxp_tee.h"
-+#include "intel_pxp_arb.h"
+@@ -17,10 +17,23 @@
+ void intel_pxp_init(struct intel_pxp *pxp)
+ {
+ 	struct intel_gt *gt = container_of(pxp, struct intel_gt, pxp);
++	int i;
  
- /* KCR register definitions */
- #define KCR_INIT            _MMIO(0x320f0)
-diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp.h b/drivers/gpu/drm/i915/pxp/intel_pxp.h
-index f47bc6bea34f..8fc91e900b16 100644
---- a/drivers/gpu/drm/i915/pxp/intel_pxp.h
-+++ b/drivers/gpu/drm/i915/pxp/intel_pxp.h
-@@ -8,6 +8,22 @@
+ 	if (INTEL_GEN(gt->i915) < 12)
+ 		return;
  
- #include "intel_pxp_types.h"
++	/* Find the first VCS engine present */
++	for (i = 0; i < I915_MAX_VCS; i++) {
++		if (HAS_ENGINE(gt, _VCS(i))) {
++			pxp->vcs_engine = gt->engine[_VCS(i)];
++			break;
++		}
++	}
++	if (!pxp->vcs_engine) {
++		drm_err(&gt->i915->drm, "Could not find a VCS engine\n");
++		return;
++	}
++
+ 	intel_pxp_ctx_init(&pxp->ctx);
  
-+enum pxp_session_types {
-+	SESSION_TYPE_TYPE0 = 0,
-+	SESSION_TYPE_TYPE1 = 1,
-+
-+	SESSION_TYPE_MAX
-+};
-+
-+enum pxp_protection_modes {
-+	PROTECTION_MODE_NONE = 0,
-+	PROTECTION_MODE_LM   = 2,
-+	PROTECTION_MODE_HM   = 3,
-+	PROTECTION_MODE_SM   = 6,
-+
-+	PROTECTION_MODE_ALL
-+};
-+
- #ifdef CONFIG_DRM_I915_PXP
- void intel_pxp_init(struct intel_pxp *pxp);
- void intel_pxp_fini(struct intel_pxp *pxp);
-diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp_arb.c b/drivers/gpu/drm/i915/pxp/intel_pxp_arb.c
+ 	intel_uncore_write(gt->uncore, KCR_INIT, KCR_INIT_ALLOW_DISPLAY_ME_WRITES);
+diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp_cmd.c b/drivers/gpu/drm/i915/pxp/intel_pxp_cmd.c
 new file mode 100644
-index 000000000000..d3da72969349
+index 000000000000..d9298cf5e1a7
 --- /dev/null
-+++ b/drivers/gpu/drm/i915/pxp/intel_pxp_arb.c
-@@ -0,0 +1,133 @@
++++ b/drivers/gpu/drm/i915/pxp/intel_pxp_cmd.c
+@@ -0,0 +1,158 @@
 +// SPDX-License-Identifier: MIT
 +/*
 + * Copyright(c) 2020, Intel Corporation. All rights reserved.
 + */
 +
++#include "intel_pxp_cmd.h"
++#include "i915_drv.h"
 +#include "gt/intel_context.h"
 +#include "gt/intel_engine_pm.h"
 +
-+#include "intel_pxp_types.h"
-+#include "intel_pxp_arb.h"
-+#include "intel_pxp.h"
-+#include "intel_pxp_tee.h"
-+
-+#define GEN12_KCR_SIP _MMIO(0x32260) /* KCR type0 session in play 0-31 */
-+
-+/* Arbitrary session */
-+#define ARB_SESSION_INDEX 0xf
-+#define ARB_SESSION_TYPE SESSION_TYPE_TYPE0
-+#define ARB_PROTECTION_MODE PROTECTION_MODE_HM
-+
-+static bool is_hw_arb_session_in_play(struct intel_pxp *pxp)
++struct i915_vma *intel_pxp_cmd_get_batch(struct intel_pxp *pxp,
++					 struct intel_context *ce,
++					 struct intel_gt_buffer_pool_node *pool,
++					 u32 *cmd_buf, int cmd_size_in_dw)
 +{
-+	u32 regval_sip = 0;
-+	intel_wakeref_t wakeref;
++	struct i915_vma *batch = ERR_PTR(-EINVAL);
++	struct intel_gt *gt = container_of(pxp, struct intel_gt, pxp);
++	u32 *cmd;
++
++	if (!ce || !ce->engine || !cmd_buf)
++		return ERR_PTR(-EINVAL);
++
++	if (cmd_size_in_dw * 4 > PAGE_SIZE) {
++		drm_err(&gt->i915->drm, "Failed to %s, invalid cmd_size_id_dw=[%d]\n",
++			__func__, cmd_size_in_dw);
++		return ERR_PTR(-EINVAL);
++	}
++
++	cmd = i915_gem_object_pin_map(pool->obj, I915_MAP_FORCE_WC);
++	if (IS_ERR(cmd)) {
++		drm_err(&gt->i915->drm, "Failed to i915_gem_object_pin_map()\n");
++		return ERR_PTR(-EINVAL);
++	}
++
++	memcpy(cmd, cmd_buf, cmd_size_in_dw * 4);
++
++	if (drm_debug_enabled(DRM_UT_DRIVER)) {
++		print_hex_dump(KERN_DEBUG, "cmd binaries:",
++			       DUMP_PREFIX_OFFSET, 4, 4, cmd, cmd_size_in_dw * 4, true);
++	}
++
++	i915_gem_object_unpin_map(pool->obj);
++
++	batch = i915_vma_instance(pool->obj, ce->vm, NULL);
++	if (IS_ERR(batch)) {
++		drm_err(&gt->i915->drm, "Failed to i915_vma_instance()\n");
++		return batch;
++	}
++
++	return batch;
++}
++
++int intel_pxp_cmd_submit(struct intel_pxp *pxp, u32 *cmd, int cmd_size_in_dw)
++{
++	int err = -EINVAL;
++	struct i915_vma *batch;
++	struct i915_request *rq;
++	struct intel_context *ce = NULL;
++	bool is_engine_pm_get = false;
++	bool is_batch_vma_pin = false;
++	bool is_skip_req_on_err = false;
++	bool is_engine_get_pool = false;
++	struct intel_gt_buffer_pool_node *pool = NULL;
 +	struct intel_gt *gt = container_of(pxp, struct intel_gt, pxp);
 +
-+	with_intel_runtime_pm(&gt->i915->runtime_pm, wakeref) {
-+		regval_sip = intel_uncore_read(gt->uncore, GEN12_KCR_SIP);
++	ce = pxp->vcs_engine->kernel_context;
++	if (!ce) {
++		drm_err(&gt->i915->drm, "VCS engine does not have context\n");
++		err = -EINVAL;
++		goto end;
 +	}
 +
-+	return regval_sip & BIT(ARB_SESSION_INDEX);
-+}
-+
-+/* wait hw session_in_play reg to match the current sw state */
-+static int wait_arb_hw_sw_state(struct intel_pxp *pxp)
-+{
-+	const int max_retry = 10;
-+	const int ms_delay = 10;
-+	int retry = 0;
-+	int ret;
-+	struct pxp_protected_session *arb = &pxp->ctx.arb_session;
-+
-+	ret = -EINVAL;
-+	for (retry = 0; retry < max_retry; retry++) {
-+		if (is_hw_arb_session_in_play(pxp) ==
-+		    arb->is_in_play) {
-+			ret = 0;
-+			break;
-+		}
-+
-+		msleep(ms_delay);
-+	}
-+
-+	return ret;
-+}
-+
-+static void arb_session_entry_init(struct intel_pxp *pxp)
-+{
-+	struct pxp_protected_session *arb = &pxp->ctx.arb_session;
-+
-+	arb->type = ARB_SESSION_TYPE;
-+	arb->protection_mode = ARB_PROTECTION_MODE;
-+	arb->index = ARB_SESSION_INDEX;
-+	arb->is_in_play = false;
-+}
-+
-+int intel_pxp_arb_reserve_session(struct intel_pxp *pxp)
-+{
-+	int ret;
-+
-+	lockdep_assert_held(&pxp->ctx.mutex);
-+
-+	arb_session_entry_init(pxp);
-+	ret = wait_arb_hw_sw_state(pxp);
-+
-+	return ret;
-+}
-+
-+/**
-+ * intel_pxp_arb_mark_session_in_play - To put an reserved protected session to "in_play" state
-+ * @pxp: pointer to pxp struct.
-+ *
-+ * Return: status. 0 means update is successful.
-+ */
-+static int intel_pxp_arb_mark_session_in_play(struct intel_pxp *pxp)
-+{
-+	struct pxp_protected_session *arb = &pxp->ctx.arb_session;
-+
-+	lockdep_assert_held(&pxp->ctx.mutex);
-+
-+	if (arb->is_in_play)
++	if (!cmd || (cmd_size_in_dw * 4) > PAGE_SIZE) {
++		drm_err(&gt->i915->drm, "Failed to %s bad params\n", __func__);
 +		return -EINVAL;
-+
-+	arb->is_in_play = true;
-+	return 0;
-+}
-+
-+int intel_pxp_arb_create_session(struct intel_pxp *pxp)
-+{
-+	int ret;
-+	struct intel_gt *gt = container_of(pxp, typeof(*gt), pxp);
-+
-+	lockdep_assert_held(&pxp->ctx.mutex);
-+
-+	if (pxp->ctx.flag_display_hm_surface_keys) {
-+		drm_err(&gt->i915->drm, "%s: arb session is alive so skipping the creation\n",
-+			__func__);
-+		return 0;
 +	}
 +
-+	ret = intel_pxp_arb_reserve_session(pxp);
-+	if (ret) {
-+		drm_err(&gt->i915->drm, "Failed to reserve arb session\n");
++	intel_engine_pm_get(ce->engine);
++	is_engine_pm_get = true;
++
++	pool = intel_gt_get_buffer_pool(gt, PAGE_SIZE);
++	if (IS_ERR(pool)) {
++		drm_err(&gt->i915->drm, "Failed to intel_engine_get_pool()\n");
++		err = PTR_ERR(pool);
++		goto end;
++	}
++	is_engine_get_pool = true;
++
++	batch = intel_pxp_cmd_get_batch(pxp, ce, pool, cmd, cmd_size_in_dw);
++	if (IS_ERR(batch)) {
++		drm_err(&gt->i915->drm, "Failed to intel_pxp_cmd_get_batch()\n");
++		err = PTR_ERR(batch);
 +		goto end;
 +	}
 +
-+	ret = intel_pxp_tee_cmd_create_arb_session(pxp);
-+	if (ret) {
-+		drm_err(&gt->i915->drm, "Failed to send tee cmd for arb session creation\n");
++	err = i915_vma_pin(batch, 0, 0, PIN_USER);
++	if (err) {
++		drm_err(&gt->i915->drm, "Failed to i915_vma_pin()\n");
++		goto end;
++	}
++	is_batch_vma_pin = true;
++
++	rq = intel_context_create_request(ce);
++	if (IS_ERR(rq)) {
++		drm_err(&gt->i915->drm, "Failed to intel_context_create_request()\n");
++		err = PTR_ERR(rq);
++		goto end;
++	}
++	is_skip_req_on_err = true;
++
++	err = intel_gt_buffer_pool_mark_active(pool, rq);
++	if (err) {
++		drm_err(&gt->i915->drm, "Failed to intel_engine_pool_mark_active()\n");
 +		goto end;
 +	}
 +
-+	ret = intel_pxp_arb_mark_session_in_play(pxp);
-+	if (ret) {
-+		drm_err(&gt->i915->drm, "Failed to mark arb session status in play\n");
++	i915_vma_lock(batch);
++	err = i915_request_await_object(rq, batch->obj, false);
++	if (!err)
++		err = i915_vma_move_to_active(batch, rq, 0);
++	i915_vma_unlock(batch);
++	if (err) {
++		drm_err(&gt->i915->drm, "Failed to i915_request_await_object()\n");
 +		goto end;
 +	}
 +
-+	pxp->ctx.flag_display_hm_surface_keys = true;
++	if (ce->engine->emit_init_breadcrumb) {
++		err = ce->engine->emit_init_breadcrumb(rq);
++		if (err) {
++			drm_err(&gt->i915->drm, "Failed to emit_init_breadcrumb()\n");
++			goto end;
++		}
++	}
++
++	err = ce->engine->emit_bb_start(rq, batch->node.start,
++		batch->node.size, 0);
++	if (err) {
++		drm_err(&gt->i915->drm, "Failed to emit_bb_start()\n");
++		goto end;
++	}
++
++	i915_request_add(rq);
 +
 +end:
-+	return ret;
++	if (unlikely(err) && is_skip_req_on_err)
++		i915_request_set_error_once(rq, err);
++
++	if (is_batch_vma_pin)
++		i915_vma_unpin(batch);
++
++	if (is_engine_get_pool)
++		intel_gt_buffer_pool_put(pool);
++
++	if (is_engine_pm_get)
++		intel_engine_pm_put(ce->engine);
++
++	return err;
 +}
-diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp_arb.h b/drivers/gpu/drm/i915/pxp/intel_pxp_arb.h
+diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp_cmd.h b/drivers/gpu/drm/i915/pxp/intel_pxp_cmd.h
 new file mode 100644
-index 000000000000..1eb8db6deb0e
+index 000000000000..d04463962421
 --- /dev/null
-+++ b/drivers/gpu/drm/i915/pxp/intel_pxp_arb.h
-@@ -0,0 +1,15 @@
++++ b/drivers/gpu/drm/i915/pxp/intel_pxp_cmd.h
+@@ -0,0 +1,18 @@
 +/* SPDX-License-Identifier: MIT */
 +/*
 + * Copyright(c) 2020, Intel Corporation. All rights reserved.
 + */
 +
-+#ifndef __INTEL_PXP_ARB_H__
-+#define __INTEL_PXP_ARB_H__
++#ifndef __INTEL_PXP_CMD_H__
++#define __INTEL_PXP_CMD_H__
 +
-+#include <linux/types.h>
++#include "gt/intel_gt_buffer_pool.h"
++#include "intel_pxp.h"
 +
-+struct intel_pxp;
++struct i915_vma *intel_pxp_cmd_get_batch(struct intel_pxp *pxp,
++					 struct intel_context *ce,
++					 struct intel_gt_buffer_pool_node *pool,
++					 u32 *cmd_buf, int cmd_size_in_dw);
 +
-+int intel_pxp_arb_create_session(struct intel_pxp *pxp);
-+
-+#endif /* __INTEL_PXP_ARB_H__ */
-diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp_context.h b/drivers/gpu/drm/i915/pxp/intel_pxp_context.h
-index f51021c33d45..bf2feb4aaf6d 100644
---- a/drivers/gpu/drm/i915/pxp/intel_pxp_context.h
-+++ b/drivers/gpu/drm/i915/pxp/intel_pxp_context.h
-@@ -8,6 +8,7 @@
- 
- #include <linux/mutex.h>
- #include "intel_pxp_types.h"
-+#include "intel_pxp_arb.h"
- 
- void intel_pxp_ctx_init(struct pxp_context *ctx);
- void intel_pxp_ctx_fini(struct pxp_context *ctx);
-diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp_tee.c b/drivers/gpu/drm/i915/pxp/intel_pxp_tee.c
-index ca6b61099aee..816a6d5a54e4 100644
---- a/drivers/gpu/drm/i915/pxp/intel_pxp_tee.c
-+++ b/drivers/gpu/drm/i915/pxp/intel_pxp_tee.c
-@@ -10,6 +10,7 @@
- #include "intel_pxp.h"
- #include "intel_pxp_context.h"
- #include "intel_pxp_tee.h"
-+#include "intel_pxp_arb.h"
- 
- static int intel_pxp_tee_io_message(struct intel_pxp *pxp,
- 				    void *msg_in, u32 msg_in_size,
-@@ -70,7 +71,9 @@ static int intel_pxp_tee_io_message(struct intel_pxp *pxp,
- static int i915_pxp_tee_component_bind(struct device *i915_kdev,
- 				       struct device *tee_kdev, void *data)
- {
-+	int ret;
- 	struct drm_i915_private *i915 = kdev_to_i915(i915_kdev);
-+	struct intel_pxp *pxp = &i915->gt.pxp;
- 
- 	if (!i915 || !tee_kdev || !data)
- 		return -EPERM;
-@@ -80,6 +83,16 @@ static int i915_pxp_tee_component_bind(struct device *i915_kdev,
- 	i915->pxp_tee_master->tee_dev = tee_kdev;
- 	mutex_unlock(&i915->pxp_tee_comp_mutex);
- 
-+	mutex_lock(&pxp->ctx.mutex);
-+	/* Create arb session only if tee is ready, during system boot or sleep/resume */
-+	ret = intel_pxp_arb_create_session(pxp);
-+	mutex_unlock(&pxp->ctx.mutex);
-+
-+	if (ret) {
-+		drm_err(&i915->drm, "Failed to create arb session ret=[%d]\n", ret);
-+		return ret;
-+	}
-+
- 	return 0;
- }
- 
-@@ -130,3 +143,28 @@ void intel_pxp_tee_component_fini(struct intel_pxp *pxp)
- 
- 	component_del(i915->drm.dev, &i915_pxp_tee_component_ops);
- }
-+
-+int intel_pxp_tee_cmd_create_arb_session(struct intel_pxp *pxp)
-+{
-+	int ret;
-+	u32 msg_out_size_received = 0;
-+	u32 msg_in[PXP_TEE_ARB_CMD_DW_LEN] = PXP_TEE_ARB_CMD_BIN;
-+	u32 msg_out[PXP_TEE_ARB_CMD_DW_LEN] = {0};
-+	struct intel_gt *gt = container_of(pxp, typeof(*gt), pxp);
-+	struct drm_i915_private *i915 = gt->i915;
-+
-+	mutex_lock(&i915->pxp_tee_comp_mutex);
-+
-+	ret = intel_pxp_tee_io_message(pxp,
-+				       &msg_in,
-+				       sizeof(msg_in),
-+				       &msg_out, &msg_out_size_received,
-+				       sizeof(msg_out));
-+
-+	mutex_unlock(&i915->pxp_tee_comp_mutex);
-+
-+	if (ret)
-+		drm_err(&i915->drm, "Failed to send/receive tee message\n");
-+
-+	return ret;
-+}
-diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp_tee.h b/drivers/gpu/drm/i915/pxp/intel_pxp_tee.h
-index 4b5e3edb1d9b..757a54208a4d 100644
---- a/drivers/gpu/drm/i915/pxp/intel_pxp_tee.h
-+++ b/drivers/gpu/drm/i915/pxp/intel_pxp_tee.h
-@@ -11,4 +11,10 @@
- void intel_pxp_tee_component_init(struct intel_pxp *pxp);
- void intel_pxp_tee_component_fini(struct intel_pxp *pxp);
- 
-+int intel_pxp_tee_cmd_create_arb_session(struct intel_pxp *pxp);
-+
-+/* TEE command to create the arbitrary session */
-+#define PXP_TEE_ARB_CMD_BIN {0x00040000, 0x0000001e, 0x00000000, 0x00000008, 0x00000002, 0x0000000f}
-+#define PXP_TEE_ARB_CMD_DW_LEN (6)
-+
- #endif /* __INTEL_PXP_TEE_H__ */
++int intel_pxp_cmd_submit(struct intel_pxp *pxp, u32 *cmd, int cmd_size_in_dw);
++#endif /* __INTEL_PXP_SM_H__ */
 diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp_types.h b/drivers/gpu/drm/i915/pxp/intel_pxp_types.h
-index f9b40ea98b1b..287ba1e0ed9d 100644
+index 287ba1e0ed9d..f3d9335aee5f 100644
 --- a/drivers/gpu/drm/i915/pxp/intel_pxp_types.h
 +++ b/drivers/gpu/drm/i915/pxp/intel_pxp_types.h
-@@ -8,12 +8,38 @@
+@@ -8,6 +8,8 @@
  
  #include <linux/mutex.h>
  
-+/**
-+ * struct pxp_protected_session - structure to track all active sessions.
-+ */
-+struct pxp_protected_session {
-+	/** @index: Numeric identifier for this protected session */
-+	int index;
-+	/** @type: Type of session */
-+	int type;
-+	/** @protection_mode: mode of protection requested */
-+	int protection_mode;
++struct intel_engine_cs;
 +
-+	/**
-+	 * @is_in_play: indicates whether the session has been established
-+	 *              in the HW root of trust if this flag is false, it
-+	 *              indicates an application has reserved this session,
-+	 *              but has not * established the session in the
-+	 *              hardware yet.
-+	 */
-+	bool is_in_play;
-+};
-+
- /* struct pxp_context - Represents combined view of driver and logical HW states. */
- struct pxp_context {
- 	/** @mutex: mutex to protect the pxp context */
- 	struct mutex mutex;
- 
- 	bool inited;
-+
-+	struct pxp_protected_session arb_session;
-+	u32 arb_session_pxp_tag;
-+
-+	bool flag_display_hm_surface_keys;
- };
+ /**
+  * struct pxp_protected_session - structure to track all active sessions.
+  */
+@@ -44,6 +46,8 @@ struct pxp_context {
  
  struct intel_pxp {
+ 	struct pxp_context ctx;
++
++	struct intel_engine_cs *vcs_engine;
+ };
+ 
+ #endif /* __INTEL_PXP_TYPES_H__ */
 -- 
 2.17.1
 
