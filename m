@@ -1,40 +1,37 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3CA052DE0EF
-	for <lists+intel-gfx@lfdr.de>; Fri, 18 Dec 2020 11:25:59 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 15F9D2DE137
+	for <lists+intel-gfx@lfdr.de>; Fri, 18 Dec 2020 11:43:38 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 95C596E0C9;
-	Fri, 18 Dec 2020 10:25:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7C1306E08C;
+	Fri, 18 Dec 2020 10:43:36 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2C15E6E0B9
- for <intel-gfx@lists.freedesktop.org>; Fri, 18 Dec 2020 10:25:56 +0000 (UTC)
-IronPort-SDR: 5bEU3HvJO+t7XxcDVkT/1iUaWORmQz+L20n/7xVs7vatdKEcuUh+dF97aeg83riQy9ciNndKuM
- GfJOXAuzyy3A==
-X-IronPort-AV: E=McAfee;i="6000,8403,9838"; a="172848379"
-X-IronPort-AV: E=Sophos;i="5.78,430,1599548400"; d="scan'208";a="172848379"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Dec 2020 02:25:56 -0800
-IronPort-SDR: h+jbYPIE04OrvWp7o9TwyEZ7p2/WTHA2xFM+QJ0djfYLkXq78Dpvef+CRzVJDnlnidcKh3jFwL
- Dy3Aa92xeuIA==
-X-IronPort-AV: E=Sophos;i="5.78,430,1599548400"; d="scan'208";a="340335072"
-Received: from linux-x299-aorus-gaming-3-pro.iind.intel.com ([10.223.34.130])
- by fmsmga008-auth.fm.intel.com with
- ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 Dec 2020 02:25:53 -0800
-From: Swati Sharma <swati2.sharma@intel.com>
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 503DF6E0C4;
+ Fri, 18 Dec 2020 10:43:35 +0000 (UTC)
+IronPort-SDR: 399NxDIXIMLtNpur6OMs1LEQ2/8FjUiv5kch8Bl68RUcpuQ9/ubF/Lkj96wcZyWMfgVwWnnyT3
+ 1QrFa8q4AlJw==
+X-IronPort-AV: E=McAfee;i="6000,8403,9838"; a="155219365"
+X-IronPort-AV: E=Sophos;i="5.78,430,1599548400"; d="scan'208";a="155219365"
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Dec 2020 02:43:34 -0800
+IronPort-SDR: aO2zLUDtMafXa21DGpa5HeX8i8oStYP0fwTp3ckrJA7Dl7dHI+jcI7pCc4KbQMLZCZcuk34kon
+ J46zyKXUQcOg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.78,430,1599548400"; d="scan'208";a="561141645"
+Received: from linux-akn.iind.intel.com ([10.223.34.148])
+ by fmsmga005.fm.intel.com with ESMTP; 18 Dec 2020 02:43:29 -0800
+From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Fri, 18 Dec 2020 16:03:37 +0530
-Message-Id: <20201218103337.31068-4-swati2.sharma@intel.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20201218103337.31068-1-swati2.sharma@intel.com>
-References: <20201218103337.31068-1-swati2.sharma@intel.com>
+Date: Fri, 18 Dec 2020 16:07:08 +0530
+Message-Id: <20201218103723.30844-1-ankit.k.nautiyal@intel.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Subject: [Intel-gfx] [RFC][PATCH 3/3] drm/i915: Implement readout for AVI
- infoframe SDP
+Subject: [Intel-gfx] [PATCH v7 00/15] Add support for DP-HDMI2.1 PCON
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,126 +44,95 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jani.nikula@intel.com
+Cc: airlied@linux.ie, dri-devel@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-In this patch readout for AVI infoframes enclosed in GMP
-DIP is implemented.
+This patch series attempts to add support for a DP-HDMI2.1 Protocol
+Convertor. The VESA spec for the HDMI2.1 PCON are proposed in Errata
+E5 to DisplayPort_v2.0:
+https://vesa.org/join-vesamemberships/member-downloads/?action=stamp&fileid=42299
+The details are mentioned in:
+VESA DP-to-HDMI PCON Specification Standalone Document
+https://groups.vesa.org/wg/DP/document/15651
 
-Signed-off-by: Swati Sharma <swati2.sharma@intel.com>
-Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
----
- drivers/gpu/drm/i915/display/intel_dp.c | 74 ++++++++++++++++++++++++-
- 1 file changed, 72 insertions(+), 2 deletions(-)
+This series starts with adding support for FRL (Fixed Rate Link)
+Training between the PCON and HDMI2.1 sink.
+As per HDMI2.1 specification, a new data-channel or lane is added in
+FRL mode, by repurposing the TMDS clock Channel. Through FRL, higher
+bit-rate can be supported, ie. up to 12 Gbps/lane (48 Gbps over 4
+lanes).
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index d96e69dd2197..4821c96991f2 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -5738,6 +5738,44 @@ intel_dp_hdr_metadata_infoframe_sdp_unpack(struct hdmi_drm_infoframe *drm_infofr
- 	return ret;
- }
- 
-+static int
-+intel_dp_avi_infoframe_sdp_unpack(union hdmi_infoframe *frame,
-+				  const void *buffer, size_t size)
-+{
-+	int ret;
-+
-+	const struct dp_sdp *sdp = buffer;
-+
-+	if (size < sizeof(struct dp_sdp))
-+		return -EINVAL;
-+
-+	if (sdp->sdp_header.HB0 != 0)
-+		return -EINVAL;
-+
-+	if (sdp->sdp_header.HB1 != HDMI_INFOFRAME_TYPE_AVI)
-+		return -EINVAL;
-+
-+	if (sdp->sdp_header.HB2 != 0x1D)
-+		return -EINVAL;
-+
-+	if ((sdp->sdp_header.HB3 & 0x3) != 0)
-+		return -EINVAL;
-+
-+	if (((sdp->sdp_header.HB3 >> 2) & 0x3f) != 0x13)
-+		return -EINVAL;
-+
-+	if (sdp->db[0] != 2)
-+		return -EINVAL;
-+
-+	if (sdp->db[1] != HDMI_AVI_INFOFRAME_SIZE)
-+		return -EINVAL;
-+
-+	ret = hdmi_infoframe_unpack(frame, &sdp->db[2],
-+				    HDMI_DRM_INFOFRAME_SIZE);
-+
-+	return ret;
-+}
-+
- static void intel_read_dp_vsc_sdp(struct intel_encoder *encoder,
- 				  struct intel_crtc_state *crtc_state,
- 				  struct drm_dp_vsc_sdp *vsc)
-@@ -5790,10 +5828,37 @@ static void intel_read_dp_hdr_metadata_infoframe_sdp(struct intel_encoder *encod
- 			    "Failed to unpack DP HDR Metadata Infoframe SDP\n");
- }
- 
-+static void intel_read_dp_avi_infoframe_sdp(struct intel_encoder *encoder,
-+					    struct intel_crtc_state *crtc_state,
-+					    union hdmi_infoframe *frame)
-+{
-+	struct intel_digital_port *dig_port = enc_to_dig_port(encoder);
-+	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
-+	unsigned int type = HDMI_PACKET_TYPE_GAMUT_METADATA;
-+	struct dp_sdp sdp = {};
-+	int ret;
-+
-+	if ((crtc_state->infoframes.enable &
-+	    intel_hdmi_infoframe_enable(type)) == 0)
-+		return;
-+
-+	dig_port->read_infoframe(encoder, crtc_state, type, &sdp,
-+				 sizeof(sdp));
-+
-+	ret = intel_dp_avi_infoframe_sdp_unpack(frame, &sdp,
-+						sizeof(sdp));
-+
-+	if (ret)
-+		drm_dbg_kms(&dev_priv->drm,
-+			    "Failed to unpack DP AVI Infoframe SDP\n");
-+}
-+
- void intel_read_dp_sdp(struct intel_encoder *encoder,
- 		       struct intel_crtc_state *crtc_state,
- 		       unsigned int type)
- {
-+	struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
-+
- 	if (encoder->type != INTEL_OUTPUT_DDI)
- 		return;
- 
-@@ -5803,8 +5868,13 @@ void intel_read_dp_sdp(struct intel_encoder *encoder,
- 				      &crtc_state->infoframes.vsc);
- 		break;
- 	case HDMI_PACKET_TYPE_GAMUT_METADATA:
--		intel_read_dp_hdr_metadata_infoframe_sdp(encoder, crtc_state,
--							 &crtc_state->infoframes.drm.drm);
-+		if (intel_dp_is_hdmi_2_1_sink(intel_dp)) {
-+		    intel_read_dp_avi_infoframe_sdp(encoder, crtc_state,
-+						    &crtc_state->infoframes.avi);
-+		} else {
-+		    intel_read_dp_hdr_metadata_infoframe_sdp(encoder, crtc_state,
-+							     &crtc_state->infoframes.drm.drm);
-+		}
- 		break;
- 	default:
- 		MISSING_CASE(type);
+With these patches, the HDMI2.1 PCON can be configured to achieve FRL
+training based on the maximum FRL rate supported by the panel, source
+and the PCON.
+The approach is to add the support for FRL training between PCON and
+HDMI2.1 sink and gradually add other blocks for supporting higher
+resolutions and other HDMI2.1 features, that can be supported by pcon
+for the sources that do not natively support HDMI2.1.
+
+This is done before the DP Link training between the source and PCON
+is started. In case of FRL training is not achieved, the PCON will
+work in the regular TMDS mode, without HDMI2.1 feature support.
+Any interruption in FRL training between the PCON and HDMI2.1 sink is
+notified through IRQ_HPD. On receiving the IRQ_HPD the concerned DPCD
+registers are read and FRL training is re-attempted.
+
+Currently, we have tested the FRL training and are able to enable 4K
+display with TGL Platform + Realtek PCON RTD2173 with HDMI2.1 supporting
+panel.
+
+v2: Addressed review comments and re-organized patches as suggested in
+comments on RFC patches.
+
+v3: Addressed review comments on previous version.
+
+v4: Added support for RGB->YCBCR conversion through PCON
+
+v5: Addressed review comments on previous version.
+
+v6: Fix typo in one of the patch.
+
+v7: Rebased on latest drm-tip and addressed the review comments.
+
+Ankit Nautiyal (11):
+  drm/edid: Parse DSC1.2 cap fields from HFVSDB block
+  drm/dp_helper: Add Helpers for FRL Link Training support for
+    DP-HDMI2.1 PCON
+  drm/dp_helper: Add support for Configuring DSC for HDMI2.1 Pcon
+  drm/dp_helper: Add helpers to configure PCONs RGB-YCbCr Conversion
+  drm/i915: Capture max frl rate for PCON in dfp cap structure
+  drm/i915: Add support for starting FRL training for HDMI2.1 via PCON
+  drm/i915: Check for FRL training before DP Link training
+  drm/i915: Read DSC capabilities of the HDMI2.1 PCON encoder
+  drm/i915: Add helper functions for calculating DSC parameters for
+    HDMI2.1
+  drm/i915/display: Configure PCON for DSC1.1 to DSC1.2 encoding
+  drm/i915/display: Let PCON convert from RGB to YCbCr if it can
+
+Swati Sharma (4):
+  drm/edid: Add additional HFVSDB fields for HDMI2.1
+  drm/edid: Parse MAX_FRL field from HFVSDB block
+  drm/dp_helper: Add support for link failure detection
+  drm/i915: Add support for enabling link status and recovery
+
+ drivers/gpu/drm/drm_dp_helper.c               | 566 ++++++++++++++++++
+ drivers/gpu/drm/drm_edid.c                    | 103 ++++
+ drivers/gpu/drm/i915/display/intel_ddi.c      |   6 +-
+ .../drm/i915/display/intel_display_types.h    |  10 +
+ drivers/gpu/drm/i915/display/intel_dp.c       | 442 +++++++++++++-
+ drivers/gpu/drm/i915/display/intel_dp.h       |   7 +-
+ drivers/gpu/drm/i915/display/intel_hdmi.c     | 233 +++++++
+ drivers/gpu/drm/i915/display/intel_hdmi.h     |   7 +
+ include/drm/drm_connector.h                   |  49 ++
+ include/drm/drm_dp_helper.h                   | 218 +++++++
+ include/drm/drm_edid.h                        |  30 +
+ 11 files changed, 1652 insertions(+), 19 deletions(-)
+
 -- 
-2.25.1
+2.17.1
 
 _______________________________________________
 Intel-gfx mailing list
