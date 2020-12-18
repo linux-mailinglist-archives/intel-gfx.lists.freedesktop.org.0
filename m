@@ -1,35 +1,43 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 604422DE731
-	for <lists+intel-gfx@lfdr.de>; Fri, 18 Dec 2020 17:07:17 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 219B72DE74E
+	for <lists+intel-gfx@lfdr.de>; Fri, 18 Dec 2020 17:13:17 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D3DE26E197;
-	Fri, 18 Dec 2020 16:07:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 410726E200;
+	Fri, 18 Dec 2020 16:13:15 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D8E5D6E204
- for <intel-gfx@lists.freedesktop.org>; Fri, 18 Dec 2020 16:07:12 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 23368830-1500050 for multiple; Fri, 18 Dec 2020 16:07:10 +0000
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7C2E56E200
+ for <intel-gfx@lists.freedesktop.org>; Fri, 18 Dec 2020 16:13:14 +0000 (UTC)
+IronPort-SDR: R0lUEY/T5IUOOG+/hRchghn0yNW3hXd4OjGzGfDlGlN01JAcPde5KWes+TYONVPR0PaAE8AGtO
+ wrPqfy4PXuAA==
+X-IronPort-AV: E=McAfee;i="6000,8403,9839"; a="260190431"
+X-IronPort-AV: E=Sophos;i="5.78,430,1599548400"; d="scan'208";a="260190431"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Dec 2020 08:13:14 -0800
+IronPort-SDR: 3TrWBiueV16Xs/hwjG5JudEr67rB1ZVuKpSwntkprv/AklVfA2QmwE2g503YusZuthbyBi8xgi
+ QhU3mQQQun8w==
+X-IronPort-AV: E=Sophos;i="5.78,430,1599548400"; d="scan'208";a="340512495"
+Received: from mtsachix-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.213.201.58])
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Dec 2020 08:13:12 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: Lucas De Marchi <lucas.demarchi@intel.com>
+In-Reply-To: <20201218124346.rwpfwhe7vmr3aq7r@ldmartin-desk1>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20201203072359.156682-1-aditya.swarup@intel.com>
+ <20201218023129.oxuzjlbxzqg7twpl@ldmartin-desk1> <87eejn4jpp.fsf@intel.com>
+ <875z4zqscy.fsf@intel.com> <20201218124346.rwpfwhe7vmr3aq7r@ldmartin-desk1>
+Date: Fri, 18 Dec 2020 18:13:08 +0200
+Message-ID: <87wnxfozxn.fsf@intel.com>
 MIME-Version: 1.0
-In-Reply-To: <68b73001-3179-5aca-c206-449a1ff12d01@linux.intel.com>
-References: <20201218091944.32417-1-chris@chris-wilson.co.uk>
- <20201218122421.18344-1-chris@chris-wilson.co.uk>
- <68b73001-3179-5aca-c206-449a1ff12d01@linux.intel.com>
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-Date: Fri, 18 Dec 2020 16:07:08 +0000
-Message-ID: <160830762848.11872.11414519231351950198@build.alporthouse.com>
-User-Agent: alot/0.9
-Subject: Re: [Intel-gfx] [PATCH v2] drm/i915: Check for rq->hwsp validity
- after acquiring RCU lock
+Subject: Re: [Intel-gfx] [PATCH v2 1/2] drm/i915/tgl: Fix REVID macros for
+ TGL to fetch correct stepping
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,227 +50,77 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: stable@vger.kernel.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Tvrtko Ursulin (2020-12-18 15:52:05)
-> 
-> On 18/12/2020 12:24, Chris Wilson wrote:
-> > Since we allow removing the timeline map at runtime, there is a risk
-> > that rq->hwsp points into a stale page. To control that risk, we hold
-> > the RCU read lock while reading *rq->hwsp, but we missed a couple of
-> > important barriers. First, the unpinning / removal of the timeline map
-> > must be after all RCU readers into that map are complete, i.e. after an
-> > rcu barrier (in this case courtesy of call_rcu()). Secondly, we must
-> > make sure that the rq->hwsp we are about to dereference under the RCU
-> > lock is valid. In this case, we make the rq->hwsp pointer safe during
-> > i915_request_retire() and so we know that rq->hwsp may become invalid
-> > only after the request has been signaled. Therefore is the request is
-> > not yet signaled when we acquire rq->hwsp under the RCU, we know that
-> > rq->hwsp will remain valid for the duration of the RCU read lock.
-> > 
-> > This is a very small window that may lead to either considering the
-> > request not completed (causing a delay until the request is checked
-> > again, any wait for the request is not affected) or dereferencing an
-> > invalid pointer.
-> > 
-> > Fixes: 3adac4689f58 ("drm/i915: Introduce concept of per-timeline (context) HWSP")
-> > Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-> > Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-> > Cc: <stable@vger.kernel.org> # v5.1+
-> > ---
-> >   drivers/gpu/drm/i915/gt/intel_breadcrumbs.c | 11 ++----
-> >   drivers/gpu/drm/i915/gt/intel_timeline.c    | 10 +++---
-> >   drivers/gpu/drm/i915/i915_request.h         | 37 ++++++++++++++++++---
-> >   3 files changed, 39 insertions(+), 19 deletions(-)
-> > 
-> > diff --git a/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c b/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c
-> > index 3c62fd6daa76..f96cd7d9b419 100644
-> > --- a/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c
-> > +++ b/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c
-> > @@ -134,11 +134,6 @@ static bool remove_signaling_context(struct intel_breadcrumbs *b,
-> >       return true;
-> >   }
-> >   
-> > -static inline bool __request_completed(const struct i915_request *rq)
-> > -{
-> > -     return i915_seqno_passed(__hwsp_seqno(rq), rq->fence.seqno);
-> > -}
-> > -
-> >   __maybe_unused static bool
-> >   check_signal_order(struct intel_context *ce, struct i915_request *rq)
-> >   {
-> > @@ -245,7 +240,7 @@ static void signal_irq_work(struct irq_work *work)
-> >               list_for_each_entry_rcu(rq, &ce->signals, signal_link) {
-> >                       bool release;
-> >   
-> > -                     if (!__request_completed(rq))
-> > +                     if (!__i915_request_is_complete(rq))
-> >                               break;
-> >   
-> >                       if (!test_and_clear_bit(I915_FENCE_FLAG_SIGNAL,
-> > @@ -380,7 +375,7 @@ static void insert_breadcrumb(struct i915_request *rq)
-> >        * straight onto a signaled list, and queue the irq worker for
-> >        * its signal completion.
-> >        */
-> > -     if (__request_completed(rq)) {
-> > +     if (__i915_request_is_complete(rq)) {
-> >               irq_signal_request(rq, b);
-> >               return;
-> >       }
-> > @@ -468,7 +463,7 @@ void i915_request_cancel_breadcrumb(struct i915_request *rq)
-> >       if (release)
-> >               intel_context_put(ce);
-> >   
-> > -     if (__request_completed(rq))
-> > +     if (__i915_request_is_complete(rq))
-> >               irq_signal_request(rq, b);
-> >   
-> >       i915_request_put(rq);
-> > diff --git a/drivers/gpu/drm/i915/gt/intel_timeline.c b/drivers/gpu/drm/i915/gt/intel_timeline.c
-> > index 512afacd2bdc..a005d0165bf4 100644
-> > --- a/drivers/gpu/drm/i915/gt/intel_timeline.c
-> > +++ b/drivers/gpu/drm/i915/gt/intel_timeline.c
-> > @@ -126,6 +126,10 @@ static void __rcu_cacheline_free(struct rcu_head *rcu)
-> >       struct intel_timeline_cacheline *cl =
-> >               container_of(rcu, typeof(*cl), rcu);
-> >   
-> > +     /* Must wait until after all *rq->hwsp are complete before removing */
-> > +     i915_gem_object_unpin_map(cl->hwsp->vma->obj);
-> > +     __idle_hwsp_free(cl->hwsp, ptr_unmask_bits(cl->vaddr, CACHELINE_BITS));
-> > +
-> >       i915_active_fini(&cl->active);
-> >       kfree(cl);
-> >   }
-> > @@ -133,11 +137,6 @@ static void __rcu_cacheline_free(struct rcu_head *rcu)
-> >   static void __idle_cacheline_free(struct intel_timeline_cacheline *cl)
-> >   {
-> >       GEM_BUG_ON(!i915_active_is_idle(&cl->active));
-> > -
-> > -     i915_gem_object_unpin_map(cl->hwsp->vma->obj);
-> > -     i915_vma_put(cl->hwsp->vma);
-> > -     __idle_hwsp_free(cl->hwsp, ptr_unmask_bits(cl->vaddr, CACHELINE_BITS));
-> > -
-> >       call_rcu(&cl->rcu, __rcu_cacheline_free);
-> >   }
-> >   
-> > @@ -179,7 +178,6 @@ cacheline_alloc(struct intel_timeline_hwsp *hwsp, unsigned int cacheline)
-> >               return ERR_CAST(vaddr);
-> >       }
-> >   
-> > -     i915_vma_get(hwsp->vma);
-> >       cl->hwsp = hwsp;
-> >       cl->vaddr = page_pack_bits(vaddr, cacheline);
-> >   
-> > diff --git a/drivers/gpu/drm/i915/i915_request.h b/drivers/gpu/drm/i915/i915_request.h
-> > index 92e4320c50c4..7c4453e60323 100644
-> > --- a/drivers/gpu/drm/i915/i915_request.h
-> > +++ b/drivers/gpu/drm/i915/i915_request.h
-> > @@ -440,7 +440,7 @@ static inline u32 hwsp_seqno(const struct i915_request *rq)
-> >   
-> >   static inline bool __i915_request_has_started(const struct i915_request *rq)
-> >   {
-> > -     return i915_seqno_passed(hwsp_seqno(rq), rq->fence.seqno - 1);
-> > +     return i915_seqno_passed(__hwsp_seqno(rq), rq->fence.seqno - 1);
-> >   }
-> >   
-> >   /**
-> > @@ -471,11 +471,19 @@ static inline bool __i915_request_has_started(const struct i915_request *rq)
-> >    */
-> >   static inline bool i915_request_started(const struct i915_request *rq)
-> >   {
-> > +     bool result;
-> > +
-> >       if (i915_request_signaled(rq))
-> >               return true;
-> >   
-> > -     /* Remember: started but may have since been preempted! */
-> > -     return __i915_request_has_started(rq);
-> > +     result = true;
-> > +     rcu_read_lock(); /* the HWSP may be freed at runtime */
-> > +     if (likely(!i915_request_signaled(rq)))
-> > +             /* Remember: started but may have since been preempted! */
-> > +             result = __i915_request_has_started(rq);
-> > +     rcu_read_unlock();
-> > +
-> > +     return result;
-> >   }
-> >   
-> >   /**
-> > @@ -488,10 +496,16 @@ static inline bool i915_request_started(const struct i915_request *rq)
-> >    */
-> >   static inline bool i915_request_is_running(const struct i915_request *rq)
-> >   {
-> > +     bool result;
-> > +
-> >       if (!i915_request_is_active(rq))
-> >               return false;
-> >   
-> > -     return __i915_request_has_started(rq);
-> > +     rcu_read_lock();
-> > +     result = __i915_request_has_started(rq) && i915_request_is_active(rq);
-> > +     rcu_read_unlock();
-> > +
-> > +     return result;
-> >   }
-> >   
-> >   /**
-> > @@ -515,12 +529,25 @@ static inline bool i915_request_is_ready(const struct i915_request *rq)
-> >       return !list_empty(&rq->sched.link);
-> >   }
-> >   
-> > +static inline bool __i915_request_is_complete(const struct i915_request *rq)
-> > +{
-> > +     return i915_seqno_passed(__hwsp_seqno(rq), rq->fence.seqno);
-> > +}
-> > +
-> >   static inline bool i915_request_completed(const struct i915_request *rq)
-> >   {
-> > +     bool result;
-> > +
-> >       if (i915_request_signaled(rq))
-> >               return true;
-> >   
-> > -     return i915_seqno_passed(hwsp_seqno(rq), rq->fence.seqno);
-> > +     result = true;
-> > +     rcu_read_lock(); /* the HWSP may be freed at runtime */
-> > +     if (likely(!i915_request_signaled(rq)))
-> > +             result = __i915_request_is_complete(rq);
-> > +     rcu_read_unlock();
-> > +
-> > +     return result; >   }
-> >   
-> >   static inline void i915_request_mark_complete(struct i915_request *rq)
-> > 
-> 
-> Should rq->hwsp_seqno be marked as rcu pointer?
-
-50:50; we're careful enough with the helper, but we don't always call it
-from under a rcu read lock. Hmm, that used to be true but now the
-interrupt handler is under rcu context. That might not be a huge task to
-annotate now, but still a few places that know the request->hwsp is valid
-since they are before request submit.
-
-> We reset the fence signaled status before re-assigning the timeline. So 
-> if we were to query a request in the process of being allocated, do we 
-> need to do something extra to make sure !signaled status is not seen 
-> before the rq->hwsp_seqno is replaced? Like should the order of re-init 
-> be inverted?
-
-You're thinking of request reuse. The question is where do we look at
-i915_request_competed outside of an explicit ref. Off the top of my head
-that is only gem_busy. (Similar thought exercise for plain
-i915_request_is_signaled, just less pointer dancing.) gem_busy is
-protected by the seqlock, that is if the dma-resv is changed and the
-fence freed, we restart the inspection.
-
-So... I don't think we have a use where the order matters across
-recycling, and so nothing to define the rules.
--Chris
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+T24gRnJpLCAxOCBEZWMgMjAyMCwgTHVjYXMgRGUgTWFyY2hpIDxsdWNhcy5kZW1hcmNoaUBpbnRl
+bC5jb20+IHdyb3RlOgo+IE9uIEZyaSwgRGVjIDE4LCAyMDIwIGF0IDAxOjEzOjQ5UE0gKzAyMDAs
+IEphbmkgTmlrdWxhIHdyb3RlOgo+Pk9uIEZyaSwgMTggRGVjIDIwMjAsIEphbmkgTmlrdWxhIDxq
+YW5pLm5pa3VsYUBpbnRlbC5jb20+IHdyb3RlOgo+Pj4gT24gVGh1LCAxNyBEZWMgMjAyMCwgTHVj
+YXMgRGUgTWFyY2hpIDxsdWNhcy5kZW1hcmNoaUBpbnRlbC5jb20+IHdyb3RlOgo+Pj4+IEJvdGgg
+cGF0Y2hlcyBhcHBsaWVkLiBUaGFua3MhCj4+Pj4KPj4+PiBKYW5pLCBtYXliZSBub3cgeW91IGNh
+biByZWJhc2UgeW91ciBwYXRjaCB0byBnZXQgcmlkIG9mIHRoZSBleHRlcm4gPwo+Pj4KPj4+IFll
+cywgdGhhbmtzIGZvciB0aGUgaXJxIHNvIEkgY2FuIHN0b3AgcG9sbGluZy4gOykKPj4KPj5IdWgs
+IHdoeSB3ZXJlIHRoZXNlIGFwcGxpZWQgdG8gZHJtLWludGVsLWd0LW5leHQ/IEl0J3MgbXVjaCBt
+b3JlIGFib3V0Cj4+ZHJpdmVyIGNvcmUgY29kZSB0aGFuIGd0Lgo+Cj4gc2lnaC4uLiBieSBtaXN0
+YWtlLiBBdCB0aGUgdGltZSBhcyB3YXMgbWFpbmx5IHRoaW5raW5nIGFib3V0IHRoZSBXQXMKPiB0
+aGF0IGFyZSBhZmZlY3RlZCBieSB0aGVzZSBhbmQgdGhvdWdodCBpdCB3b3VsZCBiZWxvbmcgdG8g
+Z3QuCj4KPiB3aGF0IG5vdz8gRG8gd2UgYXBwbHkgaW4gdG8gZHJtLWludGVsLW5leHQgYXMgd2Vs
+bCBvciB3YWl0IGZvciBhIGJhY2ttZXJnZT8KCk1heWJlIEknbGwgZG8gdGhlIHJlZmFjdG9yaW5n
+IGluIGd0LW5leHQgYXMgd2VsbC4gT3Igd2FpdCBmb3IgdGhlCmJhY2ttZXJnZS4gKnNocnVnKgoK
+RG9uJ3Qgd29ycnkgYWJvdXQgaXQuCgpCUiwKSmFuaS4KCgo+Cj4gc29ycnksCj4KPiBMdWNhcyBE
+ZSBNYXJjaGkKPgo+Pgo+PkJSLAo+PkphbmkuCj4+Cj4+Cj4+Pgo+Pj4gQlIsCj4+PiBKYW5pLgo+
+Pj4KPj4+Cj4+Pj4KPj4+Pgo+Pj4+IEx1Y2FzIERlIE1hcmNoaQo+Pj4+Cj4+Pj4gT24gV2VkLCBE
+ZWMgMDIsIDIwMjAgYXQgMTE6MjM6NThQTSAtMDgwMCwgQWRpdHlhIFN3YXJ1cCB3cm90ZToKPj4+
+Pj5GaXggVEdMIFJFVklEIG1hY3JvcyB0byBmZXRjaCBjb3JyZWN0IGRpc3BsYXkvZ3Qgc3RlcHBp
+bmcgYmFzZWQKPj4+Pj5vbiBTT0MgcmV2IGlkIGZyb20gSU5URUxfUkVWSUQoKSBtYWNyby4gUHJl
+dmlvdXNseSwgd2Ugd2VyZSBqdXN0Cj4+Pj4+cmV0dXJuaW5nIHRoZSBmaXJzdCBlbGVtZW50IG9m
+IHRoZSByZXZpZCBhcnJheSBpbnN0ZWFkIG9mIHVzaW5nCj4+Pj4+dGhlIGNvcnJlY3QgaW5kZXgg
+YmFzZWQgb24gU09DIHJldiBpZC4KPj4+Pj4KPj4+Pj5GaXhlczogKCJkcm0vaTkxNS90Z2w6IEZp
+eCBzdGVwcGluZyBXQSBtYXRjaGluZyIpCj4+Pj4+Q2M6IEpvc8OpIFJvYmVydG8gZGUgU291emEg
+PGpvc2Uuc291emFAaW50ZWwuY29tPgo+Pj4+PkNjOiBNYXR0IFJvcGVyIDxtYXR0aGV3LmQucm9w
+ZXJAaW50ZWwuY29tPgo+Pj4+PkNjOiBMdWNhcyBEZSBNYXJjaGkgPGx1Y2FzLmRlbWFyY2hpQGlu
+dGVsLmNvbT4KPj4+Pj5DYzogSmFuaSBOaWt1bGEgPGphbmkubmlrdWxhQGludGVsLmNvbT4KPj4+
+Pj5DYzogVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4KPj4+
+Pj5TaWduZWQtb2ZmLWJ5OiBBZGl0eWEgU3dhcnVwIDxhZGl0eWEuc3dhcnVwQGludGVsLmNvbT4K
+Pj4+Pj5SZXZpZXdlZC1ieTogTHVjYXMgRGUgTWFyY2hpIDxsdWNhcy5kZW1hcmNoaUBpbnRlbC5j
+b20+Cj4+Pj4+LS0tCj4+Pj4+IGRyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfZHJ2LmggfCAxMiAr
+KysrKystLS0tLS0KPj4+Pj4gMSBmaWxlIGNoYW5nZWQsIDYgaW5zZXJ0aW9ucygrKSwgNiBkZWxl
+dGlvbnMoLSkKPj4+Pj4KPj4+Pj5kaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkx
+NV9kcnYuaCBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfZHJ2LmgKPj4+Pj5pbmRleCBmYzEw
+OTBjNjg4OWMuLjJlMjE0OWM5YTJmNCAxMDA2NDQKPj4+Pj4tLS0gYS9kcml2ZXJzL2dwdS9kcm0v
+aTkxNS9pOTE1X2Rydi5oCj4+Pj4+KysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9kcnYu
+aAo+Pj4+PkBAIC0xNTgwLDkgKzE1ODAsOSBAQCBzdGF0aWMgaW5saW5lIGNvbnN0IHN0cnVjdCBp
+OTE1X3Jldl9zdGVwcGluZ3MgKgo+Pj4+PiB0Z2xfcmV2aWRzX2dldChzdHJ1Y3QgZHJtX2k5MTVf
+cHJpdmF0ZSAqZGV2X3ByaXYpCj4+Pj4+IHsKPj4+Pj4gCWlmIChJU19UR0xfVShkZXZfcHJpdikg
+fHwgSVNfVEdMX1koZGV2X3ByaXYpKQo+Pj4+Pi0JCXJldHVybiB0Z2xfdXlfcmV2aWRzOwo+Pj4+
+PisJCXJldHVybiAmdGdsX3V5X3Jldmlkc1tJTlRFTF9SRVZJRChkZXZfcHJpdildOwo+Pj4+PiAJ
+ZWxzZQo+Pj4+Pi0JCXJldHVybiB0Z2xfcmV2aWRzOwo+Pj4+PisJCXJldHVybiAmdGdsX3Jldmlk
+c1tJTlRFTF9SRVZJRChkZXZfcHJpdildOwo+Pj4+PiB9Cj4+Pj4+Cj4+Pj4+ICNkZWZpbmUgSVNf
+VEdMX0RJU1BfUkVWSUQocCwgc2luY2UsIHVudGlsKSBcCj4+Pj4+QEAgLTE1OTIsMTQgKzE1OTIs
+MTQgQEAgdGdsX3Jldmlkc19nZXQoc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmRldl9wcml2KQo+
+Pj4+Pgo+Pj4+PiAjZGVmaW5lIElTX1RHTF9VWV9HVF9SRVZJRChwLCBzaW5jZSwgdW50aWwpIFwK
+Pj4+Pj4gCSgoSVNfVEdMX1UocCkgfHwgSVNfVEdMX1kocCkpICYmIFwKPj4+Pj4tCSB0Z2xfdXlf
+cmV2aWRzLT5ndF9zdGVwcGluZyA+PSAoc2luY2UpICYmIFwKPj4+Pj4tCSB0Z2xfdXlfcmV2aWRz
+LT5ndF9zdGVwcGluZyA8PSAodW50aWwpKQo+Pj4+PisJIHRnbF91eV9yZXZpZHNbSU5URUxfUkVW
+SUQocCldLmd0X3N0ZXBwaW5nID49IChzaW5jZSkgJiYgXAo+Pj4+PisJIHRnbF91eV9yZXZpZHNb
+SU5URUxfUkVWSUQocCldLmd0X3N0ZXBwaW5nIDw9ICh1bnRpbCkpCj4+Pj4+Cj4+Pj4+ICNkZWZp
+bmUgSVNfVEdMX0dUX1JFVklEKHAsIHNpbmNlLCB1bnRpbCkgXAo+Pj4+PiAJKElTX1RJR0VSTEFL
+RShwKSAmJiBcCj4+Pj4+IAkgIShJU19UR0xfVShwKSB8fCBJU19UR0xfWShwKSkgJiYgXAo+Pj4+
+Pi0JIHRnbF9yZXZpZHMtPmd0X3N0ZXBwaW5nID49IChzaW5jZSkgJiYgXAo+Pj4+Pi0JIHRnbF9y
+ZXZpZHMtPmd0X3N0ZXBwaW5nIDw9ICh1bnRpbCkpCj4+Pj4+KwkgdGdsX3Jldmlkc1tJTlRFTF9S
+RVZJRChwKV0uZ3Rfc3RlcHBpbmcgPj0gKHNpbmNlKSAmJiBcCj4+Pj4+KwkgdGdsX3Jldmlkc1tJ
+TlRFTF9SRVZJRChwKV0uZ3Rfc3RlcHBpbmcgPD0gKHVudGlsKSkKPj4+Pj4KPj4+Pj4gI2RlZmlu
+ZSBSS0xfUkVWSURfQTAJCTB4MAo+Pj4+PiAjZGVmaW5lIFJLTF9SRVZJRF9CMAkJMHgxCj4+Pj4+
+LS0KPj4+Pj4yLjI3LjAKPj4+Pj4KPj4+Pj5fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fXwo+Pj4+PkludGVsLWdmeCBtYWlsaW5nIGxpc3QKPj4+Pj5JbnRlbC1n
+ZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCj4+Pj4+aHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5v
+cmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngKPj4KPj4tLSAKPj5KYW5pIE5pa3VsYSwgSW50
+ZWwgT3BlbiBTb3VyY2UgR3JhcGhpY3MgQ2VudGVyCgotLSAKSmFuaSBOaWt1bGEsIEludGVsIE9w
+ZW4gU291cmNlIEdyYXBoaWNzIENlbnRlcgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5m
+cmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0
+aW5mby9pbnRlbC1nZngK
