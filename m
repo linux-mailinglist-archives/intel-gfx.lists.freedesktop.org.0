@@ -1,41 +1,44 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 84E962E0D5F
-	for <lists+intel-gfx@lfdr.de>; Tue, 22 Dec 2020 17:28:58 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 791AB2E0D7B
+	for <lists+intel-gfx@lfdr.de>; Tue, 22 Dec 2020 17:43:30 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 23F366E419;
-	Tue, 22 Dec 2020 16:28:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1D1756E3AC;
+	Tue, 22 Dec 2020 16:43:28 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 76E5F6E413;
- Tue, 22 Dec 2020 16:28:53 +0000 (UTC)
-IronPort-SDR: 1HrQ7NKLr3WWdm7paX+evefkD+7PeGTyocWoMpUA9Xeo8ZPPZ4fbaLCvLdxZUh31sUZ2MOHhwW
- 26ZIfdACcO2Q==
-X-IronPort-AV: E=McAfee;i="6000,8403,9842"; a="237452224"
-X-IronPort-AV: E=Sophos;i="5.78,439,1599548400"; d="scan'208";a="237452224"
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 144A76E3AC
+ for <intel-gfx@lists.freedesktop.org>; Tue, 22 Dec 2020 16:43:26 +0000 (UTC)
+IronPort-SDR: sagUociK8WekLtkFIsyLuQEVVGhwMWCINtzjCnUOmUNnegvhFVByKfG6ZoZHF6EZebdZertAm7
+ 5QPtj3qaJfCw==
+X-IronPort-AV: E=McAfee;i="6000,8403,9842"; a="175991649"
+X-IronPort-AV: E=Sophos;i="5.78,439,1599548400"; d="scan'208";a="175991649"
 Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Dec 2020 08:28:52 -0800
-IronPort-SDR: eJJeFWsYtBQvhD9Ms0S2XRIvqfYUEon98n2xBB2M5WuU4KRP4G/UDQtnlQtIrJm/XHAt+vM46Y
- uhn2hjjdj5ww==
-X-IronPort-AV: E=Sophos;i="5.78,439,1599548400"; d="scan'208";a="373459791"
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Dec 2020 08:43:25 -0800
+IronPort-SDR: 6UR1Cb2uXT5NxVi9QRVGWPcn0LGsGrLoXZ8fo5F/RDBSQtcHkeAwSjl/idOgwLQMe6oqFEwAHH
+ 8kP+lkT5cXrw==
+X-IronPort-AV: E=Sophos;i="5.78,439,1599548400"; d="scan'208";a="373466376"
 Received: from sauterhx-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.252.59.229])
  by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Dec 2020 08:28:47 -0800
+ 22 Dec 2020 08:43:23 -0800
 From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Ankit Nautiyal <ankit.k.nautiyal@intel.com>,
- intel-gfx@lists.freedesktop.org
-In-Reply-To: <20201218103723.30844-1-ankit.k.nautiyal@intel.com>
+To: Ankit Nautiyal <ankit.k.nautiyal@intel.com>, swati2.sharma@intel.com,
+ uma.shankar@intel.com
+In-Reply-To: <160829597046.27179.7154779196586998441@emeril.freedesktop.org>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 References: <20201218103723.30844-1-ankit.k.nautiyal@intel.com>
-Date: Tue, 22 Dec 2020 18:28:44 +0200
-Message-ID: <87v9ctoldv.fsf@intel.com>
+ <160829597046.27179.7154779196586998441@emeril.freedesktop.org>
+Date: Tue, 22 Dec 2020 18:43:20 +0200
+Message-ID: <87r1nhokpj.fsf@intel.com>
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH v7 00/15] Add support for DP-HDMI2.1 PCON
+Subject: Re: [Intel-gfx] 
+ =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_Add_support_for_DP-HDMI2=2E1_PCON_=28rev9=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,109 +51,215 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Maxime Ripard <mripard@kernel.org>, airlied@linux.ie,
- Daniel Vetter <daniel.vetter@ffwll.ch>, dri-devel@lists.freedesktop.org,
- Thomas Zimmermann <tzimmermann@suse.de>
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, 18 Dec 2020, Ankit Nautiyal <ankit.k.nautiyal@intel.com> wrote:
-> This patch series attempts to add support for a DP-HDMI2.1 Protocol
-> Convertor. The VESA spec for the HDMI2.1 PCON are proposed in Errata
-> E5 to DisplayPort_v2.0:
-> https://vesa.org/join-vesamemberships/member-downloads/?action=stamp&fileid=42299
-> The details are mentioned in:
-> VESA DP-to-HDMI PCON Specification Standalone Document
-> https://groups.vesa.org/wg/DP/document/15651
+On Fri, 18 Dec 2020, Patchwork <patchwork@emeril.freedesktop.org> wrote:
+> == Series Details ==
+>
+> Series: Add support for DP-HDMI2.1 PCON (rev9)
+> URL   : https://patchwork.freedesktop.org/series/82098/
+> State : warning
+>
+> == Summary ==
+>
 
-Thanks for the patches and review.
+All -
 
-I've pushed the series to a new topic branch topic/dp-hdmi-2.1-pcon as
-discussed with Maarten and Daniel a while back. I've used 'git
-merge-base drm-misc/drm-misc-next drm-intel/drm-intel-next' as the base
-to allow merging to both. I'll send pull requests soon, and wait for the
-drm-misc-next merge before merging to i915.
+I've fixed most of the checkpatch warnings (save for LONG_LINE and
+BIT_MACRO that we don't care so much about) while applying. It's not
+something I normally do, and I really don't want to find these when the
+series is at v7 and the same warnings have been there since September
+and I keep being pinged about merging.
+
+Keeping the driver nice and clean is your job too, not just mine.
 
 BR,
 Jani.
 
 
-
+> $ dim checkpatch origin/drm-tip
+> 26eb0c2f2ee1 drm/edid: Add additional HFVSDB fields for HDMI2.1
+> -:61: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email name mismatch: 'From: Swati Sharma <swati2.sharma@intel.com>' != 'Signed-off-by: Sharma, Swati2 <swati2.sharma@intel.com>'
 >
-> This series starts with adding support for FRL (Fixed Rate Link)
-> Training between the PCON and HDMI2.1 sink.
-> As per HDMI2.1 specification, a new data-channel or lane is added in
-> FRL mode, by repurposing the TMDS clock Channel. Through FRL, higher
-> bit-rate can be supported, ie. up to 12 Gbps/lane (48 Gbps over 4
-> lanes).
+> total: 0 errors, 1 warnings, 0 checks, 36 lines checked
+> 13ffe829d77e drm/edid: Parse MAX_FRL field from HFVSDB block
+> -:73: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+> #73: FILE: drivers/gpu/drm/drm_edid.c:4948:
+> +		drm_get_max_frl_rate(max_frl_rate, &hdmi->max_lanes,
+> +				&hdmi->max_frl_rate_per_lane);
 >
-> With these patches, the HDMI2.1 PCON can be configured to achieve FRL
-> training based on the maximum FRL rate supported by the panel, source
-> and the PCON.
-> The approach is to add the support for FRL training between PCON and
-> HDMI2.1 sink and gradually add other blocks for supporting higher
-> resolutions and other HDMI2.1 features, that can be supported by pcon
-> for the sources that do not natively support HDMI2.1.
+> -:95: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email name mismatch: 'From: Swati Sharma <swati2.sharma@intel.com>' != 'Signed-off-by: Sharma, Swati2 <swati2.sharma@intel.com>'
 >
-> This is done before the DP Link training between the source and PCON
-> is started. In case of FRL training is not achieved, the PCON will
-> work in the regular TMDS mode, without HDMI2.1 feature support.
-> Any interruption in FRL training between the PCON and HDMI2.1 sink is
-> notified through IRQ_HPD. On receiving the IRQ_HPD the concerned DPCD
-> registers are read and FRL training is re-attempted.
+> total: 0 errors, 1 warnings, 1 checks, 68 lines checked
+> 89853c019e04 drm/edid: Parse DSC1.2 cap fields from HFVSDB block
+> -:51: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+> #51: FILE: drivers/gpu/drm/drm_edid.c:4969:
+> +			drm_get_max_frl_rate(dsc_max_frl_rate, &hdmi_dsc->max_lanes,
+> +					&hdmi_dsc->max_frl_rate_per_lane);
 >
-> Currently, we have tested the FRL training and are able to enable 4K
-> display with TGL Platform + Realtek PCON RTD2173 with HDMI2.1 supporting
-> panel.
+> -:52: WARNING:LONG_LINE: line length of 101 exceeds 100 columns
+> #52: FILE: drivers/gpu/drm/drm_edid.c:4970:
+> +			hdmi_dsc->total_chunk_kbytes = hf_vsdb[13] & DRM_EDID_DSC_TOTAL_CHUNK_KBYTES;
 >
-> v2: Addressed review comments and re-organized patches as suggested in
-> comments on RFC patches.
+> total: 0 errors, 1 warnings, 1 checks, 125 lines checked
+> 5120b1727391 drm/dp_helper: Add Helpers for FRL Link Training support for DP-HDMI2.1 PCON
+> c68914ce7b67 drm/dp_helper: Add support for link failure detection
+> -:112: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+> #112: FILE: include/drm/drm_dp_helper.h:2055:
+> +void drm_dp_pcon_hdmi_frl_link_error_count(struct drm_dp_aux *aux,
+> +					  struct drm_connector *connector);
 >
-> v3: Addressed review comments on previous version.
+> total: 0 errors, 0 warnings, 1 checks, 76 lines checked
+> 2f4d3c12ee27 drm/dp_helper: Add support for Configuring DSC for HDMI2.1 Pcon
+> -:15: WARNING:TYPO_SPELLING: 'Convertor' may be misspelled - perhaps 'Converter'?
+> #15: 
+> v3: Only setting the DSC bits for the Protocol Convertor control
 >
-> v4: Added support for RGB->YCBCR conversion through PCON
+> -:165: WARNING:BLOCK_COMMENT_STYLE: Block comments use a trailing */ on a separate line
+> #165: FILE: drivers/gpu/drm/drm_dp_helper.c:3037:
+> + * */
 >
-> v5: Addressed review comments on previous version.
+> -:185: WARNING:BLOCK_COMMENT_STYLE: Block comments use a trailing */ on a separate line
+> #185: FILE: drivers/gpu/drm/drm_dp_helper.c:3057:
+> + * */
 >
-> v6: Fix typo in one of the patch.
+> -:210: WARNING:BLOCK_COMMENT_STYLE: Block comments use a trailing */ on a separate line
+> #210: FILE: drivers/gpu/drm/drm_dp_helper.c:3082:
+> + * */
 >
-> v7: Rebased on latest drm-tip and addressed the review comments.
+> total: 0 errors, 4 warnings, 0 checks, 343 lines checked
+> d1464a87a5a8 drm/dp_helper: Add helpers to configure PCONs RGB-YCbCr Conversion
+> -:18: WARNING:TYPO_SPELLING: 'accomodate' may be misspelled - perhaps 'accommodate'?
+> #18: 
+> -Modified the color-conversion cap helper function, to accomodate
 >
-> Ankit Nautiyal (11):
->   drm/edid: Parse DSC1.2 cap fields from HFVSDB block
->   drm/dp_helper: Add Helpers for FRL Link Training support for
->     DP-HDMI2.1 PCON
->   drm/dp_helper: Add support for Configuring DSC for HDMI2.1 Pcon
->   drm/dp_helper: Add helpers to configure PCONs RGB-YCbCr Conversion
->   drm/i915: Capture max frl rate for PCON in dfp cap structure
->   drm/i915: Add support for starting FRL training for HDMI2.1 via PCON
->   drm/i915: Check for FRL training before DP Link training
->   drm/i915: Read DSC capabilities of the HDMI2.1 PCON encoder
->   drm/i915: Add helper functions for calculating DSC parameters for
->     HDMI2.1
->   drm/i915/display: Configure PCON for DSC1.1 to DSC1.2 encoding
->   drm/i915/display: Let PCON convert from RGB to YCbCr if it can
+> total: 0 errors, 1 warnings, 0 checks, 106 lines checked
+> 29e16a799211 drm/i915: Capture max frl rate for PCON in dfp cap structure
+> -:13: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
+> #13: 
+> -tweaked the comparison of target bw and pcon frl bw to avoid roundup errors.
 >
-> Swati Sharma (4):
->   drm/edid: Add additional HFVSDB fields for HDMI2.1
->   drm/edid: Parse MAX_FRL field from HFVSDB block
->   drm/dp_helper: Add support for link failure detection
->   drm/i915: Add support for enabling link status and recovery
+> total: 0 errors, 1 warnings, 0 checks, 60 lines checked
+> 0f68d7283295 drm/i915: Add support for starting FRL training for HDMI2.1 via PCON
+> -:86: CHECK:BRACES: Blank lines aren't necessary after an open brace '{'
+> #86: FILE: drivers/gpu/drm/i915/display/intel_dp.c:4005:
+> +{
+> +
 >
->  drivers/gpu/drm/drm_dp_helper.c               | 566 ++++++++++++++++++
->  drivers/gpu/drm/drm_edid.c                    | 103 ++++
->  drivers/gpu/drm/i915/display/intel_ddi.c      |   6 +-
->  .../drm/i915/display/intel_display_types.h    |  10 +
->  drivers/gpu/drm/i915/display/intel_dp.c       | 442 +++++++++++++-
->  drivers/gpu/drm/i915/display/intel_dp.h       |   7 +-
->  drivers/gpu/drm/i915/display/intel_hdmi.c     | 233 +++++++
->  drivers/gpu/drm/i915/display/intel_hdmi.h     |   7 +
->  include/drm/drm_connector.h                   |  49 ++
->  include/drm/drm_dp_helper.h                   | 218 +++++++
->  include/drm/drm_edid.h                        |  30 +
->  11 files changed, 1652 insertions(+), 19 deletions(-)
+> -:147: WARNING:LONG_LINE: line length of 101 exceeds 100 columns
+> #147: FILE: drivers/gpu/drm/i915/display/intel_dp.c:4066:
+> +	wait_for(is_active = drm_dp_pcon_is_frl_ready(&intel_dp->aux) == true, TIMEOUT_FRL_READY_MS);
+>
+> -:166: WARNING:LONG_LINE: line length of 112 exceeds 100 columns
+> #166: FILE: drivers/gpu/drm/i915/display/intel_dp.c:4085:
+> +	wait_for(is_active = drm_dp_pcon_hdmi_link_active(&intel_dp->aux) == true, TIMEOUT_HDMI_LINK_ACTIVE_MS);
+>
+> -:172: WARNING:LONG_LINE: line length of 101 exceeds 100 columns
+> #172: FILE: drivers/gpu/drm/i915/display/intel_dp.c:4091:
+> +	if (DP_PCON_HDMI_MODE_FRL != drm_dp_pcon_hdmi_link_mode(&intel_dp->aux, &frl_trained_mask)) {
+>
+> -:172: WARNING:CONSTANT_COMPARISON: Comparisons should place the constant on the right side of the test
+> #172: FILE: drivers/gpu/drm/i915/display/intel_dp.c:4091:
+> +	if (DP_PCON_HDMI_MODE_FRL != drm_dp_pcon_hdmi_link_mode(&intel_dp->aux, &frl_trained_mask)) {
+>
+> -:176: WARNING:LONG_LINE: line length of 109 exceeds 100 columns
+> #176: FILE: drivers/gpu/drm/i915/display/intel_dp.c:4095:
+> +	drm_dbg(&i915->drm, "MAX_FRL_MASK = %u, FRL_TRAINED_MASK = %u\n", max_frl_bw_mask, frl_trained_mask);
+>
+> total: 0 errors, 5 warnings, 1 checks, 194 lines checked
+> 3793f5252161 drm/i915: Check for FRL training before DP Link training
+> 126578f6fe39 drm/i915: Add support for enabling link status and recovery
+> -:54: WARNING:LONG_LINE: line length of 107 exceeds 100 columns
+> #54: FILE: drivers/gpu/drm/i915/display/intel_dp.c:6031:
+> +		drm_dp_pcon_hdmi_frl_link_error_count(&intel_dp->aux, &intel_dp->attached_connector->base);
+>
+> total: 0 errors, 1 warnings, 0 checks, 83 lines checked
+> ca5d8df43ceb drm/i915: Read DSC capabilities of the HDMI2.1 PCON encoder
+> -:51: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+> #51: FILE: drivers/gpu/drm/i915/display/intel_dp.c:4000:
+> +	if (drm_dp_dpcd_read(&intel_dp->aux, DP_PCON_DSC_ENCODER,
+> +				     intel_dp->pcon_dsc_dpcd,
+>
+> -:57: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+> #57: FILE: drivers/gpu/drm/i915/display/intel_dp.c:4006:
+> +	drm_dbg_kms(&i915->drm, "PCON ENCODER DSC DPCD: %*ph\n",
+> +		   (int)sizeof(intel_dp->pcon_dsc_dpcd), intel_dp->pcon_dsc_dpcd);
+>
+> total: 0 errors, 0 warnings, 2 checks, 39 lines checked
+> 35f69a655bad drm/i915: Add helper functions for calculating DSC parameters for HDMI2.1
+> -:57: WARNING:TYPO_SPELLING: 'capabilites' may be misspelled - perhaps 'capabilities'?
+> #57: FILE: drivers/gpu/drm/i915/display/intel_hdmi.c:3458:
+> + * and dsc decoder capabilites
+>
+> -:143: WARNING:SUSPECT_CODE_INDENT: suspect code indent for conditional statements (16, 23)
+> #143: FILE: drivers/gpu/drm/i915/display/intel_hdmi.c:3544:
+> +		if (min_slices <= 1 && src_max_slices >= 1 && hdmi_max_slices >= 1)
+> +		       target_slices = 1;
+>
+> -:145: WARNING:SUSPECT_CODE_INDENT: suspect code indent for conditional statements (16, 23)
+> #145: FILE: drivers/gpu/drm/i915/display/intel_hdmi.c:3546:
+> +		else if (min_slices <= 2 && src_max_slices >= 2 && hdmi_max_slices >= 2)
+> +		       target_slices = 2;
+>
+> -:147: WARNING:SUSPECT_CODE_INDENT: suspect code indent for conditional statements (16, 23)
+> #147: FILE: drivers/gpu/drm/i915/display/intel_hdmi.c:3548:
+> +		else if (min_slices <= 4 && src_max_slices >= 4 && hdmi_max_slices >= 4)
+> +		       target_slices = 4;
+>
+> -:149: WARNING:SUSPECT_CODE_INDENT: suspect code indent for conditional statements (16, 23)
+> #149: FILE: drivers/gpu/drm/i915/display/intel_hdmi.c:3550:
+> +		else if (min_slices <= 8 && src_max_slices >= 8 && hdmi_max_slices >= 8)
+> +		       target_slices = 8;
+>
+> -:151: WARNING:SUSPECT_CODE_INDENT: suspect code indent for conditional statements (16, 23)
+> #151: FILE: drivers/gpu/drm/i915/display/intel_hdmi.c:3552:
+> +		else if (min_slices <= 12 && src_max_slices >= 12 && hdmi_max_slices >= 12)
+> +		       target_slices = 12;
+>
+> -:153: WARNING:SUSPECT_CODE_INDENT: suspect code indent for conditional statements (16, 23)
+> #153: FILE: drivers/gpu/drm/i915/display/intel_hdmi.c:3554:
+> +		else if (min_slices <= 16 && src_max_slices >= 16 && hdmi_max_slices >= 16)
+> +		       target_slices = 16;
+>
+> total: 0 errors, 7 warnings, 0 checks, 248 lines checked
+> 34ee9dfdadfd drm/i915/display: Configure PCON for DSC1.1 to DSC1.2 encoding
+> -:75: CHECK:BRACES: Blank lines aren't necessary after an open brace '{'
+> #75: FILE: drivers/gpu/drm/i915/display/intel_dp.c:4171:
+> +{
+> +
+>
+> -:92: CHECK:LINE_SPACING: Please don't use multiple blank lines
+> #92: FILE: drivers/gpu/drm/i915/display/intel_dp.c:4188:
+> +
+> +
+>
+> -:155: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+> #155: FILE: drivers/gpu/drm/i915/display/intel_dp.c:4251:
+> +	bits_per_pixel = intel_dp_pcon_dsc_enc_bpp(intel_dp, crtc_state,
+> +						  num_slices, slice_width);
+>
+> total: 0 errors, 0 warnings, 3 checks, 157 lines checked
+> d739034947bb drm/i915/display: Let PCON convert from RGB to YCbCr if it can
+> -:104: WARNING:LONG_LINE: line length of 101 exceeds 100 columns
+> #104: FILE: drivers/gpu/drm/i915/display/intel_dp.c:4368:
+> +								   DP_DS_HDMI_BT2020_RGB_YCBCR_CONV);
+>
+> -:156: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+> #156: FILE: drivers/gpu/drm/i915/display/intel_dp.c:6922:
+> +	rgb_to_ycbcr = drm_dp_downstream_rgb_to_ycbcr_conversion(intel_dp->dpcd,
+> +							intel_dp->downstream_ports,
+>
+> total: 0 errors, 1 warnings, 1 checks, 152 lines checked
+>
+>
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 
 -- 
 Jani Nikula, Intel Open Source Graphics Center
