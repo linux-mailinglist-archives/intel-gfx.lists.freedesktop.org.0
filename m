@@ -1,40 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B18B42E063C
-	for <lists+intel-gfx@lfdr.de>; Tue, 22 Dec 2020 07:51:42 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 874502E06A7
+	for <lists+intel-gfx@lfdr.de>; Tue, 22 Dec 2020 08:16:30 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0F5BC6E150;
-	Tue, 22 Dec 2020 06:51:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3E9E26E16D;
+	Tue, 22 Dec 2020 07:16:28 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8EE4F6E150
- for <intel-gfx@lists.freedesktop.org>; Tue, 22 Dec 2020 06:51:35 +0000 (UTC)
-IronPort-SDR: bJa/a2z2E1FRQI7E85yw7rp0nXLURsoQYHPv7tTx274gGr0u0iGZvfzSavpoJHEKAxv33TRApb
- UMIfcgFwvozA==
-X-IronPort-AV: E=McAfee;i="6000,8403,9842"; a="162883463"
-X-IronPort-AV: E=Sophos;i="5.78,438,1599548400"; d="scan'208";a="162883463"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Dec 2020 22:51:35 -0800
-IronPort-SDR: +4QnPwL3tNYRiNcrl/TRtwEfK9zvqe05adlH9CbMq0OtNiNpqQ3dUWdgnvDZZrvj6nrYya7Q9Q
- FFD0Wr9Q+vNg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.78,438,1599548400"; d="scan'208";a="356209252"
-Received: from amanna.iind.intel.com ([10.223.74.76])
- by orsmga002.jf.intel.com with ESMTP; 21 Dec 2020 22:51:34 -0800
-From: Animesh Manna <animesh.manna@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Tue, 22 Dec 2020 12:04:00 +0530
-Message-Id: <20201222063400.9509-4-animesh.manna@intel.com>
-X-Mailer: git-send-email 2.26.0
-In-Reply-To: <20201222063400.9509-1-animesh.manna@intel.com>
-References: <20201222063400.9509-1-animesh.manna@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id DDC026E16D;
+ Tue, 22 Dec 2020 07:16:26 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id D661FA882E;
+ Tue, 22 Dec 2020 07:16:26 +0000 (UTC)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 3/3] drm/i915/dsb: multi dsb instance support in
- dsb-commit()
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Animesh Manna" <animesh.manna@intel.com>
+Date: Tue, 22 Dec 2020 07:16:26 -0000
+Message-ID: <160862138684.27824.4650965782584518519@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20201222063400.9509-1-animesh.manna@intel.com>
+In-Reply-To: <20201222063400.9509-1-animesh.manna@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_Multi_DSB_instance_support_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,115 +38,32 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-To support multiple dsb instances per pipe dsb-id is passed
-as argumnet in dsb-commit() and respective cmd-buffer will
-be updated in actual hardware.
+== Series Details ==
 
-v1: Initial version.
-v2: Improved commit description.
+Series: Multi DSB instance support (rev2)
+URL   : https://patchwork.freedesktop.org/series/84934/
+State : warning
 
-Signed-off-by: Animesh Manna <animesh.manna@intel.com>
----
- drivers/gpu/drm/i915/display/intel_dsb.c | 74 +++++++++++++-----------
- 1 file changed, 39 insertions(+), 35 deletions(-)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dsb.c b/drivers/gpu/drm/i915/display/intel_dsb.c
-index 2a9df1d7cbc5..be301cb292dc 100644
---- a/drivers/gpu/drm/i915/display/intel_dsb.c
-+++ b/drivers/gpu/drm/i915/display/intel_dsb.c
-@@ -210,46 +210,50 @@ void intel_dsb_commit(const struct intel_crtc_state *crtc_state)
- 	struct drm_i915_private *dev_priv = to_i915(dev);
- 	enum pipe pipe = crtc->pipe;
- 	u32 tail;
-+	int i;
- 
--	if (!(dsb && dsb->free_pos))
--		return;
-+	for (i = 0; i < MAX_DSB_PER_PIPE; i++) {
-+		dsb = crtc_state->dsb[i];
-+		if (!(dsb && dsb->free_pos))
-+			continue;
- 
--	if (!intel_dsb_enable_engine(dev_priv, pipe, dsb->id))
--		goto reset;
-+		if (!intel_dsb_enable_engine(dev_priv, pipe, dsb->id))
-+			goto reset;
- 
--	if (is_dsb_busy(dev_priv, pipe, dsb->id)) {
--		drm_err(&dev_priv->drm,
--			"HEAD_PTR write failed - dsb engine is busy.\n");
--		goto reset;
--	}
--	intel_de_write(dev_priv, DSB_HEAD(pipe, dsb->id),
--		       i915_ggtt_offset(dsb->vma));
--
--	tail = ALIGN(dsb->free_pos * 4, CACHELINE_BYTES);
--	if (tail > dsb->free_pos * 4)
--		memset(&dsb->cmd_buf[dsb->free_pos], 0,
--		       (tail - dsb->free_pos * 4));
--
--	if (is_dsb_busy(dev_priv, pipe, dsb->id)) {
--		drm_err(&dev_priv->drm,
--			"TAIL_PTR write failed - dsb engine is busy.\n");
--		goto reset;
--	}
--	drm_dbg_kms(&dev_priv->drm,
--		    "DSB execution started - head 0x%x, tail 0x%x\n",
--		    i915_ggtt_offset(dsb->vma), tail);
--	intel_de_write(dev_priv, DSB_TAIL(pipe, dsb->id),
--		       i915_ggtt_offset(dsb->vma) + tail);
--	if (wait_for(!is_dsb_busy(dev_priv, pipe, dsb->id), 1)) {
--		drm_err(&dev_priv->drm,
--			"Timed out waiting for DSB workload completion.\n");
--		goto reset;
--	}
-+		if (is_dsb_busy(dev_priv, pipe, dsb->id)) {
-+			drm_err(&dev_priv->drm,
-+				"HEAD_PTR write failed - dsb engine is busy\n");
-+			goto reset;
-+		}
-+		intel_de_write(dev_priv, DSB_HEAD(pipe, dsb->id),
-+			       i915_ggtt_offset(dsb->vma));
-+
-+		tail = ALIGN(dsb->free_pos * 4, CACHELINE_BYTES);
-+		if (tail > dsb->free_pos * 4)
-+			memset(&dsb->cmd_buf[dsb->free_pos], 0,
-+			       (tail - dsb->free_pos * 4));
-+
-+		if (is_dsb_busy(dev_priv, pipe, dsb->id)) {
-+			drm_err(&dev_priv->drm,
-+				"TAIL_PTR write failed - dsb engine is busy\n");
-+			goto reset;
-+		}
-+		drm_dbg_kms(&dev_priv->drm,
-+			    "DSB execution started - head 0x%x, tail 0x%x\n",
-+			    i915_ggtt_offset(dsb->vma), tail);
-+		intel_de_write(dev_priv, DSB_TAIL(pipe, dsb->id),
-+			       i915_ggtt_offset(dsb->vma) + tail);
-+		if (wait_for(!is_dsb_busy(dev_priv, pipe, dsb->id), 1)) {
-+			drm_err(&dev_priv->drm,
-+				"Timed out waiting for DSB workload completion\n");
-+			goto reset;
-+		}
- 
- reset:
--	dsb->free_pos = 0;
--	dsb->ins_start_offset = 0;
--	intel_dsb_disable_engine(dev_priv, pipe, dsb->id);
-+		dsb->free_pos = 0;
-+		dsb->ins_start_offset = 0;
-+		intel_dsb_disable_engine(dev_priv, pipe, dsb->id);
-+	}
- }
- 
- /**
--- 
-2.26.0
+$ dim checkpatch origin/drm-tip
+0c7de4da8b93 drm/i915/dsb: multi dsb instance support in prepare() and cleanup()
+-:167: WARNING:OOM_MESSAGE: Possible unnecessary 'out of memory' message
+#167: FILE: drivers/gpu/drm/i915/display/intel_dsb.c:277:
++		if (!dsb) {
++			drm_err(&i915->drm, "DSB%d obj creation failed\n", i);
+
+total: 0 errors, 1 warnings, 0 checks, 187 lines checked
+7701fb147537 drm/i915/dsb: multi dsb instance support in dsb-write()
+cfe4b9b4b20b drm/i915/dsb: multi dsb instance support in dsb-commit()
+
 
 _______________________________________________
 Intel-gfx mailing list
