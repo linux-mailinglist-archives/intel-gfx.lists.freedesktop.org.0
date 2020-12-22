@@ -1,31 +1,41 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6AD882E0D52
-	for <lists+intel-gfx@lfdr.de>; Tue, 22 Dec 2020 17:26:23 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 84E962E0D5F
+	for <lists+intel-gfx@lfdr.de>; Tue, 22 Dec 2020 17:28:58 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6EAFE6E413;
-	Tue, 22 Dec 2020 16:26:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 23F366E419;
+	Tue, 22 Dec 2020 16:28:55 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 82D376E405;
- Tue, 22 Dec 2020 16:26:19 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 7D8C7AA916;
- Tue, 22 Dec 2020 16:26:19 +0000 (UTC)
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 76E5F6E413;
+ Tue, 22 Dec 2020 16:28:53 +0000 (UTC)
+IronPort-SDR: 1HrQ7NKLr3WWdm7paX+evefkD+7PeGTyocWoMpUA9Xeo8ZPPZ4fbaLCvLdxZUh31sUZ2MOHhwW
+ 26ZIfdACcO2Q==
+X-IronPort-AV: E=McAfee;i="6000,8403,9842"; a="237452224"
+X-IronPort-AV: E=Sophos;i="5.78,439,1599548400"; d="scan'208";a="237452224"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Dec 2020 08:28:52 -0800
+IronPort-SDR: eJJeFWsYtBQvhD9Ms0S2XRIvqfYUEon98n2xBB2M5WuU4KRP4G/UDQtnlQtIrJm/XHAt+vM46Y
+ uhn2hjjdj5ww==
+X-IronPort-AV: E=Sophos;i="5.78,439,1599548400"; d="scan'208";a="373459791"
+Received: from sauterhx-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.252.59.229])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Dec 2020 08:28:47 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Ankit Nautiyal <ankit.k.nautiyal@intel.com>,
+ intel-gfx@lists.freedesktop.org
+In-Reply-To: <20201218103723.30844-1-ankit.k.nautiyal@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20201218103723.30844-1-ankit.k.nautiyal@intel.com>
+Date: Tue, 22 Dec 2020 18:28:44 +0200
+Message-ID: <87v9ctoldv.fsf@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jani Nikula" <jani.nikula@intel.com>
-Date: Tue, 22 Dec 2020 16:26:19 -0000
-Message-ID: <160865437948.27825.10565519160394457831@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <cover.1608648128.git.jani.nikula@intel.com>
-In-Reply-To: <cover.1608648128.git.jani.nikula@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/dp=3A_split_out_pps_and_aux?=
+Subject: Re: [Intel-gfx] [PATCH v7 00/15] Add support for DP-HDMI2.1 PCON
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,246 +48,113 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============0854295824=="
+Cc: Maxime Ripard <mripard@kernel.org>, airlied@linux.ie,
+ Daniel Vetter <daniel.vetter@ffwll.ch>, dri-devel@lists.freedesktop.org,
+ Thomas Zimmermann <tzimmermann@suse.de>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0854295824==
-Content-Type: multipart/alternative;
- boundary="===============1099267483555002591=="
+On Fri, 18 Dec 2020, Ankit Nautiyal <ankit.k.nautiyal@intel.com> wrote:
+> This patch series attempts to add support for a DP-HDMI2.1 Protocol
+> Convertor. The VESA spec for the HDMI2.1 PCON are proposed in Errata
+> E5 to DisplayPort_v2.0:
+> https://vesa.org/join-vesamemberships/member-downloads/?action=stamp&fileid=42299
+> The details are mentioned in:
+> VESA DP-to-HDMI PCON Specification Standalone Document
+> https://groups.vesa.org/wg/DP/document/15651
 
---===============1099267483555002591==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Thanks for the patches and review.
 
-== Series Details ==
+I've pushed the series to a new topic branch topic/dp-hdmi-2.1-pcon as
+discussed with Maarten and Daniel a while back. I've used 'git
+merge-base drm-misc/drm-misc-next drm-intel/drm-intel-next' as the base
+to allow merging to both. I'll send pull requests soon, and wait for the
+drm-misc-next merge before merging to i915.
 
-Series: drm/i915/dp: split out pps and aux
-URL   : https://patchwork.freedesktop.org/series/85167/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_9513 -> Patchwork_19198
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19198/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_19198 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@amdgpu/amd_basic@semaphore:
-    - fi-bsw-nick:        NOTRUN -> [SKIP][1] ([fdo#109271]) +17 similar issues
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19198/fi-bsw-nick/igt@amdgpu/amd_basic@semaphore.html
-
-  * igt@i915_selftest@live@gt_heartbeat:
-    - fi-kbl-soraka:      [PASS][2] -> [DMESG-FAIL][3] ([i915#2291] / [i915#541])
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9513/fi-kbl-soraka/igt@i915_selftest@live@gt_heartbeat.html
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19198/fi-kbl-soraka/igt@i915_selftest@live@gt_heartbeat.html
-
-  * igt@prime_self_import@basic-with_two_bos:
-    - fi-tgl-y:           [PASS][4] -> [DMESG-WARN][5] ([i915#402])
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9513/fi-tgl-y/igt@prime_self_import@basic-with_two_bos.html
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19198/fi-tgl-y/igt@prime_self_import@basic-with_two_bos.html
-
-  
-#### Possible fixes ####
-
-  * igt@debugfs_test@read_all_entries:
-    - fi-tgl-y:           [DMESG-WARN][6] ([i915#402]) -> [PASS][7] +1 similar issue
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9513/fi-tgl-y/igt@debugfs_test@read_all_entries.html
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19198/fi-tgl-y/igt@debugfs_test@read_all_entries.html
-
-  * igt@i915_selftest@live@gem_contexts:
-    - fi-bsw-nick:        [INCOMPLETE][8] ([i915#2369]) -> [PASS][9]
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9513/fi-bsw-nick/igt@i915_selftest@live@gem_contexts.html
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19198/fi-bsw-nick/igt@i915_selftest@live@gem_contexts.html
-
-  * igt@i915_selftest@live@hugepages:
-    - fi-bsw-nick:        [DMESG-WARN][10] ([i915#2826]) -> [PASS][11]
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9513/fi-bsw-nick/igt@i915_selftest@live@hugepages.html
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19198/fi-bsw-nick/igt@i915_selftest@live@hugepages.html
-
-  
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [i915#2291]: https://gitlab.freedesktop.org/drm/intel/issues/2291
-  [i915#2369]: https://gitlab.freedesktop.org/drm/intel/issues/2369
-  [i915#2826]: https://gitlab.freedesktop.org/drm/intel/issues/2826
-  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
-  [i915#541]: https://gitlab.freedesktop.org/drm/intel/issues/541
+BR,
+Jani.
 
 
-Participating hosts (43 -> 38)
-------------------------------
 
-  Missing    (5): fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-bdw-samus 
+>
+> This series starts with adding support for FRL (Fixed Rate Link)
+> Training between the PCON and HDMI2.1 sink.
+> As per HDMI2.1 specification, a new data-channel or lane is added in
+> FRL mode, by repurposing the TMDS clock Channel. Through FRL, higher
+> bit-rate can be supported, ie. up to 12 Gbps/lane (48 Gbps over 4
+> lanes).
+>
+> With these patches, the HDMI2.1 PCON can be configured to achieve FRL
+> training based on the maximum FRL rate supported by the panel, source
+> and the PCON.
+> The approach is to add the support for FRL training between PCON and
+> HDMI2.1 sink and gradually add other blocks for supporting higher
+> resolutions and other HDMI2.1 features, that can be supported by pcon
+> for the sources that do not natively support HDMI2.1.
+>
+> This is done before the DP Link training between the source and PCON
+> is started. In case of FRL training is not achieved, the PCON will
+> work in the regular TMDS mode, without HDMI2.1 feature support.
+> Any interruption in FRL training between the PCON and HDMI2.1 sink is
+> notified through IRQ_HPD. On receiving the IRQ_HPD the concerned DPCD
+> registers are read and FRL training is re-attempted.
+>
+> Currently, we have tested the FRL training and are able to enable 4K
+> display with TGL Platform + Realtek PCON RTD2173 with HDMI2.1 supporting
+> panel.
+>
+> v2: Addressed review comments and re-organized patches as suggested in
+> comments on RFC patches.
+>
+> v3: Addressed review comments on previous version.
+>
+> v4: Added support for RGB->YCBCR conversion through PCON
+>
+> v5: Addressed review comments on previous version.
+>
+> v6: Fix typo in one of the patch.
+>
+> v7: Rebased on latest drm-tip and addressed the review comments.
+>
+> Ankit Nautiyal (11):
+>   drm/edid: Parse DSC1.2 cap fields from HFVSDB block
+>   drm/dp_helper: Add Helpers for FRL Link Training support for
+>     DP-HDMI2.1 PCON
+>   drm/dp_helper: Add support for Configuring DSC for HDMI2.1 Pcon
+>   drm/dp_helper: Add helpers to configure PCONs RGB-YCbCr Conversion
+>   drm/i915: Capture max frl rate for PCON in dfp cap structure
+>   drm/i915: Add support for starting FRL training for HDMI2.1 via PCON
+>   drm/i915: Check for FRL training before DP Link training
+>   drm/i915: Read DSC capabilities of the HDMI2.1 PCON encoder
+>   drm/i915: Add helper functions for calculating DSC parameters for
+>     HDMI2.1
+>   drm/i915/display: Configure PCON for DSC1.1 to DSC1.2 encoding
+>   drm/i915/display: Let PCON convert from RGB to YCbCr if it can
+>
+> Swati Sharma (4):
+>   drm/edid: Add additional HFVSDB fields for HDMI2.1
+>   drm/edid: Parse MAX_FRL field from HFVSDB block
+>   drm/dp_helper: Add support for link failure detection
+>   drm/i915: Add support for enabling link status and recovery
+>
+>  drivers/gpu/drm/drm_dp_helper.c               | 566 ++++++++++++++++++
+>  drivers/gpu/drm/drm_edid.c                    | 103 ++++
+>  drivers/gpu/drm/i915/display/intel_ddi.c      |   6 +-
+>  .../drm/i915/display/intel_display_types.h    |  10 +
+>  drivers/gpu/drm/i915/display/intel_dp.c       | 442 +++++++++++++-
+>  drivers/gpu/drm/i915/display/intel_dp.h       |   7 +-
+>  drivers/gpu/drm/i915/display/intel_hdmi.c     | 233 +++++++
+>  drivers/gpu/drm/i915/display/intel_hdmi.h     |   7 +
+>  include/drm/drm_connector.h                   |  49 ++
+>  include/drm/drm_dp_helper.h                   | 218 +++++++
+>  include/drm/drm_edid.h                        |  30 +
+>  11 files changed, 1652 insertions(+), 19 deletions(-)
 
-
-Build changes
--------------
-
-  * Linux: CI_DRM_9513 -> Patchwork_19198
-
-  CI-20190529: 20190529
-  CI_DRM_9513: 983dd11753c6e853d43cd82b3a9e28d9ca84e972 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5916: 2100c6efd2de767a876977ae1a8a6366e4beb643 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_19198: 72d1cd92309524f5dbd7ec79fdfc9d54309c271b @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-72d1cd923095 drm/i915/dp: split out aux functionality to intel_dp_aux.c
-438af86b0216 drm/i915/pps: rename vlv_init_panel_power_sequencer to vlv_pps_init
-1c7a761d30cc drm/i915/pps: add locked intel_pps_wait_power_cycle
-21d5787f6bf8 drm/i915/pps: rename intel_power_sequencer_reset to intel_pps_reset_all
-ae78e7086fd8 drm/i915/pps: rename intel_dp_check_edp to intel_pps_check_power_unlocked
-9240c60d4690 drm/i915/pps: abstract intel_pps_reinit()
-857aa036bd25 drm/i915/pps: add higher level intel_pps_init() call
-dbfb9a73ee69 drm/i915/pps: abstract intel_pps_vdd_off_sync
-7ba0bb014e1c drm/i915/pps: rename edp_panel_* to intel_pps_*_unlocked
-3eb2eaf1f0f6 drm/i915/pps: rename intel_edp_panel_* to intel_pps_*
-2e71006628ff drm/i915/pps: rename intel_edp_backlight_* to intel_pps_backlight_*
-9a2c6754aeaf drm/i915/pps: rename pps_{, un}lock -> intel_pps_{, un}lock
-45bed4116194 drm/i915/pps: abstract panel power sequencer from intel_dp.c
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19198/index.html
-
---===============1099267483555002591==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/dp: split out pps and aux</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/85167/">https://patchwork.freedesktop.org/series/85167/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19198/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19198/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_9513 -&gt; Patchwork_19198</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19198/index.html</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_19198 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@amdgpu/amd_basic@semaphore:</p>
-<ul>
-<li>fi-bsw-nick:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19198/fi-bsw-nick/igt@amdgpu/amd_basic@semaphore.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +17 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@gt_heartbeat:</p>
-<ul>
-<li>fi-kbl-soraka:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9513/fi-kbl-soraka/igt@i915_selftest@live@gt_heartbeat.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19198/fi-kbl-soraka/igt@i915_selftest@live@gt_heartbeat.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2291">i915#2291</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/541">i915#541</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@prime_self_import@basic-with_two_bos:</p>
-<ul>
-<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9513/fi-tgl-y/igt@prime_self_import@basic-with_two_bos.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19198/fi-tgl-y/igt@prime_self_import@basic-with_two_bos.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@debugfs_test@read_all_entries:</p>
-<ul>
-<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9513/fi-tgl-y/igt@debugfs_test@read_all_entries.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19198/fi-tgl-y/igt@debugfs_test@read_all_entries.html">PASS</a> +1 similar issue</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@gem_contexts:</p>
-<ul>
-<li>fi-bsw-nick:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9513/fi-bsw-nick/igt@i915_selftest@live@gem_contexts.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2369">i915#2369</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19198/fi-bsw-nick/igt@i915_selftest@live@gem_contexts.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@hugepages:</p>
-<ul>
-<li>fi-bsw-nick:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9513/fi-bsw-nick/igt@i915_selftest@live@hugepages.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2826">i915#2826</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19198/fi-bsw-nick/igt@i915_selftest@live@hugepages.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Participating hosts (43 -&gt; 38)</h2>
-<p>Missing    (5): fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-bdw-samus </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_9513 -&gt; Patchwork_19198</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_9513: 983dd11753c6e853d43cd82b3a9e28d9ca84e972 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_5916: 2100c6efd2de767a876977ae1a8a6366e4beb643 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
-  Patchwork_19198: 72d1cd92309524f5dbd7ec79fdfc9d54309c271b @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>72d1cd923095 drm/i915/dp: split out aux functionality to intel_dp_aux.c<br />
-438af86b0216 drm/i915/pps: rename vlv_init_panel_power_sequencer to vlv_pps_init<br />
-1c7a761d30cc drm/i915/pps: add locked intel_pps_wait_power_cycle<br />
-21d5787f6bf8 drm/i915/pps: rename intel_power_sequencer_reset to intel_pps_reset_all<br />
-ae78e7086fd8 drm/i915/pps: rename intel_dp_check_edp to intel_pps_check_power_unlocked<br />
-9240c60d4690 drm/i915/pps: abstract intel_pps_reinit()<br />
-857aa036bd25 drm/i915/pps: add higher level intel_pps_init() call<br />
-dbfb9a73ee69 drm/i915/pps: abstract intel_pps_vdd_off_sync<br />
-7ba0bb014e1c drm/i915/pps: rename edp_panel_<em> to intel_pps_</em><em>unlocked<br />
-3eb2eaf1f0f6 drm/i915/pps: rename intel_edp_panel</em><em> to intel_pps_</em><br />
-2e71006628ff drm/i915/pps: rename intel_edp_backlight_<em> to intel_pps_backlight_</em><br />
-9a2c6754aeaf drm/i915/pps: rename pps_{, un}lock -&gt; intel_pps_{, un}lock<br />
-45bed4116194 drm/i915/pps: abstract panel power sequencer from intel_dp.c</p>
-
-</body>
-</html>
-
---===============1099267483555002591==--
-
---===============0854295824==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
+-- 
+Jani Nikula, Intel Open Source Graphics Center
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============0854295824==--
