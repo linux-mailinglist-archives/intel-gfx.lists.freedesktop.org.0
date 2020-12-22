@@ -2,40 +2,40 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1A2A02E0C06
-	for <lists+intel-gfx@lfdr.de>; Tue, 22 Dec 2020 15:50:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 386E12E0C07
+	for <lists+intel-gfx@lfdr.de>; Tue, 22 Dec 2020 15:51:01 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 67CFC6E400;
-	Tue, 22 Dec 2020 14:50:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 926686E887;
+	Tue, 22 Dec 2020 14:50:59 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 619A16E400
- for <intel-gfx@lists.freedesktop.org>; Tue, 22 Dec 2020 14:50:53 +0000 (UTC)
-IronPort-SDR: HqleYPZunX9SWAryj0SuR68RO8NOjQeYxizbx+AS22TcTS8rVQMwpTvAaD56vRrvjAGNUW10Et
- P6ETaTUEuZXw==
-X-IronPort-AV: E=McAfee;i="6000,8403,9842"; a="163596331"
-X-IronPort-AV: E=Sophos;i="5.78,438,1599548400"; d="scan'208";a="163596331"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Dec 2020 06:50:52 -0800
-IronPort-SDR: BVnAIm9WyPmNAHjzYvsSIjDWRssPOJ4Pa5yvb0aCPFtxK/iFlw2/jWXHkyElerLXseV2NynmCN
- zMXgfFouN2jg==
-X-IronPort-AV: E=Sophos;i="5.78,438,1599548400"; d="scan'208";a="356455515"
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EED986E887
+ for <intel-gfx@lists.freedesktop.org>; Tue, 22 Dec 2020 14:50:58 +0000 (UTC)
+IronPort-SDR: NNIKV4+J5r0IFZh2+1L5aSudc8DhmR1+em9IBxkZph+zmzDvbaZd4Y8PlaXAO8hWwDgUOKzSiY
+ 1lro92hHD1Wg==
+X-IronPort-AV: E=McAfee;i="6000,8403,9842"; a="155665458"
+X-IronPort-AV: E=Sophos;i="5.78,439,1599548400"; d="scan'208";a="155665458"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Dec 2020 06:50:58 -0800
+IronPort-SDR: BY/O84irS7QQD2LqdxXARMPHu1IQqKkVgssSvVMQw+CShlT7FaLjliAXcxSJb6+xbXo18dbSyA
+ vIh3a/gpxOwg==
+X-IronPort-AV: E=Sophos;i="5.78,439,1599548400"; d="scan'208";a="392351837"
 Received: from sauterhx-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.252.59.229])
- by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Dec 2020 06:50:51 -0800
+ by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Dec 2020 06:50:56 -0800
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Tue, 22 Dec 2020 16:49:50 +0200
-Message-Id: <74cf8c0580f8efcebb7a65c31a3491893639ae44.1608648128.git.jani.nikula@intel.com>
+Date: Tue, 22 Dec 2020 16:49:51 +0200
+Message-Id: <12b05c736546aa3368b0cd2564e574d677474cda.1608648128.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <cover.1608648128.git.jani.nikula@intel.com>
 References: <cover.1608648128.git.jani.nikula@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 10/13] drm/i915/pps: rename
- intel_power_sequencer_reset to intel_pps_reset_all
+Subject: [Intel-gfx] [PATCH 11/13] drm/i915/pps: add locked
+ intel_pps_wait_power_cycle
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,74 +54,79 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Follow the usual naming pattern for functions. "reset all" because it
-iterates over all DP encoders.
+Prefer keeping the unlocked variants hidden if possible.
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display_power.c | 4 ++--
- drivers/gpu/drm/i915/display/intel_pps.c           | 5 ++---
- drivers/gpu/drm/i915/display/intel_pps.h           | 2 +-
- 3 files changed, 5 insertions(+), 6 deletions(-)
+ drivers/gpu/drm/i915/display/intel_dp.c  |  7 +------
+ drivers/gpu/drm/i915/display/intel_pps.c | 13 ++++++++++++-
+ drivers/gpu/drm/i915/display/intel_pps.h |  3 +--
+ 3 files changed, 14 insertions(+), 9 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
-index a11bd8213df4..c11c37c65d86 100644
---- a/drivers/gpu/drm/i915/display/intel_display_power.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_power.c
-@@ -936,7 +936,7 @@ static void bxt_enable_dc9(struct drm_i915_private *dev_priv)
- 	 * because PPS registers are always on.
- 	 */
- 	if (!HAS_PCH_SPLIT(dev_priv))
--		intel_power_sequencer_reset(dev_priv);
-+		intel_pps_reset_all(dev_priv);
- 	gen9_set_dc_state(dev_priv, DC_STATE_EN_DC9);
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+index 65406d4ccdbe..bc3a447f5992 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp.c
+@@ -5833,13 +5833,8 @@ void intel_dp_encoder_suspend(struct intel_encoder *intel_encoder)
+ void intel_dp_encoder_shutdown(struct intel_encoder *intel_encoder)
+ {
+ 	struct intel_dp *intel_dp = enc_to_intel_dp(intel_encoder);
+-	intel_wakeref_t wakeref;
+-
+-	if (!intel_dp_is_edp(intel_dp))
+-		return;
+ 
+-	with_intel_pps_lock(intel_dp, wakeref)
+-		wait_panel_power_cycle(intel_dp);
++	intel_pps_wait_power_cycle(intel_dp);
  }
  
-@@ -1446,7 +1446,7 @@ static void vlv_display_power_well_deinit(struct drm_i915_private *dev_priv)
- 	/* make sure we're done processing display irqs */
- 	intel_synchronize_irq(dev_priv);
- 
--	intel_power_sequencer_reset(dev_priv);
-+	intel_pps_reset_all(dev_priv);
- 
- 	/* Prevent us from re-enabling polling on accident in late suspend */
- 	if (!dev_priv->drm.dev->power.is_suspended)
+ static enum pipe vlv_active_pipe(struct intel_dp *intel_dp)
 diff --git a/drivers/gpu/drm/i915/display/intel_pps.c b/drivers/gpu/drm/i915/display/intel_pps.c
-index dfd6722bc40e..ceb6de9e7aff 100644
+index ceb6de9e7aff..ceb74967f2b4 100644
 --- a/drivers/gpu/drm/i915/display/intel_pps.c
 +++ b/drivers/gpu/drm/i915/display/intel_pps.c
-@@ -22,8 +22,7 @@ intel_wakeref_t intel_pps_lock(struct intel_dp *intel_dp)
- 	intel_wakeref_t wakeref;
- 
- 	/*
--	 * See intel_power_sequencer_reset() why we need
--	 * a power domain reference here.
-+	 * See intel_pps_reset_all() why we need a power domain reference here.
- 	 */
- 	wakeref = intel_display_power_get(dev_priv,
- 					  intel_aux_power_domain(dp_to_dig_port(intel_dp)));
-@@ -316,7 +315,7 @@ vlv_initial_power_sequencer_setup(struct intel_dp *intel_dp)
- 	intel_dp_init_panel_power_sequencer_registers(intel_dp, false);
+@@ -503,7 +503,7 @@ static void wait_panel_off(struct intel_dp *intel_dp)
+ 	wait_panel_status(intel_dp, IDLE_OFF_MASK, IDLE_OFF_VALUE);
  }
  
--void intel_power_sequencer_reset(struct drm_i915_private *dev_priv)
-+void intel_pps_reset_all(struct drm_i915_private *dev_priv)
+-void wait_panel_power_cycle(struct intel_dp *intel_dp)
++static void wait_panel_power_cycle(struct intel_dp *intel_dp)
  {
- 	struct intel_encoder *encoder;
+ 	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
+ 	ktime_t panel_power_on_time;
+@@ -525,6 +525,17 @@ void wait_panel_power_cycle(struct intel_dp *intel_dp)
+ 	wait_panel_status(intel_dp, IDLE_CYCLE_MASK, IDLE_CYCLE_VALUE);
+ }
  
++void intel_pps_wait_power_cycle(struct intel_dp *intel_dp)
++{
++	intel_wakeref_t wakeref;
++
++	if (!intel_dp_is_edp(intel_dp))
++		return;
++
++	with_intel_pps_lock(intel_dp, wakeref)
++		wait_panel_power_cycle(intel_dp);
++}
++
+ static void wait_backlight_on(struct intel_dp *intel_dp)
+ {
+ 	wait_remaining_ms_from_jiffies(intel_dp->last_power_on,
 diff --git a/drivers/gpu/drm/i915/display/intel_pps.h b/drivers/gpu/drm/i915/display/intel_pps.h
-index 8dda282abd42..451d5125b2b7 100644
+index 451d5125b2b7..c8766b777501 100644
 --- a/drivers/gpu/drm/i915/display/intel_pps.h
 +++ b/drivers/gpu/drm/i915/display/intel_pps.h
-@@ -42,7 +42,7 @@ void wait_panel_power_cycle(struct intel_dp *intel_dp);
+@@ -37,8 +37,7 @@ void intel_pps_on(struct intel_dp *intel_dp);
+ void intel_pps_off(struct intel_dp *intel_dp);
+ void intel_pps_vdd_off_sync(struct intel_dp *intel_dp);
+ bool intel_pps_have_power(struct intel_dp *intel_dp);
+-
+-void wait_panel_power_cycle(struct intel_dp *intel_dp);
++void intel_pps_wait_power_cycle(struct intel_dp *intel_dp);
  
  void intel_pps_init(struct intel_dp *intel_dp);
  void intel_pps_reinit(struct intel_dp *intel_dp);
--void intel_power_sequencer_reset(struct drm_i915_private *i915);
-+void intel_pps_reset_all(struct drm_i915_private *i915);
- 
- void vlv_init_panel_power_sequencer(struct intel_encoder *encoder,
- 				    const struct intel_crtc_state *crtc_state);
 -- 
 2.20.1
 
