@@ -1,56 +1,55 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5DF712E0B85
-	for <lists+intel-gfx@lfdr.de>; Tue, 22 Dec 2020 15:15:16 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 219032E0B96
+	for <lists+intel-gfx@lfdr.de>; Tue, 22 Dec 2020 15:18:20 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7F3826E3DF;
-	Tue, 22 Dec 2020 14:15:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 815DC6E883;
+	Tue, 22 Dec 2020 14:18:17 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-qk1-x72b.google.com (mail-qk1-x72b.google.com
- [IPv6:2607:f8b0:4864:20::72b])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 546276E3DF
- for <intel-gfx@lists.freedesktop.org>; Tue, 22 Dec 2020 14:15:13 +0000 (UTC)
-Received: by mail-qk1-x72b.google.com with SMTP id f26so10295443qka.0
- for <intel-gfx@lists.freedesktop.org>; Tue, 22 Dec 2020 06:15:13 -0800 (PST)
+Received: from mail-qt1-x832.google.com (mail-qt1-x832.google.com
+ [IPv6:2607:f8b0:4864:20::832])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2882D6E883
+ for <intel-gfx@lists.freedesktop.org>; Tue, 22 Dec 2020 14:18:16 +0000 (UTC)
+Received: by mail-qt1-x832.google.com with SMTP id z3so8977920qtw.9
+ for <intel-gfx@lists.freedesktop.org>; Tue, 22 Dec 2020 06:18:16 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=B5kfp+5BWoWfHdazucv0uQW3G5a+/0UcGZiUrwOkvMk=;
- b=fcFPY52Gnd8fw8LZjxrkXtUw6jlhpsmozDSAb0nA1DbCJGXWzc1ZYT4jfVxu4d13ge
- mlV/gK/8XQwOOfbaJGWK0hMyJmyxJyqz8+mnWjlgw9Yb5524pcbbgB1Mj6JmYWnXufWB
- 9O8gvNZ45Ix0cb/HI25EcWm6ySHZleDDHAKAXMg+2MH586D6glrLfJ4TKpUFczHmW36+
- f/1yUGUnDXIp6atkspV7D6LM9XuHDOl8AlL2mVr7Qy2RYckMbGD6HcoJr9x5aEEyNRKy
- JHE3ovzShxNj6Yjs2GahWfJWf4ngnQ+JYT05JkykpgmBtlVLWlEBN02GStmpF4J2CDNa
- /5lw==
+ :cc; bh=TvJHbhYK2wD+53sns9eo9solxeIONW/nyM31S1It2TQ=;
+ b=i+j+/jOYBtgu2m7U8trfYGXyHuEv4jCm9rcSJ0zSxqNr1/EtKYsqKZAzkxOd+bpyNf
+ B4itUcNM/CXH+02v1UMhgZES3QMneTpJPhbuP3ZmyzQXx49dVogMHMQH5TiOLp9v+wM5
+ 6R18R2qXBgxtltmFQzebOzaNygNU4NRouq10eh7CSqiXeh2EXeXygI1IuhFtXtPvLwj4
+ VxYnK0W4A81XmGKRUjmMvrxCy3bzchzDtqIGtMMGEQBPX7jylwaH1Dp5YOF2i3wuiM19
+ 7SBLuHMYWrG/I3wb9e6QKWaB6HqzL9qlNzFibHVw1MQVOb+TzU9UBinWs056T7Xmh+3Q
+ 8Nuw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=B5kfp+5BWoWfHdazucv0uQW3G5a+/0UcGZiUrwOkvMk=;
- b=KBoisrm7kfFfmcN2hqkAuAof9BNzoEj3ujbKR53eWdbaNvvtlk7zCjnzQHrw8tnsmm
- wBfrBLLZyZn28XHikE1yhBLwiNk7G42E70iNdDg9B9YY+YK3qa/id9rPKuSMmXFEaLnu
- 4SzdCSJAvujh4bU5TwPF2H5RxzmC18QPAI+xYJ72IfTtO8hHC22EdpUnonmKFnUFtmpb
- LgItYky08vMJl7s5TWSpP/doKoUxkRsBNWGGBf4fOnRU8rFSR+Wnls/D1Ie+HqwyPjNg
- s7FsFIo8qo/yu/JclV3FUljITrygMEX/rBSX4Ee+pknrk1XhiwgCpU/Hbf2BQgBg41/7
- iI9w==
-X-Gm-Message-State: AOAM531+Zf1aMnnoaCX6cVfhC2f8zuB+quWVelXkNMr9kY+XtxXFO3N8
- 80j36inIBbshtLJjnUmJvXk82VXFtHpzWYIUr0O7hsdp
-X-Google-Smtp-Source: ABdhPJxaAfnYwYqNv7lQA7VEvxK8I2DhY+k62js4S+QBb8GNFstssY998viBqmQb9NVoizTY5T3f/7ykZwF5rkJlp6E=
-X-Received: by 2002:a37:a8c4:: with SMTP id
- r187mr21357058qke.481.1608646512495; 
- Tue, 22 Dec 2020 06:15:12 -0800 (PST)
+ bh=TvJHbhYK2wD+53sns9eo9solxeIONW/nyM31S1It2TQ=;
+ b=ltUOLoYkuziWGWKjjx/N9DOPF3LE9ebK54J1N5SoTwghFN7JeQp2N/qxKr+XnpeDqj
+ hdsxhvHujN0u2rlvxVnlgv0Ge0a2j2njS8V9qdcljW8N54lSCaZrkwCFbQrwpouyRfT6
+ plejN9jjEn43YOMwUZ/MMHXqv/cez8C0QsbfLAeE10QqpBM0lrMqEbuPrgJq6/4ixUVk
+ 6V+RkGArV8aEmIYC+EKY5Oej1dCzsqmFfujCeSWseO9X02B60mxGx303+CChVZYdFiED
+ Zukj05t6GmOJiyzx15t6xqAMR3/5UczVqLvKoPT63t/sZm+mFbJGLNrBfotRDxhNUoD+
+ ayEA==
+X-Gm-Message-State: AOAM531d++QbyhIklYoGlkRTDWz59KDdijTonNWmqC8dRv4EhW45UQBc
+ IUqV4QYVJBNV3lp5oeAaKnLCwoMUV9LRwy27EpHYSL4p
+X-Google-Smtp-Source: ABdhPJxTfiQuEsdX7G8Q1B7B5e4/i3TZuvCOZZD4pa6e/bmwiJ7+ffp9VtLNgboFFYsIxjYgJzarBxU/AioQm7hPY5o=
+X-Received: by 2002:ac8:1c6a:: with SMTP id j39mr21398056qtk.341.1608646695316; 
+ Tue, 22 Dec 2020 06:18:15 -0800 (PST)
 MIME-Version: 1.0
 References: <20201222113536.3775-1-chris@chris-wilson.co.uk>
- <20201222113536.3775-2-chris@chris-wilson.co.uk>
-In-Reply-To: <20201222113536.3775-2-chris@chris-wilson.co.uk>
+ <20201222113536.3775-3-chris@chris-wilson.co.uk>
+In-Reply-To: <20201222113536.3775-3-chris@chris-wilson.co.uk>
 From: Matthew Auld <matthew.william.auld@gmail.com>
-Date: Tue, 22 Dec 2020 14:14:46 +0000
-Message-ID: <CAM0jSHO-E1xOyhw6gw-0ZFy7ZJrWjRN_Qf8hr97n_zENASwCFA@mail.gmail.com>
+Date: Tue, 22 Dec 2020 14:17:48 +0000
+Message-ID: <CAM0jSHOiysb1jJCOJciJ8BjwYto2u9vbCR3rJ-3yTBddF91Dyw@mail.gmail.com>
 To: Chris Wilson <chris@chris-wilson.co.uk>
-Subject: Re: [Intel-gfx] [PATCH 2/3] drm/i915/selftests: Flush the
- preemption request before waiting
+Subject: Re: [Intel-gfx] [PATCH 3/3] drm/i915/selftest: Be paranoid and
+ flush the tasklet before checking status
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,9 +70,10 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 On Tue, 22 Dec 2020 at 11:35, Chris Wilson <chris@chris-wilson.co.uk> wrote:
 >
-> Make sure that the request has been submitted to HW before we begin our
-> wait. This reduces our reliance on the semaphore yield interrupt driving
-> the preemption request.
+> When waiting for the submit, before checking the status of the request,
+> kick the tasklet to make sure we are processing the submission. This
+> speeds up submission if we are using any tasklet suppression for
+> secondary requests.
 >
 > Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
 Reviewed-by: Matthew Auld <matthew.auld@intel.com>
