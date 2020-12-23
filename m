@@ -2,31 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 58F312E1DDB
-	for <lists+intel-gfx@lfdr.de>; Wed, 23 Dec 2020 16:25:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B595F2E1EB8
+	for <lists+intel-gfx@lfdr.de>; Wed, 23 Dec 2020 16:45:20 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A9FC76E0BE;
-	Wed, 23 Dec 2020 15:25:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AF9186E93E;
+	Wed, 23 Dec 2020 15:45:18 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 1481C6E0AA;
- Wed, 23 Dec 2020 15:25:12 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 03E2EA41FB;
- Wed, 23 Dec 2020 15:25:12 +0000 (UTC)
+Received: from fireflyinternet.com (unknown [77.68.26.236])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3CEC86E93E
+ for <intel-gfx@lists.freedesktop.org>; Wed, 23 Dec 2020 15:45:16 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from build.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 23415497-1500050 
+ for multiple; Wed, 23 Dec 2020 15:45:10 +0000
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Wed, 23 Dec 2020 15:45:09 +0000
+Message-Id: <20201223154509.14155-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Wed, 23 Dec 2020 15:25:11 -0000
-Message-ID: <160873711198.26585.6996749181642237782@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20201223122051.4624-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20201223122051.4624-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
- =?utf-8?q?ies_starting_with_=5B1/2=5D_drm/i915/gt=3A_Prefer_recycling_an_?=
- =?utf-8?q?idle_fence?=
+Subject: [Intel-gfx] [PATCH] drm/i915/selftests: Remove redundant
+ live_context for eviction
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,211 +37,71 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============2003758756=="
+Cc: Chris Wilson <chris@chris-wilson.co.uk>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============2003758756==
-Content-Type: multipart/alternative;
- boundary="===============8522333143086435460=="
+We just need the context image from the logical state to force eviction
+of many contexts, so simplify by avoiding the GEM context container.
 
---===============8522333143086435460==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+---
+ .../gpu/drm/i915/selftests/i915_gem_evict.c    | 18 +++++-------------
+ 1 file changed, 5 insertions(+), 13 deletions(-)
 
-== Series Details ==
-
-Series: series starting with [1/2] drm/i915/gt: Prefer recycling an idle fence
-URL   : https://patchwork.freedesktop.org/series/85186/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_9515 -> Patchwork_19203
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19203/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_19203 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@fbdev@write:
-    - fi-bdw-gvtdvm:      NOTRUN -> [SKIP][1] ([fdo#109271]) +5 similar issues
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19203/fi-bdw-gvtdvm/igt@fbdev@write.html
-
-  * igt@gem_exec_suspend@basic-s0:
-    - fi-bdw-gvtdvm:      NOTRUN -> [INCOMPLETE][2] ([i915#146])
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19203/fi-bdw-gvtdvm/igt@gem_exec_suspend@basic-s0.html
-
-  * igt@prime_vgem@basic-read:
-    - fi-tgl-y:           [PASS][3] -> [DMESG-WARN][4] ([i915#402]) +1 similar issue
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9515/fi-tgl-y/igt@prime_vgem@basic-read.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19203/fi-tgl-y/igt@prime_vgem@basic-read.html
-
-  
-#### Possible fixes ####
-
-  * igt@kms_chamelium@hdmi-crc-fast:
-    - fi-kbl-7500u:       [DMESG-WARN][5] -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9515/fi-kbl-7500u/igt@kms_chamelium@hdmi-crc-fast.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19203/fi-kbl-7500u/igt@kms_chamelium@hdmi-crc-fast.html
-
-  * igt@prime_vgem@basic-write:
-    - fi-tgl-y:           [DMESG-WARN][7] ([i915#402]) -> [PASS][8] +1 similar issue
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9515/fi-tgl-y/igt@prime_vgem@basic-write.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19203/fi-tgl-y/igt@prime_vgem@basic-write.html
-
-  
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [i915#146]: https://gitlab.freedesktop.org/drm/intel/issues/146
-  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
-
-
-Participating hosts (42 -> 38)
-------------------------------
-
-  Additional (1): fi-bdw-gvtdvm 
-  Missing    (5): fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_9515 -> Patchwork_19203
-
-  CI-20190529: 20190529
-  CI_DRM_9515: fc7c8ab3de81a7382017db8cdb35baae97c150f0 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5918: 137c8f1edd9cc769e8a62808c6dcd36b233e2d05 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_19203: 109a6a7f1a6463b5627e374319053018a7172372 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-109a6a7f1a64 drm/i915/gem: Optimistically prune dma-resv from the shrinker.
-602d4a02d905 drm/i915/gt: Prefer recycling an idle fence
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19203/index.html
-
---===============8522333143086435460==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>series starting with [1/2] drm/i915/gt: Prefer recycling an idle fence</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/85186/">https://patchwork.freedesktop.org/series/85186/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19203/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19203/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_9515 -&gt; Patchwork_19203</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19203/index.html</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_19203 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@fbdev@write:</p>
-<ul>
-<li>fi-bdw-gvtdvm:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19203/fi-bdw-gvtdvm/igt@fbdev@write.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +5 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_suspend@basic-s0:</p>
-<ul>
-<li>fi-bdw-gvtdvm:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19203/fi-bdw-gvtdvm/igt@gem_exec_suspend@basic-s0.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/146">i915#146</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@prime_vgem@basic-read:</p>
-<ul>
-<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9515/fi-tgl-y/igt@prime_vgem@basic-read.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19203/fi-tgl-y/igt@prime_vgem@basic-read.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) +1 similar issue</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@kms_chamelium@hdmi-crc-fast:</p>
-<ul>
-<li>fi-kbl-7500u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9515/fi-kbl-7500u/igt@kms_chamelium@hdmi-crc-fast.html">DMESG-WARN</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19203/fi-kbl-7500u/igt@kms_chamelium@hdmi-crc-fast.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@prime_vgem@basic-write:</p>
-<ul>
-<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9515/fi-tgl-y/igt@prime_vgem@basic-write.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19203/fi-tgl-y/igt@prime_vgem@basic-write.html">PASS</a> +1 similar issue</li>
-</ul>
-</li>
-</ul>
-<h2>Participating hosts (42 -&gt; 38)</h2>
-<p>Additional (1): fi-bdw-gvtdvm <br />
-  Missing    (5): fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-bdw-samus </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_9515 -&gt; Patchwork_19203</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_9515: fc7c8ab3de81a7382017db8cdb35baae97c150f0 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_5918: 137c8f1edd9cc769e8a62808c6dcd36b233e2d05 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
-  Patchwork_19203: 109a6a7f1a6463b5627e374319053018a7172372 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>109a6a7f1a64 drm/i915/gem: Optimistically prune dma-resv from the shrinker.<br />
-602d4a02d905 drm/i915/gt: Prefer recycling an idle fence</p>
-
-</body>
-</html>
-
---===============8522333143086435460==--
-
---===============2003758756==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+diff --git a/drivers/gpu/drm/i915/selftests/i915_gem_evict.c b/drivers/gpu/drm/i915/selftests/i915_gem_evict.c
+index f88473d396f4..3512bb8433cf 100644
+--- a/drivers/gpu/drm/i915/selftests/i915_gem_evict.c
++++ b/drivers/gpu/drm/i915/selftests/i915_gem_evict.c
+@@ -442,28 +442,22 @@ static int igt_evict_contexts(void *arg)
+ 	/* Overfill the GGTT with context objects and so try to evict one. */
+ 	for_each_engine(engine, gt, id) {
+ 		struct i915_sw_fence fence;
+-		struct file *file;
+-
+-		file = mock_file(i915);
+-		if (IS_ERR(file)) {
+-			err = PTR_ERR(file);
+-			break;
+-		}
+ 
+ 		count = 0;
+ 		onstack_fence_init(&fence);
+ 		do {
++			struct intel_context *ce;
+ 			struct i915_request *rq;
+-			struct i915_gem_context *ctx;
+ 
+-			ctx = live_context(i915, file);
+-			if (IS_ERR(ctx))
++			ce = intel_context_create(engine);
++			if (IS_ERR(ce))
+ 				break;
+ 
+ 			/* We will need some GGTT space for the rq's context */
+ 			igt_evict_ctl.fail_if_busy = true;
+-			rq = igt_request_alloc(ctx, engine);
++			rq = intel_context_create_request(ce);
+ 			igt_evict_ctl.fail_if_busy = false;
++			intel_context_put(ce);
+ 
+ 			if (IS_ERR(rq)) {
+ 				/* When full, fail_if_busy will trigger EBUSY */
+@@ -490,8 +484,6 @@ static int igt_evict_contexts(void *arg)
+ 		onstack_fence_fini(&fence);
+ 		pr_info("Submitted %lu contexts/requests on %s\n",
+ 			count, engine->name);
+-
+-		fput(file);
+ 		if (err)
+ 			break;
+ 	}
+-- 
+2.20.1
 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============2003758756==--
