@@ -1,32 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D09F82E1D8F
-	for <lists+intel-gfx@lfdr.de>; Wed, 23 Dec 2020 15:47:44 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 43A262E1D90
+	for <lists+intel-gfx@lfdr.de>; Wed, 23 Dec 2020 15:48:35 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4BBFF6E1D2;
-	Wed, 23 Dec 2020 14:47:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A08526E0E6;
+	Wed, 23 Dec 2020 14:48:33 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id DC2876E0E6;
- Wed, 23 Dec 2020 14:47:41 +0000 (UTC)
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 033646E0E6;
+ Wed, 23 Dec 2020 14:48:33 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id D5E79A7DFF;
- Wed, 23 Dec 2020 14:47:41 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 00D07A7DFF;
+ Wed, 23 Dec 2020 14:48:33 +0000 (UTC)
 MIME-Version: 1.0
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Mun, Gwan-gyeong" <gwan-gyeong.mun@intel.com>
-Date: Wed, 23 Dec 2020 14:47:41 -0000
-Message-ID: <160873486187.26584.3131830741916577285@emeril.freedesktop.org>
+To: =?utf-8?q?Jos=C3=A9_Roberto_de_Souza?= <jose.souza@intel.com>
+Date: Wed, 23 Dec 2020 14:48:32 -0000
+Message-ID: <160873491299.26587.17315896355915746294@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20201223113803.873717-1-gwan-gyeong.mun@intel.com>
-In-Reply-To: <20201223113803.873717-1-gwan-gyeong.mun@intel.com>
+References: <20201218184701.111857-1-jose.souza@intel.com>
+In-Reply-To: <20201218184701.111857-1-jose.souza@intel.com>
 Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciBz?=
- =?utf-8?q?eries_starting_with_=5Bv8=2C1/2=5D_drm/i915/display=3A_Support_?=
- =?utf-8?q?PSR_Multiple_Instances?=
+ =?utf-8?q?eries_starting_with_=5Bv9=2C1/5=5D_drm=3A_Add_function_to_conve?=
+ =?utf-8?q?rt_rect_in_16=2E16_fixed_format_to_regular_format_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,30 +48,25 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: series starting with [v8,1/2] drm/i915/display: Support PSR Multiple Instances
-URL   : https://patchwork.freedesktop.org/series/85185/
+Series: series starting with [v9,1/5] drm: Add function to convert rect in 16.16 fixed format to regular format (rev2)
+URL   : https://patchwork.freedesktop.org/series/85092/
 State : failure
 
 == Summary ==
 
-Applying: drm/i915/display: Support PSR Multiple Instances
+Applying: drm: Add function to convert rect in 16.16 fixed format to regular format
+Applying: drm/i915/display/psr: Use plane damage clips to calculate damaged area
+Applying: drm/i915/display: Split and export main surface calculation from skl_check_main_surface()
 Using index info to reconstruct a base tree...
-M	drivers/gpu/drm/i915/display/intel_ddi.c
 M	drivers/gpu/drm/i915/display/intel_display.c
-M	drivers/gpu/drm/i915/display/intel_display_types.h
-M	drivers/gpu/drm/i915/display/intel_dp.c
-M	drivers/gpu/drm/i915/display/intel_sprite.c
+M	drivers/gpu/drm/i915/display/intel_display.h
 Falling back to patching base and 3-way merge...
-Auto-merging drivers/gpu/drm/i915/display/intel_sprite.c
-Auto-merging drivers/gpu/drm/i915/display/intel_dp.c
-CONFLICT (content): Merge conflict in drivers/gpu/drm/i915/display/intel_dp.c
-Auto-merging drivers/gpu/drm/i915/display/intel_display_types.h
-CONFLICT (content): Merge conflict in drivers/gpu/drm/i915/display/intel_display_types.h
+Auto-merging drivers/gpu/drm/i915/display/intel_display.h
+CONFLICT (content): Merge conflict in drivers/gpu/drm/i915/display/intel_display.h
 Auto-merging drivers/gpu/drm/i915/display/intel_display.c
-Auto-merging drivers/gpu/drm/i915/display/intel_ddi.c
 error: Failed to merge in the changes.
 hint: Use 'git am --show-current-patch=diff' to see the failed patch
-Patch failed at 0001 drm/i915/display: Support PSR Multiple Instances
+Patch failed at 0003 drm/i915/display: Split and export main surface calculation from skl_check_main_surface()
 When you have resolved this problem, run "git am --continue".
 If you prefer to skip this patch, run "git am --skip" instead.
 To restore the original branch and stop patching, run "git am --abort".
