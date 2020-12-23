@@ -1,32 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2BF272E1BA6
-	for <lists+intel-gfx@lfdr.de>; Wed, 23 Dec 2020 12:12:45 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7D2EA2E1B80
+	for <lists+intel-gfx@lfdr.de>; Wed, 23 Dec 2020 12:12:05 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C2D696E93E;
-	Wed, 23 Dec 2020 11:12:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7082D6E088;
+	Wed, 23 Dec 2020 11:11:54 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CB15F6E8FF
- for <intel-gfx@lists.freedesktop.org>; Wed, 23 Dec 2020 11:12:08 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7913A6E901
+ for <intel-gfx@lists.freedesktop.org>; Wed, 23 Dec 2020 11:11:48 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 23412196-1500050 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 23412197-1500050 
  for multiple; Wed, 23 Dec 2020 11:11:31 +0000
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Wed, 23 Dec 2020 11:10:44 +0000
-Message-Id: <20201223111126.3338-20-chris@chris-wilson.co.uk>
+Date: Wed, 23 Dec 2020 11:10:45 +0000
+Message-Id: <20201223111126.3338-21-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20201223111126.3338-1-chris@chris-wilson.co.uk>
 References: <20201223111126.3338-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 20/62] drm/i915/gt: Refactor heartbeat request
- construction and submission
+Subject: [Intel-gfx] [PATCH 21/62] drm/i915/gt: Do not suspend bonded
+ requests if one hangs
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,134 +45,38 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Pull the individual strands of creating a custom heartbeat requests into
-a pair of common functions. This will reduce the number of changes we
-will need to make in future.
+Treat the dependency between bonded requests as weak and leave the
+remainder of the pair on the GPU if one hangs.
 
 Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
 ---
- .../gpu/drm/i915/gt/intel_engine_heartbeat.c  | 59 +++++++++++++------
- 1 file changed, 41 insertions(+), 18 deletions(-)
+ drivers/gpu/drm/i915/gt/intel_execlists_submission.c | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_engine_heartbeat.c b/drivers/gpu/drm/i915/gt/intel_engine_heartbeat.c
-index 9060385cd69e..d7be2b9339f9 100644
---- a/drivers/gpu/drm/i915/gt/intel_engine_heartbeat.c
-+++ b/drivers/gpu/drm/i915/gt/intel_engine_heartbeat.c
-@@ -37,6 +37,18 @@ static bool next_heartbeat(struct intel_engine_cs *engine)
- 	return true;
- }
+diff --git a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
+index 7d411d7eb0d2..fe16a7453f9b 100644
+--- a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
++++ b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
+@@ -1981,6 +1981,9 @@ static void __execlists_hold(struct i915_request *rq)
+ 			struct i915_request *w =
+ 				container_of(p->waiter, typeof(*w), sched);
  
-+static struct i915_request *
-+heartbeat_create(struct intel_context *ce, gfp_t gfp)
-+{
-+	struct i915_request *rq;
++			if (p->flags & I915_DEPENDENCY_WEAK)
++				continue;
 +
-+	intel_context_enter(ce);
-+	rq = __i915_request_create(ce, gfp);
-+	intel_context_exit(ce);
+ 			/* Leave semaphores spinning on the other engines */
+ 			if (w->engine != rq->engine)
+ 				continue;
+@@ -2079,6 +2082,9 @@ static void __execlists_unhold(struct i915_request *rq)
+ 			struct i915_request *w =
+ 				container_of(p->waiter, typeof(*w), sched);
+ 
++			if (p->flags & I915_DEPENDENCY_WEAK)
++				continue;
 +
-+	return rq;
-+}
-+
- static void idle_pulse(struct intel_engine_cs *engine, struct i915_request *rq)
- {
- 	engine->wakeref_serial = READ_ONCE(engine->serial) + 1;
-@@ -45,6 +57,15 @@ static void idle_pulse(struct intel_engine_cs *engine, struct i915_request *rq)
- 		engine->heartbeat.systole = i915_request_get(rq);
- }
- 
-+static void heartbeat_commit(struct i915_request *rq,
-+			     const struct i915_sched_attr *attr)
-+{
-+	idle_pulse(rq->engine, rq);
-+
-+	__i915_request_commit(rq);
-+	__i915_request_queue(rq, attr);
-+}
-+
- static void show_heartbeat(const struct i915_request *rq,
- 			   struct intel_engine_cs *engine)
- {
-@@ -139,16 +160,11 @@ static void heartbeat(struct work_struct *wrk)
- 		goto out;
- 	}
- 
--	intel_context_enter(ce);
--	rq = __i915_request_create(ce, GFP_NOWAIT | __GFP_NOWARN);
--	intel_context_exit(ce);
-+	rq = heartbeat_create(ce, GFP_NOWAIT | __GFP_NOWARN);
- 	if (IS_ERR(rq))
- 		goto unlock;
- 
--	idle_pulse(engine, rq);
--
--	__i915_request_commit(rq);
--	__i915_request_queue(rq, &attr);
-+	heartbeat_commit(rq, &attr);
- 
- unlock:
- 	mutex_unlock(&ce->timeline->mutex);
-@@ -187,17 +203,13 @@ static int __intel_engine_pulse(struct intel_engine_cs *engine)
- 	GEM_BUG_ON(!intel_engine_has_preemption(engine));
- 	GEM_BUG_ON(!intel_engine_pm_is_awake(engine));
- 
--	intel_context_enter(ce);
--	rq = __i915_request_create(ce, GFP_NOWAIT | __GFP_NOWARN);
--	intel_context_exit(ce);
-+	rq = heartbeat_create(ce, GFP_NOWAIT | __GFP_NOWARN);
- 	if (IS_ERR(rq))
- 		return PTR_ERR(rq);
- 
- 	__set_bit(I915_FENCE_FLAG_SENTINEL, &rq->fence.flags);
--	idle_pulse(engine, rq);
- 
--	__i915_request_commit(rq);
--	__i915_request_queue(rq, &attr);
-+	heartbeat_commit(rq, &attr);
- 	GEM_BUG_ON(rq->sched.attr.priority < I915_PRIORITY_BARRIER);
- 
- 	return 0;
-@@ -273,8 +285,12 @@ int intel_engine_pulse(struct intel_engine_cs *engine)
- 
- int intel_engine_flush_barriers(struct intel_engine_cs *engine)
- {
-+	struct i915_sched_attr attr = {
-+		.priority = I915_USER_PRIORITY(I915_PRIORITY_MIN),
-+	};
-+	struct intel_context *ce = engine->kernel_context;
- 	struct i915_request *rq;
--	int err = 0;
-+	int err;
- 
- 	if (llist_empty(&engine->barrier_tasks))
- 		return 0;
-@@ -282,15 +298,22 @@ int intel_engine_flush_barriers(struct intel_engine_cs *engine)
- 	if (!intel_engine_pm_get_if_awake(engine))
- 		return 0;
- 
--	rq = i915_request_create(engine->kernel_context);
-+	if (mutex_lock_interruptible(&ce->timeline->mutex)) {
-+		err = -EINTR;
-+		goto out_rpm;
-+	}
-+
-+	rq = heartbeat_create(ce, GFP_KERNEL);
- 	if (IS_ERR(rq)) {
- 		err = PTR_ERR(rq);
--		goto out_rpm;
-+		goto out_unlock;
- 	}
- 
--	idle_pulse(engine, rq);
--	i915_request_add(rq);
-+	heartbeat_commit(rq, &attr);
- 
-+	err = 0;
-+out_unlock:
-+	mutex_unlock(&ce->timeline->mutex);
- out_rpm:
- 	intel_engine_pm_put(engine);
- 	return err;
+ 			/* Propagate any change in error status */
+ 			if (rq->fence.error)
+ 				i915_request_set_error_once(w, rq->fence.error);
 -- 
 2.20.1
 
