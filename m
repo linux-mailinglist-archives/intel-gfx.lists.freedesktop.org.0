@@ -2,30 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 129762E1BB8
-	for <lists+intel-gfx@lfdr.de>; Wed, 23 Dec 2020 12:13:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 332FF2E1BB6
+	for <lists+intel-gfx@lfdr.de>; Wed, 23 Dec 2020 12:13:28 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2988D6E941;
-	Wed, 23 Dec 2020 11:13:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ED5396E948;
+	Wed, 23 Dec 2020 11:13:25 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F0C176E933
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E342E6E932
  for <intel-gfx@lists.freedesktop.org>; Wed, 23 Dec 2020 11:12:15 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 23412240-1500050 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 23412241-1500050 
  for multiple; Wed, 23 Dec 2020 11:11:36 +0000
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Wed, 23 Dec 2020 11:11:14 +0000
-Message-Id: <20201223111126.3338-50-chris@chris-wilson.co.uk>
+Date: Wed, 23 Dec 2020 11:11:15 +0000
+Message-Id: <20201223111126.3338-51-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20201223111126.3338-1-chris@chris-wilson.co.uk>
 References: <20201223111126.3338-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 50/62] drm/i915/gt: Add timeline "mode"
+Subject: [Intel-gfx] [PATCH 51/62] drm/i915/gt: Use indices for writing into
+ relative timelines
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,111 +45,176 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Explicitly differentiate between the absolute and relative timelines,
-and the global HWSP and ppHWSP relative offsets. When using a timeline
-that is relative to a known status page, we can replace the absolute
-addressing in the commands with indexed variants.
+Relative timelines are relative to either the global or per-process
+HWSP, and so we can replace the absolute addressing with store-index
+variants for position invariance.
 
 Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
 Reviewed-by: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/i915/gt/intel_timeline.c      | 21 ++++++++++++++++---
- drivers/gpu/drm/i915/gt/intel_timeline.h      |  2 +-
- .../gpu/drm/i915/gt/intel_timeline_types.h    | 10 +++++++--
- 3 files changed, 27 insertions(+), 6 deletions(-)
+ drivers/gpu/drm/i915/gt/gen8_engine_cs.c | 98 +++++++++++++++++-------
+ drivers/gpu/drm/i915/gt/intel_timeline.h | 12 +++
+ 2 files changed, 82 insertions(+), 28 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_timeline.c b/drivers/gpu/drm/i915/gt/intel_timeline.c
-index 7446c4eb5c8d..c49d088b3541 100644
---- a/drivers/gpu/drm/i915/gt/intel_timeline.c
-+++ b/drivers/gpu/drm/i915/gt/intel_timeline.c
-@@ -227,7 +227,6 @@ static int intel_timeline_init(struct intel_timeline *timeline,
+diff --git a/drivers/gpu/drm/i915/gt/gen8_engine_cs.c b/drivers/gpu/drm/i915/gt/gen8_engine_cs.c
+index dcd8786d796d..5f0485cb9e3b 100644
+--- a/drivers/gpu/drm/i915/gt/gen8_engine_cs.c
++++ b/drivers/gpu/drm/i915/gt/gen8_engine_cs.c
+@@ -502,7 +502,19 @@ gen8_emit_fini_breadcrumb_tail(struct i915_request *rq, u32 *cs)
  
- 	timeline->gt = gt;
- 
--	timeline->has_initial_breadcrumb = !hwsp;
- 	timeline->hwsp_cacheline = NULL;
- 
- 	if (!hwsp) {
-@@ -244,13 +243,29 @@ static int intel_timeline_init(struct intel_timeline *timeline,
- 			return PTR_ERR(cl);
- 		}
- 
-+		timeline->mode = INTEL_TIMELINE_ABSOLUTE;
- 		timeline->hwsp_cacheline = cl;
- 		timeline->hwsp_offset = cacheline * CACHELINE_BYTES;
- 
- 		vaddr = page_mask_bits(cl->vaddr);
- 	} else {
--		timeline->hwsp_offset = offset;
--		vaddr = i915_gem_object_pin_map(hwsp->obj, I915_MAP_WB);
-+		int preferred;
-+
-+		if (offset & INTEL_TIMELINE_RELATIVE_CONTEXT) {
-+			timeline->mode = INTEL_TIMELINE_RELATIVE_CONTEXT;
-+			timeline->hwsp_offset =
-+				offset & ~INTEL_TIMELINE_RELATIVE_CONTEXT;
-+			preferred = i915_coherent_map_type(gt->i915);
-+		} else {
-+			timeline->mode = INTEL_TIMELINE_RELATIVE_ENGINE;
-+			timeline->hwsp_offset = offset;
-+			preferred = I915_MAP_WB;
-+		}
-+
-+		vaddr = i915_gem_object_pin_map(hwsp->obj,
-+						preferred | I915_MAP_OVERRIDE);
-+		if (IS_ERR(vaddr))
-+			vaddr = i915_gem_object_pin_map(hwsp->obj, I915_MAP_WC);
- 		if (IS_ERR(vaddr))
- 			return PTR_ERR(vaddr);
- 	}
-diff --git a/drivers/gpu/drm/i915/gt/intel_timeline.h b/drivers/gpu/drm/i915/gt/intel_timeline.h
-index 0e5e9fdade5b..6e738a85beda 100644
---- a/drivers/gpu/drm/i915/gt/intel_timeline.h
-+++ b/drivers/gpu/drm/i915/gt/intel_timeline.h
-@@ -64,7 +64,7 @@ static inline void intel_timeline_put(struct intel_timeline *timeline)
- static inline bool
- intel_timeline_has_initial_breadcrumb(const struct intel_timeline *tl)
+ static u32 *emit_xcs_breadcrumb(struct i915_request *rq, u32 *cs)
  {
--	return tl->has_initial_breadcrumb;
-+	return tl->mode == INTEL_TIMELINE_ABSOLUTE;
+-	return gen8_emit_ggtt_write(cs, rq->fence.seqno, hwsp_offset(rq), 0);
++	struct intel_timeline *tl = rcu_dereference_protected(rq->timeline, 1);
++	unsigned int flags = MI_FLUSH_DW_OP_STOREDW;
++	u32 offset = hwsp_offset(rq);
++
++	if (intel_timeline_is_relative(tl)) {
++		offset = offset_in_page(offset);
++		flags |= MI_FLUSH_DW_STORE_INDEX;
++	}
++	GEM_BUG_ON(offset & 7);
++	if (!intel_timeline_in_context(tl))
++		offset |= MI_FLUSH_DW_USE_GTT;
++
++	return __gen8_emit_flush_dw(cs, rq->fence.seqno, offset, flags);
  }
  
+ u32 *gen8_emit_fini_breadcrumb_xcs(struct i915_request *rq, u32 *cs)
+@@ -512,6 +524,18 @@ u32 *gen8_emit_fini_breadcrumb_xcs(struct i915_request *rq, u32 *cs)
+ 
+ u32 *gen8_emit_fini_breadcrumb_rcs(struct i915_request *rq, u32 *cs)
+ {
++	struct intel_timeline *tl = rcu_dereference_protected(rq->timeline, 1);
++	unsigned int flags = PIPE_CONTROL_FLUSH_ENABLE | PIPE_CONTROL_CS_STALL;
++	u32 offset = hwsp_offset(rq);
++
++	if (intel_timeline_is_relative(tl)) {
++		offset = offset_in_page(offset);
++		flags |= PIPE_CONTROL_STORE_DATA_INDEX;
++	}
++	GEM_BUG_ON(offset & 7);
++	if (!intel_timeline_in_context(tl))
++		flags |= PIPE_CONTROL_GLOBAL_GTT_IVB;
++
+ 	cs = gen8_emit_pipe_control(cs,
+ 				    PIPE_CONTROL_RENDER_TARGET_CACHE_FLUSH |
+ 				    PIPE_CONTROL_DEPTH_CACHE_FLUSH |
+@@ -519,26 +543,33 @@ u32 *gen8_emit_fini_breadcrumb_rcs(struct i915_request *rq, u32 *cs)
+ 				    0);
+ 
+ 	/* XXX flush+write+CS_STALL all in one upsets gem_concurrent_blt:kbl */
+-	cs = gen8_emit_ggtt_write_rcs(cs,
+-				      rq->fence.seqno,
+-				      hwsp_offset(rq),
+-				      PIPE_CONTROL_FLUSH_ENABLE |
+-				      PIPE_CONTROL_CS_STALL);
++	cs = __gen8_emit_write_rcs(cs, rq->fence.seqno, offset, 0, flags);
+ 
+ 	return gen8_emit_fini_breadcrumb_tail(rq, cs);
+ }
+ 
+ u32 *gen11_emit_fini_breadcrumb_rcs(struct i915_request *rq, u32 *cs)
+ {
+-	cs = gen8_emit_ggtt_write_rcs(cs,
+-				      rq->fence.seqno,
+-				      hwsp_offset(rq),
+-				      PIPE_CONTROL_CS_STALL |
+-				      PIPE_CONTROL_TILE_CACHE_FLUSH |
+-				      PIPE_CONTROL_RENDER_TARGET_CACHE_FLUSH |
+-				      PIPE_CONTROL_DEPTH_CACHE_FLUSH |
+-				      PIPE_CONTROL_DC_FLUSH_ENABLE |
+-				      PIPE_CONTROL_FLUSH_ENABLE);
++	struct intel_timeline *tl = rcu_dereference_protected(rq->timeline, 1);
++	u32 offset = hwsp_offset(rq);
++	unsigned int flags;
++
++	flags = (PIPE_CONTROL_CS_STALL |
++		 PIPE_CONTROL_TILE_CACHE_FLUSH |
++		 PIPE_CONTROL_RENDER_TARGET_CACHE_FLUSH |
++		 PIPE_CONTROL_DEPTH_CACHE_FLUSH |
++		 PIPE_CONTROL_DC_FLUSH_ENABLE |
++		 PIPE_CONTROL_FLUSH_ENABLE);
++
++	if (intel_timeline_is_relative(tl)) {
++		offset = offset_in_page(offset);
++		flags |= PIPE_CONTROL_STORE_DATA_INDEX;
++	}
++	GEM_BUG_ON(offset & 7);
++	if (!intel_timeline_in_context(tl))
++		flags |= PIPE_CONTROL_GLOBAL_GTT_IVB;
++
++	cs = __gen8_emit_write_rcs(cs, rq->fence.seqno, offset, 0, flags);
+ 
+ 	return gen8_emit_fini_breadcrumb_tail(rq, cs);
+ }
+@@ -601,19 +632,30 @@ u32 *gen12_emit_fini_breadcrumb_xcs(struct i915_request *rq, u32 *cs)
+ 
+ u32 *gen12_emit_fini_breadcrumb_rcs(struct i915_request *rq, u32 *cs)
+ {
+-	cs = gen12_emit_ggtt_write_rcs(cs,
+-				       rq->fence.seqno,
+-				       hwsp_offset(rq),
+-				       PIPE_CONTROL0_HDC_PIPELINE_FLUSH,
+-				       PIPE_CONTROL_CS_STALL |
+-				       PIPE_CONTROL_TILE_CACHE_FLUSH |
+-				       PIPE_CONTROL_FLUSH_L3 |
+-				       PIPE_CONTROL_RENDER_TARGET_CACHE_FLUSH |
+-				       PIPE_CONTROL_DEPTH_CACHE_FLUSH |
+-				       /* Wa_1409600907:tgl */
+-				       PIPE_CONTROL_DEPTH_STALL |
+-				       PIPE_CONTROL_DC_FLUSH_ENABLE |
+-				       PIPE_CONTROL_FLUSH_ENABLE);
++	struct intel_timeline *tl = rcu_dereference_protected(rq->timeline, 1);
++	u32 offset = hwsp_offset(rq);
++	unsigned int flags;
++
++	flags = (PIPE_CONTROL_CS_STALL |
++		 PIPE_CONTROL_TILE_CACHE_FLUSH |
++		 PIPE_CONTROL_FLUSH_L3 |
++		 PIPE_CONTROL_RENDER_TARGET_CACHE_FLUSH |
++		 PIPE_CONTROL_DEPTH_CACHE_FLUSH |
++		 /* Wa_1409600907:tgl */
++		 PIPE_CONTROL_DEPTH_STALL |
++		 PIPE_CONTROL_DC_FLUSH_ENABLE |
++		 PIPE_CONTROL_FLUSH_ENABLE);
++
++	if (intel_timeline_is_relative(tl)) {
++		offset = offset_in_page(offset);
++		flags |= PIPE_CONTROL_STORE_DATA_INDEX;
++	}
++	GEM_BUG_ON(offset & 7);
++	if (!intel_timeline_in_context(tl))
++		flags |= PIPE_CONTROL_GLOBAL_GTT_IVB;
++
++	cs = __gen8_emit_write_rcs(cs, rq->fence.seqno, offset,
++				   PIPE_CONTROL0_HDC_PIPELINE_FLUSH, flags);
+ 
+ 	return gen12_emit_fini_breadcrumb_tail(rq, cs);
+ }
+diff --git a/drivers/gpu/drm/i915/gt/intel_timeline.h b/drivers/gpu/drm/i915/gt/intel_timeline.h
+index 6e738a85beda..a58823fe7a34 100644
+--- a/drivers/gpu/drm/i915/gt/intel_timeline.h
++++ b/drivers/gpu/drm/i915/gt/intel_timeline.h
+@@ -67,6 +67,18 @@ intel_timeline_has_initial_breadcrumb(const struct intel_timeline *tl)
+ 	return tl->mode == INTEL_TIMELINE_ABSOLUTE;
+ }
+ 
++static inline bool
++intel_timeline_is_relative(const struct intel_timeline *tl)
++{
++	return tl->mode != INTEL_TIMELINE_ABSOLUTE;
++}
++
++static inline bool
++intel_timeline_in_context(const struct intel_timeline *tl)
++{
++	return tl->mode == INTEL_TIMELINE_RELATIVE_CONTEXT;
++}
++
  static inline int __intel_timeline_sync_set(struct intel_timeline *tl,
-diff --git a/drivers/gpu/drm/i915/gt/intel_timeline_types.h b/drivers/gpu/drm/i915/gt/intel_timeline_types.h
-index f187c5aac11c..3c1ab901b702 100644
---- a/drivers/gpu/drm/i915/gt/intel_timeline_types.h
-+++ b/drivers/gpu/drm/i915/gt/intel_timeline_types.h
-@@ -20,6 +20,12 @@ struct i915_syncmap;
- struct intel_gt;
- struct intel_timeline_hwsp;
- 
-+enum intel_timeline_mode {
-+	INTEL_TIMELINE_ABSOLUTE = 0,
-+	INTEL_TIMELINE_RELATIVE_CONTEXT = BIT(0),
-+	INTEL_TIMELINE_RELATIVE_ENGINE  = BIT(1),
-+};
-+
- struct intel_timeline {
- 	u64 fence_context;
- 	u32 seqno;
-@@ -45,6 +51,8 @@ struct intel_timeline {
- 	atomic_t pin_count;
- 	atomic_t active_count;
- 
-+	enum intel_timeline_mode mode;
-+
- 	const u32 *hwsp_seqno;
- 	struct i915_vma *hwsp_ggtt;
- 	u32 hwsp_offset;
-@@ -52,8 +60,6 @@ struct intel_timeline {
- 
- 	struct intel_timeline_cacheline *hwsp_cacheline;
- 
--	bool has_initial_breadcrumb;
--
- 	/**
- 	 * List of breadcrumbs associated with GPU requests currently
- 	 * outstanding.
+ 					    u64 context, u32 seqno)
+ {
 -- 
 2.20.1
 
