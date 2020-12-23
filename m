@@ -2,49 +2,38 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4D19A2E1942
-	for <lists+intel-gfx@lfdr.de>; Wed, 23 Dec 2020 08:08:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 08AA82E19C8
+	for <lists+intel-gfx@lfdr.de>; Wed, 23 Dec 2020 09:15:10 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 428356E8C9;
-	Wed, 23 Dec 2020 07:08:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AEF216E8D3;
+	Wed, 23 Dec 2020 08:15:07 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CE9216E8C9
- for <intel-gfx@lists.freedesktop.org>; Wed, 23 Dec 2020 07:08:54 +0000 (UTC)
-IronPort-SDR: MxXN6CBhsRNrYsB+hvtSzX8zIOeQNf0mScJJle3gvYPZaZ6qPpkiephAc0PVeEbuyfVBnpG/Vi
- UWT/2CPDAQyg==
-X-IronPort-AV: E=McAfee;i="6000,8403,9843"; a="194421511"
-X-IronPort-AV: E=Sophos;i="5.78,441,1599548400"; d="scan'208";a="194421511"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Dec 2020 23:08:54 -0800
-IronPort-SDR: +B8NSypEIpqmEP2IGZI/BdxJWCxh74gTiLiA9sS0IgRVZv7oWZ0ThQMu4skmmr58Fksl0esXwx
- ZIg84ZEJc5Cg==
-X-IronPort-AV: E=Sophos;i="5.78,441,1599548400"; d="scan'208";a="344927418"
-Received: from swatish2-mobl1.gar.corp.intel.com (HELO [10.213.75.233])
- ([10.213.75.233])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Dec 2020 23:08:51 -0800
-To: "Shankar, Uma" <uma.shankar@intel.com>,
- "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>,
- Jani Nikula <jani.nikula@linux.intel.com>
-References: <20201218103723.30844-1-ankit.k.nautiyal@intel.com>
- <160829597046.27179.7154779196586998441@emeril.freedesktop.org>
- <87r1nhokpj.fsf@intel.com> <8b37e37c-e15b-ff18-b965-2da8945fc58a@intel.com>
- <508f761f019e4df4bb4e1f0e996bc98d@intel.com>
-From: "Sharma, Swati2" <swati2.sharma@intel.com>
-Organization: Intel
-Message-ID: <9a23022b-3b62-6d3b-377a-c62baf775905@intel.com>
-Date: Wed, 23 Dec 2020 12:38:46 +0530
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Thunderbird/78.6.0
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C1F1E6E8D2;
+ Wed, 23 Dec 2020 08:15:06 +0000 (UTC)
+IronPort-SDR: stgcoIPThOxnAX7r/LrsfSZsiHkKbabym59nar97vgiskyBjGFDm0dnZyunxHfrXoL0VtHgfiD
+ LfdBy5FCc+bQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9843"; a="237541936"
+X-IronPort-AV: E=Sophos;i="5.78,441,1599548400"; d="scan'208";a="237541936"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Dec 2020 00:15:05 -0800
+IronPort-SDR: KKAZw1iaiaQ8OkG4WzZwjHaTHr8wHr2snKovxo/xfiyCKzgIOymwIicyzA2Tmw40YP7fr1FSvk
+ qh5AjCRDClsQ==
+X-IronPort-AV: E=Sophos;i="5.78,441,1599548400"; d="scan'208";a="373878273"
+Received: from odonov3x-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.213.250.144])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Dec 2020 00:15:01 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Date: Wed, 23 Dec 2020 10:14:58 +0200
+Message-ID: <87lfdpndkt.fsf@intel.com>
 MIME-Version: 1.0
-In-Reply-To: <508f761f019e4df4bb4e1f0e996bc98d@intel.com>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] 
- =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_Add_support_for_DP-HDMI2=2E1_PCON_=28rev9=29?=
+Subject: [Intel-gfx] [PULL] topic/dp-hdmi-2.1-pcon for drm-misc-next
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,224 +46,156 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Cc: dim-tools@lists.freedesktop.org, Daniel Vetter <daniel.vetter@ffwll.ch>,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-CgpPbiAyMy1EZWMtMjAgMTI6MjQgUE0sIFNoYW5rYXIsIFVtYSB3cm90ZToKPiAKPiAKPj4gLS0t
-LS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0KPj4gRnJvbTogTmF1dGl5YWwsIEFua2l0IEsgPGFua2l0
-LmsubmF1dGl5YWxAaW50ZWwuY29tPgo+PiBTZW50OiBXZWRuZXNkYXksIERlY2VtYmVyIDIzLCAy
-MDIwIDExOjI3IEFNCj4+IFRvOiBKYW5pIE5pa3VsYSA8amFuaS5uaWt1bGFAbGludXguaW50ZWwu
-Y29tPjsgU2hhcm1hLCBTd2F0aTIKPj4gPHN3YXRpMi5zaGFybWFAaW50ZWwuY29tPjsgU2hhbmth
-ciwgVW1hIDx1bWEuc2hhbmthckBpbnRlbC5jb20+Cj4+IENjOiBpbnRlbC1nZnhAbGlzdHMuZnJl
-ZWRlc2t0b3Aub3JnCj4+IFN1YmplY3Q6IFJlOiBbSW50ZWwtZ2Z4XSDinJcgRmkuQ0kuQ0hFQ0tQ
-QVRDSDogd2FybmluZyBmb3IgQWRkIHN1cHBvcnQgZm9yIERQLQo+PiBIRE1JMi4xIFBDT04gKHJl
-djkpCj4+Cj4+IEhpIEphbmksCj4+Cj4+IEkgYXBvbG9naXplIHRvIG1pc3MgdGhlc2UgY2hlY2tw
-YXRjaCBlcnJvcnMuIEkgbWlzdGFrZW5seSB1c2VkIHNvbWUgb2xkZXIgdmVyc2lvbgo+PiBvZiBj
-aGVja3BhdGNoIHNjcmlwdCBhbmQgY291bGRuJ3QgZ2V0IHRoZXNlLgo+Pgo+PiBOZXZlcnRoZWxl
-c3MgSSBzaG91bGQgaGF2ZSB0YWtlbiBjYXJlIG9mIHRoZSB3YXJuaW5ncyBmcm9tIHRoZSBwYXRj
-aHdvcmsuIEkgZnVsbHkKPj4gdW5kZXJzdGFuZCB0aGF0IG9udXMgaXMgb24gdGhlIHN1Ym1pdHRl
-ciBvZiB0aGUgc2VyaWVzIHRvIGZpeCBhbGwgc3VjaCB3YXJuaW5ncwo+PiBhbmQgY2hlY2tzLCBh
-bmQgSSB0YWtlIGZ1bGwgcmVzcG9uc2liaWxpdHkgb2YgdGhpcyBtaXN0YWtlLgo+Pgo+PiBUaGFu
-ayB5b3UgZm9yIGZpeGluZyB0aGVzZSBpc3N1ZXMgdGhpcyB0aW1lLCBhbmQgSSBhc3N1cmUgeW91
-IHRoYXQgSSB3aWxsIHRha2UgY2FyZQo+PiBpbiBmdXR1cmUgYW5kIG1ha2Ugc3VyZSB0aGF0IHRo
-ZSBjaGVja3BhdGNoIHdhcm5pbmdzIGFyZSBhZGRyZXNzZWQuCj4+Cj4+IE9uY2UgYWdhaW4gSSBh
-cG9sb2dpemUgZm9yIHRoZSBmYXVsdC4KPiAKPiBJIGFsc28gc2hvdWxkIGhhdmUgY2hlY2tlZCB0
-aGlzLCB3aWxsIGJlIG1vcmUgY2FyZWZ1bCB0byBlbnN1cmUgdGhpcyByZW1haW5zIHRoZSB0b3Ag
-aXRlbQo+IGluIHRoZSBjaGVja2xpc3QgYWxvbmcgd2l0aCBDSSByZXN1bHRzLgo+IAo+IFJlZ2Fy
-ZHMsCj4gVW1hIFNoYW5rYXIKCkFwb2xvZ2llcyBmcm9tIG15IHNpZGUgdG9vLgoKVGhhbmtzIGFu
-ZCBSZWdhcmRzLApTd2F0aQo+Pgo+PiBUaGFua3MgJiBSZWdhcmRzLAo+Pgo+PiBBbmtpdAo+Pgo+
-Pgo+PiBPbiAxMi8yMi8yMDIwIDEwOjEzIFBNLCBKYW5pIE5pa3VsYSB3cm90ZToKPj4+IE9uIEZy
-aSwgMTggRGVjIDIwMjAsIFBhdGNod29yayA8cGF0Y2h3b3JrQGVtZXJpbC5mcmVlZGVza3RvcC5v
-cmc+IHdyb3RlOgo+Pj4+ID09IFNlcmllcyBEZXRhaWxzID09Cj4+Pj4KPj4+PiBTZXJpZXM6IEFk
-ZCBzdXBwb3J0IGZvciBEUC1IRE1JMi4xIFBDT04gKHJldjkpCj4+Pj4gVVJMICAgOiBodHRwczov
-L3BhdGNod29yay5mcmVlZGVza3RvcC5vcmcvc2VyaWVzLzgyMDk4Lwo+Pj4+IFN0YXRlIDogd2Fy
-bmluZwo+Pj4+Cj4+Pj4gPT0gU3VtbWFyeSA9PQo+Pj4+Cj4+PiBBbGwgLQo+Pj4KPj4+IEkndmUg
-Zml4ZWQgbW9zdCBvZiB0aGUgY2hlY2twYXRjaCB3YXJuaW5ncyAoc2F2ZSBmb3IgTE9OR19MSU5F
-IGFuZAo+Pj4gQklUX01BQ1JPIHRoYXQgd2UgZG9uJ3QgY2FyZSBzbyBtdWNoIGFib3V0KSB3aGls
-ZSBhcHBseWluZy4gSXQncyBub3QKPj4+IHNvbWV0aGluZyBJIG5vcm1hbGx5IGRvLCBhbmQgSSBy
-ZWFsbHkgZG9uJ3Qgd2FudCB0byBmaW5kIHRoZXNlIHdoZW4KPj4+IHRoZSBzZXJpZXMgaXMgYXQg
-djcgYW5kIHRoZSBzYW1lIHdhcm5pbmdzIGhhdmUgYmVlbiB0aGVyZSBzaW5jZQo+Pj4gU2VwdGVt
-YmVyIGFuZCBJIGtlZXAgYmVpbmcgcGluZ2VkIGFib3V0IG1lcmdpbmcuCj4+Pgo+Pj4gS2VlcGlu
-ZyB0aGUgZHJpdmVyIG5pY2UgYW5kIGNsZWFuIGlzIHlvdXIgam9iIHRvbywgbm90IGp1c3QgbWlu
-ZS4KPj4+Cj4+PiBCUiwKPj4+IEphbmkuCj4+Pgo+Pj4KPj4+PiAkIGRpbSBjaGVja3BhdGNoIG9y
-aWdpbi9kcm0tdGlwCj4+Pj4gMjZlYjBjMmYyZWUxIGRybS9lZGlkOiBBZGQgYWRkaXRpb25hbCBI
-RlZTREIgZmllbGRzIGZvciBIRE1JMi4xCj4+Pj4gLTo2MTogV0FSTklORzpGUk9NX1NJR05fT0ZG
-X01JU01BVENIOiBGcm9tOi9TaWduZWQtb2ZmLWJ5OiBlbWFpbAo+PiBuYW1lIG1pc21hdGNoOiAn
-RnJvbTogU3dhdGkgU2hhcm1hIDxzd2F0aTIuc2hhcm1hQGludGVsLmNvbT4nICE9ICdTaWduZWQt
-b2ZmLQo+PiBieTogU2hhcm1hLCBTd2F0aTIgPHN3YXRpMi5zaGFybWFAaW50ZWwuY29tPicKPj4+
-Pgo+Pj4+IHRvdGFsOiAwIGVycm9ycywgMSB3YXJuaW5ncywgMCBjaGVja3MsIDM2IGxpbmVzIGNo
-ZWNrZWQgMTNmZmU4MjlkNzdlCj4+Pj4gZHJtL2VkaWQ6IFBhcnNlIE1BWF9GUkwgZmllbGQgZnJv
-bSBIRlZTREIgYmxvY2sKPj4+PiAtOjczOiBDSEVDSzpQQVJFTlRIRVNJU19BTElHTk1FTlQ6IEFs
-aWdubWVudCBzaG91bGQgbWF0Y2ggb3Blbgo+Pj4+IHBhcmVudGhlc2lzCj4+Pj4gIzczOiBGSUxF
-OiBkcml2ZXJzL2dwdS9kcm0vZHJtX2VkaWQuYzo0OTQ4Ogo+Pj4+ICsJCWRybV9nZXRfbWF4X2Zy
-bF9yYXRlKG1heF9mcmxfcmF0ZSwgJmhkbWktPm1heF9sYW5lcywKPj4+PiArCQkJCSZoZG1pLT5t
-YXhfZnJsX3JhdGVfcGVyX2xhbmUpOwo+Pj4+Cj4+Pj4gLTo5NTogV0FSTklORzpGUk9NX1NJR05f
-T0ZGX01JU01BVENIOiBGcm9tOi9TaWduZWQtb2ZmLWJ5OiBlbWFpbAo+PiBuYW1lIG1pc21hdGNo
-OiAnRnJvbTogU3dhdGkgU2hhcm1hIDxzd2F0aTIuc2hhcm1hQGludGVsLmNvbT4nICE9ICdTaWdu
-ZWQtb2ZmLQo+PiBieTogU2hhcm1hLCBTd2F0aTIgPHN3YXRpMi5zaGFybWFAaW50ZWwuY29tPicK
-Pj4+Pgo+Pj4+IHRvdGFsOiAwIGVycm9ycywgMSB3YXJuaW5ncywgMSBjaGVja3MsIDY4IGxpbmVz
-IGNoZWNrZWQKPj4+PiA4OTg1M2MwMTllMDQgZHJtL2VkaWQ6IFBhcnNlIERTQzEuMiBjYXAgZmll
-bGRzIGZyb20gSEZWU0RCIGJsb2NrCj4+Pj4gLTo1MTogQ0hFQ0s6UEFSRU5USEVTSVNfQUxJR05N
-RU5UOiBBbGlnbm1lbnQgc2hvdWxkIG1hdGNoIG9wZW4KPj4+PiBwYXJlbnRoZXNpcwo+Pj4+ICM1
-MTogRklMRTogZHJpdmVycy9ncHUvZHJtL2RybV9lZGlkLmM6NDk2OToKPj4+PiArCQkJZHJtX2dl
-dF9tYXhfZnJsX3JhdGUoZHNjX21heF9mcmxfcmF0ZSwgJmhkbWlfZHNjLQo+Pj4gbWF4X2xhbmVz
-LAo+Pj4+ICsJCQkJCSZoZG1pX2RzYy0+bWF4X2ZybF9yYXRlX3Blcl9sYW5lKTsKPj4+Pgo+Pj4+
-IC06NTI6IFdBUk5JTkc6TE9OR19MSU5FOiBsaW5lIGxlbmd0aCBvZiAxMDEgZXhjZWVkcyAxMDAg
-Y29sdW1ucwo+Pj4+ICM1MjogRklMRTogZHJpdmVycy9ncHUvZHJtL2RybV9lZGlkLmM6NDk3MDoK
-Pj4+PiArCQkJaGRtaV9kc2MtPnRvdGFsX2NodW5rX2tieXRlcyA9IGhmX3ZzZGJbMTNdICYKPj4+
-PiArRFJNX0VESURfRFNDX1RPVEFMX0NIVU5LX0tCWVRFUzsKPj4+Pgo+Pj4+IHRvdGFsOiAwIGVy
-cm9ycywgMSB3YXJuaW5ncywgMSBjaGVja3MsIDEyNSBsaW5lcyBjaGVja2VkCj4+Pj4gNTEyMGIx
-NzI3MzkxIGRybS9kcF9oZWxwZXI6IEFkZCBIZWxwZXJzIGZvciBGUkwgTGluayBUcmFpbmluZyBz
-dXBwb3J0Cj4+Pj4gZm9yIERQLUhETUkyLjEgUENPTgo+Pj4+IGM2ODkxNGNlN2I2NyBkcm0vZHBf
-aGVscGVyOiBBZGQgc3VwcG9ydCBmb3IgbGluayBmYWlsdXJlIGRldGVjdGlvbgo+Pj4+IC06MTEy
-OiBDSEVDSzpQQVJFTlRIRVNJU19BTElHTk1FTlQ6IEFsaWdubWVudCBzaG91bGQgbWF0Y2ggb3Bl
-bgo+Pj4+IHBhcmVudGhlc2lzCj4+Pj4gIzExMjogRklMRTogaW5jbHVkZS9kcm0vZHJtX2RwX2hl
-bHBlci5oOjIwNTU6Cj4+Pj4gK3ZvaWQgZHJtX2RwX3Bjb25faGRtaV9mcmxfbGlua19lcnJvcl9j
-b3VudChzdHJ1Y3QgZHJtX2RwX2F1eCAqYXV4LAo+Pj4+ICsJCQkJCSAgc3RydWN0IGRybV9jb25u
-ZWN0b3IgKmNvbm5lY3Rvcik7Cj4+Pj4KPj4+PiB0b3RhbDogMCBlcnJvcnMsIDAgd2FybmluZ3Ms
-IDEgY2hlY2tzLCA3NiBsaW5lcyBjaGVja2VkCj4+Pj4gMmY0ZDNjMTJlZTI3IGRybS9kcF9oZWxw
-ZXI6IEFkZCBzdXBwb3J0IGZvciBDb25maWd1cmluZyBEU0MgZm9yCj4+Pj4gSERNSTIuMSBQY29u
-Cj4+Pj4gLToxNTogV0FSTklORzpUWVBPX1NQRUxMSU5HOiAnQ29udmVydG9yJyBtYXkgYmUgbWlz
-c3BlbGxlZCAtIHBlcmhhcHMKPj4gJ0NvbnZlcnRlcic/Cj4+Pj4gIzE1Ogo+Pj4+IHYzOiBPbmx5
-IHNldHRpbmcgdGhlIERTQyBiaXRzIGZvciB0aGUgUHJvdG9jb2wgQ29udmVydG9yIGNvbnRyb2wK
-Pj4+Pgo+Pj4+IC06MTY1OiBXQVJOSU5HOkJMT0NLX0NPTU1FTlRfU1RZTEU6IEJsb2NrIGNvbW1l
-bnRzIHVzZSBhIHRyYWlsaW5nICovCj4+Pj4gb24gYSBzZXBhcmF0ZSBsaW5lCj4+Pj4gIzE2NTog
-RklMRTogZHJpdmVycy9ncHUvZHJtL2RybV9kcF9oZWxwZXIuYzozMDM3Ogo+Pj4+ICsgKiAqLwo+
-Pj4+Cj4+Pj4gLToxODU6IFdBUk5JTkc6QkxPQ0tfQ09NTUVOVF9TVFlMRTogQmxvY2sgY29tbWVu
-dHMgdXNlIGEgdHJhaWxpbmcgKi8KPj4+PiBvbiBhIHNlcGFyYXRlIGxpbmUKPj4+PiAjMTg1OiBG
-SUxFOiBkcml2ZXJzL2dwdS9kcm0vZHJtX2RwX2hlbHBlci5jOjMwNTc6Cj4+Pj4gKyAqICovCj4+
-Pj4KPj4+PiAtOjIxMDogV0FSTklORzpCTE9DS19DT01NRU5UX1NUWUxFOiBCbG9jayBjb21tZW50
-cyB1c2UgYSB0cmFpbGluZyAqLwo+Pj4+IG9uIGEgc2VwYXJhdGUgbGluZQo+Pj4+ICMyMTA6IEZJ
-TEU6IGRyaXZlcnMvZ3B1L2RybS9kcm1fZHBfaGVscGVyLmM6MzA4MjoKPj4+PiArICogKi8KPj4+
-Pgo+Pj4+IHRvdGFsOiAwIGVycm9ycywgNCB3YXJuaW5ncywgMCBjaGVja3MsIDM0MyBsaW5lcyBj
-aGVja2VkCj4+Pj4gZDE0NjRhODdhNWE4IGRybS9kcF9oZWxwZXI6IEFkZCBoZWxwZXJzIHRvIGNv
-bmZpZ3VyZSBQQ09OcyBSR0ItWUNiQ3IKPj4+PiBDb252ZXJzaW9uCj4+Pj4gLToxODogV0FSTklO
-RzpUWVBPX1NQRUxMSU5HOiAnYWNjb21vZGF0ZScgbWF5IGJlIG1pc3NwZWxsZWQgLSBwZXJoYXBz
-Cj4+ICdhY2NvbW1vZGF0ZSc/Cj4+Pj4gIzE4Ogo+Pj4+IC1Nb2RpZmllZCB0aGUgY29sb3ItY29u
-dmVyc2lvbiBjYXAgaGVscGVyIGZ1bmN0aW9uLCB0byBhY2NvbW9kYXRlCj4+Pj4KPj4+PiB0b3Rh
-bDogMCBlcnJvcnMsIDEgd2FybmluZ3MsIDAgY2hlY2tzLCAxMDYgbGluZXMgY2hlY2tlZAo+Pj4+
-IDI5ZTE2YTc5OTIxMSBkcm0vaTkxNTogQ2FwdHVyZSBtYXggZnJsIHJhdGUgZm9yIFBDT04gaW4g
-ZGZwIGNhcAo+Pj4+IHN0cnVjdHVyZQo+Pj4+IC06MTM6IFdBUk5JTkc6Q09NTUlUX0xPR19MT05H
-X0xJTkU6IFBvc3NpYmxlIHVud3JhcHBlZCBjb21taXQKPj4+PiBkZXNjcmlwdGlvbiAocHJlZmVy
-IGEgbWF4aW11bSA3NSBjaGFycyBwZXIgbGluZSkKPj4+PiAjMTM6Cj4+Pj4gLXR3ZWFrZWQgdGhl
-IGNvbXBhcmlzb24gb2YgdGFyZ2V0IGJ3IGFuZCBwY29uIGZybCBidyB0byBhdm9pZCByb3VuZHVw
-Cj4+IGVycm9ycy4KPj4+Pgo+Pj4+IHRvdGFsOiAwIGVycm9ycywgMSB3YXJuaW5ncywgMCBjaGVj
-a3MsIDYwIGxpbmVzIGNoZWNrZWQKPj4+PiAwZjY4ZDcyODMyOTUgZHJtL2k5MTU6IEFkZCBzdXBw
-b3J0IGZvciBzdGFydGluZyBGUkwgdHJhaW5pbmcgZm9yCj4+Pj4gSERNSTIuMSB2aWEgUENPTgo+
-Pj4+IC06ODY6IENIRUNLOkJSQUNFUzogQmxhbmsgbGluZXMgYXJlbid0IG5lY2Vzc2FyeSBhZnRl
-ciBhbiBvcGVuIGJyYWNlICd7Jwo+Pj4+ICM4NjogRklMRTogZHJpdmVycy9ncHUvZHJtL2k5MTUv
-ZGlzcGxheS9pbnRlbF9kcC5jOjQwMDU6Cj4+Pj4gK3sKPj4+PiArCj4+Pj4KPj4+PiAtOjE0Nzog
-V0FSTklORzpMT05HX0xJTkU6IGxpbmUgbGVuZ3RoIG9mIDEwMSBleGNlZWRzIDEwMCBjb2x1bW5z
-Cj4+Pj4gIzE0NzogRklMRTogZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kcC5j
-OjQwNjY6Cj4+Pj4gKwl3YWl0X2Zvcihpc19hY3RpdmUgPSBkcm1fZHBfcGNvbl9pc19mcmxfcmVh
-ZHkoJmludGVsX2RwLT5hdXgpID09Cj4+Pj4gK3RydWUsIFRJTUVPVVRfRlJMX1JFQURZX01TKTsK
-Pj4+Pgo+Pj4+IC06MTY2OiBXQVJOSU5HOkxPTkdfTElORTogbGluZSBsZW5ndGggb2YgMTEyIGV4
-Y2VlZHMgMTAwIGNvbHVtbnMKPj4+PiAjMTY2OiBGSUxFOiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9k
-aXNwbGF5L2ludGVsX2RwLmM6NDA4NToKPj4+PiArCXdhaXRfZm9yKGlzX2FjdGl2ZSA9IGRybV9k
-cF9wY29uX2hkbWlfbGlua19hY3RpdmUoJmludGVsX2RwLT5hdXgpCj4+Pj4gKz09IHRydWUsIFRJ
-TUVPVVRfSERNSV9MSU5LX0FDVElWRV9NUyk7Cj4+Pj4KPj4+PiAtOjE3MjogV0FSTklORzpMT05H
-X0xJTkU6IGxpbmUgbGVuZ3RoIG9mIDEwMSBleGNlZWRzIDEwMCBjb2x1bW5zCj4+Pj4gIzE3Mjog
-RklMRTogZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kcC5jOjQwOTE6Cj4+Pj4g
-KwlpZiAoRFBfUENPTl9IRE1JX01PREVfRlJMICE9Cj4+Pj4gK2RybV9kcF9wY29uX2hkbWlfbGlu
-a19tb2RlKCZpbnRlbF9kcC0+YXV4LCAmZnJsX3RyYWluZWRfbWFzaykpIHsKPj4+Pgo+Pj4+IC06
-MTcyOiBXQVJOSU5HOkNPTlNUQU5UX0NPTVBBUklTT046IENvbXBhcmlzb25zIHNob3VsZCBwbGFj
-ZSB0aGUKPj4+PiBjb25zdGFudCBvbiB0aGUgcmlnaHQgc2lkZSBvZiB0aGUgdGVzdAo+Pj4+ICMx
-NzI6IEZJTEU6IGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZHAuYzo0MDkxOgo+
-Pj4+ICsJaWYgKERQX1BDT05fSERNSV9NT0RFX0ZSTCAhPQo+Pj4+ICtkcm1fZHBfcGNvbl9oZG1p
-X2xpbmtfbW9kZSgmaW50ZWxfZHAtPmF1eCwgJmZybF90cmFpbmVkX21hc2spKSB7Cj4+Pj4KPj4+
-PiAtOjE3NjogV0FSTklORzpMT05HX0xJTkU6IGxpbmUgbGVuZ3RoIG9mIDEwOSBleGNlZWRzIDEw
-MCBjb2x1bW5zCj4+Pj4gIzE3NjogRklMRTogZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9p
-bnRlbF9kcC5jOjQwOTU6Cj4+Pj4gKwlkcm1fZGJnKCZpOTE1LT5kcm0sICJNQVhfRlJMX01BU0sg
-PSAldSwgRlJMX1RSQUlORURfTUFTSyA9Cj4+ICV1XG4iLAo+Pj4+ICttYXhfZnJsX2J3X21hc2ss
-IGZybF90cmFpbmVkX21hc2spOwo+Pj4+Cj4+Pj4gdG90YWw6IDAgZXJyb3JzLCA1IHdhcm5pbmdz
-LCAxIGNoZWNrcywgMTk0IGxpbmVzIGNoZWNrZWQKPj4+PiAzNzkzZjUyNTIxNjEgZHJtL2k5MTU6
-IENoZWNrIGZvciBGUkwgdHJhaW5pbmcgYmVmb3JlIERQIExpbmsgdHJhaW5pbmcKPj4+PiAxMjY1
-NzhmNmZlMzkgZHJtL2k5MTU6IEFkZCBzdXBwb3J0IGZvciBlbmFibGluZyBsaW5rIHN0YXR1cyBh
-bmQKPj4+PiByZWNvdmVyeQo+Pj4+IC06NTQ6IFdBUk5JTkc6TE9OR19MSU5FOiBsaW5lIGxlbmd0
-aCBvZiAxMDcgZXhjZWVkcyAxMDAgY29sdW1ucwo+Pj4+ICM1NDogRklMRTogZHJpdmVycy9ncHUv
-ZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kcC5jOjYwMzE6Cj4+Pj4gKwkJZHJtX2RwX3Bjb25faGRt
-aV9mcmxfbGlua19lcnJvcl9jb3VudCgmaW50ZWxfZHAtPmF1eCwKPj4+PiArJmludGVsX2RwLT5h
-dHRhY2hlZF9jb25uZWN0b3ItPmJhc2UpOwo+Pj4+Cj4+Pj4gdG90YWw6IDAgZXJyb3JzLCAxIHdh
-cm5pbmdzLCAwIGNoZWNrcywgODMgbGluZXMgY2hlY2tlZCBjYTVkOGRmNDNjZWIKPj4+PiBkcm0v
-aTkxNTogUmVhZCBEU0MgY2FwYWJpbGl0aWVzIG9mIHRoZSBIRE1JMi4xIFBDT04gZW5jb2Rlcgo+
-Pj4+IC06NTE6IENIRUNLOlBBUkVOVEhFU0lTX0FMSUdOTUVOVDogQWxpZ25tZW50IHNob3VsZCBt
-YXRjaCBvcGVuCj4+Pj4gcGFyZW50aGVzaXMKPj4+PiAjNTE6IEZJTEU6IGRyaXZlcnMvZ3B1L2Ry
-bS9pOTE1L2Rpc3BsYXkvaW50ZWxfZHAuYzo0MDAwOgo+Pj4+ICsJaWYgKGRybV9kcF9kcGNkX3Jl
-YWQoJmludGVsX2RwLT5hdXgsIERQX1BDT05fRFNDX0VOQ09ERVIsCj4+Pj4gKwkJCQkgICAgIGlu
-dGVsX2RwLT5wY29uX2RzY19kcGNkLAo+Pj4+Cj4+Pj4gLTo1NzogQ0hFQ0s6UEFSRU5USEVTSVNf
-QUxJR05NRU5UOiBBbGlnbm1lbnQgc2hvdWxkIG1hdGNoIG9wZW4KPj4+PiBwYXJlbnRoZXNpcwo+
-Pj4+ICM1NzogRklMRTogZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kcC5jOjQw
-MDY6Cj4+Pj4gKwlkcm1fZGJnX2ttcygmaTkxNS0+ZHJtLCAiUENPTiBFTkNPREVSIERTQyBEUENE
-OiAlKnBoXG4iLAo+Pj4+ICsJCSAgIChpbnQpc2l6ZW9mKGludGVsX2RwLT5wY29uX2RzY19kcGNk
-KSwgaW50ZWxfZHAtCj4+PiBwY29uX2RzY19kcGNkKTsKPj4+Pgo+Pj4+IHRvdGFsOiAwIGVycm9y
-cywgMCB3YXJuaW5ncywgMiBjaGVja3MsIDM5IGxpbmVzIGNoZWNrZWQgMzVmNjlhNjU1YmFkCj4+
-Pj4gZHJtL2k5MTU6IEFkZCBoZWxwZXIgZnVuY3Rpb25zIGZvciBjYWxjdWxhdGluZyBEU0MgcGFy
-YW1ldGVycyBmb3IKPj4+PiBIRE1JMi4xCj4+Pj4gLTo1NzogV0FSTklORzpUWVBPX1NQRUxMSU5H
-OiAnY2FwYWJpbGl0ZXMnIG1heSBiZSBtaXNzcGVsbGVkIC0gcGVyaGFwcwo+PiAnY2FwYWJpbGl0
-aWVzJz8KPj4+PiAjNTc6IEZJTEU6IGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxf
-aGRtaS5jOjM0NTg6Cj4+Pj4gKyAqIGFuZCBkc2MgZGVjb2RlciBjYXBhYmlsaXRlcwo+Pj4+Cj4+
-Pj4gLToxNDM6IFdBUk5JTkc6U1VTUEVDVF9DT0RFX0lOREVOVDogc3VzcGVjdCBjb2RlIGluZGVu
-dCBmb3IKPj4+PiBjb25kaXRpb25hbCBzdGF0ZW1lbnRzICgxNiwgMjMpCj4+Pj4gIzE0MzogRklM
-RTogZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9oZG1pLmM6MzU0NDoKPj4+PiAr
-CQlpZiAobWluX3NsaWNlcyA8PSAxICYmIHNyY19tYXhfc2xpY2VzID49IDEgJiYgaGRtaV9tYXhf
-c2xpY2VzCj4+PiA9IDEpCj4+Pj4gKwkJICAgICAgIHRhcmdldF9zbGljZXMgPSAxOwo+Pj4+Cj4+
-Pj4gLToxNDU6IFdBUk5JTkc6U1VTUEVDVF9DT0RFX0lOREVOVDogc3VzcGVjdCBjb2RlIGluZGVu
-dCBmb3IKPj4+PiBjb25kaXRpb25hbCBzdGF0ZW1lbnRzICgxNiwgMjMpCj4+Pj4gIzE0NTogRklM
-RTogZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9oZG1pLmM6MzU0NjoKPj4+PiAr
-CQllbHNlIGlmIChtaW5fc2xpY2VzIDw9IDIgJiYgc3JjX21heF9zbGljZXMgPj0gMiAmJgo+PiBo
-ZG1pX21heF9zbGljZXMgPj0gMikKPj4+PiArCQkgICAgICAgdGFyZ2V0X3NsaWNlcyA9IDI7Cj4+
-Pj4KPj4+PiAtOjE0NzogV0FSTklORzpTVVNQRUNUX0NPREVfSU5ERU5UOiBzdXNwZWN0IGNvZGUg
-aW5kZW50IGZvcgo+Pj4+IGNvbmRpdGlvbmFsIHN0YXRlbWVudHMgKDE2LCAyMykKPj4+PiAjMTQ3
-OiBGSUxFOiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2hkbWkuYzozNTQ4Ogo+
-Pj4+ICsJCWVsc2UgaWYgKG1pbl9zbGljZXMgPD0gNCAmJiBzcmNfbWF4X3NsaWNlcyA+PSA0ICYm
-Cj4+IGhkbWlfbWF4X3NsaWNlcyA+PSA0KQo+Pj4+ICsJCSAgICAgICB0YXJnZXRfc2xpY2VzID0g
-NDsKPj4+Pgo+Pj4+IC06MTQ5OiBXQVJOSU5HOlNVU1BFQ1RfQ09ERV9JTkRFTlQ6IHN1c3BlY3Qg
-Y29kZSBpbmRlbnQgZm9yCj4+Pj4gY29uZGl0aW9uYWwgc3RhdGVtZW50cyAoMTYsIDIzKQo+Pj4+
-ICMxNDk6IEZJTEU6IGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfaGRtaS5jOjM1
-NTA6Cj4+Pj4gKwkJZWxzZSBpZiAobWluX3NsaWNlcyA8PSA4ICYmIHNyY19tYXhfc2xpY2VzID49
-IDggJiYKPj4gaGRtaV9tYXhfc2xpY2VzID49IDgpCj4+Pj4gKwkJICAgICAgIHRhcmdldF9zbGlj
-ZXMgPSA4Owo+Pj4+Cj4+Pj4gLToxNTE6IFdBUk5JTkc6U1VTUEVDVF9DT0RFX0lOREVOVDogc3Vz
-cGVjdCBjb2RlIGluZGVudCBmb3IKPj4+PiBjb25kaXRpb25hbCBzdGF0ZW1lbnRzICgxNiwgMjMp
-Cj4+Pj4gIzE1MTogRklMRTogZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9oZG1p
-LmM6MzU1MjoKPj4+PiArCQllbHNlIGlmIChtaW5fc2xpY2VzIDw9IDEyICYmIHNyY19tYXhfc2xp
-Y2VzID49IDEyICYmCj4+IGhkbWlfbWF4X3NsaWNlcyA+PSAxMikKPj4+PiArCQkgICAgICAgdGFy
-Z2V0X3NsaWNlcyA9IDEyOwo+Pj4+Cj4+Pj4gLToxNTM6IFdBUk5JTkc6U1VTUEVDVF9DT0RFX0lO
-REVOVDogc3VzcGVjdCBjb2RlIGluZGVudCBmb3IKPj4+PiBjb25kaXRpb25hbCBzdGF0ZW1lbnRz
-ICgxNiwgMjMpCj4+Pj4gIzE1MzogRklMRTogZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9p
-bnRlbF9oZG1pLmM6MzU1NDoKPj4+PiArCQllbHNlIGlmIChtaW5fc2xpY2VzIDw9IDE2ICYmIHNy
-Y19tYXhfc2xpY2VzID49IDE2ICYmCj4+IGhkbWlfbWF4X3NsaWNlcyA+PSAxNikKPj4+PiArCQkg
-ICAgICAgdGFyZ2V0X3NsaWNlcyA9IDE2Owo+Pj4+Cj4+Pj4gdG90YWw6IDAgZXJyb3JzLCA3IHdh
-cm5pbmdzLCAwIGNoZWNrcywgMjQ4IGxpbmVzIGNoZWNrZWQgMzRlZTlkZmRhZGZkCj4+Pj4gZHJt
-L2k5MTUvZGlzcGxheTogQ29uZmlndXJlIFBDT04gZm9yIERTQzEuMSB0byBEU0MxLjIgZW5jb2Rp
-bmcKPj4+PiAtOjc1OiBDSEVDSzpCUkFDRVM6IEJsYW5rIGxpbmVzIGFyZW4ndCBuZWNlc3Nhcnkg
-YWZ0ZXIgYW4gb3BlbiBicmFjZSAneycKPj4+PiAjNzU6IEZJTEU6IGRyaXZlcnMvZ3B1L2RybS9p
-OTE1L2Rpc3BsYXkvaW50ZWxfZHAuYzo0MTcxOgo+Pj4+ICt7Cj4+Pj4gKwo+Pj4+Cj4+Pj4gLTo5
-MjogQ0hFQ0s6TElORV9TUEFDSU5HOiBQbGVhc2UgZG9uJ3QgdXNlIG11bHRpcGxlIGJsYW5rIGxp
-bmVzCj4+Pj4gIzkyOiBGSUxFOiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rw
-LmM6NDE4ODoKPj4+PiArCj4+Pj4gKwo+Pj4+Cj4+Pj4gLToxNTU6IENIRUNLOlBBUkVOVEhFU0lT
-X0FMSUdOTUVOVDogQWxpZ25tZW50IHNob3VsZCBtYXRjaCBvcGVuCj4+Pj4gcGFyZW50aGVzaXMK
-Pj4+PiAjMTU1OiBGSUxFOiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RwLmM6
-NDI1MToKPj4+PiArCWJpdHNfcGVyX3BpeGVsID0gaW50ZWxfZHBfcGNvbl9kc2NfZW5jX2JwcChp
-bnRlbF9kcCwgY3J0Y19zdGF0ZSwKPj4+PiArCQkJCQkJICBudW1fc2xpY2VzLCBzbGljZV93aWR0
-aCk7Cj4+Pj4KPj4+PiB0b3RhbDogMCBlcnJvcnMsIDAgd2FybmluZ3MsIDMgY2hlY2tzLCAxNTcg
-bGluZXMgY2hlY2tlZCBkNzM5MDM0OTQ3YmIKPj4+PiBkcm0vaTkxNS9kaXNwbGF5OiBMZXQgUENP
-TiBjb252ZXJ0IGZyb20gUkdCIHRvIFlDYkNyIGlmIGl0IGNhbgo+Pj4+IC06MTA0OiBXQVJOSU5H
-OkxPTkdfTElORTogbGluZSBsZW5ndGggb2YgMTAxIGV4Y2VlZHMgMTAwIGNvbHVtbnMKPj4+PiAj
-MTA0OiBGSUxFOiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RwLmM6NDM2ODoK
-Pj4+PiArCj4+IERQX0RTX0hETUlfQlQyMDIwX1JHQl9ZQ0JDUl9DT05WKTsKPj4+Pgo+Pj4+IC06
-MTU2OiBDSEVDSzpQQVJFTlRIRVNJU19BTElHTk1FTlQ6IEFsaWdubWVudCBzaG91bGQgbWF0Y2gg
-b3Blbgo+Pj4+IHBhcmVudGhlc2lzCj4+Pj4gIzE1NjogRklMRTogZHJpdmVycy9ncHUvZHJtL2k5
-MTUvZGlzcGxheS9pbnRlbF9kcC5jOjY5MjI6Cj4+Pj4gKwlyZ2JfdG9feWNiY3IgPSBkcm1fZHBf
-ZG93bnN0cmVhbV9yZ2JfdG9feWNiY3JfY29udmVyc2lvbihpbnRlbF9kcC0KPj4+IGRwY2QsCj4+
-Pj4gKwkJCQkJCQlpbnRlbF9kcC0KPj4+IGRvd25zdHJlYW1fcG9ydHMsCj4+Pj4KPj4+PiB0b3Rh
-bDogMCBlcnJvcnMsIDEgd2FybmluZ3MsIDEgY2hlY2tzLCAxNTIgbGluZXMgY2hlY2tlZAo+Pj4+
-Cj4+Pj4KPj4+PiBfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-Xwo+Pj4+IEludGVsLWdmeCBtYWlsaW5nIGxpc3QKPj4+PiBJbnRlbC1nZnhAbGlzdHMuZnJlZWRl
-c2t0b3Aub3JnCj4+Pj4gaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0
-aW5mby9pbnRlbC1nZngKCi0tIAp+U3dhdGkgU2hhcm1hCl9fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4
-QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWls
-bWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
+
+Hi Maarten, Maxime, and Thomas -
+
+Here's the DP-HDMI2.1 PCON support topic pull consisting of the series
+[1]. The series is split roughly 50-50 between drm helpers and i915, so
+a topic branch seemed to be the right way to go.
+
+I'll also pull this to drm-intel-next once you've merged to
+drm-misc-next.
+
+BR,
+Jani.
+
+
+[1] https://patchwork.freedesktop.org/series/82098/
+
+
+topic/dp-hdmi-2.1-pcon-2020-12-23:
+Add support for DP-HDMI2.1 PCON
+
+From the series cover letter:
+
+This patch series attempts to add support for a DP-HDMI2.1 Protocol
+Convertor. The VESA spec for the HDMI2.1 PCON are proposed in Errata
+E5 to DisplayPort_v2.0:
+https://vesa.org/join-vesamemberships/member-downloads/?action=stamp&fileid=42299
+The details are mentioned in:
+VESA DP-to-HDMI PCON Specification Standalone Document
+https://groups.vesa.org/wg/DP/document/15651
+
+This series starts with adding support for FRL (Fixed Rate Link)
+Training between the PCON and HDMI2.1 sink.
+As per HDMI2.1 specification, a new data-channel or lane is added in
+FRL mode, by repurposing the TMDS clock Channel. Through FRL, higher
+bit-rate can be supported, ie. up to 12 Gbps/lane (48 Gbps over 4
+lanes).
+
+With these patches, the HDMI2.1 PCON can be configured to achieve FRL
+training based on the maximum FRL rate supported by the panel, source
+and the PCON.
+The approach is to add the support for FRL training between PCON and
+HDMI2.1 sink and gradually add other blocks for supporting higher
+resolutions and other HDMI2.1 features, that can be supported by pcon
+for the sources that do not natively support HDMI2.1.
+
+This is done before the DP Link training between the source and PCON
+is started. In case of FRL training is not achieved, the PCON will
+work in the regular TMDS mode, without HDMI2.1 feature support.
+Any interruption in FRL training between the PCON and HDMI2.1 sink is
+notified through IRQ_HPD. On receiving the IRQ_HPD the concerned DPCD
+registers are read and FRL training is re-attempted.
+
+Currently, we have tested the FRL training and are able to enable 4K
+display with TGL Platform + Realtek PCON RTD2173 with HDMI2.1 supporting
+panel.
+
+The following changes since commit b3bf99daaee96a141536ce5c60a0d6dba6ec1d23:
+
+  drm/i915/display: Defer initial modeset until after GGTT is initialised (2020-11-26 11:01:52 +0000)
+
+are available in the Git repository at:
+
+  git://anongit.freedesktop.org/drm/drm-intel tags/topic/dp-hdmi-2.1-pcon-2020-12-23
+
+for you to fetch changes up to 522508b665df3bbfdf40381d4e61777844b1703f:
+
+  drm/i915/display: Let PCON convert from RGB to YCbCr if it can (2020-12-22 17:59:07 +0200)
+
+----------------------------------------------------------------
+Add support for DP-HDMI2.1 PCON
+
+From the series cover letter:
+
+This patch series attempts to add support for a DP-HDMI2.1 Protocol
+Convertor. The VESA spec for the HDMI2.1 PCON are proposed in Errata
+E5 to DisplayPort_v2.0:
+https://vesa.org/join-vesamemberships/member-downloads/?action=stamp&fileid=42299
+The details are mentioned in:
+VESA DP-to-HDMI PCON Specification Standalone Document
+https://groups.vesa.org/wg/DP/document/15651
+
+This series starts with adding support for FRL (Fixed Rate Link)
+Training between the PCON and HDMI2.1 sink.
+As per HDMI2.1 specification, a new data-channel or lane is added in
+FRL mode, by repurposing the TMDS clock Channel. Through FRL, higher
+bit-rate can be supported, ie. up to 12 Gbps/lane (48 Gbps over 4
+lanes).
+
+With these patches, the HDMI2.1 PCON can be configured to achieve FRL
+training based on the maximum FRL rate supported by the panel, source
+and the PCON.
+The approach is to add the support for FRL training between PCON and
+HDMI2.1 sink and gradually add other blocks for supporting higher
+resolutions and other HDMI2.1 features, that can be supported by pcon
+for the sources that do not natively support HDMI2.1.
+
+This is done before the DP Link training between the source and PCON
+is started. In case of FRL training is not achieved, the PCON will
+work in the regular TMDS mode, without HDMI2.1 feature support.
+Any interruption in FRL training between the PCON and HDMI2.1 sink is
+notified through IRQ_HPD. On receiving the IRQ_HPD the concerned DPCD
+registers are read and FRL training is re-attempted.
+
+Currently, we have tested the FRL training and are able to enable 4K
+display with TGL Platform + Realtek PCON RTD2173 with HDMI2.1 supporting
+panel.
+
+----------------------------------------------------------------
+Ankit Nautiyal (11):
+      drm/edid: Parse DSC1.2 cap fields from HFVSDB block
+      drm/dp_helper: Add Helpers for FRL Link Training support for DP-HDMI2.1 PCON
+      drm/dp_helper: Add support for Configuring DSC for HDMI2.1 Pcon
+      drm/dp_helper: Add helpers to configure PCONs RGB-YCbCr Conversion
+      drm/i915: Capture max frl rate for PCON in dfp cap structure
+      drm/i915: Add support for starting FRL training for HDMI2.1 via PCON
+      drm/i915: Check for FRL training before DP Link training
+      drm/i915: Read DSC capabilities of the HDMI2.1 PCON encoder
+      drm/i915: Add helper functions for calculating DSC parameters for HDMI2.1
+      drm/i915/display: Configure PCON for DSC1.1 to DSC1.2 encoding
+      drm/i915/display: Let PCON convert from RGB to YCbCr if it can
+
+Swati Sharma (4):
+      drm/edid: Add additional HFVSDB fields for HDMI2.1
+      drm/edid: Parse MAX_FRL field from HFVSDB block
+      drm/dp_helper: Add support for link failure detection
+      drm/i915: Add support for enabling link status and recovery
+
+ drivers/gpu/drm/drm_dp_helper.c                    | 566 +++++++++++++++++++++
+ drivers/gpu/drm/drm_edid.c                         | 103 ++++
+ drivers/gpu/drm/i915/display/intel_ddi.c           |   6 +-
+ drivers/gpu/drm/i915/display/intel_display_types.h |  10 +
+ drivers/gpu/drm/i915/display/intel_dp.c            | 440 +++++++++++++++-
+ drivers/gpu/drm/i915/display/intel_dp.h            |   7 +-
+ drivers/gpu/drm/i915/display/intel_hdmi.c          | 233 +++++++++
+ drivers/gpu/drm/i915/display/intel_hdmi.h          |   7 +
+ include/drm/drm_connector.h                        |  49 ++
+ include/drm/drm_dp_helper.h                        | 218 ++++++++
+ include/drm/drm_edid.h                             |  30 ++
+ 11 files changed, 1650 insertions(+), 19 deletions(-)
+
+-- 
+Jani Nikula, Intel Open Source Graphics Center
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
