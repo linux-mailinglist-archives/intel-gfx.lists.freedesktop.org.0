@@ -2,54 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DB65D2E26FC
-	for <lists+intel-gfx@lfdr.de>; Thu, 24 Dec 2020 13:57:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D0D9E2E2759
+	for <lists+intel-gfx@lfdr.de>; Thu, 24 Dec 2020 14:28:32 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 370CA89BB2;
-	Thu, 24 Dec 2020 12:57:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1FD0889C55;
+	Thu, 24 Dec 2020 13:28:30 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-qk1-x72f.google.com (mail-qk1-x72f.google.com
- [IPv6:2607:f8b0:4864:20::72f])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9E78E89BB2
- for <intel-gfx@lists.freedesktop.org>; Thu, 24 Dec 2020 12:57:40 +0000 (UTC)
-Received: by mail-qk1-x72f.google.com with SMTP id f26so2025436qka.0
- for <intel-gfx@lists.freedesktop.org>; Thu, 24 Dec 2020 04:57:40 -0800 (PST)
+Received: from mail-qt1-x830.google.com (mail-qt1-x830.google.com
+ [IPv6:2607:f8b0:4864:20::830])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8B7C589C55
+ for <intel-gfx@lists.freedesktop.org>; Thu, 24 Dec 2020 13:28:28 +0000 (UTC)
+Received: by mail-qt1-x830.google.com with SMTP id c14so1476434qtn.0
+ for <intel-gfx@lists.freedesktop.org>; Thu, 24 Dec 2020 05:28:28 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=T6kgzdDT7qVH0B+zwy/Fe9qHP3HecB19oC7AMm3dML0=;
- b=Ws+Oxw8/pgB3VudZlo1jAkbf2klRuJw+CqxHyIDBpjijSeydIROtdwgBNW71waBovU
- jwopFnst1E2v2ejmM07AzZW+QASLUd/wTVMuj1LIGMY2H/tRX9q3XeJBNlHKJf1u89sb
- bHErlJ6tl3xAyxfD+wCx31+uQsVLoS518I+T2IffnEzVDGntnMche0tQp9YnQAUD0gxF
- IGz94edwPljqw/s5xhbw1kLTNcBEz7z2D0EhFLS12PQgCxX3g21dU/HIh14HZ4LgvitO
- j637P9Z+QI2JYNFQIjV2PQImZBSqCJg/NvGprZx3weZCItEKzH34hEfJWWhSg2GOPK41
- ZGKA==
+ :cc; bh=jFI5W9K0OwNCe1kUuUW6GpYnLBHNY5kaQW+U+QdQwPw=;
+ b=piO4Kkzz/xUQlh9R4uVGekl7ucSGlOppJUL118HIv+rp9hrRRcw1G2QJWf+5TDK/le
+ MAUMs3c0HFveYkCSoKTvGYV0XQhZkNDogkUQ8xL3wYoUgGX5jRIoPqXRDdZRZVC/Ixek
+ I6vJfewbmgeuaKbD+LC1XLIS/qkOeWqCM8tlPUb3QEd4oXHJRSjEXg5ZYtl/SBXMRfXb
+ oyamJDro7JHzAx/xWVJkjJ6a0K5c/UcmFOPUykwES7axPbZXNDWDj0B1t9osS0eGrWk5
+ MdGVB0dqLlKTpePsblB717WpCvhFa1JN7ctByb4K5uQZ0k3PKbkdpoC23hCvQgDfYr6W
+ /1Yw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=T6kgzdDT7qVH0B+zwy/Fe9qHP3HecB19oC7AMm3dML0=;
- b=GQtdf5cXWEwMR4VOUTpsfPuy6nFw/U9rHoj3L3d7IP0ZMvxJcWx5r8Q1wSroXPZw8l
- ae+hePDUuR2+FAkKbiwI3YP6u+msF0+dkplDuxIOLkeQhL6kwsUOX5H1LXrr4cjntVYU
- aA5jrQQXz1sue/WqvZwUx1WInpVpKVioARy5xRE44dWGitXsoVyP5p2AoiUnisC/mh6D
- kEWIESX5sr/0Sto/bEZMbixi6DpvlBnVo76Ht5HyHrwsMn8W8PK/JCDPPEc6nA+YfGmX
- FEZQnE4KHo+zWTeWM40L5KvHFpu/n9i/QBPImxceDEenKnt2tpqkkSiFuA5jqbmCKCA0
- zNHg==
-X-Gm-Message-State: AOAM533E7FbmRmIzRvkuHBYiJeOzwaFaeanOFPN4hbIIOK+2B96HilVZ
- 0nfvJbffz4Q9KhBUmc6wz6O+/h2i4Fk+QyTAdqQ=
-X-Google-Smtp-Source: ABdhPJw6f+RJkTzyDmCPj23bGIq8WtXm3OC+jpAF/YaY95tRNT33ZAm+zovTe7VZHa6OMMpbBnfvetQ7FBpTfylV2G8=
-X-Received: by 2002:a37:a8a:: with SMTP id 132mr30104219qkk.327.1608814659688; 
- Thu, 24 Dec 2020 04:57:39 -0800 (PST)
+ bh=jFI5W9K0OwNCe1kUuUW6GpYnLBHNY5kaQW+U+QdQwPw=;
+ b=V4xJs/7epXXUH82f+OMTAL0lfQgYZCWeSiI2GoKA5x6o+Ix5jDJQ+7lh0cHR0uQEUc
+ Wxexx9uJOPy92Br1v9+255BjXtfwLXcdzkpt0ByQ09p+y7551iRryDd2tiyEclK8ZUiv
+ OwK3my3Vlm7JqKIVe/IPb3yMLvF/d6MRgVkBSqtK4PzerlTNr+l1ZJEofzjm/CS5cLki
+ +kXir9WLnTBEaQfpoAkK+f71u9ffREVEcJNhBiHVixWs+FDKk1W14vZQXj30bJ4+z3Tv
+ MjK5blhxTpGqImOw/8UCe6+A/xBNf5BkyNQDT6Db/hFCO+23rkUB8OqfcYOhOD4TrcZX
+ Um5g==
+X-Gm-Message-State: AOAM531S090riB4RxCWCOmp6k+rz3+BtwPq1wG4yXSkey1pjYiNwabVD
+ +nmh688FFqomTaG1/OkQZg/FJ/Z6jaAKG+gob2JO96KX
+X-Google-Smtp-Source: ABdhPJyFR42ULoFbwZekEpEsb6onPVFinoil4qkPKKeVrwgjp9kADFoY2urka90btVBpbAjFO281D97YZy62VNgw/4Q=
+X-Received: by 2002:a05:622a:255:: with SMTP id
+ c21mr30172612qtx.223.1608816507810; 
+ Thu, 24 Dec 2020 05:28:27 -0800 (PST)
 MIME-Version: 1.0
 References: <20201223111126.3338-1-chris@chris-wilson.co.uk>
- <20201223111126.3338-3-chris@chris-wilson.co.uk>
-In-Reply-To: <20201223111126.3338-3-chris@chris-wilson.co.uk>
+ <20201223111126.3338-4-chris@chris-wilson.co.uk>
+In-Reply-To: <20201223111126.3338-4-chris@chris-wilson.co.uk>
 From: Matthew Auld <matthew.william.auld@gmail.com>
-Date: Thu, 24 Dec 2020 12:57:14 +0000
-Message-ID: <CAM0jSHNU+Wev3wh9hcfVJqQRd-O2+urN3BVuwpWCUs1PMnVHwQ@mail.gmail.com>
+Date: Thu, 24 Dec 2020 13:28:02 +0000
+Message-ID: <CAM0jSHM+A8vPk1Rbrk12_2k--XcX2wycJDM7ij+deWgRT8BYiw@mail.gmail.com>
 To: Chris Wilson <chris@chris-wilson.co.uk>
-Subject: Re: [Intel-gfx] [PATCH 03/62] drm/i915/gt: Decouple inflight
- virtual engines
+Subject: Re: [Intel-gfx] [PATCH 04/62] drm/i915/gt: Defer schedule_out until
+ after the next dequeue
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,14 +71,14 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 On Wed, 23 Dec 2020 at 11:12, Chris Wilson <chris@chris-wilson.co.uk> wrote:
 >
-> Once a virtual engine has been bound to a sibling, it will remain bound
-> until we finally schedule out the last active request. We can not rebind
-> the context to a new sibling while it is inflight as the context save
-> will conflict, hence we wait. As we cannot then use any other sibliing
-> while the context is inflight, only kick the bound sibling while it
-> inflight and upon scheduling out the kick the rest (so that we can swap
-> engines on timeslicing if the previously bound engine becomes
-> oversubscribed).
+> Inside schedule_out, we do extra work upon idling the context, such as
+> updating the runtime, kicking off retires, kicking virtual engines.
+> However, if we are in a series of processing single requests per
+> contexts, we may find ourselves scheduling out the context, only to
+> immediately schedule it back in during dequeue. This is just extra work
+> that we can avoid if we keep the context marked as inflight across the
+> dequeue. This becomes more significant later on for minimising virtual
+> engine misses.
 >
 > Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
 Reviewed-by: Matthew Auld <matthew.auld@intel.com>
