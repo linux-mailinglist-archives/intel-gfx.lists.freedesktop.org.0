@@ -2,30 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4DF582E26EC
-	for <lists+intel-gfx@lfdr.de>; Thu, 24 Dec 2020 13:47:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DB65D2E26FC
+	for <lists+intel-gfx@lfdr.de>; Thu, 24 Dec 2020 13:57:44 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A134289C89;
-	Thu, 24 Dec 2020 12:47:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 370CA89BB2;
+	Thu, 24 Dec 2020 12:57:42 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6DAED89C89;
- Thu, 24 Dec 2020 12:47:13 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 23422889-1500050 
- for multiple; Thu, 24 Dec 2020 12:47:00 +0000
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Thu, 24 Dec 2020 12:47:00 +0000
-Message-Id: <20201224124700.3778923-1-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.30.0.rc1
-In-Reply-To: <20201224110158.3560769-1-chris@chris-wilson.co.uk>
-References: <20201224110158.3560769-1-chris@chris-wilson.co.uk>
+Received: from mail-qk1-x72f.google.com (mail-qk1-x72f.google.com
+ [IPv6:2607:f8b0:4864:20::72f])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9E78E89BB2
+ for <intel-gfx@lists.freedesktop.org>; Thu, 24 Dec 2020 12:57:40 +0000 (UTC)
+Received: by mail-qk1-x72f.google.com with SMTP id f26so2025436qka.0
+ for <intel-gfx@lists.freedesktop.org>; Thu, 24 Dec 2020 04:57:40 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=T6kgzdDT7qVH0B+zwy/Fe9qHP3HecB19oC7AMm3dML0=;
+ b=Ws+Oxw8/pgB3VudZlo1jAkbf2klRuJw+CqxHyIDBpjijSeydIROtdwgBNW71waBovU
+ jwopFnst1E2v2ejmM07AzZW+QASLUd/wTVMuj1LIGMY2H/tRX9q3XeJBNlHKJf1u89sb
+ bHErlJ6tl3xAyxfD+wCx31+uQsVLoS518I+T2IffnEzVDGntnMche0tQp9YnQAUD0gxF
+ IGz94edwPljqw/s5xhbw1kLTNcBEz7z2D0EhFLS12PQgCxX3g21dU/HIh14HZ4LgvitO
+ j637P9Z+QI2JYNFQIjV2PQImZBSqCJg/NvGprZx3weZCItEKzH34hEfJWWhSg2GOPK41
+ ZGKA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=T6kgzdDT7qVH0B+zwy/Fe9qHP3HecB19oC7AMm3dML0=;
+ b=GQtdf5cXWEwMR4VOUTpsfPuy6nFw/U9rHoj3L3d7IP0ZMvxJcWx5r8Q1wSroXPZw8l
+ ae+hePDUuR2+FAkKbiwI3YP6u+msF0+dkplDuxIOLkeQhL6kwsUOX5H1LXrr4cjntVYU
+ aA5jrQQXz1sue/WqvZwUx1WInpVpKVioARy5xRE44dWGitXsoVyP5p2AoiUnisC/mh6D
+ kEWIESX5sr/0Sto/bEZMbixi6DpvlBnVo76Ht5HyHrwsMn8W8PK/JCDPPEc6nA+YfGmX
+ FEZQnE4KHo+zWTeWM40L5KvHFpu/n9i/QBPImxceDEenKnt2tpqkkSiFuA5jqbmCKCA0
+ zNHg==
+X-Gm-Message-State: AOAM533E7FbmRmIzRvkuHBYiJeOzwaFaeanOFPN4hbIIOK+2B96HilVZ
+ 0nfvJbffz4Q9KhBUmc6wz6O+/h2i4Fk+QyTAdqQ=
+X-Google-Smtp-Source: ABdhPJw6f+RJkTzyDmCPj23bGIq8WtXm3OC+jpAF/YaY95tRNT33ZAm+zovTe7VZHa6OMMpbBnfvetQ7FBpTfylV2G8=
+X-Received: by 2002:a37:a8a:: with SMTP id 132mr30104219qkk.327.1608814659688; 
+ Thu, 24 Dec 2020 04:57:39 -0800 (PST)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH i-g-t v4] i915/gem_softpin: Test total occupancy
+References: <20201223111126.3338-1-chris@chris-wilson.co.uk>
+ <20201223111126.3338-3-chris@chris-wilson.co.uk>
+In-Reply-To: <20201223111126.3338-3-chris@chris-wilson.co.uk>
+From: Matthew Auld <matthew.william.auld@gmail.com>
+Date: Thu, 24 Dec 2020 12:57:14 +0000
+Message-ID: <CAM0jSHNU+Wev3wh9hcfVJqQRd-O2+urN3BVuwpWCUs1PMnVHwQ@mail.gmail.com>
+To: Chris Wilson <chris@chris-wilson.co.uk>
+Subject: Re: [Intel-gfx] [PATCH 03/62] drm/i915/gt: Decouple inflight
+ virtual engines
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,176 +62,25 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: igt-dev@lists.freedesktop.org, Matthew Auld <matthew.auld@intel.com>,
- Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Use pad-to-size to fill the entire GTT. Make sure we own it all!
-
-Suggested-by: Matthew Auld <matthew.auld@intel.com>
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: Matthew Auld <matthew.auld@intel.com>
----
- tests/i915/gem_softpin.c | 97 +++++++++++++++++++++++++++++++++++-----
- 1 file changed, 85 insertions(+), 12 deletions(-)
-
-diff --git a/tests/i915/gem_softpin.c b/tests/i915/gem_softpin.c
-index f761a6839..516accc8f 100644
---- a/tests/i915/gem_softpin.c
-+++ b/tests/i915/gem_softpin.c
-@@ -32,6 +32,8 @@
- #define EXEC_OBJECT_PINNED	(1<<4)
- #define EXEC_OBJECT_SUPPORTS_48B_ADDRESS (1<<3)
- 
-+#define LIMIT_32b ((1ull << 32) - (1ull << 12))
-+
- /* gen8_canonical_addr
-  * Used to convert any address into canonical form, i.e. [63:48] == [47].
-  * Based on kernel's sign_extend64 implementation.
-@@ -127,32 +129,31 @@ static void test_zero(int i915)
- 		.buffer_count = 1,
- 	};
- 
--	/* Under full-ppgtt, we have complete control of the GTT */
- 	igt_info("Object size:%"PRIx64", GTT size:%"PRIx64"\n", sz, gtt);
- 
- 	object.offset = 0;
- 	igt_assert_f(__gem_execbuf(i915, &execbuf) == 0,
--		     "execbuff failed with object.offset=%llx\n",
-+		     "execbuf failed with object.offset=%llx\n",
- 		     object.offset);
- 
- 	if (gtt >> 32) {
- 		object.offset = (1ull << 32) - sz;
- 		igt_assert_f(__gem_execbuf(i915, &execbuf) == 0,
--			     "execbuff failed with object.offset=%llx\n",
-+			     "execbuf failed with object.offset=%llx\n",
- 			     object.offset);
- 	}
- 
- 	if ((gtt - sz) >> 32) {
- 		object.offset = 1ull << 32;
- 		igt_assert_f(__gem_execbuf(i915, &execbuf) == 0,
--			     "execbuff failed with object.offset=%llx\n",
-+			     "execbuf failed with object.offset=%llx\n",
- 			     object.offset);
- 	}
- 
- 	object.offset = gtt - sz;
- 	object.offset = gen8_canonical_addr(object.offset);
- 	igt_assert_f(__gem_execbuf(i915, &execbuf) == 0,
--		     "execbuff failed with object.offset=%llx\n",
-+		     "execbuf failed with object.offset=%llx\n",
- 		     object.offset);
- 
- 	gem_close(i915, object.handle);
-@@ -191,6 +192,68 @@ static void test_32b_last_page(int i915)
- 	gem_close(i915, object.handle);
- }
- 
-+static void test_full(int i915)
-+{
-+	uint64_t sz, gtt = gem_aperture_size(i915);
-+	struct drm_i915_gem_exec_object2 obj[2] = {
-+		/* Use two objects so we can test .pad_to_size works */
-+		{
-+			.handle = batch_create(i915, &sz),
-+			.flags = EXEC_OBJECT_PINNED | EXEC_OBJECT_PAD_TO_SIZE,
-+		},
-+		{
-+			.handle = batch_create(i915, &sz),
-+			.flags = EXEC_OBJECT_PINNED,
-+		},
-+	};
-+	struct drm_i915_gem_execbuffer2 execbuf = {
-+		.buffers_ptr = to_user_pointer(obj),
-+		.buffer_count = ARRAY_SIZE(obj),
-+	};
-+	int err;
-+
-+	obj[0].pad_to_size = gtt - sz;
-+	if (obj[0].pad_to_size > LIMIT_32b - sz)
-+		obj[0].pad_to_size = LIMIT_32b - sz;
-+
-+	obj[1].offset = sz;
-+	igt_assert_f((err = __gem_execbuf(i915, &execbuf)) == -ENOSPC,
-+		     "[32b] execbuf succeeded with obj[1].offset=%llx and obj[0].pad_to_size=%llx: err=%d\n",
-+		     obj[1].offset, obj[0].pad_to_size, err);
-+
-+	obj[1].offset = obj[0].pad_to_size;
-+	igt_assert_f((err = __gem_execbuf(i915, &execbuf)) == 0,
-+		     "[32b] execbuf failed with obj[1].offset=%llx and obj[0].pad_to_size=%llx: err=%d\n",
-+		     obj[1].offset, obj[0].pad_to_size, err);
-+
-+	igt_assert_eq_u64(obj[0].offset, 0);
-+	igt_assert_eq_u64(obj[1].offset, obj[0].pad_to_size);
-+
-+	if (obj[1].offset + sz < gtt) {
-+		obj[0].flags |= EXEC_OBJECT_SUPPORTS_48B_ADDRESS;
-+		obj[1].flags |= EXEC_OBJECT_SUPPORTS_48B_ADDRESS;
-+
-+		obj[0].pad_to_size = gtt - sz;
-+
-+		obj[1].offset = gen8_canonical_addr(obj[0].pad_to_size - sz);
-+		igt_assert_f((err = __gem_execbuf(i915, &execbuf)) == -ENOSPC,
-+			     "[48b] execbuf succeeded with obj[1].offset=%llx and obj[0].pad_to_size=%llx: err=%d\n",
-+			     obj[1].offset, obj[0].pad_to_size, err);
-+
-+		obj[1].offset = gen8_canonical_addr(obj[0].pad_to_size);
-+		igt_assert_f((err = __gem_execbuf(i915, &execbuf)) == 0,
-+			     "[48b] execbuf failed with obj[1].offset=%llx and obj[0].pad_to_size=%llx: err=%d\n",
-+		     obj[1].offset, obj[0].pad_to_size, err);
-+
-+		igt_assert_eq_u64(obj[0].offset, 0);
-+		igt_assert_eq_u64(obj[1].offset,
-+				  gen8_canonical_addr(obj[0].pad_to_size));
-+	}
-+
-+	gem_close(i915, obj[1].handle);
-+	gem_close(i915, obj[0].handle);
-+}
-+
- static void test_softpin(int fd)
- {
- 	const uint32_t size = 1024 * 1024;
-@@ -653,14 +716,24 @@ igt_main
- 
- 	igt_subtest("invalid")
- 		test_invalid(fd);
--	igt_subtest("zero") {
--		igt_require(gem_uses_full_ppgtt(fd));
--		test_zero(fd);
--	}
--	igt_subtest("32b-excludes-last-page") {
--		igt_require(gem_uses_full_ppgtt(fd));
--		test_32b_last_page(fd);
-+
-+	igt_subtest_group {
-+		/* Under full-ppgtt, we have complete control of the GTT */
-+
-+		igt_fixture {
-+			igt_require(gem_uses_full_ppgtt(fd));
-+		}
-+
-+		igt_subtest("zero")
-+			test_zero(fd);
-+
-+		igt_subtest("32b-excludes-last-page")
-+			test_32b_last_page(fd);
-+
-+		igt_subtest("full")
-+			test_full(fd);
- 	}
-+
- 	igt_subtest("softpin")
- 		test_softpin(fd);
- 	igt_subtest("overlap")
--- 
-2.30.0.rc1
-
+On Wed, 23 Dec 2020 at 11:12, Chris Wilson <chris@chris-wilson.co.uk> wrote:
+>
+> Once a virtual engine has been bound to a sibling, it will remain bound
+> until we finally schedule out the last active request. We can not rebind
+> the context to a new sibling while it is inflight as the context save
+> will conflict, hence we wait. As we cannot then use any other sibliing
+> while the context is inflight, only kick the bound sibling while it
+> inflight and upon scheduling out the kick the rest (so that we can swap
+> engines on timeslicing if the previously bound engine becomes
+> oversubscribed).
+>
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Reviewed-by: Matthew Auld <matthew.auld@intel.com>
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
