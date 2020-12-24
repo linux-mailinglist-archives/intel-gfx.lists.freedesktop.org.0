@@ -1,55 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 59BEF2E26A5
-	for <lists+intel-gfx@lfdr.de>; Thu, 24 Dec 2020 13:07:59 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 385E62E26A9
+	for <lists+intel-gfx@lfdr.de>; Thu, 24 Dec 2020 13:10:51 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0E5BB8976D;
-	Thu, 24 Dec 2020 12:07:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6B75089B29;
+	Thu, 24 Dec 2020 12:10:49 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-qt1-x830.google.com (mail-qt1-x830.google.com
- [IPv6:2607:f8b0:4864:20::830])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CD9E18976D
- for <intel-gfx@lists.freedesktop.org>; Thu, 24 Dec 2020 12:07:53 +0000 (UTC)
-Received: by mail-qt1-x830.google.com with SMTP id y15so1340535qtv.5
- for <intel-gfx@lists.freedesktop.org>; Thu, 24 Dec 2020 04:07:53 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=rVYkJ2QvHPOKaMVeaejnRCLHvt2E6Rq9JRSuX4QdscA=;
- b=SOqWV7ss72hNe5uAJ6Mb0qaPH1Mwu7PbLkkwn3nIE3+vtTGCi0JVpXduUOkUIKlFYi
- IbwARBp2kuGsyBZITpf3/BzU48MDfUv1lrmuzb608iQ0PFWIwkz4YKHyCg5dz2sEiU1w
- 4bs/y+YrW3JAHZ2q50k68jSbwLev7OQppbP7FYpGcsEQxAtFAFbTSasYpl6AVqpszCCI
- EyoYZxTngcoFIDbDvbCzhxKPyDzBFma+dMlWDW3NT1FANORa0Dz5Geg3KodzfqBAzFKT
- wqzyopw6chqjAemsn+oGpFw88KQdbLHSyclJQmEo5D3rfQXya7ZqSZFwCEKLP8wg92qS
- cczg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=rVYkJ2QvHPOKaMVeaejnRCLHvt2E6Rq9JRSuX4QdscA=;
- b=GPoNloIESobyc+CAAK43dCF0l8fKW1xA0CG8qYwJLwGlPA85vo8Pm/upXvqdlu21F4
- 8F2niaror34IZw45IL5nbdPdlZaoyueW/oPgQfXU+WA2cMY0PHNGNFVXw07lnj9GfaW1
- apCYqOSnTuVCJ8iGoioTrdFe027uJJvtPv7c0laOPsck0y2tkwy2j/tVXWj3N99AmWBd
- SV8zClGxtc+SxuVPiO7f6hi+sVmwvEIkEZdmuuNqXHGK0RMqBFmlgSTTjk+MOmNChRLt
- O/WCuC+It3jkRMtGnnu4KzSYtqorl/8/8IPiLHgxa1lkBwsul0L9PeLcCp0nTsplVhM7
- b2XQ==
-X-Gm-Message-State: AOAM531C3qMdrGx7S0/Ule8q0j4yb0n5HkfukG6udOQJwqgRa4dViUPX
- ARGH77dM3G13rLkByY9ATSmBaTfBhVsD253RTGJieO2p
-X-Google-Smtp-Source: ABdhPJytIZVrTMXB56RiywFOC1Poyf8DsoexkF4w5SIJXULOhkrJ5kzNGorRzQoibaFnD6bHJxbIfQ4Sdn/8I+i5AfI=
-X-Received: by 2002:ac8:1386:: with SMTP id h6mr29568364qtj.95.1608811672984; 
- Thu, 24 Dec 2020 04:07:52 -0800 (PST)
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 4631589B29;
+ Thu, 24 Dec 2020 12:10:48 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 3D888A66C9;
+ Thu, 24 Dec 2020 12:10:48 +0000 (UTC)
 MIME-Version: 1.0
-References: <20201223111126.3338-1-chris@chris-wilson.co.uk>
- <20201223111126.3338-2-chris@chris-wilson.co.uk>
-In-Reply-To: <20201223111126.3338-2-chris@chris-wilson.co.uk>
-From: Matthew Auld <matthew.william.auld@gmail.com>
-Date: Thu, 24 Dec 2020 12:07:27 +0000
-Message-ID: <CAM0jSHM15XTLNxOp9bZFX+tEdFpvavv13V5hMn=osmAg=7GCdw@mail.gmail.com>
-To: Chris Wilson <chris@chris-wilson.co.uk>
-Subject: Re: [Intel-gfx] [PATCH 02/62] drm/i915/gt: Use virtual_engine
- during execlists_dequeue
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Matthew Auld" <matthew.auld@intel.com>
+Date: Thu, 24 Dec 2020 12:10:48 -0000
+Message-ID: <160881184822.23494.13955396356841732048@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20201224102905.356576-1-matthew.auld@intel.com>
+In-Reply-To: <20201224102905.356576-1-matthew.auld@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciBp?=
+ =?utf-8?q?915/tests=3A_shadow_peek_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,25 +38,31 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 23 Dec 2020 at 11:11, Chris Wilson <chris@chris-wilson.co.uk> wrote:
->
-> Rather than going back and forth between the rb_node entry and the
-> virtual_engine type, store the ve local and reuse it. As the
-> container_of conversion from rb_node to virtual_engine requires a
-> variable offset, performing that conversion just once shaves off a bit
-> of code.
->
-> v2: Keep a single virtual engine lookup, for typical use.
->
-> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-> Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-Reviewed-by: Matthew Auld <matthew.auld@intel.com>
+== Series Details ==
+
+Series: i915/tests: shadow peek (rev2)
+URL   : https://patchwork.freedesktop.org/series/85191/
+State : failure
+
+== Summary ==
+
+Applying: i915/tests: shadow peek
+error: sha1 information is lacking or useless (tests/i915/gen9_exec_parse.c).
+error: could not build fake ancestor
+hint: Use 'git am --show-current-patch=diff' to see the failed patch
+Patch failed at 0001 i915/tests: shadow peek
+When you have resolved this problem, run "git am --continue".
+If you prefer to skip this patch, run "git am --skip" instead.
+To restore the original branch and stop patching, run "git am --abort".
+
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
