@@ -1,31 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D0C4E2E26D6
-	for <lists+intel-gfx@lfdr.de>; Thu, 24 Dec 2020 13:27:30 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4DF582E26EC
+	for <lists+intel-gfx@lfdr.de>; Thu, 24 Dec 2020 13:47:19 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F399489BDB;
-	Thu, 24 Dec 2020 12:27:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A134289C89;
+	Thu, 24 Dec 2020 12:47:15 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9D6DD89A1A;
- Thu, 24 Dec 2020 12:27:25 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6DAED89C89;
+ Thu, 24 Dec 2020 12:47:13 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 23422691-1500050 
- for multiple; Thu, 24 Dec 2020 12:27:11 +0000
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 23422889-1500050 
+ for multiple; Thu, 24 Dec 2020 12:47:00 +0000
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Thu, 24 Dec 2020 12:27:11 +0000
-Message-Id: <20201224122711.3778798-1-chris@chris-wilson.co.uk>
+Date: Thu, 24 Dec 2020 12:47:00 +0000
+Message-Id: <20201224124700.3778923-1-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.30.0.rc1
 In-Reply-To: <20201224110158.3560769-1-chris@chris-wilson.co.uk>
 References: <20201224110158.3560769-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH i-g-t v3] i915/gem_softpin: Test total occupancy
+Subject: [Intel-gfx] [PATCH i-g-t v4] i915/gem_softpin: Test total occupancy
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,11 +51,11 @@ Suggested-by: Matthew Auld <matthew.auld@intel.com>
 Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
 Cc: Matthew Auld <matthew.auld@intel.com>
 ---
- tests/i915/gem_softpin.c | 96 +++++++++++++++++++++++++++++++++++-----
- 1 file changed, 84 insertions(+), 12 deletions(-)
+ tests/i915/gem_softpin.c | 97 +++++++++++++++++++++++++++++++++++-----
+ 1 file changed, 85 insertions(+), 12 deletions(-)
 
 diff --git a/tests/i915/gem_softpin.c b/tests/i915/gem_softpin.c
-index f761a6839..3850ecc34 100644
+index f761a6839..516accc8f 100644
 --- a/tests/i915/gem_softpin.c
 +++ b/tests/i915/gem_softpin.c
 @@ -32,6 +32,8 @@
@@ -104,7 +104,7 @@ index f761a6839..3850ecc34 100644
  		     object.offset);
  
  	gem_close(i915, object.handle);
-@@ -191,6 +192,67 @@ static void test_32b_last_page(int i915)
+@@ -191,6 +192,68 @@ static void test_32b_last_page(int i915)
  	gem_close(i915, object.handle);
  }
  
@@ -151,18 +151,19 @@ index f761a6839..3850ecc34 100644
 +
 +		obj[0].pad_to_size = gtt - sz;
 +
-+		obj[1].offset = obj[0].pad_to_size - sz;
++		obj[1].offset = gen8_canonical_addr(obj[0].pad_to_size - sz);
 +		igt_assert_f((err = __gem_execbuf(i915, &execbuf)) == -ENOSPC,
 +			     "[48b] execbuf succeeded with obj[1].offset=%llx and obj[0].pad_to_size=%llx: err=%d\n",
 +			     obj[1].offset, obj[0].pad_to_size, err);
 +
-+		obj[1].offset = obj[0].pad_to_size;
++		obj[1].offset = gen8_canonical_addr(obj[0].pad_to_size);
 +		igt_assert_f((err = __gem_execbuf(i915, &execbuf)) == 0,
 +			     "[48b] execbuf failed with obj[1].offset=%llx and obj[0].pad_to_size=%llx: err=%d\n",
 +		     obj[1].offset, obj[0].pad_to_size, err);
 +
 +		igt_assert_eq_u64(obj[0].offset, 0);
-+		igt_assert_eq_u64(obj[1].offset, obj[0].pad_to_size);
++		igt_assert_eq_u64(obj[1].offset,
++				  gen8_canonical_addr(obj[0].pad_to_size));
 +	}
 +
 +	gem_close(i915, obj[1].handle);
@@ -172,7 +173,7 @@ index f761a6839..3850ecc34 100644
  static void test_softpin(int fd)
  {
  	const uint32_t size = 1024 * 1024;
-@@ -653,14 +715,24 @@ igt_main
+@@ -653,14 +716,24 @@ igt_main
  
  	igt_subtest("invalid")
  		test_invalid(fd);
