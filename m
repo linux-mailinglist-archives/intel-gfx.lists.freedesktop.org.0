@@ -2,129 +2,132 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 43C592E23C4
-	for <lists+intel-gfx@lfdr.de>; Thu, 24 Dec 2020 03:45:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E673D2E23CE
+	for <lists+intel-gfx@lfdr.de>; Thu, 24 Dec 2020 03:54:25 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2E0EE89FD9;
-	Thu, 24 Dec 2020 02:45:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0A8098973E;
+	Thu, 24 Dec 2020 02:54:23 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2055E89FD9
- for <intel-gfx@lists.freedesktop.org>; Thu, 24 Dec 2020 02:45:44 +0000 (UTC)
-IronPort-SDR: zYT9/eV1zKtdn/9Wm0YNlYu+hlXwvJXeRhtTdtBH0F9P3hSjJ0kwOQgA4iUF9h4W4OAWwsNrU8
- aDeHTNamcKgA==
-X-IronPort-AV: E=McAfee;i="6000,8403,9844"; a="172590011"
-X-IronPort-AV: E=Sophos;i="5.78,443,1599548400"; d="scan'208";a="172590011"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Dec 2020 18:45:41 -0800
-IronPort-SDR: xu58QlAdV3fpPtLY4i8GDhU6hLOwwvGRjGqOsODVcp3Az48eHqwKEm43AT/ogUoaG1eC6FLNIt
- Td698VPRj+bw==
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7D43E8973E
+ for <intel-gfx@lists.freedesktop.org>; Thu, 24 Dec 2020 02:54:21 +0000 (UTC)
+IronPort-SDR: uowQpneYCfzkJ9TbAmIHfHyvjHqX7TF534uYNSKu0NHXm49gCGREo/Miy8A/1ohIort+o5N49v
+ cVY4pyHv0lXw==
+X-IronPort-AV: E=McAfee;i="6000,8403,9844"; a="173528424"
+X-IronPort-AV: E=Sophos;i="5.78,444,1599548400"; d="scan'208";a="173528424"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Dec 2020 18:54:21 -0800
+IronPort-SDR: CL8L7pYBkaLE+PC0UhevxrxyeKrywRQOgLF3YPv9ARr3hWgyZ5cKcWaQS85w5e32uh0Ydf68NK
+ eN5deyZhHkPA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.78,444,1599548400"; d="scan'208";a="390824347"
+X-IronPort-AV: E=Sophos;i="5.78,444,1599548400"; d="scan'208";a="393607051"
 Received: from orsmsx606.amr.corp.intel.com ([10.22.229.19])
- by fmsmga004.fm.intel.com with ESMTP; 23 Dec 2020 18:45:39 -0800
-Received: from orsmsx612.amr.corp.intel.com (10.22.229.25) by
+ by fmsmga002.fm.intel.com with ESMTP; 23 Dec 2020 18:54:20 -0800
+Received: from orsmsx607.amr.corp.intel.com (10.22.229.20) by
  ORSMSX606.amr.corp.intel.com (10.22.229.19) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1713.5; Wed, 23 Dec 2020 18:45:40 -0800
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX612.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ 15.1.1713.5; Wed, 23 Dec 2020 18:54:20 -0800
+Received: from orsmsx601.amr.corp.intel.com (10.22.229.14) by
+ ORSMSX607.amr.corp.intel.com (10.22.229.20) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1713.5; Wed, 23 Dec 2020 18:45:40 -0800
+ 15.1.1713.5; Wed, 23 Dec 2020 18:54:20 -0800
 Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
- orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ orsmsx601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1713.5
- via Frontend Transport; Wed, 23 Dec 2020 18:45:40 -0800
-Received: from NAM02-CY1-obe.outbound.protection.outlook.com (104.47.37.53) by
+ via Frontend Transport; Wed, 23 Dec 2020 18:54:20 -0800
+Received: from NAM02-SN1-obe.outbound.protection.outlook.com (104.47.36.53) by
  edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.1713.5; Wed, 23 Dec 2020 18:45:39 -0800
+ 15.1.1713.5; Wed, 23 Dec 2020 18:54:19 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=bi79MtHgrfv5IhRCpSN9cN87zfUkjRZMF/xggdta0hgqPX73YBKb8lfu3qqPLiZfTJhNk7fpmVSMrS3igDJznhRjZ3fLYG0o/BRgB/IImG3dNfOfDq6EqMl9DfcweHe1bZSaz1CbfZzFFYUivppcojuJk8qsczrdBpJyh3XUdND+BzvUJ8/Z8ckXBDcLqrujIh7Z5tyjwvZMV/J78ixVIoXzOD/hjBBJK4poPMQ9m35IzxEjwuY6JJj3bJ43NtI6LsB10fs2Pe+hUtVVg4nUx6q4Y0OvQycRN9tooCfOWAoDZsA/EB/PZeYdgen+bfcGaDtEi2aTG4vSKRH9Ubjc2Q==
+ b=nvNTkgevhSwXbEVrm7ETV5qy8K84iunfjreQrkWwWASi7mgBZShY/6Fgb2hSpl/lzyt59T7ZEhVuOKJQHkhp99nn++PeH0PS7jPYiSoKP35oNlny3vvVCnMzgBjlxhRwvrHMAvPAYVKT93nNDFis2F3zEq6QYeAS1yz+TFIsvwohu3nF9Po457/ko3vchedHaPCwp+7ZdOtN+RDv6MoH8rEQgwvlDx5EkvUwgOAip3wm9t8PTXL4e4MmJ5mOeVA9rmUDtFENdtc6h5vMwGZ6i/pPuyZuR6JPBrxR2bSpG3XL1jg2U7oBYbKL1KEhJAWb81EEBZtlFnd3xMNxPQ18CA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=4FxfxCC6PZ/k1xDDTXBTy57HZVL+5q1iq3urVEoyWuI=;
- b=M8zicwYnNVQO8NMh8B5BtnDpb3Jz3QFy9o+Hhinn011ST8/ZY/Xs2rcEgjqA3SYL5tGgMAgn294r1wLe8/ULCwf6dqjC70DPHlb4pNGMtxQEb+Cd2CcUE4gG5LFrQl4Xa8sWX/AYrCpF31o+jLLgQkBHDQZ1MMrlELTUY3bepFdf6KPg71NpF9QKTxZODzESL4uO9EZ7gm2ZEjk353ALE3HRwWH7Id8iJIrWLh3bSr4nzav5ixPujzaqhIpYfdXPoMFVT77crqYQZTr3Ckj5/hHQo8jDJEEFHREeDPUctmCqR7r7ULu560v2Juf9xANggz8COtDH18w7oBnTQ2vfHg==
+ bh=AJ8jxR8BqAqWvUzGSqMut0H2vMPvlu0dmleBABhf5OM=;
+ b=b5u0lomTlZN0hhJyqeAhJpV0ARz4BsnGbzJUw6XnYfqh/YsIk6X0XwRpBarDg9fHRtpShKitoGnMTbfDefIwZ79z9BIixnJIS6AnsdGl8u0ZcPz7QCTCRQnP/NC3Yf+VEGb4Rse4ElJ/JnmbOcDdh3taw1ky7nXNh1PvVa/hnNlr5wfIE05WHC0hg+JOfmDCH1M/TZPhI0Wntu6SpbD47UFr/8fd57mwFnUdmrcINGJCPndUYyTyurR79FJy7LbiYlknRKjK3RHu+RPkceplHXm8nJQ3rAN8e0uynpR17pYjUhsphsyhkQjFDV8e+OqlyWCatxI1MI7iBuVhbMnZEg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=intel.onmicrosoft.com; 
  s=selector2-intel-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=4FxfxCC6PZ/k1xDDTXBTy57HZVL+5q1iq3urVEoyWuI=;
- b=Q3i3HM8poQaBuOXkRs5lteSjMQBXWBwvdOhCTM5mbt6yu0q7lD1DLib8RIQXgT02SUxR6HgUL8cPCeZ4S0VVVrqC9UdoQAtI/Gs/xLYaZsaYynncLMa60fIzLnnHOangot0By0rijZODBgu3UBMdMlR40OI490A3ov0GEHNZHDA=
+ bh=AJ8jxR8BqAqWvUzGSqMut0H2vMPvlu0dmleBABhf5OM=;
+ b=N+slj/b7Wh1yV/+9UgMh0QG3DByHKeBratk3E4lFOBetp9LkTf1ILF0EbStfRyhh2bDb6apLf53pVBifGYl5xbPxeZ2HHTiCSfRZzsIELMumeWlSI7n8fXn0QlneswRUaH6oB9aiMKA6kCH7kq8TG84afAFOJKcALsflEasUt8I=
 Received: from DM6PR11MB3340.namprd11.prod.outlook.com (2603:10b6:5:56::14) by
- DM5PR11MB1324.namprd11.prod.outlook.com (2603:10b6:3:15::14) with
+ DM6PR11MB4137.namprd11.prod.outlook.com (2603:10b6:5:199::30) with
  Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.3676.33; Thu, 24 Dec 2020 02:45:39 +0000
+ 15.20.3676.33; Thu, 24 Dec 2020 02:54:18 +0000
 Received: from DM6PR11MB3340.namprd11.prod.outlook.com
  ([fe80::c471:66bd:15ed:9481]) by DM6PR11MB3340.namprd11.prod.outlook.com
  ([fe80::c471:66bd:15ed:9481%6]) with mapi id 15.20.3676.034; Thu, 24 Dec 2020
- 02:45:39 +0000
+ 02:54:18 +0000
 From: "Zhang, Xiong Y" <xiong.y.zhang@intel.com>
 To: Jani Nikula <jani.nikula@linux.intel.com>,
  "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
 Thread-Topic: [PATCH v2] drm/i915: Try to guess PCH type even without ISA
  bridge
-Thread-Index: AQHW2Z7c9LTyS7G4IkSVoA2f8Y/aRw==
-X-CallingTelephoneNumber: IPM.Note
-X-VoiceMessageDuration: 1
-X-FaxNumberOfPages: 0
-Date: Thu, 24 Dec 2020 02:45:38 +0000
-Message-ID: <DM6PR11MB33407E0B4EF08CD25468592DBBDD0@DM6PR11MB3340.namprd11.prod.outlook.com>
+Thread-Index: AQHW2Qn4tGpj8zaSzkilfcSgybkQ46oFjAJA
+Date: Thu, 24 Dec 2020 02:54:18 +0000
+Message-ID: <DM6PR11MB334085330EFDA917B59BDE2FBBDD0@DM6PR11MB3340.namprd11.prod.outlook.com>
+References: <160793037629.28163.3135436538881981223@emeril.freedesktop.org>
+ <20201218090531.23241-1-xiong.y.zhang@intel.com> <87im8soq2w.fsf@intel.com>
+In-Reply-To: <87im8soq2w.fsf@intel.com>
 Accept-Language: en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
+dlp-product: dlpe-windows
+dlp-reaction: no-action
+dlp-version: 11.5.1.3
 authentication-results: linux.intel.com; dkim=none (message not signed)
  header.d=none;linux.intel.com; dmarc=none action=none header.from=intel.com;
 x-originating-ip: [192.198.147.193]
 x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: e13045d8-4b2b-4534-dc54-08d8a7b5ff7c
-x-ms-traffictypediagnostic: DM5PR11MB1324:
+x-ms-office365-filtering-correlation-id: fa3d84d9-6596-41a4-e236-08d8a7b73559
+x-ms-traffictypediagnostic: DM6PR11MB4137:
 x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <DM5PR11MB1324F9BDD23714670404FBFBBBDD0@DM5PR11MB1324.namprd11.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:4502;
+x-microsoft-antispam-prvs: <DM6PR11MB41372570247AF30C27C1094DBBDD0@DM6PR11MB4137.namprd11.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:9508;
 x-ms-exchange-senderadcheck: 1
 x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: QslTYsO86QSeRhJi7HepK2HDYWF7duPjSVtTUTOoER0+KlHFgcLaHYH5jgkpO5HE3b12n64dwaLZyGGhCqyxjY7WHojItyNMoouEyEf7RF50nW3fRScukgv0Zj+8FBp7Uq3xR2WMjArnwGEPCZnLuZEQ0AV+pdixuQGaeKVImNdaJPwT/0O7iqp2VXfQYz9+GYqngPNJsZRaw5pXXrv6LxKbATFwu8HHy3MMiCR10BDxi9jflBEyV4hfT1rMrkvN2w8MoflNl+/zJ4JLkvezqS69jmJBn6Px8HvFpqg+NH0Nk9Qwapd+61GCXy6E6EXrBePBWz0UiYGoC3jRcnO10+yB6dfUGSF6XS4rppJxuvkeXSfEISm9b79z1T+MaPDLrkSBgnBr9Rcgcm8hpMXyPwzvdPgcEyF2w4WGP5pqnxSZuXwKBbTjFXZD/q09CiDs
+x-microsoft-antispam-message-info: aay5f4J+3BZmv4LP6+0lFsqDSb2b9ee3Q3s5UsJ9q5OdZrmjommrLqig/eKqhTJN+nzqDD6ftv8p7uKdmWgnyyYKoUUY/Y/eKiS5Iaaicn80FEpkBwlVFCQbZ1nc8Xd10I90Bd4ZC/NUheykQT+pe15in+AM198Yc4aGkSIgoPlBBXVK+htakQ/jdHWldyZF/U6+Zv/T2C1QTnio+jKQg5U8SamfqaczIRtY5c6vbCb5WIF+dlV8EeT2t9+/b0iihPDmDl07ZgsYgoJ0MVABqPq/tb5XpjWwGC9DvVxRxGKFIWjo0e/YtSuDKMHpR27vIYIAY8MuJ9XwUVusHgpMl4PSOGY9cMdvpJmsKs6YRACjtIzl59fDgavLvvpi6sNUESpvVgj55QK5AKotr1s6qtCTpn+0iKQha/KP3pyrGRwuPKrVXNkVp75IDrssMWmz
 x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:DM6PR11MB3340.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(4636009)(346002)(376002)(39860400002)(366004)(136003)(396003)(76116006)(64756008)(316002)(71200400001)(66946007)(110136005)(52536014)(7696005)(54906003)(8676002)(66556008)(6506007)(4326008)(66446008)(86362001)(2906002)(5660300002)(83380400001)(478600001)(558084003)(26005)(9686003)(186003)(66476007)(33656002)(55016002)(8936002)(226253002);
+ SFS:(4636009)(396003)(39860400002)(376002)(136003)(346002)(366004)(55016002)(110136005)(316002)(8676002)(6506007)(71200400001)(7696005)(86362001)(54906003)(66556008)(66946007)(9686003)(66476007)(33656002)(478600001)(52536014)(5660300002)(83380400001)(66446008)(26005)(186003)(64756008)(2906002)(4326008)(8936002)(76116006)(226253002);
  DIR:OUT; SFP:1102; 
-x-ms-exchange-antispam-messagedata: =?us-ascii?Q?YJO4Exto+1hHE7xz9uWctoA7fNfjH+8tY7jDu1N15epNOd/lR2duy2blnlbE?=
- =?us-ascii?Q?gkFUp3hbSSLFK9G5QOUicAmhjsxsxiiDRIrAEVpe5YrpdWETzgQxjNMd9Iwh?=
- =?us-ascii?Q?BljjGzJqqmmR6qVh8OYIK+VFGMBmn5whXWBf27TASLTh3ujyE1DtYDTzQRLS?=
- =?us-ascii?Q?uyWKUdoT10RnoQ0taeRdUFO3A43mC31Z+7/Ttb+1qMVPhJO0DSJZP2g+N1fG?=
- =?us-ascii?Q?7QFMpZ3bZlnfjUQaID7Y/Xa9KLoxLZc359QK430wPEWFWkrfV2CuPhOQXpSk?=
- =?us-ascii?Q?FI52x3S5AWH0n4o+7UaIejQ3aOjUGuY+lRcQAiKc4C7f0oENfodOFLXz8/Lm?=
- =?us-ascii?Q?r75MjFTTIl3RZ/rQ8gdSN5DXMwRdNt9Kcp9T9Vw8nEDdcT5qtdifFJ25x5Gu?=
- =?us-ascii?Q?DEGbN3dELMpOyiWziXsALd0m/nS/c7kddh5s+J/IwzuOqu7lacbOCz7UTmHw?=
- =?us-ascii?Q?VIX4fe3uPgeRSq76fPjI1WKEWBQch/+fMTEal9p1XKm2JQiUohj/J9k68ypR?=
- =?us-ascii?Q?YgttMoNRkAXQAD2t/fhTZOqgaJZTSK7tjaprkPM2jMBZdgkFH5L+vUnNi1av?=
- =?us-ascii?Q?jAJovuuLV5OM72JUvfMd8Yo5ZODBOBkXUTEnSfaKcHL8oNAQ9NnsKSi6UzQH?=
- =?us-ascii?Q?S0r4YaW3RvWhBJ6/nV3wNaGqc/S/M1gdjbxx7G04h5E+WNZcgJT/pA3zqaUZ?=
- =?us-ascii?Q?A+nC/bibMDG3ZGis9p+ZqpHBu48cZyd4IPfQ8TuH0a9Ao9ZlZkBcTQDtmQr9?=
- =?us-ascii?Q?zUokagWPinSsFWM+g/EqCfH5cYlWC9b8YkFbx5uTKEpfa1YrHrGllNCB4AJ4?=
- =?us-ascii?Q?d4uCoKhusybZLkmRlHoaC0PedH/JS18nTYztNOWNJ42NNdMgeRdeNU/ugla2?=
- =?us-ascii?Q?SLAsCVxyRYLUskEmXWO3mslOCHb1Qn0MUxOM0IurogTj301miizuB0SZ7aSd?=
- =?us-ascii?Q?dcqWbo7UHVNNLkDd82jK88NloQ4pY63YKObU4/MRH1s=3D?=
+x-ms-exchange-antispam-messagedata: =?us-ascii?Q?swa7uxhk3W/cdI8Hd6d6C2bfj1PULLOA5u3qPKHYPjtvAKN+sDgCjyGyxRbI?=
+ =?us-ascii?Q?sERPcr3i14BAttSM5LIEaef9Dep8FXKJ3vuar8RPn8iLh9nxznAjH7N4OobT?=
+ =?us-ascii?Q?Y9U4ME87luTpXGU4HGa3K5IgFMBlgmwuPbljg26R9goo827OqhRSpLWiqxk/?=
+ =?us-ascii?Q?pykzWiva+/7jpDQ4cwXE430tErfr1clvCYm/nEFCcn0zgSFbS6DlBLNN3eei?=
+ =?us-ascii?Q?B1WtZEg7KAS3lVcFcvD1KIsLdamScyK5up6EwVrv32XIZQaYMfhfKgIjrKad?=
+ =?us-ascii?Q?5utcmBbG2TrnfIWNR0uCRvgIhvIHDcgpVbX8gsaW5hvXl5VFL7TX7tDfnWgS?=
+ =?us-ascii?Q?stKE8f/KIDZxcCyN7VKb6bFB0BI73IJeJ+XlB0yy0QSjD5CXGEiuxcxTu0Sh?=
+ =?us-ascii?Q?GgofIU5x3ur332Mh2JeMvnnFTTQMvWyxtNOAxh5sv2z58ndjtimYfX0V6jkE?=
+ =?us-ascii?Q?Z+KTPGcaNZkAvWOIIpSmqD2B+pm84BhTA3nBXUeJkkOcbZwRl/f3YpGyYsnP?=
+ =?us-ascii?Q?eN4xMr+m1F+6yeZlJklsdrc8rNuKiQ5QBVWwRI1vfMVD3acX8Eya8E92Snhy?=
+ =?us-ascii?Q?D9r2GoHZLleo8Lwd+OOHIchJRlQOSD5+uOoCsLowfMUf0E5YPCEoVpMvFZ0W?=
+ =?us-ascii?Q?4vX2Gy4y0bBmrmZsjrNoRkG2d92OmlgYWXbalnofSidCoA2b92j/5JAO4Aue?=
+ =?us-ascii?Q?jGD7zwGvTr229M2hZKpKT7fgPO1H77noyEkAv2TXg859U/qAqZpVNxyhReLR?=
+ =?us-ascii?Q?+S6AE0+q9O2MZx0KZUKLpEaHOwaLjvMBE83Eu+pefHzxs/hYpu4UJA4BC7yO?=
+ =?us-ascii?Q?xJXzJb1rOJO0OK9U5W8YyeZIi4KvZqqY5XW98LQ24xZOL0RrZ85S4OEdIhs+?=
+ =?us-ascii?Q?/FzKCrifAYgkCY/5FLd78PFqlQLkLbdkp8AnSzDJ1AoHU6MU2icOSYTz2UwB?=
+ =?us-ascii?Q?1N/UqVuGGLHhDZhUBHA9uTRumHukrB65Gs5Lcz5tJiw=3D?=
 MIME-Version: 1.0
 X-MS-Exchange-CrossTenant-AuthAs: Internal
 X-MS-Exchange-CrossTenant-AuthSource: DM6PR11MB3340.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: e13045d8-4b2b-4534-dc54-08d8a7b5ff7c
-X-MS-Exchange-CrossTenant-originalarrivaltime: 24 Dec 2020 02:45:38.9347 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: fa3d84d9-6596-41a4-e236-08d8a7b73559
+X-MS-Exchange-CrossTenant-originalarrivaltime: 24 Dec 2020 02:54:18.7282 (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
 X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: E7LWwbJdMZdhZ3bnyKjqwP1O2B08mAE63n9wmJ0L2/8rw6tZPSlOr7ym8CJ0/wYhZGEH4g51SENRvLC++faJPw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR11MB1324
+X-MS-Exchange-CrossTenant-userprincipalname: vJmqCTmKu+Mj3lJypalnZ5tGjP5PFhQarwZlR+zO8Sx4H5zIUfpVzBSDPrwmwKAkSAIjFV1dPyz+akDVEoafOQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR11MB4137
 X-OriginatorOrg: intel.com
-Subject: [Intel-gfx] Recall: [PATCH v2] drm/i915: Try to guess PCH type even
+Subject: Re: [Intel-gfx] [PATCH v2] drm/i915: Try to guess PCH type even
  without ISA bridge
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -144,7 +147,133 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Zhang, Xiong Y would like to recall the message, "[PATCH v2] drm/i915: Try to guess PCH type even without ISA bridge".
+> On Fri, 18 Dec 2020, Xiong Zhang <xiong.y.zhang@intel.com> wrote:
+> > From: Zhenyu Wang <zhenyuw@linux.intel.com>
+> >
+> > Some vmm like hyperv and crosvm don't supply any ISA bridge to their
+> > guest, when igd passthrough is equipped on these vmm, guest i915
+> > display may couldn't work as guest i915 detects PCH_NONE pch type.
+> >
+> > When i915 runs as guest, this patch guess pch type through gpu type
+> > even without ISA bridge.
+> >
+> > v2: Fix CI warning
+> >
+> > Signed-off-by: Zhenyu Wang <zhenyuw@linux.intel.com>
+> > ---
+> >  drivers/gpu/drm/i915/i915_drv.h  |  7 +++++-
+> > drivers/gpu/drm/i915/intel_pch.c | 38 ++++++++++++++++++++++----------
+> >  2 files changed, 32 insertions(+), 13 deletions(-)
+> >
+> > diff --git a/drivers/gpu/drm/i915/i915_drv.h
+> > b/drivers/gpu/drm/i915/i915_drv.h index 5a7df5621aa3..df0b8f9268b2
+> > 100644
+> > --- a/drivers/gpu/drm/i915/i915_drv.h
+> > +++ b/drivers/gpu/drm/i915/i915_drv.h
+> > @@ -1758,6 +1758,11 @@ tgl_revids_get(struct drm_i915_private
+> > *dev_priv)  #define INTEL_DISPLAY_ENABLED(dev_priv) \
+> >  	(drm_WARN_ON(&(dev_priv)->drm, !HAS_DISPLAY(dev_priv)),
+> > !(dev_priv)->params.disable_display)
+> >
+> > +static inline bool run_as_guest(void) {
+> > +	return !hypervisor_is_type(X86_HYPER_NATIVE);
+> > +}
+> > +
+> >  static inline bool intel_vtd_active(void)  {  #ifdef
+> > CONFIG_INTEL_IOMMU @@ -1766,7 +1771,7 @@ static inline bool
+> > intel_vtd_active(void)  #endif
+> >
+> >  	/* Running as a guest, we assume the host is enforcing VT'd */
+> > -	return !hypervisor_is_type(X86_HYPER_NATIVE);
+> > +	return run_as_guest();
+> >  }
+> >
+> >  static inline bool intel_scanout_needs_vtd_wa(struct drm_i915_private
+> > *dev_priv) diff --git a/drivers/gpu/drm/i915/intel_pch.c
+> > b/drivers/gpu/drm/i915/intel_pch.c
+> > index f31c0dabd0cc..a73c60bf349e 100644
+> > --- a/drivers/gpu/drm/i915/intel_pch.c
+> > +++ b/drivers/gpu/drm/i915/intel_pch.c
+> > @@ -184,6 +184,23 @@ intel_virt_detect_pch(const struct
+> drm_i915_private *dev_priv)
+> >  	return id;
+> >  }
+> >
+> > +static void intel_detect_pch_virt(struct drm_i915_private *dev_priv)
+> > +{
+> > +	unsigned short id;
+> > +	enum intel_pch pch_type;
+> > +
+> > +	id = intel_virt_detect_pch(dev_priv);
+> 
+> intel_detect_pch_virt() calls intel_virt_detect_pch()... the naming should be
+> clarified to make some difference.
+ [Zhang, Xiong Y] Indeed the naming is confusing. How about deleting this new added function, then move intel_pch_type() calling into original intel_virt_detect_pch(), and let intel_virt_detect_pch() return id and pch_type,  finally assign id and pch_type  in intel_detect_pch().
+
+thanks
+> 
+> > +	pch_type = intel_pch_type(dev_priv, id);
+> > +
+> > +	/* Sanity check virtual PCH id */
+> > +	if (drm_WARN_ON(&dev_priv->drm,
+> > +			id && pch_type == PCH_NONE))
+> > +		id = 0;
+> > +
+> > +	dev_priv->pch_type = pch_type;
+> > +	dev_priv->pch_id = id;
+> 
+> Previously the pch type and id assignments were all done in
+> intel_detect_pch(), so moving this to a separate function in *some* but not
+> all cases reduces clarity too.
+> 
+> BR,
+> Jani.
+> 
+> > +}
+> > +
+> >  void intel_detect_pch(struct drm_i915_private *dev_priv)  {
+> >  	struct pci_dev *pch = NULL;
+> > @@ -221,16 +238,7 @@ void intel_detect_pch(struct drm_i915_private
+> *dev_priv)
+> >  			break;
+> >  		} else if (intel_is_virt_pch(id, pch->subsystem_vendor,
+> >  					     pch->subsystem_device)) {
+> > -			id = intel_virt_detect_pch(dev_priv);
+> > -			pch_type = intel_pch_type(dev_priv, id);
+> > -
+> > -			/* Sanity check virtual PCH id */
+> > -			if (drm_WARN_ON(&dev_priv->drm,
+> > -					id && pch_type == PCH_NONE))
+> > -				id = 0;
+> > -
+> > -			dev_priv->pch_type = pch_type;
+> > -			dev_priv->pch_id = id;
+> > +			intel_detect_pch_virt(dev_priv);
+> >  			break;
+> >  		}
+> >  	}
+> > @@ -246,8 +254,14 @@ void intel_detect_pch(struct drm_i915_private
+> *dev_priv)
+> >  		dev_priv->pch_id = 0;
+> >  	}
+> >
+> > -	if (!pch)
+> > -		drm_dbg_kms(&dev_priv->drm, "No PCH found.\n");
+> > +	if (!pch) {
+> > +		if (run_as_guest()) {
+> > +			drm_dbg_kms(&dev_priv->drm, "No PCH found in
+> vm, try guess..\n");
+> > +			intel_detect_pch_virt(dev_priv);
+> > +		} else {
+> > +			drm_dbg_kms(&dev_priv->drm, "No PCH found.\n");
+> > +		}
+> > +	}
+> >
+> >  	pci_dev_put(pch);
+> >  }
+> 
+> --
+> Jani Nikula, Intel Open Source Graphics Center
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
