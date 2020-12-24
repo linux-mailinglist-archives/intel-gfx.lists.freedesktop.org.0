@@ -2,38 +2,38 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 55EBA2E23F1
+	by mail.lfdr.de (Postfix) with ESMTPS id 86A882E23F2
 	for <lists+intel-gfx@lfdr.de>; Thu, 24 Dec 2020 04:10:44 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 785506E8C0;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 759D76E8BF;
 	Thu, 24 Dec 2020 03:10:34 +0000 (UTC)
 X-Original-To: Intel-gfx@lists.freedesktop.org
 Delivered-To: Intel-gfx@lists.freedesktop.org
 Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 736DE89FED
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B89CF6E8BB
  for <Intel-gfx@lists.freedesktop.org>; Thu, 24 Dec 2020 03:10:29 +0000 (UTC)
-IronPort-SDR: sj7Jg5TEJSgjKqmSdh5LUioKQsE+v/1u1Gs99Xo/SYOaI5XXyGh2zWEpOZ3rGrEFCDqUbl5DIj
- wlLINGxaAP9A==
-X-IronPort-AV: E=McAfee;i="6000,8403,9844"; a="155893686"
-X-IronPort-AV: E=Sophos;i="5.78,444,1599548400"; d="scan'208";a="155893686"
+IronPort-SDR: bCeqJyxc8xrNnYL/yhZQtCK/GlRVmp+9YHgylB2e+pXuInUlFQUPbj8GMeykrf6SPQVRgqvJje
+ ZiMP86Y6CdYA==
+X-IronPort-AV: E=McAfee;i="6000,8403,9844"; a="155893687"
+X-IronPort-AV: E=Sophos;i="5.78,444,1599548400"; d="scan'208";a="155893687"
 Received: from orsmga003.jf.intel.com ([10.7.209.27])
  by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  23 Dec 2020 19:10:29 -0800
-IronPort-SDR: rDJkfaXrJECzdwS+4DYw607wn5blVg9s+8QjZEgdZ7wvpL7g6TPcywiPTqA3ynwHxoiWPFcxLA
- dlEXQIZVV6Jg==
+IronPort-SDR: pOZMx1FhWCrnbSuXIFJagS5HYc0j8YZqSKbOcfmscTazKAbRMdddjHIxTXlOyyIwMv12YkIPNI
+ gsh0jzr4j8pw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.78,444,1599548400"; d="scan'208";a="342496801"
+X-IronPort-AV: E=Sophos;i="5.78,444,1599548400"; d="scan'208";a="342496807"
 Received: from sean-virtualbox.fm.intel.com ([10.105.158.96])
- by orsmga003.jf.intel.com with ESMTP; 23 Dec 2020 19:10:28 -0800
+ by orsmga003.jf.intel.com with ESMTP; 23 Dec 2020 19:10:29 -0800
 From: "Huang, Sean Z" <sean.z.huang@intel.com>
 To: Intel-gfx@lists.freedesktop.org
-Date: Wed, 23 Dec 2020 19:10:24 -0800
-Message-Id: <20201224031026.7360-12-sean.z.huang@intel.com>
+Date: Wed, 23 Dec 2020 19:10:25 -0800
+Message-Id: <20201224031026.7360-13-sean.z.huang@intel.com>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20201224031026.7360-1-sean.z.huang@intel.com>
 References: <20201224031026.7360-1-sean.z.huang@intel.com>
-Subject: [Intel-gfx] [RFC-v15 11/13] drm/i915/uapi: introduce
- drm_i915_gem_create_ext
+Subject: [Intel-gfx] [RFC-v15 12/13] drm/i915/pxp: User interface for
+ Protected buffer
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,9 +46,9 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Joonas@freedesktop.org,
-	Bommu Krishnaiah <krishnaiah.bommu@intel.com>,
-	Matthew@freedesktop.org
+Cc: Bommu Krishnaiah <krishnaiah.bommu@intel.com>,
+ Huang Sean Z <sean.z.huang@intel.com>,
+ Kondapally Kalyan <kalyan.kondapally@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
@@ -57,176 +57,204 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Bommu Krishnaiah <krishnaiah.bommu@intel.com>
 
-Same old gem_create but with now with extensions support. This is needed
-to support various upcoming usecases. For now we use the extensions
-mechanism to support PAVP.
+This api allow user mode to create Protected buffer and context creation.
 
 Signed-off-by: Bommu Krishnaiah <krishnaiah.bommu@intel.com>
-Signed-off-by: Matthew Auld <matthew.auld@intel.com>
-Cc: Joonas Lahtinen joonas.lahtinen@linux.intel.com
-Cc: Matthew Auld matthew.auld@intel.com
 Cc: Telukuntla Sreedhar <sreedhar.telukuntla@intel.com>
+Cc: Kondapally Kalyan <kalyan.kondapally@intel.com>
+Cc: Gupta Anshuman <Anshuman.Gupta@intel.com>
+Cc: Huang Sean Z <sean.z.huang@intel.com>
 ---
- drivers/gpu/drm/i915/i915_drv.c |  2 +-
- drivers/gpu/drm/i915/i915_gem.c | 42 ++++++++++++++++++++++++++++-
- include/uapi/drm/i915_drm.h     | 47 +++++++++++++++++++++++++++++++++
- 3 files changed, 89 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/i915/gem/i915_gem_context.c   | 15 ++++++++++--
+ drivers/gpu/drm/i915/gem/i915_gem_context.h   | 10 ++++++++
+ .../gpu/drm/i915/gem/i915_gem_context_types.h |  2 +-
+ .../gpu/drm/i915/gem/i915_gem_object_types.h  |  5 ++++
+ drivers/gpu/drm/i915/i915_gem.c               | 23 +++++++++++++++----
+ include/uapi/drm/i915_drm.h                   | 19 +++++++++++++++
+ 6 files changed, 67 insertions(+), 7 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/i915_drv.c b/drivers/gpu/drm/i915/i915_drv.c
-index af06c85e6ba7..3dbda949bf71 100644
---- a/drivers/gpu/drm/i915/i915_drv.c
-+++ b/drivers/gpu/drm/i915/i915_drv.c
-@@ -1733,7 +1733,7 @@ static const struct drm_ioctl_desc i915_ioctls[] = {
- 	DRM_IOCTL_DEF_DRV(I915_GEM_THROTTLE, i915_gem_throttle_ioctl, DRM_RENDER_ALLOW),
- 	DRM_IOCTL_DEF_DRV(I915_GEM_ENTERVT, drm_noop, DRM_AUTH|DRM_MASTER|DRM_ROOT_ONLY),
- 	DRM_IOCTL_DEF_DRV(I915_GEM_LEAVEVT, drm_noop, DRM_AUTH|DRM_MASTER|DRM_ROOT_ONLY),
--	DRM_IOCTL_DEF_DRV(I915_GEM_CREATE, i915_gem_create_ioctl, DRM_RENDER_ALLOW),
-+	DRM_IOCTL_DEF_DRV(I915_GEM_CREATE_EXT, i915_gem_create_ioctl, DRM_RENDER_ALLOW),
- 	DRM_IOCTL_DEF_DRV(I915_GEM_PREAD, i915_gem_pread_ioctl, DRM_RENDER_ALLOW),
- 	DRM_IOCTL_DEF_DRV(I915_GEM_PWRITE, i915_gem_pwrite_ioctl, DRM_RENDER_ALLOW),
- 	DRM_IOCTL_DEF_DRV(I915_GEM_MMAP, i915_gem_mmap_ioctl, DRM_RENDER_ALLOW),
-diff --git a/drivers/gpu/drm/i915/i915_gem.c b/drivers/gpu/drm/i915/i915_gem.c
-index 17a4636ee542..c53b13c02e59 100644
---- a/drivers/gpu/drm/i915/i915_gem.c
-+++ b/drivers/gpu/drm/i915/i915_gem.c
-@@ -53,6 +53,7 @@
- #include "i915_drv.h"
- #include "i915_trace.h"
- #include "i915_vgpu.h"
-+#include "i915_user_extensions.h"
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.c b/drivers/gpu/drm/i915/gem/i915_gem_context.c
+index c7363036765a..12847edec751 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_context.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_context.c
+@@ -2019,12 +2019,23 @@ static int ctx_setparam(struct drm_i915_file_private *fpriv,
+ 	case I915_CONTEXT_PARAM_RECOVERABLE:
+ 		if (args->size)
+ 			ret = -EINVAL;
+-		else if (args->value)
+-			i915_gem_context_set_recoverable(ctx);
++		else if (args->value) {
++			if (!i915_gem_context_is_protected(ctx))
++				i915_gem_context_set_recoverable(ctx);
++			else
++				ret = -EPERM;
++			}
+ 		else
+ 			i915_gem_context_clear_recoverable(ctx);
+ 		break;
  
- #include "intel_pm.h"
- 
-@@ -260,6 +261,35 @@ i915_gem_dumb_create(struct drm_file *file,
- 			       &args->size, &args->handle);
++	case I915_CONTEXT_PARAM_PROTECTED_CONTENT:
++		if (args->size)
++			ret = -EINVAL;
++		else if (args->value)
++			i915_gem_context_set_protected(ctx);
++		break;
++
+ 	case I915_CONTEXT_PARAM_PRIORITY:
+ 		ret = set_priority(ctx, args);
+ 		break;
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.h b/drivers/gpu/drm/i915/gem/i915_gem_context.h
+index b5c908f3f4f2..f991e882bbe0 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_context.h
++++ b/drivers/gpu/drm/i915/gem/i915_gem_context.h
+@@ -70,6 +70,16 @@ static inline void i915_gem_context_set_recoverable(struct i915_gem_context *ctx
+ 	set_bit(UCONTEXT_RECOVERABLE, &ctx->user_flags);
  }
  
-+struct create_ext {
-+        struct drm_i915_private *i915;
-+};
-+
-+static int __create_setparam(struct drm_i915_gem_object_param *args,
-+							struct create_ext *ext_data)
++static inline void i915_gem_context_set_protected(struct i915_gem_context *ctx)
 +{
-+	if (!(args->param & I915_OBJECT_PARAM)) {
-+		DRM_DEBUG("Missing I915_OBJECT_PARAM namespace\n");
-+		return -EINVAL;
++	set_bit(UCONTEXT_PROTECTED, &ctx->user_flags);
++}
++
++static inline bool i915_gem_context_is_protected(struct i915_gem_context *ctx)
++{
++	return test_bit(UCONTEXT_PROTECTED, &ctx->user_flags);
++}
++
+ static inline void i915_gem_context_clear_recoverable(struct i915_gem_context *ctx)
+ {
+ 	clear_bit(UCONTEXT_RECOVERABLE, &ctx->user_flags);
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context_types.h b/drivers/gpu/drm/i915/gem/i915_gem_context_types.h
+index 1449f54924e0..0917c9431c65 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_context_types.h
++++ b/drivers/gpu/drm/i915/gem/i915_gem_context_types.h
+@@ -134,7 +134,7 @@ struct i915_gem_context {
+ #define UCONTEXT_BANNABLE		2
+ #define UCONTEXT_RECOVERABLE		3
+ #define UCONTEXT_PERSISTENCE		4
+-
++#define UCONTEXT_PROTECTED		5
+ 	/**
+ 	 * @flags: small set of booleans
+ 	 */
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object_types.h b/drivers/gpu/drm/i915/gem/i915_gem_object_types.h
+index e2d9b7e1e152..90ac955463f4 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_object_types.h
++++ b/drivers/gpu/drm/i915/gem/i915_gem_object_types.h
+@@ -161,6 +161,11 @@ struct drm_i915_gem_object {
+ 	} mmo;
+ 
+ 	I915_SELFTEST_DECLARE(struct list_head st_link);
++	/**
++	 * @user_flags: small set of booleans set by the user
++	 */
++	unsigned long user_flags;
++#define I915_BO_PROTECTED     BIT(0)
+ 
+ 	unsigned long flags;
+ #define I915_BO_ALLOC_CONTIGUOUS BIT(0)
+diff --git a/drivers/gpu/drm/i915/i915_gem.c b/drivers/gpu/drm/i915/i915_gem.c
+index c53b13c02e59..611a0b5ab51f 100644
+--- a/drivers/gpu/drm/i915/i915_gem.c
++++ b/drivers/gpu/drm/i915/i915_gem.c
+@@ -184,7 +184,8 @@ static int
+ i915_gem_create(struct drm_file *file,
+ 		struct intel_memory_region *mr,
+ 		u64 *size_p,
+-		u32 *handle_p)
++		u32 *handle_p,
++		u64 user_flags)
+ {
+ 	struct drm_i915_gem_object *obj;
+ 	u32 handle;
+@@ -204,6 +205,8 @@ i915_gem_create(struct drm_file *file,
+ 	if (IS_ERR(obj))
+ 		return PTR_ERR(obj);
+ 
++	obj->user_flags = user_flags;
++
+ 	ret = drm_gem_handle_create(file, &obj->base, &handle);
+ 	/* drop reference from allocate - handle holds it now */
+ 	i915_gem_object_put(obj);
+@@ -258,11 +261,12 @@ i915_gem_dumb_create(struct drm_file *file,
+ 	return i915_gem_create(file,
+ 			       intel_memory_region_by_type(to_i915(dev),
+ 							   mem_type),
+-			       &args->size, &args->handle);
++			       &args->size, &args->handle, 0);
+ }
+ 
+ struct create_ext {
+-        struct drm_i915_private *i915;
++	struct drm_i915_private *i915;
++	unsigned long user_flags;
+ };
+ 
+ static int __create_setparam(struct drm_i915_gem_object_param *args,
+@@ -273,6 +277,17 @@ static int __create_setparam(struct drm_i915_gem_object_param *args,
+ 		return -EINVAL;
+ 	}
+ 
++	switch (lower_32_bits(args->param)) {
++	case I915_PARAM_PROTECTED_CONTENT:
++		if (args->size) {
++			return -EINVAL;
++		} else if (args->data) {
++			ext_data->user_flags = args->data;
++			return 0;
++		}
++	break;
 +	}
 +
-+	return -EINVAL;
-+}
-+
-+static int create_setparam(struct i915_user_extension __user *base, void *data)
-+{
-+	struct drm_i915_gem_create_ext_setparam ext;
-+
-+	if (copy_from_user(&ext, base, sizeof(ext)))
-+		return -EFAULT;
-+
-+	return __create_setparam(&ext.param, data);
-+}
-+
-+static const i915_user_extension_fn create_extensions[] = {
-+	[I915_GEM_CREATE_EXT_SETPARAM] = create_setparam,
-+};
-+
- /**
-  * Creates a new mm object and returns a handle to it.
-  * @dev: drm device pointer
-@@ -271,10 +301,20 @@ i915_gem_create_ioctl(struct drm_device *dev, void *data,
- 		      struct drm_file *file)
- {
- 	struct drm_i915_private *i915 = to_i915(dev);
--	struct drm_i915_gem_create *args = data;
-+	struct create_ext ext_data = { .i915 = i915 };
-+	struct drm_i915_gem_create_ext *args = data;
-+	int ret;
+ 	return -EINVAL;
+ }
  
- 	i915_gem_flush_free_objects(i915);
- 
-+	ret = i915_user_extensions(u64_to_user_ptr(args->extensions),
-+				   create_extensions,
-+				   ARRAY_SIZE(create_extensions),
-+				   &ext_data);
-+	if (ret)
-+		return ret;
-+
-+
+@@ -318,7 +333,7 @@ i915_gem_create_ioctl(struct drm_device *dev, void *data,
  	return i915_gem_create(file,
  			       intel_memory_region_by_type(i915,
  							   INTEL_MEMORY_SYSTEM),
+-			       &args->size, &args->handle);
++			       &args->size, &args->handle, ext_data.user_flags);
+ }
+ 
+ static int
 diff --git a/include/uapi/drm/i915_drm.h b/include/uapi/drm/i915_drm.h
-index 6edcb2b6c708..e918ccc81c74 100644
+index e918ccc81c74..d6085a328b2c 100644
 --- a/include/uapi/drm/i915_drm.h
 +++ b/include/uapi/drm/i915_drm.h
-@@ -391,6 +391,7 @@ typedef struct _drm_i915_sarea {
- #define DRM_IOCTL_I915_GEM_ENTERVT	DRM_IO(DRM_COMMAND_BASE + DRM_I915_GEM_ENTERVT)
- #define DRM_IOCTL_I915_GEM_LEAVEVT	DRM_IO(DRM_COMMAND_BASE + DRM_I915_GEM_LEAVEVT)
- #define DRM_IOCTL_I915_GEM_CREATE	DRM_IOWR(DRM_COMMAND_BASE + DRM_I915_GEM_CREATE, struct drm_i915_gem_create)
-+#define DRM_IOCTL_I915_GEM_CREATE_EXT   DRM_IOWR(DRM_COMMAND_BASE + DRM_I915_GEM_CREATE, struct drm_i915_gem_create_ext)
- #define DRM_IOCTL_I915_GEM_PREAD	DRM_IOW (DRM_COMMAND_BASE + DRM_I915_GEM_PREAD, struct drm_i915_gem_pread)
- #define DRM_IOCTL_I915_GEM_PWRITE	DRM_IOW (DRM_COMMAND_BASE + DRM_I915_GEM_PWRITE, struct drm_i915_gem_pwrite)
- #define DRM_IOCTL_I915_GEM_MMAP		DRM_IOWR(DRM_COMMAND_BASE + DRM_I915_GEM_MMAP, struct drm_i915_gem_mmap)
-@@ -728,6 +729,27 @@ struct drm_i915_gem_create {
- 	__u32 pad;
- };
- 
-+struct drm_i915_gem_create_ext {
-+	/**
-+	 * Requested size for the object.
-+	 *
-+	 * The (page-aligned) allocated size for the object will be returned.
-+	 */
-+	__u64 size;
-+	/**
-+	 * Returned handle for the object.
-+	 *
-+	 * Object handles are nonzero.
-+	 */
-+	__u32 handle;
-+	__u32 pad;
-+#define I915_GEM_CREATE_EXT_SETPARAM (1u << 0)
-+#define I915_GEM_CREATE_EXT_FLAGS_UNKNOWN \
-+	(-(I915_GEM_CREATE_EXT_SETPARAM << 1))
-+	__u64 extensions;
-+
-+};
-+
- struct drm_i915_gem_pread {
- 	/** Handle for the object being read. */
- 	__u32 handle;
-@@ -1698,6 +1720,31 @@ struct drm_i915_gem_context_param {
- 	__u64 value;
- };
- 
-+struct drm_i915_gem_object_param {
-+	/* Object handle (0 for I915_GEM_CREATE_EXT_SETPARAM) */
-+	__u32 handle;
-+
-+	/* Data pointer size */
-+	__u32 size;
+@@ -1715,6 +1715,15 @@ struct drm_i915_gem_context_param {
+  * Default is 16 KiB.
+  */
+ #define I915_CONTEXT_PARAM_RINGSIZE	0xc
 +
 +/*
-+ * I915_OBJECT_PARAM:
++ * I915_CONTEXT_PARAM_PROTECTED_CONTENT:
 + *
-+ * Select object namespace for the param.
++ * If set to true (1) PAVP content protection is enabled.
++ * When enabled, the context is marked unrecoverable and may
++ * become invalid due to PAVP teardown event or other error.
 + */
-+#define I915_OBJECT_PARAM  (1ull<<32)
++#define I915_CONTEXT_PARAM_PROTECTED_CONTENT    0xd
+ /* Must be kept compact -- no holes and well documented */
+ 
+ 	__u64 value;
+@@ -1734,6 +1743,16 @@ struct drm_i915_gem_object_param {
+  */
+ #define I915_OBJECT_PARAM  (1ull<<32)
+ 
++/*
++ * I915_PARAM_PROTECTED_CONTENT:
++ *
++ * If set to true (1) buffer contents is expected to be protected by
++ * PAVP encryption and requires decryption for scan out and processing.
++ * Protected buffers can only be used in PAVP protected contexts.
++ * A protected buffer may become invalid as a result of PAVP teardown.
++ */
++#define I915_PARAM_PROTECTED_CONTENT  0x1
 +
-+	__u64 param;
-+
-+	/* Data value or pointer */
-+	__u64 data;
-+};
-+
-+struct drm_i915_gem_create_ext_setparam {
-+	struct i915_user_extension base;
-+	struct drm_i915_gem_object_param param;
-+};
-+
- /**
-  * Context SSEU programming
-  *
+ 	__u64 param;
+ 
+ 	/* Data value or pointer */
 -- 
 2.17.1
 
