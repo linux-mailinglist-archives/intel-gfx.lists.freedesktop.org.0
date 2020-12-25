@@ -2,39 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E20E02E297E
-	for <lists+intel-gfx@lfdr.de>; Fri, 25 Dec 2020 03:36:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C75422E2C65
+	for <lists+intel-gfx@lfdr.de>; Fri, 25 Dec 2020 21:49:53 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3294089BAE;
-	Fri, 25 Dec 2020 02:36:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1FCD689170;
+	Fri, 25 Dec 2020 20:49:51 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9BF7F89BAC;
- Fri, 25 Dec 2020 02:36:06 +0000 (UTC)
-IronPort-SDR: y6H4r06DJ9FDh1M5LVHBMoh4JRorD8rJt1kMbU0FkyWXsS2N7d7Cxc6JqO0T23nTj1q8Noi9yl
- Fo74oeVlE++A==
-X-IronPort-AV: E=McAfee;i="6000,8403,9845"; a="155398829"
-X-IronPort-AV: E=Sophos;i="5.78,446,1599548400"; 
- d="asc'?scan'208";a="155398829"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Dec 2020 18:36:06 -0800
-IronPort-SDR: tucc61tEHFQmJSbQhu8JXOadOwoHBaf9bG2MyBUbP8E+J7H9FidSOYi+nzVvKO+ZVTwTFERrRo
- XFb0Jxd8RqQw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.78,446,1599548400"; 
- d="asc'?scan'208";a="399014257"
-Received: from zhen-hp.sh.intel.com (HELO zhen-hp) ([10.239.160.147])
- by FMSMGA003.fm.intel.com with ESMTP; 24 Dec 2020 18:36:04 -0800
-Date: Fri, 25 Dec 2020 10:20:09 +0800
-From: Zhenyu Wang <zhenyuw@linux.intel.com>
-To: Jani Nikula <jani.nikula@intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- "Vivi, Rodrigo" <rodrigo.vivi@intel.com>
-Message-ID: <20201225022009.GF16939@zhen-hp.sh.intel.com>
+Received: from fireflyinternet.com (unknown [77.68.26.236])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 55C46899C4
+ for <intel-gfx@lists.freedesktop.org>; Fri, 25 Dec 2020 20:49:45 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from build.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 23431182-1500050 
+ for multiple; Fri, 25 Dec 2020 20:49:39 +0000
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Fri, 25 Dec 2020 20:49:36 +0000
+Message-Id: <20201225204938.20248-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PULL] gvt-next-fixes
+Subject: [Intel-gfx] [PATCH 1/3] drm/i915/gt: Cancel submitted requests upon
+ context reset
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,102 +37,97 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: Zhenyu Wang <zhenyuw@linux.intel.com>
-Cc: intel-gfx <intel-gfx@lists.freedesktop.org>,
- intel-gvt-dev <intel-gvt-dev@lists.freedesktop.org>, "Lv,
- Zhiyuan" <zhiyuan.lv@intel.com>, "Yuan, Hang" <hang.yuan@intel.com>
-Content-Type: multipart/mixed; boundary="===============0324722561=="
+Cc: Chris Wilson <chris@chris-wilson.co.uk>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+Since we process schedule-in of a context after submitting the request,
+if we decide to reset the context at that time, we also have to cancel
+the requets we have marked for submission.
 
---===============0324722561==
-Content-Type: multipart/signed; micalg=pgp-sha1;
-	protocol="application/pgp-signature"; boundary="aSM3KCOUSI0G0tph"
-Content-Disposition: inline
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+---
+ .../drm/i915/gt/intel_execlists_submission.c  | 22 ++++++++++++++-----
+ drivers/gpu/drm/i915/i915_request.c           |  2 ++
+ 2 files changed, 18 insertions(+), 6 deletions(-)
 
-
---aSM3KCOUSI0G0tph
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-
-Hi,
-
-Here's queued fixes from Jani for one useless inline and fix
-CONFIG_DRM_I915_WERROR for gvt headers.
-
-Thanks and Merry Christmas!
---
-The following changes since commit 9a3a238b3de97b4210c6de66aa88b2d7021ac086:
-
-  drm/i915/gvt: treat intel_gvt_mpt as const in gvt code (2020-11-23 17:14:=
-20 +0800)
-
-are available in the Git repository at:
-
-  https://github.com/intel/gvt-linux tags/gvt-next-fixes-2020-12-25
-
-for you to fetch changes up to e056f669dbf76b8752b6cb0b8edd2f75cbdcabb1:
-
-  drm/i915/gvt: make mpt.h self-contained (2020-12-22 11:41:35 +0800)
-
-----------------------------------------------------------------
-gvt-next-fixes-2020-12-25
-
-- Avoid one useless inline (Jani)
-- make gvt header self-contained, fix CONFIG_DRM_I915_WERROR (Jani)
-
-----------------------------------------------------------------
-Jani Nikula (9):
-      drm/i915/gvt: avoid useless use of inline
-      drm/i915/gvt: make execlist.h self-contained
-      drm/i915/gvt: make fb_decoder.h self-contained
-      drm/i915/gvt: make gtt.h self-contained
-      drm/i915/gvt: make interrupt.h self-contained
-      drm/i915/gvt: make mmio_context.h self-contained
-      drm/i915/gvt: make gvt.h self-contained
-      drm/i915/gvt: make scheduler.h self-contained
-      drm/i915/gvt: make mpt.h self-contained
-
- drivers/gpu/drm/i915/Makefile           | 10 +---------
- drivers/gpu/drm/i915/gvt/execlist.h     |  3 ---
- drivers/gpu/drm/i915/gvt/fb_decoder.h   |  6 ++++--
- drivers/gpu/drm/i915/gvt/gtt.h          | 11 ++++++++++-
- drivers/gpu/drm/i915/gvt/gvt.h          |  4 ++++
- drivers/gpu/drm/i915/gvt/handlers.c     |  3 +--
- drivers/gpu/drm/i915/gvt/interrupt.h    |  5 ++++-
- drivers/gpu/drm/i915/gvt/mmio_context.h | 11 +++++++++++
- drivers/gpu/drm/i915/gvt/mpt.h          |  2 ++
- drivers/gpu/drm/i915/gvt/scheduler.h    |  5 +++++
- 10 files changed, 42 insertions(+), 18 deletions(-)
-
---=20
-
-$gpg --keyserver wwwkeys.pgp.net --recv-keys 4D781827
-
---aSM3KCOUSI0G0tph
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iF0EARECAB0WIQTXuabgHDW6LPt9CICxBBozTXgYJwUCX+VMVAAKCRCxBBozTXgY
-J1miAJ9OI18JK+wfkkoP+JmRZGGn08wJOwCgmq+Yakn4dTyjnyEo55NIfUoYeE8=
-=xG2a
------END PGP SIGNATURE-----
-
---aSM3KCOUSI0G0tph--
-
---===============0324722561==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+diff --git a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
+index 1fae6c6f3868..eb2c086dbce6 100644
+--- a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
++++ b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
+@@ -215,22 +215,32 @@ static void mark_eio(struct i915_request *rq)
+ }
+ 
+ static struct i915_request *
+-active_request(const struct intel_timeline * const tl, struct i915_request *rq)
++__active_request(const struct intel_timeline * const tl,
++		 struct i915_request *rq,
++		 int error)
+ {
+ 	struct i915_request *active = rq;
+ 
+-	rcu_read_lock();
+-	list_for_each_entry_continue_reverse(rq, &tl->requests, link) {
++	list_for_each_entry_from_reverse(rq, &tl->requests, link) {
+ 		if (__i915_request_is_complete(rq))
+ 			break;
+ 
++		if (error) {
++			i915_request_set_error_once(rq, error);
++			__i915_request_skip(rq);
++		}
+ 		active = rq;
+ 	}
+-	rcu_read_unlock();
+ 
+ 	return active;
+ }
+ 
++static struct i915_request *
++active_request(const struct intel_timeline * const tl, struct i915_request *rq)
++{
++	return __active_request(tl, rq, 0);
++}
++
+ static inline void
+ ring_set_paused(const struct intel_engine_cs *engine, int state)
+ {
+@@ -487,14 +497,14 @@ static void reset_active(struct i915_request *rq,
+ 	 * remain correctly ordered. And we defer to __i915_request_submit()
+ 	 * so that all asynchronous waits are correctly handled.
+ 	 */
+-	ENGINE_TRACE(engine, "{ rq=%llx:%lld }\n",
++	ENGINE_TRACE(engine, "{ reset rq=%llx:%lld }\n",
+ 		     rq->fence.context, rq->fence.seqno);
+ 
+ 	/* On resubmission of the active request, payload will be scrubbed */
+ 	if (__i915_request_is_complete(rq))
+ 		head = rq->tail;
+ 	else
+-		head = active_request(ce->timeline, rq)->head;
++		head = __active_request(ce->timeline, rq, -EIO)->head;
+ 	head = intel_ring_wrap(ce->ring, head);
+ 
+ 	/* Scrub the context image to prevent replaying the previous batch */
+diff --git a/drivers/gpu/drm/i915/i915_request.c b/drivers/gpu/drm/i915/i915_request.c
+index 6578faf6eed8..ad3b6a4f424f 100644
+--- a/drivers/gpu/drm/i915/i915_request.c
++++ b/drivers/gpu/drm/i915/i915_request.c
+@@ -490,6 +490,8 @@ void __i915_request_skip(struct i915_request *rq)
+ 	if (rq->infix == rq->postfix)
+ 		return;
+ 
++	RQ_TRACE(rq, "error: %d\n", rq->fence.error);
++
+ 	/*
+ 	 * As this request likely depends on state from the lost
+ 	 * context, clear out all the user operations leaving the
+-- 
+2.20.1
 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============0324722561==--
