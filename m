@@ -2,62 +2,37 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 14B0B2E3287
-	for <lists+intel-gfx@lfdr.de>; Sun, 27 Dec 2020 20:20:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4804C2E3475
+	for <lists+intel-gfx@lfdr.de>; Mon, 28 Dec 2020 07:22:19 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AD4A8897D0;
-	Sun, 27 Dec 2020 19:20:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9B0F589A0E;
+	Mon, 28 Dec 2020 06:22:14 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ot1-x332.google.com (mail-ot1-x332.google.com
- [IPv6:2607:f8b0:4864:20::332])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D6967897D0;
- Sun, 27 Dec 2020 19:20:52 +0000 (UTC)
-Received: by mail-ot1-x332.google.com with SMTP id q25so7561785otn.10;
- Sun, 27 Dec 2020 11:20:52 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=sender:date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:in-reply-to:user-agent;
- bh=0sVC8j/qFLW+R/BiCcbxfbFuWt0QadRRyfbTVS1VwHY=;
- b=snNRM2UJuxFlYbt0opdNq/Km+jTrugWz+XCv9dvNVL/debD4RiSNjJuvvfbPHP8li7
- KIhX0/QgOmUeidxtdeZSEin831Gb4MPxK/Nsdy82P6kpVKu6N4Nc/2a1j/rhKSYYtPfM
- OdujcskdH0zj17962B4EA6DAWt+WbPQDoOQkCV+q0RBuHOc2AwsMveKzxEy1LnZjcBm6
- WwVaL7EiOv3pK+MmaGP2Q6W+EWp/A0H6XAJ9Sli5mcOq3SMT90MXTM6BUD6s+YNQPnp0
- 3oKuBMFCRu9MNXQfN7PDX/uDAX7jwXSxxMeoGH5bWQ0ZYiFJh6LgmVaIuZavb11TOu03
- Stkw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:sender:date:from:to:cc:subject:message-id
- :references:mime-version:content-disposition:in-reply-to:user-agent;
- bh=0sVC8j/qFLW+R/BiCcbxfbFuWt0QadRRyfbTVS1VwHY=;
- b=PkNB4ULWgcjgRUv3u8xgt2jX2dPtM11bQr5paQ9i0rdoPgdPMuMrwZGpDE3szgfPey
- XpI1Ux2+AOIdH4gNiJ5d+7lzOTooknRyRwiSRib+nbyT++iheN5PS4KZfcCzQxBDw6c2
- IWugl7IPgC3syt7qLetfvNHiLmc6X+RazhTvNDrrEzS3BM1u3MvHJP49qNsZPBdFwjjR
- q0ucqUMvbGI5H2gKWcI019p5McxLhuUZoiWAeQzEYyP+e1fVgTNSf8j14NuMWJCX3UNR
- HJZlzZ3OeDQAh6TgQ9nn1SJaFV5xhD13zFENlUhpTb6mLo/sXWHhWnajBkoNXxXIIcGS
- uMow==
-X-Gm-Message-State: AOAM532S2BPw19OI5JMzk3C35XqfN4nGtU3R0LVxVOiCqYRJx3sHxf9f
- MRB2I0ZiL98wBjhknx7dqs4=
-X-Google-Smtp-Source: ABdhPJy5MA8pTqBMHg7t7kC9SkPKcTOcLW8SMiIKlPFipG2wn4l5044FI2Bd1WiObQwt+tJVlAueHQ==
-X-Received: by 2002:a05:6830:cf:: with SMTP id
- x15mr30498943oto.55.1609096852047; 
- Sun, 27 Dec 2020 11:20:52 -0800 (PST)
-Received: from localhost ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
- by smtp.gmail.com with ESMTPSA id v17sm8555011oou.41.2020.12.27.11.20.50
- (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
- Sun, 27 Dec 2020 11:20:50 -0800 (PST)
-Date: Sun, 27 Dec 2020 11:20:49 -0800
-From: Guenter Roeck <linux@roeck-us.net>
-To: Thomas Gleixner <tglx@linutronix.de>
-Message-ID: <20201227192049.GA195845@roeck-us.net>
-References: <20201210192536.118432146@linutronix.de>
- <20201210194042.703779349@linutronix.de>
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 637E389A0E
+ for <intel-gfx@lists.freedesktop.org>; Mon, 28 Dec 2020 06:22:13 +0000 (UTC)
+IronPort-SDR: BhTu2jgguk/phl61Be7Y5ysW5uoEEUz2BwUmT9glJHGlQ4s5TXrRpOPqa1zWc8PfOPqE4krcJM
+ QseDkPkOxtiQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9847"; a="156138520"
+X-IronPort-AV: E=Sophos;i="5.78,454,1599548400"; d="scan'208";a="156138520"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Dec 2020 22:22:12 -0800
+IronPort-SDR: JCM/eeHGrj2BnXx1KgItxfuDXjq0NZ1TcpwFhL/crS/vDi1LjAJODYAXFFXuSjXwkarzCuv5JK
+ 2cvgScX//izg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.78,454,1599548400"; d="scan'208";a="340770094"
+Received: from tejas-system-product-name.iind.intel.com ([10.145.162.130])
+ by fmsmga007.fm.intel.com with ESMTP; 27 Dec 2020 22:22:11 -0800
+From: Tejas Upadhyay <tejaskumarx.surendrakumar.upadhyay@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	hariom.pandey@intel.com
+Date: Mon, 28 Dec 2020 11:42:35 +0530
+Message-Id: <20201228061235.29384-1-tejaskumarx.surendrakumar.upadhyay@intel.com>
+X-Mailer: git-send-email 2.28.0
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20201210194042.703779349@linutronix.de>
-User-Agent: Mutt/1.9.4 (2018-02-28)
-Subject: Re: [Intel-gfx] [patch 02/30] genirq: Move status flag checks to
- core
+Subject: [Intel-gfx] [PATCH V2] drm/i915/cml : Add TGP PCH support
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,119 +45,66 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Mark Rutland <mark.rutland@arm.com>,
- Karthikeyan Mitran <m.karthikeyan@mobiveil.co.in>,
- Peter Zijlstra <peterz@infradead.org>,
- Catalin Marinas <catalin.marinas@arm.com>, dri-devel@lists.freedesktop.org,
- Chris Wilson <chris@chris-wilson.co.uk>,
- "James E.J. Bottomley" <James.Bottomley@HansenPartnership.com>,
- Russell King <linux@armlinux.org.uk>, afzal mohammed <afzal.mohd.ma@gmail.com>,
- Boris Ostrovsky <boris.ostrovsky@oracle.com>, linux-s390@vger.kernel.org,
- Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
- Dave Jiang <dave.jiang@intel.com>, Leon Romanovsky <leon@kernel.org>,
- linux-rdma@vger.kernel.org, Will Deacon <will@kernel.org>,
- Helge Deller <deller@gmx.de>, Michal Simek <michal.simek@xilinx.com>,
- Christian Borntraeger <borntraeger@de.ibm.com>, linux-pci@vger.kernel.org,
- intel-gfx@lists.freedesktop.org, xen-devel@lists.xenproject.org,
- Hou Zhiqiang <Zhiqiang.Hou@nxp.com>, Wambui Karuga <wambui.karugax@gmail.com>,
- Allen Hubbe <allenbh@gmail.com>, Heiko Carstens <hca@linux.ibm.com>,
- Jon Mason <jdmason@kudzu.us>, linux-gpio@vger.kernel.org,
- Stefano Stabellini <sstabellini@kernel.org>, Jakub Kicinski <kuba@kernel.org>,
- Bjorn Helgaas <bhelgaas@google.com>, Lee Jones <lee.jones@linaro.org>,
- linux-arm-kernel@lists.infradead.org, Juergen Gross <jgross@suse.com>,
- David Airlie <airlied@linux.ie>, linux-parisc@vger.kernel.org,
- netdev@vger.kernel.org, LKML <linux-kernel@vger.kernel.org>,
- Tariq Toukan <tariqt@nvidia.com>, Marc Zyngier <maz@kernel.org>,
- linux-ntb@googlegroups.com, Saeed Mahameed <saeedm@nvidia.com>,
- "David S. Miller" <davem@davemloft.net>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Dec 10, 2020 at 08:25:38PM +0100, Thomas Gleixner wrote:
-> These checks are used by modules and prevent the removal of the export of
-> irq_to_desc(). Move the accessor into the core.
-> 
-> Signed-off-by: Thomas Gleixner <tglx@linutronix.de>
-
-Yes, but that means that irq_check_status_bit() may be called from modules,
-but it is not exported, resulting in build errors such as the following.
-
-arm64:allmodconfig:
-
-ERROR: modpost: "irq_check_status_bit" [drivers/perf/arm_spe_pmu.ko] undefined!
-
-Guenter
-
-> ---
->  include/linux/irqdesc.h |   17 +++++------------
->  kernel/irq/manage.c     |   17 +++++++++++++++++
->  2 files changed, 22 insertions(+), 12 deletions(-)
-> 
-> --- a/include/linux/irqdesc.h
-> +++ b/include/linux/irqdesc.h
-> @@ -223,28 +223,21 @@ irq_set_chip_handler_name_locked(struct
->  	data->chip = chip;
->  }
->  
-> +bool irq_check_status_bit(unsigned int irq, unsigned int bitmask);
-> +
->  static inline bool irq_balancing_disabled(unsigned int irq)
->  {
-> -	struct irq_desc *desc;
-> -
-> -	desc = irq_to_desc(irq);
-> -	return desc->status_use_accessors & IRQ_NO_BALANCING_MASK;
-> +	return irq_check_status_bit(irq, IRQ_NO_BALANCING_MASK);
->  }
->  
->  static inline bool irq_is_percpu(unsigned int irq)
->  {
-> -	struct irq_desc *desc;
-> -
-> -	desc = irq_to_desc(irq);
-> -	return desc->status_use_accessors & IRQ_PER_CPU;
-> +	return irq_check_status_bit(irq, IRQ_PER_CPU);
->  }
->  
->  static inline bool irq_is_percpu_devid(unsigned int irq)
->  {
-> -	struct irq_desc *desc;
-> -
-> -	desc = irq_to_desc(irq);
-> -	return desc->status_use_accessors & IRQ_PER_CPU_DEVID;
-> +	return irq_check_status_bit(irq, IRQ_PER_CPU_DEVID);
->  }
->  
->  static inline void
-> --- a/kernel/irq/manage.c
-> +++ b/kernel/irq/manage.c
-> @@ -2769,3 +2769,23 @@ bool irq_has_action(unsigned int irq)
->  	return res;
->  }
->  EXPORT_SYMBOL_GPL(irq_has_action);
-> +
-> +/**
-> + * irq_check_status_bit - Check whether bits in the irq descriptor status are set
-> + * @irq:	The linux irq number
-> + * @bitmask:	The bitmask to evaluate
-> + *
-> + * Returns: True if one of the bits in @bitmask is set
-> + */
-> +bool irq_check_status_bit(unsigned int irq, unsigned int bitmask)
-> +{
-> +	struct irq_desc *desc;
-> +	bool res = false;
-> +
-> +	rcu_read_lock();
-> +	desc = irq_to_desc(irq);
-> +	if (desc)
-> +		res = !!(desc->status_use_accessors & bitmask);
-> +	rcu_read_unlock();
-> +	return res;
-> +}
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+V2UgaGF2ZSBUR1AgUENIIHN1cHBvcnQgZm9yIFRpZ2VybGFrZSBhbmQgUm9ja2V0bGFrZS4gU2lt
+aWxhcmx5Cm5vdyBUR1AgUENIIGNhbiBiZSB1c2VkIHdpdGggQ29tZXRsYWtlIENQVS4KCkNoYW5n
+ZXMgc2luY2UgVjEgOgoJLSBNYXRjaGVkIEhQRCBQaW4gbWFwcGluZyBmb3IgUE9SVCBDIGFuZCBQ
+T1JUIEQgb2YgQ01MIENQVS4KCkNjIDogTWF0dCBSb3BlciA8bWF0dGhldy5kLnJvcGVyQGludGVs
+LmNvbT4KQ2MgOiBWaWxsZSBTeXJqw6Rsw6QgPHZpbGxlLnN5cmphbGFAbGludXguaW50ZWwuY29t
+PiAKU2lnbmVkLW9mZi1ieTogVGVqYXMgVXBhZGh5YXkgPHRlamFza3VtYXJ4LnN1cmVuZHJha3Vt
+YXIudXBhZGh5YXlAaW50ZWwuY29tPgotLS0KIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkv
+aW50ZWxfZGRpLmMgICAgIHwgNyArKysrKy0tCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5
+L2ludGVsX2Rpc3BsYXkuYyB8IDUgKysrKysKIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkv
+aW50ZWxfaGRtaS5jICAgIHwgMyArKy0KIDMgZmlsZXMgY2hhbmdlZCwgMTIgaW5zZXJ0aW9ucygr
+KSwgMyBkZWxldGlvbnMoLSkKCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNw
+bGF5L2ludGVsX2RkaS5jIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kZGku
+YwppbmRleCAxN2VhYTU2YzVhOTkuLjE4MWQ2MGE1ZTE0NSAxMDA2NDQKLS0tIGEvZHJpdmVycy9n
+cHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kZGkuYworKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkx
+NS9kaXNwbGF5L2ludGVsX2RkaS5jCkBAIC01MzAxLDcgKzUzMDEsOSBAQCBzdGF0aWMgZW51bSBo
+cGRfcGluIGRnMV9ocGRfcGluKHN0cnVjdCBkcm1faTkxNV9wcml2YXRlICpkZXZfcHJpdiwKIHN0
+YXRpYyBlbnVtIGhwZF9waW4gdGdsX2hwZF9waW4oc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmRl
+dl9wcml2LAogCQkJCWVudW0gcG9ydCBwb3J0KQogewotCWlmIChwb3J0ID49IFBPUlRfVEMxKQor
+CWlmIChJU19DT01FVExBS0UoZGV2X3ByaXYpICYmIHBvcnQgPj0gUE9SVF9DKQorCQlyZXR1cm4g
+SFBEX1BPUlRfVEMxICsgcG9ydCArIDEgLSBQT1JUX1RDMTsKKwllbHNlIGlmIChwb3J0ID49IFBP
+UlRfVEMxKQogCQlyZXR1cm4gSFBEX1BPUlRfVEMxICsgcG9ydCAtIFBPUlRfVEMxOwogCWVsc2UK
+IAkJcmV0dXJuIEhQRF9QT1JUX0EgKyBwb3J0IC0gUE9SVF9BOwpAQCAtNTQ1NSw3ICs1NDU3LDgg
+QEAgdm9pZCBpbnRlbF9kZGlfaW5pdChzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqZGV2X3ByaXYs
+IGVudW0gcG9ydCBwb3J0KQogCiAJaWYgKElTX0RHMShkZXZfcHJpdikpCiAJCWVuY29kZXItPmhw
+ZF9waW4gPSBkZzFfaHBkX3BpbihkZXZfcHJpdiwgcG9ydCk7Ci0JZWxzZSBpZiAoSVNfUk9DS0VU
+TEFLRShkZXZfcHJpdikpCisJZWxzZSBpZiAoSVNfUk9DS0VUTEFLRShkZXZfcHJpdikgfHwgKElT
+X0NPTUVUTEFLRShkZXZfcHJpdikgJiYKKwkJCQkJICAgICBIQVNfUENIX1RHUChkZXZfcHJpdikp
+KQogCQllbmNvZGVyLT5ocGRfcGluID0gcmtsX2hwZF9waW4oZGV2X3ByaXYsIHBvcnQpOwogCWVs
+c2UgaWYgKElOVEVMX0dFTihkZXZfcHJpdikgPj0gMTIpCiAJCWVuY29kZXItPmhwZF9waW4gPSB0
+Z2xfaHBkX3BpbihkZXZfcHJpdiwgcG9ydCk7CmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0v
+aTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXkuYyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3Bs
+YXkvaW50ZWxfZGlzcGxheS5jCmluZGV4IGYyYzQ4ZTVjZGI0My4uNDcwMTQ0NzE2NThmIDEwMDY0
+NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXkuYworKysg
+Yi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXkuYwpAQCAtMTYxNjMs
+NiArMTYxNjMsMTEgQEAgc3RhdGljIHZvaWQgaW50ZWxfc2V0dXBfb3V0cHV0cyhzdHJ1Y3QgZHJt
+X2k5MTVfcHJpdmF0ZSAqZGV2X3ByaXYpCiAJCQlpbnRlbF9kZGlfaW5pdChkZXZfcHJpdiwgUE9S
+VF9GKTsKIAogCQlpY2xfZHNpX2luaXQoZGV2X3ByaXYpOworCX0gZWxzZSBpZiAoSVNfQ09NRVRM
+QUtFKGRldl9wcml2KSAmJiBIQVNfUENIX1RHUChkZXZfcHJpdikpIHsKKwkJaW50ZWxfZGRpX2lu
+aXQoZGV2X3ByaXYsIFBPUlRfQSk7CisJCWludGVsX2RkaV9pbml0KGRldl9wcml2LCBQT1JUX0Ip
+OworCQlpbnRlbF9kZGlfaW5pdChkZXZfcHJpdiwgUE9SVF9DKTsKKwkJaW50ZWxfZGRpX2luaXQo
+ZGV2X3ByaXYsIFBPUlRfRCk7CiAJfSBlbHNlIGlmIChJU19HRU45X0xQKGRldl9wcml2KSkgewog
+CQkvKgogCQkgKiBGSVhNRTogQnJveHRvbiBkb2Vzbid0IHN1cHBvcnQgcG9ydCBkZXRlY3Rpb24g
+dmlhIHRoZQpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9o
+ZG1pLmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2hkbWkuYwppbmRleCBj
+NTk1OTU5MDU2MmIuLjU0MGM5ZDU0YjU5NSAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5
+MTUvZGlzcGxheS9pbnRlbF9oZG1pLmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxh
+eS9pbnRlbF9oZG1pLmMKQEAgLTMxNzQsNyArMzE3NCw4IEBAIHN0YXRpYyB1OCBpbnRlbF9oZG1p
+X2RkY19waW4oc3RydWN0IGludGVsX2VuY29kZXIgKmVuY29kZXIpCiAKIAlpZiAoSU5URUxfUENI
+X1RZUEUoZGV2X3ByaXYpID49IFBDSF9ERzEpCiAJCWRkY19waW4gPSBkZzFfcG9ydF90b19kZGNf
+cGluKGRldl9wcml2LCBwb3J0KTsKLQllbHNlIGlmIChJU19ST0NLRVRMQUtFKGRldl9wcml2KSkK
+KwllbHNlIGlmIChJU19ST0NLRVRMQUtFKGRldl9wcml2KSB8fCAoSVNfQ09NRVRMQUtFKGRldl9w
+cml2KSAmJgorCQkJCQkgICAgIEhBU19QQ0hfVEdQKGRldl9wcml2KSkpCiAJCWRkY19waW4gPSBy
+a2xfcG9ydF90b19kZGNfcGluKGRldl9wcml2LCBwb3J0KTsKIAllbHNlIGlmIChIQVNfUENIX01D
+QyhkZXZfcHJpdikpCiAJCWRkY19waW4gPSBtY2NfcG9ydF90b19kZGNfcGluKGRldl9wcml2LCBw
+b3J0KTsKLS0gCjIuMjguMAoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0
+b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50
+ZWwtZ2Z4Cg==
