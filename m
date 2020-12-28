@@ -1,32 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 87E342E64C4
-	for <lists+intel-gfx@lfdr.de>; Mon, 28 Dec 2020 16:53:31 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 97B952E649E
+	for <lists+intel-gfx@lfdr.de>; Mon, 28 Dec 2020 16:53:17 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D913989B48;
-	Mon, 28 Dec 2020 15:53:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EA80689AAD;
+	Mon, 28 Dec 2020 15:52:58 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AF22989A14
- for <intel-gfx@lists.freedesktop.org>; Mon, 28 Dec 2020 15:52:51 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 93E43899DC
+ for <intel-gfx@lists.freedesktop.org>; Mon, 28 Dec 2020 15:52:53 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 23448179-1500050 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 23448180-1500050 
  for multiple; Mon, 28 Dec 2020 15:52:32 +0000
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Mon, 28 Dec 2020 15:51:37 +0000
-Message-Id: <20201228155229.9516-2-chris@chris-wilson.co.uk>
+Date: Mon, 28 Dec 2020 15:51:38 +0000
+Message-Id: <20201228155229.9516-3-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20201228155229.9516-1-chris@chris-wilson.co.uk>
 References: <20201228155229.9516-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 02/54] drm/i915/gt: Pull context closure check
- from request submit to schedule-in
+Subject: [Intel-gfx] [PATCH 03/54] drm/i915/gem: Peek at the inflight context
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,47 +44,84 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-We only need to evaluate the current status of the context when it is
-scheduled in, we will force a reschedule when the context is closed
-propagating the change to inflight contexts.
+If supported by the backend, we can quickly look at the context's
+inflight engine rather than search along the active list to confirm.
 
 Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/i915/gt/intel_execlists_submission.c | 4 ++++
- drivers/gpu/drm/i915/i915_request.c                  | 4 ----
- 2 files changed, 4 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/i915/gem/i915_gem_context.c          |  3 +++
+ drivers/gpu/drm/i915/gt/intel_context.h              | 10 ++++++++++
+ drivers/gpu/drm/i915/gt/intel_context_types.h        |  9 +++++----
+ drivers/gpu/drm/i915/gt/intel_execlists_submission.c |  1 +
+ 4 files changed, 19 insertions(+), 4 deletions(-)
 
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.c b/drivers/gpu/drm/i915/gem/i915_gem_context.c
+index c7363036765a..68f58762d5e3 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_context.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_context.c
+@@ -423,6 +423,9 @@ static struct intel_engine_cs *active_engine(struct intel_context *ce)
+ 	struct intel_engine_cs *engine = NULL;
+ 	struct i915_request *rq;
+ 
++	if (intel_context_has_inflight(ce))
++		return intel_context_inflight(ce);
++
+ 	if (!ce->timeline)
+ 		return NULL;
+ 
+diff --git a/drivers/gpu/drm/i915/gt/intel_context.h b/drivers/gpu/drm/i915/gt/intel_context.h
+index 2ce2ec639ba2..ecab3a7e4d1d 100644
+--- a/drivers/gpu/drm/i915/gt/intel_context.h
++++ b/drivers/gpu/drm/i915/gt/intel_context.h
+@@ -191,6 +191,16 @@ static inline bool intel_context_is_closed(const struct intel_context *ce)
+ 	return test_bit(CONTEXT_CLOSED_BIT, &ce->flags);
+ }
+ 
++static inline void intel_context_set_inflight(struct intel_context *ce)
++{
++	return __set_bit(CONTEXT_HAS_INFLIGHT, &ce->flags);
++}
++
++static inline bool intel_context_has_inflight(const struct intel_context *ce)
++{
++	return test_bit(CONTEXT_HAS_INFLIGHT, &ce->flags);
++}
++
+ static inline bool intel_context_use_semaphores(const struct intel_context *ce)
+ {
+ 	return test_bit(CONTEXT_USE_SEMAPHORES, &ce->flags);
+diff --git a/drivers/gpu/drm/i915/gt/intel_context_types.h b/drivers/gpu/drm/i915/gt/intel_context_types.h
+index f7a0fb6f3a2e..679b268f0911 100644
+--- a/drivers/gpu/drm/i915/gt/intel_context_types.h
++++ b/drivers/gpu/drm/i915/gt/intel_context_types.h
+@@ -87,10 +87,11 @@ struct intel_context {
+ #define CONTEXT_ALLOC_BIT		1
+ #define CONTEXT_VALID_BIT		2
+ #define CONTEXT_CLOSED_BIT		3
+-#define CONTEXT_USE_SEMAPHORES		4
+-#define CONTEXT_BANNED			5
+-#define CONTEXT_FORCE_SINGLE_SUBMISSION	6
+-#define CONTEXT_NOPREEMPT		7
++#define CONTEXT_HAS_INFLIGHT		4
++#define CONTEXT_USE_SEMAPHORES		5
++#define CONTEXT_BANNED			6
++#define CONTEXT_FORCE_SINGLE_SUBMISSION	7
++#define CONTEXT_NOPREEMPT		8
+ 
+ 	u32 *lrc_reg_state;
+ 	union {
 diff --git a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
-index eb2c086dbce6..cdd7606a65d4 100644
+index cdd7606a65d4..5969e688f78e 100644
 --- a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
 +++ b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
-@@ -522,6 +522,10 @@ __execlists_schedule_in(struct i915_request *rq)
+@@ -2532,6 +2532,7 @@ static int __execlists_context_alloc(struct intel_context *ce,
+ 	if (err)
+ 		goto err_lrc;
  
- 	intel_context_get(ce);
++	intel_context_set_inflight(ce);
+ 	return 0;
  
-+	if (unlikely(intel_context_is_closed(ce) &&
-+		     !intel_engine_has_heartbeat(engine)))
-+		intel_context_set_banned(ce);
-+
- 	if (unlikely(intel_context_is_banned(ce)))
- 		reset_active(rq, engine);
- 
-diff --git a/drivers/gpu/drm/i915/i915_request.c b/drivers/gpu/drm/i915/i915_request.c
-index 03ac6eead4db..3290e743ba43 100644
---- a/drivers/gpu/drm/i915/i915_request.c
-+++ b/drivers/gpu/drm/i915/i915_request.c
-@@ -546,10 +546,6 @@ bool __i915_request_submit(struct i915_request *request)
- 	if (i915_request_completed(request))
- 		goto xfer;
- 
--	if (unlikely(intel_context_is_closed(request->context) &&
--		     !intel_engine_has_heartbeat(engine)))
--		intel_context_set_banned(request->context);
--
- 	if (unlikely(intel_context_is_banned(request->context)))
- 		i915_request_set_error_once(request, -EIO);
- 
+ err_lrc:
 -- 
 2.20.1
 
