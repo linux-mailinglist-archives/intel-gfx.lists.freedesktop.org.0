@@ -1,38 +1,40 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3DB612E7295
-	for <lists+intel-gfx@lfdr.de>; Tue, 29 Dec 2020 18:22:10 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3A3C02E7296
+	for <lists+intel-gfx@lfdr.de>; Tue, 29 Dec 2020 18:22:13 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1057A8935B;
-	Tue, 29 Dec 2020 17:22:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0202089452;
+	Tue, 29 Dec 2020 17:22:11 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C560F8935B
- for <intel-gfx@lists.freedesktop.org>; Tue, 29 Dec 2020 17:22:05 +0000 (UTC)
-IronPort-SDR: TIoUrgopV7QdwKyekPRiD8HlWZQUDx/Y/gS1a1MJD+4/tcGs8D3c7zAJzoK7R8GnQ7oON3Qng1
- 6XLqWAq2ZBoA==
-X-IronPort-AV: E=McAfee;i="6000,8403,9849"; a="155719778"
-X-IronPort-AV: E=Sophos;i="5.78,458,1599548400"; d="scan'208";a="155719778"
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3842D8935B
+ for <intel-gfx@lists.freedesktop.org>; Tue, 29 Dec 2020 17:22:06 +0000 (UTC)
+IronPort-SDR: g7VHA02XE4iAOmTJ8Ojr+BZKmYHt1aMe1yUed4hcILKPFA/Zd/QblfoPVFV0H4fcn8AFm59Q2M
+ Ya0GLLO8DXGw==
+X-IronPort-AV: E=McAfee;i="6000,8403,9849"; a="155719782"
+X-IronPort-AV: E=Sophos;i="5.78,458,1599548400"; d="scan'208";a="155719782"
 Received: from orsmga008.jf.intel.com ([10.7.209.65])
  by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Dec 2020 09:22:04 -0800
-IronPort-SDR: 1I0dW16nLFzbUfsP4HhWdZDM2LwUIxAuxQnbE4cPa4IfmfeezXKmw03vMCdakGcRjB6WsMkhgj
- thMTbZQ6QgTg==
-X-IronPort-AV: E=Sophos;i="5.78,458,1599548400"; d="scan'208";a="376125058"
+ 29 Dec 2020 09:22:05 -0800
+IronPort-SDR: e1zx7pOZhzvksVUuYiniV8zv4NiTHUpcXq5dqw3yM9FxOYeBJKOotSYMYDcWxSKeOMmMkhpo0I
+ GQXJ+9Wto4sQ==
+X-IronPort-AV: E=Sophos;i="5.78,458,1599548400"; d="scan'208";a="376125079"
 Received: from ideak-desk.fi.intel.com ([10.237.68.141])
  by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Dec 2020 09:22:03 -0800
+ 29 Dec 2020 09:22:04 -0800
 From: Imre Deak <imre.deak@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Tue, 29 Dec 2020 19:22:00 +0200
-Message-Id: <20201229172201.4155327-1-imre.deak@intel.com>
+Date: Tue, 29 Dec 2020 19:22:01 +0200
+Message-Id: <20201229172201.4155327-2-imre.deak@intel.com>
 X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20201229172201.4155327-1-imre.deak@intel.com>
+References: <20201229172201.4155327-1-imre.deak@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 1/2] drm/i915/dp: Move
- intel_dp_set_signal_levels() to intel_dp_link_training.c
+Subject: [Intel-gfx] [PATCH 2/2] drm/i915/dp: Fix LTTPR vswing/pre-emp
+ setting in non-transparent mode
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,111 +47,93 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-intel_dp_set_signal_levels() is needed for link training, so move it to
-intel_dp_link_training.c.
-
-Signed-off-by: Imre Deak <imre.deak@intel.com>
----
- drivers/gpu/drm/i915/display/intel_dp.c        | 18 ------------------
- drivers/gpu/drm/i915/display/intel_dp.h        |  3 ---
- .../drm/i915/display/intel_dp_link_training.c  | 18 ++++++++++++++++++
- .../drm/i915/display/intel_dp_link_training.h  |  2 ++
- 4 files changed, 20 insertions(+), 21 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index f0e8aaac413c..88a6033d6867 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -5003,24 +5003,6 @@ ivb_cpu_edp_set_signal_levels(struct intel_dp *intel_dp,
- 	intel_de_posting_read(dev_priv, intel_dp->output_reg);
- }
- 
--void intel_dp_set_signal_levels(struct intel_dp *intel_dp,
--				const struct intel_crtc_state *crtc_state)
--{
--	struct drm_i915_private *dev_priv = dp_to_i915(intel_dp);
--	u8 train_set = intel_dp->train_set[0];
--
--	drm_dbg_kms(&dev_priv->drm, "Using vswing level %d%s\n",
--		    train_set & DP_TRAIN_VOLTAGE_SWING_MASK,
--		    train_set & DP_TRAIN_MAX_SWING_REACHED ? " (max)" : "");
--	drm_dbg_kms(&dev_priv->drm, "Using pre-emphasis level %d%s\n",
--		    (train_set & DP_TRAIN_PRE_EMPHASIS_MASK) >>
--		    DP_TRAIN_PRE_EMPHASIS_SHIFT,
--		    train_set & DP_TRAIN_MAX_PRE_EMPHASIS_REACHED ?
--		    " (max)" : "");
--
--	intel_dp->set_signal_levels(intel_dp, crtc_state);
--}
--
- void
- intel_dp_program_link_training_pattern(struct intel_dp *intel_dp,
- 				       const struct intel_crtc_state *crtc_state,
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.h b/drivers/gpu/drm/i915/display/intel_dp.h
-index 4280a09fd8fd..4ebda4e43003 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.h
-+++ b/drivers/gpu/drm/i915/display/intel_dp.h
-@@ -96,9 +96,6 @@ void
- intel_dp_program_link_training_pattern(struct intel_dp *intel_dp,
- 				       const struct intel_crtc_state *crtc_state,
- 				       u8 dp_train_pat);
--void
--intel_dp_set_signal_levels(struct intel_dp *intel_dp,
--			   const struct intel_crtc_state *crtc_state);
- void intel_dp_compute_rate(struct intel_dp *intel_dp, int port_clock,
- 			   u8 *link_bw, u8 *rate_select);
- bool intel_dp_source_supports_hbr2(struct intel_dp *intel_dp);
-diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_training.c b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-index 91d3979902d0..7876e781f698 100644
---- a/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-@@ -334,6 +334,24 @@ intel_dp_set_link_train(struct intel_dp *intel_dp,
- 	return drm_dp_dpcd_write(&intel_dp->aux, reg, buf, len) == len;
- }
- 
-+void intel_dp_set_signal_levels(struct intel_dp *intel_dp,
-+				const struct intel_crtc_state *crtc_state)
-+{
-+	struct drm_i915_private *dev_priv = dp_to_i915(intel_dp);
-+	u8 train_set = intel_dp->train_set[0];
-+
-+	drm_dbg_kms(&dev_priv->drm, "Using vswing level %d%s\n",
-+		    train_set & DP_TRAIN_VOLTAGE_SWING_MASK,
-+		    train_set & DP_TRAIN_MAX_SWING_REACHED ? " (max)" : "");
-+	drm_dbg_kms(&dev_priv->drm, "Using pre-emphasis level %d%s\n",
-+		    (train_set & DP_TRAIN_PRE_EMPHASIS_MASK) >>
-+		    DP_TRAIN_PRE_EMPHASIS_SHIFT,
-+		    train_set & DP_TRAIN_MAX_PRE_EMPHASIS_REACHED ?
-+		    " (max)" : "");
-+
-+	intel_dp->set_signal_levels(intel_dp, crtc_state);
-+}
-+
- static bool
- intel_dp_reset_link_train(struct intel_dp *intel_dp,
- 			  const struct intel_crtc_state *crtc_state,
-diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_training.h b/drivers/gpu/drm/i915/display/intel_dp_link_training.h
-index 86905aa24db7..c3110c032bc2 100644
---- a/drivers/gpu/drm/i915/display/intel_dp_link_training.h
-+++ b/drivers/gpu/drm/i915/display/intel_dp_link_training.h
-@@ -17,6 +17,8 @@ void intel_dp_get_adjust_train(struct intel_dp *intel_dp,
- 			       const struct intel_crtc_state *crtc_state,
- 			       enum drm_dp_phy dp_phy,
- 			       const u8 link_status[DP_LINK_STATUS_SIZE]);
-+void intel_dp_set_signal_levels(struct intel_dp *intel_dp,
-+				const struct intel_crtc_state *crtc_state);
- void intel_dp_start_link_train(struct intel_dp *intel_dp,
- 			       const struct intel_crtc_state *crtc_state);
- void intel_dp_stop_link_train(struct intel_dp *intel_dp,
--- 
-2.25.1
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+VGhlIERQIFBIWSB2c3dpbmcvcHJlLWVtcGhhc2lzIGxldmVsIHByb2dyYW1taW5nIHRoZSBkcml2
+ZXIgZG9lcyBpcwpyZWxhdGVkIHRvIHRoZSBEUFRYIC0+IGZpcnN0IExUVFBSIGxpbmsgc2VnbWVu
+dCBvbmx5LiBBY2NvcmRpbmdseSBpdApzaG91bGQgYmUgb25seSBwcm9ncmFtbWVkIHdoZW4gbGlu
+ayB0cmFpbmluZyB0aGUgZmlyc3QgTFRUUFIgYW5kIGtlcHQKYXMtaXMgd2hlbiB0cmFpbmluZyBz
+dWJzZXF1ZW50IExUVFBScyBhbmQgdGhlIERQUlguIEZvciB0aGVzZSBsYXR0ZXIKUEhZcyB0aGUg
+dnMvcGUgbGV2ZWxzIHdpbGwgYmUgc2V0IGluIHJlc3BvbnNlIHRvIHdyaXRpbmcgdGhlCkRQX1RS
+QUlOSU5HX0xBTkV4X1NFVF9QSFlfUkVQRUFURVJ5IERQQ0QgcmVnaXN0ZXJzIChieSBhbiB1cHN0
+cmVhbSBMVFRQUgpUWCBQSFkgc25vb3BpbmcgdGhpcyB3cml0ZSBhY2Nlc3Mgb2YgaXRzIGRvd25z
+dHJlYW0gTFRUUFIvRFBSWCBSWCBQSFkpLgpUaGUgYWJvdmUgaXMgYWxzbyBkZXNjcmliZWQgaW4g
+RFAgU3RhbmRhcmQgdjIuMCB1bmRlciAzLjYuNi4xLgoKV2hpbGUgYXQgaXQgc2ltcGxpZnkgYW5k
+IGFkZCB0aGUgTFRUUFIgdGhhdCBpcyBsaW5rIHRyYWluZWQgdG8gdGhlIGRlYnVnCm1lc3NhZ2Ug
+aW4gaW50ZWxfZHBfc2V0X3NpZ25hbF9sZXZlbHMoKS4KCkZpeGVzOiBiMzBlZGZkOGQwYjQgKCJk
+cm0vaTkxNTogU3dpdGNoIHRvIExUVFBSIG5vbi10cmFuc3BhcmVudCBtb2RlIGxpbmsgdHJhaW5p
+bmciKQpDYzogVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4K
+U2lnbmVkLW9mZi1ieTogSW1yZSBEZWFrIDxpbXJlLmRlYWtAaW50ZWwuY29tPgotLS0KIGRyaXZl
+cnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZHAuYyAgICAgICB8ICAyICstCiAuLi4vZHJt
+L2k5MTUvZGlzcGxheS9pbnRlbF9kcF9saW5rX3RyYWluaW5nLmMgfCAxOSArKysrKysrKysrKy0t
+LS0tLS0tCiAuLi4vZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kcF9saW5rX3RyYWluaW5nLmggfCAg
+MyArKy0KIDMgZmlsZXMgY2hhbmdlZCwgMTQgaW5zZXJ0aW9ucygrKSwgMTAgZGVsZXRpb25zKC0p
+CgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kcC5jIGIv
+ZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kcC5jCmluZGV4IDg4YTYwMzNkNjg2
+Ny4uMTZjNTYzZjFhNTE1IDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5
+L2ludGVsX2RwLmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kcC5j
+CkBAIC02MDU3LDcgKzYwNTcsNyBAQCBzdGF0aWMgdm9pZCBpbnRlbF9kcF9wcm9jZXNzX3BoeV9y
+ZXF1ZXN0KHN0cnVjdCBpbnRlbF9kcCAqaW50ZWxfZHAsCiAKIAlpbnRlbF9kcF9hdXRvdGVzdF9w
+aHlfZGRpX2Rpc2FibGUoaW50ZWxfZHAsIGNydGNfc3RhdGUpOwogCi0JaW50ZWxfZHBfc2V0X3Np
+Z25hbF9sZXZlbHMoaW50ZWxfZHAsIGNydGNfc3RhdGUpOworCWludGVsX2RwX3NldF9zaWduYWxf
+bGV2ZWxzKGludGVsX2RwLCBjcnRjX3N0YXRlLCBEUF9QSFlfRFBSWCk7CiAKIAlpbnRlbF9kcF9w
+aHlfcGF0dGVybl91cGRhdGUoaW50ZWxfZHAsIGNydGNfc3RhdGUpOwogCmRpZmYgLS1naXQgYS9k
+cml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RwX2xpbmtfdHJhaW5pbmcuYyBiL2Ry
+aXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZHBfbGlua190cmFpbmluZy5jCmluZGV4
+IDc4NzZlNzgxZjY5OC4uZDhjNmQ3MDU0ZDExIDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0v
+aTkxNS9kaXNwbGF5L2ludGVsX2RwX2xpbmtfdHJhaW5pbmcuYworKysgYi9kcml2ZXJzL2dwdS9k
+cm0vaTkxNS9kaXNwbGF5L2ludGVsX2RwX2xpbmtfdHJhaW5pbmcuYwpAQCAtMzM1LDIxICszMzUs
+MjQgQEAgaW50ZWxfZHBfc2V0X2xpbmtfdHJhaW4oc3RydWN0IGludGVsX2RwICppbnRlbF9kcCwK
+IH0KIAogdm9pZCBpbnRlbF9kcF9zZXRfc2lnbmFsX2xldmVscyhzdHJ1Y3QgaW50ZWxfZHAgKmlu
+dGVsX2RwLAotCQkJCWNvbnN0IHN0cnVjdCBpbnRlbF9jcnRjX3N0YXRlICpjcnRjX3N0YXRlKQor
+CQkJCWNvbnN0IHN0cnVjdCBpbnRlbF9jcnRjX3N0YXRlICpjcnRjX3N0YXRlLAorCQkJCWVudW0g
+ZHJtX2RwX3BoeSBkcF9waHkpCiB7CiAJc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmRldl9wcml2
+ID0gZHBfdG9faTkxNShpbnRlbF9kcCk7CiAJdTggdHJhaW5fc2V0ID0gaW50ZWxfZHAtPnRyYWlu
+X3NldFswXTsKKwljaGFyIHBoeV9uYW1lWzEwXTsKIAotCWRybV9kYmdfa21zKCZkZXZfcHJpdi0+
+ZHJtLCAiVXNpbmcgdnN3aW5nIGxldmVsICVkJXNcbiIsCisJZHJtX2RiZ19rbXMoJmRldl9wcml2
+LT5kcm0sICJVc2luZyB2c3dpbmcgbGV2ZWwgJWQlcywgcHJlLWVtcGhhc2lzIGxldmVsICVkJXMs
+IGF0ICVzXG4iLAogCQkgICAgdHJhaW5fc2V0ICYgRFBfVFJBSU5fVk9MVEFHRV9TV0lOR19NQVNL
+LAotCQkgICAgdHJhaW5fc2V0ICYgRFBfVFJBSU5fTUFYX1NXSU5HX1JFQUNIRUQgPyAiIChtYXgp
+IiA6ICIiKTsKLQlkcm1fZGJnX2ttcygmZGV2X3ByaXYtPmRybSwgIlVzaW5nIHByZS1lbXBoYXNp
+cyBsZXZlbCAlZCVzXG4iLAorCQkgICAgdHJhaW5fc2V0ICYgRFBfVFJBSU5fTUFYX1NXSU5HX1JF
+QUNIRUQgPyAiIChtYXgpIiA6ICIiLAogCQkgICAgKHRyYWluX3NldCAmIERQX1RSQUlOX1BSRV9F
+TVBIQVNJU19NQVNLKSA+PgogCQkgICAgRFBfVFJBSU5fUFJFX0VNUEhBU0lTX1NISUZULAogCQkg
+ICAgdHJhaW5fc2V0ICYgRFBfVFJBSU5fTUFYX1BSRV9FTVBIQVNJU19SRUFDSEVEID8KLQkJICAg
+ICIgKG1heCkiIDogIiIpOworCQkgICAgIiAobWF4KSIgOiAiIiwKKwkJICAgIGludGVsX2RwX3Bo
+eV9uYW1lKGRwX3BoeSwgcGh5X25hbWUsIHNpemVvZihwaHlfbmFtZSkpKTsKIAotCWludGVsX2Rw
+LT5zZXRfc2lnbmFsX2xldmVscyhpbnRlbF9kcCwgY3J0Y19zdGF0ZSk7CisJaWYgKGludGVsX2Rw
+X3BoeV9pc19kb3duc3RyZWFtX29mX3NvdXJjZShpbnRlbF9kcCwgZHBfcGh5KSkKKwkJaW50ZWxf
+ZHAtPnNldF9zaWduYWxfbGV2ZWxzKGludGVsX2RwLCBjcnRjX3N0YXRlKTsKIH0KIAogc3RhdGlj
+IGJvb2wKQEAgLTM1OSw3ICszNjIsNyBAQCBpbnRlbF9kcF9yZXNldF9saW5rX3RyYWluKHN0cnVj
+dCBpbnRlbF9kcCAqaW50ZWxfZHAsCiAJCQkgIHU4IGRwX3RyYWluX3BhdCkKIHsKIAltZW1zZXQo
+aW50ZWxfZHAtPnRyYWluX3NldCwgMCwgc2l6ZW9mKGludGVsX2RwLT50cmFpbl9zZXQpKTsKLQlp
+bnRlbF9kcF9zZXRfc2lnbmFsX2xldmVscyhpbnRlbF9kcCwgY3J0Y19zdGF0ZSk7CisJaW50ZWxf
+ZHBfc2V0X3NpZ25hbF9sZXZlbHMoaW50ZWxfZHAsIGNydGNfc3RhdGUsIGRwX3BoeSk7CiAJcmV0
+dXJuIGludGVsX2RwX3NldF9saW5rX3RyYWluKGludGVsX2RwLCBjcnRjX3N0YXRlLCBkcF9waHks
+IGRwX3RyYWluX3BhdCk7CiB9CiAKQEAgLTM3Myw3ICszNzYsNyBAQCBpbnRlbF9kcF91cGRhdGVf
+bGlua190cmFpbihzdHJ1Y3QgaW50ZWxfZHAgKmludGVsX2RwLAogCQkJICAgIERQX1RSQUlOSU5H
+X0xBTkUwX1NFVF9QSFlfUkVQRUFURVIoZHBfcGh5KTsKIAlpbnQgcmV0OwogCi0JaW50ZWxfZHBf
+c2V0X3NpZ25hbF9sZXZlbHMoaW50ZWxfZHAsIGNydGNfc3RhdGUpOworCWludGVsX2RwX3NldF9z
+aWduYWxfbGV2ZWxzKGludGVsX2RwLCBjcnRjX3N0YXRlLCBkcF9waHkpOwogCiAJcmV0ID0gZHJt
+X2RwX2RwY2Rfd3JpdGUoJmludGVsX2RwLT5hdXgsIHJlZywKIAkJCQlpbnRlbF9kcC0+dHJhaW5f
+c2V0LCBjcnRjX3N0YXRlLT5sYW5lX2NvdW50KTsKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2Ry
+bS9pOTE1L2Rpc3BsYXkvaW50ZWxfZHBfbGlua190cmFpbmluZy5oIGIvZHJpdmVycy9ncHUvZHJt
+L2k5MTUvZGlzcGxheS9pbnRlbF9kcF9saW5rX3RyYWluaW5nLmgKaW5kZXggYzMxMTBjMDMyYmMy
+Li42YTFmNzZiZDhjNzUgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkv
+aW50ZWxfZHBfbGlua190cmFpbmluZy5oCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3Bs
+YXkvaW50ZWxfZHBfbGlua190cmFpbmluZy5oCkBAIC0xOCw3ICsxOCw4IEBAIHZvaWQgaW50ZWxf
+ZHBfZ2V0X2FkanVzdF90cmFpbihzdHJ1Y3QgaW50ZWxfZHAgKmludGVsX2RwLAogCQkJICAgICAg
+IGVudW0gZHJtX2RwX3BoeSBkcF9waHksCiAJCQkgICAgICAgY29uc3QgdTggbGlua19zdGF0dXNb
+RFBfTElOS19TVEFUVVNfU0laRV0pOwogdm9pZCBpbnRlbF9kcF9zZXRfc2lnbmFsX2xldmVscyhz
+dHJ1Y3QgaW50ZWxfZHAgKmludGVsX2RwLAotCQkJCWNvbnN0IHN0cnVjdCBpbnRlbF9jcnRjX3N0
+YXRlICpjcnRjX3N0YXRlKTsKKwkJCQljb25zdCBzdHJ1Y3QgaW50ZWxfY3J0Y19zdGF0ZSAqY3J0
+Y19zdGF0ZSwKKwkJCQllbnVtIGRybV9kcF9waHkgZHBfcGh5KTsKIHZvaWQgaW50ZWxfZHBfc3Rh
+cnRfbGlua190cmFpbihzdHJ1Y3QgaW50ZWxfZHAgKmludGVsX2RwLAogCQkJICAgICAgIGNvbnN0
+IHN0cnVjdCBpbnRlbF9jcnRjX3N0YXRlICpjcnRjX3N0YXRlKTsKIHZvaWQgaW50ZWxfZHBfc3Rv
+cF9saW5rX3RyYWluKHN0cnVjdCBpbnRlbF9kcCAqaW50ZWxfZHAsCi0tIAoyLjI1LjEKCl9fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWls
+aW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
