@@ -1,39 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 496D42E7176
-	for <lists+intel-gfx@lfdr.de>; Tue, 29 Dec 2020 15:41:39 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id DB5E82E71E2
+	for <lists+intel-gfx@lfdr.de>; Tue, 29 Dec 2020 16:41:59 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B0569894DC;
-	Tue, 29 Dec 2020 14:41:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ACED8892E7;
+	Tue, 29 Dec 2020 15:41:57 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 854EC894DC
- for <intel-gfx@lists.freedesktop.org>; Tue, 29 Dec 2020 14:41:36 +0000 (UTC)
-IronPort-SDR: UuBP9C35Au1vkwvXDYh6KwQlttO6lSHVX4Fufv8J2ivltSsRoJAzXe6sv4OrUySQHMZ0BUdJZX
- 7QsQwLnjuizA==
-X-IronPort-AV: E=McAfee;i="6000,8403,9849"; a="156285886"
-X-IronPort-AV: E=Sophos;i="5.78,458,1599548400"; d="scan'208";a="156285886"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Dec 2020 06:41:35 -0800
-IronPort-SDR: YTec/Pn28kUvILDHDwz7m0Voo4T2Yv7lkWl19jMNxIio2nS3eybj0YN7OdBaeDggp7GW2moEz2
- beBUFen57wLA==
-X-IronPort-AV: E=Sophos;i="5.78,458,1599548400"; d="scan'208";a="419196295"
-Received: from ideak-desk.fi.intel.com ([10.237.68.141])
- by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Dec 2020 06:41:34 -0800
-Date: Tue, 29 Dec 2020 16:41:31 +0200
-From: Imre Deak <imre.deak@intel.com>
-To: Matthew Wilcox <willy@infradead.org>
-Message-ID: <20201229144131.GA4029266@ideak-desk.fi.intel.com>
-References: <20201221040758.GA874@casper.infradead.org>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 525F2892E5;
+ Tue, 29 Dec 2020 15:41:56 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 4226DA9A43;
+ Tue, 29 Dec 2020 15:41:56 +0000 (UTC)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20201221040758.GA874@casper.infradead.org>
-Subject: Re: [Intel-gfx] Missing DPPLL case on i7-1165G7
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Tue, 29 Dec 2020 15:41:56 -0000
+Message-ID: <160925651624.17551.5133492108023045410@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20201229141626.4773-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20201229141626.4773-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/gt=3A_Taint_the_reset_mutex_with_the_shrinker?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,120 +38,246 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: imre.deak@intel.com
+Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============2136644189=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi,
+--===============2136644189==
+Content-Type: multipart/alternative;
+ boundary="===============2674463565704824314=="
 
-On Mon, Dec 21, 2020 at 04:07:58AM +0000, Matthew Wilcox wrote:
-> 
-> At boot,
-> 
-> [    2.787995] [drm:lspcon_init [i915]] *ERROR* Failed to probe lspcon
-> [    2.788001] i915 0000:00:02.0: [drm] *ERROR* LSPCON init failed on port E
-> [    2.790752] ------------[ cut here ]------------
-> [    2.790753] Missing case (clock == 539440)
-> [    2.790790] WARNING: CPU: 0 PID: 159 at drivers/gpu/drm/i915/display/intel_dpll_mgr.c:2967 icl_get_dplls+0x53a/0xa50 [i915]
+--===============2674463565704824314==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-the above warn looks to be due to a missing workaround fixed by
+== Series Details ==
 
-commit 0e2497e334de42dbaaee8e325241b5b5b34ede7e
-Author: Imre Deak <imre.deak@intel.com>
-Date:   Sat Oct 3 03:18:46 2020 +0300
+Series: drm/i915/gt: Taint the reset mutex with the shrinker
+URL   : https://patchwork.freedesktop.org/series/85297/
+State : success
 
-    drm/i915/tgl: Fix Combo PHY DPLL fractional divider for 38.4MHz ref clock
+== Summary ==
 
-in drm-tip. Could you give it a try?
+CI Bug Log - changes from CI_DRM_9530 -> Patchwork_19222
+====================================================
 
-> In drivers/gpu/drm/i915/display/intel_dpll_mgr.c, I see an entry for 540,000.
-> Presumbly, this clock was supposed to be rounded up to that somewhere.
-> This is an HP Spectre x360 using the internal display.  Here's the EDID
-> in case that's useful:
+Summary
+-------
 
-> 
-> $ edid-decode /sys/class/drm/card0-eDP-1/edid
-> edid-decode (hex):
-> 
-> 00 ff ff ff ff ff ff 00 4c 83 49 41 00 00 00 00 
-> 13 1d 01 04 b5 1d 11 78 02 38 d1 ae 51 3b b8 23 
-> 0b 50 54 00 00 00 01 01 01 01 01 01 01 01 01 01 
-> 01 01 01 01 01 01 b9 d5 00 40 f1 70 20 80 30 20 
-> 88 00 26 a5 10 00 00 1b b9 d5 00 40 f1 70 20 80 
-> 30 20 88 00 26 a5 10 00 00 1b 00 00 00 0f 00 ff 
-> 09 3c ff 09 3c 2c 80 00 00 00 00 00 00 00 00 10 
-> 00 00 01 00 00 00 00 00 00 00 00 00 00 00 01 af 
-> 
-> 02 03 0f 00 e3 05 80 00 e6 06 05 01 73 6d 07 00 
-> 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-> 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-> 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-> 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-> 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-> 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-> 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 ab 
-> 
-> ----------------
-> 
-> EDID version: 1.4
-> Manufacturer: SDC Model 16713 Serial Number 0
-> Made in week 19 of 2019
-> Digital display
-> 10 bits per primary color channel
-> DisplayPort interface
-> Maximum image size: 29 cm x 17 cm
-> Gamma: 2.20
-> Supported color formats: RGB 4:4:4
-> First detailed timing includes the native pixel format and preferred refresh rate
-> Color Characteristics
->   Red:   0.6796, 0.3193
->   Green: 0.2324, 0.7187
->   Blue:  0.1396, 0.0439
->   White: 0.3125, 0.3291
-> Established Timings I & II: none
-> Standard Timings: none
-> Detailed mode: Clock 547.130 MHz, 294 mm x 165 mm
->                3840 3888 3920 4160 ( 48  32 240)
->                2160 2168 2176 2192 (  8   8  16)
->                +hsync -vsync
->                VertFreq: 60.001 Hz, HorFreq: 131.522 kHz
-> Detailed mode: Clock 547.130 MHz, 294 mm x 165 mm
->                3840 3888 3920 4160 ( 48  32 240)
->                2160 2168 2176 2192 (  8   8  16)
->                +hsync -vsync
->                VertFreq: 60.001 Hz, HorFreq: 131.522 kHz
-> Manufacturer-Specified Display Descriptor (0x0f): 00 0f 00 ff 09 3c ff 09 3c 2c 80 00 00 00 00 00  .....<..<,......
-> Dummy Descriptor
-> Has 1 extension block
-> Checksum: 0xaf
-> 
-> ----------------
-> 
-> CTA-861 Extension Block Revision 3
-> 0 native detailed modes
-> 11 bytes of CTA data blocks
->   Extended tag: Colorimetry Data Block
->     BT2020RGB
->   Extended tag: HDR Static Metadata Data Block
->     Electro optical transfer functions:
->       Traditional gamma - SDR luminance range
->       SMPTE ST2084
->     Supported static metadata descriptors:
->       Static metadata type 1
->     Desired content max luminance: 115 (603.666 cd/m^2)
->     Desired content max frame-average luminance: 109 (530.095 cd/m^2)
->     Desired content min luminance: 7 (0.005 cd/m^2)
-> Checksum: 0xab
-> 
-> 
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19222/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_19222 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@gem_huc_copy@huc-copy:
+    - fi-byt-j1900:       NOTRUN -> [SKIP][1] ([fdo#109271]) +27 similar issues
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19222/fi-byt-j1900/igt@gem_huc_copy@huc-copy.html
+
+  * igt@i915_hangman@error-state-basic:
+    - fi-apl-guc:         [PASS][2] -> [DMESG-WARN][3] ([i915#1610])
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9530/fi-apl-guc/igt@i915_hangman@error-state-basic.html
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19222/fi-apl-guc/igt@i915_hangman@error-state-basic.html
+
+  * igt@kms_chamelium@hdmi-crc-fast:
+    - fi-byt-j1900:       NOTRUN -> [SKIP][4] ([fdo#109271] / [fdo#111827]) +8 similar issues
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19222/fi-byt-j1900/igt@kms_chamelium@hdmi-crc-fast.html
+
+  * igt@prime_vgem@basic-read:
+    - fi-tgl-y:           [PASS][5] -> [DMESG-WARN][6] ([i915#402]) +1 similar issue
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9530/fi-tgl-y/igt@prime_vgem@basic-read.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19222/fi-tgl-y/igt@prime_vgem@basic-read.html
+
+  * igt@runner@aborted:
+    - fi-apl-guc:         NOTRUN -> [FAIL][7] ([i915#2426])
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19222/fi-apl-guc/igt@runner@aborted.html
+
+  
+#### Possible fixes ####
+
+  * igt@gem_exec_suspend@basic-s3:
+    - fi-tgl-y:           [DMESG-WARN][8] ([i915#2411] / [i915#402]) -> [PASS][9]
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9530/fi-tgl-y/igt@gem_exec_suspend@basic-s3.html
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19222/fi-tgl-y/igt@gem_exec_suspend@basic-s3.html
+
+  * igt@i915_selftest@live@gt_heartbeat:
+    - fi-bsw-nick:        [DMESG-FAIL][10] ([i915#2675] / [i915#541]) -> [PASS][11]
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9530/fi-bsw-nick/igt@i915_selftest@live@gt_heartbeat.html
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19222/fi-bsw-nick/igt@i915_selftest@live@gt_heartbeat.html
+
+  * igt@prime_vgem@basic-userptr:
+    - fi-tgl-y:           [DMESG-WARN][12] ([i915#402]) -> [PASS][13] +2 similar issues
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9530/fi-tgl-y/igt@prime_vgem@basic-userptr.html
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19222/fi-tgl-y/igt@prime_vgem@basic-userptr.html
+
+  
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
+  [i915#1610]: https://gitlab.freedesktop.org/drm/intel/issues/1610
+  [i915#2411]: https://gitlab.freedesktop.org/drm/intel/issues/2411
+  [i915#2426]: https://gitlab.freedesktop.org/drm/intel/issues/2426
+  [i915#2675]: https://gitlab.freedesktop.org/drm/intel/issues/2675
+  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
+  [i915#541]: https://gitlab.freedesktop.org/drm/intel/issues/541
+
+
+Participating hosts (39 -> 38)
+------------------------------
+
+  Additional (1): fi-byt-j1900 
+  Missing    (2): fi-bsw-cyan fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_9530 -> Patchwork_19222
+
+  CI-20190529: 20190529
+  CI_DRM_9530: 4b094e30c7d79e59faef5ce793d6ebbcdbede5a2 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5926: c81567cf1c05050f7becd4d78ebe349dfb2f9520 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_19222: f3c8a6ea3cd110c323628c42e6d592859cdf3a58 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+f3c8a6ea3cd1 drm/i915/gt: Taint the reset mutex with the shrinker
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19222/index.html
+
+--===============2674463565704824314==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/gt: Taint the reset mutex with the shrinker</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/85297/">https://patchwork.freedesktop.org/series/85297/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19222/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19222/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_9530 -&gt; Patchwork_19222</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19222/index.html</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_19222 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@gem_huc_copy@huc-copy:</p>
+<ul>
+<li>fi-byt-j1900:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19222/fi-byt-j1900/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +27 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_hangman@error-state-basic:</p>
+<ul>
+<li>fi-apl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9530/fi-apl-guc/igt@i915_hangman@error-state-basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19222/fi-apl-guc/igt@i915_hangman@error-state-basic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1610">i915#1610</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium@hdmi-crc-fast:</p>
+<ul>
+<li>fi-byt-j1900:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19222/fi-byt-j1900/igt@kms_chamelium@hdmi-crc-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@prime_vgem@basic-read:</p>
+<ul>
+<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9530/fi-tgl-y/igt@prime_vgem@basic-read.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19222/fi-tgl-y/igt@prime_vgem@basic-read.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) +1 similar issue</li>
+</ul>
+</li>
+<li>
+<p>igt@runner@aborted:</p>
+<ul>
+<li>fi-apl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19222/fi-apl-guc/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2426">i915#2426</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@gem_exec_suspend@basic-s3:</p>
+<ul>
+<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9530/fi-tgl-y/igt@gem_exec_suspend@basic-s3.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2411">i915#2411</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19222/fi-tgl-y/igt@gem_exec_suspend@basic-s3.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@gt_heartbeat:</p>
+<ul>
+<li>fi-bsw-nick:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9530/fi-bsw-nick/igt@i915_selftest@live@gt_heartbeat.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2675">i915#2675</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/541">i915#541</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19222/fi-bsw-nick/igt@i915_selftest@live@gt_heartbeat.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@prime_vgem@basic-userptr:</p>
+<ul>
+<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9530/fi-tgl-y/igt@prime_vgem@basic-userptr.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19222/fi-tgl-y/igt@prime_vgem@basic-userptr.html">PASS</a> +2 similar issues</li>
+</ul>
+</li>
+</ul>
+<h2>Participating hosts (39 -&gt; 38)</h2>
+<p>Additional (1): fi-byt-j1900 <br />
+  Missing    (2): fi-bsw-cyan fi-bdw-samus </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_9530 -&gt; Patchwork_19222</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_9530: 4b094e30c7d79e59faef5ce793d6ebbcdbede5a2 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_5926: c81567cf1c05050f7becd4d78ebe349dfb2f9520 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
+  Patchwork_19222: f3c8a6ea3cd110c323628c42e6d592859cdf3a58 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>f3c8a6ea3cd1 drm/i915/gt: Taint the reset mutex with the shrinker</p>
+
+</body>
+</html>
+
+--===============2674463565704824314==--
+
+--===============2136644189==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============2136644189==--
