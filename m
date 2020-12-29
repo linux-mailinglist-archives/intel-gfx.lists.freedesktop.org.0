@@ -2,31 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 050802E6FB9
-	for <lists+intel-gfx@lfdr.de>; Tue, 29 Dec 2020 11:52:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2CC242E705E
+	for <lists+intel-gfx@lfdr.de>; Tue, 29 Dec 2020 13:03:07 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EA969892BB;
-	Tue, 29 Dec 2020 10:52:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8484089503;
+	Tue, 29 Dec 2020 12:03:00 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 05F1F892B1;
- Tue, 29 Dec 2020 10:52:44 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F01B88932A
+ for <intel-gfx@lists.freedesktop.org>; Tue, 29 Dec 2020 12:02:04 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
-Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 23454585-1500050 
- for multiple; Tue, 29 Dec 2020 10:52:38 +0000
+Received: from build.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 23455150-1500050 
+ for multiple; Tue, 29 Dec 2020 12:01:46 +0000
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Tue, 29 Dec 2020 10:52:37 +0000
-Message-Id: <20201229105237.273009-1-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.30.0.rc2
-In-Reply-To: <20201229103852.234352-1-chris@chris-wilson.co.uk>
-References: <20201229103852.234352-1-chris@chris-wilson.co.uk>
+Date: Tue, 29 Dec 2020 12:00:50 +0000
+Message-Id: <20201229120145.26045-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH i-g-t] i915/gem_ctx_engines: Exercise
- independence across all physical engines
+Subject: [Intel-gfx] [PATCH 01/56] drm/i915/gt: Restore ce->signal flush
+ before releasing virtual engine
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,148 +37,63 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: igt-dev@lists.freedesktop.org, Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Chris Wilson <chris@chris-wilson.co.uk>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Run the 'independent' subtest on all all engines.
+Before we mark the virtual engine as no longer inflight, flush any
+ongoing signaling that may be using the ce->signal_link along the
+previous breadcrumbs. On switch to a new physical engine, that link will
+be inserted into the new set of breadcrumbs, causing confusion to an
+ongoing iterator.
 
+This patch undoes a last minute mistake introduced into commit
+bab0557c8dca ("drm/i915/gt: Remove virtual breadcrumb before transfer"),
+whereby instead of unconditionally applying the flush, it was only
+applied if the request itself was going to be reused.
+
+Fixes: bab0557c8dca ("drm/i915/gt: Remove virtual breadcrumb before transfer")
 Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
 ---
- tests/i915/gem_ctx_engines.c | 66 +++++++++++++++++++++++++++++++-----
- 1 file changed, 58 insertions(+), 8 deletions(-)
+ drivers/gpu/drm/i915/gt/intel_execlists_submission.c | 7 +++++--
+ 1 file changed, 5 insertions(+), 2 deletions(-)
 
-diff --git a/tests/i915/gem_ctx_engines.c b/tests/i915/gem_ctx_engines.c
-index 7d4abdb5c..d3e3da700 100644
---- a/tests/i915/gem_ctx_engines.c
-+++ b/tests/i915/gem_ctx_engines.c
-@@ -30,8 +30,9 @@
- #include <fcntl.h>
- #include <inttypes.h>
- #include <errno.h>
--#include <sys/stat.h>
-+#include <sched.h>
- #include <sys/ioctl.h>
-+#include <sys/stat.h>
- #include <sys/time.h>
- 
- #include <drm.h>
-@@ -479,10 +480,11 @@ static uint32_t read_result(int timeline, uint32_t *map, int idx)
- 	return map[idx];
- }
- 
--static void independent(int i915)
-+static void independent(int i915, const struct intel_execution_engine2 *e)
- {
--#define RCS_TIMESTAMP (0x2000 + 0x358)
-+#define RCS_TIMESTAMP (mmio_base + 0x358)
- 	const unsigned int gen = intel_gen(intel_get_drm_devid(i915));
-+	unsigned int mmio_base = gem_engine_mmio_base(i915, e->name);
- 	const int has_64bit_reloc = gen >= 8;
- 	I915_DEFINE_CONTEXT_PARAM_ENGINES(engines , I915_EXEC_RING_MASK + 1);
- 	struct drm_i915_gem_context_param param = {
-@@ -499,21 +501,25 @@ static void independent(int i915)
- 	int timeline = sw_sync_timeline_create();
- 	uint32_t last, *map;
- 
--	igt_require(gen >= 6); /* No per-engine TIMESTAMP on older gen */
--	igt_require(gem_scheduler_enabled(i915));
-+	igt_require(mmio_base);
- 
- 	{
- 		struct drm_i915_gem_execbuffer2 execbuf = {
- 			.buffers_ptr = to_user_pointer(&results),
- 			.buffer_count = 1,
- 			.rsvd1 = param.ctx_id,
-+			.flags = e->flags,
- 		};
- 		gem_write(i915, results.handle, 0, &bbe, sizeof(bbe));
- 		gem_execbuf(i915, &execbuf);
- 		results.flags = EXEC_OBJECT_PINNED;
+diff --git a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
+index 1fae6c6f3868..b79365b5159a 100644
+--- a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
++++ b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
+@@ -578,8 +578,6 @@ resubmit_virtual_request(struct i915_request *rq, struct virtual_engine *ve)
+ 		 * ce->signal_link.
+ 		 */
+ 		i915_request_cancel_breadcrumb(rq);
+-		while (atomic_read(&engine->breadcrumbs->signaler_active))
+-			cpu_relax();
  	}
  
--	memset(&engines, 0, sizeof(engines)); /* All rcs0 */
-+	memset(&engines, 0, sizeof(engines));
-+	for (int i = 0; i < I915_EXEC_RING_MASK + 1; i++) {
-+		engine_class(&engines, i) = e->class;
-+		engine_instance(&engines, i) = e->instance;
-+	}
- 	gem_context_set_param(i915, &param);
+ 	spin_lock_irq(&engine->active.lock);
+@@ -595,6 +593,7 @@ static void kick_siblings(struct i915_request *rq, struct intel_context *ce)
+ {
+ 	struct virtual_engine *ve = container_of(ce, typeof(*ve), context);
+ 	struct intel_engine_cs *engine = rq->engine;
++	bool signals = !list_empty(&ce->signals);
  
- 	gem_set_caching(i915, results.handle, I915_CACHING_CACHED);
-@@ -573,6 +579,39 @@ static void independent(int i915)
- 	gem_context_destroy(i915, param.ctx_id);
+ 	/*
+ 	 * This engine is now too busy to run this virtual request, so
+@@ -608,6 +607,10 @@ static void kick_siblings(struct i915_request *rq, struct intel_context *ce)
+ 
+ 	if (READ_ONCE(ve->request))
+ 		tasklet_hi_schedule(&ve->base.execlists.tasklet);
++
++	/* Flush concurrent signal_irq_work before we reuse the link */
++	while (signals && atomic_read(&engine->breadcrumbs->signaler_active))
++		cpu_relax();
  }
  
-+static void independent_all(int i915)
-+{
-+	const struct intel_execution_engine2 *e;
-+	igt_spin_t *spin = NULL;
-+
-+	igt_require(gem_scheduler_enabled(i915));
-+	igt_require(intel_gen(intel_get_drm_devid(i915) >= 6));
-+
-+	__for_each_physical_engine(i915, e) {
-+		if (spin) {
-+			spin->execbuf.flags &= ~63;
-+			spin->execbuf.flags |= e->flags;
-+			gem_execbuf(i915, &spin->execbuf);
-+		} else {
-+			spin = igt_spin_new(i915, .engine = e->flags,
-+					    .flags = (IGT_SPIN_NO_PREEMPTION |
-+						      IGT_SPIN_POLL_RUN));
-+		}
-+	}
-+	igt_require(spin);
-+	igt_spin_busywait_until_started(spin);
-+
-+	__for_each_physical_engine(i915, e) {
-+		if (!gem_engine_mmio_base(i915, e->name))
-+			continue;
-+		igt_fork(child, 1)
-+			independent(i915, e);
-+	}
-+	sched_yield();
-+	igt_spin_free(i915, spin);
-+	igt_waitchildren();
-+}
-+
- static void libapi(int i915)
- {
- 	I915_DEFINE_CONTEXT_PARAM_ENGINES(engines, 64) = {};
-@@ -643,6 +682,7 @@ static void libapi(int i915)
- 
- igt_main
- {
-+	const struct intel_execution_engine2 *e;
- 	int i915 = -1;
- 
- 	igt_fixture {
-@@ -673,8 +713,18 @@ igt_main
- 	igt_subtest("execute-allforone")
- 		execute_allforone(i915);
- 
--	igt_subtest("independent")
--		independent(i915);
-+	igt_subtest_with_dynamic("independent") {
-+		igt_require(gem_scheduler_enabled(i915));
-+		igt_require(intel_gen(intel_get_drm_devid(i915) >= 6));
-+		__for_each_physical_engine(i915, e) {
-+			igt_dynamic_f("%s", e->name)
-+				independent(i915, e);
-+		}
-+	}
-+
-+	igt_subtest("independent-all") {
-+		independent_all(i915);
-+	}
- 
- 	igt_subtest("libapi")
- 		libapi(i915);
+ static inline void __execlists_schedule_out(struct i915_request *rq)
 -- 
-2.30.0.rc2
+2.20.1
 
 _______________________________________________
 Intel-gfx mailing list
