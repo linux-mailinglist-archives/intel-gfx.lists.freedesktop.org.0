@@ -1,30 +1,42 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 388BF2E7081
-	for <lists+intel-gfx@lfdr.de>; Tue, 29 Dec 2020 13:09:24 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 069462E7094
+	for <lists+intel-gfx@lfdr.de>; Tue, 29 Dec 2020 13:17:18 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 659F28926B;
-	Tue, 29 Dec 2020 12:09:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 614A08961D;
+	Tue, 29 Dec 2020 12:17:15 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 173168926B
- for <intel-gfx@lists.freedesktop.org>; Tue, 29 Dec 2020 12:09:19 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 23455400-1500050 
- for multiple; Tue, 29 Dec 2020 12:08:29 +0000
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Tue, 29 Dec 2020 12:08:28 +0000
-Message-Id: <20201229120828.29931-1-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.20.1
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 859EF8961D
+ for <intel-gfx@lists.freedesktop.org>; Tue, 29 Dec 2020 12:17:14 +0000 (UTC)
+IronPort-SDR: 70fW8vVs8/3M8f+AA66SDymriFb4IhJRpJ51ksss7oXbEESiRMDWjbMRZBggUN5hQtVB2tpLzq
+ vu6cI1NxCypQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9848"; a="194975538"
+X-IronPort-AV: E=Sophos;i="5.78,457,1599548400"; d="scan'208";a="194975538"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Dec 2020 04:17:14 -0800
+IronPort-SDR: kAj2362U0bGSplqEVnWYPtyMuaaA7k5cur+Fy+xY3nffPJxujQd6cVLyQ1WdmCHKqqdNnzIuKo
+ 1VuCIsMO0o8w==
+X-IronPort-AV: E=Sophos;i="5.78,457,1599548400"; d="scan'208";a="376041568"
+Received: from nabyrne-mobl1.ger.corp.intel.com (HELO intel.com)
+ ([10.252.27.62])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Dec 2020 04:17:12 -0800
+Date: Tue, 29 Dec 2020 14:17:08 +0200
+From: Andi Shyti <andi.shyti@intel.com>
+To: Chris Wilson <chris@chris-wilson.co.uk>
+Message-ID: <X+sY3mt1mLT8hFvc@intel.intel>
+References: <20201228155229.9516-1-chris@chris-wilson.co.uk>
+ <20201228155229.9516-4-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915/gt: Define guc firmware blob for older
- Cometlakes
+Content-Disposition: inline
+In-Reply-To: <20201228155229.9516-4-chris@chris-wilson.co.uk>
+Subject: Re: [Intel-gfx] [PATCH 04/54] drm/i915: Mark up protected uses of
+ 'i915_request_completed'
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,40 +49,53 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: stable@vger.kernel.org, Chris Wilson <chris@chris-wilson.co.uk>
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-When splitting the Coffeelake define to also identify Cometlakes, I
-missed the double fw_def for Coffeelake. That is only newer Cometlakes
-use the cml specific guc firmware, older Cometlakes should use kbl
-firmware.
+Hi Chris,
 
-Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/2859
-Fixes: 5f4ae2704d59 ("drm/i915: Identify Cometlake platform")
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: <stable@vger.kernel.org> # v5.9+
----
- drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c | 1 +
- 1 file changed, 1 insertion(+)
+> When we know that we are inside the timeline mutex, or inside the
+> submission flow (under active.lock or the holder's rcu lock), we know
+> that the rq->hwsp is stable and we can use the simpler direct version.
+>
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> ---
+>  drivers/gpu/drm/i915/gem/i915_gem_context.c     |  2 +-
+>  drivers/gpu/drm/i915/gt/intel_breadcrumbs.c     |  4 ++--
+>  drivers/gpu/drm/i915/gt/intel_engine_cs.c       |  2 +-
+>  drivers/gpu/drm/i915/gt/intel_reset.c           |  3 +--
+>  drivers/gpu/drm/i915/gt/intel_ring_submission.c |  4 +++-
+>  drivers/gpu/drm/i915/gt/intel_timeline.c        |  4 ++--
+>  drivers/gpu/drm/i915/i915_request.c             | 15 +++++++--------
+>  7 files changed, 17 insertions(+), 17 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c b/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c
-index 180c23e2e25e..602f1a0bc587 100644
---- a/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c
-+++ b/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c
-@@ -53,6 +53,7 @@ void intel_uc_fw_change_status(struct intel_uc_fw *uc_fw,
- 	fw_def(ELKHARTLAKE, 0, guc_def(ehl, 49, 0, 1), huc_def(ehl,  9, 0, 0)) \
- 	fw_def(ICELAKE,     0, guc_def(icl, 49, 0, 1), huc_def(icl,  9, 0, 0)) \
- 	fw_def(COMETLAKE,   5, guc_def(cml, 49, 0, 1), huc_def(cml,  4, 0, 0)) \
-+	fw_def(COMETLAKE,   0, guc_def(kbl, 49, 0, 1), huc_def(kbl,  4, 0, 0)) \
- 	fw_def(COFFEELAKE,  0, guc_def(kbl, 49, 0, 1), huc_def(kbl,  4, 0, 0)) \
- 	fw_def(GEMINILAKE,  0, guc_def(glk, 49, 0, 1), huc_def(glk,  4, 0, 0)) \
- 	fw_def(KABYLAKE,    0, guc_def(kbl, 49, 0, 1), huc_def(kbl,  4, 0, 0)) \
--- 
-2.20.1
+have you also missed a couple of cases in
+intel_execlists_submission.c and i915_scheduler.c?
 
+[...]
+
+> diff --git a/drivers/gpu/drm/i915/gt/intel_reset.c b/drivers/gpu/drm/i915/gt/intel_reset.c
+> index b85b6f3dcd60..e0b4291393ec 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_reset.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_reset.c
+> @@ -151,8 +151,7 @@ static void mark_innocent(struct i915_request *rq)
+>  void __i915_request_reset(struct i915_request *rq, bool guilty)
+>  {
+>  	RQ_TRACE(rq, "guilty? %s\n", yesno(guilty));
+> -
+> -	GEM_BUG_ON(i915_request_completed(rq));
+> +	GEM_BUG_ON(__i915_request_is_complete(rq));
+
+aren't you outside the lock here?
+
+Andi
+
+>  
+>  	rcu_read_lock(); /* protect the GEM context */
+>  	if (guilty) {
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
