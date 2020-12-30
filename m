@@ -2,30 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7A8BF2E77D9
-	for <lists+intel-gfx@lfdr.de>; Wed, 30 Dec 2020 11:47:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D45252E77DA
+	for <lists+intel-gfx@lfdr.de>; Wed, 30 Dec 2020 11:48:46 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E61E4896A5;
-	Wed, 30 Dec 2020 10:47:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3390C8967A;
+	Wed, 30 Dec 2020 10:48:45 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 22B8F8967A
- for <intel-gfx@lists.freedesktop.org>; Wed, 30 Dec 2020 10:47:12 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8A15C8967A
+ for <intel-gfx@lists.freedesktop.org>; Wed, 30 Dec 2020 10:48:43 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 23462510-1500050 
- for multiple; Wed, 30 Dec 2020 10:46:59 +0000
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 23462534-1500050 
+ for multiple; Wed, 30 Dec 2020 10:48:36 +0000
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Wed, 30 Dec 2020 10:46:59 +0000
-Message-Id: <20201230104659.31010-2-chris@chris-wilson.co.uk>
+Date: Wed, 30 Dec 2020 10:48:33 +0000
+Message-Id: <20201230104834.31236-1-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20201230104659.31010-1-chris@chris-wilson.co.uk>
-References: <20201230104659.31010-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 2/2] drm/i915/dp: Track pm_qos per connector
+Subject: [Intel-gfx] [PATCH 1/2] drm/i915/dp: Remove aux xfer timeout debug
+ message
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,77 +38,37 @@ List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: Chris Wilson <chris@chris-wilson.co.uk>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-U2luY2UgbXVsdGlwbGUgY29ubmVjdG9ycyBtYXkgcnVuIGludGVsX2RwX2F1eF94ZmVyIGNvbm5j
-dXJyZW50bHksIGEKc2luZ2xlIGdsb2JhbCBwbV9xb3MgZG9lcyBub3Qgc3VmZmljZS4gKE9uZSBj
-b25uZWN0b3IgbWF5IGRpc2FibGUgdGhlCmRtYS1sYXRlbmN5IGJvb3N0IHByZW1hdHVyZWx5IHdo
-aWxlIHRoZSBzZWNvbmQgaXMgc3RpbGwgZGVwZW5kaW5nIG9uCml0LikgSW5zdGVhZCBvZiBhIHNp
-bmdsZSBnbG9iYWwgcG1fcW9zLCB0cmFjayB0aGUgcG1fcW9zIHJlcXVlc3QgZm9yCmVhY2ggaW50
-ZWxfZHAuCgpGaXhlczogOWVlMzJmZWE1ZmU4ICgiZHJtL2k5MTU6IGlycS1kcml2ZSB0aGUgZHAg
-YXV4IGNvbW11bmljYXRpb24iKQpTaWduZWQtb2ZmLWJ5OiBDaHJpcyBXaWxzb24gPGNocmlzQGNo
-cmlzLXdpbHNvbi5jby51az4KQ2M6IFZpbGxlIFN5cmrDpGzDpCA8dmlsbGUuc3lyamFsYUBsaW51
-eC5pbnRlbC5jb20+CkNjOiBJbXJlIERlYWsgPGltcmUuZGVha0BpbnRlbC5jb20+Ci0tLQogZHJp
-dmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kcC5jIHwgMTYgKysrKysrKysrKysrKy0t
-LQogZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9kcnYuYyAgICAgICAgIHwgIDUgLS0tLS0KIDIg
-ZmlsZXMgY2hhbmdlZCwgMTMgaW5zZXJ0aW9ucygrKSwgOCBkZWxldGlvbnMoLSkKCmRpZmYgLS1n
-aXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RwLmMgYi9kcml2ZXJzL2dw
-dS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RwLmMKaW5kZXggMzU3Zjc5MjFlMDcwLi5mMDhlNWYx
-ZjQ2M2QgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZHAu
-YworKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RwLmMKQEAgLTE1MTIs
-NyArMTUxMiw3IEBAIGludGVsX2RwX2F1eF94ZmVyKHN0cnVjdCBpbnRlbF9kcCAqaW50ZWxfZHAs
-CiAJICogbG93ZXN0IHBvc3NpYmxlIHdha2V1cCBsYXRlbmN5IGFuZCBzbyBwcmV2ZW50IHRoZSBj
-cHUgZnJvbSBnb2luZyBpbnRvCiAJICogZGVlcCBzbGVlcCBzdGF0ZXMuCiAJICovCi0JY3B1X2xh
-dGVuY3lfcW9zX3VwZGF0ZV9yZXF1ZXN0KCZpOTE1LT5wbV9xb3MsIDApOworCWNwdV9sYXRlbmN5
-X3Fvc191cGRhdGVfcmVxdWVzdCgmaW50ZWxfZHAtPnBtX3FvcywgMCk7CiAKIAlpbnRlbF9kcF9j
-aGVja19lZHAoaW50ZWxfZHApOwogCkBAIC0xNjQzLDcgKzE2NDMsNyBAQCBpbnRlbF9kcF9hdXhf
-eGZlcihzdHJ1Y3QgaW50ZWxfZHAgKmludGVsX2RwLAogCiAJcmV0ID0gcmVjdl9ieXRlczsKIG91
-dDoKLQljcHVfbGF0ZW5jeV9xb3NfdXBkYXRlX3JlcXVlc3QoJmk5MTUtPnBtX3FvcywgUE1fUU9T
-X0RFRkFVTFRfVkFMVUUpOworCWNwdV9sYXRlbmN5X3Fvc191cGRhdGVfcmVxdWVzdCgmaW50ZWxf
-ZHAtPnBtX3FvcywgUE1fUU9TX0RFRkFVTFRfVkFMVUUpOwogCiAJaWYgKHZkZCkKIAkJZWRwX3Bh
-bmVsX3ZkZF9vZmYoaW50ZWxfZHAsIGZhbHNlKTsKQEAgLTc1MjcsNiArNzUyNywxNCBAQCBzdGF0
-aWMgaW50IGludGVsX2RwX2Nvbm5lY3Rvcl9hdG9taWNfY2hlY2soc3RydWN0IGRybV9jb25uZWN0
-b3IgKmNvbm4sCiAKIAlyZXR1cm4gaW50ZWxfbW9kZXNldF9zeW5jZWRfY3J0Y3Moc3RhdGUsIGNv
-bm4pOwogfQorc3RhdGljIHZvaWQgaW50ZWxfZHBfY29ubmVjdG9yX2Rlc3Ryb3koc3RydWN0IGRy
-bV9jb25uZWN0b3IgKmNvbm5lY3RvcikKK3sKKwlzdHJ1Y3QgaW50ZWxfZHAgKmludGVsX2RwID0g
-aW50ZWxfYXR0YWNoZWRfZHAodG9faW50ZWxfY29ubmVjdG9yKGNvbm5lY3RvcikpOworCisJY3B1
-X2xhdGVuY3lfcW9zX3JlbW92ZV9yZXF1ZXN0KCZpbnRlbF9kcC0+cG1fcW9zKTsKKworCWludGVs
-X2Nvbm5lY3Rvcl9kZXN0cm95KGNvbm5lY3Rvcik7Cit9CiAKIHN0YXRpYyBjb25zdCBzdHJ1Y3Qg
-ZHJtX2Nvbm5lY3Rvcl9mdW5jcyBpbnRlbF9kcF9jb25uZWN0b3JfZnVuY3MgPSB7CiAJLmZvcmNl
-ID0gaW50ZWxfZHBfZm9yY2UsCkBAIC03NTM1LDcgKzc1NDMsNyBAQCBzdGF0aWMgY29uc3Qgc3Ry
-dWN0IGRybV9jb25uZWN0b3JfZnVuY3MgaW50ZWxfZHBfY29ubmVjdG9yX2Z1bmNzID0gewogCS5h
-dG9taWNfc2V0X3Byb3BlcnR5ID0gaW50ZWxfZGlnaXRhbF9jb25uZWN0b3JfYXRvbWljX3NldF9w
-cm9wZXJ0eSwKIAkubGF0ZV9yZWdpc3RlciA9IGludGVsX2RwX2Nvbm5lY3Rvcl9yZWdpc3RlciwK
-IAkuZWFybHlfdW5yZWdpc3RlciA9IGludGVsX2RwX2Nvbm5lY3Rvcl91bnJlZ2lzdGVyLAotCS5k
-ZXN0cm95ID0gaW50ZWxfY29ubmVjdG9yX2Rlc3Ryb3ksCisJLmRlc3Ryb3kgPSBpbnRlbF9kcF9j
-b25uZWN0b3JfZGVzdHJveSwKIAkuYXRvbWljX2Rlc3Ryb3lfc3RhdGUgPSBkcm1fYXRvbWljX2hl
-bHBlcl9jb25uZWN0b3JfZGVzdHJveV9zdGF0ZSwKIAkuYXRvbWljX2R1cGxpY2F0ZV9zdGF0ZSA9
-IGludGVsX2RpZ2l0YWxfY29ubmVjdG9yX2R1cGxpY2F0ZV9zdGF0ZSwKIH07CkBAIC04NjIxLDYg
-Kzg2MjksOCBAQCBpbnRlbF9kcF9pbml0X2Nvbm5lY3RvcihzdHJ1Y3QgaW50ZWxfZGlnaXRhbF9w
-b3J0ICpkaWdfcG9ydCwKIAlpbnRlbF9kcC0+ZnJsLmlzX3RyYWluZWQgPSBmYWxzZTsKIAlpbnRl
-bF9kcC0+ZnJsLnRyYWluZWRfcmF0ZV9nYnBzID0gMDsKIAorCWNwdV9sYXRlbmN5X3Fvc19hZGRf
-cmVxdWVzdCgmaW50ZWxfZHAtPnBtX3FvcywgUE1fUU9TX0RFRkFVTFRfVkFMVUUpOworCiAJcmV0
-dXJuIHRydWU7CiAKIGZhaWw6CmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1
-X2Rydi5jIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9kcnYuYwppbmRleCA1NzA4ZTExZDkx
-N2IuLjI0OWY3NjU5OTNmNyAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9k
-cnYuYworKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2Rydi5jCkBAIC01NzgsOCArNTc4
-LDYgQEAgc3RhdGljIGludCBpOTE1X2RyaXZlcl9od19wcm9iZShzdHJ1Y3QgZHJtX2k5MTVfcHJp
-dmF0ZSAqZGV2X3ByaXYpCiAKIAlwY2lfc2V0X21hc3RlcihwZGV2KTsKIAotCWNwdV9sYXRlbmN5
-X3Fvc19hZGRfcmVxdWVzdCgmZGV2X3ByaXYtPnBtX3FvcywgUE1fUU9TX0RFRkFVTFRfVkFMVUUp
-OwotCiAJaW50ZWxfZ3RfaW5pdF93b3JrYXJvdW5kcyhkZXZfcHJpdik7CiAKIAkvKiBPbiB0aGUg
-OTQ1Ry9HTSwgdGhlIGNoaXBzZXQgcmVwb3J0cyB0aGUgTVNJIGNhcGFiaWxpdHkgb24gdGhlCkBA
-IC02MjYsNyArNjI0LDYgQEAgc3RhdGljIGludCBpOTE1X2RyaXZlcl9od19wcm9iZShzdHJ1Y3Qg
-ZHJtX2k5MTVfcHJpdmF0ZSAqZGV2X3ByaXYpCiBlcnJfbXNpOgogCWlmIChwZGV2LT5tc2lfZW5h
-YmxlZCkKIAkJcGNpX2Rpc2FibGVfbXNpKHBkZXYpOwotCWNwdV9sYXRlbmN5X3Fvc19yZW1vdmVf
-cmVxdWVzdCgmZGV2X3ByaXYtPnBtX3Fvcyk7CiBlcnJfbWVtX3JlZ2lvbnM6CiAJaW50ZWxfbWVt
-b3J5X3JlZ2lvbnNfZHJpdmVyX3JlbGVhc2UoZGV2X3ByaXYpOwogZXJyX2dndHQ6CkBAIC02NDgs
-OCArNjQ1LDYgQEAgc3RhdGljIHZvaWQgaTkxNV9kcml2ZXJfaHdfcmVtb3ZlKHN0cnVjdCBkcm1f
-aTkxNV9wcml2YXRlICpkZXZfcHJpdikKIAogCWlmIChwZGV2LT5tc2lfZW5hYmxlZCkKIAkJcGNp
-X2Rpc2FibGVfbXNpKHBkZXYpOwotCi0JY3B1X2xhdGVuY3lfcW9zX3JlbW92ZV9yZXF1ZXN0KCZk
-ZXZfcHJpdi0+cG1fcW9zKTsKIH0KIAogLyoqCi0tIAoyLjIwLjEKCl9fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50
-ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9y
-Zy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
+The timeouts are frequent and expected. We will complain if we retry so
+often as to lose patience and give up, so the cacophony from individual
+complaints is redundant.
+
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+---
+ drivers/gpu/drm/i915/display/intel_dp.c | 2 --
+ 1 file changed, 2 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+index f0e8aaac413c..357f7921e070 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp.c
+@@ -1613,8 +1613,6 @@ intel_dp_aux_xfer(struct intel_dp *intel_dp,
+ 	/* Timeouts occur when the device isn't connected, so they're
+ 	 * "normal" -- don't fill the kernel log with these */
+ 	if (status & DP_AUX_CH_CTL_TIME_OUT_ERROR) {
+-		drm_dbg_kms(&i915->drm, "%s: timeout (status 0x%08x)\n",
+-			    intel_dp->aux.name, status);
+ 		ret = -ETIMEDOUT;
+ 		goto out;
+ 	}
+-- 
+2.20.1
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
