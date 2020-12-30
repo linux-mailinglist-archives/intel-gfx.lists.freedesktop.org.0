@@ -2,39 +2,28 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 74D362E7B82
-	for <lists+intel-gfx@lfdr.de>; Wed, 30 Dec 2020 18:18:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4B24C2E7C03
+	for <lists+intel-gfx@lfdr.de>; Wed, 30 Dec 2020 20:12:41 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5E5C289834;
-	Wed, 30 Dec 2020 17:18:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BA19989654;
+	Wed, 30 Dec 2020 19:12:39 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AD2CD89834
- for <intel-gfx@lists.freedesktop.org>; Wed, 30 Dec 2020 17:18:24 +0000 (UTC)
-IronPort-SDR: au3Me60/fPxk/CgHKxn+KPXX2YFtOkUoV59op+rYO4J/2gdrw7itMNf3S8EwN87AYlVZwmUTyp
- 98dpPpGIqRGw==
-X-IronPort-AV: E=McAfee;i="6000,8403,9850"; a="238177315"
-X-IronPort-AV: E=Sophos;i="5.78,461,1599548400"; d="scan'208";a="238177315"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Dec 2020 09:18:23 -0800
-IronPort-SDR: OdTrYEw9Egurgdi8HTNSRuvyhQTWxKmAg8SQLNhUGPIvry+xAUZJPG6nF+WV2nPZNRbdjdQZey
- F3HywdWDEi7g==
-X-IronPort-AV: E=Sophos;i="5.78,461,1599548400"; d="scan'208";a="347930361"
-Received: from ideak-desk.fi.intel.com ([10.237.68.141])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Dec 2020 09:18:20 -0800
-Date: Wed, 30 Dec 2020 19:18:16 +0200
-From: Imre Deak <imre.deak@intel.com>
-To: Chris Wilson <chris@chris-wilson.co.uk>
-Message-ID: <20201230171816.GB4171774@ideak-desk.fi.intel.com>
-References: <20201230165933.GA4171774@ideak-desk.fi.intel.com>
- <20201230170734.27916-1-chris@chris-wilson.co.uk>
+Received: from fireflyinternet.com (unknown [77.68.26.236])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2A67F89654
+ for <intel-gfx@lists.freedesktop.org>; Wed, 30 Dec 2020 19:12:38 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from build.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 23466182-1500050 
+ for <intel-gfx@lists.freedesktop.org>; Wed, 30 Dec 2020 19:12:34 +0000
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Wed, 30 Dec 2020 19:12:34 +0000
+Message-Id: <20201230191234.21065-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20201230170734.27916-1-chris@chris-wilson.co.uk>
-Subject: Re: [Intel-gfx] [PATCH v2] drm/i915/dp: Track pm_qos per connector
+Subject: [Intel-gfx] [CI] drm/i915/dp: Track pm_qos per connector
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,165 +36,86 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: imre.deak@intel.com
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Dec 30, 2020 at 05:07:34PM +0000, Chris Wilson wrote:
-> Since multiple connectors may run intel_dp_aux_xfer conncurrently, a
-> single global pm_qos does not suffice. (One connector may disable the
-> dma-latency boost prematurely while the second is still depending on
-> it.) Instead of a single global pm_qos, track the pm_qos request for
-> each intel_dp.
-> =
-
-> v2: Move the pm_qos setup/teardown to intel_dp_aux_init/fini
-> =
-
-> Fixes: 9ee32fea5fe8 ("drm/i915: irq-drive the dp aux communication")
-> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-> Cc: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> Cc: Imre Deak <imre.deak@intel.com>
-
-Reviewed-by: Imre Deak <imre.deak@intel.com>
-
-> ---
->  drivers/gpu/drm/i915/display/intel_display_types.h | 3 +++
->  drivers/gpu/drm/i915/display/intel_dp.c            | 6 ++++--
->  drivers/gpu/drm/i915/i915_drv.c                    | 5 -----
->  drivers/gpu/drm/i915/i915_drv.h                    | 3 ---
->  4 files changed, 7 insertions(+), 10 deletions(-)
-> =
-
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers=
-/gpu/drm/i915/display/intel_display_types.h
-> index b86ba1bdbaa3..1067bd073c95 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
-> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-> @@ -1463,6 +1463,9 @@ struct intel_dp {
->  		bool rgb_to_ycbcr;
->  	} dfp;
->  =
-
-> +	/* To control wakeup latency, e.g. for irq-driven dp aux transfers. */
-> +	struct pm_qos_request pm_qos;
-> +
->  	/* Display stream compression testing */
->  	bool force_dsc_en;
->  =
-
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i9=
-15/display/intel_dp.c
-> index 357f7921e070..dafb1334f91a 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> @@ -1512,7 +1512,7 @@ intel_dp_aux_xfer(struct intel_dp *intel_dp,
->  	 * lowest possible wakeup latency and so prevent the cpu from going into
->  	 * deep sleep states.
->  	 */
-> -	cpu_latency_qos_update_request(&i915->pm_qos, 0);
-> +	cpu_latency_qos_update_request(&intel_dp->pm_qos, 0);
->  =
-
->  	intel_dp_check_edp(intel_dp);
->  =
-
-> @@ -1643,7 +1643,7 @@ intel_dp_aux_xfer(struct intel_dp *intel_dp,
->  =
-
->  	ret =3D recv_bytes;
->  out:
-> -	cpu_latency_qos_update_request(&i915->pm_qos, PM_QOS_DEFAULT_VALUE);
-> +	cpu_latency_qos_update_request(&intel_dp->pm_qos, PM_QOS_DEFAULT_VALUE);
->  =
-
->  	if (vdd)
->  		edp_panel_vdd_off(intel_dp, false);
-> @@ -1919,6 +1919,7 @@ static i915_reg_t tgl_aux_data_reg(struct intel_dp =
-*intel_dp, int index)
->  static void
->  intel_dp_aux_fini(struct intel_dp *intel_dp)
->  {
-> +	cpu_latency_qos_remove_request(&intel_dp->pm_qos);
->  	kfree(intel_dp->aux.name);
->  }
->  =
-
-> @@ -1971,6 +1972,7 @@ intel_dp_aux_init(struct intel_dp *intel_dp)
->  					       encoder->base.name);
->  =
-
->  	intel_dp->aux.transfer =3D intel_dp_aux_transfer;
-> +	cpu_latency_qos_add_request(&intel_dp->pm_qos, PM_QOS_DEFAULT_VALUE);
->  }
->  =
-
->  bool intel_dp_source_supports_hbr2(struct intel_dp *intel_dp)
-> diff --git a/drivers/gpu/drm/i915/i915_drv.c b/drivers/gpu/drm/i915/i915_=
-drv.c
-> index 5708e11d917b..249f765993f7 100644
-> --- a/drivers/gpu/drm/i915/i915_drv.c
-> +++ b/drivers/gpu/drm/i915/i915_drv.c
-> @@ -578,8 +578,6 @@ static int i915_driver_hw_probe(struct drm_i915_priva=
-te *dev_priv)
->  =
-
->  	pci_set_master(pdev);
->  =
-
-> -	cpu_latency_qos_add_request(&dev_priv->pm_qos, PM_QOS_DEFAULT_VALUE);
-> -
->  	intel_gt_init_workarounds(dev_priv);
->  =
-
->  	/* On the 945G/GM, the chipset reports the MSI capability on the
-> @@ -626,7 +624,6 @@ static int i915_driver_hw_probe(struct drm_i915_priva=
-te *dev_priv)
->  err_msi:
->  	if (pdev->msi_enabled)
->  		pci_disable_msi(pdev);
-> -	cpu_latency_qos_remove_request(&dev_priv->pm_qos);
->  err_mem_regions:
->  	intel_memory_regions_driver_release(dev_priv);
->  err_ggtt:
-> @@ -648,8 +645,6 @@ static void i915_driver_hw_remove(struct drm_i915_pri=
-vate *dev_priv)
->  =
-
->  	if (pdev->msi_enabled)
->  		pci_disable_msi(pdev);
-> -
-> -	cpu_latency_qos_remove_request(&dev_priv->pm_qos);
->  }
->  =
-
->  /**
-> diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_=
-drv.h
-> index e38a10d5c128..5e5bcef20e33 100644
-> --- a/drivers/gpu/drm/i915/i915_drv.h
-> +++ b/drivers/gpu/drm/i915/i915_drv.h
-> @@ -891,9 +891,6 @@ struct drm_i915_private {
->  =
-
->  	bool display_irqs_enabled;
->  =
-
-> -	/* To control wakeup latency, e.g. for irq-driven dp aux transfers. */
-> -	struct pm_qos_request pm_qos;
-> -
->  	/* Sideband mailbox protection */
->  	struct mutex sb_lock;
->  	struct pm_qos_request sb_qos;
-> -- =
-
-> 2.20.1
-> =
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+U2luY2UgbXVsdGlwbGUgY29ubmVjdG9ycyBtYXkgcnVuIGludGVsX2RwX2F1eF94ZmVyIGNvbm5j
+dXJyZW50bHksIGEKc2luZ2xlIGdsb2JhbCBwbV9xb3MgZG9lcyBub3Qgc3VmZmljZS4gKE9uZSBj
+b25uZWN0b3IgbWF5IGRpc2FibGUgdGhlCmRtYS1sYXRlbmN5IGJvb3N0IHByZW1hdHVyZWx5IHdo
+aWxlIHRoZSBzZWNvbmQgaXMgc3RpbGwgZGVwZW5kaW5nIG9uCml0LikgSW5zdGVhZCBvZiBhIHNp
+bmdsZSBnbG9iYWwgcG1fcW9zLCB0cmFjayB0aGUgcG1fcW9zIHJlcXVlc3QgZm9yCmVhY2ggaW50
+ZWxfZHAuCgp2MjogTW92ZSB0aGUgcG1fcW9zIHNldHVwL3RlYXJkb3duIHRvIGludGVsX2RwX2F1
+eF9pbml0L2ZpbmkKCkZpeGVzOiA5ZWUzMmZlYTVmZTggKCJkcm0vaTkxNTogaXJxLWRyaXZlIHRo
+ZSBkcCBhdXggY29tbXVuaWNhdGlvbiIpClNpZ25lZC1vZmYtYnk6IENocmlzIFdpbHNvbiA8Y2hy
+aXNAY2hyaXMtd2lsc29uLmNvLnVrPgpDYzogVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJqYWxh
+QGxpbnV4LmludGVsLmNvbT4KQ2M6IEltcmUgRGVhayA8aW1yZS5kZWFrQGludGVsLmNvbT4KUmV2
+aWV3ZWQtYnk6IEltcmUgRGVhayA8aW1yZS5kZWFrQGludGVsLmNvbT4KLS0tCiBkcml2ZXJzL2dw
+dS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXlfdHlwZXMuaCB8IDMgKysrCiBkcml2ZXJz
+L2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RwLmMgICAgICAgICAgICB8IDYgKysrKy0tCiBk
+cml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2Rydi5jICAgICAgICAgICAgICAgICAgICB8IDUgLS0t
+LS0KIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfZHJ2LmggICAgICAgICAgICAgICAgICAgIHwg
+MyAtLS0KIDQgZmlsZXMgY2hhbmdlZCwgNyBpbnNlcnRpb25zKCspLCAxMCBkZWxldGlvbnMoLSkK
+CmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXlf
+dHlwZXMuaCBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheV90eXBl
+cy5oCmluZGV4IGI4NmJhMWJkYmFhMy4uMTA2N2JkMDczYzk1IDEwMDY0NAotLS0gYS9kcml2ZXJz
+L2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXlfdHlwZXMuaAorKysgYi9kcml2ZXJz
+L2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXlfdHlwZXMuaApAQCAtMTQ2Myw2ICsx
+NDYzLDkgQEAgc3RydWN0IGludGVsX2RwIHsKIAkJYm9vbCByZ2JfdG9feWNiY3I7CiAJfSBkZnA7
+CiAKKwkvKiBUbyBjb250cm9sIHdha2V1cCBsYXRlbmN5LCBlLmcuIGZvciBpcnEtZHJpdmVuIGRw
+IGF1eCB0cmFuc2ZlcnMuICovCisJc3RydWN0IHBtX3Fvc19yZXF1ZXN0IHBtX3FvczsKKwogCS8q
+IERpc3BsYXkgc3RyZWFtIGNvbXByZXNzaW9uIHRlc3RpbmcgKi8KIAlib29sIGZvcmNlX2RzY19l
+bjsKIApkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kcC5j
+IGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kcC5jCmluZGV4IGYwZThhYWFj
+NDEzYy4uYzIzYmZhOWMzNGNhIDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNw
+bGF5L2ludGVsX2RwLmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9k
+cC5jCkBAIC0xNTEyLDcgKzE1MTIsNyBAQCBpbnRlbF9kcF9hdXhfeGZlcihzdHJ1Y3QgaW50ZWxf
+ZHAgKmludGVsX2RwLAogCSAqIGxvd2VzdCBwb3NzaWJsZSB3YWtldXAgbGF0ZW5jeSBhbmQgc28g
+cHJldmVudCB0aGUgY3B1IGZyb20gZ29pbmcgaW50bwogCSAqIGRlZXAgc2xlZXAgc3RhdGVzLgog
+CSAqLwotCWNwdV9sYXRlbmN5X3Fvc191cGRhdGVfcmVxdWVzdCgmaTkxNS0+cG1fcW9zLCAwKTsK
+KwljcHVfbGF0ZW5jeV9xb3NfdXBkYXRlX3JlcXVlc3QoJmludGVsX2RwLT5wbV9xb3MsIDApOwog
+CiAJaW50ZWxfZHBfY2hlY2tfZWRwKGludGVsX2RwKTsKIApAQCAtMTY0NSw3ICsxNjQ1LDcgQEAg
+aW50ZWxfZHBfYXV4X3hmZXIoc3RydWN0IGludGVsX2RwICppbnRlbF9kcCwKIAogCXJldCA9IHJl
+Y3ZfYnl0ZXM7CiBvdXQ6Ci0JY3B1X2xhdGVuY3lfcW9zX3VwZGF0ZV9yZXF1ZXN0KCZpOTE1LT5w
+bV9xb3MsIFBNX1FPU19ERUZBVUxUX1ZBTFVFKTsKKwljcHVfbGF0ZW5jeV9xb3NfdXBkYXRlX3Jl
+cXVlc3QoJmludGVsX2RwLT5wbV9xb3MsIFBNX1FPU19ERUZBVUxUX1ZBTFVFKTsKIAogCWlmICh2
+ZGQpCiAJCWVkcF9wYW5lbF92ZGRfb2ZmKGludGVsX2RwLCBmYWxzZSk7CkBAIC0xOTIxLDYgKzE5
+MjEsNyBAQCBzdGF0aWMgaTkxNV9yZWdfdCB0Z2xfYXV4X2RhdGFfcmVnKHN0cnVjdCBpbnRlbF9k
+cCAqaW50ZWxfZHAsIGludCBpbmRleCkKIHN0YXRpYyB2b2lkCiBpbnRlbF9kcF9hdXhfZmluaShz
+dHJ1Y3QgaW50ZWxfZHAgKmludGVsX2RwKQogeworCWNwdV9sYXRlbmN5X3Fvc19yZW1vdmVfcmVx
+dWVzdCgmaW50ZWxfZHAtPnBtX3Fvcyk7CiAJa2ZyZWUoaW50ZWxfZHAtPmF1eC5uYW1lKTsKIH0K
+IApAQCAtMTk3Myw2ICsxOTc0LDcgQEAgaW50ZWxfZHBfYXV4X2luaXQoc3RydWN0IGludGVsX2Rw
+ICppbnRlbF9kcCkKIAkJCQkJICAgICAgIGVuY29kZXItPmJhc2UubmFtZSk7CiAKIAlpbnRlbF9k
+cC0+YXV4LnRyYW5zZmVyID0gaW50ZWxfZHBfYXV4X3RyYW5zZmVyOworCWNwdV9sYXRlbmN5X3Fv
+c19hZGRfcmVxdWVzdCgmaW50ZWxfZHAtPnBtX3FvcywgUE1fUU9TX0RFRkFVTFRfVkFMVUUpOwog
+fQogCiBib29sIGludGVsX2RwX3NvdXJjZV9zdXBwb3J0c19oYnIyKHN0cnVjdCBpbnRlbF9kcCAq
+aW50ZWxfZHApCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2Rydi5jIGIv
+ZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9kcnYuYwppbmRleCA1NzA4ZTExZDkxN2IuLjI0OWY3
+NjU5OTNmNyAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9kcnYuYworKysg
+Yi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2Rydi5jCkBAIC01NzgsOCArNTc4LDYgQEAgc3Rh
+dGljIGludCBpOTE1X2RyaXZlcl9od19wcm9iZShzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqZGV2
+X3ByaXYpCiAKIAlwY2lfc2V0X21hc3RlcihwZGV2KTsKIAotCWNwdV9sYXRlbmN5X3Fvc19hZGRf
+cmVxdWVzdCgmZGV2X3ByaXYtPnBtX3FvcywgUE1fUU9TX0RFRkFVTFRfVkFMVUUpOwotCiAJaW50
+ZWxfZ3RfaW5pdF93b3JrYXJvdW5kcyhkZXZfcHJpdik7CiAKIAkvKiBPbiB0aGUgOTQ1Ry9HTSwg
+dGhlIGNoaXBzZXQgcmVwb3J0cyB0aGUgTVNJIGNhcGFiaWxpdHkgb24gdGhlCkBAIC02MjYsNyAr
+NjI0LDYgQEAgc3RhdGljIGludCBpOTE1X2RyaXZlcl9od19wcm9iZShzdHJ1Y3QgZHJtX2k5MTVf
+cHJpdmF0ZSAqZGV2X3ByaXYpCiBlcnJfbXNpOgogCWlmIChwZGV2LT5tc2lfZW5hYmxlZCkKIAkJ
+cGNpX2Rpc2FibGVfbXNpKHBkZXYpOwotCWNwdV9sYXRlbmN5X3Fvc19yZW1vdmVfcmVxdWVzdCgm
+ZGV2X3ByaXYtPnBtX3Fvcyk7CiBlcnJfbWVtX3JlZ2lvbnM6CiAJaW50ZWxfbWVtb3J5X3JlZ2lv
+bnNfZHJpdmVyX3JlbGVhc2UoZGV2X3ByaXYpOwogZXJyX2dndHQ6CkBAIC02NDgsOCArNjQ1LDYg
+QEAgc3RhdGljIHZvaWQgaTkxNV9kcml2ZXJfaHdfcmVtb3ZlKHN0cnVjdCBkcm1faTkxNV9wcml2
+YXRlICpkZXZfcHJpdikKIAogCWlmIChwZGV2LT5tc2lfZW5hYmxlZCkKIAkJcGNpX2Rpc2FibGVf
+bXNpKHBkZXYpOwotCi0JY3B1X2xhdGVuY3lfcW9zX3JlbW92ZV9yZXF1ZXN0KCZkZXZfcHJpdi0+
+cG1fcW9zKTsKIH0KIAogLyoqCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1
+X2Rydi5oIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9kcnYuaAppbmRleCBlMzhhMTBkNWMx
+MjguLjVlNWJjZWYyMGUzMyAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9k
+cnYuaAorKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2Rydi5oCkBAIC04OTEsOSArODkx
+LDYgQEAgc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgewogCiAJYm9vbCBkaXNwbGF5X2lycXNfZW5h
+YmxlZDsKIAotCS8qIFRvIGNvbnRyb2wgd2FrZXVwIGxhdGVuY3ksIGUuZy4gZm9yIGlycS1kcml2
+ZW4gZHAgYXV4IHRyYW5zZmVycy4gKi8KLQlzdHJ1Y3QgcG1fcW9zX3JlcXVlc3QgcG1fcW9zOwot
+CiAJLyogU2lkZWJhbmQgbWFpbGJveCBwcm90ZWN0aW9uICovCiAJc3RydWN0IG11dGV4IHNiX2xv
+Y2s7CiAJc3RydWN0IHBtX3Fvc19yZXF1ZXN0IHNiX3FvczsKLS0gCjIuMjAuMQoKX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcg
+bGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRl
+c2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
