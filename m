@@ -1,31 +1,42 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6D8492E79CC
-	for <lists+intel-gfx@lfdr.de>; Wed, 30 Dec 2020 14:49:55 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id DB0B42E79F2
+	for <lists+intel-gfx@lfdr.de>; Wed, 30 Dec 2020 15:24:44 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 69271891B4;
-	Wed, 30 Dec 2020 13:49:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C574F89173;
+	Wed, 30 Dec 2020 14:24:41 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id C15DC88E56;
- Wed, 30 Dec 2020 13:49:50 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 99487A0BA8;
- Wed, 30 Dec 2020 13:49:50 +0000 (UTC)
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D1CE689173
+ for <intel-gfx@lists.freedesktop.org>; Wed, 30 Dec 2020 14:24:39 +0000 (UTC)
+IronPort-SDR: juOKtWxFMNy8Mip3jzCcWWLePgDixPSeHeeKd2Nm4UAVMvas7B4fDT/VSj1Se/h9HpUYBTGVXz
+ /T+zFwJAOsyg==
+X-IronPort-AV: E=McAfee;i="6000,8403,9849"; a="155807390"
+X-IronPort-AV: E=Sophos;i="5.78,461,1599548400"; d="scan'208";a="155807390"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Dec 2020 06:24:39 -0800
+IronPort-SDR: ohHSl2F3MisjwMCkkf8OhGZn0hw8bCOWVJZh5nblD8GWae/SzxHCpif5VWwDGAS2UHu+tjAVoI
+ AgyZTYGbAyOg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.78,461,1599548400"; d="scan'208";a="359237170"
+Received: from gaia.fi.intel.com ([10.237.72.192])
+ by orsmga002.jf.intel.com with ESMTP; 30 Dec 2020 06:24:38 -0800
+Received: by gaia.fi.intel.com (Postfix, from userid 1000)
+ id 1C70F5C20E0; Wed, 30 Dec 2020 16:22:07 +0200 (EET)
+From: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
+In-Reply-To: <20201228155229.9516-6-chris@chris-wilson.co.uk>
+References: <20201228155229.9516-1-chris@chris-wilson.co.uk>
+ <20201228155229.9516-6-chris@chris-wilson.co.uk>
+Date: Wed, 30 Dec 2020 16:22:07 +0200
+Message-ID: <87v9cjl6gg.fsf@gaia.fi.intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Wed, 30 Dec 2020 13:49:50 -0000
-Message-ID: <160933619060.26067.18252012070690104619@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20201230124323.32697-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20201230124323.32697-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915=3A_Support_secure_dispatch_on_gen6/gen7?=
+Subject: Re: [Intel-gfx] [PATCH 06/54] drm/i915: Drop i915_request.lock
+ requirement for intel_rps_boost()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,206 +49,94 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============2042083087=="
+Cc: Chris Wilson <chris@chris-wilson.co.uk>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============2042083087==
-Content-Type: multipart/alternative;
- boundary="===============7991845277515391859=="
+Chris Wilson <chris@chris-wilson.co.uk> writes:
 
---===============7991845277515391859==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+> Since we use a flag within i915_request.flags to indicate when we have
+> boosted the request (so that we only apply the boost) once, this can be
+> used as the serialisation with i915_request_retire() to avoid having to
+> explicitly take the i915_request.lock which is more heavily contended.
+>
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> ---
+>  drivers/gpu/drm/i915/gt/intel_rps.c | 15 ++++++---------
+>  drivers/gpu/drm/i915/i915_request.c |  4 +---
+>  2 files changed, 7 insertions(+), 12 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/gt/intel_rps.c b/drivers/gpu/drm/i915/gt/intel_rps.c
+> index f74d5e09e176..e1397b8d3586 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_rps.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_rps.c
+> @@ -917,17 +917,15 @@ void intel_rps_park(struct intel_rps *rps)
+>  
+>  void intel_rps_boost(struct i915_request *rq)
+>  {
+> -	struct intel_rps *rps = &READ_ONCE(rq->engine)->gt->rps;
+> -	unsigned long flags;
+> -
+> -	if (i915_request_signaled(rq) || !intel_rps_is_active(rps))
+> +	if (i915_request_signaled(rq) || i915_request_has_waitboost(rq))
+>  		return;
+>  
+>  	/* Serializes with i915_request_retire() */
+> -	spin_lock_irqsave(&rq->lock, flags);
+> -	if (!i915_request_has_waitboost(rq) &&
+> -	    !dma_fence_is_signaled_locked(&rq->fence)) {
+> -		set_bit(I915_FENCE_FLAG_BOOST, &rq->fence.flags);
+> +	if (!test_and_set_bit(I915_FENCE_FLAG_BOOST, &rq->fence.flags)) {
+> +		struct intel_rps *rps = &READ_ONCE(rq->engine)->gt->rps;
+> +
+> +		if (!intel_rps_is_active(rps))
+> +			return;
+>  
+>  		GT_TRACE(rps_to_gt(rps), "boost fence:%llx:%llx\n",
+>  			 rq->fence.context, rq->fence.seqno);
+> @@ -938,7 +936,6 @@ void intel_rps_boost(struct i915_request *rq)
+>  
+>  		atomic_inc(&rps->boosts);
 
-== Series Details ==
+Looks of it, this does not need to be atomic. But topic for another
+patch.
 
-Series: drm/i915: Support secure dispatch on gen6/gen7
-URL   : https://patchwork.freedesktop.org/series/85323/
-State : success
+>  	}
+> -	spin_unlock_irqrestore(&rq->lock, flags);
+>  }
+>  
+>  int intel_rps_set(struct intel_rps *rps, u8 val)
+> diff --git a/drivers/gpu/drm/i915/i915_request.c b/drivers/gpu/drm/i915/i915_request.c
+> index 2d2882344e40..2a7bad88038b 100644
+> --- a/drivers/gpu/drm/i915/i915_request.c
+> +++ b/drivers/gpu/drm/i915/i915_request.c
+> @@ -307,10 +307,8 @@ bool i915_request_retire(struct i915_request *rq)
+>  		spin_unlock_irq(&rq->lock);
+>  	}
+>  
+> -	if (i915_request_has_waitboost(rq)) {
+> -		GEM_BUG_ON(!atomic_read(&rq->engine->gt->rps.num_waiters));
+> +	if (test_and_set_bit(I915_FENCE_FLAG_BOOST, &rq->fence.flags))
+>  		atomic_dec(&rq->engine->gt->rps.num_waiters);
 
-== Summary ==
+This should keep the num_waiters in sync.
 
-CI Bug Log - changes from CI_DRM_9533 -> Patchwork_19229
-====================================================
+Reviewed-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
 
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19229/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_19229 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@amdgpu/amd_prime@amd-to-i915:
-    - fi-kbl-soraka:      NOTRUN -> [SKIP][1] ([fdo#109271])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19229/fi-kbl-soraka/igt@amdgpu/amd_prime@amd-to-i915.html
-
-  * igt@gem_huc_copy@huc-copy:
-    - fi-byt-j1900:       NOTRUN -> [SKIP][2] ([fdo#109271]) +27 similar issues
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19229/fi-byt-j1900/igt@gem_huc_copy@huc-copy.html
-
-  * igt@kms_chamelium@hdmi-crc-fast:
-    - fi-byt-j1900:       NOTRUN -> [SKIP][3] ([fdo#109271] / [fdo#111827]) +8 similar issues
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19229/fi-byt-j1900/igt@kms_chamelium@hdmi-crc-fast.html
-
-  * igt@prime_vgem@basic-userptr:
-    - fi-tgl-y:           [PASS][4] -> [DMESG-WARN][5] ([i915#402]) +2 similar issues
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9533/fi-tgl-y/igt@prime_vgem@basic-userptr.html
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19229/fi-tgl-y/igt@prime_vgem@basic-userptr.html
-
-  
-#### Possible fixes ####
-
-  * igt@prime_vgem@basic-fence-flip:
-    - fi-tgl-y:           [DMESG-WARN][6] ([i915#402]) -> [PASS][7] +1 similar issue
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9533/fi-tgl-y/igt@prime_vgem@basic-fence-flip.html
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19229/fi-tgl-y/igt@prime_vgem@basic-fence-flip.html
-
-  
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
-  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
-
-
-Participating hosts (42 -> 37)
-------------------------------
-
-  Additional (1): fi-byt-j1900 
-  Missing    (6): fi-ilk-m540 fi-hsw-4200u fi-skl-guc fi-bsw-cyan fi-ctg-p8600 fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_9533 -> Patchwork_19229
-
-  CI-20190529: 20190529
-  CI_DRM_9533: 1ebc67e5e636a2422ac68d93b87e236dcf645da0 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5928: 7813bb74aec408055d564fa6a270526822cfbc0e @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_19229: 78185f484070051b9d68915e80176a94de028ad3 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-78185f484070 drm/i915: Support secure dispatch on gen6/gen7
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19229/index.html
-
---===============7991845277515391859==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915: Support secure dispatch on gen6/gen7</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/85323/">https://patchwork.freedesktop.org/series/85323/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19229/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19229/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_9533 -&gt; Patchwork_19229</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19229/index.html</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_19229 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@amdgpu/amd_prime@amd-to-i915:</p>
-<ul>
-<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19229/fi-kbl-soraka/igt@amdgpu/amd_prime@amd-to-i915.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_huc_copy@huc-copy:</p>
-<ul>
-<li>fi-byt-j1900:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19229/fi-byt-j1900/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +27 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@hdmi-crc-fast:</p>
-<ul>
-<li>fi-byt-j1900:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19229/fi-byt-j1900/igt@kms_chamelium@hdmi-crc-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@prime_vgem@basic-userptr:</p>
-<ul>
-<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9533/fi-tgl-y/igt@prime_vgem@basic-userptr.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19229/fi-tgl-y/igt@prime_vgem@basic-userptr.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) +2 similar issues</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@prime_vgem@basic-fence-flip:<ul>
-<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9533/fi-tgl-y/igt@prime_vgem@basic-fence-flip.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19229/fi-tgl-y/igt@prime_vgem@basic-fence-flip.html">PASS</a> +1 similar issue</li>
-</ul>
-</li>
-</ul>
-<h2>Participating hosts (42 -&gt; 37)</h2>
-<p>Additional (1): fi-byt-j1900 <br />
-  Missing    (6): fi-ilk-m540 fi-hsw-4200u fi-skl-guc fi-bsw-cyan fi-ctg-p8600 fi-bdw-samus </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_9533 -&gt; Patchwork_19229</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_9533: 1ebc67e5e636a2422ac68d93b87e236dcf645da0 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_5928: 7813bb74aec408055d564fa6a270526822cfbc0e @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
-  Patchwork_19229: 78185f484070051b9d68915e80176a94de028ad3 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>78185f484070 drm/i915: Support secure dispatch on gen6/gen7</p>
-
-</body>
-</html>
-
---===============7991845277515391859==--
-
---===============2042083087==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
+> -	}
+>  
+>  	/*
+>  	 * We only loosely track inflight requests across preemption,
+> -- 
+> 2.20.1
+>
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============2042083087==--
