@@ -1,41 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3E7492E7D49
-	for <lists+intel-gfx@lfdr.de>; Thu, 31 Dec 2020 01:02:20 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2330F2E7D66
+	for <lists+intel-gfx@lfdr.de>; Thu, 31 Dec 2020 01:29:04 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A7BBE8982E;
-	Thu, 31 Dec 2020 00:02:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BD28989AAE;
+	Thu, 31 Dec 2020 00:29:00 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7D2828982E
- for <intel-gfx@lists.freedesktop.org>; Thu, 31 Dec 2020 00:02:15 +0000 (UTC)
-IronPort-SDR: Ah6dHFiL9QhR8ThyiCuUufX9jXRpXdavZlYQ0cX0Zp179Iras+8kzQIUfbAt+5tr+M7u+Y+rg2
- BC3e6Bga8qBw==
-X-IronPort-AV: E=McAfee;i="6000,8403,9850"; a="176806837"
-X-IronPort-AV: E=Sophos;i="5.78,462,1599548400"; d="scan'208";a="176806837"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Dec 2020 16:02:12 -0800
-IronPort-SDR: qgN2jHzcf8FjhAYd0nh1Gg37t8AxDqDrMVb4HlLGF9Z0tlkrLjw0wapB6XZzRmD/SUXTRNn0bw
- QE4KzpjdbHEw==
-X-IronPort-AV: E=Sophos;i="5.78,462,1599548400"; d="scan'208";a="419695598"
-Received: from mdroper-desk1.fm.intel.com (HELO
- mdroper-desk1.amr.corp.intel.com) ([10.1.27.168])
- by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Dec 2020 16:02:11 -0800
-Date: Wed, 30 Dec 2020 16:02:10 -0800
-From: Matt Roper <matthew.d.roper@intel.com>
-To: Chris Wilson <chris@chris-wilson.co.uk>
-Message-ID: <20201231000210.GE3894148@mdroper-desk1.amr.corp.intel.com>
-References: <20201230103742.18577-1-chris@chris-wilson.co.uk>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id DD3E189AAD;
+ Thu, 31 Dec 2020 00:28:59 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id B9E52A363B;
+ Thu, 31 Dec 2020 00:28:59 +0000 (UTC)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20201230103742.18577-1-chris@chris-wilson.co.uk>
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/dp: Remove aux xfer timeout debug
- message
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Huang, Sean Z" <sean.z.huang@intel.com>
+Date: Thu, 31 Dec 2020 00:28:59 -0000
+Message-ID: <160937453973.30233.2392755873888051427@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20201230234100.30104-1-sean.z.huang@intel.com>
+In-Reply-To: <20201230234100.30104-1-sean.z.huang@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgSW50?=
+ =?utf-8?q?roduce_Intel_PXP_component_-_Mesa_single_session_=28rev16=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,53 +38,306 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============1674200561=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Dec 30, 2020 at 10:37:42AM +0000, Chris Wilson wrote:
-> The timeouts are frequent and expected. We will complain if we retry so
-> often as to lose patience and give up, so the cacophony from individual
-> complaints is redundant.
-> 
-> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+--===============1674200561==
+Content-Type: multipart/alternative;
+ boundary="===============3660517723067450197=="
 
-Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
+--===============3660517723067450197==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-> ---
->  drivers/gpu/drm/i915/display/intel_dp.c | 2 --
->  1 file changed, 2 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-> index 8ae769b18879..704e4cebf7f3 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> @@ -1613,8 +1613,6 @@ intel_dp_aux_xfer(struct intel_dp *intel_dp,
->  	/* Timeouts occur when the device isn't connected, so they're
->  	 * "normal" -- don't fill the kernel log with these */
->  	if (status & DP_AUX_CH_CTL_TIME_OUT_ERROR) {
-> -		drm_dbg_kms(&i915->drm, "%s: timeout (status 0x%08x)\n",
-> -			    intel_dp->aux.name, status);
->  		ret = -ETIMEDOUT;
->  		goto out;
->  	}
-> -- 
-> 2.20.1
-> 
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+== Series Details ==
 
--- 
-Matt Roper
-Graphics Software Engineer
-VTT-OSGC Platform Enablement
-Intel Corporation
-(916) 356-2795
+Series: Introduce Intel PXP component - Mesa single session (rev16)
+URL   : https://patchwork.freedesktop.org/series/84620/
+State : failure
+
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_9534 -> Patchwork_19235
+====================================================
+
+Summary
+-------
+
+  **FAILURE**
+
+  Serious unknown changes coming with Patchwork_19235 absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in Patchwork_19235, please notify your bug team to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19235/index.html
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_19235:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@core_hotunplug@unbind-rebind:
+    - fi-tgl-u2:          [PASS][1] -> [DMESG-WARN][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9534/fi-tgl-u2/igt@core_hotunplug@unbind-rebind.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19235/fi-tgl-u2/igt@core_hotunplug@unbind-rebind.html
+    - fi-tgl-y:           [PASS][3] -> [DMESG-WARN][4]
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9534/fi-tgl-y/igt@core_hotunplug@unbind-rebind.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19235/fi-tgl-y/igt@core_hotunplug@unbind-rebind.html
+
+  
+#### Suppressed ####
+
+  The following results come from untrusted machines, tests, or statuses.
+  They do not affect the overall result.
+
+  * igt@core_hotunplug@unbind-rebind:
+    - {fi-tgl-dsi}:       [PASS][5] -> [DMESG-WARN][6]
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9534/fi-tgl-dsi/igt@core_hotunplug@unbind-rebind.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19235/fi-tgl-dsi/igt@core_hotunplug@unbind-rebind.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_19235 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@amdgpu/amd_basic@cs-gfx:
+    - fi-kbl-soraka:      NOTRUN -> [SKIP][7] ([fdo#109271]) +14 similar issues
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19235/fi-kbl-soraka/igt@amdgpu/amd_basic@cs-gfx.html
+
+  * igt@gem_mmap_gtt@basic:
+    - fi-tgl-y:           [PASS][8] -> [DMESG-WARN][9] ([i915#402]) +2 similar issues
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9534/fi-tgl-y/igt@gem_mmap_gtt@basic.html
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19235/fi-tgl-y/igt@gem_mmap_gtt@basic.html
+
+  * igt@i915_selftest@live@gt_heartbeat:
+    - fi-bxt-dsi:         [PASS][10] -> [DMESG-FAIL][11] ([i915#2291])
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9534/fi-bxt-dsi/igt@i915_selftest@live@gt_heartbeat.html
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19235/fi-bxt-dsi/igt@i915_selftest@live@gt_heartbeat.html
+
+  * igt@runner@aborted:
+    - fi-tgl-y:           NOTRUN -> [FAIL][12] ([i915#1602])
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19235/fi-tgl-y/igt@runner@aborted.html
+    - fi-tgl-u2:          NOTRUN -> [FAIL][13] ([i915#1602])
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19235/fi-tgl-u2/igt@runner@aborted.html
+
+  
+#### Possible fixes ####
+
+  * igt@gem_basic@create-fd-close:
+    - fi-tgl-y:           [DMESG-WARN][14] ([i915#402]) -> [PASS][15] +2 similar issues
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9534/fi-tgl-y/igt@gem_basic@create-fd-close.html
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19235/fi-tgl-y/igt@gem_basic@create-fd-close.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [i915#1602]: https://gitlab.freedesktop.org/drm/intel/issues/1602
+  [i915#2291]: https://gitlab.freedesktop.org/drm/intel/issues/2291
+  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
+
+
+Participating hosts (42 -> 37)
+------------------------------
+
+  Missing    (5): fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_9534 -> Patchwork_19235
+
+  CI-20190529: 20190529
+  CI_DRM_9534: 797de7a6fea9a997e5b529af8994b2f251779d0a @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5930: 9efe3bfcb2b1c3613dddc8761425aa6943fa162d @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_19235: 9f32310f5ad30db2ee47c8b477b0c1ba0222c9bf @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+9f32310f5ad3 drm/i915/pxp: Add plane decryption support
+ee26ecaf8af3 drm/i915/pxp: User interface for Protected buffer
+c81e764afe72 drm/i915/uapi: introduce drm_i915_gem_create_ext
+d1dc22967a77 mei: pxp: export pavp client to me client bus
+f29d81563732 drm/i915/pxp: Expose session state for display protection flip
+abf3730afd37 drm/i915/pxp: Enable PXP power management
+38932d6a21c8 drm/i915/pxp: Destroy arb session upon teardown
+65d2240712a3 drm/i915/pxp: Enable PXP irq worker and callback stub
+ea76770452ca drm/i915/pxp: Func to send hardware session termination
+ab55d9be302d drm/i915/pxp: Create the arbitrary session after boot
+e4264e01aa94 drm/i915/pxp: Implement funcs to create the TEE channel
+b592a796b743 drm/i915/pxp: set KCR reg init during the boot time
+8aed24199142 drm/i915/pxp: Introduce Intel PXP component
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19235/index.html
+
+--===============3660517723067450197==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Introduce Intel PXP component - Mesa single session (rev16)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/84620/">https://patchwork.freedesktop.org/series/84620/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19235/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19235/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_9534 -&gt; Patchwork_19235</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with Patchwork_19235 absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in Patchwork_19235, please notify your bug team to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19235/index.html</p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in Patchwork_19235:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>
+<p>igt@core_hotunplug@unbind-rebind:</p>
+<ul>
+<li>
+<p>fi-tgl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9534/fi-tgl-u2/igt@core_hotunplug@unbind-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19235/fi-tgl-u2/igt@core_hotunplug@unbind-rebind.html">DMESG-WARN</a></p>
+</li>
+<li>
+<p>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9534/fi-tgl-y/igt@core_hotunplug@unbind-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19235/fi-tgl-y/igt@core_hotunplug@unbind-rebind.html">DMESG-WARN</a></p>
+</li>
+</ul>
+</li>
+</ul>
+<h4>Suppressed</h4>
+<p>The following results come from untrusted machines, tests, or statuses.<br />
+  They do not affect the overall result.</p>
+<ul>
+<li>igt@core_hotunplug@unbind-rebind:<ul>
+<li>{fi-tgl-dsi}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9534/fi-tgl-dsi/igt@core_hotunplug@unbind-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19235/fi-tgl-dsi/igt@core_hotunplug@unbind-rebind.html">DMESG-WARN</a></li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_19235 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@amdgpu/amd_basic@cs-gfx:</p>
+<ul>
+<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19235/fi-kbl-soraka/igt@amdgpu/amd_basic@cs-gfx.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +14 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_mmap_gtt@basic:</p>
+<ul>
+<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9534/fi-tgl-y/igt@gem_mmap_gtt@basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19235/fi-tgl-y/igt@gem_mmap_gtt@basic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) +2 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@gt_heartbeat:</p>
+<ul>
+<li>fi-bxt-dsi:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9534/fi-bxt-dsi/igt@i915_selftest@live@gt_heartbeat.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19235/fi-bxt-dsi/igt@i915_selftest@live@gt_heartbeat.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2291">i915#2291</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@runner@aborted:</p>
+<ul>
+<li>
+<p>fi-tgl-y:           NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19235/fi-tgl-y/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1602">i915#1602</a>)</p>
+</li>
+<li>
+<p>fi-tgl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19235/fi-tgl-u2/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1602">i915#1602</a>)</p>
+</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@gem_basic@create-fd-close:<ul>
+<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9534/fi-tgl-y/igt@gem_basic@create-fd-close.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19235/fi-tgl-y/igt@gem_basic@create-fd-close.html">PASS</a> +2 similar issues</li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Participating hosts (42 -&gt; 37)</h2>
+<p>Missing    (5): fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-bdw-samus </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_9534 -&gt; Patchwork_19235</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_9534: 797de7a6fea9a997e5b529af8994b2f251779d0a @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_5930: 9efe3bfcb2b1c3613dddc8761425aa6943fa162d @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
+  Patchwork_19235: 9f32310f5ad30db2ee47c8b477b0c1ba0222c9bf @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>9f32310f5ad3 drm/i915/pxp: Add plane decryption support<br />
+ee26ecaf8af3 drm/i915/pxp: User interface for Protected buffer<br />
+c81e764afe72 drm/i915/uapi: introduce drm_i915_gem_create_ext<br />
+d1dc22967a77 mei: pxp: export pavp client to me client bus<br />
+f29d81563732 drm/i915/pxp: Expose session state for display protection flip<br />
+abf3730afd37 drm/i915/pxp: Enable PXP power management<br />
+38932d6a21c8 drm/i915/pxp: Destroy arb session upon teardown<br />
+65d2240712a3 drm/i915/pxp: Enable PXP irq worker and callback stub<br />
+ea76770452ca drm/i915/pxp: Func to send hardware session termination<br />
+ab55d9be302d drm/i915/pxp: Create the arbitrary session after boot<br />
+e4264e01aa94 drm/i915/pxp: Implement funcs to create the TEE channel<br />
+b592a796b743 drm/i915/pxp: set KCR reg init during the boot time<br />
+8aed24199142 drm/i915/pxp: Introduce Intel PXP component</p>
+
+</body>
+</html>
+
+--===============3660517723067450197==--
+
+--===============1674200561==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============1674200561==--
