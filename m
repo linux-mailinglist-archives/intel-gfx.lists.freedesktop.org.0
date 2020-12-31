@@ -2,29 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B267D2E7EF5
-	for <lists+intel-gfx@lfdr.de>; Thu, 31 Dec 2020 10:31:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D91C82E7F07
+	for <lists+intel-gfx@lfdr.de>; Thu, 31 Dec 2020 10:39:54 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7A37C891DB;
-	Thu, 31 Dec 2020 09:31:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6752F89230;
+	Thu, 31 Dec 2020 09:39:51 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2C5A2891DB
- for <intel-gfx@lists.freedesktop.org>; Thu, 31 Dec 2020 09:31:52 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 02A2689B0D
+ for <intel-gfx@lists.freedesktop.org>; Thu, 31 Dec 2020 09:39:49 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 23468887-1500050 
- for <intel-gfx@lists.freedesktop.org>; Thu, 31 Dec 2020 09:31:49 +0000
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 23468937-1500050 
+ for <intel-gfx@lists.freedesktop.org>; Thu, 31 Dec 2020 09:39:46 +0000
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Thu, 31 Dec 2020 09:31:49 +0000
-Message-Id: <20201231093149.19086-1-chris@chris-wilson.co.uk>
+Date: Thu, 31 Dec 2020 09:39:46 +0000
+Message-Id: <20201231093946.11649-1-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Subject: [Intel-gfx] [CI] drm/i915: Drop i915_request.lock requirement for
- intel_rps_boost()
+Subject: [Intel-gfx] [CI] drm/i915/gt: Pull context closure check from
+ request submit to schedule-in
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,120 +42,48 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Since we use a flag within i915_request.flags to indicate when we have
-boosted the request (so that we only apply the boost) once, this can be
-used as the serialisation with i915_request_retire() to avoid having to
-explicitly take the i915_request.lock which is more heavily contended.
+We only need to evaluate the current status of the context when it is
+scheduled in, we will force a reschedule when the context is closed
+propagating the change to inflight contexts.
 
 Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Matthew Brost <matthew.brost@intel.com>
 Reviewed-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/gt/debugfs_gt_pm.c   |  2 +-
- drivers/gpu/drm/i915/gt/intel_rps.c       | 23 +++++++++++------------
- drivers/gpu/drm/i915/gt/intel_rps_types.h |  2 +-
- drivers/gpu/drm/i915/i915_debugfs.c       |  2 +-
- drivers/gpu/drm/i915/i915_request.c       |  4 +---
- 5 files changed, 15 insertions(+), 18 deletions(-)
+ drivers/gpu/drm/i915/gt/intel_execlists_submission.c | 4 ++++
+ drivers/gpu/drm/i915/i915_request.c                  | 4 ----
+ 2 files changed, 4 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gt/debugfs_gt_pm.c b/drivers/gpu/drm/i915/gt/debugfs_gt_pm.c
-index a0f10e8bbd21..d4f4452ce5ed 100644
---- a/drivers/gpu/drm/i915/gt/debugfs_gt_pm.c
-+++ b/drivers/gpu/drm/i915/gt/debugfs_gt_pm.c
-@@ -578,7 +578,7 @@ static int rps_boost_show(struct seq_file *m, void *data)
- 		   intel_gpu_freq(rps, rps->efficient_freq),
- 		   intel_gpu_freq(rps, rps->boost_freq));
+diff --git a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
+index 33c5bbaad9fe..cb2491ec6d3f 100644
+--- a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
++++ b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
+@@ -522,6 +522,10 @@ __execlists_schedule_in(struct i915_request *rq)
  
--	seq_printf(m, "Wait boosts: %d\n", atomic_read(&rps->boosts));
-+	seq_printf(m, "Wait boosts: %d\n", READ_ONCE(rps->boosts));
+ 	intel_context_get(ce);
  
- 	if (INTEL_GEN(i915) >= 6 && intel_rps_is_active(rps)) {
- 		struct intel_uncore *uncore = gt->uncore;
-diff --git a/drivers/gpu/drm/i915/gt/intel_rps.c b/drivers/gpu/drm/i915/gt/intel_rps.c
-index f74d5e09e176..146a956ed12d 100644
---- a/drivers/gpu/drm/i915/gt/intel_rps.c
-+++ b/drivers/gpu/drm/i915/gt/intel_rps.c
-@@ -917,28 +917,27 @@ void intel_rps_park(struct intel_rps *rps)
- 
- void intel_rps_boost(struct i915_request *rq)
- {
--	struct intel_rps *rps = &READ_ONCE(rq->engine)->gt->rps;
--	unsigned long flags;
--
--	if (i915_request_signaled(rq) || !intel_rps_is_active(rps))
-+	if (i915_request_signaled(rq) || i915_request_has_waitboost(rq))
- 		return;
- 
- 	/* Serializes with i915_request_retire() */
--	spin_lock_irqsave(&rq->lock, flags);
--	if (!i915_request_has_waitboost(rq) &&
--	    !dma_fence_is_signaled_locked(&rq->fence)) {
--		set_bit(I915_FENCE_FLAG_BOOST, &rq->fence.flags);
-+	if (!test_and_set_bit(I915_FENCE_FLAG_BOOST, &rq->fence.flags)) {
-+		struct intel_rps *rps = &READ_ONCE(rq->engine)->gt->rps;
++	if (unlikely(intel_context_is_closed(ce) &&
++		     !intel_engine_has_heartbeat(engine)))
++		intel_context_set_banned(ce);
 +
-+		if (atomic_fetch_inc(&rps->num_waiters))
-+			return;
-+
-+		if (!intel_rps_is_active(rps))
-+			return;
+ 	if (unlikely(intel_context_is_banned(ce)))
+ 		reset_active(rq, engine);
  
- 		GT_TRACE(rps_to_gt(rps), "boost fence:%llx:%llx\n",
- 			 rq->fence.context, rq->fence.seqno);
- 
--		if (!atomic_fetch_inc(&rps->num_waiters) &&
--		    READ_ONCE(rps->cur_freq) < rps->boost_freq)
-+		if (READ_ONCE(rps->cur_freq) < rps->boost_freq)
- 			schedule_work(&rps->work);
- 
--		atomic_inc(&rps->boosts);
-+		WRITE_ONCE(rps->boosts, rps->boosts + 1); /* debug only */
- 	}
--	spin_unlock_irqrestore(&rq->lock, flags);
- }
- 
- int intel_rps_set(struct intel_rps *rps, u8 val)
-diff --git a/drivers/gpu/drm/i915/gt/intel_rps_types.h b/drivers/gpu/drm/i915/gt/intel_rps_types.h
-index 38083f0402d9..029fe13cf303 100644
---- a/drivers/gpu/drm/i915/gt/intel_rps_types.h
-+++ b/drivers/gpu/drm/i915/gt/intel_rps_types.h
-@@ -93,7 +93,7 @@ struct intel_rps {
- 	} power;
- 
- 	atomic_t num_waiters;
--	atomic_t boosts;
-+	unsigned int boosts;
- 
- 	/* manual wa residency calculations */
- 	struct intel_rps_ei ei;
-diff --git a/drivers/gpu/drm/i915/i915_debugfs.c b/drivers/gpu/drm/i915/i915_debugfs.c
-index 7332478a3dd5..de8e0e44cfb6 100644
---- a/drivers/gpu/drm/i915/i915_debugfs.c
-+++ b/drivers/gpu/drm/i915/i915_debugfs.c
-@@ -811,7 +811,7 @@ static int i915_rps_boost_info(struct seq_file *m, void *data)
- 		   intel_gpu_freq(rps, rps->efficient_freq),
- 		   intel_gpu_freq(rps, rps->boost_freq));
- 
--	seq_printf(m, "Wait boosts: %d\n", atomic_read(&rps->boosts));
-+	seq_printf(m, "Wait boosts: %d\n", READ_ONCE(rps->boosts));
- 
- 	return 0;
- }
 diff --git a/drivers/gpu/drm/i915/i915_request.c b/drivers/gpu/drm/i915/i915_request.c
-index 03ac6eead4db..8db3391d8625 100644
+index 03ac6eead4db..3290e743ba43 100644
 --- a/drivers/gpu/drm/i915/i915_request.c
 +++ b/drivers/gpu/drm/i915/i915_request.c
-@@ -307,10 +307,8 @@ bool i915_request_retire(struct i915_request *rq)
- 		spin_unlock_irq(&rq->lock);
- 	}
+@@ -546,10 +546,6 @@ bool __i915_request_submit(struct i915_request *request)
+ 	if (i915_request_completed(request))
+ 		goto xfer;
  
--	if (i915_request_has_waitboost(rq)) {
--		GEM_BUG_ON(!atomic_read(&rq->engine->gt->rps.num_waiters));
-+	if (test_and_set_bit(I915_FENCE_FLAG_BOOST, &rq->fence.flags))
- 		atomic_dec(&rq->engine->gt->rps.num_waiters);
--	}
+-	if (unlikely(intel_context_is_closed(request->context) &&
+-		     !intel_engine_has_heartbeat(engine)))
+-		intel_context_set_banned(request->context);
+-
+ 	if (unlikely(intel_context_is_banned(request->context)))
+ 		i915_request_set_error_once(request, -EIO);
  
- 	/*
- 	 * We only loosely track inflight requests across preemption,
 -- 
 2.20.1
 
