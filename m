@@ -1,32 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 84EEF2E85CA
-	for <lists+intel-gfx@lfdr.de>; Fri,  1 Jan 2021 23:14:52 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id BCABD2E871C
+	for <lists+intel-gfx@lfdr.de>; Sat,  2 Jan 2021 12:33:25 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C855B891B5;
-	Fri,  1 Jan 2021 22:14:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9835B897E4;
+	Sat,  2 Jan 2021 11:33:22 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9039C891B5
- for <intel-gfx@lists.freedesktop.org>; Fri,  1 Jan 2021 22:14:47 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8EA3E897E4;
+ Sat,  2 Jan 2021 11:33:19 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from localhost (unverified [78.156.65.138]) 
  by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 23480840-1500050 for multiple; Fri, 01 Jan 2021 22:14:42 +0000
+ 23483380-1500050 for multiple; Sat, 02 Jan 2021 11:32:29 +0000
 MIME-Version: 1.0
-In-Reply-To: <20201231191103.854519-1-matthew.d.roper@intel.com>
-References: <20201231191103.854519-1-matthew.d.roper@intel.com>
+In-Reply-To: <CAK8P3a0LWLKs+0quG_OS6EPgg2uSAOM69SKTix47tEUmuZWRdw@mail.gmail.com>
+References: <20201230153928.456260-1-arnd@kernel.org>
+ <160934377188.21284.5702573697011773996@build.alporthouse.com>
+ <CAK8P3a0LWLKs+0quG_OS6EPgg2uSAOM69SKTix47tEUmuZWRdw@mail.gmail.com>
 From: Chris Wilson <chris@chris-wilson.co.uk>
-To: Matt Roper <matthew.d.roper@intel.com>, intel-gfx@lists.freedesktop.org
-Date: Fri, 01 Jan 2021 22:14:42 +0000
-Message-ID: <160953928270.15502.10592017664090484704@build.alporthouse.com>
+To: Arnd Bergmann <arnd@kernel.org>
+Date: Sat, 02 Jan 2021 11:32:29 +0000
+Message-ID: <160958714929.4402.13745234169318953002@build.alporthouse.com>
 User-Agent: alot/0.9
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Clarify error message on failed
- workaround
+Subject: Re: [Intel-gfx] [PATCH] i915: fix shift warning
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,38 +40,61 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: dri-devel <dri-devel@lists.freedesktop.org>, Arnd Bergmann <arnd@arndb.de>,
+ David Airlie <airlied@linux.ie>,
+ Intel Graphics <intel-gfx@lists.freedesktop.org>, linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Matt Roper (2020-12-31 19:11:03)
-> Let's modify the "workaround lost" error message slightly to make it
-> more clear what the various numbers represent.  Also, the 'expected'
-> value needs to be &'d with wa->read so that it doesn't include the mask
-> bits for masked registers (those bits are write-only in the hardware and
-> will usually always read out as 0's).
+Quoting Arnd Bergmann (2021-01-02 11:23:20)
+> On Wed, Dec 30, 2020 at 4:56 PM Chris Wilson <chris@chris-wilson.co.uk> wrote:
+> >
+> > Quoting Arnd Bergmann (2020-12-30 15:39:14)
+> > > From: Arnd Bergmann <arnd@arndb.de>
+> > >
+> > > Randconfig builds on 32-bit machines show lots of warnings for
+> > > the i915 driver for incorrect bit masks like:
+> >
+> > mask is a u8.
+> >
+> > VCS0 is 2, I915_MAX_VCS 4
+> >
+> > (u8 & GENMASK(5, 2)) >> 2
 > 
-> Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
-> ---
->  drivers/gpu/drm/i915/gt/intel_workarounds.c | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
+> Ah right, I misread the warning then.
 > 
-> diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-> index 42d320e68b60..b0e3a5ba0320 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-> @@ -1383,9 +1383,9 @@ static bool
->  wa_verify(const struct i915_wa *wa, u32 cur, const char *name, const char *from)
->  {
->         if ((cur ^ wa->set) & wa->read) {
-> -               DRM_ERROR("%s workaround lost on %s! (%x=%x/%x, expected %x)\n",
-> +               DRM_ERROR("%s workaround lost on %s! (reg[%x]=0x%x, relevant bits were 0x%x vs expected 0x%x)\n",
->                           name, from, i915_mmio_reg_offset(wa->reg),
-> -                         cur, cur & wa->read, wa->set);
-> +                         cur, cur & wa->read, wa->set & wa->read);
+> > > drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c:2584:9: error: shift count >= width of type [-Werror,-Wshift-count-overflow]
+> > >         return hweight64(VDBOX_MASK(&i915->gt));
+> > >                ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+> > > include/asm-generic/bitops/const_hweight.h:29:49: note: expanded from macro 'hweight64'
+> > >  #define hweight64(w) (__builtin_constant_p(w) ? __const_hweight64(w) : __arch_hweight64(w))
+> >
+> > So it's upset by hweight64() on the unsigned long?
+> 
+> I suspect what is going on is that clang once again warns because it performs
+> more code checks before dead-code elimination than gcc does. The warning is
+> for the __const_hweight64() case, which is not actually used here because the
+> input is not a compile-time constant.
+> 
+> > So hweight_long?
+> 
+> That seems to work, I'll send a new version with that.
+> 
+> > Or use a cast, hweight8((intel_engine_mask_t)VDMASK())?
+> >
+> > static __always_inline int engine_count(intel_engine_mask_t mask)
+> > {
+> >         return sizeof(mask) == 1 ? hweight8(mask) :
+> >                 sizeof(mask) == 2 ? hweight16(mask) :
+> >                 sizeof(mask) == 4 ? hweight32(mask) :
+> >                 hweight64(mask);
+> > }
+> 
+> Fine with me as well. If you prefer that way, I'll let you handle that.
 
-Reviewed-by: Chris Wilson <chris@chris-wilson.co.uk>
+While we wait for a generic hweight(), lets use hweight_long() here.
 -Chris
 _______________________________________________
 Intel-gfx mailing list
