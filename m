@@ -1,40 +1,48 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 72A632E982E
-	for <lists+intel-gfx@lfdr.de>; Mon,  4 Jan 2021 16:16:11 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 208EF2E982D
+	for <lists+intel-gfx@lfdr.de>; Mon,  4 Jan 2021 16:16:10 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B939089FDB;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0397789FD3;
 	Mon,  4 Jan 2021 15:16:06 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1ED20891A1;
- Wed, 30 Dec 2020 15:39:34 +0000 (UTC)
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 6517C22288;
- Wed, 30 Dec 2020 15:39:31 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 479F489385;
+ Sat,  2 Jan 2021 11:23:37 +0000 (UTC)
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 114F6223E4;
+ Sat,  2 Jan 2021 11:23:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1609342773;
- bh=R+QtqUjZdUsen8XjrwbBijiAfroUZOBF7AE3pnTq3Mg=;
- h=From:To:Cc:Subject:Date:From;
- b=t/LvhBIVwknbkuroGTdJD9EhpS/WiYbw3HrpsiOpHIQps7Ax8kj38V01plDw3z9FD
- WZEBZzWXdRZIkxaIXYgvpCkeItoHbJQnPQ5gtVJNGY3cvuqdrxYC1WgLmIzTHdNkXC
- SNThC2LqzfKzKNnh2jmIlMqiKKzTVAuOr82Dwzve11IRoAAspH4dFzMj2IwuvQOfnb
- BewGRZqFu+oWApmvdqTcaHHKNCMuTgmJMCWTP7WF3E7i1/B13eWiQbowSC+vcnfQ6i
- JWV1qrDo+ALV5AGsd5ChEL5yLK3uiLQrlNsMDKrFCYP3LkcmJnRbzWV2d/Y1b+4s1j
- 0v0zU64bBfJrw==
-From: Arnd Bergmann <arnd@kernel.org>
-To: Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, David Airlie <airlied@linux.ie>,
- Daniel Vetter <daniel@ffwll.ch>
-Date: Wed, 30 Dec 2020 16:39:14 +0100
-Message-Id: <20201230153928.456260-1-arnd@kernel.org>
-X-Mailer: git-send-email 2.29.2
+ s=k20201202; t=1609586617;
+ bh=QkAtYWKA5NhUKSgBrKt3Um+b8JsODNS1rc7ga3g5SHk=;
+ h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+ b=HgATpEfsWXamt8ySvK2iYAfXRczn34Y0UgUZBPJY0UgZw985oNTVaoG4BbULlRBIB
+ Q9aBTTWNjizwgF6gud7fLYsnjPbMpCKKo6KZLIPRcfdqQtm1tci3FlaHL/vTiPHgcU
+ q9ePbNvQj2p4CHa/KmdSuKFzELGx51O1Khdy6YK3xlEa35zO1NpHFmghjWmg8sqh0n
+ b36unRniR0uJ3IvEuAJ1+vtDqez7MQzTMUBdUrqL1XPJziunLJU/udGwGAVdZMTFs/
+ MHaV6lubp1QvphvWbNLN/elKic4ZLDkPKhvt7TQGlkv93VPrbmOU6yTaltDB4/mOOa
+ cCpDL9OIKc0/A==
+Received: by mail-ot1-f51.google.com with SMTP id n42so21704121ota.12;
+ Sat, 02 Jan 2021 03:23:37 -0800 (PST)
+X-Gm-Message-State: AOAM532MFVJFRkSps0/9jBc8FX6Pz2sbeJ3q4beQqLQPDZOPM0GtuW9a
+ fBSBPCyQcjXX2J8LPLK87HXblgAenOhw/q9gJqw=
+X-Google-Smtp-Source: ABdhPJxtNm2L3E+7cUbGuFw8FJsQ5ZXduzpGG24W4VGko6nC5XeZqvgH+bJbgT94nbPC/zq9Pz+doj4j9bk+F3IDAWg=
+X-Received: by 2002:a05:6830:2413:: with SMTP id
+ j19mr49011301ots.251.1609586616367; 
+ Sat, 02 Jan 2021 03:23:36 -0800 (PST)
 MIME-Version: 1.0
+References: <20201230153928.456260-1-arnd@kernel.org>
+ <160934377188.21284.5702573697011773996@build.alporthouse.com>
+In-Reply-To: <160934377188.21284.5702573697011773996@build.alporthouse.com>
+From: Arnd Bergmann <arnd@kernel.org>
+Date: Sat, 2 Jan 2021 12:23:20 +0100
+X-Gmail-Original-Message-ID: <CAK8P3a0LWLKs+0quG_OS6EPgg2uSAOM69SKTix47tEUmuZWRdw@mail.gmail.com>
+Message-ID: <CAK8P3a0LWLKs+0quG_OS6EPgg2uSAOM69SKTix47tEUmuZWRdw@mail.gmail.com>
+To: Chris Wilson <chris@chris-wilson.co.uk>
 X-Mailman-Approved-At: Mon, 04 Jan 2021 15:16:05 +0000
-Subject: [Intel-gfx] [PATCH] i915: fix shift warning
+Subject: Re: [Intel-gfx] [PATCH] i915: fix shift warning
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,48 +55,61 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Arnd Bergmann <arnd@arndb.de>, intel-gfx@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, Chris Wilson <chris@chris-wilson.co.uk>,
- dri-devel@lists.freedesktop.org
+Cc: dri-devel <dri-devel@lists.freedesktop.org>, Arnd Bergmann <arnd@arndb.de>,
+ David Airlie <airlied@linux.ie>,
+ Intel Graphics <intel-gfx@lists.freedesktop.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Arnd Bergmann <arnd@arndb.de>
+On Wed, Dec 30, 2020 at 4:56 PM Chris Wilson <chris@chris-wilson.co.uk> wrote:
+>
+> Quoting Arnd Bergmann (2020-12-30 15:39:14)
+> > From: Arnd Bergmann <arnd@arndb.de>
+> >
+> > Randconfig builds on 32-bit machines show lots of warnings for
+> > the i915 driver for incorrect bit masks like:
+>
+> mask is a u8.
+>
+> VCS0 is 2, I915_MAX_VCS 4
+>
+> (u8 & GENMASK(5, 2)) >> 2
 
-Randconfig builds on 32-bit machines show lots of warnings for
-the i915 driver for incorrect bit masks like:
+Ah right, I misread the warning then.
 
-drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c:2584:9: error: shift count >= width of type [-Werror,-Wshift-count-overflow]
-        return hweight64(VDBOX_MASK(&i915->gt));
-               ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-include/asm-generic/bitops/const_hweight.h:29:49: note: expanded from macro 'hweight64'
- #define hweight64(w) (__builtin_constant_p(w) ? __const_hweight64(w) : __arch_hweight64(w))
+> > drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c:2584:9: error: shift count >= width of type [-Werror,-Wshift-count-overflow]
+> >         return hweight64(VDBOX_MASK(&i915->gt));
+> >                ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+> > include/asm-generic/bitops/const_hweight.h:29:49: note: expanded from macro 'hweight64'
+> >  #define hweight64(w) (__builtin_constant_p(w) ? __const_hweight64(w) : __arch_hweight64(w))
+>
+> So it's upset by hweight64() on the unsigned long?
 
-Since this is a 64-bit mask, use GENMASK_ULL instead of GENMASK.
+I suspect what is going on is that clang once again warns because it performs
+more code checks before dead-code elimination than gcc does. The warning is
+for the __const_hweight64() case, which is not actually used here because the
+input is not a compile-time constant.
 
-Signed-off-by: Arnd Bergmann <arnd@arndb.de>
----
- drivers/gpu/drm/i915/i915_drv.h | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+> So hweight_long?
 
-diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
-index 0a3ee4f9dc0a..ca32fa0d6a57 100644
---- a/drivers/gpu/drm/i915/i915_drv.h
-+++ b/drivers/gpu/drm/i915/i915_drv.h
-@@ -1624,7 +1624,7 @@ tgl_revids_get(struct drm_i915_private *dev_priv)
- 	unsigned int first__ = (first);					\
- 	unsigned int count__ = (count);					\
- 	((gt)->info.engine_mask &						\
--	 GENMASK(first__ + count__ - 1, first__)) >> first__;		\
-+	 GENMASK_ULL(first__ + count__ - 1, first__)) >> first__;		\
- })
- #define VDBOX_MASK(gt) \
- 	ENGINE_INSTANCES_MASK(gt, VCS0, I915_MAX_VCS)
--- 
-2.29.2
+That seems to work, I'll send a new version with that.
 
+> Or use a cast, hweight8((intel_engine_mask_t)VDMASK())?
+>
+> static __always_inline int engine_count(intel_engine_mask_t mask)
+> {
+>         return sizeof(mask) == 1 ? hweight8(mask) :
+>                 sizeof(mask) == 2 ? hweight16(mask) :
+>                 sizeof(mask) == 4 ? hweight32(mask) :
+>                 hweight64(mask);
+> }
+
+Fine with me as well. If you prefer that way, I'll let you handle that.
+
+        Arnd
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
