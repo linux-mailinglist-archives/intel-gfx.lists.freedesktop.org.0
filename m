@@ -2,39 +2,38 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D36012E8AC8
-	for <lists+intel-gfx@lfdr.de>; Sun,  3 Jan 2021 06:41:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9074E2E8AC9
+	for <lists+intel-gfx@lfdr.de>; Sun,  3 Jan 2021 06:41:51 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E9F7889AC9;
-	Sun,  3 Jan 2021 05:41:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 483A489AAD;
+	Sun,  3 Jan 2021 05:41:40 +0000 (UTC)
 X-Original-To: Intel-gfx@lists.freedesktop.org
 Delivered-To: Intel-gfx@lists.freedesktop.org
 Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7277A89A74
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A794789A7A
  for <Intel-gfx@lists.freedesktop.org>; Sun,  3 Jan 2021 05:41:36 +0000 (UTC)
-IronPort-SDR: ff10lLbS+cc15VUTKK2DnbQoefv1d/icVDGUI0T9JV58E4e0WwQy876Mvk79/qKODdj6QWM6um
- 9C9U3/NA6IxA==
-X-IronPort-AV: E=McAfee;i="6000,8403,9852"; a="163916488"
-X-IronPort-AV: E=Sophos;i="5.78,471,1599548400"; d="scan'208";a="163916488"
+IronPort-SDR: w9jgVCdL2SgShCEfADl9wsMC4ajrMcWhUbgOgkFtG5xNdqzyK9V2g9Gbf9wCmEw6i+lKrYo7C9
+ bZLGzHFCqKfw==
+X-IronPort-AV: E=McAfee;i="6000,8403,9852"; a="163916489"
+X-IronPort-AV: E=Sophos;i="5.78,471,1599548400"; d="scan'208";a="163916489"
 Received: from fmsmga001.fm.intel.com ([10.253.24.23])
  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  02 Jan 2021 21:41:34 -0800
-IronPort-SDR: cl7crimDZIqcunWAv9yIaeVSTKHvPWF+5UYwL1wctnfocuMmSmMQInTvoxKL/HQ77kFih4tEVt
- YFYmaFg3oakA==
+IronPort-SDR: N3LHppffE9QRIOd9UTQpYLD7rx5i3CYmdIuTofic8AesFXqDS72o2Lrt17FeyzpSWx0G202iMM
+ DLh6t9EBM/pg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.78,471,1599548400"; d="scan'208";a="461562831"
+X-IronPort-AV: E=Sophos;i="5.78,471,1599548400"; d="scan'208";a="461562832"
 Received: from sean-virtualbox.fm.intel.com ([10.105.158.96])
  by fmsmga001.fm.intel.com with ESMTP; 02 Jan 2021 21:41:34 -0800
 From: "Huang, Sean Z" <sean.z.huang@intel.com>
 To: Intel-gfx@lists.freedesktop.org
-Date: Sat,  2 Jan 2021 21:41:24 -0800
-Message-Id: <20210103054134.10148-4-sean.z.huang@intel.com>
+Date: Sat,  2 Jan 2021 21:41:25 -0800
+Message-Id: <20210103054134.10148-5-sean.z.huang@intel.com>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20210103054134.10148-1-sean.z.huang@intel.com>
 References: <20210103054134.10148-1-sean.z.huang@intel.com>
-MIME-Version: 1.0
-Subject: [Intel-gfx] [RFC-v17 03/13] drm/i915/pxp: Implement funcs to create
- the TEE channel
+Subject: [Intel-gfx] [RFC-v17 04/13] drm/i915/pxp: Create the arbitrary
+ session after boot
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,186 +46,415 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+MIME-Version: 1.0
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-SW1wbGVtZW50IHRoZSBmdW5jcyB0byBjcmVhdGUgdGhlIFRFRSBjaGFubmVsLCBzbyBrZXJuZWwg
-Y2FuCnNlbmQgdGhlIFRFRSBjb21tYW5kcyBkaXJlY3RseSB0byBURUUgZm9yIGNyZWF0aW5nIHRo
-ZSBhcmJpdHJhcnkKKGRlZnVhbHQpIHNlc3Npb24uCgpTaWduZWQtb2ZmLWJ5OiBIdWFuZywgU2Vh
-biBaIDxzZWFuLnouaHVhbmdAaW50ZWwuY29tPgotLS0KIGRyaXZlcnMvZ3B1L2RybS9pOTE1L01h
-a2VmaWxlICAgICAgICAgICAgfCAgIDMgKy0KIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfZHJ2
-LmMgICAgICAgICAgfCAgIDEgKwogZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9kcnYuaCAgICAg
-ICAgICB8ICAgNiArCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9weHAvaW50ZWxfcHhwLmMgICAgIHwg
-ICA1ICsKIGRyaXZlcnMvZ3B1L2RybS9pOTE1L3B4cC9pbnRlbF9weHBfdGVlLmMgfCAxMzcgKysr
-KysrKysrKysrKysrKysrKysrKysKIGRyaXZlcnMvZ3B1L2RybS9pOTE1L3B4cC9pbnRlbF9weHBf
-dGVlLmggfCAgMTQgKysrCiBpbmNsdWRlL2RybS9pOTE1X2NvbXBvbmVudC5oICAgICAgICAgICAg
-IHwgICAxICsKIGluY2x1ZGUvZHJtL2k5MTVfcHhwX3RlZV9pbnRlcmZhY2UuaCAgICAgfCAgNDUg
-KysrKysrKysKIDggZmlsZXMgY2hhbmdlZCwgMjExIGluc2VydGlvbnMoKyksIDEgZGVsZXRpb24o
-LSkKIGNyZWF0ZSBtb2RlIDEwMDY0NCBkcml2ZXJzL2dwdS9kcm0vaTkxNS9weHAvaW50ZWxfcHhw
-X3RlZS5jCiBjcmVhdGUgbW9kZSAxMDA2NDQgZHJpdmVycy9ncHUvZHJtL2k5MTUvcHhwL2ludGVs
-X3B4cF90ZWUuaAogY3JlYXRlIG1vZGUgMTAwNjQ0IGluY2x1ZGUvZHJtL2k5MTVfcHhwX3RlZV9p
-bnRlcmZhY2UuaAoKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L01ha2VmaWxlIGIv
-ZHJpdmVycy9ncHUvZHJtL2k5MTUvTWFrZWZpbGUKaW5kZXggNTNiZTI5ZGJjMDdkLi41NzQ0Nzg4
-N2QzNTIgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L01ha2VmaWxlCisrKyBiL2Ry
-aXZlcnMvZ3B1L2RybS9pOTE1L01ha2VmaWxlCkBAIC0yNTgsNyArMjU4LDggQEAgaTkxNS15ICs9
-IGk5MTVfcGVyZi5vCiAjIFByb3RlY3RlZCBleGVjdXRpb24gcGxhdGZvcm0gKFBYUCkgc3VwcG9y
-dAogaTkxNS0kKENPTkZJR19EUk1fSTkxNV9QWFApICs9IFwKIAlweHAvaW50ZWxfcHhwLm8gXAot
-CXB4cC9pbnRlbF9weHBfY29udGV4dC5vCisJcHhwL2ludGVsX3B4cF9jb250ZXh0Lm8gXAorCXB4
-cC9pbnRlbF9weHBfdGVlLm8KIAogIyBQb3N0LW1vcnRlbSBkZWJ1ZyBhbmQgR1BVIGhhbmcgc3Rh
-dGUgY2FwdHVyZQogaTkxNS0kKENPTkZJR19EUk1fSTkxNV9DQVBUVVJFX0VSUk9SKSArPSBpOTE1
-X2dwdV9lcnJvci5vCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2Rydi5j
-IGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9kcnYuYwppbmRleCA1NzA4ZTExZDkxN2IuLjky
-OTlhNDU2YWRiMCAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9kcnYuYwor
-KysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2Rydi5jCkBAIC0zMjIsNiArMzIyLDcgQEAg
-c3RhdGljIGludCBpOTE1X2RyaXZlcl9lYXJseV9wcm9iZShzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0
-ZSAqZGV2X3ByaXYpCiAJbXV0ZXhfaW5pdCgmZGV2X3ByaXYtPndtLndtX211dGV4KTsKIAltdXRl
-eF9pbml0KCZkZXZfcHJpdi0+cHBzX211dGV4KTsKIAltdXRleF9pbml0KCZkZXZfcHJpdi0+aGRj
-cF9jb21wX211dGV4KTsKKwltdXRleF9pbml0KCZkZXZfcHJpdi0+cHhwX3RlZV9jb21wX211dGV4
-KTsKIAogCWk5MTVfbWVtY3B5X2luaXRfZWFybHkoZGV2X3ByaXYpOwogCWludGVsX3J1bnRpbWVf
-cG1faW5pdF9lYXJseSgmZGV2X3ByaXYtPnJ1bnRpbWVfcG0pOwpkaWZmIC0tZ2l0IGEvZHJpdmVy
-cy9ncHUvZHJtL2k5MTUvaTkxNV9kcnYuaCBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfZHJ2
-LmgKaW5kZXggYzJkMDE1NmU4YTVkLi5hYWY0NTIxMTVjMmYgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMv
-Z3B1L2RybS9pOTE1L2k5MTVfZHJ2LmgKKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9k
-cnYuaApAQCAtMTIxMiw2ICsxMjEyLDEyIEBAIHN0cnVjdCBkcm1faTkxNV9wcml2YXRlIHsKIAkv
-KiBNdXRleCB0byBwcm90ZWN0IHRoZSBhYm92ZSBoZGNwIGNvbXBvbmVudCByZWxhdGVkIHZhbHVl
-cy4gKi8KIAlzdHJ1Y3QgbXV0ZXggaGRjcF9jb21wX211dGV4OwogCisJc3RydWN0IGk5MTVfcHhw
-X2NvbXBfbWFzdGVyICpweHBfdGVlX21hc3RlcjsKKwlib29sIHB4cF90ZWVfY29tcF9hZGRlZDsK
-KworCS8qIE11dGV4IHRvIHByb3RlY3QgdGhlIGFib3ZlIHB4cF90ZWUgY29tcG9uZW50IHJlbGF0
-ZWQgdmFsdWVzLiAqLworCXN0cnVjdCBtdXRleCBweHBfdGVlX2NvbXBfbXV0ZXg7CisKIAlJOTE1
-X1NFTEZURVNUX0RFQ0xBUkUoc3RydWN0IGk5MTVfc2VsZnRlc3Rfc3Rhc2ggc2VsZnRlc3Q7KQog
-CiAJLyoKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L3B4cC9pbnRlbF9weHAuYyBi
-L2RyaXZlcnMvZ3B1L2RybS9pOTE1L3B4cC9pbnRlbF9weHAuYwppbmRleCBmNTY2YTRmZGEwNDQu
-LmM4MTlmMzc5MWVlNCAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvcHhwL2ludGVs
-X3B4cC5jCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L3B4cC9pbnRlbF9weHAuYwpAQCAtNSw2
-ICs1LDcgQEAKICNpbmNsdWRlICJpOTE1X2Rydi5oIgogI2luY2x1ZGUgImludGVsX3B4cC5oIgog
-I2luY2x1ZGUgImludGVsX3B4cF9jb250ZXh0LmgiCisjaW5jbHVkZSAiaW50ZWxfcHhwX3RlZS5o
-IgogCiAvKiBLQ1IgcmVnaXN0ZXIgZGVmaW5pdGlvbnMgKi8KICNkZWZpbmUgS0NSX0lOSVQgICAg
-ICAgICAgICBfTU1JTygweDMyMGYwKQpAQCAtMjMsNiArMjQsOCBAQCB2b2lkIGludGVsX3B4cF9p
-bml0KHN0cnVjdCBpbnRlbF9weHAgKnB4cCkKIAogCWludGVsX3VuY29yZV93cml0ZShndC0+dW5j
-b3JlLCBLQ1JfSU5JVCwgS0NSX0lOSVRfQUxMT1dfRElTUExBWV9NRV9XUklURVMpOwogCisJaW50
-ZWxfcHhwX3RlZV9jb21wb25lbnRfaW5pdChweHApOworCiAJZHJtX2luZm8oJmd0LT5pOTE1LT5k
-cm0sICJQcm90ZWN0ZWQgWGUgUGF0aCAoUFhQKSBwcm90ZWN0ZWQgY29udGVudCBzdXBwb3J0IGlu
-aXRpYWxpemVkXG4iKTsKIH0KIApAQCAtMzMsNSArMzYsNyBAQCB2b2lkIGludGVsX3B4cF9maW5p
-KHN0cnVjdCBpbnRlbF9weHAgKnB4cCkKIAlpZiAoSU5URUxfR0VOKGd0LT5pOTE1KSA8IDEyKQog
-CQlyZXR1cm47CiAKKwlpbnRlbF9weHBfdGVlX2NvbXBvbmVudF9maW5pKHB4cCk7CisKIAlpbnRl
-bF9weHBfY3R4X2ZpbmkoJnB4cC0+Y3R4KTsKIH0KZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2Ry
-bS9pOTE1L3B4cC9pbnRlbF9weHBfdGVlLmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9weHAvaW50
-ZWxfcHhwX3RlZS5jCm5ldyBmaWxlIG1vZGUgMTAwNjQ0CmluZGV4IDAwMDAwMDAwMDAwMC4uNWEx
-ZmZjYzcwM2UyCi0tLSAvZGV2L251bGwKKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvcHhwL2lu
-dGVsX3B4cF90ZWUuYwpAQCAtMCwwICsxLDEzNyBAQAorLy8gU1BEWC1MaWNlbnNlLUlkZW50aWZp
-ZXI6IE1JVAorLyoKKyAqIENvcHlyaWdodChjKSAyMDIwIEludGVsIENvcnBvcmF0aW9uLgorICov
-CisKKyNpbmNsdWRlIDxsaW51eC9jb21wb25lbnQuaD4KKyNpbmNsdWRlICJkcm0vaTkxNV9weHBf
-dGVlX2ludGVyZmFjZS5oIgorI2luY2x1ZGUgImRybS9pOTE1X2NvbXBvbmVudC5oIgorI2luY2x1
-ZGUgICJpOTE1X2Rydi5oIgorI2luY2x1ZGUgImludGVsX3B4cC5oIgorI2luY2x1ZGUgImludGVs
-X3B4cF9jb250ZXh0LmgiCisjaW5jbHVkZSAiaW50ZWxfcHhwX3RlZS5oIgorCitzdGF0aWMgaW50
-IGludGVsX3B4cF90ZWVfaW9fbWVzc2FnZShzdHJ1Y3QgaW50ZWxfcHhwICpweHAsCisJCQkJICAg
-IHZvaWQgKm1zZ19pbiwgdTMyIG1zZ19pbl9zaXplLAorCQkJCSAgICB2b2lkICptc2dfb3V0LCB1
-MzIgKm1zZ19vdXRfc2l6ZV9wdHIsCisJCQkJICAgIHUzMiBtc2dfb3V0X2J1Zl9zaXplKQorewor
-CWludCByZXQ7CisJc3RydWN0IGludGVsX2d0ICpndCA9IGNvbnRhaW5lcl9vZihweHAsIHR5cGVv
-ZigqZ3QpLCBweHApOworCXN0cnVjdCBkcm1faTkxNV9wcml2YXRlICppOTE1ID0gZ3QtPmk5MTU7
-CisJc3RydWN0IGk5MTVfcHhwX2NvbXBfbWFzdGVyICpweHBfdGVlX21hc3RlciA9IGk5MTUtPnB4
-cF90ZWVfbWFzdGVyOworCisJaWYgKCFweHBfdGVlX21hc3RlciB8fCAhbXNnX2luIHx8ICFtc2df
-b3V0IHx8ICFtc2dfb3V0X3NpemVfcHRyKQorCQlyZXR1cm4gLUVJTlZBTDsKKworCWxvY2tkZXBf
-YXNzZXJ0X2hlbGQoJmk5MTUtPnB4cF90ZWVfY29tcF9tdXRleCk7CisKKwlpZiAoZHJtX2RlYnVn
-X2VuYWJsZWQoRFJNX1VUX0RSSVZFUikpCisJCXByaW50X2hleF9kdW1wKEtFUk5fREVCVUcsICJU
-RUUgaW5wdXQgbWVzc2FnZSBiaW5hcmllczoiLAorCQkJICAgICAgIERVTVBfUFJFRklYX09GRlNF
-VCwgNCwgNCwgbXNnX2luLCBtc2dfaW5fc2l6ZSwgdHJ1ZSk7CisKKwlyZXQgPSBweHBfdGVlX21h
-c3Rlci0+b3BzLT5zZW5kKHB4cF90ZWVfbWFzdGVyLT50ZWVfZGV2LCBtc2dfaW4sIG1zZ19pbl9z
-aXplKTsKKwlpZiAocmV0KSB7CisJCWRybV9lcnIoJmk5MTUtPmRybSwgIkZhaWxlZCB0byBzZW5k
-IFRFRSBtZXNzYWdlXG4iKTsKKwkJcmV0dXJuIC1FRkFVTFQ7CisJfQorCisJcmV0ID0gcHhwX3Rl
-ZV9tYXN0ZXItPm9wcy0+cmVjZWl2ZShweHBfdGVlX21hc3Rlci0+dGVlX2RldiwgbXNnX291dCwg
-bXNnX291dF9idWZfc2l6ZSk7CisJaWYgKHJldCA8IDApIHsKKwkJZHJtX2VycigmaTkxNS0+ZHJt
-LCAiRmFpbGVkIHRvIHJlY2VpdmUgVEVFIG1lc3NhZ2VcbiIpOworCQlyZXR1cm4gLUVGQVVMVDsK
-Kwl9CisKKwlpZiAocmV0ID4gbXNnX291dF9idWZfc2l6ZSkgeworCQlkcm1fZXJyKCZpOTE1LT5k
-cm0sICJGYWlsZWQgdG8gcmVjZWl2ZSBURUUgbWVzc2FnZSBkdWUgdG8gdW5leHBlY3RlZCBvdXRw
-dXQgc2l6ZVxuIik7CisJCXJldHVybiAtRUZBVUxUOworCX0KKworCSptc2dfb3V0X3NpemVfcHRy
-ID0gcmV0OworCXJldCA9IDA7CisKKwlpZiAoZHJtX2RlYnVnX2VuYWJsZWQoRFJNX1VUX0RSSVZF
-UikpCisJCXByaW50X2hleF9kdW1wKEtFUk5fREVCVUcsICJURUUgb3V0cHV0IG1lc3NhZ2UgYmlu
-YXJpZXM6IiwKKwkJCSAgICAgICBEVU1QX1BSRUZJWF9PRkZTRVQsIDQsIDQsIG1zZ19vdXQsICpt
-c2dfb3V0X3NpemVfcHRyLCB0cnVlKTsKKworCXJldHVybiByZXQ7Cit9CisKKy8qKgorICogaTkx
-NV9weHBfdGVlX2NvbXBvbmVudF9iaW5kIC0gYmluZCBmdW5jaXRvbiB0byBwYXNzIHRoZSBmdW5j
-dGlvbiBwb2ludGVycyB0byBweHBfdGVlCisgKiBAaTkxNV9rZGV2OiBwb2ludGVyIHRvIGk5MTUg
-a2VybmVsIGRldmljZQorICogQHRlZV9rZGV2OiBwb2ludGVyIHRvIHRlZSBrZXJuZWwgZGV2aWNl
-CisgKiBAZGF0YTogcG9pbnRlciB0byBweHBfdGVlX21hc3RlciBjb250YWluaW5nIHRoZSBmdW5j
-dGlvbiBwb2ludGVycworICoKKyAqIFRoaXMgYmluZCBmdW5jdGlvbiBpcyBjYWxsZWQgZHVyaW5n
-IHRoZSBzeXN0ZW0gYm9vdCBvciByZXN1bWUgZnJvbSBzeXN0ZW0gc2xlZXAuCisgKgorICogUmV0
-dXJuOiByZXR1cm4gMCBpZiBzdWNjZXNzZnVsLgorICovCitzdGF0aWMgaW50IGk5MTVfcHhwX3Rl
-ZV9jb21wb25lbnRfYmluZChzdHJ1Y3QgZGV2aWNlICppOTE1X2tkZXYsCisJCQkJICAgICAgIHN0
-cnVjdCBkZXZpY2UgKnRlZV9rZGV2LCB2b2lkICpkYXRhKQoreworCXN0cnVjdCBkcm1faTkxNV9w
-cml2YXRlICppOTE1ID0ga2Rldl90b19pOTE1KGk5MTVfa2Rldik7CisKKwlpZiAoIWk5MTUgfHwg
-IXRlZV9rZGV2IHx8ICFkYXRhKQorCQlyZXR1cm4gLUVQRVJNOworCisJbXV0ZXhfbG9jaygmaTkx
-NS0+cHhwX3RlZV9jb21wX211dGV4KTsKKwlpOTE1LT5weHBfdGVlX21hc3RlciA9IChzdHJ1Y3Qg
-aTkxNV9weHBfY29tcF9tYXN0ZXIgKilkYXRhOworCWk5MTUtPnB4cF90ZWVfbWFzdGVyLT50ZWVf
-ZGV2ID0gdGVlX2tkZXY7CisJbXV0ZXhfdW5sb2NrKCZpOTE1LT5weHBfdGVlX2NvbXBfbXV0ZXgp
-OworCisJcmV0dXJuIDA7Cit9CisKK3N0YXRpYyB2b2lkIGk5MTVfcHhwX3RlZV9jb21wb25lbnRf
-dW5iaW5kKHN0cnVjdCBkZXZpY2UgKmk5MTVfa2RldiwKKwkJCQkJICBzdHJ1Y3QgZGV2aWNlICp0
-ZWVfa2Rldiwgdm9pZCAqZGF0YSkKK3sKKwlzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqaTkxNSA9
-IGtkZXZfdG9faTkxNShpOTE1X2tkZXYpOworCisJaWYgKCFpOTE1IHx8ICF0ZWVfa2RldiB8fCAh
-ZGF0YSkKKwkJcmV0dXJuOworCisJbXV0ZXhfbG9jaygmaTkxNS0+cHhwX3RlZV9jb21wX211dGV4
-KTsKKwlpOTE1LT5weHBfdGVlX21hc3RlciA9IE5VTEw7CisJbXV0ZXhfdW5sb2NrKCZpOTE1LT5w
-eHBfdGVlX2NvbXBfbXV0ZXgpOworfQorCitzdGF0aWMgY29uc3Qgc3RydWN0IGNvbXBvbmVudF9v
-cHMgaTkxNV9weHBfdGVlX2NvbXBvbmVudF9vcHMgPSB7CisJLmJpbmQgICA9IGk5MTVfcHhwX3Rl
-ZV9jb21wb25lbnRfYmluZCwKKwkudW5iaW5kID0gaTkxNV9weHBfdGVlX2NvbXBvbmVudF91bmJp
-bmQsCit9OworCit2b2lkIGludGVsX3B4cF90ZWVfY29tcG9uZW50X2luaXQoc3RydWN0IGludGVs
-X3B4cCAqcHhwKQoreworCWludCByZXQ7CisJc3RydWN0IGludGVsX2d0ICpndCA9IGNvbnRhaW5l
-cl9vZihweHAsIHR5cGVvZigqZ3QpLCBweHApOworCXN0cnVjdCBkcm1faTkxNV9wcml2YXRlICpp
-OTE1ID0gZ3QtPmk5MTU7CisKKwlyZXQgPSBjb21wb25lbnRfYWRkX3R5cGVkKGk5MTUtPmRybS5k
-ZXYsICZpOTE1X3B4cF90ZWVfY29tcG9uZW50X29wcywKKwkJCQkgIEk5MTVfQ09NUE9ORU5UX1BY
-UCk7CisJaWYgKHJldCA8IDApIHsKKwkJZHJtX2VycigmaTkxNS0+ZHJtLCAiRmFpbGVkIGF0IGNv
-bXBvbmVudCBhZGQoJWQpXG4iLCByZXQpOworCQlyZXR1cm47CisJfQorCisJbXV0ZXhfbG9jaygm
-aTkxNS0+cHhwX3RlZV9jb21wX211dGV4KTsKKwlpOTE1LT5weHBfdGVlX2NvbXBfYWRkZWQgPSB0
-cnVlOworCW11dGV4X3VubG9jaygmaTkxNS0+cHhwX3RlZV9jb21wX211dGV4KTsKK30KKwordm9p
-ZCBpbnRlbF9weHBfdGVlX2NvbXBvbmVudF9maW5pKHN0cnVjdCBpbnRlbF9weHAgKnB4cCkKK3sK
-KwlzdHJ1Y3QgaW50ZWxfZ3QgKmd0ID0gY29udGFpbmVyX29mKHB4cCwgdHlwZW9mKCpndCksIHB4
-cCk7CisJc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmk5MTUgPSBndC0+aTkxNTsKKworCW11dGV4
-X2xvY2soJmk5MTUtPnB4cF90ZWVfY29tcF9tdXRleCk7CisJaWYgKCFpOTE1LT5weHBfdGVlX2Nv
-bXBfYWRkZWQpIHsKKwkJbXV0ZXhfdW5sb2NrKCZpOTE1LT5weHBfdGVlX2NvbXBfbXV0ZXgpOwor
-CQlyZXR1cm47CisJfQorCisJaTkxNS0+cHhwX3RlZV9jb21wX2FkZGVkID0gZmFsc2U7CisJbXV0
-ZXhfdW5sb2NrKCZpOTE1LT5weHBfdGVlX2NvbXBfbXV0ZXgpOworCisJY29tcG9uZW50X2RlbChp
-OTE1LT5kcm0uZGV2LCAmaTkxNV9weHBfdGVlX2NvbXBvbmVudF9vcHMpOworfQpkaWZmIC0tZ2l0
-IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvcHhwL2ludGVsX3B4cF90ZWUuaCBiL2RyaXZlcnMvZ3B1
-L2RybS9pOTE1L3B4cC9pbnRlbF9weHBfdGVlLmgKbmV3IGZpbGUgbW9kZSAxMDA2NDQKaW5kZXgg
-MDAwMDAwMDAwMDAwLi40YjVlM2VkYjFkOWIKLS0tIC9kZXYvbnVsbAorKysgYi9kcml2ZXJzL2dw
-dS9kcm0vaTkxNS9weHAvaW50ZWxfcHhwX3RlZS5oCkBAIC0wLDAgKzEsMTQgQEAKKy8qIFNQRFgt
-TGljZW5zZS1JZGVudGlmaWVyOiBNSVQgKi8KKy8qCisgKiBDb3B5cmlnaHQoYykgMjAyMCwgSW50
-ZWwgQ29ycG9yYXRpb24uIEFsbCByaWdodHMgcmVzZXJ2ZWQuCisgKi8KKworI2lmbmRlZiBfX0lO
-VEVMX1BYUF9URUVfSF9fCisjZGVmaW5lIF9fSU5URUxfUFhQX1RFRV9IX18KKworI2luY2x1ZGUg
-ImludGVsX3B4cC5oIgorCit2b2lkIGludGVsX3B4cF90ZWVfY29tcG9uZW50X2luaXQoc3RydWN0
-IGludGVsX3B4cCAqcHhwKTsKK3ZvaWQgaW50ZWxfcHhwX3RlZV9jb21wb25lbnRfZmluaShzdHJ1
-Y3QgaW50ZWxfcHhwICpweHApOworCisjZW5kaWYgLyogX19JTlRFTF9QWFBfVEVFX0hfXyAqLwpk
-aWZmIC0tZ2l0IGEvaW5jbHVkZS9kcm0vaTkxNV9jb21wb25lbnQuaCBiL2luY2x1ZGUvZHJtL2k5
-MTVfY29tcG9uZW50LmgKaW5kZXggNTVjM2IxMjM1ODFiLi5jMWUyYTQzZDJkMWUgMTAwNjQ0Ci0t
-LSBhL2luY2x1ZGUvZHJtL2k5MTVfY29tcG9uZW50LmgKKysrIGIvaW5jbHVkZS9kcm0vaTkxNV9j
-b21wb25lbnQuaApAQCAtMjksNiArMjksNyBAQAogZW51bSBpOTE1X2NvbXBvbmVudF90eXBlIHsK
-IAlJOTE1X0NPTVBPTkVOVF9BVURJTyA9IDEsCiAJSTkxNV9DT01QT05FTlRfSERDUCwKKwlJOTE1
-X0NPTVBPTkVOVF9QWFAKIH07CiAKIC8qIE1BWF9QT1JUIGlzIHRoZSBudW1iZXIgb2YgcG9ydApk
-aWZmIC0tZ2l0IGEvaW5jbHVkZS9kcm0vaTkxNV9weHBfdGVlX2ludGVyZmFjZS5oIGIvaW5jbHVk
-ZS9kcm0vaTkxNV9weHBfdGVlX2ludGVyZmFjZS5oCm5ldyBmaWxlIG1vZGUgMTAwNjQ0CmluZGV4
-IDAwMDAwMDAwMDAwMC4uMzk5OWUyNTVlMTQ1Ci0tLSAvZGV2L251bGwKKysrIGIvaW5jbHVkZS9k
-cm0vaTkxNV9weHBfdGVlX2ludGVyZmFjZS5oCkBAIC0wLDAgKzEsNDUgQEAKKy8qIFNQRFgtTGlj
-ZW5zZS1JZGVudGlmaWVyOiBNSVQgKi8KKy8qCisgKiBDb3B5cmlnaHQgwqkgMjAyMCBJbnRlbCBD
-b3Jwb3JhdGlvbgorICoKKyAqIEF1dGhvcnM6CisgKiBWaXRhbHkgTHViYXJ0IDx2aXRhbHkubHVi
-YXJ0QGludGVsLmNvbT4KKyAqLworCisjaWZuZGVmIF9JOTE1X1BYUF9URUVfSU5URVJGQUNFX0hf
-CisjZGVmaW5lIF9JOTE1X1BYUF9URUVfSU5URVJGQUNFX0hfCisKKyNpbmNsdWRlIDxsaW51eC9t
-dXRleC5oPgorI2luY2x1ZGUgPGxpbnV4L2RldmljZS5oPgorCisvKioKKyAqIHN0cnVjdCBpOTE1
-X3B4cF9jb21wb25lbnRfb3BzIC0gb3BzIGZvciBQWFAgc2VydmljZXMuCisgKiBAb3duZXI6IE1v
-ZHVsZSBwcm92aWRpbmcgdGhlIG9wcworICogQHNlbmQ6IHNlbmRzIGRhdGEgdG8gUFhQCisgKiBA
-cmVjZWl2ZTogcmVjZWl2ZXMgZGF0YSBmcm9tIFBYUAorICovCitzdHJ1Y3QgaTkxNV9weHBfY29t
-cG9uZW50X29wcyB7CisJLyoqCisJICogQG93bmVyOiBvd25lciBvZiB0aGUgbW9kdWxlIHByb3Zk
-aW5nIHRoZSBvcHMKKwkgKi8KKwlzdHJ1Y3QgbW9kdWxlICpvd25lcjsKKworCWludCAoKnNlbmQp
-KHN0cnVjdCBkZXZpY2UgKmRldiwgY29uc3Qgdm9pZCAqbWVzc2FnZSwgc2l6ZV90IHNpemUpOwor
-CWludCAoKnJlY2VpdmUpKHN0cnVjdCBkZXZpY2UgKmRldiwgdm9pZCAqYnVmZmVyLCBzaXplX3Qg
-c2l6ZSk7Cit9OworCisvKioKKyAqIHN0cnVjdCBpOTE1X3B4cF9jb21wb25lbnRfbWFzdGVyIC0g
-VXNlZCBmb3IgY29tbXVuaWNhdGlvbiBiZXR3ZWVuIGk5MTUKKyAqIGFuZCBURUUgZHJpdmVycyBm
-b3IgdGhlIFBYUCBzZXJ2aWNlcworICogQHRlZV9kZXY6IGRldmljZSB0aGF0IHByb3ZpZGUgdGhl
-IFBYUCBzZXJ2aWNlIGZyb20gVEVFIEJ1cy4KKyAqIEBweHBfb3BzOiBPcHMgaW1wbGVtZW50ZWQg
-YnkgVEVFIGRyaXZlciwgdXNlZCBieSBpOTE1IGRyaXZlci4KKyAqLworc3RydWN0IGk5MTVfcHhw
-X2NvbXBfbWFzdGVyIHsKKwlzdHJ1Y3QgZGV2aWNlICp0ZWVfZGV2OworCWNvbnN0IHN0cnVjdCBp
-OTE1X3B4cF9jb21wb25lbnRfb3BzICpvcHM7CisKKwkvKiBUbyBwcm90ZWN0IHRoZSBhYm92ZSBt
-ZW1iZXJzLiAqLworCXN0cnVjdCBtdXRleCBtdXRleDsKK307CisKKyNlbmRpZiAvKiBfSTkxNV9U
-RUVfUFhQX0lOVEVSRkFDRV9IXyAqLwotLSAKMi4xNy4xCgpfX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdm
-eEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFp
-bG1hbi9saXN0aW5mby9pbnRlbC1nZngK
+Create the arbitrary session, with the fixed session id 0xf, after
+system boot, for the case that application allocates the protected
+buffer without establishing any protection session. Because the
+hardware requires at least one alive session for protected buffer
+creation.  This arbitrary session needs to be re-created after
+teardown or power event because hardware encryption key won't be
+valid after such cases.
+
+Signed-off-by: Huang, Sean Z <sean.z.huang@intel.com>
+---
+ drivers/gpu/drm/i915/Makefile                |   1 +
+ drivers/gpu/drm/i915/pxp/intel_pxp.c         |   1 +
+ drivers/gpu/drm/i915/pxp/intel_pxp.h         |  16 +++
+ drivers/gpu/drm/i915/pxp/intel_pxp_arb.c     | 131 +++++++++++++++++++
+ drivers/gpu/drm/i915/pxp/intel_pxp_arb.h     |  15 +++
+ drivers/gpu/drm/i915/pxp/intel_pxp_context.h |   1 +
+ drivers/gpu/drm/i915/pxp/intel_pxp_tee.c     |  70 ++++++++++
+ drivers/gpu/drm/i915/pxp/intel_pxp_tee.h     |   3 +
+ drivers/gpu/drm/i915/pxp/intel_pxp_types.h   |  26 ++++
+ 9 files changed, 264 insertions(+)
+ create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp_arb.c
+ create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp_arb.h
+
+diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefile
+index 57447887d352..2c84f75b41da 100644
+--- a/drivers/gpu/drm/i915/Makefile
++++ b/drivers/gpu/drm/i915/Makefile
+@@ -258,6 +258,7 @@ i915-y += i915_perf.o
+ # Protected execution platform (PXP) support
+ i915-$(CONFIG_DRM_I915_PXP) += \
+ 	pxp/intel_pxp.o \
++	pxp/intel_pxp_arb.o \
+ 	pxp/intel_pxp_context.o \
+ 	pxp/intel_pxp_tee.o
+ 
+diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp.c b/drivers/gpu/drm/i915/pxp/intel_pxp.c
+index c819f3791ee4..3868e8c697f9 100644
+--- a/drivers/gpu/drm/i915/pxp/intel_pxp.c
++++ b/drivers/gpu/drm/i915/pxp/intel_pxp.c
+@@ -6,6 +6,7 @@
+ #include "intel_pxp.h"
+ #include "intel_pxp_context.h"
+ #include "intel_pxp_tee.h"
++#include "intel_pxp_arb.h"
+ 
+ /* KCR register definitions */
+ #define KCR_INIT            _MMIO(0x320f0)
+diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp.h b/drivers/gpu/drm/i915/pxp/intel_pxp.h
+index f47bc6bea34f..8fc91e900b16 100644
+--- a/drivers/gpu/drm/i915/pxp/intel_pxp.h
++++ b/drivers/gpu/drm/i915/pxp/intel_pxp.h
+@@ -8,6 +8,22 @@
+ 
+ #include "intel_pxp_types.h"
+ 
++enum pxp_session_types {
++	SESSION_TYPE_TYPE0 = 0,
++	SESSION_TYPE_TYPE1 = 1,
++
++	SESSION_TYPE_MAX
++};
++
++enum pxp_protection_modes {
++	PROTECTION_MODE_NONE = 0,
++	PROTECTION_MODE_LM   = 2,
++	PROTECTION_MODE_HM   = 3,
++	PROTECTION_MODE_SM   = 6,
++
++	PROTECTION_MODE_ALL
++};
++
+ #ifdef CONFIG_DRM_I915_PXP
+ void intel_pxp_init(struct intel_pxp *pxp);
+ void intel_pxp_fini(struct intel_pxp *pxp);
+diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp_arb.c b/drivers/gpu/drm/i915/pxp/intel_pxp_arb.c
+new file mode 100644
+index 000000000000..4df58915af88
+--- /dev/null
++++ b/drivers/gpu/drm/i915/pxp/intel_pxp_arb.c
+@@ -0,0 +1,131 @@
++// SPDX-License-Identifier: MIT
++/*
++ * Copyright(c) 2020, Intel Corporation. All rights reserved.
++ */
++
++#include "gt/intel_context.h"
++#include "gt/intel_engine_pm.h"
++
++#include "intel_pxp_types.h"
++#include "intel_pxp_arb.h"
++#include "intel_pxp.h"
++#include "intel_pxp_tee.h"
++
++#define GEN12_KCR_SIP _MMIO(0x32260) /* KCR type0 session in play 0-31 */
++
++/* Arbitrary session */
++#define ARB_SESSION_INDEX 0xf
++#define ARB_SESSION_TYPE SESSION_TYPE_TYPE0
++
++static bool is_hw_arb_session_in_play(struct intel_pxp *pxp)
++{
++	u32 regval_sip = 0;
++	intel_wakeref_t wakeref;
++	struct intel_gt *gt = container_of(pxp, struct intel_gt, pxp);
++
++	with_intel_runtime_pm(&gt->i915->runtime_pm, wakeref) {
++		regval_sip = intel_uncore_read(gt->uncore, GEN12_KCR_SIP);
++	}
++
++	return regval_sip & BIT(ARB_SESSION_INDEX);
++}
++
++/* wait hw session_in_play reg to match the current sw state */
++static int wait_arb_hw_sw_state(struct intel_pxp *pxp)
++{
++	const int max_retry = 10;
++	const int ms_delay = 10;
++	int retry = 0;
++	int ret;
++	struct pxp_protected_session *arb = &pxp->ctx.arb_session;
++
++	ret = -EINVAL;
++	for (retry = 0; retry < max_retry; retry++) {
++		if (is_hw_arb_session_in_play(pxp) ==
++		    arb->is_in_play) {
++			ret = 0;
++			break;
++		}
++
++		msleep(ms_delay);
++	}
++
++	return ret;
++}
++
++static void arb_session_entry_init(struct intel_pxp *pxp)
++{
++	struct pxp_protected_session *arb = &pxp->ctx.arb_session;
++
++	arb->type = ARB_SESSION_TYPE;
++	arb->protection_mode = PROTECTION_MODE_HM;
++	arb->index = ARB_SESSION_INDEX;
++	arb->is_in_play = false;
++}
++
++static int intel_pxp_arb_reserve_session(struct intel_pxp *pxp)
++{
++	int ret;
++
++	lockdep_assert_held(&pxp->ctx.mutex);
++
++	arb_session_entry_init(pxp);
++	ret = wait_arb_hw_sw_state(pxp);
++
++	return ret;
++}
++
++/**
++ * intel_pxp_arb_mark_session_in_play - To put an reserved protected session to "in_play" state
++ * @pxp: pointer to pxp struct.
++ *
++ * Return: status. 0 means update is successful.
++ */
++static int intel_pxp_arb_mark_session_in_play(struct intel_pxp *pxp)
++{
++	struct pxp_protected_session *arb = &pxp->ctx.arb_session;
++
++	lockdep_assert_held(&pxp->ctx.mutex);
++
++	if (arb->is_in_play)
++		return -EINVAL;
++
++	arb->is_in_play = true;
++	return 0;
++}
++
++int intel_pxp_arb_create_session(struct intel_pxp *pxp)
++{
++	int ret;
++	struct intel_gt *gt = container_of(pxp, typeof(*gt), pxp);
++
++	lockdep_assert_held(&pxp->ctx.mutex);
++
++	if (pxp->ctx.flag_display_hm_surface_keys) {
++		drm_err(&gt->i915->drm, "%s: arb session is alive so skipping the creation\n",
++			__func__);
++		return 0;
++	}
++
++	ret = intel_pxp_arb_reserve_session(pxp);
++	if (ret) {
++		drm_err(&gt->i915->drm, "Failed to reserve arb session\n");
++		return ret;
++	}
++
++	ret = intel_pxp_tee_cmd_create_arb_session(pxp, ARB_SESSION_INDEX);
++	if (ret) {
++		drm_err(&gt->i915->drm, "Failed to send tee cmd for arb session creation\n");
++		return ret;
++	}
++
++	ret = intel_pxp_arb_mark_session_in_play(pxp);
++	if (ret) {
++		drm_err(&gt->i915->drm, "Failed to mark arb session status in play\n");
++		return ret;
++	}
++
++	pxp->ctx.flag_display_hm_surface_keys = true;
++
++	return ret;
++}
+diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp_arb.h b/drivers/gpu/drm/i915/pxp/intel_pxp_arb.h
+new file mode 100644
+index 000000000000..1eb8db6deb0e
+--- /dev/null
++++ b/drivers/gpu/drm/i915/pxp/intel_pxp_arb.h
+@@ -0,0 +1,15 @@
++/* SPDX-License-Identifier: MIT */
++/*
++ * Copyright(c) 2020, Intel Corporation. All rights reserved.
++ */
++
++#ifndef __INTEL_PXP_ARB_H__
++#define __INTEL_PXP_ARB_H__
++
++#include <linux/types.h>
++
++struct intel_pxp;
++
++int intel_pxp_arb_create_session(struct intel_pxp *pxp);
++
++#endif /* __INTEL_PXP_ARB_H__ */
+diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp_context.h b/drivers/gpu/drm/i915/pxp/intel_pxp_context.h
+index f51021c33d45..bf2feb4aaf6d 100644
+--- a/drivers/gpu/drm/i915/pxp/intel_pxp_context.h
++++ b/drivers/gpu/drm/i915/pxp/intel_pxp_context.h
+@@ -8,6 +8,7 @@
+ 
+ #include <linux/mutex.h>
+ #include "intel_pxp_types.h"
++#include "intel_pxp_arb.h"
+ 
+ void intel_pxp_ctx_init(struct pxp_context *ctx);
+ void intel_pxp_ctx_fini(struct pxp_context *ctx);
+diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp_tee.c b/drivers/gpu/drm/i915/pxp/intel_pxp_tee.c
+index 5a1ffcc703e2..b44403ee3b52 100644
+--- a/drivers/gpu/drm/i915/pxp/intel_pxp_tee.c
++++ b/drivers/gpu/drm/i915/pxp/intel_pxp_tee.c
+@@ -10,6 +10,32 @@
+ #include "intel_pxp.h"
+ #include "intel_pxp_context.h"
+ #include "intel_pxp_tee.h"
++#include "intel_pxp_arb.h"
++
++#define PXP_TEE_APIVER 0x40002
++#define PXP_TEE_ARB_CMDID 0x1e
++#define PXP_TEE_ARB_PROTECTION_MODE 0x2
++
++/* PXP TEE message header */
++struct pxp_tee_cmd_header {
++	u32 api_version;
++	u32 command_id;
++	u32 status;
++	/* Length of the message (excluding the header) */
++	u32 buffer_len;
++} __packed;
++
++/* PXP TEE message input to create a arbitrary session */
++struct pxp_tee_create_arb_in {
++	struct pxp_tee_cmd_header header;
++	u32 protection_mode;
++	u32 session_id;
++} __packed;
++
++/* PXP TEE message output to create a arbitrary session */
++struct pxp_tee_create_arb_out {
++	struct pxp_tee_cmd_header header;
++} __packed;
+ 
+ static int intel_pxp_tee_io_message(struct intel_pxp *pxp,
+ 				    void *msg_in, u32 msg_in_size,
+@@ -70,7 +96,9 @@ static int intel_pxp_tee_io_message(struct intel_pxp *pxp,
+ static int i915_pxp_tee_component_bind(struct device *i915_kdev,
+ 				       struct device *tee_kdev, void *data)
+ {
++	int ret;
+ 	struct drm_i915_private *i915 = kdev_to_i915(i915_kdev);
++	struct intel_pxp *pxp = &i915->gt.pxp;
+ 
+ 	if (!i915 || !tee_kdev || !data)
+ 		return -EPERM;
+@@ -80,6 +108,16 @@ static int i915_pxp_tee_component_bind(struct device *i915_kdev,
+ 	i915->pxp_tee_master->tee_dev = tee_kdev;
+ 	mutex_unlock(&i915->pxp_tee_comp_mutex);
+ 
++	mutex_lock(&pxp->ctx.mutex);
++	/* Create arb session only if tee is ready, during system boot or sleep/resume */
++	ret = intel_pxp_arb_create_session(pxp);
++	mutex_unlock(&pxp->ctx.mutex);
++
++	if (ret) {
++		drm_err(&i915->drm, "Failed to create arb session ret=[%d]\n", ret);
++		return ret;
++	}
++
+ 	return 0;
+ }
+ 
+@@ -135,3 +173,35 @@ void intel_pxp_tee_component_fini(struct intel_pxp *pxp)
+ 
+ 	component_del(i915->drm.dev, &i915_pxp_tee_component_ops);
+ }
++
++int intel_pxp_tee_cmd_create_arb_session(struct intel_pxp *pxp,
++					 int arb_session_id)
++{
++	int ret;
++	u32 msg_out_size_received = 0;
++	struct pxp_tee_create_arb_in msg_in = {0};
++	struct pxp_tee_create_arb_out msg_out = {0};
++	struct intel_gt *gt = container_of(pxp, typeof(*gt), pxp);
++	struct drm_i915_private *i915 = gt->i915;
++
++	msg_in.header.api_version = PXP_TEE_APIVER;
++	msg_in.header.command_id = PXP_TEE_ARB_CMDID;
++	msg_in.header.buffer_len = sizeof(msg_in) - sizeof(msg_in.header);
++	msg_in.protection_mode = PXP_TEE_ARB_PROTECTION_MODE;
++	msg_in.session_id = arb_session_id;
++
++	mutex_lock(&i915->pxp_tee_comp_mutex);
++
++	ret = intel_pxp_tee_io_message(pxp,
++				       &msg_in,
++				       sizeof(msg_in),
++				       &msg_out, &msg_out_size_received,
++				       sizeof(msg_out));
++
++	mutex_unlock(&i915->pxp_tee_comp_mutex);
++
++	if (ret)
++		drm_err(&i915->drm, "Failed to send tee msg ret=[%d]\n", ret);
++
++	return ret;
++}
+diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp_tee.h b/drivers/gpu/drm/i915/pxp/intel_pxp_tee.h
+index 4b5e3edb1d9b..c46f9033f709 100644
+--- a/drivers/gpu/drm/i915/pxp/intel_pxp_tee.h
++++ b/drivers/gpu/drm/i915/pxp/intel_pxp_tee.h
+@@ -11,4 +11,7 @@
+ void intel_pxp_tee_component_init(struct intel_pxp *pxp);
+ void intel_pxp_tee_component_fini(struct intel_pxp *pxp);
+ 
++int intel_pxp_tee_cmd_create_arb_session(struct intel_pxp *pxp,
++					 int arb_session_id);
++
+ #endif /* __INTEL_PXP_TEE_H__ */
+diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp_types.h b/drivers/gpu/drm/i915/pxp/intel_pxp_types.h
+index f9b40ea98b1b..287ba1e0ed9d 100644
+--- a/drivers/gpu/drm/i915/pxp/intel_pxp_types.h
++++ b/drivers/gpu/drm/i915/pxp/intel_pxp_types.h
+@@ -8,12 +8,38 @@
+ 
+ #include <linux/mutex.h>
+ 
++/**
++ * struct pxp_protected_session - structure to track all active sessions.
++ */
++struct pxp_protected_session {
++	/** @index: Numeric identifier for this protected session */
++	int index;
++	/** @type: Type of session */
++	int type;
++	/** @protection_mode: mode of protection requested */
++	int protection_mode;
++
++	/**
++	 * @is_in_play: indicates whether the session has been established
++	 *              in the HW root of trust if this flag is false, it
++	 *              indicates an application has reserved this session,
++	 *              but has not * established the session in the
++	 *              hardware yet.
++	 */
++	bool is_in_play;
++};
++
+ /* struct pxp_context - Represents combined view of driver and logical HW states. */
+ struct pxp_context {
+ 	/** @mutex: mutex to protect the pxp context */
+ 	struct mutex mutex;
+ 
+ 	bool inited;
++
++	struct pxp_protected_session arb_session;
++	u32 arb_session_pxp_tag;
++
++	bool flag_display_hm_surface_keys;
+ };
+ 
+ struct intel_pxp {
+-- 
+2.17.1
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
