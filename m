@@ -2,39 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 41BAF2E946B
-	for <lists+intel-gfx@lfdr.de>; Mon,  4 Jan 2021 12:59:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 08D762E9488
+	for <lists+intel-gfx@lfdr.de>; Mon,  4 Jan 2021 13:07:34 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 18C7589E32;
-	Mon,  4 Jan 2021 11:59:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 752AB89DD2;
+	Mon,  4 Jan 2021 12:07:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3D68A89DDF
- for <intel-gfx@lists.freedesktop.org>; Mon,  4 Jan 2021 11:59:15 +0000 (UTC)
-IronPort-SDR: HraYuI4+9XugYedO549Mtlk3u4n4RNjcAo6O6F/xgLqZmKknUDlRrZgON2APGfXp3lHEz/KPrO
- StjBWkcQ819A==
-X-IronPort-AV: E=McAfee;i="6000,8403,9853"; a="177097761"
-X-IronPort-AV: E=Sophos;i="5.78,473,1599548400"; d="scan'208";a="177097761"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Jan 2021 03:59:15 -0800
-IronPort-SDR: KeFIuuWWVnj+WL1IEuytQj92syNKWhokuM3E5halZyXWjWsc9jsN3pDwisklkXli3btyXGRBBr
- II94So7kxeBg==
-X-IronPort-AV: E=Sophos;i="5.78,473,1599548400"; d="scan'208";a="378390103"
-Received: from helsinki.fi.intel.com ([10.237.66.162])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Jan 2021 03:59:13 -0800
-From: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>
+Received: from fireflyinternet.com (unknown [77.68.26.236])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E318789DD2
+ for <intel-gfx@lists.freedesktop.org>; Mon,  4 Jan 2021 12:07:30 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from build.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 23496047-1500050 
+ for multiple; Mon, 04 Jan 2021 12:07:22 +0000
+From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Mon,  4 Jan 2021 13:58:44 +0200
-Message-Id: <20210104115844.1068561-5-gwan-gyeong.mun@intel.com>
-X-Mailer: git-send-email 2.25.0
-In-Reply-To: <20210104115844.1068561-1-gwan-gyeong.mun@intel.com>
-References: <20210104115844.1068561-1-gwan-gyeong.mun@intel.com>
+Date: Mon,  4 Jan 2021 12:07:23 +0000
+Message-Id: <20210104120723.24810-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v10 5/5] HAX/DO_NOT_MERGE_IT: drm/i915/display:
- Enable PSR2 selective fetch for testing
+Subject: [Intel-gfx] [PATCH] drm/i915/gt: Replace open-coded
+ intel_engine_stop_cs()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,28 +37,88 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: Chris Wilson <chris@chris-wilson.co.uk>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-RnJvbTogSm9zw6kgUm9iZXJ0byBkZSBTb3V6YSA8am9zZS5zb3V6YUBpbnRlbC5jb20+CgpFbmFi
-bGluZyBpdCB0byBjaGVjayBpZiBpdCBjYXVzZXMgcmVncmVzc2lvbnMgaW4gQ0kgYnV0IHRoZSBm
-ZWF0dXJlIGlzCnN0aWxsIG5vdCByZWFkeSB0byBiZSBlbmFibGVkIGJ5IGRlZmF1bHQuCgpTaWdu
-ZWQtb2ZmLWJ5OiBKb3PDqSBSb2JlcnRvIGRlIFNvdXphIDxqb3NlLnNvdXphQGludGVsLmNvbT4K
-LS0tCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X3BhcmFtcy5oIHwgMiArLQogMSBmaWxlIGNo
-YW5nZWQsIDEgaW5zZXJ0aW9uKCspLCAxIGRlbGV0aW9uKC0pCgpkaWZmIC0tZ2l0IGEvZHJpdmVy
-cy9ncHUvZHJtL2k5MTUvaTkxNV9wYXJhbXMuaCBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVf
-cGFyYW1zLmgKaW5kZXggMzMwYzAzZTJiNGY3Li5iOGIxOTI3MGMzMzkgMTAwNjQ0Ci0tLSBhL2Ry
-aXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfcGFyYW1zLmgKKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5
-MTUvaTkxNV9wYXJhbXMuaApAQCAtNTQsNyArNTQsNyBAQCBzdHJ1Y3QgZHJtX3ByaW50ZXI7CiAJ
-cGFyYW0oaW50LCBlbmFibGVfZmJjLCAtMSwgMDYwMCkgXAogCXBhcmFtKGludCwgZW5hYmxlX3Bz
-ciwgLTEsIDA2MDApIFwKIAlwYXJhbShib29sLCBwc3Jfc2FmZXN0X3BhcmFtcywgZmFsc2UsIDA2
-MDApIFwKLQlwYXJhbShib29sLCBlbmFibGVfcHNyMl9zZWxfZmV0Y2gsIGZhbHNlLCAwNjAwKSBc
-CisJcGFyYW0oYm9vbCwgZW5hYmxlX3BzcjJfc2VsX2ZldGNoLCB0cnVlLCAwNjAwKSBcCiAJcGFy
-YW0oaW50LCBkaXNhYmxlX3Bvd2VyX3dlbGwsIC0xLCAwNDAwKSBcCiAJcGFyYW0oaW50LCBlbmFi
-bGVfaXBzLCAxLCAwNjAwKSBcCiAJcGFyYW0oaW50LCBpbnZlcnRfYnJpZ2h0bmVzcywgMCwgMDYw
-MCkgXAotLSAKMi4yNS4wCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3Rv
-cC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRl
-bC1nZngK
+In the legacy ringbuffer submission, we still had an open-coded version
+of intel_engine_stop_cs() with one addition verification step. Transfer
+that verification to intel_engine_stop_cs() itself, and call it.
+
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+---
+ drivers/gpu/drm/i915/gt/intel_engine_cs.c     | 15 +++++++++--
+ .../gpu/drm/i915/gt/intel_ring_submission.c   | 25 +------------------
+ 2 files changed, 14 insertions(+), 26 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/gt/intel_engine_cs.c b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+index b1b44afc94ba..dcba59b53fde 100644
+--- a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
++++ b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+@@ -1023,8 +1023,19 @@ int intel_engine_stop_cs(struct intel_engine_cs *engine)
+ 
+ 	ENGINE_TRACE(engine, "\n");
+ 	if (__intel_engine_stop_cs(engine, 1000, stop_timeout(engine))) {
+-		ENGINE_TRACE(engine, "timed out on STOP_RING -> IDLE\n");
+-		err = -ETIMEDOUT;
++		ENGINE_TRACE(engine,
++			     "timed out on STOP_RING -> IDLE; HEAD:%04x, TAIL:%04x\n",
++			     ENGINE_READ_FW(engine, RING_HEAD) & HEAD_ADDR,
++			     ENGINE_READ_FW(engine, RING_TAIL) & TAIL_ADDR);
++
++		/*
++		 * Sometimes we observe that the idle flag is not
++		 * set even though the ring is empty. So double
++		 * check before giving up.
++		 */
++		if ((ENGINE_READ_FW(engine, RING_HEAD) & HEAD_ADDR)!=
++		    (ENGINE_READ_FW(engine, RING_TAIL) & TAIL_ADDR))
++			err = -ETIMEDOUT;
+ 	}
+ 
+ 	return err;
+diff --git a/drivers/gpu/drm/i915/gt/intel_ring_submission.c b/drivers/gpu/drm/i915/gt/intel_ring_submission.c
+index 32b7d74c24e8..ac67d1b61b5e 100644
+--- a/drivers/gpu/drm/i915/gt/intel_ring_submission.c
++++ b/drivers/gpu/drm/i915/gt/intel_ring_submission.c
+@@ -159,30 +159,7 @@ static void ring_setup_status_page(struct intel_engine_cs *engine)
+ 
+ static bool stop_ring(struct intel_engine_cs *engine)
+ {
+-	struct drm_i915_private *dev_priv = engine->i915;
+-
+-	if (INTEL_GEN(dev_priv) > 2) {
+-		ENGINE_WRITE(engine,
+-			     RING_MI_MODE, _MASKED_BIT_ENABLE(STOP_RING));
+-		if (intel_wait_for_register(engine->uncore,
+-					    RING_MI_MODE(engine->mmio_base),
+-					    MODE_IDLE,
+-					    MODE_IDLE,
+-					    1000)) {
+-			drm_err(&dev_priv->drm,
+-				"%s : timed out trying to stop ring\n",
+-				engine->name);
+-
+-			/*
+-			 * Sometimes we observe that the idle flag is not
+-			 * set even though the ring is empty. So double
+-			 * check before giving up.
+-			 */
+-			if (ENGINE_READ(engine, RING_HEAD) !=
+-			    ENGINE_READ(engine, RING_TAIL))
+-				return false;
+-		}
+-	}
++	intel_engine_stop_cs(engine);
+ 
+ 	ENGINE_WRITE(engine, RING_HEAD, ENGINE_READ(engine, RING_TAIL));
+ 
+-- 
+2.20.1
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
