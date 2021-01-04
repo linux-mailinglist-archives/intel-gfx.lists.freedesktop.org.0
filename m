@@ -2,26 +2,28 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CF3972E9BC4
-	for <lists+intel-gfx@lfdr.de>; Mon,  4 Jan 2021 18:13:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5EF1C2E9BCA
+	for <lists+intel-gfx@lfdr.de>; Mon,  4 Jan 2021 18:15:22 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CCF3E6E029;
-	Mon,  4 Jan 2021 17:13:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C4B4489ECD;
+	Mon,  4 Jan 2021 17:15:20 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B4C7D6E029
- for <intel-gfx@lists.freedesktop.org>; Mon,  4 Jan 2021 17:13:51 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1583289ECD
+ for <intel-gfx@lists.freedesktop.org>; Mon,  4 Jan 2021 17:15:18 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 23499108-1500050 
- for multiple; Mon, 04 Jan 2021 17:13:44 +0000
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 23499128-1500050 
+ for multiple; Mon, 04 Jan 2021 17:15:10 +0000
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Mon,  4 Jan 2021 17:13:44 +0000
-Message-Id: <20210104171344.32339-1-chris@chris-wilson.co.uk>
+Date: Mon,  4 Jan 2021 17:15:11 +0000
+Message-Id: <20210104171511.32684-1-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.20.1
+In-Reply-To: <20210104171344.32339-1-chris@chris-wilson.co.uk>
+References: <20210104171344.32339-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
 Subject: [Intel-gfx] [PATCH] drm/i915/selftests: Guard against redifinition
  of SZ_8G
@@ -47,6 +49,7 @@ In the near future, upstream will introduce a SZ_8G macro that is
 slightly different to our own. Employ a temporary ifndef to avoid
 compilation failure until we have backmerged.
 
+References: 8b0fac44bd1f ("sizes.h: add SZ_8G/SZ_16G/SZ_32G macros")
 Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
 ---
  drivers/gpu/drm/i915/selftests/intel_memory_region.c | 2 ++
