@@ -1,38 +1,30 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id BEF022E9355
-	for <lists+intel-gfx@lfdr.de>; Mon,  4 Jan 2021 11:31:10 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id E81492E9385
+	for <lists+intel-gfx@lfdr.de>; Mon,  4 Jan 2021 11:43:36 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3CEFB89E43;
-	Mon,  4 Jan 2021 10:31:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 420EF89B8F;
+	Mon,  4 Jan 2021 10:43:35 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2C21889E43
- for <intel-gfx@lists.freedesktop.org>; Mon,  4 Jan 2021 10:31:07 +0000 (UTC)
-IronPort-SDR: bKTMagdGvhZ8d8VAjIMuQlo3tpHlH0sZJWtRYIb5Nctt3nybo25vC3LsrdIjt6FX3fOFuKaKZ6
- X+mei1SHEOsA==
-X-IronPort-AV: E=McAfee;i="6000,8403,9853"; a="241019688"
-X-IronPort-AV: E=Sophos;i="5.78,473,1599548400"; d="scan'208";a="241019688"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Jan 2021 02:31:06 -0800
-IronPort-SDR: a2OqiFp5Hu0b1HERWz6T+RTsb+2NqM/v4RYi7Vo8PcSzMkVrIlFu70VMnteqETtLiORysV63LO
- Qk4iBo2YwJlg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.78,473,1599548400"; d="scan'208";a="349888062"
-Received: from linux-tiger-lake-client-platform.iind.intel.com
- ([10.223.34.106])
- by fmsmga008.fm.intel.com with ESMTP; 04 Jan 2021 02:31:03 -0800
-From: Saichandana S <saichandana.s@intel.com>
+Received: from fireflyinternet.com (unknown [77.68.26.236])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F0271899E7;
+ Mon,  4 Jan 2021 10:43:32 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 23494755-1500050 
+ for multiple; Mon, 04 Jan 2021 10:43:24 +0000
+From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Mon,  4 Jan 2021 16:00:36 +0530
-Message-Id: <20210104103036.1443-1-saichandana.s@intel.com>
-X-Mailer: git-send-email 2.17.1
-Subject: [Intel-gfx] [PATCH v2] drm/i915/debugfs : PM_REQ and PM_RES
- registers
+Date: Mon,  4 Jan 2021 10:43:24 +0000
+Message-Id: <20210104104324.3125175-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.30.0
+MIME-Version: 1.0
+Subject: [Intel-gfx] [PATCH i-g-t] i915/gem_spin_batch: Convert to dynamic
+ engine discovery
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,90 +37,184 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: saichandana.s@intel.com, jani.nikula@intel.com
-MIME-Version: 1.0
+Cc: igt-dev@lists.freedesktop.org, Chris Wilson <chris@chris-wilson.co.uk>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Saichandana <saichandana.s@intel.com>
+Only run the tests on the available engines using igt_dynamic. This
+prevents flip-flops with SKIP on shards that have a mixture of machine
+types (e.g. shard-icl that has some machines with vcs1 and some
+without).
 
-PM_REQ register provides the value of the last PM request from PCU to
-Display Engine.PM_RES register provides the value of the last PM
-response from Display Engine to PCU.This debugfs will be used by
-DC9 IGT test to know about "DC9 Ready" status.
-
-B.Spec : 49501, 49502
-
-Signed-off-by: Saichandana <saichandana.s@intel.com>
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
 ---
- .../drm/i915/display/intel_display_debugfs.c  | 30 +++++++++++++++++++
- drivers/gpu/drm/i915/i915_reg.h               |  8 +++++
- 2 files changed, 38 insertions(+)
+ tests/i915/gem_spin_batch.c | 82 ++++++++++++++++++-------------------
+ 1 file changed, 39 insertions(+), 43 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-index cd7e5519ee7d..551fb1a90bb3 100644
---- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-@@ -559,6 +559,36 @@ static int i915_dmc_info(struct seq_file *m, void *unused)
- 	return 0;
- }
+diff --git a/tests/i915/gem_spin_batch.c b/tests/i915/gem_spin_batch.c
+index 0a5cfdf36..c2ce2373b 100644
+--- a/tests/i915/gem_spin_batch.c
++++ b/tests/i915/gem_spin_batch.c
+@@ -35,7 +35,7 @@
+ 		     #x, #ref, (long long)x, tolerance, (long long)ref)
  
-+static int i915_pm_req_res_info(struct seq_file *m, void *unused)
-+{
-+	struct drm_i915_private *dev_priv = node_to_i915(m->private);
-+	struct intel_csr *csr = &dev_priv->csr;
-+	const char *status;
-+
-+	if (!HAS_CSR(dev_priv))
-+		return -ENODEV;
-+	if (!csr->dmc_payload)
-+		return 0;
-+	seq_printf(m, "PM debug request 0 (0x45284): 0x%08x\n",
-+		   intel_de_read(dev_priv, PM_REQ_DBG_0));
-+	seq_printf(m, "PM debug request 1 (0x45288): 0x%08x\n",
-+		   intel_de_read(dev_priv, PM_REQ_DBG_1));
-+	seq_printf(m, "PM debug response 0 (0x4528C): 0x%08x\n",
-+		   intel_de_read(dev_priv, PM_RSP_DBG_0));
-+	seq_printf(m, "PM debug response 1 (0x45290): 0x%08x\n",
-+		   intel_de_read(dev_priv, PM_RSP_DBG_1));
-+	status = (intel_de_read(dev_priv, PM_RSP_DBG_1) & MASK_DC9_BIT) ? "yes" : "no";
-+
-+	seq_printf(m, "Time to Next Fill = 0x%0x\n",
-+		   (intel_de_read(dev_priv, PM_RSP_DBG_0) & ~MASK_RSP_0));
-+	seq_printf(m, "Time to Next VBI = 0x%0x\n",
-+		   ((intel_de_read(dev_priv, PM_RSP_DBG_0) & MASK_RSP_0)) >> 16);
-+	seq_printf(m, "Selective Exit Latency = 0x%0x\n",
-+		   (intel_de_read(dev_priv, PM_RSP_DBG_1) & MASK_RSP_1));
-+	seq_printf(m, "DC9 Ready = %s\n", status);
-+	return 0;
-+}
-+
- static void intel_seq_print_mode(struct seq_file *m, int tabs,
- 				 const struct drm_display_mode *mode)
+ static void spin(int fd,
+-		 const struct intel_execution_engine2 *e2,
++		 unsigned int engine,
+ 		 unsigned int flags,
+ 		 unsigned int timeout_sec)
  {
-diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-index 0023c023f472..3e9ed555f928 100644
---- a/drivers/gpu/drm/i915/i915_reg.h
-+++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -371,6 +371,14 @@ static inline bool i915_mmio_reg_valid(i915_reg_t reg)
- #define VLV_G3DCTL		_MMIO(0x9024)
- #define VLV_GSCKGCTL		_MMIO(0x9028)
+@@ -46,10 +46,10 @@ static void spin(int fd,
+ 	struct timespec itv = { };
+ 	uint64_t elapsed;
  
-+#define PM_REQ_DBG_0		_MMIO(0x45284)
-+#define PM_REQ_DBG_1		_MMIO(0x45288)
-+#define PM_RSP_DBG_0		_MMIO(0x4528C)
-+#define PM_RSP_DBG_1		_MMIO(0x45290)
-+#define MASK_RSP_0		(0xFFFF << 16)
-+#define MASK_RSP_1		(7 << 0)
-+#define MASK_DC9_BIT		(1 << 17)
+-	spin = __igt_spin_new(fd, .engine = e2->flags, .flags = flags);
++	spin = __igt_spin_new(fd, .engine = engine, .flags = flags);
+ 	while ((elapsed = igt_nsec_elapsed(&tv)) >> 30 < timeout_sec) {
+ 		igt_spin_t *next =
+-			__igt_spin_new(fd, .engine = e2->flags, .flags = flags);
++			__igt_spin_new(fd, .engine = engine, .flags = flags);
+ 
+ 		igt_spin_set_timeout(spin,
+ 				     timeout_100ms - igt_nsec_elapsed(&itv));
+@@ -75,14 +75,13 @@ static void spin(int fd,
+ #define RESUBMIT_NEW_CTX     (1 << 0)
+ #define RESUBMIT_ALL_ENGINES (1 << 1)
+ 
+-static void spin_resubmit(int fd, const struct intel_execution_engine2 *e2,
+-			  unsigned int flags)
++static void spin_resubmit(int fd, unsigned int engine, unsigned int flags)
+ {
+ 	const uint32_t ctx0 = gem_context_clone_with_engines(fd, 0);
+ 	const uint32_t ctx1 =
+ 		(flags & RESUBMIT_NEW_CTX) ?
+ 		gem_context_clone_with_engines(fd, 0) : ctx0;
+-	igt_spin_t *spin = __igt_spin_new(fd, .ctx = ctx0, .engine = e2->flags);
++	igt_spin_t *spin = __igt_spin_new(fd, .ctx = ctx0, .engine = engine);
+ 	const struct intel_execution_engine2 *other;
+ 
+ 	struct drm_i915_gem_execbuffer2 eb = {
+@@ -96,14 +95,14 @@ static void spin_resubmit(int fd, const struct intel_execution_engine2 *e2,
+ 
+ 	if (flags & RESUBMIT_ALL_ENGINES) {
+ 		for_each_context_engine(fd, ctx1, other) {
+-			if (gem_engine_is_equal(other, e2))
++			if (other->flags == engine)
+ 				continue;
+ 
+ 			eb.flags = other->flags;
+ 			gem_execbuf(fd, &eb);
+ 		}
+ 	} else {
+-		eb.flags = e2->flags;
++		eb.flags = engine;
+ 		gem_execbuf(fd, &eb);
+ 	}
+ 
+@@ -132,7 +131,7 @@ spin_on_all_engines(int fd, unsigned long flags, unsigned int timeout_sec)
+ 	__for_each_physical_engine(fd, e2) {
+ 		igt_fork(child, 1) {
+ 			igt_install_exit_handler(spin_exit_handler);
+-			spin(fd, e2, flags, timeout_sec);
++			spin(fd, e2->flags, flags, timeout_sec);
+ 		}
+ 	}
+ 
+@@ -181,7 +180,6 @@ igt_main
+ {
+ 	const struct intel_execution_engine2 *e2;
+ 	const struct intel_execution_ring *e;
+-	struct intel_execution_engine2 e2__;
+ 	int fd = -1;
+ 
+ 	igt_fixture {
+@@ -190,51 +188,49 @@ igt_main
+ 		igt_fork_hang_detector(fd);
+ 	}
+ 
+-	for (e = intel_execution_rings; e->name; e++) {
+-		e2__ = gem_eb_flags_to_engine(eb_ring(e));
+-		if (e2__.flags == -1)
+-			continue;
+-		e2 = &e2__;
++#define test_each_legacy_ring(test) \
++	igt_subtest_with_dynamic(test) \
++		for (e = intel_execution_rings; e->name; e++) \
++			if (gem_has_ring(fd, eb_ring(e))) \
++				igt_dynamic_f("%s", e->name)
+ 
+-		igt_subtest_f("legacy-%s", e->name) {
+-			igt_require(gem_has_ring(fd, eb_ring(e)));
+-			spin(fd, e2, 0, 3);
+-		}
++	test_each_legacy_ring("legacy")
++		spin(fd, eb_ring(e), 0, 3);
++	test_each_legacy_ring("legacy-resubmit")
++		spin_resubmit(fd, eb_ring(e), 0);
++	test_each_legacy_ring("legacy-resubmit-new")
++		spin_resubmit(fd, eb_ring(e), RESUBMIT_NEW_CTX);
+ 
+-		igt_subtest_f("legacy-resubmit-%s", e->name) {
+-			igt_require(gem_has_ring(fd, eb_ring(e)));
+-			spin_resubmit(fd, e2, 0);
+-		}
+-
+-		igt_subtest_f("legacy-resubmit-new-%s", e->name) {
+-			igt_require(gem_has_ring(fd, eb_ring(e)));
+-			spin_resubmit(fd, e2, RESUBMIT_NEW_CTX);
+-		}
+-	}
++#undef test_each_legcy_ring
+ 
+ 	igt_subtest("spin-all")
+ 		spin_all(fd, 0);
+ 	igt_subtest("spin-all-new")
+ 		spin_all(fd, PARALLEL_SPIN_NEW_CTX);
+ 
+-	__for_each_physical_engine(fd, e2) {
+-		igt_subtest_f("%s", e2->name)
+-			spin(fd, e2, 0, 3);
++#define test_each_engine(test) \
++	igt_subtest_with_dynamic(test) \
++		__for_each_physical_engine(fd, e2) \
++			igt_dynamic_f("%s", e2->name)
+ 
+-		igt_subtest_f("resubmit-%s", e2->name)
+-			spin_resubmit(fd, e2, 0);
++	test_each_engine("engines")
++		spin(fd, e2->flags, 0, 3);
+ 
+-		igt_subtest_f("resubmit-new-%s", e2->name)
+-			spin_resubmit(fd, e2, RESUBMIT_NEW_CTX);
++	test_each_engine("resubmit")
++		spin_resubmit(fd, e2->flags, 0);
+ 
+-		igt_subtest_f("resubmit-all-%s", e2->name)
+-			spin_resubmit(fd, e2, RESUBMIT_ALL_ENGINES);
++	test_each_engine("resubmit-new")
++		spin_resubmit(fd, e2->flags, RESUBMIT_NEW_CTX);
+ 
+-		igt_subtest_f("resubmit-new-all-%s", e2->name)
+-			spin_resubmit(fd, e2,
+-				      RESUBMIT_NEW_CTX |
+-				      RESUBMIT_ALL_ENGINES);
+-	}
++	test_each_engine("resubmit-all")
++		spin_resubmit(fd, e2->flags, RESUBMIT_ALL_ENGINES);
 +
- #define GEN6_MBCTL		_MMIO(0x0907c)
- #define   GEN6_MBCTL_ENABLE_BOOT_FETCH	(1 << 4)
- #define   GEN6_MBCTL_CTX_FETCH_NEEDED	(1 << 3)
++	test_each_engine("resubmit-new-all")
++		spin_resubmit(fd, e2->flags,
++			      RESUBMIT_NEW_CTX |
++			      RESUBMIT_ALL_ENGINES);
++
++#undef test_each_engine
+ 
+ 	igt_subtest("spin-each")
+ 		spin_on_all_engines(fd, 0, 3);
 -- 
-2.17.1
+2.30.0
 
 _______________________________________________
 Intel-gfx mailing list
