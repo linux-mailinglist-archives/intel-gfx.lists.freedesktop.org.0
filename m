@@ -2,30 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1ED9B2E90B0
-	for <lists+intel-gfx@lfdr.de>; Mon,  4 Jan 2021 08:05:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 43AE42E916C
+	for <lists+intel-gfx@lfdr.de>; Mon,  4 Jan 2021 09:06:03 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BD7078925D;
-	Mon,  4 Jan 2021 07:05:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6690C89B98;
+	Mon,  4 Jan 2021 08:06:01 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 98EC889259;
- Mon,  4 Jan 2021 07:05:04 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 90A2EA7DFC;
- Mon,  4 Jan 2021 07:05:04 +0000 (UTC)
+Received: from mx2.suse.de (mx2.suse.de [195.135.220.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6B2D689B97;
+ Mon,  4 Jan 2021 08:06:00 +0000 (UTC)
+X-Virus-Scanned: by amavisd-new at test-mx.suse.de
+Received: from relay2.suse.de (unknown [195.135.221.27])
+ by mx2.suse.de (Postfix) with ESMTP id 8DEEAB7BC;
+ Mon,  4 Jan 2021 08:05:58 +0000 (UTC)
+From: Thomas Zimmermann <tzimmermann@suse.de>
+To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
+References: <X+JFYlW1SEZa6ShA@linux-uq9g>
+Message-ID: <9677ee19-a083-7993-10d8-8ac437372c26@suse.de>
+Date: Mon, 4 Jan 2021 09:05:51 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.6.0
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Huang, Sean Z" <sean.z.huang@intel.com>
-Date: Mon, 04 Jan 2021 07:05:04 -0000
-Message-ID: <160974390456.24931.15127981840881956058@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210104060135.3076-1-sean.z.huang@intel.com>
-In-Reply-To: <20210104060135.3076-1-sean.z.huang@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgSW50?=
- =?utf-8?q?roduce_Intel_PXP_component_-_Mesa_single_session_=28rev18=29?=
+In-Reply-To: <X+JFYlW1SEZa6ShA@linux-uq9g>
+Subject: Re: [Intel-gfx] [PULL] drm-misc-next-fixes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,309 +38,163 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============1028175088=="
+Cc: intel-gfx@lists.freedesktop.org, dim-tools@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============0367274614=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============1028175088==
-Content-Type: multipart/alternative;
- boundary="===============4412850591252450825=="
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--===============0367274614==
+Content-Type: multipart/signed; micalg=pgp-sha256;
+ protocol="application/pgp-signature";
+ boundary="CikGlNbcrUV0JEEAfU6Ps291agInWmKFX"
 
---===============4412850591252450825==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--CikGlNbcrUV0JEEAfU6Ps291agInWmKFX
+Content-Type: multipart/mixed; boundary="M05GCwQLsNs4HvlqDvODgLBRSWNdkn6zh";
+ protected-headers="v1"
+From: Thomas Zimmermann <tzimmermann@suse.de>
+To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
+Cc: dim-tools@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Sean Paul <sean@poorly.run>,
+ intel-gfx@lists.freedesktop.org
+Message-ID: <9677ee19-a083-7993-10d8-8ac437372c26@suse.de>
+Subject: Re: [PULL] drm-misc-next-fixes
+References: <X+JFYlW1SEZa6ShA@linux-uq9g>
+In-Reply-To: <X+JFYlW1SEZa6ShA@linux-uq9g>
 
-== Series Details ==
+--M05GCwQLsNs4HvlqDvODgLBRSWNdkn6zh
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: quoted-printable
 
-Series: Introduce Intel PXP component - Mesa single session (rev18)
-URL   : https://patchwork.freedesktop.org/series/84620/
-State : failure
+Hi,
 
-== Summary ==
+it looks like this PR has not been merged yet.
 
-CI Bug Log - changes from CI_DRM_9540 -> Patchwork_19242
-====================================================
+Best regard
+Thomas
 
-Summary
--------
+Am 22.12.20 um 20:13 schrieb Thomas Zimmermann:
+> Hi Dave and Daniel,
+>=20
+> here's this week's PR for drm-misc-next-fixes.
+>=20
+> Best regards
+> Thomas
+>=20
+> drm-misc-next-fixes-2020-12-22:
+> Short summary of fixes pull:
+>=20
+>   * dma-buf: Include <linux/vmalloc.h> for building on MIPS
+>   * komeda: Fix order of operation in commit tail; Fix NULL-pointer and=
 
-  **FAILURE**
+>             out-of-bounds access; Cleanups
+>   * ttm: Fix an unused-function warning
+> The following changes since commit ee46d16d2e40bebc2aa790fd7b6a056466ff=
+895c:
+>=20
+>    drm: mxsfb: Silence -EPROBE_DEFER while waiting for bridge (2020-12-=
+15 11:01:10 +0100)
+>=20
+> are available in the Git repository at:
+>=20
+>    git://anongit.freedesktop.org/drm/drm-misc tags/drm-misc-next-fixes-=
+2020-12-22
+>=20
+> for you to fetch changes up to be3e477effba636ad25dcd244db264c6cd5c1f36=
+:
+>=20
+>    drm/komeda: Fix bit check to import to value of proper type (2020-12=
+-18 16:36:00 +0000)
+>=20
+> ----------------------------------------------------------------
+> Short summary of fixes pull:
+>=20
+>   * dma-buf: Include <linux/vmalloc.h> for building on MIPS
+>   * komeda: Fix order of operation in commit tail; Fix NULL-pointer and=
 
-  Serious unknown changes coming with Patchwork_19242 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_19242, please notify your bug team to allow them
-  to document this new failure mode, which will reduce false positives in CI.
+>             out-of-bounds access; Cleanups
+>   * ttm: Fix an unused-function warning
+>=20
+> ----------------------------------------------------------------
+> Arnd Bergmann (1):
+>        drm/ttm: fix unused function warning
+>=20
+> Carsten Haitzler (3):
+>        drm/komeda: Remove useless variable assignment
+>        drm/komeda: Handle NULL pointer access code path in error case
+>        drm/komeda: Fix bit check to import to value of proper type
+>=20
+> Christian K=C3=B6nig (1):
+>        drm/qxl: don't allocate a dma_address array
+>=20
+> James Qian Wang (1):
+>        drm/komeda: Correct the sequence of hw_done() and flip_done()
+>=20
+> John Stultz (1):
+>        dma-buf: cma_heap: Include linux/vmalloc.h to fix build failures=
+ on MIPS
+>=20
+>   drivers/dma-buf/heaps/cma_heap.c                   |  1 +
+>   drivers/gpu/drm/arm/display/komeda/komeda_dev.c    |  1 -
+>   drivers/gpu/drm/arm/display/komeda/komeda_kms.c    |  4 +--
+>   .../gpu/drm/arm/display/komeda/komeda_pipeline.c   |  3 ++-
+>   .../drm/arm/display/komeda/komeda_pipeline_state.c |  4 +--
+>   drivers/gpu/drm/qxl/qxl_ttm.c                      |  2 +-
+>   drivers/gpu/drm/ttm/ttm_pool.c                     | 29 +++++++++++--=
+---------
+>   7 files changed, 22 insertions(+), 22 deletions(-)
+>=20
+> --
+> Thomas Zimmermann
+> Graphics Driver Developer
+> SUSE Software Solutions Germany GmbH
+> Maxfeldstr. 5, 90409 N=C3=BCrnberg, Germany
+> (HRB 36809, AG N=C3=BCrnberg)
+> Gesch=C3=A4ftsf=C3=BChrer: Felix Imend=C3=B6rffer
+> _______________________________________________
+> dri-devel mailing list
+> dri-devel@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/dri-devel
+>=20
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19242/index.html
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_19242:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@core_hotunplug@unbind-rebind:
-    - fi-tgl-y:           [PASS][1] -> [DMESG-WARN][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9540/fi-tgl-y/igt@core_hotunplug@unbind-rebind.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19242/fi-tgl-y/igt@core_hotunplug@unbind-rebind.html
-
-  
-#### Suppressed ####
-
-  The following results come from untrusted machines, tests, or statuses.
-  They do not affect the overall result.
-
-  * igt@core_hotunplug@unbind-rebind:
-    - {fi-tgl-dsi}:       [PASS][3] -> [DMESG-WARN][4]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9540/fi-tgl-dsi/igt@core_hotunplug@unbind-rebind.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19242/fi-tgl-dsi/igt@core_hotunplug@unbind-rebind.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_19242 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@core_hotunplug@unbind-rebind:
-    - fi-tgl-u2:          [PASS][5] -> [DMESG-WARN][6] ([i915#1982])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9540/fi-tgl-u2/igt@core_hotunplug@unbind-rebind.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19242/fi-tgl-u2/igt@core_hotunplug@unbind-rebind.html
-
-  * igt@i915_selftest@live@gem_contexts:
-    - fi-skl-6600u:       [PASS][7] -> [INCOMPLETE][8] ([i915#198] / [i915#2369])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9540/fi-skl-6600u/igt@i915_selftest@live@gem_contexts.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19242/fi-skl-6600u/igt@i915_selftest@live@gem_contexts.html
-
-  * igt@i915_selftest@live@gt_heartbeat:
-    - fi-skl-6600u:       [PASS][9] -> [DMESG-WARN][10] ([i915#1909])
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9540/fi-skl-6600u/igt@i915_selftest@live@gt_heartbeat.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19242/fi-skl-6600u/igt@i915_selftest@live@gt_heartbeat.html
-
-  * igt@prime_self_import@basic-with_one_bo_two_files:
-    - fi-tgl-y:           [PASS][11] -> [DMESG-WARN][12] ([i915#402]) +1 similar issue
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9540/fi-tgl-y/igt@prime_self_import@basic-with_one_bo_two_files.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19242/fi-tgl-y/igt@prime_self_import@basic-with_one_bo_two_files.html
-
-  * igt@runner@aborted:
-    - fi-tgl-y:           NOTRUN -> [FAIL][13] ([i915#1602])
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19242/fi-tgl-y/igt@runner@aborted.html
-    - fi-skl-6600u:       NOTRUN -> [FAIL][14] ([i915#1436] / [i915#2295])
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19242/fi-skl-6600u/igt@runner@aborted.html
-    - fi-tgl-u2:          NOTRUN -> [FAIL][15] ([i915#1602])
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19242/fi-tgl-u2/igt@runner@aborted.html
-
-  
-#### Possible fixes ####
-
-  * igt@gem_flink_basic@bad-flink:
-    - fi-tgl-y:           [DMESG-WARN][16] ([i915#402]) -> [PASS][17] +1 similar issue
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9540/fi-tgl-y/igt@gem_flink_basic@bad-flink.html
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19242/fi-tgl-y/igt@gem_flink_basic@bad-flink.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [i915#1436]: https://gitlab.freedesktop.org/drm/intel/issues/1436
-  [i915#1602]: https://gitlab.freedesktop.org/drm/intel/issues/1602
-  [i915#1909]: https://gitlab.freedesktop.org/drm/intel/issues/1909
-  [i915#198]: https://gitlab.freedesktop.org/drm/intel/issues/198
-  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
-  [i915#2295]: https://gitlab.freedesktop.org/drm/intel/issues/2295
-  [i915#2369]: https://gitlab.freedesktop.org/drm/intel/issues/2369
-  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
-
-
-Participating hosts (38 -> 35)
-------------------------------
-
-  Missing    (3): fi-ilk-m540 fi-bsw-cyan fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_9540 -> Patchwork_19242
-
-  CI-20190529: 20190529
-  CI_DRM_9540: 031143817afd9bb0877e723f741fb711d4d0c55b @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5938: 7fbd0fa5544d8b4d0f2996a2cfdb25170fa7f435 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_19242: fecbf74da7aae9970cb70de116c5104c6a92b177 @ git://anongit.freedesktop.org/gfx-ci/linux
+--=20
+Thomas Zimmermann
+Graphics Driver Developer
+SUSE Software Solutions Germany GmbH
+Maxfeldstr. 5, 90409 N=C3=BCrnberg, Germany
+(HRB 36809, AG N=C3=BCrnberg)
+Gesch=C3=A4ftsf=C3=BChrer: Felix Imend=C3=B6rffer
 
 
-== Linux commits ==
+--M05GCwQLsNs4HvlqDvODgLBRSWNdkn6zh--
 
-fecbf74da7aa drm/i915/pxp: Add plane decryption support
-ba4c333f604a drm/i915/pxp: User interface for Protected buffer
-74c1edd02abd drm/i915/uapi: introduce drm_i915_gem_create_ext
-e9ca6f2f5dde mei: pxp: export pavp client to me client bus
-ad523799bca4 drm/i915/pxp: Expose session state for display protection flip
-efae4a518516 drm/i915/pxp: Enable PXP power management
-56d17ead8565 drm/i915/pxp: Destroy arb session upon teardown
-54cd7f2eef9f drm/i915/pxp: Enable PXP irq worker and callback stub
-3aca90a9101d drm/i915/pxp: Func to send hardware session termination
-b9c23f9d8a3d drm/i915/pxp: Create the arbitrary session after boot
-62e923b397bf drm/i915/pxp: Implement funcs to create the TEE channel
-d18d1ffc3b09 drm/i915/pxp: set KCR reg init during the boot time
-5563c334a132 drm/i915/pxp: Introduce Intel PXP component
+--CikGlNbcrUV0JEEAfU6Ps291agInWmKFX
+Content-Type: application/pgp-signature; name="OpenPGP_signature.asc"
+Content-Description: OpenPGP digital signature
+Content-Disposition: attachment; filename="OpenPGP_signature"
 
-== Logs ==
+-----BEGIN PGP SIGNATURE-----
 
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19242/index.html
+wsF5BAABCAAjFiEExndm/fpuMUdwYFFolh/E3EQov+AFAl/yzF8FAwAAAAAACgkQlh/E3EQov+Dk
+bQ/+PAuyb0HGlrHk9QovoG5Ww81uE8HmrCZsUMGy3vMCbKyrYtbQ6f90iYMgGO811dx/XC9FRMaB
+qxiuBZL4I3NCjDT07uJm1BRo9goiLwWfYrryqRmsTVZrwTQ4X50+Z89mrSUj1yUmokpTuCI/71KZ
+B+CK+vgSxHdSP8CGxijzaruc0AZ5i8s+bjUi2+piE51RAZLQM1K6GMNzybJ/VCEGeK/6/OBz1hnV
+Oz3rXSwW1QUF/3mHFQ05KRxQrWD6jYKxbUOPFojgKUdIIYUH13AQDwtuvHEDsxik9qtztlYbyDIz
+Ax8LC6QSH/BnxDeX+M+L5kMXDfkTzWpLZ6D+wy9BwoNEG7/OgyMi2aDGoW0nz5TPx2X+jLf/It3R
+QGjLxKrhgP20Mc42uO8Pc7EthQT1pszb9b7tOQXmyukDfiqDNkCOwVmfVeSUSPCJl9GHzgs3NWJ7
+uILo7dRVClrvYvmZSYQjjDjQA0n45oBC4ndHPkHvDzbE6BOvkeYAKShki3ob0NHcxDH0+ClxRPda
+2EvjzxCV6js1bKK9U1acYM+u+7wgwWMbVWkZSGVboKUZY7yZxFpzsWom8zFLvgqABgamdeLrJgKo
+hzahC4XzoSXqFv5KS6i4bd1gWVaZYJbJtDxwt8fc+GHP4gKvasvRzM8sFmF+OpL6fRJQrtLpZ2ew
+LDk=
+=xvb0
+-----END PGP SIGNATURE-----
 
---===============4412850591252450825==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+--CikGlNbcrUV0JEEAfU6Ps291agInWmKFX--
 
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Introduce Intel PXP component - Mesa single session (rev18)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/84620/">https://patchwork.freedesktop.org/series/84620/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19242/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19242/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_9540 -&gt; Patchwork_19242</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with Patchwork_19242 absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in Patchwork_19242, please notify your bug team to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19242/index.html</p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in Patchwork_19242:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>igt@core_hotunplug@unbind-rebind:<ul>
-<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9540/fi-tgl-y/igt@core_hotunplug@unbind-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19242/fi-tgl-y/igt@core_hotunplug@unbind-rebind.html">DMESG-WARN</a></li>
-</ul>
-</li>
-</ul>
-<h4>Suppressed</h4>
-<p>The following results come from untrusted machines, tests, or statuses.<br />
-  They do not affect the overall result.</p>
-<ul>
-<li>igt@core_hotunplug@unbind-rebind:<ul>
-<li>{fi-tgl-dsi}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9540/fi-tgl-dsi/igt@core_hotunplug@unbind-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19242/fi-tgl-dsi/igt@core_hotunplug@unbind-rebind.html">DMESG-WARN</a></li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_19242 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@core_hotunplug@unbind-rebind:</p>
-<ul>
-<li>fi-tgl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9540/fi-tgl-u2/igt@core_hotunplug@unbind-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19242/fi-tgl-u2/igt@core_hotunplug@unbind-rebind.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@gem_contexts:</p>
-<ul>
-<li>fi-skl-6600u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9540/fi-skl-6600u/igt@i915_selftest@live@gem_contexts.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19242/fi-skl-6600u/igt@i915_selftest@live@gem_contexts.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/198">i915#198</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2369">i915#2369</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@gt_heartbeat:</p>
-<ul>
-<li>fi-skl-6600u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9540/fi-skl-6600u/igt@i915_selftest@live@gt_heartbeat.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19242/fi-skl-6600u/igt@i915_selftest@live@gt_heartbeat.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1909">i915#1909</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@prime_self_import@basic-with_one_bo_two_files:</p>
-<ul>
-<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9540/fi-tgl-y/igt@prime_self_import@basic-with_one_bo_two_files.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19242/fi-tgl-y/igt@prime_self_import@basic-with_one_bo_two_files.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) +1 similar issue</li>
-</ul>
-</li>
-<li>
-<p>igt@runner@aborted:</p>
-<ul>
-<li>
-<p>fi-tgl-y:           NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19242/fi-tgl-y/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1602">i915#1602</a>)</p>
-</li>
-<li>
-<p>fi-skl-6600u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19242/fi-skl-6600u/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1436">i915#1436</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2295">i915#2295</a>)</p>
-</li>
-<li>
-<p>fi-tgl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19242/fi-tgl-u2/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1602">i915#1602</a>)</p>
-</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@gem_flink_basic@bad-flink:<ul>
-<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9540/fi-tgl-y/igt@gem_flink_basic@bad-flink.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19242/fi-tgl-y/igt@gem_flink_basic@bad-flink.html">PASS</a> +1 similar issue</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Participating hosts (38 -&gt; 35)</h2>
-<p>Missing    (3): fi-ilk-m540 fi-bsw-cyan fi-bdw-samus </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_9540 -&gt; Patchwork_19242</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_9540: 031143817afd9bb0877e723f741fb711d4d0c55b @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_5938: 7fbd0fa5544d8b4d0f2996a2cfdb25170fa7f435 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
-  Patchwork_19242: fecbf74da7aae9970cb70de116c5104c6a92b177 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>fecbf74da7aa drm/i915/pxp: Add plane decryption support<br />
-ba4c333f604a drm/i915/pxp: User interface for Protected buffer<br />
-74c1edd02abd drm/i915/uapi: introduce drm_i915_gem_create_ext<br />
-e9ca6f2f5dde mei: pxp: export pavp client to me client bus<br />
-ad523799bca4 drm/i915/pxp: Expose session state for display protection flip<br />
-efae4a518516 drm/i915/pxp: Enable PXP power management<br />
-56d17ead8565 drm/i915/pxp: Destroy arb session upon teardown<br />
-54cd7f2eef9f drm/i915/pxp: Enable PXP irq worker and callback stub<br />
-3aca90a9101d drm/i915/pxp: Func to send hardware session termination<br />
-b9c23f9d8a3d drm/i915/pxp: Create the arbitrary session after boot<br />
-62e923b397bf drm/i915/pxp: Implement funcs to create the TEE channel<br />
-d18d1ffc3b09 drm/i915/pxp: set KCR reg init during the boot time<br />
-5563c334a132 drm/i915/pxp: Introduce Intel PXP component</p>
-
-</body>
-</html>
-
---===============4412850591252450825==--
-
---===============1028175088==
+--===============0367274614==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -351,4 +205,4 @@ Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 
---===============1028175088==--
+--===============0367274614==--
