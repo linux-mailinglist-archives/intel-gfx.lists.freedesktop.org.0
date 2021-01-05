@@ -2,56 +2,39 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 64D172EA4AF
-	for <lists+intel-gfx@lfdr.de>; Tue,  5 Jan 2021 06:19:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2E0E92EA50A
+	for <lists+intel-gfx@lfdr.de>; Tue,  5 Jan 2021 06:51:14 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 600C289D61;
-	Tue,  5 Jan 2021 05:19:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8F7D789A0E;
+	Tue,  5 Jan 2021 05:51:12 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4F81E89D61
- for <intel-gfx@lists.freedesktop.org>; Tue,  5 Jan 2021 05:19:38 +0000 (UTC)
-IronPort-SDR: OEYnPO/wYwE7KH3bVXEeTqWy+kzbxngZmopJ84jvS0i5pMqo5LUbnUo3W1QpF7amnewalsU/KW
- LPHgBgFORoUg==
-X-IronPort-AV: E=McAfee;i="6000,8403,9854"; a="177154439"
-X-IronPort-AV: E=Sophos;i="5.78,476,1599548400"; d="scan'208";a="177154439"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Jan 2021 21:19:37 -0800
-IronPort-SDR: lri7wnpgDymNDDMXj2Xj8cG8s5OwKvKipPIgtY4WiPzbkYZEiwcli9DKhzWKIamwmeF2fRA63d
- f9Enka0EaQvA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.78,476,1599548400"; d="scan'208";a="421639482"
-Received: from irsmsx601.ger.corp.intel.com ([163.33.146.7])
- by orsmga001.jf.intel.com with ESMTP; 04 Jan 2021 21:19:35 -0800
-Received: from bgsmsx604.gar.corp.intel.com (10.67.234.6) by
- irsmsx601.ger.corp.intel.com (163.33.146.7) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1713.5; Tue, 5 Jan 2021 05:19:35 +0000
-Received: from bgsmsx604.gar.corp.intel.com ([10.67.234.6]) by
- BGSMSX604.gar.corp.intel.com ([10.67.234.6]) with mapi id 15.01.1713.004;
- Tue, 5 Jan 2021 10:49:34 +0530
-From: "Gupta, Anshuman" <anshuman.gupta@intel.com>
-To: "S, Saichandana" <saichandana.s@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Thread-Topic: [PATCH v2] drm/i915/debugfs : PM_REQ and PM_RES registers
-Thread-Index: AQHW4oS27rXpqH8mW0GDsFZSePBJQKoYff+Q
-Date: Tue, 5 Jan 2021 05:19:34 +0000
-Message-ID: <f6bf3d48f8ab42d7833aaeed2de1c94f@intel.com>
-References: <20210104103036.1443-1-saichandana.s@intel.com>
-In-Reply-To: <20210104103036.1443-1-saichandana.s@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-product: dlpe-windows
-dlp-version: 11.5.1.3
-dlp-reaction: no-action
-x-originating-ip: [10.223.10.1]
+Received: from casper.infradead.org (casper.infradead.org
+ [IPv6:2001:8b0:10b:1236::1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4FCAA89A0E
+ for <intel-gfx@lists.freedesktop.org>; Tue,  5 Jan 2021 05:51:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=infradead.org; s=casper.20170209; h=In-Reply-To:Content-Type:MIME-Version:
+ References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
+ Content-Transfer-Encoding:Content-ID:Content-Description;
+ bh=tQc0Fh+iSVClUq15yMvSIoS4JRSJ2L65TqbOfCqgZec=; b=NtXTQvTu3B5klhdSKBjssSt1Dl
+ D2b55zlPUvAS2pTFF9i1/xvmSqf8yJf/LVAsbqdIX2BI+cQTddPi/w7rF/Nn1VsIOKKHCdMxOdPxm
+ gzzs1klcHzR1T2B9cytBhtahekDJFpyScnDHTf7g5/9Oumz4olkpOhwYnNwLTWYbVNb70Eg7EtdUM
+ PpPHxs+QfpDsS1L71diO80acBFg8szJfsHVs69RtmTxgQxGBPNfYqP3aFXBbcz9oGB3SlEtGe+Ryb
+ K9STQXaYDEmYAWibpxsw5R9D/zw5SWbiuRSgiqyqoOJ1oymorgPF1jMdrNQuEK8ae8ltmrQHTEcmK
+ 4vtOsmKQ==;
+Received: from willy by casper.infradead.org with local (Exim 4.94 #2 (Red Hat
+ Linux)) id 1kwfEv-000v2I-Bq; Tue, 05 Jan 2021 05:50:48 +0000
+Date: Tue, 5 Jan 2021 05:50:41 +0000
+From: Matthew Wilcox <willy@infradead.org>
+To: Imre Deak <imre.deak@intel.com>
+Message-ID: <20210105055041.GB175893@casper.infradead.org>
+References: <20201221040758.GA874@casper.infradead.org>
+ <20201229144131.GA4029266@ideak-desk.fi.intel.com>
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH v2] drm/i915/debugfs : PM_REQ and PM_RES
- registers
+Content-Disposition: inline
+In-Reply-To: <20201229144131.GA4029266@ideak-desk.fi.intel.com>
+Subject: Re: [Intel-gfx] Missing DPPLL case on i7-1165G7
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,116 +47,55 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Nikula, Jani" <jani.nikula@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+On Tue, Dec 29, 2020 at 04:41:31PM +0200, Imre Deak wrote:
+> Hi,
+> 
+> On Mon, Dec 21, 2020 at 04:07:58AM +0000, Matthew Wilcox wrote:
+> > 
+> > At boot,
+> > 
+> > [    2.787995] [drm:lspcon_init [i915]] *ERROR* Failed to probe lspcon
+> > [    2.788001] i915 0000:00:02.0: [drm] *ERROR* LSPCON init failed on port E
+> > [    2.790752] ------------[ cut here ]------------
+> > [    2.790753] Missing case (clock == 539440)
+> > [    2.790790] WARNING: CPU: 0 PID: 159 at drivers/gpu/drm/i915/display/intel_dpll_mgr.c:2967 icl_get_dplls+0x53a/0xa50 [i915]
+> 
+> the above warn looks to be due to a missing workaround fixed by
+> 
+> commit 0e2497e334de42dbaaee8e325241b5b5b34ede7e
+> Author: Imre Deak <imre.deak@intel.com>
+> Date:   Sat Oct 3 03:18:46 2020 +0300
+> 
+>     drm/i915/tgl: Fix Combo PHY DPLL fractional divider for 38.4MHz ref clock
+> 
+> in drm-tip. Could you give it a try?
 
+I tried -rc2, which contains that commit, and the problem is gone.  Thank
+you!
 
-> -----Original Message-----
-> From: S, Saichandana <saichandana.s@intel.com>
-> Sent: Monday, January 4, 2021 4:01 PM
-> To: intel-gfx@lists.freedesktop.org
-> Cc: S, Saichandana <saichandana.s@intel.com>; Nikula, Jani
-> <jani.nikula@intel.com>; Gupta, Anshuman <anshuman.gupta@intel.com>
-> Subject: [PATCH v2] drm/i915/debugfs : PM_REQ and PM_RES registers
-> 
-> From: Saichandana <saichandana.s@intel.com>
-> 
-> PM_REQ register provides the value of the last PM request from PCU to
-> Display Engine.PM_RES register provides the value of the last PM response
-> from Display Engine to PCU.This debugfs will be used by
-> DC9 IGT test to know about "DC9 Ready" status.
-> 
-> B.Spec : 49501, 49502
-Please mention here the review comment u had fixed.
-So it will be easy for review.
-V2:
-Added a functional print to debugs. [Keep name of Reviewer]
-> 
-> Signed-off-by: Saichandana <saichandana.s@intel.com>
-> ---
->  .../drm/i915/display/intel_display_debugfs.c  | 30
-> +++++++++++++++++++
->  drivers/gpu/drm/i915/i915_reg.h               |  8 +++++
->  2 files changed, 38 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-> b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-> index cd7e5519ee7d..551fb1a90bb3 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-> @@ -559,6 +559,36 @@ static int i915_dmc_info(struct seq_file *m, void
-> *unused)
->  	return 0;
->  }
-> 
-> +static int i915_pm_req_res_info(struct seq_file *m, void *unused) {
-> +	struct drm_i915_private *dev_priv = node_to_i915(m->private);
-> +	struct intel_csr *csr = &dev_priv->csr;
-> +	const char *status;
-> +
-> +	if (!HAS_CSR(dev_priv))
-> +		return -ENODEV;
-> +	if (!csr->dmc_payload)
-> +		return 0;
-> +	seq_printf(m, "PM debug request 0 (0x45284): 0x%08x\n",
-> +		   intel_de_read(dev_priv, PM_REQ_DBG_0));
-> +	seq_printf(m, "PM debug request 1 (0x45288): 0x%08x\n",
-> +		   intel_de_read(dev_priv, PM_REQ_DBG_1));
-> +	seq_printf(m, "PM debug response 0 (0x4528C): 0x%08x\n",
-> +		   intel_de_read(dev_priv, PM_RSP_DBG_0));
-> +	seq_printf(m, "PM debug response 1 (0x45290): 0x%08x\n",
-> +		   intel_de_read(dev_priv, PM_RSP_DBG_1));
-> +	status = (intel_de_read(dev_priv, PM_RSP_DBG_1) &
-> MASK_DC9_BIT) ?
-> +"yes" : "no";
-You don't need to read the value of register again , please store in a variable
-And use that value.
-Thanks,
-Anshuman Gupta.
-> +
-> +	seq_printf(m, "Time to Next Fill = 0x%0x\n",
-> +		   (intel_de_read(dev_priv, PM_RSP_DBG_0) &
-> ~MASK_RSP_0));
-> +	seq_printf(m, "Time to Next VBI = 0x%0x\n",
-> +		   ((intel_de_read(dev_priv, PM_RSP_DBG_0) &
-> MASK_RSP_0)) >> 16);
-> +	seq_printf(m, "Selective Exit Latency = 0x%0x\n",
-> +		   (intel_de_read(dev_priv, PM_RSP_DBG_1) &
-> MASK_RSP_1));
-> +	seq_printf(m, "DC9 Ready = %s\n", status);
-> +	return 0;
-> +}
-> +
->  static void intel_seq_print_mode(struct seq_file *m, int tabs,
->  				 const struct drm_display_mode *mode)  {
-> diff --git a/drivers/gpu/drm/i915/i915_reg.h
-> b/drivers/gpu/drm/i915/i915_reg.h index 0023c023f472..3e9ed555f928
-> 100644
-> --- a/drivers/gpu/drm/i915/i915_reg.h
-> +++ b/drivers/gpu/drm/i915/i915_reg.h
-> @@ -371,6 +371,14 @@ static inline bool
-> i915_mmio_reg_valid(i915_reg_t reg)
->  #define VLV_G3DCTL		_MMIO(0x9024)
->  #define VLV_GSCKGCTL		_MMIO(0x9028)
-> 
-> +#define PM_REQ_DBG_0		_MMIO(0x45284)
-> +#define PM_REQ_DBG_1		_MMIO(0x45288)
-> +#define PM_RSP_DBG_0		_MMIO(0x4528C)
-> +#define PM_RSP_DBG_1		_MMIO(0x45290)
-> +#define MASK_RSP_0		(0xFFFF << 16)
-> +#define MASK_RSP_1		(7 << 0)
-> +#define MASK_DC9_BIT		(1 << 17)
-> +
->  #define GEN6_MBCTL		_MMIO(0x0907c)
->  #define   GEN6_MBCTL_ENABLE_BOOT_FETCH	(1 << 4)
->  #define   GEN6_MBCTL_CTX_FETCH_NEEDED	(1 << 3)
-> --
-> 2.17.1
+There is a different problem, which is that the brightness buttons
+(on F2 and F3 on this laptop) do not actually increase/decrease the
+brightness.  GNOME pops up a graphic that illustrates it is changing
+the brightness, but nothing actually changes.
 
+xbacklight says "No outputs have backlight property" and using
+xrandr --output XWAYLAND0 --brightness 0.0001 doesn't change anything
+(for various different values, not just 0.0001).  Using xrandr --prop
+--verbose shows the reported value of "Brightness" changing, but nothing
+has changed on the screen.
+
+I found
+/sys/devices/pci0000:00/0000:00:02.0/drm/card0/card0-eDP-1/intel_backlight
+and tried setting 'brightness' in there to a few different values (100,
+2000, 19200, 7000) and also nothing changed.
+
+Any thoughts?
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
