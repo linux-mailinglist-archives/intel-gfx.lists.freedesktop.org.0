@@ -1,37 +1,57 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E0FD32EA4E2
-	for <lists+intel-gfx@lfdr.de>; Tue,  5 Jan 2021 06:29:31 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 64D172EA4AF
+	for <lists+intel-gfx@lfdr.de>; Tue,  5 Jan 2021 06:19:42 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6D28689E33;
-	Tue,  5 Jan 2021 05:29:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 600C289D61;
+	Tue,  5 Jan 2021 05:19:39 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 43FE889E33
- for <intel-gfx@lists.freedesktop.org>; Tue,  5 Jan 2021 05:29:27 +0000 (UTC)
-IronPort-SDR: 9fI4G/WUmuZ0vVIDIdYlmly/bOc2xU56whmhfqBTC2HXJl8ZFks6AhGMVJlz6boKu0IAju5r+t
- NoUPDq2JqxjA==
-X-IronPort-AV: E=McAfee;i="6000,8403,9854"; a="164756389"
-X-IronPort-AV: E=Sophos;i="5.78,476,1599548400"; d="scan'208";a="164756389"
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4F81E89D61
+ for <intel-gfx@lists.freedesktop.org>; Tue,  5 Jan 2021 05:19:38 +0000 (UTC)
+IronPort-SDR: OEYnPO/wYwE7KH3bVXEeTqWy+kzbxngZmopJ84jvS0i5pMqo5LUbnUo3W1QpF7amnewalsU/KW
+ LPHgBgFORoUg==
+X-IronPort-AV: E=McAfee;i="6000,8403,9854"; a="177154439"
+X-IronPort-AV: E=Sophos;i="5.78,476,1599548400"; d="scan'208";a="177154439"
 Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Jan 2021 21:29:26 -0800
-IronPort-SDR: pLbg5yftgVh1amxmUAW/DbAxJ+3PclxN54eAsy7mQal4j53fCdgOAwLq25LDjTP7jKrTcsR+Sj
- xoEKpQWD/Syg==
-X-IronPort-AV: E=Sophos;i="5.78,476,1599548400"; d="scan'208";a="421642571"
-Received: from unknown (HELO genxfsim-desktop.iind.intel.com) ([10.223.74.179])
- by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Jan 2021 21:29:24 -0800
-From: Anshuman Gupta <anshuman.gupta@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Tue,  5 Jan 2021 10:43:53 +0530
-Message-Id: <20210105051353.5714-1-anshuman.gupta@intel.com>
-X-Mailer: git-send-email 2.26.2
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Jan 2021 21:19:37 -0800
+IronPort-SDR: lri7wnpgDymNDDMXj2Xj8cG8s5OwKvKipPIgtY4WiPzbkYZEiwcli9DKhzWKIamwmeF2fRA63d
+ f9Enka0EaQvA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.78,476,1599548400"; d="scan'208";a="421639482"
+Received: from irsmsx601.ger.corp.intel.com ([163.33.146.7])
+ by orsmga001.jf.intel.com with ESMTP; 04 Jan 2021 21:19:35 -0800
+Received: from bgsmsx604.gar.corp.intel.com (10.67.234.6) by
+ irsmsx601.ger.corp.intel.com (163.33.146.7) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1713.5; Tue, 5 Jan 2021 05:19:35 +0000
+Received: from bgsmsx604.gar.corp.intel.com ([10.67.234.6]) by
+ BGSMSX604.gar.corp.intel.com ([10.67.234.6]) with mapi id 15.01.1713.004;
+ Tue, 5 Jan 2021 10:49:34 +0530
+From: "Gupta, Anshuman" <anshuman.gupta@intel.com>
+To: "S, Saichandana" <saichandana.s@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Thread-Topic: [PATCH v2] drm/i915/debugfs : PM_REQ and PM_RES registers
+Thread-Index: AQHW4oS27rXpqH8mW0GDsFZSePBJQKoYff+Q
+Date: Tue, 5 Jan 2021 05:19:34 +0000
+Message-ID: <f6bf3d48f8ab42d7833aaeed2de1c94f@intel.com>
+References: <20210104103036.1443-1-saichandana.s@intel.com>
+In-Reply-To: <20210104103036.1443-1-saichandana.s@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+dlp-product: dlpe-windows
+dlp-version: 11.5.1.3
+dlp-reaction: no-action
+x-originating-ip: [10.223.10.1]
 MIME-Version: 1.0
-Subject: [Intel-gfx] [RFC] drm/i915/pps: Add PPS power domain
+Subject: Re: [Intel-gfx] [PATCH v2] drm/i915/debugfs : PM_REQ and PM_RES
+ registers
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,109 +64,115 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jani Nikula <jani.nikula@intel.com>
+Cc: "Nikula, Jani" <jani.nikula@intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-It abstracts getting the AUX power domain in pps_lock under
-PPS power domain. This makes sure that the platforms which really
-requires AUX power in order to access PPS registers will get the
-reference to necessary power wells.
 
-PPS power domain requires only to track the AUX_A associated
-power wells as the platforms need AUX power in order to access PPS
-registers supports eDP only on PORT_A.
 
-Cc: Imre Deak <imre.deak@intel.com>
-Cc: Jani Nikula <jani.nikula@intel.com>
-Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
----
- drivers/gpu/drm/i915/display/intel_display_power.c | 7 +++++++
- drivers/gpu/drm/i915/display/intel_display_power.h | 1 +
- drivers/gpu/drm/i915/display/intel_dp.c            | 3 +--
- 3 files changed, 9 insertions(+), 2 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
-index d52374f01316..1dc4ca9e5d1a 100644
---- a/drivers/gpu/drm/i915/display/intel_display_power.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_power.c
-@@ -107,6 +107,8 @@ intel_display_power_domain_str(enum intel_display_power_domain domain)
- 		return "VGA";
- 	case POWER_DOMAIN_AUDIO:
- 		return "AUDIO";
-+	case POWER_DOMAIN_PPS:
-+		return "PPS";
- 	case POWER_DOMAIN_AUX_A:
- 		return "AUX_A";
- 	case POWER_DOMAIN_AUX_B:
-@@ -2651,11 +2653,13 @@ intel_display_power_put_mask_in_set(struct drm_i915_private *i915,
- 	BIT_ULL(POWER_DOMAIN_GT_IRQ) |			\
- 	BIT_ULL(POWER_DOMAIN_MODESET) |			\
- 	BIT_ULL(POWER_DOMAIN_AUX_A) |			\
-+	BIT_ULL(POWER_DOMAIN_PPS) |			\
- 	BIT_ULL(POWER_DOMAIN_GMBUS) |			\
- 	BIT_ULL(POWER_DOMAIN_INIT))
- #define BXT_DPIO_CMN_A_POWER_DOMAINS (			\
- 	BIT_ULL(POWER_DOMAIN_PORT_DDI_A_LANES) |		\
- 	BIT_ULL(POWER_DOMAIN_AUX_A) |			\
-+	BIT_ULL(POWER_DOMAIN_PPS) |			\
- 	BIT_ULL(POWER_DOMAIN_INIT))
- #define BXT_DPIO_CMN_BC_POWER_DOMAINS (			\
- 	BIT_ULL(POWER_DOMAIN_PORT_DDI_B_LANES) |		\
-@@ -2688,6 +2692,7 @@ intel_display_power_put_mask_in_set(struct drm_i915_private *i915,
- #define GLK_DPIO_CMN_A_POWER_DOMAINS (			\
- 	BIT_ULL(POWER_DOMAIN_PORT_DDI_A_LANES) |		\
- 	BIT_ULL(POWER_DOMAIN_AUX_A) |			\
-+	BIT_ULL(POWER_DOMAIN_PPS) |			\
- 	BIT_ULL(POWER_DOMAIN_INIT))
- #define GLK_DPIO_CMN_B_POWER_DOMAINS (			\
- 	BIT_ULL(POWER_DOMAIN_PORT_DDI_B_LANES) |		\
-@@ -2700,6 +2705,7 @@ intel_display_power_put_mask_in_set(struct drm_i915_private *i915,
- #define GLK_DISPLAY_AUX_A_POWER_DOMAINS (		\
- 	BIT_ULL(POWER_DOMAIN_AUX_A) |		\
- 	BIT_ULL(POWER_DOMAIN_AUX_IO_A) |		\
-+	BIT_ULL(POWER_DOMAIN_PPS) |			\
- 	BIT_ULL(POWER_DOMAIN_INIT))
- #define GLK_DISPLAY_AUX_B_POWER_DOMAINS (		\
- 	BIT_ULL(POWER_DOMAIN_AUX_B) |		\
-@@ -2712,6 +2718,7 @@ intel_display_power_put_mask_in_set(struct drm_i915_private *i915,
- 	BIT_ULL(POWER_DOMAIN_GT_IRQ) |			\
- 	BIT_ULL(POWER_DOMAIN_MODESET) |			\
- 	BIT_ULL(POWER_DOMAIN_AUX_A) |			\
-+	BIT_ULL(POWER_DOMAIN_PPS) |			\
- 	BIT_ULL(POWER_DOMAIN_GMBUS) |			\
- 	BIT_ULL(POWER_DOMAIN_INIT))
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_power.h b/drivers/gpu/drm/i915/display/intel_display_power.h
-index bc30c479be53..7642be3c8e2e 100644
---- a/drivers/gpu/drm/i915/display/intel_display_power.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_power.h
-@@ -55,6 +55,7 @@ enum intel_display_power_domain {
- 	POWER_DOMAIN_PORT_OTHER,
- 	POWER_DOMAIN_VGA,
- 	POWER_DOMAIN_AUDIO,
-+	POWER_DOMAIN_PPS,
- 	POWER_DOMAIN_AUX_A,
- 	POWER_DOMAIN_AUX_B,
- 	POWER_DOMAIN_AUX_C,
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index 8a00e609085f..0e6e5e2d873e 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -895,8 +895,7 @@ pps_lock(struct intel_dp *intel_dp)
- 	 * See intel_power_sequencer_reset() why we need
- 	 * a power domain reference here.
- 	 */
--	wakeref = intel_display_power_get(dev_priv,
--					  intel_aux_power_domain(dp_to_dig_port(intel_dp)));
-+	wakeref = intel_display_power_get(dev_priv, POWER_DOMAIN_PPS);
- 
- 	mutex_lock(&dev_priv->pps_mutex);
- 
--- 
-2.26.2
+> -----Original Message-----
+> From: S, Saichandana <saichandana.s@intel.com>
+> Sent: Monday, January 4, 2021 4:01 PM
+> To: intel-gfx@lists.freedesktop.org
+> Cc: S, Saichandana <saichandana.s@intel.com>; Nikula, Jani
+> <jani.nikula@intel.com>; Gupta, Anshuman <anshuman.gupta@intel.com>
+> Subject: [PATCH v2] drm/i915/debugfs : PM_REQ and PM_RES registers
+> 
+> From: Saichandana <saichandana.s@intel.com>
+> 
+> PM_REQ register provides the value of the last PM request from PCU to
+> Display Engine.PM_RES register provides the value of the last PM response
+> from Display Engine to PCU.This debugfs will be used by
+> DC9 IGT test to know about "DC9 Ready" status.
+> 
+> B.Spec : 49501, 49502
+Please mention here the review comment u had fixed.
+So it will be easy for review.
+V2:
+Added a functional print to debugs. [Keep name of Reviewer]
+> 
+> Signed-off-by: Saichandana <saichandana.s@intel.com>
+> ---
+>  .../drm/i915/display/intel_display_debugfs.c  | 30
+> +++++++++++++++++++
+>  drivers/gpu/drm/i915/i915_reg.h               |  8 +++++
+>  2 files changed, 38 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+> b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+> index cd7e5519ee7d..551fb1a90bb3 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+> @@ -559,6 +559,36 @@ static int i915_dmc_info(struct seq_file *m, void
+> *unused)
+>  	return 0;
+>  }
+> 
+> +static int i915_pm_req_res_info(struct seq_file *m, void *unused) {
+> +	struct drm_i915_private *dev_priv = node_to_i915(m->private);
+> +	struct intel_csr *csr = &dev_priv->csr;
+> +	const char *status;
+> +
+> +	if (!HAS_CSR(dev_priv))
+> +		return -ENODEV;
+> +	if (!csr->dmc_payload)
+> +		return 0;
+> +	seq_printf(m, "PM debug request 0 (0x45284): 0x%08x\n",
+> +		   intel_de_read(dev_priv, PM_REQ_DBG_0));
+> +	seq_printf(m, "PM debug request 1 (0x45288): 0x%08x\n",
+> +		   intel_de_read(dev_priv, PM_REQ_DBG_1));
+> +	seq_printf(m, "PM debug response 0 (0x4528C): 0x%08x\n",
+> +		   intel_de_read(dev_priv, PM_RSP_DBG_0));
+> +	seq_printf(m, "PM debug response 1 (0x45290): 0x%08x\n",
+> +		   intel_de_read(dev_priv, PM_RSP_DBG_1));
+> +	status = (intel_de_read(dev_priv, PM_RSP_DBG_1) &
+> MASK_DC9_BIT) ?
+> +"yes" : "no";
+You don't need to read the value of register again , please store in a variable
+And use that value.
+Thanks,
+Anshuman Gupta.
+> +
+> +	seq_printf(m, "Time to Next Fill = 0x%0x\n",
+> +		   (intel_de_read(dev_priv, PM_RSP_DBG_0) &
+> ~MASK_RSP_0));
+> +	seq_printf(m, "Time to Next VBI = 0x%0x\n",
+> +		   ((intel_de_read(dev_priv, PM_RSP_DBG_0) &
+> MASK_RSP_0)) >> 16);
+> +	seq_printf(m, "Selective Exit Latency = 0x%0x\n",
+> +		   (intel_de_read(dev_priv, PM_RSP_DBG_1) &
+> MASK_RSP_1));
+> +	seq_printf(m, "DC9 Ready = %s\n", status);
+> +	return 0;
+> +}
+> +
+>  static void intel_seq_print_mode(struct seq_file *m, int tabs,
+>  				 const struct drm_display_mode *mode)  {
+> diff --git a/drivers/gpu/drm/i915/i915_reg.h
+> b/drivers/gpu/drm/i915/i915_reg.h index 0023c023f472..3e9ed555f928
+> 100644
+> --- a/drivers/gpu/drm/i915/i915_reg.h
+> +++ b/drivers/gpu/drm/i915/i915_reg.h
+> @@ -371,6 +371,14 @@ static inline bool
+> i915_mmio_reg_valid(i915_reg_t reg)
+>  #define VLV_G3DCTL		_MMIO(0x9024)
+>  #define VLV_GSCKGCTL		_MMIO(0x9028)
+> 
+> +#define PM_REQ_DBG_0		_MMIO(0x45284)
+> +#define PM_REQ_DBG_1		_MMIO(0x45288)
+> +#define PM_RSP_DBG_0		_MMIO(0x4528C)
+> +#define PM_RSP_DBG_1		_MMIO(0x45290)
+> +#define MASK_RSP_0		(0xFFFF << 16)
+> +#define MASK_RSP_1		(7 << 0)
+> +#define MASK_DC9_BIT		(1 << 17)
+> +
+>  #define GEN6_MBCTL		_MMIO(0x0907c)
+>  #define   GEN6_MBCTL_ENABLE_BOOT_FETCH	(1 << 4)
+>  #define   GEN6_MBCTL_CTX_FETCH_NEEDED	(1 << 3)
+> --
+> 2.17.1
 
 _______________________________________________
 Intel-gfx mailing list
