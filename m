@@ -2,31 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 07F4D2EBEE0
-	for <lists+intel-gfx@lfdr.de>; Wed,  6 Jan 2021 14:40:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B47642EBEDB
+	for <lists+intel-gfx@lfdr.de>; Wed,  6 Jan 2021 14:40:27 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2ABF989C7F;
-	Wed,  6 Jan 2021 13:40:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7E74689C2C;
+	Wed,  6 Jan 2021 13:40:20 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 45B0C89C97
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 35E3B89C56
  for <intel-gfx@lists.freedesktop.org>; Wed,  6 Jan 2021 13:40:17 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 23518192-1500050 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 23518193-1500050 
  for multiple; Wed, 06 Jan 2021 13:40:08 +0000
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Wed,  6 Jan 2021 13:40:01 +0000
-Message-Id: <20210106134005.10279-4-chris@chris-wilson.co.uk>
+Date: Wed,  6 Jan 2021 13:40:02 +0000
+Message-Id: <20210106134005.10279-5-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20210106134005.10279-1-chris@chris-wilson.co.uk>
 References: <20210106134005.10279-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 4/8] drm/i915/gt: Reapply ppgtt enabling after
- engine resets
+Subject: [Intel-gfx] [PATCH 5/8] drm/i915/gt: Lift stop_ring() to
+ reset_prepare
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,66 +45,151 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The GFX_MODE is reset along with the engine, turning off ppGTT. We need
-to re-enable it upon resume.
+Push the sleeping stop_ring() out of the reset resume function to reset
+prepare; we are not allowed to sleep in the former.
 
 Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
 ---
- drivers/gpu/drm/i915/gt/gen6_ppgtt.c            |  9 ---------
- drivers/gpu/drm/i915/gt/intel_ring_submission.c | 13 ++++++++++---
- 2 files changed, 10 insertions(+), 12 deletions(-)
+ .../gpu/drm/i915/gt/intel_ring_submission.c   | 97 +++++++------------
+ 1 file changed, 36 insertions(+), 61 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gt/gen6_ppgtt.c b/drivers/gpu/drm/i915/gt/gen6_ppgtt.c
-index 680bd9442eb0..0f02afe7f43a 100644
---- a/drivers/gpu/drm/i915/gt/gen6_ppgtt.c
-+++ b/drivers/gpu/drm/i915/gt/gen6_ppgtt.c
-@@ -27,8 +27,6 @@ void gen7_ppgtt_enable(struct intel_gt *gt)
- {
- 	struct drm_i915_private *i915 = gt->i915;
- 	struct intel_uncore *uncore = gt->uncore;
--	struct intel_engine_cs *engine;
--	enum intel_engine_id id;
- 	u32 ecochk;
- 
- 	intel_uncore_rmw(uncore, GAC_ECO_BITS, 0, ECOBITS_PPGTT_CACHE64B);
-@@ -41,13 +39,6 @@ void gen7_ppgtt_enable(struct intel_gt *gt)
- 		ecochk &= ~ECOCHK_PPGTT_GFDT_IVB;
- 	}
- 	intel_uncore_write(uncore, GAM_ECOCHK, ecochk);
--
--	for_each_engine(engine, gt, id) {
--		/* GFX_MODE is per-ring on gen7+ */
--		ENGINE_WRITE(engine,
--			     RING_MODE_GEN7,
--			     _MASKED_BIT_ENABLE(GFX_PPGTT_ENABLE));
--	}
- }
- 
- void gen6_ppgtt_enable(struct intel_gt *gt)
 diff --git a/drivers/gpu/drm/i915/gt/intel_ring_submission.c b/drivers/gpu/drm/i915/gt/intel_ring_submission.c
-index 90b483b4ae5d..d794e13610b2 100644
+index d794e13610b2..7c31126a1b6d 100644
 --- a/drivers/gpu/drm/i915/gt/intel_ring_submission.c
 +++ b/drivers/gpu/drm/i915/gt/intel_ring_submission.c
-@@ -188,9 +188,16 @@ static void set_pp_dir(struct intel_engine_cs *engine)
- {
- 	struct i915_address_space *vm = vm_alias(engine->gt->vm);
- 
--	if (vm) {
--		ENGINE_WRITE(engine, RING_PP_DIR_DCLV, PP_DIR_DCLV_2G);
--		ENGINE_WRITE(engine, RING_PP_DIR_BASE, pp_dir(vm));
-+	if (!vm)
-+		return;
-+
-+	ENGINE_WRITE(engine, RING_PP_DIR_DCLV, PP_DIR_DCLV_2G);
-+	ENGINE_WRITE(engine, RING_PP_DIR_BASE, pp_dir(vm));
-+
-+	if (INTEL_GEN(engine->i915) >= 7) {
-+		ENGINE_WRITE(engine,
-+			     RING_MODE_GEN7,
-+			     _MASKED_BIT_ENABLE(GFX_PPGTT_ENABLE));
- 	}
+@@ -156,21 +156,6 @@ static void ring_setup_status_page(struct intel_engine_cs *engine)
+ 	flush_cs_tlb(engine);
  }
  
+-static bool stop_ring(struct intel_engine_cs *engine)
+-{
+-	intel_engine_stop_cs(engine);
+-
+-	ENGINE_WRITE(engine, RING_HEAD, ENGINE_READ(engine, RING_TAIL));
+-
+-	ENGINE_WRITE(engine, RING_HEAD, 0);
+-	ENGINE_WRITE(engine, RING_TAIL, 0);
+-
+-	/* The ring must be empty before it is disabled */
+-	ENGINE_WRITE(engine, RING_CTL, 0);
+-
+-	return (ENGINE_READ(engine, RING_HEAD) & HEAD_ADDR) == 0;
+-}
+-
+ static struct i915_address_space *vm_alias(struct i915_address_space *vm)
+ {
+ 	if (i915_is_ggtt(vm))
+@@ -212,31 +197,6 @@ static int xcs_resume(struct intel_engine_cs *engine)
+ 
+ 	intel_uncore_forcewake_get(engine->uncore, FORCEWAKE_ALL);
+ 
+-	/* WaClearRingBufHeadRegAtInit:ctg,elk */
+-	if (!stop_ring(engine)) {
+-		/* G45 ring initialization often fails to reset head to zero */
+-		drm_dbg(&dev_priv->drm, "%s head not reset to zero "
+-			"ctl %08x head %08x tail %08x start %08x\n",
+-			engine->name,
+-			ENGINE_READ(engine, RING_CTL),
+-			ENGINE_READ(engine, RING_HEAD),
+-			ENGINE_READ(engine, RING_TAIL),
+-			ENGINE_READ(engine, RING_START));
+-
+-		if (!stop_ring(engine)) {
+-			drm_err(&dev_priv->drm,
+-				"failed to set %s head to zero "
+-				"ctl %08x head %08x tail %08x start %08x\n",
+-				engine->name,
+-				ENGINE_READ(engine, RING_CTL),
+-				ENGINE_READ(engine, RING_HEAD),
+-				ENGINE_READ(engine, RING_TAIL),
+-				ENGINE_READ(engine, RING_START));
+-			ret = -EIO;
+-			goto out;
+-		}
+-	}
+-
+ 	if (HWS_NEEDS_PHYSICAL(dev_priv))
+ 		ring_setup_phys_status_page(engine);
+ 	else
+@@ -338,11 +298,21 @@ static void xcs_sanitize(struct intel_engine_cs *engine)
+ 	clflush_cache_range(engine->status_page.addr, PAGE_SIZE);
+ }
+ 
++static bool stop_ring(struct intel_engine_cs *engine)
++{
++	ENGINE_WRITE_FW(engine, RING_HEAD, ENGINE_READ_FW(engine, RING_TAIL));
++
++	ENGINE_WRITE_FW(engine, RING_HEAD, 0);
++	ENGINE_WRITE_FW(engine, RING_TAIL, 0);
++
++	/* The ring must be empty before it is disabled */
++	ENGINE_WRITE_FW(engine, RING_CTL, 0);
++
++	return (ENGINE_READ_FW(engine, RING_HEAD) & HEAD_ADDR) == 0;
++}
++
+ static void reset_prepare(struct intel_engine_cs *engine)
+ {
+-	struct intel_uncore *uncore = engine->uncore;
+-	const u32 base = engine->mmio_base;
+-
+ 	/*
+ 	 * We stop engines, otherwise we might get failed reset and a
+ 	 * dead gpu (on elk). Also as modern gpu as kbl can suffer
+@@ -354,30 +324,35 @@ static void reset_prepare(struct intel_engine_cs *engine)
+ 	 * WaKBLVECSSemaphoreWaitPoll:kbl (on ALL_ENGINES)
+ 	 *
+ 	 * WaMediaResetMainRingCleanup:ctg,elk (presumably)
++	 * WaClearRingBufHeadRegAtInit:ctg,elk
+ 	 *
+ 	 * FIXME: Wa for more modern gens needs to be validated
+ 	 */
+ 	ENGINE_TRACE(engine, "\n");
++	intel_engine_stop_cs(engine);
+ 
+-	if (intel_engine_stop_cs(engine))
+-		ENGINE_TRACE(engine, "timed out on STOP_RING\n");
++	if (!stop_ring(engine)) {
++		/* G45 ring initialization often fails to reset head to zero */
++		drm_dbg(&engine->i915->drm,
++			"%s head not reset to zero "
++			"ctl %08x head %08x tail %08x start %08x\n",
++			engine->name,
++			ENGINE_READ_FW(engine, RING_CTL),
++			ENGINE_READ_FW(engine, RING_HEAD),
++			ENGINE_READ_FW(engine, RING_TAIL),
++			ENGINE_READ_FW(engine, RING_START));
++	}
+ 
+-	intel_uncore_write_fw(uncore,
+-			      RING_HEAD(base),
+-			      intel_uncore_read_fw(uncore, RING_TAIL(base)));
+-	intel_uncore_posting_read_fw(uncore, RING_HEAD(base)); /* paranoia */
+-
+-	intel_uncore_write_fw(uncore, RING_HEAD(base), 0);
+-	intel_uncore_write_fw(uncore, RING_TAIL(base), 0);
+-	intel_uncore_posting_read_fw(uncore, RING_TAIL(base));
+-
+-	/* The ring must be empty before it is disabled */
+-	intel_uncore_write_fw(uncore, RING_CTL(base), 0);
+-
+-	/* Check acts as a post */
+-	if (intel_uncore_read_fw(uncore, RING_HEAD(base)))
+-		ENGINE_TRACE(engine, "ring head [%x] not parked\n",
+-			     intel_uncore_read_fw(uncore, RING_HEAD(base)));
++	if (!stop_ring(engine)) {
++		drm_err(&engine->i915->drm,
++			"failed to set %s head to zero "
++			"ctl %08x head %08x tail %08x start %08x\n",
++			engine->name,
++			ENGINE_READ_FW(engine, RING_CTL),
++			ENGINE_READ_FW(engine, RING_HEAD),
++			ENGINE_READ_FW(engine, RING_TAIL),
++			ENGINE_READ_FW(engine, RING_START));
++	}
+ }
+ 
+ static void reset_rewind(struct intel_engine_cs *engine, bool stalled)
 -- 
 2.20.1
 
