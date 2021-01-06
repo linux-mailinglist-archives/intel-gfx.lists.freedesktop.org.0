@@ -2,44 +2,39 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D1FC32EC0B8
-	for <lists+intel-gfx@lfdr.de>; Wed,  6 Jan 2021 16:57:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id F0D6C2EC0C2
+	for <lists+intel-gfx@lfdr.de>; Wed,  6 Jan 2021 17:02:50 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4B3206E21D;
-	Wed,  6 Jan 2021 15:57:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 63DC76E221;
+	Wed,  6 Jan 2021 16:02:48 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 626256E21D
- for <intel-gfx@lists.freedesktop.org>; Wed,  6 Jan 2021 15:57:53 +0000 (UTC)
-IronPort-SDR: wqq0ztfotAHLV58ZCkmAG3T1cyH96+jaPoSdJcRvSiEJUWlJvnuPcFUtM9puTZGl8UIksG10/6
- 2yoblpWq+ynw==
-X-IronPort-AV: E=McAfee;i="6000,8403,9855"; a="174718816"
-X-IronPort-AV: E=Sophos;i="5.78,480,1599548400"; d="scan'208";a="174718816"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Jan 2021 07:57:52 -0800
-IronPort-SDR: +odyROxSkaUkiQKkHQgKIfW1+lJXeOnnOnKAtmYflooGU5PqQlXn8ZFwb3YHtvzcRBqiTwZygC
- OpsfREwJ2tXg==
-X-IronPort-AV: E=Sophos;i="5.78,480,1599548400"; d="scan'208";a="422206096"
-Received: from vbratanx-mobl.ger.corp.intel.com (HELO [10.252.38.40])
- ([10.252.38.40])
- by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Jan 2021 07:57:51 -0800
-To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
-References: <20210106123939.18435-1-chris@chris-wilson.co.uk>
- <20210106123939.18435-4-chris@chris-wilson.co.uk>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-Message-ID: <0ed63aeb-d58e-5ec6-2072-65d17be612dc@linux.intel.com>
-Date: Wed, 6 Jan 2021 15:57:49 +0000
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.5.0
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7D12A6E221
+ for <intel-gfx@lists.freedesktop.org>; Wed,  6 Jan 2021 16:02:47 +0000 (UTC)
+IronPort-SDR: GwOqo0zrVDpso4KYI8quxESBkDopfAvwRhylgPWntJxEX145FJj2J/dQRNFqNE5o1mDUVIJYJd
+ /RzZ4IPpaF4Q==
+X-IronPort-AV: E=McAfee;i="6000,8403,9855"; a="156484947"
+X-IronPort-AV: E=Sophos;i="5.78,480,1599548400"; d="scan'208";a="156484947"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Jan 2021 08:02:47 -0800
+IronPort-SDR: tdvG+ejTUdd/Ql51ns1LanK+VA2tz7g8zwsgIsjZlUtUIsWpzTc/u/D1RWdWhnbFaCsnU+UaB6
+ hPSKjfW+A05A==
+X-IronPort-AV: E=Sophos;i="5.78,480,1599548400"; d="scan'208";a="350902468"
+Received: from ideak-desk.fi.intel.com ([10.237.68.141])
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Jan 2021 08:02:40 -0800
+Date: Wed, 6 Jan 2021 18:02:36 +0200
+From: Imre Deak <imre.deak@intel.com>
+To: Anshuman Gupta <anshuman.gupta@intel.com>
+Message-ID: <20210106160236.GA140339@ideak-desk.fi.intel.com>
+References: <20210105051353.5714-1-anshuman.gupta@intel.com>
+ <20210106043438.27754-1-anshuman.gupta@intel.com>
 MIME-Version: 1.0
-In-Reply-To: <20210106123939.18435-4-chris@chris-wilson.co.uk>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH 4/4] drm/i915/gt: Remove timeslice
- suppression
+Content-Disposition: inline
+In-Reply-To: <20210106043438.27754-1-anshuman.gupta@intel.com>
+Subject: Re: [Intel-gfx] [RFC v2] drm/i915/pps: Add PPS power domain
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,338 +47,130 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: imre.deak@intel.com
+Cc: Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-
-
-On 06/01/2021 12:39, Chris Wilson wrote:
-> In the next^W future patch, we remove the strict priority system and
-> continuously re-evaluate the relative priority of tasks. As such we need
-> to enable the timeslice whenever there is more than one context in the
-> pipeline. This simplifies the decision and removes some of the tweaks to
-> suppress timeslicing, allowing us to lift the timeslice enabling to a
-> common spot at the end of running the submission tasklet.
+On Wed, Jan 06, 2021 at 10:04:38AM +0530, Anshuman Gupta wrote:
+> It abstracts getting the AUX power domain in pps_lock under
+> PPS power domain. This makes sure that the platforms which really
+> requires AUX power in order to access PPS registers will get the
+> reference to necessary power wells.
 > 
-> One consequence of the suppression is that it was reducing fairness
-> between virtual engines on an over saturated system; undermining the
-> principle for timeslicing.
+> PPS power domain requires only to track the AUX_A associated
+> power wells as the platforms need AUX power in order to access PPS
+> registers supports eDP only on PORT_A.
 > 
-> Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/2802
-> Testcase: igt/gem_exec_balancer/fairslice
-> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> v2:
+> - Fixed missed POWER_DOMAIN_PPS in pps_unlock().
+> 
+> Cc: Imre Deak <imre.deak@intel.com>
+> Cc: Jani Nikula <jani.nikula@intel.com>
+> Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
 > ---
->   drivers/gpu/drm/i915/gt/intel_engine_types.h  |  10 -
->   .../drm/i915/gt/intel_execlists_submission.c  | 173 +++++++-----------
->   2 files changed, 68 insertions(+), 115 deletions(-)
+>  drivers/gpu/drm/i915/display/intel_display_power.c | 7 +++++++
+>  drivers/gpu/drm/i915/display/intel_display_power.h | 1 +
+>  drivers/gpu/drm/i915/display/intel_dp.c            | 7 ++-----
+>  3 files changed, 10 insertions(+), 5 deletions(-)
 > 
-> diff --git a/drivers/gpu/drm/i915/gt/intel_engine_types.h b/drivers/gpu/drm/i915/gt/intel_engine_types.h
-> index 430066e5884c..df62e793e747 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_engine_types.h
-> +++ b/drivers/gpu/drm/i915/gt/intel_engine_types.h
-> @@ -238,16 +238,6 @@ struct intel_engine_execlists {
->   	 */
->   	unsigned int port_mask;
->   
-> -	/**
-> -	 * @switch_priority_hint: Second context priority.
-> -	 *
-> -	 * We submit multiple contexts to the HW simultaneously and would
-> -	 * like to occasionally switch between them to emulate timeslicing.
-> -	 * To know when timeslicing is suitable, we track the priority of
-> -	 * the context submitted second.
-> -	 */
-> -	int switch_priority_hint;
-> -
->   	/**
->   	 * @queue_priority_hint: Highest pending priority.
->   	 *
-> diff --git a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
-> index ba3114fd4389..50d4308023f3 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
-> @@ -1143,25 +1143,6 @@ static void defer_active(struct intel_engine_cs *engine)
->   	defer_request(rq, i915_sched_lookup_priolist(engine, rq_prio(rq)));
->   }
->   
-> -static bool
-> -need_timeslice(const struct intel_engine_cs *engine,
-> -	       const struct i915_request *rq)
-> -{
-> -	int hint;
-> -
-> -	if (!intel_engine_has_timeslices(engine))
-> -		return false;
-> -
-> -	hint = max(engine->execlists.queue_priority_hint,
-> -		   virtual_prio(&engine->execlists));
-> -
-> -	if (!list_is_last(&rq->sched.link, &engine->active.requests))
-> -		hint = max(hint, rq_prio(list_next_entry(rq, sched.link)));
-> -
-> -	GEM_BUG_ON(hint >= I915_PRIORITY_UNPREEMPTABLE);
-> -	return hint >= effective_prio(rq);
-> -}
-> -
->   static bool
->   timeslice_yield(const struct intel_engine_execlists *el,
->   		const struct i915_request *rq)
-> @@ -1181,76 +1162,68 @@ timeslice_yield(const struct intel_engine_execlists *el,
->   	return rq->context->lrc.ccid == READ_ONCE(el->yield);
->   }
->   
-> -static bool
-> -timeslice_expired(const struct intel_engine_execlists *el,
-> -		  const struct i915_request *rq)
-> +static bool needs_timeslice(const struct intel_engine_cs *engine,
-> +			    const struct i915_request *rq)
->   {
-> +	if (!intel_engine_has_timeslices(engine))
-> +		return false;
-> +
-> +	/* If not currently active, or about to switch, wait for next event */
-> +	if (!rq || __i915_request_is_complete(rq))
-> +		return false;
-> +
-> +	/* We do not need to start the timeslice until after the ACK */
-> +	if (READ_ONCE(engine->execlists.pending[0]))
-> +		return false;
-> +
-> +	/* If ELSP[1] is occupied, always check to see if worth slicing */
-> +	if (!list_is_last_rcu(&rq->sched.link, &engine->active.requests))
-> +		return true;
-> +
-> +	/* Otherwise, ELSP[0] is by itself, but may be waiting in the queue */
-> +	if (!RB_EMPTY_ROOT(&engine->execlists.queue.rb_root))
-> +		return true;
-> +
-> +	return !RB_EMPTY_ROOT(&engine->execlists.virtual.rb_root);
-> +}
-> +
-> +static bool
-> +timeslice_expired(struct intel_engine_cs *engine, const struct i915_request *rq)
-> +{
-> +	const struct intel_engine_execlists *el = &engine->execlists;
-> +
-> +	if (i915_request_has_nopreempt(rq) && __i915_request_has_started(rq))
-> +		return false;
-> +
-> +	if (!needs_timeslice(engine, rq))
-> +		return false;
-> +
->   	return timer_expired(&el->timer) || timeslice_yield(el, rq);
->   }
->   
-> -static int
-> -switch_prio(struct intel_engine_cs *engine, const struct i915_request *rq)
-> -{
-> -	if (list_is_last(&rq->sched.link, &engine->active.requests))
-> -		return engine->execlists.queue_priority_hint;
-> -
-> -	return rq_prio(list_next_entry(rq, sched.link));
-> -}
-> -
-> -static inline unsigned long
-> -timeslice(const struct intel_engine_cs *engine)
-> +static unsigned long timeslice(const struct intel_engine_cs *engine)
->   {
->   	return READ_ONCE(engine->props.timeslice_duration_ms);
->   }
->   
-> -static unsigned long active_timeslice(const struct intel_engine_cs *engine)
-> -{
-> -	const struct intel_engine_execlists *execlists = &engine->execlists;
-> -	const struct i915_request *rq = *execlists->active;
-> -
-> -	if (!rq || __i915_request_is_complete(rq))
-> -		return 0;
-> -
-> -	if (READ_ONCE(execlists->switch_priority_hint) < effective_prio(rq))
-> -		return 0;
-> -
-> -	return timeslice(engine);
-> -}
-> -
-> -static void set_timeslice(struct intel_engine_cs *engine)
-> +static void start_timeslice(struct intel_engine_cs *engine)
->   {
-> +	struct intel_engine_execlists *el = &engine->execlists;
->   	unsigned long duration;
->   
-> -	if (!intel_engine_has_timeslices(engine))
-> -		return;
-> +	/* Disable the timer if there is nothing to switch to */
-> +	duration = 0;
-> +	if (needs_timeslice(engine, *el->active)) {
-> +		if (el->timer.expires) {
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
+> index d52374f01316..1dc4ca9e5d1a 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_power.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display_power.c
+> @@ -107,6 +107,8 @@ intel_display_power_domain_str(enum intel_display_power_domain domain)
+>  		return "VGA";
+>  	case POWER_DOMAIN_AUDIO:
+>  		return "AUDIO";
+> +	case POWER_DOMAIN_PPS:
+> +		return "PPS";
+>  	case POWER_DOMAIN_AUX_A:
+>  		return "AUX_A";
+>  	case POWER_DOMAIN_AUX_B:
+> @@ -2651,11 +2653,13 @@ intel_display_power_put_mask_in_set(struct drm_i915_private *i915,
+>  	BIT_ULL(POWER_DOMAIN_GT_IRQ) |			\
+>  	BIT_ULL(POWER_DOMAIN_MODESET) |			\
+>  	BIT_ULL(POWER_DOMAIN_AUX_A) |			\
+> +	BIT_ULL(POWER_DOMAIN_PPS) |			\
+>  	BIT_ULL(POWER_DOMAIN_GMBUS) |			\
+>  	BIT_ULL(POWER_DOMAIN_INIT))
+>  #define BXT_DPIO_CMN_A_POWER_DOMAINS (			\
+>  	BIT_ULL(POWER_DOMAIN_PORT_DDI_A_LANES) |		\
+>  	BIT_ULL(POWER_DOMAIN_AUX_A) |			\
+> +	BIT_ULL(POWER_DOMAIN_PPS) |			\
+>  	BIT_ULL(POWER_DOMAIN_INIT))
+>  #define BXT_DPIO_CMN_BC_POWER_DOMAINS (			\
+>  	BIT_ULL(POWER_DOMAIN_PORT_DDI_B_LANES) |		\
+> @@ -2688,6 +2692,7 @@ intel_display_power_put_mask_in_set(struct drm_i915_private *i915,
+>  #define GLK_DPIO_CMN_A_POWER_DOMAINS (			\
+>  	BIT_ULL(POWER_DOMAIN_PORT_DDI_A_LANES) |		\
+>  	BIT_ULL(POWER_DOMAIN_AUX_A) |			\
+> +	BIT_ULL(POWER_DOMAIN_PPS) |			\
+>  	BIT_ULL(POWER_DOMAIN_INIT))
+>  #define GLK_DPIO_CMN_B_POWER_DOMAINS (			\
+>  	BIT_ULL(POWER_DOMAIN_PORT_DDI_B_LANES) |		\
+> @@ -2700,6 +2705,7 @@ intel_display_power_put_mask_in_set(struct drm_i915_private *i915,
+>  #define GLK_DISPLAY_AUX_A_POWER_DOMAINS (		\
+>  	BIT_ULL(POWER_DOMAIN_AUX_A) |		\
+>  	BIT_ULL(POWER_DOMAIN_AUX_IO_A) |		\
+> +	BIT_ULL(POWER_DOMAIN_PPS) |			\
+>  	BIT_ULL(POWER_DOMAIN_INIT))
+>  #define GLK_DISPLAY_AUX_B_POWER_DOMAINS (		\
+>  	BIT_ULL(POWER_DOMAIN_AUX_B) |		\
+> @@ -2712,6 +2718,7 @@ intel_display_power_put_mask_in_set(struct drm_i915_private *i915,
+>  	BIT_ULL(POWER_DOMAIN_GT_IRQ) |			\
+>  	BIT_ULL(POWER_DOMAIN_MODESET) |			\
+>  	BIT_ULL(POWER_DOMAIN_AUX_A) |			\
+> +	BIT_ULL(POWER_DOMAIN_PPS) |			\
+>  	BIT_ULL(POWER_DOMAIN_GMBUS) |			\
+>  	BIT_ULL(POWER_DOMAIN_INIT))
+>  
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_power.h b/drivers/gpu/drm/i915/display/intel_display_power.h
+> index bc30c479be53..7642be3c8e2e 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_power.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_power.h
+> @@ -55,6 +55,7 @@ enum intel_display_power_domain {
+>  	POWER_DOMAIN_PORT_OTHER,
+>  	POWER_DOMAIN_VGA,
+>  	POWER_DOMAIN_AUDIO,
+> +	POWER_DOMAIN_PPS,
+>  	POWER_DOMAIN_AUX_A,
+>  	POWER_DOMAIN_AUX_B,
+>  	POWER_DOMAIN_AUX_C,
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+> index 8a00e609085f..99b4bec3c926 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> @@ -895,8 +895,7 @@ pps_lock(struct intel_dp *intel_dp)
+>  	 * See intel_power_sequencer_reset() why we need
+>  	 * a power domain reference here.
+>  	 */
+> -	wakeref = intel_display_power_get(dev_priv,
+> -					  intel_aux_power_domain(dp_to_dig_port(intel_dp)));
+> +	wakeref = intel_display_power_get(dev_priv, POWER_DOMAIN_PPS);
 
-Why not just timer_pending check? Are you sure timer->expires cannot 
-legitimately be at jiffie 0 in wrap conditions?
+The purpose of this reference is to prevent a race when resetting the
+PPS state (see the comment), so I think we could reuse
+POWER_DOMAIN_DISPLAY_CORE instead of adding a new domain.
 
-> +			if (!timer_pending(&el->timer))
-> +				tasklet_hi_schedule(&engine->execlists.tasklet);
-> +			return;
-> +		}
->   
-> -	duration = active_timeslice(engine);
-> -	ENGINE_TRACE(engine, "bump timeslicing, interval:%lu", duration);
-> +		duration = timeslice(engine);
-> +	}
->   
-> -	set_timer_ms(&engine->execlists.timer, duration);
-> -}
-> -
-> -static void start_timeslice(struct intel_engine_cs *engine, int prio)
-> -{
-> -	struct intel_engine_execlists *execlists = &engine->execlists;
-> -	unsigned long duration;
-> -
-> -	if (!intel_engine_has_timeslices(engine))
-> -		return;
-> -
-> -	WRITE_ONCE(execlists->switch_priority_hint, prio);
-> -	if (prio == INT_MIN)
-> -		return;
-> -
-> -	if (timer_pending(&execlists->timer))
-> -		return;
-> -
-> -	duration = timeslice(engine);
-> -	ENGINE_TRACE(engine,
-> -		     "start timeslicing, prio:%d, interval:%lu",
-> -		     prio, duration);
-> -
-> -	set_timer_ms(&execlists->timer, duration);
-> +	set_timer_ms(&el->timer, duration);
->   }
->   
->   static void record_preemption(struct intel_engine_execlists *execlists)
-> @@ -1363,16 +1336,16 @@ static void execlists_dequeue(struct intel_engine_cs *engine)
->   			__unwind_incomplete_requests(engine);
->   
->   			last = NULL;
-> -		} else if (need_timeslice(engine, last) &&
-> -			   timeslice_expired(execlists, last)) {
-> +		} else if (timeslice_expired(engine, last)) {
->   			ENGINE_TRACE(engine,
-> -				     "expired last=%llx:%lld, prio=%d, hint=%d, yield?=%s\n",
-> -				     last->fence.context,
-> -				     last->fence.seqno,
-> -				     last->sched.attr.priority,
-> +				     "expired:%s last=%llx:%lld, prio=%d, hint=%d, yield?=%s\n",
-> +				     yesno(timer_expired(&execlists->timer)),
-> +				     last->fence.context, last->fence.seqno,
-> +				     rq_prio(last),
->   				     execlists->queue_priority_hint,
->   				     yesno(timeslice_yield(execlists, last)));
->   
-> +			cancel_timer(&execlists->timer);
-
-What is this cancel for?
-
-Regards,
-
-Tvrtko
-
->   			ring_set_paused(engine, 1);
->   			defer_active(engine);
->   
-> @@ -1408,7 +1381,6 @@ static void execlists_dequeue(struct intel_engine_cs *engine)
->   				 * of timeslices, our queue might be.
->   				 */
->   				spin_unlock(&engine->active.lock);
-> -				start_timeslice(engine, queue_prio(execlists));
->   				return;
->   			}
->   		}
-> @@ -1435,7 +1407,6 @@ static void execlists_dequeue(struct intel_engine_cs *engine)
->   		if (last && !can_merge_rq(last, rq)) {
->   			spin_unlock(&ve->base.active.lock);
->   			spin_unlock(&engine->active.lock);
-> -			start_timeslice(engine, rq_prio(rq));
->   			return; /* leave this for another sibling */
->   		}
->   
-> @@ -1599,29 +1570,23 @@ static void execlists_dequeue(struct intel_engine_cs *engine)
->   	execlists->queue_priority_hint = queue_prio(execlists);
->   	spin_unlock(&engine->active.lock);
->   
-> -	if (submit) {
-> -		/*
-> -		 * Skip if we ended up with exactly the same set of requests,
-> -		 * e.g. trying to timeslice a pair of ordered contexts
-> -		 */
-> -		if (!memcmp(execlists->active,
-> -			    execlists->pending,
-> -			    (port - execlists->pending) * sizeof(*port)))
-> -			goto skip_submit;
-> -
-> +	/*
-> +	 * We can skip poking the HW if we ended up with exactly the same set
-> +	 * of requests as currently running, e.g. trying to timeslice a pair
-> +	 * of ordered contexts.
-> +	 */
-> +	if (submit &&
-> +	    memcmp(execlists->active,
-> +		   execlists->pending,
-> +		   (port - execlists->pending) * sizeof(*port))) {
->   		*port = NULL;
->   		while (port-- != execlists->pending)
->   			execlists_schedule_in(*port, port - execlists->pending);
->   
-> -		execlists->switch_priority_hint =
-> -			switch_prio(engine, *execlists->pending);
-> -
->   		WRITE_ONCE(execlists->yield, -1);
->   		set_preempt_timeout(engine, *execlists->active);
->   		execlists_submit_ports(engine);
->   	} else {
-> -		start_timeslice(engine, execlists->queue_priority_hint);
-> -skip_submit:
->   		ring_set_paused(engine, 0);
->   		while (port-- != execlists->pending)
->   			i915_request_put(*port);
-> @@ -1979,8 +1944,6 @@ process_csb(struct intel_engine_cs *engine, struct i915_request **inactive)
->   		}
->   	} while (head != tail);
->   
-> -	set_timeslice(engine);
-> -
->   	/*
->   	 * Gen11 has proven to fail wrt global observation point between
->   	 * entry and tail update, failing on the ordering and thus
-> @@ -1993,6 +1956,7 @@ process_csb(struct intel_engine_cs *engine, struct i915_request **inactive)
->   	 * invalidation before.
->   	 */
->   	invalidate_csb_entries(&buf[0], &buf[num_entries - 1]);
-> +	cancel_timer(&execlists->timer);
->   
->   	return inactive;
->   }
-> @@ -2405,8 +2369,10 @@ static void execlists_submission_tasklet(unsigned long data)
->   		execlists_reset(engine, msg);
->   	}
->   
-> -	if (!engine->execlists.pending[0])
-> +	if (!engine->execlists.pending[0]) {
->   		execlists_dequeue_irq(engine);
-> +		start_timeslice(engine);
-> +	}
->   
->   	post_process_csb(post, inactive);
->   	rcu_read_unlock();
-> @@ -3851,9 +3817,6 @@ void intel_execlists_show_requests(struct intel_engine_cs *engine,
->   		show_request(m, last, "\t\t", 0);
->   	}
->   
-> -	if (execlists->switch_priority_hint != INT_MIN)
-> -		drm_printf(m, "\t\tSwitch priority hint: %d\n",
-> -			   READ_ONCE(execlists->switch_priority_hint));
->   	if (execlists->queue_priority_hint != INT_MIN)
->   		drm_printf(m, "\t\tQueue priority hint: %d\n",
->   			   READ_ONCE(execlists->queue_priority_hint));
+>  
+>  	mutex_lock(&dev_priv->pps_mutex);
+>  
+> @@ -909,9 +908,7 @@ pps_unlock(struct intel_dp *intel_dp, intel_wakeref_t wakeref)
+>  	struct drm_i915_private *dev_priv = dp_to_i915(intel_dp);
+>  
+>  	mutex_unlock(&dev_priv->pps_mutex);
+> -	intel_display_power_put(dev_priv,
+> -				intel_aux_power_domain(dp_to_dig_port(intel_dp)),
+> -				wakeref);
+> +	intel_display_power_put(dev_priv, POWER_DOMAIN_PPS, wakeref);
+>  	return 0;
+>  }
+>  
+> -- 
+> 2.26.2
 > 
 _______________________________________________
 Intel-gfx mailing list
