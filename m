@@ -2,30 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 610BA2EC6FE
-	for <lists+intel-gfx@lfdr.de>; Thu,  7 Jan 2021 00:41:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 780E92EC70E
+	for <lists+intel-gfx@lfdr.de>; Thu,  7 Jan 2021 00:47:22 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 41DCB6E34B;
-	Wed,  6 Jan 2021 23:41:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C4E046E39B;
+	Wed,  6 Jan 2021 23:47:20 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 2D71A6E34B;
- Wed,  6 Jan 2021 23:41:53 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id C64496E372;
+ Wed,  6 Jan 2021 23:47:19 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 268FAA9932;
- Wed,  6 Jan 2021 23:41:53 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id BFCEFA363D;
+ Wed,  6 Jan 2021 23:47:19 +0000 (UTC)
 MIME-Version: 1.0
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Sean Paul" <sean@poorly.run>
-Date: Wed, 06 Jan 2021 23:41:53 -0000
-Message-ID: <160997651313.18711.8327148155766186000@emeril.freedesktop.org>
+To: "Huang, Sean Z" <sean.z.huang@intel.com>
+Date: Wed, 06 Jan 2021 23:47:19 -0000
+Message-ID: <160997683978.18711.3060440014984128137@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20210106223909.34476-1-sean@poorly.run>
-In-Reply-To: <20210106223909.34476-1-sean@poorly.run>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/hdcp=3A_Disable_the_QSES_check_for_HDCP_1=2E4_over_MST?=
+References: <20210106231223.8323-1-sean.z.huang@intel.com>
+In-Reply-To: <20210106231223.8323-1-sean.z.huang@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_Introduce_Intel_PXP_component_-_Mesa_single_session_=28rev1?=
+ =?utf-8?q?9=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,182 +41,112 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============0818271642=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0818271642==
-Content-Type: multipart/alternative;
- boundary="===============4542386265820693328=="
-
---===============4542386265820693328==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/i915/hdcp: Disable the QSES check for HDCP 1.4 over MST
-URL   : https://patchwork.freedesktop.org/series/85555/
-State : success
+Series: Introduce Intel PXP component - Mesa single session (rev19)
+URL   : https://patchwork.freedesktop.org/series/84620/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from CI_DRM_9554 -> Patchwork_19275
-====================================================
+$ dim checkpatch origin/drm-tip
+fbdd4e2e287d drm/i915/pxp: Introduce Intel PXP component
+-:119: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#119: 
+new file mode 100644
 
-Summary
--------
+total: 0 errors, 1 warnings, 0 checks, 194 lines checked
+fdb764188c85 drm/i915/pxp: set KCR reg init during the boot time
+20c2f538fd26 drm/i915/pxp: Implement funcs to create the TEE channel
+-:8: WARNING:TYPO_SPELLING: 'defualt' may be misspelled - perhaps 'default'?
+#8: 
+(defualt) session.
+ ^^^^^^^
 
-  **SUCCESS**
+-:85: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#85: 
+new file mode 100644
 
-  No regressions found.
+total: 0 errors, 2 warnings, 0 checks, 253 lines checked
+e77ddc43854a drm/i915/pxp: Create the arbitrary session after boot
+-:68: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#68: 
+new file mode 100644
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19275/index.html
+total: 0 errors, 1 warnings, 0 checks, 330 lines checked
+60d904942ebb drm/i915/pxp: Func to send hardware session termination
+-:53: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#53: 
+new file mode 100644
 
-Known issues
-------------
+total: 0 errors, 1 warnings, 0 checks, 222 lines checked
+e06c62d5fd8d drm/i915/pxp: Enable PXP irq worker and callback stub
+-:51: WARNING:LONG_LINE_COMMENT: line length of 113 exceeds 100 columns
+#51: FILE: drivers/gpu/drm/i915/i915_reg.h:7970:
++#define GEN11_CRYPTO_INTR_MASK		_MMIO(0x1900f0) /* crypto mask is in bit31-16 (Engine1 Interrupt Mask) */
 
-  Here are the changes found in Patchwork_19275 that come from known issues:
+total: 0 errors, 1 warnings, 0 checks, 230 lines checked
+2b451866410d drm/i915/pxp: Destroy arb session upon teardown
+f74cff978a9a drm/i915/pxp: Enable PXP power management
+-:78: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#78: 
+new file mode 100644
 
-### IGT changes ###
+total: 0 errors, 1 warnings, 0 checks, 148 lines checked
+f45f6bf27787 drm/i915/pxp: Expose session state for display protection flip
+ed1733ee9985 mei: pxp: export pavp client to me client bus
+-:32: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#32: 
+new file mode 100644
 
-#### Issues hit ####
+total: 0 errors, 1 warnings, 0 checks, 277 lines checked
+5ed5ea72d630 drm/i915/uapi: introduce drm_i915_gem_create_ext
+-:12: ERROR:BAD_SIGN_OFF: Unrecognized email address: 'Joonas Lahtinen joonas.lahtinen@linux.intel.com'
+#12: 
+Cc: Joonas Lahtinen joonas.lahtinen@linux.intel.com
 
-  * igt@fbdev@read:
-    - fi-tgl-y:           [PASS][1] -> [DMESG-WARN][2] ([i915#402]) +2 similar issues
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9554/fi-tgl-y/igt@fbdev@read.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19275/fi-tgl-y/igt@fbdev@read.html
+-:13: ERROR:BAD_SIGN_OFF: Unrecognized email address: 'Matthew Auld matthew.auld@intel.com'
+#13: 
+Cc: Matthew Auld matthew.auld@intel.com
 
-  
-#### Possible fixes ####
+-:46: ERROR:CODE_INDENT: code indent should use tabs where possible
+#46: FILE: drivers/gpu/drm/i915/i915_gem.c:265:
++        struct drm_i915_private *i915;$
 
-  * igt@i915_pm_rpm@module-reload:
-    - fi-kbl-guc:         [FAIL][3] ([i915#579]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9554/fi-kbl-guc/igt@i915_pm_rpm@module-reload.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19275/fi-kbl-guc/igt@i915_pm_rpm@module-reload.html
+-:46: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#46: FILE: drivers/gpu/drm/i915/i915_gem.c:265:
++        struct drm_i915_private *i915;$
 
-  * igt@vgem_basic@dmabuf-fence:
-    - fi-tgl-y:           [DMESG-WARN][5] ([i915#402]) -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9554/fi-tgl-y/igt@vgem_basic@dmabuf-fence.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19275/fi-tgl-y/igt@vgem_basic@dmabuf-fence.html
+-:50: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#50: FILE: drivers/gpu/drm/i915/i915_gem.c:269:
++static int __create_setparam(struct drm_i915_gem_object_param *args,
++							struct create_ext *ext_data)
 
-  
-  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
-  [i915#579]: https://gitlab.freedesktop.org/drm/intel/issues/579
+-:95: CHECK:LINE_SPACING: Please don't use multiple blank lines
+#95: FILE: drivers/gpu/drm/i915/i915_gem.c:317:
++
++
 
+-:107: WARNING:LONG_LINE: line length of 120 exceeds 100 columns
+#107: FILE: include/uapi/drm/i915_drm.h:395:
++#define DRM_IOCTL_I915_GEM_CREATE_EXT   DRM_IOWR(DRM_COMMAND_BASE + DRM_I915_GEM_CREATE, struct drm_i915_gem_create_ext)
 
-Participating hosts (42 -> 37)
-------------------------------
+-:155: CHECK:SPACING: spaces preferred around that '<<' (ctx:VxV)
+#155: FILE: include/uapi/drm/i915_drm.h:1736:
++#define I915_OBJECT_PARAM  (1ull<<32)
+                                 ^
 
-  Missing    (5): fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-bdw-samus 
+total: 3 errors, 2 warnings, 3 checks, 136 lines checked
+ae1f0edf901f drm/i915/pxp: User interface for Protected buffer
+7ce48b165a12 drm/i915/pxp: Add plane decryption support
 
-
-Build changes
--------------
-
-  * Linux: CI_DRM_9554 -> Patchwork_19275
-
-  CI-20190529: 20190529
-  CI_DRM_9554: 4786f2a4c7e280974d0b46ca9e30a156eb528d59 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5945: f0ad1a564956d6796d9ff09182c48d78fb00eefe @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_19275: bd6eed3a74e7aef1dde724eacb490413d8b3ee79 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-bd6eed3a74e7 drm/i915/hdcp: Disable the QSES check for HDCP 1.4 over MST
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19275/index.html
-
---===============4542386265820693328==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/hdcp: Disable the QSES check for HDCP 1.4 over MST</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/85555/">https://patchwork.freedesktop.org/series/85555/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19275/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19275/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_9554 -&gt; Patchwork_19275</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19275/index.html</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_19275 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@fbdev@read:<ul>
-<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9554/fi-tgl-y/igt@fbdev@read.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19275/fi-tgl-y/igt@fbdev@read.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) +2 similar issues</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@i915_pm_rpm@module-reload:</p>
-<ul>
-<li>fi-kbl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9554/fi-kbl-guc/igt@i915_pm_rpm@module-reload.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/579">i915#579</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19275/fi-kbl-guc/igt@i915_pm_rpm@module-reload.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@vgem_basic@dmabuf-fence:</p>
-<ul>
-<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9554/fi-tgl-y/igt@vgem_basic@dmabuf-fence.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19275/fi-tgl-y/igt@vgem_basic@dmabuf-fence.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Participating hosts (42 -&gt; 37)</h2>
-<p>Missing    (5): fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-bdw-samus </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_9554 -&gt; Patchwork_19275</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_9554: 4786f2a4c7e280974d0b46ca9e30a156eb528d59 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_5945: f0ad1a564956d6796d9ff09182c48d78fb00eefe @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
-  Patchwork_19275: bd6eed3a74e7aef1dde724eacb490413d8b3ee79 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>bd6eed3a74e7 drm/i915/hdcp: Disable the QSES check for HDCP 1.4 over MST</p>
-
-</body>
-</html>
-
---===============4542386265820693328==--
-
---===============0818271642==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============0818271642==--
