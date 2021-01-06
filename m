@@ -2,31 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2D8022EBDD1
-	for <lists+intel-gfx@lfdr.de>; Wed,  6 Jan 2021 13:40:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 95DFA2EBDCF
+	for <lists+intel-gfx@lfdr.de>; Wed,  6 Jan 2021 13:39:58 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DA6F889CD4;
-	Wed,  6 Jan 2021 12:39:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7C3B289C9A;
+	Wed,  6 Jan 2021 12:39:54 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5CA4D89104
- for <intel-gfx@lists.freedesktop.org>; Wed,  6 Jan 2021 12:39:51 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3E716893B9
+ for <intel-gfx@lists.freedesktop.org>; Wed,  6 Jan 2021 12:39:53 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 23517548-1500050 
- for multiple; Wed, 06 Jan 2021 12:39:41 +0000
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 23517549-1500050 
+ for multiple; Wed, 06 Jan 2021 12:39:42 +0000
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Wed,  6 Jan 2021 12:39:37 +0000
-Message-Id: <20210106123939.18435-2-chris@chris-wilson.co.uk>
+Date: Wed,  6 Jan 2021 12:39:38 +0000
+Message-Id: <20210106123939.18435-3-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20210106123939.18435-1-chris@chris-wilson.co.uk>
 References: <20210106123939.18435-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 2/4] drm/i915/selftests: Improve handling of
- iomem around stolen
+Subject: [Intel-gfx] [PATCH 3/4] drm/i915/gt: Restore ce->signal flush
+ before releasing virtual engine
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,43 +45,134 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Use memset_io() on the iomem, and silence sparse as we copy from the
-iomem to normal system pages.
+Before we mark the virtual engine as no longer inflight, flush any
+ongoing signaling that may be using the ce->signal_link along the
+previous breadcrumbs. On switch to a new physical engine, that link will
+be inserted into the new set of breadcrumbs, causing confusion to an
+ongoing iterator.
 
+This patch undoes a last minute mistake introduced into commit
+bab0557c8dca ("drm/i915/gt: Remove virtual breadcrumb before transfer"),
+whereby instead of unconditionally applying the flush, it was only
+applied if the request itself was going to be reused.
+
+v2: Generalise and cancel all remaining ce->signals
+
+Fixes: bab0557c8dca ("drm/i915/gt: Remove virtual breadcrumb before transfer")
 Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
 ---
- drivers/gpu/drm/i915/gt/selftest_reset.c | 10 +++++-----
- 1 file changed, 5 insertions(+), 5 deletions(-)
+ drivers/gpu/drm/i915/gt/intel_breadcrumbs.c   | 33 +++++++++++++++++++
+ drivers/gpu/drm/i915/gt/intel_breadcrumbs.h   |  4 +++
+ .../drm/i915/gt/intel_execlists_submission.c  | 25 ++++++--------
+ 3 files changed, 47 insertions(+), 15 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gt/selftest_reset.c b/drivers/gpu/drm/i915/gt/selftest_reset.c
-index 5ec8d4e9983f..b7befcfbdcde 100644
---- a/drivers/gpu/drm/i915/gt/selftest_reset.c
-+++ b/drivers/gpu/drm/i915/gt/selftest_reset.c
-@@ -96,10 +96,10 @@ __igt_reset_stolen(struct intel_gt *gt,
- 		if (!__drm_mm_interval_first(&gt->i915->mm.stolen,
- 					     page << PAGE_SHIFT,
- 					     ((page + 1) << PAGE_SHIFT) - 1))
--			memset32(s, STACK_MAGIC, PAGE_SIZE / sizeof(u32));
-+			memset_io(s, STACK_MAGIC, PAGE_SIZE);
+diff --git a/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c b/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c
+index 2eabb9ab5d47..7137b6f24f55 100644
+--- a/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c
++++ b/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c
+@@ -472,6 +472,39 @@ void i915_request_cancel_breadcrumb(struct i915_request *rq)
+ 	i915_request_put(rq);
+ }
  
--		in = s;
--		if (i915_memcpy_from_wc(tmp, s, PAGE_SIZE))
-+		in = (void __force *)s;
-+		if (i915_memcpy_from_wc(tmp, in, PAGE_SIZE))
- 			in = tmp;
- 		crc[page] = crc32_le(0, in, PAGE_SIZE);
++void intel_context_remove_breadcrumbs(struct intel_context *ce,
++				      struct intel_breadcrumbs *b)
++{
++	struct i915_request *rq, *rn;
++	bool release = false;
++	unsigned long flags;
++
++	spin_lock_irqsave(&ce->signal_lock, flags);
++
++	if (list_empty(&ce->signals))
++		goto unlock;
++
++	list_for_each_entry_safe(rq, rn, &ce->signals, signal_link) {
++		GEM_BUG_ON(!__i915_request_is_complete(rq));
++		if (!test_and_clear_bit(I915_FENCE_FLAG_SIGNAL,
++					&rq->fence.flags))
++			continue;
++
++		list_del_rcu(&rq->signal_link);
++		irq_signal_request(rq, b);
++		i915_request_put(rq);
++	}
++	release = remove_signaling_context(b, ce);
++
++unlock:
++	spin_unlock_irqrestore(&ce->signal_lock, flags);
++	if (release)
++		intel_context_put(ce);
++
++	while (atomic_read(&b->signaler_active))
++		cpu_relax();
++}
++
+ static void print_signals(struct intel_breadcrumbs *b, struct drm_printer *p)
+ {
+ 	struct intel_context *ce;
+diff --git a/drivers/gpu/drm/i915/gt/intel_breadcrumbs.h b/drivers/gpu/drm/i915/gt/intel_breadcrumbs.h
+index 75cc9cff3ae3..3ce5ce270b04 100644
+--- a/drivers/gpu/drm/i915/gt/intel_breadcrumbs.h
++++ b/drivers/gpu/drm/i915/gt/intel_breadcrumbs.h
+@@ -6,6 +6,7 @@
+ #ifndef __INTEL_BREADCRUMBS__
+ #define __INTEL_BREADCRUMBS__
  
-@@ -134,8 +134,8 @@ __igt_reset_stolen(struct intel_gt *gt,
- 				      ggtt->error_capture.start,
- 				      PAGE_SIZE);
++#include <linux/atomic.h>
+ #include <linux/irq_work.h>
  
--		in = s;
--		if (i915_memcpy_from_wc(tmp, s, PAGE_SIZE))
-+		in = (void __force *)s;
-+		if (i915_memcpy_from_wc(tmp, in, PAGE_SIZE))
- 			in = tmp;
- 		x = crc32_le(0, in, PAGE_SIZE);
+ #include "intel_engine_types.h"
+@@ -44,4 +45,7 @@ void intel_engine_print_breadcrumbs(struct intel_engine_cs *engine,
+ bool i915_request_enable_breadcrumb(struct i915_request *request);
+ void i915_request_cancel_breadcrumb(struct i915_request *request);
  
++void intel_context_remove_breadcrumbs(struct intel_context *ce,
++				      struct intel_breadcrumbs *b);
++
+ #endif /* __INTEL_BREADCRUMBS__ */
+diff --git a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
+index a5b442683c18..ba3114fd4389 100644
+--- a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
++++ b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
+@@ -581,21 +581,6 @@ resubmit_virtual_request(struct i915_request *rq, struct virtual_engine *ve)
+ {
+ 	struct intel_engine_cs *engine = rq->engine;
+ 
+-	/* Flush concurrent rcu iterators in signal_irq_work */
+-	if (test_bit(DMA_FENCE_FLAG_ENABLE_SIGNAL_BIT, &rq->fence.flags)) {
+-		/*
+-		 * After this point, the rq may be transferred to a new
+-		 * sibling, so before we clear ce->inflight make sure that
+-		 * the context has been removed from the b->signalers and
+-		 * furthermore we need to make sure that the concurrent
+-		 * iterator in signal_irq_work is no longer following
+-		 * ce->signal_link.
+-		 */
+-		i915_request_cancel_breadcrumb(rq);
+-		while (atomic_read(&engine->breadcrumbs->signaler_active))
+-			cpu_relax();
+-	}
+-
+ 	spin_lock_irq(&engine->active.lock);
+ 
+ 	clear_bit(I915_FENCE_FLAG_PQUEUE, &rq->fence.flags);
+@@ -610,6 +595,16 @@ static void kick_siblings(struct i915_request *rq, struct intel_context *ce)
+ 	struct virtual_engine *ve = container_of(ce, typeof(*ve), context);
+ 	struct intel_engine_cs *engine = rq->engine;
+ 
++	/*
++	 * After this point, the rq may be transferred to a new sibling, so
++	 * before we clear ce->inflight make sure that the context has been
++	 * removed from the b->signalers and furthermore we need to make sure
++	 * that the concurrent iterator in signal_irq_work is no longer
++	 * following ce->signal_link.
++	 */
++	if (!list_empty(&ce->signals))
++		intel_context_remove_breadcrumbs(ce, engine->breadcrumbs);
++
+ 	/*
+ 	 * This engine is now too busy to run this virtual request, so
+ 	 * see if we can find an alternative engine for it to execute on.
 -- 
 2.20.1
 
