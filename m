@@ -1,30 +1,52 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F11DD2EB773
-	for <lists+intel-gfx@lfdr.de>; Wed,  6 Jan 2021 02:09:52 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id B10AF2EB7A5
+	for <lists+intel-gfx@lfdr.de>; Wed,  6 Jan 2021 02:34:22 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 76B9789C1B;
-	Wed,  6 Jan 2021 01:09:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 525FB89D5E;
+	Wed,  6 Jan 2021 01:34:20 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9BA9089C1B
- for <intel-gfx@lists.freedesktop.org>; Wed,  6 Jan 2021 01:09:47 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 23513049-1500050 
- for multiple; Wed, 06 Jan 2021 01:09:41 +0000
-From: Chris Wilson <chris@chris-wilson.co.uk>
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [216.205.24.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1548689D5E
+ for <intel-gfx@lists.freedesktop.org>; Wed,  6 Jan 2021 01:34:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1609896858;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=2OgWbLLiQwc7jY/8HFKud+RJhaeINmDxub1tD8026bg=;
+ b=RvlzTosNrV22+622hHwA2901nmaGwUuvzfaI0X3gyt0L5ql13evtbNG9PvOiFSOsZL6Ahd
+ V4YG/ClM/yyUk1RI9yIx4752YFa45YikDpEnF/RQDCa2rJjwWyadIkpJrSzK/l6b6KEL8H
+ c6MAmXNE+KATG1wtA0ZIAI2tMm6B3TI=
+Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
+ [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-219-0mcC15enNzmTwfc7Al-wLg-1; Tue, 05 Jan 2021 20:34:16 -0500
+X-MC-Unique: 0mcC15enNzmTwfc7Al-wLg-1
+Received: from smtp.corp.redhat.com (int-mx06.intmail.prod.int.phx2.redhat.com
+ [10.5.11.16])
+ (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
+ (No client certificate requested)
+ by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 43173107ACE4
+ for <intel-gfx@lists.freedesktop.org>; Wed,  6 Jan 2021 01:34:15 +0000 (UTC)
+Received: from Ruby.redhat.com (ovpn-112-235.rdu2.redhat.com [10.10.112.235])
+ by smtp.corp.redhat.com (Postfix) with ESMTP id CF7EA71CA1;
+ Wed,  6 Jan 2021 01:34:14 +0000 (UTC)
+From: Lyude Paul <lyude@redhat.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Wed,  6 Jan 2021 01:09:40 +0000
-Message-Id: <20210106010940.12070-1-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.20.1
+Date: Tue,  5 Jan 2021 20:34:04 -0500
+Message-Id: <20210106013408.271217-1-lyude@redhat.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915/gt: Restore ce->signal flush before
- releasing virtual engine
+X-Scanned-By: MIMEDefang 2.79 on 10.5.11.16
+Authentication-Results: relay.mimecast.com;
+ auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=lyude@redhat.com
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+Subject: [Intel-gfx] [PATCH v4 0/4] drm/i915: Add support for Intel's eDP
+ backlight controls
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,142 +59,50 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Chris Wilson <chris@chris-wilson.co.uk>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Before we mark the virtual engine as no longer inflight, flush any
-ongoing signaling that may be using the ce->signal_link along the
-previous breadcrumbs. On switch to a new physical engine, that link will
-be inserted into the new set of breadcrumbs, causing confusion to an
-ongoing iterator.
+A while ago we ran into issues while trying to enable the eDP backlight
+control interface as defined by VESA, in order to make the DPCD
+backlight controls on newer laptop panels work. The issue ended up being
+much more complicated however, as we also apparently needed to add
+support for an Intel-specific DPCD backlight control interface as the
+VESA interface is broken on many laptop panels. For lack of a better
+name, we just call this the Intel HDR backlight interface.
 
-This patch undoes a last minute mistake introduced into commit
-bab0557c8dca ("drm/i915/gt: Remove virtual breadcrumb before transfer"),
-whereby instead of unconditionally applying the flush, it was only
-applied if the request itself was going to be reused.
+While this only adds support for the SDR backlight mode (I think), this
+will fix a lot of user's laptop panels that we weren't able to properly
+automatically detect DPCD backlight controls on previously.
 
-v2: Generalise and cancel all remaining ce->signals
+Series-wide changes in v3:
+* Pass down brightness values to enable/disable backlight callbacks in a
+  separate patch
+* Rebase
 
-Fixes: bab0557c8dca ("drm/i915/gt: Remove virtual breadcrumb before transfer")
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
----
- drivers/gpu/drm/i915/gt/intel_breadcrumbs.c   | 33 +++++++++++++++++++
- drivers/gpu/drm/i915/gt/intel_breadcrumbs.h   |  4 +++
- .../drm/i915/gt/intel_execlists_submission.c  | 25 ++++++--------
- 3 files changed, 47 insertions(+), 15 deletions(-)
+Lyude Paul (4):
+  drm/i915: Keep track of pwm-related backlight hooks separately
+  drm/i915/dp: Enable Intel's HDR backlight interface (only SDR for now)
+  drm/i915/dp: Allow forcing specific interfaces through
+    enable_dpcd_backlight
+  drm/dp: Revert "drm/dp: Introduce EDID-based quirks"
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c b/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c
-index 2eabb9ab5d47..7137b6f24f55 100644
---- a/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c
-+++ b/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c
-@@ -472,6 +472,39 @@ void i915_request_cancel_breadcrumb(struct i915_request *rq)
- 	i915_request_put(rq);
- }
- 
-+void intel_context_remove_breadcrumbs(struct intel_context *ce,
-+				      struct intel_breadcrumbs *b)
-+{
-+	struct i915_request *rq, *rn;
-+	bool release = false;
-+	unsigned long flags;
-+
-+	spin_lock_irqsave(&ce->signal_lock, flags);
-+
-+	if (list_empty(&ce->signals))
-+		goto unlock;
-+
-+	list_for_each_entry_safe(rq, rn, &ce->signals, signal_link) {
-+		GEM_BUG_ON(!__i915_request_is_complete(rq));
-+		if (!test_and_clear_bit(I915_FENCE_FLAG_SIGNAL,
-+					&rq->fence.flags))
-+			continue;
-+
-+		list_del_rcu(&rq->signal_link);
-+		irq_signal_request(rq, b);
-+		i915_request_put(rq);
-+	}
-+	release = remove_signaling_context(b, ce);
-+
-+unlock:
-+	spin_unlock_irqrestore(&ce->signal_lock, flags);
-+	if (release)
-+		intel_context_put(ce);
-+
-+	while (atomic_read(&b->signaler_active))
-+		cpu_relax();
-+}
-+
- static void print_signals(struct intel_breadcrumbs *b, struct drm_printer *p)
- {
- 	struct intel_context *ce;
-diff --git a/drivers/gpu/drm/i915/gt/intel_breadcrumbs.h b/drivers/gpu/drm/i915/gt/intel_breadcrumbs.h
-index 75cc9cff3ae3..3ce5ce270b04 100644
---- a/drivers/gpu/drm/i915/gt/intel_breadcrumbs.h
-+++ b/drivers/gpu/drm/i915/gt/intel_breadcrumbs.h
-@@ -6,6 +6,7 @@
- #ifndef __INTEL_BREADCRUMBS__
- #define __INTEL_BREADCRUMBS__
- 
-+#include <linux/atomic.h>
- #include <linux/irq_work.h>
- 
- #include "intel_engine_types.h"
-@@ -44,4 +45,7 @@ void intel_engine_print_breadcrumbs(struct intel_engine_cs *engine,
- bool i915_request_enable_breadcrumb(struct i915_request *request);
- void i915_request_cancel_breadcrumb(struct i915_request *request);
- 
-+void intel_context_remove_breadcrumbs(struct intel_context *ce,
-+				      struct intel_breadcrumbs *b);
-+
- #endif /* __INTEL_BREADCRUMBS__ */
-diff --git a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
-index a5b442683c18..ba3114fd4389 100644
---- a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
-+++ b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
-@@ -581,21 +581,6 @@ resubmit_virtual_request(struct i915_request *rq, struct virtual_engine *ve)
- {
- 	struct intel_engine_cs *engine = rq->engine;
- 
--	/* Flush concurrent rcu iterators in signal_irq_work */
--	if (test_bit(DMA_FENCE_FLAG_ENABLE_SIGNAL_BIT, &rq->fence.flags)) {
--		/*
--		 * After this point, the rq may be transferred to a new
--		 * sibling, so before we clear ce->inflight make sure that
--		 * the context has been removed from the b->signalers and
--		 * furthermore we need to make sure that the concurrent
--		 * iterator in signal_irq_work is no longer following
--		 * ce->signal_link.
--		 */
--		i915_request_cancel_breadcrumb(rq);
--		while (atomic_read(&engine->breadcrumbs->signaler_active))
--			cpu_relax();
--	}
--
- 	spin_lock_irq(&engine->active.lock);
- 
- 	clear_bit(I915_FENCE_FLAG_PQUEUE, &rq->fence.flags);
-@@ -610,6 +595,16 @@ static void kick_siblings(struct i915_request *rq, struct intel_context *ce)
- 	struct virtual_engine *ve = container_of(ce, typeof(*ve), context);
- 	struct intel_engine_cs *engine = rq->engine;
- 
-+	/*
-+	 * After this point, the rq may be transferred to a new sibling, so
-+	 * before we clear ce->inflight make sure that the context has been
-+	 * removed from the b->signalers and furthermore we need to make sure
-+	 * that the concurrent iterator in signal_irq_work is no longer
-+	 * following ce->signal_link.
-+	 */
-+	if (!list_empty(&ce->signals))
-+		intel_context_remove_breadcrumbs(ce, engine->breadcrumbs);
-+
- 	/*
- 	 * This engine is now too busy to run this virtual request, so
- 	 * see if we can find an alternative engine for it to execute on.
+ drivers/gpu/drm/drm_dp_helper.c               |  83 +---
+ drivers/gpu/drm/drm_dp_mst_topology.c         |   3 +-
+ .../drm/i915/display/intel_display_types.h    |  14 +-
+ drivers/gpu/drm/i915/display/intel_dp.c       |   9 +-
+ .../drm/i915/display/intel_dp_aux_backlight.c | 285 ++++++++++++--
+ drivers/gpu/drm/i915/display/intel_dp_mst.c   |   3 +-
+ drivers/gpu/drm/i915/display/intel_panel.c    | 371 ++++++++++--------
+ drivers/gpu/drm/i915/display/intel_panel.h    |   4 +
+ drivers/gpu/drm/i915/display/intel_psr.c      |   2 +-
+ drivers/gpu/drm/i915/i915_params.c            |   2 +-
+ include/drm/drm_dp_helper.h                   |  21 +-
+ 11 files changed, 503 insertions(+), 294 deletions(-)
+
 -- 
-2.20.1
+2.29.2
 
 _______________________________________________
 Intel-gfx mailing list
