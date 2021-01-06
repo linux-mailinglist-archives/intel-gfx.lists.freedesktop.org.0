@@ -2,30 +2,35 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6497F2EB83A
-	for <lists+intel-gfx@lfdr.de>; Wed,  6 Jan 2021 03:46:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C54DE2EB841
+	for <lists+intel-gfx@lfdr.de>; Wed,  6 Jan 2021 03:56:03 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CA37689D5C;
-	Wed,  6 Jan 2021 02:46:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 926C289D5B;
+	Wed,  6 Jan 2021 02:56:01 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 61EDA89D5B;
- Wed,  6 Jan 2021 02:46:14 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 5B8FCAADD0;
- Wed,  6 Jan 2021 02:46:14 +0000 (UTC)
+Received: from fireflyinternet.com (unknown [77.68.26.236])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1F4B689D5B
+ for <intel-gfx@lists.freedesktop.org>; Wed,  6 Jan 2021 02:55:59 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from localhost (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
+ 23513380-1500050 for multiple; Wed, 06 Jan 2021 02:55:57 +0000
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Wed, 06 Jan 2021 02:46:14 -0000
-Message-ID: <160990117434.18711.3164304949473394761@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210106003803.4084-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20210106003803.4084-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
- =?utf-8?q?drm/i915/selftests=3A_Improve_handling_of_iomem_around_stolen?=
+In-Reply-To: <a38fc4e1-8847-2bc4-763f-673c2597a06f@intel.com>
+References: <20210105231947.31235-1-daniele.ceraolospurio@intel.com>
+ <20210105231947.31235-3-daniele.ceraolospurio@intel.com>
+ <160989470089.14894.2097316461568983303@build.alporthouse.com>
+ <a38fc4e1-8847-2bc4-763f-673c2597a06f@intel.com>
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
+ intel-gfx@lists.freedesktop.org
+Date: Wed, 06 Jan 2021 02:55:55 +0000
+Message-ID: <160990175565.22606.17511156121476669794@build.alporthouse.com>
+User-Agent: alot/0.9
+Subject: Re: [Intel-gfx] [PATCH 2/5] drm/i915/guc: do not dump execlists
+ state with GuC submission
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,41 +43,33 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Quoting Daniele Ceraolo Spurio (2021-01-06 02:32:28)
+> 
+> 
+> On 1/5/2021 4:58 PM, Chris Wilson wrote:
+> > Quoting Daniele Ceraolo Spurio (2021-01-05 23:19:44)
+> >> GuC owns the execlists state and the context IDs used for submission, so
+> >> the status of the ports and the CSB entries are not something we control
+> >> or can decode from the i915 side, therefore we can avoid dumping it. A
+> >> follow-up patch will also stop setting the csb pointers when using GuC
+> >> submission.
+> >>
+> >> GuC dumps all the required events in the GuC logs when verbosity is set
+> >> high enough.
+> > Would not be worth including, or is it not very helpful for debugging
+> > curious engine stalls?
+> 
+> GuC is going to reset the engine if it stalls, so we should get the GuC 
+> logs and the engine state included in the error state.
 
-Series: drm/i915/selftests: Improve handling of iomem around stolen
-URL   : https://patchwork.freedesktop.org/series/85529/
-State : warning
-
-== Summary ==
-
-$ dim sparse --fast origin/drm-tip
-Sparse version: v0.6.2
-Fast mode used, each commit won't be checked separately.
--O:drivers/gpu/drm/i915/gt/selftest_reset.c:101:20:    expected void *in
--O:drivers/gpu/drm/i915/gt/selftest_reset.c:101:20:    got void [noderef] __iomem *[assigned] s
--O:drivers/gpu/drm/i915/gt/selftest_reset.c:101:20: warning: incorrect type in assignment (different address spaces)
--O:drivers/gpu/drm/i915/gt/selftest_reset.c:102:46:    expected void const *src
--O:drivers/gpu/drm/i915/gt/selftest_reset.c:102:46:    got void [noderef] __iomem *[assigned] s
--O:drivers/gpu/drm/i915/gt/selftest_reset.c:102:46: warning: incorrect type in argument 2 (different address spaces)
--O:drivers/gpu/drm/i915/gt/selftest_reset.c:137:20:    expected void *in
--O:drivers/gpu/drm/i915/gt/selftest_reset.c:137:20:    got void [noderef] __iomem *[assigned] s
--O:drivers/gpu/drm/i915/gt/selftest_reset.c:137:20: warning: incorrect type in assignment (different address spaces)
--O:drivers/gpu/drm/i915/gt/selftest_reset.c:138:46:    expected void const *src
--O:drivers/gpu/drm/i915/gt/selftest_reset.c:138:46:    got void [noderef] __iomem *[assigned] s
--O:drivers/gpu/drm/i915/gt/selftest_reset.c:138:46: warning: incorrect type in argument 2 (different address spaces)
--O:drivers/gpu/drm/i915/gt/selftest_reset.c:99:34:    expected unsigned int [usertype] *s
--O:drivers/gpu/drm/i915/gt/selftest_reset.c:99:34:    got void [noderef] __iomem *[assigned] s
--O:drivers/gpu/drm/i915/gt/selftest_reset.c:99:34: warning: incorrect type in argument 1 (different address spaces)
-
-
+Here we would be focusing on "why hasn't a request been submitted/executed".
+A bad request is usually self-evident, but a missing one is tricky.
+-Chris
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
