@@ -1,37 +1,35 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D39B72EC2C3
-	for <lists+intel-gfx@lfdr.de>; Wed,  6 Jan 2021 18:53:10 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id BE04C2EC2E6
+	for <lists+intel-gfx@lfdr.de>; Wed,  6 Jan 2021 19:03:23 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 52CAF89DBF;
-	Wed,  6 Jan 2021 17:53:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3609A89DDD;
+	Wed,  6 Jan 2021 18:03:22 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 671AB89DBF
- for <intel-gfx@lists.freedesktop.org>; Wed,  6 Jan 2021 17:53:07 +0000 (UTC)
-IronPort-SDR: piOFYZV6EjzP1vd1yLCI22QNhiCyEcjAD7/7xlao0J6gTOHVK8kQ5o14e9AOUhSVBZWQdTuGOQ
- Ukx2Ftzbhkww==
-X-IronPort-AV: E=McAfee;i="6000,8403,9856"; a="173803122"
-X-IronPort-AV: E=Sophos;i="5.79,327,1602572400"; d="scan'208";a="173803122"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Jan 2021 09:53:06 -0800
-IronPort-SDR: I0l4BAY3WeUOzL+UWeX8h3xo+FzPDXemqAlVuKAqu0DgWIlcu3i9SgzP0pDccvPzuSdAQt7JVs
- GKyzkquUWVfw==
-X-IronPort-AV: E=Sophos;i="5.79,327,1602572400"; d="scan'208";a="379367038"
-Received: from ideak-desk.fi.intel.com ([10.237.68.141])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Jan 2021 09:53:05 -0800
-Date: Wed, 6 Jan 2021 19:53:01 +0200
-From: Imre Deak <imre.deak@intel.com>
-To: stable@vger.kernel.org
-Message-ID: <20210106175301.GB202232@ideak-desk.fi.intel.com>
+Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2149889DDD
+ for <intel-gfx@lists.freedesktop.org>; Wed,  6 Jan 2021 18:03:21 +0000 (UTC)
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 66067216C4;
+ Wed,  6 Jan 2021 18:03:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+ s=korg; t=1609956200;
+ bh=YEmjCkuvqJwXAs/CFcpsZIBub1wETbB3Xxi/z8ZXSgA=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=SyCAuPdeO3AYDtkKYfMF+9KgP/SNKTYMn8Vfi0SFaI7MEL+khoxLTMu8JErs7SHIP
+ wLezrLEBCn2+b0fkeRfYgWm3Ezxrc3yM9+PRHp7ditsSCVJJVSyJCmHL22YTepE8l5
+ s7TmF2/wFDK90D+Pc/t9/CVunhkKpmTgBFUzQ1n8=
+Date: Wed, 6 Jan 2021 19:04:42 +0100
+From: Greg KH <gregkh@linuxfoundation.org>
+To: Imre Deak <imre.deak@intel.com>
+Message-ID: <X/X7umSYEeKCZ0Dw@kroah.com>
+References: <20210106175301.GB202232@ideak-desk.fi.intel.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-Subject: [Intel-gfx] v5.10 stable backport request
+In-Reply-To: <20210106175301.GB202232@ideak-desk.fi.intel.com>
+Subject: Re: [Intel-gfx] v5.10 stable backport request
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,21 +42,20 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: imre.deak@intel.com
-Cc: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org, stable@vger.kernel.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Stable team, please backport the upstream commit
+On Wed, Jan 06, 2021 at 07:53:01PM +0200, Imre Deak wrote:
+> Stable team, please backport the upstream commit
+> 
+> 8f329967d596 ("drm/i915/tgl: Fix Combo PHY DPLL fractional divider for 38.4MHz ref clock")
+> 
+> to the v5.10 stable kernel.
 
-8f329967d596 ("drm/i915/tgl: Fix Combo PHY DPLL fractional divider for 38.4MHz ref clock")
-
-to the v5.10 stable kernel.
-
-Thanks,
-Imre
+I see no such commit id in Linus's kernel :(
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
