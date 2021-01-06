@@ -1,42 +1,36 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3ED1F2EB6B3
-	for <lists+intel-gfx@lfdr.de>; Wed,  6 Jan 2021 01:07:51 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2B0DF2EB6BD
+	for <lists+intel-gfx@lfdr.de>; Wed,  6 Jan 2021 01:15:14 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 631F66E1BB;
-	Wed,  6 Jan 2021 00:07:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8BABB89D7F;
+	Wed,  6 Jan 2021 00:15:11 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DADC76E1BB
- for <intel-gfx@lists.freedesktop.org>; Wed,  6 Jan 2021 00:07:46 +0000 (UTC)
-IronPort-SDR: 4Cyrp5wX/DAaFmfnxSc/ZwAee/3gUvNAlMykxwtqUn62Z5B2wDMjqDYfh1uDQTEJEFl9Tzb9kl
- ECOkcO8rpxGA==
-X-IronPort-AV: E=McAfee;i="6000,8403,9855"; a="156392244"
-X-IronPort-AV: E=Sophos;i="5.78,478,1599548400"; d="scan'208";a="156392244"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Jan 2021 16:07:46 -0800
-IronPort-SDR: B92V7DgXnbtdUhQTJ5bQjZFad8dwA76q2THd5MknXiXlo0wPbGq+Oxbz+7wUC+LX8DtoYLwI1N
- Mouew+6Wy0RQ==
-X-IronPort-AV: E=Sophos;i="5.78,478,1599548400"; d="scan'208";a="379071454"
-Received: from smcguirk-mobl.ger.corp.intel.com (HELO intel.com)
- ([10.252.2.195])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Jan 2021 16:07:44 -0800
-Date: Wed, 6 Jan 2021 02:07:40 +0200
-From: Andi Shyti <andi.shyti@intel.com>
-To: Chris Wilson <chris@chris-wilson.co.uk>
-Message-ID: <X/T/THXWRdT6hs5N@intel.intel>
-References: <20210104115145.24460-1-chris@chris-wilson.co.uk>
- <20210104115145.24460-6-chris@chris-wilson.co.uk>
+Received: from fireflyinternet.com (unknown [77.68.26.236])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1288C89D7F
+ for <intel-gfx@lists.freedesktop.org>; Wed,  6 Jan 2021 00:15:09 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from localhost (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
+ 23512856-1500050 for multiple; Wed, 06 Jan 2021 00:15:07 +0000
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20210104115145.24460-6-chris@chris-wilson.co.uk>
-Subject: Re: [Intel-gfx] [PATCH 6/6] drm/i915/gt: Remove timeslice
- suppression
+In-Reply-To: <e5c91501-e164-0bb6-a92d-f38f2a618d20@intel.com>
+References: <20210105231947.31235-1-daniele.ceraolospurio@intel.com>
+ <20210105231947.31235-6-daniele.ceraolospurio@intel.com>
+ <160988988224.14894.10188123155348129183@build.alporthouse.com>
+ <e5c91501-e164-0bb6-a92d-f38f2a618d20@intel.com>
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
+ intel-gfx@lists.freedesktop.org
+Date: Wed, 06 Jan 2021 00:15:05 +0000
+Message-ID: <160989210594.14894.9421268000220341017@build.alporthouse.com>
+User-Agent: alot/0.9
+Subject: Re: [Intel-gfx] [PATCH 5/5] drm/i915/guc: enable only the user
+ interrupt when using GuC submission
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,76 +43,91 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Chris,
+Quoting Daniele Ceraolo Spurio (2021-01-05 23:56:52)
+> 
+> 
+> On 1/5/2021 3:38 PM, Chris Wilson wrote:
+> > Quoting Daniele Ceraolo Spurio (2021-01-05 23:19:47)
+> >> In GuC submission mode the CS is owned by the GuC FW, so all CS status
+> >> interrupts are handled by it. We only need the user interrupt as that
+> >> signals request completion.
+> >>
+> >> Since we're now starting the engines directly in GuC submission mode
+> >> when selected, we can stop switching back and forth between the
+> >> execlists and the GuC programming and select directly the correct
+> >> interrupt mask.
+> >>
+> >> Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+> >> Cc: Matthew Brost <matthew.brost@intel.com>
+> >> Cc: John Harrison <john.c.harrison@intel.com>
+> >> Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
+> >> ---
+> >>   drivers/gpu/drm/i915/gt/intel_gt_irq.c        | 18 ++++++-----
+> >>   .../gpu/drm/i915/gt/uc/intel_guc_submission.c | 31 -------------------
+> >>   2 files changed, 11 insertions(+), 38 deletions(-)
+> >>
+> >> diff --git a/drivers/gpu/drm/i915/gt/intel_gt_irq.c b/drivers/gpu/drm/i915/gt/intel_gt_irq.c
+> >> index 9830342aa6f4..7b2b8cb2d2be 100644
+> >> --- a/drivers/gpu/drm/i915/gt/intel_gt_irq.c
+> >> +++ b/drivers/gpu/drm/i915/gt/intel_gt_irq.c
+> >> @@ -237,14 +237,18 @@ void gen11_gt_irq_reset(struct intel_gt *gt)
+> >>   
+> >>   void gen11_gt_irq_postinstall(struct intel_gt *gt)
+> >>   {
+> >> -       const u32 irqs =
+> >> -               GT_CS_MASTER_ERROR_INTERRUPT |
+> >> -               GT_RENDER_USER_INTERRUPT |
+> >> -               GT_CONTEXT_SWITCH_INTERRUPT |
+> >> -               GT_WAIT_SEMAPHORE_INTERRUPT;
+> >>          struct intel_uncore *uncore = gt->uncore;
+> >> -       const u32 dmask = irqs << 16 | irqs;
+> >> -       const u32 smask = irqs << 16;
+> >> +       u32 irqs = GT_RENDER_USER_INTERRUPT;
+> >> +       u32 dmask;
+> >> +       u32 smask;
+> >> +
+> >> +       if (!intel_uc_wants_guc_submission(&gt->uc))
+> >> +               irqs |= GT_CS_MASTER_ERROR_INTERRUPT |
+> >> +                       GT_CONTEXT_SWITCH_INTERRUPT |
+> >> +                       GT_WAIT_SEMAPHORE_INTERRUPT;
+> > Hmm, we should stop performing this by default then, and make the
+> > execlists setup request the interrupt vector it desires.
+> >
+> > That's certainly a bit more fiddly to untangle the packed iir across
+> > multiple gen. :|
+> 
+> I had considered that, but this is a gt-level setup while the execlists 
+> submission code is currently all engine-based, so I couldn't find a good 
+> place to move this to and I didn't want to add a new function just for 
+> it. Any preference?
 
-On Mon, Jan 04, 2021 at 11:51:45AM +0000, Chris Wilson wrote:
-> In the next patch, we remove the strict priority system and continuously
+I think we should definitely strive to avoid having too many backend-
+conditional paths in the common routines, and we can certainly adjust
+the interrupts as we enable each engine (it certainly would help when
+debugging by removing engines by removing spurious iir).
 
-next patch?
+I guess we may end up with something like
+gen8_gt_unmask_engine_irq(struct intel_gt *gt,
+			  struct intel_engine_cs *engine,
+			  u16 iir)
+{
+	if (INTEL_GEN(gt->i915) >= 11)
+		__gen11...
+	else
+		__gen8...
+}
+[Not sure if gen8_gt or intel_gt; I chose gen8_gt for the iir definition]
 
-[...]
-
-> -static bool
-> -timeslice_expired(const struct intel_engine_execlists *el,
-> -		  const struct i915_request *rq)
-> +static bool needs_timeslice(const struct intel_engine_cs *engine,
-> +			    const struct i915_request *rq)
->  {
-> -	return timer_expired(&el->timer) || timeslice_yield(el, rq);
-> -}
-> +	if (!intel_engine_has_timeslices(engine))
-> +		return false;
->  
-> -static int
-> -switch_prio(struct intel_engine_cs *engine, const struct i915_request *rq)
-> -{
-> -	if (list_is_last(&rq->sched.link, &engine->active.requests))
-> -		return engine->execlists.queue_priority_hint;
-> +	/* If not currently active, or about to switch, wait for next event */
-> +	if (!rq || __i915_request_is_complete(rq))
-> +		return false;
->  
-> -	return rq_prio(list_next_entry(rq, sched.link));
-> -}
-> +	/* We do not need to start the timeslice until after the ACK */
-> +	if (READ_ONCE(engine->execlists.pending[0]))
-> +		return false;
->  
-> -static inline unsigned long
-> -timeslice(const struct intel_engine_cs *engine)
-> -{
-> -	return READ_ONCE(engine->props.timeslice_duration_ms);
-> +	/* If ELSP[1] is occupied, always check to see if worth slicing */
-> +	if (!list_is_last_rcu(&rq->sched.link, &engine->active.requests))
-> +		return true;
-> +
-> +	/* Otherwise, ELSP[0] is by itself, but may be waiting in the queue */
-> +	if (!RB_EMPTY_ROOT(&engine->execlists.queue.rb_root))
-> +		return true;
-> +
-> +	return !RB_EMPTY_ROOT(&engine->execlists.virtual.rb_root);
->  }
-
-the above diff is quite unreadable and besides the patch does not
-apply on the latest drm-tip.
-
-In order to have a better review, I would suggest either one of
-the following:
-
- - use a different diff algorithm for generating the patch
- - you rebase everything on top of the latest drm-tip so that I
-   can apply and check
- - give me a branch so that I can checkout that branch and review
-   it from there.
-
-Thanks,
-Andi
+Then that would fit reasonably into logical_ring_default_irqs().
+Hindsight says that if we had done that earlier, we could have avoided
+maintaining the same engine-iir in two different sites. So maybe worth
+a bit of effort.
+-Chris
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
