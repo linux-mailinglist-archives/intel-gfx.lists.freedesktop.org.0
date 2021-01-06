@@ -2,31 +2,38 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6FC332EB8DE
-	for <lists+intel-gfx@lfdr.de>; Wed,  6 Jan 2021 05:26:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B95F62EB908
+	for <lists+intel-gfx@lfdr.de>; Wed,  6 Jan 2021 05:49:33 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C99F189DC1;
-	Wed,  6 Jan 2021 04:26:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AB89789DBC;
+	Wed,  6 Jan 2021 04:49:30 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 2427989DBC;
- Wed,  6 Jan 2021 04:26:12 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 14405A8831;
- Wed,  6 Jan 2021 04:26:12 +0000 (UTC)
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4E82889DBC
+ for <intel-gfx@lists.freedesktop.org>; Wed,  6 Jan 2021 04:49:29 +0000 (UTC)
+IronPort-SDR: 5vl1eFfiqrC7EiTxuxZ1zhzLrbKw2FR1faOc+f6FJfwHm/l/S3ZgxDwJvh5ZGnSytaAqi3zCUu
+ RdkixBanJDIw==
+X-IronPort-AV: E=McAfee;i="6000,8403,9855"; a="195771562"
+X-IronPort-AV: E=Sophos;i="5.78,479,1599548400"; d="scan'208";a="195771562"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Jan 2021 20:49:28 -0800
+IronPort-SDR: O5hC0S47lbOH0jci06SxthBSTsgRv2TlxQFSytWRhqk3uhj+gneWhFl6AZItXpsJxK9QBKAW35
+ lxXCuV/GK1Jg==
+X-IronPort-AV: E=Sophos;i="5.78,479,1599548400"; d="scan'208";a="379145079"
+Received: from unknown (HELO genxfsim-desktop.iind.intel.com) ([10.223.74.179])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Jan 2021 20:49:25 -0800
+From: Anshuman Gupta <anshuman.gupta@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Wed,  6 Jan 2021 10:04:38 +0530
+Message-Id: <20210106043438.27754-1-anshuman.gupta@intel.com>
+X-Mailer: git-send-email 2.26.2
+In-Reply-To: <20210105051353.5714-1-anshuman.gupta@intel.com>
+References: <20210105051353.5714-1-anshuman.gupta@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Lyude Paul" <lyude@redhat.com>
-Date: Wed, 06 Jan 2021 04:26:12 -0000
-Message-ID: <160990717205.18710.5071764868512550010@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210106013408.271217-1-lyude@redhat.com>
-In-Reply-To: <20210106013408.271217-1-lyude@redhat.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_drm/i915=3A_Add_support_for_Intel=27s_eDP_backlight_control?=
- =?utf-8?q?s_=28rev5=29?=
+Subject: [Intel-gfx] [RFC v2] drm/i915/pps: Add PPS power domain
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,54 +46,123 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Jani Nikula <jani.nikula@intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+It abstracts getting the AUX power domain in pps_lock under
+PPS power domain. This makes sure that the platforms which really
+requires AUX power in order to access PPS registers will get the
+reference to necessary power wells.
 
-Series: drm/i915: Add support for Intel's eDP backlight controls (rev5)
-URL   : https://patchwork.freedesktop.org/series/81702/
-State : warning
+PPS power domain requires only to track the AUX_A associated
+power wells as the platforms need AUX power in order to access PPS
+registers supports eDP only on PORT_A.
 
-== Summary ==
+v2:
+- Fixed missed POWER_DOMAIN_PPS in pps_unlock().
 
-$ dim checkpatch origin/drm-tip
-ec0e241787db drm/i915: Keep track of pwm-related backlight hooks separately
--:593: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#593: FILE: drivers/gpu/drm/i915/display/intel_panel.c:1815:
-+	panel->backlight.pwm_level_max = intel_de_read(dev_priv,
-+						 BXT_BLC_PWM_FREQ(panel->backlight.controller));
+Cc: Imre Deak <imre.deak@intel.com>
+Cc: Jani Nikula <jani.nikula@intel.com>
+Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_display_power.c | 7 +++++++
+ drivers/gpu/drm/i915/display/intel_display_power.h | 1 +
+ drivers/gpu/drm/i915/display/intel_dp.c            | 7 ++-----
+ 3 files changed, 10 insertions(+), 5 deletions(-)
 
--:634: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#634: FILE: drivers/gpu/drm/i915/display/intel_panel.c:1849:
-+	panel->backlight.pwm_level_max = intel_de_read(dev_priv,
-+						 BXT_BLC_PWM_FREQ(panel->backlight.controller));
-
-total: 0 errors, 0 warnings, 2 checks, 740 lines checked
-36a625852ac9 drm/i915/dp: Enable Intel's HDR backlight interface (only SDR for now)
--:162: WARNING:UNNECESSARY_ELSE: else is not generally useful after a break or return
-#162: FILE: drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c:149:
-+			return panel->backlight.max;
-+		} else {
-
--:202: WARNING:LINE_SPACING: Missing a blank line after declarations
-#202: FILE: drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c:189:
-+		const u32 pwm_level = intel_panel_backlight_level_to_pwm(connector, level);
-+		intel_panel_set_pwm_level(conn_state, pwm_level);
-
--:229: WARNING:LINE_SPACING: Missing a blank line after declarations
-#229: FILE: drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c:216:
-+		u32 pwm_level = intel_panel_backlight_level_to_pwm(connector, level);
-+		panel->backlight.pwm_funcs->enable(crtc_state, conn_state, pwm_level);
-
-total: 0 errors, 3 warnings, 0 checks, 401 lines checked
-2c68f1b5fd1a drm/i915/dp: Allow forcing specific interfaces through enable_dpcd_backlight
-eafe126010a5 drm/dp: Revert "drm/dp: Introduce EDID-based quirks"
-
+diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
+index d52374f01316..1dc4ca9e5d1a 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_power.c
++++ b/drivers/gpu/drm/i915/display/intel_display_power.c
+@@ -107,6 +107,8 @@ intel_display_power_domain_str(enum intel_display_power_domain domain)
+ 		return "VGA";
+ 	case POWER_DOMAIN_AUDIO:
+ 		return "AUDIO";
++	case POWER_DOMAIN_PPS:
++		return "PPS";
+ 	case POWER_DOMAIN_AUX_A:
+ 		return "AUX_A";
+ 	case POWER_DOMAIN_AUX_B:
+@@ -2651,11 +2653,13 @@ intel_display_power_put_mask_in_set(struct drm_i915_private *i915,
+ 	BIT_ULL(POWER_DOMAIN_GT_IRQ) |			\
+ 	BIT_ULL(POWER_DOMAIN_MODESET) |			\
+ 	BIT_ULL(POWER_DOMAIN_AUX_A) |			\
++	BIT_ULL(POWER_DOMAIN_PPS) |			\
+ 	BIT_ULL(POWER_DOMAIN_GMBUS) |			\
+ 	BIT_ULL(POWER_DOMAIN_INIT))
+ #define BXT_DPIO_CMN_A_POWER_DOMAINS (			\
+ 	BIT_ULL(POWER_DOMAIN_PORT_DDI_A_LANES) |		\
+ 	BIT_ULL(POWER_DOMAIN_AUX_A) |			\
++	BIT_ULL(POWER_DOMAIN_PPS) |			\
+ 	BIT_ULL(POWER_DOMAIN_INIT))
+ #define BXT_DPIO_CMN_BC_POWER_DOMAINS (			\
+ 	BIT_ULL(POWER_DOMAIN_PORT_DDI_B_LANES) |		\
+@@ -2688,6 +2692,7 @@ intel_display_power_put_mask_in_set(struct drm_i915_private *i915,
+ #define GLK_DPIO_CMN_A_POWER_DOMAINS (			\
+ 	BIT_ULL(POWER_DOMAIN_PORT_DDI_A_LANES) |		\
+ 	BIT_ULL(POWER_DOMAIN_AUX_A) |			\
++	BIT_ULL(POWER_DOMAIN_PPS) |			\
+ 	BIT_ULL(POWER_DOMAIN_INIT))
+ #define GLK_DPIO_CMN_B_POWER_DOMAINS (			\
+ 	BIT_ULL(POWER_DOMAIN_PORT_DDI_B_LANES) |		\
+@@ -2700,6 +2705,7 @@ intel_display_power_put_mask_in_set(struct drm_i915_private *i915,
+ #define GLK_DISPLAY_AUX_A_POWER_DOMAINS (		\
+ 	BIT_ULL(POWER_DOMAIN_AUX_A) |		\
+ 	BIT_ULL(POWER_DOMAIN_AUX_IO_A) |		\
++	BIT_ULL(POWER_DOMAIN_PPS) |			\
+ 	BIT_ULL(POWER_DOMAIN_INIT))
+ #define GLK_DISPLAY_AUX_B_POWER_DOMAINS (		\
+ 	BIT_ULL(POWER_DOMAIN_AUX_B) |		\
+@@ -2712,6 +2718,7 @@ intel_display_power_put_mask_in_set(struct drm_i915_private *i915,
+ 	BIT_ULL(POWER_DOMAIN_GT_IRQ) |			\
+ 	BIT_ULL(POWER_DOMAIN_MODESET) |			\
+ 	BIT_ULL(POWER_DOMAIN_AUX_A) |			\
++	BIT_ULL(POWER_DOMAIN_PPS) |			\
+ 	BIT_ULL(POWER_DOMAIN_GMBUS) |			\
+ 	BIT_ULL(POWER_DOMAIN_INIT))
+ 
+diff --git a/drivers/gpu/drm/i915/display/intel_display_power.h b/drivers/gpu/drm/i915/display/intel_display_power.h
+index bc30c479be53..7642be3c8e2e 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_power.h
++++ b/drivers/gpu/drm/i915/display/intel_display_power.h
+@@ -55,6 +55,7 @@ enum intel_display_power_domain {
+ 	POWER_DOMAIN_PORT_OTHER,
+ 	POWER_DOMAIN_VGA,
+ 	POWER_DOMAIN_AUDIO,
++	POWER_DOMAIN_PPS,
+ 	POWER_DOMAIN_AUX_A,
+ 	POWER_DOMAIN_AUX_B,
+ 	POWER_DOMAIN_AUX_C,
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+index 8a00e609085f..99b4bec3c926 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp.c
+@@ -895,8 +895,7 @@ pps_lock(struct intel_dp *intel_dp)
+ 	 * See intel_power_sequencer_reset() why we need
+ 	 * a power domain reference here.
+ 	 */
+-	wakeref = intel_display_power_get(dev_priv,
+-					  intel_aux_power_domain(dp_to_dig_port(intel_dp)));
++	wakeref = intel_display_power_get(dev_priv, POWER_DOMAIN_PPS);
+ 
+ 	mutex_lock(&dev_priv->pps_mutex);
+ 
+@@ -909,9 +908,7 @@ pps_unlock(struct intel_dp *intel_dp, intel_wakeref_t wakeref)
+ 	struct drm_i915_private *dev_priv = dp_to_i915(intel_dp);
+ 
+ 	mutex_unlock(&dev_priv->pps_mutex);
+-	intel_display_power_put(dev_priv,
+-				intel_aux_power_domain(dp_to_dig_port(intel_dp)),
+-				wakeref);
++	intel_display_power_put(dev_priv, POWER_DOMAIN_PPS, wakeref);
+ 	return 0;
+ }
+ 
+-- 
+2.26.2
 
 _______________________________________________
 Intel-gfx mailing list
