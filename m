@@ -2,31 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B47642EBEDB
-	for <lists+intel-gfx@lfdr.de>; Wed,  6 Jan 2021 14:40:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6C07A2EBEDE
+	for <lists+intel-gfx@lfdr.de>; Wed,  6 Jan 2021 14:40:28 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7E74689C2C;
-	Wed,  6 Jan 2021 13:40:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 10E3789C97;
+	Wed,  6 Jan 2021 13:40:21 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 35E3B89C56
- for <intel-gfx@lists.freedesktop.org>; Wed,  6 Jan 2021 13:40:17 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0ECCB89BF8
+ for <intel-gfx@lists.freedesktop.org>; Wed,  6 Jan 2021 13:40:16 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 23518193-1500050 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 23518194-1500050 
  for multiple; Wed, 06 Jan 2021 13:40:08 +0000
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Wed,  6 Jan 2021 13:40:02 +0000
-Message-Id: <20210106134005.10279-5-chris@chris-wilson.co.uk>
+Date: Wed,  6 Jan 2021 13:40:03 +0000
+Message-Id: <20210106134005.10279-6-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20210106134005.10279-1-chris@chris-wilson.co.uk>
 References: <20210106134005.10279-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 5/8] drm/i915/gt: Lift stop_ring() to
- reset_prepare
+Subject: [Intel-gfx] [PATCH 6/8] drm/i915/gt: Pull ring submission resume
+ under its caller forcewake
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,151 +45,185 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Push the sleeping stop_ring() out of the reset resume function to reset
-prepare; we are not allowed to sleep in the former.
+Take advantage of calling xcs_resume under a forcewake by using direct
+mmio access. In particular, we can avoid the sleeping variants to allow
+resume to be called from softirq context, required for engine resets.
 
 Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
 ---
- .../gpu/drm/i915/gt/intel_ring_submission.c   | 97 +++++++------------
- 1 file changed, 36 insertions(+), 61 deletions(-)
+ .../gpu/drm/i915/gt/intel_ring_submission.c   | 96 ++++++++-----------
+ 1 file changed, 42 insertions(+), 54 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/gt/intel_ring_submission.c b/drivers/gpu/drm/i915/gt/intel_ring_submission.c
-index d794e13610b2..7c31126a1b6d 100644
+index 7c31126a1b6d..77aec0a94541 100644
 --- a/drivers/gpu/drm/i915/gt/intel_ring_submission.c
 +++ b/drivers/gpu/drm/i915/gt/intel_ring_submission.c
-@@ -156,21 +156,6 @@ static void ring_setup_status_page(struct intel_engine_cs *engine)
- 	flush_cs_tlb(engine);
+@@ -121,31 +121,27 @@ static void set_hwsp(struct intel_engine_cs *engine, u32 offset)
+ 		hwsp = RING_HWS_PGA(engine->mmio_base);
+ 	}
+ 
+-	intel_uncore_write(engine->uncore, hwsp, offset);
+-	intel_uncore_posting_read(engine->uncore, hwsp);
++	intel_uncore_write_fw(engine->uncore, hwsp, offset);
++	intel_uncore_posting_read_fw(engine->uncore, hwsp);
  }
  
--static bool stop_ring(struct intel_engine_cs *engine)
--{
--	intel_engine_stop_cs(engine);
--
--	ENGINE_WRITE(engine, RING_HEAD, ENGINE_READ(engine, RING_TAIL));
--
--	ENGINE_WRITE(engine, RING_HEAD, 0);
--	ENGINE_WRITE(engine, RING_TAIL, 0);
--
--	/* The ring must be empty before it is disabled */
--	ENGINE_WRITE(engine, RING_CTL, 0);
--
--	return (ENGINE_READ(engine, RING_HEAD) & HEAD_ADDR) == 0;
--}
--
- static struct i915_address_space *vm_alias(struct i915_address_space *vm)
+ static void flush_cs_tlb(struct intel_engine_cs *engine)
  {
- 	if (i915_is_ggtt(vm))
-@@ -212,31 +197,6 @@ static int xcs_resume(struct intel_engine_cs *engine)
- 
- 	intel_uncore_forcewake_get(engine->uncore, FORCEWAKE_ALL);
- 
--	/* WaClearRingBufHeadRegAtInit:ctg,elk */
--	if (!stop_ring(engine)) {
--		/* G45 ring initialization often fails to reset head to zero */
--		drm_dbg(&dev_priv->drm, "%s head not reset to zero "
--			"ctl %08x head %08x tail %08x start %08x\n",
--			engine->name,
--			ENGINE_READ(engine, RING_CTL),
--			ENGINE_READ(engine, RING_HEAD),
--			ENGINE_READ(engine, RING_TAIL),
--			ENGINE_READ(engine, RING_START));
+-	struct drm_i915_private *dev_priv = engine->i915;
 -
--		if (!stop_ring(engine)) {
--			drm_err(&dev_priv->drm,
--				"failed to set %s head to zero "
--				"ctl %08x head %08x tail %08x start %08x\n",
--				engine->name,
--				ENGINE_READ(engine, RING_CTL),
--				ENGINE_READ(engine, RING_HEAD),
--				ENGINE_READ(engine, RING_TAIL),
--				ENGINE_READ(engine, RING_START));
--			ret = -EIO;
--			goto out;
--		}
--	}
+-	if (!IS_GEN_RANGE(dev_priv, 6, 7))
++	if (!IS_GEN_RANGE(engine->i915, 6, 7))
+ 		return;
+ 
+ 	/* ring should be idle before issuing a sync flush*/
+-	drm_WARN_ON(&dev_priv->drm,
+-		    (ENGINE_READ(engine, RING_MI_MODE) & MODE_IDLE) == 0);
++	GEM_DEBUG_WARN_ON((ENGINE_READ(engine, RING_MI_MODE) & MODE_IDLE) == 0);
+ 
+-	ENGINE_WRITE(engine, RING_INSTPM,
+-		     _MASKED_BIT_ENABLE(INSTPM_TLB_INVALIDATE |
+-					INSTPM_SYNC_FLUSH));
+-	if (intel_wait_for_register(engine->uncore,
+-				    RING_INSTPM(engine->mmio_base),
+-				    INSTPM_SYNC_FLUSH, 0,
+-				    1000))
+-		drm_err(&dev_priv->drm,
+-			"%s: wait for SyncFlush to complete for TLB invalidation timed out\n",
+-			engine->name);
++	ENGINE_WRITE_FW(engine, RING_INSTPM,
++			_MASKED_BIT_ENABLE(INSTPM_TLB_INVALIDATE |
++					   INSTPM_SYNC_FLUSH));
++	if (__intel_wait_for_register_fw(engine->uncore,
++					 RING_INSTPM(engine->mmio_base),
++					 INSTPM_SYNC_FLUSH, 0,
++					 2000, 0, NULL))
++		ENGINE_TRACE(engine,
++			     "wait for SyncFlush to complete for TLB invalidation timed out\n");
+ }
+ 
+ static void ring_setup_status_page(struct intel_engine_cs *engine)
+@@ -176,13 +172,13 @@ static void set_pp_dir(struct intel_engine_cs *engine)
+ 	if (!vm)
+ 		return;
+ 
+-	ENGINE_WRITE(engine, RING_PP_DIR_DCLV, PP_DIR_DCLV_2G);
+-	ENGINE_WRITE(engine, RING_PP_DIR_BASE, pp_dir(vm));
++	ENGINE_WRITE_FW(engine, RING_PP_DIR_DCLV, PP_DIR_DCLV_2G);
++	ENGINE_WRITE_FW(engine, RING_PP_DIR_BASE, pp_dir(vm));
+ 
+ 	if (INTEL_GEN(engine->i915) >= 7) {
+-		ENGINE_WRITE(engine,
+-			     RING_MODE_GEN7,
+-			     _MASKED_BIT_ENABLE(GFX_PPGTT_ENABLE));
++		ENGINE_WRITE_FW(engine,
++				RING_MODE_GEN7,
++				_MASKED_BIT_ENABLE(GFX_PPGTT_ENABLE));
+ 	}
+ }
+ 
+@@ -190,13 +186,10 @@ static int xcs_resume(struct intel_engine_cs *engine)
+ {
+ 	struct drm_i915_private *dev_priv = engine->i915;
+ 	struct intel_ring *ring = engine->legacy.ring;
+-	int ret = 0;
+ 
+ 	ENGINE_TRACE(engine, "ring:{HEAD:%04x, TAIL:%04x}\n",
+ 		     ring->head, ring->tail);
+ 
+-	intel_uncore_forcewake_get(engine->uncore, FORCEWAKE_ALL);
 -
  	if (HWS_NEEDS_PHYSICAL(dev_priv))
  		ring_setup_phys_status_page(engine);
  	else
-@@ -338,11 +298,21 @@ static void xcs_sanitize(struct intel_engine_cs *engine)
- 	clflush_cache_range(engine->status_page.addr, PAGE_SIZE);
- }
+@@ -204,16 +197,13 @@ static int xcs_resume(struct intel_engine_cs *engine)
  
-+static bool stop_ring(struct intel_engine_cs *engine)
-+{
-+	ENGINE_WRITE_FW(engine, RING_HEAD, ENGINE_READ_FW(engine, RING_TAIL));
-+
-+	ENGINE_WRITE_FW(engine, RING_HEAD, 0);
-+	ENGINE_WRITE_FW(engine, RING_TAIL, 0);
-+
-+	/* The ring must be empty before it is disabled */
-+	ENGINE_WRITE_FW(engine, RING_CTL, 0);
-+
-+	return (ENGINE_READ_FW(engine, RING_HEAD) & HEAD_ADDR) == 0;
-+}
-+
- static void reset_prepare(struct intel_engine_cs *engine)
- {
--	struct intel_uncore *uncore = engine->uncore;
--	const u32 base = engine->mmio_base;
+ 	intel_breadcrumbs_reset(engine->breadcrumbs);
+ 
+-	/* Enforce ordering by reading HEAD register back */
+-	ENGINE_POSTING_READ(engine, RING_HEAD);
 -
  	/*
- 	 * We stop engines, otherwise we might get failed reset and a
- 	 * dead gpu (on elk). Also as modern gpu as kbl can suffer
-@@ -354,30 +324,35 @@ static void reset_prepare(struct intel_engine_cs *engine)
- 	 * WaKBLVECSSemaphoreWaitPoll:kbl (on ALL_ENGINES)
- 	 *
- 	 * WaMediaResetMainRingCleanup:ctg,elk (presumably)
-+	 * WaClearRingBufHeadRegAtInit:ctg,elk
- 	 *
- 	 * FIXME: Wa for more modern gens needs to be validated
+ 	 * Initialize the ring. This must happen _after_ we've cleared the ring
+ 	 * registers with the above sequence (the readback of the HEAD registers
+ 	 * also enforces ordering), otherwise the hw might lose the new ring
+ 	 * register values.
  	 */
- 	ENGINE_TRACE(engine, "\n");
-+	intel_engine_stop_cs(engine);
+-	ENGINE_WRITE(engine, RING_START, i915_ggtt_offset(ring->vma));
++	ENGINE_WRITE_FW(engine, RING_START, i915_ggtt_offset(ring->vma));
  
--	if (intel_engine_stop_cs(engine))
--		ENGINE_TRACE(engine, "timed out on STOP_RING\n");
-+	if (!stop_ring(engine)) {
-+		/* G45 ring initialization often fails to reset head to zero */
-+		drm_dbg(&engine->i915->drm,
-+			"%s head not reset to zero "
-+			"ctl %08x head %08x tail %08x start %08x\n",
-+			engine->name,
-+			ENGINE_READ_FW(engine, RING_CTL),
-+			ENGINE_READ_FW(engine, RING_HEAD),
-+			ENGINE_READ_FW(engine, RING_TAIL),
-+			ENGINE_READ_FW(engine, RING_START));
-+	}
+ 	/* Check that the ring offsets point within the ring! */
+ 	GEM_BUG_ON(!intel_ring_offset_valid(ring, ring->head));
+@@ -223,46 +213,44 @@ static int xcs_resume(struct intel_engine_cs *engine)
+ 	set_pp_dir(engine);
  
--	intel_uncore_write_fw(uncore,
--			      RING_HEAD(base),
--			      intel_uncore_read_fw(uncore, RING_TAIL(base)));
--	intel_uncore_posting_read_fw(uncore, RING_HEAD(base)); /* paranoia */
--
--	intel_uncore_write_fw(uncore, RING_HEAD(base), 0);
--	intel_uncore_write_fw(uncore, RING_TAIL(base), 0);
--	intel_uncore_posting_read_fw(uncore, RING_TAIL(base));
--
--	/* The ring must be empty before it is disabled */
--	intel_uncore_write_fw(uncore, RING_CTL(base), 0);
--
--	/* Check acts as a post */
--	if (intel_uncore_read_fw(uncore, RING_HEAD(base)))
--		ENGINE_TRACE(engine, "ring head [%x] not parked\n",
--			     intel_uncore_read_fw(uncore, RING_HEAD(base)));
-+	if (!stop_ring(engine)) {
-+		drm_err(&engine->i915->drm,
-+			"failed to set %s head to zero "
-+			"ctl %08x head %08x tail %08x start %08x\n",
+ 	/* First wake the ring up to an empty/idle ring */
+-	ENGINE_WRITE(engine, RING_HEAD, ring->head);
+-	ENGINE_WRITE(engine, RING_TAIL, ring->head);
++	ENGINE_WRITE_FW(engine, RING_HEAD, ring->head);
++	ENGINE_WRITE_FW(engine, RING_TAIL, ring->head);
+ 	ENGINE_POSTING_READ(engine, RING_TAIL);
+ 
+-	ENGINE_WRITE(engine, RING_CTL, RING_CTL_SIZE(ring->size) | RING_VALID);
++	ENGINE_WRITE_FW(engine, RING_CTL,
++			RING_CTL_SIZE(ring->size) | RING_VALID);
+ 
+ 	/* If the head is still not zero, the ring is dead */
+-	if (intel_wait_for_register(engine->uncore,
+-				    RING_CTL(engine->mmio_base),
+-				    RING_VALID, RING_VALID,
+-				    50)) {
+-		drm_err(&dev_priv->drm, "%s initialization failed "
+-			  "ctl %08x (valid? %d) head %08x [%08x] tail %08x [%08x] start %08x [expected %08x]\n",
+-			  engine->name,
+-			  ENGINE_READ(engine, RING_CTL),
+-			  ENGINE_READ(engine, RING_CTL) & RING_VALID,
+-			  ENGINE_READ(engine, RING_HEAD), ring->head,
+-			  ENGINE_READ(engine, RING_TAIL), ring->tail,
+-			  ENGINE_READ(engine, RING_START),
+-			  i915_ggtt_offset(ring->vma));
+-		ret = -EIO;
+-		goto out;
++	if (__intel_wait_for_register_fw(engine->uncore,
++					 RING_CTL(engine->mmio_base),
++					 RING_VALID, RING_VALID,
++					 5000, 0, NULL)) {
++		drm_err(&dev_priv->drm,
++			"%s initialization failed; "
++			"ctl %08x (valid? %d) head %08x [%08x] tail %08x [%08x] start %08x [expected %08x]\n",
 +			engine->name,
-+			ENGINE_READ_FW(engine, RING_CTL),
-+			ENGINE_READ_FW(engine, RING_HEAD),
-+			ENGINE_READ_FW(engine, RING_TAIL),
-+			ENGINE_READ_FW(engine, RING_START));
-+	}
++			ENGINE_READ(engine, RING_CTL),
++			ENGINE_READ(engine, RING_CTL) & RING_VALID,
++			ENGINE_READ(engine, RING_HEAD), ring->head,
++			ENGINE_READ(engine, RING_TAIL), ring->tail,
++			ENGINE_READ(engine, RING_START),
++			i915_ggtt_offset(ring->vma));
++		return -EIO;
+ 	}
+ 
+ 	if (INTEL_GEN(dev_priv) > 2)
+-		ENGINE_WRITE(engine,
+-			     RING_MI_MODE, _MASKED_BIT_DISABLE(STOP_RING));
++		ENGINE_WRITE_FW(engine,
++				RING_MI_MODE, _MASKED_BIT_DISABLE(STOP_RING));
+ 
+ 	/* Now awake, let it get started */
+ 	if (ring->tail != ring->head) {
+-		ENGINE_WRITE(engine, RING_TAIL, ring->tail);
++		ENGINE_WRITE_FW(engine, RING_TAIL, ring->tail);
+ 		ENGINE_POSTING_READ(engine, RING_TAIL);
+ 	}
+ 
+ 	/* Papering over lost _interrupts_ immediately following the restart */
+ 	intel_engine_signal_breadcrumbs(engine);
+-out:
+-	intel_uncore_forcewake_put(engine->uncore, FORCEWAKE_ALL);
+-
+-	return ret;
++	return 0;
  }
  
- static void reset_rewind(struct intel_engine_cs *engine, bool stalled)
+ static void sanitize_hwsp(struct intel_engine_cs *engine)
 -- 
 2.20.1
 
