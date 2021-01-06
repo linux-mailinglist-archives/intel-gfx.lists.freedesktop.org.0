@@ -1,38 +1,61 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9F0B22EC419
-	for <lists+intel-gfx@lfdr.de>; Wed,  6 Jan 2021 20:43:15 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id E0C022EC42A
+	for <lists+intel-gfx@lfdr.de>; Wed,  6 Jan 2021 20:50:24 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6A6876E08E;
-	Wed,  6 Jan 2021 19:43:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BBA7B6E212;
+	Wed,  6 Jan 2021 19:50:22 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C97076E08E
- for <intel-gfx@lists.freedesktop.org>; Wed,  6 Jan 2021 19:43:11 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 23522064-1500050 for multiple; Wed, 06 Jan 2021 19:43:08 +0000
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 79A9C6E212
+ for <intel-gfx@lists.freedesktop.org>; Wed,  6 Jan 2021 19:50:21 +0000 (UTC)
+IronPort-SDR: 2xYfgGSDpirh55CGPes4arMhtZvG8WF2ttLLlwyYkOzIkkSHU1SiYZ6sZD3XO0zgMUbJR6ghUZ
+ dWESSD2WRzHg==
+X-IronPort-AV: E=McAfee;i="6000,8403,9856"; a="156516229"
+X-IronPort-AV: E=Sophos;i="5.79,328,1602572400"; d="scan'208";a="156516229"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Jan 2021 11:50:21 -0800
+IronPort-SDR: TbUEW2+sOIxGRweL95aVkR4X6ol94pFc/hZ//AFVG8sZ2neYNWP/xM01q+ChcJbQ8ZyprVMVfX
+ 2j15xTQPspJA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.79,328,1602572400"; d="scan'208";a="398354890"
+Received: from orsmsx606.amr.corp.intel.com ([10.22.229.19])
+ by fmsmga002.fm.intel.com with ESMTP; 06 Jan 2021 11:50:20 -0800
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX606.amr.corp.intel.com (10.22.229.19) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1713.5; Wed, 6 Jan 2021 11:50:20 -0800
+Received: from orsmsx601.amr.corp.intel.com (10.22.229.14) by
+ ORSMSX610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1713.5; Wed, 6 Jan 2021 11:50:20 -0800
+Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14]) by
+ ORSMSX601.amr.corp.intel.com ([10.22.229.14]) with mapi id 15.01.1713.004;
+ Wed, 6 Jan 2021 11:50:20 -0800
+From: "Dhanavanthri, Swathi" <swathi.dhanavanthri@intel.com>
+To: "Roper, Matthew D" <matthew.d.roper@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Thread-Topic: [PATCH] drm/i915/rkl: Add DP vswing programming tables
+Thread-Index: AQHW45SuvhsWKH9tQEGB6FLLoFafKKobAw5Q
+Date: Wed, 6 Jan 2021 19:50:20 +0000
+Message-ID: <f9f4c3a4d42747b9a9ae8bda2ed0a333@intel.com>
+References: <20201218040535.45492-1-matthew.d.roper@intel.com>
+In-Reply-To: <20201218040535.45492-1-matthew.d.roper@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+dlp-product: dlpe-windows
+dlp-reaction: no-action
+dlp-version: 11.2.0.6
+x-originating-ip: [10.1.200.100]
 MIME-Version: 1.0
-In-Reply-To: <f2b54e5a-fc97-ef33-0c6c-6fe6833d3b73@intel.com>
-References: <20210105231947.31235-1-daniele.ceraolospurio@intel.com>
- <20210105231947.31235-3-daniele.ceraolospurio@intel.com>
- <160989470089.14894.2097316461568983303@build.alporthouse.com>
- <a38fc4e1-8847-2bc4-763f-673c2597a06f@intel.com>
- <160990175565.22606.17511156121476669794@build.alporthouse.com>
- <f2b54e5a-fc97-ef33-0c6c-6fe6833d3b73@intel.com>
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
- intel-gfx@lists.freedesktop.org
-Date: Wed, 06 Jan 2021 19:43:06 +0000
-Message-ID: <160996218684.14894.17445852133665540846@build.alporthouse.com>
-User-Agent: alot/0.9
-Subject: Re: [Intel-gfx] [PATCH 2/5] drm/i915/guc: do not dump execlists
- state with GuC submission
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/rkl: Add DP vswing programming
+ tables
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,43 +73,92 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Daniele Ceraolo Spurio (2021-01-06 17:21:16)
-> 
-> 
-> On 1/5/2021 6:55 PM, Chris Wilson wrote:
-> > Quoting Daniele Ceraolo Spurio (2021-01-06 02:32:28)
-> >>
-> >> On 1/5/2021 4:58 PM, Chris Wilson wrote:
-> >>> Quoting Daniele Ceraolo Spurio (2021-01-05 23:19:44)
-> >>>> GuC owns the execlists state and the context IDs used for submission, so
-> >>>> the status of the ports and the CSB entries are not something we control
-> >>>> or can decode from the i915 side, therefore we can avoid dumping it. A
-> >>>> follow-up patch will also stop setting the csb pointers when using GuC
-> >>>> submission.
-> >>>>
-> >>>> GuC dumps all the required events in the GuC logs when verbosity is set
-> >>>> high enough.
-> >>> Would not be worth including, or is it not very helpful for debugging
-> >>> curious engine stalls?
-> >> GuC is going to reset the engine if it stalls, so we should get the GuC
-> >> logs and the engine state included in the error state.
-> > Here we would be focusing on "why hasn't a request been submitted/executed".
-> > A bad request is usually self-evident, but a missing one is tricky.
-> 
-> Agreed, but I still don't think we could use the CSB info even if we 
-> dumped it. We currently can't map CSB events in GuC submission mode to 
-> specific contexts, because the ctx IDs used by the GuC do not map to the 
-> ones used by i915. We've asked the GuC team to expose a way to do such a 
-> mapping, but that's still under discussion. In the meantime we plan to 
-> add a few traces to make sure the requests reach the GuC and use the GuC 
-> logs for what goes on inside the FW (GuC logs include the context IDs it 
-> uses for submission and all CSB events on high verbosity).
+Reviewed-by: Swathi Dhanavanthri <swathi.dhanavanthri@intel.com>
 
-I was more reflecting on what could be here instead. Details of the ctb?
-It would be great to have a snapshot of some relevant guc state, merely
-wonder if we could extract anything from the log automatically. As well
-as the usual what have we submitted to the guc.
--Chris
+-----Original Message-----
+From: Matt Roper <matthew.d.roper@intel.com> 
+Sent: Thursday, December 17, 2020 8:06 PM
+To: intel-gfx@lists.freedesktop.org
+Cc: Roper, Matthew D <matthew.d.roper@intel.com>
+Subject: [PATCH] drm/i915/rkl: Add DP vswing programming tables
+
+The bspec has been updated with new vswing programming for RKL DP.  No data is provided for HDMI or eDP, so for now we'll continue to assume that those are the same as TGL.
+
+Bspec: 49291
+Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_ddi.c | 42 ++++++++++++++++++++++--
+ 1 file changed, 39 insertions(+), 3 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
+index 6863236df1d0..7fb168c52c58 100644
+--- a/drivers/gpu/drm/i915/display/intel_ddi.c
++++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+@@ -766,6 +766,34 @@ static const struct cnl_ddi_buf_trans tgl_combo_phy_ddi_translations_edp_hbr2_ho
+ 	{ 0x6, 0x7F, 0x3F, 0x00, 0x00 },	/* 2	1	*/
+ };
+ 
++static const struct cnl_ddi_buf_trans rkl_combo_phy_ddi_translations_dp_hbr[] = {
++						/* NT mV Trans mV db    */
++	{ 0xA, 0x2F, 0x3F, 0x00, 0x00 },	/* 350   350      0.0   */
++	{ 0xA, 0x4F, 0x37, 0x00, 0x08 },	/* 350   500      3.1   */
++	{ 0xC, 0x63, 0x2F, 0x00, 0x10 },	/* 350   700      6.0   */
++	{ 0x6, 0x7D, 0x2A, 0x00, 0x15 },	/* 350   900      8.2   */
++	{ 0xA, 0x4C, 0x3F, 0x00, 0x00 },	/* 500   500      0.0   */
++	{ 0xC, 0x73, 0x34, 0x00, 0x0B },	/* 500   700      2.9   */
++	{ 0x6, 0x7F, 0x2F, 0x00, 0x10 },	/* 500   900      5.1   */
++	{ 0xC, 0x6E, 0x3E, 0x00, 0x01 },	/* 650   700      0.6   */
++	{ 0x6, 0x7F, 0x35, 0x00, 0x0A },	/* 600   900      3.5   */
++	{ 0x6, 0x7F, 0x3F, 0x00, 0x00 },	/* 900   900      0.0   */
++};
++
++static const struct cnl_ddi_buf_trans rkl_combo_phy_ddi_translations_dp_hbr2_hbr3[] = {
++						/* NT mV Trans mV db    */
++	{ 0xA, 0x35, 0x3F, 0x00, 0x00 },	/* 350   350      0.0   */
++	{ 0xA, 0x50, 0x38, 0x00, 0x07 },	/* 350   500      3.1   */
++	{ 0xC, 0x61, 0x33, 0x00, 0x0C },	/* 350   700      6.0   */
++	{ 0x6, 0x7F, 0x2E, 0x00, 0x11 },	/* 350   900      8.2   */
++	{ 0xA, 0x47, 0x3F, 0x00, 0x00 },	/* 500   500      0.0   */
++	{ 0xC, 0x5F, 0x38, 0x00, 0x07 },	/* 500   700      2.9   */
++	{ 0x6, 0x7F, 0x2F, 0x00, 0x10 },	/* 500   900      5.1   */
++	{ 0xC, 0x5F, 0x3F, 0x00, 0x00 },	/* 650   700      0.6   */
++	{ 0x6, 0x7E, 0x36, 0x00, 0x09 },	/* 600   900      3.5   */
++	{ 0x6, 0x7F, 0x3F, 0x00, 0x00 },	/* 900   900      0.0   */
++};
++
+ static bool is_hobl_buf_trans(const struct cnl_ddi_buf_trans *table)  {
+ 	return table == tgl_combo_phy_ddi_translations_edp_hbr2_hobl;
+@@ -1259,7 +1287,10 @@ tgl_get_combo_buf_trans_dp(struct intel_encoder *encoder,
+ 	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
+ 
+ 	if (crtc_state->port_clock > 270000) {
+-		if (IS_TGL_U(dev_priv) || IS_TGL_Y(dev_priv)) {
++		if (IS_ROCKETLAKE(dev_priv)) {
++			*n_entries = ARRAY_SIZE(rkl_combo_phy_ddi_translations_dp_hbr2_hbr3);
++			return rkl_combo_phy_ddi_translations_dp_hbr2_hbr3;
++		} else if (IS_TGL_U(dev_priv) || IS_TGL_Y(dev_priv)) {
+ 			*n_entries = ARRAY_SIZE(tgl_uy_combo_phy_ddi_translations_dp_hbr2);
+ 			return tgl_uy_combo_phy_ddi_translations_dp_hbr2;
+ 		} else {
+@@ -1267,8 +1298,13 @@ tgl_get_combo_buf_trans_dp(struct intel_encoder *encoder,
+ 			return tgl_combo_phy_ddi_translations_dp_hbr2;
+ 		}
+ 	} else {
+-		*n_entries = ARRAY_SIZE(tgl_combo_phy_ddi_translations_dp_hbr);
+-		return tgl_combo_phy_ddi_translations_dp_hbr;
++		if (IS_ROCKETLAKE(dev_priv)) {
++			*n_entries = ARRAY_SIZE(rkl_combo_phy_ddi_translations_dp_hbr);
++			return rkl_combo_phy_ddi_translations_dp_hbr;
++		} else {
++			*n_entries = ARRAY_SIZE(tgl_combo_phy_ddi_translations_dp_hbr);
++			return tgl_combo_phy_ddi_translations_dp_hbr;
++		}
+ 	}
+ }
+ 
+--
+2.24.1
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
