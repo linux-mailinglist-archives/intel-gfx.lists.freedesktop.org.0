@@ -1,79 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 144A72ECE63
-	for <lists+intel-gfx@lfdr.de>; Thu,  7 Jan 2021 12:04:41 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 634882ECE67
+	for <lists+intel-gfx@lfdr.de>; Thu,  7 Jan 2021 12:06:10 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F27276E437;
-	Thu,  7 Jan 2021 11:04:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BBFD66E429;
+	Thu,  7 Jan 2021 11:06:08 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [216.205.24.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 490E56E439
- for <intel-gfx@lists.freedesktop.org>; Thu,  7 Jan 2021 11:04:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1610017474;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=6BPOAAWATY84TC3xxaKQNyQK2s0RrmDpPoUu8DRhLXE=;
- b=NP6AKGahc/LNEI3hQ6d6fWbQc/3E7j2GhXsc34ZRZz1GzpDZKEtrNcpd5QrJoKUKXOXLuJ
- msZyeyQZ0VKGU4/JQY3qcaTE6an+xb/SYOGVLiACAO1JXq6UJo+FGomgNmvJ6hrWfrRiuR
- RkSotrDFA4SHMmMKiPLOrONsa4mYtHo=
-Received: from mail-ed1-f71.google.com (mail-ed1-f71.google.com
- [209.85.208.71]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-97-q1NA9L6hPJyQwNIHAOv8tA-1; Thu, 07 Jan 2021 06:04:30 -0500
-X-MC-Unique: q1NA9L6hPJyQwNIHAOv8tA-1
-Received: by mail-ed1-f71.google.com with SMTP id g6so3217354edw.13
- for <intel-gfx@lists.freedesktop.org>; Thu, 07 Jan 2021 03:04:30 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:subject:to:cc:references:from:message-id:date
- :user-agent:mime-version:in-reply-to:content-language
- :content-transfer-encoding;
- bh=6BPOAAWATY84TC3xxaKQNyQK2s0RrmDpPoUu8DRhLXE=;
- b=U1KWVTQdEOFM8CIM6LkCM4XvrPsyzho/IXGLHR7OcMLaBzISGV4LncpLLX6AEuMUME
- Eg7YwN7RdLVJZY8dJYJWMu8JPMxrUYyE0+t8ABqtxKiY+qZ7faxP0k0SnVDLzI6okCdB
- DR7zvoUcQkWnsIrV5TSqM7rf2QaHGk5JlX0TroN2VDdgjTlSLB6Fe/H1rsxkwTIojG7J
- XUJ+mmE+1VP2WD+8mjVCNG6dal29amAMrC5Sv59DBlw0P0UgNh5znOalp1gHCujpEQka
- GV2gFryPrr/TI8mtCWJTFqai61kGB1Z8QbZ17KhnzKpZykzlC8JOkIFREZiIbFYx4eR/
- QR/g==
-X-Gm-Message-State: AOAM5325XULaIVs9JHktt0NQF0ffgc2wqcK/CB9WxqCn9v0Sx52Gl3Gk
- /NYMif2Mffaf6zyFGUB1P3YekIbYWO2Tvt2Q7u6sPLa39qUQ6viBPzsl4SUTwgmZ/U5HtfWz10k
- RUtwv0wL43TZ/wENxyJ3mLzYX1w2a
-X-Received: by 2002:a17:906:38c3:: with SMTP id
- r3mr5904062ejd.193.1610017468890; 
- Thu, 07 Jan 2021 03:04:28 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJxd09hC6QVtOE8mOdwoTqfPgjIJThPoBlRV9uYzoAo2YSBEq5P4921+axYWMt4BNYy/+TyV6w==
-X-Received: by 2002:a17:906:38c3:: with SMTP id
- r3mr5904049ejd.193.1610017468709; 
- Thu, 07 Jan 2021 03:04:28 -0800 (PST)
-Received: from x1.localdomain
- (2001-1c00-0c1e-bf00-37a3-353b-be90-1238.cable.dynamic.v6.ziggo.nl.
- [2001:1c00:c1e:bf00:37a3:353b:be90:1238])
- by smtp.gmail.com with ESMTPSA id t12sm2534464edy.49.2021.01.07.03.04.27
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Thu, 07 Jan 2021 03:04:28 -0800 (PST)
-To: =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-References: <20201118124058.26021-1-hdegoede@redhat.com>
- <20201124154956.GL6112@intel.com>
-From: Hans de Goede <hdegoede@redhat.com>
-Message-ID: <a83cab99-5f8a-8112-40c0-4e6c6a2e977f@redhat.com>
-Date: Thu, 7 Jan 2021 12:04:27 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.4.0
+Received: from fireflyinternet.com (unknown [77.68.26.236])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0F6C36E429
+ for <intel-gfx@lists.freedesktop.org>; Thu,  7 Jan 2021 11:06:06 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from build.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 23526331-1500050 
+ for multiple; Thu, 07 Jan 2021 11:05:56 +0000
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Thu,  7 Jan 2021 11:05:55 +0000
+Message-Id: <20210107110555.19386-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.20.1
+In-Reply-To: <20210106163642.4405-2-chris@chris-wilson.co.uk>
+References: <20210106163642.4405-2-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-In-Reply-To: <20201124154956.GL6112@intel.com>
-Authentication-Results: relay.mimecast.com;
- auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=hdegoede@redhat.com
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/dsi: Use unconditional msleep for
- the panel_on_delay when there is no reset-deassert MIPI-sequence
+Subject: [Intel-gfx] [PATCH v3] drm/i915/gt: Remove timeslice suppression
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -86,77 +38,371 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx <intel-gfx@lists.freedesktop.org>,
- dri-devel@lists.freedesktop.org
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: Chris Wilson <chris@chris-wilson.co.uk>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-SGksCgpPbiAxMS8yNC8yMCA0OjQ5IFBNLCBWaWxsZSBTeXJqw6Rsw6Qgd3JvdGU6Cj4gT24gV2Vk
-LCBOb3YgMTgsIDIwMjAgYXQgMDE6NDA6NThQTSArMDEwMCwgSGFucyBkZSBHb2VkZSB3cm90ZToK
-Pj4gQ29tbWl0IDI1YjQ2MjBlZTgyMiAoImRybS9pOTE1L2RzaTogU2tpcCBkZWxheXMgZm9yIHYz
-IFZCVHMgaW4gdmlkLW1vZGUiKQo+PiBhZGRlZCBhbiBpbnRlbF9kc2lfbXNsZWVwKCkgaGVscGVy
-IHdoaWNoIHNraXBzIHNsZWVwaW5nIGlmIHRoZQo+PiBNSVBJLXNlcXVlbmNlcyBoYXZlIGEgdmVy
-c2lvbiBvZiAzIG9yIG5ld2VyIGFuZCB0aGUgcGFuZWwgaXMgaW4gdmlkLW1vZGU7Cj4+IGFuZCBp
-dCBtb3ZlZCBhIGJ1bmNoIG9mIG1zbGVlcC1zIG92ZXIgdG8gdGhpcyBuZXcgaGVscGVyLgo+Pgo+
-PiBUaGlzIHdhcyBiYXNlZCBvbiBteSByZWFkaW5nIG9mIHRoZSBiaWcgY29tbWVudCBhcm91bmQg
-bGluZSA3MzAgd2hpY2gKPj4gc3RhcnRzIHdpdGggIlBhbmVsIGVuYWJsZS9kaXNhYmxlIHNlcXVl
-bmNlcyBmcm9tIHRoZSBWQlQgc3BlYy4iLAo+PiB3aGVyZSB0aGUgInYzIHZpZGVvIG1vZGUgc2Vx
-IiBjb2x1bW4gZG9lcyBub3QgaGF2ZSBhbnkgd2FpdCB0IyBlbnRyaWVzLgo+Pgo+PiBHaXZlbiB0
-aGF0IHRoaXMgY29kZSBoYXMgYmVlbiB1c2VkIG9uIGEgbG90IG9mIGRpZmZlcmVudCBkZXZpY2Vz
-IHdpdGhvdXQKPj4gaXNzdWVzIHVudGlsIG5vdywgaXQgc2VlbXMgdGhhdCBteSBpbnRlcnByZXRh
-dGlvbiBvZiB0aGUgc3BlYyBoZXJlIGlzCj4+IG1vc3RseSBjb3JyZWN0Lgo+Pgo+PiBCdXQgbm93
-IEkgaGF2ZSBlbmNvdW50ZXJlZCBvbmUgZGV2aWNlLCBhbiBBY2VyIEFzcGlyZSBTd2l0Y2ggMTAg
-RQo+PiBTVzMtMDE2LCB3aGVyZSB0aGUgcGFuZWwgd2lsbCBub3QgbGlnaHQgdXAgdW5sZXNzIHdl
-IGRvIGFjdHVhbGx5IGhvbm9yIHRoZQo+PiBwYW5lbF9vbl9kZWxheSBhZnRlciBleGV4dXRpbmcg
-dGhlIE1JUElfU0VRX1BBTkVMX09OIHNlcXVlbmNlLgo+Pgo+PiBXaGF0IHNlZW1zIHRvIHNldCB0
-aGlzIG1vZGVsIGFwYXJ0IGlzIHRoYXQgaXQgaXMgbGFja2luZyBhCj4+IE1JUElfU0VRX0RFQVNT
-RVJUX1JFU0VUIHNlcXVlbmNlLCB3aGljaCBpcyB3aGVyZSB0aGUgcG93ZXItb24KPj4gZGVsYXkg
-dXN1YWxseSBoYXBwZW5zLgo+Pgo+PiBGaXggdGhlIHBhbmVsIG5vdCBsaWdodGluZyB1cCBvbiB0
-aGlzIG1vZGVsIGJ5IHVzaW5nIGFuIHVuY29uZGl0aW9uYWwKPj4gbXNsZWVwKHBhbmVsX29uX2Rl
-bGF5KSBpbnN0ZWFkIG9mIGludGVsX2RzaV9tc2xlZXAoKSB3aGVuIHRoZXJlIGlzCj4+IG5vIE1J
-UElfU0VRX0RFQVNTRVJUX1JFU0VUIHNlcXVlbmNlLgo+Pgo+PiBGaXhlczogMjViNDYyMGVlODIy
-ICgiZHJtL2k5MTUvZHNpOiBTa2lwIGRlbGF5cyBmb3IgdjMgVkJUcyBpbiB2aWQtbW9kZSIpCj4+
-IFNpZ25lZC1vZmYtYnk6IEhhbnMgZGUgR29lZGUgPGhkZWdvZWRlQHJlZGhhdC5jb20+Cj4+IC0t
-LQo+PiAgZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS92bHZfZHNpLmMgfCAxMCArKysrKysr
-LS0tCj4+ICAxIGZpbGUgY2hhbmdlZCwgNyBpbnNlcnRpb25zKCspLCAzIGRlbGV0aW9ucygtKQo+
-Pgo+PiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS92bHZfZHNpLmMg
-Yi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L3Zsdl9kc2kuYwo+PiBpbmRleCAxOTRjMjM5
-YWI2YjEuLmVmNjczMjc3YjM2ZCAxMDA2NDQKPj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUv
-ZGlzcGxheS92bHZfZHNpLmMKPj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS92
-bHZfZHNpLmMKPj4gQEAgLTgxNiwxMCArODE2LDE0IEBAIHN0YXRpYyB2b2lkIGludGVsX2RzaV9w
-cmVfZW5hYmxlKHN0cnVjdCBpbnRlbF9hdG9taWNfc3RhdGUgKnN0YXRlLAo+PiAgCQlpbnRlbF9k
-c2lfcHJlcGFyZShlbmNvZGVyLCBwaXBlX2NvbmZpZyk7Cj4+ICAKPj4gIAlpbnRlbF9kc2lfdmJ0
-X2V4ZWNfc2VxdWVuY2UoaW50ZWxfZHNpLCBNSVBJX1NFUV9QT1dFUl9PTik7Cj4+IC0JaW50ZWxf
-ZHNpX21zbGVlcChpbnRlbF9kc2ksIGludGVsX2RzaS0+cGFuZWxfb25fZGVsYXkpOwo+PiAgCj4+
-IC0JLyogRGVhc3NlcnQgcmVzZXQgKi8KPj4gLQlpbnRlbF9kc2lfdmJ0X2V4ZWNfc2VxdWVuY2Uo
-aW50ZWxfZHNpLCBNSVBJX1NFUV9ERUFTU0VSVF9SRVNFVCk7Cj4+ICsJaWYgKGRldl9wcml2LT52
-YnQuZHNpLnNlcXVlbmNlW01JUElfU0VRX0RFQVNTRVJUX1JFU0VUXSkgewo+PiArCQlpbnRlbF9k
-c2lfbXNsZWVwKGludGVsX2RzaSwgaW50ZWxfZHNpLT5wYW5lbF9vbl9kZWxheSk7Cj4+ICsJCS8q
-IERlYXNzZXJ0IHJlc2V0ICovCj4+ICsJCWludGVsX2RzaV92YnRfZXhlY19zZXF1ZW5jZShpbnRl
-bF9kc2ksIE1JUElfU0VRX0RFQVNTRVJUX1JFU0VUKTsKPj4gKwl9IGVsc2Ugewo+PiArCQltc2xl
-ZXAoaW50ZWxfZHNpLT5wYW5lbF9vbl9kZWxheSk7Cj4+ICsJfQo+IAo+IENvdWxkIHBlcmhhcHMg
-dXNlIGEgY29tbWVudCBvdCBleHBsYWluIHRvIHRoZSByZWFkZXIgd2hhdCdzIGdvaW5nIG9uLgo+
-IAo+IExvb2tzIHNhbmUgZW5vdWdoIHRvIG1lLCBhbmQgaWYgd2UgZ2V0IHRoaXMgd3Jvbmcgd2Ug
-anVzdCBnZXQgYSBiaWdnZXIKPiBkZWxheSB0aGFuIG5lY2Vzc2FyeSBJIGd1ZXNzLiBTbyBtb3N0
-bHkgaGFybWxlc3MuCj4gCj4gUmV2aWV3ZWQtYnk6IFZpbGxlIFN5cmrDpGzDpCA8dmlsbGUuc3ly
-amFsYUBsaW51eC5pbnRlbC5jb20+CgpUaGFuayB5b3UsIGFuZCBzb3JyeSBmb3IgYmVpbmcgc2xv
-dyB3aXRoIGdldHRpbmcgYXJvdW5kIHRvCnB1c2hpbmcgdGhpcyB0byBkcm0taW50ZWwtbmV4dC4K
-CkkndmUganVzdCBwdXNoZWQgaXQgdG8gZHJtLWludGVsLW5leHQgd2l0aCBhIGNvbW1lbnQgYWRk
-ZWQgYWJvdmUgdGhlIGlmCihhbmQgZHJvcHBlZCB0aGUgc2luZ2xlIGxpbmUgY29tbWVudCBpbnNp
-ZGUgdGhlIGlmKSwgc28gdGhpcyBub3cKbG9va3MgbGlrZSB0aGlzOgoKCS8qCgkgKiBHaXZlIHRo
-ZSBwYW5lbCB0aW1lIHRvIHBvd2VyLW9uIGFuZCB0aGVuIGRlYXNzZXJ0IGl0cyByZXNldC4KCSAq
-IERlcGVuZGluZyBvbiB0aGUgVkJUIE1JUEkgc2VxdWVuY2VzIHZlcnNpb24gdGhlIGRlYXNzZXJ0
-LXNlcQoJICogbWF5IGNvbnRhaW4gdGhlIG5lY2Vzc2FyeSBkZWxheSwgaW50ZWxfZHNpX21zbGVl
-cCgpIHdpbGwgc2tpcAoJICogdGhlIGRlbGF5IGluIHRoYXQgY2FzZS4gSWYgdGhlcmUgaXMgbm8g
-ZGVhc3NlcnQtc2VxLCB0aGVuIGFuCgkgKiB1bmNvbmRpdGlvbmFsIG1zbGVlcCBpcyB1c2VkIHRv
-IGdpdmUgdGhlIHBhbmVsIHRpbWUgdG8gcG93ZXItb24uCgkgKi8KCWlmIChkZXZfcHJpdi0+dmJ0
-LmRzaS5zZXF1ZW5jZVtNSVBJX1NFUV9ERUFTU0VSVF9SRVNFVF0pIHsKCQlpbnRlbF9kc2lfbXNs
-ZWVwKGludGVsX2RzaSwgaW50ZWxfZHNpLT5wYW5lbF9vbl9kZWxheSk7CgkJaW50ZWxfZHNpX3Zi
-dF9leGVjX3NlcXVlbmNlKGludGVsX2RzaSwgTUlQSV9TRVFfREVBU1NFUlRfUkVTRVQpOwoJfSBl
-bHNlIHsKCQltc2xlZXAoaW50ZWxfZHNpLT5wYW5lbF9vbl9kZWxheSk7Cgl9CgoodGhlIGNvZGUg
-aXMgdW5jaGFuZ2VkIGZyb20gd2hlbiB5b3UgcmV2aWV3ZWQgaXQpLgoKUmVnYXJkcywKCkhhbnMK
-Cl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdm
-eCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xp
-c3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
+In the next^W future patch, we remove the strict priority system and
+continuously re-evaluate the relative priority of tasks. As such we need
+to enable the timeslice whenever there is more than one context in the
+pipeline. This simplifies the decision and removes some of the tweaks to
+suppress timeslicing, allowing us to lift the timeslice enabling to a
+common spot at the end of running the submission tasklet.
+
+One consequence of the suppression is that it was reducing fairness
+between virtual engines on an over saturated system; undermining the
+principle for timeslicing.
+
+v2: Commentary
+v3: Commentary for the right cancel_timer()
+
+Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/2802
+Testcase: igt/gem_exec_balancer/fairslice
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+---
+ drivers/gpu/drm/i915/gt/intel_engine_types.h  |  10 -
+ .../drm/i915/gt/intel_execlists_submission.c  | 204 +++++++++---------
+ 2 files changed, 99 insertions(+), 115 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/gt/intel_engine_types.h b/drivers/gpu/drm/i915/gt/intel_engine_types.h
+index 430066e5884c..df62e793e747 100644
+--- a/drivers/gpu/drm/i915/gt/intel_engine_types.h
++++ b/drivers/gpu/drm/i915/gt/intel_engine_types.h
+@@ -238,16 +238,6 @@ struct intel_engine_execlists {
+ 	 */
+ 	unsigned int port_mask;
+ 
+-	/**
+-	 * @switch_priority_hint: Second context priority.
+-	 *
+-	 * We submit multiple contexts to the HW simultaneously and would
+-	 * like to occasionally switch between them to emulate timeslicing.
+-	 * To know when timeslicing is suitable, we track the priority of
+-	 * the context submitted second.
+-	 */
+-	int switch_priority_hint;
+-
+ 	/**
+ 	 * @queue_priority_hint: Highest pending priority.
+ 	 *
+diff --git a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
+index a5b442683c18..13be71a81a38 100644
+--- a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
++++ b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
+@@ -1148,25 +1148,6 @@ static void defer_active(struct intel_engine_cs *engine)
+ 	defer_request(rq, i915_sched_lookup_priolist(engine, rq_prio(rq)));
+ }
+ 
+-static bool
+-need_timeslice(const struct intel_engine_cs *engine,
+-	       const struct i915_request *rq)
+-{
+-	int hint;
+-
+-	if (!intel_engine_has_timeslices(engine))
+-		return false;
+-
+-	hint = max(engine->execlists.queue_priority_hint,
+-		   virtual_prio(&engine->execlists));
+-
+-	if (!list_is_last(&rq->sched.link, &engine->active.requests))
+-		hint = max(hint, rq_prio(list_next_entry(rq, sched.link)));
+-
+-	GEM_BUG_ON(hint >= I915_PRIORITY_UNPREEMPTABLE);
+-	return hint >= effective_prio(rq);
+-}
+-
+ static bool
+ timeslice_yield(const struct intel_engine_execlists *el,
+ 		const struct i915_request *rq)
+@@ -1186,76 +1167,74 @@ timeslice_yield(const struct intel_engine_execlists *el,
+ 	return rq->context->lrc.ccid == READ_ONCE(el->yield);
+ }
+ 
+-static bool
+-timeslice_expired(const struct intel_engine_execlists *el,
+-		  const struct i915_request *rq)
++static bool needs_timeslice(const struct intel_engine_cs *engine,
++			    const struct i915_request *rq)
+ {
++	if (!intel_engine_has_timeslices(engine))
++		return false;
++
++	/* If not currently active, or about to switch, wait for next event */
++	if (!rq || __i915_request_is_complete(rq))
++		return false;
++
++	/* We do not need to start the timeslice until after the ACK */
++	if (READ_ONCE(engine->execlists.pending[0]))
++		return false;
++
++	/* If ELSP[1] is occupied, always check to see if worth slicing */
++	if (!list_is_last_rcu(&rq->sched.link, &engine->active.requests))
++		return true;
++
++	/* Otherwise, ELSP[0] is by itself, but may be waiting in the queue */
++	if (!RB_EMPTY_ROOT(&engine->execlists.queue.rb_root))
++		return true;
++
++	return !RB_EMPTY_ROOT(&engine->execlists.virtual.rb_root);
++}
++
++static bool
++timeslice_expired(struct intel_engine_cs *engine, const struct i915_request *rq)
++{
++	const struct intel_engine_execlists *el = &engine->execlists;
++
++	if (i915_request_has_nopreempt(rq) && __i915_request_has_started(rq))
++		return false;
++
++	if (!needs_timeslice(engine, rq))
++		return false;
++
+ 	return timer_expired(&el->timer) || timeslice_yield(el, rq);
+ }
+ 
+-static int
+-switch_prio(struct intel_engine_cs *engine, const struct i915_request *rq)
+-{
+-	if (list_is_last(&rq->sched.link, &engine->active.requests))
+-		return engine->execlists.queue_priority_hint;
+-
+-	return rq_prio(list_next_entry(rq, sched.link));
+-}
+-
+-static inline unsigned long
+-timeslice(const struct intel_engine_cs *engine)
++static unsigned long timeslice(const struct intel_engine_cs *engine)
+ {
+ 	return READ_ONCE(engine->props.timeslice_duration_ms);
+ }
+ 
+-static unsigned long active_timeslice(const struct intel_engine_cs *engine)
+-{
+-	const struct intel_engine_execlists *execlists = &engine->execlists;
+-	const struct i915_request *rq = *execlists->active;
+-
+-	if (!rq || __i915_request_is_complete(rq))
+-		return 0;
+-
+-	if (READ_ONCE(execlists->switch_priority_hint) < effective_prio(rq))
+-		return 0;
+-
+-	return timeslice(engine);
+-}
+-
+-static void set_timeslice(struct intel_engine_cs *engine)
++static void start_timeslice(struct intel_engine_cs *engine)
+ {
++	struct intel_engine_execlists *el = &engine->execlists;
+ 	unsigned long duration;
+ 
+-	if (!intel_engine_has_timeslices(engine))
+-		return;
++	/* Disable the timer if there is nothing to switch to */
++	duration = 0;
++	if (needs_timeslice(engine, *el->active)) {
++		/* Avoid continually prolonging an active timeslice */
++		if (timer_active(&el->timer)) {
++			/*
++			 * If we just submitted a new ELSP after an old
++			 * context, that context may have already consumed
++			 * its timeslice, so recheck.
++			 */
++			if (!timer_pending(&el->timer))
++				tasklet_hi_schedule(&engine->execlists.tasklet);
++			return;
++		}
+ 
+-	duration = active_timeslice(engine);
+-	ENGINE_TRACE(engine, "bump timeslicing, interval:%lu", duration);
++		duration = timeslice(engine);
++	}
+ 
+-	set_timer_ms(&engine->execlists.timer, duration);
+-}
+-
+-static void start_timeslice(struct intel_engine_cs *engine, int prio)
+-{
+-	struct intel_engine_execlists *execlists = &engine->execlists;
+-	unsigned long duration;
+-
+-	if (!intel_engine_has_timeslices(engine))
+-		return;
+-
+-	WRITE_ONCE(execlists->switch_priority_hint, prio);
+-	if (prio == INT_MIN)
+-		return;
+-
+-	if (timer_pending(&execlists->timer))
+-		return;
+-
+-	duration = timeslice(engine);
+-	ENGINE_TRACE(engine,
+-		     "start timeslicing, prio:%d, interval:%lu",
+-		     prio, duration);
+-
+-	set_timer_ms(&execlists->timer, duration);
++	set_timer_ms(&el->timer, duration);
+ }
+ 
+ static void record_preemption(struct intel_engine_execlists *execlists)
+@@ -1368,16 +1347,32 @@ static void execlists_dequeue(struct intel_engine_cs *engine)
+ 			__unwind_incomplete_requests(engine);
+ 
+ 			last = NULL;
+-		} else if (need_timeslice(engine, last) &&
+-			   timeslice_expired(execlists, last)) {
++		} else if (timeslice_expired(engine, last)) {
+ 			ENGINE_TRACE(engine,
+-				     "expired last=%llx:%lld, prio=%d, hint=%d, yield?=%s\n",
+-				     last->fence.context,
+-				     last->fence.seqno,
+-				     last->sched.attr.priority,
++				     "expired:%s last=%llx:%lld, prio=%d, hint=%d, yield?=%s\n",
++				     yesno(timer_expired(&execlists->timer)),
++				     last->fence.context, last->fence.seqno,
++				     rq_prio(last),
+ 				     execlists->queue_priority_hint,
+ 				     yesno(timeslice_yield(execlists, last)));
+ 
++			/*
++			 * Consume this timeslice; ensure we start a new one.
++			 *
++			 * The timeslice expired, and we will unwind the
++			 * running contexts and recompute the next ELSP.
++			 * If that submit will be the same pair of contexts
++			 * (due to dependency ordering), we will skip the
++			 * submission. If we don't cancel the timer now,
++			 * we will see that the timer has expired and
++			 * reschedule the tasklet; continually until the
++			 * next context switch or other preeemption event.
++			 *
++			 * Since we have decided to reschedule based on
++			 * consumption of this timeslice, if we submit the
++			 * same context again, grant it a full timeslice.
++			 */
++			cancel_timer(&execlists->timer);
+ 			ring_set_paused(engine, 1);
+ 			defer_active(engine);
+ 
+@@ -1413,7 +1408,6 @@ static void execlists_dequeue(struct intel_engine_cs *engine)
+ 				 * of timeslices, our queue might be.
+ 				 */
+ 				spin_unlock(&engine->active.lock);
+-				start_timeslice(engine, queue_prio(execlists));
+ 				return;
+ 			}
+ 		}
+@@ -1440,7 +1434,6 @@ static void execlists_dequeue(struct intel_engine_cs *engine)
+ 		if (last && !can_merge_rq(last, rq)) {
+ 			spin_unlock(&ve->base.active.lock);
+ 			spin_unlock(&engine->active.lock);
+-			start_timeslice(engine, rq_prio(rq));
+ 			return; /* leave this for another sibling */
+ 		}
+ 
+@@ -1604,29 +1597,23 @@ static void execlists_dequeue(struct intel_engine_cs *engine)
+ 	execlists->queue_priority_hint = queue_prio(execlists);
+ 	spin_unlock(&engine->active.lock);
+ 
+-	if (submit) {
+-		/*
+-		 * Skip if we ended up with exactly the same set of requests,
+-		 * e.g. trying to timeslice a pair of ordered contexts
+-		 */
+-		if (!memcmp(execlists->active,
+-			    execlists->pending,
+-			    (port - execlists->pending) * sizeof(*port)))
+-			goto skip_submit;
+-
++	/*
++	 * We can skip poking the HW if we ended up with exactly the same set
++	 * of requests as currently running, e.g. trying to timeslice a pair
++	 * of ordered contexts.
++	 */
++	if (submit &&
++	    memcmp(execlists->active,
++		   execlists->pending,
++		   (port - execlists->pending) * sizeof(*port))) {
+ 		*port = NULL;
+ 		while (port-- != execlists->pending)
+ 			execlists_schedule_in(*port, port - execlists->pending);
+ 
+-		execlists->switch_priority_hint =
+-			switch_prio(engine, *execlists->pending);
+-
+ 		WRITE_ONCE(execlists->yield, -1);
+ 		set_preempt_timeout(engine, *execlists->active);
+ 		execlists_submit_ports(engine);
+ 	} else {
+-		start_timeslice(engine, execlists->queue_priority_hint);
+-skip_submit:
+ 		ring_set_paused(engine, 0);
+ 		while (port-- != execlists->pending)
+ 			i915_request_put(*port);
+@@ -1865,6 +1852,8 @@ process_csb(struct intel_engine_cs *engine, struct i915_request **inactive)
+ 	 * we perform the READ_ONCE(*csb_write).
+ 	 */
+ 	rmb();
++
++	*inactive = NULL;
+ 	do {
+ 		bool promote;
+ 		u64 csb;
+@@ -1984,8 +1973,6 @@ process_csb(struct intel_engine_cs *engine, struct i915_request **inactive)
+ 		}
+ 	} while (head != tail);
+ 
+-	set_timeslice(engine);
+-
+ 	/*
+ 	 * Gen11 has proven to fail wrt global observation point between
+ 	 * entry and tail update, failing on the ordering and thus
+@@ -1999,6 +1986,14 @@ process_csb(struct intel_engine_cs *engine, struct i915_request **inactive)
+ 	 */
+ 	invalidate_csb_entries(&buf[0], &buf[num_entries - 1]);
+ 
++	/*
++	 * We assume that any event reflects a change in context flow
++	 * and merits a fresh timeslice. We reinstall the timer after
++	 * inspecting the queue to see if we need to resumbit.
++	 */
++	if (*inactive != *execlists->active) /* elide lite-restores */
++		cancel_timer(&execlists->timer);
++
+ 	return inactive;
+ }
+ 
+@@ -2410,8 +2405,10 @@ static void execlists_submission_tasklet(unsigned long data)
+ 		execlists_reset(engine, msg);
+ 	}
+ 
+-	if (!engine->execlists.pending[0])
++	if (!engine->execlists.pending[0]) {
+ 		execlists_dequeue_irq(engine);
++		start_timeslice(engine);
++	}
+ 
+ 	post_process_csb(post, inactive);
+ 	rcu_read_unlock();
+@@ -3856,9 +3853,6 @@ void intel_execlists_show_requests(struct intel_engine_cs *engine,
+ 		show_request(m, last, "\t\t", 0);
+ 	}
+ 
+-	if (execlists->switch_priority_hint != INT_MIN)
+-		drm_printf(m, "\t\tSwitch priority hint: %d\n",
+-			   READ_ONCE(execlists->switch_priority_hint));
+ 	if (execlists->queue_priority_hint != INT_MIN)
+ 		drm_printf(m, "\t\tQueue priority hint: %d\n",
+ 			   READ_ONCE(execlists->queue_priority_hint));
+-- 
+2.20.1
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
