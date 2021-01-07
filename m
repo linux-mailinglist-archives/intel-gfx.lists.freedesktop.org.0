@@ -1,43 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6E0AE2ED540
-	for <lists+intel-gfx@lfdr.de>; Thu,  7 Jan 2021 18:16:00 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id B82252ED53F
+	for <lists+intel-gfx@lfdr.de>; Thu,  7 Jan 2021 18:15:15 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E1A9D6E46B;
-	Thu,  7 Jan 2021 17:15:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BBE616E4B0;
+	Thu,  7 Jan 2021 17:15:13 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 061CE6E46B
- for <intel-gfx@lists.freedesktop.org>; Thu,  7 Jan 2021 17:15:57 +0000 (UTC)
-IronPort-SDR: 3IvoqCzZn87MSoccHeXgn8AZDaxL0AJ5ANPj45n3Ye8Gno5hLPXvmqEMLymH+auAkf8+luT6o0
- RNlZhCYMonvQ==
-X-IronPort-AV: E=McAfee;i="6000,8403,9857"; a="174880919"
-X-IronPort-AV: E=Sophos;i="5.79,329,1602572400"; d="scan'208";a="174880919"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Jan 2021 09:15:57 -0800
-IronPort-SDR: QcLjuau2QSFoI1Hzm5B8ZfSnr4z5nFfbQpHHw96WCUKOOLM69o5eQs2YL0GooPhiQaPLokKINJ
- opWg+MOrAfgg==
-X-IronPort-AV: E=Sophos;i="5.79,329,1602572400"; d="scan'208";a="362038798"
-Received: from unknown (HELO sdutt-i7) ([10.165.21.147])
- by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Jan 2021 09:15:56 -0800
-Date: Thu, 7 Jan 2021 09:10:35 -0800
-From: Matthew Brost <matthew.brost@intel.com>
-To: Chris Wilson <chris@chris-wilson.co.uk>
-Message-ID: <20210107171035.GA9023@sdutt-i7>
-References: <20201229120145.26045-1-chris@chris-wilson.co.uk>
- <20201229120145.26045-36-chris@chris-wilson.co.uk>
- <20210107160507.GA31817@sdutt-i7>
- <161003793126.28368.13767958122371874524@build.alporthouse.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 0E4F26E46B;
+ Thu,  7 Jan 2021 17:15:12 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 0954FA8831;
+ Thu,  7 Jan 2021 17:15:12 +0000 (UTC)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <161003793126.28368.13767958122371874524@build.alporthouse.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
-Subject: Re: [Intel-gfx] [PATCH 36/56] drm/i915: Fair low-latency scheduling
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Thu, 07 Jan 2021 17:15:12 -0000
+Message-ID: <161003971200.21185.4287396820237004221@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210106163642.4405-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20210106163642.4405-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
+ =?utf-8?q?ies_starting_with_=5Bv2=2C1/2=5D_drm/i915=3A_Wrap_our_timer=5Fl?=
+ =?utf-8?q?ist=2Eexpires_checking_=28rev3=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,137 +39,236 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============1307283357=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Jan 07, 2021 at 04:45:31PM +0000, Chris Wilson wrote:
-> Quoting Matthew Brost (2021-01-07 16:05:07)
-> > On Tue, Dec 29, 2020 at 12:01:25PM +0000, Chris Wilson wrote:
-> > > The first "scheduler" was a topographical sorting of requests into
-> > > priority order. The execution order was deterministic, the earliest
-> > > submitted, highest priority request would be executed first. Priority
-> > > inheritance ensured that inversions were kept at bay, and allowed us to
-> > > dynamically boost priorities (e.g. for interactive pageflips).
-> > > 
-> > > The minimalistic timeslicing scheme was an attempt to introduce fairness
-> > > between long running requests, by evicting the active request at the end
-> > > of a timeslice and moving it to the back of its priority queue (while
-> > > ensuring that dependencies were kept in order). For short running
-> > > requests from many clients of equal priority, the scheme is still very
-> > > much FIFO submission ordering, and as unfair as before.
-> > > 
-> > > To impose fairness, we need an external metric that ensures that clients
-> > > are interpersed, so we don't execute one long chain from client A before
-> > > executing any of client B. This could be imposed by the clients
-> > > themselves by using fences based on an external clock, that is they only
-> > > submit work for a "frame" at frame-intervals, instead of submitting as
-> > > much work as they are able to. The standard SwapBuffers approach is akin
-> > > to double bufferring, where as one frame is being executed, the next is
-> > > being submitted, such that there is always a maximum of two frames per
-> > > client in the pipeline and so ideally maintains consistent input-output
-> > > latency. Even this scheme exhibits unfairness under load as a single
-> > > client will execute two frames back to back before the next, and with
-> > > enough clients, deadlines will be missed.
-> > > 
-> > > The idea introduced by BFS/MuQSS is that fairness is introduced by
-> > > metering with an external clock. Every request, when it becomes ready to
-> > > execute is assigned a virtual deadline, and execution order is then
-> > > determined by earliest deadline. Priority is used as a hint, rather than
-> > > strict ordering, where high priority requests have earlier deadlines,
-> > > but not necessarily earlier than outstanding work. Thus work is executed
-> > > in order of 'readiness', with timeslicing to demote long running work.
-> > > 
-> > > The Achille's heel of this scheduler is its strong preference for
-> > > low-latency and favouring of new queues. Whereas it was easy to dominate
-> > > the old scheduler by flooding it with many requests over a short period
-> > > of time, the new scheduler can be dominated by a 'synchronous' client
-> > > that waits for each of its requests to complete before submitting the
-> > > next. As such a client has no history, it is always considered
-> > > ready-to-run and receives an earlier deadline than the long running
-> > > requests. This is compensated for by refreshing the current execution's
-> > > deadline and by disallowing preemption for timeslice shuffling.
-> > > 
-> > > To check the impact on throughput (often the downfall of latency
-> > > sensitive schedulers), we used gem_wsim to simulate various transcode
-> > > workloads with different load balancers, and varying the number of
-> > > competing [heterogenous] clients.
-> > > 
-> > > +delta%------------------------------------------------------------------+
-> > > |                                a                                       |
-> > > |                                a                                       |
-> > > |                                aa                                      |
-> > > |                                aa                                      |
-> > > |                                aa                                      |
-> > > |                                aa                                      |
-> > > |                               aaa                                      |
-> > > |                              aaaa                                      |
-> > > |                           a  aaaaa                                     |
-> > > |                           a aaaaaa                                     |
-> > > |a              aa   a      aaaaaaaaaa aa               a               a|
-> > > |                                A_|                                     |
-> > > +------------------------------------------------------------------------+
-> > >    N          Min           Max        Median           Avg        Stddev
-> > >  108   -23.982194     28.421527  -0.077474828  -0.072650418    0.16179718
-> > > 
-> > > The impact was on average 0.1% under contention due to the change in
-> > > context execution order and number of context switches. The biggest
-> > > swings are due to the execution ordering favouring one client or another,
-> > > and maybe room for improvement.
-> > > 
-> > 
-> > I haven't dug into this series deeply but it does seem plausible for
-> > execlist submission. However this new scheduler seems completely broken
-> > for Guc submission.
-> 
-> Underneath it's the same topological sort, just with a different key.
-> At worst, that key can be the plain priority again. But that's pretty
-> much immaterial in terms of deciding the order which requests are
-> transferred from one queue to another. Execution order wants to be based
-> on resource prioritisation (beyond request priorisation), ideally we
-> would keep our fine grained scheduling control.
-> 
+--===============1307283357==
+Content-Type: multipart/alternative;
+ boundary="===============8182693720943100174=="
 
-So maybe just hook for the key?
+--===============8182693720943100174==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-> I'm not convinced by the state of the fw's scheduler...
->
+== Series Details ==
 
-Can't really argue here, but I think it would be really helpful if you
-raised your concerns with the fw team so that can be addressed.
- 
-> > The scheduler really isn't used that much with GuC
-> > submission but when it is the old one works perfectly. The vfunc for
-> > the scheduler is deleted in patch #25. I don't think that is good idea
-> > as it appears we are trending to 2 separate schedulers.
-> 
-> You still use the i915_request_set_priority() entry point as the
-> caller into the backend bypass.
->
+Series: series starting with [v2,1/2] drm/i915: Wrap our timer_list.expires checking (rev3)
+URL   : https://patchwork.freedesktop.org/series/85551/
+State : success
 
-I thought we want to avoid backend specific branches, hence vfuncs.
+== Summary ==
 
-> Isn't the current guc.fw a second closed driver for the same HW anyway?
->
+CI Bug Log - changes from CI_DRM_9562 -> Patchwork_19279
+====================================================
 
-Not sure I follow this.
- 
-> > Lastly this series seems to be on the wrong list, I believe it should be
-> > posted elsewhere first.
-> 
-> It's the right place for upstreaming bug fixes on stable platforms. And
-> after a year of being here, that's a moot point.
+Summary
+-------
 
-Wow, I feel your pain if this has been out here for a year. But still it
-is wrong place. I can help and will help with the reviews if it is in
-the correct spot.
+  **SUCCESS**
 
-Matt
+  No regressions found.
 
-> -Chris
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19279/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_19279 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@gem_exec_suspend@basic-s3:
+    - fi-tgl-u2:          [PASS][1] -> [FAIL][2] ([i915#1888])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9562/fi-tgl-u2/igt@gem_exec_suspend@basic-s3.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19279/fi-tgl-u2/igt@gem_exec_suspend@basic-s3.html
+
+  * igt@gem_mmap_gtt@basic:
+    - fi-tgl-y:           [PASS][3] -> [DMESG-WARN][4] ([i915#402]) +1 similar issue
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9562/fi-tgl-y/igt@gem_mmap_gtt@basic.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19279/fi-tgl-y/igt@gem_mmap_gtt@basic.html
+
+  * igt@i915_selftest@live@gem:
+    - fi-bsw-n3050:       [PASS][5] -> [DMESG-WARN][6] ([i915#2826])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9562/fi-bsw-n3050/igt@i915_selftest@live@gem.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19279/fi-bsw-n3050/igt@i915_selftest@live@gem.html
+
+  * igt@i915_selftest@live@gem_contexts:
+    - fi-bsw-n3050:       [PASS][7] -> [INCOMPLETE][8] ([i915#2369])
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9562/fi-bsw-n3050/igt@i915_selftest@live@gem_contexts.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19279/fi-bsw-n3050/igt@i915_selftest@live@gem_contexts.html
+
+  * igt@runner@aborted:
+    - fi-bsw-n3050:       NOTRUN -> [FAIL][9] ([i915#1436] / [i915#483])
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19279/fi-bsw-n3050/igt@runner@aborted.html
+
+  
+#### Possible fixes ####
+
+  * igt@debugfs_test@read_all_entries:
+    - fi-tgl-y:           [DMESG-WARN][10] ([i915#402]) -> [PASS][11] +2 similar issues
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9562/fi-tgl-y/igt@debugfs_test@read_all_entries.html
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19279/fi-tgl-y/igt@debugfs_test@read_all_entries.html
+
+  * igt@gem_exec_suspend@basic-s3:
+    - fi-tgl-y:           [DMESG-WARN][12] ([i915#2411] / [i915#402]) -> [PASS][13]
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9562/fi-tgl-y/igt@gem_exec_suspend@basic-s3.html
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19279/fi-tgl-y/igt@gem_exec_suspend@basic-s3.html
+
+  
+  [i915#1436]: https://gitlab.freedesktop.org/drm/intel/issues/1436
+  [i915#1888]: https://gitlab.freedesktop.org/drm/intel/issues/1888
+  [i915#2369]: https://gitlab.freedesktop.org/drm/intel/issues/2369
+  [i915#2411]: https://gitlab.freedesktop.org/drm/intel/issues/2411
+  [i915#2826]: https://gitlab.freedesktop.org/drm/intel/issues/2826
+  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
+  [i915#483]: https://gitlab.freedesktop.org/drm/intel/issues/483
+
+
+Participating hosts (43 -> 38)
+------------------------------
+
+  Missing    (5): fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_9562 -> Patchwork_19279
+
+  CI-20190529: 20190529
+  CI_DRM_9562: fc8d32007355b4babc37b621b3c9a4e0fe998d27 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5946: 641e5545213dd9a82d80a4e065013a138afb58ff @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_19279: 00408bfe5158970f1350607258989d54d4845eaa @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+00408bfe5158 drm/i915/gt: Remove timeslice suppression
+48f5aaacb2c8 drm/i915: Wrap our timer_list.expires checking
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19279/index.html
+
+--===============8182693720943100174==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>series starting with [v2,1/2] drm/i915: Wrap our timer_list.expires checking (rev3)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/85551/">https://patchwork.freedesktop.org/series/85551/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19279/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19279/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_9562 -&gt; Patchwork_19279</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19279/index.html</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_19279 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@gem_exec_suspend@basic-s3:</p>
+<ul>
+<li>fi-tgl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9562/fi-tgl-u2/igt@gem_exec_suspend@basic-s3.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19279/fi-tgl-u2/igt@gem_exec_suspend@basic-s3.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1888">i915#1888</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_mmap_gtt@basic:</p>
+<ul>
+<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9562/fi-tgl-y/igt@gem_mmap_gtt@basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19279/fi-tgl-y/igt@gem_mmap_gtt@basic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) +1 similar issue</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@gem:</p>
+<ul>
+<li>fi-bsw-n3050:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9562/fi-bsw-n3050/igt@i915_selftest@live@gem.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19279/fi-bsw-n3050/igt@i915_selftest@live@gem.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2826">i915#2826</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@gem_contexts:</p>
+<ul>
+<li>fi-bsw-n3050:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9562/fi-bsw-n3050/igt@i915_selftest@live@gem_contexts.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19279/fi-bsw-n3050/igt@i915_selftest@live@gem_contexts.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2369">i915#2369</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@runner@aborted:</p>
+<ul>
+<li>fi-bsw-n3050:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19279/fi-bsw-n3050/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1436">i915#1436</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/483">i915#483</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@debugfs_test@read_all_entries:</p>
+<ul>
+<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9562/fi-tgl-y/igt@debugfs_test@read_all_entries.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19279/fi-tgl-y/igt@debugfs_test@read_all_entries.html">PASS</a> +2 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_exec_suspend@basic-s3:</p>
+<ul>
+<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9562/fi-tgl-y/igt@gem_exec_suspend@basic-s3.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2411">i915#2411</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19279/fi-tgl-y/igt@gem_exec_suspend@basic-s3.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Participating hosts (43 -&gt; 38)</h2>
+<p>Missing    (5): fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-bdw-samus </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_9562 -&gt; Patchwork_19279</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_9562: fc8d32007355b4babc37b621b3c9a4e0fe998d27 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_5946: 641e5545213dd9a82d80a4e065013a138afb58ff @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
+  Patchwork_19279: 00408bfe5158970f1350607258989d54d4845eaa @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>00408bfe5158 drm/i915/gt: Remove timeslice suppression<br />
+48f5aaacb2c8 drm/i915: Wrap our timer_list.expires checking</p>
+
+</body>
+</html>
+
+--===============8182693720943100174==--
+
+--===============1307283357==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============1307283357==--
