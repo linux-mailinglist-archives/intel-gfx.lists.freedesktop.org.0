@@ -1,37 +1,35 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 142BC2ECED5
-	for <lists+intel-gfx@lfdr.de>; Thu,  7 Jan 2021 12:37:56 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id F02A92ECEDB
+	for <lists+intel-gfx@lfdr.de>; Thu,  7 Jan 2021 12:40:05 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1D7CA6E439;
-	Thu,  7 Jan 2021 11:37:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AC5FC6E43F;
+	Thu,  7 Jan 2021 11:40:03 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A05896E439
- for <intel-gfx@lists.freedesktop.org>; Thu,  7 Jan 2021 11:37:51 +0000 (UTC)
-IronPort-SDR: lT6AfW7YrlFnrEOiXnSJZ+k0CPX2AHV/uKNzKBjALI+MJY/CIE9JAQD9sIbwNqLYu44ugI+Kxv
- MKZd2BsrRGEg==
-X-IronPort-AV: E=McAfee;i="6000,8403,9856"; a="177511563"
-X-IronPort-AV: E=Sophos;i="5.79,329,1602572400"; d="scan'208";a="177511563"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Jan 2021 03:37:50 -0800
-IronPort-SDR: 0vI5zadMTP8i1NDZoiO0iqm6wzzFWPpRp4CWgNC9S8uxZz2gqIA4IQJqyOgv9cEggLTvtIKpVc
- vnDL7Dv9WNlg==
-X-IronPort-AV: E=Sophos;i="5.79,329,1602572400"; d="scan'208";a="403006765"
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 98C366E43F
+ for <intel-gfx@lists.freedesktop.org>; Thu,  7 Jan 2021 11:40:02 +0000 (UTC)
+IronPort-SDR: pjbBoZ6+WqfBJ6G006lFy2Swq6aa2lm1gpL4QddGchV2rFpZ9YzrxpwunCqN3e1cXDx2roavSu
+ jKuSuNjw7vmw==
+X-IronPort-AV: E=McAfee;i="6000,8403,9856"; a="176634168"
+X-IronPort-AV: E=Sophos;i="5.79,329,1602572400"; d="scan'208";a="176634168"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Jan 2021 03:40:02 -0800
+IronPort-SDR: Ce3GxB46WK70RdJvvKRCbKtSuwYkiOOXSfZt69kr6HPUbtqkPhZCV91r79Mw/XmUdtI+6fZ0EE
+ fHPHGSVM/B2w==
+X-IronPort-AV: E=Sophos;i="5.79,329,1602572400"; d="scan'208";a="379682715"
 Received: from unknown (HELO genxfsim-desktop.iind.intel.com) ([10.223.74.179])
- by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Jan 2021 03:37:48 -0800
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Jan 2021 03:39:59 -0800
 From: Anshuman Gupta <anshuman.gupta@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Thu,  7 Jan 2021 16:53:01 +0530
-Message-Id: <20210107112301.16160-1-anshuman.gupta@intel.com>
+Date: Thu,  7 Jan 2021 16:55:00 +0530
+Message-Id: <20210107112500.16216-1-anshuman.gupta@intel.com>
 X-Mailer: git-send-email 2.26.2
-In-Reply-To: <20210106043438.27754-1-anshuman.gupta@intel.com>
-References: <20210106043438.27754-1-anshuman.gupta@intel.com>
 MIME-Version: 1.0
 Subject: [Intel-gfx] [PATCH] drm/i915/pps: Reuse POWER_DOMAIN_DISPLAY_CORE
  in pps_{lock, unlock}
