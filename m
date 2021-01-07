@@ -2,40 +2,39 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 646BA2ED62A
-	for <lists+intel-gfx@lfdr.de>; Thu,  7 Jan 2021 18:58:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C6F442ED6A0
+	for <lists+intel-gfx@lfdr.de>; Thu,  7 Jan 2021 19:20:48 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BA13A6E49C;
-	Thu,  7 Jan 2021 17:58:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2B4756E4CA;
+	Thu,  7 Jan 2021 18:20:47 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 592EE6E49C
- for <intel-gfx@lists.freedesktop.org>; Thu,  7 Jan 2021 17:58:00 +0000 (UTC)
-IronPort-SDR: pC5sObXsciR6Xjab2KASlueuhcbrA5wOqBX7Jd4O1HG5d41rTWqhex+pI/XRYTJF9VrL/U1ZxQ
- IXdM9zlbkppw==
-X-IronPort-AV: E=McAfee;i="6000,8403,9857"; a="177616207"
-X-IronPort-AV: E=Sophos;i="5.79,329,1602572400"; d="scan'208";a="177616207"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Jan 2021 09:57:59 -0800
-IronPort-SDR: cG9sGVH4R1mT/MElCUNnGA/Uc4P9OsQsDsW86+5r9p8khsoYANME75YMFMMqu1i5mrbuyW8a8D
- cRKpnKrweyYg==
-X-IronPort-AV: E=Sophos;i="5.79,329,1602572400"; d="scan'208";a="347071936"
-Received: from muhymini-mobl.amr.corp.intel.com (HELO localhost)
- ([10.213.207.83])
- by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Jan 2021 09:57:57 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Tejas Upadhyay <tejaskumarx.surendrakumar.upadhyay@intel.com>,
- intel-gfx@lists.freedesktop.org, hariom.pandey@intel.com
-In-Reply-To: <20210105113917.54746-1-tejaskumarx.surendrakumar.upadhyay@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20210105113917.54746-1-tejaskumarx.surendrakumar.upadhyay@intel.com>
-Date: Thu, 07 Jan 2021 19:57:54 +0200
-Message-ID: <87pn2gzl25.fsf@intel.com>
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 09CAC6E4CB
+ for <intel-gfx@lists.freedesktop.org>; Thu,  7 Jan 2021 18:20:45 +0000 (UTC)
+IronPort-SDR: p0Eic/eBlMg4c6MbcCWlo38Trh0jDvwDyp7f45vbVfAecVv4AEsj9xsT/N+o+ROOAXuHcWYF2K
+ kT6TORE7eB6A==
+X-IronPort-AV: E=McAfee;i="6000,8403,9857"; a="157253012"
+X-IronPort-AV: E=Sophos;i="5.79,329,1602572400"; d="scan'208";a="157253012"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Jan 2021 10:20:31 -0800
+IronPort-SDR: JGOWnhqCH3T2ZVLQZ7u4I4ydbhUc1g0RpWH9kFs1Bl0xfRP4YsIEeveEyFv3YClYBPvuImdIFO
+ 0YnB2K7kDmPw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.79,329,1602572400"; d="scan'208";a="422668448"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
+ by orsmga001.jf.intel.com with SMTP; 07 Jan 2021 10:20:27 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Thu, 07 Jan 2021 20:20:26 +0200
+From: Ville Syrjala <ville.syrjala@linux.intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Thu,  7 Jan 2021 20:20:25 +0200
+Message-Id: <20210107182026.24848-1-ville.syrjala@linux.intel.com>
+X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH V3] drm/i915/gen9_bc : Add TGP PCH support
+Subject: [Intel-gfx] [PATCH 1/2] drm/i915: Try to use fast+narrow link on
+ eDP again and fall back to the old max strategy on failure
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,178 +47,129 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: Matteo Iervasi <matteoiervasi@gmail.com>,
+ Jani Nikula <jani.nikula@intel.com>, Albert Astals Cid <aacid@kde.org>,
+ Kai-Heng Feng <kai.heng.feng@canonical.com>,
+ Emanuele Panigati <ilpanich@gmail.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 05 Jan 2021, Tejas Upadhyay <tejaskumarx.surendrakumar.upadhyay@intel.com> wrote:
-> We have TGP PCH support for Tigerlake and Rocketlake. Similarly
-> now TGP PCH can be used with Cometlake CPU.
->
-> Changes since V2 :
->         - IS_COMETLAKE replaced with IS_GEN9_BC
->         - VBT ddc pin remapping added
->         - Added dedicated HPD pin and DDC pin handling API
-> Changes since V1 :
->         - Matched HPD Pin mapping for PORT C and PORT D of CML CPU.
->
-> Cc: Matt Roper <matthew.d.roper@intel.com>
-> Signed-off-by: Tejas Upadhyay <tejaskumarx.surendrakumar.upadhyay@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_bios.c    |  9 +++++++++
->  drivers/gpu/drm/i915/display/intel_ddi.c     |  7 +++++--
->  drivers/gpu/drm/i915/display/intel_display.c |  7 ++++---
->  drivers/gpu/drm/i915/display/intel_hdmi.c    | 20 ++++++++++++++++++++
->  drivers/gpu/drm/i915/intel_pch.c             |  3 ++-
->  5 files changed, 40 insertions(+), 6 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/i915/display/intel_bios.c
-> index 06c3310446a2..67f9c0d8d1f3 100644
-> --- a/drivers/gpu/drm/i915/display/intel_bios.c
-> +++ b/drivers/gpu/drm/i915/display/intel_bios.c
-> @@ -1623,6 +1623,12 @@ static const u8 icp_ddc_pin_map[] = {
->  	[TGL_DDC_BUS_PORT_6] = GMBUS_PIN_14_TC6_TGP,
->  };
->  
-> +static const u8 gen9bc_tgp_ddc_pin_map[] = {
-> +	[DDC_BUS_DDI_B] = GMBUS_PIN_2_BXT,
-> +	[DDC_BUS_DDI_C] = GMBUS_PIN_9_TC1_ICP,
-> +	[DDC_BUS_DDI_D] = GMBUS_PIN_10_TC2_ICP,
-> +};
-> +
->  static u8 map_ddc_pin(struct drm_i915_private *dev_priv, u8 vbt_pin)
->  {
->  	const u8 *ddc_pin_map;
-> @@ -1630,6 +1636,9 @@ static u8 map_ddc_pin(struct drm_i915_private *dev_priv, u8 vbt_pin)
->  
->  	if (INTEL_PCH_TYPE(dev_priv) >= PCH_DG1) {
->  		return vbt_pin;
-> +	} else if (HAS_PCH_TGP(dev_priv) && IS_GEN9_BC(dev_priv)) {
-> +		ddc_pin_map = gen9bc_tgp_ddc_pin_map;
-> +		n_entries = ARRAY_SIZE(gen9bc_tgp_ddc_pin_map);
->  	} else if (INTEL_PCH_TYPE(dev_priv) >= PCH_ICP) {
->  		ddc_pin_map = icp_ddc_pin_map;
->  		n_entries = ARRAY_SIZE(icp_ddc_pin_map);
-> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
-> index 17eaa56c5a99..55d6329dc9c9 100644
-> --- a/drivers/gpu/drm/i915/display/intel_ddi.c
-> +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-> @@ -5301,7 +5301,9 @@ static enum hpd_pin dg1_hpd_pin(struct drm_i915_private *dev_priv,
->  static enum hpd_pin tgl_hpd_pin(struct drm_i915_private *dev_priv,
->  				enum port port)
->  {
-> -	if (port >= PORT_TC1)
-> +	if (IS_GEN9_BC(dev_priv) && port >= PORT_C)
-> +		return HPD_PORT_TC1 + port - PORT_C;
-> +	else if (port >= PORT_TC1)
->  		return HPD_PORT_TC1 + port - PORT_TC1;
->  	else
->  		return HPD_PORT_A + port - PORT_A;
-> @@ -5457,7 +5459,8 @@ void intel_ddi_init(struct drm_i915_private *dev_priv, enum port port)
->  		encoder->hpd_pin = dg1_hpd_pin(dev_priv, port);
->  	else if (IS_ROCKETLAKE(dev_priv))
->  		encoder->hpd_pin = rkl_hpd_pin(dev_priv, port);
-> -	else if (INTEL_GEN(dev_priv) >= 12)
-> +	else if (INTEL_GEN(dev_priv) >= 12 || (IS_GEN9_BC(dev_priv) &&
-> +					       HAS_PCH_TGP(dev_priv)))
->  		encoder->hpd_pin = tgl_hpd_pin(dev_priv, port);
->  	else if (IS_JSL_EHL(dev_priv))
->  		encoder->hpd_pin = ehl_hpd_pin(dev_priv, port);
-> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-> index f2c48e5cdb43..5a75ce1f78ac 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> @@ -16194,11 +16194,12 @@ static void intel_setup_outputs(struct drm_i915_private *dev_priv)
->  		 * register */
->  		found = intel_de_read(dev_priv, SFUSE_STRAP);
-
-Is it okay to read SFUSE_STRAP if it's not there? Maybe something like
-this instead, with the comment above fixed?
-
-		if (HAS_PCH_TGP(dev_priv)) {
-			found = (SFUSE_STRAP_DDIB_DETECTED |
-				 SFUSE_STRAP_DDIC_DETECTED |
-				 SFUSE_STRAP_DDID_DETECTED);
-		} else {
-			found = intel_de_read(dev_priv, SFUSE_STRAP);
-		}
-
->  
-> -		if (found & SFUSE_STRAP_DDIB_DETECTED)
-> +		/* W/A due to lack of STRAP config on TGP PCH*/
-> +		if (found & SFUSE_STRAP_DDIB_DETECTED || HAS_PCH_TGP(dev_priv))
->  			intel_ddi_init(dev_priv, PORT_B);
-> -		if (found & SFUSE_STRAP_DDIC_DETECTED)
-> +		if (found & SFUSE_STRAP_DDIC_DETECTED || HAS_PCH_TGP(dev_priv))
->  			intel_ddi_init(dev_priv, PORT_C);
-> -		if (found & SFUSE_STRAP_DDID_DETECTED)
-> +		if (found & SFUSE_STRAP_DDID_DETECTED || HAS_PCH_TGP(dev_priv))
->  			intel_ddi_init(dev_priv, PORT_D);
->  		if (found & SFUSE_STRAP_DDIF_DETECTED)
->  			intel_ddi_init(dev_priv, PORT_F);
-> diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/i915/display/intel_hdmi.c
-> index c5959590562b..536b7b0d68f9 100644
-> --- a/drivers/gpu/drm/i915/display/intel_hdmi.c
-> +++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
-> @@ -3130,6 +3130,24 @@ static u8 rkl_port_to_ddc_pin(struct drm_i915_private *dev_priv, enum port port)
->  	return GMBUS_PIN_1_BXT + phy;
->  }
->  
-> +static u8 gen9bc_port_to_ddc_pin(struct drm_i915_private *dev_priv, enum port port)
-
-All new code should use i915 instead of dev_priv.
-
-> +{
-> +	enum phy phy = intel_port_to_phy(dev_priv, port);
-> +
-> +	WARN_ON(port == PORT_A);
-
-drm_WARN_ON(&i915->drm, port == PORT_A);
-
-> +
-> +	/*
-> +	 * Pin mapping for GEN9 BC depends on which PCH is present.  With TGP,
-> +	 * final two outputs use type-c pins, even though they're actually
-> +	 * combo outputs.  With CMP, the traditional DDI A-D pins are used for
-> +	 * all outputs.
-> +	 */
-> +	if (INTEL_PCH_TYPE(dev_priv) >= PCH_TGP && phy >= PHY_C)
-> +		return GMBUS_PIN_9_TC1_ICP + phy - PHY_C;
-> +
-> +	return GMBUS_PIN_1_BXT + phy;
-> +}
-> +
->  static u8 dg1_port_to_ddc_pin(struct drm_i915_private *dev_priv, enum port port)
->  {
->  	return intel_port_to_phy(dev_priv, port) + 1;
-> @@ -3176,6 +3194,8 @@ static u8 intel_hdmi_ddc_pin(struct intel_encoder *encoder)
->  		ddc_pin = dg1_port_to_ddc_pin(dev_priv, port);
->  	else if (IS_ROCKETLAKE(dev_priv))
->  		ddc_pin = rkl_port_to_ddc_pin(dev_priv, port);
-> +	else if (IS_GEN9_BC(dev_priv) && HAS_PCH_TGP(dev_priv))
-> +		ddc_pin = gen9bc_port_to_ddc_pin(dev_priv, port);
->  	else if (HAS_PCH_MCC(dev_priv))
->  		ddc_pin = mcc_port_to_ddc_pin(dev_priv, port);
->  	else if (INTEL_PCH_TYPE(dev_priv) >= PCH_ICP)
-> diff --git a/drivers/gpu/drm/i915/intel_pch.c b/drivers/gpu/drm/i915/intel_pch.c
-> index f31c0dabd0cc..c1bc2d032360 100644
-> --- a/drivers/gpu/drm/i915/intel_pch.c
-> +++ b/drivers/gpu/drm/i915/intel_pch.c
-> @@ -121,7 +121,8 @@ intel_pch_type(const struct drm_i915_private *dev_priv, unsigned short id)
->  	case INTEL_PCH_TGP2_DEVICE_ID_TYPE:
->  		drm_dbg_kms(&dev_priv->drm, "Found Tiger Lake LP PCH\n");
->  		drm_WARN_ON(&dev_priv->drm, !IS_TIGERLAKE(dev_priv) &&
-> -			    !IS_ROCKETLAKE(dev_priv));
-> +			    !IS_ROCKETLAKE(dev_priv) &&
-> +			    !IS_GEN9_BC(dev_priv));
->  		return PCH_TGP;
->  	case INTEL_PCH_JSP_DEVICE_ID_TYPE:
->  	case INTEL_PCH_JSP2_DEVICE_ID_TYPE:
-
--- 
-Jani Nikula, Intel Open Source Graphics Center
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+RnJvbTogVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4KClNv
+bWUgbmV3IGVEUCBwYW5lbHMgZG9uJ3QgbGlrZSB0byBvcGVyYXRlIGF0IHRoZSBtYXggcGFyYW1l
+dGVycywgYW5kCmluc3RlYWQgd2UgbmVlZCB0byBnbyBmb3IgYW4gb3B0aW1hbCBjb25maXVncmF0
+aW9uLiBUaGF0IHVuZm9ydHVuYXRlbHkKZG9lc24ndCB3b3JrIHdpdGggb2xkZXIgZURQIHBhbmVs
+cyB3aGljaCBhcmUgZ2VuZXJhbGx5IG9ubHkgZ3VhcmFudGVlZAp0byB3b3JrIGF0IHRoZSBtYXgg
+cGFyYW1ldGVycy4KClRvIHNvbHZlIHRoZXNlIHR3byBjb25mbGljdGluZyByZXF1aXJlbWVudHMg
+bGV0J3Mgc3RhcnQgd2l0aCB0aGUgb3B0aW1hbApzZXR1cCwgYW5kIGlmIHRoYXQgZmFpbHMgd2Ug
+c3RhcnQgYWdhaW4gd2l0aCB0aGUgbWF4IHBhcmFtZXRlcnMuIFRoZQpkb3duc2lkZSBpcyBwcm9i
+YWJseSBhbiBleHRyYSBtb2Rlc2V0IHdoZW4gd2Ugc3dpdGNoIHN0cmF0ZWdpZXMgYnV0CkkgZG9u
+J3Qgc2VlIGEgZ29vZCB3YXkgdG8gYXZvaWQgdGhhdC4KCkZvciBhIGJpdCBvZiBoaXN0b3J5IHdl
+IGZpcnN0IHRyaWVkIHRvIGdvIGZvciB0aGUgZmFzdCtuYXJyb3cgaW4KY29tbWl0IDc3NjlkYjU4
+ODM4NCAoImRybS9pOTE1L2RwOiBvcHRpbWl6ZSBlRFAgMS40KyBsaW5rIGNvbmZpZwpmYXN0IGFu
+ZCBuYXJyb3ciKS4gYnV0IHRoYXQgaGFkIHRvIGJlIHJldmVydGVkIGR1ZSB0byByZWdyZXNzaW9u
+Cm9uIG9sZGVyIHBhbmVscyBpbiBjb21taXQgZjExY2IxYzE5YWQwICgiZHJtL2k5MTUvZHA6IHJl
+dmVydCBiYWNrCnRvIG1heCBsaW5rIHJhdGUgYW5kIGxhbmUgY291bnQgb24gZURQIikuIFNvIG5v
+dyB3ZSB0cnkgdG8gZ2V0CnRoZSBiZXN0IG9mIGJvdGggd29ybGRzIGJ5IHVzaW5nIGJvdGggc3Ry
+YXRlZ2llcy4KCnYyOiBEZWFsIHdpdGggb3V0cHV0X2JwcCBhbmQgdWFwaSB2cy4gaHcgc3RhdGUg
+c3BsaXQKICAgIFJld29yZCBzb21lIGNvbW1lbnRzCnYzOiBSZWJhc2UKCkNjOiBKYW5pIE5pa3Vs
+YSA8amFuaS5uaWt1bGFAaW50ZWwuY29tPgpDYzogUm9kcmlnbyBWaXZpIDxyb2RyaWdvLnZpdmlA
+aW50ZWwuY29tPgpDYzogQWxiZXJ0IEFzdGFscyBDaWQgPGFhY2lkQGtkZS5vcmc+ICMgdjUuMCBi
+YWNrcG9ydApDYzogRW1hbnVlbGUgUGFuaWdhdGkgPGlscGFuaWNoQGdtYWlsLmNvbT4gIyB2NS4w
+IGJhY2twb3J0CkNjOiBNYXR0ZW8gSWVydmFzaSA8bWF0dGVvaWVydmFzaUBnbWFpbC5jb20+ICMg
+djUuMCBiYWNrcG9ydApDYzogVGltbyBBYWx0b25lbiA8dGphYWx0b25AdWJ1bnR1LmNvbT4KQ2M6
+IEthaS1IZW5nIEZlbmcgPGthaS5oZW5nLmZlbmdAY2Fub25pY2FsLmNvbT4KUmV2aWV3ZWQtYnk6
+IE1hbmFzaSBOYXZhcmUgPG1hbmFzaS5kLm5hdmFyZUBpbnRlbC5jb20+ClJlZmVyZW5jZXM6IGh0
+dHBzOi8vYnVncy5mcmVlZGVza3RvcC5vcmcvc2hvd19idWcuY2dpP2lkPTEwNTI2NwpSZWZlcmVu
+Y2VzOiBodHRwczovL2J1Z3MuZnJlZWRlc2t0b3Aub3JnL3Nob3dfYnVnLmNnaT9pZD0xMDk5NTkK
+UmVmZXJlbmNlczogaHR0cHM6Ly9naXRsYWIuZnJlZWRlc2t0b3Aub3JnL2RybS9pbnRlbC9pc3N1
+ZXMvMjcyClNpZ25lZC1vZmYtYnk6IFZpbGxlIFN5cmrDpGzDpCA8dmlsbGUuc3lyamFsYUBsaW51
+eC5pbnRlbC5jb20+Ci0tLQogLi4uL2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheV90eXBl
+cy5oICAgIHwgIDEgKwogZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kcC5jICAg
+ICAgIHwgNzUgKysrKysrKysrKysrKysrKy0tLQogMiBmaWxlcyBjaGFuZ2VkLCA2NyBpbnNlcnRp
+b25zKCspLCA5IGRlbGV0aW9ucygtKQoKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1
+L2Rpc3BsYXkvaW50ZWxfZGlzcGxheV90eXBlcy5oIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlz
+cGxheS9pbnRlbF9kaXNwbGF5X3R5cGVzLmgKaW5kZXggMTA2N2JkMDczYzk1Li45ZGZhZDQxZWIz
+ZGMgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxh
+eV90eXBlcy5oCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxh
+eV90eXBlcy5oCkBAIC0xMzU0LDYgKzEzNTQsNyBAQCBzdHJ1Y3QgaW50ZWxfZHAgewogCWJvb2wg
+aGFzX2hkbWlfc2luazsKIAlib29sIGhhc19hdWRpbzsKIAlib29sIHJlc2V0X2xpbmtfcGFyYW1z
+OworCWJvb2wgdXNlX21heF9wYXJhbXM7CiAJdTggZHBjZFtEUF9SRUNFSVZFUl9DQVBfU0laRV07
+CiAJdTggcHNyX2RwY2RbRURQX1BTUl9SRUNFSVZFUl9DQVBfU0laRV07CiAJdTggZG93bnN0cmVh
+bV9wb3J0c1tEUF9NQVhfRE9XTlNUUkVBTV9QT1JUU107CmRpZmYgLS1naXQgYS9kcml2ZXJzL2dw
+dS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RwLmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNw
+bGF5L2ludGVsX2RwLmMKaW5kZXggOGEwMGU2MDkwODVmLi41N2MyMTQwYzEzMTYgMTAwNjQ0Ci0t
+LSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZHAuYworKysgYi9kcml2ZXJz
+L2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RwLmMKQEAgLTQ4MCw2ICs0ODAsMTMgQEAgaW50
+IGludGVsX2RwX2dldF9saW5rX3RyYWluX2ZhbGxiYWNrX3ZhbHVlcyhzdHJ1Y3QgaW50ZWxfZHAg
+KmludGVsX2RwLAogCQlyZXR1cm4gLTE7CiAJfQogCisJaWYgKGludGVsX2RwX2lzX2VkcChpbnRl
+bF9kcCkgJiYgIWludGVsX2RwLT51c2VfbWF4X3BhcmFtcykgeworCQlkcm1fZGJnX2ttcygmaTkx
+NS0+ZHJtLAorCQkJICAgICJSZXRyeWluZyBMaW5rIHRyYWluaW5nIGZvciBlRFAgd2l0aCBtYXgg
+cGFyYW1ldGVyc1xuIik7CisJCWludGVsX2RwLT51c2VfbWF4X3BhcmFtcyA9IHRydWU7CisJCXJl
+dHVybiAwOworCX0KKwogCWluZGV4ID0gaW50ZWxfZHBfcmF0ZV9pbmRleChpbnRlbF9kcC0+Y29t
+bW9uX3JhdGVzLAogCQkJCSAgICBpbnRlbF9kcC0+bnVtX2NvbW1vbl9yYXRlcywKIAkJCQkgICAg
+bGlua19yYXRlKTsKQEAgLTIyOTAsNiArMjI5Nyw0NCBAQCBpbnRlbF9kcF9jb21wdXRlX2xpbmtf
+Y29uZmlnX3dpZGUoc3RydWN0IGludGVsX2RwICppbnRlbF9kcCwKIAlyZXR1cm4gLUVJTlZBTDsK
+IH0KIAorLyogT3B0aW1pemUgbGluayBjb25maWcgaW4gb3JkZXI6IG1heCBicHAsIG1pbiBsYW5l
+cywgbWluIGNsb2NrICovCitzdGF0aWMgaW50CitpbnRlbF9kcF9jb21wdXRlX2xpbmtfY29uZmln
+X2Zhc3Qoc3RydWN0IGludGVsX2RwICppbnRlbF9kcCwKKwkJCQkgIHN0cnVjdCBpbnRlbF9jcnRj
+X3N0YXRlICpwaXBlX2NvbmZpZywKKwkJCQkgIGNvbnN0IHN0cnVjdCBsaW5rX2NvbmZpZ19saW1p
+dHMgKmxpbWl0cykKK3sKKwljb25zdCBzdHJ1Y3QgZHJtX2Rpc3BsYXlfbW9kZSAqYWRqdXN0ZWRf
+bW9kZSA9ICZwaXBlX2NvbmZpZy0+aHcuYWRqdXN0ZWRfbW9kZTsKKwlpbnQgYnBwLCBjbG9jaywg
+bGFuZV9jb3VudDsKKwlpbnQgbW9kZV9yYXRlLCBsaW5rX2Nsb2NrLCBsaW5rX2F2YWlsOworCisJ
+Zm9yIChicHAgPSBsaW1pdHMtPm1heF9icHA7IGJwcCA+PSBsaW1pdHMtPm1pbl9icHA7IGJwcCAt
+PSAyICogMykgeworCQlpbnQgb3V0cHV0X2JwcCA9IGludGVsX2RwX291dHB1dF9icHAocGlwZV9j
+b25maWctPm91dHB1dF9mb3JtYXQsIGJwcCk7CisKKwkJbW9kZV9yYXRlID0gaW50ZWxfZHBfbGlu
+a19yZXF1aXJlZChhZGp1c3RlZF9tb2RlLT5jcnRjX2Nsb2NrLAorCQkJCQkJICAgb3V0cHV0X2Jw
+cCk7CisKKwkJZm9yIChsYW5lX2NvdW50ID0gbGltaXRzLT5taW5fbGFuZV9jb3VudDsKKwkJICAg
+ICBsYW5lX2NvdW50IDw9IGxpbWl0cy0+bWF4X2xhbmVfY291bnQ7CisJCSAgICAgbGFuZV9jb3Vu
+dCA8PD0gMSkgeworCQkJZm9yIChjbG9jayA9IGxpbWl0cy0+bWluX2Nsb2NrOyBjbG9jayA8PSBs
+aW1pdHMtPm1heF9jbG9jazsgY2xvY2srKykgeworCQkJCWxpbmtfY2xvY2sgPSBpbnRlbF9kcC0+
+Y29tbW9uX3JhdGVzW2Nsb2NrXTsKKwkJCQlsaW5rX2F2YWlsID0gaW50ZWxfZHBfbWF4X2RhdGFf
+cmF0ZShsaW5rX2Nsb2NrLAorCQkJCQkJCQkgICAgbGFuZV9jb3VudCk7CisKKwkJCQlpZiAobW9k
+ZV9yYXRlIDw9IGxpbmtfYXZhaWwpIHsKKwkJCQkJcGlwZV9jb25maWctPmxhbmVfY291bnQgPSBs
+YW5lX2NvdW50OworCQkJCQlwaXBlX2NvbmZpZy0+cGlwZV9icHAgPSBicHA7CisJCQkJCXBpcGVf
+Y29uZmlnLT5wb3J0X2Nsb2NrID0gbGlua19jbG9jazsKKworCQkJCQlyZXR1cm4gMDsKKwkJCQl9
+CisJCQl9CisJCX0KKwl9CisKKwlyZXR1cm4gLUVJTlZBTDsKK30KKwogc3RhdGljIGludCBpbnRl
+bF9kcF9kc2NfY29tcHV0ZV9icHAoc3RydWN0IGludGVsX2RwICppbnRlbF9kcCwgdTggZHNjX21h
+eF9icGMpCiB7CiAJaW50IGksIG51bV9icGM7CkBAIC0yNTEzLDEzICsyNTU4LDE0IEBAIGludGVs
+X2RwX2NvbXB1dGVfbGlua19jb25maWcoc3RydWN0IGludGVsX2VuY29kZXIgKmVuY29kZXIsCiAJ
+bGltaXRzLm1pbl9icHAgPSBpbnRlbF9kcF9taW5fYnBwKHBpcGVfY29uZmlnLT5vdXRwdXRfZm9y
+bWF0KTsKIAlsaW1pdHMubWF4X2JwcCA9IGludGVsX2RwX21heF9icHAoaW50ZWxfZHAsIHBpcGVf
+Y29uZmlnKTsKIAotCWlmIChpbnRlbF9kcF9pc19lZHAoaW50ZWxfZHApKSB7CisJaWYgKGludGVs
+X2RwLT51c2VfbWF4X3BhcmFtcykgewogCQkvKgogCQkgKiBVc2UgdGhlIG1heGltdW0gY2xvY2sg
+YW5kIG51bWJlciBvZiBsYW5lcyB0aGUgZURQIHBhbmVsCi0JCSAqIGFkdmVydGl6ZXMgYmVpbmcg
+Y2FwYWJsZSBvZi4gVGhlIHBhbmVscyBhcmUgZ2VuZXJhbGx5CisJCSAqIGFkdmVydGl6ZXMgYmVp
+bmcgY2FwYWJsZSBvZiBpbiBjYXNlIHRoZSBpbml0aWFsIGZhc3QKKwkJICogb3B0aW1hbCBwYXJh
+bXMgZmFpbGVkIHVzLiBUaGUgcGFuZWxzIGFyZSBnZW5lcmFsbHkKIAkJICogZGVzaWduZWQgdG8g
+c3VwcG9ydCBvbmx5IGEgc2luZ2xlIGNsb2NrIGFuZCBsYW5lCi0JCSAqIGNvbmZpZ3VyYXRpb24s
+IGFuZCB0eXBpY2FsbHkgdGhlc2UgdmFsdWVzIGNvcnJlc3BvbmQgdG8gdGhlCi0JCSAqIG5hdGl2
+ZSByZXNvbHV0aW9uIG9mIHRoZSBwYW5lbC4KKwkJICogY29uZmlndXJhdGlvbiwgYW5kIHR5cGlj
+YWxseSBvbiBvbGRlciBwYW5lbHMgdGhlc2UKKwkJICogdmFsdWVzIGNvcnJlc3BvbmQgdG8gdGhl
+IG5hdGl2ZSByZXNvbHV0aW9uIG9mIHRoZSBwYW5lbC4KIAkJICovCiAJCWxpbWl0cy5taW5fbGFu
+ZV9jb3VudCA9IGxpbWl0cy5tYXhfbGFuZV9jb3VudDsKIAkJbGltaXRzLm1pbl9jbG9jayA9IGxp
+bWl0cy5tYXhfY2xvY2s7CkBAIC0yNTM4LDExICsyNTg0LDIyIEBAIGludGVsX2RwX2NvbXB1dGVf
+bGlua19jb25maWcoc3RydWN0IGludGVsX2VuY29kZXIgKmVuY29kZXIsCiAJICAgIGludGVsX2Rw
+X2Nhbl9iaWdqb2luZXIoaW50ZWxfZHApKQogCQlwaXBlX2NvbmZpZy0+Ymlnam9pbmVyID0gdHJ1
+ZTsKIAotCS8qCi0JICogT3B0aW1pemUgZm9yIHNsb3cgYW5kIHdpZGUuIFRoaXMgaXMgdGhlIHBs
+YWNlIHRvIGFkZCBhbHRlcm5hdGl2ZQotCSAqIG9wdGltaXphdGlvbiBwb2xpY3kuCi0JICovCi0J
+cmV0ID0gaW50ZWxfZHBfY29tcHV0ZV9saW5rX2NvbmZpZ193aWRlKGludGVsX2RwLCBwaXBlX2Nv
+bmZpZywgJmxpbWl0cyk7CisJaWYgKGludGVsX2RwX2lzX2VkcChpbnRlbF9kcCkpCisJCS8qCisJ
+CSAqIE9wdGltaXplIGZvciBmYXN0IGFuZCBuYXJyb3cuIGVEUCAxLjMgc2VjdGlvbiAzLjMgYW5k
+IGVEUCAxLjQKKwkJICogc2VjdGlvbiBBLjE6ICJJdCBpcyByZWNvbW1lbmRlZCB0aGF0IHRoZSBt
+aW5pbXVtIG51bWJlciBvZgorCQkgKiBsYW5lcyBiZSB1c2VkLCB1c2luZyB0aGUgbWluaW11bSBs
+aW5rIHJhdGUgYWxsb3dlZCBmb3IgdGhhdAorCQkgKiBsYW5lIGNvbmZpZ3VyYXRpb24uIgorCQkg
+KgorCQkgKiBOb3RlIHRoYXQgd2UgZmFsbCBiYWNrIHRvIHRoZSBtYXggY2xvY2sgYW5kIGxhbmUg
+Y291bnQgZm9yIGVEUAorCQkgKiBwYW5lbHMgdGhhdCBmYWlsIHdpdGggdGhlIGZhc3Qgb3B0aW1h
+bCBzZXR0aW5ncyAoc2VlCisJCSAqIGludGVsX2RwLT51c2VfbWF4X3BhcmFtcyksIGluIHdoaWNo
+IGNhc2UgdGhlIGZhc3QgdnMuIHdpZGUKKwkJICogY2hvaWNlIGRvZXNuJ3QgbWF0dGVyLgorCQkg
+Ki8KKwkJcmV0ID0gaW50ZWxfZHBfY29tcHV0ZV9saW5rX2NvbmZpZ19mYXN0KGludGVsX2RwLCBw
+aXBlX2NvbmZpZywgJmxpbWl0cyk7CisJZWxzZQorCQkvKiBPcHRpbWl6ZSBmb3Igc2xvdyBhbmQg
+d2lkZS4gKi8KKwkJcmV0ID0gaW50ZWxfZHBfY29tcHV0ZV9saW5rX2NvbmZpZ193aWRlKGludGVs
+X2RwLCBwaXBlX2NvbmZpZywgJmxpbWl0cyk7CiAKIAkvKiBlbmFibGUgY29tcHJlc3Npb24gaWYg
+dGhlIG1vZGUgZG9lc24ndCBmaXQgYXZhaWxhYmxlIEJXICovCiAJZHJtX2RiZ19rbXMoJmk5MTUt
+PmRybSwgIkZvcmNlIERTQyBlbiA9ICVkXG4iLCBpbnRlbF9kcC0+Zm9yY2VfZHNjX2VuKTsKLS0g
+CjIuMjYuMgoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18K
+SW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0
+dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
