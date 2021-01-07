@@ -1,57 +1,46 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 98B352ECCAF
-	for <lists+intel-gfx@lfdr.de>; Thu,  7 Jan 2021 10:28:37 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6EEEA2ECCF0
+	for <lists+intel-gfx@lfdr.de>; Thu,  7 Jan 2021 10:40:10 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 429196E416;
-	Thu,  7 Jan 2021 09:28:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 13B208887E;
+	Thu,  7 Jan 2021 09:40:08 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com
- [IPv6:2a00:1450:4864:20::431])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 428E66E415
- for <intel-gfx@lists.freedesktop.org>; Thu,  7 Jan 2021 09:28:34 +0000 (UTC)
-Received: by mail-wr1-x431.google.com with SMTP id d13so4867139wrc.13
- for <intel-gfx@lists.freedesktop.org>; Thu, 07 Jan 2021 01:28:34 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:in-reply-to;
- bh=mIjAQjbVLVh2ZD6onts6Hca0y6S3MRbV9P3RDpgSIzU=;
- b=cDzeN7pH+zhr0VU/J4popB85dQDy2H7szU7HT6l20/wNmNAGHWMC9zjDmmR2KUC7eR
- Dx+JajPlV42QRRLRoy862BRW9iS83n6TIXkb6n9th4+JdSLwoRjsCKqTpNfdviOMc5lA
- L6ON1KNicZtALIPgB+bpM9rtTxkPXpx2MI478=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:in-reply-to;
- bh=mIjAQjbVLVh2ZD6onts6Hca0y6S3MRbV9P3RDpgSIzU=;
- b=d1IG7/ATX/Wd/89LdMXYCpuUihpwWcF1wHQoPfwMI4dttIIehaPtSCGCXO3YmYZSzO
- 3fzwsNhsWBDYNYmm8ODjliA/xpvOhSZ883ehagZFTybsWP2HWoQ+3fCNREC4QzBGxhoZ
- 5IgOZCuUJkhUCOiS+U+4ZtU8spG+NehSmrHJBOkTxG+yjGBc5zGem1O/0ZW5M8hV6R6/
- woyXcuVjDWaqlO8vOZ0beFn/WS2A/43jiLx2YDePofk2tm7ETSvWnt8G9V0C2XZTuOX5
- 5xxCEYu4vfhG1A78p8PShY4lVsxOJz0vCPcFOIigEr+/6TOjh3KSKxHTJw9pHx/p/nvO
- Lo0g==
-X-Gm-Message-State: AOAM533evkMFExfwDAy6iY1H/Ce4RUHhXMEsS/SZz1BfsQ+htecdQdIN
- H82tOuLI5ECgMj1eI3FoOjTkZw==
-X-Google-Smtp-Source: ABdhPJwR1ulQLLhPHBD0H9D9cJeuLeBvLo/jEMZv+hRcwc/g43/XAu/Ozf1yJ1Au3KFizo+mDAcPSA==
-X-Received: by 2002:adf:fdcc:: with SMTP id i12mr7985150wrs.317.1610011712934; 
- Thu, 07 Jan 2021 01:28:32 -0800 (PST)
-Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id g192sm6548144wme.48.2021.01.07.01.28.31
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 07 Jan 2021 01:28:32 -0800 (PST)
-Date: Thu, 7 Jan 2021 10:28:30 +0100
-From: Daniel Vetter <daniel@ffwll.ch>
-To: Jani Nikula <jani.nikula@intel.com>
-Message-ID: <X/bUPkQa0j2Rh8RP@phenom.ffwll.local>
-References: <877dop18zf.fsf@intel.com>
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4194F8887E;
+ Thu,  7 Jan 2021 09:40:07 +0000 (UTC)
+IronPort-SDR: +cZvspZArlly0mHN5H+gvMGPi3YPyDuAKMK8xjOqeRj6i8EIZxacIFv9sVGDw/N+51UlJdIiDZ
+ 2zKvP9bKFWCw==
+X-IronPort-AV: E=McAfee;i="6000,8403,9856"; a="173897124"
+X-IronPort-AV: E=Sophos;i="5.79,329,1602572400"; d="scan'208";a="173897124"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Jan 2021 01:40:06 -0800
+IronPort-SDR: OZkcYlxE0D6RXFXEIUj9cBQA5xnrnq4eK7ObARdrYlhqRATujZ+3aIPhf9YURyU+/ENp7R7bwW
+ dB41zasw36bw==
+X-IronPort-AV: E=Sophos;i="5.79,329,1602572400"; d="scan'208";a="351201034"
+Received: from thrakatuluk.fi.intel.com (HELO thrakatuluk) ([10.237.68.154])
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Jan 2021 01:40:05 -0800
+Received: from platvala by thrakatuluk with local (Exim 4.94)
+ (envelope-from <petri.latvala@intel.com>)
+ id 1kxRlz-00042T-03; Thu, 07 Jan 2021 11:40:03 +0200
+Date: Thu, 7 Jan 2021 11:40:02 +0200
+From: Petri Latvala <petri.latvala@intel.com>
+To: Chris Wilson <chris@chris-wilson.co.uk>
+Message-ID: <20210107094002.GL7444@platvala-desk.ger.corp.intel.com>
+References: <20201204195007.10215-1-janusz.krzysztofik@linux.intel.com>
+ <160992609788.26089.16341465923272154441@build.alporthouse.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <877dop18zf.fsf@intel.com>
-X-Operating-System: Linux phenom 5.7.0-1-amd64 
-Subject: Re: [Intel-gfx] [PULL] drm-intel-fixes
+In-Reply-To: <160992609788.26089.16341465923272154441@build.alporthouse.com>
+X-Patchwork-Hint: comment
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: Re: [Intel-gfx] [PATCH i-g-t v2] runner: Don't kill a test on taint
+ if watching timeouts
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,79 +53,37 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dim-tools@lists.freedesktop.org, Daniel Vetter <daniel.vetter@ffwll.ch>,
- dri-devel@lists.freedesktop.org, Maxime Ripard <mripard@kernel.org>,
- intel-gfx@lists.freedesktop.org
+Cc: igt-dev@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Jan 07, 2021 at 09:50:28AM +0200, Jani Nikula wrote:
+On Wed, Jan 06, 2021 at 09:41:37AM +0000, Chris Wilson wrote:
+> Quoting Janusz Krzysztofik (2020-12-04 19:50:07)
+> > We may still be interested in results of a test even if it has tainted
+> > the kernel.  On the other hand, we need to kill the test on taint if no
+> > other means of killing it on a jam is active.
+> > 
+> > If abort on both kernel taint or a timeout is requested, decrease all
+> > potential timeouts significantly while the taint is detected instead of
+> > aborting immediately.  However, report the taint as the reason of the
+> > abort if a timeout decreased by the taint expires.
 > 
-> Hi Dave & Daniel -
+> This has the nasty side effect of not stopping the test run after a
+> kernel taint. Instead the next test inherits the tainted condition from
+> the previous test and usually ends up being declared incomplete.
 > 
-> Pretty quiet still, but here's some cc: stable fixes.
+> False positives are frustrating.
+> -Chris
 
-Pulled, thanks.
--Daniel
 
-> 
-> (Well, one doesn't have the explicit stable tag, but the Fixes tag
-> points at a commit in v3.9...)
-> 
-> drm-intel-fixes-2021-01-07:
-> drm/i915 fixes for v5.11-rc3:
-> - Use per-connector PM QoS tracking for DP aux communication
-> - GuC firmware fix for older Cometlakes
-> - Clear the gpu reloc and shadow batches
-> 
-> BR,
-> Jani.
-> 
-> The following changes since commit e71ba9452f0b5b2e8dc8aa5445198cd9214a6a62:
-> 
->   Linux 5.11-rc2 (2021-01-03 15:55:30 -0800)
-> 
-> are available in the Git repository at:
-> 
->   git://anongit.freedesktop.org/drm/drm-intel tags/drm-intel-fixes-2021-01-07
-> 
-> for you to fetch changes up to 9397d66212cdf7a21c66523f1583e5d63a609e84:
-> 
->   drm/i915/dp: Track pm_qos per connector (2021-01-05 10:25:03 +0200)
-> 
-> ----------------------------------------------------------------
-> drm/i915 fixes for v5.11-rc3:
-> - Use per-connector PM QoS tracking for DP aux communication
-> - GuC firmware fix for older Cometlakes
-> - Clear the gpu reloc and shadow batches
-> 
-> ----------------------------------------------------------------
-> Chris Wilson (2):
->       drm/i915/gt: Define guc firmware blob for older Cometlakes
->       drm/i915/dp: Track pm_qos per connector
-> 
-> Matthew Auld (2):
->       drm/i915: clear the shadow batch
->       drm/i915: clear the gpu reloc batch
-> 
->  drivers/gpu/drm/i915/display/intel_display_types.h |  3 +++
->  drivers/gpu/drm/i915/display/intel_dp.c            |  8 +++++--
->  drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c     |  4 +++-
->  drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c           |  1 +
->  drivers/gpu/drm/i915/i915_cmd_parser.c             | 27 ++++++++--------------
->  drivers/gpu/drm/i915/i915_drv.c                    |  5 ----
->  drivers/gpu/drm/i915/i915_drv.h                    |  3 ---
->  7 files changed, 22 insertions(+), 29 deletions(-)
-> 
-> -- 
-> Jani Nikula, Intel Open Source Graphics Center
+Do you have a link to a test run where this happened? This patch
+didn't change the between-tests abort checks.
+
 
 -- 
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
+Petri Latvala
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
