@@ -1,41 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1D0EB2ED58E
-	for <lists+intel-gfx@lfdr.de>; Thu,  7 Jan 2021 18:28:36 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id AF3B92ED600
+	for <lists+intel-gfx@lfdr.de>; Thu,  7 Jan 2021 18:49:36 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 661D26E4B7;
-	Thu,  7 Jan 2021 17:28:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5B4946E1CE;
+	Thu,  7 Jan 2021 17:49:34 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5E5CE6E4B7
- for <intel-gfx@lists.freedesktop.org>; Thu,  7 Jan 2021 17:28:33 +0000 (UTC)
-IronPort-SDR: OUsHQdC9cdUBlWJobONn4r3VInwbhsnc23ivh92l4zzgMkizaGefSec/jS6YxRRm5Qh68/c4FD
- UJP+UJYWcw5g==
-X-IronPort-AV: E=McAfee;i="6000,8403,9857"; a="165155107"
-X-IronPort-AV: E=Sophos;i="5.79,329,1602572400"; d="scan'208";a="165155107"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Jan 2021 09:28:32 -0800
-IronPort-SDR: FUhAkRmVUG+tNcn3/t08AR56NYt4ggSbkkCFxIvobEJaD0m8krGOBZDIw7xMdaxKjy+QA3slPB
- nzgd1Mg4EsLg==
-X-IronPort-AV: E=Sophos;i="5.79,329,1602572400"; d="scan'208";a="422651383"
-Received: from muhymini-mobl.amr.corp.intel.com (HELO localhost)
- ([10.213.207.83])
- by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Jan 2021 09:28:30 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: Saichandana S <saichandana.s@intel.com>, intel-gfx@lists.freedesktop.org
-In-Reply-To: <20210104103036.1443-1-saichandana.s@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20210104103036.1443-1-saichandana.s@intel.com>
-Date: Thu, 07 Jan 2021 19:28:27 +0200
-Message-ID: <87sg7czmf8.fsf@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id A68D889B83;
+ Thu,  7 Jan 2021 17:49:33 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 9F7A5A0118;
+ Thu,  7 Jan 2021 17:49:33 +0000 (UTC)
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH v2] drm/i915/debugfs : PM_REQ and PM_RES
- registers
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Anshuman Gupta" <anshuman.gupta@intel.com>
+Date: Thu, 07 Jan 2021 17:49:33 -0000
+Message-ID: <161004177362.21184.15768842372700591611@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210105051353.5714-1-anshuman.gupta@intel.com>
+In-Reply-To: <20210105051353.5714-1-anshuman.gupta@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/pps=3A_Add_PPS_power_domain_=28rev3=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,123 +38,196 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: saichandana.s@intel.com
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============1406074301=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 04 Jan 2021, Saichandana S <saichandana.s@intel.com> wrote:
-> From: Saichandana <saichandana.s@intel.com>
->
-> PM_REQ register provides the value of the last PM request from PCU to
-> Display Engine.PM_RES register provides the value of the last PM
-> response from Display Engine to PCU.This debugfs will be used by
-> DC9 IGT test to know about "DC9 Ready" status.
->
-> B.Spec : 49501, 49502
->
-> Signed-off-by: Saichandana <saichandana.s@intel.com>
-> ---
->  .../drm/i915/display/intel_display_debugfs.c  | 30 +++++++++++++++++++
->  drivers/gpu/drm/i915/i915_reg.h               |  8 +++++
->  2 files changed, 38 insertions(+)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-> index cd7e5519ee7d..551fb1a90bb3 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-> @@ -559,6 +559,36 @@ static int i915_dmc_info(struct seq_file *m, void *unused)
->  	return 0;
->  }
->  
-> +static int i915_pm_req_res_info(struct seq_file *m, void *unused)
-> +{
-> +	struct drm_i915_private *dev_priv = node_to_i915(m->private);
+--===============1406074301==
+Content-Type: multipart/alternative;
+ boundary="===============0555240389000975737=="
 
-All new code should call the local variable "i915".
+--===============0555240389000975737==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-> +	struct intel_csr *csr = &dev_priv->csr;
-> +	const char *status;
-> +
-> +	if (!HAS_CSR(dev_priv))
-> +		return -ENODEV;
-> +	if (!csr->dmc_payload)
-> +		return 0;
-> +	seq_printf(m, "PM debug request 0 (0x45284): 0x%08x\n",
-> +		   intel_de_read(dev_priv, PM_REQ_DBG_0));
-> +	seq_printf(m, "PM debug request 1 (0x45288): 0x%08x\n",
-> +		   intel_de_read(dev_priv, PM_REQ_DBG_1));
-> +	seq_printf(m, "PM debug response 0 (0x4528C): 0x%08x\n",
-> +		   intel_de_read(dev_priv, PM_RSP_DBG_0));
-> +	seq_printf(m, "PM debug response 1 (0x45290): 0x%08x\n",
-> +		   intel_de_read(dev_priv, PM_RSP_DBG_1));
+== Series Details ==
 
-Like I said before [1], do *not* dump the registers. We have userspace
-tools for dumping register contents as-is when you need that for debug
-purposes. And even the userspace tool can do some register content
-parsing. See tools/intel_reg in igt.
+Series: drm/i915/pps: Add PPS power domain (rev3)
+URL   : https://patchwork.freedesktop.org/series/85470/
+State : success
 
-The only reason to have a debugfs file is to provide some other, added
-value that a register dump can't provide.
+== Summary ==
 
-[1] http://lore.kernel.org/r/87mtyl8vpu.fsf@intel.com
+CI Bug Log - changes from CI_DRM_9562 -> Patchwork_19280
+====================================================
 
-> +	status = (intel_de_read(dev_priv, PM_RSP_DBG_1) & MASK_DC9_BIT) ? "yes" : "no";
+Summary
+-------
 
-See yesno() in i915_utils.h. You probably don't want the local variable
-for the string.
+  **SUCCESS**
 
-> +
-> +	seq_printf(m, "Time to Next Fill = 0x%0x\n",
-> +		   (intel_de_read(dev_priv, PM_RSP_DBG_0) & ~MASK_RSP_0));
-> +	seq_printf(m, "Time to Next VBI = 0x%0x\n",
-> +		   ((intel_de_read(dev_priv, PM_RSP_DBG_0) & MASK_RSP_0)) >> 16);
-> +	seq_printf(m, "Selective Exit Latency = 0x%0x\n",
-> +		   (intel_de_read(dev_priv, PM_RSP_DBG_1) & MASK_RSP_1));
+  No regressions found.
 
-There's a bunch of unnecessary parenthesis around the 3rd parameter to
-seq_printf.
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19280/index.html
 
-> +	seq_printf(m, "DC9 Ready = %s\n", status);
-> +	return 0;
-> +}
-> +
->  static void intel_seq_print_mode(struct seq_file *m, int tabs,
->  				 const struct drm_display_mode *mode)
->  {
-> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-> index 0023c023f472..3e9ed555f928 100644
-> --- a/drivers/gpu/drm/i915/i915_reg.h
-> +++ b/drivers/gpu/drm/i915/i915_reg.h
-> @@ -371,6 +371,14 @@ static inline bool i915_mmio_reg_valid(i915_reg_t reg)
->  #define VLV_G3DCTL		_MMIO(0x9024)
->  #define VLV_GSCKGCTL		_MMIO(0x9028)
->  
-> +#define PM_REQ_DBG_0		_MMIO(0x45284)
-> +#define PM_REQ_DBG_1		_MMIO(0x45288)
-> +#define PM_RSP_DBG_0		_MMIO(0x4528C)
-> +#define PM_RSP_DBG_1		_MMIO(0x45290)
-> +#define MASK_RSP_0		(0xFFFF << 16)
-> +#define MASK_RSP_1		(7 << 0)
-> +#define MASK_DC9_BIT		(1 << 17)
+Known issues
+------------
 
-This is a random location in i915_reg.h, out of place.
+  Here are the changes found in Patchwork_19280 that come from known issues:
 
-Please also read the big comment near the top of this file.
+### IGT changes ###
 
-BR,
-Jani.
+#### Issues hit ####
+
+  * igt@prime_self_import@basic-with_two_bos:
+    - fi-tgl-y:           [PASS][1] -> [DMESG-WARN][2] ([i915#402]) +2 similar issues
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9562/fi-tgl-y/igt@prime_self_import@basic-with_two_bos.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19280/fi-tgl-y/igt@prime_self_import@basic-with_two_bos.html
+
+  
+#### Possible fixes ####
+
+  * igt@debugfs_test@read_all_entries:
+    - fi-tgl-y:           [DMESG-WARN][3] ([i915#402]) -> [PASS][4] +2 similar issues
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9562/fi-tgl-y/igt@debugfs_test@read_all_entries.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19280/fi-tgl-y/igt@debugfs_test@read_all_entries.html
+
+  * igt@gem_exec_suspend@basic-s3:
+    - fi-tgl-y:           [DMESG-WARN][5] ([i915#2411] / [i915#402]) -> [PASS][6]
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9562/fi-tgl-y/igt@gem_exec_suspend@basic-s3.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19280/fi-tgl-y/igt@gem_exec_suspend@basic-s3.html
+
+  * igt@i915_selftest@live@sanitycheck:
+    - fi-kbl-7500u:       [DMESG-WARN][7] ([i915#2605]) -> [PASS][8]
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9562/fi-kbl-7500u/igt@i915_selftest@live@sanitycheck.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19280/fi-kbl-7500u/igt@i915_selftest@live@sanitycheck.html
+
+  
+  [i915#2411]: https://gitlab.freedesktop.org/drm/intel/issues/2411
+  [i915#2605]: https://gitlab.freedesktop.org/drm/intel/issues/2605
+  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
 
 
-> +
->  #define GEN6_MBCTL		_MMIO(0x0907c)
->  #define   GEN6_MBCTL_ENABLE_BOOT_FETCH	(1 << 4)
->  #define   GEN6_MBCTL_CTX_FETCH_NEEDED	(1 << 3)
+Participating hosts (43 -> 38)
+------------------------------
 
--- 
-Jani Nikula, Intel Open Source Graphics Center
+  Missing    (5): fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_9562 -> Patchwork_19280
+
+  CI-20190529: 20190529
+  CI_DRM_9562: fc8d32007355b4babc37b621b3c9a4e0fe998d27 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5946: 641e5545213dd9a82d80a4e065013a138afb58ff @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_19280: f6373225edb871afc10b20f1bc1747ef55db288c @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+f6373225edb8 drm/i915/pps: Reuse POWER_DOMAIN_DISPLAY_CORE in pps_{lock, unlock}
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19280/index.html
+
+--===============0555240389000975737==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/pps: Add PPS power domain (rev3)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/85470/">https://patchwork.freedesktop.org/series/85470/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19280/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19280/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_9562 -&gt; Patchwork_19280</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19280/index.html</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_19280 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@prime_self_import@basic-with_two_bos:<ul>
+<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9562/fi-tgl-y/igt@prime_self_import@basic-with_two_bos.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19280/fi-tgl-y/igt@prime_self_import@basic-with_two_bos.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) +2 similar issues</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@debugfs_test@read_all_entries:</p>
+<ul>
+<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9562/fi-tgl-y/igt@debugfs_test@read_all_entries.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19280/fi-tgl-y/igt@debugfs_test@read_all_entries.html">PASS</a> +2 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_exec_suspend@basic-s3:</p>
+<ul>
+<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9562/fi-tgl-y/igt@gem_exec_suspend@basic-s3.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2411">i915#2411</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19280/fi-tgl-y/igt@gem_exec_suspend@basic-s3.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@sanitycheck:</p>
+<ul>
+<li>fi-kbl-7500u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9562/fi-kbl-7500u/igt@i915_selftest@live@sanitycheck.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2605">i915#2605</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19280/fi-kbl-7500u/igt@i915_selftest@live@sanitycheck.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Participating hosts (43 -&gt; 38)</h2>
+<p>Missing    (5): fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-bdw-samus </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_9562 -&gt; Patchwork_19280</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_9562: fc8d32007355b4babc37b621b3c9a4e0fe998d27 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_5946: 641e5545213dd9a82d80a4e065013a138afb58ff @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
+  Patchwork_19280: f6373225edb871afc10b20f1bc1747ef55db288c @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>f6373225edb8 drm/i915/pps: Reuse POWER_DOMAIN_DISPLAY_CORE in pps_{lock, unlock}</p>
+
+</body>
+</html>
+
+--===============0555240389000975737==--
+
+--===============1406074301==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============1406074301==--
