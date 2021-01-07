@@ -1,35 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3D39D2ECE12
-	for <lists+intel-gfx@lfdr.de>; Thu,  7 Jan 2021 11:45:34 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4BA122ECE5D
+	for <lists+intel-gfx@lfdr.de>; Thu,  7 Jan 2021 12:01:58 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 986006E427;
-	Thu,  7 Jan 2021 10:45:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E52216E435;
+	Thu,  7 Jan 2021 11:01:53 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mx2.suse.de (mx2.suse.de [195.135.220.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 86EB16E28B;
- Thu,  7 Jan 2021 10:45:26 +0000 (UTC)
-X-Virus-Scanned: by amavisd-new at test-mx.suse.de
-Received: from relay2.suse.de (unknown [195.135.221.27])
- by mx2.suse.de (Postfix) with ESMTP id DC1BCAED0;
- Thu,  7 Jan 2021 10:45:23 +0000 (UTC)
-To: kernel test robot <lkp@intel.com>, airlied@linux.ie, daniel@ffwll.ch,
- jani.nikula@linux.intel.com, joonas.lahtinen@linux.intel.com,
- rodrigo.vivi@intel.com
-References: <20210107080748.4768-9-tzimmermann@suse.de>
- <202101071706.J19283ri-lkp@intel.com>
-From: Thomas Zimmermann <tzimmermann@suse.de>
-Message-ID: <3c496f96-5efa-41d2-5911-1495619fab68@suse.de>
-Date: Thu, 7 Jan 2021 11:45:22 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.6.0
+Received: from fireflyinternet.com (unknown [77.68.26.236])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0EFBF6E435
+ for <intel-gfx@lists.freedesktop.org>; Thu,  7 Jan 2021 11:01:52 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from build.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 23526253-1500050 
+ for multiple; Thu, 07 Jan 2021 11:01:41 +0000
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Thu,  7 Jan 2021 11:01:40 +0000
+Message-Id: <20210107110140.12120-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.20.1
+In-Reply-To: <20210106163642.4405-2-chris@chris-wilson.co.uk>
+References: <20210106163642.4405-2-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-In-Reply-To: <202101071706.J19283ri-lkp@intel.com>
-Subject: Re: [Intel-gfx] [PATCH v3 8/8] drm: Upcast struct drm_device.dev to
- struct pci_device; replace pdev
+Subject: [Intel-gfx] [PATCH v3] drm/i915/gt: Remove timeslice suppression
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,331 +38,362 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: kbuild-all@lists.01.org, nouveau@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, Sam Ravnborg <sam@ravnborg.org>
-Content-Type: multipart/mixed; boundary="===============0228966448=="
+Cc: Chris Wilson <chris@chris-wilson.co.uk>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---===============0228966448==
-Content-Type: multipart/signed; micalg=pgp-sha256;
- protocol="application/pgp-signature";
- boundary="tJgV1SNd36h9nVoys3p0LHnpD6YWAprsK"
+In the next^W future patch, we remove the strict priority system and
+continuously re-evaluate the relative priority of tasks. As such we need
+to enable the timeslice whenever there is more than one context in the
+pipeline. This simplifies the decision and removes some of the tweaks to
+suppress timeslicing, allowing us to lift the timeslice enabling to a
+common spot at the end of running the submission tasklet.
 
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---tJgV1SNd36h9nVoys3p0LHnpD6YWAprsK
-Content-Type: multipart/mixed; boundary="Z4YI4NmMDxFYDlF64HumYqEahAMduSxod";
- protected-headers="v1"
-From: Thomas Zimmermann <tzimmermann@suse.de>
-To: kernel test robot <lkp@intel.com>, airlied@linux.ie, daniel@ffwll.ch,
- jani.nikula@linux.intel.com, joonas.lahtinen@linux.intel.com,
- rodrigo.vivi@intel.com
-Cc: kbuild-all@lists.01.org, Sam Ravnborg <sam@ravnborg.org>,
- nouveau@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org
-Message-ID: <3c496f96-5efa-41d2-5911-1495619fab68@suse.de>
-Subject: Re: [PATCH v3 8/8] drm: Upcast struct drm_device.dev to struct
- pci_device; replace pdev
-References: <20210107080748.4768-9-tzimmermann@suse.de>
- <202101071706.J19283ri-lkp@intel.com>
-In-Reply-To: <202101071706.J19283ri-lkp@intel.com>
+One consequence of the suppression is that it was reducing fairness
+between virtual engines on an over saturated system; undermining the
+principle for timeslicing.
 
---Z4YI4NmMDxFYDlF64HumYqEahAMduSxod
-Content-Type: text/plain; charset=windows-1252; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: quoted-printable
+v2: Commentary
+v3: Commentary for the right cancel_timer()
 
-AFAICT these are false positives. The instances have been fixed already.
+Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/2802
+Testcase: igt/gem_exec_balancer/fairslice
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+---
+ drivers/gpu/drm/i915/gt/intel_engine_types.h  |  10 -
+ .../drm/i915/gt/intel_execlists_submission.c  | 202 +++++++++---------
+ 2 files changed, 97 insertions(+), 115 deletions(-)
 
-Am 07.01.21 um 10:45 schrieb kernel test robot:
-> Hi Thomas,
->=20
-> I love your patch! Yet something to improve:
->=20
-> [auto build test ERROR on drm-tip/drm-tip]
-> [cannot apply to drm-intel/for-linux-next linus/master v5.11-rc2 next-2=
-0210104]
-> [If your patch is applied to the wrong git tree, kindly drop us a note.=
-
-> And when submitting patch, we suggest to use '--base' as documented in
-> https://git-scm.com/docs/git-format-patch]
->=20
-> url:    https://github.com/0day-ci/linux/commits/Thomas-Zimmermann/drm-=
-Move-struct-drm_device-pdev-to-legacy/20210107-161007
-> base:   git://anongit.freedesktop.org/drm/drm-tip drm-tip
-> config: x86_64-randconfig-s021-20210107 (attached as .config)
-> compiler: gcc-9 (Debian 9.3.0-15) 9.3.0
-> reproduce:
->          # apt-get install sparse
->          # sparse version: v0.6.3-208-g46a52ca4-dirty
->          # https://github.com/0day-ci/linux/commit/380912f7b62c23322562=
-c40e19efd7ad84d57e9c
->          git remote add linux-review https://github.com/0day-ci/linux
->          git fetch --no-tags linux-review Thomas-Zimmermann/drm-Move-st=
-ruct-drm_device-pdev-to-legacy/20210107-161007
->          git checkout 380912f7b62c23322562c40e19efd7ad84d57e9c
->          # save the attached .config to linux build tree
->          make W=3D1 C=3D1 CF=3D'-fdiagnostic-prefix -D__CHECK_ENDIAN__'=
- ARCH=3Dx86_64
->=20
-> If you fix the issue, kindly add following tag as appropriate
-> Reported-by: kernel test robot <lkp@intel.com>
->=20
-> All errors (new ones prefixed by >>):
->=20
->     drivers/gpu/drm/gma500/oaktrail_device.c: In function 'oaktrail_chi=
-p_setup':
->>> drivers/gpu/drm/gma500/oaktrail_device.c:509:26: error: 'struct drm_d=
-evice' has no member named 'pdev'; did you mean 'dev'?
->       509 |  if (pci_enable_msi(dev->pdev))
->           |                          ^~~~
->           |                          dev
-> --
->     drivers/gpu/drm/gma500/oaktrail_lvds.c: In function 'oaktrail_lvds_=
-set_power':
->>> drivers/gpu/drm/gma500/oaktrail_lvds.c:63:25: error: 'struct drm_devi=
-ce' has no member named 'pdev'; did you mean 'dev'?
->        63 |   pm_request_idle(&dev->pdev->dev);
->           |                         ^~~~
->           |                         dev
-> --
->     drivers/gpu/drm/gma500/oaktrail_lvds_i2c.c: In function 'get_clock'=
-:
->     drivers/gpu/drm/gma500/oaktrail_lvds_i2c.c:69:11: warning: variable=
- 'tmp' set but not used [-Wunused-but-set-variable]
->        69 |  u32 val, tmp;
->           |           ^~~
->     drivers/gpu/drm/gma500/oaktrail_lvds_i2c.c: In function 'get_data':=
-
->     drivers/gpu/drm/gma500/oaktrail_lvds_i2c.c:83:11: warning: variable=
- 'tmp' set but not used [-Wunused-but-set-variable]
->        83 |  u32 val, tmp;
->           |           ^~~
->     drivers/gpu/drm/gma500/oaktrail_lvds_i2c.c: In function 'oaktrail_l=
-vds_i2c_init':
->>> drivers/gpu/drm/gma500/oaktrail_lvds_i2c.c:148:35: error: 'struct drm=
-_device' has no member named 'pdev'; did you mean 'dev'?
->       148 |  chan->adapter.dev.parent =3D &dev->pdev->dev;
->           |                                   ^~~~
->           |                                   dev
-> --
->     drivers/gpu/drm/vmwgfx/vmwgfx_drv.c: In function 'vmw_driver_load':=
-
->>> drivers/gpu/drm/vmwgfx/vmwgfx_drv.c:661:22: error: 'struct drm_device=
-' has no member named 'pdev'; did you mean 'dev'?
->       661 |  pci_set_master(dev->pdev);
->           |                      ^~~~
->           |                      dev
->     In file included from drivers/gpu/drm/vmwgfx/vmwgfx_drv.c:31:
->     drivers/gpu/drm/vmwgfx/vmwgfx_drv.c:690:47: error: 'struct drm_devi=
-ce' has no member named 'pdev'; did you mean 'dev'?
->       690 |  dev_priv->io_start =3D pci_resource_start(dev->pdev, 0);
->           |                                               ^~~~
->     include/linux/pci.h:1854:40: note: in definition of macro 'pci_reso=
-urce_start'
->      1854 | #define pci_resource_start(dev, bar) ((dev)->resource[(bar)=
-].start)
->           |                                        ^~~
->     drivers/gpu/drm/vmwgfx/vmwgfx_drv.c:691:49: error: 'struct drm_devi=
-ce' has no member named 'pdev'; did you mean 'dev'?
->       691 |  dev_priv->vram_start =3D pci_resource_start(dev->pdev, 1);=
-
->           |                                                 ^~~~
->     include/linux/pci.h:1854:40: note: in definition of macro 'pci_reso=
-urce_start'
->      1854 | #define pci_resource_start(dev, bar) ((dev)->resource[(bar)=
-].start)
->           |                                        ^~~
->     drivers/gpu/drm/vmwgfx/vmwgfx_drv.c:692:49: error: 'struct drm_devi=
-ce' has no member named 'pdev'; did you mean 'dev'?
->       692 |  dev_priv->mmio_start =3D pci_resource_start(dev->pdev, 2);=
-
->           |                                                 ^~~~
->     include/linux/pci.h:1854:40: note: in definition of macro 'pci_reso=
-urce_start'
->      1854 | #define pci_resource_start(dev, bar) ((dev)->resource[(bar)=
-].start)
->           |                                        ^~~
->     drivers/gpu/drm/vmwgfx/vmwgfx_drv.c:842:33: error: 'struct drm_devi=
-ce' has no member named 'pdev'; did you mean 'dev'?
->       842 |  ret =3D pci_request_regions(dev->pdev, "vmwgfx probe");
->           |                                 ^~~~
->           |                                 dev
->     drivers/gpu/drm/vmwgfx/vmwgfx_drv.c:851:33: error: 'struct drm_devi=
-ce' has no member named 'pdev'; did you mean 'dev'?
->       851 |   ret =3D pci_request_region(dev->pdev, 2, "vmwgfx stealth =
-probe");
->           |                                 ^~~~
->           |                                 dev
->     drivers/gpu/drm/vmwgfx/vmwgfx_drv.c:859:35: error: 'struct drm_devi=
-ce' has no member named 'pdev'; did you mean 'dev'?
->       859 |   ret =3D vmw_irq_install(dev, dev->pdev->irq);
->           |                                   ^~~~
->           |                                   dev
->     drivers/gpu/drm/vmwgfx/vmwgfx_drv.c:1005:27: error: 'struct drm_dev=
-ice' has no member named 'pdev'; did you mean 'dev'?
->      1005 |   pci_release_region(dev->pdev, 2);
->           |                           ^~~~
->           |                           dev
->     drivers/gpu/drm/vmwgfx/vmwgfx_drv.c:1007:28: error: 'struct drm_dev=
-ice' has no member named 'pdev'; did you mean 'dev'?
->      1007 |   pci_release_regions(dev->pdev);
->           |                            ^~~~
->           |                            dev
->     drivers/gpu/drm/vmwgfx/vmwgfx_drv.c: In function 'vmw_driver_unload=
-':
->     drivers/gpu/drm/vmwgfx/vmwgfx_drv.c:1056:27: error: 'struct drm_dev=
-ice' has no member named 'pdev'; did you mean 'dev'?
->      1056 |   pci_release_region(dev->pdev, 2);
->           |                           ^~~~
->           |                           dev
->     drivers/gpu/drm/vmwgfx/vmwgfx_drv.c:1058:28: error: 'struct drm_dev=
-ice' has no member named 'pdev'; did you mean 'dev'?
->      1058 |   pci_release_regions(dev->pdev);
->           |                            ^~~~
->           |                            dev
->     drivers/gpu/drm/vmwgfx/vmwgfx_drv.c: In function 'vmw_probe':
->     drivers/gpu/drm/vmwgfx/vmwgfx_drv.c:1522:7: error: 'struct drm_devi=
-ce' has no member named 'pdev'; did you mean 'dev'?
->      1522 |  dev->pdev =3D pdev;
->           |       ^~~~
->           |       dev
-> --
->     drivers/gpu/drm/vmwgfx/vmwgfx_fb.c: In function 'vmw_fb_init':
->>> drivers/gpu/drm/vmwgfx/vmwgfx_fb.c:641:42: error: 'struct drm_device'=
- has no member named 'pdev'; did you mean 'dev'?
->       641 |  struct device *device =3D &vmw_priv->dev->pdev->dev;
->           |                                          ^~~~
->           |                                          dev
->     In file included from drivers/gpu/drm/vmwgfx/vmwgfx_fb.c:35:
->     At top level:
->     drivers/gpu/drm/vmwgfx/vmwgfx_kms.h:256:23: warning: 'vmw_cursor_pl=
-ane_formats' defined but not used [-Wunused-const-variable=3D]
->       256 | static const uint32_t vmw_cursor_plane_formats[] =3D {
->           |                       ^~~~~~~~~~~~~~~~~~~~~~~~
->     drivers/gpu/drm/vmwgfx/vmwgfx_kms.h:248:23: warning: 'vmw_primary_p=
-lane_formats' defined but not used [-Wunused-const-variable=3D]
->       248 | static const uint32_t vmw_primary_plane_formats[] =3D {
->           |                       ^~~~~~~~~~~~~~~~~~~~~~~~~
-> --
->     drivers/gpu/drm/vmwgfx/vmwgfx_cmdbuf.c: In function 'vmw_cmdbuf_set=
-_pool_size':
->>> drivers/gpu/drm/vmwgfx/vmwgfx_cmdbuf.c:1233:48: error: 'struct drm_de=
-vice' has no member named 'pdev'; did you mean 'dev'?
->      1233 |  man->map =3D dma_alloc_coherent(&dev_priv->dev->pdev->dev,=
- size,
->           |                                                ^~~~
->           |                                                dev
->     drivers/gpu/drm/vmwgfx/vmwgfx_cmdbuf.c: In function 'vmw_cmdbuf_man=
-_create':
->     drivers/gpu/drm/vmwgfx/vmwgfx_cmdbuf.c:1316:28: error: 'struct drm_=
-device' has no member named 'pdev'; did you mean 'dev'?
->      1316 |            &dev_priv->dev->pdev->dev,
->           |                            ^~~~
->           |                            dev
->     drivers/gpu/drm/vmwgfx/vmwgfx_cmdbuf.c:1325:22: error: 'struct drm_=
-device' has no member named 'pdev'; did you mean 'dev'?
->      1325 |      &dev_priv->dev->pdev->dev,
->           |                      ^~~~
->           |                      dev
->     drivers/gpu/drm/vmwgfx/vmwgfx_cmdbuf.c: In function 'vmw_cmdbuf_rem=
-ove_pool':
->     drivers/gpu/drm/vmwgfx/vmwgfx_cmdbuf.c:1390:42: error: 'struct drm_=
-device' has no member named 'pdev'; did you mean 'dev'?
->      1390 |   dma_free_coherent(&man->dev_priv->dev->pdev->dev,
->           |                                          ^~~~
->           |                                          dev
->=20
->=20
-> vim +509 drivers/gpu/drm/gma500/oaktrail_device.c
->=20
-> 1b082ccf5901108 Alan Cox           2011-11-03  503
-> 1b22edfd6efd02b Alan Cox           2011-11-29  504  static int oaktrail=
-_chip_setup(struct drm_device *dev)
-> aa0c45fdca0cff3 Alan Cox           2011-11-29  505  {
-> 1b22edfd6efd02b Alan Cox           2011-11-29  506  	struct drm_psb_pri=
-vate *dev_priv =3D dev->dev_private;
-> 1b22edfd6efd02b Alan Cox           2011-11-29  507  	int ret;
-> 1b22edfd6efd02b Alan Cox           2011-11-29  508  =09
-> 9c0b6fcdc9faee5 Alan Cox           2012-05-11 @509  	if (pci_enable_msi=
-(dev->pdev))
-> 9c0b6fcdc9faee5 Alan Cox           2012-05-11  510  		dev_warn(dev->dev=
-, "Enabling MSI failed!\n");
-> 9c0b6fcdc9faee5 Alan Cox           2012-05-11  511
-> 8512e0748729a49 Alan Cox           2012-05-11  512  	dev_priv->regmap =3D=
- oaktrail_regmap;
-> 8512e0748729a49 Alan Cox           2012-05-11  513
-> 1b22edfd6efd02b Alan Cox           2011-11-29  514  	ret =3D mid_chip_s=
-etup(dev);
-> aa0c45fdca0cff3 Alan Cox           2011-11-29  515  	if (ret < 0)
-> aa0c45fdca0cff3 Alan Cox           2011-11-29  516  		return ret;
-> 4086b1e2b19729e Kirill A. Shutemov 2012-05-03  517  	if (!dev_priv->has=
-_gct) {
-> aa0c45fdca0cff3 Alan Cox           2011-11-29  518  		/* Now pull the B=
-IOS data */
-> d839ede47a56ff5 Alan Cox           2012-05-03  519  		psb_intel_opregio=
-n_init(dev);
-> aa0c45fdca0cff3 Alan Cox           2011-11-29  520  		psb_intel_init_bi=
-os(dev);
-> aa0c45fdca0cff3 Alan Cox           2011-11-29  521  	}
-> 6528c897966c7d5 Patrik Jakobsson   2013-11-07  522  	gma_intel_setup_gm=
-bus(dev);
-> 5f503148efdda26 Alan Cox           2012-05-03  523  	oaktrail_hdmi_setu=
-p(dev);
-> aa0c45fdca0cff3 Alan Cox           2011-11-29  524  	return 0;
-> aa0c45fdca0cff3 Alan Cox           2011-11-29  525  }
-> aa0c45fdca0cff3 Alan Cox           2011-11-29  526
->=20
-> ---
-> 0-DAY CI Kernel Test Service, Intel Corporation
-> https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
->=20
-
---=20
-Thomas Zimmermann
-Graphics Driver Developer
-SUSE Software Solutions Germany GmbH
-Maxfeldstr. 5, 90409 N=FCrnberg, Germany
-(HRB 36809, AG N=FCrnberg)
-Gesch=E4ftsf=FChrer: Felix Imend=F6rffer
-
-
---Z4YI4NmMDxFYDlF64HumYqEahAMduSxod--
-
---tJgV1SNd36h9nVoys3p0LHnpD6YWAprsK
-Content-Type: application/pgp-signature; name="OpenPGP_signature.asc"
-Content-Description: OpenPGP digital signature
-Content-Disposition: attachment; filename="OpenPGP_signature"
-
------BEGIN PGP SIGNATURE-----
-
-wsF5BAABCAAjFiEExndm/fpuMUdwYFFolh/E3EQov+AFAl/25kIFAwAAAAAACgkQlh/E3EQov+Ax
-ZhAAlk6YhkOQgj0DkXkR6ImjQQ0V6ekCDt80S5JdvMfkOa7l91eQkejfLII0smpWkejaBOFs/jvl
-Zs6/Eh1qwVEs9zdum0eeMeK3BWKVyPw7xHVmuIapOIRVFwXM6s1oNoHc089FAKkmViAqEPbH5ZUI
-L33yhTzapO+nYfHLibRUx2Olp1cxyuB27aKLSlQ/SAV/5axVmgVfYHQV2+ETsNyfZFmblwNjus8b
-/r9OvwtcM9iNzE4wLMbHKZSTUDgm6c5qGDgg+03iL91aq7sMx2v2kAbmi7zUn0G+0T8Xw33AxBcT
-r6Cw0mctRjU64FGbcv/1AzUMlOrdiReqaQt+DS4FJGr4HBPullX+KwKLuR6nJ3I/MMJPNbAqOGkr
-/J3uetklqPFB635uoYF0LFVFAqsIgjeqcMSvby7Q1nKpelY+Ncge9qt0kgYsXaHafv1p/ZgOb3Hk
-sB8xc6680uSSAAzRPJqGn+Rzj3Cb32+s/MIR/jPcHbsmSVj/8+D5wE394Ax8zPAfVs/QcM4fBiBg
-gtwrHm06T11H9rJBe655psRjejMSuz7GoYrvrt7pieqfFxABuPSj93XhwfotT4qdezzlqPf1aaI8
-DXJzRVGgazVpQWbAanhWoH0V+zmrhuHBqBSnKDtzkRIxKrFJzoOB1Axfn/BnSs8JVuVoJxyMqdw0
-T2E=
-=xw5L
------END PGP SIGNATURE-----
-
---tJgV1SNd36h9nVoys3p0LHnpD6YWAprsK--
-
---===============0228966448==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+diff --git a/drivers/gpu/drm/i915/gt/intel_engine_types.h b/drivers/gpu/drm/i915/gt/intel_engine_types.h
+index 430066e5884c..df62e793e747 100644
+--- a/drivers/gpu/drm/i915/gt/intel_engine_types.h
++++ b/drivers/gpu/drm/i915/gt/intel_engine_types.h
+@@ -238,16 +238,6 @@ struct intel_engine_execlists {
+ 	 */
+ 	unsigned int port_mask;
+ 
+-	/**
+-	 * @switch_priority_hint: Second context priority.
+-	 *
+-	 * We submit multiple contexts to the HW simultaneously and would
+-	 * like to occasionally switch between them to emulate timeslicing.
+-	 * To know when timeslicing is suitable, we track the priority of
+-	 * the context submitted second.
+-	 */
+-	int switch_priority_hint;
+-
+ 	/**
+ 	 * @queue_priority_hint: Highest pending priority.
+ 	 *
+diff --git a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
+index a5b442683c18..19bd1843e4b8 100644
+--- a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
++++ b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
+@@ -1148,25 +1148,6 @@ static void defer_active(struct intel_engine_cs *engine)
+ 	defer_request(rq, i915_sched_lookup_priolist(engine, rq_prio(rq)));
+ }
+ 
+-static bool
+-need_timeslice(const struct intel_engine_cs *engine,
+-	       const struct i915_request *rq)
+-{
+-	int hint;
+-
+-	if (!intel_engine_has_timeslices(engine))
+-		return false;
+-
+-	hint = max(engine->execlists.queue_priority_hint,
+-		   virtual_prio(&engine->execlists));
+-
+-	if (!list_is_last(&rq->sched.link, &engine->active.requests))
+-		hint = max(hint, rq_prio(list_next_entry(rq, sched.link)));
+-
+-	GEM_BUG_ON(hint >= I915_PRIORITY_UNPREEMPTABLE);
+-	return hint >= effective_prio(rq);
+-}
+-
+ static bool
+ timeslice_yield(const struct intel_engine_execlists *el,
+ 		const struct i915_request *rq)
+@@ -1186,76 +1167,74 @@ timeslice_yield(const struct intel_engine_execlists *el,
+ 	return rq->context->lrc.ccid == READ_ONCE(el->yield);
+ }
+ 
+-static bool
+-timeslice_expired(const struct intel_engine_execlists *el,
+-		  const struct i915_request *rq)
++static bool needs_timeslice(const struct intel_engine_cs *engine,
++			    const struct i915_request *rq)
+ {
++	if (!intel_engine_has_timeslices(engine))
++		return false;
++
++	/* If not currently active, or about to switch, wait for next event */
++	if (!rq || __i915_request_is_complete(rq))
++		return false;
++
++	/* We do not need to start the timeslice until after the ACK */
++	if (READ_ONCE(engine->execlists.pending[0]))
++		return false;
++
++	/* If ELSP[1] is occupied, always check to see if worth slicing */
++	if (!list_is_last_rcu(&rq->sched.link, &engine->active.requests))
++		return true;
++
++	/* Otherwise, ELSP[0] is by itself, but may be waiting in the queue */
++	if (!RB_EMPTY_ROOT(&engine->execlists.queue.rb_root))
++		return true;
++
++	return !RB_EMPTY_ROOT(&engine->execlists.virtual.rb_root);
++}
++
++static bool
++timeslice_expired(struct intel_engine_cs *engine, const struct i915_request *rq)
++{
++	const struct intel_engine_execlists *el = &engine->execlists;
++
++	if (i915_request_has_nopreempt(rq) && __i915_request_has_started(rq))
++		return false;
++
++	if (!needs_timeslice(engine, rq))
++		return false;
++
+ 	return timer_expired(&el->timer) || timeslice_yield(el, rq);
+ }
+ 
+-static int
+-switch_prio(struct intel_engine_cs *engine, const struct i915_request *rq)
+-{
+-	if (list_is_last(&rq->sched.link, &engine->active.requests))
+-		return engine->execlists.queue_priority_hint;
+-
+-	return rq_prio(list_next_entry(rq, sched.link));
+-}
+-
+-static inline unsigned long
+-timeslice(const struct intel_engine_cs *engine)
++static unsigned long timeslice(const struct intel_engine_cs *engine)
+ {
+ 	return READ_ONCE(engine->props.timeslice_duration_ms);
+ }
+ 
+-static unsigned long active_timeslice(const struct intel_engine_cs *engine)
+-{
+-	const struct intel_engine_execlists *execlists = &engine->execlists;
+-	const struct i915_request *rq = *execlists->active;
+-
+-	if (!rq || __i915_request_is_complete(rq))
+-		return 0;
+-
+-	if (READ_ONCE(execlists->switch_priority_hint) < effective_prio(rq))
+-		return 0;
+-
+-	return timeslice(engine);
+-}
+-
+-static void set_timeslice(struct intel_engine_cs *engine)
++static void start_timeslice(struct intel_engine_cs *engine)
+ {
++	struct intel_engine_execlists *el = &engine->execlists;
+ 	unsigned long duration;
+ 
+-	if (!intel_engine_has_timeslices(engine))
+-		return;
++	/* Disable the timer if there is nothing to switch to */
++	duration = 0;
++	if (needs_timeslice(engine, *el->active)) {
++		/* Avoid continually prolonging an active timeslice */
++		if (timer_active(&el->timer)) {
++			/*
++			 * If we just submitted a new ELSP after an old
++			 * context, that context may have already consumed
++			 * its timeslice, so recheck.
++			 */
++			if (!timer_pending(&el->timer))
++				tasklet_hi_schedule(&engine->execlists.tasklet);
++			return;
++		}
+ 
+-	duration = active_timeslice(engine);
+-	ENGINE_TRACE(engine, "bump timeslicing, interval:%lu", duration);
++		duration = timeslice(engine);
++	}
+ 
+-	set_timer_ms(&engine->execlists.timer, duration);
+-}
+-
+-static void start_timeslice(struct intel_engine_cs *engine, int prio)
+-{
+-	struct intel_engine_execlists *execlists = &engine->execlists;
+-	unsigned long duration;
+-
+-	if (!intel_engine_has_timeslices(engine))
+-		return;
+-
+-	WRITE_ONCE(execlists->switch_priority_hint, prio);
+-	if (prio == INT_MIN)
+-		return;
+-
+-	if (timer_pending(&execlists->timer))
+-		return;
+-
+-	duration = timeslice(engine);
+-	ENGINE_TRACE(engine,
+-		     "start timeslicing, prio:%d, interval:%lu",
+-		     prio, duration);
+-
+-	set_timer_ms(&execlists->timer, duration);
++	set_timer_ms(&el->timer, duration);
+ }
+ 
+ static void record_preemption(struct intel_engine_execlists *execlists)
+@@ -1368,16 +1347,32 @@ static void execlists_dequeue(struct intel_engine_cs *engine)
+ 			__unwind_incomplete_requests(engine);
+ 
+ 			last = NULL;
+-		} else if (need_timeslice(engine, last) &&
+-			   timeslice_expired(execlists, last)) {
++		} else if (timeslice_expired(engine, last)) {
+ 			ENGINE_TRACE(engine,
+-				     "expired last=%llx:%lld, prio=%d, hint=%d, yield?=%s\n",
+-				     last->fence.context,
+-				     last->fence.seqno,
+-				     last->sched.attr.priority,
++				     "expired:%s last=%llx:%lld, prio=%d, hint=%d, yield?=%s\n",
++				     yesno(timer_expired(&execlists->timer)),
++				     last->fence.context, last->fence.seqno,
++				     rq_prio(last),
+ 				     execlists->queue_priority_hint,
+ 				     yesno(timeslice_yield(execlists, last)));
+ 
++			/*
++			 * Consume this timeslice; ensure we start a new one.
++			 *
++			 * The timeslice expired, and we will unwind the
++			 * running contexts and recompute the next ELSP.
++			 * If that submit will be the same pair of contexts
++			 * (due to dependency ordering), we will skip the
++			 * submission. If we don't cancel the timer now,
++			 * we will see that the timer has expired and
++			 * reschedule the tasklet; continually until the
++			 * next context switch or other preeemption event.
++			 *
++			 * Since we have decided to reschedule based on
++			 * consumption of this timeslice, if we submit the
++			 * same context again, grant it a full timeslice.
++			 */
++			cancel_timer(&execlists->timer);
+ 			ring_set_paused(engine, 1);
+ 			defer_active(engine);
+ 
+@@ -1413,7 +1408,6 @@ static void execlists_dequeue(struct intel_engine_cs *engine)
+ 				 * of timeslices, our queue might be.
+ 				 */
+ 				spin_unlock(&engine->active.lock);
+-				start_timeslice(engine, queue_prio(execlists));
+ 				return;
+ 			}
+ 		}
+@@ -1440,7 +1434,6 @@ static void execlists_dequeue(struct intel_engine_cs *engine)
+ 		if (last && !can_merge_rq(last, rq)) {
+ 			spin_unlock(&ve->base.active.lock);
+ 			spin_unlock(&engine->active.lock);
+-			start_timeslice(engine, rq_prio(rq));
+ 			return; /* leave this for another sibling */
+ 		}
+ 
+@@ -1604,29 +1597,23 @@ static void execlists_dequeue(struct intel_engine_cs *engine)
+ 	execlists->queue_priority_hint = queue_prio(execlists);
+ 	spin_unlock(&engine->active.lock);
+ 
+-	if (submit) {
+-		/*
+-		 * Skip if we ended up with exactly the same set of requests,
+-		 * e.g. trying to timeslice a pair of ordered contexts
+-		 */
+-		if (!memcmp(execlists->active,
+-			    execlists->pending,
+-			    (port - execlists->pending) * sizeof(*port)))
+-			goto skip_submit;
+-
++	/*
++	 * We can skip poking the HW if we ended up with exactly the same set
++	 * of requests as currently running, e.g. trying to timeslice a pair
++	 * of ordered contexts.
++	 */
++	if (submit &&
++	    memcmp(execlists->active,
++		   execlists->pending,
++		   (port - execlists->pending) * sizeof(*port))) {
+ 		*port = NULL;
+ 		while (port-- != execlists->pending)
+ 			execlists_schedule_in(*port, port - execlists->pending);
+ 
+-		execlists->switch_priority_hint =
+-			switch_prio(engine, *execlists->pending);
+-
+ 		WRITE_ONCE(execlists->yield, -1);
+ 		set_preempt_timeout(engine, *execlists->active);
+ 		execlists_submit_ports(engine);
+ 	} else {
+-		start_timeslice(engine, execlists->queue_priority_hint);
+-skip_submit:
+ 		ring_set_paused(engine, 0);
+ 		while (port-- != execlists->pending)
+ 			i915_request_put(*port);
+@@ -1984,8 +1971,6 @@ process_csb(struct intel_engine_cs *engine, struct i915_request **inactive)
+ 		}
+ 	} while (head != tail);
+ 
+-	set_timeslice(engine);
+-
+ 	/*
+ 	 * Gen11 has proven to fail wrt global observation point between
+ 	 * entry and tail update, failing on the ordering and thus
+@@ -1999,6 +1984,14 @@ process_csb(struct intel_engine_cs *engine, struct i915_request **inactive)
+ 	 */
+ 	invalidate_csb_entries(&buf[0], &buf[num_entries - 1]);
+ 
++	/*
++	 * We assume that any event reflects a change in context flow
++	 * and merits a fresh timeslice. We reinstall the timer after
++	 * inspecting the queue to see if we need to resumbit.
++	 */
++	if (*inactive != *execlists->active) /* elide lite-restores */
++		cancel_timer(&execlists->timer);
++
+ 	return inactive;
+ }
+ 
+@@ -2410,8 +2403,10 @@ static void execlists_submission_tasklet(unsigned long data)
+ 		execlists_reset(engine, msg);
+ 	}
+ 
+-	if (!engine->execlists.pending[0])
++	if (!engine->execlists.pending[0]) {
+ 		execlists_dequeue_irq(engine);
++		start_timeslice(engine);
++	}
+ 
+ 	post_process_csb(post, inactive);
+ 	rcu_read_unlock();
+@@ -3856,9 +3851,6 @@ void intel_execlists_show_requests(struct intel_engine_cs *engine,
+ 		show_request(m, last, "\t\t", 0);
+ 	}
+ 
+-	if (execlists->switch_priority_hint != INT_MIN)
+-		drm_printf(m, "\t\tSwitch priority hint: %d\n",
+-			   READ_ONCE(execlists->switch_priority_hint));
+ 	if (execlists->queue_priority_hint != INT_MIN)
+ 		drm_printf(m, "\t\tQueue priority hint: %d\n",
+ 			   READ_ONCE(execlists->queue_priority_hint));
+-- 
+2.20.1
 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============0228966448==--
