@@ -1,46 +1,46 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5AF272EF674
-	for <lists+intel-gfx@lfdr.de>; Fri,  8 Jan 2021 18:30:47 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id A44DA2EF6C8
+	for <lists+intel-gfx@lfdr.de>; Fri,  8 Jan 2021 18:51:52 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A3EBC6E845;
-	Fri,  8 Jan 2021 17:30:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E43C96E864;
+	Fri,  8 Jan 2021 17:51:50 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 X-Greylist: delayed 8398 seconds by postgrey-1.36 at gabe;
- Fri, 08 Jan 2021 17:30:44 UTC
-Received: from 8.mo6.mail-out.ovh.net (8.mo6.mail-out.ovh.net [178.33.42.204])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 804C06E845
- for <intel-gfx@lists.freedesktop.org>; Fri,  8 Jan 2021 17:30:44 +0000 (UTC)
-Received: from player771.ha.ovh.net (unknown [10.108.54.172])
- by mo6.mail-out.ovh.net (Postfix) with ESMTP id 350C2232023
- for <intel-gfx@lists.freedesktop.org>; Fri,  8 Jan 2021 14:52:02 +0100 (CET)
+ Fri, 08 Jan 2021 17:51:48 UTC
+Received: from 3.mo173.mail-out.ovh.net (3.mo173.mail-out.ovh.net
+ [46.105.34.1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BC9CD6E864
+ for <intel-gfx@lists.freedesktop.org>; Fri,  8 Jan 2021 17:51:48 +0000 (UTC)
+Received: from player794.ha.ovh.net (unknown [10.109.146.163])
+ by mo173.mail-out.ovh.net (Postfix) with ESMTP id 6A61A15A57A
+ for <intel-gfx@lists.freedesktop.org>; Fri,  8 Jan 2021 16:24:39 +0100 (CET)
 Received: from etezian.org (213-243-141-64.bb.dnainternet.fi [213.243.141.64])
  (Authenticated sender: andi@etezian.org)
- by player771.ha.ovh.net (Postfix) with ESMTPSA id EF01819EBC975;
- Fri,  8 Jan 2021 13:51:56 +0000 (UTC)
+ by player794.ha.ovh.net (Postfix) with ESMTPSA id AA2D216C16A36;
+ Fri,  8 Jan 2021 15:24:37 +0000 (UTC)
 Authentication-Results: garm.ovh; auth=pass
- (GARM-96R00153d4cb5b-cbce-45e8-aaab-6a879adda1e3,
+ (GARM-96R0018ca1e0b8-d55b-436a-933d-3d17169521a3,
  83D1C09382E53F50CE2429AE6C9B6AA8FD9DCB87) smtp.auth=andi@etezian.org
 X-OVh-ClientIp: 213.243.141.64
-Date: Fri, 8 Jan 2021 15:51:54 +0200
+Date: Fri, 8 Jan 2021 17:24:36 +0200
 From: Andi Shyti <andi@etezian.org>
 To: Chris Wilson <chris@chris-wilson.co.uk>
-Message-ID: <X/hjekGVV5F+sokg@jack.zhora.eu>
+Message-ID: <X/h5NCDoRdxLQp5u@jack.zhora.eu>
 References: <20210107221724.10036-1-chris@chris-wilson.co.uk>
- <X/hPhSqBCjHFKg9F@jack.zhora.eu>
- <161011238272.28368.13711350036924329757@build.alporthouse.com>
+ <20210107221724.10036-4-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <161011238272.28368.13711350036924329757@build.alporthouse.com>
-X-Ovh-Tracer-Id: 7170012084842840585
+In-Reply-To: <20210107221724.10036-4-chris@chris-wilson.co.uk>
+X-Ovh-Tracer-Id: 8734450006227075593
 X-VR-SPAMSTATE: OK
 X-VR-SPAMSCORE: -100
-X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgedujedrvdeggedgheejucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuqfggjfdpvefjgfevmfevgfenuceurghilhhouhhtmecuhedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhepfffhvffukfhfgggtuggjsehttdertddttddvnecuhfhrohhmpeetnhguihcuufhhhihtihcuoegrnhguihesvghtvgiiihgrnhdrohhrgheqnecuggftrfgrthhtvghrnheptdfgudduhfefueeujeefieehtdeftefggeevhefgueellefhudetgeeikeduieefnecukfhppedtrddtrddtrddtpddvudefrddvgeefrddugedurdeigeenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhhouggvpehsmhhtphdqohhuthdphhgvlhhopehplhgrhigvrhejjedurdhhrgdrohhvhhdrnhgvthdpihhnvghtpedtrddtrddtrddtpdhmrghilhhfrhhomheprghnughisegvthgviihirghnrdhorhhgpdhrtghpthhtohepihhnthgvlhdqghhfgieslhhishhtshdrfhhrvggvuggvshhkthhophdrohhrgh
-Subject: Re: [Intel-gfx] [PATCH 1/5] drm/i915/selftests: Skip unstable
- timing measurements
+X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgedujedrvdeghedgtdekucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuqfggjfdpvefjgfevmfevgfenuceurghilhhouhhtmecuhedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhepfffhvffukfhfgggtuggjsehttdertddttddvnecuhfhrohhmpeetnhguihcuufhhhihtihcuoegrnhguihesvghtvgiiihgrnhdrohhrgheqnecuggftrfgrthhtvghrnheptdfgudduhfefueeujeefieehtdeftefggeevhefgueellefhudetgeeikeduieefnecukfhppedtrddtrddtrddtpddvudefrddvgeefrddugedurdeigeenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhhouggvpehsmhhtphdqohhuthdphhgvlhhopehplhgrhigvrhejleegrdhhrgdrohhvhhdrnhgvthdpihhnvghtpedtrddtrddtrddtpdhmrghilhhfrhhomheprghnughisegvthgviihirghnrdhorhhgpdhrtghpthhtohepihhnthgvlhdqghhfgieslhhishhtshdrfhhrvggvuggvshhkthhophdrohhrgh
+Subject: Re: [Intel-gfx] [PATCH 4/5] drm/i915/gt: Only disable preemption on
+ gen8 render engines
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,32 +61,20 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 Hi Chris,
 
-> > > diff --git a/drivers/gpu/drm/i915/selftests/intel_memory_region.c b/drivers/gpu/drm/i915/selftests/intel_memory_region.c
-> > > index 75839db63bea..59c58a276677 100644
-> > > --- a/drivers/gpu/drm/i915/selftests/intel_memory_region.c
-> > > +++ b/drivers/gpu/drm/i915/selftests/intel_memory_region.c
-> > > @@ -852,6 +852,9 @@ static int _perf_memcpy(struct intel_memory_region *src_mr,
-> > >               }
-> > >  
-> > >               sort(t, ARRAY_SIZE(t), sizeof(*t), wrap_ktime_compare, NULL);
-> > > +             if (!t[0])
-> > > +                     continue;
-> > > +
-> > 
-> > are you assuming here that if t[0] is '0', also the rest of 't'
-> > is '0'?
+On Thu, Jan 07, 2021 at 10:17:23PM +0000, Chris Wilson wrote:
+> The reason why we did not enable preemption on Broadwater was due to
+> missing GPGPU workarounds. Since this only applies to rcs0, only
+> restrict rcs0 (and our global capabilities).
 > 
-> It's sorted into ascending order with ktime_t... Hmm, s64 not u64 as I
-> presumed. So better to check <= 0.
+> While this does not affect exposing a preemption capability to
+> userspace, it does affect our internal decisions on whether to use
+> timeslicing and semaphores between individual engines.
+> 
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
 
-by division by 0 I guess you mean here:
+Reviewed-by: Andi Shyti <andi.shyti@intel.com>
 
-	div64_u64(mul_u32_u32(4 * size,
-			      1000 * 1000 * 1000),
-		  t[1] + 2 * t[2] + t[3]) >> 20);
-
-why are you testing t[0]? Did I miss anything else?
-
+Thanks,
 Andi
 _______________________________________________
 Intel-gfx mailing list
