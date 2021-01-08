@@ -1,31 +1,46 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2468C2EF612
-	for <lists+intel-gfx@lfdr.de>; Fri,  8 Jan 2021 17:56:03 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5AF272EF674
+	for <lists+intel-gfx@lfdr.de>; Fri,  8 Jan 2021 18:30:47 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7D0C16E83D;
-	Fri,  8 Jan 2021 16:56:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A3EBC6E845;
+	Fri,  8 Jan 2021 17:30:45 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id AC32F6E83B;
- Fri,  8 Jan 2021 16:56:00 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id A56B7A7E03;
- Fri,  8 Jan 2021 16:56:00 +0000 (UTC)
+X-Greylist: delayed 8398 seconds by postgrey-1.36 at gabe;
+ Fri, 08 Jan 2021 17:30:44 UTC
+Received: from 8.mo6.mail-out.ovh.net (8.mo6.mail-out.ovh.net [178.33.42.204])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 804C06E845
+ for <intel-gfx@lists.freedesktop.org>; Fri,  8 Jan 2021 17:30:44 +0000 (UTC)
+Received: from player771.ha.ovh.net (unknown [10.108.54.172])
+ by mo6.mail-out.ovh.net (Postfix) with ESMTP id 350C2232023
+ for <intel-gfx@lists.freedesktop.org>; Fri,  8 Jan 2021 14:52:02 +0100 (CET)
+Received: from etezian.org (213-243-141-64.bb.dnainternet.fi [213.243.141.64])
+ (Authenticated sender: andi@etezian.org)
+ by player771.ha.ovh.net (Postfix) with ESMTPSA id EF01819EBC975;
+ Fri,  8 Jan 2021 13:51:56 +0000 (UTC)
+Authentication-Results: garm.ovh; auth=pass
+ (GARM-96R00153d4cb5b-cbce-45e8-aaab-6a879adda1e3,
+ 83D1C09382E53F50CE2429AE6C9B6AA8FD9DCB87) smtp.auth=andi@etezian.org
+X-OVh-ClientIp: 213.243.141.64
+Date: Fri, 8 Jan 2021 15:51:54 +0200
+From: Andi Shyti <andi@etezian.org>
+To: Chris Wilson <chris@chris-wilson.co.uk>
+Message-ID: <X/hjekGVV5F+sokg@jack.zhora.eu>
+References: <20210107221724.10036-1-chris@chris-wilson.co.uk>
+ <X/hPhSqBCjHFKg9F@jack.zhora.eu>
+ <161011238272.28368.13711350036924329757@build.alporthouse.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Jos=C3=A9_Roberto_de_Souza?= <jose.souza@intel.com>
-Date: Fri, 08 Jan 2021 16:56:00 -0000
-Message-ID: <161012496067.334.5662436347415958779@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210108134802.21280-1-jose.souza@intel.com>
-In-Reply-To: <20210108134802.21280-1-jose.souza@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915=3A_Fix_HTI_port_checking?=
+Content-Disposition: inline
+In-Reply-To: <161011238272.28368.13711350036924329757@build.alporthouse.com>
+X-Ovh-Tracer-Id: 7170012084842840585
+X-VR-SPAMSTATE: OK
+X-VR-SPAMSCORE: -100
+X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgedujedrvdeggedgheejucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuqfggjfdpvefjgfevmfevgfenuceurghilhhouhhtmecuhedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhepfffhvffukfhfgggtuggjsehttdertddttddvnecuhfhrohhmpeetnhguihcuufhhhihtihcuoegrnhguihesvghtvgiiihgrnhdrohhrgheqnecuggftrfgrthhtvghrnheptdfgudduhfefueeujeefieehtdeftefggeevhefgueellefhudetgeeikeduieefnecukfhppedtrddtrddtrddtpddvudefrddvgeefrddugedurdeigeenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhhouggvpehsmhhtphdqohhuthdphhgvlhhopehplhgrhigvrhejjedurdhhrgdrohhvhhdrnhgvthdpihhnvghtpedtrddtrddtrddtpdhmrghilhhfrhhomheprghnughisegvthgviihirghnrdhorhhgpdhrtghpthhtohepihhnthgvlhdqghhfgieslhhishhtshdrfhhrvggvuggvshhkthhophdrohhrgh
+Subject: Re: [Intel-gfx] [PATCH 1/5] drm/i915/selftests: Skip unstable
+ timing measurements
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,170 +53,42 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============1413518596=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============1413518596==
-Content-Type: multipart/alternative;
- boundary="===============6035102688999122202=="
+Hi Chris,
 
---===============6035102688999122202==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+> > > diff --git a/drivers/gpu/drm/i915/selftests/intel_memory_region.c b/drivers/gpu/drm/i915/selftests/intel_memory_region.c
+> > > index 75839db63bea..59c58a276677 100644
+> > > --- a/drivers/gpu/drm/i915/selftests/intel_memory_region.c
+> > > +++ b/drivers/gpu/drm/i915/selftests/intel_memory_region.c
+> > > @@ -852,6 +852,9 @@ static int _perf_memcpy(struct intel_memory_region *src_mr,
+> > >               }
+> > >  
+> > >               sort(t, ARRAY_SIZE(t), sizeof(*t), wrap_ktime_compare, NULL);
+> > > +             if (!t[0])
+> > > +                     continue;
+> > > +
+> > 
+> > are you assuming here that if t[0] is '0', also the rest of 't'
+> > is '0'?
+> 
+> It's sorted into ascending order with ktime_t... Hmm, s64 not u64 as I
+> presumed. So better to check <= 0.
 
-== Series Details ==
+by division by 0 I guess you mean here:
 
-Series: drm/i915: Fix HTI port checking
-URL   : https://patchwork.freedesktop.org/series/85615/
-State : success
+	div64_u64(mul_u32_u32(4 * size,
+			      1000 * 1000 * 1000),
+		  t[1] + 2 * t[2] + t[3]) >> 20);
 
-== Summary ==
+why are you testing t[0]? Did I miss anything else?
 
-CI Bug Log - changes from CI_DRM_9566 -> Patchwork_19292
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19292/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_19292 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@gem_mmap_gtt@basic:
-    - fi-tgl-y:           [PASS][1] -> [DMESG-WARN][2] ([i915#402]) +1 similar issue
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9566/fi-tgl-y/igt@gem_mmap_gtt@basic.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19292/fi-tgl-y/igt@gem_mmap_gtt@basic.html
-
-  
-#### Possible fixes ####
-
-  * igt@gem_flink_basic@bad-flink:
-    - fi-tgl-y:           [DMESG-WARN][3] ([i915#402]) -> [PASS][4] +1 similar issue
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9566/fi-tgl-y/igt@gem_flink_basic@bad-flink.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19292/fi-tgl-y/igt@gem_flink_basic@bad-flink.html
-
-  
-  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
-
-
-Participating hosts (43 -> 38)
-------------------------------
-
-  Missing    (5): fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_9566 -> Patchwork_19292
-
-  CI-20190529: 20190529
-  CI_DRM_9566: 43ca049026a4c8808645c7f21cb0fc34a337c612 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5951: fec3b9c7d88357144f0d7a1447b9316a1c81da1a @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_19292: d7e254bf929b82d237306e002cd63494946218e9 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-d7e254bf929b drm/i915: Fix HTI port checking
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19292/index.html
-
---===============6035102688999122202==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915: Fix HTI port checking</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/85615/">https://patchwork.freedesktop.org/series/85615/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19292/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19292/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_9566 -&gt; Patchwork_19292</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19292/index.html</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_19292 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@gem_mmap_gtt@basic:<ul>
-<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9566/fi-tgl-y/igt@gem_mmap_gtt@basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19292/fi-tgl-y/igt@gem_mmap_gtt@basic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) +1 similar issue</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@gem_flink_basic@bad-flink:<ul>
-<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9566/fi-tgl-y/igt@gem_flink_basic@bad-flink.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19292/fi-tgl-y/igt@gem_flink_basic@bad-flink.html">PASS</a> +1 similar issue</li>
-</ul>
-</li>
-</ul>
-<h2>Participating hosts (43 -&gt; 38)</h2>
-<p>Missing    (5): fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-bdw-samus </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_9566 -&gt; Patchwork_19292</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_9566: 43ca049026a4c8808645c7f21cb0fc34a337c612 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_5951: fec3b9c7d88357144f0d7a1447b9316a1c81da1a @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
-  Patchwork_19292: d7e254bf929b82d237306e002cd63494946218e9 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>d7e254bf929b drm/i915: Fix HTI port checking</p>
-
-</body>
-</html>
-
---===============6035102688999122202==--
-
---===============1413518596==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
+Andi
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============1413518596==--
