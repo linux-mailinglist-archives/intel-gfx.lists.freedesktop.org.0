@@ -1,40 +1,41 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 988552EFB35
-	for <lists+intel-gfx@lfdr.de>; Fri,  8 Jan 2021 23:26:24 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 92EA72EFB43
+	for <lists+intel-gfx@lfdr.de>; Fri,  8 Jan 2021 23:38:28 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 09A3589B7D;
-	Fri,  8 Jan 2021 22:26:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 81C6E6E85B;
+	Fri,  8 Jan 2021 22:38:25 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1F45989B7D
- for <intel-gfx@lists.freedesktop.org>; Fri,  8 Jan 2021 22:26:22 +0000 (UTC)
-IronPort-SDR: 6FiRA0n+j+7R+ywa+xMgOQMrfS2YoXx2V/3ISZGLq/nNptqSgiFi7h6BORKpsihBK1lXCDAwyo
- ez/h7VrUVmFQ==
-X-IronPort-AV: E=McAfee;i="6000,8403,9858"; a="196235301"
-X-IronPort-AV: E=Sophos;i="5.79,332,1602572400"; d="scan'208";a="196235301"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Jan 2021 14:26:21 -0800
-IronPort-SDR: TxMmQDqD76rZvLOfVoseOFfBe8z0Plg+4mlkJhX2t2Ctdj52nY4+H8ZP3JBlHCdY9PchJv7sxT
- QusYIaIUZs6g==
-X-IronPort-AV: E=Sophos;i="5.79,332,1602572400"; d="scan'208";a="497976608"
-Received: from mdroper-desk1.fm.intel.com ([10.1.27.168])
- by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Jan 2021 14:26:21 -0800
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D0E786E85B
+ for <intel-gfx@lists.freedesktop.org>; Fri,  8 Jan 2021 22:38:23 +0000 (UTC)
+IronPort-SDR: 5COxTcnjzA1WzKlwxCt4i5oIhAGfPgxMFj/7lR3RFuHi1647Ork6Xc/tAm7MvdFGmT555nP9Rr
+ UidmN8MEY2wA==
+X-IronPort-AV: E=McAfee;i="6000,8403,9858"; a="164743304"
+X-IronPort-AV: E=Sophos;i="5.79,332,1602572400"; d="scan'208";a="164743304"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Jan 2021 14:38:23 -0800
+IronPort-SDR: khk+Aq6geOdzWd9t96x8HtN+cdyAFBy90zfO4dEwmpigzqMRQGioPmrf6Pv/485dzzqHHpfO+y
+ CjLR+Nj9Z0YA==
+X-IronPort-AV: E=Sophos;i="5.79,332,1602572400"; d="scan'208";a="380274625"
+Received: from mdroper-desk1.fm.intel.com (HELO
+ mdroper-desk1.amr.corp.intel.com) ([10.1.27.168])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Jan 2021 14:38:22 -0800
+Date: Fri, 8 Jan 2021 14:38:21 -0800
 From: Matt Roper <matthew.d.roper@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Fri,  8 Jan 2021 14:25:28 -0800
-Message-Id: <20210108222528.1954514-1-matthew.d.roper@intel.com>
-X-Mailer: git-send-email 2.24.1
-In-Reply-To: <2e0467f2babe4d198ff93fa70adffb09@intel.com>
-References: <2e0467f2babe4d198ff93fa70adffb09@intel.com>
+To: Chris Wilson <chris@chris-wilson.co.uk>
+Message-ID: <20210108223821.GL3894148@mdroper-desk1.amr.corp.intel.com>
+References: <20210108205114.29582-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v2] drm/i915/dg1: Update voltage swing tables
- for DP
+Content-Disposition: inline
+In-Reply-To: <20210108205114.29582-1-chris@chris-wilson.co.uk>
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/gt: Exercise lrc_wa_ctx
+ initialisation failure
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,72 +48,50 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-REcxJ3MgdnN3aW5nIHRhYmxlcyBhcmUgdGhlIHNhbWUgZm9yIGVEUCBhbmQgSERNSSBidXQgaGF2
-ZSBzbGlnaHQKZGlmZmVyZW5jZXMgZnJvbSBJQ0wvVEdMIGZvciBEUC4KCnYyOgogLSBVc2UgYSAi
-X2hicjJfaGJyMyIgc3VmZml4IG9uIHRoZSB0YWJsZSBuYW1lIHRvIG1ha2UgaXQgbW9yZSBjbGVh
-cgogICB0aGF0IHRoZSBzYW1lIHRhYmxlIGlzIHVzZWQgZm9yIGJvdGggSEJSMiBhbmQgSEJSMyBs
-aW5rIHJhdGVzLgogICAoU3dhdGhpKQoKQnNwZWM6IDQ5MjkxCkNjOiBDbGludG9uIFRheWxvciA8
-Q2xpbnRvbi5BLlRheWxvckBpbnRlbC5jb20+CkNjOiBKb3PDqSBSb2JlcnRvIGRlIFNvdXphIDxq
-b3NlLnNvdXphQGludGVsLmNvbT4KQ2M6IFJhZGhha3Jpc2huYSBTcmlwYWRhIDxyYWRoYWtyaXNo
-bmEuc3JpcGFkYUBpbnRlbC5jb20+CkNjOiBTd2F0aGkgRGhhbmF2YW50aHJpIDxzd2F0aGkuZGhh
-bmF2YW50aHJpQGludGVsLmNvbT4KU2lnbmVkLW9mZi1ieTogTWF0dCBSb3BlciA8bWF0dGhldy5k
-LnJvcGVyQGludGVsLmNvbT4KU2lnbmVkLW9mZi1ieTogTHVjYXMgRGUgTWFyY2hpIDxsdWNhcy5k
-ZW1hcmNoaUBpbnRlbC5jb20+Ci0tLQogZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRl
-bF9kZGkuYyB8IDM0ICsrKysrKysrKysrKysrKysrKysrKysrKwogMSBmaWxlIGNoYW5nZWQsIDM0
-IGluc2VydGlvbnMoKykKCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5
-L2ludGVsX2RkaS5jIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kZGkuYwpp
-bmRleCAzZGY2OTEzMzY5YmMuLmEwNDdmZDgxZTQzMyAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUv
-ZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kZGkuYworKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9k
-aXNwbGF5L2ludGVsX2RkaS5jCkBAIC02MTEsNiArNjExLDM0IEBAIHN0YXRpYyBjb25zdCBzdHJ1
-Y3QgY25sX2RkaV9idWZfdHJhbnMganNsX2NvbWJvX3BoeV9kZGlfdHJhbnNsYXRpb25zX2VkcF9o
-YnIyW10KIAl7IDB4QSwgMHgzNSwgMHgzRiwgMHgwMCwgMHgwMCB9LCAgICAgICAgLyogMzUwICAg
-MzUwICAgICAgMC4wICAgKi8KIH07CiAKK3N0YXRpYyBjb25zdCBzdHJ1Y3QgY25sX2RkaV9idWZf
-dHJhbnMgZGcxX2NvbWJvX3BoeV9kZGlfdHJhbnNsYXRpb25zX2RwX2hicltdID0geworCQkJCQkJ
-LyogTlQgbVYgVHJhbnMgbVYgZGIgICAgKi8KKwl7IDB4QSwgMHgzMiwgMHgzRiwgMHgwMCwgMHgw
-MCB9LAkvKiAzNTAgICAzNTAgICAgICAwLjAgICAqLworCXsgMHhBLCAweDQ4LCAweDM1LCAweDAw
-LCAweDBBIH0sCS8qIDM1MCAgIDUwMCAgICAgIDMuMSAgICovCisJeyAweEMsIDB4NjMsIDB4MkYs
-IDB4MDAsIDB4MTAgfSwJLyogMzUwICAgNzAwICAgICAgNi4wICAgKi8KKwl7IDB4NiwgMHg3Riwg
-MHgyQywgMHgwMCwgMHgxMyB9LAkvKiAzNTAgICA5MDAgICAgICA4LjIgICAqLworCXsgMHhBLCAw
-eDQzLCAweDNGLCAweDAwLCAweDAwIH0sCS8qIDUwMCAgIDUwMCAgICAgIDAuMCAgICovCisJeyAw
-eEMsIDB4NjAsIDB4MzYsIDB4MDAsIDB4MDkgfSwJLyogNTAwICAgNzAwICAgICAgMi45ICAgKi8K
-Kwl7IDB4NiwgMHg3RiwgMHgzMCwgMHgwMCwgMHgwRiB9LAkvKiA1MDAgICA5MDAgICAgICA1LjEg
-ICAqLworCXsgMHhDLCAweDYwLCAweDNGLCAweDAwLCAweDAwIH0sCS8qIDY1MCAgIDcwMCAgICAg
-IDAuNiAgICovCisJeyAweDYsIDB4N0YsIDB4MzcsIDB4MDAsIDB4MDggfSwJLyogNjAwICAgOTAw
-ICAgICAgMy41ICAgKi8KKwl7IDB4NiwgMHg3RiwgMHgzRiwgMHgwMCwgMHgwMCB9LAkvKiA5MDAg
-ICA5MDAgICAgICAwLjAgICAqLworfTsKKworc3RhdGljIGNvbnN0IHN0cnVjdCBjbmxfZGRpX2J1
-Zl90cmFucyBkZzFfY29tYm9fcGh5X2RkaV90cmFuc2xhdGlvbnNfZHBfaGJyMl9oYnIzW10gPSB7
-CisJCQkJCQkvKiBOVCBtViBUcmFucyBtViBkYiAgICAqLworCXsgMHhBLCAweDMyLCAweDNGLCAw
-eDAwLCAweDAwIH0sCS8qIDM1MCAgIDM1MCAgICAgIDAuMCAgICovCisJeyAweEEsIDB4NDgsIDB4
-MzUsIDB4MDAsIDB4MEEgfSwJLyogMzUwICAgNTAwICAgICAgMy4xICAgKi8KKwl7IDB4QywgMHg2
-MywgMHgyRiwgMHgwMCwgMHgxMCB9LAkvKiAzNTAgICA3MDAgICAgICA2LjAgICAqLworCXsgMHg2
-LCAweDdGLCAweDJDLCAweDAwLCAweDEzIH0sCS8qIDM1MCAgIDkwMCAgICAgIDguMiAgICovCisJ
-eyAweEEsIDB4NDMsIDB4M0YsIDB4MDAsIDB4MDAgfSwJLyogNTAwICAgNTAwICAgICAgMC4wICAg
-Ki8KKwl7IDB4QywgMHg2MCwgMHgzNiwgMHgwMCwgMHgwOSB9LAkvKiA1MDAgICA3MDAgICAgICAy
-LjkgICAqLworCXsgMHg2LCAweDdGLCAweDMwLCAweDAwLCAweDBGIH0sCS8qIDUwMCAgIDkwMCAg
-ICAgIDUuMSAgICovCisJeyAweEMsIDB4NTgsIDB4M0YsIDB4MDAsIDB4MDAgfSwJLyogNjUwICAg
-NzAwICAgICAgMC42ICAgKi8KKwl7IDB4NiwgMHg3RiwgMHgzNSwgMHgwMCwgMHgwQSB9LAkvKiA2
-MDAgICA5MDAgICAgICAzLjUgICAqLworCXsgMHg2LCAweDdGLCAweDNGLCAweDAwLCAweDAwIH0s
-CS8qIDkwMCAgIDkwMCAgICAgIDAuMCAgICovCit9OworCiBzdHJ1Y3QgaWNsX21nX3BoeV9kZGlf
-YnVmX3RyYW5zIHsKIAl1MzIgY3JpX3R4ZGVlbXBoX292ZXJyaWRlXzExXzY7CiAJdTMyIGNyaV90
-eGRlZW1waF9vdmVycmlkZV81XzA7CkBAIC0xMTIxLDYgKzExNDksMTIgQEAgaWNsX2dldF9jb21i
-b19idWZfdHJhbnNfZWRwKHN0cnVjdCBpbnRlbF9lbmNvZGVyICplbmNvZGVyLAogCX0gZWxzZSBp
-ZiAoZGV2X3ByaXYtPnZidC5lZHAubG93X3Zzd2luZykgewogCQkqbl9lbnRyaWVzID0gQVJSQVlf
-U0laRShpY2xfY29tYm9fcGh5X2RkaV90cmFuc2xhdGlvbnNfZWRwX2hicjIpOwogCQlyZXR1cm4g
-aWNsX2NvbWJvX3BoeV9kZGlfdHJhbnNsYXRpb25zX2VkcF9oYnIyOworCX0gZWxzZSBpZiAoSVNf
-REcxKGRldl9wcml2KSAmJiBjcnRjX3N0YXRlLT5wb3J0X2Nsb2NrID4gMjcwMDAwKSB7CisJCSpu
-X2VudHJpZXMgPSBBUlJBWV9TSVpFKGRnMV9jb21ib19waHlfZGRpX3RyYW5zbGF0aW9uc19kcF9o
-YnIyX2hicjMpOworCQlyZXR1cm4gZGcxX2NvbWJvX3BoeV9kZGlfdHJhbnNsYXRpb25zX2RwX2hi
-cjJfaGJyMzsKKwl9IGVsc2UgaWYgKElTX0RHMShkZXZfcHJpdikpIHsKKwkJKm5fZW50cmllcyA9
-IEFSUkFZX1NJWkUoZGcxX2NvbWJvX3BoeV9kZGlfdHJhbnNsYXRpb25zX2RwX2hicik7CisJCXJl
-dHVybiBkZzFfY29tYm9fcGh5X2RkaV90cmFuc2xhdGlvbnNfZHBfaGJyOwogCX0KIAogCXJldHVy
-biBpY2xfZ2V0X2NvbWJvX2J1Zl90cmFuc19kcChlbmNvZGVyLCBjcnRjX3N0YXRlLCBuX2VudHJp
-ZXMpOwotLSAKMi4yNC4xCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3Rv
-cC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRl
-bC1nZngK
+On Fri, Jan 08, 2021 at 08:51:14PM +0000, Chris Wilson wrote:
+> Inject a fault into lrc_init_wa_ctx() to ensure that we can tolerate a
+> failure to construct the workarounds.
+> 
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> Cc: Matt Roper <matthew.d.roper@intel.com>
+
+Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
+
+> ---
+>  drivers/gpu/drm/i915/gt/intel_lrc.c | 3 +++
+>  1 file changed, 3 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
+> index 703d9ecc3f7e..f0de3f661042 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_lrc.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
+> @@ -1525,6 +1525,9 @@ int lrc_init_wa_ctx(struct intel_engine_cs *engine)
+>  
+>  	__i915_gem_object_flush_map(wa_ctx->vma->obj, 0, batch_ptr - batch);
+>  	__i915_gem_object_release_map(wa_ctx->vma->obj);
+> +
+> +	if (i915_inject_probe_error(engine->i915, -ENODEV))
+> +		ret = -ENODEV;
+>  	if (ret)
+>  		lrc_fini_wa_ctx(engine);
+>  
+> -- 
+> 2.20.1
+> 
+
+-- 
+Matt Roper
+Graphics Software Engineer
+VTT-OSGC Platform Enablement
+Intel Corporation
+(916) 356-2795
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
