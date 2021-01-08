@@ -2,37 +2,34 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id DC9412EF361
-	for <lists+intel-gfx@lfdr.de>; Fri,  8 Jan 2021 14:47:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 56E4C2EF380
+	for <lists+intel-gfx@lfdr.de>; Fri,  8 Jan 2021 14:54:56 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E366689CD9;
-	Fri,  8 Jan 2021 13:47:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7774D88007;
+	Fri,  8 Jan 2021 13:54:52 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1A15A89CD9
- for <intel-gfx@lists.freedesktop.org>; Fri,  8 Jan 2021 13:47:12 +0000 (UTC)
-IronPort-SDR: JTvC9F9v5aQR4NyQlu2mKnSgEMSHw/m76L6GhMqZn7lnj4oxr0AKm3KrEZEaJ75rALK05LV2wo
- Gxt/Hoewt19w==
-X-IronPort-AV: E=McAfee;i="6000,8403,9857"; a="157374384"
-X-IronPort-AV: E=Sophos;i="5.79,331,1602572400"; d="scan'208";a="157374384"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Jan 2021 05:47:11 -0800
-IronPort-SDR: GI2AvtqR3niBnTulN0Jt3GOX67+nvrayt4k/5HG5m5kDSlG+jP+sK4D6f6bnW/OHEdg3zHzcf7
- Q8JkvtU1n9eg==
-X-IronPort-AV: E=Sophos;i="5.79,331,1602572400"; d="scan'208";a="351683568"
-Received: from josouza-mobl2.fso.intel.com (HELO josouza-mobl2.intel.com)
- ([10.230.19.134])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Jan 2021 05:47:10 -0800
-From: =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Fri,  8 Jan 2021 05:48:02 -0800
-Message-Id: <20210108134802.21280-1-jose.souza@intel.com>
-X-Mailer: git-send-email 2.30.0
+Received: from fireflyinternet.com (unknown [77.68.26.236])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6B1ED6E822
+ for <intel-gfx@lists.freedesktop.org>; Fri,  8 Jan 2021 13:54:49 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from localhost (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
+ 23538769-1500050 for multiple; Fri, 08 Jan 2021 13:54:36 +0000
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915: Fix HTI port checking
+In-Reply-To: <X/hjekGVV5F+sokg@jack.zhora.eu>
+References: <20210107221724.10036-1-chris@chris-wilson.co.uk>
+ <X/hPhSqBCjHFKg9F@jack.zhora.eu>
+ <161011238272.28368.13711350036924329757@build.alporthouse.com>
+ <X/hjekGVV5F+sokg@jack.zhora.eu>
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: Andi Shyti <andi@etezian.org>
+Date: Fri, 08 Jan 2021 13:54:35 +0000
+Message-ID: <161011407580.28368.6023725628158257155@build.alporthouse.com>
+User-Agent: alot/0.9
+Subject: Re: [Intel-gfx] [PATCH 1/5] drm/i915/selftests: Skip unstable
+ timing measurements
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,45 +42,47 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-VGhlcmUgd2FzIHNvbWUgbWlzaW50ZXJwcmV0YXRpb24gb2Ygc3BlY2lmaWNhdGlvbiwgd2hlbiBE
-RElYX1VTRUQgaXMKc2V0LCB0aGUgbmV4dCBiaXQgbWVhbnMgMCBmb3IgRFAgYW5kIDEgZm9yIEhE
-TUkuCgpBbnl3YXlzIHRoaXMgbWlzaW50ZXJwcmV0YXRpb24gaXMgbm90IGNhdXNpbmcgYW55IGlz
-c3VlcywgdGhpcyBjaGFuZ2UKaXMganVzdCB0byBjb21wbHkgd2l0aCBzcGVjaWZpY2F0aW9uLgpB
-bHNvIGFzIGZvciB1cyBpdCBkbyBub3QgbWF0dGVycyBpZiBpdCBpcyBIRE1JIG9yIERQLCBub3Qg
-Y2hlY2tpbmcgdGhlCnBvcnQgdHlwZSB0aGF0IEhUSSBpcyB1c2luZy4KCkNjOiBBbnVzaGEgU3Jp
-dmF0c2EgPGFudXNoYS5zcml2YXRzYUBpbnRlbC5jb20+CkNjOiBNYXR0IFJvcGVyIDxtYXR0aGV3
-LmQucm9wZXJAaW50ZWwuY29tPgpTaWduZWQtb2ZmLWJ5OiBKb3PDqSBSb2JlcnRvIGRlIFNvdXph
-IDxqb3NlLnNvdXphQGludGVsLmNvbT4KLS0tCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5
-L2ludGVsX2RkaS5jIHwgMyArLS0KIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfcmVnLmggICAg
-ICAgICAgfCAzICstLQogMiBmaWxlcyBjaGFuZ2VkLCAyIGluc2VydGlvbnMoKyksIDQgZGVsZXRp
-b25zKC0pCgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9k
-ZGkuYyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGRpLmMKaW5kZXggM2Rm
-NjkxMzM2OWJjLi5lOTBkMWFmMWE1NGQgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1
-L2Rpc3BsYXkvaW50ZWxfZGRpLmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9p
-bnRlbF9kZGkuYwpAQCAtNTMyMSw4ICs1MzIxLDcgQEAgaW50ZWxfZGRpX21heF9sYW5lcyhzdHJ1
-Y3QgaW50ZWxfZGlnaXRhbF9wb3J0ICpkaWdfcG9ydCkKIHN0YXRpYyBib29sIGh0aV91c2VzX3Bo
-eShzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqaTkxNSwgZW51bSBwaHkgcGh5KQogewogCXJldHVy
-biBpOTE1LT5odGlfc3RhdGUgJiBIRFBPUlRfRU5BQkxFRCAmJgotCQkoaTkxNS0+aHRpX3N0YXRl
-ICYgSERQT1JUX1BIWV9VU0VEX0RQKHBoeSkgfHwKLQkJIGk5MTUtPmh0aV9zdGF0ZSAmIEhEUE9S
-VF9QSFlfVVNFRF9IRE1JKHBoeSkpOworCSAgICAgICBpOTE1LT5odGlfc3RhdGUgJiBIRFBPUlRf
-RERJX1VTRUQocGh5KTsKIH0KIAogc3RhdGljIGVudW0gaHBkX3BpbiBkZzFfaHBkX3BpbihzdHJ1
-Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqZGV2X3ByaXYsCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9k
-cm0vaTkxNS9pOTE1X3JlZy5oIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9yZWcuaAppbmRl
-eCAwMDIzYzAyM2Y0NzIuLjFkOGJhMTA4NDdjYSAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJt
-L2k5MTUvaTkxNV9yZWcuaAorKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X3JlZy5oCkBA
-IC0yOTI4LDggKzI5MjgsNyBAQCBzdGF0aWMgaW5saW5lIGJvb2wgaTkxNV9tbWlvX3JlZ192YWxp
-ZChpOTE1X3JlZ190IHJlZykKIAogI2RlZmluZSBIRFBPUlRfU1RBVEUJCQlfTU1JTygweDQ1MDUw
-KQogI2RlZmluZSAgIEhEUE9SVF9EUExMX1VTRURfTUFTSwkJUkVHX0dFTk1BU0soMTQsIDEyKQot
-I2RlZmluZSAgIEhEUE9SVF9QSFlfVVNFRF9EUChwaHkpCVJFR19CSVQoMiAqIChwaHkpICsgMikK
-LSNkZWZpbmUgICBIRFBPUlRfUEhZX1VTRURfSERNSShwaHkpCVJFR19CSVQoMiAqIChwaHkpICsg
-MSkKKyNkZWZpbmUgICBIRFBPUlRfRERJX1VTRUQocGh5KQkJUkVHX0JJVCgyICogKHBoeSkgKyAx
-KQogI2RlZmluZSAgIEhEUE9SVF9FTkFCTEVECQlSRUdfQklUKDApCiAKIC8qIE1ha2UgcmVuZGVy
-L3RleHR1cmUgVExCIGZldGNoZXMgbG93ZXIgcHJpb3J0eSB0aGFuIGFzc29jaWF0ZWQgZGF0YQot
-LSAKMi4zMC4wCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-XwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcK
-aHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
+Quoting Andi Shyti (2021-01-08 13:51:54)
+> Hi Chris,
+> 
+> > > > diff --git a/drivers/gpu/drm/i915/selftests/intel_memory_region.c b/drivers/gpu/drm/i915/selftests/intel_memory_region.c
+> > > > index 75839db63bea..59c58a276677 100644
+> > > > --- a/drivers/gpu/drm/i915/selftests/intel_memory_region.c
+> > > > +++ b/drivers/gpu/drm/i915/selftests/intel_memory_region.c
+> > > > @@ -852,6 +852,9 @@ static int _perf_memcpy(struct intel_memory_region *src_mr,
+> > > >               }
+> > > >  
+> > > >               sort(t, ARRAY_SIZE(t), sizeof(*t), wrap_ktime_compare, NULL);
+> > > > +             if (!t[0])
+> > > > +                     continue;
+> > > > +
+> > > 
+> > > are you assuming here that if t[0] is '0', also the rest of 't'
+> > > is '0'?
+> > 
+> > It's sorted into ascending order with ktime_t... Hmm, s64 not u64 as I
+> > presumed. So better to check <= 0.
+> 
+> by division by 0 I guess you mean here:
+> 
+>         div64_u64(mul_u32_u32(4 * size,
+>                               1000 * 1000 * 1000),
+>                   t[1] + 2 * t[2] + t[3]) >> 20);
+> 
+> why are you testing t[0]? Did I miss anything else?
+
+Since t[0] is the most negative value, if it is <= 0 that implies at
+least one of the measurements was bad. If any are bad, all are bad by
+association. I considered checking t[4] to make sure that at least the
+best was good enough, but paranoia won.
+-Chris
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
