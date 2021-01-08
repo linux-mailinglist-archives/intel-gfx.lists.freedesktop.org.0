@@ -1,32 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 01B352EF975
-	for <lists+intel-gfx@lfdr.de>; Fri,  8 Jan 2021 21:40:40 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id B96362EF96E
+	for <lists+intel-gfx@lfdr.de>; Fri,  8 Jan 2021 21:40:34 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1F2D36E8D6;
-	Fri,  8 Jan 2021 20:40:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B2A8B6E811;
+	Fri,  8 Jan 2021 20:40:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 36BEC6E8C6
- for <intel-gfx@lists.freedesktop.org>; Fri,  8 Jan 2021 20:40:32 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B3BB76E8C5
+ for <intel-gfx@lists.freedesktop.org>; Fri,  8 Jan 2021 20:40:31 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 23542760-1500050 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 23542761-1500050 
  for <intel-gfx@lists.freedesktop.org>; Fri, 08 Jan 2021 20:40:26 +0000
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Fri,  8 Jan 2021 20:40:21 +0000
-Message-Id: <20210108204026.20682-2-chris@chris-wilson.co.uk>
+Date: Fri,  8 Jan 2021 20:40:22 +0000
+Message-Id: <20210108204026.20682-3-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20210108204026.20682-1-chris@chris-wilson.co.uk>
 References: <20210108204026.20682-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [CI 2/7] drm/i915/selftests: Skip unstable timing
- measurements
+Subject: [Intel-gfx] [CI 3/7] drm/i915/selftests: Rearrange ktime_get to
+ reduce latency against CS
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,50 +44,36 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-If any of the perf tests run into 0 time, not only are we liable to
-divide by zero, but the result would be highly questionable.
-Nevertheless, let's not have a div-by-zero error.
+In our tests where we measure the elapsed time on both the CPU and CS
+using a udelay, our CS results match the udelay much more accurately
+than the ktime (even when using ktime_get_fast_ns). With preemption
+disabled, we can go one step lower than ktime and use local_clock.
 
+Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/2919
 Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: Andi Shyti <andi.shyti@intel.com>
 Reviewed-by: Andi Shyti <andi.shyti@intel.com>
 ---
- .../drm/i915/selftests/intel_memory_region.c  | 20 +++++++++++++------
- 1 file changed, 14 insertions(+), 6 deletions(-)
+ drivers/gpu/drm/i915/gt/selftest_engine_pm.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/selftests/intel_memory_region.c b/drivers/gpu/drm/i915/selftests/intel_memory_region.c
-index 75839db63bea..ce7adfa3bca0 100644
---- a/drivers/gpu/drm/i915/selftests/intel_memory_region.c
-+++ b/drivers/gpu/drm/i915/selftests/intel_memory_region.c
-@@ -852,14 +852,22 @@ static int _perf_memcpy(struct intel_memory_region *src_mr,
- 		}
+diff --git a/drivers/gpu/drm/i915/gt/selftest_engine_pm.c b/drivers/gpu/drm/i915/gt/selftest_engine_pm.c
+index ca080445695e..c3d965279fc3 100644
+--- a/drivers/gpu/drm/i915/gt/selftest_engine_pm.c
++++ b/drivers/gpu/drm/i915/gt/selftest_engine_pm.c
+@@ -112,11 +112,11 @@ static int __measure_timestamps(struct intel_context *ce,
  
- 		sort(t, ARRAY_SIZE(t), sizeof(*t), wrap_ktime_compare, NULL);
-+		if (t[0] <= 0) {
-+			/* ignore the impossible to protect our sanity */
-+			pr_debug("Skipping %s src(%s, %s) -> dst(%s, %s) %14s %4lluKiB copy, unstable measurement [%lld, %lld]\n",
-+				 __func__,
-+				 src_mr->name, repr_type(src_type),
-+				 dst_mr->name, repr_type(dst_type),
-+				 tests[i].name, size >> 10,
-+				 t[0], t[4]);
-+			continue;
-+		}
-+
- 		pr_info("%s src(%s, %s) -> dst(%s, %s) %14s %4llu KiB copy: %5lld MiB/s\n",
- 			__func__,
--			src_mr->name,
--			repr_type(src_type),
--			dst_mr->name,
--			repr_type(dst_type),
--			tests[i].name,
--			size >> 10,
-+			src_mr->name, repr_type(src_type),
-+			dst_mr->name, repr_type(dst_type),
-+			tests[i].name, size >> 10,
- 			div64_u64(mul_u32_u32(4 * size,
- 					      1000 * 1000 * 1000),
- 				  t[1] + 2 * t[2] + t[3]) >> 20);
+ 	/* Run the request for a 100us, sampling timestamps before/after */
+ 	preempt_disable();
+-	*dt = ktime_get_raw_fast_ns();
++	*dt = local_clock();
+ 	write_semaphore(&sema[2], 0);
+ 	udelay(100);
++	*dt = local_clock() - *dt;
+ 	write_semaphore(&sema[2], 1);
+-	*dt = ktime_get_raw_fast_ns() - *dt;
+ 	preempt_enable();
+ 
+ 	if (i915_request_wait(rq, 0, HZ / 2) < 0) {
 -- 
 2.20.1
 
