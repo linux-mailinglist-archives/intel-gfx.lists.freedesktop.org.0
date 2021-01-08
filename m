@@ -2,39 +2,42 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A973A2EF6DF
-	for <lists+intel-gfx@lfdr.de>; Fri,  8 Jan 2021 19:00:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 32FDA2EF6E1
+	for <lists+intel-gfx@lfdr.de>; Fri,  8 Jan 2021 19:01:40 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1E1E288401;
-	Fri,  8 Jan 2021 18:00:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8E7EC6E869;
+	Fri,  8 Jan 2021 18:01:38 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1771688401
- for <intel-gfx@lists.freedesktop.org>; Fri,  8 Jan 2021 18:00:46 +0000 (UTC)
-IronPort-SDR: H9XwCh77LGSSV2FM/NgGlFoxBvvkIy0WbRbQ1QX+7gK0Y5+3CHS/KOtB8Ey0aD8z9ajHTXbzT5
- tHw/iGAidbxQ==
-X-IronPort-AV: E=McAfee;i="6000,8403,9858"; a="157414846"
-X-IronPort-AV: E=Sophos;i="5.79,332,1602572400"; d="scan'208";a="157414846"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Jan 2021 10:00:45 -0800
-IronPort-SDR: IV5PrnDXoZpzgWMf8+MxXS6Q0MrEB7llww5DOPEuMfciuP9gxTdbWXrTp0vm5YJ1h11y2OnBl0
- LYyPK28OFbqg==
-X-IronPort-AV: E=Sophos;i="5.79,332,1602572400"; d="scan'208";a="388252390"
-Received: from mdroper-desk1.fm.intel.com (HELO
- mdroper-desk1.amr.corp.intel.com) ([10.1.27.168])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Jan 2021 10:00:44 -0800
-Date: Fri, 8 Jan 2021 10:00:43 -0800
-From: Matt Roper <matthew.d.roper@intel.com>
-To: =?iso-8859-1?Q?Jos=E9?= Roberto de Souza <jose.souza@intel.com>
-Message-ID: <20210108180043.GF3894148@mdroper-desk1.amr.corp.intel.com>
-References: <20210108134802.21280-1-jose.souza@intel.com>
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6105D6E869
+ for <intel-gfx@lists.freedesktop.org>; Fri,  8 Jan 2021 18:01:37 +0000 (UTC)
+IronPort-SDR: o1DwR05Az463vZg1JMlxF1Fr8ejLngQR1jzLCbmwTqysKLSN7fqyx8W1Szs+JaZi+d7jzQ75Ja
+ UK3EQmAoL1Kw==
+X-IronPort-AV: E=McAfee;i="6000,8403,9858"; a="175056330"
+X-IronPort-AV: E=Sophos;i="5.79,332,1602572400"; d="scan'208";a="175056330"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Jan 2021 10:01:36 -0800
+IronPort-SDR: OqQ5ltb+muuEbqXp2/Q9rRWbx3fCEi9ZitXiUixe5Ca9yOl2o1dh9SV/++yaV9dzHvi48ubwMF
+ c1utt4lCIJnQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.79,332,1602572400"; d="scan'208";a="350945221"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
+ by orsmga006.jf.intel.com with SMTP; 08 Jan 2021 10:01:34 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Fri, 08 Jan 2021 20:01:33 +0200
+Date: Fri, 8 Jan 2021 20:01:33 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Chris Wilson <chris@chris-wilson.co.uk>
+Message-ID: <X/id/brG1KiFYV4q@intel.com>
+References: <20210104203905.19248-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20210108134802.21280-1-jose.souza@intel.com>
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Fix HTI port checking
+In-Reply-To: <20210104203905.19248-1-chris@chris-wilson.co.uk>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Disable RPM wakeref assertions
+ during driver shutdown
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,77 +56,63 @@ Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Jan 08, 2021 at 05:48:02AM -0800, Jos=E9 Roberto de Souza wrote:
-> There was some misinterpretation of specification, when DDIX_USED is
-> set, the next bit means 0 for DP and 1 for HDMI.
+On Mon, Jan 04, 2021 at 08:39:05PM +0000, Chris Wilson wrote:
+> As with the regular suspend paths, also disable the wakeref assertions
+> as we disable the driver during shutdown.
 > =
 
-> Anyways this misinterpretation is not causing any issues, this change
-> is just to comply with specification.
-> Also as for us it do not matters if it is HDMI or DP, not checking the
-> port type that HTI is using.
-> =
+> Reported-by: Hans de Goede <hdegoede@redhat.com>
+> Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/2899
+> Fixes: fe0f1e3bfdfe ("drm/i915: Shut down displays gracefully on reboot")
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> Cc: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> Cc: Hans de Goede <hdegoede@redhat.com>
 
-> Cc: Anusha Srivatsa <anusha.srivatsa@intel.com>
-> Cc: Matt Roper <matthew.d.roper@intel.com>
-> Signed-off-by: Jos=E9 Roberto de Souza <jose.souza@intel.com>
-
-Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
+lgtm
+Reviewed-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
 
 > ---
->  drivers/gpu/drm/i915/display/intel_ddi.c | 3 +--
->  drivers/gpu/drm/i915/i915_reg.h          | 3 +--
->  2 files changed, 2 insertions(+), 4 deletions(-)
+>  drivers/gpu/drm/i915/i915_drv.c | 4 ++++
+>  1 file changed, 4 insertions(+)
 > =
 
-> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i=
-915/display/intel_ddi.c
-> index 3df6913369bc..e90d1af1a54d 100644
-> --- a/drivers/gpu/drm/i915/display/intel_ddi.c
-> +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-> @@ -5321,8 +5321,7 @@ intel_ddi_max_lanes(struct intel_digital_port *dig_=
-port)
->  static bool hti_uses_phy(struct drm_i915_private *i915, enum phy phy)
+> diff --git a/drivers/gpu/drm/i915/i915_drv.c b/drivers/gpu/drm/i915/i915_=
+drv.c
+> index 249f765993f7..643a899b3b44 100644
+> --- a/drivers/gpu/drm/i915/i915_drv.c
+> +++ b/drivers/gpu/drm/i915/i915_drv.c
+> @@ -1046,6 +1046,8 @@ static void intel_shutdown_encoders(struct drm_i915=
+_private *dev_priv)
+>  =
+
+>  void i915_driver_shutdown(struct drm_i915_private *i915)
 >  {
->  	return i915->hti_state & HDPORT_ENABLED &&
-> -		(i915->hti_state & HDPORT_PHY_USED_DP(phy) ||
-> -		 i915->hti_state & HDPORT_PHY_USED_HDMI(phy));
-> +	       i915->hti_state & HDPORT_DDI_USED(phy);
+> +	disable_rpm_wakeref_asserts(&i915->runtime_pm);
+> +
+>  	i915_gem_suspend(i915);
+>  =
+
+>  	drm_kms_helper_poll_disable(&i915->drm);
+> @@ -1059,6 +1061,8 @@ void i915_driver_shutdown(struct drm_i915_private *=
+i915)
+>  =
+
+>  	intel_suspend_encoders(i915);
+>  	intel_shutdown_encoders(i915);
+> +
+> +	enable_rpm_wakeref_asserts(&i915->runtime_pm);
 >  }
 >  =
 
->  static enum hpd_pin dg1_hpd_pin(struct drm_i915_private *dev_priv,
-> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_=
-reg.h
-> index 0023c023f472..1d8ba10847ca 100644
-> --- a/drivers/gpu/drm/i915/i915_reg.h
-> +++ b/drivers/gpu/drm/i915/i915_reg.h
-> @@ -2928,8 +2928,7 @@ static inline bool i915_mmio_reg_valid(i915_reg_t r=
-eg)
->  =
-
->  #define HDPORT_STATE			_MMIO(0x45050)
->  #define   HDPORT_DPLL_USED_MASK		REG_GENMASK(14, 12)
-> -#define   HDPORT_PHY_USED_DP(phy)	REG_BIT(2 * (phy) + 2)
-> -#define   HDPORT_PHY_USED_HDMI(phy)	REG_BIT(2 * (phy) + 1)
-> +#define   HDPORT_DDI_USED(phy)		REG_BIT(2 * (phy) + 1)
->  #define   HDPORT_ENABLED		REG_BIT(0)
->  =
-
->  /* Make render/texture TLB fetches lower priorty than associated data
+>  static bool suspend_to_idle(struct drm_i915_private *dev_priv)
 > -- =
 
-> 2.30.0
-> =
-
+> 2.20.1
 
 -- =
 
-Matt Roper
-Graphics Software Engineer
-VTT-OSGC Platform Enablement
-Intel Corporation
-(916) 356-2795
+Ville Syrj=E4l=E4
+Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
