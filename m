@@ -2,40 +2,40 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 181AB2EF6AF
-	for <lists+intel-gfx@lfdr.de>; Fri,  8 Jan 2021 18:45:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 635622EF6B2
+	for <lists+intel-gfx@lfdr.de>; Fri,  8 Jan 2021 18:45:11 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5BD9D6E843;
-	Fri,  8 Jan 2021 17:45:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C25376E85A;
+	Fri,  8 Jan 2021 17:45:09 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 61C716E843
- for <intel-gfx@lists.freedesktop.org>; Fri,  8 Jan 2021 17:45:02 +0000 (UTC)
-IronPort-SDR: lMzgStyGjC7IfM9Ub6fNViLv6zQWF58gBEYryx/G/Ia1sA1O36j63UfwWULRNemX8rQukOxOgb
- BFDnSBGlqwPw==
-X-IronPort-AV: E=McAfee;i="6000,8403,9858"; a="262402181"
-X-IronPort-AV: E=Sophos;i="5.79,332,1602572400"; d="scan'208";a="262402181"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Jan 2021 09:45:02 -0800
-IronPort-SDR: LcXfzG6/qESfh/aQjnv+lz8l5yLK8hJq/va2E3373NsmK1Pgklq7ekRBaR3LXAama9k1v1uzZH
- WQ4v7f5W0vBw==
-X-IronPort-AV: E=Sophos;i="5.79,332,1602572400"; d="scan'208";a="399046053"
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 16D4E6E85A
+ for <intel-gfx@lists.freedesktop.org>; Fri,  8 Jan 2021 17:45:08 +0000 (UTC)
+IronPort-SDR: eV9PR/hPkheGWktr5ZCoGkDXC3tYVccJuWBkdzAl54BGFjbPmqPMY/rE01drprzkZLS1J5MOIq
+ hQRNENNb2g7w==
+X-IronPort-AV: E=McAfee;i="6000,8403,9858"; a="175050370"
+X-IronPort-AV: E=Sophos;i="5.79,332,1602572400"; d="scan'208";a="175050370"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Jan 2021 09:45:07 -0800
+IronPort-SDR: tqwSlNbhcPl4mq9JNtRqIv7e5yOlhF6RUooNPY5CqeYmEUerOl4Iqx58/a2JbfF1W+gFPMILmx
+ 9C4TmQLViTTQ==
+X-IronPort-AV: E=Sophos;i="5.79,332,1602572400"; d="scan'208";a="347417561"
 Received: from rgwhiteh-mobl.ger.corp.intel.com (HELO localhost)
  ([10.213.205.160])
- by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Jan 2021 09:44:59 -0800
+ by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Jan 2021 09:45:05 -0800
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Fri,  8 Jan 2021 19:44:13 +0200
-Message-Id: <d119605ba3d9c86647a524375de2d7e3d57a5676.1610127741.git.jani.nikula@intel.com>
+Date: Fri,  8 Jan 2021 19:44:14 +0200
+Message-Id: <1e722290208d827c5cae107fe41dbfe41a494793.1610127741.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <cover.1610127741.git.jani.nikula@intel.com>
 References: <cover.1610127741.git.jani.nikula@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v2 05/17] drm/i915/pps: rename edp_panel_* to
- intel_pps_*_unlocked
+Subject: [Intel-gfx] [PATCH v2 06/17] drm/i915/pps: abstract
+ intel_pps_vdd_off_sync
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,207 +54,132 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Follow the usual naming pattern for functions, both for the prefix and
-the _unlocked suffix for functions that expect the lock to be held when
-calling. No functional changes.
+Add a locked version of intel_pps_vdd_off_sync_unlocked() that does
+everything the callers expect it to. No functional changes.
+
+v2: Fix typo (Anshuman)
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dp.c  | 16 +++++++--------
- drivers/gpu/drm/i915/display/intel_pps.c | 26 ++++++++++++------------
- drivers/gpu/drm/i915/display/intel_pps.h | 10 ++++-----
- 3 files changed, 26 insertions(+), 26 deletions(-)
+ drivers/gpu/drm/i915/display/intel_dp.c  | 31 +++---------------------
+ drivers/gpu/drm/i915/display/intel_pps.c | 18 +++++++++++++-
+ drivers/gpu/drm/i915/display/intel_pps.h |  2 +-
+ 3 files changed, 21 insertions(+), 30 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index eac674ad91c8..1384f1d3a9cf 100644
+index 1384f1d3a9cf..bff5e735a92e 100644
 --- a/drivers/gpu/drm/i915/display/intel_dp.c
 +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -1061,7 +1061,7 @@ intel_dp_aux_xfer(struct intel_dp *intel_dp,
- 	 * to turn it off. But for eg. i2c-dev access we need to turn it on/off
- 	 * ourselves.
- 	 */
--	vdd = edp_panel_vdd_on(intel_dp);
-+	vdd = intel_pps_vdd_on_unlocked(intel_dp);
+@@ -6249,17 +6249,8 @@ void intel_dp_encoder_flush_work(struct drm_encoder *encoder)
+ 	struct intel_dp *intel_dp = &dig_port->dp;
  
- 	/* dp aux is extremely sensitive to irq latency, hence request the
- 	 * lowest possible wakeup latency and so prevent the cpu from going into
-@@ -1203,7 +1203,7 @@ intel_dp_aux_xfer(struct intel_dp *intel_dp,
- 	cpu_latency_qos_update_request(&intel_dp->pm_qos, PM_QOS_DEFAULT_VALUE);
+ 	intel_dp_mst_encoder_cleanup(dig_port);
+-	if (intel_dp_is_edp(intel_dp)) {
+-		intel_wakeref_t wakeref;
  
- 	if (vdd)
--		edp_panel_vdd_off(intel_dp, false);
-+		intel_pps_vdd_off_unlocked(intel_dp, false);
- 
- 	intel_pps_unlock(intel_dp, pps_wakeref);
- 	intel_display_power_put_async(i915, aux_domain, aux_wakeref);
-@@ -3520,9 +3520,9 @@ static void intel_enable_dp(struct intel_atomic_state *state,
- 
- 		intel_dp_enable_port(intel_dp, pipe_config);
- 
--		edp_panel_vdd_on(intel_dp);
--		edp_panel_on(intel_dp);
--		edp_panel_vdd_off(intel_dp, true);
-+		intel_pps_vdd_on_unlocked(intel_dp);
-+		intel_pps_on_unlocked(intel_dp);
-+		intel_pps_vdd_off_unlocked(intel_dp, true);
- 	}
- 
- 	if (IS_VALLEYVIEW(dev_priv) || IS_CHERRYVIEW(dev_priv)) {
-@@ -6258,7 +6258,7 @@ void intel_dp_encoder_flush_work(struct drm_encoder *encoder)
- 		 * Make sure vdd is actually turned off here.
- 		 */
- 		with_intel_pps_lock(intel_dp, wakeref)
--			edp_panel_vdd_off_sync(intel_dp);
-+			intel_pps_vdd_off_sync_unlocked(intel_dp);
- 	}
+-		cancel_delayed_work_sync(&intel_dp->panel_vdd_work);
+-		/*
+-		 * vdd might still be enabled do to the delayed vdd off.
+-		 * Make sure vdd is actually turned off here.
+-		 */
+-		with_intel_pps_lock(intel_dp, wakeref)
+-			intel_pps_vdd_off_sync_unlocked(intel_dp);
+-	}
++	intel_pps_vdd_off_sync(intel_dp);
  
  	intel_dp_aux_fini(intel_dp);
-@@ -6286,7 +6286,7 @@ void intel_dp_encoder_suspend(struct intel_encoder *intel_encoder)
- 	 */
- 	cancel_delayed_work_sync(&intel_dp->panel_vdd_work);
- 	with_intel_pps_lock(intel_dp, wakeref)
--		edp_panel_vdd_off_sync(intel_dp);
-+		intel_pps_vdd_off_sync_unlocked(intel_dp);
+ }
+@@ -6275,18 +6266,8 @@ static void intel_dp_encoder_destroy(struct drm_encoder *encoder)
+ void intel_dp_encoder_suspend(struct intel_encoder *intel_encoder)
+ {
+ 	struct intel_dp *intel_dp = enc_to_intel_dp(intel_encoder);
+-	intel_wakeref_t wakeref;
+-
+-	if (!intel_dp_is_edp(intel_dp))
+-		return;
+ 
+-	/*
+-	 * vdd might still be enabled do to the delayed vdd off.
+-	 * Make sure vdd is actually turned off here.
+-	 */
+-	cancel_delayed_work_sync(&intel_dp->panel_vdd_work);
+-	with_intel_pps_lock(intel_dp, wakeref)
+-		intel_pps_vdd_off_sync_unlocked(intel_dp);
++	intel_pps_vdd_off_sync(intel_dp);
  }
  
  void intel_dp_encoder_shutdown(struct intel_encoder *intel_encoder)
-@@ -7146,7 +7146,7 @@ static bool intel_edp_init_connector(struct intel_dp *intel_dp,
- 	 * Make sure vdd is actually turned off here.
- 	 */
- 	with_intel_pps_lock(intel_dp, wakeref)
--		edp_panel_vdd_off_sync(intel_dp);
-+		intel_pps_vdd_off_sync_unlocked(intel_dp);
+@@ -7140,13 +7121,7 @@ static bool intel_edp_init_connector(struct intel_dp *intel_dp,
+ 	return true;
+ 
+ out_vdd_off:
+-	cancel_delayed_work_sync(&intel_dp->panel_vdd_work);
+-	/*
+-	 * vdd might still be enabled do to the delayed vdd off.
+-	 * Make sure vdd is actually turned off here.
+-	 */
+-	with_intel_pps_lock(intel_dp, wakeref)
+-		intel_pps_vdd_off_sync_unlocked(intel_dp);
++	intel_pps_vdd_off_sync(intel_dp);
  
  	return false;
  }
 diff --git a/drivers/gpu/drm/i915/display/intel_pps.c b/drivers/gpu/drm/i915/display/intel_pps.c
-index 59215cfd7d97..fd3677948800 100644
+index fd3677948800..b6c07694ae9d 100644
 --- a/drivers/gpu/drm/i915/display/intel_pps.c
 +++ b/drivers/gpu/drm/i915/display/intel_pps.c
-@@ -556,11 +556,11 @@ static  u32 ilk_get_pp_control(struct intel_dp *intel_dp)
- }
- 
- /*
-- * Must be paired with edp_panel_vdd_off().
-+ * Must be paired with intel_pps_vdd_off_unlocked().
-  * Must hold pps_mutex around the whole on/off sequence.
-  * Can be nested with intel_pps_vdd_{on,off}() calls.
-  */
--bool edp_panel_vdd_on(struct intel_dp *intel_dp)
-+bool intel_pps_vdd_on_unlocked(struct intel_dp *intel_dp)
- {
- 	struct drm_i915_private *dev_priv = dp_to_i915(intel_dp);
- 	struct intel_digital_port *dig_port = dp_to_dig_port(intel_dp);
-@@ -631,13 +631,13 @@ void intel_pps_vdd_on(struct intel_dp *intel_dp)
- 
- 	vdd = false;
- 	with_intel_pps_lock(intel_dp, wakeref)
--		vdd = edp_panel_vdd_on(intel_dp);
-+		vdd = intel_pps_vdd_on_unlocked(intel_dp);
- 	I915_STATE_WARN(!vdd, "[ENCODER:%d:%s] VDD already requested on\n",
- 			dp_to_dig_port(intel_dp)->base.base.base.id,
+@@ -637,7 +637,7 @@ void intel_pps_vdd_on(struct intel_dp *intel_dp)
  			dp_to_dig_port(intel_dp)->base.base.name);
  }
  
--void edp_panel_vdd_off_sync(struct intel_dp *intel_dp)
-+void intel_pps_vdd_off_sync_unlocked(struct intel_dp *intel_dp)
+-void intel_pps_vdd_off_sync_unlocked(struct intel_dp *intel_dp)
++static void intel_pps_vdd_off_sync_unlocked(struct intel_dp *intel_dp)
  {
  	struct drm_i915_private *dev_priv = dp_to_i915(intel_dp);
  	struct intel_digital_port *dig_port =
-@@ -687,7 +687,7 @@ void edp_panel_vdd_work(struct work_struct *__work)
- 
- 	with_intel_pps_lock(intel_dp, wakeref) {
- 		if (!intel_dp->want_panel_vdd)
--			edp_panel_vdd_off_sync(intel_dp);
-+			intel_pps_vdd_off_sync_unlocked(intel_dp);
- 	}
+@@ -678,6 +678,22 @@ void intel_pps_vdd_off_sync_unlocked(struct intel_dp *intel_dp)
+ 				fetch_and_zero(&intel_dp->vdd_wakeref));
  }
  
-@@ -709,7 +709,7 @@ static void edp_panel_vdd_schedule_off(struct intel_dp *intel_dp)
-  * Must hold pps_mutex around the whole on/off sequence.
-  * Can be nested with intel_pps_vdd_{on,off}() calls.
-  */
--void edp_panel_vdd_off(struct intel_dp *intel_dp, bool sync)
-+void intel_pps_vdd_off_unlocked(struct intel_dp *intel_dp, bool sync)
- {
- 	struct drm_i915_private *dev_priv = dp_to_i915(intel_dp);
- 
-@@ -725,12 +725,12 @@ void edp_panel_vdd_off(struct intel_dp *intel_dp, bool sync)
- 	intel_dp->want_panel_vdd = false;
- 
- 	if (sync)
--		edp_panel_vdd_off_sync(intel_dp);
++void intel_pps_vdd_off_sync(struct intel_dp *intel_dp)
++{
++	intel_wakeref_t wakeref;
++
++	if (!intel_dp_is_edp(intel_dp))
++		return;
++
++	cancel_delayed_work_sync(&intel_dp->panel_vdd_work);
++	/*
++	 * vdd might still be enabled due to the delayed vdd off.
++	 * Make sure vdd is actually turned off here.
++	 */
++	with_intel_pps_lock(intel_dp, wakeref)
 +		intel_pps_vdd_off_sync_unlocked(intel_dp);
- 	else
- 		edp_panel_vdd_schedule_off(intel_dp);
- }
- 
--void edp_panel_on(struct intel_dp *intel_dp)
-+void intel_pps_on_unlocked(struct intel_dp *intel_dp)
++}
++
+ void edp_panel_vdd_work(struct work_struct *__work)
  {
- 	struct drm_i915_private *dev_priv = dp_to_i915(intel_dp);
- 	u32 pp;
-@@ -787,10 +787,10 @@ void intel_pps_on(struct intel_dp *intel_dp)
- 		return;
- 
- 	with_intel_pps_lock(intel_dp, wakeref)
--		edp_panel_on(intel_dp);
-+		intel_pps_on_unlocked(intel_dp);
- }
- 
--void edp_panel_off(struct intel_dp *intel_dp)
-+void intel_pps_off_unlocked(struct intel_dp *intel_dp)
- {
- 	struct drm_i915_private *dev_priv = dp_to_i915(intel_dp);
- 	struct intel_digital_port *dig_port = dp_to_dig_port(intel_dp);
-@@ -839,7 +839,7 @@ void intel_pps_off(struct intel_dp *intel_dp)
- 		return;
- 
- 	with_intel_pps_lock(intel_dp, wakeref)
--		edp_panel_off(intel_dp);
-+		intel_pps_off_unlocked(intel_dp);
- }
- 
- /* Enable backlight in the panel power control. */
-@@ -930,7 +930,7 @@ static void vlv_detach_power_sequencer(struct intel_dp *intel_dp)
- 	if (drm_WARN_ON(&dev_priv->drm, pipe != PIPE_A && pipe != PIPE_B))
- 		return;
- 
--	edp_panel_vdd_off_sync(intel_dp);
-+	intel_pps_vdd_off_sync_unlocked(intel_dp);
- 
- 	/*
- 	 * VLV seems to get confused when multiple power sequencers
-@@ -1245,7 +1245,7 @@ intel_dp_init_panel_power_sequencer_registers(struct intel_dp *intel_dp,
- 	 * hooked up to any port. This would mess up the
- 	 * power domain tracking the first time we pick
- 	 * one of these power sequencers for use since
--	 * edp_panel_vdd_on() would notice that the VDD was
-+	 * intel_pps_vdd_on_unlocked() would notice that the VDD was
- 	 * already on and therefore wouldn't grab the power
- 	 * domain reference. Disable VDD first to avoid this.
- 	 * This also avoids spuriously turning the VDD on as
+ 	struct intel_dp *intel_dp =
 diff --git a/drivers/gpu/drm/i915/display/intel_pps.h b/drivers/gpu/drm/i915/display/intel_pps.h
-index 69f670678d0e..e7f0473be9a7 100644
+index e7f0473be9a7..3cab183658c6 100644
 --- a/drivers/gpu/drm/i915/display/intel_pps.h
 +++ b/drivers/gpu/drm/i915/display/intel_pps.h
-@@ -27,11 +27,11 @@ void intel_pps_backlight_on(struct intel_dp *intel_dp);
- void intel_pps_backlight_off(struct intel_dp *intel_dp);
- void intel_pps_backlight_power(struct intel_connector *connector, bool enable);
+@@ -29,7 +29,6 @@ void intel_pps_backlight_power(struct intel_connector *connector, bool enable);
  
--bool edp_panel_vdd_on(struct intel_dp *intel_dp);
--void edp_panel_vdd_off(struct intel_dp *intel_dp, bool sync);
--void edp_panel_vdd_off_sync(struct intel_dp *intel_dp);
--void edp_panel_on(struct intel_dp *intel_dp);
--void edp_panel_off(struct intel_dp *intel_dp);
-+bool intel_pps_vdd_on_unlocked(struct intel_dp *intel_dp);
-+void intel_pps_vdd_off_unlocked(struct intel_dp *intel_dp, bool sync);
-+void intel_pps_vdd_off_sync_unlocked(struct intel_dp *intel_dp);
-+void intel_pps_on_unlocked(struct intel_dp *intel_dp);
-+void intel_pps_off_unlocked(struct intel_dp *intel_dp);
+ bool intel_pps_vdd_on_unlocked(struct intel_dp *intel_dp);
+ void intel_pps_vdd_off_unlocked(struct intel_dp *intel_dp, bool sync);
+-void intel_pps_vdd_off_sync_unlocked(struct intel_dp *intel_dp);
+ void intel_pps_on_unlocked(struct intel_dp *intel_dp);
+ void intel_pps_off_unlocked(struct intel_dp *intel_dp);
  void edp_panel_vdd_work(struct work_struct *__work);
+@@ -38,6 +37,7 @@ void intel_pps_vdd_sanitize(struct intel_dp *intel_dp);
+ void intel_pps_vdd_on(struct intel_dp *intel_dp);
+ void intel_pps_on(struct intel_dp *intel_dp);
+ void intel_pps_off(struct intel_dp *intel_dp);
++void intel_pps_vdd_off_sync(struct intel_dp *intel_dp);
+ bool intel_pps_have_power(struct intel_dp *intel_dp);
  
- void intel_pps_vdd_sanitize(struct intel_dp *intel_dp);
+ void wait_panel_power_cycle(struct intel_dp *intel_dp);
 -- 
 2.20.1
 
