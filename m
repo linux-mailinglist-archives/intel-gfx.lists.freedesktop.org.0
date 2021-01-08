@@ -1,46 +1,46 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 004812EF4EB
-	for <lists+intel-gfx@lfdr.de>; Fri,  8 Jan 2021 16:36:20 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 287B62EF4E8
+	for <lists+intel-gfx@lfdr.de>; Fri,  8 Jan 2021 16:35:18 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 650656E826;
-	Fri,  8 Jan 2021 15:36:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C672A6E82F;
+	Fri,  8 Jan 2021 15:35:15 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 1870 seconds by postgrey-1.36 at gabe;
- Fri, 08 Jan 2021 15:36:18 UTC
-Received: from 2.mo69.mail-out.ovh.net (2.mo69.mail-out.ovh.net
- [178.33.251.80])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 02E1C6E826
- for <intel-gfx@lists.freedesktop.org>; Fri,  8 Jan 2021 15:36:17 +0000 (UTC)
-Received: from player795.ha.ovh.net (unknown [10.108.54.108])
- by mo69.mail-out.ovh.net (Postfix) with ESMTP id B5813A8952
- for <intel-gfx@lists.freedesktop.org>; Fri,  8 Jan 2021 16:18:28 +0100 (CET)
+X-Greylist: delayed 5069 seconds by postgrey-1.36 at gabe;
+ Fri, 08 Jan 2021 15:35:14 UTC
+Received: from 15.mo1.mail-out.ovh.net (15.mo1.mail-out.ovh.net
+ [188.165.38.232])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8EBD96E826
+ for <intel-gfx@lists.freedesktop.org>; Fri,  8 Jan 2021 15:35:14 +0000 (UTC)
+Received: from player750.ha.ovh.net (unknown [10.109.146.213])
+ by mo1.mail-out.ovh.net (Postfix) with ESMTP id B816D1E99DB
+ for <intel-gfx@lists.freedesktop.org>; Fri,  8 Jan 2021 16:25:49 +0100 (CET)
 Received: from etezian.org (213-243-141-64.bb.dnainternet.fi [213.243.141.64])
  (Authenticated sender: andi@etezian.org)
- by player795.ha.ovh.net (Postfix) with ESMTPSA id 8D41619A5251E;
- Fri,  8 Jan 2021 15:18:24 +0000 (UTC)
+ by player750.ha.ovh.net (Postfix) with ESMTPSA id 9DFFA19C4BDF7;
+ Fri,  8 Jan 2021 15:25:47 +0000 (UTC)
 Authentication-Results: garm.ovh; auth=pass
- (GARM-103G005df885691-0f8d-4233-8753-5e4a910c3db8,
+ (GARM-106R00633b78ba4-2e8d-4108-96dc-c5d191b8d560,
  83D1C09382E53F50CE2429AE6C9B6AA8FD9DCB87) smtp.auth=andi@etezian.org
 X-OVh-ClientIp: 213.243.141.64
-Date: Fri, 8 Jan 2021 17:18:22 +0200
+Date: Fri, 8 Jan 2021 17:25:46 +0200
 From: Andi Shyti <andi@etezian.org>
 To: Chris Wilson <chris@chris-wilson.co.uk>
-Message-ID: <X/h3vgxF4DlV5jbN@jack.zhora.eu>
-References: <20210107221724.10036-1-chris@chris-wilson.co.uk>
- <20210107221724.10036-2-chris@chris-wilson.co.uk>
+Message-ID: <X/h5ep/+Bq5Ct6gm@jack.zhora.eu>
+References: <20210108132835.4564-1-chris@chris-wilson.co.uk>
+ <20210108151449.11809-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20210107221724.10036-2-chris@chris-wilson.co.uk>
-X-Ovh-Tracer-Id: 8630022787770204681
+In-Reply-To: <20210108151449.11809-1-chris@chris-wilson.co.uk>
+X-Ovh-Tracer-Id: 8754153252709057033
 X-VR-SPAMSTATE: OK
 X-VR-SPAMSCORE: -100
-X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgedujedrvdeghedgtdejucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuqfggjfdpvefjgfevmfevgfenuceurghilhhouhhtmecuhedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhepfffhvffukfhfgggtuggjsehttdertddttddvnecuhfhrohhmpeetnhguihcuufhhhihtihcuoegrnhguihesvghtvgiiihgrnhdrohhrgheqnecuggftrfgrthhtvghrnheptdfgudduhfefueeujeefieehtdeftefggeevhefgueellefhudetgeeikeduieefnecukfhppedtrddtrddtrddtpddvudefrddvgeefrddugedurdeigeenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhhouggvpehsmhhtphdqohhuthdphhgvlhhopehplhgrhigvrhejleehrdhhrgdrohhvhhdrnhgvthdpihhnvghtpedtrddtrddtrddtpdhmrghilhhfrhhomheprghnughisegvthgviihirghnrdhorhhgpdhrtghpthhtohepihhnthgvlhdqghhfgieslhhishhtshdrfhhrvggvuggvshhkthhophdrohhrgh
-Subject: Re: [Intel-gfx] [PATCH 2/5] drm/i915/gt: Restore ce->signal flush
- before releasing virtual engine
+X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgedujedrvdeghedgtdekucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuqfggjfdpvefjgfevmfevgfenuceurghilhhouhhtmecuhedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhepfffhvffukfhfgggtuggjsehttdertddttddvnecuhfhrohhmpeetnhguihcuufhhhihtihcuoegrnhguihesvghtvgiiihgrnhdrohhrgheqnecuggftrfgrthhtvghrnheptdfgudduhfefueeujeefieehtdeftefggeevhefgueellefhudetgeeikeduieefnecukfhppedtrddtrddtrddtpddvudefrddvgeefrddugedurdeigeenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhhouggvpehsmhhtphdqohhuthdphhgvlhhopehplhgrhigvrhejhedtrdhhrgdrohhvhhdrnhgvthdpihhnvghtpedtrddtrddtrddtpdhmrghilhhfrhhomheprghnughisegvthgviihirghnrdhorhhgpdhrtghpthhtohepihhnthgvlhdqghhfgieslhhishhtshdrfhhrvggvuggvshhkthhophdrohhrgh
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/selftests: Skip unstable timing
+ measurements
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,43 +61,18 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 Hi Chris,
 
-> +void intel_context_remove_breadcrumbs(struct intel_context *ce,
-> +				      struct intel_breadcrumbs *b)
-> +{
-> +	struct i915_request *rq, *rn;
-> +	bool release = false;
-> +	unsigned long flags;
-> +
-> +	spin_lock_irqsave(&ce->signal_lock, flags);
-> +
-> +	if (list_empty(&ce->signals))
-> +		goto unlock;
+On Fri, Jan 08, 2021 at 03:14:49PM +0000, Chris Wilson wrote:
+> If any of the perf tests run into 0 time, not only are we liable to
+> divide by zero, but the result would be highly questionable.
+> Nevertheless, let's not have a div-by-zero error.
+> 
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> Cc: Andi Shyti <andi.shyti@intel.com>
 
-does "list_empty" need to be under lock or you've been lazy?
+Reviewed-by: Andi Shyti <andi.shyti@intel.com>
 
-The rest looks fine,
+Thanks,
 Andi
-
-> +	list_for_each_entry_safe(rq, rn, &ce->signals, signal_link) {
-> +		GEM_BUG_ON(!__i915_request_is_complete(rq));
-> +		if (!test_and_clear_bit(I915_FENCE_FLAG_SIGNAL,
-> +					&rq->fence.flags))
-> +			continue;
-> +
-> +		list_del_rcu(&rq->signal_link);
-> +		irq_signal_request(rq, b);
-> +		i915_request_put(rq);
-> +	}
-> +	release = remove_signaling_context(b, ce);
-> +
-> +unlock:
-> +	spin_unlock_irqrestore(&ce->signal_lock, flags);
-> +	if (release)
-> +		intel_context_put(ce);
-> +
-> +	while (atomic_read(&b->signaler_active))
-> +		cpu_relax();
-> +}
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
