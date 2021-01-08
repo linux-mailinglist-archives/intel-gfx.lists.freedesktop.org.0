@@ -2,30 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A8D002EF7FB
-	for <lists+intel-gfx@lfdr.de>; Fri,  8 Jan 2021 20:18:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4C93E2EF80B
+	for <lists+intel-gfx@lfdr.de>; Fri,  8 Jan 2021 20:23:29 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 88F336E8A0;
-	Fri,  8 Jan 2021 19:18:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 71DAE6E8A7;
+	Fri,  8 Jan 2021 19:23:26 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 258126E89F;
- Fri,  8 Jan 2021 19:18:03 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id E8C206E8A7;
+ Fri,  8 Jan 2021 19:23:24 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 1F3CBA0118;
- Fri,  8 Jan 2021 19:18:03 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id E2C84A47DB;
+ Fri,  8 Jan 2021 19:23:24 +0000 (UTC)
 MIME-Version: 1.0
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Jani Nikula" <jani.nikula@intel.com>
-Date: Fri, 08 Jan 2021 19:18:03 -0000
-Message-ID: <161013348309.332.10887576874354369484@emeril.freedesktop.org>
+Date: Fri, 08 Jan 2021 19:23:24 -0000
+Message-ID: <161013380490.332.2319380897667240675@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20210108152841.6944-1-jani.nikula@intel.com>
-In-Reply-To: <20210108152841.6944-1-jani.nikula@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/backlight=3A_fix_CPU_mode_backlight_takeover_on_LPT?=
+References: <cover.1610127741.git.jani.nikula@intel.com>
+In-Reply-To: <cover.1610127741.git.jani.nikula@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/i915/dp=3A_split_out_pps_and_aux_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,205 +40,212 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============0932494391=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0932494391==
-Content-Type: multipart/alternative;
- boundary="===============4458900898894924115=="
-
---===============4458900898894924115==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/i915/backlight: fix CPU mode backlight takeover on LPT
-URL   : https://patchwork.freedesktop.org/series/85619/
-State : success
+Series: drm/i915/dp: split out pps and aux (rev2)
+URL   : https://patchwork.freedesktop.org/series/85167/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from CI_DRM_9567 -> Patchwork_19295
-====================================================
+$ dim checkpatch origin/drm-tip
+1d7a1bfde18c drm/i915/pps: abstract panel power sequencer from intel_dp.c
+-:1082: CHECK:LINE_SPACING: Please don't use multiple blank lines
+#1082: FILE: drivers/gpu/drm/i915/display/intel_dp.c:2552:
+ 
++
 
-Summary
--------
+-:1623: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#1623: 
+new file mode 100644
 
-  **SUCCESS**
+-:2073: WARNING:LONG_LINE: line length of 107 exceeds 100 columns
+#2073: FILE: drivers/gpu/drm/i915/display/intel_pps.c:446:
++#define IDLE_ON_MASK		(PP_ON | PP_SEQUENCE_MASK | 0                     | PP_SEQUENCE_STATE_MASK)
 
-  No regressions found.
+-:2074: WARNING:LONG_LINE: line length of 110 exceeds 100 columns
+#2074: FILE: drivers/gpu/drm/i915/display/intel_pps.c:447:
++#define IDLE_ON_VALUE   	(PP_ON | PP_SEQUENCE_NONE | 0                     | PP_SEQUENCE_STATE_ON_IDLE)
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19295/index.html
+-:2074: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
+#2074: FILE: drivers/gpu/drm/i915/display/intel_pps.c:447:
++#define IDLE_ON_VALUE   ^I(PP_ON | PP_SEQUENCE_NONE | 0                     | PP_SEQUENCE_STATE_ON_IDLE)$
 
-Known issues
-------------
+-:2079: WARNING:LONG_LINE: line length of 107 exceeds 100 columns
+#2079: FILE: drivers/gpu/drm/i915/display/intel_pps.c:452:
++#define IDLE_CYCLE_MASK		(PP_ON | PP_SEQUENCE_MASK | PP_CYCLE_DELAY_ACTIVE | PP_SEQUENCE_STATE_MASK)
 
-  Here are the changes found in Patchwork_19295 that come from known issues:
+-:2080: WARNING:LONG_LINE: line length of 111 exceeds 100 columns
+#2080: FILE: drivers/gpu/drm/i915/display/intel_pps.c:453:
++#define IDLE_CYCLE_VALUE	(0     | PP_SEQUENCE_NONE | 0                     | PP_SEQUENCE_STATE_OFF_IDLE)
 
-### IGT changes ###
+-:2085: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#2085: FILE: drivers/gpu/drm/i915/display/intel_pps.c:458:
++static void wait_panel_status(struct intel_dp *intel_dp,
++				       u32 mask,
 
-#### Issues hit ####
+-:2139: WARNING:BLOCK_COMMENT_STYLE: Block comments use a trailing */ on a separate line
+#2139: FILE: drivers/gpu/drm/i915/display/intel_pps.c:512:
++	 * and then make panel wait for t11_t12 if needed. */
 
-  * igt@amdgpu/amd_basic@cs-gfx:
-    - fi-kbl-soraka:      NOTRUN -> [SKIP][1] ([fdo#109271]) +17 similar issues
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19295/fi-kbl-soraka/igt@amdgpu/amd_basic@cs-gfx.html
+-:2141: WARNING:LONG_LINE: line length of 103 exceeds 100 columns
+#2141: FILE: drivers/gpu/drm/i915/display/intel_pps.c:514:
++	panel_power_off_duration = ktime_ms_delta(panel_power_on_time, intel_dp->panel_power_off_time);
 
-  * igt@fbdev@read:
-    - fi-tgl-y:           [PASS][2] -> [DMESG-WARN][3] ([i915#402]) +2 similar issues
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9567/fi-tgl-y/igt@fbdev@read.html
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19295/fi-tgl-y/igt@fbdev@read.html
+-:2144: WARNING:BLOCK_COMMENT_STYLE: Block comments use a trailing */ on a separate line
+#2144: FILE: drivers/gpu/drm/i915/display/intel_pps.c:517:
++	 * wait. */
 
-  
-#### Possible fixes ####
+-:2147: WARNING:LONG_LINE: line length of 101 exceeds 100 columns
+#2147: FILE: drivers/gpu/drm/i915/display/intel_pps.c:520:
++				       intel_dp->panel_power_cycle_delay - panel_power_off_duration);
 
-  * igt@debugfs_test@read_all_entries:
-    - fi-tgl-y:           [DMESG-WARN][4] ([i915#402]) -> [PASS][5] +2 similar issues
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9567/fi-tgl-y/igt@debugfs_test@read_all_entries.html
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19295/fi-tgl-y/igt@debugfs_test@read_all_entries.html
+-:2147: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#2147: FILE: drivers/gpu/drm/i915/display/intel_pps.c:520:
++		wait_remaining_ms_from_jiffies(jiffies,
++				       intel_dp->panel_power_cycle_delay - panel_power_off_duration);
 
-  * igt@i915_selftest@live@gem:
-    - fi-kbl-soraka:      [DMESG-FAIL][6] -> [PASS][7]
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9567/fi-kbl-soraka/igt@i915_selftest@live@gem.html
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19295/fi-kbl-soraka/igt@i915_selftest@live@gem.html
+-:2441: WARNING:BLOCK_COMMENT_STYLE: Block comments use a trailing */ on a separate line
+#2441: FILE: drivers/gpu/drm/i915/display/intel_pps.c:814:
++	 * panels get very unhappy and cease to work. */
 
-  * igt@i915_selftest@live@reset:
-    - fi-kbl-soraka:      [SKIP][8] ([fdo#109271]) -> [PASS][9] +12 similar issues
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9567/fi-kbl-soraka/igt@i915_selftest@live@reset.html
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19295/fi-kbl-soraka/igt@i915_selftest@live@reset.html
+-:2790: WARNING:BLOCK_COMMENT_STYLE: Block comments use a trailing */ on a separate line
+#2790: FILE: drivers/gpu/drm/i915/display/intel_pps.c:1163:
++	 * too. */
 
-  
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
+-:2794: WARNING:BLOCK_COMMENT_STYLE: Block comments use a trailing */ on a separate line
+#2794: FILE: drivers/gpu/drm/i915/display/intel_pps.c:1167:
++	 * our hw here, which are all in 100usec. */
 
+-:2802: WARNING:BLOCK_COMMENT_STYLE: Block comments use a trailing */ on a separate line
+#2802: FILE: drivers/gpu/drm/i915/display/intel_pps.c:1175:
++	 * too. */
 
-Participating hosts (43 -> 38)
-------------------------------
+-:2808: WARNING:BLOCK_COMMENT_STYLE: Block comments use a trailing */ on a separate line
+#2808: FILE: drivers/gpu/drm/i915/display/intel_pps.c:1181:
++	 * unset, fall back to the spec limits. */
 
-  Missing    (5): fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-bdw-samus 
+-:2809: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
+#2809: FILE: drivers/gpu/drm/i915/display/intel_pps.c:1182:
++#define assign_final(field)	final->field = (max(cur.field, vbt.field) == 0 ? \
++				       spec.field : \
++				       max(cur.field, vbt.field))
 
+-:2809: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'field' - possible side-effects?
+#2809: FILE: drivers/gpu/drm/i915/display/intel_pps.c:1182:
++#define assign_final(field)	final->field = (max(cur.field, vbt.field) == 0 ? \
++				       spec.field : \
++				       max(cur.field, vbt.field))
 
-Build changes
--------------
+-:2809: CHECK:MACRO_ARG_PRECEDENCE: Macro argument 'field' may be better as '(field)' to avoid precedence issues
+#2809: FILE: drivers/gpu/drm/i915/display/intel_pps.c:1182:
++#define assign_final(field)	final->field = (max(cur.field, vbt.field) == 0 ? \
++				       spec.field : \
++				       max(cur.field, vbt.field))
 
-  * Linux: CI_DRM_9567 -> Patchwork_19295
+-:2819: CHECK:MACRO_ARG_PRECEDENCE: Macro argument 'field' may be better as '(field)' to avoid precedence issues
+#2819: FILE: drivers/gpu/drm/i915/display/intel_pps.c:1192:
++#define get_delay(field)	(DIV_ROUND_UP(final->field, 10))
 
-  CI-20190529: 20190529
-  CI_DRM_9567: 9fc1f6dac2ec9339e390931322768a0286f01f71 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5951: fec3b9c7d88357144f0d7a1447b9316a1c81da1a @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_19295: 26bee7ddae51ded6388b8cb1d913596eb52bf795 @ git://anongit.freedesktop.org/gfx-ci/linux
+-:2902: WARNING:BLOCK_COMMENT_STYLE: Block comments use a trailing */ on a separate line
+#2902: FILE: drivers/gpu/drm/i915/display/intel_pps.c:1275:
++	 * power sequencer any more. */
 
+-:2932: WARNING:LONG_LINE: line length of 176 exceeds 100 columns
+#2932: FILE: drivers/gpu/drm/i915/display/intel_pps.c:1305:
++			       REG_FIELD_PREP(PP_REFERENCE_DIVIDER_MASK, (100 * div) / 2 - 1) | REG_FIELD_PREP(PANEL_POWER_CYCLE_DELAY_MASK, DIV_ROUND_UP(seq->t11_t12, 1000)));
 
-== Linux commits ==
+-:2938: WARNING:LONG_LINE: line length of 103 exceeds 100 columns
+#2938: FILE: drivers/gpu/drm/i915/display/intel_pps.c:1311:
++		pp_ctl |= REG_FIELD_PREP(BXT_POWER_CYCLE_DELAY_MASK, DIV_ROUND_UP(seq->t11_t12, 1000));
 
-26bee7ddae51 drm/i915/backlight: fix CPU mode backlight takeover on LPT
+-:2989: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'dp' - possible side-effects?
+#2989: FILE: drivers/gpu/drm/i915/display/intel_pps.h:22:
++#define with_pps_lock(dp, wf)						\
++	for ((wf) = pps_lock(dp); (wf); (wf) = pps_unlock((dp), (wf)))
 
-== Logs ==
+-:2989: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'wf' - possible side-effects?
+#2989: FILE: drivers/gpu/drm/i915/display/intel_pps.h:22:
++#define with_pps_lock(dp, wf)						\
++	for ((wf) = pps_lock(dp); (wf); (wf) = pps_unlock((dp), (wf)))
 
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19295/index.html
+total: 1 errors, 18 warnings, 8 checks, 2953 lines checked
+84bd85deaf0b drm/i915/pps: rename pps_{, un}lock -> intel_pps_{, un}lock
+-:216: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'dp' - possible side-effects?
+#216: FILE: drivers/gpu/drm/i915/display/intel_pps.h:22:
++#define with_intel_pps_lock(dp, wf)						\
++	for ((wf) = intel_pps_lock(dp); (wf); (wf) = intel_pps_unlock((dp), (wf)))
 
---===============4458900898894924115==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+-:216: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'wf' - possible side-effects?
+#216: FILE: drivers/gpu/drm/i915/display/intel_pps.h:22:
++#define with_intel_pps_lock(dp, wf)						\
++	for ((wf) = intel_pps_lock(dp); (wf); (wf) = intel_pps_unlock((dp), (wf)))
 
+total: 0 errors, 0 warnings, 2 checks, 176 lines checked
+9de69e6f8cbd drm/i915/pps: rename intel_edp_backlight_* to intel_pps_backlight_*
+67bedb793872 drm/i915/pps: rename intel_edp_panel_* to intel_pps_*
+4c39d047e6a5 drm/i915/pps: rename edp_panel_* to intel_pps_*_unlocked
+13979e877fa3 drm/i915/pps: abstract intel_pps_vdd_off_sync
+b0c7e08de7bc drm/i915/pps: add higher level intel_pps_init() call
+fcd60022bd6d drm/i915/pps: abstract intel_pps_encoder_reset()
+46024084caf5 drm/i915/pps: rename intel_dp_check_edp to intel_pps_check_power_unlocked
+4c5d95f01d72 drm/i915/pps: rename intel_power_sequencer_reset to intel_pps_reset_all
+cb6cf18c5623 drm/i915/pps: add locked intel_pps_wait_power_cycle
+eaad3ef82888 drm/i915/pps: rename vlv_init_panel_power_sequencer to vlv_pps_init
+ca6b78cc5788 drm/i915/pps: rename intel_dp_init_panel_power_sequencer* functions
+f57fa5d3bb5d drm/i915/pps: refactor init abstractions
+d50dad330043 drm/i915/pps: move pps code over from intel_display.c and refactor
+d7a14085a159 drm/i915/dp: abstract struct intel_dp pps members to a sub-struct
+-:346: WARNING:LONG_LINE: line length of 107 exceeds 100 columns
+#346: FILE: drivers/gpu/drm/i915/display/intel_pps.c:509:
++	panel_power_off_duration = ktime_ms_delta(panel_power_on_time, intel_dp->pps.panel_power_off_time);
 
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
+-:354: WARNING:LONG_LINE: line length of 105 exceeds 100 columns
+#354: FILE: drivers/gpu/drm/i915/display/intel_pps.c:515:
++				       intel_dp->pps.panel_power_cycle_delay - panel_power_off_duration);
 
+total: 0 errors, 2 warnings, 0 checks, 632 lines checked
+d6be48f10987 drm/i915/dp: split out aux functionality to intel_dp_aux.c
+-:728: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#728: 
+new file mode 100644
 
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/backlight: fix CPU mode backlight takeover on LPT</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/85619/">https://patchwork.freedesktop.org/series/85619/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
+-:760: WARNING:LINE_SPACING: Missing a blank line after declarations
+#760: FILE: drivers/gpu/drm/i915/display/intel_dp_aux.c:28:
++	int i;
++	if (dst_bytes > 4)
 
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19295/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19295/index.html</a></td></tr>
+-:763: CHECK:SPACING: spaces preferred around that '-' (ctx:VxV)
+#763: FILE: drivers/gpu/drm/i915/display/intel_dp_aux.c:31:
++		dst[i] = src >> ((3-i) * 8);
+ 		                   ^
 
-</table>
+-:775: WARNING:LONG_LINE: line length of 104 exceeds 100 columns
+#775: FILE: drivers/gpu/drm/i915/display/intel_dp_aux.c:43:
++#define C (((status = intel_uncore_read_notrace(&i915->uncore, ch_ctl)) & DP_AUX_CH_CTL_SEND_BUSY) == 0)
 
+-:965: WARNING:MSLEEP: msleep < 20ms can sleep for up to 20ms; see Documentation/timers/timers-howto.rst
+#965: FILE: drivers/gpu/drm/i915/display/intel_dp_aux.c:233:
++		msleep(1);
 
-    <h1>CI Bug Log - changes from CI_DRM_9567 -&gt; Patchwork_19295</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19295/index.html</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_19295 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@amdgpu/amd_basic@cs-gfx:</p>
-<ul>
-<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19295/fi-kbl-soraka/igt@amdgpu/amd_basic@cs-gfx.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +17 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@fbdev@read:</p>
-<ul>
-<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9567/fi-tgl-y/igt@fbdev@read.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19295/fi-tgl-y/igt@fbdev@read.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) +2 similar issues</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@debugfs_test@read_all_entries:</p>
-<ul>
-<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9567/fi-tgl-y/igt@debugfs_test@read_all_entries.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19295/fi-tgl-y/igt@debugfs_test@read_all_entries.html">PASS</a> +2 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@gem:</p>
-<ul>
-<li>fi-kbl-soraka:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9567/fi-kbl-soraka/igt@i915_selftest@live@gem.html">DMESG-FAIL</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19295/fi-kbl-soraka/igt@i915_selftest@live@gem.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@reset:</p>
-<ul>
-<li>fi-kbl-soraka:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9567/fi-kbl-soraka/igt@i915_selftest@live@reset.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19295/fi-kbl-soraka/igt@i915_selftest@live@reset.html">PASS</a> +12 similar issues</li>
-</ul>
-</li>
-</ul>
-<h2>Participating hosts (43 -&gt; 38)</h2>
-<p>Missing    (5): fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-bdw-samus </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_9567 -&gt; Patchwork_19295</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_9567: 9fc1f6dac2ec9339e390931322768a0286f01f71 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_5951: fec3b9c7d88357144f0d7a1447b9316a1c81da1a @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
-  Patchwork_19295: 26bee7ddae51ded6388b8cb1d913596eb52bf795 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>26bee7ddae51 drm/i915/backlight: fix CPU mode backlight takeover on LPT</p>
+-:1055: WARNING:BLOCK_COMMENT_STYLE: Block comments use a trailing */ on a separate line
+#1055: FILE: drivers/gpu/drm/i915/display/intel_dp_aux.c:323:
++	 * "normal" -- don't fill the kernel log with these */
 
-</body>
-</html>
+-:1203: CHECK:LINE_SPACING: Please don't use multiple blank lines
+#1203: FILE: drivers/gpu/drm/i915/display/intel_dp_aux.c:471:
++
++
 
---===============4458900898894924115==--
+total: 0 errors, 5 warnings, 2 checks, 1410 lines checked
 
---===============0932494391==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============0932494391==--
