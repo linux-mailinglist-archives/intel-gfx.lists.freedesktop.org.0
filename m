@@ -2,42 +2,28 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4A2232EF0B4
-	for <lists+intel-gfx@lfdr.de>; Fri,  8 Jan 2021 11:33:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9E77D2EF0CE
+	for <lists+intel-gfx@lfdr.de>; Fri,  8 Jan 2021 11:44:11 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D6BDA89B51;
-	Fri,  8 Jan 2021 10:33:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0666A6E7E6;
+	Fri,  8 Jan 2021 10:44:10 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 92D2089B51
- for <intel-gfx@lists.freedesktop.org>; Fri,  8 Jan 2021 10:33:45 +0000 (UTC)
-IronPort-SDR: n5Vs6O0L0YNXXQwxY73ySmtYSyuR7PkkOTOeWYKAPR+Mp8W3ZXOkNmL3FIWcEXaN+3mEFaEIee
- aZAMLUE3Gokw==
-X-IronPort-AV: E=McAfee;i="6000,8403,9857"; a="239127829"
-X-IronPort-AV: E=Sophos;i="5.79,330,1602572400"; d="scan'208";a="239127829"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Jan 2021 02:33:44 -0800
-IronPort-SDR: 2WOrKSV5eFwCGXw4gL+0rGvyw5+hnNIBnxERh+AJC6AubLDWgHTn+X66PQ4hhrpYpqZrC8Y6Hy
- PAc3U6XBsHxg==
-X-IronPort-AV: E=Sophos;i="5.79,330,1602572400"; d="scan'208";a="351639067"
-Received: from rgwhiteh-mobl.ger.corp.intel.com (HELO localhost)
- ([10.213.205.160])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Jan 2021 02:33:43 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: Anshuman Gupta <anshuman.gupta@intel.com>
-In-Reply-To: <20201229070456.GG11717@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <cover.1608648128.git.jani.nikula@intel.com>
- <a5a60c020b4f9277de1276b2d6010119a5f072ab.1608648128.git.jani.nikula@intel.com>
- <20201229070456.GG11717@intel.com>
-Date: Fri, 08 Jan 2021 12:33:40 +0200
-Message-ID: <87a6tjzpiz.fsf@intel.com>
+Received: from fireflyinternet.com (unknown [77.68.26.236])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 855AA6E7E6
+ for <intel-gfx@lists.freedesktop.org>; Fri,  8 Jan 2021 10:44:07 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from build.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 23536466-1500050 
+ for multiple; Fri, 08 Jan 2021 10:43:56 +0000
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Fri,  8 Jan 2021 10:43:55 +0000
+Message-Id: <20210108104355.8958-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH 09/13] drm/i915/pps: rename
- intel_dp_check_edp to intel_pps_check_power_unlocked
+Subject: [Intel-gfx] [PATCH] RFC drm/i915: Expose union(class) utililisation
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,102 +36,428 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Cc: Chris Wilson <chris@chris-wilson.co.uk>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 29 Dec 2020, Anshuman Gupta <anshuman.gupta@intel.com> wrote:
-> On 2020-12-22 at 20:19:49 +0530, Jani Nikula wrote:
->> Follow the usual naming pattern for functions.
->> 
->> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
->> ---
->>  drivers/gpu/drm/i915/display/intel_dp.c  | 2 +-
->>  drivers/gpu/drm/i915/display/intel_pps.c | 2 +-
->>  drivers/gpu/drm/i915/display/intel_pps.h | 2 +-
->>  3 files changed, 3 insertions(+), 3 deletions(-)
->> 
->> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
->> index 334ba1775cd3..65406d4ccdbe 100644
->> --- a/drivers/gpu/drm/i915/display/intel_dp.c
->> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
->> @@ -1046,7 +1046,7 @@ intel_dp_aux_xfer(struct intel_dp *intel_dp,
->>  	 */
->>  	cpu_latency_qos_update_request(&i915->pm_qos, 0);
->>  
->> -	intel_dp_check_edp(intel_dp);
->> +	intel_pps_check_power_unlocked(intel_dp);
->>  
->>  	/* Try to wait for any previous AUX channel activity */
->>  	for (try = 0; try < 3; try++) {
->> diff --git a/drivers/gpu/drm/i915/display/intel_pps.c b/drivers/gpu/drm/i915/display/intel_pps.c
->> index 3e62d1450682..dfd6722bc40e 100644
->> --- a/drivers/gpu/drm/i915/display/intel_pps.c
->> +++ b/drivers/gpu/drm/i915/display/intel_pps.c
->> @@ -431,7 +431,7 @@ static bool edp_have_panel_vdd(struct intel_dp *intel_dp)
->>  	return intel_de_read(dev_priv, _pp_ctrl_reg(intel_dp)) & EDP_FORCE_VDD;
->>  }
->>  
->> -void intel_dp_check_edp(struct intel_dp *intel_dp)
->> +void intel_pps_check_power_unlocked(struct intel_dp *intel_dp)
-> IMHO comment to take pps_lock would be useful here.
+Combine our per-engine metrics to track begin/end of the class as a
+whole and present that as culmulative runtime via PMU.
 
-Part of the point of this change is to name it _unlocked to highlight it
-does not take the lock, i.e. you should be aware of locking. You see
-this pattern all over the kernel. It's self-documenting code.
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+Cc: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+---
+ drivers/gpu/drm/i915/gt/intel_engine_cs.c    |  18 +++
+ drivers/gpu/drm/i915/gt/intel_engine_stats.h |  34 ++++++
+ drivers/gpu/drm/i915/gt/intel_engine_types.h |   1 +
+ drivers/gpu/drm/i915/gt/intel_engine_user.c  |   3 +
+ drivers/gpu/drm/i915/gt/intel_gt.h           |   2 +
+ drivers/gpu/drm/i915/gt/intel_gt_types.h     |  28 +++++
+ drivers/gpu/drm/i915/i915_pmu.c              | 119 +++++++++++++++----
+ include/uapi/drm/i915_drm.h                  |   3 +
+ 8 files changed, 185 insertions(+), 23 deletions(-)
 
-Moreover, after the edp check, the calls here have:
-
-	lockdep_assert_held(&dev_priv->pps_mutex);
-
-which both documents the requirement as well as ensures the proper usage
-in lockdep builds. I don't think a comment adds any value.
-
-BR,
-Jani.
-
-
-> Thanks,
-> Anshuman.
->>  {
->>  	struct drm_i915_private *dev_priv = dp_to_i915(intel_dp);
->>  
->> diff --git a/drivers/gpu/drm/i915/display/intel_pps.h b/drivers/gpu/drm/i915/display/intel_pps.h
->> index 4780b59a59df..8dda282abd42 100644
->> --- a/drivers/gpu/drm/i915/display/intel_pps.h
->> +++ b/drivers/gpu/drm/i915/display/intel_pps.h
->> @@ -22,7 +22,6 @@ intel_wakeref_t intel_pps_unlock(struct intel_dp *intel_dp, intel_wakeref_t wake
->>  #define with_intel_pps_lock(dp, wf)						\
->>  	for ((wf) = intel_pps_lock(dp); (wf); (wf) = intel_pps_unlock((dp), (wf)))
->>  
->> -void intel_dp_check_edp(struct intel_dp *intel_dp);
->>  void intel_pps_backlight_on(struct intel_dp *intel_dp);
->>  void intel_pps_backlight_off(struct intel_dp *intel_dp);
->>  void intel_pps_backlight_power(struct intel_connector *connector, bool enable);
->> @@ -31,6 +30,7 @@ bool intel_pps_vdd_on_unlocked(struct intel_dp *intel_dp);
->>  void intel_pps_vdd_off_unlocked(struct intel_dp *intel_dp, bool sync);
->>  void intel_pps_on_unlocked(struct intel_dp *intel_dp);
->>  void intel_pps_off_unlocked(struct intel_dp *intel_dp);
->> +void intel_pps_check_power_unlocked(struct intel_dp *intel_dp);
->>  
->>  void intel_pps_vdd_on(struct intel_dp *intel_dp);
->>  void intel_pps_on(struct intel_dp *intel_dp);
->> -- 
->> 2.20.1
->> 
->> _______________________________________________
->> Intel-gfx mailing list
->> Intel-gfx@lists.freedesktop.org
->> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
+diff --git a/drivers/gpu/drm/i915/gt/intel_engine_cs.c b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+index b1b44afc94ba..3f71483bd6f5 100644
+--- a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
++++ b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+@@ -314,6 +314,8 @@ static int intel_engine_setup(struct intel_gt *gt, enum intel_engine_id id)
+ 	engine->instance = info->instance;
+ 	__sprint_engine_name(engine);
+ 
++	engine->class_stats = &gt->stats_class[info->class];
++
+ 	engine->props.dma_latency_ns =
+ 		CONFIG_DRM_I915_DMA_LATENCY;
+ 	engine->props.heartbeat_interval_ms =
+@@ -1789,6 +1791,22 @@ intel_engine_find_active_request(struct intel_engine_cs *engine)
+ 	return active;
+ }
+ 
++ktime_t intel_runtime_stats_get_busy_time(const struct intel_runtime_stats *st)
++{
++	unsigned int seq;
++	ktime_t total;
++
++	do {
++		seq = read_seqbegin(&st->lock);
++		total = st->total;
++		if (atomic_read(&st->active))
++			total = ktime_add(total,
++					  ktime_sub(ktime_get(), st->start));
++	} while (unlikely(read_seqretry(&st->lock, seq)));
++
++	return total;
++}
++
+ #if IS_ENABLED(CONFIG_DRM_I915_SELFTEST)
+ #include "mock_engine.c"
+ #include "selftest_engine.c"
+diff --git a/drivers/gpu/drm/i915/gt/intel_engine_stats.h b/drivers/gpu/drm/i915/gt/intel_engine_stats.h
+index 24fbdd94351a..b199137a977e 100644
+--- a/drivers/gpu/drm/i915/gt/intel_engine_stats.h
++++ b/drivers/gpu/drm/i915/gt/intel_engine_stats.h
+@@ -12,6 +12,36 @@
+ 
+ #include "i915_gem.h" /* GEM_BUG_ON */
+ #include "intel_engine.h"
++#include "intel_gt_types.h"
++
++static inline void intel_engine_class_start(struct intel_runtime_stats *st)
++{
++	unsigned long flags;
++
++	if (atomic_add_unless(&st->active, 1, 0))
++		return;
++
++	write_seqlock_irqsave(&st->lock, flags);
++	if (!atomic_read(&st->active))
++		st->start = ktime_get();
++	atomic_inc(&st->active);
++	write_sequnlock_irqrestore(&st->lock, flags);
++}
++
++static inline void intel_engine_class_stop(struct intel_runtime_stats *st)
++{
++	unsigned long flags;
++
++	if (atomic_add_unless(&st->active, -1, 1))
++		return;
++
++	write_seqlock_irqsave(&st->lock, flags);
++	if (atomic_read(&st->active) == 1)
++		st->total =
++			ktime_add(st->total, ktime_sub(ktime_get(), st->start));
++	atomic_dec(&st->active);
++	write_sequnlock_irqrestore(&st->lock, flags);
++}
+ 
+ static inline void intel_engine_context_in(struct intel_engine_cs *engine)
+ {
+@@ -22,6 +52,8 @@ static inline void intel_engine_context_in(struct intel_engine_cs *engine)
+ 		return;
+ 	}
+ 
++	intel_engine_class_start(engine->class_stats);
++
+ 	/* The writer is serialised; but the pmu reader may be from hardirq */
+ 	local_irq_save(flags);
+ 	write_seqcount_begin(&engine->stats.lock);
+@@ -55,6 +87,8 @@ static inline void intel_engine_context_out(struct intel_engine_cs *engine)
+ 
+ 	write_seqcount_end(&engine->stats.lock);
+ 	local_irq_restore(flags);
++
++	intel_engine_class_stop(engine->class_stats);
+ }
+ 
+ #endif /* __INTEL_ENGINE_STATS_H__ */
+diff --git a/drivers/gpu/drm/i915/gt/intel_engine_types.h b/drivers/gpu/drm/i915/gt/intel_engine_types.h
+index 21e9f9de4844..ae415725cfde 100644
+--- a/drivers/gpu/drm/i915/gt/intel_engine_types.h
++++ b/drivers/gpu/drm/i915/gt/intel_engine_types.h
+@@ -499,6 +499,7 @@ struct intel_engine_cs {
+ 		 */
+ 		ktime_t rps;
+ 	} stats;
++	struct intel_runtime_stats *class_stats;
+ 
+ 	struct {
+ 		unsigned long heartbeat_interval_ms;
+diff --git a/drivers/gpu/drm/i915/gt/intel_engine_user.c b/drivers/gpu/drm/i915/gt/intel_engine_user.c
+index 6b5a4fdc14a0..24ac33d1b16e 100644
+--- a/drivers/gpu/drm/i915/gt/intel_engine_user.c
++++ b/drivers/gpu/drm/i915/gt/intel_engine_user.c
+@@ -210,6 +210,9 @@ void intel_engines_driver_register(struct drm_i915_private *i915)
+ 		GEM_BUG_ON(engine->uabi_class >= ARRAY_SIZE(uabi_instances));
+ 		engine->uabi_instance = uabi_instances[engine->uabi_class]++;
+ 
++		if (intel_engine_supports_stats(engine))
++			engine->class_stats->enabled = true;
++
+ 		/* Replace the internal name with the final user facing name */
+ 		memcpy(old, engine->name, sizeof(engine->name));
+ 		scnprintf(engine->name, sizeof(engine->name), "%s%u",
+diff --git a/drivers/gpu/drm/i915/gt/intel_gt.h b/drivers/gpu/drm/i915/gt/intel_gt.h
+index 9157c7411f60..f73f1d1d3754 100644
+--- a/drivers/gpu/drm/i915/gt/intel_gt.h
++++ b/drivers/gpu/drm/i915/gt/intel_gt.h
+@@ -77,4 +77,6 @@ static inline bool intel_gt_is_wedged(const struct intel_gt *gt)
+ void intel_gt_info_print(const struct intel_gt_info *info,
+ 			 struct drm_printer *p);
+ 
++ktime_t intel_runtime_stats_get_busy_time(const struct intel_runtime_stats *st);
++
+ #endif /* __INTEL_GT_H__ */
+diff --git a/drivers/gpu/drm/i915/gt/intel_gt_types.h b/drivers/gpu/drm/i915/gt/intel_gt_types.h
+index a83d3e18254d..3c12d4a3197e 100644
+--- a/drivers/gpu/drm/i915/gt/intel_gt_types.h
++++ b/drivers/gpu/drm/i915/gt/intel_gt_types.h
+@@ -29,6 +29,32 @@ struct i915_ggtt;
+ struct intel_engine_cs;
+ struct intel_uncore;
+ 
++struct intel_runtime_stats {
++	atomic_t active;
++
++	/**
++	 * @lock: Lock protecting the below fields.
++	 */
++	seqlock_t lock;
++
++	/**
++	 * @total: Total time this engine was busy.
++	 *
++	 * Accumulated time not counting the most recent block in cases
++	 * where engine is currently busy (active > 0).
++	 */
++	ktime_t total;
++
++	/**
++	 * @start: Timestamp of the last idle to active transition.
++	 *
++	 * Idle is defined as active == 0, active is active > 0.
++	 */
++	ktime_t start;
++
++	bool enabled;
++};
++
+ struct intel_gt {
+ 	struct drm_i915_private *i915;
+ 	struct intel_uncore *uncore;
+@@ -112,6 +138,8 @@ struct intel_gt {
+ 		ktime_t start;
+ 	} stats;
+ 
++	struct intel_runtime_stats stats_class[MAX_ENGINE_CLASS + 1];
++
+ 	struct intel_engine_cs *engine[I915_NUM_ENGINES];
+ 	struct intel_engine_cs *engine_class[MAX_ENGINE_CLASS + 1]
+ 					    [MAX_ENGINE_INSTANCE + 1];
+diff --git a/drivers/gpu/drm/i915/i915_pmu.c b/drivers/gpu/drm/i915/i915_pmu.c
+index 2b88c0baa1bf..026999a82231 100644
+--- a/drivers/gpu/drm/i915/i915_pmu.c
++++ b/drivers/gpu/drm/i915/i915_pmu.c
+@@ -9,6 +9,7 @@
+ #include "gt/intel_engine.h"
+ #include "gt/intel_engine_pm.h"
+ #include "gt/intel_engine_user.h"
++#include "gt/intel_gt.h"
+ #include "gt/intel_gt_pm.h"
+ #include "gt/intel_rc6.h"
+ #include "gt/intel_rps.h"
+@@ -506,13 +507,28 @@ static int engine_event_init(struct perf_event *event)
+ 	struct drm_i915_private *i915 =
+ 		container_of(event->pmu, typeof(*i915), pmu.base);
+ 	struct intel_engine_cs *engine;
++	u8 class = engine_event_class(event);
++	u8 instance = engine_event_instance(event);
++	u8 sample = engine_event_sample(event);
+ 
+-	engine = intel_engine_lookup_user(i915, engine_event_class(event),
+-					  engine_event_instance(event));
++	if (instance == 0xff) {
++		if (sample == 0)
++			return 0;
++
++		if (class >= ARRAY_SIZE(i915->gt.stats_class))
++			return -ENODEV;
++
++		if (!i915->gt.stats_class[class].enabled)
++			return -ENODEV;
++
++		return -ENOENT;
++	}
++
++	engine = intel_engine_lookup_user(i915, class, instance);
+ 	if (!engine)
+ 		return -ENODEV;
+ 
+-	return engine_event_status(engine, engine_event_sample(event));
++	return engine_event_status(engine, sample);
+ }
+ 
+ static int i915_pmu_event_init(struct perf_event *event)
+@@ -557,6 +573,33 @@ static int i915_pmu_event_init(struct perf_event *event)
+ 	return 0;
+ }
+ 
++static u64 engine_event_read(struct perf_event *event)
++{
++	struct drm_i915_private *i915 =
++		container_of(event->pmu, typeof(*i915), pmu.base);
++	u8 sample = engine_event_sample(event);
++	u8 class = engine_event_class(event);
++	u8 instance = engine_event_instance(event);
++	struct intel_engine_cs *engine;
++	ktime_t unused;
++
++	if (instance == 0xff) {
++		struct intel_runtime_stats *st = &i915->gt.stats_class[class];
++
++		return intel_runtime_stats_get_busy_time(st);
++	}
++
++	engine = intel_engine_lookup_user(i915, class, instance);
++	if (GEM_WARN_ON(!engine))
++		return 0; /* Do nothing */
++	else if (sample == I915_SAMPLE_BUSY &&
++		 intel_engine_supports_stats(engine))
++		return ktime_to_ns(intel_engine_get_busy_time(engine,
++							      &unused));
++	else
++		return engine->pmu.sample[sample].cur;
++}
++
+ static u64 __i915_pmu_event_read(struct perf_event *event)
+ {
+ 	struct drm_i915_private *i915 =
+@@ -565,24 +608,7 @@ static u64 __i915_pmu_event_read(struct perf_event *event)
+ 	u64 val = 0;
+ 
+ 	if (is_engine_event(event)) {
+-		u8 sample = engine_event_sample(event);
+-		struct intel_engine_cs *engine;
+-
+-		engine = intel_engine_lookup_user(i915,
+-						  engine_event_class(event),
+-						  engine_event_instance(event));
+-
+-		if (drm_WARN_ON_ONCE(&i915->drm, !engine)) {
+-			/* Do nothing */
+-		} else if (sample == I915_SAMPLE_BUSY &&
+-			   intel_engine_supports_stats(engine)) {
+-			ktime_t unused;
+-
+-			val = ktime_to_ns(intel_engine_get_busy_time(engine,
+-								     &unused));
+-		} else {
+-			val = engine->pmu.sample[sample].cur;
+-		}
++		val = engine_event_read(event);
+ 	} else {
+ 		switch (event->attr.config) {
+ 		case I915_PMU_ACTUAL_FREQUENCY:
+@@ -666,7 +692,7 @@ static void i915_pmu_enable(struct perf_event *event)
+ 	 * For per-engine events the bitmask and reference counting
+ 	 * is stored per engine.
+ 	 */
+-	if (is_engine_event(event)) {
++	if (is_engine_event(event) && engine_event_instance(event) != 0xff) {
+ 		u8 sample = engine_event_sample(event);
+ 		struct intel_engine_cs *engine;
+ 
+@@ -710,7 +736,7 @@ static void i915_pmu_disable(struct perf_event *event)
+ 
+ 	spin_lock_irqsave(&pmu->lock, flags);
+ 
+-	if (is_engine_event(event)) {
++	if (is_engine_event(event) && engine_event_instance(event) != 0xff) {
+ 		u8 sample = engine_event_sample(event);
+ 		struct intel_engine_cs *engine;
+ 
+@@ -891,6 +917,18 @@ add_pmu_attr(struct perf_pmu_events_attr *attr, const char *name,
+ 	return ++attr;
+ }
+ 
++static const char *class_repr(u8 class)
++{
++	switch (class) {
++	case RENDER_CLASS: return "render";
++	case VIDEO_DECODE_CLASS: return "video-decode";
++	case VIDEO_ENHANCEMENT_CLASS: return "video-enhance";
++	case COPY_ENGINE_CLASS: return "copy";
++	}
++
++	return NULL;
++}
++
+ static struct attribute **
+ create_event_attributes(struct i915_pmu *pmu)
+ {
+@@ -919,6 +957,8 @@ create_event_attributes(struct i915_pmu *pmu)
+ 	struct i915_ext_attribute *i915_attr = NULL, *i915_iter;
+ 	struct attribute **attr = NULL, **attr_iter;
+ 	struct intel_engine_cs *engine;
++	unsigned long class_enable = 0;
++	unsigned long class_disable = 0;
+ 	unsigned int i;
+ 
+ 	/* Count how many counters we will be exposing. */
+@@ -928,6 +968,11 @@ create_event_attributes(struct i915_pmu *pmu)
+ 	}
+ 
+ 	for_each_uabi_engine(engine, i915) {
++		if (intel_engine_supports_stats(engine))
++			class_enable |= BIT(engine->class);
++		else
++			class_disable |= BIT(engine->class);
++
+ 		for (i = 0; i < ARRAY_SIZE(engine_events); i++) {
+ 			if (!engine_event_status(engine,
+ 						 engine_events[i].sample))
+@@ -935,6 +980,9 @@ create_event_attributes(struct i915_pmu *pmu)
+ 		}
+ 	}
+ 
++	class_enable &= ~class_disable;
++	count += hweight_long(class_enable);
++
+ 	/* Allocate attribute objects and table. */
+ 	i915_attr = kcalloc(count, sizeof(*i915_attr), GFP_KERNEL);
+ 	if (!i915_attr)
+@@ -1008,6 +1056,31 @@ create_event_attributes(struct i915_pmu *pmu)
+ 		}
+ 	}
+ 
++	for_each_set_bit(i, &class_enable, BITS_PER_LONG) {
++		const char *name;
++		char *str;
++
++		name = class_repr(i);
++		if (GEM_WARN_ON(!name))
++			continue;
++
++		str = kasprintf(GFP_KERNEL, "%s-%s", name, "busy");
++		if (!str)
++			goto err;
++
++		*attr_iter++ = &i915_iter->attr.attr;
++		i915_iter =
++			add_i915_attr(i915_iter, str,
++				      __I915_PMU_ENGINE(i, 0xff, 0));
++
++		str = kasprintf(GFP_KERNEL, "%s.unit", str);
++		if (!str)
++			goto err;
++
++		*attr_iter++ = &pmu_iter->attr.attr;
++		pmu_iter = add_pmu_attr(pmu_iter, str, "ns");
++	}
++
+ 	pmu->i915_attr = i915_attr;
+ 	pmu->pmu_attr = pmu_attr;
+ 
+diff --git a/include/uapi/drm/i915_drm.h b/include/uapi/drm/i915_drm.h
+index 1987e2ea79a3..3aacdf756e90 100644
+--- a/include/uapi/drm/i915_drm.h
++++ b/include/uapi/drm/i915_drm.h
+@@ -171,6 +171,9 @@ enum drm_i915_pmu_engine_sample {
+ #define I915_PMU_ENGINE_SEMA(class, instance) \
+ 	__I915_PMU_ENGINE(class, instance, I915_SAMPLE_SEMA)
+ 
++#define I915_PMU_CLASS_BUSY(class) \
++	__I915_PMU_ENGINE(class, 0xff, 0)
++
+ #define __I915_PMU_OTHER(x) (__I915_PMU_ENGINE(0xff, 0xff, 0xf) + 1 + (x))
+ 
+ #define I915_PMU_ACTUAL_FREQUENCY	__I915_PMU_OTHER(0)
 -- 
-Jani Nikula, Intel Open Source Graphics Center
+2.20.1
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
