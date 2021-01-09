@@ -2,31 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A08B62F00FE
-	for <lists+intel-gfx@lfdr.de>; Sat,  9 Jan 2021 16:50:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E00332F010B
+	for <lists+intel-gfx@lfdr.de>; Sat,  9 Jan 2021 17:00:16 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 020F96E89D;
-	Sat,  9 Jan 2021 15:50:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 98B5589875;
+	Sat,  9 Jan 2021 16:00:13 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AB39A6E89D
- for <intel-gfx@lists.freedesktop.org>; Sat,  9 Jan 2021 15:50:52 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1C50189842
+ for <intel-gfx@lists.freedesktop.org>; Sat,  9 Jan 2021 16:00:11 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 23547770-1500050 
- for multiple; Sat, 09 Jan 2021 15:49:32 +0000
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 23547807-1500050 
+ for multiple; Sat, 09 Jan 2021 15:59:15 +0000
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Sat,  9 Jan 2021 15:49:31 +0000
-Message-Id: <20210109154931.10098-3-chris@chris-wilson.co.uk>
+Date: Sat,  9 Jan 2021 15:59:15 +0000
+Message-Id: <20210109155915.20397-1-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20210109154931.10098-1-chris@chris-wilson.co.uk>
-References: <20210109154931.10098-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20210109154931.10098-3-chris@chris-wilson.co.uk>
+References: <20210109154931.10098-3-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 3/3] drm/i915: Allow the user to override
- security mitigations
+Subject: [Intel-gfx] [PATCH] drm/i915: Allow the user to override security
+ mitigations
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -86,7 +86,7 @@ JgorCQkgICAgaTkxNV9taXRpZ2F0ZV9jbGVhcl9yZXNpZHVhbHMoKSkgewogCQkJcmV0ID0gY2xl
 YXJfcmVzaWR1YWxzKHJxKTsKIAkJCWlmIChyZXQpCiAJCQkJcmV0dXJuIHJldDsKZGlmZiAtLWdp
 dCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfbWl0aWdhdGlvbnMuYyBiL2RyaXZlcnMvZ3B1
 L2RybS9pOTE1L2k5MTVfbWl0aWdhdGlvbnMuYwpuZXcgZmlsZSBtb2RlIDEwMDY0NAppbmRleCAw
-MDAwMDAwMDAwMDAuLjgyNWFmNTUwYTExYwotLS0gL2Rldi9udWxsCisrKyBiL2RyaXZlcnMvZ3B1
+MDAwMDAwMDAwMDAuLjAxYWQ3NDcyMWU2NQotLS0gL2Rldi9udWxsCisrKyBiL2RyaXZlcnMvZ3B1
 L2RybS9pOTE1L2k5MTVfbWl0aWdhdGlvbnMuYwpAQCAtMCwwICsxLDExOSBAQAorLy8gU1BEWC1M
 aWNlbnNlLUlkZW50aWZpZXI6IE1JVAorLyoKKyAqIENvcHlyaWdodCDCqSAyMDIxIEludGVsIENv
 cnBvcmF0aW9uCisgKi8KKworI2luY2x1ZGUgPGxpbnV4L2tlcm5lbC5oPgorI2luY2x1ZGUgPGxp
@@ -118,7 +118,7 @@ ZXRfY2hhcnAodmFsLCBrcCk7CisJaWYgKGVycikKKwkJcmV0dXJuIGVycjsKKworCXJldHVybiAw
 OworfQorCitzdGF0aWMgY29uc3Qgc3RydWN0IGtlcm5lbF9wYXJhbV9vcHMgb3BzID0geworCS5z
 ZXQgPSBtaXRpZ2F0aW9uc19zZXQsCisJLmdldCA9IHBhcmFtX2dldF9jaGFycCwKKwkuZnJlZSA9
 IHBhcmFtX2ZyZWVfY2hhcnAKK307CisKK3N0YXRpYyBjaGFyICpwYXJhbTsKK21vZHVsZV9wYXJh
-bV9jYl91bnNhZmUobWl0aWdhdGlvbnMsICZvcHMsICZwYXJhbSwgMDQwMCk7CitNT0RVTEVfUEFS
+bV9jYl91bnNhZmUobWl0aWdhdGlvbnMsICZvcHMsICZwYXJhbSwgMDYwMCk7CitNT0RVTEVfUEFS
 TV9ERVNDKG1pdGlnYXRpb25zLAorIlNlbGVjdGl2ZWx5IGVuYWJsZSBzZWN1cml0eSBtaXRpZ2F0
 aW9ucyBmb3IgYWxsIEludGVswq4gR1BVcy5cbiIKKyJcbiIKKyIgIGF1dG8gLS0gZW5hYmxlcyBh
 bGwgbWl0aWdhdGlvbnMgcmVxdWlyZWQgZm9yIHRoZSBwbGF0Zm9ybSBbZGVmYXVsdF1cbiIKKyIg
