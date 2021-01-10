@@ -2,31 +2,28 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id BBDC42F06B1
-	for <lists+intel-gfx@lfdr.de>; Sun, 10 Jan 2021 12:38:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7725C2F07C1
+	for <lists+intel-gfx@lfdr.de>; Sun, 10 Jan 2021 16:05:15 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A6C0789D49;
-	Sun, 10 Jan 2021 11:38:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EEB1C898BF;
+	Sun, 10 Jan 2021 15:05:13 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id EA02889D44;
- Sun, 10 Jan 2021 11:38:39 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id D4079A8835;
- Sun, 10 Jan 2021 11:38:39 +0000 (UTC)
+Received: from fireflyinternet.com (unknown [77.68.26.236])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B783C898BF
+ for <intel-gfx@lists.freedesktop.org>; Sun, 10 Jan 2021 15:05:11 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from build.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 23553096-1500050 
+ for multiple; Sun, 10 Jan 2021 15:04:06 +0000
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Sun, 10 Jan 2021 15:03:54 +0000
+Message-Id: <20210110150404.19535-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Sun, 10 Jan 2021 11:38:39 -0000
-Message-ID: <161027871984.22036.14930398403843649170@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210110105538.31663-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20210110105538.31663-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3Igc2Vy?=
- =?utf-8?q?ies_starting_with_=5B1/3=5D_drm/i915/gt=3A_Check_for_arbitratio?=
- =?utf-8?q?n_after_writing_start_seqno?=
+Subject: [Intel-gfx] [PATCH 01/11] drm/i915/gt: Limit VFE threads based on GT
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,312 +36,329 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============0140525211=="
+Cc: Randy Wright <rwright@hpe.com>, Chris Wilson <chris@chris-wilson.co.uk>,
+ stable@vger.kernel.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0140525211==
-Content-Type: multipart/alternative;
- boundary="===============4099801638705469068=="
+MEDIA_STATE_VFE only accepts the 'maximum number of threads' in the
+range [0, n-1] where n is #EU * (#threads/EU) with the number of threads
+based on plaform and the number of EU based on the number of slices and
+subslices. This is a fixed number per platform/gt, so appropriately
+limit the number of threads we spawn to match the device.
 
---===============4099801638705469068==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+v2: Oversaturate the system with tasks to force execution on every HW
+thread; if the thread idles it is returned to the pool and may be reused
+again before an unused thread.
 
-== Series Details ==
+v3: Fix more state commands, which was causing Baytrail to barf.
+v4: STATE_CACHE_INVALIDATE requires a stall on Ivybridge
 
-Series: series starting with [1/3] drm/i915/gt: Check for arbitration after writing start seqno
-URL   : https://patchwork.freedesktop.org/series/85674/
-State : failure
+Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/2024
+Fixes: 47f8253d2b89 ("drm/i915/gen7: Clear all EU/L3 residual contexts")
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+Cc: Prathap Kumar Valsan <prathap.kumar.valsan@intel.com>
+Cc: Akeem G Abodunrin <akeem.g.abodunrin@intel.com>
+Cc: Jon Bloomfield <jon.bloomfield@intel.com>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Randy Wright <rwright@hpe.com>
+Cc: stable@vger.kernel.org # v5.7+
+---
+ drivers/gpu/drm/i915/gt/gen7_renderclear.c | 157 ++++++++++++---------
+ 1 file changed, 94 insertions(+), 63 deletions(-)
 
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_9573 -> Patchwork_19310
-====================================================
-
-Summary
--------
-
-  **FAILURE**
-
-  Serious unknown changes coming with Patchwork_19310 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_19310, please notify your bug team to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19310/index.html
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_19310:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@i915_selftest@live@requests:
-    - fi-bsw-n3050:       [PASS][1] -> [DMESG-FAIL][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9573/fi-bsw-n3050/igt@i915_selftest@live@requests.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19310/fi-bsw-n3050/igt@i915_selftest@live@requests.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_19310 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@amdgpu/amd_basic@userptr:
-    - fi-byt-j1900:       NOTRUN -> [SKIP][3] ([fdo#109271]) +17 similar issues
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19310/fi-byt-j1900/igt@amdgpu/amd_basic@userptr.html
-
-  * igt@gem_render_tiled_blits@basic:
-    - fi-tgl-y:           [PASS][4] -> [DMESG-WARN][5] ([i915#402])
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9573/fi-tgl-y/igt@gem_render_tiled_blits@basic.html
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19310/fi-tgl-y/igt@gem_render_tiled_blits@basic.html
-
-  * igt@i915_selftest@live@hugepages:
-    - fi-bsw-n3050:       [PASS][6] -> [SKIP][7] ([fdo#109271]) +20 similar issues
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9573/fi-bsw-n3050/igt@i915_selftest@live@hugepages.html
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19310/fi-bsw-n3050/igt@i915_selftest@live@hugepages.html
-
-  * igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:
-    - fi-snb-2600:        NOTRUN -> [SKIP][8] ([fdo#109271]) +30 similar issues
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19310/fi-snb-2600/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html
-
-  * igt@kms_chamelium@hdmi-crc-fast:
-    - fi-snb-2600:        NOTRUN -> [SKIP][9] ([fdo#109271] / [fdo#111827]) +8 similar issues
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19310/fi-snb-2600/igt@kms_chamelium@hdmi-crc-fast.html
-
-  * igt@runner@aborted:
-    - fi-bdw-5557u:       NOTRUN -> [FAIL][10] ([i915#2029])
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19310/fi-bdw-5557u/igt@runner@aborted.html
-    - fi-bsw-n3050:       NOTRUN -> [FAIL][11] ([i915#1436])
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19310/fi-bsw-n3050/igt@runner@aborted.html
-
-  
-#### Possible fixes ####
-
-  * igt@gem_exec_suspend@basic-s0:
-    - fi-snb-2600:        [DMESG-WARN][12] ([i915#2772]) -> [PASS][13]
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9573/fi-snb-2600/igt@gem_exec_suspend@basic-s0.html
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19310/fi-snb-2600/igt@gem_exec_suspend@basic-s0.html
-
-  * igt@gem_ringfill@basic-all:
-    - fi-tgl-y:           [DMESG-WARN][14] ([i915#402]) -> [PASS][15]
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9573/fi-tgl-y/igt@gem_ringfill@basic-all.html
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19310/fi-tgl-y/igt@gem_ringfill@basic-all.html
-
-  * igt@i915_pm_rpm@module-reload:
-    - fi-byt-j1900:       [INCOMPLETE][16] ([i915#142] / [i915#2405]) -> [PASS][17]
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9573/fi-byt-j1900/igt@i915_pm_rpm@module-reload.html
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19310/fi-byt-j1900/igt@i915_pm_rpm@module-reload.html
-
-  * igt@kms_chamelium@dp-crc-fast:
-    - fi-kbl-7500u:       [FAIL][18] ([i915#1161] / [i915#262]) -> [PASS][19]
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9573/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19310/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html
-
-  
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
-  [i915#1161]: https://gitlab.freedesktop.org/drm/intel/issues/1161
-  [i915#142]: https://gitlab.freedesktop.org/drm/intel/issues/142
-  [i915#1436]: https://gitlab.freedesktop.org/drm/intel/issues/1436
-  [i915#2029]: https://gitlab.freedesktop.org/drm/intel/issues/2029
-  [i915#2405]: https://gitlab.freedesktop.org/drm/intel/issues/2405
-  [i915#262]: https://gitlab.freedesktop.org/drm/intel/issues/262
-  [i915#2772]: https://gitlab.freedesktop.org/drm/intel/issues/2772
-  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
-
-
-Participating hosts (43 -> 38)
-------------------------------
-
-  Missing    (5): fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_9573 -> Patchwork_19310
-
-  CI-20190529: 20190529
-  CI_DRM_9573: cd0df21e28c36de80356344ff8683be2813c6ff2 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5953: 65c5eea699141e6f942ce0a8fc85db76ce53cd19 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_19310: c833ec1d3ab5f8b7a7fe3b7dc824f12c232046f5 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-c833ec1d3ab5 drm/i915/selftests: Include engine name after reset failure
-694571b8addc drm/i915/gt: Perform an arbitration check before busywaiting
-b5dc990c34d5 drm/i915/gt: Check for arbitration after writing start seqno
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19310/index.html
-
---===============4099801638705469068==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>series starting with [1/3] drm/i915/gt: Check for arbitration after writing start seqno</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/85674/">https://patchwork.freedesktop.org/series/85674/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19310/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19310/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_9573 -&gt; Patchwork_19310</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with Patchwork_19310 absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in Patchwork_19310, please notify your bug team to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19310/index.html</p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in Patchwork_19310:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>igt@i915_selftest@live@requests:<ul>
-<li>fi-bsw-n3050:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9573/fi-bsw-n3050/igt@i915_selftest@live@requests.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19310/fi-bsw-n3050/igt@i915_selftest@live@requests.html">DMESG-FAIL</a></li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_19310 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@amdgpu/amd_basic@userptr:</p>
-<ul>
-<li>fi-byt-j1900:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19310/fi-byt-j1900/igt@amdgpu/amd_basic@userptr.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +17 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_render_tiled_blits@basic:</p>
-<ul>
-<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9573/fi-tgl-y/igt@gem_render_tiled_blits@basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19310/fi-tgl-y/igt@gem_render_tiled_blits@basic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@hugepages:</p>
-<ul>
-<li>fi-bsw-n3050:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9573/fi-bsw-n3050/igt@i915_selftest@live@hugepages.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19310/fi-bsw-n3050/igt@i915_selftest@live@hugepages.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +20 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:</p>
-<ul>
-<li>fi-snb-2600:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19310/fi-snb-2600/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +30 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@hdmi-crc-fast:</p>
-<ul>
-<li>fi-snb-2600:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19310/fi-snb-2600/igt@kms_chamelium@hdmi-crc-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@runner@aborted:</p>
-<ul>
-<li>
-<p>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19310/fi-bdw-5557u/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2029">i915#2029</a>)</p>
-</li>
-<li>
-<p>fi-bsw-n3050:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19310/fi-bsw-n3050/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1436">i915#1436</a>)</p>
-</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@gem_exec_suspend@basic-s0:</p>
-<ul>
-<li>fi-snb-2600:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9573/fi-snb-2600/igt@gem_exec_suspend@basic-s0.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2772">i915#2772</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19310/fi-snb-2600/igt@gem_exec_suspend@basic-s0.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@gem_ringfill@basic-all:</p>
-<ul>
-<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9573/fi-tgl-y/igt@gem_ringfill@basic-all.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19310/fi-tgl-y/igt@gem_ringfill@basic-all.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_pm_rpm@module-reload:</p>
-<ul>
-<li>fi-byt-j1900:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9573/fi-byt-j1900/igt@i915_pm_rpm@module-reload.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/142">i915#142</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2405">i915#2405</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19310/fi-byt-j1900/igt@i915_pm_rpm@module-reload.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@dp-crc-fast:</p>
-<ul>
-<li>fi-kbl-7500u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9573/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1161">i915#1161</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/262">i915#262</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19310/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Participating hosts (43 -&gt; 38)</h2>
-<p>Missing    (5): fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-bdw-samus </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_9573 -&gt; Patchwork_19310</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_9573: cd0df21e28c36de80356344ff8683be2813c6ff2 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_5953: 65c5eea699141e6f942ce0a8fc85db76ce53cd19 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
-  Patchwork_19310: c833ec1d3ab5f8b7a7fe3b7dc824f12c232046f5 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>c833ec1d3ab5 drm/i915/selftests: Include engine name after reset failure<br />
-694571b8addc drm/i915/gt: Perform an arbitration check before busywaiting<br />
-b5dc990c34d5 drm/i915/gt: Check for arbitration after writing start seqno</p>
-
-</body>
-</html>
-
---===============4099801638705469068==--
-
---===============0140525211==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+diff --git a/drivers/gpu/drm/i915/gt/gen7_renderclear.c b/drivers/gpu/drm/i915/gt/gen7_renderclear.c
+index d93d85cd3027..f32a8e8040b2 100644
+--- a/drivers/gpu/drm/i915/gt/gen7_renderclear.c
++++ b/drivers/gpu/drm/i915/gt/gen7_renderclear.c
+@@ -7,8 +7,6 @@
+ #include "i915_drv.h"
+ #include "intel_gpu_commands.h"
+ 
+-#define MAX_URB_ENTRIES 64
+-#define STATE_SIZE (4 * 1024)
+ #define GT3_INLINE_DATA_DELAYS 0x1E00
+ #define batch_advance(Y, CS) GEM_BUG_ON((Y)->end != (CS))
+ 
+@@ -34,38 +32,59 @@ struct batch_chunk {
+ };
+ 
+ struct batch_vals {
+-	u32 max_primitives;
+-	u32 max_urb_entries;
+-	u32 cmd_size;
+-	u32 state_size;
++	u32 max_threads;
+ 	u32 state_start;
+-	u32 batch_size;
++	u32 surface_start;
+ 	u32 surface_height;
+ 	u32 surface_width;
+-	u32 scratch_size;
+-	u32 max_size;
++	u32 size;
+ };
+ 
++static inline int num_primitives(const struct batch_vals *bv)
++{
++	/*
++	 * We need to saturate the GPU with work in order to dispatch
++	 * a shader on every HW thread, and clear the thread-local registers.
++	 * In short, we have to dispatch work faster than the shaders can
++	 * run in order to fill occupy each HW thread.
++	 */
++	return bv->max_threads;
++}
++
+ static void
+ batch_get_defaults(struct drm_i915_private *i915, struct batch_vals *bv)
+ {
+ 	if (IS_HASWELL(i915)) {
+-		bv->max_primitives = 280;
+-		bv->max_urb_entries = MAX_URB_ENTRIES;
++		switch (INTEL_INFO(i915)->gt) {
++		default:
++		case 1:
++			bv->max_threads = 70;
++			break;
++		case 2:
++			bv->max_threads = 140;
++			break;
++		case 3:
++			bv->max_threads = 280;
++			break;
++		}
+ 		bv->surface_height = 16 * 16;
+ 		bv->surface_width = 32 * 2 * 16;
+ 	} else {
+-		bv->max_primitives = 128;
+-		bv->max_urb_entries = MAX_URB_ENTRIES / 2;
++		switch (INTEL_INFO(i915)->gt) {
++		default:
++		case 1: /* including vlv */
++			bv->max_threads = 36;
++			break;
++		case 2:
++			bv->max_threads = 128;
++			break;
++		}
+ 		bv->surface_height = 16 * 8;
+ 		bv->surface_width = 32 * 16;
+ 	}
+-	bv->cmd_size = bv->max_primitives * 4096;
+-	bv->state_size = STATE_SIZE;
+-	bv->state_start = bv->cmd_size;
+-	bv->batch_size = bv->cmd_size + bv->state_size;
+-	bv->scratch_size = bv->surface_height * bv->surface_width;
+-	bv->max_size = bv->batch_size + bv->scratch_size;
++	bv->state_start = round_up(SZ_1K + num_primitives(bv) * 64, SZ_4K);
++	bv->surface_start = bv->state_start + SZ_4K;
++	bv->size = bv->surface_start + bv->surface_height * bv->surface_width;
+ }
+ 
+ static void batch_init(struct batch_chunk *bc,
+@@ -155,7 +174,8 @@ static u32
+ gen7_fill_binding_table(struct batch_chunk *state,
+ 			const struct batch_vals *bv)
+ {
+-	u32 surface_start = gen7_fill_surface_state(state, bv->batch_size, bv);
++	u32 surface_start =
++		gen7_fill_surface_state(state, bv->surface_start, bv);
+ 	u32 *cs = batch_alloc_items(state, 32, 8);
+ 	u32 offset = batch_offset(state, cs);
+ 
+@@ -214,9 +234,9 @@ static void
+ gen7_emit_state_base_address(struct batch_chunk *batch,
+ 			     u32 surface_state_base)
+ {
+-	u32 *cs = batch_alloc_items(batch, 0, 12);
++	u32 *cs = batch_alloc_items(batch, 0, 10);
+ 
+-	*cs++ = STATE_BASE_ADDRESS | (12 - 2);
++	*cs++ = STATE_BASE_ADDRESS | (10 - 2);
+ 	/* general */
+ 	*cs++ = batch_addr(batch) | BASE_ADDRESS_MODIFY;
+ 	/* surface */
+@@ -233,8 +253,6 @@ gen7_emit_state_base_address(struct batch_chunk *batch,
+ 	*cs++ = BASE_ADDRESS_MODIFY;
+ 	*cs++ = 0;
+ 	*cs++ = BASE_ADDRESS_MODIFY;
+-	*cs++ = 0;
+-	*cs++ = 0;
+ 	batch_advance(batch, cs);
+ }
+ 
+@@ -244,8 +262,7 @@ gen7_emit_vfe_state(struct batch_chunk *batch,
+ 		    u32 urb_size, u32 curbe_size,
+ 		    u32 mode)
+ {
+-	u32 urb_entries = bv->max_urb_entries;
+-	u32 threads = bv->max_primitives - 1;
++	u32 threads = bv->max_threads - 1;
+ 	u32 *cs = batch_alloc_items(batch, 32, 8);
+ 
+ 	*cs++ = MEDIA_VFE_STATE | (8 - 2);
+@@ -254,7 +271,7 @@ gen7_emit_vfe_state(struct batch_chunk *batch,
+ 	*cs++ = 0;
+ 
+ 	/* number of threads & urb entries for GPGPU vs Media Mode */
+-	*cs++ = threads << 16 | urb_entries << 8 | mode << 2;
++	*cs++ = threads << 16 | 1 << 8 | mode << 2;
+ 
+ 	*cs++ = 0;
+ 
+@@ -293,17 +310,12 @@ gen7_emit_media_object(struct batch_chunk *batch,
+ {
+ 	unsigned int x_offset = (media_object_index % 16) * 64;
+ 	unsigned int y_offset = (media_object_index / 16) * 16;
+-	unsigned int inline_data_size;
+-	unsigned int media_batch_size;
+-	unsigned int i;
++	unsigned int pkt = 6 + 3;
+ 	u32 *cs;
+ 
+-	inline_data_size = 112 * 8;
+-	media_batch_size = inline_data_size + 6;
++	cs = batch_alloc_items(batch, 8, pkt);
+ 
+-	cs = batch_alloc_items(batch, 8, media_batch_size);
+-
+-	*cs++ = MEDIA_OBJECT | (media_batch_size - 2);
++	*cs++ = MEDIA_OBJECT | (pkt - 2);
+ 
+ 	/* interface descriptor offset */
+ 	*cs++ = 0;
+@@ -317,25 +329,44 @@ gen7_emit_media_object(struct batch_chunk *batch,
+ 	*cs++ = 0;
+ 
+ 	/* inline */
+-	*cs++ = (y_offset << 16) | (x_offset);
++	*cs++ = y_offset << 16 | x_offset;
+ 	*cs++ = 0;
+ 	*cs++ = GT3_INLINE_DATA_DELAYS;
+-	for (i = 3; i < inline_data_size; i++)
+-		*cs++ = 0;
+ 
+ 	batch_advance(batch, cs);
+ }
+ 
+ static void gen7_emit_pipeline_flush(struct batch_chunk *batch)
+ {
+-	u32 *cs = batch_alloc_items(batch, 0, 5);
++	u32 *cs = batch_alloc_items(batch, 0, 4);
+ 
+-	*cs++ = GFX_OP_PIPE_CONTROL(5);
+-	*cs++ = PIPE_CONTROL_STATE_CACHE_INVALIDATE |
+-		PIPE_CONTROL_GLOBAL_GTT_IVB;
++	*cs++ = GFX_OP_PIPE_CONTROL(4);
++	*cs++ = PIPE_CONTROL_RENDER_TARGET_CACHE_FLUSH |
++		PIPE_CONTROL_DEPTH_CACHE_FLUSH |
++		PIPE_CONTROL_DC_FLUSH_ENABLE |
++		PIPE_CONTROL_CS_STALL;
+ 	*cs++ = 0;
+ 	*cs++ = 0;
++
++	batch_advance(batch, cs);
++}
++
++static void gen7_emit_pipeline_invalidate(struct batch_chunk *batch)
++{
++	u32 *cs = batch_alloc_items(batch, 0, 8);
++
++	/* ivb: Stall before STATE_CACHE_INVALIDATE */
++	*cs++ = GFX_OP_PIPE_CONTROL(4);
++	*cs++ = PIPE_CONTROL_STALL_AT_SCOREBOARD |
++		PIPE_CONTROL_CS_STALL;
+ 	*cs++ = 0;
++	*cs++ = 0;
++
++	*cs++ = GFX_OP_PIPE_CONTROL(4);
++	*cs++ = PIPE_CONTROL_STATE_CACHE_INVALIDATE;
++	*cs++ = 0;
++	*cs++ = 0;
++
+ 	batch_advance(batch, cs);
+ }
+ 
+@@ -344,34 +375,34 @@ static void emit_batch(struct i915_vma * const vma,
+ 		       const struct batch_vals *bv)
+ {
+ 	struct drm_i915_private *i915 = vma->vm->i915;
+-	unsigned int desc_count = 64;
+-	const u32 urb_size = 112;
++	const unsigned int desc_count = 1;
++	const unsigned int urb_size = 1;
+ 	struct batch_chunk cmds, state;
+-	u32 interface_descriptor;
++	u32 descriptors;
+ 	unsigned int i;
+ 
+-	batch_init(&cmds, vma, start, 0, bv->cmd_size);
+-	batch_init(&state, vma, start, bv->state_start, bv->state_size);
++	batch_init(&cmds, vma, start, 0, bv->state_start);
++	batch_init(&state, vma, start, bv->state_start, SZ_4K);
+ 
+-	interface_descriptor =
+-		gen7_fill_interface_descriptor(&state, bv,
+-					       IS_HASWELL(i915) ?
+-					       &cb_kernel_hsw :
+-					       &cb_kernel_ivb,
+-					       desc_count);
+-	gen7_emit_pipeline_flush(&cmds);
++	descriptors = gen7_fill_interface_descriptor(&state, bv,
++						     IS_HASWELL(i915) ?
++						     &cb_kernel_hsw :
++						     &cb_kernel_ivb,
++						     desc_count);
++
++	gen7_emit_pipeline_invalidate(&cmds);
+ 	batch_add(&cmds, PIPELINE_SELECT | PIPELINE_SELECT_MEDIA);
+ 	batch_add(&cmds, MI_NOOP);
+-	gen7_emit_state_base_address(&cmds, interface_descriptor);
++	gen7_emit_pipeline_invalidate(&cmds);
++
+ 	gen7_emit_pipeline_flush(&cmds);
++	gen7_emit_state_base_address(&cmds, descriptors);
++	gen7_emit_pipeline_invalidate(&cmds);
+ 
+ 	gen7_emit_vfe_state(&cmds, bv, urb_size - 1, 0, 0);
++	gen7_emit_interface_descriptor_load(&cmds, descriptors, desc_count);
+ 
+-	gen7_emit_interface_descriptor_load(&cmds,
+-					    interface_descriptor,
+-					    desc_count);
+-
+-	for (i = 0; i < bv->max_primitives; i++)
++	for (i = 0; i < num_primitives(bv); i++)
+ 		gen7_emit_media_object(&cmds, i);
+ 
+ 	batch_add(&cmds, MI_BATCH_BUFFER_END);
+@@ -385,15 +416,15 @@ int gen7_setup_clear_gpr_bb(struct intel_engine_cs * const engine,
+ 
+ 	batch_get_defaults(engine->i915, &bv);
+ 	if (!vma)
+-		return bv.max_size;
++		return bv.size;
+ 
+-	GEM_BUG_ON(vma->obj->base.size < bv.max_size);
++	GEM_BUG_ON(vma->obj->base.size < bv.size);
+ 
+ 	batch = i915_gem_object_pin_map(vma->obj, I915_MAP_WC);
+ 	if (IS_ERR(batch))
+ 		return PTR_ERR(batch);
+ 
+-	emit_batch(vma, memset(batch, 0, bv.max_size), &bv);
++	emit_batch(vma, memset(batch, 0, bv.size), &bv);
+ 
+ 	i915_gem_object_flush_map(vma->obj);
+ 	__i915_gem_object_release_map(vma->obj);
+-- 
+2.20.1
 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============0140525211==--
