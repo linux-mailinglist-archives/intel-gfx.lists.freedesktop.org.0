@@ -2,31 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E422F2F07C2
-	for <lists+intel-gfx@lfdr.de>; Sun, 10 Jan 2021 16:05:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 65F5B2F07B6
+	for <lists+intel-gfx@lfdr.de>; Sun, 10 Jan 2021 16:04:19 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5FA0789907;
-	Sun, 10 Jan 2021 15:05:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D05E36E0BF;
+	Sun, 10 Jan 2021 15:04:15 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D911589907
- for <intel-gfx@lists.freedesktop.org>; Sun, 10 Jan 2021 15:05:22 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D56376E0AA
+ for <intel-gfx@lists.freedesktop.org>; Sun, 10 Jan 2021 15:04:14 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 23553098-1500050 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 23553099-1500050 
  for multiple; Sun, 10 Jan 2021 15:04:07 +0000
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Sun, 10 Jan 2021 15:03:56 +0000
-Message-Id: <20210110150404.19535-3-chris@chris-wilson.co.uk>
+Date: Sun, 10 Jan 2021 15:03:57 +0000
+Message-Id: <20210110150404.19535-4-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20210110150404.19535-1-chris@chris-wilson.co.uk>
 References: <20210110150404.19535-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 03/11] drm/i915: Allow the sysadmin to override
- security mitigations
+Subject: [Intel-gfx] [PATCH 04/11] drm/i915/gt: Rearrange vlv workarounds
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,122 +38,140 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: stable@vger.kernel.org, Chris Wilson <chris@chris-wilson.co.uk>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: Chris Wilson <chris@chris-wilson.co.uk>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-VGhlIGNsZWFyLXJlc2lkdWFscyBtaXRpZ2F0aW9uIGlzIGEgcmVsYXRpdmVseSBoZWF2eSBoYW1t
-ZXIgYW5kIHVuZGVyIHNvbWUKY2lyY3Vtc3RhbmNlcyB0aGUgdXNlciBtYXkgd2lzaCB0byBmb3Jn
-byB0aGUgY29udGV4dCBpc29sYXRpb24gaW4gb3JkZXIKdG8gbWVldCBzb21lIHBlcmZvcm1hbmNl
-IHJlcXVpcmVtZW50LiBJbnRyb2R1Y2UgYSBnZW5lcmljIG1vZHVsZQpwYXJhbWV0ZXIgdG8gYWxs
-b3cgc2VsZWN0aXZlbHkgZW5hYmxpbmcvZGlzYWJsaW5nIGRpZmZlcmVudCBtaXRpZ2F0aW9ucy4K
-CkNsb3NlczogaHR0cHM6Ly9naXRsYWIuZnJlZWRlc2t0b3Aub3JnL2RybS9pbnRlbC8tL2lzc3Vl
-cy8xODU4CkZpeGVzOiA0N2Y4MjUzZDJiODkgKCJkcm0vaTkxNS9nZW43OiBDbGVhciBhbGwgRVUv
-TDMgcmVzaWR1YWwgY29udGV4dHMiKQpTaWduZWQtb2ZmLWJ5OiBDaHJpcyBXaWxzb24gPGNocmlz
-QGNocmlzLXdpbHNvbi5jby51az4KQ2M6IEpvb25hcyBMYWh0aW5lbiA8am9vbmFzLmxhaHRpbmVu
-QGxpbnV4LmludGVsLmNvbT4KQ2M6IEpvbiBCbG9vbWZpZWxkIDxqb24uYmxvb21maWVsZEBpbnRl
-bC5jb20+CkNjOiBSb2RyaWdvIFZpdmkgPHJvZHJpZ28udml2aUBpbnRlbC5jb20+CkNjOiBzdGFi
-bGVAdmdlci5rZXJuZWwub3JnICMgdjUuNwotLS0KIGRyaXZlcnMvZ3B1L2RybS9pOTE1L01ha2Vm
-aWxlICAgICAgICAgICAgICAgICB8ICAgMSArCiAuLi4vZ3B1L2RybS9pOTE1L2d0L2ludGVsX3Jp
-bmdfc3VibWlzc2lvbi5jICAgfCAgIDQgKy0KIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfbWl0
-aWdhdGlvbnMuYyAgICAgICB8IDE0OCArKysrKysrKysrKysrKysrKysKIGRyaXZlcnMvZ3B1L2Ry
-bS9pOTE1L2k5MTVfbWl0aWdhdGlvbnMuaCAgICAgICB8ICAxMyArKwogNCBmaWxlcyBjaGFuZ2Vk
-LCAxNjUgaW5zZXJ0aW9ucygrKSwgMSBkZWxldGlvbigtKQogY3JlYXRlIG1vZGUgMTAwNjQ0IGRy
-aXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfbWl0aWdhdGlvbnMuYwogY3JlYXRlIG1vZGUgMTAwNjQ0
-IGRyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfbWl0aWdhdGlvbnMuaAoKZGlmZiAtLWdpdCBhL2Ry
-aXZlcnMvZ3B1L2RybS9pOTE1L01ha2VmaWxlIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvTWFrZWZp
-bGUKaW5kZXggNDA3NGQ4Y2IwZDZlLi40OGY4MmMzNTQ2MTEgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMv
-Z3B1L2RybS9pOTE1L01ha2VmaWxlCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L01ha2VmaWxl
-CkBAIC0zOCw2ICszOCw3IEBAIGk5MTUteSArPSBpOTE1X2Rydi5vIFwKIAkgIGk5MTVfY29uZmln
-Lm8gXAogCSAgaTkxNV9pcnEubyBcCiAJICBpOTE1X2dldHBhcmFtLm8gXAorCSAgaTkxNV9taXRp
-Z2F0aW9ucy5vIFwKIAkgIGk5MTVfcGFyYW1zLm8gXAogCSAgaTkxNV9wY2kubyBcCiAJICBpOTE1
-X3NjYXR0ZXJsaXN0Lm8gXApkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvaW50
-ZWxfcmluZ19zdWJtaXNzaW9uLmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC9pbnRlbF9yaW5n
-X3N1Ym1pc3Npb24uYwppbmRleCA3MjRkNTZjOTU4M2QuLjY1N2FmZDhlYmMxNCAxMDA2NDQKLS0t
-IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvaW50ZWxfcmluZ19zdWJtaXNzaW9uLmMKKysrIGIv
-ZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvaW50ZWxfcmluZ19zdWJtaXNzaW9uLmMKQEAgLTMyLDYg
-KzMyLDcgQEAKICNpbmNsdWRlICJnZW42X3BwZ3R0LmgiCiAjaW5jbHVkZSAiZ2VuN19yZW5kZXJj
-bGVhci5oIgogI2luY2x1ZGUgImk5MTVfZHJ2LmgiCisjaW5jbHVkZSAiaTkxNV9taXRpZ2F0aW9u
-cy5oIgogI2luY2x1ZGUgImludGVsX2JyZWFkY3J1bWJzLmgiCiAjaW5jbHVkZSAiaW50ZWxfY29u
-dGV4dC5oIgogI2luY2x1ZGUgImludGVsX2d0LmgiCkBAIC05MTgsNyArOTE5LDggQEAgc3RhdGlj
-IGludCBzd2l0Y2hfY29udGV4dChzdHJ1Y3QgaTkxNV9yZXF1ZXN0ICpycSkKIAlHRU1fQlVHX09O
-KEhBU19FWEVDTElTVFMoZW5naW5lLT5pOTE1KSk7CiAKIAlpZiAoZW5naW5lLT53YV9jdHgudm1h
-ICYmIGNlICE9IGVuZ2luZS0+a2VybmVsX2NvbnRleHQpIHsKLQkJaWYgKGVuZ2luZS0+d2FfY3R4
-LnZtYS0+cHJpdmF0ZSAhPSBjZSkgeworCQlpZiAoZW5naW5lLT53YV9jdHgudm1hLT5wcml2YXRl
-ICE9IGNlICYmCisJCSAgICBpOTE1X21pdGlnYXRlX2NsZWFyX3Jlc2lkdWFscygpKSB7CiAJCQly
-ZXQgPSBjbGVhcl9yZXNpZHVhbHMocnEpOwogCQkJaWYgKHJldCkKIAkJCQlyZXR1cm4gcmV0Owpk
-aWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9taXRpZ2F0aW9ucy5jIGIvZHJp
-dmVycy9ncHUvZHJtL2k5MTUvaTkxNV9taXRpZ2F0aW9ucy5jCm5ldyBmaWxlIG1vZGUgMTAwNjQ0
-CmluZGV4IDAwMDAwMDAwMDAwMC4uOGQ1NjM3Y2ZhNzM0Ci0tLSAvZGV2L251bGwKKysrIGIvZHJp
-dmVycy9ncHUvZHJtL2k5MTUvaTkxNV9taXRpZ2F0aW9ucy5jCkBAIC0wLDAgKzEsMTQ4IEBACisv
-LyBTUERYLUxpY2Vuc2UtSWRlbnRpZmllcjogTUlUCisvKgorICogQ29weXJpZ2h0IMKpIDIwMjEg
-SW50ZWwgQ29ycG9yYXRpb24KKyAqLworCisjaW5jbHVkZSA8bGludXgva2VybmVsLmg+CisjaW5j
-bHVkZSA8bGludXgvbW9kdWxlcGFyYW0uaD4KKyNpbmNsdWRlIDxsaW51eC9zbGFiLmg+CisjaW5j
-bHVkZSA8bGludXgvc3RyaW5nLmg+CisKKyNpbmNsdWRlICJpOTE1X2Rydi5oIgorI2luY2x1ZGUg
-Imk5MTVfbWl0aWdhdGlvbnMuaCIKKworc3RhdGljIHVuc2lnbmVkIGxvbmcgbWl0aWdhdGlvbnMg
-PSB+MFVMOworCitlbnVtIHsKKwlDTEVBUl9SRVNJRFVBTFMgPSAwLAorfTsKKworc3RhdGljIGNv
-bnN0IGNoYXIgKiBjb25zdCBuYW1lc1tdID0geworCVtDTEVBUl9SRVNJRFVBTFNdID0gInJlc2lk
-dWFscyIsCit9OworCitib29sIGk5MTVfbWl0aWdhdGVfY2xlYXJfcmVzaWR1YWxzKHZvaWQpCit7
-CisJcmV0dXJuIFJFQURfT05DRShtaXRpZ2F0aW9ucykgJiBCSVQoQ0xFQVJfUkVTSURVQUxTKTsK
-K30KKworc3RhdGljIGludCBtaXRpZ2F0aW9uc19zZXQoY29uc3QgY2hhciAqdmFsLCBjb25zdCBz
-dHJ1Y3Qga2VybmVsX3BhcmFtICprcCkKK3sKKwl1bnNpZ25lZCBsb25nIG5ldyA9IH4wVUw7CisJ
-Y2hhciAqc3RyLCAqc2VwLCAqdG9rOworCWJvb2wgZmlyc3QgPSB0cnVlOworCWludCBlcnIgPSAw
-OworCisJQlVJTERfQlVHX09OKEFSUkFZX1NJWkUobmFtZXMpID49IEJJVFNfUEVSX1RZUEUobWl0
-aWdhdGlvbnMpKTsKKworCXN0ciA9IGtzdHJkdXAodmFsLCBHRlBfS0VSTkVMKTsKKwlpZiAoIXN0
-cikKKwkJcmV0dXJuIC1FTk9NRU07CisKKwlmb3IgKHNlcCA9IHN0cjsgKHRvayA9IHN0cnNlcCgm
-c2VwLCAiLCIpKTspIHsKKwkJYm9vbCBlbmFibGUgPSB0cnVlOworCQlpbnQgaTsKKworCQkvKiBC
-ZSB0b2xlcmFudCBvZiBsZWFkaW5nL3RyYWlsaW5nIHdoaXRlc3BhY2UgKi8KKwkJdG9rID0gc3Ry
-aW0odG9rKTsKKworCQlpZiAoZmlyc3QpIHsKKwkJCWZpcnN0ID0gZmFsc2U7CisKKwkJCWlmICgh
-c3RyY21wKHRvaywgImF1dG8iKSkgeworCQkJCW5ldyA9IH4wVUw7CisJCQkJY29udGludWU7CisJ
-CQl9CisKKwkJCW5ldyA9IDA7CisJCQlpZiAoIXN0cmNtcCh0b2ssICJvZmYiKSkKKwkJCQljb250
-aW51ZTsKKwkJfQorCisJCWlmICgqdG9rID09ICchJykgeworCQkJZW5hYmxlID0gIWVuYWJsZTsK
-KwkJCXRvaysrOworCQl9CisKKwkJaWYgKCFzdHJuY21wKHRvaywgIm5vIiwgMikpIHsKKwkJCWVu
-YWJsZSA9ICFlbmFibGU7CisJCQl0b2sgKz0gMjsKKwkJfQorCisJCWlmICgqdG9rID09ICdcMCcp
-CisJCQljb250aW51ZTsKKworCQlmb3IgKGkgPSAwOyBpIDwgQVJSQVlfU0laRShuYW1lcyk7IGkr
-KykgeworCQkJaWYgKCFzdHJjbXAodG9rLCBuYW1lc1tpXSkpIHsKKwkJCQlpZiAoZW5hYmxlKQor
-CQkJCQluZXcgfD0gQklUKGkpOworCQkJCWVsc2UKKwkJCQkJbmV3ICY9IH5CSVQoaSk7CisJCQkJ
-YnJlYWs7CisJCQl9CisJCX0KKwkJaWYgKGkgPT0gQVJSQVlfU0laRShuYW1lcykpIHsKKwkJCXBy
-X2VycigiQmFkICVzLm1pdGlnYXRpb25zPSVzLCAnJXMnIGlzIHVua25vd25cbiIsCisJCQkgICAg
-ICAgRFJJVkVSX05BTUUsIHZhbCwgdG9rKTsKKwkJCWVyciA9IC1FSU5WQUw7CisJCQlicmVhazsK
-KwkJfQorCX0KKwlrZnJlZShzdHIpOworCWlmIChlcnIpCisJCXJldHVybiBlcnI7CisKKwlXUklU
-RV9PTkNFKG1pdGlnYXRpb25zLCBuZXcpOworCXJldHVybiAwOworfQorCitzdGF0aWMgaW50IG1p
-dGlnYXRpb25zX2dldChjaGFyICpidWZmZXIsIGNvbnN0IHN0cnVjdCBrZXJuZWxfcGFyYW0gKmtw
-KQoreworCXVuc2lnbmVkIGxvbmcgbG9jYWwgPSBSRUFEX09OQ0UobWl0aWdhdGlvbnMpOworCWlu
-dCBjb3VudCwgaTsKKwlib29sIGVuYWJsZTsKKworCWlmICghbG9jYWwpCisJCXJldHVybiBzY25w
-cmludGYoYnVmZmVyLCBQQUdFX1NJWkUsICIlc1xuIiwgIm9mZiIpOworCisJaWYgKGxvY2FsICYg
-QklUKEJJVFNfUEVSX0xPTkcgLSAxKSkgeworCQljb3VudCA9IHNjbnByaW50ZihidWZmZXIsIFBB
-R0VfU0laRSwgIiVzLCIsICJhdXRvIik7CisJCWVuYWJsZSA9IGZhbHNlOworCX0gZWxzZSB7CisJ
-CWVuYWJsZSA9IHRydWU7CisJCWNvdW50ID0gMDsKKwl9CisKKwlmb3IgKGkgPSAwOyBpIDwgQVJS
-QVlfU0laRShuYW1lcyk7IGkrKykgeworCQlpZiAoKGxvY2FsICYgQklUKGkpKSAhPSBlbmFibGUp
-CisJCQljb250aW51ZTsKKworCQljb3VudCArPSBzY25wcmludGYoYnVmZmVyICsgY291bnQsIFBB
-R0VfU0laRSAtIGNvdW50LAorCQkJCSAgICIlcyVzLCIsIGVuYWJsZSA/ICIiIDogIiEiLCBuYW1l
-c1tpXSk7CisJfQorCisJYnVmZmVyW2NvdW50IC0gMV0gPSAnXG4nOworCXJldHVybiBjb3VudDsK
-K30KKworc3RhdGljIGNvbnN0IHN0cnVjdCBrZXJuZWxfcGFyYW1fb3BzIG9wcyA9IHsKKwkuc2V0
-ID0gbWl0aWdhdGlvbnNfc2V0LAorCS5nZXQgPSBtaXRpZ2F0aW9uc19nZXQsCit9OworCittb2R1
-bGVfcGFyYW1fY2JfdW5zYWZlKG1pdGlnYXRpb25zLCAmb3BzLCBOVUxMLCAwNjAwKTsKK01PRFVM
-RV9QQVJNX0RFU0MobWl0aWdhdGlvbnMsCisiU2VsZWN0aXZlbHkgZW5hYmxlIHNlY3VyaXR5IG1p
-dGlnYXRpb25zIGZvciBhbGwgSW50ZWzCriBHUFVzIGluIHRoZSBzeXN0ZW0uXG4iCisiXG4iCisi
-ICBhdXRvIC0tIGVuYWJsZXMgYWxsIG1pdGlnYXRpb25zIHJlcXVpcmVkIGZvciB0aGUgcGxhdGZv
-cm0gW2RlZmF1bHRdXG4iCisiICBvZmYgIC0tIGRpc2FibGVzIGFsbCBtaXRpZ2F0aW9uc1xuIgor
-IlxuIgorIkluZGl2aWR1YWwgbWl0aWdhdGlvbnMgY2FuIGJlIGVuYWJsZWQgYnkgcGFzc2luZyBh
-IGNvbW1hLXNlcGFyYXRlZCBzdHJpbmcsXG4iCisiZS5nLiBtaXRpZ2F0aW9ucz1yZXNpZHVhbHMg
-dG8gZW5hYmxlIG9ubHkgY2xlYXJpbmcgcmVzaWR1YWxzIG9yXG4iCisibWl0aWdhdGlvbnM9YXV0
-byxub3Jlc2lkdWFscyB0byBkaXNhYmxlIG9ubHkgdGhlIGNsZWFyIHJlc2lkdWFsIG1pdGlnYXRp
-b24uXG4iCisiRWl0aGVyICchJyBvciAnbm8nIG1heSBiZSB1c2VkIHRvIHN3aXRjaCBmcm9tIGVu
-YWJsaW5nIHRoZSBtaXRpZ2F0aW9uIHRvXG4iCisiZGlzYWJsaW5nIGl0LlxuIgorIlxuIgorIkFj
-dGl2ZSBtaXRpZ2F0aW9ucyBmb3IgSXZ5YnJpZGdlLCBCYXl0cmFpbCwgSGFzd2VsbDpcbiIKKyIg
-IHJlc2lkdWFscyAtLSBjbGVhciBhbGwgdGhyZWFkLWxvY2FsIHJlZ2lzdGVycyBiZXR3ZWVuIGNv
-bnRleHRzIgorKTsKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfbWl0aWdh
-dGlvbnMuaCBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfbWl0aWdhdGlvbnMuaApuZXcgZmls
-ZSBtb2RlIDEwMDY0NAppbmRleCAwMDAwMDAwMDAwMDAuLjEzNTlkODEzNTI4NwotLS0gL2Rldi9u
-dWxsCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfbWl0aWdhdGlvbnMuaApAQCAtMCww
-ICsxLDEzIEBACisvKiBTUERYLUxpY2Vuc2UtSWRlbnRpZmllcjogTUlUICovCisvKgorICogQ29w
-eXJpZ2h0IMKpIDIwMjEgSW50ZWwgQ29ycG9yYXRpb24KKyAqLworCisjaWZuZGVmIF9fSTkxNV9N
-SVRJR0FUSU9OU19IX18KKyNkZWZpbmUgX19JOTE1X01JVElHQVRJT05TX0hfXworCisjaW5jbHVk
-ZSA8bGludXgvdHlwZXMuaD4KKworYm9vbCBpOTE1X21pdGlnYXRlX2NsZWFyX3Jlc2lkdWFscyh2
-b2lkKTsKKworI2VuZGlmIC8qIF9fSTkxNV9NSVRJR0FUSU9OU19IX18gKi8KLS0gCjIuMjAuMQoK
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4
-IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
-dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
+Some rcs0 workarounds were being incorrectly applied to the GT, and so
+we failed to restore the expected register settings after a reset.
+
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+---
+ drivers/gpu/drm/i915/gt/intel_workarounds.c | 95 +++++++++++----------
+ 1 file changed, 51 insertions(+), 44 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/drm/i915/gt/intel_workarounds.c
+index c52433914d52..8006fd526100 100644
+--- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
++++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
+@@ -889,53 +889,9 @@ ivb_gt_workarounds_init(struct drm_i915_private *i915, struct i915_wa_list *wal)
+ static void
+ vlv_gt_workarounds_init(struct drm_i915_private *i915, struct i915_wa_list *wal)
+ {
+-	/* WaDisableEarlyCull:vlv */
+-	wa_masked_en(wal, _3D_CHICKEN3, _3D_CHICKEN_SF_DISABLE_OBJEND_CULL);
+-
+-	/* WaPsdDispatchEnable:vlv */
+-	/* WaDisablePSDDualDispatchEnable:vlv */
+-	wa_masked_en(wal,
+-		     GEN7_HALF_SLICE_CHICKEN1,
+-		     GEN7_MAX_PS_THREAD_DEP |
+-		     GEN7_PSD_SINGLE_PORT_DISPATCH_ENABLE);
+-
+-	/* WaDisable_RenderCache_OperationalFlush:vlv */
+-	wa_masked_dis(wal, CACHE_MODE_0_GEN7, RC_OP_FLUSH_ENABLE);
+-
+ 	/* WaForceL3Serialization:vlv */
+ 	wa_write_clr(wal, GEN7_L3SQCREG4, L3SQ_URB_READ_CAM_MATCH_DISABLE);
+ 
+-	/*
+-	 * WaVSThreadDispatchOverride:ivb,vlv
+-	 *
+-	 * This actually overrides the dispatch
+-	 * mode for all thread types.
+-	 */
+-	wa_write_clr_set(wal,
+-			 GEN7_FF_THREAD_MODE,
+-			 GEN7_FF_SCHED_MASK,
+-			 GEN7_FF_TS_SCHED_HW |
+-			 GEN7_FF_VS_SCHED_HW |
+-			 GEN7_FF_DS_SCHED_HW);
+-
+-	/*
+-	 * BSpec says this must be set, even though
+-	 * WaDisable4x2SubspanOptimization isn't listed for VLV.
+-	 */
+-	wa_masked_en(wal, CACHE_MODE_1, PIXEL_SUBSPAN_COLLECT_OPT_DISABLE);
+-
+-	/*
+-	 * BSpec recommends 8x4 when MSAA is used,
+-	 * however in practice 16x4 seems fastest.
+-	 *
+-	 * Note that PS/WM thread counts depend on the WIZ hashing
+-	 * disable bit, which we don't touch here, but it's good
+-	 * to keep in mind (see 3DSTATE_PS and 3DSTATE_WM).
+-	 */
+-	wa_add(wal, GEN7_GT_MODE, 0,
+-	       _MASKED_FIELD(GEN6_WIZ_HASHING_MASK, GEN6_WIZ_HASHING_16x4),
+-	       GEN6_WIZ_HASHING_16x4);
+-
+ 	/*
+ 	 * WaIncreaseL3CreditsForVLVB0:vlv
+ 	 * This is the hardware default actually.
+@@ -1953,6 +1909,57 @@ rcs_engine_wa_init(struct intel_engine_cs *engine, struct i915_wa_list *wal)
+ 		       GEN6_WIZ_HASHING_16x4);
+ 	}
+ 
++	if (IS_VALLEYVIEW(i915)) {
++		/* WaDisableEarlyCull:vlv */
++		wa_masked_en(wal,
++			     _3D_CHICKEN3,
++			     _3D_CHICKEN_SF_DISABLE_OBJEND_CULL);
++
++		/*
++		 * WaVSThreadDispatchOverride:ivb,vlv
++		 *
++		 * This actually overrides the dispatch
++		 * mode for all thread types.
++		 */
++		wa_write_clr_set(wal,
++				 GEN7_FF_THREAD_MODE,
++				 GEN7_FF_SCHED_MASK,
++				 GEN7_FF_TS_SCHED_HW |
++				 GEN7_FF_VS_SCHED_HW |
++				 GEN7_FF_DS_SCHED_HW);
++
++		/* WaDisable_RenderCache_OperationalFlush:vlv */
++		wa_masked_dis(wal, CACHE_MODE_0_GEN7, RC_OP_FLUSH_ENABLE);
++
++		/*
++		 * BSpec says this must be set, even though
++		 * WaDisable4x2SubspanOptimization isn't listed for VLV.
++		 */
++		wa_masked_en(wal,
++			     CACHE_MODE_1,
++			     PIXEL_SUBSPAN_COLLECT_OPT_DISABLE);
++
++		/*
++		 * BSpec recommends 8x4 when MSAA is used,
++		 * however in practice 16x4 seems fastest.
++		 *
++		 * Note that PS/WM thread counts depend on the WIZ hashing
++		 * disable bit, which we don't touch here, but it's good
++		 * to keep in mind (see 3DSTATE_PS and 3DSTATE_WM).
++		 */
++		wa_add(wal, GEN7_GT_MODE, 0,
++		       _MASKED_FIELD(GEN6_WIZ_HASHING_MASK,
++				     GEN6_WIZ_HASHING_16x4),
++		       GEN6_WIZ_HASHING_16x4);
++
++		/* WaPsdDispatchEnable:vlv */
++		/* WaDisablePSDDualDispatchEnable:vlv */
++		wa_masked_en(wal,
++			     GEN7_HALF_SLICE_CHICKEN1,
++			     GEN7_MAX_PS_THREAD_DEP |
++			     GEN7_PSD_SINGLE_PORT_DISPATCH_ENABLE);
++	}
++
+ 	if (IS_GEN(i915, 7))
+ 		/* WaBCSVCSTlbInvalidationMode:ivb,vlv,hsw */
+ 		wa_masked_en(wal,
+-- 
+2.20.1
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
