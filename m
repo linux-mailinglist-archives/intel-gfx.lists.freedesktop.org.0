@@ -1,32 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 74E032F07B9
-	for <lists+intel-gfx@lfdr.de>; Sun, 10 Jan 2021 16:04:24 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 912202F07BC
+	for <lists+intel-gfx@lfdr.de>; Sun, 10 Jan 2021 16:04:27 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5ECB76E0AA;
-	Sun, 10 Jan 2021 15:04:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 32C796E0CA;
+	Sun, 10 Jan 2021 15:04:20 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C6A6F6E0C1
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 98D6D6E0AA
  for <intel-gfx@lists.freedesktop.org>; Sun, 10 Jan 2021 15:04:16 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 23553104-1500050 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 23553105-1500050 
  for multiple; Sun, 10 Jan 2021 15:04:08 +0000
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Sun, 10 Jan 2021 15:04:02 +0000
-Message-Id: <20210110150404.19535-9-chris@chris-wilson.co.uk>
+Date: Sun, 10 Jan 2021 15:04:03 +0000
+Message-Id: <20210110150404.19535-10-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20210110150404.19535-1-chris@chris-wilson.co.uk>
 References: <20210110150404.19535-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 09/11] drm/i915/gt: Pull ring submission resume
- under its caller forcewake
+Subject: [Intel-gfx] [PATCH 10/11] drm/i915/selftests: Prepare the selftests
+ for engine resets with ring submission
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,185 +45,111 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Take advantage of calling xcs_resume under a forcewake by using direct
-mmio access. In particular, we can avoid the sleeping variants to allow
-resume to be called from softirq context, required for engine resets.
+The engine resets selftests kick the tasklets, safe up until now as only
+execlists supported engine resets.
 
 Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
 ---
- .../gpu/drm/i915/gt/intel_ring_submission.c   | 96 ++++++++-----------
- 1 file changed, 42 insertions(+), 54 deletions(-)
+ drivers/gpu/drm/i915/gt/selftest_hangcheck.c | 18 ++++++++++++++----
+ drivers/gpu/drm/i915/gt/selftest_reset.c     | 11 ++++++++---
+ 2 files changed, 22 insertions(+), 7 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_ring_submission.c b/drivers/gpu/drm/i915/gt/intel_ring_submission.c
-index d7eabed01616..c57f34bdd178 100644
---- a/drivers/gpu/drm/i915/gt/intel_ring_submission.c
-+++ b/drivers/gpu/drm/i915/gt/intel_ring_submission.c
-@@ -122,31 +122,27 @@ static void set_hwsp(struct intel_engine_cs *engine, u32 offset)
- 		hwsp = RING_HWS_PGA(engine->mmio_base);
+diff --git a/drivers/gpu/drm/i915/gt/selftest_hangcheck.c b/drivers/gpu/drm/i915/gt/selftest_hangcheck.c
+index c28d1fcad673..28f71cc2004d 100644
+--- a/drivers/gpu/drm/i915/gt/selftest_hangcheck.c
++++ b/drivers/gpu/drm/i915/gt/selftest_hangcheck.c
+@@ -560,6 +560,7 @@ static int __igt_reset_engine(struct intel_gt *gt, bool active)
+ 
+ 	for_each_engine(engine, gt, id) {
+ 		unsigned int reset_count, reset_engine_count;
++		unsigned long count;
+ 		IGT_TIMEOUT(end_time);
+ 
+ 		if (active && !intel_engine_can_store_dword(engine))
+@@ -577,6 +578,7 @@ static int __igt_reset_engine(struct intel_gt *gt, bool active)
+ 
+ 		st_engine_heartbeat_disable(engine);
+ 		set_bit(I915_RESET_ENGINE + id, &gt->reset.flags);
++		count = 0;
+ 		do {
+ 			if (active) {
+ 				struct i915_request *rq;
+@@ -625,9 +627,13 @@ static int __igt_reset_engine(struct intel_gt *gt, bool active)
+ 				err = -EINVAL;
+ 				break;
+ 			}
++
++			count++;
+ 		} while (time_before(jiffies, end_time));
+ 		clear_bit(I915_RESET_ENGINE + id, &gt->reset.flags);
+ 		st_engine_heartbeat_enable(engine);
++		pr_info("%s: Completed %lu %s resets\n",
++			engine->name, count, active ? "active" : "idle");
+ 
+ 		if (err)
+ 			break;
+@@ -1478,7 +1484,8 @@ static int igt_reset_queue(void *arg)
+ 			prev = rq;
+ 			count++;
+ 		} while (time_before(jiffies, end_time));
+-		pr_info("%s: Completed %d resets\n", engine->name, count);
++		pr_info("%s: Completed %d queued resets\n",
++			engine->name, count);
+ 
+ 		*h.batch = MI_BATCH_BUFFER_END;
+ 		intel_gt_chipset_flush(engine->gt);
+@@ -1575,7 +1582,8 @@ static int __igt_atomic_reset_engine(struct intel_engine_cs *engine,
+ 	GEM_TRACE("i915_reset_engine(%s:%s) under %s\n",
+ 		  engine->name, mode, p->name);
+ 
+-	tasklet_disable(t);
++	if (t->func)
++		tasklet_disable(t);
+ 	if (strcmp(p->name, "softirq"))
+ 		local_bh_disable();
+ 	p->critical_section_begin();
+@@ -1585,8 +1593,10 @@ static int __igt_atomic_reset_engine(struct intel_engine_cs *engine,
+ 	p->critical_section_end();
+ 	if (strcmp(p->name, "softirq"))
+ 		local_bh_enable();
+-	tasklet_enable(t);
+-	tasklet_hi_schedule(t);
++	if (t->func) {
++		tasklet_enable(t);
++		tasklet_hi_schedule(t);
++	}
+ 
+ 	if (err)
+ 		pr_err("i915_reset_engine(%s:%s) failed under %s\n",
+diff --git a/drivers/gpu/drm/i915/gt/selftest_reset.c b/drivers/gpu/drm/i915/gt/selftest_reset.c
+index b7befcfbdcde..8784257ec808 100644
+--- a/drivers/gpu/drm/i915/gt/selftest_reset.c
++++ b/drivers/gpu/drm/i915/gt/selftest_reset.c
+@@ -321,7 +321,10 @@ static int igt_atomic_engine_reset(void *arg)
+ 		goto out_unlock;
+ 
+ 	for_each_engine(engine, gt, id) {
+-		tasklet_disable(&engine->execlists.tasklet);
++		struct tasklet_struct *t = &engine->execlists.tasklet;
++
++		if (t->func)
++			tasklet_disable(t);
+ 		intel_engine_pm_get(engine);
+ 
+ 		for (p = igt_atomic_phases; p->name; p++) {
+@@ -345,8 +348,10 @@ static int igt_atomic_engine_reset(void *arg)
+ 		}
+ 
+ 		intel_engine_pm_put(engine);
+-		tasklet_enable(&engine->execlists.tasklet);
+-		tasklet_hi_schedule(&engine->execlists.tasklet);
++		if (t->func) {
++			tasklet_enable(t);
++			tasklet_hi_schedule(t);
++		}
+ 		if (err)
+ 			break;
  	}
- 
--	intel_uncore_write(engine->uncore, hwsp, offset);
--	intel_uncore_posting_read(engine->uncore, hwsp);
-+	intel_uncore_write_fw(engine->uncore, hwsp, offset);
-+	intel_uncore_posting_read_fw(engine->uncore, hwsp);
- }
- 
- static void flush_cs_tlb(struct intel_engine_cs *engine)
- {
--	struct drm_i915_private *dev_priv = engine->i915;
--
--	if (!IS_GEN_RANGE(dev_priv, 6, 7))
-+	if (!IS_GEN_RANGE(engine->i915, 6, 7))
- 		return;
- 
- 	/* ring should be idle before issuing a sync flush*/
--	drm_WARN_ON(&dev_priv->drm,
--		    (ENGINE_READ(engine, RING_MI_MODE) & MODE_IDLE) == 0);
-+	GEM_DEBUG_WARN_ON((ENGINE_READ(engine, RING_MI_MODE) & MODE_IDLE) == 0);
- 
--	ENGINE_WRITE(engine, RING_INSTPM,
--		     _MASKED_BIT_ENABLE(INSTPM_TLB_INVALIDATE |
--					INSTPM_SYNC_FLUSH));
--	if (intel_wait_for_register(engine->uncore,
--				    RING_INSTPM(engine->mmio_base),
--				    INSTPM_SYNC_FLUSH, 0,
--				    1000))
--		drm_err(&dev_priv->drm,
--			"%s: wait for SyncFlush to complete for TLB invalidation timed out\n",
--			engine->name);
-+	ENGINE_WRITE_FW(engine, RING_INSTPM,
-+			_MASKED_BIT_ENABLE(INSTPM_TLB_INVALIDATE |
-+					   INSTPM_SYNC_FLUSH));
-+	if (__intel_wait_for_register_fw(engine->uncore,
-+					 RING_INSTPM(engine->mmio_base),
-+					 INSTPM_SYNC_FLUSH, 0,
-+					 2000, 0, NULL))
-+		ENGINE_TRACE(engine,
-+			     "wait for SyncFlush to complete for TLB invalidation timed out\n");
- }
- 
- static void ring_setup_status_page(struct intel_engine_cs *engine)
-@@ -177,13 +173,13 @@ static void set_pp_dir(struct intel_engine_cs *engine)
- 	if (!vm)
- 		return;
- 
--	ENGINE_WRITE(engine, RING_PP_DIR_DCLV, PP_DIR_DCLV_2G);
--	ENGINE_WRITE(engine, RING_PP_DIR_BASE, pp_dir(vm));
-+	ENGINE_WRITE_FW(engine, RING_PP_DIR_DCLV, PP_DIR_DCLV_2G);
-+	ENGINE_WRITE_FW(engine, RING_PP_DIR_BASE, pp_dir(vm));
- 
- 	if (INTEL_GEN(engine->i915) >= 7) {
--		ENGINE_WRITE(engine,
--			     RING_MODE_GEN7,
--			     _MASKED_BIT_ENABLE(GFX_PPGTT_ENABLE));
-+		ENGINE_WRITE_FW(engine,
-+				RING_MODE_GEN7,
-+				_MASKED_BIT_ENABLE(GFX_PPGTT_ENABLE));
- 	}
- }
- 
-@@ -191,13 +187,10 @@ static int xcs_resume(struct intel_engine_cs *engine)
- {
- 	struct drm_i915_private *dev_priv = engine->i915;
- 	struct intel_ring *ring = engine->legacy.ring;
--	int ret = 0;
- 
- 	ENGINE_TRACE(engine, "ring:{HEAD:%04x, TAIL:%04x}\n",
- 		     ring->head, ring->tail);
- 
--	intel_uncore_forcewake_get(engine->uncore, FORCEWAKE_ALL);
--
- 	if (HWS_NEEDS_PHYSICAL(dev_priv))
- 		ring_setup_phys_status_page(engine);
- 	else
-@@ -205,16 +198,13 @@ static int xcs_resume(struct intel_engine_cs *engine)
- 
- 	intel_breadcrumbs_reset(engine->breadcrumbs);
- 
--	/* Enforce ordering by reading HEAD register back */
--	ENGINE_POSTING_READ(engine, RING_HEAD);
--
- 	/*
- 	 * Initialize the ring. This must happen _after_ we've cleared the ring
- 	 * registers with the above sequence (the readback of the HEAD registers
- 	 * also enforces ordering), otherwise the hw might lose the new ring
- 	 * register values.
- 	 */
--	ENGINE_WRITE(engine, RING_START, i915_ggtt_offset(ring->vma));
-+	ENGINE_WRITE_FW(engine, RING_START, i915_ggtt_offset(ring->vma));
- 
- 	/* Check that the ring offsets point within the ring! */
- 	GEM_BUG_ON(!intel_ring_offset_valid(ring, ring->head));
-@@ -224,46 +214,44 @@ static int xcs_resume(struct intel_engine_cs *engine)
- 	set_pp_dir(engine);
- 
- 	/* First wake the ring up to an empty/idle ring */
--	ENGINE_WRITE(engine, RING_HEAD, ring->head);
--	ENGINE_WRITE(engine, RING_TAIL, ring->head);
-+	ENGINE_WRITE_FW(engine, RING_HEAD, ring->head);
-+	ENGINE_WRITE_FW(engine, RING_TAIL, ring->head);
- 	ENGINE_POSTING_READ(engine, RING_TAIL);
- 
--	ENGINE_WRITE(engine, RING_CTL, RING_CTL_SIZE(ring->size) | RING_VALID);
-+	ENGINE_WRITE_FW(engine, RING_CTL,
-+			RING_CTL_SIZE(ring->size) | RING_VALID);
- 
- 	/* If the head is still not zero, the ring is dead */
--	if (intel_wait_for_register(engine->uncore,
--				    RING_CTL(engine->mmio_base),
--				    RING_VALID, RING_VALID,
--				    50)) {
--		drm_err(&dev_priv->drm, "%s initialization failed "
--			  "ctl %08x (valid? %d) head %08x [%08x] tail %08x [%08x] start %08x [expected %08x]\n",
--			  engine->name,
--			  ENGINE_READ(engine, RING_CTL),
--			  ENGINE_READ(engine, RING_CTL) & RING_VALID,
--			  ENGINE_READ(engine, RING_HEAD), ring->head,
--			  ENGINE_READ(engine, RING_TAIL), ring->tail,
--			  ENGINE_READ(engine, RING_START),
--			  i915_ggtt_offset(ring->vma));
--		ret = -EIO;
--		goto out;
-+	if (__intel_wait_for_register_fw(engine->uncore,
-+					 RING_CTL(engine->mmio_base),
-+					 RING_VALID, RING_VALID,
-+					 5000, 0, NULL)) {
-+		drm_err(&dev_priv->drm,
-+			"%s initialization failed; "
-+			"ctl %08x (valid? %d) head %08x [%08x] tail %08x [%08x] start %08x [expected %08x]\n",
-+			engine->name,
-+			ENGINE_READ(engine, RING_CTL),
-+			ENGINE_READ(engine, RING_CTL) & RING_VALID,
-+			ENGINE_READ(engine, RING_HEAD), ring->head,
-+			ENGINE_READ(engine, RING_TAIL), ring->tail,
-+			ENGINE_READ(engine, RING_START),
-+			i915_ggtt_offset(ring->vma));
-+		return -EIO;
- 	}
- 
- 	if (INTEL_GEN(dev_priv) > 2)
--		ENGINE_WRITE(engine,
--			     RING_MI_MODE, _MASKED_BIT_DISABLE(STOP_RING));
-+		ENGINE_WRITE_FW(engine,
-+				RING_MI_MODE, _MASKED_BIT_DISABLE(STOP_RING));
- 
- 	/* Now awake, let it get started */
- 	if (ring->tail != ring->head) {
--		ENGINE_WRITE(engine, RING_TAIL, ring->tail);
-+		ENGINE_WRITE_FW(engine, RING_TAIL, ring->tail);
- 		ENGINE_POSTING_READ(engine, RING_TAIL);
- 	}
- 
- 	/* Papering over lost _interrupts_ immediately following the restart */
- 	intel_engine_signal_breadcrumbs(engine);
--out:
--	intel_uncore_forcewake_put(engine->uncore, FORCEWAKE_ALL);
--
--	return ret;
-+	return 0;
- }
- 
- static void sanitize_hwsp(struct intel_engine_cs *engine)
 -- 
 2.20.1
 
