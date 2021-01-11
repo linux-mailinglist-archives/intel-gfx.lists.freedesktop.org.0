@@ -2,46 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D4A992F0FCB
-	for <lists+intel-gfx@lfdr.de>; Mon, 11 Jan 2021 11:14:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5E0A12F10A9
+	for <lists+intel-gfx@lfdr.de>; Mon, 11 Jan 2021 11:57:58 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 45E1E89E3F;
-	Mon, 11 Jan 2021 10:14:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0EFE56E0A5;
+	Mon, 11 Jan 2021 10:57:56 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DF11389E3F;
- Mon, 11 Jan 2021 10:14:39 +0000 (UTC)
-From: Thomas Gleixner <tglx@linutronix.de>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
- s=2020; t=1610360078;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=vdITQROn2Urg2SWnxxpWECg8/2piMq1rysKQi+Js6AM=;
- b=UnYkeRyOrRU1KtT5e+L+fQ3h1X+pI6IQmvvPVQCyBzb6fOAslMZh9kmf6riX6Uc0jR5HAW
- kLM9jzvLqGc+Imjy/0I2rAsMH2VpuQIdJ98CwfEhcoTYCCXiQ/XwFpRt6Jep7zrPxwT0va
- Xwof1xtTH5Z/PeoiWTuI7XI6GZ2R5aGzpohXNnayNbUAXzj5+Rf7t2lNRSQCuUkrunBvvh
- E6YQGrr8aPBg88a1jm3tkQeNaO9yiXQdYW2cQM+bbmj0FEDrh39+sh5VynpFZhESsKImAx
- DwV8ajINKrlorxI1UlTNWgwAXJMXRe809J7/lTBl2XxW6BUf7G/4P1Qx4lUTcA==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
- s=2020e; t=1610360078;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=vdITQROn2Urg2SWnxxpWECg8/2piMq1rysKQi+Js6AM=;
- b=X4gUVuzYQlznnJ4rBpJlj0pVo1A0rJo22Rpjt8+XaTFqV54Id4MU7M5oqDy1KDl8a6a4jG
- +hpoSFj00cPTvyCg==
-To: Guenter Roeck <linux@roeck-us.net>
-In-Reply-To: <20201227192049.GA195845@roeck-us.net>
-References: <20201210192536.118432146@linutronix.de>
- <20201210194042.703779349@linutronix.de>
- <20201227192049.GA195845@roeck-us.net>
-Date: Mon, 11 Jan 2021 11:14:38 +0100
-Message-ID: <87im837pbl.fsf@nanos.tec.linutronix.de>
+Received: from fireflyinternet.com (unknown [77.68.26.236])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8C2B46E0A8
+ for <intel-gfx@lists.freedesktop.org>; Mon, 11 Jan 2021 10:57:53 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from build.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 23557970-1500050 
+ for multiple; Mon, 11 Jan 2021 10:57:38 +0000
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Mon, 11 Jan 2021 10:57:32 +0000
+Message-Id: <20210111105735.21515-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [patch 02/30] genirq: Move status flag checks to
- core
+Subject: [Intel-gfx] [PATCH 1/4] drm/i915/gt: Disable arbitration around
+ Braswell's pdp updates
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,50 +37,53 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Mark Rutland <mark.rutland@arm.com>,
- Karthikeyan Mitran <m.karthikeyan@mobiveil.co.in>,
- Peter Zijlstra <peterz@infradead.org>,
- Catalin Marinas <catalin.marinas@arm.com>, dri-devel@lists.freedesktop.org,
- Chris Wilson <chris@chris-wilson.co.uk>,
- "James E.J. Bottomley" <James.Bottomley@HansenPartnership.com>,
- Russell King <linux@armlinux.org.uk>, afzal mohammed <afzal.mohd.ma@gmail.com>,
- Boris Ostrovsky <boris.ostrovsky@oracle.com>, linux-s390@vger.kernel.org,
- Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
- Dave Jiang <dave.jiang@intel.com>, Leon Romanovsky <leon@kernel.org>,
- linux-rdma@vger.kernel.org, Will Deacon <will@kernel.org>,
- Helge Deller <deller@gmx.de>, Michal Simek <michal.simek@xilinx.com>,
- Christian Borntraeger <borntraeger@de.ibm.com>, linux-pci@vger.kernel.org,
- intel-gfx@lists.freedesktop.org, xen-devel@lists.xenproject.org,
- Hou Zhiqiang <Zhiqiang.Hou@nxp.com>, Wambui Karuga <wambui.karugax@gmail.com>,
- Allen Hubbe <allenbh@gmail.com>, Heiko Carstens <hca@linux.ibm.com>,
- Jon Mason <jdmason@kudzu.us>, linux-gpio@vger.kernel.org,
- Stefano Stabellini <sstabellini@kernel.org>, Jakub Kicinski <kuba@kernel.org>,
- Bjorn Helgaas <bhelgaas@google.com>, Lee Jones <lee.jones@linaro.org>,
- linux-arm-kernel@lists.infradead.org, Juergen Gross <jgross@suse.com>,
- David Airlie <airlied@linux.ie>, linux-parisc@vger.kernel.org,
- netdev@vger.kernel.org, LKML <linux-kernel@vger.kernel.org>,
- Tariq Toukan <tariqt@nvidia.com>, Marc Zyngier <maz@kernel.org>,
- linux-ntb@googlegroups.com, Saeed Mahameed <saeedm@nvidia.com>,
- "David S. Miller" <davem@davemloft.net>
+Cc: Chris Wilson <chris@chris-wilson.co.uk>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Sun, Dec 27 2020 at 11:20, Guenter Roeck wrote:
-> On Thu, Dec 10, 2020 at 08:25:38PM +0100, Thomas Gleixner wrote:
-> Yes, but that means that irq_check_status_bit() may be called from modules,
-> but it is not exported, resulting in build errors such as the following.
->
-> arm64:allmodconfig:
->
-> ERROR: modpost: "irq_check_status_bit" [drivers/perf/arm_spe_pmu.ko] undefined!
+Braswell's pdp workaround is full of dragons, that may be being angered
+when they are interrupted. Let's not take that risk and disable
+arbitrartion during the update.
 
-Duh. Yes, that lacks an export obviously.
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+---
+ drivers/gpu/drm/i915/gt/intel_execlists_submission.c | 11 ++++++++++-
+ 1 file changed, 10 insertions(+), 1 deletion(-)
 
-Thanks,
+diff --git a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
+index 52c1fe62bdfe..10e9940cf3f5 100644
+--- a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
++++ b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
+@@ -2539,6 +2539,14 @@ static int emit_pdps(struct i915_request *rq)
+ 	 * GPU hangs to forcewake errors and machine lockups!
+ 	 */
+ 
++	cs = intel_ring_begin(rq, 2);
++	if (IS_ERR(cs))
++		return PTR_ERR(cs);
++
++	*cs++ = MI_ARB_ON_OFF | MI_ARB_DISABLE;
++	*cs++ = MI_NOOP;
++	intel_ring_advance(rq, cs);
++
+ 	/* Flush any residual operations from the context load */
+ 	err = engine->emit_flush(rq, EMIT_FLUSH);
+ 	if (err)
+@@ -2564,7 +2572,8 @@ static int emit_pdps(struct i915_request *rq)
+ 		*cs++ = i915_mmio_reg_offset(GEN8_RING_PDP_LDW(base, i));
+ 		*cs++ = lower_32_bits(pd_daddr);
+ 	}
+-	*cs++ = MI_NOOP;
++	*cs++ = MI_ARB_ON_OFF | MI_ARB_ENABLE;
++	intel_ring_advance(rq, cs);
+ 
+ 	intel_ring_advance(rq, cs);
+ 
+-- 
+2.20.1
 
-        tglx
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
