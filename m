@@ -2,34 +2,44 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1B50C2F1A90
-	for <lists+intel-gfx@lfdr.de>; Mon, 11 Jan 2021 17:10:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3FAE92F1AC4
+	for <lists+intel-gfx@lfdr.de>; Mon, 11 Jan 2021 17:19:50 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8A49D6E0F2;
-	Mon, 11 Jan 2021 16:10:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B5F646E10B;
+	Mon, 11 Jan 2021 16:19:48 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BBEDA6E0F2
- for <intel-gfx@lists.freedesktop.org>; Mon, 11 Jan 2021 16:10:49 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 23561047-1500050 for multiple; Mon, 11 Jan 2021 16:10:46 +0000
-MIME-Version: 1.0
-In-Reply-To: <38984801-1e30-29ce-a6f3-c846bea7eab3@linux.intel.com>
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7C5886E10B
+ for <intel-gfx@lists.freedesktop.org>; Mon, 11 Jan 2021 16:19:47 +0000 (UTC)
+IronPort-SDR: GKyC/0Gh0uG9kGgT9fr6u8qYIDTbiTdug0npmgrKoC38lQlK1Ogo5jIlMogRmh1ys27zkOn9aT
+ bUE9dOxtyfgA==
+X-IronPort-AV: E=McAfee;i="6000,8403,9861"; a="241961589"
+X-IronPort-AV: E=Sophos;i="5.79,338,1602572400"; d="scan'208";a="241961589"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Jan 2021 08:19:44 -0800
+IronPort-SDR: BjktyR0JBchhVIltSsxegjz5t3qlGwguhnq3yMA7vf3kgMKlcZMQyoXmQ6x6jNBKpH+jCgnf6c
+ p2TKcutjBfeg==
+X-IronPort-AV: E=Sophos;i="5.79,338,1602572400"; d="scan'208";a="352656625"
+Received: from sbrooks8-mobl.ger.corp.intel.com (HELO [10.214.224.70])
+ ([10.214.224.70])
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Jan 2021 08:19:43 -0800
+To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
 References: <20210111105735.21515-1-chris@chris-wilson.co.uk>
- <20210111105735.21515-2-chris@chris-wilson.co.uk>
- <38984801-1e30-29ce-a6f3-c846bea7eab3@linux.intel.com>
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-Date: Mon, 11 Jan 2021 16:10:44 +0000
-Message-ID: <161038144448.28181.2940128230292829562@build.alporthouse.com>
-User-Agent: alot/0.9
-Subject: Re: [Intel-gfx] [PATCH 2/4] drm/i915/gt: Check for arbitration
- after writing start seqno
+ <20210111105735.21515-3-chris@chris-wilson.co.uk>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+Message-ID: <24903f8e-4f53-c0bd-4ced-7161b505f06d@linux.intel.com>
+Date: Mon, 11 Jan 2021 16:19:40 +0000
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.5.0
+MIME-Version: 1.0
+In-Reply-To: <20210111105735.21515-3-chris@chris-wilson.co.uk>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH 3/4] drm/i915/gt: Perform an arbitration
+ check before busywaiting
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,68 +52,63 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Tvrtko Ursulin (2021-01-11 16:03:48)
-> 
-> On 11/01/2021 10:57, Chris Wilson wrote:
-> > On the off chance that we need to arbitrate before launching the
-> > payload, perform the check after we signal the request is ready to
-> > start. Assuming instantaneous processing of the CS event, the request
-> > will then be treated as having started when we make the decisions as to
-> > how to process that CS event.
-> 
-> What is the wider context with this change?
 
-Just thinking about the impact of MI_ARB_ONOFF. It's the next patch that
-sparked the curiosity at that is trying to address a missed arbitration
-point on the semaphore-wait miss.
+On 11/01/2021 10:57, Chris Wilson wrote:
+> During igt_reset_nop_engine, it was observed that an unexpected failed
+> engine reset lead to us busywaiting on the stop-ring semaphore (set
+> during the reset preparations) on the first request afterwards. There was
+> no explicit MI_ARB_CHECK in this sequence as the presumption was that
+> the failed MI_SEMAPHORE_WAIT would itself act as an arbitration point.
+> It did not in this circumstance, so force it.
 
-> > Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-> > ---
-> >   drivers/gpu/drm/i915/gt/gen8_engine_cs.c | 12 ++++++------
-> >   1 file changed, 6 insertions(+), 6 deletions(-)
-> > 
-> > diff --git a/drivers/gpu/drm/i915/gt/gen8_engine_cs.c b/drivers/gpu/drm/i915/gt/gen8_engine_cs.c
-> > index 2e36e0a9d8a6..9a182652a35e 100644
-> > --- a/drivers/gpu/drm/i915/gt/gen8_engine_cs.c
-> > +++ b/drivers/gpu/drm/i915/gt/gen8_engine_cs.c
-> > @@ -361,19 +361,19 @@ int gen8_emit_init_breadcrumb(struct i915_request *rq)
-> >       if (IS_ERR(cs))
-> >               return PTR_ERR(cs);
-> >   
-> > +     *cs++ = MI_STORE_DWORD_IMM_GEN4 | MI_USE_GGTT;
-> > +     *cs++ = hwsp_offset(rq);
-> > +     *cs++ = 0;
-> > +     *cs++ = rq->fence.seqno - 1;
-> > +
-> 
-> Strictly this movement even makes the existing comment (below) more correct.
-> 
-> >       /*
-> >        * Check if we have been preempted before we even get started.
-> >        *
-> >        * After this point i915_request_started() reports true, even if
-> >        * we get preempted and so are no longer running.
-> >        */
-> > -     *cs++ = MI_ARB_CHECK;
-> >       *cs++ = MI_NOOP;
-> > -
-> > -     *cs++ = MI_STORE_DWORD_IMM_GEN4 | MI_USE_GGTT;
-> > -     *cs++ = hwsp_offset(rq);
-> > -     *cs++ = 0;
-> > -     *cs++ = rq->fence.seqno - 1;
-> > +     *cs++ = MI_ARB_CHECK;
-> 
-> Special reason to have NOOP before MI_ARB_CHECK or would more common 
-> NOOP padding at the end be suitable?
+In other words MI_SEMAPHORE_POLL is not a preemption point? Can't 
+remember if I knew that or not..
 
-The so small it's barely a reason was to put as much distance (those
-whole 6 cycles) between the store and the arbitration point.
--Chris
+1)
+Why not the same handling in !gen12 version?
+
+2)
+Failed reset leads to busy-hang in following request _tail_? But there 
+is an arb check at the start of following request as well. Or in cases 
+where we context switch into the middle of a previously executing request?
+
+But why would that busy hang? Hasn't the failed request unpaused the ring?
+
+Regards,
+
+Tvrtko
+
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> ---
+>   drivers/gpu/drm/i915/gt/gen8_engine_cs.c | 2 +-
+>   1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/gt/gen8_engine_cs.c b/drivers/gpu/drm/i915/gt/gen8_engine_cs.c
+> index 9a182652a35e..e9ac281644cc 100644
+> --- a/drivers/gpu/drm/i915/gt/gen8_engine_cs.c
+> +++ b/drivers/gpu/drm/i915/gt/gen8_engine_cs.c
+> @@ -567,6 +567,7 @@ u32 *gen11_emit_fini_breadcrumb_rcs(struct i915_request *rq, u32 *cs)
+>   
+>   static u32 *gen12_emit_preempt_busywait(struct i915_request *rq, u32 *cs)
+>   {
+> +	*cs++ = MI_ARB_CHECK;
+>   	*cs++ = MI_SEMAPHORE_WAIT_TOKEN |
+>   		MI_SEMAPHORE_GLOBAL_GTT |
+>   		MI_SEMAPHORE_POLL |
+> @@ -575,7 +576,6 @@ static u32 *gen12_emit_preempt_busywait(struct i915_request *rq, u32 *cs)
+>   	*cs++ = preempt_address(rq->engine);
+>   	*cs++ = 0;
+>   	*cs++ = 0;
+> -	*cs++ = MI_NOOP;
+>   
+>   	return cs;
+>   }
+> 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
