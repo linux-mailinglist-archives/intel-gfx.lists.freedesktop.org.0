@@ -2,44 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4595F2F21C1
-	for <lists+intel-gfx@lfdr.de>; Mon, 11 Jan 2021 22:26:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 79B392F21CC
+	for <lists+intel-gfx@lfdr.de>; Mon, 11 Jan 2021 22:28:48 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8EA248994A;
-	Mon, 11 Jan 2021 21:26:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 93188899AB;
+	Mon, 11 Jan 2021 21:28:44 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 09A9C898FD
- for <intel-gfx@lists.freedesktop.org>; Mon, 11 Jan 2021 21:26:01 +0000 (UTC)
-IronPort-SDR: O0inYptRz5o0UDw/oyYD9BY5d4gI4Rs3r0Px6oZ5OkF6wwSLxBoaRAqYdH7qQ6IWzYzhAyNw46
- uO69jppZulSA==
-X-IronPort-AV: E=McAfee;i="6000,8403,9861"; a="174429159"
-X-IronPort-AV: E=Sophos;i="5.79,339,1602572400"; d="scan'208";a="174429159"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Jan 2021 13:25:59 -0800
-IronPort-SDR: ADqzXzKhJnmHnNyAy2krguNWL9X3J4eM1TfjXCPM53JQT/Z2ix1wfwaNYw09dc/n1j0969NXjH
- JQ3aGcwqp5lg==
-X-IronPort-AV: E=Sophos;i="5.79,339,1602572400"; d="scan'208";a="363274084"
-Received: from jraghubi-mobl.amr.corp.intel.com (HELO ldmartin-desk1)
- ([10.212.23.93])
- by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Jan 2021 13:25:57 -0800
-Date: Mon, 11 Jan 2021 13:25:53 -0800
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: Matt Roper <matthew.d.roper@intel.com>
-Message-ID: <20210111212553.brclyuex7dgzeryu@ldmartin-desk1>
-References: <20210108231853.2859646-1-aditya.swarup@intel.com>
- <20210108231853.2859646-2-aditya.swarup@intel.com>
- <20210108234440.GO3894148@mdroper-desk1.amr.corp.intel.com>
- <878s8zw7tw.fsf@intel.com> <875z43w7kq.fsf@intel.com>
- <20210111205743.GC4758@mdroper-desk1.amr.corp.intel.com>
+Received: from mail-ot1-x332.google.com (mail-ot1-x332.google.com
+ [IPv6:2607:f8b0:4864:20::332])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2B40E8999E;
+ Mon, 11 Jan 2021 21:28:43 +0000 (UTC)
+Received: by mail-ot1-x332.google.com with SMTP id d8so284989otq.6;
+ Mon, 11 Jan 2021 13:28:43 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc:content-transfer-encoding;
+ bh=L6rV20Xdr5h2sJR7FPyRAHmsj7qGE3iCwY0just4RS4=;
+ b=T8e/YQcd2KHSenV74TjYgqb9xj+x66tHFhoWo3N01xCL+bNWieCyyMOh8QvcvNnTHj
+ Ve9grHHRan+OWpTcYvMfk+1uZf5RwkaMRz4i86YBpbvysjqIhTMdCQZnW8H4VMojzUh5
+ rNR6kmhjC1YIMRuaWdHDJq5oHmwSK1kltSjp76sQyLpOKCj+2XqPSd/M89H2WoY2Suey
+ fC2JtCLXnc86WZtvgFvoIcjezTQuydIPtS6MkKu5ZAas+zEIMGCUdoKdsloDpUb2VH6q
+ qPPYvIiAxCgX01E30yFWqKyLCgD6h831FiIRVMUp8QO4QdjeATSmXLI+QsA0fsWiab0J
+ 5dkw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc:content-transfer-encoding;
+ bh=L6rV20Xdr5h2sJR7FPyRAHmsj7qGE3iCwY0just4RS4=;
+ b=gR6rau8/T5jRRlUhDEg4iGPpw12gp/VxUC6DcIwTVi2Ggx5qZx+tJCACJ+JmP62IXe
+ unrJA3IhPoCrHQ3asslYWpY4ryr3JTXXmTU7PClM+bhJSzmY8hE0lWElU66Up9dSqduE
+ GhijZsgV2BBqaChxbeLI6T5HMjMFy1y2sFuccvoXANb9Evl4aato6pCSivcJT6sZzpJV
+ a+kOrQdI2Yp1ns0OF5g0cnFMsblupmr8wsMI39e0NxF507KX2WwTCysiIC6wHp3ib9Gt
+ wZBr0FwUcVwVYrdWnAwyVPG3EDp16aogNMCQbGNkU+zMkG614dSpy4mDpq/YgVLayaLS
+ 94wQ==
+X-Gm-Message-State: AOAM533qNpRwgzzlU+NLuyj0QKiy77Objs6rk6tpM4bO0lw/Gwq+Z3JY
+ Ygs+mSRI+00BlBvj1DoeTKDYXpGWtqHqngo7HEdYrBUHg7E=
+X-Google-Smtp-Source: ABdhPJwmYjDh2Mmz2DG3XJArULgg6mcvDrgdrsQ+OLMvS4zwugxW5VAQyCJP2be3vpvhXIqd5rYAw2hXfnHHNonILAc=
+X-Received: by 2002:a9d:75d4:: with SMTP id c20mr703562otl.311.1610400522478; 
+ Mon, 11 Jan 2021 13:28:42 -0800 (PST)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20210111205743.GC4758@mdroper-desk1.amr.corp.intel.com>
-Subject: Re: [Intel-gfx] [PATCH 1/2] drm/i915/tgl: Use TGL stepping info for
- applying WAs
+References: <20210110021142.28221-1-bas@basnieuwenhuizen.nl>
+ <CADnq5_OVtCubsGP=-=q-hYJ3e6a3=pozi7ZhDiqdUkUKLCiwMg@mail.gmail.com>
+ <CAP+8YyGAuYW+qOCDmQR+_X0y-jC5sKoxm+k7V8YrAEaTM942dA@mail.gmail.com>
+In-Reply-To: <CAP+8YyGAuYW+qOCDmQR+_X0y-jC5sKoxm+k7V8YrAEaTM942dA@mail.gmail.com>
+From: Alex Deucher <alexdeucher@gmail.com>
+Date: Mon, 11 Jan 2021 16:28:31 -0500
+Message-ID: <CADnq5_PZ_yE-K6BzgcSUhOZ_b9nhWpbj7nau2ZopxMLa7igpQA@mail.gmail.com>
+To: Bas Nieuwenhuizen <bas@basnieuwenhuizen.nl>
+Subject: Re: [Intel-gfx] [PATCH v2] drm: Check actual format for legacy
+ pageflip.
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,394 +64,66 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"; Format="flowed"
+Cc: Daniel Vetter <daniel.vetter@ffwll.ch>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ amd-gfx list <amd-gfx@lists.freedesktop.org>, "Kazlauskas,
+ Nicholas" <nicholas.kazlauskas@amd.com>,
+ Maling list - DRI developers <dri-devel@lists.freedesktop.org>, "Deucher,
+ Alexander" <alexander.deucher@amd.com>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Jan 11, 2021 at 12:57:43PM -0800, Matt Roper wrote:
->On Mon, Jan 11, 2021 at 10:18:45PM +0200, Jani Nikula wrote:
->> On Mon, 11 Jan 2021, Jani Nikula <jani.nikula@linux.intel.com> wrote:
->> > On Fri, 08 Jan 2021, Matt Roper <matthew.d.roper@intel.com> wrote:
->> >> On Fri, Jan 08, 2021 at 03:18:52PM -0800, Aditya Swarup wrote:
->> >>> TGL adds another level of indirection for applying WA based on stepp=
-ing
->> >>> information rather than PCI REVID. So change TGL_REVID enum into
->> >>> stepping enum and use PCI REVID as index into revid to stepping tabl=
-e to
->> >>> fetch correct display and GT stepping for application of WAs as
->> >>> suggested by Matt Roper.
->> >>
->> >> So to clarify the goal is to rename "revid" -> "stepping" because the
->> >> values like "A1," "C0," etc. are't the actual PCI revision ID, but
->> >> rather descriptions of the stepping of a given IP block; the enum val=
-ues
->> >> we use to represent those are arbitrary and don't matter as long as
->> >> they're monotonically increasing for comparisons.  The PCI revision ID
->> >> is just the input we use today to deduce what the IP steppings are, a=
-nd
->> >> there's talk that we could determine the IP steppings in a different =
-way
->> >> at some point in the future.
->> >>
->> >> Furthermore, since the same scheme will be used at least for ADL-S, we
->> >> should drop the "TGL" prefix since there's no need to name these gene=
-ral
->> >> enum values in a platform-specific manner.
->> >>
->> >> Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
->> >>
->> >> We should probably make the same kind of change to KBL (and use the s=
-ame
->> >> stepping enum) too since it has the same kind of extra indirection as
->> >> TGL/ADL-S, but we can do that as a followup patch.
->> >
->> > FWIW I have a wip series changing the whole thing to abstract steppings
->> > enums that are shared between platforms, but it's in a bit of limbo
->> > because the previous revid changes were applied to drm-intel-gt-next,
->> > and it's fallen pretty far out of sync with drm-intel-next. All of this
->> > really belongs to drm-intel-next, but can't do that until the branches
->> > sync up again.
->>
->> Btw this series doesn't apply to drm-intel-next either, for the same
->> reason, and the ADL-S platform definition and PCI IDs must *not* be
->> applied to drm-intel-gt-next.
->
->So to clarify, it looks like we have a bunch of revid changes to the
->display code that got merged to the gt-next tree but not to the
->intel-next tree?  Should we be going back and also merging /
->cherry-picking those over to intel-next since that's where the display
->changes are supposed to go, or is it too late to do that cleanly at this
->point?
-
-it was my mistake to merge them to drm-intel-gt-next. They should have
-been in drm-intel-next.
-
->
->Going forward, what should the general strategy be for stuff like
->platform definitions and such?  Merge such enablement patches to both
-
-last time we talked about this was regarding dg1 AFAIR and the consensus
-was to create a topic branch and that topic branch to be merged in both
-branches. That would avoid having 2 commits in different branches.
-
-Not sure if it would work out nicely for getting test on CI though.
-Since the changes are spread through the codebase, we could very easily
-hit a situation that this topic branch creates conflicts for other
-patches getting merged on either drm-intel-next or drm-intel-gt-next.
-
-+Joonas, +Rodrigo
-
-Lucas De Marchi
-
->intel-next and gt-next at the same time so that the basic definitions
->are available to both trees?  It seems like the whole split into two
->trees really isn't working well and is just leading to more mistakes and
->bottlenecks.  What benefit are we supposed to be getting from this
->split?
->
->
->Matt
->
->
->>
->> BR,
->> Jani.
->>
->> >
->> > My series also completely hides the arrays into a separate .c file,
->> > because the externs with direct array access are turning into
->> > nightmare. The ARRAY_SIZE() checks rely on the extern declaration and
->> > the actual array definition to have the sizes in sync, but the compiler
->> > does not check that. Really.
->> >
->> > IDK, feels like this merging this series is going to be extra churn.
->> >
->> >
->> > BR,
->> > Jani.
->> >
->> >
->> >>
->> >>
->> >> Matt
->> >>
->> >>>
->> >>> Cc: Matt Roper <matthew.d.roper@intel.com>
->> >>> Cc: Lucas De Marchi <lucas.demarchi@intel.com>
->> >>> Cc: Jos=E9 Roberto de Souza <jose.souza@intel.com>
->> >>> Signed-off-by: Aditya Swarup <aditya.swarup@intel.com>
->> >>> ---
->> >>>  .../drm/i915/display/intel_display_power.c    |  2 +-
->> >>>  drivers/gpu/drm/i915/display/intel_psr.c      |  4 +-
->> >>>  drivers/gpu/drm/i915/display/intel_sprite.c   |  2 +-
->> >>>  drivers/gpu/drm/i915/gt/intel_workarounds.c   | 26 +++++-----
->> >>>  drivers/gpu/drm/i915/i915_drv.h               | 50 +++++++++-------=
----
->> >>>  drivers/gpu/drm/i915/intel_pm.c               |  2 +-
->> >>>  6 files changed, 43 insertions(+), 43 deletions(-)
->> >>>
->> >>> diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/dr=
-ivers/gpu/drm/i915/display/intel_display_power.c
->> >>> index d52374f01316..bb04b502a442 100644
->> >>> --- a/drivers/gpu/drm/i915/display/intel_display_power.c
->> >>> +++ b/drivers/gpu/drm/i915/display/intel_display_power.c
->> >>> @@ -5340,7 +5340,7 @@ static void tgl_bw_buddy_init(struct drm_i915_=
-private *dev_priv)
->> >>>  	int config, i;
->> >>>
->> >>>  	if (IS_DG1_REVID(dev_priv, DG1_REVID_A0, DG1_REVID_A0) ||
->> >>> -	    IS_TGL_DISP_REVID(dev_priv, TGL_REVID_A0, TGL_REVID_B0))
->> >>> +	    IS_TGL_DISP_STEPPING(dev_priv, STEP_A0, STEP_B0))
->> >>>  		/* Wa_1409767108:tgl,dg1 */
->> >>>  		table =3D wa_1409767108_buddy_page_masks;
->> >>>  	else
->> >>> diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/=
-drm/i915/display/intel_psr.c
->> >>> index c24ae69426cf..a93717178957 100644
->> >>> --- a/drivers/gpu/drm/i915/display/intel_psr.c
->> >>> +++ b/drivers/gpu/drm/i915/display/intel_psr.c
->> >>> @@ -550,7 +550,7 @@ static void hsw_activate_psr2(struct intel_dp *i=
-ntel_dp)
->> >>>
->> >>>  	if (dev_priv->psr.psr2_sel_fetch_enabled) {
->> >>>  		/* WA 1408330847 */
->> >>> -		if (IS_TGL_DISP_REVID(dev_priv, TGL_REVID_A0, TGL_REVID_A0) ||
->> >>> +		if (IS_TGL_DISP_STEPPING(dev_priv, STEP_A0, STEP_A0) ||
->> >>>  		    IS_RKL_REVID(dev_priv, RKL_REVID_A0, RKL_REVID_A0))
->> >>>  			intel_de_rmw(dev_priv, CHICKEN_PAR1_1,
->> >>>  				     DIS_RAM_BYPASS_PSR2_MAN_TRACK,
->> >>> @@ -1102,7 +1102,7 @@ static void intel_psr_disable_locked(struct in=
-tel_dp *intel_dp)
->> >>>
->> >>>  	/* WA 1408330847 */
->> >>>  	if (dev_priv->psr.psr2_sel_fetch_enabled &&
->> >>> -	    (IS_TGL_DISP_REVID(dev_priv, TGL_REVID_A0, TGL_REVID_A0) ||
->> >>> +	    (IS_TGL_DISP_STEPPING(dev_priv, STEP_A0, STEP_A0) ||
->> >>>  	     IS_RKL_REVID(dev_priv, RKL_REVID_A0, RKL_REVID_A0)))
->> >>>  		intel_de_rmw(dev_priv, CHICKEN_PAR1_1,
->> >>>  			     DIS_RAM_BYPASS_PSR2_MAN_TRACK, 0);
->> >>> diff --git a/drivers/gpu/drm/i915/display/intel_sprite.c b/drivers/g=
-pu/drm/i915/display/intel_sprite.c
->> >>> index cf3589fd0ddb..4ce32df3855f 100644
->> >>> --- a/drivers/gpu/drm/i915/display/intel_sprite.c
->> >>> +++ b/drivers/gpu/drm/i915/display/intel_sprite.c
->> >>> @@ -3033,7 +3033,7 @@ static bool gen12_plane_supports_mc_ccs(struct=
- drm_i915_private *dev_priv,
->> >>>  {
->> >>>  	/* Wa_14010477008:tgl[a0..c0],rkl[all],dg1[all] */
->> >>>  	if (IS_DG1(dev_priv) || IS_ROCKETLAKE(dev_priv) ||
->> >>> -	    IS_TGL_DISP_REVID(dev_priv, TGL_REVID_A0, TGL_REVID_C0))
->> >>> +	    IS_TGL_DISP_STEPPING(dev_priv, STEP_A0, STEP_C0))
->> >>>  		return false;
->> >>>
->> >>>  	return plane_id < PLANE_SPRITE4;
->> >>> diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/g=
-pu/drm/i915/gt/intel_workarounds.c
->> >>> index c21a9726326a..111d01e2f81e 100644
->> >>> --- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
->> >>> +++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
->> >>> @@ -71,17 +71,17 @@ const struct i915_rev_steppings kbl_revids[] =3D=
- {
->> >>>  	[7] =3D { .gt_stepping =3D KBL_REVID_G0, .disp_stepping =3D KBL_RE=
-VID_C0 },
->> >>>  };
->> >>>
->> >>> -const struct i915_rev_steppings tgl_uy_revids[] =3D {
->> >>> -	[0] =3D { .gt_stepping =3D TGL_REVID_A0, .disp_stepping =3D TGL_RE=
-VID_A0 },
->> >>> -	[1] =3D { .gt_stepping =3D TGL_REVID_B0, .disp_stepping =3D TGL_RE=
-VID_C0 },
->> >>> -	[2] =3D { .gt_stepping =3D TGL_REVID_B1, .disp_stepping =3D TGL_RE=
-VID_C0 },
->> >>> -	[3] =3D { .gt_stepping =3D TGL_REVID_C0, .disp_stepping =3D TGL_RE=
-VID_D0 },
->> >>> +const struct i915_rev_steppings tgl_uy_revid_step_tbl[] =3D {
->> >>> +	[0] =3D { .gt_stepping =3D STEP_A0, .disp_stepping =3D STEP_A0 },
->> >>> +	[1] =3D { .gt_stepping =3D STEP_B0, .disp_stepping =3D STEP_C0 },
->> >>> +	[2] =3D { .gt_stepping =3D STEP_B1, .disp_stepping =3D STEP_C0 },
->> >>> +	[3] =3D { .gt_stepping =3D STEP_C0, .disp_stepping =3D STEP_D0 },
->> >>>  };
->> >>>
->> >>>  /* Same GT stepping between tgl_uy_revids and tgl_revids don't mean=
- the same HW */
->> >>> -const struct i915_rev_steppings tgl_revids[] =3D {
->> >>> -	[0] =3D { .gt_stepping =3D TGL_REVID_A0, .disp_stepping =3D TGL_RE=
-VID_B0 },
->> >>> -	[1] =3D { .gt_stepping =3D TGL_REVID_B0, .disp_stepping =3D TGL_RE=
-VID_D0 },
->> >>> +const struct i915_rev_steppings tgl_revid_step_tbl[] =3D {
->> >>> +	[0] =3D { .gt_stepping =3D STEP_A0, .disp_stepping =3D STEP_B0 },
->> >>> +	[1] =3D { .gt_stepping =3D STEP_B0, .disp_stepping =3D STEP_D0 },
->> >>>  };
->> >>>
->> >>>  static void wa_init_start(struct i915_wa_list *wal, const char *nam=
-e, const char *engine_name)
->> >>> @@ -1211,19 +1211,19 @@ tgl_gt_workarounds_init(struct drm_i915_priv=
-ate *i915, struct i915_wa_list *wal)
->> >>>  	gen12_gt_workarounds_init(i915, wal);
->> >>>
->> >>>  	/* Wa_1409420604:tgl */
->> >>> -	if (IS_TGL_UY_GT_REVID(i915, TGL_REVID_A0, TGL_REVID_A0))
->> >>> +	if (IS_TGL_UY_GT_STEPPING(i915, STEP_A0, STEP_A0))
->> >>>  		wa_write_or(wal,
->> >>>  			    SUBSLICE_UNIT_LEVEL_CLKGATE2,
->> >>>  			    CPSSUNIT_CLKGATE_DIS);
->> >>>
->> >>>  	/* Wa_1607087056:tgl also know as BUG:1409180338 */
->> >>> -	if (IS_TGL_UY_GT_REVID(i915, TGL_REVID_A0, TGL_REVID_A0))
->> >>> +	if (IS_TGL_UY_GT_STEPPING(i915, STEP_A0, STEP_A0))
->> >>>  		wa_write_or(wal,
->> >>>  			    SLICE_UNIT_LEVEL_CLKGATE,
->> >>>  			    L3_CLKGATE_DIS | L3_CR2X_CLKGATE_DIS);
->> >>>
->> >>>  	/* Wa_1408615072:tgl[a0] */
->> >>> -	if (IS_TGL_UY_GT_REVID(i915, TGL_REVID_A0, TGL_REVID_A0))
->> >>> +	if (IS_TGL_UY_GT_STEPPING(i915, STEP_A0, STEP_A0))
->> >>>  		wa_write_or(wal, UNSLICE_UNIT_LEVEL_CLKGATE2,
->> >>>  			    VSUNIT_CLKGATE_DIS_TGL);
->> >>>  }
->> >>> @@ -1700,7 +1700,7 @@ rcs_engine_wa_init(struct intel_engine_cs *eng=
-ine, struct i915_wa_list *wal)
->> >>>  	struct drm_i915_private *i915 =3D engine->i915;
->> >>>
->> >>>  	if (IS_DG1_REVID(i915, DG1_REVID_A0, DG1_REVID_A0) ||
->> >>> -	    IS_TGL_UY_GT_REVID(i915, TGL_REVID_A0, TGL_REVID_A0)) {
->> >>> +	    IS_TGL_UY_GT_STEPPING(i915, STEP_A0, STEP_A0)) {
->> >>>  		/*
->> >>>  		 * Wa_1607138336:tgl[a0],dg1[a0]
->> >>>  		 * Wa_1607063988:tgl[a0],dg1[a0]
->> >>> @@ -1710,7 +1710,7 @@ rcs_engine_wa_init(struct intel_engine_cs *eng=
-ine, struct i915_wa_list *wal)
->> >>>  			    GEN12_DISABLE_POSH_BUSY_FF_DOP_CG);
->> >>>  	}
->> >>>
->> >>> -	if (IS_TGL_UY_GT_REVID(i915, TGL_REVID_A0, TGL_REVID_A0)) {
->> >>> +	if (IS_TGL_UY_GT_STEPPING(i915, STEP_A0, STEP_A0)) {
->> >>>  		/*
->> >>>  		 * Wa_1606679103:tgl
->> >>>  		 * (see also Wa_1606682166:icl)
->> >>> diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/=
-i915_drv.h
->> >>> index 5e5bcef20e33..11d6e8abde46 100644
->> >>> --- a/drivers/gpu/drm/i915/i915_drv.h
->> >>> +++ b/drivers/gpu/drm/i915/i915_drv.h
->> >>> @@ -1559,54 +1559,54 @@ extern const struct i915_rev_steppings kbl_r=
-evids[];
->> >>>  	(IS_JSL_EHL(p) && IS_REVID(p, since, until))
->> >>>
->> >>>  enum {
->> >>> -	TGL_REVID_A0,
->> >>> -	TGL_REVID_B0,
->> >>> -	TGL_REVID_B1,
->> >>> -	TGL_REVID_C0,
->> >>> -	TGL_REVID_D0,
->> >>> +	STEP_A0,
->> >>> +	STEP_B0,
->> >>> +	STEP_B1,
->> >>> +	STEP_C0,
->> >>> +	STEP_D0,
->> >>>  };
->> >>>
->> >>> -#define TGL_UY_REVIDS_SIZE	4
->> >>> -#define TGL_REVIDS_SIZE		2
->> >>> +#define TGL_UY_REVID_STEP_TBL_SIZE	4
->> >>> +#define TGL_REVID_STEP_TBL_SIZE		2
->> >>>
->> >>> -extern const struct i915_rev_steppings tgl_uy_revids[TGL_UY_REVIDS_=
-SIZE];
->> >>> -extern const struct i915_rev_steppings tgl_revids[TGL_REVIDS_SIZE];
->> >>> +extern const struct i915_rev_steppings tgl_uy_revid_step_tbl[TGL_UY=
-_REVID_STEP_TBL_SIZE];
->> >>> +extern const struct i915_rev_steppings tgl_revid_step_tbl[TGL_REVID=
-_STEP_TBL_SIZE];
->> >>>
->> >>>  static inline const struct i915_rev_steppings *
->> >>> -tgl_revids_get(struct drm_i915_private *dev_priv)
->> >>> +tgl_stepping_get(struct drm_i915_private *dev_priv)
->> >>>  {
->> >>>  	u8 revid =3D INTEL_REVID(dev_priv);
->> >>>  	u8 size;
->> >>> -	const struct i915_rev_steppings *tgl_revid_tbl;
->> >>> +	const struct i915_rev_steppings *revid_step_tbl;
->> >>>
->> >>>  	if (IS_TGL_U(dev_priv) || IS_TGL_Y(dev_priv)) {
->> >>> -		tgl_revid_tbl =3D tgl_uy_revids;
->> >>> -		size =3D ARRAY_SIZE(tgl_uy_revids);
->> >>> +		revid_step_tbl =3D tgl_uy_revid_step_tbl;
->> >>> +		size =3D ARRAY_SIZE(tgl_uy_revid_step_tbl);
->> >>>  	} else {
->> >>> -		tgl_revid_tbl =3D tgl_revids;
->> >>> -		size =3D ARRAY_SIZE(tgl_revids);
->> >>> +		revid_step_tbl =3D tgl_revid_step_tbl;
->> >>> +		size =3D ARRAY_SIZE(tgl_revid_step_tbl);
->> >>>  	}
->> >>>
->> >>>  	revid =3D min_t(u8, revid, size - 1);
->> >>>
->> >>> -	return &tgl_revid_tbl[revid];
->> >>> +	return &revid_step_tbl[revid];
->> >>>  }
->> >>>
->> >>> -#define IS_TGL_DISP_REVID(p, since, until) \
->> >>> +#define IS_TGL_DISP_STEPPING(p, since, until) \
->> >>>  	(IS_TIGERLAKE(p) && \
->> >>> -	 tgl_revids_get(p)->disp_stepping >=3D (since) && \
->> >>> -	 tgl_revids_get(p)->disp_stepping <=3D (until))
->> >>> +	 tgl_stepping_get(p)->disp_stepping >=3D (since) && \
->> >>> +	 tgl_stepping_get(p)->disp_stepping <=3D (until))
->> >>>
->> >>> -#define IS_TGL_UY_GT_REVID(p, since, until) \
->> >>> +#define IS_TGL_UY_GT_STEPPING(p, since, until) \
->> >>>  	((IS_TGL_U(p) || IS_TGL_Y(p)) && \
->> >>> -	 tgl_revids_get(p)->gt_stepping >=3D (since) && \
->> >>> -	 tgl_revids_get(p)->gt_stepping <=3D (until))
->> >>> +	 tgl_stepping_get(p)->gt_stepping >=3D (since) && \
->> >>> +	 tgl_stepping_get(p)->gt_stepping <=3D (until))
->> >>>
->> >>> -#define IS_TGL_GT_REVID(p, since, until) \
->> >>> +#define IS_TGL_GT_STEPPING(p, since, until) \
->> >>>  	(IS_TIGERLAKE(p) && \
->> >>>  	 !(IS_TGL_U(p) || IS_TGL_Y(p)) && \
->> >>> -	 tgl_revids_get(p)->gt_stepping >=3D (since) && \
->> >>> -	 tgl_revids_get(p)->gt_stepping <=3D (until))
->> >>> +	 tgl_stepping_get(p)->gt_stepping >=3D (since) && \
->> >>> +	 tgl_stepping_get(p)->gt_stepping <=3D (until))
->> >>>
->> >>>  #define RKL_REVID_A0		0x0
->> >>>  #define RKL_REVID_B0		0x1
->> >>> diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/=
-intel_pm.c
->> >>> index bbc73df7f753..319acca2630b 100644
->> >>> --- a/drivers/gpu/drm/i915/intel_pm.c
->> >>> +++ b/drivers/gpu/drm/i915/intel_pm.c
->> >>> @@ -7110,7 +7110,7 @@ static void tgl_init_clock_gating(struct drm_i=
-915_private *dev_priv)
->> >>>  		   ILK_DPFC_CHICKEN_COMP_DUMMY_PIXEL);
->> >>>
->> >>>  	/* Wa_1409825376:tgl (pre-prod)*/
->> >>> -	if (IS_TGL_DISP_REVID(dev_priv, TGL_REVID_A0, TGL_REVID_B1))
->> >>> +	if (IS_TGL_DISP_STEPPING(dev_priv, STEP_A0, STEP_B1))
->> >>>  		intel_uncore_write(&dev_priv->uncore, GEN9_CLKGATE_DIS_3, intel_u=
-ncore_read(&dev_priv->uncore, GEN9_CLKGATE_DIS_3) |
->> >>>  			   TGL_VRH_GATING_DIS);
->> >>>
->> >>> --
->> >>> 2.27.0
->> >>>
->>
->> --
->> Jani Nikula, Intel Open Source Graphics Center
->
->-- =
-
->Matt Roper
->Graphics Software Engineer
->VTT-OSGC Platform Enablement
->Intel Corporation
->(916) 356-2795
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+T24gTW9uLCBKYW4gMTEsIDIwMjEgYXQgMTE6MzkgQU0gQmFzIE5pZXV3ZW5odWl6ZW4KPGJhc0Bi
+YXNuaWV1d2VuaHVpemVuLm5sPiB3cm90ZToKPgo+IE9uIE1vbiwgSmFuIDExLCAyMDIxIGF0IDQ6
+MDIgUE0gQWxleCBEZXVjaGVyIDxhbGV4ZGV1Y2hlckBnbWFpbC5jb20+IHdyb3RlOgo+ID4KPiA+
+IE9uIFNhdCwgSmFuIDksIDIwMjEgYXQgOToxMSBQTSBCYXMgTmlldXdlbmh1aXplbgo+ID4gPGJh
+c0BiYXNuaWV1d2VuaHVpemVuLm5sPiB3cm90ZToKPiA+ID4KPiA+ID4gV2l0aCBtb2RpZmllcnMg
+b25lIGNhbiBhY3R1YWxseSBoYXZlIGRpZmZlcmVudCBmb3JtYXRfaW5mbyBzdHJ1Y3RzCj4gPiA+
+IGZvciB0aGUgc2FtZSBmb3JtYXQsIHdoaWNoIG5vdyBtYXR0ZXJzIGZvciBBTURHUFUgc2luY2Ug
+d2UgY29udmVydAo+ID4gPiBpbXBsaWNpdCBtb2RpZmllcnMgdG8gZXhwbGljaXQgbW9kaWZpZXJz
+IHdpdGggbXVsdGlwbGUgcGxhbmVzLgo+ID4gPgo+ID4gPiBJIGNoZWNrZWQgb3RoZXIgZHJpdmVy
+cyBhbmQgaXQgZG9lc24ndCBsb29rIGxpa2UgdGhleSBlbmQgdXAgdHJpZ2dlcmluZwo+ID4gPiB0
+aGlzIGNhc2Ugc28gSSB0aGluayB0aGlzIGlzIHNhZmUgdG8gcmVsYXguCj4gPiA+Cj4gPiA+IFNp
+Z25lZC1vZmYtYnk6IEJhcyBOaWV1d2VuaHVpemVuIDxiYXNAYmFzbmlldXdlbmh1aXplbi5ubD4K
+PiA+ID4gUmV2aWV3ZWQtYnk6IERhbmllbCBWZXR0ZXIgPGRhbmllbC52ZXR0ZXJAZmZ3bGwuY2g+
+Cj4gPiA+IFJldmlld2VkLWJ5OiBaaGFuIExpdSA8emhhbi5saXVAYW1kLmNvbT4KPiA+ID4gQWNr
+ZWQtYnk6IENocmlzdGlhbiBLw7ZuaWcgPGNocmlzdGlhbi5rb2VuaWdAYW1kLmNvbT4KPiA+ID4g
+QWNrZWQtYnk6IEFsZXggRGV1Y2hlciA8YWxleGFuZGVyLmRldWNoZXJAYW1kLmNvbT4KPiA+ID4g
+Rml4ZXM6IDgxNjg1M2Y5ZGM0MCAoImRybS9hbWQvZGlzcGxheTogU2V0IG5ldyBmb3JtYXQgaW5m
+byBmb3IgY29udmVydGVkIG1ldGFkYXRhLiIpCj4gPgo+ID4gRG8geW91IGhhdmUgY29tbWl0IHJp
+Z2h0cyB0byBkcm0tbWlzYyBvciBkbyB5b3UgbmVlZCBzb21lb25lIHRvIGNvbW1pdAo+ID4gdGhp
+cyBmb3IgeW91Pwo+Cj4gSSBkb24ndCBoYXZlIGNvbW1pdCByaWdodHMgc28gaWYgdGhlIHBhdGNo
+IGNvdWxkIGJlIGNvbW1pdHRlZCBmb3IgbWUKPiB0aGF0IHdvdWxkIGJlIGFwcHJlY2lhdGVkIQoK
+UHVzaGVkIHRvIGRybS1taXNjLWZpeGVzLiAgVGhhbmtzIQoKSWYgeW91IHdhbnQgYWNjZXNzIHRv
+IGRybS1taXNjLCBJIGRvbid0IHNlZSBhbnkgcmVhc29uIHlvdSBzaG91bGRuJ3QgaGF2ZSBpdC4K
+CkFsZXgKCgo+ID4KPiA+IFRoYW5rcyEKPiA+Cj4gPiBBbGV4Cj4gPgo+ID4gPiAtLS0KPiA+ID4g
+IGRyaXZlcnMvZ3B1L2RybS9kcm1fcGxhbmUuYyB8IDkgKysrKysrKystCj4gPiA+ICAxIGZpbGUg
+Y2hhbmdlZCwgOCBpbnNlcnRpb25zKCspLCAxIGRlbGV0aW9uKC0pCj4gPiA+Cj4gPiA+IGRpZmYg
+LS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vZHJtX3BsYW5lLmMgYi9kcml2ZXJzL2dwdS9kcm0vZHJt
+X3BsYW5lLmMKPiA+ID4gaW5kZXggZTYyMzE5NDdmOTg3Li5hMGNiNzQ2YmNiMGEgMTAwNjQ0Cj4g
+PiA+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9kcm1fcGxhbmUuYwo+ID4gPiArKysgYi9kcml2ZXJz
+L2dwdS9kcm0vZHJtX3BsYW5lLmMKPiA+ID4gQEAgLTExNjMsNyArMTE2MywxNCBAQCBpbnQgZHJt
+X21vZGVfcGFnZV9mbGlwX2lvY3RsKHN0cnVjdCBkcm1fZGV2aWNlICpkZXYsCj4gPiA+ICAgICAg
+ICAgaWYgKHJldCkKPiA+ID4gICAgICAgICAgICAgICAgIGdvdG8gb3V0Owo+ID4gPgo+ID4gPiAt
+ICAgICAgIGlmIChvbGRfZmItPmZvcm1hdCAhPSBmYi0+Zm9ybWF0KSB7Cj4gPiA+ICsgICAgICAg
+LyoKPiA+ID4gKyAgICAgICAgKiBPbmx5IGNoZWNrIHRoZSBGT1VSQ0MgZm9ybWF0IGNvZGUsIGV4
+Y2x1ZGluZyBtb2RpZmllcnMuIFRoaXMgaXMKPiA+ID4gKyAgICAgICAgKiBlbm91Z2ggZm9yIGFs
+bCBsZWdhY3kgZHJpdmVycy4gQXRvbWljIGRyaXZlcnMgaGF2ZSB0aGVpciBvd24KPiA+ID4gKyAg
+ICAgICAgKiBjaGVja3MgaW4gdGhlaXIgLT5hdG9taWNfY2hlY2sgaW1wbGVtZW50YXRpb24sIHdo
+aWNoIHdpbGwKPiA+ID4gKyAgICAgICAgKiByZXR1cm4gLUVJTlZBTCBpZiBhbnkgaHcgb3IgZHJp
+dmVyIGNvbnN0cmFpbnQgaXMgdmlvbGF0ZWQgZHVlCj4gPiA+ICsgICAgICAgICogdG8gbW9kaWZp
+ZXIgY2hhbmdlcy4KPiA+ID4gKyAgICAgICAgKi8KPiA+ID4gKyAgICAgICBpZiAob2xkX2ZiLT5m
+b3JtYXQtPmZvcm1hdCAhPSBmYi0+Zm9ybWF0LT5mb3JtYXQpIHsKPiA+ID4gICAgICAgICAgICAg
+ICAgIERSTV9ERUJVR19LTVMoIlBhZ2UgZmxpcCBpcyBub3QgYWxsb3dlZCB0byBjaGFuZ2UgZnJh
+bWUgYnVmZmVyIGZvcm1hdC5cbiIpOwo+ID4gPiAgICAgICAgICAgICAgICAgcmV0ID0gLUVJTlZB
+TDsKPiA+ID4gICAgICAgICAgICAgICAgIGdvdG8gb3V0Owo+ID4gPiAtLQo+ID4gPiAyLjI5LjIK
+PiA+ID4KPiA+ID4gX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X18KPiA+ID4gYW1kLWdmeCBtYWlsaW5nIGxpc3QKPiA+ID4gYW1kLWdmeEBsaXN0cy5mcmVlZGVz
+a3RvcC5vcmcKPiA+ID4gaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0
+aW5mby9hbWQtZ2Z4Cl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9y
+ZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdm
+eAo=
