@@ -2,63 +2,40 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 817E82F1C62
-	for <lists+intel-gfx@lfdr.de>; Mon, 11 Jan 2021 18:32:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6AAC02F1C76
+	for <lists+intel-gfx@lfdr.de>; Mon, 11 Jan 2021 18:35:20 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CE365892B1;
-	Mon, 11 Jan 2021 17:32:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 457528984D;
+	Mon, 11 Jan 2021 17:35:18 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8582A892B1
- for <intel-gfx@lists.freedesktop.org>; Mon, 11 Jan 2021 17:32:05 +0000 (UTC)
-IronPort-SDR: SM1yQjVKmKpDWh0zJR7uBRbaKkceGxcgVe1//s8XQcCugCEI57SfUvH3myvP4ltb1a9+4iEwUN
- lT6qLA0Yn7yQ==
-X-IronPort-AV: E=McAfee;i="6000,8403,9861"; a="262682869"
-X-IronPort-AV: E=Sophos;i="5.79,339,1602572400"; d="scan'208";a="262682869"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Jan 2021 09:32:05 -0800
-IronPort-SDR: 7rbyUqc2rg+Zxz41GmbCyB3CGM1eprtX02pTl51qv9JzE9KaQ7PqY2x8uxWFPBMwbj5V3FePzo
- 0iWbZnWTED4A==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.79,339,1602572400"; d="scan'208";a="344951049"
-Received: from fmsmsx603.amr.corp.intel.com ([10.18.126.83])
- by fmsmga007.fm.intel.com with ESMTP; 11 Jan 2021 09:32:05 -0800
-Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
- fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1713.5; Mon, 11 Jan 2021 09:32:04 -0800
-Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
- fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1713.5; Mon, 11 Jan 2021 09:32:04 -0800
-Received: from fmsmsx610.amr.corp.intel.com ([10.18.126.90]) by
- fmsmsx610.amr.corp.intel.com ([10.18.126.90]) with mapi id 15.01.1713.004;
- Mon, 11 Jan 2021 09:32:04 -0800
-From: "Bloomfield, Jon" <jon.bloomfield@intel.com>
-To: Chris Wilson <chris@chris-wilson.co.uk>, "intel-gfx@lists.freedesktop.org"
- <intel-gfx@lists.freedesktop.org>
-Thread-Topic: [PATCH 03/11] drm/i915: Allow the sysadmin to override security
- mitigations
-Thread-Index: AQHW52H0KsO7cQ69u0GWC0XUKyZqaqoirrpg
-Date: Mon, 11 Jan 2021 17:31:48 +0000
-Deferred-Delivery: Mon, 11 Jan 2021 17:31:03 +0000
-Message-ID: <a2154cb4c5f7405fbc5551b750506fd8@intel.com>
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 33CA58984D
+ for <intel-gfx@lists.freedesktop.org>; Mon, 11 Jan 2021 17:35:17 +0000 (UTC)
+IronPort-SDR: zEbqWiCcKar5zKtbzpJGzTRHZQIGqygz8MBxolKT/tdrR2NKPGfW75R62FdUVmxpugopY++LTF
+ hgz9OP5FgbqQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9861"; a="157084040"
+X-IronPort-AV: E=Sophos;i="5.79,339,1602572400"; d="scan'208";a="157084040"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Jan 2021 09:35:16 -0800
+IronPort-SDR: jwe53H6FJjojpI9CffbPmcp3isaPTdp82CajTlfqZl0E3hTYq93OC++Dtnl/yPlJXkUM1y3iN0
+ +Cas/OFceLGA==
+X-IronPort-AV: E=Sophos;i="5.79,339,1602572400"; d="scan'208";a="399875801"
+Received: from jaksamit-mobl.amr.corp.intel.com (HELO intel.com)
+ ([10.212.178.167])
+ by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Jan 2021 09:35:15 -0800
+Date: Mon, 11 Jan 2021 12:35:12 -0500
+From: Rodrigo Vivi <rodrigo.vivi@intel.com>
+To: Chris Wilson <chris@chris-wilson.co.uk>
+Message-ID: <20210111173512.GA3689@intel.com>
 References: <20210110150404.19535-1-chris@chris-wilson.co.uk>
- <20210110150404.19535-3-chris@chris-wilson.co.uk>
-In-Reply-To: <20210110150404.19535-3-chris@chris-wilson.co.uk>
-Accept-Language: en-GB, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-product: dlpe-windows
-dlp-reaction: no-action
-dlp-version: 11.5.1.3
-x-originating-ip: [10.22.254.132]
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH 03/11] drm/i915: Allow the sysadmin to
- override security mitigations
+Content-Disposition: inline
+In-Reply-To: <20210110150404.19535-1-chris@chris-wilson.co.uk>
+Subject: Re: [Intel-gfx] [PATCH 01/11] drm/i915/gt: Limit VFE threads based
+ on GT
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,38 +48,351 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "stable@vger.kernel.org" <stable@vger.kernel.org>
+Cc: intel-gfx@lists.freedesktop.org, stable@vger.kernel.org,
+ Randy Wright <rwright@hpe.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-> -----Original Message-----
-> From: Chris Wilson <chris@chris-wilson.co.uk>
-> Sent: Sunday, January 10, 2021 7:04 AM
-> To: intel-gfx@lists.freedesktop.org
-> Cc: Chris Wilson <chris@chris-wilson.co.uk>; Joonas Lahtinen
-> <joonas.lahtinen@linux.intel.com>; Bloomfield, Jon
-> <jon.bloomfield@intel.com>; Vivi, Rodrigo <rodrigo.vivi@intel.com>;
-> stable@vger.kernel.org
-> Subject: [PATCH 03/11] drm/i915: Allow the sysadmin to override security
-> mitigations
+On Sun, Jan 10, 2021 at 03:03:54PM +0000, Chris Wilson wrote:
+> MEDIA_STATE_VFE only accepts the 'maximum number of threads' in the
+> range [0, n-1] where n is #EU * (#threads/EU) with the number of threads
+> based on plaform and the number of EU based on the number of slices and
+> subslices. This is a fixed number per platform/gt, so appropriately
+> limit the number of threads we spawn to match the device.
 > 
-> The clear-residuals mitigation is a relatively heavy hammer and under some
-> circumstances the user may wish to forgo the context isolation in order
-> to meet some performance requirement. Introduce a generic module
-> parameter to allow selectively enabling/disabling different mitigations.
+> v2: Oversaturate the system with tasks to force execution on every HW
+> thread; if the thread idles it is returned to the pool and may be reused
+> again before an unused thread.
 > 
-> Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/1858
+> v3: Fix more state commands, which was causing Baytrail to barf.
+
+CI is still not happy with byt right? or is that false positive?
+
+> v4: STATE_CACHE_INVALIDATE requires a stall on Ivybridge
+> 
+> Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/2024
 > Fixes: 47f8253d2b89 ("drm/i915/gen7: Clear all EU/L3 residual contexts")
 > Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-> Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+> Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+> Cc: Prathap Kumar Valsan <prathap.kumar.valsan@intel.com>
+> Cc: Akeem G Abodunrin <akeem.g.abodunrin@intel.com>
 > Cc: Jon Bloomfield <jon.bloomfield@intel.com>
 > Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> Cc: stable@vger.kernel.org # v5.7
+> Cc: Randy Wright <rwright@hpe.com>
+> Cc: stable@vger.kernel.org # v5.7+
 > ---
+>  drivers/gpu/drm/i915/gt/gen7_renderclear.c | 157 ++++++++++++---------
+>  1 file changed, 94 insertions(+), 63 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/gt/gen7_renderclear.c b/drivers/gpu/drm/i915/gt/gen7_renderclear.c
+> index d93d85cd3027..f32a8e8040b2 100644
+> --- a/drivers/gpu/drm/i915/gt/gen7_renderclear.c
+> +++ b/drivers/gpu/drm/i915/gt/gen7_renderclear.c
+> @@ -7,8 +7,6 @@
+>  #include "i915_drv.h"
+>  #include "intel_gpu_commands.h"
+>  
+> -#define MAX_URB_ENTRIES 64
+> -#define STATE_SIZE (4 * 1024)
+>  #define GT3_INLINE_DATA_DELAYS 0x1E00
+>  #define batch_advance(Y, CS) GEM_BUG_ON((Y)->end != (CS))
+>  
+> @@ -34,38 +32,59 @@ struct batch_chunk {
+>  };
+>  
+>  struct batch_vals {
+> -	u32 max_primitives;
+> -	u32 max_urb_entries;
+> -	u32 cmd_size;
+> -	u32 state_size;
+> +	u32 max_threads;
+>  	u32 state_start;
+> -	u32 batch_size;
+> +	u32 surface_start;
+>  	u32 surface_height;
+>  	u32 surface_width;
+> -	u32 scratch_size;
+> -	u32 max_size;
+> +	u32 size;
+>  };
+>  
+> +static inline int num_primitives(const struct batch_vals *bv)
+> +{
+> +	/*
+> +	 * We need to saturate the GPU with work in order to dispatch
+> +	 * a shader on every HW thread, and clear the thread-local registers.
+> +	 * In short, we have to dispatch work faster than the shaders can
+> +	 * run in order to fill occupy each HW thread.
+> +	 */
+> +	return bv->max_threads;
+> +}
+> +
+>  static void
+>  batch_get_defaults(struct drm_i915_private *i915, struct batch_vals *bv)
+>  {
+>  	if (IS_HASWELL(i915)) {
+> -		bv->max_primitives = 280;
+> -		bv->max_urb_entries = MAX_URB_ENTRIES;
+> +		switch (INTEL_INFO(i915)->gt) {
+> +		default:
+> +		case 1:
+> +			bv->max_threads = 70;
+> +			break;
+> +		case 2:
+> +			bv->max_threads = 140;
+> +			break;
+> +		case 3:
+> +			bv->max_threads = 280;
+> +			break;
+> +		}
+>  		bv->surface_height = 16 * 16;
+>  		bv->surface_width = 32 * 2 * 16;
+>  	} else {
+> -		bv->max_primitives = 128;
+> -		bv->max_urb_entries = MAX_URB_ENTRIES / 2;
+> +		switch (INTEL_INFO(i915)->gt) {
+> +		default:
+> +		case 1: /* including vlv */
+> +			bv->max_threads = 36;
+> +			break;
+> +		case 2:
+> +			bv->max_threads = 128;
+> +			break;
+> +		}
+>  		bv->surface_height = 16 * 8;
+>  		bv->surface_width = 32 * 16;
 
-Reviewed-by: Jon Bloomfield <jon.bloomfield@intel.com>?
+all the values above matches the spec.
+
+>  	}
+> -	bv->cmd_size = bv->max_primitives * 4096;
+> -	bv->state_size = STATE_SIZE;
+> -	bv->state_start = bv->cmd_size;
+> -	bv->batch_size = bv->cmd_size + bv->state_size;
+> -	bv->scratch_size = bv->surface_height * bv->surface_width;
+> -	bv->max_size = bv->batch_size + bv->scratch_size;
+> +	bv->state_start = round_up(SZ_1K + num_primitives(bv) * 64, SZ_4K);
+> +	bv->surface_start = bv->state_start + SZ_4K;
+> +	bv->size = bv->surface_start + bv->surface_height * bv->surface_width;
+
+I liked this batch values simplification...
+
+>  }
+>  
+>  static void batch_init(struct batch_chunk *bc,
+> @@ -155,7 +174,8 @@ static u32
+>  gen7_fill_binding_table(struct batch_chunk *state,
+>  			const struct batch_vals *bv)
+>  {
+> -	u32 surface_start = gen7_fill_surface_state(state, bv->batch_size, bv);
+> +	u32 surface_start =
+> +		gen7_fill_surface_state(state, bv->surface_start, bv);
+>  	u32 *cs = batch_alloc_items(state, 32, 8);
+>  	u32 offset = batch_offset(state, cs);
+>  
+> @@ -214,9 +234,9 @@ static void
+>  gen7_emit_state_base_address(struct batch_chunk *batch,
+>  			     u32 surface_state_base)
+>  {
+> -	u32 *cs = batch_alloc_items(batch, 0, 12);
+> +	u32 *cs = batch_alloc_items(batch, 0, 10);
+>  
+> -	*cs++ = STATE_BASE_ADDRESS | (12 - 2);
+> +	*cs++ = STATE_BASE_ADDRESS | (10 - 2);
+>  	/* general */
+>  	*cs++ = batch_addr(batch) | BASE_ADDRESS_MODIFY;
+>  	/* surface */
+> @@ -233,8 +253,6 @@ gen7_emit_state_base_address(struct batch_chunk *batch,
+>  	*cs++ = BASE_ADDRESS_MODIFY;
+>  	*cs++ = 0;
+>  	*cs++ = BASE_ADDRESS_MODIFY;
+> -	*cs++ = 0;
+> -	*cs++ = 0;
+
+why don't we need this anymore?
+
+>  	batch_advance(batch, cs);
+>  }
+>  
+> @@ -244,8 +262,7 @@ gen7_emit_vfe_state(struct batch_chunk *batch,
+>  		    u32 urb_size, u32 curbe_size,
+>  		    u32 mode)
+>  {
+> -	u32 urb_entries = bv->max_urb_entries;
+> -	u32 threads = bv->max_primitives - 1;
+> +	u32 threads = bv->max_threads - 1;
+>  	u32 *cs = batch_alloc_items(batch, 32, 8);
+>  
+>  	*cs++ = MEDIA_VFE_STATE | (8 - 2);
+> @@ -254,7 +271,7 @@ gen7_emit_vfe_state(struct batch_chunk *batch,
+>  	*cs++ = 0;
+>  
+>  	/* number of threads & urb entries for GPGPU vs Media Mode */
+> -	*cs++ = threads << 16 | urb_entries << 8 | mode << 2;
+> +	*cs++ = threads << 16 | 1 << 8 | mode << 2;
+>  
+>  	*cs++ = 0;
+>  
+> @@ -293,17 +310,12 @@ gen7_emit_media_object(struct batch_chunk *batch,
+>  {
+>  	unsigned int x_offset = (media_object_index % 16) * 64;
+>  	unsigned int y_offset = (media_object_index / 16) * 16;
+> -	unsigned int inline_data_size;
+> -	unsigned int media_batch_size;
+> -	unsigned int i;
+> +	unsigned int pkt = 6 + 3;
+>  	u32 *cs;
+>  
+> -	inline_data_size = 112 * 8;
+> -	media_batch_size = inline_data_size + 6;
+> +	cs = batch_alloc_items(batch, 8, pkt);
+>  
+> -	cs = batch_alloc_items(batch, 8, media_batch_size);
+> -
+> -	*cs++ = MEDIA_OBJECT | (media_batch_size - 2);
+> +	*cs++ = MEDIA_OBJECT | (pkt - 2);
+>  
+>  	/* interface descriptor offset */
+>  	*cs++ = 0;
+> @@ -317,25 +329,44 @@ gen7_emit_media_object(struct batch_chunk *batch,
+>  	*cs++ = 0;
+>  
+>  	/* inline */
+> -	*cs++ = (y_offset << 16) | (x_offset);
+> +	*cs++ = y_offset << 16 | x_offset;
+>  	*cs++ = 0;
+>  	*cs++ = GT3_INLINE_DATA_DELAYS;
+> -	for (i = 3; i < inline_data_size; i++)
+> -		*cs++ = 0;
+
+why?
+
+>  
+>  	batch_advance(batch, cs);
+>  }
+>  
+>  static void gen7_emit_pipeline_flush(struct batch_chunk *batch)
+>  {
+> -	u32 *cs = batch_alloc_items(batch, 0, 5);
+> +	u32 *cs = batch_alloc_items(batch, 0, 4);
+>  
+> -	*cs++ = GFX_OP_PIPE_CONTROL(5);
+> -	*cs++ = PIPE_CONTROL_STATE_CACHE_INVALIDATE |
+> -		PIPE_CONTROL_GLOBAL_GTT_IVB;
+> +	*cs++ = GFX_OP_PIPE_CONTROL(4);
+> +	*cs++ = PIPE_CONTROL_RENDER_TARGET_CACHE_FLUSH |
+> +		PIPE_CONTROL_DEPTH_CACHE_FLUSH |
+> +		PIPE_CONTROL_DC_FLUSH_ENABLE |
+> +		PIPE_CONTROL_CS_STALL;
+>  	*cs++ = 0;
+>  	*cs++ = 0;
+> +
+> +	batch_advance(batch, cs);
+> +}
+> +
+> +static void gen7_emit_pipeline_invalidate(struct batch_chunk *batch)
+> +{
+> +	u32 *cs = batch_alloc_items(batch, 0, 8);
+> +
+> +	/* ivb: Stall before STATE_CACHE_INVALIDATE */
+> +	*cs++ = GFX_OP_PIPE_CONTROL(4);
+> +	*cs++ = PIPE_CONTROL_STALL_AT_SCOREBOARD |
+> +		PIPE_CONTROL_CS_STALL;
+>  	*cs++ = 0;
+> +	*cs++ = 0;
+> +
+> +	*cs++ = GFX_OP_PIPE_CONTROL(4);
+> +	*cs++ = PIPE_CONTROL_STATE_CACHE_INVALIDATE;
+> +	*cs++ = 0;
+> +	*cs++ = 0;
+> +
+>  	batch_advance(batch, cs);
+>  }
+>  
+> @@ -344,34 +375,34 @@ static void emit_batch(struct i915_vma * const vma,
+>  		       const struct batch_vals *bv)
+>  {
+>  	struct drm_i915_private *i915 = vma->vm->i915;
+> -	unsigned int desc_count = 64;
+> -	const u32 urb_size = 112;
+> +	const unsigned int desc_count = 1;
+> +	const unsigned int urb_size = 1;
+>  	struct batch_chunk cmds, state;
+> -	u32 interface_descriptor;
+> +	u32 descriptors;
+>  	unsigned int i;
+>  
+> -	batch_init(&cmds, vma, start, 0, bv->cmd_size);
+> -	batch_init(&state, vma, start, bv->state_start, bv->state_size);
+> +	batch_init(&cmds, vma, start, 0, bv->state_start);
+> +	batch_init(&state, vma, start, bv->state_start, SZ_4K);
+>  
+> -	interface_descriptor =
+> -		gen7_fill_interface_descriptor(&state, bv,
+> -					       IS_HASWELL(i915) ?
+> -					       &cb_kernel_hsw :
+> -					       &cb_kernel_ivb,
+> -					       desc_count);
+> -	gen7_emit_pipeline_flush(&cmds);
+> +	descriptors = gen7_fill_interface_descriptor(&state, bv,
+> +						     IS_HASWELL(i915) ?
+> +						     &cb_kernel_hsw :
+> +						     &cb_kernel_ivb,
+> +						     desc_count);
+> +
+> +	gen7_emit_pipeline_invalidate(&cmds);
+>  	batch_add(&cmds, PIPELINE_SELECT | PIPELINE_SELECT_MEDIA);
+>  	batch_add(&cmds, MI_NOOP);
+> -	gen7_emit_state_base_address(&cmds, interface_descriptor);
+> +	gen7_emit_pipeline_invalidate(&cmds);
+> +
+>  	gen7_emit_pipeline_flush(&cmds);
+> +	gen7_emit_state_base_address(&cmds, descriptors);
+> +	gen7_emit_pipeline_invalidate(&cmds);
+
+why do we need double invalidate?
+
+>  
+>  	gen7_emit_vfe_state(&cmds, bv, urb_size - 1, 0, 0);
+> +	gen7_emit_interface_descriptor_load(&cmds, descriptors, desc_count);
+>  
+> -	gen7_emit_interface_descriptor_load(&cmds,
+> -					    interface_descriptor,
+> -					    desc_count);
+> -
+> -	for (i = 0; i < bv->max_primitives; i++)
+> +	for (i = 0; i < num_primitives(bv); i++)
+>  		gen7_emit_media_object(&cmds, i);
+>  
+>  	batch_add(&cmds, MI_BATCH_BUFFER_END);
+> @@ -385,15 +416,15 @@ int gen7_setup_clear_gpr_bb(struct intel_engine_cs * const engine,
+>  
+>  	batch_get_defaults(engine->i915, &bv);
+>  	if (!vma)
+> -		return bv.max_size;
+> +		return bv.size;
+>  
+> -	GEM_BUG_ON(vma->obj->base.size < bv.max_size);
+> +	GEM_BUG_ON(vma->obj->base.size < bv.size);
+>  
+>  	batch = i915_gem_object_pin_map(vma->obj, I915_MAP_WC);
+>  	if (IS_ERR(batch))
+>  		return PTR_ERR(batch);
+>  
+> -	emit_batch(vma, memset(batch, 0, bv.max_size), &bv);
+> +	emit_batch(vma, memset(batch, 0, bv.size), &bv);
+>  
+>  	i915_gem_object_flush_map(vma->obj);
+>  	__i915_gem_object_release_map(vma->obj);
+> -- 
+> 2.20.1
+> 
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
