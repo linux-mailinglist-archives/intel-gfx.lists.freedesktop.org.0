@@ -1,42 +1,47 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 758112F0FA1
-	for <lists+intel-gfx@lfdr.de>; Mon, 11 Jan 2021 11:03:48 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id D4A992F0FCB
+	for <lists+intel-gfx@lfdr.de>; Mon, 11 Jan 2021 11:14:41 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 325F589FD1;
-	Mon, 11 Jan 2021 10:03:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 45E1E89E3F;
+	Mon, 11 Jan 2021 10:14:40 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0E80989FD1
- for <intel-gfx@lists.freedesktop.org>; Mon, 11 Jan 2021 10:03:42 +0000 (UTC)
-IronPort-SDR: TuORJLWp8wFCIgfo83JG3Tvh45zoBkaxeQ1VnVqRcZIlcHmW86CmTy2O5PILimFjpH33q59YWF
- HhKLCta+Sh/g==
-X-IronPort-AV: E=McAfee;i="6000,8403,9860"; a="177930168"
-X-IronPort-AV: E=Sophos;i="5.79,338,1602572400"; d="scan'208";a="177930168"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Jan 2021 02:03:38 -0800
-IronPort-SDR: b1DS422JqFycV3AofEy30Cu/snFqqIKdPFCjqP26gtp0i0PTDW0KVxX2rm/pUGWZJowbXvI9v6
- Dgn+nshNG1dA==
-X-IronPort-AV: E=Sophos;i="5.79,338,1602572400"; d="scan'208";a="380959021"
-Received: from libresli-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.213.207.39])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Jan 2021 02:03:35 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: lyude@redhat.com, intel-gfx@lists.freedesktop.org
-In-Reply-To: <e5fd2290fae25fc1167ea6fe91e7060840d0db47.camel@redhat.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20210108152841.6944-1-jani.nikula@intel.com>
- <e5fd2290fae25fc1167ea6fe91e7060840d0db47.camel@redhat.com>
-Date: Mon, 11 Jan 2021 12:03:33 +0200
-Message-ID: <875z43yemi.fsf@intel.com>
+Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DF11389E3F;
+ Mon, 11 Jan 2021 10:14:39 +0000 (UTC)
+From: Thomas Gleixner <tglx@linutronix.de>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
+ s=2020; t=1610360078;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=vdITQROn2Urg2SWnxxpWECg8/2piMq1rysKQi+Js6AM=;
+ b=UnYkeRyOrRU1KtT5e+L+fQ3h1X+pI6IQmvvPVQCyBzb6fOAslMZh9kmf6riX6Uc0jR5HAW
+ kLM9jzvLqGc+Imjy/0I2rAsMH2VpuQIdJ98CwfEhcoTYCCXiQ/XwFpRt6Jep7zrPxwT0va
+ Xwof1xtTH5Z/PeoiWTuI7XI6GZ2R5aGzpohXNnayNbUAXzj5+Rf7t2lNRSQCuUkrunBvvh
+ E6YQGrr8aPBg88a1jm3tkQeNaO9yiXQdYW2cQM+bbmj0FEDrh39+sh5VynpFZhESsKImAx
+ DwV8ajINKrlorxI1UlTNWgwAXJMXRe809J7/lTBl2XxW6BUf7G/4P1Qx4lUTcA==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
+ s=2020e; t=1610360078;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=vdITQROn2Urg2SWnxxpWECg8/2piMq1rysKQi+Js6AM=;
+ b=X4gUVuzYQlznnJ4rBpJlj0pVo1A0rJo22Rpjt8+XaTFqV54Id4MU7M5oqDy1KDl8a6a4jG
+ +hpoSFj00cPTvyCg==
+To: Guenter Roeck <linux@roeck-us.net>
+In-Reply-To: <20201227192049.GA195845@roeck-us.net>
+References: <20201210192536.118432146@linutronix.de>
+ <20201210194042.703779349@linutronix.de>
+ <20201227192049.GA195845@roeck-us.net>
+Date: Mon, 11 Jan 2021 11:14:38 +0100
+Message-ID: <87im837pbl.fsf@nanos.tec.linutronix.de>
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/backlight: fix CPU mode backlight
- takeover on LPT
+Subject: Re: [Intel-gfx] [patch 02/30] genirq: Move status flag checks to
+ core
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,79 +54,51 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: stable@vger.kernel.org
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: Mark Rutland <mark.rutland@arm.com>,
+ Karthikeyan Mitran <m.karthikeyan@mobiveil.co.in>,
+ Peter Zijlstra <peterz@infradead.org>,
+ Catalin Marinas <catalin.marinas@arm.com>, dri-devel@lists.freedesktop.org,
+ Chris Wilson <chris@chris-wilson.co.uk>,
+ "James E.J. Bottomley" <James.Bottomley@HansenPartnership.com>,
+ Russell King <linux@armlinux.org.uk>, afzal mohammed <afzal.mohd.ma@gmail.com>,
+ Boris Ostrovsky <boris.ostrovsky@oracle.com>, linux-s390@vger.kernel.org,
+ Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+ Dave Jiang <dave.jiang@intel.com>, Leon Romanovsky <leon@kernel.org>,
+ linux-rdma@vger.kernel.org, Will Deacon <will@kernel.org>,
+ Helge Deller <deller@gmx.de>, Michal Simek <michal.simek@xilinx.com>,
+ Christian Borntraeger <borntraeger@de.ibm.com>, linux-pci@vger.kernel.org,
+ intel-gfx@lists.freedesktop.org, xen-devel@lists.xenproject.org,
+ Hou Zhiqiang <Zhiqiang.Hou@nxp.com>, Wambui Karuga <wambui.karugax@gmail.com>,
+ Allen Hubbe <allenbh@gmail.com>, Heiko Carstens <hca@linux.ibm.com>,
+ Jon Mason <jdmason@kudzu.us>, linux-gpio@vger.kernel.org,
+ Stefano Stabellini <sstabellini@kernel.org>, Jakub Kicinski <kuba@kernel.org>,
+ Bjorn Helgaas <bhelgaas@google.com>, Lee Jones <lee.jones@linaro.org>,
+ linux-arm-kernel@lists.infradead.org, Juergen Gross <jgross@suse.com>,
+ David Airlie <airlied@linux.ie>, linux-parisc@vger.kernel.org,
+ netdev@vger.kernel.org, LKML <linux-kernel@vger.kernel.org>,
+ Tariq Toukan <tariqt@nvidia.com>, Marc Zyngier <maz@kernel.org>,
+ linux-ntb@googlegroups.com, Saeed Mahameed <saeedm@nvidia.com>,
+ "David S. Miller" <davem@davemloft.net>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gRnJpLCAwOCBKYW4gMjAyMSwgTHl1ZGUgUGF1bCA8bHl1ZGVAcmVkaGF0LmNvbT4gd3JvdGU6
-Cj4gUmV2aWV3ZWQtYnk6IEx5dWRlIFBhdWwgPGx5dWRlQHJlZGhhdC5jb20+Cj4KPiBMZXQgbWUg
-a25vdyB3aGVuIHlvdSd2ZSBwdXNoZWQgdGhpcyB1cHN0cmVhbSBhbmQgSSdsbCBnbyBhaGVhZCBh
-bmQgc2VuZCBvdXQgYQo+IHJlYmFzZWQgdmVyc2lvbiBvZiBteSBiYWNrbGlnaHQgc2VyaWVzLgoK
-UHVzaGVkLCB0aGFua3MgZm9yIHRoZSByZXZpZXcuCgpJJ20gaG9waW5nIHRvIGRvIG1vcmUgcmV2
-aWV3IG9mIHRoZSBzZXJpZXMgdG9kYXksIHNvIHBsZWFzZSBob2xkIG9mZiBvbgphY3R1YWxseSBz
-ZW5kaW5nIHRoZSByZWJhc2VkIHZlcnNpb24gZm9yIGEgYml0IGxvbmdlci4KCkJSLApKYW5pLgoK
-Cj4KPiBPbiBGcmksIDIwMjEtMDEtMDggYXQgMTc6MjggKzAyMDAsIEphbmkgTmlrdWxhIHdyb3Rl
-Ogo+PiBUaGUgcGNoX2dldF9iYWNrbGlnaHQoKSwgbHB0X2dldF9iYWNrbGlnaHQoKSwgYW5kIGxw
-dF9zZXRfYmFja2xpZ2h0KCkKPj4gZnVuY3Rpb25zIG9wZXJhdGUgZGlyZWN0bHkgb24gdGhlIGhh
-cmR3YXJlIHJlZ2lzdGVycy4gSWYgaW52ZXJ0aW5nIHRoZQo+PiB2YWx1ZSBpcyBuZWVkZWQsIHVz
-aW5nIGludGVsX3BhbmVsX2NvbXB1dGVfYnJpZ2h0bmVzcygpLCBpdCBzaG91bGQgb25seQo+PiBi
-ZSBkb25lIGluIHRoZSBpbnRlcmZhY2UgYmV0d2VlbiBoYXJkd2FyZSByZWdpc3RlcnMgYW5kCj4+
-IHBhbmVsLT5iYWNrbGlnaHQubGV2ZWwuCj4+IAo+PiBUaGUgQ1BVIG1vZGUgdGFrZW92ZXIgY29k
-ZSBhZGRlZCBpbiBjb21taXQgNWIxZWM5YWM3YWI1Cj4+ICgiZHJtL2k5MTUvYmFja2xpZ2h0OiBG
-aXggYmFja2xpZ2h0IHRha2VvdmVyIG9uIExQVCwgdjMuIikgcmVhZHMgdGhlCj4+IGhhcmR3YXJl
-IHJlZ2lzdGVyIGFuZCBjb252ZXJ0cyB0byBwYW5lbC0+YmFja2xpZ2h0LmxldmVsIGNvcnJlY3Rs
-eSwKPj4gaG93ZXZlciB0aGUgdmFsdWUgd3JpdHRlbiBiYWNrIHNob3VsZCByZW1haW4gaW4gdGhl
-IGhhcmR3YXJlIHJlZ2lzdGVyCj4+ICJkb21haW4iLgo+PiAKPj4gVGhpcyBoYXNuJ3QgYmVlbiBh
-biBpc3N1ZSwgYmVjYXVzZSBHTTQ1IG1hY2hpbmVzIGFyZSB0aGUgb25seSBrbm93bgo+PiB1c2Vy
-cyBvZiBpOTE1LmludmVydF9icmlnaHRuZXNzIGFuZCB0aGUgYnJpZ2h0bmVzcyBpbnZlcnQgcXVp
-cmssIGFuZAo+PiB3aXRob3V0IG9uZSBvZiB0aGVtIG5vIGNvbnZlcnNpb24gaXMgbWFkZS4gSXQn
-cyBsaWtlbHkgbm9ib2R5J3MgZXZlciBoaXQKPj4gdGhlIHByb2JsZW0uCj4+IAo+PiBGaXhlczog
-NWIxZWM5YWM3YWI1ICgiZHJtL2k5MTUvYmFja2xpZ2h0OiBGaXggYmFja2xpZ2h0IHRha2VvdmVy
-IG9uIExQVCwgdjMuIikKPj4gQ2M6IE1hYXJ0ZW4gTGFua2hvcnN0IDxtYWFydGVuLmxhbmtob3Jz
-dEBsaW51eC5pbnRlbC5jb20+Cj4+IENjOiBWaWxsZSBTeXJqw6Rsw6QgPHZpbGxlLnN5cmphbGFA
-bGludXguaW50ZWwuY29tPgo+PiBDYzogTHl1ZGUgUGF1bCA8bHl1ZGVAcmVkaGF0LmNvbT4KPj4g
-Q2M6IDxzdGFibGVAdmdlci5rZXJuZWwub3JnPiAjIHY1LjErCj4+IFNpZ25lZC1vZmYtYnk6IEph
-bmkgTmlrdWxhIDxqYW5pLm5pa3VsYUBpbnRlbC5jb20+Cj4+IC0tLQo+PiDCoGRyaXZlcnMvZ3B1
-L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfcGFuZWwuYyB8IDkgKysrKystLS0tCj4+IMKgMSBmaWxl
-IGNoYW5nZWQsIDUgaW5zZXJ0aW9ucygrKSwgNCBkZWxldGlvbnMoLSkKPj4gCj4+IGRpZmYgLS1n
-aXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX3BhbmVsLmMKPj4gYi9kcml2
-ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX3BhbmVsLmMKPj4gaW5kZXggNjdmODFhZTk5
-NWM0Li43YTQyMzlkMWMyNDEgMTAwNjQ0Cj4+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rp
-c3BsYXkvaW50ZWxfcGFuZWwuYwo+PiArKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5
-L2ludGVsX3BhbmVsLmMKPj4gQEAgLTE2NDksMTYgKzE2NDksMTMgQEAgc3RhdGljIGludCBscHRf
-c2V0dXBfYmFja2xpZ2h0KHN0cnVjdCBpbnRlbF9jb25uZWN0b3IKPj4gKmNvbm5lY3RvciwgZW51
-bSBwaXBlIHVudXMKPj4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqB2YWwgPSBwY2hf
-Z2V0X2JhY2tsaWdodChjb25uZWN0b3IpOwo+PiDCoMKgwqDCoMKgwqDCoMKgZWxzZQo+PiDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoHZhbCA9IGxwdF9nZXRfYmFja2xpZ2h0KGNvbm5l
-Y3Rvcik7Cj4+IC3CoMKgwqDCoMKgwqDCoHZhbCA9IGludGVsX3BhbmVsX2NvbXB1dGVfYnJpZ2h0
-bmVzcyhjb25uZWN0b3IsIHZhbCk7Cj4+IC3CoMKgwqDCoMKgwqDCoHBhbmVsLT5iYWNrbGlnaHQu
-bGV2ZWwgPSBjbGFtcCh2YWwsIHBhbmVsLT5iYWNrbGlnaHQubWluLAo+PiAtwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqAgcGFuZWwtPmJhY2tsaWdodC5tYXgpOwo+PiDCoAo+PiDCoMKgwqDCoMKgwqDCoMKgaWYg
-KGNwdV9tb2RlKSB7Cj4+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgZHJtX2RiZ19r
-bXMoJmRldl9wcml2LT5kcm0sCj4+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoCAiQ1BVIGJhY2tsaWdodCByZWdpc3RlciB3YXMgZW5hYmxlZCwg
-c3dpdGNoaW5nIHRvCj4+IFBDSCBvdmVycmlkZVxuIik7Cj4+IMKgCj4+IMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgLyogV3JpdGUgY29udmVydGVkIENQVSBQV00gdmFsdWUgdG8gUENI
-IG92ZXJyaWRlIHJlZ2lzdGVyICovCj4+IC3CoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBs
-cHRfc2V0X2JhY2tsaWdodChjb25uZWN0b3ItPmJhc2Uuc3RhdGUsIHBhbmVsLQo+PiA+YmFja2xp
-Z2h0LmxldmVsKTsKPj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoGxwdF9zZXRfYmFj
-a2xpZ2h0KGNvbm5lY3Rvci0+YmFzZS5zdGF0ZSwgdmFsKTsKPj4gwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqBpbnRlbF9kZV93cml0ZShkZXZfcHJpdiwgQkxDX1BXTV9QQ0hfQ1RMMSwK
-Pj4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgIHBjaF9jdGwxIHwgQkxNX1BDSF9PVkVSUklERV9FTkFCTEUpOwo+PiDCoAo+PiBAQCAt
-MTY2Niw2ICsxNjYzLDEwIEBAIHN0YXRpYyBpbnQgbHB0X3NldHVwX2JhY2tsaWdodChzdHJ1Y3Qg
-aW50ZWxfY29ubmVjdG9yCj4+ICpjb25uZWN0b3IsIGVudW0gcGlwZSB1bnVzCj4+IMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBjcHVf
-Y3RsMiAmIH5CTE1fUFdNX0VOQUJMRSk7Cj4+IMKgwqDCoMKgwqDCoMKgwqB9Cj4+IMKgCj4+ICvC
-oMKgwqDCoMKgwqDCoHZhbCA9IGludGVsX3BhbmVsX2NvbXB1dGVfYnJpZ2h0bmVzcyhjb25uZWN0
-b3IsIHZhbCk7Cj4+ICvCoMKgwqDCoMKgwqDCoHBhbmVsLT5iYWNrbGlnaHQubGV2ZWwgPSBjbGFt
-cCh2YWwsIHBhbmVsLT5iYWNrbGlnaHQubWluLAo+PiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgcGFuZWwt
-PmJhY2tsaWdodC5tYXgpOwo+PiArCj4+IMKgwqDCoMKgwqDCoMKgwqByZXR1cm4gMDsKPj4gwqB9
-Cj4+IMKgCgotLSAKSmFuaSBOaWt1bGEsIEludGVsIE9wZW4gU291cmNlIEdyYXBoaWNzIENlbnRl
-cgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1n
-ZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9s
-aXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
+On Sun, Dec 27 2020 at 11:20, Guenter Roeck wrote:
+> On Thu, Dec 10, 2020 at 08:25:38PM +0100, Thomas Gleixner wrote:
+> Yes, but that means that irq_check_status_bit() may be called from modules,
+> but it is not exported, resulting in build errors such as the following.
+>
+> arm64:allmodconfig:
+>
+> ERROR: modpost: "irq_check_status_bit" [drivers/perf/arm_spe_pmu.ko] undefined!
+
+Duh. Yes, that lacks an export obviously.
+
+Thanks,
+
+        tglx
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
