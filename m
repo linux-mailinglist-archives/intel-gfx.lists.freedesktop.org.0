@@ -1,56 +1,42 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7135F2F1914
-	for <lists+intel-gfx@lfdr.de>; Mon, 11 Jan 2021 16:03:03 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id C31492F19B1
+	for <lists+intel-gfx@lfdr.de>; Mon, 11 Jan 2021 16:31:49 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D1AF76E0FC;
-	Mon, 11 Jan 2021 15:02:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5181F6E05F;
+	Mon, 11 Jan 2021 15:31:47 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ot1-x32f.google.com (mail-ot1-x32f.google.com
- [IPv6:2607:f8b0:4864:20::32f])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 49B856E0EC;
- Mon, 11 Jan 2021 15:02:56 +0000 (UTC)
-Received: by mail-ot1-x32f.google.com with SMTP id o11so17168053ote.4;
- Mon, 11 Jan 2021 07:02:56 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc:content-transfer-encoding;
- bh=PVe5tb97fQjRx5AP2dVJADvRtz8yRPWNi+Pm6+8G1wo=;
- b=F0H3K3kl/cpn0wHHpdSyz4cCvw7cdUXyaHBy2e4ADlpp0Af3OGEV/BGcujhVD/Z2DN
- V0uqIDTHXJz2OX04ol2I/b3GDVIKmSbp5qBgEVMgWCNPmOcWAX9dJsO2qez3Iqvw7OY3
- N8Eh7mVDT6QnbAgbjouS5uEdL644XdHqWfEVGmw1IjNX1OdnkdEFMttZ0ETs16HWSR5L
- ly8TkHxnyaZJ4M+T9KQLpL2wNtcmuWn4fu51+c6ukm+XyGxX6QEd+591XPBYmV8hBGUv
- 2bMNDbeun1Yx2IF3oHoW7grlSuAjExgB8czlMLB5HUTa1OcXQAsBj3s2m0gOLOZy1fEl
- cKsg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc:content-transfer-encoding;
- bh=PVe5tb97fQjRx5AP2dVJADvRtz8yRPWNi+Pm6+8G1wo=;
- b=N1vb7haMq5QhwXxHifYBWUEdsocSS70P4VPYAIbaBLBJksX4T3V4eTOqfqo1vi0Dx9
- CWzZHVA6jNdtjBimFOwACwKxVYfjBnLThvKjaCee9jWFf9kylTxHJcP70SYIGQRx4w+r
- P6VxY3/Cdy4St1NfLrnNqajGCCnVqoO4PKqh8vaEz30CSYu3zzvQiL74PvzmsvFT34ph
- FGl5dYts7VM0CHy1QBoYqLA1Fa45A4LC3W/4ZrDtTT7hFRTnLRewdYEFJKAE2t1NyPQX
- n+YJNw/EQKUfmudMHimurUTVEa9zlxgLo9d2LxXY+h+8V41GpF/dxeX9cwEyN2+BSRq3
- 7MOQ==
-X-Gm-Message-State: AOAM531AxsT8UFaUf3tIdNeByTFrvcQebfo//bf8i67s7Ms3sCgZDAqv
- cXyWoNs5iR/qZ7jBS6a3EKd0BF6ZbFC/25TfrC0=
-X-Google-Smtp-Source: ABdhPJw/80gBo+9eanDHSCpWvC5mz8+Y5OB7KfHePHxcimAqYWEk+W7zF8OfMF6O/CgVSghONYrwFcjfecFoL/ehgXE=
-X-Received: by 2002:a05:6830:1b7b:: with SMTP id
- d27mr11714457ote.132.1610377374176; 
- Mon, 11 Jan 2021 07:02:54 -0800 (PST)
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AF0DC6E05F;
+ Mon, 11 Jan 2021 15:31:45 +0000 (UTC)
+IronPort-SDR: IWfNZ7yopscPnRcVyxzVlAjCgqCED5GdmzY6x0nsW5XRdFRhoeVMO3fPcfgfVNYflQ0UTJZghy
+ crTPwQBFYWZw==
+X-IronPort-AV: E=McAfee;i="6000,8403,9860"; a="157061794"
+X-IronPort-AV: E=Sophos;i="5.79,338,1602572400"; d="scan'208";a="157061794"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Jan 2021 07:31:44 -0800
+IronPort-SDR: mzhR87LQ/ofphbp4CytRntqvT2/ORg/3SCPgdZppthAsqr8l7swXb2WdW0MgZ1MpH4YXmUsj1l
+ gbkMEGv2jzXQ==
+X-IronPort-AV: E=Sophos;i="5.79,338,1602572400"; d="scan'208";a="352639387"
+Received: from mgabor-mobl1.ger.corp.intel.com (HELO intel.com)
+ ([10.214.242.11])
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Jan 2021 07:31:39 -0800
+Date: Mon, 11 Jan 2021 17:31:35 +0200
+From: Andi Shyti <andi.shyti@intel.com>
+To: Dan Carpenter <dan.carpenter@oracle.com>
+Message-ID: <X/xvV6IqusOkKGdD@intel.intel>
+References: <161037060292.28181.5373987654669273170@build.alporthouse.com>
+ <X/xeIMP16sDekYrh@mwanda>
 MIME-Version: 1.0
-References: <20210110021142.28221-1-bas@basnieuwenhuizen.nl>
-In-Reply-To: <20210110021142.28221-1-bas@basnieuwenhuizen.nl>
-From: Alex Deucher <alexdeucher@gmail.com>
-Date: Mon, 11 Jan 2021 10:02:43 -0500
-Message-ID: <CADnq5_OVtCubsGP=-=q-hYJ3e6a3=pozi7ZhDiqdUkUKLCiwMg@mail.gmail.com>
-To: Bas Nieuwenhuizen <bas@basnieuwenhuizen.nl>
-Subject: Re: [Intel-gfx] [PATCH v2] drm: Check actual format for legacy
- pageflip.
+Content-Disposition: inline
+In-Reply-To: <X/xeIMP16sDekYrh@mwanda>
+Subject: Re: [Intel-gfx] [PATCH v2] drm/i915: selftest_lrc: Fix error code
+ in live_preempt_user()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,55 +49,28 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Daniel Vetter <daniel.vetter@ffwll.ch>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- amd-gfx list <amd-gfx@lists.freedesktop.org>, "Kazlauskas,
- Nicholas" <nicholas.kazlauskas@amd.com>,
- Maling list - DRI developers <dri-devel@lists.freedesktop.org>, "Deucher,
- Alexander" <alexander.deucher@amd.com>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: dri-devel@lists.freedesktop.org, David Airlie <airlied@linux.ie>,
+ intel-gfx@lists.freedesktop.org, kernel-janitors@vger.kernel.org,
+ Chris Wilson <chris@chris-wilson.co.uk>, Matthew Auld <matthew.auld@intel.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gU2F0LCBKYW4gOSwgMjAyMSBhdCA5OjExIFBNIEJhcyBOaWV1d2VuaHVpemVuCjxiYXNAYmFz
-bmlldXdlbmh1aXplbi5ubD4gd3JvdGU6Cj4KPiBXaXRoIG1vZGlmaWVycyBvbmUgY2FuIGFjdHVh
-bGx5IGhhdmUgZGlmZmVyZW50IGZvcm1hdF9pbmZvIHN0cnVjdHMKPiBmb3IgdGhlIHNhbWUgZm9y
-bWF0LCB3aGljaCBub3cgbWF0dGVycyBmb3IgQU1ER1BVIHNpbmNlIHdlIGNvbnZlcnQKPiBpbXBs
-aWNpdCBtb2RpZmllcnMgdG8gZXhwbGljaXQgbW9kaWZpZXJzIHdpdGggbXVsdGlwbGUgcGxhbmVz
-Lgo+Cj4gSSBjaGVja2VkIG90aGVyIGRyaXZlcnMgYW5kIGl0IGRvZXNuJ3QgbG9vayBsaWtlIHRo
-ZXkgZW5kIHVwIHRyaWdnZXJpbmcKPiB0aGlzIGNhc2Ugc28gSSB0aGluayB0aGlzIGlzIHNhZmUg
-dG8gcmVsYXguCj4KPiBTaWduZWQtb2ZmLWJ5OiBCYXMgTmlldXdlbmh1aXplbiA8YmFzQGJhc25p
-ZXV3ZW5odWl6ZW4ubmw+Cj4gUmV2aWV3ZWQtYnk6IERhbmllbCBWZXR0ZXIgPGRhbmllbC52ZXR0
-ZXJAZmZ3bGwuY2g+Cj4gUmV2aWV3ZWQtYnk6IFpoYW4gTGl1IDx6aGFuLmxpdUBhbWQuY29tPgo+
-IEFja2VkLWJ5OiBDaHJpc3RpYW4gS8O2bmlnIDxjaHJpc3RpYW4ua29lbmlnQGFtZC5jb20+Cj4g
-QWNrZWQtYnk6IEFsZXggRGV1Y2hlciA8YWxleGFuZGVyLmRldWNoZXJAYW1kLmNvbT4KPiBGaXhl
-czogODE2ODUzZjlkYzQwICgiZHJtL2FtZC9kaXNwbGF5OiBTZXQgbmV3IGZvcm1hdCBpbmZvIGZv
-ciBjb252ZXJ0ZWQgbWV0YWRhdGEuIikKCkRvIHlvdSBoYXZlIGNvbW1pdCByaWdodHMgdG8gZHJt
-LW1pc2Mgb3IgZG8geW91IG5lZWQgc29tZW9uZSB0byBjb21taXQKdGhpcyBmb3IgeW91PwoKVGhh
-bmtzIQoKQWxleAoKPiAtLS0KPiAgZHJpdmVycy9ncHUvZHJtL2RybV9wbGFuZS5jIHwgOSArKysr
-KysrKy0KPiAgMSBmaWxlIGNoYW5nZWQsIDggaW5zZXJ0aW9ucygrKSwgMSBkZWxldGlvbigtKQo+
-Cj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9kcm1fcGxhbmUuYyBiL2RyaXZlcnMvZ3B1
-L2RybS9kcm1fcGxhbmUuYwo+IGluZGV4IGU2MjMxOTQ3Zjk4Ny4uYTBjYjc0NmJjYjBhIDEwMDY0
-NAo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9kcm1fcGxhbmUuYwo+ICsrKyBiL2RyaXZlcnMvZ3B1
-L2RybS9kcm1fcGxhbmUuYwo+IEBAIC0xMTYzLDcgKzExNjMsMTQgQEAgaW50IGRybV9tb2RlX3Bh
-Z2VfZmxpcF9pb2N0bChzdHJ1Y3QgZHJtX2RldmljZSAqZGV2LAo+ICAgICAgICAgaWYgKHJldCkK
-PiAgICAgICAgICAgICAgICAgZ290byBvdXQ7Cj4KPiAtICAgICAgIGlmIChvbGRfZmItPmZvcm1h
-dCAhPSBmYi0+Zm9ybWF0KSB7Cj4gKyAgICAgICAvKgo+ICsgICAgICAgICogT25seSBjaGVjayB0
-aGUgRk9VUkNDIGZvcm1hdCBjb2RlLCBleGNsdWRpbmcgbW9kaWZpZXJzLiBUaGlzIGlzCj4gKyAg
-ICAgICAgKiBlbm91Z2ggZm9yIGFsbCBsZWdhY3kgZHJpdmVycy4gQXRvbWljIGRyaXZlcnMgaGF2
-ZSB0aGVpciBvd24KPiArICAgICAgICAqIGNoZWNrcyBpbiB0aGVpciAtPmF0b21pY19jaGVjayBp
-bXBsZW1lbnRhdGlvbiwgd2hpY2ggd2lsbAo+ICsgICAgICAgICogcmV0dXJuIC1FSU5WQUwgaWYg
-YW55IGh3IG9yIGRyaXZlciBjb25zdHJhaW50IGlzIHZpb2xhdGVkIGR1ZQo+ICsgICAgICAgICog
-dG8gbW9kaWZpZXIgY2hhbmdlcy4KPiArICAgICAgICAqLwo+ICsgICAgICAgaWYgKG9sZF9mYi0+
-Zm9ybWF0LT5mb3JtYXQgIT0gZmItPmZvcm1hdC0+Zm9ybWF0KSB7Cj4gICAgICAgICAgICAgICAg
-IERSTV9ERUJVR19LTVMoIlBhZ2UgZmxpcCBpcyBub3QgYWxsb3dlZCB0byBjaGFuZ2UgZnJhbWUg
-YnVmZmVyIGZvcm1hdC5cbiIpOwo+ICAgICAgICAgICAgICAgICByZXQgPSAtRUlOVkFMOwo+ICAg
-ICAgICAgICAgICAgICBnb3RvIG91dDsKPiAtLQo+IDIuMjkuMgo+Cj4gX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KPiBhbWQtZ2Z4IG1haWxpbmcgbGlzdAo+
-IGFtZC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCj4gaHR0cHM6Ly9saXN0cy5mcmVlZGVza3Rv
-cC5vcmcvbWFpbG1hbi9saXN0aW5mby9hbWQtZ2Z4Cl9fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxp
-c3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFu
-L2xpc3RpbmZvL2ludGVsLWdmeAo=
+Hi Dan,
+
+On Mon, Jan 11, 2021 at 05:18:08PM +0300, Dan Carpenter wrote:
+> This error path should return a negative error code instead of success.
+> 
+> Fixes: c92724de6db1 ("drm/i915/selftests: Try to detect rollback during batchbuffer preemption")
+> Signed-off-by: Dan Carpenter <dan.carpenter@oracle.com>
+> Reviewed-by: Chris Wilson <chris@chris-wilson.co.uk>
+
+Reviewed-by: Andi Shyti <andi.shyti@intel.com>
+
+Thanks,
+Andi
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
