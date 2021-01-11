@@ -1,44 +1,137 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A41782F2134
-	for <lists+intel-gfx@lfdr.de>; Mon, 11 Jan 2021 21:57:58 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 23CE42F2139
+	for <lists+intel-gfx@lfdr.de>; Mon, 11 Jan 2021 21:58:51 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0397D89D43;
-	Mon, 11 Jan 2021 20:57:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8DC8D89D5E;
+	Mon, 11 Jan 2021 20:58:49 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A076489D43
- for <intel-gfx@lists.freedesktop.org>; Mon, 11 Jan 2021 20:57:54 +0000 (UTC)
-IronPort-SDR: xsOmSrDs4xBof+rZ7rux+js8hxZXw9vxaEhcqC0Ec79MywJXKUJwyGoPPtyIRv66O8iD2Bys/t
- 9ZRcdX27Y2Hg==
-X-IronPort-AV: E=McAfee;i="6000,8403,9861"; a="165016797"
-X-IronPort-AV: E=Sophos;i="5.79,339,1602572400"; d="scan'208";a="165016797"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Jan 2021 12:57:45 -0800
-IronPort-SDR: 5Wup33RVK6hV7Oqw3pIT06aH1ye8KchDQZXhi7knhldpfYvXGMaU7yRoxivlVOjINt2hLmSEoU
- /MNAX2drlflQ==
-X-IronPort-AV: E=Sophos;i="5.79,339,1602572400"; d="scan'208";a="423915830"
-Received: from mdroper-desk1.fm.intel.com (HELO
- mdroper-desk1.amr.corp.intel.com) ([10.1.27.168])
- by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Jan 2021 12:57:45 -0800
-Date: Mon, 11 Jan 2021 12:57:43 -0800
-From: Matt Roper <matthew.d.roper@intel.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>
-Message-ID: <20210111205743.GC4758@mdroper-desk1.amr.corp.intel.com>
-References: <20210108231853.2859646-1-aditya.swarup@intel.com>
- <20210108231853.2859646-2-aditya.swarup@intel.com>
- <20210108234440.GO3894148@mdroper-desk1.amr.corp.intel.com>
- <878s8zw7tw.fsf@intel.com> <875z43w7kq.fsf@intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 33CBB89D5E
+ for <intel-gfx@lists.freedesktop.org>; Mon, 11 Jan 2021 20:58:48 +0000 (UTC)
+IronPort-SDR: 0eV5dlukiNIMMbCDj/lAiauzdxAFz2GLSzK2bRqyq1WpTroaLpSsyl8/00d6UbtCNV/Oto0Eal
+ 34xQ1w2gxQOg==
+X-IronPort-AV: E=McAfee;i="6000,8403,9861"; a="178083650"
+X-IronPort-AV: E=Sophos;i="5.79,339,1602572400"; d="scan'208";a="178083650"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Jan 2021 12:58:44 -0800
+IronPort-SDR: W9ti3s91hRy7M1+2vQU/nkhnImc0/xmZBhH4WeoILyATY/3hIjJW99T4JWedlwuYwUrY67HohG
+ lk+4X0MA8c1Q==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.79,339,1602572400"; d="scan'208";a="381149031"
+Received: from fmsmsx604.amr.corp.intel.com ([10.18.126.84])
+ by orsmga008.jf.intel.com with ESMTP; 11 Jan 2021 12:58:44 -0800
+Received: from fmsmsx609.amr.corp.intel.com (10.18.126.89) by
+ fmsmsx604.amr.corp.intel.com (10.18.126.84) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1713.5; Mon, 11 Jan 2021 12:58:43 -0800
+Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
+ fmsmsx609.amr.corp.intel.com (10.18.126.89) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1713.5
+ via Frontend Transport; Mon, 11 Jan 2021 12:58:43 -0800
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com (104.47.55.101)
+ by edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.1713.5; Mon, 11 Jan 2021 12:58:43 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=AJkheb6/fxkK1YUhG5zX7EaMOqx+8q4sgFsh81jJVJZx2K1hzuuydZfuymK8PdAfapWcyzdNRO6Yft6ZnR0eLjZItCJbnyNhFp5eqmKsAUtjQCYBdsdpL7PpsAsi/UFdHBph8eSVvfLnqox6GSflboWeid9EDwuQMu3GziKukGGW5r84H9KfVLMT7tRC8KglC1eGE+bV5wVrC8AD0/CqrgN+VhRLgvODaeAkGDUJaungNCvSge4JVCCcu0K7SVOwmrXL+Y+HpOySTH6h/0IvISCGm8RCN/VPVt7LdpV927PM9BJpWIMf19S7HeDab6LEHgtYdMX1UjAOJ9x4kHabKw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=SRfTGrUYiQoWL7ZJF4/8ncMrQIkBf1wtz9ELJsd7yaM=;
+ b=Cu5XtnnhqsM/TfSgVRjRa5hndAdY6efQxbGK+I2mbZ/tssfBfshYnnZEBXv2VxVcuvHV4S+MRhXPXWnnSWzzKJ/LwYsci3R1h8gEA1awKXWgaFDIdCXTukO1zGnUSXm77oMLZpOTAGrHDmTDVY0FQGI0CN5266upGKCqAwSH6CDbQ3r9hRclvphURuWxynS/xjPWBuKyA1N1TI8YttRaWt0XzXSpI5sMuSIpWliO5/6+S3Cd8HINsaJagnURn2tBgm5PoSKEBKrxWZBpFyk8XtLkGyu7pqXy4hJXJGmyWN86Lzd9ucYuQhjsvoEnOYhZPqL/za2A94E8li3cRJ8GPw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=intel.onmicrosoft.com; 
+ s=selector2-intel-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=SRfTGrUYiQoWL7ZJF4/8ncMrQIkBf1wtz9ELJsd7yaM=;
+ b=o3ANYtcZzC035lUNAGJDOw/VYYCBHga1bw/CMIpCPS4kVnazanqoqc4f/E5RuG0EStXDJJx2YNytde3wT9Z++gF0NG2/gyHEqDzbvyjWO0D4R7lQX4AO3jwcuHdavqAbnfLSbv6C9aLhvEGPY0EGhjbcgK/TGz2ATdM+3pJS3Y4=
+Received: from BYAPR11MB3799.namprd11.prod.outlook.com (2603:10b6:a03:fb::19)
+ by BYAPR11MB3832.namprd11.prod.outlook.com (2603:10b6:a03:ff::18)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3742.6; Mon, 11 Jan
+ 2021 20:58:42 +0000
+Received: from BYAPR11MB3799.namprd11.prod.outlook.com
+ ([fe80::d152:da83:422f:6d53]) by BYAPR11MB3799.namprd11.prod.outlook.com
+ ([fe80::d152:da83:422f:6d53%5]) with mapi id 15.20.3742.012; Mon, 11 Jan 2021
+ 20:58:42 +0000
+From: "Abodunrin, Akeem G" <akeem.g.abodunrin@intel.com>
+To: Chris Wilson <chris@chris-wilson.co.uk>, "intel-gfx@lists.freedesktop.org"
+ <intel-gfx@lists.freedesktop.org>
+Thread-Topic: [Intel-gfx] [PATCH 03/11] drm/i915: Allow the sysadmin to
+ override security mitigations
+Thread-Index: AQHW52Ifq91MStqDy0GeDA0aSY0sB6oi6Mpw
+Date: Mon, 11 Jan 2021 20:58:42 +0000
+Message-ID: <BYAPR11MB379949C26EB75C832D559822A9AB0@BYAPR11MB3799.namprd11.prod.outlook.com>
+References: <20210110150404.19535-1-chris@chris-wilson.co.uk>
+ <20210110150404.19535-3-chris@chris-wilson.co.uk>
+In-Reply-To: <20210110150404.19535-3-chris@chris-wilson.co.uk>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+dlp-product: dlpe-windows
+dlp-reaction: no-action
+dlp-version: 11.5.1.3
+authentication-results: chris-wilson.co.uk; dkim=none (message not signed)
+ header.d=none;chris-wilson.co.uk; dmarc=none action=none
+ header.from=intel.com;
+x-originating-ip: [207.109.37.70]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 15c25100-b04b-4800-e1cc-08d8b673ad93
+x-ms-traffictypediagnostic: BYAPR11MB3832:
+x-microsoft-antispam-prvs: <BYAPR11MB38322231146C8C02F7577153A9AB0@BYAPR11MB3832.namprd11.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:1079;
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: vJncIcvU6y6DjihjeF95qAg9WLGAwvsaQzEiphprT3zAXuhphMuzS/bsscl2a7t7Mqtq0EF3AXuQX2JH1W9Dnt6M2RnuBoN7NKFWApJBP5yRQYDLAN5M0jODtkdon3ZWZg3z3M0Uj0ey5Jl/qoubxJFVh6NpMqn+utQzWRhN5/l1vvketfr9y0XABRvSHzQsI5fjlHhlIRwqzg0AAmGzHwLvKVS3GP3qwdcSGGE/lRPAPkSf9QzHi0/ETpaVqRKO0ZBUJi+rl6A050Dq66FZuqO4skjNCPKtEqEa/u0dUJ/DMlJc6+SniuDOuiBsHjqppZBymmffZVf2Y590w0fBCNuOPnwnYo/Ad9TDUey6qn2sPABGI+kOO9ICudLPQppeiVbIF7in7DjdeYv4crzg9pfyCDqbnA3zBhqrZd8Ga/M=
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:BYAPR11MB3799.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(4636009)(39860400002)(366004)(396003)(376002)(136003)(346002)(9686003)(5660300002)(55016002)(2906002)(33656002)(186003)(8676002)(966005)(7696005)(478600001)(76116006)(110136005)(26005)(52536014)(15650500001)(316002)(66476007)(53546011)(66446008)(6506007)(4326008)(8936002)(86362001)(83380400001)(66946007)(66556008)(71200400001)(64756008);
+ DIR:OUT; SFP:1102; 
+x-ms-exchange-antispam-messagedata: =?utf-8?B?SDk0emVGTUNDUWtkVnB4dVdUUUk0eWo0SjNUREE0czVXRmhqeTlPdnR4ZDlW?=
+ =?utf-8?B?NG1OT3hSWldjVUFvS0pNQy9wRVlaOHlHU0h6ZnVaTi94aHlIaXBzM2JtcVJk?=
+ =?utf-8?B?Q0FHR0JTUzR0QjRRbk9Rd2ZRUzhOcFp6ZXJlZEhyZE1RTXhpM0UvYmkwZ1ha?=
+ =?utf-8?B?a2pvOGNRTHliRHNNSllYN3RXQnhjUzFnTUZNRUpFUVR6ZDJKYyt5aTNINkts?=
+ =?utf-8?B?V3BkdDFCaHFKY1RrdU5TTEl4SXJGcmJoelhvMGZzZUs1Qng0UGplSHJOWDdo?=
+ =?utf-8?B?OVR2Q0d2TGpJNUhETVRWMDVDbTlHZElncGRza00xdm80L1lna0ZvRDVhb0NZ?=
+ =?utf-8?B?emVxVmg2bW41UXhJTXdLTTZBMjhubFpTRG9jenRSUjBpQTlnNnA3azA5OGVG?=
+ =?utf-8?B?aWkzWEpsb2dLd1pZL2o1dUhqSExzblRaanRXZUxSQVZZbS9icFJPZVBlVnY1?=
+ =?utf-8?B?MnBGdGZwbENMTWl3dkxnKy9SOGhxV0dSMkZKSXN0TE1SOUxoRjNKdEtKQi91?=
+ =?utf-8?B?d2xBYlRhZjNYdTNJWGxWbFZTRHJNNDdVUjhPTndMWmdTSnU0eGVUYTc4OUZa?=
+ =?utf-8?B?THRsSWRhQ05FMUFjR0NwZHlYUjR0SlhQQ01pc0lXRHRTdjM1TStmUzd4ZXI1?=
+ =?utf-8?B?UG85MkVBUzNSV2ZSdFhaNUpoRHdxUkVRVjBIRjFKZWM4Y1F6YjEycmFWaDJO?=
+ =?utf-8?B?RlI0Z1RYUTJtL2dKckVpeXAwclZUY3hKeDlzbCtjT0dyZjJ0Q1RIVTV5THU2?=
+ =?utf-8?B?RkpoNWJuQzBnNEFlcHV2aGpYdCtScXFvTCs5S09IQWhnU2NERTlsZVdLaVlE?=
+ =?utf-8?B?ODJYZC9MbklnbjBWaERySkJFYlFpTmpnejQ1ajRlZ2Z1UGRObkRuSVptZkRj?=
+ =?utf-8?B?cFFiS0Z4dEx5MzRGb21neDBJbEkvU2lPQ3I4Y0d6Z3pPNkllcHhvejlHckY5?=
+ =?utf-8?B?UXJrNllocjhRU3BuRG1oRjVGNWk1Z3N0dVNJSUFhNUlGZFZhRzhtV1RWOU1J?=
+ =?utf-8?B?ZFNXSVlGa1RYV2hCM1RvQkpSdVJVUk9iVmNOTlNYZlh6L2c0VW5sNDZZQ0xQ?=
+ =?utf-8?B?Yi9oM2ZObk5NdnlBOG01TDNvNlZkYkhINmpTQnY3dUY0SGo4ZXJ5OCtOTERZ?=
+ =?utf-8?B?Tlp4YVFDWnp3eFU0ZEY5TTAwQ1ZhcWU4bEU5dWtpQjQyMCtEKzJhbW5vUnRP?=
+ =?utf-8?B?T1cveko0b2Q0aVYwU0ZOMUtra2VRcDNNTUxaUG5CVjA1RTFubktZU3JsRjNU?=
+ =?utf-8?B?c1ZzcldCYXNEbFVDY0I0M3JLOFhIZlNtcFdWb1ZPK1MyUXh5MWhleEFyakF6?=
+ =?utf-8?Q?hYD5a7W2zl/l0=3D?=
+x-ms-exchange-transport-forked: True
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <875z43w7kq.fsf@intel.com>
-Subject: Re: [Intel-gfx] [PATCH 1/2] drm/i915/tgl: Use TGL stepping info for
- applying WAs
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: BYAPR11MB3799.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 15c25100-b04b-4800-e1cc-08d8b673ad93
+X-MS-Exchange-CrossTenant-originalarrivaltime: 11 Jan 2021 20:58:42.1410 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 22+oZGNt0AagehHhzSFKncHHYTu4jUMEQ+1iAfENt9Nh+LdBqLDz+SOhGRqVwbXMfWP9PckU96gZR8b97AacwVdBCr/cV9W9PiDMc8dVKmI=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BYAPR11MB3832
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-gfx] [PATCH 03/11] drm/i915: Allow the sysadmin to
+ override security mitigations
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,407 +144,148 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>, intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Cc: "stable@vger.kernel.org" <stable@vger.kernel.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Jan 11, 2021 at 10:18:45PM +0200, Jani Nikula wrote:
-> On Mon, 11 Jan 2021, Jani Nikula <jani.nikula@linux.intel.com> wrote:
-> > On Fri, 08 Jan 2021, Matt Roper <matthew.d.roper@intel.com> wrote:
-> >> On Fri, Jan 08, 2021 at 03:18:52PM -0800, Aditya Swarup wrote:
-> >>> TGL adds another level of indirection for applying WA based on steppi=
-ng
-> >>> information rather than PCI REVID. So change TGL_REVID enum into
-> >>> stepping enum and use PCI REVID as index into revid to stepping table=
- to
-> >>> fetch correct display and GT stepping for application of WAs as
-> >>> suggested by Matt Roper.
-> >>
-> >> So to clarify the goal is to rename "revid" -> "stepping" because the
-> >> values like "A1," "C0," etc. are't the actual PCI revision ID, but
-> >> rather descriptions of the stepping of a given IP block; the enum valu=
-es
-> >> we use to represent those are arbitrary and don't matter as long as
-> >> they're monotonically increasing for comparisons.  The PCI revision ID
-> >> is just the input we use today to deduce what the IP steppings are, and
-> >> there's talk that we could determine the IP steppings in a different w=
-ay
-> >> at some point in the future.
-> >>
-> >> Furthermore, since the same scheme will be used at least for ADL-S, we
-> >> should drop the "TGL" prefix since there's no need to name these gener=
-al
-> >> enum values in a platform-specific manner.
-> >>
-> >> Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
-> >>
-> >> We should probably make the same kind of change to KBL (and use the sa=
-me
-> >> stepping enum) too since it has the same kind of extra indirection as
-> >> TGL/ADL-S, but we can do that as a followup patch.
-> >
-> > FWIW I have a wip series changing the whole thing to abstract steppings
-> > enums that are shared between platforms, but it's in a bit of limbo
-> > because the previous revid changes were applied to drm-intel-gt-next,
-> > and it's fallen pretty far out of sync with drm-intel-next. All of this
-> > really belongs to drm-intel-next, but can't do that until the branches
-> > sync up again.
-> =
-
-> Btw this series doesn't apply to drm-intel-next either, for the same
-> reason, and the ADL-S platform definition and PCI IDs must *not* be
-> applied to drm-intel-gt-next.
-
-So to clarify, it looks like we have a bunch of revid changes to the
-display code that got merged to the gt-next tree but not to the
-intel-next tree?  Should we be going back and also merging /
-cherry-picking those over to intel-next since that's where the display
-changes are supposed to go, or is it too late to do that cleanly at this
-point?
-
-Going forward, what should the general strategy be for stuff like
-platform definitions and such?  Merge such enablement patches to both
-intel-next and gt-next at the same time so that the basic definitions
-are available to both trees?  It seems like the whole split into two
-trees really isn't working well and is just leading to more mistakes and
-bottlenecks.  What benefit are we supposed to be getting from this
-split?
-
-
-Matt
-
-
-> =
-
-> BR,
-> Jani.
-> =
-
-> >
-> > My series also completely hides the arrays into a separate .c file,
-> > because the externs with direct array access are turning into
-> > nightmare. The ARRAY_SIZE() checks rely on the extern declaration and
-> > the actual array definition to have the sizes in sync, but the compiler
-> > does not check that. Really.
-> >
-> > IDK, feels like this merging this series is going to be extra churn.
-> >
-> >
-> > BR,
-> > Jani.
-> >
-> >
-> >>
-> >>
-> >> Matt
-> >>
-> >>> =
-
-> >>> Cc: Matt Roper <matthew.d.roper@intel.com>
-> >>> Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-> >>> Cc: Jos=E9 Roberto de Souza <jose.souza@intel.com>
-> >>> Signed-off-by: Aditya Swarup <aditya.swarup@intel.com>
-> >>> ---
-> >>>  .../drm/i915/display/intel_display_power.c    |  2 +-
-> >>>  drivers/gpu/drm/i915/display/intel_psr.c      |  4 +-
-> >>>  drivers/gpu/drm/i915/display/intel_sprite.c   |  2 +-
-> >>>  drivers/gpu/drm/i915/gt/intel_workarounds.c   | 26 +++++-----
-> >>>  drivers/gpu/drm/i915/i915_drv.h               | 50 +++++++++--------=
---
-> >>>  drivers/gpu/drm/i915/intel_pm.c               |  2 +-
-> >>>  6 files changed, 43 insertions(+), 43 deletions(-)
-> >>> =
-
-> >>> diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/dri=
-vers/gpu/drm/i915/display/intel_display_power.c
-> >>> index d52374f01316..bb04b502a442 100644
-> >>> --- a/drivers/gpu/drm/i915/display/intel_display_power.c
-> >>> +++ b/drivers/gpu/drm/i915/display/intel_display_power.c
-> >>> @@ -5340,7 +5340,7 @@ static void tgl_bw_buddy_init(struct drm_i915_p=
-rivate *dev_priv)
-> >>>  	int config, i;
-> >>>  =
-
-> >>>  	if (IS_DG1_REVID(dev_priv, DG1_REVID_A0, DG1_REVID_A0) ||
-> >>> -	    IS_TGL_DISP_REVID(dev_priv, TGL_REVID_A0, TGL_REVID_B0))
-> >>> +	    IS_TGL_DISP_STEPPING(dev_priv, STEP_A0, STEP_B0))
-> >>>  		/* Wa_1409767108:tgl,dg1 */
-> >>>  		table =3D wa_1409767108_buddy_page_masks;
-> >>>  	else
-> >>> diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/d=
-rm/i915/display/intel_psr.c
-> >>> index c24ae69426cf..a93717178957 100644
-> >>> --- a/drivers/gpu/drm/i915/display/intel_psr.c
-> >>> +++ b/drivers/gpu/drm/i915/display/intel_psr.c
-> >>> @@ -550,7 +550,7 @@ static void hsw_activate_psr2(struct intel_dp *in=
-tel_dp)
-> >>>  =
-
-> >>>  	if (dev_priv->psr.psr2_sel_fetch_enabled) {
-> >>>  		/* WA 1408330847 */
-> >>> -		if (IS_TGL_DISP_REVID(dev_priv, TGL_REVID_A0, TGL_REVID_A0) ||
-> >>> +		if (IS_TGL_DISP_STEPPING(dev_priv, STEP_A0, STEP_A0) ||
-> >>>  		    IS_RKL_REVID(dev_priv, RKL_REVID_A0, RKL_REVID_A0))
-> >>>  			intel_de_rmw(dev_priv, CHICKEN_PAR1_1,
-> >>>  				     DIS_RAM_BYPASS_PSR2_MAN_TRACK,
-> >>> @@ -1102,7 +1102,7 @@ static void intel_psr_disable_locked(struct int=
-el_dp *intel_dp)
-> >>>  =
-
-> >>>  	/* WA 1408330847 */
-> >>>  	if (dev_priv->psr.psr2_sel_fetch_enabled &&
-> >>> -	    (IS_TGL_DISP_REVID(dev_priv, TGL_REVID_A0, TGL_REVID_A0) ||
-> >>> +	    (IS_TGL_DISP_STEPPING(dev_priv, STEP_A0, STEP_A0) ||
-> >>>  	     IS_RKL_REVID(dev_priv, RKL_REVID_A0, RKL_REVID_A0)))
-> >>>  		intel_de_rmw(dev_priv, CHICKEN_PAR1_1,
-> >>>  			     DIS_RAM_BYPASS_PSR2_MAN_TRACK, 0);
-> >>> diff --git a/drivers/gpu/drm/i915/display/intel_sprite.c b/drivers/gp=
-u/drm/i915/display/intel_sprite.c
-> >>> index cf3589fd0ddb..4ce32df3855f 100644
-> >>> --- a/drivers/gpu/drm/i915/display/intel_sprite.c
-> >>> +++ b/drivers/gpu/drm/i915/display/intel_sprite.c
-> >>> @@ -3033,7 +3033,7 @@ static bool gen12_plane_supports_mc_ccs(struct =
-drm_i915_private *dev_priv,
-> >>>  {
-> >>>  	/* Wa_14010477008:tgl[a0..c0],rkl[all],dg1[all] */
-> >>>  	if (IS_DG1(dev_priv) || IS_ROCKETLAKE(dev_priv) ||
-> >>> -	    IS_TGL_DISP_REVID(dev_priv, TGL_REVID_A0, TGL_REVID_C0))
-> >>> +	    IS_TGL_DISP_STEPPING(dev_priv, STEP_A0, STEP_C0))
-> >>>  		return false;
-> >>>  =
-
-> >>>  	return plane_id < PLANE_SPRITE4;
-> >>> diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gp=
-u/drm/i915/gt/intel_workarounds.c
-> >>> index c21a9726326a..111d01e2f81e 100644
-> >>> --- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
-> >>> +++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-> >>> @@ -71,17 +71,17 @@ const struct i915_rev_steppings kbl_revids[] =3D {
-> >>>  	[7] =3D { .gt_stepping =3D KBL_REVID_G0, .disp_stepping =3D KBL_REV=
-ID_C0 },
-> >>>  };
-> >>>  =
-
-> >>> -const struct i915_rev_steppings tgl_uy_revids[] =3D {
-> >>> -	[0] =3D { .gt_stepping =3D TGL_REVID_A0, .disp_stepping =3D TGL_REV=
-ID_A0 },
-> >>> -	[1] =3D { .gt_stepping =3D TGL_REVID_B0, .disp_stepping =3D TGL_REV=
-ID_C0 },
-> >>> -	[2] =3D { .gt_stepping =3D TGL_REVID_B1, .disp_stepping =3D TGL_REV=
-ID_C0 },
-> >>> -	[3] =3D { .gt_stepping =3D TGL_REVID_C0, .disp_stepping =3D TGL_REV=
-ID_D0 },
-> >>> +const struct i915_rev_steppings tgl_uy_revid_step_tbl[] =3D {
-> >>> +	[0] =3D { .gt_stepping =3D STEP_A0, .disp_stepping =3D STEP_A0 },
-> >>> +	[1] =3D { .gt_stepping =3D STEP_B0, .disp_stepping =3D STEP_C0 },
-> >>> +	[2] =3D { .gt_stepping =3D STEP_B1, .disp_stepping =3D STEP_C0 },
-> >>> +	[3] =3D { .gt_stepping =3D STEP_C0, .disp_stepping =3D STEP_D0 },
-> >>>  };
-> >>>  =
-
-> >>>  /* Same GT stepping between tgl_uy_revids and tgl_revids don't mean =
-the same HW */
-> >>> -const struct i915_rev_steppings tgl_revids[] =3D {
-> >>> -	[0] =3D { .gt_stepping =3D TGL_REVID_A0, .disp_stepping =3D TGL_REV=
-ID_B0 },
-> >>> -	[1] =3D { .gt_stepping =3D TGL_REVID_B0, .disp_stepping =3D TGL_REV=
-ID_D0 },
-> >>> +const struct i915_rev_steppings tgl_revid_step_tbl[] =3D {
-> >>> +	[0] =3D { .gt_stepping =3D STEP_A0, .disp_stepping =3D STEP_B0 },
-> >>> +	[1] =3D { .gt_stepping =3D STEP_B0, .disp_stepping =3D STEP_D0 },
-> >>>  };
-> >>>  =
-
-> >>>  static void wa_init_start(struct i915_wa_list *wal, const char *name=
-, const char *engine_name)
-> >>> @@ -1211,19 +1211,19 @@ tgl_gt_workarounds_init(struct drm_i915_priva=
-te *i915, struct i915_wa_list *wal)
-> >>>  	gen12_gt_workarounds_init(i915, wal);
-> >>>  =
-
-> >>>  	/* Wa_1409420604:tgl */
-> >>> -	if (IS_TGL_UY_GT_REVID(i915, TGL_REVID_A0, TGL_REVID_A0))
-> >>> +	if (IS_TGL_UY_GT_STEPPING(i915, STEP_A0, STEP_A0))
-> >>>  		wa_write_or(wal,
-> >>>  			    SUBSLICE_UNIT_LEVEL_CLKGATE2,
-> >>>  			    CPSSUNIT_CLKGATE_DIS);
-> >>>  =
-
-> >>>  	/* Wa_1607087056:tgl also know as BUG:1409180338 */
-> >>> -	if (IS_TGL_UY_GT_REVID(i915, TGL_REVID_A0, TGL_REVID_A0))
-> >>> +	if (IS_TGL_UY_GT_STEPPING(i915, STEP_A0, STEP_A0))
-> >>>  		wa_write_or(wal,
-> >>>  			    SLICE_UNIT_LEVEL_CLKGATE,
-> >>>  			    L3_CLKGATE_DIS | L3_CR2X_CLKGATE_DIS);
-> >>>  =
-
-> >>>  	/* Wa_1408615072:tgl[a0] */
-> >>> -	if (IS_TGL_UY_GT_REVID(i915, TGL_REVID_A0, TGL_REVID_A0))
-> >>> +	if (IS_TGL_UY_GT_STEPPING(i915, STEP_A0, STEP_A0))
-> >>>  		wa_write_or(wal, UNSLICE_UNIT_LEVEL_CLKGATE2,
-> >>>  			    VSUNIT_CLKGATE_DIS_TGL);
-> >>>  }
-> >>> @@ -1700,7 +1700,7 @@ rcs_engine_wa_init(struct intel_engine_cs *engi=
-ne, struct i915_wa_list *wal)
-> >>>  	struct drm_i915_private *i915 =3D engine->i915;
-> >>>  =
-
-> >>>  	if (IS_DG1_REVID(i915, DG1_REVID_A0, DG1_REVID_A0) ||
-> >>> -	    IS_TGL_UY_GT_REVID(i915, TGL_REVID_A0, TGL_REVID_A0)) {
-> >>> +	    IS_TGL_UY_GT_STEPPING(i915, STEP_A0, STEP_A0)) {
-> >>>  		/*
-> >>>  		 * Wa_1607138336:tgl[a0],dg1[a0]
-> >>>  		 * Wa_1607063988:tgl[a0],dg1[a0]
-> >>> @@ -1710,7 +1710,7 @@ rcs_engine_wa_init(struct intel_engine_cs *engi=
-ne, struct i915_wa_list *wal)
-> >>>  			    GEN12_DISABLE_POSH_BUSY_FF_DOP_CG);
-> >>>  	}
-> >>>  =
-
-> >>> -	if (IS_TGL_UY_GT_REVID(i915, TGL_REVID_A0, TGL_REVID_A0)) {
-> >>> +	if (IS_TGL_UY_GT_STEPPING(i915, STEP_A0, STEP_A0)) {
-> >>>  		/*
-> >>>  		 * Wa_1606679103:tgl
-> >>>  		 * (see also Wa_1606682166:icl)
-> >>> diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i=
-915_drv.h
-> >>> index 5e5bcef20e33..11d6e8abde46 100644
-> >>> --- a/drivers/gpu/drm/i915/i915_drv.h
-> >>> +++ b/drivers/gpu/drm/i915/i915_drv.h
-> >>> @@ -1559,54 +1559,54 @@ extern const struct i915_rev_steppings kbl_re=
-vids[];
-> >>>  	(IS_JSL_EHL(p) && IS_REVID(p, since, until))
-> >>>  =
-
-> >>>  enum {
-> >>> -	TGL_REVID_A0,
-> >>> -	TGL_REVID_B0,
-> >>> -	TGL_REVID_B1,
-> >>> -	TGL_REVID_C0,
-> >>> -	TGL_REVID_D0,
-> >>> +	STEP_A0,
-> >>> +	STEP_B0,
-> >>> +	STEP_B1,
-> >>> +	STEP_C0,
-> >>> +	STEP_D0,
-> >>>  };
-> >>>  =
-
-> >>> -#define TGL_UY_REVIDS_SIZE	4
-> >>> -#define TGL_REVIDS_SIZE		2
-> >>> +#define TGL_UY_REVID_STEP_TBL_SIZE	4
-> >>> +#define TGL_REVID_STEP_TBL_SIZE		2
-> >>>  =
-
-> >>> -extern const struct i915_rev_steppings tgl_uy_revids[TGL_UY_REVIDS_S=
-IZE];
-> >>> -extern const struct i915_rev_steppings tgl_revids[TGL_REVIDS_SIZE];
-> >>> +extern const struct i915_rev_steppings tgl_uy_revid_step_tbl[TGL_UY_=
-REVID_STEP_TBL_SIZE];
-> >>> +extern const struct i915_rev_steppings tgl_revid_step_tbl[TGL_REVID_=
-STEP_TBL_SIZE];
-> >>>  =
-
-> >>>  static inline const struct i915_rev_steppings *
-> >>> -tgl_revids_get(struct drm_i915_private *dev_priv)
-> >>> +tgl_stepping_get(struct drm_i915_private *dev_priv)
-> >>>  {
-> >>>  	u8 revid =3D INTEL_REVID(dev_priv);
-> >>>  	u8 size;
-> >>> -	const struct i915_rev_steppings *tgl_revid_tbl;
-> >>> +	const struct i915_rev_steppings *revid_step_tbl;
-> >>>  =
-
-> >>>  	if (IS_TGL_U(dev_priv) || IS_TGL_Y(dev_priv)) {
-> >>> -		tgl_revid_tbl =3D tgl_uy_revids;
-> >>> -		size =3D ARRAY_SIZE(tgl_uy_revids);
-> >>> +		revid_step_tbl =3D tgl_uy_revid_step_tbl;
-> >>> +		size =3D ARRAY_SIZE(tgl_uy_revid_step_tbl);
-> >>>  	} else {
-> >>> -		tgl_revid_tbl =3D tgl_revids;
-> >>> -		size =3D ARRAY_SIZE(tgl_revids);
-> >>> +		revid_step_tbl =3D tgl_revid_step_tbl;
-> >>> +		size =3D ARRAY_SIZE(tgl_revid_step_tbl);
-> >>>  	}
-> >>>  =
-
-> >>>  	revid =3D min_t(u8, revid, size - 1);
-> >>>  =
-
-> >>> -	return &tgl_revid_tbl[revid];
-> >>> +	return &revid_step_tbl[revid];
-> >>>  }
-> >>>  =
-
-> >>> -#define IS_TGL_DISP_REVID(p, since, until) \
-> >>> +#define IS_TGL_DISP_STEPPING(p, since, until) \
-> >>>  	(IS_TIGERLAKE(p) && \
-> >>> -	 tgl_revids_get(p)->disp_stepping >=3D (since) && \
-> >>> -	 tgl_revids_get(p)->disp_stepping <=3D (until))
-> >>> +	 tgl_stepping_get(p)->disp_stepping >=3D (since) && \
-> >>> +	 tgl_stepping_get(p)->disp_stepping <=3D (until))
-> >>>  =
-
-> >>> -#define IS_TGL_UY_GT_REVID(p, since, until) \
-> >>> +#define IS_TGL_UY_GT_STEPPING(p, since, until) \
-> >>>  	((IS_TGL_U(p) || IS_TGL_Y(p)) && \
-> >>> -	 tgl_revids_get(p)->gt_stepping >=3D (since) && \
-> >>> -	 tgl_revids_get(p)->gt_stepping <=3D (until))
-> >>> +	 tgl_stepping_get(p)->gt_stepping >=3D (since) && \
-> >>> +	 tgl_stepping_get(p)->gt_stepping <=3D (until))
-> >>>  =
-
-> >>> -#define IS_TGL_GT_REVID(p, since, until) \
-> >>> +#define IS_TGL_GT_STEPPING(p, since, until) \
-> >>>  	(IS_TIGERLAKE(p) && \
-> >>>  	 !(IS_TGL_U(p) || IS_TGL_Y(p)) && \
-> >>> -	 tgl_revids_get(p)->gt_stepping >=3D (since) && \
-> >>> -	 tgl_revids_get(p)->gt_stepping <=3D (until))
-> >>> +	 tgl_stepping_get(p)->gt_stepping >=3D (since) && \
-> >>> +	 tgl_stepping_get(p)->gt_stepping <=3D (until))
-> >>>  =
-
-> >>>  #define RKL_REVID_A0		0x0
-> >>>  #define RKL_REVID_B0		0x1
-> >>> diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/i=
-ntel_pm.c
-> >>> index bbc73df7f753..319acca2630b 100644
-> >>> --- a/drivers/gpu/drm/i915/intel_pm.c
-> >>> +++ b/drivers/gpu/drm/i915/intel_pm.c
-> >>> @@ -7110,7 +7110,7 @@ static void tgl_init_clock_gating(struct drm_i9=
-15_private *dev_priv)
-> >>>  		   ILK_DPFC_CHICKEN_COMP_DUMMY_PIXEL);
-> >>>  =
-
-> >>>  	/* Wa_1409825376:tgl (pre-prod)*/
-> >>> -	if (IS_TGL_DISP_REVID(dev_priv, TGL_REVID_A0, TGL_REVID_B1))
-> >>> +	if (IS_TGL_DISP_STEPPING(dev_priv, STEP_A0, STEP_B1))
-> >>>  		intel_uncore_write(&dev_priv->uncore, GEN9_CLKGATE_DIS_3, intel_un=
-core_read(&dev_priv->uncore, GEN9_CLKGATE_DIS_3) |
-> >>>  			   TGL_VRH_GATING_DIS);
-> >>>  =
-
-> >>> -- =
-
-> >>> 2.27.0
-> >>> =
-
-> =
-
-> -- =
-
-> Jani Nikula, Intel Open Source Graphics Center
-
--- =
-
-Matt Roper
-Graphics Software Engineer
-VTT-OSGC Platform Enablement
-Intel Corporation
-(916) 356-2795
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+DQoNCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogSW50ZWwtZ2Z4IDxpbnRl
+bC1nZngtYm91bmNlc0BsaXN0cy5mcmVlZGVza3RvcC5vcmc+IE9uIEJlaGFsZiBPZiBDaHJpcw0K
+PiBXaWxzb24NCj4gU2VudDogU3VuZGF5LCBKYW51YXJ5IDEwLCAyMDIxIDc6MDQgQU0NCj4gVG86
+IGludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcNCj4gQ2M6IHN0YWJsZUB2Z2VyLmtlcm5l
+bC5vcmc7IENocmlzIFdpbHNvbiA8Y2hyaXNAY2hyaXMtd2lsc29uLmNvLnVrPg0KPiBTdWJqZWN0
+OiBbSW50ZWwtZ2Z4XSBbUEFUQ0ggMDMvMTFdIGRybS9pOTE1OiBBbGxvdyB0aGUgc3lzYWRtaW4g
+dG8gb3ZlcnJpZGUNCj4gc2VjdXJpdHkgbWl0aWdhdGlvbnMNCj4gDQo+IFRoZSBjbGVhci1yZXNp
+ZHVhbHMgbWl0aWdhdGlvbiBpcyBhIHJlbGF0aXZlbHkgaGVhdnkgaGFtbWVyIGFuZCB1bmRlciBz
+b21lDQo+IGNpcmN1bXN0YW5jZXMgdGhlIHVzZXIgbWF5IHdpc2ggdG8gZm9yZ28gdGhlIGNvbnRl
+eHQgaXNvbGF0aW9uIGluIG9yZGVyIHRvDQo+IG1lZXQgc29tZSBwZXJmb3JtYW5jZSByZXF1aXJl
+bWVudC4gSW50cm9kdWNlIGEgZ2VuZXJpYyBtb2R1bGUgcGFyYW1ldGVyDQo+IHRvIGFsbG93IHNl
+bGVjdGl2ZWx5IGVuYWJsaW5nL2Rpc2FibGluZyBkaWZmZXJlbnQgbWl0aWdhdGlvbnMuDQo+IA0K
+PiBDbG9zZXM6IGh0dHBzOi8vZ2l0bGFiLmZyZWVkZXNrdG9wLm9yZy9kcm0vaW50ZWwvLS9pc3N1
+ZXMvMTg1OA0KPiBGaXhlczogNDdmODI1M2QyYjg5ICgiZHJtL2k5MTUvZ2VuNzogQ2xlYXIgYWxs
+IEVVL0wzIHJlc2lkdWFsIGNvbnRleHRzIikNCj4gU2lnbmVkLW9mZi1ieTogQ2hyaXMgV2lsc29u
+IDxjaHJpc0BjaHJpcy13aWxzb24uY28udWs+DQo+IENjOiBKb29uYXMgTGFodGluZW4gPGpvb25h
+cy5sYWh0aW5lbkBsaW51eC5pbnRlbC5jb20+DQo+IENjOiBKb24gQmxvb21maWVsZCA8am9uLmJs
+b29tZmllbGRAaW50ZWwuY29tPg0KPiBDYzogUm9kcmlnbyBWaXZpIDxyb2RyaWdvLnZpdmlAaW50
+ZWwuY29tPg0KPiBDYzogc3RhYmxlQHZnZXIua2VybmVsLm9yZyAjIHY1LjcNCj4gLS0tDQo+ICBk
+cml2ZXJzL2dwdS9kcm0vaTkxNS9NYWtlZmlsZSAgICAgICAgICAgICAgICAgfCAgIDEgKw0KPiAg
+Li4uL2dwdS9kcm0vaTkxNS9ndC9pbnRlbF9yaW5nX3N1Ym1pc3Npb24uYyAgIHwgICA0ICstDQo+
+ICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X21pdGlnYXRpb25zLmMgICAgICAgfCAxNDggKysr
+KysrKysrKysrKysrKysrDQo+ICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X21pdGlnYXRpb25z
+LmggICAgICAgfCAgMTMgKysNCj4gIDQgZmlsZXMgY2hhbmdlZCwgMTY1IGluc2VydGlvbnMoKyks
+IDEgZGVsZXRpb24oLSkgIGNyZWF0ZSBtb2RlIDEwMDY0NA0KPiBkcml2ZXJzL2dwdS9kcm0vaTkx
+NS9pOTE1X21pdGlnYXRpb25zLmMNCj4gIGNyZWF0ZSBtb2RlIDEwMDY0NCBkcml2ZXJzL2dwdS9k
+cm0vaTkxNS9pOTE1X21pdGlnYXRpb25zLmgNCj4gDQo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dw
+dS9kcm0vaTkxNS9NYWtlZmlsZSBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L01ha2VmaWxlDQo+IGlu
+ZGV4IDQwNzRkOGNiMGQ2ZS4uNDhmODJjMzU0NjExIDEwMDY0NA0KPiAtLS0gYS9kcml2ZXJzL2dw
+dS9kcm0vaTkxNS9NYWtlZmlsZQ0KPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9NYWtlZmls
+ZQ0KPiBAQCAtMzgsNiArMzgsNyBAQCBpOTE1LXkgKz0gaTkxNV9kcnYubyBcDQo+ICAJICBpOTE1
+X2NvbmZpZy5vIFwNCj4gIAkgIGk5MTVfaXJxLm8gXA0KPiAgCSAgaTkxNV9nZXRwYXJhbS5vIFwN
+Cj4gKwkgIGk5MTVfbWl0aWdhdGlvbnMubyBcDQo+ICAJICBpOTE1X3BhcmFtcy5vIFwNCj4gIAkg
+IGk5MTVfcGNpLm8gXA0KPiAgCSAgaTkxNV9zY2F0dGVybGlzdC5vIFwNCj4gZGlmZiAtLWdpdCBh
+L2RyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L2ludGVsX3Jpbmdfc3VibWlzc2lvbi5jDQo+IGIvZHJp
+dmVycy9ncHUvZHJtL2k5MTUvZ3QvaW50ZWxfcmluZ19zdWJtaXNzaW9uLmMNCj4gaW5kZXggNzI0
+ZDU2Yzk1ODNkLi42NTdhZmQ4ZWJjMTQgMTAwNjQ0DQo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9p
+OTE1L2d0L2ludGVsX3Jpbmdfc3VibWlzc2lvbi5jDQo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9p
+OTE1L2d0L2ludGVsX3Jpbmdfc3VibWlzc2lvbi5jDQo+IEBAIC0zMiw2ICszMiw3IEBADQo+ICAj
+aW5jbHVkZSAiZ2VuNl9wcGd0dC5oIg0KPiAgI2luY2x1ZGUgImdlbjdfcmVuZGVyY2xlYXIuaCIN
+Cj4gICNpbmNsdWRlICJpOTE1X2Rydi5oIg0KPiArI2luY2x1ZGUgImk5MTVfbWl0aWdhdGlvbnMu
+aCINCj4gICNpbmNsdWRlICJpbnRlbF9icmVhZGNydW1icy5oIg0KPiAgI2luY2x1ZGUgImludGVs
+X2NvbnRleHQuaCINCj4gICNpbmNsdWRlICJpbnRlbF9ndC5oIg0KPiBAQCAtOTE4LDcgKzkxOSw4
+IEBAIHN0YXRpYyBpbnQgc3dpdGNoX2NvbnRleHQoc3RydWN0IGk5MTVfcmVxdWVzdCAqcnEpDQo+
+ICAJR0VNX0JVR19PTihIQVNfRVhFQ0xJU1RTKGVuZ2luZS0+aTkxNSkpOw0KPiANCj4gIAlpZiAo
+ZW5naW5lLT53YV9jdHgudm1hICYmIGNlICE9IGVuZ2luZS0+a2VybmVsX2NvbnRleHQpIHsNCj4g
+LQkJaWYgKGVuZ2luZS0+d2FfY3R4LnZtYS0+cHJpdmF0ZSAhPSBjZSkgew0KPiArCQlpZiAoZW5n
+aW5lLT53YV9jdHgudm1hLT5wcml2YXRlICE9IGNlICYmDQo+ICsJCSAgICBpOTE1X21pdGlnYXRl
+X2NsZWFyX3Jlc2lkdWFscygpKSB7DQo+ICAJCQlyZXQgPSBjbGVhcl9yZXNpZHVhbHMocnEpOw0K
+PiAgCQkJaWYgKHJldCkNCj4gIAkJCQlyZXR1cm4gcmV0Ow0KPiBkaWZmIC0tZ2l0IGEvZHJpdmVy
+cy9ncHUvZHJtL2k5MTUvaTkxNV9taXRpZ2F0aW9ucy5jDQo+IGIvZHJpdmVycy9ncHUvZHJtL2k5
+MTUvaTkxNV9taXRpZ2F0aW9ucy5jDQo+IG5ldyBmaWxlIG1vZGUgMTAwNjQ0DQo+IGluZGV4IDAw
+MDAwMDAwMDAwMC4uOGQ1NjM3Y2ZhNzM0DQo+IC0tLSAvZGV2L251bGwNCj4gKysrIGIvZHJpdmVy
+cy9ncHUvZHJtL2k5MTUvaTkxNV9taXRpZ2F0aW9ucy5jDQo+IEBAIC0wLDAgKzEsMTQ4IEBADQo+
+ICsvLyBTUERYLUxpY2Vuc2UtSWRlbnRpZmllcjogTUlUDQo+ICsvKg0KPiArICogQ29weXJpZ2h0
+IMKpIDIwMjEgSW50ZWwgQ29ycG9yYXRpb24NCj4gKyAqLw0KPiArDQo+ICsjaW5jbHVkZSA8bGlu
+dXgva2VybmVsLmg+DQo+ICsjaW5jbHVkZSA8bGludXgvbW9kdWxlcGFyYW0uaD4NCj4gKyNpbmNs
+dWRlIDxsaW51eC9zbGFiLmg+DQo+ICsjaW5jbHVkZSA8bGludXgvc3RyaW5nLmg+DQo+ICsNCj4g
+KyNpbmNsdWRlICJpOTE1X2Rydi5oIg0KPiArI2luY2x1ZGUgImk5MTVfbWl0aWdhdGlvbnMuaCIN
+Cj4gKw0KPiArc3RhdGljIHVuc2lnbmVkIGxvbmcgbWl0aWdhdGlvbnMgPSB+MFVMOw0KPiArDQo+
+ICtlbnVtIHsNCj4gKwlDTEVBUl9SRVNJRFVBTFMgPSAwLA0KPiArfTsNCj4gKw0KPiArc3RhdGlj
+IGNvbnN0IGNoYXIgKiBjb25zdCBuYW1lc1tdID0gew0KPiArCVtDTEVBUl9SRVNJRFVBTFNdID0g
+InJlc2lkdWFscyIsDQo+ICt9Ow0KPiArDQo+ICtib29sIGk5MTVfbWl0aWdhdGVfY2xlYXJfcmVz
+aWR1YWxzKHZvaWQpDQo+ICt7DQo+ICsJcmV0dXJuIFJFQURfT05DRShtaXRpZ2F0aW9ucykgJiBC
+SVQoQ0xFQVJfUkVTSURVQUxTKTsgfQ0KPiArDQo+ICtzdGF0aWMgaW50IG1pdGlnYXRpb25zX3Nl
+dChjb25zdCBjaGFyICp2YWwsIGNvbnN0IHN0cnVjdCBrZXJuZWxfcGFyYW0NCj4gKyprcCkgew0K
+PiArCXVuc2lnbmVkIGxvbmcgbmV3ID0gfjBVTDsNCj4gKwljaGFyICpzdHIsICpzZXAsICp0b2s7
+DQo+ICsJYm9vbCBmaXJzdCA9IHRydWU7DQo+ICsJaW50IGVyciA9IDA7DQo+ICsNCj4gKwlCVUlM
+RF9CVUdfT04oQVJSQVlfU0laRShuYW1lcykgPj0NCj4gQklUU19QRVJfVFlQRShtaXRpZ2F0aW9u
+cykpOw0KPiArDQo+ICsJc3RyID0ga3N0cmR1cCh2YWwsIEdGUF9LRVJORUwpOw0KPiArCWlmICgh
+c3RyKQ0KPiArCQlyZXR1cm4gLUVOT01FTTsNCj4gKw0KPiArCWZvciAoc2VwID0gc3RyOyAodG9r
+ID0gc3Ryc2VwKCZzZXAsICIsIikpOykgew0KPiArCQlib29sIGVuYWJsZSA9IHRydWU7DQo+ICsJ
+CWludCBpOw0KPiArDQo+ICsJCS8qIEJlIHRvbGVyYW50IG9mIGxlYWRpbmcvdHJhaWxpbmcgd2hp
+dGVzcGFjZSAqLw0KPiArCQl0b2sgPSBzdHJpbSh0b2spOw0KPiArDQo+ICsJCWlmIChmaXJzdCkg
+ew0KPiArCQkJZmlyc3QgPSBmYWxzZTsNCj4gKw0KPiArCQkJaWYgKCFzdHJjbXAodG9rLCAiYXV0
+byIpKSB7DQo+ICsJCQkJbmV3ID0gfjBVTDsNCj4gKwkJCQljb250aW51ZTsNCj4gKwkJCX0NCj4g
+Kw0KPiArCQkJbmV3ID0gMDsNCj4gKwkJCWlmICghc3RyY21wKHRvaywgIm9mZiIpKQ0KPiArCQkJ
+CWNvbnRpbnVlOw0KPiArCQl9DQo+ICsNCj4gKwkJaWYgKCp0b2sgPT0gJyEnKSB7DQo+ICsJCQll
+bmFibGUgPSAhZW5hYmxlOw0KPiArCQkJdG9rKys7DQo+ICsJCX0NCj4gKw0KPiArCQlpZiAoIXN0
+cm5jbXAodG9rLCAibm8iLCAyKSkgew0KPiArCQkJZW5hYmxlID0gIWVuYWJsZTsNCj4gKwkJCXRv
+ayArPSAyOw0KPiArCQl9DQo+ICsNCj4gKwkJaWYgKCp0b2sgPT0gJ1wwJykNCj4gKwkJCWNvbnRp
+bnVlOw0KPiArDQo+ICsJCWZvciAoaSA9IDA7IGkgPCBBUlJBWV9TSVpFKG5hbWVzKTsgaSsrKSB7
+DQo+ICsJCQlpZiAoIXN0cmNtcCh0b2ssIG5hbWVzW2ldKSkgew0KPiArCQkJCWlmIChlbmFibGUp
+DQo+ICsJCQkJCW5ldyB8PSBCSVQoaSk7DQo+ICsJCQkJZWxzZQ0KPiArCQkJCQluZXcgJj0gfkJJ
+VChpKTsNCj4gKwkJCQlicmVhazsNCj4gKwkJCX0NCj4gKwkJfQ0KPiArCQlpZiAoaSA9PSBBUlJB
+WV9TSVpFKG5hbWVzKSkgew0KPiArCQkJcHJfZXJyKCJCYWQgJXMubWl0aWdhdGlvbnM9JXMsICcl
+cycgaXMgdW5rbm93blxuIiwNCj4gKwkJCSAgICAgICBEUklWRVJfTkFNRSwgdmFsLCB0b2spOw0K
+PiArCQkJZXJyID0gLUVJTlZBTDsNCj4gKwkJCWJyZWFrOw0KPiArCQl9DQo+ICsJfQ0KPiArCWtm
+cmVlKHN0cik7DQo+ICsJaWYgKGVycikNCj4gKwkJcmV0dXJuIGVycjsNCj4gKw0KPiArCVdSSVRF
+X09OQ0UobWl0aWdhdGlvbnMsIG5ldyk7DQo+ICsJcmV0dXJuIDA7DQo+ICt9DQo+ICsNCj4gK3N0
+YXRpYyBpbnQgbWl0aWdhdGlvbnNfZ2V0KGNoYXIgKmJ1ZmZlciwgY29uc3Qgc3RydWN0IGtlcm5l
+bF9wYXJhbSAqa3ApDQo+ICt7DQo+ICsJdW5zaWduZWQgbG9uZyBsb2NhbCA9IFJFQURfT05DRSht
+aXRpZ2F0aW9ucyk7DQo+ICsJaW50IGNvdW50LCBpOw0KPiArCWJvb2wgZW5hYmxlOw0KPiArDQo+
+ICsJaWYgKCFsb2NhbCkNCj4gKwkJcmV0dXJuIHNjbnByaW50ZihidWZmZXIsIFBBR0VfU0laRSwg
+IiVzXG4iLCAib2ZmIik7DQo+ICsNCj4gKwlpZiAobG9jYWwgJiBCSVQoQklUU19QRVJfTE9ORyAt
+IDEpKSB7DQo+ICsJCWNvdW50ID0gc2NucHJpbnRmKGJ1ZmZlciwgUEFHRV9TSVpFLCAiJXMsIiwg
+ImF1dG8iKTsNCj4gKwkJZW5hYmxlID0gZmFsc2U7DQo+ICsJfSBlbHNlIHsNCj4gKwkJZW5hYmxl
+ID0gdHJ1ZTsNCj4gKwkJY291bnQgPSAwOw0KPiArCX0NCj4gKw0KPiArCWZvciAoaSA9IDA7IGkg
+PCBBUlJBWV9TSVpFKG5hbWVzKTsgaSsrKSB7DQo+ICsJCWlmICgobG9jYWwgJiBCSVQoaSkpICE9
+IGVuYWJsZSkNCj4gKwkJCWNvbnRpbnVlOw0KPiArDQo+ICsJCWNvdW50ICs9IHNjbnByaW50Zihi
+dWZmZXIgKyBjb3VudCwgUEFHRV9TSVpFIC0gY291bnQsDQo+ICsJCQkJICAgIiVzJXMsIiwgZW5h
+YmxlID8gIiIgOiAiISIsIG5hbWVzW2ldKTsNCj4gKwl9DQo+ICsNCj4gKwlidWZmZXJbY291bnQg
+LSAxXSA9ICdcbic7DQo+ICsJcmV0dXJuIGNvdW50Ow0KPiArfQ0KPiArDQo+ICtzdGF0aWMgY29u
+c3Qgc3RydWN0IGtlcm5lbF9wYXJhbV9vcHMgb3BzID0gew0KPiArCS5zZXQgPSBtaXRpZ2F0aW9u
+c19zZXQsDQo+ICsJLmdldCA9IG1pdGlnYXRpb25zX2dldCwNCj4gK307DQo+ICsNCj4gK21vZHVs
+ZV9wYXJhbV9jYl91bnNhZmUobWl0aWdhdGlvbnMsICZvcHMsIE5VTEwsIDA2MDApOw0KPiArTU9E
+VUxFX1BBUk1fREVTQyhtaXRpZ2F0aW9ucywgIlNlbGVjdGl2ZWx5IGVuYWJsZSBzZWN1cml0eSBt
+aXRpZ2F0aW9ucw0KPiArZm9yIGFsbCBJbnRlbMKuIEdQVXMgaW4gdGhlIHN5c3RlbS5cbiINCj4g
+KyJcbiINCj4gKyIgIGF1dG8gLS0gZW5hYmxlcyBhbGwgbWl0aWdhdGlvbnMgcmVxdWlyZWQgZm9y
+IHRoZSBwbGF0Zm9ybSBbZGVmYXVsdF1cbiINCj4gKyIgIG9mZiAgLS0gZGlzYWJsZXMgYWxsIG1p
+dGlnYXRpb25zXG4iDQo+ICsiXG4iDQo+ICsiSW5kaXZpZHVhbCBtaXRpZ2F0aW9ucyBjYW4gYmUg
+ZW5hYmxlZCBieSBwYXNzaW5nIGEgY29tbWEtc2VwYXJhdGVkDQo+IHN0cmluZyxcbiINCj4gKyJl
+LmcuIG1pdGlnYXRpb25zPXJlc2lkdWFscyB0byBlbmFibGUgb25seSBjbGVhcmluZyByZXNpZHVh
+bHMgb3JcbiINCj4gKyJtaXRpZ2F0aW9ucz1hdXRvLG5vcmVzaWR1YWxzIHRvIGRpc2FibGUgb25s
+eSB0aGUgY2xlYXIgcmVzaWR1YWwNCj4gbWl0aWdhdGlvbi5cbiINCj4gKyJFaXRoZXIgJyEnIG9y
+ICdubycgbWF5IGJlIHVzZWQgdG8gc3dpdGNoIGZyb20gZW5hYmxpbmcgdGhlIG1pdGlnYXRpb24g
+dG9cbiINCj4gKyJkaXNhYmxpbmcgaXQuXG4iDQo+ICsiXG4iDQo+ICsiQWN0aXZlIG1pdGlnYXRp
+b25zIGZvciBJdnlicmlkZ2UsIEJheXRyYWlsLCBIYXN3ZWxsOlxuIg0KPiArIiAgcmVzaWR1YWxz
+IC0tIGNsZWFyIGFsbCB0aHJlYWQtbG9jYWwgcmVnaXN0ZXJzIGJldHdlZW4gY29udGV4dHMiDQo+
+ICspOw0KPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9taXRpZ2F0aW9u
+cy5oDQo+IGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9taXRpZ2F0aW9ucy5oDQo+IG5ldyBm
+aWxlIG1vZGUgMTAwNjQ0DQo+IGluZGV4IDAwMDAwMDAwMDAwMC4uMTM1OWQ4MTM1Mjg3DQo+IC0t
+LSAvZGV2L251bGwNCj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9taXRpZ2F0aW9u
+cy5oDQo+IEBAIC0wLDAgKzEsMTMgQEANCj4gKy8qIFNQRFgtTGljZW5zZS1JZGVudGlmaWVyOiBN
+SVQgKi8NCj4gKy8qDQo+ICsgKiBDb3B5cmlnaHQgwqkgMjAyMSBJbnRlbCBDb3Jwb3JhdGlvbg0K
+PiArICovDQo+ICsNCj4gKyNpZm5kZWYgX19JOTE1X01JVElHQVRJT05TX0hfXw0KPiArI2RlZmlu
+ZSBfX0k5MTVfTUlUSUdBVElPTlNfSF9fDQo+ICsNCj4gKyNpbmNsdWRlIDxsaW51eC90eXBlcy5o
+Pg0KPiArDQo+ICtib29sIGk5MTVfbWl0aWdhdGVfY2xlYXJfcmVzaWR1YWxzKHZvaWQpOw0KPiAr
+DQo+ICsjZW5kaWYgLyogX19JOTE1X01JVElHQVRJT05TX0hfXyAqLw0KDQpBbHRob3VnaCB0aGlz
+IHNlZW1zIGxpa2UgaWRlYWwgc29sdXRpb24gLSBnaXZpbmcgdXNlcnMgb3B0aW9uIHRvIGNob29z
+ZSAqcG90ZW50aWFsKiBwZXJmb3JtYW5jZSBvdmVyIHNlY3VyaXR5IG9yIHZpY2UtdmVyc2EgLSAg
+SG93ZXZlciwgSSB3b3VsZCBoYXZlIGV4cGVjdGVkIHRoYXQgdGhpcyBwYXRjaCBhZGRzIGEgRFJN
+IHdhcm5pbmcgdG8gaW5mb3JtIHVzZXJzIG9mIHRoZSBjb25zZXF1ZW5jZXMgb2YgdGhlaXIgYWN0
+aW9uLCB3aGVuZXZlciBtb2R1bGUgcGFyYW1ldGVyIGlzIHVzZWQgdG8gZGlzYWJsZSBhbnkga2lu
+ZCBvZiBtaXRpZ2F0aW9ucy4gV2VsbCwgdGhhdCBpcyBteSBvd24gcGVyc3BlY3RpdmUsIG5vdCBh
+cyBhIGxlZ2FsIGV4cGVydC4NCg0KVGhhbmtzLA0KfkFrZWVtDQpfX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVs
+LWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcv
+bWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
