@@ -2,30 +2,63 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 031152F1C35
-	for <lists+intel-gfx@lfdr.de>; Mon, 11 Jan 2021 18:23:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 817E82F1C62
+	for <lists+intel-gfx@lfdr.de>; Mon, 11 Jan 2021 18:32:09 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D77FE89BC2;
-	Mon, 11 Jan 2021 17:23:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CE365892B1;
+	Mon, 11 Jan 2021 17:32:06 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id C821589BC2;
- Mon, 11 Jan 2021 17:23:07 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id C147AA8835;
- Mon, 11 Jan 2021 17:23:07 +0000 (UTC)
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8582A892B1
+ for <intel-gfx@lists.freedesktop.org>; Mon, 11 Jan 2021 17:32:05 +0000 (UTC)
+IronPort-SDR: SM1yQjVKmKpDWh0zJR7uBRbaKkceGxcgVe1//s8XQcCugCEI57SfUvH3myvP4ltb1a9+4iEwUN
+ lT6qLA0Yn7yQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9861"; a="262682869"
+X-IronPort-AV: E=Sophos;i="5.79,339,1602572400"; d="scan'208";a="262682869"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Jan 2021 09:32:05 -0800
+IronPort-SDR: 7rbyUqc2rg+Zxz41GmbCyB3CGM1eprtX02pTl51qv9JzE9KaQ7PqY2x8uxWFPBMwbj5V3FePzo
+ 0iWbZnWTED4A==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.79,339,1602572400"; d="scan'208";a="344951049"
+Received: from fmsmsx603.amr.corp.intel.com ([10.18.126.83])
+ by fmsmga007.fm.intel.com with ESMTP; 11 Jan 2021 09:32:05 -0800
+Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1713.5; Mon, 11 Jan 2021 09:32:04 -0800
+Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1713.5; Mon, 11 Jan 2021 09:32:04 -0800
+Received: from fmsmsx610.amr.corp.intel.com ([10.18.126.90]) by
+ fmsmsx610.amr.corp.intel.com ([10.18.126.90]) with mapi id 15.01.1713.004;
+ Mon, 11 Jan 2021 09:32:04 -0800
+From: "Bloomfield, Jon" <jon.bloomfield@intel.com>
+To: Chris Wilson <chris@chris-wilson.co.uk>, "intel-gfx@lists.freedesktop.org"
+ <intel-gfx@lists.freedesktop.org>
+Thread-Topic: [PATCH 03/11] drm/i915: Allow the sysadmin to override security
+ mitigations
+Thread-Index: AQHW52H0KsO7cQ69u0GWC0XUKyZqaqoirrpg
+Date: Mon, 11 Jan 2021 17:31:48 +0000
+Deferred-Delivery: Mon, 11 Jan 2021 17:31:03 +0000
+Message-ID: <a2154cb4c5f7405fbc5551b750506fd8@intel.com>
+References: <20210110150404.19535-1-chris@chris-wilson.co.uk>
+ <20210110150404.19535-3-chris@chris-wilson.co.uk>
+In-Reply-To: <20210110150404.19535-3-chris@chris-wilson.co.uk>
+Accept-Language: en-GB, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+dlp-product: dlpe-windows
+dlp-reaction: no-action
+dlp-version: 11.5.1.3
+x-originating-ip: [10.22.254.132]
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
-Date: Mon, 11 Jan 2021 17:23:07 -0000
-Message-ID: <161038578776.25132.10803967367350974707@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210111163711.12913-1-ville.syrjala@linux.intel.com>
-In-Reply-To: <20210111163711.12913-1-ville.syrjala@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915=3A_Async_flips_for_all_ilk+_platforms_=28rev2=29?=
+Subject: Re: [Intel-gfx] [PATCH 03/11] drm/i915: Allow the sysadmin to
+ override security mitigations
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,227 +71,39 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============1743013664=="
+Cc: "stable@vger.kernel.org" <stable@vger.kernel.org>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============1743013664==
-Content-Type: multipart/alternative;
- boundary="===============8758853975881642607=="
+> -----Original Message-----
+> From: Chris Wilson <chris@chris-wilson.co.uk>
+> Sent: Sunday, January 10, 2021 7:04 AM
+> To: intel-gfx@lists.freedesktop.org
+> Cc: Chris Wilson <chris@chris-wilson.co.uk>; Joonas Lahtinen
+> <joonas.lahtinen@linux.intel.com>; Bloomfield, Jon
+> <jon.bloomfield@intel.com>; Vivi, Rodrigo <rodrigo.vivi@intel.com>;
+> stable@vger.kernel.org
+> Subject: [PATCH 03/11] drm/i915: Allow the sysadmin to override security
+> mitigations
+> 
+> The clear-residuals mitigation is a relatively heavy hammer and under some
+> circumstances the user may wish to forgo the context isolation in order
+> to meet some performance requirement. Introduce a generic module
+> parameter to allow selectively enabling/disabling different mitigations.
+> 
+> Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/1858
+> Fixes: 47f8253d2b89 ("drm/i915/gen7: Clear all EU/L3 residual contexts")
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+> Cc: Jon Bloomfield <jon.bloomfield@intel.com>
+> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> Cc: stable@vger.kernel.org # v5.7
+> ---
 
---===============8758853975881642607==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-== Series Details ==
-
-Series: drm/i915: Async flips for all ilk+ platforms (rev2)
-URL   : https://patchwork.freedesktop.org/series/85627/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_9580 -> Patchwork_19315
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19315/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_19315 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@gem_flink_basic@basic:
-    - fi-tgl-y:           [PASS][1] -> [DMESG-WARN][2] ([i915#402]) +1 similar issue
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9580/fi-tgl-y/igt@gem_flink_basic@basic.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19315/fi-tgl-y/igt@gem_flink_basic@basic.html
-
-  * igt@gem_huc_copy@huc-copy:
-    - fi-byt-j1900:       NOTRUN -> [SKIP][3] ([fdo#109271]) +27 similar issues
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19315/fi-byt-j1900/igt@gem_huc_copy@huc-copy.html
-
-  * igt@i915_pm_rpm@module-reload:
-    - fi-kbl-guc:         [PASS][4] -> [SKIP][5] ([fdo#109271])
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9580/fi-kbl-guc/igt@i915_pm_rpm@module-reload.html
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19315/fi-kbl-guc/igt@i915_pm_rpm@module-reload.html
-
-  * igt@kms_chamelium@hdmi-crc-fast:
-    - fi-byt-j1900:       NOTRUN -> [SKIP][6] ([fdo#109271] / [fdo#111827]) +8 similar issues
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19315/fi-byt-j1900/igt@kms_chamelium@hdmi-crc-fast.html
-
-  
-#### Possible fixes ####
-
-  * igt@vgem_basic@dmabuf-fence-before:
-    - fi-tgl-y:           [DMESG-WARN][7] ([i915#402]) -> [PASS][8] +1 similar issue
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9580/fi-tgl-y/igt@vgem_basic@dmabuf-fence-before.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19315/fi-tgl-y/igt@vgem_basic@dmabuf-fence-before.html
-
-  
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
-  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
-
-
-Participating hosts (43 -> 38)
-------------------------------
-
-  Additional (1): fi-byt-j1900 
-  Missing    (6): fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-cml-drallion fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_9580 -> Patchwork_19315
-
-  CI-20190529: 20190529
-  CI_DRM_9580: 117f9c9bca0ebb0e22ce282eab531575f5154055 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5953: 65c5eea699141e6f942ce0a8fc85db76ce53cd19 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_19315: b5239b3cf416cfc73090ddd8ec7bba725278ecaa @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-b5239b3cf416 drm/i915: Implement async flips for vlv/chv
-6601effeab9e drm/i915: Implement async flip for ilk/snb
-711c4297a93a drm/i915: Implement async flip for ivb/hsw
-2fd4cac00c8a drm/i915: Implement async flips for bdw
-94917f63b8f7 drm/i915: Reuse the async_flip() hook for the async flip disable w/a
-89770394ed91 drm/i915: Move the async_flip bit setup into the .async_flip() hook
-9655ad213677 drm/i915: Add plane vfuncs to enable/disable flip_done interrupt
-2e1ed4a184df drm/i915: Generalize the async flip capability check
-87a8d5da85f9 drm/i915: Drop redundant parens
-492c717aeb30 drm/i915: Limit plane stride to below TILEOFF.x limit
-27179a0516e5 drm/i915: WARN if plane src coords are too big
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19315/index.html
-
---===============8758853975881642607==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915: Async flips for all ilk+ platforms (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/85627/">https://patchwork.freedesktop.org/series/85627/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19315/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19315/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_9580 -&gt; Patchwork_19315</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19315/index.html</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_19315 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@gem_flink_basic@basic:</p>
-<ul>
-<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9580/fi-tgl-y/igt@gem_flink_basic@basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19315/fi-tgl-y/igt@gem_flink_basic@basic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) +1 similar issue</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_huc_copy@huc-copy:</p>
-<ul>
-<li>fi-byt-j1900:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19315/fi-byt-j1900/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +27 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_pm_rpm@module-reload:</p>
-<ul>
-<li>fi-kbl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9580/fi-kbl-guc/igt@i915_pm_rpm@module-reload.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19315/fi-kbl-guc/igt@i915_pm_rpm@module-reload.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@hdmi-crc-fast:</p>
-<ul>
-<li>fi-byt-j1900:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19315/fi-byt-j1900/igt@kms_chamelium@hdmi-crc-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@vgem_basic@dmabuf-fence-before:<ul>
-<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9580/fi-tgl-y/igt@vgem_basic@dmabuf-fence-before.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19315/fi-tgl-y/igt@vgem_basic@dmabuf-fence-before.html">PASS</a> +1 similar issue</li>
-</ul>
-</li>
-</ul>
-<h2>Participating hosts (43 -&gt; 38)</h2>
-<p>Additional (1): fi-byt-j1900 <br />
-  Missing    (6): fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-cml-drallion fi-bdw-samus </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_9580 -&gt; Patchwork_19315</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_9580: 117f9c9bca0ebb0e22ce282eab531575f5154055 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_5953: 65c5eea699141e6f942ce0a8fc85db76ce53cd19 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
-  Patchwork_19315: b5239b3cf416cfc73090ddd8ec7bba725278ecaa @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>b5239b3cf416 drm/i915: Implement async flips for vlv/chv<br />
-6601effeab9e drm/i915: Implement async flip for ilk/snb<br />
-711c4297a93a drm/i915: Implement async flip for ivb/hsw<br />
-2fd4cac00c8a drm/i915: Implement async flips for bdw<br />
-94917f63b8f7 drm/i915: Reuse the async_flip() hook for the async flip disable w/a<br />
-89770394ed91 drm/i915: Move the async_flip bit setup into the .async_flip() hook<br />
-9655ad213677 drm/i915: Add plane vfuncs to enable/disable flip_done interrupt<br />
-2e1ed4a184df drm/i915: Generalize the async flip capability check<br />
-87a8d5da85f9 drm/i915: Drop redundant parens<br />
-492c717aeb30 drm/i915: Limit plane stride to below TILEOFF.x limit<br />
-27179a0516e5 drm/i915: WARN if plane src coords are too big</p>
-
-</body>
-</html>
-
---===============8758853975881642607==--
-
---===============1743013664==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
+Reviewed-by: Jon Bloomfield <jon.bloomfield@intel.com>?
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============1743013664==--
