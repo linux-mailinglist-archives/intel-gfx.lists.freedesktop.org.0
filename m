@@ -1,31 +1,42 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F2B072F1E60
-	for <lists+intel-gfx@lfdr.de>; Mon, 11 Jan 2021 19:58:34 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9FC732F1E75
+	for <lists+intel-gfx@lfdr.de>; Mon, 11 Jan 2021 20:02:53 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C317589C93;
-	Mon, 11 Jan 2021 18:58:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 60E2889DBA;
+	Mon, 11 Jan 2021 19:02:47 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id BA1FF89C93;
- Mon, 11 Jan 2021 18:58:31 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id B41BAAA914;
- Mon, 11 Jan 2021 18:58:31 +0000 (UTC)
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F298389DA9;
+ Mon, 11 Jan 2021 19:02:45 +0000 (UTC)
+IronPort-SDR: NnO5giAvjH17QSZiNQJh/CfQEjVmrNOQflpU0o4Ep+BxU2TrZQf/ba2AeW+kOqnpkCw50vUzUp
+ 4vZD5lVtIm1g==
+X-IronPort-AV: E=McAfee;i="6000,8403,9861"; a="157696683"
+X-IronPort-AV: E=Sophos;i="5.79,339,1602572400"; d="scan'208";a="157696683"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Jan 2021 11:02:43 -0800
+IronPort-SDR: Sz92F3ILtpT4Q2iRuY3Nh58r1Ikh3Kp8EvqUarucXO5u6uXFeFgExCJuGneHtUXW2PxmLdjeTz
+ DvarORCHZP4g==
+X-IronPort-AV: E=Sophos;i="5.79,339,1602572400"; d="scan'208";a="352712217"
+Received: from libresli-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.213.207.39])
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Jan 2021 11:02:36 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Lyude Paul <lyude@redhat.com>, intel-gfx@lists.freedesktop.org
+In-Reply-To: <20210107225207.28091-2-lyude@redhat.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20210107225207.28091-1-lyude@redhat.com>
+ <20210107225207.28091-2-lyude@redhat.com>
+Date: Mon, 11 Jan 2021 21:02:32 +0200
+Message-ID: <87pn2bwb3r.fsf@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?b?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-Date: Mon, 11 Jan 2021 18:58:31 -0000
-Message-ID: <161039151170.25132.6315341488263543668@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210111163711.12913-1-ville.syrjala@linux.intel.com>
-In-Reply-To: <20210111163711.12913-1-ville.syrjala@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLklHVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915=3A_Async_flips_for_all_ilk+_platforms_=28rev2=29?=
+Subject: Re: [Intel-gfx] [PATCH v5 1/4] drm/i915: Keep track of pwm-related
+ backlight hooks separately
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,1094 +49,897 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============0040014628=="
+Cc: Dave Airlie <airlied@redhat.com>, Arnd Bergmann <arnd@arndb.de>,
+ David Airlie <airlied@linux.ie>, Lucas De Marchi <lucas.demarchi@intel.com>,
+ open list <linux-kernel@vger.kernel.org>, "open list:DRM
+ DRIVERS" <dri-devel@lists.freedesktop.org>,
+ Chris Wilson <chris@chris-wilson.co.uk>,
+ Vasily Khoruzhick <anarsoul@gmail.com>, Sean Paul <seanpaul@chromium.org>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0040014628==
-Content-Type: multipart/alternative;
- boundary="===============0114039605475183964=="
-
---===============0114039605475183964==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-== Series Details ==
-
-Series: drm/i915: Async flips for all ilk+ platforms (rev2)
-URL   : https://patchwork.freedesktop.org/series/85627/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_9580_full -> Patchwork_19315_full
-====================================================
-
-Summary
--------
-
-  **WARNING**
-
-  Minor unknown changes coming with Patchwork_19315_full need to be verified
-  manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_19315_full, please notify your bug team to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_19315_full:
-
-### IGT changes ###
-
-#### Warnings ####
-
-  * igt@kms_async_flips@invalid-async-flip:
-    - shard-snb:          [SKIP][1] ([fdo#109271]) -> [FAIL][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9580/shard-snb2/igt@kms_async_flips@invalid-async-flip.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19315/shard-snb5/igt@kms_async_flips@invalid-async-flip.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_19315_full that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@feature_discovery@psr2:
-    - shard-iclb:         [PASS][3] -> [SKIP][4] ([i915#658])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9580/shard-iclb2/igt@feature_discovery@psr2.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19315/shard-iclb7/igt@feature_discovery@psr2.html
-
-  * igt@gem_exec_whisper@basic-contexts-priority:
-    - shard-glk:          [PASS][5] -> [DMESG-WARN][6] ([i915#118] / [i915#95])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9580/shard-glk5/igt@gem_exec_whisper@basic-contexts-priority.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19315/shard-glk8/igt@gem_exec_whisper@basic-contexts-priority.html
-
-  * igt@gem_render_copy@y-tiled-to-vebox-x-tiled:
-    - shard-iclb:         NOTRUN -> [SKIP][7] ([i915#768])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19315/shard-iclb4/igt@gem_render_copy@y-tiled-to-vebox-x-tiled.html
-
-  * igt@gem_userptr_blits@readonly-pwrite-unsync:
-    - shard-iclb:         NOTRUN -> [SKIP][8] ([fdo#110426] / [i915#1704])
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19315/shard-iclb4/igt@gem_userptr_blits@readonly-pwrite-unsync.html
-
-  * igt@gen3_render_linear_blits:
-    - shard-iclb:         NOTRUN -> [SKIP][9] ([fdo#109289])
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19315/shard-iclb4/igt@gen3_render_linear_blits.html
-
-  * igt@i915_pm_dc@dc6-psr:
-    - shard-iclb:         [PASS][10] -> [FAIL][11] ([i915#454])
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9580/shard-iclb4/igt@i915_pm_dc@dc6-psr.html
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19315/shard-iclb8/igt@i915_pm_dc@dc6-psr.html
-
-  * igt@i915_selftest@live@gem:
-    - shard-skl:          [PASS][12] -> [DMESG-FAIL][13] ([i915#2927])
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9580/shard-skl2/igt@i915_selftest@live@gem.html
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19315/shard-skl2/igt@i915_selftest@live@gem.html
-
-  * igt@i915_selftest@live@gt_heartbeat:
-    - shard-skl:          [PASS][14] -> [DMESG-FAIL][15] ([i915#2291] / [i915#541])
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9580/shard-skl2/igt@i915_selftest@live@gt_heartbeat.html
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19315/shard-skl2/igt@i915_selftest@live@gt_heartbeat.html
-
-  * igt@i915_selftest@live@perf:
-    - shard-skl:          [PASS][16] -> [SKIP][17] ([fdo#109271]) +12 similar issues
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9580/shard-skl2/igt@i915_selftest@live@perf.html
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19315/shard-skl2/igt@i915_selftest@live@perf.html
-
-  * igt@kms_color@pipe-d-ctm-max:
-    - shard-iclb:         NOTRUN -> [SKIP][18] ([fdo#109278] / [i915#1149])
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19315/shard-iclb4/igt@kms_color@pipe-d-ctm-max.html
-
-  * igt@kms_color_chamelium@pipe-a-gamma:
-    - shard-iclb:         NOTRUN -> [SKIP][19] ([fdo#109284] / [fdo#111827])
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19315/shard-iclb4/igt@kms_color_chamelium@pipe-a-gamma.html
-    - shard-kbl:          NOTRUN -> [SKIP][20] ([fdo#109271] / [fdo#111827])
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19315/shard-kbl3/igt@kms_color_chamelium@pipe-a-gamma.html
-
-  * igt@kms_cursor_crc@pipe-b-cursor-256x85-random:
-    - shard-skl:          [PASS][21] -> [FAIL][22] ([i915#54]) +6 similar issues
-   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9580/shard-skl1/igt@kms_cursor_crc@pipe-b-cursor-256x85-random.html
-   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19315/shard-skl3/igt@kms_cursor_crc@pipe-b-cursor-256x85-random.html
-
-  * igt@kms_cursor_crc@pipe-d-cursor-128x42-sliding:
-    - shard-kbl:          NOTRUN -> [SKIP][23] ([fdo#109271]) +27 similar issues
-   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19315/shard-kbl4/igt@kms_cursor_crc@pipe-d-cursor-128x42-sliding.html
-
-  * igt@kms_cursor_legacy@flip-vs-cursor-busy-crc-legacy:
-    - shard-skl:          [PASS][24] -> [FAIL][25] ([i915#2346])
-   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9580/shard-skl5/igt@kms_cursor_legacy@flip-vs-cursor-busy-crc-legacy.html
-   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19315/shard-skl8/igt@kms_cursor_legacy@flip-vs-cursor-busy-crc-legacy.html
-
-  * igt@kms_flip@flip-vs-suspend-interruptible@c-edp1:
-    - shard-skl:          [PASS][26] -> [INCOMPLETE][27] ([i915#2295])
-   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9580/shard-skl10/igt@kms_flip@flip-vs-suspend-interruptible@c-edp1.html
-   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19315/shard-skl9/igt@kms_flip@flip-vs-suspend-interruptible@c-edp1.html
-
-  * igt@kms_frontbuffer_tracking@fbc-1p-offscren-pri-shrfb-draw-render:
-    - shard-snb:          [PASS][28] -> [FAIL][29] ([i915#2546]) +15 similar issues
-   [28]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9580/shard-snb4/igt@kms_frontbuffer_tracking@fbc-1p-offscren-pri-shrfb-draw-render.html
-   [29]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19315/shard-snb7/igt@kms_frontbuffer_tracking@fbc-1p-offscren-pri-shrfb-draw-render.html
-
-  * igt@kms_frontbuffer_tracking@fbcpsr-2p-scndscrn-cur-indfb-draw-mmap-cpu:
-    - shard-iclb:         NOTRUN -> [SKIP][30] ([fdo#109280]) +6 similar issues
-   [30]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19315/shard-iclb4/igt@kms_frontbuffer_tracking@fbcpsr-2p-scndscrn-cur-indfb-draw-mmap-cpu.html
-
-  * igt@kms_pipe_crc_basic@read-crc-pipe-d-frame-sequence:
-    - shard-kbl:          NOTRUN -> [SKIP][31] ([fdo#109271] / [i915#533])
-   [31]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19315/shard-kbl3/igt@kms_pipe_crc_basic@read-crc-pipe-d-frame-sequence.html
-
-  * igt@kms_plane_alpha_blend@pipe-c-coverage-7efc:
-    - shard-skl:          [PASS][32] -> [FAIL][33] ([fdo#108145] / [i915#265])
-   [32]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9580/shard-skl1/igt@kms_plane_alpha_blend@pipe-c-coverage-7efc.html
-   [33]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19315/shard-skl3/igt@kms_plane_alpha_blend@pipe-c-coverage-7efc.html
-
-  * igt@kms_plane_alpha_blend@pipe-d-alpha-transparent-fb:
-    - shard-skl:          NOTRUN -> [SKIP][34] ([fdo#109271]) +1 similar issue
-   [34]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19315/shard-skl5/igt@kms_plane_alpha_blend@pipe-d-alpha-transparent-fb.html
-
-  * igt@kms_plane_alpha_blend@pipe-d-constant-alpha-max:
-    - shard-iclb:         NOTRUN -> [SKIP][35] ([fdo#109278]) +4 similar issues
-   [35]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19315/shard-iclb4/igt@kms_plane_alpha_blend@pipe-d-constant-alpha-max.html
-
-  * igt@kms_psr@psr2_cursor_plane_move:
-    - shard-iclb:         NOTRUN -> [SKIP][36] ([fdo#109441])
-   [36]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19315/shard-iclb4/igt@kms_psr@psr2_cursor_plane_move.html
-
-  * igt@kms_psr@psr2_primary_mmap_cpu:
-    - shard-iclb:         [PASS][37] -> [SKIP][38] ([fdo#109441]) +2 similar issues
-   [37]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9580/shard-iclb2/igt@kms_psr@psr2_primary_mmap_cpu.html
-   [38]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19315/shard-iclb7/igt@kms_psr@psr2_primary_mmap_cpu.html
-
-  * igt@perf@polling-parameterized:
-    - shard-skl:          [PASS][39] -> [FAIL][40] ([i915#1542])
-   [39]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9580/shard-skl6/igt@perf@polling-parameterized.html
-   [40]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19315/shard-skl7/igt@perf@polling-parameterized.html
-
-  
-#### Possible fixes ####
-
-  * igt@drm_mm@all@insert_range:
-    - shard-skl:          [INCOMPLETE][41] ([CI#80] / [i915#2485]) -> [PASS][42]
-   [41]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9580/shard-skl1/igt@drm_mm@all@insert_range.html
-   [42]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19315/shard-skl5/igt@drm_mm@all@insert_range.html
-
-  * igt@gem_ctx_persistence@close-replace-race:
-    - shard-glk:          [TIMEOUT][43] ([i915#2918]) -> [PASS][44]
-   [43]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9580/shard-glk5/igt@gem_ctx_persistence@close-replace-race.html
-   [44]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19315/shard-glk8/igt@gem_ctx_persistence@close-replace-race.html
-
-  * igt@gem_eio@in-flight-suspend:
-    - shard-kbl:          [DMESG-WARN][45] ([i915#1037] / [i915#180]) -> [PASS][46]
-   [45]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9580/shard-kbl3/igt@gem_eio@in-flight-suspend.html
-   [46]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19315/shard-kbl4/igt@gem_eio@in-flight-suspend.html
-
-  * {igt@gem_exec_fair@basic-deadline}:
-    - shard-glk:          [FAIL][47] ([i915#2846]) -> [PASS][48]
-   [47]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9580/shard-glk9/igt@gem_exec_fair@basic-deadline.html
-   [48]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19315/shard-glk3/igt@gem_exec_fair@basic-deadline.html
-
-  * {igt@gem_exec_fair@basic-none-solo@rcs0}:
-    - shard-kbl:          [FAIL][49] ([i915#2842]) -> [PASS][50] +1 similar issue
-   [49]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9580/shard-kbl1/igt@gem_exec_fair@basic-none-solo@rcs0.html
-   [50]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19315/shard-kbl2/igt@gem_exec_fair@basic-none-solo@rcs0.html
-
-  * {igt@gem_exec_schedule@u-fairslice@bcs0}:
-    - shard-tglb:         [DMESG-WARN][51] ([i915#2803]) -> [PASS][52]
-   [51]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9580/shard-tglb1/igt@gem_exec_schedule@u-fairslice@bcs0.html
-   [52]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19315/shard-tglb3/igt@gem_exec_schedule@u-fairslice@bcs0.html
-
-  * {igt@gem_exec_schedule@u-fairslice@rcs0}:
-    - shard-kbl:          [DMESG-WARN][53] ([i915#1610] / [i915#2803]) -> [PASS][54]
-   [53]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9580/shard-kbl3/igt@gem_exec_schedule@u-fairslice@rcs0.html
-   [54]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19315/shard-kbl3/igt@gem_exec_schedule@u-fairslice@rcs0.html
-
-  * {igt@gem_exec_schedule@u-fairslice@vecs0}:
-    - shard-iclb:         [DMESG-WARN][55] ([i915#2803]) -> [PASS][56]
-   [55]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9580/shard-iclb2/igt@gem_exec_schedule@u-fairslice@vecs0.html
-   [56]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19315/shard-iclb4/igt@gem_exec_schedule@u-fairslice@vecs0.html
-
-  * igt@gem_exec_whisper@basic-fds-forked-all:
-    - shard-glk:          [DMESG-WARN][57] ([i915#118] / [i915#95]) -> [PASS][58]
-   [57]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9580/shard-glk6/igt@gem_exec_whisper@basic-fds-forked-all.html
-   [58]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19315/shard-glk4/igt@gem_exec_whisper@basic-fds-forked-all.html
-
-  * {igt@gem_vm_create@destroy-race}:
-    - shard-tglb:         [TIMEOUT][59] ([i915#2795]) -> [PASS][60]
-   [59]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9580/shard-tglb7/igt@gem_vm_create@destroy-race.html
-   [60]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19315/shard-tglb6/igt@gem_vm_create@destroy-race.html
-
-  * igt@kms_async_flips@test-time-stamp:
-    - shard-snb:          [SKIP][61] ([fdo#109271]) -> [PASS][62] +3 similar issues
-   [61]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9580/shard-snb5/igt@kms_async_flips@test-time-stamp.html
-   [62]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19315/shard-snb2/igt@kms_async_flips@test-time-stamp.html
-
-  * igt@kms_cursor_crc@pipe-a-cursor-256x256-offscreen:
-    - shard-skl:          [FAIL][63] ([i915#54]) -> [PASS][64]
-   [63]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9580/shard-skl3/igt@kms_cursor_crc@pipe-a-cursor-256x256-offscreen.html
-   [64]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19315/shard-skl1/igt@kms_cursor_crc@pipe-a-cursor-256x256-offscreen.html
-
-  * igt@kms_flip@flip-vs-expired-vblank-interruptible@c-edp1:
-    - shard-tglb:         [FAIL][65] ([i915#79]) -> [PASS][66]
-   [65]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9580/shard-tglb7/igt@kms_flip@flip-vs-expired-vblank-interruptible@c-edp1.html
-   [66]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19315/shard-tglb6/igt@kms_flip@flip-vs-expired-vblank-interruptible@c-edp1.html
-
-  * igt@kms_flip@flip-vs-expired-vblank@a-edp1:
-    - shard-tglb:         [FAIL][67] ([i915#2598]) -> [PASS][68]
-   [67]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9580/shard-tglb7/igt@kms_flip@flip-vs-expired-vblank@a-edp1.html
-   [68]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19315/shard-tglb1/igt@kms_flip@flip-vs-expired-vblank@a-edp1.html
-
-  * igt@kms_flip@plain-flip-ts-check-interruptible@b-edp1:
-    - shard-skl:          [FAIL][69] ([i915#2122]) -> [PASS][70] +1 similar issue
-   [69]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9580/shard-skl5/igt@kms_flip@plain-flip-ts-check-interruptible@b-edp1.html
-   [70]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19315/shard-skl8/igt@kms_flip@plain-flip-ts-check-interruptible@b-edp1.html
-
-  * igt@kms_hdr@bpc-switch-dpms:
-    - shard-skl:          [FAIL][71] ([i915#1188]) -> [PASS][72]
-   [71]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9580/shard-skl9/igt@kms_hdr@bpc-switch-dpms.html
-   [72]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19315/shard-skl10/igt@kms_hdr@bpc-switch-dpms.html
-
-  * igt@kms_plane_alpha_blend@pipe-b-coverage-7efc:
-    - shard-skl:          [FAIL][73] ([fdo#108145] / [i915#265]) -> [PASS][74] +1 similar issue
-   [73]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9580/shard-skl5/igt@kms_plane_alpha_blend@pipe-b-coverage-7efc.html
-   [74]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19315/shard-skl8/igt@kms_plane_alpha_blend@pipe-b-coverage-7efc.html
-
-  * igt@kms_psr@psr2_basic:
-    - shard-iclb:         [SKIP][75] ([fdo#109441]) -> [PASS][76] +2 similar issues
-   [75]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9580/shard-iclb7/igt@kms_psr@psr2_basic.html
-   [76]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19315/shard-iclb2/igt@kms_psr@psr2_basic.html
-
-  
-#### Warnings ####
-
-  * igt@i915_pm_rc6_residency@rc6-fence:
-    - shard-iclb:         [WARN][77] ([i915#1804] / [i915#2684]) -> [WARN][78] ([i915#2684])
-   [77]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9580/shard-iclb6/igt@i915_pm_rc6_residency@rc6-fence.html
-   [78]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19315/shard-iclb5/igt@i915_pm_rc6_residency@rc6-fence.html
-
-  * igt@i915_pm_rc6_residency@rc6-idle:
-    - shard-iclb:         [WARN][79] ([i915#2684]) -> [WARN][80] ([i915#1804] / [i915#2684])
-   [79]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9580/shard-iclb2/igt@i915_pm_rc6_residency@rc6-idle.html
-   [80]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19315/shard-iclb7/igt@i915_pm_rc6_residency@rc6-idle.html
-
-  * igt@kms_hdr@bpc-switch-suspend:
-    - shard-skl:          [FAIL][81] ([i915#1188]) -> [INCOMPLETE][82] ([i915#198])
-   [81]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9580/shard-skl2/igt@kms_hdr@bpc-switch-suspend.html
-   [82]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19315/shard-skl9/igt@kms_hdr@bpc-switch-suspend.html
-
-  * igt@kms_plane@plane-panning-bottom-right-suspend-pipe-b-planes:
-    - shard-kbl:          [DMESG-WARN][83] ([i915#1602]) -> [INCOMPLETE][84] ([i915#155])
-   [83]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9580/shard-kbl2/igt@kms_plane@plane-panning-bottom-right-suspend-pipe-b-planes.html
-   [84]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19315/shard-kbl4/igt@kms_plane@plane-panning-bottom-right-suspend-pipe-b-planes.html
-
-  * igt@runner@aborted:
-    - shard-kbl:          ([FAIL][85], [FAIL][86], [FAIL][87], [FAIL][88]) ([i915#1436] / [i915#1814] / [i915#2295] / [i915#2426] / [i915#2505]) -> [FAIL][89] ([i915#2295])
-   [85]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9580/shard-kbl3/igt@runner@aborted.html
-   [86]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9580/shard-kbl3/igt@runner@aborted.html
-   [87]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9580/shard-kbl2/igt@runner@aborted.html
-   [88]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9580/shard-kbl6/igt@runner@aborted.html
-   [89]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19315/shard-kbl7/igt@runner@aborted.html
-    - shard-iclb:         ([FAIL][90], [FAIL][91], [FAIL][92]) ([i915#1814] / [i915#2295] / [i915#2426] / [i915#2724]) -> ([FAIL][93], [FAIL][94]) ([i915#1814] / [i915#2295] / [i915#2724])
-   [90]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9580/shard-iclb2/igt@runner@aborted.html
-   [91]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9580/shard-iclb1/igt@runner@aborted.html
-   [92]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9580/shard-iclb8/igt@runner@aborted.html
-   [93]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19315/shard-iclb4/igt@runner@aborted.html
-   [94]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19315/shard-iclb1/igt@runner@aborted.html
-    - shard-tglb:         ([FAIL][95], [FAIL][96], [FAIL][97]) ([i915#1814] / [i915#2295] / [i915#2426] / [i915#2667] / [i915#2803]) -> ([FAIL][98], [FAIL][99], [FAIL][100]) ([i915#1764] / [i915#1814] / [i915#2295] / [i915#2426] / [i915#2667] / [i915#2803])
-   [95]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9580/shard-tglb5/igt@runner@aborted.html
-   [96]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9580/shard-tglb5/igt@runner@aborted.html
-   [97]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9580/shard-tglb1/igt@runner@aborted.html
-   [98]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19315/shard-tglb1/igt@runner@aborted.html
-   [99]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19315/shard-tglb3/igt@runner@aborted.html
-   [100]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19315/shard-tglb3/igt@runner@aborted.html
-    - shard-skl:          ([FAIL][101], [FAIL][102]) ([i915#2295] / [i915#2426]) -> ([FAIL][103], [FAIL][104], [FAIL][105]) ([i915#1436] / [i915#2295] / [i915#2426])
-   [101]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9580/shard-skl2/igt@runner@aborted.html
-   [102]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9580/shard-skl3/igt@runner@aborted.html
-   [103]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19315/shard-skl2/igt@runner@aborted.html
-   [104]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19315/shard-skl4/igt@runner@aborted.html
-   [105]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19315/shard-skl9/igt@runner@aborted.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [CI#80]: https://gitlab.freedesktop.org/gfx-ci/i915-infra/issues/80
-  [fdo#108145]: https://bugs.freedesktop.org/show_bug.cgi?id=108145
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [fdo#109278]: https://bugs.freedesktop.org/show_bug.cgi?id=109278
-  [fdo#109280]: https://bugs.freedesktop.org/show_bug.cgi?id=109280
-  [fdo#109284]: https://bugs.freedesktop.org/show_bug.cgi?id=109284
-  [fdo#109289]: https://bugs.freedesktop.org/show_bug.cgi?id=109289
-  [fdo#109441]: https://bugs.freedesktop.org/show_bug.cgi?id=109441
-  [fdo#110426]: https://bugs.freedesktop.org/show_bug.cgi?id=110426
-  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
-  [i915#1037]: https://gitlab.freedesktop.org/drm/intel/issues/1037
-  [i915#1149]: https://gitlab.freedesktop.org/drm/intel/issues/1149
-  [i915#118]: https://gitlab.freedesktop.org/drm/intel/issues/118
-  [i915#1188]: https://gitlab.freedesktop.org/drm/intel/issues/1188
-  [i915#1436]: https://gitlab.freedesktop.org/drm/intel/issues/1436
-  [i915#1542]: https://gitlab.freedesktop.org/drm/intel/issues/1542
-  [i915#155]: https://gitlab.freedesktop.org/drm/intel/issues/155
-  [i915#1602]: https://gitlab.freedesktop.org/drm/intel/issues/1602
-  [i915#1610]: https://gitlab.freedesktop.org/drm/intel/issues/1610
-  [i915#1704]: https://gitlab.freedesktop.org/drm/intel/issues/1704
-  [i915#1764]: https://gitlab.freedesktop.org/drm/intel/issues/1764
-  [i915#180]: https://gitlab.freedesktop.org/drm/intel/issues/180
-  [i915#1804]: https://gitlab.freedesktop.org/drm/intel/issues/1804
-  [i915#1814]: https://gitlab.freedesktop.org/drm/intel/issues/1814
-  [i915#198]: https://gitlab.freedesktop.org/drm/intel/issues/198
-  [i915#2122]: https://gitlab.freedesktop.org/drm/intel/issues/2122
-  [i915#2291]: https://gitlab.freedesktop.org/drm/intel/issues/2291
-  [i915#2295]: https://gitlab.freedesktop.org/drm/intel/issues/2295
-  [i915#2346]: https://gitlab.freedesktop.org/drm/intel/issues/2346
-  [i915#2426]: https://gitlab.freedesktop.org/drm/intel/issues/2426
-  [i915#2485]: https://gitlab.freedesktop.org/drm/intel/issues/2485
-  [i915#2505]: https://gitlab.freedesktop.org/drm/intel/issues/2505
-  [i915#2546]: https://gitlab.freedesktop.org/drm/intel/issues/2546
-  [i915#2598]: https://gitlab.freedesktop.org/drm/intel/issues/2598
-  [i915#265]: https://gitlab.freedesktop.org/drm/intel/issues/265
-  [i915#2667]: https://gitlab.freedesktop.org/drm/intel/issues/2667
-  [i915#2684]: https://gitlab.freedesktop.org/drm/intel/issues/2684
-  [i915#2724]: https://gitlab.freedesktop.org/drm/intel/issues/2724
-  [i915#2795]: https://gitlab.freedesktop.org/drm/intel/issues/2795
-  [i915#2803]: https://gitlab.freedesktop.org/drm/intel/issues/2803
-  [i915#2842]: https://gitlab.freedesktop.org/drm/intel/issues/2842
-  [i915#2846]: https://gitlab.freedesktop.org/drm/intel/issues/2846
-  [i915#2918]: https://gitlab.freedesktop.org/drm/intel/issues/2918
-  [i915#2920]: https://gitlab.freedesktop.org/drm/intel/issues/2920
-  [i915#2927]: https://gitlab.freedesktop.org/drm/intel/issues/2927
-  [i915#454]: https://gitlab.freedesktop.org/drm/intel/issues/454
-  [i915#533]: https://gitlab.freedesktop.org/drm/intel/issues/533
-  [i915#54]: https://gitlab.freedesktop.org/drm/intel/issues/54
-  [i915#541]: https://gitlab.freedesktop.org/drm/intel/issues/541
-  [i915#658]: https://gitlab.freedesktop.org/drm/intel/issues/658
-  [i915#768]: https://gitlab.freedesktop.org/drm/intel/issues/768
-  [i915#79]: https://gitlab.freedesktop.org/drm/intel/issues/79
-  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
-
-
-Participating hosts (10 -> 10)
-------------------------------
-
-  No changes in participating hosts
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_9580 -> Patchwork_19315
-
-  CI-20190529: 20190529
-  CI_DRM_9580: 117f9c9bca0ebb0e22ce282eab531575f5154055 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5953: 65c5eea699141e6f942ce0a8fc85db76ce53cd19 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_19315: b5239b3cf416cfc73090ddd8ec7bba725278ecaa @ git://anongit.freedesktop.org/gfx-ci/linux
-  piglit_4509: fdc5a4ca11124ab8413c7988896eec4c97336694 @ git://anongit.freedesktop.org/piglit
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19315/index.html
-
---===============0114039605475183964==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-
-
-<!DOCTYPE html>
-<html xmlns=3D"http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id=3D"css-table-select" type=3D"text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915: Async flips for all ilk+ platforms=
- (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href=3D"https://patchwork.freedesktop.org/se=
-ries/85627/">https://patchwork.freedesktop.org/series/85627/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href=3D"https://intel-gfx-ci.01.org/=
-tree/drm-tip/Patchwork_19315/index.html">https://intel-gfx-ci.01.org/tree/d=
-rm-tip/Patchwork_19315/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_9580_full -&gt; Patchwork_19315_fu=
-ll</h1>
-<h2>Summary</h2>
-<p><strong>WARNING</strong></p>
-<p>Minor unknown changes coming with Patchwork_19315_full need to be verifi=
-ed<br />
-  manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br=
- />
-  introduced in Patchwork_19315_full, please notify your bug team to allow =
-them<br />
-  to document this new failure mode, which will reduce false positives in C=
-I.</p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in Patchwork_=
-19315_full:</p>
-<h3>IGT changes</h3>
-<h4>Warnings</h4>
-<ul>
-<li>igt@kms_async_flips@invalid-async-flip:<ul>
-<li>shard-snb:          <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
-/CI_DRM_9580/shard-snb2/igt@kms_async_flips@invalid-async-flip.html">SKIP</=
-a> (<a href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D109271">fdo#1=
-09271</a>) -&gt; <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchw=
-ork_19315/shard-snb5/igt@kms_async_flips@invalid-async-flip.html">FAIL</a><=
-/li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_19315_full that come from known =
-issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@feature_discovery@psr2:</p>
-<ul>
-<li>shard-iclb:         <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
-/CI_DRM_9580/shard-iclb2/igt@feature_discovery@psr2.html">PASS</a> -&gt; <a=
- href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19315/shard-icl=
-b7/igt@feature_discovery@psr2.html">SKIP</a> (<a href=3D"https://gitlab.fre=
-edesktop.org/drm/intel/issues/658">i915#658</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_whisper@basic-contexts-priority:</p>
-<ul>
-<li>shard-glk:          <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
-/CI_DRM_9580/shard-glk5/igt@gem_exec_whisper@basic-contexts-priority.html">=
-PASS</a> -&gt; <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwor=
-k_19315/shard-glk8/igt@gem_exec_whisper@basic-contexts-priority.html">DMESG=
--WARN</a> (<a href=3D"https://gitlab.freedesktop.org/drm/intel/issues/118">=
-i915#118</a> / <a href=3D"https://gitlab.freedesktop.org/drm/intel/issues/9=
-5">i915#95</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_render_copy@y-tiled-to-vebox-x-tiled:</p>
-<ul>
-<li>shard-iclb:         NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
-/tree/drm-tip/Patchwork_19315/shard-iclb4/igt@gem_render_copy@y-tiled-to-ve=
-box-x-tiled.html">SKIP</a> (<a href=3D"https://gitlab.freedesktop.org/drm/i=
-ntel/issues/768">i915#768</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_userptr_blits@readonly-pwrite-unsync:</p>
-<ul>
-<li>shard-iclb:         NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
-/tree/drm-tip/Patchwork_19315/shard-iclb4/igt@gem_userptr_blits@readonly-pw=
-rite-unsync.html">SKIP</a> (<a href=3D"https://bugs.freedesktop.org/show_bu=
-g.cgi?id=3D110426">fdo#110426</a> / <a href=3D"https://gitlab.freedesktop.o=
-rg/drm/intel/issues/1704">i915#1704</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gen3_render_linear_blits:</p>
-<ul>
-<li>shard-iclb:         NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
-/tree/drm-tip/Patchwork_19315/shard-iclb4/igt@gen3_render_linear_blits.html=
-">SKIP</a> (<a href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D10928=
-9">fdo#109289</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_pm_dc@dc6-psr:</p>
-<ul>
-<li>shard-iclb:         <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
-/CI_DRM_9580/shard-iclb4/igt@i915_pm_dc@dc6-psr.html">PASS</a> -&gt; <a hre=
-f=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19315/shard-iclb8/i=
-gt@i915_pm_dc@dc6-psr.html">FAIL</a> (<a href=3D"https://gitlab.freedesktop=
-.org/drm/intel/issues/454">i915#454</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@gem:</p>
-<ul>
-<li>shard-skl:          <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
-/CI_DRM_9580/shard-skl2/igt@i915_selftest@live@gem.html">PASS</a> -&gt; <a =
-href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19315/shard-skl2=
-/igt@i915_selftest@live@gem.html">DMESG-FAIL</a> (<a href=3D"https://gitlab=
-.freedesktop.org/drm/intel/issues/2927">i915#2927</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@gt_heartbeat:</p>
-<ul>
-<li>shard-skl:          <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
-/CI_DRM_9580/shard-skl2/igt@i915_selftest@live@gt_heartbeat.html">PASS</a> =
--&gt; <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19315/s=
-hard-skl2/igt@i915_selftest@live@gt_heartbeat.html">DMESG-FAIL</a> (<a href=
-=3D"https://gitlab.freedesktop.org/drm/intel/issues/2291">i915#2291</a> / <=
-a href=3D"https://gitlab.freedesktop.org/drm/intel/issues/541">i915#541</a>=
-)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@perf:</p>
-<ul>
-<li>shard-skl:          <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
-/CI_DRM_9580/shard-skl2/igt@i915_selftest@live@perf.html">PASS</a> -&gt; <a=
- href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19315/shard-skl=
-2/igt@i915_selftest@live@perf.html">SKIP</a> (<a href=3D"https://bugs.freed=
-esktop.org/show_bug.cgi?id=3D109271">fdo#109271</a>) +12 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_color@pipe-d-ctm-max:</p>
-<ul>
-<li>shard-iclb:         NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
-/tree/drm-tip/Patchwork_19315/shard-iclb4/igt@kms_color@pipe-d-ctm-max.html=
-">SKIP</a> (<a href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D10927=
-8">fdo#109278</a> / <a href=3D"https://gitlab.freedesktop.org/drm/intel/iss=
-ues/1149">i915#1149</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_color_chamelium@pipe-a-gamma:</p>
-<ul>
-<li>
-<p>shard-iclb:         NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org/=
-tree/drm-tip/Patchwork_19315/shard-iclb4/igt@kms_color_chamelium@pipe-a-gam=
-ma.html">SKIP</a> (<a href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=
-=3D109284">fdo#109284</a> / <a href=3D"https://bugs.freedesktop.org/show_bu=
-g.cgi?id=3D111827">fdo#111827</a>)</p>
-</li>
-<li>
-<p>shard-kbl:          NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org/=
-tree/drm-tip/Patchwork_19315/shard-kbl3/igt@kms_color_chamelium@pipe-a-gamm=
-a.html">SKIP</a> (<a href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=
-=3D109271">fdo#109271</a> / <a href=3D"https://bugs.freedesktop.org/show_bu=
-g.cgi?id=3D111827">fdo#111827</a>)</p>
-</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_crc@pipe-b-cursor-256x85-random:</p>
-<ul>
-<li>shard-skl:          <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
-/CI_DRM_9580/shard-skl1/igt@kms_cursor_crc@pipe-b-cursor-256x85-random.html=
-">PASS</a> -&gt; <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchw=
-ork_19315/shard-skl3/igt@kms_cursor_crc@pipe-b-cursor-256x85-random.html">F=
-AIL</a> (<a href=3D"https://gitlab.freedesktop.org/drm/intel/issues/54">i91=
-5#54</a>) +6 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_crc@pipe-d-cursor-128x42-sliding:</p>
-<ul>
-<li>shard-kbl:          NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
-/tree/drm-tip/Patchwork_19315/shard-kbl4/igt@kms_cursor_crc@pipe-d-cursor-1=
-28x42-sliding.html">SKIP</a> (<a href=3D"https://bugs.freedesktop.org/show_=
-bug.cgi?id=3D109271">fdo#109271</a>) +27 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@flip-vs-cursor-busy-crc-legacy:</p>
-<ul>
-<li>shard-skl:          <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
-/CI_DRM_9580/shard-skl5/igt@kms_cursor_legacy@flip-vs-cursor-busy-crc-legac=
-y.html">PASS</a> -&gt; <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/=
-Patchwork_19315/shard-skl8/igt@kms_cursor_legacy@flip-vs-cursor-busy-crc-le=
-gacy.html">FAIL</a> (<a href=3D"https://gitlab.freedesktop.org/drm/intel/is=
-sues/2346">i915#2346</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@flip-vs-suspend-interruptible@c-edp1:</p>
-<ul>
-<li>shard-skl:          <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
-/CI_DRM_9580/shard-skl10/igt@kms_flip@flip-vs-suspend-interruptible@c-edp1.=
-html">PASS</a> -&gt; <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Pa=
-tchwork_19315/shard-skl9/igt@kms_flip@flip-vs-suspend-interruptible@c-edp1.=
-html">INCOMPLETE</a> (<a href=3D"https://gitlab.freedesktop.org/drm/intel/i=
-ssues/2295">i915#2295</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_frontbuffer_tracking@fbc-1p-offscren-pri-shrfb-draw-render:</p>
-<ul>
-<li>shard-snb:          <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
-/CI_DRM_9580/shard-snb4/igt@kms_frontbuffer_tracking@fbc-1p-offscren-pri-sh=
-rfb-draw-render.html">PASS</a> -&gt; <a href=3D"https://intel-gfx-ci.01.org=
-/tree/drm-tip/Patchwork_19315/shard-snb7/igt@kms_frontbuffer_tracking@fbc-1=
-p-offscren-pri-shrfb-draw-render.html">FAIL</a> (<a href=3D"https://gitlab.=
-freedesktop.org/drm/intel/issues/2546">i915#2546</a>) +15 similar issues</l=
-i>
-</ul>
-</li>
-<li>
-<p>igt@kms_frontbuffer_tracking@fbcpsr-2p-scndscrn-cur-indfb-draw-mmap-cpu:=
-</p>
-<ul>
-<li>shard-iclb:         NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
-/tree/drm-tip/Patchwork_19315/shard-iclb4/igt@kms_frontbuffer_tracking@fbcp=
-sr-2p-scndscrn-cur-indfb-draw-mmap-cpu.html">SKIP</a> (<a href=3D"https://b=
-ugs.freedesktop.org/show_bug.cgi?id=3D109280">fdo#109280</a>) +6 similar is=
-sues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@read-crc-pipe-d-frame-sequence:</p>
-<ul>
-<li>shard-kbl:          NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
-/tree/drm-tip/Patchwork_19315/shard-kbl3/igt@kms_pipe_crc_basic@read-crc-pi=
-pe-d-frame-sequence.html">SKIP</a> (<a href=3D"https://bugs.freedesktop.org=
-/show_bug.cgi?id=3D109271">fdo#109271</a> / <a href=3D"https://gitlab.freed=
-esktop.org/drm/intel/issues/533">i915#533</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_plane_alpha_blend@pipe-c-coverage-7efc:</p>
-<ul>
-<li>shard-skl:          <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
-/CI_DRM_9580/shard-skl1/igt@kms_plane_alpha_blend@pipe-c-coverage-7efc.html=
-">PASS</a> -&gt; <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchw=
-ork_19315/shard-skl3/igt@kms_plane_alpha_blend@pipe-c-coverage-7efc.html">F=
-AIL</a> (<a href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D108145">=
-fdo#108145</a> / <a href=3D"https://gitlab.freedesktop.org/drm/intel/issues=
-/265">i915#265</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_plane_alpha_blend@pipe-d-alpha-transparent-fb:</p>
-<ul>
-<li>shard-skl:          NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
-/tree/drm-tip/Patchwork_19315/shard-skl5/igt@kms_plane_alpha_blend@pipe-d-a=
-lpha-transparent-fb.html">SKIP</a> (<a href=3D"https://bugs.freedesktop.org=
-/show_bug.cgi?id=3D109271">fdo#109271</a>) +1 similar issue</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_plane_alpha_blend@pipe-d-constant-alpha-max:</p>
-<ul>
-<li>shard-iclb:         NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
-/tree/drm-tip/Patchwork_19315/shard-iclb4/igt@kms_plane_alpha_blend@pipe-d-=
-constant-alpha-max.html">SKIP</a> (<a href=3D"https://bugs.freedesktop.org/=
-show_bug.cgi?id=3D109278">fdo#109278</a>) +4 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr@psr2_cursor_plane_move:</p>
-<ul>
-<li>shard-iclb:         NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
-/tree/drm-tip/Patchwork_19315/shard-iclb4/igt@kms_psr@psr2_cursor_plane_mov=
-e.html">SKIP</a> (<a href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=
-=3D109441">fdo#109441</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr@psr2_primary_mmap_cpu:</p>
-<ul>
-<li>shard-iclb:         <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
-/CI_DRM_9580/shard-iclb2/igt@kms_psr@psr2_primary_mmap_cpu.html">PASS</a> -=
-&gt; <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19315/sh=
-ard-iclb7/igt@kms_psr@psr2_primary_mmap_cpu.html">SKIP</a> (<a href=3D"http=
-s://bugs.freedesktop.org/show_bug.cgi?id=3D109441">fdo#109441</a>) +2 simil=
-ar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@perf@polling-parameterized:</p>
-<ul>
-<li>shard-skl:          <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
-/CI_DRM_9580/shard-skl6/igt@perf@polling-parameterized.html">PASS</a> -&gt;=
- <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19315/shard-=
-skl7/igt@perf@polling-parameterized.html">FAIL</a> (<a href=3D"https://gitl=
-ab.freedesktop.org/drm/intel/issues/1542">i915#1542</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@drm_mm@all@insert_range:</p>
-<ul>
-<li>shard-skl:          <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
-/CI_DRM_9580/shard-skl1/igt@drm_mm@all@insert_range.html">INCOMPLETE</a> (<=
-a href=3D"https://gitlab.freedesktop.org/gfx-ci/i915-infra/issues/80">CI#80=
-</a> / <a href=3D"https://gitlab.freedesktop.org/drm/intel/issues/2485">i91=
-5#2485</a>) -&gt; <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patch=
-work_19315/shard-skl5/igt@drm_mm@all@insert_range.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@gem_ctx_persistence@close-replace-race:</p>
-<ul>
-<li>shard-glk:          <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
-/CI_DRM_9580/shard-glk5/igt@gem_ctx_persistence@close-replace-race.html">TI=
-MEOUT</a> (<a href=3D"https://gitlab.freedesktop.org/drm/intel/issues/2918"=
->i915#2918</a>) -&gt; <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/P=
-atchwork_19315/shard-glk8/igt@gem_ctx_persistence@close-replace-race.html">=
-PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@gem_eio@in-flight-suspend:</p>
-<ul>
-<li>shard-kbl:          <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
-/CI_DRM_9580/shard-kbl3/igt@gem_eio@in-flight-suspend.html">DMESG-WARN</a> =
-(<a href=3D"https://gitlab.freedesktop.org/drm/intel/issues/1037">i915#1037=
-</a> / <a href=3D"https://gitlab.freedesktop.org/drm/intel/issues/180">i915=
-#180</a>) -&gt; <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwo=
-rk_19315/shard-kbl4/igt@gem_eio@in-flight-suspend.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>{igt@gem_exec_fair@basic-deadline}:</p>
-<ul>
-<li>shard-glk:          <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
-/CI_DRM_9580/shard-glk9/igt@gem_exec_fair@basic-deadline.html">FAIL</a> (<a=
- href=3D"https://gitlab.freedesktop.org/drm/intel/issues/2846">i915#2846</a=
->) -&gt; <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_1931=
-5/shard-glk3/igt@gem_exec_fair@basic-deadline.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>{igt@gem_exec_fair@basic-none-solo@rcs0}:</p>
-<ul>
-<li>shard-kbl:          <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
-/CI_DRM_9580/shard-kbl1/igt@gem_exec_fair@basic-none-solo@rcs0.html">FAIL</=
-a> (<a href=3D"https://gitlab.freedesktop.org/drm/intel/issues/2842">i915#2=
-842</a>) -&gt; <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwor=
-k_19315/shard-kbl2/igt@gem_exec_fair@basic-none-solo@rcs0.html">PASS</a> +1=
- similar issue</li>
-</ul>
-</li>
-<li>
-<p>{igt@gem_exec_schedule@u-fairslice@bcs0}:</p>
-<ul>
-<li>shard-tglb:         <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
-/CI_DRM_9580/shard-tglb1/igt@gem_exec_schedule@u-fairslice@bcs0.html">DMESG=
--WARN</a> (<a href=3D"https://gitlab.freedesktop.org/drm/intel/issues/2803"=
->i915#2803</a>) -&gt; <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/P=
-atchwork_19315/shard-tglb3/igt@gem_exec_schedule@u-fairslice@bcs0.html">PAS=
-S</a></li>
-</ul>
-</li>
-<li>
-<p>{igt@gem_exec_schedule@u-fairslice@rcs0}:</p>
-<ul>
-<li>shard-kbl:          <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
-/CI_DRM_9580/shard-kbl3/igt@gem_exec_schedule@u-fairslice@rcs0.html">DMESG-=
-WARN</a> (<a href=3D"https://gitlab.freedesktop.org/drm/intel/issues/1610">=
-i915#1610</a> / <a href=3D"https://gitlab.freedesktop.org/drm/intel/issues/=
-2803">i915#2803</a>) -&gt; <a href=3D"https://intel-gfx-ci.01.org/tree/drm-=
-tip/Patchwork_19315/shard-kbl3/igt@gem_exec_schedule@u-fairslice@rcs0.html"=
->PASS</a></li>
-</ul>
-</li>
-<li>
-<p>{igt@gem_exec_schedule@u-fairslice@vecs0}:</p>
-<ul>
-<li>shard-iclb:         <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
-/CI_DRM_9580/shard-iclb2/igt@gem_exec_schedule@u-fairslice@vecs0.html">DMES=
-G-WARN</a> (<a href=3D"https://gitlab.freedesktop.org/drm/intel/issues/2803=
-">i915#2803</a>) -&gt; <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/=
-Patchwork_19315/shard-iclb4/igt@gem_exec_schedule@u-fairslice@vecs0.html">P=
-ASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_whisper@basic-fds-forked-all:</p>
-<ul>
-<li>shard-glk:          <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
-/CI_DRM_9580/shard-glk6/igt@gem_exec_whisper@basic-fds-forked-all.html">DME=
-SG-WARN</a> (<a href=3D"https://gitlab.freedesktop.org/drm/intel/issues/118=
-">i915#118</a> / <a href=3D"https://gitlab.freedesktop.org/drm/intel/issues=
-/95">i915#95</a>) -&gt; <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
-/Patchwork_19315/shard-glk4/igt@gem_exec_whisper@basic-fds-forked-all.html"=
->PASS</a></li>
-</ul>
-</li>
-<li>
-<p>{igt@gem_vm_create@destroy-race}:</p>
-<ul>
-<li>shard-tglb:         <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
-/CI_DRM_9580/shard-tglb7/igt@gem_vm_create@destroy-race.html">TIMEOUT</a> (=
-<a href=3D"https://gitlab.freedesktop.org/drm/intel/issues/2795">i915#2795<=
-/a>) -&gt; <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19=
-315/shard-tglb6/igt@gem_vm_create@destroy-race.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_async_flips@test-time-stamp:</p>
-<ul>
-<li>shard-snb:          <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
-/CI_DRM_9580/shard-snb5/igt@kms_async_flips@test-time-stamp.html">SKIP</a> =
-(<a href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D109271">fdo#1092=
-71</a>) -&gt; <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork=
-_19315/shard-snb2/igt@kms_async_flips@test-time-stamp.html">PASS</a> +3 sim=
-ilar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_crc@pipe-a-cursor-256x256-offscreen:</p>
-<ul>
-<li>shard-skl:          <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
-/CI_DRM_9580/shard-skl3/igt@kms_cursor_crc@pipe-a-cursor-256x256-offscreen.=
-html">FAIL</a> (<a href=3D"https://gitlab.freedesktop.org/drm/intel/issues/=
-54">i915#54</a>) -&gt; <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/=
-Patchwork_19315/shard-skl1/igt@kms_cursor_crc@pipe-a-cursor-256x256-offscre=
-en.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@flip-vs-expired-vblank-interruptible@c-edp1:</p>
-<ul>
-<li>shard-tglb:         <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
-/CI_DRM_9580/shard-tglb7/igt@kms_flip@flip-vs-expired-vblank-interruptible@=
-c-edp1.html">FAIL</a> (<a href=3D"https://gitlab.freedesktop.org/drm/intel/=
-issues/79">i915#79</a>) -&gt; <a href=3D"https://intel-gfx-ci.01.org/tree/d=
-rm-tip/Patchwork_19315/shard-tglb6/igt@kms_flip@flip-vs-expired-vblank-inte=
-rruptible@c-edp1.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@flip-vs-expired-vblank@a-edp1:</p>
-<ul>
-<li>shard-tglb:         <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
-/CI_DRM_9580/shard-tglb7/igt@kms_flip@flip-vs-expired-vblank@a-edp1.html">F=
-AIL</a> (<a href=3D"https://gitlab.freedesktop.org/drm/intel/issues/2598">i=
-915#2598</a>) -&gt; <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Pat=
-chwork_19315/shard-tglb1/igt@kms_flip@flip-vs-expired-vblank@a-edp1.html">P=
-ASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@plain-flip-ts-check-interruptible@b-edp1:</p>
-<ul>
-<li>shard-skl:          <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
-/CI_DRM_9580/shard-skl5/igt@kms_flip@plain-flip-ts-check-interruptible@b-ed=
-p1.html">FAIL</a> (<a href=3D"https://gitlab.freedesktop.org/drm/intel/issu=
-es/2122">i915#2122</a>) -&gt; <a href=3D"https://intel-gfx-ci.01.org/tree/d=
-rm-tip/Patchwork_19315/shard-skl8/igt@kms_flip@plain-flip-ts-check-interrup=
-tible@b-edp1.html">PASS</a> +1 similar issue</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_hdr@bpc-switch-dpms:</p>
-<ul>
-<li>shard-skl:          <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
-/CI_DRM_9580/shard-skl9/igt@kms_hdr@bpc-switch-dpms.html">FAIL</a> (<a href=
-=3D"https://gitlab.freedesktop.org/drm/intel/issues/1188">i915#1188</a>) -&=
-gt; <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19315/sha=
-rd-skl10/igt@kms_hdr@bpc-switch-dpms.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_plane_alpha_blend@pipe-b-coverage-7efc:</p>
-<ul>
-<li>shard-skl:          <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
-/CI_DRM_9580/shard-skl5/igt@kms_plane_alpha_blend@pipe-b-coverage-7efc.html=
-">FAIL</a> (<a href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D10814=
-5">fdo#108145</a> / <a href=3D"https://gitlab.freedesktop.org/drm/intel/iss=
-ues/265">i915#265</a>) -&gt; <a href=3D"https://intel-gfx-ci.01.org/tree/dr=
-m-tip/Patchwork_19315/shard-skl8/igt@kms_plane_alpha_blend@pipe-b-coverage-=
-7efc.html">PASS</a> +1 similar issue</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr@psr2_basic:</p>
-<ul>
-<li>shard-iclb:         <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
-/CI_DRM_9580/shard-iclb7/igt@kms_psr@psr2_basic.html">SKIP</a> (<a href=3D"=
-https://bugs.freedesktop.org/show_bug.cgi?id=3D109441">fdo#109441</a>) -&gt=
-; <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19315/shard=
--iclb2/igt@kms_psr@psr2_basic.html">PASS</a> +2 similar issues</li>
-</ul>
-</li>
-</ul>
-<h4>Warnings</h4>
-<ul>
-<li>
-<p>igt@i915_pm_rc6_residency@rc6-fence:</p>
-<ul>
-<li>shard-iclb:         <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
-/CI_DRM_9580/shard-iclb6/igt@i915_pm_rc6_residency@rc6-fence.html">WARN</a>=
- (<a href=3D"https://gitlab.freedesktop.org/drm/intel/issues/1804">i915#180=
-4</a> / <a href=3D"https://gitlab.freedesktop.org/drm/intel/issues/2684">i9=
-15#2684</a>) -&gt; <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patc=
-hwork_19315/shard-iclb5/igt@i915_pm_rc6_residency@rc6-fence.html">WARN</a> =
-(<a href=3D"https://gitlab.freedesktop.org/drm/intel/issues/2684">i915#2684=
-</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_pm_rc6_residency@rc6-idle:</p>
-<ul>
-<li>shard-iclb:         <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
-/CI_DRM_9580/shard-iclb2/igt@i915_pm_rc6_residency@rc6-idle.html">WARN</a> =
-(<a href=3D"https://gitlab.freedesktop.org/drm/intel/issues/2684">i915#2684=
-</a>) -&gt; <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_1=
-9315/shard-iclb7/igt@i915_pm_rc6_residency@rc6-idle.html">WARN</a> (<a href=
-=3D"https://gitlab.freedesktop.org/drm/intel/issues/1804">i915#1804</a> / <=
-a href=3D"https://gitlab.freedesktop.org/drm/intel/issues/2684">i915#2684</=
-a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_hdr@bpc-switch-suspend:</p>
-<ul>
-<li>shard-skl:          <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
-/CI_DRM_9580/shard-skl2/igt@kms_hdr@bpc-switch-suspend.html">FAIL</a> (<a h=
-ref=3D"https://gitlab.freedesktop.org/drm/intel/issues/1188">i915#1188</a>)=
- -&gt; <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19315/=
-shard-skl9/igt@kms_hdr@bpc-switch-suspend.html">INCOMPLETE</a> (<a href=3D"=
-https://gitlab.freedesktop.org/drm/intel/issues/198">i915#198</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_plane@plane-panning-bottom-right-suspend-pipe-b-planes:</p>
-<ul>
-<li>shard-kbl:          <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
-/CI_DRM_9580/shard-kbl2/igt@kms_plane@plane-panning-bottom-right-suspend-pi=
-pe-b-planes.html">DMESG-WARN</a> (<a href=3D"https://gitlab.freedesktop.org=
-/drm/intel/issues/1602">i915#1602</a>) -&gt; <a href=3D"https://intel-gfx-c=
-i.01.org/tree/drm-tip/Patchwork_19315/shard-kbl4/igt@kms_plane@plane-pannin=
-g-bottom-right-suspend-pipe-b-planes.html">INCOMPLETE</a> (<a href=3D"https=
-://gitlab.freedesktop.org/drm/intel/issues/155">i915#155</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@runner@aborted:</p>
-<ul>
-<li>
-<p>shard-kbl:          (<a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
-/CI_DRM_9580/shard-kbl3/igt@runner@aborted.html">FAIL</a>, <a href=3D"https=
-://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9580/shard-kbl3/igt@runner@abort=
-ed.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/CI_D=
-RM_9580/shard-kbl2/igt@runner@aborted.html">FAIL</a>, <a href=3D"https://in=
-tel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9580/shard-kbl6/igt@runner@aborted.ht=
-ml">FAIL</a>) (<a href=3D"https://gitlab.freedesktop.org/drm/intel/issues/1=
-436">i915#1436</a> / <a href=3D"https://gitlab.freedesktop.org/drm/intel/is=
-sues/1814">i915#1814</a> / <a href=3D"https://gitlab.freedesktop.org/drm/in=
-tel/issues/2295">i915#2295</a> / <a href=3D"https://gitlab.freedesktop.org/=
-drm/intel/issues/2426">i915#2426</a> / <a href=3D"https://gitlab.freedeskto=
-p.org/drm/intel/issues/2505">i915#2505</a>) -&gt; <a href=3D"https://intel-=
-gfx-ci.01.org/tree/drm-tip/Patchwork_19315/shard-kbl7/igt@runner@aborted.ht=
-ml">FAIL</a> (<a href=3D"https://gitlab.freedesktop.org/drm/intel/issues/22=
-95">i915#2295</a>)</p>
-</li>
-<li>
-<p>shard-iclb:         (<a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
-/CI_DRM_9580/shard-iclb2/igt@runner@aborted.html">FAIL</a>, <a href=3D"http=
-s://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9580/shard-iclb1/igt@runner@abo=
-rted.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/CI=
-_DRM_9580/shard-iclb8/igt@runner@aborted.html">FAIL</a>) (<a href=3D"https:=
-//gitlab.freedesktop.org/drm/intel/issues/1814">i915#1814</a> / <a href=3D"=
-https://gitlab.freedesktop.org/drm/intel/issues/2295">i915#2295</a> / <a hr=
-ef=3D"https://gitlab.freedesktop.org/drm/intel/issues/2426">i915#2426</a> /=
- <a href=3D"https://gitlab.freedesktop.org/drm/intel/issues/2724">i915#2724=
-</a>) -&gt; (<a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_=
-19315/shard-iclb4/igt@runner@aborted.html">FAIL</a>, <a href=3D"https://int=
-el-gfx-ci.01.org/tree/drm-tip/Patchwork_19315/shard-iclb1/igt@runner@aborte=
-d.html">FAIL</a>) (<a href=3D"https://gitlab.freedesktop.org/drm/intel/issu=
-es/1814">i915#1814</a> / <a href=3D"https://gitlab.freedesktop.org/drm/inte=
-l/issues/2295">i915#2295</a> / <a href=3D"https://gitlab.freedesktop.org/dr=
-m/intel/issues/2724">i915#2724</a>)</p>
-</li>
-<li>
-<p>shard-tglb:         (<a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
-/CI_DRM_9580/shard-tglb5/igt@runner@aborted.html">FAIL</a>, <a href=3D"http=
-s://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9580/shard-tglb5/igt@runner@abo=
-rted.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/CI=
-_DRM_9580/shard-tglb1/igt@runner@aborted.html">FAIL</a>) (<a href=3D"https:=
-//gitlab.freedesktop.org/drm/intel/issues/1814">i915#1814</a> / <a href=3D"=
-https://gitlab.freedesktop.org/drm/intel/issues/2295">i915#2295</a> / <a hr=
-ef=3D"https://gitlab.freedesktop.org/drm/intel/issues/2426">i915#2426</a> /=
- <a href=3D"https://gitlab.freedesktop.org/drm/intel/issues/2667">i915#2667=
-</a> / <a href=3D"https://gitlab.freedesktop.org/drm/intel/issues/2803">i91=
-5#2803</a>) -&gt; (<a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patc=
-hwork_19315/shard-tglb1/igt@runner@aborted.html">FAIL</a>, <a href=3D"https=
-://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19315/shard-tglb3/igt@runner@=
-aborted.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
-/Patchwork_19315/shard-tglb3/igt@runner@aborted.html">FAIL</a>) (<a href=3D=
-"https://gitlab.freedesktop.org/drm/intel/issues/1764">i915#1764</a> / <a h=
-ref=3D"https://gitlab.freedesktop.org/drm/intel/issues/1814">i915#1814</a> =
-/ <a href=3D"https://gitlab.freedesktop.org/drm/intel/issues/2295">i915#229=
-5</a> / <a href=3D"https://gitlab.freedesktop.org/drm/intel/issues/2426">i9=
-15#2426</a> / <a href=3D"https://gitlab.freedesktop.org/drm/intel/issues/26=
-67">i915#2667</a> / <a href=3D"https://gitlab.freedesktop.org/drm/intel/iss=
-ues/2803">i915#2803</a>)</p>
-</li>
-<li>
-<p>shard-skl:          (<a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
-/CI_DRM_9580/shard-skl2/igt@runner@aborted.html">FAIL</a>, <a href=3D"https=
-://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9580/shard-skl3/igt@runner@abort=
-ed.html">FAIL</a>) (<a href=3D"https://gitlab.freedesktop.org/drm/intel/iss=
-ues/2295">i915#2295</a> / <a href=3D"https://gitlab.freedesktop.org/drm/int=
-el/issues/2426">i915#2426</a>) -&gt; (<a href=3D"https://intel-gfx-ci.01.or=
-g/tree/drm-tip/Patchwork_19315/shard-skl2/igt@runner@aborted.html">FAIL</a>=
-, <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19315/shard=
--skl4/igt@runner@aborted.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.01=
-.org/tree/drm-tip/Patchwork_19315/shard-skl9/igt@runner@aborted.html">FAIL<=
-/a>) (<a href=3D"https://gitlab.freedesktop.org/drm/intel/issues/1436">i915=
-#1436</a> / <a href=3D"https://gitlab.freedesktop.org/drm/intel/issues/2295=
-">i915#2295</a> / <a href=3D"https://gitlab.freedesktop.org/drm/intel/issue=
-s/2426">i915#2426</a>)</p>
-</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when comput=
-ing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Participating hosts (10 -&gt; 10)</h2>
-<p>No changes in participating hosts</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_9580 -&gt; Patchwork_19315</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_9580: 117f9c9bca0ebb0e22ce282eab531575f5154055 @ git://anongit.fre=
-edesktop.org/gfx-ci/linux<br />
-  IGT_5953: 65c5eea699141e6f942ce0a8fc85db76ce53cd19 @ git://anongit.freede=
-sktop.org/xorg/app/intel-gpu-tools<br />
-  Patchwork_19315: b5239b3cf416cfc73090ddd8ec7bba725278ecaa @ git://anongit=
-.freedesktop.org/gfx-ci/linux<br />
-  piglit_4509: fdc5a4ca11124ab8413c7988896eec4c97336694 @ git://anongit.fre=
-edesktop.org/piglit</p>
-
-</body>
-</html>
-
---===============0114039605475183964==--
-
---===============0040014628==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
+On Thu, 07 Jan 2021, Lyude Paul <lyude@redhat.com> wrote:
+> Currently, every different type of backlight hook that i915 supports is
+> pretty straight forward - you have a backlight, probably through PWM
+> (but maybe DPCD), with a single set of platform-specific hooks that are
+> used for controlling it.
+>
+> HDR backlights, in particular VESA and Intel's HDR backlight
+> implementations, can end up being more complicated. With Intel's
+> proprietary interface, HDR backlight controls always run through the
+> DPCD. When the backlight is in SDR backlight mode however, the driver
+> may need to bypass the TCON and control the backlight directly through
+> PWM.
+>
+> So, in order to support this we'll need to split our backlight callbacks
+> into two groups: a set of high-level backlight control callbacks in
+> intel_panel, and an additional set of pwm-specific backlight control
+> callbacks. This also implies a functional changes for how these
+> callbacks are used:
+>
+> * We now keep track of two separate backlight level ranges, one for the
+>   high-level backlight, and one for the pwm backlight range
+> * We also keep track of backlight enablement and PWM backlight
+>   enablement separately
+> * Since the currently set backlight level might not be the same as the
+>   currently programmed PWM backlight level, we stop setting
+>   panel->backlight.level with the currently programmed PWM backlight
+>   level in panel->backlight.pwm_funcs->setup(). Instead, we rely
+>   on the higher level backlight control functions to retrieve the
+>   current PWM backlight level (in this case, intel_pwm_get_backlight()).
+>   Note that there are still a few PWM backlight setup callbacks that
+>   do actually need to retrieve the current PWM backlight level, although
+>   we no longer save this value in panel->backlight.level like before.
+>
+> Additionally, we drop the call to lpt_get_backlight() in
+> lpt_setup_backlight(), and avoid unconditionally writing the PWM value that
+> we get from it and only write it back if we're in CPU mode, and switching
+> to PCH mode. The reason for this is because in the original codepath for
+> this, it was expected that the intel_panel_bl_funcs->setup() hook would be
+> responsible for fetching the initial backlight level. On lpt systems, the
+> only time we could ever be in PCH backlight mode is during the initial
+> driver load - meaning that outside of the setup() hook, lpt_get_backlight()
+> will always be the callback used for retrieving the current backlight
+> level. After this patch we still need to fetch and write-back the PCH
+> backlight value if we're switching from CPU mode to PCH, but because
+> intel_pwm_setup_backlight() will retrieve the backlight level after setup()
+> using the get() hook, which always ends up being lpt_get_backlight(). Thus
+> - an additional call to lpt_get_backlight() in lpt_setup_backlight() is
+> made redundant.
+>
+> v5:
+> * Fix indenting warnings from checkpatch
+> v4:
+> * Fix commit message
+> * Remove outdated comment in intel_panel.c
+> * Rename pwm_(min|max) to pwm_level_(min|max)
+> * Use intel_pwm_get_backlight() in intel_pwm_setup_backlight() instead of
+>   indirection
+> * Don't move intel_dp_aux_init_bcklight_funcs() call to bottom of
+>   intel_panel_init_backlight_funcs() quite yet
+> v3:
+> * Reuse intel_panel_bl_funcs() for pwm_funcs
+> * Explain why we drop lpt_get_backlight()
+>
+> Signed-off-by: Lyude Paul <lyude@redhat.com>
+> Cc: thaytan@noraisin.net
+> Cc: Vasily Khoruzhick <anarsoul@gmail.com>
+> ---
+>  .../drm/i915/display/intel_display_types.h    |   4 +
+>  drivers/gpu/drm/i915/display/intel_panel.c    | 333 ++++++++++--------
+>  2 files changed, 187 insertions(+), 150 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
+> index 1067bd073c95..ee5c2d50b81a 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+> @@ -252,6 +252,9 @@ struct intel_panel {
+>  		bool alternate_pwm_increment;	/* lpt+ */
+>  
+>  		/* PWM chip */
+> +		u32 pwm_level_min;
+> +		u32 pwm_level_max;
+> +		bool pwm_enabled;
+>  		bool util_pin_active_low;	/* bxt+ */
+>  		u8 controller;		/* bxt+ only */
+>  		struct pwm_device *pwm;
+> @@ -263,6 +266,7 @@ struct intel_panel {
+>  		struct backlight_device *device;
+>  
+>  		const struct intel_panel_bl_funcs *funcs;
+> +		const struct intel_panel_bl_funcs *pwm_funcs;
+>  		void (*power)(struct intel_connector *, bool enable);
+>  	} backlight;
+>  };
+> diff --git a/drivers/gpu/drm/i915/display/intel_panel.c b/drivers/gpu/drm/i915/display/intel_panel.c
+> index 67f81ae995c4..8c99bf404a32 100644
+> --- a/drivers/gpu/drm/i915/display/intel_panel.c
+> +++ b/drivers/gpu/drm/i915/display/intel_panel.c
+> @@ -511,25 +511,34 @@ static u32 scale_hw_to_user(struct intel_connector *connector,
+>  		     0, user_max);
+>  }
+>  
+> -static u32 intel_panel_compute_brightness(struct intel_connector *connector,
+> -					  u32 val)
+> +static u32 intel_panel_sanitize_pwm_level(struct intel_connector *connector, u32 val)
+
+Should we call this intel_panel_invert_pwm_level() or something, because
+that's what the function does, and only that?
+
+Up to you.
+
+Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+
+>  {
+>  	struct drm_i915_private *dev_priv = to_i915(connector->base.dev);
+>  	struct intel_panel *panel = &connector->panel;
+>  
+> -	drm_WARN_ON(&dev_priv->drm, panel->backlight.max == 0);
+> +	drm_WARN_ON(&dev_priv->drm, panel->backlight.pwm_level_max == 0);
+>  
+>  	if (dev_priv->params.invert_brightness < 0)
+>  		return val;
+>  
+>  	if (dev_priv->params.invert_brightness > 0 ||
+>  	    dev_priv->quirks & QUIRK_INVERT_BRIGHTNESS) {
+> -		return panel->backlight.max - val + panel->backlight.min;
+> +		return panel->backlight.pwm_level_max - val + panel->backlight.pwm_level_min;
+>  	}
+>  
+>  	return val;
+>  }
+>  
+> +static void intel_panel_set_pwm_level(const struct drm_connector_state *conn_state, u32 val)
+> +{
+> +	struct intel_connector *connector = to_intel_connector(conn_state->connector);
+> +	struct drm_i915_private *i915 = to_i915(connector->base.dev);
+> +	struct intel_panel *panel = &connector->panel;
+> +
+> +	drm_dbg_kms(&i915->drm, "set backlight PWM = %d\n", val);
+> +	panel->backlight.pwm_funcs->set(conn_state, val);
+> +}
+> +
+>  static u32 lpt_get_backlight(struct intel_connector *connector)
+>  {
+>  	struct drm_i915_private *dev_priv = to_i915(connector->base.dev);
+> @@ -624,12 +633,12 @@ static void i9xx_set_backlight(const struct drm_connector_state *conn_state, u32
+>  	struct intel_panel *panel = &connector->panel;
+>  	u32 tmp, mask;
+>  
+> -	drm_WARN_ON(&dev_priv->drm, panel->backlight.max == 0);
+> +	drm_WARN_ON(&dev_priv->drm, panel->backlight.pwm_level_max == 0);
+>  
+>  	if (panel->backlight.combination_mode) {
+>  		u8 lbpc;
+>  
+> -		lbpc = level * 0xfe / panel->backlight.max + 1;
+> +		lbpc = level * 0xfe / panel->backlight.pwm_level_max + 1;
+>  		level /= lbpc;
+>  		pci_write_config_byte(dev_priv->drm.pdev, LBPC, lbpc);
+>  	}
+> @@ -681,9 +690,8 @@ intel_panel_actually_set_backlight(const struct drm_connector_state *conn_state,
+>  	struct drm_i915_private *i915 = to_i915(connector->base.dev);
+>  	struct intel_panel *panel = &connector->panel;
+>  
+> -	drm_dbg_kms(&i915->drm, "set backlight PWM = %d\n", level);
+> +	drm_dbg_kms(&i915->drm, "set backlight level = %d\n", level);
+>  
+> -	level = intel_panel_compute_brightness(connector, level);
+>  	panel->backlight.funcs->set(conn_state, level);
+>  }
+>  
+> @@ -732,7 +740,7 @@ static void lpt_disable_backlight(const struct drm_connector_state *old_conn_sta
+>  	struct drm_i915_private *dev_priv = to_i915(connector->base.dev);
+>  	u32 tmp;
+>  
+> -	intel_panel_actually_set_backlight(old_conn_state, level);
+> +	intel_panel_set_pwm_level(old_conn_state, level);
+>  
+>  	/*
+>  	 * Although we don't support or enable CPU PWM with LPT/SPT based
+> @@ -760,7 +768,7 @@ static void pch_disable_backlight(const struct drm_connector_state *old_conn_sta
+>  	struct drm_i915_private *dev_priv = to_i915(connector->base.dev);
+>  	u32 tmp;
+>  
+> -	intel_panel_actually_set_backlight(old_conn_state, val);
+> +	intel_panel_set_pwm_level(old_conn_state, val);
+>  
+>  	tmp = intel_de_read(dev_priv, BLC_PWM_CPU_CTL2);
+>  	intel_de_write(dev_priv, BLC_PWM_CPU_CTL2, tmp & ~BLM_PWM_ENABLE);
+> @@ -771,7 +779,7 @@ static void pch_disable_backlight(const struct drm_connector_state *old_conn_sta
+>  
+>  static void i9xx_disable_backlight(const struct drm_connector_state *old_conn_state, u32 val)
+>  {
+> -	intel_panel_actually_set_backlight(old_conn_state, val);
+> +	intel_panel_set_pwm_level(old_conn_state, val);
+>  }
+>  
+>  static void i965_disable_backlight(const struct drm_connector_state *old_conn_state, u32 val)
+> @@ -779,7 +787,7 @@ static void i965_disable_backlight(const struct drm_connector_state *old_conn_st
+>  	struct drm_i915_private *dev_priv = to_i915(old_conn_state->connector->dev);
+>  	u32 tmp;
+>  
+> -	intel_panel_actually_set_backlight(old_conn_state, val);
+> +	intel_panel_set_pwm_level(old_conn_state, val);
+>  
+>  	tmp = intel_de_read(dev_priv, BLC_PWM_CTL2);
+>  	intel_de_write(dev_priv, BLC_PWM_CTL2, tmp & ~BLM_PWM_ENABLE);
+> @@ -792,7 +800,7 @@ static void vlv_disable_backlight(const struct drm_connector_state *old_conn_sta
+>  	enum pipe pipe = to_intel_crtc(old_conn_state->crtc)->pipe;
+>  	u32 tmp;
+>  
+> -	intel_panel_actually_set_backlight(old_conn_state, val);
+> +	intel_panel_set_pwm_level(old_conn_state, val);
+>  
+>  	tmp = intel_de_read(dev_priv, VLV_BLC_PWM_CTL2(pipe));
+>  	intel_de_write(dev_priv, VLV_BLC_PWM_CTL2(pipe),
+> @@ -806,7 +814,7 @@ static void bxt_disable_backlight(const struct drm_connector_state *old_conn_sta
+>  	struct intel_panel *panel = &connector->panel;
+>  	u32 tmp;
+>  
+> -	intel_panel_actually_set_backlight(old_conn_state, val);
+> +	intel_panel_set_pwm_level(old_conn_state, val);
+>  
+>  	tmp = intel_de_read(dev_priv,
+>  			    BXT_BLC_PWM_CTL(panel->backlight.controller));
+> @@ -827,7 +835,7 @@ static void cnp_disable_backlight(const struct drm_connector_state *old_conn_sta
+>  	struct intel_panel *panel = &connector->panel;
+>  	u32 tmp;
+>  
+> -	intel_panel_actually_set_backlight(old_conn_state, val);
+> +	intel_panel_set_pwm_level(old_conn_state, val);
+>  
+>  	tmp = intel_de_read(dev_priv,
+>  			    BXT_BLC_PWM_CTL(panel->backlight.controller));
+> @@ -906,7 +914,7 @@ static void lpt_enable_backlight(const struct intel_crtc_state *crtc_state,
+>  		intel_de_write(dev_priv, SOUTH_CHICKEN1, schicken);
+>  	}
+>  
+> -	pch_ctl2 = panel->backlight.max << 16;
+> +	pch_ctl2 = panel->backlight.pwm_level_max << 16;
+>  	intel_de_write(dev_priv, BLC_PWM_PCH_CTL2, pch_ctl2);
+>  
+>  	pch_ctl1 = 0;
+> @@ -923,7 +931,7 @@ static void lpt_enable_backlight(const struct intel_crtc_state *crtc_state,
+>  		       pch_ctl1 | BLM_PCH_PWM_ENABLE);
+>  
+>  	/* This won't stick until the above enable. */
+> -	intel_panel_actually_set_backlight(conn_state, level);
+> +	intel_panel_set_pwm_level(conn_state, level);
+>  }
+>  
+>  static void pch_enable_backlight(const struct intel_crtc_state *crtc_state,
+> @@ -958,9 +966,9 @@ static void pch_enable_backlight(const struct intel_crtc_state *crtc_state,
+>  	intel_de_write(dev_priv, BLC_PWM_CPU_CTL2, cpu_ctl2 | BLM_PWM_ENABLE);
+>  
+>  	/* This won't stick until the above enable. */
+> -	intel_panel_actually_set_backlight(conn_state, level);
+> +	intel_panel_set_pwm_level(conn_state, level);
+>  
+> -	pch_ctl2 = panel->backlight.max << 16;
+> +	pch_ctl2 = panel->backlight.pwm_level_max << 16;
+>  	intel_de_write(dev_priv, BLC_PWM_PCH_CTL2, pch_ctl2);
+>  
+>  	pch_ctl1 = 0;
+> @@ -987,7 +995,7 @@ static void i9xx_enable_backlight(const struct intel_crtc_state *crtc_state,
+>  		intel_de_write(dev_priv, BLC_PWM_CTL, 0);
+>  	}
+>  
+> -	freq = panel->backlight.max;
+> +	freq = panel->backlight.pwm_level_max;
+>  	if (panel->backlight.combination_mode)
+>  		freq /= 0xff;
+>  
+> @@ -1001,7 +1009,7 @@ static void i9xx_enable_backlight(const struct intel_crtc_state *crtc_state,
+>  	intel_de_posting_read(dev_priv, BLC_PWM_CTL);
+>  
+>  	/* XXX: combine this into above write? */
+> -	intel_panel_actually_set_backlight(conn_state, level);
+> +	intel_panel_set_pwm_level(conn_state, level);
+>  
+>  	/*
+>  	 * Needed to enable backlight on some 855gm models. BLC_HIST_CTL is
+> @@ -1028,7 +1036,7 @@ static void i965_enable_backlight(const struct intel_crtc_state *crtc_state,
+>  		intel_de_write(dev_priv, BLC_PWM_CTL2, ctl2);
+>  	}
+>  
+> -	freq = panel->backlight.max;
+> +	freq = panel->backlight.pwm_level_max;
+>  	if (panel->backlight.combination_mode)
+>  		freq /= 0xff;
+>  
+> @@ -1044,7 +1052,7 @@ static void i965_enable_backlight(const struct intel_crtc_state *crtc_state,
+>  	intel_de_posting_read(dev_priv, BLC_PWM_CTL2);
+>  	intel_de_write(dev_priv, BLC_PWM_CTL2, ctl2 | BLM_PWM_ENABLE);
+>  
+> -	intel_panel_actually_set_backlight(conn_state, level);
+> +	intel_panel_set_pwm_level(conn_state, level);
+>  }
+>  
+>  static void vlv_enable_backlight(const struct intel_crtc_state *crtc_state,
+> @@ -1063,11 +1071,11 @@ static void vlv_enable_backlight(const struct intel_crtc_state *crtc_state,
+>  		intel_de_write(dev_priv, VLV_BLC_PWM_CTL2(pipe), ctl2);
+>  	}
+>  
+> -	ctl = panel->backlight.max << 16;
+> +	ctl = panel->backlight.pwm_level_max << 16;
+>  	intel_de_write(dev_priv, VLV_BLC_PWM_CTL(pipe), ctl);
+>  
+>  	/* XXX: combine this into above write? */
+> -	intel_panel_actually_set_backlight(conn_state, level);
+> +	intel_panel_set_pwm_level(conn_state, level);
+>  
+>  	ctl2 = 0;
+>  	if (panel->backlight.active_low_pwm)
+> @@ -1116,9 +1124,9 @@ static void bxt_enable_backlight(const struct intel_crtc_state *crtc_state,
+>  
+>  	intel_de_write(dev_priv,
+>  		       BXT_BLC_PWM_FREQ(panel->backlight.controller),
+> -		       panel->backlight.max);
+> +		       panel->backlight.pwm_level_max);
+>  
+> -	intel_panel_actually_set_backlight(conn_state, level);
+> +	intel_panel_set_pwm_level(conn_state, level);
+>  
+>  	pwm_ctl = 0;
+>  	if (panel->backlight.active_low_pwm)
+> @@ -1152,9 +1160,9 @@ static void cnp_enable_backlight(const struct intel_crtc_state *crtc_state,
+>  
+>  	intel_de_write(dev_priv,
+>  		       BXT_BLC_PWM_FREQ(panel->backlight.controller),
+> -		       panel->backlight.max);
+> +		       panel->backlight.pwm_level_max);
+>  
+> -	intel_panel_actually_set_backlight(conn_state, level);
+> +	intel_panel_set_pwm_level(conn_state, level);
+>  
+>  	pwm_ctl = 0;
+>  	if (panel->backlight.active_low_pwm)
+> @@ -1174,7 +1182,6 @@ static void ext_pwm_enable_backlight(const struct intel_crtc_state *crtc_state,
+>  	struct intel_connector *connector = to_intel_connector(conn_state->connector);
+>  	struct intel_panel *panel = &connector->panel;
+>  
+> -	level = intel_panel_compute_brightness(connector, level);
+>  	pwm_set_relative_duty_cycle(&panel->backlight.pwm_state, level, 100);
+>  	panel->backlight.pwm_state.enabled = true;
+>  	pwm_apply_state(panel->backlight.pwm, &panel->backlight.pwm_state);
+> @@ -1232,10 +1239,8 @@ static u32 intel_panel_get_backlight(struct intel_connector *connector)
+>  
+>  	mutex_lock(&dev_priv->backlight_lock);
+>  
+> -	if (panel->backlight.enabled) {
+> +	if (panel->backlight.enabled)
+>  		val = panel->backlight.funcs->get(connector);
+> -		val = intel_panel_compute_brightness(connector, val);
+> -	}
+>  
+>  	mutex_unlock(&dev_priv->backlight_lock);
+>  
+> @@ -1566,13 +1571,13 @@ static u32 get_backlight_max_vbt(struct intel_connector *connector)
+>  	u16 pwm_freq_hz = get_vbt_pwm_freq(dev_priv);
+>  	u32 pwm;
+>  
+> -	if (!panel->backlight.funcs->hz_to_pwm) {
+> +	if (!panel->backlight.pwm_funcs->hz_to_pwm) {
+>  		drm_dbg_kms(&dev_priv->drm,
+>  			    "backlight frequency conversion not supported\n");
+>  		return 0;
+>  	}
+>  
+> -	pwm = panel->backlight.funcs->hz_to_pwm(connector, pwm_freq_hz);
+> +	pwm = panel->backlight.pwm_funcs->hz_to_pwm(connector, pwm_freq_hz);
+>  	if (!pwm) {
+>  		drm_dbg_kms(&dev_priv->drm,
+>  			    "backlight frequency conversion failed\n");
+> @@ -1591,7 +1596,7 @@ static u32 get_backlight_min_vbt(struct intel_connector *connector)
+>  	struct intel_panel *panel = &connector->panel;
+>  	int min;
+>  
+> -	drm_WARN_ON(&dev_priv->drm, panel->backlight.max == 0);
+> +	drm_WARN_ON(&dev_priv->drm, panel->backlight.pwm_level_max == 0);
+>  
+>  	/*
+>  	 * XXX: If the vbt value is 255, it makes min equal to max, which leads
+> @@ -1608,7 +1613,7 @@ static u32 get_backlight_min_vbt(struct intel_connector *connector)
+>  	}
+>  
+>  	/* vbt value is a coefficient in range [0..255] */
+> -	return scale(min, 0, 255, 0, panel->backlight.max);
+> +	return scale(min, 0, 255, 0, panel->backlight.pwm_level_max);
+>  }
+>  
+>  static int lpt_setup_backlight(struct intel_connector *connector, enum pipe unused)
+> @@ -1628,37 +1633,32 @@ static int lpt_setup_backlight(struct intel_connector *connector, enum pipe unus
+>  	panel->backlight.active_low_pwm = pch_ctl1 & BLM_PCH_POLARITY;
+>  
+>  	pch_ctl2 = intel_de_read(dev_priv, BLC_PWM_PCH_CTL2);
+> -	panel->backlight.max = pch_ctl2 >> 16;
+> +	panel->backlight.pwm_level_max = pch_ctl2 >> 16;
+>  
+>  	cpu_ctl2 = intel_de_read(dev_priv, BLC_PWM_CPU_CTL2);
+>  
+> -	if (!panel->backlight.max)
+> -		panel->backlight.max = get_backlight_max_vbt(connector);
+> +	if (!panel->backlight.pwm_level_max)
+> +		panel->backlight.pwm_level_max = get_backlight_max_vbt(connector);
+>  
+> -	if (!panel->backlight.max)
+> +	if (!panel->backlight.pwm_level_max)
+>  		return -ENODEV;
+>  
+> -	panel->backlight.min = get_backlight_min_vbt(connector);
+> +	panel->backlight.pwm_level_min = get_backlight_min_vbt(connector);
+>  
+> -	panel->backlight.enabled = pch_ctl1 & BLM_PCH_PWM_ENABLE;
+> +	panel->backlight.pwm_enabled = pch_ctl1 & BLM_PCH_PWM_ENABLE;
+>  
+> -	cpu_mode = panel->backlight.enabled && HAS_PCH_LPT(dev_priv) &&
+> +	cpu_mode = panel->backlight.pwm_enabled && HAS_PCH_LPT(dev_priv) &&
+>  		   !(pch_ctl1 & BLM_PCH_OVERRIDE_ENABLE) &&
+>  		   (cpu_ctl2 & BLM_PWM_ENABLE);
+> -	if (cpu_mode)
+> -		val = pch_get_backlight(connector);
+> -	else
+> -		val = lpt_get_backlight(connector);
+> -	val = intel_panel_compute_brightness(connector, val);
+> -	panel->backlight.level = clamp(val, panel->backlight.min,
+> -				       panel->backlight.max);
+>  
+>  	if (cpu_mode) {
+> +		val = intel_panel_sanitize_pwm_level(connector, pch_get_backlight(connector));
+> +
+>  		drm_dbg_kms(&dev_priv->drm,
+>  			    "CPU backlight register was enabled, switching to PCH override\n");
+>  
+>  		/* Write converted CPU PWM value to PCH override register */
+> -		lpt_set_backlight(connector->base.state, panel->backlight.level);
+> +		lpt_set_backlight(connector->base.state, val);
+>  		intel_de_write(dev_priv, BLC_PWM_PCH_CTL1,
+>  			       pch_ctl1 | BLM_PCH_OVERRIDE_ENABLE);
+>  
+> @@ -1673,29 +1673,24 @@ static int pch_setup_backlight(struct intel_connector *connector, enum pipe unus
+>  {
+>  	struct drm_i915_private *dev_priv = to_i915(connector->base.dev);
+>  	struct intel_panel *panel = &connector->panel;
+> -	u32 cpu_ctl2, pch_ctl1, pch_ctl2, val;
+> +	u32 cpu_ctl2, pch_ctl1, pch_ctl2;
+>  
+>  	pch_ctl1 = intel_de_read(dev_priv, BLC_PWM_PCH_CTL1);
+>  	panel->backlight.active_low_pwm = pch_ctl1 & BLM_PCH_POLARITY;
+>  
+>  	pch_ctl2 = intel_de_read(dev_priv, BLC_PWM_PCH_CTL2);
+> -	panel->backlight.max = pch_ctl2 >> 16;
+> +	panel->backlight.pwm_level_max = pch_ctl2 >> 16;
+>  
+> -	if (!panel->backlight.max)
+> -		panel->backlight.max = get_backlight_max_vbt(connector);
+> +	if (!panel->backlight.pwm_level_max)
+> +		panel->backlight.pwm_level_max = get_backlight_max_vbt(connector);
+>  
+> -	if (!panel->backlight.max)
+> +	if (!panel->backlight.pwm_level_max)
+>  		return -ENODEV;
+>  
+> -	panel->backlight.min = get_backlight_min_vbt(connector);
+> -
+> -	val = pch_get_backlight(connector);
+> -	val = intel_panel_compute_brightness(connector, val);
+> -	panel->backlight.level = clamp(val, panel->backlight.min,
+> -				       panel->backlight.max);
+> +	panel->backlight.pwm_level_min = get_backlight_min_vbt(connector);
+>  
+>  	cpu_ctl2 = intel_de_read(dev_priv, BLC_PWM_CPU_CTL2);
+> -	panel->backlight.enabled = (cpu_ctl2 & BLM_PWM_ENABLE) &&
+> +	panel->backlight.pwm_enabled = (cpu_ctl2 & BLM_PWM_ENABLE) &&
+>  		(pch_ctl1 & BLM_PCH_PWM_ENABLE);
+>  
+>  	return 0;
+> @@ -1715,27 +1710,26 @@ static int i9xx_setup_backlight(struct intel_connector *connector, enum pipe unu
+>  	if (IS_PINEVIEW(dev_priv))
+>  		panel->backlight.active_low_pwm = ctl & BLM_POLARITY_PNV;
+>  
+> -	panel->backlight.max = ctl >> 17;
+> +	panel->backlight.pwm_level_max = ctl >> 17;
+>  
+> -	if (!panel->backlight.max) {
+> -		panel->backlight.max = get_backlight_max_vbt(connector);
+> -		panel->backlight.max >>= 1;
+> +	if (!panel->backlight.pwm_level_max) {
+> +		panel->backlight.pwm_level_max = get_backlight_max_vbt(connector);
+> +		panel->backlight.pwm_level_max >>= 1;
+>  	}
+>  
+> -	if (!panel->backlight.max)
+> +	if (!panel->backlight.pwm_level_max)
+>  		return -ENODEV;
+>  
+>  	if (panel->backlight.combination_mode)
+> -		panel->backlight.max *= 0xff;
+> +		panel->backlight.pwm_level_max *= 0xff;
+>  
+> -	panel->backlight.min = get_backlight_min_vbt(connector);
+> +	panel->backlight.pwm_level_min = get_backlight_min_vbt(connector);
+>  
+>  	val = i9xx_get_backlight(connector);
+> -	val = intel_panel_compute_brightness(connector, val);
+> -	panel->backlight.level = clamp(val, panel->backlight.min,
+> -				       panel->backlight.max);
+> +	val = intel_panel_sanitize_pwm_level(connector, val);
+> +	val = clamp(val, panel->backlight.pwm_level_min, panel->backlight.pwm_level_max);
+>  
+> -	panel->backlight.enabled = val != 0;
+> +	panel->backlight.pwm_enabled = val != 0;
+>  
+>  	return 0;
+>  }
+> @@ -1744,32 +1738,27 @@ static int i965_setup_backlight(struct intel_connector *connector, enum pipe unu
+>  {
+>  	struct drm_i915_private *dev_priv = to_i915(connector->base.dev);
+>  	struct intel_panel *panel = &connector->panel;
+> -	u32 ctl, ctl2, val;
+> +	u32 ctl, ctl2;
+>  
+>  	ctl2 = intel_de_read(dev_priv, BLC_PWM_CTL2);
+>  	panel->backlight.combination_mode = ctl2 & BLM_COMBINATION_MODE;
+>  	panel->backlight.active_low_pwm = ctl2 & BLM_POLARITY_I965;
+>  
+>  	ctl = intel_de_read(dev_priv, BLC_PWM_CTL);
+> -	panel->backlight.max = ctl >> 16;
+> +	panel->backlight.pwm_level_max = ctl >> 16;
+>  
+> -	if (!panel->backlight.max)
+> -		panel->backlight.max = get_backlight_max_vbt(connector);
+> +	if (!panel->backlight.pwm_level_max)
+> +		panel->backlight.pwm_level_max = get_backlight_max_vbt(connector);
+>  
+> -	if (!panel->backlight.max)
+> +	if (!panel->backlight.pwm_level_max)
+>  		return -ENODEV;
+>  
+>  	if (panel->backlight.combination_mode)
+> -		panel->backlight.max *= 0xff;
+> -
+> -	panel->backlight.min = get_backlight_min_vbt(connector);
+> +		panel->backlight.pwm_level_max *= 0xff;
+>  
+> -	val = i9xx_get_backlight(connector);
+> -	val = intel_panel_compute_brightness(connector, val);
+> -	panel->backlight.level = clamp(val, panel->backlight.min,
+> -				       panel->backlight.max);
+> +	panel->backlight.pwm_level_min = get_backlight_min_vbt(connector);
+>  
+> -	panel->backlight.enabled = ctl2 & BLM_PWM_ENABLE;
+> +	panel->backlight.pwm_enabled = ctl2 & BLM_PWM_ENABLE;
+>  
+>  	return 0;
+>  }
+> @@ -1778,7 +1767,7 @@ static int vlv_setup_backlight(struct intel_connector *connector, enum pipe pipe
+>  {
+>  	struct drm_i915_private *dev_priv = to_i915(connector->base.dev);
+>  	struct intel_panel *panel = &connector->panel;
+> -	u32 ctl, ctl2, val;
+> +	u32 ctl, ctl2;
+>  
+>  	if (drm_WARN_ON(&dev_priv->drm, pipe != PIPE_A && pipe != PIPE_B))
+>  		return -ENODEV;
+> @@ -1787,22 +1776,17 @@ static int vlv_setup_backlight(struct intel_connector *connector, enum pipe pipe
+>  	panel->backlight.active_low_pwm = ctl2 & BLM_POLARITY_I965;
+>  
+>  	ctl = intel_de_read(dev_priv, VLV_BLC_PWM_CTL(pipe));
+> -	panel->backlight.max = ctl >> 16;
+> +	panel->backlight.pwm_level_max = ctl >> 16;
+>  
+> -	if (!panel->backlight.max)
+> -		panel->backlight.max = get_backlight_max_vbt(connector);
+> +	if (!panel->backlight.pwm_level_max)
+> +		panel->backlight.pwm_level_max = get_backlight_max_vbt(connector);
+>  
+> -	if (!panel->backlight.max)
+> +	if (!panel->backlight.pwm_level_max)
+>  		return -ENODEV;
+>  
+> -	panel->backlight.min = get_backlight_min_vbt(connector);
+> +	panel->backlight.pwm_level_min = get_backlight_min_vbt(connector);
+>  
+> -	val = _vlv_get_backlight(dev_priv, pipe);
+> -	val = intel_panel_compute_brightness(connector, val);
+> -	panel->backlight.level = clamp(val, panel->backlight.min,
+> -				       panel->backlight.max);
+> -
+> -	panel->backlight.enabled = ctl2 & BLM_PWM_ENABLE;
+> +	panel->backlight.pwm_enabled = ctl2 & BLM_PWM_ENABLE;
+>  
+>  	return 0;
+>  }
+> @@ -1827,24 +1811,18 @@ bxt_setup_backlight(struct intel_connector *connector, enum pipe unused)
+>  	}
+>  
+>  	panel->backlight.active_low_pwm = pwm_ctl & BXT_BLC_PWM_POLARITY;
+> -	panel->backlight.max =
+> -		intel_de_read(dev_priv,
+> -			      BXT_BLC_PWM_FREQ(panel->backlight.controller));
+> +	panel->backlight.pwm_level_max =
+> +		intel_de_read(dev_priv, BXT_BLC_PWM_FREQ(panel->backlight.controller));
+>  
+> -	if (!panel->backlight.max)
+> -		panel->backlight.max = get_backlight_max_vbt(connector);
+> +	if (!panel->backlight.pwm_level_max)
+> +		panel->backlight.pwm_level_max = get_backlight_max_vbt(connector);
+>  
+> -	if (!panel->backlight.max)
+> +	if (!panel->backlight.pwm_level_max)
+>  		return -ENODEV;
+>  
+> -	panel->backlight.min = get_backlight_min_vbt(connector);
+> -
+> -	val = bxt_get_backlight(connector);
+> -	val = intel_panel_compute_brightness(connector, val);
+> -	panel->backlight.level = clamp(val, panel->backlight.min,
+> -				       panel->backlight.max);
+> +	panel->backlight.pwm_level_min = get_backlight_min_vbt(connector);
+>  
+> -	panel->backlight.enabled = pwm_ctl & BXT_BLC_PWM_ENABLE;
+> +	panel->backlight.pwm_enabled = pwm_ctl & BXT_BLC_PWM_ENABLE;
+>  
+>  	return 0;
+>  }
+> @@ -1854,7 +1832,7 @@ cnp_setup_backlight(struct intel_connector *connector, enum pipe unused)
+>  {
+>  	struct drm_i915_private *dev_priv = to_i915(connector->base.dev);
+>  	struct intel_panel *panel = &connector->panel;
+> -	u32 pwm_ctl, val;
+> +	u32 pwm_ctl;
+>  
+>  	/*
+>  	 * CNP has the BXT implementation of backlight, but with only one
+> @@ -1867,24 +1845,18 @@ cnp_setup_backlight(struct intel_connector *connector, enum pipe unused)
+>  				BXT_BLC_PWM_CTL(panel->backlight.controller));
+>  
+>  	panel->backlight.active_low_pwm = pwm_ctl & BXT_BLC_PWM_POLARITY;
+> -	panel->backlight.max =
+> -		intel_de_read(dev_priv,
+> -			      BXT_BLC_PWM_FREQ(panel->backlight.controller));
+> +	panel->backlight.pwm_level_max =
+> +		intel_de_read(dev_priv, BXT_BLC_PWM_FREQ(panel->backlight.controller));
+>  
+> -	if (!panel->backlight.max)
+> -		panel->backlight.max = get_backlight_max_vbt(connector);
+> +	if (!panel->backlight.pwm_level_max)
+> +		panel->backlight.pwm_level_max = get_backlight_max_vbt(connector);
+>  
+> -	if (!panel->backlight.max)
+> +	if (!panel->backlight.pwm_level_max)
+>  		return -ENODEV;
+>  
+> -	panel->backlight.min = get_backlight_min_vbt(connector);
+> +	panel->backlight.pwm_level_min = get_backlight_min_vbt(connector);
+>  
+> -	val = bxt_get_backlight(connector);
+> -	val = intel_panel_compute_brightness(connector, val);
+> -	panel->backlight.level = clamp(val, panel->backlight.min,
+> -				       panel->backlight.max);
+> -
+> -	panel->backlight.enabled = pwm_ctl & BXT_BLC_PWM_ENABLE;
+> +	panel->backlight.pwm_enabled = pwm_ctl & BXT_BLC_PWM_ENABLE;
+>  
+>  	return 0;
+>  }
+> @@ -1914,8 +1886,8 @@ static int ext_pwm_setup_backlight(struct intel_connector *connector,
+>  		return -ENODEV;
+>  	}
+>  
+> -	panel->backlight.max = 100; /* 100% */
+> -	panel->backlight.min = get_backlight_min_vbt(connector);
+> +	panel->backlight.pwm_level_max = 100; /* 100% */
+> +	panel->backlight.pwm_level_min = get_backlight_min_vbt(connector);
+>  
+>  	if (pwm_is_enabled(panel->backlight.pwm)) {
+>  		/* PWM is already enabled, use existing settings */
+> @@ -1923,10 +1895,8 @@ static int ext_pwm_setup_backlight(struct intel_connector *connector,
+>  
+>  		level = pwm_get_relative_duty_cycle(&panel->backlight.pwm_state,
+>  						    100);
+> -		level = intel_panel_compute_brightness(connector, level);
+> -		panel->backlight.level = clamp(level, panel->backlight.min,
+> -					       panel->backlight.max);
+> -		panel->backlight.enabled = true;
+> +		level = intel_panel_sanitize_pwm_level(connector, level);
+> +		panel->backlight.pwm_enabled = true;
+>  
+>  		drm_dbg_kms(&dev_priv->drm, "PWM already enabled at freq %ld, VBT freq %d, level %d\n",
+>  			    NSEC_PER_SEC / (unsigned long)panel->backlight.pwm_state.period,
+> @@ -1942,6 +1912,58 @@ static int ext_pwm_setup_backlight(struct intel_connector *connector,
+>  	return 0;
+>  }
+>  
+> +static void intel_pwm_set_backlight(const struct drm_connector_state *conn_state, u32 level)
+> +{
+> +	struct intel_connector *connector = to_intel_connector(conn_state->connector);
+> +	struct intel_panel *panel = &connector->panel;
+> +
+> +	panel->backlight.pwm_funcs->set(conn_state,
+> +				       intel_panel_sanitize_pwm_level(connector, level));
+> +}
+> +
+> +static u32 intel_pwm_get_backlight(struct intel_connector *connector)
+> +{
+> +	struct intel_panel *panel = &connector->panel;
+> +
+> +	return intel_panel_sanitize_pwm_level(connector,
+> +					      panel->backlight.pwm_funcs->get(connector));
+> +}
+> +
+> +static void intel_pwm_enable_backlight(const struct intel_crtc_state *crtc_state,
+> +				       const struct drm_connector_state *conn_state, u32 level)
+> +{
+> +	struct intel_connector *connector = to_intel_connector(conn_state->connector);
+> +	struct intel_panel *panel = &connector->panel;
+> +
+> +	panel->backlight.pwm_funcs->enable(crtc_state, conn_state,
+> +					   intel_panel_sanitize_pwm_level(connector, level));
+> +}
+> +
+> +static void intel_pwm_disable_backlight(const struct drm_connector_state *conn_state, u32 level)
+> +{
+> +	struct intel_connector *connector = to_intel_connector(conn_state->connector);
+> +	struct intel_panel *panel = &connector->panel;
+> +
+> +	panel->backlight.pwm_funcs->disable(conn_state,
+> +					    intel_panel_sanitize_pwm_level(connector, level));
+> +}
+> +
+> +static int intel_pwm_setup_backlight(struct intel_connector *connector, enum pipe pipe)
+> +{
+> +	struct intel_panel *panel = &connector->panel;
+> +	int ret = panel->backlight.pwm_funcs->setup(connector, pipe);
+> +
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	panel->backlight.min = panel->backlight.pwm_level_min;
+> +	panel->backlight.max = panel->backlight.pwm_level_max;
+> +	panel->backlight.level = intel_pwm_get_backlight(connector);
+> +	panel->backlight.enabled = panel->backlight.pwm_enabled;
+> +
+> +	return 0;
+> +}
+> +
+>  void intel_panel_update_backlight(struct intel_atomic_state *state,
+>  				  struct intel_encoder *encoder,
+>  				  const struct intel_crtc_state *crtc_state,
+> @@ -2015,7 +2037,7 @@ static void intel_panel_destroy_backlight(struct intel_panel *panel)
+>  	panel->backlight.present = false;
+>  }
+>  
+> -static const struct intel_panel_bl_funcs bxt_funcs = {
+> +static const struct intel_panel_bl_funcs bxt_pwm_funcs = {
+>  	.setup = bxt_setup_backlight,
+>  	.enable = bxt_enable_backlight,
+>  	.disable = bxt_disable_backlight,
+> @@ -2024,7 +2046,7 @@ static const struct intel_panel_bl_funcs bxt_funcs = {
+>  	.hz_to_pwm = bxt_hz_to_pwm,
+>  };
+>  
+> -static const struct intel_panel_bl_funcs cnp_funcs = {
+> +static const struct intel_panel_bl_funcs cnp_pwm_funcs = {
+>  	.setup = cnp_setup_backlight,
+>  	.enable = cnp_enable_backlight,
+>  	.disable = cnp_disable_backlight,
+> @@ -2033,7 +2055,7 @@ static const struct intel_panel_bl_funcs cnp_funcs = {
+>  	.hz_to_pwm = cnp_hz_to_pwm,
+>  };
+>  
+> -static const struct intel_panel_bl_funcs lpt_funcs = {
+> +static const struct intel_panel_bl_funcs lpt_pwm_funcs = {
+>  	.setup = lpt_setup_backlight,
+>  	.enable = lpt_enable_backlight,
+>  	.disable = lpt_disable_backlight,
+> @@ -2042,7 +2064,7 @@ static const struct intel_panel_bl_funcs lpt_funcs = {
+>  	.hz_to_pwm = lpt_hz_to_pwm,
+>  };
+>  
+> -static const struct intel_panel_bl_funcs spt_funcs = {
+> +static const struct intel_panel_bl_funcs spt_pwm_funcs = {
+>  	.setup = lpt_setup_backlight,
+>  	.enable = lpt_enable_backlight,
+>  	.disable = lpt_disable_backlight,
+> @@ -2051,7 +2073,7 @@ static const struct intel_panel_bl_funcs spt_funcs = {
+>  	.hz_to_pwm = spt_hz_to_pwm,
+>  };
+>  
+> -static const struct intel_panel_bl_funcs pch_funcs = {
+> +static const struct intel_panel_bl_funcs pch_pwm_funcs = {
+>  	.setup = pch_setup_backlight,
+>  	.enable = pch_enable_backlight,
+>  	.disable = pch_disable_backlight,
+> @@ -2068,7 +2090,7 @@ static const struct intel_panel_bl_funcs ext_pwm_funcs = {
+>  	.get = ext_pwm_get_backlight,
+>  };
+>  
+> -static const struct intel_panel_bl_funcs vlv_funcs = {
+> +static const struct intel_panel_bl_funcs vlv_pwm_funcs = {
+>  	.setup = vlv_setup_backlight,
+>  	.enable = vlv_enable_backlight,
+>  	.disable = vlv_disable_backlight,
+> @@ -2077,7 +2099,7 @@ static const struct intel_panel_bl_funcs vlv_funcs = {
+>  	.hz_to_pwm = vlv_hz_to_pwm,
+>  };
+>  
+> -static const struct intel_panel_bl_funcs i965_funcs = {
+> +static const struct intel_panel_bl_funcs i965_pwm_funcs = {
+>  	.setup = i965_setup_backlight,
+>  	.enable = i965_enable_backlight,
+>  	.disable = i965_disable_backlight,
+> @@ -2086,7 +2108,7 @@ static const struct intel_panel_bl_funcs i965_funcs = {
+>  	.hz_to_pwm = i965_hz_to_pwm,
+>  };
+>  
+> -static const struct intel_panel_bl_funcs i9xx_funcs = {
+> +static const struct intel_panel_bl_funcs i9xx_pwm_funcs = {
+>  	.setup = i9xx_setup_backlight,
+>  	.enable = i9xx_enable_backlight,
+>  	.disable = i9xx_disable_backlight,
+> @@ -2095,6 +2117,14 @@ static const struct intel_panel_bl_funcs i9xx_funcs = {
+>  	.hz_to_pwm = i9xx_hz_to_pwm,
+>  };
+>  
+> +static const struct intel_panel_bl_funcs pwm_bl_funcs = {
+> +	.setup = intel_pwm_setup_backlight,
+> +	.enable = intel_pwm_enable_backlight,
+> +	.disable = intel_pwm_disable_backlight,
+> +	.set = intel_pwm_set_backlight,
+> +	.get = intel_pwm_get_backlight,
+> +};
+> +
+>  /* Set up chip specific backlight functions */
+>  static void
+>  intel_panel_init_backlight_funcs(struct intel_panel *panel)
+> @@ -2112,27 +2142,30 @@ intel_panel_init_backlight_funcs(struct intel_panel *panel)
+>  		return;
+>  
+>  	if (IS_GEN9_LP(dev_priv)) {
+> -		panel->backlight.funcs = &bxt_funcs;
+> +		panel->backlight.pwm_funcs = &bxt_pwm_funcs;
+>  	} else if (INTEL_PCH_TYPE(dev_priv) >= PCH_CNP) {
+> -		panel->backlight.funcs = &cnp_funcs;
+> +		panel->backlight.pwm_funcs = &cnp_pwm_funcs;
+>  	} else if (INTEL_PCH_TYPE(dev_priv) >= PCH_LPT) {
+>  		if (HAS_PCH_LPT(dev_priv))
+> -			panel->backlight.funcs = &lpt_funcs;
+> +			panel->backlight.pwm_funcs = &lpt_pwm_funcs;
+>  		else
+> -			panel->backlight.funcs = &spt_funcs;
+> +			panel->backlight.pwm_funcs = &spt_pwm_funcs;
+>  	} else if (HAS_PCH_SPLIT(dev_priv)) {
+> -		panel->backlight.funcs = &pch_funcs;
+> +		panel->backlight.pwm_funcs = &pch_pwm_funcs;
+>  	} else if (IS_VALLEYVIEW(dev_priv) || IS_CHERRYVIEW(dev_priv)) {
+>  		if (connector->base.connector_type == DRM_MODE_CONNECTOR_DSI) {
+> -			panel->backlight.funcs = &ext_pwm_funcs;
+> +			panel->backlight.pwm_funcs = &ext_pwm_funcs;
+>  		} else {
+> -			panel->backlight.funcs = &vlv_funcs;
+> +			panel->backlight.pwm_funcs = &vlv_pwm_funcs;
+>  		}
+>  	} else if (IS_GEN(dev_priv, 4)) {
+> -		panel->backlight.funcs = &i965_funcs;
+> +		panel->backlight.pwm_funcs = &i965_pwm_funcs;
+>  	} else {
+> -		panel->backlight.funcs = &i9xx_funcs;
+> +		panel->backlight.pwm_funcs = &i9xx_pwm_funcs;
+>  	}
+> +
+> +	/* We're using a standard PWM backlight interface */
+> +	panel->backlight.funcs = &pwm_bl_funcs;
+>  }
+>  
+>  enum drm_connector_status
+
+-- 
+Jani Nikula, Intel Open Source Graphics Center
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============0040014628==--
