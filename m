@@ -1,42 +1,43 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 953782F1DB2
-	for <lists+intel-gfx@lfdr.de>; Mon, 11 Jan 2021 19:14:01 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id E0D4C2F1DFB
+	for <lists+intel-gfx@lfdr.de>; Mon, 11 Jan 2021 19:28:54 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CD5D18932D;
-	Mon, 11 Jan 2021 18:13:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7858A89D1D;
+	Mon, 11 Jan 2021 18:28:52 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 19EC38932D;
- Mon, 11 Jan 2021 18:13:58 +0000 (UTC)
-IronPort-SDR: F2tJSpG9PymVeFTHAO4xmhm82ucUje5TYfebACKfAtdNGeCu6AUex4cvhUsIBFrrm+jaxBGNcW
- 54inIe583xLQ==
-X-IronPort-AV: E=McAfee;i="6000,8403,9861"; a="164992131"
-X-IronPort-AV: E=Sophos;i="5.79,339,1602572400"; d="scan'208";a="164992131"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A5DCE89D1D
+ for <intel-gfx@lists.freedesktop.org>; Mon, 11 Jan 2021 18:28:50 +0000 (UTC)
+IronPort-SDR: 3SXsPNgH46k6BE3+n9YpE+pyQB7Na453g7Mbzkm9VX2QBVr20yodQEbA/QFiMzJ9Lwy4kbwKUl
+ 9bp2cXgLMPyg==
+X-IronPort-AV: E=McAfee;i="6000,8403,9861"; a="164994817"
+X-IronPort-AV: E=Sophos;i="5.79,339,1602572400"; d="scan'208";a="164994817"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Jan 2021 10:13:57 -0800
-IronPort-SDR: YmZ9BSAntPttAi4CFkyAQKt+MsAuqXooKLZM6fKLLbgbGpbNta2yBI8XBtYVstPTWA4HWePb4r
- bWARzN0Ao1vQ==
-X-IronPort-AV: E=Sophos;i="5.79,339,1602572400"; d="scan'208";a="381100864"
-Received: from libresli-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.213.207.39])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Jan 2021 10:13:54 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: Zhenyu Wang <zhenyuw@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, "Vivi\,
- Rodrigo" <rodrigo.vivi@intel.com>
-In-Reply-To: <20210108045911.GF15982@zhen-hp.sh.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20210108045911.GF15982@zhen-hp.sh.intel.com>
-Date: Mon, 11 Jan 2021 20:13:50 +0200
-Message-ID: <87sg77wdcx.fsf@intel.com>
+ 11 Jan 2021 10:28:49 -0800
+IronPort-SDR: g+1IEO2p0ByabU5dFT58Umhcj72I5LPYltmx7jZBYXrWtImg0chulumHScQErcqhJY2ID1lwXx
+ Y6pF62Ho5gtQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.79,339,1602572400"; d="scan'208";a="388927339"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
+ by orsmga007.jf.intel.com with SMTP; 11 Jan 2021 10:28:45 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Mon, 11 Jan 2021 20:28:45 +0200
+Date: Mon, 11 Jan 2021 20:28:45 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: intel-gfx@lists.freedesktop.org
+Message-ID: <X/yY3Tvk8gq+Eg8W@intel.com>
+References: <20210107182026.24848-1-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PULL] gvt-fixes
+Content-Disposition: inline
+In-Reply-To: <20210107182026.24848-1-ville.syrjala@linux.intel.com>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [PATCH 1/2] drm/i915: Try to use fast+narrow link
+ on eDP again and fall back to the old max strategy on failure
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,55 +50,44 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx <intel-gfx@lists.freedesktop.org>,
- intel-gvt-dev <intel-gvt-dev@lists.freedesktop.org>, "Lv, 
- Zhiyuan" <zhiyuan.lv@intel.com>, "Yuan, Hang" <hang.yuan@intel.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: Matteo Iervasi <matteoiervasi@gmail.com>,
+ Jani Nikula <jani.nikula@intel.com>, Albert Astals Cid <aacid@kde.org>,
+ Kai-Heng Feng <kai.heng.feng@canonical.com>,
+ Emanuele Panigati <ilpanich@gmail.com>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, 08 Jan 2021, Zhenyu Wang <zhenyuw@linux.intel.com> wrote:
-> Hi,
->
-> Here's one gvt fixes for VFIO edid on APL/BXT with virtual display
-> hotplug fixed that feature is enabled again.
+On Thu, Jan 07, 2021 at 08:20:25PM +0200, Ville Syrjala wrote:
+> From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> =
 
-Thanks, merged to drm-intel-fixes.
+> Some new eDP panels don't like to operate at the max parameters, and
+> instead we need to go for an optimal confiugration. That unfortunately
+> doesn't work with older eDP panels which are generally only guaranteed
+> to work at the max parameters.
+> =
 
-BR,
-Jani.
+> To solve these two conflicting requirements let's start with the optimal
+> setup, and if that fails we start again with the max parameters. The
+> downside is probably an extra modeset when we switch strategies but
+> I don't see a good way to avoid that.
+> =
 
->
-> Thanks.
-> --
-> The following changes since commit e71ba9452f0b5b2e8dc8aa5445198cd9214a6a62:
->
->   Linux 5.11-rc2 (2021-01-03 15:55:30 -0800)
->
-> are available in the Git repository at:
->
->   https://github.com/intel/gvt-linux tags/gvt-fixes-2020-01-08
->
-> for you to fetch changes up to 4ceb06e7c336f4a8d3f3b6ac9a4fea2e9c97dc07:
->
->   drm/i915/gvt: Fix vfio_edid issue for BXT/APL (2021-01-06 11:19:15 +0800)
->
-> ----------------------------------------------------------------
-> gvt-fixes-2020-01-08
->
-> - Fix VFIO EDID on APL/BXT (Colin)
->
-> ----------------------------------------------------------------
-> Colin Xu (1):
->       drm/i915/gvt: Fix vfio_edid issue for BXT/APL
->
->  drivers/gpu/drm/i915/gvt/display.c | 81 +++++++++++++++++++++++++++-----------
->  drivers/gpu/drm/i915/gvt/vgpu.c    |  5 +--
->  2 files changed, 59 insertions(+), 27 deletions(-)
+> For a bit of history we first tried to go for the fast+narrow in
+> commit 7769db588384 ("drm/i915/dp: optimize eDP 1.4+ link config
+> fast and narrow"). but that had to be reverted due to regression
+> on older panels in commit f11cb1c19ad0 ("drm/i915/dp: revert back
+> to max link rate and lane count on eDP"). So now we try to get
+> the best of both worlds by using both strategies.
 
--- 
-Jani Nikula, Intel Open Source Graphics Center
+Pushed. Fingers crossed for no regressions...
+
+-- =
+
+Ville Syrj=E4l=E4
+Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
