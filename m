@@ -1,31 +1,51 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2E9772F0E3E
-	for <lists+intel-gfx@lfdr.de>; Mon, 11 Jan 2021 09:37:19 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5954F2F0EF7
+	for <lists+intel-gfx@lfdr.de>; Mon, 11 Jan 2021 10:25:00 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B97116E079;
-	Mon, 11 Jan 2021 08:37:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 89B6C898CC;
+	Mon, 11 Jan 2021 09:24:57 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 7C3EC6E077;
- Mon, 11 Jan 2021 08:37:13 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 762A3A7DFF;
- Mon, 11 Jan 2021 08:37:13 +0000 (UTC)
+X-Greylist: delayed 484 seconds by postgrey-1.36 at gabe;
+ Mon, 11 Jan 2021 09:24:55 UTC
+Received: from galois.linutronix.de (Galois.linutronix.de
+ [IPv6:2a0a:51c0:0:12e:550::1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9A0E189780;
+ Mon, 11 Jan 2021 09:24:55 +0000 (UTC)
+Date: Mon, 11 Jan 2021 10:16:46 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
+ s=2020; t=1610356608;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=LEXe/B0Q3kSQ+pyi11QVzunFEXSDJfyzRctZD/mSGwY=;
+ b=uCnnwbctZA1rQ3V0p2kZu+d3zaZFHTKUJPOo76b5D7cuxWEOXVJdpIqiLFP5aTXpvIjv9s
+ qwAvW5WhwffRTnvcztEi2+1v/oENxwE79UOubMC7jJKeubOBD6zsvQUL74GztGQIAKB8HO
+ BT4sxjhTakFs4dVqAQh6GY6Sn14JBtplCvPA2cmstH/p72FEB2TnSYVyeSL8sjTNI80v3T
+ oCsDUl6wYJXQ9QueQxoB6wuP+fNUTobWuAtyizRQCOtZthAqYs4ojlXRNfsr2J83hANEKU
+ KrLFmoV7Ai9vVG4RtXD3Lh/qUjXo6jULZnNtu/UYw3EhRXUZtNRGRg4NMuxugQ==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
+ s=2020e; t=1610356608;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=LEXe/B0Q3kSQ+pyi11QVzunFEXSDJfyzRctZD/mSGwY=;
+ b=aQ0P+BB77W0OA8uLsIQDcnYrwKkOka8jvG0VLRGl2/Wpm04Edp57/CM7syBgLiKrsJkDcC
+ 9SLKzMSTP9RzBiAw==
+From: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
+To: Thomas Bogendoerfer <tsbogend@alpha.franken.de>
+Message-ID: <20210111091646.hkugbtlcced3vmno@linutronix.de>
+References: <JUTMMQ.NNFWKIUV7UUJ1@crapouillou.net>
+ <20210108235805.GA17543@alpha.franken.de>
+ <20210109003352.GA18102@alpha.franken.de>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Anshuman Gupta" <anshuman.gupta@intel.com>
-Date: Mon, 11 Jan 2021 08:37:13 -0000
-Message-ID: <161035423345.25135.5682517583317741771@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210111081120.28417-1-anshuman.gupta@intel.com>
-In-Reply-To: <20210111081120.28417-1-anshuman.gupta@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
- =?utf-8?q?HDCP_2=2E2_and_HDCP_1=2E4_Gen12_DP_MST_support_=28rev9=29?=
+Content-Disposition: inline
+In-Reply-To: <20210109003352.GA18102@alpha.franken.de>
+Subject: Re: [Intel-gfx] [patch V3 13/37] mips/mm/highmem: Switch to generic
+ kmap atomic
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,67 +58,82 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: juri.lelli@redhat.com, linux-aio@kvack.org,
+ Paul Cercueil <paul@crapouillou.net>, airlied@linux.ie,
+ nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-mips@vger.kernel.org, bsegall@google.com, jcmvbkbc@gmail.com,
+ ray.huang@amd.com, paulus@samba.org, kraxel@redhat.com,
+ sparclinux@vger.kernel.org, deanbo422@gmail.com, hch@lst.de,
+ paulmck@kernel.org, mpe@ellerman.id.au, x86@kernel.org, linux@armlinux.org.uk,
+ linux-csky@vger.kernel.org, mingo@kernel.org, peterz@infradead.org,
+ linux-graphics-maintainer@vmware.com, bskeggs@redhat.com, airlied@redhat.com,
+ linux-snps-arc@lists.infradead.org, linux-mm@kvack.org, mgorman@suse.de,
+ linux-xtensa@linux-xtensa.org, arnd@arndb.de, intel-gfx@lists.freedesktop.org,
+ sroland@vmware.com, josef@toxicpanda.com, rostedt@goodmis.org,
+ torvalds@linuxfoundation.org, green.hu@gmail.com, dsterba@suse.com,
+ tglx@linutronix.de, virtualization@lists.linux-foundation.org,
+ dietmar.eggemann@arm.com, linux-arm-kernel@lists.infradead.org,
+ chris@zankel.net, monstr@monstr.eu, nickhu@andestech.com, clm@fb.com,
+ linuxppc-dev@lists.ozlabs.org, linux-kernel@vger.kernel.org,
+ christian.koenig@amd.com, bcrl@kvack.org, spice-devel@lists.freedesktop.org,
+ vgupta@synopsys.com, linux-fsdevel@vger.kernel.org, akpm@linux-foundation.org,
+ bristot@redhat.com, davem@davemloft.net, linux-btrfs@vger.kernel.org,
+ viro@zeniv.linux.org.uk
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On 2021-01-09 01:33:52 [+0100], Thomas Bogendoerfer wrote:
+> On Sat, Jan 09, 2021 at 12:58:05AM +0100, Thomas Bogendoerfer wrote:
+> > On Fri, Jan 08, 2021 at 08:20:43PM +0000, Paul Cercueil wrote:
+> > > Hi Thomas,
+> > > 
+> > > 5.11 does not boot anymore on Ingenic SoCs, I bisected it to this commit.
+> > > 
+> > > Any idea what could be happening?
+> > 
+> > not yet, kernel crash log of a Malta QEMU is below.
+> 
+> update:
+> 
+> This dirty hack lets the Malta QEMU boot again:
+> 
+> diff --git a/mm/highmem.c b/mm/highmem.c
+> index c3a9ea7875ef..190cdda1149d 100644
+> --- a/mm/highmem.c
+> +++ b/mm/highmem.c
+> @@ -515,7 +515,7 @@ void *__kmap_local_pfn_prot(unsigned long pfn, pgprot_t prot)
+>  	vaddr = __fix_to_virt(FIX_KMAP_BEGIN + idx);
+>  	BUG_ON(!pte_none(*(kmap_pte - idx)));
+>  	pteval = pfn_pte(pfn, prot);
+> -	set_pte_at(&init_mm, vaddr, kmap_pte - idx, pteval);
+> +	set_pte(kmap_pte - idx, pteval);
+>  	arch_kmap_local_post_map(vaddr, pteval);
+>  	current->kmap_ctrl.pteval[kmap_local_idx()] = pteval;
+>  	preempt_enable();
+> 
+> set_pte_at() tries to update cache and could do an kmap_atomic() there.
+So the old implementation used set_pte() while the new one uses
+set_pte_at().
 
-Series: HDCP 2.2 and HDCP 1.4 Gen12 DP MST support (rev9)
-URL   : https://patchwork.freedesktop.org/series/82998/
-State : warning
+> Not sure, if this is allowed at this point.
+The problem is the recursion
+  kmap_atomic() -> __update_cache() -> kmap_atomic()
 
-== Summary ==
+and kmap_local_idx_push() runs out if index space before stack space.
 
-$ dim sparse --fast origin/drm-tip
-Sparse version: v0.6.2
-Fast mode used, each commit won't be checked separately.
--
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:257:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:261:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+drivers/gpu/drm/i915/gt/intel_reset.c:1329:5: warning: context imbalance in 'intel_gt_reset_trylock' - different lock contexts for basic block
-+drivers/gpu/drm/i915/gvt/mmio.c:295:23: warning: memcpy with byte count of 279040
-+drivers/gpu/drm/i915/i915_perf.c:1450:15: warning: memset with byte count of 16777216
-+drivers/gpu/drm/i915/i915_perf.c:1504:15: warning: memset with byte count of 16777216
-+./include/linux/seqlock.h:843:24: warning: trying to copy expression type 31
-+./include/linux/seqlock.h:843:24: warning: trying to copy expression type 31
-+./include/linux/seqlock.h:869:16: warning: trying to copy expression type 31
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_read16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_read32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_read64' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_read8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_write8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_read16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_read32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_read64' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_read8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_write8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_read16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_read32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_read64' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_read8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_write8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_read16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_read32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_read64' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_read8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_write8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen8_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen8_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen8_write8' - different lock contexts for basic block
+I'm not sure if the __update_cache() worked for highmem. It has been
+added for that in commit
+   f4281bba81810 ("MIPS: Handle highmem pages in __update_cache")
 
+but it assumes that the address returned by kmap_atomic() is the same or
+related enough for flush_data_cache_page() to work.
 
+> Thomas.
+> 
+
+Sebastian
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
