@@ -1,30 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5E0A12F10A9
-	for <lists+intel-gfx@lfdr.de>; Mon, 11 Jan 2021 11:57:58 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id AF7492F10AB
+	for <lists+intel-gfx@lfdr.de>; Mon, 11 Jan 2021 11:58:01 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0EFE56E0A5;
+	by gabe.freedesktop.org (Postfix) with ESMTP id A31616E0B6;
 	Mon, 11 Jan 2021 10:57:56 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8C2B46E0A8
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8AE916E0A5
  for <intel-gfx@lists.freedesktop.org>; Mon, 11 Jan 2021 10:57:53 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 23557970-1500050 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 23557972-1500050 
  for multiple; Mon, 11 Jan 2021 10:57:38 +0000
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Mon, 11 Jan 2021 10:57:32 +0000
-Message-Id: <20210111105735.21515-1-chris@chris-wilson.co.uk>
+Date: Mon, 11 Jan 2021 10:57:33 +0000
+Message-Id: <20210111105735.21515-2-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.20.1
+In-Reply-To: <20210111105735.21515-1-chris@chris-wilson.co.uk>
+References: <20210111105735.21515-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 1/4] drm/i915/gt: Disable arbitration around
- Braswell's pdp updates
+Subject: [Intel-gfx] [PATCH 2/4] drm/i915/gt: Check for arbitration after
+ writing start seqno
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -43,41 +45,44 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Braswell's pdp workaround is full of dragons, that may be being angered
-when they are interrupted. Let's not take that risk and disable
-arbitrartion during the update.
+On the off chance that we need to arbitrate before launching the
+payload, perform the check after we signal the request is ready to
+start. Assuming instantaneous processing of the CS event, the request
+will then be treated as having started when we make the decisions as to
+how to process that CS event.
 
 Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
 ---
- drivers/gpu/drm/i915/gt/intel_execlists_submission.c | 11 ++++++++++-
- 1 file changed, 10 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/i915/gt/gen8_engine_cs.c | 12 ++++++------
+ 1 file changed, 6 insertions(+), 6 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
-index 52c1fe62bdfe..10e9940cf3f5 100644
---- a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
-+++ b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
-@@ -2539,6 +2539,14 @@ static int emit_pdps(struct i915_request *rq)
- 	 * GPU hangs to forcewake errors and machine lockups!
- 	 */
+diff --git a/drivers/gpu/drm/i915/gt/gen8_engine_cs.c b/drivers/gpu/drm/i915/gt/gen8_engine_cs.c
+index 2e36e0a9d8a6..9a182652a35e 100644
+--- a/drivers/gpu/drm/i915/gt/gen8_engine_cs.c
++++ b/drivers/gpu/drm/i915/gt/gen8_engine_cs.c
+@@ -361,19 +361,19 @@ int gen8_emit_init_breadcrumb(struct i915_request *rq)
+ 	if (IS_ERR(cs))
+ 		return PTR_ERR(cs);
  
-+	cs = intel_ring_begin(rq, 2);
-+	if (IS_ERR(cs))
-+		return PTR_ERR(cs);
++	*cs++ = MI_STORE_DWORD_IMM_GEN4 | MI_USE_GGTT;
++	*cs++ = hwsp_offset(rq);
++	*cs++ = 0;
++	*cs++ = rq->fence.seqno - 1;
 +
-+	*cs++ = MI_ARB_ON_OFF | MI_ARB_DISABLE;
-+	*cs++ = MI_NOOP;
-+	intel_ring_advance(rq, cs);
-+
- 	/* Flush any residual operations from the context load */
- 	err = engine->emit_flush(rq, EMIT_FLUSH);
- 	if (err)
-@@ -2564,7 +2572,8 @@ static int emit_pdps(struct i915_request *rq)
- 		*cs++ = i915_mmio_reg_offset(GEN8_RING_PDP_LDW(base, i));
- 		*cs++ = lower_32_bits(pd_daddr);
- 	}
--	*cs++ = MI_NOOP;
-+	*cs++ = MI_ARB_ON_OFF | MI_ARB_ENABLE;
-+	intel_ring_advance(rq, cs);
+ 	/*
+ 	 * Check if we have been preempted before we even get started.
+ 	 *
+ 	 * After this point i915_request_started() reports true, even if
+ 	 * we get preempted and so are no longer running.
+ 	 */
+-	*cs++ = MI_ARB_CHECK;
+ 	*cs++ = MI_NOOP;
+-
+-	*cs++ = MI_STORE_DWORD_IMM_GEN4 | MI_USE_GGTT;
+-	*cs++ = hwsp_offset(rq);
+-	*cs++ = 0;
+-	*cs++ = rq->fence.seqno - 1;
++	*cs++ = MI_ARB_CHECK;
  
  	intel_ring_advance(rq, cs);
  
