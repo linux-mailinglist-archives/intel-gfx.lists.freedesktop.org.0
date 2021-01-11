@@ -1,51 +1,42 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5954F2F0EF7
-	for <lists+intel-gfx@lfdr.de>; Mon, 11 Jan 2021 10:25:00 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 758112F0FA1
+	for <lists+intel-gfx@lfdr.de>; Mon, 11 Jan 2021 11:03:48 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 89B6C898CC;
-	Mon, 11 Jan 2021 09:24:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 325F589FD1;
+	Mon, 11 Jan 2021 10:03:45 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 484 seconds by postgrey-1.36 at gabe;
- Mon, 11 Jan 2021 09:24:55 UTC
-Received: from galois.linutronix.de (Galois.linutronix.de
- [IPv6:2a0a:51c0:0:12e:550::1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9A0E189780;
- Mon, 11 Jan 2021 09:24:55 +0000 (UTC)
-Date: Mon, 11 Jan 2021 10:16:46 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
- s=2020; t=1610356608;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=LEXe/B0Q3kSQ+pyi11QVzunFEXSDJfyzRctZD/mSGwY=;
- b=uCnnwbctZA1rQ3V0p2kZu+d3zaZFHTKUJPOo76b5D7cuxWEOXVJdpIqiLFP5aTXpvIjv9s
- qwAvW5WhwffRTnvcztEi2+1v/oENxwE79UOubMC7jJKeubOBD6zsvQUL74GztGQIAKB8HO
- BT4sxjhTakFs4dVqAQh6GY6Sn14JBtplCvPA2cmstH/p72FEB2TnSYVyeSL8sjTNI80v3T
- oCsDUl6wYJXQ9QueQxoB6wuP+fNUTobWuAtyizRQCOtZthAqYs4ojlXRNfsr2J83hANEKU
- KrLFmoV7Ai9vVG4RtXD3Lh/qUjXo6jULZnNtu/UYw3EhRXUZtNRGRg4NMuxugQ==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
- s=2020e; t=1610356608;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=LEXe/B0Q3kSQ+pyi11QVzunFEXSDJfyzRctZD/mSGwY=;
- b=aQ0P+BB77W0OA8uLsIQDcnYrwKkOka8jvG0VLRGl2/Wpm04Edp57/CM7syBgLiKrsJkDcC
- 9SLKzMSTP9RzBiAw==
-From: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
-To: Thomas Bogendoerfer <tsbogend@alpha.franken.de>
-Message-ID: <20210111091646.hkugbtlcced3vmno@linutronix.de>
-References: <JUTMMQ.NNFWKIUV7UUJ1@crapouillou.net>
- <20210108235805.GA17543@alpha.franken.de>
- <20210109003352.GA18102@alpha.franken.de>
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0E80989FD1
+ for <intel-gfx@lists.freedesktop.org>; Mon, 11 Jan 2021 10:03:42 +0000 (UTC)
+IronPort-SDR: TuORJLWp8wFCIgfo83JG3Tvh45zoBkaxeQ1VnVqRcZIlcHmW86CmTy2O5PILimFjpH33q59YWF
+ HhKLCta+Sh/g==
+X-IronPort-AV: E=McAfee;i="6000,8403,9860"; a="177930168"
+X-IronPort-AV: E=Sophos;i="5.79,338,1602572400"; d="scan'208";a="177930168"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Jan 2021 02:03:38 -0800
+IronPort-SDR: b1DS422JqFycV3AofEy30Cu/snFqqIKdPFCjqP26gtp0i0PTDW0KVxX2rm/pUGWZJowbXvI9v6
+ Dgn+nshNG1dA==
+X-IronPort-AV: E=Sophos;i="5.79,338,1602572400"; d="scan'208";a="380959021"
+Received: from libresli-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.213.207.39])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Jan 2021 02:03:35 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: lyude@redhat.com, intel-gfx@lists.freedesktop.org
+In-Reply-To: <e5fd2290fae25fc1167ea6fe91e7060840d0db47.camel@redhat.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20210108152841.6944-1-jani.nikula@intel.com>
+ <e5fd2290fae25fc1167ea6fe91e7060840d0db47.camel@redhat.com>
+Date: Mon, 11 Jan 2021 12:03:33 +0200
+Message-ID: <875z43yemi.fsf@intel.com>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20210109003352.GA18102@alpha.franken.de>
-Subject: Re: [Intel-gfx] [patch V3 13/37] mips/mm/highmem: Switch to generic
- kmap atomic
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/backlight: fix CPU mode backlight
+ takeover on LPT
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,83 +49,79 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: juri.lelli@redhat.com, linux-aio@kvack.org,
- Paul Cercueil <paul@crapouillou.net>, airlied@linux.ie,
- nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-mips@vger.kernel.org, bsegall@google.com, jcmvbkbc@gmail.com,
- ray.huang@amd.com, paulus@samba.org, kraxel@redhat.com,
- sparclinux@vger.kernel.org, deanbo422@gmail.com, hch@lst.de,
- paulmck@kernel.org, mpe@ellerman.id.au, x86@kernel.org, linux@armlinux.org.uk,
- linux-csky@vger.kernel.org, mingo@kernel.org, peterz@infradead.org,
- linux-graphics-maintainer@vmware.com, bskeggs@redhat.com, airlied@redhat.com,
- linux-snps-arc@lists.infradead.org, linux-mm@kvack.org, mgorman@suse.de,
- linux-xtensa@linux-xtensa.org, arnd@arndb.de, intel-gfx@lists.freedesktop.org,
- sroland@vmware.com, josef@toxicpanda.com, rostedt@goodmis.org,
- torvalds@linuxfoundation.org, green.hu@gmail.com, dsterba@suse.com,
- tglx@linutronix.de, virtualization@lists.linux-foundation.org,
- dietmar.eggemann@arm.com, linux-arm-kernel@lists.infradead.org,
- chris@zankel.net, monstr@monstr.eu, nickhu@andestech.com, clm@fb.com,
- linuxppc-dev@lists.ozlabs.org, linux-kernel@vger.kernel.org,
- christian.koenig@amd.com, bcrl@kvack.org, spice-devel@lists.freedesktop.org,
- vgupta@synopsys.com, linux-fsdevel@vger.kernel.org, akpm@linux-foundation.org,
- bristot@redhat.com, davem@davemloft.net, linux-btrfs@vger.kernel.org,
- viro@zeniv.linux.org.uk
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: stable@vger.kernel.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 2021-01-09 01:33:52 [+0100], Thomas Bogendoerfer wrote:
-> On Sat, Jan 09, 2021 at 12:58:05AM +0100, Thomas Bogendoerfer wrote:
-> > On Fri, Jan 08, 2021 at 08:20:43PM +0000, Paul Cercueil wrote:
-> > > Hi Thomas,
-> > > 
-> > > 5.11 does not boot anymore on Ingenic SoCs, I bisected it to this commit.
-> > > 
-> > > Any idea what could be happening?
-> > 
-> > not yet, kernel crash log of a Malta QEMU is below.
-> 
-> update:
-> 
-> This dirty hack lets the Malta QEMU boot again:
-> 
-> diff --git a/mm/highmem.c b/mm/highmem.c
-> index c3a9ea7875ef..190cdda1149d 100644
-> --- a/mm/highmem.c
-> +++ b/mm/highmem.c
-> @@ -515,7 +515,7 @@ void *__kmap_local_pfn_prot(unsigned long pfn, pgprot_t prot)
->  	vaddr = __fix_to_virt(FIX_KMAP_BEGIN + idx);
->  	BUG_ON(!pte_none(*(kmap_pte - idx)));
->  	pteval = pfn_pte(pfn, prot);
-> -	set_pte_at(&init_mm, vaddr, kmap_pte - idx, pteval);
-> +	set_pte(kmap_pte - idx, pteval);
->  	arch_kmap_local_post_map(vaddr, pteval);
->  	current->kmap_ctrl.pteval[kmap_local_idx()] = pteval;
->  	preempt_enable();
-> 
-> set_pte_at() tries to update cache and could do an kmap_atomic() there.
-So the old implementation used set_pte() while the new one uses
-set_pte_at().
-
-> Not sure, if this is allowed at this point.
-The problem is the recursion
-  kmap_atomic() -> __update_cache() -> kmap_atomic()
-
-and kmap_local_idx_push() runs out if index space before stack space.
-
-I'm not sure if the __update_cache() worked for highmem. It has been
-added for that in commit
-   f4281bba81810 ("MIPS: Handle highmem pages in __update_cache")
-
-but it assumes that the address returned by kmap_atomic() is the same or
-related enough for flush_data_cache_page() to work.
-
-> Thomas.
-> 
-
-Sebastian
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+T24gRnJpLCAwOCBKYW4gMjAyMSwgTHl1ZGUgUGF1bCA8bHl1ZGVAcmVkaGF0LmNvbT4gd3JvdGU6
+Cj4gUmV2aWV3ZWQtYnk6IEx5dWRlIFBhdWwgPGx5dWRlQHJlZGhhdC5jb20+Cj4KPiBMZXQgbWUg
+a25vdyB3aGVuIHlvdSd2ZSBwdXNoZWQgdGhpcyB1cHN0cmVhbSBhbmQgSSdsbCBnbyBhaGVhZCBh
+bmQgc2VuZCBvdXQgYQo+IHJlYmFzZWQgdmVyc2lvbiBvZiBteSBiYWNrbGlnaHQgc2VyaWVzLgoK
+UHVzaGVkLCB0aGFua3MgZm9yIHRoZSByZXZpZXcuCgpJJ20gaG9waW5nIHRvIGRvIG1vcmUgcmV2
+aWV3IG9mIHRoZSBzZXJpZXMgdG9kYXksIHNvIHBsZWFzZSBob2xkIG9mZiBvbgphY3R1YWxseSBz
+ZW5kaW5nIHRoZSByZWJhc2VkIHZlcnNpb24gZm9yIGEgYml0IGxvbmdlci4KCkJSLApKYW5pLgoK
+Cj4KPiBPbiBGcmksIDIwMjEtMDEtMDggYXQgMTc6MjggKzAyMDAsIEphbmkgTmlrdWxhIHdyb3Rl
+Ogo+PiBUaGUgcGNoX2dldF9iYWNrbGlnaHQoKSwgbHB0X2dldF9iYWNrbGlnaHQoKSwgYW5kIGxw
+dF9zZXRfYmFja2xpZ2h0KCkKPj4gZnVuY3Rpb25zIG9wZXJhdGUgZGlyZWN0bHkgb24gdGhlIGhh
+cmR3YXJlIHJlZ2lzdGVycy4gSWYgaW52ZXJ0aW5nIHRoZQo+PiB2YWx1ZSBpcyBuZWVkZWQsIHVz
+aW5nIGludGVsX3BhbmVsX2NvbXB1dGVfYnJpZ2h0bmVzcygpLCBpdCBzaG91bGQgb25seQo+PiBi
+ZSBkb25lIGluIHRoZSBpbnRlcmZhY2UgYmV0d2VlbiBoYXJkd2FyZSByZWdpc3RlcnMgYW5kCj4+
+IHBhbmVsLT5iYWNrbGlnaHQubGV2ZWwuCj4+IAo+PiBUaGUgQ1BVIG1vZGUgdGFrZW92ZXIgY29k
+ZSBhZGRlZCBpbiBjb21taXQgNWIxZWM5YWM3YWI1Cj4+ICgiZHJtL2k5MTUvYmFja2xpZ2h0OiBG
+aXggYmFja2xpZ2h0IHRha2VvdmVyIG9uIExQVCwgdjMuIikgcmVhZHMgdGhlCj4+IGhhcmR3YXJl
+IHJlZ2lzdGVyIGFuZCBjb252ZXJ0cyB0byBwYW5lbC0+YmFja2xpZ2h0LmxldmVsIGNvcnJlY3Rs
+eSwKPj4gaG93ZXZlciB0aGUgdmFsdWUgd3JpdHRlbiBiYWNrIHNob3VsZCByZW1haW4gaW4gdGhl
+IGhhcmR3YXJlIHJlZ2lzdGVyCj4+ICJkb21haW4iLgo+PiAKPj4gVGhpcyBoYXNuJ3QgYmVlbiBh
+biBpc3N1ZSwgYmVjYXVzZSBHTTQ1IG1hY2hpbmVzIGFyZSB0aGUgb25seSBrbm93bgo+PiB1c2Vy
+cyBvZiBpOTE1LmludmVydF9icmlnaHRuZXNzIGFuZCB0aGUgYnJpZ2h0bmVzcyBpbnZlcnQgcXVp
+cmssIGFuZAo+PiB3aXRob3V0IG9uZSBvZiB0aGVtIG5vIGNvbnZlcnNpb24gaXMgbWFkZS4gSXQn
+cyBsaWtlbHkgbm9ib2R5J3MgZXZlciBoaXQKPj4gdGhlIHByb2JsZW0uCj4+IAo+PiBGaXhlczog
+NWIxZWM5YWM3YWI1ICgiZHJtL2k5MTUvYmFja2xpZ2h0OiBGaXggYmFja2xpZ2h0IHRha2VvdmVy
+IG9uIExQVCwgdjMuIikKPj4gQ2M6IE1hYXJ0ZW4gTGFua2hvcnN0IDxtYWFydGVuLmxhbmtob3Jz
+dEBsaW51eC5pbnRlbC5jb20+Cj4+IENjOiBWaWxsZSBTeXJqw6Rsw6QgPHZpbGxlLnN5cmphbGFA
+bGludXguaW50ZWwuY29tPgo+PiBDYzogTHl1ZGUgUGF1bCA8bHl1ZGVAcmVkaGF0LmNvbT4KPj4g
+Q2M6IDxzdGFibGVAdmdlci5rZXJuZWwub3JnPiAjIHY1LjErCj4+IFNpZ25lZC1vZmYtYnk6IEph
+bmkgTmlrdWxhIDxqYW5pLm5pa3VsYUBpbnRlbC5jb20+Cj4+IC0tLQo+PiDCoGRyaXZlcnMvZ3B1
+L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfcGFuZWwuYyB8IDkgKysrKystLS0tCj4+IMKgMSBmaWxl
+IGNoYW5nZWQsIDUgaW5zZXJ0aW9ucygrKSwgNCBkZWxldGlvbnMoLSkKPj4gCj4+IGRpZmYgLS1n
+aXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX3BhbmVsLmMKPj4gYi9kcml2
+ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX3BhbmVsLmMKPj4gaW5kZXggNjdmODFhZTk5
+NWM0Li43YTQyMzlkMWMyNDEgMTAwNjQ0Cj4+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rp
+c3BsYXkvaW50ZWxfcGFuZWwuYwo+PiArKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5
+L2ludGVsX3BhbmVsLmMKPj4gQEAgLTE2NDksMTYgKzE2NDksMTMgQEAgc3RhdGljIGludCBscHRf
+c2V0dXBfYmFja2xpZ2h0KHN0cnVjdCBpbnRlbF9jb25uZWN0b3IKPj4gKmNvbm5lY3RvciwgZW51
+bSBwaXBlIHVudXMKPj4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqB2YWwgPSBwY2hf
+Z2V0X2JhY2tsaWdodChjb25uZWN0b3IpOwo+PiDCoMKgwqDCoMKgwqDCoMKgZWxzZQo+PiDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoHZhbCA9IGxwdF9nZXRfYmFja2xpZ2h0KGNvbm5l
+Y3Rvcik7Cj4+IC3CoMKgwqDCoMKgwqDCoHZhbCA9IGludGVsX3BhbmVsX2NvbXB1dGVfYnJpZ2h0
+bmVzcyhjb25uZWN0b3IsIHZhbCk7Cj4+IC3CoMKgwqDCoMKgwqDCoHBhbmVsLT5iYWNrbGlnaHQu
+bGV2ZWwgPSBjbGFtcCh2YWwsIHBhbmVsLT5iYWNrbGlnaHQubWluLAo+PiAtwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqAgcGFuZWwtPmJhY2tsaWdodC5tYXgpOwo+PiDCoAo+PiDCoMKgwqDCoMKgwqDCoMKgaWYg
+KGNwdV9tb2RlKSB7Cj4+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgZHJtX2RiZ19r
+bXMoJmRldl9wcml2LT5kcm0sCj4+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoCAiQ1BVIGJhY2tsaWdodCByZWdpc3RlciB3YXMgZW5hYmxlZCwg
+c3dpdGNoaW5nIHRvCj4+IFBDSCBvdmVycmlkZVxuIik7Cj4+IMKgCj4+IMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgLyogV3JpdGUgY29udmVydGVkIENQVSBQV00gdmFsdWUgdG8gUENI
+IG92ZXJyaWRlIHJlZ2lzdGVyICovCj4+IC3CoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBs
+cHRfc2V0X2JhY2tsaWdodChjb25uZWN0b3ItPmJhc2Uuc3RhdGUsIHBhbmVsLQo+PiA+YmFja2xp
+Z2h0LmxldmVsKTsKPj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoGxwdF9zZXRfYmFj
+a2xpZ2h0KGNvbm5lY3Rvci0+YmFzZS5zdGF0ZSwgdmFsKTsKPj4gwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqBpbnRlbF9kZV93cml0ZShkZXZfcHJpdiwgQkxDX1BXTV9QQ0hfQ1RMMSwK
+Pj4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgIHBjaF9jdGwxIHwgQkxNX1BDSF9PVkVSUklERV9FTkFCTEUpOwo+PiDCoAo+PiBAQCAt
+MTY2Niw2ICsxNjYzLDEwIEBAIHN0YXRpYyBpbnQgbHB0X3NldHVwX2JhY2tsaWdodChzdHJ1Y3Qg
+aW50ZWxfY29ubmVjdG9yCj4+ICpjb25uZWN0b3IsIGVudW0gcGlwZSB1bnVzCj4+IMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBjcHVf
+Y3RsMiAmIH5CTE1fUFdNX0VOQUJMRSk7Cj4+IMKgwqDCoMKgwqDCoMKgwqB9Cj4+IMKgCj4+ICvC
+oMKgwqDCoMKgwqDCoHZhbCA9IGludGVsX3BhbmVsX2NvbXB1dGVfYnJpZ2h0bmVzcyhjb25uZWN0
+b3IsIHZhbCk7Cj4+ICvCoMKgwqDCoMKgwqDCoHBhbmVsLT5iYWNrbGlnaHQubGV2ZWwgPSBjbGFt
+cCh2YWwsIHBhbmVsLT5iYWNrbGlnaHQubWluLAo+PiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgcGFuZWwt
+PmJhY2tsaWdodC5tYXgpOwo+PiArCj4+IMKgwqDCoMKgwqDCoMKgwqByZXR1cm4gMDsKPj4gwqB9
+Cj4+IMKgCgotLSAKSmFuaSBOaWt1bGEsIEludGVsIE9wZW4gU291cmNlIEdyYXBoaWNzIENlbnRl
+cgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1n
+ZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9s
+aXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
