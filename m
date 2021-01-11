@@ -2,131 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 854872F211B
-	for <lists+intel-gfx@lfdr.de>; Mon, 11 Jan 2021 21:48:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4F2AD2F2123
+	for <lists+intel-gfx@lfdr.de>; Mon, 11 Jan 2021 21:51:08 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1BE6E89A8C;
-	Mon, 11 Jan 2021 20:48:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9BC1289D30;
+	Mon, 11 Jan 2021 20:51:06 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3648E89A8C
- for <intel-gfx@lists.freedesktop.org>; Mon, 11 Jan 2021 20:48:29 +0000 (UTC)
-IronPort-SDR: 96fqB9u29DuDZxghdx0f3hoAXZHuSF1gJEEp/4+XINl/JzjviDoFXVLkYfVwbWXwZ1eUi0EIuT
- Y+JsbHN5hwxA==
-X-IronPort-AV: E=McAfee;i="6000,8403,9861"; a="262714933"
-X-IronPort-AV: E=Sophos;i="5.79,339,1602572400"; d="scan'208";a="262714933"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Jan 2021 12:48:21 -0800
-IronPort-SDR: DMaETU8A+ybtfNnjJEmnTTAP40Xwl3ZIJ4QV7wGlF7Hn+Yd4Oy9QP+brBHJUGskcI+4RJ6eOmD
- yRAGtZaUDCrA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.79,339,1602572400"; d="scan'208";a="381146055"
-Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
- by orsmga008.jf.intel.com with ESMTP; 11 Jan 2021 12:48:21 -0800
-Received: from orsmsx606.amr.corp.intel.com (10.22.229.19) by
- ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1713.5; Mon, 11 Jan 2021 12:48:21 -0800
-Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
- orsmsx606.amr.corp.intel.com (10.22.229.19) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1713.5
- via Frontend Transport; Mon, 11 Jan 2021 12:48:21 -0800
-Received: from NAM02-CY1-obe.outbound.protection.outlook.com (104.47.37.56) by
- edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.1713.5; Mon, 11 Jan 2021 12:48:21 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=D13q8COKQCbAHUsLHd8y9oZ+PgGKo9usvJ/7bxu3aaEjmZIaQwYQvZb26HkveuEcCJ5YLPfSz3cpUCIMTco7/5B4NwE6mdT5eV9E0Wpi4CqqI/fqVgLTeuXOR08VnTKK2BvYCVTxVs9yGYpWm/3XKlzfz32QG6ucJCWvxeX6R0rJkFUaMJaIref23zFDVSPn86wt25+q1A1i4/6MTgWVetUDzf1GwqKODgEh5ATPAHdvReX4Ym8m2rVhZE1Akxdvs6XTHlYHT4D7xrAauGGPXLAMG2dC97x/fC/qfV9yYJTryBDWClVpAQFAn0vsypFYPeQLjdId89pebJZjj32FXg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=upluBbno/Fp15qRa3n707RTS7W7Ua97uEJYiP91IFos=;
- b=Ey7gDVBqIBwXMcXQp6Tp88SrKNI/zpj410vgR//A2g0cALKYGY+GYqRz2EIOAPfWU1Pa7lO/4+BSLtDHCjz6B6iIuBjHLZM9DvGlYSfo1YCwsU/g7CmGRZuqFCGhpfAHMxXAkJddEBNAetSizX4I4RIz6XJUsOz3gSNQd5tB/VIgDVfev1JX0uvQgqaUc3EDZdRlXjkcSHtOughZhyk4Qv5w/JxpSMeXbENOBMarJC9YXV+8zgfSwM0iDSjdo9+hq/eibyIjn/LqzS7NEAK6DDUYsGZcyVpMTE8jcGL9PsPl33RxNiTtDNazt9bud2ADlRFPU6Bkuo5DOfsZN4t27Q==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=intel.onmicrosoft.com; 
- s=selector2-intel-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=upluBbno/Fp15qRa3n707RTS7W7Ua97uEJYiP91IFos=;
- b=CC9JI6eNwlD2D4gjnHzjluaXP/nLTytmCFruxCZkhxWbWlwN22SYL9ZU7wFBh+hQTmMVSaQdiLOiD0vZKOL9ggNL4xLIj4ua1SL47m4M6zlGIPlcHTTBbBCJMesBu2El8QRp+RyUhfcxVPXHZR4zNK1VtKo3DVFALyrXIcA9PLY=
-Received: from BYAPR11MB3799.namprd11.prod.outlook.com (2603:10b6:a03:fb::19)
- by BYAPR11MB3831.namprd11.prod.outlook.com (2603:10b6:a03:b0::22)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3742.6; Mon, 11 Jan
- 2021 20:48:19 +0000
-Received: from BYAPR11MB3799.namprd11.prod.outlook.com
- ([fe80::d152:da83:422f:6d53]) by BYAPR11MB3799.namprd11.prod.outlook.com
- ([fe80::d152:da83:422f:6d53%5]) with mapi id 15.20.3742.012; Mon, 11 Jan 2021
- 20:48:18 +0000
-From: "Abodunrin, Akeem G" <akeem.g.abodunrin@intel.com>
-To: Chris Wilson <chris@chris-wilson.co.uk>, "intel-gfx@lists.freedesktop.org"
- <intel-gfx@lists.freedesktop.org>
-Thread-Topic: [PATCH 2/3] drm/i915/gt: Restore clear-residual mitigations for
- Ivybridge, Baytrail
-Thread-Index: AQHW5p8PZckj9BbdvkeYzC2rK2PNeqoi6BJQ
-Date: Mon, 11 Jan 2021 20:48:18 +0000
-Message-ID: <BYAPR11MB3799896D55184757E14060B4A9AB0@BYAPR11MB3799.namprd11.prod.outlook.com>
-References: <20210109154931.10098-1-chris@chris-wilson.co.uk>
- <20210109154931.10098-2-chris@chris-wilson.co.uk>
-In-Reply-To: <20210109154931.10098-2-chris@chris-wilson.co.uk>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-product: dlpe-windows
-dlp-reaction: no-action
-dlp-version: 11.5.1.3
-authentication-results: chris-wilson.co.uk; dkim=none (message not signed)
- header.d=none;chris-wilson.co.uk; dmarc=none action=none
- header.from=intel.com;
-x-originating-ip: [207.109.37.70]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 0a603d08-ec76-45e8-d32b-08d8b6723a13
-x-ms-traffictypediagnostic: BYAPR11MB3831:
-x-ld-processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <BYAPR11MB383173CEE9E3322E7705F8B6A9AB0@BYAPR11MB3831.namprd11.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:7691;
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 91zifrSbhTGEi4JIDWE251pVfGRQWKlrIcNyHsPrYG2wWFEkeZ0jXGBP3Qnb5y30xe3v2cilitYO55A1K8bj+GU9uYVybonVRaZWBoJU0onFUC3CPiK2Q1OHRnlyQS1y6814v5ca5v4bbPfVPYFtJhG0janaauuzCGAuTFAtJAS7i1JNRjZKe2NB3RhOU5BjYNc5xltzLxKaRU7GhhkaeRfaDnNZdajVSWyYuynfCg3Y7ClS/X7fydzhdbAM0jZXCV5h4cTx83qdTc4CGfmA2Sh6phQzv9xM/pJsSRFCarjSuyHJqnHgUjpyI+o66tLsJzsESBQ9rmp0J+lfZZkRvP8g96WGdoAJjStsJGbvnW7oDAfF3Ex6sbYelRKaj0i/MS0WrzxwA5DdQTT/faOobw==
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BYAPR11MB3799.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(4636009)(346002)(39860400002)(376002)(366004)(396003)(136003)(71200400001)(54906003)(33656002)(26005)(7696005)(110136005)(316002)(4326008)(86362001)(9686003)(76116006)(8676002)(186003)(6506007)(52536014)(55016002)(64756008)(66476007)(66446008)(53546011)(2906002)(5660300002)(83380400001)(66556008)(478600001)(8936002)(66946007);
- DIR:OUT; SFP:1102; 
-x-ms-exchange-antispam-messagedata: =?us-ascii?Q?HoVdudTroIV6RAd0csDR0PvFCva95AxORuGJ4bta7u0XEGQVgXSSYwaTS1PS?=
- =?us-ascii?Q?ZfpHfdTf5fHmwUAZYHWqZb4baLzMkqoc0jp09mvsaG1sOijBiM+dx2ffHUQT?=
- =?us-ascii?Q?DXlS5Jlo/q2vx197W+Rga9jG/aS7U4dxaY+Jlpj8wioTEnrwOTaJ9D7hnTQz?=
- =?us-ascii?Q?iE6QyXmffKW+SDd6DnLUTsIkByFWrl6IPMv4YgQkrnTP+za25eGA7ZAjsFBk?=
- =?us-ascii?Q?3rh6mBfq7+NpizRn5ABl86cxqTwqWU+U2SYnB3PVvSjdKtOnqpA0X6t9ReS8?=
- =?us-ascii?Q?o08jjUSNS+eLFmDhYxH1NkDADvehvadqrG1cE2bbM5e4jQ08ArvUVgEU1YHy?=
- =?us-ascii?Q?PD+BciKX1s7uptpKXdU3KWiszMPw3nSyDJKA00DnnHf9rfaYXhyBwzTO+S+K?=
- =?us-ascii?Q?xOuWlzUpHaFdfSSpc0TtbdbSAfJxZ72Ir17RcfOJuHu1/VYJQAUWabXQ4vPN?=
- =?us-ascii?Q?tgSMxYxqm8PL4Oq7i/x81jZXWChFSEjGEbbmq31G9jEAitXc8DnaHJlFi1mc?=
- =?us-ascii?Q?G+X6A+pEc1YX6CXRbgeSwpWwGeXT84Sv6Rv1xJtiZBUxKrRHr6UdaoHVpaUl?=
- =?us-ascii?Q?p4Vy9tzBsE2hEpnm+3olkqm5Mt0ci47dqWnRIpfqA4X/xlY5svHtjwq2Ucm/?=
- =?us-ascii?Q?yoohVwexwOXoindye8xx14vWb0ASlxI/+qTIe8BeAGuQnXlgEy6klP6+SMHk?=
- =?us-ascii?Q?aZEqtHHudJtEqfdKmIUbo/a68Y1SwmElEijRJcJAEL/UvsmWZ2G8D2wccRto?=
- =?us-ascii?Q?c9y8hxKWdvhS85yRLT4IHUTn+5varX0TYcEwq1LVKiPc8hvhbhSQNgS4FB7U?=
- =?us-ascii?Q?gnKJwT26f/Epu9EzzaW9A9eWl5hPJEpUuT940XheX1yieGS3yjGFPgMf7Zrc?=
- =?us-ascii?Q?HD8BU585ZUwGXSfEefHmd4oaWQXfX9EaTuKV7TiIwWpUkCD3soXbNVWGSVA7?=
- =?us-ascii?Q?+BsxbMD4issPOgJOLQP8xnJbRArckwVydt83V+z8fEk=3D?=
+Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com
+ [IPv6:2a00:1450:4864:20::336])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1602C89D30
+ for <intel-gfx@lists.freedesktop.org>; Mon, 11 Jan 2021 20:51:05 +0000 (UTC)
+Received: by mail-wm1-x336.google.com with SMTP id k10so38079wmi.3
+ for <intel-gfx@lists.freedesktop.org>; Mon, 11 Jan 2021 12:51:05 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=y27XJpkhHyE0sWmoPKkkMbsE830iByKKaRUFcQQwiv8=;
+ b=d8itslzIpUXnrVc8diF45u/zKGyIvOcg8KLQl3k04vj67hVnFl92obzZcMd3ASawq1
+ 65W+tFo/EwuQdFSEk5VUUlYRGcqyU0cYhro4lpRnSyoFebTojpzDDpGSOc0l0Ooqflts
+ bozsPzpp8J8s0wwbz+dH2otgTgB/fURuH7Mnd7P6TwGDziMHVpD2OyoIQMLVsWBAsSuC
+ Qo06SzXBOpkzCGOSBExnMbDI6hTAgRyrgMw9ma3A2orRjd7SyMA4pLPz5p+cP0gtdHoC
+ hzOIsKl/wuwQetnus+dtkBA/6pg8Z8mk6eQ44777k95zd5wXyLCwhws1RwRN+W7elhH4
+ vj2w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=y27XJpkhHyE0sWmoPKkkMbsE830iByKKaRUFcQQwiv8=;
+ b=MBbrU4D0eDnHWVarbtvSB5BtfNV2voZkkKai2d6P6RFI/AOCCsfBdv9PXaODI6h8YJ
+ S1ArywUNRNuzc9bQ3lcsPQ2/L/BEe+PenpDXzuVViRcRVTHEuEDIjEbLRDnEUngeVb26
+ huu/Cbzo9k7IiY55BscbhB4tfh07hOpOQDO0tMiRVZtWhldytq/zcmBdRgpZ8wYck+PO
+ AkgSfvRVaYr7pqcQhRXONqulHB3/um1h3rRYJfQffJJhLpGQ7d5NGu/iPnfjKC+K0tb4
+ VSOa8BZWfaEmRxELbxJX/RIaQLev7KUC+Sat3Rwk4u2Yf7YvxSLSXB+87p3ZkheQzzaz
+ OQmg==
+X-Gm-Message-State: AOAM533zAH8fsrQ1M7Hi0TZLCaImmcsHZwmhgVqvEKu7FJeVl2B0c68W
+ 2XamWlT5GmOMfIGEb9ryW2sC6/aQv3gT0oK+RVs=
+X-Google-Smtp-Source: ABdhPJzzNXDydmbj/uESdPjz+mWNIH13BUHQZ7rq7l7OM4EiE1ARhyh3D9VhBnr7pVEGnR8ni9LpiLUne0AfTGj4JbM=
+X-Received: by 2002:a1c:cc14:: with SMTP id h20mr535901wmb.180.1610398263674; 
+ Mon, 11 Jan 2021 12:51:03 -0800 (PST)
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: BYAPR11MB3799.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0a603d08-ec76-45e8-d32b-08d8b6723a13
-X-MS-Exchange-CrossTenant-originalarrivaltime: 11 Jan 2021 20:48:18.8030 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: eKn8bzzpgXHWpmsH0ZeFPYsMRn2jueNJwTheq0fCuQidedobrmNKt63STSjF0Vthtoq0WtyOxfZCfyFx0GWS3iFsuuCeWo7m7URv4BGa5zk=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BYAPR11MB3831
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH 2/3] drm/i915/gt: Restore clear-residual
- mitigations for Ivybridge, Baytrail
+References: <20210105153558.134272-1-maarten.lankhorst@linux.intel.com>
+ <20210105153558.134272-15-maarten.lankhorst@linux.intel.com>
+In-Reply-To: <20210105153558.134272-15-maarten.lankhorst@linux.intel.com>
+From: Dave Airlie <airlied@gmail.com>
+Date: Tue, 12 Jan 2021 06:50:51 +1000
+Message-ID: <CAPM=9txPLzWbSd5KH_DG+P1V81mS_Ghc_4inOz9kKVUUhk1J_A@mail.gmail.com>
+To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Subject: Re: [Intel-gfx] [PATCH v6 14/64] drm/i915: Reject UNSYNCHRONIZED
+ for userptr, v2.
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -139,59 +62,69 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+Acked-by: Dave Airlie <airlied@redhat.com>
 
+burn with the fire.
 
-> -----Original Message-----
-> From: Chris Wilson <chris@chris-wilson.co.uk>
-> Sent: Saturday, January 09, 2021 7:50 AM
-> To: intel-gfx@lists.freedesktop.org
-> Cc: Chris Wilson <chris@chris-wilson.co.uk>; Mika Kuoppala
-> <mika.kuoppala@linux.intel.com>; Kumar Valsan, Prathap
-> <prathap.kumar.valsan@intel.com>; Abodunrin, Akeem G
-> <akeem.g.abodunrin@intel.com>; Bloomfield, Jon
-> <jon.bloomfield@intel.com>
-> Subject: [PATCH 2/3] drm/i915/gt: Restore clear-residual mitigations for
-> Ivybridge, Baytrail
-> 
-> The mitigation is required for all gen7 platforms, now that it does not cause
-> GPU hangs, restore it for Ivybridge and Baytrail.
-> 
-> Fixes: 47f8253d2b89 ("drm/i915/gen7: Clear all EU/L3 residual contexts")
-> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-> Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
-> Cc: Prathap Kumar Valsan <prathap.kumar.valsan@intel.com>
-> Cc: Akeem G Abodunrin <akeem.g.abodunrin@intel.com>
-> Cc: Bloomfield Jon <jon.bloomfield@intel.com>
+Dave.
+
+On Wed, 6 Jan 2021 at 01:46, Maarten Lankhorst
+<maarten.lankhorst@linux.intel.com> wrote:
+>
+> We should not allow this any more, as it will break with the new userptr
+> implementation, it could still be made to work, but there's no point in
+> doing so.
+>
+> Inspection of the beignet opencl driver shows that it's only used
+> when normal userptr is not available, which means for new kernels
+> you will need CONFIG_I915_USERPTR.
+>
+> Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 > ---
->  drivers/gpu/drm/i915/gt/intel_ring_submission.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/gt/intel_ring_submission.c
-> b/drivers/gpu/drm/i915/gt/intel_ring_submission.c
-> index 4ea741f488a8..72d4722441bf 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_ring_submission.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_ring_submission.c
-> @@ -1326,7 +1326,7 @@ int intel_ring_submission_setup(struct
-> intel_engine_cs *engine)
-> 
->  	GEM_BUG_ON(timeline->hwsp_ggtt != engine->status_page.vma);
-> 
-> -	if (IS_HASWELL(engine->i915) && engine->class == RENDER_CLASS) {
-> +	if (IS_GEN(engine->i915, 7) && engine->class == RENDER_CLASS) {
->  		err = gen7_ctx_switch_bb_init(engine);
->  		if (err)
->  			goto err_ring_unpin;
+>  drivers/gpu/drm/i915/gem/i915_gem_userptr.c | 10 ++--------
+>  1 file changed, 2 insertions(+), 8 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_userptr.c b/drivers/gpu/drm/i915/gem/i915_gem_userptr.c
+> index 64a946d5f753..241f865077b9 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_userptr.c
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_userptr.c
+> @@ -224,7 +224,7 @@ i915_gem_userptr_init__mmu_notifier(struct drm_i915_gem_object *obj,
+>         struct i915_mmu_object *mo;
+>
+>         if (flags & I915_USERPTR_UNSYNCHRONIZED)
+> -               return capable(CAP_SYS_ADMIN) ? 0 : -EPERM;
+> +               return -ENODEV;
+>
+>         if (GEM_WARN_ON(!obj->userptr.mm))
+>                 return -EINVAL;
+> @@ -274,13 +274,7 @@ static int
+>  i915_gem_userptr_init__mmu_notifier(struct drm_i915_gem_object *obj,
+>                                     unsigned flags)
+>  {
+> -       if ((flags & I915_USERPTR_UNSYNCHRONIZED) == 0)
+> -               return -ENODEV;
+> -
+> -       if (!capable(CAP_SYS_ADMIN))
+> -               return -EPERM;
+> -
+> -       return 0;
+> +       return -ENODEV;
+>  }
+>
+>  static void
 > --
-> 2.20.1
-
-I tried hard to remember why checking for HSW platform specifically in this case, since mitigation is applicable to all gen 7 (including 7.5) platforms - but couldn't recall why, and see no reason in the code doing it that way - so the changes make sense...
-
-Reviewed-by: Akeem G Abodunrin <akeem.g.abodunrin@intel.com>
+> 2.30.0.rc1
+>
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
