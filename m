@@ -2,41 +2,41 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E96852F26CC
-	for <lists+intel-gfx@lfdr.de>; Tue, 12 Jan 2021 04:48:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id EF5CC2F26D7
+	for <lists+intel-gfx@lfdr.de>; Tue, 12 Jan 2021 04:54:47 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B530189F31;
-	Tue, 12 Jan 2021 03:48:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 04B2888E38;
+	Tue, 12 Jan 2021 03:54:45 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2803A89F31
- for <intel-gfx@lists.freedesktop.org>; Tue, 12 Jan 2021 03:47:59 +0000 (UTC)
-IronPort-SDR: Dmuz75FDlIzm3f4K+fw4YtObONwaFxzKAJCgy+F4xuJkeQyxxuV3eNAJ1F16AoXHuA/Ley4Y02
- AbsRzojTOgYQ==
-X-IronPort-AV: E=McAfee;i="6000,8403,9861"; a="177202941"
-X-IronPort-AV: E=Sophos;i="5.79,340,1602572400"; d="scan'208";a="177202941"
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5E3B488E38
+ for <intel-gfx@lists.freedesktop.org>; Tue, 12 Jan 2021 03:54:44 +0000 (UTC)
+IronPort-SDR: foAmvIwH8DVbS6fn+O73aaCppsANhqqMfYl8amgkA61PJVYewXLG3TkIdjlNXXfVzui2d+xRzE
+ Fs4/TBJod1Ag==
+X-IronPort-AV: E=McAfee;i="6000,8403,9861"; a="157754026"
+X-IronPort-AV: E=Sophos;i="5.79,340,1602572400"; d="scan'208";a="157754026"
 Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Jan 2021 19:47:58 -0800
-IronPort-SDR: 37lFOj5GIQmhVtixvwOuiF+EGWyWYHcUAkOchMYNVKYcMUwLvgtTw5Q74DSvAlVNqoZ9TR+gL6
- U13qzvrLMAjw==
-X-IronPort-AV: E=Sophos;i="5.79,340,1602572400"; d="scan'208";a="363364695"
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Jan 2021 19:54:43 -0800
+IronPort-SDR: dLh7w5KfcI1B/Ew5yv/1o8OOXqFXplr7fEeYn7FGsHO1GL38AaVQMlWQe7+EXUDLr38IIfspjI
+ ZaiJGFtelQLg==
+X-IronPort-AV: E=Sophos;i="5.79,340,1602572400"; d="scan'208";a="363365948"
 Received: from mdroper-desk1.fm.intel.com (HELO
  mdroper-desk1.amr.corp.intel.com) ([10.1.27.168])
  by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Jan 2021 19:47:58 -0800
-Date: Mon, 11 Jan 2021 19:47:56 -0800
+ 11 Jan 2021 19:54:43 -0800
+Date: Mon, 11 Jan 2021 19:54:42 -0800
 From: Matt Roper <matthew.d.roper@intel.com>
 To: Aditya Swarup <aditya.swarup@intel.com>
-Message-ID: <20210112034756.GC21197@mdroper-desk1.amr.corp.intel.com>
+Message-ID: <20210112035442.GD21197@mdroper-desk1.amr.corp.intel.com>
 References: <20201205010844.361880-1-aditya.swarup@intel.com>
- <20201205010844.361880-9-aditya.swarup@intel.com>
+ <20201205010844.361880-11-aditya.swarup@intel.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20201205010844.361880-9-aditya.swarup@intel.com>
-Subject: Re: [Intel-gfx] [PATCH 08/22] drm/i915/adl_s: Configure DPLL for
- ADL-S
+In-Reply-To: <20201205010844.361880-11-aditya.swarup@intel.com>
+Subject: Re: [Intel-gfx] [PATCH 10/22] drm/i915/adl_s: Initialize display
+ for ADL-S
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,64 +51,66 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org,
  Lucas De Marchi <lucas.demarchi@intel.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Dec 04, 2020 at 05:08:30PM -0800, Aditya Swarup wrote:
-> Add changes for configuring DPLL for ADL-S
-> - Reusing DG1 DPLL 2 & DPLL 3 for ADL-S
-> - Extend CNL macro to choose DPLL_ENABLE
->   for ADL-S.
-> - Select CFGCR0 and CFGCR1 for ADL-S plls.
-> 
-> On BSpec: 53720 PLL arrangement dig for adls:
-> DPLL2 cfgcr is programmed using _ADLS_DPLL3_CFGCR(0/1)
-> DPLL3 cfgcr is programmed using _ADLS_DPLL4_CFGCR(0/1)
+On Fri, Dec 04, 2020 at 05:08:32PM -0800, Aditya Swarup wrote:
+> Initialize display outputs for ADL-S. ADL-S has 5 display
+> outputs -> 1 eDP, 2 HDMI and 2 DP++ outputs.
+> =
 
-53720 shows DPLL's 0/1/2/3 in the diagram but the registers are named as
-DPLL 0/1/3/4 (no #2).  I don't see anywhere on 53720 that it explicitly
-gives the mapping you mention here, but on page 53723 I see a note:
+> Cc: Jani Nikula <jani.nikula@intel.com>
+> Cc: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> Cc: Imre Deak <imre.deak@intel.com>
+> Cc: Matt Roper <matthew.d.roper@intel.com>
+> Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+> Signed-off-by: Aditya Swarup <aditya.swarup@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_display.c | 8 +++++++-
+>  1 file changed, 7 insertions(+), 1 deletion(-)
+> =
 
-        Due to current BSpec filtering limitations, the DPLL4_CRCFG0/1
-        (164294h/164298h) are used to control the DPLL2.
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/d=
+rm/i915/display/intel_display.c
+> index 0ff0eeabab8c..19ed51e6c647 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> @@ -17627,7 +17627,13 @@ static void intel_setup_outputs(struct drm_i915_=
+private *dev_priv)
+>  	if (!HAS_DISPLAY(dev_priv))
+>  		return;
+>  =
 
-Assuming that's correct, the patch below has the registers for the last
-two DPLL's swapped.
+> -	if (IS_DG1(dev_priv) || IS_ROCKETLAKE(dev_priv)) {
+> +	if (IS_ALDERLAKE_S(dev_priv)) {
+> +		intel_ddi_init(dev_priv, PORT_A);
+> +		intel_ddi_init(dev_priv, PORT_D);	/* DDI TC1 */
 
-...
-> +
-> +#define _ADLS_DPLL3_CFGCR1		0x1642C4
-> +#define _ADLS_DPLL4_CFGCR1		0x164298
-> +#define ADLS_DPLL_CFGCR1(pll)		_MMIO_PLL3(pll, _TGL_DPLL0_CFGCR1, \
-> +						   _TGL_DPLL1_CFGCR1, \
-> +						   _ADLS_DPLL3_CFGCR1, \
-> +						   _ADLS_DPLL4_CFGCR1)
-
-I.e., this should be 
-
-        #define ADLS_DPLL_CFGCR1(pll)	_MMIO_PLL3(pll, _TGL_DPLL0_CFGCR1, \
-                                                        _TGL_DPLL1_CFGCR1, \
-                                                        _ADLS_DPLL4_CFGCR1, \
-                                                        _ADLS_DPLL3_CFGCR1)
-
-Given the strange spec naming, I think this calls for a comment in the
-code as well to clarify that yes, we really do want 4 before 3 and that
-there's no 2.
+It all comes out the same in the end, but we should just pass PORT_TC1
+and such for these outputs since that's the formal name in the bspec
+(and matches how we handle RKL/DG1 that also have "TC" DDIs that are
+actually combo PHYs).
 
 
 Matt
 
-> +
->  #define _DKL_PHY1_BASE			0x168000
->  #define _DKL_PHY2_BASE			0x169000
->  #define _DKL_PHY3_BASE			0x16A000
-> -- 
-> 2.27.0
-> 
+> +		intel_ddi_init(dev_priv, PORT_E);	/* DDI TC2 */
+> +		intel_ddi_init(dev_priv, PORT_F);	/* DDI TC3 */
+> +		intel_ddi_init(dev_priv, PORT_G);	/* DDI TC4 */
+> +	} else if (IS_DG1(dev_priv) || IS_ROCKETLAKE(dev_priv)) {
+>  		intel_ddi_init(dev_priv, PORT_A);
+>  		intel_ddi_init(dev_priv, PORT_B);
+>  		intel_ddi_init(dev_priv, PORT_TC1);
+> -- =
 
--- 
+> 2.27.0
+> =
+
+
+-- =
+
 Matt Roper
 Graphics Software Engineer
 VTT-OSGC Platform Enablement
