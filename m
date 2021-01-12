@@ -2,41 +2,41 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 568C42F26E2
-	for <lists+intel-gfx@lfdr.de>; Tue, 12 Jan 2021 05:05:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id AF2412F26F4
+	for <lists+intel-gfx@lfdr.de>; Tue, 12 Jan 2021 05:19:52 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 553D389954;
-	Tue, 12 Jan 2021 04:05:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1D9E289F49;
+	Tue, 12 Jan 2021 04:19:50 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 95DAD89954
- for <intel-gfx@lists.freedesktop.org>; Tue, 12 Jan 2021 04:05:23 +0000 (UTC)
-IronPort-SDR: HZZTbf6uNYXuCbIYpAtzBalM1uLwuz2q71Pfl5jPS1qi+4RPzx90I+TGO4r9ljAVE5LlcZf/ZP
- ZNubV/g9YImg==
-X-IronPort-AV: E=McAfee;i="6000,8403,9861"; a="242049493"
-X-IronPort-AV: E=Sophos;i="5.79,340,1602572400"; d="scan'208";a="242049493"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Jan 2021 20:05:22 -0800
-IronPort-SDR: Zlcwpv2ZfFIWBm6ghmKLPg/lPGSBYz4GrjOuHRsOdjwvmzpVszsB/r7oKg34MMw1arHIS2LTtw
- LKovEegKIMWw==
-X-IronPort-AV: E=Sophos;i="5.79,340,1602572400"; d="scan'208";a="381271655"
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F386989F49
+ for <intel-gfx@lists.freedesktop.org>; Tue, 12 Jan 2021 04:19:48 +0000 (UTC)
+IronPort-SDR: XUVMtlcfWC8irT1BM1AX3Oz8r6+39mQY5Y9e8Wp0d24CJkc2C3s8r82vtvU6RIifzcxokKMyM7
+ Fos1Yncot0jA==
+X-IronPort-AV: E=McAfee;i="6000,8403,9861"; a="165063084"
+X-IronPort-AV: E=Sophos;i="5.79,340,1602572400"; d="scan'208";a="165063084"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Jan 2021 20:19:48 -0800
+IronPort-SDR: GhKi7eHLa8izJCawHQsfBUhi2Tu258PjDc/hrPyenD0fPrbkeTaMSNNT8l13aWhkoz/jw1nXT8
+ w3p2H7SC7uBQ==
+X-IronPort-AV: E=Sophos;i="5.79,340,1602572400"; d="scan'208";a="363370520"
 Received: from mdroper-desk1.fm.intel.com (HELO
  mdroper-desk1.amr.corp.intel.com) ([10.1.27.168])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Jan 2021 20:05:22 -0800
-Date: Mon, 11 Jan 2021 20:05:20 -0800
+ by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Jan 2021 20:19:47 -0800
+Date: Mon, 11 Jan 2021 20:19:45 -0800
 From: Matt Roper <matthew.d.roper@intel.com>
 To: Aditya Swarup <aditya.swarup@intel.com>
-Message-ID: <20210112040520.GE21197@mdroper-desk1.amr.corp.intel.com>
+Message-ID: <20210112041945.GF21197@mdroper-desk1.amr.corp.intel.com>
 References: <20201205010844.361880-1-aditya.swarup@intel.com>
- <20201205010844.361880-13-aditya.swarup@intel.com>
+ <20201205010844.361880-12-aditya.swarup@intel.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20201205010844.361880-13-aditya.swarup@intel.com>
-Subject: Re: [Intel-gfx] [PATCH 12/22] drm/i915/adl_s: Add vbt port and aux
- channel settings for adls
+In-Reply-To: <20201205010844.361880-12-aditya.swarup@intel.com>
+Subject: Re: [Intel-gfx] [PATCH 11/22] drm/i915/adl_s: Add adl-s ddc pin
+ mapping
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,20 +56,28 @@ Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Dec 04, 2020 at 05:08:34PM -0800, Aditya Swarup wrote:
-> - ADL-S driver internal mapping uses PORT D, E, F, G for Combo phy B, C, =
-D and E.
-> - Add ADLS specific port mappings for vbt port dvo settings.
-> - Select appropriate AUX CH specific to ADLS based on port mapping.
+On Fri, Dec 04, 2020 at 05:08:33PM -0800, Aditya Swarup wrote:
+> ADL-S requires TC pins to set up ddc for Combo PHY B, C, D and E.
+> Combo PHY A still uses the old ddc pin mapping.
+> =
 
-The aux stuff is getting really messy; we're definitely going to have to
-move to a table-based approach for some of this stuff soon to keep it
-from getting too out of hand.
+> From VBT, ddc pin info suggests the following mapping:
+> VBT 			               DRIVER
+> DDI B->ddc_pin=3D2 should translate to PORT_D->0x9
+> DDI C->ddc_pin=3D3 should translate to PORT_E->0xa
+> DDI D->ddc_pin=3D4 should translate to PORT_F->0xb
+> DDI E->ddc_pin=3D5 should translate to PORT_G->0xc
+> =
 
-The changes here look correct for the current style though.
+> Adding pin map to facilitate this translation as we cannot use existing
+> icl ddc pin map due to conflict with DDI B and DDI C info.
+> =
 
-Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
+> Bspec:20124
+> =
 
+> v2: Replace IS_ALDERLAKE_S() with HAS_PCH_ADP() as the pin map pairing
+> depends on the PCH being used rather than the platform.(mdroper)
 > =
 
 > Cc: Jani Nikula <jani.nikula@intel.com>
@@ -79,102 +87,131 @@ Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
 > Cc: Lucas De Marchi <lucas.demarchi@intel.com>
 > Signed-off-by: Aditya Swarup <aditya.swarup@intel.com>
 > ---
->  drivers/gpu/drm/i915/display/intel_bios.c | 57 ++++++++++++++++++-----
->  1 file changed, 46 insertions(+), 11 deletions(-)
+>  drivers/gpu/drm/i915/display/intel_bios.c     | 13 +++++++++++-
+>  drivers/gpu/drm/i915/display/intel_hdmi.c     | 20 ++++++++++++++++++-
+>  drivers/gpu/drm/i915/display/intel_vbt_defs.h |  4 ++++
+>  3 files changed, 35 insertions(+), 2 deletions(-)
 > =
 
 > diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/=
 i915/display/intel_bios.c
-> index 9dc67c03ffc0..8f166f49b6cc 100644
+> index 4cc949b228f2..9dc67c03ffc0 100644
 > --- a/drivers/gpu/drm/i915/display/intel_bios.c
 > +++ b/drivers/gpu/drm/i915/display/intel_bios.c
-> @@ -1709,8 +1709,26 @@ static enum port dvo_port_to_port(struct drm_i915_=
-private *dev_priv,
->  		[PORT_TC1] =3D { DVO_PORT_HDMIC, DVO_PORT_DPC, -1 },
->  		[PORT_TC2] =3D { DVO_PORT_HDMID, DVO_PORT_DPD, -1 },
->  	};
-> +	/*
-> +	 * Alderlake S ports used in the driver are PORT_A, PORT_D, PORT_E,
-> +	 * PORT_F and PORT_G, we need to map that to correct VBT sections.
-> +	 */
-> +	static const int adls_port_mapping[][3] =3D {
-> +		[PORT_A] =3D { DVO_PORT_HDMIA, DVO_PORT_DPA, -1 },
-> +		[PORT_B] =3D { -1 },
-> +		[PORT_C] =3D { -1 },
-> +		[PORT_TC1] =3D { DVO_PORT_HDMIB, DVO_PORT_DPB, -1 },
-> +		[PORT_TC2] =3D { DVO_PORT_HDMIC, DVO_PORT_DPC, -1 },
-> +		[PORT_TC3] =3D { DVO_PORT_HDMID, DVO_PORT_DPD, -1 },
-> +		[PORT_TC4] =3D { DVO_PORT_HDMIE, DVO_PORT_DPE, -1 },
-> +	};
+> @@ -1623,12 +1623,23 @@ static const u8 icp_ddc_pin_map[] =3D {
+>  	[TGL_DDC_BUS_PORT_6] =3D GMBUS_PIN_14_TC6_TGP,
+>  };
 >  =
 
-> -	if (IS_DG1(dev_priv) || IS_ROCKETLAKE(dev_priv))
-> +	if (IS_ALDERLAKE_S(dev_priv))
-> +		return __dvo_port_to_port(ARRAY_SIZE(adls_port_mapping),
-> +					  ARRAY_SIZE(adls_port_mapping[0]),
-> +					  adls_port_mapping,
-> +					  dvo_port);
-> +	else if (IS_DG1(dev_priv) || IS_ROCKETLAKE(dev_priv))
->  		return __dvo_port_to_port(ARRAY_SIZE(rkl_port_mapping),
->  					  ARRAY_SIZE(rkl_port_mapping[0]),
->  					  rkl_port_mapping,
-> @@ -2667,27 +2685,44 @@ enum aux_ch intel_bios_port_aux_ch(struct drm_i91=
-5_private *dev_priv,
->  		return aux_ch;
+> +static const u8 adls_ddc_pin_map[] =3D {
+> +	[ICL_DDC_BUS_DDI_A] =3D GMBUS_PIN_1_BXT,
+> +	[ADLS_DDC_BUS_PORT_TC1] =3D GMBUS_PIN_9_TC1_ICP,
+> +	[ADLS_DDC_BUS_PORT_TC2] =3D GMBUS_PIN_10_TC2_ICP,
+> +	[ADLS_DDC_BUS_PORT_TC3] =3D GMBUS_PIN_11_TC3_ICP,
+> +	[ADLS_DDC_BUS_PORT_TC4] =3D GMBUS_PIN_12_TC4_ICP,
+> +};
+
+Can't we use icp_ddc_pin_map[] since it's a superset of this?  The ICP
+table has some extra entries that we'll never map through, but that's
+true for other platforms as well.  E.g., ICP itself can never have a
+DDI_C or TC5/TC6, but it doesn't hurt anything to have those outputs as
+extra entries in the table that never get looked up.
+
+
+> +
+>  static u8 map_ddc_pin(struct drm_i915_private *dev_priv, u8 vbt_pin)
+>  {
+>  	const u8 *ddc_pin_map;
+>  	int n_entries;
+>  =
+
+> -	if (INTEL_PCH_TYPE(dev_priv) >=3D PCH_DG1) {
+> +	if (HAS_PCH_ADP(dev_priv)) {
+> +		ddc_pin_map =3D adls_ddc_pin_map;
+> +		n_entries =3D ARRAY_SIZE(adls_ddc_pin_map);
+> +	} else if (INTEL_PCH_TYPE(dev_priv) >=3D PCH_DG1) {
+>  		return vbt_pin;
+>  	} else if (INTEL_PCH_TYPE(dev_priv) >=3D PCH_ICP) {
+>  		ddc_pin_map =3D icp_ddc_pin_map;
+> diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/=
+i915/display/intel_hdmi.c
+> index e10fdb369daa..060a13b63aa9 100644
+> --- a/drivers/gpu/drm/i915/display/intel_hdmi.c
+> +++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
+> @@ -3135,6 +3135,22 @@ static u8 dg1_port_to_ddc_pin(struct drm_i915_priv=
+ate *dev_priv, enum port port)
+>  	return intel_port_to_phy(dev_priv, port) + 1;
+>  }
+>  =
+
+> +static u8 adls_port_to_ddc_pin(struct drm_i915_private *dev_priv, enum p=
+ort port)
+> +{
+> +	enum phy phy =3D intel_port_to_phy(dev_priv, port);
+> +
+> +	WARN_ON(port =3D=3D PORT_B || port =3D=3D PORT_C);
+> +
+> +	/*
+> +	 * Pin mapping for ADL-S requires TC pins for all combo phy outputs
+> +	 * except first combo output.
+> +	 */
+> +	if (IS_ALDERLAKE_S(dev_priv) && phy >=3D PHY_B)
+
+The IS_ADLS test here is redundant since we only call this function on
+ADL-S, right?
+
+> +		return GMBUS_PIN_9_TC1_ICP + phy - PHY_B;
+> +
+> +	return GMBUS_PIN_1_BXT + phy;
+
+There's only one possible output that can get to this return
+(PORT_A/PHY_A), so the generic "+ phy" seems unnecessary.
+
+Actually it might more more sensible to make PHY_A the special case we
+test for in the 'if' condition and then make the PHY_B+ case the
+function's regular return.
+
+> +}
+> +
+>  static u8 g4x_port_to_ddc_pin(struct drm_i915_private *dev_priv,
+>  			      enum port port)
+>  {
+> @@ -3172,7 +3188,9 @@ static u8 intel_hdmi_ddc_pin(struct intel_encoder *=
+encoder)
+>  		return ddc_pin;
 >  	}
 >  =
 
-> +	/*
-> +	 * RKL/DG1 VBT uses PHY based mapping. Combo PHYs A,B,C,D
-> +	 * map to DDI A,B,TC1,TC2 respectively.
-> +	 *
-> +	 * ADL-S VBT uses PHY based mapping. Combo PHYs A,B,C,D,E
-> +	 * map to DDI A,TC1,TC2,TC3,TC4 respectively.
-> +	 */
->  	switch (info->alternate_aux_channel) {
->  	case DP_AUX_A:
->  		aux_ch =3D AUX_CH_A;
->  		break;
->  	case DP_AUX_B:
-> -		aux_ch =3D AUX_CH_B;
-> +		if (IS_ALDERLAKE_S(dev_priv))
-> +			aux_ch =3D AUX_CH_USBC1;
-> +		else
-> +			aux_ch =3D AUX_CH_B;
->  		break;
->  	case DP_AUX_C:
-> -		/*
-> -		 * RKL/DG1 VBT uses PHY based mapping. Combo PHYs A,B,C,D
-> -		 * map to DDI A,B,TC1,TC2 respectively.
-> -		 */
-> -		aux_ch =3D (IS_DG1(dev_priv) || IS_ROCKETLAKE(dev_priv)) ?
-> -			AUX_CH_USBC1 : AUX_CH_C;
-> +		if (IS_ALDERLAKE_S(dev_priv))
-> +			aux_ch =3D AUX_CH_USBC2;
-> +		else if (IS_DG1(dev_priv) || IS_ROCKETLAKE(dev_priv))
-> +			aux_ch =3D AUX_CH_USBC1;
-> +		else
-> +			aux_ch =3D AUX_CH_C;
->  		break;
->  	case DP_AUX_D:
-> -		aux_ch =3D (IS_DG1(dev_priv) || IS_ROCKETLAKE(dev_priv)) ?
-> -			AUX_CH_USBC2 : AUX_CH_D;
-> +		if (IS_ALDERLAKE_S(dev_priv))
-> +			aux_ch =3D AUX_CH_USBC3;
-> +		else if (IS_DG1(dev_priv) || IS_ROCKETLAKE(dev_priv))
-> +			aux_ch =3D AUX_CH_USBC2;
-> +		else
-> +			aux_ch =3D AUX_CH_D;
->  		break;
->  	case DP_AUX_E:
-> -		aux_ch =3D AUX_CH_E;
-> +		if (IS_ALDERLAKE_S(dev_priv))
-> +			aux_ch =3D AUX_CH_USBC4;
-> +		else
-> +			aux_ch =3D AUX_CH_E;
->  		break;
->  	case DP_AUX_F:
->  		aux_ch =3D AUX_CH_F;
+> -	if (INTEL_PCH_TYPE(dev_priv) >=3D PCH_DG1)
+> +	if (IS_ALDERLAKE_S(dev_priv))
+
+This should probably be a PCH check instead of a platform check too.
+
+
+Matt
+
+> +		ddc_pin =3D adls_port_to_ddc_pin(dev_priv, port);
+> +	else if (INTEL_PCH_TYPE(dev_priv) >=3D PCH_DG1)
+>  		ddc_pin =3D dg1_port_to_ddc_pin(dev_priv, port);
+>  	else if (IS_ROCKETLAKE(dev_priv))
+>  		ddc_pin =3D rkl_port_to_ddc_pin(dev_priv, port);
+> diff --git a/drivers/gpu/drm/i915/display/intel_vbt_defs.h b/drivers/gpu/=
+drm/i915/display/intel_vbt_defs.h
+> index 49b4b5fca941..32d1b4f05760 100644
+> --- a/drivers/gpu/drm/i915/display/intel_vbt_defs.h
+> +++ b/drivers/gpu/drm/i915/display/intel_vbt_defs.h
+> @@ -325,6 +325,10 @@ enum vbt_gmbus_ddi {
+>  	ICL_DDC_BUS_PORT_4,
+>  	TGL_DDC_BUS_PORT_5,
+>  	TGL_DDC_BUS_PORT_6,
+> +	ADLS_DDC_BUS_PORT_TC1 =3D 0x2,
+> +	ADLS_DDC_BUS_PORT_TC2,
+> +	ADLS_DDC_BUS_PORT_TC3,
+> +	ADLS_DDC_BUS_PORT_TC4
+>  };
+>  =
+
+>  #define DP_AUX_A 0x40
 > -- =
 
 > 2.27.0
