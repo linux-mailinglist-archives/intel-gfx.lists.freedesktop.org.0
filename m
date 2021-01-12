@@ -2,57 +2,48 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8D4A82F3308
-	for <lists+intel-gfx@lfdr.de>; Tue, 12 Jan 2021 15:37:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E61B62F3437
+	for <lists+intel-gfx@lfdr.de>; Tue, 12 Jan 2021 16:36:11 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 929FF6E22C;
-	Tue, 12 Jan 2021 14:37:28 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 211566E22C
- for <intel-gfx@lists.freedesktop.org>; Tue, 12 Jan 2021 14:37:28 +0000 (UTC)
-IronPort-SDR: fuBGGI4HBTpfN2Jou8Oi8EnTaoM+g5yDnLQzvNlgeQ4ZXTW6Ddx2z/QxInVvz16fZvIZv0hyS3
- VRfjwb8ZqqjQ==
-X-IronPort-AV: E=McAfee;i="6000,8403,9861"; a="196669584"
-X-IronPort-AV: E=Sophos;i="5.79,341,1602572400"; d="scan'208";a="196669584"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Jan 2021 06:37:27 -0800
-IronPort-SDR: Y+QBoY8gpkpJ+WS986FuIGufvUHLR+qPaTHWkNt3id6/b4U5YQb1upc50azEapdPGkDu+WpL8a
- wEggxJpsXAsQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.79,341,1602572400"; d="scan'208";a="424179145"
-Received: from irsmsx606.ger.corp.intel.com ([163.33.146.139])
- by orsmga001.jf.intel.com with ESMTP; 12 Jan 2021 06:37:26 -0800
-Received: from bgsmsx604.gar.corp.intel.com (10.67.234.6) by
- IRSMSX606.ger.corp.intel.com (163.33.146.139) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1713.5; Tue, 12 Jan 2021 14:37:24 +0000
-Received: from bgsmsx604.gar.corp.intel.com ([10.67.234.6]) by
- BGSMSX604.gar.corp.intel.com ([10.67.234.6]) with mapi id 15.01.1713.004;
- Tue, 12 Jan 2021 20:07:23 +0530
-From: "Gupta, Anshuman" <anshuman.gupta@intel.com>
-To: "S, Saichandana" <saichandana.s@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Thread-Topic: [PATCH v3] drm/i915/debugfs : PM_REQ and PM_RES registers
-Thread-Index: AQHW6Oeu/LmQMjzhrk+YqGNimaXKZaokDQ+A
-Date: Tue, 12 Jan 2021 14:37:23 +0000
-Message-ID: <149dc69fa1104c4d8a9111fb65461e89@intel.com>
-References: <20210104103036.1443-1-saichandana.s@intel.com>
- <20210112133346.12325-1-saichandana.s@intel.com>
-In-Reply-To: <20210112133346.12325-1-saichandana.s@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-product: dlpe-windows
-dlp-version: 11.5.1.3
-dlp-reaction: no-action
-x-originating-ip: [10.22.254.132]
+	by gabe.freedesktop.org (Postfix) with ESMTP id 60C976E2B8;
+	Tue, 12 Jan 2021 15:36:10 +0000 (UTC)
+X-Original-To: Intel-gfx@lists.freedesktop.org
+Delivered-To: Intel-gfx@lists.freedesktop.org
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D9ED76E2B8
+ for <Intel-gfx@lists.freedesktop.org>; Tue, 12 Jan 2021 15:36:09 +0000 (UTC)
+IronPort-SDR: YTAwUvGkqvihCDJvv3XcNe9YFIg2BktwX9dkLB0ZzVMuubzGVNJCoXWDtG8EAwUJ+VLHPnhi2N
+ slIWCxf3r16w==
+X-IronPort-AV: E=McAfee;i="6000,8403,9862"; a="165733972"
+X-IronPort-AV: E=Sophos;i="5.79,341,1602572400"; d="scan'208";a="165733972"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Jan 2021 07:36:07 -0800
+IronPort-SDR: hcTiS/G755o9jKMQX4jb7M95yI3PEaMc3V+qSNqdcB7ANvRj1iChy4mjWMjQ3dIuQno+f8GezC
+ 9xmu4b3xcE8Q==
+X-IronPort-AV: E=Sophos;i="5.79,341,1602572400"; d="scan'208";a="381466493"
+Received: from vbucoci-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.249.39.237])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Jan 2021 07:36:05 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: "Vivi\, Rodrigo" <rodrigo.vivi@intel.com>,
+ "joonas.lahtinen\@linux.intel.com" <joonas.lahtinen@linux.intel.com>, "Huang\,
+ Sean Z" <sean.z.huang@intel.com>,
+ "Intel-gfx\@lists.freedesktop.org" <Intel-gfx@lists.freedesktop.org>
+In-Reply-To: <dc0506d6ba1f28d6ceda1fc2763f010213cc0031.camel@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20210106231223.8323-1-sean.z.huang@intel.com>
+ <20210106231223.8323-3-sean.z.huang@intel.com>
+ <9d20bff6993bfcf5ff30dd766e930bb031b69d93.camel@intel.com>
+ <161010543675.3935.1412306268203884564@jlahtine-mobl.ger.corp.intel.com>
+ <DM6PR11MB45315ACD9C5ADE72383A740AD9AB0@DM6PR11MB4531.namprd11.prod.outlook.com>
+ <dc0506d6ba1f28d6ceda1fc2763f010213cc0031.camel@intel.com>
+Date: Tue, 12 Jan 2021 17:36:02 +0200
+Message-ID: <871requpzx.fsf@intel.com>
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH v3] drm/i915/debugfs : PM_REQ and PM_RES
- registers
+Subject: Re: [Intel-gfx] [RFC-v19 02/13] drm/i915/pxp: set KCR reg init
+ during the boot time
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,126 +56,66 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Nikula, Jani" <jani.nikula@intel.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-
-
-> -----Original Message-----
-> From: S, Saichandana <saichandana.s@intel.com>
-> Sent: Tuesday, January 12, 2021 7:04 PM
-> To: intel-gfx@lists.freedesktop.org
-> Cc: Nikula, Jani <jani.nikula@intel.com>; Gupta, Anshuman
-> <anshuman.gupta@intel.com>; S, Saichandana <saichandana.s@intel.com>
-> Subject: [PATCH v3] drm/i915/debugfs : PM_REQ and PM_RES registers
-> 
-> PM_REQ register provides the value of the last PM request[Gupta, Anshuman] , response from PCU to
-*PM_DBG_{REQ,RSP}* 
-> Display Engine. PM_RES register provides the value of the last PM response
-> from Display Engine to PCU.
-> This debugfs will be used by DC9 IGT test to know about "DC9 Ready"
-I would rephrase it as "This debugs DC9 Ready but will be used by dc9 igt test .
-It will also print the useful debug information from Display Engine to PCU mailbox register"
-> status.
-> B.Spec : 49501, 49502
-> 
-> V2:
-> Added a functional print to debugfs. [Jani Nikula]
-> 
-> V3:
-> Used separate variables to store the register values and also used
-> REG_GENMASK and REG_BIT for mask preparation. [Anshuman Gupta]
-> 
-> Removed reading of register contents. Replaced local variable with yesno().
-> Placed register macros separately, distinguishing from other macros. [Jani
-> Nikula]
-> 
-> Signed-off-by: Saichandana S <saichandana.s@intel.com>
-> ---
->  .../drm/i915/display/intel_display_debugfs.c  | 23
-> +++++++++++++++++++
->  drivers/gpu/drm/i915/i915_reg.h               | 10 ++++++++
->  2 files changed, 33 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-> b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-> index cd7e5519ee7d..e5997debb8e5 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-> @@ -559,6 +559,28 @@ static int i915_dmc_info(struct seq_file *m, void
-> *unused)
->  	return 0;
->  }
-> 
-> +static int i915_pm_req_res_info(struct seq_file *m, void *unused) {
-> +	struct drm_i915_private *dev_priv = node_to_i915(m->private);
-Please use i915 as variable as Jani has suggested earlier.
-Thanks,
-Anshuman.
-> +	struct intel_csr *csr = &dev_priv->csr;
-> +	u32 DC9_status;
-> +
-> +	if (!HAS_CSR(dev_priv))
-> +		return -ENODEV;
-> +	if (!csr->dmc_payload)
-> +		return 0;
-> +	DC9_status = intel_de_read(dev_priv, PM_RSP_DBG_1) &
-> +PM_RESP_DC9_READY;
-> +
-> +	seq_printf(m, "Time to Next Fill : 0x%08x\n",
-> +		   intel_de_read(dev_priv, PM_RSP_DBG_0) &
-> PM_RESP_TTNF_MASK);
-> +	seq_printf(m, "Time to Next VBI : 0x%08x\n",
-> +		   (intel_de_read(dev_priv, PM_RSP_DBG_0) &
-> PM_RESP_TTNVBI_MASK) >> 16);
-> +	seq_printf(m, "Selective Exit Latency : 0x%08x\n",
-> +		   intel_de_read(dev_priv, PM_RSP_DBG_1) &
-> PM_RESP_SEL_EXIT_LATENCY_MASK);
-> +	seq_printf(m, "DC9 Ready : %s\n", yesno(DC9_status));
-> +	return 0;
-> +}
-> +
->  static void intel_seq_print_mode(struct seq_file *m, int tabs,
->  				 const struct drm_display_mode *mode)  {
-> @@ -2100,6 +2122,7 @@ static const struct drm_info_list
-> intel_display_debugfs_list[] = {
->  	{"i915_edp_psr_status", i915_edp_psr_status, 0},
->  	{"i915_power_domain_info", i915_power_domain_info, 0},
->  	{"i915_dmc_info", i915_dmc_info, 0},
-> +	{"i915_pm_req_res_info", i915_pm_req_res_info, 0},
->  	{"i915_display_info", i915_display_info, 0},
->  	{"i915_shared_dplls_info", i915_shared_dplls_info, 0},
->  	{"i915_dp_mst_info", i915_dp_mst_info, 0}, diff --git
-> a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-> index 0023c023f472..8c91d598dc29 100644
-> --- a/drivers/gpu/drm/i915/i915_reg.h
-> +++ b/drivers/gpu/drm/i915/i915_reg.h
-> @@ -12423,4 +12423,14 @@ enum skl_power_gate {
->  #define TGL_ROOT_DEVICE_SKU_ULX		0x2
->  #define TGL_ROOT_DEVICE_SKU_ULT		0x4
-> 
-> +/*These registers are of functional registers for PM debug request and
-> response registers*/
-> +#define PM_REQ_DBG_0				_MMIO(0x45284)
-> +#define PM_REQ_DBG_1				_MMIO(0x45288)
-> +#define PM_RSP_DBG_0				_MMIO(0x4528C)
-> +#define   PM_RESP_TTNF_MASK			REG_GENMASK(15,
-> 0)
-> +#define   PM_RESP_TTNVBI_MASK			REG_GENMASK(31,
-> 16)
-> +#define PM_RSP_DBG_1				_MMIO(0x45290)
-> +#define   PM_RESP_SEL_EXIT_LATENCY_MASK
-> 	REG_GENMASK(2, 0)
-> +#define   PM_RESP_DC9_READY			REG_BIT(15)
-> +
->  #endif /* _I915_REG_H_ */
-> --
-> 2.30.0
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+T24gVHVlLCAxMiBKYW4gMjAyMSwgIlZpdmksIFJvZHJpZ28iIDxyb2RyaWdvLnZpdmlAaW50ZWwu
+Y29tPiB3cm90ZToKPiBPbiBNb24sIDIwMjEtMDEtMTEgYXQgMjE6MzggKzAwMDAsIEh1YW5nLCBT
+ZWFuIFogd3JvdGU6Cj4+IEhlbGxvLAo+PiAKPj4gSSBzZWUsIGJhc2VkIG9uIEpvb25hcyBhbmQg
+Um9kcmlnbydzIGZlZWRiYWNrLgo+PiAKPj4gSSBtYWRlIHRoZSBtb2RpZmljYXRpb24gYXMgYmVs
+b3csIEkgd2lsbCBzdGlsbCBrZWVwIHRoZSBtYWNybyBpbiB0aGlzCj4+IC5jIGluc3RlYWQgb2Yg
+aTkxNV9yZWcuaCwgYW5kIHRoaXMgY2hhbmdlIHdpbGwgYmUgcmVmbGVjdGVkIGluIHJldjIwLgo+
+PiAKPj4gLyogS0NSIHJlZ2lzdGVyIGRlZmluaXRpb25zICovCj4+IMKgI2RlZmluZSBLQ1JfSU5J
+VMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgX01NSU8oMHgzMjBmMCkKPj4gLSNkZWZpbmUgS0NSX0lO
+SVRfTUFTS19TSElGVCAoMTYpCgpVc2VsZXNzIHBhcmVudGhlc2lzLgoKPj4gKwo+PiDCoC8qIFNl
+dHRpbmcgS0NSIEluaXQgYml0IGlzIHJlcXVpcmVkIGFmdGVyIHN5c3RlbSBib290ICovCj4+IC0j
+ZGVmaW5lIEtDUl9JTklUX0FMTE9XX0RJU1BMQVlfTUVfV1JJVEVTIChCSVQoMTQpIHwgKEJJVCgx
+NCkgPDwKPj4gS0NSX0lOSVRfTUFTS19TSElGVCkpCj4+ICsjZGVmaW5lIEtDUl9JTklUX0FMTE9X
+X0RJU1BMQVlfTUVfV1JJVEVTIChCSVQoMTQpIHwgKEJJVCgxNCkgPDwgMTYpKQoKQklUKDE0KSA8
+PCAxNiBpcyBhY3R1YWxseSBCSVQoMTQrMTYpLCBvciBCSVQoMzApLiBUaGUgYWJvdmUgaXMKcG9p
+bnRsZXNzLgoKQWxzbywgeW91J2xsIGVuZCB1cCB3aXRoIHByb2JsZW1zIGJ5IHVzaW5nIEJJVCgp
+IGluc3RlYWQgb2YgUkVHX0JJVCgpCmRlZmluZWQgaW4gaTkxNV9yZWcuaCBkdWUgdG8gQklUKCkg
+dXNpbmcgdW5zaWduZWQgbG9uZy4KCkFsc28sIHJlYWQgdGhlIGJpZyBzdHlsZSBjb21tZW50IG5l
+YXIgdGhlIHRvcCBvZiBpOTE1X3JlZy5oLgoKQlIsCkphbmkuCgo+Cj4gVGhpcyBpcyBub3Qgd2hh
+dCBJIGFza2VkIGFjdHVhbGx5Lgo+Cj4gSSBhc2tlZCB0byBnZXQgdGhlIEJJVCgxNCkgdG8gYmUg
+ZGVmaW5lZCBzZXBhcmF0ZWQsIHNoaWZ0IGRlZmluZWQgYXMKPiB3ZWxsLi4uIGFuZCB0aGUgfCBh
+bmQgYWN0dWFsbCBzaGlmdCBvcGVyYXRpb25zIHRvIGJlIHBlcmZvcm1lZCBpbiB0aGUKPiBjb2Rl
+IGFuZCBub3QgaW4gdGhlIGRlZmluZXMKPgo+PiAKPj4gQmVzdCByZWdhcmRzLAo+PiBTZWFuCj4+
+IAo+PiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQo+PiBGcm9tOiBKb29uYXMgTGFodGluZW4g
+PGpvb25hcy5sYWh0aW5lbkBsaW51eC5pbnRlbC5jb20+Cj4+IFNlbnQ6IEZyaWRheSwgSmFudWFy
+eSA4LCAyMDIxIDM6MzEgQU0KPj4gVG86IEh1YW5nLCBTZWFuIFogPHNlYW4uei5odWFuZ0BpbnRl
+bC5jb20+OyAKPj4gSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZzsgVml2aSwgUm9kcmln
+byA8Cj4+IHJvZHJpZ28udml2aUBpbnRlbC5jb20+Cj4+IFN1YmplY3Q6IFJlOiBbSW50ZWwtZ2Z4
+XSBbUkZDLXYxOSAwMi8xM10gZHJtL2k5MTUvcHhwOiBzZXQgS0NSIHJlZwo+PiBpbml0IGR1cmlu
+ZyB0aGUgYm9vdCB0aW1lCj4+IAo+PiBRdW90aW5nIFZpdmksIFJvZHJpZ28gKDIwMjEtMDEtMDcg
+MTc6MzE6MzYpCj4+ID4gT24gV2VkLCAyMDIxLTAxLTA2IGF0IDE1OjEyIC0wODAwLCBIdWFuZywg
+U2VhbiBaIHdyb3RlOgo+PiA+ID4gU2V0IHRoZSBLQ1IgaW5pdCBkdXJpbmcgdGhlIGJvb3QgdGlt
+ZSwgd2hpY2ggaXMgcmVxdWlyZWQgYnkKPj4gPiA+IGhhcmR3YXJlLCB0byBhbGxvdyB1cyBkb2lu
+ZyBmdXJ0aGVyIHByb3RlY3Rpb24gb3BlcmF0aW9uIHN1Y2ggYXMKPj4gPiA+IHNlbmRpbmcgY29t
+bWFuZHMgdG8gR1BVIG9yIFRFRS4KPj4gPiA+IAo+PiA+ID4gU2lnbmVkLW9mZi1ieTogSHVhbmcs
+IFNlYW4gWiA8c2Vhbi56Lmh1YW5nQGludGVsLmNvbT4KPj4gPiA+IC0tLQo+PiA+ID4gwqBkcml2
+ZXJzL2dwdS9kcm0vaTkxNS9weHAvaW50ZWxfcHhwLmMgfCA4ICsrKysrKysrCj4+ID4gPiDCoDEg
+ZmlsZSBjaGFuZ2VkLCA4IGluc2VydGlvbnMoKykKPj4gPiA+IAo+PiA+ID4gZGlmZiAtLWdpdCBh
+L2RyaXZlcnMvZ3B1L2RybS9pOTE1L3B4cC9pbnRlbF9weHAuYwo+PiA+ID4gYi9kcml2ZXJzL2dw
+dS9kcm0vaTkxNS9weHAvaW50ZWxfcHhwLmMKPj4gPiA+IGluZGV4IDliYzNjN2UzMDY1NC4uZjU2
+NmE0ZmRhMDQ0IDEwMDY0NAo+PiA+ID4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvcHhwL2lu
+dGVsX3B4cC5jCj4+ID4gPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9weHAvaW50ZWxfcHhw
+LmMKPj4gPiA+IEBAIC02LDYgKzYsMTIgQEAKPj4gPiA+IMKgI2luY2x1ZGUgImludGVsX3B4cC5o
+Igo+PiA+ID4gwqAjaW5jbHVkZSAiaW50ZWxfcHhwX2NvbnRleHQuaCIKPj4gPiA+IAo+PiA+ID4g
+Ky8qIEtDUiByZWdpc3RlciBkZWZpbml0aW9ucyAqLwo+PiA+IAo+PiA+IHBsZWFzZSBkZWZpbmUg
+dGhpcyBpbiBpOTE1X3JlZy5oCj4+IAo+PiBHZW5lcmFsbHkgdGhlIHRyZW5kIG9uIHRoZSBHVCBz
+aWRlIGlzIHRvIGNvbnRhaW4gaW4gYSAuYyBmaWxlIGlmCj4+IHRoZXJlIGFyZSBubyBzaGFyZWQg
+dXNlcnMgbGlrZSB0aGVzZS4gU28gdGhleSBzaG91bGQgYmUgYXQgdGhpcyBzcG90LAo+PiB5ZXQg
+dGhlIHJlc3Qgb2YgdGhlIHJldmlldyBjb21tZW50cyBhcHBseS4KPj4gCj4+IFRoZSBzcHVyaW91
+cyBjb21tZW50cyBzaG91bGQgYmUgZHJvcHBlZCBhbmQgbGlrZSBSb2RyaWdvIHBvaW50ZWQgb3V0
+LAo+PiB3ZSBzaG91bGQgYmUgdXNpbmcgdGhlIGFwcHJvcHJpYXRlIG1hY3JvcyBmb3IgYSBtYXNr
+ZWQgd3JpdGVzLCBub3QKPj4gYmFraW5nIGluIHRoZSAjZGVmaW5lLgo+PiAKPj4gUmVnYXJkcywg
+Sm9vbmFzCj4KPiBfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+Xwo+IEludGVsLWdmeCBtYWlsaW5nIGxpc3QKPiBJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Au
+b3JnCj4gaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRl
+bC1nZngKCi0tIApKYW5pIE5pa3VsYSwgSW50ZWwgT3BlbiBTb3VyY2UgR3JhcGhpY3MgQ2VudGVy
+Cl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdm
+eCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xp
+c3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
