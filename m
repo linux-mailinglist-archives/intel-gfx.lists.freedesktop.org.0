@@ -2,37 +2,40 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 763FD2F3690
-	for <lists+intel-gfx@lfdr.de>; Tue, 12 Jan 2021 18:05:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id AB23C2F36AD
+	for <lists+intel-gfx@lfdr.de>; Tue, 12 Jan 2021 18:10:00 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 743C489C14;
-	Tue, 12 Jan 2021 17:05:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 739ED898E8;
+	Tue, 12 Jan 2021 17:09:58 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 329B089C14
- for <intel-gfx@lists.freedesktop.org>; Tue, 12 Jan 2021 17:05:28 +0000 (UTC)
-IronPort-SDR: XyLOl4CIiojwsFvBydpzJiiIcvzQoNegEemFgyhPdWXMwTTqSeBShNClF4Yuedw2uO62sLhbKz
- JcE7/X6gvFDw==
-X-IronPort-AV: E=McAfee;i="6000,8403,9862"; a="165751361"
-X-IronPort-AV: E=Sophos;i="5.79,341,1602572400"; d="scan'208";a="165751361"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D02F489890
+ for <intel-gfx@lists.freedesktop.org>; Tue, 12 Jan 2021 17:09:56 +0000 (UTC)
+IronPort-SDR: qkJbNm6SydPUYayuOsxQNBTrNVQ2D5kBT/scVQ6oynzpdvNfPNiFhMjV6eIgEwn/ZvsQKvxTPK
+ r46ad4rPUnSA==
+X-IronPort-AV: E=McAfee;i="6000,8403,9862"; a="165752447"
+X-IronPort-AV: E=Sophos;i="5.79,341,1602572400"; d="scan'208";a="165752447"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Jan 2021 09:04:39 -0800
-IronPort-SDR: BaVQnhmJeF0cAwdxMqL9JIVFBUbKFu7gLElYlSjI2kTD+dTkAeoaJzuVwqAj2jn8L3Aia9TvPZ
- x0PZKmlSigWw==
-X-IronPort-AV: E=Sophos;i="5.79,341,1602572400"; d="scan'208";a="381494337"
-Received: from vbucoci-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.249.39.237])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Jan 2021 09:04:37 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Tue, 12 Jan 2021 19:04:29 +0200
-Message-Id: <20210112170429.27619-1-jani.nikula@intel.com>
-X-Mailer: git-send-email 2.20.1
+ 12 Jan 2021 09:09:55 -0800
+IronPort-SDR: o1n4xmdFBpKqHy305zsUhqB2KTriHMMl+629+/L4B2LmxyLOkB97w8vBY92tUSGJAdMF2bfrUe
+ 0BRgPtiZyC+A==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.79,341,1602572400"; d="scan'208";a="498981053"
+Received: from gaia.fi.intel.com ([10.237.72.192])
+ by orsmga004.jf.intel.com with ESMTP; 12 Jan 2021 09:09:54 -0800
+Received: by gaia.fi.intel.com (Postfix, from userid 1000)
+ id AAA975C2054; Tue, 12 Jan 2021 19:07:13 +0200 (EET)
+From: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
+In-Reply-To: <20210112113716.8577-1-chris@chris-wilson.co.uk>
+References: <20210112113716.8577-1-chris@chris-wilson.co.uk>
+Date: Tue, 12 Jan 2021 19:07:13 +0200
+Message-ID: <87pn2akrsu.fsf@gaia.fi.intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915/region: make intel_region_map static
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/selftests: Force a failed engine
+ reset
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,52 +48,187 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jani.nikula@intel.com
+Cc: Chris Wilson <chris@chris-wilson.co.uk>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-There are no users outside of intel_memory_region.c.
+Chris Wilson <chris@chris-wilson.co.uk> writes:
 
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
----
- drivers/gpu/drm/i915/intel_memory_region.c | 2 +-
- drivers/gpu/drm/i915/intel_memory_region.h | 5 -----
- 2 files changed, 1 insertion(+), 6 deletions(-)
+> Inject a fault into the engine reset and check that the outstanding
+> requests are completed despite the failed reset.
+>
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> ---
+>  drivers/gpu/drm/i915/gt/selftest_hangcheck.c | 133 +++++++++++++++++++
+>  1 file changed, 133 insertions(+)
+>
+> diff --git a/drivers/gpu/drm/i915/gt/selftest_hangcheck.c b/drivers/gpu/drm/i915/gt/selftest_hangcheck.c
+> index ffc6eabb6404..875633cc0a75 100644
+> --- a/drivers/gpu/drm/i915/gt/selftest_hangcheck.c
+> +++ b/drivers/gpu/drm/i915/gt/selftest_hangcheck.c
+> @@ -540,6 +540,138 @@ static int igt_reset_nop_engine(void *arg)
+>  	return 0;
+>  }
+>  
+> +static void force_reset_timeout(struct intel_engine_cs *engine)
+> +{
+> +	engine->reset_timeout.probability = 999;
+> +	atomic_set(&engine->reset_timeout.times, -1);
+> +}
+> +
+> +static void cancel_reset_timeout(struct intel_engine_cs *engine)
+> +{
+> +	memset(&engine->reset_timeout, 0, sizeof(engine->reset_timeout));
+> +}
+> +
+> +static int igt_reset_fail_engine(void *arg)
+> +{
+> +	struct intel_gt *gt = arg;
+> +	struct intel_engine_cs *engine;
+> +	enum intel_engine_id id;
+> +
+> +	/* Check that we can engine-reset during non-user portions */
+> +
+> +	if (!intel_has_reset_engine(gt))
+> +		return 0;
+> +
+> +	for_each_engine(engine, gt, id) {
+> +		unsigned int count;
+> +		struct intel_context *ce;
+> +		IGT_TIMEOUT(end_time);
+> +		int err;
+> +
+> +		ce = intel_context_create(engine);
+> +		if (IS_ERR(ce))
+> +			return PTR_ERR(ce);
+> +
+> +		st_engine_heartbeat_disable(engine);
+> +		set_bit(I915_RESET_ENGINE + id, &gt->reset.flags);
+> +		count = 0;
+> +		do {
+> +			struct i915_request *last = NULL;
+> +			int i;
+> +
+> +			if (!wait_for_idle(engine)) {
+> +				pr_err("%s failed to idle before reset\n",
+> +				       engine->name);
+> +				err = -EIO;
+> +				break;
+> +			}
+> +
+> +			for (i = 0; i < 16; i++) {
+> +				struct i915_request *rq;
+> +
+> +				rq = intel_context_create_request(ce);
+> +				if (IS_ERR(rq)) {
+> +					struct drm_printer p =
+> +						drm_info_printer(gt->i915->drm.dev);
+> +					intel_engine_dump(engine, &p,
+> +							  "%s(%s): failed to submit request\n",
+> +							  __func__,
+> +							  engine->name);
+> +
+> +					GEM_TRACE("%s(%s): failed to submit request\n",
+> +						  __func__,
+> +						  engine->name);
+> +					GEM_TRACE_DUMP();
+> +
+> +					intel_gt_set_wedged(gt);
+> +					if (last)
+> +						i915_request_put(last);
+> +
+> +					err = PTR_ERR(rq);
+> +					goto out;
+> +				}
+> +
+> +				if (last)
+> +					i915_request_put(last);
+> +				last = i915_request_get(rq);
+> +				i915_request_add(rq);
+> +			}
+> +
+> +			if (count & 1) {
+> +				err = intel_engine_reset(engine, NULL);
+> +				if (err) {
+> +					GEM_TRACE_ERR("intel_engine_reset(%s) failed, err:%d\n",
+> +						      engine->name, err);
+> +					GEM_TRACE_DUMP();
+> +					break;
+> +				}
+> +			} else {
+> +				force_reset_timeout(engine);
+> +				err = intel_engine_reset(engine, NULL);
 
-diff --git a/drivers/gpu/drm/i915/intel_memory_region.c b/drivers/gpu/drm/i915/intel_memory_region.c
-index b326993a1026..1bfcdd89b241 100644
---- a/drivers/gpu/drm/i915/intel_memory_region.c
-+++ b/drivers/gpu/drm/i915/intel_memory_region.c
-@@ -10,7 +10,7 @@
- #define REGION_MAP(type, inst) \
- 	BIT((type) + INTEL_MEMORY_TYPE_SHIFT) | BIT(inst)
- 
--const u32 intel_region_map[] = {
-+static const u32 intel_region_map[] = {
- 	[INTEL_REGION_SMEM] = REGION_MAP(INTEL_MEMORY_SYSTEM, 0),
- 	[INTEL_REGION_LMEM] = REGION_MAP(INTEL_MEMORY_LOCAL, 0),
- 	[INTEL_REGION_STOLEN] = REGION_MAP(INTEL_MEMORY_STOLEN, 0),
-diff --git a/drivers/gpu/drm/i915/intel_memory_region.h b/drivers/gpu/drm/i915/intel_memory_region.h
-index 232490d89a83..6590d55df6cb 100644
---- a/drivers/gpu/drm/i915/intel_memory_region.h
-+++ b/drivers/gpu/drm/i915/intel_memory_region.h
-@@ -51,11 +51,6 @@ enum intel_region_id {
- 	for (id = 0; id < ARRAY_SIZE((i915)->mm.regions); id++) \
- 		for_each_if((mr) = (i915)->mm.regions[id])
- 
--/**
-- * Memory regions encoded as type | instance
-- */
--extern const u32 intel_region_map[];
--
- struct intel_memory_region_ops {
- 	unsigned int flags;
- 
--- 
-2.20.1
+We dont promote to global here if the engine one fails?
 
+If not, what mechanism then guarantees the request completion.
+
+-Mika
+
+> +				cancel_reset_timeout(engine);
+> +				if (err != -ETIMEDOUT) {
+> +					pr_err("intel_engine_reset(%s) did not fail, err:%d\n",
+> +					       engine->name, err);
+> +					break;
+> +				}
+> +			}
+> +
+> +			err = 0;
+> +			if (i915_request_wait(last, 0, HZ /2) < 0) {
+> +				struct drm_printer p =
+> +					drm_info_printer(gt->i915->drm.dev);
+> +
+> +				intel_engine_dump(engine, &p,
+> +						  "%s(%s): failed to complete request\n",
+> +						  __func__,
+> +						  engine->name);
+> +
+> +				GEM_TRACE("%s(%s): failed to complete request\n",
+> +					  __func__,
+> +					  engine->name);
+> +				GEM_TRACE_DUMP();
+> +
+> +				err = -EIO;
+> +			}
+> +			i915_request_put(last);
+> +			count++;
+> +		} while (err == 0 && time_before(jiffies, end_time));
+> +out:
+> +		clear_bit(I915_RESET_ENGINE + id, &gt->reset.flags);
+> +		st_engine_heartbeat_enable(engine);
+> +
+> +		pr_info("%s(%s): %d resets\n", __func__, engine->name, count);
+> +
+> +		intel_context_put(ce);
+> +		if (igt_flush_test(gt->i915))
+> +			err = -EIO;
+> +		if (err)
+> +			return err;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+>  static int __igt_reset_engine(struct intel_gt *gt, bool active)
+>  {
+>  	struct i915_gpu_error *global = &gt->i915->gpu_error;
+> @@ -1694,6 +1826,7 @@ int intel_hangcheck_live_selftests(struct drm_i915_private *i915)
+>  		SUBTEST(igt_reset_nop_engine),
+>  		SUBTEST(igt_reset_idle_engine),
+>  		SUBTEST(igt_reset_active_engine),
+> +		SUBTEST(igt_reset_fail_engine),
+>  		SUBTEST(igt_reset_engines),
+>  		SUBTEST(igt_reset_engines_atomic),
+>  		SUBTEST(igt_reset_queue),
+> -- 
+> 2.20.1
+>
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
