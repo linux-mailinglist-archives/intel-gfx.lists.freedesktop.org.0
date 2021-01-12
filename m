@@ -1,30 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 62EF52F25B2
-	for <lists+intel-gfx@lfdr.de>; Tue, 12 Jan 2021 02:50:15 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0307B2F25E0
+	for <lists+intel-gfx@lfdr.de>; Tue, 12 Jan 2021 02:53:22 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A335289A6D;
-	Tue, 12 Jan 2021 01:50:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DF47789EBB;
+	Tue, 12 Jan 2021 01:53:19 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 042E889A6D
- for <intel-gfx@lists.freedesktop.org>; Tue, 12 Jan 2021 01:50:09 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 23565240-1500050 
- for multiple; Tue, 12 Jan 2021 01:50:03 +0000
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Tue, 12 Jan 2021 01:50:00 +0000
-Message-Id: <20210112015000.16108-1-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.20.1
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 0257289EAC;
+ Tue, 12 Jan 2021 01:53:19 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id EFFF4A8835;
+ Tue, 12 Jan 2021 01:53:18 +0000 (UTC)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915/gem: Remove stolen node before
- releasing the region
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?b?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+Date: Tue, 12 Jan 2021 01:53:18 -0000
+Message-ID: <161041639895.1917.717737900005442089@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210111164111.13302-1-ville.syrjala@linux.intel.com>
+In-Reply-To: <20210111164111.13302-1-ville.syrjala@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915=3A_Only_enable_DFP_4=3A4=3A4-=3E4=3A2=3A0_conversion_when?=
+ =?utf-8?q?_outputting_YCbCr_4=3A4=3A4_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,83 +39,251 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Chris Wilson <chris@chris-wilson.co.uk>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============0418741324=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-If this stolen object holds the last reference to the region, we need to
-remove our drm_mm_node before freeing the region's drm_mm.
+--===============0418741324==
+Content-Type: multipart/alternative;
+ boundary="===============3592683873974221672=="
 
-<4> [431.679591] Memory manager not clean during takedown.
-<4> [431.679633] WARNING: CPU: 0 PID: 110 at drivers/gpu/drm/drm_mm.c:999 drm_mm_takedown+0x51/0x100
-<4> [431.679655] Modules linked in: i915 vgem btusb snd_hda_codec_hdmi btrtl btbcm btintel snd_hda_codec_realtek snd_hda_codec_generic ledtrig_audio bluetooth coretemp crct10dif_pclmul crc32_pclmul ghash_clmulni_intel ecdh_generic ecc r8169 realtek lpc_ich snd_intel_dspcfg snd_hda_codec snd_hwdep snd_hda_core snd_pcm pinctrl_cherryview prime_numbers [last unloaded: i915]
-<4> [431.679883] CPU: 0 PID: 110 Comm: kworker/u4:3 Tainted: G     U            5.11.0-rc3-CI-CI_DRM_9583+ #1
-<4> [431.679895] Hardware name:  /NUC5CPYB, BIOS PYBSWCEL.86A.0058.2016.1102.1842 11/02/2016
-<4> [431.679905] Workqueue: i915 __i915_gem_free_work [i915]
-<4> [431.680831] RIP: 0010:drm_mm_takedown+0x51/0x100
-<4> [431.680850] Code: 44 24 08 65 48 33 04 25 28 00 00 00 0f 85 b6 00 00 00 48 83 c4 10 5b 5d 41 5c c3 48 89 fb 48 c7 c7 c8 b7 38 82 e8 00 d6 37 00 <0f> 0b 48 8b 3d 96 d5 d1 00 ba 00 10 00 00 be c0 0c 00 00 e8 d7 64
-<4> [431.680862] RSP: 0018:ffffc90000ad7dc0 EFLAGS: 00010282
-<4> [431.680879] RAX: 0000000000000000 RBX: ffff8881109aa140 RCX: 0000000000000001
-<4> [431.680888] RDX: 0000000080000001 RSI: ffffffff8235a70f RDI: 00000000ffffffff
-<4> [431.680897] RBP: ffff8881109aa178 R08: 0000000000000001 R09: 0000000000000001
-<4> [431.680906] R10: 0000000025eaec48 R11: 00000000f5b271a7 R12: ffff88810a38ddc0
-<4> [431.680916] R13: 00000000ffffffff R14: ffffffff82861b70 R15: ffff88810b715538
-<4> [431.680925] FS:  0000000000000000(0000) GS:ffff88817b800000(0000) knlGS:0000000000000000
-<4> [431.680935] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
-<4> [431.680945] CR2: 000056377cfd7c48 CR3: 00000001045de000 CR4: 00000000001006f0
-<4> [431.680954] Call Trace:
-<4> [431.680977]  __intel_memory_region_destroy+0x24/0x50 [i915]
-<4> [431.681340]  i915_gem_object_release_stolen+0x26/0x40 [i915]
-<4> [431.681637]  __i915_gem_free_objects.isra.21+0x1ef/0x3b0 [i915]
-<4> [431.681935]  process_one_work+0x270/0x5c0
-<4> [431.682022]  worker_thread+0x37/0x380
-<4> [431.682047]  ? process_one_work+0x5c0/0x5c0
-<4> [431.682062]  kthread+0x146/0x170
-<4> [431.682077]  ? kthread_park+0x80/0x80
-<4> [431.682098]  ret_from_fork+0x22/0x30
-<4> [431.682153] irq event stamp: 1872905
-<4> [431.682162] hardirqs last  enabled at (1872911): [<ffffffff8112bd9a>] console_unlock+0x49a/0x580
-<4> [431.682176] hardirqs last disabled at (1872916): [<ffffffff8112bd06>] console_unlock+0x406/0x580
-<4> [431.682187] softirqs last  enabled at (1872850): [<ffffffff81e00342>] __do_softirq+0x342/0x48e
-<4> [431.682201] softirqs last disabled at (1872845): [<ffffffff81c00f52>] asm_call_irq_on_stack+0x12/0x20
-<4> [431.682214] ---[ end trace 5d3bcd818e2e3816 ]---
-<3> [431.686188] [drm:drm_mm_takedown] *ERROR* node [0002d000 + 00004000]: inserted at
- drm_mm_insert_node_in_range+0x34a/0x5b0
- i915_gem_stolen_insert_node_in_range+0x7b/0xa0 [i915]
- _i915_gem_object_create_stolen+0x83/0xd0 [i915]
- i915_gem_object_create_region+0x61/0x140 [i915]
- intel_engine_create_ring+0x176/0x230 [i915]
+--===============3592683873974221672==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/2927
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
----
- drivers/gpu/drm/i915/gem/i915_gem_stolen.c | 5 ++---
- 1 file changed, 2 insertions(+), 3 deletions(-)
+== Series Details ==
 
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_stolen.c b/drivers/gpu/drm/i915/gem/i915_gem_stolen.c
-index 29bffc6afcc1..41b9fbf4dbcc 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_stolen.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_stolen.c
-@@ -608,11 +608,10 @@ i915_gem_object_release_stolen(struct drm_i915_gem_object *obj)
- 	struct drm_mm_node *stolen = fetch_and_zero(&obj->stolen);
- 
- 	GEM_BUG_ON(!stolen);
--
--	i915_gem_object_release_memory_region(obj);
--
- 	i915_gem_stolen_remove_node(i915, stolen);
- 	kfree(stolen);
-+
-+	i915_gem_object_release_memory_region(obj);
- }
- 
- static const struct drm_i915_gem_object_ops i915_gem_object_stolen_ops = {
--- 
-2.20.1
+Series: drm/i915: Only enable DFP 4:4:4->4:2:0 conversion when outputting YCbCr 4:4:4 (rev2)
+URL   : https://patchwork.freedesktop.org/series/85715/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_9585 -> Patchwork_19319
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19319/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_19319 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@amdgpu/amd_cs_nop@nop-compute0:
+    - fi-tgl-y:           NOTRUN -> [SKIP][1] ([fdo#109315] / [i915#2575]) +9 similar issues
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19319/fi-tgl-y/igt@amdgpu/amd_cs_nop@nop-compute0.html
+
+  * igt@i915_getparams_basic@basic-subslice-total:
+    - fi-tgl-y:           [PASS][2] -> [DMESG-WARN][3] ([i915#402])
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9585/fi-tgl-y/igt@i915_getparams_basic@basic-subslice-total.html
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19319/fi-tgl-y/igt@i915_getparams_basic@basic-subslice-total.html
+
+  * igt@runner@aborted:
+    - fi-bdw-5557u:       NOTRUN -> [FAIL][4] ([i915#2029])
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19319/fi-bdw-5557u/igt@runner@aborted.html
+
+  
+#### Possible fixes ####
+
+  * igt@gem_exec_suspend@basic-s0:
+    - fi-tgl-u2:          [FAIL][5] ([i915#1888]) -> [PASS][6]
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9585/fi-tgl-u2/igt@gem_exec_suspend@basic-s0.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19319/fi-tgl-u2/igt@gem_exec_suspend@basic-s0.html
+
+  * igt@gem_render_tiled_blits@basic:
+    - fi-tgl-y:           [DMESG-WARN][7] ([i915#402]) -> [PASS][8]
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9585/fi-tgl-y/igt@gem_render_tiled_blits@basic.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19319/fi-tgl-y/igt@gem_render_tiled_blits@basic.html
+
+  * igt@i915_selftest@live@active:
+    - fi-kbl-soraka:      [DMESG-FAIL][9] ([i915#2291] / [i915#666]) -> [PASS][10]
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9585/fi-kbl-soraka/igt@i915_selftest@live@active.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19319/fi-kbl-soraka/igt@i915_selftest@live@active.html
+
+  * igt@i915_selftest@live@gt_heartbeat:
+    - fi-kbl-soraka:      [DMESG-FAIL][11] ([i915#2291] / [i915#541]) -> [PASS][12]
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9585/fi-kbl-soraka/igt@i915_selftest@live@gt_heartbeat.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19319/fi-kbl-soraka/igt@i915_selftest@live@gt_heartbeat.html
+
+  
+#### Warnings ####
+
+  * igt@i915_pm_rpm@basic-pci-d3-state:
+    - fi-kbl-guc:         [SKIP][13] ([fdo#109271]) -> [FAIL][14] ([i915#704])
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9585/fi-kbl-guc/igt@i915_pm_rpm@basic-pci-d3-state.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19319/fi-kbl-guc/igt@i915_pm_rpm@basic-pci-d3-state.html
+
+  
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [fdo#109315]: https://bugs.freedesktop.org/show_bug.cgi?id=109315
+  [i915#1888]: https://gitlab.freedesktop.org/drm/intel/issues/1888
+  [i915#2029]: https://gitlab.freedesktop.org/drm/intel/issues/2029
+  [i915#2291]: https://gitlab.freedesktop.org/drm/intel/issues/2291
+  [i915#2575]: https://gitlab.freedesktop.org/drm/intel/issues/2575
+  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
+  [i915#541]: https://gitlab.freedesktop.org/drm/intel/issues/541
+  [i915#666]: https://gitlab.freedesktop.org/drm/intel/issues/666
+  [i915#704]: https://gitlab.freedesktop.org/drm/intel/issues/704
+
+
+Participating hosts (44 -> 38)
+------------------------------
+
+  Missing    (6): fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-cml-drallion fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_9585 -> Patchwork_19319
+
+  CI-20190529: 20190529
+  CI_DRM_9585: ce8ee6513f0f9d00ea44e1c4b7aff8b4883cda13 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5954: 2763c0977004bed596ee876c755b0768187ea9ab @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_19319: c54c72aa7d1b4f7908782a467c29e3d022092159 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+c54c72aa7d1b drm/i915: Only enable DFP 4:4:4->4:2:0 conversion when outputting YCbCr 4:4:4
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19319/index.html
+
+--===============3592683873974221672==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915: Only enable DFP 4:4:4-&gt;4:2:0 conversion when outputting YCbCr 4:4:4 (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/85715/">https://patchwork.freedesktop.org/series/85715/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19319/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19319/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_9585 -&gt; Patchwork_19319</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19319/index.html</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_19319 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@amdgpu/amd_cs_nop@nop-compute0:</p>
+<ul>
+<li>fi-tgl-y:           NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19319/fi-tgl-y/igt@amdgpu/amd_cs_nop@nop-compute0.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109315">fdo#109315</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2575">i915#2575</a>) +9 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_getparams_basic@basic-subslice-total:</p>
+<ul>
+<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9585/fi-tgl-y/igt@i915_getparams_basic@basic-subslice-total.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19319/fi-tgl-y/igt@i915_getparams_basic@basic-subslice-total.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@runner@aborted:</p>
+<ul>
+<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19319/fi-bdw-5557u/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2029">i915#2029</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@gem_exec_suspend@basic-s0:</p>
+<ul>
+<li>fi-tgl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9585/fi-tgl-u2/igt@gem_exec_suspend@basic-s0.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1888">i915#1888</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19319/fi-tgl-u2/igt@gem_exec_suspend@basic-s0.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@gem_render_tiled_blits@basic:</p>
+<ul>
+<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9585/fi-tgl-y/igt@gem_render_tiled_blits@basic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19319/fi-tgl-y/igt@gem_render_tiled_blits@basic.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@active:</p>
+<ul>
+<li>fi-kbl-soraka:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9585/fi-kbl-soraka/igt@i915_selftest@live@active.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2291">i915#2291</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/666">i915#666</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19319/fi-kbl-soraka/igt@i915_selftest@live@active.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@gt_heartbeat:</p>
+<ul>
+<li>fi-kbl-soraka:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9585/fi-kbl-soraka/igt@i915_selftest@live@gt_heartbeat.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2291">i915#2291</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/541">i915#541</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19319/fi-kbl-soraka/igt@i915_selftest@live@gt_heartbeat.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h4>Warnings</h4>
+<ul>
+<li>igt@i915_pm_rpm@basic-pci-d3-state:<ul>
+<li>fi-kbl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9585/fi-kbl-guc/igt@i915_pm_rpm@basic-pci-d3-state.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19319/fi-kbl-guc/igt@i915_pm_rpm@basic-pci-d3-state.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/704">i915#704</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>Participating hosts (44 -&gt; 38)</h2>
+<p>Missing    (6): fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-cml-drallion fi-bdw-samus </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_9585 -&gt; Patchwork_19319</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_9585: ce8ee6513f0f9d00ea44e1c4b7aff8b4883cda13 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_5954: 2763c0977004bed596ee876c755b0768187ea9ab @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
+  Patchwork_19319: c54c72aa7d1b4f7908782a467c29e3d022092159 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>c54c72aa7d1b drm/i915: Only enable DFP 4:4:4-&gt;4:2:0 conversion when outputting YCbCr 4:4:4</p>
+
+</body>
+</html>
+
+--===============3592683873974221672==--
+
+--===============0418741324==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============0418741324==--
