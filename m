@@ -1,31 +1,44 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id CA20D2F352E
-	for <lists+intel-gfx@lfdr.de>; Tue, 12 Jan 2021 17:14:53 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 701B42F354C
+	for <lists+intel-gfx@lfdr.de>; Tue, 12 Jan 2021 17:18:13 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3885F6E2F2;
-	Tue, 12 Jan 2021 16:14:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E042289EF7;
+	Tue, 12 Jan 2021 16:18:10 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id D93F76E2EF;
- Tue, 12 Jan 2021 16:14:51 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 0C6E5A8831;
- Tue, 12 Jan 2021 16:14:51 +0000 (UTC)
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CCBB489EF7
+ for <intel-gfx@lists.freedesktop.org>; Tue, 12 Jan 2021 16:18:09 +0000 (UTC)
+IronPort-SDR: SA/WXJ3lBG3PbbyzAi2z/Hpu/NTTFNHA4SePPuoi7fx0rRJns4fUF4LinfQoHapEYpqyPvuMjK
+ +y0LHhQ949PQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9862"; a="177289482"
+X-IronPort-AV: E=Sophos;i="5.79,341,1602572400"; d="scan'208";a="177289482"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Jan 2021 08:18:08 -0800
+IronPort-SDR: zv4fXwlHXaS5ZgE3XtXTEnWWDZg53dHblvaMf7FgPQ0SMIuqyHKzQf1AODHLXXRvLWnavs7dLH
+ FFSlEz0z5xiA==
+X-IronPort-AV: E=Sophos;i="5.79,341,1602572400"; d="scan'208";a="381480224"
+Received: from vbucoci-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.249.39.237])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Jan 2021 08:18:06 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Lucas De Marchi <lucas.demarchi@intel.com>
+In-Reply-To: <20210112020409.ev7hs4rngooeyorp@ldmartin-desk1>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20210108231853.2859646-1-aditya.swarup@intel.com>
+ <20210108231853.2859646-2-aditya.swarup@intel.com>
+ <20210108234440.GO3894148@mdroper-desk1.amr.corp.intel.com>
+ <878s8zw7tw.fsf@intel.com> <20210112020409.ev7hs4rngooeyorp@ldmartin-desk1>
+Date: Tue, 12 Jan 2021 18:18:03 +0200
+Message-ID: <87r1mqt9hg.fsf@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Saichandana S" <saichandana.s@intel.com>
-Date: Tue, 12 Jan 2021 16:14:51 -0000
-Message-ID: <161046809104.1917.17122094579078719924@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210104103036.1443-1-saichandana.s@intel.com>
-In-Reply-To: <20210104103036.1443-1-saichandana.s@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/debugfs_=3A_PM=5FREQ_and_PM=5FRES_registers_=28rev2=29?=
+Subject: Re: [Intel-gfx] [PATCH 1/2] drm/i915/tgl: Use TGL stepping info for
+ applying WAs
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,239 +51,58 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============1274927316=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============1274927316==
-Content-Type: multipart/alternative;
- boundary="===============3411303582401415046=="
+On Mon, 11 Jan 2021, Lucas De Marchi <lucas.demarchi@intel.com> wrote:
+> On Mon, Jan 11, 2021 at 10:13:15PM +0200, Jani Nikula wrote:
+>>On Fri, 08 Jan 2021, Matt Roper <matthew.d.roper@intel.com> wrote:
+> in the end both sides will need that (even if it was a mistake to merge
+> it in drm-intel-gt-next).  I got an ack from Rodrigo to actually
+> cherry-pick the single patch we are missing so this can unblock both
+> merging this patch (after rebasing) and you can continue your series.
 
---===============3411303582401415046==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+cherry-picking the one patch is not enough. The -next branches are too
+far apart to start applying ADL-S patches in either branch. Doing so
+will lead to way too bad merge conflicts.
 
-== Series Details ==
+Which just means the cherry-pick won't help, as you'll need a topic
+branch with a sensible baseline to merge the ADL-S support to both
+branches. Now the merge-base is too far away.
 
-Series: drm/i915/debugfs : PM_REQ and PM_RES registers (rev2)
-URL   : https://patchwork.freedesktop.org/series/85437/
-State : success
+>>My series also completely hides the arrays into a separate .c file,
+>>because the externs with direct array access are turning into
+>>nightmare. The ARRAY_SIZE() checks rely on the extern declaration and
+>>the actual array definition to have the sizes in sync, but the compiler
+>>does not check that. Really.
+>
+> not following what the ARRAY_SIZE is not checking. It actually is, since
+> the declaration is explicitly telling the size of the array. If the
+> definition had more items, you'd get a compilation error.
 
-== Summary ==
+Mmmh, I tested this, but can't reproduce now. Never mind. *shrug*.
 
-CI Bug Log - changes from CI_DRM_9594 -> Patchwork_19324
-====================================================
+>>IDK, feels like this merging this series is going to be extra churn.
+>
+> I'm not against the refactor you're talking about, but this seems an
+> improvement to unblock the ADL-S patches that are pending. The patches
+> could also be split to remove this dependency, but I'm not sure it's
+> worth it.
 
-Summary
--------
+Please let's first get the branches back in sync, and then create a
+topic branch for ADL-S, and merge it to both. Everything else will lead
+to tears.
 
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19324/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_19324 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@debugfs_test@read_all_entries:
-    - fi-kbl-guc:         [PASS][1] -> [DMESG-WARN][2] ([i915#262])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9594/fi-kbl-guc/igt@debugfs_test@read_all_entries.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19324/fi-kbl-guc/igt@debugfs_test@read_all_entries.html
-    - fi-kbl-8809g:       [PASS][3] -> [DMESG-WARN][4] ([i915#262])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9594/fi-kbl-8809g/igt@debugfs_test@read_all_entries.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19324/fi-kbl-8809g/igt@debugfs_test@read_all_entries.html
-
-  * igt@i915_selftest@live@gt_heartbeat:
-    - fi-tgl-y:           [PASS][5] -> [DMESG-FAIL][6] ([i915#2601])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9594/fi-tgl-y/igt@i915_selftest@live@gt_heartbeat.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19324/fi-tgl-y/igt@i915_selftest@live@gt_heartbeat.html
-
-  * igt@prime_vgem@basic-fence-flip:
-    - fi-tgl-y:           [PASS][7] -> [DMESG-WARN][8] ([i915#402])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9594/fi-tgl-y/igt@prime_vgem@basic-fence-flip.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19324/fi-tgl-y/igt@prime_vgem@basic-fence-flip.html
-
-  * igt@runner@aborted:
-    - fi-bdw-5557u:       NOTRUN -> [FAIL][9] ([i915#2029])
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19324/fi-bdw-5557u/igt@runner@aborted.html
-    - fi-kbl-guc:         NOTRUN -> [FAIL][10] ([i915#1814] / [i915#2295])
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19324/fi-kbl-guc/igt@runner@aborted.html
-
-  
-#### Possible fixes ####
-
-  * igt@prime_self_import@basic-with_one_bo_two_files:
-    - fi-tgl-y:           [DMESG-WARN][11] ([i915#402]) -> [PASS][12]
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9594/fi-tgl-y/igt@prime_self_import@basic-with_one_bo_two_files.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19324/fi-tgl-y/igt@prime_self_import@basic-with_one_bo_two_files.html
-
-  
-#### Warnings ####
-
-  * igt@runner@aborted:
-    - fi-kbl-8809g:       [FAIL][13] ([i915#2295]) -> [FAIL][14] ([i915#1814] / [i915#2295])
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9594/fi-kbl-8809g/igt@runner@aborted.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19324/fi-kbl-8809g/igt@runner@aborted.html
-
-  
-  [i915#1814]: https://gitlab.freedesktop.org/drm/intel/issues/1814
-  [i915#2029]: https://gitlab.freedesktop.org/drm/intel/issues/2029
-  [i915#2295]: https://gitlab.freedesktop.org/drm/intel/issues/2295
-  [i915#2601]: https://gitlab.freedesktop.org/drm/intel/issues/2601
-  [i915#262]: https://gitlab.freedesktop.org/drm/intel/issues/262
-  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
+BR,
+Jani.
 
 
-Participating hosts (44 -> 39)
-------------------------------
-
-  Missing    (5): fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_9594 -> Patchwork_19324
-
-  CI-20190529: 20190529
-  CI_DRM_9594: 7ede24331ccbd4f8cce2b2e73b63bd49dc181560 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5956: d9bc7773043d11d37ae5b03bf18979541a9c7ef4 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_19324: 6236e1aa792e8d221d2492f665abaef1c1431dd6 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-6236e1aa792e drm/i915/debugfs : PM_REQ and PM_RES registers
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19324/index.html
-
---===============3411303582401415046==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/debugfs : PM_REQ and PM_RES registers (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/85437/">https://patchwork.freedesktop.org/series/85437/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19324/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19324/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_9594 -&gt; Patchwork_19324</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19324/index.html</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_19324 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@debugfs_test@read_all_entries:</p>
-<ul>
-<li>
-<p>fi-kbl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9594/fi-kbl-guc/igt@debugfs_test@read_all_entries.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19324/fi-kbl-guc/igt@debugfs_test@read_all_entries.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/262">i915#262</a>)</p>
-</li>
-<li>
-<p>fi-kbl-8809g:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9594/fi-kbl-8809g/igt@debugfs_test@read_all_entries.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19324/fi-kbl-8809g/igt@debugfs_test@read_all_entries.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/262">i915#262</a>)</p>
-</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@gt_heartbeat:</p>
-<ul>
-<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9594/fi-tgl-y/igt@i915_selftest@live@gt_heartbeat.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19324/fi-tgl-y/igt@i915_selftest@live@gt_heartbeat.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2601">i915#2601</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@prime_vgem@basic-fence-flip:</p>
-<ul>
-<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9594/fi-tgl-y/igt@prime_vgem@basic-fence-flip.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19324/fi-tgl-y/igt@prime_vgem@basic-fence-flip.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@runner@aborted:</p>
-<ul>
-<li>
-<p>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19324/fi-bdw-5557u/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2029">i915#2029</a>)</p>
-</li>
-<li>
-<p>fi-kbl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19324/fi-kbl-guc/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1814">i915#1814</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2295">i915#2295</a>)</p>
-</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@prime_self_import@basic-with_one_bo_two_files:<ul>
-<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9594/fi-tgl-y/igt@prime_self_import@basic-with_one_bo_two_files.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19324/fi-tgl-y/igt@prime_self_import@basic-with_one_bo_two_files.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h4>Warnings</h4>
-<ul>
-<li>igt@runner@aborted:<ul>
-<li>fi-kbl-8809g:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9594/fi-kbl-8809g/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2295">i915#2295</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19324/fi-kbl-8809g/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1814">i915#1814</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2295">i915#2295</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Participating hosts (44 -&gt; 39)</h2>
-<p>Missing    (5): fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-bdw-samus </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_9594 -&gt; Patchwork_19324</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_9594: 7ede24331ccbd4f8cce2b2e73b63bd49dc181560 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_5956: d9bc7773043d11d37ae5b03bf18979541a9c7ef4 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
-  Patchwork_19324: 6236e1aa792e8d221d2492f665abaef1c1431dd6 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>6236e1aa792e drm/i915/debugfs : PM_REQ and PM_RES registers</p>
-
-</body>
-</html>
-
---===============3411303582401415046==--
-
---===============1274927316==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
+-- 
+Jani Nikula, Intel Open Source Graphics Center
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============1274927316==--
