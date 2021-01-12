@@ -1,47 +1,62 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 87FD12F2ADD
-	for <lists+intel-gfx@lfdr.de>; Tue, 12 Jan 2021 10:14:28 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id ECDE72F2AFB
+	for <lists+intel-gfx@lfdr.de>; Tue, 12 Jan 2021 10:18:34 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E63376E171;
-	Tue, 12 Jan 2021 09:14:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BF76D6E183;
+	Tue, 12 Jan 2021 09:18:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B3D826E171
- for <intel-gfx@lists.freedesktop.org>; Tue, 12 Jan 2021 09:14:25 +0000 (UTC)
-IronPort-SDR: Z20j4SMiwS4zBj4UOL619+++VZJkQXgKAR9pNOVZlcfDDQJ7kZ/QkkIjNVyrrmWrzPkw3dWN/2
- vf3Y4FjGdsvw==
-X-IronPort-AV: E=McAfee;i="6000,8403,9861"; a="196629571"
-X-IronPort-AV: E=Sophos;i="5.79,341,1602572400"; d="scan'208";a="196629571"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Jan 2021 01:14:24 -0800
-IronPort-SDR: 5Q4qp/9gg85wwksEtBw56Xz29ApQrTRJcavFr8Ws7mmND8sQwJSGI8nYziRpRCBEidhd6XV1PA
- Nz8RAvV0RZQw==
-X-IronPort-AV: E=Sophos;i="5.79,341,1602572400"; d="scan'208";a="352952435"
-Received: from alexbor-mobl2.ger.corp.intel.com (HELO [10.249.94.7])
- ([10.249.94.7])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Jan 2021 01:14:23 -0800
-To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
-References: <20210111105735.21515-1-chris@chris-wilson.co.uk>
- <20210111105735.21515-2-chris@chris-wilson.co.uk>
- <38984801-1e30-29ce-a6f3-c846bea7eab3@linux.intel.com>
- <161038144448.28181.2940128230292829562@build.alporthouse.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-Message-ID: <5750bcc6-28d9-d599-e108-047d757ac911@linux.intel.com>
-Date: Tue, 12 Jan 2021 09:14:21 +0000
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.5.0
+Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com
+ [IPv6:2a00:1450:4864:20::42b])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E9E736E197
+ for <intel-gfx@lists.freedesktop.org>; Tue, 12 Jan 2021 09:18:31 +0000 (UTC)
+Received: by mail-wr1-x42b.google.com with SMTP id d13so1622023wrc.13
+ for <intel-gfx@lists.freedesktop.org>; Tue, 12 Jan 2021 01:18:31 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:content-transfer-encoding:in-reply-to;
+ bh=f87gsBH+2KVPSXH+nJ57D/wr8V36ShZYd9Y32P2PsAI=;
+ b=L9PD95tk5asxdssK6FkNUeFcgsqydu6mtFz7vR4nbPey+cT4DVDf1WOKiZnUpp9ZmD
+ KSR1HLU8hPuhCV2Tu/oae5ICSkF66dtiOQoloary4PJs7XVuY+mJlt+AkwWC0AMBO2yj
+ Vv5NWY4NyUzYbwzc2w+TXriscEZFAYX3fd0OQ=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:content-transfer-encoding
+ :in-reply-to;
+ bh=f87gsBH+2KVPSXH+nJ57D/wr8V36ShZYd9Y32P2PsAI=;
+ b=ZmMaeAhpusYWcaCLBuo0rzdL4IXA5mHjw/cw9b+kOAFjYc/Dv/IXhLdZjai4II2Pz+
+ 3TDrPZKylPb4t6rL7BXb3Vp7WvzruZlpGDRUkb0mdZBgUa6MkCHw1En7dFOiwoo4K5Zz
+ FB3X21yt5GG4EFpQSBZrugtFdypNcjhDqUs6gaVAbI7vUIwQYQtgMKq/YFwDNcwaw2sY
+ BIFW08zEQ8cFLsTkkNY/MKagyjMjRUqyYMOCszOLfnS95TrMAqradSTv2be++tWUj3+r
+ MCaA7iHEF7GJMynZjhQKw8oPUiJCwdoCYw0d/hR3wrNBzDPXoqz018Xsolbeu8S3ncwn
+ vYmw==
+X-Gm-Message-State: AOAM532MzmPEOwUCKd7jATsiqjQg3vHiZKvfgFmQFBoYNEP4C9sdlB0B
+ J0DKF29JKX1JRmj+zmMCUMsYCA==
+X-Google-Smtp-Source: ABdhPJyjVF9IanPechzGYbhoKCcezn8CSCB/pz1NPBPsHDY7evJDL6obrdoAtEpS5Tk7EHgD8iE+Qw==
+X-Received: by 2002:a5d:528a:: with SMTP id c10mr3189848wrv.117.1610443110667; 
+ Tue, 12 Jan 2021 01:18:30 -0800 (PST)
+Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
+ by smtp.gmail.com with ESMTPSA id g191sm3121403wmg.39.2021.01.12.01.18.29
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 12 Jan 2021 01:18:29 -0800 (PST)
+Date: Tue, 12 Jan 2021 10:18:28 +0100
+From: Daniel Vetter <daniel@ffwll.ch>
+To: Alex Deucher <alexdeucher@gmail.com>
+Message-ID: <X/1pZISyZm6xfQ+6@phenom.ffwll.local>
+References: <20210110021142.28221-1-bas@basnieuwenhuizen.nl>
+ <CADnq5_OVtCubsGP=-=q-hYJ3e6a3=pozi7ZhDiqdUkUKLCiwMg@mail.gmail.com>
+ <CAP+8YyGAuYW+qOCDmQR+_X0y-jC5sKoxm+k7V8YrAEaTM942dA@mail.gmail.com>
+ <CADnq5_PZ_yE-K6BzgcSUhOZ_b9nhWpbj7nau2ZopxMLa7igpQA@mail.gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <161038144448.28181.2940128230292829562@build.alporthouse.com>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH 2/4] drm/i915/gt: Check for arbitration
- after writing start seqno
+Content-Disposition: inline
+In-Reply-To: <CADnq5_PZ_yE-K6BzgcSUhOZ_b9nhWpbj7nau2ZopxMLa7igpQA@mail.gmail.com>
+X-Operating-System: Linux phenom 5.7.0-1-amd64 
+Subject: Re: [Intel-gfx] [PATCH v2] drm: Check actual format for legacy
+ pageflip.
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,83 +69,121 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Cc: Daniel Vetter <daniel.vetter@ffwll.ch>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ Maling list - DRI developers <dri-devel@lists.freedesktop.org>, "Kazlauskas,
+ Nicholas" <nicholas.kazlauskas@amd.com>,
+ amd-gfx list <amd-gfx@lists.freedesktop.org>,
+ Bas Nieuwenhuizen <bas@basnieuwenhuizen.nl>, "Deucher,
+ Alexander" <alexander.deucher@amd.com>,
+ Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+On Mon, Jan 11, 2021 at 04:28:31PM -0500, Alex Deucher wrote:
+> On Mon, Jan 11, 2021 at 11:39 AM Bas Nieuwenhuizen
+> <bas@basnieuwenhuizen.nl> wrote:
+> >
+> > On Mon, Jan 11, 2021 at 4:02 PM Alex Deucher <alexdeucher@gmail.com> wr=
+ote:
+> > >
+> > > On Sat, Jan 9, 2021 at 9:11 PM Bas Nieuwenhuizen
+> > > <bas@basnieuwenhuizen.nl> wrote:
+> > > >
+> > > > With modifiers one can actually have different format_info structs
+> > > > for the same format, which now matters for AMDGPU since we convert
+> > > > implicit modifiers to explicit modifiers with multiple planes.
+> > > >
+> > > > I checked other drivers and it doesn't look like they end up trigge=
+ring
+> > > > this case so I think this is safe to relax.
+> > > >
+> > > > Signed-off-by: Bas Nieuwenhuizen <bas@basnieuwenhuizen.nl>
+> > > > Reviewed-by: Daniel Vetter <daniel.vetter@ffwll.ch>
+> > > > Reviewed-by: Zhan Liu <zhan.liu@amd.com>
+> > > > Acked-by: Christian K=F6nig <christian.koenig@amd.com>
+> > > > Acked-by: Alex Deucher <alexander.deucher@amd.com>
+> > > > Fixes: 816853f9dc40 ("drm/amd/display: Set new format info for conv=
+erted metadata.")
+> > >
+> > > Do you have commit rights to drm-misc or do you need someone to commit
+> > > this for you?
+> >
+> > I don't have commit rights so if the patch could be committed for me
+> > that would be appreciated!
+> =
 
-On 11/01/2021 16:10, Chris Wilson wrote:
-> Quoting Tvrtko Ursulin (2021-01-11 16:03:48)
->>
->> On 11/01/2021 10:57, Chris Wilson wrote:
->>> On the off chance that we need to arbitrate before launching the
->>> payload, perform the check after we signal the request is ready to
->>> start. Assuming instantaneous processing of the CS event, the request
->>> will then be treated as having started when we make the decisions as to
->>> how to process that CS event.
->>
->> What is the wider context with this change?
-> 
-> Just thinking about the impact of MI_ARB_ONOFF. It's the next patch that
-> sparked the curiosity at that is trying to address a missed arbitration
-> point on the semaphore-wait miss.
-> 
->>> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
->>> ---
->>>    drivers/gpu/drm/i915/gt/gen8_engine_cs.c | 12 ++++++------
->>>    1 file changed, 6 insertions(+), 6 deletions(-)
->>>
->>> diff --git a/drivers/gpu/drm/i915/gt/gen8_engine_cs.c b/drivers/gpu/drm/i915/gt/gen8_engine_cs.c
->>> index 2e36e0a9d8a6..9a182652a35e 100644
->>> --- a/drivers/gpu/drm/i915/gt/gen8_engine_cs.c
->>> +++ b/drivers/gpu/drm/i915/gt/gen8_engine_cs.c
->>> @@ -361,19 +361,19 @@ int gen8_emit_init_breadcrumb(struct i915_request *rq)
->>>        if (IS_ERR(cs))
->>>                return PTR_ERR(cs);
->>>    
->>> +     *cs++ = MI_STORE_DWORD_IMM_GEN4 | MI_USE_GGTT;
->>> +     *cs++ = hwsp_offset(rq);
->>> +     *cs++ = 0;
->>> +     *cs++ = rq->fence.seqno - 1;
->>> +
->>
->> Strictly this movement even makes the existing comment (below) more correct.
->>
->>>        /*
->>>         * Check if we have been preempted before we even get started.
->>>         *
->>>         * After this point i915_request_started() reports true, even if
->>>         * we get preempted and so are no longer running.
->>>         */
->>> -     *cs++ = MI_ARB_CHECK;
->>>        *cs++ = MI_NOOP;
->>> -
->>> -     *cs++ = MI_STORE_DWORD_IMM_GEN4 | MI_USE_GGTT;
->>> -     *cs++ = hwsp_offset(rq);
->>> -     *cs++ = 0;
->>> -     *cs++ = rq->fence.seqno - 1;
->>> +     *cs++ = MI_ARB_CHECK;
->>
->> Special reason to have NOOP before MI_ARB_CHECK or would more common
->> NOOP padding at the end be suitable?
-> 
-> The so small it's barely a reason was to put as much distance (those
-> whole 6 cycles) between the store and the arbitration point.
+> Pushed to drm-misc-fixes.  Thanks!
+> =
 
-Overall on the patch, there could be slight difference on how 
-i915_request_started reports true and would now allow to be preempted 
-after that point, even if the user payload itself would not be 
-preemptable. Obviously that applies on Gen8, maybe on later Gens with 
-like non-preemptible media batches or so. I can't think that it would 
-(or should) cause a problem though, just thinking out loud. So don't 
-know really, sounds safe to experiment.
+> If you want access to drm-misc, I don't see any reason you shouldn't have=
+ it.
 
-Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+There's some old-school bash tooling involved since we're (not yet, I can
+hope) doing gitlab MR:
 
-Regards,
+https://drm.pages.freedesktop.org/maintainer-tools/getting-started.html
 
-Tvrtko
+Otherwise makes sense imo.
+-Daniel
+
+> =
+
+> Alex
+> =
+
+> =
+
+> > >
+> > > Thanks!
+> > >
+> > > Alex
+> > >
+> > > > ---
+> > > >  drivers/gpu/drm/drm_plane.c | 9 ++++++++-
+> > > >  1 file changed, 8 insertions(+), 1 deletion(-)
+> > > >
+> > > > diff --git a/drivers/gpu/drm/drm_plane.c b/drivers/gpu/drm/drm_plan=
+e.c
+> > > > index e6231947f987..a0cb746bcb0a 100644
+> > > > --- a/drivers/gpu/drm/drm_plane.c
+> > > > +++ b/drivers/gpu/drm/drm_plane.c
+> > > > @@ -1163,7 +1163,14 @@ int drm_mode_page_flip_ioctl(struct drm_devi=
+ce *dev,
+> > > >         if (ret)
+> > > >                 goto out;
+> > > >
+> > > > -       if (old_fb->format !=3D fb->format) {
+> > > > +       /*
+> > > > +        * Only check the FOURCC format code, excluding modifiers. =
+This is
+> > > > +        * enough for all legacy drivers. Atomic drivers have their=
+ own
+> > > > +        * checks in their ->atomic_check implementation, which will
+> > > > +        * return -EINVAL if any hw or driver constraint is violate=
+d due
+> > > > +        * to modifier changes.
+> > > > +        */
+> > > > +       if (old_fb->format->format !=3D fb->format->format) {
+> > > >                 DRM_DEBUG_KMS("Page flip is not allowed to change f=
+rame buffer format.\n");
+> > > >                 ret =3D -EINVAL;
+> > > >                 goto out;
+> > > > --
+> > > > 2.29.2
+> > > >
+> > > > _______________________________________________
+> > > > amd-gfx mailing list
+> > > > amd-gfx@lists.freedesktop.org
+> > > > https://lists.freedesktop.org/mailman/listinfo/amd-gfx
+
+-- =
+
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
