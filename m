@@ -2,28 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2D1262F2E08
-	for <lists+intel-gfx@lfdr.de>; Tue, 12 Jan 2021 12:37:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 94DC92F2EC3
+	for <lists+intel-gfx@lfdr.de>; Tue, 12 Jan 2021 13:13:43 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 842236E1D8;
-	Tue, 12 Jan 2021 11:37:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B0F9D6E1CF;
+	Tue, 12 Jan 2021 12:13:40 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5F6156E1D8
- for <intel-gfx@lists.freedesktop.org>; Tue, 12 Jan 2021 11:37:30 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 23568369-1500050 
- for multiple; Tue, 12 Jan 2021 11:37:21 +0000
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Tue, 12 Jan 2021 11:37:16 +0000
-Message-Id: <20210112113716.8577-1-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.20.1
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 75CDA896A3;
+ Tue, 12 Jan 2021 12:13:39 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 6F5C6A47E2;
+ Tue, 12 Jan 2021 12:13:39 +0000 (UTC)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915/selftests: Force a failed engine reset
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Tue, 12 Jan 2021 12:13:39 -0000
+Message-ID: <161045361942.1920.13042960496914045738@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210112100759.32698-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20210112100759.32698-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3Igc2Vy?=
+ =?utf-8?q?ies_starting_with_=5BCI=2C1/2=5D_drm/i915/gt=3A_Check_for_arbit?=
+ =?utf-8?q?ration_after_writing_start_seqno?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,175 +39,220 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Chris Wilson <chris@chris-wilson.co.uk>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============1280923049=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Inject a fault into the engine reset and check that the outstanding
-requests are completed despite the failed reset.
+--===============1280923049==
+Content-Type: multipart/alternative;
+ boundary="===============1577242663462984511=="
 
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
----
- drivers/gpu/drm/i915/gt/selftest_hangcheck.c | 133 +++++++++++++++++++
- 1 file changed, 133 insertions(+)
+--===============1577242663462984511==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-diff --git a/drivers/gpu/drm/i915/gt/selftest_hangcheck.c b/drivers/gpu/drm/i915/gt/selftest_hangcheck.c
-index ffc6eabb6404..875633cc0a75 100644
---- a/drivers/gpu/drm/i915/gt/selftest_hangcheck.c
-+++ b/drivers/gpu/drm/i915/gt/selftest_hangcheck.c
-@@ -540,6 +540,138 @@ static int igt_reset_nop_engine(void *arg)
- 	return 0;
- }
- 
-+static void force_reset_timeout(struct intel_engine_cs *engine)
-+{
-+	engine->reset_timeout.probability = 999;
-+	atomic_set(&engine->reset_timeout.times, -1);
-+}
-+
-+static void cancel_reset_timeout(struct intel_engine_cs *engine)
-+{
-+	memset(&engine->reset_timeout, 0, sizeof(engine->reset_timeout));
-+}
-+
-+static int igt_reset_fail_engine(void *arg)
-+{
-+	struct intel_gt *gt = arg;
-+	struct intel_engine_cs *engine;
-+	enum intel_engine_id id;
-+
-+	/* Check that we can engine-reset during non-user portions */
-+
-+	if (!intel_has_reset_engine(gt))
-+		return 0;
-+
-+	for_each_engine(engine, gt, id) {
-+		unsigned int count;
-+		struct intel_context *ce;
-+		IGT_TIMEOUT(end_time);
-+		int err;
-+
-+		ce = intel_context_create(engine);
-+		if (IS_ERR(ce))
-+			return PTR_ERR(ce);
-+
-+		st_engine_heartbeat_disable(engine);
-+		set_bit(I915_RESET_ENGINE + id, &gt->reset.flags);
-+		count = 0;
-+		do {
-+			struct i915_request *last = NULL;
-+			int i;
-+
-+			if (!wait_for_idle(engine)) {
-+				pr_err("%s failed to idle before reset\n",
-+				       engine->name);
-+				err = -EIO;
-+				break;
-+			}
-+
-+			for (i = 0; i < 16; i++) {
-+				struct i915_request *rq;
-+
-+				rq = intel_context_create_request(ce);
-+				if (IS_ERR(rq)) {
-+					struct drm_printer p =
-+						drm_info_printer(gt->i915->drm.dev);
-+					intel_engine_dump(engine, &p,
-+							  "%s(%s): failed to submit request\n",
-+							  __func__,
-+							  engine->name);
-+
-+					GEM_TRACE("%s(%s): failed to submit request\n",
-+						  __func__,
-+						  engine->name);
-+					GEM_TRACE_DUMP();
-+
-+					intel_gt_set_wedged(gt);
-+					if (last)
-+						i915_request_put(last);
-+
-+					err = PTR_ERR(rq);
-+					goto out;
-+				}
-+
-+				if (last)
-+					i915_request_put(last);
-+				last = i915_request_get(rq);
-+				i915_request_add(rq);
-+			}
-+
-+			if (count & 1) {
-+				err = intel_engine_reset(engine, NULL);
-+				if (err) {
-+					GEM_TRACE_ERR("intel_engine_reset(%s) failed, err:%d\n",
-+						      engine->name, err);
-+					GEM_TRACE_DUMP();
-+					break;
-+				}
-+			} else {
-+				force_reset_timeout(engine);
-+				err = intel_engine_reset(engine, NULL);
-+				cancel_reset_timeout(engine);
-+				if (err != -ETIMEDOUT) {
-+					pr_err("intel_engine_reset(%s) did not fail, err:%d\n",
-+					       engine->name, err);
-+					break;
-+				}
-+			}
-+
-+			err = 0;
-+			if (i915_request_wait(last, 0, HZ /2) < 0) {
-+				struct drm_printer p =
-+					drm_info_printer(gt->i915->drm.dev);
-+
-+				intel_engine_dump(engine, &p,
-+						  "%s(%s): failed to complete request\n",
-+						  __func__,
-+						  engine->name);
-+
-+				GEM_TRACE("%s(%s): failed to complete request\n",
-+					  __func__,
-+					  engine->name);
-+				GEM_TRACE_DUMP();
-+
-+				err = -EIO;
-+			}
-+			i915_request_put(last);
-+			count++;
-+		} while (err == 0 && time_before(jiffies, end_time));
-+out:
-+		clear_bit(I915_RESET_ENGINE + id, &gt->reset.flags);
-+		st_engine_heartbeat_enable(engine);
-+
-+		pr_info("%s(%s): %d resets\n", __func__, engine->name, count);
-+
-+		intel_context_put(ce);
-+		if (igt_flush_test(gt->i915))
-+			err = -EIO;
-+		if (err)
-+			return err;
-+	}
-+
-+	return 0;
-+}
-+
- static int __igt_reset_engine(struct intel_gt *gt, bool active)
- {
- 	struct i915_gpu_error *global = &gt->i915->gpu_error;
-@@ -1694,6 +1826,7 @@ int intel_hangcheck_live_selftests(struct drm_i915_private *i915)
- 		SUBTEST(igt_reset_nop_engine),
- 		SUBTEST(igt_reset_idle_engine),
- 		SUBTEST(igt_reset_active_engine),
-+		SUBTEST(igt_reset_fail_engine),
- 		SUBTEST(igt_reset_engines),
- 		SUBTEST(igt_reset_engines_atomic),
- 		SUBTEST(igt_reset_queue),
--- 
-2.20.1
+== Series Details ==
+
+Series: series starting with [CI,1/2] drm/i915/gt: Check for arbitration after writing start seqno
+URL   : https://patchwork.freedesktop.org/series/85746/
+State : failure
+
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_9590 -> Patchwork_19322
+====================================================
+
+Summary
+-------
+
+  **FAILURE**
+
+  Serious unknown changes coming with Patchwork_19322 absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in Patchwork_19322, please notify your bug team to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19322/index.html
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_19322:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@i915_selftest@live@gt_heartbeat:
+    - fi-bdw-5557u:       [PASS][1] -> [DMESG-FAIL][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9590/fi-bdw-5557u/igt@i915_selftest@live@gt_heartbeat.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19322/fi-bdw-5557u/igt@i915_selftest@live@gt_heartbeat.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_19322 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@kms_chamelium@hdmi-crc-fast:
+    - fi-kbl-7500u:       [PASS][3] -> [DMESG-WARN][4] ([i915#2868])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9590/fi-kbl-7500u/igt@kms_chamelium@hdmi-crc-fast.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19322/fi-kbl-7500u/igt@kms_chamelium@hdmi-crc-fast.html
+
+  * igt@prime_self_import@basic-with_two_bos:
+    - fi-tgl-y:           [PASS][5] -> [DMESG-WARN][6] ([i915#402])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9590/fi-tgl-y/igt@prime_self_import@basic-with_two_bos.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19322/fi-tgl-y/igt@prime_self_import@basic-with_two_bos.html
+
+  
+#### Possible fixes ####
+
+  * igt@vgem_basic@create:
+    - fi-tgl-y:           [DMESG-WARN][7] ([i915#402]) -> [PASS][8] +1 similar issue
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9590/fi-tgl-y/igt@vgem_basic@create.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19322/fi-tgl-y/igt@vgem_basic@create.html
+
+  
+  [i915#2868]: https://gitlab.freedesktop.org/drm/intel/issues/2868
+  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
+
+
+Participating hosts (44 -> 37)
+------------------------------
+
+  Missing    (7): fi-cml-u2 fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-cml-drallion fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_9590 -> Patchwork_19322
+
+  CI-20190529: 20190529
+  CI_DRM_9590: 5b3f9c79750cbe06f663b9935cef83cbd6b6ac46 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5955: 4ad3fdae02ad6e6147a96e3c05438be043426266 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_19322: 7b59b45506cb0f5ec19fc13511b9d2911f856f0e @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+7b59b45506cb drm/i915/gt: Perform an arbitration check before busywaiting
+fedfc3cb19ad drm/i915/gt: Check for arbitration after writing start seqno
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19322/index.html
+
+--===============1577242663462984511==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>series starting with [CI,1/2] drm/i915/gt: Check for arbitration after writing start seqno</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/85746/">https://patchwork.freedesktop.org/series/85746/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19322/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19322/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_9590 -&gt; Patchwork_19322</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with Patchwork_19322 absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in Patchwork_19322, please notify your bug team to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19322/index.html</p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in Patchwork_19322:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>igt@i915_selftest@live@gt_heartbeat:<ul>
+<li>fi-bdw-5557u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9590/fi-bdw-5557u/igt@i915_selftest@live@gt_heartbeat.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19322/fi-bdw-5557u/igt@i915_selftest@live@gt_heartbeat.html">DMESG-FAIL</a></li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_19322 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@kms_chamelium@hdmi-crc-fast:</p>
+<ul>
+<li>fi-kbl-7500u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9590/fi-kbl-7500u/igt@kms_chamelium@hdmi-crc-fast.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19322/fi-kbl-7500u/igt@kms_chamelium@hdmi-crc-fast.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2868">i915#2868</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@prime_self_import@basic-with_two_bos:</p>
+<ul>
+<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9590/fi-tgl-y/igt@prime_self_import@basic-with_two_bos.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19322/fi-tgl-y/igt@prime_self_import@basic-with_two_bos.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@vgem_basic@create:<ul>
+<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9590/fi-tgl-y/igt@vgem_basic@create.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19322/fi-tgl-y/igt@vgem_basic@create.html">PASS</a> +1 similar issue</li>
+</ul>
+</li>
+</ul>
+<h2>Participating hosts (44 -&gt; 37)</h2>
+<p>Missing    (7): fi-cml-u2 fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-cml-drallion fi-bdw-samus </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_9590 -&gt; Patchwork_19322</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_9590: 5b3f9c79750cbe06f663b9935cef83cbd6b6ac46 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_5955: 4ad3fdae02ad6e6147a96e3c05438be043426266 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
+  Patchwork_19322: 7b59b45506cb0f5ec19fc13511b9d2911f856f0e @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>7b59b45506cb drm/i915/gt: Perform an arbitration check before busywaiting<br />
+fedfc3cb19ad drm/i915/gt: Check for arbitration after writing start seqno</p>
+
+</body>
+</html>
+
+--===============1577242663462984511==--
+
+--===============1280923049==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============1280923049==--
