@@ -2,31 +2,40 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B77AB2F2452
-	for <lists+intel-gfx@lfdr.de>; Tue, 12 Jan 2021 01:45:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4C6352F2563
+	for <lists+intel-gfx@lfdr.de>; Tue, 12 Jan 2021 02:30:11 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B34678966B;
-	Tue, 12 Jan 2021 00:45:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4CD8F8997C;
+	Tue, 12 Jan 2021 01:30:09 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id BE91B89C09;
- Tue, 12 Jan 2021 00:45:55 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id B759DA7DFB;
- Tue, 12 Jan 2021 00:45:55 +0000 (UTC)
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6BB678997C
+ for <intel-gfx@lists.freedesktop.org>; Tue, 12 Jan 2021 01:30:07 +0000 (UTC)
+IronPort-SDR: QxTuUyeqUB4NiU3HyfZzeceI2Ge2xsOV19elOekJTLqPxgRBanhxh1kIaSbqOso0HLOpOPMrxe
+ qLSvRLukjAAg==
+X-IronPort-AV: E=McAfee;i="6000,8403,9861"; a="262747556"
+X-IronPort-AV: E=Sophos;i="5.79,340,1602572400"; d="scan'208";a="262747556"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Jan 2021 17:30:01 -0800
+IronPort-SDR: u+kVSaOICXvw5Gjmch2kxhLIykAogxbhnkI9UEQkZRBHowrNv951qshR11CfPmBvA3Y+hx9SLe
+ lYFm2kxwX0mA==
+X-IronPort-AV: E=Sophos;i="5.79,340,1602572400"; d="scan'208";a="464351516"
+Received: from mdroper-desk1.fm.intel.com (HELO
+ mdroper-desk1.amr.corp.intel.com) ([10.1.27.168])
+ by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Jan 2021 17:30:01 -0800
+Date: Mon, 11 Jan 2021 17:30:00 -0800
+From: Matt Roper <matthew.d.roper@intel.com>
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Message-ID: <20210112013000.GD4758@mdroper-desk1.amr.corp.intel.com>
+References: <20210108120922.88692-1-tejaskumarx.surendrakumar.upadhyay@intel.com>
+ <20210112002155.GB3354@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Tue, 12 Jan 2021 00:45:55 -0000
-Message-ID: <161041235571.1917.845257988116109687@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210111225220.3483-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20210111225220.3483-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
- =?utf-8?q?ies_starting_with_=5BCI=2C1/3=5D_drm/i915/gt=3A_Limit_VFE_threa?=
- =?utf-8?q?ds_based_on_GT?=
+Content-Disposition: inline
+In-Reply-To: <20210112002155.GB3354@intel.com>
+Subject: Re: [Intel-gfx] [PATCH V4] drm/i915/gen9_bc : Add TGP PCH support
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,262 +48,226 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============1735367257=="
+Cc: intel-gfx@lists.freedesktop.org, hariom.pandey@intel.com
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============1735367257==
-Content-Type: multipart/alternative;
- boundary="===============5450681300273758291=="
+On Mon, Jan 11, 2021 at 07:21:55PM -0500, Rodrigo Vivi wrote:
+> On Fri, Jan 08, 2021 at 05:39:22PM +0530, Tejas Upadhyay wrote:
+> > We have TGP PCH support for Tigerlake and Rocketlake. Similarly
+> > now TGP PCH can be used with Cometlake CPU.
+> > 
+> > Changes since V3 :
+> > 	- Rebased to top drm-tip commit
+> > 	- dev_priv replaced with i915 for new API
+> > 	- Enable default Port B,C,D detection for TGP && GEN9_BC
+> > Changes since V2 :
+> >         - IS_COMETLAKE replaced with IS_GEN9_BC
+> >         - VBT ddc pin remapping added
+> >         - Added dedicated HPD pin and DDC pin handling API
+> > Changes since V1 :
+> >         - Matched HPD Pin mapping for PORT C and PORT D of CML CPU.
+> > 
+> > Cc: Matt Roper <matthew.d.roper@intel.com>
+> > Cc: Jani Nikula <jani.nikula@linux.intel.com>
+> > Signed-off-by: Tejas Upadhyay <tejaskumarx.surendrakumar.upadhyay@intel.com>
+> > ---
+> >  drivers/gpu/drm/i915/display/intel_bios.c    |  9 +++++++++
+> >  drivers/gpu/drm/i915/display/intel_ddi.c     |  7 +++++--
+> >  drivers/gpu/drm/i915/display/intel_display.c |  9 ++++++++-
+> >  drivers/gpu/drm/i915/display/intel_hdmi.c    | 20 ++++++++++++++++++++
+> >  drivers/gpu/drm/i915/intel_pch.c             |  3 ++-
+> >  5 files changed, 44 insertions(+), 4 deletions(-)
+> > 
+> > diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/i915/display/intel_bios.c
+> > index 987cf509337f..730b7f45e5d4 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_bios.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_bios.c
+> > @@ -1630,6 +1630,12 @@ static const u8 rkl_pch_tgp_ddc_pin_map[] = {
+> >  	[RKL_DDC_BUS_DDI_E] = GMBUS_PIN_10_TC2_ICP,
+> >  };
+> >  
+> > +static const u8 gen9bc_tgp_ddc_pin_map[] = {
+> > +	[DDC_BUS_DDI_B] = GMBUS_PIN_2_BXT,
+> > +	[DDC_BUS_DDI_C] = GMBUS_PIN_9_TC1_ICP,
+> > +	[DDC_BUS_DDI_D] = GMBUS_PIN_10_TC2_ICP,
+> > +};
+> 
+> Could you please point out the spec you are using here?
+> 
+> VBT's spec at BSpec - at Block 2
+> I can see the TGP table is same as ICP.
+> 
+> So I'm kind of confused now.
 
---===============5450681300273758291==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+It's a weird place to document it, but bspec 49181 has a compatibility
+section that describes how to map the TGP pins when paired with a gen9bc
+CPU.
 
-== Series Details ==
+> 
+> > +
+> >  static u8 map_ddc_pin(struct drm_i915_private *dev_priv, u8 vbt_pin)
+> >  {
+> >  	const u8 *ddc_pin_map;
+> > @@ -1640,6 +1646,9 @@ static u8 map_ddc_pin(struct drm_i915_private *dev_priv, u8 vbt_pin)
+> >  	} else if (IS_ROCKETLAKE(dev_priv) && INTEL_PCH_TYPE(dev_priv) == PCH_TGP) {
+> >  		ddc_pin_map = rkl_pch_tgp_ddc_pin_map;
+> >  		n_entries = ARRAY_SIZE(rkl_pch_tgp_ddc_pin_map);
+> > +	} else if (HAS_PCH_TGP(dev_priv) && IS_GEN9_BC(dev_priv)) {
+> > +		ddc_pin_map = gen9bc_tgp_ddc_pin_map;
+> > +		n_entries = ARRAY_SIZE(gen9bc_tgp_ddc_pin_map);
+> >  	} else if (INTEL_PCH_TYPE(dev_priv) >= PCH_ICP) {
+> >  		ddc_pin_map = icp_ddc_pin_map;
+> >  		n_entries = ARRAY_SIZE(icp_ddc_pin_map);
+> > diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
+> > index 3df6913369bc..13f1268e2cff 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_ddi.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+> > @@ -5337,7 +5337,9 @@ static enum hpd_pin dg1_hpd_pin(struct drm_i915_private *dev_priv,
+> >  static enum hpd_pin tgl_hpd_pin(struct drm_i915_private *dev_priv,
+> >  				enum port port)
+> >  {
+> > -	if (port >= PORT_TC1)
+> > +	if (IS_GEN9_BC(dev_priv) && port >= PORT_C)
+> 
+> gen9 in tgl function?!
+> please, no!
 
-Series: series starting with [CI,1/3] drm/i915/gt: Limit VFE threads based on GT
-URL   : https://patchwork.freedesktop.org/series/85726/
-State : success
+We should probably rename this function to tgp since it ultimately gets
+called on every possible TGP platform (TGL+TGP, RKL+TGP, gen9+TGP).  If
+it weren't for RKL+CMP, I'd say that all these functions should just be
+named after the PCH, but I guess the TC ports on RKL+CMP break the
+pattern.
 
-== Summary ==
+I think the real plan once we get some free time is to kill off a bunch
+of these output-based functions and define DDI/port/phy/VBT/HPD/DDC
+mapping for outputs declaratively in a table since all the special cases
+we're running into on recent platforms are turning the logic-based
+approach into a mess.
 
-CI Bug Log - changes from CI_DRM_9584 -> Patchwork_19318
-====================================================
+> 
+> > +		return HPD_PORT_TC1 + port - PORT_C;
+> > +	else if (port >= PORT_TC1)
+> >  		return HPD_PORT_TC1 + port - PORT_TC1;
+> >  	else
+> >  		return HPD_PORT_A + port - PORT_A;
+> > @@ -5493,7 +5495,8 @@ void intel_ddi_init(struct drm_i915_private *dev_priv, enum port port)
+> >  		encoder->hpd_pin = dg1_hpd_pin(dev_priv, port);
+> >  	else if (IS_ROCKETLAKE(dev_priv))
+> >  		encoder->hpd_pin = rkl_hpd_pin(dev_priv, port);
+> > -	else if (INTEL_GEN(dev_priv) >= 12)
+> > +	else if (INTEL_GEN(dev_priv) >= 12 || (IS_GEN9_BC(dev_priv) &&
+> > +					       HAS_PCH_TGP(dev_priv)))
+> 
+> Here's another aspect that I don't like in this code.
+> It mixes the gfx gen with the PCH in many places.
+> 
+> Something is not right...
+> 
+> >  		encoder->hpd_pin = tgl_hpd_pin(dev_priv, port);
+> >  	else if (IS_JSL_EHL(dev_priv))
+> >  		encoder->hpd_pin = ehl_hpd_pin(dev_priv, port);
+> > diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+> > index 0189d379a55e..81c93c49ddef 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_display.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> > @@ -16212,7 +16212,14 @@ static void intel_setup_outputs(struct drm_i915_private *dev_priv)
+> >  
+> >  		/* DDI B, C, D, and F detection is indicated by the SFUSE_STRAP
+> >  		 * register */
+> > -		found = intel_de_read(dev_priv, SFUSE_STRAP);
+> > +		if (HAS_PCH_TGP(dev_priv)) {
+> > +			/* W/A due to lack of STRAP config on TGP PCH*/
+> > +			found = (SFUSE_STRAP_DDIB_DETECTED |
+> > +				 SFUSE_STRAP_DDIC_DETECTED |
+> > +				 SFUSE_STRAP_DDID_DETECTED);
+> > +		} else {
+> > +			found = intel_de_read(dev_priv, SFUSE_STRAP);
+> > +		}
+> 
+> oh, do we still need this :(
 
-Summary
--------
-
-  **WARNING**
-
-  Minor unknown changes coming with Patchwork_19318 need to be verified
-  manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_19318, please notify your bug team to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19318/index.html
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_19318:
-
-### IGT changes ###
-
-#### Warnings ####
-
-  * igt@i915_hangman@error-state-basic:
-    - fi-apl-guc:         [DMESG-WARN][1] ([i915#1610]) -> [DMESG-WARN][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9584/fi-apl-guc/igt@i915_hangman@error-state-basic.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19318/fi-apl-guc/igt@i915_hangman@error-state-basic.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_19318 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_selftest@live@gt_heartbeat:
-    - fi-tgl-y:           [PASS][3] -> [DMESG-FAIL][4] ([i915#2601])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9584/fi-tgl-y/igt@i915_selftest@live@gt_heartbeat.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19318/fi-tgl-y/igt@i915_selftest@live@gt_heartbeat.html
-
-  * igt@vgem_basic@dmabuf-fence-before:
-    - fi-tgl-y:           [PASS][5] -> [DMESG-WARN][6] ([i915#402]) +1 similar issue
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9584/fi-tgl-y/igt@vgem_basic@dmabuf-fence-before.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19318/fi-tgl-y/igt@vgem_basic@dmabuf-fence-before.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_module_load@reload:
-    - fi-ilk-650:         [DMESG-WARN][7] ([i915#164]) -> [PASS][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9584/fi-ilk-650/igt@i915_module_load@reload.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19318/fi-ilk-650/igt@i915_module_load@reload.html
-
-  * igt@kms_chamelium@dp-crc-fast:
-    - fi-kbl-7500u:       [FAIL][9] ([i915#1161] / [i915#262]) -> [PASS][10]
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9584/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19318/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html
-
-  * igt@kms_flip@basic-flip-vs-wf_vblank@b-edp1:
-    - fi-bsw-kefka:       [FAIL][11] ([i915#2122]) -> [PASS][12]
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9584/fi-bsw-kefka/igt@kms_flip@basic-flip-vs-wf_vblank@b-edp1.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19318/fi-bsw-kefka/igt@kms_flip@basic-flip-vs-wf_vblank@b-edp1.html
-
-  * igt@prime_vgem@basic-read:
-    - fi-tgl-y:           [DMESG-WARN][13] ([i915#402]) -> [PASS][14] +1 similar issue
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9584/fi-tgl-y/igt@prime_vgem@basic-read.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19318/fi-tgl-y/igt@prime_vgem@basic-read.html
-
-  
-  [i915#1161]: https://gitlab.freedesktop.org/drm/intel/issues/1161
-  [i915#1610]: https://gitlab.freedesktop.org/drm/intel/issues/1610
-  [i915#164]: https://gitlab.freedesktop.org/drm/intel/issues/164
-  [i915#2122]: https://gitlab.freedesktop.org/drm/intel/issues/2122
-  [i915#2601]: https://gitlab.freedesktop.org/drm/intel/issues/2601
-  [i915#262]: https://gitlab.freedesktop.org/drm/intel/issues/262
-  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
-
-
-Participating hosts (44 -> 38)
-------------------------------
-
-  Missing    (6): fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-cml-drallion fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_9584 -> Patchwork_19318
-
-  CI-20190529: 20190529
-  CI_DRM_9584: 5f4b4c2999912cde385b40395f78925950b1fb00 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5954: 2763c0977004bed596ee876c755b0768187ea9ab @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_19318: 8d67e886d81701a12ab6c2e7588987c7bf2b3388 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-8d67e886d817 drm/i915: Allow the sysadmin to override security mitigations
-5c4e9fc2dcd5 drm/i915/gt: Restore clear-residual mitigations for Ivybridge, Baytrail
-e2979c887600 drm/i915/gt: Limit VFE threads based on GT
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19318/index.html
-
---===============5450681300273758291==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
+We've always needed it on gen9 (unless we're willing to rely solely on
+the VBT like we do for more recent platforms).  But when a gen9 platform
+is paired with a TGP PCH, the strap bits won't be there (since this is a
+south display register), so we have no choice but to rely on VBT.
 
 
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>series starting with [CI,1/3] drm/i915/gt: Limit VFE threads based on GT</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/85726/">https://patchwork.freedesktop.org/series/85726/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
+Matt
 
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19318/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19318/index.html</a></td></tr>
+> 
+> >  
+> >  		if (found & SFUSE_STRAP_DDIB_DETECTED)
+> >  			intel_ddi_init(dev_priv, PORT_B);
+> > diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/i915/display/intel_hdmi.c
+> > index c5959590562b..aa3b4a659f96 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_hdmi.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
+> > @@ -3130,6 +3130,24 @@ static u8 rkl_port_to_ddc_pin(struct drm_i915_private *dev_priv, enum port port)
+> >  	return GMBUS_PIN_1_BXT + phy;
+> >  }
+> >  
+> > +static u8 gen9bc_port_to_ddc_pin(struct drm_i915_private *i915, enum port port)
+> > +{
+> > +	enum phy phy = intel_port_to_phy(i915, port);
+> > +
+> > +	drm_WARN_ON(&i915->drm, port == PORT_A);
+> > +
+> > +	/*
+> > +	 * Pin mapping for GEN9 BC depends on which PCH is present.  With TGP,
+> > +	 * final two outputs use type-c pins, even though they're actually
+> > +	 * combo outputs.  With CMP, the traditional DDI A-D pins are used for
+> > +	 * all outputs.
+> > +	 */
+> > +	if (INTEL_PCH_TYPE(i915) >= PCH_TGP && phy >= PHY_C)
+> > +		return GMBUS_PIN_9_TC1_ICP + phy - PHY_C;
+> > +
+> > +	return GMBUS_PIN_1_BXT + phy;
+> > +}
+> > +
+> >  static u8 dg1_port_to_ddc_pin(struct drm_i915_private *dev_priv, enum port port)
+> >  {
+> >  	return intel_port_to_phy(dev_priv, port) + 1;
+> > @@ -3176,6 +3194,8 @@ static u8 intel_hdmi_ddc_pin(struct intel_encoder *encoder)
+> >  		ddc_pin = dg1_port_to_ddc_pin(dev_priv, port);
+> >  	else if (IS_ROCKETLAKE(dev_priv))
+> >  		ddc_pin = rkl_port_to_ddc_pin(dev_priv, port);
+> > +	else if (IS_GEN9_BC(dev_priv) && HAS_PCH_TGP(dev_priv))
+> > +		ddc_pin = gen9bc_port_to_ddc_pin(dev_priv, port);
+> >  	else if (HAS_PCH_MCC(dev_priv))
+> >  		ddc_pin = mcc_port_to_ddc_pin(dev_priv, port);
+> >  	else if (INTEL_PCH_TYPE(dev_priv) >= PCH_ICP)
+> > diff --git a/drivers/gpu/drm/i915/intel_pch.c b/drivers/gpu/drm/i915/intel_pch.c
+> > index f31c0dabd0cc..c1bc2d032360 100644
+> > --- a/drivers/gpu/drm/i915/intel_pch.c
+> > +++ b/drivers/gpu/drm/i915/intel_pch.c
+> > @@ -121,7 +121,8 @@ intel_pch_type(const struct drm_i915_private *dev_priv, unsigned short id)
+> >  	case INTEL_PCH_TGP2_DEVICE_ID_TYPE:
+> >  		drm_dbg_kms(&dev_priv->drm, "Found Tiger Lake LP PCH\n");
+> >  		drm_WARN_ON(&dev_priv->drm, !IS_TIGERLAKE(dev_priv) &&
+> > -			    !IS_ROCKETLAKE(dev_priv));
+> > +			    !IS_ROCKETLAKE(dev_priv) &&
+> > +			    !IS_GEN9_BC(dev_priv));
+> >  		return PCH_TGP;
+> >  	case INTEL_PCH_JSP_DEVICE_ID_TYPE:
+> >  	case INTEL_PCH_JSP2_DEVICE_ID_TYPE:
+> > -- 
+> > 2.30.0
+> > 
+> > _______________________________________________
+> > Intel-gfx mailing list
+> > Intel-gfx@lists.freedesktop.org
+> > https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_9584 -&gt; Patchwork_19318</h1>
-<h2>Summary</h2>
-<p><strong>WARNING</strong></p>
-<p>Minor unknown changes coming with Patchwork_19318 need to be verified<br />
-  manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in Patchwork_19318, please notify your bug team to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19318/index.html</p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in Patchwork_19318:</p>
-<h3>IGT changes</h3>
-<h4>Warnings</h4>
-<ul>
-<li>igt@i915_hangman@error-state-basic:<ul>
-<li>fi-apl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9584/fi-apl-guc/igt@i915_hangman@error-state-basic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1610">i915#1610</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19318/fi-apl-guc/igt@i915_hangman@error-state-basic.html">DMESG-WARN</a></li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_19318 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live@gt_heartbeat:</p>
-<ul>
-<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9584/fi-tgl-y/igt@i915_selftest@live@gt_heartbeat.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19318/fi-tgl-y/igt@i915_selftest@live@gt_heartbeat.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2601">i915#2601</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@vgem_basic@dmabuf-fence-before:</p>
-<ul>
-<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9584/fi-tgl-y/igt@vgem_basic@dmabuf-fence-before.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19318/fi-tgl-y/igt@vgem_basic@dmabuf-fence-before.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) +1 similar issue</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@i915_module_load@reload:</p>
-<ul>
-<li>fi-ilk-650:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9584/fi-ilk-650/igt@i915_module_load@reload.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/164">i915#164</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19318/fi-ilk-650/igt@i915_module_load@reload.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@dp-crc-fast:</p>
-<ul>
-<li>fi-kbl-7500u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9584/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1161">i915#1161</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/262">i915#262</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19318/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@basic-flip-vs-wf_vblank@b-edp1:</p>
-<ul>
-<li>fi-bsw-kefka:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9584/fi-bsw-kefka/igt@kms_flip@basic-flip-vs-wf_vblank@b-edp1.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2122">i915#2122</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19318/fi-bsw-kefka/igt@kms_flip@basic-flip-vs-wf_vblank@b-edp1.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@prime_vgem@basic-read:</p>
-<ul>
-<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9584/fi-tgl-y/igt@prime_vgem@basic-read.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19318/fi-tgl-y/igt@prime_vgem@basic-read.html">PASS</a> +1 similar issue</li>
-</ul>
-</li>
-</ul>
-<h2>Participating hosts (44 -&gt; 38)</h2>
-<p>Missing    (6): fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-cml-drallion fi-bdw-samus </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_9584 -&gt; Patchwork_19318</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_9584: 5f4b4c2999912cde385b40395f78925950b1fb00 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_5954: 2763c0977004bed596ee876c755b0768187ea9ab @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
-  Patchwork_19318: 8d67e886d81701a12ab6c2e7588987c7bf2b3388 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>8d67e886d817 drm/i915: Allow the sysadmin to override security mitigations<br />
-5c4e9fc2dcd5 drm/i915/gt: Restore clear-residual mitigations for Ivybridge, Baytrail<br />
-e2979c887600 drm/i915/gt: Limit VFE threads based on GT</p>
-
-</body>
-</html>
-
---===============5450681300273758291==--
-
---===============1735367257==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
+-- 
+Matt Roper
+Graphics Software Engineer
+VTT-OSGC Platform Enablement
+Intel Corporation
+(916) 356-2795
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============1735367257==--
