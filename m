@@ -2,60 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id EE11C2F32FE
-	for <lists+intel-gfx@lfdr.de>; Tue, 12 Jan 2021 15:33:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8D4A82F3308
+	for <lists+intel-gfx@lfdr.de>; Tue, 12 Jan 2021 15:37:30 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 00C1B6E23F;
-	Tue, 12 Jan 2021 14:33:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 929FF6E22C;
+	Tue, 12 Jan 2021 14:37:28 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com
- [IPv6:2a00:1450:4864:20::332])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7526B6E23F
- for <intel-gfx@lists.freedesktop.org>; Tue, 12 Jan 2021 14:33:33 +0000 (UTC)
-Received: by mail-wm1-x332.google.com with SMTP id e25so2326255wme.0
- for <intel-gfx@lists.freedesktop.org>; Tue, 12 Jan 2021 06:33:33 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:in-reply-to;
- bh=ZBQF6+KAJxHl6JaWYpU3hk0oLhLBN7AnirfyyeTyQCQ=;
- b=OXajfYYroQIPiqpVEjmcTzddAadWnRicv100S6ArZCnNo/ae84gda3bPwYCTmeA6/B
- KH+u2iGWviszZVtRroXShKRmmlGsv8T+Hm7OrzgRdsH3cZpt68e9JZX/8jTHhCe/O6Zg
- qyCZOQVoHH9I15lwvW8JfaoQL5bRYWDbh+i/U=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:in-reply-to;
- bh=ZBQF6+KAJxHl6JaWYpU3hk0oLhLBN7AnirfyyeTyQCQ=;
- b=sPXMwMWTQ3En6JqybOeFBb34EhqPpHIA71gTXMPD97nhTpTdAU/rFTXNUT6iTAEpyo
- DAAIokSuF0Za8lVNuK98RwTNnq2Dm19vOqee1jEbDvrjpr1PuY+5p0TJYtVvkrK8ikcJ
- D79NVjrJv3p0palSMSD0HfxdVkAdKMewKy4qwwgx3fmk5fFRamUgWXY2ybQociD9An1e
- I2giRRKS0y0dNQFwRKkZzsri36FhJizc0OxgFFfMwhABTF34tIs5ab7UAn5BSDrqFuMh
- 3gK4XnKIJ7xtbki4Y0IGjFMsZYWw/VKYWJsY8qSpkjGWas1x9LKxtVtMTh1QmO9R+gVE
- zOaQ==
-X-Gm-Message-State: AOAM530hTOEjJqY1GHL396mASavItov5jFTc6whHaLYFt9ihNbus0gM7
- zFOSqXmkutC01pfRsYiIF/kTQbFEh6zYRRUZ
-X-Google-Smtp-Source: ABdhPJxR4/vdvoQppfi5YsynlFWnRCMM9+m+C5vE9ghWOtkMVeOPGpKb2kdwtQhmIaGfPtsUVyiV/A==
-X-Received: by 2002:a1c:e902:: with SMTP id q2mr3823571wmc.143.1610462012218; 
- Tue, 12 Jan 2021 06:33:32 -0800 (PST)
-Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id y68sm4762563wmc.0.2021.01.12.06.33.30
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 12 Jan 2021 06:33:31 -0800 (PST)
-Date: Tue, 12 Jan 2021 15:33:29 +0100
-From: Daniel Vetter <daniel@ffwll.ch>
-To: Matthew Auld <matthew.william.auld@gmail.com>
-Message-ID: <X/2zOWATsvk3oI8W@phenom.ffwll.local>
-References: <20201127120718.454037-1-matthew.auld@intel.com>
- <20201127120718.454037-99-matthew.auld@intel.com>
- <160648391794.2925.9163508633021117030@build.alporthouse.com>
- <CAM0jSHPeEhguXs9hAagG5hhR9hxicR7CPyA4zEX=LCMxWMKwfA@mail.gmail.com>
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 211566E22C
+ for <intel-gfx@lists.freedesktop.org>; Tue, 12 Jan 2021 14:37:28 +0000 (UTC)
+IronPort-SDR: fuBGGI4HBTpfN2Jou8Oi8EnTaoM+g5yDnLQzvNlgeQ4ZXTW6Ddx2z/QxInVvz16fZvIZv0hyS3
+ VRfjwb8ZqqjQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9861"; a="196669584"
+X-IronPort-AV: E=Sophos;i="5.79,341,1602572400"; d="scan'208";a="196669584"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Jan 2021 06:37:27 -0800
+IronPort-SDR: Y+QBoY8gpkpJ+WS986FuIGufvUHLR+qPaTHWkNt3id6/b4U5YQb1upc50azEapdPGkDu+WpL8a
+ wEggxJpsXAsQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.79,341,1602572400"; d="scan'208";a="424179145"
+Received: from irsmsx606.ger.corp.intel.com ([163.33.146.139])
+ by orsmga001.jf.intel.com with ESMTP; 12 Jan 2021 06:37:26 -0800
+Received: from bgsmsx604.gar.corp.intel.com (10.67.234.6) by
+ IRSMSX606.ger.corp.intel.com (163.33.146.139) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1713.5; Tue, 12 Jan 2021 14:37:24 +0000
+Received: from bgsmsx604.gar.corp.intel.com ([10.67.234.6]) by
+ BGSMSX604.gar.corp.intel.com ([10.67.234.6]) with mapi id 15.01.1713.004;
+ Tue, 12 Jan 2021 20:07:23 +0530
+From: "Gupta, Anshuman" <anshuman.gupta@intel.com>
+To: "S, Saichandana" <saichandana.s@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Thread-Topic: [PATCH v3] drm/i915/debugfs : PM_REQ and PM_RES registers
+Thread-Index: AQHW6Oeu/LmQMjzhrk+YqGNimaXKZaokDQ+A
+Date: Tue, 12 Jan 2021 14:37:23 +0000
+Message-ID: <149dc69fa1104c4d8a9111fb65461e89@intel.com>
+References: <20210104103036.1443-1-saichandana.s@intel.com>
+ <20210112133346.12325-1-saichandana.s@intel.com>
+In-Reply-To: <20210112133346.12325-1-saichandana.s@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+dlp-product: dlpe-windows
+dlp-version: 11.5.1.3
+dlp-reaction: no-action
+x-originating-ip: [10.22.254.132]
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <CAM0jSHPeEhguXs9hAagG5hhR9hxicR7CPyA4zEX=LCMxWMKwfA@mail.gmail.com>
-X-Operating-System: Linux phenom 5.7.0-1-amd64 
-Subject: Re: [Intel-gfx] [RFC PATCH 098/162] drm/i915/gtt: map the PD up
- front
+Subject: Re: [Intel-gfx] [PATCH v3] drm/i915/debugfs : PM_REQ and PM_RES
+ registers
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,51 +65,125 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- Matthew Auld <matthew.auld@intel.com>,
- ML dri-devel <dri-devel@lists.freedesktop.org>,
- Chris Wilson <chris@chris-wilson.co.uk>
+Cc: "Nikula, Jani" <jani.nikula@intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Jan 12, 2021 at 10:47:57AM +0000, Matthew Auld wrote:
-> On Fri, 27 Nov 2020 at 13:32, Chris Wilson <chris@chris-wilson.co.uk> wrote:
-> >
-> > Quoting Matthew Auld (2020-11-27 12:06:14)
-> > > We need to general our accessor for the page directories and tables from
-> > > using the simple kmap_atomic to support local memory, and this setup
-> > > must be done on acquisition of the backing storage prior to entering
-> > > fence execution contexts. Here we replace the kmap with the object
-> > > maping code that for simple single page shmemfs object will return a
-> > > plain kmap, that is then kept for the lifetime of the page directory.
-> > >
-> > > Signed-off-by: Matthew Auld <matthew.auld@intel.com>
-> > > Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-> >
-> > We are going to really struggle with this on 32b :(
+
+
+> -----Original Message-----
+> From: S, Saichandana <saichandana.s@intel.com>
+> Sent: Tuesday, January 12, 2021 7:04 PM
+> To: intel-gfx@lists.freedesktop.org
+> Cc: Nikula, Jani <jani.nikula@intel.com>; Gupta, Anshuman
+> <anshuman.gupta@intel.com>; S, Saichandana <saichandana.s@intel.com>
+> Subject: [PATCH v3] drm/i915/debugfs : PM_REQ and PM_RES registers
 > 
-> Just go back to mapping everything on demand like we did previously,
-> and unmap as soon as we are done with the current directory across
-> alloc/insert/clear?
+> PM_REQ register provides the value of the last PM request[Gupta, Anshuman] , response from PCU to
+*PM_DBG_{REQ,RSP}* 
+> Display Engine. PM_RES register provides the value of the last PM response
+> from Display Engine to PCU.
+> This debugfs will be used by DC9 IGT test to know about "DC9 Ready"
+I would rephrase it as "This debugs DC9 Ready but will be used by dc9 igt test .
+It will also print the useful debug information from Display Engine to PCU mailbox register"
+> status.
+> B.Spec : 49501, 49502
+> 
+> V2:
+> Added a functional print to debugfs. [Jani Nikula]
+> 
+> V3:
+> Used separate variables to store the register values and also used
+> REG_GENMASK and REG_BIT for mask preparation. [Anshuman Gupta]
+> 
+> Removed reading of register contents. Replaced local variable with yesno().
+> Placed register macros separately, distinguishing from other macros. [Jani
+> Nikula]
+> 
+> Signed-off-by: Saichandana S <saichandana.s@intel.com>
+> ---
+>  .../drm/i915/display/intel_display_debugfs.c  | 23
+> +++++++++++++++++++
+>  drivers/gpu/drm/i915/i915_reg.h               | 10 ++++++++
+>  2 files changed, 33 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+> b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+> index cd7e5519ee7d..e5997debb8e5 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+> @@ -559,6 +559,28 @@ static int i915_dmc_info(struct seq_file *m, void
+> *unused)
+>  	return 0;
+>  }
+> 
+> +static int i915_pm_req_res_info(struct seq_file *m, void *unused) {
+> +	struct drm_i915_private *dev_priv = node_to_i915(m->private);
+Please use i915 as variable as Jani has suggested earlier.
+Thanks,
+Anshuman.
+> +	struct intel_csr *csr = &dev_priv->csr;
+> +	u32 DC9_status;
+> +
+> +	if (!HAS_CSR(dev_priv))
+> +		return -ENODEV;
+> +	if (!csr->dmc_payload)
+> +		return 0;
+> +	DC9_status = intel_de_read(dev_priv, PM_RSP_DBG_1) &
+> +PM_RESP_DC9_READY;
+> +
+> +	seq_printf(m, "Time to Next Fill : 0x%08x\n",
+> +		   intel_de_read(dev_priv, PM_RSP_DBG_0) &
+> PM_RESP_TTNF_MASK);
+> +	seq_printf(m, "Time to Next VBI : 0x%08x\n",
+> +		   (intel_de_read(dev_priv, PM_RSP_DBG_0) &
+> PM_RESP_TTNVBI_MASK) >> 16);
+> +	seq_printf(m, "Selective Exit Latency : 0x%08x\n",
+> +		   intel_de_read(dev_priv, PM_RSP_DBG_1) &
+> PM_RESP_SEL_EXIT_LATENCY_MASK);
+> +	seq_printf(m, "DC9 Ready : %s\n", yesno(DC9_status));
+> +	return 0;
+> +}
+> +
+>  static void intel_seq_print_mode(struct seq_file *m, int tabs,
+>  				 const struct drm_display_mode *mode)  {
+> @@ -2100,6 +2122,7 @@ static const struct drm_info_list
+> intel_display_debugfs_list[] = {
+>  	{"i915_edp_psr_status", i915_edp_psr_status, 0},
+>  	{"i915_power_domain_info", i915_power_domain_info, 0},
+>  	{"i915_dmc_info", i915_dmc_info, 0},
+> +	{"i915_pm_req_res_info", i915_pm_req_res_info, 0},
+>  	{"i915_display_info", i915_display_info, 0},
+>  	{"i915_shared_dplls_info", i915_shared_dplls_info, 0},
+>  	{"i915_dp_mst_info", i915_dp_mst_info, 0}, diff --git
+> a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+> index 0023c023f472..8c91d598dc29 100644
+> --- a/drivers/gpu/drm/i915/i915_reg.h
+> +++ b/drivers/gpu/drm/i915/i915_reg.h
+> @@ -12423,4 +12423,14 @@ enum skl_power_gate {
+>  #define TGL_ROOT_DEVICE_SKU_ULX		0x2
+>  #define TGL_ROOT_DEVICE_SKU_ULT		0x4
+> 
+> +/*These registers are of functional registers for PM debug request and
+> response registers*/
+> +#define PM_REQ_DBG_0				_MMIO(0x45284)
+> +#define PM_REQ_DBG_1				_MMIO(0x45288)
+> +#define PM_RSP_DBG_0				_MMIO(0x4528C)
+> +#define   PM_RESP_TTNF_MASK			REG_GENMASK(15,
+> 0)
+> +#define   PM_RESP_TTNVBI_MASK			REG_GENMASK(31,
+> 16)
+> +#define PM_RSP_DBG_1				_MMIO(0x45290)
+> +#define   PM_RESP_SEL_EXIT_LATENCY_MASK
+> 	REG_GENMASK(2, 0)
+> +#define   PM_RESP_DC9_READY			REG_BIT(15)
+> +
+>  #endif /* _I915_REG_H_ */
+> --
+> 2.30.0
 
-tbh if you run i915.ko on 32b kernels, on a modern platform, you deserve
-all the pain you get. There's quite a bit of work going on to essentially
-make kmap functions worse on 32b (we're not yet at the stage where people
-propose to nuke them, but getting there slowly), so designing code today
-with them in mind as primary justification is backwards.
-
-What we can't do is keep kmap around forever, it'd need to be something
-like vmap that has a long-term mapping intention behind it. And at that
-point it's probably equally amounts of work to just go back to ad-hoc
-kmap. Also the rules have changed somewhat with kmap_local anyway, a kmap
-is a lot less painful in the code than it was with kmap_atomic.
--Daniel
--- 
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
