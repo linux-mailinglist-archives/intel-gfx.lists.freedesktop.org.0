@@ -1,49 +1,55 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 334EC2F2B18
-	for <lists+intel-gfx@lfdr.de>; Tue, 12 Jan 2021 10:21:26 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id F09B92F2B55
+	for <lists+intel-gfx@lfdr.de>; Tue, 12 Jan 2021 10:34:00 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7F8C56E18E;
-	Tue, 12 Jan 2021 09:21:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4D2A56E197;
+	Tue, 12 Jan 2021 09:33:59 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ACA616E18E
- for <intel-gfx@lists.freedesktop.org>; Tue, 12 Jan 2021 09:21:21 +0000 (UTC)
-IronPort-SDR: rR2JlDLWnSm5/BfrP9qLiLZ8kE5yFDa08qBmTb77g/jAsPHMZRlDdaPaZ44W4cAuFHdSPmQ16J
- k7fmT6obt+Og==
-X-IronPort-AV: E=McAfee;i="6000,8403,9861"; a="242080718"
-X-IronPort-AV: E=Sophos;i="5.79,341,1602572400"; d="scan'208";a="242080718"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Jan 2021 01:21:21 -0800
-IronPort-SDR: GquImdPlMzfhb7JREDaY7EBifcVJYoEyvBo4pKGae3NJu1GnZEP0twGwzUanKyKInMGaGyc2P0
- 5x6LNN8TZ+3Q==
-X-IronPort-AV: E=Sophos;i="5.79,341,1602572400"; d="scan'208";a="352954557"
-Received: from alexbor-mobl2.ger.corp.intel.com (HELO [10.249.94.7])
- ([10.249.94.7])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Jan 2021 01:21:19 -0800
-To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
-References: <20210111105735.21515-1-chris@chris-wilson.co.uk>
- <20210111105735.21515-3-chris@chris-wilson.co.uk>
- <24903f8e-4f53-c0bd-4ced-7161b505f06d@linux.intel.com>
- <161038246850.28181.16757116420949491976@build.alporthouse.com>
- <c8a89bfa-f5df-5f41-f5d9-a5042226e5ba@linux.intel.com>
- <161040207613.28181.5503270808079806649@build.alporthouse.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-Message-ID: <ca8e82e6-7ec3-ffe9-f151-6f08bd304333@linux.intel.com>
-Date: Tue, 12 Jan 2021 09:21:17 +0000
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.5.0
+Received: from mail-qk1-x72c.google.com (mail-qk1-x72c.google.com
+ [IPv6:2607:f8b0:4864:20::72c])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0F7776E197
+ for <intel-gfx@lists.freedesktop.org>; Tue, 12 Jan 2021 09:33:58 +0000 (UTC)
+Received: by mail-qk1-x72c.google.com with SMTP id b64so1268641qkc.12
+ for <intel-gfx@lists.freedesktop.org>; Tue, 12 Jan 2021 01:33:57 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc:content-transfer-encoding;
+ bh=qO1O1wqcHSC8eOcfRrao1g+NpNo3wGCH/JK9T+cGKS0=;
+ b=Vw1gryqAAV9AbMgJ/deoA00omk2zCErWoAKv9sLiuMVGl6A5ZMLcAsDXLEsEDyXTT8
+ Mpl4NpGgg1qfJXtHkoV960hsjkZdx6UKiRGNcqEMF0E+57bWKaQwDCSLe8zdgVbJ1XgF
+ VwsaXdeU0uAonPF6yPfUhCdxVmuEzRISZRoUO38gEFsdXoaMVjWnan/ble+aCib74VTn
+ iExwWoadByiI63K5UYh/IGE1eli17V+7IiPfxwD6if7CjGj9o4gb0ybIx9Dc2eeA9Pzc
+ bkseoapJBNh1ozTRdyEdd5KAR3upsZ0RsZFVcmp0817CjZlq98GLgm5Fx5Vzz5XVbaM0
+ tZ+A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc:content-transfer-encoding;
+ bh=qO1O1wqcHSC8eOcfRrao1g+NpNo3wGCH/JK9T+cGKS0=;
+ b=omMzo2qtK4HBpK4SROLlZy8u1X2oEi6gW8WnqOVrCyy31bWvjbLtD1/6lHZ42+3MK3
+ aDoxXKZevdCyvivgT+dz9Ev1OtwRv3OypLHqiMd5LYV+h4SfN6uLQvf2eQ1X8XsaLirK
+ effsgjbut0tE48STAOWvTnSTlkeDad/sVcMUi4wVx88x9gkQzAw9r6uCXn/ZEqMk+Pwl
+ TgyDMQLNatF8XLfneOXBwXsl8JMYAOZ/Hxyhwo9oCDFnQCyersKhsHzSz3hmRTA5WiYM
+ Gqph9GzIjEg0Q51lIsCVGNb11XvCWbTMXBT4I4iDQN8X6l7XtnQP6DAc8OkM65roUYeq
+ ZGSg==
+X-Gm-Message-State: AOAM5310FQCSa6zA4IDHy0Asih13lwq4yhCe0f8z1KXMsm0IqCq2NGA/
+ C+301G7VNWbO50tJlEO9aUc0k048czWn+Z2uSfiiEKEK/5A=
+X-Google-Smtp-Source: ABdhPJy83NLjwLpGO7d8VMZDK6SN2XyRl9x+v4r3U420Z6gvGDViLitutzrLMYkh78PCyGCQ6tw6SpevgdCf4BVVWfo=
+X-Received: by 2002:a37:a8c4:: with SMTP id r187mr3474391qke.481.1610444037246; 
+ Tue, 12 Jan 2021 01:33:57 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <161040207613.28181.5503270808079806649@build.alporthouse.com>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH 3/4] drm/i915/gt: Perform an arbitration
- check before busywaiting
+References: <20210112015000.16108-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20210112015000.16108-1-chris@chris-wilson.co.uk>
+From: Matthew Auld <matthew.william.auld@gmail.com>
+Date: Tue, 12 Jan 2021 09:33:30 +0000
+Message-ID: <CAM0jSHM7yrAef56omDsCofdL6+9hGTpwpp4bZ3GQF-qcZ-cZEg@mail.gmail.com>
+To: Chris Wilson <chris@chris-wilson.co.uk>
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/gem: Remove stolen node before
+ releasing the region
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,113 +62,60 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-
-On 11/01/2021 21:54, Chris Wilson wrote:
-> Quoting Tvrtko Ursulin (2021-01-11 17:12:57)
->>
->> On 11/01/2021 16:27, Chris Wilson wrote:
->>> Quoting Tvrtko Ursulin (2021-01-11 16:19:40)
->>>>
->>>> On 11/01/2021 10:57, Chris Wilson wrote:
->>>>> During igt_reset_nop_engine, it was observed that an unexpected failed
->>>>> engine reset lead to us busywaiting on the stop-ring semaphore (set
->>>>> during the reset preparations) on the first request afterwards. There was
->>>>> no explicit MI_ARB_CHECK in this sequence as the presumption was that
->>>>> the failed MI_SEMAPHORE_WAIT would itself act as an arbitration point.
->>>>> It did not in this circumstance, so force it.
->>>>
->>>> In other words MI_SEMAPHORE_POLL is not a preemption point? Can't
->>>> remember if I knew that or not..
->>>
->>> MI_SEMAPHORE_WAIT | POLL is most definitely a preemption point on a
->>> miss.
->>>
->>>> 1)
->>>> Why not the same handling in !gen12 version?
->>>
->>> Because I think it's a bug in tgl [a0 at least]. I think I've seen the
->>> same symptoms on tgl before, but not earlier. This is the first time the
->>> sequence clicked as to why it was busy spinning. Random engine reset
->>> failures are rare enough -- I was meant to also write a test case to
->>> inject failure.
->>
->> Random engine reset failure you think is a TGL issue?
-> 
-> The MI_SEMAPHORE_WAIT | POLL miss not generating an arbitration point.
-> We have quite a few selftests and IGT that use this feature.
-> 
-> So I was wondering if this was similar to one of those tgl issues with
-> semaphores and CS events.
-> 
-> The random engine reset failure here is also decidedly odd. The engine
-> was idle!
-> 
->>>> 2)
->>>> Failed reset leads to busy-hang in following request _tail_? But there
->>>> is an arb check at the start of following request as well. Or in cases
->>>> where we context switch into the middle of a previously executing request?
->>>
->>> It was the first request submitted after the failed reset. We expect to
->>> clear the ring-stop flag on the CS IDLE->ACTIVE event.
->>>
->>>> But why would that busy hang? Hasn't the failed request unpaused the ring?
->>>
->>> The engine was idle at the time of the failed reset. We left the
->>> ring-stop set, and submitted the next batch of requests. We hit the
->>> MI_SEMAPHORE_WAIT(ring-stop) at the end of the first request, but
->>> without hitting an arbitration point (first request, no init-breadcrumb
->>> in this case), the semaphore was stuck.
->>
->> So a kernel context request?
-> 
-> Ish. The selftest is using empty requests, and not emitting the
-> initial breadcrumb. (So acting like a kernel context.)
-> 
->> Why hasn't IDLE->ACTIVE cleared ring stop?
-> 
-> There hasn't been an idle->active event, not a single CS event after
-> writing to ELSP and timing out while still spinning on the semaphore.
-> 
->> Presumably this CSB must come after the first request has been submitted
->> so apparently I am still not getting how it hangs.
-> 
-> It was never sent. The context is still in pending[0] (not active[0])
-> and there's no sign in the trace of any interrupts/tasklet handing other
-> than the semaphore-wait interrupt.
->   
->> Just because igt_reset_nop_engine does things "quickly"? It prevents the
->> CSB from arriving?
-> 
-> More that the since we do very little we hit the semaphore before the CS
-> has recovered from the shock of being asked to do something.
-> 
->> So ARB_CHECK pickups up on the fact ELSP has been
->> rewritten before the IDLE->ACTIVE even received and/or engine reset
->> prevented it from arriving?
-> 
-> The ARB_CHECK should trigger the CS to generate the IDLE->ACTIVE event.
-> (Of course assuming that the bug is in the semaphore not triggering the
-> event due to strange circumstances and not a bug in the event generator
-> itself.) I'm suspicious of the semaphore due to the earlier CS bugs with
-> lite-restores + semaphores, and am expecting that since the MI_ARB_CHECK
-> is explicit, it actually works.
-
-Okay got it, thanks. I suggest it would be good to slightly improve the 
-commit message so it is clear what are the suspected TGL quirks. But in 
-general:
-
-Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-
-Regards,
-
-Tvrtko
-
-
+On Tue, 12 Jan 2021 at 01:50, Chris Wilson <chris@chris-wilson.co.uk> wrote:
+>
+> If this stolen object holds the last reference to the region, we need to
+> remove our drm_mm_node before freeing the region's drm_mm.
+>
+> <4> [431.679591] Memory manager not clean during takedown.
+> <4> [431.679633] WARNING: CPU: 0 PID: 110 at drivers/gpu/drm/drm_mm.c:999 drm_mm_takedown+0x51/0x100
+> <4> [431.679655] Modules linked in: i915 vgem btusb snd_hda_codec_hdmi btrtl btbcm btintel snd_hda_codec_realtek snd_hda_codec_generic ledtrig_audio bluetooth coretemp crct10dif_pclmul crc32_pclmul ghash_clmulni_intel ecdh_generic ecc r8169 realtek lpc_ich snd_intel_dspcfg snd_hda_codec snd_hwdep snd_hda_core snd_pcm pinctrl_cherryview prime_numbers [last unloaded: i915]
+> <4> [431.679883] CPU: 0 PID: 110 Comm: kworker/u4:3 Tainted: G     U            5.11.0-rc3-CI-CI_DRM_9583+ #1
+> <4> [431.679895] Hardware name:  /NUC5CPYB, BIOS PYBSWCEL.86A.0058.2016.1102.1842 11/02/2016
+> <4> [431.679905] Workqueue: i915 __i915_gem_free_work [i915]
+> <4> [431.680831] RIP: 0010:drm_mm_takedown+0x51/0x100
+> <4> [431.680850] Code: 44 24 08 65 48 33 04 25 28 00 00 00 0f 85 b6 00 00 00 48 83 c4 10 5b 5d 41 5c c3 48 89 fb 48 c7 c7 c8 b7 38 82 e8 00 d6 37 00 <0f> 0b 48 8b 3d 96 d5 d1 00 ba 00 10 00 00 be c0 0c 00 00 e8 d7 64
+> <4> [431.680862] RSP: 0018:ffffc90000ad7dc0 EFLAGS: 00010282
+> <4> [431.680879] RAX: 0000000000000000 RBX: ffff8881109aa140 RCX: 0000000000000001
+> <4> [431.680888] RDX: 0000000080000001 RSI: ffffffff8235a70f RDI: 00000000ffffffff
+> <4> [431.680897] RBP: ffff8881109aa178 R08: 0000000000000001 R09: 0000000000000001
+> <4> [431.680906] R10: 0000000025eaec48 R11: 00000000f5b271a7 R12: ffff88810a38ddc0
+> <4> [431.680916] R13: 00000000ffffffff R14: ffffffff82861b70 R15: ffff88810b715538
+> <4> [431.680925] FS:  0000000000000000(0000) GS:ffff88817b800000(0000) knlGS:0000000000000000
+> <4> [431.680935] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+> <4> [431.680945] CR2: 000056377cfd7c48 CR3: 00000001045de000 CR4: 00000000001006f0
+> <4> [431.680954] Call Trace:
+> <4> [431.680977]  __intel_memory_region_destroy+0x24/0x50 [i915]
+> <4> [431.681340]  i915_gem_object_release_stolen+0x26/0x40 [i915]
+> <4> [431.681637]  __i915_gem_free_objects.isra.21+0x1ef/0x3b0 [i915]
+> <4> [431.681935]  process_one_work+0x270/0x5c0
+> <4> [431.682022]  worker_thread+0x37/0x380
+> <4> [431.682047]  ? process_one_work+0x5c0/0x5c0
+> <4> [431.682062]  kthread+0x146/0x170
+> <4> [431.682077]  ? kthread_park+0x80/0x80
+> <4> [431.682098]  ret_from_fork+0x22/0x30
+> <4> [431.682153] irq event stamp: 1872905
+> <4> [431.682162] hardirqs last  enabled at (1872911): [<ffffffff8112bd9a>] console_unlock+0x49a/0x580
+> <4> [431.682176] hardirqs last disabled at (1872916): [<ffffffff8112bd06>] console_unlock+0x406/0x580
+> <4> [431.682187] softirqs last  enabled at (1872850): [<ffffffff81e00342>] __do_softirq+0x342/0x48e
+> <4> [431.682201] softirqs last disabled at (1872845): [<ffffffff81c00f52>] asm_call_irq_on_stack+0x12/0x20
+> <4> [431.682214] ---[ end trace 5d3bcd818e2e3816 ]---
+> <3> [431.686188] [drm:drm_mm_takedown] *ERROR* node [0002d000 + 00004000]: inserted at
+>  drm_mm_insert_node_in_range+0x34a/0x5b0
+>  i915_gem_stolen_insert_node_in_range+0x7b/0xa0 [i915]
+>  _i915_gem_object_create_stolen+0x83/0xd0 [i915]
+>  i915_gem_object_create_region+0x61/0x140 [i915]
+>  intel_engine_create_ring+0x176/0x230 [i915]
+>
+> Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/2927
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Reviewed-by: Matthew Auld <matthew.auld@intel.com>
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
