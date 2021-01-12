@@ -1,31 +1,42 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id DC41C2F3B66
-	for <lists+intel-gfx@lfdr.de>; Tue, 12 Jan 2021 21:10:08 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5F9572F3B8B
+	for <lists+intel-gfx@lfdr.de>; Tue, 12 Jan 2021 21:35:21 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 338E18995F;
-	Tue, 12 Jan 2021 20:10:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 611F88989A;
+	Tue, 12 Jan 2021 20:35:18 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id BA145898F1;
- Tue, 12 Jan 2021 20:10:05 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id B1394A8836;
- Tue, 12 Jan 2021 20:10:05 +0000 (UTC)
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 01F9A8989A
+ for <intel-gfx@lists.freedesktop.org>; Tue, 12 Jan 2021 20:35:16 +0000 (UTC)
+IronPort-SDR: QIaxsftpYKNsC7zHYhcZo1DsO+Z6ZBP98G8xeImF8QQsfJgqx5MQ2gbuWt3f1IxjtgxOsVicH7
+ 6jzLqnWFIBzQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9862"; a="262888816"
+X-IronPort-AV: E=Sophos;i="5.79,342,1602572400"; d="scan'208";a="262888816"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Jan 2021 12:35:15 -0800
+IronPort-SDR: HA3h972wD+gASQ3j/StswCJJgKqJjf5+xfp5dPdkKqXOq2NT5VWP7hCAWwPB7knpgSEZ+UKlDZ
+ p9wO+rsYZ95Q==
+X-IronPort-AV: E=Sophos;i="5.79,342,1602572400"; d="scan'208";a="381568252"
+Received: from ideak-desk.fi.intel.com ([10.237.68.141])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Jan 2021 12:35:14 -0800
+Date: Tue, 12 Jan 2021 22:35:10 +0200
+From: Imre Deak <imre.deak@intel.com>
+To: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+Message-ID: <20210112203510.GB330298@ideak-desk.fi.intel.com>
+References: <20201229172201.4155327-1-imre.deak@intel.com>
+ <20201229172201.4155327-2-imre.deak@intel.com>
+ <X/3mIA6nvmhYK2SK@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jani Nikula" <jani.nikula@intel.com>
-Date: Tue, 12 Jan 2021 20:10:05 -0000
-Message-ID: <161048220569.1917.16625418473230752006@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210112172246.11933-1-jani.nikula@intel.com>
-In-Reply-To: <20210112172246.11933-1-jani.nikula@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/lmem=3A_make_intel=5Fregion=5Flmem=5Fops_static?=
+Content-Disposition: inline
+In-Reply-To: <X/3mIA6nvmhYK2SK@intel.com>
+Subject: Re: [Intel-gfx] [PATCH 2/2] drm/i915/dp: Fix LTTPR vswing/pre-emp
+ setting in non-transparent mode
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,184 +49,166 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
+Reply-To: imre.deak@intel.com
 Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============1932164703=="
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============1932164703==
-Content-Type: multipart/alternative;
- boundary="===============4138645712346187638=="
+On Tue, Jan 12, 2021 at 08:10:40PM +0200, Ville Syrj=E4l=E4 wrote:
+> On Tue, Dec 29, 2020 at 07:22:01PM +0200, Imre Deak wrote:
+> > The DP PHY vswing/pre-emphasis level programming the driver does is
+> > related to the DPTX -> first LTTPR link segment only. Accordingly it
+> > should be only programmed when link training the first LTTPR and kept
+> > as-is when training subsequent LTTPRs and the DPRX. For these latter
+> > PHYs the vs/pe levels will be set in response to writing the
+> > DP_TRAINING_LANEx_SET_PHY_REPEATERy DPCD registers (by an upstream LTTPR
+> > TX PHY snooping this write access of its downstream LTTPR/DPRX RX PHY).
+> > The above is also described in DP Standard v2.0 under 3.6.6.1.
+> > =
 
---===============4138645712346187638==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+> > While at it simplify and add the LTTPR that is link trained to the debug
+> > message in intel_dp_set_signal_levels().
+> > =
 
-== Series Details ==
+> > Fixes: b30edfd8d0b4 ("drm/i915: Switch to LTTPR non-transparent mode li=
+nk training")
+> > Cc: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> > Signed-off-by: Imre Deak <imre.deak@intel.com>
+> > ---
+> >  drivers/gpu/drm/i915/display/intel_dp.c       |  2 +-
+> >  .../drm/i915/display/intel_dp_link_training.c | 19 +++++++++++--------
+> >  .../drm/i915/display/intel_dp_link_training.h |  3 ++-
+> >  3 files changed, 14 insertions(+), 10 deletions(-)
+> > =
 
-Series: drm/i915/lmem: make intel_region_lmem_ops static
-URL   : https://patchwork.freedesktop.org/series/85763/
-State : success
+> > diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/=
+i915/display/intel_dp.c
+> > index 88a6033d6867..16c563f1a515 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> > @@ -6057,7 +6057,7 @@ static void intel_dp_process_phy_request(struct i=
+ntel_dp *intel_dp,
+> >  =
 
-== Summary ==
+> >  	intel_dp_autotest_phy_ddi_disable(intel_dp, crtc_state);
+> >  =
 
-CI Bug Log - changes from CI_DRM_9595 -> Patchwork_19327
-====================================================
+> > -	intel_dp_set_signal_levels(intel_dp, crtc_state);
+> > +	intel_dp_set_signal_levels(intel_dp, crtc_state, DP_PHY_DPRX);
+> >  =
 
-Summary
--------
+> >  	intel_dp_phy_pattern_update(intel_dp, crtc_state);
+> >  =
 
-  **SUCCESS**
+> > diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_training.c b/dr=
+ivers/gpu/drm/i915/display/intel_dp_link_training.c
+> > index 7876e781f698..d8c6d7054d11 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+> > @@ -335,21 +335,24 @@ intel_dp_set_link_train(struct intel_dp *intel_dp,
+> >  }
+> >  =
 
-  No regressions found.
+> >  void intel_dp_set_signal_levels(struct intel_dp *intel_dp,
+> > -				const struct intel_crtc_state *crtc_state)
+> > +				const struct intel_crtc_state *crtc_state,
+> > +				enum drm_dp_phy dp_phy)
+> >  {
+> >  	struct drm_i915_private *dev_priv =3D dp_to_i915(intel_dp);
+> >  	u8 train_set =3D intel_dp->train_set[0];
+> > +	char phy_name[10];
+> >  =
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19327/index.html
+> > -	drm_dbg_kms(&dev_priv->drm, "Using vswing level %d%s\n",
+> > +	drm_dbg_kms(&dev_priv->drm, "Using vswing level %d%s, pre-emphasis le=
+vel %d%s, at %s\n",
+> >  		    train_set & DP_TRAIN_VOLTAGE_SWING_MASK,
+> > -		    train_set & DP_TRAIN_MAX_SWING_REACHED ? " (max)" : "");
+> > -	drm_dbg_kms(&dev_priv->drm, "Using pre-emphasis level %d%s\n",
+> > +		    train_set & DP_TRAIN_MAX_SWING_REACHED ? " (max)" : "",
+> >  		    (train_set & DP_TRAIN_PRE_EMPHASIS_MASK) >>
+> >  		    DP_TRAIN_PRE_EMPHASIS_SHIFT,
+> >  		    train_set & DP_TRAIN_MAX_PRE_EMPHASIS_REACHED ?
+> > -		    " (max)" : "");
+> > +		    " (max)" : "",
+> > +		    intel_dp_phy_name(dp_phy, phy_name, sizeof(phy_name)));
+> >  =
 
-Known issues
-------------
+> > -	intel_dp->set_signal_levels(intel_dp, crtc_state);
+> > +	if (intel_dp_phy_is_downstream_of_source(intel_dp, dp_phy))
+> > +		intel_dp->set_signal_levels(intel_dp, crtc_state);
+> =
 
-  Here are the changes found in Patchwork_19327 that come from known issues:
+> The function name is a bit misleading now I guess since we're not
+> actually setting the signal levels here for the LTTPRs. But since
+> the debug print is here I guess we want to still call this. And as
+> usual I can't think of a better name for this, so I'm willing
+> to accept that slight inconsistency.
 
-### IGT changes ###
+Agreed, will try to make that more consistent as a follow up.
 
-#### Issues hit ####
+Btw, checking again the callers of the above, looks like
+intel_dp_process_phy_request() also misses the DPCD write for the vs/pe
+settings.
 
-  * igt@prime_self_import@basic-with_one_bo_two_files:
-    - fi-tgl-y:           [PASS][1] -> [DMESG-WARN][2] ([i915#402]) +1 similar issue
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9595/fi-tgl-y/igt@prime_self_import@basic-with_one_bo_two_files.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19327/fi-tgl-y/igt@prime_self_import@basic-with_one_bo_two_files.html
+> Reviewed-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> =
 
-  
-#### Possible fixes ####
+> >  }
+> >  =
 
-  * igt@debugfs_test@read_all_entries:
-    - fi-tgl-y:           [DMESG-WARN][3] ([i915#402]) -> [PASS][4] +2 similar issues
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9595/fi-tgl-y/igt@debugfs_test@read_all_entries.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19327/fi-tgl-y/igt@debugfs_test@read_all_entries.html
+> >  static bool
+> > @@ -359,7 +362,7 @@ intel_dp_reset_link_train(struct intel_dp *intel_dp,
+> >  			  u8 dp_train_pat)
+> >  {
+> >  	memset(intel_dp->train_set, 0, sizeof(intel_dp->train_set));
+> > -	intel_dp_set_signal_levels(intel_dp, crtc_state);
+> > +	intel_dp_set_signal_levels(intel_dp, crtc_state, dp_phy);
+> >  	return intel_dp_set_link_train(intel_dp, crtc_state, dp_phy, dp_train=
+_pat);
+> >  }
+> >  =
 
-  * igt@gem_exec_suspend@basic-s3:
-    - fi-tgl-u2:          [FAIL][5] ([i915#1888]) -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9595/fi-tgl-u2/igt@gem_exec_suspend@basic-s3.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19327/fi-tgl-u2/igt@gem_exec_suspend@basic-s3.html
+> > @@ -373,7 +376,7 @@ intel_dp_update_link_train(struct intel_dp *intel_d=
+p,
+> >  			    DP_TRAINING_LANE0_SET_PHY_REPEATER(dp_phy);
+> >  	int ret;
+> >  =
 
-  
-  [i915#1888]: https://gitlab.freedesktop.org/drm/intel/issues/1888
-  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
+> > -	intel_dp_set_signal_levels(intel_dp, crtc_state);
+> > +	intel_dp_set_signal_levels(intel_dp, crtc_state, dp_phy);
+> >  =
 
+> >  	ret =3D drm_dp_dpcd_write(&intel_dp->aux, reg,
+> >  				intel_dp->train_set, crtc_state->lane_count);
+> > diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_training.h b/dr=
+ivers/gpu/drm/i915/display/intel_dp_link_training.h
+> > index c3110c032bc2..6a1f76bd8c75 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_dp_link_training.h
+> > +++ b/drivers/gpu/drm/i915/display/intel_dp_link_training.h
+> > @@ -18,7 +18,8 @@ void intel_dp_get_adjust_train(struct intel_dp *intel=
+_dp,
+> >  			       enum drm_dp_phy dp_phy,
+> >  			       const u8 link_status[DP_LINK_STATUS_SIZE]);
+> >  void intel_dp_set_signal_levels(struct intel_dp *intel_dp,
+> > -				const struct intel_crtc_state *crtc_state);
+> > +				const struct intel_crtc_state *crtc_state,
+> > +				enum drm_dp_phy dp_phy);
+> >  void intel_dp_start_link_train(struct intel_dp *intel_dp,
+> >  			       const struct intel_crtc_state *crtc_state);
+> >  void intel_dp_stop_link_train(struct intel_dp *intel_dp,
+> > -- =
 
-Participating hosts (44 -> 38)
-------------------------------
+> > 2.25.1
+> =
 
-  Missing    (6): fi-ilk-m540 fi-hsw-4200u fi-byt-j1900 fi-bsw-cyan fi-ctg-p8600 fi-bdw-samus 
+> -- =
 
-
-Build changes
--------------
-
-  * Linux: CI_DRM_9595 -> Patchwork_19327
-
-  CI-20190529: 20190529
-  CI_DRM_9595: 3cc2b1cffef4d3e0c2cc38285e94334d248c2c5d @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5956: d9bc7773043d11d37ae5b03bf18979541a9c7ef4 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_19327: be6327982c466aed23952ad3efaa4880ca6a0e01 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-be6327982c46 drm/i915/lmem: make intel_region_lmem_ops static
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19327/index.html
-
---===============4138645712346187638==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/lmem: make intel_region_lmem_ops static</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/85763/">https://patchwork.freedesktop.org/series/85763/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19327/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19327/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_9595 -&gt; Patchwork_19327</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19327/index.html</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_19327 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@prime_self_import@basic-with_one_bo_two_files:<ul>
-<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9595/fi-tgl-y/igt@prime_self_import@basic-with_one_bo_two_files.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19327/fi-tgl-y/igt@prime_self_import@basic-with_one_bo_two_files.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) +1 similar issue</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@debugfs_test@read_all_entries:</p>
-<ul>
-<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9595/fi-tgl-y/igt@debugfs_test@read_all_entries.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19327/fi-tgl-y/igt@debugfs_test@read_all_entries.html">PASS</a> +2 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_suspend@basic-s3:</p>
-<ul>
-<li>fi-tgl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9595/fi-tgl-u2/igt@gem_exec_suspend@basic-s3.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1888">i915#1888</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19327/fi-tgl-u2/igt@gem_exec_suspend@basic-s3.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Participating hosts (44 -&gt; 38)</h2>
-<p>Missing    (6): fi-ilk-m540 fi-hsw-4200u fi-byt-j1900 fi-bsw-cyan fi-ctg-p8600 fi-bdw-samus </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_9595 -&gt; Patchwork_19327</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_9595: 3cc2b1cffef4d3e0c2cc38285e94334d248c2c5d @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_5956: d9bc7773043d11d37ae5b03bf18979541a9c7ef4 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
-  Patchwork_19327: be6327982c466aed23952ad3efaa4880ca6a0e01 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>be6327982c46 drm/i915/lmem: make intel_region_lmem_ops static</p>
-
-</body>
-</html>
-
---===============4138645712346187638==--
-
---===============1932164703==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
+> Ville Syrj=E4l=E4
+> Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============1932164703==--
