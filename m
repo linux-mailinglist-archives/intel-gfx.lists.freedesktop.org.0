@@ -2,46 +2,37 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7D8982F35D7
-	for <lists+intel-gfx@lfdr.de>; Tue, 12 Jan 2021 17:32:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5A0412F35F1
+	for <lists+intel-gfx@lfdr.de>; Tue, 12 Jan 2021 17:43:23 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 884EE89B3B;
-	Tue, 12 Jan 2021 16:32:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DC8F289C0A;
+	Tue, 12 Jan 2021 16:43:20 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 58DD589B3B
- for <intel-gfx@lists.freedesktop.org>; Tue, 12 Jan 2021 16:32:15 +0000 (UTC)
-IronPort-SDR: vrrvgAgUVCZil4XVTeeu55d8RrMsKrWEjHq0SVHgyoBgia+/86M1PdrzQSGugqmqvyqCYKIKI/
- iLectyabZmFg==
-X-IronPort-AV: E=McAfee;i="6000,8403,9862"; a="178217467"
-X-IronPort-AV: E=Sophos;i="5.79,341,1602572400"; d="scan'208";a="178217467"
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1D88D89C0A
+ for <intel-gfx@lists.freedesktop.org>; Tue, 12 Jan 2021 16:43:20 +0000 (UTC)
+IronPort-SDR: Vtm9kt+URDogz4OApkdEA+BMC6Gs19WgfrOBK23eRGQZonCMTXxXIB4K6ksMLYmpTPsZfsWQM7
+ b9SfLyma9mvg==
+X-IronPort-AV: E=McAfee;i="6000,8403,9862"; a="177293997"
+X-IronPort-AV: E=Sophos;i="5.79,341,1602572400"; d="scan'208";a="177293997"
 Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Jan 2021 08:32:14 -0800
-IronPort-SDR: z/MjcB11Uxjul1f3pEXHLVHaM0Z+TpgrNlr9USMOP4cKvqoVQddSUo9ak5gwLT/SXgQGNzLPQa
- MCLl1HompvSg==
-X-IronPort-AV: E=Sophos;i="5.79,341,1602572400"; d="scan'208";a="381484936"
-Received: from vbucoci-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.249.39.237])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Jan 2021 08:43:17 -0800
+IronPort-SDR: 3KqsjR681ieS7aiQECtZzCguQuLLD511XAnxyHSDfxFpHlNFAXH7sDcev3EVS055xG2H7tKfdj
+ hLju5QzoaQ8g==
+X-IronPort-AV: E=Sophos;i="5.79,341,1602572400"; d="scan'208";a="381488037"
+Received: from epetresx-mobl.ger.corp.intel.com (HELO
+ mwauld-desk1.ger.corp.intel.com) ([10.252.6.143])
  by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Jan 2021 08:32:12 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Aditya Swarup <aditya.swarup@intel.com>,
- Matt Roper <matthew.d.roper@intel.com>
-In-Reply-To: <d533f8a7-9ffb-9c38-5e90-c1b9a8c984b4@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20210108231853.2859646-1-aditya.swarup@intel.com>
- <20210108231853.2859646-2-aditya.swarup@intel.com>
- <20210108234440.GO3894148@mdroper-desk1.amr.corp.intel.com>
- <878s8zw7tw.fsf@intel.com> <875z43w7kq.fsf@intel.com>
- <20210111205743.GC4758@mdroper-desk1.amr.corp.intel.com>
- <d533f8a7-9ffb-9c38-5e90-c1b9a8c984b4@intel.com>
-Date: Tue, 12 Jan 2021 18:32:09 +0200
-Message-ID: <87lfcyt8ty.fsf@intel.com>
+ 12 Jan 2021 08:43:16 -0800
+From: Matthew Auld <matthew.auld@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Tue, 12 Jan 2021 16:43:00 +0000
+Message-Id: <20210112164300.356524-1-matthew.auld@intel.com>
+X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH 1/2] drm/i915/tgl: Use TGL stepping info for
- applying WAs
+Subject: [Intel-gfx] [PATCH] drm/i915: move region_lmem under gt
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,89 +45,77 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, Lucas De Marchi <lucas.demarchi@intel.com>
+Cc: Chris Wilson <chris@chris-wilson.co.uk>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 11 Jan 2021, Aditya Swarup <aditya.swarup@intel.com> wrote:
-> On 1/11/21 12:57 PM, Matt Roper wrote:
->> On Mon, Jan 11, 2021 at 10:18:45PM +0200, Jani Nikula wrote:
->>> On Mon, 11 Jan 2021, Jani Nikula <jani.nikula@linux.intel.com> wrote:
->>>> On Fri, 08 Jan 2021, Matt Roper <matthew.d.roper@intel.com> wrote:
->>>>> On Fri, Jan 08, 2021 at 03:18:52PM -0800, Aditya Swarup wrote:
->>>>>> TGL adds another level of indirection for applying WA based on stepping
->>>>>> information rather than PCI REVID. So change TGL_REVID enum into
->>>>>> stepping enum and use PCI REVID as index into revid to stepping table to
->>>>>> fetch correct display and GT stepping for application of WAs as
->>>>>> suggested by Matt Roper.
->>>>>
->>>>> So to clarify the goal is to rename "revid" -> "stepping" because the
->>>>> values like "A1," "C0," etc. are't the actual PCI revision ID, but
->>>>> rather descriptions of the stepping of a given IP block; the enum values
->>>>> we use to represent those are arbitrary and don't matter as long as
->>>>> they're monotonically increasing for comparisons.  The PCI revision ID
->>>>> is just the input we use today to deduce what the IP steppings are, and
->>>>> there's talk that we could determine the IP steppings in a different way
->>>>> at some point in the future.
->>>>>
->>>>> Furthermore, since the same scheme will be used at least for ADL-S, we
->>>>> should drop the "TGL" prefix since there's no need to name these general
->>>>> enum values in a platform-specific manner.
->>>>>
->>>>> Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
->>>>>
->>>>> We should probably make the same kind of change to KBL (and use the same
->>>>> stepping enum) too since it has the same kind of extra indirection as
->>>>> TGL/ADL-S, but we can do that as a followup patch.
->>>>
->>>> FWIW I have a wip series changing the whole thing to abstract steppings
->>>> enums that are shared between platforms, but it's in a bit of limbo
->>>> because the previous revid changes were applied to drm-intel-gt-next,
->>>> and it's fallen pretty far out of sync with drm-intel-next. All of this
->>>> really belongs to drm-intel-next, but can't do that until the branches
->>>> sync up again.
->>>
->>> Btw this series doesn't apply to drm-intel-next either, for the same
->>> reason, and the ADL-S platform definition and PCI IDs must *not* be
->>> applied to drm-intel-gt-next.
->
-> The reason behind this patch not cleanly applying on drm-intel-next is because
-> drm/i915/tgl: Add bound checks and simplify TGL REVID macros
-> isn't present on that branch but present on gt-next. 
->
-> The patch doesn't apply on gt-next because of a conflict in the following hunk:
->         /* Wa_1409825376:tgl (pre-prod)*/
-> -       if (IS_TGL_DISP_REVID(dev_priv, TGL_REVID_A0, TGL_REVID_B1))
-> +       if (IS_TGL_DISP_STEPPING(dev_priv, STEP_A0, STEP_B1))
->
-> which can be easily fixed during backmerge process as I was able apply the patch
-> cleanly on gt-next. 
-> I don't understand the "must *not*" reasoning behind not applying this patch on gt-next.
+Device local-memory should be thought of as part the GT, which means it
+should also sit under gt/.
 
-I think I've explained this in several replies in this thread now.
+Suggested-by: Chris Wilson <chris@chris-wilson.co.uk>
+Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+---
+ drivers/gpu/drm/i915/Makefile                     | 2 +-
+ drivers/gpu/drm/i915/{ => gt}/intel_region_lmem.c | 0
+ drivers/gpu/drm/i915/{ => gt}/intel_region_lmem.h | 0
+ drivers/gpu/drm/i915/i915_drv.h                   | 2 +-
+ 4 files changed, 2 insertions(+), 2 deletions(-)
+ rename drivers/gpu/drm/i915/{ => gt}/intel_region_lmem.c (100%)
+ rename drivers/gpu/drm/i915/{ => gt}/intel_region_lmem.h (100%)
 
-> It was common consesus during initial review that separating
-> stepping/revid parsing in a separate .c file will be pushed in after
-> ADLS changes and adding this patch won't add any extra churn, just a
-> minor rebase for your approach.
-
-Misunderstanding I guess. I thought the required changes had already
-been pushed, and we weren't waiting for further changes on this.
-
-I certainly wasn't expecting the generic revid -> stepping rename at
-this point, as I don't think they are required for ADL-S at all. I
-thought the consensus was that I'll do the refactoring.
-
-Anyway, I can deal with the churn and the rebases, no problem.
-
-
-BR,
-Jani.
-
+diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefile
+index 48f82c354611..d6ac946d0407 100644
+--- a/drivers/gpu/drm/i915/Makefile
++++ b/drivers/gpu/drm/i915/Makefile
+@@ -110,6 +110,7 @@ gt-y += \
+ 	gt/intel_mocs.o \
+ 	gt/intel_ppgtt.o \
+ 	gt/intel_rc6.o \
++	gt/intel_region_lmem.o \
+ 	gt/intel_renderstate.o \
+ 	gt/intel_reset.o \
+ 	gt/intel_ring.o \
+@@ -170,7 +171,6 @@ i915-y += \
+ 	  i915_scheduler.o \
+ 	  i915_trace_points.o \
+ 	  i915_vma.o \
+-	  intel_region_lmem.o \
+ 	  intel_wopcm.o
+ 
+ # general-purpose microcontroller (GuC) support
+diff --git a/drivers/gpu/drm/i915/intel_region_lmem.c b/drivers/gpu/drm/i915/gt/intel_region_lmem.c
+similarity index 100%
+rename from drivers/gpu/drm/i915/intel_region_lmem.c
+rename to drivers/gpu/drm/i915/gt/intel_region_lmem.c
+diff --git a/drivers/gpu/drm/i915/intel_region_lmem.h b/drivers/gpu/drm/i915/gt/intel_region_lmem.h
+similarity index 100%
+rename from drivers/gpu/drm/i915/intel_region_lmem.h
+rename to drivers/gpu/drm/i915/gt/intel_region_lmem.h
+diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
+index 7a2b6ac04068..e3d58299b323 100644
+--- a/drivers/gpu/drm/i915/i915_drv.h
++++ b/drivers/gpu/drm/i915/i915_drv.h
+@@ -81,6 +81,7 @@
+ 
+ #include "gt/intel_engine.h"
+ #include "gt/intel_gt_types.h"
++#include "gt/intel_region_lmem.h"
+ #include "gt/intel_workarounds.h"
+ #include "gt/uc/intel_uc.h"
+ 
+@@ -102,7 +103,6 @@
+ #include "i915_vma.h"
+ #include "i915_irq.h"
+ 
+-#include "intel_region_lmem.h"
+ 
+ /* General customization:
+  */
 -- 
-Jani Nikula, Intel Open Source Graphics Center
+2.26.2
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
