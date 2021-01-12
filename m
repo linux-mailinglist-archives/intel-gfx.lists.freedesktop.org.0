@@ -2,37 +2,42 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0A5F22F37A6
-	for <lists+intel-gfx@lfdr.de>; Tue, 12 Jan 2021 18:51:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0D84B2F37C2
+	for <lists+intel-gfx@lfdr.de>; Tue, 12 Jan 2021 18:58:32 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6A77589C48;
-	Tue, 12 Jan 2021 17:51:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D2C7B89C55;
+	Tue, 12 Jan 2021 17:58:29 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9F3E589C48;
- Tue, 12 Jan 2021 17:51:56 +0000 (UTC)
-IronPort-SDR: XbxYJ02w+m44SOK6xd4htH0OQNqIn+RQ9eFCD0valeWcCW64nLkc/sPAX+M7E9AMJiXmZVfQ6j
- OanNQklwWPyA==
-X-IronPort-AV: E=McAfee;i="6000,8403,9862"; a="174573677"
-X-IronPort-AV: E=Sophos;i="5.79,342,1602572400"; d="scan'208";a="174573677"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Jan 2021 09:51:56 -0800
-IronPort-SDR: RJkzVKGTBXwSk8oFuJzvz0ogJPL8wRI/HDp+7Yl3EOub2WsSuMJyB0itSTM4kdplOzMWBCMfZo
- pV06r24VuoFQ==
-X-IronPort-AV: E=Sophos;i="5.79,342,1602572400"; d="scan'208";a="569165583"
-Received: from jdcole-mobl.amr.corp.intel.com (HELO intel.com)
- ([10.209.105.166])
- by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Jan 2021 09:51:53 -0800
-Date: Tue, 12 Jan 2021 12:51:51 -0500
-From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
-Message-ID: <20210112175151.GA90999@intel.com>
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 996B989C55
+ for <intel-gfx@lists.freedesktop.org>; Tue, 12 Jan 2021 17:58:28 +0000 (UTC)
+IronPort-SDR: JR7CBpNvTQHamOQaclJ+SgLr3HeVjpmV2AxDFLZIEwcNWZqkXEOxiOxiBuLrg68JAgydQ5VOe2
+ 6eSnQRvEgglQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9862"; a="157859893"
+X-IronPort-AV: E=Sophos;i="5.79,342,1602572400"; d="scan'208";a="157859893"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Jan 2021 09:58:28 -0800
+IronPort-SDR: E20Lt/VMhlR5qzD+lM8z08cSrweapHtHPxufDWtUeKaCO8x654kzK5rwAEomG0ICWBJg7RkGzE
+ wboni1HON3rQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.79,342,1602572400"; d="scan'208";a="389238496"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
+ by orsmga007.jf.intel.com with SMTP; 12 Jan 2021 09:58:25 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Tue, 12 Jan 2021 19:58:24 +0200
+Date: Tue, 12 Jan 2021 19:58:24 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Imre Deak <imre.deak@intel.com>
+Message-ID: <X/3jQE6ni7PaGmod@intel.com>
+References: <20201229172201.4155327-1-imre.deak@intel.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-Subject: [Intel-gfx] [PULL] drm-intel-next
+In-Reply-To: <20201229172201.4155327-1-imre.deak@intel.com>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [PATCH 1/2] drm/i915/dp: Move
+ intel_dp_set_signal_levels() to intel_dp_link_training.c
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,141 +50,139 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dim-tools@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Maxime Ripard <mripard@kernel.org>, intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Dave and Daniel,
+On Tue, Dec 29, 2020 at 07:22:00PM +0200, Imre Deak wrote:
+> intel_dp_set_signal_levels() is needed for link training, so move it to
+> intel_dp_link_training.c.
+> =
 
-A very short collection of patches, mostly with display fixes. Plus GVT.
-The goal is to get both drm-intel-next and drm-intel-gt-next in sync again
-through drm-next backports so we can continue with ADL enabling in a topic
-branch.
+> Signed-off-by: Imre Deak <imre.deak@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_dp.c        | 18 ------------------
+>  drivers/gpu/drm/i915/display/intel_dp.h        |  3 ---
+>  .../drm/i915/display/intel_dp_link_training.c  | 18 ++++++++++++++++++
+>  .../drm/i915/display/intel_dp_link_training.h  |  2 ++
+>  4 files changed, 20 insertions(+), 21 deletions(-)
+> =
 
-Please be aware that there's a drm only patch here:
-commit 7d8ac172d7f1 ("drm: Add function to convert rect in 16.16 fixed form=
-at to regular format")
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i9=
+15/display/intel_dp.c
+> index f0e8aaac413c..88a6033d6867 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> @@ -5003,24 +5003,6 @@ ivb_cpu_edp_set_signal_levels(struct intel_dp *int=
+el_dp,
+>  	intel_de_posting_read(dev_priv, intel_dp->output_reg);
+>  }
+>  =
 
-Here goes drm-intel-next-2021-01-12:
-- PSR fixes and improvements for selective fetch (Jose)
-- GVT build fixed and cleanup (Jani)
-- RKL display fixes (Lee, Matt)
-- DSI fix (Hans)
-- Panel Power and Backlight fixes (Anshuman, Jani)
-- RPM fix (Chris)
-- Fix HTI port checking (Jose)
-- Clean-up in cursor code (Ville)
-- Once again, trying to use fast+narrow link on eDP (Ville)
-- DG1 display fix (Matt)
+> -void intel_dp_set_signal_levels(struct intel_dp *intel_dp,
+> -				const struct intel_crtc_state *crtc_state)
+> -{
+> -	struct drm_i915_private *dev_priv =3D dp_to_i915(intel_dp);
+> -	u8 train_set =3D intel_dp->train_set[0];
+> -
+> -	drm_dbg_kms(&dev_priv->drm, "Using vswing level %d%s\n",
+> -		    train_set & DP_TRAIN_VOLTAGE_SWING_MASK,
+> -		    train_set & DP_TRAIN_MAX_SWING_REACHED ? " (max)" : "");
+> -	drm_dbg_kms(&dev_priv->drm, "Using pre-emphasis level %d%s\n",
+> -		    (train_set & DP_TRAIN_PRE_EMPHASIS_MASK) >>
+> -		    DP_TRAIN_PRE_EMPHASIS_SHIFT,
+> -		    train_set & DP_TRAIN_MAX_PRE_EMPHASIS_REACHED ?
+> -		    " (max)" : "");
+> -
+> -	intel_dp->set_signal_levels(intel_dp, crtc_state);
+> -}
+> -
+>  void
+>  intel_dp_program_link_training_pattern(struct intel_dp *intel_dp,
+>  				       const struct intel_crtc_state *crtc_state,
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp.h b/drivers/gpu/drm/i9=
+15/display/intel_dp.h
+> index 4280a09fd8fd..4ebda4e43003 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp.h
+> +++ b/drivers/gpu/drm/i915/display/intel_dp.h
+> @@ -96,9 +96,6 @@ void
+>  intel_dp_program_link_training_pattern(struct intel_dp *intel_dp,
+>  				       const struct intel_crtc_state *crtc_state,
+>  				       u8 dp_train_pat);
+> -void
+> -intel_dp_set_signal_levels(struct intel_dp *intel_dp,
+> -			   const struct intel_crtc_state *crtc_state);
+>  void intel_dp_compute_rate(struct intel_dp *intel_dp, int port_clock,
+>  			   u8 *link_bw, u8 *rate_select);
+>  bool intel_dp_source_supports_hbr2(struct intel_dp *intel_dp);
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_training.c b/driv=
+ers/gpu/drm/i915/display/intel_dp_link_training.c
+> index 91d3979902d0..7876e781f698 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+> @@ -334,6 +334,24 @@ intel_dp_set_link_train(struct intel_dp *intel_dp,
+>  	return drm_dp_dpcd_write(&intel_dp->aux, reg, buf, len) =3D=3D len;
+>  }
+>  =
 
-Thanks,
-Rodrigo.
+> +void intel_dp_set_signal_levels(struct intel_dp *intel_dp,
+> +				const struct intel_crtc_state *crtc_state)
 
-The following changes since commit cb3cfbf79aff7decb4e5ee69a7c74864497f61dc:
+Can't it be static now? Hmm, apparently not due to the ad-hoc phy test
+code. Oh well.
 
-  Merge tag 'drm-misc-next-2021-01-06' of git://anongit.freedesktop.org/drm=
-/drm-misc into drm-next (2021-01-07 13:40:20 +0100)
+Reviewed-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
 
-are available in the Git repository at:
+> +{
+> +	struct drm_i915_private *dev_priv =3D dp_to_i915(intel_dp);
+> +	u8 train_set =3D intel_dp->train_set[0];
+> +
+> +	drm_dbg_kms(&dev_priv->drm, "Using vswing level %d%s\n",
+> +		    train_set & DP_TRAIN_VOLTAGE_SWING_MASK,
+> +		    train_set & DP_TRAIN_MAX_SWING_REACHED ? " (max)" : "");
+> +	drm_dbg_kms(&dev_priv->drm, "Using pre-emphasis level %d%s\n",
+> +		    (train_set & DP_TRAIN_PRE_EMPHASIS_MASK) >>
+> +		    DP_TRAIN_PRE_EMPHASIS_SHIFT,
+> +		    train_set & DP_TRAIN_MAX_PRE_EMPHASIS_REACHED ?
+> +		    " (max)" : "");
+> +
+> +	intel_dp->set_signal_levels(intel_dp, crtc_state);
+> +}
+> +
+>  static bool
+>  intel_dp_reset_link_train(struct intel_dp *intel_dp,
+>  			  const struct intel_crtc_state *crtc_state,
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_training.h b/driv=
+ers/gpu/drm/i915/display/intel_dp_link_training.h
+> index 86905aa24db7..c3110c032bc2 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp_link_training.h
+> +++ b/drivers/gpu/drm/i915/display/intel_dp_link_training.h
+> @@ -17,6 +17,8 @@ void intel_dp_get_adjust_train(struct intel_dp *intel_d=
+p,
+>  			       const struct intel_crtc_state *crtc_state,
+>  			       enum drm_dp_phy dp_phy,
+>  			       const u8 link_status[DP_LINK_STATUS_SIZE]);
+> +void intel_dp_set_signal_levels(struct intel_dp *intel_dp,
+> +				const struct intel_crtc_state *crtc_state);
+>  void intel_dp_start_link_train(struct intel_dp *intel_dp,
+>  			       const struct intel_crtc_state *crtc_state);
+>  void intel_dp_stop_link_train(struct intel_dp *intel_dp,
+> -- =
 
-  git://anongit.freedesktop.org/drm/drm-intel tags/drm-intel-next-2021-01-12
+> 2.25.1
+> =
 
-for you to fetch changes up to cce73665eae238791f4342b29ca54188227717c8:
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 
-  drm/i915/dg1: Update voltage swing tables for DP (2021-01-11 19:20:18 -08=
-00)
+-- =
 
-----------------------------------------------------------------
-- PSR fixes and improvements for selective fetch (Jose)
-- GVT build fixed and cleanup (Jani)
-- RKL display fixes (Lee, Matt)
-- DSI fix (Hans)
-- Panel Power and Backlight fixes (Anshuman, Jani)
-- RPM fix (Chris)
-- Fix HTI port checking (Jose)
-- Clean-up in cursor code (Ville)
-- Once again, trying to use fast+narrow link on eDP (Ville)
-- DG1 display fix (Matt)
-
-----------------------------------------------------------------
-Anshuman Gupta (1):
-      drm/i915/pps: Reuse POWER_DOMAIN_DISPLAY_CORE in pps_{lock, unlock}
-
-Chris Wilson (1):
-      drm/i915: Disable RPM wakeref assertions during driver shutdown
-
-Hans de Goede (1):
-      drm/i915/dsi: Use unconditional msleep for the panel_on_delay when th=
-ere is no reset-deassert MIPI-sequence
-
-Jani Nikula (10):
-      drm/i915/gvt: avoid useless use of inline
-      drm/i915/gvt: make execlist.h self-contained
-      drm/i915/gvt: make fb_decoder.h self-contained
-      drm/i915/gvt: make gtt.h self-contained
-      drm/i915/gvt: make interrupt.h self-contained
-      drm/i915/gvt: make mmio_context.h self-contained
-      drm/i915/gvt: make gvt.h self-contained
-      drm/i915/gvt: make scheduler.h self-contained
-      drm/i915/gvt: make mpt.h self-contained
-      drm/i915/backlight: fix CPU mode backlight takeover on LPT
-
-Jos=E9 Roberto de Souza (5):
-      drm: Add function to convert rect in 16.16 fixed format to regular fo=
-rmat
-      drm/i915/display/psr: Use plane damage clips to calculate damaged area
-      drm/i915/display: Split and export main surface calculation from skl_=
-check_main_surface()
-      drm/i915/display/psr: Program plane's calculated offset to plane SF r=
-egister
-      drm/i915: Fix HTI port checking
-
-Lee Shawn C (1):
-      drm/i915/rkl: new rkl ddc map for different PCH
-
-Matt Roper (2):
-      drm/i915/rkl: Add DP vswing programming tables
-      drm/i915/dg1: Update voltage swing tables for DP
-
-Rodrigo Vivi (2):
-      Merge tag 'gvt-next-fixes-2020-12-25' of https://github.com/intel/gvt=
--linux into drm-intel-next
-      Merge drm/drm-next into drm-intel-next
-
-Ville Syrj=E4l=E4 (2):
-      drm/i915: Fix checkpatch warns in cursor code
-      drm/i915: Try to use fast+narrow link on eDP again and fall back to t=
-he old max strategy on failure
-
- drivers/gpu/drm/i915/Makefile                      |  10 +-
- drivers/gpu/drm/i915/display/intel_bios.c          |  10 ++
- drivers/gpu/drm/i915/display/intel_cursor.c        |   6 +-
- drivers/gpu/drm/i915/display/intel_ddi.c           |  79 ++++++++++++-
- drivers/gpu/drm/i915/display/intel_display.c       |  78 ++++++++-----
- drivers/gpu/drm/i915/display/intel_display.h       |   2 +
- drivers/gpu/drm/i915/display/intel_display_types.h |   1 +
- drivers/gpu/drm/i915/display/intel_dp.c            |  83 +++++++++++---
- drivers/gpu/drm/i915/display/intel_panel.c         |   9 +-
- drivers/gpu/drm/i915/display/intel_psr.c           | 127 +++++++++++++++++=
-+---
- drivers/gpu/drm/i915/display/intel_vbt_defs.h      |   2 +
- drivers/gpu/drm/i915/display/vlv_dsi.c             |  16 ++-
- drivers/gpu/drm/i915/gvt/execlist.h                |   3 -
- drivers/gpu/drm/i915/gvt/fb_decoder.h              |   6 +-
- drivers/gpu/drm/i915/gvt/gtt.h                     |  11 +-
- drivers/gpu/drm/i915/gvt/gvt.h                     |   4 +
- drivers/gpu/drm/i915/gvt/handlers.c                |   3 +-
- drivers/gpu/drm/i915/gvt/interrupt.h               |   5 +-
- drivers/gpu/drm/i915/gvt/mmio_context.h            |  11 ++
- drivers/gpu/drm/i915/gvt/mpt.h                     |   2 +
- drivers/gpu/drm/i915/gvt/scheduler.h               |   5 +
- drivers/gpu/drm/i915/i915_drv.c                    |   4 +
- drivers/gpu/drm/i915/i915_reg.h                    |   3 +-
- include/drm/drm_rect.h                             |  13 +++
- 24 files changed, 396 insertions(+), 97 deletions(-)
+Ville Syrj=E4l=E4
+Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
