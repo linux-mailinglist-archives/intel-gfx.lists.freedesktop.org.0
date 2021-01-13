@@ -1,43 +1,41 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 813CC2F486F
-	for <lists+intel-gfx@lfdr.de>; Wed, 13 Jan 2021 11:17:08 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4AF4F2F48BB
+	for <lists+intel-gfx@lfdr.de>; Wed, 13 Jan 2021 11:34:33 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A13666E42A;
-	Wed, 13 Jan 2021 10:17:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D92476E44D;
+	Wed, 13 Jan 2021 10:34:26 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1959A6E42A
- for <intel-gfx@lists.freedesktop.org>; Wed, 13 Jan 2021 10:17:04 +0000 (UTC)
-IronPort-SDR: uFEG4xDMCwPfP9QuBGAs0LujKMI1BhbNli3VTHVPIsIowdxVYpdSJeCg5eahuSjz/ZBFQBoddR
- 8HjQzAHf5vag==
-X-IronPort-AV: E=McAfee;i="6000,8403,9862"; a="165270975"
-X-IronPort-AV: E=Sophos;i="5.79,344,1602572400"; d="scan'208";a="165270975"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Jan 2021 02:17:03 -0800
-IronPort-SDR: 0Nxo6UoozrPe1N3yVGpJziIc3vKZXZXLP8XVdf7qwNveiPuqXJkmvYl7WJpmi7OS48AARnkDsw
- ZTQ9jGgG7Lng==
-X-IronPort-AV: E=Sophos;i="5.79,344,1602572400"; d="scan'208";a="381793448"
-Received: from iklein-mobl.ger.corp.intel.com (HELO localhost) ([10.249.40.83])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Jan 2021 02:17:01 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: Chris Wilson <chris@chris-wilson.co.uk>,
- Matthew Auld <matthew.william.auld@gmail.com>
-In-Reply-To: <161048602681.12706.9571720059335417370@build.alporthouse.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20210112172246.11933-1-jani.nikula@intel.com>
- <CAM0jSHOwHpxPsTYmh6i=wbwacNj9CE6_oVaPYmEXdkBOzMoB0A@mail.gmail.com>
- <161048602681.12706.9571720059335417370@build.alporthouse.com>
-Date: Wed, 13 Jan 2021 12:16:58 +0200
-Message-ID: <87a6tdta3p.fsf@intel.com>
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0698B6E44B;
+ Wed, 13 Jan 2021 10:34:25 +0000 (UTC)
+IronPort-SDR: qyaXFNgrJJA6BrLmdst1bMIbtdNVQrFslEJ0v0hPE/3FyPNJ+ZxSuwxwnv+VL22HsvE29GPzkj
+ q5SlrxZkHD9A==
+X-IronPort-AV: E=McAfee;i="6000,8403,9862"; a="262970888"
+X-IronPort-AV: E=Sophos;i="5.79,344,1602572400"; d="scan'208";a="262970888"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Jan 2021 02:34:17 -0800
+IronPort-SDR: VoDVJ2Kl4wmP9IJ/eHm59zPfEa6T+PlTGS0FAH1DZwVOVqS7lf3Mr4+iwsufjxiquhtlXJxgbq
+ MJjwNiy1QbUA==
+X-IronPort-AV: E=Sophos;i="5.79,344,1602572400"; d="scan'208";a="567812370"
+Received: from unknown (HELO intel.com) ([10.223.74.179])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Jan 2021 02:34:14 -0800
+Date: Wed, 13 Jan 2021 15:49:43 +0530
+From: Anshuman Gupta <anshuman.gupta@intel.com>
+To: Sean Paul <sean@poorly.run>
+Message-ID: <20210113101942.GK11717@intel.com>
+References: <20210106223909.34476-1-sean@poorly.run>
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/lmem: make intel_region_lmem_ops
- static
+Content-Disposition: inline
+In-Reply-To: <20210106223909.34476-1-sean@poorly.run>
+User-Agent: Mutt/1.9.4 (2018-02-28)
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/hdcp: Disable the QSES check for
+ HDCP 1.4 over MST
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,29 +48,95 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>
+Cc: David Airlie <airlied@linux.ie>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ Sean Paul <seanpaul@chromium.org>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 12 Jan 2021, Chris Wilson <chris@chris-wilson.co.uk> wrote:
-> Quoting Matthew Auld (2021-01-12 17:26:41)
->> On Tue, 12 Jan 2021 at 17:23, Jani Nikula <jani.nikula@intel.com> wrote:
->> >
->> > There are no users outside of intel_region_lmem.c.
->> >
->> > Signed-off-by: Jani Nikula <jani.nikula@intel.com>
->> Reviewed-by: Matthew Auld <matthew.auld@intel.com>
->
-> I pushed this and its companion, and then applied Matthew's git mv.
+On 2021-01-07 at 04:08:58 +0530, Sean Paul wrote:
+> From: Sean Paul <seanpaul@chromium.org>
+> 
+> The HDCP 1.4 spec does not require the QUERY_STREAM_ENCRYPTION_STATUS
+IMHO DP 1.4 vesa specs I.3.5 mark QSES as desirale for both HDCP 1.4 and HDCP 2.2.
+"The MST Source device may use a QUERY_STREAM_ENCRYPTION_STATUS message
+transaction to query the downstream status for a particular stream."
 
+I feel it useful for scenario in which a non hdcp supported monitor
+is hot plugged to MST branch. Source really doesn't know about the hdcp
+capable device on MST branch, it just know the capability of immediate 
+downstream device. QSES can fetch the HDCP capability from MST topology. 
+We don't require to enable stream encryption for such streams. 
+> check, it was always a nice-to-have. After deploying this across various
+> devices, we've determined that some MST bridge chips do not properly
+> support this call for HDCP 1.4 (namely Synaptics and Realtek).
+> 
+> I had considered creating a quirk for this, but I think it's more
+> prudent to just disable the check entirely since I don't have an idea
+> how widespread support is.
+May be we can remove it from the link check and can retain as utility ?
 Thanks,
-Jani.
-
-
--- 
-Jani Nikula, Intel Open Source Graphics Center
+Anshuman Gupta.
+> 
+> Signed-off-by: Sean Paul <seanpaul@chromium.org>
+> ---
+>  drivers/gpu/drm/i915/display/intel_dp_hdcp.c | 26 +-------------------
+>  1 file changed, 1 insertion(+), 25 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp_hdcp.c b/drivers/gpu/drm/i915/display/intel_dp_hdcp.c
+> index 03424d20e9f7..b6a9606bf09a 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp_hdcp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp_hdcp.c
+> @@ -640,30 +640,6 @@ intel_dp_mst_hdcp_toggle_signalling(struct intel_digital_port *dig_port,
+>  	return ret;
+>  }
+>  
+> -static
+> -bool intel_dp_mst_hdcp_check_link(struct intel_digital_port *dig_port,
+> -				  struct intel_connector *connector)
+> -{
+> -	struct drm_i915_private *i915 = to_i915(dig_port->base.base.dev);
+> -	struct intel_dp *intel_dp = &dig_port->dp;
+> -	struct drm_dp_query_stream_enc_status_ack_reply reply;
+> -	int ret;
+> -
+> -	if (!intel_dp_hdcp_check_link(dig_port, connector))
+> -		return false;
+> -
+> -	ret = drm_dp_send_query_stream_enc_status(&intel_dp->mst_mgr,
+> -						  connector->port, &reply);
+> -	if (ret) {
+> -		drm_dbg_kms(&i915->drm,
+> -			    "[CONNECTOR:%d:%s] failed QSES ret=%d\n",
+> -			    connector->base.base.id, connector->base.name, ret);
+> -		return false;
+> -	}
+> -
+> -	return reply.auth_completed && reply.encryption_enabled;
+> -}
+> -
+>  static const struct intel_hdcp_shim intel_dp_mst_hdcp_shim = {
+>  	.write_an_aksv = intel_dp_hdcp_write_an_aksv,
+>  	.read_bksv = intel_dp_hdcp_read_bksv,
+> @@ -674,7 +650,7 @@ static const struct intel_hdcp_shim intel_dp_mst_hdcp_shim = {
+>  	.read_ksv_fifo = intel_dp_hdcp_read_ksv_fifo,
+>  	.read_v_prime_part = intel_dp_hdcp_read_v_prime_part,
+>  	.toggle_signalling = intel_dp_mst_hdcp_toggle_signalling,
+> -	.check_link = intel_dp_mst_hdcp_check_link,
+> +	.check_link = intel_dp_hdcp_check_link,
+>  	.hdcp_capable = intel_dp_hdcp_capable,
+>  
+>  	.protocol = HDCP_PROTOCOL_DP,
+> -- 
+> Sean Paul, Software Engineer, Google / Chromium OS
+> 
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
