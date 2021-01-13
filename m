@@ -2,26 +2,28 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 730E32F4BA8
-	for <lists+intel-gfx@lfdr.de>; Wed, 13 Jan 2021 13:52:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A60DA2F4BDD
+	for <lists+intel-gfx@lfdr.de>; Wed, 13 Jan 2021 13:59:51 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1EE976E986;
-	Wed, 13 Jan 2021 12:52:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CCABC6E9A0;
+	Wed, 13 Jan 2021 12:59:49 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 738E96E986
- for <intel-gfx@lists.freedesktop.org>; Wed, 13 Jan 2021 12:52:28 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A753D6E9A0
+ for <intel-gfx@lists.freedesktop.org>; Wed, 13 Jan 2021 12:59:48 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 23584309-1500050 
- for multiple; Wed, 13 Jan 2021 12:51:56 +0000
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 23584419-1500050 
+ for multiple; Wed, 13 Jan 2021 12:59:40 +0000
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Wed, 13 Jan 2021 12:51:55 +0000
-Message-Id: <20210113125155.1029-1-chris@chris-wilson.co.uk>
+Date: Wed, 13 Jan 2021 12:59:39 +0000
+Message-Id: <20210113125939.10205-1-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.20.1
+In-Reply-To: <20210113125155.1029-1-chris@chris-wilson.co.uk>
+References: <20210113125155.1029-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
 Subject: [Intel-gfx] [PATCH] drm/i915/selftests: Bump the scheduling
  threshold for fast heartbeats
@@ -54,14 +56,14 @@ Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
  1 file changed, 10 insertions(+), 3 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/gt/selftest_engine_heartbeat.c b/drivers/gpu/drm/i915/gt/selftest_engine_heartbeat.c
-index b88aa35ad75b..807c445f7c70 100644
+index b88aa35ad75b..e88a01390dc5 100644
 --- a/drivers/gpu/drm/i915/gt/selftest_engine_heartbeat.c
 +++ b/drivers/gpu/drm/i915/gt/selftest_engine_heartbeat.c
 @@ -197,6 +197,7 @@ static int cmp_u32(const void *_a, const void *_b)
  
  static int __live_heartbeat_fast(struct intel_engine_cs *engine)
  {
-+	const int error_threshold = 20000; /* microseconds */
++	const int error_threshold = max(20000, jffies_to_usecs(6));
  	struct intel_context *ce;
  	struct i915_request *rq;
  	ktime_t t0, t1;
