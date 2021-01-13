@@ -2,50 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 396642F544B
-	for <lists+intel-gfx@lfdr.de>; Wed, 13 Jan 2021 21:50:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id BFDE92F544F
+	for <lists+intel-gfx@lfdr.de>; Wed, 13 Jan 2021 21:51:04 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 05C776EC60;
-	Wed, 13 Jan 2021 20:50:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 210836EC5F;
+	Wed, 13 Jan 2021 20:51:03 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-oi1-x229.google.com (mail-oi1-x229.google.com
- [IPv6:2607:f8b0:4864:20::229])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CF6006EC60
- for <intel-gfx@lists.freedesktop.org>; Wed, 13 Jan 2021 20:50:22 +0000 (UTC)
-Received: by mail-oi1-x229.google.com with SMTP id 15so3593232oix.8
- for <intel-gfx@lists.freedesktop.org>; Wed, 13 Jan 2021 12:50:22 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=rqFgc2dzKme0zr+aU1JENA4xdAtd9mmh2guoOC2yjew=;
- b=MQQhT8WVByeSlgDj2m+Ianm+DeZbxWW0a6i6/UvKUWT/ZY2Aj6ipHsJ68EcJzntahX
- ba+ftlZmyowIXRFKfr4fb1svh06/VzwQK94Rd6u8ryCRX75PDJwi6duabIiS9/7tB0uY
- 6pZYvzSKFeUmpwcrO2+fI7/fbNdSBgwzk46J0=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=rqFgc2dzKme0zr+aU1JENA4xdAtd9mmh2guoOC2yjew=;
- b=cadMVq+m9GAF5FJCqrMfbbFxsFQcbR435+vGKbmR3aWSqUoSGadwaRHRrmVCgoiYoL
- HXTemefYC9vL/niaXYamHP9uOyNF6RuBptIFLHRT21gDOsJupFqkCpLAYY+Z7QMNFNts
- ipekz6zUxNoNWpXxXXAcWUhXk1DjntMnEfBd6OKO6G6XnMKcw/PFr/ncVK3OZeYL8+g6
- 53MkzTlcOYwkH7CAa0IwnO+CibsmqdoVurjJk/oHCFeSYH5Vd790HKH9pMnYJMKeVb2h
- rWLJgSsV+MuJow9qYM9jScmWOELNj8c2KsPO4pdh6A1Dc+sNo3JZXchuEgoCdyikTdKo
- Gvzg==
-X-Gm-Message-State: AOAM532iKY+laGg115+WNwMrZnATNUOhEd7G+ejQwa/EudPBCE7rd8j9
- HHOGOmuZ5pFiTduNQRY66zWXk+QzSlTezou6IZyNiA==
-X-Google-Smtp-Source: ABdhPJy67Q/SiF12KAy9W+l33TI2jHio6EqyjNUlwUVXtpcm2GTUEw2G9L6akaRObc+uz+7EkfYii6J6G5enil+o9lE=
-X-Received: by 2002:aca:54d8:: with SMTP id i207mr651674oib.101.1610571022183; 
- Wed, 13 Jan 2021 12:50:22 -0800 (PST)
+Received: from fireflyinternet.com (unknown [77.68.26.236])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AE86F6EC5F
+ for <intel-gfx@lists.freedesktop.org>; Wed, 13 Jan 2021 20:51:01 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from build.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 23589292-1500050 
+ for multiple; Wed, 13 Jan 2021 20:50:51 +0000
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Wed, 13 Jan 2021 20:50:49 +0000
+Message-Id: <20210113205049.22565-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.20.1
+In-Reply-To: <20210113163115.5740-1-chris@chris-wilson.co.uk>
+References: <20210113163115.5740-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-References: <20210113140604.3615437-1-daniel.vetter@ffwll.ch>
- <161055261490.6195.7986280621869334351@build.alporthouse.com>
-In-Reply-To: <161055261490.6195.7986280621869334351@build.alporthouse.com>
-From: Daniel Vetter <daniel.vetter@ffwll.ch>
-Date: Wed, 13 Jan 2021 21:50:11 +0100
-Message-ID: <CAKMK7uEnnEj_YAR5Tm3jpS7MNPkqB43JBhQnY_K0YQ+LE9wL1g@mail.gmail.com>
-To: Chris Wilson <chris@chris-wilson.co.uk>
-Subject: Re: [Intel-gfx] [PATCH] drm-buf: Add debug option
+Subject: [Intel-gfx] [PATCH] drm/i915/selftests: Force a failed engine reset
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,45 +38,186 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- DRI Development <dri-devel@lists.freedesktop.org>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- "moderated list:DMA BUFFER SHARING FRAMEWORK" <linaro-mm-sig@lists.linaro.org>,
- David Stevens <stevensd@chromium.org>, Daniel Vetter <daniel.vetter@intel.com>,
- Sumit Semwal <sumit.semwal@linaro.org>,
- "open list:DMA BUFFER SHARING FRAMEWORK" <linux-media@vger.kernel.org>
+Cc: Chris Wilson <chris@chris-wilson.co.uk>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Jan 13, 2021 at 4:43 PM Chris Wilson <chris@chris-wilson.co.uk> wrote:
->
-> Quoting Daniel Vetter (2021-01-13 14:06:04)
-> > We have too many people abusing the struct page they can get at but
-> > really shouldn't in importers. Aside from that the backing page might
-> > simply not exist (for dynamic p2p mappings) looking at it and using it
-> > e.g. for mmap can also wreak the page handling of the exporter
-> > completely. Importers really must go through the proper interface like
-> > dma_buf_mmap for everything.
->
-> If the exporter doesn't want to expose the struct page, why are they
-> setting it in the exported sg_table?
+Inject a fault into the engine reset and check that the outstanding
+requests are completed despite the failed reset.
 
-You need to store it somewhere, otherwise the dma-api doesn't work.
-Essentially this achieves clearing/resetting the struct page pointer,
-without additional allocations somewhere, or tons of driver changes
-(since presumably the driver does keep track of the struct page
-somewhere too).
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Reviewed-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+---
+ drivers/gpu/drm/i915/gt/selftest_hangcheck.c | 144 +++++++++++++++++++
+ 1 file changed, 144 insertions(+)
 
-Also as long as we have random importers looking at struct page we
-can't just remove it, or crashes everywhere. So it has to be some
-debug option you can disable.
--Daniel
+diff --git a/drivers/gpu/drm/i915/gt/selftest_hangcheck.c b/drivers/gpu/drm/i915/gt/selftest_hangcheck.c
+index ffc6eabb6404..460c3e9542f4 100644
+--- a/drivers/gpu/drm/i915/gt/selftest_hangcheck.c
++++ b/drivers/gpu/drm/i915/gt/selftest_hangcheck.c
+@@ -540,6 +540,149 @@ static int igt_reset_nop_engine(void *arg)
+ 	return 0;
+ }
+ 
++static void force_reset_timeout(struct intel_engine_cs *engine)
++{
++	engine->reset_timeout.probability = 999;
++	atomic_set(&engine->reset_timeout.times, -1);
++}
++
++static void cancel_reset_timeout(struct intel_engine_cs *engine)
++{
++	memset(&engine->reset_timeout, 0, sizeof(engine->reset_timeout));
++}
++
++static int igt_reset_fail_engine(void *arg)
++{
++	struct intel_gt *gt = arg;
++	struct intel_engine_cs *engine;
++	enum intel_engine_id id;
++
++	/* Check that we can recover from engine-reset failues */
++
++	if (!intel_has_reset_engine(gt))
++		return 0;
++
++	for_each_engine(engine, gt, id) {
++		unsigned int count;
++		struct intel_context *ce;
++		IGT_TIMEOUT(end_time);
++		int err;
++
++		ce = intel_context_create(engine);
++		if (IS_ERR(ce))
++			return PTR_ERR(ce);
++
++		st_engine_heartbeat_disable(engine);
++		set_bit(I915_RESET_ENGINE + id, &gt->reset.flags);
++
++		force_reset_timeout(engine);
++		err = intel_engine_reset(engine, NULL);
++		cancel_reset_timeout(engine);
++		if (err == 0) /* timeouts only generated on gen8+ */
++			goto skip;
++
++		count = 0;
++		do {
++			struct i915_request *last = NULL;
++			int i;
++
++			if (!wait_for_idle(engine)) {
++				pr_err("%s failed to idle before reset\n",
++				       engine->name);
++				err = -EIO;
++				break;
++			}
++
++			for (i = 0; i < count % 15; i++) {
++				struct i915_request *rq;
++
++				rq = intel_context_create_request(ce);
++				if (IS_ERR(rq)) {
++					struct drm_printer p =
++						drm_info_printer(gt->i915->drm.dev);
++					intel_engine_dump(engine, &p,
++							  "%s(%s): failed to submit request\n",
++							  __func__,
++							  engine->name);
++
++					GEM_TRACE("%s(%s): failed to submit request\n",
++						  __func__,
++						  engine->name);
++					GEM_TRACE_DUMP();
++
++					intel_gt_set_wedged(gt);
++					if (last)
++						i915_request_put(last);
++
++					err = PTR_ERR(rq);
++					goto out;
++				}
++
++				if (last)
++					i915_request_put(last);
++				last = i915_request_get(rq);
++				i915_request_add(rq);
++			}
++
++			if (count & 1) {
++				err = intel_engine_reset(engine, NULL);
++				if (err) {
++					GEM_TRACE_ERR("intel_engine_reset(%s) failed, err:%d\n",
++						      engine->name, err);
++					GEM_TRACE_DUMP();
++					i915_request_put(last);
++					break;
++				}
++			} else {
++				force_reset_timeout(engine);
++				err = intel_engine_reset(engine, NULL);
++				cancel_reset_timeout(engine);
++				if (err != -ETIMEDOUT) {
++					pr_err("intel_engine_reset(%s) did not fail, err:%d\n",
++					       engine->name, err);
++					i915_request_put(last);
++					break;
++				}
++			}
++
++			err = 0;
++			if (last) {
++				if (i915_request_wait(last, 0, HZ / 2) < 0) {
++					struct drm_printer p =
++						drm_info_printer(gt->i915->drm.dev);
++
++					intel_engine_dump(engine, &p,
++							  "%s(%s): failed to complete request\n",
++							  __func__,
++							  engine->name);
++
++					GEM_TRACE("%s(%s): failed to complete request\n",
++						  __func__,
++						  engine->name);
++					GEM_TRACE_DUMP();
++
++					err = -EIO;
++				}
++				i915_request_put(last);
++			}
++			count++;
++		} while (err == 0 && time_before(jiffies, end_time));
++out:
++		pr_info("%s(%s): %d resets\n", __func__, engine->name, count);
++skip:
++		clear_bit(I915_RESET_ENGINE + id, &gt->reset.flags);
++		st_engine_heartbeat_enable(engine);
++		intel_context_put(ce);
++
++		if (igt_flush_test(gt->i915))
++			err = -EIO;
++		if (err)
++			return err;
++	}
++
++	return 0;
++}
++
+ static int __igt_reset_engine(struct intel_gt *gt, bool active)
+ {
+ 	struct i915_gpu_error *global = &gt->i915->gpu_error;
+@@ -1694,6 +1837,7 @@ int intel_hangcheck_live_selftests(struct drm_i915_private *i915)
+ 		SUBTEST(igt_reset_nop_engine),
+ 		SUBTEST(igt_reset_idle_engine),
+ 		SUBTEST(igt_reset_active_engine),
++		SUBTEST(igt_reset_fail_engine),
+ 		SUBTEST(igt_reset_engines),
+ 		SUBTEST(igt_reset_engines_atomic),
+ 		SUBTEST(igt_reset_queue),
 -- 
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
+2.20.1
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
