@@ -1,29 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 14B192F4FFE
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 818D42F4FFF
 	for <lists+intel-gfx@lfdr.de>; Wed, 13 Jan 2021 17:31:22 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6648C6E0D0;
+	by gabe.freedesktop.org (Postfix) with ESMTP id AD07C6E11A;
 	Wed, 13 Jan 2021 16:31:20 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9F6C06E0D0
- for <intel-gfx@lists.freedesktop.org>; Wed, 13 Jan 2021 16:31:18 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2FBB36E11A
+ for <intel-gfx@lists.freedesktop.org>; Wed, 13 Jan 2021 16:31:19 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 23586904-1500050 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 23586905-1500050 
  for <intel-gfx@lists.freedesktop.org>; Wed, 13 Jan 2021 16:31:15 +0000
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Wed, 13 Jan 2021 16:31:14 +0000
-Message-Id: <20210113163115.5740-1-chris@chris-wilson.co.uk>
+Date: Wed, 13 Jan 2021 16:31:15 +0000
+Message-Id: <20210113163115.5740-2-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.20.1
+In-Reply-To: <20210113163115.5740-1-chris@chris-wilson.co.uk>
+References: <20210113163115.5740-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [CI 1/2] drm/i915/selftests: Force a failed engine reset
+Subject: [Intel-gfx] [CI 2/2] drm/i915/selftests: Bump the scheduling error
+ threshold for fast heartbeats
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,175 +44,60 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Inject a fault into the engine reset and check that the outstanding
-requests are completed despite the failed reset.
+Since we are system_highpri_wq, we expected the heartbeat to be
+scheduled promptly. However, we see delays of over 10ms upsetting our
+assertions. Accept this as inevitable and bump the minimum error
+threshold to 20ms (from 6 jiffies).
+
+<6> [616.784749] rcs0: Heartbeat delay: 3570us [2802, 9188]
+<6> [616.807790] bcs0: Heartbeat delay: 2111us [745, 4372]
+<6> [616.853776] vcs0: Heartbeat delay: 6485us [2424, 11637]
+<3> [616.859296] vcs0: Heartbeat delay was 6485us, expected less than 6000us
+<3> [616.860901] i915/intel_heartbeat_live_selftests: live_heartbeat_fast failed with error -22
+
+v2: More context from CI.
 
 Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
 Reviewed-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/gt/selftest_hangcheck.c | 142 +++++++++++++++++++
- 1 file changed, 142 insertions(+)
+ drivers/gpu/drm/i915/gt/selftest_engine_heartbeat.c | 13 ++++++++++---
+ 1 file changed, 10 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gt/selftest_hangcheck.c b/drivers/gpu/drm/i915/gt/selftest_hangcheck.c
-index ffc6eabb6404..0a394b9ba818 100644
---- a/drivers/gpu/drm/i915/gt/selftest_hangcheck.c
-+++ b/drivers/gpu/drm/i915/gt/selftest_hangcheck.c
-@@ -540,6 +540,147 @@ static int igt_reset_nop_engine(void *arg)
- 	return 0;
- }
+diff --git a/drivers/gpu/drm/i915/gt/selftest_engine_heartbeat.c b/drivers/gpu/drm/i915/gt/selftest_engine_heartbeat.c
+index b88aa35ad75b..223ab88f7e57 100644
+--- a/drivers/gpu/drm/i915/gt/selftest_engine_heartbeat.c
++++ b/drivers/gpu/drm/i915/gt/selftest_engine_heartbeat.c
+@@ -197,6 +197,7 @@ static int cmp_u32(const void *_a, const void *_b)
  
-+static void force_reset_timeout(struct intel_engine_cs *engine)
-+{
-+	engine->reset_timeout.probability = 999;
-+	atomic_set(&engine->reset_timeout.times, -1);
-+}
-+
-+static void cancel_reset_timeout(struct intel_engine_cs *engine)
-+{
-+	memset(&engine->reset_timeout, 0, sizeof(engine->reset_timeout));
-+}
-+
-+static int igt_reset_fail_engine(void *arg)
-+{
-+	struct intel_gt *gt = arg;
-+	struct intel_engine_cs *engine;
-+	enum intel_engine_id id;
-+
-+	/* Check that we can recover from engine-reset failues */
-+
-+	if (!intel_has_reset_engine(gt))
-+		return 0;
-+
-+	for_each_engine(engine, gt, id) {
-+		unsigned int count;
-+		struct intel_context *ce;
-+		IGT_TIMEOUT(end_time);
-+		int err;
-+
-+		ce = intel_context_create(engine);
-+		if (IS_ERR(ce))
-+			return PTR_ERR(ce);
-+
-+		st_engine_heartbeat_disable(engine);
-+		set_bit(I915_RESET_ENGINE + id, &gt->reset.flags);
-+
-+		force_reset_timeout(engine);
-+		err = intel_engine_reset(engine, NULL);
-+		cancel_reset_timeout(engine);
-+		if (err == 0) /* timeouts only generated on gen8+ */
-+			goto skip;
-+
-+		count = 0;
-+		do {
-+			struct i915_request *last = NULL;
-+			int i;
-+
-+			if (!wait_for_idle(engine)) {
-+				pr_err("%s failed to idle before reset\n",
-+				       engine->name);
-+				err = -EIO;
-+				break;
-+			}
-+
-+			for (i = 0; i < count % 15; i++) {
-+				struct i915_request *rq;
-+
-+				rq = intel_context_create_request(ce);
-+				if (IS_ERR(rq)) {
-+					struct drm_printer p =
-+						drm_info_printer(gt->i915->drm.dev);
-+					intel_engine_dump(engine, &p,
-+							  "%s(%s): failed to submit request\n",
-+							  __func__,
-+							  engine->name);
-+
-+					GEM_TRACE("%s(%s): failed to submit request\n",
-+						  __func__,
-+						  engine->name);
-+					GEM_TRACE_DUMP();
-+
-+					intel_gt_set_wedged(gt);
-+					if (last)
-+						i915_request_put(last);
-+
-+					err = PTR_ERR(rq);
-+					goto out;
-+				}
-+
-+				if (last)
-+					i915_request_put(last);
-+				last = i915_request_get(rq);
-+				i915_request_add(rq);
-+			}
-+
-+			if (count & 1) {
-+				err = intel_engine_reset(engine, NULL);
-+				if (err) {
-+					GEM_TRACE_ERR("intel_engine_reset(%s) failed, err:%d\n",
-+						      engine->name, err);
-+					GEM_TRACE_DUMP();
-+					i915_request_put(last);
-+					break;
-+				}
-+			} else {
-+				force_reset_timeout(engine);
-+				err = intel_engine_reset(engine, NULL);
-+				cancel_reset_timeout(engine);
-+				if (err != -ETIMEDOUT) {
-+					pr_err("intel_engine_reset(%s) did not fail, err:%d\n",
-+					       engine->name, err);
-+					i915_request_put(last);
-+					break;
-+				}
-+			}
-+
-+			err = 0;
-+			if (i915_request_wait(last, 0, HZ / 2) < 0) {
-+				struct drm_printer p =
-+					drm_info_printer(gt->i915->drm.dev);
-+
-+				intel_engine_dump(engine, &p,
-+						  "%s(%s): failed to complete request\n",
-+						  __func__,
-+						  engine->name);
-+
-+				GEM_TRACE("%s(%s): failed to complete request\n",
-+					  __func__,
-+					  engine->name);
-+				GEM_TRACE_DUMP();
-+
-+				err = -EIO;
-+			}
-+			i915_request_put(last);
-+			count++;
-+		} while (err == 0 && time_before(jiffies, end_time));
-+out:
-+		pr_info("%s(%s): %d resets\n", __func__, engine->name, count);
-+skip:
-+		clear_bit(I915_RESET_ENGINE + id, &gt->reset.flags);
-+		st_engine_heartbeat_enable(engine);
-+		intel_context_put(ce);
-+
-+		if (igt_flush_test(gt->i915))
-+			err = -EIO;
-+		if (err)
-+			return err;
-+	}
-+
-+	return 0;
-+}
-+
- static int __igt_reset_engine(struct intel_gt *gt, bool active)
+ static int __live_heartbeat_fast(struct intel_engine_cs *engine)
  {
- 	struct i915_gpu_error *global = &gt->i915->gpu_error;
-@@ -1694,6 +1835,7 @@ int intel_hangcheck_live_selftests(struct drm_i915_private *i915)
- 		SUBTEST(igt_reset_nop_engine),
- 		SUBTEST(igt_reset_idle_engine),
- 		SUBTEST(igt_reset_active_engine),
-+		SUBTEST(igt_reset_fail_engine),
- 		SUBTEST(igt_reset_engines),
- 		SUBTEST(igt_reset_engines_atomic),
- 		SUBTEST(igt_reset_queue),
++	const unsigned int error_threshold = max(20000u, jiffies_to_usecs(6));
+ 	struct intel_context *ce;
+ 	struct i915_request *rq;
+ 	ktime_t t0, t1;
+@@ -254,12 +255,18 @@ static int __live_heartbeat_fast(struct intel_engine_cs *engine)
+ 		times[0],
+ 		times[ARRAY_SIZE(times) - 1]);
+ 
+-	/* Min work delay is 2 * 2 (worst), +1 for scheduling, +1 for slack */
+-	if (times[ARRAY_SIZE(times) / 2] > jiffies_to_usecs(6)) {
++	/*
++	 * Ideally, the upper bound on min work delay would be something like
++	 * 2 * 2 (worst), +1 for scheduling, +1 for slack. In practice, we
++	 * are, even with system_wq_highpri, at the mercy of the CPU scheduler
++	 * and may be stuck behind some slow work for many millisecond. Such
++	 * as our very own display workers.
++	 */
++	if (times[ARRAY_SIZE(times) / 2] > error_threshold) {
+ 		pr_err("%s: Heartbeat delay was %uus, expected less than %dus\n",
+ 		       engine->name,
+ 		       times[ARRAY_SIZE(times) / 2],
+-		       jiffies_to_usecs(6));
++		       error_threshold);
+ 		err = -EINVAL;
+ 	}
+ 
 -- 
 2.20.1
 
