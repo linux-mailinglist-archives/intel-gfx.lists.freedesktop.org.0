@@ -1,40 +1,40 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3C1402F54C3
-	for <lists+intel-gfx@lfdr.de>; Wed, 13 Jan 2021 23:05:44 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7B1C82F54C6
+	for <lists+intel-gfx@lfdr.de>; Wed, 13 Jan 2021 23:05:46 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 58F626EC77;
-	Wed, 13 Jan 2021 22:05:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2CD8A6EC7C;
+	Wed, 13 Jan 2021 22:05:41 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 151B36EC6F
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 411F36EC7C
  for <intel-gfx@lists.freedesktop.org>; Wed, 13 Jan 2021 22:05:34 +0000 (UTC)
-IronPort-SDR: /r0WBRaAL2xrievbiu/dDCsa2oaCp7D7AfThx/J24cP+1mGBVLbmAzqBkWp+O6U4fAz0yAFEM8
- 91jos/gPcWvQ==
-X-IronPort-AV: E=McAfee;i="6000,8403,9863"; a="165950109"
-X-IronPort-AV: E=Sophos;i="5.79,345,1602572400"; d="scan'208";a="165950109"
+IronPort-SDR: JhKtVce+ePaf10mCi4neEu7UGCIk8YaSxdfbhNkIaN1c7XTtIsqrTBuuz0YndKYdguIZDwChpQ
+ 1bGKcBJIyJ3g==
+X-IronPort-AV: E=McAfee;i="6000,8403,9863"; a="165950112"
+X-IronPort-AV: E=Sophos;i="5.79,345,1602572400"; d="scan'208";a="165950112"
 Received: from fmsmga002.fm.intel.com ([10.253.24.26])
  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  13 Jan 2021 14:05:33 -0800
-IronPort-SDR: qExKJ0ruqZy9PgScZYvwB9Sd/44B9ANUYo0NMEUYGSXz3/XlmrCIiOo5rwibdNHtoBIOmrZNm8
- F/HvllDeNs0Q==
-X-IronPort-AV: E=Sophos;i="5.79,345,1602572400"; d="scan'208";a="400696581"
+IronPort-SDR: I60R8e6kR9Q8YsBrUvTlsWrQAhiSX1KZCWNmWuC4TnvLlMOOGf0oezwf3PGpyJWxTn5fgqDenH
+ qPhQzhfiynbw==
+X-IronPort-AV: E=Sophos;i="5.79,345,1602572400"; d="scan'208";a="400696584"
 Received: from labuser-z97x-ud5h.jf.intel.com ([10.165.21.211])
  by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-SHA;
- 13 Jan 2021 14:05:32 -0800
+ 13 Jan 2021 14:05:33 -0800
 From: Manasi Navare <manasi.d.navare@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Wed, 13 Jan 2021 14:09:31 -0800
-Message-Id: <20210113220935.4151-15-manasi.d.navare@intel.com>
+Date: Wed, 13 Jan 2021 14:09:32 -0800
+Message-Id: <20210113220935.4151-16-manasi.d.navare@intel.com>
 X-Mailer: git-send-email 2.19.1
 In-Reply-To: <20210113220935.4151-1-manasi.d.navare@intel.com>
 References: <20210113220935.4151-1-manasi.d.navare@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v4 14/18] drm/i915/display: Add HW state readout
- for VRR
+Subject: [Intel-gfx] [PATCH v4 15/18] drm/i915/display: Helpers for VRR
+ vblank min and max start
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,95 +47,64 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This functions gets the VRR config from the VRR registers
-to match the crtc state variables for VRR.
-
-v2:
-* Rebase (Manasi)
-* Use HAS_VRR (Jani N)
-
-v3:
-* Get pipeline_full, flipline (Ville)
-
-Cc: Jani Nikula <jani.nikula@linux.intel.com>
-Signed-off-by: Manasi Navare <manasi.d.navare@intel.com>
----
- drivers/gpu/drm/i915/display/intel_display.c |  3 +++
- drivers/gpu/drm/i915/display/intel_vrr.c     | 20 ++++++++++++++++++++
- drivers/gpu/drm/i915/display/intel_vrr.h     |  3 +++
- 3 files changed, 26 insertions(+)
-
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 22bda7a55cc0..a1c011033803 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -10987,6 +10987,9 @@ static bool hsw_get_pipe_config(struct intel_crtc *crtc,
- 		intel_get_transcoder_timings(crtc, pipe_config);
- 	}
- 
-+	if (HAS_VRR(dev_priv))
-+		intel_vrr_get_config(crtc, pipe_config);
-+
- 	intel_get_pipe_src_size(crtc, pipe_config);
- 
- 	if (IS_HASWELL(dev_priv)) {
-diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/i915/display/intel_vrr.c
-index 501c8d9142da..5dc6d578760a 100644
---- a/drivers/gpu/drm/i915/display/intel_vrr.c
-+++ b/drivers/gpu/drm/i915/display/intel_vrr.c
-@@ -147,3 +147,23 @@ void intel_vrr_disable(const struct intel_crtc_state *old_crtc_state)
- 	intel_de_write(dev_priv, TRANS_VRR_CTL(cpu_transcoder), 0);
- 	intel_de_write(dev_priv, TRANS_PUSH(cpu_transcoder), 0);
- }
-+
-+void intel_vrr_get_config(struct intel_crtc *crtc,
-+			  struct intel_crtc_state *crtc_state)
-+{
-+	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
-+	enum transcoder cpu_transcoder = crtc_state->cpu_transcoder;
-+	u32 trans_vrr_ctl;
-+
-+	trans_vrr_ctl = intel_de_read(dev_priv, TRANS_VRR_CTL(cpu_transcoder));
-+	crtc_state->vrr.enable = trans_vrr_ctl & VRR_CTL_VRR_ENABLE;
-+	if (!crtc_state->vrr.enable)
-+		return;
-+
-+	if (trans_vrr_ctl & VRR_CTL_PIPELINE_FULL_OVERRIDE)
-+		crtc_state->vrr.pipeline_full = REG_FIELD_GET(VRR_CTL_PIPELINE_FULL_MASK, trans_vrr_ctl);
-+	if (trans_vrr_ctl & VRR_CTL_FLIP_LINE_EN)
-+		crtc_state->vrr.flipline = intel_de_read(dev_priv, TRANS_VRR_FLIPLINE(cpu_transcoder)) + 1;
-+	crtc_state->vrr.vmax = intel_de_read(dev_priv, TRANS_VRR_VMAX(cpu_transcoder)) + 1;
-+	crtc_state->vrr.vmin = intel_de_read(dev_priv, TRANS_VRR_VMIN(cpu_transcoder)) + 1;
-+}
-diff --git a/drivers/gpu/drm/i915/display/intel_vrr.h b/drivers/gpu/drm/i915/display/intel_vrr.h
-index 43379c2bd4d9..7610051edad2 100644
---- a/drivers/gpu/drm/i915/display/intel_vrr.h
-+++ b/drivers/gpu/drm/i915/display/intel_vrr.h
-@@ -15,6 +15,7 @@ struct intel_crtc;
- struct intel_crtc_state;
- struct intel_dp;
- struct intel_encoder;
-+struct intel_crtc;
- 
- bool intel_vrr_is_capable(struct drm_connector *connector);
- void intel_vrr_check_modeset(struct intel_atomic_state *state);
-@@ -24,5 +25,7 @@ void intel_vrr_enable(struct intel_encoder *encoder,
- 		      const struct intel_crtc_state *crtc_state);
- void intel_vrr_send_push(const struct intel_crtc_state *crtc_state);
- void intel_vrr_disable(const struct intel_crtc_state *old_crtc_state);
-+void intel_vrr_get_config(struct intel_crtc *crtc,
-+			  struct intel_crtc_state *crtc_state);
- 
- #endif /* __INTEL_VRR_H__ */
--- 
-2.19.1
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+RnJvbTogVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4KCldp
+dGggVlJSIHRoZSBlYXJsaWVzdCB0aGUgcmVnaXN0ZXJzIGNhbiBnZXQgbGF0Y2hlZCBhcmUgYXQK
+ZmxpcGxpbmUgZGVjaXNpb24gYm91bmRhcnksIGNhbGN1bGF0ZSB0aGF0IGFzIHZycl92bWluX3Zi
+bGFua19zdGFydCgpCmFuZCB0aGUgbGF0ZXN0IHRoZSByZWdzaXRlcnMgY2FuIGdldCBsYXRjaGVk
+IGFyZSB2bWF4IGRlY2lzaW9uIGJvdW5kYXJ5CmNhbGN1bGF0ZSB0aGF0IGFzIHZycl92bWF4X3Zi
+bGFua19zdGFydCgpCgpTaWduZWQtb2ZmLWJ5OiBNYW5hc2kgTmF2YXJlIDxtYW5hc2kuZC5uYXZh
+cmVAaW50ZWwuY29tPgpTaWduZWQtb2ZmLWJ5OiBWaWxsZSBTeXJqw6Rsw6QgPHZpbGxlLnN5cmph
+bGFAbGludXguaW50ZWwuY29tPgotLS0KIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50
+ZWxfdnJyLmMgfCAzNiArKysrKysrKysrKysrKysrKysrKysrKysKIGRyaXZlcnMvZ3B1L2RybS9p
+OTE1L2Rpc3BsYXkvaW50ZWxfdnJyLmggfCAgMiArKwogMiBmaWxlcyBjaGFuZ2VkLCAzOCBpbnNl
+cnRpb25zKCspCgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRl
+bF92cnIuYyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfdnJyLmMKaW5kZXgg
+NWRjNmQ1Nzg3NjBhLi45YTE4YzM2ZTRhOWEgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9p
+OTE1L2Rpc3BsYXkvaW50ZWxfdnJyLmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxh
+eS9pbnRlbF92cnIuYwpAQCAtNDUsNiArNDUsNDIgQEAgaW50ZWxfdnJyX2NoZWNrX21vZGVzZXQo
+c3RydWN0IGludGVsX2F0b21pY19zdGF0ZSAqc3RhdGUpCiAJfQogfQogCisvKgorICogV2l0aG91
+dCBWUlIgcmVnaXN0ZXJzIGdldCBsYXRjaGVkIGF0OgorICogIHZibGFua19zdGFydAorICoKKyAq
+IFdpdGggVlJSIHRoZSBlYXJsaWVzdCByZWdpc3RlcnMgY2FuIGdldCBsYXRjaGVkIGlzOgorICog
+IGludGVsX3Zycl92bWluX3ZibGFua19zdGFydCgpLCB3aGljaCBpZiB3ZSB3YW50IHRvIG1haW50
+YWluCisgKiAgdGhlIGNvcnJlY3QgbWluIHZ0b3RhbCBpcyA+PXZibGFua19zdGFydCsxCisgKgor
+ICogVGhlIGxhdGVzdCBwb2ludCByZWdpc3RlcnMgY2FuIGdldCBsYXRjaGVkIGlzIHRoZSB2bWF4
+IGRlY2lzaW9uIGJvdW5kYXJ5OgorICogIGludGVsX3Zycl92bWF4X3ZibGFua19zdGFydCgpCisg
+KgorICogQmV0d2VlbiB0aG9zZSB0d28gcG9pbnRzIHRoZSB2YmxhbmsgZXhpdCBzdGFydHMgKGFu
+ZCBoZW5jZSByZWdpc3RlcnMgZ2V0CisgKiBsYXRjaGVkKSBBU0FQIGFmdGVyIGEgcHVzaCBpcyBz
+ZW50LgorICoKKyAqIGZyYW1lc3RhcnRfZGVsYXkgaXMgcHJvZ3JhbW1hYmxlIDAtMy4KKyAqLwor
+c3RhdGljIGludCBpbnRlbF92cnJfdmJsYW5rX2V4aXRfbGVuZ3RoKGNvbnN0IHN0cnVjdCBpbnRl
+bF9jcnRjX3N0YXRlICpjcnRjX3N0YXRlKQoreworCXN0cnVjdCBpbnRlbF9jcnRjICpjcnRjID0g
+dG9faW50ZWxfY3J0YyhjcnRjX3N0YXRlLT51YXBpLmNydGMpOworCXN0cnVjdCBkcm1faTkxNV9w
+cml2YXRlICppOTE1ID0gdG9faTkxNShjcnRjLT5iYXNlLmRldik7CisKKwkvKiBUT0RPOiBOb3Qg
+c3VyZSB3aHkgdGhlIGh3IGltcG9zZXMgdGhlIGV4dHJhIHNjYW5saW5lPywgYWxzbyBjaGVjayBv
+biBUR0wgKi8KKwlyZXR1cm4gY3J0Y19zdGF0ZS0+dnJyLnBpcGVsaW5lX2Z1bGwgKyBpOTE1LT5m
+cmFtZXN0YXJ0X2RlbGF5ICsgMjsKK30KKworaW50IGludGVsX3Zycl92bWluX3ZibGFua19zdGFy
+dChjb25zdCBzdHJ1Y3QgaW50ZWxfY3J0Y19zdGF0ZSAqY3J0Y19zdGF0ZSkKK3sKKwkvKiBNaW4g
+dmJsYW5rIGFjdHVhbGx5IGRldGVybWluZWQgYnkgZmxpcGxpbmUgdGhhdCBpcyBhbHdheXMgPj12
+bWluKzEgKi8KKwlyZXR1cm4gY3J0Y19zdGF0ZS0+dnJyLnZtaW4gKyAxIC0gaW50ZWxfdnJyX3Zi
+bGFua19leGl0X2xlbmd0aChjcnRjX3N0YXRlKTsKK30KKworaW50IGludGVsX3Zycl92bWF4X3Zi
+bGFua19zdGFydChjb25zdCBzdHJ1Y3QgaW50ZWxfY3J0Y19zdGF0ZSAqY3J0Y19zdGF0ZSkKK3sK
+KwlyZXR1cm4gY3J0Y19zdGF0ZS0+dnJyLnZtYXggLSBpbnRlbF92cnJfdmJsYW5rX2V4aXRfbGVu
+Z3RoKGNydGNfc3RhdGUpOworfQorCiB2b2lkCiBpbnRlbF92cnJfY29tcHV0ZV9jb25maWcoc3Ry
+dWN0IGludGVsX2NydGNfc3RhdGUgKmNydGNfc3RhdGUsCiAJCQkgc3RydWN0IGRybV9jb25uZWN0
+b3Jfc3RhdGUgKmNvbm5fc3RhdGUpCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9k
+aXNwbGF5L2ludGVsX3Zyci5oIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF92
+cnIuaAppbmRleCA3NjEwMDUxZWRhZDIuLmQ4YjZiNDU1NTdjYSAxMDA2NDQKLS0tIGEvZHJpdmVy
+cy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF92cnIuaAorKysgYi9kcml2ZXJzL2dwdS9kcm0v
+aTkxNS9kaXNwbGF5L2ludGVsX3Zyci5oCkBAIC0yNyw1ICsyNyw3IEBAIHZvaWQgaW50ZWxfdnJy
+X3NlbmRfcHVzaChjb25zdCBzdHJ1Y3QgaW50ZWxfY3J0Y19zdGF0ZSAqY3J0Y19zdGF0ZSk7CiB2
+b2lkIGludGVsX3Zycl9kaXNhYmxlKGNvbnN0IHN0cnVjdCBpbnRlbF9jcnRjX3N0YXRlICpvbGRf
+Y3J0Y19zdGF0ZSk7CiB2b2lkIGludGVsX3Zycl9nZXRfY29uZmlnKHN0cnVjdCBpbnRlbF9jcnRj
+ICpjcnRjLAogCQkJICBzdHJ1Y3QgaW50ZWxfY3J0Y19zdGF0ZSAqY3J0Y19zdGF0ZSk7CitpbnQg
+aW50ZWxfdnJyX3ZtYXhfdmJsYW5rX3N0YXJ0KGNvbnN0IHN0cnVjdCBpbnRlbF9jcnRjX3N0YXRl
+ICpjcnRjX3N0YXRlKTsKK2ludCBpbnRlbF92cnJfdm1pbl92Ymxhbmtfc3RhcnQoY29uc3Qgc3Ry
+dWN0IGludGVsX2NydGNfc3RhdGUgKmNydGNfc3RhdGUpOwogCiAjZW5kaWYgLyogX19JTlRFTF9W
+UlJfSF9fICovCi0tIAoyLjE5LjEKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVk
+ZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZv
+L2ludGVsLWdmeAo=
