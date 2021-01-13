@@ -2,34 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 73CF12F4CF7
-	for <lists+intel-gfx@lfdr.de>; Wed, 13 Jan 2021 15:20:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 03B9B2F4CFF
+	for <lists+intel-gfx@lfdr.de>; Wed, 13 Jan 2021 15:23:12 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 99FB56E9C7;
-	Wed, 13 Jan 2021 14:20:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 10B4A6EA0A;
+	Wed, 13 Jan 2021 14:23:10 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3FAEC6E9C7
- for <intel-gfx@lists.freedesktop.org>; Wed, 13 Jan 2021 14:20:30 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 23585403-1500050 for multiple; Wed, 13 Jan 2021 14:20:27 +0000
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 7D0D66EA08;
+ Wed, 13 Jan 2021 14:23:09 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 7625CA9932;
+ Wed, 13 Jan 2021 14:23:09 +0000 (UTC)
 MIME-Version: 1.0
-In-Reply-To: <87czy8lyai.fsf@gaia.fi.intel.com>
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Wed, 13 Jan 2021 14:23:09 -0000
+Message-ID: <161054778945.11120.8123400849675759516@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
 References: <20210113125155.1029-1-chris@chris-wilson.co.uk>
- <20210113125939.10205-1-chris@chris-wilson.co.uk>
- <87czy8lyai.fsf@gaia.fi.intel.com>
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: Mika Kuoppala <mika.kuoppala@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-Date: Wed, 13 Jan 2021 14:20:26 +0000
-Message-ID: <161054762695.6195.15727662489681827393@build.alporthouse.com>
-User-Agent: alot/0.9
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/selftests: Bump the scheduling
- threshold for fast heartbeats
+In-Reply-To: <20210113125155.1029-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciBk?=
+ =?utf-8?q?rm/i915/selftests=3A_Bump_the_scheduling_threshold_for_fast_hea?=
+ =?utf-8?q?rtbeats_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,43 +39,60 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Mika Kuoppala (2021-01-13 14:13:57)
-> Chris Wilson <chris@chris-wilson.co.uk> writes:
-> 
-> > Since we are system_highpri_wq, we expected the heartbeat to be
-> > scheduled promptly. However, we see delays of over 10ms upsetting our
-> > assertions. Accept this as inevitable and bump the error threshold to
-> > 20ms (from 6ms).
-> >
-> > Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-> > ---
-> >  drivers/gpu/drm/i915/gt/selftest_engine_heartbeat.c | 13 ++++++++++---
-> >  1 file changed, 10 insertions(+), 3 deletions(-)
-> >
-> > diff --git a/drivers/gpu/drm/i915/gt/selftest_engine_heartbeat.c b/drivers/gpu/drm/i915/gt/selftest_engine_heartbeat.c
-> > index b88aa35ad75b..e88a01390dc5 100644
-> > --- a/drivers/gpu/drm/i915/gt/selftest_engine_heartbeat.c
-> > +++ b/drivers/gpu/drm/i915/gt/selftest_engine_heartbeat.c
-> > @@ -197,6 +197,7 @@ static int cmp_u32(const void *_a, const void *_b)
-> >  
-> >  static int __live_heartbeat_fast(struct intel_engine_cs *engine)
-> >  {
-> > +     const int error_threshold = max(20000, jffies_to_usecs(6));
-> 
-> s/jffies/jiffies
-> 
-> Also for the commit message, 6 jiffies are not 6ms so it needs
-> some mending.
-
-Ok, might as well pull the failure messages from CI as well for a bit
-more information.
--Chris
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+PT0gU2VyaWVzIERldGFpbHMgPT0KClNlcmllczogZHJtL2k5MTUvc2VsZnRlc3RzOiBCdW1wIHRo
+ZSBzY2hlZHVsaW5nIHRocmVzaG9sZCBmb3IgZmFzdCBoZWFydGJlYXRzIChyZXYyKQpVUkwgICA6
+IGh0dHBzOi8vcGF0Y2h3b3JrLmZyZWVkZXNrdG9wLm9yZy9zZXJpZXMvODU4MDQvClN0YXRlIDog
+ZmFpbHVyZQoKPT0gU3VtbWFyeSA9PQoKQ0FMTCAgICBzY3JpcHRzL2NoZWNrc3lzY2FsbHMuc2gK
+ICBDQUxMICAgIHNjcmlwdHMvYXRvbWljL2NoZWNrLWF0b21pY3Muc2gKICBERVNDRU5EICBvYmp0
+b29sCiAgQ0hLICAgICBpbmNsdWRlL2dlbmVyYXRlZC9jb21waWxlLmgKICBDQyBbTV0gIGRyaXZl
+cnMvZ3B1L2RybS9pOTE1L2d0L2ludGVsX2VuZ2luZV9oZWFydGJlYXQubwpJbiBmaWxlIGluY2x1
+ZGVkIGZyb20gLi9pbmNsdWRlL2xpbnV4L2tlcm5lbC5oOjE0LAogICAgICAgICAgICAgICAgIGZy
+b20gLi9pbmNsdWRlL2FzbS1nZW5lcmljL2J1Zy5oOjIwLAogICAgICAgICAgICAgICAgIGZyb20g
+Li9hcmNoL3g4Ni9pbmNsdWRlL2FzbS9idWcuaDo5MywKICAgICAgICAgICAgICAgICBmcm9tIC4v
+aW5jbHVkZS9saW51eC9idWcuaDo1LAogICAgICAgICAgICAgICAgIGZyb20gLi9pbmNsdWRlL2xp
+bnV4L21tZGVidWcuaDo1LAogICAgICAgICAgICAgICAgIGZyb20gLi9pbmNsdWRlL2xpbnV4L2dm
+cC5oOjUsCiAgICAgICAgICAgICAgICAgZnJvbSAuL2luY2x1ZGUvbGludXgvc2xhYi5oOjE1LAog
+ICAgICAgICAgICAgICAgIGZyb20gLi9pbmNsdWRlL2xpbnV4L2lvLW1hcHBpbmcuaDoxMCwKICAg
+ICAgICAgICAgICAgICBmcm9tIC4vZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9kcnYuaDozOCwK
+ICAgICAgICAgICAgICAgICBmcm9tIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L2ludGVsX2VuZ2lu
+ZV9oZWFydGJlYXQuYzo3Ogpkcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC9zZWxmdGVzdF9lbmdpbmVf
+aGVhcnRiZWF0LmM6IEluIGZ1bmN0aW9uIOKAmF9fbGl2ZV9oZWFydGJlYXRfZmFzdOKAmToKZHJp
+dmVycy9ncHUvZHJtL2k5MTUvZ3Qvc2VsZnRlc3RfZW5naW5lX2hlYXJ0YmVhdC5jOjIwMDo0MTog
+ZXJyb3I6IGltcGxpY2l0IGRlY2xhcmF0aW9uIG9mIGZ1bmN0aW9uIOKAmGpmZmllc190b191c2Vj
+c+KAmTsgZGlkIHlvdSBtZWFuIOKAmGppZmZpZXNfdG9fdXNlY3PigJk/IFstV2Vycm9yPWltcGxp
+Y2l0LWZ1bmN0aW9uLWRlY2xhcmF0aW9uXQogIGNvbnN0IGludCBlcnJvcl90aHJlc2hvbGQgPSBt
+YXgoMjAwMDAsIGpmZmllc190b191c2Vjcyg2KSk7CiAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgXn5+fn5+fn5+fn5+fn5+Ci4vaW5jbHVkZS9saW51eC9taW5tYXguaDox
+ODozOTogbm90ZTogaW4gZGVmaW5pdGlvbiBvZiBtYWNybyDigJhfX3R5cGVjaGVja+KAmQogICgh
+IShzaXplb2YoKHR5cGVvZih4KSAqKTEgPT0gKHR5cGVvZih5KSAqKTEpKSkKICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgXgouL2luY2x1ZGUvbGludXgvbWlubWF4Lmg6NDI6
+MjQ6IG5vdGU6IGluIGV4cGFuc2lvbiBvZiBtYWNybyDigJhfX3NhZmVfY21w4oCZCiAgX19idWls
+dGluX2Nob29zZV9leHByKF9fc2FmZV9jbXAoeCwgeSksIFwKICAgICAgICAgICAgICAgICAgICAg
+ICAgXn5+fn5+fn5+fgouL2luY2x1ZGUvbGludXgvbWlubWF4Lmg6NTg6MTk6IG5vdGU6IGluIGV4
+cGFuc2lvbiBvZiBtYWNybyDigJhfX2NhcmVmdWxfY21w4oCZCiAjZGVmaW5lIG1heCh4LCB5KSBf
+X2NhcmVmdWxfY21wKHgsIHksID4pCiAgICAgICAgICAgICAgICAgICBefn5+fn5+fn5+fn5+CmRy
+aXZlcnMvZ3B1L2RybS9pOTE1L2d0L3NlbGZ0ZXN0X2VuZ2luZV9oZWFydGJlYXQuYzoyMDA6MzA6
+IG5vdGU6IGluIGV4cGFuc2lvbiBvZiBtYWNybyDigJhtYXjigJkKICBjb25zdCBpbnQgZXJyb3Jf
+dGhyZXNob2xkID0gbWF4KDIwMDAwLCBqZmZpZXNfdG9fdXNlY3MoNikpOwogICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICBefn4KY2MxOiBhbGwgd2FybmluZ3MgYmVpbmcgdHJlYXRlZCBhcyBl
+cnJvcnMKc2NyaXB0cy9NYWtlZmlsZS5idWlsZDoyNzk6IHJlY2lwZSBmb3IgdGFyZ2V0ICdkcml2
+ZXJzL2dwdS9kcm0vaTkxNS9ndC9pbnRlbF9lbmdpbmVfaGVhcnRiZWF0Lm8nIGZhaWxlZAptYWtl
+WzRdOiAqKiogW2RyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L2ludGVsX2VuZ2luZV9oZWFydGJlYXQu
+b10gRXJyb3IgMQpzY3JpcHRzL01ha2VmaWxlLmJ1aWxkOjQ5NjogcmVjaXBlIGZvciB0YXJnZXQg
+J2RyaXZlcnMvZ3B1L2RybS9pOTE1JyBmYWlsZWQKbWFrZVszXTogKioqIFtkcml2ZXJzL2dwdS9k
+cm0vaTkxNV0gRXJyb3IgMgpzY3JpcHRzL01ha2VmaWxlLmJ1aWxkOjQ5NjogcmVjaXBlIGZvciB0
+YXJnZXQgJ2RyaXZlcnMvZ3B1L2RybScgZmFpbGVkCm1ha2VbMl06ICoqKiBbZHJpdmVycy9ncHUv
+ZHJtXSBFcnJvciAyCnNjcmlwdHMvTWFrZWZpbGUuYnVpbGQ6NDk2OiByZWNpcGUgZm9yIHRhcmdl
+dCAnZHJpdmVycy9ncHUnIGZhaWxlZAptYWtlWzFdOiAqKiogW2RyaXZlcnMvZ3B1XSBFcnJvciAy
+Ck1ha2VmaWxlOjE4MDU6IHJlY2lwZSBmb3IgdGFyZ2V0ICdkcml2ZXJzJyBmYWlsZWQKbWFrZTog
+KioqIFtkcml2ZXJzXSBFcnJvciAyCgoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJl
+ZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGlu
+Zm8vaW50ZWwtZ2Z4Cg==
