@@ -1,42 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3656E2F4F68
-	for <lists+intel-gfx@lfdr.de>; Wed, 13 Jan 2021 17:03:35 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8B39D2F4F82
+	for <lists+intel-gfx@lfdr.de>; Wed, 13 Jan 2021 17:09:43 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F22D66EB07;
-	Wed, 13 Jan 2021 16:03:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D11226EB18;
+	Wed, 13 Jan 2021 16:09:40 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 59FC66EB07
- for <intel-gfx@lists.freedesktop.org>; Wed, 13 Jan 2021 16:03:30 +0000 (UTC)
-IronPort-SDR: WsN3L8Aen5N8opJyIUCT1qpxXvhkO7w+6zw9+wcBz5w0gGMJ+E3tCOxLssAudGlGsvnJv8Ysgy
- yvW/4NHLQUoA==
-X-IronPort-AV: E=McAfee;i="6000,8403,9863"; a="174717789"
-X-IronPort-AV: E=Sophos;i="5.79,344,1602572400"; d="scan'208";a="174717789"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Jan 2021 08:02:55 -0800
-IronPort-SDR: wuS4I8j8eJtH8tzzy43ym7VfjVfb4c7Qk9/eEg5OdihKqV0MXGh5DCvMX+cMt9lDKUA8OfQZVB
- AQyzf2o30xuw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.79,344,1602572400"; d="scan'208";a="381905798"
-Received: from gaia.fi.intel.com ([10.237.72.192])
- by orsmga008.jf.intel.com with ESMTP; 13 Jan 2021 08:02:52 -0800
-Received: by gaia.fi.intel.com (Postfix, from userid 1000)
- id EAF0E5C2054; Wed, 13 Jan 2021 18:00:09 +0200 (EET)
-From: Mika Kuoppala <mika.kuoppala@linux.intel.com>
-To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
-In-Reply-To: <20210113144532.16979-1-chris@chris-wilson.co.uk>
-References: <20210113125155.1029-1-chris@chris-wilson.co.uk>
- <20210113144532.16979-1-chris@chris-wilson.co.uk>
-Date: Wed, 13 Jan 2021 18:00:09 +0200
-Message-ID: <87a6tcltdi.fsf@gaia.fi.intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id E5BE96EB18;
+ Wed, 13 Jan 2021 16:09:39 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id DFF09A8835;
+ Wed, 13 Jan 2021 16:09:39 +0000 (UTC)
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH v2] drm/i915/selftests: Bump the scheduling
- error threshold for fast heartbeats
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Daniel Vetter" <daniel.vetter@ffwll.ch>
+Date: Wed, 13 Jan 2021 16:09:39 -0000
+Message-ID: <161055417988.11119.12654148770190609335@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210113140604.3615437-1-daniel.vetter@ffwll.ch>
+In-Reply-To: <20210113140604.3615437-1-daniel.vetter@ffwll.ch>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?-buf=3A_Add_debug_option?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,73 +38,210 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Chris Wilson <chris@chris-wilson.co.uk>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============0277883014=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Chris Wilson <chris@chris-wilson.co.uk> writes:
+--===============0277883014==
+Content-Type: multipart/alternative;
+ boundary="===============4803240664694962245=="
 
-> Since we are system_highpri_wq, we expected the heartbeat to be
-> scheduled promptly. However, we see delays of over 10ms upsetting our
-> assertions. Accept this as inevitable and bump the minimum error
-> threshold to 20ms (from 6 jiffies).
->
-> <6> [616.784749] rcs0: Heartbeat delay: 3570us [2802, 9188]
-> <6> [616.807790] bcs0: Heartbeat delay: 2111us [745, 4372]
-> <6> [616.853776] vcs0: Heartbeat delay: 6485us [2424, 11637]
-> <3> [616.859296] vcs0: Heartbeat delay was 6485us, expected less than 6000us
-> <3> [616.860901] i915/intel_heartbeat_live_selftests: live_heartbeat_fast failed with error -22
->
-> v2: More context from CI.
->
-> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-> Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+--===============4803240664694962245==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Reviewed-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+== Series Details ==
 
-> ---
->  drivers/gpu/drm/i915/gt/selftest_engine_heartbeat.c | 13 ++++++++++---
->  1 file changed, 10 insertions(+), 3 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/gt/selftest_engine_heartbeat.c b/drivers/gpu/drm/i915/gt/selftest_engine_heartbeat.c
-> index b88aa35ad75b..223ab88f7e57 100644
-> --- a/drivers/gpu/drm/i915/gt/selftest_engine_heartbeat.c
-> +++ b/drivers/gpu/drm/i915/gt/selftest_engine_heartbeat.c
-> @@ -197,6 +197,7 @@ static int cmp_u32(const void *_a, const void *_b)
->  
->  static int __live_heartbeat_fast(struct intel_engine_cs *engine)
->  {
-> +	const unsigned int error_threshold = max(20000u, jiffies_to_usecs(6));
->  	struct intel_context *ce;
->  	struct i915_request *rq;
->  	ktime_t t0, t1;
-> @@ -254,12 +255,18 @@ static int __live_heartbeat_fast(struct intel_engine_cs *engine)
->  		times[0],
->  		times[ARRAY_SIZE(times) - 1]);
->  
-> -	/* Min work delay is 2 * 2 (worst), +1 for scheduling, +1 for slack */
-> -	if (times[ARRAY_SIZE(times) / 2] > jiffies_to_usecs(6)) {
-> +	/*
-> +	 * Ideally, the upper bound on min work delay would be something like
-> +	 * 2 * 2 (worst), +1 for scheduling, +1 for slack. In practice, we
-> +	 * are, even with system_wq_highpri, at the mercy of the CPU scheduler
-> +	 * and may be stuck behind some slow work for many millisecond. Such
-> +	 * as our very own display workers.
-> +	 */
-> +	if (times[ARRAY_SIZE(times) / 2] > error_threshold) {
->  		pr_err("%s: Heartbeat delay was %uus, expected less than %dus\n",
->  		       engine->name,
->  		       times[ARRAY_SIZE(times) / 2],
-> -		       jiffies_to_usecs(6));
-> +		       error_threshold);
->  		err = -EINVAL;
->  	}
->  
-> -- 
-> 2.20.1
+Series: drm-buf: Add debug option
+URL   : https://patchwork.freedesktop.org/series/85813/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_9602 -> Patchwork_19335
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19335/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_19335 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@amdgpu/amd_cs_nop@fork-gfx0:
+    - fi-tgl-y:           NOTRUN -> [SKIP][1] ([fdo#109315] / [i915#2575]) +15 similar issues
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19335/fi-tgl-y/igt@amdgpu/amd_cs_nop@fork-gfx0.html
+
+  * igt@i915_getparams_basic@basic-subslice-total:
+    - fi-tgl-y:           [PASS][2] -> [DMESG-WARN][3] ([i915#402]) +2 similar issues
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9602/fi-tgl-y/igt@i915_getparams_basic@basic-subslice-total.html
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19335/fi-tgl-y/igt@i915_getparams_basic@basic-subslice-total.html
+
+  * igt@i915_pm_rpm@module-reload:
+    - fi-kbl-guc:         [PASS][4] -> [FAIL][5] ([i915#579])
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9602/fi-kbl-guc/igt@i915_pm_rpm@module-reload.html
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19335/fi-kbl-guc/igt@i915_pm_rpm@module-reload.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@gt_lrc:
+    - fi-bsw-n3050:       [DMESG-FAIL][6] ([i915#2675]) -> [PASS][7]
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9602/fi-bsw-n3050/igt@i915_selftest@live@gt_lrc.html
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19335/fi-bsw-n3050/igt@i915_selftest@live@gt_lrc.html
+
+  * igt@prime_self_import@basic-with_one_bo_two_files:
+    - fi-tgl-y:           [DMESG-WARN][8] ([i915#402]) -> [PASS][9] +1 similar issue
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9602/fi-tgl-y/igt@prime_self_import@basic-with_one_bo_two_files.html
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19335/fi-tgl-y/igt@prime_self_import@basic-with_one_bo_two_files.html
+
+  
+  [fdo#109315]: https://bugs.freedesktop.org/show_bug.cgi?id=109315
+  [i915#2575]: https://gitlab.freedesktop.org/drm/intel/issues/2575
+  [i915#2675]: https://gitlab.freedesktop.org/drm/intel/issues/2675
+  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
+  [i915#579]: https://gitlab.freedesktop.org/drm/intel/issues/579
+
+
+Participating hosts (43 -> 38)
+------------------------------
+
+  Missing    (5): fi-hsw-4200u fi-bsw-cyan fi-apl-guc fi-ctg-p8600 fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_9602 -> Patchwork_19335
+
+  CI-20190529: 20190529
+  CI_DRM_9602: 0e9e2e0eb03ba457a9ce479b8276be88761320ca @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5957: 2a2b3418f7458dfa1fac255cc5c71603f617690a @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_19335: ea95cc3a3606f0a06ceabe6c548f855bdc40cfcf @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+ea95cc3a3606 drm-buf: Add debug option
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19335/index.html
+
+--===============4803240664694962245==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm-buf: Add debug option</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/85813/">https://patchwork.freedesktop.org/series/85813/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19335/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19335/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_9602 -&gt; Patchwork_19335</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19335/index.html</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_19335 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@amdgpu/amd_cs_nop@fork-gfx0:</p>
+<ul>
+<li>fi-tgl-y:           NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19335/fi-tgl-y/igt@amdgpu/amd_cs_nop@fork-gfx0.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109315">fdo#109315</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2575">i915#2575</a>) +15 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_getparams_basic@basic-subslice-total:</p>
+<ul>
+<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9602/fi-tgl-y/igt@i915_getparams_basic@basic-subslice-total.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19335/fi-tgl-y/igt@i915_getparams_basic@basic-subslice-total.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) +2 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_pm_rpm@module-reload:</p>
+<ul>
+<li>fi-kbl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9602/fi-kbl-guc/igt@i915_pm_rpm@module-reload.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19335/fi-kbl-guc/igt@i915_pm_rpm@module-reload.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/579">i915#579</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live@gt_lrc:</p>
+<ul>
+<li>fi-bsw-n3050:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9602/fi-bsw-n3050/igt@i915_selftest@live@gt_lrc.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2675">i915#2675</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19335/fi-bsw-n3050/igt@i915_selftest@live@gt_lrc.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@prime_self_import@basic-with_one_bo_two_files:</p>
+<ul>
+<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9602/fi-tgl-y/igt@prime_self_import@basic-with_one_bo_two_files.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19335/fi-tgl-y/igt@prime_self_import@basic-with_one_bo_two_files.html">PASS</a> +1 similar issue</li>
+</ul>
+</li>
+</ul>
+<h2>Participating hosts (43 -&gt; 38)</h2>
+<p>Missing    (5): fi-hsw-4200u fi-bsw-cyan fi-apl-guc fi-ctg-p8600 fi-bdw-samus </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_9602 -&gt; Patchwork_19335</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_9602: 0e9e2e0eb03ba457a9ce479b8276be88761320ca @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_5957: 2a2b3418f7458dfa1fac255cc5c71603f617690a @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
+  Patchwork_19335: ea95cc3a3606f0a06ceabe6c548f855bdc40cfcf @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>ea95cc3a3606 drm-buf: Add debug option</p>
+
+</body>
+</html>
+
+--===============4803240664694962245==--
+
+--===============0277883014==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============0277883014==--
