@@ -1,63 +1,39 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DAEA62F4295
-	for <lists+intel-gfx@lfdr.de>; Wed, 13 Jan 2021 04:40:45 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 704582F4358
+	for <lists+intel-gfx@lfdr.de>; Wed, 13 Jan 2021 05:53:10 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9659F89C54;
-	Wed, 13 Jan 2021 03:40:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 552308929C;
+	Wed, 13 Jan 2021 04:53:07 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 25DF289C54
- for <intel-gfx@lists.freedesktop.org>; Wed, 13 Jan 2021 03:40:42 +0000 (UTC)
-IronPort-SDR: uBxuPtrnPoDJ43kAEMrwj06HesZhmh1zyrtKcBem2jEMLPc7sttCuLRSQLWwcWGxcnGEaU0eA5
- a2eRbJe1jt5g==
-X-IronPort-AV: E=McAfee;i="6000,8403,9862"; a="165232284"
-X-IronPort-AV: E=Sophos;i="5.79,343,1602572400"; d="scan'208";a="165232284"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Jan 2021 19:40:40 -0800
-IronPort-SDR: sOsilZPl+o2GcZHoQw+VZK/ncohm7KlXTTFxFYyFX+sRlWjJCWEcv4cwRFwdfLe76s9GAmVzuQ
- vbvf5KJyrTdg==
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0B6458929C
+ for <intel-gfx@lists.freedesktop.org>; Wed, 13 Jan 2021 04:53:05 +0000 (UTC)
+IronPort-SDR: ZCAAKWUhlyL7hfrP2MlldQ73E91mknnRjfDqYq9e2FFhFmV/ybwDhtS/SuTRhtEKN2v6u1fYp3
+ N2OMOlFY1UIw==
+X-IronPort-AV: E=McAfee;i="6000,8403,9862"; a="239691347"
+X-IronPort-AV: E=Sophos;i="5.79,343,1602572400"; d="scan'208";a="239691347"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Jan 2021 20:53:04 -0800
+IronPort-SDR: rowaP5eJTQOqAe1FncDS3zUv6PExL6ZEF3QnZYjLW+xWVj0m3TNazOkEovShUP2i0JasVZN+QN
+ ZGt45wgkNRlA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.79,343,1602572400"; d="scan'208";a="404690126"
-Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
- by FMSMGA003.fm.intel.com with ESMTP; 12 Jan 2021 19:40:40 -0800
-Received: from bgsmsx602.gar.corp.intel.com (10.109.78.81) by
- fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1713.5; Tue, 12 Jan 2021 19:40:39 -0800
-Received: from bgsmsx604.gar.corp.intel.com (10.67.234.6) by
- BGSMSX602.gar.corp.intel.com (10.109.78.81) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1713.5; Wed, 13 Jan 2021 09:10:37 +0530
-Received: from bgsmsx604.gar.corp.intel.com ([10.67.234.6]) by
- BGSMSX604.gar.corp.intel.com ([10.67.234.6]) with mapi id 15.01.1713.004;
- Wed, 13 Jan 2021 09:10:37 +0530
-From: "Gupta, Anshuman" <anshuman.gupta@intel.com>
-To: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Thread-Topic: =?utf-8?B?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3IgSERDUCAyLjIgYW5kIEhE?=
- =?utf-8?Q?CP_1.4_Gen12_DP_MST_support_(rev9)?=
-Thread-Index: AQHW5/T8LvSS8hjoF0iHEZEIN5SRHKok6xyA
-Date: Wed, 13 Jan 2021 03:40:37 +0000
-Message-ID: <82d15f54af2a498daf676d40385ba192@intel.com>
-References: <20210111081120.28417-1-anshuman.gupta@intel.com>
- <161035423345.25135.5682517583317741771@emeril.freedesktop.org>
-In-Reply-To: <161035423345.25135.5682517583317741771@emeril.freedesktop.org>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-product: dlpe-windows
-dlp-version: 11.5.1.3
-dlp-reaction: no-action
-x-originating-ip: [10.22.254.132]
-MIME-Version: 1.0
-Subject: Re: [Intel-gfx] 
- =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
- =?utf-8?q?HDCP_2=2E2_and_HDCP_1=2E4_Gen12_DP_MST_support_=28rev9=29?=
+X-IronPort-AV: E=Sophos;i="5.79,343,1602572400"; d="scan'208";a="353315047"
+Received: from test-optiplex-7040.bj.intel.com ([10.238.154.158])
+ by fmsmga008.fm.intel.com with ESMTP; 12 Jan 2021 20:53:03 -0800
+From: Xiong Zhang <xiong.y.zhang@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Wed, 13 Jan 2021 12:53:23 +0800
+Message-Id: <20210113045323.2023-1-xiong.y.zhang@intel.com>
+X-Mailer: git-send-email 2.17.1
+In-Reply-To: <87im8soq2w.fsf@intel.com>
+References: <87im8soq2w.fsf@intel.com>
+Subject: [Intel-gfx] [PATCH v3] drm/i915: Try to guess PCH type even without
+ ISA bridge
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,114 +46,146 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: chris@chris-wilson.co.uk
+MIME-Version: 1.0
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-U3BhcnNlIHdhcm5pbmcgd2FzIG5vdCByZWxhdGVkIHRvIHRoaXMgcGF0Y2ggc2VyaWVzLg0KUHVz
-aGVkIHRvIGRybS1pbnRlbC1uZXh0Lg0KVGhhbmtzICBmb3IgUmV2aWV3cyBhbmQgQWNrLg0KDQpU
-aGFua3MsDQpBbnNodW1hbiBHdXB0YQ0KDQo+IC0tLS0tT3JpZ2luYWwgTWVzc2FnZS0tLS0tDQo+
-IEZyb206IFBhdGNod29yayA8cGF0Y2h3b3JrQGVtZXJpbC5mcmVlZGVza3RvcC5vcmc+DQo+IFNl
-bnQ6IE1vbmRheSwgSmFudWFyeSAxMSwgMjAyMSAyOjA3IFBNDQo+IFRvOiBHdXB0YSwgQW5zaHVt
-YW4gPGFuc2h1bWFuLmd1cHRhQGludGVsLmNvbT4NCj4gQ2M6IGludGVsLWdmeEBsaXN0cy5mcmVl
-ZGVza3RvcC5vcmcNCj4gU3ViamVjdDog4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3IgSERD
-UCAyLjIgYW5kIEhEQ1AgMS40IEdlbjEyIERQIE1TVA0KPiBzdXBwb3J0IChyZXY5KQ0KPiANCj4g
-PT0gU2VyaWVzIERldGFpbHMgPT0NCj4gDQo+IFNlcmllczogSERDUCAyLjIgYW5kIEhEQ1AgMS40
-IEdlbjEyIERQIE1TVCBzdXBwb3J0IChyZXY5KQ0KPiBVUkwgICA6IGh0dHBzOi8vcGF0Y2h3b3Jr
-LmZyZWVkZXNrdG9wLm9yZy9zZXJpZXMvODI5OTgvDQo+IFN0YXRlIDogd2FybmluZw0KPiANCj4g
-PT0gU3VtbWFyeSA9PQ0KPiANCj4gJCBkaW0gc3BhcnNlIC0tZmFzdCBvcmlnaW4vZHJtLXRpcA0K
-PiBTcGFyc2UgdmVyc2lvbjogdjAuNi4yDQo+IEZhc3QgbW9kZSB1c2VkLCBlYWNoIGNvbW1pdCB3
-b24ndCBiZSBjaGVja2VkIHNlcGFyYXRlbHkuDQo+IC0NCj4gKy4vZHJpdmVycy9ncHUvZHJtL2Ft
-ZC9hbWRncHUvLi4vYW1kZ3B1L2FtZGd2X3NyaW92bXNnLmg6MjU3OjQ5Og0KPiBlcnJvcjogc3Rh
-dGljIGFzc2VydGlvbiBmYWlsZWQ6ICJhbWRfc3Jpb3ZfbXNnX3ZmMnBmX2luZm8gbXVzdCBiZSAx
-IEtCIg0KPiArLi9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS8uLi9hbWRncHUvYW1kZ3Zfc3Jp
-b3Ztc2cuaDoyNjE6NDk6DQo+IGVycm9yOiBzdGF0aWMgYXNzZXJ0aW9uIGZhaWxlZDogImFtZF9z
-cmlvdl9tc2dfcGYydmZfaW5mbyBtdXN0IGJlIDEgS0IiDQo+ICtkcml2ZXJzL2dwdS9kcm0vaTkx
-NS9ndC9pbnRlbF9yZXNldC5jOjEzMjk6NTogd2FybmluZzogY29udGV4dA0KPiBpbWJhbGFuY2Ug
-aW4gJ2ludGVsX2d0X3Jlc2V0X3RyeWxvY2snIC0gZGlmZmVyZW50IGxvY2sgY29udGV4dHMgZm9y
-IGJhc2ljIGJsb2NrDQo+ICtkcml2ZXJzL2dwdS9kcm0vaTkxNS9ndnQvbW1pby5jOjI5NToyMzog
-d2FybmluZzogbWVtY3B5IHdpdGggYnl0ZQ0KPiBjb3VudCBvZiAyNzkwNDANCj4gK2RyaXZlcnMv
-Z3B1L2RybS9pOTE1L2k5MTVfcGVyZi5jOjE0NTA6MTU6IHdhcm5pbmc6IG1lbXNldCB3aXRoIGJ5
-dGUNCj4gY291bnQgb2YgMTY3NzcyMTYNCj4gK2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfcGVy
-Zi5jOjE1MDQ6MTU6IHdhcm5pbmc6IG1lbXNldCB3aXRoIGJ5dGUNCj4gY291bnQgb2YgMTY3Nzcy
-MTYNCj4gKy4vaW5jbHVkZS9saW51eC9zZXFsb2NrLmg6ODQzOjI0OiB3YXJuaW5nOiB0cnlpbmcg
-dG8gY29weSBleHByZXNzaW9uIHR5cGUNCj4gMzENCj4gKy4vaW5jbHVkZS9saW51eC9zZXFsb2Nr
-Lmg6ODQzOjI0OiB3YXJuaW5nOiB0cnlpbmcgdG8gY29weSBleHByZXNzaW9uIHR5cGUNCj4gMzEN
-Cj4gKy4vaW5jbHVkZS9saW51eC9zZXFsb2NrLmg6ODY5OjE2OiB3YXJuaW5nOiB0cnlpbmcgdG8g
-Y29weSBleHByZXNzaW9uIHR5cGUNCj4gMzENCj4gKy4vaW5jbHVkZS9saW51eC9zcGlubG9jay5o
-OjQwOTo5OiB3YXJuaW5nOiBjb250ZXh0IGltYmFsYW5jZSBpbg0KPiAnZnd0YWJsZV9yZWFkMTYn
-IC0gZGlmZmVyZW50IGxvY2sgY29udGV4dHMgZm9yIGJhc2ljIGJsb2NrDQo+ICsuL2luY2x1ZGUv
-bGludXgvc3BpbmxvY2suaDo0MDk6OTogd2FybmluZzogY29udGV4dCBpbWJhbGFuY2UgaW4NCj4g
-J2Z3dGFibGVfcmVhZDMyJyAtIGRpZmZlcmVudCBsb2NrIGNvbnRleHRzIGZvciBiYXNpYyBibG9j
-aw0KPiArLi9pbmNsdWRlL2xpbnV4L3NwaW5sb2NrLmg6NDA5Ojk6IHdhcm5pbmc6IGNvbnRleHQg
-aW1iYWxhbmNlIGluDQo+ICdmd3RhYmxlX3JlYWQ2NCcgLSBkaWZmZXJlbnQgbG9jayBjb250ZXh0
-cyBmb3IgYmFzaWMgYmxvY2sNCj4gKy4vaW5jbHVkZS9saW51eC9zcGlubG9jay5oOjQwOTo5OiB3
-YXJuaW5nOiBjb250ZXh0IGltYmFsYW5jZSBpbg0KPiAnZnd0YWJsZV9yZWFkOCcgLSBkaWZmZXJl
-bnQgbG9jayBjb250ZXh0cyBmb3IgYmFzaWMgYmxvY2sNCj4gKy4vaW5jbHVkZS9saW51eC9zcGlu
-bG9jay5oOjQwOTo5OiB3YXJuaW5nOiBjb250ZXh0IGltYmFsYW5jZSBpbg0KPiAnZnd0YWJsZV93
-cml0ZTE2JyAtIGRpZmZlcmVudCBsb2NrIGNvbnRleHRzIGZvciBiYXNpYyBibG9jaw0KPiArLi9p
-bmNsdWRlL2xpbnV4L3NwaW5sb2NrLmg6NDA5Ojk6IHdhcm5pbmc6IGNvbnRleHQgaW1iYWxhbmNl
-IGluDQo+ICdmd3RhYmxlX3dyaXRlMzInIC0gZGlmZmVyZW50IGxvY2sgY29udGV4dHMgZm9yIGJh
-c2ljIGJsb2NrDQo+ICsuL2luY2x1ZGUvbGludXgvc3BpbmxvY2suaDo0MDk6OTogd2FybmluZzog
-Y29udGV4dCBpbWJhbGFuY2UgaW4NCj4gJ2Z3dGFibGVfd3JpdGU4JyAtIGRpZmZlcmVudCBsb2Nr
-IGNvbnRleHRzIGZvciBiYXNpYyBibG9jaw0KPiArLi9pbmNsdWRlL2xpbnV4L3NwaW5sb2NrLmg6
-NDA5Ojk6IHdhcm5pbmc6IGNvbnRleHQgaW1iYWxhbmNlIGluDQo+ICdnZW4xMV9md3RhYmxlX3Jl
-YWQxNicgLSBkaWZmZXJlbnQgbG9jayBjb250ZXh0cyBmb3IgYmFzaWMgYmxvY2sNCj4gKy4vaW5j
-bHVkZS9saW51eC9zcGlubG9jay5oOjQwOTo5OiB3YXJuaW5nOiBjb250ZXh0IGltYmFsYW5jZSBp
-bg0KPiAnZ2VuMTFfZnd0YWJsZV9yZWFkMzInIC0gZGlmZmVyZW50IGxvY2sgY29udGV4dHMgZm9y
-IGJhc2ljIGJsb2NrDQo+ICsuL2luY2x1ZGUvbGludXgvc3BpbmxvY2suaDo0MDk6OTogd2Fybmlu
-ZzogY29udGV4dCBpbWJhbGFuY2UgaW4NCj4gJ2dlbjExX2Z3dGFibGVfcmVhZDY0JyAtIGRpZmZl
-cmVudCBsb2NrIGNvbnRleHRzIGZvciBiYXNpYyBibG9jaw0KPiArLi9pbmNsdWRlL2xpbnV4L3Nw
-aW5sb2NrLmg6NDA5Ojk6IHdhcm5pbmc6IGNvbnRleHQgaW1iYWxhbmNlIGluDQo+ICdnZW4xMV9m
-d3RhYmxlX3JlYWQ4JyAtIGRpZmZlcmVudCBsb2NrIGNvbnRleHRzIGZvciBiYXNpYyBibG9jaw0K
-PiArLi9pbmNsdWRlL2xpbnV4L3NwaW5sb2NrLmg6NDA5Ojk6IHdhcm5pbmc6IGNvbnRleHQgaW1i
-YWxhbmNlIGluDQo+ICdnZW4xMV9md3RhYmxlX3dyaXRlMTYnIC0gZGlmZmVyZW50IGxvY2sgY29u
-dGV4dHMgZm9yIGJhc2ljIGJsb2NrDQo+ICsuL2luY2x1ZGUvbGludXgvc3BpbmxvY2suaDo0MDk6
-OTogd2FybmluZzogY29udGV4dCBpbWJhbGFuY2UgaW4NCj4gJ2dlbjExX2Z3dGFibGVfd3JpdGUz
-MicgLSBkaWZmZXJlbnQgbG9jayBjb250ZXh0cyBmb3IgYmFzaWMgYmxvY2sNCj4gKy4vaW5jbHVk
-ZS9saW51eC9zcGlubG9jay5oOjQwOTo5OiB3YXJuaW5nOiBjb250ZXh0IGltYmFsYW5jZSBpbg0K
-PiAnZ2VuMTFfZnd0YWJsZV93cml0ZTgnIC0gZGlmZmVyZW50IGxvY2sgY29udGV4dHMgZm9yIGJh
-c2ljIGJsb2NrDQo+ICsuL2luY2x1ZGUvbGludXgvc3BpbmxvY2suaDo0MDk6OTogd2FybmluZzog
-Y29udGV4dCBpbWJhbGFuY2UgaW4NCj4gJ2dlbjEyX2Z3dGFibGVfcmVhZDE2JyAtIGRpZmZlcmVu
-dCBsb2NrIGNvbnRleHRzIGZvciBiYXNpYyBibG9jaw0KPiArLi9pbmNsdWRlL2xpbnV4L3NwaW5s
-b2NrLmg6NDA5Ojk6IHdhcm5pbmc6IGNvbnRleHQgaW1iYWxhbmNlIGluDQo+ICdnZW4xMl9md3Rh
-YmxlX3JlYWQzMicgLSBkaWZmZXJlbnQgbG9jayBjb250ZXh0cyBmb3IgYmFzaWMgYmxvY2sNCj4g
-Ky4vaW5jbHVkZS9saW51eC9zcGlubG9jay5oOjQwOTo5OiB3YXJuaW5nOiBjb250ZXh0IGltYmFs
-YW5jZSBpbg0KPiAnZ2VuMTJfZnd0YWJsZV9yZWFkNjQnIC0gZGlmZmVyZW50IGxvY2sgY29udGV4
-dHMgZm9yIGJhc2ljIGJsb2NrDQo+ICsuL2luY2x1ZGUvbGludXgvc3BpbmxvY2suaDo0MDk6OTog
-d2FybmluZzogY29udGV4dCBpbWJhbGFuY2UgaW4NCj4gJ2dlbjEyX2Z3dGFibGVfcmVhZDgnIC0g
-ZGlmZmVyZW50IGxvY2sgY29udGV4dHMgZm9yIGJhc2ljIGJsb2NrDQo+ICsuL2luY2x1ZGUvbGlu
-dXgvc3BpbmxvY2suaDo0MDk6OTogd2FybmluZzogY29udGV4dCBpbWJhbGFuY2UgaW4NCj4gJ2dl
-bjEyX2Z3dGFibGVfd3JpdGUxNicgLSBkaWZmZXJlbnQgbG9jayBjb250ZXh0cyBmb3IgYmFzaWMg
-YmxvY2sNCj4gKy4vaW5jbHVkZS9saW51eC9zcGlubG9jay5oOjQwOTo5OiB3YXJuaW5nOiBjb250
-ZXh0IGltYmFsYW5jZSBpbg0KPiAnZ2VuMTJfZnd0YWJsZV93cml0ZTMyJyAtIGRpZmZlcmVudCBs
-b2NrIGNvbnRleHRzIGZvciBiYXNpYyBibG9jaw0KPiArLi9pbmNsdWRlL2xpbnV4L3NwaW5sb2Nr
-Lmg6NDA5Ojk6IHdhcm5pbmc6IGNvbnRleHQgaW1iYWxhbmNlIGluDQo+ICdnZW4xMl9md3RhYmxl
-X3dyaXRlOCcgLSBkaWZmZXJlbnQgbG9jayBjb250ZXh0cyBmb3IgYmFzaWMgYmxvY2sNCj4gKy4v
-aW5jbHVkZS9saW51eC9zcGlubG9jay5oOjQwOTo5OiB3YXJuaW5nOiBjb250ZXh0IGltYmFsYW5j
-ZSBpbg0KPiAnZ2VuNl9yZWFkMTYnIC0gZGlmZmVyZW50IGxvY2sgY29udGV4dHMgZm9yIGJhc2lj
-IGJsb2NrDQo+ICsuL2luY2x1ZGUvbGludXgvc3BpbmxvY2suaDo0MDk6OTogd2FybmluZzogY29u
-dGV4dCBpbWJhbGFuY2UgaW4NCj4gJ2dlbjZfcmVhZDMyJyAtIGRpZmZlcmVudCBsb2NrIGNvbnRl
-eHRzIGZvciBiYXNpYyBibG9jaw0KPiArLi9pbmNsdWRlL2xpbnV4L3NwaW5sb2NrLmg6NDA5Ojk6
-IHdhcm5pbmc6IGNvbnRleHQgaW1iYWxhbmNlIGluDQo+ICdnZW42X3JlYWQ2NCcgLSBkaWZmZXJl
-bnQgbG9jayBjb250ZXh0cyBmb3IgYmFzaWMgYmxvY2sNCj4gKy4vaW5jbHVkZS9saW51eC9zcGlu
-bG9jay5oOjQwOTo5OiB3YXJuaW5nOiBjb250ZXh0IGltYmFsYW5jZSBpbg0KPiAnZ2VuNl9yZWFk
-OCcgLSBkaWZmZXJlbnQgbG9jayBjb250ZXh0cyBmb3IgYmFzaWMgYmxvY2sNCj4gKy4vaW5jbHVk
-ZS9saW51eC9zcGlubG9jay5oOjQwOTo5OiB3YXJuaW5nOiBjb250ZXh0IGltYmFsYW5jZSBpbg0K
-PiAnZ2VuNl93cml0ZTE2JyAtIGRpZmZlcmVudCBsb2NrIGNvbnRleHRzIGZvciBiYXNpYyBibG9j
-aw0KPiArLi9pbmNsdWRlL2xpbnV4L3NwaW5sb2NrLmg6NDA5Ojk6IHdhcm5pbmc6IGNvbnRleHQg
-aW1iYWxhbmNlIGluDQo+ICdnZW42X3dyaXRlMzInIC0gZGlmZmVyZW50IGxvY2sgY29udGV4dHMg
-Zm9yIGJhc2ljIGJsb2NrDQo+ICsuL2luY2x1ZGUvbGludXgvc3BpbmxvY2suaDo0MDk6OTogd2Fy
-bmluZzogY29udGV4dCBpbWJhbGFuY2UgaW4NCj4gJ2dlbjZfd3JpdGU4JyAtIGRpZmZlcmVudCBs
-b2NrIGNvbnRleHRzIGZvciBiYXNpYyBibG9jaw0KPiArLi9pbmNsdWRlL2xpbnV4L3NwaW5sb2Nr
-Lmg6NDA5Ojk6IHdhcm5pbmc6IGNvbnRleHQgaW1iYWxhbmNlIGluDQo+ICdnZW44X3dyaXRlMTYn
-IC0gZGlmZmVyZW50IGxvY2sgY29udGV4dHMgZm9yIGJhc2ljIGJsb2NrDQo+ICsuL2luY2x1ZGUv
-bGludXgvc3BpbmxvY2suaDo0MDk6OTogd2FybmluZzogY29udGV4dCBpbWJhbGFuY2UgaW4NCj4g
-J2dlbjhfd3JpdGUzMicgLSBkaWZmZXJlbnQgbG9jayBjb250ZXh0cyBmb3IgYmFzaWMgYmxvY2sN
-Cj4gKy4vaW5jbHVkZS9saW51eC9zcGlubG9jay5oOjQwOTo5OiB3YXJuaW5nOiBjb250ZXh0IGlt
-YmFsYW5jZSBpbg0KPiAnZ2VuOF93cml0ZTgnIC0gZGlmZmVyZW50IGxvY2sgY29udGV4dHMgZm9y
-IGJhc2ljIGJsb2NrDQo+IA0KDQpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVz
-a3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9p
-bnRlbC1nZngK
+From: Zhenyu Wang <zhenyuw@linux.intel.com>
+
+Some vmm like hyperv and crosvm don't supply any ISA bridge to their guest,
+when igd passthrough is equipped on these vmm, guest i915 display may
+couldn't work as guest i915 detects PCH_NONE pch type.
+
+When i915 runs as guest, this patch guess pch type through gpu type even
+without ISA bridge.
+
+v2: Fix CI warning
+v3: Add HAS_DISPLAY()= true condition beforce guessing virt pch, then
+    refactor.
+
+Signed-off-by: Zhenyu Wang <zhenyuw@linux.intel.com>
+Signed-off-by: Xiong Zhang <xiong.y.zhang@intel.com>
+---
+ drivers/gpu/drm/i915/i915_drv.h  |  7 +++++-
+ drivers/gpu/drm/i915/intel_pch.c | 39 ++++++++++++++++++--------------
+ 2 files changed, 28 insertions(+), 18 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
+index 5a7df5621aa3..df0b8f9268b2 100644
+--- a/drivers/gpu/drm/i915/i915_drv.h
++++ b/drivers/gpu/drm/i915/i915_drv.h
+@@ -1758,6 +1758,11 @@ tgl_revids_get(struct drm_i915_private *dev_priv)
+ #define INTEL_DISPLAY_ENABLED(dev_priv) \
+ 	(drm_WARN_ON(&(dev_priv)->drm, !HAS_DISPLAY(dev_priv)), !(dev_priv)->params.disable_display)
+ 
++static inline bool run_as_guest(void)
++{
++	return !hypervisor_is_type(X86_HYPER_NATIVE);
++}
++
+ static inline bool intel_vtd_active(void)
+ {
+ #ifdef CONFIG_INTEL_IOMMU
+@@ -1766,7 +1771,7 @@ static inline bool intel_vtd_active(void)
+ #endif
+ 
+ 	/* Running as a guest, we assume the host is enforcing VT'd */
+-	return !hypervisor_is_type(X86_HYPER_NATIVE);
++	return run_as_guest();
+ }
+ 
+ static inline bool intel_scanout_needs_vtd_wa(struct drm_i915_private *dev_priv)
+diff --git a/drivers/gpu/drm/i915/intel_pch.c b/drivers/gpu/drm/i915/intel_pch.c
+index f31c0dabd0cc..3306c1bca800 100644
+--- a/drivers/gpu/drm/i915/intel_pch.c
++++ b/drivers/gpu/drm/i915/intel_pch.c
+@@ -143,8 +143,9 @@ static bool intel_is_virt_pch(unsigned short id,
+ 		 sdevice == PCI_SUBDEVICE_ID_QEMU));
+ }
+ 
+-static unsigned short
+-intel_virt_detect_pch(const struct drm_i915_private *dev_priv)
++static void
++intel_virt_detect_pch(const struct drm_i915_private *dev_priv,
++		      unsigned short *pch_id, enum intel_pch *pch_type)
+ {
+ 	unsigned short id = 0;
+ 
+@@ -181,12 +182,21 @@ intel_virt_detect_pch(const struct drm_i915_private *dev_priv)
+ 	else
+ 		drm_dbg_kms(&dev_priv->drm, "Assuming no PCH\n");
+ 
+-	return id;
++	*pch_type = intel_pch_type(dev_priv, id);
++
++	/* Sanity check virtual PCH id */
++	if (drm_WARN_ON(&dev_priv->drm,
++			id && pch_type == PCH_NONE))
++		id = 0;
++
++	*pch_id = id;
+ }
+ 
+ void intel_detect_pch(struct drm_i915_private *dev_priv)
+ {
+ 	struct pci_dev *pch = NULL;
++	unsigned short id;
++	enum intel_pch pch_type;
+ 
+ 	/* DG1 has south engine display on the same PCI device */
+ 	if (IS_DG1(dev_priv)) {
+@@ -206,9 +216,6 @@ void intel_detect_pch(struct drm_i915_private *dev_priv)
+ 	 * of only checking the first one.
+ 	 */
+ 	while ((pch = pci_get_class(PCI_CLASS_BRIDGE_ISA << 8, pch))) {
+-		unsigned short id;
+-		enum intel_pch pch_type;
+-
+ 		if (pch->vendor != PCI_VENDOR_ID_INTEL)
+ 			continue;
+ 
+@@ -221,14 +228,7 @@ void intel_detect_pch(struct drm_i915_private *dev_priv)
+ 			break;
+ 		} else if (intel_is_virt_pch(id, pch->subsystem_vendor,
+ 					     pch->subsystem_device)) {
+-			id = intel_virt_detect_pch(dev_priv);
+-			pch_type = intel_pch_type(dev_priv, id);
+-
+-			/* Sanity check virtual PCH id */
+-			if (drm_WARN_ON(&dev_priv->drm,
+-					id && pch_type == PCH_NONE))
+-				id = 0;
+-
++			intel_virt_detect_pch(dev_priv, &id, &pch_type);
+ 			dev_priv->pch_type = pch_type;
+ 			dev_priv->pch_id = id;
+ 			break;
+@@ -244,10 +244,15 @@ void intel_detect_pch(struct drm_i915_private *dev_priv)
+ 			    "Display disabled, reverting to NOP PCH\n");
+ 		dev_priv->pch_type = PCH_NOP;
+ 		dev_priv->pch_id = 0;
++	} else if (!pch) {
++		if (run_as_guest() && HAS_DISPLAY(dev_priv)) {
++			intel_virt_detect_pch(dev_priv, &id, &pch_type);
++			dev_priv->pch_type = pch_type;
++			dev_priv->pch_id = id;
++		} else {
++			drm_dbg_kms(&dev_priv->drm, "No PCH found.\n");
++		}
+ 	}
+ 
+-	if (!pch)
+-		drm_dbg_kms(&dev_priv->drm, "No PCH found.\n");
+-
+ 	pci_dev_put(pch);
+ }
+-- 
+2.17.1
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
