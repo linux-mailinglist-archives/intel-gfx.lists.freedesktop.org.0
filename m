@@ -1,41 +1,42 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4AF4F2F48BB
-	for <lists+intel-gfx@lfdr.de>; Wed, 13 Jan 2021 11:34:33 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9AF892F4905
+	for <lists+intel-gfx@lfdr.de>; Wed, 13 Jan 2021 11:54:05 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D92476E44D;
-	Wed, 13 Jan 2021 10:34:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 053B36E48C;
+	Wed, 13 Jan 2021 10:54:04 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0698B6E44B;
- Wed, 13 Jan 2021 10:34:25 +0000 (UTC)
-IronPort-SDR: qyaXFNgrJJA6BrLmdst1bMIbtdNVQrFslEJ0v0hPE/3FyPNJ+ZxSuwxwnv+VL22HsvE29GPzkj
- q5SlrxZkHD9A==
-X-IronPort-AV: E=McAfee;i="6000,8403,9862"; a="262970888"
-X-IronPort-AV: E=Sophos;i="5.79,344,1602572400"; d="scan'208";a="262970888"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Jan 2021 02:34:17 -0800
-IronPort-SDR: VoDVJ2Kl4wmP9IJ/eHm59zPfEa6T+PlTGS0FAH1DZwVOVqS7lf3Mr4+iwsufjxiquhtlXJxgbq
- MJjwNiy1QbUA==
-X-IronPort-AV: E=Sophos;i="5.79,344,1602572400"; d="scan'208";a="567812370"
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 447636E48C
+ for <intel-gfx@lists.freedesktop.org>; Wed, 13 Jan 2021 10:54:02 +0000 (UTC)
+IronPort-SDR: WQ9fHjV9xSqMqvw7zmn0DiGNMaPjE68jWhQ1dSTqrBEkreLVjLrL6zF7c37AiwxOL2FltB43sx
+ JztWH3Y+tHgQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9862"; a="157368282"
+X-IronPort-AV: E=Sophos;i="5.79,344,1602572400"; d="scan'208";a="157368282"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Jan 2021 02:53:59 -0800
+IronPort-SDR: FN6pp11EpiG4qNMLb0sRvi8bwvBvSJkna5NB+vlaBy2FfTjQgX11J5QibxFdsOYemihcUK78AS
+ 4diupFRXgiqA==
+X-IronPort-AV: E=Sophos;i="5.79,344,1602572400"; d="scan'208";a="348776374"
 Received: from unknown (HELO intel.com) ([10.223.74.179])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Jan 2021 02:34:14 -0800
-Date: Wed, 13 Jan 2021 15:49:43 +0530
+ by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Jan 2021 02:53:58 -0800
+Date: Wed, 13 Jan 2021 16:09:26 +0530
 From: Anshuman Gupta <anshuman.gupta@intel.com>
-To: Sean Paul <sean@poorly.run>
-Message-ID: <20210113101942.GK11717@intel.com>
-References: <20210106223909.34476-1-sean@poorly.run>
+To: Jani Nikula <jani.nikula@intel.com>
+Message-ID: <20210113103926.GL11717@intel.com>
+References: <cover.1610127741.git.jani.nikula@intel.com>
+ <b858271bd4d9c4a2ce15a13301d7bd9f7d121eb5.1610127741.git.jani.nikula@intel.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20210106223909.34476-1-sean@poorly.run>
+In-Reply-To: <b858271bd4d9c4a2ce15a13301d7bd9f7d121eb5.1610127741.git.jani.nikula@intel.com>
 User-Agent: Mutt/1.9.4 (2018-02-28)
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/hdcp: Disable the QSES check for
- HDCP 1.4 over MST
+Subject: Re: [Intel-gfx] [PATCH v2 04/17] drm/i915/pps: rename
+ intel_edp_panel_* to intel_pps_*
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,95 +49,204 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: David Airlie <airlied@linux.ie>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- Sean Paul <seanpaul@chromium.org>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 2021-01-07 at 04:08:58 +0530, Sean Paul wrote:
-> From: Sean Paul <seanpaul@chromium.org>
+On 2021-01-08 at 19:44:12 +0200, Jani Nikula wrote:
+> Follow the usual naming pattern for functions. We don't need to repeat
+> "panel" here. No functional changes.
 > 
-> The HDCP 1.4 spec does not require the QUERY_STREAM_ENCRYPTION_STATUS
-IMHO DP 1.4 vesa specs I.3.5 mark QSES as desirale for both HDCP 1.4 and HDCP 2.2.
-"The MST Source device may use a QUERY_STREAM_ENCRYPTION_STATUS message
-transaction to query the downstream status for a particular stream."
-
-I feel it useful for scenario in which a non hdcp supported monitor
-is hot plugged to MST branch. Source really doesn't know about the hdcp
-capable device on MST branch, it just know the capability of immediate 
-downstream device. QSES can fetch the HDCP capability from MST topology. 
-We don't require to enable stream encryption for such streams. 
-> check, it was always a nice-to-have. After deploying this across various
-> devices, we've determined that some MST bridge chips do not properly
-> support this call for HDCP 1.4 (namely Synaptics and Realtek).
+> v2: Fix comment (Anshuman)
 > 
-> I had considered creating a quirk for this, but I think it's more
-> prudent to just disable the check entirely since I don't have an idea
-> how widespread support is.
-May be we can remove it from the link check and can retain as utility ?
-Thanks,
-Anshuman Gupta.
-> 
-> Signed-off-by: Sean Paul <seanpaul@chromium.org>
+> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+LGTM.
+Reviewed-by: Anshuman Gupta <anshuman.gupta@intel.com>
 > ---
->  drivers/gpu/drm/i915/display/intel_dp_hdcp.c | 26 +-------------------
->  1 file changed, 1 insertion(+), 25 deletions(-)
+>  drivers/gpu/drm/i915/display/intel_ddi.c |  8 ++++----
+>  drivers/gpu/drm/i915/display/intel_dp.c  | 10 +++++-----
+>  drivers/gpu/drm/i915/display/intel_pps.c | 17 ++++++++---------
+>  drivers/gpu/drm/i915/display/intel_pps.h | 11 +++++------
+>  4 files changed, 22 insertions(+), 24 deletions(-)
 > 
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp_hdcp.c b/drivers/gpu/drm/i915/display/intel_dp_hdcp.c
-> index 03424d20e9f7..b6a9606bf09a 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp_hdcp.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp_hdcp.c
-> @@ -640,30 +640,6 @@ intel_dp_mst_hdcp_toggle_signalling(struct intel_digital_port *dig_port,
->  	return ret;
+> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
+> index f09a597bf730..243ab635aa34 100644
+> --- a/drivers/gpu/drm/i915/display/intel_ddi.c
+> +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+> @@ -3592,7 +3592,7 @@ static void tgl_ddi_pre_enable_dp(struct intel_atomic_state *state,
+>  	 */
+>  
+>  	/* 2. Enable Panel Power if PPS is required */
+> -	intel_edp_panel_on(intel_dp);
+> +	intel_pps_on(intel_dp);
+>  
+>  	/*
+>  	 * 3. For non-TBT Type-C ports, set FIA lane count
+> @@ -3735,7 +3735,7 @@ static void hsw_ddi_pre_enable_dp(struct intel_atomic_state *state,
+>  				 crtc_state->port_clock,
+>  				 crtc_state->lane_count);
+>  
+> -	intel_edp_panel_on(intel_dp);
+> +	intel_pps_on(intel_dp);
+>  
+>  	intel_ddi_clk_select(encoder, crtc_state);
+>  
+> @@ -3977,8 +3977,8 @@ static void intel_ddi_post_disable_dp(struct intel_atomic_state *state,
+>  	if (INTEL_GEN(dev_priv) >= 12)
+>  		intel_ddi_disable_pipe_clock(old_crtc_state);
+>  
+> -	intel_edp_panel_vdd_on(intel_dp);
+> -	intel_edp_panel_off(intel_dp);
+> +	intel_pps_vdd_on(intel_dp);
+> +	intel_pps_off(intel_dp);
+>  
+>  	if (!intel_phy_is_tc(dev_priv, phy) ||
+>  	    dig_port->tc_mode != TC_PORT_TBT_ALT)
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+> index 421e68bb436f..eac674ad91c8 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> @@ -3001,10 +3001,10 @@ static void intel_disable_dp(struct intel_atomic_state *state,
+>  
+>  	/* Make sure the panel is off before trying to change the mode. But also
+>  	 * ensure that we have vdd while we switch off the panel. */
+> -	intel_edp_panel_vdd_on(intel_dp);
+> +	intel_pps_vdd_on(intel_dp);
+>  	intel_edp_backlight_off(old_conn_state);
+>  	intel_dp_set_power(intel_dp, DP_SET_POWER_D3);
+> -	intel_edp_panel_off(intel_dp);
+> +	intel_pps_off(intel_dp);
+>  	intel_dp->frl.is_trained = false;
+>  	intel_dp->frl.trained_rate_gbps = 0;
+>  }
+> @@ -6339,7 +6339,7 @@ void intel_dp_encoder_reset(struct drm_encoder *encoder)
+>  			 * something nasty with it.
+>  			 */
+>  			intel_dp_pps_init(intel_dp);
+> -			intel_edp_panel_vdd_sanitize(intel_dp);
+> +			intel_pps_vdd_sanitize(intel_dp);
+>  		}
+>  	}
+>  }
+> @@ -6513,7 +6513,7 @@ intel_dp_hpd_pulse(struct intel_digital_port *dig_port, bool long_hpd)
+>  	struct intel_dp *intel_dp = &dig_port->dp;
+>  
+>  	if (dig_port->base.type == INTEL_OUTPUT_EDP &&
+> -	    (long_hpd || !intel_edp_have_power(intel_dp))) {
+> +	    (long_hpd || !intel_pps_have_power(intel_dp))) {
+>  		/*
+>  		 * vdd off can generate a long/short pulse on eDP which
+>  		 * would require vdd on to handle it, and thus we
+> @@ -7071,7 +7071,7 @@ static bool intel_edp_init_connector(struct intel_dp *intel_dp,
+>  	with_intel_pps_lock(intel_dp, wakeref) {
+>  		intel_dp_init_panel_power_timestamps(intel_dp);
+>  		intel_dp_pps_init(intel_dp);
+> -		intel_edp_panel_vdd_sanitize(intel_dp);
+> +		intel_pps_vdd_sanitize(intel_dp);
+>  	}
+>  
+>  	/* Cache DPCD and EDID for edp. */
+> diff --git a/drivers/gpu/drm/i915/display/intel_pps.c b/drivers/gpu/drm/i915/display/intel_pps.c
+> index 36d8782d8df1..59215cfd7d97 100644
+> --- a/drivers/gpu/drm/i915/display/intel_pps.c
+> +++ b/drivers/gpu/drm/i915/display/intel_pps.c
+> @@ -558,7 +558,7 @@ static  u32 ilk_get_pp_control(struct intel_dp *intel_dp)
+>  /*
+>   * Must be paired with edp_panel_vdd_off().
+>   * Must hold pps_mutex around the whole on/off sequence.
+> - * Can be nested with intel_edp_panel_vdd_{on,off}() calls.
+> + * Can be nested with intel_pps_vdd_{on,off}() calls.
+>   */
+>  bool edp_panel_vdd_on(struct intel_dp *intel_dp)
+>  {
+> @@ -616,13 +616,12 @@ bool edp_panel_vdd_on(struct intel_dp *intel_dp)
 >  }
 >  
-> -static
-> -bool intel_dp_mst_hdcp_check_link(struct intel_digital_port *dig_port,
-> -				  struct intel_connector *connector)
-> -{
-> -	struct drm_i915_private *i915 = to_i915(dig_port->base.base.dev);
-> -	struct intel_dp *intel_dp = &dig_port->dp;
-> -	struct drm_dp_query_stream_enc_status_ack_reply reply;
-> -	int ret;
-> -
-> -	if (!intel_dp_hdcp_check_link(dig_port, connector))
-> -		return false;
-> -
-> -	ret = drm_dp_send_query_stream_enc_status(&intel_dp->mst_mgr,
-> -						  connector->port, &reply);
-> -	if (ret) {
-> -		drm_dbg_kms(&i915->drm,
-> -			    "[CONNECTOR:%d:%s] failed QSES ret=%d\n",
-> -			    connector->base.base.id, connector->base.name, ret);
-> -		return false;
-> -	}
-> -
-> -	return reply.auth_completed && reply.encryption_enabled;
-> -}
-> -
->  static const struct intel_hdcp_shim intel_dp_mst_hdcp_shim = {
->  	.write_an_aksv = intel_dp_hdcp_write_an_aksv,
->  	.read_bksv = intel_dp_hdcp_read_bksv,
-> @@ -674,7 +650,7 @@ static const struct intel_hdcp_shim intel_dp_mst_hdcp_shim = {
->  	.read_ksv_fifo = intel_dp_hdcp_read_ksv_fifo,
->  	.read_v_prime_part = intel_dp_hdcp_read_v_prime_part,
->  	.toggle_signalling = intel_dp_mst_hdcp_toggle_signalling,
-> -	.check_link = intel_dp_mst_hdcp_check_link,
-> +	.check_link = intel_dp_hdcp_check_link,
->  	.hdcp_capable = intel_dp_hdcp_capable,
+>  /*
+> - * Must be paired with intel_edp_panel_vdd_off() or
+> - * intel_edp_panel_off().
+> + * Must be paired with intel_pps_off().
+>   * Nested calls to these functions are not allowed since
+>   * we drop the lock. Caller must use some higher level
+>   * locking to prevent nested calls from other threads.
+>   */
+> -void intel_edp_panel_vdd_on(struct intel_dp *intel_dp)
+> +void intel_pps_vdd_on(struct intel_dp *intel_dp)
+>  {
+>  	intel_wakeref_t wakeref;
+>  	bool vdd;
+> @@ -708,7 +707,7 @@ static void edp_panel_vdd_schedule_off(struct intel_dp *intel_dp)
+>  /*
+>   * Must be paired with edp_panel_vdd_on().
+>   * Must hold pps_mutex around the whole on/off sequence.
+> - * Can be nested with intel_edp_panel_vdd_{on,off}() calls.
+> + * Can be nested with intel_pps_vdd_{on,off}() calls.
+>   */
+>  void edp_panel_vdd_off(struct intel_dp *intel_dp, bool sync)
+>  {
+> @@ -780,7 +779,7 @@ void edp_panel_on(struct intel_dp *intel_dp)
+>  	}
+>  }
 >  
->  	.protocol = HDCP_PROTOCOL_DP,
+> -void intel_edp_panel_on(struct intel_dp *intel_dp)
+> +void intel_pps_on(struct intel_dp *intel_dp)
+>  {
+>  	intel_wakeref_t wakeref;
+>  
+> @@ -832,7 +831,7 @@ void edp_panel_off(struct intel_dp *intel_dp)
+>  				fetch_and_zero(&intel_dp->vdd_wakeref));
+>  }
+>  
+> -void intel_edp_panel_off(struct intel_dp *intel_dp)
+> +void intel_pps_off(struct intel_dp *intel_dp)
+>  {
+>  	intel_wakeref_t wakeref;
+>  
+> @@ -1025,7 +1024,7 @@ void vlv_init_panel_power_sequencer(struct intel_encoder *encoder,
+>  	intel_dp_init_panel_power_sequencer_registers(intel_dp, true);
+>  }
+>  
+> -void intel_edp_panel_vdd_sanitize(struct intel_dp *intel_dp)
+> +void intel_pps_vdd_sanitize(struct intel_dp *intel_dp)
+>  {
+>  	struct drm_i915_private *dev_priv = dp_to_i915(intel_dp);
+>  	struct intel_digital_port *dig_port = dp_to_dig_port(intel_dp);
+> @@ -1050,7 +1049,7 @@ void intel_edp_panel_vdd_sanitize(struct intel_dp *intel_dp)
+>  	edp_panel_vdd_schedule_off(intel_dp);
+>  }
+>  
+> -bool intel_edp_have_power(struct intel_dp *intel_dp)
+> +bool intel_pps_have_power(struct intel_dp *intel_dp)
+>  {
+>  	intel_wakeref_t wakeref;
+>  	bool have_power = false;
+> diff --git a/drivers/gpu/drm/i915/display/intel_pps.h b/drivers/gpu/drm/i915/display/intel_pps.h
+> index 81e4e9fc3cf5..69f670678d0e 100644
+> --- a/drivers/gpu/drm/i915/display/intel_pps.h
+> +++ b/drivers/gpu/drm/i915/display/intel_pps.h
+> @@ -34,12 +34,11 @@ void edp_panel_on(struct intel_dp *intel_dp);
+>  void edp_panel_off(struct intel_dp *intel_dp);
+>  void edp_panel_vdd_work(struct work_struct *__work);
+>  
+> -void intel_edp_panel_vdd_on(struct intel_dp *intel_dp);
+> -void intel_edp_panel_on(struct intel_dp *intel_dp);
+> -void intel_edp_panel_off(struct intel_dp *intel_dp);
+> -bool intel_edp_have_power(struct intel_dp *intel_dp);
+> -
+> -void intel_edp_panel_vdd_sanitize(struct intel_dp *intel_dp);
+> +void intel_pps_vdd_sanitize(struct intel_dp *intel_dp);
+> +void intel_pps_vdd_on(struct intel_dp *intel_dp);
+> +void intel_pps_on(struct intel_dp *intel_dp);
+> +void intel_pps_off(struct intel_dp *intel_dp);
+> +bool intel_pps_have_power(struct intel_dp *intel_dp);
+>  
+>  void wait_panel_power_cycle(struct intel_dp *intel_dp);
+>  
 > -- 
-> Sean Paul, Software Engineer, Google / Chromium OS
+> 2.20.1
 > 
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
