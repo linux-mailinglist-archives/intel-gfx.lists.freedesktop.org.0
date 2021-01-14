@@ -2,30 +2,37 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 57D082F5F1E
-	for <lists+intel-gfx@lfdr.de>; Thu, 14 Jan 2021 11:46:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E64782F5F4F
+	for <lists+intel-gfx@lfdr.de>; Thu, 14 Jan 2021 11:55:07 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ADA8C6E1F1;
-	Thu, 14 Jan 2021 10:45:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CB33D891F4;
+	Thu, 14 Jan 2021 10:55:04 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 8C45F6E1D3;
- Thu, 14 Jan 2021 10:45:58 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 86766A7DFC;
- Thu, 14 Jan 2021 10:45:58 +0000 (UTC)
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8B15A891EC;
+ Thu, 14 Jan 2021 10:55:03 +0000 (UTC)
+IronPort-SDR: e9mtSoTYEmeajIM5pM+VeM9sJ/Qo9RroTPO896M5IcLJOG7bDaDtpQzdiyQRGqzsFg/V93P9iD
+ qBASdbfwdzsQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9863"; a="196997142"
+X-IronPort-AV: E=Sophos;i="5.79,347,1602572400"; d="scan'208";a="196997142"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Jan 2021 02:55:00 -0800
+IronPort-SDR: 5NS0vfQB0197Xd+J0LCoQhDUHrAQbMSjeqMN8WENRipU7pApqTkW+T799tTWiIo8G7tXXHQdKy
+ ZeDm1TWrXKFg==
+X-IronPort-AV: E=Sophos;i="5.79,347,1602572400"; d="scan'208";a="424911372"
+Received: from dforourk-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.213.254.146])
+ by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Jan 2021 02:54:56 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>, 
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Date: Thu, 14 Jan 2021 12:54:53 +0200
+Message-ID: <87sg73pz42.fsf@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Lee Shawn C" <shawn.c.lee@intel.com>
-Date: Thu, 14 Jan 2021 10:45:58 -0000
-Message-ID: <161062115854.19647.9438914084619912775@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210114092236.20477-1-shawn.c.lee@intel.com>
-In-Reply-To: <20210114092236.20477-1-shawn.c.lee@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915=3A_support_two_CSC_module_on_gen11_and_later?=
+Subject: [Intel-gfx] [PULL] drm-intel-fixes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,212 +45,91 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============1576468137=="
+Cc: , dim-tools@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Maxime Ripard <mripard@kernel.org>, intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============1576468137==
-Content-Type: multipart/alternative;
- boundary="===============7950554772845973276=="
 
---===============7950554772845973276==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Hi Dave & Daniel -
 
-== Series Details ==
+drm-intel-fixes-2021-01-14:
+drm/i915 fixes for v5.11-rc4:
+- Allow the sysadmin to override security mitigations
+- Restore clear-residual mitigations for ivb/byt
+- Limit VFE threads based on GT
+- GVT: fix vfio edid and full display detection
+- Fix DSI DSC power refcounting
+- Fix LPT CPU mode backlight takeover
+- Disable RPM wakeref assertions during driver shutdown
+- Fix DSI sequence sleeps
 
-Series: drm/i915: support two CSC module on gen11 and later
-URL   : https://patchwork.freedesktop.org/series/85847/
-State : success
+BR,
+Jani.
 
-== Summary ==
+The following changes since commit 7c53f6b671f4aba70ff15e1b05148b10d58c2837:
 
-CI Bug Log - changes from CI_DRM_9605 -> Patchwork_19352
-====================================================
+  Linux 5.11-rc3 (2021-01-10 14:34:50 -0800)
 
-Summary
--------
+are available in the Git repository at:
 
-  **SUCCESS**
+  git://anongit.freedesktop.org/drm/drm-intel tags/drm-intel-fixes-2021-01-14
 
-  No regressions found.
+for you to fetch changes up to 984cadea032b103c5824a5f29d0a36b3e9df6333:
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19352/index.html
+  drm/i915: Allow the sysadmin to override security mitigations (2021-01-12 19:03:40 +0200)
 
-Known issues
-------------
+----------------------------------------------------------------
+drm/i915 fixes for v5.11-rc4:
+- Allow the sysadmin to override security mitigations
+- Restore clear-residual mitigations for ivb/byt
+- Limit VFE threads based on GT
+- GVT: fix vfio edid and full display detection
+- Fix DSI DSC power refcounting
+- Fix LPT CPU mode backlight takeover
+- Disable RPM wakeref assertions during driver shutdown
+- Fix DSI sequence sleeps
 
-  Here are the changes found in Patchwork_19352 that come from known issues:
+----------------------------------------------------------------
+Chris Wilson (4):
+      drm/i915: Disable RPM wakeref assertions during driver shutdown
+      drm/i915/gt: Limit VFE threads based on GT
+      drm/i915/gt: Restore clear-residual mitigations for Ivybridge, Baytrail
+      drm/i915: Allow the sysadmin to override security mitigations
 
-### IGT changes ###
+Colin Xu (1):
+      drm/i915/gvt: Fix vfio_edid issue for BXT/APL
 
-#### Issues hit ####
+Hans de Goede (1):
+      drm/i915/dsi: Use unconditional msleep for the panel_on_delay when there is no reset-deassert MIPI-sequence
 
-  * igt@amdgpu/amd_cs_nop@nop-compute0:
-    - fi-tgl-y:           NOTRUN -> [SKIP][1] ([fdo#109315] / [i915#2575]) +8 similar issues
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19352/fi-tgl-y/igt@amdgpu/amd_cs_nop@nop-compute0.html
+Imre Deak (1):
+      drm/i915/icl: Fix initing the DSI DSC power refcount during HW readout
 
-  * igt@i915_selftest@live@blt:
-    - fi-snb-2600:        [PASS][2] -> [DMESG-FAIL][3] ([i915#1409])
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9605/fi-snb-2600/igt@i915_selftest@live@blt.html
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19352/fi-snb-2600/igt@i915_selftest@live@blt.html
+Jani Nikula (2):
+      drm/i915/backlight: fix CPU mode backlight takeover on LPT
+      Merge tag 'gvt-fixes-2020-01-08' of https://github.com/intel/gvt-linux into drm-intel-fixes
 
-  * igt@prime_vgem@basic-gtt:
-    - fi-tgl-y:           [PASS][4] -> [DMESG-WARN][5] ([i915#402])
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9605/fi-tgl-y/igt@prime_vgem@basic-gtt.html
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19352/fi-tgl-y/igt@prime_vgem@basic-gtt.html
+ drivers/gpu/drm/i915/Makefile                   |   1 +
+ drivers/gpu/drm/i915/display/icl_dsi.c          |   4 -
+ drivers/gpu/drm/i915/display/intel_panel.c      |   9 +-
+ drivers/gpu/drm/i915/display/vlv_dsi.c          |  16 ++-
+ drivers/gpu/drm/i915/gt/gen7_renderclear.c      | 157 ++++++++++++++----------
+ drivers/gpu/drm/i915/gt/intel_ring_submission.c |   6 +-
+ drivers/gpu/drm/i915/gvt/display.c              |  81 ++++++++----
+ drivers/gpu/drm/i915/gvt/vgpu.c                 |   5 +-
+ drivers/gpu/drm/i915/i915_drv.c                 |   4 +
+ drivers/gpu/drm/i915/i915_mitigations.c         | 146 ++++++++++++++++++++++
+ drivers/gpu/drm/i915/i915_mitigations.h         |  13 ++
+ 11 files changed, 339 insertions(+), 103 deletions(-)
+ create mode 100644 drivers/gpu/drm/i915/i915_mitigations.c
+ create mode 100644 drivers/gpu/drm/i915/i915_mitigations.h
 
-  
-#### Possible fixes ####
-
-  * igt@gem_sync@basic-all:
-    - fi-tgl-y:           [DMESG-WARN][6] ([i915#402]) -> [PASS][7] +1 similar issue
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9605/fi-tgl-y/igt@gem_sync@basic-all.html
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19352/fi-tgl-y/igt@gem_sync@basic-all.html
-
-  
-#### Warnings ####
-
-  * igt@i915_hangman@error-state-basic:
-    - fi-apl-guc:         [DMESG-WARN][8] -> [DMESG-WARN][9] ([i915#1610])
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9605/fi-apl-guc/igt@i915_hangman@error-state-basic.html
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19352/fi-apl-guc/igt@i915_hangman@error-state-basic.html
-
-  
-  [fdo#109315]: https://bugs.freedesktop.org/show_bug.cgi?id=109315
-  [i915#1409]: https://gitlab.freedesktop.org/drm/intel/issues/1409
-  [i915#1610]: https://gitlab.freedesktop.org/drm/intel/issues/1610
-  [i915#2575]: https://gitlab.freedesktop.org/drm/intel/issues/2575
-  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
-
-
-Participating hosts (41 -> 36)
-------------------------------
-
-  Missing    (5): fi-cml-u2 fi-byt-j1900 fi-bsw-cyan fi-ctg-p8600 fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_9605 -> Patchwork_19352
-
-  CI-20190529: 20190529
-  CI_DRM_9605: b1c266ff3c7379af2a724726adf9ab5c66fe0906 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5957: 2a2b3418f7458dfa1fac255cc5c71603f617690a @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_19352: 97dd51b48997e91c879d079230259e8c8f8721ff @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-97dd51b48997 drm/i915: support two CSC module on gen11 and later
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19352/index.html
-
---===============7950554772845973276==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915: support two CSC module on gen11 and later</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/85847/">https://patchwork.freedesktop.org/series/85847/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19352/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19352/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_9605 -&gt; Patchwork_19352</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19352/index.html</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_19352 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@amdgpu/amd_cs_nop@nop-compute0:</p>
-<ul>
-<li>fi-tgl-y:           NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19352/fi-tgl-y/igt@amdgpu/amd_cs_nop@nop-compute0.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109315">fdo#109315</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2575">i915#2575</a>) +8 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@blt:</p>
-<ul>
-<li>fi-snb-2600:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9605/fi-snb-2600/igt@i915_selftest@live@blt.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19352/fi-snb-2600/igt@i915_selftest@live@blt.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1409">i915#1409</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@prime_vgem@basic-gtt:</p>
-<ul>
-<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9605/fi-tgl-y/igt@prime_vgem@basic-gtt.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19352/fi-tgl-y/igt@prime_vgem@basic-gtt.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@gem_sync@basic-all:<ul>
-<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9605/fi-tgl-y/igt@gem_sync@basic-all.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19352/fi-tgl-y/igt@gem_sync@basic-all.html">PASS</a> +1 similar issue</li>
-</ul>
-</li>
-</ul>
-<h4>Warnings</h4>
-<ul>
-<li>igt@i915_hangman@error-state-basic:<ul>
-<li>fi-apl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9605/fi-apl-guc/igt@i915_hangman@error-state-basic.html">DMESG-WARN</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19352/fi-apl-guc/igt@i915_hangman@error-state-basic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1610">i915#1610</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Participating hosts (41 -&gt; 36)</h2>
-<p>Missing    (5): fi-cml-u2 fi-byt-j1900 fi-bsw-cyan fi-ctg-p8600 fi-bdw-samus </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_9605 -&gt; Patchwork_19352</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_9605: b1c266ff3c7379af2a724726adf9ab5c66fe0906 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_5957: 2a2b3418f7458dfa1fac255cc5c71603f617690a @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
-  Patchwork_19352: 97dd51b48997e91c879d079230259e8c8f8721ff @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>97dd51b48997 drm/i915: support two CSC module on gen11 and later</p>
-
-</body>
-</html>
-
---===============7950554772845973276==--
-
---===============1576468137==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
+-- 
+Jani Nikula, Intel Open Source Graphics Center
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============1576468137==--
