@@ -1,43 +1,42 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A13792F5B17
-	for <lists+intel-gfx@lfdr.de>; Thu, 14 Jan 2021 08:12:28 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4A3752F5B44
+	for <lists+intel-gfx@lfdr.de>; Thu, 14 Jan 2021 08:27:46 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6815D89CF7;
-	Thu, 14 Jan 2021 07:12:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3548089F2E;
+	Thu, 14 Jan 2021 07:27:43 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A14FD89829;
- Thu, 14 Jan 2021 07:12:19 +0000 (UTC)
-IronPort-SDR: JBtT5Cu4ezGkT0sibzYWKHVHbbw5b+4tOO6fXsuJq7U1+cO/5nSDwfWM5vdsvVtkiNAYnJ2aZt
- OGPgZPsBLEvQ==
-X-IronPort-AV: E=McAfee;i="6000,8403,9863"; a="175740344"
-X-IronPort-AV: E=Sophos;i="5.79,346,1602572400"; d="scan'208";a="175740344"
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EE52989F2E
+ for <intel-gfx@lists.freedesktop.org>; Thu, 14 Jan 2021 07:27:41 +0000 (UTC)
+IronPort-SDR: Ok7xEN32uEDa8Qy0s4v2LbN0ML2HGNmH1EVlRTMr+SrIK7gYEJY2Pkr0kQDV4QwsArQRovbMoQ
+ 0vtmva6UStMQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9863"; a="242395514"
+X-IronPort-AV: E=Sophos;i="5.79,346,1602572400"; d="scan'208";a="242395514"
 Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Jan 2021 23:12:18 -0800
-IronPort-SDR: cJDv/L0tfPx9bJ4fkZ1bsmZhxw7AiOgksUX2g5eH3BzEnvhub4FHEwNlujc4FtO8Vd2BOnWG/l
- sxsVVmHUs+gg==
-X-IronPort-AV: E=Sophos;i="5.79,346,1602572400"; d="scan'208";a="364136636"
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Jan 2021 23:27:40 -0800
+IronPort-SDR: ySC4M9OIQZzU6FLzyVTFJmGS73ixSzaqWMdpIrnvlVC6w5QqL1Ag3zDHAJWDXdKM94/wAloNc5
+ Dk+SsTLYR9Vg==
+X-IronPort-AV: E=Sophos;i="5.79,346,1602572400"; d="scan'208";a="364139317"
 Received: from dforourk-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.213.254.146])
  by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Jan 2021 23:12:11 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: Lyude Paul <lyude@redhat.com>, dri-devel@lists.freedesktop.org,
+ 13 Jan 2021 23:27:38 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>,
  intel-gfx@lists.freedesktop.org
-In-Reply-To: <20210113235426.2190684-2-lyude@redhat.com>
+In-Reply-To: <20210111164111.13302-1-ville.syrjala@linux.intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20210113235426.2190684-1-lyude@redhat.com>
- <20210113235426.2190684-2-lyude@redhat.com>
-Date: Thu, 14 Jan 2021 09:12:08 +0200
-Message-ID: <871reornzr.fsf@intel.com>
+References: <20210111164111.13302-1-ville.syrjala@linux.intel.com>
+Date: Thu, 14 Jan 2021 09:27:35 +0200
+Message-ID: <87v9c0q8pk.fsf@intel.com>
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH v6 1/4] drm/i915: Keep track of pwm-related
- backlight hooks separately
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Only enable DFP 4:4:4->4:2:0
+ conversion when outputting YCbCr 4:4:4
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,153 +49,41 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Arnd Bergmann <arnd@arndb.de>, David Airlie <airlied@linux.ie>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- open list <linux-kernel@vger.kernel.org>,
- Chris Wilson <chris@chris-wilson.co.uk>,
- Vasily Khoruzhick <anarsoul@gmail.com>, Dave Airlie <airlied@redhat.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 13 Jan 2021, Lyude Paul <lyude@redhat.com> wrote:
-> Currently, every different type of backlight hook that i915 supports is
-> pretty straight forward - you have a backlight, probably through PWM
-> (but maybe DPCD), with a single set of platform-specific hooks that are
-> used for controlling it.
->
-> HDR backlights, in particular VESA and Intel's HDR backlight
-> implementations, can end up being more complicated. With Intel's
-> proprietary interface, HDR backlight controls always run through the
-> DPCD. When the backlight is in SDR backlight mode however, the driver
-> may need to bypass the TCON and control the backlight directly through
-> PWM.
->
-> So, in order to support this we'll need to split our backlight callbacks
-> into two groups: a set of high-level backlight control callbacks in
-> intel_panel, and an additional set of pwm-specific backlight control
-> callbacks. This also implies a functional changes for how these
-> callbacks are used:
->
-> * We now keep track of two separate backlight level ranges, one for the
->   high-level backlight, and one for the pwm backlight range
-> * We also keep track of backlight enablement and PWM backlight
->   enablement separately
-> * Since the currently set backlight level might not be the same as the
->   currently programmed PWM backlight level, we stop setting
->   panel->backlight.level with the currently programmed PWM backlight
->   level in panel->backlight.pwm_funcs->setup(). Instead, we rely
->   on the higher level backlight control functions to retrieve the
->   current PWM backlight level (in this case, intel_pwm_get_backlight()).
->   Note that there are still a few PWM backlight setup callbacks that
->   do actually need to retrieve the current PWM backlight level, although
->   we no longer save this value in panel->backlight.level like before.
->
-> Additionally, we drop the call to lpt_get_backlight() in
-> lpt_setup_backlight(), and avoid unconditionally writing the PWM value that
-> we get from it and only write it back if we're in CPU mode, and switching
-> to PCH mode. The reason for this is because in the original codepath for
-> this, it was expected that the intel_panel_bl_funcs->setup() hook would be
-> responsible for fetching the initial backlight level. On lpt systems, the
-> only time we could ever be in PCH backlight mode is during the initial
-> driver load - meaning that outside of the setup() hook, lpt_get_backlight()
-> will always be the callback used for retrieving the current backlight
-> level. After this patch we still need to fetch and write-back the PCH
-> backlight value if we're switching from CPU mode to PCH, but because
-> intel_pwm_setup_backlight() will retrieve the backlight level after setup()
-> using the get() hook, which always ends up being lpt_get_backlight(). Thus
-> - an additional call to lpt_get_backlight() in lpt_setup_backlight() is
-> made redundant.
->
-> v7:
-> * Use panel->backlight.pwm_funcs->get() to get the backlight level in
->   intel_pwm_setup_backlight(), lest we upset lockdep
-
-I think this change is wrong, as it now bypasses
-intel_panel_invert_pwm_level(). Please explain. I don't see anything in
-there that could trigger a lockdep warning.
-
-Perhaps it's the below you're referring to, but I think the root cause
-is different?
-
-> @@ -1788,22 +1780,17 @@ static int vlv_setup_backlight(struct intel_connector *connector, enum pipe pipe
->  	panel->backlight.active_low_pwm = ctl2 & BLM_POLARITY_I965;
->  
->  	ctl = intel_de_read(dev_priv, VLV_BLC_PWM_CTL(pipe));
-> -	panel->backlight.max = ctl >> 16;
-> +	panel->backlight.pwm_level_max = ctl >> 16;
->  
-> -	if (!panel->backlight.max)
-> -		panel->backlight.max = get_backlight_max_vbt(connector);
-> +	if (!panel->backlight.pwm_level_max)
-> +		panel->backlight.pwm_level_max = get_backlight_max_vbt(connector);
->  
-> -	if (!panel->backlight.max)
-> +	if (!panel->backlight.pwm_level_max)
->  		return -ENODEV;
->  
-> -	panel->backlight.min = get_backlight_min_vbt(connector);
-> +	panel->backlight.pwm_level_min = get_backlight_min_vbt(connector);
->  
-> -	val = _vlv_get_backlight(dev_priv, pipe);
-
-Turns out this is a meaningful change, as the higher level
-vlv_get_backlight() function that will be called instead hits:
-
-<4>[   12.870202] i915 0000:00:02.0: drm_WARN_ON(!drm_modeset_is_locked(&dev->mode_config.connection_mutex))
-
-in intel_connector_get_pipe(connector).
-
-It's a real problem. See this, it's obvious (in retrospect):
-
-https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19348/fi-bsw-kefka/igt@runner@aborted.html
-https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19348/fi-bsw-kefka/boot0.txt
-
-I don't have a quick answer how this could be handled neatly. Perhaps
-the ->get call (or rather, intel_pwm_get_backlight) to set
-panel->backlight.level needs to be spread out to the end of each
-pwm_funcs->setup function after all? Though it's at the wrong
-abstraction level wrt level being a higher level, uh, level.
-
-I don't think it's enough to just grab connection_mutex around setup
-(and even checking if we can do that is a bunch of digging) - I think
-it's likely intel_connector_get_pipe() returns INVALID_PIPE at that
-point.
-
-Okay, here's a clumsy suggestion that I think works around this and
-unblocks the series until we figure out a better way:
-
-1. At the end of vlv_setup_backlight():
-
-	/* add fixme comment about how wrong this is */
-	panel->backlight.level = intel_panel_invert_pwm_level(connector, _vlv_get_backlight());
-	
-
-2. In intel_pwm_setup_backlight() only set level if ->setup didn't:
-
-	if (!panel->backlight.level)
-        	panel->backlight.level = intel_pwm_get_backlight(connector);
-
-What do you think?
-
-BR,
-Jani.
-
-> -	val = intel_panel_compute_brightness(connector, val);
-> -	panel->backlight.level = clamp(val, panel->backlight.min,
-> -				       panel->backlight.max);
-> -
-> -	panel->backlight.enabled = ctl2 & BLM_PWM_ENABLE;
-> +	panel->backlight.pwm_enabled = ctl2 & BLM_PWM_ENABLE;
->  
->  	return 0;
->  }
-> @@ -1828,24 +1815,18 @@ bxt_setup_backlight(struct intel_connector *connector, enum pipe unused)
-
--- 
-Jani Nikula, Intel Open Source Graphics Center
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+T24gTW9uLCAxMSBKYW4gMjAyMSwgVmlsbGUgU3lyamFsYSA8dmlsbGUuc3lyamFsYUBsaW51eC5p
+bnRlbC5jb20+IHdyb3RlOgo+IEZyb206IFZpbGxlIFN5cmrDpGzDpCA8dmlsbGUuc3lyamFsYUBs
+aW51eC5pbnRlbC5jb20+Cj4KPiBMZXQncyBub3QgZW5hYmxlIHRoZSA0OjQ6NC0+NDoyOjAgY29u
+dmVyc2lvbiBiaXQgaW4gdGhlIERGUCB1bmxlc3Mgd2UncmUKPiBhY3R1YWxseSBvdXRwdXR0aW5n
+IFlDYkNyIDQ6NDo0LiBJdCB3b3VsZCBhcHBlYXIgc29tZSBwcm90b2NvbAo+IGNvbnZlcnRlcnMg
+YmxpbmR5IGNvbnN1bHQgdGhpcyBiaXQgZXZlbiB3aGVuIHRoZSBzb3VyY2UgaXMgb3V0cHV0dGlu
+Zwo+IFJHQiwgcmVzdWx0aW5nIGluIGEgdmlzdWFsIG1lc3MuCj4KPiBDbG9zZXM6IGh0dHBzOi8v
+Z2l0bGFiLmZyZWVkZXNrdG9wLm9yZy9kcm0vaW50ZWwvLS9pc3N1ZXMvMjkxNAo+IFNpZ25lZC1v
+ZmYtYnk6IFZpbGxlIFN5cmrDpGzDpCA8dmlsbGUuc3lyamFsYUBsaW51eC5pbnRlbC5jb20+CgpG
+aXhlczogMTgxNTY3YWE5ZjBkICgiZHJtL2k5MTU6IERvIFlDYkNyIDQ0NC0+NDIwIGNvbnZlcnNp
+b24gdmlhIERQIHByb3RvY29sIGNvbnZlcnRlcnMiKQpDYzogPHN0YWJsZUB2Z2VyLmtlcm5lbC5v
+cmc+ICMgdjUuMTArCgpSaWdodD8KClJldmlld2VkLWJ5OiBKYW5pIE5pa3VsYSA8amFuaS5uaWt1
+bGFAaW50ZWwuY29tPgoKPiAtLS0KPiAgZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRl
+bF9kcC5jIHwgNCArKy0tCj4gIDEgZmlsZSBjaGFuZ2VkLCAyIGluc2VydGlvbnMoKyksIDIgZGVs
+ZXRpb25zKC0pCj4KPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9p
+bnRlbF9kcC5jIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kcC5jCj4gaW5k
+ZXggNGYxOTBhODJkNGFkLi5hYTMwZWY5ZjY5MDYgMTAwNjQ0Cj4gLS0tIGEvZHJpdmVycy9ncHUv
+ZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kcC5jCj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUv
+ZGlzcGxheS9pbnRlbF9kcC5jCj4gQEAgLTQzNjgsOCArNDM2OCw4IEBAIHZvaWQgaW50ZWxfZHBf
+Y29uZmlndXJlX3Byb3RvY29sX2NvbnZlcnRlcihzdHJ1Y3QgaW50ZWxfZHAgKmludGVsX2RwLAo+
+ICAJCWRybV9kYmdfa21zKCZpOTE1LT5kcm0sICJGYWlsZWQgdG8gc2V0IHByb3RvY29sIGNvbnZl
+cnRlciBIRE1JIG1vZGUgdG8gJXNcbiIsCj4gIAkJCSAgICBlbmFibGVkZGlzYWJsZWQoaW50ZWxf
+ZHAtPmhhc19oZG1pX3NpbmspKTsKPiAgCj4gLQl0bXAgPSBpbnRlbF9kcC0+ZGZwLnljYmNyXzQ0
+NF90b180MjAgPwo+IC0JCURQX0NPTlZFUlNJT05fVE9fWUNCQ1I0MjBfRU5BQkxFIDogMDsKPiAr
+CXRtcCA9IGNydGNfc3RhdGUtPm91dHB1dF9mb3JtYXQgPT0gSU5URUxfT1VUUFVUX0ZPUk1BVF9Z
+Q0JDUjQ0NCAmJgo+ICsJCWludGVsX2RwLT5kZnAueWNiY3JfNDQ0X3RvXzQyMCA/IERQX0NPTlZF
+UlNJT05fVE9fWUNCQ1I0MjBfRU5BQkxFIDogMDsKPiAgCj4gIAlpZiAoZHJtX2RwX2RwY2Rfd3Jp
+dGViKCZpbnRlbF9kcC0+YXV4LAo+ICAJCQkgICAgICAgRFBfUFJPVE9DT0xfQ09OVkVSVEVSX0NP
+TlRST0xfMSwgdG1wKSAhPSAxKQoKLS0gCkphbmkgTmlrdWxhLCBJbnRlbCBPcGVuIFNvdXJjZSBH
+cmFwaGljcyBDZW50ZXIKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Au
+b3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwt
+Z2Z4Cg==
