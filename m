@@ -2,44 +2,34 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EDE1F2F5F9B
-	for <lists+intel-gfx@lfdr.de>; Thu, 14 Jan 2021 12:15:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4823C2F5FA1
+	for <lists+intel-gfx@lfdr.de>; Thu, 14 Jan 2021 12:16:48 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5F2C8891C1;
-	Thu, 14 Jan 2021 11:15:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 706DC89491;
+	Thu, 14 Jan 2021 11:16:46 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5E889891C1
- for <intel-gfx@lists.freedesktop.org>; Thu, 14 Jan 2021 11:15:17 +0000 (UTC)
-IronPort-SDR: pVS4dLHBzsNnqsvlLMSboSmeaCaCB8qDAEqn6eKNBkWLCr5Jea9mE/84MAdFHLY6Yg9hCguEvO
- pMMbVbe+PCeQ==
-X-IronPort-AV: E=McAfee;i="6000,8403,9863"; a="157528191"
-X-IronPort-AV: E=Sophos;i="5.79,347,1602572400"; d="scan'208";a="157528191"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Jan 2021 03:15:16 -0800
-IronPort-SDR: nbT9z56gow4TT/kShgWOZboDnTLkDm5kWYsFcYIchNRXcnhJNiwryc5trLN2QDUdU5XcOFF2WU
- KJCFqnvvFXZQ==
-X-IronPort-AV: E=Sophos;i="5.79,347,1602572400"; d="scan'208";a="400865451"
-Received: from dforourk-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.213.254.146])
- by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Jan 2021 03:15:15 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Patchwork <patchwork@emeril.freedesktop.org>,
- Dave Airlie <airlied@gmail.com>
-In-Reply-To: <161061890008.19649.17011974074477553738@emeril.freedesktop.org>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20210114090522.22750-1-airlied@gmail.com>
- <161061890008.19649.17011974074477553738@emeril.freedesktop.org>
-Date: Thu, 14 Jan 2021 13:15:11 +0200
-Message-ID: <87pn27py68.fsf@intel.com>
+Received: from mx2.suse.de (mx2.suse.de [195.135.220.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 592AC89491;
+ Thu, 14 Jan 2021 11:16:45 +0000 (UTC)
+X-Virus-Scanned: by amavisd-new at test-mx.suse.de
+Received: from relay2.suse.de (unknown [195.135.221.27])
+ by mx2.suse.de (Postfix) with ESMTP id E5D7AB7A6;
+ Thu, 14 Jan 2021 11:16:43 +0000 (UTC)
+To: Stephen Rothwell <sfr@canb.auug.org.au>,
+ Daniel Vetter <daniel.vetter@ffwll.ch>,
+ Intel Graphics <intel-gfx@lists.freedesktop.org>,
+ DRI <dri-devel@lists.freedesktop.org>
+References: <20210114113107.622102e0@canb.auug.org.au>
+From: Thomas Zimmermann <tzimmermann@suse.de>
+Message-ID: <524351d0-506d-bd49-ab50-66316d7e5105@suse.de>
+Date: Thu, 14 Jan 2021 12:16:42 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.6.0
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] 
- =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciBz?=
- =?utf-8?q?eries_starting_with_=5B01/11=5D_drm/i915=3A_refactor_some_crtc_?=
- =?utf-8?q?code_out_of_intel_display=2E_=28v2=29?=
+In-Reply-To: <20210114113107.622102e0@canb.auug.org.au>
+Subject: Re: [Intel-gfx] linux-next: build failure after merge of the
+ drm-misc tree
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,52 +42,110 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: Linux Next Mailing List <linux-next@vger.kernel.org>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: multipart/mixed; boundary="===============0085917777=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 14 Jan 2021, Patchwork <patchwork@emeril.freedesktop.org> wrote:
-> == Series Details ==
->
-> Series: series starting with [01/11] drm/i915: refactor some crtc code out of intel display. (v2)
-> URL   : https://patchwork.freedesktop.org/series/85846/
-> State : failure
->
-> == Summary ==
->
-> Applying: drm/i915: refactor some crtc code out of intel display. (v2)
-> Applying: drm/i915: refactor pll code out into intel_dpll.c
-> Applying: drm/i915: split fdi code out from intel_display.c
-> Applying: drm/i915: refactor ddi translations into a separate file
-> Applying: drm/i915: migrate hsw fdi code to new file.
-> Applying: drm/i915: migrate skl planes code new file (v3)
-> error: sha1 information is lacking or useless (drivers/gpu/drm/i915/Makefile).
-> error: could not build fake ancestor
-> hint: Use 'git am --show-current-patch=diff' to see the failed patch
-> Patch failed at 0006 drm/i915: migrate skl planes code new file (v3)
-> When you have resolved this problem, run "git am --continue".
-> If you prefer to skip this patch, run "git am --skip" instead.
-> To restore the original branch and stop patching, run "git am --abort".
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--===============0085917777==
+Content-Type: multipart/signed; micalg=pgp-sha256;
+ protocol="application/pgp-signature";
+ boundary="jJL4pOPwDC6gspy7p5JwzKT8iKU9cxx8Y"
 
-My bad, just pushed some stuff that conflicted, I rebased and resent the
-series: https://patchwork.freedesktop.org/series/85867/
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--jJL4pOPwDC6gspy7p5JwzKT8iKU9cxx8Y
+Content-Type: multipart/mixed; boundary="oYbDUBfhMYZhf86gzX4V6y4JZK6TwFz2I";
+ protected-headers="v1"
+From: Thomas Zimmermann <tzimmermann@suse.de>
+To: Stephen Rothwell <sfr@canb.auug.org.au>,
+ Daniel Vetter <daniel.vetter@ffwll.ch>,
+ Intel Graphics <intel-gfx@lists.freedesktop.org>,
+ DRI <dri-devel@lists.freedesktop.org>
+Cc: Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+ Linux Next Mailing List <linux-next@vger.kernel.org>
+Message-ID: <524351d0-506d-bd49-ab50-66316d7e5105@suse.de>
+Subject: Re: linux-next: build failure after merge of the drm-misc tree
+References: <20210114113107.622102e0@canb.auug.org.au>
+In-Reply-To: <20210114113107.622102e0@canb.auug.org.au>
 
-BR,
-Jani.
+--oYbDUBfhMYZhf86gzX4V6y4JZK6TwFz2I
+Content-Type: text/plain; charset=windows-1252; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: quoted-printable
+
+Hi
+
+Am 14.01.21 um 01:31 schrieb Stephen Rothwell:
+> Hi all,
+>=20
+> After merging the drm-misc tree, today's linux-next build (arm
+> multi_v7_defconfig) failed like this:
+>=20
+> drivers/gpu/drm/drm_cache.c: In function 'drm_need_swiotlb':
+> drivers/gpu/drm/drm_cache.c:202:6: error: implicit declaration of funct=
+ion 'mem_encrypt_active' [-Werror=3Dimplicit-function-declaration]
+>    202 |  if (mem_encrypt_active())
+>        |      ^~~~~~~~~~~~~~~~~~
+>=20
+>=20
+> Caused by commit
+>=20
+>    3abc66706385 ("drm: Implement drm_need_swiotlb() in drm_cache.c")
+>=20
+> I have used the drm-misc tree from next-20210107 again for today.
+
+Sorry for the breakage. Fixed in drm-misc-next.
+
+Best regards
+Thomas
+
+>=20
+
+--=20
+Thomas Zimmermann
+Graphics Driver Developer
+SUSE Software Solutions Germany GmbH
+Maxfeldstr. 5, 90409 N=FCrnberg, Germany
+(HRB 36809, AG N=FCrnberg)
+Gesch=E4ftsf=FChrer: Felix Imend=F6rffer
 
 
->
->
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+--oYbDUBfhMYZhf86gzX4V6y4JZK6TwFz2I--
 
--- 
-Jani Nikula, Intel Open Source Graphics Center
+--jJL4pOPwDC6gspy7p5JwzKT8iKU9cxx8Y
+Content-Type: application/pgp-signature; name="OpenPGP_signature.asc"
+Content-Description: OpenPGP digital signature
+Content-Disposition: attachment; filename="OpenPGP_signature"
+
+-----BEGIN PGP SIGNATURE-----
+
+wsF5BAABCAAjFiEExndm/fpuMUdwYFFolh/E3EQov+AFAmAAKBoFAwAAAAAACgkQlh/E3EQov+Bt
+zA//b9VYy7/b8sble+TS3HnmjvwcuMbp5ETrD8Ju40SU8bM+8Qb9NT6TL9FeAQro5UFKzMt1Jmci
+zXK+lkNyUxUo44hoDIUTVVlvvQQqUYbtB/wMWS6FoKHODyG/jfR9JtTPzmRuSmn2gesrBmZcCGe5
+0FL6UEJHH+U7Xw9Lmlxo7GSsVx6SUbDFNMz82DDoWU5lOd0Z0wMbJO/FVv5nGrlj3LuvDv+bUxf+
+BOWPyseaVLGYCu6ZfSfTWjNF8sN/ZI6XIrWidRjWeBK+rQFMKTqkkZFb+QtfPQLvcHiHlPEFv5FN
+bUfM65PZ4hxLWsdW6qhMSInDEqU6BwmWXph12UvX7ZvROz8xm3u/LqhGX3xNo/plmr/xFY4CkH8p
+BWWrO43zVbrqK1SEj8rQkPECiXXVhu8fD493WOT/dTaZkGbhqUrokLnATUdVBlfSFDurbr30JPSb
+8qAXS/40K6xNYUwpvCkSOxnvmjTH5GLGB8OjMGGhz/bEUx/mQNwIC3uRSjRioiBd+9DA9KMz3lvG
+C0nnQd7i9KwQVrAs3Me/cPmzcEYQUv39vmSLxoPaCGmyxG8VX/rwdPTSZ5EBm68jisj9quvzyEJx
+Kz7QoaUeG4dP6DGtezZ78rH5Yt8FyfPfCrc/YDdqApG4CojSLAPZ22aBQLLPnJM/dBwxtGVbHFt5
+jqU=
+=0oEf
+-----END PGP SIGNATURE-----
+
+--jJL4pOPwDC6gspy7p5JwzKT8iKU9cxx8Y--
+
+--===============0085917777==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============0085917777==--
