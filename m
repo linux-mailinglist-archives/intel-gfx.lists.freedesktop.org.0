@@ -1,44 +1,45 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3D8BC2F584A
-	for <lists+intel-gfx@lfdr.de>; Thu, 14 Jan 2021 04:02:05 +0100 (CET)
+Received: from gabe.freedesktop.org (unknown [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 76C0B2F58CD
+	for <lists+intel-gfx@lfdr.de>; Thu, 14 Jan 2021 04:10:32 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A072689C1F;
-	Thu, 14 Jan 2021 03:02:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9A531893D0;
+	Thu, 14 Jan 2021 03:10:10 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from 19.mo7.mail-out.ovh.net (19.mo7.mail-out.ovh.net
- [178.33.251.118])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A5D1989C1F
- for <intel-gfx@lists.freedesktop.org>; Thu, 14 Jan 2021 03:02:01 +0000 (UTC)
-Received: from player795.ha.ovh.net (unknown [10.108.42.215])
- by mo7.mail-out.ovh.net (Postfix) with ESMTP id 1BACA1810B1
- for <intel-gfx@lists.freedesktop.org>; Thu, 14 Jan 2021 04:02:00 +0100 (CET)
+X-Greylist: delayed 446 seconds by postgrey-1.36 at gabe;
+ Thu, 14 Jan 2021 03:10:09 UTC
+Received: from 5.mo1.mail-out.ovh.net (5.mo1.mail-out.ovh.net [178.33.45.107])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 29F2D89580
+ for <intel-gfx@lists.freedesktop.org>; Thu, 14 Jan 2021 03:10:09 +0000 (UTC)
+Received: from player776.ha.ovh.net (unknown [10.109.143.175])
+ by mo1.mail-out.ovh.net (Postfix) with ESMTP id DA2DC1EB74C
+ for <intel-gfx@lists.freedesktop.org>; Thu, 14 Jan 2021 04:02:09 +0100 (CET)
 Received: from etezian.org (213-243-141-64.bb.dnainternet.fi [213.243.141.64])
  (Authenticated sender: andi@etezian.org)
- by player795.ha.ovh.net (Postfix) with ESMTPSA id 7061B19CF355D;
- Thu, 14 Jan 2021 03:01:56 +0000 (UTC)
+ by player776.ha.ovh.net (Postfix) with ESMTPSA id 03AA21A1237C5;
+ Thu, 14 Jan 2021 03:02:05 +0000 (UTC)
 Authentication-Results: garm.ovh; auth=pass
- (GARM-106R006daff3a86-63e9-4598-acb5-bf9c743495ef,
+ (GARM-97G00225761b68-339b-4d54-9185-a942a8356e12,
  72D3C5DAFF26A6515C48D523C3EFD44FB281F22F) smtp.auth=andi@etezian.org
 X-OVh-ClientIp: 213.243.141.64
-Date: Thu, 14 Jan 2021 05:01:55 +0200
+Date: Thu, 14 Jan 2021 05:02:04 +0200
 From: Andi Shyti <andi@etezian.org>
 To: Chris Wilson <chris@chris-wilson.co.uk>
-Message-ID: <X/+0IwEktOtNXVGJ@jack.zhora.eu>
+Message-ID: <X/+0LPseG9PYD4hP@jack.zhora.eu>
 References: <20210113124600.656-1-chris@chris-wilson.co.uk>
- <20210113124600.656-4-chris@chris-wilson.co.uk>
+ <20210113124600.656-5-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20210113124600.656-4-chris@chris-wilson.co.uk>
-X-Ovh-Tracer-Id: 12981625926813663753
+In-Reply-To: <20210113124600.656-5-chris@chris-wilson.co.uk>
+X-Ovh-Tracer-Id: 12984159202951021065
 X-VR-SPAMSTATE: OK
 X-VR-SPAMSCORE: -100
-X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgedukedrtdeggdehfecutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfqggfjpdevjffgvefmvefgnecuuegrihhlohhuthemucehtddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpeffhffvuffkfhggtggujgesthdtredttddtvdenucfhrhhomheptehnughiucfuhhihthhiuceorghnughisegvthgviihirghnrdhorhhgqeenucggtffrrghtthgvrhhnpedtgfduudfhfeeuueejfeeihedtfeetgfegveehgfeuleelhfduteegieekudeifeenucfkpheptddrtddrtddrtddpvddufedrvdegfedrudeguddrieegnecuvehluhhsthgvrhfuihiivgepvdenucfrrghrrghmpehmohguvgepshhmthhpqdhouhhtpdhhvghlohepphhlrgihvghrjeelhedrhhgrrdhovhhhrdhnvghtpdhinhgvtheptddrtddrtddrtddpmhgrihhlfhhrohhmpegrnhguihesvghtvgiiihgrnhdrohhrghdprhgtphhtthhopehinhhtvghlqdhgfhigsehlihhsthhsrdhfrhgvvgguvghskhhtohhprdhorhhg
-Subject: Re: [Intel-gfx] [PATCH 04/10] drm/i915/gem: Reduce
- ctx->engines_mutex for get_engines()
+X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgedukedrtdeggdehfecutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfqggfjpdevjffgvefmvefgnecuuegrihhlohhuthemucehtddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpeffhffvuffkfhggtggujgesthdtredttddtvdenucfhrhhomheptehnughiucfuhhihthhiuceorghnughisegvthgviihirghnrdhorhhgqeenucggtffrrghtthgvrhhnpedtgfduudfhfeeuueejfeeihedtfeetgfegveehgfeuleelhfduteegieekudeifeenucfkpheptddrtddrtddrtddpvddufedrvdegfedrudeguddrieegnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmohguvgepshhmthhpqdhouhhtpdhhvghlohepphhlrgihvghrjeejiedrhhgrrdhovhhhrdhnvghtpdhinhgvtheptddrtddrtddrtddpmhgrihhlfhhrohhmpegrnhguihesvghtvgiiihgrnhdrohhrghdprhgtphhtthhopehinhhtvghlqdhgfhigsehlihhsthhsrdhfrhgvvgguvghskhhtohhprdhorhhg
+Subject: Re: [Intel-gfx] [PATCH 05/10] drm/i915: Reduce test_and_set_bit to
+ set_bit in i915_request_submit()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,9 +60,9 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 Hi Chris,
 
-On Wed, Jan 13, 2021 at 12:45:54PM +0000, Chris Wilson wrote:
-> Take a snapshot of the ctx->engines, so we can avoid taking the
-> ctx->engines_mutex for a mere read in get_engines().
+On Wed, Jan 13, 2021 at 12:45:55PM +0000, Chris Wilson wrote:
+> Avoid the full blown memory barrier of test_and_set_bit() by noting the
+> completed request and removing it from the lists.
 > 
 > Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
 
