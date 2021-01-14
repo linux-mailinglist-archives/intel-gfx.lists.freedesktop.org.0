@@ -1,32 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8C7022F5EEB
-	for <lists+intel-gfx@lfdr.de>; Thu, 14 Jan 2021 11:38:37 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 57D082F5F1E
+	for <lists+intel-gfx@lfdr.de>; Thu, 14 Jan 2021 11:46:01 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AA2206E1BB;
-	Thu, 14 Jan 2021 10:38:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ADA8C6E1F1;
+	Thu, 14 Jan 2021 10:45:59 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B145F6E1BB
- for <intel-gfx@lists.freedesktop.org>; Thu, 14 Jan 2021 10:38:30 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 23592959-1500050 
- for multiple; Thu, 14 Jan 2021 10:38:24 +0000
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Thu, 14 Jan 2021 10:38:22 +0000
-Message-Id: <20210114103822.1766-2-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20210114103822.1766-1-chris@chris-wilson.co.uk>
-References: <20210114103822.1766-1-chris@chris-wilson.co.uk>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 8C45F6E1D3;
+ Thu, 14 Jan 2021 10:45:58 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 86766A7DFC;
+ Thu, 14 Jan 2021 10:45:58 +0000 (UTC)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v2 2/2] drm/i915/selftests: Exercise
- cross-process context isolation
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Lee Shawn C" <shawn.c.lee@intel.com>
+Date: Thu, 14 Jan 2021 10:45:58 -0000
+Message-ID: <161062115854.19647.9438914084619912775@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210114092236.20477-1-shawn.c.lee@intel.com>
+In-Reply-To: <20210114092236.20477-1-shawn.c.lee@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915=3A_support_two_CSC_module_on_gen11_and_later?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,495 +38,212 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Chris Wilson <chris@chris-wilson.co.uk>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============1576468137=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Verify that one context running on engine A cannot manipulate another
-client's context concurrently running on engine B using unprivileged
-access.
+--===============1576468137==
+Content-Type: multipart/alternative;
+ boundary="===============7950554772845973276=="
 
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
----
- drivers/gpu/drm/i915/gt/selftest_lrc.c | 275 +++++++++++++++++++++----
- 1 file changed, 238 insertions(+), 37 deletions(-)
+--===============7950554772845973276==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-diff --git a/drivers/gpu/drm/i915/gt/selftest_lrc.c b/drivers/gpu/drm/i915/gt/selftest_lrc.c
-index a55cbf524692..319ec19bcf30 100644
---- a/drivers/gpu/drm/i915/gt/selftest_lrc.c
-+++ b/drivers/gpu/drm/i915/gt/selftest_lrc.c
-@@ -912,6 +912,7 @@ create_user_vma(struct i915_address_space *vm, unsigned long size)
- 
- static struct i915_vma *
- store_context(struct intel_context *ce,
-+	      struct intel_engine_cs *engine,
- 	      struct i915_vma *scratch,
- 	      bool relative)
- {
-@@ -929,7 +930,7 @@ store_context(struct intel_context *ce,
- 		return ERR_CAST(cs);
- 	}
- 
--	defaults = shmem_pin_map(ce->engine->default_state);
-+	defaults = shmem_pin_map(engine->default_state);
- 	if (!defaults) {
- 		i915_gem_object_unpin_map(batch->obj);
- 		i915_vma_put(batch);
-@@ -961,7 +962,7 @@ store_context(struct intel_context *ce,
- 			if (relative)
- 				cmd |= MI_LRI_LRM_CS_MMIO;
- 			else
--				offset = ce->engine->mmio_base;
-+				offset = engine->mmio_base;
- 		}
- 
- 		dw++;
-@@ -980,7 +981,7 @@ store_context(struct intel_context *ce,
- 
- 	*cs++ = MI_BATCH_BUFFER_END;
- 
--	shmem_unpin_map(ce->engine->default_state, defaults);
-+	shmem_unpin_map(engine->default_state, defaults);
- 
- 	i915_gem_object_flush_map(batch->obj);
- 	i915_gem_object_unpin_map(batch->obj);
-@@ -1003,23 +1004,48 @@ static int move_to_active(struct i915_request *rq,
- 	return err;
- }
- 
-+struct hwsp_semaphore {
-+	u32 ggtt;
-+	u32 *va;
-+};
-+
-+static struct hwsp_semaphore hwsp_semaphore(struct intel_engine_cs *engine)
-+{
-+	struct hwsp_semaphore s;
-+
-+	s.va = memset32(engine->status_page.addr + 1000, 0, 1);
-+	s.ggtt = (i915_ggtt_offset(engine->status_page.vma) +
-+		  offset_in_page(s.va));
-+
-+	return s;
-+}
-+
-+static u32 *emit_noops(u32 *cs, int count)
-+{
-+	while (count--)
-+		*cs++ = MI_NOOP;
-+
-+	return cs;
-+}
-+
- static struct i915_request *
- record_registers(struct intel_context *ce,
-+		 struct intel_engine_cs *engine,
- 		 struct i915_vma *before,
- 		 struct i915_vma *after,
- 		 bool relative,
--		 u32 *sema)
-+		 const struct hwsp_semaphore *sema)
- {
- 	struct i915_vma *b_before, *b_after;
- 	struct i915_request *rq;
- 	u32 *cs;
- 	int err;
- 
--	b_before = store_context(ce, before, relative);
-+	b_before = store_context(ce, engine, before, relative);
- 	if (IS_ERR(b_before))
- 		return ERR_CAST(b_before);
- 
--	b_after = store_context(ce, after, relative);
-+	b_after = store_context(ce, engine, after, relative);
- 	if (IS_ERR(b_after)) {
- 		rq = ERR_CAST(b_after);
- 		goto err_before;
-@@ -1045,7 +1071,7 @@ record_registers(struct intel_context *ce,
- 	if (err)
- 		goto err_rq;
- 
--	cs = intel_ring_begin(rq, 14);
-+	cs = intel_ring_begin(rq, 18);
- 	if (IS_ERR(cs)) {
- 		err = PTR_ERR(cs);
- 		goto err_rq;
-@@ -1056,16 +1082,28 @@ record_registers(struct intel_context *ce,
- 	*cs++ = lower_32_bits(b_before->node.start);
- 	*cs++ = upper_32_bits(b_before->node.start);
- 
--	*cs++ = MI_ARB_ON_OFF | MI_ARB_ENABLE;
--	*cs++ = MI_SEMAPHORE_WAIT |
--		MI_SEMAPHORE_GLOBAL_GTT |
--		MI_SEMAPHORE_POLL |
--		MI_SEMAPHORE_SAD_NEQ_SDD;
--	*cs++ = 0;
--	*cs++ = i915_ggtt_offset(ce->engine->status_page.vma) +
--		offset_in_page(sema);
--	*cs++ = 0;
--	*cs++ = MI_NOOP;
-+	if (sema) {
-+		WRITE_ONCE(*sema->va, -1);
-+
-+		/* Signal the poisoner */
-+		*cs++ = MI_STORE_DWORD_IMM_GEN4 | MI_USE_GGTT;
-+		*cs++ = sema->ggtt;
-+		*cs++ = 0;
-+		*cs++ = 0;
-+
-+		/* Then wait for the poison to settle */
-+		*cs++ = MI_ARB_ON_OFF | MI_ARB_ENABLE;
-+		*cs++ = MI_SEMAPHORE_WAIT |
-+			MI_SEMAPHORE_GLOBAL_GTT |
-+			MI_SEMAPHORE_POLL |
-+			MI_SEMAPHORE_SAD_NEQ_SDD;
-+		*cs++ = 0;
-+		*cs++ = sema->ggtt;
-+		*cs++ = 0;
-+		*cs++ = MI_NOOP;
-+	} else {
-+		cs = emit_noops(cs, 10);
-+	}
- 
- 	*cs++ = MI_ARB_ON_OFF | MI_ARB_DISABLE;
- 	*cs++ = MI_BATCH_BUFFER_START_GEN8 | BIT(8);
-@@ -1074,7 +1112,6 @@ record_registers(struct intel_context *ce,
- 
- 	intel_ring_advance(rq, cs);
- 
--	WRITE_ONCE(*sema, 0);
- 	i915_request_get(rq);
- 	i915_request_add(rq);
- err_after:
-@@ -1090,7 +1127,9 @@ record_registers(struct intel_context *ce,
- }
- 
- static struct i915_vma *
--load_context(struct intel_context *ce, u32 poison, bool relative)
-+load_context(struct intel_context *ce,
-+	     struct intel_engine_cs *engine,
-+	     u32 poison, bool relative)
- {
- 	struct i915_vma *batch;
- 	u32 dw, *cs, *hw;
-@@ -1106,7 +1145,7 @@ load_context(struct intel_context *ce, u32 poison, bool relative)
- 		return ERR_CAST(cs);
- 	}
- 
--	defaults = shmem_pin_map(ce->engine->default_state);
-+	defaults = shmem_pin_map(engine->default_state);
- 	if (!defaults) {
- 		i915_gem_object_unpin_map(batch->obj);
- 		i915_vma_put(batch);
-@@ -1137,7 +1176,7 @@ load_context(struct intel_context *ce, u32 poison, bool relative)
- 			if (relative)
- 				cmd |= MI_LRI_LRM_CS_MMIO;
- 			else
--				offset = ce->engine->mmio_base;
-+				offset = engine->mmio_base;
- 		}
- 
- 		dw++;
-@@ -1153,7 +1192,7 @@ load_context(struct intel_context *ce, u32 poison, bool relative)
- 
- 	*cs++ = MI_BATCH_BUFFER_END;
- 
--	shmem_unpin_map(ce->engine->default_state, defaults);
-+	shmem_unpin_map(engine->default_state, defaults);
- 
- 	i915_gem_object_flush_map(batch->obj);
- 	i915_gem_object_unpin_map(batch->obj);
-@@ -1163,16 +1202,17 @@ load_context(struct intel_context *ce, u32 poison, bool relative)
- 
- static int
- poison_registers(struct intel_context *ce,
-+		 struct intel_engine_cs *engine,
- 		 u32 poison,
- 		 bool relative,
--		 u32 *sema)
-+		 const struct hwsp_semaphore *sema)
- {
- 	struct i915_request *rq;
- 	struct i915_vma *batch;
- 	u32 *cs;
- 	int err;
- 
--	batch = load_context(ce, poison, relative);
-+	batch = load_context(ce, engine, poison, relative);
- 	if (IS_ERR(batch))
- 		return PTR_ERR(batch);
- 
-@@ -1186,20 +1226,29 @@ poison_registers(struct intel_context *ce,
- 	if (err)
- 		goto err_rq;
- 
--	cs = intel_ring_begin(rq, 8);
-+	cs = intel_ring_begin(rq, 14);
- 	if (IS_ERR(cs)) {
- 		err = PTR_ERR(cs);
- 		goto err_rq;
- 	}
- 
-+	*cs++ = MI_ARB_ON_OFF | MI_ARB_ENABLE;
-+	*cs++ = MI_SEMAPHORE_WAIT |
-+		MI_SEMAPHORE_GLOBAL_GTT |
-+		MI_SEMAPHORE_POLL |
-+		MI_SEMAPHORE_SAD_EQ_SDD;
-+	*cs++ = 0;
-+	*cs++ = sema->ggtt;
-+	*cs++ = 0;
-+	*cs++ = MI_NOOP;
-+
- 	*cs++ = MI_ARB_ON_OFF | MI_ARB_DISABLE;
- 	*cs++ = MI_BATCH_BUFFER_START_GEN8 | BIT(8);
- 	*cs++ = lower_32_bits(batch->node.start);
- 	*cs++ = upper_32_bits(batch->node.start);
- 
- 	*cs++ = MI_STORE_DWORD_IMM_GEN4 | MI_USE_GGTT;
--	*cs++ = i915_ggtt_offset(ce->engine->status_page.vma) +
--		offset_in_page(sema);
-+	*cs++ = sema->ggtt;
- 	*cs++ = 0;
- 	*cs++ = 1;
- 
-@@ -1259,7 +1308,7 @@ static int compare_isolation(struct intel_engine_cs *engine,
- 	}
- 	lrc += LRC_STATE_OFFSET / sizeof(*hw);
- 
--	defaults = shmem_pin_map(ce->engine->default_state);
-+	defaults = shmem_pin_map(engine->default_state);
- 	if (!defaults) {
- 		err = -ENOMEM;
- 		goto err_lrc;
-@@ -1312,7 +1361,7 @@ static int compare_isolation(struct intel_engine_cs *engine,
- 	} while (dw < PAGE_SIZE / sizeof(u32) &&
- 		 (hw[dw] & ~BIT(0)) != MI_BATCH_BUFFER_END);
- 
--	shmem_unpin_map(ce->engine->default_state, defaults);
-+	shmem_unpin_map(engine->default_state, defaults);
- err_lrc:
- 	i915_gem_object_unpin_map(ce->state->obj);
- err_B1:
-@@ -1329,7 +1378,7 @@ static int compare_isolation(struct intel_engine_cs *engine,
- static int
- __lrc_isolation(struct intel_engine_cs *engine, u32 poison, bool relative)
- {
--	u32 *sema = memset32(engine->status_page.addr + 1000, 0, 1);
-+	struct hwsp_semaphore sema = hwsp_semaphore(engine);
- 	struct i915_vma *ref[2], *result[2];
- 	struct intel_context *A, *B;
- 	struct i915_request *rq;
-@@ -1357,15 +1406,12 @@ __lrc_isolation(struct intel_engine_cs *engine, u32 poison, bool relative)
- 		goto err_ref0;
- 	}
- 
--	rq = record_registers(A, ref[0], ref[1], relative, sema);
-+	rq = record_registers(A, engine, ref[0], ref[1], relative, NULL);
- 	if (IS_ERR(rq)) {
- 		err = PTR_ERR(rq);
- 		goto err_ref1;
- 	}
- 
--	WRITE_ONCE(*sema, 1);
--	wmb();
--
- 	if (i915_request_wait(rq, 0, HZ / 2) < 0) {
- 		i915_request_put(rq);
- 		err = -ETIME;
-@@ -1385,15 +1431,15 @@ __lrc_isolation(struct intel_engine_cs *engine, u32 poison, bool relative)
- 		goto err_result0;
- 	}
- 
--	rq = record_registers(A, result[0], result[1], relative, sema);
-+	rq = record_registers(A, engine, result[0], result[1], relative, &sema);
- 	if (IS_ERR(rq)) {
- 		err = PTR_ERR(rq);
- 		goto err_result1;
- 	}
- 
--	err = poison_registers(B, poison, relative, sema);
-+	err = poison_registers(B, engine, poison, relative, &sema);
- 	if (err) {
--		WRITE_ONCE(*sema, -1);
-+		WRITE_ONCE(*sema.va, -1);
- 		i915_request_put(rq);
- 		goto err_result1;
- 	}
-@@ -1495,6 +1541,160 @@ static int live_lrc_isolation(void *arg)
- 	return err;
- }
- 
-+static int __lrc_cross(struct intel_engine_cs *a,
-+		       struct intel_engine_cs *b,
-+		       u32 poison)
-+{
-+	struct hwsp_semaphore sema = hwsp_semaphore(a);
-+	struct i915_vma *ref[2], *result[2];
-+	struct intel_context *A, *B;
-+	struct i915_request *rq;
-+	int err;
-+
-+	GEM_BUG_ON(a->gt->ggtt != b->gt->ggtt);
-+
-+	pr_debug("Context on %s, poisoning from %s with %08x\n",
-+		 a->name, b->name, poison);
-+
-+	A = intel_context_create(a);
-+	if (IS_ERR(A))
-+		return PTR_ERR(A);
-+
-+	B = intel_context_create(b);
-+	if (IS_ERR(B)) {
-+		err = PTR_ERR(B);
-+		goto err_A;
-+	}
-+
-+	ref[0] = create_user_vma(A->vm, SZ_64K);
-+	if (IS_ERR(ref[0])) {
-+		err = PTR_ERR(ref[0]);
-+		goto err_B;
-+	}
-+
-+	ref[1] = create_user_vma(A->vm, SZ_64K);
-+	if (IS_ERR(ref[1])) {
-+		err = PTR_ERR(ref[1]);
-+		goto err_ref0;
-+	}
-+
-+	rq = record_registers(A, a, ref[0], ref[1], false, NULL);
-+	if (IS_ERR(rq)) {
-+		err = PTR_ERR(rq);
-+		goto err_ref1;
-+	}
-+
-+	if (i915_request_wait(rq, 0, HZ / 2) < 0) {
-+		i915_request_put(rq);
-+		err = -ETIME;
-+		goto err_ref1;
-+	}
-+	i915_request_put(rq);
-+
-+	result[0] = create_user_vma(A->vm, SZ_64K);
-+	if (IS_ERR(result[0])) {
-+		err = PTR_ERR(result[0]);
-+		goto err_ref1;
-+	}
-+
-+	result[1] = create_user_vma(A->vm, SZ_64K);
-+	if (IS_ERR(result[1])) {
-+		err = PTR_ERR(result[1]);
-+		goto err_result0;
-+	}
-+
-+	rq = record_registers(A, a, result[0], result[1], false, &sema);
-+	if (IS_ERR(rq)) {
-+		err = PTR_ERR(rq);
-+		goto err_result1;
-+	}
-+
-+	err = poison_registers(B, a, poison, false, &sema);
-+	if (err) {
-+		WRITE_ONCE(*sema.va, -1);
-+		i915_request_put(rq);
-+		goto err_result1;
-+	}
-+
-+	if (i915_request_wait(rq, 0, HZ / 2) < 0) {
-+		i915_request_put(rq);
-+		err = -ETIME;
-+		goto err_result1;
-+	}
-+	i915_request_put(rq);
-+
-+	err = compare_isolation(a, ref, result, A, poison, false);
-+
-+err_result1:
-+	i915_vma_put(result[1]);
-+err_result0:
-+	i915_vma_put(result[0]);
-+err_ref1:
-+	i915_vma_put(ref[1]);
-+err_ref0:
-+	i915_vma_put(ref[0]);
-+err_B:
-+	intel_context_put(B);
-+err_A:
-+	intel_context_put(A);
-+	return err;
-+}
-+
-+static int live_lrc_cross(void *arg)
-+{
-+	struct intel_gt *gt = arg;
-+	struct intel_engine_cs *a, *b;
-+	enum intel_engine_id a_id, b_id;
-+	const u32 poison[] = {
-+		STACK_MAGIC,
-+		0x3a3a3a3a,
-+		0x5c5c5c5c,
-+		0xffffffff,
-+		0xffff0000,
-+	};
-+	int err = 0;
-+	int i;
-+
-+	/*
-+	 * Our goal is to try and tamper with another client's context
-+	 * running concurrently. The HW's goal is to stop us.
-+	 */
-+
-+	for_each_engine(a, gt, a_id) {
-+		if (!IS_ENABLED(CONFIG_DRM_I915_SELFTEST_BROKEN) &&
-+		    skip_isolation(a))
-+			continue;
-+
-+		intel_engine_pm_get(a);
-+		for_each_engine(b, gt, b_id) {
-+			if (a == b)
-+				continue;
-+
-+			intel_engine_pm_get(b);
-+			for (i = 0; i < ARRAY_SIZE(poison); i++) {
-+				int result;
-+
-+				result = __lrc_cross(a, b, poison[i]);
-+				if (result && !err)
-+					err = result;
-+
-+				result = __lrc_cross(a, b, ~poison[i]);
-+				if (result && !err)
-+					err = result;
-+			}
-+			intel_engine_pm_put(b);
-+		}
-+		intel_engine_pm_put(a);
-+
-+		if (igt_flush_test(gt->i915)) {
-+			err = -EIO;
-+			break;
-+		}
-+	}
-+
-+	return err;
-+}
-+
- static int indirect_ctx_submit_req(struct intel_context *ce)
- {
- 	struct i915_request *rq;
-@@ -1885,6 +2085,7 @@ int intel_lrc_live_selftests(struct drm_i915_private *i915)
- 		SUBTEST(live_lrc_isolation),
- 		SUBTEST(live_lrc_timestamp),
- 		SUBTEST(live_lrc_garbage),
-+		SUBTEST(live_lrc_cross),
- 		SUBTEST(live_pphwsp_runtime),
- 		SUBTEST(live_lrc_indirect_ctx_bb),
- 	};
--- 
-2.20.1
+== Series Details ==
+
+Series: drm/i915: support two CSC module on gen11 and later
+URL   : https://patchwork.freedesktop.org/series/85847/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_9605 -> Patchwork_19352
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19352/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_19352 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@amdgpu/amd_cs_nop@nop-compute0:
+    - fi-tgl-y:           NOTRUN -> [SKIP][1] ([fdo#109315] / [i915#2575]) +8 similar issues
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19352/fi-tgl-y/igt@amdgpu/amd_cs_nop@nop-compute0.html
+
+  * igt@i915_selftest@live@blt:
+    - fi-snb-2600:        [PASS][2] -> [DMESG-FAIL][3] ([i915#1409])
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9605/fi-snb-2600/igt@i915_selftest@live@blt.html
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19352/fi-snb-2600/igt@i915_selftest@live@blt.html
+
+  * igt@prime_vgem@basic-gtt:
+    - fi-tgl-y:           [PASS][4] -> [DMESG-WARN][5] ([i915#402])
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9605/fi-tgl-y/igt@prime_vgem@basic-gtt.html
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19352/fi-tgl-y/igt@prime_vgem@basic-gtt.html
+
+  
+#### Possible fixes ####
+
+  * igt@gem_sync@basic-all:
+    - fi-tgl-y:           [DMESG-WARN][6] ([i915#402]) -> [PASS][7] +1 similar issue
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9605/fi-tgl-y/igt@gem_sync@basic-all.html
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19352/fi-tgl-y/igt@gem_sync@basic-all.html
+
+  
+#### Warnings ####
+
+  * igt@i915_hangman@error-state-basic:
+    - fi-apl-guc:         [DMESG-WARN][8] -> [DMESG-WARN][9] ([i915#1610])
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9605/fi-apl-guc/igt@i915_hangman@error-state-basic.html
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19352/fi-apl-guc/igt@i915_hangman@error-state-basic.html
+
+  
+  [fdo#109315]: https://bugs.freedesktop.org/show_bug.cgi?id=109315
+  [i915#1409]: https://gitlab.freedesktop.org/drm/intel/issues/1409
+  [i915#1610]: https://gitlab.freedesktop.org/drm/intel/issues/1610
+  [i915#2575]: https://gitlab.freedesktop.org/drm/intel/issues/2575
+  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
+
+
+Participating hosts (41 -> 36)
+------------------------------
+
+  Missing    (5): fi-cml-u2 fi-byt-j1900 fi-bsw-cyan fi-ctg-p8600 fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_9605 -> Patchwork_19352
+
+  CI-20190529: 20190529
+  CI_DRM_9605: b1c266ff3c7379af2a724726adf9ab5c66fe0906 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5957: 2a2b3418f7458dfa1fac255cc5c71603f617690a @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_19352: 97dd51b48997e91c879d079230259e8c8f8721ff @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+97dd51b48997 drm/i915: support two CSC module on gen11 and later
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19352/index.html
+
+--===============7950554772845973276==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915: support two CSC module on gen11 and later</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/85847/">https://patchwork.freedesktop.org/series/85847/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19352/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19352/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_9605 -&gt; Patchwork_19352</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19352/index.html</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_19352 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@amdgpu/amd_cs_nop@nop-compute0:</p>
+<ul>
+<li>fi-tgl-y:           NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19352/fi-tgl-y/igt@amdgpu/amd_cs_nop@nop-compute0.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109315">fdo#109315</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2575">i915#2575</a>) +8 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@blt:</p>
+<ul>
+<li>fi-snb-2600:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9605/fi-snb-2600/igt@i915_selftest@live@blt.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19352/fi-snb-2600/igt@i915_selftest@live@blt.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1409">i915#1409</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@prime_vgem@basic-gtt:</p>
+<ul>
+<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9605/fi-tgl-y/igt@prime_vgem@basic-gtt.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19352/fi-tgl-y/igt@prime_vgem@basic-gtt.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@gem_sync@basic-all:<ul>
+<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9605/fi-tgl-y/igt@gem_sync@basic-all.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19352/fi-tgl-y/igt@gem_sync@basic-all.html">PASS</a> +1 similar issue</li>
+</ul>
+</li>
+</ul>
+<h4>Warnings</h4>
+<ul>
+<li>igt@i915_hangman@error-state-basic:<ul>
+<li>fi-apl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9605/fi-apl-guc/igt@i915_hangman@error-state-basic.html">DMESG-WARN</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19352/fi-apl-guc/igt@i915_hangman@error-state-basic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1610">i915#1610</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>Participating hosts (41 -&gt; 36)</h2>
+<p>Missing    (5): fi-cml-u2 fi-byt-j1900 fi-bsw-cyan fi-ctg-p8600 fi-bdw-samus </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_9605 -&gt; Patchwork_19352</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_9605: b1c266ff3c7379af2a724726adf9ab5c66fe0906 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_5957: 2a2b3418f7458dfa1fac255cc5c71603f617690a @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
+  Patchwork_19352: 97dd51b48997e91c879d079230259e8c8f8721ff @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>97dd51b48997 drm/i915: support two CSC module on gen11 and later</p>
+
+</body>
+</html>
+
+--===============7950554772845973276==--
+
+--===============1576468137==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============1576468137==--
