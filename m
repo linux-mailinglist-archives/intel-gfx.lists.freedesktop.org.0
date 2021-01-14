@@ -1,37 +1,36 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5473B2F5D21
-	for <lists+intel-gfx@lfdr.de>; Thu, 14 Jan 2021 10:18:06 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id D751A2F5D37
+	for <lists+intel-gfx@lfdr.de>; Thu, 14 Jan 2021 10:24:15 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9C0596E0DD;
-	Thu, 14 Jan 2021 09:18:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DDE2289FF7;
+	Thu, 14 Jan 2021 09:24:12 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9DDE96E0DD
- for <intel-gfx@lists.freedesktop.org>; Thu, 14 Jan 2021 09:18:02 +0000 (UTC)
-IronPort-SDR: Gt9SJGwTRuRIm78eeiRd/XKJ9x/SCuGgThr1iyt8s7NToEisoov+t+VPCoA+22IpP8Q3JYSOVT
- T4IuYEJxdixg==
-X-IronPort-AV: E=McAfee;i="6000,8403,9863"; a="177556202"
-X-IronPort-AV: E=Sophos;i="5.79,347,1602572400"; d="scan'208";a="177556202"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Jan 2021 01:18:02 -0800
-IronPort-SDR: ZSG6ekQ+wZJ+0tjzOCd6Rh+XUeO604MTOqg8cJAsp2jjkFDF6PK3xXOLyarkVCvNHHLKrMVVxB
- mCZ1AbVGbVbQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.79,347,1602572400"; d="scan'208";a="568120721"
-Received: from shawnle1-build-machine.itwn.intel.com ([10.5.253.22])
- by orsmga005.jf.intel.com with ESMTP; 14 Jan 2021 01:18:00 -0800
-From: Lee Shawn C <shawn.c.lee@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Thu, 14 Jan 2021 17:22:36 +0800
-Message-Id: <20210114092236.20477-1-shawn.c.lee@intel.com>
-X-Mailer: git-send-email 2.17.1
-Subject: [Intel-gfx] [PATCH] drm/i915: support two CSC module on gen11 and
- later
+Received: from fireflyinternet.com (unknown [77.68.26.236])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 42D9289FF7;
+ Thu, 14 Jan 2021 09:24:10 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from localhost (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
+ 23592012-1500050 for multiple; Thu, 14 Jan 2021 09:23:20 +0000
+MIME-Version: 1.0
+In-Reply-To: <CAKMK7uGXtu0V8TVaQ2XyuE9vOdJOWKrCYUNkh0FJMfucSyS2vg@mail.gmail.com>
+References: <20210113140604.3615437-1-daniel.vetter@ffwll.ch>
+ <161055261490.6195.7986280621869334351@build.alporthouse.com>
+ <CAKMK7uEnnEj_YAR5Tm3jpS7MNPkqB43JBhQnY_K0YQ+LE9wL1g@mail.gmail.com>
+ <161057213487.6195.581396740566956696@build.alporthouse.com>
+ <CAKMK7uGXtu0V8TVaQ2XyuE9vOdJOWKrCYUNkh0FJMfucSyS2vg@mail.gmail.com>
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: Daniel Vetter <daniel.vetter@ffwll.ch>,
+ John Stultz <john.stultz@linaro.org>
+Date: Thu, 14 Jan 2021 09:23:18 +0000
+Message-ID: <161061619887.19482.10606780107376365239@build.alporthouse.com>
+User-Agent: alot/0.9
+Subject: Re: [Intel-gfx] [PATCH] drm-buf: Add debug option
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,45 +43,72 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Cooper Chiou <cooper.chiou@intel.com>
-MIME-Version: 1.0
+Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ Sumit Semwal <sumit.semwal@linaro.org>,
+ DRI Development <dri-devel@lists.freedesktop.org>, linux-media@vger.kernel.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-There are two CSC on pipeline on gen11 and later platform.
-User space application is allowed to enable CTM and RGB
-to YCbCr coversion at the same time now.
+Quoting Daniel Vetter (2021-01-14 09:02:57)
+> On Wed, Jan 13, 2021 at 10:08 PM Chris Wilson <chris@chris-wilson.co.uk> wrote:
+> > Quoting Daniel Vetter (2021-01-13 20:50:11)
+> > > On Wed, Jan 13, 2021 at 4:43 PM Chris Wilson <chris@chris-wilson.co.uk> wrote:
+> > > >
+> > > > Quoting Daniel Vetter (2021-01-13 14:06:04)
+> > > > > We have too many people abusing the struct page they can get at but
+> > > > > really shouldn't in importers. Aside from that the backing page might
+> > > > > simply not exist (for dynamic p2p mappings) looking at it and using it
+> > > > > e.g. for mmap can also wreak the page handling of the exporter
+> > > > > completely. Importers really must go through the proper interface like
+> > > > > dma_buf_mmap for everything.
+> > > >
+> > > > If the exporter doesn't want to expose the struct page, why are they
+> > > > setting it in the exported sg_table?
+> > >
+> > > You need to store it somewhere, otherwise the dma-api doesn't work.
+> > > Essentially this achieves clearing/resetting the struct page pointer,
+> > > without additional allocations somewhere, or tons of driver changes
+> > > (since presumably the driver does keep track of the struct page
+> > > somewhere too).
+> >
+> > Only for mapping, and that's before the export -- if there's even a
+> > struct page to begin with.
+> >
+> > > Also as long as we have random importers looking at struct page we
+> > > can't just remove it, or crashes everywhere. So it has to be some
+> > > debug option you can disable.
+> >
+> > Totally agreed that nothing generic can rely on pages being transported
+> > via dma-buf, and memfd is there if you do want a suitable transport. The
+> > one I don't know about is dma-buf heap, do both parties there consent to
+> > transport pages via the dma-buf? i.e. do they have special cases for
+> > import/export between heaps?
+> 
+> heaps shouldn't be any different wrt the interface exposed to
+> importers. Adding John just in case I missed something.
+> 
+> I think the only problem we have is that the first import for ttm
+> simply pulled out the struct page and ignored the sgtable otherwise,
+> then that copypasted to places and we're still have some of that left.
+> Although it's a lot better. So largely the problem is importers being
+> a bit silly.
+> 
+> I also think I should change the defaulty y to default y if
+> DMA_API_DEBUG or something like that, to make sure it's actually
+> enabled often enough.
 
-Cc: Ville Syrjala <ville.syrjala@linux.intel.com>
-Cc: Imre Deak <imre.deak@intel.com>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>
-Cc: Cooper Chiou <cooper.chiou@intel.com>
-Cc: Shankar Uma <uma.shankar@intel.com>
+It felt overly draconian, but other than the open question of dma-buf
+heaps (which I realise that we need some CI coverage for), I can't
+think of a good reason to argue for hiding a struct page transport
+within dma-buf.
 
-Signed-off-by: Lee Shawn C <shawn.c.lee@intel.com>
----
- drivers/gpu/drm/i915/display/intel_display.c | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 1a0f00f37ca9..721d5ce1ed2b 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -8303,7 +8303,8 @@ static int intel_crtc_compute_config(struct intel_crtc *crtc,
- 		return -EINVAL;
- 	}
- 
--	if ((pipe_config->output_format == INTEL_OUTPUT_FORMAT_YCBCR420 ||
-+	if ((INTEL_GEN(dev_priv) < 11) &&
-+	    (pipe_config->output_format == INTEL_OUTPUT_FORMAT_YCBCR420 ||
- 	     pipe_config->output_format == INTEL_OUTPUT_FORMAT_YCBCR444) &&
- 	     pipe_config->hw.ctm) {
- 		/*
--- 
-2.17.1
-
+The only other problem I see with the implementation is that there's
+nothing that says that each dmabuf->ops->map_dma_buf() returns a new
+sg_table, so we may end up undoing the xor. Or should each dma-buf
+return a fresh dma-mapping for iommu isolation?
+-Chris
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
