@@ -1,46 +1,40 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7BEAF2F58CF
-	for <lists+intel-gfx@lfdr.de>; Thu, 14 Jan 2021 04:11:16 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3D6732F58CB
+	for <lists+intel-gfx@lfdr.de>; Thu, 14 Jan 2021 04:06:17 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C014D89CA1;
-	Thu, 14 Jan 2021 03:11:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 85AD389AC0;
+	Thu, 14 Jan 2021 03:06:15 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 473 seconds by postgrey-1.36 at gabe;
- Thu, 14 Jan 2021 03:11:03 UTC
-Received: from 4.mo178.mail-out.ovh.net (4.mo178.mail-out.ovh.net
- [46.105.49.171])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6BDC489CA1
- for <intel-gfx@lists.freedesktop.org>; Thu, 14 Jan 2021 03:11:03 +0000 (UTC)
-Received: from player726.ha.ovh.net (unknown [10.108.4.253])
- by mo178.mail-out.ovh.net (Postfix) with ESMTP id D8E9DBC90E
- for <intel-gfx@lists.freedesktop.org>; Thu, 14 Jan 2021 04:03:07 +0100 (CET)
-Received: from etezian.org (213-243-141-64.bb.dnainternet.fi [213.243.141.64])
- (Authenticated sender: andi@etezian.org)
- by player726.ha.ovh.net (Postfix) with ESMTPSA id 4489719EF243D;
- Thu, 14 Jan 2021 03:03:04 +0000 (UTC)
-Authentication-Results: garm.ovh; auth=pass
- (GARM-100R003a5bfec65-3067-45a2-88f6-98f7c6736fac,
- 72D3C5DAFF26A6515C48D523C3EFD44FB281F22F) smtp.auth=andi@etezian.org
-X-OVh-ClientIp: 213.243.141.64
-Date: Thu, 14 Jan 2021 05:03:03 +0200
-From: Andi Shyti <andi@etezian.org>
-To: Chris Wilson <chris@chris-wilson.co.uk>
-Message-ID: <X/+0Z1bDmk1uW0KV@jack.zhora.eu>
-References: <20210113124600.656-1-chris@chris-wilson.co.uk>
- <20210113124600.656-10-chris@chris-wilson.co.uk>
+Received: from us-smtp-delivery-44.mimecast.com
+ (us-smtp-delivery-44.mimecast.com [205.139.111.44])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C5B0A89AC0
+ for <intel-gfx@lists.freedesktop.org>; Thu, 14 Jan 2021 03:06:13 +0000 (UTC)
+Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
+ [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-572-Xu_kWkYNMTWp7jnau7iv_Q-1; Wed, 13 Jan 2021 22:06:10 -0500
+X-MC-Unique: Xu_kWkYNMTWp7jnau7iv_Q-1
+Received: from smtp.corp.redhat.com (int-mx01.intmail.prod.int.phx2.redhat.com
+ [10.5.11.11])
+ (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
+ (No client certificate requested)
+ by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 37450806661
+ for <intel-gfx@lists.freedesktop.org>; Thu, 14 Jan 2021 03:06:09 +0000 (UTC)
+Received: from dreadlord-bne-redhat-com.bne.redhat.com (unknown [10.64.32.209])
+ by smtp.corp.redhat.com (Postfix) with ESMTP id 9BB7C6F44A
+ for <intel-gfx@lists.freedesktop.org>; Thu, 14 Jan 2021 03:06:08 +0000 (UTC)
+From: Dave Airlie <airlied@gmail.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Thu, 14 Jan 2021 13:05:55 +1000
+Message-Id: <20210114030606.19831-1-airlied@gmail.com>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20210113124600.656-10-chris@chris-wilson.co.uk>
-X-Ovh-Tracer-Id: 13000484751414575625
-X-VR-SPAMSTATE: OK
-X-VR-SPAMSCORE: -100
-X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgedukedrtdeggdehfecutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfqggfjpdevjffgvefmvefgnecuuegrihhlohhuthemucehtddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpeffhffvuffkfhggtggujgesthdtredttddtvdenucfhrhhomheptehnughiucfuhhihthhiuceorghnughisegvthgviihirghnrdhorhhgqeenucggtffrrghtthgvrhhnpedtgfduudfhfeeuueejfeeihedtfeetgfegveehgfeuleelhfduteegieekudeifeenucfkpheptddrtddrtddrtddpvddufedrvdegfedrudeguddrieegnecuvehluhhsthgvrhfuihiivgepudenucfrrghrrghmpehmohguvgepshhmthhpqdhouhhtpdhhvghlohepphhlrgihvghrjedviedrhhgrrdhovhhhrdhnvghtpdhinhgvtheptddrtddrtddrtddpmhgrihhlfhhrohhmpegrnhguihesvghtvgiiihgrnhdrohhrghdprhgtphhtthhopehinhhtvghlqdhgfhigsehlihhsthhsrdhfrhgvvgguvghskhhtohhprdhorhhg
-Subject: Re: [Intel-gfx] [PATCH 10/10] drm/i915/gt: Reduce GT runtime stats
- from seqlock to a latch
+X-Scanned-By: MIMEDefang 2.79 on 10.5.11.11
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: gmail.com
+Subject: [Intel-gfx] [rfc v7] rebased refactor of intel_display
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,27 +47,22 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Chris,
+Hi Jani and Ville,
 
-On Wed, Jan 13, 2021 at 12:46:00PM +0000, Chris Wilson wrote:
-> Since we can compute the elapsed time to add to the total, during the
-> PMU sample we only need to have a consistent view of the (start, total,
-> active) tuple to be able to locally determine the runtime. That can be
-> arrange by a pair of memory bariiers and carefully sequencing of the
-> writes and reads.
-> 
-> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+This is a rebased taking into account the changes that happened since
+and the backmerge.
 
-Reviewed-by: Andi Shyti <andi.shyti@intel.com>
+Some of these are reviewed already so it would be good to get them
+pushed asap.
 
-Thanks,
-Andi
+Dave.
+
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
