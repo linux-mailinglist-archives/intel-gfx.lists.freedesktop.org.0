@@ -2,42 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C461B2F5CB0
-	for <lists+intel-gfx@lfdr.de>; Thu, 14 Jan 2021 09:56:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 74D472F5CBE
+	for <lists+intel-gfx@lfdr.de>; Thu, 14 Jan 2021 10:03:14 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9AC7789834;
-	Thu, 14 Jan 2021 08:56:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3398A6E07B;
+	Thu, 14 Jan 2021 09:03:11 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E051789834
- for <intel-gfx@lists.freedesktop.org>; Thu, 14 Jan 2021 08:56:46 +0000 (UTC)
-IronPort-SDR: Xpwyggqdq4/yIUxqlA111L2U523bpqdcqGEZn3BbveHDBC0blsBxQL/tqjsWfJQ2LDAZ7rUAQe
- rIFFlPFjBQPw==
-X-IronPort-AV: E=McAfee;i="6000,8403,9863"; a="157512641"
-X-IronPort-AV: E=Sophos;i="5.79,346,1602572400"; d="scan'208";a="157512641"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Jan 2021 00:56:46 -0800
-IronPort-SDR: cUgVMV8K5kW/EZrhxbbui4f8KXXcMhz+BMP3p57iTkBQMUktMM1A0GFAa5mD26c1aFUooqTN8h
- NBbpNm6kecRQ==
-X-IronPort-AV: E=Sophos;i="5.79,346,1602572400"; d="scan'208";a="353826093"
-Received: from dforourk-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.213.254.146])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Jan 2021 00:56:43 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: Anshuman Gupta <anshuman.gupta@intel.com>
-In-Reply-To: <20210113115541.GQ11717@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <cover.1610127741.git.jani.nikula@intel.com>
- <f190c7dadbf4e3d2b216709975fdd50ba0f850d0.1610127741.git.jani.nikula@intel.com>
- <20210113115541.GQ11717@intel.com>
-Date: Thu, 14 Jan 2021 10:56:40 +0200
-Message-ID: <87a6tbrj5j.fsf@intel.com>
+Received: from mail-oi1-x22b.google.com (mail-oi1-x22b.google.com
+ [IPv6:2607:f8b0:4864:20::22b])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 83A7D6E07B
+ for <intel-gfx@lists.freedesktop.org>; Thu, 14 Jan 2021 09:03:09 +0000 (UTC)
+Received: by mail-oi1-x22b.google.com with SMTP id s75so5233268oih.1
+ for <intel-gfx@lists.freedesktop.org>; Thu, 14 Jan 2021 01:03:09 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=M2SpU3YtVk3fHAkyH4YoVmkExKtr/aqdhNIMU89mM+s=;
+ b=MPLkDIH277s12ooEyh6vtprpn/MHJyXZ9viUdtEkfJtl9Dv+Shy8pUusFQZdrDMKf9
+ sbsf+q8Cllce6TZulonndTmYO2effkUz48KmCkXaNXyz1RMNCwJc7HUclN2UO3LtVUnG
+ +/jOxySXEAV8smcy4tt8HDihtb+AGeL1/SPSQ=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=M2SpU3YtVk3fHAkyH4YoVmkExKtr/aqdhNIMU89mM+s=;
+ b=CWEchOjZCzmh6IuurVH4DZZslXRqeLYhSx2CfGCbrhrj26C2STjERO9GCJyaKaHuLQ
+ heI45MI7iXSD4pU0aK/RAbjcvSH14wRRP0xdJifJThAKhLHSkFT8n7+qD82UPPgJWaTM
+ tnx9CeMnvz5rRxAD8xmeRwGnJrO89XgX3d9hDwsAMA83lXybl7H8FF3lu88elWc1Mmnp
+ Jlru+uT2LjnBUjkPuINFc80z6jL1Bia+YgKmFb34GZWEbxN3GZBAcjV5TeuDtaBLcbXs
+ 3V70TkElIDPdLhEMRzYeYbrPlgKVRu9m4ZDrBThnJRHaq3lAWCbWctXYT5PA8n3GrXGW
+ oE0A==
+X-Gm-Message-State: AOAM530vyfSqI/UkY0wsIJ/lmHr/1DcKXBHjeFe+ypCmN1UYq4xJ+dUO
+ /7TzBb/rZZ21njD/Iog9PaCVLPfejafpo2WMzlsybg==
+X-Google-Smtp-Source: ABdhPJw/NLDHmJl3LpZPy4aab7MitydGFYAGaqJqX+iuigNroRxFyWQFXHlqsKYoFzfs/iuXSPj9sasgK8V7p03TLPg=
+X-Received: by 2002:aca:4d08:: with SMTP id a8mr2031999oib.128.1610614988755; 
+ Thu, 14 Jan 2021 01:03:08 -0800 (PST)
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH v2 15/17] drm/i915/pps: move pps code over
- from intel_display.c and refactor
+References: <20210113140604.3615437-1-daniel.vetter@ffwll.ch>
+ <161055261490.6195.7986280621869334351@build.alporthouse.com>
+ <CAKMK7uEnnEj_YAR5Tm3jpS7MNPkqB43JBhQnY_K0YQ+LE9wL1g@mail.gmail.com>
+ <161057213487.6195.581396740566956696@build.alporthouse.com>
+In-Reply-To: <161057213487.6195.581396740566956696@build.alporthouse.com>
+From: Daniel Vetter <daniel.vetter@ffwll.ch>
+Date: Thu, 14 Jan 2021 10:02:57 +0100
+Message-ID: <CAKMK7uGXtu0V8TVaQ2XyuE9vOdJOWKrCYUNkh0FJMfucSyS2vg@mail.gmail.com>
+To: Chris Wilson <chris@chris-wilson.co.uk>,
+ John Stultz <john.stultz@linaro.org>
+Subject: Re: [Intel-gfx] [PATCH] drm-buf: Add debug option
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,198 +61,70 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ Sumit Semwal <sumit.semwal@linaro.org>,
+ DRI Development <dri-devel@lists.freedesktop.org>,
+ =?UTF-8?Q?moderated_list=3ADMA_BUFFER_SHARING_FRAMEWORK_=3Clinaro=2Dmm=2Dsig=40l?=
+ =?UTF-8?Q?ists=2Elinaro=2Eorg=3E=2C_David_Stevens_=3Cstevensd=40chromium=2Eorg=3E=2C_Dan?=
+ =?UTF-8?Q?iel_Vetter_=3Cdaniel=2Evetter=40intel=2Ecom=3E=2C_Christian_K=C3=B6nig_=3Cchri?=
+ =?UTF-8?Q?stian=2Ekoenig=40amd=2Ecom=3E=2C_open_list=3ADMA_BUFFER_SHARING_FRAMEWOR?=
+ =?UTF-8?Q?K?= <linux-media@vger.kernel.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 13 Jan 2021, Anshuman Gupta <anshuman.gupta@intel.com> wrote:
-> On 2021-01-08 at 19:44:23 +0200, Jani Nikula wrote:
->> intel_display.c has some pps functions that belong to intel_pps.c. Move
->> them over.
->> 
->> While at it, refactor the duplicate intel_pps_init() in intel_display.c
->> into an orthogonal intel_pps_setup() in intel_pps.c, and call it earlier
->> in intel_modeset_init_nogem().
->> 
->> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
->> ---
->>  drivers/gpu/drm/i915/display/intel_display.c | 41 ++------------------
->>  drivers/gpu/drm/i915/display/intel_display.h |  1 -
->>  drivers/gpu/drm/i915/display/intel_pps.c     | 34 ++++++++++++++++
->>  drivers/gpu/drm/i915/display/intel_pps.h     |  3 ++
->>  drivers/gpu/drm/i915/i915_drv.c              |  1 +
->>  5 files changed, 42 insertions(+), 38 deletions(-)
->> 
->> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
->> index 0189d379a55e..f8806c4ecb21 100644
->> --- a/drivers/gpu/drm/i915/display/intel_display.c
->> +++ b/drivers/gpu/drm/i915/display/intel_display.c
->> @@ -81,6 +81,7 @@
->>  #include "intel_overlay.h"
->>  #include "intel_pipe_crc.h"
->>  #include "intel_pm.h"
->> +#include "intel_pps.h"
->>  #include "intel_psr.h"
->>  #include "intel_quirks.h"
->>  #include "intel_sideband.h"
->> @@ -16100,48 +16101,12 @@ static bool intel_ddi_crt_present(struct drm_i915_private *dev_priv)
->>  	return true;
->>  }
->>  
->> -void intel_pps_unlock_regs_wa(struct drm_i915_private *dev_priv)
->> -{
->> -	int pps_num;
->> -	int pps_idx;
->> -
->> -	if (HAS_DDI(dev_priv))
->> -		return;
->> -	/*
->> -	 * This w/a is needed at least on CPT/PPT, but to be sure apply it
->> -	 * everywhere where registers can be write protected.
->> -	 */
->> -	if (IS_VALLEYVIEW(dev_priv) || IS_CHERRYVIEW(dev_priv))
->> -		pps_num = 2;
->> -	else
->> -		pps_num = 1;
->> -
->> -	for (pps_idx = 0; pps_idx < pps_num; pps_idx++) {
->> -		u32 val = intel_de_read(dev_priv, PP_CONTROL(pps_idx));
->> -
->> -		val = (val & ~PANEL_UNLOCK_MASK) | PANEL_UNLOCK_REGS;
->> -		intel_de_write(dev_priv, PP_CONTROL(pps_idx), val);
->> -	}
->> -}
->> -
->> -static void intel_pps_init(struct drm_i915_private *dev_priv)
->> -{
->> -	if (HAS_PCH_SPLIT(dev_priv) || IS_GEN9_LP(dev_priv))
->> -		dev_priv->pps_mmio_base = PCH_PPS_BASE;
->> -	else if (IS_VALLEYVIEW(dev_priv) || IS_CHERRYVIEW(dev_priv))
->> -		dev_priv->pps_mmio_base = VLV_PPS_BASE;
->> -	else
->> -		dev_priv->pps_mmio_base = PPS_BASE;
->> -
->> -	intel_pps_unlock_regs_wa(dev_priv);
->> -}
->> -
->>  static void intel_setup_outputs(struct drm_i915_private *dev_priv)
->>  {
->>  	struct intel_encoder *encoder;
->>  	bool dpd_is_edp = false;
->>  
->> -	intel_pps_init(dev_priv);
->> +	intel_pps_unlock_regs_wa(dev_priv);
->>  
->>  	if (!HAS_DISPLAY(dev_priv))
->>  		return;
->> @@ -17199,6 +17164,8 @@ int intel_modeset_init_nogem(struct drm_i915_private *i915)
->>  
->>  	intel_panel_sanitize_ssc(i915);
->>  
->> +	intel_pps_setup(i915);
->> +
-> This is mmio init, could you please guide me why i915_driver_mmio_probe()
-> has not chosen to call intel_pps_setup() ?
+On Wed, Jan 13, 2021 at 10:08 PM Chris Wilson <chris@chris-wilson.co.uk> wrote:
+> Quoting Daniel Vetter (2021-01-13 20:50:11)
+> > On Wed, Jan 13, 2021 at 4:43 PM Chris Wilson <chris@chris-wilson.co.uk> wrote:
+> > >
+> > > Quoting Daniel Vetter (2021-01-13 14:06:04)
+> > > > We have too many people abusing the struct page they can get at but
+> > > > really shouldn't in importers. Aside from that the backing page might
+> > > > simply not exist (for dynamic p2p mappings) looking at it and using it
+> > > > e.g. for mmap can also wreak the page handling of the exporter
+> > > > completely. Importers really must go through the proper interface like
+> > > > dma_buf_mmap for everything.
+> > >
+> > > If the exporter doesn't want to expose the struct page, why are they
+> > > setting it in the exported sg_table?
+> >
+> > You need to store it somewhere, otherwise the dma-api doesn't work.
+> > Essentially this achieves clearing/resetting the struct page pointer,
+> > without additional allocations somewhere, or tons of driver changes
+> > (since presumably the driver does keep track of the struct page
+> > somewhere too).
+>
+> Only for mapping, and that's before the export -- if there's even a
+> struct page to begin with.
+>
+> > Also as long as we have random importers looking at struct page we
+> > can't just remove it, or crashes everywhere. So it has to be some
+> > debug option you can disable.
+>
+> Totally agreed that nothing generic can rely on pages being transported
+> via dma-buf, and memfd is there if you do want a suitable transport. The
+> one I don't know about is dma-buf heap, do both parties there consent to
+> transport pages via the dma-buf? i.e. do they have special cases for
+> import/export between heaps?
 
-Long term the goal is to divide gt and display probe more and more;
-there's no clear place in i915_driver_mmio_probe() to stick this. I
-certainly don't want to call intel_pps_setup() directly from there.
+heaps shouldn't be any different wrt the interface exposed to
+importers. Adding John just in case I missed something.
 
-This is at least close to where gpio_mmio_base gets setup in
-intel_gmbus_setup() right below.
+I think the only problem we have is that the first import for ttm
+simply pulled out the struct page and ignored the sgtable otherwise,
+then that copypasted to places and we're still have some of that left.
+Although it's a lot better. So largely the problem is importers being
+a bit silly.
 
-BR,
-Jani.
-
->>  	intel_gmbus_setup(i915);
->>  
->>  	drm_dbg_kms(&i915->drm, "%d display pipe%s available.\n",
->> diff --git a/drivers/gpu/drm/i915/display/intel_display.h b/drivers/gpu/drm/i915/display/intel_display.h
->> index 7ddbc00a0f41..bbd5dbc61ce9 100644
->> --- a/drivers/gpu/drm/i915/display/intel_display.h
->> +++ b/drivers/gpu/drm/i915/display/intel_display.h
->> @@ -546,7 +546,6 @@ unsigned int intel_rotation_info_size(const struct intel_rotation_info *rot_info
->>  unsigned int intel_remapped_info_size(const struct intel_remapped_info *rem_info);
->>  bool intel_has_pending_fb_unpin(struct drm_i915_private *dev_priv);
->>  int intel_display_suspend(struct drm_device *dev);
->> -void intel_pps_unlock_regs_wa(struct drm_i915_private *dev_priv);
->>  void intel_encoder_destroy(struct drm_encoder *encoder);
->>  struct drm_display_mode *
->>  intel_encoder_current_mode(struct intel_encoder *encoder);
->> diff --git a/drivers/gpu/drm/i915/display/intel_pps.c b/drivers/gpu/drm/i915/display/intel_pps.c
->> index b4d026ca3313..c3a0fc933500 100644
->> --- a/drivers/gpu/drm/i915/display/intel_pps.c
->> +++ b/drivers/gpu/drm/i915/display/intel_pps.c
->> @@ -1370,3 +1370,37 @@ void intel_pps_init(struct intel_dp *intel_dp)
->>  
->>  	intel_pps_encoder_reset(intel_dp);
->>  }
->> +
->> +void intel_pps_unlock_regs_wa(struct drm_i915_private *dev_priv)
->> +{
->> +	int pps_num;
->> +	int pps_idx;
->> +
->> +	if (HAS_DDI(dev_priv))
->> +		return;
->> +	/*
->> +	 * This w/a is needed at least on CPT/PPT, but to be sure apply it
->> +	 * everywhere where registers can be write protected.
->> +	 */
->> +	if (IS_VALLEYVIEW(dev_priv) || IS_CHERRYVIEW(dev_priv))
->> +		pps_num = 2;
->> +	else
->> +		pps_num = 1;
->> +
->> +	for (pps_idx = 0; pps_idx < pps_num; pps_idx++) {
->> +		u32 val = intel_de_read(dev_priv, PP_CONTROL(pps_idx));
->> +
->> +		val = (val & ~PANEL_UNLOCK_MASK) | PANEL_UNLOCK_REGS;
->> +		intel_de_write(dev_priv, PP_CONTROL(pps_idx), val);
->> +	}
->> +}
->> +
->> +void intel_pps_setup(struct drm_i915_private *i915)
->> +{
->> +	if (HAS_PCH_SPLIT(i915) || IS_GEN9_LP(i915))
->> +		i915->pps_mmio_base = PCH_PPS_BASE;
->> +	else if (IS_VALLEYVIEW(i915) || IS_CHERRYVIEW(i915))
->> +		i915->pps_mmio_base = VLV_PPS_BASE;
->> +	else
->> +		i915->pps_mmio_base = PPS_BASE;
->> +}
->> diff --git a/drivers/gpu/drm/i915/display/intel_pps.h b/drivers/gpu/drm/i915/display/intel_pps.h
->> index 22045c5cdc86..fbbcca782e7b 100644
->> --- a/drivers/gpu/drm/i915/display/intel_pps.h
->> +++ b/drivers/gpu/drm/i915/display/intel_pps.h
->> @@ -46,4 +46,7 @@ void intel_pps_reset_all(struct drm_i915_private *i915);
->>  void vlv_pps_init(struct intel_encoder *encoder,
->>  		  const struct intel_crtc_state *crtc_state);
->>  
->> +void intel_pps_unlock_regs_wa(struct drm_i915_private *i915);
->> +void intel_pps_setup(struct drm_i915_private *i915);
->> +
->>  #endif /* __INTEL_PPS_H__ */
->> diff --git a/drivers/gpu/drm/i915/i915_drv.c b/drivers/gpu/drm/i915/i915_drv.c
->> index 3e504247f2da..7282c8f08318 100644
->> --- a/drivers/gpu/drm/i915/i915_drv.c
->> +++ b/drivers/gpu/drm/i915/i915_drv.c
->> @@ -58,6 +58,7 @@
->>  #include "display/intel_hotplug.h"
->>  #include "display/intel_overlay.h"
->>  #include "display/intel_pipe_crc.h"
->> +#include "display/intel_pps.h"
->>  #include "display/intel_sprite.h"
->>  #include "display/intel_vga.h"
->>  
->> -- 
->> 2.20.1
->> 
-
+I also think I should change the defaulty y to default y if
+DMA_API_DEBUG or something like that, to make sure it's actually
+enabled often enough.
+-Daniel
 -- 
-Jani Nikula, Intel Open Source Graphics Center
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
