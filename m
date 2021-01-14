@@ -1,33 +1,30 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C3BF92F5E6E
-	for <lists+intel-gfx@lfdr.de>; Thu, 14 Jan 2021 11:13:45 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 30EB92F5E70
+	for <lists+intel-gfx@lfdr.de>; Thu, 14 Jan 2021 11:14:59 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CA0BB6E194;
-	Thu, 14 Jan 2021 10:13:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E0CEA8970E;
+	Thu, 14 Jan 2021 10:14:56 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 350066E194
- for <intel-gfx@lists.freedesktop.org>; Thu, 14 Jan 2021 10:13:40 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CC0D5896E5
+ for <intel-gfx@lists.freedesktop.org>; Thu, 14 Jan 2021 10:14:54 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 23592688-1500050 for multiple; Thu, 14 Jan 2021 10:13:38 +0000
-MIME-Version: 1.0
-In-Reply-To: <20210114092639.23762-2-chris@chris-wilson.co.uk>
-References: <20210114092639.23762-1-chris@chris-wilson.co.uk>
- <20210114092639.23762-2-chris@chris-wilson.co.uk>
+Received: from build.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 23592702-1500050 
+ for <intel-gfx@lists.freedesktop.org>; Thu, 14 Jan 2021 10:14:52 +0000
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Thu, 14 Jan 2021 10:13:37 +0000
-Message-ID: <161061921709.19482.2488244988261947924@build.alporthouse.com>
-User-Agent: alot/0.9
-Subject: Re: [Intel-gfx] [PATCH 2/2] drm/i915/selftests: Exercise
- cross-process context isolation
+Date: Thu, 14 Jan 2021 10:14:51 +0000
+Message-Id: <20210114101451.24762-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.20.1
+MIME-Version: 1.0
+Subject: [Intel-gfx] [CI] drm/i915/gt: Reapply ppgtt enabling after engine
+ resets
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,18 +42,70 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Chris Wilson (2021-01-14 09:26:39)
-> +       rq = record_registers(A, a, result[0], result[1], false, &sema);
-> +       if (IS_ERR(rq)) {
-> +               err = PTR_ERR(rq);
-> +               goto err_result1;
-> +       }
-> +
-> +       err = poison_registers(B, a, poison, false, &sema);
+The GFX_MODE is reset along with the engine, turning off ppGTT. We need
+to re-enable it upon resume afterwards.
 
-Hmm. Will want to add a synchronisation pointer before poisoning the
-registers, we want to make sure context A is active at the time.
--Chris
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Reviewed-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+---
+ drivers/gpu/drm/i915/gt/gen6_ppgtt.c            |  9 ---------
+ drivers/gpu/drm/i915/gt/intel_ring_submission.c | 13 ++++++++++---
+ 2 files changed, 10 insertions(+), 12 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/gt/gen6_ppgtt.c b/drivers/gpu/drm/i915/gt/gen6_ppgtt.c
+index 680bd9442eb0..0f02afe7f43a 100644
+--- a/drivers/gpu/drm/i915/gt/gen6_ppgtt.c
++++ b/drivers/gpu/drm/i915/gt/gen6_ppgtt.c
+@@ -27,8 +27,6 @@ void gen7_ppgtt_enable(struct intel_gt *gt)
+ {
+ 	struct drm_i915_private *i915 = gt->i915;
+ 	struct intel_uncore *uncore = gt->uncore;
+-	struct intel_engine_cs *engine;
+-	enum intel_engine_id id;
+ 	u32 ecochk;
+ 
+ 	intel_uncore_rmw(uncore, GAC_ECO_BITS, 0, ECOBITS_PPGTT_CACHE64B);
+@@ -41,13 +39,6 @@ void gen7_ppgtt_enable(struct intel_gt *gt)
+ 		ecochk &= ~ECOCHK_PPGTT_GFDT_IVB;
+ 	}
+ 	intel_uncore_write(uncore, GAM_ECOCHK, ecochk);
+-
+-	for_each_engine(engine, gt, id) {
+-		/* GFX_MODE is per-ring on gen7+ */
+-		ENGINE_WRITE(engine,
+-			     RING_MODE_GEN7,
+-			     _MASKED_BIT_ENABLE(GFX_PPGTT_ENABLE));
+-	}
+ }
+ 
+ void gen6_ppgtt_enable(struct intel_gt *gt)
+diff --git a/drivers/gpu/drm/i915/gt/intel_ring_submission.c b/drivers/gpu/drm/i915/gt/intel_ring_submission.c
+index 20f42722be8b..01553f029ac1 100644
+--- a/drivers/gpu/drm/i915/gt/intel_ring_submission.c
++++ b/drivers/gpu/drm/i915/gt/intel_ring_submission.c
+@@ -189,9 +189,16 @@ static void set_pp_dir(struct intel_engine_cs *engine)
+ {
+ 	struct i915_address_space *vm = vm_alias(engine->gt->vm);
+ 
+-	if (vm) {
+-		ENGINE_WRITE(engine, RING_PP_DIR_DCLV, PP_DIR_DCLV_2G);
+-		ENGINE_WRITE(engine, RING_PP_DIR_BASE, pp_dir(vm));
++	if (!vm)
++		return;
++
++	ENGINE_WRITE(engine, RING_PP_DIR_DCLV, PP_DIR_DCLV_2G);
++	ENGINE_WRITE(engine, RING_PP_DIR_BASE, pp_dir(vm));
++
++	if (INTEL_GEN(engine->i915) >= 7) {
++		ENGINE_WRITE(engine,
++			     RING_MODE_GEN7,
++			     _MASKED_BIT_ENABLE(GFX_PPGTT_ENABLE));
+ 	}
+ }
+ 
+-- 
+2.20.1
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
