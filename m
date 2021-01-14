@@ -1,32 +1,39 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A516A2F55AD
-	for <lists+intel-gfx@lfdr.de>; Thu, 14 Jan 2021 01:52:45 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id A47382F55AF
+	for <lists+intel-gfx@lfdr.de>; Thu, 14 Jan 2021 01:57:35 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EE30389617;
-	Thu, 14 Jan 2021 00:52:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 95F9E897DC;
+	Thu, 14 Jan 2021 00:57:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 44AF9895E7;
- Thu, 14 Jan 2021 00:52:43 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 42E98A7DFC;
- Thu, 14 Jan 2021 00:52:43 +0000 (UTC)
-MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Thu, 14 Jan 2021 00:52:43 -0000
-Message-ID: <161058556327.19649.13737673393073901587@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210113225144.30810-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20210113225144.30810-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3Igc2Vy?=
- =?utf-8?q?ies_starting_with_=5BCI=2C1/2=5D_drm/i915/gt=3A_Rearrange_vlv_w?=
- =?utf-8?q?orkarounds?=
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7DF22897DC
+ for <intel-gfx@lists.freedesktop.org>; Thu, 14 Jan 2021 00:57:31 +0000 (UTC)
+IronPort-SDR: 1qiIxoOTvmnukFiX/0W9r2cZK/PkWGtwhouVHLFRwERQn1EqEmmMYAQWgRXx8TdaaQbmfKeYKB
+ K9ctSD9WNTMQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9863"; a="175711215"
+X-IronPort-AV: E=Sophos;i="5.79,345,1602572400"; d="scan'208";a="175711215"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Jan 2021 16:57:28 -0800
+IronPort-SDR: 5Lur7wJwbcYlrIJDpFl2G/ndzVW7kkv85o0QQjeNkid3+XrDb0z5E2EEB2SmSeaLxRyci9pD5/
+ rsnp4HU+EREQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.79,345,1602572400"; d="scan'208";a="353688844"
+Received: from test-optiplex-7040.bj.intel.com ([10.238.154.158])
+ by fmsmga008.fm.intel.com with ESMTP; 13 Jan 2021 16:57:25 -0800
+From: Xiong Zhang <xiong.y.zhang@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Thu, 14 Jan 2021 08:58:19 +0800
+Message-Id: <20210114005819.4290-1-xiong.y.zhang@intel.com>
+X-Mailer: git-send-email 2.17.1
+In-Reply-To: <87im8soq2w.fsf@intel.com>
+References: <87im8soq2w.fsf@intel.com>
+Subject: [Intel-gfx] [PATCH v4] drm/i915: Try to guess PCH type even without
+ ISA bridge
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,226 +46,147 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============0573066896=="
+Cc: chris@chris-wilson.co.uk
+MIME-Version: 1.0
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0573066896==
-Content-Type: multipart/alternative;
- boundary="===============6234789820115120661=="
+From: Zhenyu Wang <zhenyuw@linux.intel.com>
 
---===============6234789820115120661==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Some vmm like hyperv and crosvm don't supply any ISA bridge to their guest,
+when igd passthrough is equipped on these vmm, guest i915 display may
+couldn't work as guest i915 detects PCH_NONE pch type.
 
-== Series Details ==
+When i915 runs as guest, this patch guess pch type through gpu type even
+without ISA bridge.
 
-Series: series starting with [CI,1/2] drm/i915/gt: Rearrange vlv workarounds
-URL   : https://patchwork.freedesktop.org/series/85833/
-State : failure
+v2: Fix CI warning
+v3: Add HAS_DISPLAY()= true condition beforce guessing virt pch, then
+    refactori.
+v4: Fix CI warning
 
-== Summary ==
+Signed-off-by: Zhenyu Wang <zhenyuw@linux.intel.com>
+Signed-off-by: Xiong Zhang <xiong.y.zhang@intel.com>
+---
+ drivers/gpu/drm/i915/i915_drv.h  |  7 +++++-
+ drivers/gpu/drm/i915/intel_pch.c | 39 ++++++++++++++++++--------------
+ 2 files changed, 28 insertions(+), 18 deletions(-)
 
-CI Bug Log - changes from CI_DRM_9604 -> Patchwork_19347
-====================================================
-
-Summary
--------
-
-  **FAILURE**
-
-  Serious unknown changes coming with Patchwork_19347 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_19347, please notify your bug team to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19347/index.html
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_19347:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@gem_sync@basic-each:
-    - fi-bdw-5557u:       [PASS][1] -> [INCOMPLETE][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9604/fi-bdw-5557u/igt@gem_sync@basic-each.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19347/fi-bdw-5557u/igt@gem_sync@basic-each.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_19347 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_pm_rpm@module-reload:
-    - fi-byt-j1900:       [PASS][3] -> [INCOMPLETE][4] ([i915#142] / [i915#2405])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9604/fi-byt-j1900/igt@i915_pm_rpm@module-reload.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19347/fi-byt-j1900/igt@i915_pm_rpm@module-reload.html
-
-  * igt@kms_chamelium@hdmi-edid-read:
-    - fi-kbl-7500u:       [PASS][5] -> [DMESG-FAIL][6] ([i915#165])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9604/fi-kbl-7500u/igt@kms_chamelium@hdmi-edid-read.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19347/fi-kbl-7500u/igt@kms_chamelium@hdmi-edid-read.html
-
-  * igt@runner@aborted:
-    - fi-bdw-5557u:       NOTRUN -> [FAIL][7] ([i915#2722])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19347/fi-bdw-5557u/igt@runner@aborted.html
-    - fi-byt-j1900:       NOTRUN -> [FAIL][8] ([i915#1814] / [i915#2505])
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19347/fi-byt-j1900/igt@runner@aborted.html
-
-  
-  [i915#142]: https://gitlab.freedesktop.org/drm/intel/issues/142
-  [i915#165]: https://gitlab.freedesktop.org/drm/intel/issues/165
-  [i915#1814]: https://gitlab.freedesktop.org/drm/intel/issues/1814
-  [i915#2405]: https://gitlab.freedesktop.org/drm/intel/issues/2405
-  [i915#2505]: https://gitlab.freedesktop.org/drm/intel/issues/2505
-  [i915#2722]: https://gitlab.freedesktop.org/drm/intel/issues/2722
-
-
-Participating hosts (42 -> 37)
-------------------------------
-
-  Missing    (5): fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-tgl-y fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_9604 -> Patchwork_19347
-
-  CI-20190529: 20190529
-  CI_DRM_9604: 486ddc08f81c5bbdac49e52eaa4c94532d763fef @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5957: 2a2b3418f7458dfa1fac255cc5c71603f617690a @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_19347: 1e7ce152a46528e5dcefc46b13930f6eb4fad38c @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-1e7ce152a465 drm/i915/gt: Rearrange ivb workarounds
-aa9c435ab72f drm/i915/gt: Rearrange vlv workarounds
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19347/index.html
-
---===============6234789820115120661==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>series starting with [CI,1/2] drm/i915/gt: Rearrange vlv workarounds</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/85833/">https://patchwork.freedesktop.org/series/85833/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19347/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19347/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_9604 -&gt; Patchwork_19347</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with Patchwork_19347 absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in Patchwork_19347, please notify your bug team to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19347/index.html</p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in Patchwork_19347:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>igt@gem_sync@basic-each:<ul>
-<li>fi-bdw-5557u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9604/fi-bdw-5557u/igt@gem_sync@basic-each.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19347/fi-bdw-5557u/igt@gem_sync@basic-each.html">INCOMPLETE</a></li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_19347 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@i915_pm_rpm@module-reload:</p>
-<ul>
-<li>fi-byt-j1900:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9604/fi-byt-j1900/igt@i915_pm_rpm@module-reload.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19347/fi-byt-j1900/igt@i915_pm_rpm@module-reload.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/142">i915#142</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2405">i915#2405</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@hdmi-edid-read:</p>
-<ul>
-<li>fi-kbl-7500u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9604/fi-kbl-7500u/igt@kms_chamelium@hdmi-edid-read.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19347/fi-kbl-7500u/igt@kms_chamelium@hdmi-edid-read.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/165">i915#165</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@runner@aborted:</p>
-<ul>
-<li>
-<p>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19347/fi-bdw-5557u/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2722">i915#2722</a>)</p>
-</li>
-<li>
-<p>fi-byt-j1900:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19347/fi-byt-j1900/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1814">i915#1814</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2505">i915#2505</a>)</p>
-</li>
-</ul>
-</li>
-</ul>
-<h2>Participating hosts (42 -&gt; 37)</h2>
-<p>Missing    (5): fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-tgl-y fi-bdw-samus </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_9604 -&gt; Patchwork_19347</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_9604: 486ddc08f81c5bbdac49e52eaa4c94532d763fef @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_5957: 2a2b3418f7458dfa1fac255cc5c71603f617690a @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
-  Patchwork_19347: 1e7ce152a46528e5dcefc46b13930f6eb4fad38c @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>1e7ce152a465 drm/i915/gt: Rearrange ivb workarounds<br />
-aa9c435ab72f drm/i915/gt: Rearrange vlv workarounds</p>
-
-</body>
-</html>
-
---===============6234789820115120661==--
-
---===============0573066896==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
+index 2688f3e3e349..266dec627fa2 100644
+--- a/drivers/gpu/drm/i915/i915_drv.h
++++ b/drivers/gpu/drm/i915/i915_drv.h
+@@ -1754,6 +1754,11 @@ tgl_revids_get(struct drm_i915_private *dev_priv)
+ #define INTEL_DISPLAY_ENABLED(dev_priv) \
+ 	(drm_WARN_ON(&(dev_priv)->drm, !HAS_DISPLAY(dev_priv)), !(dev_priv)->params.disable_display)
+ 
++static inline bool run_as_guest(void)
++{
++	return !hypervisor_is_type(X86_HYPER_NATIVE);
++}
++
+ static inline bool intel_vtd_active(void)
+ {
+ #ifdef CONFIG_INTEL_IOMMU
+@@ -1762,7 +1767,7 @@ static inline bool intel_vtd_active(void)
+ #endif
+ 
+ 	/* Running as a guest, we assume the host is enforcing VT'd */
+-	return !hypervisor_is_type(X86_HYPER_NATIVE);
++	return run_as_guest();
+ }
+ 
+ static inline bool intel_scanout_needs_vtd_wa(struct drm_i915_private *dev_priv)
+diff --git a/drivers/gpu/drm/i915/intel_pch.c b/drivers/gpu/drm/i915/intel_pch.c
+index f31c0dabd0cc..ecaf314d60b6 100644
+--- a/drivers/gpu/drm/i915/intel_pch.c
++++ b/drivers/gpu/drm/i915/intel_pch.c
+@@ -143,8 +143,9 @@ static bool intel_is_virt_pch(unsigned short id,
+ 		 sdevice == PCI_SUBDEVICE_ID_QEMU));
+ }
+ 
+-static unsigned short
+-intel_virt_detect_pch(const struct drm_i915_private *dev_priv)
++static void
++intel_virt_detect_pch(const struct drm_i915_private *dev_priv,
++		      unsigned short *pch_id, enum intel_pch *pch_type)
+ {
+ 	unsigned short id = 0;
+ 
+@@ -181,12 +182,21 @@ intel_virt_detect_pch(const struct drm_i915_private *dev_priv)
+ 	else
+ 		drm_dbg_kms(&dev_priv->drm, "Assuming no PCH\n");
+ 
+-	return id;
++	*pch_type = intel_pch_type(dev_priv, id);
++
++	/* Sanity check virtual PCH id */
++	if (drm_WARN_ON(&dev_priv->drm,
++			id && *pch_type == PCH_NONE))
++		id = 0;
++
++	*pch_id = id;
+ }
+ 
+ void intel_detect_pch(struct drm_i915_private *dev_priv)
+ {
+ 	struct pci_dev *pch = NULL;
++	unsigned short id;
++	enum intel_pch pch_type;
+ 
+ 	/* DG1 has south engine display on the same PCI device */
+ 	if (IS_DG1(dev_priv)) {
+@@ -206,9 +216,6 @@ void intel_detect_pch(struct drm_i915_private *dev_priv)
+ 	 * of only checking the first one.
+ 	 */
+ 	while ((pch = pci_get_class(PCI_CLASS_BRIDGE_ISA << 8, pch))) {
+-		unsigned short id;
+-		enum intel_pch pch_type;
+-
+ 		if (pch->vendor != PCI_VENDOR_ID_INTEL)
+ 			continue;
+ 
+@@ -221,14 +228,7 @@ void intel_detect_pch(struct drm_i915_private *dev_priv)
+ 			break;
+ 		} else if (intel_is_virt_pch(id, pch->subsystem_vendor,
+ 					     pch->subsystem_device)) {
+-			id = intel_virt_detect_pch(dev_priv);
+-			pch_type = intel_pch_type(dev_priv, id);
+-
+-			/* Sanity check virtual PCH id */
+-			if (drm_WARN_ON(&dev_priv->drm,
+-					id && pch_type == PCH_NONE))
+-				id = 0;
+-
++			intel_virt_detect_pch(dev_priv, &id, &pch_type);
+ 			dev_priv->pch_type = pch_type;
+ 			dev_priv->pch_id = id;
+ 			break;
+@@ -244,10 +244,15 @@ void intel_detect_pch(struct drm_i915_private *dev_priv)
+ 			    "Display disabled, reverting to NOP PCH\n");
+ 		dev_priv->pch_type = PCH_NOP;
+ 		dev_priv->pch_id = 0;
++	} else if (!pch) {
++		if (run_as_guest() && HAS_DISPLAY(dev_priv)) {
++			intel_virt_detect_pch(dev_priv, &id, &pch_type);
++			dev_priv->pch_type = pch_type;
++			dev_priv->pch_id = id;
++		} else {
++			drm_dbg_kms(&dev_priv->drm, "No PCH found.\n");
++		}
+ 	}
+ 
+-	if (!pch)
+-		drm_dbg_kms(&dev_priv->drm, "No PCH found.\n");
+-
+ 	pci_dev_put(pch);
+ }
+-- 
+2.17.1
 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============0573066896==--
