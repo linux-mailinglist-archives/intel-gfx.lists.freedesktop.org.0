@@ -2,52 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1949F2F6E09
-	for <lists+intel-gfx@lfdr.de>; Thu, 14 Jan 2021 23:18:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0023D2F6E67
+	for <lists+intel-gfx@lfdr.de>; Thu, 14 Jan 2021 23:44:27 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DA0446E055;
-	Thu, 14 Jan 2021 22:18:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 58D426E042;
+	Thu, 14 Jan 2021 22:44:26 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [216.205.24.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D88A36E04A
- for <intel-gfx@lists.freedesktop.org>; Thu, 14 Jan 2021 22:18:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1610662695;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=zPgXBlFuRCUwWxcnIgwYV3s/oBtx+OlPGM2/f2ccOfk=;
- b=aA+FBawxzUiJGINNKjzYSUiuiXq795Yb0uQj+l7UpTIYuGOnXs69B1faEMzCRa7NEcDFh2
- awicqz1AkU+daPClAOSIaheKLzJqXmjWbJ7YJQHfQPZdLa857ms3/6ECxnXwrr0IkQZwvB
- b1Rx4iqPCkv3YCCK50+T2Q7hMeS21oM=
-Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
- [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-419-CwKamGZAO4O_MY9v1sJDyQ-1; Thu, 14 Jan 2021 17:18:12 -0500
-X-MC-Unique: CwKamGZAO4O_MY9v1sJDyQ-1
-Received: from smtp.corp.redhat.com (int-mx07.intmail.prod.int.phx2.redhat.com
- [10.5.11.22])
- (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
- (No client certificate requested)
- by mimecast-mx01.redhat.com (Postfix) with ESMTPS id A07408066E0;
- Thu, 14 Jan 2021 22:18:08 +0000 (UTC)
-Received: from Whitewolf.redhat.com (ovpn-115-182.rdu2.redhat.com
- [10.10.115.182])
- by smtp.corp.redhat.com (Postfix) with ESMTP id 914A010002A6;
- Thu, 14 Jan 2021 22:18:05 +0000 (UTC)
-From: Lyude Paul <lyude@redhat.com>
-To: intel-gfx@lists.freedesktop.org,
-	dri-devel@lists.freedesktop.org
-Date: Thu, 14 Jan 2021 17:17:09 -0500
-Message-Id: <20210114221709.2261452-6-lyude@redhat.com>
-In-Reply-To: <20210114221709.2261452-1-lyude@redhat.com>
-References: <20210114221709.2261452-1-lyude@redhat.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id A07296E042;
+ Thu, 14 Jan 2021 22:44:25 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 9B9C3A8169;
+ Thu, 14 Jan 2021 22:44:25 +0000 (UTC)
 MIME-Version: 1.0
-X-Scanned-By: MIMEDefang 2.84 on 10.5.11.22
-Subject: [Intel-gfx] [PATCH v7 5/5] drm/dp: Revert "drm/dp: Introduce
- EDID-based quirks"
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
+Date: Thu, 14 Jan 2021 22:44:25 -0000
+Message-ID: <161066426563.19646.5170086917999485200@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210114205046.8247-1-ville.syrjala@linux.intel.com>
+In-Reply-To: <20210114205046.8247-1-ville.syrjala@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915=3A_Shuffle_DP_code_around?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,322 +38,199 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: David Airlie <airlied@linux.ie>, Vasily Khoruzhick <anarsoul@gmail.com>,
- Dave Airlie <airlied@redhat.com>, Wambui Karuga <wambui.karugax@gmail.com>,
- Thomas Zimmermann <tzimmermann@suse.de>, Jani Nikula <jani.nikula@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>, Maxime Ripard <mripard@kernel.org>,
- Sean Paul <seanpaul@chromium.org>, open list <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============1198275805=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This reverts commit 0883ce8146ed6074c76399f4e70dbed788582e12. Originally
-these quirks were added because of the issues with using the eDP
-backlight interfaces on certain laptop panels, which made it impossible
-to properly probe for DPCD backlight support without having a whitelist
-for panels that we know have working VESA backlight control interfaces
-over DPCD. As well, it should be noted it was impossible to use the
-normal sink OUI for recognizing these panels as none of them actually
-filled out their OUIs, hence needing to resort to checking EDIDs.
+--===============1198275805==
+Content-Type: multipart/alternative;
+ boundary="===============6860214921941853255=="
 
-At the time we weren't really sure why certain panels had issues with
-DPCD backlight controls, but we eventually figured out that there was a
-second interface that these problematic laptop panels actually did work
-with and advertise properly: Intel's proprietary backlight interface for
-HDR panels. So far the testing we've done hasn't brought any panels to
-light that advertise this interface and don't support it properly, which
-means we finally have a real solution to this problem.
+--===============6860214921941853255==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-As a result, we now have no need for the force DPCD backlight quirk, and
-furthermore this also removes the need for any kind of EDID quirk
-checking in DRM. So, let's just revert it for now since we were the only
-driver using this.
+== Series Details ==
 
-v3:
-* Rebase
-v2:
-* Fix indenting error picked up by checkpatch in
-  intel_edp_init_connector()
+Series: drm/i915: Shuffle DP code around
+URL   : https://patchwork.freedesktop.org/series/85878/
+State : success
 
-Signed-off-by: Lyude Paul <lyude@redhat.com>
-Acked-by: Jani Nikula <jani.nikula@intel.com>
-Cc: thaytan@noraisin.net
-Cc: Vasily Khoruzhick <anarsoul@gmail.com>
----
- drivers/gpu/drm/drm_dp_helper.c               | 83 +------------------
- drivers/gpu/drm/drm_dp_mst_topology.c         |  3 +-
- .../drm/i915/display/intel_display_types.h    |  1 -
- drivers/gpu/drm/i915/display/intel_dp.c       |  9 +-
- drivers/gpu/drm/i915/display/intel_dp_mst.c   |  3 +-
- drivers/gpu/drm/i915/display/intel_psr.c      |  2 +-
- include/drm/drm_dp_helper.h                   | 21 +----
- 7 files changed, 9 insertions(+), 113 deletions(-)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/drm_dp_helper.c b/drivers/gpu/drm/drm_dp_helper.c
-index 3ecde451f523..19dbdeb581cb 100644
---- a/drivers/gpu/drm/drm_dp_helper.c
-+++ b/drivers/gpu/drm/drm_dp_helper.c
-@@ -1236,7 +1236,7 @@ bool drm_dp_read_sink_count_cap(struct drm_connector *connector,
- 	return connector->connector_type != DRM_MODE_CONNECTOR_eDP &&
- 		dpcd[DP_DPCD_REV] >= DP_DPCD_REV_11 &&
- 		dpcd[DP_DOWNSTREAMPORT_PRESENT] & DP_DWN_STRM_PORT_PRESENT &&
--		!drm_dp_has_quirk(desc, 0, DP_DPCD_QUIRK_NO_SINK_COUNT);
-+		!drm_dp_has_quirk(desc, DP_DPCD_QUIRK_NO_SINK_COUNT);
- }
- EXPORT_SYMBOL(drm_dp_read_sink_count_cap);
- 
-@@ -1957,87 +1957,6 @@ drm_dp_get_quirks(const struct drm_dp_dpcd_ident *ident, bool is_branch)
- #undef DEVICE_ID_ANY
- #undef DEVICE_ID
- 
--struct edid_quirk {
--	u8 mfg_id[2];
--	u8 prod_id[2];
--	u32 quirks;
--};
--
--#define MFG(first, second) { (first), (second) }
--#define PROD_ID(first, second) { (first), (second) }
--
--/*
-- * Some devices have unreliable OUIDs where they don't set the device ID
-- * correctly, and as a result we need to use the EDID for finding additional
-- * DP quirks in such cases.
-- */
--static const struct edid_quirk edid_quirk_list[] = {
--	/* Optional 4K AMOLED panel in the ThinkPad X1 Extreme 2nd Generation
--	 * only supports DPCD backlight controls
--	 */
--	{ MFG(0x4c, 0x83), PROD_ID(0x41, 0x41), BIT(DP_QUIRK_FORCE_DPCD_BACKLIGHT) },
--	/*
--	 * Some Dell CML 2020 systems have panels support both AUX and PWM
--	 * backlight control, and some only support AUX backlight control. All
--	 * said panels start up in AUX mode by default, and we don't have any
--	 * support for disabling HDR mode on these panels which would be
--	 * required to switch to PWM backlight control mode (plus, I'm not
--	 * even sure we want PWM backlight controls over DPCD backlight
--	 * controls anyway...). Until we have a better way of detecting these,
--	 * force DPCD backlight mode on all of them.
--	 */
--	{ MFG(0x06, 0xaf), PROD_ID(0x9b, 0x32), BIT(DP_QUIRK_FORCE_DPCD_BACKLIGHT) },
--	{ MFG(0x06, 0xaf), PROD_ID(0xeb, 0x41), BIT(DP_QUIRK_FORCE_DPCD_BACKLIGHT) },
--	{ MFG(0x4d, 0x10), PROD_ID(0xc7, 0x14), BIT(DP_QUIRK_FORCE_DPCD_BACKLIGHT) },
--	{ MFG(0x4d, 0x10), PROD_ID(0xe6, 0x14), BIT(DP_QUIRK_FORCE_DPCD_BACKLIGHT) },
--	{ MFG(0x4c, 0x83), PROD_ID(0x47, 0x41), BIT(DP_QUIRK_FORCE_DPCD_BACKLIGHT) },
--	{ MFG(0x09, 0xe5), PROD_ID(0xde, 0x08), BIT(DP_QUIRK_FORCE_DPCD_BACKLIGHT) },
--};
--
--#undef MFG
--#undef PROD_ID
--
--/**
-- * drm_dp_get_edid_quirks() - Check the EDID of a DP device to find additional
-- * DP-specific quirks
-- * @edid: The EDID to check
-- *
-- * While OUIDs are meant to be used to recognize a DisplayPort device, a lot
-- * of manufacturers don't seem to like following standards and neglect to fill
-- * the dev-ID in, making it impossible to only use OUIDs for determining
-- * quirks in some cases. This function can be used to check the EDID and look
-- * up any additional DP quirks. The bits returned by this function correspond
-- * to the quirk bits in &drm_dp_quirk.
-- *
-- * Returns: a bitmask of quirks, if any. The driver can check this using
-- * drm_dp_has_quirk().
-- */
--u32 drm_dp_get_edid_quirks(const struct edid *edid)
--{
--	const struct edid_quirk *quirk;
--	u32 quirks = 0;
--	int i;
--
--	if (!edid)
--		return 0;
--
--	for (i = 0; i < ARRAY_SIZE(edid_quirk_list); i++) {
--		quirk = &edid_quirk_list[i];
--		if (memcmp(quirk->mfg_id, edid->mfg_id,
--			   sizeof(edid->mfg_id)) == 0 &&
--		    memcmp(quirk->prod_id, edid->prod_code,
--			   sizeof(edid->prod_code)) == 0)
--			quirks |= quirk->quirks;
--	}
--
--	DRM_DEBUG_KMS("DP sink: EDID mfg %*phD prod-ID %*phD quirks: 0x%04x\n",
--		      (int)sizeof(edid->mfg_id), edid->mfg_id,
--		      (int)sizeof(edid->prod_code), edid->prod_code, quirks);
--
--	return quirks;
--}
--EXPORT_SYMBOL(drm_dp_get_edid_quirks);
--
- /**
-  * drm_dp_read_desc - read sink/branch descriptor from DPCD
-  * @aux: DisplayPort AUX channel
-diff --git a/drivers/gpu/drm/drm_dp_mst_topology.c b/drivers/gpu/drm/drm_dp_mst_topology.c
-index 18b15a4aee2d..475939138b21 100644
---- a/drivers/gpu/drm/drm_dp_mst_topology.c
-+++ b/drivers/gpu/drm/drm_dp_mst_topology.c
-@@ -5824,8 +5824,7 @@ struct drm_dp_aux *drm_dp_mst_dsc_aux_for_port(struct drm_dp_mst_port *port)
- 	if (drm_dp_read_desc(port->mgr->aux, &desc, true))
- 		return NULL;
- 
--	if (drm_dp_has_quirk(&desc, 0,
--			     DP_DPCD_QUIRK_DSC_WITHOUT_VIRTUAL_DPCD) &&
-+	if (drm_dp_has_quirk(&desc, DP_DPCD_QUIRK_DSC_WITHOUT_VIRTUAL_DPCD) &&
- 	    port->mgr->dpcd[DP_DPCD_REV] >= DP_DPCD_REV_14 &&
- 	    port->parent == port->mgr->mst_primary) {
- 		u8 downstreamport;
-diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-index a2ea651ece79..01efe9a3ebfa 100644
---- a/drivers/gpu/drm/i915/display/intel_display_types.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-@@ -1401,7 +1401,6 @@ struct intel_dp {
- 	int max_link_rate;
- 	/* sink or branch descriptor */
- 	struct drm_dp_desc desc;
--	u32 edid_quirks;
- 	struct drm_dp_aux aux;
- 	u32 aux_busy_last_status;
- 	u8 train_set[4];
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index ec94ebdaf7b8..3855f3d32c37 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -162,8 +162,7 @@ static void intel_dp_set_sink_rates(struct intel_dp *intel_dp)
- 	int i, max_rate;
- 	int max_lttpr_rate;
- 
--	if (drm_dp_has_quirk(&intel_dp->desc, 0,
--			     DP_DPCD_QUIRK_CAN_DO_MAX_LINK_RATE_3_24_GBPS)) {
-+	if (drm_dp_has_quirk(&intel_dp->desc, DP_DPCD_QUIRK_CAN_DO_MAX_LINK_RATE_3_24_GBPS)) {
- 		/* Needed, e.g., for Apple MBP 2017, 15 inch eDP Retina panel */
- 		static const int quirk_rates[] = { 162000, 270000, 324000 };
- 
-@@ -2435,8 +2434,7 @@ intel_dp_compute_config(struct intel_encoder *encoder,
- 	struct intel_connector *intel_connector = intel_dp->attached_connector;
- 	struct intel_digital_connector_state *intel_conn_state =
- 		to_intel_digital_connector_state(conn_state);
--	bool constant_n = drm_dp_has_quirk(&intel_dp->desc, 0,
--					   DP_DPCD_QUIRK_CONSTANT_N);
-+	bool constant_n = drm_dp_has_quirk(&intel_dp->desc, DP_DPCD_QUIRK_CONSTANT_N);
- 	int ret = 0, output_bpp;
- 
- 	if (HAS_PCH_SPLIT(dev_priv) && !HAS_DDI(dev_priv) && port != PORT_A)
-@@ -6031,7 +6029,6 @@ intel_dp_set_edid(struct intel_dp *intel_dp)
- 	}
- 
- 	drm_dp_cec_set_edid(&intel_dp->aux, edid);
--	intel_dp->edid_quirks = drm_dp_get_edid_quirks(edid);
- }
- 
- static void
-@@ -6045,7 +6042,6 @@ intel_dp_unset_edid(struct intel_dp *intel_dp)
- 
- 	intel_dp->has_hdmi_sink = false;
- 	intel_dp->has_audio = false;
--	intel_dp->edid_quirks = 0;
- 
- 	intel_dp->dfp.max_bpc = 0;
- 	intel_dp->dfp.max_dotclock = 0;
-@@ -7099,7 +7095,6 @@ static bool intel_edp_init_connector(struct intel_dp *intel_dp,
- 	if (edid) {
- 		if (drm_add_edid_modes(connector, edid)) {
- 			drm_connector_update_edid_property(connector, edid);
--			intel_dp->edid_quirks = drm_dp_get_edid_quirks(edid);
- 		} else {
- 			kfree(edid);
- 			edid = ERR_PTR(-EINVAL);
-diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-index f76e2c2a83b8..d6a1b961a0e8 100644
---- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-@@ -53,8 +53,7 @@ static int intel_dp_mst_compute_link_config(struct intel_encoder *encoder,
- 	struct drm_i915_private *i915 = to_i915(connector->base.dev);
- 	const struct drm_display_mode *adjusted_mode =
- 		&crtc_state->hw.adjusted_mode;
--	bool constant_n = drm_dp_has_quirk(&intel_dp->desc, 0,
--					   DP_DPCD_QUIRK_CONSTANT_N);
-+	bool constant_n = drm_dp_has_quirk(&intel_dp->desc, DP_DPCD_QUIRK_CONSTANT_N);
- 	int bpp, slots = -EINVAL;
- 
- 	crtc_state->lane_count = limits->max_lane_count;
-diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-index c24ae69426cf..1e6c1fa59d4a 100644
---- a/drivers/gpu/drm/i915/display/intel_psr.c
-+++ b/drivers/gpu/drm/i915/display/intel_psr.c
-@@ -305,7 +305,7 @@ void intel_psr_init_dpcd(struct intel_dp *intel_dp)
- 	drm_dbg_kms(&dev_priv->drm, "eDP panel supports PSR version %x\n",
- 		    intel_dp->psr_dpcd[0]);
- 
--	if (drm_dp_has_quirk(&intel_dp->desc, 0, DP_DPCD_QUIRK_NO_PSR)) {
-+	if (drm_dp_has_quirk(&intel_dp->desc, DP_DPCD_QUIRK_NO_PSR)) {
- 		drm_dbg_kms(&dev_priv->drm,
- 			    "PSR support not currently available for this panel\n");
- 		return;
-diff --git a/include/drm/drm_dp_helper.h b/include/drm/drm_dp_helper.h
-index 6236f212da61..edffd1dcca3e 100644
---- a/include/drm/drm_dp_helper.h
-+++ b/include/drm/drm_dp_helper.h
-@@ -2029,16 +2029,13 @@ struct drm_dp_desc {
- 
- int drm_dp_read_desc(struct drm_dp_aux *aux, struct drm_dp_desc *desc,
- 		     bool is_branch);
--u32 drm_dp_get_edid_quirks(const struct edid *edid);
- 
- /**
-  * enum drm_dp_quirk - Display Port sink/branch device specific quirks
-  *
-  * Display Port sink and branch devices in the wild have a variety of bugs, try
-  * to collect them here. The quirks are shared, but it's up to the drivers to
-- * implement workarounds for them. Note that because some devices have
-- * unreliable OUIDs, the EDID of sinks should also be checked for quirks using
-- * drm_dp_get_edid_quirks().
-+ * implement workarounds for them.
-  */
- enum drm_dp_quirk {
- 	/**
-@@ -2070,16 +2067,6 @@ enum drm_dp_quirk {
- 	 * The DSC caps can be read from the physical aux instead.
- 	 */
- 	DP_DPCD_QUIRK_DSC_WITHOUT_VIRTUAL_DPCD,
--	/**
--	 * @DP_QUIRK_FORCE_DPCD_BACKLIGHT:
--	 *
--	 * The device is telling the truth when it says that it uses DPCD
--	 * backlight controls, even if the system's firmware disagrees. This
--	 * quirk should be checked against both the ident and panel EDID.
--	 * When present, the driver should honor the DPCD backlight
--	 * capabilities advertised.
--	 */
--	DP_QUIRK_FORCE_DPCD_BACKLIGHT,
- 	/**
- 	 * @DP_DPCD_QUIRK_CAN_DO_MAX_LINK_RATE_3_24_GBPS:
- 	 *
-@@ -2092,16 +2079,14 @@ enum drm_dp_quirk {
- /**
-  * drm_dp_has_quirk() - does the DP device have a specific quirk
-  * @desc: Device descriptor filled by drm_dp_read_desc()
-- * @edid_quirks: Optional quirk bitmask filled by drm_dp_get_edid_quirks()
-  * @quirk: Quirk to query for
-  *
-  * Return true if DP device identified by @desc has @quirk.
-  */
- static inline bool
--drm_dp_has_quirk(const struct drm_dp_desc *desc, u32 edid_quirks,
--		 enum drm_dp_quirk quirk)
-+drm_dp_has_quirk(const struct drm_dp_desc *desc, enum drm_dp_quirk quirk)
- {
--	return (desc->quirks | edid_quirks) & BIT(quirk);
-+	return desc->quirks & BIT(quirk);
- }
- 
- #ifdef CONFIG_DRM_DP_CEC
--- 
-2.29.2
+CI Bug Log - changes from CI_DRM_9612 -> Patchwork_19362
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19362/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_19362 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_getparams_basic@basic-subslice-total:
+    - fi-tgl-y:           [PASS][1] -> [DMESG-WARN][2] ([i915#402]) +1 similar issue
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9612/fi-tgl-y/igt@i915_getparams_basic@basic-subslice-total.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19362/fi-tgl-y/igt@i915_getparams_basic@basic-subslice-total.html
+
+  * igt@runner@aborted:
+    - fi-kbl-r:           NOTRUN -> [FAIL][3] ([i915#1569] / [i915#192] / [i915#193] / [i915#194] / [i915#2295])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19362/fi-kbl-r/igt@runner@aborted.html
+
+  
+#### Possible fixes ####
+
+  * igt@debugfs_test@read_all_entries:
+    - fi-tgl-y:           [DMESG-WARN][4] ([i915#402]) -> [PASS][5] +2 similar issues
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9612/fi-tgl-y/igt@debugfs_test@read_all_entries.html
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19362/fi-tgl-y/igt@debugfs_test@read_all_entries.html
+
+  
+  [i915#1569]: https://gitlab.freedesktop.org/drm/intel/issues/1569
+  [i915#192]: https://gitlab.freedesktop.org/drm/intel/issues/192
+  [i915#193]: https://gitlab.freedesktop.org/drm/intel/issues/193
+  [i915#194]: https://gitlab.freedesktop.org/drm/intel/issues/194
+  [i915#2295]: https://gitlab.freedesktop.org/drm/intel/issues/2295
+  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
+
+
+Participating hosts (41 -> 37)
+------------------------------
+
+  Missing    (4): fi-byt-j1900 fi-ctg-p8600 fi-bsw-cyan fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_9612 -> Patchwork_19362
+
+  CI-20190529: 20190529
+  CI_DRM_9612: 3d921d1ad818c1aabb5b2bd3f0861df99e49be9b @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5959: c5cf0734c4f6c1fa17a6a15b5aa721c3a0b8c494 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_19362: 303d614cbb64c6495251dea9f9b28fdb8045d96c @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+303d614cbb64 drm/i915: Introduce g4x_dp.c
+90067b76465c drm/i915: Fix the PHY compliance test vs. hotplug mishap
+88f2b4fea349 drm/i915: Split intel_ddi_encoder_reset() from intel_dp_encoder_reset()
+2d486f60d7dd drm/i915: Relocate intel_dp_program_link_training_pattern()
+77a30579d793 drm/i915: Remove dead signal level debugs
+e5f62898fdee drm/i915: Remove dead TPS3->TPS2 fallback code
+4c22a0db410f drm/i915: Fix the training pattern debug print
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19362/index.html
+
+--===============6860214921941853255==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915: Shuffle DP code around</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/85878/">https://patchwork.freedesktop.org/series/85878/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19362/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19362/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_9612 -&gt; Patchwork_19362</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19362/index.html</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_19362 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@i915_getparams_basic@basic-subslice-total:</p>
+<ul>
+<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9612/fi-tgl-y/igt@i915_getparams_basic@basic-subslice-total.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19362/fi-tgl-y/igt@i915_getparams_basic@basic-subslice-total.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) +1 similar issue</li>
+</ul>
+</li>
+<li>
+<p>igt@runner@aborted:</p>
+<ul>
+<li>fi-kbl-r:           NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19362/fi-kbl-r/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1569">i915#1569</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/192">i915#192</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/193">i915#193</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/194">i915#194</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2295">i915#2295</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@debugfs_test@read_all_entries:<ul>
+<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9612/fi-tgl-y/igt@debugfs_test@read_all_entries.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19362/fi-tgl-y/igt@debugfs_test@read_all_entries.html">PASS</a> +2 similar issues</li>
+</ul>
+</li>
+</ul>
+<h2>Participating hosts (41 -&gt; 37)</h2>
+<p>Missing    (4): fi-byt-j1900 fi-ctg-p8600 fi-bsw-cyan fi-bdw-samus </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_9612 -&gt; Patchwork_19362</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_9612: 3d921d1ad818c1aabb5b2bd3f0861df99e49be9b @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_5959: c5cf0734c4f6c1fa17a6a15b5aa721c3a0b8c494 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
+  Patchwork_19362: 303d614cbb64c6495251dea9f9b28fdb8045d96c @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>303d614cbb64 drm/i915: Introduce g4x_dp.c<br />
+90067b76465c drm/i915: Fix the PHY compliance test vs. hotplug mishap<br />
+88f2b4fea349 drm/i915: Split intel_ddi_encoder_reset() from intel_dp_encoder_reset()<br />
+2d486f60d7dd drm/i915: Relocate intel_dp_program_link_training_pattern()<br />
+77a30579d793 drm/i915: Remove dead signal level debugs<br />
+e5f62898fdee drm/i915: Remove dead TPS3-&gt;TPS2 fallback code<br />
+4c22a0db410f drm/i915: Fix the training pattern debug print</p>
+
+</body>
+</html>
+
+--===============6860214921941853255==--
+
+--===============1198275805==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============1198275805==--
