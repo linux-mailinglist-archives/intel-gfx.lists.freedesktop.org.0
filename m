@@ -1,44 +1,37 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 21BAD2F5CD2
-	for <lists+intel-gfx@lfdr.de>; Thu, 14 Jan 2021 10:05:55 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5473B2F5D21
+	for <lists+intel-gfx@lfdr.de>; Thu, 14 Jan 2021 10:18:06 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 75B796E0DE;
-	Thu, 14 Jan 2021 09:05:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9C0596E0DD;
+	Thu, 14 Jan 2021 09:18:03 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-44.mimecast.com
- (us-smtp-delivery-44.mimecast.com [205.139.111.44])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0A0006E0BA
- for <intel-gfx@lists.freedesktop.org>; Thu, 14 Jan 2021 09:05:47 +0000 (UTC)
-Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
- [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-136-tmFhozsSPqGoC_kTedbkSA-1; Thu, 14 Jan 2021 04:05:45 -0500
-X-MC-Unique: tmFhozsSPqGoC_kTedbkSA-1
-Received: from smtp.corp.redhat.com (int-mx07.intmail.prod.int.phx2.redhat.com
- [10.5.11.22])
- (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
- (No client certificate requested)
- by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 743B1806661
- for <intel-gfx@lists.freedesktop.org>; Thu, 14 Jan 2021 09:05:44 +0000 (UTC)
-Received: from dreadlord-bne-redhat-com.bne.redhat.com (unknown [10.64.32.209])
- by smtp.corp.redhat.com (Postfix) with ESMTP id AB528100164C;
- Thu, 14 Jan 2021 09:05:43 +0000 (UTC)
-From: Dave Airlie <airlied@gmail.com>
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9DDE96E0DD
+ for <intel-gfx@lists.freedesktop.org>; Thu, 14 Jan 2021 09:18:02 +0000 (UTC)
+IronPort-SDR: Gt9SJGwTRuRIm78eeiRd/XKJ9x/SCuGgThr1iyt8s7NToEisoov+t+VPCoA+22IpP8Q3JYSOVT
+ T4IuYEJxdixg==
+X-IronPort-AV: E=McAfee;i="6000,8403,9863"; a="177556202"
+X-IronPort-AV: E=Sophos;i="5.79,347,1602572400"; d="scan'208";a="177556202"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Jan 2021 01:18:02 -0800
+IronPort-SDR: ZSG6ekQ+wZJ+0tjzOCd6Rh+XUeO604MTOqg8cJAsp2jjkFDF6PK3xXOLyarkVCvNHHLKrMVVxB
+ mCZ1AbVGbVbQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.79,347,1602572400"; d="scan'208";a="568120721"
+Received: from shawnle1-build-machine.itwn.intel.com ([10.5.253.22])
+ by orsmga005.jf.intel.com with ESMTP; 14 Jan 2021 01:18:00 -0800
+From: Lee Shawn C <shawn.c.lee@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Thu, 14 Jan 2021 19:05:22 +1000
-Message-Id: <20210114090522.22750-12-airlied@gmail.com>
-In-Reply-To: <20210114090522.22750-1-airlied@gmail.com>
-References: <20210114090522.22750-1-airlied@gmail.com>
-MIME-Version: 1.0
-X-Scanned-By: MIMEDefang 2.84 on 10.5.11.22
-Authentication-Results: relay.mimecast.com;
- auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=airlied@gmail.com
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: gmail.com
-Subject: [Intel-gfx] [PATCH 11/11] drm/i915: migrate i9xx plane get config
+Date: Thu, 14 Jan 2021 17:22:36 +0800
+Message-Id: <20210114092236.20477-1-shawn.c.lee@intel.com>
+X-Mailer: git-send-email 2.17.1
+Subject: [Intel-gfx] [PATCH] drm/i915: support two CSC module on gen11 and
+ later
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,298 +44,44 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Dave Airlie <airlied@redhat.com>
+Cc: Cooper Chiou <cooper.chiou@intel.com>
+MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Dave Airlie <airlied@redhat.com>
+There are two CSC on pipeline on gen11 and later platform.
+User space application is allowed to enable CTM and RGB
+to YCbCr coversion at the same time now.
 
-Migrate this code out like the skylake code.
+Cc: Ville Syrjala <ville.syrjala@linux.intel.com>
+Cc: Imre Deak <imre.deak@intel.com>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>
+Cc: Cooper Chiou <cooper.chiou@intel.com>
+Cc: Shankar Uma <uma.shankar@intel.com>
+
+Signed-off-by: Lee Shawn C <shawn.c.lee@intel.com>
 ---
- drivers/gpu/drm/i915/display/i9xx_plane.c    | 119 +++++++++++++++++++
- drivers/gpu/drm/i915/display/i9xx_plane.h    |   2 +
- drivers/gpu/drm/i915/display/intel_display.c | 119 -------------------
- 3 files changed, 121 insertions(+), 119 deletions(-)
+ drivers/gpu/drm/i915/display/intel_display.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/display/i9xx_plane.c b/drivers/gpu/drm/i915/display/i9xx_plane.c
-index 6c568079f492..a063a92f04dc 100644
---- a/drivers/gpu/drm/i915/display/i9xx_plane.c
-+++ b/drivers/gpu/drm/i915/display/i9xx_plane.c
-@@ -698,3 +698,122 @@ intel_primary_plane_create(struct drm_i915_private *dev_priv, enum pipe pipe)
- 	return ERR_PTR(ret);
- }
- 
-+static int i9xx_format_to_fourcc(int format)
-+{
-+	switch (format) {
-+	case DISPPLANE_8BPP:
-+		return DRM_FORMAT_C8;
-+	case DISPPLANE_BGRA555:
-+		return DRM_FORMAT_ARGB1555;
-+	case DISPPLANE_BGRX555:
-+		return DRM_FORMAT_XRGB1555;
-+	case DISPPLANE_BGRX565:
-+		return DRM_FORMAT_RGB565;
-+	default:
-+	case DISPPLANE_BGRX888:
-+		return DRM_FORMAT_XRGB8888;
-+	case DISPPLANE_RGBX888:
-+		return DRM_FORMAT_XBGR8888;
-+	case DISPPLANE_BGRA888:
-+		return DRM_FORMAT_ARGB8888;
-+	case DISPPLANE_RGBA888:
-+		return DRM_FORMAT_ABGR8888;
-+	case DISPPLANE_BGRX101010:
-+		return DRM_FORMAT_XRGB2101010;
-+	case DISPPLANE_RGBX101010:
-+		return DRM_FORMAT_XBGR2101010;
-+	case DISPPLANE_BGRA101010:
-+		return DRM_FORMAT_ARGB2101010;
-+	case DISPPLANE_RGBA101010:
-+		return DRM_FORMAT_ABGR2101010;
-+	case DISPPLANE_RGBX161616:
-+		return DRM_FORMAT_XBGR16161616F;
-+	}
-+}
-+
-+void
-+i9xx_get_initial_plane_config(struct intel_crtc *crtc,
-+			      struct intel_initial_plane_config *plane_config)
-+{
-+	struct drm_device *dev = crtc->base.dev;
-+	struct drm_i915_private *dev_priv = to_i915(dev);
-+	struct intel_plane *plane = to_intel_plane(crtc->base.primary);
-+	enum i9xx_plane_id i9xx_plane = plane->i9xx_plane;
-+	enum pipe pipe;
-+	u32 val, base, offset;
-+	int fourcc, pixel_format;
-+	unsigned int aligned_height;
-+	struct drm_framebuffer *fb;
-+	struct intel_framebuffer *intel_fb;
-+
-+	if (!plane->get_hw_state(plane, &pipe))
-+		return;
-+
-+	drm_WARN_ON(dev, pipe != crtc->pipe);
-+
-+	intel_fb = kzalloc(sizeof(*intel_fb), GFP_KERNEL);
-+	if (!intel_fb) {
-+		drm_dbg_kms(&dev_priv->drm, "failed to alloc fb\n");
-+		return;
-+	}
-+
-+	fb = &intel_fb->base;
-+
-+	fb->dev = dev;
-+
-+	val = intel_de_read(dev_priv, DSPCNTR(i9xx_plane));
-+
-+	if (INTEL_GEN(dev_priv) >= 4) {
-+		if (val & DISPPLANE_TILED) {
-+			plane_config->tiling = I915_TILING_X;
-+			fb->modifier = I915_FORMAT_MOD_X_TILED;
-+		}
-+
-+		if (val & DISPPLANE_ROTATE_180)
-+			plane_config->rotation = DRM_MODE_ROTATE_180;
-+	}
-+
-+	if (IS_CHERRYVIEW(dev_priv) && pipe == PIPE_B &&
-+	    val & DISPPLANE_MIRROR)
-+		plane_config->rotation |= DRM_MODE_REFLECT_X;
-+
-+	pixel_format = val & DISPPLANE_PIXFORMAT_MASK;
-+	fourcc = i9xx_format_to_fourcc(pixel_format);
-+	fb->format = drm_format_info(fourcc);
-+
-+	if (IS_HASWELL(dev_priv) || IS_BROADWELL(dev_priv)) {
-+		offset = intel_de_read(dev_priv, DSPOFFSET(i9xx_plane));
-+		base = intel_de_read(dev_priv, DSPSURF(i9xx_plane)) & 0xfffff000;
-+	} else if (INTEL_GEN(dev_priv) >= 4) {
-+		if (plane_config->tiling)
-+			offset = intel_de_read(dev_priv,
-+					       DSPTILEOFF(i9xx_plane));
-+		else
-+			offset = intel_de_read(dev_priv,
-+					       DSPLINOFF(i9xx_plane));
-+		base = intel_de_read(dev_priv, DSPSURF(i9xx_plane)) & 0xfffff000;
-+	} else {
-+		base = intel_de_read(dev_priv, DSPADDR(i9xx_plane));
-+	}
-+	plane_config->base = base;
-+
-+	val = intel_de_read(dev_priv, PIPESRC(pipe));
-+	fb->width = ((val >> 16) & 0xfff) + 1;
-+	fb->height = ((val >> 0) & 0xfff) + 1;
-+
-+	val = intel_de_read(dev_priv, DSPSTRIDE(i9xx_plane));
-+	fb->pitches[0] = val & 0xffffffc0;
-+
-+	aligned_height = intel_fb_align_height(fb, 0, fb->height);
-+
-+	plane_config->size = fb->pitches[0] * aligned_height;
-+
-+	drm_dbg_kms(&dev_priv->drm,
-+		    "%s/%s with fb: size=%dx%d@%d, offset=%x, pitch %d, size 0x%x\n",
-+		    crtc->base.name, plane->base.name, fb->width, fb->height,
-+		    fb->format->cpp[0] * 8, base, fb->pitches[0],
-+		    plane_config->size);
-+
-+	plane_config->fb = intel_fb;
-+}
-+
-diff --git a/drivers/gpu/drm/i915/display/i9xx_plane.h b/drivers/gpu/drm/i915/display/i9xx_plane.h
-index bc2834a62735..dff9599733b7 100644
---- a/drivers/gpu/drm/i915/display/i9xx_plane.h
-+++ b/drivers/gpu/drm/i915/display/i9xx_plane.h
-@@ -21,4 +21,6 @@ int i9xx_check_plane_surface(struct intel_plane_state *plane_state);
- struct intel_plane *
- intel_primary_plane_create(struct drm_i915_private *dev_priv, enum pipe pipe);
- 
-+void i9xx_get_initial_plane_config(struct intel_crtc *crtc,
-+				   struct intel_initial_plane_config *plane_config);
- #endif
 diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 6a0746baba40..a1fc3844deea 100644
+index 1a0f00f37ca9..721d5ce1ed2b 100644
 --- a/drivers/gpu/drm/i915/display/intel_display.c
 +++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -2162,39 +2162,6 @@ intel_plane_compute_gtt(struct intel_plane_state *plane_state)
- 	return intel_plane_check_stride(plane_state);
- }
+@@ -8303,7 +8303,8 @@ static int intel_crtc_compute_config(struct intel_crtc *crtc,
+ 		return -EINVAL;
+ 	}
  
--static int i9xx_format_to_fourcc(int format)
--{
--	switch (format) {
--	case DISPPLANE_8BPP:
--		return DRM_FORMAT_C8;
--	case DISPPLANE_BGRA555:
--		return DRM_FORMAT_ARGB1555;
--	case DISPPLANE_BGRX555:
--		return DRM_FORMAT_XRGB1555;
--	case DISPPLANE_BGRX565:
--		return DRM_FORMAT_RGB565;
--	default:
--	case DISPPLANE_BGRX888:
--		return DRM_FORMAT_XRGB8888;
--	case DISPPLANE_RGBX888:
--		return DRM_FORMAT_XBGR8888;
--	case DISPPLANE_BGRA888:
--		return DRM_FORMAT_ARGB8888;
--	case DISPPLANE_RGBA888:
--		return DRM_FORMAT_ABGR8888;
--	case DISPPLANE_BGRX101010:
--		return DRM_FORMAT_XRGB2101010;
--	case DISPPLANE_RGBX101010:
--		return DRM_FORMAT_XBGR2101010;
--	case DISPPLANE_BGRA101010:
--		return DRM_FORMAT_ARGB2101010;
--	case DISPPLANE_RGBA101010:
--		return DRM_FORMAT_ABGR2101010;
--	case DISPPLANE_RGBX161616:
--		return DRM_FORMAT_XBGR16161616F;
--	}
--}
--
- static struct i915_vma *
- initial_plane_vma(struct drm_i915_private *i915,
- 		  struct intel_initial_plane_config *plane_config)
-@@ -5850,92 +5817,6 @@ static void vlv_crtc_clock_get(struct intel_crtc *crtc,
- 	pipe_config->port_clock = vlv_calc_dpll_params(refclk, &clock);
- }
- 
--static void
--i9xx_get_initial_plane_config(struct intel_crtc *crtc,
--			      struct intel_initial_plane_config *plane_config)
--{
--	struct drm_device *dev = crtc->base.dev;
--	struct drm_i915_private *dev_priv = to_i915(dev);
--	struct intel_plane *plane = to_intel_plane(crtc->base.primary);
--	enum i9xx_plane_id i9xx_plane = plane->i9xx_plane;
--	enum pipe pipe;
--	u32 val, base, offset;
--	int fourcc, pixel_format;
--	unsigned int aligned_height;
--	struct drm_framebuffer *fb;
--	struct intel_framebuffer *intel_fb;
--
--	if (!plane->get_hw_state(plane, &pipe))
--		return;
--
--	drm_WARN_ON(dev, pipe != crtc->pipe);
--
--	intel_fb = kzalloc(sizeof(*intel_fb), GFP_KERNEL);
--	if (!intel_fb) {
--		drm_dbg_kms(&dev_priv->drm, "failed to alloc fb\n");
--		return;
--	}
--
--	fb = &intel_fb->base;
--
--	fb->dev = dev;
--
--	val = intel_de_read(dev_priv, DSPCNTR(i9xx_plane));
--
--	if (INTEL_GEN(dev_priv) >= 4) {
--		if (val & DISPPLANE_TILED) {
--			plane_config->tiling = I915_TILING_X;
--			fb->modifier = I915_FORMAT_MOD_X_TILED;
--		}
--
--		if (val & DISPPLANE_ROTATE_180)
--			plane_config->rotation = DRM_MODE_ROTATE_180;
--	}
--
--	if (IS_CHERRYVIEW(dev_priv) && pipe == PIPE_B &&
--	    val & DISPPLANE_MIRROR)
--		plane_config->rotation |= DRM_MODE_REFLECT_X;
--
--	pixel_format = val & DISPPLANE_PIXFORMAT_MASK;
--	fourcc = i9xx_format_to_fourcc(pixel_format);
--	fb->format = drm_format_info(fourcc);
--
--	if (IS_HASWELL(dev_priv) || IS_BROADWELL(dev_priv)) {
--		offset = intel_de_read(dev_priv, DSPOFFSET(i9xx_plane));
--		base = intel_de_read(dev_priv, DSPSURF(i9xx_plane)) & 0xfffff000;
--	} else if (INTEL_GEN(dev_priv) >= 4) {
--		if (plane_config->tiling)
--			offset = intel_de_read(dev_priv,
--					       DSPTILEOFF(i9xx_plane));
--		else
--			offset = intel_de_read(dev_priv,
--					       DSPLINOFF(i9xx_plane));
--		base = intel_de_read(dev_priv, DSPSURF(i9xx_plane)) & 0xfffff000;
--	} else {
--		base = intel_de_read(dev_priv, DSPADDR(i9xx_plane));
--	}
--	plane_config->base = base;
--
--	val = intel_de_read(dev_priv, PIPESRC(pipe));
--	fb->width = ((val >> 16) & 0xfff) + 1;
--	fb->height = ((val >> 0) & 0xfff) + 1;
--
--	val = intel_de_read(dev_priv, DSPSTRIDE(i9xx_plane));
--	fb->pitches[0] = val & 0xffffffc0;
--
--	aligned_height = intel_fb_align_height(fb, 0, fb->height);
--
--	plane_config->size = fb->pitches[0] * aligned_height;
--
--	drm_dbg_kms(&dev_priv->drm,
--		    "%s/%s with fb: size=%dx%d@%d, offset=%x, pitch %d, size 0x%x\n",
--		    crtc->base.name, plane->base.name, fb->width, fb->height,
--		    fb->format->cpp[0] * 8, base, fb->pitches[0],
--		    plane_config->size);
--
--	plane_config->fb = intel_fb;
--}
--
- static void chv_crtc_clock_get(struct intel_crtc *crtc,
- 			       struct intel_crtc_state *pipe_config)
- {
+-	if ((pipe_config->output_format == INTEL_OUTPUT_FORMAT_YCBCR420 ||
++	if ((INTEL_GEN(dev_priv) < 11) &&
++	    (pipe_config->output_format == INTEL_OUTPUT_FORMAT_YCBCR420 ||
+ 	     pipe_config->output_format == INTEL_OUTPUT_FORMAT_YCBCR444) &&
+ 	     pipe_config->hw.ctm) {
+ 		/*
 -- 
-2.27.0
+2.17.1
 
 _______________________________________________
 Intel-gfx mailing list
