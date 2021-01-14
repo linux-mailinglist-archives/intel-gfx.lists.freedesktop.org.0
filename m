@@ -1,44 +1,44 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5FAA02F653B
-	for <lists+intel-gfx@lfdr.de>; Thu, 14 Jan 2021 16:57:03 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 266AB2F6548
+	for <lists+intel-gfx@lfdr.de>; Thu, 14 Jan 2021 16:58:26 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BA3B56E431;
-	Thu, 14 Jan 2021 15:57:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8FE796E432;
+	Thu, 14 Jan 2021 15:58:24 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A23E26E431
- for <intel-gfx@lists.freedesktop.org>; Thu, 14 Jan 2021 15:57:00 +0000 (UTC)
-IronPort-SDR: NrxpaXycOHodhaTxBWbY8NbKmOd1VAusPhZ47LqfMTrQ9CQglDb8nf+aAFG69sfAkdj0OgG2mf
- kkXubL+aoQ0g==
-X-IronPort-AV: E=McAfee;i="6000,8403,9864"; a="177609257"
-X-IronPort-AV: E=Sophos;i="5.79,347,1602572400"; d="scan'208";a="177609257"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Jan 2021 07:56:59 -0800
-IronPort-SDR: IiU/u+2R3hz69cHSVuoZoB7zCzFTmWY/6kFhQPuKMjLhp1Vp+q1BCKxM0VPb2ghPV1Hluhr9ij
- 8QjvsET4fmNQ==
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E408F6E432
+ for <intel-gfx@lists.freedesktop.org>; Thu, 14 Jan 2021 15:58:22 +0000 (UTC)
+IronPort-SDR: hKJLMX437jJtpi0DS+nTsFt0oh5t5axvK41DL23/xmAsi/3OzRPPPsyKOzyJ/C+7atluoRheS9
+ hiFXu2GOxGag==
+X-IronPort-AV: E=McAfee;i="6000,8403,9864"; a="178479622"
+X-IronPort-AV: E=Sophos;i="5.79,347,1602572400"; d="scan'208";a="178479622"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Jan 2021 07:58:22 -0800
+IronPort-SDR: 8WY9lHepWpr0Lpu1WJcGbQT/LAQnxMMWZE5CfsrMg/xyQNkR3NhokyJU067ssDKMDMdNJLHHgi
+ OMlqISdL4/Jw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.79,347,1602572400"; d="scan'208";a="382309493"
+X-IronPort-AV: E=Sophos;i="5.79,347,1602572400"; d="scan'208";a="424981787"
 Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by orsmga008.jf.intel.com with SMTP; 14 Jan 2021 07:56:56 -0800
+ by orsmga001.jf.intel.com with SMTP; 14 Jan 2021 07:58:19 -0800
 Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 14 Jan 2021 17:56:55 +0200
-Date: Thu, 14 Jan 2021 17:56:55 +0200
+ Thu, 14 Jan 2021 17:58:18 +0200
+Date: Thu, 14 Jan 2021 17:58:18 +0200
 From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
 To: Jani Nikula <jani.nikula@intel.com>
-Message-ID: <YABpx599AISB4xD0@intel.com>
+Message-ID: <YABqGgahKTt4by7t@intel.com>
 References: <cover.1610622609.git.jani.nikula@intel.com>
- <9b51add03de3ffce8a1e9dd59ede79e4e1134c89.1610622609.git.jani.nikula@intel.com>
+ <64d46d7a4d1b62d721aa282a3fa16ed77f10ab5e.1610622609.git.jani.nikula@intel.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <9b51add03de3ffce8a1e9dd59ede79e4e1134c89.1610622609.git.jani.nikula@intel.com>
+In-Reply-To: <64d46d7a4d1b62d721aa282a3fa16ed77f10ab5e.1610622609.git.jani.nikula@intel.com>
 X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH 06/11] drm/i915: migrate skl planes code new
- file (v3)
+Subject: Re: [Intel-gfx] [PATCH 09/11] drm/i915: move is_ccs_modifier to an
+ inline
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,133 +51,90 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Dave Airlie <airlied@redhat.com>, intel-gfx@lists.freedesktop.org,
- Dan Carpenter <dan.carpenter@oracle.com>
+Cc: Dave Airlie <airlied@redhat.com>, intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Jan 14, 2021 at 01:13:50PM +0200, Jani Nikula wrote:
+On Thu, Jan 14, 2021 at 01:13:53PM +0200, Jani Nikula wrote:
 > From: Dave Airlie <airlied@redhat.com>
 > =
 
-> Rework the plane init calls to do the gen test one level higher.
-> =
-
-> Rework some of the plane helpers so they can live in new file,
-> there is still some scope to clean up the plane/fb interactions
-> later.
-> =
-
-> v2: drop atomic code back, rename file to Ville suggestions,
-> add header file.
-> v3: move scaler bits back
+> There is no need for this to be out of line.
 > =
 
 > Signed-off-by: Dave Airlie <airlied@redhat.com>
-> [Jani: fixed up sparse warnings.]
 > Signed-off-by: Jani Nikula <jani.nikula@intel.com>
-> Reported-by: kernel test robot <lkp@intel.com>
-> Reported-by: Dan Carpenter <dan.carpenter@oracle.com>
+
+Reviewed-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+
 > ---
-<snip>
-> -unsigned int
-> -intel_plane_fence_y_offset(const struct intel_plane_state *plane_state)
-> -{
-> -	int x =3D 0, y =3D 0;
-> -
-> -	intel_plane_adjust_aligned_offset(&x, &y, plane_state, 0,
-> -					  plane_state->color_plane[0].offset, 0);
-> -
-> -	return y;
-> -}
+>  drivers/gpu/drm/i915/display/intel_display.c       | 8 --------
+>  drivers/gpu/drm/i915/display/intel_display.h       | 1 -
+>  drivers/gpu/drm/i915/display/intel_display_types.h | 8 ++++++++
+>  3 files changed, 8 insertions(+), 9 deletions(-)
+> =
 
-This getting moved around is messing up the diff.
-
-<snip>
-> @@ -4386,15 +3633,6 @@ static int skl_update_scaler_plane(struct intel_cr=
-tc_state *crtc_state,
->  	return 0;
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/d=
+rm/i915/display/intel_display.c
+> index ab9d164345e5..7398927e1627 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> @@ -1791,14 +1791,6 @@ intel_get_format_info(const struct drm_mode_fb_cmd=
+2 *cmd)
+>  	}
 >  }
 >  =
 
-> -void skl_scaler_disable(const struct intel_crtc_state *old_crtc_state)
+> -bool is_ccs_modifier(u64 modifier)
 > -{
-> -	struct intel_crtc *crtc =3D to_intel_crtc(old_crtc_state->uapi.crtc);
-> -	int i;
-> -
-> -	for (i =3D 0; i < crtc->num_scalers; i++)
-> -		skl_detach_scaler(crtc, i);
+> -	return modifier =3D=3D I915_FORMAT_MOD_Y_TILED_GEN12_RC_CCS ||
+> -	       modifier =3D=3D I915_FORMAT_MOD_Y_TILED_GEN12_MC_CCS ||
+> -	       modifier =3D=3D I915_FORMAT_MOD_Y_TILED_CCS ||
+> -	       modifier =3D=3D I915_FORMAT_MOD_Yf_TILED_CCS;
 > -}
-
-Same here.
-
-<snip>
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/dr=
-m/i915/display/intel_dp_mst.c
-> index f76e2c2a83b8..8e4b6647752f 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-> @@ -39,6 +39,7 @@
->  #include "intel_dp_mst.h"
->  #include "intel_dpio_phy.h"
->  #include "intel_hdcp.h"
-> +#include "skl_universal_plane.h"
-
-Why is this here?
-
+> -
+>  static int gen12_ccs_aux_stride(struct drm_framebuffer *fb, int ccs_plan=
+e)
+>  {
+>  	return DIV_ROUND_UP(fb->pitches[skl_ccs_to_main_plane(fb, ccs_plane)],
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.h b/drivers/gpu/d=
+rm/i915/display/intel_display.h
+> index 0b2fed58badf..f4214e161a9d 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display.h
+> @@ -508,7 +508,6 @@ void intel_link_compute_m_n(u16 bpp, int nlanes,
+>  			    int pixel_clock, int link_clock,
+>  			    struct intel_link_m_n *m_n,
+>  			    bool constant_n, bool fec_enable);
+> -bool is_ccs_modifier(u64 modifier);
+>  void lpt_disable_clkout_dp(struct drm_i915_private *dev_priv);
+>  u32 intel_plane_fb_max_stride(struct drm_i915_private *dev_priv,
+>  			      u32 pixel_format, u64 modifier);
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers=
+/gpu/drm/i915/display/intel_display_types.h
+> index 179c277e5cf7..a2cd4bf9e246 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+> @@ -1862,6 +1862,14 @@ static inline u32 intel_fdi_link_freq(struct drm_i=
+915_private *dev_priv,
+>  		return dev_priv->fdi_pll_freq;
+>  }
 >  =
 
->  static int intel_dp_mst_compute_link_config(struct intel_encoder *encode=
-r,
->  					    struct intel_crtc_state *crtc_state,
-> diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i=
-915/display/intel_psr.c
-> index c24ae69426cf..0d0b0d3c52a1 100644
-> --- a/drivers/gpu/drm/i915/display/intel_psr.c
-> +++ b/drivers/gpu/drm/i915/display/intel_psr.c
-> @@ -31,6 +31,7 @@
->  #include "intel_psr.h"
->  #include "intel_sprite.h"
->  #include "intel_hdmi.h"
-> +#include "skl_universal_plane.h"
-
-Is this due to the psr damage stuff?
-
-<snip>
-> diff --git a/drivers/gpu/drm/i915/display/vlv_dsi.c b/drivers/gpu/drm/i91=
-5/display/vlv_dsi.c
-> index f94025ec603a..ebf266457518 100644
-> --- a/drivers/gpu/drm/i915/display/vlv_dsi.c
-> +++ b/drivers/gpu/drm/i915/display/vlv_dsi.c
-> @@ -38,6 +38,7 @@
->  #include "intel_fifo_underrun.h"
->  #include "intel_panel.h"
->  #include "intel_sideband.h"
-> +#include "skl_universal_plane.h"
-
-Why do we need this here?
-
->  =
-
->  /* return pixels in terms of txbyteclkhs */
->  static u16 txbyteclkhs(u16 pixels, int bpp, int lane_count,
-> diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/intel=
-_pm.c
-> index bbc73df7f753..bc40ecc17a52 100644
-> --- a/drivers/gpu/drm/i915/intel_pm.c
-> +++ b/drivers/gpu/drm/i915/intel_pm.c
-> @@ -38,6 +38,7 @@
->  #include "display/intel_display_types.h"
->  #include "display/intel_fbc.h"
->  #include "display/intel_sprite.h"
-> +#include "display/skl_universal_plane.h"
->  =
-
->  #include "gt/intel_llc.h"
->  =
-
+> +static inline bool is_ccs_modifier(u64 modifier)
+> +{
+> +	return modifier =3D=3D I915_FORMAT_MOD_Y_TILED_GEN12_RC_CCS ||
+> +	       modifier =3D=3D I915_FORMAT_MOD_Y_TILED_GEN12_MC_CCS ||
+> +	       modifier =3D=3D I915_FORMAT_MOD_Y_TILED_CCS ||
+> +	       modifier =3D=3D I915_FORMAT_MOD_Yf_TILED_CCS;
+> +}
+> +
+>  static inline bool is_ccs_plane(const struct drm_framebuffer *fb, int pl=
+ane)
+>  {
+>  	if (!is_ccs_modifier(fb->modifier))
 > -- =
 
 > 2.20.1
