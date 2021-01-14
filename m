@@ -2,31 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C939A2F6CCF
-	for <lists+intel-gfx@lfdr.de>; Thu, 14 Jan 2021 22:05:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 263EB2F6CD6
+	for <lists+intel-gfx@lfdr.de>; Thu, 14 Jan 2021 22:07:03 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 281EA899E8;
-	Thu, 14 Jan 2021 21:05:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8EFB36E141;
+	Thu, 14 Jan 2021 21:07:01 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id C2724899DE;
- Thu, 14 Jan 2021 21:05:20 +0000 (UTC)
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 92E096E141;
+ Thu, 14 Jan 2021 21:07:00 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id AD212AA0EB;
- Thu, 14 Jan 2021 21:05:20 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 8B312AA0EB;
+ Thu, 14 Jan 2021 21:07:00 +0000 (UTC)
 MIME-Version: 1.0
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Matthew Auld" <matthew.auld@intel.com>
-Date: Thu, 14 Jan 2021 21:05:20 -0000
-Message-ID: <161065832068.19649.16750182621280532660@emeril.freedesktop.org>
+Date: Thu, 14 Jan 2021 21:07:00 -0000
+Message-ID: <161065842056.19648.17680099286002132622@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20210114182402.840247-1-matthew.auld@intel.com>
 In-Reply-To: <20210114182402.840247-1-matthew.auld@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_series_starting_with_=5B1/3=5D_drm/i915/gem=3A_split_gem=5F?=
- =?utf-8?q?create_into_own_file?=
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
+ =?utf-8?q?series_starting_with_=5B1/3=5D_drm/i915/gem=3A_split_gem=5Fcrea?=
+ =?utf-8?q?te_into_own_file?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,15 +54,11 @@ State : warning
 
 == Summary ==
 
-$ dim checkpatch origin/drm-tip
-b246ef5eb0cb drm/i915/gem: split gem_create into own file
--:25: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
-#25: 
-new file mode 100644
-
-total: 0 errors, 1 warnings, 0 checks, 226 lines checked
-177fa885172b drm/i915/gem: sanity check object size in gem_create
-d2f145039158 drm/i915/region: convert object_create into object_init
+$ dim sparse --fast origin/drm-tip
+Sparse version: v0.6.2
+Fast mode used, each commit won't be checked separately.
++drivers/gpu/drm/i915/gem/i915_gem_stolen.c:624:5: warning: symbol '__i915_gem_object_create_stolen' was not declared. Should it be static?
++drivers/gpu/drm/i915/gem/i915_gem_stolen.c:649:5: warning: symbol '_i915_gem_object_stolen_init' was not declared. Should it be static?
 
 
 _______________________________________________
