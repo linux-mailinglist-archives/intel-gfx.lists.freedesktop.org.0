@@ -2,37 +2,44 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E64782F5F4F
-	for <lists+intel-gfx@lfdr.de>; Thu, 14 Jan 2021 11:55:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id EAFC62F5FB8
+	for <lists+intel-gfx@lfdr.de>; Thu, 14 Jan 2021 12:22:34 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CB33D891F4;
-	Thu, 14 Jan 2021 10:55:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E2CA66E1F2;
+	Thu, 14 Jan 2021 11:22:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8B15A891EC;
- Thu, 14 Jan 2021 10:55:03 +0000 (UTC)
-IronPort-SDR: e9mtSoTYEmeajIM5pM+VeM9sJ/Qo9RroTPO896M5IcLJOG7bDaDtpQzdiyQRGqzsFg/V93P9iD
- qBASdbfwdzsQ==
-X-IronPort-AV: E=McAfee;i="6000,8403,9863"; a="196997142"
-X-IronPort-AV: E=Sophos;i="5.79,347,1602572400"; d="scan'208";a="196997142"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Jan 2021 02:55:00 -0800
-IronPort-SDR: 5NS0vfQB0197Xd+J0LCoQhDUHrAQbMSjeqMN8WENRipU7pApqTkW+T799tTWiIo8G7tXXHQdKy
- ZeDm1TWrXKFg==
-X-IronPort-AV: E=Sophos;i="5.79,347,1602572400"; d="scan'208";a="424911372"
-Received: from dforourk-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.213.254.146])
- by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Jan 2021 02:54:56 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>, 
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Date: Thu, 14 Jan 2021 12:54:53 +0200
-Message-ID: <87sg73pz42.fsf@intel.com>
+X-Greylist: delayed 8402 seconds by postgrey-1.36 at gabe;
+ Thu, 14 Jan 2021 11:22:31 UTC
+Received: from 4.mo5.mail-out.ovh.net (4.mo5.mail-out.ovh.net [178.33.111.247])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4319B6E1F2
+ for <intel-gfx@lists.freedesktop.org>; Thu, 14 Jan 2021 11:22:31 +0000 (UTC)
+Received: from player738.ha.ovh.net (unknown [10.108.57.188])
+ by mo5.mail-out.ovh.net (Postfix) with ESMTP id C13A72A2E57
+ for <intel-gfx@lists.freedesktop.org>; Thu, 14 Jan 2021 04:02:40 +0100 (CET)
+Received: from etezian.org (213-243-141-64.bb.dnainternet.fi [213.243.141.64])
+ (Authenticated sender: andi@etezian.org)
+ by player738.ha.ovh.net (Postfix) with ESMTPSA id 0149C1A1E00CE;
+ Thu, 14 Jan 2021 03:02:36 +0000 (UTC)
+Authentication-Results: garm.ovh; auth=pass
+ (GARM-105G006a052cde2-7da0-43d9-b05e-4a97338ea743,
+ 72D3C5DAFF26A6515C48D523C3EFD44FB281F22F) smtp.auth=andi@etezian.org
+X-OVh-ClientIp: 213.243.141.64
+Date: Thu, 14 Jan 2021 05:02:35 +0200
+From: Andi Shyti <andi@etezian.org>
+To: Chris Wilson <chris@chris-wilson.co.uk>
+Message-ID: <X/+0SwPEymNDCRZ0@jack.zhora.eu>
+References: <20210113124600.656-1-chris@chris-wilson.co.uk>
+ <20210113124600.656-8-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PULL] drm-intel-fixes
+Content-Disposition: inline
+In-Reply-To: <20210113124600.656-8-chris@chris-wilson.co.uk>
+X-Ovh-Tracer-Id: 12992884925960798729
+X-VR-SPAMSTATE: OK
+X-VR-SPAMSCORE: -100
+X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgedukedrtdeggdehfecutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfqggfjpdevjffgvefmvefgnecuuegrihhlohhuthemucehtddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpeffhffvuffkfhggtggujgesthdtredttddtvdenucfhrhhomheptehnughiucfuhhihthhiuceorghnughisegvthgviihirghnrdhorhhgqeenucggtffrrghtthgvrhhnpedtgfduudfhfeeuueejfeeihedtfeetgfegveehgfeuleelhfduteegieekudeifeenucfkpheptddrtddrtddrtddpvddufedrvdegfedrudeguddrieegnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmohguvgepshhmthhpqdhouhhtpdhhvghlohepphhlrgihvghrjeefkedrhhgrrdhovhhhrdhnvghtpdhinhgvtheptddrtddrtddrtddpmhgrihhlfhhrohhmpegrnhguihesvghtvgiiihgrnhdrohhrghdprhgtphhtthhopehinhhtvghlqdhgfhigsehlihhsthhsrdhfrhgvvgguvghskhhtohhprdhorhhg
+Subject: Re: [Intel-gfx] [PATCH 08/10] drm/i915/gt: Convert stats.active to
+ plain unsigned int
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,90 +52,27 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: , dim-tools@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Maxime Ripard <mripard@kernel.org>, intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+Hi Chris,
 
-Hi Dave & Daniel -
+On Wed, Jan 13, 2021 at 12:45:58PM +0000, Chris Wilson wrote:
+> As context-in/out is now always serialised, we do not have to worry
+> about concurrent enabling/disable of the busy-stats and can reduce the
+> atomic_t active to a plain unsigned int, and the seqlock to a seqcount.
+> 
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
 
-drm-intel-fixes-2021-01-14:
-drm/i915 fixes for v5.11-rc4:
-- Allow the sysadmin to override security mitigations
-- Restore clear-residual mitigations for ivb/byt
-- Limit VFE threads based on GT
-- GVT: fix vfio edid and full display detection
-- Fix DSI DSC power refcounting
-- Fix LPT CPU mode backlight takeover
-- Disable RPM wakeref assertions during driver shutdown
-- Fix DSI sequence sleeps
+looks correct...
 
-BR,
-Jani.
+Reviewed-by: Andi Shyti <andi.shyti@intel.com>
 
-The following changes since commit 7c53f6b671f4aba70ff15e1b05148b10d58c2837:
-
-  Linux 5.11-rc3 (2021-01-10 14:34:50 -0800)
-
-are available in the Git repository at:
-
-  git://anongit.freedesktop.org/drm/drm-intel tags/drm-intel-fixes-2021-01-14
-
-for you to fetch changes up to 984cadea032b103c5824a5f29d0a36b3e9df6333:
-
-  drm/i915: Allow the sysadmin to override security mitigations (2021-01-12 19:03:40 +0200)
-
-----------------------------------------------------------------
-drm/i915 fixes for v5.11-rc4:
-- Allow the sysadmin to override security mitigations
-- Restore clear-residual mitigations for ivb/byt
-- Limit VFE threads based on GT
-- GVT: fix vfio edid and full display detection
-- Fix DSI DSC power refcounting
-- Fix LPT CPU mode backlight takeover
-- Disable RPM wakeref assertions during driver shutdown
-- Fix DSI sequence sleeps
-
-----------------------------------------------------------------
-Chris Wilson (4):
-      drm/i915: Disable RPM wakeref assertions during driver shutdown
-      drm/i915/gt: Limit VFE threads based on GT
-      drm/i915/gt: Restore clear-residual mitigations for Ivybridge, Baytrail
-      drm/i915: Allow the sysadmin to override security mitigations
-
-Colin Xu (1):
-      drm/i915/gvt: Fix vfio_edid issue for BXT/APL
-
-Hans de Goede (1):
-      drm/i915/dsi: Use unconditional msleep for the panel_on_delay when there is no reset-deassert MIPI-sequence
-
-Imre Deak (1):
-      drm/i915/icl: Fix initing the DSI DSC power refcount during HW readout
-
-Jani Nikula (2):
-      drm/i915/backlight: fix CPU mode backlight takeover on LPT
-      Merge tag 'gvt-fixes-2020-01-08' of https://github.com/intel/gvt-linux into drm-intel-fixes
-
- drivers/gpu/drm/i915/Makefile                   |   1 +
- drivers/gpu/drm/i915/display/icl_dsi.c          |   4 -
- drivers/gpu/drm/i915/display/intel_panel.c      |   9 +-
- drivers/gpu/drm/i915/display/vlv_dsi.c          |  16 ++-
- drivers/gpu/drm/i915/gt/gen7_renderclear.c      | 157 ++++++++++++++----------
- drivers/gpu/drm/i915/gt/intel_ring_submission.c |   6 +-
- drivers/gpu/drm/i915/gvt/display.c              |  81 ++++++++----
- drivers/gpu/drm/i915/gvt/vgpu.c                 |   5 +-
- drivers/gpu/drm/i915/i915_drv.c                 |   4 +
- drivers/gpu/drm/i915/i915_mitigations.c         | 146 ++++++++++++++++++++++
- drivers/gpu/drm/i915/i915_mitigations.h         |  13 ++
- 11 files changed, 339 insertions(+), 103 deletions(-)
- create mode 100644 drivers/gpu/drm/i915/i915_mitigations.c
- create mode 100644 drivers/gpu/drm/i915/i915_mitigations.h
-
--- 
-Jani Nikula, Intel Open Source Graphics Center
+Thanks,
+Andi
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
