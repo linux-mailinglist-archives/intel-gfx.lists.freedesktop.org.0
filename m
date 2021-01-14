@@ -1,32 +1,41 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 09C7D2F5587
-	for <lists+intel-gfx@lfdr.de>; Thu, 14 Jan 2021 01:20:17 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id CDE372F5596
+	for <lists+intel-gfx@lfdr.de>; Thu, 14 Jan 2021 01:31:20 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 98E7D891B5;
-	Thu, 14 Jan 2021 00:20:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 80968892DE;
+	Thu, 14 Jan 2021 00:31:16 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 1B333891B4;
- Thu, 14 Jan 2021 00:20:13 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 148BFA7DFF;
- Thu, 14 Jan 2021 00:20:13 +0000 (UTC)
+Received: from ozlabs.org (bilbo.ozlabs.org [IPv6:2401:3900:2:1::2])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 602CA892D8;
+ Thu, 14 Jan 2021 00:31:15 +0000 (UTC)
+Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest
+ SHA256) (No client certificate requested)
+ by mail.ozlabs.org (Postfix) with ESMTPSA id 4DGQGQ2Jmmz9sVw;
+ Thu, 14 Jan 2021 11:31:09 +1100 (AEDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=canb.auug.org.au;
+ s=201702; t=1610584272;
+ bh=It9u9AKn8AqBdEwES376MSZ2+L2Lf5GTcdM2JalDxYM=;
+ h=Date:From:To:Cc:Subject:From;
+ b=q98T5wVzCNjJktmx2+1FOtj7sQImUpqYcy0fQPY0+Torhr+Xfw9453WacLy1wXVaM
+ IVpxEFG5LZ7lltJkDI8SY9CoZ5d4Lu5/9Ey23znTPXn5Oov/f4Z206iLfedsP2zX1v
+ 9p1gRN6gFB+yjARaPX5XYu+5U+So7m4Je8jMkeo73h43zoT4N3uIIdFMpo/2iFPCin
+ joggwauko+vU4xegW/hiBkMZDosMwL+F4NqwQo8sdUhynId4ZhoQosTEdzokcCSW3v
+ 9spztwD1RIms1nUNwdbnX1Ku7aMTZ6pz1p8y1YTmnlqcjnaQ6VbdIBpvCbpk5Vw70y
+ Q9CSxN7ROv4LA==
+Date: Thu, 14 Jan 2021 11:31:07 +1100
+From: Stephen Rothwell <sfr@canb.auug.org.au>
+To: Daniel Vetter <daniel.vetter@ffwll.ch>, Intel Graphics
+ <intel-gfx@lists.freedesktop.org>, DRI <dri-devel@lists.freedesktop.org>
+Message-ID: <20210114113107.622102e0@canb.auug.org.au>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: john.c.harrison@intel.com
-Date: Thu, 14 Jan 2021 00:20:13 -0000
-Message-ID: <161058361305.19648.10922522709378408084@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210113220724.2484897-1-John.C.Harrison@Intel.com>
-In-Reply-To: <20210113220724.2484897-1-John.C.Harrison@Intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/uc=3A_Add_function_to_define_defaults_for_GuC/HuC_enable_?=
- =?utf-8?b?KHJldjIp?=
+Subject: [Intel-gfx] linux-next: build failure after merge of the drm-misc
+ tree
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,188 +48,62 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============0523327738=="
+Cc: Linux Next Mailing List <linux-next@vger.kernel.org>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>
+Content-Type: multipart/mixed; boundary="===============1122153619=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0523327738==
-Content-Type: multipart/alternative;
- boundary="===============8733511740324300331=="
+--===============1122153619==
+Content-Type: multipart/signed; boundary="Sig_/.60J4ibaN=8y4IZ8pGCRClm";
+ protocol="application/pgp-signature"; micalg=pgp-sha256
 
---===============8733511740324300331==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+--Sig_/.60J4ibaN=8y4IZ8pGCRClm
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: quoted-printable
 
-== Series Details ==
+Hi all,
 
-Series: drm/i915/uc: Add function to define defaults for GuC/HuC enable (rev2)
-URL   : https://patchwork.freedesktop.org/series/85521/
-State : success
+After merging the drm-misc tree, today's linux-next build (arm
+multi_v7_defconfig) failed like this:
 
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_9604 -> Patchwork_19346
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19346/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_19346 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@amdgpu/amd_basic@query-info:
-    - fi-tgl-y:           NOTRUN -> [SKIP][1] ([fdo#109315] / [i915#2575])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19346/fi-tgl-y/igt@amdgpu/amd_basic@query-info.html
-
-  * igt@debugfs_test@read_all_entries:
-    - fi-tgl-y:           [PASS][2] -> [DMESG-WARN][3] ([i915#402]) +2 similar issues
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9604/fi-tgl-y/igt@debugfs_test@read_all_entries.html
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19346/fi-tgl-y/igt@debugfs_test@read_all_entries.html
-
-  * igt@gem_exec_suspend@basic-s3:
-    - fi-tgl-y:           [PASS][4] -> [DMESG-WARN][5] ([i915#2411] / [i915#402])
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9604/fi-tgl-y/igt@gem_exec_suspend@basic-s3.html
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19346/fi-tgl-y/igt@gem_exec_suspend@basic-s3.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_getparams_basic@basic-subslice-total:
-    - fi-tgl-y:           [DMESG-WARN][6] ([i915#402]) -> [PASS][7] +2 similar issues
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9604/fi-tgl-y/igt@i915_getparams_basic@basic-subslice-total.html
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19346/fi-tgl-y/igt@i915_getparams_basic@basic-subslice-total.html
-
-  
-  [fdo#109315]: https://bugs.freedesktop.org/show_bug.cgi?id=109315
-  [i915#2411]: https://gitlab.freedesktop.org/drm/intel/issues/2411
-  [i915#2575]: https://gitlab.freedesktop.org/drm/intel/issues/2575
-  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
+drivers/gpu/drm/drm_cache.c: In function 'drm_need_swiotlb':
+drivers/gpu/drm/drm_cache.c:202:6: error: implicit declaration of function =
+'mem_encrypt_active' [-Werror=3Dimplicit-function-declaration]
+  202 |  if (mem_encrypt_active())
+      |      ^~~~~~~~~~~~~~~~~~
 
 
-Participating hosts (42 -> 38)
-------------------------------
+Caused by commit
 
-  Missing    (4): fi-ctg-p8600 fi-bsw-cyan fi-bdw-samus fi-hsw-4200u 
+  3abc66706385 ("drm: Implement drm_need_swiotlb() in drm_cache.c")
 
+I have used the drm-misc tree from next-20210107 again for today.
 
-Build changes
--------------
+--=20
+Cheers,
+Stephen Rothwell
 
-  * Linux: CI_DRM_9604 -> Patchwork_19346
+--Sig_/.60J4ibaN=8y4IZ8pGCRClm
+Content-Type: application/pgp-signature
+Content-Description: OpenPGP digital signature
 
-  CI-20190529: 20190529
-  CI_DRM_9604: 486ddc08f81c5bbdac49e52eaa4c94532d763fef @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5957: 2a2b3418f7458dfa1fac255cc5c71603f617690a @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_19346: e92930765a9fa2feca26fc068a7ef881b584372f @ git://anongit.freedesktop.org/gfx-ci/linux
+-----BEGIN PGP SIGNATURE-----
 
+iQEzBAEBCAAdFiEENIC96giZ81tWdLgKAVBC80lX0GwFAl//kMsACgkQAVBC80lX
+0Gzqswf/ULSfqCkg299tDBU1Jv00UQUpTkd2drH/SRDVl76H3qegClo8UzQnkpNS
+g4xUBFGhY5gnjwrT7lbeDobdFaZxDA6pJWfAESEYev7/Sm31gKxNXQBTVDF/+yEk
+8gIcSjyg24WYTjSZCNLOd4Fo9GoDur5nReYvjz0aSF3+YwHi8QcFKVawcgtiufEj
+QK/hjDBQfWuULsFe2I1VeXP+Z9MGRMvm2udW/Pok1vh1GmKLSGCIcRrdAQD0u9Dc
+uYHXUAFNRC/+mpWEOcAXXJUbwHwMiI5rb9GjqZmd/JWM1hhidDcbtZg/CqpsMYMk
+maZV82UkTtFvMKEo3DhJQBBREE+wiA==
+=V+bW
+-----END PGP SIGNATURE-----
 
-== Linux commits ==
+--Sig_/.60J4ibaN=8y4IZ8pGCRClm--
 
-e92930765a9f drm/i915/uc: Add function to define defaults for GuC/HuC enable
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19346/index.html
-
---===============8733511740324300331==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/uc: Add function to define defaults for GuC/HuC enable (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/85521/">https://patchwork.freedesktop.org/series/85521/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19346/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19346/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_9604 -&gt; Patchwork_19346</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19346/index.html</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_19346 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@amdgpu/amd_basic@query-info:</p>
-<ul>
-<li>fi-tgl-y:           NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19346/fi-tgl-y/igt@amdgpu/amd_basic@query-info.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109315">fdo#109315</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2575">i915#2575</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@debugfs_test@read_all_entries:</p>
-<ul>
-<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9604/fi-tgl-y/igt@debugfs_test@read_all_entries.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19346/fi-tgl-y/igt@debugfs_test@read_all_entries.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) +2 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_suspend@basic-s3:</p>
-<ul>
-<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9604/fi-tgl-y/igt@gem_exec_suspend@basic-s3.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19346/fi-tgl-y/igt@gem_exec_suspend@basic-s3.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2411">i915#2411</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@i915_getparams_basic@basic-subslice-total:<ul>
-<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9604/fi-tgl-y/igt@i915_getparams_basic@basic-subslice-total.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19346/fi-tgl-y/igt@i915_getparams_basic@basic-subslice-total.html">PASS</a> +2 similar issues</li>
-</ul>
-</li>
-</ul>
-<h2>Participating hosts (42 -&gt; 38)</h2>
-<p>Missing    (4): fi-ctg-p8600 fi-bsw-cyan fi-bdw-samus fi-hsw-4200u </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_9604 -&gt; Patchwork_19346</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_9604: 486ddc08f81c5bbdac49e52eaa4c94532d763fef @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_5957: 2a2b3418f7458dfa1fac255cc5c71603f617690a @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
-  Patchwork_19346: e92930765a9fa2feca26fc068a7ef881b584372f @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>e92930765a9f drm/i915/uc: Add function to define defaults for GuC/HuC enable</p>
-
-</body>
-</html>
-
---===============8733511740324300331==--
-
---===============0523327738==
+--===============1122153619==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -231,4 +114,4 @@ Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 
---===============0523327738==--
+--===============1122153619==--
