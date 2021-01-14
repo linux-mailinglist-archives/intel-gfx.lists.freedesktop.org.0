@@ -2,43 +2,43 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 67E652F58DA
-	for <lists+intel-gfx@lfdr.de>; Thu, 14 Jan 2021 04:19:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8FC3B2F5817
+	for <lists+intel-gfx@lfdr.de>; Thu, 14 Jan 2021 04:01:40 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5958D89CDB;
-	Thu, 14 Jan 2021 03:19:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ABA948944A;
+	Thu, 14 Jan 2021 03:01:37 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 1093 seconds by postgrey-1.36 at gabe;
- Thu, 14 Jan 2021 03:19:37 UTC
-Received: from 20.mo3.mail-out.ovh.net (20.mo3.mail-out.ovh.net [178.33.47.94])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8F2CC89CDB
- for <intel-gfx@lists.freedesktop.org>; Thu, 14 Jan 2021 03:19:37 +0000 (UTC)
-Received: from player788.ha.ovh.net (unknown [10.108.42.142])
- by mo3.mail-out.ovh.net (Postfix) with ESMTP id 418DF27379B
- for <intel-gfx@lists.freedesktop.org>; Thu, 14 Jan 2021 04:01:21 +0100 (CET)
+Received: from 14.mo7.mail-out.ovh.net (14.mo7.mail-out.ovh.net
+ [178.33.251.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0EFF38944A
+ for <intel-gfx@lists.freedesktop.org>; Thu, 14 Jan 2021 03:01:36 +0000 (UTC)
+Received: from player729.ha.ovh.net (unknown [10.108.35.124])
+ by mo7.mail-out.ovh.net (Postfix) with ESMTP id 1CB3818BCFC
+ for <intel-gfx@lists.freedesktop.org>; Thu, 14 Jan 2021 04:01:34 +0100 (CET)
 Received: from etezian.org (213-243-141-64.bb.dnainternet.fi [213.243.141.64])
  (Authenticated sender: andi@etezian.org)
- by player788.ha.ovh.net (Postfix) with ESMTPSA id 0786A1A049C1C;
- Thu, 14 Jan 2021 03:01:16 +0000 (UTC)
+ by player729.ha.ovh.net (Postfix) with ESMTPSA id 5218F1A2486C5;
+ Thu, 14 Jan 2021 03:01:29 +0000 (UTC)
 Authentication-Results: garm.ovh; auth=pass
- (GARM-98R002a89574ce-fc32-4dd7-98a1-d5bbfc04334f,
+ (GARM-98R002bd30719a-60d2-453b-a2a1-de727bcaa13f,
  72D3C5DAFF26A6515C48D523C3EFD44FB281F22F) smtp.auth=andi@etezian.org
 X-OVh-ClientIp: 213.243.141.64
-Date: Thu, 14 Jan 2021 05:01:15 +0200
+Date: Thu, 14 Jan 2021 05:01:28 +0200
 From: Andi Shyti <andi@etezian.org>
 To: Chris Wilson <chris@chris-wilson.co.uk>
-Message-ID: <X/+z+wPUkADDKCAd@jack.zhora.eu>
+Message-ID: <X/+0CG5TpX5UEX5i@jack.zhora.eu>
 References: <20210113124600.656-1-chris@chris-wilson.co.uk>
+ <20210113124600.656-2-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20210113124600.656-1-chris@chris-wilson.co.uk>
-X-Ovh-Tracer-Id: 12970648404118061577
+In-Reply-To: <20210113124600.656-2-chris@chris-wilson.co.uk>
+X-Ovh-Tracer-Id: 12974026102233940489
 X-VR-SPAMSTATE: OK
 X-VR-SPAMSCORE: -100
-X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgedukedrtdeggdehfecutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfqggfjpdevjffgvefmvefgnecuuegrihhlohhuthemucehtddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpeffhffvuffkfhggtggujgesthdtredttddtvdenucfhrhhomheptehnughiucfuhhihthhiuceorghnughisegvthgviihirghnrdhorhhgqeenucggtffrrghtthgvrhhnpedtgfduudfhfeeuueejfeeihedtfeetgfegveehgfeuleelhfduteegieekudeifeenucfkpheptddrtddrtddrtddpvddufedrvdegfedrudeguddrieegnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmohguvgepshhmthhpqdhouhhtpdhhvghlohepphhlrgihvghrjeekkedrhhgrrdhovhhhrdhnvghtpdhinhgvtheptddrtddrtddrtddpmhgrihhlfhhrohhmpegrnhguihesvghtvgiiihgrnhdrohhrghdprhgtphhtthhopehinhhtvghlqdhgfhigsehlihhsthhsrdhfrhgvvgguvghskhhtohhprdhorhhg
-Subject: Re: [Intel-gfx] [PATCH 01/10] drm/i915: Mark up protected uses of
- 'i915_request_completed'
+X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgedukedrtdeggdehfecutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfqggfjpdevjffgvefmvefgnecuuegrihhlohhuthemucehtddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpeffhffvuffkfhggtggujgesthdtredttddtvdenucfhrhhomheptehnughiucfuhhihthhiuceorghnughisegvthgviihirghnrdhorhhgqeenucggtffrrghtthgvrhhnpedtgfduudfhfeeuueejfeeihedtfeetgfegveehgfeuleelhfduteegieekudeifeenucfkpheptddrtddrtddrtddpvddufedrvdegfedrudeguddrieegnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmohguvgepshhmthhpqdhouhhtpdhhvghlohepphhlrgihvghrjedvledrhhgrrdhovhhhrdhnvghtpdhinhgvtheptddrtddrtddrtddpmhgrihhlfhhrohhmpegrnhguihesvghtvgiiihgrnhdrohhrghdprhgtphhtthhopehinhhtvghlqdhgfhigsehlihhsthhsrdhfrhgvvgguvghskhhtohhprdhorhhg
+Subject: Re: [Intel-gfx] [PATCH 02/10] drm/i915: Drop i915_request.lock
+ serialisation around await_start
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,31 +59,20 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 Hi Chris,
 
-> diff --git a/drivers/gpu/drm/i915/i915_request.c b/drivers/gpu/drm/i915/i915_request.c
-> index 0b1a46a0d866..784c05ac5cca 100644
-> --- a/drivers/gpu/drm/i915/i915_request.c
-> +++ b/drivers/gpu/drm/i915/i915_request.c
-> @@ -276,7 +276,7 @@ static void remove_from_engine(struct i915_request *rq)
->  
->  bool i915_request_retire(struct i915_request *rq)
->  {
-> -	if (!i915_request_completed(rq))
-> +	if (!__i915_request_is_complete(rq))
+On Wed, Jan 13, 2021 at 12:45:52PM +0000, Chris Wilson wrote:
+> Originally, we used the signal->lock as a means of following the
+> previous link in its timeline and peeking at the previous fence.
+> However, we have replaced the explicit serialisation with a series of
+> very careful probes that anticipate the links being deleted and the
+> fences recycled before we are able to acquire a strong reference to it.
+> We do not need the signal->lock crutch anymore, nor want the contention.
+> 
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 
+Reviewed-by: Andi Shyti <andi.shyti@intel.com>
 
->  		return false;
->  
->  	RQ_TRACE(rq, "\n");
-> @@ -342,8 +342,7 @@ void i915_request_retire_upto(struct i915_request *rq)
->  	struct i915_request *tmp;
->  
->  	RQ_TRACE(rq, "\n");
-> -
-> -	GEM_BUG_ON(!i915_request_completed(rq));
-> +	GEM_BUG_ON(!__i915_request_is_complete(rq));
-
-I might be a bit shallow, but where is the lock here?
-
+Thanks,
 Andi
 _______________________________________________
 Intel-gfx mailing list
