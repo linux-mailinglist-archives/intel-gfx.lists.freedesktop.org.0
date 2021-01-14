@@ -1,33 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0A5692F6D1F
-	for <lists+intel-gfx@lfdr.de>; Thu, 14 Jan 2021 22:24:01 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 378122F6D37
+	for <lists+intel-gfx@lfdr.de>; Thu, 14 Jan 2021 22:32:14 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1FA9C6E154;
-	Thu, 14 Jan 2021 21:23:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CE0376E14F;
+	Thu, 14 Jan 2021 21:32:10 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 018356E154
- for <intel-gfx@lists.freedesktop.org>; Thu, 14 Jan 2021 21:23:55 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 23600536-1500050 for multiple; Thu, 14 Jan 2021 21:23:53 +0000
+Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 62EC66E14C;
+ Thu, 14 Jan 2021 21:32:09 +0000 (UTC)
+Received: from gandalf.local.home (cpe-66-24-58-225.stny.res.rr.com
+ [66.24.58.225])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by mail.kernel.org (Postfix) with ESMTPSA id 73C8D239D4;
+ Thu, 14 Jan 2021 21:32:08 +0000 (UTC)
+Date: Thu, 14 Jan 2021 16:32:06 -0500
+From: Steven Rostedt <rostedt@goodmis.org>
+To: LKML <linux-kernel@vger.kernel.org>, dri-devel@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org
+Message-ID: <20210114163206.4a562d82@gandalf.local.home>
+X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-In-Reply-To: <20210114201314.783648-3-imre.deak@intel.com>
-References: <20210114201314.783648-1-imre.deak@intel.com>
- <20210114201314.783648-3-imre.deak@intel.com>
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: Imre Deak <imre.deak@intel.com>, intel-gfx@lists.freedesktop.org
-Date: Thu, 14 Jan 2021 21:23:51 +0000
-Message-ID: <161065943192.19482.15482952281257910023@build.alporthouse.com>
-User-Agent: alot/0.9
-Subject: Re: [Intel-gfx] [PATCH v7 2/3] drm/i915/gem: Add a helper to read
- data from a GEM object page
+Subject: [Intel-gfx] [BUG] on reboot: bisected to: drm/i915: Shut down
+ displays gracefully on reboot
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,155 +39,68 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: David Airlie <airlied@linux.ie>,
+ Linus Torvalds <torvalds@linux-foundation.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Imre Deak (2021-01-14 20:13:13)
-> Add a simple helper to read data with the CPU from the page of a GEM
-> object. Do the read either via a kmap if the object has struct pages
-> or an iomap otherwise. This is needed by the next patch, reading a u64
-> value from the object (w/o requiring the obj to be mapped to the GPU).
-> 
-> Suggested by Chris.
-> 
-> Cc: Chris Wilson <chris@chris-wilson.co.uk>
-> Signed-off-by: Imre Deak <imre.deak@intel.com>
-> ---
->  drivers/gpu/drm/i915/gem/i915_gem_object.c | 75 ++++++++++++++++++++++
->  drivers/gpu/drm/i915/gem/i915_gem_object.h |  2 +
->  2 files changed, 77 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object.c b/drivers/gpu/drm/i915/gem/i915_gem_object.c
-> index 00d24000b5e8..010f8d735e40 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_object.c
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_object.c
-> @@ -32,6 +32,7 @@
->  #include "i915_gem_mman.h"
->  #include "i915_gem_object.h"
->  #include "i915_globals.h"
-> +#include "i915_memcpy.h"
->  #include "i915_trace.h"
->  
->  static struct i915_global_object {
-> @@ -383,6 +384,80 @@ void __i915_gem_object_invalidate_frontbuffer(struct drm_i915_gem_object *obj,
->         }
->  }
->  
-> +static void
-> +i915_gem_object_read_from_page_kmap(struct drm_i915_gem_object *obj, unsigned long offset, int size, void *dst)
-[noted later about parameter order + types]
+On reboot, one of my test boxes now triggers the following warning:
 
-> +{
-> +       const void *src_map;
-> +       const void *src_ptr;
-> +
-> +       src_map = kmap_atomic(i915_gem_object_get_page(obj, offset >> PAGE_SHIFT));
-> +
-> +       src_ptr = src_map + offset_in_page(offset);
-> +       if (!(obj->cache_coherent & I915_BO_CACHE_COHERENT_FOR_READ))
-> +               drm_clflush_virt_range((void *)src_ptr, size);
-> +       memcpy(dst, src_ptr, size);
-> +
-> +       kunmap_atomic((void *)src_map);
+ ------------[ cut here ]------------
+ RPM raw-wakeref not held
+ WARNING: CPU: 4 PID: 1 at drivers/gpu/drm/i915/intel_runtime_pm.h:106 gen6_write32+0x1bc/0x2a0 [i915]
+ Modules linked in: ebtable_filter ebtables bridge stp llc ip6t_REJECT nf_reject_ipv6 vsock vmw_vmci xt_state xt_conntrack nf_conntrack nf_defrag_ipv6 nf_defrag_ipv4 ip6table_filter ip6_tables snd_hda_codec_hdmi snd_hda_codec_realtek snd_hda_codec_generic le
+15 snd_hda_intel snd_intel_dspcfg snd_hda_codec snd_hwdep i2c_algo_bit snd_hda_core snd_seq intel_rapl_msr snd_seq_device intel_rapl_common snd_pcm x86_pkg_temp_thermal intel_powerclamp snd_timer snd coretemp kvm_intel soundcore kvm mei_wdt irqbypass joydev 
+_pmc_bxt hp_wmi wmi_bmof sparse_keymap rfkill iTCO_vendor_support crct10dif_pclmul crc32_pclmul crc32c_intel ghash_clmulni_intel drm_kms_helper i2c_i801 cec drm rapl intel_cstate intel_uncore mei_me i2c_smbus e1000e tpm_infineon wmi serio_raw mei video lpc_i
 
-Live without marking the src pointers as const*.
+ CPU: 4 PID: 1 Comm: systemd-shutdow Not tainted 5.9.0-rc4-test+ #861
+ Hardware name: Hewlett-Packard HP Compaq Pro 6300 SFF/339A, BIOS K01 v03.03 07/14/2016
+ RIP: 0010:gen6_write32+0x1bc/0x2a0 [i915]
+ Code: 5d 82 e0 0f 0b e9 b5 fe ff ff 80 3d 95 6b 22 00 00 0f 85 b2 fe ff ff 48 c7 c7 04 d2 a4 c0 c6 05 81 6b 22 00 01 e8 f6 5c 82 e0 <0f> 0b e9 98 fe ff ff 80 3d 6d 6b 22 00 00 0f 85 95 fe ff ff 48 c7
+ RSP: 0018:ffffb9c1c002fd08 EFLAGS: 00010296
+ RAX: 0000000000000018 RBX: ffff99aec8881010 RCX: ffff99aeda400000
+ RDX: 0000000000000000 RSI: ffffffffa115d9ef RDI: ffffffffa115d9ef
+ RBP: 0000000000044004 R08: 0000000000000001 R09: 0000000000000000
+ R10: 0000000000000001 R11: 0000000000000001 R12: 0000000000000000
+ R13: 0000000000000001 R14: 00000000ffffffff R15: 0000000000000000
+ FS:  00007f91257a9940(0000) GS:ffff99aeda400000(0000) knlGS:0000000000000000
+ CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+ CR2: 00007f9126829400 CR3: 00000001088f0006 CR4: 00000000001706e0
+ Call Trace:
+  gen3_irq_reset+0x2e/0xd0 [i915]
+  intel_irq_reset+0x59/0x6a0 [i915]
+  intel_runtime_pm_disable_interrupts+0xe/0x30 [i915]
+  i915_driver_shutdown+0x2e/0x40 [i915]
+  pci_device_shutdown+0x34/0x60
+  device_shutdown+0x15d/0x1b3
+  kernel_restart+0xe/0x30
+  __do_sys_reboot+0x1d7/0x210
+  ? vfs_writev+0x9d/0xe0
+  ? syscall_enter_from_user_mode+0x1d/0x70
+  ? trace_hardirqs_on+0x2c/0xe0
+  do_syscall_64+0x33/0x40
+  entry_SYSCALL_64_after_hwframe+0x44/0xa9
+ RIP: 0033:0x7f912675f2d7
+ Code: 64 89 01 48 83 c8 ff c3 66 2e 0f 1f 84 00 00 00 00 00 90 f3 0f 1e fa 89 fa be 69 19 12 28 bf ad de e1 fe b8 a9 00 00 00 0f 05 <48> 3d 00 f0 ff ff 77 01 c3 48 8b 15 81 8b 0c 00 f7 d8 64 89 02 b8
+ RSP: 002b:00007ffeca28e148 EFLAGS: 00000206 ORIG_RAX: 00000000000000a9
+ RAX: ffffffffffffffda RBX: 0000000000000000 RCX: 00007f912675f2d7
+ RDX: 0000000001234567 RSI: 0000000028121969 RDI: 00000000fee1dead
+ RBP: 00007ffeca28e3d0 R08: 000000000000000a R09: 0000000000000000
+ R10: 0000000000000232 R11: 0000000000000206 R12: 0000000000000001
+ R13: 0000000000000000 R14: 0000000000000000 R15: 00007ffeca28e4b8
+ ---[ end trace 2ed17eabd3ab6938 ]---
+ ------------[ cut here ]------------
 
-> +}
-> +
-> +static void
-> +i915_gem_object_read_from_page_iomap(struct drm_i915_gem_object *obj, unsigned long offset, int size, void *dst)
-> +{
-> +       const void __iomem *src_map;
-> +       const void __iomem *src_ptr;
-> +
-> +       src_map = io_mapping_map_wc(&obj->mm.region->iomap,
-> +                                   i915_gem_object_get_dma_address(obj, offset >> PAGE_SHIFT),
-> +                                   PAGE_SIZE);
-> +
-> +       src_ptr = src_map + offset_in_page(offset);
-> +       if (!i915_memcpy_from_wc(dst, src_ptr, size))
-> +               memcpy(dst, src_ptr, size);
+The bisect came to this commit:
 
-Sparse will complain about the mixed __iomem/regular pointers. So you
-might as well use memcpy_from_io() here. Unfortunately memcpy_from_wc
-needs explicit casting. A task for rainy day is massaging
-i915_memcpy_from_wc() to be sparse clean for iomem.
+  fe0f1e3bfdfeb53e18f1206aea4f40b9bd1f291c
+  ("drm/i915: Shut down displays gracefully on reboot")
 
-> +
-> +       io_mapping_unmap((void __iomem *)src_map);
-> +}
-> +
-> +/**
-> + * i915_gem_object_read_from_page - read data from the page of a GEM object
-> + * @obj: GEM object to read from
-> + * @offset: offset within the object
-> + * @size: size to read
-> + * @dst: buffer to store the read data
-> + *
-> + * Reads data from @obj after syncing against any pending GPU writes on it.
-> + * The requested region to read from can't cross a page boundary.
-> + *
-> + * Returns 0 on sucess, negative error code on failre.
-> + */
-> +int i915_gem_object_read_from_page(struct drm_i915_gem_object *obj, unsigned long offset, size_t size, void *dst)
+Which makes sense, as it happens on shutdown.
 
-offset -> u64
-size_t size? meh, it must only be an int
-
-We use the convention of 
-read_from_page(obj, offset_into_obj,
-	       dst, length_of_read_into_dst)
-for parameter ordering.
-
-> +{
-> +       int ret;
-> +
-> +       WARN_ON(offset + size > obj->base.size ||
-> +               offset_in_page(offset) + size > PAGE_SIZE);
-
-This is only from internal users, so GEM_BUG_ON() (or you would use
-if(GEM_WARN_ON) return -EINVAL).
-
-GEM_BUG_ON(offset > obj->base.size);
-GEM_BUG_ON(offset_in_page(offset) > PAGE_SIZE - size);
-(since size is a multiple of pages)
-
-> +
-> +       i915_gem_object_lock(obj, NULL);
-> +
-> +       ret = i915_gem_object_wait(obj, 0, MAX_SCHEDULE_TIMEOUT);
-> +       if (ret)
-> +               goto unlock;
-
-Is there an absolute requirement for this read to be serialised against
-everything? If not, let the caller decide if they need some sort of
-flush/wait before reading, and the lock can be removed.
-
-In any case, always prefer interruptible waits and if there's a callpath
-that absolutely must not be interruptible, pass that information along
-the arguments.
-
-> +       ret = i915_gem_object_pin_pages(obj);
-
-So at present one would not need to lock the object for the pages.
-And then we would not need to hold the lock across the read as we hold
-the pages.
-
-> +       if (ret)
-> +               goto unlock;
-> +
-> +       if (i915_gem_object_has_struct_page(obj))
-> +               i915_gem_object_read_from_page_kmap(obj, offset, size, dst);
-> +       else
-else if (i915_gem_object_is_iomem(obj))
-> +               i915_gem_object_read_from_page_iomap(obj, offset, size, dst);
-else
-	ret = -ENODEV;
-
-But on the whole, this works and is agnostic enough to handle current HW.
--Chris
+-- Steve
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
