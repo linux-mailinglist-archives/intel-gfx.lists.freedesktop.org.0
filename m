@@ -2,113 +2,42 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 694932F7C77
-	for <lists+intel-gfx@lfdr.de>; Fri, 15 Jan 2021 14:25:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1E3322F7D00
+	for <lists+intel-gfx@lfdr.de>; Fri, 15 Jan 2021 14:46:18 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C842B89A6D;
-	Fri, 15 Jan 2021 13:25:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 618556E456;
+	Fri, 15 Jan 2021 13:46:13 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam10on2048.outbound.protection.outlook.com [40.107.94.48])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6E315898E1;
- Fri, 15 Jan 2021 13:25:06 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=EO+H3aeZsRqtJqvlcJ1LrLbOyHxzKdFazpOS2WrRUUqj8cTzQZK5LhlEvIulVLciAgqCd2VVwrgiG8H7K/iVKehjfFl+IEZFBPwxwRkrfHGz9KVH4og0PWIXfDeqcels4AnvqKDznhFDE+FMiWLweZT8dHYoTYLnh/IoKh3FYYkhFIF9Bt+joS5NHhx5kTVyhEIJFJWGqNl8sXBDlK+TLI7xGvmQTXin2n+2lzsPxGApsK/8pxZurfMi6YVlxFT5N1BYeTuLsJsuPUtJRclPa7TqMTQfgMCq+0qa6F5zjHZ/NfGnHKgkIVoieDltfVx2l5pkodde6I/SWJZ+DiTlvQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=gPCh9hWvv8HSME7VNlqhEvugiDWRxIngZksmqK0unYo=;
- b=Xu2MKc2jt7uwUfxZZk9NXJYL5LL8/2JJpScFItMpeNR1gDrVWWgjrDzZbd73u0abIJIHS72QBwLky5TFuCELAfSa6fIlaz3oYzo+DH+C2TgeAIGVii54pKHHNCW2QSNKtif1P6B8D+GMUgIo3ROB2Dds5KFi1c/PnIYP9lFXbMN34WZyo2YoE6jS4K303zy1F3QTWQzjVjARzG31AZZqG2YwDR9j625AnMqh33OFhArixOe3Ozcs4/IIs8s+KlYEHuxe3U/DRj5GL4uvx6EqrT6eXAVGOLRcKBv1w6c2vdlXWHVm2Bg0/aQu8cd5KxyagOHiP3SbpXztE8LItYy+Ng==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=gPCh9hWvv8HSME7VNlqhEvugiDWRxIngZksmqK0unYo=;
- b=1IvM0VRLUvJhMM6KF4kl6WNYNc8CPTl4Lklg32IRt//ymXva1oXtZiqiQle7CaTqCZ+1WXrYky3z/T9qj3u4MIfr0Y/MDjwnu9nOxg4KVDVa5FpuM+f++0RgPAN1e+GeXx3EO8KPsQ93jsfCX5MyRCCs43ltlj61hfqDZ6RvR1Y=
-Authentication-Results: vger.kernel.org; dkim=none (message not signed)
- header.d=none;vger.kernel.org; dmarc=none action=none header.from=amd.com;
-Received: from MN2PR12MB3775.namprd12.prod.outlook.com (2603:10b6:208:159::19)
- by BL0PR12MB2417.namprd12.prod.outlook.com (2603:10b6:207:45::21)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3742.6; Fri, 15 Jan
- 2021 13:25:04 +0000
-Received: from MN2PR12MB3775.namprd12.prod.outlook.com
- ([fe80::44f:9f01:ece7:f0e5]) by MN2PR12MB3775.namprd12.prod.outlook.com
- ([fe80::44f:9f01:ece7:f0e5%3]) with mapi id 15.20.3763.011; Fri, 15 Jan 2021
- 13:25:04 +0000
-To: Daniel Vetter <daniel.vetter@ffwll.ch>
-References: <20210115130219.3915789-1-daniel.vetter@ffwll.ch>
- <8c60b2ac-d1b9-ffde-ad6d-2a3953f519de@gmail.com>
- <CAKMK7uEUyK17Tu6PyPpMHCoX2XMBqm2fquZJ4fUo9WY+1rK0XA@mail.gmail.com>
-From: =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>
-Message-ID: <e11a28c6-197a-c181-b704-da9debd1f938@amd.com>
-Date: Fri, 15 Jan 2021 14:24:57 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
-In-Reply-To: <CAKMK7uEUyK17Tu6PyPpMHCoX2XMBqm2fquZJ4fUo9WY+1rK0XA@mail.gmail.com>
-Content-Language: en-US
-X-Originating-IP: [2a02:908:1252:fb60:be8a:bd56:1f94:86e7]
-X-ClientProxiedBy: AM3PR07CA0093.eurprd07.prod.outlook.com
- (2603:10a6:207:6::27) To MN2PR12MB3775.namprd12.prod.outlook.com
- (2603:10b6:208:159::19)
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 255B56E0BE;
+ Fri, 15 Jan 2021 13:46:11 +0000 (UTC)
+IronPort-SDR: PKKpfvzgRQzj0CD3PDABbo2D/2sojJ23MESHAeOP0vLceouMa3GVqTNO95ZXxCygZLjoJiMTn0
+ I5AZmRKJQVnQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9864"; a="157727627"
+X-IronPort-AV: E=Sophos;i="5.79,349,1602572400"; d="scan'208";a="157727627"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Jan 2021 05:46:08 -0800
+IronPort-SDR: tvnwY7Tprm/gkMt3tAoPPW1Gn+Gyh9zGQAS/cbFBDrqnDmEp5EU5rN1vw01Ip645B1ty9eKfsl
+ IU9PwlVnI1ig==
+X-IronPort-AV: E=Sophos;i="5.79,349,1602572400"; d="scan'208";a="382667627"
+Received: from bmkierna-mobl3.ger.corp.intel.com (HELO localhost)
+ ([10.213.221.58])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Jan 2021 05:46:00 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: Lyude Paul <lyude@redhat.com>, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
+In-Reply-To: <20210114221709.2261452-3-lyude@redhat.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20210114221709.2261452-1-lyude@redhat.com>
+ <20210114221709.2261452-3-lyude@redhat.com>
+Date: Fri, 15 Jan 2021 15:45:57 +0200
+Message-ID: <875z3ypb3e.fsf@intel.com>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from [IPv6:2a02:908:1252:fb60:be8a:bd56:1f94:86e7]
- (2a02:908:1252:fb60:be8a:bd56:1f94:86e7) by
- AM3PR07CA0093.eurprd07.prod.outlook.com (2603:10a6:207:6::27) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.3763.10 via Frontend Transport; Fri, 15 Jan 2021 13:25:02 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: c1739924-b50e-4bc4-c903-08d8b958f790
-X-MS-TrafficTypeDiagnostic: BL0PR12MB2417:
-X-Microsoft-Antispam-PRVS: <BL0PR12MB2417F6CB1365842D3C36C69183A70@BL0PR12MB2417.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:9508;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: paO7erE/NkWpBlF3sg1+pJh7ty121ukar0ZIr+Dpi/cJgMrL/zu5rs8I893HUJdr9lAv5ffP5Zj9eCQvmN351dHzKBSG7/fnxt9EUbElgMdQyxBytcCU0I+cZkGHcws3tAkiKIeMBWvcPcY2X8eXZcyenLgTQwISgxgDLSMe2C678Qcm67oRkQzcZ86qcw8PdY2nL/djA0jmREoOmbDFWZTX5LwnWywqR1KAatRQLqkW0isaFQuRp7vJvi7LvZ0lDz8YS9Gkk3x0HKpKF9M+KlhcjQaLFe3D2eyNLPsn6DKH60QTrxDRmyAp8tvTj5hAQ8gJyArPYZelpOBMH1SI3wCn/m2Th4beLi4ZN99sZqIGMda4EALbJ+e3P4PcHDdRLGreE0J+er5Lpq1+5sIF+M8Kr3pdkCe3CToFacmZAZ9RNkHvfIes0473e18qqAYqb14PiAcu+UtPkP3lMJjzZRgmDBBoEZuj5aAp2UFcIIs=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:MN2PR12MB3775.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(4636009)(39860400002)(366004)(396003)(376002)(346002)(136003)(316002)(66556008)(8676002)(86362001)(8936002)(478600001)(66476007)(83380400001)(16526019)(36756003)(54906003)(6486002)(5660300002)(52116002)(31686004)(53546011)(66574015)(6916009)(66946007)(2616005)(31696002)(186003)(6666004)(2906002)(4326008)(43740500002)(45980500001);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData: =?utf-8?B?K3F1bFpHU0JkeDZCVWlxRWpHcFVPZ3FKc3gyOWE2dmd5TmpseldDS05KcXR3?=
- =?utf-8?B?Um1qYThNMGVMSVVoNjFJNHhzNnY4L3grTXhDMytEQ1NGQXN3eUZMcGdBSnRW?=
- =?utf-8?B?ekh1Y2hSTDVGaU1iTG5Ja2lhcS9qbHhmd1Y1ZHphV2EyNEYyWFlxN2NYdUc2?=
- =?utf-8?B?QmFxK2lJeVJtRXJUTGhzZEsyTldWMm9KVFhtL0xKY3ZzQk5zaVliTVdtYWJq?=
- =?utf-8?B?QnVoNE83ejJRU3lseEY2ejQ1b1Z0V1dOTUNXbjJhaFlKbmltWUdOMFlySnEv?=
- =?utf-8?B?ZWdNZnljZXFGRTdoRkZmdGpCWitrV3lQMHEyUk8zdUwyb2E5MXhyMlpKT3Zi?=
- =?utf-8?B?bDc3dDc4L29xaUk3UWFKMllta0VkUWFvbkhyVlUxWk44ZFllazk4RW1DM2tS?=
- =?utf-8?B?aC9hdEkrV3JMSGQwcVB5SHluOFhWQ0xDb1AxbkxIRjl0WUlCb1BVZDRtb04v?=
- =?utf-8?B?eGFsNHErakhsbjczU3d6RnhnQTM1dHJhRG4wVTZ3VnJmL0krUlNvaHJDT2Ni?=
- =?utf-8?B?UHlyWCtSU1JlakRHckU5SmRrbFUraHNOTjFqUVRadnlkcFhwQ2tqSUt5a01m?=
- =?utf-8?B?UmwxbmJ3RGs0MG1sYk8zT0RMZFh1SG1EQUplaUJIODdPVTRDVnM5ZzFrNTZO?=
- =?utf-8?B?U0tWZWF6TGVrdXhqQTFTTXNEVGs2RUxJNTNNVVBPR3crTXBBZVZVeWZIclhi?=
- =?utf-8?B?K2pFRXBNK2pLR0NKblYxZm9Ldm5EaW1uYWJza2pZV2p4blhBTytMeXI5WTZ3?=
- =?utf-8?B?SzF4dlNtUUVhcVZ0WkRZRkF5N3BTNlFJUFVOSENyMHB4cmVrSFdwQ09ZZWJE?=
- =?utf-8?B?NjFVakZxenBDQVZFaHhrQ2xpdmJ5Nkd0WDA0VmNLN2JkWC85bzB3WGJUMlFW?=
- =?utf-8?B?WVIyUHJOMkplQStNZnBvR3hNYlo2bjRGL1lkVTVUZG56SnU2ODFSbERpdnh6?=
- =?utf-8?B?aHc5OVJZSUlja0FMN0c1UmtuQkN3dDR0QVRadS9ER3h5Z3RCVUJyZUplSmpZ?=
- =?utf-8?B?WmFKWWtwQXg5MEtmN3JyQ1p1Y3IwVU15akxGdm5Cb2ZSSmNPbGxwK1d3QnY5?=
- =?utf-8?B?eVNIK2dYM0ZlWmlYTE1ZTVhzdGY1ZVJuUm92L3BzY2duOWNPTmxLMjkrbk92?=
- =?utf-8?B?WFo3QzlINzdHVHhyTVJmaWhRcDNpSldKK3JmUTlNSXhlaTQrUWRNZCtKRUtx?=
- =?utf-8?B?b1psbndMNzZhSVI2MHF6MWIvUkFFVkUrZDVzVnhscVc4WTRQWEJsSFk3c1gx?=
- =?utf-8?B?WGFRQVh1WWJDODBlMm56SG1DN1NBajNxV2MzZDVXMHJkZ2g4ZHlONG9jZ3FM?=
- =?utf-8?B?bDFhdURtSUtZYzM1andKQWlXcFJZMXZOazhJSXJUdDNaUDBQdUxEbVpyOEc3?=
- =?utf-8?B?NWx1YnB3akx4cjA0ZEIzbGdsTkZ3WHZ3MGlhSFQ1SkNqbGxzTlYyWk0rQzla?=
- =?utf-8?Q?yC8B544M?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: c1739924-b50e-4bc4-c903-08d8b958f790
-X-MS-Exchange-CrossTenant-AuthSource: MN2PR12MB3775.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Jan 2021 13:25:04.0153 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 62kSc5KrUgMBgU9amHNU9fm9m6V3Imuzye/v8J1qt9W9U3KLImXUYpT/nbum+uEU
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL0PR12MB2417
-Subject: Re: [Intel-gfx] [Linaro-mm-sig] [PATCH] drm-buf: Add debug option
+Subject: Re: [Intel-gfx] [PATCH v7 2/5] drm/i915: Keep track of pwm-related
+ backlight hooks separately
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -121,166 +50,919 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- DRI Development <dri-devel@lists.freedesktop.org>,
- "moderated list:DMA BUFFER SHARING FRAMEWORK" <linaro-mm-sig@lists.linaro.org>,
- David Stevens <stevensd@chromium.org>, Daniel Vetter <daniel.vetter@intel.com>,
- "open list:DMA BUFFER SHARING FRAMEWORK" <linux-media@vger.kernel.org>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Cc: Arnd Bergmann <arnd@arndb.de>, David Airlie <airlied@linux.ie>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ open list <linux-kernel@vger.kernel.org>,
+ Chris Wilson <chris@chris-wilson.co.uk>,
+ Vasily Khoruzhick <anarsoul@gmail.com>, Dave Airlie <airlied@redhat.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-QW0gMTUuMDEuMjEgdW0gMTQ6MjIgc2NocmllYiBEYW5pZWwgVmV0dGVyOgo+IE9uIEZyaSwgSmFu
-IDE1LCAyMDIxIGF0IDI6MDkgUE0gQ2hyaXN0aWFuIEvDtm5pZwo+IDxja29lbmlnLmxlaWNodHp1
-bWVya2VuQGdtYWlsLmNvbT4gd3JvdGU6Cj4+IEFtIDE1LjAxLjIxIHVtIDE0OjAyIHNjaHJpZWIg
-RGFuaWVsIFZldHRlcjoKPj4+IGhhdmUgdG9vIG1hbnkgcGVvcGxlIGFidXNpbmcgdGhlIHN0cnVj
-dCBwYWdlIHRoZXkgY2FuIGdldCBhdCBidXQKPj4+IHJlYWxseSBzaG91bGRuJ3QgaW4gaW1wb3J0
-ZXJzLiBBc2lkZSBmcm9tIHRoYXQgdGhlIGJhY2tpbmcgcGFnZSBtaWdodAo+Pj4gc2ltcGx5IG5v
-dCBleGlzdCAoZm9yIGR5bmFtaWMgcDJwIG1hcHBpbmdzKSBsb29raW5nIGF0IGl0IGFuZCB1c2lu
-ZyBpdAo+Pj4gZS5nLiBmb3IgbW1hcCBjYW4gYWxzbyB3cmVhayB0aGUgcGFnZSBoYW5kbGluZyBv
-ZiB0aGUgZXhwb3J0ZXIKPj4+IGNvbXBsZXRlbHkuIEltcG9ydGVycyByZWFsbHkgbXVzdCBnbyB0
-aHJvdWdoIHRoZSBwcm9wZXIgaW50ZXJmYWNlIGxpa2UKPj4+IGRtYV9idWZfbW1hcCBmb3IgZXZl
-cnl0aGluZy4KPj4+Cj4+PiBJJ20gc2VtaS10ZW1wdGVkIHRvIGVuZm9yY2UgdGhpcyBmb3IgZHlu
-YW1pYyBpbXBvcnRlcnMgc2luY2UgdGhvc2UKPj4+IHJlYWxseSBoYXZlIG5vIGV4Y3VzZSBhdCBh
-bGwgdG8gYnJlYWsgdGhlIHJ1bGVzLgo+Pj4KPj4+IFVuZm9ydHVhbnRlbHkgd2UgY2FuJ3Qgc3Rv
-cmUgdGhlIHJpZ2h0IHBvaW50ZXJzIHNvbWV3aGVyZSBzYWZlIHRvIG1ha2UKPj4+IHN1cmUgd2Ug
-b29wcyBvbiBzb21ldGhpbmcgcmVjb2duaXphYmxlLCBzbyBiZXN0IGlzIHRvIGp1c3Qgd3Jhbmds
-ZQo+Pj4gdGhlbSBhIGJpdCBieSBmbGlwcGluZyBhbGwgdGhlIGJpdHMuIEF0IGxlYXN0IG9uIHg4
-NiBrZXJuZWwgYWRkcmVzc2VzCj4+PiBoYXZlIGFsbCB0aGVpciBoaWdoIGJpdHMgc2V0cyBhbmQg
-dGhlIHN0cnVjdCBwYWdlIGFycmF5IGlzIGZhaXJseSBsb3cKPj4+IGluIHRoZSBrZXJuZWwgbWFw
-cGluZywgc28gZmxpcHBpbmcgYWxsIHRoZSBiaXRzIGdpdmVzIHVzIGEgdmVyeSBoaWdoCj4+PiBw
-b2ludGVyIGluIHVzZXJzcGFjZSBhbmQgaGVuY2UgZXhjZWxsZW50IGNoYW5jZXMgZm9yIGFuIGlu
-dmFsaWQKPj4+IGRlcmVmZXJlbmNlLgo+Pj4KPj4+IHYyOiBBZGQgYSBub3RlIHRvIHRoZSBAbWFw
-X2RtYV9idWYgaG9vayB0aGF0IGV4cG9ydGVycyBzaG91bGRuJ3QgZG8KPj4+IGZhbmN5IGNhY2hp
-bmcgdHJpY2tzLCB3aGljaCB3b3VsZCBibG93IHVwIHdpdGggdGhpcyBhZGRyZXNzIHNjcmFtYmxp
-bmcKPj4+IHRyaWNrIGhlcmUgKENocmlzKQo+Pj4KPj4+IEVuYWJsZSBieSBkZWZhdWx0IHdoZW4g
-Q09ORklHX0RNQV9BUElfREVCVUcgaXMgZW5hYmxlZC4KPj4+Cj4+PiBSZXZpZXdlZC1ieTogQ2hy
-aXMgV2lsc29uIDxjaHJpc0BjaHJpcy13aWxzb24uY28udWs+Cj4+PiBTaWduZWQtb2ZmLWJ5OiBE
-YW5pZWwgVmV0dGVyIDxkYW5pZWwudmV0dGVyQGludGVsLmNvbT4KPj4+IENjOiBDaHJpcyBXaWxz
-b24gPGNocmlzQGNocmlzLXdpbHNvbi5jby51az4KPj4+IENjOiBTdW1pdCBTZW13YWwgPHN1bWl0
-LnNlbXdhbEBsaW5hcm8ub3JnPgo+Pj4gQ2M6ICJDaHJpc3RpYW4gS8O2bmlnIiA8Y2hyaXN0aWFu
-LmtvZW5pZ0BhbWQuY29tPgo+Pj4gQ2M6IERhdmlkIFN0ZXZlbnMgPHN0ZXZlbnNkQGNocm9taXVt
-Lm9yZz4KPj4+IENjOiBsaW51eC1tZWRpYUB2Z2VyLmtlcm5lbC5vcmcKPj4+IENjOiBsaW5hcm8t
-bW0tc2lnQGxpc3RzLmxpbmFyby5vcmcKPj4+IC0tLQo+Pj4gICAgZHJpdmVycy9kbWEtYnVmL0tj
-b25maWcgICB8ICA4ICsrKysrKysKPj4+ICAgIGRyaXZlcnMvZG1hLWJ1Zi9kbWEtYnVmLmMgfCA0
-OSArKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKy0tLS0KPj4+ICAgIGluY2x1ZGUv
-bGludXgvZG1hLWJ1Zi5oICAgfCAgNiArKysrKwo+Pj4gICAgMyBmaWxlcyBjaGFuZ2VkLCA1OSBp
-bnNlcnRpb25zKCspLCA0IGRlbGV0aW9ucygtKQo+Pj4KPj4+IGRpZmYgLS1naXQgYS9kcml2ZXJz
-L2RtYS1idWYvS2NvbmZpZyBiL2RyaXZlcnMvZG1hLWJ1Zi9LY29uZmlnCj4+PiBpbmRleCA0Zjgy
-MjRhNmFjOTUuLjRlMTZjNzFjMjRiNyAxMDA2NDQKPj4+IC0tLSBhL2RyaXZlcnMvZG1hLWJ1Zi9L
-Y29uZmlnCj4+PiArKysgYi9kcml2ZXJzL2RtYS1idWYvS2NvbmZpZwo+Pj4gQEAgLTUwLDYgKzUw
-LDE0IEBAIGNvbmZpZyBETUFCVUZfTU9WRV9OT1RJRlkKPj4+ICAgICAgICAgIFRoaXMgaXMgbWFy
-a2VkIGV4cGVyaW1lbnRhbCBiZWNhdXNlIHdlIGRvbid0IHlldCBoYXZlIGEgY29uc2lzdGVudAo+
-Pj4gICAgICAgICAgZXhlY3V0aW9uIGNvbnRleHQgYW5kIG1lbW9yeSBtYW5hZ2VtZW50IGJldHdl
-ZW4gZHJpdmVycy4KPj4+Cj4+PiArY29uZmlnIERNQUJVRl9ERUJVRwo+Pj4gKyAgICAgYm9vbCAi
-RE1BLUJVRiBkZWJ1ZyBjaGVja3MiCj4+PiArICAgICBkZWZhdWx0IHkgaWYgRE1BX0FQSV9ERUJV
-Rwo+Pj4gKyAgICAgaGVscAo+Pj4gKyAgICAgICBUaGlzIG9wdGlvbiBlbmFibGVzIGFkZGl0aW9u
-YWwgY2hlY2tzIGZvciBETUEtQlVGIGltcG9ydGVycyBhbmQKPj4+ICsgICAgICAgZXhwb3J0ZXJz
-LiBTcGVjaWZpY2FsbHkgaXQgdmFsaWRhdGVzIHRoYXQgaW1wb3J0ZXJzIGRvIG5vdCBwZWVrIGF0
-IHRoZQo+Pj4gKyAgICAgICB1bmRlcmx5aW5nIHN0cnVjdCBwYWdlIHdoZW4gdGhleSBpbXBvcnQg
-YSBidWZmZXIuCj4+PiArCj4+PiAgICBjb25maWcgRE1BQlVGX1NFTEZURVNUUwo+Pj4gICAgICAg
-IHRyaXN0YXRlICJTZWxmdGVzdHMgZm9yIHRoZSBkbWEtYnVmIGludGVyZmFjZXMiCj4+PiAgICAg
-ICAgZGVmYXVsdCBuCj4+PiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9kbWEtYnVmL2RtYS1idWYuYyBi
-L2RyaXZlcnMvZG1hLWJ1Zi9kbWEtYnVmLmMKPj4+IGluZGV4IDFjOWJkNTFkYjExMC4uNmU0NzI1
-ZjdkZmRlIDEwMDY0NAo+Pj4gLS0tIGEvZHJpdmVycy9kbWEtYnVmL2RtYS1idWYuYwo+Pj4gKysr
-IGIvZHJpdmVycy9kbWEtYnVmL2RtYS1idWYuYwo+Pj4gQEAgLTY2Niw2ICs2NjYsMzAgQEAgdm9p
-ZCBkbWFfYnVmX3B1dChzdHJ1Y3QgZG1hX2J1ZiAqZG1hYnVmKQo+Pj4gICAgfQo+Pj4gICAgRVhQ
-T1JUX1NZTUJPTF9HUEwoZG1hX2J1Zl9wdXQpOwo+Pj4KPj4+ICtzdGF0aWMgc3RydWN0IHNnX3Rh
-YmxlICogX19tYXBfZG1hX2J1ZihzdHJ1Y3QgZG1hX2J1Zl9hdHRhY2htZW50ICphdHRhY2gsCj4+
-PiArICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgZW51bSBkbWFfZGF0YV9kaXJl
-Y3Rpb24gZGlyZWN0aW9uKQo+Pj4gK3sKPj4+ICsgICAgIHN0cnVjdCBzZ190YWJsZSAqc2dfdGFi
-bGU7Cj4+PiArCj4+PiArICAgICBzZ190YWJsZSA9IGF0dGFjaC0+ZG1hYnVmLT5vcHMtPm1hcF9k
-bWFfYnVmKGF0dGFjaCwgZGlyZWN0aW9uKTsKPj4+ICsKPj4+ICsjaWYgQ09ORklHX0RNQUJVRl9E
-RUJVRwo+Pj4gKyAgICAgaWYgKHNnX3RhYmxlKSB7Cj4+PiArICAgICAgICAgICAgIGludCBpOwo+
-Pj4gKyAgICAgICAgICAgICBzdHJ1Y3Qgc2NhdHRlcmxpc3QgKnNnOwo+Pj4gKwo+Pj4gKyAgICAg
-ICAgICAgICAvKiBUbyBjYXRjaCBhYnVzZSBvZiB0aGUgdW5kZXJseWluZyBzdHJ1Y3QgcGFnZSBi
-eSBpbXBvcnRlcnMgbWl4Cj4+PiArICAgICAgICAgICAgICAqIHVwIHRoZSBiaXRzLCBidXQgdGFr
-ZSBjYXJlIHRvIHByZXNlcnZlIHRoZSBsb3cgU0dfIGJpdHMgdG8KPj4+ICsgICAgICAgICAgICAg
-ICogbm90IGNvcnJ1cHQgdGhlIHNndC4gVGhlIG1peGluZyBpcyB1bmRvbmUgaW4gX191bm1hcF9k
-bWFfYnVmCj4+PiArICAgICAgICAgICAgICAqIGJlZm9yZSBwYXNzaW5nIHRoZSBzZ3QgYmFjayB0
-byB0aGUgZXhwb3J0ZXIuICovCj4+PiArICAgICAgICAgICAgIGZvcl9lYWNoX3NndGFibGVfc2co
-c2dfdGFibGUsIHNnLCBpKQo+Pj4gKyAgICAgICAgICAgICAgICAgICAgIHNnLT5wYWdlX2xpbmsg
-Xj0gfjB4ZmZVTDsKPj4+ICsgICAgIH0KPj4+ICsjZW5kaWYKPj4+ICsKPj4+ICsgICAgIHJldHVy
-biBzZ190YWJsZTsKPj4+ICt9Cj4+PiArCj4+PiAgICAvKioKPj4+ICAgICAqIGRtYV9idWZfZHlu
-YW1pY19hdHRhY2ggLSBBZGQgdGhlIGRldmljZSB0byBkbWFfYnVmJ3MgYXR0YWNobWVudHMgbGlz
-dAo+Pj4gICAgICogQGRtYWJ1ZjogICAgICAgICBbaW5dICAgIGJ1ZmZlciB0byBhdHRhY2ggZGV2
-aWNlIHRvLgo+Pj4gQEAgLTczNyw3ICs3NjEsNyBAQCBkbWFfYnVmX2R5bmFtaWNfYXR0YWNoKHN0
-cnVjdCBkbWFfYnVmICpkbWFidWYsIHN0cnVjdCBkZXZpY2UgKmRldiwKPj4+ICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICBnb3RvIGVycl91bmxvY2s7Cj4+PiAgICAgICAgICAgICAgICB9
-Cj4+Pgo+Pj4gLSAgICAgICAgICAgICBzZ3QgPSBkbWFidWYtPm9wcy0+bWFwX2RtYV9idWYoYXR0
-YWNoLCBETUFfQklESVJFQ1RJT05BTCk7Cj4+PiArICAgICAgICAgICAgIHNndCA9IF9fbWFwX2Rt
-YV9idWYoYXR0YWNoLCBETUFfQklESVJFQ1RJT05BTCk7Cj4+PiAgICAgICAgICAgICAgICBpZiAo
-IXNndCkKPj4+ICAgICAgICAgICAgICAgICAgICAgICAgc2d0ID0gRVJSX1BUUigtRU5PTUVNKTsK
-Pj4+ICAgICAgICAgICAgICAgIGlmIChJU19FUlIoc2d0KSkgewo+Pj4gQEAgLTc4NCw2ICs4MDgs
-MjMgQEAgc3RydWN0IGRtYV9idWZfYXR0YWNobWVudCAqZG1hX2J1Zl9hdHRhY2goc3RydWN0IGRt
-YV9idWYgKmRtYWJ1ZiwKPj4+ICAgIH0KPj4+ICAgIEVYUE9SVF9TWU1CT0xfR1BMKGRtYV9idWZf
-YXR0YWNoKTsKPj4+Cj4+PiArc3RhdGljIHZvaWQgX191bm1hcF9kbWFfYnVmKHN0cnVjdCBkbWFf
-YnVmX2F0dGFjaG1lbnQgKmF0dGFjaCwKPj4+ICsgICAgICAgICAgICAgICAgICAgICAgICAgc3Ry
-dWN0IHNnX3RhYmxlICpzZ190YWJsZSwKPj4+ICsgICAgICAgICAgICAgICAgICAgICAgICAgZW51
-bSBkbWFfZGF0YV9kaXJlY3Rpb24gZGlyZWN0aW9uKQo+Pj4gK3sKPj4+ICsKPj4+ICsjaWYgQ09O
-RklHX0RNQUJVRl9ERUJVRwo+Pj4gKyAgICAgaWYgKHNnX3RhYmxlKSB7Cj4+PiArICAgICAgICAg
-ICAgIGludCBpOwo+Pj4gKyAgICAgICAgICAgICBzdHJ1Y3Qgc2NhdHRlcmxpc3QgKnNnOwo+Pj4g
-Kwo+Pj4gKyAgICAgICAgICAgICBmb3JfZWFjaF9zZ3RhYmxlX3NnKHNnX3RhYmxlLCBzZywgaSkK
-Pj4+ICsgICAgICAgICAgICAgICAgICAgICBzZy0+cGFnZV9saW5rIF49IH4weGZmVUw7Cj4+PiAr
-ICAgICB9Cj4+PiArI2VuZGlmCj4+IEluc3RlYWQgb2YgZHVwbGljYXRpbmcgdGhpcyBJIHdvdWxk
-IHJhdGhlciBzdHJ1Y3R1cmUgdGhlIGNvZGUgc28gdGhhdCB3ZQo+PiBoYXZlIGEgaGVscGVyIHRv
-IG1hbmdsZSB0aGUgc2d0IHdoZW4gbmVjZXNzYXJ5Lgo+Pgo+PiBUaGlzIGNhbiB0aGVuIGJlIGNh
-bGxlZCBmcm9tIGJvdGggdGhlIG1hcCgpIGFzIHdlbGwgYXMgdGhlIHVubWFwKCkgcGF0aC4KPiBX
-ZWxsIHRoYXQncyB3aHkgZXh0cmFjdGVkIHRoZSBoZWxwZXIgZnVuY3Rpb25zIChpdCB3b3VsZCBi
-ZSA0IGNvcGllcwo+IG90aGVyd2lzZSkuIEl0J3MgdHJ1ZSB0aGF0IGl0J3Mgc3RpbGwgMnggdGhl
-IHNhbWUgb3BlcmF0aW9uLCBidXQKPiBjb25jZXB0dWFsbHkgb25lIG9mIHRoZW0gbWFuZ2xlcywg
-dGhlIG90aGVyIHVubWFuZ2xlcyB0aGUgcG9pbnRlcnMuCj4gSXQncyBqdXN0IHRoYXQgd2l0aCBY
-T1IgbWFuZ2xpbmcsIHRoYXQncyBib3RoIHRoZSBzYW1lIGNvZGUuCj4gUmVhZGFiaWxpdHkgZmVl
-bHMgYmV0dGVyIHRoYXQgd2F5IHRvIG1lLCBidXQgSSBndWVzcyBJIGNhbiBkbyBhbm90aGVyCj4g
-dGlueSBoZWxwZXIgZnVuY3Rpb24gZXh0cmFjdGlvbiBpZiB5b3UgaW5zaXN0PwoKSSB0aGluayBp
-dCB3b3VsZCBiZSBiZXR0ZXIgdG8gaGF2ZSBvbmx5IG9uZS4KCkFuZCBJIGluc2lzdCB0aGF0IHRo
-ZSBtYW5nbGUgdmFsdWUgaXMgb25seSBvbmNlIHNvbWV3aGVyZSwgZWl0aGVyIHVzZSAKanVzdCBv
-bmUgZnVuY3Rpb24gb3IgYSBkZWZpbmUvY29uc3RhbnQuCgpDaHJpc3RpYW4uCgo+IC1EYW5pZWwK
-Pgo+PiBBcGFydCBmcm9tIHRoYXQgbG9va3MgZ29vZCB0byBtZSwKPj4gQ2hyaXN0aWFuLgo+Pgo+
-Pj4gKyAgICAgYXR0YWNoLT5kbWFidWYtPm9wcy0+dW5tYXBfZG1hX2J1ZihhdHRhY2gsIHNnX3Rh
-YmxlLCBkaXJlY3Rpb24pOwo+Pj4gK30KPj4+ICsKPj4+ICAgIC8qKgo+Pj4gICAgICogZG1hX2J1
-Zl9kZXRhY2ggLSBSZW1vdmUgdGhlIGdpdmVuIGF0dGFjaG1lbnQgZnJvbSBkbWFidWYncyBhdHRh
-Y2htZW50cyBsaXN0Cj4+PiAgICAgKiBAZG1hYnVmOiBbaW5dICAgIGJ1ZmZlciB0byBkZXRhY2gg
-ZnJvbS4KPj4+IEBAIC04MDIsNyArODQzLDcgQEAgdm9pZCBkbWFfYnVmX2RldGFjaChzdHJ1Y3Qg
-ZG1hX2J1ZiAqZG1hYnVmLCBzdHJ1Y3QgZG1hX2J1Zl9hdHRhY2htZW50ICphdHRhY2gpCj4+PiAg
-ICAgICAgICAgICAgICBpZiAoZG1hX2J1Zl9pc19keW5hbWljKGF0dGFjaC0+ZG1hYnVmKSkKPj4+
-ICAgICAgICAgICAgICAgICAgICAgICAgZG1hX3Jlc3ZfbG9jayhhdHRhY2gtPmRtYWJ1Zi0+cmVz
-diwgTlVMTCk7Cj4+Pgo+Pj4gLSAgICAgICAgICAgICBkbWFidWYtPm9wcy0+dW5tYXBfZG1hX2J1
-ZihhdHRhY2gsIGF0dGFjaC0+c2d0LCBhdHRhY2gtPmRpcik7Cj4+PiArICAgICAgICAgICAgIF9f
-dW5tYXBfZG1hX2J1ZihhdHRhY2gsIGF0dGFjaC0+c2d0LCBhdHRhY2gtPmRpcik7Cj4+Pgo+Pj4g
-ICAgICAgICAgICAgICAgaWYgKGRtYV9idWZfaXNfZHluYW1pYyhhdHRhY2gtPmRtYWJ1ZikpIHsK
-Pj4+ICAgICAgICAgICAgICAgICAgICAgICAgZG1hX2J1Zl91bnBpbihhdHRhY2gpOwo+Pj4gQEAg
-LTkyNCw3ICs5NjUsNyBAQCBzdHJ1Y3Qgc2dfdGFibGUgKmRtYV9idWZfbWFwX2F0dGFjaG1lbnQo
-c3RydWN0IGRtYV9idWZfYXR0YWNobWVudCAqYXR0YWNoLAo+Pj4gICAgICAgICAgICAgICAgfQo+
-Pj4gICAgICAgIH0KPj4+Cj4+PiAtICAgICBzZ190YWJsZSA9IGF0dGFjaC0+ZG1hYnVmLT5vcHMt
-Pm1hcF9kbWFfYnVmKGF0dGFjaCwgZGlyZWN0aW9uKTsKPj4+ICsgICAgIHNnX3RhYmxlID0gX19t
-YXBfZG1hX2J1ZihhdHRhY2gsIGRpcmVjdGlvbik7Cj4+PiAgICAgICAgaWYgKCFzZ190YWJsZSkK
-Pj4+ICAgICAgICAgICAgICAgIHNnX3RhYmxlID0gRVJSX1BUUigtRU5PTUVNKTsKPj4+Cj4+PiBA
-QCAtOTg3LDcgKzEwMjgsNyBAQCB2b2lkIGRtYV9idWZfdW5tYXBfYXR0YWNobWVudChzdHJ1Y3Qg
-ZG1hX2J1Zl9hdHRhY2htZW50ICphdHRhY2gsCj4+PiAgICAgICAgaWYgKGRtYV9idWZfaXNfZHlu
-YW1pYyhhdHRhY2gtPmRtYWJ1ZikpCj4+PiAgICAgICAgICAgICAgICBkbWFfcmVzdl9hc3NlcnRf
-aGVsZChhdHRhY2gtPmRtYWJ1Zi0+cmVzdik7Cj4+Pgo+Pj4gLSAgICAgYXR0YWNoLT5kbWFidWYt
-Pm9wcy0+dW5tYXBfZG1hX2J1ZihhdHRhY2gsIHNnX3RhYmxlLCBkaXJlY3Rpb24pOwo+Pj4gKyAg
-ICAgX191bm1hcF9kbWFfYnVmKGF0dGFjaCwgc2dfdGFibGUsIGRpcmVjdGlvbik7Cj4+Pgo+Pj4g
-ICAgICAgIGlmIChkbWFfYnVmX2lzX2R5bmFtaWMoYXR0YWNoLT5kbWFidWYpICYmCj4+PiAgICAg
-ICAgICAgICFJU19FTkFCTEVEKENPTkZJR19ETUFCVUZfTU9WRV9OT1RJRlkpKQo+Pj4gZGlmZiAt
-LWdpdCBhL2luY2x1ZGUvbGludXgvZG1hLWJ1Zi5oIGIvaW5jbHVkZS9saW51eC9kbWEtYnVmLmgK
-Pj4+IGluZGV4IDYyODY4MWJmNmM5OS4uZWZkYzU2YjlkOTVmIDEwMDY0NAo+Pj4gLS0tIGEvaW5j
-bHVkZS9saW51eC9kbWEtYnVmLmgKPj4+ICsrKyBiL2luY2x1ZGUvbGludXgvZG1hLWJ1Zi5oCj4+
-PiBAQCAtMTU0LDYgKzE1NCwxMiBAQCBzdHJ1Y3QgZG1hX2J1Zl9vcHMgewo+Pj4gICAgICAgICAq
-IE9uIGZhaWx1cmUsIHJldHVybnMgYSBuZWdhdGl2ZSBlcnJvciB2YWx1ZSB3cmFwcGVkIGludG8g
-YSBwb2ludGVyLgo+Pj4gICAgICAgICAqIE1heSBhbHNvIHJldHVybiAtRUlOVFIgd2hlbiBhIHNp
-Z25hbCB3YXMgcmVjZWl2ZWQgd2hpbGUgYmVpbmcKPj4+ICAgICAgICAgKiBibG9ja2VkLgo+Pj4g
-KyAgICAgICoKPj4+ICsgICAgICAqIE5vdGUgdGhhdCBleHBvcnRlcnMgc2hvdWxkIG5vdCB0cnkg
-dG8gY2FjaGUgdGhlIHNjYXR0ZXIgbGlzdCwgb3IKPj4+ICsgICAgICAqIHJldHVybiB0aGUgc2Ft
-ZSBvbmUgZm9yIG11bHRpcGxlIGNhbGxzLiBDYWNoaW5nIGlzIGRvbmUgZWl0aGVyIGJ5IHRoZQo+
-Pj4gKyAgICAgICogRE1BLUJVRiBjb2RlIChmb3Igbm9uLWR5bmFtaWMgaW1wb3J0ZXJzKSBvciB0
-aGUgaW1wb3J0ZXIuIE93bmVyc2hpcAo+Pj4gKyAgICAgICogb2YgdGhlIHNjYXR0ZXIgbGlzdCBp
-cyB0cmFuc2ZlcnJlZCB0byB0aGUgY2FsbGVyLCBhbmQgcmV0dXJuZWQgYnkKPj4+ICsgICAgICAq
-IEB1bm1hcF9kbWFfYnVmLgo+Pj4gICAgICAgICAqLwo+Pj4gICAgICAgIHN0cnVjdCBzZ190YWJs
-ZSAqICgqbWFwX2RtYV9idWYpKHN0cnVjdCBkbWFfYnVmX2F0dGFjaG1lbnQgKiwKPj4+ICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBlbnVtIGRtYV9kYXRhX2RpcmVjdGlv
-bik7Cj4KCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCklu
-dGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRw
-czovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
+On Thu, 14 Jan 2021, Lyude Paul <lyude@redhat.com> wrote:
+> Currently, every different type of backlight hook that i915 supports is
+> pretty straight forward - you have a backlight, probably through PWM
+> (but maybe DPCD), with a single set of platform-specific hooks that are
+> used for controlling it.
+>
+> HDR backlights, in particular VESA and Intel's HDR backlight
+> implementations, can end up being more complicated. With Intel's
+> proprietary interface, HDR backlight controls always run through the
+> DPCD. When the backlight is in SDR backlight mode however, the driver
+> may need to bypass the TCON and control the backlight directly through
+> PWM.
+>
+> So, in order to support this we'll need to split our backlight callbacks
+> into two groups: a set of high-level backlight control callbacks in
+> intel_panel, and an additional set of pwm-specific backlight control
+> callbacks. This also implies a functional changes for how these
+> callbacks are used:
+>
+> * We now keep track of two separate backlight level ranges, one for the
+>   high-level backlight, and one for the pwm backlight range
+> * We also keep track of backlight enablement and PWM backlight
+>   enablement separately
+> * Since the currently set backlight level might not be the same as the
+>   currently programmed PWM backlight level, we stop setting
+>   panel->backlight.level with the currently programmed PWM backlight
+>   level in panel->backlight.pwm_funcs->setup(). Instead, we rely
+>   on the higher level backlight control functions to retrieve the
+>   current PWM backlight level (in this case, intel_pwm_get_backlight()).
+>   Note that there are still a few PWM backlight setup callbacks that
+>   do actually need to retrieve the current PWM backlight level, although
+>   we no longer save this value in panel->backlight.level like before.
+>
+> Additionally, we drop the call to lpt_get_backlight() in
+> lpt_setup_backlight(), and avoid unconditionally writing the PWM value that
+> we get from it and only write it back if we're in CPU mode, and switching
+> to PCH mode. The reason for this is because in the original codepath for
+> this, it was expected that the intel_panel_bl_funcs->setup() hook would be
+> responsible for fetching the initial backlight level. On lpt systems, the
+> only time we could ever be in PCH backlight mode is during the initial
+> driver load - meaning that outside of the setup() hook, lpt_get_backlight()
+> will always be the callback used for retrieving the current backlight
+> level. After this patch we still need to fetch and write-back the PCH
+> backlight value if we're switching from CPU mode to PCH, but because
+> intel_pwm_setup_backlight() will retrieve the backlight level after setup()
+> using the get() hook, which always ends up being lpt_get_backlight(). Thus
+> - an additional call to lpt_get_backlight() in lpt_setup_backlight() is
+> made redundant.
+>
+> v8:
+> * Go back to getting initial brightness level with
+>   intel_pwm_get_backlight(), the other fix we had was definitely wrong.
+> v7:
+> * Use panel->backlight.pwm_funcs->get() to get the backlight level in
+>   intel_pwm_setup_backlight(), lest we upset lockdep
+> * Rebase
+> * Rename intel_panel_sanitize_pwm_level() to intel_panel_invert_pwm_level()
+> v6:
+> * Make sure to grab connection_mutex before calling
+>   intel_pwm_get_backlight() in intel_pwm_setup_backlight()
+> v5:
+> * Fix indenting warnings from checkpatch
+> v4:
+> * Fix commit message
+> * Remove outdated comment in intel_panel.c
+> * Rename pwm_(min|max) to pwm_level_(min|max)
+> * Use intel_pwm_get_backlight() in intel_pwm_setup_backlight() instead of
+>   indirection
+> * Don't move intel_dp_aux_init_bcklight_funcs() call to bottom of
+>   intel_panel_init_backlight_funcs() quite yet
+> v3:
+> * Reuse intel_panel_bl_funcs() for pwm_funcs
+> * Explain why we drop lpt_get_backlight()
+>
+> Signed-off-by: Lyude Paul <lyude@redhat.com>
+> Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+> Cc: thaytan@noraisin.net
+> Cc: Vasily Khoruzhick <anarsoul@gmail.com>
+>
+> squash! drm/i915: Keep track of pwm-related backlight hooks separately
+>
+> Signed-off-by: Lyude Paul <lyude@redhat.com>
+> ---
+>  .../drm/i915/display/intel_display_types.h    |   4 +
+>  drivers/gpu/drm/i915/display/intel_panel.c    | 331 ++++++++++--------
+>  2 files changed, 188 insertions(+), 147 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
+> index b1f4ec144207..ee23cc1518df 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+> @@ -252,6 +252,9 @@ struct intel_panel {
+>  		bool alternate_pwm_increment;	/* lpt+ */
+>  
+>  		/* PWM chip */
+> +		u32 pwm_level_min;
+> +		u32 pwm_level_max;
+> +		bool pwm_enabled;
+>  		bool util_pin_active_low;	/* bxt+ */
+>  		u8 controller;		/* bxt+ only */
+>  		struct pwm_device *pwm;
+> @@ -263,6 +266,7 @@ struct intel_panel {
+>  		struct backlight_device *device;
+>  
+>  		const struct intel_panel_bl_funcs *funcs;
+> +		const struct intel_panel_bl_funcs *pwm_funcs;
+>  		void (*power)(struct intel_connector *, bool enable);
+>  	} backlight;
+>  };
+> diff --git a/drivers/gpu/drm/i915/display/intel_panel.c b/drivers/gpu/drm/i915/display/intel_panel.c
+> index 7587aaefc7a0..cc2386ef6219 100644
+> --- a/drivers/gpu/drm/i915/display/intel_panel.c
+> +++ b/drivers/gpu/drm/i915/display/intel_panel.c
+> @@ -511,25 +511,34 @@ static u32 scale_hw_to_user(struct intel_connector *connector,
+>  		     0, user_max);
+>  }
+>  
+> -static u32 intel_panel_compute_brightness(struct intel_connector *connector,
+> -					  u32 val)
+> +static u32 intel_panel_invert_pwm_level(struct intel_connector *connector, u32 val)
+>  {
+>  	struct drm_i915_private *dev_priv = to_i915(connector->base.dev);
+>  	struct intel_panel *panel = &connector->panel;
+>  
+> -	drm_WARN_ON(&dev_priv->drm, panel->backlight.max == 0);
+> +	drm_WARN_ON(&dev_priv->drm, panel->backlight.pwm_level_max == 0);
+>  
+>  	if (dev_priv->params.invert_brightness < 0)
+>  		return val;
+>  
+>  	if (dev_priv->params.invert_brightness > 0 ||
+>  	    dev_priv->quirks & QUIRK_INVERT_BRIGHTNESS) {
+> -		return panel->backlight.max - val + panel->backlight.min;
+> +		return panel->backlight.pwm_level_max - val + panel->backlight.pwm_level_min;
+>  	}
+>  
+>  	return val;
+>  }
+>  
+> +void intel_panel_set_pwm_level(const struct drm_connector_state *conn_state, u32 val)
+> +{
+> +	struct intel_connector *connector = to_intel_connector(conn_state->connector);
+> +	struct drm_i915_private *i915 = to_i915(connector->base.dev);
+> +	struct intel_panel *panel = &connector->panel;
+> +
+> +	drm_dbg_kms(&i915->drm, "set backlight PWM = %d\n", val);
+> +	panel->backlight.pwm_funcs->set(conn_state, val);
+> +}
+> +
+>  static u32 lpt_get_backlight(struct intel_connector *connector, enum pipe unused)
+>  {
+>  	struct drm_i915_private *dev_priv = to_i915(connector->base.dev);
+> @@ -618,12 +627,12 @@ static void i9xx_set_backlight(const struct drm_connector_state *conn_state, u32
+>  	struct intel_panel *panel = &connector->panel;
+>  	u32 tmp, mask;
+>  
+> -	drm_WARN_ON(&dev_priv->drm, panel->backlight.max == 0);
+> +	drm_WARN_ON(&dev_priv->drm, panel->backlight.pwm_level_max == 0);
+>  
+>  	if (panel->backlight.combination_mode) {
+>  		u8 lbpc;
+>  
+> -		lbpc = level * 0xfe / panel->backlight.max + 1;
+> +		lbpc = level * 0xfe / panel->backlight.pwm_level_max + 1;
+>  		level /= lbpc;
+>  		pci_write_config_byte(dev_priv->drm.pdev, LBPC, lbpc);
+>  	}
+> @@ -675,9 +684,8 @@ intel_panel_actually_set_backlight(const struct drm_connector_state *conn_state,
+>  	struct drm_i915_private *i915 = to_i915(connector->base.dev);
+>  	struct intel_panel *panel = &connector->panel;
+>  
+> -	drm_dbg_kms(&i915->drm, "set backlight PWM = %d\n", level);
+> +	drm_dbg_kms(&i915->drm, "set backlight level = %d\n", level);
+>  
+> -	level = intel_panel_compute_brightness(connector, level);
+>  	panel->backlight.funcs->set(conn_state, level);
+>  }
+>  
+> @@ -726,7 +734,7 @@ static void lpt_disable_backlight(const struct drm_connector_state *old_conn_sta
+>  	struct drm_i915_private *dev_priv = to_i915(connector->base.dev);
+>  	u32 tmp;
+>  
+> -	intel_panel_actually_set_backlight(old_conn_state, level);
+> +	intel_panel_set_pwm_level(old_conn_state, level);
+>  
+>  	/*
+>  	 * Although we don't support or enable CPU PWM with LPT/SPT based
+> @@ -754,7 +762,7 @@ static void pch_disable_backlight(const struct drm_connector_state *old_conn_sta
+>  	struct drm_i915_private *dev_priv = to_i915(connector->base.dev);
+>  	u32 tmp;
+>  
+> -	intel_panel_actually_set_backlight(old_conn_state, val);
+> +	intel_panel_set_pwm_level(old_conn_state, val);
+>  
+>  	tmp = intel_de_read(dev_priv, BLC_PWM_CPU_CTL2);
+>  	intel_de_write(dev_priv, BLC_PWM_CPU_CTL2, tmp & ~BLM_PWM_ENABLE);
+> @@ -765,7 +773,7 @@ static void pch_disable_backlight(const struct drm_connector_state *old_conn_sta
+>  
+>  static void i9xx_disable_backlight(const struct drm_connector_state *old_conn_state, u32 val)
+>  {
+> -	intel_panel_actually_set_backlight(old_conn_state, val);
+> +	intel_panel_set_pwm_level(old_conn_state, val);
+>  }
+>  
+>  static void i965_disable_backlight(const struct drm_connector_state *old_conn_state, u32 val)
+> @@ -773,7 +781,7 @@ static void i965_disable_backlight(const struct drm_connector_state *old_conn_st
+>  	struct drm_i915_private *dev_priv = to_i915(old_conn_state->connector->dev);
+>  	u32 tmp;
+>  
+> -	intel_panel_actually_set_backlight(old_conn_state, val);
+> +	intel_panel_set_pwm_level(old_conn_state, val);
+>  
+>  	tmp = intel_de_read(dev_priv, BLC_PWM_CTL2);
+>  	intel_de_write(dev_priv, BLC_PWM_CTL2, tmp & ~BLM_PWM_ENABLE);
+> @@ -786,7 +794,7 @@ static void vlv_disable_backlight(const struct drm_connector_state *old_conn_sta
+>  	enum pipe pipe = to_intel_crtc(old_conn_state->crtc)->pipe;
+>  	u32 tmp;
+>  
+> -	intel_panel_actually_set_backlight(old_conn_state, val);
+> +	intel_panel_set_pwm_level(old_conn_state, val);
+>  
+>  	tmp = intel_de_read(dev_priv, VLV_BLC_PWM_CTL2(pipe));
+>  	intel_de_write(dev_priv, VLV_BLC_PWM_CTL2(pipe),
+> @@ -800,7 +808,7 @@ static void bxt_disable_backlight(const struct drm_connector_state *old_conn_sta
+>  	struct intel_panel *panel = &connector->panel;
+>  	u32 tmp;
+>  
+> -	intel_panel_actually_set_backlight(old_conn_state, val);
+> +	intel_panel_set_pwm_level(old_conn_state, val);
+>  
+>  	tmp = intel_de_read(dev_priv,
+>  			    BXT_BLC_PWM_CTL(panel->backlight.controller));
+> @@ -821,7 +829,7 @@ static void cnp_disable_backlight(const struct drm_connector_state *old_conn_sta
+>  	struct intel_panel *panel = &connector->panel;
+>  	u32 tmp;
+>  
+> -	intel_panel_actually_set_backlight(old_conn_state, val);
+> +	intel_panel_set_pwm_level(old_conn_state, val);
+>  
+>  	tmp = intel_de_read(dev_priv,
+>  			    BXT_BLC_PWM_CTL(panel->backlight.controller));
+> @@ -900,7 +908,7 @@ static void lpt_enable_backlight(const struct intel_crtc_state *crtc_state,
+>  		intel_de_write(dev_priv, SOUTH_CHICKEN1, schicken);
+>  	}
+>  
+> -	pch_ctl2 = panel->backlight.max << 16;
+> +	pch_ctl2 = panel->backlight.pwm_level_max << 16;
+>  	intel_de_write(dev_priv, BLC_PWM_PCH_CTL2, pch_ctl2);
+>  
+>  	pch_ctl1 = 0;
+> @@ -917,7 +925,7 @@ static void lpt_enable_backlight(const struct intel_crtc_state *crtc_state,
+>  		       pch_ctl1 | BLM_PCH_PWM_ENABLE);
+>  
+>  	/* This won't stick until the above enable. */
+> -	intel_panel_actually_set_backlight(conn_state, level);
+> +	intel_panel_set_pwm_level(conn_state, level);
+>  }
+>  
+>  static void pch_enable_backlight(const struct intel_crtc_state *crtc_state,
+> @@ -952,9 +960,9 @@ static void pch_enable_backlight(const struct intel_crtc_state *crtc_state,
+>  	intel_de_write(dev_priv, BLC_PWM_CPU_CTL2, cpu_ctl2 | BLM_PWM_ENABLE);
+>  
+>  	/* This won't stick until the above enable. */
+> -	intel_panel_actually_set_backlight(conn_state, level);
+> +	intel_panel_set_pwm_level(conn_state, level);
+>  
+> -	pch_ctl2 = panel->backlight.max << 16;
+> +	pch_ctl2 = panel->backlight.pwm_level_max << 16;
+>  	intel_de_write(dev_priv, BLC_PWM_PCH_CTL2, pch_ctl2);
+>  
+>  	pch_ctl1 = 0;
+> @@ -981,7 +989,7 @@ static void i9xx_enable_backlight(const struct intel_crtc_state *crtc_state,
+>  		intel_de_write(dev_priv, BLC_PWM_CTL, 0);
+>  	}
+>  
+> -	freq = panel->backlight.max;
+> +	freq = panel->backlight.pwm_level_max;
+>  	if (panel->backlight.combination_mode)
+>  		freq /= 0xff;
+>  
+> @@ -995,7 +1003,7 @@ static void i9xx_enable_backlight(const struct intel_crtc_state *crtc_state,
+>  	intel_de_posting_read(dev_priv, BLC_PWM_CTL);
+>  
+>  	/* XXX: combine this into above write? */
+> -	intel_panel_actually_set_backlight(conn_state, level);
+> +	intel_panel_set_pwm_level(conn_state, level);
+>  
+>  	/*
+>  	 * Needed to enable backlight on some 855gm models. BLC_HIST_CTL is
+> @@ -1022,7 +1030,7 @@ static void i965_enable_backlight(const struct intel_crtc_state *crtc_state,
+>  		intel_de_write(dev_priv, BLC_PWM_CTL2, ctl2);
+>  	}
+>  
+> -	freq = panel->backlight.max;
+> +	freq = panel->backlight.pwm_level_max;
+>  	if (panel->backlight.combination_mode)
+>  		freq /= 0xff;
+>  
+> @@ -1038,7 +1046,7 @@ static void i965_enable_backlight(const struct intel_crtc_state *crtc_state,
+>  	intel_de_posting_read(dev_priv, BLC_PWM_CTL2);
+>  	intel_de_write(dev_priv, BLC_PWM_CTL2, ctl2 | BLM_PWM_ENABLE);
+>  
+> -	intel_panel_actually_set_backlight(conn_state, level);
+> +	intel_panel_set_pwm_level(conn_state, level);
+>  }
+>  
+>  static void vlv_enable_backlight(const struct intel_crtc_state *crtc_state,
+> @@ -1057,11 +1065,11 @@ static void vlv_enable_backlight(const struct intel_crtc_state *crtc_state,
+>  		intel_de_write(dev_priv, VLV_BLC_PWM_CTL2(pipe), ctl2);
+>  	}
+>  
+> -	ctl = panel->backlight.max << 16;
+> +	ctl = panel->backlight.pwm_level_max << 16;
+>  	intel_de_write(dev_priv, VLV_BLC_PWM_CTL(pipe), ctl);
+>  
+>  	/* XXX: combine this into above write? */
+> -	intel_panel_actually_set_backlight(conn_state, level);
+> +	intel_panel_set_pwm_level(conn_state, level);
+>  
+>  	ctl2 = 0;
+>  	if (panel->backlight.active_low_pwm)
+> @@ -1110,9 +1118,9 @@ static void bxt_enable_backlight(const struct intel_crtc_state *crtc_state,
+>  
+>  	intel_de_write(dev_priv,
+>  		       BXT_BLC_PWM_FREQ(panel->backlight.controller),
+> -		       panel->backlight.max);
+> +		       panel->backlight.pwm_level_max);
+>  
+> -	intel_panel_actually_set_backlight(conn_state, level);
+> +	intel_panel_set_pwm_level(conn_state, level);
+>  
+>  	pwm_ctl = 0;
+>  	if (panel->backlight.active_low_pwm)
+> @@ -1146,9 +1154,9 @@ static void cnp_enable_backlight(const struct intel_crtc_state *crtc_state,
+>  
+>  	intel_de_write(dev_priv,
+>  		       BXT_BLC_PWM_FREQ(panel->backlight.controller),
+> -		       panel->backlight.max);
+> +		       panel->backlight.pwm_level_max);
+>  
+> -	intel_panel_actually_set_backlight(conn_state, level);
+> +	intel_panel_set_pwm_level(conn_state, level);
+>  
+>  	pwm_ctl = 0;
+>  	if (panel->backlight.active_low_pwm)
+> @@ -1168,7 +1176,6 @@ static void ext_pwm_enable_backlight(const struct intel_crtc_state *crtc_state,
+>  	struct intel_connector *connector = to_intel_connector(conn_state->connector);
+>  	struct intel_panel *panel = &connector->panel;
+>  
+> -	level = intel_panel_compute_brightness(connector, level);
+>  	pwm_set_relative_duty_cycle(&panel->backlight.pwm_state, level, 100);
+>  	panel->backlight.pwm_state.enabled = true;
+>  	pwm_apply_state(panel->backlight.pwm, &panel->backlight.pwm_state);
+> @@ -1226,10 +1233,8 @@ static u32 intel_panel_get_backlight(struct intel_connector *connector)
+>  
+>  	mutex_lock(&dev_priv->backlight_lock);
+>  
+> -	if (panel->backlight.enabled) {
+> +	if (panel->backlight.enabled)
+>  		val = panel->backlight.funcs->get(connector, intel_connector_get_pipe(connector));
+> -		val = intel_panel_compute_brightness(connector, val);
+> -	}
+>  
+>  	mutex_unlock(&dev_priv->backlight_lock);
+>  
+> @@ -1560,13 +1565,13 @@ static u32 get_backlight_max_vbt(struct intel_connector *connector)
+>  	u16 pwm_freq_hz = get_vbt_pwm_freq(dev_priv);
+>  	u32 pwm;
+>  
+> -	if (!panel->backlight.funcs->hz_to_pwm) {
+> +	if (!panel->backlight.pwm_funcs->hz_to_pwm) {
+>  		drm_dbg_kms(&dev_priv->drm,
+>  			    "backlight frequency conversion not supported\n");
+>  		return 0;
+>  	}
+>  
+> -	pwm = panel->backlight.funcs->hz_to_pwm(connector, pwm_freq_hz);
+> +	pwm = panel->backlight.pwm_funcs->hz_to_pwm(connector, pwm_freq_hz);
+>  	if (!pwm) {
+>  		drm_dbg_kms(&dev_priv->drm,
+>  			    "backlight frequency conversion failed\n");
+> @@ -1585,7 +1590,7 @@ static u32 get_backlight_min_vbt(struct intel_connector *connector)
+>  	struct intel_panel *panel = &connector->panel;
+>  	int min;
+>  
+> -	drm_WARN_ON(&dev_priv->drm, panel->backlight.max == 0);
+> +	drm_WARN_ON(&dev_priv->drm, panel->backlight.pwm_level_max == 0);
+>  
+>  	/*
+>  	 * XXX: If the vbt value is 255, it makes min equal to max, which leads
+> @@ -1602,7 +1607,7 @@ static u32 get_backlight_min_vbt(struct intel_connector *connector)
+>  	}
+>  
+>  	/* vbt value is a coefficient in range [0..255] */
+> -	return scale(min, 0, 255, 0, panel->backlight.max);
+> +	return scale(min, 0, 255, 0, panel->backlight.pwm_level_max);
+>  }
+>  
+>  static int lpt_setup_backlight(struct intel_connector *connector, enum pipe unused)
+> @@ -1622,29 +1627,28 @@ static int lpt_setup_backlight(struct intel_connector *connector, enum pipe unus
+>  	panel->backlight.active_low_pwm = pch_ctl1 & BLM_PCH_POLARITY;
+>  
+>  	pch_ctl2 = intel_de_read(dev_priv, BLC_PWM_PCH_CTL2);
+> -	panel->backlight.max = pch_ctl2 >> 16;
+> +	panel->backlight.pwm_level_max = pch_ctl2 >> 16;
+>  
+>  	cpu_ctl2 = intel_de_read(dev_priv, BLC_PWM_CPU_CTL2);
+>  
+> -	if (!panel->backlight.max)
+> -		panel->backlight.max = get_backlight_max_vbt(connector);
+> +	if (!panel->backlight.pwm_level_max)
+> +		panel->backlight.pwm_level_max = get_backlight_max_vbt(connector);
+>  
+> -	if (!panel->backlight.max)
+> +	if (!panel->backlight.pwm_level_max)
+>  		return -ENODEV;
+>  
+> -	panel->backlight.min = get_backlight_min_vbt(connector);
+> +	panel->backlight.pwm_level_min = get_backlight_min_vbt(connector);
+>  
+> -	panel->backlight.enabled = pch_ctl1 & BLM_PCH_PWM_ENABLE;
+> +	panel->backlight.pwm_enabled = pch_ctl1 & BLM_PCH_PWM_ENABLE;
+>  
+> -	cpu_mode = panel->backlight.enabled && HAS_PCH_LPT(dev_priv) &&
+> +	cpu_mode = panel->backlight.pwm_enabled && HAS_PCH_LPT(dev_priv) &&
+>  		   !(pch_ctl1 & BLM_PCH_OVERRIDE_ENABLE) &&
+>  		   (cpu_ctl2 & BLM_PWM_ENABLE);
+> -	if (cpu_mode)
+> -		val = pch_get_backlight(connector, unused);
+> -	else
+> -		val = lpt_get_backlight(connector, unused);
+>  
+>  	if (cpu_mode) {
+> +		val = intel_panel_invert_pwm_level(connector,
+> +						   pch_get_backlight(connector, unused));
+> +
+
+I think the above should be just:
+
+		val = pch_get_backlight(connector, unused);
+
+>  		drm_dbg_kms(&dev_priv->drm,
+>  			    "CPU backlight register was enabled, switching to PCH override\n");
+>  
+> @@ -1657,7 +1661,7 @@ static int lpt_setup_backlight(struct intel_connector *connector, enum pipe unus
+>  			       cpu_ctl2 & ~BLM_PWM_ENABLE);
+>  	}
+>  
+
+And all of the below should be removed:
+
+> -	val = intel_panel_compute_brightness(connector, val);
+> +	val = intel_panel_invert_pwm_level(connector, val);
+>  	panel->backlight.level = clamp(val, panel->backlight.min,
+>  				       panel->backlight.max);
+
+With that,
+
+Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+
+
+>  
+> @@ -1668,29 +1672,24 @@ static int pch_setup_backlight(struct intel_connector *connector, enum pipe unus
+>  {
+>  	struct drm_i915_private *dev_priv = to_i915(connector->base.dev);
+>  	struct intel_panel *panel = &connector->panel;
+> -	u32 cpu_ctl2, pch_ctl1, pch_ctl2, val;
+> +	u32 cpu_ctl2, pch_ctl1, pch_ctl2;
+>  
+>  	pch_ctl1 = intel_de_read(dev_priv, BLC_PWM_PCH_CTL1);
+>  	panel->backlight.active_low_pwm = pch_ctl1 & BLM_PCH_POLARITY;
+>  
+>  	pch_ctl2 = intel_de_read(dev_priv, BLC_PWM_PCH_CTL2);
+> -	panel->backlight.max = pch_ctl2 >> 16;
+> +	panel->backlight.pwm_level_max = pch_ctl2 >> 16;
+>  
+> -	if (!panel->backlight.max)
+> -		panel->backlight.max = get_backlight_max_vbt(connector);
+> +	if (!panel->backlight.pwm_level_max)
+> +		panel->backlight.pwm_level_max = get_backlight_max_vbt(connector);
+>  
+> -	if (!panel->backlight.max)
+> +	if (!panel->backlight.pwm_level_max)
+>  		return -ENODEV;
+>  
+> -	panel->backlight.min = get_backlight_min_vbt(connector);
+> -
+> -	val = pch_get_backlight(connector, unused);
+> -	val = intel_panel_compute_brightness(connector, val);
+> -	panel->backlight.level = clamp(val, panel->backlight.min,
+> -				       panel->backlight.max);
+> +	panel->backlight.pwm_level_min = get_backlight_min_vbt(connector);
+>  
+>  	cpu_ctl2 = intel_de_read(dev_priv, BLC_PWM_CPU_CTL2);
+> -	panel->backlight.enabled = (cpu_ctl2 & BLM_PWM_ENABLE) &&
+> +	panel->backlight.pwm_enabled = (cpu_ctl2 & BLM_PWM_ENABLE) &&
+>  		(pch_ctl1 & BLM_PCH_PWM_ENABLE);
+>  
+>  	return 0;
+> @@ -1710,27 +1709,26 @@ static int i9xx_setup_backlight(struct intel_connector *connector, enum pipe unu
+>  	if (IS_PINEVIEW(dev_priv))
+>  		panel->backlight.active_low_pwm = ctl & BLM_POLARITY_PNV;
+>  
+> -	panel->backlight.max = ctl >> 17;
+> +	panel->backlight.pwm_level_max = ctl >> 17;
+>  
+> -	if (!panel->backlight.max) {
+> -		panel->backlight.max = get_backlight_max_vbt(connector);
+> -		panel->backlight.max >>= 1;
+> +	if (!panel->backlight.pwm_level_max) {
+> +		panel->backlight.pwm_level_max = get_backlight_max_vbt(connector);
+> +		panel->backlight.pwm_level_max >>= 1;
+>  	}
+>  
+> -	if (!panel->backlight.max)
+> +	if (!panel->backlight.pwm_level_max)
+>  		return -ENODEV;
+>  
+>  	if (panel->backlight.combination_mode)
+> -		panel->backlight.max *= 0xff;
+> +		panel->backlight.pwm_level_max *= 0xff;
+>  
+> -	panel->backlight.min = get_backlight_min_vbt(connector);
+> +	panel->backlight.pwm_level_min = get_backlight_min_vbt(connector);
+>  
+>  	val = i9xx_get_backlight(connector, unused);
+> -	val = intel_panel_compute_brightness(connector, val);
+> -	panel->backlight.level = clamp(val, panel->backlight.min,
+> -				       panel->backlight.max);
+> +	val = intel_panel_invert_pwm_level(connector, val);
+> +	val = clamp(val, panel->backlight.pwm_level_min, panel->backlight.pwm_level_max);
+>  
+> -	panel->backlight.enabled = val != 0;
+> +	panel->backlight.pwm_enabled = val != 0;
+>  
+>  	return 0;
+>  }
+> @@ -1739,32 +1737,27 @@ static int i965_setup_backlight(struct intel_connector *connector, enum pipe unu
+>  {
+>  	struct drm_i915_private *dev_priv = to_i915(connector->base.dev);
+>  	struct intel_panel *panel = &connector->panel;
+> -	u32 ctl, ctl2, val;
+> +	u32 ctl, ctl2;
+>  
+>  	ctl2 = intel_de_read(dev_priv, BLC_PWM_CTL2);
+>  	panel->backlight.combination_mode = ctl2 & BLM_COMBINATION_MODE;
+>  	panel->backlight.active_low_pwm = ctl2 & BLM_POLARITY_I965;
+>  
+>  	ctl = intel_de_read(dev_priv, BLC_PWM_CTL);
+> -	panel->backlight.max = ctl >> 16;
+> +	panel->backlight.pwm_level_max = ctl >> 16;
+>  
+> -	if (!panel->backlight.max)
+> -		panel->backlight.max = get_backlight_max_vbt(connector);
+> +	if (!panel->backlight.pwm_level_max)
+> +		panel->backlight.pwm_level_max = get_backlight_max_vbt(connector);
+>  
+> -	if (!panel->backlight.max)
+> +	if (!panel->backlight.pwm_level_max)
+>  		return -ENODEV;
+>  
+>  	if (panel->backlight.combination_mode)
+> -		panel->backlight.max *= 0xff;
+> +		panel->backlight.pwm_level_max *= 0xff;
+>  
+> -	panel->backlight.min = get_backlight_min_vbt(connector);
+> +	panel->backlight.pwm_level_min = get_backlight_min_vbt(connector);
+>  
+> -	val = i9xx_get_backlight(connector, unused);
+> -	val = intel_panel_compute_brightness(connector, val);
+> -	panel->backlight.level = clamp(val, panel->backlight.min,
+> -				       panel->backlight.max);
+> -
+> -	panel->backlight.enabled = ctl2 & BLM_PWM_ENABLE;
+> +	panel->backlight.pwm_enabled = ctl2 & BLM_PWM_ENABLE;
+>  
+>  	return 0;
+>  }
+> @@ -1773,7 +1766,7 @@ static int vlv_setup_backlight(struct intel_connector *connector, enum pipe pipe
+>  {
+>  	struct drm_i915_private *dev_priv = to_i915(connector->base.dev);
+>  	struct intel_panel *panel = &connector->panel;
+> -	u32 ctl, ctl2, val;
+> +	u32 ctl, ctl2;
+>  
+>  	if (drm_WARN_ON(&dev_priv->drm, pipe != PIPE_A && pipe != PIPE_B))
+>  		return -ENODEV;
+> @@ -1782,22 +1775,17 @@ static int vlv_setup_backlight(struct intel_connector *connector, enum pipe pipe
+>  	panel->backlight.active_low_pwm = ctl2 & BLM_POLARITY_I965;
+>  
+>  	ctl = intel_de_read(dev_priv, VLV_BLC_PWM_CTL(pipe));
+> -	panel->backlight.max = ctl >> 16;
+> +	panel->backlight.pwm_level_max = ctl >> 16;
+>  
+> -	if (!panel->backlight.max)
+> -		panel->backlight.max = get_backlight_max_vbt(connector);
+> +	if (!panel->backlight.pwm_level_max)
+> +		panel->backlight.pwm_level_max = get_backlight_max_vbt(connector);
+>  
+> -	if (!panel->backlight.max)
+> +	if (!panel->backlight.pwm_level_max)
+>  		return -ENODEV;
+>  
+> -	panel->backlight.min = get_backlight_min_vbt(connector);
+> +	panel->backlight.pwm_level_min = get_backlight_min_vbt(connector);
+>  
+> -	val = vlv_get_backlight(connector, pipe);
+> -	val = intel_panel_compute_brightness(connector, val);
+> -	panel->backlight.level = clamp(val, panel->backlight.min,
+> -				       panel->backlight.max);
+> -
+> -	panel->backlight.enabled = ctl2 & BLM_PWM_ENABLE;
+> +	panel->backlight.pwm_enabled = ctl2 & BLM_PWM_ENABLE;
+>  
+>  	return 0;
+>  }
+> @@ -1822,24 +1810,18 @@ bxt_setup_backlight(struct intel_connector *connector, enum pipe unused)
+>  	}
+>  
+>  	panel->backlight.active_low_pwm = pwm_ctl & BXT_BLC_PWM_POLARITY;
+> -	panel->backlight.max =
+> -		intel_de_read(dev_priv,
+> -			      BXT_BLC_PWM_FREQ(panel->backlight.controller));
+> +	panel->backlight.pwm_level_max =
+> +		intel_de_read(dev_priv, BXT_BLC_PWM_FREQ(panel->backlight.controller));
+>  
+> -	if (!panel->backlight.max)
+> -		panel->backlight.max = get_backlight_max_vbt(connector);
+> +	if (!panel->backlight.pwm_level_max)
+> +		panel->backlight.pwm_level_max = get_backlight_max_vbt(connector);
+>  
+> -	if (!panel->backlight.max)
+> +	if (!panel->backlight.pwm_level_max)
+>  		return -ENODEV;
+>  
+> -	panel->backlight.min = get_backlight_min_vbt(connector);
+> +	panel->backlight.pwm_level_min = get_backlight_min_vbt(connector);
+>  
+> -	val = bxt_get_backlight(connector, unused);
+> -	val = intel_panel_compute_brightness(connector, val);
+> -	panel->backlight.level = clamp(val, panel->backlight.min,
+> -				       panel->backlight.max);
+> -
+> -	panel->backlight.enabled = pwm_ctl & BXT_BLC_PWM_ENABLE;
+> +	panel->backlight.pwm_enabled = pwm_ctl & BXT_BLC_PWM_ENABLE;
+>  
+>  	return 0;
+>  }
+> @@ -1849,7 +1831,7 @@ cnp_setup_backlight(struct intel_connector *connector, enum pipe unused)
+>  {
+>  	struct drm_i915_private *dev_priv = to_i915(connector->base.dev);
+>  	struct intel_panel *panel = &connector->panel;
+> -	u32 pwm_ctl, val;
+> +	u32 pwm_ctl;
+>  
+>  	/*
+>  	 * CNP has the BXT implementation of backlight, but with only one
+> @@ -1862,24 +1844,18 @@ cnp_setup_backlight(struct intel_connector *connector, enum pipe unused)
+>  				BXT_BLC_PWM_CTL(panel->backlight.controller));
+>  
+>  	panel->backlight.active_low_pwm = pwm_ctl & BXT_BLC_PWM_POLARITY;
+> -	panel->backlight.max =
+> -		intel_de_read(dev_priv,
+> -			      BXT_BLC_PWM_FREQ(panel->backlight.controller));
+> +	panel->backlight.pwm_level_max =
+> +		intel_de_read(dev_priv, BXT_BLC_PWM_FREQ(panel->backlight.controller));
+>  
+> -	if (!panel->backlight.max)
+> -		panel->backlight.max = get_backlight_max_vbt(connector);
+> +	if (!panel->backlight.pwm_level_max)
+> +		panel->backlight.pwm_level_max = get_backlight_max_vbt(connector);
+>  
+> -	if (!panel->backlight.max)
+> +	if (!panel->backlight.pwm_level_max)
+>  		return -ENODEV;
+>  
+> -	panel->backlight.min = get_backlight_min_vbt(connector);
+> -
+> -	val = bxt_get_backlight(connector, unused);
+> -	val = intel_panel_compute_brightness(connector, val);
+> -	panel->backlight.level = clamp(val, panel->backlight.min,
+> -				       panel->backlight.max);
+> +	panel->backlight.pwm_level_min = get_backlight_min_vbt(connector);
+>  
+> -	panel->backlight.enabled = pwm_ctl & BXT_BLC_PWM_ENABLE;
+> +	panel->backlight.pwm_enabled = pwm_ctl & BXT_BLC_PWM_ENABLE;
+>  
+>  	return 0;
+>  }
+> @@ -1909,8 +1885,8 @@ static int ext_pwm_setup_backlight(struct intel_connector *connector,
+>  		return -ENODEV;
+>  	}
+>  
+> -	panel->backlight.max = 100; /* 100% */
+> -	panel->backlight.min = get_backlight_min_vbt(connector);
+> +	panel->backlight.pwm_level_max = 100; /* 100% */
+> +	panel->backlight.pwm_level_min = get_backlight_min_vbt(connector);
+>  
+>  	if (pwm_is_enabled(panel->backlight.pwm)) {
+>  		/* PWM is already enabled, use existing settings */
+> @@ -1918,10 +1894,8 @@ static int ext_pwm_setup_backlight(struct intel_connector *connector,
+>  
+>  		level = pwm_get_relative_duty_cycle(&panel->backlight.pwm_state,
+>  						    100);
+> -		level = intel_panel_compute_brightness(connector, level);
+> -		panel->backlight.level = clamp(level, panel->backlight.min,
+> -					       panel->backlight.max);
+> -		panel->backlight.enabled = true;
+> +		level = intel_panel_invert_pwm_level(connector, level);
+> +		panel->backlight.pwm_enabled = true;
+>  
+>  		drm_dbg_kms(&dev_priv->drm, "PWM already enabled at freq %ld, VBT freq %d, level %d\n",
+>  			    NSEC_PER_SEC / (unsigned long)panel->backlight.pwm_state.period,
+> @@ -1937,6 +1911,58 @@ static int ext_pwm_setup_backlight(struct intel_connector *connector,
+>  	return 0;
+>  }
+>  
+> +static void intel_pwm_set_backlight(const struct drm_connector_state *conn_state, u32 level)
+> +{
+> +	struct intel_connector *connector = to_intel_connector(conn_state->connector);
+> +	struct intel_panel *panel = &connector->panel;
+> +
+> +	panel->backlight.pwm_funcs->set(conn_state,
+> +				       intel_panel_invert_pwm_level(connector, level));
+> +}
+> +
+> +static u32 intel_pwm_get_backlight(struct intel_connector *connector, enum pipe pipe)
+> +{
+> +	struct intel_panel *panel = &connector->panel;
+> +
+> +	return intel_panel_invert_pwm_level(connector,
+> +					    panel->backlight.pwm_funcs->get(connector, pipe));
+> +}
+> +
+> +static void intel_pwm_enable_backlight(const struct intel_crtc_state *crtc_state,
+> +				       const struct drm_connector_state *conn_state, u32 level)
+> +{
+> +	struct intel_connector *connector = to_intel_connector(conn_state->connector);
+> +	struct intel_panel *panel = &connector->panel;
+> +
+> +	panel->backlight.pwm_funcs->enable(crtc_state, conn_state,
+> +					   intel_panel_invert_pwm_level(connector, level));
+> +}
+> +
+> +static void intel_pwm_disable_backlight(const struct drm_connector_state *conn_state, u32 level)
+> +{
+> +	struct intel_connector *connector = to_intel_connector(conn_state->connector);
+> +	struct intel_panel *panel = &connector->panel;
+> +
+> +	panel->backlight.pwm_funcs->disable(conn_state,
+> +					    intel_panel_invert_pwm_level(connector, level));
+> +}
+> +
+> +static int intel_pwm_setup_backlight(struct intel_connector *connector, enum pipe pipe)
+> +{
+> +	struct intel_panel *panel = &connector->panel;
+> +	int ret = panel->backlight.pwm_funcs->setup(connector, pipe);
+> +
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	panel->backlight.min = panel->backlight.pwm_level_min;
+> +	panel->backlight.max = panel->backlight.pwm_level_max;
+> +	panel->backlight.level = intel_pwm_get_backlight(connector, pipe);
+> +	panel->backlight.enabled = panel->backlight.pwm_enabled;
+> +
+> +	return 0;
+> +}
+> +
+>  void intel_panel_update_backlight(struct intel_atomic_state *state,
+>  				  struct intel_encoder *encoder,
+>  				  const struct intel_crtc_state *crtc_state,
+> @@ -2010,7 +2036,7 @@ static void intel_panel_destroy_backlight(struct intel_panel *panel)
+>  	panel->backlight.present = false;
+>  }
+>  
+> -static const struct intel_panel_bl_funcs bxt_funcs = {
+> +static const struct intel_panel_bl_funcs bxt_pwm_funcs = {
+>  	.setup = bxt_setup_backlight,
+>  	.enable = bxt_enable_backlight,
+>  	.disable = bxt_disable_backlight,
+> @@ -2019,7 +2045,7 @@ static const struct intel_panel_bl_funcs bxt_funcs = {
+>  	.hz_to_pwm = bxt_hz_to_pwm,
+>  };
+>  
+> -static const struct intel_panel_bl_funcs cnp_funcs = {
+> +static const struct intel_panel_bl_funcs cnp_pwm_funcs = {
+>  	.setup = cnp_setup_backlight,
+>  	.enable = cnp_enable_backlight,
+>  	.disable = cnp_disable_backlight,
+> @@ -2028,7 +2054,7 @@ static const struct intel_panel_bl_funcs cnp_funcs = {
+>  	.hz_to_pwm = cnp_hz_to_pwm,
+>  };
+>  
+> -static const struct intel_panel_bl_funcs lpt_funcs = {
+> +static const struct intel_panel_bl_funcs lpt_pwm_funcs = {
+>  	.setup = lpt_setup_backlight,
+>  	.enable = lpt_enable_backlight,
+>  	.disable = lpt_disable_backlight,
+> @@ -2037,7 +2063,7 @@ static const struct intel_panel_bl_funcs lpt_funcs = {
+>  	.hz_to_pwm = lpt_hz_to_pwm,
+>  };
+>  
+> -static const struct intel_panel_bl_funcs spt_funcs = {
+> +static const struct intel_panel_bl_funcs spt_pwm_funcs = {
+>  	.setup = lpt_setup_backlight,
+>  	.enable = lpt_enable_backlight,
+>  	.disable = lpt_disable_backlight,
+> @@ -2046,7 +2072,7 @@ static const struct intel_panel_bl_funcs spt_funcs = {
+>  	.hz_to_pwm = spt_hz_to_pwm,
+>  };
+>  
+> -static const struct intel_panel_bl_funcs pch_funcs = {
+> +static const struct intel_panel_bl_funcs pch_pwm_funcs = {
+>  	.setup = pch_setup_backlight,
+>  	.enable = pch_enable_backlight,
+>  	.disable = pch_disable_backlight,
+> @@ -2063,7 +2089,7 @@ static const struct intel_panel_bl_funcs ext_pwm_funcs = {
+>  	.get = ext_pwm_get_backlight,
+>  };
+>  
+> -static const struct intel_panel_bl_funcs vlv_funcs = {
+> +static const struct intel_panel_bl_funcs vlv_pwm_funcs = {
+>  	.setup = vlv_setup_backlight,
+>  	.enable = vlv_enable_backlight,
+>  	.disable = vlv_disable_backlight,
+> @@ -2072,7 +2098,7 @@ static const struct intel_panel_bl_funcs vlv_funcs = {
+>  	.hz_to_pwm = vlv_hz_to_pwm,
+>  };
+>  
+> -static const struct intel_panel_bl_funcs i965_funcs = {
+> +static const struct intel_panel_bl_funcs i965_pwm_funcs = {
+>  	.setup = i965_setup_backlight,
+>  	.enable = i965_enable_backlight,
+>  	.disable = i965_disable_backlight,
+> @@ -2081,7 +2107,7 @@ static const struct intel_panel_bl_funcs i965_funcs = {
+>  	.hz_to_pwm = i965_hz_to_pwm,
+>  };
+>  
+> -static const struct intel_panel_bl_funcs i9xx_funcs = {
+> +static const struct intel_panel_bl_funcs i9xx_pwm_funcs = {
+>  	.setup = i9xx_setup_backlight,
+>  	.enable = i9xx_enable_backlight,
+>  	.disable = i9xx_disable_backlight,
+> @@ -2090,6 +2116,14 @@ static const struct intel_panel_bl_funcs i9xx_funcs = {
+>  	.hz_to_pwm = i9xx_hz_to_pwm,
+>  };
+>  
+> +static const struct intel_panel_bl_funcs pwm_bl_funcs = {
+> +	.setup = intel_pwm_setup_backlight,
+> +	.enable = intel_pwm_enable_backlight,
+> +	.disable = intel_pwm_disable_backlight,
+> +	.set = intel_pwm_set_backlight,
+> +	.get = intel_pwm_get_backlight,
+> +};
+> +
+>  /* Set up chip specific backlight functions */
+>  static void
+>  intel_panel_init_backlight_funcs(struct intel_panel *panel)
+> @@ -2107,27 +2141,30 @@ intel_panel_init_backlight_funcs(struct intel_panel *panel)
+>  		return;
+>  
+>  	if (IS_GEN9_LP(dev_priv)) {
+> -		panel->backlight.funcs = &bxt_funcs;
+> +		panel->backlight.pwm_funcs = &bxt_pwm_funcs;
+>  	} else if (INTEL_PCH_TYPE(dev_priv) >= PCH_CNP) {
+> -		panel->backlight.funcs = &cnp_funcs;
+> +		panel->backlight.pwm_funcs = &cnp_pwm_funcs;
+>  	} else if (INTEL_PCH_TYPE(dev_priv) >= PCH_LPT) {
+>  		if (HAS_PCH_LPT(dev_priv))
+> -			panel->backlight.funcs = &lpt_funcs;
+> +			panel->backlight.pwm_funcs = &lpt_pwm_funcs;
+>  		else
+> -			panel->backlight.funcs = &spt_funcs;
+> +			panel->backlight.pwm_funcs = &spt_pwm_funcs;
+>  	} else if (HAS_PCH_SPLIT(dev_priv)) {
+> -		panel->backlight.funcs = &pch_funcs;
+> +		panel->backlight.pwm_funcs = &pch_pwm_funcs;
+>  	} else if (IS_VALLEYVIEW(dev_priv) || IS_CHERRYVIEW(dev_priv)) {
+>  		if (connector->base.connector_type == DRM_MODE_CONNECTOR_DSI) {
+> -			panel->backlight.funcs = &ext_pwm_funcs;
+> +			panel->backlight.pwm_funcs = &ext_pwm_funcs;
+>  		} else {
+> -			panel->backlight.funcs = &vlv_funcs;
+> +			panel->backlight.pwm_funcs = &vlv_pwm_funcs;
+>  		}
+>  	} else if (IS_GEN(dev_priv, 4)) {
+> -		panel->backlight.funcs = &i965_funcs;
+> +		panel->backlight.pwm_funcs = &i965_pwm_funcs;
+>  	} else {
+> -		panel->backlight.funcs = &i9xx_funcs;
+> +		panel->backlight.pwm_funcs = &i9xx_pwm_funcs;
+>  	}
+> +
+> +	/* We're using a standard PWM backlight interface */
+> +	panel->backlight.funcs = &pwm_bl_funcs;
+>  }
+>  
+>  enum drm_connector_status
+
+-- 
+Jani Nikula, Intel Open Source Graphics Center
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
