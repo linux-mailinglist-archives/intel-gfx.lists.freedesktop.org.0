@@ -1,104 +1,63 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 26D502F8455
-	for <lists+intel-gfx@lfdr.de>; Fri, 15 Jan 2021 19:27:41 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id F08E22F84A0
+	for <lists+intel-gfx@lfdr.de>; Fri, 15 Jan 2021 19:42:40 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CE4E06E4CD;
-	Fri, 15 Jan 2021 18:27:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 035F5899DE;
+	Fri, 15 Jan 2021 18:42:38 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam10on2044.outbound.protection.outlook.com [40.107.93.44])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CC3456E120;
- Fri, 15 Jan 2021 18:27:32 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=MYFGB29jpH/J1Yyv1sjHNKDkNRyrRGI0i5aH40EOI508C0MJG2HFhNS33lF8wR/WKmhGawKipl/nirqpz+FtCq9heZ2BqOh5Yg4w8jjAzxMWvW+l3fVSlPrWAZu5CNXEdJIS5hm86+nSAfGPy7eIYOGcou4u4bgNAU+ArXS47THA2U/mEFEbpJUXcWgC+pDkd4bRVQvN2Tm+5FK85Q1AFtBo9AoCX2oSI8a4DH02Q6GlsQEsoEUPETXJiPYBspodtFaW/K40OJA0TsH+aiekD8rl6Bw8UxSVd4jsOuYe3agRKJlg1g2+9u84glxDzaXAFz4ADvXch5FuMYXzKgNrbw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ldIcf+ZP5ZWB8a73lQYKgI5n6OWztdvNjYmsovlIOCs=;
- b=Y5MCJwozgC185mZwLbwMGPrOHyOiHPwuyXxPRqD6wqPD2ZeeG1xGSpRBc2XFZe9ixVRFsqLEbgrKnPrU2zeRXHLOUB2ZCzVAcjW+snmz1cMpvjIovkI/9Wx2OGeqUKWt5ia6CCJdIomPoH5f/x1W0SxjebvDFJdLgYx/FlA295iihPWwRXzQwd8+Yd6BVnzkV66P/1e6HyPmZxyHgMHHbmseCo8H67LP1FlvZHZsS/29SptxNT9cBe8hQ4qJR7atQ77hWZus+ImbDe+xMqX3GDl4hRwwZvJyvh+AsyRw49Q2CZugnh1Yu0V8HUJbzuiVlH9loNRfQOEa9AVcpeLScw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=vmware.com; dmarc=pass action=none header.from=vmware.com;
- dkim=pass header.d=vmware.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=vmware.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ldIcf+ZP5ZWB8a73lQYKgI5n6OWztdvNjYmsovlIOCs=;
- b=fuWa+iKk1VaFFocwO2TeBsevsHac2IT+DIDYDjlD/KGWNzqKOaZo+ADsoVXNE/dPX7K+V6KJiM4tk9Ze8yq3ifM4PP9HUBd1Fxg5Ol1KW3D8duhtHcyiD+AWQQJqGuBVZlFqX5tEYZwj7jfmC0YcZ5LLemzfEKlOnsduIB+7Cw4=
-Received: from BL0PR05MB5186.namprd05.prod.outlook.com (2603:10b6:208:8f::18)
- by BL0PR05MB4963.namprd05.prod.outlook.com (2603:10b6:208:81::12)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3763.2; Fri, 15 Jan
- 2021 18:27:15 +0000
-Received: from BL0PR05MB5186.namprd05.prod.outlook.com
- ([fe80::59ed:18ca:252d:72f6]) by BL0PR05MB5186.namprd05.prod.outlook.com
- ([fe80::59ed:18ca:252d:72f6%7]) with mapi id 15.20.3763.010; Fri, 15 Jan 2021
- 18:27:15 +0000
-From: Zack Rusin <zackr@vmware.com>
-To: Lee Jones <lee.jones@linaro.org>
-Thread-Topic: [PATCH 00/29] [Set 15] Finally rid W=1 warnings from GPU!
-Thread-Index: AQHW62p+Afh7eg9MAECAFEwSMWQpd6opAUIA
-Date: Fri, 15 Jan 2021 18:27:15 +0000
-Message-ID: <F914D9B9-6DD4-4383-9F7C-8D09FBFE96CE@vmware.com>
-References: <20210115181601.3432599-1-lee.jones@linaro.org>
-In-Reply-To: <20210115181601.3432599-1-lee.jones@linaro.org>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9ABF0899DE
+ for <intel-gfx@lists.freedesktop.org>; Fri, 15 Jan 2021 18:42:36 +0000 (UTC)
+IronPort-SDR: 2Sqhah/mzGlguHMNiHq92IO+ZEUdRh3ijKKI6yLxr3gcp9bKdEYz/Bi3DeIBAABD+iLzVxpIP3
+ cuhRRcTCMtpA==
+X-IronPort-AV: E=McAfee;i="6000,8403,9865"; a="178739165"
+X-IronPort-AV: E=Sophos;i="5.79,350,1602572400"; d="scan'208";a="178739165"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Jan 2021 10:42:33 -0800
+IronPort-SDR: +AlRHj8oJXyNdcEdCy3BFnKvbZzpg052MQQjA6zl0kFTx0sYvkIAs61B6/PvEB0o+uHwOE20OE
+ tSvViUqLU8eQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.79,350,1602572400"; d="scan'208";a="405558724"
+Received: from fmsmsx603.amr.corp.intel.com ([10.18.126.83])
+ by FMSMGA003.fm.intel.com with ESMTP; 15 Jan 2021 10:42:33 -0800
+Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
+ fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1713.5; Fri, 15 Jan 2021 10:42:33 -0800
+Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx612.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1713.5; Fri, 15 Jan 2021 10:42:32 -0800
+Received: from fmsmsx611.amr.corp.intel.com ([10.18.126.91]) by
+ fmsmsx611.amr.corp.intel.com ([10.18.126.91]) with mapi id 15.01.1713.004;
+ Fri, 15 Jan 2021 10:42:32 -0800
+From: "Chery, Nanley G" <nanley.g.chery@intel.com>
+To: "Deak, Imre" <imre.deak@intel.com>, "intel-gfx@lists.freedesktop.org"
+ <intel-gfx@lists.freedesktop.org>
+Thread-Topic: [PATCH v7 1/3] drm/framebuffer: Format modifier for Intel Gen 12
+ render compression with Clear Color
+Thread-Index: AQHW6rG0dUhMO4TmX02HbMGDOMnbOKopBXUw
+Date: Fri, 15 Jan 2021 18:42:32 +0000
+Message-ID: <01ce83b13a7a4210a71b20deae8f9ce6@intel.com>
+References: <20210114201314.783648-1-imre.deak@intel.com>
+ <20210114201314.783648-2-imre.deak@intel.com>
+In-Reply-To: <20210114201314.783648-2-imre.deak@intel.com>
 Accept-Language: en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-mailer: Apple Mail (2.3654.40.0.2.32)
-authentication-results: linaro.org; dkim=none (message not signed)
- header.d=none;linaro.org; dmarc=none action=none header.from=vmware.com;
-x-originating-ip: [71.175.59.246]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 0c64d446-ae5f-40eb-e5b5-08d8b9832f27
-x-ms-traffictypediagnostic: BL0PR05MB4963:
-x-ld-processed: b39138ca-3cee-4b4a-a4d6-cd83d9dd62f0,ExtAddr
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <BL0PR05MB49632CC95DC53ABA4F998F59CEA70@BL0PR05MB4963.namprd05.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:6108;
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 55YQD4eKIG0BrVqfHEYsvlpT9AXPF4NQE5qmAs3RRe9Ejpm+oapZltMiNUHGxnN+ZhDy44ldF7uqE6wCxpV5KO/SO5cZaeyRPXTnGrNB/ll0Q6yEOJPkhIVxFjCJG4ZXceF+Nxj/s2L+Ixk/Z3gcOzG2sRISaOdl4k82XJliVUyEDg62yMIxpvUtnZ4o3tgWS8undD9vjrAXeKH9xSKJ61I+jUK3Wzqvll2cu4gOHLwRz54kn/c8kH0b0kek0s/lxZXq6wH0USNmWJfjCcly5qKbmzoPVzPSlnaXUCfLOq5aQThZ8n0L0LNgAIgaS0Dpo/v9/2ukrY9nlvPEL0t6+NMNXUurrNAkgqGBMVD0qjBc/wzdrgZOQKGmjcjBagxdoCokKodr5VpsKcxf6cbqGM6tNPToY759oiZm3fJOnw+gBB5B6Oi6JgLSc4pAVGiw
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BL0PR05MB5186.namprd05.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(4636009)(39860400002)(366004)(396003)(346002)(376002)(136003)(2906002)(33656002)(36756003)(83380400001)(76116006)(478600001)(7416002)(6486002)(6916009)(8676002)(6512007)(8936002)(64756008)(2616005)(66446008)(71200400001)(4744005)(6506007)(4326008)(66946007)(186003)(54906003)(26005)(86362001)(53546011)(66556008)(66476007)(5660300002)(316002)(7406005)(45980500001);
- DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata: =?iso-8859-1?Q?zgyRXVh9UgWytDDFI4h3+SdRgEHw+d9OLuLLMHpjvKlr22XbD6tBg4P0VJ?=
- =?iso-8859-1?Q?MBkRg8mjRg8Fct7L/vBi8Vp3Gr5TKKaDAMMsi36wtW9XtQKlF+HH7y0KP2?=
- =?iso-8859-1?Q?9qyTkyLqdEVVvjiTv7S/W240RBKTbFrOMFtSHebz8b2+Elq38cFLR+lmAo?=
- =?iso-8859-1?Q?tjMnnBmWRvpuD7eP4tEU68waYBouWsJuhue3mgUIYOwLvX0wlWxnDpluBZ?=
- =?iso-8859-1?Q?yVjcUY7ZLP4WTfsKgs+ciELcST10DoZgCrwcohwL9CCGEDtMzAg9AL0eVW?=
- =?iso-8859-1?Q?dYc/bI2HstPQwRfei/WUvNlQmQXEOYsZkQ97sRxdelOQ3Kzx9Vj69csO3w?=
- =?iso-8859-1?Q?yOcNV13s7Yxtzw8w80q4lw7opde2+JEszf2bzt2B0veWH/jIad87+WjK6r?=
- =?iso-8859-1?Q?gN1ZyEwz5+KAuHBmFJyRIRr29qvFlagPVjwEjuUwwBQcnPgXNx7dDSkh5y?=
- =?iso-8859-1?Q?UoL0QixA5gkwtM/40BQIU7n/zXhYHIu5laGIkTzYboLuQysU8G5gMffTeT?=
- =?iso-8859-1?Q?5XWg8lqro4VUandVJ/nSqvdqZronfrPhHu3cAQibWpib51RrY0dgVQ3Fq+?=
- =?iso-8859-1?Q?r1sv4m/PNniyNKX1AFro862zN0uzFFqkYhK2W1ZjqWB4mEC/zhsltNQlAJ?=
- =?iso-8859-1?Q?TIxBU+sJvgqHUZ2d+DpQozh6ArARnjRpB/JD2eqhixYXBKKEGeXAsygSVn?=
- =?iso-8859-1?Q?J4jWTCwbMq+/QElOSWowhnnOyv9QBWDS6vkKqo+I98NFV3XtrFK/RNRJL0?=
- =?iso-8859-1?Q?ne5Ubfp6JAfigqZvlzdDQ+Garza+GvG2C7XdqCt6fAln9QLJF7hM6UNq01?=
- =?iso-8859-1?Q?1LUUGaEovr/uyZOhTG6MAti5NBaRVQMg9OVP9WvqUqFZx4tnIsPKziCPr3?=
- =?iso-8859-1?Q?njFPxnCOT75zBVdbf4nUMeOB9WfJU9F+h4mGkwVx6zP0RDnP7JgXZpYxD7?=
- =?iso-8859-1?Q?LSE0ywTmovs3VsNJ181r0kuj9aqCxwQFE7L0ZZwSmIeozxXhZtAHMJMcbn?=
- =?iso-8859-1?Q?Y38RiCXBqt5WAjhxCVwtKh1cFHOfiyBkUjJDKZ?=
-Content-ID: <F862015D1103DE4C962AE3C7312A0F78@namprd05.prod.outlook.com>
+dlp-product: dlpe-windows
+dlp-reaction: no-action
+dlp-version: 11.5.1.3
+x-originating-ip: [10.22.254.132]
 MIME-Version: 1.0
-X-OriginatorOrg: vmware.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: BL0PR05MB5186.namprd05.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0c64d446-ae5f-40eb-e5b5-08d8b9832f27
-X-MS-Exchange-CrossTenant-originalarrivaltime: 15 Jan 2021 18:27:15.4804 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: b39138ca-3cee-4b4a-a4d6-cd83d9dd62f0
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: kATfeq4PX77bcOBXMKLtAaRo0gl/y7g0xq21YvKoHjoROW5bBGxAIsAbAmZMfRP4WxSqU8XC68n+pfq+ESm6Xw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL0PR05MB4963
-Subject: Re: [Intel-gfx] [PATCH 00/29] [Set 15] Finally rid W=1 warnings
- from GPU!
+Subject: Re: [Intel-gfx] [PATCH v7 1/3] drm/framebuffer: Format modifier for
+ Intel Gen 12 render compression with Clear Color
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -111,46 +70,96 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: David Airlie <airlied@linux.ie>,
- "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>,
- DRI Development <dri-devel@lists.freedesktop.org>,
- Eric Anholt <eric@anholt.net>, Jesse Barnes <jesse.barnes@intel.com>,
- Jan Safrata <jan.nikitenko@gmail.com>, Sumit Semwal <sumit.semwal@linaro.org>,
- Gareth Hughes <gareth@valinux.com>, Pei Zhang <pei.zhang@intel.com>,
- Rob Clark <rob.clark@linaro.org>, Min He <min.he@intel.com>,
- Linux-graphics-maintainer <Linux-graphics-maintainer@vmware.com>,
- Ben Skeggs <bskeggs@redhat.com>, Dave Airlie <airlied@redhat.com>,
- Niu Bing <bing.niu@intel.com>,
- "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
- jim liu <jim.liu@intel.com>, Thomas Zimmermann <tzimmermann@suse.de>,
- Roland Scheidegger <sroland@vmware.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "linaro-mm-sig@lists.linaro.org" <linaro-mm-sig@lists.linaro.org>,
- Maxime Ripard <mripard@kernel.org>,
- "intel-gvt-dev@lists.freedesktop.org" <intel-gvt-dev@lists.freedesktop.org>,
- Eddie Dong <eddie.dong@intel.com>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- Faith <faith@valinux.com>, Ping Gao <ping.a.gao@intel.com>,
- =?iso-8859-1?Q?Christian_K=F6nig?= <christian.koenig@amd.com>,
- Zhiyuan Lv <zhiyuan.lv@intel.com>
+Cc: Daniel Vetter <daniel.vetter@ffwll.ch>, "Kondapally,
+ Kalyan" <kalyan.kondapally@intel.com>, "Nikula, Jani" <jani.nikula@intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 
-> On Jan 15, 2021, at 13:15, Lee Jones <lee.jones@linaro.org> wrote:
+> -----Original Message-----
+> From: Imre Deak <imre.deak@intel.com>
+> Sent: Thursday, January 14, 2021 12:13 PM
+> To: intel-gfx@lists.freedesktop.org
+> Cc: Sripada, Radhakrishna <radhakrishna.sripada@intel.com>; Ville Syrjala
+> <ville.syrjala@linux.intel.com>; Pandiyan, Dhinakaran
+> <dhinakaran.pandiyan@intel.com>; Kondapally, Kalyan
+> <kalyan.kondapally@intel.com>; Rafael Antognolli
+> <rafael.antognolli@intel.com>; Chery, Nanley G
+> <nanley.g.chery@intel.com>; Daniel Vetter <daniel.vetter@ffwll.ch>; Nikula,
+> Jani <jani.nikula@intel.com>
+> Subject: [PATCH v7 1/3] drm/framebuffer: Format modifier for Intel Gen 12
+> render compression with Clear Color
 > 
-> This set is part of a larger effort attempting to clean-up W=1
-> kernel builds, which are currently overwhelmingly riddled with
-> niggly little warnings.
+> From: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
 > 
-> Last set!  All clean after this for; Arm, Arm64, PPC, MIPS and x86.
+> Gen12 display can decompress surfaces compressed by render engine with
+> Clear Color, add a new modifier as the driver needs to know the surface
+> was compressed by render engine.
+> 
+> V2: Description changes as suggested by Rafael.
+> V3: Mention the Clear Color size of 64 bits in the comments(DK)
+> v4: Fix trailing whitespaces
+> v5: Explain Clear Color in the documentation.
+> v6: Documentation Nitpicks(Nanley)
+> 
+> Cc: Ville Syrjala <ville.syrjala@linux.intel.com>
+> Cc: Dhinakaran Pandiyan <dhinakaran.pandiyan@intel.com>
+> Cc: Kalyan Kondapally <kalyan.kondapally@intel.com>
+> Cc: Rafael Antognolli <rafael.antognolli@intel.com>
+> Cc: Nanley Chery <nanley.g.chery@intel.com>
+> Signed-off-by: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
+> Signed-off-by: Imre Deak <imre.deak@intel.com>
+> Acked-by: Daniel Vetter <daniel.vetter@ffwll.ch>
+> Acked-by: Jani Nikula <jani.nikula@intel.com>
+> ---
+>  include/uapi/drm/drm_fourcc.h | 19 +++++++++++++++++++
+>  1 file changed, 19 insertions(+)
+> 
 
-Thanks! For all the vmwgfx bits:
-Reviewed-by: Zack Rusin <zackr@vmware.com>
+Acked-by: Nanley Chery <nanley.g.chery@intel.com>
 
-z
+> diff --git a/include/uapi/drm/drm_fourcc.h
+> b/include/uapi/drm/drm_fourcc.h
+> index 5f42a14481bd..f76de49c768f 100644
+> --- a/include/uapi/drm/drm_fourcc.h
+> +++ b/include/uapi/drm/drm_fourcc.h
+> @@ -527,6 +527,25 @@ extern "C" {
+>   */
+>  #define I915_FORMAT_MOD_Y_TILED_GEN12_MC_CCS
+> fourcc_mod_code(INTEL, 7)
+> 
+> +/*
+> + * Intel Color Control Surface with Clear Color (CCS) for Gen-12 render
+> + * compression.
+> + *
+> + * The main surface is Y-tiled and is at plane index 0 whereas CCS is linear
+> + * and at index 1. The clear color is stored at index 2, and the pitch should
+> + * be ignored. The clear color structure is 256 bits. The first 128 bits
+> + * represents Raw Clear Color Red, Green, Blue and Alpha color each
+> represented
+> + * by 32 bits. The raw clear color is consumed by the 3d engine and
+> generates
+> + * the converted clear color of size 64 bits. The first 32 bits store the Lower
+> + * Converted Clear Color value and the next 32 bits store the Higher
+> Converted
+> + * Clear Color value when applicable. The Converted Clear Color values are
+> + * consumed by the DE. The last 64 bits are used to store Color Discard
+> Enable
+> + * and Depth Clear Value Valid which are ignored by the DE. A CCS cache line
+> + * corresponds to an area of 4x1 tiles in the main surface. The main surface
+> + * pitch is required to be a multiple of 4 tile widths.
+> + */
+> +#define I915_FORMAT_MOD_Y_TILED_GEN12_RC_CCS_CC
+> fourcc_mod_code(INTEL, 8)
+> +
+>  /*
+>   * Tiled, NV12MT, grouped in 64 (pixels) x 32 (lines) -sized macroblocks
+>   *
+> --
+> 2.25.1
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
