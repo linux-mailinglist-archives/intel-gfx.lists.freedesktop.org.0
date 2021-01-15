@@ -1,36 +1,39 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F0AC42F7438
-	for <lists+intel-gfx@lfdr.de>; Fri, 15 Jan 2021 09:22:19 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 82EC92F7444
+	for <lists+intel-gfx@lfdr.de>; Fri, 15 Jan 2021 09:26:39 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DF20E6E188;
-	Fri, 15 Jan 2021 08:22:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9EC186E1BD;
+	Fri, 15 Jan 2021 08:26:37 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 248596E188
- for <intel-gfx@lists.freedesktop.org>; Fri, 15 Jan 2021 08:22:16 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 789506E1BD;
+ Fri, 15 Jan 2021 08:26:35 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from localhost (unverified [78.156.65.138]) 
  by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 23602707-1500050 for multiple; Fri, 15 Jan 2021 08:22:14 +0000
+ 23602727-1500050 for multiple; Fri, 15 Jan 2021 08:25:47 +0000
 MIME-Version: 1.0
-In-Reply-To: <7a7348c3-b915-69dc-e9c3-8b8f05db8077@intel.com>
-References: <20201223103917.14687-1-chris@chris-wilson.co.uk>
- <87a6u4okvl.fsf@intel.com> <f6daaf1e-beab-4b9c-c6de-5e0fabe5e16e@intel.com>
- <87wnwny3hb.fsf@intel.com> <87zh1drr3e.fsf@intel.com>
- <7a7348c3-b915-69dc-e9c3-8b8f05db8077@intel.com>
+In-Reply-To: <YAATPMc+1jmhxnsF@phenom.ffwll.local>
+References: <20210113140604.3615437-1-daniel.vetter@ffwll.ch>
+ <161055261490.6195.7986280621869334351@build.alporthouse.com>
+ <CAKMK7uEnnEj_YAR5Tm3jpS7MNPkqB43JBhQnY_K0YQ+LE9wL1g@mail.gmail.com>
+ <161057213487.6195.581396740566956696@build.alporthouse.com>
+ <CAKMK7uGXtu0V8TVaQ2XyuE9vOdJOWKrCYUNkh0FJMfucSyS2vg@mail.gmail.com>
+ <161061619887.19482.10606780107376365239@build.alporthouse.com>
+ <CAKMK7uE58dJabnaTNgePTyio_JY3=kvFZtu1RT1eFeGDK76ZeA@mail.gmail.com>
+ <161061753732.19482.13146900597152116822@build.alporthouse.com>
+ <YAATPMc+1jmhxnsF@phenom.ffwll.local>
 From: Chris Wilson <chris@chris-wilson.co.uk>
-To: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>,
- Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org
-Date: Fri, 15 Jan 2021 08:22:12 +0000
-Message-ID: <161069893278.19482.3803444937046587332@build.alporthouse.com>
+To: Daniel Vetter <daniel@ffwll.ch>
+Date: Fri, 15 Jan 2021 08:25:46 +0000
+Message-ID: <161069914606.19482.1823329746575120144@build.alporthouse.com>
 User-Agent: alot/0.9
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/display: Bitwise or the conversion
- colour specifier together
+Subject: Re: [Intel-gfx] [PATCH] drm-buf: Add debug option
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -43,46 +46,41 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Daniel Vetter <daniel.vetter@ffwll.ch>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ DRI Development <dri-devel@lists.freedesktop.org>,
+ John Stultz <john.stultz@linaro.org>, Sumit Semwal <sumit.semwal@linaro.org>,
+ DMA BUFFER SHARING FRAMEWORK <linux-media@vger.kernel.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Nautiyal, Ankit K (2021-01-15 07:24:36)
+Quoting Daniel Vetter (2021-01-14 09:47:40)
+> On Thu, Jan 14, 2021 at 09:45:37AM +0000, Chris Wilson wrote:
+> > Quoting Daniel Vetter (2021-01-14 09:30:32)
+> > > On Thu, Jan 14, 2021 at 10:23 AM Chris Wilson <chris@chris-wilson.co.uk> wrote:
+> > > > The only other problem I see with the implementation is that there's
+> > > > nothing that says that each dmabuf->ops->map_dma_buf() returns a new
+> > > > sg_table, so we may end up undoing the xor. Or should each dma-buf
+> > > > return a fresh dma-mapping for iommu isolation?
+> > > 
+> > > Maybe I screwed it up, but that's why I extracted the little helpers:
+> > > We scramble when we get the sgtable from exporter, and unscramble
+> > > before we pass it back. dma-buf.c does some caching and will hand back
+> > > the same sgtable, but for that case we don't re-scramble.
+> > 
+> > The attachment is only mapped once, but there can be more than one
+> > attachment, and the backend could return the same sg_table for each
+> > mapping. Conceivably, it could return its own private sg_table where it
+> > wants to maintain the struct page. Seems like just adding a sentence to
+> > @map_dma_buf to clarify that each call should return a new sg_table will
+> > suffice.
 > 
-> On 1/13/2021 5:22 PM, Jani Nikula wrote:
-> > On Fri, 08 Jan 2021, Jani Nikula <jani.nikula@intel.com> wrote:
-> >> On Thu, 24 Dec 2020, "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com> wrote:
-> >>> Thanks Chris to catch this.
-> >>>
-> >>> This definitely should be bitwise Operator, as mentioned by Jani is
-> >>> right thing to do.
-> >>>
-> >>> The PCON which I had access to, had the F/W which was using 303Ch
-> >>> (previously proposed) for color conversion capability, instead of what
-> >>> is latest mentioned in the spec ie. 83h.
-> >>>
-> >>> While testing, I had to skip this line of code, and hardcoded to older
-> >>> register ie. 303Ch.
-> >>>
-> >>> I Will get this patch tested and update.
-> >> In the mean time, the topic/dp-hdmi-2.1-pcon branch has been merged to
-> >> drm-next and backmerged to drm-intel-next. So drm-intel-next is where
-> >> the fixes should now land.
-> > Ankit, where are we with this? I'm anxious to merge this.
-> 
-> Jani, I checked the lastest F/W we had got for source control mode, but 
-> its still having support in older DPCD 303Ch and has not updated to use 
-> DPCD 83h.
-> 
-> So this patch cannot be directly tested.
-> 
-> Since this patch is correctly fixing to use bitwise operator, can we go 
-> ahead with the merge?
+> Ah yes good point, will augment (once CI stops being angry at me).
 
-Pushed. One hopes we can find a way to gain coverage for wacky DPCD,
-this sounds like the sort of thing we need an emulator such as chamelium
-for.
+Fwiw, with a quick explanation of "don't do this" in the docs,
+Reviewed-by: Chris Wilson <chris@chris-wilson.co.uk>
 -Chris
 _______________________________________________
 Intel-gfx mailing list
