@@ -1,41 +1,66 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8D5852F6FED
-	for <lists+intel-gfx@lfdr.de>; Fri, 15 Jan 2021 02:23:23 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 305712F7189
+	for <lists+intel-gfx@lfdr.de>; Fri, 15 Jan 2021 05:16:08 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7776C6E14D;
-	Fri, 15 Jan 2021 01:23:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7361589AB9;
+	Fri, 15 Jan 2021 04:16:06 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from ozlabs.org (bilbo.ozlabs.org [IPv6:2401:3900:2:1::2])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E00186E14D;
- Fri, 15 Jan 2021 01:23:17 +0000 (UTC)
-Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest
- SHA256) (No client certificate requested)
- by mail.ozlabs.org (Postfix) with ESMTPSA id 4DH3N04yNjz9sVr;
- Fri, 15 Jan 2021 12:23:11 +1100 (AEDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=canb.auug.org.au;
- s=201702; t=1610673794;
- bh=HuR/UqsyYV6V2u8mtzj/Ev7wCFWabBAH4XNDWYxTz6A=;
- h=Date:From:To:Cc:Subject:From;
- b=Ee+XO8v5HN+j72pKq6l6bqD93UKVTfLr+C9twDIrMFrBPj8rU9yo51mQv4lS7Zl3Q
- RrihKh0wbRhJbjXge1mpqc3KM0gboWpb2AAznpn00ntXyYDx42ikRo9zSFNc3AtClU
- Iet8U61KPV/xfMhbySBlg2b7B7ov4Dars1J9OGw9Xnkc2IYiqXFMECl5UIMFaT1d/m
- J7KEbm7uSbMU/N8GZenMIZKR1igONxvW1cL4PW16wjcQhbxxHqiqNFUcemqJ9LgrD9
- PlTRUb4b+OzavmU8WDJ1LLetru5wp3QHWRuOa+viWVN2QI+uxib65wyEkP2UV1K+j3
- gRrpSGEA3gFPA==
-Date: Fri, 15 Jan 2021 12:23:10 +1100
-From: Stephen Rothwell <sfr@canb.auug.org.au>
-To: Daniel Vetter <daniel.vetter@ffwll.ch>, Intel Graphics
- <intel-gfx@lists.freedesktop.org>, DRI <dri-devel@lists.freedesktop.org>
-Message-ID: <20210115122310.7dd6bb11@canb.auug.org.au>
+Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com
+ [IPv6:2a00:1450:4864:20::234])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 83F6F89AB9
+ for <intel-gfx@lists.freedesktop.org>; Fri, 15 Jan 2021 04:16:05 +0000 (UTC)
+Received: by mail-lj1-x234.google.com with SMTP id n11so8983281lji.5
+ for <intel-gfx@lists.freedesktop.org>; Thu, 14 Jan 2021 20:16:05 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=linux-foundation.org; s=google;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=63J/tLzLebR+d+sU8VZA5VzH3xNPW+K+cgzDeTPBen4=;
+ b=CdC54e4XPbsZ3GtDLtnS0hEk8yJVFWCjWeEE1NTkSB0i2IQrdp9OLp6mZJPcsM1BNL
+ sJp/79LSbNj8NdFh8B2AG8NI0nt5+iIzCgFM55u/HovT+b6rocnqOCKV4MvZbYzWcof1
+ cFLxmg6G7B4nxXs3a2FFm8vXc9U6a9mpM5dBg=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=63J/tLzLebR+d+sU8VZA5VzH3xNPW+K+cgzDeTPBen4=;
+ b=uRKi47dK1SsVmKGmDHGRyHnJUmIgl7KWe+4bw2bSIkFKSCLLLyQExA9pTTyKm7NNpG
+ 40DV+S9NvvFFz8xKpUhzyVHOyqroiK0n+NtNHiin6iWOFxkwis3PIksuT0g6QBq2r4xQ
+ qixoPsgmQKAo3JTYdOXnuAJbwKD51Q9+nSljPGaU2HoXaONfTVtUmFM2v/ia/+EOgGiE
+ ndPDhh3ljIxAqS+RZKqlZR7atWMJ6qHTkPb8Lawe59ilwwlQkRuxtWD2TvqntghtfqjU
+ oSAp/R0RFFQVkBPl26yrBmnOlaRe2eSDUi9Ko4Nc7NnR5L0WrTErM4um/qcYPgQpkXp6
+ cqzg==
+X-Gm-Message-State: AOAM532PVHUs8K3S+UV3WTcNkn3vxBoqSnibLAJGrMv+7DhQ3ztibtl2
+ C783OYx3O14h00IYKbYTjsBKKWU9dpwT0A==
+X-Google-Smtp-Source: ABdhPJz5F/EThgNPp23qGDl9MY2K4LWi78/j/QiuyVjIy5oX61QmXaUlXWcVXC9UnQEwuhypGJVJXw==
+X-Received: by 2002:a05:651c:1022:: with SMTP id
+ w2mr4491640ljm.327.1610684163530; 
+ Thu, 14 Jan 2021 20:16:03 -0800 (PST)
+Received: from mail-lj1-f177.google.com (mail-lj1-f177.google.com.
+ [209.85.208.177])
+ by smtp.gmail.com with ESMTPSA id e15sm753334lfc.106.2021.01.14.20.16.01
+ for <intel-gfx@lists.freedesktop.org>
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Thu, 14 Jan 2021 20:16:02 -0800 (PST)
+Received: by mail-lj1-f177.google.com with SMTP id u21so8999576lja.0
+ for <intel-gfx@lists.freedesktop.org>; Thu, 14 Jan 2021 20:16:01 -0800 (PST)
+X-Received: by 2002:a2e:8995:: with SMTP id c21mr4400396lji.251.1610684161408; 
+ Thu, 14 Jan 2021 20:16:01 -0800 (PST)
 MIME-Version: 1.0
-Subject: [Intel-gfx] linux-next: build warnings after merge of the drm-misc
- tree
+References: <20210114163206.4a562d82@gandalf.local.home>
+ <161066015368.19482.10094410867880595092@build.alporthouse.com>
+ <20210114170137.002763b3@gandalf.local.home>
+In-Reply-To: <20210114170137.002763b3@gandalf.local.home>
+From: Linus Torvalds <torvalds@linux-foundation.org>
+Date: Thu, 14 Jan 2021 20:15:45 -0800
+X-Gmail-Original-Message-ID: <CAHk-=wgqPnjOUa0aDRHXC0UAePrM6kRUD9gR4g2x0mq91FD4xA@mail.gmail.com>
+Message-ID: <CAHk-=wgqPnjOUa0aDRHXC0UAePrM6kRUD9gR4g2x0mq91FD4xA@mail.gmail.com>
+To: Steven Rostedt <rostedt@goodmis.org>
+Subject: Re: [Intel-gfx] [BUG] on reboot: bisected to: drm/i915: Shut down
+ displays gracefully on reboot
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,83 +73,24 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Nirmoy Das <nirmoy.das@amd.com>,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
- Linux Next Mailing List <linux-next@vger.kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Darren Salt <devspam@moreofthesa.me.uk>,
- Christian =?UTF-8?B?S8O2bmln?= <christian.koenig@amd.com>
-Content-Type: multipart/mixed; boundary="===============0421715835=="
+Cc: David Airlie <airlied@linux.ie>,
+ intel-gfx <intel-gfx@lists.freedesktop.org>,
+ LKML <linux-kernel@vger.kernel.org>,
+ dri-devel <dri-devel@lists.freedesktop.org>,
+ Chris Wilson <chris@chris-wilson.co.uk>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0421715835==
-Content-Type: multipart/signed; boundary="Sig_/Vpa+x8VRDC3FcD559.RaF=y";
- protocol="application/pgp-signature"; micalg=pgp-sha256
+On Thu, Jan 14, 2021 at 2:01 PM Steven Rostedt <rostedt@goodmis.org> wrote:
+>
+> Thanks, I take it, it will be going into mainline soon.
 
---Sig_/Vpa+x8VRDC3FcD559.RaF=y
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: quoted-printable
+Just got merged - it might be a good idea to verify that your problem is solved.
 
-Hi all,
-
-After merging the drm-misc tree, today's linux-next build (x86_64
-allmodconfig) produced this warning:
-
-drivers/gpu/drm/amd/amdgpu/amdgpu_display.c: In function 'amdgpu_display_us=
-er_framebuffer_create':
-drivers/gpu/drm/amd/amdgpu/amdgpu_display.c:929:24: warning: unused variabl=
-e 'adev' [-Wunused-variable]
-  929 |  struct amdgpu_device *adev =3D drm_to_adev(dev);
-      |                        ^~~~
-
-Introduced by commit
-
-  8f66090b7bb7 ("drm/amdgpu: Remove references to struct drm_device.pdev")
-
-drivers/gpu/drm/amd/amdgpu/amdgpu_device.c: In function 'amdgpu_device_resi=
-ze_fb_bar':
-drivers/gpu/drm/amd/amdgpu/amdgpu_device.c:1109:6: warning: unused variable=
- 'space_needed' [-Wunused-variable]
- 1109 |  u64 space_needed =3D roundup_pow_of_two(adev->gmc.real_vram_size);
-      |      ^~~~~~~~~~~~
-
-Introduced by commit
-
-  453f617a30aa ("drm/amdgpu: Resize BAR0 to the maximum available size, eve=
-n if it doesn't cover VRAM")
-
---=20
-Cheers,
-Stephen Rothwell
-
---Sig_/Vpa+x8VRDC3FcD559.RaF=y
-Content-Type: application/pgp-signature
-Content-Description: OpenPGP digital signature
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAEBCAAdFiEENIC96giZ81tWdLgKAVBC80lX0GwFAmAA7n4ACgkQAVBC80lX
-0GwDEwf/fmr7nK+fiyHfcFlaNUOW7oDnJ8N3XqSam65tbF5eqAFACd79w+UrHr3l
-nRofuChmVJ1cXGKC0HegELL7XakKuqinfxuqOle4k0lqkN+ZRlMlUo99TQDfEY+J
-WSXhCkLYf6jSwUtpg1WEmCc81ljhcJy3HonWN/UqlFdC9oSDg5MvTQMfakXl0/SO
-kaGp/Gjw7+w99zb8gZhofC+jcow6Uq7qftXn4vRsrL4pUAjbQu/dq4YtExewXBQs
-qAIX3yKN2sSTz6opGWFnPH+grzf8MAgfIO61vWfHsbfxt0WAwsA+KmnQAhwU7sxJ
-ZpGvaBUlk25Ub7Kv6JJVDyHtTdc0Xg==
-=Hkir
------END PGP SIGNATURE-----
-
---Sig_/Vpa+x8VRDC3FcD559.RaF=y--
-
---===============0421715835==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
+            Linus
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============0421715835==--
