@@ -1,43 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7CEB52F73D9
-	for <lists+intel-gfx@lfdr.de>; Fri, 15 Jan 2021 08:50:38 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4AEFF2F742C
+	for <lists+intel-gfx@lfdr.de>; Fri, 15 Jan 2021 09:19:25 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C1D5D6E165;
-	Fri, 15 Jan 2021 07:50:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 30A526E19A;
+	Fri, 15 Jan 2021 08:19:19 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C15CD6E165;
- Fri, 15 Jan 2021 07:50:35 +0000 (UTC)
-IronPort-SDR: WK6QJFiOI5c4hwBLlPBb7xEDPjecvkVWzON6JFLJt4z8Lo8gViHH1VYQC9Bkucv4pZJZ0LwRnj
- zPYWjqIrHexQ==
-X-IronPort-AV: E=McAfee;i="6000,8403,9864"; a="178600141"
-X-IronPort-AV: E=Sophos;i="5.79,348,1602572400"; d="scan'208";a="178600141"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Jan 2021 23:50:32 -0800
-IronPort-SDR: sE+wicejpdjwI5sz3rL5UivRYWPuYpz0Sz9m2SC0oCkt7LnNQVNXOCiFK41XEwO6phK9OHXeQ3
- nR4jMXqTPgaA==
-X-IronPort-AV: E=Sophos;i="5.79,348,1602572400"; d="scan'208";a="382575810"
-Received: from bmkierna-mobl3.ger.corp.intel.com (HELO localhost)
- ([10.213.221.58])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Jan 2021 23:50:28 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: Steven Rostedt <rostedt@goodmis.org>, LKML <linux-kernel@vger.kernel.org>,
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
-In-Reply-To: <20210114163435.767ccbb0@gandalf.local.home>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20210114163206.4a562d82@gandalf.local.home>
- <20210114163435.767ccbb0@gandalf.local.home>
-Date: Fri, 15 Jan 2021 09:50:25 +0200
-Message-ID: <87mtxaprjy.fsf@intel.com>
+Received: from fireflyinternet.com (unknown [77.68.26.236])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 45A316E18F
+ for <intel-gfx@lists.freedesktop.org>; Fri, 15 Jan 2021 08:19:17 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from build.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 23602668-1500050 
+ for multiple; Fri, 15 Jan 2021 08:19:10 +0000
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Fri, 15 Jan 2021 08:19:05 +0000
+Message-Id: <20210115081908.29494-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.20.1
+In-Reply-To: <mika.kuoppala@linux.intel.com>
+References: <mika.kuoppala@linux.intel.com>
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [BUG] on reboot: bisected to: drm/i915: Shut down
- displays gracefully on reboot
+Subject: [Intel-gfx] [PATCH 1/4] drm/i915/selftests: Prepare the selftests
+ for engine resets with ring submission
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,91 +39,120 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: David Airlie <airlied@linux.ie>, chris@chris-wilson.co.uk,
- Linus Torvalds <torvalds@linux-foundation.org>
+Cc: Chris Wilson <chris@chris-wilson.co.uk>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 14 Jan 2021, Steven Rostedt <rostedt@goodmis.org> wrote:
-> [ Forgot to add those on the commit itself ]
->
-> -- Steve
->
->
-> On Thu, 14 Jan 2021 16:32:06 -0500
-> Steven Rostedt <rostedt@goodmis.org> wrote:
->
->> On reboot, one of my test boxes now triggers the following warning:
->> 
->>  ------------[ cut here ]------------
->>  RPM raw-wakeref not held
->>  WARNING: CPU: 4 PID: 1 at drivers/gpu/drm/i915/intel_runtime_pm.h:106 gen6_write32+0x1bc/0x2a0 [i915]
->>  Modules linked in: ebtable_filter ebtables bridge stp llc ip6t_REJECT nf_reject_ipv6 vsock vmw_vmci xt_state xt_conntrack nf_conntrack nf_defrag_ipv6 nf_defrag_ipv4 ip6table_filter ip6_tables snd_hda_codec_hdmi snd_hda_codec_realtek snd_hda_codec_generic le
->> 15 snd_hda_intel snd_intel_dspcfg snd_hda_codec snd_hwdep i2c_algo_bit snd_hda_core snd_seq intel_rapl_msr snd_seq_device intel_rapl_common snd_pcm x86_pkg_temp_thermal intel_powerclamp snd_timer snd coretemp kvm_intel soundcore kvm mei_wdt irqbypass joydev 
->> _pmc_bxt hp_wmi wmi_bmof sparse_keymap rfkill iTCO_vendor_support crct10dif_pclmul crc32_pclmul crc32c_intel ghash_clmulni_intel drm_kms_helper i2c_i801 cec drm rapl intel_cstate intel_uncore mei_me i2c_smbus e1000e tpm_infineon wmi serio_raw mei video lpc_i
->> 
->>  CPU: 4 PID: 1 Comm: systemd-shutdow Not tainted 5.9.0-rc4-test+ #861
->>  Hardware name: Hewlett-Packard HP Compaq Pro 6300 SFF/339A, BIOS K01 v03.03 07/14/2016
->>  RIP: 0010:gen6_write32+0x1bc/0x2a0 [i915]
->>  Code: 5d 82 e0 0f 0b e9 b5 fe ff ff 80 3d 95 6b 22 00 00 0f 85 b2 fe ff ff 48 c7 c7 04 d2 a4 c0 c6 05 81 6b 22 00 01 e8 f6 5c 82 e0 <0f> 0b e9 98 fe ff ff 80 3d 6d 6b 22 00 00 0f 85 95 fe ff ff 48 c7
->>  RSP: 0018:ffffb9c1c002fd08 EFLAGS: 00010296
->>  RAX: 0000000000000018 RBX: ffff99aec8881010 RCX: ffff99aeda400000
->>  RDX: 0000000000000000 RSI: ffffffffa115d9ef RDI: ffffffffa115d9ef
->>  RBP: 0000000000044004 R08: 0000000000000001 R09: 0000000000000000
->>  R10: 0000000000000001 R11: 0000000000000001 R12: 0000000000000000
->>  R13: 0000000000000001 R14: 00000000ffffffff R15: 0000000000000000
->>  FS:  00007f91257a9940(0000) GS:ffff99aeda400000(0000) knlGS:0000000000000000
->>  CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
->>  CR2: 00007f9126829400 CR3: 00000001088f0006 CR4: 00000000001706e0
->>  Call Trace:
->>   gen3_irq_reset+0x2e/0xd0 [i915]
->>   intel_irq_reset+0x59/0x6a0 [i915]
->>   intel_runtime_pm_disable_interrupts+0xe/0x30 [i915]
->>   i915_driver_shutdown+0x2e/0x40 [i915]
->>   pci_device_shutdown+0x34/0x60
->>   device_shutdown+0x15d/0x1b3
->>   kernel_restart+0xe/0x30
->>   __do_sys_reboot+0x1d7/0x210
->>   ? vfs_writev+0x9d/0xe0
->>   ? syscall_enter_from_user_mode+0x1d/0x70
->>   ? trace_hardirqs_on+0x2c/0xe0
->>   do_syscall_64+0x33/0x40
->>   entry_SYSCALL_64_after_hwframe+0x44/0xa9
->>  RIP: 0033:0x7f912675f2d7
->>  Code: 64 89 01 48 83 c8 ff c3 66 2e 0f 1f 84 00 00 00 00 00 90 f3 0f 1e fa 89 fa be 69 19 12 28 bf ad de e1 fe b8 a9 00 00 00 0f 05 <48> 3d 00 f0 ff ff 77 01 c3 48 8b 15 81 8b 0c 00 f7 d8 64 89 02 b8
->>  RSP: 002b:00007ffeca28e148 EFLAGS: 00000206 ORIG_RAX: 00000000000000a9
->>  RAX: ffffffffffffffda RBX: 0000000000000000 RCX: 00007f912675f2d7
->>  RDX: 0000000001234567 RSI: 0000000028121969 RDI: 00000000fee1dead
->>  RBP: 00007ffeca28e3d0 R08: 000000000000000a R09: 0000000000000000
->>  R10: 0000000000000232 R11: 0000000000000206 R12: 0000000000000001
->>  R13: 0000000000000000 R14: 0000000000000000 R15: 00007ffeca28e4b8
->>  ---[ end trace 2ed17eabd3ab6938 ]---
->>  ------------[ cut here ]------------
->> 
->> The bisect came to this commit:
->> 
->>   fe0f1e3bfdfeb53e18f1206aea4f40b9bd1f291c
->>   ("drm/i915: Shut down displays gracefully on reboot")
->> 
->> Which makes sense, as it happens on shutdown.
+The engine resets selftests kick the tasklets, safe up until now as only
+execlists supported engine resets.
 
-Please try this pull, heading to -rc4, which cointains "drm/i915:
-Disable RPM wakeref assertions during driver shutdown":
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+---
+ drivers/gpu/drm/i915/gt/selftest_hangcheck.c | 18 ++++++++++++++----
+ drivers/gpu/drm/i915/gt/selftest_reset.c     | 11 ++++++++---
+ 2 files changed, 22 insertions(+), 7 deletions(-)
 
-http://lore.kernel.org/r/87sg73pz42.fsf@intel.com
-
-
-BR,
-Jani.
-
->> 
->> -- Steve
->
-
+diff --git a/drivers/gpu/drm/i915/gt/selftest_hangcheck.c b/drivers/gpu/drm/i915/gt/selftest_hangcheck.c
+index 460c3e9542f4..463bb6a700c8 100644
+--- a/drivers/gpu/drm/i915/gt/selftest_hangcheck.c
++++ b/drivers/gpu/drm/i915/gt/selftest_hangcheck.c
+@@ -704,6 +704,7 @@ static int __igt_reset_engine(struct intel_gt *gt, bool active)
+ 
+ 	for_each_engine(engine, gt, id) {
+ 		unsigned int reset_count, reset_engine_count;
++		unsigned long count;
+ 		IGT_TIMEOUT(end_time);
+ 
+ 		if (active && !intel_engine_can_store_dword(engine))
+@@ -721,6 +722,7 @@ static int __igt_reset_engine(struct intel_gt *gt, bool active)
+ 
+ 		st_engine_heartbeat_disable(engine);
+ 		set_bit(I915_RESET_ENGINE + id, &gt->reset.flags);
++		count = 0;
+ 		do {
+ 			if (active) {
+ 				struct i915_request *rq;
+@@ -770,9 +772,13 @@ static int __igt_reset_engine(struct intel_gt *gt, bool active)
+ 				err = -EINVAL;
+ 				break;
+ 			}
++
++			count++;
+ 		} while (time_before(jiffies, end_time));
+ 		clear_bit(I915_RESET_ENGINE + id, &gt->reset.flags);
+ 		st_engine_heartbeat_enable(engine);
++		pr_info("%s: Completed %lu %s resets\n",
++			engine->name, count, active ? "active" : "idle");
+ 
+ 		if (err)
+ 			break;
+@@ -1623,7 +1629,8 @@ static int igt_reset_queue(void *arg)
+ 			prev = rq;
+ 			count++;
+ 		} while (time_before(jiffies, end_time));
+-		pr_info("%s: Completed %d resets\n", engine->name, count);
++		pr_info("%s: Completed %d queued resets\n",
++			engine->name, count);
+ 
+ 		*h.batch = MI_BATCH_BUFFER_END;
+ 		intel_gt_chipset_flush(engine->gt);
+@@ -1720,7 +1727,8 @@ static int __igt_atomic_reset_engine(struct intel_engine_cs *engine,
+ 	GEM_TRACE("i915_reset_engine(%s:%s) under %s\n",
+ 		  engine->name, mode, p->name);
+ 
+-	tasklet_disable(t);
++	if (t->func)
++		tasklet_disable(t);
+ 	if (strcmp(p->name, "softirq"))
+ 		local_bh_disable();
+ 	p->critical_section_begin();
+@@ -1730,8 +1738,10 @@ static int __igt_atomic_reset_engine(struct intel_engine_cs *engine,
+ 	p->critical_section_end();
+ 	if (strcmp(p->name, "softirq"))
+ 		local_bh_enable();
+-	tasklet_enable(t);
+-	tasklet_hi_schedule(t);
++	if (t->func) {
++		tasklet_enable(t);
++		tasklet_hi_schedule(t);
++	}
+ 
+ 	if (err)
+ 		pr_err("i915_reset_engine(%s:%s) failed under %s\n",
+diff --git a/drivers/gpu/drm/i915/gt/selftest_reset.c b/drivers/gpu/drm/i915/gt/selftest_reset.c
+index b7befcfbdcde..8784257ec808 100644
+--- a/drivers/gpu/drm/i915/gt/selftest_reset.c
++++ b/drivers/gpu/drm/i915/gt/selftest_reset.c
+@@ -321,7 +321,10 @@ static int igt_atomic_engine_reset(void *arg)
+ 		goto out_unlock;
+ 
+ 	for_each_engine(engine, gt, id) {
+-		tasklet_disable(&engine->execlists.tasklet);
++		struct tasklet_struct *t = &engine->execlists.tasklet;
++
++		if (t->func)
++			tasklet_disable(t);
+ 		intel_engine_pm_get(engine);
+ 
+ 		for (p = igt_atomic_phases; p->name; p++) {
+@@ -345,8 +348,10 @@ static int igt_atomic_engine_reset(void *arg)
+ 		}
+ 
+ 		intel_engine_pm_put(engine);
+-		tasklet_enable(&engine->execlists.tasklet);
+-		tasklet_hi_schedule(&engine->execlists.tasklet);
++		if (t->func) {
++			tasklet_enable(t);
++			tasklet_hi_schedule(t);
++		}
+ 		if (err)
+ 			break;
+ 	}
 -- 
-Jani Nikula, Intel Open Source Graphics Center
+2.20.1
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
