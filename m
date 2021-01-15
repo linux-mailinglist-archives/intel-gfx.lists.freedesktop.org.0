@@ -2,57 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4D41A2F77DA
-	for <lists+intel-gfx@lfdr.de>; Fri, 15 Jan 2021 12:43:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 95A402F7823
+	for <lists+intel-gfx@lfdr.de>; Fri, 15 Jan 2021 13:00:45 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6055F6E0AB;
-	Fri, 15 Jan 2021 11:43:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 04D1A6E2DE;
+	Fri, 15 Jan 2021 12:00:44 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com
- [IPv6:2a00:1450:4864:20::62f])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0C3F16E0AB;
- Fri, 15 Jan 2021 11:43:40 +0000 (UTC)
-Received: by mail-ej1-x62f.google.com with SMTP id w1so12817208ejf.11;
- Fri, 15 Jan 2021 03:43:39 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=from:to:cc:subject:date:message-id;
- bh=/9sksIUuZatO+aX8p4iLJ2mKZetuSFmDz0PF+YiOHOI=;
- b=YEJANZ1/9r+EPbKaQQTb3YhWamtM4DH9to+g8PWbIoYfCC2B9io/PF88pVRzv8fh61
- Wapvntn5ABjZ4BADq3kEhzYrfLziVhaprSzQD1mSf1hjsxKCDAxUsCWMtzTpTyJwZ/Ql
- 2OKtFYFS//RkJM5MTRb5VHYlKtLi9PAgP2o50L/4C4rwV7bn6D8U0duHKDpPSdNh6r8E
- fybYpMd8V3cr0MKirGnUYPOuP/QV5wYCu0q7b9Pr2IZ35zwJ6tnVquuJfw/sbV7u9O9h
- oxFe7U6FfWf/79W+zxcUMZshS+fHCd56UJ7c8Y63FqlccwNeRBJ3ePAYCGUunR7p5scq
- zUsg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id;
- bh=/9sksIUuZatO+aX8p4iLJ2mKZetuSFmDz0PF+YiOHOI=;
- b=rLEw5jQC37NEYVq6sqIYK55dDIN1gxAM7pWPLDLL5xCtJHV3mbR2I4mUy5sS9AwfIe
- OK/R7YLoKdrcDN4swo3bTnErz3Liyfpb2JmjAJ5Ku0PJaUQM1Y6Un1hq/hsVlQXm2kK9
- WsF0dMkqT6O9jN54maE5P+b84y8ag76y3u0h9oNx2ToHxF3QQDKORg8aNSgG6gjtdEh8
- 52/m4gEDyksT0sV0yqN9FoXd9H/jAMs3MxQjlg0YPfbVVPHl/OYUJawRMHJE/biHoUik
- 70DrCNcqLrToD/2+K32Qe51iyXcVKuitHHVj44JUk8oQlL8E9sEXOd66b/UdX49IV1Yy
- W9Wg==
-X-Gm-Message-State: AOAM531Y0FmmCoXGhaJTW+IAqweK2U1sV2pmvhDF2MWILpAEdogBuZTa
- HnOqTiv6mbUH+f6hrLmzNUA=
-X-Google-Smtp-Source: ABdhPJwET0Z8ZFGqMNHwdHfY36RdnFX6xRQgu56Fz+Cxj0NantVxngAd4EdKk1sELCE/DGiWkoU/OQ==
-X-Received: by 2002:a17:906:48c:: with SMTP id
- f12mr3397945eja.431.1610711018663; 
- Fri, 15 Jan 2021 03:43:38 -0800 (PST)
-Received: from felia.fritz.box ([2001:16b8:2d39:a000:7c85:8e80:b862:a8bf])
- by smtp.gmail.com with ESMTPSA id a2sm3184105ejt.46.2021.01.15.03.43.37
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 15 Jan 2021 03:43:37 -0800 (PST)
-From: Lukas Bulwahn <lukas.bulwahn@gmail.com>
-To: Ankit Nautiyal <ankit.k.nautiyal@intel.com>,
- Uma Shankar <uma.shankar@intel.com>, Jani Nikula <jani.nikula@intel.com>,
- intel-gfx@lists.freedesktop.org
-Date: Fri, 15 Jan 2021 12:43:29 +0100
-Message-Id: <20210115114329.27152-1-lukas.bulwahn@gmail.com>
-X-Mailer: git-send-email 2.17.1
-Subject: [Intel-gfx] [PATCH] drm/dp_helper: tweak kerneldoc to address
- warning
+Received: from fireflyinternet.com (unknown [77.68.26.236])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E1CF26E2DE
+ for <intel-gfx@lists.freedesktop.org>; Fri, 15 Jan 2021 12:00:42 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from build.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 23605188-1500050 
+ for multiple; Fri, 15 Jan 2021 12:00:24 +0000
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Fri, 15 Jan 2021 12:00:22 +0000
+Message-Id: <20210115120022.19113-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.20.1
+MIME-Version: 1.0
+Subject: [Intel-gfx] [PATCH] drm/i915/gem: Use GEM context tracking for
+ i915_gem_objects
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,61 +37,224 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-doc@vger.kernel.org, David Airlie <airlied@linux.ie>,
- kernel-janitors@vger.kernel.org, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org,
- Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
- Lukas Bulwahn <lukas.bulwahn@gmail.com>
-MIME-Version: 1.0
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>, stable@kernel.org,
+ Chris Wilson <chris@chris-wilson.co.uk>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Commit 07c9b8634fb6 ("drm/dp_helper: Add helpers to configure PCONs
-RGB-YCbCr Conversion") introduces a warning with make htmldocs in
-./drivers/gpu/drm/drm_dp_helper.c:965 for
-drm_dp_downstream_rgb_to_ycbcr_conversion():
+Rather than take an indirect jump to the drm midlayer (that introduces a
+use-after-free in reading the ctx->file backpointer) to find all the vma
+on objects associated with the ctx->file, walk the LUT table stored in
+the context that tracks all the objects in use with the context.
 
-  warning: Excess function parameter 'colorspc' description
-  warning: Function parameter or member 'color_spc' not described
-
-Tweak the kerneldoc for drm_dp_downstream_rgb_to_ycbcr_conversion().
-
-Fixes: 07c9b8634fb6 ("drm/dp_helper: Add helpers to configure PCONs RGB-YCbCr Conversion")
-Signed-off-by: Lukas Bulwahn <lukas.bulwahn@gmail.com>
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+Cc: CQ Tang <cq.tang@intel.com>
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+Cc: stable@kernel.org
 ---
-applies cleanly on next-20210115
+ drivers/gpu/drm/i915/i915_debugfs.c | 138 +++++++++++-----------------
+ 1 file changed, 52 insertions(+), 86 deletions(-)
 
-Jani, please pick this minor doc warning fixup.
-
- drivers/gpu/drm/drm_dp_helper.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
-
-diff --git a/drivers/gpu/drm/drm_dp_helper.c b/drivers/gpu/drm/drm_dp_helper.c
-index 3ecde451f523..d60e94ac6fdd 100644
---- a/drivers/gpu/drm/drm_dp_helper.c
-+++ b/drivers/gpu/drm/drm_dp_helper.c
-@@ -954,7 +954,7 @@ EXPORT_SYMBOL(drm_dp_downstream_444_to_420_conversion);
-  *                                               RGB->YCbCr conversion capability
-  * @dpcd: DisplayPort configuration data
-  * @port_cap: downstream facing port capabilities
-- * @colorspc: Colorspace for which conversion cap is sought
-+ * @color_spc: Colorspace for which conversion cap is sought
-  *
-  * Returns: whether the downstream facing port can convert RGB->YCbCr for a given
-  * colorspace.
-@@ -3134,7 +3134,7 @@ int drm_dp_pcon_pps_override_param(struct drm_dp_aux *aux, u8 pps_param[6])
+diff --git a/drivers/gpu/drm/i915/i915_debugfs.c b/drivers/gpu/drm/i915/i915_debugfs.c
+index de8e0e44cfb6..d45be8b2a994 100644
+--- a/drivers/gpu/drm/i915/i915_debugfs.c
++++ b/drivers/gpu/drm/i915/i915_debugfs.c
+@@ -220,73 +220,14 @@ i915_debugfs_describe_obj(struct seq_file *m, struct drm_i915_gem_object *obj)
+ 		seq_printf(m, " (%s)", engine->name);
  }
- EXPORT_SYMBOL(drm_dp_pcon_pps_override_param);
  
--/*
-+/**
-  * drm_dp_pcon_convert_rgb_to_ycbcr() - Configure the PCon to convert RGB to Ycbcr
-  * @aux: displayPort AUX channel
-  * @color_spc: Color-space/s for which conversion is to be enabled, 0 for disable.
+-struct file_stats {
+-	struct i915_address_space *vm;
++struct ctx_stats {
+ 	unsigned long count;
+ 	u64 total;
+ 	u64 active, inactive;
+ 	u64 closed;
+ };
+ 
+-static int per_file_stats(int id, void *ptr, void *data)
+-{
+-	struct drm_i915_gem_object *obj = ptr;
+-	struct file_stats *stats = data;
+-	struct i915_vma *vma;
+-
+-	if (IS_ERR_OR_NULL(obj) || !kref_get_unless_zero(&obj->base.refcount))
+-		return 0;
+-
+-	stats->count++;
+-	stats->total += obj->base.size;
+-
+-	spin_lock(&obj->vma.lock);
+-	if (!stats->vm) {
+-		for_each_ggtt_vma(vma, obj) {
+-			if (!drm_mm_node_allocated(&vma->node))
+-				continue;
+-
+-			if (i915_vma_is_active(vma))
+-				stats->active += vma->node.size;
+-			else
+-				stats->inactive += vma->node.size;
+-
+-			if (i915_vma_is_closed(vma))
+-				stats->closed += vma->node.size;
+-		}
+-	} else {
+-		struct rb_node *p = obj->vma.tree.rb_node;
+-
+-		while (p) {
+-			long cmp;
+-
+-			vma = rb_entry(p, typeof(*vma), obj_node);
+-			cmp = i915_vma_compare(vma, stats->vm, NULL);
+-			if (cmp == 0) {
+-				if (drm_mm_node_allocated(&vma->node)) {
+-					if (i915_vma_is_active(vma))
+-						stats->active += vma->node.size;
+-					else
+-						stats->inactive += vma->node.size;
+-
+-					if (i915_vma_is_closed(vma))
+-						stats->closed += vma->node.size;
+-				}
+-				break;
+-			}
+-			if (cmp < 0)
+-				p = p->rb_right;
+-			else
+-				p = p->rb_left;
+-		}
+-	}
+-	spin_unlock(&obj->vma.lock);
+-
+-	i915_gem_object_put(obj);
+-	return 0;
+-}
+-
+-#define print_file_stats(m, name, stats) do { \
++#define print_ctx_stats(m, name, stats) do { \
+ 	if (stats.count) \
+ 		seq_printf(m, "%s: %lu objects, %llu bytes (%llu active, %llu inactive, %llu closed)\n", \
+ 			   name, \
+@@ -297,16 +238,56 @@ static int per_file_stats(int id, void *ptr, void *data)
+ 			   stats.closed); \
+ } while (0)
+ 
++static void vma_stats(struct i915_vma *vma, struct ctx_stats *stats)
++{
++	if (!drm_mm_node_allocated(&vma->node))
++		return;
++
++	stats->count++;
++	stats->total += vma->size;
++
++	if (i915_vma_is_active(vma))
++		stats->active += vma->node.size;
++	else
++		stats->inactive += vma->node.size;
++
++	if (i915_vma_is_closed(vma))
++		stats->closed += vma->node.size;
++}
++
++static void context_stats(struct i915_gem_context *ctx, struct ctx_stats *stats)
++{
++	struct radix_tree_iter iter;
++	void __rcu **slot;
++
++	rcu_read_lock();
++	radix_tree_for_each_slot(slot, &ctx->handles_vma, &iter, 0) {
++		struct i915_vma *vma = rcu_dereference_raw(*slot);
++		struct drm_i915_gem_object *obj;
++
++		obj = i915_gem_object_get_rcu(vma->obj);
++		if (!obj)
++			continue;
++
++		vma_stats(vma, stats);
++		i915_gem_object_put(obj);
++	}
++	rcu_read_unlock();
++}
++
+ static void print_context_stats(struct seq_file *m,
+ 				struct drm_i915_private *i915)
+ {
+-	struct file_stats kstats = {};
++	struct ctx_stats kstats = {};
+ 	struct i915_gem_context *ctx, *cn;
+ 
+ 	spin_lock(&i915->gem.contexts.lock);
+ 	list_for_each_entry_safe(ctx, cn, &i915->gem.contexts.list, link) {
+ 		struct i915_gem_engines_iter it;
++		struct ctx_stats stats = {};
++		struct task_struct *task;
+ 		struct intel_context *ce;
++		char name[80] = "<unknown>";
+ 
+ 		if (!kref_get_unless_zero(&ctx->ref))
+ 			continue;
+@@ -316,39 +297,24 @@ static void print_context_stats(struct seq_file *m,
+ 		for_each_gem_engine(ce,
+ 				    i915_gem_context_lock_engines(ctx), it) {
+ 			if (intel_context_pin_if_active(ce)) {
+-				rcu_read_lock();
+ 				if (ce->state)
+-					per_file_stats(0,
+-						       ce->state->obj, &kstats);
+-				per_file_stats(0, ce->ring->vma->obj, &kstats);
+-				rcu_read_unlock();
++					vma_stats(ce->state, &kstats);
++				vma_stats(ce->ring->vma, &kstats);
+ 				intel_context_unpin(ce);
+ 			}
+ 		}
+ 		i915_gem_context_unlock_engines(ctx);
+ 
+-		mutex_lock(&ctx->mutex);
+-		if (!IS_ERR_OR_NULL(ctx->file_priv)) {
+-			struct file_stats stats = {
+-				.vm = rcu_access_pointer(ctx->vm),
+-			};
+-			struct drm_file *file = ctx->file_priv->file;
+-			struct task_struct *task;
+-			char name[80];
++		context_stats(ctx, &stats);
+ 
++		if (ctx->pid) {
+ 			rcu_read_lock();
+-			idr_for_each(&file->object_idr, per_file_stats, &stats);
++			task = pid_task(ctx->pid, PIDTYPE_PID);
++			if (task)
++				memcpy(name, task->comm, sizeof(task->comm));
+ 			rcu_read_unlock();
+-
+-			rcu_read_lock();
+-			task = pid_task(ctx->pid ?: file->pid, PIDTYPE_PID);
+-			snprintf(name, sizeof(name), "%s",
+-				 task ? task->comm : "<unknown>");
+-			rcu_read_unlock();
+-
+-			print_file_stats(m, name, stats);
+ 		}
+-		mutex_unlock(&ctx->mutex);
++		print_ctx_stats(m, name, stats);
+ 
+ 		spin_lock(&i915->gem.contexts.lock);
+ 		list_safe_reset_next(ctx, cn, link);
+@@ -356,7 +322,7 @@ static void print_context_stats(struct seq_file *m,
+ 	}
+ 	spin_unlock(&i915->gem.contexts.lock);
+ 
+-	print_file_stats(m, "[k]contexts", kstats);
++	print_ctx_stats(m, "[k]contexts", kstats);
+ }
+ 
+ static int i915_gem_object_info(struct seq_file *m, void *data)
 -- 
-2.17.1
+2.20.1
 
 _______________________________________________
 Intel-gfx mailing list
