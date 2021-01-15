@@ -2,30 +2,42 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4BE372F7EA0
-	for <lists+intel-gfx@lfdr.de>; Fri, 15 Jan 2021 15:54:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B38332F7F14
+	for <lists+intel-gfx@lfdr.de>; Fri, 15 Jan 2021 16:11:19 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C88E96E44B;
-	Fri, 15 Jan 2021 14:54:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D32D789C59;
+	Fri, 15 Jan 2021 15:11:15 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 5EE8B6E44B;
- Fri, 15 Jan 2021 14:54:21 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 5839AA8835;
- Fri, 15 Jan 2021 14:54:21 +0000 (UTC)
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 10D3189C17;
+ Fri, 15 Jan 2021 15:11:14 +0000 (UTC)
+IronPort-SDR: StJyTLuXcxfQp1cvvXjUqRJdzAGHki3TcxOzXFkiCICOPQ+3/pRo/MIVeCEf+lcYlsV2cDrSuL
+ sEJiHUwGBqUA==
+X-IronPort-AV: E=McAfee;i="6000,8403,9864"; a="178708689"
+X-IronPort-AV: E=Sophos;i="5.79,349,1602572400"; d="scan'208";a="178708689"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Jan 2021 07:11:12 -0800
+IronPort-SDR: qvFDr4gis4W2L8H3+grQyof86sZPJVgFEH/lzW5XVSoHgll869oG6tg6xJNYbqaPDja4+RTyb8
+ 7EZNMuJWjwQw==
+X-IronPort-AV: E=Sophos;i="5.79,349,1602572400"; d="scan'208";a="465611249"
+Received: from bmkierna-mobl3.ger.corp.intel.com (HELO localhost)
+ ([10.213.221.58])
+ by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Jan 2021 07:11:07 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: Lyude Paul <lyude@redhat.com>, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
+In-Reply-To: <8735z2pazc.fsf@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20210114221709.2261452-1-lyude@redhat.com>
+ <20210114221709.2261452-2-lyude@redhat.com> <8735z2pazc.fsf@intel.com>
+Date: Fri, 15 Jan 2021 17:11:04 +0200
+Message-ID: <87wnwensl3.fsf@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matthew Auld" <matthew.auld@intel.com>
-Date: Fri, 15 Jan 2021 14:54:21 -0000
-Message-ID: <161072246133.28529.14770060563087300077@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210115101329.880667-1-matthew.auld@intel.com>
-In-Reply-To: <20210115101329.880667-1-matthew.auld@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915=3A_add_back_static_declaration?=
+Subject: Re: [Intel-gfx] [PATCH v7 1/5] drm/i915: Pass port to
+ intel_panel_bl_funcs.get()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,264 +50,247 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============1912299783=="
+Cc: Arnd Bergmann <arnd@arndb.de>, David Airlie <airlied@linux.ie>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ open list <linux-kernel@vger.kernel.org>,
+ Chris Wilson <chris@chris-wilson.co.uk>, Sean Paul <seanpaul@chromium.org>,
+ Dave Airlie <airlied@redhat.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============1912299783==
-Content-Type: multipart/alternative;
- boundary="===============7508541177248328544=="
+On Fri, 15 Jan 2021, Jani Nikula <jani.nikula@intel.com> wrote:
+> On Thu, 14 Jan 2021, Lyude Paul <lyude@redhat.com> wrote:
+>> In the next commit where we split PWM related backlight functions from
+>> higher-level backlight functions, we'll want to be able to retrieve the
+>> backlight level for the current display panel from the
+>> intel_panel_bl_funcs->setup() function using pwm_funcs->get(). Since
+>> intel_panel_bl_funcs->setup() is called before we've fully read in the
+>> current hardware state into our atomic state, we can't grab atomic
+>> modesetting locks safely anyway in intel_panel_bl_funcs->setup(), and some
+>> PWM backlight functions (vlv_get_backlight() in particular) require knowing
+>> the currently used pipe we need to be able to discern the current display
+>> pipe through other means. Luckily, we're already passing the current
+>> display pipe to intel_panel_bl_funcs->setup() so all we have to do in order
+>> to achieve this is pass down that parameter to intel_panel_bl_funcs->get().
+>>
+>> So, fix this by accepting an additional pipe parameter in
+>> intel_panel_bl_funcs->get(), and leave figuring out the current display
+>> pipe up to the caller.
+>>
+>> Signed-off-by: Lyude Paul <lyude@redhat.com>
+>
+> Much neater than anything I suggested!
+>
+> Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 
---===============7508541177248328544==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+And pushed this one to drm-intel-next, thanks for the patch.
 
-== Series Details ==
+BR,
+Jani.
 
-Series: drm/i915: add back static declaration
-URL   : https://patchwork.freedesktop.org/series/85902/
-State : success
+>
+>> ---
+>>  .../drm/i915/display/intel_display_types.h    |  2 +-
+>>  .../drm/i915/display/intel_dp_aux_backlight.c |  4 +-
+>>  .../i915/display/intel_dsi_dcs_backlight.c    |  2 +-
+>>  drivers/gpu/drm/i915/display/intel_panel.c    | 40 ++++++++-----------
+>>  4 files changed, 21 insertions(+), 27 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
+>> index 585bb1edea04..b1f4ec144207 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
+>> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+>> @@ -228,7 +228,7 @@ struct intel_encoder {
+>>  struct intel_panel_bl_funcs {
+>>  	/* Connector and platform specific backlight functions */
+>>  	int (*setup)(struct intel_connector *connector, enum pipe pipe);
+>> -	u32 (*get)(struct intel_connector *connector);
+>> +	u32 (*get)(struct intel_connector *connector, enum pipe pipe);
+>>  	void (*set)(const struct drm_connector_state *conn_state, u32 level);
+>>  	void (*disable)(const struct drm_connector_state *conn_state, u32 level);
+>>  	void (*enable)(const struct intel_crtc_state *crtc_state,
+>> diff --git a/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c b/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
+>> index 9775f33d1aac..de764dae1e66 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
+>> @@ -128,7 +128,7 @@ static bool intel_dp_aux_vesa_backlight_dpcd_mode(struct intel_connector *connec
+>>   * Read the current backlight value from DPCD register(s) based
+>>   * on if 8-bit(MSB) or 16-bit(MSB and LSB) values are supported
+>>   */
+>> -static u32 intel_dp_aux_vesa_get_backlight(struct intel_connector *connector)
+>> +static u32 intel_dp_aux_vesa_get_backlight(struct intel_connector *connector, enum pipe unused)
+>>  {
+>>  	struct intel_dp *intel_dp = intel_attached_dp(connector);
+>>  	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
+>> @@ -381,7 +381,7 @@ static int intel_dp_aux_vesa_setup_backlight(struct intel_connector *connector,
+>>  		return -ENODEV;
+>>  
+>>  	panel->backlight.min = 0;
+>> -	panel->backlight.level = intel_dp_aux_vesa_get_backlight(connector);
+>> +	panel->backlight.level = intel_dp_aux_vesa_get_backlight(connector, pipe);
+>>  	panel->backlight.enabled = intel_dp_aux_vesa_backlight_dpcd_mode(connector) &&
+>>  				   panel->backlight.level != 0;
+>>  
+>> diff --git a/drivers/gpu/drm/i915/display/intel_dsi_dcs_backlight.c b/drivers/gpu/drm/i915/display/intel_dsi_dcs_backlight.c
+>> index 88628764956d..584c14c4cbd0 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_dsi_dcs_backlight.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_dsi_dcs_backlight.c
+>> @@ -43,7 +43,7 @@
+>>  
+>>  #define PANEL_PWM_MAX_VALUE		0xFF
+>>  
+>> -static u32 dcs_get_backlight(struct intel_connector *connector)
+>> +static u32 dcs_get_backlight(struct intel_connector *connector, enum pipe unused)
+>>  {
+>>  	struct intel_encoder *encoder = intel_attached_encoder(connector);
+>>  	struct intel_dsi *intel_dsi = enc_to_intel_dsi(encoder);
+>> diff --git a/drivers/gpu/drm/i915/display/intel_panel.c b/drivers/gpu/drm/i915/display/intel_panel.c
+>> index 7a4239d1c241..7587aaefc7a0 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_panel.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_panel.c
+>> @@ -530,21 +530,21 @@ static u32 intel_panel_compute_brightness(struct intel_connector *connector,
+>>  	return val;
+>>  }
+>>  
+>> -static u32 lpt_get_backlight(struct intel_connector *connector)
+>> +static u32 lpt_get_backlight(struct intel_connector *connector, enum pipe unused)
+>>  {
+>>  	struct drm_i915_private *dev_priv = to_i915(connector->base.dev);
+>>  
+>>  	return intel_de_read(dev_priv, BLC_PWM_PCH_CTL2) & BACKLIGHT_DUTY_CYCLE_MASK;
+>>  }
+>>  
+>> -static u32 pch_get_backlight(struct intel_connector *connector)
+>> +static u32 pch_get_backlight(struct intel_connector *connector, enum pipe unused)
+>>  {
+>>  	struct drm_i915_private *dev_priv = to_i915(connector->base.dev);
+>>  
+>>  	return intel_de_read(dev_priv, BLC_PWM_CPU_CTL) & BACKLIGHT_DUTY_CYCLE_MASK;
+>>  }
+>>  
+>> -static u32 i9xx_get_backlight(struct intel_connector *connector)
+>> +static u32 i9xx_get_backlight(struct intel_connector *connector, enum pipe unused)
+>>  {
+>>  	struct drm_i915_private *dev_priv = to_i915(connector->base.dev);
+>>  	struct intel_panel *panel = &connector->panel;
+>> @@ -564,23 +564,17 @@ static u32 i9xx_get_backlight(struct intel_connector *connector)
+>>  	return val;
+>>  }
+>>  
+>> -static u32 _vlv_get_backlight(struct drm_i915_private *dev_priv, enum pipe pipe)
+>> +static u32 vlv_get_backlight(struct intel_connector *connector, enum pipe pipe)
+>>  {
+>> +	struct drm_i915_private *dev_priv = to_i915(connector->base.dev);
+>> +
+>>  	if (drm_WARN_ON(&dev_priv->drm, pipe != PIPE_A && pipe != PIPE_B))
+>>  		return 0;
+>>  
+>>  	return intel_de_read(dev_priv, VLV_BLC_PWM_CTL(pipe)) & BACKLIGHT_DUTY_CYCLE_MASK;
+>>  }
+>>  
+>> -static u32 vlv_get_backlight(struct intel_connector *connector)
+>> -{
+>> -	struct drm_i915_private *dev_priv = to_i915(connector->base.dev);
+>> -	enum pipe pipe = intel_connector_get_pipe(connector);
+>> -
+>> -	return _vlv_get_backlight(dev_priv, pipe);
+>> -}
+>> -
+>> -static u32 bxt_get_backlight(struct intel_connector *connector)
+>> +static u32 bxt_get_backlight(struct intel_connector *connector, enum pipe unused)
+>>  {
+>>  	struct drm_i915_private *dev_priv = to_i915(connector->base.dev);
+>>  	struct intel_panel *panel = &connector->panel;
+>> @@ -589,7 +583,7 @@ static u32 bxt_get_backlight(struct intel_connector *connector)
+>>  			     BXT_BLC_PWM_DUTY(panel->backlight.controller));
+>>  }
+>>  
+>> -static u32 ext_pwm_get_backlight(struct intel_connector *connector)
+>> +static u32 ext_pwm_get_backlight(struct intel_connector *connector, enum pipe unused)
+>>  {
+>>  	struct intel_panel *panel = &connector->panel;
+>>  	struct pwm_state state;
+>> @@ -1233,7 +1227,7 @@ static u32 intel_panel_get_backlight(struct intel_connector *connector)
+>>  	mutex_lock(&dev_priv->backlight_lock);
+>>  
+>>  	if (panel->backlight.enabled) {
+>> -		val = panel->backlight.funcs->get(connector);
+>> +		val = panel->backlight.funcs->get(connector, intel_connector_get_pipe(connector));
+>>  		val = intel_panel_compute_brightness(connector, val);
+>>  	}
+>>  
+>> @@ -1646,9 +1640,9 @@ static int lpt_setup_backlight(struct intel_connector *connector, enum pipe unus
+>>  		   !(pch_ctl1 & BLM_PCH_OVERRIDE_ENABLE) &&
+>>  		   (cpu_ctl2 & BLM_PWM_ENABLE);
+>>  	if (cpu_mode)
+>> -		val = pch_get_backlight(connector);
+>> +		val = pch_get_backlight(connector, unused);
+>>  	else
+>> -		val = lpt_get_backlight(connector);
+>> +		val = lpt_get_backlight(connector, unused);
+>>  
+>>  	if (cpu_mode) {
+>>  		drm_dbg_kms(&dev_priv->drm,
+>> @@ -1690,7 +1684,7 @@ static int pch_setup_backlight(struct intel_connector *connector, enum pipe unus
+>>  
+>>  	panel->backlight.min = get_backlight_min_vbt(connector);
+>>  
+>> -	val = pch_get_backlight(connector);
+>> +	val = pch_get_backlight(connector, unused);
+>>  	val = intel_panel_compute_brightness(connector, val);
+>>  	panel->backlight.level = clamp(val, panel->backlight.min,
+>>  				       panel->backlight.max);
+>> @@ -1731,7 +1725,7 @@ static int i9xx_setup_backlight(struct intel_connector *connector, enum pipe unu
+>>  
+>>  	panel->backlight.min = get_backlight_min_vbt(connector);
+>>  
+>> -	val = i9xx_get_backlight(connector);
+>> +	val = i9xx_get_backlight(connector, unused);
+>>  	val = intel_panel_compute_brightness(connector, val);
+>>  	panel->backlight.level = clamp(val, panel->backlight.min,
+>>  				       panel->backlight.max);
+>> @@ -1765,7 +1759,7 @@ static int i965_setup_backlight(struct intel_connector *connector, enum pipe unu
+>>  
+>>  	panel->backlight.min = get_backlight_min_vbt(connector);
+>>  
+>> -	val = i9xx_get_backlight(connector);
+>> +	val = i9xx_get_backlight(connector, unused);
+>>  	val = intel_panel_compute_brightness(connector, val);
+>>  	panel->backlight.level = clamp(val, panel->backlight.min,
+>>  				       panel->backlight.max);
+>> @@ -1798,7 +1792,7 @@ static int vlv_setup_backlight(struct intel_connector *connector, enum pipe pipe
+>>  
+>>  	panel->backlight.min = get_backlight_min_vbt(connector);
+>>  
+>> -	val = _vlv_get_backlight(dev_priv, pipe);
+>> +	val = vlv_get_backlight(connector, pipe);
+>>  	val = intel_panel_compute_brightness(connector, val);
+>>  	panel->backlight.level = clamp(val, panel->backlight.min,
+>>  				       panel->backlight.max);
+>> @@ -1840,7 +1834,7 @@ bxt_setup_backlight(struct intel_connector *connector, enum pipe unused)
+>>  
+>>  	panel->backlight.min = get_backlight_min_vbt(connector);
+>>  
+>> -	val = bxt_get_backlight(connector);
+>> +	val = bxt_get_backlight(connector, unused);
+>>  	val = intel_panel_compute_brightness(connector, val);
+>>  	panel->backlight.level = clamp(val, panel->backlight.min,
+>>  				       panel->backlight.max);
+>> @@ -1880,7 +1874,7 @@ cnp_setup_backlight(struct intel_connector *connector, enum pipe unused)
+>>  
+>>  	panel->backlight.min = get_backlight_min_vbt(connector);
+>>  
+>> -	val = bxt_get_backlight(connector);
+>> +	val = bxt_get_backlight(connector, unused);
+>>  	val = intel_panel_compute_brightness(connector, val);
+>>  	panel->backlight.level = clamp(val, panel->backlight.min,
+>>  				       panel->backlight.max);
 
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_9622 -> Patchwork_19368
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19368/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_19368 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@amdgpu/amd_cs_nop@sync-gfx0:
-    - fi-bsw-n3050:       NOTRUN -> [SKIP][1] ([fdo#109271]) +17 similar issues
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19368/fi-bsw-n3050/igt@amdgpu/amd_cs_nop@sync-gfx0.html
-
-  * igt@gem_exec_fence@basic-busy@bcs0:
-    - fi-apl-guc:         NOTRUN -> [SKIP][2] ([fdo#109271]) +1 similar issue
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19368/fi-apl-guc/igt@gem_exec_fence@basic-busy@bcs0.html
-
-  * igt@gem_huc_copy@huc-copy:
-    - fi-byt-j1900:       NOTRUN -> [SKIP][3] ([fdo#109271]) +27 similar issues
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19368/fi-byt-j1900/igt@gem_huc_copy@huc-copy.html
-
-  * igt@i915_hangman@error-state-basic:
-    - fi-apl-guc:         NOTRUN -> [DMESG-WARN][4] ([i915#1610])
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19368/fi-apl-guc/igt@i915_hangman@error-state-basic.html
-
-  * igt@kms_chamelium@hdmi-crc-fast:
-    - fi-byt-j1900:       NOTRUN -> [SKIP][5] ([fdo#109271] / [fdo#111827]) +8 similar issues
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19368/fi-byt-j1900/igt@kms_chamelium@hdmi-crc-fast.html
-
-  * igt@prime_self_import@basic-with_one_bo_two_files:
-    - fi-tgl-y:           [PASS][6] -> [DMESG-WARN][7] ([i915#402]) +2 similar issues
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9622/fi-tgl-y/igt@prime_self_import@basic-with_one_bo_two_files.html
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19368/fi-tgl-y/igt@prime_self_import@basic-with_one_bo_two_files.html
-
-  * igt@runner@aborted:
-    - fi-apl-guc:         NOTRUN -> [FAIL][8] ([i915#2426])
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19368/fi-apl-guc/igt@runner@aborted.html
-
-  
-#### Possible fixes ####
-
-  * igt@debugfs_test@read_all_entries:
-    - fi-tgl-y:           [DMESG-WARN][9] ([i915#402]) -> [PASS][10] +2 similar issues
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9622/fi-tgl-y/igt@debugfs_test@read_all_entries.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19368/fi-tgl-y/igt@debugfs_test@read_all_entries.html
-
-  * igt@gem_exec_suspend@basic-s3:
-    - fi-tgl-u2:          [FAIL][11] ([i915#1888]) -> [PASS][12]
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9622/fi-tgl-u2/igt@gem_exec_suspend@basic-s3.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19368/fi-tgl-u2/igt@gem_exec_suspend@basic-s3.html
-
-  * igt@i915_selftest@live@execlists:
-    - fi-bsw-n3050:       [INCOMPLETE][13] ([i915#2940]) -> [PASS][14]
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9622/fi-bsw-n3050/igt@i915_selftest@live@execlists.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19368/fi-bsw-n3050/igt@i915_selftest@live@execlists.html
-
-  
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
-  [i915#1610]: https://gitlab.freedesktop.org/drm/intel/issues/1610
-  [i915#1888]: https://gitlab.freedesktop.org/drm/intel/issues/1888
-  [i915#2426]: https://gitlab.freedesktop.org/drm/intel/issues/2426
-  [i915#2940]: https://gitlab.freedesktop.org/drm/intel/issues/2940
-  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
-
-
-Participating hosts (40 -> 39)
-------------------------------
-
-  Additional (2): fi-byt-j1900 fi-apl-guc 
-  Missing    (3): fi-bsw-cyan fi-bdw-samus fi-hsw-4200u 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_9622 -> Patchwork_19368
-
-  CI-20190529: 20190529
-  CI_DRM_9622: 1612b668c881dacf505c6f56c7b2a39d9e0d903a @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5959: c5cf0734c4f6c1fa17a6a15b5aa721c3a0b8c494 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_19368: fb6fb58c719864a6f245e1681a4fb4665985e2a4 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-fb6fb58c7198 drm/i915: add back static declaration
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19368/index.html
-
---===============7508541177248328544==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915: add back static declaration</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/85902/">https://patchwork.freedesktop.org/series/85902/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19368/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19368/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_9622 -&gt; Patchwork_19368</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19368/index.html</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_19368 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@amdgpu/amd_cs_nop@sync-gfx0:</p>
-<ul>
-<li>fi-bsw-n3050:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19368/fi-bsw-n3050/igt@amdgpu/amd_cs_nop@sync-gfx0.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +17 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_fence@basic-busy@bcs0:</p>
-<ul>
-<li>fi-apl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19368/fi-apl-guc/igt@gem_exec_fence@basic-busy@bcs0.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +1 similar issue</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_huc_copy@huc-copy:</p>
-<ul>
-<li>fi-byt-j1900:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19368/fi-byt-j1900/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +27 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_hangman@error-state-basic:</p>
-<ul>
-<li>fi-apl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19368/fi-apl-guc/igt@i915_hangman@error-state-basic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1610">i915#1610</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@hdmi-crc-fast:</p>
-<ul>
-<li>fi-byt-j1900:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19368/fi-byt-j1900/igt@kms_chamelium@hdmi-crc-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@prime_self_import@basic-with_one_bo_two_files:</p>
-<ul>
-<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9622/fi-tgl-y/igt@prime_self_import@basic-with_one_bo_two_files.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19368/fi-tgl-y/igt@prime_self_import@basic-with_one_bo_two_files.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) +2 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@runner@aborted:</p>
-<ul>
-<li>fi-apl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19368/fi-apl-guc/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2426">i915#2426</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@debugfs_test@read_all_entries:</p>
-<ul>
-<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9622/fi-tgl-y/igt@debugfs_test@read_all_entries.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19368/fi-tgl-y/igt@debugfs_test@read_all_entries.html">PASS</a> +2 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_suspend@basic-s3:</p>
-<ul>
-<li>fi-tgl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9622/fi-tgl-u2/igt@gem_exec_suspend@basic-s3.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1888">i915#1888</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19368/fi-tgl-u2/igt@gem_exec_suspend@basic-s3.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@execlists:</p>
-<ul>
-<li>fi-bsw-n3050:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9622/fi-bsw-n3050/igt@i915_selftest@live@execlists.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2940">i915#2940</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19368/fi-bsw-n3050/igt@i915_selftest@live@execlists.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Participating hosts (40 -&gt; 39)</h2>
-<p>Additional (2): fi-byt-j1900 fi-apl-guc <br />
-  Missing    (3): fi-bsw-cyan fi-bdw-samus fi-hsw-4200u </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_9622 -&gt; Patchwork_19368</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_9622: 1612b668c881dacf505c6f56c7b2a39d9e0d903a @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_5959: c5cf0734c4f6c1fa17a6a15b5aa721c3a0b8c494 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
-  Patchwork_19368: fb6fb58c719864a6f245e1681a4fb4665985e2a4 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>fb6fb58c7198 drm/i915: add back static declaration</p>
-
-</body>
-</html>
-
---===============7508541177248328544==--
-
---===============1912299783==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
+-- 
+Jani Nikula, Intel Open Source Graphics Center
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============1912299783==--
