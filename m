@@ -2,44 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 508BE2F77CB
-	for <lists+intel-gfx@lfdr.de>; Fri, 15 Jan 2021 12:40:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4D41A2F77DA
+	for <lists+intel-gfx@lfdr.de>; Fri, 15 Jan 2021 12:43:44 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9041F8901E;
-	Fri, 15 Jan 2021 11:40:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6055F6E0AB;
+	Fri, 15 Jan 2021 11:43:41 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D34208901E
- for <intel-gfx@lists.freedesktop.org>; Fri, 15 Jan 2021 11:40:07 +0000 (UTC)
-IronPort-SDR: EPH/x8K0QiyeBnARXRNZhzgm/72ju4n5UdlqoZuwu6v10Z2knAmLv+LcT/CNvEhoK7Ksxm6bxm
- ogwig87CLVBA==
-X-IronPort-AV: E=McAfee;i="6000,8403,9864"; a="175956491"
-X-IronPort-AV: E=Sophos;i="5.79,349,1602572400"; d="scan'208";a="175956491"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Jan 2021 03:40:07 -0800
-IronPort-SDR: VtT9tj8+iuRAdK9AfJpluizXx8/McrF8GUcrWLVaNW5aY+pPfotPLH++KCE5Y6H34MlUoSFMKD
- aGz9mbzhDXZQ==
-X-IronPort-AV: E=Sophos;i="5.79,349,1602572400"; d="scan'208";a="364556442"
-Received: from kbs1-mobl1.gar.corp.intel.com (HELO [10.213.120.203])
- ([10.213.120.203])
- by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Jan 2021 03:40:05 -0800
-To: Ville Syrjala <ville.syrjala@linux.intel.com>,
+Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com
+ [IPv6:2a00:1450:4864:20::62f])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0C3F16E0AB;
+ Fri, 15 Jan 2021 11:43:40 +0000 (UTC)
+Received: by mail-ej1-x62f.google.com with SMTP id w1so12817208ejf.11;
+ Fri, 15 Jan 2021 03:43:39 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=from:to:cc:subject:date:message-id;
+ bh=/9sksIUuZatO+aX8p4iLJ2mKZetuSFmDz0PF+YiOHOI=;
+ b=YEJANZ1/9r+EPbKaQQTb3YhWamtM4DH9to+g8PWbIoYfCC2B9io/PF88pVRzv8fh61
+ Wapvntn5ABjZ4BADq3kEhzYrfLziVhaprSzQD1mSf1hjsxKCDAxUsCWMtzTpTyJwZ/Ql
+ 2OKtFYFS//RkJM5MTRb5VHYlKtLi9PAgP2o50L/4C4rwV7bn6D8U0duHKDpPSdNh6r8E
+ fybYpMd8V3cr0MKirGnUYPOuP/QV5wYCu0q7b9Pr2IZ35zwJ6tnVquuJfw/sbV7u9O9h
+ oxFe7U6FfWf/79W+zxcUMZshS+fHCd56UJ7c8Y63FqlccwNeRBJ3ePAYCGUunR7p5scq
+ zUsg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id;
+ bh=/9sksIUuZatO+aX8p4iLJ2mKZetuSFmDz0PF+YiOHOI=;
+ b=rLEw5jQC37NEYVq6sqIYK55dDIN1gxAM7pWPLDLL5xCtJHV3mbR2I4mUy5sS9AwfIe
+ OK/R7YLoKdrcDN4swo3bTnErz3Liyfpb2JmjAJ5Ku0PJaUQM1Y6Un1hq/hsVlQXm2kK9
+ WsF0dMkqT6O9jN54maE5P+b84y8ag76y3u0h9oNx2ToHxF3QQDKORg8aNSgG6gjtdEh8
+ 52/m4gEDyksT0sV0yqN9FoXd9H/jAMs3MxQjlg0YPfbVVPHl/OYUJawRMHJE/biHoUik
+ 70DrCNcqLrToD/2+K32Qe51iyXcVKuitHHVj44JUk8oQlL8E9sEXOd66b/UdX49IV1Yy
+ W9Wg==
+X-Gm-Message-State: AOAM531Y0FmmCoXGhaJTW+IAqweK2U1sV2pmvhDF2MWILpAEdogBuZTa
+ HnOqTiv6mbUH+f6hrLmzNUA=
+X-Google-Smtp-Source: ABdhPJwET0Z8ZFGqMNHwdHfY36RdnFX6xRQgu56Fz+Cxj0NantVxngAd4EdKk1sELCE/DGiWkoU/OQ==
+X-Received: by 2002:a17:906:48c:: with SMTP id
+ f12mr3397945eja.431.1610711018663; 
+ Fri, 15 Jan 2021 03:43:38 -0800 (PST)
+Received: from felia.fritz.box ([2001:16b8:2d39:a000:7c85:8e80:b862:a8bf])
+ by smtp.gmail.com with ESMTPSA id a2sm3184105ejt.46.2021.01.15.03.43.37
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Fri, 15 Jan 2021 03:43:37 -0800 (PST)
+From: Lukas Bulwahn <lukas.bulwahn@gmail.com>
+To: Ankit Nautiyal <ankit.k.nautiyal@intel.com>,
+ Uma Shankar <uma.shankar@intel.com>, Jani Nikula <jani.nikula@intel.com>,
  intel-gfx@lists.freedesktop.org
-References: <20210111163711.12913-1-ville.syrjala@linux.intel.com>
- <20210111163711.12913-7-ville.syrjala@linux.intel.com>
-From: Karthik B S <karthik.b.s@intel.com>
-Message-ID: <9693a332-6ab6-e71c-a92f-8ff2b4c951e5@intel.com>
-Date: Fri, 15 Jan 2021 17:10:00 +0530
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Thunderbird/78.6.1
-MIME-Version: 1.0
-In-Reply-To: <20210111163711.12913-7-ville.syrjala@linux.intel.com>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH v2 06/11] drm/i915: Move the async_flip bit
- setup into the .async_flip() hook
+Date: Fri, 15 Jan 2021 12:43:29 +0100
+Message-Id: <20210115114329.27152-1-lukas.bulwahn@gmail.com>
+X-Mailer: git-send-email 2.17.1
+Subject: [Intel-gfx] [PATCH] drm/dp_helper: tweak kerneldoc to address
+ warning
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,45 +65,63 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Cc: linux-doc@vger.kernel.org, David Airlie <airlied@linux.ie>,
+ kernel-janitors@vger.kernel.org, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org,
+ Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
+ Lukas Bulwahn <lukas.bulwahn@gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gMS8xMS8yMDIxIDEwOjA3IFBNLCBWaWxsZSBTeXJqYWxhIHdyb3RlOgo+IEZyb206IFZpbGxl
-IFN5cmrDpGzDpCA8dmlsbGUuc3lyamFsYUBsaW51eC5pbnRlbC5jb20+Cj4KPiBTZXQgdXAgdGhl
-IGFzeW5jIGZsaXAgUExBTkVfQ1RMIGJpdCBkaXJlY3RseSBpbiB0aGUKPiAuYXN5bmNfZmxpcCgp
-IGhvb2suIE5laXRoZXIgLnVwZGF0ZV9wbGFuZSgpIG5vciAuZGlzYWJsZV9wbGFuZSgpCj4gZXZl
-ciBuZWVkIHRvIHNldCB0aGlzIHNvIGhhdmluZyBpdCBkb25lIGJ5IHNrbF9wbGFuZV9jdGxfY3J0
-YygpCj4gaXMgcmF0aGVyIHBvaW50bGVzcy4KPgo+IENjOiBLYXJ0aGlrIEIgUyA8a2FydGhpay5i
-LnNAaW50ZWwuY29tPgo+IENjOiBWYW5kaXRhIEt1bGthcm5pIDx2YW5kaXRhLmt1bGthcm5pQGlu
-dGVsLmNvbT4KPiBTaWduZWQtb2ZmLWJ5OiBWaWxsZSBTeXJqw6Rsw6QgPHZpbGxlLnN5cmphbGFA
-bGludXguaW50ZWwuY29tPgoKTG9va3MgZ29vZCB0byBtZS4KClJldmlld2VkLWJ5OiBLYXJ0aGlr
-IEIgUyA8a2FydGhpay5iLnNAaW50ZWwuY29tPgoKPiAtLS0KPiAgIGRyaXZlcnMvZ3B1L2RybS9p
-OTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheS5jIHwgMyAtLS0KPiAgIGRyaXZlcnMvZ3B1L2RybS9p
-OTE1L2Rpc3BsYXkvaW50ZWxfc3ByaXRlLmMgIHwgMiArKwo+ICAgMiBmaWxlcyBjaGFuZ2VkLCAy
-IGluc2VydGlvbnMoKyksIDMgZGVsZXRpb25zKC0pCj4KPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9n
-cHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5LmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkx
-NS9kaXNwbGF5L2ludGVsX2Rpc3BsYXkuYwo+IGluZGV4IGYxMmI3NGNmZTk3NC4uZmM5MzIwMjhj
-MzY4IDEwMDY0NAo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlz
-cGxheS5jCj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5
-LmMKPiBAQCAtNDI1MCw5ICs0MjUwLDYgQEAgdTMyIHNrbF9wbGFuZV9jdGxfY3J0Yyhjb25zdCBz
-dHJ1Y3QgaW50ZWxfY3J0Y19zdGF0ZSAqY3J0Y19zdGF0ZSkKPiAgIAlzdHJ1Y3QgZHJtX2k5MTVf
-cHJpdmF0ZSAqZGV2X3ByaXYgPSB0b19pOTE1KGNydGNfc3RhdGUtPnVhcGkuY3J0Yy0+ZGV2KTsK
-PiAgIAl1MzIgcGxhbmVfY3RsID0gMDsKPiAgIAo+IC0JaWYgKGNydGNfc3RhdGUtPnVhcGkuYXN5
-bmNfZmxpcCkKPiAtCQlwbGFuZV9jdGwgfD0gUExBTkVfQ1RMX0FTWU5DX0ZMSVA7Cj4gLQo+ICAg
-CWlmIChJTlRFTF9HRU4oZGV2X3ByaXYpID49IDEwIHx8IElTX0dFTUlOSUxBS0UoZGV2X3ByaXYp
-KQo+ICAgCQlyZXR1cm4gcGxhbmVfY3RsOwo+ICAgCj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1
-L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfc3ByaXRlLmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9k
-aXNwbGF5L2ludGVsX3Nwcml0ZS5jCj4gaW5kZXggOGUwMWNkNGViZTM2Li4xMTg4ZTBmOTIyMjMg
-MTAwNjQ0Cj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9zcHJpdGUu
-Ywo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfc3ByaXRlLmMKPiBA
-QCAtNzgyLDYgKzc4Miw4IEBAIHNrbF9wbGFuZV9hc3luY19mbGlwKHN0cnVjdCBpbnRlbF9wbGFu
-ZSAqcGxhbmUsCj4gICAKPiAgIAlwbGFuZV9jdGwgfD0gc2tsX3BsYW5lX2N0bF9jcnRjKGNydGNf
-c3RhdGUpOwo+ICAgCj4gKwlwbGFuZV9jdGwgfD0gUExBTkVfQ1RMX0FTWU5DX0ZMSVA7Cj4gKwo+
-ICAgCXNwaW5fbG9ja19pcnFzYXZlKCZkZXZfcHJpdi0+dW5jb3JlLmxvY2ssIGlycWZsYWdzKTsK
-PiAgIAo+ICAgCWludGVsX2RlX3dyaXRlX2Z3KGRldl9wcml2LCBQTEFORV9DVEwocGlwZSwgcGxh
-bmVfaWQpLCBwbGFuZV9jdGwpOwoKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVk
-ZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZv
-L2ludGVsLWdmeAo=
+Commit 07c9b8634fb6 ("drm/dp_helper: Add helpers to configure PCONs
+RGB-YCbCr Conversion") introduces a warning with make htmldocs in
+./drivers/gpu/drm/drm_dp_helper.c:965 for
+drm_dp_downstream_rgb_to_ycbcr_conversion():
+
+  warning: Excess function parameter 'colorspc' description
+  warning: Function parameter or member 'color_spc' not described
+
+Tweak the kerneldoc for drm_dp_downstream_rgb_to_ycbcr_conversion().
+
+Fixes: 07c9b8634fb6 ("drm/dp_helper: Add helpers to configure PCONs RGB-YCbCr Conversion")
+Signed-off-by: Lukas Bulwahn <lukas.bulwahn@gmail.com>
+---
+applies cleanly on next-20210115
+
+Jani, please pick this minor doc warning fixup.
+
+ drivers/gpu/drm/drm_dp_helper.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/drivers/gpu/drm/drm_dp_helper.c b/drivers/gpu/drm/drm_dp_helper.c
+index 3ecde451f523..d60e94ac6fdd 100644
+--- a/drivers/gpu/drm/drm_dp_helper.c
++++ b/drivers/gpu/drm/drm_dp_helper.c
+@@ -954,7 +954,7 @@ EXPORT_SYMBOL(drm_dp_downstream_444_to_420_conversion);
+  *                                               RGB->YCbCr conversion capability
+  * @dpcd: DisplayPort configuration data
+  * @port_cap: downstream facing port capabilities
+- * @colorspc: Colorspace for which conversion cap is sought
++ * @color_spc: Colorspace for which conversion cap is sought
+  *
+  * Returns: whether the downstream facing port can convert RGB->YCbCr for a given
+  * colorspace.
+@@ -3134,7 +3134,7 @@ int drm_dp_pcon_pps_override_param(struct drm_dp_aux *aux, u8 pps_param[6])
+ }
+ EXPORT_SYMBOL(drm_dp_pcon_pps_override_param);
+ 
+-/*
++/**
+  * drm_dp_pcon_convert_rgb_to_ycbcr() - Configure the PCon to convert RGB to Ycbcr
+  * @aux: displayPort AUX channel
+  * @color_spc: Color-space/s for which conversion is to be enabled, 0 for disable.
+-- 
+2.17.1
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
