@@ -1,55 +1,57 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 941F12FB682
-	for <lists+intel-gfx@lfdr.de>; Tue, 19 Jan 2021 14:53:18 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 95FE02FB681
+	for <lists+intel-gfx@lfdr.de>; Tue, 19 Jan 2021 14:53:16 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5A36C6E3D0;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 085706E30D;
 	Tue, 19 Jan 2021 13:53:14 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-pg1-x534.google.com (mail-pg1-x534.google.com
- [IPv6:2607:f8b0:4864:20::534])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6A2036E453;
- Fri, 15 Jan 2021 17:03:43 +0000 (UTC)
-Received: by mail-pg1-x534.google.com with SMTP id n7so6398608pgg.2;
- Fri, 15 Jan 2021 09:03:43 -0800 (PST)
+Received: from mail-pl1-x633.google.com (mail-pl1-x633.google.com
+ [IPv6:2607:f8b0:4864:20::633])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 42FD36E4EA;
+ Sat, 16 Jan 2021 05:11:40 +0000 (UTC)
+Received: by mail-pl1-x633.google.com with SMTP id s15so5772136plr.9;
+ Fri, 15 Jan 2021 21:11:40 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=subject:to:cc:references:from:autocrypt:message-id:date:user-agent
+ h=to:cc:references:from:autocrypt:subject:message-id:date:user-agent
  :mime-version:in-reply-to:content-language:content-transfer-encoding;
- bh=Wfr2hsEJctqK8mul39f6mhfwx/+dC9UWOsd11iMX7PQ=;
- b=NQoLnD0D3gPRmzjHel0yTn3+F+0LDJ1YHgxNIqY5giQ0dCu51GPzuDdk/iWtmheIVq
- tAYE6GTvXcJY7nbMyFoJJ8c7hKG+989Aie8BJOnYZ3UVlzvuUKM0CewGq7Psw5L3TNBi
- D7UBCwUxVoN0+d4IdLFi2QjmpdiVTcShRPXuTNuiiYnyq4P1Mh7rTTIL6ZMNbdfHzmbJ
- HWbJl9L/CzeqpC2LguxdPD5tNpFaJO0RqhNnx3o8lPDbs4YG9NnkWn674tauCb0TRA03
- BJsqHx/3islh9gQtNpHaAffJ5kn5eCdeQqnk+C0yTugC5uZXINvC6/6MviBWlGp60Z2G
- o8rw==
+ bh=PXzS8aDWu6xxUoSTQEQCGpy3cWp/RHPt68K5SBPTpHU=;
+ b=f6u9NKw6hlB4+gXP3wa9Vu/V1R+SfR0yaU/Nfda14ttnWZ7ytHOxjIksewCb/W+KjA
+ bGIZcyadotyKfsdLdNnqZdk1oDG4AG5MEQ0691U0XAak4FBuMVHLrph9us+g2AaLJWOd
+ +YrD1pIJAPMxAe+/MQv6cjGSv+jW8Bgwj8pRmdG3MxpkwSjQ0rW4fo+DRIofFlO6CYrC
+ EyEQCCrvKOUlrwrNdGELpg+JjZCwJddM7e9gubVOLEtgP/QQeAmjyxhwhbOvZufFZOX1
+ 6jLgUiUKB7zvwVQsp7GYIRv2KRGN4g5cNG5TErOekEYC8x/PQBkQYWqn9ytpppdfpgC2
+ ly0w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:subject:to:cc:references:from:autocrypt
+ h=x-gm-message-state:to:cc:references:from:autocrypt:subject
  :message-id:date:user-agent:mime-version:in-reply-to
  :content-language:content-transfer-encoding;
- bh=Wfr2hsEJctqK8mul39f6mhfwx/+dC9UWOsd11iMX7PQ=;
- b=AhR5YE6WBbKoGRaqCFvoBm0X0zcttidkkOscDu1VnL8OfBxLReTLz7ILBiWQecGQNz
- Z4+4JfYrqBK4JbXTooAP9mYpEwoEu62bMH8xetZocF/tZ/6U9Kj0RdKiVH/9QfZ5xh4v
- pH9YjRPsCMedU6yvZ39O1k8tXD5NBK+pDKRgPbUoxZXJ7zQ0T/rykcJSNUHelRgjAX1k
- wWn787yNFLVCaxGFxGlBUgFTbu3+3Pxo/iaHQZ/RL+Ao2eZ8gxFqqQ7Rivzz9MMkdckH
- X4YveLNl+7fTJ3iKyl/pc7+Hj5IioWHWz8wRK+bU3/MvbF67tIBv55HgW0egTxxw2L5r
- HdgA==
-X-Gm-Message-State: AOAM531Mba6Nbc5V/R/Su1DqvBNFI1+kd3qyQeg6I5ItzDjM08UBzy03
- I1FjV9asbZ6nnQWhJOod0JM=
-X-Google-Smtp-Source: ABdhPJx2E6JOcWg6s4qIJE5id+oMBPh0pfErK2+ylbinqmM95QcFU/0vzhyTgXbDzDZZzGU+FJBwVw==
-X-Received: by 2002:a63:1152:: with SMTP id 18mr13651121pgr.268.1610730222966; 
- Fri, 15 Jan 2021 09:03:42 -0800 (PST)
+ bh=PXzS8aDWu6xxUoSTQEQCGpy3cWp/RHPt68K5SBPTpHU=;
+ b=ToeH/PYBW+Sa4yoborEaD7uGZoXpUzhrEsP9U/3/4enH6GUlYsA+J/mzq3ifgaM60H
+ 0Ls20Hu/WGWch5jGf7BaRMR+PkMkA1DoFiu5i1EdYETBn9ZLt5wnsvz5kmNz3lIxMEIG
+ 57m1UY2oyfO7gzs9JcL666+vHiz1hVlMy8Edu5r0GQg0895i1xYofRQQRnbfWCXZQtC9
+ A7NshkoEijBi4wtD5qBfvVt96Emzq8bNbfQNb1QcjOvzGNytdAYaoLHoA3+75IWl2Ala
+ ANQ3p/500zDgreIdBgCcY/jDbB2+fmPbLZLxN+XSmNEjVGyHld8n5OGHSTqeH5TY8ZFq
+ oJpg==
+X-Gm-Message-State: AOAM533ecTSZ/s1b/9eHElooHUare6jjZItLgaXIhal2zH3lz6+3y9QV
+ tzj+WtSX/dWrM4RAnQHuz80=
+X-Google-Smtp-Source: ABdhPJxB+QocAYEUnaEzCn9prdchvObT7nXTPWNr7kqcqRpt50UbpIRTL0K1obB3JmklJQn923zzOg==
+X-Received: by 2002:a17:90a:2e83:: with SMTP id
+ r3mr13736820pjd.112.1610773899773; 
+ Fri, 15 Jan 2021 21:11:39 -0800 (PST)
 Received: from [127.0.0.1] ([14.33.99.107])
- by smtp.gmail.com with ESMTPSA id g6sm9064528pjj.48.2021.01.15.09.03.38
+ by smtp.gmail.com with ESMTPSA id o83sm2285975pfd.158.2021.01.15.21.11.35
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Fri, 15 Jan 2021 09:03:42 -0800 (PST)
+ Fri, 15 Jan 2021 21:11:39 -0800 (PST)
 To: Chris Wilson <chris@chris-wilson.co.uk>,
  =?UTF-8?Q?Marek_Marczykowski-G=c3=b3recki?= <marmarek@invisiblethingslab.com>
 References: <c742707e-eb6d-6a22-3006-52dc3bf458d8@gmail.com>
  <161072980241.18103.11713889922046524226@build.alporthouse.com>
+ <161073047349.18103.16410031184146072179@build.alporthouse.com>
 From: Jinoh Kang <jinoh.kang.kr@gmail.com>
 Autocrypt: addr=jinoh.kang.kr@gmail.com; keydata=
  xsFNBF/Q7MUBEADVIU6g5ui3gcTQV9jbneUb6xdUQJtEDOWG6pThD+nKAwQFYtZpCUSWgGVg
@@ -105,11 +107,11 @@ Autocrypt: addr=jinoh.kang.kr@gmail.com; keydata=
  tvgog5utx5uRL5mZPJmMTVD1t/FKGaIR1PpGy4e0g15Y9EkpFEYBYZl3ttXQM456ZqifB/Wb
  pgaToX5LrY7TCHQe9skAN/RsppjrL8HCxF0rz6/LKnUCPC71/dfBIrIigYeBdK9UkNXAq/5c
  Nv8WeK9sQ0q6RmWqnT1HwyCBsVRR18k6XBM=
-Message-ID: <1277b18e-9a19-fd0c-41fc-4923bcd772fd@gmail.com>
-Date: Fri, 15 Jan 2021 17:03:18 +0000
+Message-ID: <e3ef8af7-f3fb-a6aa-9838-a90b6d5516ac@gmail.com>
+Date: Sat, 16 Jan 2021 05:11:16 +0000
 User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:78.0) Gecko/20100101 Firefox/78.0
 MIME-Version: 1.0
-In-Reply-To: <161072980241.18103.11713889922046524226@build.alporthouse.com>
+In-Reply-To: <161073047349.18103.16410031184146072179@build.alporthouse.com>
 Content-Language: en-US
 X-Mailman-Approved-At: Tue, 19 Jan 2021 13:53:13 +0000
 Subject: Re: [Intel-gfx] [PATCH] drm/i915/userptr: detect un-GUP-able pages
@@ -134,54 +136,130 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 1/15/21 4:56 PM, Chris Wilson wrote:
-> Quoting Jinoh Kang (2021-01-15 16:23:31)
->> If GUP-ineligible pages are passed to a GEM userptr object, -EFAULT is
->> returned only when the object is actually bound.
+On 1/15/21 5:07 PM, Chris Wilson wrote:
+> Quoting Chris Wilson (2021-01-15 16:56:42)
+>> Quoting Jinoh Kang (2021-01-15 16:23:31)
+>>> If GUP-ineligible pages are passed to a GEM userptr object, -EFAULT is
+>>> returned only when the object is actually bound.
+>>>
+>>> The xf86-video-intel userspace driver cannot differentiate this
+>>> condition, and marks the GPU as wedged.
 >>
->> The xf86-video-intel userspace driver cannot differentiate this
->> condition, and marks the GPU as wedged.
+>> The idea was to call gem_set_domain on the object to validate the pages
+>> after creation. I only did that for read-only... I did however make mesa
+>> use set-domain for validation.
 > 
-> The idea was to call gem_set_domain on the object to validate the pages
-> after creation. I only did that for read-only... I did however make mesa
-> use set-domain for validation.
-
-Thanks for the info!
-
-> 
-> As a question how are you getting to call userptr on something that
-> wasn't passed by SHM ipc?
-
-Basically XShmAttachFd, which is not exposed on libX11.
-
-> 
->> This not only disables graphics
->> acceleration but may also cripple other functions such as VT switch.
-> 
-> That should be a non-sequitur; certainly VT switch works without ever
-> using the GPU.
-
-Not that VT switch doesn't work; rather, there's some heavy graphic
-artifacts such as blank rectangles or part of window going completely
-transparent.  I suppose that's another issue.
-
-> 
->> Solve this by "prefaulting" user pages on GEM object creation, testing
->> whether all pages are eligible for get_user_pages() in the process.
->> On failure, return -EFAULT so that userspace can fallback to software
->> blitting.
-> 
-> See https://patchwork.freedesktop.org/series/33449/ for adding PROBE |
-> POPULATE flags.
-> 
-> But we can just use set-domain.
-
-So this patch was unnecessary.  Thanks for the pointer as to how to
-patch the userspace.
-
+> Hmm, I remember a reason why we wanted to be lazy in populating the
+> pages was that we would often be called to create a map that was never
+> used. So the additional gup + bind was measurable, and we would rather
+> just have a probe.
 > -Chris
 > 
 
+try_upload__blt uses the map immediately, so I guess that would be an
+appropriate place to patch.
+
+> Basically XShmAttachFd, which is not exposed on libX11.
+
+To clarify: privcmd pages cannot actually be passed by fd, since it's
+tightly bound with current->mm.  There's some sysv shmop hooking hack
+involved, which is injected in Xorg side.
+
+---
+
+Besides, is there an equivalent code path that lets you eagerly *unpin*
+pages when closing an userptr object without waiting for the worker?
+
+This is actually more of a problem in drivers/xen/grant-table.c side,
+since it hangs the current task until all page refs are released, and
+it didn't even use ZONE_DEVICE pages until recently (while still not
+using dev_pagemap_ops::page_free, since the unpopulated-alloc pgmap
+is not MEMORY_DEVICE_FS_DAX apparently).
+
+(You could say that we should switch to DMA-BUF instead and that would
+be a valid criticism.  I'm merely figuring out what the best workaround
+for the current status quo would be.)
+
+I'm using something like the following:
+---
+ drivers/gpu/drm/i915/gem/i915_gem_object.c       | 8 ++++++++
+ drivers/gpu/drm/i915/gem/i915_gem_object_types.h | 1 +
+ drivers/gpu/drm/i915/gem/i915_gem_userptr.c      | 3 ++-
+ drivers/gpu/drm/i915/i915_params.c               | 3 +++
+ drivers/gpu/drm/i915/i915_params.h               | 1 +
+ 5 files changed, 15 insertions(+), 1 deletion(-)
+
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object.c b/drivers/gpu/drm/i915/gem/i915_gem_object.c
+index 00d24000b5e8..4352a5788fd8 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_object.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_object.c
+@@ -167,6 +167,14 @@ static void i915_gem_close_object(struct drm_gem_object *gem, struct drm_file *f
+ 		i915_lut_handle_free(lut);
+ 		i915_gem_object_put(obj);
+ 	}
++
++	if (i915_modparams.gem_userptr_close_immediate &&
++	    i915_gem_object_type_has(obj, I915_GEM_OBJECT_IMM_RELEASE) &&
++	    i915_gem_object_is_shrinkable(obj) &&
++	    !atomic_read(&obj->mm.shrink_pin) &&
++	    i915_gem_object_unbind(obj, I915_GEM_OBJECT_UNBIND_ACTIVE |
++					I915_GEM_OBJECT_UNBIND_TEST) == 0)
++		__i915_gem_object_put_pages(obj);
+ }
+ 
+ static void __i915_gem_free_object_rcu(struct rcu_head *head)
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object_types.h b/drivers/gpu/drm/i915/gem/i915_gem_object_types.h
+index e2d9b7e1e152..0ac1dfed0b91 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_object_types.h
++++ b/drivers/gpu/drm/i915/gem/i915_gem_object_types.h
+@@ -36,6 +36,7 @@ struct drm_i915_gem_object_ops {
+ #define I915_GEM_OBJECT_IS_PROXY	BIT(3)
+ #define I915_GEM_OBJECT_NO_MMAP		BIT(4)
+ #define I915_GEM_OBJECT_ASYNC_CANCEL	BIT(5)
++#define I915_GEM_OBJECT_IMM_RELEASE	BIT(7)
+ 
+ 	/* Interface between the GEM object and its backing storage.
+ 	 * get_pages() is called once prior to the use of the associated set
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_userptr.c b/drivers/gpu/drm/i915/gem/i915_gem_userptr.c
+index f2eaed6aca3d..baa91daf43a1 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_userptr.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_userptr.c
+@@ -705,7 +705,8 @@ static const struct drm_i915_gem_object_ops i915_gem_userptr_ops = {
+ 	.flags = I915_GEM_OBJECT_HAS_STRUCT_PAGE |
+ 		 I915_GEM_OBJECT_IS_SHRINKABLE |
+ 		 I915_GEM_OBJECT_NO_MMAP |
+-		 I915_GEM_OBJECT_ASYNC_CANCEL,
++		 I915_GEM_OBJECT_ASYNC_CANCEL |
++		 I915_GEM_OBJECT_IMM_RELEASE,
+ 	.get_pages = i915_gem_userptr_get_pages,
+ 	.put_pages = i915_gem_userptr_put_pages,
+ 	.dmabuf_export = i915_gem_userptr_dmabuf_export,
+diff --git a/drivers/gpu/drm/i915/i915_params.c b/drivers/gpu/drm/i915/i915_params.c
+index 7f139ea4a90b..4d056fd1b6e7 100644
+--- a/drivers/gpu/drm/i915/i915_params.c
++++ b/drivers/gpu/drm/i915/i915_params.c
+@@ -197,6 +197,9 @@ i915_param_named_unsafe(fake_lmem_start, ulong, 0400,
+ 	"Fake LMEM start offset (default: 0)");
+ #endif
+ 
++i915_param_named(gem_userptr_close_immediate, bool, 0600,
++	"Immediately release pages when userptr GEM object is closed (default:false)");
++
+ static __always_inline void _print_param(struct drm_printer *p,
+ 					 const char *name,
+ 					 const char *type,
+diff --git a/drivers/gpu/drm/i915/i915_params.h b/drivers/gpu/drm/i915/i915_params.h
+index 330c03e2b4f7..a94367a0345b 100644
+--- a/drivers/gpu/drm/i915/i915_params.h
++++ b/drivers/gpu/drm/i915/i915_params.h
+@@ -79,6 +79,7 @@ struct drm_printer;
+ 	param(bool, disable_display, false, 0400) \
+ 	param(bool, verbose_state_checks, true, 0) \
+ 	param(bool, nuclear_pageflip, false, 0400) \
++	param(bool, gem_userptr_close_immediate, false, 0600) \
+ 	param(bool, enable_dp_mst, true, 0600) \
+ 	param(bool, enable_gvt, false, 0400)
+ 
 -- 
 Sincerely,
 Jinoh Kang
