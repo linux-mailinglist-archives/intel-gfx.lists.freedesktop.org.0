@@ -2,31 +2,38 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CAF0C2F9014
-	for <lists+intel-gfx@lfdr.de>; Sun, 17 Jan 2021 02:33:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7733C2F9117
+	for <lists+intel-gfx@lfdr.de>; Sun, 17 Jan 2021 07:45:56 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 883B189ABA;
-	Sun, 17 Jan 2021 01:32:57 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 2134089AB7;
- Sun, 17 Jan 2021 01:32:56 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 336FAA882F;
- Sun, 17 Jan 2021 01:32:55 +0000 (UTC)
-MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Sun, 17 Jan 2021 01:32:55 -0000
-Message-ID: <161084717518.30986.7316179529276875381@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210116223117.12860-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20210116223117.12860-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
- =?utf-8?q?/i915/gt=3A_Clear_CACHE=5FMODE_prior_to_clearing_residuals_=28r?=
- =?utf-8?q?ev2=29?=
+	by gabe.freedesktop.org (Postfix) with ESMTP id 20F1689DDF;
+	Sun, 17 Jan 2021 06:45:54 +0000 (UTC)
+X-Original-To: Intel-gfx@lists.freedesktop.org
+Delivered-To: Intel-gfx@lists.freedesktop.org
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5132C89DDF
+ for <Intel-gfx@lists.freedesktop.org>; Sun, 17 Jan 2021 06:45:53 +0000 (UTC)
+IronPort-SDR: KJ2u0+ZZl/bAoXS2Rs9YD+CdAvBdqzyS/K2t4cL2ZsdI7V0zpOLPzgvbb72xvxZ3vu3s1HY7Oy
+ vhWwCo/134lw==
+X-IronPort-AV: E=McAfee;i="6000,8403,9866"; a="158475683"
+X-IronPort-AV: E=Sophos;i="5.79,352,1602572400"; d="scan'208";a="158475683"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Jan 2021 22:45:52 -0800
+IronPort-SDR: +8u1a5fRQhSRjiCmyHw52ZFRe0k6i0fg7Ixexu0+pNePPua9xK0YKwAdOuBRsE+gUaJhgl3KL0
+ 43+ViKOm9VMg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.79,352,1602572400"; d="scan'208";a="500346790"
+Received: from sean-virtualbox.fm.intel.com ([10.105.158.96])
+ by orsmga004.jf.intel.com with ESMTP; 16 Jan 2021 22:45:52 -0800
+From: "Huang, Sean Z" <sean.z.huang@intel.com>
+To: Intel-gfx@lists.freedesktop.org
+Date: Sat, 16 Jan 2021 22:45:35 -0800
+Message-Id: <20210117064548.8822-1-sean.z.huang@intel.com>
+X-Mailer: git-send-email 2.17.1
+In-Reply-To: <20210106231223.8323-1-sean.z.huang@intel.com>
+References: <20210106231223.8323-1-sean.z.huang@intel.com>
+Subject: [Intel-gfx] [RFC-v21 00/13] Introduce Intel PXP component - Mesa
+ single session
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,292 +46,159 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============0660210615=="
+Cc: kumar.gaurav@intel.com
+MIME-Version: 1.0
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0660210615==
-Content-Type: multipart/alternative;
- boundary="===============6806164688459786255=="
+PXP (Protected Xe Path) is an i915 component, available on
+GEN12+ that helps to establish the hardware protected session
+and manage the status of the alive software session, as well
+as its life cycle.
 
---===============6806164688459786255==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-== Series Details ==
-
-Series: drm/i915/gt: Clear CACHE_MODE prior to clearing residuals (rev2)
-URL   : https://patchwork.freedesktop.org/series/85962/
-State : failure
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_9627 -> Patchwork_19381
-====================================================
-
-Summary
--------
-
-  **FAILURE**
-
-  Serious unknown changes coming with Patchwork_19381 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_19381, please notify your bug team to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19381/index.html
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_19381:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@i915_selftest@live@gem_contexts:
-    - fi-ivb-3770:        [PASS][1] -> [DMESG-FAIL][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9627/fi-ivb-3770/igt@i915_selftest@live@gem_contexts.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19381/fi-ivb-3770/igt@i915_selftest@live@gem_contexts.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_19381 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@gem_exec_fence@basic-busy@bcs0:
-    - fi-kbl-soraka:      NOTRUN -> [SKIP][3] ([fdo#109271]) +23 similar issues
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19381/fi-kbl-soraka/igt@gem_exec_fence@basic-busy@bcs0.html
-
-  * igt@gem_huc_copy@huc-copy:
-    - fi-kbl-soraka:      NOTRUN -> [SKIP][4] ([fdo#109271] / [i915#2190])
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19381/fi-kbl-soraka/igt@gem_huc_copy@huc-copy.html
-
-  * igt@gem_mmap_gtt@basic:
-    - fi-tgl-y:           [PASS][5] -> [DMESG-WARN][6] ([i915#402]) +1 similar issue
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9627/fi-tgl-y/igt@gem_mmap_gtt@basic.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19381/fi-tgl-y/igt@gem_mmap_gtt@basic.html
-
-  * igt@i915_selftest@live@gt_pm:
-    - fi-kbl-soraka:      NOTRUN -> [DMESG-FAIL][7] ([i915#1886] / [i915#2291])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19381/fi-kbl-soraka/igt@i915_selftest@live@gt_pm.html
-
-  * igt@kms_chamelium@common-hpd-after-suspend:
-    - fi-kbl-soraka:      NOTRUN -> [SKIP][8] ([fdo#109271] / [fdo#111827]) +8 similar issues
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19381/fi-kbl-soraka/igt@kms_chamelium@common-hpd-after-suspend.html
-
-  * igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d:
-    - fi-kbl-soraka:      NOTRUN -> [SKIP][9] ([fdo#109271] / [i915#533])
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19381/fi-kbl-soraka/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d.html
-
-  * igt@runner@aborted:
-    - fi-kbl-8809g:       NOTRUN -> [FAIL][10] ([i915#1569] / [i915#192] / [i915#193] / [i915#194] / [i915#2426])
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19381/fi-kbl-8809g/igt@runner@aborted.html
-
-  
-#### Possible fixes ####
-
-  * igt@gem_exec_suspend@basic-s0:
-    - fi-glk-dsi:         [DMESG-WARN][11] -> [PASS][12]
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9627/fi-glk-dsi/igt@gem_exec_suspend@basic-s0.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19381/fi-glk-dsi/igt@gem_exec_suspend@basic-s0.html
-
-  * igt@vgem_basic@setversion:
-    - fi-tgl-y:           [DMESG-WARN][13] ([i915#402]) -> [PASS][14] +1 similar issue
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9627/fi-tgl-y/igt@vgem_basic@setversion.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19381/fi-tgl-y/igt@vgem_basic@setversion.html
-
-  
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
-  [i915#1569]: https://gitlab.freedesktop.org/drm/intel/issues/1569
-  [i915#1886]: https://gitlab.freedesktop.org/drm/intel/issues/1886
-  [i915#192]: https://gitlab.freedesktop.org/drm/intel/issues/192
-  [i915#193]: https://gitlab.freedesktop.org/drm/intel/issues/193
-  [i915#194]: https://gitlab.freedesktop.org/drm/intel/issues/194
-  [i915#2190]: https://gitlab.freedesktop.org/drm/intel/issues/2190
-  [i915#2291]: https://gitlab.freedesktop.org/drm/intel/issues/2291
-  [i915#2426]: https://gitlab.freedesktop.org/drm/intel/issues/2426
-  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
-  [i915#533]: https://gitlab.freedesktop.org/drm/intel/issues/533
+This patch series is to allow the kernel space to create and
+manage a single hardware session (a.k.a. default session or
+arbitrary session). So user can allocate the protected buffer,
+which is encrypted with the leverage of the arbitrary hardware
+session.
 
 
-Participating hosts (40 -> 38)
-------------------------------
+rev21:
+        #01 
+        - Remove the term "Mesa" from the help description of Kconfig
+        - Remove unnecessary "select INTEL_MEI_TXE" from DRM_I915_PXP
+          in Kconfig
 
-  Additional (2): fi-kbl-soraka fi-kbl-8809g 
-  Missing    (4): fi-cml-drallion fi-bsw-cyan fi-bdw-samus fi-hsw-4200u 
+        #02
+        - Remove "#define KCR_INIT_MASK_SHIFT (16)", but still keep the
+          macro in this .c file
+        - Write KCR_INIT reg inly for gen12 during boot, not required
+          for gen13+
 
+        #03
+        - Remove debug print_hex_dump() from intel_pxp_tee_io_message()
+        - In struct i915_pxp_component_ops, change "receive" to "recv"
 
-Build changes
--------------
+        #04
+        - Rename SESSION_TYPE_TYPE0, SESSION_TYPE_TYPE1 as
+          SESSION_TYPE_HWDRM, SESSION_TYPE_NONHWDRM to have better meaning.
+        - Remove enum pxp_session_types and enum pxp_protection_modes
+          from single session patch series.
 
-  * Linux: CI_DRM_9627 -> Patchwork_19381
+        #05
+        In intel_pxp_cmd.c:
+        - Remove the debug print as well as print_hex_dump()
+        - Should call i915_gem_object_flush_map() before unpin map
+        - Using "goto label" instead of bool such as is_engine_pm_get
+        - We should always return the error if any, instead of skip
+          with i915_request_set_error_once()
 
-  CI-20190529: 20190529
-  CI_DRM_9627: dd28dc970c948ffa1308e425f2304bba14f0b4e1 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5959: c5cf0734c4f6c1fa17a6a15b5aa721c3a0b8c494 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_19381: 5e3511be9f15af7c531190f48b3b096a6d281ccc @ git://anongit.freedesktop.org/gfx-ci/linux
+        #06
+        - Fix bug, access i915 pointer before assigning the value at
+          intel_pxp_irq_handler()
+        - Writing register GEN11_CRYPTO_RSVD_INTR_ENABLE to enable the
+          PXP irq
+        - Remove the unnecessary comment for GEN11_CRYPTO_RSVD_INTR_MASK
 
+        #07
+        - Bug fixing, we need to set the PXP_GLOBAL_TERMINATE 0x320f8
+          register after arb session termination
+        - Remove enum pxp_session_types and enum pxp_protection_modes
+          from single session patch series.
 
-== Linux commits ==
+        #11
+        - Fix "Fi.CI.CHECKPATCH" warnings
 
-5e3511be9f15 drm/i915/gt: Clear CACHE_MODE prior to clearing residuals
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19381/index.html
-
---===============6806164688459786255==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/gt: Clear CACHE_MODE prior to clearing residuals (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/85962/">https://patchwork.freedesktop.org/series/85962/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19381/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19381/index.html</a></td></tr>
-
-</table>
+        #12
+        - Only allow set I915_CONTEXT_PARAM_PROTECTED_CONTENT during
+          context creation (i915_gem_context_create_ioctl), but not
+          allow during context set param (i915_gem_context_setparam_ioctl)
 
 
-    <h1>CI Bug Log - changes from CI_DRM_9627 -&gt; Patchwork_19381</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with Patchwork_19381 absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in Patchwork_19381, please notify your bug team to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19381/index.html</p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in Patchwork_19381:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>igt@i915_selftest@live@gem_contexts:<ul>
-<li>fi-ivb-3770:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9627/fi-ivb-3770/igt@i915_selftest@live@gem_contexts.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19381/fi-ivb-3770/igt@i915_selftest@live@gem_contexts.html">DMESG-FAIL</a></li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_19381 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@gem_exec_fence@basic-busy@bcs0:</p>
-<ul>
-<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19381/fi-kbl-soraka/igt@gem_exec_fence@basic-busy@bcs0.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +23 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_huc_copy@huc-copy:</p>
-<ul>
-<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19381/fi-kbl-soraka/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2190">i915#2190</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_mmap_gtt@basic:</p>
-<ul>
-<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9627/fi-tgl-y/igt@gem_mmap_gtt@basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19381/fi-tgl-y/igt@gem_mmap_gtt@basic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) +1 similar issue</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@gt_pm:</p>
-<ul>
-<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19381/fi-kbl-soraka/igt@i915_selftest@live@gt_pm.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1886">i915#1886</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2291">i915#2291</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@common-hpd-after-suspend:</p>
-<ul>
-<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19381/fi-kbl-soraka/igt@kms_chamelium@common-hpd-after-suspend.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d:</p>
-<ul>
-<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19381/fi-kbl-soraka/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/533">i915#533</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@runner@aborted:</p>
-<ul>
-<li>fi-kbl-8809g:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19381/fi-kbl-8809g/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1569">i915#1569</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/192">i915#192</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/193">i915#193</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/194">i915#194</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2426">i915#2426</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@gem_exec_suspend@basic-s0:</p>
-<ul>
-<li>fi-glk-dsi:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9627/fi-glk-dsi/igt@gem_exec_suspend@basic-s0.html">DMESG-WARN</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19381/fi-glk-dsi/igt@gem_exec_suspend@basic-s0.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@vgem_basic@setversion:</p>
-<ul>
-<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9627/fi-tgl-y/igt@vgem_basic@setversion.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19381/fi-tgl-y/igt@vgem_basic@setversion.html">PASS</a> +1 similar issue</li>
-</ul>
-</li>
-</ul>
-<h2>Participating hosts (40 -&gt; 38)</h2>
-<p>Additional (2): fi-kbl-soraka fi-kbl-8809g <br />
-  Missing    (4): fi-cml-drallion fi-bsw-cyan fi-bdw-samus fi-hsw-4200u </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_9627 -&gt; Patchwork_19381</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_9627: dd28dc970c948ffa1308e425f2304bba14f0b4e1 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_5959: c5cf0734c4f6c1fa17a6a15b5aa721c3a0b8c494 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
-  Patchwork_19381: 5e3511be9f15af7c531190f48b3b096a6d281ccc @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>5e3511be9f15 drm/i915/gt: Clear CACHE_MODE prior to clearing residuals</p>
+Anshuman Gupta (1):
+  drm/i915/pxp: Add plane decryption support
 
-</body>
-</html>
+Bommu Krishnaiah (2):
+  drm/i915/uapi: introduce drm_i915_gem_create_ext
+  drm/i915/pxp: User interface for Protected buffer
 
---===============6806164688459786255==--
+Huang, Sean Z (9):
+  drm/i915/pxp: Introduce Intel PXP component
+  drm/i915/pxp: set KCR reg init during the boot time
+  drm/i915/pxp: Implement funcs to create the TEE channel
+  drm/i915/pxp: Create the arbitrary session after boot
+  drm/i915/pxp: Func to send hardware session termination
+  drm/i915/pxp: Enable PXP irq worker and callback stub
+  drm/i915/pxp: Destroy arb session upon teardown
+  drm/i915/pxp: Enable PXP power management
+  drm/i915/pxp: Expose session state for display protection flip
 
---===============0660210615==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+Vitaly Lubart (1):
+  mei: pxp: export pavp client to me client bus
+
+ drivers/gpu/drm/i915/Kconfig                  |  21 ++
+ drivers/gpu/drm/i915/Makefile                 |   9 +
+ drivers/gpu/drm/i915/display/intel_sprite.c   |  21 +-
+ drivers/gpu/drm/i915/gem/i915_gem_context.c   |  15 +-
+ drivers/gpu/drm/i915/gem/i915_gem_context.h   |   5 +
+ .../gpu/drm/i915/gem/i915_gem_context_types.h |   1 +
+ drivers/gpu/drm/i915/gem/i915_gem_create.c    |  68 +++++-
+ .../gpu/drm/i915/gem/i915_gem_object_types.h  |   5 +
+ drivers/gpu/drm/i915/gt/intel_gt.c            |   5 +
+ drivers/gpu/drm/i915/gt/intel_gt_irq.c        |  14 ++
+ drivers/gpu/drm/i915/gt/intel_gt_pm.c         |   4 +
+ drivers/gpu/drm/i915/gt/intel_gt_types.h      |   3 +
+ drivers/gpu/drm/i915/i915_drv.c               |   7 +-
+ drivers/gpu/drm/i915/i915_drv.h               |   6 +
+ drivers/gpu/drm/i915/i915_reg.h               |   2 +
+ drivers/gpu/drm/i915/pxp/intel_pxp.c          | 185 ++++++++++++++
+ drivers/gpu/drm/i915/pxp/intel_pxp.h          |  64 +++++
+ drivers/gpu/drm/i915/pxp/intel_pxp_arb.c      | 208 ++++++++++++++++
+ drivers/gpu/drm/i915/pxp/intel_pxp_arb.h      |  17 ++
+ drivers/gpu/drm/i915/pxp/intel_pxp_cmd.c      | 223 +++++++++++++++++
+ drivers/gpu/drm/i915/pxp/intel_pxp_cmd.h      |  19 ++
+ drivers/gpu/drm/i915/pxp/intel_pxp_context.c  |  28 +++
+ drivers/gpu/drm/i915/pxp/intel_pxp_context.h  |  15 ++
+ drivers/gpu/drm/i915/pxp/intel_pxp_pm.c       |  65 +++++
+ drivers/gpu/drm/i915/pxp/intel_pxp_pm.h       |  31 +++
+ drivers/gpu/drm/i915/pxp/intel_pxp_tee.c      | 202 +++++++++++++++
+ drivers/gpu/drm/i915/pxp/intel_pxp_tee.h      |  17 ++
+ drivers/gpu/drm/i915/pxp/intel_pxp_types.h    |  38 +++
+ drivers/misc/mei/Kconfig                      |   2 +
+ drivers/misc/mei/Makefile                     |   1 +
+ drivers/misc/mei/pxp/Kconfig                  |  13 +
+ drivers/misc/mei/pxp/Makefile                 |   7 +
+ drivers/misc/mei/pxp/mei_pxp.c                | 230 ++++++++++++++++++
+ drivers/misc/mei/pxp/mei_pxp.h                |  18 ++
+ include/drm/i915_component.h                  |   1 +
+ include/drm/i915_pxp_tee_interface.h          |  45 ++++
+ include/uapi/drm/i915_drm.h                   |  66 +++++
+ 37 files changed, 1671 insertions(+), 10 deletions(-)
+ create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp.c
+ create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp.h
+ create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp_arb.c
+ create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp_arb.h
+ create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp_cmd.c
+ create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp_cmd.h
+ create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp_context.c
+ create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp_context.h
+ create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp_pm.c
+ create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp_pm.h
+ create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp_tee.c
+ create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp_tee.h
+ create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp_types.h
+ create mode 100644 drivers/misc/mei/pxp/Kconfig
+ create mode 100644 drivers/misc/mei/pxp/Makefile
+ create mode 100644 drivers/misc/mei/pxp/mei_pxp.c
+ create mode 100644 drivers/misc/mei/pxp/mei_pxp.h
+ create mode 100644 include/drm/i915_pxp_tee_interface.h
+
+-- 
+2.17.1
 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============0660210615==--
