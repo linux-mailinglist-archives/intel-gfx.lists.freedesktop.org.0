@@ -1,48 +1,36 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9FE452FA371
-	for <lists+intel-gfx@lfdr.de>; Mon, 18 Jan 2021 15:46:55 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id D4C6F2FA396
+	for <lists+intel-gfx@lfdr.de>; Mon, 18 Jan 2021 15:52:06 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5D8AC6E2E6;
-	Mon, 18 Jan 2021 14:46:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3F59A6E3EB;
+	Mon, 18 Jan 2021 14:52:04 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 132E76E2E6
- for <intel-gfx@lists.freedesktop.org>; Mon, 18 Jan 2021 14:46:51 +0000 (UTC)
-IronPort-SDR: Ng+9u07A7d/WisIEQ8RuG5HQTV+/EyVb1K/7xYpkFNJUS87pQ4OopSP2VpzQ3I/jxwINoIadqM
- 7F2xngx9Zyrw==
-X-IronPort-AV: E=McAfee;i="6000,8403,9867"; a="166478342"
-X-IronPort-AV: E=Sophos;i="5.79,356,1602572400"; d="scan'208";a="166478342"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Jan 2021 06:46:44 -0800
-IronPort-SDR: peGgX2LLsqTFZMvRVLJMkWE6MTsPurwGnbjOSgMCcR1E1kEDjyuL2Z18KjGpUfjwWIRu72ixNi
- glMIpW8TMrKQ==
-X-IronPort-AV: E=Sophos;i="5.79,356,1602572400"; d="scan'208";a="355216837"
-Received: from peteratz-mobl.ger.corp.intel.com (HELO [10.252.51.240])
- ([10.252.51.240])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Jan 2021 06:46:43 -0800
-To: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-References: <20210105153558.134272-1-maarten.lankhorst@linux.intel.com>
- <20210105153558.134272-64-maarten.lankhorst@linux.intel.com>
- <dbf9df80-2fba-b7f8-4e88-a6114eea3d5f@linux.intel.com>
- <90dda3ef-cbc9-ea2d-6247-6eba012e4caf@linux.intel.com>
- <7be09a47-9d15-f051-3ee4-ad5922ebf830@linux.intel.com>
- <7b56a025-4852-a172-06df-7d64d1cf8e39@linux.intel.com>
-From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Message-ID: <4836b692-d2f3-826d-cbc2-6c29c47df6f5@linux.intel.com>
-Date: Mon, 18 Jan 2021 15:46:40 +0100
+Received: from mx2.suse.de (mx2.suse.de [195.135.220.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6CEFF6E3EB;
+ Mon, 18 Jan 2021 14:52:03 +0000 (UTC)
+X-Virus-Scanned: by amavisd-new at test-mx.suse.de
+Received: from relay2.suse.de (unknown [195.135.221.27])
+ by mx2.suse.de (Postfix) with ESMTP id EDD1AACB0;
+ Mon, 18 Jan 2021 14:52:01 +0000 (UTC)
+To: Chris Wilson <chris@chris-wilson.co.uk>, airlied@linux.ie,
+ daniel@ffwll.ch, jani.nikula@linux.intel.com,
+ joonas.lahtinen@linux.intel.com, sroland@vmware.com, zackr@vmware.com
+References: <20210118131420.15874-1-tzimmermann@suse.de>
+ <20210118131420.15874-4-tzimmermann@suse.de>
+ <161097709046.27171.15246982051954461820@build.alporthouse.com>
+From: Thomas Zimmermann <tzimmermann@suse.de>
+Message-ID: <07aa5189-e024-7596-67f9-3c4acfea4beb@suse.de>
+Date: Mon, 18 Jan 2021 15:51:58 +0100
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
  Thunderbird/78.6.0
 MIME-Version: 1.0
-In-Reply-To: <7b56a025-4852-a172-06df-7d64d1cf8e39@linux.intel.com>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH v6 63/64] drm/i915: Move gt_revoke() slightly
+In-Reply-To: <161097709046.27171.15246982051954461820@build.alporthouse.com>
+Subject: Re: [Intel-gfx] [PATCH v4 3/6] drm/i915/gt: Remove references to
+ struct drm_device.pdev
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,52 +43,109 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: intel-gvt-dev@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ linux-graphics-maintainer@vmware.com, dri-devel@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============1695325898=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T3AgMTgtMDEtMjAyMSBvbSAxNDoyOCBzY2hyZWVmIFRob21hcyBIZWxsc3Ryw7ZtOgo+Cj4gT24g
-MS8xOC8yMSAyOjIyIFBNLCBUaG9tYXMgSGVsbHN0csO2bSB3cm90ZToKPj4KPj4gT24gMS8xOC8y
-MSAxOjAxIFBNLCBNYWFydGVuIExhbmtob3JzdCB3cm90ZToKPj4+IE9wIDE4LTAxLTIwMjEgb20g
-MTI6MTEgc2NocmVlZiBUaG9tYXMgSGVsbHN0csO2bToKPj4+PiBPbiAxLzUvMjEgNDozNSBQTSwg
-TWFhcnRlbiBMYW5raG9yc3Qgd3JvdGU6Cj4+Pj4+IFdlIGdldCBhIGxvY2tkZXAgc3BsYXQgd2hl
-biB0aGUgcmVzZXQgbXV0ZXggaXMgaGVsZCwgYmVjYXVzZSBpdCBjYW4gYmUKPj4+Pj4gdGFrZW4g
-ZnJvbSBmZW5jZV93YWl0LiBUaGlzIGNvbmZsaWN0cyB3aXRoIHRoZSBtbXUgbm90aWZpZXIgd2Ug
-aGF2ZSwKPj4+Pj4gYmVjYXVzZSB3ZSByZWN1cnNlIGJldHdlZW4gcmVzZXQgbXV0ZXggYW5kIG1t
-YXAgbG9jayAtPiBtbXUgbm90aWZpZXIuCj4+Pj4+Cj4+Pj4+IFJlbW92ZSB0aGlzIHJlY3Vyc2lv
-biBieSBjYWxsaW5nIHJldm9rZV9tbWFwcyBiZWZvcmUgdGFraW5nIHRoZSBsb2NrLgo+Pj4+IEht
-bS4gSXMgdGhlIG1tYXAgc2UgdGFrZW4gZnJvbSBndF9yZXZva2UoKT8KPj4+Pgo+Pj4+IElmIHNv
-LCBpc24ndCB0aGUgcmVhbCBwcm9ibGVtIHRoYXQgdGhlIG1tYXBfc2VtIGlzIHRha2VuIGluIHRo
-ZSBkbWFfZmVuY2UgY3JpdGljYWwgcGF0aCAod2hlcmUgdGhlIHJlc2V0IGNvZGUgc2l0cyk/Cj4+
-PiBIZXksCj4+Pgo+Pj4gVGhlIGdwdSByZXNldCBjb2RlIHNwZWNpZmljYWxseSBuZWVkcyB0byBy
-ZXZva2UgYWxsIGd0dCBtYXBwaW5ncywgYW5kIHRoZSBmYXVsdCBoYW5kbGVyIHVzZXMgaW50ZWxf
-Z3RfcmVzZXRfdHJ5bG9jaygpLAo+Pj4KPj4+IHNvIHRoaXMgY2hhbmdlIHNob3VsZCBiZSBvayBz
-aW5jZSBhbGwgdGhvc2UgbWFwcGluZ3MgYXJlIGludmFsaWRhdGVkIGNvcnJlY3RseSBhbmQgY29t
-cGxldGVkIGJlZm9yZSB0aGlzIHBvaW50Lgo+Pj4KPj4+IFRoZSByZXNldCBtdXRleCBpc24ndCBh
-Y3R1YWxseSB0YWtlbiBpbnNpZGUgZmVuY2UgY29kZSwgYnV0IHVzZWQgZm9yIGxvY2tkZXAgdmFs
-aWRhdGlvbiwgc28gdGhpcyBzaG91bGQgYmUgb2suCj4+Pgo+Pj4gfk1hYXJ0ZW4KPj4KPj4gSG1t
-LCBPSyBidXQgdGhlbiB3ZSBzdGlsbCBoYXZlIHRoZSBmb2xsb3dpbmcgZXN0YWJsaXNoZWQgbG9j
-a2luZyBvcmRlci4KPj4KPj4gbG9jayhmZW5jZV9zaWduYWxpbmcpCj4+IGxvY2soaV9tbWFwX2xv
-Y2spCj4+Cj4+IEJ1dCBpbiB0aGUgbm90aWZpZXIKPj4KPj4gbG9jayhpX21tYXBfbG9jaykKPj4g
-ZmVuY2Vfc2lnbmFsaW5nKHdpdGhpbiBub3RpZmllcikKPj4KPj4gU28gZ3RfcmV2b2tlKCkgaXMg
-dmlvbGF0aW5nIGRtYS1mZW5jZSBydWxlcy4KPj4KPj4gQlRXIGl0IGxvb2tzIHRvIG1lIGxpa2Ug
-dGhlIHJlc2V0IG11dGV4IG5vdGF0aW9uIGlzIGFjdHVhbGx5IGRvaW5nIG11Y2ggdGhlIHNhbWUg
-YXMgdGhlIGRtYS1mZW5jZSBhbm5vdGF0aW9uczsgV2hpbGUgd2UgY2FuIG1vdmUgZ3RfcmV2b2tl
-KCkgb3V0IG9mIHRoZSByZXNldCBtdXRleCwgdGhhdCBvbmx5IGdpdmVzIHVzIGZhbHNlIGhvcGVz
-IHNpbmNlIGl0IG1vdmVzIGl0IG91dCBvZiB0aGUgZXF1aXZhbGVudCBkbWEtZmVuY2UgYW5ub3Rh
-dGlvbi4gSSBmaWd1cmUgdGhlIHJlYXNvbiB0aGlzIHdhcyBub3Qgc2VlbiBiZWZvcmUgdGhlIG5l
-dyBjb2RlIGlzIHRoYXQgdGhlIHJlc2V0IG11dGV4IGxvY2tkZXAgaXNuJ3QgdGFrZW4gd2hlbiB3
-YWl0aW5nIGZvciBhY3RpdmUuIE9ubHkgd2hlbiB3YWl0aW5nIGZvciBkbWEtZmVuY2UsIGJ1dCBJ
-TU8gdGhlIHJvb3QgcHJvYmxlbSBpcyBwcmUtZXhpc3RpbmcuCj4+Cj4+IC9UaG9tYXMKPj4KPj4K
-PiBUaGUgaW50ZXJlc3Rpbmcgc2NlbmFyaW8gaXMKPgo+IHRocmVhZCAxOgo+IHRha2UgaV9tbWFw
-X2xvY2soKQo+IGVudGVyX21tdV9ub3RpZmllcigpCj4gd2FpdF9mZW5jZSgpCj4KPiB0aHJlYWQg
-MjoKPiBuZWVkX3RvX3Jlc2V0X2dwdV9mb3JfdGhlX2Fib3ZlX2ZlbmNlKCk7Cj4gdGFrZSBpX21t
-YXBfbG9jaygpCj4KPiBEZWFkbG9jay4KPgo+IC9UaG9tYXMKPgo+ClllYWgsIEkgdGhpbmsgZ3B1
-IHJlc2V0IGlzbid0IGNvbXBsZXRlbHkgZm9sbG93aW5nIGxvY2tkZXAgcnVsZXMgeWV0LiBUaHJl
-YWQgMSBpc24ndCBkb2luZyBhbnl0aGluZyB3cm9uZywgZ3B1IHJlc2V0IHByb2JhYmx5IHNob3Vs
-ZCBzdG9wIHJldm9raW5nIGd0IGJpbmRpbmdzLCBhbmQgYWxsb3cgc29tZSBnYXJiYWdlIGR1cmlu
-ZyByZXNldC4gSSBkb24ndCBzZWUgYW5vdGhlciB3YXkgb3V0LiA6LS8KCl9fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QK
-SW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9w
-Lm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--===============1695325898==
+Content-Type: multipart/signed; micalg=pgp-sha256;
+ protocol="application/pgp-signature";
+ boundary="dCRsEuwTjKinUFnbnRmo5LMjDxJ4hfWO8"
+
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--dCRsEuwTjKinUFnbnRmo5LMjDxJ4hfWO8
+Content-Type: multipart/mixed; boundary="aKClrsJUCphEMMBlXbdb0YdE9bE6mvwE7";
+ protected-headers="v1"
+From: Thomas Zimmermann <tzimmermann@suse.de>
+To: Chris Wilson <chris@chris-wilson.co.uk>, airlied@linux.ie,
+ daniel@ffwll.ch, jani.nikula@linux.intel.com,
+ joonas.lahtinen@linux.intel.com, sroland@vmware.com, zackr@vmware.com
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-graphics-maintainer@vmware.com, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ intel-gvt-dev@lists.freedesktop.org
+Message-ID: <07aa5189-e024-7596-67f9-3c4acfea4beb@suse.de>
+Subject: Re: [PATCH v4 3/6] drm/i915/gt: Remove references to struct
+ drm_device.pdev
+References: <20210118131420.15874-1-tzimmermann@suse.de>
+ <20210118131420.15874-4-tzimmermann@suse.de>
+ <161097709046.27171.15246982051954461820@build.alporthouse.com>
+In-Reply-To: <161097709046.27171.15246982051954461820@build.alporthouse.com>
+
+--aKClrsJUCphEMMBlXbdb0YdE9bE6mvwE7
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: quoted-printable
+
+Hi
+
+Am 18.01.21 um 14:38 schrieb Chris Wilson:
+> Quoting Thomas Zimmermann (2021-01-18 13:14:17)
+>> Using struct drm_device.pdev is deprecated. Convert i915 to struct
+>> drm_device.dev. No functional changes.
+>=20
+> This needs to be before or in the previous patch, as that patch removed=
+
+> assignment of i915->drm.pdev.
+>=20
+> Or the removal of the assignment moved to the end as a separate patch.
+> That makes more sense.
+
+Makes sense. The patches can be reordered easily. There was some=20
+discussion on irc about how the i915 patches first need a merge of the=20
+i915 tree to the gvt tree, or something like that.
+
+Best regards
+Thomas
+
+> -Chris
+>=20
+
+--=20
+Thomas Zimmermann
+Graphics Driver Developer
+SUSE Software Solutions Germany GmbH
+Maxfeldstr. 5, 90409 N=C3=BCrnberg, Germany
+(HRB 36809, AG N=C3=BCrnberg)
+Gesch=C3=A4ftsf=C3=BChrer: Felix Imend=C3=B6rffer
+
+
+--aKClrsJUCphEMMBlXbdb0YdE9bE6mvwE7--
+
+--dCRsEuwTjKinUFnbnRmo5LMjDxJ4hfWO8
+Content-Type: application/pgp-signature; name="OpenPGP_signature.asc"
+Content-Description: OpenPGP digital signature
+Content-Disposition: attachment; filename="OpenPGP_signature"
+
+-----BEGIN PGP SIGNATURE-----
+
+wsF5BAABCAAjFiEExndm/fpuMUdwYFFolh/E3EQov+AFAmAFoI4FAwAAAAAACgkQlh/E3EQov+DX
+rA//cjF/f5x4zOt1GqAF+23isnmF9Bg2enEUFKyXLxsiPdUCtu0QclSphbiBPb9Ujp4iGXep6qQh
+ZZTIlmZ/Ed37MmCbwjOeJbquEuxHUoZlMZLFEXMNwrzr54I85mdkfnWnzABpqMiiFw4jwAizeMA/
+P75uPCHYM1POKPtSxSKQcnQBm11rY+c6+oi+NjdPlyntHfpJAelGtwEscnBy94+hbj+dqso75dYp
+bOHNAykst154v1MrcELV95517q3lAMi8r2WauO3br17V07dWUMPRbnwzfjSjtlyBwvBeLf8WW/aS
+EghA5zQdoqIlBxmsqp0CmZar8J5Ro4RJl57rTMvbeEpphDdGK4ewnbiA3Tyz+ZNGJNokrqlLV9rl
+Yu6Iqzk+T1u4jlxruJUGHxX2Sn3XAd5UCH2tqgvJRIItD8EcqAgCF3Latdo5k7wAFmkErNAY+ge2
+L5ta/NQzKg0Fe4dKBH86eTugcNLk06SsdYfCRRaMrerFTFtglDh3PHgHqAHBuyVZtIIf2sfvh/gP
+KcyMFdllkD7627kZQkk0IRD+Eh9F1vmWt3i7yur9ZozD8dVHd0mrn6TORw/rif6dq8ExCuhqo5Sc
++x9qhDzlHXb8pVeCpenRZuQLTctHeecuOBcvgJw+qSoVOlmvHSUAlouvI/bOV/Ucdact9qXoNNOZ
+n+A=
+=CH+b
+-----END PGP SIGNATURE-----
+
+--dCRsEuwTjKinUFnbnRmo5LMjDxJ4hfWO8--
+
+--===============1695325898==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============1695325898==--
