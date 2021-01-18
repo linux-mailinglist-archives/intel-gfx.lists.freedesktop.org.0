@@ -1,41 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 072DF2FA2B2
-	for <lists+intel-gfx@lfdr.de>; Mon, 18 Jan 2021 15:17:58 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id C298F2FA2B7
+	for <lists+intel-gfx@lfdr.de>; Mon, 18 Jan 2021 15:19:22 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A68C46E2D8;
-	Mon, 18 Jan 2021 14:17:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 266A66E2B8;
+	Mon, 18 Jan 2021 14:19:21 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 222726E28B
- for <intel-gfx@lists.freedesktop.org>; Mon, 18 Jan 2021 14:17:50 +0000 (UTC)
-IronPort-SDR: 7sHITc93MENwrogkhzLhcJTFbJm1R2gUknkzDHEN/708l9k7rudaENgw2tjvzIfMF/IV98D3Wv
- v712/JNypaEA==
-X-IronPort-AV: E=McAfee;i="6000,8403,9867"; a="197504696"
-X-IronPort-AV: E=Sophos;i="5.79,356,1602572400"; d="scan'208";a="197504696"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Jan 2021 06:17:48 -0800
-IronPort-SDR: vat4LQLNzCiPWFmNS0SdEVAQ+l+KUFxOokvV2V+BRlaIMxOzw2cRg2iw5+vlscBw3REMNLGs0B
- Jn5FlD3Fcefg==
-X-IronPort-AV: E=Sophos;i="5.79,356,1602572400"; d="scan'208";a="466380937"
-Received: from juimonen-mobl.ger.corp.intel.com (HELO
- mwauld-desk1.ger.corp.intel.com) ([10.252.9.5])
- by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Jan 2021 06:17:47 -0800
-From: Matthew Auld <matthew.auld@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Mon, 18 Jan 2021 14:17:32 +0000
-Message-Id: <20210118141732.90173-3-matthew.auld@intel.com>
-X-Mailer: git-send-email 2.26.2
-In-Reply-To: <20210118141732.90173-1-matthew.auld@intel.com>
-References: <20210118141732.90173-1-matthew.auld@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id B98156E2C7;
+ Mon, 18 Jan 2021 14:19:19 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id B3170A0099;
+ Mon, 18 Jan 2021 14:19:19 +0000 (UTC)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 3/3] drm/i915/error: Fix object page offset
- within a region
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Mon, 18 Jan 2021 14:19:19 -0000
+Message-ID: <161097955972.28164.3763780469934016482@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <87lfcqobpl.fsf@intel.com>
+In-Reply-To: <87lfcqobpl.fsf@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciBk?=
+ =?utf-8?q?rm/i915=3A_Check_for_rq-=3Ehwsp_validity_after_acquiring_RCU_lo?=
+ =?utf-8?b?Y2sgKHJldjIp?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,40 +39,34 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: CQ Tang <cq.tang@intel.com>
+== Series Details ==
 
-io_mapping_map_wc() expects the offset to be relative to the iomapping
-base address. Currently we just pass in the physical address for the
-page which only works if the region.start starts at zero.
+Series: drm/i915: Check for rq->hwsp validity after acquiring RCU lock (rev2)
+URL   : https://patchwork.freedesktop.org/series/85618/
+State : failure
 
-Signed-off-by: CQ Tang <cq.tang@intel.com>
-Signed-off-by: Matthew Auld <matthew.auld@intel.com>
----
- drivers/gpu/drm/i915/i915_gpu_error.c | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/i915/i915_gpu_error.c b/drivers/gpu/drm/i915/i915_gpu_error.c
-index 8b163ee1b86d..f962693404b7 100644
---- a/drivers/gpu/drm/i915/i915_gpu_error.c
-+++ b/drivers/gpu/drm/i915/i915_gpu_error.c
-@@ -1051,7 +1051,9 @@ i915_vma_coredump_create(const struct intel_gt *gt,
- 		for_each_sgt_daddr(dma, iter, vma->pages) {
- 			void __iomem *s;
- 
--			s = io_mapping_map_wc(&mem->iomap, dma, PAGE_SIZE);
-+			s = io_mapping_map_wc(&mem->iomap,
-+					      dma - mem->region.start,
-+					      PAGE_SIZE);
- 			ret = compress_page(compress,
- 					    (void __force *)s, dst,
- 					    true);
--- 
-2.26.2
+Applying: drm/i915/gt: Prevent use of engine->wa_ctx after error
+Using index info to reconstruct a base tree...
+M	drivers/gpu/drm/i915/gt/intel_lrc.c
+Falling back to patching base and 3-way merge...
+Auto-merging drivers/gpu/drm/i915/gt/intel_lrc.c
+CONFLICT (content): Merge conflict in drivers/gpu/drm/i915/gt/intel_lrc.c
+error: Failed to merge in the changes.
+hint: Use 'git am --show-current-patch=diff' to see the failed patch
+Patch failed at 0001 drm/i915/gt: Prevent use of engine->wa_ctx after error
+When you have resolved this problem, run "git am --continue".
+If you prefer to skip this patch, run "git am --skip" instead.
+To restore the original branch and stop patching, run "git am --abort".
+
 
 _______________________________________________
 Intel-gfx mailing list
