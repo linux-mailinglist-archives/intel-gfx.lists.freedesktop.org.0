@@ -2,33 +2,44 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A78002F9D74
-	for <lists+intel-gfx@lfdr.de>; Mon, 18 Jan 2021 12:03:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 57E132F9D94
+	for <lists+intel-gfx@lfdr.de>; Mon, 18 Jan 2021 12:08:50 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7E52089F71;
-	Mon, 18 Jan 2021 11:03:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AF40E6E1B5;
+	Mon, 18 Jan 2021 11:08:47 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1924488A36
- for <intel-gfx@lists.freedesktop.org>; Mon, 18 Jan 2021 11:03:54 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 23627219-1500050 for multiple; Mon, 18 Jan 2021 11:03:52 +0000
-MIME-Version: 1.0
-In-Reply-To: <cd9e2de0-8aee-68f8-43df-1ad381faa386@linux.intel.com>
-References: <20210115130519.11230-1-chris@chris-wilson.co.uk>
- <cd9e2de0-8aee-68f8-43df-1ad381faa386@linux.intel.com>
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E76F36E1B5
+ for <intel-gfx@lists.freedesktop.org>; Mon, 18 Jan 2021 11:08:45 +0000 (UTC)
+IronPort-SDR: pODxeWXsIW8OS3sOqLKjh/hCuwBD85XsMPNSdcsoNXukmwbOm//bIYT62FLz4VGhT3q0ff52zi
+ QQz9tJuqLAxA==
+X-IronPort-AV: E=McAfee;i="6000,8403,9867"; a="175285753"
+X-IronPort-AV: E=Sophos;i="5.79,356,1602572400"; d="scan'208";a="175285753"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Jan 2021 03:08:45 -0800
+IronPort-SDR: O2qlFG1g1I21Ccd4kGxVG8FUGadsgDOG1hsrk7daXOch4UG6P8UWwHwq+dtn7IyumQu/XSDamS
+ Ry0gPIDjLMmA==
+X-IronPort-AV: E=Sophos;i="5.79,356,1602572400"; d="scan'208";a="383529461"
+Received: from kbs1-mobl1.gar.corp.intel.com (HELO [10.252.169.45])
+ ([10.252.169.45])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Jan 2021 03:08:43 -0800
+To: Ville Syrjala <ville.syrjala@linux.intel.com>,
  intel-gfx@lists.freedesktop.org
-Date: Mon, 18 Jan 2021 11:03:51 +0000
-Message-ID: <161096783113.27171.18226922433621597311@build.alporthouse.com>
-User-Agent: alot/0.9
-Subject: Re: [Intel-gfx] [PATCH v2] drm/i915/gem: Use GEM context tracking
- for i915_gem_objects
+References: <20210111163711.12913-1-ville.syrjala@linux.intel.com>
+ <20210111163711.12913-11-ville.syrjala@linux.intel.com>
+From: Karthik B S <karthik.b.s@intel.com>
+Message-ID: <8af0e192-f2c8-2f09-46a5-48afd62d3f92@intel.com>
+Date: Mon, 18 Jan 2021 16:38:41 +0530
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Thunderbird/78.6.1
+MIME-Version: 1.0
+In-Reply-To: <20210111163711.12913-11-ville.syrjala@linux.intel.com>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH v2 10/11] drm/i915: Implement async flip for
+ ilk/snb
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,56 +52,82 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>, stable@kernel.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Tvrtko Ursulin (2021-01-18 10:38:23)
-> 
-> On 15/01/2021 13:05, Chris Wilson wrote:
-> > Rather than take an indirect jump to the drm midlayer (that introduces a
-> > use-after-free in reading the ctx->file backpointer) to find all the vma
-> > on objects associated with the ctx->file, walk the LUT table stored in
-> > the context that tracks all the objects in use with the context.
-> > 
-> > The improper serialisation with device closure resulting in a
-> > use-after-free is a much older issue, we have also introduced a new
-> > incorrect list iteration due to commit a4e7ccdac38e ("drm/i915: Move
-> > context management under GEM") as the link is no longer guarded by the
-> > context's reference context.
-> > 
-> > Fixes: a4e7ccdac38e ("drm/i915: Move context management under GEM")
-> > Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-> > Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-> > Cc: CQ Tang <cq.tang@intel.com>
-> > Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-> > Cc: stable@kernel.org
-> 
-> Not sure it needs to go to stable since it is only debugfs after all.
-
-I know, but chromeos keeps on hitting bugs in i915_gem_objects.
-A quick google only shows the debug capture. Ah, it appeared (once upon
-a time, at least) in chrome://system!
-
-> Also, even though it looks fine, given how it is replacing one a bit 
-> confusing dump with another, do we really need this data or we could 
-> remove it just as well?
-
-I thought per-client was useful at the time, and the overlay tries to
-parse it to get the allocations in each context. But that is some
-information that I've never focused on and it's utility is
-underdeveloped. The binding event tracepoints were more interesting
-than overall consumption.
-
-There is a certain appeal to removing it. That would leave just the
-number of shrinkable objects being reported.
-
-I think for the moment I'd like to keep client info in there, but I'll
-float the alternative patch to remove it for discussion.
--Chris
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+T24gMS8xMS8yMDIxIDEwOjA3IFBNLCBWaWxsZSBTeXJqYWxhIHdyb3RlOgo+IEZyb206IFZpbGxl
+IFN5cmrDpGzDpCA8dmlsbGUuc3lyamFsYUBsaW51eC5pbnRlbC5jb20+Cj4KPiBBZGQgc3VwcG9y
+dCBmb3IgYXN5bmMgZmxpcHMgb24gaXZiL2hzdy4gQWdhaW4gbm8gbmVlZCBmb3IgYW55Cj4gd29y
+a2Fyb3VuZHMgYW5kIGp1c3QgaGF2ZSB0byBkZWFsIHdpdGggdGhlIGludGVycnVwdCBiaXRzIGJl
+aW5nCj4gc2h1ZmZsZWQgYXJvdW5kIGEgYml0Lgo+Cj4gQ2M6IEthcnRoaWsgQiBTIDxrYXJ0aGlr
+LmIuc0BpbnRlbC5jb20+Cj4gQ2M6IFZhbmRpdGEgS3Vsa2FybmkgPHZhbmRpdGEua3Vsa2FybmlA
+aW50ZWwuY29tPgo+IFNpZ25lZC1vZmYtYnk6IFZpbGxlIFN5cmrDpGzDpCA8dmlsbGUuc3lyamFs
+YUBsaW51eC5pbnRlbC5jb20+CgpMb29rcyBnb29kIHRvIG1lLgoKUmV2aWV3ZWQtYnk6IEthcnRo
+aWsgQiBTIDxrYXJ0aGlrLmIuc0BpbnRlbC5jb20+Cgo+IC0tLQo+ICAgZHJpdmVycy9ncHUvZHJt
+L2k5MTUvZGlzcGxheS9pOXh4X3BsYW5lLmMgICAgfCAyNCArKysrKysrKysrKysrKysrKysrKwo+
+ICAgZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5LmMgfCAgMyArKy0K
+PiAgIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfaXJxLmMgICAgICAgICAgICAgIHwgIDUgKysr
+Kwo+ICAgMyBmaWxlcyBjaGFuZ2VkLCAzMSBpbnNlcnRpb25zKCspLCAxIGRlbGV0aW9uKC0pCj4K
+PiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pOXh4X3BsYW5lLmMg
+Yi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2k5eHhfcGxhbmUuYwo+IGluZGV4IGY3NWJl
+MjI5MmNhYS4uNDg4ZWQwMWJiMzQyIDEwMDY0NAo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1
+L2Rpc3BsYXkvaTl4eF9wbGFuZS5jCj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxh
+eS9pOXh4X3BsYW5lLmMKPiBAQCAtNTU5LDYgKzU1OSwyNiBAQCBpdmJfcHJpbWFyeV9kaXNhYmxl
+X2ZsaXBfZG9uZShzdHJ1Y3QgaW50ZWxfcGxhbmUgKnBsYW5lKQo+ICAgCXNwaW5fdW5sb2NrX2ly
+cSgmaTkxNS0+aXJxX2xvY2spOwo+ICAgfQo+ICAgCj4gK3N0YXRpYyB2b2lkCj4gK2lsa19wcmlt
+YXJ5X2VuYWJsZV9mbGlwX2RvbmUoc3RydWN0IGludGVsX3BsYW5lICpwbGFuZSkKPiArewo+ICsJ
+c3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmk5MTUgPSB0b19pOTE1KHBsYW5lLT5iYXNlLmRldik7
+Cj4gKwo+ICsJc3Bpbl9sb2NrX2lycSgmaTkxNS0+aXJxX2xvY2spOwo+ICsJaWxrX2VuYWJsZV9k
+aXNwbGF5X2lycShpOTE1LCBERV9QTEFORV9GTElQX0RPTkUocGxhbmUtPmk5eHhfcGxhbmUpKTsK
+PiArCXNwaW5fdW5sb2NrX2lycSgmaTkxNS0+aXJxX2xvY2spOwo+ICt9Cj4gKwo+ICtzdGF0aWMg
+dm9pZAo+ICtpbGtfcHJpbWFyeV9kaXNhYmxlX2ZsaXBfZG9uZShzdHJ1Y3QgaW50ZWxfcGxhbmUg
+KnBsYW5lKQo+ICt7Cj4gKwlzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqaTkxNSA9IHRvX2k5MTUo
+cGxhbmUtPmJhc2UuZGV2KTsKPiArCj4gKwlzcGluX2xvY2tfaXJxKCZpOTE1LT5pcnFfbG9jayk7
+Cj4gKwlpbGtfZGlzYWJsZV9kaXNwbGF5X2lycShpOTE1LCBERV9QTEFORV9GTElQX0RPTkUocGxh
+bmUtPmk5eHhfcGxhbmUpKTsKPiArCXNwaW5fdW5sb2NrX2lycSgmaTkxNS0+aXJxX2xvY2spOwo+
+ICt9Cj4gKwo+ICAgc3RhdGljIGJvb2wgaTl4eF9wbGFuZV9nZXRfaHdfc3RhdGUoc3RydWN0IGlu
+dGVsX3BsYW5lICpwbGFuZSwKPiAgIAkJCQkgICAgZW51bSBwaXBlICpwaXBlKQo+ICAgewo+IEBA
+IC03ODEsNiArODAxLDEwIEBAIGludGVsX3ByaW1hcnlfcGxhbmVfY3JlYXRlKHN0cnVjdCBkcm1f
+aTkxNV9wcml2YXRlICpkZXZfcHJpdiwgZW51bSBwaXBlIHBpcGUpCj4gICAJCXBsYW5lLT5hc3lu
+Y19mbGlwID0gZzR4X3ByaW1hcnlfYXN5bmNfZmxpcDsKPiAgIAkJcGxhbmUtPmVuYWJsZV9mbGlw
+X2RvbmUgPSBpdmJfcHJpbWFyeV9lbmFibGVfZmxpcF9kb25lOwo+ICAgCQlwbGFuZS0+ZGlzYWJs
+ZV9mbGlwX2RvbmUgPSBpdmJfcHJpbWFyeV9kaXNhYmxlX2ZsaXBfZG9uZTsKPiArCX0gZWxzZSBp
+ZiAoSVNfR0VOX1JBTkdFKGRldl9wcml2LCA1LCA2KSkgewo+ICsJCXBsYW5lLT5hc3luY19mbGlw
+ID0gZzR4X3ByaW1hcnlfYXN5bmNfZmxpcDsKPiArCQlwbGFuZS0+ZW5hYmxlX2ZsaXBfZG9uZSA9
+IGlsa19wcmltYXJ5X2VuYWJsZV9mbGlwX2RvbmU7Cj4gKwkJcGxhbmUtPmRpc2FibGVfZmxpcF9k
+b25lID0gaWxrX3ByaW1hcnlfZGlzYWJsZV9mbGlwX2RvbmU7Cj4gICAJfQo+ICAgCj4gICAJaWYg
+KElOVEVMX0dFTihkZXZfcHJpdikgPj0gNSB8fCBJU19HNFgoZGV2X3ByaXYpKQo+IGRpZmYgLS1n
+aXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXkuYyBiL2RyaXZl
+cnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheS5jCj4gaW5kZXggMjVkYTY4ZjEy
+ZGYxLi42N2FkZDExNjZkNWEgMTAwNjQ0Cj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlz
+cGxheS9pbnRlbF9kaXNwbGF5LmMKPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5
+L2ludGVsX2Rpc3BsYXkuYwo+IEBAIC0yMTIzLDcgKzIxMjMsOCBAQCBzdGF0aWMgdW5zaWduZWQg
+aW50IGludGVsX2xpbmVhcl9hbGlnbm1lbnQoY29uc3Qgc3RydWN0IGRybV9pOTE1X3ByaXZhdGUg
+KmRldl9wcgo+ICAgc3RhdGljIGJvb2wgaGFzX2FzeW5jX2ZsaXBzKHN0cnVjdCBkcm1faTkxNV9w
+cml2YXRlICppOTE1KQo+ICAgewo+ICAgCXJldHVybiBJTlRFTF9HRU4oaTkxNSkgPj0gOSB8fCBJ
+U19CUk9BRFdFTEwoaTkxNSkgfHwKPiAtCQlJU19IQVNXRUxMKGk5MTUpIHx8IElTX0lWWUJSSURH
+RShpOTE1KTsKPiArCQlJU19IQVNXRUxMKGk5MTUpIHx8IElTX0lWWUJSSURHRShpOTE1KSB8fAo+
+ICsJCUlTX0dFTl9SQU5HRShpOTE1LCA1LCA2KTsKPiAgIH0KPiAgIAo+ICAgc3RhdGljIHVuc2ln
+bmVkIGludCBpbnRlbF9zdXJmX2FsaWdubWVudChjb25zdCBzdHJ1Y3QgZHJtX2ZyYW1lYnVmZmVy
+ICpmYiwKPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9pcnEuYyBiL2Ry
+aXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfaXJxLmMKPiBpbmRleCAzNTE4ZjZmMjM4OTYuLjllMDRj
+NmIyOGMxMiAxMDA2NDQKPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2lycS5jCj4g
+KysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9pcnEuYwo+IEBAIC0yMDI5LDYgKzIwMjks
+OSBAQCBzdGF0aWMgdm9pZCBpbGtfZGlzcGxheV9pcnFfaGFuZGxlcihzdHJ1Y3QgZHJtX2k5MTVf
+cHJpdmF0ZSAqZGV2X3ByaXYsCj4gICAJCWlmIChkZV9paXIgJiBERV9QSVBFX1ZCTEFOSyhwaXBl
+KSkKPiAgIAkJCWludGVsX2hhbmRsZV92YmxhbmsoZGV2X3ByaXYsIHBpcGUpOwo+ICAgCj4gKwkJ
+aWYgKGRlX2lpciAmIERFX1BMQU5FX0ZMSVBfRE9ORShwaXBlKSkKPiArCQkJZmxpcF9kb25lX2hh
+bmRsZXIoZGV2X3ByaXYsIHBpcGUpOwo+ICsKPiAgIAkJaWYgKGRlX2lpciAmIERFX1BJUEVfRklG
+T19VTkRFUlJVTihwaXBlKSkKPiAgIAkJCWludGVsX2NwdV9maWZvX3VuZGVycnVuX2lycV9oYW5k
+bGVyKGRldl9wcml2LCBwaXBlKTsKPiAgIAo+IEBAIC0zNTc3LDYgKzM1ODAsOCBAQCBzdGF0aWMg
+dm9pZCBpbGtfaXJxX3Bvc3RpbnN0YWxsKHN0cnVjdCBkcm1faTkxNV9wcml2YXRlICpkZXZfcHJp
+dikKPiAgIAkJCQlERV9QSVBFQV9DUkNfRE9ORSB8IERFX1BPSVNPTik7Cj4gICAJCWV4dHJhX21h
+c2sgPSAoREVfUElQRUFfVkJMQU5LIHwgREVfUElQRUJfVkJMQU5LIHwKPiAgIAkJCSAgICAgIERF
+X1BJUEVCX0ZJRk9fVU5ERVJSVU4gfCBERV9QSVBFQV9GSUZPX1VOREVSUlVOIHwKPiArCQkJICAg
+ICAgREVfUExBTkVfRkxJUF9ET05FKFBMQU5FX0EpIHwKPiArCQkJICAgICAgREVfUExBTkVfRkxJ
+UF9ET05FKFBMQU5FX0IpIHwKPiAgIAkJCSAgICAgIERFX0RQX0FfSE9UUExVRyk7Cj4gICAJfQo+
+ICAgCgoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50
+ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBz
+Oi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
