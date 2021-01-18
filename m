@@ -1,31 +1,38 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2736C2FA8AA
-	for <lists+intel-gfx@lfdr.de>; Mon, 18 Jan 2021 19:25:05 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 222902FA8DE
+	for <lists+intel-gfx@lfdr.de>; Mon, 18 Jan 2021 19:31:51 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 350E66E544;
-	Mon, 18 Jan 2021 18:25:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 20ADE6E524;
+	Mon, 18 Jan 2021 18:31:49 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 53DB489D4A;
- Mon, 18 Jan 2021 18:25:00 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 4D4DDA47E8;
- Mon, 18 Jan 2021 18:25:00 +0000 (UTC)
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AFF736E524
+ for <intel-gfx@lists.freedesktop.org>; Mon, 18 Jan 2021 18:31:48 +0000 (UTC)
+IronPort-SDR: efxB/HPrZf5QqHZG/ribvyhCeH/plnssapjl01fZycJl8tdfKRgkB7+T3vrrPMHAzbmlo5bxvg
+ hbyjvtCyN/wQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9868"; a="178985855"
+X-IronPort-AV: E=Sophos;i="5.79,357,1602572400"; d="scan'208";a="178985855"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Jan 2021 10:31:46 -0800
+IronPort-SDR: EF5Vcff5V3PBeZeUOOHbLGAMWdS7Y5Ug5IOkQO/zEyJA8dlaSPYjDi9xT+to30Ci8U798gswrr
+ xMcZZcJI4qNw==
+X-IronPort-AV: E=Sophos;i="5.79,357,1602572400"; d="scan'208";a="383650858"
+Received: from ideak-desk.fi.intel.com ([10.237.68.141])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Jan 2021 10:31:45 -0800
+From: Imre Deak <imre.deak@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Mon, 18 Jan 2021 20:31:43 +0200
+Message-Id: <20210118183143.1145707-1-imre.deak@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Thomas Zimmermann" <tzimmermann@suse.de>
-Date: Mon, 18 Jan 2021 18:25:00 -0000
-Message-ID: <161099430028.28165.4651715729371584341@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210118131420.15874-1-tzimmermann@suse.de>
-In-Reply-To: <20210118131420.15874-1-tzimmermann@suse.de>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?=3A_Move_struct_drm=5Fdevice=2Epdev_to_legacy_=28rev4=29?=
+Subject: [Intel-gfx] [PATCH] drm/i915/dp: Prevent setting the LTTPR LT mode
+ if no LTTPRs are detected
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,206 +45,117 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============1592365658=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============1592365658==
-Content-Type: multipart/alternative;
- boundary="===============8899497708591831009=="
+Atm, the driver programs explicitly the default transparent link
+training mode (0x55) to DP_PHY_REPEATER_MODE even if no LTTPRs are
+detected.
 
---===============8899497708591831009==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+This conforms to the spec (3.6.6.1):
+"DP upstream devices that do not enable the Non-transparent mode of
+ LTTPRs shall program the PHY_REPEATER_MODE register (DPCD Address
+ F0003h) to 55h (default) prior to link training"
 
-== Series Details ==
+however writing the default value to this DPCD register seems to cause
+occasional link training errors at least for a DELL WD19TB TBT dock, when
+no LTTPRs are detected.
 
-Series: drm: Move struct drm_device.pdev to legacy (rev4)
-URL   : https://patchwork.freedesktop.org/series/84205/
-State : success
+Writing to DP_PHY_REPEATER_MODE will also cause an unnecessary timeout
+on systems without any LTTPR.
 
-== Summary ==
+To fix the above two issues let's assume that setting the default mode
+is redundant when no LTTPRs are detected. Keep the existing behavior and
+program the default mode if more than 8 LTTPRs are detected or in case
+the read from DP_PHY_REPEATER_CNT returns an invalid value.
 
-CI Bug Log - changes from CI_DRM_9636 -> Patchwork_19395
-====================================================
+References: https://gitlab.freedesktop.org/drm/intel/-/issues/2801
+Signed-off-by: Imre Deak <imre.deak@intel.com>
+---
+ .../drm/i915/display/intel_dp_link_training.c | 36 ++++++++-----------
+ 1 file changed, 15 insertions(+), 21 deletions(-)
 
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19395/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_19395 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@gem_flink_basic@bad-flink:
-    - fi-tgl-y:           [PASS][1] -> [DMESG-WARN][2] ([i915#402]) +1 similar issue
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9636/fi-tgl-y/igt@gem_flink_basic@bad-flink.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19395/fi-tgl-y/igt@gem_flink_basic@bad-flink.html
-
-  
-#### Possible fixes ####
-
-  * igt@debugfs_test@read_all_entries:
-    - fi-tgl-y:           [DMESG-WARN][3] ([i915#402]) -> [PASS][4] +2 similar issues
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9636/fi-tgl-y/igt@debugfs_test@read_all_entries.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19395/fi-tgl-y/igt@debugfs_test@read_all_entries.html
-
-  * igt@kms_chamelium@hdmi-crc-fast:
-    - fi-kbl-7500u:       [DMESG-WARN][5] ([i915#2868]) -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9636/fi-kbl-7500u/igt@kms_chamelium@hdmi-crc-fast.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19395/fi-kbl-7500u/igt@kms_chamelium@hdmi-crc-fast.html
-
-  * igt@kms_frontbuffer_tracking@basic:
-    - fi-byt-j1900:       [FAIL][7] ([i915#49]) -> [PASS][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9636/fi-byt-j1900/igt@kms_frontbuffer_tracking@basic.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19395/fi-byt-j1900/igt@kms_frontbuffer_tracking@basic.html
-
-  
-  [i915#2868]: https://gitlab.freedesktop.org/drm/intel/issues/2868
-  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
-  [i915#49]: https://gitlab.freedesktop.org/drm/intel/issues/49
-
-
-Participating hosts (44 -> 38)
-------------------------------
-
-  Missing    (6): fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-cml-drallion fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_9636 -> Patchwork_19395
-
-  CI-20190529: 20190529
-  CI_DRM_9636: f560ac388c527f2f166897c9091f7b9ad652050f @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5960: ace82fcd5f3623f8dde7c220a825873dc53dfae4 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_19395: e41c3e17039b0daa9f8f657a3a29bb62bcd6822d @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-e41c3e17039b drm: Move struct drm_device.pdev to legacy section
-71a37594daa0 drm/vmwgfx: Remove reference to struct drm_device.pdev
-77b84ed57713 drm/i915/gvt: Remove references to struct drm_device.pdev
-6da18be66a38 drm/i915/gt: Remove references to struct drm_device.pdev
-3c9ecb0754e9 drm/i915: Remove references to struct drm_device.pdev
-8e08cd6a48eb drm: Upcast struct drm_device.dev to struct pci_device; replace pdev
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19395/index.html
-
---===============8899497708591831009==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm: Move struct drm_device.pdev to legacy (rev4)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/84205/">https://patchwork.freedesktop.org/series/84205/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19395/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19395/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_9636 -&gt; Patchwork_19395</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19395/index.html</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_19395 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@gem_flink_basic@bad-flink:<ul>
-<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9636/fi-tgl-y/igt@gem_flink_basic@bad-flink.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19395/fi-tgl-y/igt@gem_flink_basic@bad-flink.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) +1 similar issue</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@debugfs_test@read_all_entries:</p>
-<ul>
-<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9636/fi-tgl-y/igt@debugfs_test@read_all_entries.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19395/fi-tgl-y/igt@debugfs_test@read_all_entries.html">PASS</a> +2 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@hdmi-crc-fast:</p>
-<ul>
-<li>fi-kbl-7500u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9636/fi-kbl-7500u/igt@kms_chamelium@hdmi-crc-fast.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2868">i915#2868</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19395/fi-kbl-7500u/igt@kms_chamelium@hdmi-crc-fast.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_frontbuffer_tracking@basic:</p>
-<ul>
-<li>fi-byt-j1900:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9636/fi-byt-j1900/igt@kms_frontbuffer_tracking@basic.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/49">i915#49</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19395/fi-byt-j1900/igt@kms_frontbuffer_tracking@basic.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Participating hosts (44 -&gt; 38)</h2>
-<p>Missing    (6): fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-cml-drallion fi-bdw-samus </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_9636 -&gt; Patchwork_19395</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_9636: f560ac388c527f2f166897c9091f7b9ad652050f @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_5960: ace82fcd5f3623f8dde7c220a825873dc53dfae4 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
-  Patchwork_19395: e41c3e17039b0daa9f8f657a3a29bb62bcd6822d @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>e41c3e17039b drm: Move struct drm_device.pdev to legacy section<br />
-71a37594daa0 drm/vmwgfx: Remove reference to struct drm_device.pdev<br />
-77b84ed57713 drm/i915/gvt: Remove references to struct drm_device.pdev<br />
-6da18be66a38 drm/i915/gt: Remove references to struct drm_device.pdev<br />
-3c9ecb0754e9 drm/i915: Remove references to struct drm_device.pdev<br />
-8e08cd6a48eb drm: Upcast struct drm_device.dev to struct pci_device; replace pdev</p>
-
-</body>
-</html>
-
---===============8899497708591831009==--
-
---===============1592365658==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_training.c b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+index d8c6d7054d11..fad9e9874c7b 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp_link_training.c
++++ b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+@@ -34,18 +34,6 @@ intel_dp_dump_link_status(const u8 link_status[DP_LINK_STATUS_SIZE])
+ 		      link_status[3], link_status[4], link_status[5]);
+ }
+ 
+-static int intel_dp_lttpr_count(struct intel_dp *intel_dp)
+-{
+-	int count = drm_dp_lttpr_count(intel_dp->lttpr_common_caps);
+-
+-	/*
+-	 * Pretend no LTTPRs in case of LTTPR detection error, or
+-	 * if too many (>8) LTTPRs are detected. This translates to link
+-	 * training in transparent mode.
+-	 */
+-	return count <= 0 ? 0 : count;
+-}
+-
+ static void intel_dp_reset_lttpr_count(struct intel_dp *intel_dp)
+ {
+ 	intel_dp->lttpr_common_caps[DP_PHY_REPEATER_CNT -
+@@ -142,6 +130,17 @@ int intel_dp_lttpr_init(struct intel_dp *intel_dp)
+ 		return 0;
+ 
+ 	ret = intel_dp_read_lttpr_common_caps(intel_dp);
++	if (!ret)
++		return 0;
++
++	lttpr_count = drm_dp_lttpr_count(intel_dp->lttpr_common_caps);
++	/*
++	 * Prevent setting LTTPR transparent mode explicitly if no LTTPRs are
++	 * detected as this breaks link training at least on the Dell WD19TB
++	 * dock.
++	 */
++	if (lttpr_count == 0)
++		return 0;
+ 
+ 	/*
+ 	 * See DP Standard v2.0 3.6.6.1. about the explicit disabling of
+@@ -150,17 +149,12 @@ int intel_dp_lttpr_init(struct intel_dp *intel_dp)
+ 	 */
+ 	intel_dp_set_lttpr_transparent_mode(intel_dp, true);
+ 
+-	if (!ret)
+-		return 0;
+-
+-	lttpr_count = intel_dp_lttpr_count(intel_dp);
+-
+ 	/*
+ 	 * In case of unsupported number of LTTPRs or failing to switch to
+ 	 * non-transparent mode fall-back to transparent link training mode,
+ 	 * still taking into account any LTTPR common lane- rate/count limits.
+ 	 */
+-	if (lttpr_count == 0)
++	if (lttpr_count < 0)
+ 		return 0;
+ 
+ 	if (!intel_dp_set_lttpr_transparent_mode(intel_dp, false)) {
+@@ -222,11 +216,11 @@ intel_dp_phy_is_downstream_of_source(struct intel_dp *intel_dp,
+ 				     enum drm_dp_phy dp_phy)
+ {
+ 	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
+-	int lttpr_count = intel_dp_lttpr_count(intel_dp);
++	int lttpr_count = drm_dp_lttpr_count(intel_dp->lttpr_common_caps);
+ 
+-	drm_WARN_ON_ONCE(&i915->drm, lttpr_count == 0 && dp_phy != DP_PHY_DPRX);
++	drm_WARN_ON_ONCE(&i915->drm, lttpr_count <= 0 && dp_phy != DP_PHY_DPRX);
+ 
+-	return lttpr_count == 0 || dp_phy == DP_PHY_LTTPR(lttpr_count - 1);
++	return lttpr_count <= 0 || dp_phy == DP_PHY_LTTPR(lttpr_count - 1);
+ }
+ 
+ static u8 intel_dp_phy_voltage_max(struct intel_dp *intel_dp,
+-- 
+2.25.1
 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============1592365658==--
