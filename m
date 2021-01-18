@@ -2,41 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 399592FA506
-	for <lists+intel-gfx@lfdr.de>; Mon, 18 Jan 2021 16:44:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 967CF2FA540
+	for <lists+intel-gfx@lfdr.de>; Mon, 18 Jan 2021 16:56:02 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 94A0989B96;
-	Mon, 18 Jan 2021 15:44:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9605689F75;
+	Mon, 18 Jan 2021 15:56:00 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EC5B989B96
- for <intel-gfx@lists.freedesktop.org>; Mon, 18 Jan 2021 15:44:04 +0000 (UTC)
-IronPort-SDR: PW8dGc5dGjmxMg6j1XKWRp3waoI1Va4ASpDQIDT9v7aKzC+HBvjg8b784Y164H2xEgdM8Bujka
- VafgR6x3IWQg==
-X-IronPort-AV: E=McAfee;i="6000,8403,9867"; a="158590931"
-X-IronPort-AV: E=Sophos;i="5.79,356,1602572400"; d="scan'208";a="158590931"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Jan 2021 07:43:59 -0800
-IronPort-SDR: c/IqiMtQV1geVrg/G3k/4TNOmQnBH0DL2leEIL7kZV/NdStuIuMPTbamPKeGe6Uh6vS+R24Tcm
- 2eZbx3QHFNOA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.79,356,1602572400"; d="scan'208";a="353540554"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by orsmga006.jf.intel.com with SMTP; 18 Jan 2021 07:43:56 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Mon, 18 Jan 2021 17:43:55 +0200
-From: Ville Syrjala <ville.syrjala@linux.intel.com>
-To: Jani Nikula <jani.nikula@intel.com>
-Date: Mon, 18 Jan 2021 17:43:55 +0200
-Message-Id: <20210118154355.24453-1-ville.syrjala@linux.intel.com>
-X-Mailer: git-send-email 2.26.2
-In-Reply-To: <87lfcqobpl.fsf@intel.com>
-References: <87lfcqobpl.fsf@intel.com>
+Received: from mail-qt1-x82f.google.com (mail-qt1-x82f.google.com
+ [IPv6:2607:f8b0:4864:20::82f])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5134589F75
+ for <intel-gfx@lists.freedesktop.org>; Mon, 18 Jan 2021 15:55:59 +0000 (UTC)
+Received: by mail-qt1-x82f.google.com with SMTP id z6so4480918qtn.0
+ for <intel-gfx@lists.freedesktop.org>; Mon, 18 Jan 2021 07:55:59 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=PWdFhQRVZYz1ie/2Sv+lnrBsaOSGiKQgIMZl8Y0jJLM=;
+ b=WGLRTev6dyKlJhPmgoSGQziqHBenGdTMt17wuDXLEOnyLMNvhxi9ipClXFO6DSdHxj
+ MZqDQP+plpTy+L3z7A/DbjKqdTSGJZsIDdvzNm9YzPcrXsmGcd6Aj5rygZdtIQF1rDj7
+ 9IiDVo6KHwkiUqdRB+lVUp+FJDrNxUS6MwW7GcYw+NxPZVb1jBWhd1AIDO/2GiQN6yYS
+ loBTpeU768EpyS80OWn/FvmZzrfJ1zbFCJVFwPZKd1M8Dd0lmepYS/SPXRJ3vPnO4yA8
+ aGH6c2gGVajf33SsrY8Gbbx5ax7raUCmF7KXEvQkZLs0QAp+IDcdTvV95FyYLpyrshcA
+ oMCA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=PWdFhQRVZYz1ie/2Sv+lnrBsaOSGiKQgIMZl8Y0jJLM=;
+ b=VQMbyLHDYbrSuTmoRWRrK+VJ7bEqOMWaZ77S6Y4rOKtiW9nq3rObmQMt00cKoW6tvX
+ 3MOLMflqExMU11IC9Xl6dZpyb89GvihQQVjhJDXO+YZD8I5W+hpgppGeWGWgsUljbafT
+ Uhg75gg/VTNQ1XVGeYCxe2MSWqa4pABO+XDdpwKTIiDcQ/6mAhyhDgsPw7f9BemkFP1a
+ UizQ0lEnTVynKPTo2706KiZq35SmPjr+Kd44JnoT89R6IGltj2oFzryBZR7IDHL23K4T
+ muOLEi2eOOFUe5PXs4QVHW2bZtP5fY/r4gYKKxeYRp+ifZMPcfxOKdZnDAex5vsrHP4r
+ ASPg==
+X-Gm-Message-State: AOAM530tGS576pCLoj4xApMibGPnc+xiMh2JnhBxECU/v7ykUw334EuF
+ thuna4cmc2iLQH4meistdBPVwt/5K9ss4ccslAg=
+X-Google-Smtp-Source: ABdhPJzcW/U3M1855B5TJC8Za3WN7CCXaNPFPnaMiQ6M/lHO1eoWZjedw4bGt2+REr2t2XFkE7pBfvR2QXV3w+vDgxA=
+X-Received: by 2002:ac8:65d1:: with SMTP id t17mr229025qto.95.1610985358376;
+ Mon, 18 Jan 2021 07:55:58 -0800 (PST)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH -fixes] drm/i915: Only enable DFP 4:4:4->4:2:0
- conversion when outputting YCbCr 4:4:4
+References: <20210118141732.90173-1-matthew.auld@intel.com>
+ <20210118141732.90173-2-matthew.auld@intel.com>
+ <161098167206.301.604373583078584678@build.alporthouse.com>
+In-Reply-To: <161098167206.301.604373583078584678@build.alporthouse.com>
+From: Matthew Auld <matthew.william.auld@gmail.com>
+Date: Mon, 18 Jan 2021 15:55:31 +0000
+Message-ID: <CAM0jSHOiBDAPT-szRYw0xTYTV2YF96BKsR3ep1Vs=B-3Ry1uUw@mail.gmail.com>
+To: Chris Wilson <chris@chris-wilson.co.uk>
+Subject: Re: [Intel-gfx] [PATCH 2/3] drm/i915: prefer FORCE_WC for the
+ blitter routines
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,86 +63,145 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, stable@vger.kernel.org
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ Matthew Auld <matthew.auld@intel.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-RnJvbTogVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4KCkxl
-dCdzIG5vdCBlbmFibGUgdGhlIDQ6NDo0LT40OjI6MCBjb252ZXJzaW9uIGJpdCBpbiB0aGUgREZQ
-IHVubGVzcyB3ZSdyZQphY3R1YWxseSBvdXRwdXR0aW5nIFlDYkNyIDQ6NDo0LiBJdCB3b3VsZCBh
-cHBlYXIgc29tZSBwcm90b2NvbApjb252ZXJ0ZXJzIGJsaW5keSBjb25zdWx0IHRoaXMgYml0IGV2
-ZW4gd2hlbiB0aGUgc291cmNlIGlzIG91dHB1dHRpbmcKUkdCLCByZXN1bHRpbmcgaW4gYSB2aXN1
-YWwgbWVzcy4KCkNjOiBzdGFibGVAdmdlci5rZXJuZWwub3JnCkNsb3NlczogaHR0cHM6Ly9naXRs
-YWIuZnJlZWRlc2t0b3Aub3JnL2RybS9pbnRlbC8tL2lzc3Vlcy8yOTE0ClNpZ25lZC1vZmYtYnk6
-IFZpbGxlIFN5cmrDpGzDpCA8dmlsbGUuc3lyamFsYUBsaW51eC5pbnRlbC5jb20+Ckxpbms6IGh0
-dHBzOi8vcGF0Y2h3b3JrLmZyZWVkZXNrdG9wLm9yZy9wYXRjaC9tc2dpZC8yMDIxMDExMTE2NDEx
-MS4xMzMwMi0xLXZpbGxlLnN5cmphbGFAbGludXguaW50ZWwuY29tCkZpeGVzOiAxODE1NjdhYTlm
-MGQgKCJkcm0vaTkxNTogRG8gWUNiQ3IgNDQ0LT40MjAgY29udmVyc2lvbiB2aWEgRFAgcHJvdG9j
-b2wgY29udmVydGVycyIpClJldmlld2VkLWJ5OiBKYW5pIE5pa3VsYSA8amFuaS5uaWt1bGFAaW50
-ZWwuY29tPgooY2hlcnJ5IHBpY2tlZCBmcm9tIGNvbW1pdCAzMTcwYTIxZjcwNTljNDY2MGM0Njlm
-NTliZjUyOWYzNzJhNTdkYTVmKQotLS0KVW5mb3J0dW5hdGVseSB0aGUgY3J0Y19zdGF0ZSBwbHVt
-YmluZyB0bwppbnRlbF9kcF9jb25maWd1cmVfcHJvdG9jb2xfY29udmVydGVyKCkgd2FzIHBhcnQg
-b2YgdGhlIApIRE1JIDIuMSBQQ09OIHN0dWZmLCBzbyBjb3VsZG4ndCBqdXN0IGNoZXJyeS1waWNr
-IGl0IGFsb25lLgoKIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGRpLmMgfCAy
-ICstCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RwLmMgIHwgOSArKysrKy0t
-LS0KIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZHAuaCAgfCAzICsrLQogMyBm
-aWxlcyBjaGFuZ2VkLCA4IGluc2VydGlvbnMoKyksIDYgZGVsZXRpb25zKC0pCgpkaWZmIC0tZ2l0
-IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kZGkuYyBiL2RyaXZlcnMvZ3B1
-L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGRpLmMKaW5kZXggOTI5NDBhMGM1ZWY4Li5kNWFjZTQ4
-YjFhY2UgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGRp
-LmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kZGkuYwpAQCAtMzcy
-NSw3ICszNzI1LDcgQEAgc3RhdGljIHZvaWQgaHN3X2RkaV9wcmVfZW5hYmxlX2RwKHN0cnVjdCBp
-bnRlbF9hdG9taWNfc3RhdGUgKnN0YXRlLAogCWludGVsX2RkaV9pbml0X2RwX2J1Zl9yZWcoZW5j
-b2RlciwgY3J0Y19zdGF0ZSk7CiAJaWYgKCFpc19tc3QpCiAJCWludGVsX2RwX3NldF9wb3dlcihp
-bnRlbF9kcCwgRFBfU0VUX1BPV0VSX0QwKTsKLQlpbnRlbF9kcF9jb25maWd1cmVfcHJvdG9jb2xf
-Y29udmVydGVyKGludGVsX2RwKTsKKwlpbnRlbF9kcF9jb25maWd1cmVfcHJvdG9jb2xfY29udmVy
-dGVyKGludGVsX2RwLCBjcnRjX3N0YXRlKTsKIAlpbnRlbF9kcF9zaW5rX3NldF9kZWNvbXByZXNz
-aW9uX3N0YXRlKGludGVsX2RwLCBjcnRjX3N0YXRlLAogCQkJCQkgICAgICB0cnVlKTsKIAlpbnRl
-bF9kcF9zaW5rX3NldF9mZWNfcmVhZHkoaW50ZWxfZHAsIGNydGNfc3RhdGUpOwpkaWZmIC0tZ2l0
-IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kcC5jIGIvZHJpdmVycy9ncHUv
-ZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kcC5jCmluZGV4IDM3ZjFhMTBmZDAyMS4uMDkxMjNlODYy
-NWM0IDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RwLmMK
-KysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kcC5jCkBAIC00MDE0LDcg
-KzQwMTQsOCBAQCBzdGF0aWMgdm9pZCBpbnRlbF9kcF9lbmFibGVfcG9ydChzdHJ1Y3QgaW50ZWxf
-ZHAgKmludGVsX2RwLAogCWludGVsX2RlX3Bvc3RpbmdfcmVhZChkZXZfcHJpdiwgaW50ZWxfZHAt
-Pm91dHB1dF9yZWcpOwogfQogCi12b2lkIGludGVsX2RwX2NvbmZpZ3VyZV9wcm90b2NvbF9jb252
-ZXJ0ZXIoc3RydWN0IGludGVsX2RwICppbnRlbF9kcCkKK3ZvaWQgaW50ZWxfZHBfY29uZmlndXJl
-X3Byb3RvY29sX2NvbnZlcnRlcihzdHJ1Y3QgaW50ZWxfZHAgKmludGVsX2RwLAorCQkJCQkgICBj
-b25zdCBzdHJ1Y3QgaW50ZWxfY3J0Y19zdGF0ZSAqY3J0Y19zdGF0ZSkKIHsKIAlzdHJ1Y3QgZHJt
-X2k5MTVfcHJpdmF0ZSAqaTkxNSA9IGRwX3RvX2k5MTUoaW50ZWxfZHApOwogCXU4IHRtcDsKQEAg
-LTQwMzMsOCArNDAzNCw4IEBAIHZvaWQgaW50ZWxfZHBfY29uZmlndXJlX3Byb3RvY29sX2NvbnZl
-cnRlcihzdHJ1Y3QgaW50ZWxfZHAgKmludGVsX2RwKQogCQlkcm1fZGJnX2ttcygmaTkxNS0+ZHJt
-LCAiRmFpbGVkIHRvIHNldCBwcm90b2NvbCBjb252ZXJ0ZXIgSERNSSBtb2RlIHRvICVzXG4iLAog
-CQkJICAgIGVuYWJsZWRkaXNhYmxlZChpbnRlbF9kcC0+aGFzX2hkbWlfc2luaykpOwogCi0JdG1w
-ID0gaW50ZWxfZHAtPmRmcC55Y2Jjcl80NDRfdG9fNDIwID8KLQkJRFBfQ09OVkVSU0lPTl9UT19Z
-Q0JDUjQyMF9FTkFCTEUgOiAwOworCXRtcCA9IGNydGNfc3RhdGUtPm91dHB1dF9mb3JtYXQgPT0g
-SU5URUxfT1VUUFVUX0ZPUk1BVF9ZQ0JDUjQ0NCAmJgorCQlpbnRlbF9kcC0+ZGZwLnljYmNyXzQ0
-NF90b180MjAgPyBEUF9DT05WRVJTSU9OX1RPX1lDQkNSNDIwX0VOQUJMRSA6IDA7CiAKIAlpZiAo
-ZHJtX2RwX2RwY2Rfd3JpdGViKCZpbnRlbF9kcC0+YXV4LAogCQkJICAgICAgIERQX1BST1RPQ09M
-X0NPTlZFUlRFUl9DT05UUk9MXzEsIHRtcCkgIT0gMSkKQEAgLTQwODgsNyArNDA4OSw3IEBAIHN0
-YXRpYyB2b2lkIGludGVsX2VuYWJsZV9kcChzdHJ1Y3QgaW50ZWxfYXRvbWljX3N0YXRlICpzdGF0
-ZSwKIAl9CiAKIAlpbnRlbF9kcF9zZXRfcG93ZXIoaW50ZWxfZHAsIERQX1NFVF9QT1dFUl9EMCk7
-Ci0JaW50ZWxfZHBfY29uZmlndXJlX3Byb3RvY29sX2NvbnZlcnRlcihpbnRlbF9kcCk7CisJaW50
-ZWxfZHBfY29uZmlndXJlX3Byb3RvY29sX2NvbnZlcnRlcihpbnRlbF9kcCwgcGlwZV9jb25maWcp
-OwogCWludGVsX2RwX3N0YXJ0X2xpbmtfdHJhaW4oaW50ZWxfZHAsIHBpcGVfY29uZmlnKTsKIAlp
-bnRlbF9kcF9zdG9wX2xpbmtfdHJhaW4oaW50ZWxfZHAsIHBpcGVfY29uZmlnKTsKIApkaWZmIC0t
-Z2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kcC5oIGIvZHJpdmVycy9n
-cHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kcC5oCmluZGV4IGI4NzFhMDliNjkwMS4uMDVmN2Rk
-ZjdhNzk1IDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rw
-LmgKKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kcC5oCkBAIC01MSw3
-ICs1MSw4IEBAIGludCBpbnRlbF9kcF9nZXRfbGlua190cmFpbl9mYWxsYmFja192YWx1ZXMoc3Ry
-dWN0IGludGVsX2RwICppbnRlbF9kcCwKIGludCBpbnRlbF9kcF9yZXRyYWluX2xpbmsoc3RydWN0
-IGludGVsX2VuY29kZXIgKmVuY29kZXIsCiAJCQkgIHN0cnVjdCBkcm1fbW9kZXNldF9hY3F1aXJl
-X2N0eCAqY3R4KTsKIHZvaWQgaW50ZWxfZHBfc2V0X3Bvd2VyKHN0cnVjdCBpbnRlbF9kcCAqaW50
-ZWxfZHAsIHU4IG1vZGUpOwotdm9pZCBpbnRlbF9kcF9jb25maWd1cmVfcHJvdG9jb2xfY29udmVy
-dGVyKHN0cnVjdCBpbnRlbF9kcCAqaW50ZWxfZHApOwordm9pZCBpbnRlbF9kcF9jb25maWd1cmVf
-cHJvdG9jb2xfY29udmVydGVyKHN0cnVjdCBpbnRlbF9kcCAqaW50ZWxfZHAsCisJCQkJCSAgIGNv
-bnN0IHN0cnVjdCBpbnRlbF9jcnRjX3N0YXRlICpjcnRjX3N0YXRlKTsKIHZvaWQgaW50ZWxfZHBf
-c2lua19zZXRfZGVjb21wcmVzc2lvbl9zdGF0ZShzdHJ1Y3QgaW50ZWxfZHAgKmludGVsX2RwLAog
-CQkJCQkgICBjb25zdCBzdHJ1Y3QgaW50ZWxfY3J0Y19zdGF0ZSAqY3J0Y19zdGF0ZSwKIAkJCQkJ
-ICAgYm9vbCBlbmFibGUpOwotLSAKMi4yNi4yCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0
-cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9s
-aXN0aW5mby9pbnRlbC1nZngK
+On Mon, 18 Jan 2021 at 14:54, Chris Wilson <chris@chris-wilson.co.uk> wrote:
+>
+> Quoting Matthew Auld (2021-01-18 14:17:31)
+> > From: CQ Tang <cq.tang@intel.com>
+> >
+> > The pool is shared and so we might find that there is a pool object with
+> > an existing mapping, but is mapped with different underlying type, which
+> > will result in -EBUSY.
+> >
+> > Signed-off-by: CQ Tang <cq.tang@intel.com>
+> > Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+> > ---
+> >  drivers/gpu/drm/i915/gem/i915_gem_object_blt.c | 4 ++--
+> >  1 file changed, 2 insertions(+), 2 deletions(-)
+> >
+> > diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object_blt.c b/drivers/gpu/drm/i915/gem/i915_gem_object_blt.c
+> > index 10cac9fac79b..c6db745900b3 100644
+> > --- a/drivers/gpu/drm/i915/gem/i915_gem_object_blt.c
+> > +++ b/drivers/gpu/drm/i915/gem/i915_gem_object_blt.c
+> > @@ -55,7 +55,7 @@ struct i915_vma *intel_emit_vma_fill_blt(struct intel_context *ce,
+> >         if (unlikely(err))
+> >                 goto out_put;
+> >
+> > -       cmd = i915_gem_object_pin_map(pool->obj, I915_MAP_WC);
+> > +       cmd = i915_gem_object_pin_map(pool->obj, I915_MAP_FORCE_WC);
+> >         if (IS_ERR(cmd)) {
+> >                 err = PTR_ERR(cmd);
+> >                 goto out_unpin;
+> > @@ -277,7 +277,7 @@ struct i915_vma *intel_emit_vma_copy_blt(struct intel_context *ce,
+> >         if (unlikely(err))
+> >                 goto out_put;
+> >
+> > -       cmd = i915_gem_object_pin_map(pool->obj, I915_MAP_WC);
+> > +       cmd = i915_gem_object_pin_map(pool->obj, I915_MAP_FORCE_WC);
+> >         if (IS_ERR(cmd)) {
+> >                 err = PTR_ERR(cmd);
+> >                 goto out_unpin;
+>
+> FORCE is becoming meaningless.
+>
+> In this case we pin the pages upon acquiring from the pool, which then
+> prevents us from changing the mapping type. The purpose of which was so
+> that we could cache the mapping between users, and here we are saying
+> that cache is made useless. The danger is that we are now thrashing the
+> cache, hurting ourselves with the vmap overhead.
+>
+> Maybe we should move the mapping-type into the buffer-pool cache itself?
+
+Yeah, makes sense I think. Maybe something simple like:
+
+--- a/drivers/gpu/drm/i915/gt/intel_gt_buffer_pool.c
++++ b/drivers/gpu/drm/i915/gt/intel_gt_buffer_pool.c
+@@ -145,7 +145,8 @@ static void pool_retire(struct i915_active *ref)
+ }
+
+ static struct intel_gt_buffer_pool_node *
+-node_create(struct intel_gt_buffer_pool *pool, size_t sz)
++node_create(struct intel_gt_buffer_pool *pool, size_t sz,
++           enum i915_map_type type)
+ {
+        struct intel_gt *gt = to_gt(pool);
+        struct intel_gt_buffer_pool_node *node;
+@@ -169,12 +170,14 @@ node_create(struct intel_gt_buffer_pool *pool, size_t sz)
+
+        i915_gem_object_set_readonly(obj);
+
++       node->type = type;
+        node->obj = obj;
+        return node;
+ }
+
+ struct intel_gt_buffer_pool_node *
+-intel_gt_get_buffer_pool(struct intel_gt *gt, size_t size)
++intel_gt_get_buffer_pool(struct intel_gt *gt, size_t size,
++                        enum i915_map_type type)
+ {
+        struct intel_gt_buffer_pool *pool = &gt->buffer_pool;
+        struct intel_gt_buffer_pool_node *node;
+@@ -191,6 +194,9 @@ intel_gt_get_buffer_pool(struct intel_gt *gt, size_t size)
+                if (node->obj->base.size < size)
+                        continue;
+
++               if (node->type != type)
++                       continue;
++
+                age = READ_ONCE(node->age);
+                if (!age)
+                        continue;
+@@ -205,7 +211,7 @@ intel_gt_get_buffer_pool(struct intel_gt *gt, size_t size)
+        rcu_read_unlock();
+
+        if (&node->link == list) {
+-               node = node_create(pool, size);
++               node = node_create(pool, size, type);
+                if (IS_ERR(node))
+                        return node;
+        }
+diff --git a/drivers/gpu/drm/i915/gt/intel_gt_buffer_pool.h
+b/drivers/gpu/drm/i915/gt/intel_gt_buffer_pool.h
+index 42cbac003e8a..6068f8f1762e 100644
+--- a/drivers/gpu/drm/i915/gt/intel_gt_buffer_pool.h
++++ b/drivers/gpu/drm/i915/gt/intel_gt_buffer_pool.h
+@@ -15,7 +15,8 @@ struct intel_gt;
+ struct i915_request;
+
+ struct intel_gt_buffer_pool_node *
+-intel_gt_get_buffer_pool(struct intel_gt *gt, size_t size);
++intel_gt_get_buffer_pool(struct intel_gt *gt, size_t size,
++                        enum i915_map_type type);
+
+ static inline int
+ intel_gt_buffer_pool_mark_active(struct intel_gt_buffer_pool_node *node,
+diff --git a/drivers/gpu/drm/i915/gt/intel_gt_buffer_pool_types.h
+b/drivers/gpu/drm/i915/gt/intel_gt_buffer_pool_types.h
+index bcf1658c9633..e8f7dba36b76 100644
+--- a/drivers/gpu/drm/i915/gt/intel_gt_buffer_pool_types.h
++++ b/drivers/gpu/drm/i915/gt/intel_gt_buffer_pool_types.h
+@@ -31,6 +31,7 @@ struct intel_gt_buffer_pool_node {
+                struct rcu_head rcu;
+        };
+        unsigned long age;
++       enum i915_map_type type;
+ };
+
+Or maybe it should be split over multiple lists or something, one for each type?
+
+> -Chris
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
