@@ -2,94 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0A9C52F9C03
-	for <lists+intel-gfx@lfdr.de>; Mon, 18 Jan 2021 10:49:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B4C002F9C10
+	for <lists+intel-gfx@lfdr.de>; Mon, 18 Jan 2021 10:56:09 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E393A6E18E;
-	Mon, 18 Jan 2021 09:49:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 211476E11F;
+	Mon, 18 Jan 2021 09:56:08 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com
- [IPv6:2a00:1450:4864:20::42a])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 90D366E11F
- for <intel-gfx@lists.freedesktop.org>; Mon, 18 Jan 2021 09:49:12 +0000 (UTC)
-Received: by mail-wr1-x42a.google.com with SMTP id l12so10559657wry.2
- for <intel-gfx@lists.freedesktop.org>; Mon, 18 Jan 2021 01:49:12 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=date:from:to:cc:subject:message-id:mail-followup-to:references
- :mime-version:content-disposition:in-reply-to;
- bh=sSYFbfM9Da4W4yprSISGK+rzbCaBhrTeqyICcu8isSI=;
- b=MEID5dXH0nAohh2t20OSBRbwIults+Y/clL8d5Zoywl8pG1vX9oAoUrqgWkbct+D5T
- sBmb4oJykFGr6XGscyQLi/YCSPNQFigACWi29fujWnFtHb44075JIbDRffBALOeLKQUI
- 7JI+AfFtlTN/8lxLCWUr6MNTTny2Zg53dmImk=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id
- :mail-followup-to:references:mime-version:content-disposition
- :in-reply-to;
- bh=sSYFbfM9Da4W4yprSISGK+rzbCaBhrTeqyICcu8isSI=;
- b=kpkRhvyonJ9VBGKturSrHeHF3+frbYMfbFq15SoqSMRsexDvlBZweOMEWbiuGu2gvA
- 8uZN+DoiC9+yhqnezyHJVf8gCcYiU3At6zsuCxKkqrZXlGL56hEq59OWS53Ww+bbCrQR
- eRB9N+0ViKMBSdVQim1DFuFUPL13hijcZ6FuIuaseaACaEDXWgTaixLmLcDpkOlF7nYP
- vq71E9W59+apMgRj5uyiqPN9hnVFes47uZgUcxerP1nloM8ioo7MQ7mOuovCds1DFm6v
- LsFJv9Q2tv1NDBJJWtBac80gecSe8qGgLcdJIT3LuRugFLGqvgIBaKS4kkNIFez6LRtq
- IMsg==
-X-Gm-Message-State: AOAM532VQrF5RaGeHKW//mIYdRlTI2HqVTBHkQb+K3+sDirjKxCbozdc
- bczBPJ1qFF3nSF4mwAQS1T47kw==
-X-Google-Smtp-Source: ABdhPJyNkHEjNj8L2i9pban7G0FrBR6GRuJU2SUW/Pv5bihvSUPM5fAgGbUHMl7RRn6n+jn+EXOFoQ==
-X-Received: by 2002:adf:e990:: with SMTP id h16mr25656063wrm.307.1610963351184; 
- Mon, 18 Jan 2021 01:49:11 -0800 (PST)
-Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id k131sm12400386wmb.37.2021.01.18.01.49.09
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 18 Jan 2021 01:49:10 -0800 (PST)
-Date: Mon, 18 Jan 2021 10:49:07 +0100
-From: Daniel Vetter <daniel@ffwll.ch>
-To: Zack Rusin <zackr@vmware.com>
-Message-ID: <YAVZk3XKNf9W7guC@phenom.ffwll.local>
-Mail-Followup-To: Zack Rusin <zackr@vmware.com>,
- Lee Jones <lee.jones@linaro.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- Ben Skeggs <bskeggs@redhat.com>,
- Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
- Dave Airlie <airlied@redhat.com>, David Airlie <airlied@linux.ie>,
- DRI Development <dri-devel@lists.freedesktop.org>,
- Eddie Dong <eddie.dong@intel.com>, Eric Anholt <eric@anholt.net>,
- Faith <faith@valinux.com>, Gareth Hughes <gareth@valinux.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "intel-gvt-dev@lists.freedesktop.org" <intel-gvt-dev@lists.freedesktop.org>,
- Jackie Li <yaodong.li@intel.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Jan Safrata <jan.nikitenko@gmail.com>,
- Jesse Barnes <jesse.barnes@intel.com>, jim liu <jim.liu@intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Keith Packard <keithp@keithp.com>,
- Kevin Tian <kevin.tian@intel.com>,
- "linaro-mm-sig@lists.linaro.org" <linaro-mm-sig@lists.linaro.org>,
- "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Min He <min.he@intel.com>,
- Niu Bing <bing.niu@intel.com>,
- "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>,
- Patrik Jakobsson <patrik.r.jakobsson@gmail.com>,
- Pei Zhang <pei.zhang@intel.com>, Ping Gao <ping.a.gao@intel.com>,
- Rob Clark <rob.clark@linaro.org>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Roland Scheidegger <sroland@vmware.com>,
- Sumit Semwal <sumit.semwal@linaro.org>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Tina Zhang <tina.zhang@intel.com>,
- Linux-graphics-maintainer <Linux-graphics-maintainer@vmware.com>,
- Zhenyu Wang <zhenyuw@linux.intel.com>,
- Zhi Wang <zhi.a.wang@intel.com>, Zhiyuan Lv <zhiyuan.lv@intel.com>
-References: <20210115181601.3432599-1-lee.jones@linaro.org>
- <F914D9B9-6DD4-4383-9F7C-8D09FBFE96CE@vmware.com>
+Received: from fireflyinternet.com (unknown [77.68.26.236])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 889666E11F
+ for <intel-gfx@lists.freedesktop.org>; Mon, 18 Jan 2021 09:56:06 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 23626351-1500050 
+ for multiple; Mon, 18 Jan 2021 09:53:33 +0000
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Mon, 18 Jan 2021 09:53:32 +0000
+Message-Id: <20210118095332.458813-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.30.0
+In-Reply-To: <87lfcqobpl.fsf@intel.com>
+References: <87lfcqobpl.fsf@intel.com>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <F914D9B9-6DD4-4383-9F7C-8D09FBFE96CE@vmware.com>
-X-Operating-System: Linux phenom 5.7.0-1-amd64 
-Subject: Re: [Intel-gfx] [PATCH 00/29] [Set 15] Finally rid W=1 warnings
- from GPU!
+Subject: [Intel-gfx] [PATCH] drm/i915/gt: Prevent use of engine->wa_ctx
+ after error
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -102,56 +39,49 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: David Airlie <airlied@linux.ie>,
- "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>,
- DRI Development <dri-devel@lists.freedesktop.org>,
- Eric Anholt <eric@anholt.net>, Jesse Barnes <jesse.barnes@intel.com>,
- Jan Safrata <jan.nikitenko@gmail.com>, Lee Jones <lee.jones@linaro.org>,
- Sumit Semwal <sumit.semwal@linaro.org>, Gareth Hughes <gareth@valinux.com>,
- Pei Zhang <pei.zhang@intel.com>, Rob Clark <rob.clark@linaro.org>,
- Min He <min.he@intel.com>,
- Linux-graphics-maintainer <Linux-graphics-maintainer@vmware.com>,
- Ben Skeggs <bskeggs@redhat.com>, Dave Airlie <airlied@redhat.com>,
- Niu Bing <bing.niu@intel.com>,
- "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
- jim liu <jim.liu@intel.com>, Thomas Zimmermann <tzimmermann@suse.de>,
- Roland Scheidegger <sroland@vmware.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "linaro-mm-sig@lists.linaro.org" <linaro-mm-sig@lists.linaro.org>,
- Maxime Ripard <mripard@kernel.org>,
- "intel-gvt-dev@lists.freedesktop.org" <intel-gvt-dev@lists.freedesktop.org>,
- Eddie Dong <eddie.dong@intel.com>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- Faith <faith@valinux.com>, Ping Gao <ping.a.gao@intel.com>,
- Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
- Zhiyuan Lv <zhiyuan.lv@intel.com>
+Cc: stable@vger.kernel.org, Chris Wilson <chris@chris-wilson.co.uk>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Jan 15, 2021 at 06:27:15PM +0000, Zack Rusin wrote:
-> 
-> > On Jan 15, 2021, at 13:15, Lee Jones <lee.jones@linaro.org> wrote:
-> > 
-> > This set is part of a larger effort attempting to clean-up W=1
-> > kernel builds, which are currently overwhelmingly riddled with
-> > niggly little warnings.
-> > 
-> > Last set!  All clean after this for; Arm, Arm64, PPC, MIPS and x86.
-> 
-> Thanks! For all the vmwgfx bits:
-> Reviewed-by: Zack Rusin <zackr@vmware.com>
+On error we unpin and free the wa_ctx.vma, but do not clear any of the
+derived flags. During lrc_init, we look at the flags and attempt to
+dereference the wa_ctx.vma if they are set. To protect the error path
+where we try to limp along without the wa_ctx, make sure we clear those
+flags!
 
-Can you pls push them to drm-misc-next? I'm planning to go pull in all the
-other patches later today that belong into drm-misc-next, but some patch
-monkey help would be really great :-)
+Reported-by: Matt Roper <matthew.d.roper@intel.com>
+Fixes: 604a8f6f1e33 ("drm/i915/lrc: Only enable per-context and per-bb buffers if set")
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Matt Roper <matthew.d.roper@intel.com>
+Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+Cc: <stable@vger.kernel.org> # v4.15+
+Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
+Link: https://patchwork.freedesktop.org/patch/msgid/20210108204026.20682-1-chris@chris-wilson.co.uk
+(cherry-picked from 5b4dc95cf7f573e927fbbd406ebe54225d41b9b2)
+---
+ drivers/gpu/drm/i915/gt/intel_lrc.c | 3 +++
+ 1 file changed, 3 insertions(+)
 
-Thanks, Daniel
+diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
+index 7614a3d24fca..26c7d0a50585 100644
+--- a/drivers/gpu/drm/i915/gt/intel_lrc.c
++++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
+@@ -3988,6 +3988,9 @@ static int lrc_setup_wa_ctx(struct intel_engine_cs *engine)
+ static void lrc_destroy_wa_ctx(struct intel_engine_cs *engine)
+ {
+ 	i915_vma_unpin_and_release(&engine->wa_ctx.vma, 0);
++
++	/* Called on error unwind, clear all flags to prevent further use */
++	memset(&engine->wa_ctx, 0, sizeof(engine->wa_ctx));
+ }
+ 
+ typedef u32 *(*wa_bb_func_t)(struct intel_engine_cs *engine, u32 *batch);
 -- 
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
+2.30.0
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
