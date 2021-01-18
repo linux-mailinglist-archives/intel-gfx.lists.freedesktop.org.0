@@ -2,40 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 203892FA6CC
-	for <lists+intel-gfx@lfdr.de>; Mon, 18 Jan 2021 17:56:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 937122FA732
+	for <lists+intel-gfx@lfdr.de>; Mon, 18 Jan 2021 18:15:27 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6A1686E3F7;
-	Mon, 18 Jan 2021 16:56:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 766C96E448;
+	Mon, 18 Jan 2021 17:15:25 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 119656E425
- for <intel-gfx@lists.freedesktop.org>; Mon, 18 Jan 2021 16:56:34 +0000 (UTC)
-IronPort-SDR: +jIpL9suGDVCJ3048X+ssHyi56N1E5F7e8y1323HH/KoStoX6W5AI9DxdKkwHmyL8Sej632tgK
- ydTQFNhWSh2Q==
-X-IronPort-AV: E=McAfee;i="6000,8403,9868"; a="166492730"
-X-IronPort-AV: E=Sophos;i="5.79,356,1602572400"; d="scan'208";a="166492730"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Jan 2021 08:56:32 -0800
-IronPort-SDR: HRkVNIVO0K61r6fJouo/o8DhTp8MIkEreg0QpaR+2bdjAV15F8B3c850EDHaxTz9sChSUofq+o
- rOOFPSaBJDIA==
-X-IronPort-AV: E=Sophos;i="5.79,356,1602572400"; d="scan'208";a="355250024"
-Received: from juimonen-mobl.ger.corp.intel.com (HELO
- mwauld-desk1.ger.corp.intel.com) ([10.252.9.5])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Jan 2021 08:56:31 -0800
-From: Matthew Auld <matthew.auld@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Mon, 18 Jan 2021 16:55:53 +0000
-Message-Id: <20210118165553.118901-3-matthew.auld@intel.com>
-X-Mailer: git-send-email 2.26.2
-In-Reply-To: <20210118165553.118901-1-matthew.auld@intel.com>
-References: <20210118165553.118901-1-matthew.auld@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 9EF4B6E446;
+ Mon, 18 Jan 2021 17:15:24 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 99600A8169;
+ Mon, 18 Jan 2021 17:15:24 +0000 (UTC)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 3/3] drm/i915/pool: constrain pool objects by
- mapping type
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Mon, 18 Jan 2021 17:15:24 -0000
+Message-ID: <161099012459.28164.4592113826486520477@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210118124334.21250-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20210118124334.21250-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
+ =?utf-8?q?ies_starting_with_=5B1/2=5D_drm/i915/gt=3A_Do_not_suspend_bonde?=
+ =?utf-8?q?d_requests_if_one_hangs?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,213 +39,218 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Chris Wilson <chris@chris-wilson.co.uk>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============0500385482=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-In a few places we always end up mapping the pool object with the FORCE
-constraint(to prevent hitting -EBUSY) which will destroy the cached
-mapping if it has a different type. As a simple first step, make the
-mapping type part of the pool interface, where the behaviour is to only
-give out pool objects which match the requested mapping type.
+--===============0500385482==
+Content-Type: multipart/alternative;
+ boundary="===============1262205341185226744=="
 
-Suggested-by: Chris Wilson <chris@chris-wilson.co.uk>
-Signed-off-by: Matthew Auld <matthew.auld@intel.com>
----
- drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c     | 14 ++++++++------
- drivers/gpu/drm/i915/gem/i915_gem_object_blt.c     |  8 ++++----
- drivers/gpu/drm/i915/gt/intel_gt_buffer_pool.c     | 12 +++++++++---
- drivers/gpu/drm/i915/gt/intel_gt_buffer_pool.h     |  3 ++-
- .../gpu/drm/i915/gt/intel_gt_buffer_pool_types.h   |  4 ++--
- drivers/gpu/drm/i915/i915_cmd_parser.c             |  2 +-
- 6 files changed, 26 insertions(+), 17 deletions(-)
+--===============1262205341185226744==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-index b91b32195dcf..5322b956c828 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-@@ -1275,8 +1275,12 @@ static int __reloc_gpu_alloc(struct i915_execbuffer *eb,
- 	u32 *cmd;
- 	int err;
- 
-+
- 	if (!pool) {
--		pool = intel_gt_get_buffer_pool(engine->gt, PAGE_SIZE);
-+		pool = intel_gt_get_buffer_pool(engine->gt, PAGE_SIZE,
-+						cache->has_llc ?
-+						I915_MAP_WB :
-+						I915_MAP_WC);
- 		if (IS_ERR(pool))
- 			return PTR_ERR(pool);
- 	}
-@@ -1286,10 +1290,7 @@ static int __reloc_gpu_alloc(struct i915_execbuffer *eb,
- 	if (err)
- 		goto err_pool;
- 
--	cmd = i915_gem_object_pin_map(pool->obj,
--				      cache->has_llc ?
--				      I915_MAP_FORCE_WB :
--				      I915_MAP_FORCE_WC);
-+	cmd = i915_gem_object_pin_map(pool->obj, pool->type);
- 	if (IS_ERR(cmd)) {
- 		err = PTR_ERR(cmd);
- 		goto err_pool;
-@@ -2458,7 +2459,8 @@ static int eb_parse(struct i915_execbuffer *eb)
- 		return -EINVAL;
- 
- 	if (!pool) {
--		pool = intel_gt_get_buffer_pool(eb->engine->gt, len);
-+		pool = intel_gt_get_buffer_pool(eb->engine->gt, len,
-+						I915_MAP_WB);
- 		if (IS_ERR(pool))
- 			return PTR_ERR(pool);
- 		eb->batch_pool = pool;
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object_blt.c b/drivers/gpu/drm/i915/gem/i915_gem_object_blt.c
-index 10cac9fac79b..d6dac21fce0b 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_object_blt.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_object_blt.c
-@@ -35,7 +35,7 @@ struct i915_vma *intel_emit_vma_fill_blt(struct intel_context *ce,
- 	count = div_u64(round_up(vma->size, block_size), block_size);
- 	size = (1 + 8 * count) * sizeof(u32);
- 	size = round_up(size, PAGE_SIZE);
--	pool = intel_gt_get_buffer_pool(ce->engine->gt, size);
-+	pool = intel_gt_get_buffer_pool(ce->engine->gt, size, I915_MAP_WC);
- 	if (IS_ERR(pool)) {
- 		err = PTR_ERR(pool);
- 		goto out_pm;
-@@ -55,7 +55,7 @@ struct i915_vma *intel_emit_vma_fill_blt(struct intel_context *ce,
- 	if (unlikely(err))
- 		goto out_put;
- 
--	cmd = i915_gem_object_pin_map(pool->obj, I915_MAP_WC);
-+	cmd = i915_gem_object_pin_map(pool->obj, pool->type);
- 	if (IS_ERR(cmd)) {
- 		err = PTR_ERR(cmd);
- 		goto out_unpin;
-@@ -257,7 +257,7 @@ struct i915_vma *intel_emit_vma_copy_blt(struct intel_context *ce,
- 	count = div_u64(round_up(dst->size, block_size), block_size);
- 	size = (1 + 11 * count) * sizeof(u32);
- 	size = round_up(size, PAGE_SIZE);
--	pool = intel_gt_get_buffer_pool(ce->engine->gt, size);
-+	pool = intel_gt_get_buffer_pool(ce->engine->gt, size, I915_MAP_WC);
- 	if (IS_ERR(pool)) {
- 		err = PTR_ERR(pool);
- 		goto out_pm;
-@@ -277,7 +277,7 @@ struct i915_vma *intel_emit_vma_copy_blt(struct intel_context *ce,
- 	if (unlikely(err))
- 		goto out_put;
- 
--	cmd = i915_gem_object_pin_map(pool->obj, I915_MAP_WC);
-+	cmd = i915_gem_object_pin_map(pool->obj, pool->type);
- 	if (IS_ERR(cmd)) {
- 		err = PTR_ERR(cmd);
- 		goto out_unpin;
-diff --git a/drivers/gpu/drm/i915/gt/intel_gt_buffer_pool.c b/drivers/gpu/drm/i915/gt/intel_gt_buffer_pool.c
-index 104cb30e8c13..06d84cf09570 100644
---- a/drivers/gpu/drm/i915/gt/intel_gt_buffer_pool.c
-+++ b/drivers/gpu/drm/i915/gt/intel_gt_buffer_pool.c
-@@ -145,7 +145,8 @@ static void pool_retire(struct i915_active *ref)
- }
- 
- static struct intel_gt_buffer_pool_node *
--node_create(struct intel_gt_buffer_pool *pool, size_t sz)
-+node_create(struct intel_gt_buffer_pool *pool, size_t sz,
-+	    enum i915_map_type type)
- {
- 	struct intel_gt *gt = to_gt(pool);
- 	struct intel_gt_buffer_pool_node *node;
-@@ -169,12 +170,14 @@ node_create(struct intel_gt_buffer_pool *pool, size_t sz)
- 
- 	i915_gem_object_set_readonly(obj);
- 
-+	node->type = type;
- 	node->obj = obj;
- 	return node;
- }
- 
- struct intel_gt_buffer_pool_node *
--intel_gt_get_buffer_pool(struct intel_gt *gt, size_t size)
-+intel_gt_get_buffer_pool(struct intel_gt *gt, size_t size,
-+			 enum i915_map_type type)
- {
- 	struct intel_gt_buffer_pool *pool = &gt->buffer_pool;
- 	struct intel_gt_buffer_pool_node *node;
-@@ -191,6 +194,9 @@ intel_gt_get_buffer_pool(struct intel_gt *gt, size_t size)
- 		if (node->obj->base.size < size)
- 			continue;
- 
-+		if (node->type != type)
-+			continue;
-+
- 		age = READ_ONCE(node->age);
- 		if (!age)
- 			continue;
-@@ -205,7 +211,7 @@ intel_gt_get_buffer_pool(struct intel_gt *gt, size_t size)
- 	rcu_read_unlock();
- 
- 	if (&node->link == list) {
--		node = node_create(pool, size);
-+		node = node_create(pool, size, type);
- 		if (IS_ERR(node))
- 			return node;
- 	}
-diff --git a/drivers/gpu/drm/i915/gt/intel_gt_buffer_pool.h b/drivers/gpu/drm/i915/gt/intel_gt_buffer_pool.h
-index 42cbac003e8a..6068f8f1762e 100644
---- a/drivers/gpu/drm/i915/gt/intel_gt_buffer_pool.h
-+++ b/drivers/gpu/drm/i915/gt/intel_gt_buffer_pool.h
-@@ -15,7 +15,8 @@ struct intel_gt;
- struct i915_request;
- 
- struct intel_gt_buffer_pool_node *
--intel_gt_get_buffer_pool(struct intel_gt *gt, size_t size);
-+intel_gt_get_buffer_pool(struct intel_gt *gt, size_t size,
-+			 enum i915_map_type type);
- 
- static inline int
- intel_gt_buffer_pool_mark_active(struct intel_gt_buffer_pool_node *node,
-diff --git a/drivers/gpu/drm/i915/gt/intel_gt_buffer_pool_types.h b/drivers/gpu/drm/i915/gt/intel_gt_buffer_pool_types.h
-index bcf1658c9633..30f36f3610ae 100644
---- a/drivers/gpu/drm/i915/gt/intel_gt_buffer_pool_types.h
-+++ b/drivers/gpu/drm/i915/gt/intel_gt_buffer_pool_types.h
-@@ -11,10 +11,9 @@
- #include <linux/spinlock.h>
- #include <linux/workqueue.h>
- 
-+#include "gem/i915_gem_object.h"
- #include "i915_active_types.h"
- 
--struct drm_i915_gem_object;
--
- struct intel_gt_buffer_pool {
- 	spinlock_t lock;
- 	struct list_head cache_list[4];
-@@ -31,6 +30,7 @@ struct intel_gt_buffer_pool_node {
- 		struct rcu_head rcu;
- 	};
- 	unsigned long age;
-+	enum i915_map_type type;
- };
- 
- #endif /* INTEL_GT_BUFFER_POOL_TYPES_H */
-diff --git a/drivers/gpu/drm/i915/i915_cmd_parser.c b/drivers/gpu/drm/i915/i915_cmd_parser.c
-index 82d0f19e86df..ced9a96d7c34 100644
---- a/drivers/gpu/drm/i915/i915_cmd_parser.c
-+++ b/drivers/gpu/drm/i915/i915_cmd_parser.c
-@@ -1143,7 +1143,7 @@ static u32 *copy_batch(struct drm_i915_gem_object *dst_obj,
- 	void *dst, *src;
- 	int ret;
- 
--	dst = i915_gem_object_pin_map(dst_obj, I915_MAP_FORCE_WB);
-+	dst = i915_gem_object_pin_map(dst_obj, I915_MAP_WB);
- 	if (IS_ERR(dst))
- 		return dst;
- 
--- 
-2.26.2
+== Series Details ==
+
+Series: series starting with [1/2] drm/i915/gt: Do not suspend bonded requests if one hangs
+URL   : https://patchwork.freedesktop.org/series/85991/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_9636 -> Patchwork_19392
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19392/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_19392 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@core_hotunplug@unbind-rebind:
+    - fi-kbl-7500u:       [PASS][1] -> [DMESG-WARN][2] ([i915#2605])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9636/fi-kbl-7500u/igt@core_hotunplug@unbind-rebind.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19392/fi-kbl-7500u/igt@core_hotunplug@unbind-rebind.html
+
+  * igt@fbdev@write:
+    - fi-tgl-y:           [PASS][3] -> [DMESG-WARN][4] ([i915#402]) +1 similar issue
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9636/fi-tgl-y/igt@fbdev@write.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19392/fi-tgl-y/igt@fbdev@write.html
+
+  * igt@i915_selftest@live@blt:
+    - fi-snb-2600:        [PASS][5] -> [DMESG-FAIL][6] ([i915#1409])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9636/fi-snb-2600/igt@i915_selftest@live@blt.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19392/fi-snb-2600/igt@i915_selftest@live@blt.html
+
+  
+#### Possible fixes ####
+
+  * igt@debugfs_test@read_all_entries:
+    - fi-tgl-y:           [DMESG-WARN][7] ([i915#402]) -> [PASS][8] +1 similar issue
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9636/fi-tgl-y/igt@debugfs_test@read_all_entries.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19392/fi-tgl-y/igt@debugfs_test@read_all_entries.html
+
+  * igt@kms_chamelium@hdmi-crc-fast:
+    - fi-kbl-7500u:       [DMESG-WARN][9] ([i915#2868]) -> [PASS][10]
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9636/fi-kbl-7500u/igt@kms_chamelium@hdmi-crc-fast.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19392/fi-kbl-7500u/igt@kms_chamelium@hdmi-crc-fast.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [i915#1409]: https://gitlab.freedesktop.org/drm/intel/issues/1409
+  [i915#2295]: https://gitlab.freedesktop.org/drm/intel/issues/2295
+  [i915#2605]: https://gitlab.freedesktop.org/drm/intel/issues/2605
+  [i915#2868]: https://gitlab.freedesktop.org/drm/intel/issues/2868
+  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
+
+
+Participating hosts (44 -> 39)
+------------------------------
+
+  Missing    (5): fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_9636 -> Patchwork_19392
+
+  CI-20190529: 20190529
+  CI_DRM_9636: f560ac388c527f2f166897c9091f7b9ad652050f @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5960: ace82fcd5f3623f8dde7c220a825873dc53dfae4 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_19392: 93452ea1d70be326ec74fc5729db4a5e2db7081b @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+93452ea1d70b drm/i915/gt: Skip over completed active execlists, again
+cf42e636b946 drm/i915/gt: Do not suspend bonded requests if one hangs
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19392/index.html
+
+--===============1262205341185226744==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>series starting with [1/2] drm/i915/gt: Do not suspend bonded requests if one hangs</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/85991/">https://patchwork.freedesktop.org/series/85991/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19392/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19392/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_9636 -&gt; Patchwork_19392</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19392/index.html</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_19392 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@core_hotunplug@unbind-rebind:</p>
+<ul>
+<li>fi-kbl-7500u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9636/fi-kbl-7500u/igt@core_hotunplug@unbind-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19392/fi-kbl-7500u/igt@core_hotunplug@unbind-rebind.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2605">i915#2605</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@fbdev@write:</p>
+<ul>
+<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9636/fi-tgl-y/igt@fbdev@write.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19392/fi-tgl-y/igt@fbdev@write.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) +1 similar issue</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@blt:</p>
+<ul>
+<li>fi-snb-2600:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9636/fi-snb-2600/igt@i915_selftest@live@blt.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19392/fi-snb-2600/igt@i915_selftest@live@blt.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1409">i915#1409</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@debugfs_test@read_all_entries:</p>
+<ul>
+<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9636/fi-tgl-y/igt@debugfs_test@read_all_entries.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19392/fi-tgl-y/igt@debugfs_test@read_all_entries.html">PASS</a> +1 similar issue</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium@hdmi-crc-fast:</p>
+<ul>
+<li>fi-kbl-7500u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9636/fi-kbl-7500u/igt@kms_chamelium@hdmi-crc-fast.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2868">i915#2868</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19392/fi-kbl-7500u/igt@kms_chamelium@hdmi-crc-fast.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Participating hosts (44 -&gt; 39)</h2>
+<p>Missing    (5): fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-bdw-samus </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_9636 -&gt; Patchwork_19392</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_9636: f560ac388c527f2f166897c9091f7b9ad652050f @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_5960: ace82fcd5f3623f8dde7c220a825873dc53dfae4 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
+  Patchwork_19392: 93452ea1d70be326ec74fc5729db4a5e2db7081b @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>93452ea1d70b drm/i915/gt: Skip over completed active execlists, again<br />
+cf42e636b946 drm/i915/gt: Do not suspend bonded requests if one hangs</p>
+
+</body>
+</html>
+
+--===============1262205341185226744==--
+
+--===============0500385482==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============0500385482==--
