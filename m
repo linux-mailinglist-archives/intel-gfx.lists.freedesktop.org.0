@@ -2,41 +2,45 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1DB572F9FD6
-	for <lists+intel-gfx@lfdr.de>; Mon, 18 Jan 2021 13:35:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D458F2FA02B
+	for <lists+intel-gfx@lfdr.de>; Mon, 18 Jan 2021 13:43:13 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5EFFC89F89;
-	Mon, 18 Jan 2021 12:35:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0E53C6E1F7;
+	Mon, 18 Jan 2021 12:43:11 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3D15289F89
- for <intel-gfx@lists.freedesktop.org>; Mon, 18 Jan 2021 12:35:31 +0000 (UTC)
-IronPort-SDR: dfKCIA5fJaAeZY58I+im+/JfYyYV6su9pxp3N+1U4xYD2zwFbHy+Vhj3x1unnuC1Ln2p3BoPef
- Kmj+n4lHFLTQ==
-X-IronPort-AV: E=McAfee;i="6000,8403,9867"; a="240338906"
-X-IronPort-AV: E=Sophos;i="5.79,356,1602572400"; d="scan'208";a="240338906"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Jan 2021 04:35:30 -0800
-IronPort-SDR: 62yfiw62APF2ha73gCbBTwFAYh1U1HaVaAZAXKEXTNJm9C0ZwdNXOynbqvdwBpat/FT79MtlF2
- cHi8y4Xs0Kbw==
-X-IronPort-AV: E=Sophos;i="5.79,356,1602572400"; d="scan'208";a="383554617"
-Received: from ynetzer-mobl.ger.corp.intel.com (HELO localhost)
- ([10.252.42.241])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Jan 2021 04:35:28 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
-In-Reply-To: <20210118101755.476744-1-chris@chris-wilson.co.uk>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <87lfcqobpl.fsf@intel.com>
- <20210118101755.476744-1-chris@chris-wilson.co.uk>
-Date: Mon, 18 Jan 2021 14:35:25 +0200
-Message-ID: <87czy2o22a.fsf@intel.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A60AA6E1F7
+ for <intel-gfx@lists.freedesktop.org>; Mon, 18 Jan 2021 12:43:09 +0000 (UTC)
+IronPort-SDR: ZeDkB4toS/nIHwVEceVPA80oF4wGbUUWNA7pRliHquIVjH1jj00m1w65CuTvLJAzB8EnRlLKYt
+ /2nLrlOzT7pg==
+X-IronPort-AV: E=McAfee;i="6000,8403,9867"; a="165887318"
+X-IronPort-AV: E=Sophos;i="5.79,356,1602572400"; d="scan'208";a="165887318"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Jan 2021 04:43:07 -0800
+IronPort-SDR: KEI41ZqyFL5bDGvbFoyKQHhdMSuYHmk3HFOn6Yk3W9fidjHdlX+4M3vt2tpCq9Z0siwD1LkOAu
+ xvJP7yYklccQ==
+X-IronPort-AV: E=Sophos;i="5.79,356,1602572400"; d="scan'208";a="426129060"
+Received: from peteratz-mobl.ger.corp.intel.com (HELO [10.252.51.240])
+ ([10.252.51.240])
+ by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Jan 2021 04:43:05 -0800
+To: =?UTF-8?Q?Thomas_Hellstr=c3=b6m_=28Intel=29?= <thomas_os@shipmail.org>,
+ intel-gfx@lists.freedesktop.org
+References: <20210105153558.134272-1-maarten.lankhorst@linux.intel.com>
+ <20210105153558.134272-17-maarten.lankhorst@linux.intel.com>
+ <5b38d4b5-ded7-9f4d-118e-74f706c6a8ad@shipmail.org>
+From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Message-ID: <a72fabc9-0ba1-daa7-a690-e9530f9ce5bc@linux.intel.com>
+Date: Mon, 18 Jan 2021 13:43:03 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.6.0
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Check for rq->hwsp validity after
- acquiring RCU lock
+In-Reply-To: <5b38d4b5-ded7-9f4d-118e-74f706c6a8ad@shipmail.org>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH v6 16/64] drm/i915: Fix userptr so we do not
+ have to worry about obj->mm.lock, v5.
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,204 +53,87 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: stable@vger.kernel.org, Chris Wilson <chris@chris-wilson.co.uk>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 18 Jan 2021, Chris Wilson <chris@chris-wilson.co.uk> wrote:
-> Since we allow removing the timeline map at runtime, there is a risk
-> that rq->hwsp points into a stale page. To control that risk, we hold
-> the RCU read lock while reading *rq->hwsp, but we missed a couple of
-> important barriers. First, the unpinning / removal of the timeline map
-> must be after all RCU readers into that map are complete, i.e. after an
-> rcu barrier (in this case courtesy of call_rcu()). Secondly, we must
-> make sure that the rq->hwsp we are about to dereference under the RCU
-> lock is valid. In this case, we make the rq->hwsp pointer safe during
-> i915_request_retire() and so we know that rq->hwsp may become invalid
-> only after the request has been signaled. Therefore is the request is
-> not yet signaled when we acquire rq->hwsp under the RCU, we know that
-> rq->hwsp will remain valid for the duration of the RCU read lock.
->
-> This is a very small window that may lead to either considering the
-> request not completed (causing a delay until the request is checked
-> again, any wait for the request is not affected) or dereferencing an
-> invalid pointer.
->
-> Fixes: 3adac4689f58 ("drm/i915: Introduce concept of per-timeline (context) HWSP")
-> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-> Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-> Cc: <stable@vger.kernel.org> # v5.1+
-> Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-> Link: https://patchwork.freedesktop.org/patch/msgid/20201218122421.18344-1-chris@chris-wilson.co.uk
-> (cherry picked from commit 9bb36cf66091ddf2d8840e5aa705ad3c93a6279b)
-
-Thanks for the backports, all three pushed to drm-intel-fixes.
-
-BR,
-Jani.
-
-
-> ---
->  drivers/gpu/drm/i915/gt/intel_breadcrumbs.c |  9 ++---
->  drivers/gpu/drm/i915/gt/intel_timeline.c    | 10 +++---
->  drivers/gpu/drm/i915/i915_request.h         | 37 ++++++++++++++++++---
->  3 files changed, 38 insertions(+), 18 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c b/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c
-> index a24cc1ff08a0..0625cbb3b431 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c
-> @@ -134,11 +134,6 @@ static bool remove_signaling_context(struct intel_breadcrumbs *b,
->  	return true;
->  }
->  
-> -static inline bool __request_completed(const struct i915_request *rq)
-> -{
-> -	return i915_seqno_passed(__hwsp_seqno(rq), rq->fence.seqno);
-> -}
-> -
->  __maybe_unused static bool
->  check_signal_order(struct intel_context *ce, struct i915_request *rq)
->  {
-> @@ -257,7 +252,7 @@ static void signal_irq_work(struct irq_work *work)
->  		list_for_each_entry_rcu(rq, &ce->signals, signal_link) {
->  			bool release;
->  
-> -			if (!__request_completed(rq))
-> +			if (!__i915_request_is_complete(rq))
->  				break;
->  
->  			if (!test_and_clear_bit(I915_FENCE_FLAG_SIGNAL,
-> @@ -379,7 +374,7 @@ static void insert_breadcrumb(struct i915_request *rq)
->  	 * straight onto a signaled list, and queue the irq worker for
->  	 * its signal completion.
->  	 */
-> -	if (__request_completed(rq)) {
-> +	if (__i915_request_is_complete(rq)) {
->  		if (__signal_request(rq) &&
->  		    llist_add(&rq->signal_node, &b->signaled_requests))
->  			irq_work_queue(&b->irq_work);
-> diff --git a/drivers/gpu/drm/i915/gt/intel_timeline.c b/drivers/gpu/drm/i915/gt/intel_timeline.c
-> index 7ea94d201fe6..8015964043eb 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_timeline.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_timeline.c
-> @@ -126,6 +126,10 @@ static void __rcu_cacheline_free(struct rcu_head *rcu)
->  	struct intel_timeline_cacheline *cl =
->  		container_of(rcu, typeof(*cl), rcu);
->  
-> +	/* Must wait until after all *rq->hwsp are complete before removing */
-> +	i915_gem_object_unpin_map(cl->hwsp->vma->obj);
-> +	__idle_hwsp_free(cl->hwsp, ptr_unmask_bits(cl->vaddr, CACHELINE_BITS));
-> +
->  	i915_active_fini(&cl->active);
->  	kfree(cl);
->  }
-> @@ -133,11 +137,6 @@ static void __rcu_cacheline_free(struct rcu_head *rcu)
->  static void __idle_cacheline_free(struct intel_timeline_cacheline *cl)
->  {
->  	GEM_BUG_ON(!i915_active_is_idle(&cl->active));
-> -
-> -	i915_gem_object_unpin_map(cl->hwsp->vma->obj);
-> -	i915_vma_put(cl->hwsp->vma);
-> -	__idle_hwsp_free(cl->hwsp, ptr_unmask_bits(cl->vaddr, CACHELINE_BITS));
-> -
->  	call_rcu(&cl->rcu, __rcu_cacheline_free);
->  }
->  
-> @@ -179,7 +178,6 @@ cacheline_alloc(struct intel_timeline_hwsp *hwsp, unsigned int cacheline)
->  		return ERR_CAST(vaddr);
->  	}
->  
-> -	i915_vma_get(hwsp->vma);
->  	cl->hwsp = hwsp;
->  	cl->vaddr = page_pack_bits(vaddr, cacheline);
->  
-> diff --git a/drivers/gpu/drm/i915/i915_request.h b/drivers/gpu/drm/i915/i915_request.h
-> index 620b6fab2c5c..92adfee30c7c 100644
-> --- a/drivers/gpu/drm/i915/i915_request.h
-> +++ b/drivers/gpu/drm/i915/i915_request.h
-> @@ -434,7 +434,7 @@ static inline u32 hwsp_seqno(const struct i915_request *rq)
->  
->  static inline bool __i915_request_has_started(const struct i915_request *rq)
->  {
-> -	return i915_seqno_passed(hwsp_seqno(rq), rq->fence.seqno - 1);
-> +	return i915_seqno_passed(__hwsp_seqno(rq), rq->fence.seqno - 1);
->  }
->  
->  /**
-> @@ -465,11 +465,19 @@ static inline bool __i915_request_has_started(const struct i915_request *rq)
->   */
->  static inline bool i915_request_started(const struct i915_request *rq)
->  {
-> +	bool result;
-> +
->  	if (i915_request_signaled(rq))
->  		return true;
->  
-> -	/* Remember: started but may have since been preempted! */
-> -	return __i915_request_has_started(rq);
-> +	result = true;
-> +	rcu_read_lock(); /* the HWSP may be freed at runtime */
-> +	if (likely(!i915_request_signaled(rq)))
-> +		/* Remember: started but may have since been preempted! */
-> +		result = __i915_request_has_started(rq);
-> +	rcu_read_unlock();
-> +
-> +	return result;
->  }
->  
->  /**
-> @@ -482,10 +490,16 @@ static inline bool i915_request_started(const struct i915_request *rq)
->   */
->  static inline bool i915_request_is_running(const struct i915_request *rq)
->  {
-> +	bool result;
-> +
->  	if (!i915_request_is_active(rq))
->  		return false;
->  
-> -	return __i915_request_has_started(rq);
-> +	rcu_read_lock();
-> +	result = __i915_request_has_started(rq) && i915_request_is_active(rq);
-> +	rcu_read_unlock();
-> +
-> +	return result;
->  }
->  
->  /**
-> @@ -509,12 +523,25 @@ static inline bool i915_request_is_ready(const struct i915_request *rq)
->  	return !list_empty(&rq->sched.link);
->  }
->  
-> +static inline bool __i915_request_is_complete(const struct i915_request *rq)
-> +{
-> +	return i915_seqno_passed(__hwsp_seqno(rq), rq->fence.seqno);
-> +}
-> +
->  static inline bool i915_request_completed(const struct i915_request *rq)
->  {
-> +	bool result;
-> +
->  	if (i915_request_signaled(rq))
->  		return true;
->  
-> -	return i915_seqno_passed(hwsp_seqno(rq), rq->fence.seqno);
-> +	result = true;
-> +	rcu_read_lock(); /* the HWSP may be freed at runtime */
-> +	if (likely(!i915_request_signaled(rq)))
-> +		result = __i915_request_is_complete(rq);
-> +	rcu_read_unlock();
-> +
-> +	return result;
->  }
->  
->  static inline void i915_request_mark_complete(struct i915_request *rq)
-
--- 
-Jani Nikula, Intel Open Source Graphics Center
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+T3AgMTgtMDEtMjAyMSBvbSAxMjozMCBzY2hyZWVmIFRob21hcyBIZWxsc3Ryw7ZtIChJbnRlbCk6
+Cj4gSGksCj4KPiBPbiAxLzUvMjEgNDozNSBQTSwgTWFhcnRlbiBMYW5raG9yc3Qgd3JvdGU6Cj4+
+IEluc3RlYWQgb2YgZG9pbmcgd2hhdCB3ZSBkbyBjdXJyZW50bHksIHdoaWNoIHdpbGwgbmV2ZXIg
+d29yayB3aXRoCj4+IFBST1ZFX0xPQ0tJTkcsIGRvIHRoZSBzYW1lIGFzIEFNRCBkb2VzLCBhbmQg
+c29tZXRoaW5nIHNpbWlsYXIgdG8KPj4gcmVsb2NhdGlvbiBzbG93cGF0aC4gV2hlbiBhbGwgbG9j
+a3MgYXJlIGRyb3BwZWQsIHdlIGFjcXVpcmUgdGhlCj4+IHBhZ2VzIGZvciBwaW5uaW5nLiBXaGVu
+IHRoZSBsb2NrcyBhcmUgdGFrZW4sIHdlIHRyYW5zZmVyIHRob3NlCj4+IHBhZ2VzIGluIC5nZXRf
+cGFnZXMoKSB0byB0aGUgYm8uIEFzIGEgZmluYWwgY2hlY2sgYmVmb3JlIGluc3RhbGxpbmcKPj4g
+dGhlIGZlbmNlcywgd2UgZW5zdXJlIHRoYXQgdGhlIG1tdSBub3RpZmllciB3YXMgbm90IGNhbGxl
+ZDsgaWYgaXQgaXMsCj4+IHdlIHJldHVybiAtRUFHQUlOIHRvIHVzZXJzcGFjZSB0byBzaWduYWwg
+aXQgaGFzIHRvIHN0YXJ0IG92ZXIuCj4+Cj4+IENoYW5nZXMgc2luY2UgdjE6Cj4+IC0gVW5iaW5k
+aW5nIGlzIGRvbmUgaW4gc3VibWl0X2luaXQgb25seS4gc3VibWl0X2JlZ2luKCkgcmVtb3ZlZC4K
+Pj4gLSBNTVVfTk9URklFUiAtPiBNTVVfTk9USUZJRVIKPj4gQ2hhbmdlcyBzaW5jZSB2MjoKPj4g
+LSBNYWtlIGk5MTUtPm1tLm5vdGlmaWVyIGEgc3BpbmxvY2suCj4+IENoYW5nZXMgc2luY2UgdjM6
+Cj4+IC0gQWRkIFdBUk5fT04gaWYgdGhlcmUgYXJlIGFueSBwYWdlIHJlZmVyZW5jZXMgbGVmdCwg
+c2hvdWxkIGhhdmUgYmVlbiAwLgo+PiAtIFJldHVybiAwIG9uIHN1Y2Nlc3MgaW4gc3VibWl0X2lu
+aXQoKSwgYnVnIGZyb20gc3BpbmxvY2sgY29udmVyc2lvbi4KPj4gLSBSZWxlYXNlIHB2ZWMgb3V0
+c2lkZSBvZiBub3RpZmllcl9sb2NrIChUaG9tYXMpLgo+PiBDaGFuZ2VzIHNpbmNlIHY0Ogo+PiAt
+IE1lbnRpb24gd2h5IHdlJ3JlIGNsZWFyaW5nIGViLT5baSArIDFdLnZtYSBpbiB0aGUgY29kZS4g
+KFRob21hcykKPj4gLSBBY3R1YWxseSBjaGVjayBhbGwgaW52YWxpZGF0aW9ucyBpbiBlYl9tb3Zl
+X3RvX2dwdS4gKFRob21hcykKPj4gLSBEbyBub3Qgd2FpdCB3aGVuIHByb2Nlc3MgaXMgZXhpdGlu
+ZyB0byBmaXggZ2VtX2N0eF9wZXJzaXN0ZW5jZS51c2VycHRyLgo+Pgo+PiBTaWduZWQtb2ZmLWJ5
+OiBNYWFydGVuIExhbmtob3JzdCA8bWFhcnRlbi5sYW5raG9yc3RAbGludXguaW50ZWwuY29tPgo+
+Cj4KPiAuLi4KPgo+PiDCoCAtc3RhdGljIGludAo+PiAtdXNlcnB0cl9tbl9pbnZhbGlkYXRlX3Jh
+bmdlX3N0YXJ0KHN0cnVjdCBtbXVfbm90aWZpZXIgKl9tbiwKPj4gLcKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqAgY29uc3Qgc3RydWN0IG1tdV9ub3RpZmllcl9yYW5nZSAqcmFuZ2Up
+Cj4+IC17Cj4+IC3CoMKgwqAgc3RydWN0IGk5MTVfbW11X25vdGlmaWVyICptbiA9Cj4+IC3CoMKg
+wqDCoMKgwqDCoCBjb250YWluZXJfb2YoX21uLCBzdHJ1Y3QgaTkxNV9tbXVfbm90aWZpZXIsIG1u
+KTsKPj4gLcKgwqDCoCBzdHJ1Y3QgaW50ZXJ2YWxfdHJlZV9ub2RlICppdDsKPj4gLcKgwqDCoCB1
+bnNpZ25lZCBsb25nIGVuZDsKPj4gLcKgwqDCoCBpbnQgcmV0ID0gMDsKPj4gLQo+PiAtwqDCoMKg
+IGlmIChSQl9FTVBUWV9ST09UKCZtbi0+b2JqZWN0cy5yYl9yb290KSkKPj4gLcKgwqDCoMKgwqDC
+oMKgIHJldHVybiAwOwo+PiAtCj4+IC3CoMKgwqAgLyogaW50ZXJ2YWwgcmFuZ2VzIGFyZSBpbmNs
+dXNpdmUsIGJ1dCBpbnZhbGlkYXRlIHJhbmdlIGlzIGV4Y2x1c2l2ZSAqLwo+PiAtwqDCoMKgIGVu
+ZCA9IHJhbmdlLT5lbmQgLSAxOwo+PiAtCj4+IC3CoMKgwqAgc3Bpbl9sb2NrKCZtbi0+bG9jayk7
+Cj4+IC3CoMKgwqAgaXQgPSBpbnRlcnZhbF90cmVlX2l0ZXJfZmlyc3QoJm1uLT5vYmplY3RzLCBy
+YW5nZS0+c3RhcnQsIGVuZCk7Cj4+IC3CoMKgwqAgd2hpbGUgKGl0KSB7Cj4+IC3CoMKgwqDCoMKg
+wqDCoCBzdHJ1Y3QgZHJtX2k5MTVfZ2VtX29iamVjdCAqb2JqOwo+PiAtCj4+IC3CoMKgwqDCoMKg
+wqDCoCBpZiAoIW1tdV9ub3RpZmllcl9yYW5nZV9ibG9ja2FibGUocmFuZ2UpKSB7Cj4+IC3CoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgIHJldCA9IC1FQUdBSU47Cj4+IC3CoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgIGJyZWFrOwo+PiAtwqDCoMKgwqDCoMKgwqAgfQo+PiArwqDCoMKgIHNwaW5fbG9jaygmaTkx
+NS0+bW0ubm90aWZpZXJfbG9jayk7Cj4+IMKgIC3CoMKgwqDCoMKgwqDCoCAvKgo+PiAtwqDCoMKg
+wqDCoMKgwqDCoCAqIFRoZSBtbXVfb2JqZWN0IGlzIHJlbGVhc2VkIGxhdGUgd2hlbiBkZXN0cm95
+aW5nIHRoZQo+PiAtwqDCoMKgwqDCoMKgwqDCoCAqIEdFTSBvYmplY3Qgc28gaXQgaXMgZW50aXJl
+bHkgcG9zc2libGUgdG8gZ2FpbiBhCj4+IC3CoMKgwqDCoMKgwqDCoMKgICogcmVmZXJlbmNlIG9u
+IGFuIG9iamVjdCBpbiB0aGUgcHJvY2VzcyBvZiBiZWluZyBmcmVlZAo+PiAtwqDCoMKgwqDCoMKg
+wqDCoCAqIHNpbmNlIG91ciBzZXJpYWxpc2F0aW9uIGlzIHZpYSB0aGUgc3BpbmxvY2sgYW5kIG5v
+dAo+PiAtwqDCoMKgwqDCoMKgwqDCoCAqIHRoZSBzdHJ1Y3RfbXV0ZXggLSBhbmQgY29uc2VxdWVu
+dGx5IHVzZSBpdCBhZnRlciBpdAo+PiAtwqDCoMKgwqDCoMKgwqDCoCAqIGlzIGZyZWVkIGFuZCB0
+aGVuIGRvdWJsZSBmcmVlIGl0LiBUbyBwcmV2ZW50IHRoYXQKPj4gLcKgwqDCoMKgwqDCoMKgwqAg
+KiB1c2UtYWZ0ZXItZnJlZSB3ZSBvbmx5IGFjcXVpcmUgYSByZWZlcmVuY2Ugb24gdGhlCj4+IC3C
+oMKgwqDCoMKgwqDCoMKgICogb2JqZWN0IGlmIGl0IGlzIG5vdCBpbiB0aGUgcHJvY2VzcyBvZiBi
+ZWluZyBkZXN0cm95ZWQuCj4+IC3CoMKgwqDCoMKgwqDCoMKgICovCj4+IC3CoMKgwqDCoMKgwqDC
+oCBvYmogPSBjb250YWluZXJfb2YoaXQsIHN0cnVjdCBpOTE1X21tdV9vYmplY3QsIGl0KS0+b2Jq
+Owo+PiAtwqDCoMKgwqDCoMKgwqAgaWYgKCFrcmVmX2dldF91bmxlc3NfemVybygmb2JqLT5iYXNl
+LnJlZmNvdW50KSkgewo+PiAtwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBpdCA9IGludGVydmFsX3Ry
+ZWVfaXRlcl9uZXh0KGl0LCByYW5nZS0+c3RhcnQsIGVuZCk7Cj4+IC3CoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgIGNvbnRpbnVlOwo+PiAtwqDCoMKgwqDCoMKgwqAgfQo+PiAtwqDCoMKgwqDCoMKgwqAg
+c3Bpbl91bmxvY2soJm1uLT5sb2NrKTsKPj4gK8KgwqDCoCBtbXVfaW50ZXJ2YWxfc2V0X3NlcSht
+bmksIGN1cl9zZXEpOwo+PiDCoCAtwqDCoMKgwqDCoMKgwqAgcmV0ID0gaTkxNV9nZW1fb2JqZWN0
+X3VuYmluZChvYmosCj4+IC3CoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqAgSTkxNV9HRU1fT0JKRUNUX1VOQklORF9BQ1RJVkUgfAo+PiAtwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIEk5MTVfR0VNX09CSkVDVF9VTkJJ
+TkRfQkFSUklFUik7Cj4+IC3CoMKgwqDCoMKgwqDCoCBpZiAocmV0ID09IDApCj4+IC3CoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgIHJldCA9IF9faTkxNV9nZW1fb2JqZWN0X3B1dF9wYWdlcyhvYmopOwo+
+PiAtwqDCoMKgwqDCoMKgwqAgaTkxNV9nZW1fb2JqZWN0X3B1dChvYmopOwo+PiAtwqDCoMKgwqDC
+oMKgwqAgaWYgKHJldCkKPj4gLcKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgcmV0dXJuIHJldDsKPj4g
+K8KgwqDCoCBzcGluX3VubG9jaygmaTkxNS0+bW0ubm90aWZpZXJfbG9jayk7Cj4+IMKgIC3CoMKg
+wqDCoMKgwqDCoCBzcGluX2xvY2soJm1uLT5sb2NrKTsKPj4gK8KgwqDCoCAvKiBEdXJpbmcgZXhp
+dCB0aGVyZSdzIG5vIG5lZWQgdG8gd2FpdCAqLwo+PiArwqDCoMKgIGlmIChjdXJyZW50LT5mbGFn
+cyAmIFBGX0VYSVRJTkcpCj4+ICvCoMKgwqDCoMKgwqDCoCByZXR1cm4gdHJ1ZTsKPgo+IERpZCB3
+ZSBldmVyIGZpbmQgb3V0IHdoeSB0aGlzIGlzIG5lZWRlZCwgdGhhdCBpcyB3aHkgdGhlIG9sZCB1
+c2VycHRyIGludmFsaWRhdGlvbiBjYWxsZWQgZG9lc24ndCBoYW5nIGhlcmUgaW4gYSBzaW1pbGFy
+IHdheT8gCgpJdCdzIGFuIG9wdGltaXphdGlvbiBmb3IgdGVhcmRvd24gYmVjYXVzZSB1c2VycHRy
+IHdpbGwgYmUgaW52YWxpZGF0ZWQgYW55d2F5LCBidXQgYWxzbyBmb3IgZ2VtX2N0eF9wZXJzaXN0
+ZW5jZS51c2VycHRyLCBhbHRob3VnaAoKd2l0aCB1bGxzIHRoYXQgdGVzdCBtYXkgc3RvcCB3b3Jr
+aW5nIGFueXdheSBiZWNhdXNlIGl0IHRha2VzIGFuIG91dF9mZW5jZS4KCl9fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QK
+SW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9w
+Lm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
