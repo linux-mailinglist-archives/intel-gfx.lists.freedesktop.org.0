@@ -2,40 +2,49 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D6D142FA450
-	for <lists+intel-gfx@lfdr.de>; Mon, 18 Jan 2021 16:15:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A69AF2FA4C1
+	for <lists+intel-gfx@lfdr.de>; Mon, 18 Jan 2021 16:32:21 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4716A6E39B;
-	Mon, 18 Jan 2021 15:15:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F0F9C89954;
+	Mon, 18 Jan 2021 15:32:19 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ECE5D6E39B
- for <intel-gfx@lists.freedesktop.org>; Mon, 18 Jan 2021 15:15:37 +0000 (UTC)
-IronPort-SDR: A1xUP2eFV9Q5bQbblguiH36GMH57IewE8CBnCPf6lQxPHzfs0amZ76rOfqSuovfCLhF/Wxr8HD
- 8q40qnd2T+/g==
-X-IronPort-AV: E=McAfee;i="6000,8403,9867"; a="242885370"
-X-IronPort-AV: E=Sophos;i="5.79,356,1602572400"; d="scan'208";a="242885370"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Jan 2021 07:15:37 -0800
-IronPort-SDR: EzPmxRm1MUGyFr45OqRLwiQCfIKWwUW7HXbUgZvoz3GwgIuBOkaB+eGLQXKoI9hulnBJgdLJ1h
- hryS2CFKN1hw==
-X-IronPort-AV: E=Sophos;i="5.79,356,1602572400"; d="scan'208";a="466392971"
-Received: from ideak-desk.fi.intel.com ([10.237.68.141])
- by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Jan 2021 07:15:35 -0800
-Date: Mon, 18 Jan 2021 17:15:32 +0200
-From: Imre Deak <imre.deak@intel.com>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>
-Message-ID: <20210118151532.GA1069640@ideak-desk.fi.intel.com>
-References: <20210114205046.8247-1-ville.syrjala@linux.intel.com>
- <20210114205046.8247-7-ville.syrjala@linux.intel.com>
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2DEB889954
+ for <intel-gfx@lists.freedesktop.org>; Mon, 18 Jan 2021 15:32:19 +0000 (UTC)
+IronPort-SDR: s4cTS+qbCcBL1wmEd4Rl9Pvq5+SSAIuQm3csdnUI+2T8JYjr5CCGRsLAhYYE0Qk5XNtqkilQbL
+ 2Thz83fcptcQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9867"; a="178903733"
+X-IronPort-AV: E=Sophos;i="5.79,356,1602572400"; d="scan'208";a="178903733"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Jan 2021 07:32:17 -0800
+IronPort-SDR: b0+8Is9escIpanViHYVlt2EtiB41zf1KD/Y5rTZzaCOKRv/3ZY8Mn3pFmZMnR9MzEA0ysbPWb/
+ lP9cabgaYy7Q==
+X-IronPort-AV: E=Sophos;i="5.79,356,1602572400"; d="scan'208";a="355227524"
+Received: from peteratz-mobl.ger.corp.intel.com (HELO [10.252.51.240])
+ ([10.252.51.240])
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Jan 2021 07:32:16 -0800
+To: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
+References: <20210105153558.134272-1-maarten.lankhorst@linux.intel.com>
+ <20210105153558.134272-64-maarten.lankhorst@linux.intel.com>
+ <dbf9df80-2fba-b7f8-4e88-a6114eea3d5f@linux.intel.com>
+ <90dda3ef-cbc9-ea2d-6247-6eba012e4caf@linux.intel.com>
+ <7be09a47-9d15-f051-3ee4-ad5922ebf830@linux.intel.com>
+ <7b56a025-4852-a172-06df-7d64d1cf8e39@linux.intel.com>
+ <4836b692-d2f3-826d-cbc2-6c29c47df6f5@linux.intel.com>
+ <6518b764-faa0-4883-d524-061befee035c@linux.intel.com>
+From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Message-ID: <7c3502fd-4d96-d8a7-aa8d-f3063326c4c9@linux.intel.com>
+Date: Mon, 18 Jan 2021 16:32:13 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.6.0
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20210114205046.8247-7-ville.syrjala@linux.intel.com>
-Subject: Re: [Intel-gfx] [PATCH 6/7] drm/i915: Fix the PHY compliance test
- vs. hotplug mishap
+In-Reply-To: <6518b764-faa0-4883-d524-061befee035c@linux.intel.com>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH v6 63/64] drm/i915: Move gt_revoke() slightly
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,100 +57,61 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: imre.deak@intel.com
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Jan 14, 2021 at 10:50:45PM +0200, Ville Syrjala wrote:
-> From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> =
-
-> I accidentally added the compliance test hacks only to
-> intel_dp_hotplug() which doesn't even get used on any DDI
-> platform. Put the same crap into intel_ddi_hotplug().
-> =
-
-> Cc: Imre Deak <imre.deak@intel.com>
-> Fixes: 193af12cd681 ("drm/i915: Shove the PHY test into the hotplug work")
-> Signed-off-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-
-Reviewed-by: Imre Deak <imre.deak@intel.com>
-
-> ---
->  drivers/gpu/drm/i915/display/intel_ddi.c | 8 ++++++++
->  drivers/gpu/drm/i915/display/intel_dp.c  | 2 +-
->  drivers/gpu/drm/i915/display/intel_dp.h  | 1 +
->  3 files changed, 10 insertions(+), 1 deletion(-)
-> =
-
-> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i=
-915/display/intel_ddi.c
-> index 4443a4ab722f..d7df1828a740 100644
-> --- a/drivers/gpu/drm/i915/display/intel_ddi.c
-> +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-> @@ -5204,12 +5204,20 @@ intel_ddi_hotplug(struct intel_encoder *encoder,
->  {
->  	struct drm_i915_private *i915 =3D to_i915(encoder->base.dev);
->  	struct intel_digital_port *dig_port =3D enc_to_dig_port(encoder);
-> +	struct intel_dp *intel_dp =3D &dig_port->dp;
->  	enum phy phy =3D intel_port_to_phy(i915, encoder->port);
->  	bool is_tc =3D intel_phy_is_tc(i915, phy);
->  	struct drm_modeset_acquire_ctx ctx;
->  	enum intel_hotplug_state state;
->  	int ret;
->  =
-
-> +	if (intel_dp->compliance.test_active &&
-> +	    intel_dp->compliance.test_type =3D=3D DP_TEST_LINK_PHY_TEST_PATTERN=
-) {
-> +		intel_dp_phy_test(encoder);
-> +		/* just do the PHY test and nothing else */
-> +		return INTEL_HOTPLUG_UNCHANGED;
-> +	}
-> +
->  	state =3D intel_encoder_hotplug(encoder, connector);
->  =
-
->  	drm_modeset_acquire_init(&ctx, 0);
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i9=
-15/display/intel_dp.c
-> index 30713816bf9d..349647f6bbb9 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> @@ -5522,7 +5522,7 @@ static int intel_dp_do_phy_test(struct intel_encode=
-r *encoder,
->  	return 0;
->  }
->  =
-
-> -static void intel_dp_phy_test(struct intel_encoder *encoder)
-> +void intel_dp_phy_test(struct intel_encoder *encoder)
->  {
->  	struct drm_modeset_acquire_ctx ctx;
->  	int ret;
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp.h b/drivers/gpu/drm/i9=
-15/display/intel_dp.h
-> index 6a2c759ad46f..d42860ef4521 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp.h
-> +++ b/drivers/gpu/drm/i915/display/intel_dp.h
-> @@ -137,5 +137,6 @@ const struct dpll *vlv_get_dpll(struct drm_i915_priva=
-te *i915);
->  void intel_dp_check_frl_training(struct intel_dp *intel_dp);
->  void intel_dp_pcon_dsc_configure(struct intel_dp *intel_dp,
->  				 const struct intel_crtc_state *crtc_state);
-> +void intel_dp_phy_test(struct intel_encoder *encoder);
->  =
-
->  #endif /* __INTEL_DP_H__ */
-> -- =
-
-> 2.26.2
-> =
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+T3AgMTgtMDEtMjAyMSBvbSAxNjowNSBzY2hyZWVmIFRob21hcyBIZWxsc3Ryw7ZtOgo+Cj4gT24g
+MS8xOC8yMSAzOjQ2IFBNLCBNYWFydGVuIExhbmtob3JzdCB3cm90ZToKPj4gT3AgMTgtMDEtMjAy
+MSBvbSAxNDoyOCBzY2hyZWVmIFRob21hcyBIZWxsc3Ryw7ZtOgo+Pj4gT24gMS8xOC8yMSAyOjIy
+IFBNLCBUaG9tYXMgSGVsbHN0csO2bSB3cm90ZToKPj4+PiBPbiAxLzE4LzIxIDE6MDEgUE0sIE1h
+YXJ0ZW4gTGFua2hvcnN0IHdyb3RlOgo+Pj4+PiBPcCAxOC0wMS0yMDIxIG9tIDEyOjExIHNjaHJl
+ZWYgVGhvbWFzIEhlbGxzdHLDtm06Cj4+Pj4+PiBPbiAxLzUvMjEgNDozNSBQTSwgTWFhcnRlbiBM
+YW5raG9yc3Qgd3JvdGU6Cj4+Pj4+Pj4gV2UgZ2V0IGEgbG9ja2RlcCBzcGxhdCB3aGVuIHRoZSBy
+ZXNldCBtdXRleCBpcyBoZWxkLCBiZWNhdXNlIGl0IGNhbiBiZQo+Pj4+Pj4+IHRha2VuIGZyb20g
+ZmVuY2Vfd2FpdC4gVGhpcyBjb25mbGljdHMgd2l0aCB0aGUgbW11IG5vdGlmaWVyIHdlIGhhdmUs
+Cj4+Pj4+Pj4gYmVjYXVzZSB3ZSByZWN1cnNlIGJldHdlZW4gcmVzZXQgbXV0ZXggYW5kIG1tYXAg
+bG9jayAtPiBtbXUgbm90aWZpZXIuCj4+Pj4+Pj4KPj4+Pj4+PiBSZW1vdmUgdGhpcyByZWN1cnNp
+b24gYnkgY2FsbGluZyByZXZva2VfbW1hcHMgYmVmb3JlIHRha2luZyB0aGUgbG9jay4KPj4+Pj4+
+IEhtbS4gSXMgdGhlIG1tYXAgc2UgdGFrZW4gZnJvbSBndF9yZXZva2UoKT8KPj4+Pj4+Cj4+Pj4+
+PiBJZiBzbywgaXNuJ3QgdGhlIHJlYWwgcHJvYmxlbSB0aGF0IHRoZSBtbWFwX3NlbSBpcyB0YWtl
+biBpbiB0aGUgZG1hX2ZlbmNlIGNyaXRpY2FsIHBhdGggKHdoZXJlIHRoZSByZXNldCBjb2RlIHNp
+dHMpPwo+Pj4+PiBIZXksCj4+Pj4+Cj4+Pj4+IFRoZSBncHUgcmVzZXQgY29kZSBzcGVjaWZpY2Fs
+bHkgbmVlZHMgdG8gcmV2b2tlIGFsbCBndHQgbWFwcGluZ3MsIGFuZCB0aGUgZmF1bHQgaGFuZGxl
+ciB1c2VzIGludGVsX2d0X3Jlc2V0X3RyeWxvY2soKSwKPj4+Pj4KPj4+Pj4gc28gdGhpcyBjaGFu
+Z2Ugc2hvdWxkIGJlIG9rIHNpbmNlIGFsbCB0aG9zZSBtYXBwaW5ncyBhcmUgaW52YWxpZGF0ZWQg
+Y29ycmVjdGx5IGFuZCBjb21wbGV0ZWQgYmVmb3JlIHRoaXMgcG9pbnQuCj4+Pj4+Cj4+Pj4+IFRo
+ZSByZXNldCBtdXRleCBpc24ndCBhY3R1YWxseSB0YWtlbiBpbnNpZGUgZmVuY2UgY29kZSwgYnV0
+IHVzZWQgZm9yIGxvY2tkZXAgdmFsaWRhdGlvbiwgc28gdGhpcyBzaG91bGQgYmUgb2suCj4+Pj4+
+Cj4+Pj4+IH5NYWFydGVuCj4+Pj4gSG1tLCBPSyBidXQgdGhlbiB3ZSBzdGlsbCBoYXZlIHRoZSBm
+b2xsb3dpbmcgZXN0YWJsaXNoZWQgbG9ja2luZyBvcmRlci4KPj4+Pgo+Pj4+IGxvY2soZmVuY2Vf
+c2lnbmFsaW5nKQo+Pj4+IGxvY2soaV9tbWFwX2xvY2spCj4+Pj4KPj4+PiBCdXQgaW4gdGhlIG5v
+dGlmaWVyCj4+Pj4KPj4+PiBsb2NrKGlfbW1hcF9sb2NrKQo+Pj4+IGZlbmNlX3NpZ25hbGluZyh3
+aXRoaW4gbm90aWZpZXIpCj4+Pj4KPj4+PiBTbyBndF9yZXZva2UoKSBpcyB2aW9sYXRpbmcgZG1h
+LWZlbmNlIHJ1bGVzLgo+Pj4+Cj4+Pj4gQlRXIGl0IGxvb2tzIHRvIG1lIGxpa2UgdGhlIHJlc2V0
+IG11dGV4IG5vdGF0aW9uIGlzIGFjdHVhbGx5IGRvaW5nIG11Y2ggdGhlIHNhbWUgYXMgdGhlIGRt
+YS1mZW5jZSBhbm5vdGF0aW9uczsgV2hpbGUgd2UgY2FuIG1vdmUgZ3RfcmV2b2tlKCkgb3V0IG9m
+IHRoZSByZXNldCBtdXRleCwgdGhhdCBvbmx5IGdpdmVzIHVzIGZhbHNlIGhvcGVzIHNpbmNlIGl0
+IG1vdmVzIGl0IG91dCBvZiB0aGUgZXF1aXZhbGVudCBkbWEtZmVuY2UgYW5ub3RhdGlvbi4gSSBm
+aWd1cmUgdGhlIHJlYXNvbiB0aGlzIHdhcyBub3Qgc2VlbiBiZWZvcmUgdGhlIG5ldyBjb2RlIGlz
+IHRoYXQgdGhlIHJlc2V0IG11dGV4IGxvY2tkZXAgaXNuJ3QgdGFrZW4gd2hlbiB3YWl0aW5nIGZv
+ciBhY3RpdmUuIE9ubHkgd2hlbiB3YWl0aW5nIGZvciBkbWEtZmVuY2UsIGJ1dCBJTU8gdGhlIHJv
+b3QgcHJvYmxlbSBpcyBwcmUtZXhpc3RpbmcuCj4+Pj4KPj4+PiAvVGhvbWFzCj4+Pj4KPj4+Pgo+
+Pj4gVGhlIGludGVyZXN0aW5nIHNjZW5hcmlvIGlzCj4+Pgo+Pj4gdGhyZWFkIDE6Cj4+PiB0YWtl
+IGlfbW1hcF9sb2NrKCkKPj4+IGVudGVyX21tdV9ub3RpZmllcigpCj4+PiB3YWl0X2ZlbmNlKCkK
+Pj4+Cj4+PiB0aHJlYWQgMjoKPj4+IG5lZWRfdG9fcmVzZXRfZ3B1X2Zvcl90aGVfYWJvdmVfZmVu
+Y2UoKTsKPj4+IHRha2UgaV9tbWFwX2xvY2soKQo+Pj4KPj4+IERlYWRsb2NrLgo+Pj4KPj4+IC9U
+aG9tYXMKPj4+Cj4+Pgo+PiBZZWFoLCBJIHRoaW5rIGdwdSByZXNldCBpc24ndCBjb21wbGV0ZWx5
+IGZvbGxvd2luZyBsb2NrZGVwIHJ1bGVzIHlldC4gVGhyZWFkIDEgaXNuJ3QgZG9pbmcgYW55dGhp
+bmcgd3JvbmcsIGdwdSByZXNldCBwcm9iYWJseSBzaG91bGQgc3RvcCByZXZva2luZyBndCBiaW5k
+aW5ncywgYW5kIGFsbG93IHNvbWUgZ2FyYmFnZSBkdXJpbmcgcmVzZXQuIEkgZG9uJ3Qgc2VlIGFu
+b3RoZXIgd2F5IG91dC4gOi0vCj4KPiBNZSBuZWl0aGVyLgo+Cj4gQnV0IHRvIHNpbGVuY2UgbG9j
+a2RlcCB1bnRpbCBkbWFfZmVuY2UgYW5ub3RhdGlvbiBpcyB3aWRlbHkgYWRkZWQ6Cj4KPiBSZXZp
+ZXdlZC1ieTogVGhvbWFzIEhlbGxzdHLDtm0gPHRob21hcy5oZWxsc3Ryb21AbGludXguaW50ZWwu
+Y29tPgo+Cj4KSWRlYWxseSB3ZSdsbCBhZGQgZmVuY2Ugc2lnbmFsaW5nIGFubm90YXRpb25zIHRv
+IGdwdSByZXNldCwgdG8gZXhhY3RseSBkZXRlY3QgdGhlc2Uga2luZCBvZiB0aGluZ3MuIEhvcGVm
+dWxseSBpbiB0aGUgZnV0dXJlLiA6KQoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJl
+ZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGlu
+Zm8vaW50ZWwtZ2Z4Cg==
