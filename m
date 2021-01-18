@@ -1,44 +1,42 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0DD4C2F9F79
-	for <lists+intel-gfx@lfdr.de>; Mon, 18 Jan 2021 13:26:01 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1DB572F9FD6
+	for <lists+intel-gfx@lfdr.de>; Mon, 18 Jan 2021 13:35:34 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1BC1A6E1EC;
-	Mon, 18 Jan 2021 12:25:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5EFFC89F89;
+	Mon, 18 Jan 2021 12:35:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 754F56E1EC
- for <intel-gfx@lists.freedesktop.org>; Mon, 18 Jan 2021 12:25:57 +0000 (UTC)
-IronPort-SDR: YtOkwRJTr9PiA7XfZJWKZAKhcfGjFGcIzTl8NZfLY31oTU9Ji05As6SZ+Snlvwcv5wdV2oaVQ5
- y87AKfgnV6EQ==
-X-IronPort-AV: E=McAfee;i="6000,8403,9867"; a="242866652"
-X-IronPort-AV: E=Sophos;i="5.79,356,1602572400"; d="scan'208";a="242866652"
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3D15289F89
+ for <intel-gfx@lists.freedesktop.org>; Mon, 18 Jan 2021 12:35:31 +0000 (UTC)
+IronPort-SDR: dfKCIA5fJaAeZY58I+im+/JfYyYV6su9pxp3N+1U4xYD2zwFbHy+Vhj3x1unnuC1Ln2p3BoPef
+ Kmj+n4lHFLTQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9867"; a="240338906"
+X-IronPort-AV: E=Sophos;i="5.79,356,1602572400"; d="scan'208";a="240338906"
 Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Jan 2021 04:25:54 -0800
-IronPort-SDR: JonGdcjR4mhFFAebtQIFkZ7MPy7aeJsdWKkFW4PhSAERWjsz3Xk64K2KpFGjU9jsl3e004KmvJ
- 6uHuFz30rLuw==
-X-IronPort-AV: E=Sophos;i="5.79,356,1602572400"; d="scan'208";a="383551290"
-Received: from nshalit-mobl.ger.corp.intel.com (HELO [10.214.195.251])
- ([10.214.195.251])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Jan 2021 04:35:30 -0800
+IronPort-SDR: 62yfiw62APF2ha73gCbBTwFAYh1U1HaVaAZAXKEXTNJm9C0ZwdNXOynbqvdwBpat/FT79MtlF2
+ cHi8y4Xs0Kbw==
+X-IronPort-AV: E=Sophos;i="5.79,356,1602572400"; d="scan'208";a="383554617"
+Received: from ynetzer-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.252.42.241])
  by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Jan 2021 04:25:52 -0800
+ 18 Jan 2021 04:35:28 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
 To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
-References: <20210117110418.3361-1-chris@chris-wilson.co.uk>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-Message-ID: <e85cbb38-f3ae-e3cd-be86-868d31dab9d2@linux.intel.com>
-Date: Mon, 18 Jan 2021 12:25:49 +0000
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.5.0
+In-Reply-To: <20210118101755.476744-1-chris@chris-wilson.co.uk>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <87lfcqobpl.fsf@intel.com>
+ <20210118101755.476744-1-chris@chris-wilson.co.uk>
+Date: Mon, 18 Jan 2021 14:35:25 +0200
+Message-ID: <87czy2o22a.fsf@intel.com>
 MIME-Version: 1.0
-In-Reply-To: <20210117110418.3361-1-chris@chris-wilson.co.uk>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/gt: Add arbitration check before
- semaphore wait
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Check for rq->hwsp validity after
+ acquiring RCU lock
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,55 +49,203 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: stable@vger.kernel.org, Chris Wilson <chris@chris-wilson.co.uk>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-
-On 17/01/2021 11:04, Chris Wilson wrote:
-> Similar to commit 49b20dbf7497 ("drm/i915/gt: Perform an arbitration
-> check before busywaiting"), also add a check prior to the busywait
-> on gen8+, as we have now seen (because we added a selftest to add fault
-> injection into the engine resets) the same engine reset failure leading
-> to an indefinite wait on the ring-stop semaphore. So not a Tigerlake
-> specific bug after all, though it still seems odd behaviour for the
-> busywait as we do get the arbitration point elsewhere on a miss.
-> 
-> Testcase: igt_reset_fail_engine
+On Mon, 18 Jan 2021, Chris Wilson <chris@chris-wilson.co.uk> wrote:
+> Since we allow removing the timeline map at runtime, there is a risk
+> that rq->hwsp points into a stale page. To control that risk, we hold
+> the RCU read lock while reading *rq->hwsp, but we missed a couple of
+> important barriers. First, the unpinning / removal of the timeline map
+> must be after all RCU readers into that map are complete, i.e. after an
+> rcu barrier (in this case courtesy of call_rcu()). Secondly, we must
+> make sure that the rq->hwsp we are about to dereference under the RCU
+> lock is valid. In this case, we make the rq->hwsp pointer safe during
+> i915_request_retire() and so we know that rq->hwsp may become invalid
+> only after the request has been signaled. Therefore is the request is
+> not yet signaled when we acquire rq->hwsp under the RCU, we know that
+> rq->hwsp will remain valid for the duration of the RCU read lock.
+>
+> This is a very small window that may lead to either considering the
+> request not completed (causing a delay until the request is checked
+> again, any wait for the request is not affected) or dereferencing an
+> invalid pointer.
+>
+> Fixes: 3adac4689f58 ("drm/i915: Introduce concept of per-timeline (context) HWSP")
 > Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
 > Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+> Cc: <stable@vger.kernel.org> # v5.1+
+> Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+> Link: https://patchwork.freedesktop.org/patch/msgid/20201218122421.18344-1-chris@chris-wilson.co.uk
+> (cherry picked from commit 9bb36cf66091ddf2d8840e5aa705ad3c93a6279b)
+
+Thanks for the backports, all three pushed to drm-intel-fixes.
+
+BR,
+Jani.
+
+
 > ---
->   drivers/gpu/drm/i915/gt/gen8_engine_cs.c | 2 ++
->   1 file changed, 2 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/i915/gt/gen8_engine_cs.c b/drivers/gpu/drm/i915/gt/gen8_engine_cs.c
-> index 5b932d2dbfd3..07ba524da90b 100644
-> --- a/drivers/gpu/drm/i915/gt/gen8_engine_cs.c
-> +++ b/drivers/gpu/drm/i915/gt/gen8_engine_cs.c
-> @@ -488,6 +488,7 @@ static u32 *gen8_emit_wa_tail(struct i915_request *rq, u32 *cs)
->   
->   static u32 *emit_preempt_busywait(struct i915_request *rq, u32 *cs)
->   {
-> +	*cs++ = MI_ARB_CHECK; /* trigger IDLE->ACTIVE first */
->   	*cs++ = MI_SEMAPHORE_WAIT |
->   		MI_SEMAPHORE_GLOBAL_GTT |
->   		MI_SEMAPHORE_POLL |
-> @@ -495,6 +496,7 @@ static u32 *emit_preempt_busywait(struct i915_request *rq, u32 *cs)
->   	*cs++ = 0;
->   	*cs++ = preempt_address(rq->engine);
->   	*cs++ = 0;
-> +	*cs++ = MI_NOOP;
->   
->   	return cs;
->   }
-> 
+>  drivers/gpu/drm/i915/gt/intel_breadcrumbs.c |  9 ++---
+>  drivers/gpu/drm/i915/gt/intel_timeline.c    | 10 +++---
+>  drivers/gpu/drm/i915/i915_request.h         | 37 ++++++++++++++++++---
+>  3 files changed, 38 insertions(+), 18 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c b/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c
+> index a24cc1ff08a0..0625cbb3b431 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c
+> @@ -134,11 +134,6 @@ static bool remove_signaling_context(struct intel_breadcrumbs *b,
+>  	return true;
+>  }
+>  
+> -static inline bool __request_completed(const struct i915_request *rq)
+> -{
+> -	return i915_seqno_passed(__hwsp_seqno(rq), rq->fence.seqno);
+> -}
+> -
+>  __maybe_unused static bool
+>  check_signal_order(struct intel_context *ce, struct i915_request *rq)
+>  {
+> @@ -257,7 +252,7 @@ static void signal_irq_work(struct irq_work *work)
+>  		list_for_each_entry_rcu(rq, &ce->signals, signal_link) {
+>  			bool release;
+>  
+> -			if (!__request_completed(rq))
+> +			if (!__i915_request_is_complete(rq))
+>  				break;
+>  
+>  			if (!test_and_clear_bit(I915_FENCE_FLAG_SIGNAL,
+> @@ -379,7 +374,7 @@ static void insert_breadcrumb(struct i915_request *rq)
+>  	 * straight onto a signaled list, and queue the irq worker for
+>  	 * its signal completion.
+>  	 */
+> -	if (__request_completed(rq)) {
+> +	if (__i915_request_is_complete(rq)) {
+>  		if (__signal_request(rq) &&
+>  		    llist_add(&rq->signal_node, &b->signaled_requests))
+>  			irq_work_queue(&b->irq_work);
+> diff --git a/drivers/gpu/drm/i915/gt/intel_timeline.c b/drivers/gpu/drm/i915/gt/intel_timeline.c
+> index 7ea94d201fe6..8015964043eb 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_timeline.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_timeline.c
+> @@ -126,6 +126,10 @@ static void __rcu_cacheline_free(struct rcu_head *rcu)
+>  	struct intel_timeline_cacheline *cl =
+>  		container_of(rcu, typeof(*cl), rcu);
+>  
+> +	/* Must wait until after all *rq->hwsp are complete before removing */
+> +	i915_gem_object_unpin_map(cl->hwsp->vma->obj);
+> +	__idle_hwsp_free(cl->hwsp, ptr_unmask_bits(cl->vaddr, CACHELINE_BITS));
+> +
+>  	i915_active_fini(&cl->active);
+>  	kfree(cl);
+>  }
+> @@ -133,11 +137,6 @@ static void __rcu_cacheline_free(struct rcu_head *rcu)
+>  static void __idle_cacheline_free(struct intel_timeline_cacheline *cl)
+>  {
+>  	GEM_BUG_ON(!i915_active_is_idle(&cl->active));
+> -
+> -	i915_gem_object_unpin_map(cl->hwsp->vma->obj);
+> -	i915_vma_put(cl->hwsp->vma);
+> -	__idle_hwsp_free(cl->hwsp, ptr_unmask_bits(cl->vaddr, CACHELINE_BITS));
+> -
+>  	call_rcu(&cl->rcu, __rcu_cacheline_free);
+>  }
+>  
+> @@ -179,7 +178,6 @@ cacheline_alloc(struct intel_timeline_hwsp *hwsp, unsigned int cacheline)
+>  		return ERR_CAST(vaddr);
+>  	}
+>  
+> -	i915_vma_get(hwsp->vma);
+>  	cl->hwsp = hwsp;
+>  	cl->vaddr = page_pack_bits(vaddr, cacheline);
+>  
+> diff --git a/drivers/gpu/drm/i915/i915_request.h b/drivers/gpu/drm/i915/i915_request.h
+> index 620b6fab2c5c..92adfee30c7c 100644
+> --- a/drivers/gpu/drm/i915/i915_request.h
+> +++ b/drivers/gpu/drm/i915/i915_request.h
+> @@ -434,7 +434,7 @@ static inline u32 hwsp_seqno(const struct i915_request *rq)
+>  
+>  static inline bool __i915_request_has_started(const struct i915_request *rq)
+>  {
+> -	return i915_seqno_passed(hwsp_seqno(rq), rq->fence.seqno - 1);
+> +	return i915_seqno_passed(__hwsp_seqno(rq), rq->fence.seqno - 1);
+>  }
+>  
+>  /**
+> @@ -465,11 +465,19 @@ static inline bool __i915_request_has_started(const struct i915_request *rq)
+>   */
+>  static inline bool i915_request_started(const struct i915_request *rq)
+>  {
+> +	bool result;
+> +
+>  	if (i915_request_signaled(rq))
+>  		return true;
+>  
+> -	/* Remember: started but may have since been preempted! */
+> -	return __i915_request_has_started(rq);
+> +	result = true;
+> +	rcu_read_lock(); /* the HWSP may be freed at runtime */
+> +	if (likely(!i915_request_signaled(rq)))
+> +		/* Remember: started but may have since been preempted! */
+> +		result = __i915_request_has_started(rq);
+> +	rcu_read_unlock();
+> +
+> +	return result;
+>  }
+>  
+>  /**
+> @@ -482,10 +490,16 @@ static inline bool i915_request_started(const struct i915_request *rq)
+>   */
+>  static inline bool i915_request_is_running(const struct i915_request *rq)
+>  {
+> +	bool result;
+> +
+>  	if (!i915_request_is_active(rq))
+>  		return false;
+>  
+> -	return __i915_request_has_started(rq);
+> +	rcu_read_lock();
+> +	result = __i915_request_has_started(rq) && i915_request_is_active(rq);
+> +	rcu_read_unlock();
+> +
+> +	return result;
+>  }
+>  
+>  /**
+> @@ -509,12 +523,25 @@ static inline bool i915_request_is_ready(const struct i915_request *rq)
+>  	return !list_empty(&rq->sched.link);
+>  }
+>  
+> +static inline bool __i915_request_is_complete(const struct i915_request *rq)
+> +{
+> +	return i915_seqno_passed(__hwsp_seqno(rq), rq->fence.seqno);
+> +}
+> +
+>  static inline bool i915_request_completed(const struct i915_request *rq)
+>  {
+> +	bool result;
+> +
+>  	if (i915_request_signaled(rq))
+>  		return true;
+>  
+> -	return i915_seqno_passed(hwsp_seqno(rq), rq->fence.seqno);
+> +	result = true;
+> +	rcu_read_lock(); /* the HWSP may be freed at runtime */
+> +	if (likely(!i915_request_signaled(rq)))
+> +		result = __i915_request_is_complete(rq);
+> +	rcu_read_unlock();
+> +
+> +	return result;
+>  }
+>  
+>  static inline void i915_request_mark_complete(struct i915_request *rq)
 
-Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-
-Regards,
-
-Tvrtko
+-- 
+Jani Nikula, Intel Open Source Graphics Center
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
