@@ -1,58 +1,39 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 533932F9728
-	for <lists+intel-gfx@lfdr.de>; Mon, 18 Jan 2021 02:07:07 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7E2552F97D4
+	for <lists+intel-gfx@lfdr.de>; Mon, 18 Jan 2021 03:23:07 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4DACA89C13;
-	Mon, 18 Jan 2021 01:07:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7CE5789A88;
+	Mon, 18 Jan 2021 02:23:04 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com
- [IPv6:2a00:1450:4864:20::52a])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4C13389B49;
- Mon, 18 Jan 2021 01:07:00 +0000 (UTC)
-Received: by mail-ed1-x52a.google.com with SMTP id f1so1616568edr.12;
- Sun, 17 Jan 2021 17:07:00 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=PNeNqacM4fDdIsWWQviI9y4JI0WUsFuQcZN1AB5dFMI=;
- b=Hd1cVzAEGu5jJcKoiStC0RnBjbGRaO7Q1RiiNNTjeJ160oiuhJ2xO1EO122GEoOXyy
- rUDSKoaV2scep62pUTvBbxnhoCLPduIJked07qOL67Mi4HM4ref0rVFD+cMH0w/OTE11
- nZ2ugkvkg49h7vc34844Tv185Hz1LY1A4FzokwdKijNCU6O4ws571ec/qi+i94gfEwWF
- /BeZXF6j4rqigFIwBT+Ewq7zsbnWBif2bVQNHoD4iPcGdbAOo5bTPviWFKVX7WseIkvN
- lYyBY37ViJCCJdkofkQnVrpvMwy2rm0ZNvgE0ix59DBpfwN9BmcQkXMnzwLoephzVkTB
- x1mg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=PNeNqacM4fDdIsWWQviI9y4JI0WUsFuQcZN1AB5dFMI=;
- b=bofZyV146a5FqUczPeqsm/VOG6B4slWyYP5FA9EsPwx+nC/NB4cHjMh6GfA7xMcoB+
- Jk1DzzIZmnQ7F2yjFZ4zsOxw9AYQW0WxlyEG9Gu6iflkDlKA/93CRAKyKPnjsn1yHhtT
- jkafthqoXZH1ajdwrs+cGil4tjbO/zT8Qdo9saYlF33L7E1WBCKZFkAT9WdpmEvQaQM8
- 95QPY55F5BAvpof9hDj2GwSNJstVHQYJjXWiB5uwMR0beL3ljPOUcet6k75y4ivFn22j
- HqKu9tV/pORuCl+1/q+b/CtMX3JXPF4nRYHsv4tUJ6PPHgqAoaz6JN1mQt3T/jP2XHIH
- xfAA==
-X-Gm-Message-State: AOAM532YvZ5WHV/HP5TYjI8uZdz+n/HlaLtvD6IJ44Nvmj1v525iSRlq
- cFiFd+b/AwB/Fr5Jof7/B3gaQriylxepGmvP7Yw=
-X-Google-Smtp-Source: ABdhPJwAePDjuhUUYO6a4u8g4U2/QpbxiekOvKUUN1d0YFQrEefJnbWGYr/xu2+cps9CjGk7pgLQfFqyT6ySDEy2xRs=
-X-Received: by 2002:a50:b742:: with SMTP id g60mr17169711ede.113.1610932018848; 
- Sun, 17 Jan 2021 17:06:58 -0800 (PST)
-MIME-Version: 1.0
-References: <20210108115518.2b3fdf58@canb.auug.org.au>
- <20210108122540.657501b2@canb.auug.org.au>
- <20210111105654.17e3aa76@canb.auug.org.au>
- <20210118115924.6ee14fd3@canb.auug.org.au>
-In-Reply-To: <20210118115924.6ee14fd3@canb.auug.org.au>
-From: Dave Airlie <airlied@gmail.com>
-Date: Mon, 18 Jan 2021 11:06:47 +1000
-Message-ID: <CAPM=9tz7bEZewNwg_96Jj+oyBk3=c7hZ4aFbSKdMAsewJpfXHw@mail.gmail.com>
-To: Stephen Rothwell <sfr@canb.auug.org.au>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Subject: Re: [Intel-gfx] linux-next: build failure after merge of the drm
- tree
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 27AA289A88
+ for <intel-gfx@lists.freedesktop.org>; Mon, 18 Jan 2021 02:23:03 +0000 (UTC)
+IronPort-SDR: KQXKQ8X/rDQmEkT3wIpdIFmX7q5rj2ZTIZqwPMS+RhGzHaabtXqj3C2TnpczhbyOrJHUNEID4b
+ 4qQP94oH6JMQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9867"; a="240291042"
+X-IronPort-AV: E=Sophos;i="5.79,355,1602572400"; d="scan'208";a="240291042"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Jan 2021 18:23:01 -0800
+IronPort-SDR: c5Zpdub4JPcX/WLSTbpg1ugxzSOzi9pBLwS2jmR+3bhh9/zhzzqcJtrkH6ThSpOrSgiLeQyBzx
+ Vs/UG/PjSA+g==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.79,355,1602572400"; d="scan'208";a="355026896"
+Received: from shawnle1-build-machine.itwn.intel.com ([10.5.253.22])
+ by fmsmga008.fm.intel.com with ESMTP; 17 Jan 2021 18:22:59 -0800
+From: Lee Shawn C <shawn.c.lee@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Mon, 18 Jan 2021 10:27:53 +0800
+Message-Id: <20210118022753.8798-1-shawn.c.lee@intel.com>
+X-Mailer: git-send-email 2.17.1
+In-Reply-To: <20210114092236.20477-1-shawn.c.lee@intel.com>
+References: <20210114092236.20477-1-shawn.c.lee@intel.com>
+Subject: [Intel-gfx] [PATCH v3] drm/i915: support two CSC module on gen11
+ and later
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,55 +46,106 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Dave Airlie <airlied@linux.ie>, Daniel Vetter <daniel.vetter@ffwll.ch>,
- Intel Graphics <intel-gfx@lists.freedesktop.org>,
- Sebastian Reichel <sebastian.reichel@collabora.com>,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
- Linux Next Mailing List <linux-next@vger.kernel.org>,
- Tomi Valkeinen <tomi.valkeinen@ti.com>, DRI <dri-devel@lists.freedesktop.org>
+Cc: Cooper Chiou <cooper.chiou@intel.com>
+MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 18 Jan 2021 at 10:59, Stephen Rothwell <sfr@canb.auug.org.au> wrote:
->
-> Hi all,
->
-> On Mon, 11 Jan 2021 10:56:54 +1100 Stephen Rothwell <sfr@canb.auug.org.au> wrote:
-> >
-> > On Fri, 8 Jan 2021 12:25:40 +1100 Stephen Rothwell <sfr@canb.auug.org.au> wrote:
-> > >
-> > > On Fri, 8 Jan 2021 11:55:18 +1100 Stephen Rothwell <sfr@canb.auug.org.au> wrote:
-> > > >
-> > > > After merging the drm tree, today's linux-next build (x86_64 allmodconfig)
-> > > > failed like this:
-> > > >
-> > > > error: the following would cause module name conflict:
-> > > >   drivers/video/fbdev/omap2/omapfb/displays/panel-dsi-cm.ko
-> > > >   drivers/gpu/drm/panel/panel-dsi-cm.ko
-> > > >
-> > > > Maybe caused by commit
-> > > >
-> > > >   cf64148abcfd ("drm/panel: Move OMAP's DSI command mode panel driver")
-> > > >
-> > > > I have used the drm tree from next-20210107 for today.
-> > >
-> > > This has affected the drm-misc tree as well (since it merged in the drm
-> > > tree).
-> > >
-> > > I have used the drm-misc tree from next-20210107 for today.
-> >
-> > And now the drm-intel tree.
-> >
-> > I have used the drm-intel tree from next-20210108 for today.
->
-> This is still affecting the drm and drm-intel trees.
+There are two CSC on pipeline on gen11 and later platform.
+User space application is allowed to enable CTM and RGB
+to YCbCr coversion at the same time now.
 
-I think the fix for this is in drm-misc-next, Maarten can you send me
-a -next PR to fix this?
+v2: check csc capability in {}_color_check function.
+v3: can't support two CSC at the same time in {ivb,glk}_color_check.
 
-Dave.
+Cc: Ville Syrjala <ville.syrjala@linux.intel.com>
+Cc: Imre Deak <imre.deak@intel.com>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>
+Cc: Cooper Chiou <cooper.chiou@intel.com>
+Cc: Shankar Uma <uma.shankar@intel.com>
+
+Signed-off-by: Lee Shawn C <shawn.c.lee@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_color.c   | 16 ++++++++++++++++
+ drivers/gpu/drm/i915/display/intel_display.c | 13 -------------
+ 2 files changed, 16 insertions(+), 13 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/display/intel_color.c b/drivers/gpu/drm/i915/display/intel_color.c
+index 172d398081ee..ff7dcb7088bf 100644
+--- a/drivers/gpu/drm/i915/display/intel_color.c
++++ b/drivers/gpu/drm/i915/display/intel_color.c
+@@ -1485,6 +1485,7 @@ static u32 ivb_csc_mode(const struct intel_crtc_state *crtc_state)
+ 
+ static int ivb_color_check(struct intel_crtc_state *crtc_state)
+ {
++	struct drm_i915_private *dev_priv = to_i915(crtc_state->uapi.crtc->dev);
+ 	bool limited_color_range = ilk_csc_limited_range(crtc_state);
+ 	int ret;
+ 
+@@ -1492,6 +1493,13 @@ static int ivb_color_check(struct intel_crtc_state *crtc_state)
+ 	if (ret)
+ 		return ret;
+ 
++	if (crtc_state->output_format != INTEL_OUTPUT_FORMAT_RGB &&
++	    crtc_state->hw.ctm) {
++		drm_dbg_kms(&dev_priv->drm,
++			    "YCBCR and CTM together are not possible\n");
++		return -EINVAL;
++	}
++
+ 	crtc_state->gamma_enable =
+ 		(crtc_state->hw.gamma_lut ||
+ 		 crtc_state->hw.degamma_lut) &&
+@@ -1525,12 +1533,20 @@ static u32 glk_gamma_mode(const struct intel_crtc_state *crtc_state)
+ 
+ static int glk_color_check(struct intel_crtc_state *crtc_state)
+ {
++	struct drm_i915_private *dev_priv = to_i915(crtc_state->uapi.crtc->dev);
+ 	int ret;
+ 
+ 	ret = check_luts(crtc_state);
+ 	if (ret)
+ 		return ret;
+ 
++	if (crtc_state->output_format != INTEL_OUTPUT_FORMAT_RGB &&
++	    crtc_state->hw.ctm) {
++		drm_dbg_kms(&dev_priv->drm,
++			    "YCBCR and CTM together are not possible\n");
++		return -EINVAL;
++	}
++
+ 	crtc_state->gamma_enable =
+ 		crtc_state->hw.gamma_lut &&
+ 		!crtc_state->c8_planes;
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index b728792e0c27..b614987eddf1 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -6355,19 +6355,6 @@ static int intel_crtc_compute_config(struct intel_crtc *crtc,
+ 		return -EINVAL;
+ 	}
+ 
+-	if ((pipe_config->output_format == INTEL_OUTPUT_FORMAT_YCBCR420 ||
+-	     pipe_config->output_format == INTEL_OUTPUT_FORMAT_YCBCR444) &&
+-	     pipe_config->hw.ctm) {
+-		/*
+-		 * There is only one pipe CSC unit per pipe, and we need that
+-		 * for output conversion from RGB->YCBCR. So if CTM is already
+-		 * applied we can't support YCBCR420 output.
+-		 */
+-		drm_dbg_kms(&dev_priv->drm,
+-			    "YCBCR420 and CTM together are not possible\n");
+-		return -EINVAL;
+-	}
+-
+ 	/*
+ 	 * Pipe horizontal size must be even in:
+ 	 * - DVO ganged mode
+-- 
+2.17.1
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
