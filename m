@@ -1,40 +1,38 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id F27BF2FA6B3
-	for <lists+intel-gfx@lfdr.de>; Mon, 18 Jan 2021 17:52:19 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1D9D62FA6CB
+	for <lists+intel-gfx@lfdr.de>; Mon, 18 Jan 2021 17:56:34 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BFCCE6E3F5;
-	Mon, 18 Jan 2021 16:52:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 25F636E301;
+	Mon, 18 Jan 2021 16:56:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7FC0C6E3F5
- for <intel-gfx@lists.freedesktop.org>; Mon, 18 Jan 2021 16:52:16 +0000 (UTC)
-IronPort-SDR: v1Uqr3LK6Ye5ElrYncPoII9d0qW64cSpR430POdh7xsb2X29IfwAJXKb1JeM08DGWoKkMYUNDG
- tNHlv/UlJuyw==
-X-IronPort-AV: E=McAfee;i="6000,8403,9868"; a="165915704"
-X-IronPort-AV: E=Sophos;i="5.79,356,1602572400"; d="scan'208";a="165915704"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Jan 2021 08:52:14 -0800
-IronPort-SDR: cJtLg8ol2U+s3844m/lmPpUxpn2HtWogATlAsLgWwCZVinPSuR77268qTF+2mDLp4bPuUxgAVp
- R7wYZhid4e9g==
-X-IronPort-AV: E=Sophos;i="5.79,356,1602572400"; d="scan'208";a="569237122"
-Received: from ideak-desk.fi.intel.com ([10.237.68.141])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Jan 2021 08:52:13 -0800
-Date: Mon, 18 Jan 2021 18:52:04 +0200
-From: Imre Deak <imre.deak@intel.com>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>
-Message-ID: <20210118165204.GA1070820@ideak-desk.fi.intel.com>
-References: <20210118162107.18424-1-ville.syrjala@linux.intel.com>
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1D9336E301
+ for <intel-gfx@lists.freedesktop.org>; Mon, 18 Jan 2021 16:56:31 +0000 (UTC)
+IronPort-SDR: PxV8kZ4MgqSw2CGQ7W2W1+iL4oUpmKpGuhgfOflSFLR7JJLaC3W8WExmT3YdGqVtTpikSAhwlK
+ hEyy5IhWc5Wg==
+X-IronPort-AV: E=McAfee;i="6000,8403,9868"; a="166492726"
+X-IronPort-AV: E=Sophos;i="5.79,356,1602572400"; d="scan'208";a="166492726"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Jan 2021 08:56:29 -0800
+IronPort-SDR: W8xQMJqQA2XsFWkKpLK1RthE3dBVmGAP5d+UzbmL53aRoinVUeZTOmCz8EA/iYoTtyYAiVDIlP
+ K16VzzJ5gMQg==
+X-IronPort-AV: E=Sophos;i="5.79,356,1602572400"; d="scan'208";a="355250011"
+Received: from juimonen-mobl.ger.corp.intel.com (HELO
+ mwauld-desk1.ger.corp.intel.com) ([10.252.9.5])
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Jan 2021 08:56:28 -0800
+From: Matthew Auld <matthew.auld@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Mon, 18 Jan 2021 16:55:51 +0000
+Message-Id: <20210118165553.118901-1-matthew.auld@intel.com>
+X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20210118162107.18424-1-ville.syrjala@linux.intel.com>
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Disable TRAINING_PATTERN_SET
- before stopping the TPS transmission
+Subject: [Intel-gfx] [PATCH 1/3] drm/i915: Fix the sgt.pfn sanity check
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,78 +45,40 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: imre.deak@intel.com
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Cc: Kui Wen <kui.wen@intel.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Jan 18, 2021 at 06:21:07PM +0200, Ville Syrjala wrote:
-> From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> =
+From: Kui Wen <kui.wen@intel.com>
 
-> DP spec says:
-> "The Source device shall start sending the idle pattern after
->  it has cleared the Training_Pattern byte in the DPCD."
-> =
+For the device local-memory case, sgt.pfn will always be equal to zero,
+since we instead use sgt.dma. Also, for device local-memory it is
+perfectly valid for it to start from zero anyway, so no need to add a
+new check for that either.
 
-> Currently we do these in operations in the opposite order.
-> Swap them around to match the spec.
-> =
+Signed-off-by: Kui Wen <kui.wen@intel.com>
+Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+---
+ drivers/gpu/drm/i915/i915_mm.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-> Cc: Imre Deak <imre.deak@intel.com>
-> Signed-off-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-
-Makes sense:
-Reviewed-by: Imre Deak <imre.deak@intel.com>
-
-> ---
->  drivers/gpu/drm/i915/display/intel_dp_link_training.c | 11 +++++------
->  1 file changed, 5 insertions(+), 6 deletions(-)
-> =
-
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_training.c b/driv=
-ers/gpu/drm/i915/display/intel_dp_link_training.c
-> index d8c6d7054d11..2d3396bfc207 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-> @@ -697,9 +697,9 @@ static bool intel_dp_disable_dpcd_training_pattern(st=
-ruct intel_dp *intel_dp,
->   * @intel_dp: DP struct
->   * @crtc_state: state for CRTC attached to the encoder
->   *
-> - * Stop the link training of the @intel_dp port, disabling the test patt=
-ern
-> - * symbol generation on the port and disabling the training pattern in
-> - * the sink's DPCD.
-> + * Stop the link training of the @intel_dp port, disabling the training
-> + * pattern in the sink's DPCD, and disabling the test pattern symbol
-> + * generation on the port.
->   *
->   * What symbols are output on the port after this point is
->   * platform specific: On DDI/VLV/CHV platforms it will be the idle patte=
-rn
-> @@ -713,10 +713,9 @@ void intel_dp_stop_link_train(struct intel_dp *intel=
-_dp,
->  {
->  	intel_dp->link_trained =3D true;
->  =
-
-> -	intel_dp_program_link_training_pattern(intel_dp,
-> -					       crtc_state,
-> -					       DP_TRAINING_PATTERN_DISABLE);
->  	intel_dp_disable_dpcd_training_pattern(intel_dp, DP_PHY_DPRX);
-> +	intel_dp_program_link_training_pattern(intel_dp, crtc_state,
-> +					       DP_TRAINING_PATTERN_DISABLE);
->  }
->  =
-
->  static bool
-> -- =
-
-> 2.26.2
-> =
+diff --git a/drivers/gpu/drm/i915/i915_mm.c b/drivers/gpu/drm/i915/i915_mm.c
+index 43039dc8c607..666808cb3a32 100644
+--- a/drivers/gpu/drm/i915/i915_mm.c
++++ b/drivers/gpu/drm/i915/i915_mm.c
+@@ -62,7 +62,7 @@ static int remap_sg(pte_t *pte, unsigned long addr, void *data)
+ {
+ 	struct remap_pfn *r = data;
+ 
+-	if (GEM_WARN_ON(!r->sgt.pfn))
++	if (GEM_WARN_ON(!r->sgt.sgp))
+ 		return -EINVAL;
+ 
+ 	/* Special PTE are not associated with any struct page */
+-- 
+2.26.2
 
 _______________________________________________
 Intel-gfx mailing list
