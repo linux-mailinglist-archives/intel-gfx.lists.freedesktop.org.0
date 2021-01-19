@@ -1,32 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D59C42FB602
-	for <lists+intel-gfx@lfdr.de>; Tue, 19 Jan 2021 13:10:41 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id CD14A2FB619
+	for <lists+intel-gfx@lfdr.de>; Tue, 19 Jan 2021 13:33:42 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 35B6B6E86D;
-	Tue, 19 Jan 2021 12:10:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5541F6E2C0;
+	Tue, 19 Jan 2021 12:33:40 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0B3FF6E23D
- for <intel-gfx@lists.freedesktop.org>; Tue, 19 Jan 2021 12:10:28 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 23638411-1500050 
- for multiple; Tue, 19 Jan 2021 12:10:20 +0000
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Tue, 19 Jan 2021 12:10:17 +0000
-Message-Id: <20210119121017.6888-9-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20210119121017.6888-1-chris@chris-wilson.co.uk>
-References: <20210119121017.6888-1-chris@chris-wilson.co.uk>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 59CF46E243;
+ Tue, 19 Jan 2021 12:33:39 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 50145A7DFC;
+ Tue, 19 Jan 2021 12:33:39 +0000 (UTC)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 9/9] drm/i915: Prefer software tracked context
- busyness
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Gupta, Anshuman" <anshuman.gupta@intel.com>
+Date: Tue, 19 Jan 2021 12:33:39 -0000
+Message-ID: <161105961929.4867.13555490864173639147@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210119074320.28768-1-sean.z.huang@intel.com>
+In-Reply-To: <20210119074320.28768-1-sean.z.huang@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_Introduce_Intel_PXP_component_-_Mesa_single_session_=28rev2?=
+ =?utf-8?q?3=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,123 +39,71 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Chris Wilson <chris@chris-wilson.co.uk>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+== Series Details ==
 
-When available prefer context tracked context busyness because it provides
-visibility into currently executing contexts as well.
+Series: Introduce Intel PXP component - Mesa single session (rev23)
+URL   : https://patchwork.freedesktop.org/series/84620/
+State : warning
 
-Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-Reviewed-by: Aravind Iddamsetty <aravind.iddamsetty@intel.com>
-Reviewed-by: Chris Wilson <chris@chris-wilson.co.uk>
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
----
- drivers/gpu/drm/i915/i915_drm_client.c | 64 ++++++++++++++++++++++++--
- 1 file changed, 59 insertions(+), 5 deletions(-)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/i915/i915_drm_client.c b/drivers/gpu/drm/i915/i915_drm_client.c
-index 5b94d2dcfa4c..ee9732ccd3c2 100644
---- a/drivers/gpu/drm/i915/i915_drm_client.c
-+++ b/drivers/gpu/drm/i915/i915_drm_client.c
-@@ -96,6 +96,58 @@ show_client_busy(struct device *kdev, struct device_attribute *attr, char *buf)
- 	return snprintf(buf, PAGE_SIZE, "%llu\n", total);
- }
- 
-+static u64 sw_busy_add(struct i915_gem_context *ctx, unsigned int class)
-+{
-+	struct i915_gem_engines *engines = rcu_dereference(ctx->engines);
-+	u32 period_ns = ctx->i915->gt.clock_period_ns;
-+	struct i915_gem_engines_iter it;
-+	struct intel_context *ce;
-+	u64 total = 0;
-+
-+	for_each_gem_engine(ce, engines, it) {
-+		struct intel_context_stats *stats;
-+		unsigned int seq;
-+		u64 t;
-+
-+		if (ce->engine->uabi_class != class)
-+			continue;
-+
-+		stats = &ce->stats;
-+
-+		do {
-+			seq = read_seqbegin(&stats->lock);
-+			t = ce->stats.runtime.total * period_ns;
-+			t += __intel_context_get_active_time(ce);
-+		} while (read_seqretry(&stats->lock, seq));
-+
-+		total += t;
-+	}
-+
-+	return total;
-+}
-+
-+static ssize_t
-+show_client_sw_busy(struct device *kdev,
-+		    struct device_attribute *attr,
-+		    char *buf)
-+{
-+	struct i915_engine_busy_attribute *i915_attr =
-+		container_of(attr, typeof(*i915_attr), attr);
-+	unsigned int class = i915_attr->engine_class;
-+	struct i915_drm_client *client = i915_attr->client;
-+	const u32 period_ns = client->clients->i915->gt.clock_period_ns;
-+	u64 total = atomic64_read(&client->past_runtime[class]) * period_ns;
-+	struct list_head *list = &client->ctx_list;
-+	struct i915_gem_context *ctx;
-+
-+	rcu_read_lock();
-+	list_for_each_entry_rcu(ctx, list, client_link)
-+		total += sw_busy_add(ctx, class);
-+	rcu_read_unlock();
-+
-+	return snprintf(buf, PAGE_SIZE, "%llu\n", total);
-+}
-+
- static const char * const uabi_class_names[] = {
- 	[I915_ENGINE_CLASS_RENDER] = "0",
- 	[I915_ENGINE_CLASS_COPY] = "1",
-@@ -106,6 +158,8 @@ static const char * const uabi_class_names[] = {
- static int __client_register_sysfs_busy(struct i915_drm_client *client)
- {
- 	struct i915_drm_clients *clients = client->clients;
-+	bool sw_stats = clients->i915->caps.scheduler &
-+			I915_SCHEDULER_CAP_ENGINE_BUSY_STATS;
- 	unsigned int i;
- 	int ret = 0;
- 
-@@ -131,18 +185,18 @@ static int __client_register_sysfs_busy(struct i915_drm_client *client)
- 
- 		attr->attr.name = uabi_class_names[i];
- 		attr->attr.mode = 0444;
--		attr->show = show_client_busy;
-+		attr->show = sw_stats ? show_client_sw_busy : show_client_busy;
- 
- 		ret = sysfs_create_file(client->busy_root,
- 					(struct attribute *)attr);
- 		if (ret)
--			goto err;
-+			goto out;
- 	}
- 
--	return 0;
-+out:
-+	if (ret)
-+		kobject_put(client->busy_root);
- 
--err:
--	kobject_put(client->busy_root);
- 	return ret;
- }
- 
--- 
-2.20.1
+$ dim checkpatch origin/drm-tip
+ca9c47130ec2 drm/i915/pxp: Introduce Intel PXP component
+-:123: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#123: 
+new file mode 100644
+
+total: 0 errors, 1 warnings, 0 checks, 193 lines checked
+187fcb952b02 drm/i915/pxp: set KCR reg init during the boot time
+bdb7c62200bd drm/i915/pxp: Implement funcs to create the TEE channel
+-:89: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#89: 
+new file mode 100644
+
+total: 0 errors, 1 warnings, 0 checks, 245 lines checked
+ad259427e624 drm/i915/pxp: Create the arbitrary session after boot
+-:47: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#47: 
+new file mode 100644
+
+total: 0 errors, 1 warnings, 0 checks, 271 lines checked
+59fdff6af707 drm/i915/pxp: Func to send hardware session termination
+-:61: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#61: 
+new file mode 100644
+
+total: 0 errors, 1 warnings, 0 checks, 188 lines checked
+fa19c26fe841 drm/i915/pxp: Enable PXP irq worker and callback stub
+b3ff2db1b43a drm/i915/pxp: Destroy arb session upon teardown
+34248533ecd5 drm/i915/pxp: Enable PXP power management
+-:78: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#78: 
+new file mode 100644
+
+total: 0 errors, 1 warnings, 0 checks, 148 lines checked
+e9e96872b7b3 drm/i915/pxp: Expose session state for display protection flip
+339c726f3313 mei: pxp: export pavp client to me client bus
+-:32: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#32: 
+new file mode 100644
+
+total: 0 errors, 1 warnings, 0 checks, 277 lines checked
+bce23b9235c4 drm/i915/uapi: introduce drm_i915_gem_create_ext
+-:109: WARNING:LONG_LINE: line length of 120 exceeds 100 columns
+#109: FILE: include/uapi/drm/i915_drm.h:395:
++#define DRM_IOCTL_I915_GEM_CREATE_EXT   DRM_IOWR(DRM_COMMAND_BASE + DRM_I915_GEM_CREATE, struct drm_i915_gem_create_ext)
+
+total: 0 errors, 1 warnings, 0 checks, 135 lines checked
+35f7c19a2c16 drm/i915/pxp: User interface for Protected buffer
+9df9f88c8a7b drm/i915/pxp: Add plane decryption support
+
 
 _______________________________________________
 Intel-gfx mailing list
