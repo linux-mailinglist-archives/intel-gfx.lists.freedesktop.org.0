@@ -1,30 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F2EDB2FB58C
-	for <lists+intel-gfx@lfdr.de>; Tue, 19 Jan 2021 12:08:08 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 23E782FB58D
+	for <lists+intel-gfx@lfdr.de>; Tue, 19 Jan 2021 12:08:12 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 50E876E848;
-	Tue, 19 Jan 2021 11:08:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E394C6E83D;
+	Tue, 19 Jan 2021 11:08:09 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 21D7E6E83D
- for <intel-gfx@lists.freedesktop.org>; Tue, 19 Jan 2021 11:08:05 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BB5D66E83D
+ for <intel-gfx@lists.freedesktop.org>; Tue, 19 Jan 2021 11:08:08 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 23637619-1500050 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 23637620-1500050 
  for <intel-gfx@lists.freedesktop.org>; Tue, 19 Jan 2021 11:08:03 +0000
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Tue, 19 Jan 2021 11:07:57 +0000
-Message-Id: <20210119110802.22228-1-chris@chris-wilson.co.uk>
+Date: Tue, 19 Jan 2021 11:07:58 +0000
+Message-Id: <20210119110802.22228-2-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.20.1
+In-Reply-To: <20210119110802.22228-1-chris@chris-wilson.co.uk>
+References: <20210119110802.22228-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [CI 1/6] drm/i915/gt: One more flush for Baytrail clear
- residuals
+Subject: [Intel-gfx] [CI 2/6] drm/i915/selftests: Prepare the selftests for
+ engine resets with ring submission
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,55 +44,112 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-CI reports that Baytail requires one more invalidate after CACHE_MODE
-for it to be happy.
+The engine resets selftests kick the tasklets, safe up until now as only
+execlists supported engine resets.
 
-Fixes: ace44e13e577 ("drm/i915/gt: Clear CACHE_MODE prior to clearing residuals")
 Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
-Cc: Akeem G Abodunrin <akeem.g.abodunrin@intel.com>
 Reviewed-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/gt/gen7_renderclear.c | 9 ++++++---
- 1 file changed, 6 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/i915/gt/selftest_hangcheck.c | 18 ++++++++++++++----
+ drivers/gpu/drm/i915/gt/selftest_reset.c     | 11 ++++++++---
+ 2 files changed, 22 insertions(+), 7 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gt/gen7_renderclear.c b/drivers/gpu/drm/i915/gt/gen7_renderclear.c
-index 39478712769f..8551e6de50e8 100644
---- a/drivers/gpu/drm/i915/gt/gen7_renderclear.c
-+++ b/drivers/gpu/drm/i915/gt/gen7_renderclear.c
-@@ -353,19 +353,21 @@ static void gen7_emit_pipeline_flush(struct batch_chunk *batch)
+diff --git a/drivers/gpu/drm/i915/gt/selftest_hangcheck.c b/drivers/gpu/drm/i915/gt/selftest_hangcheck.c
+index 460c3e9542f4..463bb6a700c8 100644
+--- a/drivers/gpu/drm/i915/gt/selftest_hangcheck.c
++++ b/drivers/gpu/drm/i915/gt/selftest_hangcheck.c
+@@ -704,6 +704,7 @@ static int __igt_reset_engine(struct intel_gt *gt, bool active)
  
- static void gen7_emit_pipeline_invalidate(struct batch_chunk *batch)
- {
--	u32 *cs = batch_alloc_items(batch, 0, 8);
-+	u32 *cs = batch_alloc_items(batch, 0, 10);
+ 	for_each_engine(engine, gt, id) {
+ 		unsigned int reset_count, reset_engine_count;
++		unsigned long count;
+ 		IGT_TIMEOUT(end_time);
  
- 	/* ivb: Stall before STATE_CACHE_INVALIDATE */
--	*cs++ = GFX_OP_PIPE_CONTROL(4);
-+	*cs++ = GFX_OP_PIPE_CONTROL(5);
- 	*cs++ = PIPE_CONTROL_STALL_AT_SCOREBOARD |
- 		PIPE_CONTROL_CS_STALL;
- 	*cs++ = 0;
- 	*cs++ = 0;
-+	*cs++ = 0;
+ 		if (active && !intel_engine_can_store_dword(engine))
+@@ -721,6 +722,7 @@ static int __igt_reset_engine(struct intel_gt *gt, bool active)
  
--	*cs++ = GFX_OP_PIPE_CONTROL(4);
-+	*cs++ = GFX_OP_PIPE_CONTROL(5);
- 	*cs++ = PIPE_CONTROL_STATE_CACHE_INVALIDATE;
- 	*cs++ = 0;
- 	*cs++ = 0;
-+	*cs++ = 0;
+ 		st_engine_heartbeat_disable(engine);
+ 		set_bit(I915_RESET_ENGINE + id, &gt->reset.flags);
++		count = 0;
+ 		do {
+ 			if (active) {
+ 				struct i915_request *rq;
+@@ -770,9 +772,13 @@ static int __igt_reset_engine(struct intel_gt *gt, bool active)
+ 				err = -EINVAL;
+ 				break;
+ 			}
++
++			count++;
+ 		} while (time_before(jiffies, end_time));
+ 		clear_bit(I915_RESET_ENGINE + id, &gt->reset.flags);
+ 		st_engine_heartbeat_enable(engine);
++		pr_info("%s: Completed %lu %s resets\n",
++			engine->name, count, active ? "active" : "idle");
  
- 	batch_advance(batch, cs);
- }
-@@ -397,6 +399,7 @@ static void emit_batch(struct i915_vma * const vma,
- 	batch_add(&cmds, 0xffff0000);
- 	batch_add(&cmds, i915_mmio_reg_offset(CACHE_MODE_1));
- 	batch_add(&cmds, 0xffff0000 | PIXEL_SUBSPAN_COLLECT_OPT_DISABLE);
-+	gen7_emit_pipeline_invalidate(&cmds);
- 	gen7_emit_pipeline_flush(&cmds);
+ 		if (err)
+ 			break;
+@@ -1623,7 +1629,8 @@ static int igt_reset_queue(void *arg)
+ 			prev = rq;
+ 			count++;
+ 		} while (time_before(jiffies, end_time));
+-		pr_info("%s: Completed %d resets\n", engine->name, count);
++		pr_info("%s: Completed %d queued resets\n",
++			engine->name, count);
  
- 	/* Switch to the media pipeline and our base address */
+ 		*h.batch = MI_BATCH_BUFFER_END;
+ 		intel_gt_chipset_flush(engine->gt);
+@@ -1720,7 +1727,8 @@ static int __igt_atomic_reset_engine(struct intel_engine_cs *engine,
+ 	GEM_TRACE("i915_reset_engine(%s:%s) under %s\n",
+ 		  engine->name, mode, p->name);
+ 
+-	tasklet_disable(t);
++	if (t->func)
++		tasklet_disable(t);
+ 	if (strcmp(p->name, "softirq"))
+ 		local_bh_disable();
+ 	p->critical_section_begin();
+@@ -1730,8 +1738,10 @@ static int __igt_atomic_reset_engine(struct intel_engine_cs *engine,
+ 	p->critical_section_end();
+ 	if (strcmp(p->name, "softirq"))
+ 		local_bh_enable();
+-	tasklet_enable(t);
+-	tasklet_hi_schedule(t);
++	if (t->func) {
++		tasklet_enable(t);
++		tasklet_hi_schedule(t);
++	}
+ 
+ 	if (err)
+ 		pr_err("i915_reset_engine(%s:%s) failed under %s\n",
+diff --git a/drivers/gpu/drm/i915/gt/selftest_reset.c b/drivers/gpu/drm/i915/gt/selftest_reset.c
+index b7befcfbdcde..8784257ec808 100644
+--- a/drivers/gpu/drm/i915/gt/selftest_reset.c
++++ b/drivers/gpu/drm/i915/gt/selftest_reset.c
+@@ -321,7 +321,10 @@ static int igt_atomic_engine_reset(void *arg)
+ 		goto out_unlock;
+ 
+ 	for_each_engine(engine, gt, id) {
+-		tasklet_disable(&engine->execlists.tasklet);
++		struct tasklet_struct *t = &engine->execlists.tasklet;
++
++		if (t->func)
++			tasklet_disable(t);
+ 		intel_engine_pm_get(engine);
+ 
+ 		for (p = igt_atomic_phases; p->name; p++) {
+@@ -345,8 +348,10 @@ static int igt_atomic_engine_reset(void *arg)
+ 		}
+ 
+ 		intel_engine_pm_put(engine);
+-		tasklet_enable(&engine->execlists.tasklet);
+-		tasklet_hi_schedule(&engine->execlists.tasklet);
++		if (t->func) {
++			tasklet_enable(t);
++			tasklet_hi_schedule(t);
++		}
+ 		if (err)
+ 			break;
+ 	}
 -- 
 2.20.1
 
