@@ -1,32 +1,44 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 41B0C2FC4CF
-	for <lists+intel-gfx@lfdr.de>; Wed, 20 Jan 2021 00:35:57 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6C62D2FC52D
+	for <lists+intel-gfx@lfdr.de>; Wed, 20 Jan 2021 00:57:23 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7B5A26E051;
-	Tue, 19 Jan 2021 23:35:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DCF386E042;
+	Tue, 19 Jan 2021 23:57:21 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 0DD9A6E045;
- Tue, 19 Jan 2021 23:35:53 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 063B0A8835;
- Tue, 19 Jan 2021 23:35:53 +0000 (UTC)
+Received: from ozlabs.org (bilbo.ozlabs.org [203.11.71.1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 075556E042;
+ Tue, 19 Jan 2021 23:57:20 +0000 (UTC)
+Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest
+ SHA256) (No client certificate requested)
+ by mail.ozlabs.org (Postfix) with ESMTPSA id 4DL5DY2223z9s2g;
+ Wed, 20 Jan 2021 10:57:16 +1100 (AEDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=canb.auug.org.au;
+ s=201702; t=1611100638;
+ bh=aU6XNAzQbH3IDoetYyr1Fi183CHr/Mb4lTKH65/VU0o=;
+ h=Date:From:To:Cc:Subject:From;
+ b=Yj4HKl1AzKXbJ+uKLZfAtSLYrs9hb5aJ2Wqz8S8SEIBshqrwSmJ8j5eaamtwE6bfz
+ jo0df5vZ/iGg8FJIHU/i8s+Z5FuwQJEe6ozl4Heb21YF6zIRAwlp7vLPt+4XBMA+p5
+ XkCEUZmG40OUHVq/3NRCDt+8sK5IXiV+3yCS2/xRzb2LSWMOS42vdmaoWBpCw5KVet
+ SA5uKfg5eQX7sDZ4nijP6GQiSu1Q3Xrn+wFV1lqlIBOF9X1p5f0WNNYBsMgHGkN6Sk
+ bD8qEEzyThymTLpr5n84yTscnF3i2un6Bq6rX1m9R93B4lsOtQrsjVVsczq4bzkugb
+ +9qDyU8eSf+Ag==
+Date: Wed, 20 Jan 2021 10:57:15 +1100
+From: Stephen Rothwell <sfr@canb.auug.org.au>
+To: Daniel Vetter <daniel.vetter@ffwll.ch>, Jani Nikula
+ <jani.nikula@linux.intel.com>, Joonas Lahtinen
+ <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Intel Graphics <intel-gfx@lists.freedesktop.org>, DRI
+ <dri-devel@lists.freedesktop.org>
+Message-ID: <20210120105715.4391dd95@canb.auug.org.au>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Tue, 19 Jan 2021 23:35:52 -0000
-Message-ID: <161109935299.4868.9101347930109608992@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210119214336.1463-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20210119214336.1463-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3Igc2Vy?=
- =?utf-8?q?ies_starting_with_=5BCI=2C1/6=5D_drm/i915/gem=3A_Almagamate_clf?=
- =?utf-8?q?lushes_on_suspend?=
+Subject: [Intel-gfx] linux-next: build failure after merge of the drm-intel
+ tree
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,260 +51,73 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============0790707338=="
+Cc: Jani Nikula <jani.nikula@intel.com>,
+ Linux Next Mailing List <linux-next@vger.kernel.org>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: multipart/mixed; boundary="===============1580378186=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0790707338==
-Content-Type: multipart/alternative;
- boundary="===============4560093348045660396=="
+--===============1580378186==
+Content-Type: multipart/signed; boundary="Sig_/7BT8h2PLWsOJZo2F4=5Rm_T";
+ protocol="application/pgp-signature"; micalg=pgp-sha256
 
---===============4560093348045660396==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+--Sig_/7BT8h2PLWsOJZo2F4=5Rm_T
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: quoted-printable
 
-== Series Details ==
+Hi all,
 
-Series: series starting with [CI,1/6] drm/i915/gem: Almagamate clflushes on suspend
-URL   : https://patchwork.freedesktop.org/series/86058/
-State : failure
+After merging the drm-intel tree, today's linux-next build (arm
+multi_v7_defconfig) failed like this:
 
-== Summary ==
+drivers/gpu/drm/msm/dp/dp_ctrl.c: In function 'dp_ctrl_use_fixed_nvid':
+drivers/gpu/drm/msm/dp/dp_ctrl.c:1425:16: error: implicit declaration of fu=
+nction 'drm_dp_get_edid_quirks'; did you mean 'drm_do_get_edid'? [-Werror=
+=3Dimplicit-function-declaration]
+ 1425 |  edid_quirks =3D drm_dp_get_edid_quirks(ctrl->panel->edid);
+      |                ^~~~~~~~~~~~~~~~~~~~~~
+      |                drm_do_get_edid
+drivers/gpu/drm/msm/dp/dp_ctrl.c:1431:11: error: too many arguments to func=
+tion 'drm_dp_has_quirk'
+ 1431 |   return (drm_dp_has_quirk(&ctrl->panel->desc, edid_quirks,
+      |           ^~~~~~~~~~~~~~~~
+In file included from drivers/gpu/drm/msm/dp/dp_ctrl.c:15:
+include/drm/drm_dp_helper.h:2087:1: note: declared here
+ 2087 | drm_dp_has_quirk(const struct drm_dp_desc *desc, enum drm_dp_quirk =
+quirk)
+      | ^~~~~~~~~~~~~~~~
 
-CI Bug Log - changes from CI_DRM_9646 -> Patchwork_19416
-====================================================
+Caused by commit
 
-Summary
--------
+  7c553f8b5a7d ("drm/dp: Revert "drm/dp: Introduce EDID-based quirks"")
 
-  **FAILURE**
+Since the drm-intel tree still has its other build failure, I used the
+version from next-20210108 again today.
 
-  Serious unknown changes coming with Patchwork_19416 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_19416, please notify your bug team to allow them
-  to document this new failure mode, which will reduce false positives in CI.
+--=20
+Cheers,
+Stephen Rothwell
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19416/index.html
+--Sig_/7BT8h2PLWsOJZo2F4=5Rm_T
+Content-Type: application/pgp-signature
+Content-Description: OpenPGP digital signature
 
-Possible new issues
--------------------
+-----BEGIN PGP SIGNATURE-----
 
-  Here are the unknown changes that may have been introduced in Patchwork_19416:
+iQEzBAEBCAAdFiEENIC96giZ81tWdLgKAVBC80lX0GwFAmAHcdsACgkQAVBC80lX
+0GyL0gf9Gykgwv1C+podlywSGDeNb325PRn53gcy3mTvRd319wLt8Kna1AT/js1V
+lACULa7REx8bsskFFYlqIBuDBtr/ynoSM5Ptti+WRvBVwoPHzXfwlRNwIJnjepIb
+UgCDcuFz6V+FWEQL2VhPL2ZmI+BkaNPTfZiiJGrwT2MKChkiq0dB/3EtxTxn6hP1
+6e2oNmiX/byN+hPWfKBM7L1mI0C8mpglDT60vipysRsvUFT0TGMRgOdSNYYIfa23
+RWbn4icWFGv8XQEhIfbMg4rhYwU0V7qkg7vxw6SrPDZdm/1lZz6l26ep8Aq6Dwr7
+sEXT+ctNIffoWWjfSxpkXMbxmw3l5g==
+=0Jnl
+-----END PGP SIGNATURE-----
 
-### IGT changes ###
+--Sig_/7BT8h2PLWsOJZo2F4=5Rm_T--
 
-#### Possible regressions ####
-
-  * igt@i915_selftest@live@hangcheck:
-    - fi-byt-j1900:       [PASS][1] -> [DMESG-WARN][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9646/fi-byt-j1900/igt@i915_selftest@live@hangcheck.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19416/fi-byt-j1900/igt@i915_selftest@live@hangcheck.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_19416 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@amdgpu/amd_basic@semaphore:
-    - fi-bdw-5557u:       NOTRUN -> [SKIP][3] ([fdo#109271]) +22 similar issues
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19416/fi-bdw-5557u/igt@amdgpu/amd_basic@semaphore.html
-
-  * igt@core_hotunplug@unbind-rebind:
-    - fi-bdw-5557u:       NOTRUN -> [WARN][4] ([i915#2283])
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19416/fi-bdw-5557u/igt@core_hotunplug@unbind-rebind.html
-
-  * igt@gem_exec_suspend@basic-s3:
-    - fi-snb-2600:        [PASS][5] -> [DMESG-WARN][6] ([i915#2772])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9646/fi-snb-2600/igt@gem_exec_suspend@basic-s3.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19416/fi-snb-2600/igt@gem_exec_suspend@basic-s3.html
-
-  * igt@prime_vgem@basic-fence-flip:
-    - fi-tgl-y:           [PASS][7] -> [DMESG-WARN][8] ([i915#402]) +1 similar issue
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9646/fi-tgl-y/igt@prime_vgem@basic-fence-flip.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19416/fi-tgl-y/igt@prime_vgem@basic-fence-flip.html
-
-  * igt@runner@aborted:
-    - fi-snb-2600:        NOTRUN -> [FAIL][9] ([i915#698])
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19416/fi-snb-2600/igt@runner@aborted.html
-
-  
-#### Possible fixes ####
-
-  * igt@debugfs_test@read_all_entries:
-    - fi-tgl-y:           [DMESG-WARN][10] ([i915#402]) -> [PASS][11] +2 similar issues
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9646/fi-tgl-y/igt@debugfs_test@read_all_entries.html
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19416/fi-tgl-y/igt@debugfs_test@read_all_entries.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [i915#2283]: https://gitlab.freedesktop.org/drm/intel/issues/2283
-  [i915#2601]: https://gitlab.freedesktop.org/drm/intel/issues/2601
-  [i915#2772]: https://gitlab.freedesktop.org/drm/intel/issues/2772
-  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
-  [i915#541]: https://gitlab.freedesktop.org/drm/intel/issues/541
-  [i915#698]: https://gitlab.freedesktop.org/drm/intel/issues/698
-
-
-Participating hosts (43 -> 38)
-------------------------------
-
-  Missing    (5): fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_9646 -> Patchwork_19416
-
-  CI-20190529: 20190529
-  CI_DRM_9646: 70ce82653723536d0937ac61ddcc02d650907171 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5960: ace82fcd5f3623f8dde7c220a825873dc53dfae4 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_19416: 3b57afba781ad081a9ac9299f111b75a9afe74a5 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-3b57afba781a drm/i915/gem: Drop lru bumping on display unpinning
-79a63169ce54 drm/i915/gem: Protect used framebuffers from casual eviction
-f6677b5d148d drm/i915/gem: Use shrinkable status for unknown swizzle quirks
-bd254ec28830 drm/i915/gem: Move stolen node into GEM object union
-c444dde57c98 drm/i915/gem: Almagamate clflushes on freeze
-8184e40923e4 drm/i915/gem: Almagamate clflushes on suspend
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19416/index.html
-
---===============4560093348045660396==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>series starting with [CI,1/6] drm/i915/gem: Almagamate clflushes on suspend</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/86058/">https://patchwork.freedesktop.org/series/86058/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19416/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19416/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_9646 -&gt; Patchwork_19416</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with Patchwork_19416 absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in Patchwork_19416, please notify your bug team to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19416/index.html</p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in Patchwork_19416:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>igt@i915_selftest@live@hangcheck:<ul>
-<li>fi-byt-j1900:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9646/fi-byt-j1900/igt@i915_selftest@live@hangcheck.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19416/fi-byt-j1900/igt@i915_selftest@live@hangcheck.html">DMESG-WARN</a></li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_19416 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@amdgpu/amd_basic@semaphore:</p>
-<ul>
-<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19416/fi-bdw-5557u/igt@amdgpu/amd_basic@semaphore.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +22 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@core_hotunplug@unbind-rebind:</p>
-<ul>
-<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19416/fi-bdw-5557u/igt@core_hotunplug@unbind-rebind.html">WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2283">i915#2283</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_suspend@basic-s3:</p>
-<ul>
-<li>fi-snb-2600:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9646/fi-snb-2600/igt@gem_exec_suspend@basic-s3.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19416/fi-snb-2600/igt@gem_exec_suspend@basic-s3.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2772">i915#2772</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@prime_vgem@basic-fence-flip:</p>
-<ul>
-<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9646/fi-tgl-y/igt@prime_vgem@basic-fence-flip.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19416/fi-tgl-y/igt@prime_vgem@basic-fence-flip.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) +1 similar issue</li>
-</ul>
-</li>
-<li>
-<p>igt@runner@aborted:</p>
-<ul>
-<li>fi-snb-2600:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19416/fi-snb-2600/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/698">i915#698</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@debugfs_test@read_all_entries:<ul>
-<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9646/fi-tgl-y/igt@debugfs_test@read_all_entries.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19416/fi-tgl-y/igt@debugfs_test@read_all_entries.html">PASS</a> +2 similar issues</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Participating hosts (43 -&gt; 38)</h2>
-<p>Missing    (5): fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-bdw-samus </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_9646 -&gt; Patchwork_19416</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_9646: 70ce82653723536d0937ac61ddcc02d650907171 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_5960: ace82fcd5f3623f8dde7c220a825873dc53dfae4 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
-  Patchwork_19416: 3b57afba781ad081a9ac9299f111b75a9afe74a5 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>3b57afba781a drm/i915/gem: Drop lru bumping on display unpinning<br />
-79a63169ce54 drm/i915/gem: Protect used framebuffers from casual eviction<br />
-f6677b5d148d drm/i915/gem: Use shrinkable status for unknown swizzle quirks<br />
-bd254ec28830 drm/i915/gem: Move stolen node into GEM object union<br />
-c444dde57c98 drm/i915/gem: Almagamate clflushes on freeze<br />
-8184e40923e4 drm/i915/gem: Almagamate clflushes on suspend</p>
-
-</body>
-</html>
-
---===============4560093348045660396==--
-
---===============0790707338==
+--===============1580378186==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -303,4 +128,4 @@ Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 
---===============0790707338==--
+--===============1580378186==--
