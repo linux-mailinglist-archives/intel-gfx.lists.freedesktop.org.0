@@ -1,41 +1,41 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B949F2FB544
-	for <lists+intel-gfx@lfdr.de>; Tue, 19 Jan 2021 11:22:23 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id E58392FB558
+	for <lists+intel-gfx@lfdr.de>; Tue, 19 Jan 2021 11:28:04 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EE1C56E0F3;
-	Tue, 19 Jan 2021 10:22:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 320406E174;
+	Tue, 19 Jan 2021 10:28:03 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A4C4B6E0EF
- for <intel-gfx@lists.freedesktop.org>; Tue, 19 Jan 2021 10:22:20 +0000 (UTC)
-IronPort-SDR: fC5GO1eSIa8O1peTNCtOodZMsPGyrkErCO0AxSO6WFceuAZygu6c4FAoX7r+4UUFDFwwdqMJI9
- KAy5QPN8s0Og==
-X-IronPort-AV: E=McAfee;i="6000,8403,9868"; a="240445486"
-X-IronPort-AV: E=Sophos;i="5.79,358,1602572400"; d="scan'208";a="240445486"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Jan 2021 02:22:16 -0800
-IronPort-SDR: 557TPgi+1/OCV100kkIjvAshM3zkeGFRbq8C6crTZ1PJeQppLkDULR5k3CA4Ee1qJmcDVfYzOv
- dnG0tJGWMafQ==
-X-IronPort-AV: E=Sophos;i="5.79,358,1602572400"; d="scan'208";a="355528779"
-Received: from obaracos-mobl2.amr.corp.intel.com (HELO localhost)
- ([10.252.44.192])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Jan 2021 02:22:14 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Tue, 19 Jan 2021 12:22:01 +0200
-Message-Id: <2732431ed79f1bd732b3e468a9f45eb960f27df0.1611051544.git.jani.nikula@intel.com>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <cover.1611051543.git.jani.nikula@intel.com>
-References: <cover.1611051543.git.jani.nikula@intel.com>
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9CCA76E174
+ for <intel-gfx@lists.freedesktop.org>; Tue, 19 Jan 2021 10:28:02 +0000 (UTC)
+IronPort-SDR: a9SVA/u8Zx26T+tY7QWBypTREK5+NtBKNqAttTSI8eWyP7MnPZnZbnqyuc5nyVnVyhKo/BlaEG
+ HD6j1AiRVJTg==
+X-IronPort-AV: E=McAfee;i="6000,8403,9868"; a="175403749"
+X-IronPort-AV: E=Sophos;i="5.79,358,1602572400"; d="scan'208";a="175403749"
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Jan 2021 02:28:01 -0800
+IronPort-SDR: fDTZihazyaGqvfGhsS3D/OMpesbNpRpZRZ6nYiZgneLPT4o6DLEbCopyY8K934A9wJm7d5oqvC
+ 5cjU2KuC8b9w==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.79,358,1602572400"; d="scan'208";a="573513424"
+Received: from gaia.fi.intel.com ([10.237.72.192])
+ by fmsmga005.fm.intel.com with ESMTP; 19 Jan 2021 02:27:59 -0800
+Received: by gaia.fi.intel.com (Postfix, from userid 1000)
+ id 659555C20E6; Tue, 19 Jan 2021 12:25:14 +0200 (EET)
+From: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
+In-Reply-To: <20210119094053.6919-1-chris@chris-wilson.co.uk>
+References: <20210119094053.6919-1-chris@chris-wilson.co.uk>
+Date: Tue, 19 Jan 2021 12:25:14 +0200
+Message-ID: <87pn21gr5h.fsf@gaia.fi.intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 2/2] drm/i915/dp: read sink MSO configuration
- for eDP 1.4+
+Subject: Re: [Intel-gfx] [PATCH 1/5] drm/i915/gt: One more flush for
+ Baytrail clear residuals
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,72 +48,69 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jani.nikula@intel.com, Nischal Varide <nischal.varide@intel.com>
+Cc: Chris Wilson <chris@chris-wilson.co.uk>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Read and debug log the eDP sink MSO configuration. Do not actually do
-anything with the information yet besides logging, as there's no source
-MSO implementation.
+Chris Wilson <chris@chris-wilson.co.uk> writes:
 
-Cc: Nischal Varide <nischal.varide@intel.com>
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
----
- drivers/gpu/drm/i915/display/intel_dp.c | 29 +++++++++++++++++++++++++
- 1 file changed, 29 insertions(+)
+> CI reports that Baytail requires one more invalidate after CACHE_MODE
+> for it to be happy.
+>
+> Fixes: ace44e13e577 ("drm/i915/gt: Clear CACHE_MODE prior to clearing residuals")
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+> Cc: Akeem G Abodunrin <akeem.g.abodunrin@intel.com>
+> ---
+>  drivers/gpu/drm/i915/gt/gen7_renderclear.c | 9 ++++++---
+>  1 file changed, 6 insertions(+), 3 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/gt/gen7_renderclear.c b/drivers/gpu/drm/i915/gt/gen7_renderclear.c
+> index 39478712769f..8551e6de50e8 100644
+> --- a/drivers/gpu/drm/i915/gt/gen7_renderclear.c
+> +++ b/drivers/gpu/drm/i915/gt/gen7_renderclear.c
+> @@ -353,19 +353,21 @@ static void gen7_emit_pipeline_flush(struct batch_chunk *batch)
+>  
+>  static void gen7_emit_pipeline_invalidate(struct batch_chunk *batch)
+>  {
+> -	u32 *cs = batch_alloc_items(batch, 0, 8);
+> +	u32 *cs = batch_alloc_items(batch, 0, 10);
+>  
+>  	/* ivb: Stall before STATE_CACHE_INVALIDATE */
+> -	*cs++ = GFX_OP_PIPE_CONTROL(4);
+> +	*cs++ = GFX_OP_PIPE_CONTROL(5);
+>  	*cs++ = PIPE_CONTROL_STALL_AT_SCOREBOARD |
+>  		PIPE_CONTROL_CS_STALL;
+>  	*cs++ = 0;
+>  	*cs++ = 0;
+> +	*cs++ = 0;
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index 4a2945324e7c..70d3163a9f58 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -4175,6 +4175,33 @@ static void intel_dp_get_dsc_sink_cap(struct intel_dp *intel_dp)
- 	}
- }
- 
-+static void intel_dp_mso_init(struct intel_dp *intel_dp)
-+{
-+	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
-+	u8 mso;
-+
-+	if (intel_dp->edp_dpcd[0] < DP_EDP_14)
-+		return;
-+
-+	if (drm_dp_dpcd_readb(&intel_dp->aux, DP_EDP_MSO_LINK_CAPABILITIES, &mso) != 1) {
-+		drm_err(&i915->drm, "Failed to read MSO cap\n");
-+		return;
-+	}
-+
-+	/* Valid configurations are SST or MSO 2x1, 2x2, 4x1 */
-+	mso &= DP_EDP_MSO_NUMBER_OF_LINKS_MASK;
-+	if (mso % 2 || mso > drm_dp_max_lane_count(intel_dp->dpcd)) {
-+		drm_err(&i915->drm, "Invalid MSO link count cap %u\n", mso);
-+		mso = 0;
-+	}
-+
-+	if (mso) {
-+		drm_dbg_kms(&i915->drm, "Sink MSO %ux%u configuration\n",
-+			    mso, drm_dp_max_lane_count(intel_dp->dpcd) / mso);
-+		drm_err(&i915->drm, "Sink uses MSO, no source support\n");
-+	}
-+}
-+
- static bool
- intel_edp_init_dpcd(struct intel_dp *intel_dp)
- {
-@@ -4258,6 +4285,8 @@ intel_edp_init_dpcd(struct intel_dp *intel_dp)
- 	 */
- 	intel_edp_init_source_oui(intel_dp, true);
- 
-+	intel_dp_mso_init(intel_dp);
-+
- 	return true;
- }
- 
--- 
-2.20.1
+dw[5] seems to be only for gen8+. Does it make a difference?
 
+-Mika
+
+>  
+> -	*cs++ = GFX_OP_PIPE_CONTROL(4);
+> +	*cs++ = GFX_OP_PIPE_CONTROL(5);
+>  	*cs++ = PIPE_CONTROL_STATE_CACHE_INVALIDATE;
+>  	*cs++ = 0;
+>  	*cs++ = 0;
+> +	*cs++ = 0;
+>  
+>  	batch_advance(batch, cs);
+>  }
+> @@ -397,6 +399,7 @@ static void emit_batch(struct i915_vma * const vma,
+>  	batch_add(&cmds, 0xffff0000);
+>  	batch_add(&cmds, i915_mmio_reg_offset(CACHE_MODE_1));
+>  	batch_add(&cmds, 0xffff0000 | PIXEL_SUBSPAN_COLLECT_OPT_DISABLE);
+> +	gen7_emit_pipeline_invalidate(&cmds);
+>  	gen7_emit_pipeline_flush(&cmds);
+>  
+>  	/* Switch to the media pipeline and our base address */
+> -- 
+> 2.20.1
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
