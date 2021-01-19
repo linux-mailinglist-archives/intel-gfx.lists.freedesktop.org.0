@@ -2,31 +2,41 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 379772FB590
-	for <lists+intel-gfx@lfdr.de>; Tue, 19 Jan 2021 12:08:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9D35F2FB593
+	for <lists+intel-gfx@lfdr.de>; Tue, 19 Jan 2021 12:11:30 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 06E0F6E84B;
-	Tue, 19 Jan 2021 11:08:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0E3DD6E84F;
+	Tue, 19 Jan 2021 11:11:29 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 040316E83D
- for <intel-gfx@lists.freedesktop.org>; Tue, 19 Jan 2021 11:08:06 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 23637624-1500050 
- for <intel-gfx@lists.freedesktop.org>; Tue, 19 Jan 2021 11:08:04 +0000
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Tue, 19 Jan 2021 11:08:02 +0000
-Message-Id: <20210119110802.22228-6-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20210119110802.22228-1-chris@chris-wilson.co.uk>
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4CB606E84F
+ for <intel-gfx@lists.freedesktop.org>; Tue, 19 Jan 2021 11:11:27 +0000 (UTC)
+IronPort-SDR: 2J4wSoNcVMGLK+dDrETIZ5p0Rrxf4kvXGVUGx6dhPKz7s4+gMnHS06szvGjr34lZ8lvdSNJjaY
+ t1P+TmU0xpUw==
+X-IronPort-AV: E=McAfee;i="6000,8403,9868"; a="175407127"
+X-IronPort-AV: E=Sophos;i="5.79,358,1602572400"; d="scan'208";a="175407127"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Jan 2021 03:11:26 -0800
+IronPort-SDR: HiJ+mYy4481/QSC1opdfkpVJym4vk19qjZ17i5KnczvjFK6AZ6wbNWXr3uMJ/p32g8G8c8924Q
+ XrZ3v1513+5g==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.79,358,1602572400"; d="scan'208";a="383887681"
+Received: from gaia.fi.intel.com ([10.237.72.192])
+ by orsmga008.jf.intel.com with ESMTP; 19 Jan 2021 03:11:25 -0800
+Received: by gaia.fi.intel.com (Postfix, from userid 1000)
+ id A25935C20E6; Tue, 19 Jan 2021 13:08:39 +0200 (EET)
+From: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
+In-Reply-To: <20210119110802.22228-4-chris@chris-wilson.co.uk>
 References: <20210119110802.22228-1-chris@chris-wilson.co.uk>
+ <20210119110802.22228-4-chris@chris-wilson.co.uk>
+Date: Tue, 19 Jan 2021 13:08:39 +0200
+Message-ID: <87ft2xgp54.fsf@gaia.fi.intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [CI 6/6] drm/i915: Mark per-engine-reset as supported
- on gen7
+Subject: Re: [Intel-gfx] [CI 4/6] drm/i915/gt: Disable the ring before
+ resetting HEAD/TAIL
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,53 +54,55 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The benefit of only resetting a single engine is that we leave other
-streams of userspace work intact across a hang; vital for process
-isolation. We had wired up individual engine resets for gen6, but only
-enabled it from gen8; now let's turn it on for the forgotten gen7. gen6
-is still a mystery as how to unravel some global state that appears to
-be reset along with an engine (in particular the ppgtt enabling in
-GFX_MODE).
+Chris Wilson <chris@chris-wilson.co.uk> writes:
 
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Acked-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
----
- drivers/gpu/drm/i915/i915_pci.c | 5 +++--
- 1 file changed, 3 insertions(+), 2 deletions(-)
+> During the reset of ring submission, we first stop the engine by
+> clearing the HEAD/TAIL and marking the ring as disabled. However, it
+> would be safer to disable the ring (after emptying) before resetting the
+> HEAD/TAIL.
+>
+> Suggested-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
 
-diff --git a/drivers/gpu/drm/i915/i915_pci.c b/drivers/gpu/drm/i915/i915_pci.c
-index 39608381b4a4..020b5f561f07 100644
---- a/drivers/gpu/drm/i915/i915_pci.c
-+++ b/drivers/gpu/drm/i915/i915_pci.c
-@@ -455,6 +455,7 @@ static const struct intel_device_info snb_m_gt2_info = {
- 	.has_llc = 1, \
- 	.has_rc6 = 1, \
- 	.has_rc6p = 1, \
-+	.has_reset_engine = true, \
- 	.has_rps = true, \
- 	.dma_mask_size = 40, \
- 	.ppgtt_type = INTEL_PPGTT_ALIASING, \
-@@ -513,6 +514,7 @@ static const struct intel_device_info vlv_info = {
- 	.cpu_transcoder_mask = BIT(TRANSCODER_A) | BIT(TRANSCODER_B),
- 	.has_runtime_pm = 1,
- 	.has_rc6 = 1,
-+	.has_reset_engine = true,
- 	.has_rps = true,
- 	.display.has_gmch = 1,
- 	.display.has_hotplug = 1,
-@@ -571,8 +573,7 @@ static const struct intel_device_info hsw_gt3_info = {
- 	.dma_mask_size = 39, \
- 	.ppgtt_type = INTEL_PPGTT_FULL, \
- 	.ppgtt_size = 48, \
--	.has_64bit_reloc = 1, \
--	.has_reset_engine = 1
-+	.has_64bit_reloc = 1
- 
- #define BDW_PLATFORM \
- 	GEN8_FEATURES, \
--- 
-2.20.1
+Reviewed-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
 
+> ---
+>  drivers/gpu/drm/i915/gt/intel_ring_submission.c | 10 +++++++---
+>  1 file changed, 7 insertions(+), 3 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/gt/intel_ring_submission.c b/drivers/gpu/drm/i915/gt/intel_ring_submission.c
+> index 44159595d909..8a5314b97b04 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_ring_submission.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_ring_submission.c
+> @@ -301,13 +301,17 @@ static void xcs_sanitize(struct intel_engine_cs *engine)
+>  
+>  static bool stop_ring(struct intel_engine_cs *engine)
+>  {
+> +	/* Empty the ring by skipping to the end */
+>  	ENGINE_WRITE_FW(engine, RING_HEAD, ENGINE_READ_FW(engine, RING_TAIL));
+> -
+> -	ENGINE_WRITE_FW(engine, RING_HEAD, 0);
+> -	ENGINE_WRITE_FW(engine, RING_TAIL, 0);
+> +	ENGINE_POSTING_READ(engine, RING_HEAD);
+>  
+>  	/* The ring must be empty before it is disabled */
+>  	ENGINE_WRITE_FW(engine, RING_CTL, 0);
+> +	ENGINE_POSTING_READ(engine, RING_CTL);
+> +
+> +	/* Then reset the disabled ring */
+> +	ENGINE_WRITE_FW(engine, RING_HEAD, 0);
+> +	ENGINE_WRITE_FW(engine, RING_TAIL, 0);
+>  
+>  	return (ENGINE_READ_FW(engine, RING_HEAD) & HEAD_ADDR) == 0;
+>  }
+> -- 
+> 2.20.1
+>
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
