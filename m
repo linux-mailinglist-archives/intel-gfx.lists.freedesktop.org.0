@@ -2,37 +2,41 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 324E32FB46E
-	for <lists+intel-gfx@lfdr.de>; Tue, 19 Jan 2021 09:43:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E70412FB48B
+	for <lists+intel-gfx@lfdr.de>; Tue, 19 Jan 2021 09:51:05 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7B0666E850;
-	Tue, 19 Jan 2021 08:43:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 615DE89B49;
+	Tue, 19 Jan 2021 08:51:04 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 514BF6E850;
- Tue, 19 Jan 2021 08:43:35 +0000 (UTC)
-IronPort-SDR: vksi/vl/U+yGHai4MeVV0zE4gRuc0me9zxsRLEO88WptAgmsbc/8xWQ2cVOM9NmcjM2bU8i2+e
- u/pZOpxstHQQ==
-X-IronPort-AV: E=McAfee;i="6000,8403,9868"; a="158669422"
-X-IronPort-AV: E=Sophos;i="5.79,358,1602572400"; d="scan'208";a="158669422"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Jan 2021 00:43:29 -0800
-IronPort-SDR: tXbXt6QzUtDSMeOmMZhh5AIMBjfVFcOlEUuzor+nlYNLTdzl7h4OM1iUl0GcXkdRxx7QXrEAE8
- osc8nPn3fdMA==
-X-IronPort-AV: E=Sophos;i="5.79,358,1602572400"; d="scan'208";a="466611625"
-Received: from jkrzyszt-desk.igk.intel.com ([172.22.244.18])
- by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Jan 2021 00:43:27 -0800
-From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-To: igt-dev@lists.freedesktop.org
-Date: Tue, 19 Jan 2021 09:42:57 +0100
-Message-Id: <20210119084257.25552-1-janusz.krzysztofik@linux.intel.com>
-X-Mailer: git-send-email 2.21.1
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D102689B49
+ for <intel-gfx@lists.freedesktop.org>; Tue, 19 Jan 2021 08:51:02 +0000 (UTC)
+IronPort-SDR: TzyMoI57O4MSXHeIt/UGXDO0PACWm6S4dNpieQQDZLWA/1REmZoDyFlXBhU025vpMoZT+ZrML6
+ sSWJdXleTg8A==
+X-IronPort-AV: E=McAfee;i="6000,8403,9868"; a="178118215"
+X-IronPort-AV: E=Sophos;i="5.79,358,1602572400"; d="scan'208";a="178118215"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Jan 2021 00:50:53 -0800
+IronPort-SDR: +lTT9kCOZbxKrOtXOXDlnRihjkB3nDty7cE3zBBTSn2HkfSArUlIFUuR3OMkq402bW3KyPCsRM
+ nOLawBKkAVPw==
+X-IronPort-AV: E=Sophos;i="5.79,358,1602572400"; d="scan'208";a="383851506"
+Received: from obaracos-mobl2.amr.corp.intel.com (HELO localhost)
+ ([10.252.44.192])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Jan 2021 00:50:50 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>
+In-Reply-To: <20210118154355.24453-1-ville.syrjala@linux.intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <87lfcqobpl.fsf@intel.com>
+ <20210118154355.24453-1-ville.syrjala@linux.intel.com>
+Date: Tue, 19 Jan 2021 10:50:47 +0200
+Message-ID: <87a6t5nwd4.fsf@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH i-g-t] tests/core_hotunplug: Reduce debug noise
- on stdout
+Subject: Re: [Intel-gfx] [PATCH -fixes] drm/i915: Only enable DFP
+ 4:4:4->4:2:0 conversion when outputting YCbCr 4:4:4
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,274 +49,91 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: intel-gfx@lists.freedesktop.org, stable@vger.kernel.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Since igt_fixture sections are processed unconditionally regardless of
-which subtest has been requested, they can now emit a lot of unrelated
-debug messages which can make the picture less clear.  Avoid emitting
-those messages from outside igt_subtest sections.
-
-Move device close status prerequisite checks from igt_fixture sections
-into subtest execution paths.  For simplicity, pass any device close
-errors, including those from health checks, to next sections via a
-single .fd.drm data structure field.
-
-Moreover, postpone initial device health check until first actually
-selected subtest is started.  In order to let that subtest skip on
-unsuccessful initial health check, not fail, move the decision whether
-to fail or skip on error from the health check helper to its users.
-
-Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
----
- tests/core_hotunplug.c | 86 +++++++++++++++++++++++-------------------
- 1 file changed, 48 insertions(+), 38 deletions(-)
-
-diff --git a/tests/core_hotunplug.c b/tests/core_hotunplug.c
-index 91506fa72..e7d2a4472 100644
---- a/tests/core_hotunplug.c
-+++ b/tests/core_hotunplug.c
-@@ -49,6 +49,7 @@ struct hotunplug {
- 	} fd;	/* >= 0: valid fd, == -1: closed, < -1: close failed */
- 	const char *dev_bus_addr;
- 	const char *failure;
-+	bool need_healthcheck;
- };
- 
- /* Helpers */
-@@ -210,6 +211,12 @@ static void cleanup(struct hotunplug *priv)
- 	priv->fd.drm = close_device(priv->fd.drm, "post ", "exercised ");
- 	priv->fd.drm_hc = close_device(priv->fd.drm_hc, "post ",
- 							"health checked ");
-+	/* pass device close errors to next sections via priv->fd.drm */
-+	if (priv->fd.drm_hc < -1) {
-+		priv->fd.drm = priv->fd.drm_hc;
-+		priv->fd.drm_hc = -1;
-+	}
-+
- 	priv->fd.sysfs_dev = close_sysfs(priv->fd.sysfs_dev);
- }
- 
-@@ -346,9 +353,9 @@ static void node_healthcheck(struct hotunplug *priv, unsigned flags)
- 
- 		priv->failure = "Device sysfs healthckeck failure!";
- 		local_debug("%s\n", "running device sysfs healthcheck");
--		igt_assert(igt_sysfs_path(fd_drm, path, sizeof(path)));
--		igt_assert(igt_debugfs_path(fd_drm, path, sizeof(path)));
--		priv->failure = NULL;
-+		if (igt_sysfs_path(fd_drm, path, sizeof(path)) &&
-+		    igt_debugfs_path(fd_drm, path, sizeof(path)))
-+			priv->failure = NULL;
- 	}
- 
- 	fd_drm = close_device(fd_drm, "", "health checked ");
-@@ -356,7 +363,7 @@ static void node_healthcheck(struct hotunplug *priv, unsigned flags)
- 		priv->fd.drm_hc = fd_drm;
- }
- 
--static void healthcheck(struct hotunplug *priv, bool recover)
-+static bool healthcheck(struct hotunplug *priv, bool recover)
- {
- 	/* device name may have changed, rebuild IGT device list */
- 	igt_devices_scan(true);
-@@ -366,8 +373,19 @@ static void healthcheck(struct hotunplug *priv, bool recover)
- 		node_healthcheck(priv,
- 				 FLAG_RENDER | (recover ? FLAG_RECOVER : 0));
- 
--	/* not only request igt_abort on failure, also fail the health check */
--	igt_fail_on_f(priv->failure, "%s\n", priv->failure);
-+	return !priv->failure;
-+}
-+
-+static void pre_check(struct hotunplug *priv)
-+{
-+	igt_require(priv->fd.drm == -1);
-+
-+	if (priv->need_healthcheck) {
-+		igt_require_f(healthcheck(priv, false), "%s\n", priv->failure);
-+		priv->need_healthcheck = false;
-+
-+		igt_require(priv->fd.drm_hc == -1);
-+	}
- }
- 
- static void recover(struct hotunplug *priv)
-@@ -386,7 +404,7 @@ static void recover(struct hotunplug *priv)
- 		driver_bind(priv, 60);
- 
- 	if (priv->failure)
--		healthcheck(priv, true);
-+		igt_assert_f(healthcheck(priv, true), "%s\n", priv->failure);
- }
- 
- static void post_healthcheck(struct hotunplug *priv)
-@@ -394,8 +412,6 @@ static void post_healthcheck(struct hotunplug *priv)
- 	igt_abort_on_f(priv->failure, "%s\n", priv->failure);
- 
- 	cleanup(priv);
--	igt_require(priv->fd.drm == -1);
--	igt_require(priv->fd.drm_hc == -1);
- }
- 
- static void set_filter_from_device(int fd)
-@@ -417,32 +433,30 @@ static void set_filter_from_device(int fd)
- 
- static void unbind_rebind(struct hotunplug *priv)
- {
--	igt_assert_eq(priv->fd.drm, -1);
--	igt_assert_eq(priv->fd.drm_hc, -1);
-+	pre_check(priv);
- 
- 	driver_unbind(priv, "", 0);
- 
- 	driver_bind(priv, 0);
- 
--	healthcheck(priv, false);
-+	igt_assert_f(healthcheck(priv, false), "%s\n", priv->failure);
- }
- 
- static void unplug_rescan(struct hotunplug *priv)
- {
--	igt_assert_eq(priv->fd.drm, -1);
--	igt_assert_eq(priv->fd.drm_hc, -1);
-+	pre_check(priv);
- 
- 	device_unplug(priv, "", 0);
- 
- 	bus_rescan(priv, 0);
- 
--	healthcheck(priv, false);
-+	igt_assert_f(healthcheck(priv, false), "%s\n", priv->failure);
- }
- 
- static void hotunbind_rebind(struct hotunplug *priv)
- {
--	igt_assert_eq(priv->fd.drm, -1);
--	igt_assert_eq(priv->fd.drm_hc, -1);
-+	pre_check(priv);
-+
- 	priv->fd.drm = local_drm_open_driver(false, "", " for hot unbind");
- 
- 	driver_unbind(priv, "hot ", 0);
-@@ -452,13 +466,13 @@ static void hotunbind_rebind(struct hotunplug *priv)
- 
- 	driver_bind(priv, 0);
- 
--	healthcheck(priv, false);
-+	igt_assert_f(healthcheck(priv, false), "%s\n", priv->failure);
- }
- 
- static void hotunplug_rescan(struct hotunplug *priv)
- {
--	igt_assert_eq(priv->fd.drm, -1);
--	igt_assert_eq(priv->fd.drm_hc, -1);
-+	pre_check(priv);
-+
- 	priv->fd.drm = local_drm_open_driver(false, "", " for hot unplug");
- 
- 	device_unplug(priv, "hot ", 0);
-@@ -468,39 +482,39 @@ static void hotunplug_rescan(struct hotunplug *priv)
- 
- 	bus_rescan(priv, 0);
- 
--	healthcheck(priv, false);
-+	igt_assert_f(healthcheck(priv, false), "%s\n", priv->failure);
- }
- 
- static void hotrebind(struct hotunplug *priv)
- {
--	igt_assert_eq(priv->fd.drm, -1);
--	igt_assert_eq(priv->fd.drm_hc, -1);
-+	pre_check(priv);
-+
- 	priv->fd.drm = local_drm_open_driver(false, "", " for hot rebind");
- 
- 	driver_unbind(priv, "hot ", 60);
- 
- 	driver_bind(priv, 0);
- 
--	healthcheck(priv, false);
-+	igt_assert_f(healthcheck(priv, false), "%s\n", priv->failure);
- }
- 
- static void hotreplug(struct hotunplug *priv)
- {
--	igt_assert_eq(priv->fd.drm, -1);
--	igt_assert_eq(priv->fd.drm_hc, -1);
-+	pre_check(priv);
-+
- 	priv->fd.drm = local_drm_open_driver(false, "", " for hot replug");
- 
- 	device_unplug(priv, "hot ", 60);
- 
- 	bus_rescan(priv, 0);
- 
--	healthcheck(priv, false);
-+	igt_assert_f(healthcheck(priv, false), "%s\n", priv->failure);
- }
- 
- static void hotrebind_lateclose(struct hotunplug *priv)
- {
--	igt_assert_eq(priv->fd.drm, -1);
--	igt_assert_eq(priv->fd.drm_hc, -1);
-+	pre_check(priv);
-+
- 	priv->fd.drm = local_drm_open_driver(false, "", " for hot rebind");
- 
- 	driver_unbind(priv, "hot ", 60);
-@@ -510,13 +524,13 @@ static void hotrebind_lateclose(struct hotunplug *priv)
- 	priv->fd.drm = close_device(priv->fd.drm, "late ", "unbound ");
- 	igt_assert_eq(priv->fd.drm, -1);
- 
--	healthcheck(priv, false);
-+	igt_assert_f(healthcheck(priv, false), "%s\n", priv->failure);
- }
- 
- static void hotreplug_lateclose(struct hotunplug *priv)
- {
--	igt_assert_eq(priv->fd.drm, -1);
--	igt_assert_eq(priv->fd.drm_hc, -1);
-+	pre_check(priv);
-+
- 	priv->fd.drm = local_drm_open_driver(false, "", " for hot replug");
- 
- 	device_unplug(priv, "hot ", 60);
-@@ -526,7 +540,7 @@ static void hotreplug_lateclose(struct hotunplug *priv)
- 	priv->fd.drm = close_device(priv->fd.drm, "late ", "removed ");
- 	igt_assert_eq(priv->fd.drm, -1);
- 
--	healthcheck(priv, false);
-+	igt_assert_f(healthcheck(priv, false), "%s\n", priv->failure);
- }
- 
- /* Main */
-@@ -536,6 +550,7 @@ igt_main
- 	struct hotunplug priv = {
- 		.fd		= { .drm = -1, .drm_hc = -1, .sysfs_dev = -1, },
- 		.failure	= NULL,
-+		.need_healthcheck = true,
- 	};
- 
- 	igt_fixture {
-@@ -570,11 +585,6 @@ igt_main
- 		igt_assert_eq(close_device(fd_drm, "", "selected "), -1);
- 
- 		prepare(&priv);
--
--		node_healthcheck(&priv, 0);
--		if (!priv.failure)
--			node_healthcheck(&priv, FLAG_RENDER);
--		igt_skip_on_f(priv.failure, "%s\n", priv.failure);
- 	}
- 
- 	igt_subtest_group {
--- 
-2.21.1
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+T24gTW9uLCAxOCBKYW4gMjAyMSwgVmlsbGUgU3lyamFsYSA8dmlsbGUuc3lyamFsYUBsaW51eC5p
+bnRlbC5jb20+IHdyb3RlOgo+IEZyb206IFZpbGxlIFN5cmrDpGzDpCA8dmlsbGUuc3lyamFsYUBs
+aW51eC5pbnRlbC5jb20+Cj4KPiBMZXQncyBub3QgZW5hYmxlIHRoZSA0OjQ6NC0+NDoyOjAgY29u
+dmVyc2lvbiBiaXQgaW4gdGhlIERGUCB1bmxlc3Mgd2UncmUKPiBhY3R1YWxseSBvdXRwdXR0aW5n
+IFlDYkNyIDQ6NDo0LiBJdCB3b3VsZCBhcHBlYXIgc29tZSBwcm90b2NvbAo+IGNvbnZlcnRlcnMg
+YmxpbmR5IGNvbnN1bHQgdGhpcyBiaXQgZXZlbiB3aGVuIHRoZSBzb3VyY2UgaXMgb3V0cHV0dGlu
+Zwo+IFJHQiwgcmVzdWx0aW5nIGluIGEgdmlzdWFsIG1lc3MuCj4KPiBDYzogc3RhYmxlQHZnZXIu
+a2VybmVsLm9yZwo+IENsb3NlczogaHR0cHM6Ly9naXRsYWIuZnJlZWRlc2t0b3Aub3JnL2RybS9p
+bnRlbC8tL2lzc3Vlcy8yOTE0Cj4gU2lnbmVkLW9mZi1ieTogVmlsbGUgU3lyasOkbMOkIDx2aWxs
+ZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4KPiBMaW5rOiBodHRwczovL3BhdGNod29yay5mcmVl
+ZGVza3RvcC5vcmcvcGF0Y2gvbXNnaWQvMjAyMTAxMTExNjQxMTEuMTMzMDItMS12aWxsZS5zeXJq
+YWxhQGxpbnV4LmludGVsLmNvbQo+IEZpeGVzOiAxODE1NjdhYTlmMGQgKCJkcm0vaTkxNTogRG8g
+WUNiQ3IgNDQ0LT40MjAgY29udmVyc2lvbiB2aWEgRFAgcHJvdG9jb2wgY29udmVydGVycyIpCj4g
+UmV2aWV3ZWQtYnk6IEphbmkgTmlrdWxhIDxqYW5pLm5pa3VsYUBpbnRlbC5jb20+Cj4gKGNoZXJy
+eSBwaWNrZWQgZnJvbSBjb21taXQgMzE3MGEyMWY3MDU5YzQ2NjBjNDY5ZjU5YmY1MjlmMzcyYTU3
+ZGE1ZikKPiAtLS0KPiBVbmZvcnR1bmF0ZWx5IHRoZSBjcnRjX3N0YXRlIHBsdW1iaW5nIHRvCj4g
+aW50ZWxfZHBfY29uZmlndXJlX3Byb3RvY29sX2NvbnZlcnRlcigpIHdhcyBwYXJ0IG9mIHRoZSAK
+PiBIRE1JIDIuMSBQQ09OIHN0dWZmLCBzbyBjb3VsZG4ndCBqdXN0IGNoZXJyeS1waWNrIGl0IGFs
+b25lLgoKVGhhbmtzLCBwdXNoZWQgdG8gZml4ZXMuCgpCUiwKSmFuaS4KCj4KPiAgZHJpdmVycy9n
+cHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kZGkuYyB8IDIgKy0KPiAgZHJpdmVycy9ncHUvZHJt
+L2k5MTUvZGlzcGxheS9pbnRlbF9kcC5jICB8IDkgKysrKystLS0tCj4gIGRyaXZlcnMvZ3B1L2Ry
+bS9pOTE1L2Rpc3BsYXkvaW50ZWxfZHAuaCAgfCAzICsrLQo+ICAzIGZpbGVzIGNoYW5nZWQsIDgg
+aW5zZXJ0aW9ucygrKSwgNiBkZWxldGlvbnMoLSkKPgo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dw
+dS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RkaS5jIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlz
+cGxheS9pbnRlbF9kZGkuYwo+IGluZGV4IDkyOTQwYTBjNWVmOC4uZDVhY2U0OGIxYWNlIDEwMDY0
+NAo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGRpLmMKPiArKysg
+Yi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RkaS5jCj4gQEAgLTM3MjUsNyAr
+MzcyNSw3IEBAIHN0YXRpYyB2b2lkIGhzd19kZGlfcHJlX2VuYWJsZV9kcChzdHJ1Y3QgaW50ZWxf
+YXRvbWljX3N0YXRlICpzdGF0ZSwKPiAgCWludGVsX2RkaV9pbml0X2RwX2J1Zl9yZWcoZW5jb2Rl
+ciwgY3J0Y19zdGF0ZSk7Cj4gIAlpZiAoIWlzX21zdCkKPiAgCQlpbnRlbF9kcF9zZXRfcG93ZXIo
+aW50ZWxfZHAsIERQX1NFVF9QT1dFUl9EMCk7Cj4gLQlpbnRlbF9kcF9jb25maWd1cmVfcHJvdG9j
+b2xfY29udmVydGVyKGludGVsX2RwKTsKPiArCWludGVsX2RwX2NvbmZpZ3VyZV9wcm90b2NvbF9j
+b252ZXJ0ZXIoaW50ZWxfZHAsIGNydGNfc3RhdGUpOwo+ICAJaW50ZWxfZHBfc2lua19zZXRfZGVj
+b21wcmVzc2lvbl9zdGF0ZShpbnRlbF9kcCwgY3J0Y19zdGF0ZSwKPiAgCQkJCQkgICAgICB0cnVl
+KTsKPiAgCWludGVsX2RwX3Npbmtfc2V0X2ZlY19yZWFkeShpbnRlbF9kcCwgY3J0Y19zdGF0ZSk7
+Cj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZHAuYyBi
+L2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZHAuYwo+IGluZGV4IDM3ZjFhMTBm
+ZDAyMS4uMDkxMjNlODYyNWM0IDEwMDY0NAo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rp
+c3BsYXkvaW50ZWxfZHAuYwo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50
+ZWxfZHAuYwo+IEBAIC00MDE0LDcgKzQwMTQsOCBAQCBzdGF0aWMgdm9pZCBpbnRlbF9kcF9lbmFi
+bGVfcG9ydChzdHJ1Y3QgaW50ZWxfZHAgKmludGVsX2RwLAo+ICAJaW50ZWxfZGVfcG9zdGluZ19y
+ZWFkKGRldl9wcml2LCBpbnRlbF9kcC0+b3V0cHV0X3JlZyk7Cj4gIH0KPiAgCj4gLXZvaWQgaW50
+ZWxfZHBfY29uZmlndXJlX3Byb3RvY29sX2NvbnZlcnRlcihzdHJ1Y3QgaW50ZWxfZHAgKmludGVs
+X2RwKQo+ICt2b2lkIGludGVsX2RwX2NvbmZpZ3VyZV9wcm90b2NvbF9jb252ZXJ0ZXIoc3RydWN0
+IGludGVsX2RwICppbnRlbF9kcCwKPiArCQkJCQkgICBjb25zdCBzdHJ1Y3QgaW50ZWxfY3J0Y19z
+dGF0ZSAqY3J0Y19zdGF0ZSkKPiAgewo+ICAJc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmk5MTUg
+PSBkcF90b19pOTE1KGludGVsX2RwKTsKPiAgCXU4IHRtcDsKPiBAQCAtNDAzMyw4ICs0MDM0LDgg
+QEAgdm9pZCBpbnRlbF9kcF9jb25maWd1cmVfcHJvdG9jb2xfY29udmVydGVyKHN0cnVjdCBpbnRl
+bF9kcCAqaW50ZWxfZHApCj4gIAkJZHJtX2RiZ19rbXMoJmk5MTUtPmRybSwgIkZhaWxlZCB0byBz
+ZXQgcHJvdG9jb2wgY29udmVydGVyIEhETUkgbW9kZSB0byAlc1xuIiwKPiAgCQkJICAgIGVuYWJs
+ZWRkaXNhYmxlZChpbnRlbF9kcC0+aGFzX2hkbWlfc2luaykpOwo+ICAKPiAtCXRtcCA9IGludGVs
+X2RwLT5kZnAueWNiY3JfNDQ0X3RvXzQyMCA/Cj4gLQkJRFBfQ09OVkVSU0lPTl9UT19ZQ0JDUjQy
+MF9FTkFCTEUgOiAwOwo+ICsJdG1wID0gY3J0Y19zdGF0ZS0+b3V0cHV0X2Zvcm1hdCA9PSBJTlRF
+TF9PVVRQVVRfRk9STUFUX1lDQkNSNDQ0ICYmCj4gKwkJaW50ZWxfZHAtPmRmcC55Y2Jjcl80NDRf
+dG9fNDIwID8gRFBfQ09OVkVSU0lPTl9UT19ZQ0JDUjQyMF9FTkFCTEUgOiAwOwo+ICAKPiAgCWlm
+IChkcm1fZHBfZHBjZF93cml0ZWIoJmludGVsX2RwLT5hdXgsCj4gIAkJCSAgICAgICBEUF9QUk9U
+T0NPTF9DT05WRVJURVJfQ09OVFJPTF8xLCB0bXApICE9IDEpCj4gQEAgLTQwODgsNyArNDA4OSw3
+IEBAIHN0YXRpYyB2b2lkIGludGVsX2VuYWJsZV9kcChzdHJ1Y3QgaW50ZWxfYXRvbWljX3N0YXRl
+ICpzdGF0ZSwKPiAgCX0KPiAgCj4gIAlpbnRlbF9kcF9zZXRfcG93ZXIoaW50ZWxfZHAsIERQX1NF
+VF9QT1dFUl9EMCk7Cj4gLQlpbnRlbF9kcF9jb25maWd1cmVfcHJvdG9jb2xfY29udmVydGVyKGlu
+dGVsX2RwKTsKPiArCWludGVsX2RwX2NvbmZpZ3VyZV9wcm90b2NvbF9jb252ZXJ0ZXIoaW50ZWxf
+ZHAsIHBpcGVfY29uZmlnKTsKPiAgCWludGVsX2RwX3N0YXJ0X2xpbmtfdHJhaW4oaW50ZWxfZHAs
+IHBpcGVfY29uZmlnKTsKPiAgCWludGVsX2RwX3N0b3BfbGlua190cmFpbihpbnRlbF9kcCwgcGlw
+ZV9jb25maWcpOwo+ICAKPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxh
+eS9pbnRlbF9kcC5oIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kcC5oCj4g
+aW5kZXggYjg3MWEwOWI2OTAxLi4wNWY3ZGRmN2E3OTUgMTAwNjQ0Cj4gLS0tIGEvZHJpdmVycy9n
+cHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kcC5oCj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5
+MTUvZGlzcGxheS9pbnRlbF9kcC5oCj4gQEAgLTUxLDcgKzUxLDggQEAgaW50IGludGVsX2RwX2dl
+dF9saW5rX3RyYWluX2ZhbGxiYWNrX3ZhbHVlcyhzdHJ1Y3QgaW50ZWxfZHAgKmludGVsX2RwLAo+
+ICBpbnQgaW50ZWxfZHBfcmV0cmFpbl9saW5rKHN0cnVjdCBpbnRlbF9lbmNvZGVyICplbmNvZGVy
+LAo+ICAJCQkgIHN0cnVjdCBkcm1fbW9kZXNldF9hY3F1aXJlX2N0eCAqY3R4KTsKPiAgdm9pZCBp
+bnRlbF9kcF9zZXRfcG93ZXIoc3RydWN0IGludGVsX2RwICppbnRlbF9kcCwgdTggbW9kZSk7Cj4g
+LXZvaWQgaW50ZWxfZHBfY29uZmlndXJlX3Byb3RvY29sX2NvbnZlcnRlcihzdHJ1Y3QgaW50ZWxf
+ZHAgKmludGVsX2RwKTsKPiArdm9pZCBpbnRlbF9kcF9jb25maWd1cmVfcHJvdG9jb2xfY29udmVy
+dGVyKHN0cnVjdCBpbnRlbF9kcCAqaW50ZWxfZHAsCj4gKwkJCQkJICAgY29uc3Qgc3RydWN0IGlu
+dGVsX2NydGNfc3RhdGUgKmNydGNfc3RhdGUpOwo+ICB2b2lkIGludGVsX2RwX3Npbmtfc2V0X2Rl
+Y29tcHJlc3Npb25fc3RhdGUoc3RydWN0IGludGVsX2RwICppbnRlbF9kcCwKPiAgCQkJCQkgICBj
+b25zdCBzdHJ1Y3QgaW50ZWxfY3J0Y19zdGF0ZSAqY3J0Y19zdGF0ZSwKPiAgCQkJCQkgICBib29s
+IGVuYWJsZSk7CgotLSAKSmFuaSBOaWt1bGEsIEludGVsIE9wZW4gU291cmNlIEdyYXBoaWNzIENl
+bnRlcgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRl
+bC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6
+Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
