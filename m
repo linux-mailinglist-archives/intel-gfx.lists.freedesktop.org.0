@@ -1,32 +1,54 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CD14A2FB619
-	for <lists+intel-gfx@lfdr.de>; Tue, 19 Jan 2021 13:33:42 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6ACC62FB630
+	for <lists+intel-gfx@lfdr.de>; Tue, 19 Jan 2021 14:03:34 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5541F6E2C0;
-	Tue, 19 Jan 2021 12:33:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 509CC6E25B;
+	Tue, 19 Jan 2021 13:03:27 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 59CF46E243;
- Tue, 19 Jan 2021 12:33:39 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 50145A7DFC;
- Tue, 19 Jan 2021 12:33:39 +0000 (UTC)
+Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com
+ [IPv6:2a00:1450:4864:20::436])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C86336E25B
+ for <intel-gfx@lists.freedesktop.org>; Tue, 19 Jan 2021 13:03:25 +0000 (UTC)
+Received: by mail-wr1-x436.google.com with SMTP id c12so1126548wrc.7
+ for <intel-gfx@lists.freedesktop.org>; Tue, 19 Jan 2021 05:03:25 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=6eQxUJyYjcpNGooFF9KRs2Vh+KrO03OdwmCtwKSfd84=;
+ b=MU7h5plTlVYOi/yfhjJTaNzyweuruZca1u8+HHloNOKuF8gBNLzBusXXLTe2d15BEQ
+ 8KOVUb41KS0I/1q1kAg21ioRKUIW/xsWyVo7lhctUOq7CeRA2dfjRz6kQbwRtn4x8FSA
+ zJtV6eUcitlWHfHPCg/q0aLKywUZL9D0FGIoI=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=6eQxUJyYjcpNGooFF9KRs2Vh+KrO03OdwmCtwKSfd84=;
+ b=LZnrGOUI5voh01we4zmgasc2GenqcCmGfn04FWXfbcNOus+7zXYccFK5MwJtXiRj75
+ EvY87NYrBFZMi/JOUzwm6CZRArI9e+HA0SdiEyHGiawvawLsA8IdXcVVX9QPaYAdEVwG
+ PnNXcwxmQ0aP819h5QMxWYZIGpzjlGUrViFNkA/bzlhoLm3eIOr1u1whpBZG40p3mF65
+ Z2XYn/4vkZnZadS5JCzMCzA3u8hIvNgewBMhf8bN+SMINHh/8H8voBqlCKelw2A08s0I
+ SYU+WQyIra5gDIBMb1VDL/2htMdBB1Xemeb0tq/fHNU46NaS8VwQtrzq9o0Xpt1ngu1H
+ B7fw==
+X-Gm-Message-State: AOAM531O+Stsm4zOMowMoPDu17/jfWQuWTJwcv0lBeShG/F9CKdoKN3G
+ mqucLur2KVcyKMeNIwoXO+M9Ww==
+X-Google-Smtp-Source: ABdhPJxqEPlIGfDQZaX8UsE/8nzHzaavKyzbXjfCRpikMKlcA1u5hp+8qeTjF7c6ulNmawxfxXraxA==
+X-Received: by 2002:adf:90e3:: with SMTP id i90mr4510035wri.248.1611061404477; 
+ Tue, 19 Jan 2021 05:03:24 -0800 (PST)
+Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
+ by smtp.gmail.com with ESMTPSA id d199sm3546715wmd.1.2021.01.19.05.03.22
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 19 Jan 2021 05:03:23 -0800 (PST)
+From: Daniel Vetter <daniel.vetter@ffwll.ch>
+To: DRI Development <dri-devel@lists.freedesktop.org>
+Date: Tue, 19 Jan 2021 14:03:18 +0100
+Message-Id: <20210119130318.615145-1-daniel.vetter@ffwll.ch>
+X-Mailer: git-send-email 2.30.0
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Gupta, Anshuman" <anshuman.gupta@intel.com>
-Date: Tue, 19 Jan 2021 12:33:39 -0000
-Message-ID: <161105961929.4867.13555490864173639147@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210119074320.28768-1-sean.z.huang@intel.com>
-In-Reply-To: <20210119074320.28768-1-sean.z.huang@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_Introduce_Intel_PXP_component_-_Mesa_single_session_=28rev2?=
- =?utf-8?q?3=29?=
+Subject: [Intel-gfx] [PATCH] drm/syncobj: Fix use-after-free
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,73 +61,49 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: David Airlie <airlied@linux.ie>, Daniel Vetter <daniel.vetter@ffwll.ch>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Daniel Vetter <daniel.vetter@intel.com>, stable@vger.kernel.org,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
-
-Series: Introduce Intel PXP component - Mesa single session (rev23)
-URL   : https://patchwork.freedesktop.org/series/84620/
-State : warning
-
-== Summary ==
-
-$ dim checkpatch origin/drm-tip
-ca9c47130ec2 drm/i915/pxp: Introduce Intel PXP component
--:123: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
-#123: 
-new file mode 100644
-
-total: 0 errors, 1 warnings, 0 checks, 193 lines checked
-187fcb952b02 drm/i915/pxp: set KCR reg init during the boot time
-bdb7c62200bd drm/i915/pxp: Implement funcs to create the TEE channel
--:89: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
-#89: 
-new file mode 100644
-
-total: 0 errors, 1 warnings, 0 checks, 245 lines checked
-ad259427e624 drm/i915/pxp: Create the arbitrary session after boot
--:47: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
-#47: 
-new file mode 100644
-
-total: 0 errors, 1 warnings, 0 checks, 271 lines checked
-59fdff6af707 drm/i915/pxp: Func to send hardware session termination
--:61: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
-#61: 
-new file mode 100644
-
-total: 0 errors, 1 warnings, 0 checks, 188 lines checked
-fa19c26fe841 drm/i915/pxp: Enable PXP irq worker and callback stub
-b3ff2db1b43a drm/i915/pxp: Destroy arb session upon teardown
-34248533ecd5 drm/i915/pxp: Enable PXP power management
--:78: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
-#78: 
-new file mode 100644
-
-total: 0 errors, 1 warnings, 0 checks, 148 lines checked
-e9e96872b7b3 drm/i915/pxp: Expose session state for display protection flip
-339c726f3313 mei: pxp: export pavp client to me client bus
--:32: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
-#32: 
-new file mode 100644
-
-total: 0 errors, 1 warnings, 0 checks, 277 lines checked
-bce23b9235c4 drm/i915/uapi: introduce drm_i915_gem_create_ext
--:109: WARNING:LONG_LINE: line length of 120 exceeds 100 columns
-#109: FILE: include/uapi/drm/i915_drm.h:395:
-+#define DRM_IOCTL_I915_GEM_CREATE_EXT   DRM_IOWR(DRM_COMMAND_BASE + DRM_I915_GEM_CREATE, struct drm_i915_gem_create_ext)
-
-total: 0 errors, 1 warnings, 0 checks, 135 lines checked
-35f7c19a2c16 drm/i915/pxp: User interface for Protected buffer
-9df9f88c8a7b drm/i915/pxp: Add plane decryption support
-
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+V2hpbGUgcmV2aWV3aW5nIENocmlzdGlhbidzIGFubm90YXRpb24gcGF0Y2ggSSBub3RpY2VkIHRo
+YXQgd2UgaGF2ZSBhCnVzZXItYWZ0ZXItZnJlZSBmb3IgdGhlIFdBSVRfRk9SX1NVQk1JVCBjYXNl
+OiBXZSBkcm9wIHRoZSBzeW5jb2JqCnJlZmVyZW5jZSBiZWZvcmUgd2UndmUgY29tcGxldGVkIHRo
+ZSB3YWl0aW5nLgoKT2YgY291cnNlIHVzdWFsbHkgdGhlcmUncyBub3RoaW5nIGJhZCBoYXBwZW5p
+bmcgaGVyZSBzaW5jZSB1c2Vyc3BhY2UKa2VlcHMgdGhlIHJlZmVyZW5jZSwgYnV0IHdlIGNhbid0
+IHJlbHkgb24gdXNlcnNwYWNlIHRvIHBsYXkgbmljZSBoZXJlIQoKU2lnbmVkLW9mZi1ieTogRGFu
+aWVsIFZldHRlciA8ZGFuaWVsLnZldHRlckBpbnRlbC5jb20+CkZpeGVzOiBiYzljODBmZTAxYTIg
+KCJkcm0vc3luY29iajogdXNlIHRoZSB0aW1lbGluZSBwb2ludCBpbiBkcm1fc3luY29ial9maW5k
+X2ZlbmNlIHY0IikKQ2M6IENocmlzdGlhbiBLw7ZuaWcgPGNocmlzdGlhbi5rb2VuaWdAYW1kLmNv
+bT4KQ2M6IExpb25lbCBMYW5kd2VybGluIDxsaW9uZWwuZy5sYW5kd2VybGluQGludGVsLmNvbT4K
+Q2M6IE1hYXJ0ZW4gTGFua2hvcnN0IDxtYWFydGVuLmxhbmtob3JzdEBsaW51eC5pbnRlbC5jb20+
+CkNjOiBNYXhpbWUgUmlwYXJkIDxtcmlwYXJkQGtlcm5lbC5vcmc+CkNjOiBUaG9tYXMgWmltbWVy
+bWFubiA8dHppbW1lcm1hbm5Ac3VzZS5kZT4KQ2M6IERhdmlkIEFpcmxpZSA8YWlybGllZEBsaW51
+eC5pZT4KQ2M6IERhbmllbCBWZXR0ZXIgPGRhbmllbEBmZndsbC5jaD4KQ2M6IGRyaS1kZXZlbEBs
+aXN0cy5mcmVlZGVza3RvcC5vcmcKQ2M6IDxzdGFibGVAdmdlci5rZXJuZWwub3JnPiAjIHY1LjIr
+Ci0tLQogZHJpdmVycy9ncHUvZHJtL2RybV9zeW5jb2JqLmMgfCA4ICsrKysrLS0tCiAxIGZpbGUg
+Y2hhbmdlZCwgNSBpbnNlcnRpb25zKCspLCAzIGRlbGV0aW9ucygtKQoKZGlmZiAtLWdpdCBhL2Ry
+aXZlcnMvZ3B1L2RybS9kcm1fc3luY29iai5jIGIvZHJpdmVycy9ncHUvZHJtL2RybV9zeW5jb2Jq
+LmMKaW5kZXggNmU3NGU2NzQ1ZWNhLi4zNDkxNDYwNDk4NDkgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMv
+Z3B1L2RybS9kcm1fc3luY29iai5jCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9kcm1fc3luY29iai5j
+CkBAIC0zODgsMTkgKzM4OCwxOCBAQCBpbnQgZHJtX3N5bmNvYmpfZmluZF9mZW5jZShzdHJ1Y3Qg
+ZHJtX2ZpbGUgKmZpbGVfcHJpdmF0ZSwKIAkJcmV0dXJuIC1FTk9FTlQ7CiAKIAkqZmVuY2UgPSBk
+cm1fc3luY29ial9mZW5jZV9nZXQoc3luY29iaik7Ci0JZHJtX3N5bmNvYmpfcHV0KHN5bmNvYmop
+OwogCiAJaWYgKCpmZW5jZSkgewogCQlyZXQgPSBkbWFfZmVuY2VfY2hhaW5fZmluZF9zZXFubyhm
+ZW5jZSwgcG9pbnQpOwogCQlpZiAoIXJldCkKLQkJCXJldHVybiAwOworCQkJZ290byBvdXQ7CiAJ
+CWRtYV9mZW5jZV9wdXQoKmZlbmNlKTsKIAl9IGVsc2UgewogCQlyZXQgPSAtRUlOVkFMOwogCX0K
+IAogCWlmICghKGZsYWdzICYgRFJNX1NZTkNPQkpfV0FJVF9GTEFHU19XQUlUX0ZPUl9TVUJNSVQp
+KQotCQlyZXR1cm4gcmV0OworCQlnb3RvIG91dDsKIAogCW1lbXNldCgmd2FpdCwgMCwgc2l6ZW9m
+KHdhaXQpKTsKIAl3YWl0LnRhc2sgPSBjdXJyZW50OwpAQCAtNDMyLDYgKzQzMSw5IEBAIGludCBk
+cm1fc3luY29ial9maW5kX2ZlbmNlKHN0cnVjdCBkcm1fZmlsZSAqZmlsZV9wcml2YXRlLAogCWlm
+ICh3YWl0Lm5vZGUubmV4dCkKIAkJZHJtX3N5bmNvYmpfcmVtb3ZlX3dhaXQoc3luY29iaiwgJndh
+aXQpOwogCitvdXQ6CisJZHJtX3N5bmNvYmpfcHV0KHN5bmNvYmopOworCiAJcmV0dXJuIHJldDsK
+IH0KIEVYUE9SVF9TWU1CT0woZHJtX3N5bmNvYmpfZmluZF9mZW5jZSk7Ci0tIAoyLjMwLjAKCl9f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBt
+YWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3Rz
+LmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
