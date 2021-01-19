@@ -2,32 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 876B52FBCF3
-	for <lists+intel-gfx@lfdr.de>; Tue, 19 Jan 2021 17:53:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 09FA72FBD1C
+	for <lists+intel-gfx@lfdr.de>; Tue, 19 Jan 2021 18:02:44 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4F6BB6E429;
-	Tue, 19 Jan 2021 16:53:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 93FE66E2D7;
+	Tue, 19 Jan 2021 17:02:41 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 76D886E429
- for <intel-gfx@lists.freedesktop.org>; Tue, 19 Jan 2021 16:53:08 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 521856E2D7
+ for <intel-gfx@lists.freedesktop.org>; Tue, 19 Jan 2021 17:02:39 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from localhost (unverified [78.156.65.138]) 
  by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 23641524-1500050 for multiple; Tue, 19 Jan 2021 16:53:01 +0000
+ 23641623-1500050 for multiple; Tue, 19 Jan 2021 17:02:35 +0000
 MIME-Version: 1.0
-In-Reply-To: <YAcL/GQ0B3H1lJ5I@intel.com>
-References: <20210118115929.23509-1-chris@chris-wilson.co.uk>
- <YAcL/GQ0B3H1lJ5I@intel.com>
+In-Reply-To: <CAM0jSHO_bTSEJgkEAzw2_a3=OYvi1tJKQ3Vew9RrJbCZkfUTyQ@mail.gmail.com>
+References: <20210119144912.12653-1-chris@chris-wilson.co.uk>
+ <20210119144912.12653-6-chris@chris-wilson.co.uk>
+ <CAM0jSHO_bTSEJgkEAzw2_a3=OYvi1tJKQ3Vew9RrJbCZkfUTyQ@mail.gmail.com>
 From: Chris Wilson <chris@chris-wilson.co.uk>
-To: Ville Syrjälä <ville.syrjala@linux.intel.com>
-Date: Tue, 19 Jan 2021 16:53:00 +0000
-Message-ID: <161107518018.7548.5387427247860402232@build.alporthouse.com>
+To: Matthew Auld <matthew.william.auld@gmail.com>
+Date: Tue, 19 Jan 2021 17:02:34 +0000
+Message-ID: <161107575499.7548.13117018595783582424@build.alporthouse.com>
 User-Agent: alot/0.9
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/display: Apply interactive
- priority to explicit flip fences
+Subject: Re: [Intel-gfx] [PATCH 6/6] drm/i915/gem: Drop lru bumping on
+ display unpinning
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,47 +41,66 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-UXVvdGluZyBWaWxsZSBTeXJqw6Rsw6QgKDIwMjEtMDEtMTkgMTY6NDI6MzYpCj4gT24gTW9uLCBK
-YW4gMTgsIDIwMjEgYXQgMTE6NTk6MjlBTSArMDAwMCwgQ2hyaXMgV2lsc29uIHdyb3RlOgo+ID4g
-K3ZvaWQgaTkxNV9nZW1fZmVuY2Vfd2FpdF9wcmlvcml0eShzdHJ1Y3QgZG1hX2ZlbmNlICpmZW5j
-ZSwKPiA+ICsgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgY29uc3Qgc3RydWN0IGk5MTVf
-c2NoZWRfYXR0ciAqYXR0cikKPiA+ICt7Cj4gPiArICAgICBpZiAoZG1hX2ZlbmNlX2lzX3NpZ25h
-bGVkKGZlbmNlKSkKPiA+ICsgICAgICAgICAgICAgcmV0dXJuOwo+ID4gKwo+ID4gKyAgICAgbG9j
-YWxfYmhfZGlzYWJsZSgpOwo+ID4gKwo+ID4gICAgICAgLyogUmVjdXJzZSBvbmNlIGludG8gYSBm
-ZW5jZS1hcnJheSAqLwo+ID4gICAgICAgaWYgKGRtYV9mZW5jZV9pc19hcnJheShmZW5jZSkpIHsK
-PiA+ICAgICAgICAgICAgICAgc3RydWN0IGRtYV9mZW5jZV9hcnJheSAqYXJyYXkgPSB0b19kbWFf
-ZmVuY2VfYXJyYXkoZmVuY2UpOwo+ID4gICAgICAgICAgICAgICBpbnQgaTsKPiA+ICAKPiA+ICAg
-ICAgICAgICAgICAgZm9yIChpID0gMDsgaSA8IGFycmF5LT5udW1fZmVuY2VzOyBpKyspCj4gPiAt
-ICAgICAgICAgICAgICAgICAgICAgX19mZW5jZV9zZXRfcHJpb3JpdHkoYXJyYXktPmZlbmNlc1tp
-XSwgYXR0cik7Cj4gPiArICAgICAgICAgICAgICAgICAgICAgZmVuY2Vfc2V0X3ByaW9yaXR5KGFy
-cmF5LT5mZW5jZXNbaV0sIGF0dHIpOwo+ID4gKyAgICAgfSBlbHNlIGlmIChfX2RtYV9mZW5jZV9p
-c19jaGFpbihmZW5jZSkpIHsKPiA+ICsgICAgICAgICAgICAgc3RydWN0IGRtYV9mZW5jZSAqaXRl
-cjsKPiA+ICsKPiA+ICsgICAgICAgICAgICAgZG1hX2ZlbmNlX2NoYWluX2Zvcl9lYWNoKGl0ZXIs
-IGZlbmNlKSB7Cj4gPiArICAgICAgICAgICAgICAgICAgICAgaWYgKCFmZW5jZV9zZXRfcHJpb3Jp
-dHkodG9fZG1hX2ZlbmNlX2NoYWluKGl0ZXIpLT5mZW5jZSwKPiA+ICsgICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICBhdHRyKSkKPiA+ICsgICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgIGJyZWFrOwo+IAo+IERvZXMgdGhpcyBtZWFuIHRoZSBmZW5jZSBjaGFpbiBp
-cyBvcmRlcmVkIGluIHNvbWUgd2F5LCBpZS4gdGhlCj4gcmVzdCBvZiB0aGUgZmVuY2VzIGluIHRo
-ZSBjaGFpbiB3aWxsIGhhdmUgYmVlbiBzaWduYWxsZWQgYWxyZWFkeT8KPiBJIGNvdWxkbid0IGZp
-bmQgYW55IGRlc2NyaXB0aW9uIG9mIHdoYXQgYSBmZW5jZSBjaGFpbiByZWFsbHkgaXMKPiBhbnl3
-aGVyZS4KClllcywgYSBmZW5jZSBjaGFpbiBpcyBhIHRpbWVsaW5lIGNvbnN0cnVjdGVkIGJ5IGZl
-bmNlcy4gSXQgaXMgYXNzdW1lZAp0aGUgaW5kaXZpZHVhbCBmZW5jZXMgYXJlIGluIG9yZGVyIGJ1
-dCB0aGF0J3Mgbm90IHN0cmljdGx5IGVuZm9yY2VkLApleGNlcHQgdGhhdCB0aGUgY2hhaW4gaXMg
-YnJva2VuIGJldHdlZW4gZGlmZmVyZW50IGZlbmNlIGNvbnRleHRzLgoKRm9yIG91ciBwdXJwb3Nl
-LCB3ZSByZWFsbHkganVzdCBuZWVkIHRvIGZpbmQgdGhlIGxhc3QgaTkxNV9yZXF1ZXN0IGFzCm9u
-Y2Ugd2UgYXBwbHkgdGhlIHByaW9yaXR5IGJvb3N0IHRvIHRoYXQgb25lLCBldmVyeXRoaW5nIGVh
-cmxpZXIgd2lsbCBiZQpib29zdGVkIGJ5IHByaW9yaXR5IGluaGVyaXRhbmNlLiBXZSBrZWVwIGNo
-YXNpbmcgdGhlIGNoYWluIGFzIGV4dHJhCmJvb3N0cyB3aWxsIGJlIHJlZHVuZGFudCBhbmQgc2tp
-cHBlZC4gU28gZm9yIHNpbXBsaWNpdHksIEkgb3B0ZWQgdG8gYnVtcAp0aGUgY2hhaW4gcmF0aGVy
-IHRoYW4gd29yayBvdXQgaWYgdGhlIGJvb3N0cyBhcmUgbm8gbG9uZ2VyIG5lZWRlZC4gT3Igd2UK
-Y291bGQganVzdCBzdG9wIGFmdGVyIHRoZSBmaXJzdCBhbmQgZXhwZWN0IGl0IHRvIHdvcmsgYXMg
-d2VsbCBhcyB3ZSBjYW4KZXhwZWN0LgotQ2hyaXMKX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlz
-dHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4v
-bGlzdGluZm8vaW50ZWwtZ2Z4Cg==
+Quoting Matthew Auld (2021-01-19 16:38:04)
+> On Tue, 19 Jan 2021 at 14:49, Chris Wilson <chris@chris-wilson.co.uk> wrote:
+> >
+> > Simplify the frontbuffer unpin by removing the lock requirement. The LRU
+> > bumping was primarily to protect the GTT from being evicted and from
+> > frontbuffers being eagerly shrunk. Now we protect frontbuffers from the
+> > shrinker, and we avoid accidentally evicting from the GTT, so the
+> > benefit from bumping LRU is no more, and we can save more time by not.
+> 
+> For the GTT evict case, where/how do we currently try to prevent
+> accidental eviction for fb?
+
+Our preference is to try with NOEVICT, and then use smaller partial
+mappings, reducing the risk of evicting anything that may be reused in
+the near future. The goal is to really only use the full GTT mapping for
+when HW needs access to the whole object.
+
+However, we could apply the same rule as we do for the shrinker as leave
+frontbuffer objects until the second pass. Such as
+
+--- a/drivers/gpu/drm/i915/i915_gem_evict.c
++++ b/drivers/gpu/drm/i915/i915_gem_evict.c
+@@ -61,6 +61,19 @@ mark_free(struct drm_mm_scan *scan,
+        return drm_mm_scan_add_block(scan, &vma->node);
+ }
+
++static bool skip_vma(struct i915_vma *vma)
++{
++       if (i915_vma_is_active(vma))
++               return true;
++
++       if (i915_is_ggtt(vma) &&
++           vma->obj &&
++           i915_gem_object_is_framebuffer(vma->obj))
++               return true;
++
++       return false;
++}
++
+ /**
+  * i915_gem_evict_something - Evict vmas to make room for binding a new one
+  * @vm: address space to evict from
+@@ -150,7 +163,7 @@ i915_gem_evict_something(struct i915_address_space *vm,
+                 * To notice when we complete one full cycle, we record the
+                 * first active element seen, before moving it to the tail.
+                 */
+-               if (active != ERR_PTR(-EAGAIN) && i915_vma_is_active(vma)) {
++               if (active != ERR_PTR(-EAGAIN) && skip_vma(vma)) {
+                        if (!active)
+                                active = vma;
+
+That would be better if we mark the vma as being used by display.
+-Chris
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
