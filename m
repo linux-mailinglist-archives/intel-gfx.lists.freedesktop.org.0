@@ -2,54 +2,41 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4861A2FBD7D
-	for <lists+intel-gfx@lfdr.de>; Tue, 19 Jan 2021 18:26:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A09EE2FBD7F
+	for <lists+intel-gfx@lfdr.de>; Tue, 19 Jan 2021 18:26:56 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A76B26E107;
-	Tue, 19 Jan 2021 17:26:39 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-qk1-x731.google.com (mail-qk1-x731.google.com
- [IPv6:2607:f8b0:4864:20::731])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4726D6E87D
- for <intel-gfx@lists.freedesktop.org>; Tue, 19 Jan 2021 17:26:38 +0000 (UTC)
-Received: by mail-qk1-x731.google.com with SMTP id k193so1489319qke.6
- for <intel-gfx@lists.freedesktop.org>; Tue, 19 Jan 2021 09:26:38 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=z8BdSlguMnQpEc7EVbcM2A/DhHj72X5FnIvB6MLxdzw=;
- b=coWaCDP4RuXGKjZlTWvaus4zkjbnPznfs1ckjyDQgQ5QvytStbvNIhWfEXSCzOPYoW
- ljRLiSyybm6XlqPOMNNqzw+uDN0tbE4earJfrPsXMsOvqyIVbi2GuGw15zo1UOuVPuz3
- WTec1lNAF6azDX0BH4qCukhYIaTO0U4m8mf5PuTfRWzMW8BbyN6IeS0OpzL9KzHUBjRZ
- xISnxjL1Qu/Bmdav27YLpUZVuZluv0vjPfHCfc2YucS1M7daZg/mhkQuk7EaXBTwy7ft
- +y6ZEJ2NtoPyqo8AXsTkkWGgZvgnpSj3nmR91Dm+/+fK4N6UsrlbyQ3ZB564k0UgmZQY
- zwUA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=z8BdSlguMnQpEc7EVbcM2A/DhHj72X5FnIvB6MLxdzw=;
- b=TchuGUzzt/Sw1dNq01caWoUfraG/Ootnq6ug6mSyLy7Ad1YzC8M0GZDB2dzXOeMB3M
- nI3omoGjN2j+DG8sFOIq32D3UwSabzClNc7HHG5lEHmwha0aBoBuZ+AQpYD4ipILR++R
- OmpO+rjWQysKmJcl8uA07AvS5B5W6744tH0JvuW3RCQ9rE5Lzlz7Mn7jJXEj+H7fQILK
- EB/tGkdsorT79D1ZG02U+y7AwuF5b9pq6TbTAZzV5eF9jAcq5uAr6wYJjoGWUmMMYMDS
- tONfEW3uh9olmzOmeJtBMVplhP5gXejC3xp6YTd/JISCz+akTfGKqShkhasI9Un+jLDh
- lJTg==
-X-Gm-Message-State: AOAM5331BeKAiz5RE3fc317hFfP+zm1ABrfItXU1GJonCiXTMli/Osf/
- 2gPnv9B7CTCvfdiJZESp0IR/yXKxpvYi9gXZrsPWRLpnq9E=
-X-Google-Smtp-Source: ABdhPJzezD2KhTdUbucRmSrgmeA7dRLOoewwv1qW05TCcsbaS7UD2If0VyngtNfCwOoki1Hmzq/zvuDemgF/814NDNw=
-X-Received: by 2002:a05:620a:68e:: with SMTP id
- f14mr5327262qkh.460.1611077197433; 
- Tue, 19 Jan 2021 09:26:37 -0800 (PST)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F1C586E880;
+	Tue, 19 Jan 2021 17:26:54 +0000 (UTC)
+X-Original-To: Intel-gfx@lists.freedesktop.org
+Delivered-To: Intel-gfx@lists.freedesktop.org
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0E45E6E880
+ for <Intel-gfx@lists.freedesktop.org>; Tue, 19 Jan 2021 17:26:53 +0000 (UTC)
+IronPort-SDR: k2kMPXdGSi39pU8Gd/u8IfmBnjhL0coJEhfPb7fhETfADcI8Y/6o6TAVVBUkxs+I11C6imVo0G
+ Dr82aidexgKA==
+X-IronPort-AV: E=McAfee;i="6000,8403,9869"; a="166055757"
+X-IronPort-AV: E=Sophos;i="5.79,359,1602572400"; d="scan'208";a="166055757"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Jan 2021 09:26:53 -0800
+IronPort-SDR: L/bnP4vNDrDfvz74W/BPzrKph2iXvDTjMZ+eGeTDBmUtGeWukMOOKkQkz4J6i9co00YuICSJaG
+ GzopH20XJV2w==
+X-IronPort-AV: E=Sophos;i="5.79,359,1602572400"; d="scan'208";a="426546454"
+Received: from ideak-desk.fi.intel.com ([10.237.68.141])
+ by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Jan 2021 09:26:50 -0800
+Date: Tue, 19 Jan 2021 19:26:44 +0200
+From: Imre Deak <imre.deak@intel.com>
+To: "Almahallawy, Khaled" <khaled.almahallawy@intel.com>
+Message-ID: <20210119172644.GC1199567@ideak-desk.fi.intel.com>
+References: <20200822064837.3276-1-khaled.almahallawy@intel.com>
+ <20210113150440.GA371457@ideak-desk.fi.intel.com>
+ <097601d8899c497ba574d9360b4292832a9a9d98.camel@intel.com>
 MIME-Version: 1.0
-References: <20210119144912.12653-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20210119144912.12653-1-chris@chris-wilson.co.uk>
-From: Matthew Auld <matthew.william.auld@gmail.com>
-Date: Tue, 19 Jan 2021 17:26:11 +0000
-Message-ID: <CAM0jSHOFwZzYpp735Qgc=3fBt62QiXuoC3s_kBZWVp8ePpbmRw@mail.gmail.com>
-To: Chris Wilson <chris@chris-wilson.co.uk>
-Subject: Re: [Intel-gfx] [PATCH 1/6] drm/i915/gem: Almagamate clflushes on
- suspend
+Content-Disposition: inline
+In-Reply-To: <097601d8899c497ba574d9360b4292832a9a9d98.camel@intel.com>
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/dp: DPTX writes
+ Swing/Pre-emphs(DPCD 0x103-0x106) requested during PHY Layer testing.
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,23 +49,55 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Reply-To: imre.deak@intel.com
+Cc: "Intel-gfx@lists.freedesktop.org" <Intel-gfx@lists.freedesktop.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 19 Jan 2021 at 14:49, Chris Wilson <chris@chris-wilson.co.uk> wrote:
->
-> When flushing objects larger than the CPU cache it is preferrable to use
-> a single wbinvd() rather than overlapping clflush(). At runtime, we
-> avoid wbinvd() due to its system-wide latencies, but during
-> singlethreaded suspend, no one will observe the imposed latency and we
-> can opt for the faster wbinvd to clear all objects in a single hit.
->
-> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Reviewed-by: Matthew Auld <matthew.auld@intel.com>
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+T24gVHVlLCBKYW4gMTksIDIwMjEgYXQgMDk6NDM6NTZBTSArMDIwMCwgQWxtYWhhbGxhd3ksIEto
+YWxlZCB3cm90ZToKPiA+ID4gWy4uLl0KPiA+ID4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2Ry
+bS9pOTE1L2Rpc3BsYXkvaW50ZWxfZHAuYwo+ID4gPiBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rp
+c3BsYXkvaW50ZWxfZHAuYwo+ID4gPiBpbmRleCA3OWMyN2Y5MWY0MmMuLjUwNDQyMDFjYTc0MiAx
+MDA2NDQKPiA+ID4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kcC5j
+Cj4gPiA+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZHAuYwo+ID4g
+PiBAQCAtNTUwMyw2ICs1NTAzLDkgQEAgdm9pZCBpbnRlbF9kcF9wcm9jZXNzX3BoeV9yZXF1ZXN0
+KHN0cnVjdAo+ID4gPiBpbnRlbF9kcCAqaW50ZWxfZHApCj4gPiA+Cj4gPiA+ICBpbnRlbF9kcF9h
+dXRvdGVzdF9waHlfZGRpX2VuYWJsZShpbnRlbF9kcCwgZGF0YS0+bnVtX2xhbmVzKTsKPiA+ID4K
+PiA+ID4gK2RybV9kcF9kcGNkX3dyaXRlKCZpbnRlbF9kcC0+YXV4LCBEUF9UUkFJTklOR19MQU5F
+MF9TRVQsCj4gPiA+ICtpbnRlbF9kcC0+dHJhaW5fc2V0LCBpbnRlbF9kcC0KPiA+ID4gPmxhbmVf
+Y291bnQpOwo+ID4KPiA+IFRoaXMgc2hvdWxkIGJlIHJlYmFzZWQgb24gYSByZWNlbnQgY2hhbmdl
+IHVzaW5nIGluc3RlYWQKPiA+IGNydGNfc3RhdGUtPmxhbmVfY291bnQuCj4KPiA+IFRoYXQncyBh
+bHNvIG5vdCBjb21wbGV0ZWx5IGNvcnJlY3Qgc2luY2UgaXQncwo+ID4gbm90IGd1YXJhbnRlZWQg
+dGhhdCB0aGUgb3V0cHV0IGlzIGVuYWJsZWQgKGhhdmluZyB1cC10by1kYXRlIGxpbmsKPiA+IHBh
+cmFtcyBpbiBjcnRjX3N0YXRlKSBhdCB0aGUgdGltZSBvZiB0aGlzIHRlc3QgcmVxdWVzdC4KCkFj
+dHVhbGx5IGludGVsX2RwX3ByZXBfcGh5X3Rlc3QoKSBtYWtlcyBzdXJlIHRoYXQgdGhlIG91dHB1
+dCBpcyBlbmFibGVkLApzbyBudm0gdGhlIGFib3ZlLgoKPiBbLi4uXQo+ID4gSSdtIGFsc28gbm90
+IHN1cmUgaG93IGludGVsX2RwX2F1dG90ZXN0X3BoeV9kZGlfZGlzYWJsZSgpL2VuYWJsZSgpCj4g
+PiBhZmZlY3RzIHRoZSB2c3dpbmcvcHJlLWVtcCBzZXR0aW5nIG9mIHRoZSBzb3VyY2UgKERQVFgp
+IHRoYXQgZ290Cj4gPiBpbml0ZWQgd2hlbiB0aGUgb3V0cHV0IHdhcyBsYXN0IGVuYWJsZWQuIFRo
+ZSB2cy9wZSBwcm9ncmFtbWluZwo+ID4gc2VxdWVuY2Ugc2hvdWxkIGJlIGFsc28gcGFydCBvZiB0
+aGUgcG9ydCBlbmFibGluZy4gTWF5YmUgdGhlIEhXCj4gPiByZXRhaW5zIHRoZSBjb25maWcgYWNy
+b3NzIHRoZSB0aGUgYWJvdmUgcG9ydCBkaXNhYmxlL2VuYWJsZSBjYWxscwo+ID4gYW5kIHNvIHRo
+aXMgaGFwcGVucyBub3QgdG8gYmUgYSBwcm9ibGVtLgo+IAo+IFRoZSByZXF1ZXN0ZWQgVnN3aW5n
+L1ByZS1lbXBoIGZyb20gdGVzdCBzY29wZSBpcyBjb21pbmcgYXMgcGFydCBvZgo+IHNob3J0IEhQ
+RCBub3QgYXMgcGFydCBvZiBMaW5rIFRyYWluaW5nLCBzbyBJ4oCZbSBub3Qgc3VyZSBob3cgd2Ug
+Y2FuIHVzZQo+IHRoZXNlIHJlcXVlc3RlZCB2c3dpbmcvcHJlLWVtcGggdmFsdWVzIGFzIHdlIGRv
+IGZvciBsYW5lIGNvdW50IGFuZCBMaW5rCj4gcmF0ZSBhcyBpbiA6IGludGVsX2RwX2FkanVzdF9j
+b21wbGlhbmNlX2NvbmZpZwoKTG9va3MgbGlrZSBkdXJpbmcgUEhZIHRlc3RpbmcgYSByZWd1bGFy
+IGxpbmsgdHJhaW5pbmcgc2hvdWxkIGJlCnBlcmZvcm1lZCAoaW5jbHVkaW5nIGFueSBMVFRQUnMg
+b24gdGhlIGxpbmspLCBhbmQgdGhlbiBmb3IgRFBSWCBpbnN0ZWFkCm9mIHRoZSByZWd1bGFyIGNy
+L2VxIGp1c3Qgc2V0IHRoZSByZXF1ZXN0ZWQgdnMvcGUgbGV2ZWxzIGFuZCB0aGUgdGVzdApwYXR0
+ZXJuLiBJZiBURVNUX0xBTkVfQ09VTlQvUkFURSBjaGFuZ2VzIHRoZSBsaW5rIG5lZWRzIHRvIGJl
+IHJldHJhaW5lZAphZ2FpbiwgaWYgb25seSB0aGUgcmVxdWVzdGVkIHRlc3QgcGF0dGVybiBvciB2
+cy9wZSBsZXZlbHMgY2hhbmdlIHRoZW4KY2hhbmdpbmcgb25seSB0aGVzZSB3L28gcmV0cmFpbmlu
+ZyB0aGUgbGluayBzaG91bGQgYmUgb2suCgo+IEhvd2V2ZXIgdGhlIHJhdGlvbmFsZSBiZWhpbmQK
+PiBpbnRlbF9kcF9hdXRvdGVzdF9waHlfZGRpX2Rpc2FibGUoKS9lbmFibGUoKSBpcyBiYXNlZCBv
+biBTcGVjczo1MDQ4Mgo+IHdoaWNoIHNhaWQgVFJBTlNfQ09ORiBhbmQgVFJBTlNfRERJX0ZVTkNf
+Q1RMIG11c3QgYmUgZGlzYWJsZWQgcHJpb3IgdG8KPiBlbmFibGluZyB0aGUgdGVzdCBwYXR0ZXJu
+CgpPaywgbWFrZXMgc2Vuc2UsIHNvIHRoaXMgaW5kZWVkIHNlZW1zIHRvIG5lZWQgc3BlY2lhbCBj
+YXNpbmcgZm9yIFBIWQp0ZXN0aW5nLgoKLS1JbXJlCl9fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxp
+c3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFu
+L2xpc3RpbmZvL2ludGVsLWdmeAo=
