@@ -2,41 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A09EE2FBD7F
-	for <lists+intel-gfx@lfdr.de>; Tue, 19 Jan 2021 18:26:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 725702FBDD1
+	for <lists+intel-gfx@lfdr.de>; Tue, 19 Jan 2021 18:37:45 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F1C586E880;
-	Tue, 19 Jan 2021 17:26:54 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0E45E6E880
- for <Intel-gfx@lists.freedesktop.org>; Tue, 19 Jan 2021 17:26:53 +0000 (UTC)
-IronPort-SDR: k2kMPXdGSi39pU8Gd/u8IfmBnjhL0coJEhfPb7fhETfADcI8Y/6o6TAVVBUkxs+I11C6imVo0G
- Dr82aidexgKA==
-X-IronPort-AV: E=McAfee;i="6000,8403,9869"; a="166055757"
-X-IronPort-AV: E=Sophos;i="5.79,359,1602572400"; d="scan'208";a="166055757"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Jan 2021 09:26:53 -0800
-IronPort-SDR: L/bnP4vNDrDfvz74W/BPzrKph2iXvDTjMZ+eGeTDBmUtGeWukMOOKkQkz4J6i9co00YuICSJaG
- GzopH20XJV2w==
-X-IronPort-AV: E=Sophos;i="5.79,359,1602572400"; d="scan'208";a="426546454"
-Received: from ideak-desk.fi.intel.com ([10.237.68.141])
- by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Jan 2021 09:26:50 -0800
-Date: Tue, 19 Jan 2021 19:26:44 +0200
-From: Imre Deak <imre.deak@intel.com>
-To: "Almahallawy, Khaled" <khaled.almahallawy@intel.com>
-Message-ID: <20210119172644.GC1199567@ideak-desk.fi.intel.com>
-References: <20200822064837.3276-1-khaled.almahallawy@intel.com>
- <20210113150440.GA371457@ideak-desk.fi.intel.com>
- <097601d8899c497ba574d9360b4292832a9a9d98.camel@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id CDAC26E888;
+	Tue, 19 Jan 2021 17:37:43 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 3432A6E886;
+ Tue, 19 Jan 2021 17:37:43 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 2D3BCA0BCB;
+ Tue, 19 Jan 2021 17:37:43 +0000 (UTC)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <097601d8899c497ba574d9360b4292832a9a9d98.camel@intel.com>
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/dp: DPTX writes
- Swing/Pre-emphs(DPCD 0x103-0x106) requested during PHY Layer testing.
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Matthew Auld" <matthew.auld@intel.com>
+Date: Tue, 19 Jan 2021 17:37:43 -0000
+Message-ID: <161107786318.4868.1826304529670527485@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210119133106.66294-1-matthew.auld@intel.com>
+In-Reply-To: <20210119133106.66294-1-matthew.auld@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
+ =?utf-8?q?ies_starting_with_=5B1/4=5D_drm/i915=3A_Fix_the_sgt=2Epfn_sanit?=
+ =?utf-8?q?y_check?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,55 +39,174 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: imre.deak@intel.com
-Cc: "Intel-gfx@lists.freedesktop.org" <Intel-gfx@lists.freedesktop.org>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============1121191653=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gVHVlLCBKYW4gMTksIDIwMjEgYXQgMDk6NDM6NTZBTSArMDIwMCwgQWxtYWhhbGxhd3ksIEto
-YWxlZCB3cm90ZToKPiA+ID4gWy4uLl0KPiA+ID4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2Ry
-bS9pOTE1L2Rpc3BsYXkvaW50ZWxfZHAuYwo+ID4gPiBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rp
-c3BsYXkvaW50ZWxfZHAuYwo+ID4gPiBpbmRleCA3OWMyN2Y5MWY0MmMuLjUwNDQyMDFjYTc0MiAx
-MDA2NDQKPiA+ID4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kcC5j
-Cj4gPiA+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZHAuYwo+ID4g
-PiBAQCAtNTUwMyw2ICs1NTAzLDkgQEAgdm9pZCBpbnRlbF9kcF9wcm9jZXNzX3BoeV9yZXF1ZXN0
-KHN0cnVjdAo+ID4gPiBpbnRlbF9kcCAqaW50ZWxfZHApCj4gPiA+Cj4gPiA+ICBpbnRlbF9kcF9h
-dXRvdGVzdF9waHlfZGRpX2VuYWJsZShpbnRlbF9kcCwgZGF0YS0+bnVtX2xhbmVzKTsKPiA+ID4K
-PiA+ID4gK2RybV9kcF9kcGNkX3dyaXRlKCZpbnRlbF9kcC0+YXV4LCBEUF9UUkFJTklOR19MQU5F
-MF9TRVQsCj4gPiA+ICtpbnRlbF9kcC0+dHJhaW5fc2V0LCBpbnRlbF9kcC0KPiA+ID4gPmxhbmVf
-Y291bnQpOwo+ID4KPiA+IFRoaXMgc2hvdWxkIGJlIHJlYmFzZWQgb24gYSByZWNlbnQgY2hhbmdl
-IHVzaW5nIGluc3RlYWQKPiA+IGNydGNfc3RhdGUtPmxhbmVfY291bnQuCj4KPiA+IFRoYXQncyBh
-bHNvIG5vdCBjb21wbGV0ZWx5IGNvcnJlY3Qgc2luY2UgaXQncwo+ID4gbm90IGd1YXJhbnRlZWQg
-dGhhdCB0aGUgb3V0cHV0IGlzIGVuYWJsZWQgKGhhdmluZyB1cC10by1kYXRlIGxpbmsKPiA+IHBh
-cmFtcyBpbiBjcnRjX3N0YXRlKSBhdCB0aGUgdGltZSBvZiB0aGlzIHRlc3QgcmVxdWVzdC4KCkFj
-dHVhbGx5IGludGVsX2RwX3ByZXBfcGh5X3Rlc3QoKSBtYWtlcyBzdXJlIHRoYXQgdGhlIG91dHB1
-dCBpcyBlbmFibGVkLApzbyBudm0gdGhlIGFib3ZlLgoKPiBbLi4uXQo+ID4gSSdtIGFsc28gbm90
-IHN1cmUgaG93IGludGVsX2RwX2F1dG90ZXN0X3BoeV9kZGlfZGlzYWJsZSgpL2VuYWJsZSgpCj4g
-PiBhZmZlY3RzIHRoZSB2c3dpbmcvcHJlLWVtcCBzZXR0aW5nIG9mIHRoZSBzb3VyY2UgKERQVFgp
-IHRoYXQgZ290Cj4gPiBpbml0ZWQgd2hlbiB0aGUgb3V0cHV0IHdhcyBsYXN0IGVuYWJsZWQuIFRo
-ZSB2cy9wZSBwcm9ncmFtbWluZwo+ID4gc2VxdWVuY2Ugc2hvdWxkIGJlIGFsc28gcGFydCBvZiB0
-aGUgcG9ydCBlbmFibGluZy4gTWF5YmUgdGhlIEhXCj4gPiByZXRhaW5zIHRoZSBjb25maWcgYWNy
-b3NzIHRoZSB0aGUgYWJvdmUgcG9ydCBkaXNhYmxlL2VuYWJsZSBjYWxscwo+ID4gYW5kIHNvIHRo
-aXMgaGFwcGVucyBub3QgdG8gYmUgYSBwcm9ibGVtLgo+IAo+IFRoZSByZXF1ZXN0ZWQgVnN3aW5n
-L1ByZS1lbXBoIGZyb20gdGVzdCBzY29wZSBpcyBjb21pbmcgYXMgcGFydCBvZgo+IHNob3J0IEhQ
-RCBub3QgYXMgcGFydCBvZiBMaW5rIFRyYWluaW5nLCBzbyBJ4oCZbSBub3Qgc3VyZSBob3cgd2Ug
-Y2FuIHVzZQo+IHRoZXNlIHJlcXVlc3RlZCB2c3dpbmcvcHJlLWVtcGggdmFsdWVzIGFzIHdlIGRv
-IGZvciBsYW5lIGNvdW50IGFuZCBMaW5rCj4gcmF0ZSBhcyBpbiA6IGludGVsX2RwX2FkanVzdF9j
-b21wbGlhbmNlX2NvbmZpZwoKTG9va3MgbGlrZSBkdXJpbmcgUEhZIHRlc3RpbmcgYSByZWd1bGFy
-IGxpbmsgdHJhaW5pbmcgc2hvdWxkIGJlCnBlcmZvcm1lZCAoaW5jbHVkaW5nIGFueSBMVFRQUnMg
-b24gdGhlIGxpbmspLCBhbmQgdGhlbiBmb3IgRFBSWCBpbnN0ZWFkCm9mIHRoZSByZWd1bGFyIGNy
-L2VxIGp1c3Qgc2V0IHRoZSByZXF1ZXN0ZWQgdnMvcGUgbGV2ZWxzIGFuZCB0aGUgdGVzdApwYXR0
-ZXJuLiBJZiBURVNUX0xBTkVfQ09VTlQvUkFURSBjaGFuZ2VzIHRoZSBsaW5rIG5lZWRzIHRvIGJl
-IHJldHJhaW5lZAphZ2FpbiwgaWYgb25seSB0aGUgcmVxdWVzdGVkIHRlc3QgcGF0dGVybiBvciB2
-cy9wZSBsZXZlbHMgY2hhbmdlIHRoZW4KY2hhbmdpbmcgb25seSB0aGVzZSB3L28gcmV0cmFpbmlu
-ZyB0aGUgbGluayBzaG91bGQgYmUgb2suCgo+IEhvd2V2ZXIgdGhlIHJhdGlvbmFsZSBiZWhpbmQK
-PiBpbnRlbF9kcF9hdXRvdGVzdF9waHlfZGRpX2Rpc2FibGUoKS9lbmFibGUoKSBpcyBiYXNlZCBv
-biBTcGVjczo1MDQ4Mgo+IHdoaWNoIHNhaWQgVFJBTlNfQ09ORiBhbmQgVFJBTlNfRERJX0ZVTkNf
-Q1RMIG11c3QgYmUgZGlzYWJsZWQgcHJpb3IgdG8KPiBlbmFibGluZyB0aGUgdGVzdCBwYXR0ZXJu
-CgpPaywgbWFrZXMgc2Vuc2UsIHNvIHRoaXMgaW5kZWVkIHNlZW1zIHRvIG5lZWQgc3BlY2lhbCBj
-YXNpbmcgZm9yIFBIWQp0ZXN0aW5nLgoKLS1JbXJlCl9fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxp
-c3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFu
-L2xpc3RpbmZvL2ludGVsLWdmeAo=
+--===============1121191653==
+Content-Type: multipart/alternative;
+ boundary="===============4235521437440969846=="
+
+--===============4235521437440969846==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+== Series Details ==
+
+Series: series starting with [1/4] drm/i915: Fix the sgt.pfn sanity check
+URL   : https://patchwork.freedesktop.org/series/86044/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_9643 -> Patchwork_19408
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19408/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_19408 that come from known issues:
+
+### CI changes ###
+
+
+### IGT changes ###
+
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@active:
+    - fi-skl-6600u:       [DMESG-FAIL][1] ([i915#2291] / [i915#666]) -> [PASS][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9643/fi-skl-6600u/igt@i915_selftest@live@active.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19408/fi-skl-6600u/igt@i915_selftest@live@active.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [i915#2291]: https://gitlab.freedesktop.org/drm/intel/issues/2291
+  [i915#2788]: https://gitlab.freedesktop.org/drm/intel/issues/2788
+  [i915#666]: https://gitlab.freedesktop.org/drm/intel/issues/666
+
+
+Participating hosts (42 -> 37)
+------------------------------
+
+  Additional (1): fi-dg1-1 
+  Missing    (6): fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-tgl-y fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_9643 -> Patchwork_19408
+
+  CI-20190529: 20190529
+  CI_DRM_9643: fabbcd086b7f667f0e0cce8eeb26a7b5c7120782 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5960: ace82fcd5f3623f8dde7c220a825873dc53dfae4 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_19408: edc68e6edfea6f17685bb9b88d69c0ea26ef6dd5 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+edc68e6edfea drm/i915/pool: constrain pool objects by mapping type
+78937c31d55f drm/i915: move i915_map_type into i915_gem_object_types.h
+5fdaa963024e drm/i915/error: Fix object page offset within a region
+f60872461b06 drm/i915: Fix the sgt.pfn sanity check
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19408/index.html
+
+--===============4235521437440969846==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>series starting with [1/4] drm/i915: Fix the sgt.pfn sanity check</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/86044/">https://patchwork.freedesktop.org/series/86044/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19408/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19408/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_9643 -&gt; Patchwork_19408</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19408/index.html</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_19408 that come from known issues:</p>
+<h3>CI changes</h3>
+<h3>IGT changes</h3>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@i915_selftest@live@active:<ul>
+<li>fi-skl-6600u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9643/fi-skl-6600u/igt@i915_selftest@live@active.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2291">i915#2291</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/666">i915#666</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19408/fi-skl-6600u/igt@i915_selftest@live@active.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Participating hosts (42 -&gt; 37)</h2>
+<p>Additional (1): fi-dg1-1 <br />
+  Missing    (6): fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-tgl-y fi-bdw-samus </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_9643 -&gt; Patchwork_19408</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_9643: fabbcd086b7f667f0e0cce8eeb26a7b5c7120782 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_5960: ace82fcd5f3623f8dde7c220a825873dc53dfae4 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
+  Patchwork_19408: edc68e6edfea6f17685bb9b88d69c0ea26ef6dd5 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>edc68e6edfea drm/i915/pool: constrain pool objects by mapping type<br />
+78937c31d55f drm/i915: move i915_map_type into i915_gem_object_types.h<br />
+5fdaa963024e drm/i915/error: Fix object page offset within a region<br />
+f60872461b06 drm/i915: Fix the sgt.pfn sanity check</p>
+
+</body>
+</html>
+
+--===============4235521437440969846==--
+
+--===============1121191653==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============1121191653==--
