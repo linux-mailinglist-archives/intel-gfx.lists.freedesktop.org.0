@@ -1,32 +1,38 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EAAA82FCDDB
-	for <lists+intel-gfx@lfdr.de>; Wed, 20 Jan 2021 11:38:48 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id C8C532FCDE0
+	for <lists+intel-gfx@lfdr.de>; Wed, 20 Jan 2021 11:47:25 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5B5886E15A;
-	Wed, 20 Jan 2021 10:38:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 104916E15D;
+	Wed, 20 Jan 2021 10:47:24 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B67DC6E041;
- Wed, 20 Jan 2021 10:38:43 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 23647938-1500050 
- for multiple; Wed, 20 Jan 2021 10:38:36 +0000
-From: Chris Wilson <chris@chris-wilson.co.uk>
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 85FCD6E15D
+ for <intel-gfx@lists.freedesktop.org>; Wed, 20 Jan 2021 10:47:22 +0000 (UTC)
+IronPort-SDR: s7xTV/1xpDMjhvAn/OzuF0UCyQkzXUbYViKQnu5oSmFrPmLnHGQ9fV9eHO0GEeHCJDX2Z2dPkV
+ RtBiQyygBUIQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9869"; a="166746976"
+X-IronPort-AV: E=Sophos;i="5.79,360,1602572400"; d="scan'208";a="166746976"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Jan 2021 02:47:21 -0800
+IronPort-SDR: 9CILEvtDx5JA9YtLGhVnINB2qAGPe66ri4IHTUsneJm03nDB0bcoYSn9hnvU0yOnvVhZ8549TF
+ IbNect2WcGRg==
+X-IronPort-AV: E=Sophos;i="5.79,360,1602572400"; d="scan'208";a="467037384"
+Received: from vvujicic-mobl.ger.corp.intel.com (HELO
+ mwauld-desk1.ger.corp.intel.com) ([10.252.19.22])
+ by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Jan 2021 02:47:20 -0800
+From: Matthew Auld <matthew.auld@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Wed, 20 Jan 2021 10:38:36 +0000
-Message-Id: <20210120103836.777132-1-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.30.0
-In-Reply-To: <20210119231729.751316-1-chris@chris-wilson.co.uk>
-References: <20210119231729.751316-1-chris@chris-wilson.co.uk>
+Date: Wed, 20 Jan 2021 10:47:14 +0000
+Message-Id: <20210120104714.112812-1-matthew.auld@intel.com>
+X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH i-g-t] i915/gem_exec_parallel: Launch 1s worth
- of threads
+Subject: [Intel-gfx] [PATCH] drm/i915/region: don't leak the object on error
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,203 +45,47 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: igt-dev@lists.freedesktop.org, Chris Wilson <chris@chris-wilson.co.uk>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Let's not assume that the thread execution is instantaneous, but apply a
-time limit as well as a maximum number so that the test should always run
-in bounded time.
+Sanity check the object size before allocating a new gem object.
 
-Also limit each thread to submitting only two pieces of outstanding work,
-to minimise over-saturation. We use two alternating batches as a generic
-way of tracking their fences.
-
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Fixes: 97d553963250 ("drm/i915/region: convert object_create into object_init")
+Signed-off-by: Matthew Auld <matthew.auld@intel.com>
 ---
- tests/i915/gem_exec_parallel.c | 62 +++++++++++++++++++++++-----------
- 1 file changed, 42 insertions(+), 20 deletions(-)
+ drivers/gpu/drm/i915/gem/i915_gem_region.c | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
 
-diff --git a/tests/i915/gem_exec_parallel.c b/tests/i915/gem_exec_parallel.c
-index d3dd06a65..4f0fbdd02 100644
---- a/tests/i915/gem_exec_parallel.c
-+++ b/tests/i915/gem_exec_parallel.c
-@@ -48,6 +48,7 @@ static inline uint32_t hash32(uint32_t val)
- #define USERPTR 0x4
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_region.c b/drivers/gpu/drm/i915/gem/i915_gem_region.c
+index 4834a0b272f4..3e3dad22a683 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_region.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_region.c
+@@ -161,10 +161,6 @@ i915_gem_object_create_region(struct intel_memory_region *mem,
+ 	GEM_BUG_ON(!size);
+ 	GEM_BUG_ON(!IS_ALIGNED(size, I915_GTT_MIN_ALIGNMENT));
  
- #define NUMOBJ 16
-+#define MAXTHREADS 4096
+-	obj = i915_gem_object_alloc();
+-	if (!obj)
+-		return ERR_PTR(-ENOMEM);
+-
+ 	/*
+ 	 * XXX: There is a prevalence of the assumption that we fit the
+ 	 * object's page count inside a 32bit _signed_ variable. Let's document
+@@ -178,6 +174,10 @@ i915_gem_object_create_region(struct intel_memory_region *mem,
+ 	if (overflows_type(size, obj->base.size))
+ 		return ERR_PTR(-E2BIG);
  
- struct thread {
- 	pthread_t thread;
-@@ -64,15 +65,15 @@ struct thread {
- static void *thread(void *data)
- {
- 	struct thread *t = data;
--	struct drm_i915_gem_exec_object2 obj[2];
--	struct drm_i915_gem_relocation_entry reloc;
-+	struct drm_i915_gem_exec_object2 obj[3];
-+	struct drm_i915_gem_relocation_entry reloc[2];
- 	struct drm_i915_gem_execbuffer2 execbuf;
- 	uint32_t batch[16];
- 	uint16_t used;
- 	int fd, i;
- 
- 	pthread_mutex_lock(t->mutex);
--	while (*t->go == 0)
-+	while (READ_ONCE(*t->go) == 0)
- 		pthread_cond_wait(t->cond, t->mutex);
- 	pthread_mutex_unlock(t->mutex);
- 
-@@ -101,21 +102,28 @@ static void *thread(void *data)
- 	memset(obj, 0, sizeof(obj));
- 	obj[0].flags = EXEC_OBJECT_WRITE;
- 
--	memset(&reloc, 0, sizeof(reloc));
--	reloc.offset = sizeof(uint32_t);
-+	memset(reloc, 0, sizeof(reloc));
-+	reloc[0].offset = sizeof(uint32_t);
- 	if (t->gen < 8 && t->gen >= 4)
--		reloc.offset += sizeof(uint32_t);
--	reloc.read_domains = I915_GEM_DOMAIN_INSTRUCTION;
--	reloc.write_domain = I915_GEM_DOMAIN_INSTRUCTION;
--	reloc.delta = 4*t->id;
-+		reloc[0].offset += sizeof(uint32_t);
-+	reloc[0].read_domains = I915_GEM_DOMAIN_INSTRUCTION;
-+	reloc[0].write_domain = I915_GEM_DOMAIN_INSTRUCTION;
-+	reloc[0].delta = 4*t->id;
-+	reloc[1] = reloc[0];
++	obj = i915_gem_object_alloc();
++	if (!obj)
++		return ERR_PTR(-ENOMEM);
 +
- 	obj[1].handle = gem_create(fd, 4096);
--	obj[1].relocs_ptr = to_user_pointer(&reloc);
-+	obj[1].relocs_ptr = to_user_pointer(&reloc[0]);
- 	obj[1].relocation_count = 1;
- 	gem_write(fd, obj[1].handle, 0, batch, sizeof(batch));
- 
-+	obj[2].handle = gem_create(fd, 4096);
-+	obj[2].relocs_ptr = to_user_pointer(&reloc[1]);
-+	obj[2].relocation_count = 1;
-+	gem_write(fd, obj[2].handle, 0, batch, sizeof(batch));
-+
- 	memset(&execbuf, 0, sizeof(execbuf));
- 	execbuf.buffers_ptr = to_user_pointer(obj);
--	execbuf.buffer_count = 2;
-+	execbuf.buffer_count = 2; /* NB !ARRAY_SIZE(obj), keep one in reserve */
- 	execbuf.flags = t->engine;
- 	execbuf.flags |= I915_EXEC_HANDLE_LUT;
- 	execbuf.flags |= I915_EXEC_NO_RELOC;
-@@ -129,6 +137,8 @@ static void *thread(void *data)
- 	igt_until_timeout(1) {
- 		unsigned int x = rand() % NUMOBJ;
- 
-+		igt_swap(obj[1], obj[2]);
-+
- 		used |= 1u << x;
- 		obj[0].handle = t->scratch[x];
- 
-@@ -139,10 +149,13 @@ static void *thread(void *data)
- 
- 		if (t->flags & FDS)
- 			gem_close(fd, obj[0].handle);
-+
-+		gem_sync(fd, obj[2].handle);
- 	}
- 
- 	if (t->flags & CONTEXTS)
- 		gem_context_destroy(fd, execbuf.rsvd1);
-+	gem_close(fd, obj[2].handle);
- 	gem_close(fd, obj[1].handle);
- 	if (t->flags & FDS)
- 		close(fd);
-@@ -153,7 +166,7 @@ static void *thread(void *data)
- 
- static void check_bo(int fd, uint32_t handle, int pass, struct thread *threads)
- {
--	uint32_t x = hash32(handle * pass) % 1024;
-+	uint32_t x = hash32(handle * pass) % MAXTHREADS;
- 	uint32_t result;
- 
- 	if (!(threads[x].used & (1 << pass)))
-@@ -167,18 +180,20 @@ static void check_bo(int fd, uint32_t handle, int pass, struct thread *threads)
- 
- static uint32_t handle_create(int fd, unsigned int flags, void **data)
- {
-+	unsigned int size = MAXTHREADS * sizeof(uint32_t);
-+
- 	if (flags & USERPTR) {
- 		uint32_t handle;
- 		void *ptr;
- 
--		posix_memalign(&ptr, 4096, 4096);
--		gem_userptr(fd, ptr, 4096, 0, 0, &handle);
-+		posix_memalign(&ptr, 4096, size);
-+		gem_userptr(fd, ptr, size, 0, 0, &handle);
- 		*data = ptr;
- 
- 		return handle;
- 	}
- 
--	return gem_create(fd, 4096);
-+	return gem_create(fd, size);
- }
- 
- static void handle_close(int fd, unsigned int flags, uint32_t handle, void *data)
-@@ -197,7 +212,9 @@ static void all(int fd, struct intel_execution_engine2 *engine, unsigned flags)
- 	struct thread *threads;
- 	pthread_mutex_t mutex;
- 	pthread_cond_t cond;
-+	struct timespec tv;
- 	void *arg[NUMOBJ];
-+	int count;
- 	int go;
- 	int i;
- 
-@@ -227,7 +244,7 @@ static void all(int fd, struct intel_execution_engine2 *engine, unsigned flags)
- 			scratch[i] = gem_flink(fd, handle[i]);
- 	}
- 
--	threads = calloc(1024, sizeof(struct thread));
-+	threads = calloc(MAXTHREADS, sizeof(struct thread));
- 	igt_assert(threads);
- 
- 	intel_detect_and_clear_missed_interrupts(fd);
-@@ -235,7 +252,8 @@ static void all(int fd, struct intel_execution_engine2 *engine, unsigned flags)
- 	pthread_cond_init(&cond, 0);
- 	go = 0;
- 
--	for (i = 0; i < 1024; i++) {
-+	memset(&tv, 0, sizeof(tv));
-+	for (i = 0; i < MAXTHREADS && !igt_seconds_elapsed(&tv); i++) {
- 		threads[i].id = i;
- 		threads[i].fd = fd;
- 		threads[i].gen = gen;
-@@ -246,15 +264,19 @@ static void all(int fd, struct intel_execution_engine2 *engine, unsigned flags)
- 		threads[i].cond = &cond;
- 		threads[i].go = &go;
- 
--		pthread_create(&threads[i].thread, 0, thread, &threads[i]);
-+		if (pthread_create(&threads[i].thread, 0, thread, &threads[i]))
-+			break;
- 	}
-+	count = i;
-+	igt_info("Launched %d threads\n", count);
-+	igt_require(count);
- 
- 	pthread_mutex_lock(&mutex);
--	go = 1024;
-+	WRITE_ONCE(go, count);
- 	pthread_cond_broadcast(&cond);
- 	pthread_mutex_unlock(&mutex);
- 
--	for (i = 0; i < 1024; i++)
-+	for (i = 0; i < count; i++)
- 		pthread_join(threads[i].thread, NULL);
- 
- 	for (i = 0; i < NUMOBJ; i++) {
+ 	err = mem->ops->init_object(mem, obj, size, flags);
+ 	if (err)
+ 		goto err_object_free;
 -- 
-2.30.0
+2.26.2
 
 _______________________________________________
 Intel-gfx mailing list
