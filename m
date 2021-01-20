@@ -2,33 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 150FC2FDB42
-	for <lists+intel-gfx@lfdr.de>; Wed, 20 Jan 2021 22:00:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B3C9C2FDBDF
+	for <lists+intel-gfx@lfdr.de>; Wed, 20 Jan 2021 22:32:00 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 16E4C89B03;
-	Wed, 20 Jan 2021 21:00:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CC6AC89D60;
+	Wed, 20 Jan 2021 21:31:58 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 82D6989A59
- for <intel-gfx@lists.freedesktop.org>; Wed, 20 Jan 2021 20:59:59 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 23654360-1500050 for multiple; Wed, 20 Jan 2021 20:59:48 +0000
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id B76DB89C59;
+ Wed, 20 Jan 2021 21:31:56 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id AFCC4A0099;
+ Wed, 20 Jan 2021 21:31:56 +0000 (UTC)
 MIME-Version: 1.0
-In-Reply-To: <161116596844.3420.4138630766326614766@build.alporthouse.com>
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Wed, 20 Jan 2021 21:31:56 -0000
+Message-ID: <161117831669.8790.7107901745405620347@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
 References: <20210120154019.5146-1-chris@chris-wilson.co.uk>
- <CAM0jSHPUoT2eKs0MgUoJ9UBB96hgtZGmQuZSDrE8vGkRSOXpoQ@mail.gmail.com>
- <161116596844.3420.4138630766326614766@build.alporthouse.com>
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: Matthew Auld <matthew.william.auld@gmail.com>
-Date: Wed, 20 Jan 2021 20:59:47 +0000
-Message-ID: <161117638753.7444.16304169600967757321@build.alporthouse.com>
-User-Agent: alot/0.9
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/gem: Allow importing of shmemfs
- objects into any device
+In-Reply-To: <20210120154019.5146-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciBk?=
+ =?utf-8?q?rm/i915/gem=3A_Allow_importing_of_shmemfs_objects_into_any_devi?=
+ =?utf-8?q?ce?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,35 +39,38 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- Matthew Auld <matthew.auld@intel.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Chris Wilson (2021-01-20 18:06:08)
-> Quoting Matthew Auld (2021-01-20 17:46:10)
-> > On Wed, 20 Jan 2021 at 15:40, Chris Wilson <chris@chris-wilson.co.uk> wrote:
-> > >
-> > > If we import a shmemfs object between devices, for example from
-> > > Tigerlake to DG1, we can simply reuse the native object and its backing
-> > > store.
-> > 
-> > Hmmm interesting, so does that include re-using the actual sg mapping
-> > for the backing pages? Does that work out-of-the-box between different
-> > devices assuming we have iommu enabled?
-> 
-> Indeed interesting; the dma_addr_t are supposed to be local to a device.
-
-On reflection, we are expected to use cross-device dma_addr_t with
-dma-buf. It's the exporter who assigns the dma_addr_t for the importer
-to use, and they are always given from the original device.
-
-Maybe not so bad. Definitely needs testing to see what happens in
-practice.
--Chris
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+PT0gU2VyaWVzIERldGFpbHMgPT0KClNlcmllczogZHJtL2k5MTUvZ2VtOiBBbGxvdyBpbXBvcnRp
+bmcgb2Ygc2htZW1mcyBvYmplY3RzIGludG8gYW55IGRldmljZQpVUkwgICA6IGh0dHBzOi8vcGF0
+Y2h3b3JrLmZyZWVkZXNrdG9wLm9yZy9zZXJpZXMvODYwOTMvClN0YXRlIDogZmFpbHVyZQoKPT0g
+U3VtbWFyeSA9PQoKQ0FMTCAgICBzY3JpcHRzL2NoZWNrc3lzY2FsbHMuc2gKICBDQUxMICAgIHNj
+cmlwdHMvYXRvbWljL2NoZWNrLWF0b21pY3Muc2gKICBERVNDRU5EICBvYmp0b29sCiAgQ0hLICAg
+ICBpbmNsdWRlL2dlbmVyYXRlZC9jb21waWxlLmgKICBDQyBbTV0gIGRyaXZlcnMvZ3B1L2RybS9p
+OTE1L2dlbS9pOTE1X2dlbV9kbWFidWYubwpkcml2ZXJzL2dwdS9kcm0vaTkxNS9nZW0vaTkxNV9n
+ZW1fZG1hYnVmLmM6IEluIGZ1bmN0aW9uIOKAmGk5MTVfZ2VtX3ByaW1lX2ltcG9ydOKAmToKZHJp
+dmVycy9ncHUvZHJtL2k5MTUvZ2VtL2k5MTVfZ2VtX2RtYWJ1Zi5jOjI1MDo3OiBlcnJvcjogaW1w
+bGljaXQgZGVjbGFyYXRpb24gb2YgZnVuY3Rpb24g4oCYaTkxNV9nZW1fb2JqZWN0X2lzX3NobWVt
+4oCZOyBkaWQgeW91IG1lYW4g4oCYaTkxNV9nZW1fb2JqZWN0X2lzX3RpbGVk4oCZPyBbLVdlcnJv
+cj1pbXBsaWNpdC1mdW5jdGlvbi1kZWNsYXJhdGlvbl0KICAgaWYgKGk5MTVfZ2VtX29iamVjdF9p
+c19zaG1lbShvYmopKQogICAgICAgXn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+CiAgICAgICBpOTE1
+X2dlbV9vYmplY3RfaXNfdGlsZWQKY2MxOiBhbGwgd2FybmluZ3MgYmVpbmcgdHJlYXRlZCBhcyBl
+cnJvcnMKc2NyaXB0cy9NYWtlZmlsZS5idWlsZDoyNzk6IHJlY2lwZSBmb3IgdGFyZ2V0ICdkcml2
+ZXJzL2dwdS9kcm0vaTkxNS9nZW0vaTkxNV9nZW1fZG1hYnVmLm8nIGZhaWxlZAptYWtlWzRdOiAq
+KiogW2RyaXZlcnMvZ3B1L2RybS9pOTE1L2dlbS9pOTE1X2dlbV9kbWFidWYub10gRXJyb3IgMQpz
+Y3JpcHRzL01ha2VmaWxlLmJ1aWxkOjQ5NjogcmVjaXBlIGZvciB0YXJnZXQgJ2RyaXZlcnMvZ3B1
+L2RybS9pOTE1JyBmYWlsZWQKbWFrZVszXTogKioqIFtkcml2ZXJzL2dwdS9kcm0vaTkxNV0gRXJy
+b3IgMgpzY3JpcHRzL01ha2VmaWxlLmJ1aWxkOjQ5NjogcmVjaXBlIGZvciB0YXJnZXQgJ2RyaXZl
+cnMvZ3B1L2RybScgZmFpbGVkCm1ha2VbMl06ICoqKiBbZHJpdmVycy9ncHUvZHJtXSBFcnJvciAy
+CnNjcmlwdHMvTWFrZWZpbGUuYnVpbGQ6NDk2OiByZWNpcGUgZm9yIHRhcmdldCAnZHJpdmVycy9n
+cHUnIGZhaWxlZAptYWtlWzFdOiAqKiogW2RyaXZlcnMvZ3B1XSBFcnJvciAyCk1ha2VmaWxlOjE4
+MDU6IHJlY2lwZSBmb3IgdGFyZ2V0ICdkcml2ZXJzJyBmYWlsZWQKbWFrZTogKioqIFtkcml2ZXJz
+XSBFcnJvciAyCgoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3Jn
+Cmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
+Cg==
