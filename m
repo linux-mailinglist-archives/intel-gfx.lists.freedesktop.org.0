@@ -1,32 +1,58 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 60EF32FD944
-	for <lists+intel-gfx@lfdr.de>; Wed, 20 Jan 2021 20:17:03 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 89C572FD951
+	for <lists+intel-gfx@lfdr.de>; Wed, 20 Jan 2021 20:19:41 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EDF986E41D;
-	Wed, 20 Jan 2021 19:17:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 75AA06E17E;
+	Wed, 20 Jan 2021 19:19:38 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 48B476E17E;
- Wed, 20 Jan 2021 19:16:59 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 3F043A7DFF;
- Wed, 20 Jan 2021 19:16:59 +0000 (UTC)
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A38736E17E
+ for <intel-gfx@lists.freedesktop.org>; Wed, 20 Jan 2021 19:19:37 +0000 (UTC)
+IronPort-SDR: Ts/Ihf+RbZet92wxs6R2hBM8yFTLNyKbKRJvM60BZcsfK3r5Yun7ElJPfwBfzNlSfTwFr5toq8
+ ovIPGaN8rMOw==
+X-IronPort-AV: E=McAfee;i="6000,8403,9870"; a="240705161"
+X-IronPort-AV: E=Sophos;i="5.79,361,1602572400"; d="scan'208";a="240705161"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Jan 2021 11:19:33 -0800
+IronPort-SDR: x9aVjw+WT3vRNvpY262xrKTqXKVFWYAOcBCYG5p+Y3ghlCPJl9qmZEfzYJBuB7xvi3/B5LTDQF
+ sfFMcXaKluBA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.79,361,1602572400"; d="scan'208";a="391661634"
+Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
+ by orsmga007.jf.intel.com with ESMTP; 20 Jan 2021 11:19:33 -0800
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1713.5; Wed, 20 Jan 2021 11:19:32 -0800
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1713.5; Wed, 20 Jan 2021 11:19:32 -0800
+Received: from orsmsx610.amr.corp.intel.com ([10.22.229.23]) by
+ ORSMSX610.amr.corp.intel.com ([10.22.229.23]) with mapi id 15.01.1713.004;
+ Wed, 20 Jan 2021 11:19:32 -0800
+From: "Souza, Jose" <jose.souza@intel.com>
+To: "ville.syrjala@linux.intel.com" <ville.syrjala@linux.intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Thread-Topic: [PATCH 1/2] drm/i915: Fix ICL MG PHY vswing handling
+Thread-Index: AQHWzNh5Whfy0CE3u0KoX1A7ccUhaaoxrxyA
+Date: Wed, 20 Jan 2021 19:19:32 +0000
+Message-ID: <87447f5395a33eecb3feb785d0057fedb863c110.camel@intel.com>
+References: <20201207203512.1718-1-ville.syrjala@linux.intel.com>
+In-Reply-To: <20201207203512.1718-1-ville.syrjala@linux.intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.1.200.100]
+Content-ID: <E00564A22FF31747A0316F1477DE4EE9@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Wed, 20 Jan 2021 19:16:59 -0000
-Message-ID: <161117021922.8787.16933677775463757666@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210120121718.26435-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20210120121718.26435-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
- =?utf-8?q?ies_starting_with_=5B1/2=5D_drm/i915/gt=3A_Do_not_suspend_bonde?=
- =?utf-8?q?d_requests_if_one_hangs?=
+Subject: Re: [Intel-gfx] [PATCH 1/2] drm/i915: Fix ICL MG PHY vswing handling
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,238 +65,43 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============1178234805=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============1178234805==
-Content-Type: multipart/alternative;
- boundary="===============0290771492880718106=="
-
---===============0290771492880718106==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-== Series Details ==
-
-Series: series starting with [1/2] drm/i915/gt: Do not suspend bonded requests if one hangs
-URL   : https://patchwork.freedesktop.org/series/86087/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_9650 -> Patchwork_19426
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19426/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_19426 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@amdgpu/amd_prime@i915-to-amd:
-    - fi-snb-2520m:       NOTRUN -> [SKIP][1] ([fdo#109271]) +17 similar issues
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19426/fi-snb-2520m/igt@amdgpu/amd_prime@i915-to-amd.html
-
-  * igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:
-    - fi-snb-2600:        NOTRUN -> [SKIP][2] ([fdo#109271]) +30 similar issues
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19426/fi-snb-2600/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html
-
-  * igt@kms_chamelium@hdmi-crc-fast:
-    - fi-snb-2600:        NOTRUN -> [SKIP][3] ([fdo#109271] / [fdo#111827]) +8 similar issues
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19426/fi-snb-2600/igt@kms_chamelium@hdmi-crc-fast.html
-
-  * igt@vgem_basic@create:
-    - fi-tgl-y:           [PASS][4] -> [DMESG-WARN][5] ([i915#402])
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9650/fi-tgl-y/igt@vgem_basic@create.html
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19426/fi-tgl-y/igt@vgem_basic@create.html
-
-  
-#### Possible fixes ####
-
-  * igt@gem_exec_suspend@basic-s3:
-    - fi-snb-2600:        [DMESG-WARN][6] ([i915#2772]) -> [PASS][7]
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9650/fi-snb-2600/igt@gem_exec_suspend@basic-s3.html
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19426/fi-snb-2600/igt@gem_exec_suspend@basic-s3.html
-
-  * igt@i915_selftest@live@hangcheck:
-    - fi-snb-2520m:       [INCOMPLETE][8] -> [PASS][9]
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9650/fi-snb-2520m/igt@i915_selftest@live@hangcheck.html
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19426/fi-snb-2520m/igt@i915_selftest@live@hangcheck.html
-
-  * igt@prime_self_import@basic-with_one_bo_two_files:
-    - fi-tgl-y:           [DMESG-WARN][10] ([i915#402]) -> [PASS][11]
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9650/fi-tgl-y/igt@prime_self_import@basic-with_one_bo_two_files.html
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19426/fi-tgl-y/igt@prime_self_import@basic-with_one_bo_two_files.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [fdo#109315]: https://bugs.freedesktop.org/show_bug.cgi?id=109315
-  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
-  [i915#2575]: https://gitlab.freedesktop.org/drm/intel/issues/2575
-  [i915#2772]: https://gitlab.freedesktop.org/drm/intel/issues/2772
-  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
-
-
-Participating hosts (43 -> 38)
-------------------------------
-
-  Missing    (5): fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_9650 -> Patchwork_19426
-
-  CI-20190529: 20190529
-  CI_DRM_9650: 3f989d1bb4cfd91e25549f9fd7a750412581dcc4 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5960: ace82fcd5f3623f8dde7c220a825873dc53dfae4 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_19426: 63e0ca6b8dc8f97bb9e2509ce1f4d091c3985cde @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-63e0ca6b8dc8 drm/i915/gt: Skip over completed active execlists, again
-69e82f4a4b40 drm/i915/gt: Do not suspend bonded requests if one hangs
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19426/index.html
-
---===============0290771492880718106==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>series starting with [1/2] drm/i915/gt: Do not suspend bonded requests if one hangs</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/86087/">https://patchwork.freedesktop.org/series/86087/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19426/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19426/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_9650 -&gt; Patchwork_19426</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19426/index.html</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_19426 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@amdgpu/amd_prime@i915-to-amd:</p>
-<ul>
-<li>fi-snb-2520m:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19426/fi-snb-2520m/igt@amdgpu/amd_prime@i915-to-amd.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +17 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:</p>
-<ul>
-<li>fi-snb-2600:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19426/fi-snb-2600/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +30 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@hdmi-crc-fast:</p>
-<ul>
-<li>fi-snb-2600:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19426/fi-snb-2600/igt@kms_chamelium@hdmi-crc-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@vgem_basic@create:</p>
-<ul>
-<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9650/fi-tgl-y/igt@vgem_basic@create.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19426/fi-tgl-y/igt@vgem_basic@create.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@gem_exec_suspend@basic-s3:</p>
-<ul>
-<li>fi-snb-2600:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9650/fi-snb-2600/igt@gem_exec_suspend@basic-s3.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2772">i915#2772</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19426/fi-snb-2600/igt@gem_exec_suspend@basic-s3.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@hangcheck:</p>
-<ul>
-<li>fi-snb-2520m:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9650/fi-snb-2520m/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19426/fi-snb-2520m/igt@i915_selftest@live@hangcheck.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@prime_self_import@basic-with_one_bo_two_files:</p>
-<ul>
-<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9650/fi-tgl-y/igt@prime_self_import@basic-with_one_bo_two_files.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19426/fi-tgl-y/igt@prime_self_import@basic-with_one_bo_two_files.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Participating hosts (43 -&gt; 38)</h2>
-<p>Missing    (5): fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-bdw-samus </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_9650 -&gt; Patchwork_19426</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_9650: 3f989d1bb4cfd91e25549f9fd7a750412581dcc4 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_5960: ace82fcd5f3623f8dde7c220a825873dc53dfae4 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
-  Patchwork_19426: 63e0ca6b8dc8f97bb9e2509ce1f4d091c3985cde @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>63e0ca6b8dc8 drm/i915/gt: Skip over completed active execlists, again<br />
-69e82f4a4b40 drm/i915/gt: Do not suspend bonded requests if one hangs</p>
-
-</body>
-</html>
-
---===============0290771492880718106==--
-
---===============1178234805==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============1178234805==--
+T24gTW9uLCAyMDIwLTEyLTA3IGF0IDIyOjM1ICswMjAwLCBWaWxsZSBTeXJqYWxhIHdyb3RlOg0K
+PiBGcm9tOiBWaWxsZSBTeXJqw6Rsw6QgPHZpbGxlLnN5cmphbGFAbGludXguaW50ZWwuY29tPg0K
+PiANCj4gVGhlIE1IIFBIWSB2c3dpbmcgdGFibGUgZG9lcyBoYXZlIGFsbCB0aGUgZW50cmllcyB0
+aGVzZSBkYXlzLiBHZXQNCj4gcmlkIG9mIHRoZSBvbGQgaGFja3MgaW4gdGhlIGNvZGUgd2hpY2gg
+Y2xhaW0gb3RoZXJ3aXNlLg0KPiANCj4gVGhpcyBoYWNrIHdhcyB0b3RhbGx5IGJvZ3VzIGFueXdh
+eS4gVGhlIGNvcnJlY3Qgd2F5IHRvIGhhbmRsZSB0aGUNCj4gbGFjayBvZiB0aG9zZSB0d28gZW50
+cmllcyB3b3VsZCBoYXZlIGJlZW4gdG8gZGVjbGFyZSBvdXIgbWF4DQo+IHZzd2luZyBhbmQgcHJl
+LWVtcGggdG8gYm90aCBiZSBsZXZlbCAyLg0KDQpSZXZpZXdlZC1ieTogSm9zw6kgUm9iZXJ0byBk
+ZSBTb3V6YSA8am9zZS5zb3V6YUBpbnRlbC5jb20+DQoNCj4gDQo+IENjOiBKb3PDqSBSb2JlcnRv
+IGRlIFNvdXphIDxqb3NlLnNvdXphQGludGVsLmNvbT4NCj4gQ2M6IENsaW50b24gVGF5bG9yIDxj
+bGludG9uLmEudGF5bG9yQGludGVsLmNvbT4NCj4gRml4ZXM6IDlmN2ZmYTI5Nzk3OCAoImRybS9p
+OTE1L3RjL2ljbDogVXBkYXRlIFRDIHZzd2luZyB0YWJsZXMiKQ0KPiBTaWduZWQtb2ZmLWJ5OiBW
+aWxsZSBTeXJqw6Rsw6QgPHZpbGxlLnN5cmphbGFAbGludXguaW50ZWwuY29tPg0KPiAtLS0NCj4g
+wqBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RkaS5jIHwgNyArKystLS0tDQo+
+IMKgMSBmaWxlIGNoYW5nZWQsIDMgaW5zZXJ0aW9ucygrKSwgNCBkZWxldGlvbnMoLSkNCj4gDQo+
+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RkaS5jIGIv
+ZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kZGkuYw0KPiBpbmRleCA1MTkzNDcz
+YzgzOGMuLmMzYTE1Y2U2NjQ3OCAxMDA2NDQNCj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUv
+ZGlzcGxheS9pbnRlbF9kZGkuYw0KPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5
+L2ludGVsX2RkaS5jDQo+IEBAIC0yNzYwLDEyICsyNzYwLDExIEBAIHN0YXRpYyB2b2lkIGljbF9t
+Z19waHlfZGRpX3Zzd2luZ19zZXF1ZW5jZShzdHJ1Y3QgaW50ZWxfZW5jb2RlciAqZW5jb2RlciwN
+Cj4gwqAJdTMyIHZhbDsNCj4gwqANCj4gDQo+IA0KPiANCj4gwqAJZGRpX3RyYW5zbGF0aW9ucyA9
+IGljbF9nZXRfbWdfYnVmX3RyYW5zKGVuY29kZXIsIGNydGNfc3RhdGUsICZuX2VudHJpZXMpOw0K
+PiAtCS8qIFRoZSB0YWJsZSBkb2VzIG5vdCBoYXZlIHZhbHVlcyBmb3IgbGV2ZWwgMyBhbmQgbGV2
+ZWwgOS4gKi8NCj4gLQlpZiAobGV2ZWwgPj0gbl9lbnRyaWVzIHx8IGxldmVsID09IDMgfHwgbGV2
+ZWwgPT0gOSkgew0KPiArCWlmIChsZXZlbCA+PSBuX2VudHJpZXMpIHsNCj4gwqAJCWRybV9kYmdf
+a21zKCZkZXZfcHJpdi0+ZHJtLA0KPiDCoAkJCSAgICAiRERJIHRyYW5zbGF0aW9uIG5vdCBmb3Vu
+ZCBmb3IgbGV2ZWwgJWQuIFVzaW5nICVkIGluc3RlYWQuIiwNCj4gLQkJCSAgICBsZXZlbCwgbl9l
+bnRyaWVzIC0gMik7DQo+IC0JCWxldmVsID0gbl9lbnRyaWVzIC0gMjsNCj4gKwkJCSAgICBsZXZl
+bCwgbl9lbnRyaWVzIC0gMSk7DQo+ICsJCWxldmVsID0gbl9lbnRyaWVzIC0gMTsNCj4gwqAJfQ0K
+PiDCoA0KPiANCj4gDQo+IA0KPiDCoAkvKiBTZXQgTUdfVFhfTElOS19QQVJBTVMgY3JpX3VzZV9m
+czMyIHRvIDAuICovDQoNCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9w
+Lm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVs
+LWdmeAo=
