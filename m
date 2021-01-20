@@ -2,36 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 339472FCB37
-	for <lists+intel-gfx@lfdr.de>; Wed, 20 Jan 2021 07:57:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2DA132FCB87
+	for <lists+intel-gfx@lfdr.de>; Wed, 20 Jan 2021 08:34:11 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 017466E134;
-	Wed, 20 Jan 2021 06:57:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0F0A56E13A;
+	Wed, 20 Jan 2021 07:34:08 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DA2646E134
- for <intel-gfx@lists.freedesktop.org>; Wed, 20 Jan 2021 06:57:24 +0000 (UTC)
-IronPort-SDR: 53DR8ZS1TZl8VQI0q2v8DsOTsgTbglbmmQFdkwDrD+LzbmZFkqXja46s1fXakmBZsoR7eqN5ns
- WS1ZI6z+nUww==
-X-IronPort-AV: E=McAfee;i="6000,8403,9869"; a="178277601"
-X-IronPort-AV: E=Sophos;i="5.79,360,1602572400"; d="scan'208";a="178277601"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Jan 2021 22:57:24 -0800
-IronPort-SDR: 1msValiIU8XbHVJM2c1P7NIwl5MyGP2PKJqiuS4bhvI+VKB7hXY2726izRIFNXyXnVN1svzQJx
- HF3Fq1eJGRvQ==
-X-IronPort-AV: E=Sophos;i="5.79,360,1602572400"; d="scan'208";a="402643532"
-Received: from tsengwil-desk1.itwn.intel.com (HELO gar) ([10.5.224.21])
- by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Jan 2021 22:57:23 -0800
-From: William Tseng <william.tseng@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Wed, 20 Jan 2021 15:00:13 +0800
-Message-Id: <20210120070013.28100-1-william.tseng@intel.com>
-X-Mailer: git-send-email 2.17.1
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id D79C06E12E;
+ Wed, 20 Jan 2021 07:34:06 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id C9DF3A8169;
+ Wed, 20 Jan 2021 07:34:06 +0000 (UTC)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v2] [v2] x86/gpu: add JSL stolen memory support
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "William Tseng" <william.tseng@intel.com>
+Date: Wed, 20 Jan 2021 07:34:06 -0000
+Message-ID: <161112804679.8790.2745093011527888381@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210120070013.28100-1-william.tseng@intel.com>
+In-Reply-To: <20210120070013.28100-1-william.tseng@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgeDg2?=
+ =?utf-8?q?/gpu=3A_add_JSL_stolen_memory_support_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,28 +38,217 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: William Tseng <william.tseng@intel.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============0754266107=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-VGhpcyBwYXRjaCBoYXMgYSBkZXBlbmRlbmN5IG9uOgoiZHJtL2k5MTUvanNsOiBTcGxpdCBFSEwv
-SlNMIHBsYXRmb3JtIGluZm8gYW5kIFBDSSBpZHMiCgpDYyA6IFRlamFzIFVwYWRoeWF5IDx0ZWph
-c2t1bWFyeC5zdXJlbmRyYWt1bWFyLnVwYWRoeWF5QGludGVsLmNvbT4KQ2MgOiBNYXR0IFJvcGVy
-IDxtYXR0aGV3LmQucm9wZXJAaW50ZWwuY29tPgpDYyA6IFZpbGxlIFN5cmrDpGzDpCA8dmlsbGUu
-c3lyamFsYUBsaW51eC5pbnRlbC5jb20+ClNpZ25lZC1vZmYtYnk6IFdpbGxpYW0gVHNlbmcgPHdp
-bGxpYW0udHNlbmdAaW50ZWwuY29tPgotLS0KIGFyY2gveDg2L2tlcm5lbC9lYXJseS1xdWlya3Mu
-YyB8IDEgKwogMSBmaWxlIGNoYW5nZWQsIDEgaW5zZXJ0aW9uKCspCgpkaWZmIC0tZ2l0IGEvYXJj
-aC94ODYva2VybmVsL2Vhcmx5LXF1aXJrcy5jIGIvYXJjaC94ODYva2VybmVsL2Vhcmx5LXF1aXJr
-cy5jCmluZGV4IGE0YjVhZjAzZGNjMS4uNTM0Y2MzZjc4YzZiIDEwMDY0NAotLS0gYS9hcmNoL3g4
-Ni9rZXJuZWwvZWFybHktcXVpcmtzLmMKKysrIGIvYXJjaC94ODYva2VybmVsL2Vhcmx5LXF1aXJr
-cy5jCkBAIC01NDksNiArNTQ5LDcgQEAgc3RhdGljIGNvbnN0IHN0cnVjdCBwY2lfZGV2aWNlX2lk
-IGludGVsX2Vhcmx5X2lkc1tdIF9faW5pdGNvbnN0ID0gewogCUlOVEVMX0NOTF9JRFMoJmdlbjlf
-ZWFybHlfb3BzKSwKIAlJTlRFTF9JQ0xfMTFfSURTKCZnZW4xMV9lYXJseV9vcHMpLAogCUlOVEVM
-X0VITF9JRFMoJmdlbjExX2Vhcmx5X29wcyksCisJSU5URUxfSlNMX0lEUygmZ2VuMTFfZWFybHlf
-b3BzKSwKIAlJTlRFTF9UR0xfMTJfSURTKCZnZW4xMV9lYXJseV9vcHMpLAogCUlOVEVMX1JLTF9J
-RFMoJmdlbjExX2Vhcmx5X29wcyksCiB9OwotLSAKMi4xNy4xCgpfX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVs
-LWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcv
-bWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
+--===============0754266107==
+Content-Type: multipart/alternative;
+ boundary="===============3383432931434965450=="
+
+--===============3383432931434965450==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+== Series Details ==
+
+Series: x86/gpu: add JSL stolen memory support (rev2)
+URL   : https://patchwork.freedesktop.org/series/85983/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_9647 -> Patchwork_19418
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19418/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_19418 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@amdgpu/amd_cs_nop@nop-compute0:
+    - fi-tgl-y:           NOTRUN -> [SKIP][1] ([fdo#109315] / [i915#2575]) +10 similar issues
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19418/fi-tgl-y/igt@amdgpu/amd_cs_nop@nop-compute0.html
+
+  * igt@gem_flink_basic@flink-lifetime:
+    - fi-tgl-y:           [PASS][2] -> [DMESG-WARN][3] ([i915#402])
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9647/fi-tgl-y/igt@gem_flink_basic@flink-lifetime.html
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19418/fi-tgl-y/igt@gem_flink_basic@flink-lifetime.html
+
+  * igt@i915_selftest@live@execlists:
+    - fi-bsw-n3050:       [PASS][4] -> [INCOMPLETE][5] ([i915#2940])
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9647/fi-bsw-n3050/igt@i915_selftest@live@execlists.html
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19418/fi-bsw-n3050/igt@i915_selftest@live@execlists.html
+
+  * igt@runner@aborted:
+    - fi-bdw-5557u:       NOTRUN -> [FAIL][6] ([i915#1602] / [i915#2029] / [i915#2369])
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19418/fi-bdw-5557u/igt@runner@aborted.html
+    - fi-bsw-n3050:       NOTRUN -> [FAIL][7] ([i915#1436])
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19418/fi-bsw-n3050/igt@runner@aborted.html
+
+  
+#### Possible fixes ####
+
+  * igt@debugfs_test@read_all_entries:
+    - fi-tgl-y:           [DMESG-WARN][8] ([i915#402]) -> [PASS][9] +1 similar issue
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9647/fi-tgl-y/igt@debugfs_test@read_all_entries.html
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19418/fi-tgl-y/igt@debugfs_test@read_all_entries.html
+
+  
+  [fdo#109315]: https://bugs.freedesktop.org/show_bug.cgi?id=109315
+  [i915#1436]: https://gitlab.freedesktop.org/drm/intel/issues/1436
+  [i915#1602]: https://gitlab.freedesktop.org/drm/intel/issues/1602
+  [i915#2029]: https://gitlab.freedesktop.org/drm/intel/issues/2029
+  [i915#2369]: https://gitlab.freedesktop.org/drm/intel/issues/2369
+  [i915#2575]: https://gitlab.freedesktop.org/drm/intel/issues/2575
+  [i915#2940]: https://gitlab.freedesktop.org/drm/intel/issues/2940
+  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
+
+
+Participating hosts (43 -> 38)
+------------------------------
+
+  Missing    (5): fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_9647 -> Patchwork_19418
+
+  CI-20190529: 20190529
+  CI_DRM_9647: bf84e89a0accc900a7c42035226a811a24737f51 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5960: ace82fcd5f3623f8dde7c220a825873dc53dfae4 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_19418: d2fdc97be903172ec7796d2eccaa694947c601d4 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+d2fdc97be903 x86/gpu: add JSL stolen memory support
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19418/index.html
+
+--===============3383432931434965450==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>x86/gpu: add JSL stolen memory support (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/85983/">https://patchwork.freedesktop.org/series/85983/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19418/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19418/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_9647 -&gt; Patchwork_19418</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19418/index.html</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_19418 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@amdgpu/amd_cs_nop@nop-compute0:</p>
+<ul>
+<li>fi-tgl-y:           NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19418/fi-tgl-y/igt@amdgpu/amd_cs_nop@nop-compute0.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109315">fdo#109315</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2575">i915#2575</a>) +10 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_flink_basic@flink-lifetime:</p>
+<ul>
+<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9647/fi-tgl-y/igt@gem_flink_basic@flink-lifetime.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19418/fi-tgl-y/igt@gem_flink_basic@flink-lifetime.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@execlists:</p>
+<ul>
+<li>fi-bsw-n3050:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9647/fi-bsw-n3050/igt@i915_selftest@live@execlists.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19418/fi-bsw-n3050/igt@i915_selftest@live@execlists.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2940">i915#2940</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@runner@aborted:</p>
+<ul>
+<li>
+<p>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19418/fi-bdw-5557u/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1602">i915#1602</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2029">i915#2029</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2369">i915#2369</a>)</p>
+</li>
+<li>
+<p>fi-bsw-n3050:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19418/fi-bsw-n3050/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1436">i915#1436</a>)</p>
+</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@debugfs_test@read_all_entries:<ul>
+<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9647/fi-tgl-y/igt@debugfs_test@read_all_entries.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19418/fi-tgl-y/igt@debugfs_test@read_all_entries.html">PASS</a> +1 similar issue</li>
+</ul>
+</li>
+</ul>
+<h2>Participating hosts (43 -&gt; 38)</h2>
+<p>Missing    (5): fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-bdw-samus </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_9647 -&gt; Patchwork_19418</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_9647: bf84e89a0accc900a7c42035226a811a24737f51 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_5960: ace82fcd5f3623f8dde7c220a825873dc53dfae4 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
+  Patchwork_19418: d2fdc97be903172ec7796d2eccaa694947c601d4 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>d2fdc97be903 x86/gpu: add JSL stolen memory support</p>
+
+</body>
+</html>
+
+--===============3383432931434965450==--
+
+--===============0754266107==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============0754266107==--
