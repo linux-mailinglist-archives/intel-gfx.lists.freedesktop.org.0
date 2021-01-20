@@ -2,31 +2,44 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1522F2FD3C4
-	for <lists+intel-gfx@lfdr.de>; Wed, 20 Jan 2021 16:21:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 366E22FD4A3
+	for <lists+intel-gfx@lfdr.de>; Wed, 20 Jan 2021 16:56:54 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 70E6C6E28A;
-	Wed, 20 Jan 2021 15:21:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8FA526E0BF;
+	Wed, 20 Jan 2021 15:56:52 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 75EFB6E409;
- Wed, 20 Jan 2021 15:21:36 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 70359A41FB;
- Wed, 20 Jan 2021 15:21:36 +0000 (UTC)
+X-Greylist: delayed 348 seconds by postgrey-1.36 at gabe;
+ Wed, 20 Jan 2021 06:34:11 UTC
+Received: from condef-05.nifty.com (condef-05.nifty.com [202.248.20.70])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 945376E12E;
+ Wed, 20 Jan 2021 06:34:11 +0000 (UTC)
+Received: from conuserg-10.nifty.com ([10.126.8.73])by condef-05.nifty.com
+ with ESMTP id 10K6Oqeo016013; Wed, 20 Jan 2021 15:24:52 +0900
+Received: from oscar.flets-west.jp (softbank126026094251.bbtec.net
+ [126.26.94.251]) (authenticated)
+ by conuserg-10.nifty.com with ESMTP id 10K6Nskv000951;
+ Wed, 20 Jan 2021 15:23:54 +0900
+DKIM-Filter: OpenDKIM Filter v2.10.3 conuserg-10.nifty.com 10K6Nskv000951
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nifty.com;
+ s=dec2015msa; t=1611123835;
+ bh=1JrYU8+EbJufEwrJi23/GxY2VE/PHExCTFg+NH0kfF8=;
+ h=From:To:Cc:Subject:Date:From;
+ b=pQthdvoM7RX8d6r5+I7dpdk0z0OAI33IVQgRjIYNHskv+uiNyGJRuaYkNrLCL61/v
+ PKjMVOWdBkefCKjHqL7eLPuKNRBeigvyLUu9m/iE0YmLU1v0Cq64ziBBveazsCo328
+ d5kqkp/shU4dAN3/kw3/68GjX+fxG8mYhy5rf2b1LPHT0vDXvCa1nxIht6eG3wqMjI
+ keAY8LNL/CHObN8jK1Wyl5zTYc/oSQmAtBeHmIOlfvBQAsV3LNb5vs0cBztCYMCycL
+ yBW4wbhvi2dDrjje4cLwUJP0ISPzWtXalHFW+OdG5kqvZ6YWf57o6VSDwFyLwRk/LV
+ Bkv9fkAxAa7Pg==
+X-Nifty-SrcIP: [126.26.94.251]
+From: Masahiro Yamada <masahiroy@kernel.org>
+To: linux-kbuild@vger.kernel.org
+Date: Wed, 20 Jan 2021 15:23:51 +0900
+Message-Id: <20210120062351.3011786-1-masahiroy@kernel.org>
+X-Mailer: git-send-email 2.27.0
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Wed, 20 Jan 2021 15:21:36 -0000
-Message-ID: <161115609643.8788.3288156320457615659@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210119214336.1463-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20210119214336.1463-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_series_starting_with_=5BCI=2C1/6=5D_drm/i915/gem=3A_Almagam?=
- =?utf-8?q?ate_clflushes_on_suspend_=28rev2=29?=
+X-Mailman-Approved-At: Wed, 20 Jan 2021 15:56:52 +0000
+Subject: [Intel-gfx] [PATCH] kbuild: use always-y instead of extra-y
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,34 +52,106 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: devicetree@vger.kernel.org, Michal Marek <michal.lkml@markovi.net>,
+ David Airlie <airlied@linux.ie>, Jan Kiszka <jan.kiszka@siemens.com>,
+ Masahiro Yamada <masahiroy@kernel.org>, linux-kernel@vger.kernel.org,
+ Rob Herring <robh+dt@kernel.org>, dri-devel@lists.freedesktop.org,
+ Kieran Bingham <kbingham@kernel.org>, intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+As commit d0e628cd817f ("kbuild: doc: clarify the difference between
+extra-y and always-y") explained, extra-y should be used for listing
+the prerequsites of vmlinux. always-y is a better fix here.
 
-Series: series starting with [CI,1/6] drm/i915/gem: Almagamate clflushes on suspend (rev2)
-URL   : https://patchwork.freedesktop.org/series/86058/
-State : warning
+Signed-off-by: Masahiro Yamada <masahiroy@kernel.org>
+---
 
-== Summary ==
+ Documentation/devicetree/bindings/Makefile |  8 ++++----
+ drivers/gpu/drm/i915/Makefile              |  2 +-
+ scripts/Makefile.lib                       | 10 +++++-----
+ scripts/gdb/linux/Makefile                 |  2 +-
+ 4 files changed, 11 insertions(+), 11 deletions(-)
 
-$ dim checkpatch origin/drm-tip
-12342e09d0d8 drm/i915/gem: Almagamate clflushes on suspend
--:24: WARNING:INCLUDE_LINUX: Use #include <linux/smp.h> instead of <asm/smp.h>
-#24: FILE: drivers/gpu/drm/i915/gem/i915_gem_pm.c:15:
-+#include <asm/smp.h>
-
-total: 0 errors, 1 warnings, 0 checks, 68 lines checked
-4af3d682302e drm/i915/gem: Almagamate clflushes on freeze
-daadc72e5f33 drm/i915/gem: Move stolen node into GEM object union
-3b52d3cc067b drm/i915/gem: Use shrinkable status for unknown swizzle quirks
-afb981966ab6 drm/i915/gem: Protect used framebuffers from casual eviction
-1f9edc822fe4 drm/i915/gem: Drop lru bumping on display unpinning
-
+diff --git a/Documentation/devicetree/bindings/Makefile b/Documentation/devicetree/bindings/Makefile
+index 8f2b054bec5a..90fcad98984d 100644
+--- a/Documentation/devicetree/bindings/Makefile
++++ b/Documentation/devicetree/bindings/Makefile
+@@ -78,10 +78,10 @@ $(obj)/processed-schema.json: $(DT_SCHEMA_FILES) check_dtschema_version FORCE
+ 
+ endif
+ 
+-extra-$(CHECK_DT_BINDING) += processed-schema-examples.json
+-extra-$(CHECK_DTBS) += processed-schema.json
+-extra-$(CHECK_DT_BINDING) += $(patsubst $(src)/%.yaml,%.example.dts, $(DT_SCHEMA_FILES))
+-extra-$(CHECK_DT_BINDING) += $(patsubst $(src)/%.yaml,%.example.dt.yaml, $(DT_SCHEMA_FILES))
++always-$(CHECK_DT_BINDING) += processed-schema-examples.json
++always-$(CHECK_DTBS)       += processed-schema.json
++always-$(CHECK_DT_BINDING) += $(patsubst $(src)/%.yaml,%.example.dts, $(DT_SCHEMA_FILES))
++always-$(CHECK_DT_BINDING) += $(patsubst $(src)/%.yaml,%.example.dt.yaml, $(DT_SCHEMA_FILES))
+ 
+ # Hack: avoid 'Argument list too long' error for 'make clean'. Remove most of
+ # build artifacts here before they are processed by scripts/Makefile.clean
+diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefile
+index 6d9e81ea67f4..938221894d0c 100644
+--- a/drivers/gpu/drm/i915/Makefile
++++ b/drivers/gpu/drm/i915/Makefile
+@@ -294,7 +294,7 @@ no-header-test := \
+ 	gvt/mpt.h \
+ 	gvt/scheduler.h
+ 
+-extra-$(CONFIG_DRM_I915_WERROR) += \
++always-$(CONFIG_DRM_I915_WERROR) += \
+ 	$(patsubst %.h,%.hdrtest, $(filter-out $(no-header-test), \
+ 		$(shell cd $(srctree)/$(src) && find * -name '*.h')))
+ 
+diff --git a/scripts/Makefile.lib b/scripts/Makefile.lib
+index 4612a887f28e..b8e587a17dcc 100644
+--- a/scripts/Makefile.lib
++++ b/scripts/Makefile.lib
+@@ -64,12 +64,12 @@ always-y += $(userprogs-always-y) $(userprogs-always-m)
+ 
+ # DTB
+ # If CONFIG_OF_ALL_DTBS is enabled, all DT blobs are built
+-extra-y				+= $(dtb-y)
+-extra-$(CONFIG_OF_ALL_DTBS)	+= $(dtb-)
++always-y			+= $(dtb-y)
++always-$(CONFIG_OF_ALL_DTBS)	+= $(dtb-)
+ 
+ ifneq ($(CHECK_DTBS),)
+-extra-y += $(patsubst %.dtb,%.dt.yaml, $(dtb-y))
+-extra-$(CONFIG_OF_ALL_DTBS) += $(patsubst %.dtb,%.dt.yaml, $(dtb-))
++always-y += $(patsubst %.dtb,%.dt.yaml, $(dtb-y))
++always-$(CONFIG_OF_ALL_DTBS) += $(patsubst %.dtb,%.dt.yaml, $(dtb-))
+ endif
+ 
+ # Add subdir path
+@@ -230,7 +230,7 @@ $(obj)/%: $(src)/%_shipped
+ #	target: source(s) FORCE
+ #		$(if_changed,ld/objcopy/gzip)
+ #
+-#	and add target to extra-y so that we know we have to
++#	and add target to 'targets' so that we know we have to
+ #	read in the saved command line
+ 
+ # Linking
+diff --git a/scripts/gdb/linux/Makefile b/scripts/gdb/linux/Makefile
+index 124755087510..13903073cbff 100644
+--- a/scripts/gdb/linux/Makefile
++++ b/scripts/gdb/linux/Makefile
+@@ -18,7 +18,7 @@ quiet_cmd_gen_constants_py = GEN     $@
+ 	$(CPP) -E -x c -P $(c_flags) $< > $@ ;\
+ 	sed -i '1,/<!-- end-c-headers -->/d;' $@
+ 
+-extra-y += constants.py
++always-y += constants.py
+ $(obj)/constants.py: $(src)/constants.py.in FORCE
+ 	$(call if_changed_dep,gen_constants_py)
+ 
+-- 
+2.27.0
 
 _______________________________________________
 Intel-gfx mailing list
