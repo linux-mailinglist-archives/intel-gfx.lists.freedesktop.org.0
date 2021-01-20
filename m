@@ -2,30 +2,28 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E11972FCFBE
-	for <lists+intel-gfx@lfdr.de>; Wed, 20 Jan 2021 13:14:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3AEDF2FCFD1
+	for <lists+intel-gfx@lfdr.de>; Wed, 20 Jan 2021 13:14:51 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 09C4C6E1BD;
-	Wed, 20 Jan 2021 12:14:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6B72C6E19A;
+	Wed, 20 Jan 2021 12:14:49 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mx2.suse.de (mx2.suse.de [195.135.220.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3A58B6E19A;
- Wed, 20 Jan 2021 12:14:39 +0000 (UTC)
-X-Virus-Scanned: by amavisd-new at test-mx.suse.de
-Received: from relay2.suse.de (unknown [195.135.221.27])
- by mx2.suse.de (Postfix) with ESMTP id C9536AAAE;
- Wed, 20 Jan 2021 12:14:37 +0000 (UTC)
-From: Thomas Zimmermann <tzimmermann@suse.de>
-To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
-References: <YAgdYGNoH7pC29rz@linux-uq9g>
-Message-ID: <d7d5a54a-5121-7fe9-e35f-65fb64fd30f6@suse.de>
-Date: Wed, 20 Jan 2021 13:14:36 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.6.0
+Received: from fireflyinternet.com (unknown [77.68.26.236])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 760276E1ED
+ for <intel-gfx@lists.freedesktop.org>; Wed, 20 Jan 2021 12:14:47 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from build.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 23649059-1500050 
+ for multiple; Wed, 20 Jan 2021 12:14:40 +0000
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Wed, 20 Jan 2021 12:14:38 +0000
+Message-Id: <20210120121439.17600-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-In-Reply-To: <YAgdYGNoH7pC29rz@linux-uq9g>
-Subject: Re: [Intel-gfx] [PULL] drm-misc-fixes
+Subject: [Intel-gfx] [PATCH 1/2] drm/i915: Strip out internal priorities
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,161 +36,339 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, dim-tools@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============1942282697=="
+Cc: Chris Wilson <chris@chris-wilson.co.uk>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---===============1942282697==
-Content-Type: multipart/signed; micalg=pgp-sha256;
- protocol="application/pgp-signature";
- boundary="GpSWVjwQcxv6PCzx5qVOjZtNKk0T7zqSp"
+Since we are not using any internal priority levels, and in the next few
+patches will introduce a new index for which the optimisation is not so
+lear cut, discard the small table within the priolist.
 
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---GpSWVjwQcxv6PCzx5qVOjZtNKk0T7zqSp
-Content-Type: multipart/mixed; boundary="NDGbK6FlkXIB0hj9nBPDKUj1oD36q2gZx";
- protected-headers="v1"
-From: Thomas Zimmermann <tzimmermann@suse.de>
-To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
-Cc: dim-tools@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Sean Paul <sean@poorly.run>,
- intel-gfx@lists.freedesktop.org
-Message-ID: <d7d5a54a-5121-7fe9-e35f-65fb64fd30f6@suse.de>
-Subject: Re: [PULL] drm-misc-fixes
-References: <YAgdYGNoH7pC29rz@linux-uq9g>
-In-Reply-To: <YAgdYGNoH7pC29rz@linux-uq9g>
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+---
+ .../gpu/drm/i915/gt/intel_engine_heartbeat.c  |  2 +-
+ .../drm/i915/gt/intel_execlists_submission.c  | 22 ++------
+ drivers/gpu/drm/i915/gt/selftest_execlists.c  |  1 -
+ drivers/gpu/drm/i915/gt/selftest_lrc.c        |  1 -
+ .../gpu/drm/i915/gt/uc/intel_guc_submission.c |  6 +--
+ drivers/gpu/drm/i915/i915_priolist_types.h    |  8 +--
+ drivers/gpu/drm/i915/i915_scheduler.c         | 51 +++----------------
+ drivers/gpu/drm/i915/i915_scheduler.h         | 16 ++----
+ 8 files changed, 20 insertions(+), 87 deletions(-)
 
---NDGbK6FlkXIB0hj9nBPDKUj1oD36q2gZx
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: quoted-printable
-
-
-
-Am 20.01.21 um 13:09 schrieb Thomas Zimmermann:
-> Hi Dave and Daniel,
->=20
-> here's this week's PR for drm-misc-next.
-
-drm-misc-fixes
-
->=20
-> Best regards
-> Thomas
->=20
-> drm-misc-fixes-2021-01-20:
-> Short summary of fixes pull (less than what git shortlog provides):
->=20
->   * drm/atomic: Release state on error
->   * drm/syncobj: Fix use-after-free
->   * drm/ttm: Don't use GFP_TRANSHUGE_LIGTH
->   * drm/vc4: Unify driver naming for PCM
->   * drm/vram-helper: Fix memory leak in vmap
-> The following changes since commit 19c329f6808995b142b3966301f217c831e7=
-cf31:
->=20
->    Linux 5.11-rc4 (2021-01-17 16:37:05 -0800)
->=20
-> are available in the Git repository at:
->=20
->    git://anongit.freedesktop.org/drm/drm-misc tags/drm-misc-fixes-2021-=
-01-20
->=20
-> for you to fetch changes up to a37eef63bc9e16e06361b539e528058146af80ab=
-:
->=20
->    drm/syncobj: Fix use-after-free (2021-01-20 10:28:39 +0100)
->=20
-> ----------------------------------------------------------------
-> Short summary of fixes pull (less than what git shortlog provides):
->=20
->   * drm/atomic: Release state on error
->   * drm/syncobj: Fix use-after-free
->   * drm/ttm: Don't use GFP_TRANSHUGE_LIGTH
->   * drm/vc4: Unify driver naming for PCM
->   * drm/vram-helper: Fix memory leak in vmap
->=20
-> ----------------------------------------------------------------
-> Christian K=C3=B6nig (1):
->        drm/ttm: stop using GFP_TRANSHUGE_LIGHT
->=20
-> Daniel Vetter (1):
->        drm/syncobj: Fix use-after-free
->=20
-> Nicolas Saenz Julienne (1):
->        drm/vc4: Unify PCM card's driver_name
->=20
-> Pan Bian (1):
->        drm/atomic: put state on error path
->=20
-> Thomas Zimmermann (1):
->        drm/vram-helper: Reuse existing page mappings in vmap
->=20
->   drivers/gpu/drm/drm_atomic_helper.c   |  2 +-
->   drivers/gpu/drm/drm_gem_vram_helper.c | 14 +++++++++++---
->   drivers/gpu/drm/drm_syncobj.c         |  8 +++++---
->   drivers/gpu/drm/ttm/ttm_pool.c        | 11 ++++++-----
->   drivers/gpu/drm/vc4/vc4_hdmi.c        |  1 +
->   5 files changed, 24 insertions(+), 12 deletions(-)
->=20
-> --
-> Thomas Zimmermann
-> Graphics Driver Developer
-> SUSE Software Solutions Germany GmbH
-> Maxfeldstr. 5, 90409 N=C3=BCrnberg, Germany
-> (HRB 36809, AG N=C3=BCrnberg)
-> Gesch=C3=A4ftsf=C3=BChrer: Felix Imend=C3=B6rffer
-> _______________________________________________
-> dri-devel mailing list
-> dri-devel@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/dri-devel
->=20
-
---=20
-Thomas Zimmermann
-Graphics Driver Developer
-SUSE Software Solutions Germany GmbH
-Maxfeldstr. 5, 90409 N=C3=BCrnberg, Germany
-(HRB 36809, AG N=C3=BCrnberg)
-Gesch=C3=A4ftsf=C3=BChrer: Felix Imend=C3=B6rffer
-
-
---NDGbK6FlkXIB0hj9nBPDKUj1oD36q2gZx--
-
---GpSWVjwQcxv6PCzx5qVOjZtNKk0T7zqSp
-Content-Type: application/pgp-signature; name="OpenPGP_signature.asc"
-Content-Description: OpenPGP digital signature
-Content-Disposition: attachment; filename="OpenPGP_signature"
-
------BEGIN PGP SIGNATURE-----
-
-wsF5BAABCAAjFiEExndm/fpuMUdwYFFolh/E3EQov+AFAmAIHqwFAwAAAAAACgkQlh/E3EQov+CX
-Fg/5AYNlKP88SL2CfbtkPL2ndrg7CVl/8+jgGjEjjS6V8Q4ltAENXLU3tjXcMwPm7HhYNNZ1lTJR
-+CKATPTrwb8hy74al7lh+YHngjTLaqgA2ti/wfUtzfjCTEIlnCP1ig1QpHqH0/y5BYcuzL6pvmwD
-wCleNeQx1iPNnx7ZNCzWrpXljv+8NvOZSB2tYCq9GR4+sxieGzIobeyGSJUm7Kt1S/AzdkXxq3Cj
-5MMJfjufA+ThQaCvSCM7AuMYsspq1Wq9yAaF0OZpt/Wi5SaCC52tbtsBkztHSLjuDNNJtTxXjB81
-GO2CXXeW0UafpO7QhjT5jtYjokv55TCcVMLCIrTYME3sq0zNyzuvyYejcXDuXpLA61hfdRk9VcG0
-F8KGV866PSGfMYoMYOtKR5ZfzPSfFbRETCe+V6p+m2v+eaGUVeh1VIMNS1DDbLHyiNg3zwV2hyD+
-VooY9FH2d2o+0GUpbn3Iem7JzmdfahEhvnq/Ocscu/4R0xhZcbFWVUbR6l/H9sc4M6uLF02OJUus
-s7Es89Ll5T3J7Cbm7ToQK//1M+7gf3B4QnCnwGZkrLeFqxn6whAQnEloV7hxRnZ7I2tnBdx/iy8W
-HUTh+BBifQFSVCBTxuiPlnmwKP5/uyTZ/xrflQRrD4Cwp/Fw0U9fLPrgBLuRWguzJH+GzTQw8FPL
-Xrs=
-=vn3z
------END PGP SIGNATURE-----
-
---GpSWVjwQcxv6PCzx5qVOjZtNKk0T7zqSp--
-
---===============1942282697==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+diff --git a/drivers/gpu/drm/i915/gt/intel_engine_heartbeat.c b/drivers/gpu/drm/i915/gt/intel_engine_heartbeat.c
+index d7be2b9339f9..1732a42e9075 100644
+--- a/drivers/gpu/drm/i915/gt/intel_engine_heartbeat.c
++++ b/drivers/gpu/drm/i915/gt/intel_engine_heartbeat.c
+@@ -125,7 +125,7 @@ static void heartbeat(struct work_struct *wrk)
+ 			 * low latency and no jitter] the chance to naturally
+ 			 * complete before being preempted.
+ 			 */
+-			attr.priority = I915_PRIORITY_MASK;
++			attr.priority = 0;
+ 			if (rq->sched.attr.priority >= attr.priority)
+ 				attr.priority |= I915_USER_PRIORITY(I915_PRIORITY_HEARTBEAT);
+ 			if (rq->sched.attr.priority >= attr.priority)
+diff --git a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
+index 740ff05fd692..39c31f95d4dc 100644
+--- a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
++++ b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
+@@ -274,22 +274,13 @@ static int effective_prio(const struct i915_request *rq)
+ 
+ static int queue_prio(const struct intel_engine_execlists *execlists)
+ {
+-	struct i915_priolist *p;
+ 	struct rb_node *rb;
+ 
+ 	rb = rb_first_cached(&execlists->queue);
+ 	if (!rb)
+ 		return INT_MIN;
+ 
+-	/*
+-	 * As the priolist[] are inverted, with the highest priority in [0],
+-	 * we have to flip the index value to become priority.
+-	 */
+-	p = to_priolist(rb);
+-	if (!I915_USER_PRIORITY_SHIFT)
+-		return p->priority;
+-
+-	return ((p->priority + 1) << I915_USER_PRIORITY_SHIFT) - ffs(p->used);
++	return to_priolist(rb)->priority;
+ }
+ 
+ static int virtual_prio(const struct intel_engine_execlists *el)
+@@ -1454,9 +1445,8 @@ static void execlists_dequeue(struct intel_engine_cs *engine)
+ 	while ((rb = rb_first_cached(&execlists->queue))) {
+ 		struct i915_priolist *p = to_priolist(rb);
+ 		struct i915_request *rq, *rn;
+-		int i;
+ 
+-		priolist_for_each_request_consume(rq, rn, p, i) {
++		priolist_for_each_request_consume(rq, rn, p) {
+ 			bool merge = true;
+ 
+ 			/*
+@@ -2964,9 +2954,8 @@ static void execlists_reset_cancel(struct intel_engine_cs *engine)
+ 	/* Flush the queued requests to the timeline list (for retiring). */
+ 	while ((rb = rb_first_cached(&execlists->queue))) {
+ 		struct i915_priolist *p = to_priolist(rb);
+-		int i;
+ 
+-		priolist_for_each_request_consume(rq, rn, p, i) {
++		priolist_for_each_request_consume(rq, rn, p) {
+ 			i915_request_mark_eio(rq);
+ 			__i915_request_submit(rq);
+ 		}
+@@ -3240,7 +3229,7 @@ int intel_execlists_submission_setup(struct intel_engine_cs *engine)
+ 
+ static struct list_head *virtual_queue(struct virtual_engine *ve)
+ {
+-	return &ve->base.execlists.default_priolist.requests[0];
++	return &ve->base.execlists.default_priolist.requests;
+ }
+ 
+ static void rcu_virtual_context_destroy(struct work_struct *wrk)
+@@ -3836,9 +3825,8 @@ void intel_execlists_show_requests(struct intel_engine_cs *engine,
+ 	count = 0;
+ 	for (rb = rb_first_cached(&execlists->queue); rb; rb = rb_next(rb)) {
+ 		struct i915_priolist *p = rb_entry(rb, typeof(*p), node);
+-		int i;
+ 
+-		priolist_for_each_request(rq, p, i) {
++		priolist_for_each_request(rq, p) {
+ 			if (count++ < max - 1)
+ 				show_request(m, rq, "\t\t", 0);
+ 			else
+diff --git a/drivers/gpu/drm/i915/gt/selftest_execlists.c b/drivers/gpu/drm/i915/gt/selftest_execlists.c
+index 264b5ebdb021..6bce45f63f37 100644
+--- a/drivers/gpu/drm/i915/gt/selftest_execlists.c
++++ b/drivers/gpu/drm/i915/gt/selftest_execlists.c
+@@ -1081,7 +1081,6 @@ create_rewinder(struct intel_context *ce,
+ 
+ 	intel_ring_advance(rq, cs);
+ 
+-	rq->sched.attr.priority = I915_PRIORITY_MASK;
+ 	err = 0;
+ err:
+ 	i915_request_get(rq);
+diff --git a/drivers/gpu/drm/i915/gt/selftest_lrc.c b/drivers/gpu/drm/i915/gt/selftest_lrc.c
+index 920979a89413..693a7e2d67c9 100644
+--- a/drivers/gpu/drm/i915/gt/selftest_lrc.c
++++ b/drivers/gpu/drm/i915/gt/selftest_lrc.c
+@@ -733,7 +733,6 @@ create_timestamp(struct intel_context *ce, void *slot, int idx)
+ 
+ 	intel_ring_advance(rq, cs);
+ 
+-	rq->sched.attr.priority = I915_PRIORITY_MASK;
+ 	err = 0;
+ err:
+ 	i915_request_get(rq);
+diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+index 23dc0aeaa0ab..3124d8794d87 100644
+--- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
++++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+@@ -206,9 +206,8 @@ static void __guc_dequeue(struct intel_engine_cs *engine)
+ 	while ((rb = rb_first_cached(&execlists->queue))) {
+ 		struct i915_priolist *p = to_priolist(rb);
+ 		struct i915_request *rq, *rn;
+-		int i;
+ 
+-		priolist_for_each_request_consume(rq, rn, p, i) {
++		priolist_for_each_request_consume(rq, rn, p) {
+ 			if (last && rq->context != last->context) {
+ 				if (port == last_port)
+ 					goto done;
+@@ -361,9 +360,8 @@ static void guc_reset_cancel(struct intel_engine_cs *engine)
+ 	/* Flush the queued requests to the timeline list (for retiring). */
+ 	while ((rb = rb_first_cached(&execlists->queue))) {
+ 		struct i915_priolist *p = to_priolist(rb);
+-		int i;
+ 
+-		priolist_for_each_request_consume(rq, rn, p, i) {
++		priolist_for_each_request_consume(rq, rn, p) {
+ 			list_del_init(&rq->sched.link);
+ 			__i915_request_submit(rq);
+ 			dma_fence_set_error(&rq->fence, -EIO);
+diff --git a/drivers/gpu/drm/i915/i915_priolist_types.h b/drivers/gpu/drm/i915/i915_priolist_types.h
+index 8aa7866ec6b6..9a7657bb002e 100644
+--- a/drivers/gpu/drm/i915/i915_priolist_types.h
++++ b/drivers/gpu/drm/i915/i915_priolist_types.h
+@@ -27,11 +27,8 @@ enum {
+ #define I915_USER_PRIORITY_SHIFT 0
+ #define I915_USER_PRIORITY(x) ((x) << I915_USER_PRIORITY_SHIFT)
+ 
+-#define I915_PRIORITY_COUNT BIT(I915_USER_PRIORITY_SHIFT)
+-#define I915_PRIORITY_MASK (I915_PRIORITY_COUNT - 1)
+-
+ /* Smallest priority value that cannot be bumped. */
+-#define I915_PRIORITY_INVALID (INT_MIN | (u8)I915_PRIORITY_MASK)
++#define I915_PRIORITY_INVALID (INT_MIN)
+ 
+ /*
+  * Requests containing performance queries must not be preempted by
+@@ -45,9 +42,8 @@ enum {
+ #define I915_PRIORITY_BARRIER (I915_PRIORITY_UNPREEMPTABLE - 1)
+ 
+ struct i915_priolist {
+-	struct list_head requests[I915_PRIORITY_COUNT];
++	struct list_head requests;
+ 	struct rb_node node;
+-	unsigned long used;
+ 	int priority;
+ };
+ 
+diff --git a/drivers/gpu/drm/i915/i915_scheduler.c b/drivers/gpu/drm/i915/i915_scheduler.c
+index 7144239f08df..d9f4cafe5a74 100644
+--- a/drivers/gpu/drm/i915/i915_scheduler.c
++++ b/drivers/gpu/drm/i915/i915_scheduler.c
+@@ -43,7 +43,7 @@ static inline struct i915_priolist *to_priolist(struct rb_node *rb)
+ static void assert_priolists(struct intel_engine_execlists * const execlists)
+ {
+ 	struct rb_node *rb;
+-	long last_prio, i;
++	long last_prio;
+ 
+ 	if (!IS_ENABLED(CONFIG_DRM_I915_DEBUG_GEM))
+ 		return;
+@@ -57,14 +57,6 @@ static void assert_priolists(struct intel_engine_execlists * const execlists)
+ 
+ 		GEM_BUG_ON(p->priority > last_prio);
+ 		last_prio = p->priority;
+-
+-		GEM_BUG_ON(!p->used);
+-		for (i = 0; i < ARRAY_SIZE(p->requests); i++) {
+-			if (list_empty(&p->requests[i]))
+-				continue;
+-
+-			GEM_BUG_ON(!(p->used & BIT(i)));
+-		}
+ 	}
+ }
+ 
+@@ -75,13 +67,10 @@ i915_sched_lookup_priolist(struct intel_engine_cs *engine, int prio)
+ 	struct i915_priolist *p;
+ 	struct rb_node **parent, *rb;
+ 	bool first = true;
+-	int idx, i;
+ 
+ 	lockdep_assert_held(&engine->active.lock);
+ 	assert_priolists(execlists);
+ 
+-	/* buckets sorted from highest [in slot 0] to lowest priority */
+-	idx = I915_PRIORITY_COUNT - (prio & I915_PRIORITY_MASK) - 1;
+ 	prio >>= I915_USER_PRIORITY_SHIFT;
+ 	if (unlikely(execlists->no_priolist))
+ 		prio = I915_PRIORITY_NORMAL;
+@@ -99,7 +88,7 @@ i915_sched_lookup_priolist(struct intel_engine_cs *engine, int prio)
+ 			parent = &rb->rb_right;
+ 			first = false;
+ 		} else {
+-			goto out;
++			return &p->requests;
+ 		}
+ 	}
+ 
+@@ -125,15 +114,12 @@ i915_sched_lookup_priolist(struct intel_engine_cs *engine, int prio)
+ 	}
+ 
+ 	p->priority = prio;
+-	for (i = 0; i < ARRAY_SIZE(p->requests); i++)
+-		INIT_LIST_HEAD(&p->requests[i]);
++	INIT_LIST_HEAD(&p->requests);
++
+ 	rb_link_node(&p->node, rb, parent);
+ 	rb_insert_color_cached(&p->node, &execlists->queue, first);
+-	p->used = 0;
+ 
+-out:
+-	p->used |= BIT(idx);
+-	return &p->requests[idx];
++	return &p->requests;
+ }
+ 
+ void __i915_priolist_free(struct i915_priolist *p)
+@@ -363,30 +349,6 @@ void i915_schedule(struct i915_request *rq, const struct i915_sched_attr *attr)
+ 	spin_unlock_irq(&schedule_lock);
+ }
+ 
+-static void __bump_priority(struct i915_sched_node *node, unsigned int bump)
+-{
+-	struct i915_sched_attr attr = node->attr;
+-
+-	if (attr.priority & bump)
+-		return;
+-
+-	attr.priority |= bump;
+-	__i915_schedule(node, &attr);
+-}
+-
+-void i915_schedule_bump_priority(struct i915_request *rq, unsigned int bump)
+-{
+-	unsigned long flags;
+-
+-	GEM_BUG_ON(bump & ~I915_PRIORITY_MASK);
+-	if (READ_ONCE(rq->sched.attr.priority) & bump)
+-		return;
+-
+-	spin_lock_irqsave(&schedule_lock, flags);
+-	__bump_priority(&rq->sched, bump);
+-	spin_unlock_irqrestore(&schedule_lock, flags);
+-}
+-
+ void i915_sched_node_init(struct i915_sched_node *node)
+ {
+ 	INIT_LIST_HEAD(&node->signalers_list);
+@@ -553,8 +515,7 @@ int __init i915_global_scheduler_init(void)
+ 	if (!global.slab_dependencies)
+ 		return -ENOMEM;
+ 
+-	global.slab_priorities = KMEM_CACHE(i915_priolist,
+-					    SLAB_HWCACHE_ALIGN);
++	global.slab_priorities = KMEM_CACHE(i915_priolist, 0);
+ 	if (!global.slab_priorities)
+ 		goto err_priorities;
+ 
+diff --git a/drivers/gpu/drm/i915/i915_scheduler.h b/drivers/gpu/drm/i915/i915_scheduler.h
+index 4501e5ac2637..858a0938f47a 100644
+--- a/drivers/gpu/drm/i915/i915_scheduler.h
++++ b/drivers/gpu/drm/i915/i915_scheduler.h
+@@ -15,17 +15,11 @@
+ 
+ struct drm_printer;
+ 
+-#define priolist_for_each_request(it, plist, idx) \
+-	for (idx = 0; idx < ARRAY_SIZE((plist)->requests); idx++) \
+-		list_for_each_entry(it, &(plist)->requests[idx], sched.link)
++#define priolist_for_each_request(it, plist) \
++	list_for_each_entry(it, &(plist)->requests, sched.link)
+ 
+-#define priolist_for_each_request_consume(it, n, plist, idx) \
+-	for (; \
+-	     (plist)->used ? (idx = __ffs((plist)->used)), 1 : 0; \
+-	     (plist)->used &= ~BIT(idx)) \
+-		list_for_each_entry_safe(it, n, \
+-					 &(plist)->requests[idx], \
+-					 sched.link)
++#define priolist_for_each_request_consume(it, n, plist) \
++	list_for_each_entry_safe(it, n, &(plist)->requests, sched.link)
+ 
+ void i915_sched_node_init(struct i915_sched_node *node);
+ void i915_sched_node_reinit(struct i915_sched_node *node);
+@@ -44,8 +38,6 @@ void i915_sched_node_fini(struct i915_sched_node *node);
+ void i915_schedule(struct i915_request *request,
+ 		   const struct i915_sched_attr *attr);
+ 
+-void i915_schedule_bump_priority(struct i915_request *rq, unsigned int bump);
+-
+ struct list_head *
+ i915_sched_lookup_priolist(struct intel_engine_cs *engine, int prio);
+ 
+-- 
+2.20.1
 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============1942282697==--
