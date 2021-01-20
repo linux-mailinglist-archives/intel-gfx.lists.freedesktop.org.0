@@ -1,59 +1,44 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 315CD2FCD6F
-	for <lists+intel-gfx@lfdr.de>; Wed, 20 Jan 2021 10:29:02 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1A2EA2FCD77
+	for <lists+intel-gfx@lfdr.de>; Wed, 20 Jan 2021 10:31:49 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 706CE6E158;
-	Wed, 20 Jan 2021 09:28:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 19A006E072;
+	Wed, 20 Jan 2021 09:31:47 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com
- [IPv6:2a00:1450:4864:20::433])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8485D6E158
- for <intel-gfx@lists.freedesktop.org>; Wed, 20 Jan 2021 09:28:58 +0000 (UTC)
-Received: by mail-wr1-x433.google.com with SMTP id 6so15091481wri.3
- for <intel-gfx@lists.freedesktop.org>; Wed, 20 Jan 2021 01:28:58 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:content-transfer-encoding:in-reply-to;
- bh=EuMk1HsGvXG72o1sJuM2wmg5seWvbCU4qLLOVTwy0NE=;
- b=lBxxZ4GswSVInyIxok3oXd1n3ACnkplEL70CX7GL6vnjXBiD+YEwUhmwNtp6zJleUD
- 3981xzipZZMKe5sQl5eU0/ArlERfH11VSDh4HQIYLAX0kdxsmCtrkP4FADpOP3bsomjs
- H6e0vNw6efvefo8rhalodYyz2U8LJegAtVrT0=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:content-transfer-encoding
- :in-reply-to;
- bh=EuMk1HsGvXG72o1sJuM2wmg5seWvbCU4qLLOVTwy0NE=;
- b=L+JhO5mA9iK1RxT1sqlTl+oM0cLXbDCEXeCOJ3HM4x2s1L7zT6uYoUEWiQGYmRtvTc
- dUGxfg0VE4KQuVr7sxAX7mjURcXlJNtJ7nw4ib1pnm2dfVTGTA2wlQk0jjJ52rZg4nli
- oL2M2jIkIYwv8pyR4nhOkM6V7er3X1KYO7ZQCjCNnl0/fQNkmlSw2PEVXSjvwxcLhxhd
- tbCNu81Gec8LmqFWeflrDYo822ODaElWlW9C3FIkNMRD9OI2KL04IPBg8YMYgxPGer8t
- HrPt7iqZCPjwyj3nxKlHICxQp7ZsfCcrPTqglnkcNbD3lVpqHJduKbyL+ak6ZKbv1aL8
- 8B+w==
-X-Gm-Message-State: AOAM531aURMIJT7c86giyC6ldZgL8dTYTre8GrRr1hYncVNJqZH5KHXj
- o0Ok0dbbTtMvk7cyihitpCxnIQ==
-X-Google-Smtp-Source: ABdhPJz+7b1bfqPP1JPo1hQ73zoaI4YvCSGRGRon/YOUXqz5kdYShnSsvNDKLimtcSvC2Nj5XgdHQw==
-X-Received: by 2002:a5d:510f:: with SMTP id s15mr8211262wrt.21.1611134937140; 
- Wed, 20 Jan 2021 01:28:57 -0800 (PST)
-Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id i59sm3215375wri.3.2021.01.20.01.28.55
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 20 Jan 2021 01:28:56 -0800 (PST)
-Date: Wed, 20 Jan 2021 10:28:54 +0100
-From: Daniel Vetter <daniel@ffwll.ch>
-To: Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>
-Message-ID: <YAf31kUyABDlbEiL@phenom.ffwll.local>
-References: <20210119130318.615145-1-daniel.vetter@ffwll.ch>
- <dd14c09f-acbe-3fa5-2088-a68951847707@amd.com>
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0E5C86E072
+ for <intel-gfx@lists.freedesktop.org>; Wed, 20 Jan 2021 09:31:46 +0000 (UTC)
+IronPort-SDR: Mmyl/CGL26uGZbljgvFL/kB2HvlrfwBJfJ9aupsLWgBBdAYvOkey2BvulrRcgomajKd340xO7W
+ +oheHUQ07hCA==
+X-IronPort-AV: E=McAfee;i="6000,8403,9869"; a="263883542"
+X-IronPort-AV: E=Sophos;i="5.79,360,1602572400"; d="scan'208";a="263883542"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Jan 2021 01:31:45 -0800
+IronPort-SDR: 4ffnUdG2B3Z9ODQ0eg6qIjwxT0MczyLwXp5av6KWQhVorQvjVOr4GUOSviA1hRwa6El5+14L8f
+ ncReK6u55btA==
+X-IronPort-AV: E=Sophos;i="5.79,360,1602572400"; d="scan'208";a="426835081"
+Received: from aknautiy-mobl.gar.corp.intel.com (HELO [10.252.170.233])
+ ([10.252.170.233])
+ by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Jan 2021 01:31:44 -0800
+To: Anshuman Gupta <anshuman.gupta@intel.com>, intel-gfx@lists.freedesktop.org
+References: <20210119064655.1605-1-anshuman.gupta@intel.com>
+ <20210119064655.1605-3-anshuman.gupta@intel.com>
+From: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
+Message-ID: <e4fbdf83-1359-d5d1-95ee-c7ee044d9a3b@intel.com>
+Date: Wed, 20 Jan 2021 15:01:34 +0530
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Thunderbird/78.6.1
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <dd14c09f-acbe-3fa5-2088-a68951847707@amd.com>
-X-Operating-System: Linux phenom 5.7.0-1-amd64 
-Subject: Re: [Intel-gfx] [PATCH] drm/syncobj: Fix use-after-free
+In-Reply-To: <20210119064655.1605-3-anshuman.gupta@intel.com>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH v2 2/2] drm/i915/hdcp: Fix uninitialized
+ symbol
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,96 +51,80 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Maxime Ripard <mripard@kernel.org>, David Airlie <airlied@linux.ie>,
- Daniel Vetter <daniel.vetter@ffwll.ch>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- DRI Development <dri-devel@lists.freedesktop.org>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Daniel Vetter <daniel.vetter@intel.com>, stable@vger.kernel.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Jan 19, 2021 at 02:08:12PM +0100, Christian K=F6nig wrote:
-> Am 19.01.21 um 14:03 schrieb Daniel Vetter:
-> > While reviewing Christian's annotation patch I noticed that we have a
-> > user-after-free for the WAIT_FOR_SUBMIT case: We drop the syncobj
-> > reference before we've completed the waiting.
-> > =
 
-> > Of course usually there's nothing bad happening here since userspace
-> > keeps the reference, but we can't rely on userspace to play nice here!
-> > =
+On 1/19/2021 12:16 PM, Anshuman Gupta wrote:
+> Move (num_hdcp_streams > 0) condition to stream_encryption()
+> code block, where it actually belongs.
+> This fixes the static analysis error of uninitialized symbol 'ret'.
+>
+> Cc: Ramalingam C <ramalingam.c@intel.com>
+> Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
+> ---
+>   drivers/gpu/drm/i915/display/intel_hdcp.c | 20 ++++++++++----------
+>   1 file changed, 10 insertions(+), 10 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c b/drivers/gpu/drm/i915/display/intel_hdcp.c
+> index 581ccb038b87..9ca0d67b10f5 100644
+> --- a/drivers/gpu/drm/i915/display/intel_hdcp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
+> @@ -878,15 +878,15 @@ static int _intel_hdcp_disable(struct intel_connector *connector)
+>   		}
+>   		drm_dbg_kms(&dev_priv->drm, "HDCP 1.4 transcoder: %s stream encryption disabled\n",
+>   			    transcoder_name(hdcp->stream_transcoder));
+> +		/*
+> +		 * If there are other connectors on this port using HDCP,
+> +		 * don't disable it until it disabled HDCP encryption for
+> +		 * all connectors in MST topology.
+> +		 */
+> +		if (dig_port->num_hdcp_streams > 0)
+> +			return ret;
 
-> > Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
-> > Fixes: bc9c80fe01a2 ("drm/syncobj: use the timeline point in drm_syncob=
-j_find_fence v4")
-> > Cc: Christian K=F6nig <christian.koenig@amd.com>
-> > Cc: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
-> > Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-> > Cc: Maxime Ripard <mripard@kernel.org>
-> > Cc: Thomas Zimmermann <tzimmermann@suse.de>
-> > Cc: David Airlie <airlied@linux.ie>
-> > Cc: Daniel Vetter <daniel@ffwll.ch>
-> > Cc: dri-devel@lists.freedesktop.org
-> > Cc: <stable@vger.kernel.org> # v5.2+
-> =
+Looks good to me. Agreed Check for num_hdcp_streams should be inside the 
+block for checking stream_encryption.
 
-> Reviewed-by: Christian K=F6nig <christian.koenig@amd.com>
+Small suggestion: return 0 would be more appropriate here as the return 
+value is already checked for error in previous lines.
 
-Pushed to drm-misc-fixes, thanks for reviewing.
--Daniel
+We just want to return successfully from here, as there is nothing to do 
+in case there are still active hdcp_streams.
 
-> =
+Same for the hdcp_2_disable below.
 
-> > ---
-> >   drivers/gpu/drm/drm_syncobj.c | 8 +++++---
-> >   1 file changed, 5 insertions(+), 3 deletions(-)
-> > =
+In any case:
 
-> > diff --git a/drivers/gpu/drm/drm_syncobj.c b/drivers/gpu/drm/drm_syncob=
-j.c
-> > index 6e74e6745eca..349146049849 100644
-> > --- a/drivers/gpu/drm/drm_syncobj.c
-> > +++ b/drivers/gpu/drm/drm_syncobj.c
-> > @@ -388,19 +388,18 @@ int drm_syncobj_find_fence(struct drm_file *file_=
-private,
-> >   		return -ENOENT;
-> >   	*fence =3D drm_syncobj_fence_get(syncobj);
-> > -	drm_syncobj_put(syncobj);
-> >   	if (*fence) {
-> >   		ret =3D dma_fence_chain_find_seqno(fence, point);
-> >   		if (!ret)
-> > -			return 0;
-> > +			goto out;
-> >   		dma_fence_put(*fence);
-> >   	} else {
-> >   		ret =3D -EINVAL;
-> >   	}
-> >   	if (!(flags & DRM_SYNCOBJ_WAIT_FLAGS_WAIT_FOR_SUBMIT))
-> > -		return ret;
-> > +		goto out;
-> >   	memset(&wait, 0, sizeof(wait));
-> >   	wait.task =3D current;
-> > @@ -432,6 +431,9 @@ int drm_syncobj_find_fence(struct drm_file *file_pr=
-ivate,
-> >   	if (wait.node.next)
-> >   		drm_syncobj_remove_wait(syncobj, &wait);
-> > +out:
-> > +	drm_syncobj_put(syncobj);
-> > +
-> >   	return ret;
-> >   }
-> >   EXPORT_SYMBOL(drm_syncobj_find_fence);
-> =
+Reviewed-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 
-
--- =
-
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
+>   	}
+>   
+> -	/*
+> -	 * If there are other connectors on this port using HDCP, don't disable it
+> -	 * until it disabled HDCP encryption for all connectors in MST topology.
+> -	 */
+> -	if (dig_port->num_hdcp_streams > 0)
+> -		return ret;
+> -
+>   	hdcp->hdcp_encrypted = false;
+>   	intel_de_write(dev_priv, HDCP_CONF(dev_priv, cpu_transcoder, port), 0);
+>   	if (intel_de_wait_for_clear(dev_priv,
+> @@ -1947,10 +1947,10 @@ static int _intel_hdcp2_disable(struct intel_connector *connector)
+>   		}
+>   		drm_dbg_kms(&i915->drm, "HDCP 2.2 transcoder: %s stream encryption disabled\n",
+>   			    transcoder_name(hdcp->stream_transcoder));
+> -	}
+>   
+> -	if (dig_port->num_hdcp_streams > 0)
+> -		return ret;
+> +		if (dig_port->num_hdcp_streams > 0)
+> +			return ret;
+> +	}
+>   
+>   	ret = hdcp2_disable_encryption(connector);
+>   
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
