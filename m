@@ -1,39 +1,30 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A3AED2FE7CB
-	for <lists+intel-gfx@lfdr.de>; Thu, 21 Jan 2021 11:41:08 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 359632FE802
+	for <lists+intel-gfx@lfdr.de>; Thu, 21 Jan 2021 11:50:16 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F2E246E079;
-	Thu, 21 Jan 2021 10:41:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A1519891BB;
+	Thu, 21 Jan 2021 10:50:14 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A5AF46E079
- for <intel-gfx@lists.freedesktop.org>; Thu, 21 Jan 2021 10:41:05 +0000 (UTC)
-IronPort-SDR: 54kQfxPd88S7SaHxEZYYML9MPaTEtZp/NU279eQ8DJePVCLqF+0LlUOEwS+pdo8KB6YR9UdKbq
- 0ECNACN3eHrw==
-X-IronPort-AV: E=McAfee;i="6000,8403,9870"; a="175743800"
-X-IronPort-AV: E=Sophos;i="5.79,363,1602572400"; d="scan'208";a="175743800"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Jan 2021 02:41:01 -0800
-IronPort-SDR: AzQ3W1xK8W/7kAMtGIKTAPoYW2lWHx50n1tOujVomMwukPG2nPL7/+gyXx26rK7ewnMZVMQNYm
- +UBDgKocfcFw==
-X-IronPort-AV: E=Sophos;i="5.79,363,1602572400"; d="scan'208";a="385252418"
-Received: from cohrs-mobl.ger.corp.intel.com (HELO localhost) ([10.252.51.23])
- by orsmga008-auth.jf.intel.com with
- ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Jan 2021 02:40:58 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Aditya Swarup <aditya.swarup@intel.com>, intel-gfx@lists.freedesktop.org
-In-Reply-To: <20201205010844.361880-1-aditya.swarup@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20201205010844.361880-1-aditya.swarup@intel.com>
-Date: Thu, 21 Jan 2021 12:40:55 +0200
-Message-ID: <87a6t2mv2g.fsf@intel.com>
+Received: from fireflyinternet.com (unknown [77.68.26.236])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E8338891C3;
+ Thu, 21 Jan 2021 10:50:12 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 23658655-1500050 
+ for multiple; Thu, 21 Jan 2021 10:50:05 +0000
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Thu, 21 Jan 2021 10:50:05 +0000
+Message-Id: <20210121105005.963616-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.30.0
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH 00/22] Introduce Alderlake-S
+Subject: [Intel-gfx] [PATCH i-g-t] i915/gem_ctx_persistence: Check for
+ accidental banning
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,69 +37,89 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: igt-dev@lists.freedesktop.org, Chris Wilson <chris@chris-wilson.co.uk>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gRnJpLCAwNCBEZWMgMjAyMCwgQWRpdHlhIFN3YXJ1cCA8YWRpdHlhLnN3YXJ1cEBpbnRlbC5j
-b20+IHdyb3RlOgo+IFJldiAzIHdpdGggYWxsIHRoZSBjb21tZW50cyBhZGRyZXNzZWQgZnJvbSBS
-ZXYgMjoKPiBodHRwczovL3BhdGNod29yay5mcmVlZGVza3RvcC5vcmcvc2VyaWVzLzgyOTE3LwoK
-UGxlYXNlIHJlYmFzZSBhbmQgcmVzZW5kIHRoZSBzZXJpZXMsIGFuZCBsZXQncyBnZXQgdGhpcyBy
-ZXZpZXdlZCBhbmQKbWVyZ2VkIHRvIHRvcGljL2FkbC1zLWVuYWJsaW5nLgoKQlIsCkphbmkuCgoK
-Pgo+IEFkaXR5YSBTd2FydXAgKDkpOgo+ICAgZHJtL2k5MTUvdGdsOiBGaXggUkVWSUQgbWFjcm9z
-IGZvciBUR0wgdG8gZmV0Y2ggY29ycmVjdCBzdGVwcGluZwo+ICAgZHJtL2k5MTUvdGdsOiBBZGQg
-Ym91bmQgY2hlY2tzIGFuZCBzaW1wbGlmeSBUR0wgUkVWSUQgbWFjcm9zCj4gICBkcm0vaTkxNS9h
-ZGxfczogQ29uZmlndXJlIERQTEwgZm9yIEFETC1TCj4gICBkcm0vaTkxNS9hZGxfczogQ29uZmln
-dXJlIFBvcnQgY2xvY2sgcmVnaXN0ZXJzIGZvciBBREwtUwo+ICAgZHJtL2k5MTUvYWRsX3M6IElu
-aXRpYWxpemUgZGlzcGxheSBmb3IgQURMLVMKPiAgIGRybS9pOTE1L2FkbF9zOiBBZGQgYWRsLXMg
-ZGRjIHBpbiBtYXBwaW5nCj4gICBkcm0vaTkxNS9hZGxfczogQWRkIHZidCBwb3J0IGFuZCBhdXgg
-Y2hhbm5lbCBzZXR0aW5ncyBmb3IgYWRscwo+ICAgZHJtL2k5MTUvYWRsX3M6IEFkZCBkaXNwbGF5
-IFdBcyBmb3IgQURMLVMKPiAgIGRybS9pOTE1L2FkbF9zOiBBZGQgR1QgYW5kIENUWCBXQXMgZm9y
-IEFETC1TCj4KPiBBbnVzaGEgU3JpdmF0c2EgKDQpOgo+ICAgZHJtL2k5MTUvYWRsX3M6IEFkZCBQ
-Q0ggc3VwcG9ydAo+ICAgZHJtL2k5MTUvYWRsX3M6IEFkZCBJbnRlcnJ1cHQgU3VwcG9ydAo+ICAg
-ZHJtL2k5MTUvYWRsX3M6IEFkZCBQSFlzIGZvciBBbGRlcmxha2UgUwo+ICAgZHJtL2k5MTUvYWRs
-X3M6IExvYWQgRE1DCj4KPiBDYXogWW9rb3lhbWEgKDMpOgo+ICAgZHJtL2k5MTUvYWRsX3M6IEFk
-ZCBBREwtUyBwbGF0Zm9ybSBpbmZvIGFuZCBQQ0kgaWRzCj4gICB4ODYvZ3B1OiBhZGQgQURMX1Mg
-c3RvbGVuIG1lbW9yeSBzdXBwb3J0Cj4gICBkcm0vaTkxNS9hZGxfczogTUNIQkFSIG1lbW9yeSBp
-bmZvIHJlZ2lzdGVycyBhcmUgbW92ZWQKPgo+IEpvc8OpIFJvYmVydG8gZGUgU291emEgKDEpOgo+
-ICAgZHJtL2k5MTUvZGlzcGxheTogQWRkIEhBU19EMTJfUExBTkVfTUlOSU1JWkFUSU9OCj4KPiBM
-dWNhcyBEZSBNYXJjaGkgKDEpOgo+ICAgZHJtL2k5MTUvYWRsX3M6IEFkZCBwb3dlciB3ZWxscwo+
-Cj4gTWF0dCBSb3BlciAoMyk6Cj4gICBkcm0vaTkxNS9hZGxfczogVXBkYXRlIGNvbWJvIFBIWSBt
-YXN0ZXIvc2xhdmUgcmVsYXRpb25zaGlwcwo+ICAgZHJtL2k5MTUvYWRsX3M6IFVwZGF0ZSBQSFlf
-TUlTQyBwcm9ncmFtbWluZwo+ICAgZHJtL2k5MTUvYWRsX3M6IFJlLXVzZSBUR0wgR3VDL0h1QyBm
-aXJtd2FyZQo+Cj4gVGVqYXMgVXBhZGh5YXkgKDEpOgo+ICAgZHJtL2k5MTUvYWRsX3M6IFVwZGF0
-ZSBtZW1vcnkgYmFuZHdpZHRoIHBhcmFtZXRlcnMKPgo+ICBhcmNoL3g4Ni9rZXJuZWwvZWFybHkt
-cXVpcmtzLmMgICAgICAgICAgICAgICAgfCAgIDEgKwo+ICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9k
-aXNwbGF5L2ludGVsX2Jpb3MuYyAgICAgfCAgNzAgKysrKysrKysrLS0KPiAgZHJpdmVycy9ncHUv
-ZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9idy5jICAgICAgIHwgICA4ICsrCj4gIC4uLi9ncHUvZHJt
-L2k5MTUvZGlzcGxheS9pbnRlbF9jb21ib19waHkuYyAgICB8ICAyMyArKystCj4gIGRyaXZlcnMv
-Z3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfY3NyLmMgICAgICB8ICAxMCArLQo+ICBkcml2ZXJz
-L2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RkaS5jICAgICAgfCAgNjQgKysrKysrLS0tLQo+
-ICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXkuYyAgfCAgMzYgKysr
-KystCj4gIC4uLi9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXlfcG93ZXIuYyAgICB8ICAx
-MSArLQo+ICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RwbGxfbWdyLmMgfCAg
-MzggKysrKystCj4gIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfaGRtaS5jICAg
-ICB8ICAyMCArKy0KPiAgZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9wc3IuYyAg
-ICAgIHwgICA0ICstCj4gIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfc3ByaXRl
-LmMgICB8ICAgOCArLQo+ICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX3ZidF9k
-ZWZzLmggfCAgIDQgKwo+ICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC9pbnRlbF93b3JrYXJvdW5k
-cy5jICAgfCAxMTkgKysrKysrKysrKysrLS0tLS0tCj4gIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2d0
-L3VjL2ludGVsX3VjX2Z3LmMgICAgICB8ICAgNCArLQo+ICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9p
-OTE1X2Rydi5oICAgICAgICAgICAgICAgfCAgNzIgKysrKysrKystLS0KPiAgZHJpdmVycy9ncHUv
-ZHJtL2k5MTUvaTkxNV9pcnEuYyAgICAgICAgICAgICAgIHwgICA1ICstCj4gIGRyaXZlcnMvZ3B1
-L2RybS9pOTE1L2k5MTVfcGNpLmMgICAgICAgICAgICAgICB8ICAxMyArKwo+ICBkcml2ZXJzL2dw
-dS9kcm0vaTkxNS9pOTE1X3JlZy5oICAgICAgICAgICAgICAgfCAgNTQgKysrKysrKy0KPiAgZHJp
-dmVycy9ncHUvZHJtL2k5MTUvaW50ZWxfZGV2aWNlX2luZm8uYyAgICAgIHwgICA5ICstCj4gIGRy
-aXZlcnMvZ3B1L2RybS9pOTE1L2ludGVsX2RldmljZV9pbmZvLmggICAgICB8ICAgMSArCj4gIGRy
-aXZlcnMvZ3B1L2RybS9pOTE1L2ludGVsX2RyYW0uYyAgICAgICAgICAgICB8ICAyMyArKystCj4g
-IGRyaXZlcnMvZ3B1L2RybS9pOTE1L2ludGVsX3BjaC5jICAgICAgICAgICAgICB8ICAgOCArLQo+
-ICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9pbnRlbF9wY2guaCAgICAgICAgICAgICAgfCAgIDMgKwo+
-ICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9pbnRlbF9wbS5jICAgICAgICAgICAgICAgfCAgIDIgKy0K
-PiAgaW5jbHVkZS9kcm0vaTkxNV9wY2lpZHMuaCAgICAgICAgICAgICAgICAgICAgIHwgIDEzICsr
-Cj4gIDI2IGZpbGVzIGNoYW5nZWQsIDQ4OSBpbnNlcnRpb25zKCspLCAxMzQgZGVsZXRpb25zKC0p
-CgotLSAKSmFuaSBOaWt1bGEsIEludGVsIE9wZW4gU291cmNlIEdyYXBoaWNzIENlbnRlcgpfX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFp
-bGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
+Check that closing many contexts does not cause a ban.
+
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+---
+ tests/i915/gem_ctx_persistence.c | 48 ++++++++++++++++++++++++++++++++
+ 1 file changed, 48 insertions(+)
+
+diff --git a/tests/i915/gem_ctx_persistence.c b/tests/i915/gem_ctx_persistence.c
+index 1b7d18525..b51a9fcc7 100644
+--- a/tests/i915/gem_ctx_persistence.c
++++ b/tests/i915/gem_ctx_persistence.c
+@@ -1065,6 +1065,51 @@ static void smoketest(int i915)
+ 	gem_quiescent_gpu(i915);
+ }
+ 
++static void many_contexts(int i915)
++{
++	const struct intel_execution_engine2 *e;
++	igt_spin_t *spin;
++
++	cleanup(i915);
++
++	/*
++	 * Perform many peristent kills from the same client. These should not
++	 * cause the client to be banned, which in turn prevents us from
++	 * creating new contexts, and submitting new execbuf.
++	 */
++
++	spin = igt_spin_new(i915, .flags = IGT_SPIN_NO_PREEMPTION);
++	igt_spin_end(spin);
++
++	igt_until_timeout(30) {
++		__for_each_physical_engine(i915, e) {
++			int64_t timeout = NSEC_PER_SEC;
++			uint32_t ctx;
++
++			ctx = gem_context_clone_with_engines(i915, 0);
++			gem_context_set_persistence(i915, ctx, false);
++
++			igt_spin_reset(spin);
++			spin->execbuf.rsvd1 = ctx;
++			spin->execbuf.flags &= ~63;
++			spin->execbuf.flags |= e->flags;
++			gem_execbuf(i915, &spin->execbuf);
++			gem_context_destroy(i915, ctx);
++
++			igt_assert_eq(gem_wait(i915, spin->handle, &timeout), 0);
++		}
++	}
++
++	/* And check we can still submit to the default context -- no bans! */
++	igt_spin_reset(spin);
++	spin->execbuf.rsvd1 = 0;
++	spin->execbuf.flags &= ~63;
++	gem_execbuf(i915, &spin->execbuf);
++
++	igt_spin_free(i915, spin);
++	gem_quiescent_gpu(i915);
++}
++
+ static void replace_engines(int i915, const struct intel_execution_engine2 *e)
+ {
+ 	I915_DEFINE_CONTEXT_PARAM_ENGINES(engines, 1) = {
+@@ -1398,6 +1443,9 @@ igt_main
+ 			}
+ 		}
+ 
++		igt_subtest("many-contexts")
++			many_contexts(i915);
++
+ 		igt_subtest("smoketest")
+ 			smoketest(i915);
+ 	}
+-- 
+2.30.0
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
