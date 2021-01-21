@@ -2,56 +2,40 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2432A2FDFFD
-	for <lists+intel-gfx@lfdr.de>; Thu, 21 Jan 2021 04:38:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 57FB42FE08E
+	for <lists+intel-gfx@lfdr.de>; Thu, 21 Jan 2021 05:25:28 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 449286E4CA;
-	Thu, 21 Jan 2021 03:38:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7F6506E4CF;
+	Thu, 21 Jan 2021 04:25:25 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com
- [IPv6:2a00:1450:4864:20::531])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9DEF06E4CA
- for <intel-gfx@lists.freedesktop.org>; Thu, 21 Jan 2021 03:38:09 +0000 (UTC)
-Received: by mail-ed1-x531.google.com with SMTP id j13so815359edp.2
- for <intel-gfx@lists.freedesktop.org>; Wed, 20 Jan 2021 19:38:09 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc:content-transfer-encoding;
- bh=SjvaqWWMo4dArGhKfMRrOJ7omqOlY2oAKH/Mex2DuNs=;
- b=JPKw55NbRaz/VMvso7/gCKs5vyjnUl9XM6tp08gTLHFq5AeQ25FDTWLOkpho/6FJOZ
- Icd/7OLOD6NEvn9AoCtm2U26gz0vqy6r7DutwF5Uds+lZVi1nqEdX7VovVeCstyDMY7T
- PDvL75pUSGf8Jcs7sCu0/UY3hhzm3TaB63gI1P8YJIpasX3CCJByHBPIU4kwnpe3V3S5
- QOIRje58paMBFikxrsI2+Geq9FNu7Bm7nXFBKAMnE2NYzsbTcoqtfXoaHY1TCM2M25X2
- Ft9+mPM/r5viOSyu6pcj0ELdj43H7yc+quriKLaoI75q958MizckSXhC+qyKIniMnqKm
- oa6Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc:content-transfer-encoding;
- bh=SjvaqWWMo4dArGhKfMRrOJ7omqOlY2oAKH/Mex2DuNs=;
- b=QwROzjaxo94Viw5yNs8+vS6pgZqU52gQexI5KTQ4AfCRbeSbkWnMMrn+kj7/q2UgMn
- gqUTbleaJoQ9+HYegEXF8rq5lpg6uJjBishBraQLCvqQivhtu3NwRHHdbiCgmwjdUG54
- vw7htCWiRdeN1h8a2a2yI/O1ZMyyjszZTthXm4/7V/gMtbfiMNLbB18cNrEzUyBT3RXg
- WtQxXpzrQ/wTn4KjBFHYElcwsdKrrjmczY0mdCNcZKHtqmsgkXVXd6UZviFWVaSZvD39
- OaCpB7lCNqZQ8gHSKdnxTlmdnmAGya52wx30khAs1qseOpnkOAT7xX+OTfvdryuGB6Jj
- 2tCA==
-X-Gm-Message-State: AOAM533jbp0S00i4XCPzsv+HfXK5KgBZolkv53uzVdRCz0B5vTbBEWR+
- RdbvjDcfb+lpWwAihd1s6u+1a4U1Ik8XajVJc78=
-X-Google-Smtp-Source: ABdhPJzyzqGsk+HB/fGSIn2wVQL0NVyrv8+IOIMG87vi/BS38K6ePHL0IF1O3PANkGriByrOgFTL3ZFQT6EFaoLJO5A=
-X-Received: by 2002:aa7:d649:: with SMTP id v9mr9450814edr.383.1611200288278; 
- Wed, 20 Jan 2021 19:38:08 -0800 (PST)
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 78B936E4CF;
+ Thu, 21 Jan 2021 04:25:24 +0000 (UTC)
+IronPort-SDR: Ashjm6d9zqMBPcTKKh68kCXG6mE0IEJxSTOJS/RZW/3DphlbY6DKNoBgkvZIpCl1a2LWSsqXp0
+ It6ozLjPxqVw==
+X-IronPort-AV: E=McAfee;i="6000,8403,9870"; a="264029887"
+X-IronPort-AV: E=Sophos;i="5.79,363,1602572400"; 
+ d="asc'?scan'208";a="264029887"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Jan 2021 20:25:23 -0800
+IronPort-SDR: HouJadK6x1wqvTyK1HVhidPTFE9SgoeYIhZyTwL0rpoARUGshumW9JyVNVBSmTcW1IUlBkpasU
+ QFt5eYXdizGA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.79,363,1602572400"; 
+ d="asc'?scan'208";a="571559510"
+Received: from zhen-hp.sh.intel.com (HELO zhen-hp) ([10.239.160.147])
+ by fmsmga006.fm.intel.com with ESMTP; 20 Jan 2021 20:25:20 -0800
+Date: Thu, 21 Jan 2021 12:08:25 +0800
+From: Zhenyu Wang <zhenyuw@linux.intel.com>
+To: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+Message-ID: <20210121040825.GG15982@zhen-hp.sh.intel.com>
+References: <20210118050739.GY15982@zhen-hp.sh.intel.com>
+ <161114531233.12022.4976651928998688735@jlahtine-mobl.ger.corp.intel.com>
 MIME-Version: 1.0
-References: <cover.1610622609.git.jani.nikula@intel.com>
- <9b51add03de3ffce8a1e9dd59ede79e4e1134c89.1610622609.git.jani.nikula@intel.com>
- <YABpx599AISB4xD0@intel.com>
-In-Reply-To: <YABpx599AISB4xD0@intel.com>
-From: Dave Airlie <airlied@gmail.com>
-Date: Thu, 21 Jan 2021 13:37:57 +1000
-Message-ID: <CAPM=9tyMg8=aHSzgC+sZJtRPrKVWqM2RsVo_C_Wxt8MXfivJjA@mail.gmail.com>
-To: =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-Subject: Re: [Intel-gfx] [PATCH 06/11] drm/i915: migrate skl planes code new
- file (v3)
+In-Reply-To: <161114531233.12022.4976651928998688735@jlahtine-mobl.ger.corp.intel.com>
+Subject: Re: [Intel-gfx] [PULL] gvt-gt-next
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,73 +48,137 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jani Nikula <jani.nikula@intel.com>, Dave Airlie <airlied@redhat.com>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- Dan Carpenter <dan.carpenter@oracle.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Reply-To: Zhenyu Wang <zhenyuw@linux.intel.com>
+Cc: Jani Nikula <jani.nikula@intel.com>,
+ intel-gfx <intel-gfx@lists.freedesktop.org>, "Yuan,
+ Hang" <hang.yuan@intel.com>, "Lv, Zhiyuan" <zhiyuan.lv@intel.com>,
+ intel-gvt-dev <intel-gvt-dev@lists.freedesktop.org>
+Content-Type: multipart/mixed; boundary="===============1238625625=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gRnJpLCAxNSBKYW4gMjAyMSBhdCAwMTo1NywgVmlsbGUgU3lyasOkbMOkCjx2aWxsZS5zeXJq
-YWxhQGxpbnV4LmludGVsLmNvbT4gd3JvdGU6Cj4KPiBPbiBUaHUsIEphbiAxNCwgMjAyMSBhdCAw
-MToxMzo1MFBNICswMjAwLCBKYW5pIE5pa3VsYSB3cm90ZToKPiA+IEZyb206IERhdmUgQWlybGll
-IDxhaXJsaWVkQHJlZGhhdC5jb20+Cj4gPgo+ID4gUmV3b3JrIHRoZSBwbGFuZSBpbml0IGNhbGxz
-IHRvIGRvIHRoZSBnZW4gdGVzdCBvbmUgbGV2ZWwgaGlnaGVyLgo+ID4KPiA+IFJld29yayBzb21l
-IG9mIHRoZSBwbGFuZSBoZWxwZXJzIHNvIHRoZXkgY2FuIGxpdmUgaW4gbmV3IGZpbGUsCj4gPiB0
-aGVyZSBpcyBzdGlsbCBzb21lIHNjb3BlIHRvIGNsZWFuIHVwIHRoZSBwbGFuZS9mYiBpbnRlcmFj
-dGlvbnMKPiA+IGxhdGVyLgo+ID4KPiA+IHYyOiBkcm9wIGF0b21pYyBjb2RlIGJhY2ssIHJlbmFt
-ZSBmaWxlIHRvIFZpbGxlIHN1Z2dlc3Rpb25zLAo+ID4gYWRkIGhlYWRlciBmaWxlLgo+ID4gdjM6
-IG1vdmUgc2NhbGVyIGJpdHMgYmFjawo+ID4KPiA+IFNpZ25lZC1vZmYtYnk6IERhdmUgQWlybGll
-IDxhaXJsaWVkQHJlZGhhdC5jb20+Cj4gPiBbSmFuaTogZml4ZWQgdXAgc3BhcnNlIHdhcm5pbmdz
-Ll0KPiA+IFNpZ25lZC1vZmYtYnk6IEphbmkgTmlrdWxhIDxqYW5pLm5pa3VsYUBpbnRlbC5jb20+
-Cj4gPiBSZXBvcnRlZC1ieToga2VybmVsIHRlc3Qgcm9ib3QgPGxrcEBpbnRlbC5jb20+Cj4gPiBS
-ZXBvcnRlZC1ieTogRGFuIENhcnBlbnRlciA8ZGFuLmNhcnBlbnRlckBvcmFjbGUuY29tPgo+ID4g
-LS0tCj4gPHNuaXA+Cj4gPiAtdW5zaWduZWQgaW50Cj4gPiAtaW50ZWxfcGxhbmVfZmVuY2VfeV9v
-ZmZzZXQoY29uc3Qgc3RydWN0IGludGVsX3BsYW5lX3N0YXRlICpwbGFuZV9zdGF0ZSkKPiA+IC17
-Cj4gPiAtICAgICBpbnQgeCA9IDAsIHkgPSAwOwo+ID4gLQo+ID4gLSAgICAgaW50ZWxfcGxhbmVf
-YWRqdXN0X2FsaWduZWRfb2Zmc2V0KCZ4LCAmeSwgcGxhbmVfc3RhdGUsIDAsCj4gPiAtICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgcGxhbmVfc3RhdGUtPmNvbG9yX3BsYW5l
-WzBdLm9mZnNldCwgMCk7Cj4gPiAtCj4gPiAtICAgICByZXR1cm4geTsKPiA+IC19Cj4KPiBUaGlz
-IGdldHRpbmcgbW92ZWQgYXJvdW5kIGlzIG1lc3NpbmcgdXAgdGhlIGRpZmYuCj4KPiA8c25pcD4K
-PiA+IEBAIC00Mzg2LDE1ICszNjMzLDYgQEAgc3RhdGljIGludCBza2xfdXBkYXRlX3NjYWxlcl9w
-bGFuZShzdHJ1Y3QgaW50ZWxfY3J0Y19zdGF0ZSAqY3J0Y19zdGF0ZSwKPiA+ICAgICAgIHJldHVy
-biAwOwo+ID4gIH0KPiA+Cj4gPiAtdm9pZCBza2xfc2NhbGVyX2Rpc2FibGUoY29uc3Qgc3RydWN0
-IGludGVsX2NydGNfc3RhdGUgKm9sZF9jcnRjX3N0YXRlKQo+ID4gLXsKPiA+IC0gICAgIHN0cnVj
-dCBpbnRlbF9jcnRjICpjcnRjID0gdG9faW50ZWxfY3J0YyhvbGRfY3J0Y19zdGF0ZS0+dWFwaS5j
-cnRjKTsKPiA+IC0gICAgIGludCBpOwo+ID4gLQo+ID4gLSAgICAgZm9yIChpID0gMDsgaSA8IGNy
-dGMtPm51bV9zY2FsZXJzOyBpKyspCj4gPiAtICAgICAgICAgICAgIHNrbF9kZXRhY2hfc2NhbGVy
-KGNydGMsIGkpOwo+ID4gLX0KPgo+IFNhbWUgaGVyZS4KCldpZXJkIG5vdCBzdXJlIGhvdyB0byBn
-ZW5lcmF0ZSBpdCBiZXR0ZXIuCj4KPiA8c25pcD4KPiA+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dw
-dS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RwX21zdC5jIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUv
-ZGlzcGxheS9pbnRlbF9kcF9tc3QuYwo+ID4gaW5kZXggZjc2ZTJjMmE4M2I4Li44ZTRiNjY0Nzc1
-MmYgMTAwNjQ0Cj4gPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rw
-X21zdC5jCj4gPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RwX21z
-dC5jCj4gPiBAQCAtMzksNiArMzksNyBAQAo+ID4gICNpbmNsdWRlICJpbnRlbF9kcF9tc3QuaCIK
-PiA+ICAjaW5jbHVkZSAiaW50ZWxfZHBpb19waHkuaCIKPiA+ICAjaW5jbHVkZSAiaW50ZWxfaGRj
-cC5oIgo+ID4gKyNpbmNsdWRlICJza2xfdW5pdmVyc2FsX3BsYW5lLmgiCj4KPiBXaHkgaXMgdGhp
-cyBoZXJlPwoKTm90IHN1cmUsIHByb2JhYmx5IGxlZnQgb3ZlciBmcm9tIG1vdmluZyBzY2FsZXIs
-IGRyb3BwZWQgaXQgbm93LgoKPgo+ID4KPiA+ICBzdGF0aWMgaW50IGludGVsX2RwX21zdF9jb21w
-dXRlX2xpbmtfY29uZmlnKHN0cnVjdCBpbnRlbF9lbmNvZGVyICplbmNvZGVyLAo+ID4gICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgc3RydWN0IGludGVsX2NydGNfc3Rh
-dGUgKmNydGNfc3RhdGUsCj4gPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlz
-cGxheS9pbnRlbF9wc3IuYyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfcHNy
-LmMKPiA+IGluZGV4IGMyNGFlNjk0MjZjZi4uMGQwYjBkM2M1MmExIDEwMDY0NAo+ID4gLS0tIGEv
-ZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9wc3IuYwo+ID4gKysrIGIvZHJpdmVy
-cy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9wc3IuYwo+ID4gQEAgLTMxLDYgKzMxLDcgQEAK
-PiA+ICAjaW5jbHVkZSAiaW50ZWxfcHNyLmgiCj4gPiAgI2luY2x1ZGUgImludGVsX3Nwcml0ZS5o
-Igo+ID4gICNpbmNsdWRlICJpbnRlbF9oZG1pLmgiCj4gPiArI2luY2x1ZGUgInNrbF91bml2ZXJz
-YWxfcGxhbmUuaCIKPgo+IElzIHRoaXMgZHVlIHRvIHRoZSBwc3IgZGFtYWdlIHN0dWZmPwoKaW50
-ZWxfcHNyMl9wcm9ncmFtX3BsYW5lX3NlbF9mZXRjaCBjYWxscyBza2xfY2FsY19tYWluX3N1cmZh
-Y2Vfb2Zmc2V0Cj4KPiA8c25pcD4KPiA+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkx
-NS9kaXNwbGF5L3Zsdl9kc2kuYyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvdmx2X2Rz
-aS5jCj4gPiBpbmRleCBmOTQwMjVlYzYwM2EuLmViZjI2NjQ1NzUxOCAxMDA2NDQKPiA+IC0tLSBh
-L2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvdmx2X2RzaS5jCj4gPiArKysgYi9kcml2ZXJz
-L2dwdS9kcm0vaTkxNS9kaXNwbGF5L3Zsdl9kc2kuYwo+ID4gQEAgLTM4LDYgKzM4LDcgQEAKPiA+
-ICAjaW5jbHVkZSAiaW50ZWxfZmlmb191bmRlcnJ1bi5oIgo+ID4gICNpbmNsdWRlICJpbnRlbF9w
-YW5lbC5oIgo+ID4gICNpbmNsdWRlICJpbnRlbF9zaWRlYmFuZC5oIgo+ID4gKyNpbmNsdWRlICJz
-a2xfdW5pdmVyc2FsX3BsYW5lLmgiCj4KPiBXaHkgZG8gd2UgbmVlZCB0aGlzIGhlcmU/Cj4KT29w
-cyBhcyB3ZWxsLCBkcm9wcGVkIGl0LgoKRGF2ZS4KX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlz
-dHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4v
-bGlzdGluZm8vaW50ZWwtZ2Z4Cg==
+
+--===============1238625625==
+Content-Type: multipart/signed; micalg=pgp-sha1;
+	protocol="application/pgp-signature"; boundary="GV0iVqYguTV4Q9ER"
+Content-Disposition: inline
+
+
+--GV0iVqYguTV4Q9ER
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On 2021.01.20 14:21:53 +0200, Joonas Lahtinen wrote:
+> Quoting Zhenyu Wang (2021-01-18 07:07:39)
+> >=20
+> > Hi,
+> >=20
+> > This is GVT next for 5.12 against drm-intel-gt-next which is mostly
+> > for cmd parser enhancement which adds extra check on register load
+> > depending on initial context and handles vGPU register state
+> > accordingly.
+>=20
+> I think we were bit inconclusive on this last time.
+>
+
+Sorry about that, I was thinking we might just follow your previous idea.
+
+> Even if this does not have any dependency to drm-intel-gt-next I can
+> pull this to drm-intel-gt-next. The only caveat is that for any -fixes,
+> there needs to be a backmerge to drm-intel-next.
+>=20
+> Not sure if this is a problem. Do we want to make it a recurring practice
+> to backmerge drm-intel-gt-next into drm-intel-next after it lands in
+> drm-next?
+>
+
+So -gt-next won't do -gt-next-fixes, right? For -next-fixes, we always do
+drm-next backmerge, right?
+
+> So to recap: Do we want to pull to drm-intel-next whenever there are no
+> dependencies to drm-intel-gt-next, to avoid a backmerge?
+
+yeah, that's fine to me. But for this time gvt-next pull, it's really targe=
+ting
+for -gt-next which has some dependency, I can double check to confirm.
+
+Thanks.
+
+> Or do we want
+> to always do a backmerge in anticipation of -fixes.
+>=20
+> Regards, Joonas
+>=20
+> > Thanks.
+> > --
+> > The following changes since commit fe7bcfaeb2b775f257348dc7b935f8e80eef=
+3e7d:
+> >=20
+> >   drm/i915/gt: Refactor heartbeat request construction and submission (=
+2020-12-24 18:07:26 +0000)
+> >=20
+> > are available in the Git repository at:
+> >=20
+> >   https://github.com/intel/gvt-linux tags/gvt-gt-next-2021-01-18
+> >=20
+> > for you to fetch changes up to 02dd2b12a685944c4d52c569d05f636372a7b6c7:
+> >=20
+> >   drm/i915/gvt: unify lri cmd handler and mmio handlers (2020-12-25 11:=
+16:32 +0800)
+> >=20
+> > ----------------------------------------------------------------
+> > gvt-gt-next-2021-01-18
+> >=20
+> > - GVT cmd parser enhancement against guest context (Yan)
+> >=20
+> > ----------------------------------------------------------------
+> > Yan Zhao (11):
+> >       drm/i915/gvt: parse init context to update cmd accessible reg whi=
+telist
+> >       drm/i915/gvt: scan VM ctx pages
+> >       drm/i915/gvt: filter cmds "srm" and "lrm" in cmd_handler
+> >       drm/i915/gvt: filter cmds "lrr-src" and "lrr-dst" in cmd_handler
+> >       drm/i915/gvt: filter cmd "pipe-ctrl" in cmd_handler
+> >       drm/i915/gvt: export find_mmio_info
+> >       drm/i915/gvt: make width of mmio_attribute bigger
+> >       drm/i915/gvt: introduce a new flag F_CMD_WRITE_PATCH
+> >       drm/i915/gvt: statically set F_CMD_WRITE_PATCH flag
+> >       drm/i915/gvt: update F_CMD_WRITE_PATCH flag when parsing init ctx
+> >       drm/i915/gvt: unify lri cmd handler and mmio handlers
+> >=20
+> >  drivers/gpu/drm/i915/gvt/cmd_parser.c | 335 ++++++++++++++++++++++++++=
++-------
+> >  drivers/gpu/drm/i915/gvt/cmd_parser.h |   4 +
+> >  drivers/gpu/drm/i915/gvt/gvt.h        |  37 +++-
+> >  drivers/gpu/drm/i915/gvt/handlers.c   |  15 +-
+> >  drivers/gpu/drm/i915/gvt/mmio.h       |   3 +
+> >  drivers/gpu/drm/i915/gvt/reg.h        |   2 +
+> >  drivers/gpu/drm/i915/gvt/scheduler.c  |  22 ++-
+> >  drivers/gpu/drm/i915/gvt/vgpu.c       |   4 +-
+> >  8 files changed, 339 insertions(+), 83 deletions(-)
+
+--GV0iVqYguTV4Q9ER
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iF0EARECAB0WIQTXuabgHDW6LPt9CICxBBozTXgYJwUCYAj+NQAKCRCxBBozTXgY
+J4JzAJ401rluF67Du7mlSySPw0qe7x6zJwCgjeIe30awyMLe8MM06inxD4mAQ9A=
+=ayv3
+-----END PGP SIGNATURE-----
+
+--GV0iVqYguTV4Q9ER--
+
+--===============1238625625==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============1238625625==--
