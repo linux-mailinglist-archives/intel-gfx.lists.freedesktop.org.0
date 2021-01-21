@@ -1,33 +1,30 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 257342FEF34
-	for <lists+intel-gfx@lfdr.de>; Thu, 21 Jan 2021 16:43:53 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id A90282FEF6D
+	for <lists+intel-gfx@lfdr.de>; Thu, 21 Jan 2021 16:49:57 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8A65F6E903;
-	Thu, 21 Jan 2021 15:43:51 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0BCF96E8E7;
+	Thu, 21 Jan 2021 15:49:55 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 026726E903
- for <Intel-gfx@lists.freedesktop.org>; Thu, 21 Jan 2021 15:43:49 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 19C3E6E093
+ for <intel-gfx@lists.freedesktop.org>; Thu, 21 Jan 2021 15:49:53 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 23662266-1500050 for multiple; Thu, 21 Jan 2021 15:43:42 +0000
-MIME-Version: 1.0
-In-Reply-To: <20210121135430.676447-1-tvrtko.ursulin@linux.intel.com>
-References: <20210121135430.676447-1-tvrtko.ursulin@linux.intel.com>
+Received: from build.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 23662328-1500050 
+ for <intel-gfx@lists.freedesktop.org>; Thu, 21 Jan 2021 15:49:49 +0000
 From: Chris Wilson <chris@chris-wilson.co.uk>
-To: Intel-gfx@lists.freedesktop.org,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Date: Thu, 21 Jan 2021 15:43:42 +0000
-Message-ID: <161124382217.3166.15980209128272182785@build.alporthouse.com>
-User-Agent: alot/0.9
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Decrease number of subplatform
- bits
+To: intel-gfx@lists.freedesktop.org
+Date: Thu, 21 Jan 2021 15:49:48 +0000
+Message-Id: <20210121154950.19898-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.20.1
+MIME-Version: 1.0
+Subject: [Intel-gfx] [CI 1/3] drm/i915/gt: Flush GT interrupt handler before
+ changing interrupt state
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,21 +42,32 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Tvrtko Ursulin (2021-01-21 13:54:30)
-> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-> 
-> Commit 6ce1c33d6c36 ("drm/i915: Kill INTEL_SUBPLATFORM_AML") removed the
-> only platform which used bit 2 so could also decrease the
-> INTEL_SUBPLATFORM_BITS definition.
-> 
-> This is not a fixes material but still lets make it precise.
-> 
-> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-> References: 6ce1c33d6c36 ("drm/i915: Kill INTEL_SUBPLATFORM_AML")
+Before we clear any state that may be being written by an interrupt
+handler on another core, flush the interrupt handlers.
 
-With the usage of BITS corrected elsewhere,
-Reviewed-by: Chris Wilson <chris@chris-wilson.co.uk>
--Chris
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+---
+ drivers/gpu/drm/i915/gt/intel_execlists_submission.c | 3 +++
+ 1 file changed, 3 insertions(+)
+
+diff --git a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
+index b31ce0d60028..e8c20f80e353 100644
+--- a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
++++ b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
+@@ -2656,7 +2656,10 @@ static void enable_error_interrupt(struct intel_engine_cs *engine)
+ {
+ 	u32 status;
+ 
++	/* Flush ongoing GT interrupts before touching interrupt state */
++	synchronize_hardirq(engine->i915->drm.irq);
+ 	engine->execlists.error_interrupt = 0;
++
+ 	ENGINE_WRITE(engine, RING_EMR, ~0u);
+ 	ENGINE_WRITE(engine, RING_EIR, ~0u); /* clear all existing errors */
+ 
+-- 
+2.20.1
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
