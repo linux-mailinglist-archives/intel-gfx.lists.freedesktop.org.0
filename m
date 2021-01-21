@@ -2,51 +2,41 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A1C4C2FF5EC
-	for <lists+intel-gfx@lfdr.de>; Thu, 21 Jan 2021 21:33:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E105F2FF647
+	for <lists+intel-gfx@lfdr.de>; Thu, 21 Jan 2021 21:48:48 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 39FB06E94C;
-	Thu, 21 Jan 2021 20:33:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C35A16E951;
+	Thu, 21 Jan 2021 20:48:45 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [63.128.21.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4D7796E94C
- for <intel-gfx@lists.freedesktop.org>; Thu, 21 Jan 2021 20:33:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1611261203;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=pmArDKlP8XROGh7SSuqalHmLY6449V7ifWHPpsdrgcQ=;
- b=cY18VlBNXe+7vt6aFE81oa+xii7bx7PIZYiiU6EuIWzYOlr9NuOHhOiFrxDhEncVRb9KSM
- 0DKG8wY1s4WKnsh7W5dZB4qvbEg3FsORS9nGrjpQqO6Y+gMsab0cYfdQNC0HegTeuI0yLC
- BTAM1rlhXs6BzjzQ/jDTRfpDWsbYCcA=
-Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
- [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-98-r-gj-hvoO0aukqMVw7Mi4A-1; Thu, 21 Jan 2021 15:33:21 -0500
-X-MC-Unique: r-gj-hvoO0aukqMVw7Mi4A-1
-Received: from smtp.corp.redhat.com (int-mx03.intmail.prod.int.phx2.redhat.com
- [10.5.11.13])
- (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
- (No client certificate requested)
- by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 73931800D55;
- Thu, 21 Jan 2021 20:33:19 +0000 (UTC)
-Received: from omen.home.shazbot.org (ovpn-112-255.phx2.redhat.com
- [10.3.112.255])
- by smtp.corp.redhat.com (Postfix) with ESMTP id E50316EF49;
- Thu, 21 Jan 2021 20:33:18 +0000 (UTC)
-Date: Thu, 21 Jan 2021 13:33:18 -0700
-From: Alex Williamson <alex.williamson@redhat.com>
-To: Fred Gao <fred.gao@intel.com>
-Message-ID: <20210121133318.3f0824e8@omen.home.shazbot.org>
-In-Reply-To: <20210118123834.5991-1-fred.gao@intel.com>
-References: <20201202171249.17083-1-fred.gao@intel.com>
- <20210118123834.5991-1-fred.gao@intel.com>
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 98C016E951
+ for <intel-gfx@lists.freedesktop.org>; Thu, 21 Jan 2021 20:48:44 +0000 (UTC)
+IronPort-SDR: T/S1LyEtdZlupxw9GAUzY9FudQf2M6/zynzfK++glVBkTEwFdQdMk3DF59FO93dXU56wn+orto
+ ZQdmqmHXyCrA==
+X-IronPort-AV: E=McAfee;i="6000,8403,9871"; a="176771194"
+X-IronPort-AV: E=Sophos;i="5.79,365,1602572400"; d="scan'208";a="176771194"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Jan 2021 12:48:41 -0800
+IronPort-SDR: h//h5G+J2MUaX6O1vNvgFFa3H8EGSlxIUbfhX0Q80lr9eC6lSjvWXY1e4QcIdf7ALwaXrPtZt+
+ QdzS0U+m7x6g==
+X-IronPort-AV: E=Sophos;i="5.79,365,1602572400"; d="scan'208";a="354904926"
+Received: from mdroper-desk1.fm.intel.com (HELO
+ mdroper-desk1.amr.corp.intel.com) ([10.1.27.168])
+ by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Jan 2021 12:48:40 -0800
+Date: Thu, 21 Jan 2021 12:48:39 -0800
+From: Matt Roper <matthew.d.roper@intel.com>
+To: Imre Deak <imre.deak@intel.com>
+Message-ID: <20210121204839.GC787460@mdroper-desk1.amr.corp.intel.com>
+References: <20210115194101.1037430-2-imre.deak@intel.com>
+ <20210115213952.1040398-1-imre.deak@intel.com>
 MIME-Version: 1.0
-X-Scanned-By: MIMEDefang 2.79 on 10.5.11.13
-Subject: Re: [Intel-gfx] [PATCH v2] vfio/pci: Add support for opregion v2.0+
+Content-Disposition: inline
+In-Reply-To: <20210115213952.1040398-1-imre.deak@intel.com>
+Subject: Re: [Intel-gfx] [PATCH v9 3/3] drm/i915/tgl: Add Clear Color
+ support for TGL Render Decompression
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,126 +49,400 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Swee Yee Fonn <swee.yee.fonn@intel.com>, intel-gfx@lists.freedesktop.org,
- kvm@vger.kernel.org
+Cc: Ville Syrjala <ville.syrjala@intel.com>,
+ Rafael Antognolli <rafael.antognolli@intel.com>,
+ intel-gfx@lists.freedesktop.org, Chris Wilson <chris@chris-wilson.co.uk>,
+ Dhinakaran Pandiyan <dhinakaran.pandiyan@intel.com>,
+ Nanley G Chery <nanley.g.chery@intel.com>,
+ Shashank Sharma <shashank.sharma@intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 18 Jan 2021 20:38:34 +0800
-Fred Gao <fred.gao@intel.com> wrote:
-
-> Before opregion version 2.0 VBT data is stored in opregion mailbox #4,
-> However, When VBT data exceeds 6KB size and cannot be within mailbox #4
-> starting from opregion v2.0+, Extended VBT region, next to opregion, is
-> used to hold the VBT data, so the total size will be opregion size plus
-> extended VBT region size.
+On Fri, Jan 15, 2021 at 11:39:52PM +0200, Imre Deak wrote:
+> From: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
 > 
-> Cc: Zhenyu Wang <zhenyuw@linux.intel.com>
-> Signed-off-by: Swee Yee Fonn <swee.yee.fonn@intel.com>
-> Signed-off-by: Fred Gao <fred.gao@intel.com>
+> Render Decompression is supported with Y-Tiled main surface. The CCS is
+> linear and has 4 bits of data for each main surface cache line pair, a
+> ratio of 1:256. Additional Clear Color information is passed from the
+> user-space through an offset in the GEM BO. Add a new modifier to identify
+> and parse new Clear Color information and extend Gen12 render decompression
+> functionality to the newly added modifier.
+> 
+> v2: Fix has_alpha flag for modifiers, omit CC modifier during initial
+>     plane config(Matt). Fix Lookup error.
+> v3: Fix the panic while running kms_cube
+> v4: Add alignment check and reuse the comments for ge12_ccs_formats(Matt)
+> v5: Fix typos and wrap comments(Matt)
+> v6:
+> - Use format block descriptors to get the subsampling calculations for
+>   the CCS surface right.
+> - Use helpers to convert between main and CCS surfaces.
+> - Prevent coordinate checks for the CC surface.
+> - Simplify reading CC value from surface map, add description of CC val
+>   layout.
+> - Remove redundant ccval variable from skl_program_plane().
+> v7:
+> - Move the CC value readout after syncing against any GPU write on the
+>   FB obj (Nanley, Chris)
+> - Make sure the CC value readout works on platforms w/o struct pages
+>   (dGFX) and other non-coherent platforms wrt. CPU reads (none atm).
+>   (Chris)
+> v8:
+> - Rebase on the function param order change of
+>   i915_gem_object_read_from_page().
+> - Clarify code comment on the clear color value format and the required
+>   FB obj pinning/syncing by the caller.
+> - Remove redundant variables in
+>   intel_atomic_prepare_plane_clear_colors().
+> v9:
+> - Fix s/sizeof(&ccval)/sizeof(ccval)/ typo.
+> 
+> Cc: Dhinakaran Pandiyan <dhinakaran.pandiyan@intel.com>
+> Cc: Ville Syrjala <ville.syrjala@intel.com>
+> Cc: Shashank Sharma <shashank.sharma@intel.com>
+> Cc: Rafael Antognolli <rafael.antognolli@intel.com>
+> Cc: Nanley G Chery <nanley.g.chery@intel.com>
+> Cc: Chris Wilson <chris@chris-wilson.co.uk>
+> Reviewed-by: Matt Roper <matthew.d.roper@intel.com> (v5)
+> Signed-off-by: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
+> Signed-off-by: Imre Deak <imre.deak@intel.com>
+
+New version looks good to me.
+
+Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
+
 > ---
->  drivers/vfio/pci/vfio_pci_igd.c | 59 +++++++++++++++++++++++++++++++++
->  1 file changed, 59 insertions(+)
+>  drivers/gpu/drm/i915/display/intel_display.c  | 99 ++++++++++++++++++-
+>  .../drm/i915/display/intel_display_types.h    |  3 +
+>  drivers/gpu/drm/i915/display/intel_sprite.c   | 10 +-
+>  drivers/gpu/drm/i915/i915_reg.h               |  9 ++
+>  4 files changed, 116 insertions(+), 5 deletions(-)
 > 
-> diff --git a/drivers/vfio/pci/vfio_pci_igd.c b/drivers/vfio/pci/vfio_pci_igd.c
-> index 53d97f459252..fc470278a492 100644
-> --- a/drivers/vfio/pci/vfio_pci_igd.c
-> +++ b/drivers/vfio/pci/vfio_pci_igd.c
-> @@ -21,6 +21,10 @@
->  #define OPREGION_SIZE		(8 * 1024)
->  #define OPREGION_PCI_ADDR	0xfc
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+> index 66990e48c0d4..f552877dade9 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> @@ -58,6 +58,8 @@
+>  #include "display/intel_tv.h"
+>  #include "display/intel_vdsc.h"
 >  
-> +#define OPREGION_RVDA		0x3ba
-> +#define OPREGION_RVDS		0x3c2
-> +#define OPREGION_VERSION	0x16
+> +#include "gem/i915_gem_object.h"
 > +
->  static size_t vfio_pci_igd_rw(struct vfio_pci_device *vdev, char __user *buf,
->  			      size_t count, loff_t *ppos, bool iswrite)
+>  #include "gt/intel_rps.h"
+>  
+>  #include "i915_drv.h"
+> @@ -1906,8 +1908,8 @@ static bool is_ccs_plane(const struct drm_framebuffer *fb, int plane)
+>  static bool is_gen12_ccs_modifier(u64 modifier)
 >  {
-> @@ -58,6 +62,7 @@ static int vfio_pci_igd_opregion_init(struct vfio_pci_device *vdev)
->  	u32 addr, size;
->  	void *base;
->  	int ret;
-> +	u16 version;
+>  	return modifier == I915_FORMAT_MOD_Y_TILED_GEN12_RC_CCS ||
+> +	       modifier == I915_FORMAT_MOD_Y_TILED_GEN12_RC_CCS_CC ||
+>  	       modifier == I915_FORMAT_MOD_Y_TILED_GEN12_MC_CCS;
+> -
+>  }
 >  
->  	ret = pci_read_config_dword(vdev->pdev, OPREGION_PCI_ADDR, &addr);
->  	if (ret)
-> @@ -83,6 +88,60 @@ static int vfio_pci_igd_opregion_init(struct vfio_pci_device *vdev)
+>  static bool is_gen12_ccs_plane(const struct drm_framebuffer *fb, int plane)
+> @@ -1915,6 +1917,12 @@ static bool is_gen12_ccs_plane(const struct drm_framebuffer *fb, int plane)
+>  	return is_gen12_ccs_modifier(fb->modifier) && is_ccs_plane(fb, plane);
+>  }
 >  
->  	size *= 1024; /* In KB */
->  
-> +	/*
-> +	 * Support opregion v2.0+
-> +	 * When VBT data exceeds 6KB size and cannot be within mailbox #4
-> +	 * Extended VBT region, next to opregion, is used to hold the VBT data.
-> +	 * RVDA (Relative Address of VBT Data from Opregion Base) and RVDS
-> +	 * (VBT Data Size) from opregion structure member are used to hold the
-> +	 * address from region base and size of VBT data while RVDA/RVDS
-> +	 * are not defined before opregion 2.0.
-> +	 *
-> +	 * opregion 2.0: rvda is the physical VBT address.
-> +	 *
-> +	 * opregion 2.1+: rvda is unsigned, relative offset from
-> +	 * opregion base, and should never point within opregion.
-> +	 */
-> +	version = le16_to_cpu(*(__le16 *)(base + OPREGION_VERSION));
-> +	if (version >= 0x0200) {
-> +		u64 rvda;
-> +		u32 rvds;
+> +static bool is_gen12_ccs_cc_plane(const struct drm_framebuffer *fb, int plane)
+> +{
+> +	return fb->modifier == I915_FORMAT_MOD_Y_TILED_GEN12_RC_CCS_CC &&
+> +	       plane == 2;
+> +}
 > +
-> +		rvda = le64_to_cpu(*(__le64 *)(base + OPREGION_RVDA));
-> +		rvds = le32_to_cpu(*(__le32 *)(base + OPREGION_RVDS));
-> +		if (rvda && rvds) {
-> +			u32 offset;
+>  static bool is_aux_plane(const struct drm_framebuffer *fb, int plane)
+>  {
+>  	if (is_ccs_modifier(fb->modifier))
+> @@ -1936,6 +1944,9 @@ static int ccs_to_main_plane(const struct drm_framebuffer *fb, int ccs_plane)
+>  	drm_WARN_ON(fb->dev, !is_ccs_modifier(fb->modifier) ||
+>  		    ccs_plane < fb->format->num_planes / 2);
+>  
+> +	if (is_gen12_ccs_cc_plane(fb, ccs_plane))
+> +		return 0;
 > +
-> +			if (version == 0x0200)
-> +				offset = rvda - (u64)addr;
+>  	return ccs_plane - fb->format->num_planes / 2;
+>  }
+>  
+> @@ -1986,6 +1997,7 @@ intel_tile_width_bytes(const struct drm_framebuffer *fb, int color_plane)
+>  			return 128;
+>  		fallthrough;
+>  	case I915_FORMAT_MOD_Y_TILED_GEN12_RC_CCS:
+> +	case I915_FORMAT_MOD_Y_TILED_GEN12_RC_CCS_CC:
+>  	case I915_FORMAT_MOD_Y_TILED_GEN12_MC_CCS:
+>  		if (is_ccs_plane(fb, color_plane))
+>  			return 64;
+> @@ -2142,6 +2154,7 @@ static unsigned int intel_surf_alignment(const struct drm_framebuffer *fb,
+>  			return intel_tile_row_size(fb, color_plane);
+>  		fallthrough;
+>  	case I915_FORMAT_MOD_Y_TILED_GEN12_RC_CCS:
+> +	case I915_FORMAT_MOD_Y_TILED_GEN12_RC_CCS_CC:
+>  		return 16 * 1024;
+>  	case I915_FORMAT_MOD_Y_TILED_CCS:
+>  	case I915_FORMAT_MOD_Yf_TILED_CCS:
+> @@ -2546,6 +2559,7 @@ static unsigned int intel_fb_modifier_to_tiling(u64 fb_modifier)
+>  	case I915_FORMAT_MOD_Y_TILED:
+>  	case I915_FORMAT_MOD_Y_TILED_CCS:
+>  	case I915_FORMAT_MOD_Y_TILED_GEN12_RC_CCS:
+> +	case I915_FORMAT_MOD_Y_TILED_GEN12_RC_CCS_CC:
+>  	case I915_FORMAT_MOD_Y_TILED_GEN12_MC_CCS:
+>  		return I915_TILING_Y;
+>  	default:
+> @@ -2624,6 +2638,25 @@ static const struct drm_format_info gen12_ccs_formats[] = {
+>  	  .hsub = 2, .vsub = 2, .is_yuv = true },
+>  };
+>  
+> +/*
+> + * Same as gen12_ccs_formats[] above, but with additional surface used
+> + * to pass Clear Color information in plane 2 with 64 bits of data.
+> + */
+> +static const struct drm_format_info gen12_ccs_cc_formats[] = {
+> +	{ .format = DRM_FORMAT_XRGB8888, .depth = 24, .num_planes = 3,
+> +	  .char_per_block = { 4, 1, 0 }, .block_w = { 1, 2, 2 }, .block_h = { 1, 1, 1 },
+> +	  .hsub = 1, .vsub = 1, },
+> +	{ .format = DRM_FORMAT_XBGR8888, .depth = 24, .num_planes = 3,
+> +	  .char_per_block = { 4, 1, 0 }, .block_w = { 1, 2, 2 }, .block_h = { 1, 1, 1 },
+> +	  .hsub = 1, .vsub = 1, },
+> +	{ .format = DRM_FORMAT_ARGB8888, .depth = 32, .num_planes = 3,
+> +	  .char_per_block = { 4, 1, 0 }, .block_w = { 1, 2, 2 }, .block_h = { 1, 1, 1 },
+> +	  .hsub = 1, .vsub = 1, .has_alpha = true },
+> +	{ .format = DRM_FORMAT_ABGR8888, .depth = 32, .num_planes = 3,
+> +	  .char_per_block = { 4, 1, 0 }, .block_w = { 1, 2, 2 }, .block_h = { 1, 1, 1 },
+> +	  .hsub = 1, .vsub = 1, .has_alpha = true },
+> +};
+> +
+>  static const struct drm_format_info *
+>  lookup_format_info(const struct drm_format_info formats[],
+>  		   int num_formats, u32 format)
+> @@ -2652,6 +2685,10 @@ intel_get_format_info(const struct drm_mode_fb_cmd2 *cmd)
+>  		return lookup_format_info(gen12_ccs_formats,
+>  					  ARRAY_SIZE(gen12_ccs_formats),
+>  					  cmd->pixel_format);
+> +	case I915_FORMAT_MOD_Y_TILED_GEN12_RC_CCS_CC:
+> +		return lookup_format_info(gen12_ccs_cc_formats,
+> +					  ARRAY_SIZE(gen12_ccs_cc_formats),
+> +					  cmd->pixel_format);
+>  	default:
+>  		return NULL;
+>  	}
+> @@ -2660,6 +2697,7 @@ intel_get_format_info(const struct drm_mode_fb_cmd2 *cmd)
+>  bool is_ccs_modifier(u64 modifier)
+>  {
+>  	return modifier == I915_FORMAT_MOD_Y_TILED_GEN12_RC_CCS ||
+> +	       modifier == I915_FORMAT_MOD_Y_TILED_GEN12_RC_CCS_CC ||
+>  	       modifier == I915_FORMAT_MOD_Y_TILED_GEN12_MC_CCS ||
+>  	       modifier == I915_FORMAT_MOD_Y_TILED_CCS ||
+>  	       modifier == I915_FORMAT_MOD_Yf_TILED_CCS;
+> @@ -2878,7 +2916,7 @@ intel_fb_check_ccs_xy(struct drm_framebuffer *fb, int ccs_plane, int x, int y)
+>  	int ccs_x, ccs_y;
+>  	int main_x, main_y;
+>  
+> -	if (!is_ccs_plane(fb, ccs_plane))
+> +	if (!is_ccs_plane(fb, ccs_plane) || is_gen12_ccs_cc_plane(fb, ccs_plane))
+>  		return 0;
+>  
+>  	intel_tile_dims(fb, ccs_plane, &tile_width, &tile_height);
+> @@ -3005,6 +3043,18 @@ intel_fill_fb_info(struct drm_i915_private *dev_priv,
+>  		int x, y;
+>  		int ret;
+>  
+> +		/*
+> +		 * Plane 2 of Render Compression with Clear Color fb modifier
+> +		 * is consumed by the driver and not passed to DE. Skip the
+> +		 * arithmetic related to alignment and offset calculation.
+> +		 */
+> +		if (is_gen12_ccs_cc_plane(fb, i)) {
+> +			if (IS_ALIGNED(fb->offsets[i], PAGE_SIZE))
+> +				continue;
 > +			else
-> +				offset = rvda;
-> +
-> +			if (offset != size) {
-> +				pci_err(vdev->pdev,
-> +				"Extended VBT does not follow opregion !\n"
-> +				"opregion version 0x%x:offset 0x%x\n", version, offset);
 > +				return -EINVAL;
-> +			}
-> +
-> +			/*
-> +			 * the only difference between opregion 2.0 and 2.1 is
-> +			 * rvda addressing mode. since rvda is physical host
-> +			 * VBT address and cannot be directly used in guest,
-> +			 * faked into opregion 2.1's relative offset.
-> +			 */
-> +			if (version == 0x0200) {
-> +				*(__le16 *)(base + OPREGION_VERSION) =
-> +					cpu_to_le16(0x0201);
-> +				(*(__le64 *)(base + OPREGION_RVDA)) =
-> +					cpu_to_le64((rvda - (u64)addr));
-> +			}
-
-There's a much better description of the fields and logic here, thanks
-for that.  I also see we've closed the gap to require the extended
-region to immediately follow the opregion table.  The code
-immediately above still makes me nervous as even if this is the only
-difference between the specs, code might make some differentiation
-based on the spec version, which we're changing in host memory for all
-subsequent drivers until the host is rebooted.  Could we use a pci_dbg()
-in this branch to flag that event in dmesg for debugging?  Thanks,
-
-Alex
-
-> +
-> +			/* region size for opregion v2.0+: opregion and VBT size */
-> +			size = offset + rvds;
 > +		}
-> +	}
 > +
->  	if (size != OPREGION_SIZE) {
->  		memunmap(base);
->  		base = memremap(addr, size, MEMREMAP_WB);
+>  		cpp = fb->format->cpp[i];
+>  		intel_fb_plane_dims(&width, &height, fb, i);
+>  
+> @@ -3946,7 +3996,8 @@ static int skl_check_ccs_aux_surface(struct intel_plane_state *plane_state)
+>  		int hsub, vsub;
+>  		int x, y;
+>  
+> -		if (!is_ccs_plane(fb, ccs_plane))
+> +		if (!is_ccs_plane(fb, ccs_plane) ||
+> +		    is_gen12_ccs_cc_plane(fb, ccs_plane))
+>  			continue;
+>  
+>  		intel_fb_plane_get_subsampling(&main_hsub, &main_vsub, fb,
+> @@ -4186,6 +4237,7 @@ static u32 skl_plane_ctl_tiling(u64 fb_modifier)
+>  	case I915_FORMAT_MOD_Y_TILED:
+>  		return PLANE_CTL_TILED_Y;
+>  	case I915_FORMAT_MOD_Y_TILED_CCS:
+> +	case I915_FORMAT_MOD_Y_TILED_GEN12_RC_CCS_CC:
+>  		return PLANE_CTL_TILED_Y | PLANE_CTL_RENDER_DECOMPRESSION_ENABLE;
+>  	case I915_FORMAT_MOD_Y_TILED_GEN12_RC_CCS:
+>  		return PLANE_CTL_TILED_Y |
+> @@ -15218,6 +15270,43 @@ static void intel_atomic_cleanup_work(struct work_struct *work)
+>  	intel_atomic_helper_free_state(i915);
+>  }
+>  
+> +static void intel_atomic_prepare_plane_clear_colors(struct intel_atomic_state *state)
+> +{
+> +	struct drm_i915_private *i915 = to_i915(state->base.dev);
+> +	struct intel_plane *plane;
+> +	struct intel_plane_state *plane_state;
+> +	int i;
+> +
+> +	for_each_new_intel_plane_in_state(state, plane, plane_state, i) {
+> +		struct drm_framebuffer *fb = plane_state->hw.fb;
+> +		int ret;
+> +
+> +		if (!fb ||
+> +		    fb->modifier != I915_FORMAT_MOD_Y_TILED_GEN12_RC_CCS_CC)
+> +			continue;
+> +
+> +		/*
+> +		 * The layout of the fast clear color value expected by HW
+> +		 * (the DRM ABI requiring this value to be located in fb at offset 0 of plane#2):
+> +		 * - 4 x 4 bytes per-channel value
+> +		 *   (in surface type specific float/int format provided by the fb user)
+> +		 * - 8 bytes native color value used by the display
+> +		 *   (converted/written by GPU during a fast clear operation using the
+> +		 *    above per-channel values)
+> +		 *
+> +		 * The commit's FB prepare hook already ensured that FB obj is pinned and the
+> +		 * caller made sure that the object is synced wrt. the related color clear value
+> +		 * GPU write on it.
+> +		 */
+> +		ret = i915_gem_object_read_from_page(intel_fb_obj(fb),
+> +						     fb->offsets[2] + 16,
+> +						     &plane_state->ccval,
+> +						     sizeof(plane_state->ccval));
+> +		/* The above could only fail if the FB obj has an unexpected backing store type. */
+> +		drm_WARN_ON(&i915->drm, ret);
+> +	}
+> +}
+> +
+>  static void intel_atomic_commit_tail(struct intel_atomic_state *state)
+>  {
+>  	struct drm_device *dev = state->base.dev;
+> @@ -15235,6 +15324,8 @@ static void intel_atomic_commit_tail(struct intel_atomic_state *state)
+>  	if (state->modeset)
+>  		wakeref = intel_display_power_get(dev_priv, POWER_DOMAIN_MODESET);
+>  
+> +	intel_atomic_prepare_plane_clear_colors(state);
+> +
+>  	for_each_oldnew_intel_crtc_in_state(state, crtc, old_crtc_state,
+>  					    new_crtc_state, i) {
+>  		if (intel_crtc_needs_modeset(new_crtc_state) ||
+> @@ -16540,7 +16631,7 @@ static int intel_framebuffer_init(struct intel_framebuffer *intel_fb,
+>  			goto err;
+>  		}
+>  
+> -		if (is_gen12_ccs_plane(fb, i)) {
+> +		if (is_gen12_ccs_plane(fb, i) && !is_gen12_ccs_cc_plane(fb, i)) {
+>  			int ccs_aux_stride = gen12_ccs_aux_stride(fb, i);
+>  
+>  			if (fb->pitches[i] != ccs_aux_stride) {
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
+> index 585bb1edea04..d64f327a28a6 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+> @@ -620,6 +620,9 @@ struct intel_plane_state {
+>  	struct drm_intel_sprite_colorkey ckey;
+>  
+>  	struct drm_rect psr2_sel_fetch_area;
+> +
+> +	/* Clear Color Value */
+> +	u64 ccval;
+>  };
+>  
+>  struct intel_initial_plane_config {
+> diff --git a/drivers/gpu/drm/i915/display/intel_sprite.c b/drivers/gpu/drm/i915/display/intel_sprite.c
+> index cf3589fd0ddb..3efb346e071a 100644
+> --- a/drivers/gpu/drm/i915/display/intel_sprite.c
+> +++ b/drivers/gpu/drm/i915/display/intel_sprite.c
+> @@ -867,6 +867,10 @@ skl_program_plane(struct intel_plane *plane,
+>  	if (fb->format->is_yuv && icl_is_hdr_plane(dev_priv, plane_id))
+>  		icl_program_input_csc(plane, crtc_state, plane_state);
+>  
+> +	if (fb->modifier == I915_FORMAT_MOD_Y_TILED_GEN12_RC_CCS_CC)
+> +		intel_uncore_write64_fw(&dev_priv->uncore,
+> +					PLANE_CC_VAL(pipe, plane_id), plane_state->ccval);
+> +
+>  	skl_write_plane_wm(plane, crtc_state);
+>  
+>  	intel_de_write_fw(dev_priv, PLANE_KEYVAL(pipe, plane_id),
+> @@ -2366,7 +2370,8 @@ static int skl_plane_check_fb(const struct intel_crtc_state *crtc_state,
+>  	     fb->modifier == I915_FORMAT_MOD_Y_TILED_CCS ||
+>  	     fb->modifier == I915_FORMAT_MOD_Yf_TILED_CCS ||
+>  	     fb->modifier == I915_FORMAT_MOD_Y_TILED_GEN12_RC_CCS ||
+> -	     fb->modifier == I915_FORMAT_MOD_Y_TILED_GEN12_MC_CCS)) {
+> +	     fb->modifier == I915_FORMAT_MOD_Y_TILED_GEN12_MC_CCS ||
+> +	     fb->modifier == I915_FORMAT_MOD_Y_TILED_GEN12_RC_CCS_CC)) {
+>  		drm_dbg_kms(&dev_priv->drm,
+>  			    "Y/Yf tiling not supported in IF-ID mode\n");
+>  		return -EINVAL;
+> @@ -2856,6 +2861,7 @@ static const u64 skl_plane_format_modifiers_ccs[] = {
+>  static const u64 gen12_plane_format_modifiers_mc_ccs[] = {
+>  	I915_FORMAT_MOD_Y_TILED_GEN12_MC_CCS,
+>  	I915_FORMAT_MOD_Y_TILED_GEN12_RC_CCS,
+> +	I915_FORMAT_MOD_Y_TILED_GEN12_RC_CCS_CC,
+>  	I915_FORMAT_MOD_Y_TILED,
+>  	I915_FORMAT_MOD_X_TILED,
+>  	DRM_FORMAT_MOD_LINEAR,
+> @@ -2864,6 +2870,7 @@ static const u64 gen12_plane_format_modifiers_mc_ccs[] = {
+>  
+>  static const u64 gen12_plane_format_modifiers_rc_ccs[] = {
+>  	I915_FORMAT_MOD_Y_TILED_GEN12_RC_CCS,
+> +	I915_FORMAT_MOD_Y_TILED_GEN12_RC_CCS_CC,
+>  	I915_FORMAT_MOD_Y_TILED,
+>  	I915_FORMAT_MOD_X_TILED,
+>  	DRM_FORMAT_MOD_LINEAR,
+> @@ -3054,6 +3061,7 @@ static bool gen12_plane_format_mod_supported(struct drm_plane *_plane,
+>  	case I915_FORMAT_MOD_X_TILED:
+>  	case I915_FORMAT_MOD_Y_TILED:
+>  	case I915_FORMAT_MOD_Y_TILED_GEN12_RC_CCS:
+> +	case I915_FORMAT_MOD_Y_TILED_GEN12_RC_CCS_CC:
+>  		break;
+>  	default:
+>  		return false;
+> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+> index 249a81575b9d..8b9bbc6bacb1 100644
+> --- a/drivers/gpu/drm/i915/i915_reg.h
+> +++ b/drivers/gpu/drm/i915/i915_reg.h
+> @@ -7070,6 +7070,8 @@ enum {
+>  #define _PLANE_KEYMAX_1_A			0x701a0
+>  #define _PLANE_KEYMAX_2_A			0x702a0
+>  #define  PLANE_KEYMAX_ALPHA(a)			((a) << 24)
+> +#define _PLANE_CC_VAL_1_A			0x701b4
+> +#define _PLANE_CC_VAL_2_A			0x702b4
+>  #define _PLANE_AUX_DIST_1_A			0x701c0
+>  #define _PLANE_AUX_DIST_2_A			0x702c0
+>  #define _PLANE_AUX_OFFSET_1_A			0x701c4
+> @@ -7111,6 +7113,13 @@ enum {
+>  #define _PLANE_NV12_BUF_CFG_1_A		0x70278
+>  #define _PLANE_NV12_BUF_CFG_2_A		0x70378
+>  
+> +#define _PLANE_CC_VAL_1_B			0x711b4
+> +#define _PLANE_CC_VAL_2_B			0x712b4
+> +#define _PLANE_CC_VAL_1(pipe)	_PIPE(pipe, _PLANE_CC_VAL_1_A, _PLANE_CC_VAL_1_B)
+> +#define _PLANE_CC_VAL_2(pipe)	_PIPE(pipe, _PLANE_CC_VAL_2_A, _PLANE_CC_VAL_2_B)
+> +#define PLANE_CC_VAL(pipe, plane)	\
+> +	_MMIO_PLANE(plane, _PLANE_CC_VAL_1(pipe), _PLANE_CC_VAL_2(pipe))
+> +
+>  /* Input CSC Register Definitions */
+>  #define _PLANE_INPUT_CSC_RY_GY_1_A	0x701E0
+>  #define _PLANE_INPUT_CSC_RY_GY_2_A	0x702E0
+> -- 
+> 2.25.1
+> 
 
+-- 
+Matt Roper
+Graphics Software Engineer
+VTT-OSGC Platform Enablement
+Intel Corporation
+(916) 356-2795
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
