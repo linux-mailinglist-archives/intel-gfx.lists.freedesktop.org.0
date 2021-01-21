@@ -1,46 +1,41 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 597602FE888
-	for <lists+intel-gfx@lfdr.de>; Thu, 21 Jan 2021 12:17:30 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id B0A5F2FE8A0
+	for <lists+intel-gfx@lfdr.de>; Thu, 21 Jan 2021 12:22:38 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AC17B89838;
-	Thu, 21 Jan 2021 11:17:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 62DF86E1D2;
+	Thu, 21 Jan 2021 11:22:36 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 52A5F89838
- for <intel-gfx@lists.freedesktop.org>; Thu, 21 Jan 2021 11:17:27 +0000 (UTC)
-IronPort-SDR: gVajYdzuuKJz56+ftIDdBE9ZehjT8Y/oaYk1jq0fmT0RVBQAIoYbqu311aXaL5rk1m5P/YwzRg
- BbqDwRGbimXQ==
-X-IronPort-AV: E=McAfee;i="6000,8403,9870"; a="166351590"
-X-IronPort-AV: E=Sophos;i="5.79,363,1602572400"; d="scan'208";a="166351590"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Jan 2021 03:17:25 -0800
-IronPort-SDR: MkbfxMWVgtUVRVxanM2XEIEnbLbwaDlOPXOSavYcifhz86EcPr8uJe5wd6QphfZCjR6j5W4J6/
- +MlIz0515P3g==
-X-IronPort-AV: E=Sophos;i="5.79,363,1602572400"; d="scan'208";a="356428139"
-Received: from pscheper-mobl1.ger.corp.intel.com (HELO [10.252.50.106])
- ([10.252.50.106])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Jan 2021 03:17:24 -0800
-To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
-References: <20210121003253.27225-1-chris@chris-wilson.co.uk>
- <4c24b53a-2db5-39c5-c735-a0f732b7245d@linux.intel.com>
- <161122668704.32666.8919805149951431595@build.alporthouse.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-Message-ID: <ebccb376-1985-1a69-fd5f-0ba51f005427@linux.intel.com>
-Date: Thu, 21 Jan 2021 11:17:22 +0000
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.5.0
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D4E6D6E1D2;
+ Thu, 21 Jan 2021 11:22:34 +0000 (UTC)
+IronPort-SDR: RsRbTTg/CNHOy2qSRdhAghvr1eAvfaVrgy5CzyXKCwy28Cl7UUSZf4eIpRsnKj+pV8miEIAWfj
+ KQ3euFaua6qQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9870"; a="240793545"
+X-IronPort-AV: E=Sophos;i="5.79,363,1602572400"; d="scan'208";a="240793545"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Jan 2021 03:22:31 -0800
+IronPort-SDR: EI/Nf0J8fuvXfUWeTyEbEkayuiif5i9QL+oZ3ExuNhOFL9fr0htQYfimjeYFcL6Jaau+1J0T3w
+ m+DtMu4E/+Ng==
+X-IronPort-AV: E=Sophos;i="5.79,363,1602572400"; d="scan'208";a="385262939"
+Received: from cohrs-mobl.ger.corp.intel.com (HELO localhost) ([10.252.51.23])
+ by orsmga008-auth.jf.intel.com with
+ ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Jan 2021 03:22:28 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: Lyude Paul <lyude@redhat.com>, intel-gfx@lists.freedesktop.org
+In-Reply-To: <92f48ffdfa30c3941e0fd22337217f0b10d75ec8.camel@redhat.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20210120110708.32131-1-jani.nikula@intel.com>
+ <92f48ffdfa30c3941e0fd22337217f0b10d75ec8.camel@redhat.com>
+Date: Thu, 21 Jan 2021 13:22:24 +0200
+Message-ID: <875z3qmt5b.fsf@intel.com>
 MIME-Version: 1.0
-In-Reply-To: <161122668704.32666.8919805149951431595@build.alporthouse.com>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/gt: Move execlists_reset() out of
- line
+Subject: Re: [Intel-gfx] [PATCH] drm/msm/dp: fix build after dp quirk helper
+ change
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,67 +48,61 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Cc: Stephen Rothwell <sfr@canb.auug.org.au>, dri-devel@lists.freedesktop.org,
+ Daniel Vetter <daniel.vetter@ffwll.ch>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-
-On 21/01/2021 10:58, Chris Wilson wrote:
-> Quoting Tvrtko Ursulin (2021-01-21 10:55:49)
->>
->> On 21/01/2021 00:32, Chris Wilson wrote:
->>> Reduce the bulk of execlists_submission_tasklet by moving the unlikely
->>> reset function out of line.
->>>
->>> add/remove: 1/0 grow/shrink: 0/1 up/down: 960/-935 (25)
->>> Function                                     old     new   delta
->>> execlists_reset                                -     960    +960
->>> execlists_submission_tasklet                6629    5694    -935
->>>
->>> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
->>> ---
->>>    .../drm/i915/gt/intel_execlists_submission.c  | 36 +++++++++----------
->>>    1 file changed, 17 insertions(+), 19 deletions(-)
->>>
->>> diff --git a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
->>> index 740ff05fd692..43cc85241886 100644
->>> --- a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
->>> +++ b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
->>> @@ -2299,10 +2299,13 @@ static void execlists_capture(struct intel_engine_cs *engine)
->>>        kfree(cap);
->>>    }
->>>    
->>> -static void execlists_reset(struct intel_engine_cs *engine, const char *msg)
->>> +static noinline void execlists_reset(struct intel_engine_cs *engine)
->>>    {
->>> +     struct intel_engine_execlists *el = &engine->execlists;
->>>        const unsigned int bit = I915_RESET_ENGINE + engine->id;
->>>        unsigned long *lock = &engine->gt->reset.flags;
->>> +     unsigned long eir = fetch_and_zero(&el->error_interrupt);
->>
->> We got the locking wrong for this one. Irq handler side is under
->> gt->irq_lock, but there are unlocked rmw cycles in the tasklet. Not
->> counting this fetch_and_zero which is also unlocked.
-> 
-> It doesn't require locking.
-
-		/* Disable the error interrupt until after the reset */
-		if (likely(eir)) {
-			ENGINE_WRITE(engine, RING_EMR, ~0u);
-			ENGINE_WRITE(engine, RING_EIR, eir);
-			WRITE_ONCE(engine->execlists.error_interrupt, eir);
-			tasklet = true;
-		}
-
-Okay I did not grep with enough context.
-
-Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-
-Regards,
-
-Tvrtko
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+T24gV2VkLCAyMCBKYW4gMjAyMSwgTHl1ZGUgUGF1bCA8bHl1ZGVAcmVkaGF0LmNvbT4gd3JvdGU6
+Cj4gUmV2aWV3ZWQtYnk6IEx5dWRlIFBhdWwgPGx5dWRlQHJlZGhhdC5jb20+CgpUaGFua3MgZm9y
+IHRoZSByZXZpZXcuCgpTZWFuLCBSb2IsIG9yIGFueW9uZSB3aXRoIGFuIGFybSB0b29sY2hhaW4g
+Zm9yIG1zbSBhdmFpbGFibGUsIGNvdWxkIEkKdHJvdWJsZSB5b3UgdG8gYnVpbGQgdGVzdCB0aGlz
+IHBsZWFzZT8KCgpCUiwKSmFuaS4KCgo+Cj4gT24gV2VkLCAyMDIxLTAxLTIwIGF0IDEzOjA3ICsw
+MjAwLCBKYW5pIE5pa3VsYSB3cm90ZToKPj4gQ29tbWl0IDdjNTUzZjhiNWE3ZCAoImRybS9kcDog
+UmV2ZXJ0ICJkcm0vZHA6IEludHJvZHVjZSBFRElELWJhc2VkCj4+IHF1aXJrcyIiKSByZW1vdmVk
+IGRybV9kcF9nZXRfZWRpZF9xdWlya3MoKSBhbmQgY2hhbmdlZCB0aGUgc2lnbmF0dXJlIG9mCj4+
+IGRybV9kcF9oYXNfcXVpcmsoKSB3aGlsZSB0aGV5IHdlcmUgc3RpbGwgYmVpbmcgdXNlZCBpbiBt
+c20uIEZpeCB0aGUKPj4gYnJlYWthZ2UuIEZ1bmN0aW9uYWxseSwgcmVtb3ZpbmcgdGhlIEVESUQt
+YmFzZWQgcXVpcmtzIGhhcyBubyBpbXBhY3Qgb24KPj4gbXNtLgo+PiAKPj4gW1RoZSBhYm92ZSBj
+b21taXQgd2FzIG1lcmdlZCB0byBkcm0taW50ZWwtbmV4dDsgbWFrZSB0d28gd3JvbmdzIGEgcmln
+aHQKPj4gYnkgbWVyZ2luZyB0aGlzIGZpeCB0aHJvdWdoIGRybS1pbnRlbC1uZXh0IGFzIHdlbGwu
+XQo+PiAKPj4gUmVwb3J0ZWQtYnk6IFN0ZXBoZW4gUm90aHdlbGwgPHNmckBjYW5iLmF1dWcub3Jn
+LmF1Pgo+PiBSZWZlcmVuY2VzOgo+PiBodHRwOi8vbG9yZS5rZXJuZWwub3JnL3IvMjAyMTAxMjAx
+MDU3MTUuNDM5MWRkOTVAY2FuYi5hdXVnLm9yZy5hdQo+PiBGaXhlczogN2M1NTNmOGI1YTdkICgi
+ZHJtL2RwOiBSZXZlcnQgImRybS9kcDogSW50cm9kdWNlIEVESUQtYmFzZWQgcXVpcmtzIiIpCj4+
+IENjOiBMeXVkZSBQYXVsIDxseXVkZUByZWRoYXQuY29tPgo+PiBBY2tlZC1ieTogRGFuaWVsIFZl
+dHRlciA8ZGFuaWVsLnZldHRlckBmZndsbC5jaD4KPj4gQ2M6IFJvYiBDbGFyayA8cm9iZGNsYXJr
+QGdtYWlsLmNvbT4KPj4gQ2M6IFNlYW4gUGF1bCA8c2VhbkBwb29ybHkucnVuPgo+PiBDYzogZHJp
+LWRldmVsQGxpc3RzLmZyZWVkZXNrdG9wLm9yZwo+PiBTaWduZWQtb2ZmLWJ5OiBKYW5pIE5pa3Vs
+YSA8amFuaS5uaWt1bGFAaW50ZWwuY29tPgo+PiAKPj4gLS0tCj4+IAo+PiBOb3RlOiBJIGFkbWl0
+IHRvIG5vdCBldmVuIGJ1aWxkIHRlc3RpbmcgdGhpcyBvbmUuIEknZCBuZWVkIGEgY29uZmlnLAo+
+PiBwb3NzaWJseSBhbHNvIGEgdG9vbGNoYWluIHNldHVwIGZvciB0aGF0Lgo+PiAtLS0KPj4gwqBk
+cml2ZXJzL2dwdS9kcm0vbXNtL2RwL2RwX2N0cmwuYyB8IDYgKystLS0tCj4+IMKgMSBmaWxlIGNo
+YW5nZWQsIDIgaW5zZXJ0aW9ucygrKSwgNCBkZWxldGlvbnMoLSkKPj4gCj4+IGRpZmYgLS1naXQg
+YS9kcml2ZXJzL2dwdS9kcm0vbXNtL2RwL2RwX2N0cmwuYwo+PiBiL2RyaXZlcnMvZ3B1L2RybS9t
+c20vZHAvZHBfY3RybC5jCj4+IGluZGV4IGUzNDYyZjVkOTZkNy4uMzZiMzljMzgxYjNmIDEwMDY0
+NAo+PiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vbXNtL2RwL2RwX2N0cmwuYwo+PiArKysgYi9kcml2
+ZXJzL2dwdS9kcm0vbXNtL2RwL2RwX2N0cmwuYwo+PiBAQCAtMTQyMCwxNiArMTQyMCwxNCBAQCB2
+b2lkIGRwX2N0cmxfaG9zdF9kZWluaXQoc3RydWN0IGRwX2N0cmwgKmRwX2N0cmwpCj4+IMKgc3Rh
+dGljIGJvb2wgZHBfY3RybF91c2VfZml4ZWRfbnZpZChzdHJ1Y3QgZHBfY3RybF9wcml2YXRlICpj
+dHJsKQo+PiDCoHsKPj4gwqDCoMKgwqDCoMKgwqDCoHU4ICpkcGNkID0gY3RybC0+cGFuZWwtPmRw
+Y2Q7Cj4+IC3CoMKgwqDCoMKgwqDCoHUzMiBlZGlkX3F1aXJrcyA9IDA7Cj4+IMKgCj4+IC3CoMKg
+wqDCoMKgwqDCoGVkaWRfcXVpcmtzID0gZHJtX2RwX2dldF9lZGlkX3F1aXJrcyhjdHJsLT5wYW5l
+bC0+ZWRpZCk7Cj4+IMKgwqDCoMKgwqDCoMKgwqAvKgo+PiDCoMKgwqDCoMKgwqDCoMKgICogRm9y
+IGJldHRlciBpbnRlcm9wIGV4cGVyaWVuY2UsIHVzZWQgYSBmaXhlZCBOVklEPTB4ODAwMAo+PiDC
+oMKgwqDCoMKgwqDCoMKgICogd2hlbmV2ZXIgY29ubmVjdGVkIHRvIGEgVkdBIGRvbmdsZSBkb3du
+c3RyZWFtLgo+PiDCoMKgwqDCoMKgwqDCoMKgICovCj4+IMKgwqDCoMKgwqDCoMKgwqBpZiAoZHJt
+X2RwX2lzX2JyYW5jaChkcGNkKSkKPj4gLcKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoHJl
+dHVybiAoZHJtX2RwX2hhc19xdWlyaygmY3RybC0+cGFuZWwtPmRlc2MsIGVkaWRfcXVpcmtzLAo+
+PiAtwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqBEUF9EUENEX1FVSVJLX0NPTlNUQU5UX04pKTsKPj4gK8KgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoHJldHVybiAoZHJtX2RwX2hhc19xdWlyaygmY3RybC0+cGFuZWwtPmRlc2Ms
+Cj4+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgRFBfRFBDRF9RVUlSS19DT05TVEFOVF9OKSk7Cj4+
+IMKgCj4+IMKgwqDCoMKgwqDCoMKgwqByZXR1cm4gZmFsc2U7Cj4+IMKgfQoKLS0gCkphbmkgTmlr
+dWxhLCBJbnRlbCBPcGVuIFNvdXJjZSBHcmFwaGljcyBDZW50ZXIKX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRl
+bC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3Jn
+L21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
