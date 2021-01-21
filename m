@@ -1,44 +1,46 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2D3CD2FEECB
-	for <lists+intel-gfx@lfdr.de>; Thu, 21 Jan 2021 16:31:00 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id F2EAC2FEE7F
+	for <lists+intel-gfx@lfdr.de>; Thu, 21 Jan 2021 16:25:49 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 65DAA6E91E;
-	Thu, 21 Jan 2021 15:30:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2F0E16E8E2;
+	Thu, 21 Jan 2021 15:25:48 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from 4.mo178.mail-out.ovh.net (4.mo178.mail-out.ovh.net
- [46.105.49.171])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3D53F6E8FA
- for <intel-gfx@lists.freedesktop.org>; Thu, 21 Jan 2021 15:30:57 +0000 (UTC)
-Received: from player168.ha.ovh.net (unknown [10.108.57.150])
- by mo178.mail-out.ovh.net (Postfix) with ESMTP id 285CAC14BE
- for <intel-gfx@lists.freedesktop.org>; Thu, 21 Jan 2021 16:23:59 +0100 (CET)
+X-Greylist: delayed 391 seconds by postgrey-1.36 at gabe;
+ Thu, 21 Jan 2021 15:25:47 UTC
+Received: from 8.mo179.mail-out.ovh.net (8.mo179.mail-out.ovh.net
+ [46.105.75.26])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1672D6E8E2
+ for <intel-gfx@lists.freedesktop.org>; Thu, 21 Jan 2021 15:25:47 +0000 (UTC)
+Received: from player739.ha.ovh.net (unknown [10.108.57.140])
+ by mo179.mail-out.ovh.net (Postfix) with ESMTP id B4D93183466
+ for <intel-gfx@lists.freedesktop.org>; Thu, 21 Jan 2021 16:25:44 +0100 (CET)
 Received: from etezian.org (213-243-141-64.bb.dnainternet.fi [213.243.141.64])
  (Authenticated sender: andi@etezian.org)
- by player168.ha.ovh.net (Postfix) with ESMTPSA id 2543E1A3E3149;
- Thu, 21 Jan 2021 15:23:54 +0000 (UTC)
+ by player739.ha.ovh.net (Postfix) with ESMTPSA id 2DC0A163B9A37;
+ Thu, 21 Jan 2021 15:25:38 +0000 (UTC)
 Authentication-Results: garm.ovh; auth=pass
- (GARM-103G005e6d56417-34b2-4a34-95af-5f471613897d,
+ (GARM-97G00257db3f70-fd98-4c35-849c-d7d09cfcfaac,
  CAC1A779C7E69CC0B09A0D0E1FF85449833E868F) smtp.auth=andi@etezian.org
 X-OVh-ClientIp: 213.243.141.64
-Date: Thu, 21 Jan 2021 17:23:51 +0200
+Date: Thu, 21 Jan 2021 17:25:36 +0200
 From: Andi Shyti <andi@etezian.org>
 To: Chris Wilson <chris@chris-wilson.co.uk>
-Message-ID: <YAmch2OCciQsJuh9@jack.zhora.eu>
+Message-ID: <YAmc8GIbho3YasE+@jack.zhora.eu>
 References: <20210120122205.2808-1-chris@chris-wilson.co.uk>
- <20210120122205.2808-3-chris@chris-wilson.co.uk>
+ <20210120122205.2808-4-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20210120122205.2808-3-chris@chris-wilson.co.uk>
-X-Ovh-Tracer-Id: 11281235592660173321
+In-Reply-To: <20210120122205.2808-4-chris@chris-wilson.co.uk>
+X-Ovh-Tracer-Id: 11310790464913326601
 X-VR-SPAMSTATE: OK
 X-VR-SPAMSCORE: -100
-X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgeduledrudeggdejkecutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfqggfjpdevjffgvefmvefgnecuuegrihhlohhuthemucehtddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpeffhffvuffkfhggtggujgesthdtredttddtvdenucfhrhhomheptehnughiucfuhhihthhiuceorghnughisegvthgviihirghnrdhorhhgqeenucggtffrrghtthgvrhhnpedtgfduudfhfeeuueejfeeihedtfeetgfegveehgfeuleelhfduteegieekudeifeenucfkpheptddrtddrtddrtddpvddufedrvdegfedrudeguddrieegnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmohguvgepshhmthhpqdhouhhtpdhhvghlohepphhlrgihvghrudeikedrhhgrrdhovhhhrdhnvghtpdhinhgvtheptddrtddrtddrtddpmhgrihhlfhhrohhmpegrnhguihesvghtvgiiihgrnhdrohhrghdprhgtphhtthhopehinhhtvghlqdhgfhigsehlihhsthhsrdhfrhgvvgguvghskhhtohhprdhorhhg
-Subject: Re: [Intel-gfx] [PATCH 03/10] drm/i915: Strip out internal
- priorities
+X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgeduledrudeggdejlecutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfqggfjpdevjffgvefmvefgnecuuegrihhlohhuthemucehtddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpeffhffvuffkfhggtggujgesthdtredttddtvdenucfhrhhomheptehnughiucfuhhihthhiuceorghnughisegvthgviihirghnrdhorhhgqeenucggtffrrghtthgvrhhnpedtgfduudfhfeeuueejfeeihedtfeetgfegveehgfeuleelhfduteegieekudeifeenucfkpheptddrtddrtddrtddpvddufedrvdegfedrudeguddrieegnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmohguvgepshhmthhpqdhouhhtpdhhvghlohepphhlrgihvghrjeefledrhhgrrdhovhhhrdhnvghtpdhinhgvtheptddrtddrtddrtddpmhgrihhlfhhrohhmpegrnhguihesvghtvgiiihgrnhdrohhrghdprhgtphhtthhopehinhhtvghlqdhgfhigsehlihhsthhsrdhfrhgvvgguvghskhhtohhprdhorhhg
+Subject: Re: [Intel-gfx] [PATCH 04/10] drm/i915: Remove
+ I915_USER_PRIORITY_SHIFT
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,34 +61,15 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 Hi Chris,
 
-> -static void __bump_priority(struct i915_sched_node *node, unsigned int bump)
-> -{
-> -	struct i915_sched_attr attr = node->attr;
-> -
-> -	if (attr.priority & bump)
-> -		return;
-> -
-> -	attr.priority |= bump;
-> -	__i915_schedule(node, &attr);
-> -}
-> -
-> -void i915_schedule_bump_priority(struct i915_request *rq, unsigned int bump)
-> -{
-> -	unsigned long flags;
-> -
-> -	GEM_BUG_ON(bump & ~I915_PRIORITY_MASK);
-> -	if (READ_ONCE(rq->sched.attr.priority) & bump)
-> -		return;
-> -
-> -	spin_lock_irqsave(&schedule_lock, flags);
-> -	__bump_priority(&rq->sched, bump);
-> -	spin_unlock_irqrestore(&schedule_lock, flags);
-> -}
-
-was, indeed, this function used anywhere else?
+On Wed, Jan 20, 2021 at 12:21:59PM +0000, Chris Wilson wrote:
+> As we do not have any internal priority levels, the priority can be set
+> directed from the user values.
+> 
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
 
 Reviewed-by: Andi Shyti <andi.shyti@intel.com>
 
+Thanks,
 Andi
 _______________________________________________
 Intel-gfx mailing list
