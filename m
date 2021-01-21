@@ -1,44 +1,40 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8AE922FE556
-	for <lists+intel-gfx@lfdr.de>; Thu, 21 Jan 2021 09:48:26 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 70D042FE5FC
+	for <lists+intel-gfx@lfdr.de>; Thu, 21 Jan 2021 10:12:40 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2C1016E516;
-	Thu, 21 Jan 2021 08:48:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DA7026E05C;
+	Thu, 21 Jan 2021 09:12:38 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F3DA26E516;
- Thu, 21 Jan 2021 08:48:21 +0000 (UTC)
-IronPort-SDR: re/C8LqzYzo3hhkHFstrfj8bZafi4XCrKSmQ2IdY5SROufBIHYw/bqeGuLKDWUeF/zzY1XJ4mh
- MXGi/MNk2kzA==
-X-IronPort-AV: E=McAfee;i="6000,8403,9870"; a="166910310"
-X-IronPort-AV: E=Sophos;i="5.79,363,1602572400"; d="scan'208";a="166910310"
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C28EF6E05C
+ for <intel-gfx@lists.freedesktop.org>; Thu, 21 Jan 2021 09:12:37 +0000 (UTC)
+IronPort-SDR: LkWoDajDFno8IQD4ZtxYpdMdI4M1gVvqc8+eJoPWYwutta2jdf17fJfQZoWVrNkKGaKi5PYssG
+ eUq4c5oz1kkw==
+X-IronPort-AV: E=McAfee;i="6000,8403,9870"; a="158419862"
+X-IronPort-AV: E=Sophos;i="5.79,363,1602572400"; d="scan'208";a="158419862"
 Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Jan 2021 00:48:20 -0800
-IronPort-SDR: uUJjcXwnN33fCSSzF6L5DL+CLZbXwYoska6x6A6rZS8JXR8niNYSy9V3zyYvJbJkxojBDTz/g/
- Oq9zFyINQjkw==
-X-IronPort-AV: E=Sophos;i="5.79,363,1602572400"; d="scan'208";a="385218568"
-Received: from jkrzyszt-desk.ger.corp.intel.com ([172.22.244.18])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Jan 2021 00:48:19 -0800
-Message-ID: <7c9e9e4545e7195f8f96ff352548eee63d6c3c7d.camel@linux.intel.com>
-From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-To: Marcin Bernatowicz <marcin.bernatowicz@linux.intel.com>, 
- igt-dev@lists.freedesktop.org
-Date: Thu, 21 Jan 2021 09:48:17 +0100
-In-Reply-To: <7ac828ba904e3fc4153f5aa8041bfcf79128407b.camel@linux.intel.com>
-References: <20210119084257.25552-1-janusz.krzysztofik@linux.intel.com>
- <7ac828ba904e3fc4153f5aa8041bfcf79128407b.camel@linux.intel.com>
-Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173,
- 80-298 Gdansk - KRS 101882 - NIP 957-07-52-316
-User-Agent: Evolution 3.32.5 (3.32.5-1.fc30) 
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Jan 2021 01:12:37 -0800
+IronPort-SDR: OcxemuhgOh+7wtcay4TZjrZMPYMUAqh1uOwhNdq7sp1zWZadlIoy2QB8GivzzPNujIM7fWKtMw
+ 6F/J07n5BjRg==
+X-IronPort-AV: E=Sophos;i="5.79,363,1602572400"; d="scan'208";a="385226668"
+Received: from cohrs-mobl.ger.corp.intel.com (HELO localhost) ([10.252.51.23])
+ by orsmga008-auth.jf.intel.com with
+ ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Jan 2021 01:12:30 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Dan Carpenter <dan.carpenter@oracle.com>,
+ Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+In-Reply-To: <YAkaBa22zvbXKd4E@mwanda>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <YAkaBa22zvbXKd4E@mwanda>
+Date: Thu, 21 Jan 2021 11:12:27 +0200
+Message-ID: <87h7namz5w.fsf@intel.com>
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH i-g-t] tests/core_hotunplug: Reduce debug
- noise on stdout
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/dp: Fix a logical vs bitwise OR bug
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,45 +47,56 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: David Airlie <airlied@linux.ie>, kernel-janitors@vger.kernel.org,
+ Lucas De Marchi <lucas.demarchi@intel.com>, Sean Paul <seanpaul@chromium.org>,
+ Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org,
+ Wambui Karuga <wambui.karugax@gmail.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 2021-01-19 at 12:08 +0100, Marcin Bernatowicz wrote:
-> On Tue, 2021-01-19 at 09:42 +0100, Janusz Krzysztofik wrote:
-> > Since igt_fixture sections are processed unconditionally regardless
-> > of
-> > which subtest has been requested, they can now emit a lot of
-> > unrelated
-> > debug messages which can make the picture less clear.  Avoid emitting
-> > those messages from outside igt_subtest sections.
-> > 
-> > Move device close status prerequisite checks from igt_fixture
-> > sections
-> > into subtest execution paths.  For simplicity, pass any device close
-> > errors, including those from health checks, to next sections via a
-> > single .fd.drm data structure field.
-> > 
-> > Moreover, postpone initial device health check until first actually
-> > selected subtest is started.  In order to let that subtest skip on
-> > unsuccessful initial health check, not fail, move the decision
-> > whether
-> > to fail or skip on error from the health check helper to its users.
-> > 
-> > Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com
-> > ...
-> Reviewed-by: Marcin Bernatowicz <marcin.bernatowicz@linux.intel.com>
+On Thu, 21 Jan 2021, Dan Carpenter <dan.carpenter@oracle.com> wrote:
+> This was supposed to be | instead of ||.
+>
+> Fixes: 522508b665df ("drm/i915/display: Let PCON convert from RGB to YCbCr if it can")
+> Signed-off-by: Dan Carpenter <dan.carpenter@oracle.com>
 
-Thank you Marcin.
+Thanks, but we already have the fix [1] for this that I thought was
+pushed by now [2].
 
-CI results with no false positives finally collected after a few re-
-runs, so pushed.
+Chris?
 
-Thanks,
-Janusz
 
+BR,
+Jani.
+
+
+[1] http://lore.kernel.org/r/20201223103917.14687-1-chris@chris-wilson.co.uk
+[2] http://lore.kernel.org/r/161069893278.19482.3803444937046587332@build.alporthouse.com
+
+> ---
+>  drivers/gpu/drm/i915/display/intel_dp.c | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+> index 8a00e609085f..9c6f427b2703 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> @@ -6955,8 +6955,8 @@ intel_dp_update_420(struct intel_dp *intel_dp)
+>  							intel_dp->downstream_ports);
+>  	rgb_to_ycbcr = drm_dp_downstream_rgb_to_ycbcr_conversion(intel_dp->dpcd,
+>  								 intel_dp->downstream_ports,
+> -								 DP_DS_HDMI_BT601_RGB_YCBCR_CONV ||
+> -								 DP_DS_HDMI_BT709_RGB_YCBCR_CONV ||
+> +								 DP_DS_HDMI_BT601_RGB_YCBCR_CONV |
+> +								 DP_DS_HDMI_BT709_RGB_YCBCR_CONV |
+>  								 DP_DS_HDMI_BT2020_RGB_YCBCR_CONV);
+>  
+>  	if (INTEL_GEN(i915) >= 11) {
+
+-- 
+Jani Nikula, Intel Open Source Graphics Center
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
