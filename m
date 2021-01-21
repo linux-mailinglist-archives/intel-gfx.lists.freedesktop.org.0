@@ -1,42 +1,47 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4BD342FF669
-	for <lists+intel-gfx@lfdr.de>; Thu, 21 Jan 2021 21:53:40 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id B86E22FF69E
+	for <lists+intel-gfx@lfdr.de>; Thu, 21 Jan 2021 22:00:25 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A22E36E95C;
-	Thu, 21 Jan 2021 20:53:38 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3AE036E95A
- for <intel-gfx@lists.freedesktop.org>; Thu, 21 Jan 2021 20:53:37 +0000 (UTC)
-IronPort-SDR: lD6pWxcRysIgPM+/R1iib6ch9rfPDbkXQ8dj9+c4ZvAIyp2VEVB1+dhqHYOrNWW97fW1M1OJAY
- 1BlB6yNRupJQ==
-X-IronPort-AV: E=McAfee;i="6000,8403,9871"; a="176771872"
-X-IronPort-AV: E=Sophos;i="5.79,365,1602572400"; d="scan'208";a="176771872"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Jan 2021 12:53:30 -0800
-IronPort-SDR: JwLyGqKpBs5i4Oq32lPiUNT/OEaaQTW5FQKp0CxoLbp9tnlvI0pgaOsyHONgcG0TC+rNdvONct
- FE6qci81huIA==
+	by gabe.freedesktop.org (Postfix) with ESMTP id 62EBE6E95B;
+	Thu, 21 Jan 2021 21:00:23 +0000 (UTC)
+X-Original-To: Intel-gfx@lists.freedesktop.org
+Delivered-To: Intel-gfx@lists.freedesktop.org
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 830D26E95B
+ for <Intel-gfx@lists.freedesktop.org>; Thu, 21 Jan 2021 21:00:22 +0000 (UTC)
+IronPort-SDR: agcZxzwvkJxPURSHwCRHVxNoEIODpUQeq/ttEfzSdSs7aRrVc3qSDowwgCl4/GBUE3Jm/PH0z9
+ ZydrYbGppHSQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9871"; a="159125412"
+X-IronPort-AV: E=Sophos;i="5.79,365,1602572400"; d="scan'208";a="159125412"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Jan 2021 13:00:07 -0800
+IronPort-SDR: /eEMNXnAg/LWrv6f35NNWO+xXjf+JU9+Bbt0LIA+kHTHCRLbFjXKJGGzo+BKImDB2yeJ7+TsCx
+ C2aGAZpSHH5A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.79,365,1602572400"; d="scan'208";a="467618686"
+X-IronPort-AV: E=Sophos;i="5.79,365,1602572400"; d="scan'208";a="367054585"
 Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by fmsmga001.fm.intel.com with SMTP; 21 Jan 2021 12:53:28 -0800
+ by orsmga002.jf.intel.com with SMTP; 21 Jan 2021 13:00:02 -0800
 Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 21 Jan 2021 22:53:27 +0200
-From: Ville Syrjala <ville.syrjala@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Thu, 21 Jan 2021 22:53:02 +0200
-Message-Id: <20210121205302.24897-9-ville.syrjala@linux.intel.com>
-X-Mailer: git-send-email 2.26.2
-In-Reply-To: <20210121205302.24897-1-ville.syrjala@linux.intel.com>
-References: <20210121205302.24897-1-ville.syrjala@linux.intel.com>
+ Thu, 21 Jan 2021 23:00:01 +0200
+Date: Thu, 21 Jan 2021 23:00:01 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: "Gaurav, Kumar" <kumar.gaurav@intel.com>
+Message-ID: <YAnrUeLAXCPATJ2F@intel.com>
+References: <20210119074320.28768-1-sean.z.huang@intel.com>
+ <20210119074320.28768-14-sean.z.huang@intel.com>
+ <9babc226536544f7aa7ec98e80de4b21@intel.com>
+ <YAnketZoGh4+ppkg@intel.com>
+ <DM6PR11MB268360BF1C1787E2EFECF5AD97A10@DM6PR11MB2683.namprd11.prod.outlook.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v2 8/8] drm/i915: Do a bit more initial readout
- for dbuf
+Content-Disposition: inline
+In-Reply-To: <DM6PR11MB268360BF1C1787E2EFECF5AD97A10@DM6PR11MB2683.namprd11.prod.outlook.com>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [RFC-v23 13/13] drm/i915/pxp: Add plane decryption
+ support
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,78 +54,221 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: "Nikula, Jani" <jani.nikula@intel.com>,
+ "Intel-gfx@lists.freedesktop.org" <Intel-gfx@lists.freedesktop.org>, "Huang,
+ Sean Z" <sean.z.huang@intel.com>, "Bommu,
+ Krishnaiah" <krishnaiah.bommu@intel.com>, "Vetter,
+ Daniel" <daniel.vetter@intel.com>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-RnJvbTogVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4KClJl
-YWRvdXQgdGhlIGRidWYgcmVsYXRlZCBzdHVmZiBkdXJpbmcgZHJpdmVyIGluaXQvcmVzdW1lIGFu
-ZApzdGljayBpdCBpbnRvIG91ciBkYnVmIHN0YXRlLgoKUmV2aWV3ZWQtYnk6IFN0YW5pc2xhdiBM
-aXNvdnNraXkgPHN0YW5pc2xhdi5saXNvdnNraXlAaW50ZWwuY29tPgpTaWduZWQtb2ZmLWJ5OiBW
-aWxsZSBTeXJqw6Rsw6QgPHZpbGxlLnN5cmphbGFAbGludXguaW50ZWwuY29tPgotLS0KIGRyaXZl
-cnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheS5jIHwgIDQgLS0KIGRyaXZlcnMv
-Z3B1L2RybS9pOTE1L2ludGVsX3BtLmMgICAgICAgICAgICAgIHwgNDggKysrKysrKysrKysrKysr
-KysrKy0KIDIgZmlsZXMgY2hhbmdlZCwgNDYgaW5zZXJ0aW9ucygrKSwgNiBkZWxldGlvbnMoLSkK
-CmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXku
-YyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheS5jCmluZGV4IDc3
-NjkyOTIyMGQ4Yy4uOWVhNWFkNTA4NTk5IDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkx
-NS9kaXNwbGF5L2ludGVsX2Rpc3BsYXkuYworKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNw
-bGF5L2ludGVsX2Rpc3BsYXkuYwpAQCAtMTQ0MjIsMTQgKzE0NDIyLDEwIEBAIHZvaWQgaW50ZWxf
-bW9kZXNldF9pbml0X2h3KHN0cnVjdCBkcm1faTkxNV9wcml2YXRlICppOTE1KQogewogCXN0cnVj
-dCBpbnRlbF9jZGNsa19zdGF0ZSAqY2RjbGtfc3RhdGUgPQogCQl0b19pbnRlbF9jZGNsa19zdGF0
-ZShpOTE1LT5jZGNsay5vYmouc3RhdGUpOwotCXN0cnVjdCBpbnRlbF9kYnVmX3N0YXRlICpkYnVm
-X3N0YXRlID0KLQkJdG9faW50ZWxfZGJ1Zl9zdGF0ZShpOTE1LT5kYnVmLm9iai5zdGF0ZSk7CiAK
-IAlpbnRlbF91cGRhdGVfY2RjbGsoaTkxNSk7CiAJaW50ZWxfZHVtcF9jZGNsa19jb25maWcoJmk5
-MTUtPmNkY2xrLmh3LCAiQ3VycmVudCBDRENMSyIpOwogCWNkY2xrX3N0YXRlLT5sb2dpY2FsID0g
-Y2RjbGtfc3RhdGUtPmFjdHVhbCA9IGk5MTUtPmNkY2xrLmh3OwotCi0JZGJ1Zl9zdGF0ZS0+ZW5h
-YmxlZF9zbGljZXMgPSBpOTE1LT5kYnVmLmVuYWJsZWRfc2xpY2VzOwogfQogCiBzdGF0aWMgaW50
-IHNhbml0aXplX3dhdGVybWFya3NfYWRkX2FmZmVjdGVkKHN0cnVjdCBkcm1fYXRvbWljX3N0YXRl
-ICpzdGF0ZSkKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2ludGVsX3BtLmMgYi9k
-cml2ZXJzL2dwdS9kcm0vaTkxNS9pbnRlbF9wbS5jCmluZGV4IGU3YzI5MTBlOGQ4Ny4uYTQyOWUy
-MmEyMmNhIDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pbnRlbF9wbS5jCisrKyBi
-L2RyaXZlcnMvZ3B1L2RybS9pOTE1L2ludGVsX3BtLmMKQEAgLTU2NjEsNiArNTY2MSwxOCBAQCBz
-dGF0aWMgYm9vbCBza2xfZGRiX2VudHJpZXNfb3ZlcmxhcChjb25zdCBzdHJ1Y3Qgc2tsX2RkYl9l
-bnRyeSAqYSwKIAlyZXR1cm4gYS0+c3RhcnQgPCBiLT5lbmQgJiYgYi0+c3RhcnQgPCBhLT5lbmQ7
-CiB9CiAKK3N0YXRpYyB2b2lkIHNrbF9kZGJfZW50cnlfdW5pb24oc3RydWN0IHNrbF9kZGJfZW50
-cnkgKmEsCisJCQkJY29uc3Qgc3RydWN0IHNrbF9kZGJfZW50cnkgKmIpCit7CisJaWYgKGEtPmVu
-ZCAmJiBiLT5lbmQpIHsKKwkJYS0+c3RhcnQgPSBtaW4oYS0+c3RhcnQsIGItPnN0YXJ0KTsKKwkJ
-YS0+ZW5kID0gbWF4KGEtPmVuZCwgYi0+ZW5kKTsKKwl9IGVsc2UgaWYgKGItPmVuZCkgeworCQlh
-LT5zdGFydCA9IGItPnN0YXJ0OworCQlhLT5lbmQgPSBiLT5lbmQ7CisJfQorfQorCiBib29sIHNr
-bF9kZGJfYWxsb2NhdGlvbl9vdmVybGFwcyhjb25zdCBzdHJ1Y3Qgc2tsX2RkYl9lbnRyeSAqZGRi
-LAogCQkJCSBjb25zdCBzdHJ1Y3Qgc2tsX2RkYl9lbnRyeSAqZW50cmllcywKIAkJCQkgaW50IG51
-bV9lbnRyaWVzLCBpbnQgaWdub3JlX2lkeCkKQEAgLTYxNzQsMTUgKzYxODYsNDcgQEAgdm9pZCBz
-a2xfcGlwZV93bV9nZXRfaHdfc3RhdGUoc3RydWN0IGludGVsX2NydGMgKmNydGMsCiAKIHZvaWQg
-c2tsX3dtX2dldF9od19zdGF0ZShzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqZGV2X3ByaXYpCiB7
-CisJc3RydWN0IGludGVsX2RidWZfc3RhdGUgKmRidWZfc3RhdGUgPQorCQl0b19pbnRlbF9kYnVm
-X3N0YXRlKGRldl9wcml2LT5kYnVmLm9iai5zdGF0ZSk7CiAJc3RydWN0IGludGVsX2NydGMgKmNy
-dGM7Ci0Jc3RydWN0IGludGVsX2NydGNfc3RhdGUgKmNydGNfc3RhdGU7CiAKIAlmb3JfZWFjaF9p
-bnRlbF9jcnRjKCZkZXZfcHJpdi0+ZHJtLCBjcnRjKSB7Ci0JCWNydGNfc3RhdGUgPSB0b19pbnRl
-bF9jcnRjX3N0YXRlKGNydGMtPmJhc2Uuc3RhdGUpOworCQlzdHJ1Y3QgaW50ZWxfY3J0Y19zdGF0
-ZSAqY3J0Y19zdGF0ZSA9CisJCQl0b19pbnRlbF9jcnRjX3N0YXRlKGNydGMtPmJhc2Uuc3RhdGUp
-OworCQllbnVtIHBpcGUgcGlwZSA9IGNydGMtPnBpcGU7CisJCWVudW0gcGxhbmVfaWQgcGxhbmVf
-aWQ7CiAKIAkJc2tsX3BpcGVfd21fZ2V0X2h3X3N0YXRlKGNydGMsICZjcnRjX3N0YXRlLT53bS5z
-a2wub3B0aW1hbCk7CiAJCWNydGNfc3RhdGUtPndtLnNrbC5yYXcgPSBjcnRjX3N0YXRlLT53bS5z
-a2wub3B0aW1hbDsKKworCQltZW1zZXQoJmRidWZfc3RhdGUtPmRkYltwaXBlXSwgMCwgc2l6ZW9m
-KGRidWZfc3RhdGUtPmRkYltwaXBlXSkpOworCisJCWZvcl9lYWNoX3BsYW5lX2lkX29uX2NydGMo
-Y3J0YywgcGxhbmVfaWQpIHsKKwkJCXN0cnVjdCBza2xfZGRiX2VudHJ5ICpkZGJfeSA9CisJCQkJ
-JmNydGNfc3RhdGUtPndtLnNrbC5wbGFuZV9kZGJfeVtwbGFuZV9pZF07CisJCQlzdHJ1Y3Qgc2ts
-X2RkYl9lbnRyeSAqZGRiX3V2ID0KKwkJCQkmY3J0Y19zdGF0ZS0+d20uc2tsLnBsYW5lX2RkYl91
-dltwbGFuZV9pZF07CisKKwkJCXNrbF9kZGJfZ2V0X2h3X3BsYW5lX3N0YXRlKGRldl9wcml2LCBj
-cnRjLT5waXBlLAorCQkJCQkJICAgcGxhbmVfaWQsIGRkYl95LCBkZGJfdXYpOworCisJCQlza2xf
-ZGRiX2VudHJ5X3VuaW9uKCZkYnVmX3N0YXRlLT5kZGJbcGlwZV0sIGRkYl95KTsKKwkJCXNrbF9k
-ZGJfZW50cnlfdW5pb24oJmRidWZfc3RhdGUtPmRkYltwaXBlXSwgZGRiX3V2KTsKKwkJfQorCisJ
-CWRidWZfc3RhdGUtPnNsaWNlc1twaXBlXSA9CisJCQlza2xfY29tcHV0ZV9kYnVmX3NsaWNlcyhj
-cnRjLCBkYnVmX3N0YXRlLT5hY3RpdmVfcGlwZXMpOworCisJCWRidWZfc3RhdGUtPndlaWdodFtw
-aXBlXSA9IGludGVsX2NydGNfZGRiX3dlaWdodChjcnRjX3N0YXRlKTsKKworCQlkcm1fZGJnX2tt
-cygmZGV2X3ByaXYtPmRybSwKKwkJCSAgICAiW0NSVEM6JWQ6JXNdIGRidWYgc2xpY2VzIDB4JXgs
-IGRkYiAoJWQgLSAlZCksIGFjdGl2ZSBwaXBlcyAweCV4XG4iLAorCQkJICAgIGNydGMtPmJhc2Uu
-YmFzZS5pZCwgY3J0Yy0+YmFzZS5uYW1lLAorCQkJICAgIGRidWZfc3RhdGUtPnNsaWNlc1twaXBl
-XSwgZGJ1Zl9zdGF0ZS0+ZGRiW3BpcGVdLnN0YXJ0LAorCQkJICAgIGRidWZfc3RhdGUtPmRkYltw
-aXBlXS5lbmQsIGRidWZfc3RhdGUtPmFjdGl2ZV9waXBlcyk7CiAJfQorCisJZGJ1Zl9zdGF0ZS0+
-ZW5hYmxlZF9zbGljZXMgPSBkZXZfcHJpdi0+ZGJ1Zi5lbmFibGVkX3NsaWNlczsKIH0KIAogc3Rh
-dGljIHZvaWQgaWxrX3BpcGVfd21fZ2V0X2h3X3N0YXRlKHN0cnVjdCBpbnRlbF9jcnRjICpjcnRj
-KQotLSAKMi4yNi4yCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5v
-cmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1n
-ZngK
+On Thu, Jan 21, 2021 at 08:50:18PM +0000, Gaurav, Kumar wrote:
+> Thanks Anshuman for adding me for review.
+> =
+
+> Actually, using plane Gamma is good idea to show black frame. Another opt=
+ion could be alpha value since we know for ChromeOS protected buffer will a=
+lways be flipped on overlays.
+> =
+
+> Below explanation captures need for black frame in i915 Display for HWDRM=
+ protected surfaces -
+> Problem Statement -
+> There is race condition between Ring3 and Ring0 where encrypted frame cou=
+ld be flipped by i915 Display despite Ring3 checking if HWDRM session keys =
+are valid for encrypted frame.  =
+
+> =
+
+> Google Bug -
+> BUG1 -[Intel] i915 framebuffer tracking (protected surfaces that can't be=
+ decrypted are being rendered as encrypted) -b/155511255
+> =
+
+> Background -
+> There are 4 high level pipelines working together in HWDRM playback.
+> 1. CDM Pipeline -
+> App CDM SW Stack -> LibVA/iHD -> i915 -> MEI -> CSME-FW =
+
+> =
+
+> 2. Media(Audio/Video) Pipeline
+> App Media SW Stack -> LibVA/iHD -> i915 -> GPU =
+
+> =
+
+> 3. 3D Pipeline in Compositor
+> App Composition SW Stack -> OpenGL/MESA/MiniGBM -> i915 -> GPU/Display
+> =
+
+> 4. Display Pipeline in Compositor
+> App Composition SW Stack -> Ozone/MiniGBM -> i915 -> Display
+> =
+
+> Discussion Point -
+> Even after Pipeline #4 is context robustness compliant there is a corner =
+case/race condition for corruption as following  - BUG1
+> App's Composition SW Stack -> Creates Protected Context and Protected Buf=
+fer(MiniGBM)
+> App's Composition SW Stack -> Supplies Protected Buffer to LibVA/iHD -> i=
+915 -> GPU -> Encrypted decoded output
+> App's Composition SW Stack -> Gets back decode output -> Checks for conte=
+xt robustness -> Submits frame for flip -> i915 Display(by the time i915 Di=
+splay gets flip PAVP session is invalid despite being atomic since invalida=
+tion of PAVP is HW async event) -> Display HW -> Shows corruption
+
+It'll always be racy unless the invalidation becomes a two stage process
+that first tells display to stop scanning out the thing and then waits
+for the display to finish scanning out the current frame.
+
+> =
+
+> =
+
+> -----Original Message-----
+> From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com> =
+
+> Sent: Thursday, January 21, 2021 12:31 PM
+> To: Gupta, Anshuman <anshuman.gupta@intel.com>
+> Cc: Huang, Sean Z <sean.z.huang@intel.com>; Intel-gfx@lists.freedesktop.o=
+rg; Nikula, Jani <jani.nikula@intel.com>; Gaurav, Kumar <kumar.gaurav@intel=
+.com>; Bommu, Krishnaiah <krishnaiah.bommu@intel.com>; Vetter, Daniel <dani=
+el.vetter@intel.com>
+> Subject: Re: [RFC-v23 13/13] drm/i915/pxp: Add plane decryption support
+> =
+
+> On Tue, Jan 19, 2021 at 09:35:18AM +0000, Gupta, Anshuman wrote:
+> > Jani/Ville
+> > I had received an offline comment form Gaurav on this patch, See =
+
+> > below,
+> > > -----Original Message-----
+> > > From: Huang, Sean Z <sean.z.huang@intel.com>
+> > > Sent: Tuesday, January 19, 2021 1:13 PM
+> > > To: Intel-gfx@lists.freedesktop.org
+> > > Cc: Gaurav, Kumar <kumar.gaurav@intel.com>; Gupta, Anshuman =
+
+> > > <anshuman.gupta@intel.com>; Bommu, Krishnaiah =
+
+> > > <krishnaiah.bommu@intel.com>; Huang, Sean Z <sean.z.huang@intel.com>
+> > > Subject: [RFC-v23 13/13] drm/i915/pxp: Add plane decryption support
+> > > =
+
+> > > From: Anshuman Gupta <anshuman.gupta@intel.com>
+> > > =
+
+> > > Add support to enable/disable PLANE_SURF Decryption Request bit.
+> > > It requires only to enable plane decryption support when following =
+
+> > > condition met.
+> > > 1. PXP session is enabled.
+> > > 2. Buffer object is protected.
+> > > =
+
+> > > v2:
+> > > - Rebased to libva_cp-drm-tip_tgl_cp tree.
+> > > - Used gen fb obj user_flags instead gem_object_metadata. [Krishna]
+> > > =
+
+> > > v3:
+> > > - intel_pxp_gem_object_status() API changes.
+> > > =
+
+> > > Cc: Bommu Krishnaiah <krishnaiah.bommu@intel.com>
+> > > Cc: Huang Sean Z <sean.z.huang@intel.com>
+> > > Cc: Gaurav Kumar <kumar.gaurav@intel.com>
+> > > Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
+> > > ---
+> > >  drivers/gpu/drm/i915/display/intel_sprite.c | 21 ++++++++++++++++++-=
+--
+> > >  drivers/gpu/drm/i915/i915_reg.h             |  1 +
+> > >  2 files changed, 19 insertions(+), 3 deletions(-)
+> > > =
+
+> > > diff --git a/drivers/gpu/drm/i915/display/intel_sprite.c
+> > > b/drivers/gpu/drm/i915/display/intel_sprite.c
+> > > index cf3589fd0ddb..39f8c922ce66 100644
+> > > --- a/drivers/gpu/drm/i915/display/intel_sprite.c
+> > > +++ b/drivers/gpu/drm/i915/display/intel_sprite.c
+> > > @@ -39,6 +39,8 @@
+> > >  #include <drm/drm_plane_helper.h>
+> > >  #include <drm/drm_rect.h>
+> > > =
+
+> > > +#include "pxp/intel_pxp.h"
+> > > +
+> > >  #include "i915_drv.h"
+> > >  #include "i915_trace.h"
+> > >  #include "i915_vgpu.h"
+> > > @@ -768,6 +770,11 @@ icl_program_input_csc(struct intel_plane *plane,
+> > >  			  PLANE_INPUT_CSC_POSTOFF(pipe, plane_id, 2), 0x0);  }
+> > > =
+
+> > > +static bool intel_fb_obj_protected(const struct drm_i915_gem_object
+> > > +*obj) {
+> > > +	return obj->user_flags & I915_BO_PROTECTED ? true : false; }
+> > > +
+> > >  static void
+> > >  skl_plane_async_flip(struct intel_plane *plane,
+> > >  		     const struct intel_crtc_state *crtc_state, @@ -804,6
+> > > +811,7 @@ skl_program_plane(struct intel_plane *plane,
+> > >  	u32 surf_addr =3D plane_state->color_plane[color_plane].offset;
+> > >  	u32 stride =3D skl_plane_stride(plane_state, color_plane);
+> > >  	const struct drm_framebuffer *fb =3D plane_state->hw.fb;
+> > > +	const struct drm_i915_gem_object *obj =3D intel_fb_obj(fb);
+> > >  	int aux_plane =3D intel_main_to_aux_plane(fb, color_plane);
+> > >  	int crtc_x =3D plane_state->uapi.dst.x1;
+> > >  	int crtc_y =3D plane_state->uapi.dst.y1; @@ -814,7 +822,7 @@ =
+
+> > > skl_program_plane(struct intel_plane *plane,
+> > >  	u8 alpha =3D plane_state->hw.alpha >> 8;
+> > >  	u32 plane_color_ctl =3D 0, aux_dist =3D 0;
+> > >  	unsigned long irqflags;
+> > > -	u32 keymsk, keymax;
+> > > +	u32 keymsk, keymax, plane_surf;
+> > >  	u32 plane_ctl =3D plane_state->ctl;
+> > > =
+
+> > >  	plane_ctl |=3D skl_plane_ctl_crtc(crtc_state); @@ -890,8 +898,15 @@ =
+
+> > > skl_program_plane(struct intel_plane *plane,
+> > >  	 * the control register just before the surface register.
+> > >  	 */
+> > >  	intel_de_write_fw(dev_priv, PLANE_CTL(pipe, plane_id), plane_ctl);
+> > > -	intel_de_write_fw(dev_priv, PLANE_SURF(pipe, plane_id),
+> > > -			  intel_plane_ggtt_offset(plane_state) + surf_addr);
+> > > +	plane_surf =3D intel_plane_ggtt_offset(plane_state) + surf_addr;
+> > > +
+> > > +	if (intel_pxp_gem_object_status(dev_priv) &&
+> > > +	    intel_fb_obj_protected(obj))
+> > > +		plane_surf |=3D PLANE_SURF_DECRYPTION_ENABLED;
+> > Here in case of if fb obj is protected but pxp session is not enabled i=
+.e intel_pxp_gem_object_status() returns false, request to show the black f=
+rame buffer on display instead of corrupted data.
+> >                             plane_surf =3D 0xXXX; //Pointer to black =
+
+> > framebuffer But above approach would be a hack.
+> > @Jani and @Ville could you please guide with the general way of handlin=
+g this as pxp session keys can be invalidated at any time.
+> =
+
+> Would need such a black buffer to be always pinned into the gtt, which is=
+ seems a bit wasteful. We could perhaps just force the plane to output blac=
+k eg. by using the plane gamma. I think we should always have the per-plane=
+ gamma available on skl+ universal planes. Cursor may be a different story.
+> =
+
+> --
+> Ville Syrj=E4l=E4
+> Intel
+
+-- =
+
+Ville Syrj=E4l=E4
+Intel
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
