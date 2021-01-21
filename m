@@ -1,45 +1,52 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 80D292FF5E1
-	for <lists+intel-gfx@lfdr.de>; Thu, 21 Jan 2021 21:31:04 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id A1C4C2FF5EC
+	for <lists+intel-gfx@lfdr.de>; Thu, 21 Jan 2021 21:33:27 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 91AFF6E160;
-	Thu, 21 Jan 2021 20:31:02 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E32236E160
- for <Intel-gfx@lists.freedesktop.org>; Thu, 21 Jan 2021 20:31:00 +0000 (UTC)
-IronPort-SDR: 1B7DE24AFmVkM/047XKJ5EBzLzFx3ZAdDBEb375aMmuS3Ci8ObqAZrQPMyAm1SNR1v0jL1W18p
- PAlSq6uzIzfQ==
-X-IronPort-AV: E=McAfee;i="6000,8403,9871"; a="179491146"
-X-IronPort-AV: E=Sophos;i="5.79,365,1602572400"; d="scan'208";a="179491146"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Jan 2021 12:30:54 -0800
-IronPort-SDR: ZQ+xi4ZCt04hwOfrDwz6kVBHWhpVSSim0GipoUcvqFATYl/M+/nC5DtRIpmhuu3Hc/Sz4IVMAX
- h+MApWj0+6Mg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.79,365,1602572400"; d="scan'208";a="367046989"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by orsmga002.jf.intel.com with SMTP; 21 Jan 2021 12:30:50 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 21 Jan 2021 22:30:50 +0200
-Date: Thu, 21 Jan 2021 22:30:50 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: "Gupta, Anshuman" <anshuman.gupta@intel.com>
-Message-ID: <YAnketZoGh4+ppkg@intel.com>
-References: <20210119074320.28768-1-sean.z.huang@intel.com>
- <20210119074320.28768-14-sean.z.huang@intel.com>
- <9babc226536544f7aa7ec98e80de4b21@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 39FB06E94C;
+	Thu, 21 Jan 2021 20:33:25 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [63.128.21.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4D7796E94C
+ for <intel-gfx@lists.freedesktop.org>; Thu, 21 Jan 2021 20:33:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1611261203;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=pmArDKlP8XROGh7SSuqalHmLY6449V7ifWHPpsdrgcQ=;
+ b=cY18VlBNXe+7vt6aFE81oa+xii7bx7PIZYiiU6EuIWzYOlr9NuOHhOiFrxDhEncVRb9KSM
+ 0DKG8wY1s4WKnsh7W5dZB4qvbEg3FsORS9nGrjpQqO6Y+gMsab0cYfdQNC0HegTeuI0yLC
+ BTAM1rlhXs6BzjzQ/jDTRfpDWsbYCcA=
+Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
+ [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-98-r-gj-hvoO0aukqMVw7Mi4A-1; Thu, 21 Jan 2021 15:33:21 -0500
+X-MC-Unique: r-gj-hvoO0aukqMVw7Mi4A-1
+Received: from smtp.corp.redhat.com (int-mx03.intmail.prod.int.phx2.redhat.com
+ [10.5.11.13])
+ (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
+ (No client certificate requested)
+ by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 73931800D55;
+ Thu, 21 Jan 2021 20:33:19 +0000 (UTC)
+Received: from omen.home.shazbot.org (ovpn-112-255.phx2.redhat.com
+ [10.3.112.255])
+ by smtp.corp.redhat.com (Postfix) with ESMTP id E50316EF49;
+ Thu, 21 Jan 2021 20:33:18 +0000 (UTC)
+Date: Thu, 21 Jan 2021 13:33:18 -0700
+From: Alex Williamson <alex.williamson@redhat.com>
+To: Fred Gao <fred.gao@intel.com>
+Message-ID: <20210121133318.3f0824e8@omen.home.shazbot.org>
+In-Reply-To: <20210118123834.5991-1-fred.gao@intel.com>
+References: <20201202171249.17083-1-fred.gao@intel.com>
+ <20210118123834.5991-1-fred.gao@intel.com>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <9babc226536544f7aa7ec98e80de4b21@intel.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [RFC-v23 13/13] drm/i915/pxp: Add plane decryption
- support
+X-Scanned-By: MIMEDefang 2.79 on 10.5.11.13
+Subject: Re: [Intel-gfx] [PATCH v2] vfio/pci: Add support for opregion v2.0+
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,136 +59,126 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Nikula, Jani" <jani.nikula@intel.com>, "Gaurav,
- Kumar" <kumar.gaurav@intel.com>,
- "Intel-gfx@lists.freedesktop.org" <Intel-gfx@lists.freedesktop.org>, "Huang,
- Sean Z" <sean.z.huang@intel.com>, "Bommu,
- Krishnaiah" <krishnaiah.bommu@intel.com>, "Vetter,
- Daniel" <daniel.vetter@intel.com>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Cc: Swee Yee Fonn <swee.yee.fonn@intel.com>, intel-gfx@lists.freedesktop.org,
+ kvm@vger.kernel.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Jan 19, 2021 at 09:35:18AM +0000, Gupta, Anshuman wrote:
-> Jani/Ville
-> I had received an offline comment form Gaurav on this patch,
-> See below,
-> > -----Original Message-----
-> > From: Huang, Sean Z <sean.z.huang@intel.com>
-> > Sent: Tuesday, January 19, 2021 1:13 PM
-> > To: Intel-gfx@lists.freedesktop.org
-> > Cc: Gaurav, Kumar <kumar.gaurav@intel.com>; Gupta, Anshuman
-> > <anshuman.gupta@intel.com>; Bommu, Krishnaiah
-> > <krishnaiah.bommu@intel.com>; Huang, Sean Z <sean.z.huang@intel.com>
-> > Subject: [RFC-v23 13/13] drm/i915/pxp: Add plane decryption support
-> > =
+On Mon, 18 Jan 2021 20:38:34 +0800
+Fred Gao <fred.gao@intel.com> wrote:
 
-> > From: Anshuman Gupta <anshuman.gupta@intel.com>
-> > =
+> Before opregion version 2.0 VBT data is stored in opregion mailbox #4,
+> However, When VBT data exceeds 6KB size and cannot be within mailbox #4
+> starting from opregion v2.0+, Extended VBT region, next to opregion, is
+> used to hold the VBT data, so the total size will be opregion size plus
+> extended VBT region size.
+> 
+> Cc: Zhenyu Wang <zhenyuw@linux.intel.com>
+> Signed-off-by: Swee Yee Fonn <swee.yee.fonn@intel.com>
+> Signed-off-by: Fred Gao <fred.gao@intel.com>
+> ---
+>  drivers/vfio/pci/vfio_pci_igd.c | 59 +++++++++++++++++++++++++++++++++
+>  1 file changed, 59 insertions(+)
+> 
+> diff --git a/drivers/vfio/pci/vfio_pci_igd.c b/drivers/vfio/pci/vfio_pci_igd.c
+> index 53d97f459252..fc470278a492 100644
+> --- a/drivers/vfio/pci/vfio_pci_igd.c
+> +++ b/drivers/vfio/pci/vfio_pci_igd.c
+> @@ -21,6 +21,10 @@
+>  #define OPREGION_SIZE		(8 * 1024)
+>  #define OPREGION_PCI_ADDR	0xfc
+>  
+> +#define OPREGION_RVDA		0x3ba
+> +#define OPREGION_RVDS		0x3c2
+> +#define OPREGION_VERSION	0x16
+> +
+>  static size_t vfio_pci_igd_rw(struct vfio_pci_device *vdev, char __user *buf,
+>  			      size_t count, loff_t *ppos, bool iswrite)
+>  {
+> @@ -58,6 +62,7 @@ static int vfio_pci_igd_opregion_init(struct vfio_pci_device *vdev)
+>  	u32 addr, size;
+>  	void *base;
+>  	int ret;
+> +	u16 version;
+>  
+>  	ret = pci_read_config_dword(vdev->pdev, OPREGION_PCI_ADDR, &addr);
+>  	if (ret)
+> @@ -83,6 +88,60 @@ static int vfio_pci_igd_opregion_init(struct vfio_pci_device *vdev)
+>  
+>  	size *= 1024; /* In KB */
+>  
+> +	/*
+> +	 * Support opregion v2.0+
+> +	 * When VBT data exceeds 6KB size and cannot be within mailbox #4
+> +	 * Extended VBT region, next to opregion, is used to hold the VBT data.
+> +	 * RVDA (Relative Address of VBT Data from Opregion Base) and RVDS
+> +	 * (VBT Data Size) from opregion structure member are used to hold the
+> +	 * address from region base and size of VBT data while RVDA/RVDS
+> +	 * are not defined before opregion 2.0.
+> +	 *
+> +	 * opregion 2.0: rvda is the physical VBT address.
+> +	 *
+> +	 * opregion 2.1+: rvda is unsigned, relative offset from
+> +	 * opregion base, and should never point within opregion.
+> +	 */
+> +	version = le16_to_cpu(*(__le16 *)(base + OPREGION_VERSION));
+> +	if (version >= 0x0200) {
+> +		u64 rvda;
+> +		u32 rvds;
+> +
+> +		rvda = le64_to_cpu(*(__le64 *)(base + OPREGION_RVDA));
+> +		rvds = le32_to_cpu(*(__le32 *)(base + OPREGION_RVDS));
+> +		if (rvda && rvds) {
+> +			u32 offset;
+> +
+> +			if (version == 0x0200)
+> +				offset = rvda - (u64)addr;
+> +			else
+> +				offset = rvda;
+> +
+> +			if (offset != size) {
+> +				pci_err(vdev->pdev,
+> +				"Extended VBT does not follow opregion !\n"
+> +				"opregion version 0x%x:offset 0x%x\n", version, offset);
+> +				return -EINVAL;
+> +			}
+> +
+> +			/*
+> +			 * the only difference between opregion 2.0 and 2.1 is
+> +			 * rvda addressing mode. since rvda is physical host
+> +			 * VBT address and cannot be directly used in guest,
+> +			 * faked into opregion 2.1's relative offset.
+> +			 */
+> +			if (version == 0x0200) {
+> +				*(__le16 *)(base + OPREGION_VERSION) =
+> +					cpu_to_le16(0x0201);
+> +				(*(__le64 *)(base + OPREGION_RVDA)) =
+> +					cpu_to_le64((rvda - (u64)addr));
+> +			}
 
-> > Add support to enable/disable PLANE_SURF Decryption Request bit.
-> > It requires only to enable plane decryption support when following
-> > condition met.
-> > 1. PXP session is enabled.
-> > 2. Buffer object is protected.
-> > =
+There's a much better description of the fields and logic here, thanks
+for that.  I also see we've closed the gap to require the extended
+region to immediately follow the opregion table.  The code
+immediately above still makes me nervous as even if this is the only
+difference between the specs, code might make some differentiation
+based on the spec version, which we're changing in host memory for all
+subsequent drivers until the host is rebooted.  Could we use a pci_dbg()
+in this branch to flag that event in dmesg for debugging?  Thanks,
 
-> > v2:
-> > - Rebased to libva_cp-drm-tip_tgl_cp tree.
-> > - Used gen fb obj user_flags instead gem_object_metadata. [Krishna]
-> > =
+Alex
 
-> > v3:
-> > - intel_pxp_gem_object_status() API changes.
-> > =
+> +
+> +			/* region size for opregion v2.0+: opregion and VBT size */
+> +			size = offset + rvds;
+> +		}
+> +	}
+> +
+>  	if (size != OPREGION_SIZE) {
+>  		memunmap(base);
+>  		base = memremap(addr, size, MEMREMAP_WB);
 
-> > Cc: Bommu Krishnaiah <krishnaiah.bommu@intel.com>
-> > Cc: Huang Sean Z <sean.z.huang@intel.com>
-> > Cc: Gaurav Kumar <kumar.gaurav@intel.com>
-> > Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
-> > ---
-> >  drivers/gpu/drm/i915/display/intel_sprite.c | 21 ++++++++++++++++++---
-> >  drivers/gpu/drm/i915/i915_reg.h             |  1 +
-> >  2 files changed, 19 insertions(+), 3 deletions(-)
-> > =
-
-> > diff --git a/drivers/gpu/drm/i915/display/intel_sprite.c
-> > b/drivers/gpu/drm/i915/display/intel_sprite.c
-> > index cf3589fd0ddb..39f8c922ce66 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_sprite.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_sprite.c
-> > @@ -39,6 +39,8 @@
-> >  #include <drm/drm_plane_helper.h>
-> >  #include <drm/drm_rect.h>
-> > =
-
-> > +#include "pxp/intel_pxp.h"
-> > +
-> >  #include "i915_drv.h"
-> >  #include "i915_trace.h"
-> >  #include "i915_vgpu.h"
-> > @@ -768,6 +770,11 @@ icl_program_input_csc(struct intel_plane *plane,
-> >  			  PLANE_INPUT_CSC_POSTOFF(pipe, plane_id, 2),
-> > 0x0);  }
-> > =
-
-> > +static bool intel_fb_obj_protected(const struct drm_i915_gem_object
-> > +*obj) {
-> > +	return obj->user_flags & I915_BO_PROTECTED ? true : false; }
-> > +
-> >  static void
-> >  skl_plane_async_flip(struct intel_plane *plane,
-> >  		     const struct intel_crtc_state *crtc_state, @@ -804,6
-> > +811,7 @@ skl_program_plane(struct intel_plane *plane,
-> >  	u32 surf_addr =3D plane_state->color_plane[color_plane].offset;
-> >  	u32 stride =3D skl_plane_stride(plane_state, color_plane);
-> >  	const struct drm_framebuffer *fb =3D plane_state->hw.fb;
-> > +	const struct drm_i915_gem_object *obj =3D intel_fb_obj(fb);
-> >  	int aux_plane =3D intel_main_to_aux_plane(fb, color_plane);
-> >  	int crtc_x =3D plane_state->uapi.dst.x1;
-> >  	int crtc_y =3D plane_state->uapi.dst.y1; @@ -814,7 +822,7 @@
-> > skl_program_plane(struct intel_plane *plane,
-> >  	u8 alpha =3D plane_state->hw.alpha >> 8;
-> >  	u32 plane_color_ctl =3D 0, aux_dist =3D 0;
-> >  	unsigned long irqflags;
-> > -	u32 keymsk, keymax;
-> > +	u32 keymsk, keymax, plane_surf;
-> >  	u32 plane_ctl =3D plane_state->ctl;
-> > =
-
-> >  	plane_ctl |=3D skl_plane_ctl_crtc(crtc_state); @@ -890,8 +898,15
-> > @@ skl_program_plane(struct intel_plane *plane,
-> >  	 * the control register just before the surface register.
-> >  	 */
-> >  	intel_de_write_fw(dev_priv, PLANE_CTL(pipe, plane_id), plane_ctl);
-> > -	intel_de_write_fw(dev_priv, PLANE_SURF(pipe, plane_id),
-> > -			  intel_plane_ggtt_offset(plane_state) + surf_addr);
-> > +	plane_surf =3D intel_plane_ggtt_offset(plane_state) + surf_addr;
-> > +
-> > +	if (intel_pxp_gem_object_status(dev_priv) &&
-> > +	    intel_fb_obj_protected(obj))
-> > +		plane_surf |=3D PLANE_SURF_DECRYPTION_ENABLED;
-> Here in case of if fb obj is protected but pxp session is not enabled i.e=
- intel_pxp_gem_object_status() returns false, request to show the black fra=
-me buffer on display instead of corrupted data.
->                             plane_surf =3D 0xXXX; //Pointer to black fram=
-ebuffer
-> But above approach would be a hack. =
-
-> @Jani and @Ville could you please guide with the general way of handling =
-this as pxp session keys can be invalidated at any time.
-
-Would need such a black buffer to be always pinned into the gtt, which
-is seems a bit wasteful. We could perhaps just force the plane to output
-black eg. by using the plane gamma. I think we should always have the
-per-plane gamma available on skl+ universal planes. Cursor may be a
-different story.
-
--- =
-
-Ville Syrj=E4l=E4
-Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
