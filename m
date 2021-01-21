@@ -2,44 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E176C2FE9A9
-	for <lists+intel-gfx@lfdr.de>; Thu, 21 Jan 2021 13:10:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B4EDC2FEA97
+	for <lists+intel-gfx@lfdr.de>; Thu, 21 Jan 2021 13:49:49 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ED39F6E833;
-	Thu, 21 Jan 2021 12:10:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 171FB6E088;
+	Thu, 21 Jan 2021 12:49:47 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0042B6E833;
- Thu, 21 Jan 2021 12:10:35 +0000 (UTC)
-IronPort-SDR: umyJkLmOG/p+L9XnpThEU/58lA7Sln6+2fYg6OKam31mqbcQO+Av6yZSpum4vBE6w1Jy3OwpIv
- n2Px4ZKh5uRQ==
-X-IronPort-AV: E=McAfee;i="6000,8403,9870"; a="175752262"
-X-IronPort-AV: E=Sophos;i="5.79,363,1602572400"; d="scan'208";a="175752262"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Jan 2021 04:10:12 -0800
-IronPort-SDR: il40rLBEIiI8pX7t4vZ+LGaXmw+K5Zuhq8F/ucTuRv9ugMJli+VFrQawlNuwpyZsnWrzAtQLAr
- pKDdEABFtUlA==
-X-IronPort-AV: E=Sophos;i="5.79,363,1602572400"; d="scan'208";a="385276990"
-Received: from cohrs-mobl.ger.corp.intel.com (HELO localhost) ([10.252.51.23])
- by orsmga008-auth.jf.intel.com with
- ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Jan 2021 04:10:09 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: Fabio Estevam <festevam@gmail.com>
-In-Reply-To: <CAOMZO5DBXerrJEvvXnfzjB376SMKVJTyo9MRD0H0u9pz8p+2yg@mail.gmail.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20210120110708.32131-1-jani.nikula@intel.com>
- <92f48ffdfa30c3941e0fd22337217f0b10d75ec8.camel@redhat.com>
- <875z3qmt5b.fsf@intel.com>
- <CAOMZO5Du9+DTYpuG3FNLRrO_LJVSJa3cdJWWwt_qzQDthGESkg@mail.gmail.com>
- <8735yums94.fsf@intel.com>
- <CAOMZO5DBXerrJEvvXnfzjB376SMKVJTyo9MRD0H0u9pz8p+2yg@mail.gmail.com>
-Date: Thu, 21 Jan 2021 14:10:06 +0200
-Message-ID: <87pn1ylcdd.fsf@intel.com>
+Received: from fireflyinternet.com (unknown [77.68.26.236])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5072B6E08A
+ for <intel-gfx@lists.freedesktop.org>; Thu, 21 Jan 2021 12:49:44 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from build.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 23660110-1500050 
+ for multiple; Thu, 21 Jan 2021 12:49:34 +0000
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Thu, 21 Jan 2021 12:49:31 +0000
+Message-Id: <20210121124932.2143-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH] drm/msm/dp: fix build after dp quirk helper
- change
+Subject: [Intel-gfx] [PATCH 1/2] drm/i915/gem: Remove special casing from
+ reloc-gtt
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,35 +37,61 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Stephen Rothwell <sfr@canb.auug.org.au>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- DRI mailing list <dri-devel@lists.freedesktop.org>,
- Daniel Vetter <daniel.vetter@ffwll.ch>
+Cc: Chris Wilson <chris@chris-wilson.co.uk>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 21 Jan 2021, Fabio Estevam <festevam@gmail.com> wrote:
-> On Thu, Jan 21, 2021 at 8:41 AM Jani Nikula <jani.nikula@intel.com> wrote:
->
->> On top of what? Current drm-tip?
->
-> It was on top of next-20210121.
+By observing that we only use reloc-gtt on objects that are device
+coherent and idle, we can avoid the set-to-domain call. Then noting that
+our preferred partial GGTT mapping path automatically copes with tiling
+(it does not use a fence) and handles all the error cases of pinning,
+that dramatically simplifies that branch.
 
-Kinda catch-22 because next has dropped current drm-intel-next because
-it doesn't build because of the issue this patch fixes. ;)
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+---
+ .../gpu/drm/i915/gem/i915_gem_execbuffer.c    | 21 +++++++------------
+ 1 file changed, 7 insertions(+), 14 deletions(-)
 
-BR,
-Jani.
-
-> _______________________________________________
-> dri-devel mailing list
-> dri-devel@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/dri-devel
-
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+index d70ca36f74f6..fe170186dd42 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+@@ -1151,23 +1151,16 @@ static void *reloc_iomap(struct drm_i915_gem_object *obj,
+ 		struct i915_vma *vma;
+ 		int err;
+ 
+-		if (i915_gem_object_is_tiled(obj))
+-			return ERR_PTR(-EINVAL);
+-
+ 		if (use_cpu_reloc(cache, obj))
+ 			return NULL;
+ 
+-		err = i915_gem_object_set_to_gtt_domain(obj, true);
+-		if (err)
+-			return ERR_PTR(err);
+-
+-		vma = i915_gem_object_ggtt_pin_ww(obj, &eb->ww, NULL, 0, 0,
+-						  PIN_MAPPABLE |
+-						  PIN_NONBLOCK /* NOWARN */ |
+-						  PIN_NOEVICT);
+-		if (vma == ERR_PTR(-EDEADLK))
+-			return vma;
+-
++		vma = ERR_PTR(-ENODEV);
++		if (!i915_gem_object_is_tiled(obj))
++			vma = i915_gem_object_ggtt_pin_ww(obj, &eb->ww,
++							  NULL, 0, 0,
++							  PIN_MAPPABLE |
++							  PIN_NONBLOCK /* NOWARN */ |
++							  PIN_NOEVICT);
+ 		if (IS_ERR(vma)) {
+ 			memset(&cache->node, 0, sizeof(cache->node));
+ 			mutex_lock(&ggtt->vm.mutex);
 -- 
-Jani Nikula, Intel Open Source Graphics Center
+2.20.1
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
