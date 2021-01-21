@@ -2,36 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C917E2FF0E0
-	for <lists+intel-gfx@lfdr.de>; Thu, 21 Jan 2021 17:49:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 54E452FF14E
+	for <lists+intel-gfx@lfdr.de>; Thu, 21 Jan 2021 18:04:26 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DC1186E90F;
-	Thu, 21 Jan 2021 16:49:20 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E88296E0B6;
- Thu, 21 Jan 2021 16:49:19 +0000 (UTC)
-IronPort-SDR: 74P1drKxoUEYxN9gz/tTUCLO8Dav8rTvU9R/CfvHTZyUTPsCt5KRiqm2UeXgHARMQiWwb7jwge
- 9JlcX2EuP7/w==
-X-IronPort-AV: E=McAfee;i="6000,8403,9871"; a="240838944"
-X-IronPort-AV: E=Sophos;i="5.79,364,1602572400"; d="scan'208";a="240838944"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Jan 2021 08:49:15 -0800
-IronPort-SDR: GVchUQIvY9blDHEasiffspbbfuYEgExLBcf1VOLyCHrI/IGL5C2tujlix+gBYxHjd1Ekob13hx
- K6t/P38E1obg==
-X-IronPort-AV: E=Sophos;i="5.79,364,1602572400"; d="scan'208";a="385374503"
-Received: from cohrs-mobl.ger.corp.intel.com (HELO localhost) ([10.252.51.23])
- by orsmga008-auth.jf.intel.com with
- ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Jan 2021 08:49:11 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>, 
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Date: Thu, 21 Jan 2021 18:49:08 +0200
-Message-ID: <87a6t2kzgb.fsf@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 93DB46E0B6;
+	Thu, 21 Jan 2021 17:04:23 +0000 (UTC)
+X-Original-To: Intel-gfx@lists.freedesktop.org
+Delivered-To: Intel-gfx@lists.freedesktop.org
+Received: from fireflyinternet.com (unknown [77.68.26.236])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A375E6E0B6
+ for <Intel-gfx@lists.freedesktop.org>; Thu, 21 Jan 2021 17:04:21 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from localhost (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
+ 23663189-1500050 for multiple; Thu, 21 Jan 2021 17:04:17 +0000
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PULL] drm-intel-fixes
+In-Reply-To: <20210119074320.28768-3-sean.z.huang@intel.com>
+References: <20210119074320.28768-1-sean.z.huang@intel.com>
+ <20210119074320.28768-3-sean.z.huang@intel.com>
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: "Huang, Sean Z" <sean.z.huang@intel.com>, Intel-gfx@lists.freedesktop.org
+Date: Thu, 21 Jan 2021 17:04:17 +0000
+Message-ID: <161124865747.3166.14389377121229630038@build.alporthouse.com>
+User-Agent: alot/0.9
+Subject: Re: [Intel-gfx] [RFC-v23 02/13] drm/i915/pxp: set KCR reg init
+ during the boot time
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,49 +40,53 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: , dim-tools@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Maxime Ripard <mripard@kernel.org>, intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: kumar.gaurav@intel.com
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-CkhpIERhdmUgJiBEYW5pZWwgLQoKZHJtLWludGVsLWZpeGVzLTIwMjEtMDEtMjE6CmRybS9pOTE1
-IGZpeGVzIGZvciB2NS4xMS1yYzU6Ci0gSERDUCBmaXhlcwotIFBNVSB3YWtlcmVmIGZpeAotIEZp
-eCBIV1NQIHZhbGlkaXR5IHJhY2UKLSBGaXggRFAgcHJvdG9jb2wgY29udmVydGVyIGFjY2lkZW50
-YWwgNDo0OjQtPjQ6MjowIGNvbnZlcnNpb24gZm9yIFJHQgoKQlIsCkphbmkuCgpUaGUgZm9sbG93
-aW5nIGNoYW5nZXMgc2luY2UgY29tbWl0IDE5YzMyOWY2ODA4OTk1YjE0MmIzOTY2MzAxZjIxN2M4
-MzFlN2NmMzE6CgogIExpbnV4IDUuMTEtcmM0ICgyMDIxLTAxLTE3IDE2OjM3OjA1IC0wODAwKQoK
-YXJlIGF2YWlsYWJsZSBpbiB0aGUgR2l0IHJlcG9zaXRvcnkgYXQ6CgogIGdpdDovL2Fub25naXQu
-ZnJlZWRlc2t0b3Aub3JnL2RybS9kcm0taW50ZWwgdGFncy9kcm0taW50ZWwtZml4ZXMtMjAyMS0w
-MS0yMQoKZm9yIHlvdSB0byBmZXRjaCBjaGFuZ2VzIHVwIHRvIDFjNDk5NWIwYTU3NmQyNGJiN2Vh
-ZDk5MWZiMDM3YzhiNDdhYjZlMzI6CgogIGRybS9pOTE1OiBPbmx5IGVuYWJsZSBERlAgNDo0OjQt
-PjQ6MjowIGNvbnZlcnNpb24gd2hlbiBvdXRwdXR0aW5nIFlDYkNyIDQ6NDo0ICgyMDIxLTAxLTE5
-IDEwOjQ0OjA2ICswMjAwKQoKLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQpkcm0vaTkxNSBmaXhlcyBmb3IgdjUuMTEtcmM1Ogot
-IEhEQ1AgZml4ZXMKLSBQTVUgd2FrZXJlZiBmaXgKLSBGaXggSFdTUCB2YWxpZGl0eSByYWNlCi0g
-Rml4IERQIHByb3RvY29sIGNvbnZlcnRlciBhY2NpZGVudGFsIDQ6NDo0LT40OjI6MCBjb252ZXJz
-aW9uIGZvciBSR0IKCi0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0KQW5zaHVtYW4gR3VwdGEgKDIpOgogICAgICBkcm0vaTkxNS9o
-ZGNwOiBVcGRhdGUgQ1AgcHJvcGVydHkgaW4gdXBkYXRlX3BpcGUKICAgICAgZHJtL2k5MTUvaGRj
-cDogR2V0IGNvbm4gd2hpbGUgY29udGVudF90eXBlIGNoYW5nZWQKCkNocmlzIFdpbHNvbiAoMik6
-CiAgICAgIGRybS9pOTE1L2d0OiBQcmV2ZW50IHVzZSBvZiBlbmdpbmUtPndhX2N0eCBhZnRlciBl
-cnJvcgogICAgICBkcm0vaTkxNTogQ2hlY2sgZm9yIHJxLT5od3NwIHZhbGlkaXR5IGFmdGVyIGFj
-cXVpcmluZyBSQ1UgbG9jawoKVHZydGtvIFVyc3VsaW4gKDEpOgogICAgICBkcm0vaTkxNS9wbXU6
-IERvbid0IGdyYWIgd2FrZXJlZiB3aGVuIGVuYWJsaW5nIGV2ZW50cwoKVmlsbGUgU3lyasOkbMOk
-ICgxKToKICAgICAgZHJtL2k5MTU6IE9ubHkgZW5hYmxlIERGUCA0OjQ6NC0+NDoyOjAgY29udmVy
-c2lvbiB3aGVuIG91dHB1dHRpbmcgWUNiQ3IgNDo0OjQKCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9k
-aXNwbGF5L2ludGVsX2RkaS5jICAgIHwgIDIgKy0KIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3Bs
-YXkvaW50ZWxfZHAuYyAgICAgfCAgOSArKystLS0tCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNw
-bGF5L2ludGVsX2RwLmggICAgIHwgIDMgKystCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5
-L2ludGVsX2hkY3AuYyAgIHwgIDkgKysrKysrKwogZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvaW50
-ZWxfYnJlYWRjcnVtYnMuYyB8ICA5ICsrLS0tLS0KIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L2lu
-dGVsX2xyYy5jICAgICAgICAgfCAgMyArKysKIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L2ludGVs
-X3RpbWVsaW5lLmMgICAgfCAxMCArKysrLS0tLQogZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9w
-bXUuYyAgICAgICAgICAgICB8IDMwICsrKysrKysrKysrKy0tLS0tLS0tLS0tCiBkcml2ZXJzL2dw
-dS9kcm0vaTkxNS9pOTE1X3JlcXVlc3QuaCAgICAgICAgIHwgMzcgKysrKysrKysrKysrKysrKysr
-KysrKysrKy0tLS0KIDkgZmlsZXMgY2hhbmdlZCwgNzQgaW5zZXJ0aW9ucygrKSwgMzggZGVsZXRp
-b25zKC0pCgotLSAKSmFuaSBOaWt1bGEsIEludGVsIE9wZW4gU291cmNlIEdyYXBoaWNzIENlbnRl
-cgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1n
-ZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9s
-aXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
+Quoting Huang, Sean Z (2021-01-19 07:43:09)
+> Set the KCR init during the boot time, which is
+> required by hardware, to allow us doing further
+> protection operation such as sending commands to
+> GPU or TEE.
+> 
+> rev21:
+>     - Remove "#define KCR_INIT_MASK_SHIFT (16)", but still keep the
+>       macro in this .c file
+>     - Write KCR_INIT reg inly for gen12 during boot, not required
+>       for gen13+
+> 
+> Signed-off-by: Huang, Sean Z <sean.z.huang@intel.com>
+> ---
+>  drivers/gpu/drm/i915/pxp/intel_pxp.c | 9 +++++++++
+>  1 file changed, 9 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp.c b/drivers/gpu/drm/i915/pxp/intel_pxp.c
+> index 9bc3c7e30654..4e9cee7df4f2 100644
+> --- a/drivers/gpu/drm/i915/pxp/intel_pxp.c
+> +++ b/drivers/gpu/drm/i915/pxp/intel_pxp.c
+> @@ -6,6 +6,12 @@
+>  #include "intel_pxp.h"
+>  #include "intel_pxp_context.h"
+>  
+> +/* KCR register definitions */
+> +#define KCR_INIT            _MMIO(0x320f0)
+> +
+> +/* Setting KCR Init bit is required after system boot */
+> +#define KCR_INIT_ALLOW_DISPLAY_ME_WRITES (BIT(14) | (BIT(14) << 16))
+
+What Rodrigo was saying is that this is a classic masked register, so we
+should be doing:
+
+#define KCR_INIT_ALLOW_DISPLAY_ME_WRITES REG_BIT(14)
+
+intel_uncore_write(gt->uncore, KCR_INIT,
+		   _MASKED_BIT_ENABLE(KCR_INIT_ALLOW_DISPLAY_ME_WRITES));
+
+-Chris
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
