@@ -2,45 +2,45 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 75E273006FF
-	for <lists+intel-gfx@lfdr.de>; Fri, 22 Jan 2021 16:21:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 894BC3007A2
+	for <lists+intel-gfx@lfdr.de>; Fri, 22 Jan 2021 16:44:01 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8652D6E9F9;
-	Fri, 22 Jan 2021 15:21:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DE0EF6E9DE;
+	Fri, 22 Jan 2021 15:43:58 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1FBD36E9F9;
- Fri, 22 Jan 2021 15:21:11 +0000 (UTC)
-IronPort-SDR: +nddeMGgv/5XXeG/NwfgjmUjtPcB1YxVJ2JR85nNyLPGWRTYWmaFhoEWmbES/Nbyxr4b6xp8bZ
- YwXRy1G+Z9pw==
-X-IronPort-AV: E=McAfee;i="6000,8403,9872"; a="264277551"
-X-IronPort-AV: E=Sophos;i="5.79,366,1602572400"; d="scan'208";a="264277551"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Jan 2021 07:21:10 -0800
-IronPort-SDR: houAtDeADSmmcQbQWowfw/7Ijefe89LxGOc9gRjLNXgmOmPoa4inxl58NBuD8nLYiCezx2bJ04
- e2d6BENtCOOw==
-X-IronPort-AV: E=Sophos;i="5.79,366,1602572400"; d="scan'208";a="385793960"
-Received: from blaschkj-mobl.ger.corp.intel.com (HELO localhost)
- ([10.252.44.247])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Jan 2021 07:21:05 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Colin King <colin.king@canonical.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, David Airlie <airlied@linux.ie>,
- Daniel Vetter <daniel@ffwll.ch>, Ramalingam C <ramalingam.c@intel.com>,
- Anshuman Gupta <anshuman.gupta@intel.com>, Uma Shankar <uma.shankar@intel.com>,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-In-Reply-To: <20210122150957.209779-1-colin.king@canonical.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20210122150957.209779-1-colin.king@canonical.com>
-Date: Fri, 22 Jan 2021 17:21:02 +0200
-Message-ID: <87y2glj8v5.fsf@intel.com>
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 351856EA03
+ for <intel-gfx@lists.freedesktop.org>; Fri, 22 Jan 2021 15:43:56 +0000 (UTC)
+IronPort-SDR: MhcNCBoMrK0KK+MKD6dTwJhx5Oo9OFeqY0I0EkPffMLfMPAT9X/UXBrqCcHXjSM8noZiH/sMdt
+ SuO5fGlji4uw==
+X-IronPort-AV: E=McAfee;i="6000,8403,9872"; a="198218229"
+X-IronPort-AV: E=Sophos;i="5.79,366,1602572400"; d="scan'208";a="198218229"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Jan 2021 07:43:56 -0800
+IronPort-SDR: uFX6Q7XWlsLisRhG22cpDND7FnJwJqhoDS8j9D0dWkzSLLgAkeGsDiMFBsgJHv7p8dldjjNTm+
+ kHrhgylADiKQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.79,366,1602572400"; d="scan'208";a="467956995"
+Received: from irvmail001.ir.intel.com ([10.43.11.63])
+ by fmsmga001.fm.intel.com with ESMTP; 22 Jan 2021 07:43:55 -0800
+Received: from [10.249.130.160] (mwajdecz-MOBL.ger.corp.intel.com
+ [10.249.130.160])
+ by irvmail001.ir.intel.com (8.14.3/8.13.6/MailSET/Hub) with ESMTP id
+ 10MFhfU7027450
+ for <intel-gfx@lists.freedesktop.org>; Fri, 22 Jan 2021 15:43:50 GMT
+To: intel-gfx@lists.freedesktop.org
+References: <20210122150622.21088-1-chris@chris-wilson.co.uk>
+From: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Message-ID: <2721424e-f72d-5531-aa75-a7f4ef59f823@intel.com>
+Date: Fri, 22 Jan 2021 16:43:26 +0100
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Thunderbird/78.6.1
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH][next] drm/i915/hdcp: Fix return of value in
- uninitialized variable ret
+In-Reply-To: <20210122150622.21088-1-chris@chris-wilson.co.uk>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH 01/10] drm/i915/gt: SPDX cleanup
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,52 +53,26 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: kernel-janitors@vger.kernel.org, linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, 22 Jan 2021, Colin King <colin.king@canonical.com> wrote:
-> From: Colin Ian King <colin.king@canonical.com>
->
-> Currently when there are other connectors on the port using HDCP the
-> function _intel_hdcp_disable returns a garbage uninitialized value in
-> variable ret.  I believe the intention is to return 0, so return this
-> literal value instead of the value in ret.
->
-> Addresses-Coverity: ("Uninitialized scalar return")
-> Fixes: 899c8762f981 ("drm/i915/hdcp: Configure HDCP2.2 MST steram encryption status")
-> Signed-off-by: Colin Ian King <colin.king@canonical.com>
-
-Thanks, but there's already a fix in progress:
-
-http://lore.kernel.org/r/20210119064655.1605-3-anshuman.gupta@intel.com
-
-BR,
-Jani.
 
 
-> ---
->  drivers/gpu/drm/i915/display/intel_hdcp.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c b/drivers/gpu/drm/i915/display/intel_hdcp.c
-> index db8dff2eeb0a..a0e7b0bf892b 100644
-> --- a/drivers/gpu/drm/i915/display/intel_hdcp.c
-> +++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
-> @@ -883,7 +883,7 @@ static int _intel_hdcp_disable(struct intel_connector *connector)
->  	 * until it disabled HDCP encryption for all connectors in MST topology.
->  	 */
->  	if (dig_port->num_hdcp_streams > 0)
-> -		return ret;
-> +		return 0;
->  
->  	hdcp->hdcp_encrypted = false;
->  	intel_de_write(dev_priv, HDCP_CONF(dev_priv, cpu_transcoder, port), 0);
+On 22.01.2021 16:06, Chris Wilson wrote:
+> Clean up the SPDX licence declarations to comply with checkpatch.
 
--- 
-Jani Nikula, Intel Open Source Graphics Center
+typo here and in the commit message 04/10
+
+> 
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+
+for the whole series, with above typos fixed,
+Reviewed-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+
+Thanks,
+Michal
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
