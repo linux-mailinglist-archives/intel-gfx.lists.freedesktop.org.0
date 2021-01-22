@@ -2,31 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6EEF7300C70
-	for <lists+intel-gfx@lfdr.de>; Fri, 22 Jan 2021 20:29:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C5F69300C6E
+	for <lists+intel-gfx@lfdr.de>; Fri, 22 Jan 2021 20:29:29 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AFF3C6EA44;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5AA986EA3F;
 	Fri, 22 Jan 2021 19:29:23 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1282B6EA3D
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E3C726EA39
  for <intel-gfx@lists.freedesktop.org>; Fri, 22 Jan 2021 19:29:18 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 23675689-1500050 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 23675690-1500050 
  for <intel-gfx@lists.freedesktop.org>; Fri, 22 Jan 2021 19:29:13 +0000
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Fri, 22 Jan 2021 19:29:10 +0000
-Message-Id: <20210122192913.4518-7-chris@chris-wilson.co.uk>
+Date: Fri, 22 Jan 2021 19:29:11 +0000
+Message-Id: <20210122192913.4518-8-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20210122192913.4518-1-chris@chris-wilson.co.uk>
 References: <20210122192913.4518-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [CI 07/10] drm/i915/gt: Insert spaces into
- GEN3_L3LOG_SIZE/4
+Subject: [Intel-gfx] [CI 08/10] drm/i915/gt: Replace unnecessary ',' with ';
+ '
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,53 +44,45 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Checkpatch wants spaces, let's give it some spaces.
+Checkpatch spotted a couple of commas where we can use the more common
+';', and so not worry about the subtle implications of sequence points.
 
 Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
 Reviewed-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
 ---
- drivers/gpu/drm/i915/gt/intel_ring_submission.c | 8 +++++---
- 1 file changed, 5 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/i915/gt/gen6_ppgtt.h        | 4 ++--
+ drivers/gpu/drm/i915/gt/intel_region_lmem.c | 2 +-
+ 2 files changed, 3 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_ring_submission.c b/drivers/gpu/drm/i915/gt/intel_ring_submission.c
-index 1a80673bc1dd..8b7cc637c432 100644
---- a/drivers/gpu/drm/i915/gt/intel_ring_submission.c
-+++ b/drivers/gpu/drm/i915/gt/intel_ring_submission.c
-@@ -730,13 +730,14 @@ static int mi_set_context(struct i915_request *rq,
+diff --git a/drivers/gpu/drm/i915/gt/gen6_ppgtt.h b/drivers/gpu/drm/i915/gt/gen6_ppgtt.h
+index 3357228f3304..6a61a5c3a85a 100644
+--- a/drivers/gpu/drm/i915/gt/gen6_ppgtt.h
++++ b/drivers/gpu/drm/i915/gt/gen6_ppgtt.h
+@@ -59,9 +59,9 @@ static inline struct gen6_ppgtt *to_gen6_ppgtt(struct i915_ppgtt *base)
+ 	for (iter = gen6_pde_index(start);				\
+ 	     length > 0 && iter < I915_PDES &&				\
+ 		     (pt = i915_pt_entry(pd, iter), true);		\
+-	     ({ u32 temp = ALIGN(start+1, 1 << GEN6_PDE_SHIFT);		\
++	     ({ u32 temp = ALIGN(start + 1, 1 << GEN6_PDE_SHIFT);	\
+ 		    temp = min(temp - start, length);			\
+-		    start += temp, length -= temp; }), ++iter)
++		    start += temp; length -= temp; }), ++iter)
  
- static int remap_l3_slice(struct i915_request *rq, int slice)
- {
-+#define L3LOG_DW (GEN7_L3LOG_SIZE / sizeof(u32))
- 	u32 *cs, *remap_info = rq->engine->i915->l3_parity.remap_info[slice];
- 	int i;
+ #define gen6_for_all_pdes(pt, pd, iter)					\
+ 	for (iter = 0;							\
+diff --git a/drivers/gpu/drm/i915/gt/intel_region_lmem.c b/drivers/gpu/drm/i915/gt/intel_region_lmem.c
+index 60393ce5614d..28a1d5e1fb92 100644
+--- a/drivers/gpu/drm/i915/gt/intel_region_lmem.c
++++ b/drivers/gpu/drm/i915/gt/intel_region_lmem.c
+@@ -115,7 +115,7 @@ intel_setup_fake_lmem(struct drm_i915_private *i915)
  
- 	if (!remap_info)
- 		return 0;
+ 	/* Your mappable aperture belongs to me now! */
+ 	mappable_end = pci_resource_len(pdev, 2);
+-	io_start = pci_resource_start(pdev, 2),
++	io_start = pci_resource_start(pdev, 2);
+ 	start = i915->params.fake_lmem_start;
  
--	cs = intel_ring_begin(rq, GEN7_L3LOG_SIZE/4 * 2 + 2);
-+	cs = intel_ring_begin(rq, L3LOG_DW * 2 + 2);
- 	if (IS_ERR(cs))
- 		return PTR_ERR(cs);
- 
-@@ -745,8 +746,8 @@ static int remap_l3_slice(struct i915_request *rq, int slice)
- 	 * here because no other code should access these registers other than
- 	 * at initialization time.
- 	 */
--	*cs++ = MI_LOAD_REGISTER_IMM(GEN7_L3LOG_SIZE/4);
--	for (i = 0; i < GEN7_L3LOG_SIZE/4; i++) {
-+	*cs++ = MI_LOAD_REGISTER_IMM(L3LOG_DW);
-+	for (i = 0; i < L3LOG_DW; i++) {
- 		*cs++ = i915_mmio_reg_offset(GEN7_L3LOG(slice, i));
- 		*cs++ = remap_info[i];
- 	}
-@@ -754,6 +755,7 @@ static int remap_l3_slice(struct i915_request *rq, int slice)
- 	intel_ring_advance(rq, cs);
- 
- 	return 0;
-+#undef L3LOG_DW
- }
- 
- static int remap_l3(struct i915_request *rq)
+ 	mem = intel_memory_region_create(i915,
 -- 
 2.20.1
 
