@@ -1,44 +1,54 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 442F73003E2
-	for <lists+intel-gfx@lfdr.de>; Fri, 22 Jan 2021 14:13:13 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2145E30051F
+	for <lists+intel-gfx@lfdr.de>; Fri, 22 Jan 2021 15:17:15 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A99DD6E91C;
-	Fri, 22 Jan 2021 13:13:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8A7B16E9F8;
+	Fri, 22 Jan 2021 14:17:09 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2C3436E91C
- for <intel-gfx@lists.freedesktop.org>; Fri, 22 Jan 2021 13:13:10 +0000 (UTC)
-IronPort-SDR: DHVCSqf/arBrljRIHKq5UKxM0jNS1tCdFSa+H/4CuoWXnxMJ1JZOiIzK20ZuJIEglPOqxJSxNR
- x9BJ2gdKZfJw==
-X-IronPort-AV: E=McAfee;i="6000,8403,9871"; a="159219231"
-X-IronPort-AV: E=Sophos;i="5.79,366,1602572400"; d="scan'208";a="159219231"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Jan 2021 05:13:09 -0800
-IronPort-SDR: l1Ck2/4CFlMubPBj53cMbEgqlcw40ueoCOuJvl6fWIIq7CdTstV8ioLu4oc95VmK05vfT+QVx1
- VOtxUeUU0M3w==
-X-IronPort-AV: E=Sophos;i="5.79,366,1602572400"; d="scan'208";a="385751939"
-Received: from gtidhar-mobl.ger.corp.intel.com (HELO [10.214.206.196])
- ([10.214.206.196])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Jan 2021 05:13:08 -0800
-To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
-References: <20210122122903.23893-1-chris@chris-wilson.co.uk>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-Message-ID: <c7ca37ce-0db5-e273-c2ac-eefcbf75931e@linux.intel.com>
-Date: Fri, 22 Jan 2021 13:13:05 +0000
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.5.0
+Received: from mail-lj1-x231.google.com (mail-lj1-x231.google.com
+ [IPv6:2a00:1450:4864:20::231])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6F85D6E9F7;
+ Fri, 22 Jan 2021 14:17:08 +0000 (UTC)
+Received: by mail-lj1-x231.google.com with SMTP id f2so1473863ljp.11;
+ Fri, 22 Jan 2021 06:17:08 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=Z8mwIEDpENHQPtwMCv6y4VpkGncW2XJYSp++OhLzpYA=;
+ b=FRBjvbSwVivVTxWnYEWwg4AouTZMQEH5Y1rUZuPiiwnslT4Cu3m5MPUjO9ynXqVQlW
+ pDetYZSSe0KsN53qMQLIzuYNpxBlyEeA6tPJWO5ta3x03XAXRrECbCDxVzfgqeN1bH8T
+ th9L1zbnmU8PIB+4Vg9vIqQLI0cGYeARtbJ7MZ3XYqlwmv9VQrgkNLI9AIaxvxQn8S+G
+ CE1eyOx06iKWIneyUcTflyJlyOoljSlH08XACHfNZjl61NEBDq1WM2I1RRf96ClXJVka
+ gXScf7Xr5Qs+dGFcZs52Hk1x9oJw61VB3txeudE6cYcUbZ/gJSba8h+XKyFXJfWfSnxu
+ sBbw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=Z8mwIEDpENHQPtwMCv6y4VpkGncW2XJYSp++OhLzpYA=;
+ b=oFHTDjVxIOoTJw9HBJM4XEw/i6w71EER6yPPEQdyBb/LUHaXCdWQ2/9ZA2neV6qa7H
+ 5vHsSkXpapxZTiLEskyqQd2OyBcw4sHPFmgEnillk05NY8KPRBZyZkiXEVKFv51Ln0ia
+ acsNL7jYWaZ8gKq2O16mfEiJXqk91uOo+z9DIyUdp6WVIlokLHX2Otbb0JD7W5vZeBDq
+ n59M79Qj2O97ztVKvGsfzUzFK16TIkVh80IDkGyyxEpNtgt6JevDQa7lpIBzvlmBc0hL
+ beDFbAln+S4Vz5AyhkBNpmcA0h7Kpkjc+JgqDDrBB1SCkYSFirpKJAwUXOZzIN1hpvY8
+ hECQ==
+X-Gm-Message-State: AOAM530xlQgVMpkT2sVw26ItN5ruA6pfl8DyXbSA7uxIBpq7Oy22ueB8
+ 0Tg4h/vw8FEbHKtx2w6crKgXaF5hWSkpZn9CyC8=
+X-Google-Smtp-Source: ABdhPJzyisHq22Ug6u0KO4MdJ4uEr89O5oqn0gzi6cM0EjaFF7KBpntpUSBtybFHfqIgtdWD5xh6CUxgIKWEIqXteQk=
+X-Received: by 2002:a2e:b556:: with SMTP id a22mr849240ljn.264.1611325026603; 
+ Fri, 22 Jan 2021 06:17:06 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <20210122122903.23893-1-chris@chris-wilson.co.uk>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [CI 1/9] drm/i915/gt: Show the per-engine runtime
- in sysfs
+References: <20210122113855.25770-1-andriy.shevchenko@linux.intel.com>
+In-Reply-To: <20210122113855.25770-1-andriy.shevchenko@linux.intel.com>
+From: Patrik Jakobsson <patrik.r.jakobsson@gmail.com>
+Date: Fri, 22 Jan 2021 15:16:55 +0100
+Message-ID: <CAMeQTsa4byizTHkno_ndGpNskAgrEUU3f43p3qAfnGsXt2OoVQ@mail.gmail.com>
+To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Subject: Re: [Intel-gfx] [PATCH v1 1/2] drm/gma500: Convert to use new SCU
+ IPC API
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,69 +61,27 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: David Airlie <airlied@linux.ie>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ dri-devel <dri-devel@lists.freedesktop.org>,
+ Linus Walleij <linus.walleij@linaro.org>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+On Fri, Jan 22, 2021 at 12:39 PM Andy Shevchenko
+<andriy.shevchenko@linux.intel.com> wrote:
+>
+> Convert the GMA500 driver to use the new SCU IPC API. This allows us
+> to get rid of the duplicate PMC IPC implementation which is now covered
+> in SCU IPC driver.
+>
+> Signed-off-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+> Acked-by: Linus Walleij <linus.walleij@linaro.org>
 
-On 22/01/2021 12:28, Chris Wilson wrote:
-> Since we already report the per-engine runtime via PMU (using sampling
-> if a direct measure is not available), and in debugfs, also trivially
-> include the information for each engine under sysfs as a read-only
-> property. We only present the total milliseconds to hide any misleading
-> accuracy and to purposely reduce the precision of the global
-> unprivileged information.
-> 
-> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-> Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-> Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-> ---
->   drivers/gpu/drm/i915/gt/sysfs_engines.c | 17 +++++++++++++++++
->   1 file changed, 17 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/i915/gt/sysfs_engines.c b/drivers/gpu/drm/i915/gt/sysfs_engines.c
-> index 967031056202..57ef5383dd4e 100644
-> --- a/drivers/gpu/drm/i915/gt/sysfs_engines.c
-> +++ b/drivers/gpu/drm/i915/gt/sysfs_engines.c
-> @@ -411,6 +411,19 @@ heartbeat_default(struct kobject *kobj, struct kobj_attribute *attr, char *buf)
->   static struct kobj_attribute heartbeat_interval_def =
->   __ATTR(heartbeat_interval_ms, 0444, heartbeat_default, NULL);
->   
-> +static ssize_t
-> +runtime_show(struct kobject *kobj, struct kobj_attribute *attr, char *buf)
-> +{
-> +	struct intel_engine_cs *engine = kobj_to_engine(kobj);
-> +	ktime_t dummy;
-> +
-> +	return sprintf(buf, "%llu\n",
-> +		       ktime_to_ms(intel_engine_get_busy_time(engine, &dummy)));
-> +}
-> +
-> +static struct kobj_attribute runtime_attr =
-> +__ATTR(runtime_ms, 0444, runtime_show, NULL);
-> +
->   static void kobj_engine_release(struct kobject *kobj)
->   {
->   	kfree(kobj);
-> @@ -521,6 +534,10 @@ void intel_engines_add_sysfs(struct drm_i915_private *i915)
->   		    sysfs_create_file(kobj, &preempt_timeout_attr.attr))
->   			goto err_engine;
->   
-> +		if (intel_engine_supports_stats(engine) &&
-> +		    sysfs_create_file(kobj, &runtime_attr.attr))
-> +			goto err_engine;
-> +
->   		add_defaults(container_of(kobj, struct kobj_engine, base));
->   
->   		if (0) {
-> 
-
-Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-
-Regards,
-
-Tvrtko
+Both patches look good. Do you want me to take them through drm-misc? Otherwise:
+Acked-by: Patrik Jakobsson <patrik.r.jakobsson@gmail.com>
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
