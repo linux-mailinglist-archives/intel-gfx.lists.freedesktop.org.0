@@ -1,31 +1,59 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3E47F300D04
-	for <lists+intel-gfx@lfdr.de>; Fri, 22 Jan 2021 20:57:53 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8362F300D5D
+	for <lists+intel-gfx@lfdr.de>; Fri, 22 Jan 2021 21:10:00 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DF13F6EA43;
-	Fri, 22 Jan 2021 19:57:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 735CF8991A;
+	Fri, 22 Jan 2021 20:09:57 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 8C48B6EA49;
- Fri, 22 Jan 2021 19:57:48 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 8A580AADCF;
- Fri, 22 Jan 2021 19:57:48 +0000 (UTC)
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 07E798991A
+ for <intel-gfx@lists.freedesktop.org>; Fri, 22 Jan 2021 20:09:55 +0000 (UTC)
+IronPort-SDR: KKAvLdYlDt5TZRPywmB2NuK2C0uffoW7rVoO41u2KzCZ2YIdmIrSrCKlcdNSk5DZGJTKsL4qWk
+ XJpJjrlz/QjA==
+X-IronPort-AV: E=McAfee;i="6000,8403,9872"; a="243576665"
+X-IronPort-AV: E=Sophos;i="5.79,367,1602572400"; d="scan'208";a="243576665"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Jan 2021 12:09:52 -0800
+IronPort-SDR: HRsVZp3dXa4KOumXxoKx5dFf8aqsjGPv/LIhpPyP0GtEPvwkyzCvJVPCvn66RTuTa6tH+m4Jjo
+ aShQsi15xRHQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.79,367,1602572400"; d="scan'208";a="400929933"
+Received: from irsmsx604.ger.corp.intel.com ([163.33.146.137])
+ by fmsmga004.fm.intel.com with ESMTP; 22 Jan 2021 12:09:51 -0800
+Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
+ IRSMSX604.ger.corp.intel.com (163.33.146.137) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1713.5; Fri, 22 Jan 2021 20:09:48 +0000
+Received: from orsmsx611.amr.corp.intel.com ([10.22.229.24]) by
+ ORSMSX611.amr.corp.intel.com ([10.22.229.24]) with mapi id 15.01.1713.004;
+ Fri, 22 Jan 2021 12:09:46 -0800
+From: "Ruhl, Michael J" <michael.j.ruhl@intel.com>
+To: Matthew Auld <matthew.william.auld@gmail.com>, Chris Wilson
+ <chris@chris-wilson.co.uk>
+Thread-Topic: [Intel-gfx] [PATCH] drm/i915/gem: Allow importing of shmemfs
+ objects into any device
+Thread-Index: AQHW70KdpAbIP4JKaEGvKppokP/umqoxT90AgALGS3A=
+Date: Fri, 22 Jan 2021 20:09:46 +0000
+Message-ID: <d18b9f773c394a5d98a19943df04225a@intel.com>
+References: <20210120154019.5146-1-chris@chris-wilson.co.uk>
+ <CAM0jSHPUoT2eKs0MgUoJ9UBB96hgtZGmQuZSDrE8vGkRSOXpoQ@mail.gmail.com>
+In-Reply-To: <CAM0jSHPUoT2eKs0MgUoJ9UBB96hgtZGmQuZSDrE8vGkRSOXpoQ@mail.gmail.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+dlp-product: dlpe-windows
+dlp-reaction: no-action
+dlp-version: 11.5.1.3
+x-originating-ip: [10.22.254.132]
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matthew Auld" <matthew.auld@intel.com>
-Date: Fri, 22 Jan 2021 19:57:48 -0000
-Message-ID: <161134546856.14036.2061478117472555673@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210122154547.502685-1-matthew.auld@intel.com>
-In-Reply-To: <20210122154547.502685-1-matthew.auld@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiB3YXJuaW5nIGZvciBk?=
- =?utf-8?q?rm/i915/buddy=3A_document_the_unused_header_bits?=
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/gem: Allow importing of shmemfs
+ objects into any device
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,56 +66,82 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>, "Auld,
+ Matthew" <matthew.auld@intel.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-PT0gU2VyaWVzIERldGFpbHMgPT0KClNlcmllczogZHJtL2k5MTUvYnVkZHk6IGRvY3VtZW50IHRo
-ZSB1bnVzZWQgaGVhZGVyIGJpdHMKVVJMICAgOiBodHRwczovL3BhdGNod29yay5mcmVlZGVza3Rv
-cC5vcmcvc2VyaWVzLzg2MTg5LwpTdGF0ZSA6IHdhcm5pbmcKCj09IFN1bW1hcnkgPT0KCkNBTEwg
-ICAgc2NyaXB0cy9jaGVja3N5c2NhbGxzLnNoCiAgQ0FMTCAgICBzY3JpcHRzL2F0b21pYy9jaGVj
-ay1hdG9taWNzLnNoCiAgQ0hLICAgICBpbmNsdWRlL2dlbmVyYXRlZC9jb21waWxlLmgKICBDQyBb
-TV0gIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfYnVkZHkubwpJbiBmaWxlIGluY2x1ZGVkIGZy
-b20gLi9pbmNsdWRlL2xpbnV4L2tlcm5lbC5oOjEyLAogICAgICAgICAgICAgICAgIGZyb20gLi9p
-bmNsdWRlL2FzbS1nZW5lcmljL2J1Zy5oOjIwLAogICAgICAgICAgICAgICAgIGZyb20gLi9hcmNo
-L3g4Ni9pbmNsdWRlL2FzbS9idWcuaDo5MywKICAgICAgICAgICAgICAgICBmcm9tIC4vaW5jbHVk
-ZS9saW51eC9idWcuaDo1LAogICAgICAgICAgICAgICAgIGZyb20gLi9pbmNsdWRlL2xpbnV4L21t
-ZGVidWcuaDo1LAogICAgICAgICAgICAgICAgIGZyb20gLi9pbmNsdWRlL2xpbnV4L2dmcC5oOjUs
-CiAgICAgICAgICAgICAgICAgZnJvbSAuL2luY2x1ZGUvbGludXgvc2xhYi5oOjE1LAogICAgICAg
-ICAgICAgICAgIGZyb20gLi9pbmNsdWRlL2xpbnV4L2ttZW1sZWFrLmg6MTIsCiAgICAgICAgICAg
-ICAgICAgZnJvbSBkcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2J1ZGR5LmM6NjoKZHJpdmVycy9n
-cHUvZHJtL2k5MTUvc2VsZnRlc3RzL2k5MTVfYnVkZHkuYzogSW4gZnVuY3Rpb24g4oCYaWd0X2J1
-ZGR5X2FsbG9jX2xpbWl04oCZOgouL2luY2x1ZGUvbGludXgvbG9nMi5oOjE5NDo4OiBlcnJvcjog
-bGVmdCBzaGlmdCBjb3VudCA+PSB3aWR0aCBvZiB0eXBlIFstV2Vycm9yPXNoaWZ0LWNvdW50LW92
-ZXJmbG93XQogICAoMVVMIDw8IGlsb2cyKG4pKSkgOiAgXAogICAgICAgIF5+CmRyaXZlcnMvZ3B1
-L2RybS9pOTE1L3NlbGZ0ZXN0cy9pOTE1X2J1ZGR5LmM6NzYxOjQzOiBub3RlOiBpbiBleHBhbnNp
-b24gb2YgbWFjcm8g4oCYcm91bmRkb3duX3Bvd19vZl90d2/igJkKICBpZiAoaTkxNV9idWRkeV9i
-bG9ja19zaXplKCZtbSwgYmxvY2spICE9IHJvdW5kZG93bl9wb3dfb2ZfdHdvKHNpemUpKSB7CiAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBefn5+fn5+fn5+fn5+fn5+
-fn5+fgouL2luY2x1ZGUvbGludXgvbG9nMi5oOjE5NDo4OiBlcnJvcjogbGVmdCBzaGlmdCBjb3Vu
-dCA+PSB3aWR0aCBvZiB0eXBlIFstV2Vycm9yPXNoaWZ0LWNvdW50LW92ZXJmbG93XQogICAoMVVM
-IDw8IGlsb2cyKG4pKSkgOiAgXAogICAgICAgIF5+Ci4vaW5jbHVkZS9saW51eC9wcmludGsuaDoz
-NDM6MzM6IG5vdGU6IGluIGV4cGFuc2lvbiBvZiBtYWNybyDigJhyb3VuZGRvd25fcG93X29mX3R3
-b+KAmQogIHByaW50ayhLRVJOX0VSUiBwcl9mbXQoZm10KSwgIyNfX1ZBX0FSR1NfXykKICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgXn5+fn5+fn5+fn4KZHJpdmVycy9ncHUvZHJtL2k5
-MTUvc2VsZnRlc3RzL2k5MTVfYnVkZHkuYzo3NjI6Mzogbm90ZTogaW4gZXhwYW5zaW9uIG9mIG1h
-Y3JvIOKAmHByX2VycuKAmQogICBwcl9lcnIoImJsb2NrIHNpemUoJWxsdSkgIT0gJWx1XG4iLAog
-ICBefn5+fn4KY2MxOiBhbGwgd2FybmluZ3MgYmVpbmcgdHJlYXRlZCBhcyBlcnJvcnMKc2NyaXB0
-cy9NYWtlZmlsZS5idWlsZDoyNzk6IHJlY2lwZSBmb3IgdGFyZ2V0ICdkcml2ZXJzL2dwdS9kcm0v
-aTkxNS9pOTE1X2J1ZGR5Lm8nIGZhaWxlZAptYWtlWzRdOiAqKiogW2RyaXZlcnMvZ3B1L2RybS9p
-OTE1L2k5MTVfYnVkZHkub10gRXJyb3IgMQpzY3JpcHRzL01ha2VmaWxlLmJ1aWxkOjQ5NjogcmVj
-aXBlIGZvciB0YXJnZXQgJ2RyaXZlcnMvZ3B1L2RybS9pOTE1JyBmYWlsZWQKbWFrZVszXTogKioq
-IFtkcml2ZXJzL2dwdS9kcm0vaTkxNV0gRXJyb3IgMgpzY3JpcHRzL01ha2VmaWxlLmJ1aWxkOjQ5
-NjogcmVjaXBlIGZvciB0YXJnZXQgJ2RyaXZlcnMvZ3B1L2RybScgZmFpbGVkCm1ha2VbMl06ICoq
-KiBbZHJpdmVycy9ncHUvZHJtXSBFcnJvciAyCnNjcmlwdHMvTWFrZWZpbGUuYnVpbGQ6NDk2OiBy
-ZWNpcGUgZm9yIHRhcmdldCAnZHJpdmVycy9ncHUnIGZhaWxlZAptYWtlWzFdOiAqKiogW2RyaXZl
-cnMvZ3B1XSBFcnJvciAyCk1ha2VmaWxlOjE4MDU6IHJlY2lwZSBmb3IgdGFyZ2V0ICdkcml2ZXJz
-JyBmYWlsZWQKbWFrZTogKioqIFtkcml2ZXJzXSBFcnJvciAyCgo9PSBMb2dzID09CgpGb3IgbW9y
-ZSBkZXRhaWxzIHNlZTogaHR0cHM6Ly9pbnRlbC1nZngtY2kuMDEub3JnL3RyZWUvZHJtLXRpcC9Q
-YXRjaHdvcmtfMTk0NjMvYnVpbGRfMzJiaXQubG9nCl9fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxp
-c3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFu
-L2xpc3RpbmZvL2ludGVsLWdmeAo=
+>-----Original Message-----
+>From: Intel-gfx <intel-gfx-bounces@lists.freedesktop.org> On Behalf Of
+>Matthew Auld
+>Sent: Wednesday, January 20, 2021 12:46 PM
+>To: Chris Wilson <chris@chris-wilson.co.uk>
+>Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>; Auld,
+>Matthew <matthew.auld@intel.com>
+>Subject: Re: [Intel-gfx] [PATCH] drm/i915/gem: Allow importing of shmemfs
+>objects into any device
+>
+>On Wed, 20 Jan 2021 at 15:40, Chris Wilson <chris@chris-wilson.co.uk> wrote:
+>>
+>> If we import a shmemfs object between devices, for example from
+>> Tigerlake to DG1, we can simply reuse the native object and its backing
+>> store.
+>
+>Hmmm interesting, so does that include re-using the actual sg mapping
+>for the backing pages? Does that work out-of-the-box between different
+>devices assuming we have iommu enabled?
+>
+>>
+>> Suggested-by: Imre Deak <imre.deak@intel.com>
+>> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+>> Cc: Matthew Auld <matthew.auld@intel.com>
+>> Cc: Imre Deak <imre.deak@intel.com>
+>> ---
+>>  drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c | 7 +++++++
+>>  1 file changed, 7 insertions(+)
+>>
+>> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c
+>b/drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c
+>> index 04e9c04545ad..4816f08c4009 100644
+>> --- a/drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c
+>> +++ b/drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c
+>> @@ -242,6 +242,13 @@ struct drm_gem_object
+>*i915_gem_prime_import(struct drm_device *dev,
+>>                          */
+>>                         return &i915_gem_object_get(obj)->base;
+>>                 }
+>> +
+>> +               /*
+>> +                * If the object is in plain system memory, we can reuse the
+>> +                * same backing store in any device.
+>> +                */
+>> +               if (i915_gem_object_is_shmem(obj))
+>> +                       return &i915_gem_object_get(obj)->base;
+>>         }
+
+So this would mean sharing all of the object attributes between devices (pin count, etc)?
+
+I.e. vma list etc?
+
+Would that work?
+
+Mike
+
+>>         /* need to attach */
+>> --
+>> 2.20.1
+>>
+>> _______________________________________________
+>> Intel-gfx mailing list
+>> Intel-gfx@lists.freedesktop.org
+>> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+>_______________________________________________
+>Intel-gfx mailing list
+>Intel-gfx@lists.freedesktop.org
+>https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
