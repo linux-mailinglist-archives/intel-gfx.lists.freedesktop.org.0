@@ -1,31 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3057D300C6B
-	for <lists+intel-gfx@lfdr.de>; Fri, 22 Jan 2021 20:29:26 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6EEF7300C70
+	for <lists+intel-gfx@lfdr.de>; Fri, 22 Jan 2021 20:29:31 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A77366EA39;
-	Fri, 22 Jan 2021 19:29:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AFF3C6EA44;
+	Fri, 22 Jan 2021 19:29:23 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C687A6EA39
- for <intel-gfx@lists.freedesktop.org>; Fri, 22 Jan 2021 19:29:19 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1282B6EA3D
+ for <intel-gfx@lists.freedesktop.org>; Fri, 22 Jan 2021 19:29:18 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 23675688-1500050 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 23675689-1500050 
  for <intel-gfx@lists.freedesktop.org>; Fri, 22 Jan 2021 19:29:13 +0000
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Fri, 22 Jan 2021 19:29:09 +0000
-Message-Id: <20210122192913.4518-6-chris@chris-wilson.co.uk>
+Date: Fri, 22 Jan 2021 19:29:10 +0000
+Message-Id: <20210122192913.4518-7-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20210122192913.4518-1-chris@chris-wilson.co.uk>
 References: <20210122192913.4518-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [CI 06/10] drm/i915/gt: Wrap macro arg in ()
+Subject: [Intel-gfx] [CI 07/10] drm/i915/gt: Insert spaces into
+ GEN3_L3LOG_SIZE/4
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -43,28 +44,53 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Checkpatch noticed that ppgtt->pd should have been (ppgtt)->pd to avoid
-issues with macros.
+Checkpatch wants spaces, let's give it some spaces.
 
 Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
 Reviewed-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
 ---
- drivers/gpu/drm/i915/gt/intel_lrc_reg.h | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/gpu/drm/i915/gt/intel_ring_submission.c | 8 +++++---
+ 1 file changed, 5 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_lrc_reg.h b/drivers/gpu/drm/i915/gt/intel_lrc_reg.h
-index e1bd92ef595f..41e5350a7a05 100644
---- a/drivers/gpu/drm/i915/gt/intel_lrc_reg.h
-+++ b/drivers/gpu/drm/i915/gt/intel_lrc_reg.h
-@@ -39,7 +39,7 @@
+diff --git a/drivers/gpu/drm/i915/gt/intel_ring_submission.c b/drivers/gpu/drm/i915/gt/intel_ring_submission.c
+index 1a80673bc1dd..8b7cc637c432 100644
+--- a/drivers/gpu/drm/i915/gt/intel_ring_submission.c
++++ b/drivers/gpu/drm/i915/gt/intel_ring_submission.c
+@@ -730,13 +730,14 @@ static int mi_set_context(struct i915_request *rq,
  
- #define ASSIGN_CTX_PML4(ppgtt, reg_state) do { \
- 	u32 *reg_state__ = (reg_state); \
--	const u64 addr__ = px_dma(ppgtt->pd); \
-+	const u64 addr__ = px_dma((ppgtt)->pd); \
- 	(reg_state__)[CTX_PDP0_UDW] = upper_32_bits(addr__); \
- 	(reg_state__)[CTX_PDP0_LDW] = lower_32_bits(addr__); \
- } while (0)
+ static int remap_l3_slice(struct i915_request *rq, int slice)
+ {
++#define L3LOG_DW (GEN7_L3LOG_SIZE / sizeof(u32))
+ 	u32 *cs, *remap_info = rq->engine->i915->l3_parity.remap_info[slice];
+ 	int i;
+ 
+ 	if (!remap_info)
+ 		return 0;
+ 
+-	cs = intel_ring_begin(rq, GEN7_L3LOG_SIZE/4 * 2 + 2);
++	cs = intel_ring_begin(rq, L3LOG_DW * 2 + 2);
+ 	if (IS_ERR(cs))
+ 		return PTR_ERR(cs);
+ 
+@@ -745,8 +746,8 @@ static int remap_l3_slice(struct i915_request *rq, int slice)
+ 	 * here because no other code should access these registers other than
+ 	 * at initialization time.
+ 	 */
+-	*cs++ = MI_LOAD_REGISTER_IMM(GEN7_L3LOG_SIZE/4);
+-	for (i = 0; i < GEN7_L3LOG_SIZE/4; i++) {
++	*cs++ = MI_LOAD_REGISTER_IMM(L3LOG_DW);
++	for (i = 0; i < L3LOG_DW; i++) {
+ 		*cs++ = i915_mmio_reg_offset(GEN7_L3LOG(slice, i));
+ 		*cs++ = remap_info[i];
+ 	}
+@@ -754,6 +755,7 @@ static int remap_l3_slice(struct i915_request *rq, int slice)
+ 	intel_ring_advance(rq, cs);
+ 
+ 	return 0;
++#undef L3LOG_DW
+ }
+ 
+ static int remap_l3(struct i915_request *rq)
 -- 
 2.20.1
 
