@@ -2,37 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 07FE43007EB
-	for <lists+intel-gfx@lfdr.de>; Fri, 22 Jan 2021 16:56:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 00D4E300819
+	for <lists+intel-gfx@lfdr.de>; Fri, 22 Jan 2021 17:02:53 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 50A2C6E9FD;
-	Fri, 22 Jan 2021 15:56:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 573246EA08;
+	Fri, 22 Jan 2021 16:02:51 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 43A3C6E9FD
- for <intel-gfx@lists.freedesktop.org>; Fri, 22 Jan 2021 15:56:36 +0000 (UTC)
-IronPort-SDR: wF7eMlzWsijVKViia4ZgpS8eWcq9Rm5CXvs5dXh/iVVK8Ji2z+mwNqJs25aHfU7z0FnoX0yBvJ
- oWZHchMlXJEA==
-X-IronPort-AV: E=McAfee;i="6000,8403,9872"; a="198220490"
-X-IronPort-AV: E=Sophos;i="5.79,366,1602572400"; d="scan'208";a="198220490"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Jan 2021 07:56:35 -0800
-IronPort-SDR: 8piZg3CmRZh34eLcoyk/FrswAqNXccl9W57rjI1YMk+XwaYpM/7MULb8ZCjkCrjAa2rP2+i66X
- FeK2AKvCXB6A==
-X-IronPort-AV: E=Sophos;i="5.79,366,1602572400"; d="scan'208";a="385804417"
-Received: from lcfenner-mobl1.ger.corp.intel.com (HELO
- mwauld-desk1.ger.corp.intel.com) ([10.252.20.148])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Jan 2021 07:56:34 -0800
-From: Matthew Auld <matthew.auld@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Fri, 22 Jan 2021 15:56:28 +0000
-Message-Id: <20210122155628.508188-1-matthew.auld@intel.com>
-X-Mailer: git-send-email 2.26.2
+Received: from fireflyinternet.com (unknown [77.68.26.236])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2F8D76EA08
+ for <intel-gfx@lists.freedesktop.org>; Fri, 22 Jan 2021 16:02:49 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from localhost (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
+ 23673299-1500050 for multiple; Fri, 22 Jan 2021 16:02:45 +0000
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915/dmabuf: don't trust the dma_buf->size
+In-Reply-To: <20210122155628.508188-1-matthew.auld@intel.com>
+References: <20210122155628.508188-1-matthew.auld@intel.com>
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: Matthew Auld <matthew.auld@intel.com>, intel-gfx@lists.freedesktop.org
+Date: Fri, 22 Jan 2021 16:02:45 +0000
+Message-ID: <161133136564.24506.15415370129810470140@build.alporthouse.com>
+User-Agent: alot/0.9
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/dmabuf: don't trust the
+ dma_buf->size
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,39 +44,46 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-At least for the time being, we need to limit our object sizes such that
-the number of pages can fit within a 32b signed int. It looks like we
-should also apply the same restriction to any imported dma-buf.
+Quoting Matthew Auld (2021-01-22 15:56:28)
+> At least for the time being, we need to limit our object sizes such that
+> the number of pages can fit within a 32b signed int. It looks like we
+> should also apply the same restriction to any imported dma-buf.
+> 
+> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+> ---
+>  drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c | 10 ++++++++++
+>  1 file changed, 10 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c b/drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c
+> index 04e9c04545ad..dc11497f830b 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c
+> @@ -244,6 +244,16 @@ struct drm_gem_object *i915_gem_prime_import(struct drm_device *dev,
+>                 }
+>         }
+>  
+> +       /*
+> +        * XXX: There is a prevalence of the assumption that we fit the
+> +        * object's page count inside a 32bit _signed_ variable. Let's document
+> +        * this and catch if we ever need to fix it. In the meantime, if you do
+> +        * spot such a local variable, please consider fixing!
+> +        */
+> +
+> +       if (dma_buf->size >> PAGE_SHIFT > INT_MAX)
+> +               return ERR_PTR(-E2BIG);
 
-Signed-off-by: Matthew Auld <matthew.auld@intel.com>
----
- drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c | 10 ++++++++++
- 1 file changed, 10 insertions(+)
+Just to be a pain, let's consolidate these together so we don't forget.
 
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c b/drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c
-index 04e9c04545ad..dc11497f830b 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c
-@@ -244,6 +244,16 @@ struct drm_gem_object *i915_gem_prime_import(struct drm_device *dev,
- 		}
- 	}
- 
-+	/*
-+	 * XXX: There is a prevalence of the assumption that we fit the
-+	 * object's page count inside a 32bit _signed_ variable. Let's document
-+	 * this and catch if we ever need to fix it. In the meantime, if you do
-+	 * spot such a local variable, please consider fixing!
-+	 */
-+
-+	if (dma_buf->size >> PAGE_SHIFT > INT_MAX)
-+		return ERR_PTR(-E2BIG);
-+
- 	/* need to attach */
- 	attach = dma_buf_attach(dma_buf, dev->dev);
- 	if (IS_ERR(attach))
--- 
-2.26.2
-
+i915_gem.h or i915_gem_object.h?
+/*
+ * XXX: There is a prevalence of the assumption that we fit the
+ * object's page count inside a 32bit _signed_ variable. Let's document
+ * this and catch if we ever need to fix it. In the meantime, if you do
+ * spot such a local variable, please consider fixing!
+ */
+#define GEM_CHECK_SIZE_OVERFLOW(sz) \
+	GEM_WARN_ON((sz) >> PAGE_SHIFT > INT_MAX)
+-Chris
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
