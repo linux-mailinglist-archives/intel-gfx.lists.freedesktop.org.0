@@ -1,32 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9BFF8300A04
-	for <lists+intel-gfx@lfdr.de>; Fri, 22 Jan 2021 18:43:27 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5CD3A300A05
+	for <lists+intel-gfx@lfdr.de>; Fri, 22 Jan 2021 18:43:34 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B39DD6EA20;
-	Fri, 22 Jan 2021 17:43:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B0DD96EA21;
+	Fri, 22 Jan 2021 17:43:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id ACD4289F03;
- Fri, 22 Jan 2021 17:43:22 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id A6765A0009;
- Fri, 22 Jan 2021 17:43:22 +0000 (UTC)
+Received: from fireflyinternet.com (unknown [77.68.26.236])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 440BF6EA21
+ for <intel-gfx@lists.freedesktop.org>; Fri, 22 Jan 2021 17:43:31 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from localhost (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
+ 23674539-1500050 for multiple; Fri, 22 Jan 2021 17:43:27 +0000
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Fri, 22 Jan 2021 17:43:22 -0000
-Message-ID: <161133740265.14039.3008980610572512943@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210122122903.23893-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20210122122903.23893-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_series_starting_with_=5BCI=2C1/9=5D_drm/i915/gt=3A_Show_the?=
- =?utf-8?q?_per-engine_runtime_in_sysfs?=
+In-Reply-To: <20210122173546.531842-2-matthew.auld@intel.com>
+References: <20210122173546.531842-1-matthew.auld@intel.com>
+ <20210122173546.531842-2-matthew.auld@intel.com>
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: Matthew Auld <matthew.auld@intel.com>, intel-gfx@lists.freedesktop.org
+Date: Fri, 22 Jan 2021 17:43:27 +0000
+Message-ID: <161133740725.24506.13068861174088432415@build.alporthouse.com>
+User-Agent: alot/0.9
+Subject: Re: [Intel-gfx] [PATCH 2/2] drm/i915: consolidate 2big error
+ checking for object sizes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,40 +40,99 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-PT0gU2VyaWVzIERldGFpbHMgPT0KClNlcmllczogc2VyaWVzIHN0YXJ0aW5nIHdpdGggW0NJLDEv
-OV0gZHJtL2k5MTUvZ3Q6IFNob3cgdGhlIHBlci1lbmdpbmUgcnVudGltZSBpbiBzeXNmcwpVUkwg
-ICA6IGh0dHBzOi8vcGF0Y2h3b3JrLmZyZWVkZXNrdG9wLm9yZy9zZXJpZXMvODYxODAvClN0YXRl
-IDogd2FybmluZwoKPT0gU3VtbWFyeSA9PQoKJCBkaW0gY2hlY2twYXRjaCBvcmlnaW4vZHJtLXRp
-cAplNzE4MTk0YzMyYWUgZHJtL2k5MTUvZ3Q6IFNob3cgdGhlIHBlci1lbmdpbmUgcnVudGltZSBp
-biBzeXNmcwo0M2ZmNzg4MjVkYTIgZHJtL2k5MTU6IEV4cG9zZSBsaXN0IG9mIGNsaWVudHMgaW4g
-c3lzZnMKLTo4NzogV0FSTklORzpGSUxFX1BBVEhfQ0hBTkdFUzogYWRkZWQsIG1vdmVkIG9yIGRl
-bGV0ZWQgZmlsZShzKSwgZG9lcyBNQUlOVEFJTkVSUyBuZWVkIHVwZGF0aW5nPwojODc6IApuZXcg
-ZmlsZSBtb2RlIDEwMDY0NAoKdG90YWw6IDAgZXJyb3JzLCAxIHdhcm5pbmdzLCAwIGNoZWNrcywg
-NDAyIGxpbmVzIGNoZWNrZWQKYWY4OGIwNzQ2ZmFmIGRybS9pOTE1OiBVcGRhdGUgY2xpZW50IG5h
-bWUgb24gY29udGV4dCBjcmVhdGUKNzVlNTAyNGIxMTJhIGRybS9pOTE1OiBNYWtlIEdFTSBjb250
-ZXh0cyB0cmFjayBEUk0gY2xpZW50cwpkNDVmYTU0YWQzNTYgZHJtL2k5MTU6IFRyYWNrIHJ1bnRp
-bWUgc3BlbnQgaW4gY2xvc2VkIGFuZCB1bnJlYWNoYWJsZSBHRU0gY29udGV4dHMKYzBhZmU5ZjMx
-NDQ4IGRybS9pOTE1OiBUcmFjayBhbGwgdXNlciBjb250ZXh0cyBwZXIgY2xpZW50CjhlODhlZjE2
-ZGNiYSBkcm0vaTkxNTogRXhwb3NlIHBlci1lbmdpbmUgY2xpZW50IGJ1c3luZXNzCi06MjU6IFdB
-Uk5JTkc6Q09NTUlUX0xPR19MT05HX0xJTkU6IFBvc3NpYmxlIHVud3JhcHBlZCBjb21taXQgZGVz
-Y3JpcHRpb24gKHByZWZlciBhIG1heGltdW0gNzUgY2hhcnMgcGVyIGxpbmUpCiMyNTogCiAgICAg
-UmVuZGVyLzNELzAgICA2My43MyUgfOKWiOKWiOKWiOKWiOKWiOKWiOKWiOKWiOKWiOKWiOKWiOKW
-iOKWiOKWiOKWiOKWiOKWiOKWiOKWiCAgICAgICAgICAgfCAgICAgIDMlICAgICAgMCUKCnRvdGFs
-OiAwIGVycm9ycywgMSB3YXJuaW5ncywgMCBjaGVja3MsIDE1NCBsaW5lcyBjaGVja2VkCmI0MGZm
-MjQwNTcxYyBkcm0vaTkxNTogVHJhY2sgY29udGV4dCBjdXJyZW50IGFjdGl2ZSB0aW1lCi06MTM0
-OiBXQVJOSU5HOkxJTkVfU1BBQ0lORzogTWlzc2luZyBhIGJsYW5rIGxpbmUgYWZ0ZXIgZGVjbGFy
-YXRpb25zCiMxMzQ6IEZJTEU6IGRyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L2ludGVsX2NvbnRleHRf
-dHlwZXMuaDoxMjI6CisJCQl1MzIgbGFzdDsKKwkJCUk5MTVfU0VMRlRFU1RfREVDTEFSRSh1MzIg
-bnVtX3VuZGVyZmxvdyk7Cgp0b3RhbDogMCBlcnJvcnMsIDEgd2FybmluZ3MsIDAgY2hlY2tzLCAy
-NDQgbGluZXMgY2hlY2tlZApmOWRkZjM0M2FjYTcgZHJtL2k5MTU6IFByZWZlciBzb2Z0d2FyZSB0
-cmFja2VkIGNvbnRleHQgYnVzeW5lc3MKCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5m
-cmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0
-aW5mby9pbnRlbC1nZngK
+Quoting Matthew Auld (2021-01-22 17:35:46)
+> Throw it into a simple helper, and throw a warning if we encounter an
+> object which has been initialised with an object size that exceeds our
+> limit of INT_MAX pages.
+> 
+> Suggested-by: Chris Wilson <chris@chris-wilson.co.uk>
+> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+> ---
+>  drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c  |  9 +------
+>  drivers/gpu/drm/i915/gem/i915_gem_object.c  |  2 ++
+>  drivers/gpu/drm/i915/gem/i915_gem_object.h  | 26 +++++++++++++++++++++
+>  drivers/gpu/drm/i915/gem/i915_gem_region.c  | 12 +---------
+>  drivers/gpu/drm/i915/gem/i915_gem_userptr.c | 16 +------------
+>  5 files changed, 31 insertions(+), 34 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c b/drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c
+> index dc11497f830b..5cc8a0b2387f 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c
+> @@ -244,14 +244,7 @@ struct drm_gem_object *i915_gem_prime_import(struct drm_device *dev,
+>                 }
+>         }
+>  
+> -       /*
+> -        * XXX: There is a prevalence of the assumption that we fit the
+> -        * object's page count inside a 32bit _signed_ variable. Let's document
+> -        * this and catch if we ever need to fix it. In the meantime, if you do
+> -        * spot such a local variable, please consider fixing!
+> -        */
+> -
+> -       if (dma_buf->size >> PAGE_SHIFT > INT_MAX)
+> +       if (i915_gem_object_size_2big(dma_buf->size))
+>                 return ERR_PTR(-E2BIG);
+>  
+>         /* need to attach */
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object.c b/drivers/gpu/drm/i915/gem/i915_gem_object.c
+> index 70f798405f7f..d3702ea8c6aa 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_object.c
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_object.c
+> @@ -62,6 +62,8 @@ void i915_gem_object_init(struct drm_i915_gem_object *obj,
+>                           const struct drm_i915_gem_object_ops *ops,
+>                           struct lock_class_key *key)
+>  {
+> +       GEM_CHECK_SIZE_OVERFLOW(obj->base.size);
+> +
+>         __mutex_init(&obj->mm.lock, ops->name ?: "obj->mm.lock", key);
+>  
+>         spin_lock_init(&obj->vma.lock);
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object.h b/drivers/gpu/drm/i915/gem/i915_gem_object.h
+> index d0ae834d787a..d9cef56533ca 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_object.h
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_object.h
+> @@ -16,6 +16,32 @@
+>  #include "i915_gem_gtt.h"
+>  #include "i915_vma_types.h"
+>  
+> +/*
+> + * XXX: There is a prevalence of the assumption that we fit the
+> + * object's page count inside a 32bit _signed_ variable. Let's document
+> + * this and catch if we ever need to fix it. In the meantime, if you do
+> + * spot such a local variable, please consider fixing!
+> + *
+> + * Aside from our own locals (for which we have no excuse!):
+> + * - sg_table embeds unsigned int for num_pages
+> + * - get_user_pages*() mixed ints with longs
+> + */
+> +#define GEM_CHECK_SIZE_OVERFLOW(sz) \
+> +       GEM_WARN_ON((sz) >> PAGE_SHIFT > INT_MAX)
+> +
+> +static inline bool i915_gem_object_size_2big(u64 size)
+> +{
+> +       struct drm_i915_gem_object *obj;
+> +
+> +       if (size >> PAGE_SHIFT > INT_MAX)
+> +               return true;
+
+Macro here^
+
+Make it easy to grep, everybody gets a warning as a reminder to fix it.
+And a prize to whoever does manage to trigger the warning.
+
+> +
+> +       if (overflows_type(size, obj->base.size))
+> +               return true;
+> +
+> +       return false;
+> +}
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
