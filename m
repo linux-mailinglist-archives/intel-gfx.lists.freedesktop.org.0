@@ -1,30 +1,45 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A221F300163
-	for <lists+intel-gfx@lfdr.de>; Fri, 22 Jan 2021 12:24:33 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8FD5F3001B1
+	for <lists+intel-gfx@lfdr.de>; Fri, 22 Jan 2021 12:36:57 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F10DC6E526;
-	Fri, 22 Jan 2021 11:24:31 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 036026E526
- for <intel-gfx@lists.freedesktop.org>; Fri, 22 Jan 2021 11:24:30 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 23670005-1500050 
- for multiple; Fri, 22 Jan 2021 11:24:23 +0000
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Fri, 22 Jan 2021 11:24:23 +0000
-Message-Id: <20210122112423.16628-1-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.20.1
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4688E89CAD;
+	Fri, 22 Jan 2021 11:36:55 +0000 (UTC)
+X-Original-To: Intel-gfx@lists.freedesktop.org
+Delivered-To: Intel-gfx@lists.freedesktop.org
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EEA8789CAD;
+ Fri, 22 Jan 2021 11:36:53 +0000 (UTC)
+IronPort-SDR: TFTQSELouOiiObVQ1Gl5/yrlw+TVgNKwMgfFWc/f8PQaqOVOanz15PfDGuccrTWVDuAA4UZOeh
+ XfjLGQuY9gEw==
+X-IronPort-AV: E=McAfee;i="6000,8403,9871"; a="178656358"
+X-IronPort-AV: E=Sophos;i="5.79,366,1602572400"; d="scan'208";a="178656358"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Jan 2021 03:36:53 -0800
+IronPort-SDR: qw/2APj6Z6L5niWPDAJE98uR0Eo82+le5WdUbcUMqIIXHS2zsy1TlniSd4qIUQPFBS/W8ctFn7
+ VuHBqRLhx14w==
+X-IronPort-AV: E=Sophos;i="5.79,366,1602572400"; d="scan'208";a="385728381"
+Received: from gtidhar-mobl.ger.corp.intel.com (HELO [10.214.206.196])
+ ([10.214.206.196])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Jan 2021 03:36:51 -0800
+To: Chris Wilson <chris@chris-wilson.co.uk>, igt-dev@lists.freedesktop.org
+References: <20210121181005.762333-1-tvrtko.ursulin@linux.intel.com>
+ <161126484631.3166.17704076104258866952@build.alporthouse.com>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+Message-ID: <92e11d23-a4f8-da09-5f90-6a0b0ca6614f@linux.intel.com>
+Date: Fri, 22 Jan 2021 11:36:48 +0000
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.5.0
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915/gt: Move the defer_request waiter
- active assertion
+In-Reply-To: <161126484631.3166.17704076104258866952@build.alporthouse.com>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH i-g-t] intel-gpu-top: Support for client
+ stats
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,55 +52,44 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Chris Wilson <chris@chris-wilson.co.uk>
-Content-Type: text/plain; charset="us-ascii"
+Cc: Intel-gfx@lists.freedesktop.org
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-In defer_request() we start with the request we just unsubmitted (that
-should be the active request on the gpu) and then defer all of its
-waiters. No waiter should be ahead of the active request, so none should
-be marked as active. That assert failed.
 
-Of particular note this machine was undergoing persistent GPU result due
-to underlying HW issues, so that may be a clue. A request is also marked
-as active when it is retired, regardless of current queue status, and so
-this assertion failure may be a result of the queue being completed by
-the reset and then subsequently processed by the tasklet.
+On 21/01/2021 21:34, Chris Wilson wrote:
+> Quoting Tvrtko Ursulin (2021-01-21 18:10:05)
+>> +static struct clients *init_clients(const char *drm_card)
+>> +{
+>> +       struct clients *clients = malloc(sizeof(*clients));
+>> +       const char *slash;
+>> +       ssize_t ret;
+>> +
+>> +       memset(clients, 0, sizeof(*clients));
+>> +
+>> +       if (drm_card) {
+>> +               slash = rindex(drm_card, '/');
+>> +               assert(slash);
+>> +       } else {
+>> +               slash = "card0";
+>> +       }
+>> +
+>> +       ret = snprintf(clients->sysfs_root, sizeof(clients->sysfs_root),
+>> +                      "/sys/class/drm/%s/clients/", slash);
+>> +       assert(ret > 0 && ret < sizeof(clients->sysfs_root));
+> 
+> Afaict, igt_device_card_match_pci et al are not guaranteed to fill in
+> dev->drm_card and may leave it blank instead of finding the
+> corresponding /dev/dri/cardN.
 
-We can filter out retired requests here by doing the assertion check
-after the is-ready check (active is a subset of being ready).
+I did the rest but this is giving me trouble - can't see locally that it 
+doesn't populate it. Do you know how to trigger that?
 
-Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/2978
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
----
- drivers/gpu/drm/i915/gt/intel_execlists_submission.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Regards,
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
-index 3e680bfa9d13..0eafa37c03e7 100644
---- a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
-+++ b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
-@@ -1063,7 +1063,6 @@ static void defer_request(struct i915_request *rq, struct list_head * const pl)
- 				   __i915_request_has_started(w) &&
- 				   !__i915_request_is_complete(rq));
- 
--			GEM_BUG_ON(i915_request_is_active(w));
- 			if (!i915_request_is_ready(w))
- 				continue;
- 
-@@ -1071,6 +1070,7 @@ static void defer_request(struct i915_request *rq, struct list_head * const pl)
- 				continue;
- 
- 			GEM_BUG_ON(rq_prio(w) > rq_prio(rq));
-+			GEM_BUG_ON(i915_request_is_active(w));
- 			list_move_tail(&w->sched.link, &list);
- 		}
- 
--- 
-2.20.1
-
+Tvrtko
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
