@@ -1,31 +1,38 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F05513007D2
-	for <lists+intel-gfx@lfdr.de>; Fri, 22 Jan 2021 16:53:13 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 07FE43007EB
+	for <lists+intel-gfx@lfdr.de>; Fri, 22 Jan 2021 16:56:39 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0988B6E0D4;
-	Fri, 22 Jan 2021 15:53:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 50A2C6E9FD;
+	Fri, 22 Jan 2021 15:56:37 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id B9DEC89DB2;
- Fri, 22 Jan 2021 15:53:10 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id B2CCFA73C7;
- Fri, 22 Jan 2021 15:53:10 +0000 (UTC)
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 43A3C6E9FD
+ for <intel-gfx@lists.freedesktop.org>; Fri, 22 Jan 2021 15:56:36 +0000 (UTC)
+IronPort-SDR: wF7eMlzWsijVKViia4ZgpS8eWcq9Rm5CXvs5dXh/iVVK8Ji2z+mwNqJs25aHfU7z0FnoX0yBvJ
+ oWZHchMlXJEA==
+X-IronPort-AV: E=McAfee;i="6000,8403,9872"; a="198220490"
+X-IronPort-AV: E=Sophos;i="5.79,366,1602572400"; d="scan'208";a="198220490"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Jan 2021 07:56:35 -0800
+IronPort-SDR: 8piZg3CmRZh34eLcoyk/FrswAqNXccl9W57rjI1YMk+XwaYpM/7MULb8ZCjkCrjAa2rP2+i66X
+ FeK2AKvCXB6A==
+X-IronPort-AV: E=Sophos;i="5.79,366,1602572400"; d="scan'208";a="385804417"
+Received: from lcfenner-mobl1.ger.corp.intel.com (HELO
+ mwauld-desk1.ger.corp.intel.com) ([10.252.20.148])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Jan 2021 07:56:34 -0800
+From: Matthew Auld <matthew.auld@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Fri, 22 Jan 2021 15:56:28 +0000
+Message-Id: <20210122155628.508188-1-matthew.auld@intel.com>
+X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Fri, 22 Jan 2021 15:53:10 -0000
-Message-ID: <161133079070.14039.15760984311605440487@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210122091058.5145-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20210122091058.5145-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
- =?utf-8?q?/i915=3A_Restrict_DRM=5FI915=5FDEBUG_to_developer_builds?=
+Subject: [Intel-gfx] [PATCH] drm/i915/dmabuf: don't trust the dma_buf->size
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,84 +45,45 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============1608878065=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============1608878065==
-Content-Type: multipart/alternative;
- boundary="===============5993418543239733005=="
+At least for the time being, we need to limit our object sizes such that
+the number of pages can fit within a 32b signed int. It looks like we
+should also apply the same restriction to any imported dma-buf.
 
---===============5993418543239733005==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+---
+ drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
 
-== Series Details ==
-
-Series: drm/i915: Restrict DRM_I915_DEBUG to developer builds
-URL   : https://patchwork.freedesktop.org/series/86175/
-State : failure
-
-== Summary ==
-
-Applying: drm/i915: Restrict DRM_I915_DEBUG to developer builds
-Using index info to reconstruct a base tree...
-M	drivers/gpu/drm/i915/Kconfig.debug
-Falling back to patching base and 3-way merge...
-No changes -- Patch already applied.
-
-
-
---===============5993418543239733005==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915: Restrict DRM_I915_DEBUG to developer builds</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/86175/">https://patchwork.freedesktop.org/series/86175/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-</table>
-
-
-    <p>Applying: drm/i915: Restrict DRM_I915_DEBUG to developer builds<br />
-Using index info to reconstruct a base tree...<br />
-M   drivers/gpu/drm/i915/Kconfig.debug<br />
-Falling back to patching base and 3-way merge...<br />
-No changes -- Patch already applied.</p>
-
-</body>
-</html>
-
---===============5993418543239733005==--
-
---===============1608878065==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c b/drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c
+index 04e9c04545ad..dc11497f830b 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c
+@@ -244,6 +244,16 @@ struct drm_gem_object *i915_gem_prime_import(struct drm_device *dev,
+ 		}
+ 	}
+ 
++	/*
++	 * XXX: There is a prevalence of the assumption that we fit the
++	 * object's page count inside a 32bit _signed_ variable. Let's document
++	 * this and catch if we ever need to fix it. In the meantime, if you do
++	 * spot such a local variable, please consider fixing!
++	 */
++
++	if (dma_buf->size >> PAGE_SHIFT > INT_MAX)
++		return ERR_PTR(-E2BIG);
++
+ 	/* need to attach */
+ 	attach = dma_buf_attach(dma_buf, dev->dev);
+ 	if (IS_ERR(attach))
+-- 
+2.26.2
 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============1608878065==--
