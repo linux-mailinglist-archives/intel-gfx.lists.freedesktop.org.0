@@ -1,44 +1,35 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B24F53001BA
-	for <lists+intel-gfx@lfdr.de>; Fri, 22 Jan 2021 12:39:03 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 42A413001C7
+	for <lists+intel-gfx@lfdr.de>; Fri, 22 Jan 2021 12:41:45 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D610289CCE;
-	Fri, 22 Jan 2021 11:39:00 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 87CAC89CCE;
- Fri, 22 Jan 2021 11:38:59 +0000 (UTC)
-IronPort-SDR: G4Sl+RrQcjU+xn2uZVG1zd6ZpaYyK9o0luqw4qOmHfkywQI0AkewTNkPkeFzGG3NlYaTgwUaFb
- dyQdYFUefz2Q==
-X-IronPort-AV: E=McAfee;i="6000,8403,9871"; a="159210299"
-X-IronPort-AV: E=Sophos;i="5.79,366,1602572400"; d="scan'208";a="159210299"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Jan 2021 03:38:59 -0800
-IronPort-SDR: 8+Or7uW3339JxHd6y9yrEDfpTnAn4bRwS0TsDFCVlp1d1ByzsqrFb80HPAAmh5c/Whg5Sa5Cxo
- 3f2gGeZ93Atg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.79,366,1602572400"; d="scan'208";a="574599010"
-Received: from black.fi.intel.com ([10.237.72.28])
- by fmsmga005.fm.intel.com with ESMTP; 22 Jan 2021 03:38:57 -0800
-Received: by black.fi.intel.com (Postfix, from userid 1003)
- id A0E0D11E; Fri, 22 Jan 2021 13:38:56 +0200 (EET)
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Patrik Jakobsson <patrik.r.jakobsson@gmail.com>,
- dri-devel@lists.freedesktop.org, David Airlie <airlied@linux.ie>,
- Daniel Vetter <daniel@ffwll.ch>, intel-gfx@lists.freedesktop.org
-Date: Fri, 22 Jan 2021 13:38:55 +0200
-Message-Id: <20210122113855.25770-2-andriy.shevchenko@linux.intel.com>
-X-Mailer: git-send-email 2.29.2
-In-Reply-To: <20210122113855.25770-1-andriy.shevchenko@linux.intel.com>
-References: <20210122113855.25770-1-andriy.shevchenko@linux.intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 238D989DEC;
+	Fri, 22 Jan 2021 11:41:43 +0000 (UTC)
+X-Original-To: Intel-gfx@lists.freedesktop.org
+Delivered-To: Intel-gfx@lists.freedesktop.org
+Received: from fireflyinternet.com (unknown [77.68.26.236])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1A5D589D4F;
+ Fri, 22 Jan 2021 11:41:40 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from localhost (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
+ 23670200-1500050 for multiple; Fri, 22 Jan 2021 11:41:36 +0000
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v1 2/2] drm/gma500: Get rid of duplicate NULL
- checks
+In-Reply-To: <92e11d23-a4f8-da09-5f90-6a0b0ca6614f@linux.intel.com>
+References: <20210121181005.762333-1-tvrtko.ursulin@linux.intel.com>
+ <161126484631.3166.17704076104258866952@build.alporthouse.com>
+ <92e11d23-a4f8-da09-5f90-6a0b0ca6614f@linux.intel.com>
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ igt-dev@lists.freedesktop.org
+Date: Fri, 22 Jan 2021 11:41:36 +0000
+Message-ID: <161131569685.3166.11550714189799969920@build.alporthouse.com>
+User-Agent: alot/0.9
+Subject: Re: [Intel-gfx] [PATCH i-g-t] intel-gpu-top: Support for client
+ stats
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,77 +42,49 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Linus Walleij <linus.walleij@linaro.org>,
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Cc: Intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Since GPIOs are optional we don't need to repeat checks that are done
-in the GPIO API. Remove them for good.
+Quoting Tvrtko Ursulin (2021-01-22 11:36:48)
+> 
+> On 21/01/2021 21:34, Chris Wilson wrote:
+> > Quoting Tvrtko Ursulin (2021-01-21 18:10:05)
+> >> +static struct clients *init_clients(const char *drm_card)
+> >> +{
+> >> +       struct clients *clients = malloc(sizeof(*clients));
+> >> +       const char *slash;
+> >> +       ssize_t ret;
+> >> +
+> >> +       memset(clients, 0, sizeof(*clients));
+> >> +
+> >> +       if (drm_card) {
+> >> +               slash = rindex(drm_card, '/');
+> >> +               assert(slash);
+> >> +       } else {
+> >> +               slash = "card0";
+> >> +       }
+> >> +
+> >> +       ret = snprintf(clients->sysfs_root, sizeof(clients->sysfs_root),
+> >> +                      "/sys/class/drm/%s/clients/", slash);
+> >> +       assert(ret > 0 && ret < sizeof(clients->sysfs_root));
+> > 
+> > Afaict, igt_device_card_match_pci et al are not guaranteed to fill in
+> > dev->drm_card and may leave it blank instead of finding the
+> > corresponding /dev/dri/cardN.
+> 
+> I did the rest but this is giving me trouble - can't see locally that it 
+> doesn't populate it. Do you know how to trigger that?
 
-Signed-off-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Acked-by: Linus Walleij <linus.walleij@linaro.org>
----
- drivers/gpu/drm/gma500/tc35876x-dsi-lvds.c | 18 ++++++------------
- 1 file changed, 6 insertions(+), 12 deletions(-)
+Maybe it doesn't, I was just looking at the udev population of the card
+struct and surmised that if I could tell it to open a render device,
+dev->drm_card will not be found.
 
-diff --git a/drivers/gpu/drm/gma500/tc35876x-dsi-lvds.c b/drivers/gpu/drm/gma500/tc35876x-dsi-lvds.c
-index 7d012db6352b..3dab94463656 100644
---- a/drivers/gpu/drm/gma500/tc35876x-dsi-lvds.c
-+++ b/drivers/gpu/drm/gma500/tc35876x-dsi-lvds.c
-@@ -518,11 +518,9 @@ void tc35876x_toshiba_bridge_panel_off(struct drm_device *dev)
- 
- 	dev_dbg(&tc35876x_client->dev, "%s\n", __func__);
- 
--	if (bridge_bl_enable)
--		gpiod_set_value_cansleep(bridge_bl_enable, 0);
-+	gpiod_set_value_cansleep(bridge_bl_enable, 0);
- 
--	if (backlight_voltage)
--		gpiod_set_value_cansleep(backlight_voltage, 0);
-+	gpiod_set_value_cansleep(backlight_voltage, 0);
- }
- 
- void tc35876x_toshiba_bridge_panel_on(struct drm_device *dev)
-@@ -567,8 +565,7 @@ void tc35876x_toshiba_bridge_panel_on(struct drm_device *dev)
- 				"i2c write failed (%d)\n", ret);
- 	}
- 
--	if (bridge_bl_enable)
--		gpiod_set_value_cansleep(bridge_bl_enable, 1);
-+	gpiod_set_value_cansleep(bridge_bl_enable, 1);
- 
- 	tc35876x_brightness_control(dev, dev_priv->brightness_adjusted);
- }
-@@ -642,20 +639,17 @@ static int tc35876x_bridge_probe(struct i2c_client *client,
- 	bridge_reset = devm_gpiod_get_optional(&client->dev, "bridge-reset", GPIOD_OUT_LOW);
- 	if (IS_ERR(bridge_reset))
- 		return PTR_ERR(bridge_reset);
--	if (bridge_reset)
--		gpiod_set_consumer_name(bridge_reset, "tc35876x bridge reset");
-+	gpiod_set_consumer_name(bridge_reset, "tc35876x bridge reset");
- 
- 	bridge_bl_enable = devm_gpiod_get_optional(&client->dev, "bl-en", GPIOD_OUT_LOW);
- 	if (IS_ERR(bridge_bl_enable))
- 		return PTR_ERR(bridge_bl_enable);
--	if (bridge_bl_enable)
--		gpiod_set_consumer_name(bridge_bl_enable, "tc35876x panel bl en");
-+	gpiod_set_consumer_name(bridge_bl_enable, "tc35876x panel bl en");
- 
- 	backlight_voltage = devm_gpiod_get_optional(&client->dev, "vadd", GPIOD_OUT_LOW);
- 	if (IS_ERR(backlight_voltage))
- 		return PTR_ERR(backlight_voltage);
--	if (backlight_voltage)
--		gpiod_set_consumer_name(backlight_voltage, "tc35876x panel vadd");
-+	gpiod_set_consumer_name(backlight_voltage, "tc35876x panel vadd");
- 
- 	tc35876x_client = client;
- 
--- 
-2.29.2
-
+This is all speculation on my part, I've just been burnt enough times
+trying to set engine properties on the render sysfs :(
+-Chris
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
