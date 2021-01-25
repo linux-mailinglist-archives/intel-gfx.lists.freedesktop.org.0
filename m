@@ -1,32 +1,42 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0EB8E302910
-	for <lists+intel-gfx@lfdr.de>; Mon, 25 Jan 2021 18:38:28 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7088D30291D
+	for <lists+intel-gfx@lfdr.de>; Mon, 25 Jan 2021 18:39:14 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6FFCD89CDE;
-	Mon, 25 Jan 2021 17:38:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CEC0A89E86;
+	Mon, 25 Jan 2021 17:39:12 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 1DE988997E;
- Mon, 25 Jan 2021 17:38:25 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 1730DA47EB;
- Mon, 25 Jan 2021 17:38:25 +0000 (UTC)
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6B34C89E86
+ for <intel-gfx@lists.freedesktop.org>; Mon, 25 Jan 2021 17:39:11 +0000 (UTC)
+IronPort-SDR: 1xrLQ93OUyVsBqAIU282xq1Mj8Pg/DjU4OB4HGnYHwCF+IrV14Sfl65cQzNtH49Axu5DZwD8S3
+ bubw20hKRn/w==
+X-IronPort-AV: E=McAfee;i="6000,8403,9875"; a="264591129"
+X-IronPort-AV: E=Sophos;i="5.79,374,1602572400"; d="scan'208";a="264591129"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Jan 2021 09:39:09 -0800
+IronPort-SDR: KnizZ/ATTeoJELxUt4yBF+i1XCCjSc2sWXHkvFEa/huRz8UsjdoZdjgk+SMoXKknm0ZiJ24Mc8
+ IDsm9SXTgv2g==
+X-IronPort-AV: E=Sophos;i="5.79,374,1602572400"; d="scan'208";a="368763034"
+Received: from vlesnikx-mobl1.amr.corp.intel.com (HELO ldmartin-desk1)
+ ([10.212.30.223])
+ by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Jan 2021 09:39:07 -0800
+Date: Mon, 25 Jan 2021 09:39:04 -0800
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: Aditya Swarup <aditya.swarup@intel.com>
+Message-ID: <20210125173904.tqbsahm3vhypz66m@ldmartin-desk1>
+X-Patchwork-Hint: comment
+References: <20210125140753.347998-1-aditya.swarup@intel.com>
+ <20210125140753.347998-3-aditya.swarup@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Mon, 25 Jan 2021 17:38:25 -0000
-Message-ID: <161159630509.3418.3287482928892162421@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210125140136.10494-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20210125140136.10494-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
- =?utf-8?q?ies_starting_with_=5B01/41=5D_drm/i915/selftests=3A_Check_for_e?=
- =?utf-8?q?ngine-reset_errors_in_the_middle_of_workarounds?=
+Content-Disposition: inline
+In-Reply-To: <20210125140753.347998-3-aditya.swarup@intel.com>
+Subject: Re: [Intel-gfx] [PATCH 02/10] drm/i915/adl_s: Add PCH support
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,311 +49,106 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============1974592284=="
+Cc: Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="iso-8859-1"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============1974592284==
-Content-Type: multipart/alternative;
- boundary="===============3432247990545126906=="
-
---===============3432247990545126906==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-== Series Details ==
-
-Series: series starting with [01/41] drm/i915/selftests: Check for engine-reset errors in the middle of workarounds
-URL   : https://patchwork.freedesktop.org/series/86259/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_9680 -> Patchwork_19487
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19487/index.html
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_19487:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * {igt@i915_selftest@live@scheduler} (NEW):
-    - fi-snb-2520m:       NOTRUN -> [DMESG-FAIL][1]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19487/fi-snb-2520m/igt@i915_selftest@live@scheduler.html
-    - fi-snb-2600:        NOTRUN -> [DMESG-FAIL][2]
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19487/fi-snb-2600/igt@i915_selftest@live@scheduler.html
-
-  
-New tests
----------
-
-  New tests have been introduced between CI_DRM_9680 and Patchwork_19487:
-
-### New IGT tests (1) ###
-
-  * igt@i915_selftest@live@scheduler:
-    - Statuses : 2 dmesg-fail(s) 29 pass(s)
-    - Exec time: [0.72, 8.80] s
-
-  
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_19487 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@prime_vgem@basic-gtt:
-    - fi-tgl-y:           [PASS][3] -> [DMESG-WARN][4] ([i915#402]) +1 similar issue
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9680/fi-tgl-y/igt@prime_vgem@basic-gtt.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19487/fi-tgl-y/igt@prime_vgem@basic-gtt.html
-
-  
-#### Possible fixes ####
-
-  * igt@prime_vgem@basic-fence-flip:
-    - fi-tgl-y:           [DMESG-WARN][5] ([i915#402]) -> [PASS][6] +1 similar issue
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9680/fi-tgl-y/igt@prime_vgem@basic-fence-flip.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19487/fi-tgl-y/igt@prime_vgem@basic-fence-flip.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
+On Mon, Jan 25, 2021 at 06:07:45AM -0800, Aditya Swarup wrote:
+>From: Anusha Srivatsa <anusha.srivatsa@intel.com>
+>
+>Add support for Alderpoint(ADP) PCH used with Alderlake-S.
+>
+>v2:
+>- Use drm_dbg_kms and drm_WARN_ON based on Jani's feedback.(aswarup)
+>
+>Cc: Matt Roper <matthew.d.roper@intel.com>
+>Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+>Cc: Caz Yokoyama <caz.yokoyama@intel.com>
+>Cc: Jani Nikula <jani.nikula@intel.com>
+>Cc: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+>Cc: Imre Deak <imre.deak@intel.com>
+>Signed-off-by: Anusha Srivatsa <anusha.srivatsa@intel.com>
+>Signed-off-by: Aditya Swarup <aditya.swarup@intel.com>
+>Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
 
 
-Participating hosts (39 -> 35)
-------------------------------
+Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
 
-  Missing    (4): fi-ctg-p8600 fi-jsl-1 fi-ilk-m540 fi-hsw-4200u 
+Lucas De Marchi
 
+>---
+> drivers/gpu/drm/i915/intel_pch.c | 8 +++++++-
+> drivers/gpu/drm/i915/intel_pch.h | 3 +++
+> 2 files changed, 10 insertions(+), 1 deletion(-)
+>
+>diff --git a/drivers/gpu/drm/i915/intel_pch.c b/drivers/gpu/drm/i915/intel=
+_pch.c
+>index ecaf314d60b6..4813207fc053 100644
+>--- a/drivers/gpu/drm/i915/intel_pch.c
+>+++ b/drivers/gpu/drm/i915/intel_pch.c
+>@@ -128,6 +128,10 @@ intel_pch_type(const struct drm_i915_private *dev_pri=
+v, unsigned short id)
+> 		drm_dbg_kms(&dev_priv->drm, "Found Jasper Lake PCH\n");
+> 		drm_WARN_ON(&dev_priv->drm, !IS_JSL_EHL(dev_priv));
+> 		return PCH_JSP;
+>+	case INTEL_PCH_ADP_DEVICE_ID_TYPE:
+>+		drm_dbg_kms(&dev_priv->drm, "Found Alder Lake PCH\n");
+>+		drm_WARN_ON(&dev_priv->drm, !IS_ALDERLAKE_S(dev_priv));
+>+		return PCH_ADP;
+> 	default:
+> 		return PCH_NONE;
+> 	}
+>@@ -156,7 +160,9 @@ intel_virt_detect_pch(const struct drm_i915_private *d=
+ev_priv,
+> 	 * make an educated guess as to which PCH is really there.
+> 	 */
+>
+>-	if (IS_TIGERLAKE(dev_priv) || IS_ROCKETLAKE(dev_priv))
+>+	if (IS_ALDERLAKE_S(dev_priv))
+>+		id =3D INTEL_PCH_ADP_DEVICE_ID_TYPE;
+>+	else if (IS_TIGERLAKE(dev_priv) || IS_ROCKETLAKE(dev_priv))
+> 		id =3D INTEL_PCH_TGP_DEVICE_ID_TYPE;
+> 	else if (IS_JSL_EHL(dev_priv))
+> 		id =3D INTEL_PCH_MCC_DEVICE_ID_TYPE;
+>diff --git a/drivers/gpu/drm/i915/intel_pch.h b/drivers/gpu/drm/i915/intel=
+_pch.h
+>index 06d2cd50af0b..7318377503b0 100644
+>--- a/drivers/gpu/drm/i915/intel_pch.h
+>+++ b/drivers/gpu/drm/i915/intel_pch.h
+>@@ -26,6 +26,7 @@ enum intel_pch {
+> 	PCH_JSP,	/* Jasper Lake PCH */
+> 	PCH_MCC,        /* Mule Creek Canyon PCH */
+> 	PCH_TGP,	/* Tiger Lake PCH */
+>+	PCH_ADP,	/* Alder Lake PCH */
+>
+> 	/* Fake PCHs, functionality handled on the same PCI dev */
+> 	PCH_DG1 =3D 1024,
+>@@ -53,12 +54,14 @@ enum intel_pch {
+> #define INTEL_PCH_TGP2_DEVICE_ID_TYPE		0x4380
+> #define INTEL_PCH_JSP_DEVICE_ID_TYPE		0x4D80
+> #define INTEL_PCH_JSP2_DEVICE_ID_TYPE		0x3880
+>+#define INTEL_PCH_ADP_DEVICE_ID_TYPE		0x7A80
+> #define INTEL_PCH_P2X_DEVICE_ID_TYPE		0x7100
+> #define INTEL_PCH_P3X_DEVICE_ID_TYPE		0x7000
+> #define INTEL_PCH_QEMU_DEVICE_ID_TYPE		0x2900 /* qemu q35 has 2918 */
+>
+> #define INTEL_PCH_TYPE(dev_priv)		((dev_priv)->pch_type)
+> #define INTEL_PCH_ID(dev_priv)			((dev_priv)->pch_id)
+>+#define HAS_PCH_ADP(dev_priv)			(INTEL_PCH_TYPE(dev_priv) =3D=3D PCH_ADP)
+> #define HAS_PCH_DG1(dev_priv)			(INTEL_PCH_TYPE(dev_priv) =3D=3D PCH_DG1)
+> #define HAS_PCH_JSP(dev_priv)			(INTEL_PCH_TYPE(dev_priv) =3D=3D PCH_JSP)
+> #define HAS_PCH_MCC(dev_priv)			(INTEL_PCH_TYPE(dev_priv) =3D=3D PCH_MCC)
+>-- =
 
-Build changes
--------------
-
-  * Linux: CI_DRM_9680 -> Patchwork_19487
-
-  CI-20190529: 20190529
-  CI_DRM_9680: 9e03236ed9687144929d42404341384cc1e501b7 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5971: abef2b7d6ff30f3b948b3e5d39653debb73083f3 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_19487: ac942d24c88f5e0b7247d62f73b254f29a02145c @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-ac942d24c88f drm/i915: Support secure dispatch on gen6/gen7
-4743bbd27620 drm/i915/gt: Enable ring scheduling for gen5-7
-bf0a549d2293 drm/i915/gt: Implement ring scheduler for gen4-7
-a07f5ba0a10d drm/i915/gt: Infrastructure for ring scheduling
-0337feb5791a drm/i915/gt: Use client timeline address for seqno writes
-209430537935 drm/i915/gt: Support creation of 'internal' rings
-593e08f61ffd drm/i915/gt: Couple tasklet scheduling for all CS interrupts
-cf05a88e82c0 Restore "drm/i915: drop engine_pin/unpin_breadcrumbs_irq"
-913207bf89cd drm/i915/gt: Use ppHWSP for unshared non-semaphore related timelines
-b9b643d59b9d drm/i915/selftests: Exercise relative timeline modes
-0a3936960afc drm/i915/gt: Use indices for writing into relative timelines
-9bb8f60faea0 drm/i915/gt: Add timeline "mode"
-fc7e917f62a1 drm/i915/gt: Track timeline GGTT offset separately from subpage offset
-1edd11623282 drm/i915/gt: Wrap intel_timeline.has_initial_breadcrumb
-75ecbfad42e2 drm/i915: Bump default timeslicing quantum to 5ms
-4e61621ac116 drm/i915: Move saturated workload detection back to the context
-e4a776414370 drm/i915/gt: Support virtual engine queues
-010d86d0ecb1 drm/i915: Extend the priority boosting for the display with a deadline
-f93f85ad482a drm/i915/gt: Specify a deadline for the heartbeat
-4cabd30226f5 drm/i915: Fair low-latency scheduling
-48a6729c987b drm/i915: Wrap cmpxchg64 with try_cmpxchg64() helper
-4abff63c4cfe drm/i915: Replace priolist rbtree with a skiplist
-3839efb97bae drm/i915/gt: Show scheduler queues when dumping state
-3744cfde0c1b drm/i915: Move tasklet from execlists to sched
-0597492c1e44 drm/i915: Move scheduler queue
-4ab371f1d39d drm/i915: Move common active lists from engine to i915_scheduler
-d6eb9d01bae2 drm/i915: Fix the iterative dfs for defering requests
-bf3ba20370f6 drm/i915: Extract the ability to defer and rerun a request later
-f04573d14fc7 drm/i915: Extract request suspension from the execlists
-db49df2e5ac7 drm/i915: Extract request rewinding from execlists
-1dac44d403d7 drm/i915: Extract request submission from execlists
-f6b8b7362118 drm/i915/selftests: Exercise cross-process context isolation
-ddf444ae329e drm/i915/selftests: Exercise relative mmio paths to non-privileged registers
-9b002fc62d1f drm/i915: Improve DFS for priority inheritance
-22c3f3836779 drm/i915/selftests: Exercise priority inheritance around an engine loop
-f1443908248f drm/i915/selftests: Measure set-priority duration
-7b140da51266 drm/i915: Restructure priority inheritance
-b5ca2c04b198 drm/i915: Teach the i915_dependency to use a double-lock
-0611644e4ddf drm/i915: Replace engine->schedule() with a known request operation
-367f5e603c5d drm/i915/gt: Move the defer_request waiter active assertion
-e4e577627c26 drm/i915/selftests: Check for engine-reset errors in the middle of workarounds
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19487/index.html
-
---===============3432247990545126906==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>series starting with [01/41] drm/i915/selftests: Check for engine-reset errors in the middle of workarounds</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/86259/">https://patchwork.freedesktop.org/series/86259/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19487/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19487/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_9680 -&gt; Patchwork_19487</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19487/index.html</p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in Patchwork_19487:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>
-<p>{igt@i915_selftest@live@scheduler} (NEW):</p>
-<ul>
-<li>
-<p>fi-snb-2520m:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19487/fi-snb-2520m/igt@i915_selftest@live@scheduler.html">DMESG-FAIL</a></p>
-</li>
-<li>
-<p>fi-snb-2600:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19487/fi-snb-2600/igt@i915_selftest@live@scheduler.html">DMESG-FAIL</a></p>
-</li>
-</ul>
-</li>
-</ul>
-<h2>New tests</h2>
-<p>New tests have been introduced between CI_DRM_9680 and Patchwork_19487:</p>
-<h3>New IGT tests (1)</h3>
-<ul>
-<li>igt@i915_selftest@live@scheduler:<ul>
-<li>Statuses : 2 dmesg-fail(s) 29 pass(s)</li>
-<li>Exec time: [0.72, 8.80] s</li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_19487 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@prime_vgem@basic-gtt:<ul>
-<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9680/fi-tgl-y/igt@prime_vgem@basic-gtt.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19487/fi-tgl-y/igt@prime_vgem@basic-gtt.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) +1 similar issue</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@prime_vgem@basic-fence-flip:<ul>
-<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9680/fi-tgl-y/igt@prime_vgem@basic-fence-flip.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19487/fi-tgl-y/igt@prime_vgem@basic-fence-flip.html">PASS</a> +1 similar issue</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Participating hosts (39 -&gt; 35)</h2>
-<p>Missing    (4): fi-ctg-p8600 fi-jsl-1 fi-ilk-m540 fi-hsw-4200u </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_9680 -&gt; Patchwork_19487</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_9680: 9e03236ed9687144929d42404341384cc1e501b7 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_5971: abef2b7d6ff30f3b948b3e5d39653debb73083f3 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
-  Patchwork_19487: ac942d24c88f5e0b7247d62f73b254f29a02145c @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>ac942d24c88f drm/i915: Support secure dispatch on gen6/gen7<br />
-4743bbd27620 drm/i915/gt: Enable ring scheduling for gen5-7<br />
-bf0a549d2293 drm/i915/gt: Implement ring scheduler for gen4-7<br />
-a07f5ba0a10d drm/i915/gt: Infrastructure for ring scheduling<br />
-0337feb5791a drm/i915/gt: Use client timeline address for seqno writes<br />
-209430537935 drm/i915/gt: Support creation of 'internal' rings<br />
-593e08f61ffd drm/i915/gt: Couple tasklet scheduling for all CS interrupts<br />
-cf05a88e82c0 Restore "drm/i915: drop engine_pin/unpin_breadcrumbs_irq"<br />
-913207bf89cd drm/i915/gt: Use ppHWSP for unshared non-semaphore related timelines<br />
-b9b643d59b9d drm/i915/selftests: Exercise relative timeline modes<br />
-0a3936960afc drm/i915/gt: Use indices for writing into relative timelines<br />
-9bb8f60faea0 drm/i915/gt: Add timeline "mode"<br />
-fc7e917f62a1 drm/i915/gt: Track timeline GGTT offset separately from subpage offset<br />
-1edd11623282 drm/i915/gt: Wrap intel_timeline.has_initial_breadcrumb<br />
-75ecbfad42e2 drm/i915: Bump default timeslicing quantum to 5ms<br />
-4e61621ac116 drm/i915: Move saturated workload detection back to the context<br />
-e4a776414370 drm/i915/gt: Support virtual engine queues<br />
-010d86d0ecb1 drm/i915: Extend the priority boosting for the display with a deadline<br />
-f93f85ad482a drm/i915/gt: Specify a deadline for the heartbeat<br />
-4cabd30226f5 drm/i915: Fair low-latency scheduling<br />
-48a6729c987b drm/i915: Wrap cmpxchg64 with try_cmpxchg64() helper<br />
-4abff63c4cfe drm/i915: Replace priolist rbtree with a skiplist<br />
-3839efb97bae drm/i915/gt: Show scheduler queues when dumping state<br />
-3744cfde0c1b drm/i915: Move tasklet from execlists to sched<br />
-0597492c1e44 drm/i915: Move scheduler queue<br />
-4ab371f1d39d drm/i915: Move common active lists from engine to i915_scheduler<br />
-d6eb9d01bae2 drm/i915: Fix the iterative dfs for defering requests<br />
-bf3ba20370f6 drm/i915: Extract the ability to defer and rerun a request later<br />
-f04573d14fc7 drm/i915: Extract request suspension from the execlists<br />
-db49df2e5ac7 drm/i915: Extract request rewinding from execlists<br />
-1dac44d403d7 drm/i915: Extract request submission from execlists<br />
-f6b8b7362118 drm/i915/selftests: Exercise cross-process context isolation<br />
-ddf444ae329e drm/i915/selftests: Exercise relative mmio paths to non-privileged registers<br />
-9b002fc62d1f drm/i915: Improve DFS for priority inheritance<br />
-22c3f3836779 drm/i915/selftests: Exercise priority inheritance around an engine loop<br />
-f1443908248f drm/i915/selftests: Measure set-priority duration<br />
-7b140da51266 drm/i915: Restructure priority inheritance<br />
-b5ca2c04b198 drm/i915: Teach the i915_dependency to use a double-lock<br />
-0611644e4ddf drm/i915: Replace engine-&gt;schedule() with a known request operation<br />
-367f5e603c5d drm/i915/gt: Move the defer_request waiter active assertion<br />
-e4e577627c26 drm/i915/selftests: Check for engine-reset errors in the middle of workarounds</p>
-
-</body>
-</html>
-
---===============3432247990545126906==--
-
---===============1974592284==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
+>2.27.0
+>
+>_______________________________________________
+>Intel-gfx mailing list
+>Intel-gfx@lists.freedesktop.org
+>https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============1974592284==--
