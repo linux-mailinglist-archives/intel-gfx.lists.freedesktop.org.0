@@ -2,42 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id CDDE4302AD5
-	for <lists+intel-gfx@lfdr.de>; Mon, 25 Jan 2021 19:54:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5CD87302B72
+	for <lists+intel-gfx@lfdr.de>; Mon, 25 Jan 2021 20:22:27 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 44A126E14C;
-	Mon, 25 Jan 2021 18:54:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D339F6E0C1;
+	Mon, 25 Jan 2021 19:22:25 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A5ADC6E14C
- for <intel-gfx@lists.freedesktop.org>; Mon, 25 Jan 2021 18:54:50 +0000 (UTC)
-IronPort-SDR: P7Vxd4WmQ5mMmCSfIievDZxOkBKIH/8lkXVLg0aPBa6FbOdiwGPROZtu7YvZ1YvfGgrL0UJDmM
- ZAdPXLsnsavQ==
-X-IronPort-AV: E=McAfee;i="6000,8403,9875"; a="179864420"
-X-IronPort-AV: E=Sophos;i="5.79,374,1602572400"; d="scan'208";a="179864420"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Jan 2021 10:54:49 -0800
-IronPort-SDR: lJk4ix22csPg1JEW7YMcU2NE6Yr2TTMfpe5eXLbaiJdS1O0aB9BCDFw2Fp9DvslWgPqHOCrE64
- kichOoNgGfDg==
-X-IronPort-AV: E=Sophos;i="5.79,374,1602572400"; d="scan'208";a="402454246"
-Received: from vlesnikx-mobl1.amr.corp.intel.com (HELO ldmartin-desk1)
- ([10.212.30.223])
- by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Jan 2021 10:54:47 -0800
-Date: Mon, 25 Jan 2021 10:54:46 -0800
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: Aditya Swarup <aditya.swarup@intel.com>
-Message-ID: <20210125185446.zzyit4l2vvxb4ech@ldmartin-desk1>
-X-Patchwork-Hint: comment
-References: <20210125140753.347998-1-aditya.swarup@intel.com>
- <20210125140753.347998-9-aditya.swarup@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 5F7B66E0C1;
+ Mon, 25 Jan 2021 19:22:24 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 5916AA0009;
+ Mon, 25 Jan 2021 19:22:24 +0000 (UTC)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20210125140753.347998-9-aditya.swarup@intel.com>
-Subject: Re: [Intel-gfx] [PATCH 08/10] drm/i915/adl_s: Add adl-s ddc pin
- mapping
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Date: Mon, 25 Jan 2021 19:22:24 -0000
+Message-ID: <161160254433.3417.12502508622483014248@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <cover.1611589818.git.jani.nikula@intel.com>
+In-Reply-To: <cover.1611589818.git.jani.nikula@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/edp=3A_enable_MSO=2E=2E=2E_maybe?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,153 +38,240 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"; Format="flowed"
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============1359253754=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Jan 25, 2021 at 06:07:51AM -0800, Aditya Swarup wrote:
->ADL-S requires TC pins to set up ddc for Combo PHY B, C, D and E.
->Combo PHY A still uses the old ddc pin mapping.
->
->From VBT, ddc pin info suggests the following mapping:
->VBT 			               DRIVER
->DDI B->ddc_pin=3D2 should translate to PORT_D->0x9
->DDI C->ddc_pin=3D3 should translate to PORT_E->0xa
->DDI D->ddc_pin=3D4 should translate to PORT_F->0xb
->DDI E->ddc_pin=3D5 should translate to PORT_G->0xc
->
->Adding pin map to facilitate this translation as we cannot use existing
->icl ddc pin map due to conflict with DDI B and DDI C info.
->
->Bspec:20124
->
->v2: Replace IS_ALDERLAKE_S() with HAS_PCH_ADP() as the pin map pairing
->depends on the PCH being used rather than the platform.(mdroper)
->
->v3:
->- Modify adls_port_to_ddc_pin() to make PHY_A the special case for
->  check, else return pin mapping based on correct arithmetic with phy
->  offset. Remove redundant platform checks and use HAS_PCH_ADP() instead
->  of IS_ALDERLAKE_S() in intel_hdmi_ddc_pin().(mdroper)
->
->Cc: Jani Nikula <jani.nikula@intel.com>
->Cc: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
->Cc: Imre Deak <imre.deak@intel.com>
->Cc: Matt Roper <matthew.d.roper@intel.com>
->Cc: Lucas De Marchi <lucas.demarchi@intel.com>
->Signed-off-by: Aditya Swarup <aditya.swarup@intel.com>
+--===============1359253754==
+Content-Type: multipart/alternative;
+ boundary="===============7333402269442028643=="
+
+--===============7333402269442028643==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+== Series Details ==
+
+Series: drm/i915/edp: enable MSO... maybe
+URL   : https://patchwork.freedesktop.org/series/86264/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_9680 -> Patchwork_19490
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19490/index.html
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_19490:
+
+### IGT changes ###
+
+#### Suppressed ####
+
+  The following results come from untrusted machines, tests, or statuses.
+  They do not affect the overall result.
+
+  * igt@kms_psr@cursor_plane_move:
+    - {fi-rkl-11500t}:    NOTRUN -> [SKIP][1] +23 similar issues
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19490/fi-rkl-11500t/igt@kms_psr@cursor_plane_move.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_19490 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@gem_exec_suspend@basic-s0:
+    - fi-glk-dsi:         [PASS][2] -> [DMESG-WARN][3] ([i915#2943])
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9680/fi-glk-dsi/igt@gem_exec_suspend@basic-s0.html
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19490/fi-glk-dsi/igt@gem_exec_suspend@basic-s0.html
+
+  * igt@prime_self_import@basic-with_one_bo_two_files:
+    - fi-tgl-y:           [PASS][4] -> [DMESG-WARN][5] ([i915#402]) +1 similar issue
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9680/fi-tgl-y/igt@prime_self_import@basic-with_one_bo_two_files.html
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19490/fi-tgl-y/igt@prime_self_import@basic-with_one_bo_two_files.html
+
+  
+#### Possible fixes ####
+
+  * igt@prime_vgem@basic-fence-flip:
+    - fi-tgl-y:           [DMESG-WARN][6] ([i915#402]) -> [PASS][7] +1 similar issue
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9680/fi-tgl-y/igt@prime_vgem@basic-fence-flip.html
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19490/fi-tgl-y/igt@prime_vgem@basic-fence-flip.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#109285]: https://bugs.freedesktop.org/show_bug.cgi?id=109285
+  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
+  [i915#2190]: https://gitlab.freedesktop.org/drm/intel/issues/2190
+  [i915#2601]: https://gitlab.freedesktop.org/drm/intel/issues/2601
+  [i915#2943]: https://gitlab.freedesktop.org/drm/intel/issues/2943
+  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
 
 
-Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
+Participating hosts (39 -> 36)
+------------------------------
 
-Lucas De Marchi
+  Additional (1): fi-rkl-11500t 
+  Missing    (4): fi-ctg-p8600 fi-jsl-1 fi-ilk-m540 fi-hsw-4200u 
 
->---
-> drivers/gpu/drm/i915/display/intel_bios.c     | 13 +++++++++++-
-> drivers/gpu/drm/i915/display/intel_hdmi.c     | 20 ++++++++++++++++++-
-> drivers/gpu/drm/i915/display/intel_vbt_defs.h |  4 ++++
-> 3 files changed, 35 insertions(+), 2 deletions(-)
->
->diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/i=
-915/display/intel_bios.c
->index 987cf509337f..e575e584e6d5 100644
->--- a/drivers/gpu/drm/i915/display/intel_bios.c
->+++ b/drivers/gpu/drm/i915/display/intel_bios.c
->@@ -1630,12 +1630,23 @@ static const u8 rkl_pch_tgp_ddc_pin_map[] =3D {
-> 	[RKL_DDC_BUS_DDI_E] =3D GMBUS_PIN_10_TC2_ICP,
-> };
->
->+static const u8 adls_ddc_pin_map[] =3D {
->+	[ICL_DDC_BUS_DDI_A] =3D GMBUS_PIN_1_BXT,
->+	[ADLS_DDC_BUS_PORT_TC1] =3D GMBUS_PIN_9_TC1_ICP,
->+	[ADLS_DDC_BUS_PORT_TC2] =3D GMBUS_PIN_10_TC2_ICP,
->+	[ADLS_DDC_BUS_PORT_TC3] =3D GMBUS_PIN_11_TC3_ICP,
->+	[ADLS_DDC_BUS_PORT_TC4] =3D GMBUS_PIN_12_TC4_ICP,
->+};
->+
-> static u8 map_ddc_pin(struct drm_i915_private *dev_priv, u8 vbt_pin)
-> {
-> 	const u8 *ddc_pin_map;
-> 	int n_entries;
->
->-	if (INTEL_PCH_TYPE(dev_priv) >=3D PCH_DG1) {
->+	if (HAS_PCH_ADP(dev_priv)) {
->+		ddc_pin_map =3D adls_ddc_pin_map;
->+		n_entries =3D ARRAY_SIZE(adls_ddc_pin_map);
->+	} else if (INTEL_PCH_TYPE(dev_priv) >=3D PCH_DG1) {
-> 		return vbt_pin;
-> 	} else if (IS_ROCKETLAKE(dev_priv) && INTEL_PCH_TYPE(dev_priv) =3D=3D PC=
-H_TGP) {
-> 		ddc_pin_map =3D rkl_pch_tgp_ddc_pin_map;
->diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/i=
-915/display/intel_hdmi.c
->index d5f4b40a8460..66e1ac3887c6 100644
->--- a/drivers/gpu/drm/i915/display/intel_hdmi.c
->+++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
->@@ -3138,6 +3138,22 @@ static u8 dg1_port_to_ddc_pin(struct drm_i915_priva=
-te *dev_priv, enum port port)
-> 	return intel_port_to_phy(dev_priv, port) + 1;
-> }
->
->+static u8 adls_port_to_ddc_pin(struct drm_i915_private *dev_priv, enum po=
-rt port)
->+{
->+	enum phy phy =3D intel_port_to_phy(dev_priv, port);
->+
->+	WARN_ON(port =3D=3D PORT_B || port =3D=3D PORT_C);
->+
->+	/*
->+	 * Pin mapping for ADL-S requires TC pins for all combo phy outputs
->+	 * except first combo output.
->+	 */
->+	if (phy =3D=3D PHY_A)
->+		return GMBUS_PIN_1_BXT;
->+
->+	return GMBUS_PIN_9_TC1_ICP + phy - PHY_B;
->+}
->+
-> static u8 g4x_port_to_ddc_pin(struct drm_i915_private *dev_priv,
-> 			      enum port port)
-> {
->@@ -3175,7 +3191,9 @@ static u8 intel_hdmi_ddc_pin(struct intel_encoder *e=
-ncoder)
-> 		return ddc_pin;
-> 	}
->
->-	if (INTEL_PCH_TYPE(dev_priv) >=3D PCH_DG1)
->+	if (HAS_PCH_ADP(dev_priv))
->+		ddc_pin =3D adls_port_to_ddc_pin(dev_priv, port);
->+	else if (INTEL_PCH_TYPE(dev_priv) >=3D PCH_DG1)
-> 		ddc_pin =3D dg1_port_to_ddc_pin(dev_priv, port);
-> 	else if (IS_ROCKETLAKE(dev_priv))
-> 		ddc_pin =3D rkl_port_to_ddc_pin(dev_priv, port);
->diff --git a/drivers/gpu/drm/i915/display/intel_vbt_defs.h b/drivers/gpu/d=
-rm/i915/display/intel_vbt_defs.h
->index 187ec573de59..6d10fa037751 100644
->--- a/drivers/gpu/drm/i915/display/intel_vbt_defs.h
->+++ b/drivers/gpu/drm/i915/display/intel_vbt_defs.h
->@@ -327,6 +327,10 @@ enum vbt_gmbus_ddi {
-> 	ICL_DDC_BUS_PORT_4,
-> 	TGL_DDC_BUS_PORT_5,
-> 	TGL_DDC_BUS_PORT_6,
->+	ADLS_DDC_BUS_PORT_TC1 =3D 0x2,
->+	ADLS_DDC_BUS_PORT_TC2,
->+	ADLS_DDC_BUS_PORT_TC3,
->+	ADLS_DDC_BUS_PORT_TC4
-> };
->
-> #define DP_AUX_A 0x40
->-- =
 
->2.27.0
->
->_______________________________________________
->Intel-gfx mailing list
->Intel-gfx@lists.freedesktop.org
->https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+Build changes
+-------------
+
+  * Linux: CI_DRM_9680 -> Patchwork_19490
+
+  CI-20190529: 20190529
+  CI_DRM_9680: 9e03236ed9687144929d42404341384cc1e501b7 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5971: abef2b7d6ff30f3b948b3e5d39653debb73083f3 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_19490: bd3f4b5b85f2a3abb47628cb20fc3f78a175a744 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+bd3f4b5b85f2 drm/i915/edp: enable eDP MSO during link training
+71e3f6cc9bb0 drm/i915/edp: modify fixed and downclock modes for MSO
+9dc3d6e92e32 drm/i915/mso: add state check
+9d1a79172ddc drm/i915/mso: add state readout for platforms that support it
+c029913bde03 drm/i915/reg: add stream splitter configuration definitions
+c4c351191d45 drm/i915/edp: read sink MSO configuration for eDP 1.4+
+bfa476b06b47 drm/i915/edp: always add fixed mode to probed modes in ->get_modes()
+73683b3c4888 drm/i915/edp: reject modes with dimensions other than fixed mode
+6414c2a8c228 drm/dp: add MSO related DPCD registers
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19490/index.html
+
+--===============7333402269442028643==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/edp: enable MSO... maybe</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/86264/">https://patchwork.freedesktop.org/series/86264/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19490/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19490/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_9680 -&gt; Patchwork_19490</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19490/index.html</p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in Patchwork_19490:</p>
+<h3>IGT changes</h3>
+<h4>Suppressed</h4>
+<p>The following results come from untrusted machines, tests, or statuses.<br />
+  They do not affect the overall result.</p>
+<ul>
+<li>igt@kms_psr@cursor_plane_move:<ul>
+<li>{fi-rkl-11500t}:    NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19490/fi-rkl-11500t/igt@kms_psr@cursor_plane_move.html">SKIP</a> +23 similar issues</li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_19490 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@gem_exec_suspend@basic-s0:</p>
+<ul>
+<li>fi-glk-dsi:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9680/fi-glk-dsi/igt@gem_exec_suspend@basic-s0.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19490/fi-glk-dsi/igt@gem_exec_suspend@basic-s0.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2943">i915#2943</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@prime_self_import@basic-with_one_bo_two_files:</p>
+<ul>
+<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9680/fi-tgl-y/igt@prime_self_import@basic-with_one_bo_two_files.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19490/fi-tgl-y/igt@prime_self_import@basic-with_one_bo_two_files.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) +1 similar issue</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@prime_vgem@basic-fence-flip:<ul>
+<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9680/fi-tgl-y/igt@prime_vgem@basic-fence-flip.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19490/fi-tgl-y/igt@prime_vgem@basic-fence-flip.html">PASS</a> +1 similar issue</li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Participating hosts (39 -&gt; 36)</h2>
+<p>Additional (1): fi-rkl-11500t <br />
+  Missing    (4): fi-ctg-p8600 fi-jsl-1 fi-ilk-m540 fi-hsw-4200u </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_9680 -&gt; Patchwork_19490</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_9680: 9e03236ed9687144929d42404341384cc1e501b7 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_5971: abef2b7d6ff30f3b948b3e5d39653debb73083f3 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
+  Patchwork_19490: bd3f4b5b85f2a3abb47628cb20fc3f78a175a744 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>bd3f4b5b85f2 drm/i915/edp: enable eDP MSO during link training<br />
+71e3f6cc9bb0 drm/i915/edp: modify fixed and downclock modes for MSO<br />
+9dc3d6e92e32 drm/i915/mso: add state check<br />
+9d1a79172ddc drm/i915/mso: add state readout for platforms that support it<br />
+c029913bde03 drm/i915/reg: add stream splitter configuration definitions<br />
+c4c351191d45 drm/i915/edp: read sink MSO configuration for eDP 1.4+<br />
+bfa476b06b47 drm/i915/edp: always add fixed mode to probed modes in -&gt;get_modes()<br />
+73683b3c4888 drm/i915/edp: reject modes with dimensions other than fixed mode<br />
+6414c2a8c228 drm/dp: add MSO related DPCD registers</p>
+
+</body>
+</html>
+
+--===============7333402269442028643==--
+
+--===============1359253754==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============1359253754==--
