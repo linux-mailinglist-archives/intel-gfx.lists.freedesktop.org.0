@@ -2,30 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C34C83025B8
-	for <lists+intel-gfx@lfdr.de>; Mon, 25 Jan 2021 14:51:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3FC7E3025F4
+	for <lists+intel-gfx@lfdr.de>; Mon, 25 Jan 2021 15:02:49 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A16E56E0F3;
-	Mon, 25 Jan 2021 13:51:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D5BC86E154;
+	Mon, 25 Jan 2021 14:02:35 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 2B67F6E0F3;
- Mon, 25 Jan 2021 13:51:13 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 25411A0BCB;
- Mon, 25 Jan 2021 13:51:13 +0000 (UTC)
+Received: from fireflyinternet.com (unknown [77.68.26.236])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9AF076E10E
+ for <intel-gfx@lists.freedesktop.org>; Mon, 25 Jan 2021 14:02:14 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from build.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 23693621-1500050 
+ for multiple; Mon, 25 Jan 2021 14:01:35 +0000
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Mon, 25 Jan 2021 14:00:56 +0000
+Message-Id: <20210125140136.10494-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Arnd Bergmann" <arnd@kernel.org>
-Date: Mon, 25 Jan 2021 13:51:13 -0000
-Message-ID: <161158267312.3417.15724474366533655081@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210125122542.4144849-1-arnd@kernel.org>
-In-Reply-To: <20210125122542.4144849-1-arnd@kernel.org>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_drm/i915/gem=3A_fix_non-SMP_build_failure?=
+Subject: [Intel-gfx] [PATCH 01/41] drm/i915/selftests: Check for
+ engine-reset errors in the middle of workarounds
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,29 +37,60 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: thomas.hellstrom@intel.com, Chris Wilson <chris@chris-wilson.co.uk>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+As we reset the engine between verifying the workarounds remain intact,
+report an engine reset failure.
 
-Series: drm/i915/gem: fix non-SMP build failure
-URL   : https://patchwork.freedesktop.org/series/86251/
-State : warning
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+---
+ drivers/gpu/drm/i915/gt/selftest_workarounds.c | 16 +++++++++++++---
+ 1 file changed, 13 insertions(+), 3 deletions(-)
 
-== Summary ==
-
-$ dim checkpatch origin/drm-tip
-70e7372fa384 drm/i915/gem: fix non-SMP build failure
--:25: WARNING:INCLUDE_LINUX: Use #include <linux/smp.h> instead of <asm/smp.h>
-#25: FILE: drivers/gpu/drm/i915/i915_gem.c:39:
-+#include <asm/smp.h>
-
-total: 0 errors, 1 warnings, 0 checks, 7 lines checked
-
+diff --git a/drivers/gpu/drm/i915/gt/selftest_workarounds.c b/drivers/gpu/drm/i915/gt/selftest_workarounds.c
+index 37ea46907a7d..af33a720dbf8 100644
+--- a/drivers/gpu/drm/i915/gt/selftest_workarounds.c
++++ b/drivers/gpu/drm/i915/gt/selftest_workarounds.c
+@@ -1219,7 +1219,11 @@ live_engine_reset_workarounds(void *arg)
+ 			goto err;
+ 		}
+ 
+-		intel_engine_reset(engine, "live_workarounds:idle");
++		ret = intel_engine_reset(engine, "live_workarounds:idle");
++		if (ret) {
++			pr_err("%s: Reset failed while idle\n", engine->name);
++			goto err;
++		}
+ 
+ 		ok = verify_wa_lists(gt, &lists, "after idle reset");
+ 		if (!ok) {
+@@ -1240,12 +1244,18 @@ live_engine_reset_workarounds(void *arg)
+ 
+ 		ret = request_add_spin(rq, &spin);
+ 		if (ret) {
+-			pr_err("Spinner failed to start\n");
++			pr_err("%s: Spinner failed to start\n", engine->name);
+ 			igt_spinner_fini(&spin);
+ 			goto err;
+ 		}
+ 
+-		intel_engine_reset(engine, "live_workarounds:active");
++		ret = intel_engine_reset(engine, "live_workarounds:active");
++		if (ret) {
++			pr_err("%s: Reset failed on an active spinner\n",
++			       engine->name);
++			igt_spinner_fini(&spin);
++			goto err;
++		}
+ 
+ 		igt_spinner_end(&spin);
+ 		igt_spinner_fini(&spin);
+-- 
+2.20.1
 
 _______________________________________________
 Intel-gfx mailing list
