@@ -1,32 +1,67 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5C0A630286C
-	for <lists+intel-gfx@lfdr.de>; Mon, 25 Jan 2021 18:08:34 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id A0AA130287A
+	for <lists+intel-gfx@lfdr.de>; Mon, 25 Jan 2021 18:10:31 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BA7BA6E203;
-	Mon, 25 Jan 2021 17:08:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 18F0E6E3C6;
+	Mon, 25 Jan 2021 17:10:30 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 525F56E0AD;
- Mon, 25 Jan 2021 17:08:32 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 4B297A00E6;
- Mon, 25 Jan 2021 17:08:32 +0000 (UTC)
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1DBD16E3EC
+ for <intel-gfx@lists.freedesktop.org>; Mon, 25 Jan 2021 17:10:28 +0000 (UTC)
+IronPort-SDR: s8l1xwFZ41Zo1npD6Q+raqdsG9ZDM7To8KOrhxy8v0YTlWQqkLYvClV6yTNpgr2kWf8qJ5jb7Z
+ WWbWMmYzdA+Q==
+X-IronPort-AV: E=McAfee;i="6000,8403,9875"; a="179910988"
+X-IronPort-AV: E=Sophos;i="5.79,374,1602572400"; d="scan'208";a="179910988"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Jan 2021 09:10:24 -0800
+IronPort-SDR: s4ONiswYdkJIwAXHGD65JWm9eHGzx0ZwAJEMfJJW/NNogx2XIBMSo/25HjbzaOoBdPpUsrbuMx
+ eic2Dpv7F9YA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.79,374,1602572400"; d="scan'208";a="387464784"
+Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
+ by orsmga008.jf.intel.com with ESMTP; 25 Jan 2021 09:10:24 -0800
+Received: from bgsmsx603.gar.corp.intel.com (10.109.78.82) by
+ fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2106.2; Mon, 25 Jan 2021 09:10:21 -0800
+Received: from pgsmsx602.gar.corp.intel.com (10.108.199.137) by
+ BGSMSX603.gar.corp.intel.com (10.109.78.82) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1713.5; Mon, 25 Jan 2021 22:40:19 +0530
+Received: from pgsmsx602.gar.corp.intel.com ([10.108.199.137]) by
+ pgsmsx602.gar.corp.intel.com ([10.108.199.137]) with mapi id 15.01.1713.004;
+ Tue, 26 Jan 2021 01:10:18 +0800
+From: "Vudum, Lakshminarayana" <lakshminarayana.vudum@intel.com>
+To: "Gupta, Anshuman" <anshuman.gupta@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Thread-Topic: =?utf-8?B?W0ludGVsLWdmeF0g4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJtL2k5?=
+ =?utf-8?B?MTUvaGRjcDogRGlzYWJsZSB0aGUgUVNFUyBjaGVjayBmb3IgSERDUCAxLjQg?=
+ =?utf-8?Q?over_MST_(rev2)?=
+Thread-Index: AQHW8GhgXA0Ib8oqwkuOBeETmZhDl6o4e16AgAAdrwA=
+Date: Mon, 25 Jan 2021 17:10:18 +0000
+Message-ID: <743c338632c44d968124aca0ed91a324@intel.com>
+References: <20210106223909.34476-1-sean@poorly.run>
+ <161128337637.14036.11941412627307128800@emeril.freedesktop.org>
+ <1fc478adfaab48daa99274b11305a80a@intel.com>
+In-Reply-To: <1fc478adfaab48daa99274b11305a80a@intel.com>
+Accept-Language: en-GB, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+dlp-product: dlpe-windows
+dlp-reaction: no-action
+dlp-version: 11.2.0.6
+x-originating-ip: [10.22.254.132]
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Mon, 25 Jan 2021 17:08:32 -0000
-Message-ID: <161159451227.3416.15015468172122685708@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210125140136.10494-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20210125140136.10494-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_series_starting_with_=5B01/41=5D_drm/i915/selftests=3A_Chec?=
- =?utf-8?q?k_for_engine-reset_errors_in_the_middle_of_workarounds?=
+Subject: Re: [Intel-gfx] 
+ =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
+ =?utf-8?q?/i915/hdcp=3A_Disable_the_QSES_check_for_HDCP_1=2E4_over_MST_?=
+ =?utf-8?b?KHJldjIp?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,157 +74,95 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
-
-Series: series starting with [01/41] drm/i915/selftests: Check for engine-reset errors in the middle of workarounds
-URL   : https://patchwork.freedesktop.org/series/86259/
-State : warning
-
-== Summary ==
-
-$ dim checkpatch origin/drm-tip
-e4e577627c26 drm/i915/selftests: Check for engine-reset errors in the middle of workarounds
-367f5e603c5d drm/i915/gt: Move the defer_request waiter active assertion
-0611644e4ddf drm/i915: Replace engine->schedule() with a known request operation
-b5ca2c04b198 drm/i915: Teach the i915_dependency to use a double-lock
-7b140da51266 drm/i915: Restructure priority inheritance
-f1443908248f drm/i915/selftests: Measure set-priority duration
--:52: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
-#52: 
-new file mode 100644
-
--:434: WARNING:LINE_SPACING: Missing a blank line after declarations
-#434: FILE: drivers/gpu/drm/i915/selftests/i915_scheduler.c:378:
-+	struct igt_spinner spin;
-+	I915_RND_STATE(prng);
-
-total: 0 errors, 2 warnings, 0 checks, 702 lines checked
-22c3f3836779 drm/i915/selftests: Exercise priority inheritance around an engine loop
-9b002fc62d1f drm/i915: Improve DFS for priority inheritance
-ddf444ae329e drm/i915/selftests: Exercise relative mmio paths to non-privileged registers
-f6b8b7362118 drm/i915/selftests: Exercise cross-process context isolation
-1dac44d403d7 drm/i915: Extract request submission from execlists
-db49df2e5ac7 drm/i915: Extract request rewinding from execlists
-f04573d14fc7 drm/i915: Extract request suspension from the execlists
-bf3ba20370f6 drm/i915: Extract the ability to defer and rerun a request later
-d6eb9d01bae2 drm/i915: Fix the iterative dfs for defering requests
-4ab371f1d39d drm/i915: Move common active lists from engine to i915_scheduler
-0597492c1e44 drm/i915: Move scheduler queue
-3744cfde0c1b drm/i915: Move tasklet from execlists to sched
-3839efb97bae drm/i915/gt: Show scheduler queues when dumping state
-4abff63c4cfe drm/i915: Replace priolist rbtree with a skiplist
--:306: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'p' - possible side-effects?
-#306: FILE: drivers/gpu/drm/i915/i915_priolist_types.h:62:
-+#define for_each_priolist(p, root) \
-+	for ((p) = (root)->sentinel.next[0]; \
-+	     (p) != &(root)->sentinel; \
-+	     (p) = (p)->next[0])
-
--:306: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'root' - possible side-effects?
-#306: FILE: drivers/gpu/drm/i915/i915_priolist_types.h:62:
-+#define for_each_priolist(p, root) \
-+	for ((p) = (root)->sentinel.next[0]; \
-+	     (p) != &(root)->sentinel; \
-+	     (p) = (p)->next[0])
-
--:717: WARNING:LINE_SPACING: Missing a blank line after declarations
-#717: FILE: drivers/gpu/drm/i915/selftests/i915_scheduler.c:19:
-+	struct i915_priolist *pl = &root.sentinel;
-+	IGT_TIMEOUT(end_time);
-
-total: 0 errors, 1 warnings, 2 checks, 697 lines checked
-48a6729c987b drm/i915: Wrap cmpxchg64 with try_cmpxchg64() helper
--:23: CHECK:MACRO_ARG_REUSE: Macro argument reuse '_ptr' - possible side-effects?
-#23: FILE: drivers/gpu/drm/i915/i915_utils.h:468:
-+#define try_cmpxchg64(_ptr, _pold, _new)				\
-+({									\
-+	__typeof__(_ptr) _old = (__typeof__(_ptr))(_pold);		\
-+	__typeof__(*(_ptr)) __old = *_old;				\
-+	__typeof__(*(_ptr)) __cur = cmpxchg64(_ptr, __old, _new);	\
-+	bool success = __cur == __old;					\
-+	if (unlikely(!success))						\
-+		*_old = __cur;						\
-+	likely(success);						\
-+})
-
--:40: CHECK:MACRO_ARG_REUSE: Macro argument reuse '_ptr' - possible side-effects?
-#40: FILE: drivers/gpu/drm/i915/i915_utils.h:485:
-+#define xchg64(_ptr, _new)						\
-+({									\
-+	__typeof__(_ptr) __ptr = (_ptr);				\
-+	__typeof__(*(_ptr)) __old = *__ptr;				\
-+	while (!try_cmpxchg64(__ptr, &__old, (_new)))			\
-+		;							\
-+	__old;								\
-+})
-
-total: 0 errors, 0 warnings, 2 checks, 36 lines checked
-4cabd30226f5 drm/i915: Fair low-latency scheduling
-f93f85ad482a drm/i915/gt: Specify a deadline for the heartbeat
-010d86d0ecb1 drm/i915: Extend the priority boosting for the display with a deadline
-e4a776414370 drm/i915/gt: Support virtual engine queues
-4e61621ac116 drm/i915: Move saturated workload detection back to the context
--:29: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
-#29: 
-References: 44d89409a12e ("drm/i915: Make the semaphore saturation mask global")
-
--:29: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit 44d89409a12e ("drm/i915: Make the semaphore saturation mask global")'
-#29: 
-References: 44d89409a12e ("drm/i915: Make the semaphore saturation mask global")
-
-total: 1 errors, 1 warnings, 0 checks, 78 lines checked
-75ecbfad42e2 drm/i915: Bump default timeslicing quantum to 5ms
-1edd11623282 drm/i915/gt: Wrap intel_timeline.has_initial_breadcrumb
-fc7e917f62a1 drm/i915/gt: Track timeline GGTT offset separately from subpage offset
-9bb8f60faea0 drm/i915/gt: Add timeline "mode"
-0a3936960afc drm/i915/gt: Use indices for writing into relative timelines
-b9b643d59b9d drm/i915/selftests: Exercise relative timeline modes
-913207bf89cd drm/i915/gt: Use ppHWSP for unshared non-semaphore related timelines
-cf05a88e82c0 Restore "drm/i915: drop engine_pin/unpin_breadcrumbs_irq"
-593e08f61ffd drm/i915/gt: Couple tasklet scheduling for all CS interrupts
-209430537935 drm/i915/gt: Support creation of 'internal' rings
-0337feb5791a drm/i915/gt: Use client timeline address for seqno writes
-a07f5ba0a10d drm/i915/gt: Infrastructure for ring scheduling
--:79: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
-#79: 
-new file mode 100644
-
-total: 0 errors, 1 warnings, 0 checks, 891 lines checked
-bf0a549d2293 drm/i915/gt: Implement ring scheduler for gen4-7
--:70: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
-#70: FILE: drivers/gpu/drm/i915/gt/intel_ring_scheduler.c:227:
-+				*cs++ = i915_mmio_reg_offset(
-
--:72: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
-#72: FILE: drivers/gpu/drm/i915/gt/intel_ring_scheduler.c:229:
-+				*cs++ = _MASKED_BIT_ENABLE(
-
--:107: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
-#107: FILE: drivers/gpu/drm/i915/gt/intel_ring_scheduler.c:264:
-+				*cs++ = _MASKED_BIT_DISABLE(
-
-total: 0 errors, 0 warnings, 3 checks, 582 lines checked
-4743bbd27620 drm/i915/gt: Enable ring scheduling for gen5-7
--:32: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
-#32: 
-References: 0f46832fab77 ("drm/i915: Mask USER interrupts on gen6 (until required)")
-
--:32: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit 0f46832fab77 ("drm/i915: Mask USER interrupts on gen6 (until required)")'
-#32: 
-References: 0f46832fab77 ("drm/i915: Mask USER interrupts on gen6 (until required)")
-
-total: 1 errors, 1 warnings, 0 checks, 34 lines checked
-ac942d24c88f drm/i915: Support secure dispatch on gen6/gen7
-
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+UmUtcmVwb3J0ZWQuDQoNCi0tLS0tT3JpZ2luYWwgTWVzc2FnZS0tLS0tDQpGcm9tOiBHdXB0YSwg
+QW5zaHVtYW4gPGFuc2h1bWFuLmd1cHRhQGludGVsLmNvbT4gDQpTZW50OiBNb25kYXksIEphbnVh
+cnkgMjUsIDIwMjEgNzoyNiBBTQ0KVG86IGludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmc7
+IFZ1ZHVtLCBMYWtzaG1pbmFyYXlhbmEgPGxha3NobWluYXJheWFuYS52dWR1bUBpbnRlbC5jb20+
+DQpDYzogU2VhbiBQYXVsIDxzZWFuQHBvb3JseS5ydW4+DQpTdWJqZWN0OiBSRTogW0ludGVsLWdm
+eF0g4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJtL2k5MTUvaGRjcDogRGlzYWJsZSB0aGUg
+UVNFUyBjaGVjayBmb3IgSERDUCAxLjQgb3ZlciBNU1QgKHJldjIpDQoNCkhpIExha3NobWkgLA0K
+V2UgbmVlZCB0byBtZXJnZSB0aGUgcGF0Y2ggaHR0cHM6Ly9wYXRjaHdvcmsuZnJlZWRlc2t0b3Au
+b3JnL3Nlcmllcy84NTU1NS8NCkJlbG93IGFyZSB0aGUgZ2VtIGZhaWx1cmVzIGNhdXNpbmcgdGhl
+IEJBVCB0byBmYWlsICwgdGhvc2Ugd2VyZSBub3Qgc2VlbiBvbiBSZXYxIG9mIHRoaXMgcGF0Y2gu
+DQpDb3VsZCB5b3UgcGxlYXNlIHJlcmVwb3J0LXRoZSByZXN1bHRzIHRvIHRyaWdnZXIgQ0ktSUdU
+IHJ1bi4NClRoYW5rcywNCkFuc2h1bWFuIEd1cHRhLg0KDQpGcm9tOiBJbnRlbC1nZnggPGludGVs
+LWdmeC1ib3VuY2VzQGxpc3RzLmZyZWVkZXNrdG9wLm9yZz4gT24gQmVoYWxmIE9mIFBhdGNod29y
+aw0KU2VudDogRnJpZGF5LCBKYW51YXJ5IDIyLCAyMDIxIDg6MTMgQU0NClRvOiBTZWFuIFBhdWwg
+PHNlYW5AcG9vcmx5LnJ1bj4NCkNjOiBpbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnDQpT
+dWJqZWN0OiBbSW50ZWwtZ2Z4XSDinJcgRmkuQ0kuQkFUOiBmYWlsdXJlIGZvciBkcm0vaTkxNS9o
+ZGNwOiBEaXNhYmxlIHRoZSBRU0VTIGNoZWNrIGZvciBIRENQIDEuNCBvdmVyIE1TVCAocmV2MikN
+Cg0KUGF0Y2ggRGV0YWlscw0KU2VyaWVzOg0KZHJtL2k5MTUvaGRjcDogRGlzYWJsZSB0aGUgUVNF
+UyBjaGVjayBmb3IgSERDUCAxLjQgb3ZlciBNU1QgKHJldjIpDQpVUkw6DQpodHRwczovL3BhdGNo
+d29yay5mcmVlZGVza3RvcC5vcmcvc2VyaWVzLzg1NTU1Lw0KU3RhdGU6DQpmYWlsdXJlDQpEZXRh
+aWxzOg0KaHR0cHM6Ly9pbnRlbC1nZngtY2kuMDEub3JnL3RyZWUvZHJtLXRpcC9QYXRjaHdvcmtf
+MTk0NDcvaW5kZXguaHRtbA0KQ0kgQnVnIExvZyAtIGNoYW5nZXMgZnJvbSBDSV9EUk1fOTY2NiAt
+PiBQYXRjaHdvcmtfMTk0NDcgU3VtbWFyeSBGQUlMVVJFIFNlcmlvdXMgdW5rbm93biBjaGFuZ2Vz
+IGNvbWluZyB3aXRoIFBhdGNod29ya18xOTQ0NyBhYnNvbHV0ZWx5IG5lZWQgdG8gYmUgdmVyaWZp
+ZWQgbWFudWFsbHkuDQpJZiB5b3UgdGhpbmsgdGhlIHJlcG9ydGVkIGNoYW5nZXMgaGF2ZSBub3Ro
+aW5nIHRvIGRvIHdpdGggdGhlIGNoYW5nZXMgaW50cm9kdWNlZCBpbiBQYXRjaHdvcmtfMTk0NDcs
+IHBsZWFzZSBub3RpZnkgeW91ciBidWcgdGVhbSB0byBhbGxvdyB0aGVtIHRvIGRvY3VtZW50IHRo
+aXMgbmV3IGZhaWx1cmUgbW9kZSwgd2hpY2ggd2lsbCByZWR1Y2UgZmFsc2UgcG9zaXRpdmVzIGlu
+IENJLg0KRXh0ZXJuYWwgVVJMOiBodHRwczovL2ludGVsLWdmeC1jaS4wMS5vcmcvdHJlZS9kcm0t
+dGlwL1BhdGNod29ya18xOTQ0Ny9pbmRleC5odG1sDQpQb3NzaWJsZSBuZXcgaXNzdWVzDQpIZXJl
+IGFyZSB0aGUgdW5rbm93biBjaGFuZ2VzIHRoYXQgbWF5IGhhdmUgYmVlbiBpbnRyb2R1Y2VkIGlu
+IFBhdGNod29ya18xOTQ0NzoNCklHVCBjaGFuZ2VzDQpQb3NzaWJsZSByZWdyZXNzaW9ucw0K4oCi
+IGlndEBpOTE1X3NlbGZ0ZXN0QGxpdmVAZ3RfbHJjOg0KbyBmaS1ic3ctbjMwNTA6IGh0dHBzOi8v
+aW50ZWwtZ2Z4LWNpLjAxLm9yZy90cmVlL2RybS10aXAvQ0lfRFJNXzk2NjYvZmktYnN3LW4zMDUw
+L2lndEBpOTE1X3NlbGZ0ZXN0QGxpdmVAZ3RfbHJjLmh0bWwgLT4gaHR0cHM6Ly9pbnRlbC1nZngt
+Y2kuMDEub3JnL3RyZWUvZHJtLXRpcC9QYXRjaHdvcmtfMTk0NDcvZmktYnN3LW4zMDUwL2lndEBp
+OTE1X3NlbGZ0ZXN0QGxpdmVAZ3RfbHJjLmh0bWwNCktub3duIGlzc3Vlcw0KSGVyZSBhcmUgdGhl
+IGNoYW5nZXMgZm91bmQgaW4gUGF0Y2h3b3JrXzE5NDQ3IHRoYXQgY29tZSBmcm9tIGtub3duIGlz
+c3VlczoNCklHVCBjaGFuZ2VzDQpJc3N1ZXMgaGl0DQrigKIgaWd0QGdlbV9tbWFwX2d0dEBiYXNp
+YzoNCm8gZmktdGdsLXk6IGh0dHBzOi8vaW50ZWwtZ2Z4LWNpLjAxLm9yZy90cmVlL2RybS10aXAv
+Q0lfRFJNXzk2NjYvZmktdGdsLXkvaWd0QGdlbV9tbWFwX2d0dEBiYXNpYy5odG1sIC0+IGh0dHBz
+Oi8vaW50ZWwtZ2Z4LWNpLjAxLm9yZy90cmVlL2RybS10aXAvUGF0Y2h3b3JrXzE5NDQ3L2ZpLXRn
+bC15L2lndEBnZW1fbW1hcF9ndHRAYmFzaWMuaHRtbCAoaHR0cHM6Ly9naXRsYWIuZnJlZWRlc2t0
+b3Aub3JnL2RybS9pbnRlbC9pc3N1ZXMvNDAyKSArMiBzaW1pbGFyIGlzc3VlcyDigKIgaWd0QGk5
+MTVfc2VsZnRlc3RAbGl2ZUBodWdlcGFnZXM6DQpvIGZpLWJzdy1uMzA1MDogaHR0cHM6Ly9pbnRl
+bC1nZngtY2kuMDEub3JnL3RyZWUvZHJtLXRpcC9DSV9EUk1fOTY2Ni9maS1ic3ctbjMwNTAvaWd0
+QGk5MTVfc2VsZnRlc3RAbGl2ZUBodWdlcGFnZXMuaHRtbCAtPiBodHRwczovL2ludGVsLWdmeC1j
+aS4wMS5vcmcvdHJlZS9kcm0tdGlwL1BhdGNod29ya18xOTQ0Ny9maS1ic3ctbjMwNTAvaWd0QGk5
+MTVfc2VsZnRlc3RAbGl2ZUBodWdlcGFnZXMuaHRtbCAoaHR0cHM6Ly9idWdzLmZyZWVkZXNrdG9w
+Lm9yZy9zaG93X2J1Zy5jZ2k/aWQ9MTA5MjcxKSArMjAgc2ltaWxhciBpc3N1ZXMg4oCiIGlndEBp
+OTE1X3NlbGZ0ZXN0QGxpdmVAcmluZ19zdWJtaXNzaW9uOg0KbyBmaS1ic3ctbjMwNTA6IE5PVFJV
+TiAtPiBodHRwczovL2ludGVsLWdmeC1jaS4wMS5vcmcvdHJlZS9kcm0tdGlwL1BhdGNod29ya18x
+OTQ0Ny9maS1ic3ctbjMwNTAvaWd0QGk5MTVfc2VsZnRlc3RAbGl2ZUByaW5nX3N1Ym1pc3Npb24u
+aHRtbCAoaHR0cHM6Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy9zaG93X2J1Zy5jZ2k/aWQ9MTA5Mjcx
+KSArMiBzaW1pbGFyIGlzc3VlcyDigKIgaWd0QGttc19jaGFtZWxpdW1AZHAtY3JjLWZhc3Q6DQpv
+IGZpLWtibC03NTAwdTogaHR0cHM6Ly9pbnRlbC1nZngtY2kuMDEub3JnL3RyZWUvZHJtLXRpcC9D
+SV9EUk1fOTY2Ni9maS1rYmwtNzUwMHUvaWd0QGttc19jaGFtZWxpdW1AZHAtY3JjLWZhc3QuaHRt
+bCAtPiBodHRwczovL2ludGVsLWdmeC1jaS4wMS5vcmcvdHJlZS9kcm0tdGlwL1BhdGNod29ya18x
+OTQ0Ny9maS1rYmwtNzUwMHUvaWd0QGttc19jaGFtZWxpdW1AZHAtY3JjLWZhc3QuaHRtbCAoaHR0
+cHM6Ly9naXRsYWIuZnJlZWRlc2t0b3Aub3JnL2RybS9pbnRlbC9pc3N1ZXMvMTE2MSAvIGh0dHBz
+Oi8vZ2l0bGFiLmZyZWVkZXNrdG9wLm9yZy9kcm0vaW50ZWwvaXNzdWVzLzI2MikNClBvc3NpYmxl
+IGZpeGVzDQrigKIgaWd0QGdlbV90aWxlZF9ibGl0c0BiYXNpYzoNCm8gZmktdGdsLXk6IGh0dHBz
+Oi8vaW50ZWwtZ2Z4LWNpLjAxLm9yZy90cmVlL2RybS10aXAvQ0lfRFJNXzk2NjYvZmktdGdsLXkv
+aWd0QGdlbV90aWxlZF9ibGl0c0BiYXNpYy5odG1sIChodHRwczovL2dpdGxhYi5mcmVlZGVza3Rv
+cC5vcmcvZHJtL2ludGVsL2lzc3Vlcy80MDIpIC0+IGh0dHBzOi8vaW50ZWwtZ2Z4LWNpLjAxLm9y
+Zy90cmVlL2RybS10aXAvUGF0Y2h3b3JrXzE5NDQ3L2ZpLXRnbC15L2lndEBnZW1fdGlsZWRfYmxp
+dHNAYmFzaWMuaHRtbCArMSBzaW1pbGFyIGlzc3VlIFdhcm5pbmdzIOKAoiBpZ3RAaTkxNV9zZWxm
+dGVzdEBsaXZlQGV4ZWNsaXN0czoNCm8gZmktYnN3LW4zMDUwOiBodHRwczovL2ludGVsLWdmeC1j
+aS4wMS5vcmcvdHJlZS9kcm0tdGlwL0NJX0RSTV85NjY2L2ZpLWJzdy1uMzA1MC9pZ3RAaTkxNV9z
+ZWxmdGVzdEBsaXZlQGV4ZWNsaXN0cy5odG1sIChodHRwczovL2dpdGxhYi5mcmVlZGVza3RvcC5v
+cmcvZHJtL2ludGVsL2lzc3Vlcy8yOTQwKSAtPiBodHRwczovL2ludGVsLWdmeC1jaS4wMS5vcmcv
+dHJlZS9kcm0tdGlwL1BhdGNod29ya18xOTQ0Ny9maS1ic3ctbjMwNTAvaWd0QGk5MTVfc2VsZnRl
+c3RAbGl2ZUBleGVjbGlzdHMuaHRtbCAoaHR0cHM6Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy9zaG93
+X2J1Zy5jZ2k/aWQ9MTA5MjcxKQ0KUGFydGljaXBhdGluZyBob3N0cyAoNDEgLT4gMzcpDQpNaXNz
+aW5nICg0KTogZmktaWxrLW01NDAgZmktYnN3LWN5YW4gZmktYmR3LXNhbXVzIGZpLWhzdy00MjAw
+dSBCdWlsZCBjaGFuZ2VzIOKAoiBMaW51eDogQ0lfRFJNXzk2NjYgLT4gUGF0Y2h3b3JrXzE5NDQ3
+DQpDSS0yMDE5MDUyOTogMjAxOTA1MjkNCkNJX0RSTV85NjY2OiA5Y2NiYzY1M2JmMjk0OGQxZjdl
+OWZmMzAwZGQ3Njc5Yjg4OGZmYTI1IEAgZ2l0Oi8vYW5vbmdpdC5mcmVlZGVza3RvcC5vcmcvZ2Z4
+LWNpL2xpbnV4DQpJR1RfNTk2MjogMjJlM2RhYWVkODJhYjc4OTAwMThhMmYyYWFiZjUwODJjZDUz
+NjAyMyBAIGdpdDovL2Fub25naXQuZnJlZWRlc2t0b3Aub3JnL3hvcmcvYXBwL2ludGVsLWdwdS10
+b29scw0KUGF0Y2h3b3JrXzE5NDQ3OiA2OWQ3ZGIwMDNmYTQwNmRmNzg1MWFiMDgyMzlkZDQwOWE3
+OGY0NDIxIEAgZ2l0Oi8vYW5vbmdpdC5mcmVlZGVza3RvcC5vcmcvZ2Z4LWNpL2xpbnV4DQo9PSBM
+aW51eCBjb21taXRzID09DQo2OWQ3ZGIwMDNmYTQgZHJtL2k5MTUvaGRjcDogRGlzYWJsZSB0aGUg
+UVNFUyBjaGVjayBmb3IgSERDUCAxLjQgb3ZlciBNU1QNCl9fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4
+QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWls
+bWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
