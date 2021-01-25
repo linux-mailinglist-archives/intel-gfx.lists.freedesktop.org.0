@@ -2,29 +2,41 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9BC3F302CFA
-	for <lists+intel-gfx@lfdr.de>; Mon, 25 Jan 2021 21:54:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 16A60302D33
+	for <lists+intel-gfx@lfdr.de>; Mon, 25 Jan 2021 22:04:46 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 530EC6E283;
-	Mon, 25 Jan 2021 20:54:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 39A6D89CBC;
+	Mon, 25 Jan 2021 21:04:44 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DFA366E283
- for <intel-gfx@lists.freedesktop.org>; Mon, 25 Jan 2021 20:54:04 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 23697460-1500050 
- for <intel-gfx@lists.freedesktop.org>; Mon, 25 Jan 2021 20:53:59 +0000
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Mon, 25 Jan 2021 20:54:01 +0000
-Message-Id: <20210125205401.29505-1-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.20.1
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 97B7489CBC
+ for <intel-gfx@lists.freedesktop.org>; Mon, 25 Jan 2021 21:04:43 +0000 (UTC)
+IronPort-SDR: KRIPI1gqencwEJHU4Q0sa2V2AWzk7EahTNzpILWueI8mAruARbfzA8Jl0aLDq41bJsiLxE+3Bq
+ wB/6scTc2jIA==
+X-IronPort-AV: E=McAfee;i="6000,8403,9875"; a="264623288"
+X-IronPort-AV: E=Sophos;i="5.79,374,1602572400"; d="scan'208";a="264623288"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Jan 2021 13:04:42 -0800
+IronPort-SDR: rg0SaxtUFofJmwOHCAURmxVXbJ+AP53IyiyG/bg+UIiX0RuOyEBdhEx5p95eWkQqqzoIiDhAey
+ 6Sxgxh1QGZNA==
+X-IronPort-AV: E=Sophos;i="5.79,374,1602572400"; d="scan'208";a="387538679"
+Received: from ideak-desk.fi.intel.com ([10.237.68.141])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Jan 2021 13:04:37 -0800
+Date: Mon, 25 Jan 2021 23:04:34 +0200
+From: Imre Deak <imre.deak@intel.com>
+To: Lyude Paul <lyude@redhat.com>
+Message-ID: <20210125210434.GA1756222@ideak-desk.fi.intel.com>
+References: <20210125173636.1733812-1-imre.deak@intel.com>
+ <20210125173636.1733812-2-imre.deak@intel.com>
+ <2be72160accef04bf2ed7341b3619befc2121330.camel@redhat.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [CI] Revert "mm: fix initialization of struct page for
- holes in memory layout"
+Content-Disposition: inline
+In-Reply-To: <2be72160accef04bf2ed7341b3619befc2121330.camel@redhat.com>
+Subject: Re: [Intel-gfx] [PATCH 2/2] drm/i915: Fix the MST PBN divider
+ calculation
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,148 +49,118 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Reply-To: imre.deak@intel.com
+Cc: intel-gfx@lists.freedesktop.org, Ville Syrjala <ville.syrjala@intel.com>,
+ stable@vger.kernel.org
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This reverts commit d3921cb8be29ce5668c64e23ffdaeec5f8c69399.
----
- mm/page_alloc.c | 84 ++++++++++++++++++++-----------------------------
- 1 file changed, 34 insertions(+), 50 deletions(-)
+On Mon, Jan 25, 2021 at 02:24:58PM -0500, Lyude Paul wrote:
+> On Mon, 2021-01-25 at 19:36 +0200, Imre Deak wrote:
+> > Atm the driver will calculate a wrong MST timeslots/MTP (aka time unit)
+> > value for MST streams if the link parameters (link rate or lane count)
+> > are limited in a way independent of the sink capabilities (reported by
+> > DPCD).
+> > =
 
-diff --git a/mm/page_alloc.c b/mm/page_alloc.c
-index 783913e41f65..519a60d5b6f7 100644
---- a/mm/page_alloc.c
-+++ b/mm/page_alloc.c
-@@ -7080,26 +7080,23 @@ void __init free_area_init_memoryless_node(int nid)
-  * Initialize all valid struct pages in the range [spfn, epfn) and mark them
-  * PageReserved(). Return the number of struct pages that were initialized.
-  */
--static u64 __init init_unavailable_range(unsigned long spfn, unsigned long epfn,
--					 int zone, int nid)
-+static u64 __init init_unavailable_range(unsigned long spfn, unsigned long epfn)
- {
--	unsigned long pfn, zone_spfn, zone_epfn;
-+	unsigned long pfn;
- 	u64 pgcnt = 0;
- 
--	zone_spfn = arch_zone_lowest_possible_pfn[zone];
--	zone_epfn = arch_zone_highest_possible_pfn[zone];
--
--	spfn = clamp(spfn, zone_spfn, zone_epfn);
--	epfn = clamp(epfn, zone_spfn, zone_epfn);
--
- 	for (pfn = spfn; pfn < epfn; pfn++) {
- 		if (!pfn_valid(ALIGN_DOWN(pfn, pageblock_nr_pages))) {
- 			pfn = ALIGN_DOWN(pfn, pageblock_nr_pages)
- 				+ pageblock_nr_pages - 1;
- 			continue;
- 		}
--
--		__init_single_page(pfn_to_page(pfn), pfn, zone, nid);
-+		/*
-+		 * Use a fake node/zone (0) for now. Some of these pages
-+		 * (in memblock.reserved but not in memblock.memory) will
-+		 * get re-initialized via reserve_bootmem_region() later.
-+		 */
-+		__init_single_page(pfn_to_page(pfn), pfn, 0, 0);
- 		__SetPageReserved(pfn_to_page(pfn));
- 		pgcnt++;
- 	}
-@@ -7108,64 +7105,51 @@ static u64 __init init_unavailable_range(unsigned long spfn, unsigned long epfn,
- }
- 
- /*
-- * Only struct pages that correspond to ranges defined by memblock.memory
-- * are zeroed and initialized by going through __init_single_page() during
-- * memmap_init().
-+ * Only struct pages that are backed by physical memory are zeroed and
-+ * initialized by going through __init_single_page(). But, there are some
-+ * struct pages which are reserved in memblock allocator and their fields
-+ * may be accessed (for example page_to_pfn() on some configuration accesses
-+ * flags). We must explicitly initialize those struct pages.
-  *
-- * But, there could be struct pages that correspond to holes in
-- * memblock.memory. This can happen because of the following reasons:
-- * - phyiscal memory bank size is not necessarily the exact multiple of the
-- *   arbitrary section size
-- * - early reserved memory may not be listed in memblock.memory
-- * - memory layouts defined with memmap= kernel parameter may not align
-- *   nicely with memmap sections
-- *
-- * Explicitly initialize those struct pages so that:
-- * - PG_Reserved is set
-- * - zone link is set accorging to the architecture constrains
-- * - node is set to node id of the next populated region except for the
-- *   trailing hole where last node id is used
-+ * This function also addresses a similar issue where struct pages are left
-+ * uninitialized because the physical address range is not covered by
-+ * memblock.memory or memblock.reserved. That could happen when memblock
-+ * layout is manually configured via memmap=, or when the highest physical
-+ * address (max_pfn) does not end on a section boundary.
-  */
--static void __init init_zone_unavailable_mem(int zone)
-+static void __init init_unavailable_mem(void)
- {
--	unsigned long start, end;
--	int i, nid;
--	u64 pgcnt;
--	unsigned long next = 0;
-+	phys_addr_t start, end;
-+	u64 i, pgcnt;
-+	phys_addr_t next = 0;
- 
- 	/*
--	 * Loop through holes in memblock.memory and initialize struct
--	 * pages corresponding to these holes
-+	 * Loop through unavailable ranges not covered by memblock.memory.
- 	 */
- 	pgcnt = 0;
--	for_each_mem_pfn_range(i, MAX_NUMNODES, &start, &end, &nid) {
-+	for_each_mem_range(i, &start, &end) {
- 		if (next < start)
--			pgcnt += init_unavailable_range(next, start, zone, nid);
-+			pgcnt += init_unavailable_range(PFN_DOWN(next),
-+							PFN_UP(start));
- 		next = end;
- 	}
- 
- 	/*
--	 * Last section may surpass the actual end of memory (e.g. we can
--	 * have 1Gb section and 512Mb of RAM pouplated).
--	 * Make sure that memmap has a well defined state in this case.
-+	 * Early sections always have a fully populated memmap for the whole
-+	 * section - see pfn_valid(). If the last section has holes at the
-+	 * end and that section is marked "online", the memmap will be
-+	 * considered initialized. Make sure that memmap has a well defined
-+	 * state.
- 	 */
--	end = round_up(max_pfn, PAGES_PER_SECTION);
--	pgcnt += init_unavailable_range(next, end, zone, nid);
-+	pgcnt += init_unavailable_range(PFN_DOWN(next),
-+					round_up(max_pfn, PAGES_PER_SECTION));
- 
- 	/*
- 	 * Struct pages that do not have backing memory. This could be because
- 	 * firmware is using some of this memory, or for some other reasons.
- 	 */
- 	if (pgcnt)
--		pr_info("Zone %s: zeroed struct page in unavailable ranges: %lld pages", zone_names[zone], pgcnt);
--}
--
--static void __init init_unavailable_mem(void)
--{
--	int zone;
--
--	for (zone = 0; zone < ZONE_MOVABLE; zone++)
--		init_zone_unavailable_mem(zone);
-+		pr_info("Zeroed struct page in unavailable ranges: %lld pages", pgcnt);
- }
- #else
- static inline void __init init_unavailable_mem(void)
--- 
-2.20.1
+> > One example of such a limitation is when a MUX between the sink and
+> > source connects only a limited number of lanes to the display and
+> > connects the rest of the lanes to other peripherals (USB).
+> > =
+
+> > Another issue is that atm MST core calculates the divider based on the
+> > backwards compatible DPCD (at address 0x0000) vs. the extended
+> > capability info (at address 0x2200). This can result in leaving some
+> > part of the MST BW unused (For instance in case of the WD19TB dock).
+> > =
+
+> > Fix the above two issues by calculating the PBN divider value based on
+> > the rate and lane count link parameters that the driver uses for all
+> > other computation.
+> > =
+
+> > Bugzilla: https://gitlab.freedesktop.org/drm/intel/-/issues/2977
+> > Cc: Lyude Paul <lyude@redhat.com>
+> > Cc: Ville Syrjala <ville.syrjala@intel.com>
+> > Cc: <stable@vger.kernel.org>
+> > Signed-off-by: Imre Deak <imre.deak@intel.com>
+> > ---
+> > =A0drivers/gpu/drm/i915/display/intel_dp_mst.c | 4 +++-
+> > =A01 file changed, 3 insertions(+), 1 deletion(-)
+> > =
+
+> > diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> > b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> > index d6a1b961a0e8..b4621ed0127e 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> > @@ -68,7 +68,9 @@ static int intel_dp_mst_compute_link_config(struct
+> > intel_encoder *encoder,
+> > =A0
+> > =A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0slots =3D drm_dp_atomic=
+_find_vcpi_slots(state, &intel_dp-
+> > >mst_mgr,
+> > =A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=
+=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=
+=A0=A0=A0=A0=A0 connector->port,
+> > -=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=
+=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=
+=A0=A0=A0=A0 crtc_state->pbn, 0);
+> > +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=
+=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=
+=A0=A0=A0=A0 crtc_state->pbn,
+> > +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=
+=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=
+=A0=A0=A0=A0
+> > drm_dp_get_vc_payload_bw(crtc_state->port_clock,
+> > +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=
+=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=
+=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0
+> =
+
+> This patch looks fine, however you should take care to also update the
+> documentation for drm_dp_atomic_find_vcpi_slots() so that it mentiones th=
+at
+> pbn_div should be DSC aware but also is not exclusive to systems supporti=
+ng DSC
+> over MST (see the docs for the @pbn_div parameter)
+
+I thought (as a follow-up work) that drm_dp_atomic_find_vcpi_slots() and
+drm_dp_mst_allocate_vcpi() could be made more generic, requiring the
+drivers to always pass in pbn_div. By that we could remove
+mst_mgr::pbn_div, keeping only one copy of this value (the one passed to
+the above functions).
+
+> Thank you for doing this! I've been meaning to fix the WD19 issues for a =
+while
+> now but have been too bogged down by other stuff to spend any time on MST
+> recently.
+> =
+
+> > =A0=A0=A0=A0=A0=A0=A0 crtc_state->lane_count));
+> > =A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0if (slots =3D=3D -EDEAD=
+LK)
+> > =A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=
+=A0return slots;
+> > =A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0if (slots >=3D 0)
+> =
+
+> -- =
+
+> Sincerely,
+>    Lyude Paul (she/her)
+>    Software Engineer at Red Hat
+>    =
+
+> Note: I deal with a lot of emails and have a lot of bugs on my plate. If =
+you've
+> asked me a question, are waiting for a review/merge on a patch, etc. and I
+> haven't responded in a while, please feel free to send me another email t=
+o check
+> on my status. I don't bite!
+> =
 
 _______________________________________________
 Intel-gfx mailing list
