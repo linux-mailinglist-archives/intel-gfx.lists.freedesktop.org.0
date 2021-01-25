@@ -2,31 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1305C3025F5
-	for <lists+intel-gfx@lfdr.de>; Mon, 25 Jan 2021 15:02:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3B6013025F6
+	for <lists+intel-gfx@lfdr.de>; Mon, 25 Jan 2021 15:02:51 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 228756E158;
-	Mon, 25 Jan 2021 14:02:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AC54E6E1B6;
+	Mon, 25 Jan 2021 14:02:37 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 807DA6E0FE
- for <intel-gfx@lists.freedesktop.org>; Mon, 25 Jan 2021 14:02:09 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9AEDB6E113
+ for <intel-gfx@lists.freedesktop.org>; Mon, 25 Jan 2021 14:02:15 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 23693631-1500050 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 23693632-1500050 
  for multiple; Mon, 25 Jan 2021 14:01:37 +0000
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Mon, 25 Jan 2021 14:01:05 +0000
-Message-Id: <20210125140136.10494-10-chris@chris-wilson.co.uk>
+Date: Mon, 25 Jan 2021 14:01:06 +0000
+Message-Id: <20210125140136.10494-11-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20210125140136.10494-1-chris@chris-wilson.co.uk>
 References: <20210125140136.10494-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 10/41] drm/i915/selftests: Exercise
- cross-process context isolation
+Subject: [Intel-gfx] [PATCH 11/41] drm/i915: Extract request submission from
+ execlists
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,485 +45,245 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Verify that one context running on engine A cannot manipulate another
-client's context concurrently running on engine B using unprivileged
-access.
+In the process of preparing to reuse the request submission logic for
+other backends, lift it out of the execlists backend. It already
+operates on the common structs, so just a matter of moving and renaming.
 
 Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
 ---
- drivers/gpu/drm/i915/gt/selftest_lrc.c | 275 +++++++++++++++++++++----
- 1 file changed, 238 insertions(+), 37 deletions(-)
+ .../drm/i915/gt/intel_execlists_submission.c  | 55 +------------
+ .../gpu/drm/i915/gt/uc/intel_guc_submission.c | 30 +------
+ drivers/gpu/drm/i915/i915_scheduler.c         | 82 +++++++++++++++++++
+ drivers/gpu/drm/i915/i915_scheduler.h         |  2 +
+ 4 files changed, 86 insertions(+), 83 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gt/selftest_lrc.c b/drivers/gpu/drm/i915/gt/selftest_lrc.c
-index 0524232378e4..e97adf1b7729 100644
---- a/drivers/gpu/drm/i915/gt/selftest_lrc.c
-+++ b/drivers/gpu/drm/i915/gt/selftest_lrc.c
-@@ -911,6 +911,7 @@ create_user_vma(struct i915_address_space *vm, unsigned long size)
- 
- static struct i915_vma *
- store_context(struct intel_context *ce,
-+	      struct intel_engine_cs *engine,
- 	      struct i915_vma *scratch,
- 	      bool relative)
- {
-@@ -928,7 +929,7 @@ store_context(struct intel_context *ce,
- 		return ERR_CAST(cs);
- 	}
- 
--	defaults = shmem_pin_map(ce->engine->default_state);
-+	defaults = shmem_pin_map(engine->default_state);
- 	if (!defaults) {
- 		i915_gem_object_unpin_map(batch->obj);
- 		i915_vma_put(batch);
-@@ -960,7 +961,7 @@ store_context(struct intel_context *ce,
- 			if (relative)
- 				cmd |= MI_LRI_LRM_CS_MMIO;
- 			else
--				offset = ce->engine->mmio_base;
-+				offset = engine->mmio_base;
- 		}
- 
- 		dw++;
-@@ -979,7 +980,7 @@ store_context(struct intel_context *ce,
- 
- 	*cs++ = MI_BATCH_BUFFER_END;
- 
--	shmem_unpin_map(ce->engine->default_state, defaults);
-+	shmem_unpin_map(engine->default_state, defaults);
- 
- 	i915_gem_object_flush_map(batch->obj);
- 	i915_gem_object_unpin_map(batch->obj);
-@@ -1002,23 +1003,48 @@ static int move_to_active(struct i915_request *rq,
- 	return err;
+diff --git a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
+index 309fb421ff5c..e6acdd8dc361 100644
+--- a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
++++ b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
+@@ -2404,59 +2404,6 @@ static void execlists_preempt(struct timer_list *timer)
+ 	execlists_kick(timer, preempt);
  }
  
-+struct hwsp_semaphore {
-+	u32 ggtt;
-+	u32 *va;
-+};
-+
-+static struct hwsp_semaphore hwsp_semaphore(struct intel_engine_cs *engine)
-+{
-+	struct hwsp_semaphore s;
-+
-+	s.va = memset32(engine->status_page.addr + 1000, 0, 1);
-+	s.ggtt = (i915_ggtt_offset(engine->status_page.vma) +
-+		  offset_in_page(s.va));
-+
-+	return s;
-+}
-+
-+static u32 *emit_noops(u32 *cs, int count)
-+{
-+	while (count--)
-+		*cs++ = MI_NOOP;
-+
-+	return cs;
-+}
-+
- static struct i915_request *
- record_registers(struct intel_context *ce,
-+		 struct intel_engine_cs *engine,
- 		 struct i915_vma *before,
- 		 struct i915_vma *after,
- 		 bool relative,
--		 u32 *sema)
-+		 const struct hwsp_semaphore *sema)
- {
- 	struct i915_vma *b_before, *b_after;
- 	struct i915_request *rq;
- 	u32 *cs;
- 	int err;
- 
--	b_before = store_context(ce, before, relative);
-+	b_before = store_context(ce, engine, before, relative);
- 	if (IS_ERR(b_before))
- 		return ERR_CAST(b_before);
- 
--	b_after = store_context(ce, after, relative);
-+	b_after = store_context(ce, engine, after, relative);
- 	if (IS_ERR(b_after)) {
- 		rq = ERR_CAST(b_after);
- 		goto err_before;
-@@ -1044,7 +1070,7 @@ record_registers(struct intel_context *ce,
- 	if (err)
- 		goto err_rq;
- 
--	cs = intel_ring_begin(rq, 14);
-+	cs = intel_ring_begin(rq, 18);
- 	if (IS_ERR(cs)) {
- 		err = PTR_ERR(cs);
- 		goto err_rq;
-@@ -1055,16 +1081,28 @@ record_registers(struct intel_context *ce,
- 	*cs++ = lower_32_bits(b_before->node.start);
- 	*cs++ = upper_32_bits(b_before->node.start);
- 
--	*cs++ = MI_ARB_ON_OFF | MI_ARB_ENABLE;
--	*cs++ = MI_SEMAPHORE_WAIT |
--		MI_SEMAPHORE_GLOBAL_GTT |
--		MI_SEMAPHORE_POLL |
--		MI_SEMAPHORE_SAD_NEQ_SDD;
--	*cs++ = 0;
--	*cs++ = i915_ggtt_offset(ce->engine->status_page.vma) +
--		offset_in_page(sema);
--	*cs++ = 0;
--	*cs++ = MI_NOOP;
-+	if (sema) {
-+		WRITE_ONCE(*sema->va, -1);
-+
-+		/* Signal the poisoner */
-+		*cs++ = MI_STORE_DWORD_IMM_GEN4 | MI_USE_GGTT;
-+		*cs++ = sema->ggtt;
-+		*cs++ = 0;
-+		*cs++ = 0;
-+
-+		/* Then wait for the poison to settle */
-+		*cs++ = MI_ARB_ON_OFF | MI_ARB_ENABLE;
-+		*cs++ = MI_SEMAPHORE_WAIT |
-+			MI_SEMAPHORE_GLOBAL_GTT |
-+			MI_SEMAPHORE_POLL |
-+			MI_SEMAPHORE_SAD_NEQ_SDD;
-+		*cs++ = 0;
-+		*cs++ = sema->ggtt;
-+		*cs++ = 0;
-+		*cs++ = MI_NOOP;
-+	} else {
-+		cs = emit_noops(cs, 10);
-+	}
- 
- 	*cs++ = MI_ARB_ON_OFF | MI_ARB_DISABLE;
- 	*cs++ = MI_BATCH_BUFFER_START_GEN8 | BIT(8);
-@@ -1073,7 +1111,6 @@ record_registers(struct intel_context *ce,
- 
- 	intel_ring_advance(rq, cs);
- 
--	WRITE_ONCE(*sema, 0);
- 	i915_request_get(rq);
- 	i915_request_add(rq);
- err_after:
-@@ -1089,7 +1126,9 @@ record_registers(struct intel_context *ce,
- }
- 
- static struct i915_vma *
--load_context(struct intel_context *ce, u32 poison, bool relative)
-+load_context(struct intel_context *ce,
-+	     struct intel_engine_cs *engine,
-+	     u32 poison, bool relative)
- {
- 	struct i915_vma *batch;
- 	u32 dw, *cs, *hw;
-@@ -1105,7 +1144,7 @@ load_context(struct intel_context *ce, u32 poison, bool relative)
- 		return ERR_CAST(cs);
- 	}
- 
--	defaults = shmem_pin_map(ce->engine->default_state);
-+	defaults = shmem_pin_map(engine->default_state);
- 	if (!defaults) {
- 		i915_gem_object_unpin_map(batch->obj);
- 		i915_vma_put(batch);
-@@ -1136,7 +1175,7 @@ load_context(struct intel_context *ce, u32 poison, bool relative)
- 			if (relative)
- 				cmd |= MI_LRI_LRM_CS_MMIO;
- 			else
--				offset = ce->engine->mmio_base;
-+				offset = engine->mmio_base;
- 		}
- 
- 		dw++;
-@@ -1152,7 +1191,7 @@ load_context(struct intel_context *ce, u32 poison, bool relative)
- 
- 	*cs++ = MI_BATCH_BUFFER_END;
- 
--	shmem_unpin_map(ce->engine->default_state, defaults);
-+	shmem_unpin_map(engine->default_state, defaults);
- 
- 	i915_gem_object_flush_map(batch->obj);
- 	i915_gem_object_unpin_map(batch->obj);
-@@ -1162,16 +1201,17 @@ load_context(struct intel_context *ce, u32 poison, bool relative)
- 
- static int
- poison_registers(struct intel_context *ce,
-+		 struct intel_engine_cs *engine,
- 		 u32 poison,
- 		 bool relative,
--		 u32 *sema)
-+		 const struct hwsp_semaphore *sema)
- {
- 	struct i915_request *rq;
- 	struct i915_vma *batch;
- 	u32 *cs;
- 	int err;
- 
--	batch = load_context(ce, poison, relative);
-+	batch = load_context(ce, engine, poison, relative);
- 	if (IS_ERR(batch))
- 		return PTR_ERR(batch);
- 
-@@ -1185,20 +1225,29 @@ poison_registers(struct intel_context *ce,
- 	if (err)
- 		goto err_rq;
- 
--	cs = intel_ring_begin(rq, 8);
-+	cs = intel_ring_begin(rq, 14);
- 	if (IS_ERR(cs)) {
- 		err = PTR_ERR(cs);
- 		goto err_rq;
- 	}
- 
-+	*cs++ = MI_ARB_ON_OFF | MI_ARB_ENABLE;
-+	*cs++ = MI_SEMAPHORE_WAIT |
-+		MI_SEMAPHORE_GLOBAL_GTT |
-+		MI_SEMAPHORE_POLL |
-+		MI_SEMAPHORE_SAD_EQ_SDD;
-+	*cs++ = 0;
-+	*cs++ = sema->ggtt;
-+	*cs++ = 0;
-+	*cs++ = MI_NOOP;
-+
- 	*cs++ = MI_ARB_ON_OFF | MI_ARB_DISABLE;
- 	*cs++ = MI_BATCH_BUFFER_START_GEN8 | BIT(8);
- 	*cs++ = lower_32_bits(batch->node.start);
- 	*cs++ = upper_32_bits(batch->node.start);
- 
- 	*cs++ = MI_STORE_DWORD_IMM_GEN4 | MI_USE_GGTT;
--	*cs++ = i915_ggtt_offset(ce->engine->status_page.vma) +
--		offset_in_page(sema);
-+	*cs++ = sema->ggtt;
- 	*cs++ = 0;
- 	*cs++ = 1;
- 
-@@ -1258,7 +1307,7 @@ static int compare_isolation(struct intel_engine_cs *engine,
- 	}
- 	lrc += LRC_STATE_OFFSET / sizeof(*hw);
- 
--	defaults = shmem_pin_map(ce->engine->default_state);
-+	defaults = shmem_pin_map(engine->default_state);
- 	if (!defaults) {
- 		err = -ENOMEM;
- 		goto err_lrc;
-@@ -1311,7 +1360,7 @@ static int compare_isolation(struct intel_engine_cs *engine,
- 	} while (dw < PAGE_SIZE / sizeof(u32) &&
- 		 (hw[dw] & ~BIT(0)) != MI_BATCH_BUFFER_END);
- 
--	shmem_unpin_map(ce->engine->default_state, defaults);
-+	shmem_unpin_map(engine->default_state, defaults);
- err_lrc:
- 	i915_gem_object_unpin_map(ce->state->obj);
- err_B1:
-@@ -1328,7 +1377,7 @@ static int compare_isolation(struct intel_engine_cs *engine,
- static int
- __lrc_isolation(struct intel_engine_cs *engine, u32 poison, bool relative)
- {
--	u32 *sema = memset32(engine->status_page.addr + 1000, 0, 1);
-+	struct hwsp_semaphore sema = hwsp_semaphore(engine);
- 	struct i915_vma *ref[2], *result[2];
- 	struct intel_context *A, *B;
- 	struct i915_request *rq;
-@@ -1356,15 +1405,12 @@ __lrc_isolation(struct intel_engine_cs *engine, u32 poison, bool relative)
- 		goto err_ref0;
- 	}
- 
--	rq = record_registers(A, ref[0], ref[1], relative, sema);
-+	rq = record_registers(A, engine, ref[0], ref[1], relative, NULL);
- 	if (IS_ERR(rq)) {
- 		err = PTR_ERR(rq);
- 		goto err_ref1;
- 	}
- 
--	WRITE_ONCE(*sema, 1);
--	wmb();
+-static void queue_request(struct intel_engine_cs *engine,
+-			  struct i915_request *rq)
+-{
+-	GEM_BUG_ON(!list_empty(&rq->sched.link));
+-	list_add_tail(&rq->sched.link,
+-		      i915_sched_lookup_priolist(engine, rq_prio(rq)));
+-	set_bit(I915_FENCE_FLAG_PQUEUE, &rq->fence.flags);
+-}
 -
- 	if (i915_request_wait(rq, 0, HZ / 2) < 0) {
- 		i915_request_put(rq);
- 		err = -ETIME;
-@@ -1384,15 +1430,15 @@ __lrc_isolation(struct intel_engine_cs *engine, u32 poison, bool relative)
- 		goto err_result0;
- 	}
+-static bool submit_queue(struct intel_engine_cs *engine,
+-			 const struct i915_request *rq)
+-{
+-	struct intel_engine_execlists *execlists = &engine->execlists;
+-
+-	if (rq_prio(rq) <= execlists->queue_priority_hint)
+-		return false;
+-
+-	execlists->queue_priority_hint = rq_prio(rq);
+-	return true;
+-}
+-
+-static bool ancestor_on_hold(const struct intel_engine_cs *engine,
+-			     const struct i915_request *rq)
+-{
+-	GEM_BUG_ON(i915_request_on_hold(rq));
+-	return !list_empty(&engine->active.hold) && hold_request(rq);
+-}
+-
+-static void execlists_submit_request(struct i915_request *request)
+-{
+-	struct intel_engine_cs *engine = request->engine;
+-	unsigned long flags;
+-
+-	/* Will be called from irq-context when using foreign fences. */
+-	spin_lock_irqsave(&engine->active.lock, flags);
+-
+-	if (unlikely(ancestor_on_hold(engine, request))) {
+-		RQ_TRACE(request, "ancestor on hold\n");
+-		list_add_tail(&request->sched.link, &engine->active.hold);
+-		i915_request_set_hold(request);
+-	} else {
+-		queue_request(engine, request);
+-
+-		GEM_BUG_ON(RB_EMPTY_ROOT(&engine->execlists.queue.rb_root));
+-		GEM_BUG_ON(list_empty(&request->sched.link));
+-
+-		if (submit_queue(engine, request))
+-			__execlists_kick(&engine->execlists);
+-	}
+-
+-	spin_unlock_irqrestore(&engine->active.lock, flags);
+-}
+-
+ static int execlists_context_pre_pin(struct intel_context *ce,
+ 				     struct i915_gem_ww_ctx *ww,
+ 				     void **vaddr)
+@@ -3072,7 +3019,7 @@ static bool can_preempt(struct intel_engine_cs *engine)
  
--	rq = record_registers(A, result[0], result[1], relative, sema);
-+	rq = record_registers(A, engine, result[0], result[1], relative, &sema);
- 	if (IS_ERR(rq)) {
- 		err = PTR_ERR(rq);
- 		goto err_result1;
- 	}
+ static void execlists_set_default_submission(struct intel_engine_cs *engine)
+ {
+-	engine->submit_request = execlists_submit_request;
++	engine->submit_request = i915_request_enqueue;
+ 	engine->execlists.tasklet.func = execlists_submission_tasklet;
  
--	err = poison_registers(B, poison, relative, sema);
-+	err = poison_registers(B, engine, poison, relative, &sema);
- 	if (err) {
--		WRITE_ONCE(*sema, -1);
-+		WRITE_ONCE(*sema.va, -1);
- 		i915_request_put(rq);
- 		goto err_result1;
- 	}
-@@ -1494,6 +1540,160 @@ static int live_lrc_isolation(void *arg)
- 	return err;
+ 	engine->reset.prepare = execlists_reset_prepare;
+diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+index 53cf68e240c3..4f1eee4fbfb2 100644
+--- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
++++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+@@ -510,34 +510,6 @@ static int guc_request_alloc(struct i915_request *request)
+ 	return 0;
  }
  
-+static int __lrc_cross(struct intel_engine_cs *a,
-+		       struct intel_engine_cs *b,
-+		       u32 poison)
+-static inline void queue_request(struct intel_engine_cs *engine,
+-				 struct i915_request *rq,
+-				 int prio)
+-{
+-	GEM_BUG_ON(!list_empty(&rq->sched.link));
+-	list_add_tail(&rq->sched.link,
+-		      i915_sched_lookup_priolist(engine, prio));
+-	set_bit(I915_FENCE_FLAG_PQUEUE, &rq->fence.flags);
+-}
+-
+-static void guc_submit_request(struct i915_request *rq)
+-{
+-	struct intel_engine_cs *engine = rq->engine;
+-	unsigned long flags;
+-
+-	/* Will be called from irq-context when using foreign fences. */
+-	spin_lock_irqsave(&engine->active.lock, flags);
+-
+-	queue_request(engine, rq, rq_prio(rq));
+-
+-	GEM_BUG_ON(RB_EMPTY_ROOT(&engine->execlists.queue.rb_root));
+-	GEM_BUG_ON(list_empty(&rq->sched.link));
+-
+-	tasklet_hi_schedule(&engine->execlists.tasklet);
+-
+-	spin_unlock_irqrestore(&engine->active.lock, flags);
+-}
+-
+ static void sanitize_hwsp(struct intel_engine_cs *engine)
+ {
+ 	struct intel_timeline *tl;
+@@ -606,7 +578,7 @@ static int guc_resume(struct intel_engine_cs *engine)
+ 
+ static void guc_set_default_submission(struct intel_engine_cs *engine)
+ {
+-	engine->submit_request = guc_submit_request;
++	engine->submit_request = i915_request_enqueue;
+ 	engine->execlists.tasklet.func = guc_submission_tasklet;
+ 
+ 	engine->reset.prepare = guc_reset_prepare;
+diff --git a/drivers/gpu/drm/i915/i915_scheduler.c b/drivers/gpu/drm/i915/i915_scheduler.c
+index 9139a91f0aa3..3f5fc03908dc 100644
+--- a/drivers/gpu/drm/i915/i915_scheduler.c
++++ b/drivers/gpu/drm/i915/i915_scheduler.c
+@@ -448,6 +448,88 @@ void i915_request_set_priority(struct i915_request *rq, int prio)
+ 	spin_unlock_irqrestore(&engine->active.lock, flags);
+ }
+ 
++static void queue_request(struct intel_engine_cs *engine,
++			  struct i915_request *rq)
 +{
-+	struct hwsp_semaphore sema = hwsp_semaphore(a);
-+	struct i915_vma *ref[2], *result[2];
-+	struct intel_context *A, *B;
-+	struct i915_request *rq;
-+	int err;
-+
-+	GEM_BUG_ON(a->gt->ggtt != b->gt->ggtt);
-+
-+	pr_debug("Context on %s, poisoning from %s with %08x\n",
-+		 a->name, b->name, poison);
-+
-+	A = intel_context_create(a);
-+	if (IS_ERR(A))
-+		return PTR_ERR(A);
-+
-+	B = intel_context_create(b);
-+	if (IS_ERR(B)) {
-+		err = PTR_ERR(B);
-+		goto err_A;
-+	}
-+
-+	ref[0] = create_user_vma(A->vm, SZ_64K);
-+	if (IS_ERR(ref[0])) {
-+		err = PTR_ERR(ref[0]);
-+		goto err_B;
-+	}
-+
-+	ref[1] = create_user_vma(A->vm, SZ_64K);
-+	if (IS_ERR(ref[1])) {
-+		err = PTR_ERR(ref[1]);
-+		goto err_ref0;
-+	}
-+
-+	rq = record_registers(A, a, ref[0], ref[1], false, NULL);
-+	if (IS_ERR(rq)) {
-+		err = PTR_ERR(rq);
-+		goto err_ref1;
-+	}
-+
-+	if (i915_request_wait(rq, 0, HZ / 2) < 0) {
-+		i915_request_put(rq);
-+		err = -ETIME;
-+		goto err_ref1;
-+	}
-+	i915_request_put(rq);
-+
-+	result[0] = create_user_vma(A->vm, SZ_64K);
-+	if (IS_ERR(result[0])) {
-+		err = PTR_ERR(result[0]);
-+		goto err_ref1;
-+	}
-+
-+	result[1] = create_user_vma(A->vm, SZ_64K);
-+	if (IS_ERR(result[1])) {
-+		err = PTR_ERR(result[1]);
-+		goto err_result0;
-+	}
-+
-+	rq = record_registers(A, a, result[0], result[1], false, &sema);
-+	if (IS_ERR(rq)) {
-+		err = PTR_ERR(rq);
-+		goto err_result1;
-+	}
-+
-+	err = poison_registers(B, a, poison, false, &sema);
-+	if (err) {
-+		WRITE_ONCE(*sema.va, -1);
-+		i915_request_put(rq);
-+		goto err_result1;
-+	}
-+
-+	if (i915_request_wait(rq, 0, HZ / 2) < 0) {
-+		i915_request_put(rq);
-+		err = -ETIME;
-+		goto err_result1;
-+	}
-+	i915_request_put(rq);
-+
-+	err = compare_isolation(a, ref, result, A, poison, false);
-+
-+err_result1:
-+	i915_vma_put(result[1]);
-+err_result0:
-+	i915_vma_put(result[0]);
-+err_ref1:
-+	i915_vma_put(ref[1]);
-+err_ref0:
-+	i915_vma_put(ref[0]);
-+err_B:
-+	intel_context_put(B);
-+err_A:
-+	intel_context_put(A);
-+	return err;
++	GEM_BUG_ON(!list_empty(&rq->sched.link));
++	list_add_tail(&rq->sched.link,
++		      i915_sched_lookup_priolist(engine, rq_prio(rq)));
++	set_bit(I915_FENCE_FLAG_PQUEUE, &rq->fence.flags);
 +}
 +
-+static int live_lrc_cross(void *arg)
++static bool submit_queue(struct intel_engine_cs *engine,
++			 const struct i915_request *rq)
 +{
-+	struct intel_gt *gt = arg;
-+	struct intel_engine_cs *a, *b;
-+	enum intel_engine_id a_id, b_id;
-+	const u32 poison[] = {
-+		STACK_MAGIC,
-+		0x3a3a3a3a,
-+		0x5c5c5c5c,
-+		0xffffffff,
-+		0xffff0000,
-+	};
-+	int err = 0;
-+	int i;
++	struct intel_engine_execlists *execlists = &engine->execlists;
++
++	if (rq_prio(rq) <= execlists->queue_priority_hint)
++		return false;
++
++	execlists->queue_priority_hint = rq_prio(rq);
++	return true;
++}
++
++static bool hold_request(const struct i915_request *rq)
++{
++	struct i915_dependency *p;
++	bool result = false;
 +
 +	/*
-+	 * Our goal is to try and tamper with another client's context
-+	 * running concurrently. The HW's goal is to stop us.
++	 * If one of our ancestors is on hold, we must also be put on hold,
++	 * otherwise we will bypass it and execute before it.
 +	 */
++	rcu_read_lock();
++	for_each_signaler(p, rq) {
++		const struct i915_request *s =
++			container_of(p->signaler, typeof(*s), sched);
 +
-+	for_each_engine(a, gt, a_id) {
-+		if (!IS_ENABLED(CONFIG_DRM_I915_SELFTEST_BROKEN) &&
-+		    skip_isolation(a))
++		if (s->engine != rq->engine)
 +			continue;
 +
-+		intel_engine_pm_get(a);
-+		for_each_engine(b, gt, b_id) {
-+			if (a == b)
-+				continue;
-+
-+			intel_engine_pm_get(b);
-+			for (i = 0; i < ARRAY_SIZE(poison); i++) {
-+				int result;
-+
-+				result = __lrc_cross(a, b, poison[i]);
-+				if (result && !err)
-+					err = result;
-+
-+				result = __lrc_cross(a, b, ~poison[i]);
-+				if (result && !err)
-+					err = result;
-+			}
-+			intel_engine_pm_put(b);
-+		}
-+		intel_engine_pm_put(a);
-+
-+		if (igt_flush_test(gt->i915)) {
-+			err = -EIO;
++		result = i915_request_on_hold(s);
++		if (result)
 +			break;
-+		}
 +	}
++	rcu_read_unlock();
 +
-+	return err;
++	return result;
 +}
 +
- static int indirect_ctx_submit_req(struct intel_context *ce)
++static bool ancestor_on_hold(const struct intel_engine_cs *engine,
++			     const struct i915_request *rq)
++{
++	GEM_BUG_ON(i915_request_on_hold(rq));
++	return unlikely(!list_empty(&engine->active.hold)) && hold_request(rq);
++}
++
++void i915_request_enqueue(struct i915_request *rq)
++{
++	struct intel_engine_cs *engine = rq->engine;
++	unsigned long flags;
++	bool kick = false;
++
++	/* Will be called from irq-context when using foreign fences. */
++	spin_lock_irqsave(&engine->active.lock, flags);
++	GEM_BUG_ON(test_bit(I915_FENCE_FLAG_PQUEUE, &rq->fence.flags));
++
++	if (unlikely(ancestor_on_hold(engine, rq))) {
++		RQ_TRACE(rq, "ancestor on hold\n");
++		list_add_tail(&rq->sched.link, &engine->active.hold);
++		i915_request_set_hold(rq);
++	} else {
++		queue_request(engine, rq);
++
++		GEM_BUG_ON(RB_EMPTY_ROOT(&engine->execlists.queue.rb_root));
++
++		kick = submit_queue(engine, rq);
++	}
++
++	GEM_BUG_ON(list_empty(&rq->sched.link));
++	spin_unlock_irqrestore(&engine->active.lock, flags);
++	if (kick)
++		tasklet_hi_schedule(&engine->execlists.tasklet);
++}
++
+ void i915_sched_node_init(struct i915_sched_node *node)
  {
- 	struct i915_request *rq;
-@@ -1884,6 +2084,7 @@ int intel_lrc_live_selftests(struct drm_i915_private *i915)
- 		SUBTEST(live_lrc_isolation),
- 		SUBTEST(live_lrc_timestamp),
- 		SUBTEST(live_lrc_garbage),
-+		SUBTEST(live_lrc_cross),
- 		SUBTEST(live_pphwsp_runtime),
- 		SUBTEST(live_lrc_indirect_ctx_bb),
- 	};
+ 	spin_lock_init(&node->lock);
+diff --git a/drivers/gpu/drm/i915/i915_scheduler.h b/drivers/gpu/drm/i915/i915_scheduler.h
+index 5be7f90e7896..c4c086d56f81 100644
+--- a/drivers/gpu/drm/i915/i915_scheduler.h
++++ b/drivers/gpu/drm/i915/i915_scheduler.h
+@@ -39,6 +39,8 @@ void i915_sched_init_ipi(struct i915_sched_ipi *ipi);
+ 
+ void i915_request_set_priority(struct i915_request *request, int prio);
+ 
++void i915_request_enqueue(struct i915_request *request);
++
+ struct list_head *
+ i915_sched_lookup_priolist(struct intel_engine_cs *engine, int prio);
+ 
 -- 
 2.20.1
 
