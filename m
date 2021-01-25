@@ -2,61 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 80E2D3026D7
-	for <lists+intel-gfx@lfdr.de>; Mon, 25 Jan 2021 16:26:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id EC42A3026DC
+	for <lists+intel-gfx@lfdr.de>; Mon, 25 Jan 2021 16:28:15 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EE3996E0AC;
-	Mon, 25 Jan 2021 15:26:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 03C046E188;
+	Mon, 25 Jan 2021 15:28:14 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 386B56E0F1
- for <intel-gfx@lists.freedesktop.org>; Mon, 25 Jan 2021 15:26:28 +0000 (UTC)
-IronPort-SDR: ihidvT/csuifXsnakRadXD+/RvP/Xk7cbmP0UiawmACWILKOkYdB5CqNa32+EDlLdvbmMMH2OW
- k354qHvNJlwQ==
-X-IronPort-AV: E=McAfee;i="6000,8403,9874"; a="159518335"
-X-IronPort-AV: E=Sophos;i="5.79,373,1602572400"; d="scan'208";a="159518335"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Jan 2021 07:26:27 -0800
-IronPort-SDR: KpfUULFkhYx2cGZPxayTbl43Z1lBt+QWAerFlNntvcuARJ3DIK0y1RZ649yenZyoiVet8N7olq
- HHL8YLVQbRKw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.79,373,1602572400"; d="scan'208";a="472343308"
-Received: from kmsmsx603.gar.corp.intel.com ([172.21.219.143])
- by fmsmga001.fm.intel.com with ESMTP; 25 Jan 2021 07:26:26 -0800
-Received: from bgsmsx604.gar.corp.intel.com (10.67.234.6) by
- kmsmsx603.gar.corp.intel.com (172.21.219.143) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1713.5; Mon, 25 Jan 2021 23:26:25 +0800
-Received: from bgsmsx604.gar.corp.intel.com ([10.67.234.6]) by
- BGSMSX604.gar.corp.intel.com ([10.67.234.6]) with mapi id 15.01.1713.004;
- Mon, 25 Jan 2021 20:56:24 +0530
-From: "Gupta, Anshuman" <anshuman.gupta@intel.com>
-To: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "Vudum, Lakshminarayana" <lakshminarayana.vudum@intel.com>
-Thread-Topic: =?utf-8?B?W0ludGVsLWdmeF0g4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJtL2k5?=
- =?utf-8?B?MTUvaGRjcDogRGlzYWJsZSB0aGUgUVNFUyBjaGVjayBmb3IgSERDUCAxLjQg?=
- =?utf-8?Q?over_MST_(rev2)?=
-Thread-Index: AQHW8GhgXA0Ib8oqwkuOBeETmZhDl6o4e16A
-Date: Mon, 25 Jan 2021 15:26:24 +0000
-Message-ID: <1fc478adfaab48daa99274b11305a80a@intel.com>
-References: <20210106223909.34476-1-sean@poorly.run>
- <161128337637.14036.11941412627307128800@emeril.freedesktop.org>
-In-Reply-To: <161128337637.14036.11941412627307128800@emeril.freedesktop.org>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-product: dlpe-windows
-dlp-version: 11.5.1.3
-dlp-reaction: no-action
-x-originating-ip: [10.223.10.1]
+Received: from fireflyinternet.com (unknown [77.68.26.236])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 347B06E0F1;
+ Mon, 25 Jan 2021 15:28:12 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 23694743-1500050 
+ for multiple; Mon, 25 Jan 2021 15:28:00 +0000
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: igt-dev@lists.freedesktop.org
+Date: Mon, 25 Jan 2021 15:28:01 +0000
+Message-Id: <20210125152801.2515999-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.30.0
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] 
- =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
- =?utf-8?q?/i915/hdcp=3A_Disable_the_QSES_check_for_HDCP_1=2E4_over_MST_?=
- =?utf-8?b?KHJldjIp?=
+Subject: [Intel-gfx] [PATCH i-g-t] i915/sysfs_clients: Check that client ids
+ are cyclic
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,88 +37,197 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: intel-gfx@lists.freedesktop.org, Chris Wilson <chris@chris-wilson.co.uk>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-SGkgTGFrc2htaSAsDQpXZSBuZWVkIHRvIG1lcmdlIHRoZSBwYXRjaCBodHRwczovL3BhdGNod29y
-ay5mcmVlZGVza3RvcC5vcmcvc2VyaWVzLzg1NTU1Lw0KQmVsb3cgYXJlIHRoZSBnZW0gZmFpbHVy
-ZXMgY2F1c2luZyB0aGUgQkFUIHRvIGZhaWwgLCB0aG9zZSB3ZXJlIG5vdCBzZWVuIG9uIFJldjEg
-b2YgdGhpcyBwYXRjaC4NCkNvdWxkIHlvdSBwbGVhc2UgcmVyZXBvcnQtdGhlIHJlc3VsdHMgdG8g
-dHJpZ2dlciBDSS1JR1QgcnVuLg0KVGhhbmtzLA0KQW5zaHVtYW4gR3VwdGEuDQoNCkZyb206IElu
-dGVsLWdmeCA8aW50ZWwtZ2Z4LWJvdW5jZXNAbGlzdHMuZnJlZWRlc2t0b3Aub3JnPiBPbiBCZWhh
-bGYgT2YgUGF0Y2h3b3JrDQpTZW50OiBGcmlkYXksIEphbnVhcnkgMjIsIDIwMjEgODoxMyBBTQ0K
-VG86IFNlYW4gUGF1bCA8c2VhbkBwb29ybHkucnVuPg0KQ2M6IGludGVsLWdmeEBsaXN0cy5mcmVl
-ZGVza3RvcC5vcmcNClN1YmplY3Q6IFtJbnRlbC1nZnhdIOKclyBGaS5DSS5CQVQ6IGZhaWx1cmUg
-Zm9yIGRybS9pOTE1L2hkY3A6IERpc2FibGUgdGhlIFFTRVMgY2hlY2sgZm9yIEhEQ1AgMS40IG92
-ZXIgTVNUIChyZXYyKQ0KDQpQYXRjaCBEZXRhaWxzIA0KU2VyaWVzOg0KZHJtL2k5MTUvaGRjcDog
-RGlzYWJsZSB0aGUgUVNFUyBjaGVjayBmb3IgSERDUCAxLjQgb3ZlciBNU1QgKHJldjIpDQpVUkw6
-DQpodHRwczovL3BhdGNod29yay5mcmVlZGVza3RvcC5vcmcvc2VyaWVzLzg1NTU1Lw0KU3RhdGU6
-DQpmYWlsdXJlDQpEZXRhaWxzOg0KaHR0cHM6Ly9pbnRlbC1nZngtY2kuMDEub3JnL3RyZWUvZHJt
-LXRpcC9QYXRjaHdvcmtfMTk0NDcvaW5kZXguaHRtbA0KQ0kgQnVnIExvZyAtIGNoYW5nZXMgZnJv
-bSBDSV9EUk1fOTY2NiAtPiBQYXRjaHdvcmtfMTk0NDcNClN1bW1hcnkNCkZBSUxVUkUNClNlcmlv
-dXMgdW5rbm93biBjaGFuZ2VzIGNvbWluZyB3aXRoIFBhdGNod29ya18xOTQ0NyBhYnNvbHV0ZWx5
-IG5lZWQgdG8gYmUNCnZlcmlmaWVkIG1hbnVhbGx5Lg0KSWYgeW91IHRoaW5rIHRoZSByZXBvcnRl
-ZCBjaGFuZ2VzIGhhdmUgbm90aGluZyB0byBkbyB3aXRoIHRoZSBjaGFuZ2VzDQppbnRyb2R1Y2Vk
-IGluIFBhdGNod29ya18xOTQ0NywgcGxlYXNlIG5vdGlmeSB5b3VyIGJ1ZyB0ZWFtIHRvIGFsbG93
-IHRoZW0NCnRvIGRvY3VtZW50IHRoaXMgbmV3IGZhaWx1cmUgbW9kZSwgd2hpY2ggd2lsbCByZWR1
-Y2UgZmFsc2UgcG9zaXRpdmVzIGluIENJLg0KRXh0ZXJuYWwgVVJMOiBodHRwczovL2ludGVsLWdm
-eC1jaS4wMS5vcmcvdHJlZS9kcm0tdGlwL1BhdGNod29ya18xOTQ0Ny9pbmRleC5odG1sDQpQb3Nz
-aWJsZSBuZXcgaXNzdWVzDQpIZXJlIGFyZSB0aGUgdW5rbm93biBjaGFuZ2VzIHRoYXQgbWF5IGhh
-dmUgYmVlbiBpbnRyb2R1Y2VkIGluIFBhdGNod29ya18xOTQ0NzoNCklHVCBjaGFuZ2VzDQpQb3Nz
-aWJsZSByZWdyZXNzaW9ucw0K4oCiIGlndEBpOTE1X3NlbGZ0ZXN0QGxpdmVAZ3RfbHJjOg0KbyBm
-aS1ic3ctbjMwNTA6IGh0dHBzOi8vaW50ZWwtZ2Z4LWNpLjAxLm9yZy90cmVlL2RybS10aXAvQ0lf
-RFJNXzk2NjYvZmktYnN3LW4zMDUwL2lndEBpOTE1X3NlbGZ0ZXN0QGxpdmVAZ3RfbHJjLmh0bWwg
-LT4gaHR0cHM6Ly9pbnRlbC1nZngtY2kuMDEub3JnL3RyZWUvZHJtLXRpcC9QYXRjaHdvcmtfMTk0
-NDcvZmktYnN3LW4zMDUwL2lndEBpOTE1X3NlbGZ0ZXN0QGxpdmVAZ3RfbHJjLmh0bWwNCktub3du
-IGlzc3Vlcw0KSGVyZSBhcmUgdGhlIGNoYW5nZXMgZm91bmQgaW4gUGF0Y2h3b3JrXzE5NDQ3IHRo
-YXQgY29tZSBmcm9tIGtub3duIGlzc3VlczoNCklHVCBjaGFuZ2VzDQpJc3N1ZXMgaGl0DQrigKIg
-aWd0QGdlbV9tbWFwX2d0dEBiYXNpYzoNCm8gZmktdGdsLXk6IGh0dHBzOi8vaW50ZWwtZ2Z4LWNp
-LjAxLm9yZy90cmVlL2RybS10aXAvQ0lfRFJNXzk2NjYvZmktdGdsLXkvaWd0QGdlbV9tbWFwX2d0
-dEBiYXNpYy5odG1sIC0+IGh0dHBzOi8vaW50ZWwtZ2Z4LWNpLjAxLm9yZy90cmVlL2RybS10aXAv
-UGF0Y2h3b3JrXzE5NDQ3L2ZpLXRnbC15L2lndEBnZW1fbW1hcF9ndHRAYmFzaWMuaHRtbCAoaHR0
-cHM6Ly9naXRsYWIuZnJlZWRlc2t0b3Aub3JnL2RybS9pbnRlbC9pc3N1ZXMvNDAyKSArMiBzaW1p
-bGFyIGlzc3Vlcw0K4oCiIGlndEBpOTE1X3NlbGZ0ZXN0QGxpdmVAaHVnZXBhZ2VzOg0KbyBmaS1i
-c3ctbjMwNTA6IGh0dHBzOi8vaW50ZWwtZ2Z4LWNpLjAxLm9yZy90cmVlL2RybS10aXAvQ0lfRFJN
-Xzk2NjYvZmktYnN3LW4zMDUwL2lndEBpOTE1X3NlbGZ0ZXN0QGxpdmVAaHVnZXBhZ2VzLmh0bWwg
-LT4gaHR0cHM6Ly9pbnRlbC1nZngtY2kuMDEub3JnL3RyZWUvZHJtLXRpcC9QYXRjaHdvcmtfMTk0
-NDcvZmktYnN3LW4zMDUwL2lndEBpOTE1X3NlbGZ0ZXN0QGxpdmVAaHVnZXBhZ2VzLmh0bWwgKGh0
-dHBzOi8vYnVncy5mcmVlZGVza3RvcC5vcmcvc2hvd19idWcuY2dpP2lkPTEwOTI3MSkgKzIwIHNp
-bWlsYXIgaXNzdWVzDQrigKIgaWd0QGk5MTVfc2VsZnRlc3RAbGl2ZUByaW5nX3N1Ym1pc3Npb246
-DQpvIGZpLWJzdy1uMzA1MDogTk9UUlVOIC0+IGh0dHBzOi8vaW50ZWwtZ2Z4LWNpLjAxLm9yZy90
-cmVlL2RybS10aXAvUGF0Y2h3b3JrXzE5NDQ3L2ZpLWJzdy1uMzA1MC9pZ3RAaTkxNV9zZWxmdGVz
-dEBsaXZlQHJpbmdfc3VibWlzc2lvbi5odG1sIChodHRwczovL2J1Z3MuZnJlZWRlc2t0b3Aub3Jn
-L3Nob3dfYnVnLmNnaT9pZD0xMDkyNzEpICsyIHNpbWlsYXIgaXNzdWVzDQrigKIgaWd0QGttc19j
-aGFtZWxpdW1AZHAtY3JjLWZhc3Q6DQpvIGZpLWtibC03NTAwdTogaHR0cHM6Ly9pbnRlbC1nZngt
-Y2kuMDEub3JnL3RyZWUvZHJtLXRpcC9DSV9EUk1fOTY2Ni9maS1rYmwtNzUwMHUvaWd0QGttc19j
-aGFtZWxpdW1AZHAtY3JjLWZhc3QuaHRtbCAtPiBodHRwczovL2ludGVsLWdmeC1jaS4wMS5vcmcv
-dHJlZS9kcm0tdGlwL1BhdGNod29ya18xOTQ0Ny9maS1rYmwtNzUwMHUvaWd0QGttc19jaGFtZWxp
-dW1AZHAtY3JjLWZhc3QuaHRtbCAoaHR0cHM6Ly9naXRsYWIuZnJlZWRlc2t0b3Aub3JnL2RybS9p
-bnRlbC9pc3N1ZXMvMTE2MSAvIGh0dHBzOi8vZ2l0bGFiLmZyZWVkZXNrdG9wLm9yZy9kcm0vaW50
-ZWwvaXNzdWVzLzI2MikNClBvc3NpYmxlIGZpeGVzDQrigKIgaWd0QGdlbV90aWxlZF9ibGl0c0Bi
-YXNpYzoNCm8gZmktdGdsLXk6IGh0dHBzOi8vaW50ZWwtZ2Z4LWNpLjAxLm9yZy90cmVlL2RybS10
-aXAvQ0lfRFJNXzk2NjYvZmktdGdsLXkvaWd0QGdlbV90aWxlZF9ibGl0c0BiYXNpYy5odG1sICho
-dHRwczovL2dpdGxhYi5mcmVlZGVza3RvcC5vcmcvZHJtL2ludGVsL2lzc3Vlcy80MDIpIC0+IGh0
-dHBzOi8vaW50ZWwtZ2Z4LWNpLjAxLm9yZy90cmVlL2RybS10aXAvUGF0Y2h3b3JrXzE5NDQ3L2Zp
-LXRnbC15L2lndEBnZW1fdGlsZWRfYmxpdHNAYmFzaWMuaHRtbCArMSBzaW1pbGFyIGlzc3VlDQpX
-YXJuaW5ncw0K4oCiIGlndEBpOTE1X3NlbGZ0ZXN0QGxpdmVAZXhlY2xpc3RzOg0KbyBmaS1ic3ct
-bjMwNTA6IGh0dHBzOi8vaW50ZWwtZ2Z4LWNpLjAxLm9yZy90cmVlL2RybS10aXAvQ0lfRFJNXzk2
-NjYvZmktYnN3LW4zMDUwL2lndEBpOTE1X3NlbGZ0ZXN0QGxpdmVAZXhlY2xpc3RzLmh0bWwgKGh0
-dHBzOi8vZ2l0bGFiLmZyZWVkZXNrdG9wLm9yZy9kcm0vaW50ZWwvaXNzdWVzLzI5NDApIC0+IGh0
-dHBzOi8vaW50ZWwtZ2Z4LWNpLjAxLm9yZy90cmVlL2RybS10aXAvUGF0Y2h3b3JrXzE5NDQ3L2Zp
-LWJzdy1uMzA1MC9pZ3RAaTkxNV9zZWxmdGVzdEBsaXZlQGV4ZWNsaXN0cy5odG1sIChodHRwczov
-L2J1Z3MuZnJlZWRlc2t0b3Aub3JnL3Nob3dfYnVnLmNnaT9pZD0xMDkyNzEpDQpQYXJ0aWNpcGF0
-aW5nIGhvc3RzICg0MSAtPiAzNykNCk1pc3NpbmcgKDQpOiBmaS1pbGstbTU0MCBmaS1ic3ctY3lh
-biBmaS1iZHctc2FtdXMgZmktaHN3LTQyMDB1IA0KQnVpbGQgY2hhbmdlcw0K4oCiIExpbnV4OiBD
-SV9EUk1fOTY2NiAtPiBQYXRjaHdvcmtfMTk0NDcNCkNJLTIwMTkwNTI5OiAyMDE5MDUyOQ0KQ0lf
-RFJNXzk2NjY6IDljY2JjNjUzYmYyOTQ4ZDFmN2U5ZmYzMDBkZDc2NzliODg4ZmZhMjUgQCBnaXQ6
-Ly9hbm9uZ2l0LmZyZWVkZXNrdG9wLm9yZy9nZngtY2kvbGludXgNCklHVF81OTYyOiAyMmUzZGFh
-ZWQ4MmFiNzg5MDAxOGEyZjJhYWJmNTA4MmNkNTM2MDIzIEAgZ2l0Oi8vYW5vbmdpdC5mcmVlZGVz
-a3RvcC5vcmcveG9yZy9hcHAvaW50ZWwtZ3B1LXRvb2xzDQpQYXRjaHdvcmtfMTk0NDc6IDY5ZDdk
-YjAwM2ZhNDA2ZGY3ODUxYWIwODIzOWRkNDA5YTc4ZjQ0MjEgQCBnaXQ6Ly9hbm9uZ2l0LmZyZWVk
-ZXNrdG9wLm9yZy9nZngtY2kvbGludXgNCj09IExpbnV4IGNvbW1pdHMgPT0NCjY5ZDdkYjAwM2Zh
-NCBkcm0vaTkxNS9oZGNwOiBEaXNhYmxlIHRoZSBRU0VTIGNoZWNrIGZvciBIRENQIDEuNCBvdmVy
-IE1TVA0KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50
-ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBz
-Oi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
+The client id used is a cyclic allocator as that reduces the likelihood
+of userspace seeing the same id used again (and so confusing the new
+client as the old). Verify that each new client has an id greater than
+the last.
+
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+---
+ tests/i915/sysfs_clients.c | 109 +++++++++++++++++++++++++++++++++----
+ 1 file changed, 98 insertions(+), 11 deletions(-)
+
+diff --git a/tests/i915/sysfs_clients.c b/tests/i915/sysfs_clients.c
+index 6be52c04f..936774661 100644
+--- a/tests/i915/sysfs_clients.c
++++ b/tests/i915/sysfs_clients.c
+@@ -47,6 +47,8 @@
+ #define assert_within_epsilon(x, ref, tolerance) \
+ 	__assert_within_epsilon(x, ref, tolerance / 100., tolerance / 100.)
+ 
++#define BUFSZ 280
++
+ #define MI_BATCH_BUFFER_START (0x31 << 23)
+ #define MI_BATCH_BUFFER_END (0xa << 23)
+ #define MI_ARB_CHECK (0x5 << 23)
+@@ -73,7 +75,7 @@ static void pidname(int i915, int clients)
+ {
+ 	struct dirent *de;
+ 	int sv[2], rv[2];
+-	char buf[280];
++	char buf[BUFSZ];
+ 	int me = -1;
+ 	long count;
+ 	pid_t pid;
+@@ -181,7 +183,7 @@ static long count_clients(int clients)
+ {
+ 	struct dirent *de;
+ 	long count = 0;
+-	char buf[280];
++	char buf[BUFSZ];
+ 	DIR *dir;
+ 
+ 	dir = fdopendir(dup(clients));
+@@ -230,11 +232,9 @@ static void create(int i915, int clients)
+ 	igt_assert_eq(count_clients(clients), 1);
+ }
+ 
+-static int find_me(int clients, pid_t pid)
++static const char *find_client(int clients, pid_t pid, char *buf)
+ {
+ 	struct dirent *de;
+-	char buf[280];
+-	int me = -1;
+ 	DIR *dir;
+ 
+ 	dir = fdopendir(dup(clients));
+@@ -245,17 +245,101 @@ static int find_me(int clients, pid_t pid)
+ 		if (!isdigit(de->d_name[0]))
+ 			continue;
+ 
+-		snprintf(buf, sizeof(buf), "%s/pid", de->d_name);
++		sprintf(buf, "%s/pid", de->d_name);
+ 		igt_sysfs_read(clients, buf, buf, sizeof(buf));
+ 		if (atoi(buf) != pid)
+ 			continue;
+ 
+-		me = openat(clients, de->d_name, O_DIRECTORY | O_RDONLY);
+-		break;
++		strcpy(buf, de->d_name);
++		goto out;
+ 	}
+-
++	igt_warn("Did not find client for pid:%d\n", pid);
++	*buf = '\0';
++out:
+ 	closedir(dir);
+-	return me;
++	return buf;
++}
++
++static int find_me(int clients, pid_t pid)
++{
++	char buf[BUFSZ];
++
++	return openat(clients,
++		      find_client(clients, pid, buf),
++		      O_DIRECTORY | O_RDONLY);
++}
++
++static int reopen_directory(int fd)
++{
++	char buf[BUFSZ];
++	int dir;
++
++	snprintf(buf, sizeof(buf), "/proc/self/fd/%d", fd);
++	dir = open(buf, O_RDONLY);
++	igt_assert_fd(dir);
++
++	return dir;
++}
++
++static unsigned int recycle_client(int i915, int clients)
++{
++	int device, client;
++	char buf[BUFSZ];
++
++	device = gem_reopen_driver(i915);
++	client = atoi(find_client(clients, getpid(), buf));
++	close(device);
++
++	return client;
++}
++
++static int my_id(int clients, pid_t pid)
++{
++	char buf[BUFSZ];
++
++	return atoi(find_client(clients, getpid(), buf));
++}
++
++static void recycle(int i915, int clients)
++{
++	const int ncpus = sysconf(_SC_NPROCESSORS_ONLN);
++
++	/*
++	 * As we open and close clients, we do not expect to reuse old ids,
++	 * i.e. we use a cyclic ida. This reduces the likelihood of userspace
++	 * watchers becoming confused and mistaking the new client as a
++	 * continuation of the old.
++	 */
++	igt_require(my_id(clients, getpid()) < 10000000);
++	igt_assert(my_id(clients, getpid()));
++
++	igt_fork(child, 2 * ncpus) {
++		unsigned int client, last;
++
++		/* Reopen the directory fd for each client */
++		clients = reopen_directory(clients);
++
++		last = recycle_client(i915, clients);
++		igt_info("Child[%d] first client:%d\n", getpid(), last);
++		igt_until_timeout(5) {
++			client = recycle_client(i915, clients);
++
++			/* In 5 seconds we are not going to exhaust the ids */
++			igt_assert(client > last);
++			last = client;
++		}
++		igt_info("Child[%d] last client:%d\n", getpid(), last);
++	}
++	igt_waitchildren();
++
++	/* Cleanup delayed behind rcu */
++	igt_until_timeout(30) {
++		sched_yield();
++		if (count_clients(clients) == 1)
++			break;
++		usleep(10000);
++	}
++	igt_assert_eq(count_clients(clients), 1);
+ }
+ 
+ static int64_t read_runtime(int client, int class)
+@@ -720,7 +804,7 @@ sema(int i915, int clients, const struct intel_execution_engine2 *e, int f)
+ static int read_all(int clients, pid_t pid, int class, uint64_t *runtime)
+ {
+ 	struct dirent *de;
+-	char buf[280];
++	char buf[BUFSZ];
+ 	int count = 0;
+ 	DIR *dir;
+ 
+@@ -959,6 +1043,9 @@ igt_main
+ 	igt_subtest("create")
+ 		create(i915, clients);
+ 
++	igt_subtest("recycle")
++		recycle(i915, clients);
++
+ 	igt_subtest_group
+ 		test_busy(i915, clients);
+ 
+-- 
+2.30.0
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
