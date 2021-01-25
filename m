@@ -2,36 +2,43 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 349EA302644
-	for <lists+intel-gfx@lfdr.de>; Mon, 25 Jan 2021 15:25:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 46FCB302660
+	for <lists+intel-gfx@lfdr.de>; Mon, 25 Jan 2021 15:40:55 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CD6ED6E082;
-	Mon, 25 Jan 2021 14:25:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DF5AF6E0FB;
+	Mon, 25 Jan 2021 14:40:52 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 00E146E082
- for <intel-gfx@lists.freedesktop.org>; Mon, 25 Jan 2021 14:25:24 +0000 (UTC)
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 1D1002228A;
- Mon, 25 Jan 2021 14:25:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
- s=korg; t=1611584724;
- bh=Nh0hwKfWuuovNjFuNV1OJrKe8tPMi30Xe/6U1+0epYo=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=NBi82+G0eQXXvThxyrUpm5lWq+C2YFGflcx2mTBkGyAt3XAlKVGGXd1lGmvf/M+BR
- sqOUjvWVFbag5dIlZhKyHozBx/C9tBDr4Pvo65vzafbdCwItk2eql9vG878EvGCoiK
- mtF4crFhPNK9uFUNKNPrNQF9NqcE+Zafqm1tcrWE=
-Date: Mon, 25 Jan 2021 15:25:22 +0100
-From: Greg KH <gregkh@linuxfoundation.org>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>
-Message-ID: <YA7U0gT/mqE76sBP@kroah.com>
-References: <161149524220215@kroah.com>
- <20210125132711.27101-1-ville.syrjala@linux.intel.com>
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 729946E0FB
+ for <intel-gfx@lists.freedesktop.org>; Mon, 25 Jan 2021 14:40:51 +0000 (UTC)
+IronPort-SDR: 304bnzIqm1RFPbogPlhEZnCOKh9tWhKsEPQ9+miYD2exY3/+C09Oz39Khfk+BY/QYNEe/KKKTA
+ r/cZLzvmwIeA==
+X-IronPort-AV: E=McAfee;i="6000,8403,9874"; a="264560405"
+X-IronPort-AV: E=Sophos;i="5.79,373,1602572400"; d="scan'208";a="264560405"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Jan 2021 06:40:50 -0800
+IronPort-SDR: O0AofaGw/qOy8tahRvhop7DKkCGFSYRgCn/KuWM76ViEhhxIYHNXlcAfOnUQJA05k8PFgr+0lL
+ ea6X3mN3XY7g==
+X-IronPort-AV: E=Sophos;i="5.79,373,1602572400"; d="scan'208";a="387406847"
+Received: from fjohn-mobl1.ger.corp.intel.com (HELO [10.249.46.217])
+ ([10.249.46.217])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Jan 2021 06:40:48 -0800
+To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
+References: <20210125140136.10494-1-chris@chris-wilson.co.uk>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+Message-ID: <9cc2ee92-adca-7d52-715f-96eca84148d9@linux.intel.com>
+Date: Mon, 25 Jan 2021 14:40:46 +0000
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.5.0
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20210125132711.27101-1-ville.syrjala@linux.intel.com>
-Subject: Re: [Intel-gfx] [PATCH stable-5.10] drm/i915: Only enable DFP
- 4:4:4->4:2:0 conversion when outputting YCbCr 4:4:4
+In-Reply-To: <20210125140136.10494-1-chris@chris-wilson.co.uk>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH 01/41] drm/i915/selftests: Check for
+ engine-reset errors in the middle of workarounds
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,48 +51,67 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org,
- stable@vger.kernel.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Cc: thomas.hellstrom@intel.com
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Jan 25, 2021 at 03:27:11PM +0200, Ville Syrjala wrote:
-> From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> =
 
-> commit 1c4995b0a576d24bb7ead991fb037c8b47ab6e32 upstream.
-> =
-
-> Let's not enable the 4:4:4->4:2:0 conversion bit in the DFP unless we're
-> actually outputting YCbCr 4:4:4. It would appear some protocol
-> converters blindy consult this bit even when the source is outputting
-> RGB, resulting in a visual mess.
-> =
-
-> Cc: <stable@vger.kernel.org> # 0e634efd858e: drm/i915: s/intel_dp_sink_dp=
-ms/intel_dp_set_power/
-> Cc: stable@vger.kernel.org
-> Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/2914
-> Signed-off-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> Link: https://patchwork.freedesktop.org/patch/msgid/20210111164111.13302-=
-1-ville.syrjala@linux.intel.com
-> Fixes: 181567aa9f0d ("drm/i915: Do YCbCr 444->420 conversion via DP proto=
-col converters")
-> Reviewed-by: Jani Nikula <jani.nikula@intel.com>
-> (cherry picked from commit 3170a21f7059c4660c469f59bf529f372a57da5f)
-> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
-> Link: https://patchwork.freedesktop.org/patch/msgid/20210118154355.24453-=
-1-ville.syrjala@linux.intel.com
-> (cherry picked from commit 1c4995b0a576d24bb7ead991fb037c8b47ab6e32)
+On 25/01/2021 14:00, Chris Wilson wrote:
+> As we reset the engine between verifying the workarounds remain intact,
+> report an engine reset failure.
+> 
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
 > ---
-> Note the extra depdendency on commit 0e634efd858e
-> ("drm/i915: s/intel_dp_sink_dpms/intel_dp_set_power/").
+>   drivers/gpu/drm/i915/gt/selftest_workarounds.c | 16 +++++++++++++---
+>   1 file changed, 13 insertions(+), 3 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/gt/selftest_workarounds.c b/drivers/gpu/drm/i915/gt/selftest_workarounds.c
+> index 37ea46907a7d..af33a720dbf8 100644
+> --- a/drivers/gpu/drm/i915/gt/selftest_workarounds.c
+> +++ b/drivers/gpu/drm/i915/gt/selftest_workarounds.c
+> @@ -1219,7 +1219,11 @@ live_engine_reset_workarounds(void *arg)
+>   			goto err;
+>   		}
+>   
+> -		intel_engine_reset(engine, "live_workarounds:idle");
+> +		ret = intel_engine_reset(engine, "live_workarounds:idle");
+> +		if (ret) {
+> +			pr_err("%s: Reset failed while idle\n", engine->name);
+> +			goto err;
+> +		}
+>   
+>   		ok = verify_wa_lists(gt, &lists, "after idle reset");
+>   		if (!ok) {
+> @@ -1240,12 +1244,18 @@ live_engine_reset_workarounds(void *arg)
+>   
+>   		ret = request_add_spin(rq, &spin);
+>   		if (ret) {
+> -			pr_err("Spinner failed to start\n");
+> +			pr_err("%s: Spinner failed to start\n", engine->name);
+>   			igt_spinner_fini(&spin);
+>   			goto err;
+>   		}
+>   
+> -		intel_engine_reset(engine, "live_workarounds:active");
+> +		ret = intel_engine_reset(engine, "live_workarounds:active");
+> +		if (ret) {
+> +			pr_err("%s: Reset failed on an active spinner\n",
+> +			       engine->name);
+> +			igt_spinner_fini(&spin);
+> +			goto err;
+> +		}
+>   
+>   		igt_spinner_end(&spin);
+>   		igt_spinner_fini(&spin);
+> 
 
-Thanks for this, now queued up.
+Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 
-greg k-h
+Regards,
+
+Tvrtko
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
