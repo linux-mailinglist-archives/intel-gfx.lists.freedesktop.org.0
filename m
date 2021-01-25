@@ -1,32 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 34F613025E9
-	for <lists+intel-gfx@lfdr.de>; Mon, 25 Jan 2021 15:02:41 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7BA0D3025F1
+	for <lists+intel-gfx@lfdr.de>; Mon, 25 Jan 2021 15:02:47 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C43136E117;
-	Mon, 25 Jan 2021 14:02:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 072136E17F;
+	Mon, 25 Jan 2021 14:02:37 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 857296E15D
- for <intel-gfx@lists.freedesktop.org>; Mon, 25 Jan 2021 14:02:01 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 623916E10E
+ for <intel-gfx@lists.freedesktop.org>; Mon, 25 Jan 2021 14:02:00 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 23693628-1500050 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 23693630-1500050 
  for multiple; Mon, 25 Jan 2021 14:01:37 +0000
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Mon, 25 Jan 2021 14:01:03 +0000
-Message-Id: <20210125140136.10494-8-chris@chris-wilson.co.uk>
+Date: Mon, 25 Jan 2021 14:01:04 +0000
+Message-Id: <20210125140136.10494-9-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20210125140136.10494-1-chris@chris-wilson.co.uk>
 References: <20210125140136.10494-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 08/41] drm/i915: Improve DFS for priority
- inheritance
+Subject: [Intel-gfx] [PATCH 09/41] drm/i915/selftests: Exercise relative
+ mmio paths to non-privileged registers
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,139 +45,258 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The core of the scheduling algorithm is that we compute the topological
-order of the fence DAG. Knowing that we have a DAG, we should be able to
-use a DFS to compute the topological sort in linear time. However,
-during the conversion of the recursive algorithm into an iterative one,
-the memoization of how far we had progressed down a branch was
-forgotten. The result was that instead of running in linear time, it was
-running in geometric time and could easily run for a few hundred
-milliseconds given a wide enough graph, not the microseconds as required.
+Verify that context isolation is also preserved when accessing
+context-local registers with relative-mmio commands.
 
 Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
 ---
- drivers/gpu/drm/i915/i915_scheduler.c | 58 ++++++++++++++++-----------
- 1 file changed, 34 insertions(+), 24 deletions(-)
+ drivers/gpu/drm/i915/gt/selftest_lrc.c | 88 ++++++++++++++++++++------
+ 1 file changed, 67 insertions(+), 21 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/i915_scheduler.c b/drivers/gpu/drm/i915/i915_scheduler.c
-index 4802c9b1081d..9139a91f0aa3 100644
---- a/drivers/gpu/drm/i915/i915_scheduler.c
-+++ b/drivers/gpu/drm/i915/i915_scheduler.c
-@@ -234,6 +234,26 @@ void __i915_priolist_free(struct i915_priolist *p)
- 	kmem_cache_free(global.slab_priorities, p);
+diff --git a/drivers/gpu/drm/i915/gt/selftest_lrc.c b/drivers/gpu/drm/i915/gt/selftest_lrc.c
+index 7bf34c439876..0524232378e4 100644
+--- a/drivers/gpu/drm/i915/gt/selftest_lrc.c
++++ b/drivers/gpu/drm/i915/gt/selftest_lrc.c
+@@ -910,7 +910,9 @@ create_user_vma(struct i915_address_space *vm, unsigned long size)
  }
  
-+static struct i915_request *
-+stack_push(struct i915_request *rq,
-+	   struct i915_request *stack,
-+	   struct list_head *pos)
-+{
-+	stack->sched.dfs.prev = pos;
-+	rq->sched.dfs.next = (struct list_head *)stack;
-+	return rq;
-+}
-+
-+static struct i915_request *
-+stack_pop(struct i915_request *rq,
-+	  struct list_head **pos)
-+{
-+	rq = (struct i915_request *)rq->sched.dfs.next;
-+	if (rq)
-+		*pos = rq->sched.dfs.prev;
-+	return rq;
-+}
-+
- static inline bool need_preempt(int prio, int active)
+ static struct i915_vma *
+-store_context(struct intel_context *ce, struct i915_vma *scratch)
++store_context(struct intel_context *ce,
++	      struct i915_vma *scratch,
++	      bool relative)
  {
- 	/*
-@@ -298,11 +318,10 @@ static void ipi_priority(struct i915_request *rq, int prio)
- static void __i915_request_set_priority(struct i915_request *rq, int prio)
- {
- 	struct intel_engine_cs *engine = rq->engine;
--	struct i915_request *rn;
-+	struct list_head *pos = &rq->sched.signalers_list;
- 	struct list_head *plist;
--	LIST_HEAD(dfs);
+ 	struct i915_vma *batch;
+ 	u32 dw, x, *cs, *hw;
+@@ -939,6 +941,9 @@ store_context(struct intel_context *ce, struct i915_vma *scratch)
+ 	hw += LRC_STATE_OFFSET / sizeof(*hw);
+ 	do {
+ 		u32 len = hw[dw] & 0x7f;
++		u32 cmd = MI_STORE_REGISTER_MEM_GEN8;
++		u32 offset = 0;
++		u32 mask = ~0;
  
--	list_add(&rq->sched.dfs, &dfs);
-+	plist = i915_sched_lookup_priolist(engine, prio);
- 
- 	/*
- 	 * Recursively bump all dependent priorities to match the new request.
-@@ -322,40 +341,31 @@ static void __i915_request_set_priority(struct i915_request *rq, int prio)
- 	 * end result is a topological list of requests in reverse order, the
- 	 * last element in the list is the request we must execute first.
- 	 */
--	list_for_each_entry(rq, &dfs, sched.dfs) {
--		struct i915_dependency *p;
--
--		/* Also release any children on this engine that are ready */
--		GEM_BUG_ON(rq->engine != engine);
--
--		for_each_signaler(p, rq) {
-+	rq->sched.dfs.next = NULL;
-+	do {
-+		list_for_each_continue(pos, &rq->sched.signalers_list) {
-+			struct i915_dependency *p =
-+				list_entry(pos, typeof(*p), signal_link);
- 			struct i915_request *s =
- 				container_of(p->signaler, typeof(*s), sched);
- 
--			GEM_BUG_ON(s == rq);
--
- 			if (rq_prio(s) >= prio)
- 				continue;
- 
- 			if (__i915_request_is_complete(s))
- 				continue;
- 
--			if (s->engine != rq->engine) {
-+			if (s->engine != engine) {
- 				ipi_priority(s, prio);
- 				continue;
- 			}
- 
--			list_move_tail(&s->sched.dfs, &dfs);
-+			/* Remember our position along this branch */
-+			rq = stack_push(s, rq, pos);
-+			pos = &rq->sched.signalers_list;
- 		}
--	}
- 
--	plist = i915_sched_lookup_priolist(engine, prio);
--
--	/* Fifo and depth-first replacement ensure our deps execute first */
--	list_for_each_entry_safe_reverse(rq, rn, &dfs, sched.dfs) {
--		GEM_BUG_ON(rq->engine != engine);
--
--		INIT_LIST_HEAD(&rq->sched.dfs);
-+		RQ_TRACE(rq, "set-priority:%d\n", prio);
- 		WRITE_ONCE(rq->sched.attr.priority, prio);
- 
- 		/*
-@@ -369,12 +379,13 @@ static void __i915_request_set_priority(struct i915_request *rq, int prio)
- 		if (!i915_request_is_ready(rq))
+ 		if (hw[dw] == 0) {
+ 			dw++;
+@@ -950,11 +955,19 @@ store_context(struct intel_context *ce, struct i915_vma *scratch)
  			continue;
+ 		}
  
-+		GEM_BUG_ON(rq->engine != engine);
- 		if (i915_request_in_priority_queue(rq))
- 			list_move_tail(&rq->sched.link, plist);
++		if (hw[dw] & MI_LRI_LRM_CS_MMIO) {
++			mask = 0xfff;
++			if (relative)
++				cmd |= MI_LRI_LRM_CS_MMIO;
++			else
++				offset = ce->engine->mmio_base;
++		}
++
+ 		dw++;
+ 		len = (len + 1) / 2;
+ 		while (len--) {
+-			*cs++ = MI_STORE_REGISTER_MEM_GEN8;
+-			*cs++ = hw[dw];
++			*cs++ = cmd;
++			*cs++ = (hw[dw] & mask) + offset;
+ 			*cs++ = lower_32_bits(scratch->node.start + x);
+ 			*cs++ = upper_32_bits(scratch->node.start + x);
  
- 		/* Defer (tasklet) submission until after all updates. */
- 		kick_submission(engine, rq, prio);
--	}
-+	} while ((rq = stack_pop(rq, &pos)));
+@@ -993,6 +1006,7 @@ static struct i915_request *
+ record_registers(struct intel_context *ce,
+ 		 struct i915_vma *before,
+ 		 struct i915_vma *after,
++		 bool relative,
+ 		 u32 *sema)
+ {
+ 	struct i915_vma *b_before, *b_after;
+@@ -1000,11 +1014,11 @@ record_registers(struct intel_context *ce,
+ 	u32 *cs;
+ 	int err;
+ 
+-	b_before = store_context(ce, before);
++	b_before = store_context(ce, before, relative);
+ 	if (IS_ERR(b_before))
+ 		return ERR_CAST(b_before);
+ 
+-	b_after = store_context(ce, after);
++	b_after = store_context(ce, after, relative);
+ 	if (IS_ERR(b_after)) {
+ 		rq = ERR_CAST(b_after);
+ 		goto err_before;
+@@ -1074,7 +1088,8 @@ record_registers(struct intel_context *ce,
+ 	goto err_after;
  }
  
- void i915_request_set_priority(struct i915_request *rq, int prio)
-@@ -444,7 +455,6 @@ void i915_sched_node_init(struct i915_sched_node *node)
- 	INIT_LIST_HEAD(&node->signalers_list);
- 	INIT_LIST_HEAD(&node->waiters_list);
- 	INIT_LIST_HEAD(&node->link);
--	INIT_LIST_HEAD(&node->dfs);
+-static struct i915_vma *load_context(struct intel_context *ce, u32 poison)
++static struct i915_vma *
++load_context(struct intel_context *ce, u32 poison, bool relative)
+ {
+ 	struct i915_vma *batch;
+ 	u32 dw, *cs, *hw;
+@@ -1101,7 +1116,10 @@ static struct i915_vma *load_context(struct intel_context *ce, u32 poison)
+ 	hw = defaults;
+ 	hw += LRC_STATE_OFFSET / sizeof(*hw);
+ 	do {
++		u32 cmd = MI_INSTR(0x22, 0);
+ 		u32 len = hw[dw] & 0x7f;
++		u32 offset = 0;
++		u32 mask = ~0;
  
- 	node->ipi_link = NULL;
+ 		if (hw[dw] == 0) {
+ 			dw++;
+@@ -1113,11 +1131,19 @@ static struct i915_vma *load_context(struct intel_context *ce, u32 poison)
+ 			continue;
+ 		}
  
++		if (hw[dw] & MI_LRI_LRM_CS_MMIO) {
++			mask = 0xfff;
++			if (relative)
++				cmd |= MI_LRI_LRM_CS_MMIO;
++			else
++				offset = ce->engine->mmio_base;
++		}
++
+ 		dw++;
++		*cs++ = cmd | len;
+ 		len = (len + 1) / 2;
+-		*cs++ = MI_LOAD_REGISTER_IMM(len);
+ 		while (len--) {
+-			*cs++ = hw[dw];
++			*cs++ = (hw[dw] & mask) + offset;
+ 			*cs++ = poison;
+ 			dw += 2;
+ 		}
+@@ -1134,14 +1160,18 @@ static struct i915_vma *load_context(struct intel_context *ce, u32 poison)
+ 	return batch;
+ }
+ 
+-static int poison_registers(struct intel_context *ce, u32 poison, u32 *sema)
++static int
++poison_registers(struct intel_context *ce,
++		 u32 poison,
++		 bool relative,
++		 u32 *sema)
+ {
+ 	struct i915_request *rq;
+ 	struct i915_vma *batch;
+ 	u32 *cs;
+ 	int err;
+ 
+-	batch = load_context(ce, poison);
++	batch = load_context(ce, poison, relative);
+ 	if (IS_ERR(batch))
+ 		return PTR_ERR(batch);
+ 
+@@ -1191,7 +1221,7 @@ static int compare_isolation(struct intel_engine_cs *engine,
+ 			     struct i915_vma *ref[2],
+ 			     struct i915_vma *result[2],
+ 			     struct intel_context *ce,
+-			     u32 poison)
++			     u32 poison, bool relative)
+ {
+ 	u32 x, dw, *hw, *lrc;
+ 	u32 *A[2], *B[2];
+@@ -1240,6 +1270,7 @@ static int compare_isolation(struct intel_engine_cs *engine,
+ 	hw += LRC_STATE_OFFSET / sizeof(*hw);
+ 	do {
+ 		u32 len = hw[dw] & 0x7f;
++		bool is_relative = relative;
+ 
+ 		if (hw[dw] == 0) {
+ 			dw++;
+@@ -1251,6 +1282,9 @@ static int compare_isolation(struct intel_engine_cs *engine,
+ 			continue;
+ 		}
+ 
++		if (!(hw[dw] & MI_LRI_LRM_CS_MMIO))
++			is_relative = false;
++
+ 		dw++;
+ 		len = (len + 1) / 2;
+ 		while (len--) {
+@@ -1262,9 +1296,10 @@ static int compare_isolation(struct intel_engine_cs *engine,
+ 					break;
+ 
+ 				default:
+-					pr_err("%s[%d]: Mismatch for register %4x, default %08x, reference %08x, result (%08x, %08x), poison %08x, context %08x\n",
+-					       engine->name, dw,
+-					       hw[dw], hw[dw + 1],
++					pr_err("%s[%d]: Mismatch for register %4x [using relative? %s], default %08x, reference %08x, result (%08x, %08x), poison %08x, context %08x\n",
++					       engine->name, dw, hw[dw],
++					       yesno(is_relative),
++					       hw[dw + 1],
+ 					       A[0][x], B[0][x], B[1][x],
+ 					       poison, lrc[dw + 1]);
+ 					err = -EINVAL;
+@@ -1290,7 +1325,8 @@ static int compare_isolation(struct intel_engine_cs *engine,
+ 	return err;
+ }
+ 
+-static int __lrc_isolation(struct intel_engine_cs *engine, u32 poison)
++static int
++__lrc_isolation(struct intel_engine_cs *engine, u32 poison, bool relative)
+ {
+ 	u32 *sema = memset32(engine->status_page.addr + 1000, 0, 1);
+ 	struct i915_vma *ref[2], *result[2];
+@@ -1320,7 +1356,7 @@ static int __lrc_isolation(struct intel_engine_cs *engine, u32 poison)
+ 		goto err_ref0;
+ 	}
+ 
+-	rq = record_registers(A, ref[0], ref[1], sema);
++	rq = record_registers(A, ref[0], ref[1], relative, sema);
+ 	if (IS_ERR(rq)) {
+ 		err = PTR_ERR(rq);
+ 		goto err_ref1;
+@@ -1348,13 +1384,13 @@ static int __lrc_isolation(struct intel_engine_cs *engine, u32 poison)
+ 		goto err_result0;
+ 	}
+ 
+-	rq = record_registers(A, result[0], result[1], sema);
++	rq = record_registers(A, result[0], result[1], relative, sema);
+ 	if (IS_ERR(rq)) {
+ 		err = PTR_ERR(rq);
+ 		goto err_result1;
+ 	}
+ 
+-	err = poison_registers(B, poison, sema);
++	err = poison_registers(B, poison, relative, sema);
+ 	if (err) {
+ 		WRITE_ONCE(*sema, -1);
+ 		i915_request_put(rq);
+@@ -1368,7 +1404,7 @@ static int __lrc_isolation(struct intel_engine_cs *engine, u32 poison)
+ 	}
+ 	i915_request_put(rq);
+ 
+-	err = compare_isolation(engine, ref, result, A, poison);
++	err = compare_isolation(engine, ref, result, A, poison, relative);
+ 
+ err_result1:
+ 	i915_vma_put(result[1]);
+@@ -1430,13 +1466,23 @@ static int live_lrc_isolation(void *arg)
+ 		for (i = 0; i < ARRAY_SIZE(poison); i++) {
+ 			int result;
+ 
+-			result = __lrc_isolation(engine, poison[i]);
++			result = __lrc_isolation(engine, poison[i], false);
+ 			if (result && !err)
+ 				err = result;
+ 
+-			result = __lrc_isolation(engine, ~poison[i]);
++			result = __lrc_isolation(engine, ~poison[i], false);
+ 			if (result && !err)
+ 				err = result;
++
++			if (intel_engine_has_relative_mmio(engine)) {
++				result = __lrc_isolation(engine, poison[i], true);
++				if (result && !err)
++					err = result;
++
++				result = __lrc_isolation(engine, ~poison[i], true);
++				if (result && !err)
++					err = result;
++			}
+ 		}
+ 		intel_engine_pm_put(engine);
+ 		if (igt_flush_test(gt->i915)) {
 -- 
 2.20.1
 
