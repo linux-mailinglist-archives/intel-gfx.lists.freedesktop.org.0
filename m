@@ -1,32 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id ECB4D30262D
-	for <lists+intel-gfx@lfdr.de>; Mon, 25 Jan 2021 15:18:30 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1B82C30263B
+	for <lists+intel-gfx@lfdr.de>; Mon, 25 Jan 2021 15:22:08 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2B16A6E235;
-	Mon, 25 Jan 2021 14:18:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0A8256E187;
+	Mon, 25 Jan 2021 14:22:06 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 516496E1BA
- for <intel-gfx@lists.freedesktop.org>; Mon, 25 Jan 2021 14:18:13 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 23693944-1500050 
- for multiple; Mon, 25 Jan 2021 14:18:03 +0000
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Mon, 25 Jan 2021 14:18:03 +0000
-Message-Id: <20210125141803.14378-8-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20210125141803.14378-1-chris@chris-wilson.co.uk>
-References: <20210125141803.14378-1-chris@chris-wilson.co.uk>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 65E936E187;
+ Mon, 25 Jan 2021 14:22:04 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 5E005A363D;
+ Mon, 25 Jan 2021 14:22:04 +0000 (UTC)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 8/8] drm/i915/gem: Manage all set-domain waits
- explicitly
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Arnd Bergmann" <arnd@kernel.org>
+Date: Mon, 25 Jan 2021 14:22:04 -0000
+Message-ID: <161158452434.3416.4652080656596509763@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210125122542.4144849-1-arnd@kernel.org>
+In-Reply-To: <20210125122542.4144849-1-arnd@kernel.org>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/gem=3A_fix_non-SMP_build_failure?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,599 +38,300 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Chris Wilson <chris@chris-wilson.co.uk>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============2000513643=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Only perform the domain transition under the object lock, and push the
-required waits to outside the lock.
+--===============2000513643==
+Content-Type: multipart/alternative;
+ boundary="===============1339348981380539399=="
 
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
----
- drivers/gpu/drm/i915/gem/i915_gem_clflush.c   |   9 +-
- drivers/gpu/drm/i915/gem/i915_gem_clflush.h   |   2 -
- drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c    |   4 +-
- drivers/gpu/drm/i915/gem/i915_gem_domain.c    | 157 +++++-------------
- drivers/gpu/drm/i915/gem/i915_gem_object.h    |  12 +-
- .../gpu/drm/i915/gem/i915_gem_object_types.h  |   6 +
- .../gpu/drm/i915/gem/selftests/huge_pages.c   |   8 -
- .../i915/gem/selftests/i915_gem_coherency.c   |  30 +++-
- .../drm/i915/gem/selftests/i915_gem_phys.c    |   8 +-
- .../drm/i915/gem/selftests/igt_gem_utils.c    |   3 +
- drivers/gpu/drm/i915/i915_gem.c               |  12 +-
- 11 files changed, 89 insertions(+), 162 deletions(-)
+--===============1339348981380539399==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_clflush.c b/drivers/gpu/drm/i915/gem/i915_gem_clflush.c
-index bc0223716906..a28f8c912a3e 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_clflush.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_clflush.c
-@@ -57,8 +57,6 @@ static struct clflush *clflush_work_create(struct drm_i915_gem_object *obj)
- {
- 	struct clflush *clflush;
- 
--	GEM_BUG_ON(!obj->cache_dirty);
--
- 	clflush = kmalloc(sizeof(*clflush), GFP_KERNEL);
- 	if (!clflush)
- 		return NULL;
-@@ -102,13 +100,10 @@ bool i915_gem_clflush_object(struct drm_i915_gem_object *obj,
- 
- 	trace_i915_gem_object_clflush(obj);
- 
--	clflush = NULL;
--	if (!(flags & I915_CLFLUSH_SYNC))
--		clflush = clflush_work_create(obj);
-+	clflush = clflush_work_create(obj);
- 	if (clflush) {
- 		i915_sw_fence_await_reservation(&clflush->base.chain,
--						obj->base.resv, NULL, true,
--						i915_fence_timeout(to_i915(obj->base.dev)),
-+						obj->base.resv, NULL, true, 0,
- 						I915_FENCE_GFP);
- 		dma_resv_add_excl_fence(obj->base.resv, &clflush->base.dma);
- 		dma_fence_work_commit(&clflush->base);
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_clflush.h b/drivers/gpu/drm/i915/gem/i915_gem_clflush.h
-index e6c382973129..4cd5787d1507 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_clflush.h
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_clflush.h
-@@ -9,12 +9,10 @@
- 
- #include <linux/types.h>
- 
--struct drm_i915_private;
- struct drm_i915_gem_object;
- 
- bool i915_gem_clflush_object(struct drm_i915_gem_object *obj,
- 			     unsigned int flags);
- #define I915_CLFLUSH_FORCE BIT(0)
--#define I915_CLFLUSH_SYNC BIT(1)
- 
- #endif /* __I915_GEM_CLFLUSH_H__ */
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c b/drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c
-index 5cc8a0b2387f..d804b0003e0d 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c
-@@ -133,7 +133,7 @@ static int i915_gem_begin_cpu_access(struct dma_buf *dma_buf, enum dma_data_dire
- 	if (err)
- 		goto out;
- 
--	err = i915_gem_object_set_to_cpu_domain(obj, write);
-+	i915_gem_object_set_to_cpu_domain(obj, write);
- 	i915_gem_object_unlock(obj);
- 
- out:
-@@ -154,7 +154,7 @@ static int i915_gem_end_cpu_access(struct dma_buf *dma_buf, enum dma_data_direct
- 	if (err)
- 		goto out;
- 
--	err = i915_gem_object_set_to_gtt_domain(obj, false);
-+	i915_gem_object_set_to_gtt_domain(obj, false);
- 	i915_gem_object_unlock(obj);
- 
- out:
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_domain.c b/drivers/gpu/drm/i915/gem/i915_gem_domain.c
-index 36f54cedaaeb..0478b069c202 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_domain.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_domain.c
-@@ -49,7 +49,7 @@ flush_write_domain(struct drm_i915_gem_object *obj, unsigned int flush_domains)
- 		break;
- 
- 	case I915_GEM_DOMAIN_CPU:
--		i915_gem_clflush_object(obj, I915_CLFLUSH_SYNC);
-+		i915_gem_clflush_object(obj, 0);
- 		break;
- 
- 	case I915_GEM_DOMAIN_RENDER:
-@@ -97,34 +97,13 @@ void i915_gem_object_flush_if_display_locked(struct drm_i915_gem_object *obj)
-  * This function returns when the move is complete, including waiting on
-  * flushes to occur.
-  */
--int
-+void
- i915_gem_object_set_to_wc_domain(struct drm_i915_gem_object *obj, bool write)
- {
--	int ret;
--
- 	assert_object_held(obj);
- 
--	ret = i915_gem_object_wait(obj,
--				   I915_WAIT_INTERRUPTIBLE |
--				   (write ? I915_WAIT_ALL : 0),
--				   MAX_SCHEDULE_TIMEOUT);
--	if (ret)
--		return ret;
--
- 	if (obj->write_domain == I915_GEM_DOMAIN_WC)
--		return 0;
--
--	/* Flush and acquire obj->pages so that we are coherent through
--	 * direct access in memory with previous cached writes through
--	 * shmemfs and that our cache domain tracking remains valid.
--	 * For example, if the obj->filp was moved to swap without us
--	 * being notified and releasing the pages, we would mistakenly
--	 * continue to assume that the obj remained out of the CPU cached
--	 * domain.
--	 */
--	ret = i915_gem_object_pin_pages(obj);
--	if (ret)
--		return ret;
-+		return;
- 
- 	flush_write_domain(obj, ~I915_GEM_DOMAIN_WC);
- 
-@@ -145,9 +124,6 @@ i915_gem_object_set_to_wc_domain(struct drm_i915_gem_object *obj, bool write)
- 		obj->write_domain = I915_GEM_DOMAIN_WC;
- 		obj->mm.dirty = true;
- 	}
--
--	i915_gem_object_unpin_pages(obj);
--	return 0;
- }
- 
- /**
-@@ -158,34 +134,13 @@ i915_gem_object_set_to_wc_domain(struct drm_i915_gem_object *obj, bool write)
-  * This function returns when the move is complete, including waiting on
-  * flushes to occur.
-  */
--int
-+void
- i915_gem_object_set_to_gtt_domain(struct drm_i915_gem_object *obj, bool write)
- {
--	int ret;
--
- 	assert_object_held(obj);
- 
--	ret = i915_gem_object_wait(obj,
--				   I915_WAIT_INTERRUPTIBLE |
--				   (write ? I915_WAIT_ALL : 0),
--				   MAX_SCHEDULE_TIMEOUT);
--	if (ret)
--		return ret;
--
- 	if (obj->write_domain == I915_GEM_DOMAIN_GTT)
--		return 0;
--
--	/* Flush and acquire obj->pages so that we are coherent through
--	 * direct access in memory with previous cached writes through
--	 * shmemfs and that our cache domain tracking remains valid.
--	 * For example, if the obj->filp was moved to swap without us
--	 * being notified and releasing the pages, we would mistakenly
--	 * continue to assume that the obj remained out of the CPU cached
--	 * domain.
--	 */
--	ret = i915_gem_object_pin_pages(obj);
--	if (ret)
--		return ret;
-+		return;
- 
- 	flush_write_domain(obj, ~I915_GEM_DOMAIN_GTT);
- 
-@@ -214,9 +169,6 @@ i915_gem_object_set_to_gtt_domain(struct drm_i915_gem_object *obj, bool write)
- 				i915_vma_set_ggtt_write(vma);
- 		spin_unlock(&obj->vma.lock);
- 	}
--
--	i915_gem_object_unpin_pages(obj);
--	return 0;
- }
- 
- /**
-@@ -442,25 +394,23 @@ i915_gem_object_pin_to_display_plane(struct drm_i915_gem_object *obj,
-  * This function returns when the move is complete, including waiting on
-  * flushes to occur.
-  */
--int
-+void
- i915_gem_object_set_to_cpu_domain(struct drm_i915_gem_object *obj, bool write)
- {
--	int ret;
--
- 	assert_object_held(obj);
- 
--	ret = i915_gem_object_wait(obj,
--				   I915_WAIT_INTERRUPTIBLE |
--				   (write ? I915_WAIT_ALL : 0),
--				   MAX_SCHEDULE_TIMEOUT);
--	if (ret)
--		return ret;
--
- 	flush_write_domain(obj, ~I915_GEM_DOMAIN_CPU);
- 
- 	/* Flush the CPU cache if it's still invalid. */
- 	if ((obj->read_domains & I915_GEM_DOMAIN_CPU) == 0) {
--		i915_gem_clflush_object(obj, I915_CLFLUSH_SYNC);
-+		/*
-+		 * While we track when we write though the CPU cache
-+		 * (with obj->cache_dirty), this is only a guide as we do
-+		 * not know when the CPU may have speculatively populated
-+		 * the cache. We have to invalidate such speculative cachelines
-+		 * prior to reading writes by the GPU.
-+		 */
-+		i915_gem_clflush_object(obj, 0);
- 		obj->read_domains |= I915_GEM_DOMAIN_CPU;
- 	}
- 
-@@ -474,8 +424,6 @@ i915_gem_object_set_to_cpu_domain(struct drm_i915_gem_object *obj, bool write)
- 	 */
- 	if (write)
- 		__start_cpu_write(obj);
--
--	return 0;
- }
- 
- /**
-@@ -513,19 +461,6 @@ i915_gem_set_domain_ioctl(struct drm_device *dev, void *data,
- 	if (!obj)
- 		return -ENOENT;
- 
--	/*
--	 * Try to flush the object off the GPU without holding the lock.
--	 * We will repeat the flush holding the lock in the normal manner
--	 * to catch cases where we are gazumped.
--	 */
--	err = i915_gem_object_wait(obj,
--				   I915_WAIT_INTERRUPTIBLE |
--				   I915_WAIT_PRIORITY |
--				   (write_domain ? I915_WAIT_ALL : 0),
--				   MAX_SCHEDULE_TIMEOUT);
--	if (err)
--		goto out;
--
- 	/*
- 	 * Proxy objects do not control access to the backing storage, ergo
- 	 * they cannot be used as a means to manipulate the cache domain
-@@ -561,21 +496,27 @@ i915_gem_set_domain_ioctl(struct drm_device *dev, void *data,
- 	 * without having to further check the requested write_domain.
- 	 */
- 	if (READ_ONCE(obj->write_domain) == read_domains)
--		goto out_unpin;
-+		goto out_wait;
- 
- 	err = i915_gem_object_lock_interruptible(obj, NULL);
- 	if (err)
- 		goto out_unpin;
- 
- 	if (read_domains & I915_GEM_DOMAIN_WC)
--		err = i915_gem_object_set_to_wc_domain(obj, write_domain);
-+		i915_gem_object_set_to_wc_domain(obj, write_domain);
- 	else if (read_domains & I915_GEM_DOMAIN_GTT)
--		err = i915_gem_object_set_to_gtt_domain(obj, write_domain);
-+		i915_gem_object_set_to_gtt_domain(obj, write_domain);
- 	else
--		err = i915_gem_object_set_to_cpu_domain(obj, write_domain);
-+		i915_gem_object_set_to_cpu_domain(obj, write_domain);
- 
- 	i915_gem_object_unlock(obj);
- 
-+out_wait:
-+	err = i915_gem_object_wait(obj,
-+				   I915_WAIT_INTERRUPTIBLE |
-+				   I915_WAIT_PRIORITY |
-+				   (write_domain ? I915_WAIT_ALL : 0),
-+				   MAX_SCHEDULE_TIMEOUT);
- 	if (write_domain)
- 		i915_gem_object_invalidate_frontbuffer(obj, ORIGIN_CPU);
- 
-@@ -602,26 +543,21 @@ int i915_gem_object_prepare_read(struct drm_i915_gem_object *obj,
- 
- 	assert_object_held(obj);
- 
--	ret = i915_gem_object_wait(obj,
--				   I915_WAIT_INTERRUPTIBLE,
--				   MAX_SCHEDULE_TIMEOUT);
--	if (ret)
--		return ret;
--
- 	ret = i915_gem_object_pin_pages(obj);
- 	if (ret)
- 		return ret;
- 
- 	if (obj->cache_coherent & I915_BO_CACHE_COHERENT_FOR_READ ||
--	    !static_cpu_has(X86_FEATURE_CLFLUSH)) {
--		ret = i915_gem_object_set_to_cpu_domain(obj, false);
--		if (ret)
--			goto err_unpin;
--		else
--			goto out;
--	}
-+	    !static_cpu_has(X86_FEATURE_CLFLUSH))
-+		i915_gem_object_set_to_cpu_domain(obj, false);
-+	else
-+		flush_write_domain(obj, ~I915_GEM_DOMAIN_CPU);
- 
--	flush_write_domain(obj, ~I915_GEM_DOMAIN_CPU);
-+	ret = i915_gem_object_wait(obj,
-+				   I915_WAIT_INTERRUPTIBLE,
-+				   MAX_SCHEDULE_TIMEOUT);
-+	if (ret)
-+		goto err_unpin;
- 
- 	/* If we're not in the cpu read domain, set ourself into the gtt
- 	 * read domain and manually flush cachelines (if required). This
-@@ -632,7 +568,6 @@ int i915_gem_object_prepare_read(struct drm_i915_gem_object *obj,
- 	    !(obj->read_domains & I915_GEM_DOMAIN_CPU))
- 		*needs_clflush = CLFLUSH_BEFORE;
- 
--out:
- 	/* return with the pages pinned */
- 	return 0;
- 
-@@ -652,27 +587,22 @@ int i915_gem_object_prepare_write(struct drm_i915_gem_object *obj,
- 
- 	assert_object_held(obj);
- 
--	ret = i915_gem_object_wait(obj,
--				   I915_WAIT_INTERRUPTIBLE |
--				   I915_WAIT_ALL,
--				   MAX_SCHEDULE_TIMEOUT);
--	if (ret)
--		return ret;
--
- 	ret = i915_gem_object_pin_pages(obj);
- 	if (ret)
- 		return ret;
- 
- 	if (obj->cache_coherent & I915_BO_CACHE_COHERENT_FOR_WRITE ||
--	    !static_cpu_has(X86_FEATURE_CLFLUSH)) {
--		ret = i915_gem_object_set_to_cpu_domain(obj, true);
--		if (ret)
--			goto err_unpin;
--		else
--			goto out;
--	}
-+	    !static_cpu_has(X86_FEATURE_CLFLUSH))
-+		i915_gem_object_set_to_cpu_domain(obj, true);
-+	else
-+		flush_write_domain(obj, ~I915_GEM_DOMAIN_CPU);
- 
--	flush_write_domain(obj, ~I915_GEM_DOMAIN_CPU);
-+	ret = i915_gem_object_wait(obj,
-+				   I915_WAIT_INTERRUPTIBLE |
-+				   I915_WAIT_ALL,
-+				   MAX_SCHEDULE_TIMEOUT);
-+	if (ret)
-+		goto err_unpin;
- 
- 	/* If we're not in the cpu write domain, set ourself into the
- 	 * gtt write domain and manually flush cachelines (as required).
-@@ -690,7 +620,6 @@ int i915_gem_object_prepare_write(struct drm_i915_gem_object *obj,
- 			*needs_clflush |= CLFLUSH_BEFORE;
- 	}
- 
--out:
- 	i915_gem_object_invalidate_frontbuffer(obj, ORIGIN_CPU);
- 	obj->mm.dirty = true;
- 	/* return with the pages pinned */
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object.h b/drivers/gpu/drm/i915/gem/i915_gem_object.h
-index 3411ad197fa6..35a8d90f14f1 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_object.h
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_object.h
-@@ -513,12 +513,12 @@ void i915_gem_object_set_cache_coherency(struct drm_i915_gem_object *obj,
- void i915_gem_object_flush_if_display(struct drm_i915_gem_object *obj);
- void i915_gem_object_flush_if_display_locked(struct drm_i915_gem_object *obj);
- 
--int __must_check
--i915_gem_object_set_to_wc_domain(struct drm_i915_gem_object *obj, bool write);
--int __must_check
--i915_gem_object_set_to_gtt_domain(struct drm_i915_gem_object *obj, bool write);
--int __must_check
--i915_gem_object_set_to_cpu_domain(struct drm_i915_gem_object *obj, bool write);
-+void i915_gem_object_set_to_wc_domain(struct drm_i915_gem_object *obj,
-+				      bool write);
-+void i915_gem_object_set_to_gtt_domain(struct drm_i915_gem_object *obj,
-+				       bool write);
-+void i915_gem_object_set_to_cpu_domain(struct drm_i915_gem_object *obj,
-+				       bool write);
- struct i915_vma * __must_check
- i915_gem_object_pin_to_display_plane(struct drm_i915_gem_object *obj,
- 				     u32 alignment,
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object_types.h b/drivers/gpu/drm/i915/gem/i915_gem_object_types.h
-index 0438e00d4ca7..0a1fdbac882e 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_object_types.h
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_object_types.h
-@@ -183,6 +183,12 @@ struct drm_i915_gem_object {
- 	unsigned int cache_coherent:2;
- #define I915_BO_CACHE_COHERENT_FOR_READ BIT(0)
- #define I915_BO_CACHE_COHERENT_FOR_WRITE BIT(1)
-+	/*
-+	 * Note cache_dirty is only a guide; we know when we have written
-+	 * through the CPU cache, but we do not know when the CPU may have
-+	 * speculatively populated the cache. Before a read via the cache
-+	 * of GPU written memory, we have to cautiously invalidate the cache.
-+	 */
- 	unsigned int cache_dirty:1;
- 
- 	/**
-diff --git a/drivers/gpu/drm/i915/gem/selftests/huge_pages.c b/drivers/gpu/drm/i915/gem/selftests/huge_pages.c
-index f6329e462cfc..10ee24b252dd 100644
---- a/drivers/gpu/drm/i915/gem/selftests/huge_pages.c
-+++ b/drivers/gpu/drm/i915/gem/selftests/huge_pages.c
-@@ -962,14 +962,6 @@ static int gpu_write(struct intel_context *ce,
- 		     u32 dw,
- 		     u32 val)
- {
--	int err;
--
--	i915_gem_object_lock(vma->obj, NULL);
--	err = i915_gem_object_set_to_gtt_domain(vma->obj, true);
--	i915_gem_object_unlock(vma->obj);
--	if (err)
--		return err;
--
- 	return igt_gpu_fill_dw(ce, vma, dw * sizeof(u32),
- 			       vma->size >> PAGE_SHIFT, val);
- }
-diff --git a/drivers/gpu/drm/i915/gem/selftests/i915_gem_coherency.c b/drivers/gpu/drm/i915/gem/selftests/i915_gem_coherency.c
-index 1117d2a44518..b5dbf15570fc 100644
---- a/drivers/gpu/drm/i915/gem/selftests/i915_gem_coherency.c
-+++ b/drivers/gpu/drm/i915/gem/selftests/i915_gem_coherency.c
-@@ -90,8 +90,13 @@ static int gtt_set(struct context *ctx, unsigned long offset, u32 v)
- 	int err = 0;
- 
- 	i915_gem_object_lock(ctx->obj, NULL);
--	err = i915_gem_object_set_to_gtt_domain(ctx->obj, true);
-+	i915_gem_object_set_to_gtt_domain(ctx->obj, true);
- 	i915_gem_object_unlock(ctx->obj);
-+
-+	err = i915_gem_object_wait(ctx->obj,
-+				   I915_WAIT_ALL |
-+				   I915_WAIT_INTERRUPTIBLE,
-+				   HZ / 2);
- 	if (err)
- 		return err;
- 
-@@ -123,8 +128,12 @@ static int gtt_get(struct context *ctx, unsigned long offset, u32 *v)
- 	int err = 0;
- 
- 	i915_gem_object_lock(ctx->obj, NULL);
--	err = i915_gem_object_set_to_gtt_domain(ctx->obj, false);
-+	i915_gem_object_set_to_gtt_domain(ctx->obj, false);
- 	i915_gem_object_unlock(ctx->obj);
-+
-+	err = i915_gem_object_wait(ctx->obj,
-+				   I915_WAIT_INTERRUPTIBLE,
-+				   HZ / 2);
- 	if (err)
- 		return err;
- 
-@@ -155,8 +164,13 @@ static int wc_set(struct context *ctx, unsigned long offset, u32 v)
- 	int err;
- 
- 	i915_gem_object_lock(ctx->obj, NULL);
--	err = i915_gem_object_set_to_wc_domain(ctx->obj, true);
-+	i915_gem_object_set_to_wc_domain(ctx->obj, true);
- 	i915_gem_object_unlock(ctx->obj);
-+
-+	err = i915_gem_object_wait(ctx->obj,
-+				   I915_WAIT_ALL |
-+				   I915_WAIT_INTERRUPTIBLE,
-+				   HZ / 2);
- 	if (err)
- 		return err;
- 
-@@ -178,8 +192,12 @@ static int wc_get(struct context *ctx, unsigned long offset, u32 *v)
- 	int err;
- 
- 	i915_gem_object_lock(ctx->obj, NULL);
--	err = i915_gem_object_set_to_wc_domain(ctx->obj, false);
-+	i915_gem_object_set_to_wc_domain(ctx->obj, false);
- 	i915_gem_object_unlock(ctx->obj);
-+
-+	err = i915_gem_object_wait(ctx->obj,
-+				   I915_WAIT_INTERRUPTIBLE,
-+				   HZ / 2);
- 	if (err)
- 		return err;
- 
-@@ -201,9 +219,7 @@ static int gpu_set(struct context *ctx, unsigned long offset, u32 v)
- 	int err;
- 
- 	i915_gem_object_lock(ctx->obj, NULL);
--	err = i915_gem_object_set_to_gtt_domain(ctx->obj, true);
--	if (err)
--		goto out_unlock;
-+	i915_gem_object_set_to_gtt_domain(ctx->obj, false);
- 
- 	vma = i915_gem_object_ggtt_pin(ctx->obj, NULL, 0, 0, 0);
- 	if (IS_ERR(vma)) {
-diff --git a/drivers/gpu/drm/i915/gem/selftests/i915_gem_phys.c b/drivers/gpu/drm/i915/gem/selftests/i915_gem_phys.c
-index 8cee68c6a6dc..b62d02cb9579 100644
---- a/drivers/gpu/drm/i915/gem/selftests/i915_gem_phys.c
-+++ b/drivers/gpu/drm/i915/gem/selftests/i915_gem_phys.c
-@@ -45,14 +45,10 @@ static int mock_phys_object(void *arg)
- 
- 	/* Make the object dirty so that put_pages must do copy back the data */
- 	i915_gem_object_lock(obj, NULL);
--	err = i915_gem_object_set_to_gtt_domain(obj, true);
-+	i915_gem_object_set_to_gtt_domain(obj, true);
- 	i915_gem_object_unlock(obj);
--	if (err) {
--		pr_err("i915_gem_object_set_to_gtt_domain failed with err=%d\n",
--		       err);
--		goto out_obj;
--	}
- 
-+	err = 0;
- out_obj:
- 	i915_gem_object_put(obj);
- out:
-diff --git a/drivers/gpu/drm/i915/gem/selftests/igt_gem_utils.c b/drivers/gpu/drm/i915/gem/selftests/igt_gem_utils.c
-index d6783061bc72..b7e064667d39 100644
---- a/drivers/gpu/drm/i915/gem/selftests/igt_gem_utils.c
-+++ b/drivers/gpu/drm/i915/gem/selftests/igt_gem_utils.c
-@@ -7,6 +7,7 @@
- #include "igt_gem_utils.h"
- 
- #include "gem/i915_gem_context.h"
-+#include "gem/i915_gem_clflush.h"
- #include "gem/i915_gem_pm.h"
- #include "gt/intel_context.h"
- #include "gt/intel_gpu_commands.h"
-@@ -138,6 +139,8 @@ int igt_gpu_fill_dw(struct intel_context *ce,
- 		goto skip_request;
- 
- 	i915_vma_lock(vma);
-+	if (vma->obj->cache_dirty & ~vma->obj->cache_coherent)
-+		i915_gem_clflush_object(vma->obj, 0);
- 	err = i915_request_await_object(rq, vma->obj, true);
- 	if (err == 0)
- 		err = i915_vma_move_to_active(vma, rq, EXEC_OBJECT_WRITE);
-diff --git a/drivers/gpu/drm/i915/i915_gem.c b/drivers/gpu/drm/i915/i915_gem.c
-index f2f344ecf547..b2e3b5cfccb4 100644
---- a/drivers/gpu/drm/i915/i915_gem.c
-+++ b/drivers/gpu/drm/i915/i915_gem.c
-@@ -306,11 +306,7 @@ i915_gem_gtt_pread(struct drm_i915_gem_object *obj,
- 	if (ret)
- 		goto out_unpin;
- 
--	ret = i915_gem_object_set_to_gtt_domain(obj, false);
--	if (ret) {
--		i915_gem_object_unlock(obj);
--		goto out_unpin;
--	}
-+	i915_gem_object_set_to_gtt_domain(obj, false);
- 
- 	fence = i915_gem_object_lock_fence(obj);
- 	i915_gem_object_unlock(obj);
-@@ -511,11 +507,7 @@ i915_gem_gtt_pwrite_fast(struct drm_i915_gem_object *obj,
- 	if (ret)
- 		goto out_unpin;
- 
--	ret = i915_gem_object_set_to_gtt_domain(obj, true);
--	if (ret) {
--		i915_gem_object_unlock(obj);
--		goto out_unpin;
--	}
-+	i915_gem_object_set_to_gtt_domain(obj, true);
- 
- 	fence = i915_gem_object_lock_fence(obj);
- 	i915_gem_object_unlock(obj);
--- 
-2.20.1
+== Series Details ==
+
+Series: drm/i915/gem: fix non-SMP build failure
+URL   : https://patchwork.freedesktop.org/series/86251/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_9679 -> Patchwork_19482
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19482/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_19482 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@amdgpu/amd_basic@cs-compute:
+    - fi-tgl-y:           NOTRUN -> [SKIP][1] ([fdo#109315] / [i915#2575]) +4 similar issues
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19482/fi-tgl-y/igt@amdgpu/amd_basic@cs-compute.html
+
+  * igt@amdgpu/amd_basic@userptr:
+    - fi-byt-j1900:       NOTRUN -> [SKIP][2] ([fdo#109271]) +17 similar issues
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19482/fi-byt-j1900/igt@amdgpu/amd_basic@userptr.html
+
+  * igt@amdgpu/amd_cs_nop@fork-compute0:
+    - fi-tgl-u2:          NOTRUN -> [SKIP][3] ([fdo#109315] / [i915#2575]) +17 similar issues
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19482/fi-tgl-u2/igt@amdgpu/amd_cs_nop@fork-compute0.html
+
+  * igt@debugfs_test@read_all_entries:
+    - fi-tgl-y:           NOTRUN -> [DMESG-WARN][4] ([i915#402]) +2 similar issues
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19482/fi-tgl-y/igt@debugfs_test@read_all_entries.html
+
+  * igt@gem_huc_copy@huc-copy:
+    - fi-tgl-u2:          NOTRUN -> [SKIP][5] ([i915#2190])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19482/fi-tgl-u2/igt@gem_huc_copy@huc-copy.html
+
+  * igt@i915_selftest@live@gt_lrc:
+    - fi-tgl-y:           NOTRUN -> [DMESG-FAIL][6] ([i915#2373])
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19482/fi-tgl-y/igt@i915_selftest@live@gt_lrc.html
+
+  * igt@i915_selftest@live@gt_pm:
+    - fi-tgl-y:           NOTRUN -> [DMESG-FAIL][7] ([i915#1759])
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19482/fi-tgl-y/igt@i915_selftest@live@gt_pm.html
+
+  * igt@kms_chamelium@dp-hpd-fast:
+    - fi-tgl-u2:          NOTRUN -> [SKIP][8] ([fdo#109284] / [fdo#111827]) +8 similar issues
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19482/fi-tgl-u2/igt@kms_chamelium@dp-hpd-fast.html
+
+  * igt@kms_chamelium@vga-edid-read:
+    - fi-tgl-y:           NOTRUN -> [SKIP][9] ([fdo#111827]) +8 similar issues
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19482/fi-tgl-y/igt@kms_chamelium@vga-edid-read.html
+
+  * igt@kms_force_connector_basic@force-load-detect:
+    - fi-tgl-u2:          NOTRUN -> [SKIP][10] ([fdo#109285])
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19482/fi-tgl-u2/igt@kms_force_connector_basic@force-load-detect.html
+    - fi-tgl-y:           NOTRUN -> [SKIP][11] ([fdo#109285])
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19482/fi-tgl-y/igt@kms_force_connector_basic@force-load-detect.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_pm_rpm@module-reload:
+    - fi-byt-j1900:       [INCOMPLETE][12] ([i915#142] / [i915#2405]) -> [PASS][13]
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9679/fi-byt-j1900/igt@i915_pm_rpm@module-reload.html
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19482/fi-byt-j1900/igt@i915_pm_rpm@module-reload.html
+
+  * igt@kms_chamelium@common-hpd-after-suspend:
+    - fi-icl-u2:          [DMESG-WARN][14] ([i915#2203]) -> [PASS][15]
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9679/fi-icl-u2/igt@kms_chamelium@common-hpd-after-suspend.html
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19482/fi-icl-u2/igt@kms_chamelium@common-hpd-after-suspend.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [fdo#109284]: https://bugs.freedesktop.org/show_bug.cgi?id=109284
+  [fdo#109285]: https://bugs.freedesktop.org/show_bug.cgi?id=109285
+  [fdo#109315]: https://bugs.freedesktop.org/show_bug.cgi?id=109315
+  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
+  [i915#142]: https://gitlab.freedesktop.org/drm/intel/issues/142
+  [i915#1759]: https://gitlab.freedesktop.org/drm/intel/issues/1759
+  [i915#2190]: https://gitlab.freedesktop.org/drm/intel/issues/2190
+  [i915#2203]: https://gitlab.freedesktop.org/drm/intel/issues/2203
+  [i915#2373]: https://gitlab.freedesktop.org/drm/intel/issues/2373
+  [i915#2405]: https://gitlab.freedesktop.org/drm/intel/issues/2405
+  [i915#2575]: https://gitlab.freedesktop.org/drm/intel/issues/2575
+  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
+
+
+Participating hosts (36 -> 35)
+------------------------------
+
+  Additional (2): fi-tgl-y fi-tgl-u2 
+  Missing    (3): fi-ctg-p8600 fi-ilk-m540 fi-hsw-4200u 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_9679 -> Patchwork_19482
+
+  CI-20190529: 20190529
+  CI_DRM_9679: f2467849acce5e1e824c5ca5e1a12ce69eb695a6 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5971: abef2b7d6ff30f3b948b3e5d39653debb73083f3 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_19482: 70e7372fa3849a8338cb88246b4bf9c36c2ba7b2 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+70e7372fa384 drm/i915/gem: fix non-SMP build failure
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19482/index.html
+
+--===============1339348981380539399==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/gem: fix non-SMP build failure</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/86251/">https://patchwork.freedesktop.org/series/86251/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19482/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19482/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_9679 -&gt; Patchwork_19482</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19482/index.html</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_19482 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@amdgpu/amd_basic@cs-compute:</p>
+<ul>
+<li>fi-tgl-y:           NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19482/fi-tgl-y/igt@amdgpu/amd_basic@cs-compute.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109315">fdo#109315</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2575">i915#2575</a>) +4 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@amdgpu/amd_basic@userptr:</p>
+<ul>
+<li>fi-byt-j1900:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19482/fi-byt-j1900/igt@amdgpu/amd_basic@userptr.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +17 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@amdgpu/amd_cs_nop@fork-compute0:</p>
+<ul>
+<li>fi-tgl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19482/fi-tgl-u2/igt@amdgpu/amd_cs_nop@fork-compute0.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109315">fdo#109315</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2575">i915#2575</a>) +17 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@debugfs_test@read_all_entries:</p>
+<ul>
+<li>fi-tgl-y:           NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19482/fi-tgl-y/igt@debugfs_test@read_all_entries.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) +2 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_huc_copy@huc-copy:</p>
+<ul>
+<li>fi-tgl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19482/fi-tgl-u2/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2190">i915#2190</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@gt_lrc:</p>
+<ul>
+<li>fi-tgl-y:           NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19482/fi-tgl-y/igt@i915_selftest@live@gt_lrc.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2373">i915#2373</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@gt_pm:</p>
+<ul>
+<li>fi-tgl-y:           NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19482/fi-tgl-y/igt@i915_selftest@live@gt_pm.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1759">i915#1759</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium@dp-hpd-fast:</p>
+<ul>
+<li>fi-tgl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19482/fi-tgl-u2/igt@kms_chamelium@dp-hpd-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109284">fdo#109284</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium@vga-edid-read:</p>
+<ul>
+<li>fi-tgl-y:           NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19482/fi-tgl-y/igt@kms_chamelium@vga-edid-read.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_force_connector_basic@force-load-detect:</p>
+<ul>
+<li>
+<p>fi-tgl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19482/fi-tgl-u2/igt@kms_force_connector_basic@force-load-detect.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109285">fdo#109285</a>)</p>
+</li>
+<li>
+<p>fi-tgl-y:           NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19482/fi-tgl-y/igt@kms_force_connector_basic@force-load-detect.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109285">fdo#109285</a>)</p>
+</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@i915_pm_rpm@module-reload:</p>
+<ul>
+<li>fi-byt-j1900:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9679/fi-byt-j1900/igt@i915_pm_rpm@module-reload.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/142">i915#142</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2405">i915#2405</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19482/fi-byt-j1900/igt@i915_pm_rpm@module-reload.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium@common-hpd-after-suspend:</p>
+<ul>
+<li>fi-icl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9679/fi-icl-u2/igt@kms_chamelium@common-hpd-after-suspend.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2203">i915#2203</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19482/fi-icl-u2/igt@kms_chamelium@common-hpd-after-suspend.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Participating hosts (36 -&gt; 35)</h2>
+<p>Additional (2): fi-tgl-y fi-tgl-u2 <br />
+  Missing    (3): fi-ctg-p8600 fi-ilk-m540 fi-hsw-4200u </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_9679 -&gt; Patchwork_19482</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_9679: f2467849acce5e1e824c5ca5e1a12ce69eb695a6 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_5971: abef2b7d6ff30f3b948b3e5d39653debb73083f3 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
+  Patchwork_19482: 70e7372fa3849a8338cb88246b4bf9c36c2ba7b2 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>70e7372fa384 drm/i915/gem: fix non-SMP build failure</p>
+
+</body>
+</html>
+
+--===============1339348981380539399==--
+
+--===============2000513643==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============2000513643==--
