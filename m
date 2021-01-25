@@ -1,38 +1,41 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C82FE302610
-	for <lists+intel-gfx@lfdr.de>; Mon, 25 Jan 2021 15:09:34 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 48416302605
+	for <lists+intel-gfx@lfdr.de>; Mon, 25 Jan 2021 15:08:53 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3D4996E16D;
-	Mon, 25 Jan 2021 14:09:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6AC306E15D;
+	Mon, 25 Jan 2021 14:08:51 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7009E6E16D
- for <intel-gfx@lists.freedesktop.org>; Mon, 25 Jan 2021 14:09:32 +0000 (UTC)
-IronPort-SDR: Xl9QijlUnzJF/u3HinN8JIYuLhPKTd+uev/yW1OiwZbmCYpycJCncNdxyYwJ/EGYIM6rccU/xN
- UCwWg5ifqTxg==
-X-IronPort-AV: E=McAfee;i="6000,8403,9874"; a="166831982"
-X-IronPort-AV: E=Sophos;i="5.79,373,1602572400"; d="scan'208";a="166831982"
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E09316E054
+ for <intel-gfx@lists.freedesktop.org>; Mon, 25 Jan 2021 14:08:49 +0000 (UTC)
+IronPort-SDR: g36qQkfMmLvevxHE0F4mCsSiKQHGyOnJT8wBZ4/gA0Z33+mhov9LUZOseC9tpKxWDng3KzTsHZ
+ 95bd2VYwWN+w==
+X-IronPort-AV: E=McAfee;i="6000,8403,9874"; a="179879100"
+X-IronPort-AV: E=Sophos;i="5.79,373,1602572400"; d="scan'208";a="179879100"
 Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Jan 2021 06:08:22 -0800
-IronPort-SDR: JGA2aGuASrZ0v9WU4WXswDWCIxu5PcZ46uQBechFcwA2MWQhJp3SGq9aVRQn4JfFdpqt2mkjCy
- GE91GQlsO/tQ==
-X-IronPort-AV: E=Sophos;i="5.79,373,1602572400"; d="scan'208";a="472319462"
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Jan 2021 06:08:28 -0800
+IronPort-SDR: PrOCqdp9md9j0WwAs0EduA78tXGrh/dE5fOPcfoJBGaEVVXibdvPtyq3GGG2zowRCuN5nlvzNV
+ WsV0lrrIiP2A==
+X-IronPort-AV: E=Sophos;i="5.79,373,1602572400"; d="scan'208";a="472319525"
 Received: from iduggana-mobl.amr.corp.intel.com (HELO
  aswarup-mobl.amr.corp.intel.com) ([10.254.81.9])
  by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Jan 2021 06:08:18 -0800
+ 25 Jan 2021 06:08:27 -0800
 From: Aditya Swarup <aditya.swarup@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Mon, 25 Jan 2021 06:07:43 -0800
-Message-Id: <20210125140753.347998-1-aditya.swarup@intel.com>
+Date: Mon, 25 Jan 2021 06:07:44 -0800
+Message-Id: <20210125140753.347998-2-aditya.swarup@intel.com>
 X-Mailer: git-send-email 2.27.0
+In-Reply-To: <20210125140753.347998-1-aditya.swarup@intel.com>
+References: <20210125140753.347998-1-aditya.swarup@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 00/10] Alderlake-S platform enabling patches
+Subject: [Intel-gfx] [PATCH 01/10] x86/gpu: Add Alderlake-S stolen memory
+ support
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,58 +54,41 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This patch revises all the changes suggested in rev 3 of
-Introduce Alderlake-S series for first 10 patches.
-https://patchwork.freedesktop.org/patch/405772/?series=82917&rev=3
+From: Caz Yokoyama <caz.yokoyama@intel.com>
 
-Most of the patches have already been reviewed and are good for merge.
-I will resend rest of the series once we have focussed reviews on the
-pending patches.
+Alderlake-S is a Gen 12 based hybrid processor architeture. As it
+belongs to Gen 12 family, it uses the same GTT stolen memory settings
+like its predecessors - ICL(Gen 11) and TGL(Gen 12). This patch inherits
+the gen11 and gen 9 quirks for determining base and size of stolen
+memory.
 
-Please ignore the patch:
-x86/gpu: Add Alderlake-S stolen memory support
-as it was picked up to prevent compilation issues and maintaining
-sequence of patches.
-The correct location for picking the latest revision of that patch is 
-here:
-https://patchwork.freedesktop.org/series/86239/
+Note that this patch depends on commit 0883d63b19bb
+("drm/i915/adl_s: Add ADL-S platform info and PCI ids")
+
+Bspec: 52055
+Bspec: 49589
+Bspec: 49636
 
 Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-Cc: Matt Roper <matthew.d.roper@intel.com>
+Signed-off-by: Caz Yokoyama <caz.yokoyama@intel.com>
 Signed-off-by: Aditya Swarup <aditya.swarup@intel.com>
+Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
+---
+ arch/x86/kernel/early-quirks.c | 1 +
+ 1 file changed, 1 insertion(+)
 
-Aditya Swarup (5):
-  drm/i915/adl_s: Configure DPLL for ADL-S
-  drm/i915/adl_s: Configure Port clock registers for ADL-S
-  drm/i915/adl_s: Initialize display for ADL-S
-  drm/i915/adl_s: Add adl-s ddc pin mapping
-  drm/i915/adl_s: Add vbt port and aux channel settings for adls
-
-Anusha Srivatsa (3):
-  drm/i915/adl_s: Add PCH support
-  drm/i915/adl_s: Add Interrupt Support
-  drm/i915/adl_s: Add PHYs for Alderlake S
-
-Caz Yokoyama (1):
-  x86/gpu: Add Alderlake-S stolen memory support
-
-Matt Roper (1):
-  drm/i915/adl_s: Update combo PHY master/slave relationships
-
- arch/x86/kernel/early-quirks.c                |  1 +
- drivers/gpu/drm/i915/display/intel_bios.c     | 70 +++++++++++++++----
- .../gpu/drm/i915/display/intel_combo_phy.c    | 11 ++-
- drivers/gpu/drm/i915/display/intel_ddi.c      | 62 ++++++++++------
- drivers/gpu/drm/i915/display/intel_display.c  | 31 +++++---
- drivers/gpu/drm/i915/display/intel_dpll_mgr.c | 38 ++++++++--
- drivers/gpu/drm/i915/display/intel_hdmi.c     | 20 +++++-
- drivers/gpu/drm/i915/display/intel_vbt_defs.h |  4 ++
- drivers/gpu/drm/i915/i915_irq.c               |  3 +-
- drivers/gpu/drm/i915/i915_reg.h               | 50 +++++++++++--
- drivers/gpu/drm/i915/intel_pch.c              |  8 ++-
- drivers/gpu/drm/i915/intel_pch.h              |  3 +
- 12 files changed, 246 insertions(+), 55 deletions(-)
-
+diff --git a/arch/x86/kernel/early-quirks.c b/arch/x86/kernel/early-quirks.c
+index a4b5af03dcc1..6edd1e2ee8af 100644
+--- a/arch/x86/kernel/early-quirks.c
++++ b/arch/x86/kernel/early-quirks.c
+@@ -551,6 +551,7 @@ static const struct pci_device_id intel_early_ids[] __initconst = {
+ 	INTEL_EHL_IDS(&gen11_early_ops),
+ 	INTEL_TGL_12_IDS(&gen11_early_ops),
+ 	INTEL_RKL_IDS(&gen11_early_ops),
++	INTEL_ADLS_IDS(&gen11_early_ops),
+ };
+ 
+ struct resource intel_graphics_stolen_res __ro_after_init = DEFINE_RES_MEM(0, 0);
 -- 
 2.27.0
 
