@@ -1,44 +1,67 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 63F3B30280F
-	for <lists+intel-gfx@lfdr.de>; Mon, 25 Jan 2021 17:40:40 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8679D302813
+	for <lists+intel-gfx@lfdr.de>; Mon, 25 Jan 2021 17:42:08 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 57E186E1A8;
-	Mon, 25 Jan 2021 16:40:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CB0DF6E090;
+	Mon, 25 Jan 2021 16:42:06 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2C0526E1A8
- for <intel-gfx@lists.freedesktop.org>; Mon, 25 Jan 2021 16:40:36 +0000 (UTC)
-IronPort-SDR: o1yOgO7rkptwpBS2JwkNNob62hg/AtHZe2QLOmFgDDXkPju9INF5MuYEdDn9wxslI6bLUsSypf
- 3CwmkBcJ6wWw==
-X-IronPort-AV: E=McAfee;i="6000,8403,9875"; a="241292072"
-X-IronPort-AV: E=Sophos;i="5.79,374,1602572400"; d="scan'208";a="241292072"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Jan 2021 08:40:34 -0800
-IronPort-SDR: T8phcNObC7FP2flaFo1dEn4Fs3UNb073h8fFPMEa1ZLv+H5pjB+NT76qfsfSvCx+Y51qtlyfyN
- tbf+omc2TTcw==
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9D7726E090
+ for <intel-gfx@lists.freedesktop.org>; Mon, 25 Jan 2021 16:42:05 +0000 (UTC)
+IronPort-SDR: Y7zU1SjPEyBkBgfUAFt+E7WOMnb9XA/ci1tsAfZfVppShOl3ncpbiAGJl2a71K+HpPCwJEKqbr
+ QH2v32QavW4A==
+X-IronPort-AV: E=McAfee;i="6000,8403,9875"; a="198538143"
+X-IronPort-AV: E=Sophos;i="5.79,374,1602572400"; d="scan'208";a="198538143"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Jan 2021 08:42:01 -0800
+IronPort-SDR: 89/aCCSGkpKzFx8xZ/+6H9srUO3FHZX5XOeTmnTCYbuSURdW49QI8P9LKNLEhK3HiOqmGKf8hR
+ IXpmz4z4VCzw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.79,374,1602572400"; d="scan'208";a="472385959"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by fmsmga001.fm.intel.com with SMTP; 25 Jan 2021 08:40:28 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Mon, 25 Jan 2021 18:40:27 +0200
-Date: Mon, 25 Jan 2021 18:40:27 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Jani Nikula <jani.nikula@intel.com>
-Message-ID: <YA70e4YGxQaJ66zJ@intel.com>
-References: <cover.1611589818.git.jani.nikula@intel.com>
- <abbfe5a4a18f8258a92c06e7fbd4ea695bd3ca48.1611589818.git.jani.nikula@intel.com>
+X-IronPort-AV: E=Sophos;i="5.79,374,1602572400"; d="scan'208";a="350358322"
+Received: from fmsmsx606.amr.corp.intel.com ([10.18.126.86])
+ by fmsmga007.fm.intel.com with ESMTP; 25 Jan 2021 08:41:59 -0800
+Received: from bgsmsx604.gar.corp.intel.com (10.67.234.6) by
+ fmsmsx606.amr.corp.intel.com (10.18.126.86) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1713.5; Mon, 25 Jan 2021 08:41:58 -0800
+Received: from pgsmsx602.gar.corp.intel.com (10.108.199.137) by
+ BGSMSX604.gar.corp.intel.com (10.67.234.6) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1713.5; Mon, 25 Jan 2021 22:11:56 +0530
+Received: from pgsmsx602.gar.corp.intel.com ([10.108.199.137]) by
+ pgsmsx602.gar.corp.intel.com ([10.108.199.137]) with mapi id 15.01.1713.004;
+ Tue, 26 Jan 2021 00:41:55 +0800
+From: "Vudum, Lakshminarayana" <lakshminarayana.vudum@intel.com>
+To: "Gupta, Anshuman" <anshuman.gupta@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Thread-Topic: =?utf-8?B?W0ludGVsLWdmeF0g4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJtL2k5?=
+ =?utf-8?B?MTUvaGRjcDogRGlzYWJsZSB0aGUgUVNFUyBjaGVjayBmb3IgSERDUCAxLjQg?=
+ =?utf-8?Q?over_MST_(rev2)?=
+Thread-Index: AQHW8GhgXA0Ib8oqwkuOBeETmZhDl6o4e16AgAAVY1A=
+Date: Mon, 25 Jan 2021 16:41:55 +0000
+Message-ID: <37c96502085441e99663d30c1bee4bf4@intel.com>
+References: <20210106223909.34476-1-sean@poorly.run>
+ <161128337637.14036.11941412627307128800@emeril.freedesktop.org>
+ <1fc478adfaab48daa99274b11305a80a@intel.com>
+In-Reply-To: <1fc478adfaab48daa99274b11305a80a@intel.com>
+Accept-Language: en-GB, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+dlp-product: dlpe-windows
+dlp-reaction: no-action
+dlp-version: 11.2.0.6
+x-originating-ip: [10.22.254.132]
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <abbfe5a4a18f8258a92c06e7fbd4ea695bd3ca48.1611589818.git.jani.nikula@intel.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH 2/9] drm/i915/edp: reject modes with
- dimensions other than fixed mode
+Subject: Re: [Intel-gfx] 
+ =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
+ =?utf-8?q?/i915/hdcp=3A_Disable_the_QSES_check_for_HDCP_1=2E4_over_MST_?=
+ =?utf-8?b?KHJldjIp?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,77 +74,99 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, Nischal Varide <nischal.varide@intel.com>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Jan 25, 2021 at 05:52:26PM +0200, Jani Nikula wrote:
-> Be more strict about filtering modes for eDP.
-> =
-
-> Cc: Nischal Varide <nischal.varide@intel.com>
-> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_dp.c | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
-> =
-
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i9=
-15/display/intel_dp.c
-> index 8979996f1747..6afea0681ce9 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> @@ -787,10 +787,10 @@ intel_dp_mode_valid(struct drm_connector *connector,
->  		return MODE_H_ILLEGAL;
->  =
-
->  	if (intel_dp_is_edp(intel_dp) && fixed_mode) {
-> -		if (mode->hdisplay > fixed_mode->hdisplay)
-> +		if (mode->hdisplay !=3D fixed_mode->hdisplay)
->  			return MODE_PANEL;
->  =
-
-> -		if (mode->vdisplay > fixed_mode->vdisplay)
-> +		if (mode->vdisplay !=3D fixed_mode->vdisplay)
->  			return MODE_PANEL;
-
-Yeah, I think this makes sense since we never use anything
-but the fixed_mode for the actual timings. I don't think I've
-ever seen a display that would advertise multiple resolution.
-And I think that would actually indicate that the panel can
-really accept different resolutions, which we would never do
-anyway.
-
-The old behaviour would make more sense if we allowed userspace
-to add custom modes to the mode list. But we don't. All custom
-pfit scaled modes I think are always a purely userspace thing
-(based on the presence of the scaling mode prop).
-
-We should probably do this for the output types as well.
-Not quite sure what to do about SDVO (and maybe DVO) so
-probably ignore those for now.
-
-
->  =
-
->  		target_clock =3D fixed_mode->clock;
-> -- =
-
-> 2.20.1
-> =
-
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
--- =
-
-Ville Syrj=E4l=E4
-Intel
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+SGksIA0KDQpDSSBidWcgbG9nIGNyYXNoZXMgd2hpbGUgY3JlYXRpbmcgYW4gaXNzdWUgYnV0IEkg
+aGF2ZSBjcmVhdGVkIGJ1ZyBpbiBnaXRsYWIuIEkgd2lsbCB0cnkgdG8gY3JlYXRlIGlzc3VlIGlu
+IENJIGJ1ZyBsb2cgYWdhaW4gbGF0ZXIgdG9kYXkuDQpodHRwczovL2dpdGxhYi5mcmVlZGVza3Rv
+cC5vcmcvZHJtL2ludGVsLy0vaXNzdWVzLzI5OTgNCg0KVGhhbmtzLA0KTGFrc2htaS4NCi0tLS0t
+T3JpZ2luYWwgTWVzc2FnZS0tLS0tDQpGcm9tOiBHdXB0YSwgQW5zaHVtYW4gPGFuc2h1bWFuLmd1
+cHRhQGludGVsLmNvbT4gDQpTZW50OiBNb25kYXksIEphbnVhcnkgMjUsIDIwMjEgNzoyNiBBTQ0K
+VG86IGludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmc7IFZ1ZHVtLCBMYWtzaG1pbmFyYXlh
+bmEgPGxha3NobWluYXJheWFuYS52dWR1bUBpbnRlbC5jb20+DQpDYzogU2VhbiBQYXVsIDxzZWFu
+QHBvb3JseS5ydW4+DQpTdWJqZWN0OiBSRTogW0ludGVsLWdmeF0g4pyXIEZpLkNJLkJBVDogZmFp
+bHVyZSBmb3IgZHJtL2k5MTUvaGRjcDogRGlzYWJsZSB0aGUgUVNFUyBjaGVjayBmb3IgSERDUCAx
+LjQgb3ZlciBNU1QgKHJldjIpDQoNCkhpIExha3NobWkgLA0KV2UgbmVlZCB0byBtZXJnZSB0aGUg
+cGF0Y2ggaHR0cHM6Ly9wYXRjaHdvcmsuZnJlZWRlc2t0b3Aub3JnL3Nlcmllcy84NTU1NS8NCkJl
+bG93IGFyZSB0aGUgZ2VtIGZhaWx1cmVzIGNhdXNpbmcgdGhlIEJBVCB0byBmYWlsICwgdGhvc2Ug
+d2VyZSBub3Qgc2VlbiBvbiBSZXYxIG9mIHRoaXMgcGF0Y2guDQpDb3VsZCB5b3UgcGxlYXNlIHJl
+cmVwb3J0LXRoZSByZXN1bHRzIHRvIHRyaWdnZXIgQ0ktSUdUIHJ1bi4NClRoYW5rcywNCkFuc2h1
+bWFuIEd1cHRhLg0KDQpGcm9tOiBJbnRlbC1nZnggPGludGVsLWdmeC1ib3VuY2VzQGxpc3RzLmZy
+ZWVkZXNrdG9wLm9yZz4gT24gQmVoYWxmIE9mIFBhdGNod29yaw0KU2VudDogRnJpZGF5LCBKYW51
+YXJ5IDIyLCAyMDIxIDg6MTMgQU0NClRvOiBTZWFuIFBhdWwgPHNlYW5AcG9vcmx5LnJ1bj4NCkNj
+OiBpbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnDQpTdWJqZWN0OiBbSW50ZWwtZ2Z4XSDi
+nJcgRmkuQ0kuQkFUOiBmYWlsdXJlIGZvciBkcm0vaTkxNS9oZGNwOiBEaXNhYmxlIHRoZSBRU0VT
+IGNoZWNrIGZvciBIRENQIDEuNCBvdmVyIE1TVCAocmV2MikNCg0KUGF0Y2ggRGV0YWlscw0KU2Vy
+aWVzOg0KZHJtL2k5MTUvaGRjcDogRGlzYWJsZSB0aGUgUVNFUyBjaGVjayBmb3IgSERDUCAxLjQg
+b3ZlciBNU1QgKHJldjIpDQpVUkw6DQpodHRwczovL3BhdGNod29yay5mcmVlZGVza3RvcC5vcmcv
+c2VyaWVzLzg1NTU1Lw0KU3RhdGU6DQpmYWlsdXJlDQpEZXRhaWxzOg0KaHR0cHM6Ly9pbnRlbC1n
+ZngtY2kuMDEub3JnL3RyZWUvZHJtLXRpcC9QYXRjaHdvcmtfMTk0NDcvaW5kZXguaHRtbA0KQ0kg
+QnVnIExvZyAtIGNoYW5nZXMgZnJvbSBDSV9EUk1fOTY2NiAtPiBQYXRjaHdvcmtfMTk0NDcgU3Vt
+bWFyeSBGQUlMVVJFIFNlcmlvdXMgdW5rbm93biBjaGFuZ2VzIGNvbWluZyB3aXRoIFBhdGNod29y
+a18xOTQ0NyBhYnNvbHV0ZWx5IG5lZWQgdG8gYmUgdmVyaWZpZWQgbWFudWFsbHkuDQpJZiB5b3Ug
+dGhpbmsgdGhlIHJlcG9ydGVkIGNoYW5nZXMgaGF2ZSBub3RoaW5nIHRvIGRvIHdpdGggdGhlIGNo
+YW5nZXMgaW50cm9kdWNlZCBpbiBQYXRjaHdvcmtfMTk0NDcsIHBsZWFzZSBub3RpZnkgeW91ciBi
+dWcgdGVhbSB0byBhbGxvdyB0aGVtIHRvIGRvY3VtZW50IHRoaXMgbmV3IGZhaWx1cmUgbW9kZSwg
+d2hpY2ggd2lsbCByZWR1Y2UgZmFsc2UgcG9zaXRpdmVzIGluIENJLg0KRXh0ZXJuYWwgVVJMOiBo
+dHRwczovL2ludGVsLWdmeC1jaS4wMS5vcmcvdHJlZS9kcm0tdGlwL1BhdGNod29ya18xOTQ0Ny9p
+bmRleC5odG1sDQpQb3NzaWJsZSBuZXcgaXNzdWVzDQpIZXJlIGFyZSB0aGUgdW5rbm93biBjaGFu
+Z2VzIHRoYXQgbWF5IGhhdmUgYmVlbiBpbnRyb2R1Y2VkIGluIFBhdGNod29ya18xOTQ0NzoNCklH
+VCBjaGFuZ2VzDQpQb3NzaWJsZSByZWdyZXNzaW9ucw0K4oCiIGlndEBpOTE1X3NlbGZ0ZXN0QGxp
+dmVAZ3RfbHJjOg0KbyBmaS1ic3ctbjMwNTA6IGh0dHBzOi8vaW50ZWwtZ2Z4LWNpLjAxLm9yZy90
+cmVlL2RybS10aXAvQ0lfRFJNXzk2NjYvZmktYnN3LW4zMDUwL2lndEBpOTE1X3NlbGZ0ZXN0QGxp
+dmVAZ3RfbHJjLmh0bWwgLT4gaHR0cHM6Ly9pbnRlbC1nZngtY2kuMDEub3JnL3RyZWUvZHJtLXRp
+cC9QYXRjaHdvcmtfMTk0NDcvZmktYnN3LW4zMDUwL2lndEBpOTE1X3NlbGZ0ZXN0QGxpdmVAZ3Rf
+bHJjLmh0bWwNCktub3duIGlzc3Vlcw0KSGVyZSBhcmUgdGhlIGNoYW5nZXMgZm91bmQgaW4gUGF0
+Y2h3b3JrXzE5NDQ3IHRoYXQgY29tZSBmcm9tIGtub3duIGlzc3VlczoNCklHVCBjaGFuZ2VzDQpJ
+c3N1ZXMgaGl0DQrigKIgaWd0QGdlbV9tbWFwX2d0dEBiYXNpYzoNCm8gZmktdGdsLXk6IGh0dHBz
+Oi8vaW50ZWwtZ2Z4LWNpLjAxLm9yZy90cmVlL2RybS10aXAvQ0lfRFJNXzk2NjYvZmktdGdsLXkv
+aWd0QGdlbV9tbWFwX2d0dEBiYXNpYy5odG1sIC0+IGh0dHBzOi8vaW50ZWwtZ2Z4LWNpLjAxLm9y
+Zy90cmVlL2RybS10aXAvUGF0Y2h3b3JrXzE5NDQ3L2ZpLXRnbC15L2lndEBnZW1fbW1hcF9ndHRA
+YmFzaWMuaHRtbCAoaHR0cHM6Ly9naXRsYWIuZnJlZWRlc2t0b3Aub3JnL2RybS9pbnRlbC9pc3N1
+ZXMvNDAyKSArMiBzaW1pbGFyIGlzc3VlcyDigKIgaWd0QGk5MTVfc2VsZnRlc3RAbGl2ZUBodWdl
+cGFnZXM6DQpvIGZpLWJzdy1uMzA1MDogaHR0cHM6Ly9pbnRlbC1nZngtY2kuMDEub3JnL3RyZWUv
+ZHJtLXRpcC9DSV9EUk1fOTY2Ni9maS1ic3ctbjMwNTAvaWd0QGk5MTVfc2VsZnRlc3RAbGl2ZUBo
+dWdlcGFnZXMuaHRtbCAtPiBodHRwczovL2ludGVsLWdmeC1jaS4wMS5vcmcvdHJlZS9kcm0tdGlw
+L1BhdGNod29ya18xOTQ0Ny9maS1ic3ctbjMwNTAvaWd0QGk5MTVfc2VsZnRlc3RAbGl2ZUBodWdl
+cGFnZXMuaHRtbCAoaHR0cHM6Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy9zaG93X2J1Zy5jZ2k/aWQ9
+MTA5MjcxKSArMjAgc2ltaWxhciBpc3N1ZXMg4oCiIGlndEBpOTE1X3NlbGZ0ZXN0QGxpdmVAcmlu
+Z19zdWJtaXNzaW9uOg0KbyBmaS1ic3ctbjMwNTA6IE5PVFJVTiAtPiBodHRwczovL2ludGVsLWdm
+eC1jaS4wMS5vcmcvdHJlZS9kcm0tdGlwL1BhdGNod29ya18xOTQ0Ny9maS1ic3ctbjMwNTAvaWd0
+QGk5MTVfc2VsZnRlc3RAbGl2ZUByaW5nX3N1Ym1pc3Npb24uaHRtbCAoaHR0cHM6Ly9idWdzLmZy
+ZWVkZXNrdG9wLm9yZy9zaG93X2J1Zy5jZ2k/aWQ9MTA5MjcxKSArMiBzaW1pbGFyIGlzc3VlcyDi
+gKIgaWd0QGttc19jaGFtZWxpdW1AZHAtY3JjLWZhc3Q6DQpvIGZpLWtibC03NTAwdTogaHR0cHM6
+Ly9pbnRlbC1nZngtY2kuMDEub3JnL3RyZWUvZHJtLXRpcC9DSV9EUk1fOTY2Ni9maS1rYmwtNzUw
+MHUvaWd0QGttc19jaGFtZWxpdW1AZHAtY3JjLWZhc3QuaHRtbCAtPiBodHRwczovL2ludGVsLWdm
+eC1jaS4wMS5vcmcvdHJlZS9kcm0tdGlwL1BhdGNod29ya18xOTQ0Ny9maS1rYmwtNzUwMHUvaWd0
+QGttc19jaGFtZWxpdW1AZHAtY3JjLWZhc3QuaHRtbCAoaHR0cHM6Ly9naXRsYWIuZnJlZWRlc2t0
+b3Aub3JnL2RybS9pbnRlbC9pc3N1ZXMvMTE2MSAvIGh0dHBzOi8vZ2l0bGFiLmZyZWVkZXNrdG9w
+Lm9yZy9kcm0vaW50ZWwvaXNzdWVzLzI2MikNClBvc3NpYmxlIGZpeGVzDQrigKIgaWd0QGdlbV90
+aWxlZF9ibGl0c0BiYXNpYzoNCm8gZmktdGdsLXk6IGh0dHBzOi8vaW50ZWwtZ2Z4LWNpLjAxLm9y
+Zy90cmVlL2RybS10aXAvQ0lfRFJNXzk2NjYvZmktdGdsLXkvaWd0QGdlbV90aWxlZF9ibGl0c0Bi
+YXNpYy5odG1sIChodHRwczovL2dpdGxhYi5mcmVlZGVza3RvcC5vcmcvZHJtL2ludGVsL2lzc3Vl
+cy80MDIpIC0+IGh0dHBzOi8vaW50ZWwtZ2Z4LWNpLjAxLm9yZy90cmVlL2RybS10aXAvUGF0Y2h3
+b3JrXzE5NDQ3L2ZpLXRnbC15L2lndEBnZW1fdGlsZWRfYmxpdHNAYmFzaWMuaHRtbCArMSBzaW1p
+bGFyIGlzc3VlIFdhcm5pbmdzIOKAoiBpZ3RAaTkxNV9zZWxmdGVzdEBsaXZlQGV4ZWNsaXN0czoN
+Cm8gZmktYnN3LW4zMDUwOiBodHRwczovL2ludGVsLWdmeC1jaS4wMS5vcmcvdHJlZS9kcm0tdGlw
+L0NJX0RSTV85NjY2L2ZpLWJzdy1uMzA1MC9pZ3RAaTkxNV9zZWxmdGVzdEBsaXZlQGV4ZWNsaXN0
+cy5odG1sIChodHRwczovL2dpdGxhYi5mcmVlZGVza3RvcC5vcmcvZHJtL2ludGVsL2lzc3Vlcy8y
+OTQwKSAtPiBodHRwczovL2ludGVsLWdmeC1jaS4wMS5vcmcvdHJlZS9kcm0tdGlwL1BhdGNod29y
+a18xOTQ0Ny9maS1ic3ctbjMwNTAvaWd0QGk5MTVfc2VsZnRlc3RAbGl2ZUBleGVjbGlzdHMuaHRt
+bCAoaHR0cHM6Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy9zaG93X2J1Zy5jZ2k/aWQ9MTA5MjcxKQ0K
+UGFydGljaXBhdGluZyBob3N0cyAoNDEgLT4gMzcpDQpNaXNzaW5nICg0KTogZmktaWxrLW01NDAg
+ZmktYnN3LWN5YW4gZmktYmR3LXNhbXVzIGZpLWhzdy00MjAwdSBCdWlsZCBjaGFuZ2VzIOKAoiBM
+aW51eDogQ0lfRFJNXzk2NjYgLT4gUGF0Y2h3b3JrXzE5NDQ3DQpDSS0yMDE5MDUyOTogMjAxOTA1
+MjkNCkNJX0RSTV85NjY2OiA5Y2NiYzY1M2JmMjk0OGQxZjdlOWZmMzAwZGQ3Njc5Yjg4OGZmYTI1
+IEAgZ2l0Oi8vYW5vbmdpdC5mcmVlZGVza3RvcC5vcmcvZ2Z4LWNpL2xpbnV4DQpJR1RfNTk2Mjog
+MjJlM2RhYWVkODJhYjc4OTAwMThhMmYyYWFiZjUwODJjZDUzNjAyMyBAIGdpdDovL2Fub25naXQu
+ZnJlZWRlc2t0b3Aub3JnL3hvcmcvYXBwL2ludGVsLWdwdS10b29scw0KUGF0Y2h3b3JrXzE5NDQ3
+OiA2OWQ3ZGIwMDNmYTQwNmRmNzg1MWFiMDgyMzlkZDQwOWE3OGY0NDIxIEAgZ2l0Oi8vYW5vbmdp
+dC5mcmVlZGVza3RvcC5vcmcvZ2Z4LWNpL2xpbnV4DQo9PSBMaW51eCBjb21taXRzID09DQo2OWQ3
+ZGIwMDNmYTQgZHJtL2k5MTUvaGRjcDogRGlzYWJsZSB0aGUgUVNFUyBjaGVjayBmb3IgSERDUCAx
+LjQgb3ZlciBNU1QNCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9y
+ZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdm
+eAo=
