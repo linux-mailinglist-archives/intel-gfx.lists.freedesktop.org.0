@@ -1,38 +1,40 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0485F302903
-	for <lists+intel-gfx@lfdr.de>; Mon, 25 Jan 2021 18:36:49 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id A926F302904
+	for <lists+intel-gfx@lfdr.de>; Mon, 25 Jan 2021 18:36:50 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 95D6F89A8B;
-	Mon, 25 Jan 2021 17:36:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6881588E14;
+	Mon, 25 Jan 2021 17:36:43 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1A39189A74;
- Mon, 25 Jan 2021 17:36:41 +0000 (UTC)
-IronPort-SDR: QUSBVoUcBPUo/dvQ2EJKfHLs5xGkkhpy+kKc8ONhwD+RVRvcnkVV9xWgxbALmShfihtJKB2gJX
- kLDBXMvQ5nVA==
-X-IronPort-AV: E=McAfee;i="6000,8403,9875"; a="198548760"
-X-IronPort-AV: E=Sophos;i="5.79,374,1602572400"; d="scan'208";a="198548760"
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EF79989A74
+ for <intel-gfx@lists.freedesktop.org>; Mon, 25 Jan 2021 17:36:41 +0000 (UTC)
+IronPort-SDR: l5VgwLstOFJwd5w8H4IggxD/CTfT+XZZgrt85SN3D5EOJnjq0MEDSbQsikSOO4PreOpzMCujep
+ ZPmBEhpCOCfw==
+X-IronPort-AV: E=McAfee;i="6000,8403,9875"; a="198548762"
+X-IronPort-AV: E=Sophos;i="5.79,374,1602572400"; d="scan'208";a="198548762"
 Received: from orsmga002.jf.intel.com ([10.7.209.21])
  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Jan 2021 09:36:40 -0800
-IronPort-SDR: vgcu1GNmi57TdNrpab78XpsZHoQXiP78L00DoQXG1C45CXV+L2z6cbKQAiOjkujaGF5IKLZDP+
- X88HhnAZcleg==
-X-IronPort-AV: E=Sophos;i="5.79,374,1602572400"; d="scan'208";a="368762489"
+ 25 Jan 2021 09:36:41 -0800
+IronPort-SDR: SS+t5iJRs09DMk6QYOyzzfYVPVmMxIXKqlKZ7nzHO6kZmW7Y3RpzamfrzdWD/tM1xxIZ4va1pL
+ quJEHqucNfFg==
+X-IronPort-AV: E=Sophos;i="5.79,374,1602572400"; d="scan'208";a="368762541"
 Received: from ideak-desk.fi.intel.com ([10.237.68.141])
  by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Jan 2021 09:36:38 -0800
+ 25 Jan 2021 09:36:40 -0800
 From: Imre Deak <imre.deak@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Mon, 25 Jan 2021 19:36:35 +0200
-Message-Id: <20210125173636.1733812-1-imre.deak@intel.com>
+Date: Mon, 25 Jan 2021 19:36:36 +0200
+Message-Id: <20210125173636.1733812-2-imre.deak@intel.com>
 X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20210125173636.1733812-1-imre.deak@intel.com>
+References: <20210125173636.1733812-1-imre.deak@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 1/2] drm/dp/mst: Export
- drm_dp_get_vc_payload_bw()
+Subject: [Intel-gfx] [PATCH 2/2] drm/i915: Fix the MST PBN divider
+ calculation
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,86 +47,54 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Ville Syrjala <ville.syrjala@intel.com>, dri-devel@lists.freedesktop.org,
- stable@vger.kernel.org
+Cc: Ville Syrjala <ville.syrjala@intel.com>, stable@vger.kernel.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This function will be needed by the next patch where the driver
-calculates the BW based on driver specific parameters, so export it.
+Atm the driver will calculate a wrong MST timeslots/MTP (aka time unit)
+value for MST streams if the link parameters (link rate or lane count)
+are limited in a way independent of the sink capabilities (reported by
+DPCD).
 
-At the same time sanitize the function params, passing the more natural
-link rate instead of the encoding of the same rate.
+One example of such a limitation is when a MUX between the sink and
+source connects only a limited number of lanes to the display and
+connects the rest of the lanes to other peripherals (USB).
 
+Another issue is that atm MST core calculates the divider based on the
+backwards compatible DPCD (at address 0x0000) vs. the extended
+capability info (at address 0x2200). This can result in leaving some
+part of the MST BW unused (For instance in case of the WD19TB dock).
+
+Fix the above two issues by calculating the PBN divider value based on
+the rate and lane count link parameters that the driver uses for all
+other computation.
+
+Bugzilla: https://gitlab.freedesktop.org/drm/intel/-/issues/2977
 Cc: Lyude Paul <lyude@redhat.com>
 Cc: Ville Syrjala <ville.syrjala@intel.com>
 Cc: <stable@vger.kernel.org>
-Cc: dri-devel@lists.freedesktop.org
 Signed-off-by: Imre Deak <imre.deak@intel.com>
 ---
- drivers/gpu/drm/drm_dp_mst_topology.c | 24 ++++++++++++++++++------
- include/drm/drm_dp_mst_helper.h       |  1 +
- 2 files changed, 19 insertions(+), 6 deletions(-)
+ drivers/gpu/drm/i915/display/intel_dp_mst.c | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/drm_dp_mst_topology.c b/drivers/gpu/drm/drm_dp_mst_topology.c
-index 475939138b21..dc96cbf78cc6 100644
---- a/drivers/gpu/drm/drm_dp_mst_topology.c
-+++ b/drivers/gpu/drm/drm_dp_mst_topology.c
-@@ -3629,14 +3629,26 @@ static int drm_dp_send_up_ack_reply(struct drm_dp_mst_topology_mgr *mgr,
- 	return 0;
- }
+diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+index d6a1b961a0e8..b4621ed0127e 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
++++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+@@ -68,7 +68,9 @@ static int intel_dp_mst_compute_link_config(struct intel_encoder *encoder,
  
--static int drm_dp_get_vc_payload_bw(u8 dp_link_bw, u8  dp_link_count)
-+/**
-+ * drm_dp_get_vc_payload_bw - get the VC payload BW for an MST link
-+ * @rate: link rate in 10kbits/s units
-+ * @lane_count: lane count
-+ *
-+ * Calculate the toal bandwidth of a MultiStream Transport link. The returned
-+ * value is in units of PBNs/(timeslots/1 MTP). This value can be used to
-+ * convert the number of PBNs required for a given stream to the number of
-+ * timeslots this stream requires in each MTP.
-+ */
-+int drm_dp_get_vc_payload_bw(int link_rate, int link_lane_count)
- {
--	if (dp_link_bw == 0 || dp_link_count == 0)
--		DRM_DEBUG_KMS("invalid link bandwidth in DPCD: %x (link count: %d)\n",
--			      dp_link_bw, dp_link_count);
-+	if (link_rate == 0 || link_lane_count == 0)
-+		DRM_DEBUG_KMS("invalid link rate/lane count: (%d / %d)\n",
-+			      link_rate, link_lane_count);
- 
--	return dp_link_bw * dp_link_count / 2;
-+	/* See DP v2.0 2.6.4.2, VCPayload_Bandwidth_for_OneTimeSlotPer_MTP_Allocation */
-+	return link_rate * link_lane_count / 54000;
- }
-+EXPORT_SYMBOL(drm_dp_get_vc_payload_bw);
- 
- /**
-  * drm_dp_read_mst_cap() - check whether or not a sink supports MST
-@@ -3692,7 +3704,7 @@ int drm_dp_mst_topology_mgr_set_mst(struct drm_dp_mst_topology_mgr *mgr, bool ms
- 			goto out_unlock;
- 		}
- 
--		mgr->pbn_div = drm_dp_get_vc_payload_bw(mgr->dpcd[1],
-+		mgr->pbn_div = drm_dp_get_vc_payload_bw(drm_dp_bw_code_to_link_rate(mgr->dpcd[1]),
- 							mgr->dpcd[2] & DP_MAX_LANE_COUNT_MASK);
- 		if (mgr->pbn_div == 0) {
- 			ret = -EINVAL;
-diff --git a/include/drm/drm_dp_mst_helper.h b/include/drm/drm_dp_mst_helper.h
-index f5e92fe9151c..bd1c39907b92 100644
---- a/include/drm/drm_dp_mst_helper.h
-+++ b/include/drm/drm_dp_mst_helper.h
-@@ -783,6 +783,7 @@ drm_dp_mst_detect_port(struct drm_connector *connector,
- 
- struct edid *drm_dp_mst_get_edid(struct drm_connector *connector, struct drm_dp_mst_topology_mgr *mgr, struct drm_dp_mst_port *port);
- 
-+int drm_dp_get_vc_payload_bw(int link_rate, int link_lane_count);
- 
- int drm_dp_calc_pbn_mode(int clock, int bpp, bool dsc);
- 
+ 		slots = drm_dp_atomic_find_vcpi_slots(state, &intel_dp->mst_mgr,
+ 						      connector->port,
+-						      crtc_state->pbn, 0);
++						      crtc_state->pbn,
++						      drm_dp_get_vc_payload_bw(crtc_state->port_clock,
++									       crtc_state->lane_count));
+ 		if (slots == -EDEADLK)
+ 			return slots;
+ 		if (slots >= 0)
 -- 
 2.25.1
 
