@@ -2,46 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AD78030254F
-	for <lists+intel-gfx@lfdr.de>; Mon, 25 Jan 2021 14:09:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id F226B30254D
+	for <lists+intel-gfx@lfdr.de>; Mon, 25 Jan 2021 14:09:48 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0657D89241;
-	Mon, 25 Jan 2021 13:09:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4B6C88921A;
+	Mon, 25 Jan 2021 13:09:47 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2FCFF891E7;
- Mon, 25 Jan 2021 13:09:35 +0000 (UTC)
-Received: by mail.kernel.org (Postfix) with ESMTPSA id CC2AC230FF;
- Mon, 25 Jan 2021 13:09:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1611580174;
- bh=y5SD7INd+SJt7jxXfJP2LnyGCDy2q11vfjo9M/wnIVg=;
- h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
- b=CzHvKf0g4XRU3kZT+EAi1uu/b8urWuaKUoh7B2C4vgC224fDtXQv2oHgNFop9yhZT
- 2NAVkLC7L51W5AAHJatCrAxQaZGGe8ikLSGTJyflMWj71WwoMujeWrPVS93iC1TKwI
- x8IXnE2nOh3LtWah61deyMxC6o408RKhwybxqQHAd+opNvhFi5a0T4aRl8m1xi1DH6
- wsKNG/eN4JKz1Sz+I59YIY7HdRNsZBImAyvqYbJLknXsqtZGg59Fa+dNZ2fW1Tb9ok
- XisCQGg02FTISRO4Tr0H83Lqk2GgUor15GeedhP0qyrOoICJ9TKfPHZdLC53amcu9N
- 55hpWqNriPU0w==
-Received: by mail-ot1-f50.google.com with SMTP id i20so12661192otl.7;
- Mon, 25 Jan 2021 05:09:34 -0800 (PST)
-X-Gm-Message-State: AOAM533iFFiO4ltmg6eCi9M7bGeyifxdyjwgCMR+uOxhdYVBEBxWLaZg
- yWWILebaPdrigZxxLfSqySJBLjRAvjgLhKjj6YE=
-X-Google-Smtp-Source: ABdhPJyuJJk9G4dOr5X/W/Oejpn00xm3L5Vgy94ryIckeQco5eZlFX7WU57R1TChXjR/NR+IHQywGOH1ZsrZxjRin3w=
-X-Received: by 2002:a9d:741a:: with SMTP id n26mr388999otk.210.1611580174003; 
- Mon, 25 Jan 2021 05:09:34 -0800 (PST)
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 46408891EC;
+ Mon, 25 Jan 2021 13:09:46 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 3F11AA9932;
+ Mon, 25 Jan 2021 13:09:46 +0000 (UTC)
 MIME-Version: 1.0
-References: <20210125122650.4178417-1-arnd@kernel.org>
- <161157800073.27462.7610644354455990065@build.alporthouse.com>
-In-Reply-To: <161157800073.27462.7610644354455990065@build.alporthouse.com>
-From: Arnd Bergmann <arnd@kernel.org>
-Date: Mon, 25 Jan 2021 14:09:18 +0100
-X-Gmail-Original-Message-ID: <CAK8P3a2nWZnHfxqsKpq4iA1yYkJcVw01OewsZ9WSKUczoUR0+g@mail.gmail.com>
-Message-ID: <CAK8P3a2nWZnHfxqsKpq4iA1yYkJcVw01OewsZ9WSKUczoUR0+g@mail.gmail.com>
-To: Chris Wilson <chris@chris-wilson.co.uk>
-X-Mailman-Approved-At: Mon, 25 Jan 2021 13:09:56 +0000
-Subject: Re: [Intel-gfx] [PATCH] i915: Fix DRM_I915_WERROR dependencies
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Dan Carpenter" <dan.carpenter@oracle.com>
+Date: Mon, 25 Jan 2021 13:09:46 -0000
+Message-ID: <161158018625.3419.5879055979640729984@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <YA6FkPn5S4ZDUGxq@mwanda>
+In-Reply-To: <YA6FkPn5S4ZDUGxq@mwanda>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
+ =?utf-8?q?/i915/gem=3A_Fix_oops_in_error_handling_code?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,34 +38,84 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Arnd Bergmann <arnd@arndb.de>, David Airlie <airlied@linux.ie>,
- Intel Graphics <intel-gfx@lists.freedesktop.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- dri-devel <dri-devel@lists.freedesktop.org>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============1802674264=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Jan 25, 2021 at 1:33 PM Chris Wilson <chris@chris-wilson.co.uk> wrote:
->
-> Quoting Arnd Bergmann (2021-01-25 12:26:44)
-> > From: Arnd Bergmann <arnd@arndb.de>
-> >
-> > CONFIG_DRM_I915_DEBUG now selects CONFIG_DRM_I915_WERROR, but fails
-> > to honor its dependencies:
-> >
-> > WARNING: unmet direct dependencies detected for DRM_I915_WERROR
-> >   Depends on [n]: HAS_IOMEM [=y] && DRM_I915 [=m] && EXPERT [=y] && !COMPILE_TEST [=y]
-> >   Selected by [m]:
-> >   - DRM_I915_DEBUG [=y] && HAS_IOMEM [=y] && EXPERT [=y] && DRM_I915 [=m]
->
-> DRM_I915_DEBUG now depends on !COMPILE_TEST and EXPERT.
+--===============1802674264==
+Content-Type: multipart/alternative;
+ boundary="===============2052120915353008254=="
 
-Works for me, thanks!
+--===============2052120915353008254==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-      Arnd
+== Series Details ==
+
+Series: drm/i915/gem: Fix oops in error handling code
+URL   : https://patchwork.freedesktop.org/series/86249/
+State : failure
+
+== Summary ==
+
+Applying: drm/i915/gem: Fix oops in error handling code
+Using index info to reconstruct a base tree...
+M	drivers/gpu/drm/i915/gem/i915_gem_stolen.c
+Falling back to patching base and 3-way merge...
+No changes -- Patch already applied.
+
+
+
+--===============2052120915353008254==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/gem: Fix oops in error handling code</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/86249/">https://patchwork.freedesktop.org/series/86249/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+</table>
+
+
+    <p>Applying: drm/i915/gem: Fix oops in error handling code<br />
+Using index info to reconstruct a base tree...<br />
+M   drivers/gpu/drm/i915/gem/i915_gem_stolen.c<br />
+Falling back to patching base and 3-way merge...<br />
+No changes -- Patch already applied.</p>
+
+</body>
+</html>
+
+--===============2052120915353008254==--
+
+--===============1802674264==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============1802674264==--
