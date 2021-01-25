@@ -1,42 +1,47 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B70E9302544
-	for <lists+intel-gfx@lfdr.de>; Mon, 25 Jan 2021 14:06:22 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id AD78030254F
+	for <lists+intel-gfx@lfdr.de>; Mon, 25 Jan 2021 14:09:59 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8D1166E0A8;
-	Mon, 25 Jan 2021 13:06:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0657D89241;
+	Mon, 25 Jan 2021 13:09:58 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AC94D8997A;
- Mon, 25 Jan 2021 12:26:55 +0000 (UTC)
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 40D462310A;
- Mon, 25 Jan 2021 12:26:53 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2FCFF891E7;
+ Mon, 25 Jan 2021 13:09:35 +0000 (UTC)
+Received: by mail.kernel.org (Postfix) with ESMTPSA id CC2AC230FF;
+ Mon, 25 Jan 2021 13:09:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1611577615;
- bh=A+0Js7aEmvCEqlxCd8cHbZodFFgw/k9Df4K9Dm9wPII=;
- h=From:To:Cc:Subject:Date:From;
- b=Ib3D0YrzD1CUR5but9zvYwxIeND0+tWbU7jxbm/1mcLUF54N6XWKhH/QWeLYd14eR
- 6mm8rR+Ya5w0KhD8rluz6fxb5crom4FcSVUwf5GzyiZy1OCsUzMLR0VUJKlhtPpVCW
- oTY15YVVMfDLujC/oOVsfC2a16GF+byZOa7nAHdgrs5XGoz2tFMtVi2c5wd1PpH5n3
- wmUweYibZ3wHr/+RgSOhQ3dAIRIsLzdC6y60U7SvMyoK94yyaG6nReuGCrobXrmDh8
- 7M0+XvAPbLrJ1uEOkB4DPubqCwreOPyNmsnpn7euYkWRMRlj2zFmuIdbsX6aUqB5pP
- 0yd5+fM8vlDzA==
-From: Arnd Bergmann <arnd@kernel.org>
-To: Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, David Airlie <airlied@linux.ie>,
- Daniel Vetter <daniel@ffwll.ch>,
- Mika Kuoppala <mika.kuoppala@linux.intel.com>,
- Chris Wilson <chris@chris-wilson.co.uk>
-Date: Mon, 25 Jan 2021 13:26:44 +0100
-Message-Id: <20210125122650.4178417-1-arnd@kernel.org>
-X-Mailer: git-send-email 2.29.2
+ s=k20201202; t=1611580174;
+ bh=y5SD7INd+SJt7jxXfJP2LnyGCDy2q11vfjo9M/wnIVg=;
+ h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+ b=CzHvKf0g4XRU3kZT+EAi1uu/b8urWuaKUoh7B2C4vgC224fDtXQv2oHgNFop9yhZT
+ 2NAVkLC7L51W5AAHJatCrAxQaZGGe8ikLSGTJyflMWj71WwoMujeWrPVS93iC1TKwI
+ x8IXnE2nOh3LtWah61deyMxC6o408RKhwybxqQHAd+opNvhFi5a0T4aRl8m1xi1DH6
+ wsKNG/eN4JKz1Sz+I59YIY7HdRNsZBImAyvqYbJLknXsqtZGg59Fa+dNZ2fW1Tb9ok
+ XisCQGg02FTISRO4Tr0H83Lqk2GgUor15GeedhP0qyrOoICJ9TKfPHZdLC53amcu9N
+ 55hpWqNriPU0w==
+Received: by mail-ot1-f50.google.com with SMTP id i20so12661192otl.7;
+ Mon, 25 Jan 2021 05:09:34 -0800 (PST)
+X-Gm-Message-State: AOAM533iFFiO4ltmg6eCi9M7bGeyifxdyjwgCMR+uOxhdYVBEBxWLaZg
+ yWWILebaPdrigZxxLfSqySJBLjRAvjgLhKjj6YE=
+X-Google-Smtp-Source: ABdhPJyuJJk9G4dOr5X/W/Oejpn00xm3L5Vgy94ryIckeQco5eZlFX7WU57R1TChXjR/NR+IHQywGOH1ZsrZxjRin3w=
+X-Received: by 2002:a9d:741a:: with SMTP id n26mr388999otk.210.1611580174003; 
+ Mon, 25 Jan 2021 05:09:34 -0800 (PST)
 MIME-Version: 1.0
-X-Mailman-Approved-At: Mon, 25 Jan 2021 13:06:17 +0000
-Subject: [Intel-gfx] [PATCH] i915: Fix DRM_I915_WERROR dependencies
+References: <20210125122650.4178417-1-arnd@kernel.org>
+ <161157800073.27462.7610644354455990065@build.alporthouse.com>
+In-Reply-To: <161157800073.27462.7610644354455990065@build.alporthouse.com>
+From: Arnd Bergmann <arnd@kernel.org>
+Date: Mon, 25 Jan 2021 14:09:18 +0100
+X-Gmail-Original-Message-ID: <CAK8P3a2nWZnHfxqsKpq4iA1yYkJcVw01OewsZ9WSKUczoUR0+g@mail.gmail.com>
+Message-ID: <CAK8P3a2nWZnHfxqsKpq4iA1yYkJcVw01OewsZ9WSKUczoUR0+g@mail.gmail.com>
+To: Chris Wilson <chris@chris-wilson.co.uk>
+X-Mailman-Approved-At: Mon, 25 Jan 2021 13:09:56 +0000
+Subject: Re: [Intel-gfx] [PATCH] i915: Fix DRM_I915_WERROR dependencies
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,52 +54,33 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Arnd Bergmann <arnd@arndb.de>, linux-kernel@vger.kernel.org
+Cc: Arnd Bergmann <arnd@arndb.de>, David Airlie <airlied@linux.ie>,
+ Intel Graphics <intel-gfx@lists.freedesktop.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ dri-devel <dri-devel@lists.freedesktop.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Arnd Bergmann <arnd@arndb.de>
+On Mon, Jan 25, 2021 at 1:33 PM Chris Wilson <chris@chris-wilson.co.uk> wrote:
+>
+> Quoting Arnd Bergmann (2021-01-25 12:26:44)
+> > From: Arnd Bergmann <arnd@arndb.de>
+> >
+> > CONFIG_DRM_I915_DEBUG now selects CONFIG_DRM_I915_WERROR, but fails
+> > to honor its dependencies:
+> >
+> > WARNING: unmet direct dependencies detected for DRM_I915_WERROR
+> >   Depends on [n]: HAS_IOMEM [=y] && DRM_I915 [=m] && EXPERT [=y] && !COMPILE_TEST [=y]
+> >   Selected by [m]:
+> >   - DRM_I915_DEBUG [=y] && HAS_IOMEM [=y] && EXPERT [=y] && DRM_I915 [=m]
+>
+> DRM_I915_DEBUG now depends on !COMPILE_TEST and EXPERT.
 
-CONFIG_DRM_I915_DEBUG now selects CONFIG_DRM_I915_WERROR, but fails
-to honor its dependencies:
+Works for me, thanks!
 
-WARNING: unmet direct dependencies detected for DRM_I915_WERROR
-  Depends on [n]: HAS_IOMEM [=y] && DRM_I915 [=m] && EXPERT [=y] && !COMPILE_TEST [=y]
-  Selected by [m]:
-  - DRM_I915_DEBUG [=y] && HAS_IOMEM [=y] && EXPERT [=y] && DRM_I915 [=m]
-
-Change the 'select' to a conditional one that doesn't trigger -Werror
-warnings for allmodconfig builds and other compile tests.
-
-Fixes: 4f86975f539d ("drm/i915: Add DEBUG_GEM to the recommended CI config")
-Signed-off-by: Arnd Bergmann <arnd@arndb.de>
----
- drivers/gpu/drm/i915/Kconfig.debug | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/Kconfig.debug b/drivers/gpu/drm/i915/Kconfig.debug
-index be76054c01d8..97793b28d007 100644
---- a/drivers/gpu/drm/i915/Kconfig.debug
-+++ b/drivers/gpu/drm/i915/Kconfig.debug
-@@ -31,9 +31,9 @@ config DRM_I915_DEBUG
- 	select DRM_DEBUG_SELFTEST
- 	select DMABUF_SELFTESTS
- 	select SW_SYNC # signaling validation framework (igt/syncobj*)
--	select DRM_I915_WERROR
--	select DRM_I915_DEBUG_GEM
--	select DRM_I915_DEBUG_GEM_ONCE
-+	select DRM_I915_WERROR if !COMPILE_TEST
-+	select DRM_I915_DEBUG_GEM if !COMPILE_TEST
-+	select DRM_I915_DEBUG_GEM_ONCE if !COMPILE_TEST
- 	select DRM_I915_DEBUG_MMIO
- 	select DRM_I915_DEBUG_RUNTIME_PM
- 	select DRM_I915_SW_FENCE_DEBUG_OBJECTS
--- 
-2.29.2
-
+      Arnd
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
