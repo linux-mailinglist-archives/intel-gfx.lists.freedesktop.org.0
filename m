@@ -2,40 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 01E82302400
-	for <lists+intel-gfx@lfdr.de>; Mon, 25 Jan 2021 12:00:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C9CD8302425
+	for <lists+intel-gfx@lfdr.de>; Mon, 25 Jan 2021 12:16:43 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AE35389B42;
-	Mon, 25 Jan 2021 11:00:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E7A386E051;
+	Mon, 25 Jan 2021 11:16:41 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DD5E389F24
- for <intel-gfx@lists.freedesktop.org>; Mon, 25 Jan 2021 11:00:26 +0000 (UTC)
-IronPort-SDR: 0GQH1Ii9HHLgbNZPkxSoHXCBlhqe2A1bxk1lULMkEMVJ+OFJibZHCpEBrexoLH3WpXZcbGnP7X
- LvSgPbDzMPIw==
-X-IronPort-AV: E=McAfee;i="6000,8403,9874"; a="176195132"
-X-IronPort-AV: E=Sophos;i="5.79,373,1602572400"; d="scan'208";a="176195132"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Jan 2021 03:00:26 -0800
-IronPort-SDR: G/gyS/+tylZA4LcmfggiI31aoJ2kWu3gFh7hVs6fwuMe478bJPZnohYcROS+K+XrFcsvbc5GrC
- dR3i+meBb1TA==
-X-IronPort-AV: E=Sophos;i="5.79,373,1602572400"; d="scan'208";a="472024434"
-Received: from iduggana-mobl.amr.corp.intel.com (HELO
- aswarup-mobl.amr.corp.intel.com) ([10.254.81.9])
- by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Jan 2021 03:00:26 -0800
-From: Aditya Swarup <aditya.swarup@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Mon, 25 Jan 2021 02:59:31 -0800
-Message-Id: <20210125105931.268977-2-aditya.swarup@intel.com>
-X-Mailer: git-send-email 2.27.0
-In-Reply-To: <20210125105931.268977-1-aditya.swarup@intel.com>
-References: <20210125105931.268977-1-aditya.swarup@intel.com>
+Received: from mail-qt1-x82d.google.com (mail-qt1-x82d.google.com
+ [IPv6:2607:f8b0:4864:20::82d])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3D3266E051
+ for <intel-gfx@lists.freedesktop.org>; Mon, 25 Jan 2021 11:16:40 +0000 (UTC)
+Received: by mail-qt1-x82d.google.com with SMTP id t17so9368241qtq.2
+ for <intel-gfx@lists.freedesktop.org>; Mon, 25 Jan 2021 03:16:40 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=6phctyhmTDIbaYWhIR2hZTdw6fmwcfQBC6QUlraLN6A=;
+ b=EkL/ZHRJCZKnz5AVpdWT6vEnT9XUij2nRna/NBKsN70Sxm2qhbi92o7xVdikKLqClq
+ m4WK+oVL/Uh7hGPiSrwlWloJ3r3K4iup/BJdWcZSq5y1h8v/g4WWgau8znmmD31f7h2j
+ 2UTcaDdwZg+h52mD9WMZacfIZ9llaOAnucMPVTl9L4FlZrF6uFmIsGlg31+7qdzPeGFD
+ oK/KdWXM4kAnGeUtqF+hFwVEfenC8qL2sJWk6M4sJqzamRkUkkeH0dgTiGxAiO43Dttm
+ pd5J4sohR/MYX6+pbzNr5eYrMdiQtF1FLq4xTY1t9z254vCyJiUeeG3BrXeC2VgApGnX
+ R4AQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=6phctyhmTDIbaYWhIR2hZTdw6fmwcfQBC6QUlraLN6A=;
+ b=PKxAP0TiClZWWArWV4pcijjY1UgA/sp2RclIFb/0QSgnKquN7b5SgyqWhtJLPuwAx1
+ Jl8UcbNXhHtpSpZKvgWaCmq4L19HEs2cElafIm0xGfz/iIE3yr7FrNtd+wd4oAujfA4A
+ y2pRxR7cZrQNlp1FLLrTzYjWC9T4GAQ79zwHzIcu5ER1mfsN0uICDYIvehxVO0gGscc/
+ zbAZ9isk7E9qTqZjtuS7Lsh2UakH4Aw103rx/2pJhE4RPxpGNU9vCtoE4W0JWzoFqRbX
+ AVsI6hAoepiJvdVZeeYU4wl2J1zwV8w8T17Oaev7pEWxWzXsCL3DvgD+HjW9BT5lUxNM
+ zWyQ==
+X-Gm-Message-State: AOAM532YgBBJWdBxjr1CVXD11vnwF/nEwevnRo4rfpf1pcXCL9CmORPc
+ vw56tzWY192SZptg9NuC66Xncj+pQ7boZa7Lo/pOkgqn0F22YA==
+X-Google-Smtp-Source: ABdhPJxY2HI+mwmxywNn67GyYxZWYcEytxDpWE9Ju1p2SklMKEKdO5wTQtdQNG8bFb9JKm6ZT/eU9eOPNed/AfANpWc=
+X-Received: by 2002:aed:2090:: with SMTP id 16mr601301qtb.265.1611573399066;
+ Mon, 25 Jan 2021 03:16:39 -0800 (PST)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 1/1] x86/gpu: Add Alderlake-S stolen memory
- support
+References: <20210124135406.28756-1-chris@chris-wilson.co.uk>
+ <20210124135726.1795-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20210124135726.1795-1-chris@chris-wilson.co.uk>
+From: Matthew Auld <matthew.william.auld@gmail.com>
+Date: Mon, 25 Jan 2021 11:16:13 +0000
+Message-ID: <CAM0jSHMc8F4tS6SsZtSLUMs3XOUS4puW3XBq1nUHJp1o=3=1sg@mail.gmail.com>
+To: Chris Wilson <chris@chris-wilson.co.uk>
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Remove guard page insertion
+ around unevictable nodes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,41 +62,166 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jani Nikula <jani.nikula@intel.com>, x86@kernel.org,
- Lucas De Marchi <lucas.demarchi@intel.com>, Ingo Molnar <mingo@redhat.com>,
- Thomas Gleixner <tglx@linutronix.de>, Borislav Petkov <bp@suse.de>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-RnJvbTogQ2F6IFlva295YW1hIDxjYXoueW9rb3lhbWFAaW50ZWwuY29tPgoKQWxkZXJsYWtlLVMg
-aXMgYSBHZW4gMTIgYmFzZWQgaHlicmlkIHByb2Nlc3NvciBhcmNoaXRldHVyZS4gQXMgaXQKYmVs
-b25ncyB0byBHZW4gMTIgZmFtaWx5LCBpdCB1c2VzIHRoZSBzYW1lIEdUVCBzdG9sZW4gbWVtb3J5
-IHNldHRpbmdzCmxpa2UgaXRzIHByZWRlY2Vzc29ycyAtIElDTChHZW4gMTEpIGFuZCBUR0woR2Vu
-IDEyKS4gVGhpcyBwYXRjaCBpbmhlcml0cwp0aGUgZ2VuMTEgYW5kIGdlbiA5IHF1aXJrcyBmb3Ig
-ZGV0ZXJtaW5pbmcgYmFzZSBhbmQgc2l6ZSBvZiBzdG9sZW4KbWVtb3J5LgoKTm90ZSB0aGF0IHRo
-aXMgcGF0Y2ggZGVwZW5kcyBvbiBjb21taXQgMDg4M2Q2M2IxOWJiCigiZHJtL2k5MTUvYWRsX3M6
-IEFkZCBBREwtUyBwbGF0Zm9ybSBpbmZvIGFuZCBQQ0kgaWRzIikKCkJzcGVjOiA1MjA1NQpCc3Bl
-YzogNDk1ODkKQnNwZWM6IDQ5NjM2CgpDYzogTHVjYXMgRGUgTWFyY2hpIDxsdWNhcy5kZW1hcmNo
-aUBpbnRlbC5jb20+CkNjOiBKYW5pIE5pa3VsYSA8amFuaS5uaWt1bGFAaW50ZWwuY29tPgpDYzog
-VmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4KQ2M6IEltcmUg
-RGVhayA8aW1yZS5kZWFrQGludGVsLmNvbT4KQ2M6IHg4NkBrZXJuZWwub3JnCkNjOiBJbmdvIE1v
-bG5hciA8bWluZ29AcmVkaGF0LmNvbT4sCkNjOiBUaG9tYXMgR2xlaXhuZXIgPHRnbHhAbGludXRy
-b25peC5kZT4sCkNjOiBCb3Jpc2xhdiBQZXRrb3YgPGJwQHN1c2UuZGU+ClNpZ25lZC1vZmYtYnk6
-IENheiBZb2tveWFtYSA8Y2F6Lnlva295YW1hQGludGVsLmNvbT4KU2lnbmVkLW9mZi1ieTogQWRp
-dHlhIFN3YXJ1cCA8YWRpdHlhLnN3YXJ1cEBpbnRlbC5jb20+ClJldmlld2VkLWJ5OiBMdWNhcyBE
-ZSBNYXJjaGkgPGx1Y2FzLmRlbWFyY2hpQGludGVsLmNvbT4KLS0tCiBhcmNoL3g4Ni9rZXJuZWwv
-ZWFybHktcXVpcmtzLmMgfCAxICsKIDEgZmlsZSBjaGFuZ2VkLCAxIGluc2VydGlvbigrKQoKZGlm
-ZiAtLWdpdCBhL2FyY2gveDg2L2tlcm5lbC9lYXJseS1xdWlya3MuYyBiL2FyY2gveDg2L2tlcm5l
-bC9lYXJseS1xdWlya3MuYwppbmRleCBhNGI1YWYwM2RjYzEuLjZlZGQxZTJlZThhZiAxMDA2NDQK
-LS0tIGEvYXJjaC94ODYva2VybmVsL2Vhcmx5LXF1aXJrcy5jCisrKyBiL2FyY2gveDg2L2tlcm5l
-bC9lYXJseS1xdWlya3MuYwpAQCAtNTUxLDYgKzU1MSw3IEBAIHN0YXRpYyBjb25zdCBzdHJ1Y3Qg
-cGNpX2RldmljZV9pZCBpbnRlbF9lYXJseV9pZHNbXSBfX2luaXRjb25zdCA9IHsKIAlJTlRFTF9F
-SExfSURTKCZnZW4xMV9lYXJseV9vcHMpLAogCUlOVEVMX1RHTF8xMl9JRFMoJmdlbjExX2Vhcmx5
-X29wcyksCiAJSU5URUxfUktMX0lEUygmZ2VuMTFfZWFybHlfb3BzKSwKKwlJTlRFTF9BRExTX0lE
-UygmZ2VuMTFfZWFybHlfb3BzKSwKIH07CiAKIHN0cnVjdCByZXNvdXJjZSBpbnRlbF9ncmFwaGlj
-c19zdG9sZW5fcmVzIF9fcm9fYWZ0ZXJfaW5pdCA9IERFRklORV9SRVNfTUVNKDAsIDApOwotLSAK
-Mi4yNy4wCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJ
-bnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0
-cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
+On Sun, 24 Jan 2021 at 13:57, Chris Wilson <chris@chris-wilson.co.uk> wrote:
+>
+> Assume that unevictable nodes are not in the GTT and so we can ignore
+> page boundary concerns, and so allow regular nodes to abutt against
+> irregular unevictable nodes.
+>
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> ---
+>  drivers/gpu/drm/i915/i915_drv.h       |  2 --
+>  drivers/gpu/drm/i915/i915_gem_evict.c |  6 ++++--
+>  drivers/gpu/drm/i915/i915_vma.h       | 10 +++++++++-
+>  drivers/gpu/drm/i915/i915_vma_types.h |  2 ++
+>  4 files changed, 15 insertions(+), 5 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
+> index 99cf861df92d..69c5a185ecff 100644
+> --- a/drivers/gpu/drm/i915/i915_drv.h
+> +++ b/drivers/gpu/drm/i915/i915_drv.h
+> @@ -357,8 +357,6 @@ enum i915_cache_level {
+>         I915_CACHE_WT, /* hsw:gt3e WriteThrough for scanouts */
+>  };
+>
+> -#define I915_COLOR_UNEVICTABLE (-1) /* a non-vma sharing the address space */
+> -
+>  struct intel_fbc {
+>         /* This is always the inner lock when overlapping with struct_mutex and
+>          * it's the outer lock when overlapping with stolen_lock. */
+> diff --git a/drivers/gpu/drm/i915/i915_gem_evict.c b/drivers/gpu/drm/i915/i915_gem_evict.c
+> index 4d2d59a9942b..aef88fdb9f66 100644
+> --- a/drivers/gpu/drm/i915/i915_gem_evict.c
+> +++ b/drivers/gpu/drm/i915/i915_gem_evict.c
+> @@ -313,11 +313,13 @@ int i915_gem_evict_for_node(struct i915_address_space *vm,
+>                  */
+>                 if (i915_vm_has_cache_coloring(vm)) {
+>                         if (node->start + node->size == target->start) {
+> -                               if (node->color == target->color)
+> +                               if (i915_node_color_matches(node,
+> +                                                           target->color))
+>                                         continue;
+>                         }
+>                         if (node->start == target->start + target->size) {
+> -                               if (node->color == target->color)
+> +                               if (i915_node_color_matches(node,
+> +                                                           target->color))
+>                                         continue;
+>                         }
+>                 }
+
+Since we bail early on seeing COLOR_UNEVICTABLE, and since we have to
+enlarge our search space by a page on both ends, do we need something
+like:
+
+@@ -291,18 +291,22 @@ int i915_gem_evict_for_node(struct i915_address_space *vm,
+
+                /* Always look at the page afterwards to avoid the end-of-GTT */
+                end += I915_GTT_PAGE_SIZE;
++
++               /*
++                * The special head node is marked as I915_COLOR_UNEVICTABLE to
++                * prevent normal vma from using the last page, in order to
++                * prevent prefetching over the boundary. If we are dealing with
++                * a normal vma and we abutt with the head node we will always
++                * get -ENOSPC as per the color adjust later, so just bail
++                * early???
++                */
++               if (target->color != I915_COLOR_UNEVICTABLE && end >= vm->total)
++                       return -ENOSPC;
+        }
+        GEM_BUG_ON(start >= end);
+
+        drm_mm_for_each_node_in_range(node, &vm->mm, start, end) {
+-               /* If we find any non-objects (!vma), we cannot evict them */
+-               if (node->color == I915_COLOR_UNEVICTABLE) {
+-                       ret = -ENOSPC;
+-                       break;
+-               }
+-
+                GEM_BUG_ON(!drm_mm_node_allocated(node));
+-               vma = container_of(node, typeof(*vma), node);
+
+                /*
+                 * If we are using coloring to insert guard pages between
+@@ -310,6 +314,9 @@ int i915_gem_evict_for_node(struct i915_address_space *vm,
+                 * to check whether the objects on either side of our range
+                 * abutt and conflict. If they are in conflict, then we evict
+                 * those as well to make room for our guard pages.
++                *
++                * Also consider I915_COLOR_UNEVICTABLE nodes, since we consider
++                * these special and permit abutting on either end.
+                 */
+                if (i915_vm_has_cache_coloring(vm)) {
+                        if (node->start + node->size == target->start) {
+@@ -324,6 +331,14 @@ int i915_gem_evict_for_node(struct i915_address_space *vm,
+                        }
+                }
+
++               /* If we find any non-objects (!vma), we cannot evict them */
++               if (node->color == I915_COLOR_UNEVICTABLE) {
++                       ret = -ENOSPC;
++                       break;
++               }
++
++               vma = container_of(node, typeof(*vma), node);
++
+                if (i915_vma_is_pinned(vma)) {
+                        ret = -ENOSPC;
+                        break;
+
+
+> diff --git a/drivers/gpu/drm/i915/i915_vma.h b/drivers/gpu/drm/i915/i915_vma.h
+> index a64adc8c883b..dac953815118 100644
+> --- a/drivers/gpu/drm/i915/i915_vma.h
+> +++ b/drivers/gpu/drm/i915/i915_vma.h
+> @@ -283,10 +283,18 @@ static inline bool i915_vma_is_bound(const struct i915_vma *vma,
+>         return atomic_read(&vma->flags) & where;
+>  }
+>
+> +static inline bool i915_node_color_matches(const struct drm_mm_node *node,
+> +                                          unsigned long color)
+> +{
+> +       return (node->color | color) == I915_COLOR_UNEVICTABLE ||
+> +               node->color == color;
+> +}
+> +
+>  static inline bool i915_node_color_differs(const struct drm_mm_node *node,
+>                                            unsigned long color)
+>  {
+> -       return drm_mm_node_allocated(node) && node->color != color;
+> +       return drm_mm_node_allocated(node) &&
+> +               !i915_node_color_matches(node, color);
+>  }
+>
+>  /**
+> diff --git a/drivers/gpu/drm/i915/i915_vma_types.h b/drivers/gpu/drm/i915/i915_vma_types.h
+> index f5cb848b7a7e..e72a07692a64 100644
+> --- a/drivers/gpu/drm/i915/i915_vma_types.h
+> +++ b/drivers/gpu/drm/i915/i915_vma_types.h
+> @@ -95,6 +95,8 @@ enum i915_cache_level;
+>   *
+>   */
+>
+> +#define I915_COLOR_UNEVICTABLE (-1) /* a non-vma sharing the address space */
+> +
+>  struct intel_remapped_plane_info {
+>         /* in gtt pages */
+>         unsigned int width, height, stride, offset;
+> --
+> 2.20.1
+>
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
