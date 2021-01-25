@@ -2,40 +2,39 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 48416302605
-	for <lists+intel-gfx@lfdr.de>; Mon, 25 Jan 2021 15:08:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id CF897302606
+	for <lists+intel-gfx@lfdr.de>; Mon, 25 Jan 2021 15:08:54 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6AC306E15D;
+	by gabe.freedesktop.org (Postfix) with ESMTP id DA50B6E0F0;
 	Mon, 25 Jan 2021 14:08:51 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E09316E054
- for <intel-gfx@lists.freedesktop.org>; Mon, 25 Jan 2021 14:08:49 +0000 (UTC)
-IronPort-SDR: g36qQkfMmLvevxHE0F4mCsSiKQHGyOnJT8wBZ4/gA0Z33+mhov9LUZOseC9tpKxWDng3KzTsHZ
- 95bd2VYwWN+w==
-X-IronPort-AV: E=McAfee;i="6000,8403,9874"; a="179879100"
-X-IronPort-AV: E=Sophos;i="5.79,373,1602572400"; d="scan'208";a="179879100"
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5C3836E054
+ for <intel-gfx@lists.freedesktop.org>; Mon, 25 Jan 2021 14:08:50 +0000 (UTC)
+IronPort-SDR: oCKflvVcX8h8ObHHLbwTUOSnFHF7eyw01HrrJqgfK7QVcCPXLr83PpDnANZKSfh7wzZsBawsJb
+ XsEphdlqm+FQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9874"; a="179879103"
+X-IronPort-AV: E=Sophos;i="5.79,373,1602572400"; d="scan'208";a="179879103"
 Received: from fmsmga001.fm.intel.com ([10.253.24.23])
  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  25 Jan 2021 06:08:28 -0800
-IronPort-SDR: PrOCqdp9md9j0WwAs0EduA78tXGrh/dE5fOPcfoJBGaEVVXibdvPtyq3GGG2zowRCuN5nlvzNV
- WsV0lrrIiP2A==
-X-IronPort-AV: E=Sophos;i="5.79,373,1602572400"; d="scan'208";a="472319525"
+IronPort-SDR: rKqc/Vgbt9xboeI81PCci+6c1qyx0Lgx55TlyMe5VkYHDYh/W5HwhJCavdq2+xu1eJBDhc/IxZ
+ 5K+849gGpsjQ==
+X-IronPort-AV: E=Sophos;i="5.79,373,1602572400"; d="scan'208";a="472319543"
 Received: from iduggana-mobl.amr.corp.intel.com (HELO
  aswarup-mobl.amr.corp.intel.com) ([10.254.81.9])
  by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Jan 2021 06:08:27 -0800
+ 25 Jan 2021 06:08:28 -0800
 From: Aditya Swarup <aditya.swarup@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Mon, 25 Jan 2021 06:07:44 -0800
-Message-Id: <20210125140753.347998-2-aditya.swarup@intel.com>
+Date: Mon, 25 Jan 2021 06:07:45 -0800
+Message-Id: <20210125140753.347998-3-aditya.swarup@intel.com>
 X-Mailer: git-send-email 2.27.0
 In-Reply-To: <20210125140753.347998-1-aditya.swarup@intel.com>
 References: <20210125140753.347998-1-aditya.swarup@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 01/10] x86/gpu: Add Alderlake-S stolen memory
- support
+Subject: [Intel-gfx] [PATCH 02/10] drm/i915/adl_s: Add PCH support
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,51 +47,68 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: Jani Nikula <jani.nikula@intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Caz Yokoyama <caz.yokoyama@intel.com>
-
-Alderlake-S is a Gen 12 based hybrid processor architeture. As it
-belongs to Gen 12 family, it uses the same GTT stolen memory settings
-like its predecessors - ICL(Gen 11) and TGL(Gen 12). This patch inherits
-the gen11 and gen 9 quirks for determining base and size of stolen
-memory.
-
-Note that this patch depends on commit 0883d63b19bb
-("drm/i915/adl_s: Add ADL-S platform info and PCI ids")
-
-Bspec: 52055
-Bspec: 49589
-Bspec: 49636
-
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-Signed-off-by: Caz Yokoyama <caz.yokoyama@intel.com>
-Signed-off-by: Aditya Swarup <aditya.swarup@intel.com>
-Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
----
- arch/x86/kernel/early-quirks.c | 1 +
- 1 file changed, 1 insertion(+)
-
-diff --git a/arch/x86/kernel/early-quirks.c b/arch/x86/kernel/early-quirks.c
-index a4b5af03dcc1..6edd1e2ee8af 100644
---- a/arch/x86/kernel/early-quirks.c
-+++ b/arch/x86/kernel/early-quirks.c
-@@ -551,6 +551,7 @@ static const struct pci_device_id intel_early_ids[] __initconst = {
- 	INTEL_EHL_IDS(&gen11_early_ops),
- 	INTEL_TGL_12_IDS(&gen11_early_ops),
- 	INTEL_RKL_IDS(&gen11_early_ops),
-+	INTEL_ADLS_IDS(&gen11_early_ops),
- };
- 
- struct resource intel_graphics_stolen_res __ro_after_init = DEFINE_RES_MEM(0, 0);
--- 
-2.27.0
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+RnJvbTogQW51c2hhIFNyaXZhdHNhIDxhbnVzaGEuc3JpdmF0c2FAaW50ZWwuY29tPgoKQWRkIHN1
+cHBvcnQgZm9yIEFsZGVycG9pbnQoQURQKSBQQ0ggdXNlZCB3aXRoIEFsZGVybGFrZS1TLgoKdjI6
+Ci0gVXNlIGRybV9kYmdfa21zIGFuZCBkcm1fV0FSTl9PTiBiYXNlZCBvbiBKYW5pJ3MgZmVlZGJh
+Y2suKGFzd2FydXApCgpDYzogTWF0dCBSb3BlciA8bWF0dGhldy5kLnJvcGVyQGludGVsLmNvbT4K
+Q2M6IEx1Y2FzIERlIE1hcmNoaSA8bHVjYXMuZGVtYXJjaGlAaW50ZWwuY29tPgpDYzogQ2F6IFlv
+a295YW1hIDxjYXoueW9rb3lhbWFAaW50ZWwuY29tPgpDYzogSmFuaSBOaWt1bGEgPGphbmkubmlr
+dWxhQGludGVsLmNvbT4KQ2M6IFZpbGxlIFN5cmrDpGzDpCA8dmlsbGUuc3lyamFsYUBsaW51eC5p
+bnRlbC5jb20+CkNjOiBJbXJlIERlYWsgPGltcmUuZGVha0BpbnRlbC5jb20+ClNpZ25lZC1vZmYt
+Ynk6IEFudXNoYSBTcml2YXRzYSA8YW51c2hhLnNyaXZhdHNhQGludGVsLmNvbT4KU2lnbmVkLW9m
+Zi1ieTogQWRpdHlhIFN3YXJ1cCA8YWRpdHlhLnN3YXJ1cEBpbnRlbC5jb20+ClJldmlld2VkLWJ5
+OiBNYXR0IFJvcGVyIDxtYXR0aGV3LmQucm9wZXJAaW50ZWwuY29tPgotLS0KIGRyaXZlcnMvZ3B1
+L2RybS9pOTE1L2ludGVsX3BjaC5jIHwgOCArKysrKysrLQogZHJpdmVycy9ncHUvZHJtL2k5MTUv
+aW50ZWxfcGNoLmggfCAzICsrKwogMiBmaWxlcyBjaGFuZ2VkLCAxMCBpbnNlcnRpb25zKCspLCAx
+IGRlbGV0aW9uKC0pCgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvaW50ZWxfcGNo
+LmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pbnRlbF9wY2guYwppbmRleCBlY2FmMzE0ZDYwYjYu
+LjQ4MTMyMDdmYzA1MyAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvaW50ZWxfcGNo
+LmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvaW50ZWxfcGNoLmMKQEAgLTEyOCw2ICsxMjgs
+MTAgQEAgaW50ZWxfcGNoX3R5cGUoY29uc3Qgc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmRldl9w
+cml2LCB1bnNpZ25lZCBzaG9ydCBpZCkKIAkJZHJtX2RiZ19rbXMoJmRldl9wcml2LT5kcm0sICJG
+b3VuZCBKYXNwZXIgTGFrZSBQQ0hcbiIpOwogCQlkcm1fV0FSTl9PTigmZGV2X3ByaXYtPmRybSwg
+IUlTX0pTTF9FSEwoZGV2X3ByaXYpKTsKIAkJcmV0dXJuIFBDSF9KU1A7CisJY2FzZSBJTlRFTF9Q
+Q0hfQURQX0RFVklDRV9JRF9UWVBFOgorCQlkcm1fZGJnX2ttcygmZGV2X3ByaXYtPmRybSwgIkZv
+dW5kIEFsZGVyIExha2UgUENIXG4iKTsKKwkJZHJtX1dBUk5fT04oJmRldl9wcml2LT5kcm0sICFJ
+U19BTERFUkxBS0VfUyhkZXZfcHJpdikpOworCQlyZXR1cm4gUENIX0FEUDsKIAlkZWZhdWx0Ogog
+CQlyZXR1cm4gUENIX05PTkU7CiAJfQpAQCAtMTU2LDcgKzE2MCw5IEBAIGludGVsX3ZpcnRfZGV0
+ZWN0X3BjaChjb25zdCBzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqZGV2X3ByaXYsCiAJICogbWFr
+ZSBhbiBlZHVjYXRlZCBndWVzcyBhcyB0byB3aGljaCBQQ0ggaXMgcmVhbGx5IHRoZXJlLgogCSAq
+LwogCi0JaWYgKElTX1RJR0VSTEFLRShkZXZfcHJpdikgfHwgSVNfUk9DS0VUTEFLRShkZXZfcHJp
+dikpCisJaWYgKElTX0FMREVSTEFLRV9TKGRldl9wcml2KSkKKwkJaWQgPSBJTlRFTF9QQ0hfQURQ
+X0RFVklDRV9JRF9UWVBFOworCWVsc2UgaWYgKElTX1RJR0VSTEFLRShkZXZfcHJpdikgfHwgSVNf
+Uk9DS0VUTEFLRShkZXZfcHJpdikpCiAJCWlkID0gSU5URUxfUENIX1RHUF9ERVZJQ0VfSURfVFlQ
+RTsKIAllbHNlIGlmIChJU19KU0xfRUhMKGRldl9wcml2KSkKIAkJaWQgPSBJTlRFTF9QQ0hfTUND
+X0RFVklDRV9JRF9UWVBFOwpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvaW50ZWxf
+cGNoLmggYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pbnRlbF9wY2guaAppbmRleCAwNmQyY2Q1MGFm
+MGIuLjczMTgzNzc1MDNiMCAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvaW50ZWxf
+cGNoLmgKKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvaW50ZWxfcGNoLmgKQEAgLTI2LDYgKzI2
+LDcgQEAgZW51bSBpbnRlbF9wY2ggewogCVBDSF9KU1AsCS8qIEphc3BlciBMYWtlIFBDSCAqLwog
+CVBDSF9NQ0MsICAgICAgICAvKiBNdWxlIENyZWVrIENhbnlvbiBQQ0ggKi8KIAlQQ0hfVEdQLAkv
+KiBUaWdlciBMYWtlIFBDSCAqLworCVBDSF9BRFAsCS8qIEFsZGVyIExha2UgUENIICovCiAKIAkv
+KiBGYWtlIFBDSHMsIGZ1bmN0aW9uYWxpdHkgaGFuZGxlZCBvbiB0aGUgc2FtZSBQQ0kgZGV2ICov
+CiAJUENIX0RHMSA9IDEwMjQsCkBAIC01MywxMiArNTQsMTQgQEAgZW51bSBpbnRlbF9wY2ggewog
+I2RlZmluZSBJTlRFTF9QQ0hfVEdQMl9ERVZJQ0VfSURfVFlQRQkJMHg0MzgwCiAjZGVmaW5lIElO
+VEVMX1BDSF9KU1BfREVWSUNFX0lEX1RZUEUJCTB4NEQ4MAogI2RlZmluZSBJTlRFTF9QQ0hfSlNQ
+Ml9ERVZJQ0VfSURfVFlQRQkJMHgzODgwCisjZGVmaW5lIElOVEVMX1BDSF9BRFBfREVWSUNFX0lE
+X1RZUEUJCTB4N0E4MAogI2RlZmluZSBJTlRFTF9QQ0hfUDJYX0RFVklDRV9JRF9UWVBFCQkweDcx
+MDAKICNkZWZpbmUgSU5URUxfUENIX1AzWF9ERVZJQ0VfSURfVFlQRQkJMHg3MDAwCiAjZGVmaW5l
+IElOVEVMX1BDSF9RRU1VX0RFVklDRV9JRF9UWVBFCQkweDI5MDAgLyogcWVtdSBxMzUgaGFzIDI5
+MTggKi8KIAogI2RlZmluZSBJTlRFTF9QQ0hfVFlQRShkZXZfcHJpdikJCSgoZGV2X3ByaXYpLT5w
+Y2hfdHlwZSkKICNkZWZpbmUgSU5URUxfUENIX0lEKGRldl9wcml2KQkJCSgoZGV2X3ByaXYpLT5w
+Y2hfaWQpCisjZGVmaW5lIEhBU19QQ0hfQURQKGRldl9wcml2KQkJCShJTlRFTF9QQ0hfVFlQRShk
+ZXZfcHJpdikgPT0gUENIX0FEUCkKICNkZWZpbmUgSEFTX1BDSF9ERzEoZGV2X3ByaXYpCQkJKElO
+VEVMX1BDSF9UWVBFKGRldl9wcml2KSA9PSBQQ0hfREcxKQogI2RlZmluZSBIQVNfUENIX0pTUChk
+ZXZfcHJpdikJCQkoSU5URUxfUENIX1RZUEUoZGV2X3ByaXYpID09IFBDSF9KU1ApCiAjZGVmaW5l
+IEhBU19QQ0hfTUNDKGRldl9wcml2KQkJCShJTlRFTF9QQ0hfVFlQRShkZXZfcHJpdikgPT0gUENI
+X01DQykKLS0gCjIuMjcuMAoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0
+b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50
+ZWwtZ2Z4Cg==
