@@ -1,32 +1,38 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E000D3028F5
-	for <lists+intel-gfx@lfdr.de>; Mon, 25 Jan 2021 18:33:47 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0485F302903
+	for <lists+intel-gfx@lfdr.de>; Mon, 25 Jan 2021 18:36:49 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3F4D989688;
-	Mon, 25 Jan 2021 17:33:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 95D6F89A8B;
+	Mon, 25 Jan 2021 17:36:42 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mx2.suse.de (mx2.suse.de [195.135.220.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7790C89688
- for <intel-gfx@lists.freedesktop.org>; Mon, 25 Jan 2021 17:33:45 +0000 (UTC)
-X-Virus-Scanned: by amavisd-new at test-mx.suse.de
-Received: from relay2.suse.de (unknown [195.135.221.27])
- by mx2.suse.de (Postfix) with ESMTP id D8B41AD17;
- Mon, 25 Jan 2021 17:33:43 +0000 (UTC)
-Date: Mon, 25 Jan 2021 18:33:36 +0100
-From: Borislav Petkov <bp@suse.de>
-To: Aditya Swarup <aditya.swarup@intel.com>
-Message-ID: <20210125173336.GB23290@zn.tnic>
-References: <20210125105931.268977-1-aditya.swarup@intel.com>
- <20210125105931.268977-2-aditya.swarup@intel.com>
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1A39189A74;
+ Mon, 25 Jan 2021 17:36:41 +0000 (UTC)
+IronPort-SDR: QUSBVoUcBPUo/dvQ2EJKfHLs5xGkkhpy+kKc8ONhwD+RVRvcnkVV9xWgxbALmShfihtJKB2gJX
+ kLDBXMvQ5nVA==
+X-IronPort-AV: E=McAfee;i="6000,8403,9875"; a="198548760"
+X-IronPort-AV: E=Sophos;i="5.79,374,1602572400"; d="scan'208";a="198548760"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Jan 2021 09:36:40 -0800
+IronPort-SDR: vgcu1GNmi57TdNrpab78XpsZHoQXiP78L00DoQXG1C45CXV+L2z6cbKQAiOjkujaGF5IKLZDP+
+ X88HhnAZcleg==
+X-IronPort-AV: E=Sophos;i="5.79,374,1602572400"; d="scan'208";a="368762489"
+Received: from ideak-desk.fi.intel.com ([10.237.68.141])
+ by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Jan 2021 09:36:38 -0800
+From: Imre Deak <imre.deak@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Mon, 25 Jan 2021 19:36:35 +0200
+Message-Id: <20210125173636.1733812-1-imre.deak@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20210125105931.268977-2-aditya.swarup@intel.com>
-Subject: Re: [Intel-gfx] [PATCH 1/1] x86/gpu: Add Alderlake-S stolen memory
- support
+Subject: [Intel-gfx] [PATCH 1/2] drm/dp/mst: Export
+ drm_dp_get_vc_payload_bw()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,29 +45,90 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jani Nikula <jani.nikula@intel.com>, x86@kernel.org,
- Lucas De Marchi <lucas.demarchi@intel.com>, Ingo Molnar <mingo@redhat.com>,
- Thomas Gleixner <tglx@linutronix.de>, intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: Ville Syrjala <ville.syrjala@intel.com>, dri-devel@lists.freedesktop.org,
+ stable@vger.kernel.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gTW9uLCBKYW4gMjUsIDIwMjEgYXQgMDI6NTk6MzFBTSAtMDgwMCwgQWRpdHlhIFN3YXJ1cCB3
-cm90ZToKPiBGcm9tOiBDYXogWW9rb3lhbWEgPGNhei55b2tveWFtYUBpbnRlbC5jb20+Cj4gCj4g
-QWxkZXJsYWtlLVMgaXMgYSBHZW4gMTIgYmFzZWQgaHlicmlkIHByb2Nlc3NvciBhcmNoaXRldHVy
-ZS4gQXMgaXQKCnR5cG86ICJhcmNoaXRlY3R1cmUiCgo+IGJlbG9uZ3MgdG8gR2VuIDEyIGZhbWls
-eSwgaXQgdXNlcyB0aGUgc2FtZSBHVFQgc3RvbGVuIG1lbW9yeSBzZXR0aW5ncwo+IGxpa2UgaXRz
-IHByZWRlY2Vzc29ycyAtIElDTChHZW4gMTEpIGFuZCBUR0woR2VuIDEyKS4gVGhpcyBwYXRjaCBp
-bmhlcml0cwoKcy9UaGlzIHBhdGNoIGluaGVyaXRzL0luaGVyaXQvCgo+IHRoZSBnZW4xMSBhbmQg
-Z2VuIDkgcXVpcmtzIGZvciBkZXRlcm1pbmluZyBiYXNlIGFuZCBzaXplIG9mIHN0b2xlbgo+IG1l
-bW9yeS4KPiAKPiBOb3RlIHRoYXQgdGhpcyBwYXRjaCBkZXBlbmRzIG9uIGNvbW1pdCAwODgzZDYz
-YjE5YmIKPiAoImRybS9pOTE1L2FkbF9zOiBBZGQgQURMLVMgcGxhdGZvcm0gaW5mbyBhbmQgUENJ
-IGlkcyIpCgpUaGlzIHNlbnRlbmNlIGRvZXMgbm90IGJlbG9uZyBpbiB0aGUgY29tbWl0IG1lc3Nh
-Z2UuCgo+IEJzcGVjOiA1MjA1NQo+IEJzcGVjOiA0OTU4OQo+IEJzcGVjOiA0OTYzNgoKVGhhbmtz
-IGZvciBleHBsYWluaW5nIHRob3NlLgoKLS0gClJlZ2FyZHMvR3J1c3MsCiAgICBCb3Jpcy4KClNV
-U0UgU29mdHdhcmUgU29sdXRpb25zIEdlcm1hbnkgR21iSCwgR0Y6IEZlbGl4IEltZW5kw7ZyZmZl
-ciwgSFJCIDM2ODA5LCBBRyBOw7xybmJlcmcKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMu
-ZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlz
-dGluZm8vaW50ZWwtZ2Z4Cg==
+This function will be needed by the next patch where the driver
+calculates the BW based on driver specific parameters, so export it.
+
+At the same time sanitize the function params, passing the more natural
+link rate instead of the encoding of the same rate.
+
+Cc: Lyude Paul <lyude@redhat.com>
+Cc: Ville Syrjala <ville.syrjala@intel.com>
+Cc: <stable@vger.kernel.org>
+Cc: dri-devel@lists.freedesktop.org
+Signed-off-by: Imre Deak <imre.deak@intel.com>
+---
+ drivers/gpu/drm/drm_dp_mst_topology.c | 24 ++++++++++++++++++------
+ include/drm/drm_dp_mst_helper.h       |  1 +
+ 2 files changed, 19 insertions(+), 6 deletions(-)
+
+diff --git a/drivers/gpu/drm/drm_dp_mst_topology.c b/drivers/gpu/drm/drm_dp_mst_topology.c
+index 475939138b21..dc96cbf78cc6 100644
+--- a/drivers/gpu/drm/drm_dp_mst_topology.c
++++ b/drivers/gpu/drm/drm_dp_mst_topology.c
+@@ -3629,14 +3629,26 @@ static int drm_dp_send_up_ack_reply(struct drm_dp_mst_topology_mgr *mgr,
+ 	return 0;
+ }
+ 
+-static int drm_dp_get_vc_payload_bw(u8 dp_link_bw, u8  dp_link_count)
++/**
++ * drm_dp_get_vc_payload_bw - get the VC payload BW for an MST link
++ * @rate: link rate in 10kbits/s units
++ * @lane_count: lane count
++ *
++ * Calculate the toal bandwidth of a MultiStream Transport link. The returned
++ * value is in units of PBNs/(timeslots/1 MTP). This value can be used to
++ * convert the number of PBNs required for a given stream to the number of
++ * timeslots this stream requires in each MTP.
++ */
++int drm_dp_get_vc_payload_bw(int link_rate, int link_lane_count)
+ {
+-	if (dp_link_bw == 0 || dp_link_count == 0)
+-		DRM_DEBUG_KMS("invalid link bandwidth in DPCD: %x (link count: %d)\n",
+-			      dp_link_bw, dp_link_count);
++	if (link_rate == 0 || link_lane_count == 0)
++		DRM_DEBUG_KMS("invalid link rate/lane count: (%d / %d)\n",
++			      link_rate, link_lane_count);
+ 
+-	return dp_link_bw * dp_link_count / 2;
++	/* See DP v2.0 2.6.4.2, VCPayload_Bandwidth_for_OneTimeSlotPer_MTP_Allocation */
++	return link_rate * link_lane_count / 54000;
+ }
++EXPORT_SYMBOL(drm_dp_get_vc_payload_bw);
+ 
+ /**
+  * drm_dp_read_mst_cap() - check whether or not a sink supports MST
+@@ -3692,7 +3704,7 @@ int drm_dp_mst_topology_mgr_set_mst(struct drm_dp_mst_topology_mgr *mgr, bool ms
+ 			goto out_unlock;
+ 		}
+ 
+-		mgr->pbn_div = drm_dp_get_vc_payload_bw(mgr->dpcd[1],
++		mgr->pbn_div = drm_dp_get_vc_payload_bw(drm_dp_bw_code_to_link_rate(mgr->dpcd[1]),
+ 							mgr->dpcd[2] & DP_MAX_LANE_COUNT_MASK);
+ 		if (mgr->pbn_div == 0) {
+ 			ret = -EINVAL;
+diff --git a/include/drm/drm_dp_mst_helper.h b/include/drm/drm_dp_mst_helper.h
+index f5e92fe9151c..bd1c39907b92 100644
+--- a/include/drm/drm_dp_mst_helper.h
++++ b/include/drm/drm_dp_mst_helper.h
+@@ -783,6 +783,7 @@ drm_dp_mst_detect_port(struct drm_connector *connector,
+ 
+ struct edid *drm_dp_mst_get_edid(struct drm_connector *connector, struct drm_dp_mst_topology_mgr *mgr, struct drm_dp_mst_port *port);
+ 
++int drm_dp_get_vc_payload_bw(int link_rate, int link_lane_count);
+ 
+ int drm_dp_calc_pbn_mode(int clock, int bpp, bool dsc);
+ 
+-- 
+2.25.1
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
