@@ -2,31 +2,48 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C03B2303E06
-	for <lists+intel-gfx@lfdr.de>; Tue, 26 Jan 2021 14:05:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A39DB303E54
+	for <lists+intel-gfx@lfdr.de>; Tue, 26 Jan 2021 14:15:37 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 27E946E428;
-	Tue, 26 Jan 2021 13:05:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CF0036E446;
+	Tue, 26 Jan 2021 13:15:35 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 662BC6E426;
- Tue, 26 Jan 2021 13:05:18 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 23703449-1500050 
- for multiple; Tue, 26 Jan 2021 13:05:04 +0000
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Tue, 26 Jan 2021 13:05:05 +0000
-Message-Id: <20210126130505.2938391-2-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.30.0
-In-Reply-To: <20210126130505.2938391-1-chris@chris-wilson.co.uk>
-References: <20210126130505.2938391-1-chris@chris-wilson.co.uk>
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 862A06E43B
+ for <intel-gfx@lists.freedesktop.org>; Tue, 26 Jan 2021 13:15:34 +0000 (UTC)
+IronPort-SDR: y/yIeW3sHkR/KGQdTEuoE6TBMCv0Dba8RnJMVCqx/zPY182vi8CL1nQQtjkE+M7yGK05Wg0l1y
+ FFpH+BN1BP+g==
+X-IronPort-AV: E=McAfee;i="6000,8403,9875"; a="176387901"
+X-IronPort-AV: E=Sophos;i="5.79,375,1602572400"; d="scan'208";a="176387901"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Jan 2021 05:15:34 -0800
+IronPort-SDR: 5Pn0Grbet1EGiZzkHet2HGa/4L6iIt9JSRLOWIfXPm+fCaH7JCddAr358iV+0r2RIitoBagfub
+ 5eKHhL5phDLw==
+X-IronPort-AV: E=Sophos;i="5.79,375,1602572400"; d="scan'208";a="361977209"
+Received: from jackedwa-mobl.ger.corp.intel.com (HELO [10.214.230.137])
+ ([10.214.230.137])
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Jan 2021 05:15:32 -0800
+To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
+References: <20210125140136.10494-1-chris@chris-wilson.co.uk>
+ <20210125140136.10494-5-chris@chris-wilson.co.uk>
+ <8201dfc1-9490-d0d9-f661-d7bb4e752723@linux.intel.com>
+ <161166063330.29150.16248716198298940868@build.alporthouse.com>
+ <fed21604-64d0-d08f-7797-1d3a785d4abf@linux.intel.com>
+ <161166213986.29150.12808740894418927064@build.alporthouse.com>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+Message-ID: <10f2ca0b-f18a-47c7-b038-9c40135cc040@linux.intel.com>
+Date: Tue, 26 Jan 2021 13:15:29 +0000
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.5.0
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH i-g-t 2/2] i915/sysfs_clients: Check that client
- ids are cyclic
+In-Reply-To: <161166213986.29150.12808740894418927064@build.alporthouse.com>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH 05/41] drm/i915: Restructure priority
+ inheritance
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,216 +56,147 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: igt-dev@lists.freedesktop.org, Chris Wilson <chris@chris-wilson.co.uk>
-Content-Type: text/plain; charset="us-ascii"
+Cc: thomas.hellstrom@intel.com
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The client id used is a cyclic allocator as that reduces the likelihood
-of userspace seeing the same id used again (and so confusing the new
-client as the old). Verify that each new client has an id greater than
-the last.
 
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
----
- tests/i915/sysfs_clients.c | 129 +++++++++++++++++++++++++++++++------
- 1 file changed, 108 insertions(+), 21 deletions(-)
+On 26/01/2021 11:55, Chris Wilson wrote:
+> Quoting Tvrtko Ursulin (2021-01-26 11:40:24)
+>>
+>> On 26/01/2021 11:30, Chris Wilson wrote:
+>>> Quoting Tvrtko Ursulin (2021-01-26 11:12:53)
+>>>>
+>>>>
+>>>> On 25/01/2021 14:01, Chris Wilson wrote:
+>>>>> +static void ipi_schedule(struct work_struct *wrk)
+>>>>> +{
+>>>>> +     struct i915_sched_ipi *ipi = container_of(wrk, typeof(*ipi), work);
+>>>>> +     struct i915_request *rq = xchg(&ipi->list, NULL);
+>>>>> +
+>>>>> +     do {
+>>>>> +             struct i915_request *rn = xchg(&rq->sched.ipi_link, NULL);
+>>>>> +             int prio;
+>>>>> +
+>>>>> +             prio = ipi_get_prio(rq);
+>>>>> +
+>>>>> +             /*
+>>>>> +              * For cross-engine scheduling to work we rely on one of two
+>>>>> +              * things:
+>>>>> +              *
+>>>>> +              * a) The requests are using dma-fence fences and so will not
+>>>>> +              * be scheduled until the previous engine is completed, and
+>>>>> +              * so we cannot cross back onto the original engine and end up
+>>>>> +              * queuing an earlier request after the first (due to the
+>>>>> +              * interrupted DFS).
+>>>>> +              *
+>>>>> +              * b) The requests are using semaphores and so may be already
+>>>>> +              * be in flight, in which case if we cross back onto the same
+>>>>> +              * engine, we will already have put the interrupted DFS into
+>>>>> +              * the priolist, and the continuation will now be queued
+>>>>> +              * afterwards [out-of-order]. However, since we are using
+>>>>> +              * semaphores in this case, we also perform yield on semaphore
+>>>>> +              * waits and so will reorder the requests back into the correct
+>>>>> +              * sequence. This occurrence (of promoting a request chain
+>>>>> +              * that crosses the engines using semaphores back unto itself)
+>>>>> +              * should be unlikely enough that it probably does not matter...
+>>>>> +              */
+>>>>> +             local_bh_disable();
+>>>>> +             i915_request_set_priority(rq, prio);
+>>>>> +             local_bh_enable();
+>>>>
+>>>> Is it that important and wouldn't the priority order restore eventually
+>>>> due timeslicing?
+>>>
+>>> There would be a window in which we executed userspace code
+>>> out-of-order. That's enough to scare me! However, for our PI dependency
+>>> chains it should not matter as the only time we do submit out-of-order,
+>>> we are stuck on _our_ semaphore that cannot be resolved until the
+>>> requests are back in-order.
+>>
+>> Out of order how? Within a single timeline?! I though only with
+>> incomplete view of priority inheritance, which in my mind could only
+>> cause deadlocks (if no timeslicing). But really really out of order?
+> 
+> Fences between timelines. Let's say we have 3 requests, A,B,C all with
+> sequential fencing (C depends on B depends on A), but B is on a
+> different engine to (A, C) and we are using semaphores to submit early.
+> If we bump the priority of C, we see it crosses the engine to B, and send
+> an ipi_priority, but set C to be higher priority than A. So we now
+> schedule C before A!
 
-diff --git a/tests/i915/sysfs_clients.c b/tests/i915/sysfs_clients.c
-index a3a1f81e1..d2c1ebc5f 100644
---- a/tests/i915/sysfs_clients.c
-+++ b/tests/i915/sysfs_clients.c
-@@ -8,6 +8,7 @@
- #include <errno.h>
- #include <fcntl.h>
- #include <inttypes.h>
-+#include <limits.h>
- #include <math.h>
- #include <sched.h>
- #include <sys/socket.h>
-@@ -47,6 +48,8 @@
- #define assert_within_epsilon(x, ref, tolerance) \
- 	__assert_within_epsilon(x, ref, tolerance / 100., tolerance / 100.)
- 
-+#define BUFSZ 280
-+
- #define MI_BATCH_BUFFER_START (0x31 << 23)
- #define MI_BATCH_BUFFER_END (0xa << 23)
- #define MI_ARB_CHECK (0x5 << 23)
-@@ -75,7 +78,7 @@ static void pidname(int i915, int clients)
- {
- 	struct dirent *de;
- 	int sv[2], rv[2];
--	char buf[280];
-+	char buf[BUFSZ];
- 	int me = -1;
- 	long count;
- 	pid_t pid;
-@@ -180,7 +183,7 @@ static long count_clients(int clients)
- {
- 	struct dirent *de;
- 	long count = 0;
--	char buf[280];
-+	char buf[BUFSZ];
- 	DIR *dir;
- 
- 	dir = fdopendir(dup(clients));
-@@ -229,32 +232,113 @@ static void create(int i915, int clients)
- 	igt_assert_eq(count_clients(clients), 1);
- }
- 
-+static const char *find_client(int clients, pid_t pid, char *buf)
-+{
-+	DIR *dir = fdopendir(dup(clients));
-+
-+	/* Reading a dir as it changes does not appear to be stable, SEP */
-+	for (int pass = 0; pass < 2; pass++) {
-+		struct dirent *de;
-+
-+		rewinddir(dir);
-+		while ((de = readdir(dir))) {
-+			if (!isdigit(de->d_name[0]))
-+				continue;
-+
-+			snprintf(buf, BUFSZ, "%s/pid", de->d_name);
-+			igt_sysfs_read(clients, buf, buf, sizeof(buf));
-+			if (atoi(buf) != pid)
-+				continue;
-+
-+			strncpy(buf, de->d_name, BUFSZ);
-+			goto out;
-+		}
-+	}
-+	*buf = '\0';
-+out:
-+	closedir(dir);
-+	return buf;
-+}
-+
- static int find_me(int clients, pid_t pid)
- {
--	struct dirent *de;
--	char buf[280];
--	int me = -1;
--	DIR *dir;
-+	char buf[BUFSZ];
- 
--	dir = fdopendir(dup(clients));
--	igt_assert(dir);
--	rewinddir(dir);
-+	return openat(clients,
-+		      find_client(clients, pid, buf),
-+		      O_DIRECTORY | O_RDONLY);
-+}
- 
--	while ((de = readdir(dir))) {
--		if (!isdigit(de->d_name[0]))
--			continue;
-+static int reopen_directory(int fd)
-+{
-+	char buf[BUFSZ];
-+	int dir;
- 
--		snprintf(buf, sizeof(buf), "%s/pid", de->d_name);
--		igt_sysfs_read(clients, buf, buf, sizeof(buf));
--		if (atoi(buf) != pid)
--			continue;
-+	snprintf(buf, sizeof(buf), "/proc/self/fd/%d", fd);
-+	dir = open(buf, O_RDONLY);
-+	igt_assert_fd(dir);
- 
--		me = openat(clients, de->d_name, O_DIRECTORY | O_RDONLY);
--		break;
-+	return dir;
-+}
-+
-+static unsigned int my_id(int clients, pid_t pid)
-+{
-+	char buf[BUFSZ];
-+
-+	return atoi(find_client(clients, pid, buf));
-+}
-+
-+static unsigned int recycle_client(int i915, int clients)
-+{
-+	int device, client;
-+
-+	device = gem_reopen_driver(i915);
-+	client = my_id(clients, getpid());
-+	close(device);
-+
-+	return client;
-+}
-+
-+static void recycle(int i915, int clients)
-+{
-+	const int ncpus = sysconf(_SC_NPROCESSORS_ONLN);
-+
-+	/*
-+	 * As we open and close clients, we do not expect to reuse old ids,
-+	 * i.e. we use a cyclic ida. This reduces the likelihood of userspace
-+	 * watchers becoming confused and mistaking the new client as a
-+	 * continuation of the old.
-+	 */
-+	igt_require(my_id(clients, getpid()) < INT_MAX / 2);
-+	igt_assert(my_id(clients, getpid()));
-+
-+	igt_fork(child, 2 * ncpus) {
-+		unsigned int client, last;
-+
-+		/* Reopen the directory fd for each client */
-+		clients = reopen_directory(clients);
-+
-+		last = recycle_client(i915, clients);
-+		igt_info("Child[%d] first client:%d\n", getpid(), last);
-+		igt_until_timeout(5) {
-+			client = recycle_client(i915, clients);
-+
-+			/* In 5 seconds we are not going to exhaust the ids */
-+			igt_assert(client > last);
-+			last = client;
-+		}
-+		igt_info("Child[%d] last client:%d\n", getpid(), last);
- 	}
-+	igt_waitchildren();
- 
--	closedir(dir);
--	return me;
-+	/* Cleanup delayed behind rcu */
-+	igt_until_timeout(30) {
-+		sched_yield();
-+		if (count_clients(clients) == 1)
-+			break;
-+		usleep(10000);
-+	}
-+	igt_assert_eq(count_clients(clients), 1);
- }
- 
- static int64_t read_runtime(int client, int class)
-@@ -719,7 +803,7 @@ sema(int i915, int clients, const struct intel_execution_engine2 *e, int f)
- static int read_all(int clients, pid_t pid, int class, uint64_t *runtime)
- {
- 	struct dirent *de;
--	char buf[280];
-+	char buf[BUFSZ];
- 	int count = 0;
- 	DIR *dir;
- 
-@@ -958,6 +1042,9 @@ igt_main
- 	igt_subtest("create")
- 		create(i915, clients);
- 
-+	igt_subtest("recycle")
-+		recycle(i915, clients);
-+
- 	igt_subtest_group
- 		test_busy(i915, clients);
- 
--- 
-2.30.0
+Yeah so different timelines, I think that's not a huge problem to start 
+with. Only if things were non-preemptable.
 
+> However, since C depends on B which depends on A, C is stuck on its
+> semaphore from B, and B is waiting for A. As soon as A is set to the
+> same priority as C (after a couple of ipi_priority()), we rerun the
+> scheduler see that C has a semaphore-yield (or eventually timeslice
+> expired) and so run A before C, and order is restored.
+> 
+>>> I've tried to trick this into causing problems with the
+>>> i915_selftest/igt_schedule_cycle and gem_exec_schedule/noreorder.
+>>> Fortunately for my sanity, neither test have caught any problems.
+>>>
+>>> This is the handwaving part of removing the global lock.
+>>>
+>>>>> +     /*
+>>>>> +      * If we are setting the priority before being submitted, see if we
+>>>>> +      * can quickly adjust our own priority in-situ and avoid taking
+>>>>> +      * the contended engine->active.lock. If we need priority inheritance,
+>>>>> +      * take the slow route.
+>>>>> +      */
+>>>>> +     if (rq_prio(rq) == I915_PRIORITY_INVALID) {
+>>>>> +             struct i915_dependency *p;
+>>>>> +
+>>>>> +             rcu_read_lock();
+>>>>> +             for_each_signaler(p, rq) {
+>>>>> +                     struct i915_request *s =
+>>>>> +                             container_of(p->signaler, typeof(*s), sched);
+>>>>> +
+>>>>> +                     if (rq_prio(s) >= prio)
+>>>>> +                             continue;
+>>>>> +
+>>>>> +                     if (__i915_request_is_complete(s))
+>>>>> +                             continue;
+>>>>> +
+>>>>> +                     break;
+>>>>> +             }
+>>>>> +             rcu_read_unlock();
+>>>>
+>>>> Exit this loop with a first lower priority incomplete signaler. What
+>>>> does the block below then do? Feels like it needs a comment.
+>>>
+>>> I thought I had sufficiently explained that in the comment above.
+>>>
+>>> /* Update priority in place if no PI required */
+>>>>> +             if (&p->signal_link == &rq->sched.signalers_list &&
+>>>>> +                 cmpxchg(&rq->sched.attr.priority,
+>>>>> +                         I915_PRIORITY_INVALID,
+>>>>> +                         prio) == I915_PRIORITY_INVALID)
+>>>>> +                     return;
+>>>
+>>> It could do a few more tricks to change the priority in-place a second
+>>> time, but I did not think that would be frequent enough to matter.
+>>> Whereas we always adjust the priority from INVALID once before
+>>> submission, and avoiding taking the lock then does make a difference to
+>>> the profiles.
+>>
+>> To start with, if p is NULL or un-initialized (can be, no?) then
+>> relationship of &p->signal_link to &rq->sched.signalers_list escapes me.
+> 
+> p is constrained to be a member of the signalers_list or its head.
+
+Is it defined list_for_each_entry exits with pos set? It is in 
+implementation but I don't know why it would have to be. Could you 
+change this to some form of list_empty or a descriptively named helper 
+for clarity?
+
+Regards,
+
+Tvrtko
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
