@@ -2,29 +2,42 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F115E304D50
-	for <lists+intel-gfx@lfdr.de>; Wed, 27 Jan 2021 00:21:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 444BA304D59
+	for <lists+intel-gfx@lfdr.de>; Wed, 27 Jan 2021 00:33:26 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5DA5888FD4;
-	Tue, 26 Jan 2021 23:21:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8F3886E455;
+	Tue, 26 Jan 2021 23:33:23 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EDB166E48F
- for <intel-gfx@lists.freedesktop.org>; Tue, 26 Jan 2021 23:21:41 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 23708646-1500050 
- for <intel-gfx@lists.freedesktop.org>; Tue, 26 Jan 2021 23:21:36 +0000
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Tue, 26 Jan 2021 23:21:38 +0000
-Message-Id: <20210126232138.30167-1-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.20.1
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7C24A6E455
+ for <intel-gfx@lists.freedesktop.org>; Tue, 26 Jan 2021 23:33:22 +0000 (UTC)
+IronPort-SDR: 4fVYpNHPNBc+LkAcHgeGxXo6MY1XDYUfqZZUjSSR2Vae2cdIW+tgmDNdEb+JwWST76kxpMajiT
+ 5DAIDIJb+dRA==
+X-IronPort-AV: E=McAfee;i="6000,8403,9876"; a="167659509"
+X-IronPort-AV: E=Sophos;i="5.79,377,1602572400"; d="scan'208";a="167659509"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Jan 2021 15:33:21 -0800
+IronPort-SDR: XHEU0+27ZVw2ZkaJo2Bb3G8tMZdzmAtc4kfBkd9V7sJnMyQFEcOvLQvKGxt2o/SGAtsftPrfsx
+ QddzX7QzP4Bg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.79,377,1602572400"; d="scan'208";a="410328047"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
+ by FMSMGA003.fm.intel.com with SMTP; 26 Jan 2021 15:33:19 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Wed, 27 Jan 2021 01:33:18 +0200
+Date: Wed, 27 Jan 2021 01:33:18 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Manasi Navare <manasi.d.navare@intel.com>
+Message-ID: <YBCmvqDno7sJm7dU@intel.com>
+References: <20210126185224.32340-1-manasi.d.navare@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [CI] drm/i915: Teach the i915_dependency to use a
- double-lock
+Content-Disposition: inline
+In-Reply-To: <20210126185224.32340-1-manasi.d.navare@intel.com>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/display/vrr: Skip the VRR HW state
+ readout on DSI transcoder
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,218 +50,56 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Currently, we construct and teardown the i915_dependency chains using a
-global spinlock. As the lists are entirely local, it should be possible
-to use an double-lock with an explicit nesting [signaler -> waiter,
-always] and so avoid the costly convenience of a global spinlock.
+On Tue, Jan 26, 2021 at 10:52:24AM -0800, Manasi Navare wrote:
+> DSI transcoder does not support VRR and hence skip the HW state
+> readout if its a DSI transcoder.
+> =
 
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
----
- drivers/gpu/drm/i915/i915_request.c         |  2 +-
- drivers/gpu/drm/i915/i915_scheduler.c       | 65 +++++++++++++--------
- drivers/gpu/drm/i915/i915_scheduler.h       |  2 +-
- drivers/gpu/drm/i915/i915_scheduler_types.h |  2 +
- 4 files changed, 46 insertions(+), 25 deletions(-)
+> Fixes: c7f0f4372b30 ("drm/i915/display: Add HW state readout for VRR")
+> Cc: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> Cc: Jani Nikula <jani.nikula@linux.intel.com>
+> Cc: Vandita Kulkarni <vandita.kulkarni@intel.com>
+> Signed-off-by: Manasi Navare <manasi.d.navare@intel.com>
 
-diff --git a/drivers/gpu/drm/i915/i915_request.c b/drivers/gpu/drm/i915/i915_request.c
-index 22e39d938f17..d66981b083cd 100644
---- a/drivers/gpu/drm/i915/i915_request.c
-+++ b/drivers/gpu/drm/i915/i915_request.c
-@@ -330,7 +330,7 @@ bool i915_request_retire(struct i915_request *rq)
- 	intel_context_unpin(rq->context);
- 
- 	free_capture_list(rq);
--	i915_sched_node_fini(&rq->sched);
-+	i915_sched_node_retire(&rq->sched);
- 	i915_request_put(rq);
- 
- 	return true;
-diff --git a/drivers/gpu/drm/i915/i915_scheduler.c b/drivers/gpu/drm/i915/i915_scheduler.c
-index efa638c3acc7..11f5a11418f6 100644
---- a/drivers/gpu/drm/i915/i915_scheduler.c
-+++ b/drivers/gpu/drm/i915/i915_scheduler.c
-@@ -19,6 +19,17 @@ static struct i915_global_scheduler {
- 
- static DEFINE_SPINLOCK(schedule_lock);
- 
-+static struct i915_sched_node *node_get(struct i915_sched_node *node)
-+{
-+	i915_request_get(container_of(node, struct i915_request, sched));
-+	return node;
-+}
-+
-+static void node_put(struct i915_sched_node *node)
-+{
-+	i915_request_put(container_of(node, struct i915_request, sched));
-+}
-+
- static const struct i915_request *
- node_to_request(const struct i915_sched_node *node)
- {
-@@ -350,6 +361,8 @@ void i915_schedule(struct i915_request *rq, const struct i915_sched_attr *attr)
- 
- void i915_sched_node_init(struct i915_sched_node *node)
- {
-+	spin_lock_init(&node->lock);
-+
- 	INIT_LIST_HEAD(&node->signalers_list);
- 	INIT_LIST_HEAD(&node->waiters_list);
- 	INIT_LIST_HEAD(&node->link);
-@@ -374,10 +387,17 @@ i915_dependency_alloc(void)
- 	return kmem_cache_alloc(global.slab_dependencies, GFP_KERNEL);
- }
- 
-+static void
-+rcu_dependency_free(struct rcu_head *rcu)
-+{
-+	kmem_cache_free(global.slab_dependencies,
-+			container_of(rcu, typeof(struct i915_dependency), rcu));
-+}
-+
- static void
- i915_dependency_free(struct i915_dependency *dep)
- {
--	kmem_cache_free(global.slab_dependencies, dep);
-+	call_rcu(&dep->rcu, rcu_dependency_free);
- }
- 
- bool __i915_sched_node_add_dependency(struct i915_sched_node *node,
-@@ -387,24 +407,27 @@ bool __i915_sched_node_add_dependency(struct i915_sched_node *node,
- {
- 	bool ret = false;
- 
--	spin_lock_irq(&schedule_lock);
-+	/* The signal->lock is always the outer lock in this double-lock. */
-+	spin_lock(&signal->lock);
- 
- 	if (!node_signaled(signal)) {
- 		INIT_LIST_HEAD(&dep->dfs_link);
- 		dep->signaler = signal;
--		dep->waiter = node;
-+		dep->waiter = node_get(node);
- 		dep->flags = flags;
- 
- 		/* All set, now publish. Beware the lockless walkers. */
-+		spin_lock_nested(&node->lock, SINGLE_DEPTH_NESTING);
- 		list_add_rcu(&dep->signal_link, &node->signalers_list);
- 		list_add_rcu(&dep->wait_link, &signal->waiters_list);
-+		spin_unlock(&node->lock);
- 
- 		/* Propagate the chains */
- 		node->flags |= signal->flags;
- 		ret = true;
- 	}
- 
--	spin_unlock_irq(&schedule_lock);
-+	spin_unlock(&signal->lock);
- 
- 	return ret;
- }
-@@ -426,39 +449,36 @@ int i915_sched_node_add_dependency(struct i915_sched_node *node,
- 	return 0;
- }
- 
--void i915_sched_node_fini(struct i915_sched_node *node)
-+void i915_sched_node_retire(struct i915_sched_node *node)
- {
- 	struct i915_dependency *dep, *tmp;
- 
--	spin_lock_irq(&schedule_lock);
--
- 	/*
- 	 * Everyone we depended upon (the fences we wait to be signaled)
- 	 * should retire before us and remove themselves from our list.
- 	 * However, retirement is run independently on each timeline and
--	 * so we may be called out-of-order.
-+	 * so we may be called out-of-order. As we need to avoid taking
-+	 * the signaler's lock, just mark up our completion and be wary
-+	 * in traversing the signalers->waiters_list.
- 	 */
--	list_for_each_entry_safe(dep, tmp, &node->signalers_list, signal_link) {
--		GEM_BUG_ON(!list_empty(&dep->dfs_link));
--
--		list_del_rcu(&dep->wait_link);
--		if (dep->flags & I915_DEPENDENCY_ALLOC)
--			i915_dependency_free(dep);
--	}
--	INIT_LIST_HEAD(&node->signalers_list);
- 
- 	/* Remove ourselves from everyone who depends upon us */
-+	spin_lock(&node->lock);
- 	list_for_each_entry_safe(dep, tmp, &node->waiters_list, wait_link) {
--		GEM_BUG_ON(dep->signaler != node);
--		GEM_BUG_ON(!list_empty(&dep->dfs_link));
-+		struct i915_sched_node *w = dep->waiter;
- 
-+		GEM_BUG_ON(dep->signaler != node);
-+
-+		spin_lock_nested(&w->lock, SINGLE_DEPTH_NESTING);
- 		list_del_rcu(&dep->signal_link);
-+		spin_unlock(&w->lock);
-+		node_put(w);
-+
- 		if (dep->flags & I915_DEPENDENCY_ALLOC)
- 			i915_dependency_free(dep);
- 	}
--	INIT_LIST_HEAD(&node->waiters_list);
--
--	spin_unlock_irq(&schedule_lock);
-+	INIT_LIST_HEAD_RCU(&node->waiters_list);
-+	spin_unlock(&node->lock);
- }
- 
- void i915_request_show_with_schedule(struct drm_printer *m,
-@@ -509,8 +529,7 @@ static struct i915_global_scheduler global = { {
- int __init i915_global_scheduler_init(void)
- {
- 	global.slab_dependencies = KMEM_CACHE(i915_dependency,
--					      SLAB_HWCACHE_ALIGN |
--					      SLAB_TYPESAFE_BY_RCU);
-+					      SLAB_HWCACHE_ALIGN);
- 	if (!global.slab_dependencies)
- 		return -ENOMEM;
- 
-diff --git a/drivers/gpu/drm/i915/i915_scheduler.h b/drivers/gpu/drm/i915/i915_scheduler.h
-index 858a0938f47a..8c5ed6fe0994 100644
---- a/drivers/gpu/drm/i915/i915_scheduler.h
-+++ b/drivers/gpu/drm/i915/i915_scheduler.h
-@@ -33,7 +33,7 @@ int i915_sched_node_add_dependency(struct i915_sched_node *node,
- 				   struct i915_sched_node *signal,
- 				   unsigned long flags);
- 
--void i915_sched_node_fini(struct i915_sched_node *node);
-+void i915_sched_node_retire(struct i915_sched_node *node);
- 
- void i915_schedule(struct i915_request *request,
- 		   const struct i915_sched_attr *attr);
-diff --git a/drivers/gpu/drm/i915/i915_scheduler_types.h b/drivers/gpu/drm/i915/i915_scheduler_types.h
-index 343ed44d5ed4..623bf41fcf35 100644
---- a/drivers/gpu/drm/i915/i915_scheduler_types.h
-+++ b/drivers/gpu/drm/i915/i915_scheduler_types.h
-@@ -60,6 +60,7 @@ struct i915_sched_attr {
-  * others.
-  */
- struct i915_sched_node {
-+	spinlock_t lock; /* protect the lists */
- 	struct list_head signalers_list; /* those before us, we depend upon */
- 	struct list_head waiters_list; /* those after us, they depend upon us */
- 	struct list_head link;
-@@ -75,6 +76,7 @@ struct i915_dependency {
- 	struct list_head signal_link;
- 	struct list_head wait_link;
- 	struct list_head dfs_link;
-+	struct rcu_head rcu;
- 	unsigned long flags;
- #define I915_DEPENDENCY_ALLOC		BIT(0)
- #define I915_DEPENDENCY_EXTERNAL	BIT(1)
--- 
-2.20.1
+Reviewed-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
 
+> ---
+>  drivers/gpu/drm/i915/display/intel_display.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> =
+
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/d=
+rm/i915/display/intel_display.c
+> index 65240fa074cc..aea8c5b3a7fd 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> @@ -8978,7 +8978,7 @@ static bool hsw_get_pipe_config(struct intel_crtc *=
+crtc,
+>  		intel_get_transcoder_timings(crtc, pipe_config);
+>  	}
+>  =
+
+> -	if (HAS_VRR(dev_priv))
+> +	if (HAS_VRR(dev_priv) && !transcoder_is_dsi(pipe_config->cpu_transcoder=
+))
+>  		intel_vrr_get_config(crtc, pipe_config);
+>  =
+
+>  	intel_get_pipe_src_size(crtc, pipe_config);
+> -- =
+
+> 2.19.1
+
+-- =
+
+Ville Syrj=E4l=E4
+Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
