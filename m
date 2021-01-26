@@ -1,40 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 62DD63041D5
-	for <lists+intel-gfx@lfdr.de>; Tue, 26 Jan 2021 16:13:28 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id BA6ED304202
+	for <lists+intel-gfx@lfdr.de>; Tue, 26 Jan 2021 16:16:09 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B9A006E483;
-	Tue, 26 Jan 2021 15:13:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 81BCF6E487;
+	Tue, 26 Jan 2021 15:16:07 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BC7426E47B
- for <intel-gfx@lists.freedesktop.org>; Tue, 26 Jan 2021 15:13:16 +0000 (UTC)
-IronPort-SDR: 2rXQmPg/vSF07x8mMpETcRtiuZ/uprPp7urupwBS6AwwV46vMkr7btC7sE3i3Q5qLMYU0pCO/c
- 6wfsaYKsFEoA==
-X-IronPort-AV: E=McAfee;i="6000,8403,9876"; a="243995141"
-X-IronPort-AV: E=Sophos;i="5.79,375,1602572400"; d="scan'208";a="243995141"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Jan 2021 07:13:16 -0800
-IronPort-SDR: +Fuw4FGkWCR+gm82Mnl0pTm0/IKGRsOo83LO10tX9B7go+JCZBiQjg0eUQT1SrGtF3kLkb0t5q
- Wmi6AJ74CABw==
-X-IronPort-AV: E=Sophos;i="5.79,375,1602572400"; d="scan'208";a="387856766"
-Received: from shogg-mobl.ger.corp.intel.com (HELO
- mwauld-desk1.ger.corp.intel.com) ([10.252.19.250])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Jan 2021 07:13:15 -0800
-From: Matthew Auld <matthew.auld@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Tue, 26 Jan 2021 15:12:59 +0000
-Message-Id: <20210126151259.253885-8-matthew.auld@intel.com>
-X-Mailer: git-send-email 2.26.2
+Received: from fireflyinternet.com (unknown [77.68.26.236])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C51036E487
+ for <intel-gfx@lists.freedesktop.org>; Tue, 26 Jan 2021 15:16:05 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from localhost (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
+ 23704970-1500050 for multiple; Tue, 26 Jan 2021 15:15:59 +0000
+MIME-Version: 1.0
 In-Reply-To: <20210126151259.253885-1-matthew.auld@intel.com>
 References: <20210126151259.253885-1-matthew.auld@intel.com>
-MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v2 8/8] drm/i915: allocate cmd ring in lmem
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: Matthew Auld <matthew.auld@intel.com>, intel-gfx@lists.freedesktop.org
+Date: Tue, 26 Jan 2021 15:16:01 +0000
+Message-ID: <161167416147.2943.773169897292391146@build.alporthouse.com>
+User-Agent: alot/0.9
+Subject: Re: [Intel-gfx] [PATCH v2 1/8] drm/i915: make local-memory probing
+ a GT operation
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,33 +39,126 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Michel Thierry <michel.thierry@intel.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-RnJvbTogTWljaGVsIFRoaWVycnkgPG1pY2hlbC50aGllcnJ5QGludGVsLmNvbT4KClByZWZlciBh
-bGxvY2F0aW5nIHRoZSBjbWQgcmluZyBmcm9tIExNRU0gb24gZGdmeC4KClNpZ25lZC1vZmYtYnk6
-IE1pY2hlbCBUaGllcnJ5IDxtaWNoZWwudGhpZXJyeUBpbnRlbC5jb20+ClNpZ25lZC1vZmYtYnk6
-IE1hdHRoZXcgQXVsZCA8bWF0dGhldy5hdWxkQGludGVsLmNvbT4KLS0tCiBkcml2ZXJzL2dwdS9k
-cm0vaTkxNS9ndC9pbnRlbF9yaW5nLmMgfCA1ICsrKy0tCiAxIGZpbGUgY2hhbmdlZCwgMyBpbnNl
-cnRpb25zKCspLCAyIGRlbGV0aW9ucygtKQoKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9p
-OTE1L2d0L2ludGVsX3JpbmcuYyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L2ludGVsX3Jpbmcu
-YwppbmRleCAyOWM4N2IzYzIzYmMuLmFlZTBhNzdjNzdlMCAxMDA2NDQKLS0tIGEvZHJpdmVycy9n
-cHUvZHJtL2k5MTUvZ3QvaW50ZWxfcmluZy5jCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2d0
-L2ludGVsX3JpbmcuYwpAQCAtMyw2ICszLDcgQEAKICAqIENvcHlyaWdodCDCqSAyMDE5IEludGVs
-IENvcnBvcmF0aW9uCiAgKi8KIAorI2luY2x1ZGUgImdlbS9pOTE1X2dlbV9sbWVtLmgiCiAjaW5j
-bHVkZSAiZ2VtL2k5MTVfZ2VtX29iamVjdC5oIgogCiAjaW5jbHVkZSAiaTkxNV9kcnYuaCIKQEAg
-LTEwOCw4ICsxMDksOCBAQCBzdGF0aWMgc3RydWN0IGk5MTVfdm1hICpjcmVhdGVfcmluZ192bWEo
-c3RydWN0IGk5MTVfZ2d0dCAqZ2d0dCwgaW50IHNpemUpCiAJc3RydWN0IGRybV9pOTE1X2dlbV9v
-YmplY3QgKm9iajsKIAlzdHJ1Y3QgaTkxNV92bWEgKnZtYTsKIAotCW9iaiA9IEVSUl9QVFIoLUVO
-T0RFVik7Ci0JaWYgKGk5MTVfZ2d0dF9oYXNfYXBlcnR1cmUoZ2d0dCkpCisJb2JqID0gaTkxNV9n
-ZW1fb2JqZWN0X2NyZWF0ZV9sbWVtKGk5MTUsIHNpemUsIEk5MTVfQk9fQUxMT0NfVk9MQVRJTEUp
-OworCWlmIChJU19FUlIob2JqKSAmJiBpOTE1X2dndHRfaGFzX2FwZXJ0dXJlKGdndHQpKQogCQlv
-YmogPSBpOTE1X2dlbV9vYmplY3RfY3JlYXRlX3N0b2xlbihpOTE1LCBzaXplKTsKIAlpZiAoSVNf
-RVJSKG9iaikpCiAJCW9iaiA9IGk5MTVfZ2VtX29iamVjdF9jcmVhdGVfaW50ZXJuYWwoaTkxNSwg
-c2l6ZSk7Ci0tIAoyLjI2LjIKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNr
-dG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2lu
-dGVsLWdmeAo=
+Quoting Matthew Auld (2021-01-26 15:12:52)
+> Device local memory is very much a GT thing, therefore it should be the
+> responsibility of the GT to setup the device local memory region.
+> 
+> Suggested-by: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+> ---
+>  drivers/gpu/drm/i915/gt/intel_gt.c          | 29 +++++++++++++++++++++
+>  drivers/gpu/drm/i915/gt/intel_gt.h          |  1 +
+>  drivers/gpu/drm/i915/gt/intel_region_lmem.c |  3 ++-
+>  drivers/gpu/drm/i915/gt/intel_region_lmem.h |  4 +--
+>  drivers/gpu/drm/i915/i915_drv.c             |  4 +++
+>  drivers/gpu/drm/i915/intel_memory_region.c  |  5 ++--
+>  6 files changed, 40 insertions(+), 6 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/gt/intel_gt.c b/drivers/gpu/drm/i915/gt/intel_gt.c
+> index d8e1ab412634..989cd2106b09 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_gt.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_gt.c
+> @@ -39,6 +39,35 @@ void intel_gt_init_early(struct intel_gt *gt, struct drm_i915_private *i915)
+>         intel_uc_init_early(&gt->uc);
+>  }
+>  
+> +int intel_gt_probe_lmem(struct intel_gt *gt)
+> +{
+> +       struct drm_i915_private *i915 = gt->i915;
+> +       struct intel_memory_region *mem;
+> +       int id;
+> +       int err;
+> +
+> +       id = INTEL_REGION_LMEM;
+> +       if (!HAS_REGION(i915, id))
+> +               return 0;
+> +
+> +       mem = intel_gt_setup_fake_lmem(gt);
+> +       if (IS_ERR(mem)) {
+> +               err = PTR_ERR(mem);
+> +               drm_err(&i915->drm,
+> +                       "Failed to setup region(%d) type=%d\n",
+> +                       err, INTEL_MEMORY_LOCAL);
+> +               return err;
+> +       }
+> +
+> +       mem->id = id;
+> +       mem->type = INTEL_MEMORY_LOCAL;
+> +       mem->instance = 0;
+> +
+> +       i915->mm.regions[id] = mem;
+> +
+> +       return 0;
+> +}
+> +
+>  void intel_gt_init_hw_early(struct intel_gt *gt, struct i915_ggtt *ggtt)
+>  {
+>         gt->ggtt = ggtt;
+> diff --git a/drivers/gpu/drm/i915/gt/intel_gt.h b/drivers/gpu/drm/i915/gt/intel_gt.h
+> index 9157c7411f60..a17bd8b3195f 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_gt.h
+> +++ b/drivers/gpu/drm/i915/gt/intel_gt.h
+> @@ -36,6 +36,7 @@ static inline struct intel_gt *huc_to_gt(struct intel_huc *huc)
+>  
+>  void intel_gt_init_early(struct intel_gt *gt, struct drm_i915_private *i915);
+>  void intel_gt_init_hw_early(struct intel_gt *gt, struct i915_ggtt *ggtt);
+> +int intel_gt_probe_lmem(struct intel_gt *gt);
+>  int intel_gt_init_mmio(struct intel_gt *gt);
+>  int __must_check intel_gt_init_hw(struct intel_gt *gt);
+>  int intel_gt_init(struct intel_gt *gt);
+> diff --git a/drivers/gpu/drm/i915/gt/intel_region_lmem.c b/drivers/gpu/drm/i915/gt/intel_region_lmem.c
+> index 28a1d5e1fb92..ad80ff0b935c 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_region_lmem.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_region_lmem.c
+> @@ -102,8 +102,9 @@ static const struct intel_memory_region_ops intel_region_lmem_ops = {
+>  };
+>  
+>  struct intel_memory_region *
+> -intel_setup_fake_lmem(struct drm_i915_private *i915)
+> +intel_gt_setup_fake_lmem(struct intel_gt *gt)
+>  {
+> +       struct drm_i915_private *i915 = gt->i915;
+>         struct pci_dev *pdev = i915->drm.pdev;
+>         struct intel_memory_region *mem;
+>         resource_size_t mappable_end;
+> diff --git a/drivers/gpu/drm/i915/gt/intel_region_lmem.h b/drivers/gpu/drm/i915/gt/intel_region_lmem.h
+> index 8ea43e538dab..a4baa0f077a1 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_region_lmem.h
+> +++ b/drivers/gpu/drm/i915/gt/intel_region_lmem.h
+> @@ -6,9 +6,9 @@
+>  #ifndef __INTEL_REGION_LMEM_H
+>  #define __INTEL_REGION_LMEM_H
+>  
+> -struct drm_i915_private;
+> +struct intel_gt;
+>  
+>  struct intel_memory_region *
+> -intel_setup_fake_lmem(struct drm_i915_private *i915);
+> +intel_gt_setup_fake_lmem(struct intel_gt *gt);
+>  
+>  #endif /* !__INTEL_REGION_LMEM_H */
+> diff --git a/drivers/gpu/drm/i915/i915_drv.c b/drivers/gpu/drm/i915/i915_drv.c
+> index 0037b81d991e..7915d0dc7e16 100644
+> --- a/drivers/gpu/drm/i915/i915_drv.c
+> +++ b/drivers/gpu/drm/i915/i915_drv.c
+> @@ -574,6 +574,10 @@ static int i915_driver_hw_probe(struct drm_i915_private *dev_priv)
+>         if (ret)
+>                 goto err_ggtt;
+>  
+> +       ret = intel_gt_probe_lmem(&dev_priv->gt);
+> +       if (ret)
+> +               goto err_mem_regions;
+> +
+>         intel_gt_init_hw_early(&dev_priv->gt, &dev_priv->ggtt);
+
+^^^ save typing later
+-Chris
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
