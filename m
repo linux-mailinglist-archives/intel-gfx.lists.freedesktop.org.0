@@ -1,32 +1,44 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 42101303A48
-	for <lists+intel-gfx@lfdr.de>; Tue, 26 Jan 2021 11:31:13 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id E2A40303A7B
+	for <lists+intel-gfx@lfdr.de>; Tue, 26 Jan 2021 11:38:16 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9BCBF6E0C2;
-	Tue, 26 Jan 2021 10:31:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2A05089DC2;
+	Tue, 26 Jan 2021 10:38:15 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B3EB46E0C2;
- Tue, 26 Jan 2021 10:31:07 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 23701415-1500050 
- for multiple; Tue, 26 Jan 2021 10:30:58 +0000
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Tue, 26 Jan 2021 10:30:59 +0000
-Message-Id: <20210126103059.2881327-2-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.30.0
-In-Reply-To: <20210126103059.2881327-1-chris@chris-wilson.co.uk>
-References: <20210126103059.2881327-1-chris@chris-wilson.co.uk>
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EC35A89D60
+ for <intel-gfx@lists.freedesktop.org>; Tue, 26 Jan 2021 10:38:13 +0000 (UTC)
+IronPort-SDR: WmSkMnAvx4OLdqPuqFea3qh5hUXIx0ZpNivtoHuJkEPhtiosbAbECzqhI0bYDOF9zkBMQMxH2Y
+ 52mTCxNkJFbQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9875"; a="177312262"
+X-IronPort-AV: E=Sophos;i="5.79,375,1602572400"; d="scan'208";a="177312262"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Jan 2021 02:38:12 -0800
+IronPort-SDR: qoxewchID/RmJJJJ+kDqTRgDRUx1JcmOqXFmKXG6GF2YZSMqU70EcAsMUYlP92gL47S2BKd+Ff
+ yMkS1YZIdQdg==
+X-IronPort-AV: E=Sophos;i="5.79,375,1602572400"; d="scan'208";a="472691344"
+Received: from shogg-mobl.ger.corp.intel.com (HELO [10.252.19.250])
+ ([10.252.19.250])
+ by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Jan 2021 02:38:11 -0800
+To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
+References: <20210126094612.163290-1-matthew.auld@intel.com>
+ <4868954d-e4a3-a72b-c114-39f8ee00404b@linux.intel.com>
+From: Matthew Auld <matthew.auld@intel.com>
+Message-ID: <7880508f-6f43-19a4-c916-30a251cc1f39@intel.com>
+Date: Tue, 26 Jan 2021 10:38:09 +0000
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.6.0
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH i-g-t 2/2] i915/sysfs_clients: Check that client
- ids are cyclic
+In-Reply-To: <4868954d-e4a3-a72b-c114-39f8ee00404b@linux.intel.com>
+Content-Language: en-GB
+Subject: Re: [Intel-gfx] [PATCH 1/7] drm/i915: setup the LMEM region
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,210 +51,115 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: igt-dev@lists.freedesktop.org, Chris Wilson <chris@chris-wilson.co.uk>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: Jani Nikula <jani.nikula@intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The client id used is a cyclic allocator as that reduces the likelihood
-of userspace seeing the same id used again (and so confusing the new
-client as the old). Verify that each new client has an id greater than
-the last.
-
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
----
- tests/i915/sysfs_clients.c | 126 +++++++++++++++++++++++++++++++------
- 1 file changed, 108 insertions(+), 18 deletions(-)
-
-diff --git a/tests/i915/sysfs_clients.c b/tests/i915/sysfs_clients.c
-index a3a1f81e1..b7048938e 100644
---- a/tests/i915/sysfs_clients.c
-+++ b/tests/i915/sysfs_clients.c
-@@ -47,6 +47,8 @@
- #define assert_within_epsilon(x, ref, tolerance) \
- 	__assert_within_epsilon(x, ref, tolerance / 100., tolerance / 100.)
- 
-+#define BUFSZ 280
-+
- #define MI_BATCH_BUFFER_START (0x31 << 23)
- #define MI_BATCH_BUFFER_END (0xa << 23)
- #define MI_ARB_CHECK (0x5 << 23)
-@@ -75,7 +77,7 @@ static void pidname(int i915, int clients)
- {
- 	struct dirent *de;
- 	int sv[2], rv[2];
--	char buf[280];
-+	char buf[BUFSZ];
- 	int me = -1;
- 	long count;
- 	pid_t pid;
-@@ -180,7 +182,7 @@ static long count_clients(int clients)
- {
- 	struct dirent *de;
- 	long count = 0;
--	char buf[280];
-+	char buf[BUFSZ];
- 	DIR *dir;
- 
- 	dir = fdopendir(dup(clients));
-@@ -229,32 +231,117 @@ static void create(int i915, int clients)
- 	igt_assert_eq(count_clients(clients), 1);
- }
- 
--static int find_me(int clients, pid_t pid)
-+static const char *find_client(int clients, pid_t pid, char *buf)
- {
- 	struct dirent *de;
--	char buf[280];
--	int me = -1;
- 	DIR *dir;
- 
- 	dir = fdopendir(dup(clients));
- 	igt_assert(dir);
--	rewinddir(dir);
- 
--	while ((de = readdir(dir))) {
--		if (!isdigit(de->d_name[0]))
--			continue;
-+	for (int pass = 0; pass < 2; pass++) { /* What if the dir changes? */
-+		rewinddir(dir);
-+		while ((de = readdir(dir))) {
-+			if (!isdigit(de->d_name[0]))
-+				continue;
- 
--		snprintf(buf, sizeof(buf), "%s/pid", de->d_name);
--		igt_sysfs_read(clients, buf, buf, sizeof(buf));
--		if (atoi(buf) != pid)
--			continue;
-+			snprintf(buf, BUFSZ, "%s/pid", de->d_name);
-+			igt_sysfs_read(clients, buf, buf, sizeof(buf));
-+			if (atoi(buf) != pid)
-+				continue;
- 
--		me = openat(clients, de->d_name, O_DIRECTORY | O_RDONLY);
--		break;
-+			strncpy(buf, de->d_name, BUFSZ);
-+			goto out;
-+		}
- 	}
--
-+	*buf = '\0';
-+out:
- 	closedir(dir);
--	return me;
-+	return buf;
-+}
-+
-+static int find_me(int clients, pid_t pid)
-+{
-+	char buf[BUFSZ];
-+
-+	return openat(clients,
-+		      find_client(clients, pid, buf),
-+		      O_DIRECTORY | O_RDONLY);
-+}
-+
-+static int reopen_directory(int fd)
-+{
-+	char buf[BUFSZ];
-+	int dir;
-+
-+	snprintf(buf, sizeof(buf), "/proc/self/fd/%d", fd);
-+	dir = open(buf, O_RDONLY);
-+	igt_assert_fd(dir);
-+
-+	return dir;
-+}
-+
-+static unsigned int my_id(int clients, pid_t pid)
-+{
-+	char buf[BUFSZ];
-+
-+	return atoi(find_client(clients, pid, buf));
-+}
-+
-+static unsigned int recycle_client(int i915, int clients)
-+{
-+	int device, client;
-+
-+	device = gem_reopen_driver(i915);
-+	client = my_id(clients, getpid());
-+	close(device);
-+
-+	/* Client is now closed so no longer reported */
-+	igt_assert_eq(my_id(clients, getpid()), 0);
-+
-+	return client;
-+}
-+
-+static void recycle(int i915, int clients)
-+{
-+	const int ncpus = sysconf(_SC_NPROCESSORS_ONLN);
-+
-+	/*
-+	 * As we open and close clients, we do not expect to reuse old ids,
-+	 * i.e. we use a cyclic ida. This reduces the likelihood of userspace
-+	 * watchers becoming confused and mistaking the new client as a
-+	 * continuation of the old.
-+	 */
-+	igt_require(my_id(clients, getpid()) < 10000000);
-+	igt_assert(my_id(clients, getpid()));
-+
-+	igt_fork(child, 2 * ncpus) {
-+		unsigned int client, last;
-+
-+		/* Reopen the directory fd for each client */
-+		clients = reopen_directory(clients);
-+
-+		last = recycle_client(i915, clients);
-+		igt_info("Child[%d] first client:%d\n", getpid(), last);
-+		igt_until_timeout(5) {
-+			client = recycle_client(i915, clients);
-+
-+			/* In 5 seconds we are not going to exhaust the ids */
-+			igt_assert(client > last);
-+			last = client;
-+		}
-+		igt_info("Child[%d] last client:%d\n", getpid(), last);
-+	}
-+	igt_waitchildren();
-+
-+	/* Cleanup delayed behind rcu */
-+	igt_until_timeout(30) {
-+		sched_yield();
-+		if (count_clients(clients) == 1)
-+			break;
-+		usleep(10000);
-+	}
-+	igt_assert_eq(count_clients(clients), 1);
- }
- 
- static int64_t read_runtime(int client, int class)
-@@ -719,7 +806,7 @@ sema(int i915, int clients, const struct intel_execution_engine2 *e, int f)
- static int read_all(int clients, pid_t pid, int class, uint64_t *runtime)
- {
- 	struct dirent *de;
--	char buf[280];
-+	char buf[BUFSZ];
- 	int count = 0;
- 	DIR *dir;
- 
-@@ -958,6 +1045,9 @@ igt_main
- 	igt_subtest("create")
- 		create(i915, clients);
- 
-+	igt_subtest("recycle")
-+		recycle(i915, clients);
-+
- 	igt_subtest_group
- 		test_busy(i915, clients);
- 
--- 
-2.30.0
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+T24gMjYvMDEvMjAyMSAxMDowOSwgVHZydGtvIFVyc3VsaW4gd3JvdGU6Cj4gCj4gT24gMjYvMDEv
+MjAyMSAwOTo0NiwgTWF0dGhldyBBdWxkIHdyb3RlOgo+PiBIb29rIHVwIHRoZSBMTUVNIHJlZ2lv
+bi4gQWRkcmVzc2VzIHdpbGwgc3RhcnQgZnJvbSB6ZXJvLCBhbmQgZm9yIENQVQo+PiBhY2Nlc3Mg
+d2UgZ2V0IExNRU1fQkFSIHdoaWNoIGlzIGp1c3QgYSAxOjEgbWFwcGluZyBvZiBzYWlkIHJlZ2lv
+bi4KPj4KPj4gQmFzZWQgb24gYSBwYXRjaCBmcm9tIE1pY2hlbCBUaGllcnJ5Lgo+Pgo+PiB2MiBi
+eSBKYW5pOgo+PiAtIHVzZSBpbnRlbF91bmNvcmVfcmVhZC9pbnRlbF91bmNvcmVfd3JpdGUKPj4g
+LSByZW1vdmUgdHJhaWxpbmcgYmxhbmsgbGluZQo+Pgo+PiB2Mzogcy9kcm1faW5mby9kcm1fZGJn
+IGZvciBpbmZvIHdoaWNoIGluIG5vbi1wZXJ0aW5lbnQgZm9yIHRoZSB1c2VyCj4+Cj4+IENjOiBM
+dWNhcyBEZSBNYXJjaGkgPGx1Y2FzLmRlbWFyY2hpQGludGVsLmNvbT4KPj4gQ2M6IEpvb25hcyBM
+YWh0aW5lbiA8am9vbmFzLmxhaHRpbmVuQGxpbnV4LmludGVsLmNvbT4KPj4gQ2M6IFJvZHJpZ28g
+Vml2aSA8cm9kcmlnby52aXZpQGludGVsLmNvbT4KPj4gU2lnbmVkLW9mZi1ieTogTWF0dGhldyBB
+dWxkIDxtYXR0aGV3LmF1bGRAaW50ZWwuY29tPgo+PiBTaWduZWQtb2ZmLWJ5OiBMdWNhcyBEZSBN
+YXJjaGkgPGx1Y2FzLmRlbWFyY2hpQGludGVsLmNvbT4KPj4gU2lnbmVkLW9mZi1ieTogSmFuaSBO
+aWt1bGEgPGphbmkubmlrdWxhQGludGVsLmNvbT4KPj4gLS0tCj4+IMKgIGRyaXZlcnMvZ3B1L2Ry
+bS9pOTE1L2d0L2ludGVsX3JlZ2lvbl9sbWVtLmMgfCAzNyArKysrKysrKysrKysrKysrKysrKysK
+Pj4gwqAgZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvaW50ZWxfcmVnaW9uX2xtZW0uaCB8wqAgMiAr
+Kwo+PiDCoCBkcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X3JlZy5owqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgIHzCoCAzICsrCj4+IMKgIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2ludGVsX21lbW9yeV9y
+ZWdpb24uY8KgIHwgMTEgKysrKystCj4+IMKgIDQgZmlsZXMgY2hhbmdlZCwgNTIgaW5zZXJ0aW9u
+cygrKSwgMSBkZWxldGlvbigtKQo+Pgo+PiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5
+MTUvZ3QvaW50ZWxfcmVnaW9uX2xtZW0uYyAKPj4gYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC9p
+bnRlbF9yZWdpb25fbG1lbS5jCj4+IGluZGV4IDI4YTFkNWUxZmI5Mi4uYmRkMzhlZmUwODExIDEw
+MDY0NAo+PiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC9pbnRlbF9yZWdpb25fbG1lbS5j
+Cj4+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L2ludGVsX3JlZ2lvbl9sbWVtLmMKPj4g
+QEAgLTEzNiwzICsxMzYsNDAgQEAgaW50ZWxfc2V0dXBfZmFrZV9sbWVtKHN0cnVjdCBkcm1faTkx
+NV9wcml2YXRlICppOTE1KQo+PiDCoMKgwqDCoMKgIHJldHVybiBtZW07Cj4+IMKgIH0KPj4gKwo+
+PiArc3RhdGljIHN0cnVjdCBpbnRlbF9tZW1vcnlfcmVnaW9uICoKPj4gK3NldHVwX2xtZW0oc3Ry
+dWN0IGRybV9pOTE1X3ByaXZhdGUgKmk5MTUpCj4+ICt7ID4gK8KgwqDCoCBzdHJ1Y3QgcGNpX2Rl
+diAqcGRldiA9IGk5MTUtPmRybS5wZGV2Owo+PiArwqDCoMKgIHN0cnVjdCBpbnRlbF9tZW1vcnlf
+cmVnaW9uICptZW07Cj4+ICvCoMKgwqAgcmVzb3VyY2Vfc2l6ZV90IGlvX3N0YXJ0Owo+PiArwqDC
+oMKgIHJlc291cmNlX3NpemVfdCBzaXplOwo+PiArCj4+ICvCoMKgwqAgLyogRW5hYmxlcyBMb2Nh
+bCBNZW1vcnkgZnVuY3Rpb25hbGl0eSBpbiBHQU0gKi8KPj4gK8KgwqDCoCBpbnRlbF91bmNvcmVf
+d3JpdGUoJmk5MTUtPnVuY29yZSwgR0VOMTJfTE1FTV9DRkdfQUREUiwKPj4gK8KgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqAgaW50ZWxfdW5jb3JlX3JlYWQoJmk5MTUtPnVuY29yZSwgR0VOMTJf
+TE1FTV9DRkdfQUREUikgCj4+IHwgTE1FTV9FTkFCTEUpOwo+IAo+IFlvdSBjb3VsZCB1c2UgaW50
+ZWxfdW5jb3JlX3JtdyBhcyB3ZWxsIGZvciBzb21lIG1pbmltYWwgaW1wcm92ZW1lbnQgaW4gCj4g
+cmVhZGFiaWxpdHkuIEp1c3QgYSBwYXNzaW5nIGJ5IG9ic2VydmF0aW9uLCBubyBuZWVkIHRvIHJl
+c3BpbiBpZiBpdCAKPiBkb2Vzbid0IGZpdCB0aGUgc2NoZWR1bGVzLgoKT24gc2Vjb25kIHRob3Vn
+aHQsIEkgdGhpbmsgd2UgY2FuIGp1c3QgZHJvcCB0aGlzIHNpbmNlIGl0IHNob3VsZCBiZSAKZGVm
+YXVsdCBlbmFibGVkIG5vd2FkYXlzIGFueXdheS4KCj4gCj4+ICsKPj4gK8KgwqDCoCBpb19zdGFy
+dCA9IHBjaV9yZXNvdXJjZV9zdGFydChwZGV2LCAyKTsKPj4gK8KgwqDCoCBzaXplID0gcGNpX3Jl
+c291cmNlX2xlbihwZGV2LCAyKTsKPj4gKwo+PiArwqDCoMKgIG1lbSA9IGludGVsX21lbW9yeV9y
+ZWdpb25fY3JlYXRlKGk5MTUsCj4+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgIDAsCj4+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIHNp
+emUsCj4+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIEk5MTVfR1RU
+X1BBR0VfU0laRV80SywKPj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqAgaW9fc3RhcnQsCj4+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+ICZpbnRlbF9yZWdpb25fbG1lbV9vcHMpOwo+PiArwqDCoMKgIGlmICghSVNfRVJSKG1lbSkpIHsK
+Pj4gK8KgwqDCoMKgwqDCoMKgIGRybV9kYmcoJmk5MTUtPmRybSwgIkludGVsIGdyYXBoaWNzIExN
+RU06ICVwUlxuIiwgJm1lbS0+cmVnaW9uKTsKPj4gK8KgwqDCoMKgwqDCoMKgIGRybV9kYmcoJmk5
+MTUtPmRybSwgIkludGVsIGdyYXBoaWNzIExNRU0gSU8gc3RhcnQ6ICVwYVxuIiwKPj4gK8KgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoCAmbWVtLT5pb19zdGFydCk7Cj4+ICvCoMKgwqDCoMKgwqDCoCBk
+cm1faW5mbygmaTkxNS0+ZHJtLCAiSW50ZWwgZ3JhcGhpY3MgTE1FTSBzaXplOiAlcGFcbiIsICZz
+aXplKTsKPj4gK8KgwqDCoCB9Cj4+ICsKPj4gK8KgwqDCoCByZXR1cm4gbWVtOwo+PiArfQo+PiAr
+Cj4+ICtzdHJ1Y3QgaW50ZWxfbWVtb3J5X3JlZ2lvbiAqCj4+ICtpOTE1X2dlbV9zZXR1cF9sbWVt
+KHN0cnVjdCBkcm1faTkxNV9wcml2YXRlICppOTE1KQo+PiArewo+PiArwqDCoMKgIHJldHVybiBz
+ZXR1cF9sbWVtKGk5MTUpOwo+PiArfQo+IAo+IFdhcyBpdCBldmVyIGRpc2N1c3NlZCBpZiB0aGVy
+ZSB3YXMgYW4gZWFzeSB3YXkgKGFuZCBpZiBpdCBtYWtlcyBzZW5zZSAKPiBhY3R1YWxseSkgdG8g
+bW92ZSB0aGlzIGZyb20gR0VNIHRvIEdUIChpbiBuYW1lIGFuZCBpbnB1dCBwYXJhbWV0ZXI/CgpZ
+ZWFoLCBtYWtlcyBzZW5zZSwgZXNwZWNpYWxseSBzaW5jZSB0aGlzIGlzIG5vdyBpbiBndC8KClNv
+IGp1c3Q6CmludGVsX2d0X3NldHVwX2xtZW0oZ3QpCgo/Cgo+IAo+IFJlZ2FyZHMsCj4gCj4gVHZy
+dGtvCj4gCj4+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC9pbnRlbF9yZWdp
+b25fbG1lbS5oIAo+PiBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L2ludGVsX3JlZ2lvbl9sbWVt
+LmgKPj4gaW5kZXggOGVhNDNlNTM4ZGFiLi5iMzIyMjJiZDQ5M2MgMTAwNjQ0Cj4+IC0tLSBhL2Ry
+aXZlcnMvZ3B1L2RybS9pOTE1L2d0L2ludGVsX3JlZ2lvbl9sbWVtLmgKPj4gKysrIGIvZHJpdmVy
+cy9ncHUvZHJtL2k5MTUvZ3QvaW50ZWxfcmVnaW9uX2xtZW0uaAo+PiBAQCAtOCw2ICs4LDggQEAK
+Pj4gwqAgc3RydWN0IGRybV9pOTE1X3ByaXZhdGU7Cj4+ICtzdHJ1Y3QgaW50ZWxfbWVtb3J5X3Jl
+Z2lvbiAqaTkxNV9nZW1fc2V0dXBfbG1lbShzdHJ1Y3QgCj4+IGRybV9pOTE1X3ByaXZhdGUgKmk5
+MTUpOwo+PiArCj4+IMKgIHN0cnVjdCBpbnRlbF9tZW1vcnlfcmVnaW9uICoKPj4gwqAgaW50ZWxf
+c2V0dXBfZmFrZV9sbWVtKHN0cnVjdCBkcm1faTkxNV9wcml2YXRlICppOTE1KTsKPj4gZGlmZiAt
+LWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfcmVnLmggCj4+IGIvZHJpdmVycy9ncHUv
+ZHJtL2k5MTUvaTkxNV9yZWcuaAo+PiBpbmRleCBlN2U0MWEzYzQ2N2UuLjI4MDAxYjVhM2NiNSAx
+MDA2NDQKPj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9yZWcuaAo+PiArKysgYi9k
+cml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X3JlZy5oCj4+IEBAIC0xMjExMSw2ICsxMjExMSw5IEBA
+IGVudW0gc2tsX3Bvd2VyX2dhdGUgewo+PiDCoCAjZGVmaW5lIEdFTjEyX0dMT0JBTF9NT0NTKGkp
+wqDCoMKgIF9NTUlPKDB4NDAwMCArIChpKSAqIDQpIC8qIEdsb2JhbCAKPj4gTU9DUyByZWdzICov
+Cj4+ICsjZGVmaW5lIEdFTjEyX0xNRU1fQ0ZHX0FERFLCoMKgwqDCoMKgwqDCoCBfTU1JTygweGNm
+NTgpCj4+ICsjZGVmaW5lwqDCoCBMTUVNX0VOQUJMRcKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgKDEg
+PDwgMzEpCj4+ICsKPj4gwqAgLyogZ2FtdCByZWdzICovCj4+IMKgICNkZWZpbmUgR0VOOF9MM19M
+UkFfMV9HUEdQVSBfTU1JTygweDRkZDQpCj4+IMKgICNkZWZpbmXCoMKgIEdFTjhfTDNfTFJBXzFf
+R1BHUFVfREVGQVVMVF9WQUxVRV9CRFfCoCAweDY3RjE0MjdGIC8qIAo+PiBtYXgvbWluIGZvciBM
+UkExLzIgKi8KPj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2ludGVsX21lbW9y
+eV9yZWdpb24uYyAKPj4gYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pbnRlbF9tZW1vcnlfcmVnaW9u
+LmMKPj4gaW5kZXggMWJmY2RkODliMjQxLi45Y2U0YTgxYzQ4YjEgMTAwNjQ0Cj4+IC0tLSBhL2Ry
+aXZlcnMvZ3B1L2RybS9pOTE1L2ludGVsX21lbW9yeV9yZWdpb24uYwo+PiArKysgYi9kcml2ZXJz
+L2dwdS9kcm0vaTkxNS9pbnRlbF9tZW1vcnlfcmVnaW9uLmMKPj4gQEAgLTI1OSw3ICsyNTksMTYg
+QEAgaW50IGludGVsX21lbW9yeV9yZWdpb25zX2h3X3Byb2JlKHN0cnVjdCAKPj4gZHJtX2k5MTVf
+cHJpdmF0ZSAqaTkxNSkKPj4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgbWVtID0gaTkxNV9n
+ZW1fc3RvbGVuX3NldHVwKGk5MTUpOwo+PiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBicmVh
+azsKPj4gwqDCoMKgwqDCoMKgwqDCoMKgIGNhc2UgSU5URUxfTUVNT1JZX0xPQ0FMOgo+PiAtwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoCBtZW0gPSBpbnRlbF9zZXR1cF9mYWtlX2xtZW0oaTkxNSk7Cj4+
+ICsjaWYgSVNfRU5BQkxFRChDT05GSUdfRFJNX0k5MTVfU0VMRlRFU1QpCj4+ICvCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgIGlmIChJU19FTkFCTEVEKENPTkZJR19EUk1fSTkxNV9VTlNUQUJMRV9GQUtF
+X0xNRU0pKSB7Cj4+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgaWYgKElOVEVMX0dF
+TihpOTE1KSA+PSA5ICYmIGk5MTVfc2VsZnRlc3QubGl2ZSA8IDAgJiYKPj4gK8KgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIGk5MTUtPnBhcmFtcy5mYWtlX2xtZW1fc3RhcnQp
+Cj4+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBtZW0gPSBpbnRlbF9z
+ZXR1cF9mYWtlX2xtZW0oaTkxNSk7Cj4+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIH0KPj4gKyNl
+bmRpZgo+PiArCj4+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIGlmIChJU19FUlIobWVtKSkKPj4g
+K8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBtZW0gPSBpOTE1X2dlbV9zZXR1cF9sbWVt
+KGk5MTUpOwo+PiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBicmVhazsKPj4gwqDCoMKgwqDC
+oMKgwqDCoMKgIH0KPj4KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Au
+b3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwt
+Z2Z4Cg==
