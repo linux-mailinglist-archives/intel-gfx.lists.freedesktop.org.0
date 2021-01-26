@@ -2,43 +2,37 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CBFC23045E9
-	for <lists+intel-gfx@lfdr.de>; Tue, 26 Jan 2021 19:05:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 387F03046EA
+	for <lists+intel-gfx@lfdr.de>; Tue, 26 Jan 2021 19:47:57 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 757096E069;
-	Tue, 26 Jan 2021 18:05:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6EDAE6E092;
+	Tue, 26 Jan 2021 18:47:55 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from 9.mo178.mail-out.ovh.net (9.mo178.mail-out.ovh.net
- [46.105.75.45])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5CD436E069
- for <intel-gfx@lists.freedesktop.org>; Tue, 26 Jan 2021 18:05:49 +0000 (UTC)
-Received: from player739.ha.ovh.net (unknown [10.108.42.215])
- by mo178.mail-out.ovh.net (Postfix) with ESMTP id 106F0C1510
- for <intel-gfx@lists.freedesktop.org>; Tue, 26 Jan 2021 19:05:45 +0100 (CET)
-Received: from etezian.org (213-243-141-64.bb.dnainternet.fi [213.243.141.64])
- (Authenticated sender: andi@etezian.org)
- by player739.ha.ovh.net (Postfix) with ESMTPSA id 86F0D166442E6;
- Tue, 26 Jan 2021 18:05:40 +0000 (UTC)
-Authentication-Results: garm.ovh; auth=pass
- (GARM-102R0042d14994e-7b33-486a-8b93-e01c29217ec2,
- FCD1BBE7D880F588B4D98BD35E77FB0D8B597664) smtp.auth=andi@etezian.org
-X-OVh-ClientIp: 213.243.141.64
-Date: Tue, 26 Jan 2021 20:05:38 +0200
-From: Andi Shyti <andi@etezian.org>
-To: Chris Wilson <chris@chris-wilson.co.uk>
-Message-ID: <YBBZ8lbpS4QW49UX@jack.zhora.eu>
-References: <20210120122205.2808-1-chris@chris-wilson.co.uk>
- <20210120122205.2808-8-chris@chris-wilson.co.uk>
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8200D6E092
+ for <intel-gfx@lists.freedesktop.org>; Tue, 26 Jan 2021 18:47:54 +0000 (UTC)
+IronPort-SDR: O035JDPxKGDeevNYA/koO6GStm0ijO+NqT4cGgygWvIE1IZ7TX2E4qXAc6rlhuayNcY0TzrM+G
+ /5MJthw3C5LQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9876"; a="179170791"
+X-IronPort-AV: E=Sophos;i="5.79,377,1602572400"; d="scan'208";a="179170791"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Jan 2021 10:47:54 -0800
+IronPort-SDR: GPjM3yChTkdc+sem6FXpmnXSmjQixlIhzdDuva4FQu8wchAmYgXpBW4Am4FeRUIwv9029iqUEL
+ qduI7dDwZzGQ==
+X-IronPort-AV: E=Sophos;i="5.79,377,1602572400"; d="scan'208";a="410249491"
+Received: from labuser-z97x-ud5h.jf.intel.com ([10.165.21.211])
+ by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-SHA;
+ 26 Jan 2021 10:47:53 -0800
+From: Manasi Navare <manasi.d.navare@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Tue, 26 Jan 2021 10:52:24 -0800
+Message-Id: <20210126185224.32340-1-manasi.d.navare@intel.com>
+X-Mailer: git-send-email 2.19.1
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20210120122205.2808-8-chris@chris-wilson.co.uk>
-X-Ovh-Tracer-Id: 6483213139481379337
-X-VR-SPAMSTATE: OK
-X-VR-SPAMSCORE: -100
-X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgeduledrvdeigdegiecutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfqggfjpdevjffgvefmvefgnecuuegrihhlohhuthemucehtddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpeffhffvuffkfhggtggujgesthdtredttddtvdenucfhrhhomheptehnughiucfuhhihthhiuceorghnughisegvthgviihirghnrdhorhhgqeenucggtffrrghtthgvrhhnpeejtdfhveefteegvdduieeikeeugeelfeefgefghfdvuedvtdfftedvvefgvdevueenucffohhmrghinhepfhhrvggvuggvshhkthhophdrohhrghenucfkpheptddrtddrtddrtddpvddufedrvdegfedrudeguddrieegnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmohguvgepshhmthhpqdhouhhtpdhhvghlohepphhlrgihvghrjeefledrhhgrrdhovhhhrdhnvghtpdhinhgvtheptddrtddrtddrtddpmhgrihhlfhhrohhmpegrnhguihesvghtvgiiihgrnhdrohhrghdprhgtphhtthhopehinhhtvghlqdhgfhigsehlihhsthhsrdhfrhgvvgguvghskhhtohhprdhorhhg
-Subject: Re: [Intel-gfx] [PATCH 08/10] drm/i915/selftests: Measure
- set-priority duration
+Subject: [Intel-gfx] [PATCH] drm/i915/display/vrr: Skip the VRR HW state
+ readout on DSI transcoder
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,132 +45,30 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Jan 20, 2021 at 12:22:03PM +0000, Chris Wilson wrote:
-> As a topological sort, we expect it to run in linear graph time,
-> O(V+E). In removing the recursion, it is no longer a DFS but rather a
-> BFS, and performs as O(VE). Let's demonstrate how bad this is with a few
-> examples, and build a few test cases to verify a potential fix.
-
-very noble purpose, but...
-
-[...]
-
-> +static int sparse(struct drm_i915_private *i915,
-> +		  bool (*fn)(struct i915_request *rq,
-> +			     unsigned long v, unsigned long e))
-> +{
-> +	return chains(i915, sparse_chain, fn);
-> +}
-
-... this is quite an intricate web of functions calling each
-other.
-
-Is there any simplier way to do this? This is that kind of code
-that if you go on holiday for a few days you forget what you
-wrote.
-
-I do need three drawing boards and 24 fingers for keeping track
-of what's happening here. :)
-
-> +
-> +static void report(const char *what, unsigned long v, unsigned long e, u64 dt)
-> +{
-> +	pr_info("(%4lu, %7lu), %s:%10lluns\n", v, e, what, dt);
-> +}
-> +
-> +static u64 __set_priority(struct i915_request *rq, int prio)
-> +{
-> +	u64 dt;
-> +
-> +	preempt_disable();
-> +	dt = ktime_get_raw_fast_ns();
-> +	i915_request_set_priority(rq, prio);
-> +	dt = ktime_get_raw_fast_ns() - dt;
-> +	preempt_enable();
-> +
-> +	return dt;
-> +}
-> +
-> +static bool set_priority(struct i915_request *rq,
-> +			 unsigned long v, unsigned long e)
-> +{
-> +	report("set-priority", v, e, __set_priority(rq, I915_PRIORITY_BARRIER));
-
-can't we pr_info directly here and spare a function?
-
-> +	return true;
-> +}
-> +
-> +static int single_priority(void *arg)
-> +{
-> +	return single(arg, set_priority);
-> +}
-> +
-> +static int wide_priority(void *arg)
-> +{
-> +	return wide(arg, set_priority);
-> +}
-> +
-> +static int inv_priority(void *arg)
-> +{
-> +	return inv(arg, set_priority);
-> +}
-> +
-> +static int sparse_priority(void *arg)
-> +{
-> +	return sparse(arg, set_priority);
-> +}
-> +
-> +int i915_scheduler_perf_selftests(struct drm_i915_private *i915)
-> +{
-> +	static const struct i915_subtest tests[] = {
-> +		SUBTEST(single_priority),
-> +		SUBTEST(wide_priority),
-> +		SUBTEST(inv_priority),
-> +		SUBTEST(sparse_priority),
-> +	};
-> +	static const struct {
-> +		const char *name;
-> +		size_t sz;
-> +	} types[] = {
-> +#define T(t) { #t, sizeof(struct t) }
-> +		T(i915_priolist),
-> +		T(i915_sched_attr),
-> +		T(i915_sched_node),
-> +#undef T
-
-is this really making the code better? Is it a big deal to
-clearly use
-
-		{ i915_priolist, sizeof(i915_priolist) },
-		{ i915_sched_attr, sizeof(i915_sched_attr) },
-		{ i915_sched_node, sizeof(i915_sched_node) },
-
-> +		{}
-> +	};
-> +	typeof(*types) *t;
-> +
-> +	for (t = types; t->name; t++)
-> +		pr_info("sizeof(%s): %zd\n", t->name, t->sz);
-> +
-> +	return i915_subtests(tests, i915);
-> +}
-> -- 
-> 2.20.1
-> 
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
-Andi
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+RFNJIHRyYW5zY29kZXIgZG9lcyBub3Qgc3VwcG9ydCBWUlIgYW5kIGhlbmNlIHNraXAgdGhlIEhX
+IHN0YXRlCnJlYWRvdXQgaWYgaXRzIGEgRFNJIHRyYW5zY29kZXIuCgpGaXhlczogYzdmMGY0Mzcy
+YjMwICgiZHJtL2k5MTUvZGlzcGxheTogQWRkIEhXIHN0YXRlIHJlYWRvdXQgZm9yIFZSUiIpCkNj
+OiBWaWxsZSBTeXJqw6Rsw6QgPHZpbGxlLnN5cmphbGFAbGludXguaW50ZWwuY29tPgpDYzogSmFu
+aSBOaWt1bGEgPGphbmkubmlrdWxhQGxpbnV4LmludGVsLmNvbT4KQ2M6IFZhbmRpdGEgS3Vsa2Fy
+bmkgPHZhbmRpdGEua3Vsa2FybmlAaW50ZWwuY29tPgpTaWduZWQtb2ZmLWJ5OiBNYW5hc2kgTmF2
+YXJlIDxtYW5hc2kuZC5uYXZhcmVAaW50ZWwuY29tPgotLS0KIGRyaXZlcnMvZ3B1L2RybS9pOTE1
+L2Rpc3BsYXkvaW50ZWxfZGlzcGxheS5jIHwgMiArLQogMSBmaWxlIGNoYW5nZWQsIDEgaW5zZXJ0
+aW9uKCspLCAxIGRlbGV0aW9uKC0pCgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUv
+ZGlzcGxheS9pbnRlbF9kaXNwbGF5LmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2lu
+dGVsX2Rpc3BsYXkuYwppbmRleCA2NTI0MGZhMDc0Y2MuLmFlYThjNWIzYTdmZCAxMDA2NDQKLS0t
+IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5LmMKKysrIGIvZHJp
+dmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5LmMKQEAgLTg5NzgsNyArODk3
+OCw3IEBAIHN0YXRpYyBib29sIGhzd19nZXRfcGlwZV9jb25maWcoc3RydWN0IGludGVsX2NydGMg
+KmNydGMsCiAJCWludGVsX2dldF90cmFuc2NvZGVyX3RpbWluZ3MoY3J0YywgcGlwZV9jb25maWcp
+OwogCX0KIAotCWlmIChIQVNfVlJSKGRldl9wcml2KSkKKwlpZiAoSEFTX1ZSUihkZXZfcHJpdikg
+JiYgIXRyYW5zY29kZXJfaXNfZHNpKHBpcGVfY29uZmlnLT5jcHVfdHJhbnNjb2RlcikpCiAJCWlu
+dGVsX3Zycl9nZXRfY29uZmlnKGNydGMsIHBpcGVfY29uZmlnKTsKIAogCWludGVsX2dldF9waXBl
+X3NyY19zaXplKGNydGMsIHBpcGVfY29uZmlnKTsKLS0gCjIuMTkuMQoKX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJ
+bnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Au
+b3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
