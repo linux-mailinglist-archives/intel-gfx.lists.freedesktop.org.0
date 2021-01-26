@@ -2,39 +2,39 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CC2F23041D1
-	for <lists+intel-gfx@lfdr.de>; Tue, 26 Jan 2021 16:13:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 62DD63041D5
+	for <lists+intel-gfx@lfdr.de>; Tue, 26 Jan 2021 16:13:28 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DD2566E480;
-	Tue, 26 Jan 2021 15:13:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B9A006E483;
+	Tue, 26 Jan 2021 15:13:26 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 835DC6E462
- for <intel-gfx@lists.freedesktop.org>; Tue, 26 Jan 2021 15:13:15 +0000 (UTC)
-IronPort-SDR: 4gtkwk7qggGFkef9nbraQAjgFn7fTCbFth6cPC7rAnwMp8tZdi+sZLe87ZPM13TYBDoE8ch8NY
- B6Uut9u8aIGA==
-X-IronPort-AV: E=McAfee;i="6000,8403,9876"; a="243995135"
-X-IronPort-AV: E=Sophos;i="5.79,375,1602572400"; d="scan'208";a="243995135"
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BC7426E47B
+ for <intel-gfx@lists.freedesktop.org>; Tue, 26 Jan 2021 15:13:16 +0000 (UTC)
+IronPort-SDR: 2rXQmPg/vSF07x8mMpETcRtiuZ/uprPp7urupwBS6AwwV46vMkr7btC7sE3i3Q5qLMYU0pCO/c
+ 6wfsaYKsFEoA==
+X-IronPort-AV: E=McAfee;i="6000,8403,9876"; a="243995141"
+X-IronPort-AV: E=Sophos;i="5.79,375,1602572400"; d="scan'208";a="243995141"
 Received: from orsmga008.jf.intel.com ([10.7.209.65])
  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Jan 2021 07:13:15 -0800
-IronPort-SDR: 74g/UG0N9K6oKBpXrvR6fEX3Rtj8kZphMGej4tluifPvmijZBP78MCPYrvPPjbwvDbA1IMQpJV
- u5GIoG5lyxcA==
-X-IronPort-AV: E=Sophos;i="5.79,375,1602572400"; d="scan'208";a="387856728"
+ 26 Jan 2021 07:13:16 -0800
+IronPort-SDR: +Fuw4FGkWCR+gm82Mnl0pTm0/IKGRsOo83LO10tX9B7go+JCZBiQjg0eUQT1SrGtF3kLkb0t5q
+ Wmi6AJ74CABw==
+X-IronPort-AV: E=Sophos;i="5.79,375,1602572400"; d="scan'208";a="387856766"
 Received: from shogg-mobl.ger.corp.intel.com (HELO
  mwauld-desk1.ger.corp.intel.com) ([10.252.19.250])
  by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Jan 2021 07:13:14 -0800
+ 26 Jan 2021 07:13:15 -0800
 From: Matthew Auld <matthew.auld@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Tue, 26 Jan 2021 15:12:58 +0000
-Message-Id: <20210126151259.253885-7-matthew.auld@intel.com>
+Date: Tue, 26 Jan 2021 15:12:59 +0000
+Message-Id: <20210126151259.253885-8-matthew.auld@intel.com>
 X-Mailer: git-send-email 2.26.2
 In-Reply-To: <20210126151259.253885-1-matthew.auld@intel.com>
 References: <20210126151259.253885-1-matthew.auld@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v2 7/8] drm/i915: move engine scratch to LMEM
+Subject: [Intel-gfx] [PATCH v2 8/8] drm/i915: allocate cmd ring in lmem
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,53 +47,33 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: Michel Thierry <michel.thierry@intel.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Prefer allocating the engine scratch from LMEM on dgfx.
-
-v2: flatten the chain
-
-Signed-off-by: Matthew Auld <matthew.auld@intel.com>
----
- drivers/gpu/drm/i915/gt/intel_gt.c | 8 ++++++--
- 1 file changed, 6 insertions(+), 2 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/gt/intel_gt.c b/drivers/gpu/drm/i915/gt/intel_gt.c
-index 78866e766989..6eee38ed677b 100644
---- a/drivers/gpu/drm/i915/gt/intel_gt.c
-+++ b/drivers/gpu/drm/i915/gt/intel_gt.c
-@@ -4,6 +4,8 @@
-  */
- 
- #include "debugfs_gt.h"
-+
-+#include "gem/i915_gem_lmem.h"
- #include "i915_drv.h"
- #include "intel_context.h"
- #include "intel_gt.h"
-@@ -381,11 +383,13 @@ static int intel_gt_init_scratch(struct intel_gt *gt, unsigned int size)
- 	struct i915_vma *vma;
- 	int ret;
- 
--	obj = i915_gem_object_create_stolen(i915, size);
-+	obj = i915_gem_object_create_lmem(i915, size, I915_BO_ALLOC_VOLATILE);
-+	if (IS_ERR(obj))
-+		obj = i915_gem_object_create_stolen(i915, size);
- 	if (IS_ERR(obj))
- 		obj = i915_gem_object_create_internal(i915, size);
- 	if (IS_ERR(obj)) {
--		DRM_ERROR("Failed to allocate scratch page\n");
-+		drm_err(&i915->drm, "Failed to allocate scratch page\n");
- 		return PTR_ERR(obj);
- 	}
- 
--- 
-2.26.2
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+RnJvbTogTWljaGVsIFRoaWVycnkgPG1pY2hlbC50aGllcnJ5QGludGVsLmNvbT4KClByZWZlciBh
+bGxvY2F0aW5nIHRoZSBjbWQgcmluZyBmcm9tIExNRU0gb24gZGdmeC4KClNpZ25lZC1vZmYtYnk6
+IE1pY2hlbCBUaGllcnJ5IDxtaWNoZWwudGhpZXJyeUBpbnRlbC5jb20+ClNpZ25lZC1vZmYtYnk6
+IE1hdHRoZXcgQXVsZCA8bWF0dGhldy5hdWxkQGludGVsLmNvbT4KLS0tCiBkcml2ZXJzL2dwdS9k
+cm0vaTkxNS9ndC9pbnRlbF9yaW5nLmMgfCA1ICsrKy0tCiAxIGZpbGUgY2hhbmdlZCwgMyBpbnNl
+cnRpb25zKCspLCAyIGRlbGV0aW9ucygtKQoKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9p
+OTE1L2d0L2ludGVsX3JpbmcuYyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L2ludGVsX3Jpbmcu
+YwppbmRleCAyOWM4N2IzYzIzYmMuLmFlZTBhNzdjNzdlMCAxMDA2NDQKLS0tIGEvZHJpdmVycy9n
+cHUvZHJtL2k5MTUvZ3QvaW50ZWxfcmluZy5jCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2d0
+L2ludGVsX3JpbmcuYwpAQCAtMyw2ICszLDcgQEAKICAqIENvcHlyaWdodCDCqSAyMDE5IEludGVs
+IENvcnBvcmF0aW9uCiAgKi8KIAorI2luY2x1ZGUgImdlbS9pOTE1X2dlbV9sbWVtLmgiCiAjaW5j
+bHVkZSAiZ2VtL2k5MTVfZ2VtX29iamVjdC5oIgogCiAjaW5jbHVkZSAiaTkxNV9kcnYuaCIKQEAg
+LTEwOCw4ICsxMDksOCBAQCBzdGF0aWMgc3RydWN0IGk5MTVfdm1hICpjcmVhdGVfcmluZ192bWEo
+c3RydWN0IGk5MTVfZ2d0dCAqZ2d0dCwgaW50IHNpemUpCiAJc3RydWN0IGRybV9pOTE1X2dlbV9v
+YmplY3QgKm9iajsKIAlzdHJ1Y3QgaTkxNV92bWEgKnZtYTsKIAotCW9iaiA9IEVSUl9QVFIoLUVO
+T0RFVik7Ci0JaWYgKGk5MTVfZ2d0dF9oYXNfYXBlcnR1cmUoZ2d0dCkpCisJb2JqID0gaTkxNV9n
+ZW1fb2JqZWN0X2NyZWF0ZV9sbWVtKGk5MTUsIHNpemUsIEk5MTVfQk9fQUxMT0NfVk9MQVRJTEUp
+OworCWlmIChJU19FUlIob2JqKSAmJiBpOTE1X2dndHRfaGFzX2FwZXJ0dXJlKGdndHQpKQogCQlv
+YmogPSBpOTE1X2dlbV9vYmplY3RfY3JlYXRlX3N0b2xlbihpOTE1LCBzaXplKTsKIAlpZiAoSVNf
+RVJSKG9iaikpCiAJCW9iaiA9IGk5MTVfZ2VtX29iamVjdF9jcmVhdGVfaW50ZXJuYWwoaTkxNSwg
+c2l6ZSk7Ci0tIAoyLjI2LjIKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNr
+dG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2lu
+dGVsLWdmeAo=
