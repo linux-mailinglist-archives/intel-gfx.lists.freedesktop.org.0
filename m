@@ -2,36 +2,43 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 77359303C34
-	for <lists+intel-gfx@lfdr.de>; Tue, 26 Jan 2021 12:55:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5F85A303C79
+	for <lists+intel-gfx@lfdr.de>; Tue, 26 Jan 2021 13:06:40 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CB7FF6E402;
-	Tue, 26 Jan 2021 11:55:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E0D836E427;
+	Tue, 26 Jan 2021 12:06:37 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 137A66E402
- for <intel-gfx@lists.freedesktop.org>; Tue, 26 Jan 2021 11:55:43 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 23702599-1500050 for multiple; Tue, 26 Jan 2021 11:55:38 +0000
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D95856E427
+ for <intel-gfx@lists.freedesktop.org>; Tue, 26 Jan 2021 12:06:35 +0000 (UTC)
+IronPort-SDR: zyGUeKJcOCSivIfOikT5kn84c1YWQrd/lUfwoDAHXw/AQDQy+RIMFcUDDLFxRZdD098j0/G0Z5
+ OcopFTuK9GTA==
+X-IronPort-AV: E=McAfee;i="6000,8403,9875"; a="177321961"
+X-IronPort-AV: E=Sophos;i="5.79,375,1602572400"; d="scan'208";a="177321961"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Jan 2021 04:06:33 -0800
+IronPort-SDR: tkx9J5Nub0X5N4gYhzx5v27QIXy/CVA7m3Bk33vJW6Bp+5eH0+SFQJD3HlauPjACCETC+Mq94y
+ MzqTwmRIuFcw==
+X-IronPort-AV: E=Sophos;i="5.79,375,1602572400"; d="scan'208";a="387802205"
+Received: from ideak-desk.fi.intel.com ([10.237.68.141])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Jan 2021 04:06:31 -0800
+Date: Tue, 26 Jan 2021 14:06:28 +0200
+From: Imre Deak <imre.deak@intel.com>
+To: Lyude Paul <lyude@redhat.com>
+Message-ID: <20210126120628.GA1763532@ideak-desk.fi.intel.com>
+References: <20210125173636.1733812-1-imre.deak@intel.com>
+ <20210125173636.1733812-2-imre.deak@intel.com>
+ <2be72160accef04bf2ed7341b3619befc2121330.camel@redhat.com>
+ <20210125210434.GA1756222@ideak-desk.fi.intel.com>
+ <f036f8aff9079d97c2997929478621d3be34a69d.camel@redhat.com>
 MIME-Version: 1.0
-In-Reply-To: <fed21604-64d0-d08f-7797-1d3a785d4abf@linux.intel.com>
-References: <20210125140136.10494-1-chris@chris-wilson.co.uk>
- <20210125140136.10494-5-chris@chris-wilson.co.uk>
- <8201dfc1-9490-d0d9-f661-d7bb4e752723@linux.intel.com>
- <161166063330.29150.16248716198298940868@build.alporthouse.com>
- <fed21604-64d0-d08f-7797-1d3a785d4abf@linux.intel.com>
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-Date: Tue, 26 Jan 2021 11:55:39 +0000
-Message-ID: <161166213986.29150.12808740894418927064@build.alporthouse.com>
-User-Agent: alot/0.9
-Subject: Re: [Intel-gfx] [PATCH 05/41] drm/i915: Restructure priority
- inheritance
+Content-Disposition: inline
+In-Reply-To: <f036f8aff9079d97c2997929478621d3be34a69d.camel@redhat.com>
+Subject: Re: [Intel-gfx] [PATCH 2/2] drm/i915: Fix the MST PBN divider
+ calculation
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,134 +51,167 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: thomas.hellstrom@intel.com
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Reply-To: imre.deak@intel.com
+Cc: intel-gfx@lists.freedesktop.org, Ville Syrjala <ville.syrjala@intel.com>,
+ stable@vger.kernel.org
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Tvrtko Ursulin (2021-01-26 11:40:24)
-> 
-> On 26/01/2021 11:30, Chris Wilson wrote:
-> > Quoting Tvrtko Ursulin (2021-01-26 11:12:53)
-> >>
-> >>
-> >> On 25/01/2021 14:01, Chris Wilson wrote:
-> >>> +static void ipi_schedule(struct work_struct *wrk)
-> >>> +{
-> >>> +     struct i915_sched_ipi *ipi = container_of(wrk, typeof(*ipi), work);
-> >>> +     struct i915_request *rq = xchg(&ipi->list, NULL);
-> >>> +
-> >>> +     do {
-> >>> +             struct i915_request *rn = xchg(&rq->sched.ipi_link, NULL);
-> >>> +             int prio;
-> >>> +
-> >>> +             prio = ipi_get_prio(rq);
-> >>> +
-> >>> +             /*
-> >>> +              * For cross-engine scheduling to work we rely on one of two
-> >>> +              * things:
-> >>> +              *
-> >>> +              * a) The requests are using dma-fence fences and so will not
-> >>> +              * be scheduled until the previous engine is completed, and
-> >>> +              * so we cannot cross back onto the original engine and end up
-> >>> +              * queuing an earlier request after the first (due to the
-> >>> +              * interrupted DFS).
-> >>> +              *
-> >>> +              * b) The requests are using semaphores and so may be already
-> >>> +              * be in flight, in which case if we cross back onto the same
-> >>> +              * engine, we will already have put the interrupted DFS into
-> >>> +              * the priolist, and the continuation will now be queued
-> >>> +              * afterwards [out-of-order]. However, since we are using
-> >>> +              * semaphores in this case, we also perform yield on semaphore
-> >>> +              * waits and so will reorder the requests back into the correct
-> >>> +              * sequence. This occurrence (of promoting a request chain
-> >>> +              * that crosses the engines using semaphores back unto itself)
-> >>> +              * should be unlikely enough that it probably does not matter...
-> >>> +              */
-> >>> +             local_bh_disable();
-> >>> +             i915_request_set_priority(rq, prio);
-> >>> +             local_bh_enable();
-> >>
-> >> Is it that important and wouldn't the priority order restore eventually
-> >> due timeslicing?
-> > 
-> > There would be a window in which we executed userspace code
-> > out-of-order. That's enough to scare me! However, for our PI dependency
-> > chains it should not matter as the only time we do submit out-of-order,
-> > we are stuck on _our_ semaphore that cannot be resolved until the
-> > requests are back in-order.
-> 
-> Out of order how? Within a single timeline?! I though only with 
-> incomplete view of priority inheritance, which in my mind could only 
-> cause deadlocks (if no timeslicing). But really really out of order?
+On Mon, Jan 25, 2021 at 05:55:03PM -0500, Lyude Paul wrote:
+> On Mon, 2021-01-25 at 23:04 +0200, Imre Deak wrote:
+> > On Mon, Jan 25, 2021 at 02:24:58PM -0500, Lyude Paul wrote:
+> > > On Mon, 2021-01-25 at 19:36 +0200, Imre Deak wrote:
+> > > > Atm the driver will calculate a wrong MST timeslots/MTP (aka time u=
+nit)
+> > > > value for MST streams if the link parameters (link rate or lane cou=
+nt)
+> > > > are limited in a way independent of the sink capabilities (reported=
+ by
+> > > > DPCD).
+> > > > =
 
-Fences between timelines. Let's say we have 3 requests, A,B,C all with
-sequential fencing (C depends on B depends on A), but B is on a
-different engine to (A, C) and we are using semaphores to submit early.
-If we bump the priority of C, we see it crosses the engine to B, and send
-an ipi_priority, but set C to be higher priority than A. So we now
-schedule C before A!
+> > > > One example of such a limitation is when a MUX between the sink and
+> > > > source connects only a limited number of lanes to the display and
+> > > > connects the rest of the lanes to other peripherals (USB).
+> > > > =
 
-However, since C depends on B which depends on A, C is stuck on its
-semaphore from B, and B is waiting for A. As soon as A is set to the
-same priority as C (after a couple of ipi_priority()), we rerun the
-scheduler see that C has a semaphore-yield (or eventually timeslice
-expired) and so run A before C, and order is restored.
+> > > > Another issue is that atm MST core calculates the divider based on =
+the
+> > > > backwards compatible DPCD (at address 0x0000) vs. the extended
+> > > > capability info (at address 0x2200). This can result in leaving some
+> > > > part of the MST BW unused (For instance in case of the WD19TB dock).
+> > > > =
 
-> > I've tried to trick this into causing problems with the
-> > i915_selftest/igt_schedule_cycle and gem_exec_schedule/noreorder.
-> > Fortunately for my sanity, neither test have caught any problems.
-> > 
-> > This is the handwaving part of removing the global lock.
-> > 
-> >>> +     /*
-> >>> +      * If we are setting the priority before being submitted, see if we
-> >>> +      * can quickly adjust our own priority in-situ and avoid taking
-> >>> +      * the contended engine->active.lock. If we need priority inheritance,
-> >>> +      * take the slow route.
-> >>> +      */
-> >>> +     if (rq_prio(rq) == I915_PRIORITY_INVALID) {
-> >>> +             struct i915_dependency *p;
-> >>> +
-> >>> +             rcu_read_lock();
-> >>> +             for_each_signaler(p, rq) {
-> >>> +                     struct i915_request *s =
-> >>> +                             container_of(p->signaler, typeof(*s), sched);
-> >>> +
-> >>> +                     if (rq_prio(s) >= prio)
-> >>> +                             continue;
-> >>> +
-> >>> +                     if (__i915_request_is_complete(s))
-> >>> +                             continue;
-> >>> +
-> >>> +                     break;
-> >>> +             }
-> >>> +             rcu_read_unlock();
-> >>
-> >> Exit this loop with a first lower priority incomplete signaler. What
-> >> does the block below then do? Feels like it needs a comment.
-> > 
-> > I thought I had sufficiently explained that in the comment above.
-> > 
-> > /* Update priority in place if no PI required */
-> >>> +             if (&p->signal_link == &rq->sched.signalers_list &&
-> >>> +                 cmpxchg(&rq->sched.attr.priority,
-> >>> +                         I915_PRIORITY_INVALID,
-> >>> +                         prio) == I915_PRIORITY_INVALID)
-> >>> +                     return;
-> > 
-> > It could do a few more tricks to change the priority in-place a second
-> > time, but I did not think that would be frequent enough to matter.
-> > Whereas we always adjust the priority from INVALID once before
-> > submission, and avoiding taking the lock then does make a difference to
-> > the profiles.
-> 
-> To start with, if p is NULL or un-initialized (can be, no?) then 
-> relationship of &p->signal_link to &rq->sched.signalers_list escapes me.
+> > > > Fix the above two issues by calculating the PBN divider value based=
+ on
+> > > > the rate and lane count link parameters that the driver uses for all
+> > > > other computation.
+> > > > =
 
-p is constrained to be a member of the signalers_list or its head.
--Chris
+> > > > Bugzilla: https://gitlab.freedesktop.org/drm/intel/-/issues/2977
+> > > > Cc: Lyude Paul <lyude@redhat.com>
+> > > > Cc: Ville Syrjala <ville.syrjala@intel.com>
+> > > > Cc: <stable@vger.kernel.org>
+> > > > Signed-off-by: Imre Deak <imre.deak@intel.com>
+> > > > ---
+> > > > =A0drivers/gpu/drm/i915/display/intel_dp_mst.c | 4 +++-
+> > > > =A01 file changed, 3 insertions(+), 1 deletion(-)
+> > > > =
+
+> > > > diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> > > > b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> > > > index d6a1b961a0e8..b4621ed0127e 100644
+> > > > --- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> > > > +++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> > > > @@ -68,7 +68,9 @@ static int intel_dp_mst_compute_link_config(struct
+> > > > intel_encoder *encoder,
+> > > > =A0
+> > > > =A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0slots =3D drm_dp_at=
+omic_find_vcpi_slots(state, &intel_dp-
+> > > > > mst_mgr,
+> > > > =A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=
+=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=
+=A0=A0=A0=A0=A0=A0 connector->port,
+> > > > -=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=
+=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=
+=A0=A0=A0=A0=A0 crtc_state->pbn, 0);
+> > > > +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=
+=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=
+=A0=A0=A0=A0=A0 crtc_state->pbn,
+> > > > +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=
+=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=
+=A0=A0=A0=A0=A0
+> > > > drm_dp_get_vc_payload_bw(crtc_state->port_clock,
+> > > > +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=
+=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=
+=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0
+> > > =
+
+> > > This patch looks fine, however you should take care to also update the
+> > > documentation for drm_dp_atomic_find_vcpi_slots() so that it mentione=
+s that
+> > > pbn_div should be DSC aware but also is not exclusive to systems supp=
+orting
+> > > DSC
+> > > over MST (see the docs for the @pbn_div parameter)
+> > =
+
+> > I thought (as a follow-up work) that drm_dp_atomic_find_vcpi_slots() and
+> > drm_dp_mst_allocate_vcpi() could be made more generic, requiring the
+> > drivers to always pass in pbn_div. By that we could remove
+> > mst_mgr::pbn_div, keeping only one copy of this value (the one passed to
+> > the above functions).
+> =
+
+> I'm fine with that! The only thing I ask is (even though it's taken forev=
+er) we
+> are eventually planning on making it so that we'll have MST helpers that =
+can
+> suggest changing the PBN divisor in order to implement link fallback retr=
+aining.
+> As long as we're still able to make that work in the future, I'm totally =
+fine
+> with this.
+
+I don't see a problem wrt. link retraining, pbn_div passed to the above
+functions should just reflect the actual rate and lane count the link
+was trained with.
+
+> > > Thank you for doing this! I've been meaning to fix the WD19 issues fo=
+r a
+> > > while
+> > > now but have been too bogged down by other stuff to spend any time on=
+ MST
+> > > recently.
+> > > =
+
+> > > > =A0=A0=A0=A0=A0=A0=A0 crtc_state->lane_count));
+> > > > =A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0if (slots =3D=3D -E=
+DEADLK)
+> > > > =A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=
+=A0=A0return slots;
+> > > > =A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0if (slots >=3D 0)
+> > > =
+
+> > > -- =
+
+> > > Sincerely,
+> > > =A0=A0 Lyude Paul (she/her)
+> > > =A0=A0 Software Engineer at Red Hat
+> > > =A0=A0 =
+
+> > > Note: I deal with a lot of emails and have a lot of bugs on my plate.=
+ If
+> > > you've
+> > > asked me a question, are waiting for a review/merge on a patch, etc. =
+and I
+> > > haven't responded in a while, please feel free to send me another ema=
+il to
+> > > check
+> > > on my status. I don't bite!
+> > > =
+
+> > =
+
+> =
+
+> -- =
+
+> Sincerely,
+>    Lyude Paul (she/her)
+>    Software Engineer at Red Hat
+>    =
+
+> Note: I deal with a lot of emails and have a lot of bugs on my plate. If =
+you've
+> asked me a question, are waiting for a review/merge on a patch, etc. and I
+> haven't responded in a while, please feel free to send me another email t=
+o check
+> on my status. I don't bite!
+> =
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
