@@ -2,31 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A96DA304A91
-	for <lists+intel-gfx@lfdr.de>; Tue, 26 Jan 2021 21:49:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C175E304AD5
+	for <lists+intel-gfx@lfdr.de>; Tue, 26 Jan 2021 21:59:12 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D5CA26E160;
-	Tue, 26 Jan 2021 20:49:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A62CB6E44E;
+	Tue, 26 Jan 2021 20:59:10 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 61B526E44E;
- Tue, 26 Jan 2021 20:49:10 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 5E001ABA9E;
- Tue, 26 Jan 2021 20:49:10 +0000 (UTC)
+Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com
+ [IPv6:2a00:1450:4864:20::635])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F03A16E44E;
+ Tue, 26 Jan 2021 20:59:09 +0000 (UTC)
+Received: by mail-ej1-x635.google.com with SMTP id r12so24980939ejb.9;
+ Tue, 26 Jan 2021 12:59:09 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=sender:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=LkWc8jdaLg/m0l0bUIXMZoNlWUmtThzXolrQWgPDX9A=;
+ b=SFgx+1jwDHwJl5/pYtVEUsFV+wBy/bBhSy0FXJgKgD+ttppOw8/W/4THhlOgTHHSjW
+ 5LV23rvCou1k0Vl3fhFTbbFDO6sPwRbDQOu73Yfdvo8i4hzlBH2dU8kyAJzcnnyryHDC
+ CxKjBL+GGf/k33tub7BYkHJzDr9CSoVSkePsFaT/rjhT++hqA33QE2CwyKgfHjk2G9Nd
+ cWGLm7Jh/Qs3kbVDKsurij+3rxco0k9O67c7e0f0v3sOf63I452GqmLfROKpbkUn7keW
+ ZntnhN/MSqUTcje+Z2rZ2pGKDovVxUpzFu590X9P06W9Ef/YBFm34vMp0/bN/TBwd9C3
+ 72wg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:sender:from:to:cc:subject:date:message-id
+ :mime-version:content-transfer-encoding;
+ bh=LkWc8jdaLg/m0l0bUIXMZoNlWUmtThzXolrQWgPDX9A=;
+ b=Aaa+pmnZgCRNIqogsYXbNb93eiWGzg2OxaViFFRXaOgRH6xP1DvWch7gNk1a6BNZPZ
+ tNnBctQR7utg7X/aM8ascIaQoWQqd0CJIRYvvi4V/qsdqh1qlHoPhwv0gIzOnlYrHTwd
+ uteLK8Ci+28M00BesOZIhxnyntSW8YWklaI9BbsBUWUekMI97b9k1Vxvf/O5CcjcxC6J
+ QG0VpUjAuRU5uSW4UCOXprziiMKhwMaQryeyaaEUzGuzIyPran+aC3ge0E6zt3FWXhHh
+ 4ahVLvZMOueqYVXZY+R2r5gtxXcfu/lsGZ+48EcHvHI2HLVz9b3dPBI+IVCvFxfQqfiR
+ DnNw==
+X-Gm-Message-State: AOAM531VVwA3aQTPleGnaBqCsxg1s4j3ReBeRklwdUKQabriPqQPp4Qc
+ VUo7Z8aBXAnUDmNymnhviZTvU6OstsiM/g==
+X-Google-Smtp-Source: ABdhPJxFRsDnpx0/61JI/BZ8ao9iHInjvmWiWg+yTrONOjF/ZpTZgSOaez4fYwoHjCfeEeLRCb967Q==
+X-Received: by 2002:a17:906:4451:: with SMTP id
+ i17mr3044930ejp.436.1611694748684; 
+ Tue, 26 Jan 2021 12:59:08 -0800 (PST)
+Received: from stitch.. ([2a01:4262:1ab:c:9ff1:8caf:ad1a:a1f7])
+ by smtp.gmail.com with ESMTPSA id bd5sm12660434edb.86.2021.01.26.12.59.07
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 26 Jan 2021 12:59:08 -0800 (PST)
+From: Emil Renner Berthing <kernel@esmil.dk>
+To: Chris Wilson <chris@chris-wilson.co.uk>,
+	intel-gfx@lists.freedesktop.org
+Date: Tue, 26 Jan 2021 21:59:02 +0100
+Message-Id: <20210126205902.5584-1-kernel@esmil.dk>
+X-Mailer: git-send-email 2.30.0
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Manasi Navare" <manasi.d.navare@intel.com>
-Date: Tue, 26 Jan 2021 20:49:10 -0000
-Message-ID: <161169415038.9811.18379037395037808209@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210126185224.32340-1-manasi.d.navare@intel.com>
-In-Reply-To: <20210126185224.32340-1-manasi.d.navare@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/display/vrr=3A_Skip_the_VRR_HW_state_readout_on_DSI_trans?=
- =?utf-8?q?coder?=
+Subject: [Intel-gfx] [PATCH] drm/i915/gt: use new tasklet API in execlist
+ selftest
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,202 +67,56 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============0505662724=="
+Cc: Emil Renner Berthing <kernel@esmil.dk>, David Airlie <airlied@linux.ie>,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0505662724==
-Content-Type: multipart/alternative;
- boundary="===============5736580841200086381=="
+This converts the execlist selftest to use the new tasklet API in
+commit 12cc923f1ccc ("tasklet: Introduce new initialization API")
 
---===============5736580841200086381==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Signed-off-by: Emil Renner Berthing <kernel@esmil.dk>
+---
+Hi Chris,
 
-== Series Details ==
+I seem to have missed some tasklist manipulation in the execlist
+selftest.  Feel free to squash this into my previous patch
+("drm/i915/gt: use new tasklet API for execution list")
+or leave it like this. Whatever is fine by me.
 
-Series: drm/i915/display/vrr: Skip the VRR HW state readout on DSI transcoder
-URL   : https://patchwork.freedesktop.org/series/86309/
-State : success
+/Emil
+---
+ drivers/gpu/drm/i915/gt/selftest_execlists.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_9684 -> Patchwork_19506
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19506/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_19506 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@prime_self_import@basic-with_one_bo_two_files:
-    - fi-tgl-y:           [PASS][1] -> [DMESG-WARN][2] ([i915#402]) +2 similar issues
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9684/fi-tgl-y/igt@prime_self_import@basic-with_one_bo_two_files.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19506/fi-tgl-y/igt@prime_self_import@basic-with_one_bo_two_files.html
-
-  
-#### Possible fixes ####
-
-  * igt@debugfs_test@read_all_entries:
-    - fi-tgl-y:           [DMESG-WARN][3] ([i915#402]) -> [PASS][4] +1 similar issue
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9684/fi-tgl-y/igt@debugfs_test@read_all_entries.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19506/fi-tgl-y/igt@debugfs_test@read_all_entries.html
-
-  * igt@i915_module_load@reload:
-    - fi-kbl-7500u:       [DMESG-WARN][5] ([i915#2605]) -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9684/fi-kbl-7500u/igt@i915_module_load@reload.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19506/fi-kbl-7500u/igt@i915_module_load@reload.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [fdo#109284]: https://bugs.freedesktop.org/show_bug.cgi?id=109284
-  [fdo#109285]: https://bugs.freedesktop.org/show_bug.cgi?id=109285
-  [fdo#109315]: https://bugs.freedesktop.org/show_bug.cgi?id=109315
-  [fdo#110189]: https://bugs.freedesktop.org/show_bug.cgi?id=110189
-  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
-  [i915#1759]: https://gitlab.freedesktop.org/drm/intel/issues/1759
-  [i915#2190]: https://gitlab.freedesktop.org/drm/intel/issues/2190
-  [i915#2373]: https://gitlab.freedesktop.org/drm/intel/issues/2373
-  [i915#2575]: https://gitlab.freedesktop.org/drm/intel/issues/2575
-  [i915#2582]: https://gitlab.freedesktop.org/drm/intel/issues/2582
-  [i915#2605]: https://gitlab.freedesktop.org/drm/intel/issues/2605
-  [i915#3004]: https://gitlab.freedesktop.org/drm/intel/issues/3004
-  [i915#3005]: https://gitlab.freedesktop.org/drm/intel/issues/3005
-  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
-
-
-Participating hosts (44 -> 39)
-------------------------------
-
-  Missing    (5): fi-jsl-1 fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_9684 -> Patchwork_19506
-
-  CI-20190529: 20190529
-  CI_DRM_9684: 53a183b40b798192f7211b05d550c8145d1397b5 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5972: 82fa6021821edb5d9609f4cce213920e0936d6f3 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_19506: 754de6ec3fb7f8e9098619952b2ff58936332bb9 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-754de6ec3fb7 drm/i915/display/vrr: Skip the VRR HW state readout on DSI transcoder
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19506/index.html
-
---===============5736580841200086381==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/display/vrr: Skip the VRR HW state readout on DSI transcoder</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/86309/">https://patchwork.freedesktop.org/series/86309/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19506/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19506/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_9684 -&gt; Patchwork_19506</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19506/index.html</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_19506 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@prime_self_import@basic-with_one_bo_two_files:<ul>
-<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9684/fi-tgl-y/igt@prime_self_import@basic-with_one_bo_two_files.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19506/fi-tgl-y/igt@prime_self_import@basic-with_one_bo_two_files.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) +2 similar issues</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@debugfs_test@read_all_entries:</p>
-<ul>
-<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9684/fi-tgl-y/igt@debugfs_test@read_all_entries.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19506/fi-tgl-y/igt@debugfs_test@read_all_entries.html">PASS</a> +1 similar issue</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_module_load@reload:</p>
-<ul>
-<li>fi-kbl-7500u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9684/fi-kbl-7500u/igt@i915_module_load@reload.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2605">i915#2605</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19506/fi-kbl-7500u/igt@i915_module_load@reload.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Participating hosts (44 -&gt; 39)</h2>
-<p>Missing    (5): fi-jsl-1 fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_9684 -&gt; Patchwork_19506</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_9684: 53a183b40b798192f7211b05d550c8145d1397b5 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_5972: 82fa6021821edb5d9609f4cce213920e0936d6f3 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
-  Patchwork_19506: 754de6ec3fb7f8e9098619952b2ff58936332bb9 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>754de6ec3fb7 drm/i915/display/vrr: Skip the VRR HW state readout on DSI transcoder</p>
-
-</body>
-</html>
-
---===============5736580841200086381==--
-
---===============0505662724==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+diff --git a/drivers/gpu/drm/i915/gt/selftest_execlists.c b/drivers/gpu/drm/i915/gt/selftest_execlists.c
+index 264b5ebdb021..ba55cd018f5b 100644
+--- a/drivers/gpu/drm/i915/gt/selftest_execlists.c
++++ b/drivers/gpu/drm/i915/gt/selftest_execlists.c
+@@ -609,7 +609,7 @@ static int live_hold_reset(void *arg)
+ 		}
+ 		tasklet_disable(&engine->execlists.tasklet);
+ 
+-		engine->execlists.tasklet.func(engine->execlists.tasklet.data);
++		engine->execlists.tasklet.callback(&engine->execlists.tasklet);
+ 		GEM_BUG_ON(execlists_active(&engine->execlists) != rq);
+ 
+ 		i915_request_get(rq);
+@@ -4610,7 +4610,7 @@ static int reset_virtual_engine(struct intel_gt *gt,
+ 	}
+ 	tasklet_disable(&engine->execlists.tasklet);
+ 
+-	engine->execlists.tasklet.func(engine->execlists.tasklet.data);
++	engine->execlists.tasklet.callback(&engine->execlists.tasklet);
+ 	GEM_BUG_ON(execlists_active(&engine->execlists) != rq);
+ 
+ 	/* Fake a preemption event; failed of course */
+-- 
+2.30.0
 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============0505662724==--
