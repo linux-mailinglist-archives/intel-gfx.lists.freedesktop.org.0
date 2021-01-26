@@ -1,49 +1,35 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A4BA2304BB9
-	for <lists+intel-gfx@lfdr.de>; Tue, 26 Jan 2021 22:45:19 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 71CD6304BF2
+	for <lists+intel-gfx@lfdr.de>; Tue, 26 Jan 2021 23:04:43 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8DDB16E4CA;
-	Tue, 26 Jan 2021 21:44:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 83EC56E171;
+	Tue, 26 Jan 2021 22:04:41 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 14CE46E466;
- Tue, 26 Jan 2021 21:44:39 +0000 (UTC)
-IronPort-SDR: kRyTBmGzx4AWPKJyjIR+6tuiXjgXmJkWLMiTV+xyW2gNawMBHaGP3xdNcxgaYk4RsjKI4IEGhI
- w5VTmpF73WVg==
-X-IronPort-AV: E=McAfee;i="6000,8403,9876"; a="198770835"
-X-IronPort-AV: E=Sophos;i="5.79,377,1602572400"; d="scan'208";a="198770835"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Jan 2021 13:44:38 -0800
-IronPort-SDR: zc66kQ1JtSLeYK+wt641PVVb/HET+nEaDxne1KFIOAlpQAAsXthG14gnFUqzJrerD6iJkLIOGH
- +M/naXge3Lrw==
-X-IronPort-AV: E=Sophos;i="5.79,377,1602572400"; d="scan'208";a="362139908"
-Received: from nvishwa1-desk.sc.intel.com ([172.25.29.76])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-SHA;
- 26 Jan 2021 13:44:37 -0800
-From: Brian Welty <brian.welty@intel.com>
-To: Brian Welty <brian.welty@intel.com>, cgroups@vger.kernel.org,
- Tejun Heo <tj@kernel.org>, dri-devel@lists.freedesktop.org,
- David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- Kenny Ho <Kenny.Ho@amd.com>, amd-gfx@lists.freedesktop.org,
- Chris Wilson <chris@chris-wilson.co.uk>,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- intel-gfx@lists.freedesktop.org,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Eero Tamminen <eero.t.tamminen@intel.com>
-Date: Tue, 26 Jan 2021 13:46:26 -0800
-Message-Id: <20210126214626.16260-10-brian.welty@intel.com>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20210126214626.16260-1-brian.welty@intel.com>
-References: <20210126214626.16260-1-brian.welty@intel.com>
+Received: from fireflyinternet.com (unknown [77.68.26.236])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5AAA66E171;
+ Tue, 26 Jan 2021 22:04:39 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from localhost (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
+ 23708390-1500050 for multiple; Tue, 26 Jan 2021 22:04:34 +0000
 MIME-Version: 1.0
-Subject: [Intel-gfx] [RFC PATCH 9/9] drm/i915: Use memory cgroup for
- enforcing device memory limit
+In-Reply-To: <183f9081-0aeb-ebad-da8e-0dc25c449d2f@linux.intel.com>
+References: <20210126130505.2938391-1-chris@chris-wilson.co.uk>
+ <20210126130505.2938391-2-chris@chris-wilson.co.uk>
+ <183f9081-0aeb-ebad-da8e-0dc25c449d2f@linux.intel.com>
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
+Date: Tue, 26 Jan 2021 22:04:35 +0000
+Message-ID: <161169867584.2943.4917889020493124389@build.alporthouse.com>
+User-Agent: alot/0.9
+Subject: Re: [Intel-gfx] [PATCH i-g-t 2/2] i915/sysfs_clients: Check that
+ client ids are cyclic
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,180 +42,111 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: igt-dev@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-To charge device memory allocations, we need to (1) identify appropriate
-cgroup to charge (currently decided at object creation time), and (2)
-make the charging call at the time that memory pages are being allocated.
+Quoting Tvrtko Ursulin (2021-01-26 16:47:14)
+> 
+> On 26/01/2021 13:05, Chris Wilson wrote:
+> > The client id used is a cyclic allocator as that reduces the likelihood
+> > of userspace seeing the same id used again (and so confusing the new
+> > client as the old). Verify that each new client has an id greater than
+> > the last.
+> > 
+> > Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> > Cc: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+> > ---
+> >   tests/i915/sysfs_clients.c | 129 +++++++++++++++++++++++++++++++------
+> >   1 file changed, 108 insertions(+), 21 deletions(-)
+> > 
+> > diff --git a/tests/i915/sysfs_clients.c b/tests/i915/sysfs_clients.c
+> > index a3a1f81e1..d2c1ebc5f 100644
+> > --- a/tests/i915/sysfs_clients.c
+> > +++ b/tests/i915/sysfs_clients.c
+> > @@ -8,6 +8,7 @@
+> >   #include <errno.h>
+> >   #include <fcntl.h>
+> >   #include <inttypes.h>
+> > +#include <limits.h>
+> >   #include <math.h>
+> >   #include <sched.h>
+> >   #include <sys/socket.h>
+> > @@ -47,6 +48,8 @@
+> >   #define assert_within_epsilon(x, ref, tolerance) \
+> >       __assert_within_epsilon(x, ref, tolerance / 100., tolerance / 100.)
+> >   
+> > +#define BUFSZ 280
+> > +
+> >   #define MI_BATCH_BUFFER_START (0x31 << 23)
+> >   #define MI_BATCH_BUFFER_END (0xa << 23)
+> >   #define MI_ARB_CHECK (0x5 << 23)
+> > @@ -75,7 +78,7 @@ static void pidname(int i915, int clients)
+> >   {
+> >       struct dirent *de;
+> >       int sv[2], rv[2];
+> > -     char buf[280];
+> > +     char buf[BUFSZ];
+> >       int me = -1;
+> >       long count;
+> >       pid_t pid;
+> > @@ -180,7 +183,7 @@ static long count_clients(int clients)
+> >   {
+> >       struct dirent *de;
+> >       long count = 0;
+> > -     char buf[280];
+> > +     char buf[BUFSZ];
+> >       DIR *dir;
+> >   
+> >       dir = fdopendir(dup(clients));
+> > @@ -229,32 +232,113 @@ static void create(int i915, int clients)
+> >       igt_assert_eq(count_clients(clients), 1);
+> >   }
+> >   
+> > +static const char *find_client(int clients, pid_t pid, char *buf)
+> > +{
+> > +     DIR *dir = fdopendir(dup(clients));
+> > +
+> > +     /* Reading a dir as it changes does not appear to be stable, SEP */
+> 
+> Oh yes, it is POSIX undefined as far as I could figure out. You are 
+> creating/destroying clients while reading the dir from different 
+> threads?
 
-For (1), see prior DRM patch which associates current task's cgroup with
-GEM objects as they are created.  That cgroup will be charged/uncharged
-for all paging activity against the GEM object.
+Different processes on different directory fd. man readdir(3) does say
+that glibc is threadsafe, but that is not a requirement of POSIX. The
+problem we are seeing is that the directory contents are not stable
+around the readdir loop as clients are being created/destroyed, causing
+dirents to be missed.
 
-For (2), we call drm_get_object_charge_mem() in .get_pages callback
-for the GEM object type.  Uncharging is done in .put_pages when the
-memory is marked such that it can be evicted.  The try_charge() call will
-fail with -ENOMEM if the current memory allocation will exceed the cgroup
-device memory maximum, and allow for driver to perform memory reclaim.
+stracing the problem shows that glibc used a 32KiB buffer for getdents
+and only a single syscall was required to grab the entire directory. No
+errors were seen before the missed dirent. It just seemed to be missing.
 
-We also set the total device memory reported by DRM cgroup by storing
-in drm_device.drmcg_props after initializing LMEM memory regions.
+Afaict there is no delay in creating the sysfs entry, and I think there
+should also be no delay in creating the kernfs node and inodes, so my
+initial assumption is that it's something not quite happy in the
+kernfs directory that shows up under stress. A second loop ran for a
+long time without incident locally, but CI seems much more adept at
+finding it.
 
-FIXME: to release drm cgroup reference requires this additional patch:
-  https://patchwork.freedesktop.org/patch/349029
+> I think best might be to introduce explicit sync points between 
+> those two entities to make this reliable. In another review for the same 
+> problem I suggested pipes for implementing this handshake. Along the 
+> lines of "let child open/close some processes, make it wait for parent; 
+> parent scans sysfs, signals child to open/close some more; repeat for a 
+> while".
 
-Signed-off-by: Brian Welty <brian.welty@intel.com>
----
- drivers/gpu/drm/i915/gem/i915_gem_mman.c   |  1 +
- drivers/gpu/drm/i915/gem/i915_gem_region.c | 23 ++++++++++++++++++----
- drivers/gpu/drm/i915/intel_memory_region.c | 13 ++++++++++--
- drivers/gpu/drm/i915/intel_memory_region.h |  2 +-
- 4 files changed, 32 insertions(+), 7 deletions(-)
+Sadly, I don't expect userspace to do that :)
 
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_mman.c b/drivers/gpu/drm/i915/gem/i915_gem_mman.c
-index ec28a6cde49b..9fbe91d4d2f1 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_mman.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_mman.c
-@@ -16,6 +16,7 @@
- #include "i915_gem_gtt.h"
- #include "i915_gem_ioctls.h"
- #include "i915_gem_object.h"
-+#include "i915_gem_lmem.h"
- #include "i915_gem_mman.h"
- #include "i915_trace.h"
- #include "i915_user_extensions.h"
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_region.c b/drivers/gpu/drm/i915/gem/i915_gem_region.c
-index 3e3dad22a683..690b36b25984 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_region.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_region.c
-@@ -12,11 +12,14 @@ void
- i915_gem_object_put_pages_buddy(struct drm_i915_gem_object *obj,
- 				struct sg_table *pages)
- {
--	__intel_memory_region_put_pages_buddy(obj->mm.region, &obj->mm.blocks);
-+	u64 freed;
- 
-+	freed = __intel_memory_region_put_pages_buddy(obj->mm.region,
-+						      &obj->mm.blocks);
- 	obj->mm.dirty = false;
- 	sg_free_table(pages);
- 	kfree(pages);
-+	drm_gem_object_uncharge_mem(&obj->base, freed);
- }
- 
- int
-@@ -25,7 +28,7 @@ i915_gem_object_get_pages_buddy(struct drm_i915_gem_object *obj)
- 	const u64 max_segment = i915_sg_segment_size();
- 	struct intel_memory_region *mem = obj->mm.region;
- 	struct list_head *blocks = &obj->mm.blocks;
--	resource_size_t size = obj->base.size;
-+	resource_size_t charged, size = obj->base.size;
- 	resource_size_t prev_end;
- 	struct i915_buddy_block *block;
- 	unsigned int flags;
-@@ -44,12 +47,22 @@ i915_gem_object_get_pages_buddy(struct drm_i915_gem_object *obj)
- 	}
- 
- 	flags = I915_ALLOC_MIN_PAGE_SIZE;
--	if (obj->flags & I915_BO_ALLOC_CONTIGUOUS)
-+	if (obj->flags & I915_BO_ALLOC_CONTIGUOUS) {
- 		flags |= I915_ALLOC_CONTIGUOUS;
-+		charged = roundup_pow_of_two(size);
-+	} else {
-+		charged = size;
-+	}
-+
-+	ret = drm_gem_object_charge_mem(&obj->base, charged);
-+	if (ret) {
-+		DRM_DEBUG("DRMCG: charge_mem failed for %lld\n", charged);
-+		goto err_free_sg;
-+	}
- 
- 	ret = __intel_memory_region_get_pages_buddy(mem, size, flags, blocks);
- 	if (ret)
--		goto err_free_sg;
-+		goto err_uncharge;
- 
- 	GEM_BUG_ON(list_empty(blocks));
- 
-@@ -99,6 +112,8 @@ i915_gem_object_get_pages_buddy(struct drm_i915_gem_object *obj)
- 
- 	return 0;
- 
-+err_uncharge:
-+	drm_gem_object_uncharge_mem(&obj->base, charged);
- err_free_sg:
- 	sg_free_table(st);
- 	kfree(st);
-diff --git a/drivers/gpu/drm/i915/intel_memory_region.c b/drivers/gpu/drm/i915/intel_memory_region.c
-index 1bfcdd89b241..9b1edbf4361c 100644
---- a/drivers/gpu/drm/i915/intel_memory_region.c
-+++ b/drivers/gpu/drm/i915/intel_memory_region.c
-@@ -46,13 +46,18 @@ intel_memory_region_free_pages(struct intel_memory_region *mem,
- 	return size;
- }
- 
--void
-+u64
- __intel_memory_region_put_pages_buddy(struct intel_memory_region *mem,
- 				      struct list_head *blocks)
- {
-+	u64 freed;
-+
- 	mutex_lock(&mem->mm_lock);
--	mem->avail += intel_memory_region_free_pages(mem, blocks);
-+	freed = intel_memory_region_free_pages(mem, blocks);
-+	mem->avail += freed;
- 	mutex_unlock(&mem->mm_lock);
-+
-+	return freed;
- }
- 
- void
-@@ -241,6 +246,7 @@ void intel_memory_region_put(struct intel_memory_region *mem)
- 
- int intel_memory_regions_hw_probe(struct drm_i915_private *i915)
- {
-+	u64 lmem_total = 0;
- 	int err, i;
- 
- 	for (i = 0; i < ARRAY_SIZE(i915->mm.regions); i++) {
-@@ -260,6 +266,7 @@ int intel_memory_regions_hw_probe(struct drm_i915_private *i915)
- 			break;
- 		case INTEL_MEMORY_LOCAL:
- 			mem = intel_setup_fake_lmem(i915);
-+			lmem_total += mem->total;
- 			break;
- 		}
- 
-@@ -278,6 +285,8 @@ int intel_memory_regions_hw_probe(struct drm_i915_private *i915)
- 		i915->mm.regions[i] = mem;
- 	}
- 
-+	i915->drm.drmcg_props.memory_total = lmem_total;
-+
- 	return 0;
- 
- out_cleanup:
-diff --git a/drivers/gpu/drm/i915/intel_memory_region.h b/drivers/gpu/drm/i915/intel_memory_region.h
-index 6ffc0673f005..c9fca951a372 100644
---- a/drivers/gpu/drm/i915/intel_memory_region.h
-+++ b/drivers/gpu/drm/i915/intel_memory_region.h
-@@ -109,7 +109,7 @@ struct i915_buddy_block *
- __intel_memory_region_get_block_buddy(struct intel_memory_region *mem,
- 				      resource_size_t size,
- 				      unsigned int flags);
--void __intel_memory_region_put_pages_buddy(struct intel_memory_region *mem,
-+u64 __intel_memory_region_put_pages_buddy(struct intel_memory_region *mem,
- 					   struct list_head *blocks);
- void __intel_memory_region_put_block_buddy(struct i915_buddy_block *block);
- 
--- 
-2.20.1
-
+I do expect userspace to search for its own client/ upon creation, and I
+expect there to be many clients being opened at once. So I think so long
+as the use of the library readdir is correct (distinct processes with
+distinct directory fd, so I think there's no accidental sharing) this
+represents. Hmm. fsync(dirfd).
+-Chris
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
