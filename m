@@ -2,46 +2,44 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D7D993043ED
-	for <lists+intel-gfx@lfdr.de>; Tue, 26 Jan 2021 17:42:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9457C3043F6
+	for <lists+intel-gfx@lfdr.de>; Tue, 26 Jan 2021 17:47:24 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DEA516E0DF;
-	Tue, 26 Jan 2021 16:42:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9A9326E492;
+	Tue, 26 Jan 2021 16:47:22 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6E43E6E0DF
- for <intel-gfx@lists.freedesktop.org>; Tue, 26 Jan 2021 16:42:43 +0000 (UTC)
-IronPort-SDR: ong5W3sUrZvFkMcMdxSqZcRjfmBUNzaohkfBYL23V3LnMCjHW3v4mv535XqLMdcTAL0FPIKkg8
- NGDeHeqpNTuw==
-X-IronPort-AV: E=McAfee;i="6000,8403,9876"; a="244011231"
-X-IronPort-AV: E=Sophos;i="5.79,375,1602572400"; d="scan'208";a="244011231"
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 053906E422;
+ Tue, 26 Jan 2021 16:47:20 +0000 (UTC)
+IronPort-SDR: r9Y5C3cSmI1YbNNeKRmYM4U7HUCyJXZwDqRdZm9v6gflIpDwlZyrHJnJ88CMf8gHPuUSbUSydP
+ F4wRvr4PDwpg==
+X-IronPort-AV: E=McAfee;i="6000,8403,9876"; a="180078304"
+X-IronPort-AV: E=Sophos;i="5.79,375,1602572400"; d="scan'208";a="180078304"
 Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Jan 2021 08:42:42 -0800
-IronPort-SDR: t05LjaZs2LMU8qrvQoEy7cob2/Nqx7UeGxoRwyPXq5X+uM+ZrRksgHlvaiRkZqRSJmBgyDAji2
- HbDShufFKwdA==
-X-IronPort-AV: E=Sophos;i="5.79,375,1602572400"; d="scan'208";a="362046713"
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Jan 2021 08:47:19 -0800
+IronPort-SDR: 6FN3w/iolBjfzI1U8gd8BkNqam+5mlfL83b4UeSOxxZBt+vUgOpNZdLISrMp3k1crkZTBvMOMn
+ wJGpwweJ3mEQ==
+X-IronPort-AV: E=Sophos;i="5.79,375,1602572400"; d="scan'208";a="362048149"
 Received: from jackedwa-mobl.ger.corp.intel.com (HELO [10.214.230.137])
  ([10.214.230.137])
  by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Jan 2021 08:42:40 -0800
+ 26 Jan 2021 08:47:17 -0800
 To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
-References: <20210125140136.10494-1-chris@chris-wilson.co.uk>
- <20210125140136.10494-8-chris@chris-wilson.co.uk>
- <c394217f-8f50-588d-daa2-2d802050e378@linux.intel.com>
- <161167841519.2943.12094027429072700463@build.alporthouse.com>
+References: <20210126130505.2938391-1-chris@chris-wilson.co.uk>
+ <20210126130505.2938391-2-chris@chris-wilson.co.uk>
 From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
 Organization: Intel Corporation UK Plc
-Message-ID: <4a5b8b67-c917-46d5-9ddb-41bb0159244c@linux.intel.com>
-Date: Tue, 26 Jan 2021 16:42:37 +0000
+Message-ID: <183f9081-0aeb-ebad-da8e-0dc25c449d2f@linux.intel.com>
+Date: Tue, 26 Jan 2021 16:47:14 +0000
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
  Thunderbird/78.5.0
 MIME-Version: 1.0
-In-Reply-To: <161167841519.2943.12094027429072700463@build.alporthouse.com>
+In-Reply-To: <20210126130505.2938391-2-chris@chris-wilson.co.uk>
 Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH 08/41] drm/i915: Improve DFS for priority
- inheritance
+Subject: Re: [Intel-gfx] [PATCH i-g-t 2/2] i915/sysfs_clients: Check that
+ client ids are cyclic
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,178 +52,230 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: thomas.hellstrom@intel.com
+Cc: igt-dev@lists.freedesktop.org
 Content-Transfer-Encoding: 7bit
 Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 
-On 26/01/2021 16:26, Chris Wilson wrote:
-> Quoting Tvrtko Ursulin (2021-01-26 16:22:58)
->>
->>
->> On 25/01/2021 14:01, Chris Wilson wrote:
->>> The core of the scheduling algorithm is that we compute the topological
->>> order of the fence DAG. Knowing that we have a DAG, we should be able to
->>> use a DFS to compute the topological sort in linear time. However,
->>> during the conversion of the recursive algorithm into an iterative one,
->>> the memoization of how far we had progressed down a branch was
->>> forgotten. The result was that instead of running in linear time, it was
->>> running in geometric time and could easily run for a few hundred
->>> milliseconds given a wide enough graph, not the microseconds as required.
->>>
->>> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
->>> ---
->>>    drivers/gpu/drm/i915/i915_scheduler.c | 58 ++++++++++++++++-----------
->>>    1 file changed, 34 insertions(+), 24 deletions(-)
->>>
->>> diff --git a/drivers/gpu/drm/i915/i915_scheduler.c b/drivers/gpu/drm/i915/i915_scheduler.c
->>> index 4802c9b1081d..9139a91f0aa3 100644
->>> --- a/drivers/gpu/drm/i915/i915_scheduler.c
->>> +++ b/drivers/gpu/drm/i915/i915_scheduler.c
->>> @@ -234,6 +234,26 @@ void __i915_priolist_free(struct i915_priolist *p)
->>>        kmem_cache_free(global.slab_priorities, p);
->>>    }
->>>    
->>> +static struct i915_request *
->>> +stack_push(struct i915_request *rq,
->>> +        struct i915_request *stack,
->>> +        struct list_head *pos)
->>> +{
->>> +     stack->sched.dfs.prev = pos;
->>> +     rq->sched.dfs.next = (struct list_head *)stack;
->>> +     return rq;
->>> +}
->>> +
->>> +static struct i915_request *
->>> +stack_pop(struct i915_request *rq,
->>> +       struct list_head **pos)
->>> +{
->>> +     rq = (struct i915_request *)rq->sched.dfs.next;
->>> +     if (rq)
->>> +             *pos = rq->sched.dfs.prev;
->>> +     return rq;
->>> +}
->>> +
->>>    static inline bool need_preempt(int prio, int active)
->>>    {
->>>        /*
->>> @@ -298,11 +318,10 @@ static void ipi_priority(struct i915_request *rq, int prio)
->>>    static void __i915_request_set_priority(struct i915_request *rq, int prio)
->>>    {
->>>        struct intel_engine_cs *engine = rq->engine;
->>> -     struct i915_request *rn;
->>> +     struct list_head *pos = &rq->sched.signalers_list;
->>>        struct list_head *plist;
->>> -     LIST_HEAD(dfs);
->>>    
->>> -     list_add(&rq->sched.dfs, &dfs);
->>> +     plist = i915_sched_lookup_priolist(engine, prio);
->>>    
->>>        /*
->>>         * Recursively bump all dependent priorities to match the new request.
->>> @@ -322,40 +341,31 @@ static void __i915_request_set_priority(struct i915_request *rq, int prio)
->>>         * end result is a topological list of requests in reverse order, the
->>>         * last element in the list is the request we must execute first.
->>>         */
->>> -     list_for_each_entry(rq, &dfs, sched.dfs) {
->>> -             struct i915_dependency *p;
->>> -
->>> -             /* Also release any children on this engine that are ready */
->>> -             GEM_BUG_ON(rq->engine != engine);
->>> -
->>> -             for_each_signaler(p, rq) {
->>> +     rq->sched.dfs.next = NULL;
->>> +     do {
->>> +             list_for_each_continue(pos, &rq->sched.signalers_list) {
->>> +                     struct i915_dependency *p =
->>> +                             list_entry(pos, typeof(*p), signal_link);
->>>                        struct i915_request *s =
->>>                                container_of(p->signaler, typeof(*s), sched);
->>>    
->>> -                     GEM_BUG_ON(s == rq);
->>> -
->>>                        if (rq_prio(s) >= prio)
->>>                                continue;
->>>    
->>>                        if (__i915_request_is_complete(s))
->>>                                continue;
->>>    
->>> -                     if (s->engine != rq->engine) {
->>> +                     if (s->engine != engine) {
->>>                                ipi_priority(s, prio);
->>>                                continue;
->>>                        }
->>>    
->>> -                     list_move_tail(&s->sched.dfs, &dfs);
->>> +                     /* Remember our position along this branch */
->>> +                     rq = stack_push(s, rq, pos);
->>> +                     pos = &rq->sched.signalers_list;
->>>                }
->>> -     }
->>>    
->>> -     plist = i915_sched_lookup_priolist(engine, prio);
->>> -
->>> -     /* Fifo and depth-first replacement ensure our deps execute first */
->>> -     list_for_each_entry_safe_reverse(rq, rn, &dfs, sched.dfs) {
->>> -             GEM_BUG_ON(rq->engine != engine);
->>> -
->>> -             INIT_LIST_HEAD(&rq->sched.dfs);
->>> +             RQ_TRACE(rq, "set-priority:%d\n", prio);
->>>                WRITE_ONCE(rq->sched.attr.priority, prio);
->>>    
->>>                /*
->>> @@ -369,12 +379,13 @@ static void __i915_request_set_priority(struct i915_request *rq, int prio)
->>>                if (!i915_request_is_ready(rq))
->>>                        continue;
->>>    
->>> +             GEM_BUG_ON(rq->engine != engine);
->>>                if (i915_request_in_priority_queue(rq))
->>>                        list_move_tail(&rq->sched.link, plist);
->>>    
->>>                /* Defer (tasklet) submission until after all updates. */
->>>                kick_submission(engine, rq, prio);
->>> -     }
->>> +     } while ((rq = stack_pop(rq, &pos)));
->>>    }
->>>    
->>>    void i915_request_set_priority(struct i915_request *rq, int prio)
->>> @@ -444,7 +455,6 @@ void i915_sched_node_init(struct i915_sched_node *node)
->>>        INIT_LIST_HEAD(&node->signalers_list);
->>>        INIT_LIST_HEAD(&node->waiters_list);
->>>        INIT_LIST_HEAD(&node->link);
->>> -     INIT_LIST_HEAD(&node->dfs);
->>>    
->>>        node->ipi_link = NULL;
->>>    
->>>
->>
->> Pen and paper was needed here but it looks good.
+On 26/01/2021 13:05, Chris Wilson wrote:
+> The client id used is a cyclic allocator as that reduces the likelihood
+> of userspace seeing the same id used again (and so confusing the new
+> client as the old). Verify that each new client has an id greater than
+> the last.
 > 
-> If you highlight the areas that need more commentary, I guess
-> a theory-of-operation for stack_push/stack_pop?
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> Cc: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+> ---
+>   tests/i915/sysfs_clients.c | 129 +++++++++++++++++++++++++++++++------
+>   1 file changed, 108 insertions(+), 21 deletions(-)
+> 
+> diff --git a/tests/i915/sysfs_clients.c b/tests/i915/sysfs_clients.c
+> index a3a1f81e1..d2c1ebc5f 100644
+> --- a/tests/i915/sysfs_clients.c
+> +++ b/tests/i915/sysfs_clients.c
+> @@ -8,6 +8,7 @@
+>   #include <errno.h>
+>   #include <fcntl.h>
+>   #include <inttypes.h>
+> +#include <limits.h>
+>   #include <math.h>
+>   #include <sched.h>
+>   #include <sys/socket.h>
+> @@ -47,6 +48,8 @@
+>   #define assert_within_epsilon(x, ref, tolerance) \
+>   	__assert_within_epsilon(x, ref, tolerance / 100., tolerance / 100.)
+>   
+> +#define BUFSZ 280
+> +
+>   #define MI_BATCH_BUFFER_START (0x31 << 23)
+>   #define MI_BATCH_BUFFER_END (0xa << 23)
+>   #define MI_ARB_CHECK (0x5 << 23)
+> @@ -75,7 +78,7 @@ static void pidname(int i915, int clients)
+>   {
+>   	struct dirent *de;
+>   	int sv[2], rv[2];
+> -	char buf[280];
+> +	char buf[BUFSZ];
+>   	int me = -1;
+>   	long count;
+>   	pid_t pid;
+> @@ -180,7 +183,7 @@ static long count_clients(int clients)
+>   {
+>   	struct dirent *de;
+>   	long count = 0;
+> -	char buf[280];
+> +	char buf[BUFSZ];
+>   	DIR *dir;
+>   
+>   	dir = fdopendir(dup(clients));
+> @@ -229,32 +232,113 @@ static void create(int i915, int clients)
+>   	igt_assert_eq(count_clients(clients), 1);
+>   }
+>   
+> +static const char *find_client(int clients, pid_t pid, char *buf)
+> +{
+> +	DIR *dir = fdopendir(dup(clients));
+> +
+> +	/* Reading a dir as it changes does not appear to be stable, SEP */
 
-At some point I wanted to suggest you change dfs.list_head abuse to 
-explicit rq and list head pointer to better represent how there are two 
-pieces of information tracked in there.
-
-In terms of commentary don't know really. Perhaps it could be made 
-clearer just with some code re-structure, for instance maybe a new data 
-structure like i915_request_stack would work like:
-
-struct i915_request_stack {
-	struct i915_request *prev;
-	struct list_head *pos;
-};
-
-And then push and pop operate on three distinct data types for clarity, 
-request stack being embedded in request. I haven't really thought it 
-through to be sure it works so just maybe.
+Oh yes, it is POSIX undefined as far as I could figure out. You are 
+creating/destroying clients while reading the dir from different 
+threads? I think best might be to introduce explicit sync points between 
+those two entities to make this reliable. In another review for the same 
+problem I suggested pipes for implementing this handshake. Along the 
+lines of "let child open/close some processes, make it wait for parent; 
+parent scans sysfs, signals child to open/close some more; repeat for a 
+while".
 
 Regards,
 
 Tvrtko
+
+> +	for (int pass = 0; pass < 2; pass++) {
+> +		struct dirent *de;
+> +
+> +		rewinddir(dir);
+> +		while ((de = readdir(dir))) {
+> +			if (!isdigit(de->d_name[0]))
+> +				continue;
+> +
+> +			snprintf(buf, BUFSZ, "%s/pid", de->d_name);
+> +			igt_sysfs_read(clients, buf, buf, sizeof(buf));
+> +			if (atoi(buf) != pid)
+> +				continue;
+> +
+> +			strncpy(buf, de->d_name, BUFSZ);
+> +			goto out;
+> +		}
+> +	}
+> +	*buf = '\0';
+> +out:
+> +	closedir(dir);
+> +	return buf;
+> +}
+> +
+>   static int find_me(int clients, pid_t pid)
+>   {
+> -	struct dirent *de;
+> -	char buf[280];
+> -	int me = -1;
+> -	DIR *dir;
+> +	char buf[BUFSZ];
+>   
+> -	dir = fdopendir(dup(clients));
+> -	igt_assert(dir);
+> -	rewinddir(dir);
+> +	return openat(clients,
+> +		      find_client(clients, pid, buf),
+> +		      O_DIRECTORY | O_RDONLY);
+> +}
+>   
+> -	while ((de = readdir(dir))) {
+> -		if (!isdigit(de->d_name[0]))
+> -			continue;
+> +static int reopen_directory(int fd)
+> +{
+> +	char buf[BUFSZ];
+> +	int dir;
+>   
+> -		snprintf(buf, sizeof(buf), "%s/pid", de->d_name);
+> -		igt_sysfs_read(clients, buf, buf, sizeof(buf));
+> -		if (atoi(buf) != pid)
+> -			continue;
+> +	snprintf(buf, sizeof(buf), "/proc/self/fd/%d", fd);
+> +	dir = open(buf, O_RDONLY);
+> +	igt_assert_fd(dir);
+>   
+> -		me = openat(clients, de->d_name, O_DIRECTORY | O_RDONLY);
+> -		break;
+> +	return dir;
+> +}
+> +
+> +static unsigned int my_id(int clients, pid_t pid)
+> +{
+> +	char buf[BUFSZ];
+> +
+> +	return atoi(find_client(clients, pid, buf));
+> +}
+> +
+> +static unsigned int recycle_client(int i915, int clients)
+> +{
+> +	int device, client;
+> +
+> +	device = gem_reopen_driver(i915);
+> +	client = my_id(clients, getpid());
+> +	close(device);
+> +
+> +	return client;
+> +}
+> +
+> +static void recycle(int i915, int clients)
+> +{
+> +	const int ncpus = sysconf(_SC_NPROCESSORS_ONLN);
+> +
+> +	/*
+> +	 * As we open and close clients, we do not expect to reuse old ids,
+> +	 * i.e. we use a cyclic ida. This reduces the likelihood of userspace
+> +	 * watchers becoming confused and mistaking the new client as a
+> +	 * continuation of the old.
+> +	 */
+> +	igt_require(my_id(clients, getpid()) < INT_MAX / 2);
+> +	igt_assert(my_id(clients, getpid()));
+> +
+> +	igt_fork(child, 2 * ncpus) {
+> +		unsigned int client, last;
+> +
+> +		/* Reopen the directory fd for each client */
+> +		clients = reopen_directory(clients);
+> +
+> +		last = recycle_client(i915, clients);
+> +		igt_info("Child[%d] first client:%d\n", getpid(), last);
+> +		igt_until_timeout(5) {
+> +			client = recycle_client(i915, clients);
+> +
+> +			/* In 5 seconds we are not going to exhaust the ids */
+> +			igt_assert(client > last);
+> +			last = client;
+> +		}
+> +		igt_info("Child[%d] last client:%d\n", getpid(), last);
+>   	}
+> +	igt_waitchildren();
+>   
+> -	closedir(dir);
+> -	return me;
+> +	/* Cleanup delayed behind rcu */
+> +	igt_until_timeout(30) {
+> +		sched_yield();
+> +		if (count_clients(clients) == 1)
+> +			break;
+> +		usleep(10000);
+> +	}
+> +	igt_assert_eq(count_clients(clients), 1);
+>   }
+>   
+>   static int64_t read_runtime(int client, int class)
+> @@ -719,7 +803,7 @@ sema(int i915, int clients, const struct intel_execution_engine2 *e, int f)
+>   static int read_all(int clients, pid_t pid, int class, uint64_t *runtime)
+>   {
+>   	struct dirent *de;
+> -	char buf[280];
+> +	char buf[BUFSZ];
+>   	int count = 0;
+>   	DIR *dir;
+>   
+> @@ -958,6 +1042,9 @@ igt_main
+>   	igt_subtest("create")
+>   		create(i915, clients);
+>   
+> +	igt_subtest("recycle")
+> +		recycle(i915, clients);
+> +
+>   	igt_subtest_group
+>   		test_busy(i915, clients);
+>   
+> 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
