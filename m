@@ -2,35 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6A0AA304BF4
-	for <lists+intel-gfx@lfdr.de>; Tue, 26 Jan 2021 23:07:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0F6B0304C26
+	for <lists+intel-gfx@lfdr.de>; Tue, 26 Jan 2021 23:30:19 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F142B89061;
-	Tue, 26 Jan 2021 22:07:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DECD389BC2;
+	Tue, 26 Jan 2021 22:30:15 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B0B6589061;
- Tue, 26 Jan 2021 22:07:07 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 23708410-1500050 for multiple; Tue, 26 Jan 2021 22:07:01 +0000
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 641F189B66;
+ Tue, 26 Jan 2021 22:30:14 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 60019A8836;
+ Tue, 26 Jan 2021 22:30:14 +0000 (UTC)
 MIME-Version: 1.0
-In-Reply-To: <161169867584.2943.4917889020493124389@build.alporthouse.com>
-References: <20210126130505.2938391-1-chris@chris-wilson.co.uk>
- <20210126130505.2938391-2-chris@chris-wilson.co.uk>
- <183f9081-0aeb-ebad-da8e-0dc25c449d2f@linux.intel.com>
- <161169867584.2943.4917889020493124389@build.alporthouse.com>
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-Date: Tue, 26 Jan 2021 22:07:03 +0000
-Message-ID: <161169882325.2943.15701595691472062994@build.alporthouse.com>
-User-Agent: alot/0.9
-Subject: Re: [Intel-gfx] [PATCH i-g-t 2/2] i915/sysfs_clients: Check that
- client ids are cyclic
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Emil Renner Berthing" <kernel@esmil.dk>
+Date: Tue, 26 Jan 2021 22:30:14 -0000
+Message-ID: <161170021436.9811.16395948146569165541@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210126205902.5584-1-kernel@esmil.dk>
+In-Reply-To: <20210126205902.5584-1-kernel@esmil.dk>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
+ =?utf-8?q?/i915/gt=3A_use_new_tasklet_API_in_execlist_selftest?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -43,22 +38,86 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: igt-dev@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============1478255511=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Chris Wilson (2021-01-26 22:04:35)
-> I do expect userspace to search for its own client/ upon creation, and I
-> expect there to be many clients being opened at once. So I think so long
-> as the use of the library readdir is correct (distinct processes with
-> distinct directory fd, so I think there's no accidental sharing) this
-> represents. Hmm. fsync(dirfd).
+--===============1478255511==
+Content-Type: multipart/alternative;
+ boundary="===============3467487566842248952=="
 
-fsync(dirfd) makes no difference.
--Chris
+--===============3467487566842248952==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+== Series Details ==
+
+Series: drm/i915/gt: use new tasklet API in execlist selftest
+URL   : https://patchwork.freedesktop.org/series/86312/
+State : failure
+
+== Summary ==
+
+Applying: drm/i915/gt: use new tasklet API in execlist selftest
+Using index info to reconstruct a base tree...
+M	drivers/gpu/drm/i915/gt/selftest_execlists.c
+Falling back to patching base and 3-way merge...
+Auto-merging drivers/gpu/drm/i915/gt/selftest_execlists.c
+No changes -- Patch already applied.
+
+
+
+--===============3467487566842248952==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/gt: use new tasklet API in execlist selftest</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/86312/">https://patchwork.freedesktop.org/series/86312/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+</table>
+
+
+    <p>Applying: drm/i915/gt: use new tasklet API in execlist selftest<br />
+Using index info to reconstruct a base tree...<br />
+M   drivers/gpu/drm/i915/gt/selftest_execlists.c<br />
+Falling back to patching base and 3-way merge...<br />
+Auto-merging drivers/gpu/drm/i915/gt/selftest_execlists.c<br />
+No changes -- Patch already applied.</p>
+
+</body>
+</html>
+
+--===============3467487566842248952==--
+
+--===============1478255511==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============1478255511==--
