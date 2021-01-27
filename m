@@ -2,39 +2,39 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 141D5305AB1
-	for <lists+intel-gfx@lfdr.de>; Wed, 27 Jan 2021 13:03:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1B154305AB7
+	for <lists+intel-gfx@lfdr.de>; Wed, 27 Jan 2021 13:03:47 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C56D06E5D5;
-	Wed, 27 Jan 2021 12:03:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 954F66E7DA;
+	Wed, 27 Jan 2021 12:03:44 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 576B76E5CD
- for <intel-gfx@lists.freedesktop.org>; Wed, 27 Jan 2021 12:03:37 +0000 (UTC)
-IronPort-SDR: ayLJjwsW5/mPDMIrKCTOaezrKwu7Z+/7KYbYhqcuAo/sUFhVFVxGq7hUBx4S0I47MT85VCohWv
- Mc4kxiTszTVw==
-X-IronPort-AV: E=McAfee;i="6000,8403,9876"; a="180136883"
-X-IronPort-AV: E=Sophos;i="5.79,379,1602572400"; d="scan'208";a="180136883"
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AAF546E5D2
+ for <intel-gfx@lists.freedesktop.org>; Wed, 27 Jan 2021 12:03:38 +0000 (UTC)
+IronPort-SDR: GHTmdwqp6m0wCNVK6CNWAhWhli5I4376YvPeVvR3fKTVf7BzwsXdyeCLE1tPIhwfScRjolLr2F
+ /Af5E5Is9gEw==
+X-IronPort-AV: E=McAfee;i="6000,8403,9876"; a="180136889"
+X-IronPort-AV: E=Sophos;i="5.79,379,1602572400"; d="scan'208";a="180136889"
 Received: from fmsmga008.fm.intel.com ([10.253.24.58])
  by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Jan 2021 04:03:37 -0800
-IronPort-SDR: gww+J8Z325old1V7beQ5r5bcI1mC4jWfhwvYqC4kh8JMSlghsIfUqX8xmtx7t59UquA5/o+t+x
- VsgzMOWU8Quw==
-X-IronPort-AV: E=Sophos;i="5.79,379,1602572400"; d="scan'208";a="362410284"
+ 27 Jan 2021 04:03:38 -0800
+IronPort-SDR: pZo1xSIvxsF/9YOo4fjcewIFlST86fJaUeHjk/7CVJkf8MvSWDu1IkZ5/7oXapix1PVuFRhBc5
+ cJ9jiltwclYA==
+X-IronPort-AV: E=Sophos;i="5.79,379,1602572400"; d="scan'208";a="362410288"
 Received: from gladkina-mobl.ger.corp.intel.com (HELO
  mwauld-desk1.ger.corp.intel.com) ([10.252.19.195])
  by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Jan 2021 04:03:35 -0800
+ 27 Jan 2021 04:03:37 -0800
 From: Matthew Auld <matthew.auld@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Wed, 27 Jan 2021 12:03:10 +0000
-Message-Id: <20210127120316.370305-2-matthew.auld@intel.com>
+Date: Wed, 27 Jan 2021 12:03:11 +0000
+Message-Id: <20210127120316.370305-3-matthew.auld@intel.com>
 X-Mailer: git-send-email 2.26.2
 In-Reply-To: <20210127120316.370305-1-matthew.auld@intel.com>
 References: <20210127120316.370305-1-matthew.auld@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v3 2/8] drm/i915: setup the LMEM region
+Subject: [Intel-gfx] [PATCH v3 3/8] drm/i915: reserve stolen for LMEM region
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,107 +47,78 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jani Nikula <jani.nikula@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hook up the LMEM region. Addresses will start from zero, and for CPU
-access we get LMEM_BAR which is just a 1:1 mapping of said region.
+From: CQ Tang <cq.tang@intel.com>
 
-Based on a patch from Michel Thierry.
+The lmem region needs to remove the stolen part, which should just be a
+case of snipping it off the end.
 
-v2 by Jani:
-- use intel_uncore_read/intel_uncore_write
-- remove trailing blank line
-
-v3: s/drm_info/drm_dbg for info which in non-pertinent for the user
-
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Signed-off-by: CQ Tang <cq.tang@intel.com>
 Signed-off-by: Matthew Auld <matthew.auld@intel.com>
-Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/gt/intel_gt.c          |  4 ++-
- drivers/gpu/drm/i915/gt/intel_region_lmem.c | 35 +++++++++++++++++++++
- drivers/gpu/drm/i915/gt/intel_region_lmem.h |  2 ++
- 3 files changed, 40 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/i915/gt/intel_region_lmem.c | 13 +++++++++----
+ drivers/gpu/drm/i915/i915_reg.h             |  2 ++
+ 2 files changed, 11 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_gt.c b/drivers/gpu/drm/i915/gt/intel_gt.c
-index edbee9991248..9ac67e0534b7 100644
---- a/drivers/gpu/drm/i915/gt/intel_gt.c
-+++ b/drivers/gpu/drm/i915/gt/intel_gt.c
-@@ -46,7 +46,9 @@ int intel_gt_probe_lmem(struct intel_gt *gt)
- 	int id;
- 	int err;
- 
--	mem = intel_gt_setup_fake_lmem(gt);
-+	mem = intel_gt_setup_lmem(gt);
-+	if (mem == ERR_PTR(-ENODEV))
-+		mem = intel_gt_setup_fake_lmem(gt);
- 	if (IS_ERR(mem)) {
- 		err = PTR_ERR(mem);
- 		if (err == -ENODEV)
 diff --git a/drivers/gpu/drm/i915/gt/intel_region_lmem.c b/drivers/gpu/drm/i915/gt/intel_region_lmem.c
-index a2401e1fe1a3..b3d1d0abb956 100644
+index b3d1d0abb956..71bb38706dbf 100644
 --- a/drivers/gpu/drm/i915/gt/intel_region_lmem.c
 +++ b/drivers/gpu/drm/i915/gt/intel_region_lmem.c
-@@ -142,3 +142,38 @@ intel_gt_setup_fake_lmem(struct intel_gt *gt)
+@@ -146,20 +146,24 @@ intel_gt_setup_fake_lmem(struct intel_gt *gt)
+ static struct intel_memory_region *setup_lmem(struct intel_gt *gt)
+ {
+ 	struct drm_i915_private *i915 = gt->i915;
++	struct intel_uncore *uncore = gt->uncore;
+ 	struct pci_dev *pdev = i915->drm.pdev;
+ 	struct intel_memory_region *mem;
+ 	resource_size_t io_start;
+-	resource_size_t size;
++	resource_size_t lmem_size;
+ 
+ 	if (!IS_DGFX(i915))
+ 		return ERR_PTR(-ENODEV);
+ 
++	/* Stolen starts from GSMBASE on DG1 */
++	lmem_size = intel_uncore_read64(uncore, GEN12_GSMBASE);
++
+ 	io_start = pci_resource_start(pdev, 2);
+-	size = pci_resource_len(pdev, 2);
++	GEM_BUG_ON(lmem_size > pci_resource_len(pdev, 2));
+ 
+ 	mem = intel_memory_region_create(i915,
+ 					 0,
+-					 size,
++					 lmem_size,
+ 					 I915_GTT_PAGE_SIZE_4K,
+ 					 io_start,
+ 					 &intel_region_lmem_ops);
+@@ -167,7 +171,8 @@ static struct intel_memory_region *setup_lmem(struct intel_gt *gt)
+ 		drm_dbg(&i915->drm, "Local memory: %pR\n", &mem->region);
+ 		drm_dbg(&i915->drm, "Local memory IO start: %pa\n",
+ 			&mem->io_start);
+-		drm_info(&i915->drm, "Local memory available: %pa\n", &size);
++		drm_info(&i915->drm, "Local memory available: %pa\n",
++			 &lmem_size);
+ 	}
  
  	return mem;
- }
-+
-+static struct intel_memory_region *setup_lmem(struct intel_gt *gt)
-+{
-+	struct drm_i915_private *i915 = gt->i915;
-+	struct pci_dev *pdev = i915->drm.pdev;
-+	struct intel_memory_region *mem;
-+	resource_size_t io_start;
-+	resource_size_t size;
-+
-+	if (!IS_DGFX(i915))
-+		return ERR_PTR(-ENODEV);
-+
-+	io_start = pci_resource_start(pdev, 2);
-+	size = pci_resource_len(pdev, 2);
-+
-+	mem = intel_memory_region_create(i915,
-+					 0,
-+					 size,
-+					 I915_GTT_PAGE_SIZE_4K,
-+					 io_start,
-+					 &intel_region_lmem_ops);
-+	if (!IS_ERR(mem)) {
-+		drm_dbg(&i915->drm, "Local memory: %pR\n", &mem->region);
-+		drm_dbg(&i915->drm, "Local memory IO start: %pa\n",
-+			&mem->io_start);
-+		drm_info(&i915->drm, "Local memory available: %pa\n", &size);
-+	}
-+
-+	return mem;
-+}
-+
-+struct intel_memory_region *intel_gt_setup_lmem(struct intel_gt *gt)
-+{
-+	return setup_lmem(gt);
-+}
-diff --git a/drivers/gpu/drm/i915/gt/intel_region_lmem.h b/drivers/gpu/drm/i915/gt/intel_region_lmem.h
-index a4baa0f077a1..062d0542ae34 100644
---- a/drivers/gpu/drm/i915/gt/intel_region_lmem.h
-+++ b/drivers/gpu/drm/i915/gt/intel_region_lmem.h
-@@ -8,6 +8,8 @@
+diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+index aa872446337b..b39b46a974b5 100644
+--- a/drivers/gpu/drm/i915/i915_reg.h
++++ b/drivers/gpu/drm/i915/i915_reg.h
+@@ -12160,6 +12160,8 @@ enum skl_power_gate {
  
- struct intel_gt;
+ #define GEN12_GLOBAL_MOCS(i)	_MMIO(0x4000 + (i) * 4) /* Global MOCS regs */
  
-+struct intel_memory_region *intel_gt_setup_lmem(struct intel_gt *gt);
++#define GEN12_GSMBASE			_MMIO(0x108100)
 +
- struct intel_memory_region *
- intel_gt_setup_fake_lmem(struct intel_gt *gt);
- 
+ /* gamt regs */
+ #define GEN8_L3_LRA_1_GPGPU _MMIO(0x4dd4)
+ #define   GEN8_L3_LRA_1_GPGPU_DEFAULT_VALUE_BDW  0x67F1427F /* max/min for LRA1/2 */
 -- 
 2.26.2
 
