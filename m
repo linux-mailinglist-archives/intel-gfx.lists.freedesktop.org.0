@@ -2,30 +2,34 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 78DDD305CE8
-	for <lists+intel-gfx@lfdr.de>; Wed, 27 Jan 2021 14:20:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0608A305D19
+	for <lists+intel-gfx@lfdr.de>; Wed, 27 Jan 2021 14:27:45 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5E3CC6E825;
-	Wed, 27 Jan 2021 13:20:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7FF4E6E075;
+	Wed, 27 Jan 2021 13:27:39 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 62C816E823;
- Wed, 27 Jan 2021 13:20:26 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 53E3EA73C9;
- Wed, 27 Jan 2021 13:20:26 +0000 (UTC)
+Received: from mx2.suse.de (mx2.suse.de [195.135.220.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 09FC489C96;
+ Wed, 27 Jan 2021 13:27:38 +0000 (UTC)
+X-Virus-Scanned: by amavisd-new at test-mx.suse.de
+Received: from relay2.suse.de (unknown [195.135.221.27])
+ by mx2.suse.de (Postfix) with ESMTP id 7B5DBAF90;
+ Wed, 27 Jan 2021 13:27:36 +0000 (UTC)
+To: Chris Wilson <chris@chris-wilson.co.uk>, airlied@linux.ie,
+ daniel@ffwll.ch, jani.nikula@linux.intel.com, joonas.lahtinen@linux.intel.com
+References: <20210127124135.11750-1-tzimmermann@suse.de>
+ <20210127124135.11750-2-tzimmermann@suse.de>
+ <161175197533.2943.2162038120755672032@build.alporthouse.com>
+From: Thomas Zimmermann <tzimmermann@suse.de>
+Message-ID: <f2d5376c-bb69-6abc-8a17-cd9adb7c8be8@suse.de>
+Date: Wed, 27 Jan 2021 14:27:35 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.6.1
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jani Nikula" <jani.nikula@intel.com>
-Date: Wed, 27 Jan 2021 13:20:26 -0000
-Message-ID: <161175362631.11913.1293960794634246318@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210127084534.24406-1-jani.nikula@intel.com>
-In-Reply-To: <20210127084534.24406-1-jani.nikula@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_drm/i915/bios=3A_tidy_up_child_device_debug_logging?=
+In-Reply-To: <161175197533.2943.2162038120755672032@build.alporthouse.com>
+Subject: Re: [Intel-gfx] [PATCH v5 1/5] drm/i915: Remove references to
+ struct drm_device.pdev
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,31 +42,134 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: intel-gfx@lists.freedesktop.org, intel-gvt-dev@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============0641840141=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--===============0641840141==
+Content-Type: multipart/signed; micalg=pgp-sha256;
+ protocol="application/pgp-signature";
+ boundary="dphm0mSbMyJh1jZnXXoLmaUAkBZ7m7uir"
 
-Series: drm/i915/bios: tidy up child device debug logging
-URL   : https://patchwork.freedesktop.org/series/86341/
-State : warning
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--dphm0mSbMyJh1jZnXXoLmaUAkBZ7m7uir
+Content-Type: multipart/mixed; boundary="9D5OEpSgOwqLweuuKvOstoHTCa7hdyret";
+ protected-headers="v1"
+From: Thomas Zimmermann <tzimmermann@suse.de>
+To: Chris Wilson <chris@chris-wilson.co.uk>, airlied@linux.ie,
+ daniel@ffwll.ch, jani.nikula@linux.intel.com, joonas.lahtinen@linux.intel.com
+Cc: intel-gfx@lists.freedesktop.org, intel-gvt-dev@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, Rodrigo Vivi <rodrigo.vivi@intel.com>
+Message-ID: <f2d5376c-bb69-6abc-8a17-cd9adb7c8be8@suse.de>
+Subject: Re: [PATCH v5 1/5] drm/i915: Remove references to struct
+ drm_device.pdev
+References: <20210127124135.11750-1-tzimmermann@suse.de>
+ <20210127124135.11750-2-tzimmermann@suse.de>
+ <161175197533.2943.2162038120755672032@build.alporthouse.com>
+In-Reply-To: <161175197533.2943.2162038120755672032@build.alporthouse.com>
 
-== Summary ==
+--9D5OEpSgOwqLweuuKvOstoHTCa7hdyret
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: quoted-printable
 
-$ dim checkpatch origin/drm-tip
-0937babe4f37 drm/i915/bios: tidy up child device debug logging
--:8: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
-#8: 
-[drm:parse_ddi_port [i915]] Port B VBT info: CRT:0 DVI:1 HDMI:1 DP:0 eDP:0 LSPCON:0 USB-Type-C:0 TBT:0 DSC:0
+Hi
 
-total: 0 errors, 1 warnings, 0 checks, 37 lines checked
+Am 27.01.21 um 13:52 schrieb Chris Wilson:
+> Quoting Thomas Zimmermann (2021-01-27 12:41:31)
+>> diff --git a/drivers/gpu/drm/i915/selftests/mock_gem_device.c b/driver=
+s/gpu/drm/i915/selftests/mock_gem_device.c
+>> index 0188f877cab2..2a07a008de2e 100644
+>> --- a/drivers/gpu/drm/i915/selftests/mock_gem_device.c
+>> +++ b/drivers/gpu/drm/i915/selftests/mock_gem_device.c
+>> @@ -146,7 +146,6 @@ struct drm_i915_private *mock_gem_device(void)
+>>          }
+>>  =20
+>>          pci_set_drvdata(pdev, i915);
+>> -       i915->drm.pdev =3D pdev;
+>=20
+> Strictly this removal is still too early. Though it's a mock device and=
 
+> we shouldn't be touching the pci_dev that often, semantically those
+> accesses are not removed until later.
+
+I just didn't notice this instance. I'll add it to the other patch. Sorry=
+=2E
+
+Best regards
+Thomas
+
+>=20
+>>  =20
+>>          dev_pm_domain_set(&pdev->dev, &pm_domain);
+>>          pm_runtime_enable(&pdev->dev);
+>> diff --git a/drivers/gpu/drm/i915/selftests/mock_gtt.c b/drivers/gpu/d=
+rm/i915/selftests/mock_gtt.c
+>> index 7270fc8ca801..5c7ae40bba63 100644
+>> --- a/drivers/gpu/drm/i915/selftests/mock_gtt.c
+>> +++ b/drivers/gpu/drm/i915/selftests/mock_gtt.c
+>> @@ -74,7 +74,7 @@ struct i915_ppgtt *mock_ppgtt(struct drm_i915_privat=
+e *i915, const char *name)
+>>          ppgtt->vm.i915 =3D i915;
+>>          ppgtt->vm.total =3D round_down(U64_MAX, PAGE_SIZE);
+>>          ppgtt->vm.file =3D ERR_PTR(-ENODEV);
+>> -       ppgtt->vm.dma =3D &i915->drm.pdev->dev;
+>> +       ppgtt->vm.dma =3D i915->drm.dev;
+>=20
+> We can remove this shorthand later.
+> -Chris
+> _______________________________________________
+> dri-devel mailing list
+> dri-devel@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/dri-devel
+>=20
+
+--=20
+Thomas Zimmermann
+Graphics Driver Developer
+SUSE Software Solutions Germany GmbH
+Maxfeldstr. 5, 90409 N=C3=BCrnberg, Germany
+(HRB 36809, AG N=C3=BCrnberg)
+Gesch=C3=A4ftsf=C3=BChrer: Felix Imend=C3=B6rffer
+
+
+--9D5OEpSgOwqLweuuKvOstoHTCa7hdyret--
+
+--dphm0mSbMyJh1jZnXXoLmaUAkBZ7m7uir
+Content-Type: application/pgp-signature; name="OpenPGP_signature.asc"
+Content-Description: OpenPGP digital signature
+Content-Disposition: attachment; filename="OpenPGP_signature"
+
+-----BEGIN PGP SIGNATURE-----
+
+wsF5BAABCAAjFiEExndm/fpuMUdwYFFolh/E3EQov+AFAmARakcFAwAAAAAACgkQlh/E3EQov+Dq
+7Q//df1cLwytrgwIYo2uxnCGh0mVPMrE/l84WkXvPd0ye8ctoIOJnX+rYo4P8yKW34NuLzRQ9QXO
+QRfMywyk5yMzrcm1B2h+KYEGv1IjGYQWDaeZR6/j50N/VaFVbmWCRjsfalZSOJG1d5KFLQWDqgA3
+k7x/7uB0i21WG4Vp1Vb8OI44prEwjv1ODpvIfCcKd1vBob0JiUh+vrAulXwGbw4CKOzxfvCXfolV
+u2rYegY4Y37RAmcye2IH+NER7slx3cXu9zZpBFPKajmPpUfJDGv7ptDJgMv3Ya6v2Hv+GZaHhpA+
+61ASl+WZLTmI512sEih1d5gKykEej8F+uD5ZU6lU0uL0EU3IsILmtLR1ODp1iThAdENeTi17EInb
+528xkSJ7stUg8MHbnW5K2ybk6bdmvs8AI09vXsA+NwJ9mYcVlaK78NuswKkY1+c8AZwZ2XcDIyee
+icRaX4wE0v+ZCu621kNR60SnrSF3++KHsJFqMiz1H9CTlI6wC9uCBgNQLkPlea8vt4kNDHOA803F
+oR6gUltmIbco9RWLM7wH5KgxOYn1c1RkIG8oPIWDkg3Z4dEw9CwOiriJO3oPXnp1+3db6I1vMf5T
+kWt4g15Dr8vBgBIl96Yb+DInm6baZD1kwgBvbzVL1FX/1kcFr60UzxKLw2qUlzJeguklZwpt9Xxq
+kOs=
+=mW6+
+-----END PGP SIGNATURE-----
+
+--dphm0mSbMyJh1jZnXXoLmaUAkBZ7m7uir--
+
+--===============0641840141==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============0641840141==--
