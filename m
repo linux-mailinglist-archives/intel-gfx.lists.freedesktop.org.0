@@ -1,40 +1,41 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 30E9F305F51
-	for <lists+intel-gfx@lfdr.de>; Wed, 27 Jan 2021 16:18:14 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4EC1B305F8E
+	for <lists+intel-gfx@lfdr.de>; Wed, 27 Jan 2021 16:28:08 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 870B86E2D8;
-	Wed, 27 Jan 2021 15:18:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9C2FD6E838;
+	Wed, 27 Jan 2021 15:28:06 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 379BA6E2D8
- for <intel-gfx@lists.freedesktop.org>; Wed, 27 Jan 2021 15:18:11 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 23715766-1500050 for multiple; Wed, 27 Jan 2021 15:17:59 +0000
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E014D6E838
+ for <intel-gfx@lists.freedesktop.org>; Wed, 27 Jan 2021 15:28:04 +0000 (UTC)
+IronPort-SDR: 6AT3COEKQCW1eVzjJXbwzYQ6nHmuznc+KRg26HiOhlv09ghuHtVBLMTGlSLvPpoUB+wi57aUdQ
+ 33FcpwzqS24g==
+X-IronPort-AV: E=McAfee;i="6000,8403,9877"; a="159256443"
+X-IronPort-AV: E=Sophos;i="5.79,379,1602572400"; d="scan'208";a="159256443"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Jan 2021 07:28:04 -0800
+IronPort-SDR: 2WlcjOrJlILtA2f5S5aFu2BGfPlFiS0yPtrZjFKiRHAHiE2Cy7vQfT8iwLacv+9ow7j+5MAD2f
+ 11bN8kQbU2sw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.79,379,1602572400"; d="scan'208";a="362464935"
+Received: from gaia.fi.intel.com ([10.237.72.192])
+ by fmsmga008.fm.intel.com with ESMTP; 27 Jan 2021 07:28:03 -0800
+Received: by gaia.fi.intel.com (Postfix, from userid 1000)
+ id D5EFB5C1FAA; Wed, 27 Jan 2021 17:28:02 +0200 (EET)
+From: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
+In-Reply-To: <20210127140435.25191-1-chris@chris-wilson.co.uk>
+References: <20210127140435.25191-1-chris@chris-wilson.co.uk>
+Date: Wed, 27 Jan 2021 17:28:02 +0200
+Message-ID: <87lfcev1q5.fsf@gaia.fi.intel.com>
 MIME-Version: 1.0
-In-Reply-To: <CO1PR11MB5075034ACD67B3DD27311637F6BB9@CO1PR11MB5075.namprd11.prod.outlook.com>
-References: <20201130124855.319226-1-tejaskumarx.surendrakumar.upadhyay@intel.com>
- <160674128376.8815.15501065474758980770@build.alporthouse.com>
- <SN6PR11MB342108C9577A99EF4D3BBC87DFF50@SN6PR11MB3421.namprd11.prod.outlook.com>
- <160674847963.9850.14014681039747149826@build.alporthouse.com>
- <SN6PR11MB34210126D6425BBDD80F6258DFF20@SN6PR11MB3421.namprd11.prod.outlook.com>
- <SN6PR11MB342113B3B07EFA7D7E6656AADFF20@SN6PR11MB3421.namprd11.prod.outlook.com>
- <DM6PR11MB3355DDA42F41463D267737AEEEF10@DM6PR11MB3355.namprd11.prod.outlook.com>
- <160707557006.6805.9985083009767030866@build.alporthouse.com>
- <CO1PR11MB5075034ACD67B3DD27311637F6BB9@CO1PR11MB5075.namprd11.prod.outlook.com>
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: "Pandey, Hariom" <hariom.pandey@intel.com>
-Date: Wed, 27 Jan 2021 15:18:01 +0000
-Message-ID: <161176068198.2943.12987783906560421660@build.alporthouse.com>
-User-Agent: alot/0.9
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/rkl: Remove require_force_probe
- protection
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/gt: Drop active.lock around active
+ request read inside execlists
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,30 +48,49 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Naramasetti, LaxminarayanaX" <laxminarayanax.naramasetti@intel.com>,
- intel-gfx@lists.freedesktop.org
+Cc: Chris Wilson <chris@chris-wilson.co.uk>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Pandey, Hariom (2021-01-27 15:10:53)
-> Hi Chris,
-> 
-> (i) To your concern on the GPU dying issue gitlab#2743 --> this issue has been resolved and not observed in last 3 runs --> The gitlab had been updated with the pass results and closed.
-> (ii) RocketLate platform has been setup in Public CI with the name " fi-rkl-11500t" --> https://intel-gfx-ci.01.org/tree/drm-tip/bat-all.html? --> This link shows last few Pass runs.
-> 
-> With the above progress, please confirm if you are fine to merge/accept this patch of RKL force probe flag removal.
+Chris Wilson <chris@chris-wilson.co.uk> writes:
 
-Now that we have some visibility in CI, those of us without rkl (who
-_just_ see the bug reports) can all build up some confidence. From the
-CI, it's looking good, but you want to wait for a few idle [full] runs to
-get a true feel of the overall health.
+> As we find the active request for capturing upon a hang, we know that the
+> lists are stable as we are inside the execlists tasklet, the only path
+> that can modify those lists. As such, we do not need to disable irqs and
+> take the active lock for a simple read of the current request.
+>
+> Suggested-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
 
-So if people are happy that the scary forcewake error was truly a one off
-and doesn't need any follow up, then I see nothing stopping us from
-declaring ourselves in good shape -- barring a disastrous idle run.
--Chris
+Reviewed-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+
+> ---
+>  drivers/gpu/drm/i915/gt/intel_execlists_submission.c | 2 --
+>  1 file changed, 2 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
+> index b5f2459cac2c..e20ab2eab3a8 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
+> @@ -2262,13 +2262,11 @@ static void execlists_capture(struct intel_engine_cs *engine)
+>  	if (!cap)
+>  		return;
+>  
+> -	spin_lock_irq(&engine->active.lock);
+>  	cap->rq = active_context(engine, active_ccid(engine));
+>  	if (cap->rq) {
+>  		cap->rq = active_request(cap->rq->context->timeline, cap->rq);
+>  		cap->rq = i915_request_get_rcu(cap->rq);
+>  	}
+> -	spin_unlock_irq(&engine->active.lock);
+>  	if (!cap->rq)
+>  		goto err_free;
+>  
+> -- 
+> 2.20.1
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
