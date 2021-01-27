@@ -1,31 +1,62 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 73D9830517E
-	for <lists+intel-gfx@lfdr.de>; Wed, 27 Jan 2021 05:55:52 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id B111630519F
+	for <lists+intel-gfx@lfdr.de>; Wed, 27 Jan 2021 06:02:04 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B9F896E514;
-	Wed, 27 Jan 2021 04:55:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3784B6E51A;
+	Wed, 27 Jan 2021 05:02:02 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 8FD7B6E513;
- Wed, 27 Jan 2021 04:55:49 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 8D3DBA73C7;
- Wed, 27 Jan 2021 04:55:49 +0000 (UTC)
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8FAED6E51A
+ for <intel-gfx@lists.freedesktop.org>; Wed, 27 Jan 2021 05:02:00 +0000 (UTC)
+IronPort-SDR: nta4jaPeHvtOWm0gCRA9iFDt9F7BC27GzZSQV2k8QPMdq6Ag2nxM2h5WIJaWqIOsVmbk/tYdMc
+ PRc4dNfn37ug==
+X-IronPort-AV: E=McAfee;i="6000,8403,9876"; a="244093826"
+X-IronPort-AV: E=Sophos;i="5.79,378,1602572400"; d="scan'208";a="244093826"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Jan 2021 21:01:59 -0800
+IronPort-SDR: TZXSMxPGKh99TbqroLC4QtNOeesBnisZ8QLhcn1TH3PQa5WiiN+REgwHPb8MBsTUc83KIUH9Q+
+ EwbkQuWTDT8A==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.79,378,1602572400"; d="scan'208";a="388155391"
+Received: from fmsmsx603.amr.corp.intel.com ([10.18.126.83])
+ by orsmga008.jf.intel.com with ESMTP; 26 Jan 2021 21:01:59 -0800
+Received: from bgsmsx604.gar.corp.intel.com (10.67.234.6) by
+ fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2106.2; Tue, 26 Jan 2021 21:01:46 -0800
+Received: from bgsmsx604.gar.corp.intel.com (10.67.234.6) by
+ BGSMSX604.gar.corp.intel.com (10.67.234.6) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1713.5; Wed, 27 Jan 2021 10:31:43 +0530
+Received: from bgsmsx604.gar.corp.intel.com ([10.67.234.6]) by
+ BGSMSX604.gar.corp.intel.com ([10.67.234.6]) with mapi id 15.01.1713.004;
+ Wed, 27 Jan 2021 10:31:43 +0530
+From: "Gupta, Anshuman" <anshuman.gupta@intel.com>
+To: "Li, Juston" <juston.li@intel.com>, "intel-gfx@lists.freedesktop.org"
+ <intel-gfx@lists.freedesktop.org>
+Thread-Topic: [PATCH 1/3] drm/i915/hdcp: update cp_irq_count_cached in
+ intel_dp_hdcp2_read_msg()
+Thread-Index: AQHW9B8AWCu/ETip+0yubWMFUBwZzKo66laQ
+Date: Wed, 27 Jan 2021 05:01:43 +0000
+Message-ID: <77908242abb444678b0f29a1356f3084@intel.com>
+References: <20210126200805.2499944-1-juston.li@intel.com>
+In-Reply-To: <20210126200805.2499944-1-juston.li@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+dlp-product: dlpe-windows
+dlp-version: 11.5.1.3
+dlp-reaction: no-action
+x-originating-ip: [10.223.10.1]
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Aditya Swarup" <aditya.swarup@intel.com>
-Date: Wed, 27 Jan 2021 04:55:49 -0000
-Message-ID: <161172334957.11908.13658656014566013599@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210127041159.136409-1-aditya.swarup@intel.com>
-In-Reply-To: <20210127041159.136409-1-aditya.swarup@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgRmlu?=
- =?utf-8?q?al_set_of_patches_for_ADLS_enabling?=
+Subject: Re: [Intel-gfx] [PATCH 1/3] drm/i915/hdcp: update
+ cp_irq_count_cached in intel_dp_hdcp2_read_msg()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,213 +69,86 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============0499946931=="
+Cc: "seanpaul@chromium.org" <seanpaul@chromium.org>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0499946931==
-Content-Type: multipart/alternative;
- boundary="===============9213533105215267157=="
+Build is failing .
+Please send patches again after fixing it.
 
---===============9213533105215267157==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-== Series Details ==
-
-Series: Final set of patches for ADLS enabling
-URL   : https://patchwork.freedesktop.org/series/86322/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_9686 -> Patchwork_19512
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19512/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_19512 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@gem_sync@basic-each:
-    - fi-tgl-y:           [PASS][1] -> [DMESG-WARN][2] ([i915#402])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9686/fi-tgl-y/igt@gem_sync@basic-each.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19512/fi-tgl-y/igt@gem_sync@basic-each.html
-
-  * igt@i915_pm_rpm@module-reload:
-    - fi-byt-j1900:       [PASS][3] -> [INCOMPLETE][4] ([i915#142] / [i915#2405])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9686/fi-byt-j1900/igt@i915_pm_rpm@module-reload.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19512/fi-byt-j1900/igt@i915_pm_rpm@module-reload.html
-
-  * igt@runner@aborted:
-    - fi-byt-j1900:       NOTRUN -> [FAIL][5] ([i915#1814] / [i915#2505])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19512/fi-byt-j1900/igt@runner@aborted.html
-
-  
-#### Possible fixes ####
-
-  * igt@gem_exec_create@basic:
-    - fi-tgl-y:           [DMESG-WARN][6] ([i915#402]) -> [PASS][7] +1 similar issue
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9686/fi-tgl-y/igt@gem_exec_create@basic.html
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19512/fi-tgl-y/igt@gem_exec_create@basic.html
-
-  
-  [i915#142]: https://gitlab.freedesktop.org/drm/intel/issues/142
-  [i915#1814]: https://gitlab.freedesktop.org/drm/intel/issues/1814
-  [i915#2405]: https://gitlab.freedesktop.org/drm/intel/issues/2405
-  [i915#2505]: https://gitlab.freedesktop.org/drm/intel/issues/2505
-  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
-
-
-Participating hosts (44 -> 39)
-------------------------------
-
-  Missing    (5): fi-jsl-1 fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan bat-jsl-2 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_9686 -> Patchwork_19512
-
-  CI-20190529: 20190529
-  CI_DRM_9686: 8de0436dc0e777bbd5490d56134a838da4c19121 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5973: 7ae3d0d68e6bf4c5e404c87b570773d1b3173d47 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_19512: 11dca653436d8211406641e04a27f8a828d10391 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-11dca653436d drm/i915/adl_s: Add GT and CTX WAs for ADL-S
-b8b8e62c273d drm/i915/adl_s: Add display WAs for ADL-S
-1e05edf12b40 drm/i915/adl_s: Update memory bandwidth parameters
-e2673158258c drm/i915/adl_s: Load DMC
-2490f8422994 drm/i915/display: Add HAS_D12_PLANE_MINIMIZATION
-9d236ff1ca29 drm/i915/adl_s: Re-use TGL GuC/HuC firmware
-32ae4d0747f2 drm/i915/adl_s: Add power wells
-fe66bf899d58 drm/i915/adl_s: MCHBAR memory info registers are moved
-244ac6e1eab7 drm/i915/adl_s: Update PHY_MISC programming
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19512/index.html
-
---===============9213533105215267157==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Final set of patches for ADLS enabling</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/86322/">https://patchwork.freedesktop.org/series/86322/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19512/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19512/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_9686 -&gt; Patchwork_19512</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19512/index.html</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_19512 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@gem_sync@basic-each:</p>
-<ul>
-<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9686/fi-tgl-y/igt@gem_sync@basic-each.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19512/fi-tgl-y/igt@gem_sync@basic-each.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_pm_rpm@module-reload:</p>
-<ul>
-<li>fi-byt-j1900:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9686/fi-byt-j1900/igt@i915_pm_rpm@module-reload.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19512/fi-byt-j1900/igt@i915_pm_rpm@module-reload.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/142">i915#142</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2405">i915#2405</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@runner@aborted:</p>
-<ul>
-<li>fi-byt-j1900:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19512/fi-byt-j1900/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1814">i915#1814</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2505">i915#2505</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@gem_exec_create@basic:<ul>
-<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9686/fi-tgl-y/igt@gem_exec_create@basic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19512/fi-tgl-y/igt@gem_exec_create@basic.html">PASS</a> +1 similar issue</li>
-</ul>
-</li>
-</ul>
-<h2>Participating hosts (44 -&gt; 39)</h2>
-<p>Missing    (5): fi-jsl-1 fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan bat-jsl-2 </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_9686 -&gt; Patchwork_19512</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_9686: 8de0436dc0e777bbd5490d56134a838da4c19121 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_5973: 7ae3d0d68e6bf4c5e404c87b570773d1b3173d47 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
-  Patchwork_19512: 11dca653436d8211406641e04a27f8a828d10391 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>11dca653436d drm/i915/adl_s: Add GT and CTX WAs for ADL-S<br />
-b8b8e62c273d drm/i915/adl_s: Add display WAs for ADL-S<br />
-1e05edf12b40 drm/i915/adl_s: Update memory bandwidth parameters<br />
-e2673158258c drm/i915/adl_s: Load DMC<br />
-2490f8422994 drm/i915/display: Add HAS_D12_PLANE_MINIMIZATION<br />
-9d236ff1ca29 drm/i915/adl_s: Re-use TGL GuC/HuC firmware<br />
-32ae4d0747f2 drm/i915/adl_s: Add power wells<br />
-fe66bf899d58 drm/i915/adl_s: MCHBAR memory info registers are moved<br />
-244ac6e1eab7 drm/i915/adl_s: Update PHY_MISC programming</p>
-
-</body>
-</html>
-
---===============9213533105215267157==--
-
---===============0499946931==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+> -----Original Message-----
+> From: Li, Juston <juston.li@intel.com>
+> Sent: Wednesday, January 27, 2021 1:38 AM
+> To: intel-gfx@lists.freedesktop.org
+> Cc: seanpaul@chromium.org; Gupta, Anshuman
+> <anshuman.gupta@intel.com>; C, Ramalingam <ramalingam.c@intel.com>;
+> Li, Juston <juston.li@intel.com>
+> Subject: [PATCH 1/3] drm/i915/hdcp: update cp_irq_count_cached in
+> intel_dp_hdcp2_read_msg()
+> 
+> Update cp_irq_count_cached when we handle reading the messages rather
+> than writing a message to make sure the value is up to date and not stale
+> from a previously handled CP_IRQ. AKE flow  doesn't always respond to a
+> read with a write msg.
+> 
+> E.g. currently AKE_Send_Pairing_Info will "timeout" because we received a
+> CP_IRQ for reading AKE_Send_H_Prime but no write occurred between that
+> and reading AKE_Send_Pairing_Info so cp_irq_count_cached is stale
+> causing the wait to return right away rather than waiting for a new CP_IRQ.
+> 
+> Signed-off-by: Juston Li <juston.li@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_dp_hdcp.c | 8 ++++----
+>  1 file changed, 4 insertions(+), 4 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp_hdcp.c
+> b/drivers/gpu/drm/i915/display/intel_dp_hdcp.c
+> index f372e25edab4..56a1a0ed20fe 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp_hdcp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp_hdcp.c
+> @@ -442,8 +442,6 @@ static
+>  int intel_dp_hdcp2_write_msg(struct intel_digital_port *dig_port,
+>  			     void *buf, size_t size)
+>  {
+> -	struct intel_dp *dp = &dig_port->dp;
+> -	struct intel_hdcp *hdcp = &dp->attached_connector->hdcp;
+>  	unsigned int offset;
+>  	u8 *byte = buf;
+>  	ssize_t ret, bytes_to_write, len;
+> @@ -459,8 +457,6 @@ int intel_dp_hdcp2_write_msg(struct
+> intel_digital_port *dig_port,
+>  	bytes_to_write = size - 1;
+>  	byte++;
+> 
+> -	hdcp->cp_irq_count_cached = atomic_read(&hdcp->cp_irq_count);
+> -
+>  	while (bytes_to_write) {
+>  		len = bytes_to_write > DP_AUX_MAX_PAYLOAD_BYTES ?
+>  				DP_AUX_MAX_PAYLOAD_BYTES :
+> bytes_to_write; @@ -508,6 +504,8 @@ static  int
+> intel_dp_hdcp2_read_msg(struct intel_digital_port *dig_port,
+>  			    u8 msg_id, void *buf, size_t size)  {
+> +	struct intel_dp *dp = &dig_port->dp;
+> +	struct intel_hdcp *hdcp = &dp->attached_connector->hdcp;
+>  	struct drm_i915_private *i915 = to_i915(dig_port->base.base.dev);
+>  	unsigned int offset;
+>  	u8 *byte = buf;
+> @@ -523,6 +521,8 @@ int intel_dp_hdcp2_read_msg(struct
+> intel_digital_port *dig_port,
+>  	if (ret < 0)
+>  		return ret;
+> 
+> +	hdcp->cp_irq_count_cached = atomic_read(&hdcp->cp_irq_count);
+> +
+>  	if (msg_id == HDCP_2_2_REP_SEND_RECVID_LIST) {
+>  		ret = get_receiver_id_list_size(dig_port);
+>  		if (ret < 0)
+> --
+> 2.29.2
 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============0499946931==--
