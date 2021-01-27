@@ -1,34 +1,30 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id BD6BF305B21
-	for <lists+intel-gfx@lfdr.de>; Wed, 27 Jan 2021 13:21:50 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1D732305BB3
+	for <lists+intel-gfx@lfdr.de>; Wed, 27 Jan 2021 13:41:46 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9DA816E039;
-	Wed, 27 Jan 2021 12:21:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A2BCF6E111;
+	Wed, 27 Jan 2021 12:41:41 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 57078897EE
- for <intel-gfx@lists.freedesktop.org>; Wed, 27 Jan 2021 12:21:46 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 23713849-1500050 for multiple; Wed, 27 Jan 2021 12:21:39 +0000
+Received: from mx2.suse.de (mx2.suse.de [195.135.220.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 067136E101;
+ Wed, 27 Jan 2021 12:41:40 +0000 (UTC)
+X-Virus-Scanned: by amavisd-new at test-mx.suse.de
+Received: from relay2.suse.de (unknown [195.135.221.27])
+ by mx2.suse.de (Postfix) with ESMTP id 92CCBABDA;
+ Wed, 27 Jan 2021 12:41:38 +0000 (UTC)
+From: Thomas Zimmermann <tzimmermann@suse.de>
+To: airlied@linux.ie, daniel@ffwll.ch, jani.nikula@linux.intel.com,
+ joonas.lahtinen@linux.intel.com
+Date: Wed, 27 Jan 2021 13:41:30 +0100
+Message-Id: <20210127124135.11750-1-tzimmermann@suse.de>
+X-Mailer: git-send-email 2.30.0
 MIME-Version: 1.0
-In-Reply-To: <161174997873.2943.4651211348511319400@build.alporthouse.com>
-References: <20210127120316.370305-1-matthew.auld@intel.com>
- <20210127120316.370305-5-matthew.auld@intel.com>
- <161174997873.2943.4651211348511319400@build.alporthouse.com>
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: Matthew Auld <matthew.auld@intel.com>, intel-gfx@lists.freedesktop.org
-Date: Wed, 27 Jan 2021 12:21:41 +0000
-Message-ID: <161175010162.2943.8771184513028593498@build.alporthouse.com>
-User-Agent: alot/0.9
-Subject: Re: [Intel-gfx] [PATCH v3 5/8] drm/i915/dg1: Reserve first 1MB of
- local memory
+Subject: [Intel-gfx] [PATCH v5 0/5] drm: Move struct drm_device.pdev to
+ legacy
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,98 +37,107 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: intel-gfx@lists.freedesktop.org, intel-gvt-dev@lists.freedesktop.org,
+ Thomas Zimmermann <tzimmermann@suse.de>, dri-devel@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Chris Wilson (2021-01-27 12:19:38)
-> Quoting Matthew Auld (2021-01-27 12:03:13)
-> > From: Imre Deak <imre.deak@intel.com>
-> > 
-> > On DG1 A0/B0 steppings the first 1MB of local memory must be reserved.
-> > One reason for this is that the 0xA0000-0xB0000 range is not accessible
-> > by the display, probably since this region is redirected to another
-> > memory location for legacy VGA compatibility.
-> > 
-> > BSpec: 50586
-> > Testcase: igt/kms_big_fb/linear-64bpp-rotate-0
-> > 
-> > v2:
-> > - Reserve the memory on B0 as well.
-> > 
-> > v3: replace DRM_DEBUG/DRM_ERROR with drm_dbg/drm_err
-> > 
-> > Signed-off-by: Imre Deak <imre.deak@intel.com>
-> > Signed-off-by: Matthew Auld <matthew.auld@intel.com>
-> > ---
-> >  drivers/gpu/drm/i915/gt/intel_region_lmem.c | 56 +++++++++++++++++++++
-> >  1 file changed, 56 insertions(+)
-> > 
-> > diff --git a/drivers/gpu/drm/i915/gt/intel_region_lmem.c b/drivers/gpu/drm/i915/gt/intel_region_lmem.c
-> > index 71bb38706dbf..f5c12cbbaa86 100644
-> > --- a/drivers/gpu/drm/i915/gt/intel_region_lmem.c
-> > +++ b/drivers/gpu/drm/i915/gt/intel_region_lmem.c
-> > @@ -143,6 +143,52 @@ intel_gt_setup_fake_lmem(struct intel_gt *gt)
-> >         return mem;
-> >  }
-> >  
-> > +static bool get_legacy_lowmem_region(struct intel_uncore *uncore,
-> > +                                    u64 *start, u32 *size)
-> > +{
-> > +       *start = 0;
-> > +       *size = 0;
-> 
-> Redundant now with the return indicating not to trust the values.
-> 
-> > +
-> > +       if (!IS_DG1_REVID(uncore->i915, DG1_REVID_A0, DG1_REVID_B0))
-> > +               return false;
-> > +
-> > +       *size = SZ_1M;
-> > +
-> > +       drm_dbg(&uncore->i915->drm, "LMEM: reserved legacy low-memory [0x%llx-0x%llx]\n",
-> > +               *start, *start + *size);
-> > +
-> > +       return true;
-> > +}
-> > +
-> > +static int reserve_lowmem_region(struct intel_uncore *uncore,
-> > +                                struct intel_memory_region *mem)
-> > +{
-> > +       u64 reserve_start;
-> > +       u64 reserve_end;
-> > +       u64 region_start;
-> > +       u32 region_size;
-> > +       int ret;
-> > +
-> > +       if (!get_legacy_lowmem_region(uncore, &region_start, &region_size))
-> > +               return 0;
-> > +
-> > +       reserve_start = region_start;
-> > +       reserve_end = region_start + region_size;
-> > +
-> > +       if (!reserve_end)
-> > +               return 0;
-> > +
-> > +       drm_dbg(&uncore->i915->drm, "LMEM: reserving low-memory region [0x%llx-0x%llx]\n",
-> > +               reserve_start, reserve_end);
-> > +       ret = intel_memory_region_reserve(mem,
-> > +                                         reserve_start,
-> > +                                         reserve_end - reserve_start);
-> 
-> You are doing this on purpose!
-> u32 start, u64 size -> u64 start, end and then back to u64 start, size
-> 
-> The two drm_dbg() are functionally identical (other than giving a
-> telltale for the reserve_end overflow escape).
+For v5, I moved the non-assignment of pdev in i915 into a separate
+patch as suggested by Chris. Hopefully, this will help with merging the
+patches into the rsp i915 trees. The core and vmwgfx changes have been
+merged into drm-tip already.
 
-So other than this patch, the series is
-Reviewed-by: Chris Wilson <chris@chris-wilson.co.uk>
+The pdev field in struct drm_device points to a PCI device structure and
+goes back to UMS-only days when all DRM drivers were for PCI devices.
+Meanwhile we also support USB, SPI and platform devices. Each of those
+uses the generic device stored in struct drm_device.dev.
 
-I've a question for Tvrtko about how we want the driver_probe callchain
-to look, but that's a minor nit.
--Chris
+To reduce duplication and remove the special case of PCI, this patchset
+converts all modesetting drivers from pdev to dev and makes pdev a field
+for legacy UMS drivers.
+
+For PCI devices, the pointer in struct drm_device.dev can be upcasted to
+struct pci_device; or tested for PCI with dev_is_pci(). In several places
+the code can use the dev field directly.
+
+After converting all drivers and the DRM core, the pdev fields becomes
+only relevant for legacy drivers. In a later patchset, we may want to
+convert these as well and remove pdev entirely.
+
+v5:
+	* remove assignment in later patch (Chris)
+v4:
+	* merged several patches
+	* moved core changes into separate patch
+	* vmwgfx build fix
+v3:
+	* merged several patches
+	* fix one pdev reference in nouveau (Jeremy)
+	* rebases
+v2:
+	* move whitespace fixes into separate patches (Alex, Sam)
+	* move i915 gt/ and gvt/ changes into separate patches (Joonas)
+
+Thomas Zimmermann (5):
+  drm/i915: Remove references to struct drm_device.pdev
+  drm/i915/gt: Remove references to struct drm_device.pdev
+  drm/i915/gvt: Remove references to struct drm_device.pdev
+  drm/i915: Don't assign to struct drm_device.pdev
+  drm: Move struct drm_device.pdev to legacy section
+
+ drivers/gpu/drm/i915/display/intel_bios.c     |  2 +-
+ drivers/gpu/drm/i915/display/intel_cdclk.c    | 14 ++++++-------
+ drivers/gpu/drm/i915/display/intel_csr.c      |  2 +-
+ drivers/gpu/drm/i915/display/intel_dsi_vbt.c  |  2 +-
+ drivers/gpu/drm/i915/display/intel_fbdev.c    |  2 +-
+ drivers/gpu/drm/i915/display/intel_gmbus.c    |  2 +-
+ .../gpu/drm/i915/display/intel_lpe_audio.c    |  5 +++--
+ drivers/gpu/drm/i915/display/intel_opregion.c |  6 +++---
+ drivers/gpu/drm/i915/display/intel_overlay.c  |  2 +-
+ drivers/gpu/drm/i915/display/intel_panel.c    |  4 ++--
+ drivers/gpu/drm/i915/display/intel_quirks.c   |  2 +-
+ drivers/gpu/drm/i915/display/intel_sdvo.c     |  2 +-
+ drivers/gpu/drm/i915/display/intel_vga.c      |  8 ++++----
+ drivers/gpu/drm/i915/gem/i915_gem_phys.c      |  6 +++---
+ drivers/gpu/drm/i915/gem/i915_gem_shmem.c     |  2 +-
+ drivers/gpu/drm/i915/gt/intel_engine_cs.c     |  2 +-
+ drivers/gpu/drm/i915/gt/intel_ggtt.c          | 10 +++++-----
+ drivers/gpu/drm/i915/gt/intel_ppgtt.c         |  2 +-
+ drivers/gpu/drm/i915/gt/intel_rc6.c           |  4 ++--
+ drivers/gpu/drm/i915/gt/intel_region_lmem.c   |  8 ++++----
+ drivers/gpu/drm/i915/gt/intel_reset.c         |  6 +++---
+ drivers/gpu/drm/i915/gvt/cfg_space.c          |  5 +++--
+ drivers/gpu/drm/i915/gvt/firmware.c           | 10 +++++-----
+ drivers/gpu/drm/i915/gvt/gtt.c                | 12 +++++------
+ drivers/gpu/drm/i915/gvt/gvt.c                |  6 +++---
+ drivers/gpu/drm/i915/gvt/kvmgt.c              |  4 ++--
+ drivers/gpu/drm/i915/i915_debugfs.c           |  2 +-
+ drivers/gpu/drm/i915/i915_drv.c               | 20 +++++++++----------
+ drivers/gpu/drm/i915/i915_drv.h               |  2 +-
+ drivers/gpu/drm/i915/i915_gem_gtt.c           |  5 ++---
+ drivers/gpu/drm/i915/i915_getparam.c          |  5 +++--
+ drivers/gpu/drm/i915/i915_gpu_error.c         |  2 +-
+ drivers/gpu/drm/i915/i915_irq.c               |  6 +++---
+ drivers/gpu/drm/i915/i915_pmu.c               |  2 +-
+ drivers/gpu/drm/i915/i915_suspend.c           |  4 ++--
+ drivers/gpu/drm/i915/i915_switcheroo.c        |  4 ++--
+ drivers/gpu/drm/i915/i915_vgpu.c              |  2 +-
+ drivers/gpu/drm/i915/intel_device_info.c      |  2 +-
+ drivers/gpu/drm/i915/intel_runtime_pm.c       |  2 +-
+ drivers/gpu/drm/i915/intel_uncore.c           |  4 ++--
+ .../gpu/drm/i915/selftests/mock_gem_device.c  |  1 -
+ drivers/gpu/drm/i915/selftests/mock_gtt.c     |  2 +-
+ include/drm/drm_device.h                      |  6 +++---
+ 43 files changed, 100 insertions(+), 101 deletions(-)
+
+
+base-commit: 3836b7fdfad40e2bac5dc882332f42bed6942cf4
+prerequisite-patch-id: c2b2f08f0eccc9f5df0c0da49fa1d36267deb11d
+--
+2.30.0
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
