@@ -2,36 +2,37 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id EAD0130575C
-	for <lists+intel-gfx@lfdr.de>; Wed, 27 Jan 2021 10:51:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7E7963057FD
+	for <lists+intel-gfx@lfdr.de>; Wed, 27 Jan 2021 11:15:15 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2BAF389FDE;
-	Wed, 27 Jan 2021 09:51:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E2CA96E423;
+	Wed, 27 Jan 2021 10:15:13 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9A9D289FC3;
- Wed, 27 Jan 2021 09:51:29 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 23711752-1500050 for multiple; Wed, 27 Jan 2021 09:51:23 +0000
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E78446E423
+ for <intel-gfx@lists.freedesktop.org>; Wed, 27 Jan 2021 10:15:12 +0000 (UTC)
+IronPort-SDR: y9A36Y+DuHmqXBdD1roL1a8N1UV6WoG10LcdPS2WaHX+OzfSdcgbjVo8JU0b9oaW0EX4aMgNrh
+ QSIvekVyuoyQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9876"; a="198851901"
+X-IronPort-AV: E=Sophos;i="5.79,378,1602572400"; d="scan'208";a="198851901"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Jan 2021 02:15:12 -0800
+IronPort-SDR: LR3AkMCx5kn9dFC3JkZwrzzCWtrR0X/T6CoWxa/Q7OzMRzCLvCAZAhD276Lg5Dmvoq9iyPw0Ny
+ ZzIBdYgv2Ffw==
+X-IronPort-AV: E=Sophos;i="5.79,378,1602572400"; d="scan'208";a="504870449"
+Received: from unknown (HELO genxfsim-desktop.iind.intel.com) ([10.223.74.179])
+ by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Jan 2021 02:15:10 -0800
+From: Anshuman Gupta <anshuman.gupta@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Wed, 27 Jan 2021 15:30:51 +0530
+Message-Id: <20210127100051.30595-1-anshuman.gupta@intel.com>
+X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
-In-Reply-To: <5c3f792f-9b87-ba90-69ee-4c2c982d8aa5@linux.intel.com>
-References: <20210126130505.2938391-1-chris@chris-wilson.co.uk>
- <20210126130505.2938391-2-chris@chris-wilson.co.uk>
- <183f9081-0aeb-ebad-da8e-0dc25c449d2f@linux.intel.com>
- <161169867584.2943.4917889020493124389@build.alporthouse.com>
- <5c3f792f-9b87-ba90-69ee-4c2c982d8aa5@linux.intel.com>
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-Date: Wed, 27 Jan 2021 09:51:26 +0000
-Message-ID: <161174108605.919.13414856950880362875@build.alporthouse.com>
-User-Agent: alot/0.9
-Subject: Re: [Intel-gfx] [PATCH i-g-t 2/2] i915/sysfs_clients: Check that
- client ids are cyclic
+Subject: [Intel-gfx] [PATCH] drm/i915/hdcp: mst streams type1 capability
+ check
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,142 +45,146 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: igt-dev@lists.freedesktop.org
+Cc: Sean Paul <seanpaul@chromium.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Tvrtko Ursulin (2021-01-27 09:12:00)
-> 
-> On 26/01/2021 22:04, Chris Wilson wrote:
-> > Quoting Tvrtko Ursulin (2021-01-26 16:47:14)
-> >> On 26/01/2021 13:05, Chris Wilson wrote:
-> >>> The client id used is a cyclic allocator as that reduces the likelihood
-> >>> of userspace seeing the same id used again (and so confusing the new
-> >>> client as the old). Verify that each new client has an id greater than
-> >>> the last.
-> >>>
-> >>> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-> >>> Cc: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-> >>> ---
-> >>>    tests/i915/sysfs_clients.c | 129 +++++++++++++++++++++++++++++++------
-> >>>    1 file changed, 108 insertions(+), 21 deletions(-)
-> >>>
-> >>> diff --git a/tests/i915/sysfs_clients.c b/tests/i915/sysfs_clients.c
-> >>> index a3a1f81e1..d2c1ebc5f 100644
-> >>> --- a/tests/i915/sysfs_clients.c
-> >>> +++ b/tests/i915/sysfs_clients.c
-> >>> @@ -8,6 +8,7 @@
-> >>>    #include <errno.h>
-> >>>    #include <fcntl.h>
-> >>>    #include <inttypes.h>
-> >>> +#include <limits.h>
-> >>>    #include <math.h>
-> >>>    #include <sched.h>
-> >>>    #include <sys/socket.h>
-> >>> @@ -47,6 +48,8 @@
-> >>>    #define assert_within_epsilon(x, ref, tolerance) \
-> >>>        __assert_within_epsilon(x, ref, tolerance / 100., tolerance / 100.)
-> >>>    
-> >>> +#define BUFSZ 280
-> >>> +
-> >>>    #define MI_BATCH_BUFFER_START (0x31 << 23)
-> >>>    #define MI_BATCH_BUFFER_END (0xa << 23)
-> >>>    #define MI_ARB_CHECK (0x5 << 23)
-> >>> @@ -75,7 +78,7 @@ static void pidname(int i915, int clients)
-> >>>    {
-> >>>        struct dirent *de;
-> >>>        int sv[2], rv[2];
-> >>> -     char buf[280];
-> >>> +     char buf[BUFSZ];
-> >>>        int me = -1;
-> >>>        long count;
-> >>>        pid_t pid;
-> >>> @@ -180,7 +183,7 @@ static long count_clients(int clients)
-> >>>    {
-> >>>        struct dirent *de;
-> >>>        long count = 0;
-> >>> -     char buf[280];
-> >>> +     char buf[BUFSZ];
-> >>>        DIR *dir;
-> >>>    
-> >>>        dir = fdopendir(dup(clients));
-> >>> @@ -229,32 +232,113 @@ static void create(int i915, int clients)
-> >>>        igt_assert_eq(count_clients(clients), 1);
-> >>>    }
-> >>>    
-> >>> +static const char *find_client(int clients, pid_t pid, char *buf)
-> >>> +{
-> >>> +     DIR *dir = fdopendir(dup(clients));
-> >>> +
-> >>> +     /* Reading a dir as it changes does not appear to be stable, SEP */
-> >>
-> >> Oh yes, it is POSIX undefined as far as I could figure out. You are
-> >> creating/destroying clients while reading the dir from different
-> >> threads?
-> > 
-> > Different processes on different directory fd. man readdir(3) does say
-> > that glibc is threadsafe, but that is not a requirement of POSIX. The
-> > problem we are seeing is that the directory contents are not stable
-> > around the readdir loop as clients are being created/destroyed, causing
-> > dirents to be missed.
-> > 
-> > stracing the problem shows that glibc used a 32KiB buffer for getdents
-> > and only a single syscall was required to grab the entire directory. No
-> > errors were seen before the missed dirent. It just seemed to be missing.
-> > 
-> > Afaict there is no delay in creating the sysfs entry, and I think there
-> > should also be no delay in creating the kernfs node and inodes, so my
-> > initial assumption is that it's something not quite happy in the
-> > kernfs directory that shows up under stress. A second loop ran for a
-> > long time without incident locally, but CI seems much more adept at
-> > finding it.
-> 
-> I think we are talking about the same thing..
+It requires to check streams type1 capability in mst topology
+by checking Rxinfo instead connector HDCP2.x capability in
+order to enforce type0 stream encryption in a mix of
+HDCP {1.x,2.x} mst topology.
+Rxcaps always shows HDCP 2.x capability of immediate downstream
+connector. Let's use Rxinfo HDCP1_DEVICE_DOWNSTREAM bit to
+detect a HDCP {1.x,2.x} mix mst topology.
 
-The manpages only talked about the thread-safety of the library readdir,
-and since you mentioned threads not processes, I was hopeful.
+Cc: Sean Paul <seanpaul@chromium.org>
+Cc: Ramalingam C <ramalingam.c@intel.com>
+Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
+---
+ .../drm/i915/display/intel_display_types.h    |  4 ++
+ drivers/gpu/drm/i915/display/intel_dp_hdcp.c  | 39 +++++++++++++++++++
+ drivers/gpu/drm/i915/display/intel_hdcp.c     | 17 +++++++-
+ 3 files changed, 59 insertions(+), 1 deletion(-)
 
-> >> I think best might be to introduce explicit sync points between
-> >> those two entities to make this reliable. In another review for the same
-> >> problem I suggested pipes for implementing this handshake. Along the
-> >> lines of "let child open/close some processes, make it wait for parent;
-> >> parent scans sysfs, signals child to open/close some more; repeat for a
-> >> while".
-> > 
-> > Sadly, I don't expect userspace to do that :)
-> > 
-> > I do expect userspace to search for its own client/ upon creation, and I
-> > expect there to be many clients being opened at once. So I think so long
-> > as the use of the library readdir is correct (distinct processes with
-> > distinct directory fd, so I think there's no accidental sharing) this
-> > represents. Hmm. fsync(dirfd).
-> 
-> ...and I think it is just not guaranteed that reading the dir in 
-> parallel to dentries being created/deleted is guaranteed to work (no 
-> guarantee for discovering newly addded or deleted clients since the 
-> iteration started). Or you are saying that a client opens itself starts 
-> readdir loop and then fails to find itself?
+diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
+index 39397748b4b0..cfc9ec82f117 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_types.h
++++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+@@ -373,6 +373,10 @@ struct intel_hdcp_shim {
+ 	int (*hdcp_2_2_capable)(struct intel_digital_port *dig_port,
+ 				bool *capable);
+ 
++	/* Detects whether a HDCP 1.4 sink connected in MST topology */
++	int (*streams_type1_capable)(struct intel_connector *connector,
++				     bool *capable);
++
+ 	/* Write HDCP2.2 messages */
+ 	int (*write_2_2_msg)(struct intel_digital_port *dig_port,
+ 			     void *buf, size_t size);
+diff --git a/drivers/gpu/drm/i915/display/intel_dp_hdcp.c b/drivers/gpu/drm/i915/display/intel_dp_hdcp.c
+index f372e25edab4..35e3b0e4c740 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp_hdcp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp_hdcp.c
+@@ -478,6 +478,23 @@ int intel_dp_hdcp2_write_msg(struct intel_digital_port *dig_port,
+ 	return size;
+ }
+ 
++static int
++get_rxinfo_hdcp_1_dev_downstream(struct intel_digital_port *dig_port, bool *hdcp_1_x)
++{
++	u8 rx_info[HDCP_2_2_RXINFO_LEN];
++	int ret;
++
++	ret = drm_dp_dpcd_read(&dig_port->dp.aux,
++			       DP_HDCP_2_2_REG_RXINFO_OFFSET,
++			       (void *)rx_info, HDCP_2_2_RXINFO_LEN);
++
++	if (ret != HDCP_2_2_RXINFO_LEN)
++		return ret >= 0 ? -EIO : ret;
++
++	*hdcp_1_x = HDCP_2_2_HDCP1_DEVICE_CONNECTED(rx_info[1]) ? true : false;
++	return 0;
++}
++
+ static
+ ssize_t get_receiver_id_list_size(struct intel_digital_port *dig_port)
+ {
+@@ -626,6 +643,27 @@ int intel_dp_hdcp2_capable(struct intel_digital_port *dig_port,
+ 	return 0;
+ }
+ 
++static
++int intel_dp_mst_streams_type1_capable(struct intel_connector *connector,
++				       bool *capable)
++{
++	struct intel_digital_port *dig_port = intel_attached_dig_port(connector);
++	struct drm_i915_private *i915 = to_i915(dig_port->base.base.dev);
++	int ret;
++	bool hdcp_1_x;
++
++	ret = get_rxinfo_hdcp_1_dev_downstream(dig_port, &hdcp_1_x);
++	if (ret) {
++		drm_dbg_kms(&i915->drm,
++			    "[%s:%d] failed to read RxInfo ret=%d\n",
++			    connector->base.name, connector->base.base.id, ret);
++		return ret;
++	}
++
++	*capable = !hdcp_1_x;
++	return 0;
++}
++
+ static const struct intel_hdcp_shim intel_dp_hdcp_shim = {
+ 	.write_an_aksv = intel_dp_hdcp_write_an_aksv,
+ 	.read_bksv = intel_dp_hdcp_read_bksv,
+@@ -813,6 +851,7 @@ static const struct intel_hdcp_shim intel_dp_mst_hdcp_shim = {
+ 	.stream_2_2_encryption = intel_dp_mst_hdcp2_stream_encryption,
+ 	.check_2_2_link = intel_dp_mst_hdcp2_check_link,
+ 	.hdcp_2_2_capable = intel_dp_hdcp2_capable,
++	.streams_type1_capable = intel_dp_mst_streams_type1_capable,
+ 	.protocol = HDCP_PROTOCOL_DP,
+ };
+ 
+diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c b/drivers/gpu/drm/i915/display/intel_hdcp.c
+index ae1371c36a32..5b2e2625779b 100644
+--- a/drivers/gpu/drm/i915/display/intel_hdcp.c
++++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
+@@ -32,6 +32,21 @@ static int intel_conn_to_vcpi(struct intel_connector *connector)
+ 	return connector->port	? connector->port->vcpi.vcpi : 0;
+ }
+ 
++static bool
++intel_streams_type1_capable(struct intel_connector *connector)
++{
++	const struct intel_hdcp_shim *shim = connector->hdcp.shim;
++	bool capable = false;
++
++	if (!shim)
++		return capable;
++
++	if (shim->streams_type1_capable)
++		shim->streams_type1_capable(connector, &capable);
++
++	return capable;
++}
++
+ /*
+  * intel_hdcp_required_content_stream selects the most highest common possible HDCP
+  * content_type for all streams in DP MST topology because security f/w doesn't
+@@ -70,7 +85,7 @@ intel_hdcp_required_content_stream(struct intel_digital_port *dig_port)
+ 		if (conn_dig_port != dig_port)
+ 			continue;
+ 
+-		if (!enforce_type0 && !intel_hdcp2_capable(connector))
++		if (!enforce_type0 && !intel_streams_type1_capable(connector))
+ 			enforce_type0 = true;
+ 
+ 		data->streams[data->k].stream_id = intel_conn_to_vcpi(connector);
+-- 
+2.26.2
 
-That's exactly what happens -- but with multiple concurrent processes.
-(Needs to run with one process to double check).
-
-device = gem_reopen_driver(i915);
-DIR fdopendir(open("/sysfs/clients", O_DIRECTORY))
-rewinddir();
-while (readdir) ...
-=> this pid not found
-	
-> Otherwise, I was thinking, if we wanted to allow clients to inspect 
-> themselves, we should really add a getrusage(2) like ioctl.
-
-Maybe, but I've yet to see something that says a directory operation
-prior to a opendir/rewinddir will not be visible in readdir. POSIX says
-that directory operations in parallel to the readdir, whether or not
-those are visible in the next readdir is undefined, but it seems to be
-clear on operations prior to opening the directory.
--Chris
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
