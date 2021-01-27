@@ -1,38 +1,40 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9D81A30537A
-	for <lists+intel-gfx@lfdr.de>; Wed, 27 Jan 2021 07:51:00 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id C831F30537B
+	for <lists+intel-gfx@lfdr.de>; Wed, 27 Jan 2021 07:51:02 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C1D5E6E578;
-	Wed, 27 Jan 2021 06:50:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 24EEA6E57E;
+	Wed, 27 Jan 2021 06:51:01 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 42D946E578
- for <intel-gfx@lists.freedesktop.org>; Wed, 27 Jan 2021 06:50:57 +0000 (UTC)
-IronPort-SDR: GQyEc+3PTLdd/xnDou/K5na26KGQhhpSHSLXgmBlo+CqdgklNZ7Bkr6KsSokvjaRT73StZmuJt
- AynBuKH67XBA==
-X-IronPort-AV: E=McAfee;i="6000,8403,9876"; a="241555730"
-X-IronPort-AV: E=Sophos;i="5.79,378,1602572400"; d="scan'208";a="241555730"
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 824906E578
+ for <intel-gfx@lists.freedesktop.org>; Wed, 27 Jan 2021 06:50:58 +0000 (UTC)
+IronPort-SDR: Hjyewyi8VRlKQZ0AxzeNaTWkdgkL96MKsmC7YDQkYOy8bMmOQ6QZ64+tEusxfHezVLyI9hEJ1B
+ oZh4WruZT1tA==
+X-IronPort-AV: E=McAfee;i="6000,8403,9876"; a="241555741"
+X-IronPort-AV: E=Sophos;i="5.79,378,1602572400"; d="scan'208";a="241555741"
 Received: from orsmga005.jf.intel.com ([10.7.209.41])
  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Jan 2021 22:50:56 -0800
-IronPort-SDR: IHIfejJTaiICoFR5CA9psfkeXeyeQNHXpw5I8A8aaQrGvWyi4B1xTPUV/nWqP4UmkKgEmfnnTW
- k++YfBBiXSvg==
+ 26 Jan 2021 22:50:58 -0800
+IronPort-SDR: Ta9SavtmsMMJ0EAbM0OX0CGGrY9tbO7Zre2Dgg+/8rpGtdIrLvyLcYbmrTKiQ7xVhLatf8XSJG
+ NuB6eY1M9v2A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.79,378,1602572400"; d="scan'208";a="573175074"
+X-IronPort-AV: E=Sophos;i="5.79,378,1602572400"; d="scan'208";a="573175104"
 Received: from jhli-desk1.jf.intel.com ([10.54.74.156])
- by orsmga005.jf.intel.com with ESMTP; 26 Jan 2021 22:50:55 -0800
+ by orsmga005.jf.intel.com with ESMTP; 26 Jan 2021 22:50:58 -0800
 From: Juston Li <juston.li@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Tue, 26 Jan 2021 22:50:31 -0800
-Message-Id: <20210127065034.2501119-1-juston.li@intel.com>
+Date: Tue, 26 Jan 2021 22:50:32 -0800
+Message-Id: <20210127065034.2501119-2-juston.li@intel.com>
 X-Mailer: git-send-email 2.29.2
+In-Reply-To: <20210127065034.2501119-1-juston.li@intel.com>
+References: <20210127065034.2501119-1-juston.li@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v2 1/4] drm/i915/hdcp: Disable the QSES check
- for HDCP 1.4 over MST
+Subject: [Intel-gfx] [PATCH v2 2/4] drm/i915/hdcp: update
+ cp_irq_count_cached in intel_dp_hdcp2_read_msg()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,64 +47,68 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Daniel Vetter <daniel.vetter@ffwll.ch>, seanpaul@chromium.org
+Cc: seanpaul@chromium.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Sean Paul <seanpaul@chromium.org>
+Update cp_irq_count_cached when we handle reading the messages rather
+than writing a message to make sure the value is up to date and not
+stale from a previously handled CP_IRQ. AKE flow  doesn't always respond
+to a read with a write msg.
 
-The HDCP 1.4 spec does not require the QUERY_STREAM_ENCRYPTION_STATUS
-check, it was always a nice-to-have. After deploying this across various
-devices, we've determined that some MST bridge chips do not properly
-support this call for HDCP 1.4 (namely Synaptics and Realtek).
+E.g. currently AKE_Send_Pairing_Info will "timeout" because we received
+a CP_IRQ for reading AKE_Send_H_Prime but no write occurred between that
+and reading AKE_Send_Pairing_Info so cp_irq_count_cached is stale
+causing the wait to return right away rather than waiting for a new
+CP_IRQ.
 
-I had considered creating a quirk for this, but I think it's more
-prudent to just disable the check entirely since I don't have an idea
-how widespread support is.
-
-Acked-by: Daniel Vetter <daniel.vetter@ffwll.ch>
-Reviewed-by: Anshuman Gupta <anshuman.gupta@intel.com>
-Signed-off-by: Sean Paul <seanpaul@chromium.org>
-Link: https://patchwork.freedesktop.org/patch/msgid/20210106223909.34476-1-sean@poorly.run #v1
-
-Changes in v2:
--Rebased on -tip
+Signed-off-by: Juston Li <juston.li@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dp_hdcp.c | 12 +-----------
- 1 file changed, 1 insertion(+), 11 deletions(-)
+ drivers/gpu/drm/i915/display/intel_dp_hdcp.c | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_dp_hdcp.c b/drivers/gpu/drm/i915/display/intel_dp_hdcp.c
-index f372e25edab4..4dba5bb15af5 100644
+index 4dba5bb15af5..d1397af97f69 100644
 --- a/drivers/gpu/drm/i915/display/intel_dp_hdcp.c
 +++ b/drivers/gpu/drm/i915/display/intel_dp_hdcp.c
-@@ -722,16 +722,6 @@ static bool intel_dp_mst_get_qses_status(struct intel_digital_port *dig_port,
- 	return reply.auth_completed && reply.encryption_enabled;
- }
+@@ -442,8 +442,6 @@ static
+ int intel_dp_hdcp2_write_msg(struct intel_digital_port *dig_port,
+ 			     void *buf, size_t size)
+ {
+-	struct intel_dp *dp = &dig_port->dp;
+-	struct intel_hdcp *hdcp = &dp->attached_connector->hdcp;
+ 	unsigned int offset;
+ 	u8 *byte = buf;
+ 	ssize_t ret, bytes_to_write, len;
+@@ -459,8 +457,6 @@ int intel_dp_hdcp2_write_msg(struct intel_digital_port *dig_port,
+ 	bytes_to_write = size - 1;
+ 	byte++;
  
--static
--bool intel_dp_mst_hdcp_check_link(struct intel_digital_port *dig_port,
--				  struct intel_connector *connector)
--{
--	if (!intel_dp_hdcp_check_link(dig_port, connector))
--		return false;
+-	hdcp->cp_irq_count_cached = atomic_read(&hdcp->cp_irq_count);
 -
--	return intel_dp_mst_get_qses_status(dig_port, connector);
--}
--
- static int
- intel_dp_mst_hdcp2_stream_encryption(struct intel_connector *connector,
- 				     bool enable)
-@@ -805,7 +795,7 @@ static const struct intel_hdcp_shim intel_dp_mst_hdcp_shim = {
- 	.read_v_prime_part = intel_dp_hdcp_read_v_prime_part,
- 	.toggle_signalling = intel_dp_hdcp_toggle_signalling,
- 	.stream_encryption = intel_dp_mst_hdcp_stream_encryption,
--	.check_link = intel_dp_mst_hdcp_check_link,
-+	.check_link = intel_dp_hdcp_check_link,
- 	.hdcp_capable = intel_dp_hdcp_capable,
- 	.write_2_2_msg = intel_dp_hdcp2_write_msg,
- 	.read_2_2_msg = intel_dp_hdcp2_read_msg,
+ 	while (bytes_to_write) {
+ 		len = bytes_to_write > DP_AUX_MAX_PAYLOAD_BYTES ?
+ 				DP_AUX_MAX_PAYLOAD_BYTES : bytes_to_write;
+@@ -509,6 +505,8 @@ int intel_dp_hdcp2_read_msg(struct intel_digital_port *dig_port,
+ 			    u8 msg_id, void *buf, size_t size)
+ {
+ 	struct drm_i915_private *i915 = to_i915(dig_port->base.base.dev);
++	struct intel_dp *dp = &dig_port->dp;
++	struct intel_hdcp *hdcp = &dp->attached_connector->hdcp;
+ 	unsigned int offset;
+ 	u8 *byte = buf;
+ 	ssize_t ret, bytes_to_recv, len;
+@@ -523,6 +521,8 @@ int intel_dp_hdcp2_read_msg(struct intel_digital_port *dig_port,
+ 	if (ret < 0)
+ 		return ret;
+ 
++	hdcp->cp_irq_count_cached = atomic_read(&hdcp->cp_irq_count);
++
+ 	if (msg_id == HDCP_2_2_REP_SEND_RECVID_LIST) {
+ 		ret = get_receiver_id_list_size(dig_port);
+ 		if (ret < 0)
 -- 
 2.29.2
 
