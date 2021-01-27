@@ -1,40 +1,40 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 09789305CB0
-	for <lists+intel-gfx@lfdr.de>; Wed, 27 Jan 2021 14:14:37 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 05EA4305CB1
+	for <lists+intel-gfx@lfdr.de>; Wed, 27 Jan 2021 14:14:38 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2CEFA6E81A;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 228556E819;
 	Wed, 27 Jan 2021 13:14:35 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 389F76E81A
- for <intel-gfx@lists.freedesktop.org>; Wed, 27 Jan 2021 13:14:29 +0000 (UTC)
-IronPort-SDR: XZIsbYUSn3x5BlVpJhuh6CDMtHE8VNwYVP3uSUQIIIoQXR77Z2Oz4zZXiYFV8guQB/RQIA5JBZ
- hok8bFyGrSbw==
-X-IronPort-AV: E=McAfee;i="6000,8403,9876"; a="180209891"
-X-IronPort-AV: E=Sophos;i="5.79,379,1602572400"; d="scan'208";a="180209891"
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 56FD76E7F5
+ for <intel-gfx@lists.freedesktop.org>; Wed, 27 Jan 2021 13:14:30 +0000 (UTC)
+IronPort-SDR: Omm/QcKejhd6bJY7J2Cs9q44p1ir7jZW8Hx+EeqAOiXs+a3ktyhjQnGaSnGdLBZHAk0CnYIx+o
+ 7VtNV6Ms3h0A==
+X-IronPort-AV: E=McAfee;i="6000,8403,9876"; a="180209893"
+X-IronPort-AV: E=Sophos;i="5.79,379,1602572400"; d="scan'208";a="180209893"
 Received: from orsmga002.jf.intel.com ([10.7.209.21])
  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Jan 2021 05:14:29 -0800
-IronPort-SDR: pPzUYXNVVSX8eLWZEBUF4ez6+hNG/Kub5dCOfjNtD4M7LZVFbCaJm9rnwFfhvK8HlAORhRvLvk
- 4+3l/CGYOFXg==
-X-IronPort-AV: E=Sophos;i="5.79,379,1602572400"; d="scan'208";a="369471249"
+ 27 Jan 2021 05:14:30 -0800
+IronPort-SDR: C4s30J+aQdY+zPuuJJRhW4ir1Z6mMJbmEb82BZ9gLfVjeV/1V0kZjanhlanNDrJVU1NR8DGFbe
+ oH6B7LqU89JA==
+X-IronPort-AV: E=Sophos;i="5.79,379,1602572400"; d="scan'208";a="369471255"
 Received: from gladkina-mobl.ger.corp.intel.com (HELO
  mwauld-desk1.ger.corp.intel.com) ([10.252.19.195])
  by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Jan 2021 05:14:28 -0800
+ 27 Jan 2021 05:14:29 -0800
 From: Matthew Auld <matthew.auld@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Wed, 27 Jan 2021 13:14:15 +0000
-Message-Id: <20210127131417.393872-6-matthew.auld@intel.com>
+Date: Wed, 27 Jan 2021 13:14:16 +0000
+Message-Id: <20210127131417.393872-7-matthew.auld@intel.com>
 X-Mailer: git-send-email 2.26.2
 In-Reply-To: <20210127131417.393872-1-matthew.auld@intel.com>
 References: <20210127131417.393872-1-matthew.auld@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v5 6/8] drm/i915: allocate context from LMEM
+Subject: [Intel-gfx] [PATCH v5 7/8] drm/i915: move engine scratch to LMEM
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,31 +47,54 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-UHJlZmVyIGFsbG9jYXRpbmcgdGhlIGNvbnRleHQgZnJvbSBMTUVNIG9uIGRnZnguCgpCYXNlZCBv
-biBhIHBhdGNoIGZyb20gTWljaGVsIFRoaWVycnkuCgp2MjogZmxhdHRlbiB0aGUgY2hhaW4KClNp
-Z25lZC1vZmYtYnk6IE1hdHRoZXcgQXVsZCA8bWF0dGhldy5hdWxkQGludGVsLmNvbT4KUmV2aWV3
-ZWQtYnk6IENocmlzIFdpbHNvbiA8Y2hyaXNAY2hyaXMtd2lsc29uLmNvLnVrPgotLS0KIGRyaXZl
-cnMvZ3B1L2RybS9pOTE1L2d0L2ludGVsX2xyYy5jIHwgNiArKysrKy0KIDEgZmlsZSBjaGFuZ2Vk
-LCA1IGluc2VydGlvbnMoKyksIDEgZGVsZXRpb24oLSkKCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dw
-dS9kcm0vaTkxNS9ndC9pbnRlbF9scmMuYyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L2ludGVs
-X2xyYy5jCmluZGV4IDMzYjUyOWRjYjA1Zi4uODUwOGI4ZDcwMWMxIDEwMDY0NAotLS0gYS9kcml2
-ZXJzL2dwdS9kcm0vaTkxNS9ndC9pbnRlbF9scmMuYworKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkx
-NS9ndC9pbnRlbF9scmMuYwpAQCAtMyw2ICszLDggQEAKICAqIENvcHlyaWdodCDCqSAyMDE0IElu
-dGVsIENvcnBvcmF0aW9uCiAgKi8KIAorI2luY2x1ZGUgImdlbS9pOTE1X2dlbV9sbWVtLmgiCisK
-ICNpbmNsdWRlICJnZW44X2VuZ2luZV9jcy5oIgogI2luY2x1ZGUgImk5MTVfZHJ2LmgiCiAjaW5j
-bHVkZSAiaTkxNV9wZXJmLmgiCkBAIC04MDgsNyArODEwLDkgQEAgX19scmNfYWxsb2Nfc3RhdGUo
-c3RydWN0IGludGVsX2NvbnRleHQgKmNlLCBzdHJ1Y3QgaW50ZWxfZW5naW5lX2NzICplbmdpbmUp
-CiAJCWNvbnRleHRfc2l6ZSArPSBQQUdFX1NJWkU7CiAJfQogCi0Jb2JqID0gaTkxNV9nZW1fb2Jq
-ZWN0X2NyZWF0ZV9zaG1lbShlbmdpbmUtPmk5MTUsIGNvbnRleHRfc2l6ZSk7CisJb2JqID0gaTkx
-NV9nZW1fb2JqZWN0X2NyZWF0ZV9sbWVtKGVuZ2luZS0+aTkxNSwgY29udGV4dF9zaXplLCAwKTsK
-KwlpZiAoSVNfRVJSKG9iaikpCisJCW9iaiA9IGk5MTVfZ2VtX29iamVjdF9jcmVhdGVfc2htZW0o
-ZW5naW5lLT5pOTE1LCBjb250ZXh0X3NpemUpOwogCWlmIChJU19FUlIob2JqKSkKIAkJcmV0dXJu
-IEVSUl9DQVNUKG9iaik7CiAKLS0gCjIuMjYuMgoKX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlz
-dHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4v
-bGlzdGluZm8vaW50ZWwtZ2Z4Cg==
+Prefer allocating the engine scratch from LMEM on dgfx.
+
+v2: flatten the chain
+
+Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+Reviewed-by: Chris Wilson <chris@chris-wilson.co.uk>
+---
+ drivers/gpu/drm/i915/gt/intel_gt.c | 8 ++++++--
+ 1 file changed, 6 insertions(+), 2 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/gt/intel_gt.c b/drivers/gpu/drm/i915/gt/intel_gt.c
+index 9ac67e0534b7..35ff68ada4f1 100644
+--- a/drivers/gpu/drm/i915/gt/intel_gt.c
++++ b/drivers/gpu/drm/i915/gt/intel_gt.c
+@@ -4,6 +4,8 @@
+  */
+ 
+ #include "debugfs_gt.h"
++
++#include "gem/i915_gem_lmem.h"
+ #include "i915_drv.h"
+ #include "intel_context.h"
+ #include "intel_gt.h"
+@@ -378,11 +380,13 @@ static int intel_gt_init_scratch(struct intel_gt *gt, unsigned int size)
+ 	struct i915_vma *vma;
+ 	int ret;
+ 
+-	obj = i915_gem_object_create_stolen(i915, size);
++	obj = i915_gem_object_create_lmem(i915, size, I915_BO_ALLOC_VOLATILE);
++	if (IS_ERR(obj))
++		obj = i915_gem_object_create_stolen(i915, size);
+ 	if (IS_ERR(obj))
+ 		obj = i915_gem_object_create_internal(i915, size);
+ 	if (IS_ERR(obj)) {
+-		DRM_ERROR("Failed to allocate scratch page\n");
++		drm_err(&i915->drm, "Failed to allocate scratch page\n");
+ 		return PTR_ERR(obj);
+ 	}
+ 
+-- 
+2.26.2
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
